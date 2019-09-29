@@ -21,7 +21,7 @@ endif
 	rgbasm -h -o $@ $<
 
 $(ROM): $(OBJS) tcg2.link
-	rgblink -n $(ROM:.gbc=.sym) -m $(ROM:.gbc=.map) -l contents/contents.link -o $@ $(OBJS)
+	rgblink -n $(ROM:.gbc=.sym) -m $(ROM:.gbc=.map) -l tcg2.link -o $@ $(OBJS)
 	# rgbfix -jsvc -k 01 -l 0x33 -m 0x1e -p 0 -r 02 -t "POKEPINBALL" -i VPHE $@
 
 # For contributors to make sure a change didn't affect the contents of the rom.
