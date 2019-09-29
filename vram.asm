@@ -1,0 +1,5 @@
+vTilesOB EQU $8000
+vTilesSH EQU $8800
+vTilesBG EQU $9000
+vBGMap EQU $9800
+vBGWin EQU $9c00
