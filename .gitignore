@@ -33,3 +33,5 @@
 
 # converted audio data
 *.pcm
+# shortcuts
+*.lnk

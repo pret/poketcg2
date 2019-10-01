@@ -1,12 +1,9 @@
 ; Graciously aped from http://nocash.emubase.de/pandocs.htm .
 
-; MBC5
-MBC5SRamEnable EQU $0000
-MBC5RomBank    EQU $2000
-MBC5RomBankHi  EQU $3000
-MBC5SRamBank   EQU $4000
-MBC5RomBankOn  EQU $6000
-MBC5RTC        EQU $a000
+; MBC3
+MBC3SRamEnable EQU $0000
+MBC3RomBank    EQU $2000
+MBC3SRamBank   EQU $4000
 
 SRAM_DISABLE EQU $00
 SRAM_ENABLE  EQU $0a
