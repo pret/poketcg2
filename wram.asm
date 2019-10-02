@@ -11,7 +11,38 @@ wOAMOffset:: ; cab5
 ds $1
 wTileMapFill:: ; cab6
 ds $1
-ds $11
+wIE:: ; cab7
+ds $1
+wVBlankCounter:: ; cab8
+ds $1
+ds $1
+wReentrancyFlag:: ; caba
+ds $1
+wBGP:: ; cabb
+ds $1
+wOBP0:: ; cabc
+ds $1
+wOBP1:: ; cabd
+ds $1
+wVBlankOAMCopyToggle:: ; cabe
+ds $1
+wTempByte:: ; cabf
+ds $1
+wDuelDisplayedScreen:: ; cac0
+ds $1
+ds $7
 wRNG1:: ; cac8
+ds $1
+;cac9
+ds $1
+;caca
+ds $1
+wLCDCFunctionTrampoline:: ;cacb
+ds $1
+;cacc
+ds $1
+;cacd
+ds $1
+wVBlankFunctionTrampoline:: ;cace
 ds $1
 SECTION "WRAM Bank 1", WRAMX

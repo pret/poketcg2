@@ -61,14 +61,14 @@
 	nop
 	nop
 ; vblank
-	jp $019b
+	jp VBlankHandler
 	nop
 	nop
 	nop
 	nop
 	nop
 ; lcdc
-	call $cacb
+	call wLCDCFunctionTrampoline
 	reti
 	nop
 	nop
@@ -90,9 +90,169 @@
 	nop
 ; joypad
 	reti
-
-
-INCBIN "baserom.gbc", $0061, $0150 - $0061
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+Entry: ; 0100 (0:0150)
+	nop
+	jp Start
+INCBIN "baserom.gbc", $0104, $0150 - $0104
 
 Start: ; 0150 (0:0150)
 	di
@@ -125,8 +285,59 @@ Start: ; 0150 (0:0150)
 	call BankswitchROM
 	ld sp, $d000
 	jp GameLoop
-	
-INCBIN "baserom.gbc", $019b, $0773 - $019b
+; vblank interrupt handler
+VBlankHandler: ; 019b (0:019b)
+	push af
+	push bc
+	push de
+	push hl
+	ldh a, [hBankROM]
+	push af
+	ldh a, [rSVBK]
+	push af
+	ld a, $1
+	ldh [rSVBK], a
+	ld hl, wReentrancyFlag
+	bit IN_VBLANK, [hl]
+	jr nz, .done
+	set IN_VBLANK, [hl]
+	ld a, [wVBlankOAMCopyToggle]
+	or a
+	jr z, .no_oam_copy
+	call hDMAFunction ; DMA-copy $ca00-$ca9f to OAM memory
+	xor a
+	ld [wVBlankOAMCopyToggle], a
+.no_oam_copy
+	; flush scaling/windowing parameters
+	ldh a, [hSCX]
+	ld [rSCX], a
+	ldh a, [hSCY]
+	ld [rSCY], a
+	ldh a, [hWX]
+	ld [rWX], a
+	ldh a, [hWY]
+	ld [rWY], a
+	; flush LCDC
+	ldh a, [hLCDC]
+	ld [rLCDC], a
+	ei
+	call wVBlankFunctionTrampoline
+	call $0425
+	ld hl, wVBlankCounter
+	inc [hl]
+	ld hl, wReentrancyFlag
+	res IN_VBLANK, [hl]
+.done
+	pop af
+	ld [rSVBK], a
+	pop af
+	call BankswitchROM
+	pop hl
+	pop de
+	pop bc
+	pop af
+	reti
+INCBIN "baserom.gbc", $01ef, $0773 - $01ef
 
 ; switch ROM bank to a
 ; Note: Exact match to TCG1
