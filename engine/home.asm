@@ -92,8 +92,41 @@
 	reti
 
 
-INCBIN "baserom.gbc", $0061, $0773 - $0061
+INCBIN "baserom.gbc", $0061, $0150 - $0061
 
+Start: ; 0150 (0:0150)
+	di
+	ld sp, $fffe
+	push af
+	xor a
+	ld [rIF], a
+	ld [rIE], a
+	call $03e6
+	ld a, $1
+	call BankswitchROM
+	xor a
+	call BankswitchSRAM
+	call BankswitchVRAM0
+	call $028e
+	pop af
+	ld [wInitialA], a
+	call $0342
+	ld a, $20
+	ld [wTileMapFill], a
+	call $0399
+	call $0305
+	call $0363
+	call $305c
+	call $0254
+	call $0dc7
+	call $0566
+	call ValidateSRAM
+	ld a, BANK(GameLoop)
+	call BankswitchROM
+	ld sp, $d000
+	jp GameLoop
+	
+INCBIN "baserom.gbc", $019b, $0773 - $019b
 
 ; switch ROM bank to a
 ; Note: Exact match to TCG1

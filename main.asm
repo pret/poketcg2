@@ -5,7 +5,7 @@ INCLUDE "constants.asm"
 SECTION "ROM Bank $000", ROM0[$0]
 INCLUDE "engine/home.asm"
 SECTION "ROM Bank $001", ROMX[$4000], BANK[$1]
-INCBIN "baserom.gbc", $4000, $4000
+INCLUDE "engine/bank01.asm"
 SECTION "ROM Bank $002", ROMX[$4000], BANK[$2]
 INCBIN "baserom.gbc", $8000, $4000
 SECTION "ROM Bank $003", ROMX[$4000], BANK[$3]
