@@ -1,3 +1,4 @@
+INCLUDE "constants/card_constants.asm"
 INCLUDE "hram.asm"
 INCLUDE "vram.asm"
 INCLUDE "gbhw.asm"

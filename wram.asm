@@ -30,7 +30,13 @@ wTempByte:: ; cabf
 ds $1
 wDuelDisplayedScreen:: ; cac0
 ds $1
-ds $7
+wTimerCounter:: ; cac1
+ds $1
+wPlayTimeCounterEnable:: ; cac2
+ds $1
+wPlayTimeCounter:: ; cac3
+ds $1
+ds $4
 wRNG1:: ; cac8
 ds $1
 ;cac9

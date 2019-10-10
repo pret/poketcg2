@@ -75,7 +75,7 @@
 	nop
 	nop
 ; timer
-	jp $01ef
+	jp TimerHandler
 	nop
 	nop
 	nop
@@ -337,7 +337,80 @@ VBlankHandler: ; 019b (0:019b)
 	pop bc
 	pop af
 	reti
-INCBIN "baserom.gbc", $01ef, $0773 - $01ef
+; timer interrupt handler
+TimerHandler: ; 01ef (0:01ef)
+	push af
+	push hl
+	push de
+	push bc
+	ei
+	call $0bb2
+	ld a, [rSVBK]
+	push af
+	ld a, $1
+	ld [rSVBK], a
+	; only trigger every fourth interrupt ˜ 60.24 Hz
+	ld hl, wTimerCounter
+	ld a, [hl]
+	inc [hl]
+	and $3
+	jr nz, .done
+	; increment the 60-60-60-255-255 counter
+	call IncrementPlayTimeCounter
+	; check in-timer flag
+	ld hl, wReentrancyFlag
+	bit IN_TIMER, [hl]
+	jr nz, .done
+	set IN_TIMER, [hl]
+	ldh a, [hBankROM]
+	push af
+	ld a, $77
+	call BankswitchROM
+	call $4003
+	pop af
+	call BankswitchROM
+	; clear in-timer flag
+	ld hl, wReentrancyFlag
+	res IN_TIMER, [hl]
+.done
+	pop af
+	ldh [rSVBK], a
+	pop bc
+	pop de
+	pop hl
+	pop af
+	reti
+	
+; increment play time counter by a tick
+IncrementPlayTimeCounter: ; 022f (0:022f)
+	ld a, [wPlayTimeCounterEnable]
+	or a
+	ret z
+	ld hl, wPlayTimeCounter
+	inc [hl]
+	ld a, [hl]
+	cp 60
+	ret c
+	ld [hl], $0
+	inc hl
+	inc [hl]
+	ld a, [hl]
+	cp 60
+	ret c
+	ld [hl], $0
+	inc hl
+	inc [hl]
+	ld a, [hl]
+	cp 60
+	ret c
+	ld [hl], $0
+	inc hl
+	inc [hl]
+	ret nz
+	inc hl
+	inc [hl]
+	ret
+INCBIN "baserom.gbc", $0254, $0773 - $0254
 
 ; switch ROM bank to a
 ; Note: Exact match to TCG1
