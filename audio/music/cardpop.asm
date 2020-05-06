@@ -1,0 +1,299 @@
+Music_CardPop_Ch2: ; 1e35cf (78:75cf)
+	speed 4
+	musicdc 17
+	musice8 8
+	duty 2
+	volume 144
+	MainLoop
+	Loop 7
+	rest 16
+	EndLoop
+	rest 14
+	Loop 2
+	octave 5
+	musice8 8
+	F# 1
+	G_ 1
+	musice8 6
+	F# 1
+	volume 55
+	F# 1
+	volume 144
+	D_ 1
+	volume 55
+	F# 1
+	dec_octave
+	volume 144
+	A_ 1
+	inc_octave
+	volume 55
+	D_ 1
+	dec_octave
+	volume 144
+	G_ 1
+	volume 55
+	A_ 1
+	volume 144
+	F# 1
+	volume 55
+	G_ 1
+	volume 144
+	D_ 1
+	volume 55
+	G_ 1
+	dec_octave
+	volume 144
+	A_ 1
+	volume 55
+	inc_octave
+	D_ 1
+	dec_octave
+	volume 144
+	G_ 1
+	volume 55
+	A_ 1
+	volume 144
+	F# 1
+	volume 55
+	G_ 1
+	rest 1
+	F# 1
+	rest 12
+	rest 16
+	rest 14
+	octave 5
+	volume 144
+	musice8 8
+	E_ 1
+	F_ 1
+	musice8 6
+	E_ 1
+	volume 55
+	E_ 1
+	volume 144
+	C_ 1
+	volume 55
+	E_ 1
+	dec_octave
+	volume 144
+	G_ 1
+	inc_octave
+	volume 55
+	C_ 1
+	dec_octave
+	volume 144
+	F_ 1
+	volume 55
+	G_ 1
+	volume 144
+	E_ 1
+	volume 55
+	F_ 1
+	volume 144
+	C_ 1
+	volume 55
+	E_ 1
+	dec_octave
+	volume 144
+	G_ 1
+	volume 55
+	inc_octave
+	C_ 1
+	dec_octave
+	volume 144
+	F_ 1
+	volume 55
+	G_ 1
+	volume 144
+	E_ 1
+	volume 55
+	F_ 1
+	rest 1
+	E_ 1
+	rest 12
+	rest 16
+	volume 144
+	rest 14
+	EndLoop
+	rest 2
+	EndMainLoop
+
+
+Music_CardPop_Ch1: ; 1e3674 (78:7674)
+	speed 4
+	musicdc 17
+	musice8 8
+	duty 2
+	volume 96
+	musice8 3
+	Loop 2
+	octave 2
+	A_ 2
+	inc_octave
+	A_ 2
+	inc_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	inc_octave
+	inc_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	inc_octave
+	inc_octave
+	A_ 2
+	dec_octave
+	dec_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	inc_octave
+	A_ 2
+	inc_octave
+	A_ 2
+	inc_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	dec_octave
+	A_ 2
+	inc_octave
+	inc_octave
+	A_ 2
+	EndLoop
+	Loop 2
+	octave 2
+	G_ 2
+	inc_octave
+	G_ 2
+	inc_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	inc_octave
+	inc_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	inc_octave
+	inc_octave
+	G_ 2
+	dec_octave
+	dec_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	inc_octave
+	G_ 2
+	inc_octave
+	G_ 2
+	inc_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	dec_octave
+	G_ 2
+	inc_octave
+	inc_octave
+	G_ 2
+	EndLoop
+	EndMainLoop
+
+
+Music_CardPop_Ch3: ; 1e36cf (78:76cf)
+	speed 4
+	wave 1
+	musicdc 17
+	volume 32
+	musice9 0
+	musice8 8
+	music_call Branch_1e36f0
+	C_ 2
+	C# 2
+	music_call Branch_1e36f0
+	D_ 2
+	C# 2
+	music_call Branch_1e3701
+	D_ 2
+	C# 2
+	music_call Branch_1e3701
+	C_ 2
+	C# 2
+	EndMainLoop
+
+Branch_1e36f0:
+	octave 1
+	D_ 2
+	rest 2
+	D_ 4
+	inc_octave
+	D_ 2
+	dec_octave
+	D_ 2
+	rest 2
+	F# 2
+	rest 2
+	G_ 2
+	rest 2
+	G# 2
+	rest 2
+	A_ 2
+	music_ret
+
+Branch_1e3701:
+	octave 1
+	C_ 2
+	rest 2
+	C_ 4
+	inc_octave
+	C_ 2
+	dec_octave
+	C_ 2
+	rest 2
+	E_ 2
+	rest 2
+	F_ 2
+	rest 2
+	F# 2
+	rest 2
+	G_ 2
+	music_ret
+
+
+Music_CardPop_Ch4: ; 1e3712 (78:7712)
+	speed 4
+	octave 1
+	Loop 11
+	music_call Branch_1e372b
+	snare4 4
+	snare1 2
+	snare3 2
+	snare4 2
+	snare1 2
+	EndLoop
+	music_call Branch_1e372b
+	snare4 2
+	snare2 1
+	snare2 1
+	Loop 4
+	snare1 2
+	EndLoop
+	EndMainLoop
+
+Branch_1e372b:
+	bass 2
+	snare3 2
+	snare4 4
+	snare1 2
+	snare3 2
+	snare4 2
+	snare1 2
+	bass 2
+	snare1 2
+	music_ret
+; 0x1e3735

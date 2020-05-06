@@ -1,0 +1,1238 @@
+Music_DuelTheme2_Ch2: ; 1e20fe (78:60fe)
+	speed 9
+	musicdc 17
+	vibrato_type 8
+	vibrato_delay 20
+	musice8 8
+	octave 1
+	duty 1
+	volume 148
+	Loop 8
+	D_ 2
+	D_ 1
+	EndLoop
+	MainLoop
+	octave 1
+	Loop 23
+	D_ 2
+	D_ 1
+	EndLoop
+	duty 1
+	volume 160
+	inc_octave
+	inc_octave
+	speed 1
+	C_ 3
+	D_ 4
+	E_ 3
+	F_ 4
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 3
+	speed 9
+	music_call Branch_1e22d3
+	C_ 6
+	tie
+	speed 1
+	C_ 12
+	volume 55
+	C_ 6
+	volume 160
+	dec_octave
+	B_ 12
+	volume 55
+	B_ 6
+	volume 160
+	G_ 12
+	volume 55
+	G_ 6
+	speed 9
+	volume 160
+	musice8 8
+	A_ 1
+	volume 55
+	A_ 1
+	volume 160
+	musice8 6
+	D_ 1
+	musice8 8
+	D_ 9
+	tie
+	D_ 9
+	volume 71
+	D_ 3
+	duty 2
+	musice8 8
+	volume 47
+	E_ 4
+	volume 96
+	E_ 7
+	volume 39
+	E_ 1
+	volume 95
+	G_ 4
+	volume 128
+	speed 1
+	G_ 12
+	volume 39
+	G_ 6
+	inc_octave
+	speed 9
+	volume 127
+	musice8 8
+	C_ 3
+	duty 1
+	volume 160
+	dec_octave
+	speed 1
+	C_ 3
+	D_ 4
+	E_ 3
+	F_ 4
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 3
+	speed 9
+	music_call Branch_1e22d3
+	musice8 8
+	C_ 4
+	tie
+	speed 1
+	C_ 4
+	E_ 5
+	F_ 4
+	F# 5
+	G_ 12
+	volume 55
+	G_ 6
+	volume 160
+	E_ 12
+	volume 55
+	E_ 6
+	speed 9
+	volume 160
+	musice8 8
+	C_ 1
+	volume 55
+	C_ 1
+	volume 160
+	D_ 1
+	volume 55
+	D_ 1
+	dec_octave
+	volume 160
+	musice8 6
+	A_ 1
+	inc_octave
+	musice8 8
+	D_ 9
+	tie
+	D_ 10
+	volume 55
+	D_ 1
+	volume 160
+	speed 1
+	musice8 8
+	D_ 4
+	D# 5
+	speed 9
+	E_ 11
+	volume 55
+	E_ 1
+	volume 160
+	G_ 5
+	volume 55
+	G_ 1
+	volume 160
+	inc_octave
+	musice8 8
+	C_ 3
+	dec_octave
+	speed 1
+	C_ 3
+	D_ 4
+	E_ 3
+	F_ 4
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 3
+	music_call Branch_1e2326
+	D_ 1
+	volume 55
+	D_ 1
+	duty 1
+	volume 148
+	octave 1
+	D_ 1
+	Loop 3
+	D_ 2
+	D_ 1
+	EndLoop
+	duty 2
+	volume 107
+	inc_octave
+	inc_octave
+	G_ 1
+	dec_octave
+	B_ 1
+	inc_octave
+	G_ 1
+	A_ 1
+	D_ 1
+	A_ 1
+	B_ 1
+	D_ 1
+	B_ 1
+	duty 1
+	volume 160
+	music_call Branch_1e22f8
+	octave 4
+	volume 71
+	F# 12
+	volume 160
+	C# 9
+	volume 71
+	C# 1
+	volume 160
+	C# 1
+	D_ 1
+	E_ 3
+	D_ 3
+	C# 3
+	dec_octave
+	musice8 6
+	B_ 3
+	musice8 8
+	B_ 4
+	volume 71
+	B_ 1
+	inc_octave
+	volume 160
+	speed 1
+	C# 4
+	dec_octave
+	B_ 5
+	speed 9
+	A_ 6
+	volume 71
+	A_ 1
+	duty 1
+	volume 147
+	musice8 8
+	D_ 2
+	D_ 2
+	rest 2
+	C# 2
+	duty 1
+	volume 160
+	musice8 8
+	music_call Branch_1e22f8
+	octave 4
+	volume 71
+	F# 6
+	dec_octave
+	volume 160
+	B_ 2
+	inc_octave
+	C# 2
+	D_ 1
+	volume 71
+	D_ 1
+	volume 160
+	D_ 9
+	volume 71
+	D_ 1
+	volume 160
+	musice8 7
+	C# 1
+	D_ 1
+	musice8 8
+	E_ 3
+	D_ 3
+	C# 3
+	dec_octave
+	musice8 6
+	A_ 3
+	inc_octave
+	musice8 8
+	F_ 10
+	musice8 7
+	E_ 1
+	F_ 1
+	musice8 8
+	G_ 3
+	F_ 3
+	E_ 3
+	speed 1
+	C_ 2
+	tie
+	C_ 16
+	volume 71
+	C_ 9
+	speed 9
+	volume 160
+	musice8 8
+	A_ 10
+	musice8 7
+	G_ 1
+	F_ 1
+	musice8 8
+	G_ 6
+	inc_octave
+	C_ 3
+	dec_octave
+	speed 1
+	C_ 3
+	D_ 4
+	E_ 3
+	F_ 4
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 3
+	music_call Branch_1e2326
+	D_ 1
+	volume 55
+	D_ 1
+	duty 1
+	volume 148
+	octave 1
+	D_ 1
+	Loop 3
+	D_ 2
+	D_ 1
+	EndLoop
+	duty 1
+	volume 160
+	musice8 8
+	octave 5
+	D_ 1
+	C_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	A_ 1
+	G_ 1
+	A_ 1
+	G_ 1
+	F_ 1
+	G_ 1
+	F_ 1
+	C_ 1
+	D_ 12
+	tie
+	D_ 12
+	duty 1
+	volume 148
+	EndMainLoop
+
+Branch_1e22d3:
+	musice8 8
+	D_ 12
+	tie
+	D_ 4
+	tie
+	speed 1
+	D_ 7
+	volume 71
+	D_ 2
+	tie
+	speed 9
+	D_ 1
+	dec_octave
+	volume 160
+	A_ 4
+	tie
+	speed 1
+	A_ 7
+	volume 71
+	A_ 2
+	tie
+	speed 9
+	A_ 1
+	inc_octave
+	volume 160
+	C_ 12
+	tie
+	music_ret
+
+Branch_1e22f8:
+	octave 3
+	speed 1
+	C# 3
+	D_ 4
+	E_ 3
+	F# 4
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C# 3
+	speed 9
+	D_ 2
+	C# 2
+	dec_octave
+	A_ 2
+	F# 5
+	volume 71
+	F# 1
+	inc_octave
+	volume 160
+	D_ 2
+	C# 2
+	dec_octave
+	A_ 2
+	F# 2
+	G_ 2
+	A_ 2
+	B_ 1
+	volume 71
+	B_ 1
+	volume 160
+	inc_octave
+	musice8 6
+	F# 1
+	musice8 8
+	F# 9
+	music_ret
+
+Branch_1e2326:
+	octave 5
+	speed 9
+	Loop 3
+	D_ 1
+	volume 55
+	D_ 1
+	duty 1
+	volume 148
+	octave 1
+	D_ 1
+	Loop 5
+	D_ 2
+	D_ 1
+	EndLoop
+	D_ 2
+	duty 1
+	volume 160
+	octave 5
+	C_ 4
+	EndLoop
+	music_ret
+
+
+Music_DuelTheme2_Ch1: ; 1e2343 (78:6343)
+	speed 9
+	musicdc 17
+	vibrato_type 8
+	vibrato_delay 15
+	musice8 8
+	octave 2
+	duty 1
+	volume 116
+	musice4 5
+	Loop 8
+	D_ 2
+	D_ 1
+	EndLoop
+	MainLoop
+	Loop 24
+	D_ 2
+	D_ 1
+	EndLoop
+	duty 2
+	volume 107
+	musice4 0
+	Loop 12
+	inc_octave
+	D_ 1
+	dec_octave
+	A_ 1
+	EndLoop
+	Loop 10
+	inc_octave
+	C_ 1
+	dec_octave
+	G_ 1
+	EndLoop
+	inc_octave
+	C_ 1
+	G_ 1
+	inc_octave
+	C_ 1
+	G_ 1
+	duty 1
+	volume 112
+	dec_octave
+	D_ 1
+	rest 1
+	dec_octave
+	musice8 6
+	A_ 1
+	musice8 8
+	A_ 9
+	duty 2
+	volume 107
+	Loop 4
+	A_ 1
+	D_ 1
+	A_ 1
+	EndLoop
+	duty 2
+	inc_octave
+	musice8 8
+	volume 47
+	C_ 4
+	volume 96
+	C_ 7
+	rest 1
+	volume 95
+	E_ 4
+	speed 1
+	volume 128
+	E_ 12
+	rest 6
+	speed 9
+	volume 127
+	G_ 3
+	dec_octave
+	duty 1
+	volume 112
+	speed 1
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 4
+	D_ 3
+	E_ 4
+	F_ 3
+	G_ 3
+	speed 9
+	duty 2
+	volume 107
+	Loop 9
+	A_ 1
+	D_ 1
+	EndLoop
+	Loop 3
+	D_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	EndLoop
+	Loop 8
+	G_ 1
+	C_ 1
+	EndLoop
+	speed 1
+	G_ 4
+	duty 1
+	volume 112
+	inc_octave
+	C_ 5
+	D_ 4
+	D# 5
+	speed 1
+	E_ 12
+	rest 6
+	C_ 12
+	rest 6
+	speed 9
+	dec_octave
+	G_ 1
+	rest 1
+	A_ 1
+	rest 1
+	musice8 6
+	D_ 1
+	musice8 8
+	A_ 9
+	duty 2
+	volume 107
+	Loop 5
+	A_ 1
+	D_ 1
+	EndLoop
+	A_ 1
+	duty 1
+	volume 112
+	speed 1
+	A# 4
+	B_ 5
+	speed 9
+	inc_octave
+	C_ 11
+	rest 1
+	E_ 5
+	rest 1
+	G_ 3
+	dec_octave
+	speed 1
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 4
+	D_ 3
+	E_ 4
+	F_ 3
+	G_ 3
+	music_call Branch_1e2525
+	A_ 1
+	rest 1
+	duty 1
+	volume 116
+	musice4 5
+	dec_octave
+	dec_octave
+	D_ 1
+	Loop 3
+	D_ 2
+	D_ 1
+	EndLoop
+	duty 2
+	volume 107
+	musice4 0
+	inc_octave
+	E_ 1
+	rest 1
+	E_ 1
+	F# 1
+	rest 1
+	F# 1
+	G_ 1
+	rest 1
+	G_ 1
+	inc_octave
+	C# 1
+	dec_octave
+	E_ 1
+	inc_octave
+	C# 1
+	duty 2
+	volume 107
+	music_call Branch_1e2509
+	octave 4
+	Loop 4
+	D_ 1
+	dec_octave
+	G_ 1
+	B_ 1
+	D_ 1
+	G_ 1
+	dec_octave
+	B_ 1
+	inc_octave
+	inc_octave
+	EndLoop
+	Loop 2
+	C# 1
+	dec_octave
+	F# 1
+	A_ 1
+	D_ 1
+	F# 1
+	dec_octave
+	A_ 1
+	inc_octave
+	inc_octave
+	EndLoop
+	duty 1
+	volume 147
+	octave 2
+	rest 1
+	musice8 8
+	B_ 2
+	B_ 2
+	rest 2
+	A_ 2
+	inc_octave
+	musice8 8
+	C# 1
+	D_ 1
+	E_ 1
+	duty 2
+	volume 107
+	music_call Branch_1e2509
+	octave 3
+	Loop 2
+	B_ 1
+	D_ 1
+	G_ 1
+	dec_octave
+	B_ 1
+	inc_octave
+	D_ 1
+	dec_octave
+	G_ 1
+	inc_octave
+	EndLoop
+	Loop 2
+	inc_octave
+	C# 1
+	dec_octave
+	E_ 1
+	A_ 1
+	C# 1
+	E_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	EndLoop
+	Loop 2
+	inc_octave
+	D_ 1
+	dec_octave
+	F_ 1
+	A_ 1
+	D_ 1
+	F_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	EndLoop
+	Loop 2
+	inc_octave
+	E_ 1
+	dec_octave
+	G_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	E_ 1
+	G_ 1
+	C_ 1
+	EndLoop
+	inc_octave
+	D_ 1
+	dec_octave
+	F_ 1
+	A_ 1
+	D_ 1
+	F_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	inc_octave
+	C_ 1
+	dec_octave
+	F_ 1
+	A_ 1
+	D_ 1
+	F_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	inc_octave
+	E_ 1
+	dec_octave
+	G_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	E_ 1
+	G_ 1
+	C_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	G_ 1
+	inc_octave
+	C_ 1
+	duty 1
+	volume 112
+	dec_octave
+	speed 1
+	G_ 3
+	A_ 4
+	B_ 3
+	inc_octave
+	C_ 4
+	D_ 3
+	E_ 4
+	F_ 3
+	G_ 3
+	music_call Branch_1e2525
+	A_ 1
+	rest 1
+	duty 1
+	volume 116
+	musice4 5
+	dec_octave
+	dec_octave
+	D_ 1
+	Loop 3
+	D_ 2
+	D_ 1
+	EndLoop
+	rest 12
+	duty 1
+	volume 112
+	musice4 0
+	inc_octave
+	A_ 12
+	tie
+	A_ 12
+	dec_octave
+	duty 1
+	volume 116
+	musice4 5
+	EndMainLoop
+
+Branch_1e2509:
+	octave 4
+	Loop 4
+	C# 1
+	dec_octave
+	F# 1
+	A_ 1
+	D_ 1
+	F# 1
+	dec_octave
+	A_ 1
+	inc_octave
+	inc_octave
+	EndLoop
+	Loop 4
+	D_ 1
+	dec_octave
+	G_ 1
+	B_ 1
+	D_ 1
+	G_ 1
+	dec_octave
+	B_ 1
+	inc_octave
+	inc_octave
+	EndLoop
+	music_ret
+
+Branch_1e2525:
+	octave 4
+	speed 9
+	Loop 3
+	A_ 1
+	rest 1
+	volume 116
+	musice4 5
+	dec_octave
+	dec_octave
+	D_ 1
+	Loop 5
+	D_ 2
+	D_ 1
+	EndLoop
+	D_ 2
+	volume 112
+	musice4 0
+	inc_octave
+	inc_octave
+	G_ 4
+	EndLoop
+	music_ret
+
+
+Music_DuelTheme2_Ch3: ; 1e2542 (78:6542)
+	speed 9
+	musicdc 17
+	volume 32
+	wave 1
+	musice9 64
+	musice8 7
+	octave 1
+	Loop 4
+	music_call Branch_1e267b
+	EndLoop
+	MainLoop
+	Loop 44
+	music_call Branch_1e267b
+	EndLoop
+	Loop 3
+	Loop 3
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	musice8 4
+	D_ 2
+	musice8 7
+	C_ 3
+	E_ 1
+	EndLoop
+	Loop 2
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	musice8 8
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	E_ 1
+	F# 1
+	inc_octave
+	F# 1
+	dec_octave
+	F# 1
+	G_ 1
+	inc_octave
+	G_ 1
+	dec_octave
+	G_ 1
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	A_ 1
+	Loop 4
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	Loop 4
+	musice8 4
+	E_ 2
+	musice8 7
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	EndLoop
+	Loop 4
+	musice8 4
+	A_ 2
+	musice8 7
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	EndLoop
+	Loop 2
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	musice8 8
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	A_ 1
+	Loop 4
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	Loop 4
+	musice8 4
+	E_ 2
+	musice8 7
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	E_ 1
+	inc_octave
+	E_ 1
+	dec_octave
+	EndLoop
+	Loop 2
+	musice8 4
+	G_ 2
+	musice8 7
+	G_ 1
+	inc_octave
+	G_ 1
+	dec_octave
+	G_ 1
+	inc_octave
+	G_ 1
+	dec_octave
+	EndLoop
+	Loop 2
+	musice8 4
+	A_ 2
+	musice8 7
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	A_ 1
+	dec_octave
+	EndLoop
+	Loop 2
+	musice8 4
+	A# 2
+	musice8 7
+	A# 1
+	inc_octave
+	A# 1
+	dec_octave
+	A# 1
+	inc_octave
+	A# 1
+	dec_octave
+	EndLoop
+	inc_octave
+	Loop 2
+	musice8 4
+	C_ 2
+	musice8 7
+	C_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	C_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	EndLoop
+	dec_octave
+	Loop 2
+	musice8 4
+	A# 2
+	musice8 7
+	A# 1
+	inc_octave
+	A# 1
+	dec_octave
+	A# 1
+	inc_octave
+	A# 1
+	dec_octave
+	EndLoop
+	inc_octave
+	Loop 2
+	musice8 4
+	C_ 2
+	musice8 7
+	C_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	C_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	EndLoop
+	Loop 3
+	Loop 3
+	music_call Branch_1e267b
+	EndLoop
+	octave 1
+	musice8 4
+	D_ 2
+	musice8 7
+	C_ 3
+	E_ 1
+	EndLoop
+	Loop 2
+	music_call Branch_1e267b
+	EndLoop
+	octave 2
+	musice8 8
+	D_ 1
+	C_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	C_ 1
+	dec_octave
+	A_ 1
+	G_ 1
+	A_ 1
+	G_ 1
+	F_ 1
+	G_ 1
+	F_ 1
+	C_ 1
+	Loop 4
+	music_call Branch_1e267b
+	EndLoop
+	EndMainLoop
+
+Branch_1e267b:
+	octave 1
+	musice8 4
+	D_ 2
+	musice8 7
+	D_ 1
+	inc_octave
+	D_ 1
+	dec_octave
+	D_ 1
+	inc_octave
+	D_ 1
+	music_ret
+
+
+Music_DuelTheme2_Ch4: ; 1e2689 (78:6689)
+	speed 9
+	Loop 2
+	rest 12
+	EndLoop
+	MainLoop
+	rest 12
+	rest 6
+	Loop 6
+	snare1 1
+	EndLoop
+	Loop 3
+	music_call Branch_1e2712
+	EndLoop
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare4 1
+	Loop 6
+	snare1 1
+	EndLoop
+	Loop 15
+	music_call Branch_1e2712
+	EndLoop
+	music_call Branch_1e272c
+	Loop 3
+	music_call Branch_1e2712
+	Loop 6
+	snare1 1
+	EndLoop
+	snare1 2
+	snare5 3
+	snare1 1
+	EndLoop
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare3 1
+	bass 1
+	snare3 1
+	speed 1
+	snare3 4
+	snare2 5
+	speed 9
+	snare1 3
+	Loop 12
+	snare1 1
+	EndLoop
+	Loop 3
+	music_call Branch_1e2712
+	music_call Branch_1e271f
+	EndLoop
+	music_call Branch_1e2712
+	bass 1
+	snare1 1
+	bass 1
+	snare1 1
+	snare1 1
+	bass 1
+	bass 1
+	snare1 1
+	speed 1
+	snare2 4
+	snare2 5
+	speed 9
+	snare1 1
+	snare1 1
+	snare1 1
+	Loop 4
+	music_call Branch_1e2712
+	music_call Branch_1e271f
+	EndLoop
+	music_call Branch_1e2712
+	music_call Branch_1e272c
+	Loop 3
+	music_call Branch_1e2712
+	Loop 6
+	snare1 1
+	EndLoop
+	snare1 2
+	snare5 3
+	snare1 1
+	EndLoop
+	music_call Branch_1e2712
+	Loop 12
+	snare1 1
+	EndLoop
+	snare5 12
+	rest 12
+	EndMainLoop
+
+Branch_1e2712:
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare3 1
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare4 1
+	music_ret
+
+Branch_1e271f:
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare3 1
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare1 1
+	music_ret
+
+Branch_1e272c:
+	bass 1
+	snare3 1
+	snare3 1
+	snare1 1
+	snare3 1
+	snare3 1
+	Loop 6
+	snare1 1
+	EndLoop
+	music_ret
+; 0x1e2737
