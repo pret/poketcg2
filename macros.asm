@@ -1,3 +1,5 @@
+INCLUDE "macros/audio.asm"
+
 dbw: MACRO
 	db \1
 	dw \2

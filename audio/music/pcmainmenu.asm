@@ -1,0 +1,377 @@
+Music_PCMainMenu_Ch2: ; 1e3287 (78:7287)
+	speed 7
+	musicdc 17
+	musice8 8
+	octave 3
+	duty 2
+	MainLoop
+	music_call Branch_1e32f7
+	rest 4
+	dec_octave
+	duty 1
+	musice8 5
+	volume 97
+	F_ 1
+	rest 1
+	duty 2
+	musice8 8
+	volume 180
+	A_ 1
+	volume 55
+	A_ 1
+	rest 2
+	inc_octave
+	volume 180
+	C_ 1
+	volume 55
+	C_ 1
+	dec_octave
+	duty 1
+	musice8 5
+	volume 97
+	F_ 1
+	rest 1
+	duty 2
+	musice8 8
+	volume 180
+	B_ 1
+	volume 55
+	B_ 1
+	music_call Branch_1e32f7
+	rest 4
+	dec_octave
+	duty 1
+	musice8 5
+	volume 97
+	F_ 1
+	rest 1
+	inc_octave
+	duty 2
+	musice8 8
+	volume 180
+	E_ 1
+	volume 55
+	E_ 1
+	rest 2
+	volume 180
+	C_ 1
+	volume 55
+	C_ 1
+	duty 1
+	musice8 5
+	volume 97
+	dec_octave
+	F_ 1
+	rest 1
+	inc_octave
+	duty 2
+	musice8 8
+	volume 180
+	D_ 1
+	volume 55
+	D_ 1
+	EndMainLoop
+
+Branch_1e32f7:
+	octave 3
+	rest 4
+	duty 1
+	volume 97
+	musice8 5
+	G_ 1
+	rest 3
+	musice8 8
+	duty 2
+	volume 180
+	B_ 2
+	inc_octave
+	D_ 1
+	volume 39
+	D_ 1
+	dec_octave
+	duty 1
+	volume 97
+	musice8 5
+	G_ 1
+	rest 1
+	inc_octave
+	duty 2
+	musice8 8
+	volume 180
+	C_ 1
+	volume 55
+	C_ 1
+	music_ret
+
+
+Music_PCMainMenu_Ch1: ; 1e3322 (78:7322)
+	speed 7
+	musicdc 17
+	musice8 8
+	octave 3
+	duty 2
+	MainLoop
+	music_call Branch_1e3393
+	rest 4
+	inc_octave
+	duty 1
+	musice8 5
+	volume 97
+	C_ 1
+	rest 1
+	dec_octave
+	duty 2
+	musice8 8
+	volume 132
+	F_ 1
+	volume 39
+	F_ 1
+	rest 2
+	volume 132
+	A_ 1
+	volume 39
+	A_ 1
+	duty 1
+	musice8 5
+	volume 97
+	inc_octave
+	C_ 1
+	rest 1
+	dec_octave
+	duty 2
+	musice8 8
+	volume 132
+	G_ 1
+	volume 39
+	G_ 1
+	music_call Branch_1e3393
+	rest 4
+	inc_octave
+	duty 1
+	musice8 5
+	volume 97
+	C_ 1
+	rest 1
+	duty 2
+	musice8 8
+	volume 132
+	C_ 1
+	volume 39
+	C_ 1
+	rest 2
+	dec_octave
+	volume 132
+	A_ 1
+	volume 39
+	A_ 1
+	duty 1
+	inc_octave
+	volume 97
+	musice8 5
+	C_ 1
+	rest 1
+	dec_octave
+	duty 2
+	musice8 8
+	volume 132
+	B_ 1
+	volume 39
+	B_ 1
+	EndMainLoop
+
+Branch_1e3393:
+	octave 4
+	rest 4
+	duty 1
+	musice8 5
+	volume 97
+	D_ 1
+	rest 3
+	duty 2
+	musice8 8
+	dec_octave
+	volume 132
+	G_ 2
+	B_ 1
+	volume 39
+	B_ 1
+	inc_octave
+	duty 1
+	musice8 5
+	volume 97
+	D_ 1
+	rest 1
+	dec_octave
+	duty 2
+	musice8 8
+	volume 132
+	A_ 1
+	volume 39
+	A_ 1
+	music_ret
+
+
+Music_PCMainMenu_Ch3: ; 1e33be (78:73be)
+	speed 7
+	volume 32
+	musicdc 17
+	wave 1
+	musice8 7
+	musice9 0
+	MainLoop
+	octave 1
+	musice8 7
+	G_ 1
+	rest 1
+	musice8 8
+	G_ 1
+	rest 1
+	speed 1
+	A# 4
+	tie
+	B_ 3
+	tie
+	speed 7
+	B_ 1
+	rest 1
+	musice8 4
+	inc_octave
+	C_ 1
+	rest 1
+	C_ 1
+	musice8 8
+	C# 2
+	D_ 2
+	dec_octave
+	G_ 1
+	tie
+	F# 1
+	musice8 7
+	F_ 1
+	rest 1
+	musice8 8
+	F_ 1
+	rest 1
+	speed 1
+	G# 4
+	tie
+	A_ 3
+	tie
+	speed 7
+	A_ 1
+	rest 1
+	musice8 4
+	A# 1
+	rest 1
+	A# 1
+	musice8 8
+	B_ 2
+	inc_octave
+	C_ 2
+	dec_octave
+	F_ 1
+	tie
+	F# 1
+	musice8 7
+	G_ 1
+	rest 1
+	musice8 8
+	G_ 1
+	rest 1
+	speed 1
+	A# 4
+	tie
+	B_ 3
+	tie
+	speed 7
+	B_ 1
+	rest 1
+	musice8 4
+	inc_octave
+	C_ 1
+	rest 1
+	C_ 1
+	musice8 8
+	C# 2
+	D_ 2
+	dec_octave
+	G_ 1
+	tie
+	F# 1
+	musice8 7
+	F_ 1
+	rest 1
+	musice8 8
+	F_ 1
+	rest 1
+	speed 1
+	B_ 4
+	tie
+	inc_octave
+	C_ 3
+	tie
+	speed 7
+	C_ 1
+	rest 1
+	musice8 8
+	speed 1
+	F# 4
+	tie
+	G_ 3
+	tie
+	speed 7
+	G_ 1
+	musice8 4
+	F_ 1
+	musice8 8
+	C_ 2
+	F_ 2
+	speed 1
+	C_ 3
+	tie
+	dec_octave
+	B_ 3
+	tie
+	A# 3
+	tie
+	A_ 3
+	tie
+	G# 2
+	speed 7
+	EndMainLoop
+
+
+Music_PCMainMenu_Ch4: ; 1e3460 (78:7460)
+	speed 7
+	octave 1
+	MainLoop
+	Loop 7
+	music_call Branch_1e347d
+	snare3 1
+	bass 1
+	snare1 2
+	snare3 1
+	snare4 1
+	EndLoop
+	music_call Branch_1e347d
+	snare4 1
+	speed 1
+	snare2 4
+	snare2 3
+	speed 7
+	snare1 2
+	snare1 1
+	snare1 1
+	EndMainLoop
+
+Branch_1e347d:
+	bass 2
+	snare3 1
+	snare3 1
+	snare1 2
+	snare3 1
+	snare4 1
+	bass 1
+	snare2 1
+	music_ret
+; 0x1e3486
