@@ -1,9 +1,9 @@
 DeckPointers: ; 594AC (16:54ac)
 	dw PoisonStormDeck
-	dw $55d2 ; StrangePsyshockDeck
+	dw StrangePsyshockDeck
 	dw $57d1 ; SamsPracticeDeck
 	dw $571c ; PlayerPracticeDeck
-	dw $5600 ; StarterDeck
+	dw StarterDeck
 	dw $5637 ; SweatAntiGR1Deck
 	dw $566b ; GiveInAntiGR2Deck
 	dw $56a5 ; VengefulAntiGR3Deck
@@ -141,4 +141,44 @@ PoisonStormDeck: ; 595a4 (16:55a4)
 	dbw  2, BILL
 	dbw  2, FULL_HEAL
 	db 0
-INCBIN "baserom.gbc", $595d2, $4000 - $15d2
+
+StrangePsyshockDeck: ; 595d2 (16:55d2)
+	dbw 22, PSYCHIC_ENERGY
+	dbw  4, ABRA2
+	dbw  3, KADABRA1
+	dbw  2, ALAKAZAM1
+	dbw  2, MR_MIME2
+	dbw  3, CHANSEY2
+	dbw  3, KANGASKHAN3
+	dbw  2, SNORLAX1
+	dbw  2, PROFESSOR_OAK
+	dbw  2, POKEMON_CENTER
+	dbw  3, ENERGY_REMOVAL
+	dbw  3, GUST_OF_WIND
+	dbw  4, SCOOP_UP
+	dbw  4, SWITCH
+	dbw  1, GAMBLER
+	db 0
+
+StarterDeck: ; 59600 (16:5600)
+	dbw 14, FIRE_ENERGY
+	dbw 12, FIGHTING_ENERGY
+	dbw  4, CHARMANDER2
+	dbw  3, CHARMELEON
+	dbw  2, GROWLITHE1
+	dbw  3, PONYTA2
+	dbw  2, DIGLETT1
+	dbw  4, MACHOP2
+	dbw  3, MACHOKE3
+	dbw  2, RATTATA1
+	dbw  1, RATICATE
+	dbw  2, SPEAROW1
+	dbw  1, MEOWTH5
+	dbw  1, ENERGY_RETRIEVAL
+	dbw  2, POTION
+	dbw  1, GUST_OF_WIND
+	dbw  2, SWITCH
+	dbw  1, BILL
+	db 0
+
+INCBIN "baserom.gbc", $59637, $8000 - $5637

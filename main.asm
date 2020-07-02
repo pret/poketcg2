@@ -61,8 +61,8 @@ SECTION "ROM Bank $01B", ROMX[$4000], BANK[$1B]
 INCBIN "baserom.gbc", $6C000, $4000
 SECTION "ROM Bank $01C", ROMX[$4000], BANK[$1C]
 INCBIN "baserom.gbc", $70000, $4000
-SECTION "ROM Bank $01D", ROMX[$4000], BANK[$1D]
-INCBIN "baserom.gbc", $74000, $4000
+SECTION "Card Gfx 1", ROMX[$4000], BANK[$1D]
+INCLUDE "gfx.asm"
 SECTION "ROM Bank $01E", ROMX[$4000], BANK[$1E]
 INCBIN "baserom.gbc", $78000, $4000
 SECTION "ROM Bank $01F", ROMX[$4000], BANK[$1F]
