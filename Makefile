@@ -6,7 +6,7 @@
 .SECONDARY:
 
 ROM := TCG2.gbc
-OBJS := main.o wram.o
+OBJS := src/main.o src/wram.o
 
 MD5 := md5sum -c
 
@@ -16,12 +16,12 @@ ifeq (,$(filter tools clean tidy,$(MAKECMDGOALS)))
 Makefile: tools
 endif
 
-%.o: dep = $(shell tools/scan_includes $(@D)/$*.asm)
+%.o: dep = $(shell tools/scan_includes -s -i src/ $(@D)/$*.asm)
 %.o: %.asm $$(dep)
-	rgbasm -h -o $@ $<
+	rgbasm -h -i src/ -o $@ $<
 
-$(ROM): $(OBJS) tcg2.link
-	rgblink -n $(ROM:.gbc=.sym) -m $(ROM:.gbc=.map) -l tcg2.link -o $@ $(OBJS)
+$(ROM): $(OBJS) src/tcg2.link
+	rgblink -n $(ROM:.gbc=.sym) -m $(ROM:.gbc=.map) -l src/tcg2.link -o $@ $(OBJS)
 	# rgbfix -jsvc -k 01 -l 0x33 -m 0x1e -p 0 -r 02 -t "POKEPINBALL" -i VPHE $@
 
 # For contributors to make sure a change didn't affect the contents of the rom.

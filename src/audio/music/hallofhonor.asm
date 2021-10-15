@@ -1,0 +1,398 @@
+Music_HallOfHonor_Ch2: ; 1e72bc (79:72bc)
+	speed 7
+	musicdc 17
+	musice8 8
+	duty 2
+	Loop 4
+	music_call Branch_1e72e8
+	EndLoop
+	MainLoop
+	Loop 8
+	music_call Branch_1e72e8
+	EndLoop
+	octave 4
+	volume 85
+	C_ 1
+	volume 39
+	C_ 1
+	music_call Branch_1e7316
+	Loop 23
+	volume 85
+	C_ 1
+	volume 39
+	G_ 1
+	music_call Branch_1e7316
+	EndLoop
+	EndMainLoop
+
+Branch_1e72e8:
+	octave 4
+	volume 101
+	C_ 1
+	volume 39
+	C_ 1
+	volume 101
+	F_ 1
+	volume 39
+	F_ 1
+	volume 101
+	G_ 1
+	volume 39
+	G_ 1
+	volume 101
+	F_ 1
+	volume 39
+	F_ 1
+	inc_octave
+	volume 101
+	C_ 1
+	volume 39
+	C_ 1
+	dec_octave
+	volume 101
+	F_ 1
+	volume 39
+	F_ 1
+	volume 101
+	G_ 1
+	volume 39
+	G_ 1
+	music_ret
+
+Branch_1e7316:
+	octave 4
+	volume 85
+	F_ 1
+	volume 39
+	C_ 1
+	volume 85
+	G_ 1
+	volume 39
+	F_ 1
+	volume 85
+	F_ 1
+	volume 39
+	G_ 1
+	inc_octave
+	volume 85
+	C_ 1
+	dec_octave
+	volume 39
+	F_ 1
+	volume 85
+	F_ 1
+	inc_octave
+	volume 39
+	C_ 1
+	dec_octave
+	volume 85
+	G_ 1
+	volume 39
+	F_ 1
+	music_ret
+
+
+Music_HallOfHonor_Ch1: ; 1e7340 (79:7340)
+	speed 7
+	musicdc 17
+	musice8 8
+	duty 2
+	musice4 255
+	rest 2
+	speed 1
+	rest 4
+	speed 7
+	volume 23
+	Loop 3
+	music_call Branch_1e74be
+	EndLoop
+	octave 4
+	C_ 1
+	rest 1
+	F_ 1
+	rest 1
+	G_ 1
+	rest 1
+	F_ 1
+	rest 1
+	inc_octave
+	C_ 1
+	rest 1
+	dec_octave
+	F_ 1
+	speed 1
+	rest 3
+	speed 7
+	musice4 0
+	MainLoop
+	octave 1
+	duty 1
+	Loop 3
+	music_call Branch_1e738d
+	octave 1
+	volume 109
+	E_ 5
+	volume 208
+	E_ 11
+	tie
+	E_ 12
+	EndLoop
+	music_call Branch_1e738d
+	octave 1
+	volume 109
+	G_ 5
+	volume 208
+	G_ 11
+	tie
+	G_ 12
+	EndMainLoop
+
+Branch_1e738d:
+	octave 1
+	volume 109
+	F_ 5
+	volume 208
+	F_ 11
+	tie
+	F_ 12
+	volume 109
+	E_ 5
+	volume 208
+	E_ 11
+	tie
+	E_ 12
+	volume 109
+	D_ 5
+	volume 208
+	D_ 11
+	tie
+	D_ 12
+	music_ret
+
+
+Music_HallOfHonor_Ch3: ; 1e73a7 (79:73a7)
+	speed 7
+	volume 64
+	musicdc 17
+	wave 2
+	vibrato_type 4
+	vibrato_delay 35
+	musice8 6
+	musice9 64
+	rest 3
+	volume 96
+	musice8 8
+	musice4 255
+	Loop 4
+	rest 14
+	EndLoop
+	MainLoop
+	octave 5
+	Loop 7
+	music_call Branch_1e74be
+	EndLoop
+	C_ 1
+	rest 1
+	F_ 1
+	rest 1
+	G_ 1
+	rest 1
+	F_ 1
+	rest 1
+	inc_octave
+	C_ 1
+	rest 1
+	dec_octave
+	F_ 1
+	volume 32
+	musice4 0
+	octave 4
+	speed 1
+	musice8 6
+	B_ 3
+	inc_octave
+	C_ 4
+	tie
+	speed 7
+	C_ 15
+	tie
+	C_ 8
+	dec_octave
+	musice8 8
+	B_ 2
+	musice8 4
+	A_ 2
+	musice8 6
+	G_ 6
+	C_ 10
+	tie
+	C_ 12
+	speed 1
+	musice8 8
+	B_ 3
+	inc_octave
+	musice8 6
+	C_ 4
+	tie
+	speed 7
+	C_ 15
+	tie
+	C_ 6
+	dec_octave
+	musice8 8
+	B_ 2
+	inc_octave
+	C_ 2
+	musice8 4
+	D_ 2
+	dec_octave
+	speed 1
+	musice8 8
+	F# 3
+	musice8 6
+	G_ 4
+	tie
+	speed 7
+	G_ 15
+	tie
+	G_ 6
+	musice8 8
+	G_ 2
+	A_ 2
+	musice8 4
+	B_ 2
+	speed 1
+	musice8 8
+	B_ 3
+	inc_octave
+	C_ 4
+	tie
+	speed 7
+	C_ 15
+	tie
+	C_ 8
+	dec_octave
+	B_ 2
+	musice8 4
+	A_ 2
+	musice8 6
+	G_ 6
+	musice8 8
+	speed 1
+	B_ 3
+	inc_octave
+	musice8 6
+	C_ 4
+	tie
+	speed 7
+	C_ 9
+	tie
+	C_ 6
+	dec_octave
+	musice8 8
+	G_ 2
+	inc_octave
+	C_ 2
+	musice8 4
+	E_ 2
+	speed 1
+	musice8 8
+	E_ 3
+	F_ 4
+	tie
+	speed 7
+	F_ 1
+	E_ 2
+	musice8 4
+	C_ 2
+	musice8 7
+	C_ 10
+	tie
+	C_ 10
+	musice8 4
+	E_ 2
+	speed 1
+	musice8 8
+	E_ 3
+	F_ 4
+	tie
+	speed 7
+	F_ 1
+	E_ 2
+	musice8 4
+	C_ 2
+	musice8 6
+	C_ 10
+	tie
+	C_ 12
+	speed 1
+	musice8 8
+	F# 3
+	musice8 7
+	G_ 4
+	tie
+	speed 7
+	G_ 15
+	tie
+	G_ 8
+	musice8 8
+	F_ 2
+	musice8 4
+	E_ 2
+	musice8 8
+	F_ 2
+	musice8 4
+	E_ 2
+	C_ 2
+	dec_octave
+	musice8 7
+	G_ 10
+	tie
+	G_ 10
+	musice8 8
+	E_ 2
+	F_ 2
+	inc_octave
+	musice8 4
+	C_ 2
+	musice8 7
+	C_ 12
+	tie
+	C_ 10
+	dec_octave
+	musice8 8
+	E_ 2
+	F_ 2
+	inc_octave
+	musice8 4
+	C_ 2
+	musice8 6
+	C_ 12
+	tie
+	C_ 12
+	rest 3
+	volume 96
+	musice4 255
+	musice8 8
+	EndMainLoop
+
+Branch_1e74be:
+	octave 4
+	C_ 1
+	rest 1
+	F_ 1
+	rest 1
+	G_ 1
+	rest 1
+	F_ 1
+	rest 1
+	inc_octave
+	C_ 1
+	rest 1
+	dec_octave
+	F_ 1
+	rest 1
+	G_ 1
+	rest 1
+	music_ret
+; 0x1e74d0
