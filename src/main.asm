@@ -245,6 +245,7 @@ INCBIN "baserom.gbc", $1DC000, $1DD442 - $1DC000
 INCLUDE "audio/music1_headers.asm"
 INCLUDE "audio/music/ishihara.asm"
 INCLUDE "audio/music/credits.asm"
+	ds $267
 SECTION "ROM Bank $078", ROMX[$4000], BANK[$78]
 INCBIN "baserom.gbc", $1E0000, $1E1442 - $1E0000
 INCLUDE "audio/music2_headers.asm"
@@ -257,6 +258,7 @@ INCLUDE "audio/music/deckmachine.asm"
 INCLUDE "audio/music/cardpop.asm"
 INCLUDE "audio/music/overworld.asm"
 INCLUDE "audio/music/song27.asm"
+	ds $149
 SECTION "ROM Bank $079", ROMX[$4000], BANK[$79]
 INCBIN "baserom.gbc", $1E4000, $1E5442 - $1E4000
 INCLUDE "audio/music3_headers.asm"
@@ -270,6 +272,7 @@ INCLUDE "audio/music/hallofhonor.asm"
 INCLUDE "audio/music/song12.asm"
 INCLUDE "audio/music/gamecorner.asm"
 INCLUDE "audio/music/grblimp.asm"
+	ds $2a
 SECTION "ROM Bank $07A", ROMX[$4000], BANK[$7A]
 INCBIN "baserom.gbc", $1E8000, $1E9442 - $1E8000
 INCLUDE "audio/music4_headers.asm"
@@ -290,6 +293,7 @@ INCLUDE "audio/music/diddly2.asm"
 INCLUDE "audio/music/diddly3.asm"
 INCLUDE "audio/music/diddly4.asm"
 INCLUDE "audio/music/diddly5.asm"
+	ds $c2
 SECTION "ROM Bank $07B", ROMX[$4000], BANK[$7B]
 INCBIN "baserom.gbc", $1EC000, $1ED442 - $1EC000
 INCLUDE "audio/music5_headers.asm"
@@ -297,6 +301,7 @@ INCLUDE "audio/music/fort1.asm"
 INCLUDE "audio/music/fort2.asm"
 INCLUDE "audio/music/fort3.asm"
 INCLUDE "audio/music/grdueltheme2.asm"
+	ds $7
 SECTION "ROM Bank $07C", ROMX[$4000], BANK[$7C]
 INCBIN "baserom.gbc", $1F0000, $1F1442 - $1F0000
 INCLUDE "audio/music6_headers.asm"
@@ -304,6 +309,7 @@ INCLUDE "audio/music/fort4.asm"
 INCLUDE "audio/music/grcastle.asm"
 INCLUDE "audio/music/grchallengecup.asm"
 INCLUDE "audio/music/imakuni2.asm"
+	ds $c0
 SECTION "ROM Bank $07D", ROMX[$4000], BANK[$7D]
 INCBIN "baserom.gbc", $1F4000, $1F5442 - $1F4000
 INCLUDE "audio/music7_headers.asm"
@@ -311,6 +317,7 @@ INCLUDE "audio/music/club2.asm"
 INCLUDE "audio/music/grdueltheme1.asm"
 INCLUDE "audio/music/grdueltheme3.asm"
 INCLUDE "audio/music/diddly6.asm"
+	ds $7c5
 SECTION "ROM Bank $07E", ROMX[$4000], BANK[$7E]
 INCBIN "baserom.gbc", $1F8000, $4000
 SECTION "ROM Bank $07F", ROMX[$4000], BANK[$7F]

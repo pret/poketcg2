@@ -1,0 +1,31 @@
+ROM0
+	org $0000
+	"rst00"
+	org $0008
+	"rst08"
+	org $0010
+	"rst10"
+	org $0018
+	"rst18"
+	org $0020
+	"rst20"
+	org $0028
+	"rst28"
+	org $0030
+	"rst30"
+	org $0038
+	"rst38"
+	org $0040
+	"vblank"
+	org $0048
+	"lcdc"
+	org $0050
+	"timer"
+	org $0058
+	"serial"
+	org $0060
+	"joypad"
+	org $0100
+	"romheader"
+	org $0150
+	"start"

@@ -1,259 +1,54 @@
-; rst00
+; rst vectors
+SECTION "rst00", ROM0
 	ret
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst08
+	ds 7
+SECTION "rst08", ROM0
 	ret
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst10
+	ds 7
+SECTION "rst10", ROM0
 	ret
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst18
+	ds 7
+SECTION "rst18", ROM0
 	jp Bank1Call
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst20
-	jp $3c3c
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst28
+	ds 5
+SECTION "rst20", ROM0
+	jp $3c3c ; RST20
+	ds 5
+SECTION "rst28", ROM0
 	jp FarCall
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst30
+	ds 5
+SECTION "rst30", ROM0
 	jp GetTurnDuelistVariable
-	nop
-	nop
-	nop
-	nop
-	nop
-; rst38
-	jp $0f16
-	nop
-	nop
-	nop
-	nop
-	nop
-; vblank
+	ds 5
+SECTION "rst38", ROM0
+	jp $0f16 ; RST38
+	ds 5
+
+; interrupts
+SECTION "vblank", ROM0
 	jp VBlankHandler
-	nop
-	nop
-	nop
-	nop
-	nop
-; lcdc
+	ds 5
+SECTION "lcdc", ROM0
 	call wLCDCFunctionTrampoline
 	reti
-	nop
-	nop
-	nop
-	nop
-; timer
+	ds 4
+SECTION "timer", ROM0
 	jp TimerHandler
-	nop
-	nop
-	nop
-	nop
-	nop
-; serial
-	jp $0c47
-	nop
-	nop
-	nop
-	nop
-	nop
-; joypad
+	ds 5
+SECTION "serial", ROM0
+	jp $0c47 ; SerialHandler
+	ds 5
+SECTION "joypad", ROM0
 	reti
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-	nop
-Entry: ; 0100 (0:0150)
+	ds $9f
+
+SECTION "romheader", ROM0
 	nop
 	jp Start
-INCBIN "baserom.gbc", $0104, $0150 - $0104
 
+	ds $4c
+
+SECTION "start", ROM0
 Start: ; 0150 (0:0150)
 	di
 	ld sp, $fffe
@@ -349,7 +144,7 @@ TimerHandler: ; 01ef (0:01ef)
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-	; only trigger every fourth interrupt � 60.24 Hz
+	; only trigger every fourth interrupt ~ 60.24 Hz
 	ld hl, wTimerCounter
 	ld a, [hl]
 	inc [hl]
