@@ -4,34 +4,23 @@
 # compiled object file
 *.o
 
-# no binaries
-*.exe
-
 # roms
 *.gbc
-*.gb
 
 # rgbds extras
-*.sym
 *.map
+*.sym
 
-# swap files for vim
-.*.swp
-
-# for any of the poor souls with save game files in their working directory
+# save game files
 *.sgm
 *.sav
 *.sys
+*.sn*
 
-# for vim configuration
-# url: http://www.vim.org/scripts/script.php?script_id=441
-.lvimrc
-
-# converted image data
+# converted image/palette data
 *.1bpp
 *.2bpp
+*.pal
 
-# converted audio data
-*.pcm
-# shortcuts
-*.lnk
+# *disasm.py output file
+*disasm_output.asm

@@ -1,49 +1,104 @@
-.PHONY: all tools compare clean tidy
+rom := poketcg2.gbc
+
+rom_obj := \
+src/main.o \
+src/wram.o
+
+
+### Build tools
+
+ifeq (,$(shell which sha1sum))
+SHA1 := shasum
+else
+SHA1 := sha1sum
+endif
+
+RGBDS ?=
+RGBASM  ?= $(RGBDS)rgbasm
+RGBFIX  ?= $(RGBDS)rgbfix
+RGBGFX  ?= $(RGBDS)rgbgfx
+RGBLINK ?= $(RGBDS)rgblink
+
+
+### Build targets
 
 .SUFFIXES:
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
+.PHONY: all tcg2 clean tidy compare tools
 
-ROM := TCG2.gbc
-OBJS := src/main.o src/wram.o
-
-MD5 := md5sum -c
-
-all: $(ROM) compare
-
-ifeq (,$(filter tools clean tidy,$(MAKECMDGOALS)))
-Makefile: tools
-endif
-
-%.o: dep = $(shell tools/scan_includes -s -i src/ $(@D)/$*.asm)
-%.o: %.asm $$(dep)
-	rgbasm -h -i src/ -o $@ $<
-
-$(ROM): $(OBJS) src/tcg2.link
-	rgblink -n $(ROM:.gbc=.sym) -m $(ROM:.gbc=.map) -l src/tcg2.link -o $@ $(OBJS)
-	# rgbfix -jsvc -k 01 -l 0x33 -m 0x1e -p 0 -r 02 -t "POKEPINBALL" -i VPHE $@
-
-# For contributors to make sure a change didn't affect the contents of the rom.
-compare: $(ROM)
-	@$(MD5) rom.md5
-
-tools:
-	$(MAKE) -C tools
-
-tidy:
-	rm -f $(ROM) $(OBJS) $(ROM:.gbc=.sym) $(ROM:.gbc=.map)
-	$(MAKE) -C tools clean
+all: $(rom) compare
+tcg2: $(rom) compare
 
 clean: tidy
-	find . \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pcm' \) -exec rm {} +
+	find src/gfx \( -iname '*.1bpp' -o -iname '*.2bpp' -o -iname '*.pal' \) -delete
 
-%.interleave.2bpp: %.interleave.png
-	rgbgfx -o $@ $<
-	tools/gfx --interleave --png $< -o $@ $@
+tidy:
+	rm -f $(rom) $(rom_obj) $(rom:.gbc=.map) $(rom:.gbc=.sym) src/rgbdscheck.o
+	$(MAKE) clean -C tools/
+
+compare: $(rom)
+	@$(SHA1) -c rom.sha1
+
+tools:
+	$(MAKE) -C tools/
+
+
+RGBASMFLAGS = -h -i src/ -L -Weverything
+# Create a sym/map for debug purposes if `make` run with `DEBUG=1`
+ifeq ($(DEBUG),1)
+RGBASMFLAGS += -E
+endif
+
+src/rgbdscheck.o: src/rgbdscheck.asm
+	$(RGBASM) -o $@ $<
+
+# The dep rules have to be explicit or else missing files won't be reported.
+# As a side effect, they're evaluated immediately instead of when the rule is invoked.
+# It doesn't look like $(shell) can be deferred so there might not be a better way.
+define DEP
+$1: $2 $$(shell tools/scan_includes -s -i src/ $2) | src/rgbdscheck.o
+	$$(RGBASM) $$(RGBASMFLAGS) -o $$@ $$<
+endef
+
+# Build tools when building the rom.
+# This has to happen before the rules are processed, since that's when scan_includes is run.
+ifeq (,$(filter clean tidy tools,$(MAKECMDGOALS)))
+
+$(info $(shell $(MAKE) -C tools))
+
+# Dependencies for objects
+$(foreach obj, $(rom_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
+
+endif
+
+
+%.asm: ;
+
+
+opts = -Cv -k 2P -l 0x33 -m 0x1b -p 0xff -r 03 -t "POKEMON-CG2" -i BP7J
+
+$(rom): $(rom_obj) src/layout.link
+	$(RGBLINK) -p 0x00 -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -o $@ $(filter %.o,$^)
+	$(RGBFIX) $(opts) $@
+
+
+### Misc file-specific graphics rules
+
+
+### Catch-all graphics rules
+
+%.png: ;
+
+%.pal: ;
 
 %.2bpp: %.png
-	rgbgfx -o $@ $<
+	$(RGBGFX) $(rgbgfx) -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
-	rgbgfx -d1 -o $@ $<
+	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	$(if $(tools/gfx),\
+		tools/gfx $(tools/gfx) -d1 -o $@ $@)

@@ -259,8 +259,8 @@ Start: ; 0150 (0:0150)
 	ld sp, $fffe
 	push af
 	xor a
-	ld [rIF], a
-	ld [rIE], a
+	ldh [rIF], a
+	ldh [rIE], a
 	call $03e6
 	ld a, $1
 	call BankswitchROM
@@ -310,16 +310,16 @@ VBlankHandler: ; 019b (0:019b)
 .no_oam_copy
 	; flush scaling/windowing parameters
 	ldh a, [hSCX]
-	ld [rSCX], a
+	ldh [rSCX], a
 	ldh a, [hSCY]
-	ld [rSCY], a
+	ldh [rSCY], a
 	ldh a, [hWX]
-	ld [rWX], a
+	ldh [rWX], a
 	ldh a, [hWY]
-	ld [rWY], a
+	ldh [rWY], a
 	; flush LCDC
 	ldh a, [hLCDC]
-	ld [rLCDC], a
+	ldh [rLCDC], a
 	ei
 	call wVBlankFunctionTrampoline
 	call $0425
@@ -329,7 +329,7 @@ VBlankHandler: ; 019b (0:019b)
 	res IN_VBLANK, [hl]
 .done
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop af
 	call BankswitchROM
 	pop hl
@@ -345,10 +345,10 @@ TimerHandler: ; 01ef (0:01ef)
 	push bc
 	ei
 	call $0bb2
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	ld a, $1
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	; only trigger every fourth interrupt � 60.24 Hz
 	ld hl, wTimerCounter
 	ld a, [hl]
@@ -450,7 +450,7 @@ BankswitchVRAM0: ; 0795 (0:0795)
 	push af
 	xor a
 	ldh [hBankVRAM], a
-	ld [rVBK], a
+	ldh [rVBK], a
 	pop af
 	ret
 ; set current dest VRAM bank to 1
@@ -459,14 +459,14 @@ BankswitchVRAM1: ; 079d (0:079d)
 	push af
 	ld a, $1
 	ldh [hBankVRAM], a
-	ld [rVBK], a
+	ldh [rVBK], a
 	pop af
 	ret
 ; set current dest VRAM bank to a
 ; Note: Exact match to TCG1
 BankswitchVRAM: ; 07a6 (0:07a6)
 	ldh [hBankVRAM], a
-	ld [rVBK], a
+	ldh [rVBK], a
 	ret
 ; dummied out
 ; Note: Different from TCG1
@@ -491,20 +491,20 @@ SwitchToCGBDoubleSpeed: ; 07b6 (0:07b6)
 ; switch between CGB Double Speed Mode and Normal Speed Mode
 ; Note: Exact match to TCG1
 CGBSpeedSwitch: ; 07bc (0:07bc)
-	ld a, [rIE]
+	ldh a, [rIE]
 	push af
 	xor a
-	ld [rIE], a
+	ldh [rIE], a
 	set 0, [hl]
 	xor a
-	ld [rIF], a
-	ld [rIE], a
+	ldh [rIF], a
+	ldh [rIE], a
 	ld a, $30
-	ld [rJOYP], a
+	ldh [rJOYP], a
 	stop
 	call $0254
 	pop af
-	ld [rIE], a
+	ldh [rIE], a
 	ret
 	
 ; validate the saved data in SRAM
