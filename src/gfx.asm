@@ -1,4 +1,5 @@
 CardGraphics:: ; c4000 (1d:4000)
+
 GrassEnergyCardGfx:: ; c4000 (1d:4000)
 	db $f6, $37, $60, $03, $a0, $01, $80, $00
 	db $20, $02, $60, $03, $a0, $01, $84, $00
@@ -7,6 +8,7 @@ GrassEnergyCardGfx:: ; c4000 (1d:4000)
 	INCBIN "gfx/cards/grassenergy.2bpp"
 GrassEnergyCardDMGGfx::
 	INCBIN "gfx/cards/grassenergy.dmg.2bpp"
+
 FireEnergyCardGfx:: ; c4498 (1d:4498)
 	db $7f, $7f, $3f, $3d, $1b, $00, $04, $00
 	db $9f, $2c, $3f, $3d, $1b, $00, $04, $00
@@ -15,6 +17,7 @@ FireEnergyCardGfx:: ; c4498 (1d:4498)
 	INCBIN "gfx/cards/fireenergy.2bpp"
 FireEnergyCardDMGGfx::
 	INCBIN "gfx/cards/fireenergy.dmg.2bpp"
+
 WaterEnergyCardGfx::
 	db $fb, $7f, $c0, $7e, $60, $51, $00, $24
 	db $c0, $7e, $00, $66, $60, $51, $00, $24
@@ -23,6 +26,7 @@ WaterEnergyCardGfx::
 	INCBIN "gfx/cards/waterenergy.2bpp"
 WaterEnergyCardDMGGfx::
 	INCBIN "gfx/cards/waterenergy.dmg.2bpp"
+
 LightningEnergyCardGfx::
 	db $ff, $6f, $7f, $03, $56, $02, $84, $00
 	db $dc, $02, $7f, $03, $56, $02, $00, $00
@@ -31,6 +35,7 @@ LightningEnergyCardGfx::
 	INCBIN "gfx/cards/lightningenergy.2bpp"
 LightningEnergyCardDMGGfx::
 	INCBIN "gfx/cards/lightningenergy.dmg.2bpp"
+
 FightingEnergyCardGfx::
 	db $ff, $6f, $3f, $01, $16, $00, $04, $00
 	db $ff, $6f, $3f, $01, $10, $42, $00, $00
@@ -39,6 +44,7 @@ FightingEnergyCardGfx::
 	INCBIN "gfx/cards/fightingenergy.2bpp"
 FightingEnergyCardDMGGfx::
 	INCBIN "gfx/cards/fightingenergy.dmg.2bpp"
+
 PsychicEnergyCardGfx::
 	db $7f, $7f, $bb, $6d, $92, $48, $04, $24
 	db $f6, $58, $bb, $6d, $92, $48, $04, $24
@@ -47,6 +53,7 @@ PsychicEnergyCardGfx::
 	INCBIN "gfx/cards/psychicenergy.2bpp"
 PsychicEnergyCardDMGGfx::
 	INCBIN "gfx/cards/psychicenergy.dmg.2bpp"
+
 DoubleColorlessEnergyCardGfx::
 	db $ff, $7f, $b5, $46, $ef, $2d, $84, $00
 	db $31, $3a, $b5, $46, $ef, $2d, $84, $00
@@ -55,6 +62,7 @@ DoubleColorlessEnergyCardGfx::
 	INCBIN "gfx/cards/doublecolorlessenergy.2bpp"
 DoubleColorlessEnergyCardDMGGfx::
 	INCBIN "gfx/cards/doublecolorlessenergy.dmg.2bpp"
+
 PotionEnergyCardGfx::
 	db $ff, $7f, $6f, $4f, $24, $1a, $00, $00
 	db $ff, $7f, $52, $4a, $e7, $1c, $00, $00
@@ -63,24 +71,28 @@ PotionEnergyCardGfx::
 	INCBIN "gfx/cards/potionenergy.2bpp"
 PotionEnergyCardDMGGfx::
 	INCBIN "gfx/cards/potionenergy.dmg.2bpp"
+
 FullHealEnergyCardGfx::
 	db $ff, $7f, $90, $71, $2a, $44, $00, $00
 	db $ff, $7f, $46, $72, $2a, $44, $00, $00
 	db $ff, $7f, $3c, $00, $2a, $44, $00, $00
 	db $00, $40, $40, $40, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $00, $00, $00, $00, $00, $00, $00, $80, $00, $00, $00, $00, $00, $00, $00, $80, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/fullhealenergy.2bpp"
+
 RainbowEnergyCardGfx::
 	db $ff, $67, $70, $6e, $33, $55, $00, $10
 	db $7b, $5f, $dc, $02, $c3, $60, $00, $10
 	db $3f, $2b, $71, $7e, $52, $18, $00, $10
 	db $40, $40, $80, $40, $40, $40, $40, $40, $40, $40, $40, $80, $40, $80, $40, $40, $40, $80, $40, $00, $00, $40, $80, $40, $40, $40, $40, $00, $00, $40, $40, $80, $80, $40, $80, $40, $80, $40, $40, $80, $40, $40, $40, $40, $40, $80, $40, $40
 	INCBIN "gfx/cards/rainbowenergy.2bpp"
+
 Bulbasaur2CardGfx::
 	db $fb, $6f, $6d, $5b, $40, $12, $80, $10
 	db $3b, $76, $75, $51, $40, $12, $80, $10
 	db $3b, $6e, $77, $30, $40, $12, $80, $10
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $40, $00, $00, $00, $00, $00, $80, $40, $40, $00, $00, $00, $00, $00, $80, $40, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/bulbasaur2.2bpp"
+
 Ivysaur1CardGfx::
 	db $fb, $6f, $72, $4b, $40, $12, $80, $10
 	db $72, $4b, $ff, $2a, $fb, $0c, $80, $10
@@ -89,6 +101,7 @@ Ivysaur1CardGfx::
 	INCBIN "gfx/cards/ivysaur1.2bpp"
 Ivysaur1CardDMGGfx::
 	INCBIN "gfx/cards/ivysaur1.dmg.2bpp"
+
 Venusaur1CardGfx::
 	db $7f, $6f, $db, $2c, $e6, $21, $00, $24
 	db $7f, $6f, $23, $5d, $e6, $21, $00, $24
@@ -97,22 +110,24 @@ Venusaur1CardGfx::
 	INCBIN "gfx/cards/venusaur1.2bpp"
 Venusaur1CardDMGGfx::
 	INCBIN "gfx/cards/venusaur1.dmg.2bpp"
+
 Venusaur2CardGfx::
 	db $f6, $5b, $c9, $36, $20, $25, $00, $24
 	db $f6, $5b, $de, $02, $5e, $01, $00, $24
 	db $f6, $5b, $5e, $01, $20, $25, $00, $24
 	db $00, $00, $40, $40, $40, $40, $40, $00, $00, $40, $80, $80, $80, $40, $40, $00, $00, $80, $80, $00, $00, $80, $80, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/venusaur2.2bpp"
+
 CaterpieCardGfx::
 	db $ff, $4b, $69, $13, $40, $02, $80, $00
 	db $ff, $4b, $7f, $08, $40, $02, $80, $00
 	db $ff, $4b, $69, $13, $7f, $08, $80, $00
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00, $80, $40, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00
 	INCBIN "gfx/cards/caterpie.2bpp"
+
 Metapod2CardGfx::
 	db $ff, $5b, $69, $03, $44, $02, $80, $00
 	db $ff, $5b, $60, $02, $46, $01, $80, $00
 	db $ff, $5b, $b4, $29, $46, $01, $80, $00
 	db $00, $00, $40, $40, $40, $40, $40, $40, $40, $40, $00, $00, $40, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40, $40, $40, $80, $40, $00, $00, $00, $40, $40, $40, $80, $80, $40, $00, $00, $40, $40
 	INCBIN "gfx/cards/metapod2.2bpp"
-INCBIN "baserom.gbc", $77f70, $90

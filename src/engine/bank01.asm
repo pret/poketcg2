@@ -14,4 +14,3 @@ GameLoop: ; 4000 (1:4000)
 	ld [$cd07], a
 	ei
 	; AND WE GO INTO THE MYSTERY FUNCTIONS HALP
-INCBIN "baserom.gbc", $4025, $8000 - $4025

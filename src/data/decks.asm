@@ -180,5 +180,3 @@ StarterDeck: ; 59600 (16:5600)
 	dbw  2, SWITCH
 	dbw  1, BILL
 	db 0
-
-INCBIN "baserom.gbc", $59637, $8000 - $5637
