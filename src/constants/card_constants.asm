@@ -1,447 +1,447 @@
 	const_def 1
-	const GRASS_ENERGY
-	const FIRE_ENERGY
-	const WATER_ENERGY
-	const LIGHTNING_ENERGY
-	const FIGHTING_ENERGY
-	const PSYCHIC_ENERGY
-	const DOUBLE_COLORLESS_ENERGY
-	const POTION_ENERGY
-	const FULLHEAL_ENERGY
-	const RAINBOW_ENERGY
-	const RECYCLE_ENERGY
-	const BULBASAUR1
-	const BULBASAUR2
-	const BULBASAUR3
-	const IVYSAUR1
-	const IVYSAUR2
-	const DARK_IVYSAUR
-	const VENUSAUR1
-	const VENUSAUR2
-	const VENUSAUR3
-	const DARK_VENUSAUR
-	const CATERPIE
-	const METAPOD1
-	const METAPOD2
-	const BUTTERFREE
-	const WEEDLE1
-	const WEEDLE2
-	const KAKUNA1
-	const KAKUNA2
-	const BEEDRILL
-	const EKANS1
-	const EKANS2
-	const ARBOK1
-	const ARBOK2
-	const DARK_ARBOK
-	const NIDORANF1
-	const NIDORANF2
-	const NIDORINA1
-	const NIDORINA2
-	const NIDOQUEEN
-	const NIDORANM1
-	const NIDORANM2
-	const NIDORINO1
-	const NIDORINO2
-	const NIDOKING
-	const ZUBAT1
-	const ZUBAT2
-	const ZUBAT3
-	const GOLBAT1
-	const GOLBAT2
-	const DARK_GOLBAT
-	const ODDISH1
-	const ODDISH2
-	const GLOOM
-	const DARK_GLOOM
-	const VILEPLUME
-	const DARK_VILEPLUME
-	const PARAS1
-	const PARAS2
-	const PARASECT1
-	const PARASECT2
-	const VENONAT1
-	const VENONAT2
-	const VENOMOTH1
-	const VENOMOTH2
-	const BELLSPROUT1
-	const BELLSPROUT2
-	const WEEPINBELL1
-	const WEEPINBELL2
-	const VICTREEBEL
-	const GRIMER1
-	const GRIMER2
-	const MUK
-	const DARK_MUK
-	const EXEGGCUTE
-	const EXEGGUTOR
-	const KOFFING1
-	const KOFFING2
-	const KOFFING3
-	const WEEZING1
-	const WEEZING2
-	const DARK_WEEZING
-	const TANGELA1
-	const TANGELA2
-	const SCYTHER1
-	const SCYTHER2
-	const PINSIR1
-	const PINSIR2
-	const CHARMANDER1
-	const CHARMANDER2
-	const CHARMANDER3
-	const CHARMELEON
-	const DARK_CHARMELEON
-	const CHARIZARD1
-	const CHARIZARD2
-	const DARK_CHARIZARD
-	const VULPIX1
-	const VULPIX2
-	const NINETALES1
-	const NINETALES2
-	const DARK_NINETALES
-	const GROWLITHE1
-	const GROWLITHE2
-	const GROWLITHE3
-	const ARCANINE1
-	const ARCANINE2
-	const ARCANINE3
-	const PONYTA1
-	const PONYTA2
-	const PONYTA3
-	const RAPIDASH1
-	const RAPIDASH2
-	const DARK_RAPIDASH
-	const MAGMAR1
-	const MAGMAR2
-	const MAGMAR3
-	const MAGMAR4
-	const FLAREON1
-	const FLAREON2
-	const DARK_FLAREON
-	const MOLTRES1
-	const MOLTRES2
-	const MOLTRES3
-	const SQUIRTLE1
-	const SQUIRTLE2
-	const SQUIRTLE3
-	const SQUIRTLE4
-	const WARTORTLE1
-	const WARTORTLE2
-	const DARK_WARTORTLE
-	const BLASTOISE1
-	const BLASTOISE2
-	const DARK_BLASTOISE
-	const PSYDUCK1
-	const PSYDUCK2
-	const GOLDUCK1
-	const GOLDUCK2
-	const DARK_GOLDUCK
-	const POLIWAG1
-	const POLIWAG2
-	const POLIWHIRL1
-	const POLIWHIRL2
-	const POLIWRATH1
-	const POLIWRATH2
-	const TENTACOOL
-	const TENTACRUEL
-	const SEEL1
-	const SEEL2
-	const DEWGONG1
-	const DEWGONG2
-	const SHELLDER1
-	const SHELLDER2
-	const CLOYSTER
-	const KRABBY1
-	const KRABBY2
-	const KINGLER1
-	const KINGLER2
-	const HORSEA1
-	const HORSEA2
-	const SEADRA1
-	const SEADRA2
-	const GOLDEEN
-	const SEAKING
-	const STARYU1
-	const STARYU2
-	const STARMIE
-	const DARK_STARMIE
-	const MAGIKARP1
-	const MAGIKARP2
-	const MAGIKARP3
-	const GYARADOS
-	const DARK_GYARADOS
-	const LAPRAS1
-	const LAPRAS2
-	const VAPOREON1
-	const VAPOREON2
-	const DARK_VAPOREON
-	const OMANYTE1
-	const OMANYTE2
-	const OMANYTE3
-	const OMASTAR1
-	const OMASTAR2
-	const ARTICUNO1
-	const ARTICUNO2
-	const ARTICUNO3
-	const MARILL
-	const PIKACHU1
-	const PIKACHU2
-	const PIKACHU3
-	const PIKACHU4
-	const PIKACHU5
-	const PIKACHU6
-	const FLYING_PIKACHU1
-	const FLYING_PIKACHU2
-	const SURFING_PIKACHU1
-	const SURFING_PIKACHU2
-	const RAICHU1
-	const RAICHU2
-	const RAICHU3
-	const RAICHU4
-	const DARK_RAICHU
-	const MAGNEMITE1
-	const MAGNEMITE2
-	const MAGNEMITE3
-	const MAGNEMITE4
-	const MAGNETON1
-	const MAGNETON2
-	const MAGNETON3
-	const DARK_MAGNETON
-	const VOLTORB1
-	const VOLTORB2
-	const VOLTORB3
-	const ELECTRODE1
-	const ELECTRODE2
-	const DARK_ELECTRODE
-	const ELECTABUZZ1
-	const ELECTABUZZ2
-	const ELECTABUZZ3
-	const JOLTEON1
-	const JOLTEON2
-	const DARK_JOLTEON
-	const ZAPDOS1
-	const ZAPDOS2
-	const ZAPDOS3
-	const ZAPDOS4
-	const SANDSHREW1
-	const SANDSHREW2
-	const SANDSLASH1
-	const SANDSLASH2
-	const DIGLETT1
-	const DIGLETT2
-	const DIGLETT3
-	const DUGTRIO1
-	const DUGTRIO2
-	const DARK_DUGTRIO
-	const MANKEY1
-	const MANKEY2
-	const MANKEY3
-	const PRIMEAPE
-	const DARK_PRIMEAPE
-	const MACHOP1
-	const MACHOP2
-	const MACHOP3
-	const MACHOKE1
-	const MACHOKE2
-	const MACHOKE3
-	const DARK_MACHOKE
-	const MACHAMP1
-	const MACHAMP2
-	const DARK_MACHAMP
-	const GEODUDE1
-	const GEODUDE2
-	const GRAVELER1
-	const GRAVELER2
-	const GRAVELER3
-	const GOLEM1
-	const GOLEM2
-	const ONIX1
-	const ONIX2
-	const CUBONE1
-	const CUBONE2
-	const MAROWAK1
-	const MAROWAK2
-	const DARK_MAROWAK
-	const HITMONLEE1
-	const HITMONLEE2
-	const HITMONCHAN1
-	const HITMONCHAN2
-	const RHYHORN
-	const RHYDON1
-	const RHYDON2
-	const KABUTO1
-	const KABUTO2
-	const KABUTOPS
-	const AERODACTYL1
-	const AERODACTYL2
-	const ABRA1
-	const ABRA2
-	const ABRA3
-	const KADABRA1
-	const KADABRA2
-	const DARK_KADABRA
-	const ALAKAZAM1
-	const ALAKAZAM2
-	const DARK_ALAKAZAM
-	const SLOWPOKE1
-	const SLOWPOKE2
-	const SLOWPOKE3
-	const SLOWBRO1
-	const SLOWBRO2
-	const DARK_SLOWBRO
-	const GASTLY1
-	const GASTLY2
-	const GASTLY3
-	const HAUNTER1
-	const HAUNTER2
-	const HAUNTER3
-	const HAUNTER4
-	const DARK_HAUNTER
-	const GENGAR1
-	const GENGAR2
-	const DARK_GENGAR
-	const DROWZEE1
-	const DROWZEE2
-	const HYPNO1
-	const HYPNO2
-	const DARK_HYPNO
-	const MR_MIME1
-	const MR_MIME2
-	const JYNX1
-	const JYNX2
-	const JYNX3
-	const MEWTWO1
-	const MEWTWO2
-	const MEWTWO3
-	const MEWTWO4
-	const MEWTWO5
-	const MEWTWO6
-	const GRS_MEWTWO
-	const MEW1
-	const MEW2
-	const MEW3
-	const PIDGEY1
-	const PIDGEY2
-	const PIDGEOTTO1
-	const PIDGEOTTO2
-	const PIDGEOT1
-	const PIDGEOT2
-	const RATTATA1
-	const RATTATA2
-	const RATTATA3
-	const RATICATE
-	const DARK_RATICATE
-	const SPEAROW1
-	const SPEAROW2
-	const SPEAROW3
-	const FEAROW1
-	const FEAROW2
-	const DARK_FEAROW
-	const CLEFAIRY1
-	const CLEFAIRY2
-	const CLEFABLE
-	const DARK_CLEFABLE
-	const JIGGLYPUFF1
-	const JIGGLYPUFF2
-	const JIGGLYPUFF3
-	const WIGGLYTUFF1
-	const WIGGLYTUFF2
-	const MEOWTH1
-	const MEOWTH2
-	const MEOWTH3
-	const MEOWTH4
-	const MEOWTH5
-	const PERSIAN
-	const DARK_PERSIAN1
-	const DARK_PERSIAN2
-	const FARFETCHD1
-	const FARFETCHD2
-	const DODUO1
-	const DODUO2
-	const DODRIO1
-	const DODRIO2
-	const LICKITUNG1
-	const LICKITUNG2
-	const CHANSEY1
-	const CHANSEY2
-	const KANGASKHAN1
-	const KANGASKHAN2
-	const KANGASKHAN3
-	const TAUROS1
-	const TAUROS2
-	const DITTO
-	const EEVEE1
-	const EEVEE2
-	const EEVEE3
-	const PORYGON1
-	const PORYGON2
-	const PORYGON3
-	const COOL_PORYGON
-	const SNORLAX1
-	const SNORLAX2
-	const HUNGRY_SNORLAX
-	const DRATINI1
-	const DRATINI2
-	const DRAGONAIR
-	const DARK_DRAGONAIR
-	const DRAGONITE1
-	const DRAGONITE2
-	const DRAGONITE3
-	const DARK_DRAGONITE
-	const TOGEPI
-	const LUGIA
-	const SUPER_POTION
-	const IMAKUNI_CARD
-	const ENERGY_REMOVAL
-	const ENERGY_RETRIEVAL
-	const ENERGY_SEARCH
-	const PROFESSOR_OAK
-	const FOSSIL_EXCAVATION
-	const POTION
-	const GAMBLER
-	const REVIVE
-	const MAX_REVIVE
-	const SUPER_SCOOP_UP
-	const DEVOLUTION_SPRAY
-	const ITEMFINDER
-	const CHALLENGE
-	const SUPER_ENERGY_RETRIEVAL
-	const SUPER_ENERGY_REMOVAL
-	const MOON_STONE
-	const DEFENDER
-	const GUST_OF_WIND
-	const MYSTERIOUS_FOSSIL
-	const FULL_HEAL
-	const IMPOSTER_OAKS_REVENGE
-	const IMPOSTER_PROFESSOR_OAK
-	const SLEEP
-	const COMPUTER_ERROR
-	const COMPUTER_SEARCH
-	const DIGGER
-	const CLEFAIRY_DOLL
-	const MR_FUJI
-	const PLUSPOWER
-	const SWITCH
-	const SCOOP_UP
-	const POKEMON_TRADER
-	const POKEMON_RECALL
-	const POKEDEX
-	const POKEMON_CENTER
-	const POKEMON_BREEDER
-	const POKEMON_FLUTE
-	const THE_BOSSS_WAY
-	const GOOP_GAS_ATTACK
-	const BILL
-	const BILLS_TELEPORTER
-	const BILLS_COMPUTER
-	const MASTER_BALL
-	const LASS
-	const MAINTENENCE
-	const POKEBALL
-	const NIGHTLY_GARBAGE_RUN
-	const RECYCLE
-	const ROCKETS_SNEAK_ATTACK
-	const HERE_COMES_TEAM_ROCKET
-	const THE_ROCKETS_TRAP
-NUM_CARDS EQU const_value + -1
+	const GRASS_ENERGY            ; $001
+	const FIRE_ENERGY             ; $002
+	const WATER_ENERGY            ; $003
+	const LIGHTNING_ENERGY        ; $004
+	const FIGHTING_ENERGY         ; $005
+	const PSYCHIC_ENERGY          ; $006
+	const DOUBLE_COLORLESS_ENERGY ; $007
+	const POTION_ENERGY           ; $008
+	const FULLHEAL_ENERGY         ; $009
+	const RAINBOW_ENERGY          ; $00a
+	const RECYCLE_ENERGY          ; $00b
+	const BULBASAUR1              ; $00c
+	const BULBASAUR2              ; $00d
+	const BULBASAUR3              ; $00e
+	const IVYSAUR1                ; $00f
+	const IVYSAUR2                ; $010
+	const DARK_IVYSAUR            ; $011
+	const VENUSAUR1               ; $012
+	const VENUSAUR2               ; $013
+	const VENUSAUR3               ; $014
+	const DARK_VENUSAUR           ; $015
+	const CATERPIE                ; $016
+	const METAPOD1                ; $017
+	const METAPOD2                ; $018
+	const BUTTERFREE              ; $019
+	const WEEDLE1                 ; $01a
+	const WEEDLE2                 ; $01b
+	const KAKUNA1                 ; $01c
+	const KAKUNA2                 ; $01d
+	const BEEDRILL                ; $01e
+	const EKANS1                  ; $01f
+	const EKANS2                  ; $020
+	const ARBOK1                  ; $021
+	const ARBOK2                  ; $022
+	const DARK_ARBOK              ; $023
+	const NIDORANF1               ; $024
+	const NIDORANF2               ; $025
+	const NIDORINA1               ; $026
+	const NIDORINA2               ; $027
+	const NIDOQUEEN               ; $028
+	const NIDORANM1               ; $029
+	const NIDORANM2               ; $02a
+	const NIDORINO1               ; $02b
+	const NIDORINO2               ; $02c
+	const NIDOKING                ; $02d
+	const ZUBAT1                  ; $02e
+	const ZUBAT2                  ; $02f
+	const ZUBAT3                  ; $030
+	const GOLBAT1                 ; $031
+	const GOLBAT2                 ; $032
+	const DARK_GOLBAT             ; $033
+	const ODDISH1                 ; $034
+	const ODDISH2                 ; $035
+	const GLOOM                   ; $036
+	const DARK_GLOOM              ; $037
+	const VILEPLUME               ; $038
+	const DARK_VILEPLUME          ; $039
+	const PARAS1                  ; $03a
+	const PARAS2                  ; $03b
+	const PARASECT1               ; $03c
+	const PARASECT2               ; $03d
+	const VENONAT1                ; $03e
+	const VENONAT2                ; $03f
+	const VENOMOTH1               ; $040
+	const VENOMOTH2               ; $041
+	const BELLSPROUT1             ; $042
+	const BELLSPROUT2             ; $043
+	const WEEPINBELL1             ; $044
+	const WEEPINBELL2             ; $045
+	const VICTREEBEL              ; $046
+	const GRIMER1                 ; $047
+	const GRIMER2                 ; $048
+	const MUK                     ; $049
+	const DARK_MUK                ; $04a
+	const EXEGGCUTE               ; $04b
+	const EXEGGUTOR               ; $04c
+	const KOFFING1                ; $04d
+	const KOFFING2                ; $04e
+	const KOFFING3                ; $04f
+	const WEEZING1                ; $050
+	const WEEZING2                ; $051
+	const DARK_WEEZING            ; $052
+	const TANGELA1                ; $053
+	const TANGELA2                ; $054
+	const SCYTHER1                ; $055
+	const SCYTHER2                ; $056
+	const PINSIR1                 ; $057
+	const PINSIR2                 ; $058
+	const CHARMANDER1             ; $059
+	const CHARMANDER2             ; $05a
+	const CHARMANDER3             ; $05b
+	const CHARMELEON              ; $05c
+	const DARK_CHARMELEON         ; $05d
+	const CHARIZARD1              ; $05e
+	const CHARIZARD2              ; $05f
+	const DARK_CHARIZARD          ; $060
+	const VULPIX1                 ; $061
+	const VULPIX2                 ; $062
+	const NINETALES1              ; $063
+	const NINETALES2              ; $064
+	const DARK_NINETALES          ; $065
+	const GROWLITHE1              ; $066
+	const GROWLITHE2              ; $067
+	const GROWLITHE3              ; $068
+	const ARCANINE1               ; $069
+	const ARCANINE2               ; $06a
+	const ARCANINE3               ; $06b
+	const PONYTA1                 ; $06c
+	const PONYTA2                 ; $06d
+	const PONYTA3                 ; $06e
+	const RAPIDASH1               ; $06f
+	const RAPIDASH2               ; $070
+	const DARK_RAPIDASH           ; $071
+	const MAGMAR1                 ; $072
+	const MAGMAR2                 ; $073
+	const MAGMAR3                 ; $074
+	const MAGMAR4                 ; $075
+	const FLAREON1                ; $076
+	const FLAREON2                ; $077
+	const DARK_FLAREON            ; $078
+	const MOLTRES1                ; $079
+	const MOLTRES2                ; $07a
+	const MOLTRES3                ; $07b
+	const SQUIRTLE1               ; $07c
+	const SQUIRTLE2               ; $07d
+	const SQUIRTLE3               ; $07e
+	const SQUIRTLE4               ; $07f
+	const WARTORTLE1              ; $080
+	const WARTORTLE2              ; $081
+	const DARK_WARTORTLE          ; $082
+	const BLASTOISE1              ; $083
+	const BLASTOISE2              ; $084
+	const DARK_BLASTOISE          ; $085
+	const PSYDUCK1                ; $086
+	const PSYDUCK2                ; $087
+	const GOLDUCK1                ; $088
+	const GOLDUCK2                ; $089
+	const DARK_GOLDUCK            ; $08a
+	const POLIWAG1                ; $08b
+	const POLIWAG2                ; $08c
+	const POLIWHIRL1              ; $08d
+	const POLIWHIRL2              ; $08e
+	const POLIWRATH1              ; $08f
+	const POLIWRATH2              ; $090
+	const TENTACOOL               ; $091
+	const TENTACRUEL              ; $092
+	const SEEL1                   ; $093
+	const SEEL2                   ; $094
+	const DEWGONG1                ; $095
+	const DEWGONG2                ; $096
+	const SHELLDER1               ; $097
+	const SHELLDER2               ; $098
+	const CLOYSTER                ; $099
+	const KRABBY1                 ; $09a
+	const KRABBY2                 ; $09b
+	const KINGLER1                ; $09c
+	const KINGLER2                ; $09d
+	const HORSEA1                 ; $09e
+	const HORSEA2                 ; $09f
+	const SEADRA1                 ; $0a0
+	const SEADRA2                 ; $0a1
+	const GOLDEEN                 ; $0a2
+	const SEAKING                 ; $0a3
+	const STARYU1                 ; $0a4
+	const STARYU2                 ; $0a5
+	const STARMIE                 ; $0a6
+	const DARK_STARMIE            ; $0a7
+	const MAGIKARP1               ; $0a8
+	const MAGIKARP2               ; $0a9
+	const MAGIKARP3               ; $0aa
+	const GYARADOS                ; $0ab
+	const DARK_GYARADOS           ; $0ac
+	const LAPRAS1                 ; $0ad
+	const LAPRAS2                 ; $0ae
+	const VAPOREON1               ; $0af
+	const VAPOREON2               ; $0b0
+	const DARK_VAPOREON           ; $0b1
+	const OMANYTE1                ; $0b2
+	const OMANYTE2                ; $0b3
+	const OMANYTE3                ; $0b4
+	const OMASTAR1                ; $0b5
+	const OMASTAR2                ; $0b6
+	const ARTICUNO1               ; $0b7
+	const ARTICUNO2               ; $0b8
+	const ARTICUNO3               ; $0b9
+	const MARILL                  ; $0ba
+	const PIKACHU1                ; $0bb
+	const PIKACHU2                ; $0bc
+	const PIKACHU3                ; $0bd
+	const PIKACHU4                ; $0be
+	const PIKACHU5                ; $0bf
+	const PIKACHU6                ; $0c0
+	const FLYING_PIKACHU1         ; $0c1
+	const FLYING_PIKACHU2         ; $0c2
+	const SURFING_PIKACHU1        ; $0c3
+	const SURFING_PIKACHU2        ; $0c4
+	const RAICHU1                 ; $0c5
+	const RAICHU2                 ; $0c6
+	const RAICHU3                 ; $0c7
+	const RAICHU4                 ; $0c8
+	const DARK_RAICHU             ; $0c9
+	const MAGNEMITE1              ; $0ca
+	const MAGNEMITE2              ; $0cb
+	const MAGNEMITE3              ; $0cc
+	const MAGNEMITE4              ; $0cd
+	const MAGNETON1               ; $0ce
+	const MAGNETON2               ; $0cf
+	const MAGNETON3               ; $0d0
+	const DARK_MAGNETON           ; $0d1
+	const VOLTORB1                ; $0d2
+	const VOLTORB2                ; $0d3
+	const VOLTORB3                ; $0d4
+	const ELECTRODE1              ; $0d5
+	const ELECTRODE2              ; $0d6
+	const DARK_ELECTRODE          ; $0d7
+	const ELECTABUZZ1             ; $0d8
+	const ELECTABUZZ2             ; $0d9
+	const ELECTABUZZ3             ; $0da
+	const JOLTEON1                ; $0db
+	const JOLTEON2                ; $0dc
+	const DARK_JOLTEON            ; $0dd
+	const ZAPDOS1                 ; $0de
+	const ZAPDOS2                 ; $0df
+	const ZAPDOS3                 ; $0e0
+	const ZAPDOS4                 ; $0e1
+	const SANDSHREW1              ; $0e2
+	const SANDSHREW2              ; $0e3
+	const SANDSLASH1              ; $0e4
+	const SANDSLASH2              ; $0e5
+	const DIGLETT1                ; $0e6
+	const DIGLETT2                ; $0e7
+	const DIGLETT3                ; $0e8
+	const DUGTRIO1                ; $0e9
+	const DUGTRIO2                ; $0ea
+	const DARK_DUGTRIO            ; $0eb
+	const MANKEY1                 ; $0ec
+	const MANKEY2                 ; $0ed
+	const MANKEY3                 ; $0ee
+	const PRIMEAPE                ; $0ef
+	const DARK_PRIMEAPE           ; $0f0
+	const MACHOP1                 ; $0f1
+	const MACHOP2                 ; $0f2
+	const MACHOP3                 ; $0f3
+	const MACHOKE1                ; $0f4
+	const MACHOKE2                ; $0f5
+	const MACHOKE3                ; $0f6
+	const DARK_MACHOKE            ; $0f7
+	const MACHAMP1                ; $0f8
+	const MACHAMP2                ; $0f9
+	const DARK_MACHAMP            ; $0fa
+	const GEODUDE1                ; $0fb
+	const GEODUDE2                ; $0fc
+	const GRAVELER1               ; $0fd
+	const GRAVELER2               ; $0fe
+	const GRAVELER3               ; $0ff
+	const GOLEM1                  ; $100
+	const GOLEM2                  ; $101
+	const ONIX1                   ; $102
+	const ONIX2                   ; $103
+	const CUBONE1                 ; $104
+	const CUBONE2                 ; $105
+	const MAROWAK1                ; $106
+	const MAROWAK2                ; $107
+	const DARK_MAROWAK            ; $108
+	const HITMONLEE1              ; $109
+	const HITMONLEE2              ; $10a
+	const HITMONCHAN1             ; $10b
+	const HITMONCHAN2             ; $10c
+	const RHYHORN                 ; $10d
+	const RHYDON1                 ; $10e
+	const RHYDON2                 ; $10f
+	const KABUTO1                 ; $110
+	const KABUTO2                 ; $111
+	const KABUTOPS                ; $112
+	const AERODACTYL1             ; $113
+	const AERODACTYL2             ; $114
+	const ABRA1                   ; $115
+	const ABRA2                   ; $116
+	const ABRA3                   ; $117
+	const KADABRA1                ; $118
+	const KADABRA2                ; $119
+	const DARK_KADABRA            ; $11a
+	const ALAKAZAM1               ; $11b
+	const ALAKAZAM2               ; $11c
+	const DARK_ALAKAZAM           ; $11d
+	const SLOWPOKE1               ; $11e
+	const SLOWPOKE2               ; $11f
+	const SLOWPOKE3               ; $120
+	const SLOWBRO1                ; $121
+	const SLOWBRO2                ; $122
+	const DARK_SLOWBRO            ; $123
+	const GASTLY1                 ; $124
+	const GASTLY2                 ; $125
+	const GASTLY3                 ; $126
+	const HAUNTER1                ; $127
+	const HAUNTER2                ; $128
+	const HAUNTER3                ; $129
+	const HAUNTER4                ; $12a
+	const DARK_HAUNTER            ; $12b
+	const GENGAR1                 ; $12c
+	const GENGAR2                 ; $12d
+	const DARK_GENGAR             ; $12e
+	const DROWZEE1                ; $12f
+	const DROWZEE2                ; $130
+	const HYPNO1                  ; $131
+	const HYPNO2                  ; $132
+	const DARK_HYPNO              ; $133
+	const MR_MIME1                ; $134
+	const MR_MIME2                ; $135
+	const JYNX1                   ; $136
+	const JYNX2                   ; $137
+	const JYNX3                   ; $138
+	const MEWTWO1                 ; $139
+	const MEWTWO2                 ; $13a
+	const MEWTWO3                 ; $13b
+	const MEWTWO4                 ; $13c
+	const MEWTWO5                 ; $13d
+	const MEWTWO6                 ; $13e
+	const GRS_MEWTWO              ; $13f
+	const MEW1                    ; $140
+	const MEW2                    ; $141
+	const MEW3                    ; $142
+	const PIDGEY1                 ; $143
+	const PIDGEY2                 ; $144
+	const PIDGEOTTO1              ; $145
+	const PIDGEOTTO2              ; $146
+	const PIDGEOT1                ; $147
+	const PIDGEOT2                ; $148
+	const RATTATA1                ; $149
+	const RATTATA2                ; $14a
+	const RATTATA3                ; $14b
+	const RATICATE                ; $14c
+	const DARK_RATICATE           ; $14d
+	const SPEAROW1                ; $14e
+	const SPEAROW2                ; $14f
+	const SPEAROW3                ; $150
+	const FEAROW1                 ; $151
+	const FEAROW2                 ; $152
+	const DARK_FEAROW             ; $153
+	const CLEFAIRY1               ; $154
+	const CLEFAIRY2               ; $155
+	const CLEFABLE                ; $156
+	const DARK_CLEFABLE           ; $157
+	const JIGGLYPUFF1             ; $158
+	const JIGGLYPUFF2             ; $159
+	const JIGGLYPUFF3             ; $15a
+	const WIGGLYTUFF1             ; $15b
+	const WIGGLYTUFF2             ; $15c
+	const MEOWTH1                 ; $15d
+	const MEOWTH2                 ; $15e
+	const MEOWTH3                 ; $15f
+	const MEOWTH4                 ; $160
+	const MEOWTH5                 ; $161
+	const PERSIAN                 ; $162
+	const DARK_PERSIAN1           ; $163
+	const DARK_PERSIAN2           ; $164
+	const FARFETCHD1              ; $165
+	const FARFETCHD2              ; $166
+	const DODUO1                  ; $167
+	const DODUO2                  ; $168
+	const DODRIO1                 ; $169
+	const DODRIO2                 ; $16a
+	const LICKITUNG1              ; $16b
+	const LICKITUNG2              ; $16c
+	const CHANSEY1                ; $16d
+	const CHANSEY2                ; $16e
+	const KANGASKHAN1             ; $16f
+	const KANGASKHAN2             ; $170
+	const KANGASKHAN3             ; $171
+	const TAUROS1                 ; $172
+	const TAUROS2                 ; $173
+	const DITTO                   ; $174
+	const EEVEE1                  ; $175
+	const EEVEE2                  ; $176
+	const EEVEE3                  ; $177
+	const PORYGON1                ; $178
+	const PORYGON2                ; $179
+	const PORYGON3                ; $17a
+	const COOL_PORYGON            ; $17b
+	const SNORLAX1                ; $17c
+	const SNORLAX2                ; $17d
+	const HUNGRY_SNORLAX          ; $17e
+	const DRATINI1                ; $17f
+	const DRATINI2                ; $180
+	const DRAGONAIR               ; $181
+	const DARK_DRAGONAIR          ; $182
+	const DRAGONITE1              ; $183
+	const DRAGONITE2              ; $184
+	const DRAGONITE3              ; $185
+	const DARK_DRAGONITE          ; $186
+	const TOGEPI                  ; $187
+	const LUGIA                   ; $188
+	const SUPER_POTION            ; $189
+	const IMAKUNI_CARD            ; $18a
+	const ENERGY_REMOVAL          ; $18b
+	const ENERGY_RETRIEVAL        ; $18c
+	const ENERGY_SEARCH           ; $18d
+	const PROFESSOR_OAK           ; $18e
+	const FOSSIL_EXCAVATION       ; $18f
+	const POTION                  ; $190
+	const GAMBLER                 ; $191
+	const REVIVE                  ; $192
+	const MAX_REVIVE              ; $193
+	const SUPER_SCOOP_UP          ; $194
+	const DEVOLUTION_SPRAY        ; $195
+	const ITEMFINDER              ; $196
+	const CHALLENGE               ; $197
+	const SUPER_ENERGY_RETRIEVAL  ; $198
+	const SUPER_ENERGY_REMOVAL    ; $199
+	const MOON_STONE              ; $19a
+	const DEFENDER                ; $19b
+	const GUST_OF_WIND            ; $19c
+	const MYSTERIOUS_FOSSIL       ; $19d
+	const FULL_HEAL               ; $19e
+	const IMPOSTER_OAKS_REVENGE   ; $19f
+	const IMPOSTER_PROFESSOR_OAK  ; $1a0
+	const SLEEP                   ; $1a1
+	const COMPUTER_ERROR          ; $1a2
+	const COMPUTER_SEARCH         ; $1a3
+	const DIGGER                  ; $1a4
+	const CLEFAIRY_DOLL           ; $1a5
+	const MR_FUJI                 ; $1a6
+	const PLUSPOWER               ; $1a7
+	const SWITCH                  ; $1a8
+	const SCOOP_UP                ; $1a9
+	const POKEMON_TRADER          ; $1aa
+	const POKEMON_RECALL          ; $1ab
+	const POKEDEX                 ; $1ac
+	const POKEMON_CENTER          ; $1ad
+	const POKEMON_BREEDER         ; $1ae
+	const POKEMON_FLUTE           ; $1af
+	const THE_BOSSS_WAY           ; $1b0
+	const GOOP_GAS_ATTACK         ; $1b1
+	const BILL                    ; $1b2
+	const BILLS_TELEPORTER        ; $1b3
+	const BILLS_COMPUTER          ; $1b4
+	const MASTER_BALL             ; $1b5
+	const LASS                    ; $1b6
+	const MAINTENENCE             ; $1b7
+	const POKEBALL                ; $1b8
+	const NIGHTLY_GARBAGE_RUN     ; $1b9
+	const RECYCLE                 ; $1ba
+	const ROCKETS_SNEAK_ATTACK    ; $1bb
+	const HERE_COMES_TEAM_ROCKET  ; $1bc
+	const THE_ROCKETS_TRAP        ; $1bd
+NUM_CARDS EQU const_value - 1

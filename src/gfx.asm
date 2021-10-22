@@ -1,3 +1,8 @@
+INCLUDE "macros.asm"
+INCLUDE "constants.asm"
+
+SECTION "Card Gfx 1", ROMX[$4000], BANK[$1d]
+
 CardGraphics:: ; c4000 (1d:4000)
 
 GrassEnergyCardGfx:: ; c4000 (1d:4000)
@@ -131,3 +136,4 @@ Metapod2CardGfx::
 	db $ff, $5b, $b4, $29, $46, $01, $80, $00
 	db $00, $00, $40, $40, $40, $40, $40, $40, $40, $40, $00, $00, $40, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40, $40, $40, $40, $00, $00, $00, $40, $40, $40, $40, $80, $40, $00, $00, $00, $40, $40, $40, $80, $80, $40, $00, $00, $40, $40
 	INCBIN "gfx/cards/metapod2.2bpp"
+; 0x77f70

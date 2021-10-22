@@ -1,3 +1,8 @@
+INCLUDE "macros.asm"
+INCLUDE "constants.asm"
+
+INCLUDE "vram.asm"
+
 SECTION "WRAM0", WRAM0[$c000]
 	ds $a00
 

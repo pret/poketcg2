@@ -56,25 +56,25 @@ Start: ; 0150 (0:0150)
 	xor a
 	ldh [rIF], a
 	ldh [rIE], a
-	call $03e6
+	call $03e6 ; ZeroRAM
 	ld a, $1
 	call BankswitchROM
 	xor a
 	call BankswitchSRAM
 	call BankswitchVRAM0
-	call $028e
+	call $028e ; DisableLCD
 	pop af
 	ld [wInitialA], a
-	call $0342
+	call $0342 ; DetectConsole
 	ld a, $20
 	ld [wTileMapFill], a
-	call $0399
-	call $0305
-	call $0363
-	call $305c
-	call $0254
-	call $0dc7
-	call $0566
+	call $0399 ; SetupVRAM
+	call $0305 ; SetupRegisters
+	call $0363 ; SetupPalettes
+	call $305c ; SetupSound
+	call SetupTimer
+	call $0dc7 ; ResetSerial
+	call $0566 ; CopyDMAFunction
 	call ValidateSRAM
 	ld a, BANK(GameLoop)
 	call BankswitchROM
@@ -118,7 +118,7 @@ VBlankHandler: ; 019b (0:019b)
 	ldh [rLCDC], a
 	ei
 	call wVBlankFunctionTrampoline
-	call $0425
+	call $0425 ; FlushPalettesIfRequested
 	ld hl, wVBlankCounter
 	inc [hl]
 	ld hl, wReentrancyFlag
@@ -141,12 +141,12 @@ TimerHandler: ; 01ef (0:01ef)
 	push de
 	push bc
 	ei
-	call $0bb2
+	call $0bb2 ; SerialTimerHandler
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-	; only trigger every fourth interrupt ~ 60.24 Hz
+	; only trigger every fourth interrupt ≈ 60.24 Hz
 	ld hl, wTimerCounter
 	ld a, [hl]
 	inc [hl]
@@ -161,9 +161,9 @@ TimerHandler: ; 01ef (0:01ef)
 	set IN_TIMER, [hl]
 	ldh a, [hBankROM]
 	push af
-	ld a, $77
+	ld a, $77 ; BANK(SoundTimerHandler)
 	call BankswitchROM
-	call $4003
+	call $4003 ; SoundTimerHandler
 	pop af
 	call BankswitchROM
 	; clear in-timer flag
@@ -177,7 +177,7 @@ TimerHandler: ; 01ef (0:01ef)
 	pop hl
 	pop af
 	reti
-	
+
 ; increment play time counter by a tick
 IncrementPlayTimeCounter: ; 022f (0:022f)
 	ld a, [wPlayTimeCounterEnable]
@@ -208,17 +208,34 @@ IncrementPlayTimeCounter: ; 022f (0:022f)
 	inc [hl]
 	ret
 
+; setup timer to 16384/68 ≈ 240.94 Hz
+SetupTimer: ; 0254 (0:0254)
+	push bc
+	ld b, -68 ; Value for Normal Speed
+	ldh a, [rKEY1]
+	and $80
+	jr z, .set_timer
+	ld b, $100 - 2 * 68 ; Value for CGB Double Speed
+.set_timer
+	ld a, b
+	ldh [rTMA], a
+	ld a, TAC_16384_HZ
+	ldh [rTAC], a
+	ld a, TAC_START | TAC_16384_HZ
+	ldh [rTAC], a
+	pop bc
+	ret
+; 0x026c
+
 SECTION "bank0@0773", ROM0[$0773]
 
 ; switch ROM bank to a
-; Note: Exact match to TCG1
 BankswitchROM: ; 0773 (0:0773)
 	ldh [hBankROM], a
 	ld [MBC3RomBank], a
 	ret
 
 ; switch SRAM bank to a
-; Note: Exact match to TCG1
 BankswitchSRAM: ; 0779 (0:0779)
 	push af
 	ldh [hBankSRAM], a
@@ -229,7 +246,6 @@ BankswitchSRAM: ; 0779 (0:0779)
 	ret
 
 ; enable external RAM (SRAM)
-; Note: Exact match to TCG1
 EnableSRAM: ; 0786 (0:0786)
 	push af
 	ld a, SRAM_ENABLE
@@ -238,7 +254,6 @@ EnableSRAM: ; 0786 (0:0786)
 	ret
 
 ; disable external RAM (SRAM)
-; Note: Exact match to TCG1
 DisableSRAM: ; 078e (0:078e)
 	push af
 	xor a ; SRAM_DISABLE
@@ -247,7 +262,6 @@ DisableSRAM: ; 078e (0:078e)
 	ret
 
 ; set current dest VRAM bank to 0
-; Note: Exact match to TCG1
 BankswitchVRAM0: ; 0795 (0:0795)
 	push af
 	xor a
@@ -257,7 +271,6 @@ BankswitchVRAM0: ; 0795 (0:0795)
 	ret
 
 ; set current dest VRAM bank to 1
-; Note: Exact match to TCG1
 BankswitchVRAM1: ; 079d (0:079d)
 	push af
 	ld a, $1
@@ -267,27 +280,24 @@ BankswitchVRAM1: ; 079d (0:079d)
 	ret
 
 ; set current dest VRAM bank to a
-; Note: Exact match to TCG1
 BankswitchVRAM: ; 07a6 (0:07a6)
 	ldh [hBankVRAM], a
 	ldh [rVBK], a
 	ret
 
-; dummied out
-; Note: Different from TCG1
-SwitchToCGBNormalSpeed: ; 07ab (0:07ab)
+; set current dest WRAM bank to a
+BankswitchWRAM: ; 07ab (0:07ab)
 	ldh [rSVBK], a
 	ret
 
-; dummied out
-Func_07ae: ; 07ae (0:07ae)
+; switch to CGB Normal Speed Mode
+SwitchToCGBNormalSpeed: ; 07ae (0:07ae)
 	ld hl, rKEY1
 	bit 7, [hl]
 	ret z
 	jr CGBSpeedSwitch
-	
+
 ; switch to CGB Double Speed Mode
-; Note: Different from TCG1
 SwitchToCGBDoubleSpeed: ; 07b6 (0:07b6)
 	ld hl, rKEY1
 	bit 7, [hl]
@@ -295,7 +305,6 @@ SwitchToCGBDoubleSpeed: ; 07b6 (0:07b6)
 ;	fallthrough
 
 ; switch between CGB Double Speed Mode and Normal Speed Mode
-; Note: Exact match to TCG1
 CGBSpeedSwitch: ; 07bc (0:07bc)
 	ldh a, [rIE]
 	push af
@@ -308,18 +317,18 @@ CGBSpeedSwitch: ; 07bc (0:07bc)
 	ld a, $30
 	ldh [rJOYP], a
 	stop
-	call $0254
+	call SetupTimer
 	pop af
 	ldh [rIE], a
 	ret
-	
+
 ; validate the saved data in SRAM
 ; it must contain with the sequence $04, $21, $13 at s0a000
 ValidateSRAM: ; 07d6 (0:07d6)
 	xor a
 	call BankswitchSRAM
 	ld hl, $a000
-	ld bc, $1000
+	ld bc, $2000 / 2
 .check_pattern_loop
 	ld a, [hli]
 	cp $41
@@ -333,11 +342,11 @@ ValidateSRAM: ; 07d6 (0:07d6)
 	jr nz, .check_pattern_loop
 	call RestartSRAM
 	scf
-	call $405b
+	call $405b ; InitSaveDataAndSetUppercase
 	call DisableSRAM
 	ret
 .check_sequence
-	ld hl, $a000
+	ld hl, $a000 ; s0a000
 	ld a, [hli]
 	cp $04
 	jr nz, .restart_sram
@@ -351,7 +360,7 @@ ValidateSRAM: ; 07d6 (0:07d6)
 .restart_sram
 	call RestartSRAM
 	or a
-	call $405b
+	call $405b ; InitSaveDataAndSetUppercase
 	call DisableSRAM
 	ret
 
@@ -359,11 +368,11 @@ ValidateSRAM: ; 07d6 (0:07d6)
 RestartSRAM: ; 0818 (0:0818)
 	ld a, 3
 .clear_loop
-	call $082e
+	call $082e ; ClearSRAMBank
 	dec a
 	cp -1
 	jr nz, .clear_loop
-	ld hl, $a000
+	ld hl, $a000 ; s0a000
 	ld [hl], $04
 	inc hl
 	ld [hl], $21
@@ -372,7 +381,6 @@ RestartSRAM: ; 0818 (0:0818)
 	ret
 
 ; zero the loaded SRAM bank
-; Note: Exact match to TCG1
 ClearSRAMBank: ; 082e (0:082e)
 	push af
 	call BankswitchSRAM
@@ -390,7 +398,6 @@ ClearSRAMBank: ; 082e (0:082e)
 	ret
 
 ; returns h * l in hl
-; Note: Exact match to TCG1
 HtimesL: ; 0844 (0:0844)
 	push de
 	ld a, h
@@ -412,7 +419,6 @@ HtimesL: ; 0844 (0:0844)
 	ret
 
 ; return a random number between 0 and a (exclusive) in a
-; Note: Exact match to TCG1
 Random: ; 085a (0:085a)
 	push hl
 	ld h, a
@@ -424,7 +430,6 @@ Random: ; 085a (0:085a)
 	ret
 
 ; get the next random numbers of the wRNG1 and wRNG2 sequences
-; Note: Exact match to TCG1
 UpdateRNGSources: ; 0866 (0:0866)
 	push hl
 	push de
@@ -458,12 +463,12 @@ UpdateRNGSources: ; 0866 (0:0866)
 	pop de
 	pop hl
 	ret
+; 0x088a
 
 SECTION "bank0@091b", ROM0[$091b]
 
 ; set attributes for [hl] sprites starting from wOAM + [wOAMOffset] / 4
 ; return carry if reached end of wOAM before finishing
-; Note: Exact match to TCG1
 SetManyObjectsAttributes: ; 091b (0:091b)
 	push hl
 	ld a, [wOAMOffset]
@@ -507,7 +512,6 @@ SetManyObjectsAttributes: ; 091b (0:091b)
 
 ; for the sprite at wOAM + [wOAMOffset] / 4, set its attributes from registers e, d, c, b
 ; return carry if [wOAMOffset] > 40 * 4 (beyond the end of wOAM)
-; Note: Exact match to TCG1
 SetOneObjectAttributes: ; 094a (0:094a)
 	push hl
 	ld a, [wOAMOffset]
@@ -534,7 +538,6 @@ SetOneObjectAttributes: ; 094a (0:094a)
 	ret
 
 ; set the Y Position and X Position of all sprites in wOAM to $00
-; Note: Exact match to TCG1
 ZeroObjectPositions: ; 0967 (0:0967)
 	xor a
 	ld [wOAMOffset], a
@@ -553,7 +556,6 @@ ZeroObjectPositions: ; 0967 (0:0967)
 ; RST18
 ; this function affects the stack so that it returns to the pointer following
 ; the rst call. similar to rst 28, except this always loads bank 1
-; Note: Exact match to TCG1
 Bank1Call: ; 0979 (0:0979)
 	push hl
 	push hl
@@ -570,9 +572,9 @@ Bank1Call: ; 0979 (0:0979)
 	dec hl
 	ldh a, [hBankROM]
 	ld [hld], a
-	ld [hl], $9
+	ld [hl], HIGH(SwitchToBankAtSP)
 	dec hl
-	ld [hl], $a7
+	ld [hl], LOW(SwitchToBankAtSP)
 	dec hl
 	inc de
 	ld a, [de]
@@ -582,9 +584,9 @@ Bank1Call: ; 0979 (0:0979)
 	ld [hl], a
 	ld a, $1
 ;	fallthrough
-; Note: Exact match to TCG1
+
 Bank1Call_FarCall_Common: ; 0999 (0:0999)
-	call $0773
+	call BankswitchROM
 	ld hl, sp+$d
 	inc de
 	inc de
@@ -597,7 +599,6 @@ Bank1Call_FarCall_Common: ; 0999 (0:0999)
 	ret
 
 ; switch to the ROM bank at sp+4
-; Note: Exact match to TCG1
 SwitchToBankAtSP: ; 09a7 (0:09a7)
 	push af
 	push hl
@@ -613,7 +614,6 @@ SwitchToBankAtSP: ; 09a7 (0:09a7)
 ; RST28
 ; this function affects the stack so that it returns
 ; to the three byte pointer following the rst call
-; Note: Exact match to TCG1
 FarCall: ; 09b4 (0:09b4)
 	push hl
 	push hl
@@ -630,9 +630,9 @@ FarCall: ; 09b4 (0:09b4)
 	dec hl
 	ldh a, [hBankROM]
 	ld [hld], a
-	ld [hl], $9
+	ld [hl], HIGH(SwitchToBankAtSP)
 	dec hl
-	ld [hl], $a7
+	ld [hl], LOW(SwitchToBankAtSP)
 	dec hl
 	inc de
 	inc de
@@ -645,15 +645,16 @@ FarCall: ; 09b4 (0:09b4)
 	ld a, [de]
 	inc de
 	jr Bank1Call_FarCall_Common
-;	fallthrough
+; 0x09d8
 
 SECTION "bank0@1486", ROM0[$1486]
 
-; Note: Exact match to TCG1
+; returns [[hWhoseTurn] << 8 + a] in a and in [hl]
+; i.e. duelvar a of the player whose turn it is
 GetTurnDuelistVariable: ; 1486 (0:1486)
 	ld l, a
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ld a, [hl]
 	ret
-;	fallthrough
+; 0x148c

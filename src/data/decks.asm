@@ -180,3 +180,4 @@ StarterDeck: ; 59600 (16:5600)
 	dbw  2, SWITCH
 	dbw  1, BILL
 	db 0
+; 0x59637

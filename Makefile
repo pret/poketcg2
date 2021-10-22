@@ -2,7 +2,10 @@ rom := poketcg2.gbc
 
 rom_obj := \
 src/main.o \
-src/wram.o
+src/gfx.o \
+src/audio.o \
+src/wram.o \
+src/hram.o
 
 
 ### Build tools
