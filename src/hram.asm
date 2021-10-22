@@ -55,3 +55,9 @@ hFlushPaletteFlags:: ; ff97
 
 hWhoseTurn:: ; ff99
 	ds $1
+
+	ds $6
+
+; index for AIActionTable
+hOppActionTableIndex:: ; ffa0
+	ds $1

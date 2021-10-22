@@ -33,6 +33,18 @@ WRAM0
 	"WRAM0"
 	org $ca00
 	"WRAM0 1"
+	org $cb6e
+	"WRAM0 Serial Transfer"
+	org $cbda
+	"WRAM0 Duels 2"
+	org $cc02
+	"WRAM0 Duels 2@cc02"
+	org $cde9
+	"WRAM0 2"
+WRAMX 1
+	"WRAM1"
+	org $dd02
+	"WRAM1@dd02"
 VRAM $00
 	"VRAM0"
 VRAM $01

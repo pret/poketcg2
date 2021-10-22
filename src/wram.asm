@@ -181,4 +181,106 @@ wDecompSecondaryBufferPtrLow:: ; cadd
 wBackgroundPalettesCGB:: ; caee
 	ds NUM_BACKGROUND_PALETTES palettes
 
+SECTION "WRAM0 Serial Transfer", WRAM0
+
+wSerialOp:: ; cb6e
+	ds $1
+
+wSerialFlags:: ; cb6f
+	ds $1
+
+wSerialCounter:: ; cb70
+	ds $1
+
+wSerialCounter2:: ; cb71
+	ds $1
+
+wSerialTimeoutCounter:: ; cb72
+	ds $1
+
+wcb79:: ; cb73
+	ds $2
+
+wcb7b:: ; cb75
+	ds $2
+
+wSerialSendSave:: ; cb77
+	ds $1
+
+wSerialSendBufToggle:: ; cb78
+	ds $1
+
+wSerialSendBufIndex:: ; cb79
+	ds $1
+
+wcb80:: ; cb7a
+	ds $1
+
+wSerialSendBuf:: ; cb7b
+	ds $20
+
+wSerialLastReadCA:: ; cb9b
+	ds $1
+
+wSerialRecvCounter:: ; cb9c
+	ds $1
+
+wcba3:: ; cb9d
+	ds $1
+
+wSerialRecvIndex:: ; cb9e
+	ds $1
+
+wSerialRecvBuf:: ; cb9f
+	ds $20
+
+wSerialEnd:: ; cbbf
+
+SECTION "WRAM0 Duels 2", WRAM0
+
+wOppRNG1:: ; cbda
+	ds $1
+
+	ds $2
+
+; sp is saved here when starting a duel, in order to save the return address
+; however, it only seems to be read after a transmission error in a link duel
+wDuelReturnAddress:: ; cbdd
+	ds $2
+
+	ds $3
+
+; temporarily stores 8 bytes for serial send/recv.
+; used by SerialSend8Bytes and SerialRecv8Bytes
+wTempSerialBuf:: ; cbe2
+	ds $8
+
+SECTION "WRAM0 Duels 2@cc02", WRAM0
+
+; a DUELTYPE_* constant. note that for a practice duel, wIsPracticeDuel must also be set to $1
+wDuelType:: ; cc02
+	ds $1
+
+SECTION "WRAM0 2", WRAM0
+
+wce63:: ; cde9
+	ds $1
+
+SECTION "WRAM1", WRAMX
+
+; stores a pointer to a temporary list of elements (e.g. pointer to wDuelTempList)
+; to be read or written sequentially
+wListPointer:: ; d000
+	ds $2
+
+wListPointer2:: ; d002
+	ds $2
+
+SECTION "WRAM1@dd02", WRAMX
+
+; stores the player's result in a duel (0: win, 1: loss, 2: ???, -1: transmission error?)
+; to be read by the overworld caller
+wDuelResult:: ; dd02
+	ds $1
+
 INCLUDE "sram.asm"

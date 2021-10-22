@@ -73,6 +73,11 @@ INCLUDE "home/random.asm"
 INCLUDE "home/decompress.asm"
 INCLUDE "home/objects.asm"
 INCLUDE "home/farcall.asm"
+INCLUDE "home/sgb.asm"
+INCLUDE "home/hblank.asm"
+INCLUDE "home/math.asm"
+INCLUDE "home/list.asm"
+INCLUDE "home/serial.asm"
 
 SECTION "bank0@1486", ROM0[$1486]
 
