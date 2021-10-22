@@ -3,34 +3,70 @@ INCLUDE "constants.asm"
 
 INCLUDE "vram.asm"
 
-SECTION "WRAM0", WRAM0[$c000]
-	ds $a00
+SECTION "WRAM0", WRAM0
+
+; aside from wDecompressionBuffer, which stores the
+; de facto final decompressed data after decompression,
+; this buffer stores a secondary buffer that is used
+; for "lookbacks" when repeating byte sequences.
+; actually starts in the middle of the buffer,
+; at wDecompressionSecondaryBufferStart, then wraps back up
+; to wDecompressionSecondaryBuffer.
+; this is used so that $00 can be "looked back", since anything
+; before $ef is initialized to 0 when starting decompression.
+wDecompressionSecondaryBuffer:: ; c000
+	ds $ef
+wDecompressionSecondaryBufferStart:: ; c0ef
+	ds $11
+
+SECTION "WRAM0 1", WRAM0
 
 wOAM:: ; ca00
+	ds $a0
+
+; 16-byte buffer to store text, usually a name or a number
+; used by TX_RAM1 but not exclusively
+wStringBuffer:: ; caa0
+	ds $10
+
+wcab0:: ; cab0
 	ds $1
 
-	ds $b2
+wcab1:: ; cab1
+	ds $1
 
+wcab2:: ; cab2
+	ds $1
+
+; initial value of the A register. used to tell the console when reset
 wInitialA:: ; cab3
 	ds $1
 
+; what console we are playing on, either 0 (DMG), 1 (SGB) or 2 (CGB)
+; use constants CONSOLE_DMG, CONSOLE_SGB and CONSOLE_CGB for checks
 wConsole:: ; cab4
 	ds $1
 
+; used to select a sprite or a starting sprite from wOAM
 wOAMOffset:: ; cab5
 	ds $1
 
+; FillTileMap fills VRAM0 BG Maps with the tile stored here
 wTileMapFill:: ; cab6
 	ds $1
 
 wIE:: ; cab7
 	ds $1
 
+; incremented whenever the vblank handler ends. used to wait for it to end,
+; or to delay a specific amount of frames
 wVBlankCounter:: ; cab8
 	ds $1
 
 	ds $1
 
+; bit0: is in vblank interrupt?
+; bit1: is in timer interrupt?
 wReentrancyFlag:: ; caba
 	ds $1
 
@@ -43,43 +79,106 @@ wOBP0:: ; cabc
 wOBP1:: ; cabd
 	ds $1
 
+; set to non-0 to request OAM copy during vblank
 wVBlankOAMCopyToggle:: ; cabe
 	ds $1
 
+; used by HblankWriteByteToBGMap0
 wTempByte:: ; cabf
 	ds $1
 
+; which screen or interface is currently displayed in the screen during a duel
+; used to prevent loading graphics or drawing stuff more times than necessary
 wDuelDisplayedScreen:: ; cac0
 	ds $1
 
+; used to increase the play time counter every four timer interrupts (60.24 Hz)
 wTimerCounter:: ; cac1
 	ds $1
 
 wPlayTimeCounterEnable:: ; cac2
 	ds $1
 
+; byte0: 1/60ths of a second
+; byte1: seconds
+; byte2: minutes
+; byte3: hours (lower byte)
+; byte4: hours (upper byte)
 wPlayTimeCounter:: ; cac3
-	ds $1
-
-	ds $4
+	ds $5
 
 wRNG1:: ; cac8
 	ds $1
 
-; cac9
+wRNG2:: ; cac9
 	ds $1
 
-; caca
+wRNGCounter:: ; caca
 	ds $1
 
+; the LCDC status interrupt is always disabled and this always reads as jp $0000
 wLCDCFunctionTrampoline:: ; cacb
-	ds $1
-
-; cacc
-	ds $1
-
-; cacd
-	ds $1
+	ds $3
 
 wVBlankFunctionTrampoline:: ; cace
+	ds $3
+
+; pointer to a function to be called by DoFrame
+wDoFrameFunction:: ; cad1
+	ds $2
+
+; if non-zero, the game screen can be paused at any time with the select button
+wDebugPauseAllowed:: ; cad3
 	ds $1
+
+; pointer to keep track of where
+; in the source data we are while
+; running the decompression algorithm
+wDecompSourcePosPtr:: ; cad4
+	ds $2
+
+; number of bits that are still left
+; to read from the current command byte
+wDecompNumCommandBitsLeft:: ; cad6
+	ds $1
+
+; command byte from which to read the bits
+; to decompress source data
+wDecompCommandByte:: ; cad7
+	ds $1
+
+; if bit 7 is changed from off to on, then
+; decompression routine will read next two bytes
+; for repeating previous sequence (length, offset)
+; if it changes from on to off, then the routine
+; will only read one byte, and reuse previous length byte
+wDecompRepeatModeToggle:: ; cad8
+	ds $1
+
+; stores in both nybbles the length of the
+; sequences to copy in decompression
+; the high nybble is used first, then the low nybble
+; for a subsequent sequence repetition
+wDecompRepeatLengths:: ; cad9
+	ds $1
+
+wDecompNumBytesToRepeat:: ; cada
+	ds $1
+
+wDecompSecondaryBufferPtrHigh:: ; cadb
+	ds $1
+
+; offset to repeat byte from decompressed data
+wDecompRepeatSeqOffset:: ; cadc
+	ds $1
+
+wDecompSecondaryBufferPtrLow:: ; cadd
+	ds $1
+
+	ds $10
+
+; temporary CGB palette data buffer to eventually save into BGPD registers.
+wBackgroundPalettesCGB:: ; caee
+	ds NUM_BACKGROUND_PALETTES palettes
+
+INCLUDE "sram.asm"

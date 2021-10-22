@@ -29,3 +29,13 @@ ROM0
 	"romheader"
 	org $0150
 	"start"
+WRAM0
+	"WRAM0"
+	org $ca00
+	"WRAM0 1"
+VRAM $00
+	"VRAM0"
+VRAM $01
+	"VRAM1"
+SRAM $00
+	"SRAM0"
