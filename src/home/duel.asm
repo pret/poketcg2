@@ -563,7 +563,7 @@ CountCardsInDuelTempList:
 	pop hl
 	ret
 
-; returns, in register a, the id of the card with the deck index (0-59) specified in register a
+; returns, in register hl, a pointer to the id of the card with the deck index (0-59) specified in register a
 _GetCardIDFromDeckIndex:
 	push de
 	call Func_112a
@@ -1159,8 +1159,8 @@ GetPlayAreaCardAttachedEnergies:
 	pop hl
 	ret
 
-; returns in a how many times card e can be found in location b
-; e = card id to search
+; returns in a how many times card de can be found in location b
+; de = card id to search
 ; b = location to consider (CARD_LOCATION_*)
 ; h = PLAYER_TURN or OPPONENT_TURN
 CountCardIDInLocation:
@@ -1214,7 +1214,7 @@ GetNonTurnDuelistVariable:
 	ld a, [hl]
 	ret
 
-; copies, given a card identified by register a (card ID):
+; copies, given a card identified by register hl (card ID):
 ; - e into wSelectedAttack and d into hTempCardIndex_ff9f
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
