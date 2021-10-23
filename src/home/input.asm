@@ -37,7 +37,7 @@ ReadJoypad:
 	cp BUTTONS
 	jr nz, SaveButtonsHeld
 	; A + B + Start + Select: reset game
-	call $0dc7 ; ResetSerial
+	call ResetSerial
 ;	fallthrough
 
 Reset:

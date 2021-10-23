@@ -21,7 +21,7 @@ SECTION "rst30", ROM0
 	jp GetTurnDuelistVariable
 	ds 5
 SECTION "rst38", ROM0
-	jp $0f16 ; RST38
+	jp DebugNop
 	ds 5
 
 ; interrupts
@@ -36,7 +36,7 @@ SECTION "timer", ROM0
 	jp TimerHandler
 	ds 5
 SECTION "serial", ROM0
-	jp $0c47 ; SerialHandler
+	jp SerialHandler
 	ds 5
 SECTION "joypad", ROM0
 	reti
@@ -78,15 +78,4 @@ INCLUDE "home/hblank.asm"
 INCLUDE "home/math.asm"
 INCLUDE "home/list.asm"
 INCLUDE "home/serial.asm"
-
-SECTION "bank0@1486", ROM0[$1486]
-
-; returns [[hWhoseTurn] << 8 + a] in a and in [hl]
-; i.e. duelvar a of the player whose turn it is
-GetTurnDuelistVariable: ; 1486 (0:1486)
-	ld l, a
-	ldh a, [hWhoseTurn]
-	ld h, a
-	ld a, [hl]
-	ret
-; 0x148c
+INCLUDE "home/duel.asm"

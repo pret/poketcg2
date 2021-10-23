@@ -5,7 +5,7 @@ TimerHandler:
 	push de
 	push bc
 	ei
-	call $0bb2 ; SerialTimerHandler
+	call SerialTimerHandler
 	ldh a, [rSVBK]
 	push af
 	ld a, $1

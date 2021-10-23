@@ -81,7 +81,7 @@ HblankWriteByteToBGMap0:
 	call BCCoordToBGMap0Address
 	pop hl
 	ld b, 1
-	call $0aed ; HblankCopyDataHLtoDE
+	call HblankCopyDataHLtoDE
 	pop bc
 	pop de
 	pop hl
@@ -114,4 +114,4 @@ SafeCopyDataHLtoDE: ; 6fc (0:6fc)
 	jr nz, .lcd_off_loop
 	ret
 JPHblankCopyDataHLtoDE:
-	jp $0aed ; HblankCopyDataHLtoDE
+	jp HblankCopyDataHLtoDE

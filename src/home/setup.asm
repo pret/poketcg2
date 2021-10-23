@@ -36,10 +36,10 @@ DetectConsole:
 	ld b, CONSOLE_CGB
 	cp GBC
 	jr z, .got_console
-	call $0aeb ; DetectSGB
+	call DetectSGB
 	ld b, CONSOLE_DMG
 	jr nc, .got_console
-	call $09d8 ; InitSGB
+	call InitSGB
 	ld b, CONSOLE_SGB
 .got_console
 	ld a, b

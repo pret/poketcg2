@@ -31,14 +31,18 @@ ROM0
 	"start"
 WRAM0
 	"WRAM0"
+	org $c200
+	"WRAM0 Duels 1"
 	org $ca00
 	"WRAM0 1"
 	org $cb6e
 	"WRAM0 Serial Transfer"
 	org $cbda
 	"WRAM0 Duels 2"
-	org $cc02
-	"WRAM0 Duels 2@cc02"
+	org $cc01
+	"WRAM0 Duels 2@cc01"
+	org $cc29
+	"WRAM0 Duels 2@cc29"
 	org $cde9
 	"WRAM0 2"
 WRAMX 1

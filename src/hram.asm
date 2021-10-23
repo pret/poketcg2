@@ -56,8 +56,31 @@ hFlushPaletteFlags:: ; ff97
 hWhoseTurn:: ; ff99
 	ds $1
 
-	ds $6
+; deck index of a card (0-59)
+hTempCardIndex_ff98:: ; ff9a
+	ds $1
+
+; used in SortCardsInListByID
+hTempListPtr_ff99:: ; ff9b
+	ds $2
+
+; used in SortCardsInListByID
+; this function supports 16-bit card IDs
+hTempCardID_ff9b:: ; ff9d
+	ds $2
+
+; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
+hTempPlayAreaLocation_ff9d:: ; ff9f
+	ds $1
 
 ; index for AIActionTable
 hOppActionTableIndex:: ; ffa0
+	ds $1
+
+; deck index of a card (0-59)
+hTempCardIndex_ff9f:: ; ffa1
+	ds $1
+
+; multipurpose temp storage (card's deck index, selected attack index, status condition...)
+hTemp_ffa0:: ; ffa2
 	ds $1

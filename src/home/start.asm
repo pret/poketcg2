@@ -23,8 +23,8 @@ Start:
 	call SetupPalettes
 	call $305c ; SetupSound
 	call SetupTimer
-	call $0dc7 ; ResetSerial
-	call $0566 ; CopyDMAFunction
+	call ResetSerial
+	call CopyDMAFunction
 	call ValidateSRAM
 	ld a, BANK(GameLoop)
 	call BankswitchROM

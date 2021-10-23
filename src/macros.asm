@@ -1,3 +1,5 @@
 INCLUDE "macros/audio.asm"
 INCLUDE "macros/constants.asm"
+INCLUDE "macros/code.asm"
 INCLUDE "macros/data.asm"
+INCLUDE "macros/wram.asm"

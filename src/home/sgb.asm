@@ -115,5 +115,11 @@ AttrBlkPacket_0b10:
 ; send SGB packet at hl (or packets, if length > 1)
 ; (removed in TCG2)
 SendSGB:
+
+; SGB hardware detection
+; return carry if SGB detected and disable multi-controller mode before returning
+; (removed in TCG2)
+DetectSGB:
+
 	or a
 	ret

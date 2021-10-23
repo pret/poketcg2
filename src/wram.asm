@@ -19,6 +19,31 @@ wDecompressionSecondaryBuffer:: ; c000
 wDecompressionSecondaryBufferStart:: ; c0ef
 	ds $11
 
+SECTION "WRAM0 Duels 1", WRAM0
+
+wPlayerDuelVariables:: ; c200
+
+	ds $100
+
+wOpponentDuelVariables:: ; c300
+
+	ds $100
+
+wPlayerDeck:: ; c400
+	ds $80
+
+wOpponentDeck:: ; c480
+	ds $80
+
+; this holds names like player's or opponent's.
+wNameBuffer:: ; c500
+	ds NAME_BUFFER_LENGTH
+
+; this holds an $ff-terminated list of card deck indexes (e.g. cards in hand or in bench)
+; or (less often) the attack list of a Pokemon card
+wDuelTempList:: ; c510
+	ds $80
+
 SECTION "WRAM0 1", WRAM0
 
 wOAM:: ; ca00
@@ -255,10 +280,185 @@ wDuelReturnAddress:: ; cbdd
 wTempSerialBuf:: ; cbe2
 	ds $8
 
-SECTION "WRAM0 Duels 2@cc02", WRAM0
+SECTION "WRAM0 Duels 2@cc01", WRAM0
+
+wcc01:: ; cc01
+	ds $1
 
 ; a DUELTYPE_* constant. note that for a practice duel, wIsPracticeDuel must also be set to $1
 wDuelType:: ; cc02
+	ds $1
+
+	ds $8
+
+; index (0-1) of the attack or Pokemon Power being used by the player's arena card
+; set to $ff when the duel starts and at the end of the opponent's turn
+wPlayerAttackingAttackIndex:: ; cc0b
+	ds $1
+
+; deck index of the player's arena card that is attacking or using a Pokemon Power
+; set to $ff when the duel starts and at the end of the opponent's turn
+wPlayerAttackingCardIndex:: ; cc0c
+	ds $1
+
+; ID of the player's arena card that is attacking or using a Pokemon Power
+wPlayerAttackingCardID:: ; cc0d
+	ds $2
+
+	ds $1
+
+wcc10:: ; cc10
+	ds $1
+
+	ds $2
+
+; text id of the opponent's name
+wOpponentName:: ; cc13
+	ds $2
+
+SECTION "WRAM0 Duels 2@cc29", WRAM0
+
+; holds the energies attached to a given pokemon card. 1 byte for each of the
+; 8 energy types (includes the unused one that shares byte with the colorless energy)
+wAttachedEnergies:: ; cc29
+	ds NUM_TYPES
+
+; holds the total amount of energies attached to a given pokemon card
+wTotalAttachedEnergies:: ; cc31
+	ds $1
+
+; Used as temporary storage for a card's data
+wLoadedCard1:: ; cc32
+	card_data_struct wLoadedCard1
+wLoadedCard2:: ; cc74
+	card_data_struct wLoadedCard2
+wLoadedAttack:: ; ccb6
+	atk_data_struct wLoadedAttack
+
+; the damage field of a used attack is loaded here
+; doubles as "wAIAverageDamage" when complementing wAIMinDamage and wAIMaxDamage
+; little-endian
+; second byte may have UNAFFECTED_BY_WEAKNESS_RESISTANCE_F set/unset
+wDamage:: ; ccc9
+	ds $2
+
+	ds $4
+
+; damage dealt by an attack to a target
+wDealtDamage:: ; cccf
+	ds $2
+
+; WEAKNESS and RESISTANCE flags for a damaging attack
+wDamageEffectiveness:: ; ccd1
+	ds $1
+
+; used in damage related functions
+wTempCardID_ccc2:: ; ccd2
+	ds $2
+
+wTempTurnDuelistCardID:: ; ccd4
+	ds $2
+
+wTempNonTurnDuelistCardID:: ; ccd6
+	ds $2
+
+	ds $3
+
+; *_ATTACK constants for selected attack
+; 0 for the first attack (or PKMN Power)
+; 1 for the second attack
+wSelectedAttack:: ; ccdb
+	ds $1
+
+; if affected by a no damage or effect substatus, this flag indicates what the cause was
+wNoDamageOrEffect:: ; ccdc
+	ds $1
+
+; used by CountKnockedOutPokemon and Func_5805 to store the amount
+; of prizes to take (equal to the number of Pokemon knocked out)
+wNumberPrizeCardsToTake:: ; ccdd
+	ds $1
+
+; set to 1 if the coin toss in the confusion check is heads (CheckSelfConfusionDamage)
+wGotHeadsFromConfusionCheck:: ; ccde
+	ds $1
+
+; used to store card indices of all stages, in order, of a Play Area Pokémon
+wAllStagesIndices:: ; ccdf
+	ds $3
+
+wEffectFunctionsFeedbackIndex:: ; cce2
+	ds $1
+
+; some array used in effect functions with wEffectFunctionsFeedbackIndex
+; as the index, used to return feedback. unknown length.
+wEffectFunctionsFeedback:: ; cce3
+	ds $18
+
+; this is 1 (non-0) if dealing damage to self due to confusion
+; or a self-destruct type attack
+wIsDamageToSelf:: ; ccfb
+	ds $1
+
+	ds $4
+
+; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
+wTempPlayAreaLocation_cceb:: ; cd00
+	ds $1
+
+wccec:: ; cd01
+	ds $1
+
+; used by the effect functions to return the cause of an effect to fail
+; in order print the appropriate text
+wEffectFailed:: ; cd02
+	ds $1
+
+wPreEvolutionPokemonCard:: ; cd03
+	ds $1
+
+; flag to determine whether DUELVARS_ARENA_CARD_LAST_TURN_DAMAGE
+; gets zeroed or gets updated with wDealtDamage
+wccef:: ; cd04
+	ds $1
+
+; stores the energy cost of the Metronome attack being used.
+; it's used to know how many attached Energy cards are being used
+; to pay for the attack for damage calculation.
+; if equal to 0, then the attack wasn't invoked by Metronome.
+wMetronomeEnergyCost:: ; cd05
+	ds $1
+
+; effect functions return a status condition constant here when it had no effect
+; on the target, in order to print one of the ThereWasNoEffectFrom* texts
+wNoEffectFromWhichStatus:: ; cd06
+	ds $1
+
+wcd07:: ; cd07
+	ds $1
+
+	ds $2
+
+wcd0a:: ; cd0a
+	ds $1
+
+wcd0b:: ; cd0b
+	ds $1
+
+wcd0c:: ; cd0c
+	ds $1
+
+wcd0d:: ; cd0d
+	ds $1
+
+	ds $2
+
+wcd10:: ; cd10
+	ds $4
+
+	ds $2
+
+wcd16:: ; cd16
 	ds $1
 
 SECTION "WRAM0 2", WRAM0

@@ -16,7 +16,7 @@ DoFrame:
 	push de
 	push bc
 	ld hl, wDoFrameFunction ; context-specific function
-	call $0589 ; CallIndirect
+	call CallIndirect
 	call WaitForVBlank
 	call ReadJoypad
 	call HandleDPadRepeat

@@ -515,12 +515,12 @@ DuelTransmissionError:
 ; exchange RNG during a link duel between both games
 ExchangeRNG:
 	ld a, [wDuelType]
-	cp $01 ; DUELTYPE_LINK
+	cp DUELTYPE_LINK
 	jr z, .link_duel
 	ret
 .link_duel
-	ld a, $f6 ; DUELVARS_DUELIST_TYPE
-	rst $30 ; call GetTurnDuelistVariable
+	ld a, DUELVARS_DUELIST_TYPE
+	get_turn_duelist_var
 	or a ; cp DUELIST_TYPE_PLAYER
 	jr z, .player_turn
 ; link opponent's turn
@@ -547,7 +547,7 @@ SetOppAction_SerialSendDuelData:
 	push bc
 	ldh [hOppActionTableIndex], a
 	ld a, [wDuelType]
-	cp $01 ; DUELIST_TYPE_LINK_OPP
+	cp DUELIST_TYPE_LINK_OPP
 	jr nz, .not_link
 	ld hl, hOppActionTableIndex
 	ld bc, 18
@@ -578,7 +578,7 @@ SerialSend8Bytes:
 	push hl
 	push af
 	ld a, [wDuelType]
-	cp $01 ; DUELIST_TYPE_LINK_OPP
+	cp DUELIST_TYPE_LINK_OPP
 	jr z, .link
 	pop af
 	pop hl
@@ -651,3 +651,8 @@ SerialRecv8Bytes:
 	pop hl
 	pop af
 	ret
+
+Func_f0e: ; 0f0e (0:0f0e)
+	ld a, $01
+	call BankswitchROM
+	jp $4080
