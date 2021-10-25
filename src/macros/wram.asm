@@ -97,5 +97,5 @@ ENDM
 
 deck_struct: MACRO
 \1Name::  ds DECK_NAME_SIZE
-\1Cards:: ds DECK_SIZE
+\1Cards:: ds ((DECK_SIZE + 7) / 8 + 1) * 8
 ENDM

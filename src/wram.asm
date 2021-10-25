@@ -5,6 +5,13 @@ INCLUDE "vram.asm"
 
 SECTION "WRAM0", WRAM0
 
+UNION
+
+wTempCardCollection:: ; c000
+	ds $100
+
+NEXTU
+
 ; aside from wDecompressionBuffer, which stores the
 ; de facto final decompressed data after decompression,
 ; this buffer stores a secondary buffer that is used
@@ -18,6 +25,8 @@ wDecompressionSecondaryBuffer:: ; c000
 	ds $ef
 wDecompressionSecondaryBufferStart:: ; c0ef
 	ds $11
+
+ENDU
 
 SECTION "WRAM0 Duels 1", WRAM0
 
