@@ -29,6 +29,43 @@ ROM0
 	"romheader"
 	org $0150
 	"start"
+ROMX $37
+	"Text Offsets"
+ROMX $38
+	"Text Offsets 2"
+	"Text 1"
+ROMX $39
+	"Text 2"
+ROMX $3a
+	"Text 3"
+ROMX $3b
+	"Text 4"
+ROMX $3c
+	"Text 5"
+ROMX $3d
+	"Text 6"
+ROMX $3e
+	"Text 7"
+ROMX $3f
+	"Text 8"
+ROMX $40
+	"Text 9"
+ROMX $41
+	"Text 10"
+ROMX $42
+	"Text 11"
+ROMX $43
+	"Text 12"
+ROMX $44
+	"Text 13"
+ROMX $45
+	"Text 14"
+ROMX $46
+	"Text 15"
+ROMX $47
+	"Text 16"
+ROMX $48
+	"Text 17"
 WRAM0
 	"WRAM0"
 	org $c200

@@ -39,3 +39,12 @@ ENDM
 rgb: MACRO
 	dw (\3 << 10 | \2 << 5 | \1)
 ENDM
+
+; poketcg specific macros below
+
+textpointer: MACRO
+	dw ((\1 + ($4000 * (BANK(\1) - 1))) - (TextOffsets + ($4000 * (BANK(TextOffsets) - 1)))) & $ffff
+	dw ((\1 + ($4000 * (BANK(\1) - 1))) - (TextOffsets + ($4000 * (BANK(TextOffsets) - 1)))) >> 16
+	const \1_
+EXPORT \1_
+ENDM

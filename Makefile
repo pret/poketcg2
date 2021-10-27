@@ -3,6 +3,7 @@ rom := poketcg2.gbc
 rom_obj := \
 src/main.o \
 src/gfx.o \
+src/text.o \
 src/audio.o \
 src/wram.o \
 src/hram.o
