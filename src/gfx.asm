@@ -1,7 +1,20 @@
 INCLUDE "macros.asm"
 INCLUDE "constants.asm"
 
-SECTION "Card Gfx 1", ROMX[$4000], BANK[$1d]
+SECTION "Gfx 1", ROMX
+
+Fonts::
+
+FullWidthFonts::
+INCBIN "gfx/fonts/full_width/0_0_katakana.1bpp"
+INCBIN "gfx/fonts/full_width/0_1_hiragana.1bpp"
+INCBIN "gfx/fonts/full_width/0_2_digits_kanji1.1bpp"
+INCBIN "gfx/fonts/full_width/1_kanji2.1bpp"
+INCBIN "gfx/fonts/full_width/2_kanji3.1bpp"
+INCBIN "gfx/fonts/full_width/3_kanji4.1bpp"
+INCBIN "gfx/fonts/full_width/4.1bpp"
+
+SECTION "Card Gfx 1", ROMX
 
 CardGraphics:: ; c4000 (1d:4000)
 

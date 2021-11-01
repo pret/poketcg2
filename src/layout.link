@@ -29,6 +29,10 @@ ROM0
 	"romheader"
 	org $0150
 	"start"
+ROMX $1b
+	"Gfx 1"
+ROMX $1d
+	"Card Gfx 1"
 ROMX $37
 	"Text Offsets"
 ROMX $38

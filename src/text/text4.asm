@@ -1,1919 +1,5244 @@
 Text0590:
-	db $88, $a6, $0e, $29, $01, $8e, $02, $67, $0f, $23, $1d, $24, $00
+	textfw0 "人物"
+	hiragana "の"
+	textfw1 "FW1_8e"
+	textfw2 "示"
+	katakana "テスト"
+	done
 
 Text0591:
-	db $0e, $36, $1c, $48, $18, $3d, $0f, $23, $1d, $24, $00
+	hiragana "よしだくん"
+	katakana "テスト"
+	done
 
 Text0592:
-	db $41, $78, $31, $32, $12, $3d, $00
+	textfw0 "ゲームメイン"
+	done
 
 Text0593:
-	db $0e, $36, $34, $18, $00
+	hiragana "よやく"
+	done
 
 Text0594:
-	db $32, $12, $3d, $0e, $2d, $33, $4c, $39, $00
+	textfw0 "メイン"
+	hiragana "へもどる"
+	done
 
 Text0595:
-	db $1d, $23, $78, $20, $1d, $00
+	textfw0 "ステータス"
+	done
 
 Text0596:
-	db $0e, $26, $5f, $17, $00
+	hiragana "にっき"
+	done
 
 Text0597:
-	db $4b, $5f, $17, $00
+	textfw0 "デッキ"
+	done
 
 Text0598:
-	db $30, $26, $1a, $3d, $00
+	textfw0 "ミニコン"
+	done
 
 Text0599:
-	db $1a, $12, $3d, $00
+	textfw0 "コイン"
+	done
 
 Text059a:
-	db $0e, $1e, $5f, $23, $12, $00
+	hiragana "せってい"
+	done
 
 Text059b:
-	db $0e, $24, $44, $39, $00
+	hiragana "とじる"
+	done
 
 Text059c:
-	db $0e, $1e, $5f, $23, $12, $29, $2d, $3d, $1a, $13, $00
+	hiragana "せっていのへんこう"
+	done
 
 Text059d:
-	db $70, $32, $5f, $1e, $78, $44, $0e, $29, $70, $2a, $34, $1b, $70, $00
+	textfw0 " メッセージ"
+	hiragana "の はやさ "
+	done
 
 Text059e:
-	db $70, $82, $81, $70, $11, $26, $32, $78, $1c, $5e, $3d, $70, $00
+	textfw0 " 対戦 アニメーション "
+	done
 
 Text059f:
-	db $70, $1a, $12, $3d, $24, $1d, $70, $11, $26, $32, $78, $1c, $5e, $3d, $70, $00
+	textfw0 " コイントス アニメーション "
+	done
 
 Text05a0:
-	db $0e, $1e, $5f, $23, $12, $10, $70, $15, $3c, $39, $00
+	hiragana "せっていを おわる"
+	done
 
 Text05a1:
-	db $0e, $15, $1f, $12, $00
+	hiragana "おそい"
+	done
 
 Text05a2:
-	db $0e, $2a, $34, $12, $00
+	hiragana "はやい"
+	done
 
 Text05a3:
-	db $6d, $00
+	textfw0 "/"
+	done
 
 Text05a4:
-	db $61, $00
+	textfw0 "1"
+	done
 
 Text05a5:
-	db $62, $00
+	textfw0 "2"
+	done
 
 Text05a6:
-	db $63, $00
+	textfw0 "3"
+	done
 
 Text05a7:
-	db $64, $00
+	textfw0 "4"
+	done
 
 Text05a8:
-	db $65, $00
+	textfw0 "5"
+	done
 
 Text05a9:
-	db $0e, $44, $5f, $18, $38, $00
+	hiragana "じっくり"
+	done
 
 Text05aa:
-	db $1d, $17, $5f, $54, $0e, $11, $38, $00
+	textfw0 "スキップ"
+	hiragana "あり"
+	done
 
 Text05ab:
-	db $0e, $30, $25, $12, $00
+	hiragana "みない"
+	done
 
 Text05ac:
-	db $09, $0e, $29, $26, $5f, $17, $00
+	textfw0 "<RAMNAME>"
+	hiragana "のにっき"
+	done
 
 Text05ad:
-	db $0e, $25, $2f, $14, $00
+	hiragana "なまえ"
+	done
 
 Text05ae:
-	db $70, $12, $50, $3d, $24, $1a, $12, $3d, $70, $00
+	textfw0 " イベントコイン "
+	done
 
 Text05af:
-	db $12, $50, $3d, $24, $1a, $12, $3d, $00
+	textfw0 "イベントコイン"
+	done
 
 Text05b0:
-	db $11, $39, $4d, $31, $00
+	textfw0 "アルバム"
+	done
 
 Text05b1:
-	db $54, $3a, $12, $0e, $44, $16, $3d, $00
+	textfw0 "プレイ"
+	hiragana "じかん"
+	done
 
 Text05b2:
-	db $0e, $26, $5f, $17, $10, $70, $22, $19, $2f, $1d, $16, $6f, $00
+	hiragana "にっきを つけますか?"
+	done
 
 Text05b3:
-	db $0e, $2a, $12, $00
+	hiragana "はい"
+	done
 
 Text05b4:
-	db $0e, $12, $12, $14, $00
+	hiragana "いいえ"
+	done
 
 Text05b5:
-	db $0e, $12, $2f, $70, $22, $16, $5f, $23, $12, $39, $0f, $1a, $12, $3d, $00
+	hiragana "いま つかっている"
+	katakana "コイン"
+	done
 
 Text05b6:
-	db $04, $16, $04, $21, $02, $b6, $0e, $29, $0f, $1a, $12, $3d, $00
+	textfw4 "GR"
+	textfw2 "団"
+	hiragana "の"
+	katakana "コイン"
+	done
 
 Text05b7:
-	db $16, $78, $4c, $11, $39, $4d, $31, $00
+	textfw0 "カードアルバム"
+	done
 
 Text05b8:
-	db $32, $78, $39, $0e, $10, $36, $31, $00
+	textfw0 "メール"
+	hiragana "をよむ"
+	done
 
 Text05b9:
-	db $0e, $36, $13, $42, $44, $23, $3d, $00
+	hiragana "ようごじてん"
+	done
 
 Text05ba:
-	db $54, $38, $3d, $24, $11, $13, $24, $00
+	textfw0 "プリントアウト"
+	done
 
 Text05bb:
-	db $09, $0e, $2a, $0a, $0f, $52, $1f, $1a, $3d, $0e, $29, $0f, $1d, $12, $5f, $21, $0e, $10, $70, $12, $3a, $20, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	katakana "パソコン"
+	hiragana "の"
+	katakana "スイッチ"
+	hiragana "を いれた!"
+	done
 
 Text05bc:
-	db $09, $0e, $2a, $0a, $0f, $52, $1f, $1a, $3d, $0e, $29, $0f, $1d, $12, $5f, $21, $0e, $10, $70, $17, $5f, $20, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	katakana "パソコン"
+	hiragana "の"
+	katakana "スイッチ"
+	hiragana "を きった!"
+	done
 
 Text05bd:
-	db $1d, $12, $5f, $21, $0e, $10, $17, $39, $00
+	textfw0 "スイッチ"
+	hiragana "をきる"
+	done
 
 Text05be:
-	db $09, $00
+	textfw0 "<RAMNAME>"
+	done
 
 Text05bf:
-	db $4b, $4d, $5f, $40, $00
+	textfw0 "デバッグ"
+	done
 
 Text05c0:
-	db $16, $78, $4c, $0e, $10, $0f, $41, $5f, $24, $0e, $1c, $20, $46, $6e, $00
+	textfw0 "カード"
+	hiragana "を"
+	katakana "ゲット"
+	hiragana "したぜ!"
+	done
 
 Text05c1:
-	db $04, $11, $04, $16, $2c, $5b, $3d, $24, $0e, $29, $95, $99, $00
+	textfw4 "BG"
+	textfw0 "フォント"
+	hiragana "の状態"
+	done
 
 Text05c2:
-	db $4d, $24, $39, $0e, $26, $90, $01, $a1, $1c, $2f, $1d, $16, $6f, $00
+	textfw0 "バトル"
+	hiragana "に勝"
+	textfw1 "FW1_a1"
+	textfw0 "しますか?"
+	done
 
 Text05c3:
-	db $04, $25, $16, $13, $3d, $20, $04, $4e, $00
+	textfw4 "V"
+	textfw0 "カウンタ"
+	textfw4 ":"
+	done
 
 Text05c4:
-	db $04, $25, $2c, $5f, $18, $a9, $04, $4e, $00
+	textfw4 "V"
+	textfw0 "フック", "FW0_a9"
+	textfw4 ":"
+	done
 
 Text05c5:
-	db $04, $11, $04, $16, $2c, $5a, $12, $1d, $0e, $29, $01, $8e, $02, $67, $00
+	textfw4 "BG"
+	textfw0 "フェイス"
+	hiragana "の"
+	textfw1 "FW1_8e"
+	textfw2 "示"
+	done
 
 Text05c6:
-	db $1c, $1d, $23, $31, $0e, $29, $95, $99, $00
+	textfw0 "システム"
+	hiragana "の状態"
+	done
 
 Text05c7:
-	db $91, $01, $23, $9b, $04, $1e, $04, $11, $04, $19, $17, $5c, $37, $18, $20, $a9, $04, $4e, $00
+	textfw0 "便"
+	textfw1 "用"
+	textfw0 "中"
+	textfw4 "OBJ"
+	textfw0 "キャラクタ", "FW0_a9"
+	textfw4 ":"
+	done
 
 Text05c8:
-	db $91, $01, $23, $9b, $0e, $29, $0f, $2f, $5f, $54, $98, $03, $9d, $04, $4e, $00
+	textfw0 "便"
+	textfw1 "用"
+	textfw0 "中"
+	hiragana "の"
+	katakana "マップ番"
+	textfw3 "FW3_9d"
+	textfw4 ":"
+	done
 
 Text05c9:
-	db $91, $01, $23, $9b, $0e, $29, $0f, $2f, $5f, $54, $21, $5f, $54, $a9, $04, $4e, $00
+	textfw0 "便"
+	textfw1 "用"
+	textfw0 "中"
+	hiragana "の"
+	katakana "マップチップ", "FW0_a9"
+	textfw4 ":"
+	done
 
 Text05ca:
-	db $84, $00
+	textfw0 "枚"
+	done
 
 Text05cb:
-	db $21, $5f, $54, $00
+	textfw0 "チップ"
+	done
 
 Text05cc:
-	db $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $00
+	textfw0 "デッキ"
+	hiragana "しんだん"
+	done
 
 Text05cd:
-	db $56, $19, $33, $3d, $16, $78, $4c, $04, $16, $04, $11, $62, $00
+	textfw0 "ポケモンカード"
+	textfw4 "GB"
+	textfw0 "2"
+	done
 
 Text05ce:
-	db $0e, $1b, $12, $1c, $5e, $16, $37, $00
+	hiragana "さいしょから"
+	done
 
 Text05cf:
-	db $0e, $22, $4a, $17, $10, $70, $11, $1f, $4f, $00
+	hiragana "つづきを あそぶ"
+	done
 
 Text05d0:
-	db $16, $78, $4c, $56, $3d, $6e, $00
+	textfw0 "カードポン!"
+	done
 
 Text05d1:
-	db $82, $81, $0e, $16, $37, $70, $11, $1f, $4f, $00
+	textfw0 "対戦"
+	hiragana "から あそぶ"
+	done
 
 Text05d2:
-	db $41, $78, $31, $0e, $10, $70, $2a, $44, $32, $16, $37, $0f, $1d, $20, $78, $24, $0e, $1c, $2f, $1d, $00
+	textfw0 "ゲーム"
+	hiragana "を はじめから"
+	katakana "スタート"
+	hiragana "します"
+	done
 
 Text05d3:
-	db $0e, $24, $33, $48, $21, $24, $73, $0f, $16, $78, $4c, $56, $3d, $6e, $74, $0e, $1d, $39, $24, $0a, $11, $20, $37, $1c, $12, $70, $0f, $16, $78, $4c, $0e, $3e, $70, $13, $2f, $3a, $2f, $1d, $0a, $2c, $20, $38, $24, $33, $70, $24, $18, $1d, $39, $47, $00
+	hiragana "ともだちと「"
+	katakana "カードポン!」"
+	hiragana "すると"
+	line ""
+	textfw0 "あたらしい "
+	katakana "カード"
+	hiragana "が うまれます"
+	line ""
+	textfw0 "ふたりとも とくするぞ"
+	done
 
 Text05d4:
-	db $82, $81, $0e, $29, $24, $21, $5d, $13, $4b, $70, $e4, $02, $70, $3e, $17, $3a, $2f, $1c, $20, $0a, $82, $81, $24, $21, $5d, $13, $29, $e4, $02, $70, $3e, $17, $3a, $20, $24, $1a, $3b, $16, $37, $0a, $0f, $41, $78, $31, $0e, $10, $2a, $44, $32, $37, $3a, $2f, $1d, $00
+	textfw0 "対戦"
+	hiragana "のとちゅうで 電"
+	textfw2 "FW2_70"
+	textfw0 "がきれました"
+	line ""
+	textfw0 "対戦とちゅうの電"
+	textfw2 "FW2_70"
+	textfw0 "がきれたところから"
+	line ""
+	katakana "ゲーム"
+	hiragana "をはじめられます"
+	done
 
 Text05d5:
-	db $0e, $15, $24, $1a, $29, $1a, $00
+	hiragana "おとこのこ"
+	done
 
 Text05d6:
-	db $0e, $15, $3d, $25, $29, $1a, $00
+	hiragana "おんなのこ"
+	done
 
 Text05d7:
-	db $0e, $11, $25, $20, $29, $70, $1e, $12, $50, $22, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "あなたの せいべつを"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text05d8:
-	db $73, $0e, $15, $24, $1a, $29, $1a, $74, $4b, $70, $12, $12, $4b, $1d, $16, $6f, $00
+	textfw0 "「"
+	hiragana "おとこのこ」で いいですか?"
+	done
 
 Text05d9:
-	db $73, $0e, $15, $3d, $25, $29, $1a, $74, $4b, $70, $12, $12, $4b, $1d, $16, $6f, $00
+	textfw0 "「"
+	hiragana "おんなのこ」で いいですか?"
+	done
 
 Text05da:
-	db $24, $78, $25, $32, $3d, $24, $01, $8e, $00
+	textfw0 "トーナメント"
+	textfw1 "FW1_8e"
+	done
 
 Text05db:
-	db $0e, $44, $5f, $19, $3d, $1c, $22, $00
+	hiragana "じっけんしつ"
+	done
 
 Text05dc:
-	db $04, $1e, $04, $11, $04, $19, $88, $a6, $0e, $29, $01, $8e, $02, $67, $00
+	textfw4 "OBJ"
+	textfw0 "人物"
+	hiragana "の"
+	textfw1 "FW1_8e"
+	textfw2 "示"
+	done
 
 Text05dd:
-	db $0e, $1a, $3a, $4b, $70, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "これで よろしいですか?"
+	done
 
 Text05de:
-	db $0e, $1e, $12, $50, $22, $00
+	hiragana "せいべつ"
+	done
 
 Text05df:
-	db $0e, $2f, $12, $00
+	hiragana "まい"
+	done
 
 Text05e0:
-	db $0e, $13, $19, $22, $19, $00
+	hiragana "うけつけ"
+	done
 
 Text05e1:
-	db $0e, $12, $37, $5f, $1c, $5c, $12, $2f, $1e, $0a, $19, $12, $2b, $3d, $0f, $16, $13, $3d, $20, $78, $0e, $2d, $70, $36, $13, $1a, $1f, $6e, $00
+	hiragana "いらっしゃいませ"
+	line ""
+	textfw0 "けいひん"
+	katakana "カウンター"
+	hiragana "へ ようこそ!"
+	done
 
 Text05e2:
-	db $21, $5f, $54, $0e, $10, $19, $12, $2b, $3d, $26, $70, $16, $14, $2f, $1d, $16, $6f, $00
+	textfw0 "チップ"
+	hiragana "をけいひんに かえますか?"
+	done
 
 Text05e3:
-	db $0e, $19, $12, $2b, $3d, $10, $70, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "けいひんを えらんでください"
+	done
 
 Text05e4:
-	db $21, $5f, $54, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "チップ"
+	hiragana "が たりません"
+	done
 
 Text05e5:
-	db $0e, $1a, $29, $19, $12, $2b, $3d, $4b, $70, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "このけいひんで よろしいですか?"
+	done
 
 Text05e6:
-	db $0e, $19, $12, $2b, $3d, $29, $1a, $13, $16, $3d, $10, $70, $15, $3c, $38, $2f, $1d, $16, $6f, $00
+	hiragana "けいひんのこうかんを おわりますか?"
+	done
 
 Text05e7:
-	db $0e, $2f, $20, $29, $70, $42, $38, $36, $13, $10, $0a, $15, $2f, $21, $1c, $23, $15, $38, $2f, $1d, $00
+	hiragana "またの ごりようを"
+	line ""
+	textfw0 "おまちしております"
+	done
 
 Text05e8:
-	db $2c, $1c, $3f, $4d, $25, $05, $11, $66, $64, $00
+	textfw0 "フシギバナ", "<Lv>", "64"
+	done
 
 Text05e9:
-	db $30, $5d, $13, $05, $11, $61, $65, $00
+	textfw0 "ミュウ", "<Lv>", "15"
+	done
 
 Text05ea:
-	db $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $00
+	textfw0 "マサキ"
+	hiragana "の"
+	katakana "パソコン"
+	done
 
 Text05eb:
-	db $54, $38, $3d, $1a, $12, $3d, $00
+	textfw0 "プリンコイン"
+	done
 
 Text05ec:
-	db $54, $3a, $46, $3d, $24, $52, $5f, $18, $6c, $61, $00
+	textfw0 "プレゼントパック×1"
+	done
 
 Text05ed:
-	db $54, $3a, $46, $3d, $24, $52, $5f, $18, $6c, $63, $00
+	textfw0 "プレゼントパック×3"
+	done
 
 Text05ee:
-	db $0e, $12, $37, $5f, $1c, $5c, $12, $2f, $1e, $0a, $0f, $4d, $24, $39, $1e, $3d, $20, $78, $0e, $2d, $70, $36, $13, $1a, $1f, $6e, $00
+	hiragana "いらっしゃいませ"
+	line ""
+	katakana "バトルセンター"
+	hiragana "へ ようこそ!"
+	done
 
 Text05ef:
-	db $0e, $24, $33, $48, $21, $24, $29, $82, $81, $10, $70, $2a, $44, $32, $2f, $1d, $16, $6f, $00
+	hiragana "ともだちとの対戦を はじめますか?"
+	done
 
 Text05f0:
-	db $4d, $24, $39, $1e, $3d, $20, $78, $0e, $29, $70, $42, $38, $36, $13, $0a, $11, $38, $3e, $24, $13, $42, $43, $12, $2f, $1c, $20, $00
+	textfw0 "バトルセンター"
+	hiragana "の ごりよう"
+	line ""
+	textfw0 "ありがとうございました"
+	done
 
 Text05f1:
-	db $0e, $12, $37, $5f, $1c, $5c, $12, $2f, $1e, $0a, $0f, $3f, $2c, $24, $1e, $3d, $20, $78, $0e, $2d, $70, $36, $13, $1a, $1f, $6e, $00
+	hiragana "いらっしゃいませ"
+	line ""
+	katakana "ギフトセンター"
+	hiragana "へ ようこそ!"
+	done
 
 Text05f2:
-	db $0e, $4c, $29, $36, $13, $25, $0a, $42, $36, $13, $19, $3d, $4b, $1c, $5e, $13, $16, $6f, $00
+	hiragana "どのような"
+	line ""
+	textfw0 "ごようけんでしょうか?"
+	done
 
 Text05f3:
-	db $0e, $3c, $16, $38, $2f, $1c, $20, $0a, $73, $0b, $74, $4b, $1d, $28, $00
+	hiragana "わかりました"
+	line ""
+	textfw0 "「", "<RAMTEXT>", "」ですね"
+	done
 
 Text05f4:
-	db $0e, $1f, $3a, $4b, $2a, $70, $42, $38, $36, $13, $29, $70, $2f, $14, $26, $0a, $73, $26, $5f, $17, $74, $10, $70, $22, $19, $23, $18, $48, $1b, $12, $00
+	hiragana "それでは ごりようの まえに"
+	line ""
+	textfw0 "「にっき」を つけてください"
+	done
 
 Text05f5:
-	db $73, $0e, $26, $5f, $17, $74, $10, $22, $19, $23, $70, $12, $20, $48, $16, $25, $19, $3a, $4d, $0a, $42, $38, $36, $13, $26, $70, $25, $3a, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "にっき」をつけて いただかなければ"
+	line ""
+	textfw0 "ごりように なれません"
+	done
 
 Text05f6:
-	db $0e, $2f, $20, $29, $70, $42, $38, $36, $13, $10, $0a, $15, $2f, $21, $1c, $23, $15, $38, $2f, $1d, $00
+	hiragana "またの ごりようを"
+	line ""
+	textfw0 "おまちしております"
+	done
 
 Text05f7:
-	db $16, $78, $4c, $0e, $10, $11, $41, $39, $00
+	textfw0 "カード"
+	hiragana "をあげる"
+	done
 
 Text05f8:
-	db $16, $78, $4c, $0e, $10, $33, $37, $13, $00
+	textfw0 "カード"
+	hiragana "をもらう"
+	done
 
 Text05f9:
-	db $4b, $5f, $17, $0e, $29, $22, $18, $38, $16, $20, $10, $3c, $20, $1d, $00
+	textfw0 "デッキ"
+	hiragana "のつくりかたをわたす"
+	done
 
 Text05fa:
-	db $4b, $5f, $17, $0e, $29, $22, $18, $38, $16, $20, $10, $33, $37, $13, $00
+	textfw0 "デッキ"
+	hiragana "のつくりかたをもらう"
+	done
 
 Text05fb:
-	db $0e, $34, $32, $39, $00
+	hiragana "やめる"
+	done
 
 Text05fc:
-	db $0e, $44, $5d, $3d, $4e, $3e, $4b, $17, $20, $37, $70, $4c, $21, $37, $16, $3e, $0a, $04, $22, $04, $23, $04, $10, $04, $21, $04, $23, $0f, $51, $20, $3d, $0e, $10, $70, $15, $1c, $23, $18, $48, $1b, $12, $00
+	hiragana "じゅんびができたら どちらかが"
+	line ""
+	textfw4 "START"
+	katakana "ボタン"
+	hiragana "を おしてください"
+	done
 
 Text05fd:
-	db $bc, $ad, $14, $37, $78, $0e, $4b, $1d, $0a, $2a, $44, $32, $16, $37, $70, $34, $38, $25, $15, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "通信エラー"
+	hiragana "です"
+	line ""
+	textfw0 "はじめから やりなおしてください"
+	done
 
 Text05fe:
-	db $04, $11, $04, $16, $1a, $12, $3d, $0e, $29, $01, $8e, $02, $67, $00
+	textfw4 "BG"
+	textfw0 "コイン"
+	hiragana "の"
+	textfw1 "FW1_8e"
+	textfw2 "示"
+	done
 
 Text05ff:
-	db $70, $00
+	textfw0 " "
+	done
 
 Text0600:
-	db $0e, $22, $16, $13, $0f, $1a, $12, $3d, $0e, $10, $70, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "つかう"
+	katakana "コイン"
+	hiragana "を えらんでください"
+	done
 
 Text0601:
-	db $37, $5f, $17, $78, $1a, $12, $3d, $00
+	textfw0 "ラッキーコイン"
+	done
 
 Text0602:
-	db $40, $38, $78, $3d, $1a, $12, $3d, $00
+	textfw0 "グリーンコイン"
+	done
 
 Text0603:
-	db $2c, $57, $12, $11, $1a, $12, $3d, $00
+	textfw0 "ファイアコイン"
+	done
 
 Text0604:
-	db $11, $18, $11, $1a, $12, $3d, $00
+	textfw0 "アクアコイン"
+	done
 
 Text0605:
-	db $14, $3a, $17, $1a, $12, $3d, $00
+	textfw0 "エレキコイン"
+	done
 
 Text0606:
-	db $14, $1d, $52, $78, $1a, $12, $3d, $00
+	textfw0 "エスパーコイン"
+	done
 
 Text0607:
-	db $1d, $24, $78, $3d, $1a, $12, $3d, $00
+	textfw0 "ストーンコイン"
+	done
 
 Text0608:
-	db $04, $16, $04, $21, $1a, $12, $3d, $00
+	textfw4 "GR"
+	textfw0 "コイン"
+	done
 
 Text0609:
-	db $cd, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "草"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060a:
-	db $c8, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "雷"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060b:
-	db $a8, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "炎"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060c:
-	db $aa, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "水"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060d:
-	db $d2, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "闘"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060e:
-	db $b3, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "超"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text060f:
-	db $a5, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $1a, $12, $3d, $00
+	textfw0 "無"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "コイン"
+	done
 
 Text0610:
-	db $04, $16, $04, $21, $02, $b6, $17, $3d, $40, $1a, $12, $3d, $00
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "キングコイン"
+	done
 
 Text0611:
-	db $56, $26, $78, $20, $1a, $12, $3d, $00
+	textfw0 "ポニータコイン"
+	done
 
 Text0612:
-	db $20, $5f, $22, $78, $1a, $12, $3d, $00
+	textfw0 "タッツーコイン"
+	done
 
 Text0613:
-	db $11, $78, $51, $5f, $18, $1a, $12, $3d, $00
+	textfw0 "アーボックコイン"
+	done
 
 Text0614:
-	db $54, $38, $3d, $1a, $12, $3d, $00
+	textfw0 "プリンコイン"
+	done
 
 Text0615:
-	db $48, $40, $24, $38, $15, $1a, $12, $3d, $00
+	textfw0 "ダグトリオコイン"
+	done
 
 Text0616:
-	db $41, $3d, $3e, $78, $1a, $12, $3d, $00
+	textfw0 "ゲンガーコイン"
+	done
 
 Text0617:
-	db $37, $12, $21, $5d, $13, $1a, $12, $3d, $00
+	textfw0 "ライチュウコイン"
+	done
 
 Text0618:
-	db $39, $3f, $11, $1a, $12, $3d, $00
+	textfw0 "ルギアコイン"
+	done
 
 Text0619:
-	db $04, $16, $04, $21, $1a, $12, $3d, $0e, $29, $0f, $16, $19, $37, $61, $00
+	textfw4 "GR"
+	textfw0 "コイン"
+	hiragana "の"
+	katakana "カケラ1"
+	done
 
 Text061a:
-	db $04, $16, $04, $21, $1a, $12, $3d, $0e, $29, $0f, $16, $19, $37, $62, $00
+	textfw4 "GR"
+	textfw0 "コイン"
+	hiragana "の"
+	katakana "カケラ2"
+	done
 
 Text061b:
-	db $04, $16, $04, $21, $1a, $12, $3d, $0e, $29, $0f, $16, $19, $37, $63, $00
+	textfw4 "GR"
+	textfw0 "コイン"
+	hiragana "の"
+	katakana "カケラ3"
+	done
 
 Text061c:
-	db $04, $16, $04, $21, $1a, $12, $3d, $0e, $29, $0f, $16, $19, $37, $64, $00
+	textfw4 "GR"
+	textfw0 "コイン"
+	hiragana "の"
+	katakana "カケラ4"
+	done
 
 Text061d:
-	db $12, $50, $3d, $24, $1a, $12, $3d, $61, $00
+	textfw0 "イベントコイン1"
+	done
 
 Text061e:
-	db $12, $50, $3d, $24, $1a, $12, $3d, $62, $00
+	textfw0 "イベントコイン2"
+	done
 
 Text061f:
-	db $12, $50, $3d, $24, $1a, $12, $3d, $63, $00
+	textfw0 "イベントコイン3"
+	done
 
 Text0620:
-	db $14, $2c, $5a, $18, $24, $0e, $29, $02, $dd, $d0, $00
+	textfw0 "エフェクト"
+	hiragana "の"
+	textfw2 "FW2_dd"
+	textfw0 "生"
+	done
 
 Text0621:
-	db $01, $30, $0e, $16, $37, $01, $31, $2d, $00
+	textfw1 "左"
+	hiragana "から"
+	textfw1 "右"
+	textfw0 "へ"
+	done
 
 Text0622:
-	db $01, $31, $0e, $16, $37, $01, $30, $2d, $00
+	textfw1 "右"
+	hiragana "から"
+	textfw1 "左"
+	textfw0 "へ"
+	done
 
 Text0623:
-	db $bc, $ad, $82, $81, $00
+	textfw0 "通信対戦"
+	done
 
 Text0624:
-	db $04, $22, $04, $23, $04, $10, $04, $21, $04, $23, $04, $4e, $af, $bd, $00
+	textfw4 "START:"
+	textfw0 "入", "FW0_bd"
+	done
 
 Text0625:
-	db $04, $10, $04, $4e, $01, $50, $01, $92, $00
+	textfw4 "A:"
+	textfw1 "実", "FW1_92"
+	done
 
 Text0626:
-	db $04, $11, $04, $4e, $9b, $02, $6f, $00
+	textfw4 "B:"
+	textfw0 "中"
+	textfw2 "止"
+	done
 
 Text0627:
-	db $04, $10, $60, $60, $60, $00
+	textfw4 "A"
+	textfw0 "000"
+	done
 
 Text0628:
-	db $04, $60, $01, $50, $01, $92, $9b, $04, $61, $00
+	textfw4 "<"
+	textfw1 "実", "FW1_92"
+	textfw0 "中"
+	textfw4 ">"
+	done
 
 Text0629:
-	db $04, $60, $23, $12, $02, $6f, $04, $61, $00
+	textfw4 "<"
+	textfw0 "テイ"
+	textfw2 "止"
+	textfw4 ">"
+	done
 
 Text062a:
-	db $04, $1c, $04, $18, $04, $1a, $04, $10, $04, $1c, $04, $18, $70, $04, $1f, $04, $21, $04, $1e, $04, $16, $00
+	textfw4 "MIKAMI"
+	textfw0 " "
+	textfw4 "PROG"
+	done
 
 Text062b:
-	db $52, $3c, $78, $15, $3d, $00
+	textfw0 "パワーオン"
+	done
 
 Text062c:
-	db $73, $0b, $74, $0e, $10, $0a, $0f, $41, $5f, $24, $0e, $1c, $2f, $1c, $20, $6e, $00
+	textfw0 "「", "<RAMTEXT>", "」"
+	hiragana "を"
+	line ""
+	katakana "ゲット"
+	hiragana "しました!"
+	done
 
 Text062d:
-	db $0e, $42, $13, $19, $12, $0c, $84, $32, $29, $70, $0f, $1a, $12, $3d, $0e, $4b, $1d, $6e, $00
+	hiragana "ごうけい", "<RAMNUM>", "枚めの "
+	katakana "コイン"
+	hiragana "です!"
+	done
 
 Text062e:
-	db $1d, $3b, $5f, $24, $2f, $1c, $3d, $00
+	textfw0 "スロットマシン"
+	done
 
 Text062f:
-	db $70, $1d, $3b, $5f, $24, $2f, $1c, $3d, $70, $00
+	textfw0 " スロットマシン "
+	done
 
 Text0630:
-	db $1d, $3b, $5f, $24, $2f, $1c, $3d, $0e, $4b, $70, $11, $1f, $4e, $2f, $1d, $16, $6f, $00
+	textfw0 "スロットマシン"
+	hiragana "で あそびますか?"
+	done
 
 Text0631:
-	db $0e, $16, $12, $23, $3d, $1d, $39, $70, $63, $22, $29, $0f, $4c, $37, $31, $0e, $10, $24, $32, $23, $0a, $15, $25, $44, $0f, $2f, $78, $18, $0e, $3e, $1f, $3b, $13, $24, $0f, $21, $5f, $54, $41, $5f, $24, $6e, $0a, $3a, $12, $3d, $51, $78, $14, $28, $39, $3f, $78, $2f, $78, $18, $0e, $3e, $1f, $3b, $13, $24, $0a, $0f, $51, $78, $25, $1d, $41, $78, $31, $0e, $2d, $70, $24, $22, $26, $5d, $13, $1c, $2f, $1d, $6e, $00
+	hiragana "かいてんする 3つの"
+	katakana "ドラム"
+	hiragana "をとめて"
+	line ""
+	textfw0 "おなじ"
+	katakana "マーク"
+	hiragana "がそろうと"
+	katakana "チップゲット!"
+	line ""
+	textfw0 "レインボーエネルギーマーク"
+	hiragana "がそろうと"
+	line ""
+	katakana "ボーナスゲーム"
+	hiragana "へ とつにゅうします!"
+	done
 
 Text0632:
-	db $09, $0e, $2a, $0a, $26, $5f, $17, $10, $70, $22, $19, $2f, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	textfw0 "にっきを つけました"
+	done
 
 Text0633:
-	db $09, $0e, $2a, $0a, $26, $5f, $17, $10, $22, $19, $39, $29, $10, $70, $34, $32, $2f, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	textfw0 "にっきをつけるのを やめました"
+	done
 
 Text0634:
-	db $70, $0e, $3a, $3d, $47, $18, $0f, $1a, $12, $3d, $24, $1d, $70, $00
+	textfw0 " "
+	hiragana "れんぞく"
+	katakana "コイントス "
+	done
 
 Text0635:
-	db $0e, $15, $33, $23, $3e, $70, $3a, $3d, $47, $18, $70, $25, $3d, $16, $12, $4b, $39, $16, $0a, $0f, $1a, $12, $3d, $24, $1d, $0e, $26, $70, $0f, $21, $5c, $3a, $3d, $44, $0e, $1c, $36, $13, $6e, $0a, $61, $60, $16, $12, $3a, $3d, $47, $18, $70, $1e, $12, $1a, $13, $1d, $3a, $4d, $0a, $42, $13, $16, $25, $19, $12, $2b, $3d, $0f, $41, $5f, $24, $6e, $00
+	hiragana "おもてが れんぞく なんかいでるか"
+	line ""
+	katakana "コイントス"
+	hiragana "に "
+	katakana "チャレンジ"
+	hiragana "しよう!"
+	line ""
+	textfw0 "10かいれんぞく せいこうすれば"
+	line ""
+	textfw0 "ごうかなけいひん"
+	katakana "ゲット!"
+	done
 
 Text0636:
-	db $0e, $3a, $3d, $47, $18, $61, $60, $16, $12, $10, $70, $32, $43, $1c, $23, $0a, $3e, $3d, $4d, $5f, $23, $18, $48, $1b, $12, $6e, $00
+	hiragana "れんぞく10かいを めざして"
+	line ""
+	textfw0 "がんばってください!"
+	done
 
 Text0637:
-	db $61, $60, $0e, $16, $12, $3a, $3d, $47, $18, $1e, $12, $1a, $13, $4b, $0a, $42, $13, $16, $1c, $5e, $13, $2b, $3d, $0f, $41, $5f, $24, $6e, $00
+	textfw0 "10"
+	hiragana "かいれんぞくせいこうで"
+	line ""
+	textfw0 "ごうかしょうひん"
+	katakana "ゲット!"
+	done
 
 Text0638:
-	db $0e, $33, $13, $12, $21, $4c, $70, $11, $1f, $4e, $2f, $1d, $16, $6f, $00
+	hiragana "もういちど あそびますか?"
+	done
 
 Text0639:
-	db $0e, $19, $12, $2b, $3d, $0f, $16, $13, $3d, $20, $78, $00
+	hiragana "けいひん"
+	katakana "カウンター"
+	done
 
 Text063a:
-	db $0e, $20, $12, $1e, $3d, $00
+	hiragana "たいせん"
+	done
 
 Text063b:
-	db $70, $70, $70, $0e, $30, $4c, $38, $29, $21, $16, $37, $70, $70, $70, $70, $00
+	textfw0 "   "
+	hiragana "みどりのちから    "
+	done
 
 Text063c:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $73, $cd, $0f, $56, $19, $33, $3d, $74, $0e, $2a, $0a, $73, $4c, $18, $77, $0f, $2f, $2b, $77, $0e, $1a, $3d, $37, $3d, $77, $28, $31, $38, $74, $29, $0a, $95, $99, $26, $70, $25, $37, $25, $12, $00
+	hiragana "この対戦では 「草"
+	katakana "ポケモン」"
+	hiragana "は"
+	line ""
+	textfw0 "「どく・"
+	katakana "マヒ・"
+	hiragana "こんらん・ねむり」の"
+	line ""
+	textfw0 "状態に ならない"
+	done
 
 Text063d:
-	db $70, $70, $70, $c8, $52, $3c, $78, $11, $5f, $54, $70, $70, $70, $70, $00
+	textfw0 "   雷パワーアップ    "
+	done
 
 Text063e:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $73, $c8, $0f, $56, $19, $33, $3d, $74, $0e, $3e, $0a, $0f, $3c, $43, $0e, $26, $36, $5f, $23, $70, $11, $12, $23, $29, $82, $81, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $11, $20, $14, $39, $0f, $48, $32, $78, $44, $0e, $3e, $70, $73, $6a, $61, $60, $74, $1b, $3a, $39, $00
+	hiragana "この対戦では 「雷"
+	katakana "ポケモン」"
+	hiragana "が"
+	line ""
+	katakana "ワザ"
+	hiragana "によって あいての対戦"
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	textfw0 "あたえる"
+	katakana "ダメージ"
+	hiragana "が 「+10」される"
+	done
 
 Text063f:
-	db $70, $70, $70, $0e, $2e, $29, $15, $29, $36, $3b, $12, $70, $70, $70, $70, $00
+	textfw0 "   "
+	hiragana "ほのおのよろい    "
+	done
 
 Text0640:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $73, $a8, $0f, $56, $19, $33, $3d, $74, $0e, $2a, $0a, $73, $aa, $0f, $56, $19, $33, $3d, $74, $0e, $16, $37, $29, $70, $0f, $3c, $43, $0e, $26, $36, $39, $0a, $0f, $48, $32, $78, $44, $0e, $26, $20, $12, $1c, $23, $70, $b1, $b2, $29, $0a, $14, $12, $17, $5e, $13, $10, $13, $19, $25, $12, $00
+	hiragana "この対戦では 「炎"
+	katakana "ポケモン」"
+	hiragana "は"
+	line ""
+	textfw0 "「水"
+	katakana "ポケモン」"
+	hiragana "からの "
+	katakana "ワザ"
+	hiragana "による"
+	line ""
+	katakana "ダメージ"
+	hiragana "にたいして 弱点の"
+	line ""
+	textfw0 "えいきょうをうけない"
+	done
 
 Text0641:
-	db $70, $70, $70, $70, $0e, $1e, $2f, $12, $0f, $50, $3d, $21, $70, $70, $70, $70, $00
+	textfw0 "    "
+	hiragana "せまい"
+	katakana "ベンチ    "
+	done
 
 Text0642:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $15, $20, $3e, $12, $29, $0f, $50, $3d, $21, $a9, $0e, $3e, $0a, $73, $63, $74, $26, $25, $39, $0a, $71, $73, $2b, $16, $14, $0f, $56, $19, $33, $3d, $74, $0e, $29, $15, $19, $39, $a9, $3e, $0a, $70, $73, $63, $74, $c9, $26, $25, $39, $72, $00
+	hiragana "この対戦では おたがいの"
+	katakana "ベンチ", "FW0_a9"
+	hiragana "が"
+	line ""
+	textfw0 "「3」になる"
+	line ""
+	textfw0 "(「ひかえ"
+	katakana "ポケモン」"
+	hiragana "のおける", "FW0_a9", "が"
+	line ""
+	textfw0 " 「3」匹になる)"
+	done
 
 Text0643:
-	db $70, $70, $70, $70, $0e, $26, $41, $30, $45, $29, $8e, $70, $70, $70, $70, $00
+	textfw0 "    "
+	hiragana "にげみずの場    "
+	done
 
 Text0644:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $0a, $73, $aa, $0f, $56, $19, $33, $3d, $74, $0e, $3e, $70, $73, $26, $41, $39, $74, $24, $17, $26, $0a, $2b, $22, $36, $13, $25, $70, $0f, $14, $28, $39, $3f, $78, $0e, $29, $a9, $3e, $0a, $73, $6b, $61, $74, $1b, $3a, $39, $00
+	hiragana "この対戦では"
+	line ""
+	textfw0 "「水"
+	katakana "ポケモン」"
+	hiragana "が 「にげる」ときに"
+	line ""
+	textfw0 "ひつような "
+	katakana "エネルギー"
+	hiragana "の", "FW0_a9", "が"
+	line ""
+	textfw0 "「-1」される"
+	done
 
 Text0645:
-	db $70, $70, $70, $0e, $48, $12, $21, $29, $21, $16, $37, $70, $70, $70, $70, $00
+	textfw0 "   "
+	hiragana "だいちのちから    "
+	done
 
 Text0646:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $73, $d2, $0f, $56, $19, $33, $3d, $74, $0e, $3e, $0a, $11, $20, $14, $39, $0f, $48, $32, $78, $44, $0e, $2a, $70, $ba, $b9, $8d, $29, $0a, $14, $12, $17, $5e, $13, $10, $13, $19, $45, $70, $1f, $29, $2f, $2f, $11, $20, $14, $39, $00
+	hiragana "この対戦では 「闘"
+	katakana "ポケモン」"
+	hiragana "が"
+	line ""
+	textfw0 "あたえる"
+	katakana "ダメージ"
+	hiragana "は 抵抗力の"
+	line ""
+	textfw0 "えいきょうをうけず そのままあたえる"
+	done
 
 Text0647:
-	db $70, $70, $70, $70, $ba, $b9, $8d, $0e, $23, $12, $16, $70, $70, $70, $70, $00
+	textfw0 "    抵抗力"
+	hiragana "ていか    "
+	done
 
 Text0648:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $ba, $b9, $8d, $29, $14, $12, $17, $5e, $13, $10, $0a, $73, $6b, $63, $60, $74, $16, $37, $73, $6b, $61, $60, $74, $26, $0a, $2d, $3d, $1a, $13, $1d, $39, $00
+	hiragana "この対戦では 抵抗力のえいきょうを"
+	line ""
+	textfw0 "「-30」から「-10」に"
+	line ""
+	textfw0 "へんこうする"
+	done
 
 Text0649:
-	db $70, $70, $14, $28, $39, $3f, $78, $38, $20, $78, $3d, $70, $70, $70, $00
+	textfw0 "  エネルギーリターン   "
+	done
 
 Text064a:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $8e, $26, $12, $39, $0f, $56, $19, $33, $3d, $0e, $3e, $0a, $0f, $24, $37, $5f, $1c, $5d, $0e, $1b, $3a, $39, $24, $17, $70, $1f, $29, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $22, $12, $23, $12, $39, $73, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $74, $0e, $2a, $0a, $1f, $29, $0f, $56, $19, $33, $3d, $0e, $29, $70, $33, $21, $27, $1c, $29, $80, $85, $26, $0a, $33, $4c, $39, $00
+	hiragana "この対戦では 場にいる"
+	katakana "ポケモン"
+	hiragana "が"
+	line ""
+	katakana "トラッシュ"
+	hiragana "されるとき その"
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	textfw0 "ついている「基本"
+	katakana "エネルギーカード」"
+	hiragana "は"
+	line ""
+	textfw0 "その"
+	katakana "ポケモン"
+	hiragana "の もちぬしの手札に"
+	line ""
+	textfw0 "もどる"
+	done
 
 Text064b:
-	db $70, $70, $70, $70, $0e, $26, $41, $26, $18, $12, $8e, $70, $70, $70, $70, $00
+	textfw0 "    "
+	hiragana "にげにくい場    "
+	done
 
 Text064c:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $73, $82, $81, $0f, $56, $19, $33, $3d, $74, $0e, $3e, $0a, $0f, $4d, $24, $39, $8e, $0e, $16, $37, $70, $73, $26, $41, $39, $74, $24, $17, $26, $0a, $0f, $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $70, $0f, $14, $28, $39, $3f, $78, $0e, $29, $a9, $3e, $0a, $73, $6a, $61, $74, $1b, $3a, $39, $00
+	hiragana "この対戦では 「対戦"
+	katakana "ポケモン」"
+	hiragana "が"
+	line ""
+	katakana "バトル場"
+	hiragana "から 「にげる」ときに"
+	line ""
+	katakana "トラッシュ"
+	hiragana "する "
+	katakana "エネルギー"
+	hiragana "の", "FW0_a9", "が"
+	line ""
+	textfw0 "「+1」される"
+	done
 
 Text064d:
-	db $70, $24, $37, $5f, $1c, $5d, $4f, $37, $5f, $18, $2e, $78, $39, $70, $00
+	textfw0 " トラッシュブラックホール "
+	done
 
 Text064e:
-	db $0e, $1a, $29, $82, $81, $4b, $2a, $70, $0f, $24, $37, $5f, $1c, $5d, $0e, $1c, $20, $0f, $16, $78, $4c, $0e, $2a, $0a, $1a, $29, $82, $81, $9b, $2a, $70, $22, $16, $14, $25, $18, $25, $39, $76, $0a, $71, $0f, $24, $37, $5f, $1c, $5d, $0e, $26, $2a, $70, $22, $28, $26, $70, $0f, $16, $78, $4c, $0e, $3e, $0a, $70, $25, $12, $95, $99, $26, $25, $5f, $23, $12, $39, $72, $00
+	hiragana "この対戦では "
+	katakana "トラッシュ"
+	hiragana "した"
+	katakana "カード"
+	hiragana "は"
+	line ""
+	textfw0 "この対戦中は つかえなくなる。"
+	line ""
+	textfw0 "("
+	katakana "トラッシュ"
+	hiragana "には つねに "
+	katakana "カード"
+	hiragana "が"
+	line ""
+	textfw0 " ない状態になっている)"
+	done
 
 Text064f:
-	db $01, $98, $88, $02, $66, $00
+	textfw1 "FW1_98"
+	textfw0 "人"
+	textfw2 "公"
+	done
 
 Text0650:
-	db $cb, $cc, $f5, $00
+	textfw0 "研究員"
+	done
 
 Text0651:
-	db $14, $3a, $17, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "エレキクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0652:
-	db $14, $1d, $52, $78, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "エスパークラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0653:
-	db $1d, $24, $78, $3d, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ストーンクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0654:
-	db $4d, $24, $39, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "バトルクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0655:
-	db $40, $38, $78, $3d, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "グリーンクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0656:
-	db $1b, $12, $14, $3d, $1d, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "サイエンスクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0657:
-	db $11, $18, $11, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "アクアクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0658:
-	db $2c, $57, $12, $11, $18, $37, $4f, $32, $3d, $4d, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ファイアクラブメンバー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0659:
-	db $14, $3a, $17, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "エレキクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065a:
-	db $14, $1d, $52, $78, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "エスパークラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065b:
-	db $1d, $24, $78, $3d, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ストーンクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065c:
-	db $4d, $24, $39, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "バトルクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065d:
-	db $40, $38, $78, $3d, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "グリーンクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065e:
-	db $1b, $12, $14, $3d, $1d, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "サイエンスクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text065f:
-	db $11, $18, $11, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "アクアクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0660:
-	db $2c, $57, $12, $11, $18, $37, $4f, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ファイアクラブマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0661:
-	db $40, $37, $3d, $4c, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "グランドマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0662:
-	db $cb, $cc, $f5, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "研究員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0663:
-	db $0e, $2c, $1c, $3f, $25, $12, $17, $33, $29, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	hiragana "ふしぎないきもの ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0664:
-	db $1a, $3a, $18, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "コレクター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0665:
-	db $37, $12, $4d, $39, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ライバル ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0666:
-	db $25, $47, $0e, $29, $16, $32, $3d, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "ナゾ"
+	hiragana "のかめん ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0667:
-	db $cd, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "草"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0668:
-	db $c8, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "雷"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0669:
-	db $a8, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "炎"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text066a:
-	db $aa, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "水"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text066b:
-	db $d2, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "闘"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text066c:
-	db $b3, $0e, $29, $04, $16, $04, $21, $02, $b6, $f5, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "超"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "員 ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text066d:
-	db $cd, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "草"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text066e:
-	db $c8, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "雷"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text066f:
-	db $a8, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "炎"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0670:
-	db $aa, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "水"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0671:
-	db $d2, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "闘"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0672:
-	db $b3, $0e, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "超"
+	hiragana "の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0673:
-	db $a5, $0e, $29, $4d, $3d, $26, $3d, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw0 "無"
+	hiragana "のばんにん ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0674:
-	db $04, $16, $04, $21, $02, $b6, $70, $b0, $0e, $16, $3d, $4f, $70, $0b, $0a, $0b, $0f, $4b, $5f, $17, $6e, $00
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 " 大"
+	hiragana "かんぶ ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>"
+	katakana "デッキ!"
+	done
 
 Text0675:
-	db $04, $16, $04, $21, $02, $b6, $70, $17, $3d, $40, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 " キング ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0676:
-	db $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0677:
-	db $48, $3d, $44, $5e, $3d, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ダンジョンマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0678:
-	db $42, $78, $1d, $24, $16, $78, $4c, $2f, $1d, $20, $78, $70, $0b, $0a, $0b, $4b, $5f, $17, $6e, $00
+	textfw0 "ゴーストカードマスター ", "<RAMTEXT>"
+	line ""
+	textfw0 "<RAMTEXT>", "デッキ!"
+	done
 
 Text0679:
-	db $4b, $5f, $17, $0e, $17, $3b, $18, $0f, $2f, $1c, $3d, $0e, $26, $1e, $22, $47, $18, $00
+	textfw0 "デッキ"
+	hiragana "きろく"
+	katakana "マシン"
+	hiragana "にせつぞく"
+	done
 
 Text067a:
-	db $32, $78, $39, $51, $5f, $18, $1d, $0e, $10, $30, $39, $00
+	textfw0 "メールボックス"
+	hiragana "をみる"
+	done
 
 Text067b:
-	db $16, $78, $4c, $0e, $12, $21, $37, $3d, $10, $30, $39, $00
+	textfw0 "カード"
+	hiragana "いちらんをみる"
+	done
 
 Text067c:
-	db $32, $26, $5d, $78, $0e, $10, $70, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "メニュー"
+	hiragana "を えらんでください"
+	done
 
 Text067d:
-	db $70, $09, $0e, $29, $0f, $21, $5f, $54, $70, $00
+	textfw0 " ", "<RAMNAME>"
+	hiragana "の"
+	katakana "チップ "
+	done
 
 Text067e:
-	db $0e, $2a, $44, $32, $23, $29, $0f, $56, $19, $33, $3d, $00
+	hiragana "はじめての"
+	katakana "ポケモン"
+	done
 
 Text067f:
-	db $0e, $4b, $3d, $1e, $22, $29, $21, $16, $37, $00
+	hiragana "でんせつのちから"
+	done
 
 Text0680:
-	db $93, $01, $39, $0e, $29, $1c, $2f, $00
+	textfw0 "化"
+	textfw1 "石"
+	hiragana "のしま"
+	done
 
 Text0681:
-	db $b3, $4d, $24, $39, $00
+	textfw0 "超バトル"
+	done
 
 Text0682:
-	db $0e, $1f, $37, $24, $4f, $0f, $56, $19, $33, $3d, $00
+	hiragana "そらとぶ"
+	katakana "ポケモン"
+	done
 
 Text0683:
-	db $0e, $3c, $3a, $37, $0f, $3b, $19, $5f, $24, $02, $b6, $00
+	hiragana "われら"
+	katakana "ロケット"
+	textfw2 "団"
+	done
 
 Text0684:
-	db $3b, $19, $5f, $24, $02, $b6, $0e, $29, $34, $51, $13, $00
+	textfw0 "ロケット"
+	textfw2 "団"
+	hiragana "のやぼう"
+	done
 
 Text0685:
-	db $14, $28, $39, $3f, $78, $00
+	textfw0 "エネルギー"
+	done
 
 Text0686:
-	db $54, $3a, $46, $3d, $24, $52, $5f, $18, $00
+	textfw0 "プレゼントパック"
+	done
 
 Text0687:
-	db $09, $0e, $2a, $70, $0b, $0a, $73, $0b, $74, $10, $70, $0f, $41, $5f, $24, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は ", "<RAMTEXT>"
+	line ""
+	textfw0 "「", "<RAMTEXT>", "」を "
+	katakana "ゲット!"
+	done
 
 Text0688:
-	db $0e, $1b, $37, $26, $70, $0b, $0a, $73, $0b, $74, $10, $70, $0f, $41, $5f, $24, $6e, $00
+	hiragana "さらに ", "<RAMTEXT>"
+	line ""
+	textfw0 "「", "<RAMTEXT>", "」を "
+	katakana "ゲット!"
+	done
 
 Text0689:
-	db $01, $f2, $61, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "1"
+	textfw2 "FW2_5a"
+	done
 
 Text068a:
-	db $01, $f2, $62, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "2"
+	textfw2 "FW2_5a"
+	done
 
 Text068b:
-	db $01, $f2, $63, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "3"
+	textfw2 "FW2_5a"
+	done
 
 Text068c:
-	db $01, $f2, $64, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "4"
+	textfw2 "FW2_5a"
+	done
 
 Text068d:
-	db $01, $f2, $65, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "5"
+	textfw2 "FW2_5a"
+	done
 
 Text068e:
-	db $01, $f2, $66, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "6"
+	textfw2 "FW2_5a"
+	done
 
 Text068f:
-	db $01, $f2, $67, $02, $5a, $00
+	textfw1 "FW1_f2"
+	textfw0 "7"
+	textfw2 "FW2_5a"
+	done
 
 Text0690:
-	db $52, $5f, $18, $af, $80, $00
+	textfw0 "パック入手"
+	done
 
 Text0691:
-	db $21, $5f, $54, $61, $84, $00
+	textfw0 "チップ1枚"
+	done
 
 Text0692:
-	db $21, $5f, $54, $65, $84, $00
+	textfw0 "チップ5枚"
+	done
 
 Text0693:
-	db $02, $85, $01, $70, $51, $20, $3d, $0e, $29, $01, $d8, $4b, $70, $0f, $41, $78, $31, $1d, $20, $78, $24, $0a, $04, $11, $51, $20, $3d, $0e, $4b, $70, $15, $3c, $38, $2f, $1d, $00
+	textfw2 "FW2_85"
+	textfw1 "FW1_70"
+	textfw0 "ボタン"
+	hiragana "の"
+	textfw1 "FW1_d8"
+	textfw0 "で "
+	katakana "ゲームスタート"
+	line ""
+	textfw4 "B"
+	textfw0 "ボタン"
+	hiragana "で おわります"
+	done
 
 Text0694:
-	db $51, $78, $25, $1d, $41, $78, $31, $70, $1d, $20, $78, $24, $6e, $6e, $0a, $61, $60, $0e, $16, $12, $2f, $4b, $0f, $21, $5c, $3a, $3d, $44, $0e, $4b, $17, $2f, $1d, $6e, $00
+	textfw0 "ボーナスゲーム スタート!!"
+	line ""
+	textfw0 "10"
+	hiragana "かいまで"
+	katakana "チャレンジ"
+	hiragana "できます!"
+	done
 
 Text0695:
-	db $51, $78, $25, $1d, $21, $5f, $54, $2f, $78, $18, $0e, $3e, $70, $1f, $3b, $12, $2f, $1c, $20, $0a, $0f, $21, $5f, $54, $0c, $84, $0e, $10, $70, $0f, $41, $5f, $24, $6e, $00
+	textfw0 "ボーナスチップマーク"
+	hiragana "が そろいました"
+	line ""
+	katakana "チップ", "<RAMNUM>", "枚"
+	hiragana "を "
+	katakana "ゲット!"
+	done
 
 Text0696:
-	db $14, $4b, $58, $1c, $5e, $3d, $2f, $78, $18, $0e, $3e, $70, $1f, $3b, $12, $2f, $1c, $20, $00
+	textfw0 "エディションマーク"
+	hiragana "が そろいました"
+	done
 
 Text0697:
-	db $0e, $43, $3d, $28, $3d, $6e, $0a, $2a, $45, $3a, $23, $1c, $2f, $12, $2f, $1c, $20, $00
+	hiragana "ざんねん!"
+	line ""
+	textfw0 "はずれてしまいました"
+	done
 
 Text0698:
-	db $0e, $1c, $5e, $44, $17, $3d, $2d, $3d, $1a, $13, $00
+	hiragana "しょじきんへんこう"
+	done
 
 Text0699:
-	db $12, $32, $78, $44, $ff, $03, $9f, $00
+	textfw0 "イメージ一"
+	textfw3 "FW3_9f"
+	done
 
 Text069a:
-	db $01, $87, $02, $16, $02, $5e, $00
+	textfw1 "FW1_87"
+	textfw2 "FW2_16", "FW2_5e"
+	done
 
 Text069b:
-	db $04, $60, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $24, $78, $25, $32, $3d, $24, $01, $8e, $04, $61, $00
+	textfw4 "<"
+	textfw0 "グランドマスター"
+	textfw2 "FW2_13"
+	textfw0 "トーナメント"
+	textfw1 "FW1_8e"
+	textfw4 ">"
+	done
 
 Text069c:
-	db $6e, $02, $2a, $90, $6e, $00
+	textfw0 "!"
+	textfw2 "FW2_2a"
+	textfw0 "勝!"
+	done
 
 Text069d:
-	db $09, $0e, $2a, $70, $0a, $0f, $16, $78, $4c, $0e, $10, $70, $16, $18, $26, $3d, $1c, $20, $6e, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は "
+	line ""
+	katakana "カード"
+	hiragana "を かくにんした!!"
+	done
 
 Text069e:
-	db $6b, $6b, $6b, $6b, $6b, $6b, $00
+	textfw0 "------"
+	done
 
 Text069f:
-	db $6b, $6b, $6b, $6b, $6b, $6b, $6b, $6b, $6b, $6b, $6b, $6b, $00
+	textfw0 "------------"
+	done
 
 Text06a0:
-	db $41, $78, $31, $1e, $3d, $20, $78, $00
+	textfw0 "ゲームセンター"
+	done
 
 Text06a1:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $00
+	textfw0 "ブラックボックス"
+	done
 
 Text06a2:
-	db $73, $4f, $37, $5f, $18, $51, $5f, $18, $1d, $74, $1e, $3d, $20, $78, $0e, $4b, $1d, $0a, $73, $0f, $4f, $37, $5f, $18, $51, $5f, $18, $1d, $74, $0e, $10, $70, $42, $38, $36, $13, $0a, $12, $20, $48, $17, $70, $11, $38, $3e, $24, $13, $42, $43, $12, $2f, $1d, $0a, $73, $0f, $4f, $37, $5f, $18, $51, $5f, $18, $1d, $41, $78, $31, $74, $0e, $29, $19, $5f, $16, $10, $0a, $15, $15, $18, $38, $70, $12, $20, $1c, $2f, $1c, $20, $29, $4b, $0a, $4c, $13, $47, $70, $15, $13, $19, $24, $38, $18, $48, $1b, $12, $00
+	textfw0 "「ブラックボックス」センター"
+	hiragana "です"
+	line ""
+	textfw0 "「"
+	katakana "ブラックボックス」"
+	hiragana "を ごりよう"
+	line ""
+	textfw0 "いただき ありがとうございます"
+	line ""
+	textfw0 "「"
+	katakana "ブラックボックスゲーム」"
+	hiragana "のけっかを"
+	line ""
+	textfw0 "おおくり いたしましたので"
+	line ""
+	textfw0 "どうぞ おうけとりください"
+	done
 
 Text06a3:
-	db $0e, $4c, $13, $4b, $1d, $16, $70, $12, $12, $0f, $16, $78, $4c, $0e, $3e, $0a, $26, $5d, $13, $1c, $5d, $70, $4b, $17, $2f, $1c, $20, $16, $6f, $0a, $2f, $20, $29, $70, $73, $0f, $4f, $37, $5f, $18, $51, $5f, $18, $1d, $74, $0e, $29, $0a, $42, $38, $36, $13, $10, $70, $15, $2f, $21, $1c, $23, $12, $2f, $1d, $0a, $0a, $70, $70, $04, $16, $04, $21, $02, $b6, $0f, $41, $78, $31, $1e, $3d, $20, $78, $71, $04, $47, $6b, $04, $47, $72, $6d, $00
+	hiragana "どうですか いい"
+	katakana "カード"
+	hiragana "が"
+	line ""
+	textfw0 "にゅうしゅ できましたか?"
+	line ""
+	textfw0 "またの 「"
+	katakana "ブラックボックス」"
+	hiragana "の"
+	line ""
+	textfw0 "ごりようを おまちしています"
+	line ""
+	line ""
+	textfw0 "  "
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "ゲームセンター("
+	textfw4 "^"
+	textfw0 "-"
+	textfw4 "^"
+	textfw0 ")/"
+	done
 
 Text06a4:
-	db $41, $78, $31, $1e, $3d, $20, $78, $00
+	textfw0 "ゲームセンター"
+	done
 
 Text06a5:
-	db $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $00
+	textfw0 "マサキ"
+	hiragana "の"
+	katakana "パソコン"
+	done
 
 Text06a6:
-	db $73, $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $74, $1e, $3d, $20, $78, $0e, $4b, $1d, $0a, $73, $0f, $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $74, $0e, $10, $70, $42, $38, $36, $13, $0a, $12, $20, $48, $17, $70, $11, $38, $3e, $24, $13, $42, $43, $12, $2f, $1d, $0a, $73, $0f, $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $74, $0e, $29, $19, $5f, $16, $10, $0a, $15, $15, $18, $38, $70, $12, $20, $1c, $2f, $1c, $20, $29, $4b, $0a, $4c, $13, $47, $70, $42, $16, $18, $26, $3d, $18, $48, $1b, $12, $00
+	textfw0 "「マサキ"
+	hiragana "の"
+	katakana "パソコン」センター"
+	hiragana "です"
+	line ""
+	textfw0 "「"
+	katakana "マサキ"
+	hiragana "の"
+	katakana "パソコン」"
+	hiragana "を ごりよう"
+	line ""
+	textfw0 "いただき ありがとうございます"
+	line ""
+	textfw0 "「"
+	katakana "マサキ"
+	hiragana "の"
+	katakana "パソコン」"
+	hiragana "のけっかを"
+	line ""
+	textfw0 "おおくり いたしましたので"
+	line ""
+	textfw0 "どうぞ ごかくにんください"
+	done
 
 Text06a7:
-	db $0e, $1d, $4d, $37, $1c, $12, $0f, $16, $78, $4c, $0e, $3e, $0a, $26, $5d, $13, $1c, $5d, $70, $4b, $17, $2f, $1c, $20, $16, $6f, $0a, $2f, $20, $29, $70, $73, $0f, $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $74, $0e, $29, $0a, $42, $38, $36, $13, $10, $70, $15, $2f, $21, $1c, $23, $12, $2f, $1d, $0a, $0a, $70, $70, $04, $16, $04, $21, $02, $b6, $0f, $41, $78, $31, $1e, $3d, $20, $78, $71, $04, $47, $6b, $04, $47, $72, $6d, $00
+	hiragana "すばらしい"
+	katakana "カード"
+	hiragana "が"
+	line ""
+	textfw0 "にゅうしゅ できましたか?"
+	line ""
+	textfw0 "またの 「"
+	katakana "マサキ"
+	hiragana "の"
+	katakana "パソコン」"
+	hiragana "の"
+	line ""
+	textfw0 "ごりようを おまちしています"
+	line ""
+	line ""
+	textfw0 "  "
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "ゲームセンター("
+	textfw4 "^"
+	textfw0 "-"
+	textfw4 "^"
+	textfw0 ")/"
+	done
 
 Text06a8:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06a9:
-	db $30, $26, $1a, $3d, $0e, $24, $0f, $32, $78, $39, $00
+	textfw0 "ミニコン"
+	hiragana "と"
+	katakana "メール"
+	done
 
 Text06aa:
-	db $09, $6e, $0a, $0e, $3c, $1c, $44, $5c, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $21, $5c, $3d, $24, $70, $1a, $29, $0f, $32, $78, $39, $0e, $10, $0a, $36, $31, $1a, $24, $3e, $70, $4b, $17, $20, $16, $25, $6f, $0a, $36, $12, $16, $70, $12, $3b, $12, $3b, $25, $70, $44, $5e, $13, $2e, $13, $3e, $0a, $0f, $32, $78, $39, $0e, $4b, $70, $1a, $29, $36, $13, $26, $24, $4c, $18, $29, $44, $5c, $00
+	textfw0 "<RAMNAME>", "!"
+	line ""
+	hiragana "わしじゃ "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "ちゃんと この"
+	katakana "メール"
+	hiragana "を"
+	line ""
+	textfw0 "よむことが できたかな?"
+	line ""
+	textfw0 "よいか いろいろな じょうほうが"
+	line ""
+	katakana "メール"
+	hiragana "で このようにとどくのじゃ"
+	done
 
 Text06ab:
-	db $0e, $1a, $2f, $32, $26, $70, $73, $0f, $30, $26, $1a, $3d, $74, $0e, $10, $2b, $37, $12, $23, $0a, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $3e, $70, $24, $4c, $12, $23, $12, $39, $16, $10, $0a, $0f, $21, $5a, $5f, $18, $0e, $1d, $39, $3d, $44, $5c, $47, $0a, $73, $0f, $30, $26, $1a, $3d, $74, $0e, $2a, $70, $68, $bc, $1c, $16, $0f, $32, $78, $39, $0e, $10, $0a, $13, $19, $24, $3a, $25, $12, $3d, $44, $5c, $70, $36, $3d, $48, $0f, $32, $78, $39, $0e, $2a, $0a, $1b, $18, $44, $5e, $1c, $23, $70, $11, $17, $10, $22, $18, $39, $3d, $44, $5c, $36, $00
+	hiragana "こまめに 「"
+	katakana "ミニコン」"
+	hiragana "をひらいて"
+	line ""
+	textfw0 "あたらしい"
+	katakana "メール"
+	hiragana "が とどいているかを"
+	line ""
+	katakana "チェック"
+	hiragana "するんじゃぞ"
+	line ""
+	textfw0 "「"
+	katakana "ミニコン」"
+	hiragana "は 8通しか"
+	katakana "メール"
+	hiragana "を"
+	line ""
+	textfw0 "うけとれないんじゃ よんだ"
+	katakana "メール"
+	hiragana "は"
+	line ""
+	textfw0 "さくじょして あきをつくるんじゃよ"
+	done
 
 Text06ac:
-	db $30, $26, $1a, $3d, $0e, $10, $70, $0f, $32, $78, $39, $0e, $4b, $70, $12, $5f, $52, $12, $26, $0a, $1c, $23, $15, $18, $24, $70, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $3e, $0a, $13, $19, $24, $3a, $25, $12, $1a, $24, $3e, $70, $11, $39, $16, $37, $29, $13, $0a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw0 "ミニコン"
+	hiragana "を "
+	katakana "メール"
+	hiragana "で いっぱいに"
+	line ""
+	textfw0 "しておくと あたらしい"
+	katakana "メール"
+	hiragana "が"
+	line ""
+	textfw0 "うけとれないことが あるからのう"
+	line ""
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06ad:
-	db $0e, $22, $12, $1c, $3d, $0a, $0a, $1a, $3a, $2a, $70, $3c, $1c, $16, $37, $29, $70, $1e, $3d, $50, $22, $44, $5c, $0a, $1a, $3a, $16, $37, $29, $82, $81, $26, $70, $34, $18, $48, $23, $23, $18, $3a, $00
+	hiragana "ついしん"
+	line ""
+	line ""
+	textfw0 "これは わしからの せんべつじゃ"
+	line ""
+	textfw0 "これからの対戦に やくだててくれ"
+	done
 
 Text06ae:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06af:
-	db $73, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $74, $00
+	textfw0 "「デッキ"
+	hiragana "しんだん」"
+	done
 
 Text06b0:
-	db $09, $6e, $0a, $0e, $3c, $1c, $44, $5c, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $1c, $3d, $2a, $22, $32, $12, $29, $70, $15, $1c, $37, $1e, $44, $5c, $0a, $3c, $1c, $29, $25, $3e, $28, $3d, $29, $70, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $29, $0a, $cb, $cc, $1e, $12, $16, $10, $70, $19, $5f, $1c, $5d, $13, $1c, $20, $0a, $73, $0f, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $0f, $1c, $1d, $23, $31, $74, $0e, $44, $5c, $00
+	textfw0 "<RAMNAME>", "!"
+	line ""
+	hiragana "わしじゃ "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "しんはつめいの おしらせじゃ"
+	line ""
+	textfw0 "わしのながねんの "
+	katakana "ポケモンカード"
+	hiragana "の"
+	line ""
+	textfw0 "研究せいかを けっしゅうした"
+	line ""
+	textfw0 "「"
+	katakana "デッキ"
+	hiragana "しんだん"
+	katakana "システム」"
+	hiragana "じゃ"
+	done
 
 Text06b1:
-	db $0e, $24, $38, $11, $14, $45, $70, $1c, $5e, $1c, $3d, $1c, $5c, $29, $20, $32, $29, $0a, $73, $0f, $1d, $23, $5f, $54, $61, $74, $0e, $3e, $70, $16, $3d, $1e, $12, $1c, $23, $15, $39, $0a, $73, $0f, $4b, $5f, $17, $21, $5a, $5f, $18, $74, $0e, $2a, $0a, $15, $2f, $14, $29, $22, $18, $5f, $20, $0f, $4b, $5f, $17, $0e, $29, $70, $0f, $4d, $37, $3d, $1d, $0e, $10, $0a, $0f, $21, $5a, $5f, $18, $0e, $1d, $39, $1a, $24, $3e, $70, $4b, $17, $39, $3d, $44, $5c, $0a, $4c, $13, $44, $5c, $70, $1d, $42, $12, $44, $5c, $3b, $6e, $00
+	hiragana "とりあえず しょしんしゃのための"
+	line ""
+	textfw0 "「"
+	katakana "ステップ1」"
+	hiragana "が かんせいしておる"
+	line ""
+	textfw0 "「"
+	katakana "デッキチェック」"
+	hiragana "は"
+	line ""
+	textfw0 "おまえのつくった"
+	katakana "デッキ"
+	hiragana "の "
+	katakana "バランス"
+	hiragana "を"
+	line ""
+	katakana "チェック"
+	hiragana "することが できるんじゃ"
+	line ""
+	textfw0 "どうじゃ すごいじゃろ!"
+	done
 
 Text06b2:
-	db $73, $52, $1f, $1a, $3d, $74, $0e, $16, $37, $70, $0f, $11, $18, $1e, $1d, $0e, $1d, $39, $3d, $44, $5c, $0a, $11, $18, $2f, $4b, $33, $70, $17, $2e, $3d, $23, $17, $25, $0f, $11, $4c, $4d, $12, $1d, $0e, $24, $0a, $0f, $4b, $5f, $17, $21, $5a, $5f, $18, $0e, $44, $5c, $3e, $25, $77, $77, $77, $0a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw0 "「パソコン」"
+	hiragana "から "
+	katakana "アクセス"
+	hiragana "するんじゃ"
+	line ""
+	textfw0 "あくまでも きほんてきな"
+	katakana "アドバイス"
+	hiragana "と"
+	line ""
+	katakana "デッキチェック"
+	hiragana "じゃがな・・・"
+	line ""
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06b3:
-	db $0e, $22, $12, $1c, $3d, $0a, $73, $0f, $1d, $23, $5f, $54, $62, $74, $0e, $3e, $70, $16, $3d, $1e, $12, $1c, $20, $37, $0a, $2f, $20, $70, $3a, $3d, $37, $18, $1d, $39, $16, $37, $25, $77, $77, $77, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "「"
+	katakana "ステップ2」"
+	hiragana "が かんせいしたら"
+	line ""
+	textfw0 "また れんらくするからな・・・"
+	done
 
 Text06b4:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06b5:
-	db $73, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $74, $62, $00
+	textfw0 "「デッキ"
+	hiragana "しんだん」2"
+	done
 
 Text06b6:
-	db $09, $6e, $70, $04, $13, $79, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $73, $0f, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $0f, $1c, $1d, $23, $31, $74, $0e, $29, $0a, $0f, $4d, $78, $44, $5e, $3d, $11, $5f, $54, $0e, $29, $70, $15, $1c, $37, $1e, $44, $5c, $0a, $21, $5e, $5f, $24, $70, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $26, $25, $3a, $20, $0a, $2b, $24, $29, $20, $32, $29, $70, $73, $0f, $1d, $23, $5f, $54, $62, $74, $0e, $3e, $0a, $16, $3d, $1e, $12, $44, $5c, $00
+	textfw0 "<RAMNAME>", "! "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "「"
+	katakana "デッキ"
+	hiragana "しんだん"
+	katakana "システム」"
+	hiragana "の"
+	line ""
+	katakana "バージョンアップ"
+	hiragana "の おしらせじゃ"
+	line ""
+	textfw0 "ちょっと "
+	katakana "ポケモンカード"
+	hiragana "になれた"
+	line ""
+	textfw0 "ひとのための 「"
+	katakana "ステップ2」"
+	hiragana "が"
+	line ""
+	textfw0 "かんせいじゃ"
+	done
 
 Text06b7:
-	db $4b, $5f, $17, $0e, $10, $70, $22, $18, $39, $13, $14, $4b, $29, $0a, $21, $5e, $5f, $24, $1c, $20, $70, $0f, $11, $4c, $4d, $12, $1d, $0e, $44, $5c, $0a, $34, $18, $26, $20, $22, $70, $0f, $24, $3a, $78, $25, $78, $16, $78, $4c, $0e, $34, $0a, $73, $4c, $18, $77, $0f, $2f, $2b, $77, $0e, $28, $31, $38, $77, $1a, $3d, $37, $3d, $74, $29, $0a, $20, $12, $1c, $5e, $2e, $13, $2e, $13, $70, $24, $12, $5f, $20, $0a, $0f, $11, $4c, $4d, $12, $1d, $0e, $3e, $70, $2f, $3d, $1b, $12, $44, $5c, $6e, $00
+	textfw0 "デッキ"
+	hiragana "を つくるうえでの"
+	line ""
+	textfw0 "ちょっとした "
+	katakana "アドバイス"
+	hiragana "じゃ"
+	line ""
+	textfw0 "やくにたつ "
+	katakana "トレーナーカード"
+	hiragana "や"
+	line ""
+	textfw0 "「どく・"
+	katakana "マヒ・"
+	hiragana "ねむり・こんらん」の"
+	line ""
+	textfw0 "たいしょほうほう といった"
+	line ""
+	katakana "アドバイス"
+	hiragana "が まんさいじゃ!"
+	done
 
 Text06b8:
-	db $0e, $3a, $12, $26, $70, $36, $5f, $23, $0a, $73, $0f, $52, $1f, $1a, $3d, $74, $0e, $16, $37, $70, $0f, $11, $18, $1e, $1d, $0e, $4b, $17, $39, $47, $0a, $4c, $3d, $25, $33, $3d, $16, $70, $20, $32, $1c, $23, $30, $23, $18, $3a, $0a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	hiragana "れいに よって"
+	line ""
+	textfw0 "「"
+	katakana "パソコン」"
+	hiragana "から "
+	katakana "アクセス"
+	hiragana "できるぞ"
+	line ""
+	textfw0 "どんなもんか ためしてみてくれ"
+	line ""
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06b9:
-	db $0e, $22, $12, $1c, $3d, $0a, $73, $0f, $1d, $23, $5f, $54, $63, $74, $0e, $3e, $70, $16, $3d, $1e, $12, $1c, $20, $37, $0a, $2f, $20, $70, $3a, $3d, $37, $18, $1d, $39, $16, $37, $25, $77, $77, $77, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "「"
+	katakana "ステップ3」"
+	hiragana "が かんせいしたら"
+	line ""
+	textfw0 "また れんらくするからな・・・"
+	done
 
 Text06ba:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06bb:
-	db $73, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $74, $63, $00
+	textfw0 "「デッキ"
+	hiragana "しんだん」3"
+	done
 
 Text06bc:
-	db $0e, $3c, $1c, $44, $5c, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $73, $0f, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $0f, $1c, $1d, $23, $31, $74, $0e, $29, $0a, $0f, $4d, $78, $44, $5e, $3d, $11, $5f, $54, $0e, $29, $70, $15, $1c, $37, $1e, $44, $5c, $0a, $73, $0f, $1d, $23, $5f, $54, $63, $74, $0e, $29, $70, $16, $3d, $1e, $12, $44, $5c, $0a, $1a, $3d, $4c, $2a, $70, $0f, $4b, $5f, $17, $0e, $29, $a3, $26, $22, $12, $23, $29, $0a, $0f, $11, $4c, $4d, $12, $1d, $0e, $3e, $70, $0f, $32, $12, $3d, $0e, $44, $5c, $6e, $00
+	hiragana "わしじゃ "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "「"
+	katakana "デッキ"
+	hiragana "しんだん"
+	katakana "システム」"
+	hiragana "の"
+	line ""
+	katakana "バージョンアップ"
+	hiragana "の おしらせじゃ"
+	line ""
+	textfw0 "「"
+	katakana "ステップ3」"
+	hiragana "の かんせいじゃ"
+	line ""
+	textfw0 "こんどは "
+	katakana "デッキ"
+	hiragana "の色についての"
+	line ""
+	katakana "アドバイス"
+	hiragana "が "
+	katakana "メイン"
+	hiragana "じゃ!"
+	done
 
 Text06bd:
-	db $4b, $5f, $17, $0e, $10, $70, $22, $18, $39, $13, $14, $4b, $29, $0a, $17, $2e, $3d, $23, $17, $25, $70, $0f, $11, $4c, $4d, $12, $1d, $0e, $2a, $0a, $1a, $3a, $4b, $70, $15, $3c, $38, $44, $5c, $25, $77, $77, $77, $0a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw0 "デッキ"
+	hiragana "を つくるうえでの"
+	line ""
+	textfw0 "きほんてきな "
+	katakana "アドバイス"
+	hiragana "は"
+	line ""
+	textfw0 "これで おわりじゃな・・・"
+	line ""
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06be:
-	db $0e, $22, $12, $1c, $3d, $0a, $73, $0f, $1d, $23, $5f, $54, $64, $74, $0e, $3e, $70, $16, $3d, $1e, $12, $1c, $20, $37, $0a, $2f, $20, $70, $3a, $3d, $37, $18, $1d, $39, $16, $37, $25, $77, $77, $77, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "「"
+	katakana "ステップ4」"
+	hiragana "が かんせいしたら"
+	line ""
+	textfw0 "また れんらくするからな・・・"
+	done
 
 Text06bf:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06c0:
-	db $73, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $74, $64, $00
+	textfw0 "「デッキ"
+	hiragana "しんだん」4"
+	done
 
 Text06c1:
-	db $09, $70, $04, $13, $79, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $2f, $20, $70, $73, $0f, $4b, $5f, $17, $0e, $1c, $3d, $48, $3d, $0f, $1c, $1d, $23, $31, $74, $0e, $29, $0a, $0f, $4d, $78, $44, $5e, $3d, $11, $5f, $54, $0e, $29, $70, $15, $1c, $37, $1e, $44, $5c, $0a, $73, $0f, $1d, $23, $5f, $54, $64, $74, $0e, $2a, $70, $36, $38, $36, $12, $0f, $4b, $5f, $17, $0e, $10, $0a, $22, $18, $39, $20, $32, $29, $70, $0f, $11, $4c, $4d, $12, $1d, $0e, $3e, $0a, $21, $5d, $13, $1c, $3d, $26, $70, $25, $5f, $23, $12, $39, $47, $00
+	textfw0 "<RAMNAME>", " "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "また 「"
+	katakana "デッキ"
+	hiragana "しんだん"
+	katakana "システム」"
+	hiragana "の"
+	line ""
+	katakana "バージョンアップ"
+	hiragana "の おしらせじゃ"
+	line ""
+	textfw0 "「"
+	katakana "ステップ4」"
+	hiragana "は よりよい"
+	katakana "デッキ"
+	hiragana "を"
+	line ""
+	textfw0 "つくるための "
+	katakana "アドバイス"
+	hiragana "が"
+	line ""
+	textfw0 "ちゅうしんに なっているぞ"
+	done
 
 Text06c2:
-	db $82, $81, $0e, $10, $70, $90, $21, $1d, $1d, $32, $25, $12, $24, $17, $26, $2a, $0a, $0f, $4b, $5f, $17, $0e, $26, $70, $33, $3d, $48, $12, $3e, $70, $11, $39, $29, $44, $5c, $0a, $1f, $3d, $25, $24, $17, $2a, $70, $0f, $4b, $5f, $17, $0e, $10, $70, $0f, $17, $21, $3d, $0e, $24, $0a, $30, $25, $15, $1c, $23, $70, $30, $39, $29, $33, $70, $20, $12, $1e, $22, $44, $5c, $47, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw0 "対戦"
+	hiragana "を 勝ちすすめないときには"
+	line ""
+	katakana "デッキ"
+	hiragana "に もんだいが あるのじゃ"
+	line ""
+	textfw0 "そんなときは "
+	katakana "デッキ"
+	hiragana "を "
+	katakana "キチン"
+	hiragana "と"
+	line ""
+	textfw0 "みなおして みるのも たいせつじゃぞ"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06c3:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06c4:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $61, $00
+	textfw0 "オートデッキマシン1"
+	done
 
 Text06c5:
-	db $09, $6e, $70, $04, $13, $79, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $0f, $4b, $5f, $17, $0e, $10, $22, $18, $39, $29, $3e, $70, $20, $12, $2d, $3d, $25, $37, $0a, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $10, $70, $22, $16, $13, $24, $0a, $12, $12, $44, $5c, $3b, $13, $0a, $2b, $22, $36, $13, $25, $0f, $16, $78, $4c, $0e, $10, $70, $33, $5f, $23, $12, $3a, $4d, $0a, $1d, $40, $70, $22, $18, $5f, $23, $18, $3a, $39, $47, $6e, $00
+	textfw0 "<RAMNAME>", "! "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "じゃ"
+	line ""
+	katakana "デッキ"
+	hiragana "をつくるのが たいへんなら"
+	line ""
+	katakana "オートデッキマシン"
+	hiragana "を つかうと"
+	line ""
+	textfw0 "いいじゃろう"
+	line ""
+	textfw0 "ひつような"
+	katakana "カード"
+	hiragana "を もっていれば"
+	line ""
+	textfw0 "すぐ つくってくれるぞ!"
+	done
 
 Text06c6:
-	db $0e, $1a, $29, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $33, $0a, $48, $3d, $48, $3d, $70, $0f, $4d, $78, $44, $5e, $3d, $11, $5f, $54, $0e, $1b, $1e, $39, $0a, $36, $23, $12, $44, $5c, $6e, $0a, $1a, $3a, $16, $37, $29, $82, $81, $26, $70, $34, $18, $48, $23, $23, $18, $3a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	hiragana "この"
+	katakana "オートデッキマシン"
+	hiragana "も"
+	line ""
+	textfw0 "だんだん "
+	katakana "バージョンアップ"
+	hiragana "させる"
+	line ""
+	textfw0 "よていじゃ!"
+	line ""
+	textfw0 "これからの対戦に やくだててくれ"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06c7:
-	db $0e, $22, $12, $1c, $3d, $0a, $1a, $3a, $4b, $70, $22, $18, $3a, $39, $0f, $4b, $5f, $17, $0e, $3e, $0a, $2c, $14, $39, $24, $33, $70, $15, $33, $14, $3d, $3e, $0a, $24, $38, $11, $14, $45, $70, $0f, $54, $3a, $46, $3d, $24, $0e, $44, $5c, $6e, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "これで つくれる"
+	katakana "デッキ"
+	hiragana "が"
+	line ""
+	textfw0 "ふえるとも おもえんが"
+	line ""
+	textfw0 "とりあえず "
+	katakana "プレゼント"
+	hiragana "じゃ!"
+	done
 
 Text06c8:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06c9:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $62, $00
+	textfw0 "オートデッキマシン2"
+	done
 
 Text06ca:
-	db $04, $13, $79, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $09, $6e, $70, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $26, $0a, $48, $12, $4f, $70, $0f, $4b, $5f, $17, $0e, $3e, $70, $11, $22, $2f, $5f, $23, $15, $39, $47, $0a, $20, $2f, $26, $2a, $70, $cb, $cc, $01, $14, $2d, $70, $33, $4c, $5f, $23, $0a, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $10, $70, $16, $18, $26, $3d, $1c, $23, $0a, $30, $23, $2a, $70, $4c, $13, $44, $5c, $6f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "<RAMNAME>", "! "
+	katakana "オートデッキマシン"
+	hiragana "に"
+	line ""
+	textfw0 "だいぶ "
+	katakana "デッキ"
+	hiragana "が あつまっておるぞ"
+	line ""
+	textfw0 "たまには 研究"
+	textfw1 "所"
+	textfw0 "へ もどって"
+	line ""
+	katakana "オートデッキマシン"
+	hiragana "を かくにんして"
+	line ""
+	textfw0 "みては どうじゃ?"
+	done
 
 Text06cb:
-	db $0e, $1a, $3a, $16, $37, $33, $70, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $2a, $0a, $0f, $4d, $78, $44, $5e, $3d, $11, $5f, $54, $0e, $1d, $39, $70, $22, $33, $38, $44, $5c, $0a, $4c, $3d, $4c, $3d, $70, $22, $16, $5f, $23, $70, $82, $81, $26, $0a, $34, $18, $48, $23, $23, $70, $18, $3a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	hiragana "これからも "
+	katakana "オートデッキマシン"
+	hiragana "は"
+	line ""
+	katakana "バージョンアップ"
+	hiragana "する つもりじゃ"
+	line ""
+	textfw0 "どんどん つかって 対戦に"
+	line ""
+	textfw0 "やくだてて くれ"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06cc:
-	db $0e, $22, $12, $1c, $3d, $0a, $24, $38, $11, $14, $45, $70, $0f, $54, $3a, $46, $3d, $24, $0e, $44, $5c, $6e, $0a, $13, $19, $24, $5f, $23, $70, $18, $3a, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "とりあえず "
+	katakana "プレゼント"
+	hiragana "じゃ!"
+	line ""
+	textfw0 "うけとって くれ"
+	done
 
 Text06cd:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06ce:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $63, $00
+	textfw0 "オートデッキマシン3"
+	done
 
 Text06cf:
-	db $0e, $15, $15, $70, $09, $6e, $70, $41, $3d, $17, $16, $25, $0a, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $62, $03, $9d, $0e, $3e, $0a, $16, $3d, $1e, $12, $1c, $20, $3d, $44, $5c, $6e, $6e, $0a, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $62, $03, $9d, $0e, $2a, $70, $04, $16, $04, $21, $02, $b6, $29, $0a, $0f, $16, $78, $4c, $0e, $26, $70, $20, $12, $15, $13, $1c, $20, $70, $0f, $2f, $1c, $3d, $0e, $44, $5c, $0a, $4c, $13, $44, $5c, $70, $0f, $1d, $42, $12, $0e, $44, $5c, $3b, $6e, $00
+	hiragana "おお ", "<RAMNAME>", "! げんきかな"
+	line ""
+	katakana "オートデッキマシン2"
+	textfw3 "FW3_9d"
+	hiragana "が"
+	line ""
+	textfw0 "かんせいしたんじゃ!!"
+	line ""
+	katakana "オートデッキマシン2"
+	textfw3 "FW3_9d"
+	hiragana "は "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "の"
+	line ""
+	katakana "カード"
+	hiragana "に たいおうした "
+	katakana "マシン"
+	hiragana "じゃ"
+	line ""
+	textfw0 "どうじゃ "
+	katakana "スゴイ"
+	hiragana "じゃろ!"
+	done
 
 Text06d0:
-	db $04, $16, $04, $21, $02, $b6, $0e, $29, $0f, $4b, $5f, $17, $0e, $10, $70, $cb, $cc, $1d, $39, $26, $2a, $0a, $33, $5f, $23, $1a, $12, $29, $70, $0f, $2f, $1c, $3d, $0e, $44, $5c, $47, $0a, $20, $2f, $26, $2a, $70, $cb, $cc, $01, $14, $2d, $33, $4c, $5f, $23, $17, $23, $0a, $11, $12, $23, $10, $70, $cb, $cc, $1d, $39, $3d, $44, $5c, $6e, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw4 "GR"
+	textfw2 "団"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "を 研究するには"
+	line ""
+	textfw0 "もってこいの "
+	katakana "マシン"
+	hiragana "じゃぞ"
+	line ""
+	textfw0 "たまには 研究"
+	textfw1 "所"
+	textfw0 "へもどってきて"
+	line ""
+	textfw0 "あいてを 研究するんじゃ!"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06d1:
-	db $0e, $22, $12, $1c, $3d, $0a, $2f, $20, $70, $0f, $54, $3a, $46, $3d, $24, $0e, $44, $5c, $0a, $1a, $3d, $4c, $2a, $70, $01, $f2, $63, $02, $5a, $44, $5c, $6e, $6e, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "また "
+	katakana "プレゼント"
+	hiragana "じゃ"
+	line ""
+	textfw0 "こんどは "
+	textfw1 "FW1_f2"
+	textfw0 "3"
+	textfw2 "FW2_5a"
+	textfw0 "じゃ!!"
+	done
 
 Text06d2:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06d3:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $64, $00
+	textfw0 "オートデッキマシン4"
+	done
 
 Text06d4:
-	db $09, $6e, $70, $04, $13, $79, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $04, $16, $04, $21, $02, $b6, $24, $29, $82, $81, $2a, $70, $4c, $13, $44, $5c, $6f, $0a, $0f, $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $62, $03, $9d, $0e, $26, $2a, $0a, $19, $5f, $1a, $13, $70, $04, $16, $04, $21, $02, $b6, $29, $0f, $16, $78, $4c, $0e, $10, $22, $16, $5f, $20, $0a, $0f, $4b, $5f, $17, $0e, $3e, $70, $11, $22, $2f, $5f, $23, $17, $20, $47, $6e, $0a, $12, $21, $4c, $70, $cb, $cc, $01, $14, $2d, $70, $33, $4c, $5f, $23, $2a, $4c, $13, $16, $25, $00
+	textfw0 "<RAMNAME>", "! "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "との対戦は どうじゃ?"
+	line ""
+	katakana "オートデッキマシン2"
+	textfw3 "FW3_9d"
+	hiragana "には"
+	line ""
+	textfw0 "けっこう "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "の"
+	katakana "カード"
+	hiragana "をつかった"
+	line ""
+	katakana "デッキ"
+	hiragana "が あつまってきたぞ!"
+	line ""
+	textfw0 "いちど 研究"
+	textfw1 "所"
+	textfw0 "へ もどってはどうかな"
+	done
 
 Text06d5:
-	db $0e, $15, $2f, $14, $29, $15, $16, $41, $4b, $70, $0f, $16, $78, $4c, $0e, $33, $0a, $24, $38, $33, $4c, $1c, $20, $1c, $70, $20, $2f, $26, $2a, $0a, $1a, $21, $37, $29, $1c, $2f, $29, $70, $3a, $3d, $21, $5d, $13, $24, $33, $0a, $82, $81, $1c, $23, $30, $23, $2a, $70, $4c, $13, $16, $25, $6f, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	hiragana "おまえのおかげで "
+	katakana "カード"
+	hiragana "も"
+	line ""
+	textfw0 "とりもどしたし たまには"
+	line ""
+	textfw0 "こちらのしまの れんちゅうとも"
+	line ""
+	textfw0 "対戦してみては どうかな?"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06d6:
-	db $0e, $22, $12, $1c, $3d, $0a, $1a, $3a, $3e, $70, $15, $2f, $14, $3e, $70, $24, $38, $33, $4c, $1c, $20, $0a, $1b, $12, $1c, $3d, $29, $bb, $be, $0f, $52, $5f, $18, $0e, $44, $5c, $6e, $00
+	hiragana "ついしん"
+	line ""
+	textfw0 "これが おまえが とりもどした"
+	line ""
+	textfw0 "さいしんの拡", "FW0_be"
+	katakana "パック"
+	hiragana "じゃ!"
+	done
 
 Text06d7:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06d8:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $65, $00
+	textfw0 "オートデッキマシン5"
+	done
 
 Text06d9:
-	db $0e, $3c, $1c, $44, $5c, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $22, $12, $26, $70, $04, $16, $04, $21, $02, $b6, $29, $0f, $17, $3d, $40, $70, $4e, $39, $38, $5f, $21, $0e, $10, $0a, $16, $12, $1c, $3d, $1b, $1e, $20, $70, $1f, $13, $44, $5c, $25, $0a, $48, $3e, $70, $2f, $48, $2f, $48, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $0a, $17, $3c, $32, $20, $3c, $19, $4b, $2a, $70, $25, $12, $47, $6e, $0a, $09, $00
+	hiragana "わしじゃ "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "じゃ"
+	line ""
+	textfw0 "ついに "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "の"
+	katakana "キング ビルリッチ"
+	hiragana "を"
+	line ""
+	textfw0 "かいしんさせた そうじゃな"
+	line ""
+	textfw0 "だが まだまだ"
+	katakana "ポケモンカード"
+	hiragana "を"
+	line ""
+	textfw0 "きわめたわけでは ないぞ!"
+	line ""
+	textfw0 "<RAMNAME>"
+	done
 
 Text06da:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $0e, $29, $0f, $4b, $5f, $17, $0e, $10, $0a, $1d, $50, $23, $70, $22, $18, $5f, $23, $30, $20, $16, $25, $6f, $0a, $12, $3b, $3d, $25, $0f, $4b, $5f, $17, $0e, $4b, $70, $81, $5f, $23, $30, $23, $1a, $1f, $0a, $20, $29, $1c, $32, $39, $29, $44, $5c, $0a, $1b, $11, $70, $3e, $3d, $4d, $5f, $23, $70, $1d, $50, $23, $29, $0f, $4b, $5f, $17, $0e, $29, $0a, $0f, $1a, $3d, $54, $38, $78, $24, $0e, $10, $70, $32, $43, $1d, $29, $44, $5c, $00
+	textfw0 "オートデッキマシン"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "を"
+	line ""
+	textfw0 "すべて つくってみたかな?"
+	line ""
+	textfw0 "いろんな"
+	katakana "デッキ"
+	hiragana "で 戦ってみてこそ"
+	line ""
+	textfw0 "たのしめるのじゃ"
+	line ""
+	textfw0 "さあ がんばって すべての"
+	katakana "デッキ"
+	hiragana "の"
+	line ""
+	katakana "コンプリート"
+	hiragana "を めざすのじゃ"
+	done
 
 Text06db:
-	db $15, $78, $24, $4b, $5f, $17, $2f, $1c, $3d, $61, $03, $9d, $0e, $33, $70, $62, $03, $9d, $33, $0a, $2f, $48, $2f, $48, $70, $0f, $4b, $5f, $17, $0e, $2a, $70, $2c, $14, $39, $47, $6e, $0a, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	textfw0 "オートデッキマシン1"
+	textfw3 "FW3_9d"
+	hiragana "も 2"
+	textfw3 "FW3_9d"
+	textfw0 "も"
+	line ""
+	textfw0 "まだまだ "
+	katakana "デッキ"
+	hiragana "は ふえるぞ!"
+	line ""
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06dc:
-	db $04, $13, $79, $15, $78, $34, $2f, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	done
 
 Text06dd:
-	db $21, $5c, $3a, $3d, $44, $2f, $1c, $78, $3d, $6e, $00
+	textfw0 "チャレンジマシーン!"
+	done
 
 Text06de:
-	db $0e, $3c, $1c, $44, $5c, $6e, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $44, $5c, $0a, $0f, $21, $5c, $3a, $3d, $44, $2f, $1c, $78, $3d, $0e, $2a, $0a, $20, $29, $1c, $3d, $4b, $70, $33, $37, $14, $23, $15, $39, $16, $25, $6f, $0a, $1b, $12, $17, $5e, $13, $29, $70, $0f, $4b, $5f, $17, $0e, $10, $22, $18, $5f, $23, $0a, $25, $3d, $4c, $33, $70, $0f, $21, $5c, $3a, $3d, $44, $0e, $1c, $23, $0a, $3a, $3d, $1c, $5e, $13, $17, $3b, $18, $10, $70, $29, $4d, $1d, $3d, $44, $5c, $6e, $6e, $00
+	hiragana "わしじゃ! "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "じゃ"
+	line ""
+	katakana "チャレンジマシーン"
+	hiragana "は"
+	line ""
+	textfw0 "たのしんで もらえておるかな?"
+	line ""
+	textfw0 "さいきょうの "
+	katakana "デッキ"
+	hiragana "をつくって"
+	line ""
+	textfw0 "なんども "
+	katakana "チャレンジ"
+	hiragana "して"
+	line ""
+	textfw0 "れんしょうきろくを のばすんじゃ!!"
+	done
 
 Text06df:
-	db $65, $60, $0e, $3a, $3d, $1c, $5e, $13, $1c, $20, $37, $70, $3c, $1c, $3e, $0f, $1d, $23, $17, $0e, $25, $0a, $0f, $1a, $12, $3d, $0e, $10, $70, $09, $26, $70, $34, $3b, $13, $0a, $73, $0f, $48, $40, $24, $38, $15, $74, $0e, $29, $0f, $1a, $12, $3d, $0e, $44, $5c, $6e, $6e, $0a, $1b, $11, $70, $0f, $3a, $5f, $22, $70, $21, $5c, $3a, $3d, $44, $0e, $44, $5c, $0a, $04, $13, $79, $0f, $15, $78, $34, $2f, $cb, $cc, $01, $14, $0a, $70, $70, $70, $01, $14, $f7, $70, $04, $13, $79, $15, $78, $34, $2f, $70, $71, $04, $47, $04, $63, $04, $47, $72, $00
+	textfw0 "50"
+	hiragana "れんしょうしたら わしが"
+	katakana "ステキ"
+	hiragana "な"
+	line ""
+	katakana "コイン"
+	hiragana "を ", "<RAMNAME>", "に やろう"
+	line ""
+	textfw0 "「"
+	katakana "ダグトリオ」"
+	hiragana "の"
+	katakana "コイン"
+	hiragana "じゃ!!"
+	line ""
+	textfw0 "さあ "
+	katakana "レッツ チャレンジ"
+	hiragana "じゃ"
+	line ""
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ研究"
+	textfw1 "所"
+	line ""
+	textfw0 "   "
+	textfw1 "所"
+	textfw0 "長 "
+	textfw4 "D"
+	textfw0 "ṛオーヤマ ("
+	textfw4 "^◇^"
+	textfw0 ")"
+	done
 
 Text06e0:
-	db $4e, $39, $38, $5f, $21, $00
+	textfw0 "ビルリッチ"
+	done
 
 Text06e1:
-	db $04, $16, $04, $21, $02, $b6, $21, $5c, $3a, $3d, $44, $2f, $1c, $3d, $00
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "チャレンジマシン"
+	done
 
 Text06e2:
-	db $0e, $41, $3d, $17, $4b, $70, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $0a, $11, $1f, $3d, $4b, $12, $39, $16, $25, $70, $09, $18, $3d, $0a, $1d, $23, $17, $25, $70, $15, $1c, $37, $1e, $48, $0a, $04, $16, $04, $21, $02, $b6, $29, $0f, $21, $5c, $3a, $3d, $44, $2e, $78, $39, $0e, $26, $0a, $73, $04, $16, $04, $21, $02, $b6, $0f, $21, $5c, $3a, $3d, $44, $2f, $1c, $3d, $74, $0e, $10, $0a, $0f, $1e, $5f, $24, $0e, $1c, $20, $6e, $00
+	hiragana "げんきで "
+	katakana "ポケモンカード"
+	hiragana "を"
+	line ""
+	textfw0 "あそんでいるかな ", "<RAMNAME>", "くん"
+	line ""
+	textfw0 "すてきな おしらせだ"
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "の"
+	katakana "チャレンジホール"
+	hiragana "に"
+	line ""
+	textfw0 "「"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "チャレンジマシン」"
+	hiragana "を"
+	line ""
+	katakana "セット"
+	hiragana "した!"
+	done
 
 Text06e3:
-	db $2f, $1c, $3d, $0e, $2a, $70, $04, $13, $79, $0f, $15, $78, $34, $2f, $0e, $26, $0a, $22, $18, $5f, $23, $70, $33, $37, $5f, $20, $33, $29, $48, $3e, $0a, $19, $5f, $1a, $13, $70, $20, $29, $1c, $12, $33, $29, $48, $0a, $46, $2b, $70, $0f, $21, $5c, $3a, $3d, $44, $0e, $1c, $23, $30, $23, $18, $3a, $6e, $0a, $65, $60, $3a, $3d, $1c, $5e, $13, $1c, $20, $37, $70, $11, $20, $37, $1c, $12, $0a, $0f, $1a, $12, $3d, $0e, $10, $70, $0f, $54, $3a, $46, $3d, $24, $6e, $6e, $00
+	textfw0 "マシン"
+	hiragana "は "
+	textfw4 "D"
+	textfw0 "ṛ"
+	katakana "オーヤマ"
+	hiragana "に"
+	line ""
+	textfw0 "つくって もらったものだが"
+	line ""
+	textfw0 "けっこう たのしいものだ"
+	line ""
+	textfw0 "ぜひ "
+	katakana "チャレンジ"
+	hiragana "してみてくれ!"
+	line ""
+	textfw0 "50れんしょうしたら あたらしい"
+	line ""
+	katakana "コイン"
+	hiragana "を "
+	katakana "プレゼント!!"
+	done
 
 Text06e4:
-	db $73, $41, $3d, $3e, $78, $74, $0e, $29, $0f, $1a, $12, $3d, $0e, $48, $6e, $0a, $3e, $3d, $4d, $5f, $23, $70, $46, $2b, $70, $0f, $41, $5f, $24, $0e, $1c, $23, $18, $3a, $0a, $0a, $04, $16, $04, $21, $02, $b6, $29, $0f, $17, $3d, $40, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $4e, $39, $38, $5f, $21, $71, $04, $64, $04, $47, $04, $64, $72, $00
+	textfw0 "「ゲンガー」"
+	hiragana "の"
+	katakana "コイン"
+	hiragana "だ!"
+	line ""
+	textfw0 "がんばって ぜひ "
+	katakana "ゲット"
+	hiragana "してくれ"
+	line ""
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "の"
+	katakana "キング"
+	line ""
+	textfw0 "        ビルリッチ("
+	textfw4 "ˉ^ˉ"
+	textfw0 ")"
+	done
 
 Text06e5:
-	db $38, $5d, $13, $4c, $78, $00
+	textfw0 "リュウドー"
+	done
 
 Text06e6:
-	db $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $00
+	textfw0 "グランドマスター"
+	textfw2 "FW2_13"
+	done
 
 Text06e7:
-	db $09, $0e, $18, $3d, $6e, $0a, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $0e, $29, $0f, $38, $5d, $13, $4c, $78, $0e, $48, $0a, $3c, $3a, $37, $70, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $0e, $2a, $0a, $1b, $12, $1a, $13, $29, $70, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $29, $b0, $02, $88, $10, $0a, $19, $12, $16, $18, $1c, $23, $12, $39, $3d, $48, $0a, $1f, $29, $25, $33, $70, $73, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $74, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "くん!"
+	line ""
+	katakana "グランドマスター"
+	hiragana "の"
+	katakana "リュウドー"
+	hiragana "だ"
+	line ""
+	textfw0 "われら "
+	katakana "グランドマスター"
+	hiragana "は"
+	line ""
+	textfw0 "さいこうの "
+	katakana "ポケモンカード"
+	hiragana "の大"
+	textfw2 "FW2_88"
+	textfw0 "を"
+	line ""
+	textfw0 "けいかくしているんだ"
+	line ""
+	textfw0 "そのなも 「"
+	katakana "グランドマスター"
+	textfw2 "FW2_13"
+	textfw0 "」!"
+	done
 
 Text06e8:
-	db $0e, $17, $30, $26, $33, $70, $1b, $3d, $16, $1c, $23, $2e, $1c, $12, $3d, $48, $0a, $2f, $33, $25, $18, $70, $73, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $74, $0e, $29, $0a, $44, $5d, $3d, $4e, $3e, $70, $4b, $17, $39, $16, $37, $70, $20, $2f, $26, $0a, $0f, $56, $19, $33, $3d, $4c, $78, $31, $0e, $26, $70, $36, $5f, $23, $18, $3a, $20, $2f, $14, $0a, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $70, $38, $78, $48, $78, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $38, $5d, $13, $4c, $78, $71, $04, $47, $04, $46, $04, $47, $72, $00
+	hiragana "きみにも さんかしてほしいんだ"
+	line ""
+	textfw0 "まもなく 「"
+	katakana "グランドマスター"
+	textfw2 "FW2_13"
+	textfw0 "」"
+	hiragana "の"
+	line ""
+	textfw0 "じゅんびが できるから たまに"
+	line ""
+	katakana "ポケモンドーム"
+	hiragana "に よってくれたまえ"
+	line ""
+	katakana "グランドマスター リーダー"
+	line ""
+	textfw0 "        リュウドー("
+	textfw4 "^о^"
+	textfw0 ")"
+	done
 
 Text06e9:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text06ea:
-	db $04, $16, $04, $21, $61, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw4 "GR"
+	textfw0 "1"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text06eb:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $12, $12, $16, $70, $1a, $13, $34, $5f, $23, $70, $0f, $32, $78, $39, $0e, $4b, $0a, $04, $16, $04, $21, $02, $b6, $29, $34, $22, $37, $29, $70, $44, $5e, $13, $2e, $13, $10, $0a, $15, $18, $5f, $23, $34, $39, $16, $37, $36, $0a, $1a, $2f, $32, $26, $70, $0f, $32, $78, $39, $0e, $10, $0f, $21, $5a, $5f, $18, $0e, $1d, $39, $3d, $48, $46, $0a, $4b, $25, $12, $24, $70, $44, $5e, $13, $2e, $13, $3e, $70, $0f, $18, $1b, $0e, $39, $46, $6e, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "いいか こうやって "
+	katakana "メール"
+	hiragana "で"
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "のやつらの じょうほうを"
+	line ""
+	textfw0 "おくってやるからよ"
+	line ""
+	textfw0 "こまめに "
+	katakana "メール"
+	hiragana "を"
+	katakana "チェック"
+	hiragana "するんだぜ"
+	line ""
+	textfw0 "でないと じょうほうが "
+	katakana "クサ"
+	hiragana "るぜ!"
+	done
 
 Text06ec:
-	db $04, $16, $04, $21, $61, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $0e, $29, $70, $44, $5e, $13, $2e, $13, $48, $6e, $0a, $34, $22, $29, $0f, $4b, $5f, $17, $0e, $2a, $70, $aa, $24, $c8, $29, $0f, $4b, $5f, $17, $0e, $48, $6e, $0a, $0f, $1a, $12, $39, $0e, $29, $73, $21, $5e, $18, $3a, $22, $44, $38, $5e, $18, $74, $26, $0a, $17, $10, $70, $22, $19, $3b, $6e, $70, $44, $5c, $11, $25, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	textfw4 "GR"
+	textfw0 "1"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "の じょうほうだ!"
+	line ""
+	textfw0 "やつの"
+	katakana "デッキ"
+	hiragana "は 水と雷の"
+	katakana "デッキ"
+	hiragana "だ!"
+	line ""
+	katakana "コイル"
+	hiragana "の「ちょくれつじりょく」に"
+	line ""
+	textfw0 "きを つけろ! じゃあな"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text06ed:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text06ee:
-	db $04, $16, $04, $21, $62, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw4 "GR"
+	textfw0 "2"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text06ef:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $21, $5c, $3d, $24, $70, $0f, $15, $3a, $0e, $29, $44, $5e, $13, $2e, $13, $10, $0a, $34, $18, $48, $23, $23, $39, $48, $3b, $13, $25, $70, $14, $5f, $6e, $0a, $21, $5c, $3d, $24, $70, $0f, $32, $78, $39, $0e, $10, $0f, $21, $5a, $5f, $18, $0e, $1d, $3d, $48, $46, $6e, $0a, $0f, $32, $78, $39, $0e, $29, $11, $17, $26, $33, $70, $17, $10, $70, $18, $4d, $5f, $23, $25, $0a, $12, $12, $25, $70, $09, $6e, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "ちゃんと "
+	katakana "オレ"
+	hiragana "のじょうほうを"
+	line ""
+	textfw0 "やくだててるだろうな えっ!"
+	line ""
+	textfw0 "ちゃんと "
+	katakana "メール"
+	hiragana "を"
+	katakana "チェック"
+	hiragana "すんだぜ!"
+	line ""
+	katakana "メール"
+	hiragana "のあきにも きを くばってな"
+	line ""
+	textfw0 "いいな ", "<RAMNAME>", "!"
+	done
 
 Text06f0:
-	db $04, $16, $04, $21, $62, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $0e, $29, $70, $44, $5e, $13, $2e, $13, $48, $0a, $34, $22, $29, $0f, $4b, $5f, $17, $0e, $2a, $70, $cd, $24, $d2, $29, $0f, $4b, $5f, $17, $0e, $48, $6e, $0a, $24, $18, $26, $70, $73, $3c, $39, $12, $0f, $11, $78, $51, $5f, $18, $74, $0e, $26, $2a, $0a, $17, $10, $70, $22, $19, $3b, $6e, $70, $44, $5c, $11, $25, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	textfw4 "GR"
+	textfw0 "2"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "の じょうほうだ"
+	line ""
+	textfw0 "やつの"
+	katakana "デッキ"
+	hiragana "は 草と闘の"
+	katakana "デッキ"
+	hiragana "だ!"
+	line ""
+	textfw0 "とくに 「わるい"
+	katakana "アーボック」"
+	hiragana "には"
+	line ""
+	textfw0 "きを つけろ! じゃあな"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text06f1:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text06f2:
-	db $04, $16, $04, $21, $63, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw4 "GR"
+	textfw0 "3"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text06f3:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $21, $5c, $3d, $24, $70, $0f, $32, $78, $39, $0e, $10, $36, $3d, $4b, $39, $16, $6f, $0a, $04, $16, $04, $21, $02, $b6, $29, $44, $5e, $13, $2e, $13, $10, $70, $23, $26, $70, $12, $3a, $20, $46, $0a, $0f, $15, $3a, $0e, $3e, $70, $12, $29, $21, $3e, $19, $4b, $70, $1b, $40, $5f, $23, $17, $20, $0a, $44, $5e, $13, $2e, $13, $48, $16, $37, $25, $6e, $0a, $0f, $31, $48, $0e, $26, $1d, $39, $25, $36, $6e, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "ちゃんと "
+	katakana "メール"
+	hiragana "をよんでるか?"
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "のじょうほうを てに いれたぜ"
+	line ""
+	katakana "オレ"
+	hiragana "が いのちがけで さぐってきた"
+	line ""
+	textfw0 "じょうほうだからな!"
+	line ""
+	katakana "ムダ"
+	hiragana "にするなよ!"
+	done
 
 Text06f4:
-	db $04, $16, $04, $21, $63, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $0e, $29, $70, $44, $5e, $13, $2e, $13, $48, $0a, $34, $22, $29, $0f, $4b, $5f, $17, $0e, $2a, $70, $cd, $24, $a8, $29, $0f, $4b, $5f, $17, $0e, $48, $46, $6e, $0a, $73, $0f, $20, $2f, $20, $2f, $74, $0e, $10, $73, $0f, $25, $5f, $1c, $78, $74, $0e, $26, $1b, $1e, $39, $25, $0a, $73, $20, $2f, $25, $41, $04, $1c, $04, $10, $04, $27, $74, $3e, $70, $15, $1f, $5f, $23, $18, $39, $46, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	textfw4 "GR"
+	textfw0 "3"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "の じょうほうだ"
+	line ""
+	textfw0 "やつの"
+	katakana "デッキ"
+	hiragana "は 草と炎の"
+	katakana "デッキ"
+	hiragana "だぜ!"
+	line ""
+	textfw0 "「"
+	katakana "タマタマ」"
+	hiragana "を「"
+	katakana "ナッシー」"
+	hiragana "にさせるな"
+	line ""
+	textfw0 "「たまなげ"
+	textfw4 "MAX"
+	textfw0 "」が おそってくるぜ"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text06f5:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text06f6:
-	db $04, $16, $04, $21, $64, $03, $9d, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw4 "GR"
+	textfw0 "4"
+	textfw3 "FW3_9d"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text06f7:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $0f, $32, $78, $39, $0e, $10, $70, $0f, $21, $5a, $5f, $18, $0e, $1c, $23, $39, $16, $6f, $0a, $04, $16, $04, $21, $64, $03, $9d, $29, $0f, $4b, $5f, $17, $0e, $29, $70, $44, $5e, $13, $2e, $13, $48, $0a, $34, $22, $29, $0f, $4b, $5f, $17, $0e, $2a, $70, $aa, $24, $b3, $29, $0f, $4b, $5f, $17, $0e, $48, $46, $6e, $0a, $73, $0f, $17, $3d, $40, $37, $78, $74, $0e, $29, $73, $33, $3b, $4d, $0f, $4d, $1b, $30, $74, $0e, $2a, $0a, $0f, $21, $5e, $78, $0e, $17, $5e, $13, $38, $5e, $18, $48, $46, $6e, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	katakana "メール"
+	hiragana "を "
+	katakana "チェック"
+	hiragana "してるか?"
+	line ""
+	textfw4 "GR"
+	textfw0 "4"
+	textfw3 "FW3_9d"
+	textfw0 "の"
+	katakana "デッキ"
+	hiragana "の じょうほうだ"
+	line ""
+	textfw0 "やつの"
+	katakana "デッキ"
+	hiragana "は 水と超の"
+	katakana "デッキ"
+	hiragana "だぜ!"
+	line ""
+	textfw0 "「"
+	katakana "キングラー」"
+	hiragana "の「もろば"
+	katakana "バサミ」"
+	hiragana "は"
+	line ""
+	katakana "チョー"
+	hiragana "きょうりょくだぜ!"
+	done
 
 Text06f8:
-	db $0e, $12, $12, $16, $70, $25, $3d, $24, $16, $70, $0f, $14, $1d, $52, $78, $18, $37, $4f, $0e, $29, $0a, $0f, $30, $13, $37, $0e, $10, $70, $1c, $5e, $13, $17, $26, $70, $33, $4c, $1c, $23, $0a, $0f, $11, $4c, $4d, $12, $1d, $0e, $10, $70, $33, $37, $13, $3d, $48, $70, $12, $12, $25, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "いいか なんとか "
+	katakana "エスパークラブ"
+	hiragana "の"
+	line ""
+	katakana "ミウラ"
+	hiragana "を しょうきに もどして"
+	line ""
+	katakana "アドバイス"
+	hiragana "を もらうんだ いいな"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text06f9:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text06fa:
-	db $33, $38, $29, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "モリノ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text06fb:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $cd, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $33, $38, $29, $0e, $29, $0a, $44, $5e, $13, $2e, $13, $10, $70, $23, $26, $12, $3a, $20, $46, $6e, $0a, $25, $3d, $24, $70, $0f, $33, $38, $29, $0e, $29, $24, $1a, $29, $70, $82, $81, $4b, $2a, $0a, $cd, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $73, $4c, $18, $77, $0f, $2f, $2b, $77, $0e, $28, $31, $38, $77, $0a, $1a, $3d, $37, $3d, $74, $26, $70, $25, $37, $25, $12, $3d, $48, $6e, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "草の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー モリノ"
+	hiragana "の"
+	line ""
+	textfw0 "じょうほうを てにいれたぜ!"
+	line ""
+	textfw0 "なんと "
+	katakana "モリノ"
+	hiragana "のとこの 対戦では"
+	line ""
+	textfw0 "草"
+	katakana "ポケモン"
+	hiragana "が 「どく・"
+	katakana "マヒ・"
+	hiragana "ねむり・"
+	line ""
+	textfw0 "こんらん」に ならないんだ!"
+	done
 
 Text06fc:
-	db $33, $38, $29, $0e, $2a, $70, $1f, $3a, $10, $70, $38, $36, $13, $1c, $20, $0a, $0f, $4b, $5f, $17, $0e, $10, $70, $22, $16, $5f, $23, $12, $39, $3d, $48, $6e, $0a, $34, $22, $29, $0f, $4b, $5f, $17, $0e, $29, $70, $cd, $29, $0f, $4b, $5f, $17, $6e, $0a, $73, $18, $1b, $12, $2a, $25, $74, $73, $37, $2c, $3a, $1c, $11, $74, $0e, $24, $0a, $1f, $29, $62, $22, $29, $70, $73, $3c, $39, $12, $74, $0f, $56, $19, $33, $3d, $0e, $3e, $0a, $0f, $32, $12, $3d, $0e, $29, $0f, $4b, $5f, $17, $0e, $48, $6e, $00
+	textfw0 "モリノ"
+	hiragana "は それを りようした"
+	line ""
+	katakana "デッキ"
+	hiragana "を つかっているんだ!"
+	line ""
+	textfw0 "やつの"
+	katakana "デッキ"
+	hiragana "の 草の"
+	katakana "デッキ!"
+	line ""
+	textfw0 "「クサイハナ」「ラフレシア」"
+	hiragana "と"
+	line ""
+	textfw0 "その2つの 「わるい」"
+	katakana "ポケモン"
+	hiragana "が"
+	line ""
+	katakana "メイン"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "だ!"
+	done
 
 Text06fd:
-	db $0e, $1f, $3a, $37, $0f, $56, $19, $33, $3d, $0e, $29, $0f, $3c, $43, $0e, $4b, $70, $7d, $7e, $7f, $33, $0a, $73, $1a, $3d, $37, $3d, $74, $1d, $39, $70, $0f, $3c, $43, $0e, $10, $22, $16, $5f, $23, $0a, $1a, $13, $41, $17, $1c, $23, $18, $39, $47, $6e, $70, $2c, $22, $13, $25, $37, $0a, $1a, $13, $41, $17, $1c, $20, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $73, $1a, $3d, $37, $3d, $74, $0a, $1c, $21, $2f, $13, $3d, $48, $3e, $70, $0f, $33, $38, $29, $0e, $29, $24, $1a, $4b, $2a, $0a, $cd, $0f, $56, $19, $33, $3d, $0e, $2a, $70, $73, $1a, $3d, $37, $3d, $74, $1c, $25, $12, $6e, $00
+	hiragana "それら"
+	katakana "ポケモン"
+	hiragana "の"
+	katakana "ワザ"
+	hiragana "で ", "FW0_7d", "FW0_7e", "FW0_7f", "も"
+	line ""
+	textfw0 "「こんらん」する "
+	katakana "ワザ"
+	hiragana "をつかって"
+	line ""
+	textfw0 "こうげきしてくるぞ! ふつうなら"
+	line ""
+	textfw0 "こうげきした"
+	katakana "ポケモン"
+	hiragana "が 「こんらん」"
+	line ""
+	textfw0 "しちまうんだが "
+	katakana "モリノ"
+	hiragana "のとこでは"
+	line ""
+	textfw0 "草"
+	katakana "ポケモン"
+	hiragana "は 「こんらん」しない!"
+	done
 
 Text06fe:
-	db $0e, $1a, $12, $22, $2a, $70, $0f, $1c, $5c, $3a, $0e, $26, $70, $25, $37, $25, $12, $46, $6e, $0a, $25, $3d, $24, $16, $1c, $23, $70, $73, $0f, $18, $1b, $12, $2a, $25, $74, $0e, $34, $0a, $73, $0f, $37, $2c, $3a, $1c, $11, $74, $0e, $26, $70, $96, $93, $1d, $39, $2f, $14, $26, $0a, $33, $34, $1c, $21, $2f, $13, $3d, $48, $25, $6e, $70, $44, $5c, $11, $25, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "こいつは "
+	katakana "シャレ"
+	hiragana "に ならないぜ!"
+	line ""
+	textfw0 "なんとかして 「"
+	katakana "クサイハナ」"
+	hiragana "や"
+	line ""
+	textfw0 "「"
+	katakana "ラフレシア」"
+	hiragana "に 進化するまえに"
+	line ""
+	textfw0 "もやしちまうんだな! じゃあな!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text06ff:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text0700:
-	db $17, $5c, $1b, $38, $3d, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "キャサリン"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text0701:
-	db $09, $6e, $70, $0e, $41, $3d, $17, $16, $6e, $0a, $1a, $3d, $16, $12, $2a, $70, $c8, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $0a, $17, $5c, $1b, $38, $3d, $0e, $29, $70, $44, $5e, $13, $2e, $13, $48, $46, $6e, $0a, $0f, $17, $5c, $1b, $38, $3d, $0e, $2a, $70, $0f, $14, $3a, $17, $52, $3c, $78, $4d, $38, $4d, $38, $0e, $48, $0a, $34, $22, $24, $29, $70, $82, $81, $44, $5c, $70, $c8, $0f, $56, $19, $33, $3d, $0e, $29, $0a, $11, $20, $14, $39, $0f, $48, $32, $78, $44, $0e, $3e, $70, $6a, $61, $60, $04, $24, $04, $1f, $48, $6e, $00
+	textfw0 "<RAMNAME>", "! "
+	hiragana "げんきか!"
+	line ""
+	textfw0 "こんかいは 雷の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー"
+	line ""
+	textfw0 "キャサリン"
+	hiragana "の じょうほうだぜ!"
+	line ""
+	katakana "キャサリン"
+	hiragana "は "
+	katakana "エレキパワーバリバリ"
+	hiragana "だ"
+	line ""
+	textfw0 "やつとの 対戦じゃ 雷"
+	katakana "ポケモン"
+	hiragana "の"
+	line ""
+	textfw0 "あたえる"
+	katakana "ダメージ"
+	hiragana "が +10"
+	textfw4 "UP"
+	textfw0 "だ!"
+	done
 
 Text0702:
-	db $61, $60, $48, $32, $78, $44, $0e, $29, $0f, $3c, $43, $0e, $3e, $70, $c8, $0f, $56, $19, $33, $3d, $0e, $29, $30, $0a, $62, $60, $0f, $48, $32, $78, $44, $0e, $26, $25, $39, $5f, $23, $70, $3c, $19, $48, $6e, $0a, $0f, $17, $5c, $1b, $38, $3d, $0e, $29, $0f, $4b, $5f, $17, $0e, $2a, $70, $73, $0f, $53, $16, $21, $5d, $13, $74, $0a, $73, $4e, $38, $38, $48, $2f, $74, $73, $0e, $3c, $39, $12, $0f, $1b, $3d, $48, $78, $1d, $74, $0a, $73, $0e, $3c, $39, $12, $0f, $37, $12, $21, $5d, $13, $74, $0e, $24, $70, $c8, $0f, $56, $19, $33, $3d, $0e, $4b, $0a, $12, $5f, $52, $12, $48, $6e, $6e, $00
+	textfw0 "10ダメージ"
+	hiragana "の"
+	katakana "ワザ"
+	hiragana "が 雷"
+	katakana "ポケモン"
+	hiragana "のみ"
+	line ""
+	textfw0 "20"
+	katakana "ダメージ"
+	hiragana "になるって わけだ!"
+	line ""
+	katakana "キャサリン"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "は 「"
+	katakana "ピカチュウ」"
+	line ""
+	textfw0 "「ビリリダマ」「"
+	hiragana "わるい"
+	katakana "サンダース」"
+	line ""
+	textfw0 "「"
+	hiragana "わるい"
+	katakana "ライチュウ」"
+	hiragana "と 雷"
+	katakana "ポケモン"
+	hiragana "で"
+	line ""
+	textfw0 "いっぱいだ!!"
+	done
 
 Text0703:
-	db $c8, $56, $19, $33, $3d, $0e, $29, $0f, $4b, $5f, $17, $0e, $4b, $70, $20, $20, $16, $5f, $23, $0a, $0f, $21, $16, $37, $0e, $4b, $70, $13, $21, $90, $22, $16, $6f, $0a, $50, $22, $29, $0f, $4b, $5f, $17, $0e, $4b, $70, $13, $2f, $18, $70, $16, $3c, $1c, $23, $0a, $20, $20, $16, $13, $16, $2a, $70, $15, $2f, $14, $1c, $48, $12, $48, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	textfw0 "雷ポケモン"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "で たたかって"
+	line ""
+	katakana "チカラ"
+	hiragana "で うち勝つか?"
+	line ""
+	textfw0 "べつの"
+	katakana "デッキ"
+	hiragana "で うまく かわして"
+	line ""
+	textfw0 "たたかうかは おまえしだいだ!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text0704:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text0705:
-	db $2b, $4b, $3b, $13, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "ヒデロウ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text0706:
-	db $09, $6e, $70, $15, $3a, $0e, $48, $6e, $70, $0f, $37, $3d, $4c, $0e, $48, $6e, $0a, $a8, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $2b, $4b, $3b, $13, $0e, $29, $0a, $44, $5e, $13, $2e, $13, $10, $70, $0f, $41, $5f, $24, $0e, $48, $46, $6e, $0a, $34, $22, $29, $24, $1a, $3b, $2a, $70, $a8, $4b, $70, $12, $5f, $52, $12, $6e, $0a, $aa, $0f, $56, $19, $33, $3d, $0e, $29, $1a, $13, $41, $17, $2a, $70, $a8, $0f, $56, $19, $33, $3d, $0e, $29, $0a, $b1, $b2, $26, $2a, $70, $25, $37, $25, $12, $46, $6e, $00
+	textfw0 "<RAMNAME>", "! オレ"
+	hiragana "だ! "
+	katakana "ランド"
+	hiragana "だ!"
+	line ""
+	textfw0 "炎の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー ヒデロウ"
+	hiragana "の"
+	line ""
+	textfw0 "じょうほうを "
+	katakana "ゲット"
+	hiragana "だぜ!"
+	line ""
+	textfw0 "やつのところは 炎で いっぱい!"
+	line ""
+	textfw0 "水"
+	katakana "ポケモン"
+	hiragana "のこうげきは 炎"
+	katakana "ポケモン"
+	hiragana "の"
+	line ""
+	textfw0 "弱点には ならないぜ!"
+	done
 
 Text0707:
-	db $0e, $22, $2f, $38, $70, $a8, $0f, $56, $19, $33, $3d, $0e, $10, $70, $b1, $b2, $10, $22, $12, $23, $0a, $20, $15, $1f, $13, $24, $1c, $23, $33, $70, $0f, $31, $48, $0e, $5f, $23, $1a, $24, $48, $6e, $0a, $1c, $16, $33, $70, $0f, $2b, $4b, $3b, $13, $0e, $29, $0f, $4b, $5f, $17, $0e, $2a, $0a, $a8, $61, $a3, $29, $70, $a8, $0f, $56, $19, $33, $3d, $4b, $5f, $17, $0e, $48, $6e, $6e, $0a, $b1, $b2, $10, $22, $18, $25, $3d, $23, $70, $0f, $1e, $1a, $12, $0e, $23, $2a, $0a, $22, $13, $36, $13, $70, $1c, $25, $12, $46, $6e, $6e, $00
+	hiragana "つまり 炎"
+	katakana "ポケモン"
+	hiragana "を 弱点をついて"
+	line ""
+	textfw0 "たおそうとしても "
+	katakana "ムダ"
+	hiragana "ってことだ!"
+	line ""
+	textfw0 "しかも "
+	katakana "ヒデロウ"
+	hiragana "の"
+	katakana "デッキ"
+	hiragana "は"
+	line ""
+	textfw0 "炎1色の 炎"
+	katakana "ポケモンデッキ"
+	hiragana "だ!!"
+	line ""
+	textfw0 "弱点をつくなんて "
+	katakana "セコイ"
+	hiragana "ては"
+	line ""
+	textfw0 "つうよう しないぜ!!"
+	done
 
 Text0708:
-	db $0e, $1e, $12, $1e, $12, $4c, $13, $4c, $13, $70, $1c, $5e, $13, $4f, $1d, $39, $1c, $16, $0a, $2e, $13, $2e, $13, $2a, $70, $25, $12, $46, $6e, $0a, $4c, $3d, $25, $0f, $4b, $5f, $17, $0e, $4b, $70, $20, $20, $16, $13, $16, $2a, $0a, $09, $3e, $70, $16, $3d, $3e, $14, $25, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "せいせいどうどう しょうぶするしか"
+	line ""
+	textfw0 "ほうほうは ないぜ!"
+	line ""
+	textfw0 "どんな"
+	katakana "デッキ"
+	hiragana "で たたかうかは"
+	line ""
+	textfw0 "<RAMNAME>", "が かんがえな!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text0709:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text070a:
-	db $16, $29, $1a, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "カノコ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text070b:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $aa, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $16, $29, $1a, $0e, $29, $0a, $44, $5e, $13, $2e, $13, $10, $70, $15, $1c, $14, $23, $34, $39, $46, $6e, $0a, $11, $29, $2d, $34, $2a, $70, $aa, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $1d, $4d, $34, $12, $6e, $0a, $aa, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $73, $26, $41, $39, $74, $24, $17, $29, $0a, $0f, $14, $28, $39, $3f, $78, $0e, $29, $16, $45, $3e, $70, $73, $6b, $61, $74, $1b, $3a, $39, $46, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "水の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー カノコ"
+	hiragana "の"
+	line ""
+	textfw0 "じょうほうを おしえてやるぜ!"
+	line ""
+	textfw0 "あのへやは 水"
+	katakana "ポケモン"
+	hiragana "が すばやい!"
+	line ""
+	textfw0 "水"
+	katakana "ポケモン"
+	hiragana "が 「にげる」ときの"
+	line ""
+	katakana "エネルギー"
+	hiragana "のかずが 「-1」されるぜ"
+	done
 
 Text070c:
-	db $aa, $56, $19, $33, $3d, $0e, $2a, $70, $0f, $16, $29, $1a, $0e, $29, $24, $1a, $44, $5c, $0a, $73, $aa, $10, $14, $20, $70, $1b, $16, $25, $74, $4b, $70, $aa, $0f, $56, $19, $33, $3d, $0e, $2a, $0a, $26, $41, $34, $1d, $12, $70, $0f, $16, $29, $1a, $0e, $2a, $70, $34, $4d, $18, $25, $5f, $20, $0a, $0f, $56, $19, $33, $3d, $0e, $10, $70, $26, $3e, $1c, $2f, $18, $5f, $23, $18, $39, $46, $6e, $0a, $34, $5f, $16, $12, $48, $46, $6e, $70, $73, $17, $46, $22, $74, $4b, $17, $1f, $13, $25, $0a, $0f, $56, $19, $33, $3d, $0e, $2a, $70, $26, $41, $21, $2f, $13, $3d, $48, $16, $37, $36, $00
+	textfw0 "水ポケモン"
+	hiragana "は "
+	katakana "カノコ"
+	hiragana "のとこじゃ"
+	line ""
+	textfw0 "「水をえた さかな」で 水"
+	katakana "ポケモン"
+	hiragana "は"
+	line ""
+	textfw0 "にげやすい "
+	katakana "カノコ"
+	hiragana "は やばくなった"
+	line ""
+	katakana "ポケモン"
+	hiragana "を にがしまくってくるぜ!"
+	line ""
+	textfw0 "やっかいだぜ! 「きぜつ」できそうな"
+	line ""
+	katakana "ポケモン"
+	hiragana "は にげちまうんだからよ"
+	done
 
 Text070d:
-	db $0e, $26, $3e, $1b, $25, $12, $70, $2e, $13, $2e, $13, $10, $70, $16, $3d, $3e, $14, $39, $16, $0a, $26, $41, $37, $3a, $39, $2f, $14, $26, $70, $48, $12, $0f, $48, $32, $78, $44, $0e, $4b, $0a, $73, $17, $46, $22, $74, $1b, $1e, $39, $16, $77, $77, $77, $0a, $2f, $5f, $70, $16, $3d, $3e, $14, $39, $3d, $48, $25, $70, $44, $5c, $11, $25, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "にがさない ほうほうを かんがえるか"
+	line ""
+	textfw0 "にげられるまえに だい"
+	katakana "ダメージ"
+	hiragana "で"
+	line ""
+	textfw0 "「きぜつ」させるか・・・"
+	line ""
+	textfw0 "まっ かんがえるんだな じゃあな!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text070e:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text070f:
-	db $16, $30, $34, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "カミヤ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text0710:
-	db $0e, $12, $12, $21, $5e, $13, $1c, $48, $25, $70, $09, $6e, $0a, $3c, $1d, $3a, $3d, $25, $36, $6e, $0a, $0f, $15, $3a, $0e, $3e, $70, $1a, $13, $34, $5f, $23, $70, $0f, $32, $78, $39, $0e, $4b, $0a, $15, $1c, $14, $23, $34, $5f, $23, $39, $70, $15, $16, $41, $48, $5f, $23, $25, $6e, $0a, $1b, $23, $70, $d2, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $16, $30, $34, $0e, $29, $0a, $44, $5e, $13, $2e, $13, $48, $46, $6e, $6e, $00
+	hiragana "いいちょうしだな ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "わすれんなよ!"
+	line ""
+	katakana "オレ"
+	hiragana "が こうやって "
+	katakana "メール"
+	hiragana "で"
+	line ""
+	textfw0 "おしえてやってる おかげだってな!"
+	line ""
+	textfw0 "さて 闘の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー カミヤ"
+	hiragana "の"
+	line ""
+	textfw0 "じょうほうだぜ!!"
+	done
 
 Text0711:
-	db $16, $30, $34, $0e, $29, $24, $1a, $3b, $2a, $70, $d2, $0f, $52, $3c, $78, $0e, $48, $46, $6e, $0a, $0f, $16, $30, $34, $0e, $24, $29, $70, $82, $81, $4b, $2a, $70, $d2, $0f, $56, $19, $33, $3d, $0e, $29, $0a, $0f, $48, $32, $78, $44, $0e, $2a, $70, $ba, $b9, $8d, $4b, $73, $6b, $63, $60, $74, $1c, $23, $0a, $2c, $1e, $40, $1a, $24, $3e, $70, $4b, $17, $25, $12, $3d, $48, $6e, $0a, $22, $2f, $38, $70, $d2, $0f, $56, $19, $33, $3d, $48, $32, $78, $44, $0e, $2a, $0a, $2f, $24, $33, $26, $70, $18, $37, $13, $5f, $23, $1a, $24, $48, $25, $6e, $00
+	textfw0 "カミヤ"
+	hiragana "のところは 闘"
+	katakana "パワー"
+	hiragana "だぜ!"
+	line ""
+	katakana "カミヤ"
+	hiragana "との 対戦では 闘"
+	katakana "ポケモン"
+	hiragana "の"
+	line ""
+	katakana "ダメージ"
+	hiragana "は 抵抗力で「-30」して"
+	line ""
+	textfw0 "ふせぐことが できないんだ!"
+	line ""
+	textfw0 "つまり 闘"
+	katakana "ポケモンダメージ"
+	hiragana "は"
+	line ""
+	textfw0 "まともに くらうってことだな!"
+	done
 
 Text0712:
-	db $ba, $b9, $8d, $0e, $2a, $70, $22, $16, $14, $25, $18, $23, $33, $0a, $d2, $0f, $56, $19, $33, $3d, $0e, $29, $70, $b1, $b2, $10, $22, $12, $20, $0f, $4b, $5f, $17, $0e, $4b, $0a, $1a, $13, $41, $17, $1d, $39, $25, $37, $70, $04, $1e, $04, $1a, $48, $46, $6e, $0a, $20, $4f, $3d, $25, $77, $77, $77, $2f, $11, $70, $0f, $3e, $3d, $4d, $3a, $0e, $36, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	textfw0 "抵抗力"
+	hiragana "は つかえなくても"
+	line ""
+	textfw0 "闘"
+	katakana "ポケモン"
+	hiragana "の 弱点をついた"
+	katakana "デッキ"
+	hiragana "で"
+	line ""
+	textfw0 "こうげきするなら "
+	textfw4 "OK"
+	textfw0 "だぜ!"
+	line ""
+	textfw0 "たぶんな・・・まあ "
+	katakana "ガンバレ"
+	hiragana "よ!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text0713:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text0714:
-	db $2f, $30, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "マミ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text0715:
-	db $09, $6e, $70, $37, $3d, $4c, $0e, $48, $46, $6e, $0a, $b3, $29, $04, $16, $04, $21, $02, $b6, $0f, $38, $78, $48, $78, $70, $2f, $30, $0e, $29, $0a, $44, $5e, $13, $2e, $13, $10, $70, $0f, $41, $5f, $24, $0e, $1c, $20, $46, $6e, $0a, $0f, $2f, $30, $0e, $5f, $23, $29, $2a, $70, $0f, $4d, $11, $0e, $1b, $3d, $25, $3d, $48, $46, $6e, $0a, $1c, $16, $33, $70, $2d, $3d, $25, $0f, $39, $78, $39, $0e, $4b, $82, $81, $1d, $39, $3d, $48, $00
+	textfw0 "<RAMNAME>", "! ランド"
+	hiragana "だぜ!"
+	line ""
+	textfw0 "超の"
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "リーダー マミ"
+	hiragana "の"
+	line ""
+	textfw0 "じょうほうを "
+	katakana "ゲット"
+	hiragana "したぜ!"
+	line ""
+	katakana "マミ"
+	hiragana "ってのは "
+	katakana "バア"
+	hiragana "さんなんだぜ!"
+	line ""
+	textfw0 "しかも へんな"
+	katakana "ルール"
+	hiragana "で対戦するんだ"
+	done
 
 Text0716:
-	db $0e, $2d, $3d, $25, $0f, $39, $78, $39, $0e, $5f, $23, $29, $3e, $0a, $73, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $0f, $24, $37, $5f, $1c, $5d, $0e, $1b, $3a, $39, $24, $17, $0a, $70, $0f, $56, $19, $33, $3d, $0e, $26, $22, $12, $23, $12, $39, $70, $0f, $14, $28, $39, $3f, $78, $0e, $4b, $0a, $70, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $0e, $2a, $70, $80, $85, $26, $33, $4c, $39, $74, $0a, $5f, $23, $12, $13, $70, $0f, $39, $78, $39, $0e, $25, $3d, $48, $46, $6e, $0a, $0f, $14, $28, $39, $3f, $78, $0e, $4f, $1f, $18, $26, $2a, $70, $25, $37, $28, $5a, $19, $4c, $25, $00
+	hiragana "へんな"
+	katakana "ルール"
+	hiragana "ってのが"
+	line ""
+	textfw0 "「"
+	katakana "ポケモン"
+	hiragana "が "
+	katakana "トラッシュ"
+	hiragana "されるとき"
+	line ""
+	textfw0 " "
+	katakana "ポケモン"
+	hiragana "についている "
+	katakana "エネルギー"
+	hiragana "で"
+	line ""
+	textfw0 " 基本"
+	katakana "エネルギー"
+	hiragana "は 手札にもどる」"
+	line ""
+	textfw0 "っていう "
+	katakana "ルール"
+	hiragana "なんだぜ!"
+	line ""
+	katakana "エネルギー"
+	hiragana "ぶそくには ならねぇけどな"
+	done
 
 Text0717:
-	db $0e, $4b, $33, $70, $11, $29, $0f, $4d, $11, $0e, $1b, $3d, $2a, $70, $15, $2f, $14, $26, $0a, $1a, $29, $0f, $39, $78, $39, $0e, $10, $70, $38, $36, $13, $1b, $1e, $25, $12, $22, $33, $38, $48, $0a, $73, $0f, $14, $28, $39, $3f, $78, $77, $38, $31, $78, $4f, $74, $0e, $34, $0a, $73, $b3, $0f, $14, $28, $39, $3f, $78, $38, $31, $78, $4f, $74, $0e, $10, $0a, $44, $4f, $3d, $29, $0f, $4b, $5f, $17, $0e, $26, $70, $14, $37, $18, $20, $18, $1b, $3d, $0a, $22, $5f, $1a, $3d, $4b, $70, $34, $3e, $5f, $20, $46, $6e, $00
+	hiragana "でも あの"
+	katakana "バア"
+	hiragana "さんは おまえに"
+	line ""
+	textfw0 "この"
+	katakana "ルール"
+	hiragana "を りようさせないつもりだ"
+	line ""
+	textfw0 "「"
+	katakana "エネルギー・リムーブ」"
+	hiragana "や"
+	line ""
+	textfw0 "「超"
+	katakana "エネルギーリムーブ」"
+	hiragana "を"
+	line ""
+	textfw0 "じぶんの"
+	katakana "デッキ"
+	hiragana "に えらくたくさん"
+	line ""
+	textfw0 "つっこんで やがったぜ!"
+	done
 
 Text0718:
-	db $56, $19, $33, $3d, $0e, $3e, $70, $0f, $24, $37, $5f, $1c, $5d, $0e, $1b, $3a, $39, $2f, $14, $26, $0a, $0f, $14, $28, $39, $3f, $78, $0e, $48, $19, $10, $70, $0f, $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $5f, $23, $0a, $1b, $18, $1e, $3d, $37, $1c, $12, $77, $77, $77, $0a, $11, $24, $2a, $70, $73, $3c, $39, $12, $0f, $41, $3d, $3e, $78, $74, $0e, $29, $0a, $73, $16, $30, $16, $18, $1c, $74, $26, $70, $17, $10, $22, $19, $3b, $6e, $6e, $0a, $11, $29, $0f, $4d, $11, $0e, $1b, $3d, $2a, $70, $20, $48, $33, $3d, $44, $5c, $28, $5a, $00
+	textfw0 "ポケモン"
+	hiragana "が "
+	katakana "トラッシュ"
+	hiragana "されるまえに"
+	line ""
+	katakana "エネルギー"
+	hiragana "だけを "
+	katakana "トラッシュ"
+	hiragana "するって"
+	line ""
+	textfw0 "さくせんらしい・・・"
+	line ""
+	textfw0 "あとは 「わるい"
+	katakana "ゲンガー」"
+	hiragana "の"
+	line ""
+	textfw0 "「かみかくし」に きをつけろ!!"
+	line ""
+	textfw0 "あの"
+	katakana "バア"
+	hiragana "さんは ただもんじゃねぇ"
+	done
 
 Text0719:
-	db $0e, $1a, $5f, $21, $33, $70, $0f, $14, $28, $39, $3f, $78, $77, $38, $31, $78, $4f, $0e, $10, $0a, $22, $5f, $1a, $3d, $4b, $70, $20, $20, $16, $13, $16, $0a, $b3, $0f, $4b, $5f, $17, $0e, $29, $70, $20, $12, $1a, $13, $0f, $4b, $5f, $17, $0e, $4b, $70, $20, $14, $23, $0a, $20, $20, $16, $13, $1c, $16, $28, $5a, $16, $25, $77, $77, $77, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "こっちも "
+	katakana "エネルギー・リムーブ"
+	hiragana "を"
+	line ""
+	textfw0 "つっこんで たたかうか"
+	line ""
+	textfw0 "超"
+	katakana "デッキ"
+	hiragana "の たいこう"
+	katakana "デッキ"
+	hiragana "で たえて"
+	line ""
+	textfw0 "たたかうしかねぇかな・・・"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text071a:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text071b:
-	db $a5, $0e, $29, $1b, $12, $48, $3d, $44, $5e, $13, $2e, $13, $00
+	textfw0 "無"
+	hiragana "のさいだんじょうほう"
+	done
 
 Text071c:
-	db $0e, $36, $13, $70, $09, $6e, $0a, $a5, $29, $1b, $12, $48, $3d, $29, $70, $44, $5e, $13, $2e, $13, $48, $6e, $0a, $a5, $29, $4d, $3d, $26, $3d, $29, $70, $73, $0f, $26, $1c, $44, $2f, $74, $0a, $73, $12, $1c, $12, $74, $73, $1b, $32, $44, $2f, $74, $0e, $29, $63, $26, $3d, $2a, $0a, $82, $81, $1d, $39, $24, $17, $26, $70, $24, $18, $23, $12, $29, $0f, $16, $78, $4c, $0e, $10, $0a, $64, $84, $70, $0f, $4b, $5f, $17, $0e, $26, $12, $3a, $3b, $24, $70, $12, $5f, $23, $18, $39, $00
+	hiragana "よう ", "<RAMNAME>", "!"
+	line ""
+	textfw0 "無のさいだんの じょうほうだ!"
+	line ""
+	textfw0 "無のばんにんの 「"
+	katakana "ニシジマ」"
+	line ""
+	textfw0 "「イシイ」「サメジマ」"
+	hiragana "の3にんは"
+	line ""
+	textfw0 "対戦するときに とくていの"
+	katakana "カード"
+	hiragana "を"
+	line ""
+	textfw0 "4枚 "
+	katakana "デッキ"
+	hiragana "にいれろと いってくる"
+	done
 
 Text071d:
-	db $0e, $1c, $16, $33, $70, $61, $4c, $70, $82, $81, $1d, $39, $24, $0a, $12, $3a, $3b, $5f, $23, $70, $0f, $16, $78, $4c, $0e, $10, $16, $14, $23, $18, $39, $3d, $48, $6e, $0a, $1a, $12, $22, $3e, $70, $34, $5f, $16, $12, $25, $3d, $48, $3e, $77, $77, $77, $0a, $22, $16, $12, $34, $1d, $12, $0f, $16, $78, $4c, $0e, $3e, $70, $4b, $39, $2f, $4b, $0a, $2f, $19, $23, $30, $39, $5f, $23, $70, $2e, $13, $2e, $13, $33, $11, $39, $46, $6e, $0a, $4b, $33, $25, $77, $77, $77, $00
+	hiragana "しかも 1ど 対戦すると"
+	line ""
+	textfw0 "いれろって "
+	katakana "カード"
+	hiragana "をかえてくるんだ!"
+	line ""
+	textfw0 "こいつが やっかいなんだが・・・"
+	line ""
+	textfw0 "つかいやすい"
+	katakana "カード"
+	hiragana "が でるまで"
+	line ""
+	textfw0 "まけてみるって ほうほうもあるぜ!"
+	line ""
+	textfw0 "でもな・・・"
+	done
 
 Text071e:
-	db $61, $0e, $4c, $70, $82, $81, $1d, $39, $26, $2a, $0a, $1c, $23, $12, $1b, $3a, $20, $0f, $16, $78, $4c, $0e, $3e, $70, $64, $84, $12, $39, $16, $37, $25, $0a, $1f, $29, $0f, $16, $78, $4c, $0e, $3e, $70, $4c, $29, $bb, $be, $0f, $52, $5f, $18, $0e, $26, $0a, $2a, $12, $5f, $23, $12, $39, $16, $10, $70, $0f, $11, $39, $4d, $31, $0e, $4b, $1c, $37, $50, $23, $0a, $1f, $29, $bb, $be, $0f, $52, $5f, $18, $0e, $10, $70, $18, $3a, $39, $34, $22, $24, $0a, $82, $81, $1c, $25, $18, $21, $5c, $70, $25, $37, $25, $12, $19, $4c, $25, $77, $77, $77, $00
+	textfw0 "1"
+	hiragana "ど 対戦するには"
+	line ""
+	textfw0 "していされた"
+	katakana "カード"
+	hiragana "が 4枚いるからな"
+	line ""
+	textfw0 "その"
+	katakana "カード"
+	hiragana "が どの拡", "FW0_be"
+	katakana "パック"
+	hiragana "に"
+	line ""
+	textfw0 "はいっているかを "
+	katakana "アルバム"
+	hiragana "でしらべて"
+	line ""
+	textfw0 "その拡", "FW0_be"
+	katakana "パック"
+	hiragana "を くれるやつと"
+	line ""
+	textfw0 "対戦しなくちゃ ならないけどな・・・"
+	done
 
 Text071f:
-	db $0e, $2f, $11, $70, $20, $2f, $26, $2a, $70, $0f, $15, $3a, $0e, $20, $21, $29, $1c, $2f, $2d, $0a, $33, $4c, $5f, $23, $70, $30, $3d, $25, $24, $82, $81, $1d, $39, $29, $33, $0a, $12, $12, $16, $33, $25, $70, $1a, $1a, $2f, $4b, $17, $23, $0a, $11, $3c, $23, $23, $33, $70, $1c, $5e, $13, $3e, $25, $12, $48, $3b, $77, $77, $77, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "まあ たまには "
+	katakana "オレ"
+	hiragana "たちのしまへ"
+	line ""
+	textfw0 "もどって みんなと対戦するのも"
+	line ""
+	textfw0 "いいかもな ここまできて"
+	line ""
+	textfw0 "あわてても しょうがないだろ・・・"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text0720:
-	db $37, $3d, $4c, $00
+	textfw0 "ランド"
+	done
 
 Text0721:
-	db $4e, $39, $38, $5f, $21, $0e, $29, $0f, $4b, $5f, $17, $00
+	textfw0 "ビルリッチ"
+	hiragana "の"
+	katakana "デッキ"
+	done
 
 Text0722:
-	db $09, $77, $77, $77, $0a, $0e, $22, $12, $26, $70, $04, $16, $04, $21, $02, $b6, $24, $29, $70, $20, $20, $16, $12, $33, $0a, $15, $15, $4a, $32, $5f, $23, $70, $16, $3d, $44, $48, $25, $77, $77, $77, $0a, $0f, $15, $3a, $0e, $33, $70, $2f, $19, $21, $2f, $5f, $23, $77, $77, $77, $0a, $33, $13, $70, $15, $2f, $14, $1c, $16, $70, $12, $25, $12, $3d, $48, $16, $37, $25, $6e, $0a, $20, $29, $31, $47, $70, $09, $6e, $00
+	textfw0 "<RAMNAME>", "・・・"
+	line ""
+	hiragana "ついに "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "との たたかいも"
+	line ""
+	textfw0 "おおづめって かんじだな・・・"
+	line ""
+	katakana "オレ"
+	hiragana "も まけちまって・・・"
+	line ""
+	textfw0 "もう おまえしか いないんだからな!"
+	line ""
+	textfw0 "たのむぞ ", "<RAMNAME>", "!"
+	done
 
 Text0723:
-	db $04, $16, $04, $21, $02, $b6, $0e, $26, $6e, $70, $0f, $17, $3d, $40, $0e, $29, $0f, $4e, $39, $38, $5f, $21, $0e, $26, $6e, $0a, $0f, $15, $3a, $0e, $20, $21, $29, $70, $0f, $16, $78, $4c, $0e, $2d, $29, $15, $33, $12, $10, $0a, $21, $16, $37, $29, $16, $3f, $38, $70, $4f, $22, $19, $23, $18, $3a, $6e, $6e, $0a, $20, $29, $31, $47, $70, $09, $77, $77, $77, $77, $0a, $0f, $15, $3a, $0e, $29, $1b, $12, $42, $29, $70, $44, $5e, $13, $2e, $13, $10, $0a, $15, $2f, $14, $26, $70, $15, $1c, $14, $39, $36, $00
+	textfw4 "GR"
+	textfw2 "団"
+	hiragana "に! "
+	katakana "キング"
+	hiragana "の"
+	katakana "ビルリッチ"
+	hiragana "に!"
+	line ""
+	katakana "オレ"
+	hiragana "たちの "
+	katakana "カード"
+	hiragana "へのおもいを"
+	line ""
+	textfw0 "ちからのかぎり ぶつけてくれ!!"
+	line ""
+	textfw0 "たのむぞ ", "<RAMNAME>", "・・・・"
+	line ""
+	katakana "オレ"
+	hiragana "のさいごの じょうほうを"
+	line ""
+	textfw0 "おまえに おしえるよ"
+	done
 
 Text0724:
-	db $15, $3a, $0e, $2a, $70, $04, $16, $04, $21, $02, $b6, $29, $16, $3d, $4f, $26, $0a, $0f, $1a, $23, $3d, $52, $3d, $0e, $26, $70, $34, $37, $3a, $21, $2f, $5f, $23, $77, $77, $77, $0a, $04, $16, $04, $21, $02, $b6, $0f, $17, $3d, $40, $70, $4e, $39, $38, $5f, $21, $0e, $29, $1a, $24, $2a, $0a, $18, $3c, $1c, $18, $70, $1c, $37, $50, $37, $3a, $25, $16, $5f, $20, $3e, $0a, $0f, $4e, $39, $38, $5f, $21, $0e, $2a, $70, $64, $22, $29, $0f, $4b, $5f, $17, $0e, $10, $70, $33, $5f, $23, $0a, $12, $39, $37, $1c, $12, $3d, $48, $6e, $00
+	textfw0 "オレ"
+	hiragana "は "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "のかんぶに"
+	line ""
+	katakana "コテンパン"
+	hiragana "に やられちまって・・・"
+	line ""
+	textfw4 "GR"
+	textfw2 "団"
+	katakana "キング ビルリッチ"
+	hiragana "のことは"
+	line ""
+	textfw0 "くわしく しらべられなかったが"
+	line ""
+	katakana "ビルリッチ"
+	hiragana "は 4つの"
+	katakana "デッキ"
+	hiragana "を もって"
+	line ""
+	textfw0 "いるらしいんだ!"
+	done
 
 Text0725:
-	db $0e, $1c, $16, $33, $70, $0f, $4e, $39, $38, $5f, $21, $0e, $24, $29, $82, $81, $2a, $0a, $73, $1b, $17, $26, $70, $62, $16, $12, $90, $5f, $20, $2e, $13, $3e, $90, $21, $74, $0a, $24, $12, $13, $70, $25, $3e, $12, $70, $20, $20, $16, $12, $48, $0a, $0f, $4e, $39, $38, $5f, $21, $0e, $29, $34, $22, $2a, $70, $82, $81, $29, $20, $4e, $26, $0a, $0f, $4b, $5f, $17, $0e, $10, $70, $16, $14, $23, $18, $39, $48, $3b, $13, $6e, $0a, $64, $22, $29, $0f, $4b, $5f, $17, $0e, $10, $70, $22, $16, $12, $1a, $25, $1c, $23, $18, $39, $00
+	hiragana "しかも "
+	katakana "ビルリッチ"
+	hiragana "との対戦は"
+	line ""
+	textfw0 "「さきに 2かい勝ったほうが勝ち」"
+	line ""
+	textfw0 "という ながい たたかいだ"
+	line ""
+	katakana "ビルリッチ"
+	hiragana "のやつは 対戦のたびに"
+	line ""
+	katakana "デッキ"
+	hiragana "を かえてくるだろう!"
+	line ""
+	textfw0 "4つの"
+	katakana "デッキ"
+	hiragana "を つかいこなしてくる"
+	done
 
 Text0726:
-	db $0e, $48, $16, $37, $0a, $15, $2f, $14, $33, $70, $82, $81, $0f, $4b, $5f, $17, $0e, $10, $0a, $20, $18, $1b, $3d, $70, $36, $13, $12, $1c, $23, $12, $19, $6e, $0a, $0f, $3e, $3d, $4d, $3a, $0e, $36, $6e, $70, $09, $6e, $6e, $0a, $0a, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $0f, $37, $3d, $4c, $71, $04, $53, $04, $57, $04, $53, $72, $00
+	hiragana "だから"
+	line ""
+	textfw0 "おまえも 対戦"
+	katakana "デッキ"
+	hiragana "を"
+	line ""
+	textfw0 "たくさん よういしていけ!"
+	line ""
+	katakana "ガンバレ"
+	hiragana "よ! ", "<RAMNAME>", "!!"
+	line ""
+	line ""
+	textfw0 "          "
+	katakana "ランド("
+	textfw4 "●_●"
+	textfw0 ")"
+	done
 
 Text0727:
-	db $4d, $24, $39, $1e, $3d, $20, $78, $00
+	textfw0 "バトルセンター"
+	done
 
 Text0728:
-	db $0e, $22, $13, $1c, $3d, $82, $81, $10, $1c, $36, $13, $6e, $00
+	hiragana "つうしん対戦をしよう!"
+	done
 
 Text0729:
-	db $4d, $24, $39, $1e, $3d, $20, $78, $0e, $16, $37, $29, $70, $15, $1c, $37, $1e, $4b, $1d, $0a, $22, $13, $1c, $3d, $0f, $19, $78, $4f, $39, $0e, $10, $70, $22, $16, $5f, $23, $0a, $4c, $3d, $4c, $3d, $70, $82, $81, $1c, $2f, $1c, $5e, $13, $0a, $82, $81, $1c, $23, $90, $23, $4d, $70, $bb, $be, $0f, $52, $5f, $18, $0e, $10, $0a, $63, $22, $0f, $54, $3a, $46, $3d, $24, $70, $0e, $2f, $19, $23, $33, $0a, $bb, $be, $0f, $52, $5f, $18, $0e, $10, $70, $61, $22, $70, $0f, $54, $3a, $46, $3d, $24, $6e, $00
+	textfw0 "バトルセンター"
+	hiragana "からの おしらせです"
+	line ""
+	textfw0 "つうしん"
+	katakana "ケーブル"
+	hiragana "を つかって"
+	line ""
+	textfw0 "どんどん 対戦しましょう"
+	line ""
+	textfw0 "対戦して勝てば 拡", "FW0_be"
+	katakana "パック"
+	hiragana "を"
+	line ""
+	textfw0 "3つ"
+	katakana "プレゼント "
+	hiragana "まけても"
+	line ""
+	textfw0 "拡", "FW0_be"
+	katakana "パック"
+	hiragana "を 1つ "
+	katakana "プレゼント!"
+	done
 
 Text072a:
-	db $0e, $22, $13, $1c, $3d, $82, $81, $4b, $70, $65, $60, $90, $1c, $20, $37, $0a, $0f, $4d, $24, $39, $1e, $3d, $20, $78, $70, $0e, $24, $18, $1e, $12, $29, $0f, $1a, $12, $3d, $0e, $10, $0a, $0f, $54, $3a, $46, $3d, $24, $0e, $1c, $2f, $1d, $0a, $42, $38, $36, $13, $10, $70, $15, $2f, $21, $1c, $23, $15, $38, $2f, $1d, $0a, $0a, $70, $70, $70, $70, $0f, $4d, $24, $39, $1e, $3d, $20, $78, $70, $04, $36, $71, $04, $57, $04, $57, $72, $04, $36, $00
+	hiragana "つうしん対戦で 50勝したら"
+	line ""
+	katakana "バトルセンター "
+	hiragana "とくせいの"
+	katakana "コイン"
+	hiragana "を"
+	line ""
+	katakana "プレゼント"
+	hiragana "します"
+	line ""
+	textfw0 "ごりようを おまちしております"
+	line ""
+	line ""
+	textfw0 "    "
+	katakana "バトルセンター "
+	textfw4 "m"
+	textfw0 "("
+	textfw4 "__"
+	textfw0 ")"
+	textfw4 "m"
+	done
 
 Text072b:
-	db $70, $32, $78, $39, $51, $5f, $18, $1d, $70, $00
+	textfw0 " メールボックス "
+	done
 
 Text072c:
-	db $32, $78, $39, $51, $5f, $18, $1d, $0e, $3e, $70, $12, $5f, $52, $12, $4b, $0a, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $10, $70, $36, $30, $1a, $32, $2f, $1e, $3d, $0a, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $10, $70, $36, $31, $4d, $11, $12, $2a, $0a, $2b, $22, $36, $13, $25, $12, $0f, $32, $78, $39, $0e, $10, $70, $19, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "メールボックス"
+	hiragana "が いっぱいで"
+	line ""
+	textfw0 "あたらしい"
+	katakana "メール"
+	hiragana "を よみこめません"
+	line ""
+	textfw0 "あたらしい"
+	katakana "メール"
+	hiragana "を よむばあいは"
+	line ""
+	textfw0 "ひつようない"
+	katakana "メール"
+	hiragana "を けしてください"
+	done
 
 Text072d:
-	db $0e, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $2a, $0a, $24, $4c, $12, $23, $12, $2f, $1e, $3d, $00
+	hiragana "あたらしい"
+	katakana "メール"
+	hiragana "は"
+	line ""
+	textfw0 "とどいていません"
+	done
 
 Text072e:
-	db $0e, $11, $20, $37, $1c, $12, $0f, $32, $78, $39, $0e, $3e, $70, $24, $4c, $12, $23, $12, $2f, $1d, $6e, $00
+	hiragana "あたらしい"
+	katakana "メール"
+	hiragana "が とどいています!"
+	done
 
 Text072f:
-	db $32, $78, $39, $0e, $10, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "メール"
+	hiragana "をえらんでください"
+	done
 
 Text0730:
-	db $0e, $48, $3a, $16, $37, $04, $4e, $00
+	hiragana "だれから"
+	textfw4 ":"
+	done
 
 Text0731:
-	db $20, $12, $24, $39, $04, $4e, $00
+	textfw0 "タイトル"
+	textfw4 ":"
+	done
 
 Text0732:
-	db $0e, $4c, $13, $1c, $2f, $1d, $16, $6f, $00
+	hiragana "どうしますか?"
+	done
 
 Text0733:
-	db $0e, $36, $31, $00
+	hiragana "よむ"
+	done
 
 Text0734:
-	db $0e, $19, $1d, $00
+	hiragana "けす"
+	done
 
 Text0735:
-	db $0e, $2e, $3d, $24, $13, $26, $70, $19, $1c, $23, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "ほんとうに けしてよろしいですか?"
+	done
 
 Text0736:
-	db $0e, $36, $2f, $3a, $23, $12, $2f, $1e, $3d, $3e, $70, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "よまれていませんが よろしいですか?"
+	done
 
 Text0737:
-	db $32, $78, $39, $0e, $10, $70, $19, $1c, $2f, $1c, $20, $00
+	textfw0 "メール"
+	hiragana "を けしました"
+	done
 
 Text0738:
-	db $04, $52, $00
+	textfw4 "○"
+	done
 
 Text0739:
-	db $32, $78, $39, $01, $45, $ad, $00
+	textfw0 "メール"
+	textfw1 "送"
+	textfw0 "信"
+	done
 
 Text073a:
-	db $32, $78, $39, $0e, $2a, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "メール"
+	hiragana "はありません"
+	done
 
 Text073b:
-	db $04, $4e, $00
+	textfw4 ":"
+	done
 
 Text073c:
-	db $14, $28, $39, $3f, $78, $0e, $26, $22, $12, $23, $00
+	textfw0 "エネルギー"
+	hiragana "について"
+	done
 
 Text073d:
-	db $3c, $43, $0e, $10, $70, $22, $16, $13, $00
+	textfw0 "ワザ"
+	hiragana "を つかう"
+	done
 
 Text073e:
-	db $56, $19, $33, $3d, $0e, $10, $70, $12, $3a, $16, $14, $39, $00
+	textfw0 "ポケモン"
+	hiragana "を いれかえる"
+	done
 
 Text073f:
-	db $56, $19, $33, $3d, $0e, $10, $70, $96, $93, $1b, $1e, $39, $00
+	textfw0 "ポケモン"
+	hiragana "を 進化させる"
+	done
 
 Text0740:
-	db $c0, $c1, $c2, $8d, $0e, $10, $70, $22, $16, $13, $00
+	textfw0 "特殊能力"
+	hiragana "を つかう"
+	done
 
 Text0741:
-	db $0e, $44, $4f, $3d, $29, $98, $10, $70, $15, $3c, $39, $00
+	hiragana "じぶんの番を おわる"
+	done
 
 Text0742:
-	db $82, $81, $0e, $29, $90, $21, $70, $2f, $19, $00
+	textfw0 "対戦"
+	hiragana "の勝ち まけ"
+	done
 
 Text0743:
-	db $0e, $17, $18, $1a, $24, $2a, $70, $25, $12, $00
+	hiragana "きくことは ない"
+	done
 
 Text0744:
-	db $0e, $3a, $3d, $1c, $5d, $13, $82, $81, $00
+	hiragana "れんしゅう対戦"
+	done
 
 Text0745:
-	db $0e, $2c, $22, $13, $26, $82, $81, $00
+	hiragana "ふつうに対戦"
+	done
 
 Text0746:
-	db $39, $78, $39, $0e, $1e, $22, $32, $12, $00
+	textfw0 "ルール"
+	hiragana "せつめい"
+	done
 
 Text0747:
-	db $0e, $25, $3d, $4b, $33, $25, $12, $00
+	hiragana "なんでもない"
+	done
 
 Text0748:
-	db $1d, $23, $5f, $54, $61, $00
+	textfw0 "ステップ1"
+	done
 
 Text0749:
-	db $1d, $23, $5f, $54, $62, $00
+	textfw0 "ステップ2"
+	done
 
 Text074a:
-	db $1d, $23, $5f, $54, $63, $00
+	textfw0 "ステップ3"
+	done
 
 Text074b:
-	db $1d, $23, $5f, $54, $64, $00
+	textfw0 "ステップ4"
+	done
 
 Text074c:
-	db $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $70, $03, $a6, $d6, $00
+	textfw0 "グランドマスター"
+	textfw2 "FW2_13"
+	textfw0 " "
+	textfw3 "FW3_a6"
+	textfw0 "品"
+	done
 
 Text074d:
-	db $40, $37, $3d, $4c, $2f, $1d, $20, $78, $02, $13, $0e, $29, $03, $a6, $d6, $4b, $1d, $0a, $1d, $17, $25, $0f, $16, $78, $4c, $0e, $10, $70, $62, $84, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "グランドマスター"
+	textfw2 "FW2_13"
+	hiragana "の"
+	textfw3 "FW3_a6"
+	textfw0 "品です"
+	line ""
+	textfw0 "すきな"
+	katakana "カード"
+	hiragana "を 2枚えらんでください"
+	done
 
 Text074e:
-	db $0e, $1a, $29, $62, $84, $4b, $70, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "この2枚で よろしいですか?"
+	done
 
 Text074f:
-	db $20, $12, $24, $39, $01, $16, $cf, $71, $01, $fe, $72, $00
+	textfw0 "タイトル"
+	textfw1 "画"
+	textfw0 "面("
+	textfw1 "FW1_fe"
+	textfw0 ")"
+	done
 
 Text0750:
-	db $01, $11, $01, $2e, $8a, $92, $01, $16, $cf, $00
+	textfw1 "性別"
+	textfw0 "選択"
+	textfw1 "画"
+	textfw0 "面"
+	done
 
 Text0751:
-	db $1d, $20, $78, $24, $32, $26, $5d, $78, $00
+	textfw0 "スタートメニュー"
+	done
 
 Text0752:
-	db $70, $4f, $37, $5f, $18, $51, $5f, $18, $1d, $70, $00
+	textfw0 " ブラックボックス "
+	done
 
 Text0753:
-	db $61, $0e, $16, $37, $65, $84, $29, $70, $0f, $16, $78, $4c, $0e, $10, $12, $3a, $39, $24, $0a, $11, $20, $37, $1c, $12, $0f, $16, $78, $4c, $0e, $3e, $70, $33, $37, $14, $2f, $1d, $0a, $18, $30, $11, $3c, $1e, $16, $20, $4b, $70, $33, $37, $14, $39, $0f, $16, $78, $4c, $0e, $3e, $0a, $2d, $3d, $16, $1d, $39, $29, $4b, $70, $12, $3b, $12, $3b, $25, $0f, $16, $78, $4c, $0e, $4b, $0a, $20, $32, $1c, $23, $30, $2f, $1c, $5e, $13, $6e, $00
+	textfw0 "1"
+	hiragana "から5枚の "
+	katakana "カード"
+	hiragana "をいれると"
+	line ""
+	textfw0 "あたらしい"
+	katakana "カード"
+	hiragana "が もらえます"
+	line ""
+	textfw0 "くみあわせかたで もらえる"
+	katakana "カード"
+	hiragana "が"
+	line ""
+	textfw0 "へんかするので いろいろな"
+	katakana "カード"
+	hiragana "で"
+	line ""
+	textfw0 "ためしてみましょう!"
+	done
 
 Text0754:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $4b, $70, $11, $1f, $4e, $2f, $1d, $16, $6f, $00
+	textfw0 "ブラックボックス"
+	hiragana "で あそびますか?"
+	done
 
 Text0755:
-	db $0e, $1f, $3a, $4b, $2a, $70, $11, $1f, $4f, $2f, $14, $26, $0a, $73, $26, $5f, $17, $74, $10, $70, $22, $19, $23, $18, $48, $1b, $12, $00
+	hiragana "それでは あそぶまえに"
+	line ""
+	textfw0 "「にっき」を つけてください"
+	done
 
 Text0756:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $2a, $70, $61, $16, $12, $65, $84, $4b, $1d, $0a, $0f, $21, $5f, $54, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $6e, $00
+	textfw0 "ブラックボックス"
+	hiragana "は 1かい5枚です"
+	line ""
+	katakana "チップ"
+	hiragana "が たりません!"
+	done
 
 Text0757:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $16, $37, $29, $70, $0f, $32, $78, $39, $0e, $3e, $0a, $0f, $32, $78, $39, $51, $5f, $18, $1d, $0e, $26, $70, $29, $1a, $5f, $23, $12, $2f, $1d, $00
+	textfw0 "ブラックボックス"
+	hiragana "からの "
+	katakana "メール"
+	hiragana "が"
+	line ""
+	katakana "メールボックス"
+	hiragana "に のこっています"
+	done
 
 Text0758:
-	db $32, $78, $39, $0e, $10, $36, $3d, $4b, $0f, $16, $78, $4c, $0e, $10, $13, $19, $24, $5f, $23, $16, $37, $0a, $17, $23, $18, $48, $1b, $12, $00
+	textfw0 "メール"
+	hiragana "をよんで"
+	katakana "カード"
+	hiragana "をうけとってから"
+	line ""
+	textfw0 "きてください"
+	done
 
 Text0759:
-	db $73, $0e, $26, $5f, $17, $74, $10, $70, $22, $19, $25, $19, $3a, $4d, $0a, $11, $1f, $4f, $1a, $24, $3e, $70, $4b, $17, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "にっき」を つけなければ"
+	line ""
+	textfw0 "あそぶことが できません"
+	done
 
 Text075a:
-	db $70, $70, $70, $0e, $15, $18, $39, $0f, $16, $78, $4c, $0e, $29, $70, $14, $37, $4e, $16, $20, $0a, $70, $0a, $61, $04, $5d, $0f, $4b, $5f, $17, $0e, $10, $22, $18, $39, $36, $13, $26, $70, $15, $18, $38, $20, $12, $0a, $70, $70, $0f, $16, $78, $4c, $0e, $10, $14, $37, $4e, $70, $01, $30, $01, $31, $4b, $2c, $34, $1c, $2f, $1d, $0a, $70, $0a, $62, $04, $5d, $15, $18, $39, $0f, $16, $78, $4c, $0e, $10, $70, $1d, $50, $23, $17, $32, $20, $37, $0a, $70, $70, $04, $11, $0f, $51, $20, $3d, $0e, $4b, $70, $0f, $32, $26, $5d, $78, $0e, $10, $2b, $37, $17, $2f, $1d, $0a, $70, $0a, $63, $04, $5d, $73, $15, $18, $39, $74, $4b, $70, $0f, $16, $78, $4c, $0e, $10, $15, $18, $39, $0a, $70, $70, $44, $5d, $3d, $4e, $3e, $70, $16, $3d, $38, $5e, $13, $4b, $1d, $00
+	textfw0 "   "
+	hiragana "おくる"
+	katakana "カード"
+	hiragana "の えらびかた"
+	line ""
+	textfw0 " "
+	line ""
+	textfw0 "1"
+	textfw4 "ˍ"
+	katakana "デッキ"
+	hiragana "をつくるように おくりたい"
+	line ""
+	textfw0 "  "
+	katakana "カード"
+	hiragana "をえらび "
+	textfw1 "左右"
+	textfw0 "でふやします"
+	line ""
+	textfw0 " "
+	line ""
+	textfw0 "2"
+	textfw4 "ˍ"
+	textfw0 "おくる"
+	katakana "カード"
+	hiragana "を すべてきめたら"
+	line ""
+	textfw0 "  "
+	textfw4 "B"
+	katakana "ボタン"
+	hiragana "で "
+	katakana "メニュー"
+	hiragana "をひらきます"
+	line ""
+	textfw0 " "
+	line ""
+	textfw0 "3"
+	textfw4 "ˍ"
+	textfw0 "「おくる」で "
+	katakana "カード"
+	hiragana "をおくる"
+	line ""
+	textfw0 "  じゅんびが かんりょうです"
+	done
 
 Text075b:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $2d, $70, $15, $18, $39, $0f, $16, $78, $4c, $0e, $29, $0a, $14, $37, $4e, $16, $20, $4b, $1d, $00
+	textfw0 "ブラックボックス"
+	hiragana "へ おくる"
+	katakana "カード"
+	hiragana "の"
+	line ""
+	textfw0 "えらびかたです"
+	done
 
 Text075c:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $2d, $0a, $0f, $16, $78, $4c, $0e, $10, $70, $15, $18, $38, $2f, $1c, $20, $6e, $00
+	textfw0 "ブラックボックス"
+	hiragana "へ"
+	line ""
+	katakana "カード"
+	hiragana "を おくりました!"
+	done
 
 Text075d:
-	db $0e, $19, $5f, $16, $2a, $0f, $32, $78, $39, $51, $5f, $18, $1d, $0e, $26, $70, $24, $4c, $17, $2f, $1d, $0a, $15, $20, $29, $1c, $30, $26, $6e, $00
+	hiragana "けっかは"
+	katakana "メールボックス"
+	hiragana "に とどきます"
+	line ""
+	textfw0 "おたのしみに!"
+	done
 
 Text075e:
-	db $0e, $1d, $4b, $26, $70, $0f, $1e, $78, $4f, $4b, $78, $20, $0e, $3e, $11, $38, $2f, $1d, $00
+	hiragana "すでに "
+	katakana "セーブデータ"
+	hiragana "があります"
+	done
 
 Text075f:
-	db $0e, $1a, $29, $2f, $2f, $70, $2a, $44, $32, $39, $24, $0a, $1d, $50, $23, $29, $0f, $16, $78, $4c, $0e, $10, $70, $13, $1c, $25, $12, $2f, $1d, $00
+	hiragana "このまま はじめると"
+	line ""
+	textfw0 "すべての"
+	katakana "カード"
+	hiragana "を うしないます"
+	done
 
 Text0760:
-	db $0e, $1f, $3a, $4b, $33, $70, $36, $3b, $1c, $12, $4b, $1d, $16, $6f, $00
+	hiragana "それでも よろしいですか?"
+	done
 
 Text0761:
-	db $0e, $1d, $50, $23, $29, $0f, $4b, $78, $20, $0e, $10, $1b, $18, $44, $5e, $1c, $2f, $1c, $20, $00
+	hiragana "すべての"
+	katakana "データ"
+	hiragana "をさくじょしました"
+	done
 
 Text0762:
-	db $09, $0e, $2a, $70, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $0a, $11, $22, $32, $39, $29, $3e, $70, $48, $12, $1d, $17, $4b, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は "
+	katakana "ポケモンカード"
+	hiragana "を"
+	line ""
+	textfw0 "あつめるのが だいすきです"
+	done
 
 Text0763:
-	db $09, $0e, $2a, $70, $1a, $29, $1c, $2f, $26, $22, $20, $3c, $39, $0a, $89, $83, $29, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $70, $0f, $41, $5f, $24, $0e, $29, $20, $32, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は このしまにつたわる"
+	line ""
+	textfw0 "伝説の"
+	katakana "ポケモンカード"
+	hiragana "を "
+	katakana "ゲット"
+	hiragana "のため"
+	done
 
 Text0764:
-	db $68, $0e, $26, $3d, $29, $70, $0f, $18, $37, $4f, $2f, $1d, $20, $78, $0e, $24, $0a, $89, $83, $29, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $70, $2f, $33, $39, $00
+	textfw0 "8"
+	hiragana "にんの "
+	katakana "クラブマスター"
+	hiragana "と"
+	line ""
+	textfw0 "伝説の"
+	katakana "ポケモンカード"
+	hiragana "を まもる"
+	done
 
 Text0765:
-	db $64, $0e, $26, $3d, $29, $70, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $0e, $26, $0a, $21, $5e, $13, $1e, $3d, $1c, $20, $29, $4b, $1c, $20, $77, $77, $77, $00
+	textfw0 "4"
+	hiragana "にんの "
+	katakana "グランドマスター"
+	hiragana "に"
+	line ""
+	textfw0 "ちょうせんしたのでした・・・"
+	done
 
 Text0766:
-	db $0e, $1f, $1c, $23, $70, $22, $12, $26, $2a, $6e, $0a, $0f, $40, $37, $3d, $4c, $2f, $1d, $20, $78, $0e, $10, $70, $20, $15, $1c, $23, $00
+	hiragana "そして ついには!"
+	line ""
+	katakana "グランドマスター"
+	hiragana "を たおして"
+	done
 
 Text0767:
-	db $64, $84, $0e, $29, $70, $89, $83, $29, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $10, $0a, $1f, $29, $23, $26, $70, $0f, $41, $5f, $24, $0e, $1c, $20, $29, $4b, $1d, $00
+	textfw0 "4枚"
+	hiragana "の 伝説の"
+	katakana "ポケモンカード"
+	hiragana "を"
+	line ""
+	textfw0 "そのてに "
+	katakana "ゲット"
+	hiragana "したのです"
+	done
 
 Text0768:
-	db $0e, $1f, $3d, $25, $70, $11, $39, $e6, $77, $77, $77, $0a, $44, $19, $3d, $2a, $70, $15, $1a, $38, $2f, $1c, $20, $6e, $00
+	hiragana "そんな ある日・・・"
+	line ""
+	textfw0 "じけんは おこりました!"
+	done
 
 Text0769:
-	db $0e, $24, $22, $46, $3d, $0a, $25, $47, $29, $40, $3d, $02, $b6, $3e, $70, $15, $1f, $5f, $23, $17, $20, $29, $4b, $1d, $6e, $00
+	hiragana "とつぜん"
+	line ""
+	textfw0 "なぞのぐん"
+	textfw2 "団"
+	textfw0 "が おそってきたのです!"
+	done
 
 Text076a:
-	db $0e, $1f, $29, $87, $10, $70, $73, $04, $16, $04, $21, $02, $b6, $74, $6e, $0a, $73, $0f, $40, $3a, $78, $24, $3b, $19, $5f, $24, $02, $b6, $74, $0e, $24, $70, $12, $12, $2f, $1c, $20, $00
+	hiragana "その名を 「"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "」!"
+	line ""
+	textfw0 "「"
+	katakana "グレートロケット"
+	textfw2 "団"
+	textfw0 "」"
+	hiragana "と いいました"
+	done
 
 Text076b:
-	db $73, $04, $16, $04, $21, $02, $b6, $74, $0e, $2a, $70, $0f, $18, $37, $4f, $0e, $10, $70, $1a, $13, $41, $17, $6e, $0a, $0f, $16, $78, $4c, $0e, $10, $70, $13, $4d, $5f, $23, $12, $5f, $20, $29, $4b, $1d, $6e, $00
+	textfw0 "「"
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "」"
+	hiragana "は "
+	katakana "クラブ"
+	hiragana "を こうげき!"
+	line ""
+	katakana "カード"
+	hiragana "を うばっていったのです!"
+	done
 
 Text076c:
-	db $0e, $33, $5f, $23, $12, $20, $0f, $16, $78, $4c, $0e, $10, $70, $04, $16, $04, $21, $02, $b6, $26, $0a, $13, $4d, $3c, $3a, $20, $70, $09, $2a, $00
+	hiragana "もっていた"
+	katakana "カード"
+	hiragana "を "
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "に"
+	line ""
+	textfw0 "うばわれた ", "<RAMNAME>", "は"
+	done
 
 Text076d:
-	db $0e, $1a, $29, $1a, $24, $10, $70, $1c, $37, $1e, $39, $20, $32, $0a, $0f, $56, $19, $33, $3d, $16, $78, $4c, $0e, $29, $70, $cb, $cc, $01, $24, $4b, $11, $39, $00
+	hiragana "このことを しらせるため"
+	line ""
+	katakana "ポケモンカード"
+	hiragana "の 研究"
+	textfw1 "者"
+	textfw0 "である"
+	done
 
 Text076e:
-	db $04, $13, $79, $15, $78, $34, $2f, $0e, $29, $12, $39, $70, $cb, $cc, $01, $14, $2d, $0a, $31, $16, $5f, $20, $29, $4b, $1c, $20, $77, $77, $77, $00
+	textfw4 "D"
+	textfw0 "ṛオーヤマ"
+	hiragana "のいる 研究"
+	textfw1 "所"
+	textfw0 "へ"
+	line ""
+	textfw0 "むかったのでした・・・"
+	done
 
 Text076f:
-	db $12, $3d, $24, $3b, $48, $18, $1c, $5e, $3d, $00
+	textfw0 "イントロダクション"
+	done
 
 Text0770:
-	db $0e, $1e, $5f, $23, $12, $2d, $3d, $1a, $13, $00
+	hiragana "せっていへんこう"
+	done
 
 Text0771:
-	db $70, $13, $58, $3d, $4c, $13, $16, $37, $78, $70, $00
+	textfw0 " ウィンドウカラー "
+	done
 
 Text0772:
-	db $0e, $11, $16, $00
+	hiragana "あか"
+	done
 
 Text0773:
-	db $0e, $11, $15, $00
+	hiragana "あお"
+	done
 
 Text0774:
-	db $0e, $30, $4c, $38, $00
+	hiragana "みどり"
+	done
 
 Text0775:
-	db $0e, $18, $3b, $00
+	hiragana "くろ"
+	done
 
 Text0776:
-	db $0e, $15, $18, $39, $0f, $16, $78, $4c, $00
+	hiragana "おくる"
+	katakana "カード"
+	done
 
 Text0777:
-	db $0e, $1a, $3a, $37, $29, $0f, $16, $78, $4c, $0e, $10, $15, $18, $38, $2f, $1d, $16, $6f, $00
+	hiragana "これらの"
+	katakana "カード"
+	hiragana "をおくりますか?"
+	done
 
 Text0778:
-	db $4f, $37, $5f, $18, $51, $5f, $18, $1d, $0e, $10, $70, $34, $32, $2f, $1d, $16, $6f, $00
+	textfw0 "ブラックボックス"
+	hiragana "を やめますか?"
+	done
 
 Text0779:
-	db $0e, $1f, $3a, $4b, $2a, $70, $23, $1d, $13, $38, $5e, $13, $24, $1c, $23, $0a, $0f, $21, $5f, $54, $65, $84, $0e, $10, $70, $12, $20, $48, $17, $2f, $1d, $00
+	hiragana "それでは てすうりょうとして"
+	line ""
+	katakana "チップ5枚"
+	hiragana "を いただきます"
+	done
 
 Text077a:
-	db $0c, $6d, $0c, $00
+	textfw0 "<RAMNUM>", "/", "<RAMNUM>"
+	done
 
 Text077b:
-	db $70, $0b, $70, $00
+	textfw0 " ", "<RAMTEXT>", " "
+	done
 
 Text077c:
-	db $70, $61, $60, $84, $00
+	textfw0 " 10枚"
+	done
 
 Text077d:
-	db $70, $62, $60, $84, $00
+	textfw0 " 20枚"
+	done
 
 Text077e:
-	db $70, $63, $60, $84, $00
+	textfw0 " 30枚"
+	done
 
 Text077f:
-	db $70, $65, $60, $84, $00
+	textfw0 " 50枚"
+	done
 
 Text0780:
-	db $61, $60, $60, $84, $00
+	textfw0 "100枚"
+	done
 
 Text0781:
-	db $70, $0e, $34, $32, $39, $00
+	textfw0 " "
+	hiragana "やめる"
+	done
 
 Text0782:
-	db $21, $5f, $54, $61, $60, $84, $00
+	textfw0 "チップ10枚"
+	done
 
 Text0783:
-	db $21, $5f, $54, $62, $60, $84, $00
+	textfw0 "チップ20枚"
+	done
 
 Text0784:
-	db $70, $16, $78, $4c, $48, $3d, $44, $5e, $3d, $70, $00
+	textfw0 " カードダンジョン "
+	done
 
 Text0785:
-	db $21, $5f, $54, $0e, $10, $70, $16, $19, $23, $70, $82, $81, $1c, $36, $13, $6e, $0a, $16, $19, $39, $0f, $21, $5f, $54, $0e, $29, $70, $2f, $12, $1d, $13, $10, $14, $37, $3d, $4b, $0a, $90, $22, $24, $70, $16, $19, $20, $0f, $21, $5f, $54, $0e, $3e, $70, $4d, $12, $26, $25, $39, $6e, $0a, $2f, $19, $20, $37, $70, $0f, $21, $5f, $54, $0e, $10, $24, $37, $3a, $23, $0a, $0f, $41, $78, $31, $15, $78, $4d, $78, $0e, $48, $6e, $00
+	textfw0 "チップ"
+	hiragana "を かけて 対戦しよう!"
+	line ""
+	textfw0 "かける"
+	katakana "チップ"
+	hiragana "の まいすうをえらんで"
+	line ""
+	textfw0 "勝つと かけた"
+	katakana "チップ"
+	hiragana "が ばいになる!"
+	line ""
+	textfw0 "まけたら "
+	katakana "チップ"
+	hiragana "をとられて"
+	line ""
+	katakana "ゲームオーバー"
+	hiragana "だ!"
+	done
 
 Text0786:
-	db $21, $5f, $54, $0e, $3e, $61, $60, $84, $12, $44, $5e, $13, $70, $2b, $22, $36, $13, $4b, $1d, $0a, $0f, $21, $5f, $54, $0e, $10, $11, $22, $32, $23, $18, $48, $1b, $12, $00
+	textfw0 "チップ"
+	hiragana "が10枚いじょう ひつようです"
+	line ""
+	katakana "チップ"
+	hiragana "をあつめてください"
+	done
 
 Text0787:
-	db $0e, $4c, $3d, $4c, $3d, $70, $20, $20, $16, $5f, $23, $0a, $0f, $21, $5f, $54, $0e, $10, $70, $20, $18, $1b, $3d, $70, $11, $22, $32, $36, $13, $6e, $00
+	hiragana "どんどん たたかって"
+	line ""
+	katakana "チップ"
+	hiragana "を たくさん あつめよう!"
+	done
 
 Text0788:
-	db $82, $81, $9b, $0e, $26, $70, $e4, $02, $70, $3e, $70, $17, $3a, $20, $24, $17, $29, $0a, $0f, $4b, $78, $20, $0e, $3e, $70, $11, $38, $2f, $1d, $00
+	textfw0 "対戦中"
+	hiragana "に 電"
+	textfw2 "FW2_70"
+	textfw0 "が きれたときの"
+	line ""
+	katakana "データ"
+	hiragana "が あります"
+	done
 
 Text0789:
-	db $73, $82, $81, $0e, $16, $37, $70, $11, $1f, $4f, $74, $10, $70, $14, $37, $4f, $24, $0a, $e4, $02, $70, $3e, $17, $3a, $20, $70, $82, $81, $16, $37, $70, $2a, $44, $2f, $38, $2f, $1d, $00
+	textfw0 "「対戦"
+	hiragana "から あそぶ」を えらぶと"
+	line ""
+	textfw0 "電"
+	textfw2 "FW2_70"
+	textfw0 "がきれた 対戦から はじまります"
+	done
 
 Text078a:
-	db $0e, $1a, $29, $2f, $2f, $70, $2a, $44, $32, $39, $24, $70, $0f, $32, $26, $5d, $78, $0e, $29, $0a, $73, $82, $81, $16, $37, $70, $11, $1f, $4f, $74, $3e, $70, $25, $18, $25, $38, $00
+	hiragana "このまま はじめると "
+	katakana "メニュー"
+	hiragana "の"
+	line ""
+	textfw0 "「対戦から あそぶ」が なくなり"
+	done
 
 Text078b:
-	db $41, $78, $31, $0e, $2a, $70, $1b, $12, $42, $26, $73, $26, $5f, $17, $74, $10, $0a, $22, $19, $20, $70, $24, $1a, $3b, $16, $37, $70, $2a, $44, $2f, $38, $2f, $1d, $00
+	textfw0 "ゲーム"
+	hiragana "は さいごに「にっき」を"
+	line ""
+	textfw0 "つけた ところから はじまります"
+	done
 
 Text078c:
-	db $73, $0e, $22, $4a, $17, $10, $70, $11, $1f, $4f, $74, $4b, $70, $2a, $44, $32, $2f, $1d, $6f, $00
+	textfw0 "「"
+	hiragana "つづきを あそぶ」で はじめます?"
+	done
 
 Text078d:
-	db $21, $5c, $3a, $3d, $44, $2f, $1c, $3d, $00
+	textfw0 "チャレンジマシン"
+	done
 
 Text078e:
-	db $04, $16, $04, $21, $02, $b6, $21, $5c, $3a, $3d, $44, $2f, $1c, $3d, $00
+	textfw4 "GR"
+	textfw2 "団"
+	textfw0 "チャレンジマシン"
+	done
 
 Text078f:
-	db $09, $0e, $29, $0f, $1d, $1a, $11, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の"
+	katakana "スコア"
+	done
 
 Text0790:
-	db $65, $88, $0e, $27, $17, $0f, $18, $38, $11, $a9, $00
+	textfw0 "5人"
+	hiragana "ぬき"
+	katakana "クリア", "FW0_a9"
+	done
 
 Text0791:
-	db $0e, $12, $2f, $29, $70, $3a, $3d, $1c, $5e, $13, $a9, $00
+	hiragana "いまの れんしょう", "FW0_a9"
+	done
 
 Text0792:
-	db $0e, $3a, $3d, $1c, $5e, $13, $70, $17, $3b, $18, $00
+	hiragana "れんしょう きろく"
+	done
 
 Text0793:
-	db $97, $00
+	textfw0 "回"
+	done
 
 Text0794:
-	db $90, $00
+	textfw0 "勝"
+	done
 
 Text0795:
-	db $21, $5c, $3a, $3d, $44, $2f, $1c, $3d, $0e, $4b, $70, $11, $1f, $4e, $2f, $1d, $16, $6f, $00
+	textfw0 "チャレンジマシン"
+	hiragana "で あそびますか?"
+	done
 
 Text0796:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $02, $00
+	textfw0 "クラブメンバー", "<GRASS>"
+	done
 
 Text0797:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $04, $00
+	textfw0 "クラブメンバー", "<WATER>"
+	done
 
 Text0798:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $01, $00
+	textfw0 "クラブメンバー", "<FIRE>"
+	done
 
 Text0799:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $06, $00
+	textfw0 "クラブメンバー", "<PSYCHIC>"
+	done
 
 Text079a:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $03, $00
+	textfw0 "クラブメンバー", "<LIGHTNING>"
+	done
 
 Text079b:
-	db $18, $37, $4f, $32, $3d, $4d, $78, $05, $05, $00
+	textfw0 "クラブメンバー", "<FIGHTING>"
+	done
 
 Text079c:
-	db $0e, $1a, $3d, $16, $12, $29, $70, $0f, $41, $78, $31, $0e, $29, $82, $81, $0f, $32, $3d, $4d, $78, $0e, $4b, $1d, $00
+	hiragana "こんかいの "
+	katakana "ゲーム"
+	hiragana "の対戦"
+	katakana "メンバー"
+	hiragana "です"
+	done
 
 Text079d:
-	db $09, $0e, $2a, $70, $0c, $3a, $3d, $1c, $5e, $13, $9b, $6e, $0a, $61, $88, $b8, $2a, $70, $73, $0b, $74, $4b, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は ", "<RAMNUM>", "れんしょう中!"
+	line ""
+	textfw0 "1人目は 「", "<RAMTEXT>", "」です"
+	done
 
 Text079e:
-	db $82, $81, $0e, $10, $70, $2a, $44, $32, $2f, $1d, $16, $6f, $00
+	textfw0 "対戦"
+	hiragana "を はじめますか?"
+	done
 
 Text079f:
-	db $40, $37, $3d, $4c, $2f, $1d, $20, $78, $00
+	textfw0 "グランドマスター"
+	done
 
 Text07a0:
-	db $2f, $1b, $17, $0e, $29, $0f, $52, $1f, $1a, $3d, $00
+	textfw0 "マサキ"
+	hiragana "の"
+	katakana "パソコン"
+	done
 
 Text07a1:
-	db $21, $5f, $54, $0c, $84, $00
+	textfw0 "チップ", "<RAMNUM>", "枚"
+	done
 
 Text07a2:
-	db $01, $87, $01, $86, $ee, $00
+	textfw1 "FW1_87", "FW1_86"
+	textfw0 "成"
+	done
 
 Text07a3:
-	db $09, $0e, $2a, $70, $0c, $3a, $3d, $1c, $5e, $13, $9b, $6e, $0a, $0c, $88, $b8, $2a, $70, $73, $0b, $74, $4b, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は ", "<RAMNUM>", "れんしょう中!"
+	line ""
+	textfw0 "<RAMNUM>", "人目は 「", "<RAMTEXT>", "」です"
+	done
 
 Text07a4:
-	db $0c, $88, $b8, $0a, $73, $0b, $74, $0e, $26, $70, $90, $21, $2f, $1c, $20, $6e, $00
+	textfw0 "<RAMNUM>", "人目"
+	line ""
+	textfw0 "「", "<RAMTEXT>", "」"
+	hiragana "に 勝ちました!"
+	done
 
 Text07a5:
-	db $0c, $88, $b8, $0a, $73, $0b, $74, $0e, $26, $70, $2f, $19, $2f, $1c, $20, $6e, $00
+	textfw0 "<RAMNUM>", "人目"
+	line ""
+	textfw0 "「", "<RAMTEXT>", "」"
+	hiragana "に まけました!"
+	done
 
 Text07a6:
-	db $09, $0e, $29, $70, $3a, $3d, $1c, $5e, $13, $17, $3b, $18, $2a, $0a, $0c, $4b, $70, $24, $2f, $38, $2f, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の れんしょうきろくは"
+	line ""
+	textfw0 "<RAMNUM>", "で とまりました"
+	done
 
 Text07a7:
-	db $0c, $00
+	textfw0 "<RAMNUM>"
+	done
 
 Text07a8:
-	db $1d, $20, $5f, $2c, $3b, $78, $39, $00
+	textfw0 "スタッフロール"
+	done
 
 Text07a9:
-	db $04, $22, $70, $04, $23, $70, $04, $10, $70, $04, $15, $70, $04, $15, $00
+	textfw4 "S"
+	textfw0 " "
+	textfw4 "T"
+	textfw0 " "
+	textfw4 "A"
+	textfw0 " "
+	textfw4 "F"
+	textfw0 " "
+	textfw4 "F"
+	done
 
 Text07aa:
-	db $54, $3b, $4b, $5d, $78, $1b, $78, $00
+	textfw0 "プロデューサー"
+	done
 
 Text07ab:
-	db $0e, $12, $1c, $2a, $37, $70, $22, $28, $16, $45, $0a, $25, $16, $33, $24, $70, $1c, $3d, $12, $21, $0a, $2a, $37, $48, $70, $20, $16, $2b, $3b, $00
+	hiragana "いしはら つねかず"
+	line ""
+	textfw0 "なかもと しんいち"
+	line ""
+	textfw0 "はらだ たかひろ"
+	done
 
 Text07ac:
-	db $4b, $58, $3a, $18, $20, $78, $00
+	textfw0 "ディレクター"
+	done
 
 Text07ad:
-	db $0e, $11, $37, $12, $70, $1a, $13, $44, $00
+	hiragana "あらい こうじ"
+	done
 
 Text07ae:
-	db $0e, $15, $2a, $25, $1c, $00
+	hiragana "おはなし"
+	done
 
 Text07af:
-	db $0e, $2c, $44, $20, $70, $23, $39, $35, $17, $00
+	hiragana "ふじた てるゆき"
+	done
 
 Text07b0:
-	db $54, $37, $3d, $25, $78, $00
+	textfw0 "プランナー"
+	done
 
 Text07b1:
-	db $0e, $17, $20, $31, $37, $70, $36, $1c, $2f, $1b, $00
+	hiragana "きたむら よしまさ"
+	done
 
 Text07b2:
-	db $54, $3b, $40, $37, $31, $00
+	textfw0 "プログラム"
+	done
 
 Text07b3:
-	db $0e, $24, $4e, $20, $70, $2f, $1b, $2b, $3b, $00
+	hiragana "とびた まさひろ"
+	done
 
 Text07b4:
-	db $0e, $22, $33, $38, $70, $2f, $1b, $17, $0a, $1a, $3d, $4c, $13, $70, $19, $12, $0a, $36, $1c, $48, $70, $2f, $1a, $24, $00
+	hiragana "つもり まさき"
+	line ""
+	textfw0 "こんどう けい"
+	line ""
+	textfw0 "よしだ まこと"
+	done
 
 Text07b5:
-	db $0e, $30, $16, $30, $70, $1b, $24, $1c, $00
+	hiragana "みかみ さとし"
+	done
 
 Text07b6:
-	db $04, $16, $04, $11, $40, $37, $2c, $58, $5f, $18, $4b, $43, $12, $3d, $00
+	textfw4 "GB"
+	textfw0 "グラフィックデザイン"
+	done
 
 Text07b7:
-	db $0e, $12, $21, $43, $3c, $70, $34, $1d, $2b, $3b, $00
+	hiragana "いちざわ やすひろ"
+	done
 
 Text07b8:
-	db $0e, $34, $2f, $33, $24, $70, $22, $40, $35, $17, $0a, $2f, $22, $48, $70, $2f, $38, $00
+	hiragana "やまもと つぐゆき"
+	line ""
+	textfw0 "まつだ まり"
+	done
 
 Text07b9:
-	db $0e, $34, $2f, $40, $21, $70, $33, $24, $0a, $1a, $13, $1b, $16, $70, $16, $45, $1c, $0a, $1b, $24, $13, $70, $1c, $41, $39, $0a, $26, $1c, $17, $70, $21, $11, $17, $00
+	hiragana "やまぐち もと"
+	line ""
+	textfw0 "こうさか かずし"
+	line ""
+	textfw0 "さとう しげる"
+	line ""
+	textfw0 "にしき ちあき"
+	done
 
 Text07ba:
-	db $0e, $1f, $13, $2f, $70, $2b, $4b, $17, $00
+	hiragana "そうま ひでき"
+	done
 
 Text07bb:
-	db $1b, $13, $3d, $4c, $4b, $58, $3a, $18, $1c, $5e, $3d, $00
+	textfw0 "サウンドディレクション"
+	done
 
 Text07bc:
-	db $0e, $20, $17, $33, $24, $70, $24, $1c, $11, $17, $00
+	hiragana "たきもと としあき"
+	done
 
 Text07bd:
-	db $30, $5d, $78, $44, $5f, $18, $00
+	textfw0 "ミュージック"
+	done
 
 Text07be:
-	db $0e, $1c, $2f, $18, $37, $70, $12, $21, $3b, $13, $00
+	hiragana "しまくら いちろう"
+	done
 
 Text07bf:
-	db $30, $5d, $78, $44, $5f, $18, $54, $3b, $40, $37, $31, $00
+	textfw0 "ミュージックプログラム"
+	done
 
 Text07c0:
-	db $0e, $2e, $1c, $70, $19, $12, $20, $00
+	hiragana "ほし けいた"
+	done
 
 Text07c1:
-	db $1b, $13, $3d, $4c, $14, $2c, $5a, $18, $24, $00
+	textfw0 "サウンドエフェクト"
+	done
 
 Text07c2:
-	db $0e, $1c, $2f, $18, $37, $70, $12, $21, $3b, $13, $0a, $11, $12, $2a, $37, $70, $2f, $1b, $24, $00
+	hiragana "しまくら いちろう"
+	line ""
+	textfw0 "あいはら まさと"
+	done
 
 Text07c3:
-	db $1b, $13, $3d, $4c, $1b, $56, $78, $24, $00
+	textfw0 "サウンドサポート"
+	done
 
 Text07c4:
-	db $0e, $20, $16, $2a, $1c, $70, $16, $22, $29, $38, $0a, $15, $16, $70, $2b, $4b, $17, $00
+	hiragana "たかはし かつのり"
+	line ""
+	textfw0 "おか ひでき"
+	done
 
 Text07c5:
-	db $16, $78, $4c, $41, $78, $31, $0e, $1e, $12, $1b, $18, $00
+	textfw0 "カードゲーム"
+	hiragana "せいさく"
+	done
 
 Text07c6:
-	db $0e, $11, $16, $4d, $28, $70, $20, $18, $30, $00
+	hiragana "あかばね たくみ"
+	done
 
 Text07c7:
-	db $0e, $15, $15, $34, $2f, $70, $1a, $13, $12, $21, $00
+	hiragana "おおやま こういち"
+	done
 
 Text07c8:
-	db $0e, $30, $13, $37, $70, $11, $17, $2b, $1a, $00
+	hiragana "みうら あきひこ"
+	done
 
 Text07c9:
-	db $16, $78, $4c, $77, $12, $37, $1d, $24, $3a, $78, $20, $78, $00
+	textfw0 "カード・イラストレーター"
+	done
 
 Text07ca:
-	db $0e, $1d, $3f, $33, $38, $70, $19, $3d, $0a, $36, $1c, $48, $70, $2b, $3b, $29, $4f, $0a, $26, $1c, $48, $70, $11, $22, $1a, $0a, $11, $38, $20, $70, $30, $22, $2b, $3b, $00
+	hiragana "すぎもり けん"
+	line ""
+	textfw0 "よしだ ひろのぶ"
+	line ""
+	textfw0 "にしだ あつこ"
+	line ""
+	textfw0 "ありた みつひろ"
+	done
 
 Text07cb:
-	db $0e, $17, $28, $4f, $21, $70, $19, $12, $44, $0a, $2b, $32, $29, $70, $16, $41, $2f, $39, $0a, $20, $25, $16, $70, $30, $17, $0a, $17, $4a, $17, $70, $1d, $30, $36, $1c, $00
+	hiragana "きねぶち けいじ"
+	line ""
+	textfw0 "ひめの かげまる"
+	line ""
+	textfw0 "たなか みき"
+	line ""
+	textfw0 "きづき すみよし"
+	done
 
 Text07cc:
-	db $0e, $36, $1c, $48, $70, $1c, $3d, $12, $21, $0a, $17, $31, $37, $70, $25, $15, $36, $0a, $18, $1d, $50, $70, $11, $34, $0a, $1a, $30, $34, $70, $24, $33, $16, $45, $00
+	hiragana "よしだ しんいち"
+	line ""
+	textfw0 "きむら なおよ"
+	line ""
+	textfw0 "くすべ あや"
+	line ""
+	textfw0 "こみや ともかず"
+	done
 
 Text07cd:
-	db $0e, $1a, $12, $19, $70, $2b, $16, $39, $0a, $2a, $4f, $70, $29, $4f, $35, $17, $0a, $4d, $4d, $70, $35, $17, $1a, $0a, $34, $2f, $1c, $20, $70, $2f, $1b, $1a, $00
+	hiragana "こいけ ひかる"
+	line ""
+	textfw0 "はぶ のぶゆき"
+	line ""
+	textfw0 "ばば ゆきこ"
+	line ""
+	textfw0 "やました まさこ"
+	done
 
 Text07ce:
-	db $0e, $18, $38, $2a, $37, $70, $11, $12, $0a, $2f, $22, $48, $70, $16, $1d, $30, $0a, $20, $16, $2a, $1c, $70, $19, $12, $20, $0a, $16, $3c, $31, $37, $70, $35, $13, $17, $00
+	hiragana "くりはら あい"
+	line ""
+	textfw0 "まつだ かすみ"
+	line ""
+	textfw0 "たかはし けいた"
+	line ""
+	textfw0 "かわむら ゆうき"
+	done
 
 Text07cf:
-	db $0e, $26, $1c, $2a, $37, $70, $16, $45, $2b, $1a, $0a, $11, $15, $17, $70, $24, $1c, $25, $15, $0a, $12, $24, $13, $70, $50, $26, $2f, $39, $0a, $1d, $3f, $34, $2f, $70, $2b, $3b, $30, $21, $00
+	hiragana "にしはら かずひこ"
+	line ""
+	textfw0 "あおき としなお"
+	line ""
+	textfw0 "いとう べにまる"
+	line ""
+	textfw0 "すぎやま ひろみち"
+	done
 
 Text07d0:
-	db $0e, $1c, $5d, $22, $14, $3d, $70, $17, $5e, $13, $38, $5e, $18, $00
+	hiragana "しゅつえん きょうりょく"
+	done
 
 Text07d1:
-	db $12, $2f, $18, $26, $6f, $0a, $0e, $16, $3c, $31, $37, $70, $18, $26, $30, $0a, $34, $2f, $40, $21, $70, $38, $5d, $13, $20, $3b, $13, $0a, $18, $39, $1c, $2f, $70, $35, $13, $1d, $19, $00
+	textfw0 "イマクニ?"
+	line ""
+	hiragana "かわむら くにみ"
+	line ""
+	textfw0 "やまぐち りゅうたろう"
+	line ""
+	textfw0 "くるしま ゆうすけ"
+	done
 
 Text07d2:
-	db $2f, $1d, $20, $38, $3d, $40, $00
+	textfw0 "マスタリング"
+	done
 
 Text07d3:
-	db $0e, $1a, $2f, $22, $70, $23, $22, $34, $00
+	hiragana "こまつ てつや"
+	done
 
 Text07d4:
-	db $2f, $26, $5d, $11, $39, $0e, $1e, $12, $1b, $18, $00
+	textfw0 "マニュアル"
+	hiragana "せいさく"
+	done
 
 Text07d5:
-	db $0e, $30, $20, $26, $70, $2a, $39, $17, $0a, $1e, $43, $17, $70, $2b, $4b, $29, $38, $00
+	hiragana "みたに はるき"
+	line ""
+	textfw0 "せざき ひでのり"
+	done
 
 Text07d6:
-	db $2f, $26, $5d, $11, $39, $12, $37, $1d, $24, $00
+	textfw0 "マニュアルイラスト"
+	done
 
 Text07d7:
-	db $0e, $2b, $32, $29, $70, $16, $41, $2f, $39, $00
+	hiragana "ひめの かげまる"
+	done
 
 Text07d8:
-	db $52, $5f, $19, $78, $44, $11, $78, $24, $3c, $78, $18, $00
+	textfw0 "パッケージアートワーク"
+	done
 
 Text07d9:
-	db $0e, $16, $43, $2f, $70, $2b, $4b, $17, $00
+	hiragana "かざま ひでき"
+	done
 
 Text07da:
-	db $56, $19, $5f, $24, $33, $3d, $1d, $20, $78, $0e, $41, $3d, $1b, $18, $00
+	textfw0 "ポケットモンスター"
+	hiragana "げんさく"
+	done
 
 Text07db:
-	db $0e, $20, $44, $38, $70, $1b, $24, $1c, $00
+	hiragana "たじり さとし"
+	done
 
 Text07dc:
-	db $0e, $1e, $12, $1b, $18, $17, $5e, $13, $38, $5e, $18, $00
+	hiragana "せいさくきょうりょく"
+	done
 
 Text07dd:
-	db $0e, $2a, $20, $29, $70, $1c, $3d, $44, $0a, $34, $2f, $24, $70, $1b, $24, $1c, $00
+	hiragana "はたの しんじ"
+	line ""
+	textfw0 "やまと さとし"
+	done
 
 Text07de:
-	db $0e, $17, $5e, $13, $38, $5e, $18, $00
+	hiragana "きょうりょく"
+	done
 
 Text07df:
-	db $0e, $20, $16, $2a, $1c, $70, $29, $4f, $21, $16, $0a, $26, $1c, $48, $70, $48, $12, $1b, $18, $0a, $22, $18, $48, $70, $36, $1c, $2a, $39, $00
+	hiragana "たかはし のぶちか"
+	line ""
+	textfw0 "にしだ だいさく"
+	line ""
+	textfw0 "つくだ よしはる"
+	done
 
 Text07e0:
-	db $0e, $2e, $1b, $16, $70, $1b, $24, $1c, $0a, $24, $30, $20, $70, $35, $17, $1a, $00
+	hiragana "ほさか さとし"
+	line ""
+	textfw0 "とみた ゆきこ"
+	done
 
 Text07e1:
-	db $0e, $15, $15, $1b, $3c, $70, $24, $15, $39, $0a, $1a, $3e, $28, $43, $3c, $70, $29, $4f, $24, $00
+	hiragana "おおさわ とおる"
+	line ""
+	textfw0 "こがねざわ のぶと"
+	done
 
 Text07e2:
-	db $0e, $30, $16, $30, $70, $2b, $3b, $35, $17, $0a, $16, $22, $17, $70, $18, $3d, $44, $00
+	hiragana "みかみ ひろゆき"
+	line ""
+	textfw0 "かつき くんじ"
+	done
 
 Text07e3:
-	db $0e, $34, $1d, $48, $70, $19, $12, $42, $0a, $38, $5f, $21, $70, $13, $58, $39, $1f, $3d, $00
+	hiragana "やすだ けいご"
+	line ""
+	textfw0 "りっち うぃるそん"
+	done
 
 Text07e4:
-	db $70, $70, $70, $70, $70, $0e, $18, $26, $2b, $1a, $00
+	textfw0 "     "
+	hiragana "くにひこ"
+	done
 
 Text07e5:
-	db $18, $38, $78, $21, $5c, $78, $45, $70, $00
+	textfw0 "クリーチャーズ "
+	done
 
 Text07e6:
-	db $16, $78, $4c, $41, $78, $31, $70, $70, $70, $00
+	textfw0 "カードゲーム   "
+	done
 
 Text07e7:
-	db $70, $70, $70, $0e, $1e, $12, $1b, $18, $1c, $22, $00
+	textfw0 "   "
+	hiragana "せいさくしつ"
+	done
 
 Text07e8:
-	db $23, $1d, $24, $54, $3a, $12, $34, $78, $45, $00
+	textfw0 "テストプレイヤーズ"
+	done
 
 Text07e9:
-	db $54, $3b, $44, $5a, $18, $24, $2f, $28, $78, $44, $5c, $78, $00
+	textfw0 "プロジェクトマネージャー"
+	done
 
 Text07ea:
-	db $0e, $16, $17, $1e, $1a, $70, $34, $1d, $20, $16, $00
+	hiragana "かきせこ やすたか"
+	done
 
 Text07eb:
-	db $1d, $78, $52, $78, $4d, $12, $43, $78, $00
+	textfw0 "スーパーバイザー"
+	done
 
 Text07ec:
-	db $0e, $18, $4c, $13, $70, $2b, $3b, $1c, $00
+	hiragana "くどう ひろし"
+	done
 
 Text07ed:
-	db $14, $40, $46, $18, $23, $58, $4f, $54, $3b, $4b, $5d, $78, $1b, $78, $00
+	textfw0 "エグゼクティブプロデューサー"
+	done
 
 Text07ee:
-	db $0e, $34, $2f, $13, $21, $70, $2b, $3b, $1c, $00
+	hiragana "やまうち ひろし"
+	done
 
 Text07ef:
-	db $41, $78, $31, $0e, $1e, $12, $1b, $18, $00
+	textfw0 "ゲーム"
+	hiragana "せいさく"
+	done
 
 Text07f0:
-	db $2a, $70, $4c, $70, $1f, $70, $3d, $00
+	textfw0 "ハ ド ソ ン"
+	done
 
 Text07f1:
-	db $04, $23, $04, $1e, $70, $04, $11, $04, $14, $70, $04, $12, $04, $1e, $04, $1d, $04, $23, $04, $18, $04, $1d, $04, $24, $04, $14, $04, $13, $00
+	textfw4 "TO"
+	textfw0 " "
+	textfw4 "BE"
+	textfw0 " "
+	textfw4 "CONTINUED"
+	done
 
 Text07f2:
-	db $0e, $25, $2f, $14, $26, $5d, $13, $38, $5e, $18, $00
+	hiragana "なまえにゅうりょく"
+	done
 
 Text07f3:
-	db $04, $10, $51, $20, $3d, $0e, $10, $02, $61, $1c, $23, $18, $48, $1b, $12, $00
+	textfw4 "A"
+	textfw0 "ボタン"
+	hiragana "を"
+	textfw2 "押"
+	textfw0 "してください"
+	done
 
 Text07f4:
-	db $0e, $16, $16, $38, $12, $3d, $00
+	hiragana "かかりいん"
+	done
 
 Text07f5:
-	db $32, $78, $39, $18, $38, $11, $00
+	textfw0 "メールクリア"
+	done
 
 Text07f6:
-	db $0c, $84, $0e, $32, $29, $04, $16, $04, $21, $0f, $1a, $12, $3d, $0e, $29, $0f, $16, $19, $37, $0e, $4b, $1d, $6e, $00
+	textfw0 "<RAMNUM>", "枚"
+	hiragana "めの"
+	textfw4 "GR"
+	katakana "コイン"
+	hiragana "の"
+	katakana "カケラ"
+	hiragana "です!"
+	done
 
 Text07f7:
-	db $82, $81, $0e, $10, $34, $32, $39, $24, $70, $3a, $3d, $1c, $5e, $13, $17, $3b, $18, $3e, $0a, $24, $2f, $39, $1a, $24, $26, $70, $25, $38, $2f, $1d, $00
+	textfw0 "対戦"
+	hiragana "をやめると れんしょうきろくが"
+	line ""
+	textfw0 "とまることに なります"
+	done
 
 Text07f8:
-	db $0e, $1f, $3a, $4b, $33, $70, $82, $81, $10, $34, $32, $2f, $1d, $16, $6f, $00
+	hiragana "それでも 対戦をやめますか?"
+	done
 
 Text07f9:
-	db $0e, $15, $32, $4b, $24, $13, $42, $43, $12, $2f, $1d, $0a, $65, $88, $90, $21, $27, $17, $70, $1e, $12, $1a, $13, $4b, $1d, $6e, $00
+	hiragana "おめでとうございます"
+	line ""
+	textfw0 "5人勝ちぬき せいこうです!"
+	done
 
 Text07fa:
-	db $09, $70, $65, $88, $90, $0e, $21, $27, $17, $70, $1e, $12, $1a, $13, $0a, $0c, $97, $b8, $6e, $6e, $00
+	textfw0 "<RAMNAME>", " 5人勝"
+	hiragana "ちぬき せいこう"
+	line ""
+	textfw0 "<RAMNUM>", "回目!!"
+	done
 
 Text07fb:
-	db $0e, $1f, $3a, $4b, $2a, $70, $22, $3f, $29, $0a, $0f, $21, $5c, $3a, $3d, $44, $0e, $10, $70, $15, $2f, $21, $1c, $23, $15, $38, $2f, $1d, $00
+	hiragana "それでは つぎの"
+	line ""
+	katakana "チャレンジ"
+	hiragana "を おまちしております"
+	done
 
 Text07fc:
-	db $09, $0e, $2a, $0a, $bb, $be, $0f, $52, $5f, $18, $0e, $29, $25, $16, $10, $70, $30, $20, $6e, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	textfw0 "拡", "FW0_be"
+	katakana "パック"
+	hiragana "のなかを みた!!"
+	done
 
 Text07fd:
-	db $16, $78, $4c, $0e, $29, $2f, $12, $1d, $13, $3e, $70, $60, $84, $4b, $1d, $0a, $33, $13, $12, $21, $4c, $70, $14, $37, $4e, $25, $15, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "カード"
+	hiragana "のまいすうが 0枚です"
+	line ""
+	textfw0 "もういちど えらびなおしてください"
+	done
 
 Text07fe:
-	db $0e, $19, $5f, $16, $2a, $0f, $32, $78, $39, $51, $5f, $18, $1d, $0e, $26, $70, $24, $4c, $17, $2f, $1d, $0a, $15, $20, $29, $1c, $30, $26, $6e, $00
+	hiragana "けっかは"
+	katakana "メールボックス"
+	hiragana "に とどきます"
+	line ""
+	textfw0 "おたのしみに!"
+	done
 
 Text07ff:
-	db $48, $30, $78, $01, $92, $0e, $48, $36, $0a, $0a, $00
+	textfw0 "ダミー"
+	textfw1 "FW1_92"
+	hiragana "だよ"
+	line ""
+	line ""
+	done
 
 Text0800:
-	db $04, $28, $04, $1e, $04, $22, $04, $17, $04, $18, $04, $13, $04, $10, $70, $04, $13, $04, $14, $04, $11, $04, $24, $04, $16, $70, $04, $1c, $04, $14, $04, $1d, $04, $24, $00
+	textfw4 "YOSHIDA"
+	textfw0 " "
+	textfw4 "DEBUG"
+	textfw0 " "
+	textfw4 "MENU"
+	done
 
 Text0801:
-	db $70, $70, $1c, $25, $38, $15, $70, $4b, $4d, $5f, $40, $70, $32, $26, $5d, $78, $00
+	textfw0 "  シナリオ デバッグ メニュー"
+	done
 
 Text0802:
-	db $12, $50, $3d, $24, $0e, $10, $01, $22, $df, $1d, $39, $00
+	textfw0 "イベント"
+	hiragana "を"
+	textfw1 "操"
+	textfw0 "作する"
+	done
 
 Text0803:
-	db $2c, $37, $40, $0e, $10, $01, $22, $df, $1d, $39, $00
+	textfw0 "フラグ"
+	hiragana "を"
+	textfw1 "操"
+	textfw0 "作する"
+	done
 
 Text0804:
-	db $16, $13, $3d, $20, $0e, $10, $01, $22, $df, $1d, $39, $00
+	textfw0 "カウンタ"
+	hiragana "を"
+	textfw1 "操"
+	textfw0 "作する"
+	done
 
 Text0805:
-	db $16, $78, $4c, $84, $a9, $0e, $10, $01, $22, $df, $1d, $39, $00
+	textfw0 "カード枚", "FW0_a9"
+	hiragana "を"
+	textfw1 "操"
+	textfw0 "作する"
+	done
 
 Text0806:
-	db $41, $78, $31, $0e, $26, $33, $4c, $39, $00
+	textfw0 "ゲーム"
+	hiragana "にもどる"
+	done
 
 Text0807:
-	db $2c, $37, $40, $70, $04, $1d, $04, $46, $04, $5d, $00
+	textfw0 "フラグ "
+	textfw4 "Nоˍ"
+	done
 
 Text0808:
-	db $70, $04, $1e, $04, $1d, $00
+	textfw0 " "
+	textfw4 "ON"
+	done
 
 Text0809:
-	db $04, $1e, $04, $15, $04, $15, $00
+	textfw4 "OFF"
+	done
 
 Text080a:
-	db $16, $13, $3d, $20, $70, $04, $1d, $04, $46, $04, $5d, $00
+	textfw0 "カウンタ "
+	textfw4 "Nоˍ"
+	done
 
 Text080b:
-	db $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $00
+	textfw0 "                    "
+	done
 
 Text080c:
-	db $16, $78, $4c, $04, $1d, $04, $46, $04, $5d, $0c, $00
+	textfw0 "カード"
+	textfw4 "Nоˍ", "<RAMNUM>"
+	done
 
 Text080d:
-	db $04, $50, $0b, $04, $51, $00
+	textfw4 "【", "<RAMTEXT>", "】"
+	done
 
 Text080e:
-	db $04, $15, $70, $70, $70, $70, $04, $13, $70, $70, $70, $70, $04, $23, $00
+	textfw4 "F"
+	textfw0 "    "
+	textfw4 "D"
+	textfw0 "    "
+	textfw4 "T"
+	done
 
 Text080f:
-	db $41, $78, $31, $18, $38, $11, $03, $1c, $ab, $0e, $26, $1d, $39, $00
+	textfw0 "ゲームクリア"
+	textfw3 "FW3_1c"
+	textfw0 "後"
+	hiragana "にする"
+	done

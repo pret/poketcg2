@@ -1,950 +1,2356 @@
 Text0001:
-	db $0e, $23, $2c, $48, $00
+	hiragana "てふだ"
+	done
 
 Text0002:
-	db $0e, $1c, $37, $50, $39, $00
+	hiragana "しらべる"
+	done
 
 Text0003:
-	db $3c, $70, $43, $00
+	textfw0 "ワ ザ"
+	done
 
 Text0004:
-	db $0e, $24, $18, $1c, $5d, $00
+	hiragana "とくしゅ"
+	done
 
 Text0005:
-	db $0e, $15, $3c, $38, $00
+	hiragana "おわり"
+	done
 
 Text0006:
-	db $a3, $00
+	textfw0 "色"
+	done
 
 Text0007:
-	db $0e, $26, $41, $39, $00
+	hiragana "にげる"
+	done
 
 Text0008:
-	db $b1, $b2, $00
+	textfw0 "弱点"
+	done
 
 Text0009:
-	db $ba, $b9, $8d, $00
+	textfw0 "抵抗力"
+	done
 
 Text000a:
-	db $c0, $c1, $c2, $8d, $00
+	textfw0 "特殊能力"
+	done
 
 Text000b:
-	db $56, $19, $33, $3d, $16, $78, $4c, $00
+	textfw0 "ポケモンカード"
+	done
 
 Text000c:
-	db $d9, $f7, $00
+	textfw0 "身長"
+	done
 
 Text000d:
-	db $b7, $01, $77, $00
+	textfw0 "体"
+	textfw1 "重"
+	done
 
 Text000e:
-	db $56, $19, $33, $3d, $00
+	textfw0 "ポケモン"
+	done
 
 Text000f:
-	db $04, $36, $00
+	textfw4 "m"
+	done
 
 Text0010:
-	db $04, $1a, $04, $30, $00
+	textfw4 "Kg"
+	done
 
 Text0011:
-	db $70, $00
+	textfw0 " "
+	done
 
 Text0012:
-	db $04, $53, $00
+	textfw4 "●"
+	done
 
 Text0013:
-	db $04, $54, $00
+	textfw4 "◆"
+	done
 
 Text0014:
-	db $04, $55, $00
+	textfw4 "★"
+	done
 
 Text0015:
-	db $04, $56, $00
+	textfw4 "☆"
+	done
 
 Text0016:
-	db $0e, $29, $33, $5f, $23, $12, $39, $c5, $0f, $16, $78, $4c, $00
+	hiragana "のもっている全"
+	katakana "カード"
+	done
 
 Text0017:
-	db $16, $78, $4c, $0e, $29, $42, $13, $19, $12, $70, $70, $70, $70, $70, $70, $70, $70, $70, $84, $00
+	textfw0 "カード"
+	hiragana "のごうけい         枚"
+	done
 
 Text0018:
-	db $16, $78, $4c, $0e, $29, $1c, $5d, $39, $12, $70, $70, $70, $70, $70, $70, $70, $70, $70, $01, $6d, $00
+	textfw0 "カード"
+	hiragana "のしゅるい         "
+	textfw1 "種"
+	done
 
 Text0019:
-	db $cd, $56, $19, $33, $3d, $00
+	textfw0 "草ポケモン"
+	done
 
 Text001a:
-	db $a8, $56, $19, $33, $3d, $00
+	textfw0 "炎ポケモン"
+	done
 
 Text001b:
-	db $aa, $56, $19, $33, $3d, $00
+	textfw0 "水ポケモン"
+	done
 
 Text001c:
-	db $c8, $56, $19, $33, $3d, $00
+	textfw0 "雷ポケモン"
+	done
 
 Text001d:
-	db $d2, $56, $19, $33, $3d, $00
+	textfw0 "闘ポケモン"
+	done
 
 Text001e:
-	db $b3, $56, $19, $33, $3d, $00
+	textfw0 "超ポケモン"
+	done
 
 Text001f:
-	db $a5, $a3, $56, $19, $33, $3d, $00
+	textfw0 "無色ポケモン"
+	done
 
 Text0020:
-	db $24, $3a, $78, $25, $78, $16, $78, $4c, $00
+	textfw0 "トレーナーカード"
+	done
 
 Text0021:
-	db $14, $28, $39, $3f, $78, $16, $78, $4c, $00
+	textfw0 "エネルギーカード"
+	done
 
 Text0022:
-	db $4b, $5f, $17, $00
+	textfw0 "デッキ"
+	done
 
 Text0023:
-	db $0e, $29, $1a, $13, $41, $17, $00
+	hiragana "のこうげき"
+	done
 
 Text0024:
-	db $ac, $0e, $14, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $12, $2f, $1e, $3d, $00
+	textfw0 "控"
+	hiragana "え"
+	katakana "ポケモン"
+	hiragana "が いません"
+	done
 
 Text0025:
-	db $73, $0e, $28, $31, $38, $74, $95, $99, $25, $29, $4b, $70, $4b, $17, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "ねむり」状態なので できません"
+	done
 
 Text0026:
-	db $73, $2f, $2b, $74, $95, $99, $0e, $25, $29, $4b, $70, $4b, $17, $2f, $1e, $3d, $00
+	textfw0 "「マヒ」状態"
+	hiragana "なので できません"
+	done
 
 Text0027:
-	db $0b, $0e, $2a, $0a, $73, $4c, $18, $74, $95, $99, $25, $29, $4b, $70, $0c, $0f, $48, $32, $78, $44, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "「どく」状態なので ", "<RAMNUM>"
+	katakana "ダメージ"
+	done
 
 Text0028:
-	db $0b, $0e, $2a, $0a, $73, $4c, $18, $4c, $18, $74, $95, $99, $25, $29, $4b, $70, $0c, $0f, $48, $32, $78, $44, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "「どくどく」状態なので ", "<RAMNUM>"
+	katakana "ダメージ"
+	done
 
 Text0029:
-	db $0b, $0e, $2a, $0a, $28, $31, $38, $70, $22, $4a, $19, $23, $12, $39, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "ねむり つづけている"
+	done
 
 Text002a:
-	db $0b, $0e, $2a, $0a, $28, $31, $38, $16, $37, $70, $1b, $32, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "ねむりから さめた"
+	done
 
 Text002b:
-	db $0b, $0e, $2a, $0a, $0f, $2f, $2b, $0e, $3e, $70, $24, $19, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	katakana "マヒ"
+	hiragana "が とけた"
+	done
 
 Text002c:
-	db $56, $19, $33, $3d, $21, $5a, $5f, $18, $0e, $10, $1c, $2f, $1d, $00
+	textfw0 "ポケモンチェック"
+	hiragana "をします"
+	done
 
 Text002d:
-	db $0e, $22, $16, $14, $25, $12, $95, $99, $4b, $1d, $00
+	hiragana "つかえない状態です"
+	done
 
 Text002e:
-	db $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "エネルギーカード"
+	hiragana "が ありません"
+	done
 
 Text002f:
-	db $0e, $1a, $3a, $4b, $70, $12, $12, $4b, $1d, $16, $6f, $00
+	hiragana "これで いいですか?"
+	done
 
 Text0030:
-	db $0e, $2a, $12, $70, $70, $12, $12, $14, $00
+	hiragana "はい  いいえ"
+	done
 
 Text0031:
-	db $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $00
+	textfw0 "トラッシュ"
+	hiragana "する"
+	done
 
 Text0032:
-	db $01, $87, $01, $86, $ee, $00
+	textfw1 "FW1_87", "FW1_86"
+	textfw0 "成"
+	done
 
 Text0033:
-	db $48, $32, $78, $44, $00
+	textfw0 "ダメージ"
+	done
 
 Text0034:
-	db $0b, $0e, $10, $0a, $22, $16, $12, $2f, $1d, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "を"
+	line ""
+	textfw0 "つかいます"
+	done
 
 Text0035:
-	db $48, $32, $78, $44, $0e, $10, $70, $13, $19, $20, $00
+	textfw0 "ダメージ"
+	hiragana "を うけた"
+	done
 
 Text0036:
-	db $0b, $0e, $29, $0a, $0b, $6e, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "の"
+	line ""
+	textfw0 "<RAMTEXT>", "!"
+	done
 
 Text0037:
-	db $0b, $0e, $2a, $0a, $ba, $b9, $8d, $4b, $70, $0c, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "抵抗力で ", "<RAMNUM>"
+	katakana "ダメージ"
+	hiragana "を うけた"
+	done
 
 Text0038:
-	db $0b, $0e, $2a, $0a, $b1, $b2, $4b, $70, $0c, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "弱点で ", "<RAMNUM>"
+	katakana "ダメージ"
+	hiragana "を うけた"
+	done
 
 Text0039:
-	db $0b, $0e, $2a, $0a, $b1, $b2, $25, $4c, $4b, $70, $0c, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "弱点などで ", "<RAMNUM>"
+	katakana "ダメージ"
+	hiragana "を うけた"
+	done
 
 Text003a:
-	db $0b, $0e, $2a, $0a, $ba, $b9, $8d, $4b, $70, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $25, $16, $5f, $20, $6e, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "抵抗力で "
+	katakana "ダメージ"
+	hiragana "を うけなかった!"
+	done
 
 Text003b:
-	db $0b, $0e, $2a, $0a, $0c, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "<RAMNUM>"
+	katakana "ダメージ"
+	hiragana "を うけた"
+	done
 
 Text003c:
-	db $0b, $0e, $2a, $0a, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $25, $16, $5f, $20, $6e, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	katakana "ダメージ"
+	hiragana "を うけなかった!"
+	done
 
 Text003d:
-	db $0e, $1e, $3d, $20, $18, $4b, $17, $39, $0f, $3c, $43, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	hiragana "せんたくできる"
+	katakana "ワザ"
+	hiragana "が ありません"
+	done
 
 Text003e:
-	db $0e, $26, $41, $37, $3a, $25, $12, $00
+	hiragana "にげられない"
+	done
 
 Text003f:
-	db $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $2a, $0a, $44, $4f, $3d, $29, $98, $26, $2a, $70, $61, $84, $1c, $16, $70, $48, $1e, $2f, $1e, $3d, $00
+	textfw0 "エネルギーカード"
+	hiragana "は"
+	line ""
+	textfw0 "じぶんの番には 1枚しか だせません"
+	done
 
 Text0040:
-	db $0e, $1a, $29, $c0, $c1, $c2, $8d, $10, $70, $22, $16, $12, $2f, $1d, $16, $6f, $00
+	hiragana "この特殊能力を つかいますか?"
+	done
 
 Text0041:
-	db $0e, $1a, $29, $c0, $c1, $c2, $8d, $2a, $0a, $14, $37, $4f, $70, $2b, $22, $36, $13, $3e, $11, $38, $2f, $1e, $3d, $00
+	hiragana "この特殊能力は"
+	line ""
+	textfw0 "えらぶ ひつようがありません"
+	done
 
 Text0042:
-	db $8b, $8c, $0e, $29, $98, $29, $24, $17, $70, $1a, $29, $0f, $16, $78, $4c, $0e, $10, $0a, $0f, $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $1a, $24, $3e, $4b, $17, $39, $76, $0a, $1a, $3a, $2a, $73, $17, $46, $22, $74, $24, $0f, $16, $13, $3d, $24, $0e, $1b, $3a, $25, $12, $0a, $71, $1a, $29, $73, $0f, $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $74, $2a, $c0, $c1, $c2, $8d, $0a, $4b, $2a, $25, $12, $72, $00
+	textfw0 "自分"
+	hiragana "の番のとき この"
+	katakana "カード"
+	hiragana "を"
+	line ""
+	katakana "トラッシュ"
+	hiragana "することができる。"
+	line ""
+	textfw0 "これは「きぜつ」と"
+	katakana "カウント"
+	hiragana "されない"
+	line ""
+	textfw0 "(この「"
+	katakana "トラッシュ"
+	hiragana "する」は特殊能力"
+	line ""
+	textfw0 "ではない)"
+	done
 
 Text0043:
-	db $09, $0e, $2a, $0a, $0f, $1b, $12, $4c, $16, $78, $4c, $0e, $10, $0c, $84, $70, $2b, $17, $2f, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	katakana "サイドカード"
+	hiragana "を", "<RAMNUM>", "枚 ひきます"
+	done
 
 Text0044:
-	db $09, $0e, $2a, $0a, $0f, $1b, $12, $4c, $16, $78, $4c, $0e, $10, $0c, $84, $70, $2b, $17, $2f, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	katakana "サイドカード"
+	hiragana "を", "<RAMNUM>", "枚 ひきました"
+	done
 
 Text0045:
-	db $09, $0e, $2a, $70, $0f, $4d, $24, $39, $8e, $0e, $26, $0a, $0b, $10, $48, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は "
+	katakana "バトル場"
+	hiragana "に"
+	line ""
+	textfw0 "<RAMTEXT>", "をだした"
+	done
 
 Text0046:
-	db $0e, $1e, $3d, $20, $18, $4b, $17, $2f, $1e, $3d, $00
+	hiragana "せんたくできません"
+	done
 
 Text0047:
-	db $cd, $0a, $a8, $0a, $aa, $0a, $c8, $0a, $d2, $0a, $b3, $00
+	textfw0 "草"
+	line ""
+	textfw0 "炎"
+	line ""
+	textfw0 "水"
+	line ""
+	textfw0 "雷"
+	line ""
+	textfw0 "闘"
+	line ""
+	textfw0 "超"
+	done
 
 Text0048:
-	db $05, $02, $00
+	textfw0 "<GRASS>"
+	done
 
 Text0049:
-	db $05, $01, $00
+	textfw0 "<FIRE>"
+	done
 
 Text004a:
-	db $05, $04, $00
+	textfw0 "<WATER>"
+	done
 
 Text004b:
-	db $05, $03, $00
+	textfw0 "<LIGHTNING>"
+	done
 
 Text004c:
-	db $05, $05, $00
+	textfw0 "<FIGHTING>"
+	done
 
 Text004d:
-	db $05, $06, $00
+	textfw0 "<PSYCHIC>"
+	done
 
 Text004e:
-	db $50, $3d, $21, $00
+	textfw0 "ベンチ"
+	done
 
 Text004f:
-	db $0e, $17, $46, $22, $70, $70, $70, $70, $70, $70, $70, $70, $70, $00
+	hiragana "きぜつ         "
+	done
 
 Text0050:
-	db $0e, $3c, $19, $33, $3c, $16, $37, $45, $70, $7d, $7e, $7f, $10, $1a, $13, $41, $17, $6e, $6e, $00
+	hiragana "わけもわからず ", "FW0_7d", "FW0_7e", "FW0_7f", "をこうげき!!"
+	done
 
 Text0051:
-	db $0e, $2a, $3e, $1d, $70, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "はがす "
+	katakana "エネルギーカード"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text0052:
-	db $24, $37, $5f, $1c, $5d, $0e, $1d, $39, $70, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "トラッシュ"
+	hiragana "する "
+	katakana "エネルギーカード"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text0053:
-	db $4d, $24, $39, $8e, $0e, $29, $0f, $56, $19, $33, $3d, $0e, $3e, $75, $17, $46, $22, $1c, $2f, $1c, $20, $0a, $48, $1d, $70, $0f, $56, $19, $33, $3d, $0e, $10, $70, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "バトル場"
+	hiragana "の"
+	katakana "ポケモン"
+	hiragana "が、きぜつしました"
+	line ""
+	textfw0 "だす "
+	katakana "ポケモン"
+	hiragana "を えらんでください"
+	done
 
 Text0054:
-	db $0e, $44, $5d, $3d, $4e, $3e, $4b, $17, $20, $37, $70, $4c, $21, $37, $16, $3e, $0a, $04, $22, $04, $23, $04, $10, $04, $21, $04, $23, $0f, $51, $20, $3d, $0e, $10, $70, $15, $1c, $23, $18, $48, $1b, $12, $00
+	hiragana "じゅんびができたら どちらかが"
+	line ""
+	textfw4 "START"
+	katakana "ボタン"
+	hiragana "を おしてください"
+	done
 
 Text0055:
-	db $0e, $11, $25, $20, $2a, $70, $1e, $3d, $1a, $13, $4b, $1d, $00
+	hiragana "あなたは せんこうです"
+	done
 
 Text0056:
-	db $0e, $11, $25, $20, $2a, $70, $1a, $13, $1a, $13, $4b, $1d, $00
+	hiragana "あなたは こうこうです"
+	done
 
 Text0057:
-	db $bc, $ad, $14, $37, $78, $0e, $4b, $1d, $0a, $2a, $44, $32, $16, $37, $70, $34, $38, $25, $15, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "通信エラー"
+	hiragana "です"
+	line ""
+	textfw0 "はじめから やりなおしてください"
+	done
 
 Text0058:
-	db $0e, $1c, $37, $50, $39, $70, $0f, $16, $78, $4c, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "しらべる "
+	katakana "カード"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text0059:
-	db $0e, $22, $13, $1c, $3d, $9b, $4b, $1d, $00
+	hiragana "つうしん中です"
+	done
 
 Text005a:
-	db $0e, $20, $12, $17, $9b, $4b, $1d, $0a, $70, $70, $23, $2c, $48, $70, $70, $70, $1c, $37, $50, $39, $00
+	hiragana "たいき中です"
+	line ""
+	textfw0 "  てふだ   しらべる"
+	done
 
 Text005b:
-	db $50, $3d, $21, $56, $19, $33, $3d, $70, $0e, $1e, $3d, $20, $18, $9b, $0a, $70, $70, $23, $2c, $48, $70, $70, $70, $1c, $37, $50, $39, $70, $70, $33, $4c, $39, $00
+	textfw0 "ベンチポケモン "
+	hiragana "せんたく中"
+	line ""
+	textfw0 "  てふだ   しらべる  もどる"
+	done
 
 Text005c:
-	db $0b, $0e, $2a, $0a, $0f, $50, $3d, $21, $0e, $2d, $70, $26, $41, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	katakana "ベンチ"
+	hiragana "へ にげた"
+	done
 
 Text005d:
-	db $0b, $0e, $2a, $0a, $26, $41, $39, $29, $26, $70, $1c, $5f, $52, $12, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "にげるのに しっぱいした"
+	done
 
 Text005e:
-	db $0b, $0e, $2a, $c0, $c1, $c2, $8d, $0a, $0b, $10, $70, $22, $16, $12, $2f, $1d, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は特殊能力"
+	line ""
+	textfw0 "<RAMTEXT>", "を つかいます"
+	done
 
 Text005f:
-	db $3c, $43, $0e, $10, $70, $22, $16, $3c, $45, $26, $0a, $98, $10, $70, $1c, $5d, $13, $38, $5e, $13, $70, $1c, $20, $00
+	textfw0 "ワザ"
+	hiragana "を つかわずに"
+	line ""
+	textfw0 "番を しゅうりょう した"
+	done
 
 Text0060:
-	db $09, $0e, $29, $70, $98, $4b, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の 番です"
+	done
 
 Text0061:
-	db $0b, $0e, $10, $0a, $0b, $26, $70, $22, $19, $2f, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "を"
+	line ""
+	textfw0 "<RAMTEXT>", "に つけました"
+	done
 
 Text0062:
-	db $0b, $0e, $2a, $0a, $0b, $26, $70, $96, $93, $1c, $2f, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "<RAMTEXT>", "に 進化しました"
+	done
 
 Text0063:
-	db $0b, $0e, $10, $0a, $0f, $50, $3d, $21, $0e, $26, $70, $48, $1c, $2f, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "を"
+	line ""
+	katakana "ベンチ"
+	hiragana "に だしました"
+	done
 
 Text0064:
-	db $0b, $0e, $10, $0a, $0f, $4d, $24, $39, $8e, $0e, $26, $70, $48, $1c, $2f, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "を"
+	line ""
+	katakana "バトル場"
+	hiragana "に だしました"
+	done
 
 Text0065:
-	db $09, $0e, $29, $8f, $85, $10, $70, $36, $18, $17, $38, $2f, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の山札を よくきります"
+	done
 
 Text0066:
-	db $0e, $3a, $3d, $1c, $5d, $13, $25, $29, $4b, $70, $8f, $85, $10, $17, $38, $2f, $1e, $3d, $00
+	hiragana "れんしゅうなので 山札をきりません"
+	done
 
 Text0067:
-	db $0e, $15, $20, $3e, $12, $29, $8f, $85, $10, $70, $36, $18, $17, $38, $2f, $1d, $00
+	hiragana "おたがいの山札を よくきります"
+	done
 
 Text0068:
-	db $0e, $15, $20, $3e, $12, $26, $70, $67, $84, $45, $22, $2b, $17, $2f, $1d, $00
+	hiragana "おたがいに 7枚ずつひきます"
+	done
 
 Text0069:
-	db $09, $0e, $2a, $0a, $80, $85, $10, $67, $84, $2b, $17, $2f, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は"
+	line ""
+	textfw0 "手札を7枚ひきます"
+	done
 
 Text006a:
-	db $09, $0e, $29, $8f, $85, $2a, $70, $0c, $84, $4b, $1d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の山札は ", "<RAMNUM>", "枚です"
+	done
 
 Text006b:
-	db $4d, $24, $39, $8e, $0e, $26, $70, $48, $1d, $0a, $20, $28, $0f, $56, $19, $33, $3d, $0e, $10, $70, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "バトル場"
+	hiragana "に だす"
+	line ""
+	textfw0 "たね"
+	katakana "ポケモン"
+	hiragana "を えらんでください"
+	done
 
 Text006c:
-	db $09, $0e, $29, $70, $80, $85, $29, $9b, $26, $2a, $0a, $20, $28, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $4b, $1c, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の 手札の中には"
+	line ""
+	textfw0 "たね"
+	katakana "ポケモン"
+	hiragana "が ありませんでした"
+	done
 
 Text006d:
-	db $0e, $15, $20, $3e, $12, $26, $70, $80, $85, $29, $9b, $26, $2a, $0a, $20, $28, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $4b, $1c, $20, $00
+	hiragana "おたがいに 手札の中には"
+	line ""
+	textfw0 "たね"
+	katakana "ポケモン"
+	hiragana "が ありませんでした"
+	done
 
 Text006e:
-	db $8f, $85, $0e, $26, $70, $33, $4c, $1c, $23, $0a, $0f, $16, $78, $4c, $0e, $10, $2b, $17, $25, $15, $1c, $2f, $1d, $00
+	textfw0 "山札"
+	hiragana "に もどして"
+	line ""
+	katakana "カード"
+	hiragana "をひきなおします"
+	done
 
 Text006f:
-	db $50, $3d, $21, $0e, $26, $70, $48, $1d, $70, $20, $28, $0f, $56, $19, $33, $3d, $0e, $10, $0a, $0c, $2b, $17, $2f, $4b, $70, $14, $37, $50, $2f, $1d, $00
+	textfw0 "ベンチ"
+	hiragana "に だす たね"
+	katakana "ポケモン"
+	hiragana "を"
+	line ""
+	textfw0 "<RAMNUM>", "ひきまで えらべます"
+	done
 
 Text0070:
-	db $4d, $24, $39, $8e, $0e, $29, $0f, $56, $19, $33, $3d, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "バトル場"
+	hiragana "の"
+	katakana "ポケモン"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text0071:
-	db $50, $3d, $21, $0e, $29, $0f, $56, $19, $33, $3d, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "ベンチ"
+	hiragana "の"
+	katakana "ポケモン"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text0072:
-	db $0b, $0e, $10, $70, $2b, $12, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "を ひいた"
+	done
 
 Text0073:
-	db $0e, $1a, $29, $0f, $16, $78, $4c, $0e, $2a, $70, $14, $37, $50, $2f, $1e, $3d, $00
+	hiragana "この"
+	katakana "カード"
+	hiragana "は えらべません"
+	done
 
 Text0074:
-	db $1b, $12, $4c, $16, $78, $4c, $0e, $10, $70, $0f, $1e, $5f, $24, $0e, $1c, $2f, $1d, $00
+	textfw0 "サイドカード"
+	hiragana "を "
+	katakana "セット"
+	hiragana "します"
+	done
 
 Text0075:
-	db $0e, $15, $20, $3e, $12, $26, $0a, $0f, $1b, $12, $4c, $16, $78, $4c, $0e, $10, $70, $0c, $84, $0f, $1e, $5f, $24, $0e, $1c, $2f, $1d, $00
+	hiragana "おたがいに"
+	line ""
+	katakana "サイドカード"
+	hiragana "を ", "<RAMNUM>", "枚"
+	katakana "セット"
+	hiragana "します"
+	done
 
 Text0076:
-	db $73, $0e, $15, $33, $23, $74, $3e, $70, $4b, $3a, $4d, $0a, $0b, $29, $70, $1e, $3d, $1a, $13, $4b, $1d, $00
+	textfw0 "「"
+	hiragana "おもて」が でれば"
+	line ""
+	textfw0 "<RAMTEXT>", "の せんこうです"
+	done
 
 Text0077:
-	db $1a, $12, $3d, $0e, $10, $25, $41, $23, $0a, $1e, $3d, $1a, $13, $77, $1a, $13, $1a, $13, $10, $70, $17, $32, $2f, $1d, $00
+	textfw0 "コイン"
+	hiragana "をなげて"
+	line ""
+	textfw0 "せんこう・こうこうを きめます"
+	done
 
 Text0078:
-	db $0e, $2a, $3d, $23, $12, $10, $70, $15, $1a, $25, $12, $2f, $1d, $00
+	hiragana "はんていを おこないます"
+	done
 
 Text0079:
-	db $09, $0e, $24, $29, $82, $81, $26, $70, $2b, $17, $3c, $19, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "との対戦に ひきわけた"
+	done
 
 Text007a:
-	db $09, $0e, $24, $29, $82, $81, $26, $70, $90, $5f, $20, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "との対戦に 勝った!"
+	done
 
 Text007b:
-	db $09, $0e, $24, $29, $82, $81, $26, $0a, $2f, $19, $23, $1c, $2f, $5f, $20, $77, $77, $77, $00
+	textfw0 "<RAMNAME>"
+	hiragana "との対戦に"
+	line ""
+	textfw0 "まけてしまった・・・"
+	done
 
 Text007c:
-	db $73, $1b, $4c, $3d, $77, $4b, $1d, $74, $1d, $20, $78, $24, $6e, $0a, $1b, $12, $4c, $16, $78, $4c, $61, $84, $0e, $4b, $70, $82, $81, $4b, $1d, $00
+	textfw0 "「サドン・デス」スタート!"
+	line ""
+	textfw0 "サイドカード1枚"
+	hiragana "で 対戦です"
+	done
 
 Text007d:
-	db $1b, $12, $4c, $16, $78, $4c, $0a, $82, $81, $56, $19, $33, $3d, $0a, $8f, $85, $0e, $29, $a9, $00
+	textfw0 "サイドカード"
+	line ""
+	textfw0 "対戦ポケモン"
+	line ""
+	textfw0 "山札"
+	hiragana "の", "FW0_a9"
+	done
 
 Text007e:
-	db $0e, $25, $1c, $00
+	hiragana "なし"
+	done
 
 Text007f:
-	db $0e, $11, $38, $00
+	hiragana "あり"
+	done
 
 Text0080:
-	db $84, $00
+	textfw0 "枚"
+	done
 
 Text0081:
-	db $09, $0e, $2a, $70, $0f, $1b, $12, $4c, $16, $78, $4c, $0e, $16, $37, $0a, $0b, $10, $70, $2b, $12, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は "
+	katakana "サイドカード"
+	hiragana "から"
+	line ""
+	textfw0 "<RAMTEXT>", "を ひいた"
+	done
 
 Text0082:
-	db $09, $0e, $2a, $70, $0f, $1b, $12, $4c, $16, $78, $4c, $0e, $10, $0a, $1d, $50, $23, $70, $24, $38, $15, $14, $20, $6e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は "
+	katakana "サイドカード"
+	hiragana "を"
+	line ""
+	textfw0 "すべて とりおえた!"
+	done
 
 Text0083:
-	db $09, $0e, $29, $70, $8e, $26, $2a, $0a, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $12, $25, $18, $25, $5f, $20, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の 場には"
+	line ""
+	katakana "ポケモン"
+	hiragana "が いなくなった"
+	done
 
 Text0084:
-	db $0b, $0e, $2a, $70, $17, $46, $22, $1c, $20, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は きぜつした"
+	done
 
 Text0085:
-	db $0b, $0e, $2a, $0a, $c0, $c1, $c2, $8d, $10, $70, $33, $5f, $23, $12, $39, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "は"
+	line ""
+	textfw0 "特殊能力を もっている"
+	done
 
 Text0086:
-	db $0e, $1c, $16, $1c, $70, $73, $16, $3e, $18, $2d, $3d, $16, $0f, $3e, $1d, $74, $0e, $29, $a0, $9f, $4b, $0a, $c0, $c1, $c2, $8d, $2a, $70, $22, $16, $14, $25, $12, $00
+	hiragana "しかし 「かがくへんか"
+	katakana "ガス」"
+	hiragana "の効果で"
+	line ""
+	textfw0 "特殊能力は つかえない"
+	done
 
 Text0087:
-	db $0e, $1c, $16, $1c, $70, $73, $2f, $17, $21, $37, $1e, $6e, $0f, $50, $24, $50, $24, $3e, $1d, $74, $0a, $0e, $29, $a0, $9f, $4b, $70, $c0, $c1, $c2, $8d, $2a, $70, $22, $16, $14, $25, $12, $00
+	hiragana "しかし 「まきちらせ!"
+	katakana "ベトベトガス」"
+	line ""
+	hiragana "の効果で 特殊能力は つかえない"
+	done
 
 Text0088:
-	db $0e, $1c, $16, $1c, $70, $73, $0f, $1c, $5e, $5f, $18, $11, $12, $74, $0a, $0e, $29, $a0, $9f, $4b, $70, $c0, $c1, $c2, $8d, $2a, $70, $22, $16, $14, $25, $12, $00
+	hiragana "しかし 「"
+	katakana "ショックアイ」"
+	line ""
+	hiragana "の効果で 特殊能力は つかえない"
+	done
 
 Text0089:
-	db $70, $0e, $22, $16, $13, $0a, $70, $1c, $37, $50, $39, $00
+	textfw0 " "
+	hiragana "つかう"
+	line ""
+	textfw0 " しらべる"
+	done
 
 Text008a:
-	db $70, $0e, $48, $1d, $0a, $70, $1c, $37, $50, $39, $00
+	textfw0 " "
+	hiragana "だす"
+	line ""
+	textfw0 " しらべる"
+	done
 
 Text008b:
-	db $70, $0e, $14, $37, $4f, $0a, $70, $1c, $37, $50, $39, $00
+	textfw0 " "
+	hiragana "えらぶ"
+	line ""
+	textfw0 " しらべる"
+	done
 
 Text008c:
-	db $04, $11, $0c, $04, $22, $0c, $00
+	textfw4 "B", "<RAMNUM>", "S", "<RAMNUM>"
+	done
 
 Text008d:
-	db $09, $0e, $2a, $70, $16, $3d, $3e, $14, $9b, $00
+	textfw0 "<RAMNAME>"
+	hiragana "は かんがえ中"
+	done
 
 Text008e:
-	db $70, $70, $70, $70, $70, $70, $70, $70, $70, $70, $00
+	textfw0 "          "
+	done
 
 Text008f:
-	db $82, $81, $1a, $3d, $53, $5d, $78, $20, $78, $8a, $92, $00
+	textfw0 "対戦コンピューター選択"
+	done
 
 Text0090:
-	db $1b, $12, $4c, $84, $a9, $00
+	textfw0 "サイド枚", "FW0_a9"
+	done
 
 Text0091:
-	db $37, $3d, $48, $31, $61, $00
+	textfw0 "ランダム1"
+	done
 
 Text0092:
-	db $37, $3d, $48, $31, $62, $00
+	textfw0 "ランダム2"
+	done
 
 Text0093:
-	db $37, $3d, $48, $31, $63, $00
+	textfw0 "ランダム3"
+	done
 
 Text0094:
-	db $37, $3d, $48, $31, $64, $00
+	textfw0 "ランダム4"
+	done
 
 Text0095:
-	db $02, $28, $01, $1f, $01, $23, $04, $12, $04, $1e, $04, $1c, $00
+	textfw2 "FW2_28"
+	textfw1 "育用"
+	textfw4 "COM"
+	done
 
 Text0096:
-	db $54, $3a, $12, $34, $78, $61, $00
+	textfw0 "プレイヤー1"
+	done
 
 Text0097:
-	db $06, $50, $6c, $61, $79, $65, $72, $32, $00
+	text "Player2"
+	done
 
 Text0098:
-	db $01, $30, $0e, $16, $37, $01, $31, $00
+	textfw1 "左"
+	hiragana "から"
+	textfw1 "右"
+	done
 
 Text0099:
-	db $01, $31, $0e, $16, $37, $01, $30, $00
+	textfw1 "右"
+	hiragana "から"
+	textfw1 "左"
+	done
 
 Text009a:
-	db $04, $22, $04, $23, $04, $10, $04, $21, $04, $23, $04, $4e, $af, $bd, $0e, $14, $0a, $70, $70, $70, $70, $04, $10, $04, $4e, $01, $50, $01, $92, $0a, $70, $70, $70, $70, $04, $11, $04, $4e, $f1, $01, $2b, $00
+	textfw4 "START:"
+	textfw0 "入", "FW0_bd"
+	hiragana "え"
+	line ""
+	textfw0 "    "
+	textfw4 "A:"
+	textfw1 "実", "FW1_92"
+	line ""
+	textfw0 "    "
+	textfw4 "B:"
+	textfw0 "終"
+	textfw1 "了"
+	done
 
 Text009b:
-	db $0e, $1f, $29, $20, $0a, $4c, $18, $0a, $28, $31, $38, $0a, $0f, $2f, $2b, $0a, $0e, $1a, $3d, $37, $3d, $0a, $4c, $18, $4c, $18, $0a, $0f, $18, $38, $11, $0a, $0e, $14, $3d, $2f, $18, $95, $99, $0a, $86, $80, $29, $80, $85, $0a, $80, $85, $16, $37, $0f, $24, $37, $5f, $1c, $5d, $0a, $8f, $85, $8a, $92, $0a, $24, $37, $5f, $1c, $5d, $8a, $92, $0a, $80, $85, $0e, $10, $8f, $85, $2d, $0a, $0f, $1b, $12, $4c, $0e, $2b, $18, $0a, $0f, $54, $3a, $12, $34, $78, $af, $bd, $0e, $14, $0a, $8f, $85, $0f, $1c, $5c, $5f, $2c, $39, $0a, $50, $3d, $21, $0e, $10, $0f, $24, $37, $5f, $1c, $5d, $0a, $16, $78, $4c, $af, $bd, $0e, $14, $00
+	hiragana "そのた"
+	line ""
+	textfw0 "どく"
+	line ""
+	textfw0 "ねむり"
+	line ""
+	katakana "マヒ"
+	line ""
+	hiragana "こんらん"
+	line ""
+	textfw0 "どくどく"
+	line ""
+	katakana "クリア"
+	line ""
+	hiragana "えんまく状態"
+	line ""
+	textfw0 "相手の手札"
+	line ""
+	textfw0 "手札から"
+	katakana "トラッシュ"
+	line ""
+	textfw0 "山札選択"
+	line ""
+	textfw0 "トラッシュ選択"
+	line ""
+	textfw0 "手札"
+	hiragana "を山札へ"
+	line ""
+	katakana "サイド"
+	hiragana "ひく"
+	line ""
+	katakana "プレイヤー入", "FW0_bd"
+	hiragana "え"
+	line ""
+	textfw0 "山札"
+	katakana "シャッフル"
+	line ""
+	textfw0 "ベンチ"
+	hiragana "を"
+	katakana "トラッシュ"
+	line ""
+	textfw0 "カード入", "FW0_bd"
+	hiragana "え"
+	done
 
 Text009c:
-	db $41, $78, $31, $90, $0e, $21, $0a, $0f, $41, $78, $31, $02, $26, $0e, $19, $0a, $0f, $41, $78, $31, $e5, $0e, $17, $8c, $19, $0a, $01, $1a, $a2, $03, $96, $03, $97, $0a, $0f, $56, $78, $45, $33, $78, $4c, $0a, $1a, $3d, $53, $5d, $78, $20, $78, $82, $81, $c7, $0e, $38, $bd, $14, $0a, $0f, $54, $3a, $12, $34, $78, $62, $0e, $10, $04, $12, $04, $1e, $04, $1c, $26, $1d, $39, $0a, $0f, $1a, $12, $3d, $9c, $0e, $41, $62, $60, $97, $0a, $01, $3d, $01, $8b, $29, $95, $99, $10, $0f, $1e, $78, $4f, $0e, $1d, $39, $0a, $0f, $2c, $57, $12, $39, $0e, $10, $0f, $3b, $78, $4c, $0e, $1d, $39, $00
+	textfw0 "ゲーム勝"
+	hiragana "ち"
+	line ""
+	katakana "ゲーム"
+	textfw2 "FW2_26"
+	hiragana "け"
+	line ""
+	katakana "ゲーム引"
+	hiragana "き分け"
+	line ""
+	textfw1 "限"
+	textfw0 "定"
+	textfw3 "FW3_96", "FW3_97"
+	line ""
+	katakana "ポーズモード"
+	line ""
+	textfw0 "コンピューター対戦切"
+	hiragana "り", "FW0_bd", "え"
+	line ""
+	katakana "プレイヤー2"
+	hiragana "を"
+	textfw4 "COM"
+	textfw0 "にする"
+	line ""
+	katakana "コイン投"
+	hiragana "げ20回"
+	line ""
+	textfw1 "現", "FW1_8b"
+	textfw0 "の状態を"
+	katakana "セーブ"
+	hiragana "する"
+	line ""
+	katakana "ファイル"
+	hiragana "を"
+	katakana "ロード"
+	hiragana "する"
+	done
 
 Text009d:
-	db $2c, $57, $12, $39, $1e, $78, $4f, $00
+	textfw0 "ファイルセーブ"
+	done
 
 Text009e:
-	db $2c, $57, $12, $39, $3b, $78, $4c, $0a, $70, $60, $70, $e8, $ab, $0e, $26, $0f, $1e, $78, $4f, $0e, $1b, $3a, $20, $0f, $2c, $57, $12, $39, $00
+	textfw0 "ファイルロード"
+	line ""
+	textfw0 " 0 最後"
+	hiragana "に"
+	katakana "セーブ"
+	hiragana "された"
+	katakana "ファイル"
+	done
 
 Text009f:
-	db $56, $78, $45, $33, $78, $4c, $0e, $3e, $04, $1e, $04, $1d, $26, $25, $38, $2f, $1c, $20, $0a, $04, $22, $04, $14, $04, $1b, $04, $14, $04, $12, $04, $23, $4b, $0f, $56, $78, $45, $0e, $3e, $16, $16, $38, $2f, $1d, $00
+	textfw0 "ポーズモード"
+	hiragana "が"
+	textfw4 "ON"
+	textfw0 "になりました"
+	line ""
+	textfw4 "SELECT"
+	textfw0 "で"
+	katakana "ポーズ"
+	hiragana "がかかります"
+	done
 
 Text00a0:
-	db $56, $78, $45, $33, $78, $4c, $0e, $3e, $04, $1e, $04, $15, $04, $15, $26, $25, $38, $2f, $1c, $20, $00
+	textfw0 "ポーズモード"
+	hiragana "が"
+	textfw4 "OFF"
+	textfw0 "になりました"
+	done
 
 Text00a1:
-	db $1a, $3d, $53, $5d, $78, $20, $78, $33, $78, $4c, $0e, $3e, $0a, $04, $1e, $04, $15, $04, $15, $26, $25, $38, $2f, $1c, $20, $00
+	textfw0 "コンピューターモード"
+	hiragana "が"
+	line ""
+	textfw4 "OFF"
+	textfw0 "になりました"
+	done
 
 Text00a2:
-	db $1a, $3d, $53, $5d, $78, $20, $78, $33, $78, $4c, $0e, $3e, $0a, $04, $1e, $04, $1d, $26, $25, $38, $2f, $1c, $20, $00
+	textfw0 "コンピューターモード"
+	hiragana "が"
+	line ""
+	textfw4 "ON"
+	textfw0 "になりました"
+	done
 
 Text00a3:
-	db $05, $02, $56, $19, $33, $3d, $0a, $05, $01, $56, $19, $33, $3d, $0a, $05, $04, $56, $19, $33, $3d, $0a, $05, $03, $56, $19, $33, $3d, $0a, $05, $05, $56, $19, $33, $3d, $0a, $05, $06, $56, $19, $33, $3d, $0a, $05, $07, $56, $19, $33, $3d, $0a, $24, $3a, $78, $25, $78, $16, $78, $4c, $0a, $14, $28, $39, $3f, $78, $16, $78, $4c, $00
+	textfw0 "<GRASS>", "ポケモン"
+	line ""
+	textfw0 "<FIRE>", "ポケモン"
+	line ""
+	textfw0 "<WATER>", "ポケモン"
+	line ""
+	textfw0 "<LIGHTNING>", "ポケモン"
+	line ""
+	textfw0 "<FIGHTING>", "ポケモン"
+	line ""
+	textfw0 "<PSYCHIC>", "ポケモン"
+	line ""
+	textfw0 "<COLORLESS>", "ポケモン"
+	line ""
+	textfw0 "トレーナーカード"
+	line ""
+	textfw0 "エネルギーカード"
+	done
 
 Text00a4:
-	db $0e, $2a, $44, $32, $23, $29, $0f, $56, $19, $33, $3d, $0a, $0e, $4b, $3d, $1e, $22, $29, $21, $16, $37, $0a, $93, $01, $39, $29, $1c, $2f, $0a, $b3, $0f, $4d, $24, $39, $0a, $0e, $1f, $37, $10, $24, $4f, $0f, $56, $19, $33, $3d, $0a, $0e, $3c, $3a, $37, $0f, $3b, $19, $5f, $24, $02, $b6, $0a, $3b, $19, $5f, $24, $02, $b6, $0e, $29, $34, $51, $13, $0a, $0f, $1d, $55, $1c, $5c, $39, $0a, $14, $28, $39, $3f, $78, $0a, $54, $3a, $46, $3d, $24, $52, $5f, $18, $61, $0a, $54, $3a, $46, $3d, $24, $52, $5f, $18, $62, $0a, $54, $3a, $46, $3d, $24, $52, $5f, $18, $63, $0a, $54, $3a, $46, $3d, $24, $52, $5f, $18, $64, $0a, $04, $13, $04, $13, $04, $18, $52, $5f, $18, $00
+	hiragana "はじめての"
+	katakana "ポケモン"
+	line ""
+	hiragana "でんせつのちから"
+	line ""
+	textfw0 "化"
+	textfw1 "石"
+	textfw0 "のしま"
+	line ""
+	textfw0 "超"
+	katakana "バトル"
+	line ""
+	hiragana "そらをとぶ"
+	katakana "ポケモン"
+	line ""
+	hiragana "われら"
+	katakana "ロケット"
+	textfw2 "団"
+	line ""
+	textfw0 "ロケット"
+	textfw2 "団"
+	hiragana "のやぼう"
+	line ""
+	katakana "スペシャル"
+	line ""
+	textfw0 "エネルギー"
+	line ""
+	textfw0 "プレゼントパック1"
+	line ""
+	textfw0 "プレゼントパック2"
+	line ""
+	textfw0 "プレゼントパック3"
+	line ""
+	textfw0 "プレゼントパック4"
+	line ""
+	textfw4 "DDI"
+	textfw0 "パック"
+	done
 
 Text00a5:
-	db $18, $38, $11, $0a, $cd, $56, $19, $33, $3d, $0e, $2a, $c0, $c1, $26, $25, $37, $25, $12, $0a, $c8, $0f, $56, $19, $33, $3d, $0e, $2a, $01, $10, $01, $32, $8d, $6a, $61, $60, $0a, $a8, $0f, $56, $19, $33, $3d, $0e, $2a, $aa, $29, $b1, $b2, $25, $1c, $0a, $0f, $50, $3d, $21, $a9, $0e, $3e, $63, $0a, $aa, $0f, $56, $19, $33, $3d, $0e, $2a, $26, $41, $39, $0f, $1a, $1d, $24, $6b, $61, $0a, $d2, $56, $19, $33, $3d, $0e, $16, $37, $29, $0f, $48, $32, $78, $44, $ba, $b9, $8d, $a5, $a0, $0a, $ba, $b9, $8d, $0e, $2a, $6b, $63, $60, $16, $37, $6b, $61, $60, $26, $25, $39, $0a, $0f, $56, $19, $33, $3d, $24, $37, $5f, $1c, $5d, $d5, $9e, $04, $14, $80, $85, $0e, $26, $01, $61, $39, $0a, $01, $36, $41, $39, $24, $17, $0f, $1a, $1d, $24, $6a, $61, $0a, $24, $37, $5f, $1c, $5d, $16, $78, $4c, $91, $0e, $14, $25, $12, $00
+	textfw0 "クリア"
+	line ""
+	textfw0 "草ポケモン"
+	hiragana "は特殊にならない"
+	line ""
+	textfw0 "雷"
+	katakana "ポケモン"
+	hiragana "は"
+	textfw1 "攻", "FW1_32"
+	textfw0 "力+10"
+	line ""
+	textfw0 "炎"
+	katakana "ポケモン"
+	hiragana "は水の弱点なし"
+	line ""
+	katakana "ベンチ", "FW0_a9"
+	hiragana "が3"
+	line ""
+	textfw0 "水"
+	katakana "ポケモン"
+	hiragana "はにげる"
+	katakana "コスト-1"
+	line ""
+	textfw0 "闘ポケモン"
+	hiragana "からの"
+	katakana "ダメージ抵抗力無効"
+	line ""
+	textfw0 "抵抗力"
+	hiragana "は-30から-10になる"
+	line ""
+	katakana "ポケモントラッシュ基本"
+	textfw4 "E"
+	textfw0 "手札"
+	hiragana "に"
+	textfw1 "戻"
+	textfw0 "る"
+	line ""
+	textfw1 "逃"
+	textfw0 "げるとき"
+	katakana "コスト+1"
+	line ""
+	textfw0 "トラッシュカード便"
+	hiragana "えない"
+	done
 
 Text00a6:
-	db $16, $78, $4c, $38, $1d, $24, $00
+	textfw0 "カードリスト"
+	done
 
 Text00a7:
-	db $1a, $12, $3d, $9c, $0e, $41, $10, $0f, $23, $1d, $24, $0e, $1c, $2f, $1d, $00
+	textfw0 "コイン投"
+	hiragana "げを"
+	katakana "テスト"
+	hiragana "します"
+	done
 
 Text00a8:
-	db $1b, $12, $4c, $16, $78, $4c, $0e, $25, $1c, $70, $f1, $3c, $38, $26, $1d, $39, $6f, $00
+	textfw0 "サイドカード"
+	hiragana "なし 終わりにする?"
+	done
 
 Text00a9:
-	db $4d, $5f, $18, $11, $5f, $54, $04, $21, $04, $10, $04, $1c, $0e, $10, $01, $76, $02, $fb, $93, $1d, $39, $6f, $00
+	textfw0 "バックアップ"
+	textfw4 "RAM"
+	hiragana "を"
+	textfw1 "FW1_76"
+	textfw2 "FW2_fb"
+	textfw0 "化する?"
+	done
 
 Text00aa:
-	db $6e, $6e, $6e, $6e, $70, $04, $10, $04, $11, $04, $1e, $04, $21, $04, $23, $70, $6e, $6e, $6e, $6e, $0a, $01, $77, $b0, $0e, $25, $02, $75, $03, $b3, $3e, $ef, $d0, $1c, $2f, $1c, $20, $0a, $0f, $54, $3b, $40, $37, $31, $0e, $10, $03, $9b, $02, $6f, $1c, $2f, $1d, $0a, $0f, $16, $78, $24, $38, $5f, $44, $0e, $10, $03, $54, $9a, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "!!!! "
+	textfw4 "ABORT"
+	textfw0 " !!!!"
+	line ""
+	textfw1 "重"
+	textfw0 "大"
+	hiragana "な"
+	textfw2 "FW2_75"
+	textfw3 "FW3_b3"
+	textfw0 "が発生しました"
+	line ""
+	katakana "プログラム"
+	hiragana "を"
+	textfw3 "FW3_9b"
+	textfw2 "止"
+	textfw0 "します"
+	line ""
+	katakana "カートリッジ"
+	hiragana "を"
+	textfw3 "FW3_54"
+	textfw0 "出してください"
+	done
 
 Text00ab:
-	db $80, $85, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "手札"
+	hiragana "が ありません"
+	done
 
 Text00ac:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0f, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	katakana "カード"
+	hiragana "が ありません"
+	done
 
 Text00ad:
-	db $09, $0e, $29, $0f, $24, $37, $5f, $1c, $5d, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の"
+	katakana "トラッシュ"
+	done
 
 Text00ae:
-	db $09, $0e, $29, $23, $2c, $48, $00
+	textfw0 "<RAMNAME>"
+	hiragana "のてふだ"
+	done
 
 Text00af:
-	db $09, $0e, $29, $8e, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の場"
+	done
 
 Text00b0:
-	db $09, $0e, $29, $8f, $85, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の山札"
+	done
 
 Text00b1:
-	db $09, $0e, $29, $0f, $1b, $12, $4c, $16, $78, $4c, $00
+	textfw0 "<RAMNAME>"
+	hiragana "の"
+	katakana "サイドカード"
+	done
 
 Text00b2:
-	db $0e, $23, $2c, $48, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	hiragana "てふだを"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text00b3:
-	db $56, $19, $33, $3d, $0e, $26, $22, $12, $23, $12, $39, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $70, $0e, $12, $21, $37, $3d, $00
+	textfw0 "ポケモン"
+	hiragana "についている"
+	line ""
+	katakana "エネルギーカード "
+	hiragana "いちらん"
+	done
 
 Text00b4:
-	db $16, $78, $4c, $0e, $10, $0a, $14, $37, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "カード"
+	hiragana "を"
+	line ""
+	textfw0 "えらんでください"
+	done
 
 Text00b5:
-	db $48, $32, $78, $44, $16, $13, $3d, $20, $78, $0e, $29, $70, $29, $5f, $23, $12, $39, $0a, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $12, $2f, $1e, $3d, $00
+	textfw0 "ダメージカウンター"
+	hiragana "の のっている"
+	line ""
+	katakana "ポケモン"
+	hiragana "が いません"
+	done
 
 Text00b6:
-	db $48, $32, $78, $44, $16, $13, $3d, $20, $78, $0e, $3e, $70, $29, $5f, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "ダメージカウンター"
+	hiragana "が のっていません"
+	done
 
 Text00b7:
-	db $86, $80, $0e, $29, $8e, $29, $70, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $0f, $14, $28, $39, $3f, $78, $0e, $3e, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "の場の "
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	katakana "エネルギー"
+	hiragana "が ついていません"
+	done
 
 Text00b8:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	katakana "エネルギーカード"
+	hiragana "が ありません"
+	done
 
 Text00b9:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	textfw0 "基本"
+	katakana "エネルギーカード"
+	hiragana "が ありません"
+	done
 
 Text00ba:
-	db $8f, $85, $0e, $26, $70, $0f, $16, $78, $4c, $0e, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "山札"
+	hiragana "に "
+	katakana "カード"
+	hiragana "がありません"
+	done
 
 Text00bb:
-	db $50, $3d, $21, $0e, $26, $70, $11, $17, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "ベンチ"
+	hiragana "に あきがありません"
+	done
 
 Text00bc:
-	db $96, $93, $0e, $4b, $17, $39, $70, $0f, $56, $19, $33, $3d, $0e, $3e, $12, $2f, $1e, $3d, $00
+	textfw0 "進化"
+	hiragana "できる "
+	katakana "ポケモン"
+	hiragana "がいません"
+	done
 
 Text00bd:
-	db $0e, $48, $1c, $20, $70, $15, $25, $44, $98, $26, $2a, $70, $96, $93, $4b, $17, $2f, $1e, $3d, $00
+	hiragana "だした おなじ番には 進化できません"
+	done
 
 Text00be:
-	db $73, $0e, $4c, $18, $77, $28, $31, $38, $77, $0f, $2f, $2b, $77, $0e, $1a, $3d, $37, $3d, $74, $29, $0a, $c0, $c1, $95, $99, $26, $70, $25, $5f, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "どく・ねむり・"
+	katakana "マヒ・"
+	hiragana "こんらん」の"
+	line ""
+	textfw0 "特殊状態に なっていません"
+	done
 
 Text00bf:
-	db $80, $85, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "手札"
+	hiragana "が たりません"
+	done
 
 Text00c0:
-	db $ac, $0e, $14, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $12, $2f, $1e, $3d, $00
+	textfw0 "控"
+	hiragana "え"
+	katakana "ポケモン"
+	hiragana "が いません"
+	done
 
 Text00c1:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $20, $28, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	textfw0 "たね"
+	katakana "ポケモン"
+	hiragana "が ありません"
+	done
 
 Text00c2:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $0f, $56, $19, $33, $3d, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	katakana "ポケモン"
+	hiragana "が ありません"
+	done
 
 Text00c3:
-	db $62, $96, $93, $56, $19, $33, $3d, $0e, $26, $70, $96, $93, $1b, $1e, $39, $0a, $44, $5e, $13, $19, $3d, $3e, $70, $1f, $3b, $5f, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "2進化ポケモン"
+	hiragana "に 進化させる"
+	line ""
+	textfw0 "じょうけんが そろっていません"
+	done
 
 Text00c4:
-	db $80, $85, $0e, $26, $70, $fb, $01, $17, $4b, $17, $39, $0f, $16, $78, $4c, $0e, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "手札"
+	hiragana "に 交"
+	textfw1 "換"
+	textfw0 "できる"
+	katakana "カード"
+	hiragana "がありません"
+	done
 
 Text00c5:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $70, $0f, $16, $78, $4c, $0e, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に "
+	katakana "カード"
+	hiragana "がありません"
+	done
 
 Text00c6:
-	db $96, $93, $56, $19, $33, $3d, $0e, $3e, $70, $8e, $26, $12, $2f, $1e, $3d, $00
+	textfw0 "進化ポケモン"
+	hiragana "が 場にいません"
+	done
 
 Text00c7:
-	db $8b, $8c, $0e, $29, $8e, $29, $70, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $26, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "自分"
+	hiragana "の場の "
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	katakana "エネルギーカード"
+	hiragana "に ついていません"
+	done
 
 Text00c8:
-	db $86, $80, $0e, $29, $8e, $29, $70, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "の場の "
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	katakana "エネルギーカード"
+	hiragana "が ついていません"
+	done
 
 Text00c9:
-	db $0e, $26, $41, $39, $20, $32, $26, $2a, $0a, $0f, $14, $28, $39, $3f, $78, $0e, $3e, $70, $0c, $0f, $1a, $0e, $2b, $22, $36, $13, $4b, $1d, $00
+	hiragana "にげるためには"
+	line ""
+	katakana "エネルギー"
+	hiragana "が ", "<RAMNUM>"
+	katakana "コ"
+	hiragana "ひつようです"
+	done
 
 Text00ca:
-	db $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "エネルギーカード"
+	hiragana "が たりません"
+	done
 
 Text00cb:
-	db $73, $a8, $74, $14, $28, $39, $3f, $78, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "「炎」エネルギー"
+	hiragana "が たりません"
+	done
 
 Text00cc:
-	db $73, $b3, $74, $14, $28, $39, $3f, $78, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "「超」エネルギー"
+	hiragana "が たりません"
+	done
 
 Text00cd:
-	db $73, $aa, $74, $14, $28, $39, $3f, $78, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "「水」エネルギー"
+	hiragana "が たりません"
+	done
 
 Text00ce:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $0f, $24, $3a, $78, $25, $78, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	katakana "トレーナーカード"
+	hiragana "が ありません"
+	done
 
 Text00cf:
-	db $0e, $1e, $3d, $20, $18, $4b, $17, $39, $0f, $3c, $43, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	hiragana "せんたくできる"
+	katakana "ワザ"
+	hiragana "が ありません"
+	done
 
 Text00d0:
-	db $86, $80, $0e, $29, $98, $26, $70, $0f, $15, $13, $31, $0e, $3e, $14, $1c, $4b, $17, $39, $0a, $0f, $3c, $43, $0e, $10, $70, $13, $19, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "の番に "
+	katakana "オウム"
+	hiragana "がえしできる"
+	line ""
+	katakana "ワザ"
+	hiragana "を うけていません"
+	done
 
 Text00d1:
-	db $0e, $1d, $4b, $26, $70, $22, $16, $5f, $23, $12, $39, $29, $4b, $0a, $22, $16, $14, $2f, $1e, $3d, $00
+	hiragana "すでに つかっているので"
+	line ""
+	textfw0 "つかえません"
+	done
 
 Text00d2:
-	db $73, $b1, $b2, $74, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "「弱点」"
+	hiragana "が ありません"
+	done
 
 Text00d3:
-	db $73, $ba, $b9, $8d, $74, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "「抵抗力」"
+	hiragana "が ありません"
+	done
 
 Text00d4:
-	db $7a, $7b, $7c, $0e, $26, $73, $b1, $b2, $74, $3e, $70, $25, $12, $29, $4b, $0a, $73, $b1, $b2, $74, $29, $70, $2d, $3d, $1a, $13, $2a, $4b, $17, $2f, $1e, $3d, $00
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "に「弱点」が ないので"
+	line ""
+	textfw0 "「弱点」の へんこうはできません"
+	done
 
 Text00d5:
-	db $8b, $8c, $0e, $29, $98, $26, $70, $12, $21, $4c, $70, $48, $19, $4b, $1d, $00
+	textfw0 "自分"
+	hiragana "の番に いちど だけです"
+	done
 
 Text00d6:
-	db $73, $0e, $28, $31, $38, $77, $0f, $2f, $2b, $77, $0e, $1a, $3d, $37, $3d, $74, $29, $0a, $c0, $c1, $95, $99, $29, $20, $32, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "ねむり・"
+	katakana "マヒ・"
+	hiragana "こんらん」の"
+	line ""
+	textfw0 "特殊状態のため つかえません"
+	done
 
 Text00d7:
-	db $8e, $0e, $26, $48, $1c, $20, $98, $26, $2a, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "場"
+	hiragana "にだした番には つかえません"
+	done
 
 Text00d8:
-	db $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "エネルギーカード"
+	hiragana "が ついていません"
+	done
 
 Text00d9:
-	db $73, $cd, $74, $14, $28, $39, $3f, $78, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "「草」エネルギー"
+	hiragana "が ありません"
+	done
 
 Text00da:
-	db $61, $b7, $0e, $1c, $16, $12, $25, $12, $29, $4b, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "1体"
+	hiragana "しかいないので つかえません"
+	done
 
 Text00db:
-	db $73, $0e, $17, $46, $22, $74, $1c, $23, $1c, $2f, $13, $29, $4b, $0a, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "きぜつ」してしまうので"
+	line ""
+	textfw0 "つかえません"
+	done
 
 Text00dc:
-	db $50, $3d, $21, $0e, $4b, $1c, $16, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "ベンチ"
+	hiragana "でしか つかえません"
+	done
 
 Text00dd:
-	db $50, $3d, $21, $0e, $26, $70, $ac, $14, $0f, $56, $19, $33, $3d, $0e, $3e, $12, $2f, $1e, $3d, $00
+	textfw0 "ベンチ"
+	hiragana "に 控え"
+	katakana "ポケモン"
+	hiragana "がいません"
+	done
 
 Text00de:
-	db $7a, $7b, $7c, $0e, $3e, $0a, $73, $28, $31, $38, $74, $95, $99, $26, $70, $25, $5f, $23, $2f, $1e, $3d, $00
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "が"
+	line ""
+	textfw0 "「ねむり」状態に なってません"
+	done
 
 Text00df:
-	db $73, $0e, $16, $3e, $18, $2d, $3d, $16, $0f, $3e, $1d, $74, $0e, $29, $a0, $9f, $4b, $0a, $22, $16, $14, $25, $12, $00
+	textfw0 "「"
+	hiragana "かがくへんか"
+	katakana "ガス」"
+	hiragana "の効果で"
+	line ""
+	textfw0 "つかえない"
+	done
 
 Text00e0:
-	db $73, $1c, $5e, $5f, $18, $11, $12, $74, $0e, $29, $a0, $9f, $4b, $0a, $22, $16, $14, $25, $12, $00
+	textfw0 "「ショックアイ」"
+	hiragana "の効果で"
+	line ""
+	textfw0 "つかえない"
+	done
 
 Text00e1:
-	db $7a, $7b, $7c, $0e, $26, $70, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $0a, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "に 基本"
+	katakana "エネルギーカード"
+	hiragana "が"
+	line ""
+	textfw0 "ついていません"
+	done
 
 Text00e2:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $0a, $c0, $c1, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に"
+	line ""
+	textfw0 "特殊"
+	katakana "エネルギーカード"
+	hiragana "が ありません"
+	done
 
 Text00e3:
-	db $86, $80, $0e, $29, $8e, $29, $70, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $0e, $3e, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "の場の "
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	textfw0 "基本"
+	katakana "エネルギー"
+	hiragana "が ついていません"
+	done
 
 Text00e4:
-	db $8b, $8c, $0e, $29, $8e, $29, $70, $0f, $56, $19, $33, $3d, $0e, $26, $0a, $d5, $9e, $0f, $14, $28, $39, $3f, $78, $0e, $3e, $70, $22, $12, $23, $12, $2f, $1e, $3d, $00
+	textfw0 "自分"
+	hiragana "の場の "
+	katakana "ポケモン"
+	hiragana "に"
+	line ""
+	textfw0 "基本"
+	katakana "エネルギー"
+	hiragana "が ついていません"
+	done
 
 Text00e5:
-	db $0e, $1a, $29, $98, $4b, $2a, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	hiragana "この番では つかえません"
+	done
 
 Text00e6:
-	db $73, $0e, $28, $31, $38, $74, $95, $99, $4b, $2a, $25, $12, $20, $32, $0a, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "ねむり」状態ではないため"
+	line ""
+	textfw0 "つかえません"
+	done
 
 Text00e7:
-	db $86, $80, $0e, $26, $70, $80, $85, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "に 手札がありません"
+	done
 
 Text00e8:
-	db $24, $37, $5f, $1c, $5d, $0e, $26, $70, $96, $93, $0f, $16, $78, $4c, $0e, $3e, $0a, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "トラッシュ"
+	hiragana "に 進化"
+	katakana "カード"
+	hiragana "が"
+	line ""
+	textfw0 "ありません"
+	done
 
 Text00e9:
-	db $73, $0e, $25, $26, $16, $29, $93, $01, $39, $74, $16, $37, $70, $96, $93, $1c, $20, $0a, $0f, $56, $19, $33, $3d, $0e, $3e, $12, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "なにかの化"
+	textfw1 "石"
+	textfw0 "」から 進化した"
+	line ""
+	katakana "ポケモン"
+	hiragana "がいません"
+	done
 
 Text00ea:
-	db $73, $0e, $20, $50, $33, $29, $0f, $16, $13, $3d, $20, $78, $74, $0e, $3e, $0a, $62, $0f, $1a, $0e, $29, $5f, $23, $12, $39, $29, $4b, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	textfw0 "「"
+	hiragana "たべもの"
+	katakana "カウンター」"
+	hiragana "が"
+	line ""
+	textfw0 "2"
+	katakana "コ"
+	hiragana "のっているので つかえません"
+	done
 
 Text00eb:
-	db $96, $93, $0e, $4b, $17, $2f, $1e, $3d, $00
+	textfw0 "進化"
+	hiragana "できません"
+	done
 
 Text00ec:
-	db $0e, $22, $16, $14, $2f, $1e, $3d, $00
+	hiragana "つかえません"
+	done
 
 Text00ed:
-	db $80, $85, $0e, $29, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $3e, $70, $20, $38, $2f, $1e, $3d, $00
+	textfw0 "手札"
+	hiragana "の"
+	katakana "エネルギーカード"
+	hiragana "が たりません"
+	done
 
 Text00ee:
-	db $86, $80, $0e, $29, $8e, $26, $70, $aa, $0f, $14, $28, $39, $3f, $78, $0e, $3e, $11, $38, $2f, $1e, $3d, $00
+	textfw0 "相手"
+	hiragana "の場に 水"
+	katakana "エネルギー"
+	hiragana "がありません"
+	done
 
 Text00ef:
-	db $0e, $1a, $29, $0f, $3c, $43, $0e, $2a, $70, $22, $16, $14, $2f, $1e, $3d, $00
+	hiragana "この"
+	katakana "ワザ"
+	hiragana "は つかえません"
+	done
 
 Text00f0:
-	db $bc, $ad, $14, $37, $78, $0e, $3e, $70, $2a, $5f, $1e, $12, $1c, $2f, $1c, $20, $00
+	textfw0 "通信エラー"
+	hiragana "が はっせいしました"
+	done
 
 Text00f1:
-	db $4d, $5f, $18, $11, $5f, $54, $0e, $3e, $70, $1a, $3c, $3a, $23, $2f, $1d, $00
+	textfw0 "バックアップ"
+	hiragana "が こわれてます"
+	done
 
 Text00f2:
-	db $14, $37, $78, $70, $05, $13, $60, $0c, $0a, $54, $38, $3d, $20, $78, $0e, $3e, $70, $22, $25, $3e, $5f, $23, $2f, $1e, $3d, $00
+	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
+	line ""
+	textfw0 "プリンター"
+	hiragana "が つながってません"
+	done
 
 Text00f3:
-	db $14, $37, $78, $70, $05, $13, $60, $0c, $0a, $54, $38, $3d, $20, $78, $0e, $29, $e4, $02, $23, $3e, $70, $29, $1a, $38, $3c, $45, $16, $4b, $1d, $00
+	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
+	line ""
+	textfw0 "プリンター"
+	hiragana "の電"
+	textfw2 "FW2_23"
+	textfw0 "が のこりわずかです"
+	done
 
 Text00f4:
-	db $14, $37, $78, $70, $05, $13, $60, $0c, $0a, $54, $38, $3d, $20, $78, $0e, $29, $02, $22, $3e, $70, $22, $2f, $5f, $23, $12, $2f, $1d, $00
+	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
+	line ""
+	textfw0 "プリンター"
+	hiragana "の"
+	textfw2 "FW2_22"
+	textfw0 "が つまっています"
+	done
 
 Text00f5:
-	db $14, $37, $78, $70, $05, $13, $60, $0c, $0a, $54, $38, $3d, $20, $78, $0e, $29, $0f, $14, $37, $78, $0e, $4b, $1d, $00
+	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
+	line ""
+	textfw0 "プリンター"
+	hiragana "の"
+	katakana "エラー"
+	hiragana "です"
+	done
 
 Text00f6:
-	db $14, $37, $78, $70, $05, $13, $60, $0c, $0a, $54, $38, $3d, $20, $78, $0e, $29, $0f, $52, $19, $5f, $24, $14, $37, $78, $0e, $4b, $1d, $00
+	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
+	line ""
+	textfw0 "プリンター"
+	hiragana "の"
+	katakana "パケットエラー"
+	hiragana "です"
+	done
 
 Text00f7:
-	db $54, $38, $3d, $24, $0e, $3e, $70, $21, $5d, $13, $48, $3d, $70, $1b, $3a, $2f, $1c, $20, $00
+	textfw0 "プリント"
+	hiragana "が ちゅうだん されました"
+	done
 
 Text00f8:
-	db $1d, $78, $52, $78, $41, $78, $31, $51, $78, $12, $0e, $4b, $2a, $0a, $73, $0f, $16, $78, $4c, $56, $3d, $6e, $74, $0e, $2a, $70, $11, $1f, $50, $2f, $1e, $3d, $0a, $0f, $41, $78, $31, $51, $78, $12, $70, $41, $78, $31, $51, $78, $12, $16, $37, $78, $0e, $4b, $0a, $11, $1f, $3d, $4b, $18, $48, $1b, $12, $00
+	textfw0 "スーパーゲームボーイ"
+	hiragana "では"
+	line ""
+	textfw0 "「"
+	katakana "カードポン!」"
+	hiragana "は あそべません"
+	line ""
+	katakana "ゲームボーイ ゲームボーイカラー"
+	hiragana "で"
+	line ""
+	textfw0 "あそんでください"
+	done
 
 Text00f9:
-	db $70, $70, $0e, $1a, $29, $0f, $16, $78, $24, $38, $5f, $44, $0e, $2a, $0a, $0f, $41, $78, $31, $51, $78, $12, $16, $37, $78, $0e, $1e, $3d, $36, $13, $4b, $1d, $0a, $70, $70, $0f, $41, $78, $31, $51, $78, $12, $16, $37, $78, $0e, $4b, $0a, $70, $70, $1c, $36, $13, $1c, $23, $18, $48, $1b, $12, $00
+	textfw0 "  "
+	hiragana "この"
+	katakana "カートリッジ"
+	hiragana "は"
+	line ""
+	katakana "ゲームボーイカラー"
+	hiragana "せんようです"
+	line ""
+	textfw0 "  "
+	katakana "ゲームボーイカラー"
+	hiragana "で"
+	line ""
+	textfw0 "  しようしてください"
+	done
 
 Text00fa:
-	db $73, $0e, $1d, $25, $16, $19, $74, $a7, $a2, $0a, $73, $13, $37, $74, $25, $37, $0f, $3c, $43, $0e, $2a, $70, $1c, $5f, $52, $12, $00
+	textfw0 "「"
+	hiragana "すなかけ」判定"
+	line ""
+	textfw0 "「うら」なら"
+	katakana "ワザ"
+	hiragana "は しっぱい"
+	done
 
 Text00fb:
-	db $73, $0e, $14, $3d, $2f, $18, $74, $a7, $a2, $0a, $73, $13, $37, $74, $25, $37, $0f, $3c, $43, $0e, $2a, $70, $1c, $5f, $52, $12, $00
+	textfw0 "「"
+	hiragana "えんまく」判定"
+	line ""
+	textfw0 "「うら」なら"
+	katakana "ワザ"
+	hiragana "は しっぱい"
+	done
 
 Text00fc:
-	db $73, $1b, $3d, $48, $78, $2c, $37, $5f, $1c, $5d, $74, $a7, $a2, $0a, $73, $0e, $13, $37, $74, $25, $37, $0f, $3c, $43, $0e, $2a, $70, $1c, $5f, $52, $12, $00
+	textfw0 "「サンダーフラッシュ」判定"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら"
+	katakana "ワザ"
+	hiragana "は しっぱい"
+	done
 
 Text00fd:
-	db $73, $2f, $2b, $74, $a7, $a2, $6e, $0a, $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $0f, $2f, $2b, $74, $00
+	textfw0 "「マヒ」判定!"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	katakana "マヒ」"
+	done
 
 Text00fe:
-	db $73, $0e, $28, $31, $38, $74, $a7, $a2, $6e, $0a, $73, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $28, $31, $38, $74, $00
+	textfw0 "「"
+	hiragana "ねむり」判定!"
+	line ""
+	textfw0 "「おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「ねむり」"
+	done
 
 Text00ff:
-	db $73, $0e, $4c, $18, $74, $a7, $a2, $6e, $0a, $73, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $4c, $18, $74, $00
+	textfw0 "「"
+	hiragana "どく」判定!"
+	line ""
+	textfw0 "「おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」"
+	done
 
 Text0100:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $4c, $18, $74, $0a, $73, $13, $37, $74, $25, $37, $7a, $7b, $7c, $10, $73, $0f, $2f, $2b, $74, $00
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」"
+	line ""
+	textfw0 "「うら」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	katakana "マヒ」"
+	done
 
 Text0101:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $62, $60, $0f, $48, $32, $78, $44, $0e, $22, $12, $16, $24, $0a, $7a, $7b, $7c, $10, $73, $0f, $2f, $2b, $74, $00
+	textfw0 "「"
+	hiragana "おもて」なら20"
+	katakana "ダメージ"
+	hiragana "ついかと"
+	line ""
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	katakana "マヒ」"
+	done
 
 Text0102:
-	db $73, $0e, $1a, $3d, $37, $3d, $74, $a7, $a2, $6e, $0a, $73, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $1a, $3d, $37, $3d, $74, $00
+	textfw0 "「"
+	hiragana "こんらん」判定!"
+	line ""
+	textfw0 "「おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「こんらん」"
+	done
 
 Text0103:
-	db $73, $0e, $38, $3d, $54, $3d, $74, $a7, $a2, $6e, $70, $73, $15, $33, $23, $74, $25, $37, $0a, $7a, $7b, $7c, $10, $73, $4c, $18, $74, $24, $73, $1a, $3d, $37, $3d, $74, $00
+	textfw0 "「"
+	hiragana "りんぷん」判定! 「おもて」なら"
+	line ""
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」と「こんらん」"
+	done
 
 Text0104:
-	db $73, $0e, $13, $37, $74, $25, $37, $0a, $7d, $7e, $7f, $2a, $73, $1a, $3d, $37, $3d, $74, $00
+	textfw0 "「"
+	hiragana "うら」なら"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "は「こんらん」"
+	done
 
 Text0105:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $13, $37, $74, $25, $37, $70, $0f, $48, $32, $78, $44, $0e, $25, $1c, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら "
+	katakana "ダメージ"
+	hiragana "なし!!"
+	done
 
 Text0106:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $8f, $85, $16, $37, $61, $84, $0f, $16, $78, $4c, $0e, $10, $2b, $18, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	textfw0 "山札から1枚"
+	katakana "カード"
+	hiragana "をひく!"
+	done
 
 Text0107:
-	db $73, $0e, $13, $37, $74, $3e, $70, $4b, $39, $2f, $4b, $70, $2c, $39, $0a, $73, $15, $33, $23, $74, $6c, $61, $60, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "「"
+	hiragana "うら」が でるまで ふる"
+	line ""
+	textfw0 "「おもて」×10"
+	katakana "ダメージ!!"
+	done
 
 Text0108:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $6a, $61, $60, $0f, $48, $32, $78, $44, $6e, $0a, $73, $0e, $13, $37, $74, $25, $37, $7d, $7e, $7f, $26, $70, $61, $60, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら +10"
+	katakana "ダメージ!"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら", "FW0_7d", "FW0_7e", "FW0_7f", "に 10"
+	katakana "ダメージ!"
+	done
 
 Text0109:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $29, $70, $73, $13, $37, $74, $25, $37, $0a, $8b, $8c, $29, $ac, $14, $c5, $f5, $26, $70, $61, $60, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "の 「うら」なら"
+	line ""
+	textfw0 "自分の控え全員に 10"
+	katakana "ダメージ!"
+	done
 
 Text010a:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $86, $80, $29, $82, $81, $0f, $56, $19, $33, $3d, $0e, $10, $12, $3a, $16, $14, $39, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	textfw0 "相手の対戦"
+	katakana "ポケモン"
+	hiragana "をいれかえる"
+	done
 
 Text010b:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $73, $0f, $2b, $78, $38, $3d, $40, $74, $ee, $01, $19, $6e, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	textfw0 "「"
+	katakana "ヒーリング」成"
+	textfw1 "功"
+	textfw0 "!!"
+	done
 
 Text010c:
-	db $73, $0e, $13, $37, $74, $25, $37, $0a, $7d, $7e, $7f, $26, $33, $70, $0c, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "うら」なら"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "にも ", "<RAMNUM>"
+	katakana "ダメージ!"
+	done
 
 Text010d:
-	db $3c, $43, $0e, $29, $ee, $01, $19, $a7, $a2, $6e, $0a, $73, $15, $33, $23, $74, $25, $37, $70, $0f, $3c, $43, $ee, $01, $19, $6e, $6e, $00
+	textfw0 "ワザ"
+	hiragana "の成"
+	textfw1 "功"
+	textfw0 "判定!"
+	line ""
+	textfw0 "「おもて」なら "
+	katakana "ワザ成"
+	textfw1 "功"
+	textfw0 "!!"
+	done
 
 Text010e:
-	db $24, $3a, $78, $25, $78, $16, $78, $4c, $0e, $29, $ee, $01, $19, $a7, $a2, $6e, $0a, $73, $15, $33, $23, $74, $25, $37, $ee, $01, $19, $6e, $00
+	textfw0 "トレーナーカード"
+	hiragana "の成"
+	textfw1 "功"
+	textfw0 "判定!"
+	line ""
+	textfw0 "「おもて」なら成"
+	textfw1 "功"
+	textfw0 "!"
+	done
 
 Text010f:
-	db $84, $a9, $a7, $a2, $6e, $0a, $73, $0e, $15, $33, $23, $74, $68, $84, $6e, $73, $13, $37, $74, $61, $84, $6e, $00
+	textfw0 "枚", "FW0_a9", "判定!"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」8枚!「うら」1枚!"
+	done
 
 Text0110:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $86, $80, $29, $98, $26, $0a, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $25, $18, $25, $39, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの相手の番に"
+	line ""
+	katakana "ダメージ"
+	hiragana "を うけなくなる!"
+	done
 
 Text0111:
-	db $48, $32, $78, $44, $a7, $a2, $00
+	textfw0 "ダメージ判定"
+	done
 
 Text0112:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $15, $33, $23, $74, $25, $37, $6a, $0c, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」なら+", "<RAMNUM>"
+	katakana "ダメージ!!"
+	done
 
 Text0113:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $15, $33, $23, $74, $6c, $0c, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」×", "<RAMNUM>"
+	katakana "ダメージ!!"
+	done
 
 Text0114:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $15, $33, $23, $74, $6c, $0c, $0f, $48, $32, $78, $44, $e1, $bf, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」×", "<RAMNUM>"
+	katakana "ダメージ追加!!"
+	done
 
 Text0115:
-	db $73, $0e, $36, $13, $16, $12, $14, $17, $74, $a7, $a2, $0a, $73, $15, $33, $23, $74, $25, $37, $22, $3f, $29, $98, $26, $26, $41, $37, $3a, $25, $12, $00
+	textfw0 "「"
+	hiragana "ようかいえき」判定"
+	line ""
+	textfw0 "「おもて」ならつぎの番ににげられない"
+	done
 
 Text0116:
-	db $73, $0e, $24, $13, $32, $12, $74, $a7, $a2, $0a, $73, $15, $33, $23, $74, $25, $37, $70, $0f, $3c, $43, $0e, $10, $13, $19, $25, $12, $00
+	textfw0 "「"
+	hiragana "とうめい」判定"
+	line ""
+	textfw0 "「おもて」なら "
+	katakana "ワザ"
+	hiragana "をうけない"
+	done
 
 Text0117:
-	db $73, $0e, $1a, $3d, $37, $3d, $74, $0f, $21, $5a, $5f, $18, $0e, $10, $1c, $2f, $1d, $0a, $73, $13, $37, $74, $25, $37, $70, $7d, $7e, $7f, $26, $0f, $48, $32, $78, $44, $00
+	textfw0 "「"
+	hiragana "こんらん」"
+	katakana "チェック"
+	hiragana "をします"
+	line ""
+	textfw0 "「うら」なら ", "FW0_7d", "FW0_7e", "FW0_7f", "に"
+	katakana "ダメージ"
+	done
 
 Text0118:
-	db $73, $0e, $1a, $3d, $37, $3d, $74, $a7, $a2, $6e, $0a, $73, $13, $37, $74, $25, $37, $70, $26, $41, $37, $3a, $25, $12, $00
+	textfw0 "「"
+	hiragana "こんらん」判定!"
+	line ""
+	textfw0 "「うら」なら にげられない"
+	done
 
 Text0119:
-	db $0b, $0e, $29, $0a, $73, $28, $31, $38, $74, $29, $19, $12, $47, $18, $70, $0f, $21, $5a, $5f, $18, $6e, $00
+	textfw0 "<RAMTEXT>"
+	hiragana "の"
+	line ""
+	textfw0 "「ねむり」のけいぞく "
+	katakana "チェック!"
+	done
 
 Text011a:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $4c, $18, $74, $95, $99, $0a, $73, $13, $37, $74, $25, $37, $73, $1a, $3d, $37, $3d, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」状態"
+	line ""
+	textfw0 "「うら」なら「こんらん」状態"
+	done
 
 Text011b:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $86, $80, $29, $98, $26, $0a, $0f, $3c, $43, $0e, $29, $0f, $48, $32, $78, $44, $0e, $24, $a0, $9f, $10, $70, $13, $19, $25, $12, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの相手の番に"
+	line ""
+	katakana "ワザ"
+	hiragana "の"
+	katakana "ダメージ"
+	hiragana "と効果を うけない!"
+	done
 
 Text011c:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $86, $80, $29, $98, $26, $0a, $7a, $7b, $7c, $2a, $70, $0f, $3c, $43, $0e, $10, $22, $16, $14, $25, $12, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの相手の番に"
+	line ""
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "は "
+	katakana "ワザ"
+	hiragana "をつかえない!"
+	done
 
 Text011d:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $73, $0f, $2c, $57, $12, $25, $39, $4e, $78, $31, $74, $ee, $01, $19, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	textfw0 "「"
+	katakana "ファイナルビーム」成"
+	textfw1 "功"
+	textfw0 "!"
+	done
 
 Text011e:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $13, $37, $74, $25, $37, $0a, $7d, $7e, $7f, $10, $73, $1a, $3d, $37, $3d, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「うら」なら"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "を「こんらん」状態"
+	done
 
 Text011f:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $7a, $7b, $7c, $10, $73, $13, $37, $74, $25, $37, $0a, $7d, $7e, $7f, $10, $73, $28, $31, $38, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「うら」なら"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "を「ねむり」状態"
+	done
 
 Text0120:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $13, $37, $74, $6c, $0c, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "うら」×", "<RAMNUM>"
+	katakana "ダメージ!!"
+	done
 
 Text0121:
-	db $48, $32, $78, $44, $a7, $a2, $6e, $0a, $73, $0e, $13, $37, $74, $25, $37, $6a, $0c, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "ダメージ判定!"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら+", "<RAMNUM>"
+	katakana "ダメージ!!"
+	done
 
 Text0122:
-	db $0e, $15, $24, $1c, $11, $25, $a7, $a2, $6e, $0a, $73, $13, $37, $74, $25, $37, $70, $62, $60, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	hiragana "おとしあな判定!"
+	line ""
+	textfw0 "「うら」なら 20"
+	katakana "ダメージ!!"
+	done
 
 Text0123:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $10, $73, $1a, $3d, $37, $3d, $74, $0a, $73, $13, $37, $74, $25, $37, $70, $73, $28, $31, $38, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "を「こんらん」"
+	line ""
+	textfw0 "「うら」なら 「ねむり」状態"
+	done
 
 Text0124:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $10, $70, $73, $0f, $2f, $2b, $74, $0a, $73, $0e, $13, $37, $74, $25, $37, $70, $73, $4c, $18, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "を 「"
+	katakana "マヒ」"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら 「どく」状態"
+	done
 
 Text0125:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $10, $73, $28, $31, $38, $74, $0a, $73, $13, $37, $74, $25, $37, $70, $73, $1a, $3d, $37, $3d, $74, $95, $99, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "を「ねむり」"
+	line ""
+	textfw0 "「うら」なら 「こんらん」状態"
+	done
 
 Text0126:
-	db $73, $0e, $13, $37, $74, $25, $37, $0a, $7d, $7e, $7f, $26, $33, $70, $64, $60, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "「"
+	hiragana "うら」なら"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "にも 40"
+	katakana "ダメージ!!"
+	done
 
 Text0127:
-	db $73, $0e, $13, $37, $74, $3e, $70, $4b, $39, $2f, $4b, $70, $2c, $39, $0a, $73, $15, $33, $23, $74, $6c, $62, $60, $0f, $48, $32, $78, $44, $6e, $6e, $00
+	textfw0 "「"
+	hiragana "うら」が でるまで ふる"
+	line ""
+	textfw0 "「おもて」×20"
+	katakana "ダメージ!!"
+	done
 
 Text0128:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $10, $0a, $61, $84, $0f, $24, $37, $5f, $1c, $5d, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら "
+	katakana "エネルギーカード"
+	hiragana "を"
+	line ""
+	textfw0 "1枚"
+	katakana "トラッシュ!"
+	done
 
 Text0129:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $7a, $7b, $7c, $2a, $70, $22, $3f, $29, $98, $26, $70, $26, $41, $37, $3a, $25, $12, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "は つぎの番に にげられない"
+	done
 
 Text012a:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $0a, $0f, $50, $3d, $21, $0e, $29, $0f, $56, $19, $33, $3d, $0e, $26, $70, $61, $60, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら"
+	line ""
+	katakana "ベンチ"
+	hiragana "の"
+	katakana "ポケモン"
+	hiragana "に 10"
+	katakana "ダメージ!"
+	done
 
 Text012b:
-	db $73, $0e, $13, $37, $74, $25, $37, $70, $8b, $8c, $29, $8e, $29, $0a, $0f, $56, $19, $33, $3d, $0e, $26, $70, $63, $60, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "うら」なら 自分の場の"
+	line ""
+	katakana "ポケモン"
+	hiragana "に 30"
+	katakana "ダメージ!"
+	done
 
 Text012c:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $62, $60, $0f, $48, $32, $78, $44, $0e, $22, $12, $16, $0a, $73, $13, $37, $74, $25, $37, $70, $7d, $7e, $7f, $26, $62, $60, $0f, $48, $32, $78, $44, $00
+	textfw0 "「"
+	hiragana "おもて」なら 20"
+	katakana "ダメージ"
+	hiragana "ついか"
+	line ""
+	textfw0 "「うら」なら ", "FW0_7d", "FW0_7e", "FW0_7f", "に20"
+	katakana "ダメージ"
+	done
 
 Text012d:
-	db $73, $0e, $13, $37, $74, $25, $37, $70, $0f, $48, $32, $78, $44, $a5, $0e, $1c, $24, $0a, $7d, $7e, $7f, $26, $62, $60, $0f, $48, $32, $78, $44, $00
+	textfw0 "「"
+	hiragana "うら」なら "
+	katakana "ダメージ無"
+	hiragana "しと"
+	line ""
+	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "に20"
+	katakana "ダメージ"
+	done
 
 Text012e:
-	db $73, $4f, $38, $3d, $18, $74, $a7, $a2, $0a, $73, $0e, $15, $33, $23, $74, $25, $37, $70, $0f, $48, $32, $78, $44, $0e, $10, $13, $19, $25, $12, $00
+	textfw0 "「ブリンク」判定"
+	line ""
+	textfw0 "「"
+	hiragana "おもて」なら "
+	katakana "ダメージ"
+	hiragana "をうけない"
+	done
 
 Text012f:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $11, $12, $23, $29, $8e, $29, $0a, $0f, $56, $19, $33, $3d, $0e, $26, $70, $62, $60, $0f, $48, $32, $78, $44, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら あいての場の"
+	line ""
+	katakana "ポケモン"
+	hiragana "に 20"
+	katakana "ダメージ!"
+	done
 
 Text0130:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $86, $80, $29, $98, $26, $0a, $0f, $3c, $43, $0e, $29, $0f, $48, $32, $78, $44, $0e, $10, $70, $13, $19, $25, $12, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの相手の番に"
+	line ""
+	katakana "ワザ"
+	hiragana "の"
+	katakana "ダメージ"
+	hiragana "を うけない!"
+	done
 
 Text0131:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $29, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $10, $70, $61, $84, $0f, $24, $37, $5f, $1c, $5d, $6e, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "の"
+	line ""
+	katakana "エネルギーカード"
+	hiragana "を 1枚"
+	katakana "トラッシュ!"
+	done
 
 Text0132:
-	db $73, $0e, $13, $37, $74, $25, $37, $70, $7d, $7e, $7f, $29, $0a, $0f, $14, $28, $39, $3f, $78, $16, $78, $4c, $0e, $10, $70, $61, $84, $0f, $24, $37, $5f, $1c, $5d, $6e, $00
+	textfw0 "「"
+	hiragana "うら」なら ", "FW0_7d", "FW0_7e", "FW0_7f", "の"
+	line ""
+	katakana "エネルギーカード"
+	hiragana "を 1枚"
+	katakana "トラッシュ!"
+	done
 
 Text0133:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $26, $63, $60, $0f, $48, $32, $78, $44, $0a, $73, $0e, $13, $37, $74, $25, $37, $70, $0f, $50, $3d, $21, $0e, $26, $61, $60, $0f, $48, $32, $78, $44, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "に30"
+	katakana "ダメージ"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら "
+	katakana "ベンチ"
+	hiragana "に10"
+	katakana "ダメージ"
+	done
 
 Text0134:
-	db $1a, $12, $3d, $0e, $10, $70, $62, $84, $25, $41, $23, $70, $61, $84, $4b, $33, $0a, $73, $13, $37, $74, $25, $37, $70, $1a, $29, $0f, $3c, $43, $0e, $2a, $70, $1c, $5f, $52, $12, $6e, $00
+	textfw0 "コイン"
+	hiragana "を 2枚なげて 1枚でも"
+	line ""
+	textfw0 "「うら」なら この"
+	katakana "ワザ"
+	hiragana "は しっぱい!"
+	done
 
 Text0135:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $61, $60, $0f, $48, $32, $78, $44, $0e, $22, $12, $16, $0a, $73, $13, $37, $74, $25, $37, $70, $7a, $7b, $7c, $10, $12, $3a, $16, $14, $39, $00
+	textfw0 "「"
+	hiragana "おもて」なら 10"
+	katakana "ダメージ"
+	hiragana "ついか"
+	line ""
+	textfw0 "「うら」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "をいれかえる"
+	done
 
 Text0136:
-	db $73, $0e, $15, $33, $23, $74, $29, $a9, $48, $19, $70, $0f, $16, $78, $4c, $0e, $10, $2b, $18, $00
+	textfw0 "「"
+	hiragana "おもて」の", "FW0_a9", "だけ "
+	katakana "カード"
+	hiragana "をひく"
+	done
 
 Text0137:
-	db $73, $0e, $13, $37, $74, $3e, $4b, $39, $2f, $4b, $70, $0f, $1a, $12, $3d, $0e, $10, $25, $41, $23, $0a, $73, $15, $33, $23, $74, $29, $a9, $48, $19, $70, $0f, $16, $78, $4c, $0e, $10, $2b, $18, $00
+	textfw0 "「"
+	hiragana "うら」がでるまで "
+	katakana "コイン"
+	hiragana "をなげて"
+	line ""
+	textfw0 "「おもて」の", "FW0_a9", "だけ "
+	katakana "カード"
+	hiragana "をひく"
+	done
 
 Text0138:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $98, $73, $4c, $22, $18, $74, $3e, $0a, $62, $01, $a6, $0f, $48, $32, $78, $44, $70, $73, $0e, $13, $37, $74, $25, $37, $22, $16, $14, $25, $12, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの番「どつく」が"
+	line ""
+	textfw0 "2"
+	textfw1 "FW1_a6"
+	katakana "ダメージ 「"
+	hiragana "うら」ならつかえない"
+	done
 
 Text0139:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $7a, $7b, $7c, $10, $73, $0f, $2f, $2b, $74, $0a, $73, $0e, $13, $37, $74, $25, $37, $70, $22, $3f, $29, $98, $22, $16, $14, $25, $12, $00
+	textfw0 "「"
+	hiragana "おもて」なら ", "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	katakana "マヒ」"
+	line ""
+	textfw0 "「"
+	hiragana "うら」なら つぎの番つかえない"
+	done
 
 Text013a:
-	db $73, $0e, $15, $33, $23, $74, $29, $a9, $70, $6c, $61, $60, $0f, $48, $32, $78, $44, $0e, $10, $0a, $8b, $01, $c7, $26, $ac, $14, $0f, $56, $19, $33, $3d, $0e, $26, $70, $3c, $38, $2c, $39, $00
+	textfw0 "「"
+	hiragana "おもて」の", "FW0_a9", " ×10"
+	katakana "ダメージ"
+	hiragana "を"
+	line ""
+	textfw0 "自"
+	textfw1 "FW1_c7"
+	textfw0 "に控え"
+	katakana "ポケモン"
+	hiragana "に わりふる"
+	done
 
 Text013b:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $22, $3f, $29, $8b, $8c, $29, $98, $29, $0a, $2a, $44, $32, $2f, $4b, $70, $f9, $0f, $48, $32, $78, $44, $0e, $3e, $62, $60, $26, $25, $39, $00
+	textfw0 "「"
+	hiragana "おもて」なら つぎの自分の番の"
+	line ""
+	textfw0 "はじめまで ", "FW0_f9"
+	katakana "ダメージ"
+	hiragana "が20になる"
+	done
 
 Text013c:
-	db $73, $0e, $15, $33, $23, $74, $29, $a9, $48, $19, $0a, $73, $aa, $74, $0f, $14, $28, $39, $3f, $78, $0e, $10, $70, $2a, $3e, $1d, $00
+	textfw0 "「"
+	hiragana "おもて」の", "FW0_a9", "だけ"
+	line ""
+	textfw0 "「水」"
+	katakana "エネルギー"
+	hiragana "を はがす"
+	done
 
 Text013d:
-	db $73, $0e, $15, $33, $23, $74, $25, $37, $70, $73, $25, $26, $16, $29, $93, $01, $39, $74, $16, $37, $0a, $96, $93, $1c, $20, $96, $93, $0f, $16, $78, $4c, $0e, $10, $70, $80, $85, $26, $33, $4c, $1e, $39, $0a, $00
+	textfw0 "「"
+	hiragana "おもて」なら 「なにかの化"
+	textfw1 "石"
+	textfw0 "」から"
+	line ""
+	textfw0 "進化した進化"
+	katakana "カード"
+	hiragana "を 手札にもどせる"
+	line ""
+	done
