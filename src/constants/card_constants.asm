@@ -444,4 +444,4 @@
 	const ROCKETS_SNEAK_ATTACK    ; $1bb
 	const HERE_COMES_TEAM_ROCKET  ; $1bc
 	const THE_ROCKETS_TRAP        ; $1bd
-NUM_CARDS EQU const_value - 1
+DEF NUM_CARDS EQU const_value - 1

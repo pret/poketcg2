@@ -1,255 +1,255 @@
-C_: MACRO
+MACRO C_
 	db $10 | (\1 - 1)
 ENDM
 
-C#: MACRO
+MACRO C#
 	db $20 | (\1 - 1)
 ENDM
 
-D_: MACRO
+MACRO D_
 	db $30 | (\1 - 1)
 ENDM
 
-D#: MACRO
+MACRO D#
 	db $40 | (\1 - 1)
 ENDM
 
-E_: MACRO
+MACRO E_
 	db $50 | (\1 - 1)
 ENDM
 
-F_: MACRO
+MACRO F_
 	db $60 | (\1 - 1)
 ENDM
 
-F#: MACRO
+MACRO F#
 	db $70 | (\1 - 1)
 ENDM
 
-G_: MACRO
+MACRO G_
 	db $80 | (\1 - 1)
 ENDM
 
-G#: MACRO
+MACRO G#
 	db $90 | (\1 - 1)
 ENDM
 
-A_: MACRO
+MACRO A_
 	db $a0 | (\1 - 1)
 ENDM
 
-A#: MACRO
+MACRO A#
 	db $b0 | (\1 - 1)
 ENDM
 
-B_: MACRO
+MACRO B_
 	db $c0 | (\1 - 1)
 ENDM
 
-bass: MACRO
+MACRO bass
 	db $10 | (\1 - 1)
 ENDM
 
-noise2: MACRO
+MACRO noise2
 	db $20 | (\1 - 1)
 ENDM
 
-snare1: MACRO ; medium length
+MACRO snare1 ; medium length
 	db $30 | (\1 - 1)
 ENDM
 
-snare2: MACRO ; medium length
+MACRO snare2 ; medium length
 	db $50 | (\1 - 1)
 ENDM
 
-noise6: MACRO
+MACRO noise6
 	db $60 | (\1 - 1)
 ENDM
 
-snare3: MACRO ; short
+MACRO snare3 ; short
 	db $70 | (\1 - 1)
 ENDM
 
-noise8: MACRO
+MACRO noise8
 	db $80 | (\1 - 1)
 ENDM
 
-snare4: MACRO ; long
+MACRO snare4 ; long
 	db $90 | (\1 - 1)
 ENDM
 
-noisea: MACRO
+MACRO noisea
 	db $a0 | (\1 - 1)
 ENDM
 
-noiseb: MACRO
+MACRO noiseb
 	db $b0 | (\1 - 1)
 ENDM
 
-snare5: MACRO ; long
+MACRO snare5 ; long
 	db $c0 | (\1 - 1)
 ENDM
 
-rest: MACRO
+MACRO rest
 	db \1 - 1
 ENDM
 
-speed: MACRO
+MACRO speed
 	db $d0, \1
 ENDM
 
-octave: MACRO
+MACRO octave
 	db ($d << 4) | \1
 ENDM
 
-inc_octave: MACRO
+MACRO inc_octave
 	db $d7
 ENDM
 
-dec_octave: MACRO
+MACRO dec_octave
 	db $d8
 ENDM
 
-tie: MACRO
+MACRO tie
 	db $d9
 ENDM
 
-musicdc: MACRO
+MACRO musicdc
 	db $dc, \1
 ENDM
 
-MainLoop: MACRO
+MACRO MainLoop
 	db $dd
 ENDM
 
-EndMainLoop: MACRO
+MACRO EndMainLoop
 	db $de
 ENDM
 
-Loop: MACRO
+MACRO Loop
 	db $df, \1
 ENDM
 
-EndLoop: MACRO
+MACRO EndLoop
 	db $e0
 ENDM
 
 ; unused
-;music_jp: MACRO
+;MACRO music_jp
 ;	db $e1
 ;	dw \1
 ;ENDM
 
-music_call: MACRO
+MACRO music_call
 	db $e2
 	dw \1
 ENDM
 
-music_ret: MACRO
+MACRO music_ret
 	db $e3
 ENDM
 
-musice4: MACRO
+MACRO musice4
 	db $e4, \1
 ENDM
 
-duty: MACRO
+MACRO duty
 	db $e5, \1 << 6
 ENDM
 
-volume: MACRO
+MACRO volume
 	db $e6, \1
 ENDM
 
-wave: MACRO
+MACRO wave
 	db $e7, \1
 ENDM
 
-musice8: MACRO
+MACRO musice8
 	db $e8, \1
 ENDM
 
-musice9: MACRO
+MACRO musice9
 	db $e9, \1
 ENDM
 
-vibrato_type: MACRO
+MACRO vibrato_type
 	db $ea, \1
 ENDM
 
-vibrato_delay: MACRO
+MACRO vibrato_delay
 	db $eb, \1
 ENDM
 
-musicec: MACRO
+MACRO musicec
 	db $ec, \1
 ENDM
 
 ; unused
-;musiced: MACRO
+;MACRO musiced
 ;	db $ed, \1
 ;ENDM
 
-musicee: MACRO
+MACRO musicee
 	db $ee, \1
 ENDM
 
-musicef: MACRO
+MACRO musicef
 	db $ef, \1
 ENDM
 
-musicf0: MACRO
+MACRO musicf0
 	db $f0, \1
 ENDM
 
-musicf1: MACRO
+MACRO musicf1
 	db $f1, \1
 ENDM
 
-musicf2: MACRO
+MACRO musicf2
 	db $f2
 ENDM
 
-musicf3: MACRO
+MACRO musicf3
 	db $f3
 ENDM
 
-music_end: MACRO
+MACRO music_end
 	db $ff
 ENDM
 
-sfx_0: MACRO
+MACRO sfx_0
 	db \1, \2
 ENDM
 
-sfx_1: MACRO
+MACRO sfx_1
 	db $10, \1
 ENDM
 
-sfx_2: MACRO
+MACRO sfx_2
 	db $20 | \1
 ENDM
 
-sfx_loop: MACRO
+MACRO sfx_loop
 	db $30, \1
 ENDM
 
-sfx_endloop: MACRO
+MACRO sfx_endloop
 	db $40
 ENDM
 
-sfx_5: MACRO
+MACRO sfx_5
 	db $50, \1
 ENDM
 
-sfx_6: MACRO
+MACRO sfx_6
 	db $60, \1
 ENDM
 
-sfx_8: MACRO
+MACRO sfx_8
 	db $80, \1
 ENDM
 
-sfx_end: MACRO
+MACRO sfx_end
 	db $f0
 ENDM

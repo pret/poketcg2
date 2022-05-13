@@ -1,12 +1,12 @@
-const_def: MACRO
-if _NARG > 0
-const_value = \1
-else
-const_value = 0
-endc
+MACRO const_def
+	IF _NARG > 0
+		DEF const_value = \1
+	ELSE
+		DEF const_value = 0
+	ENDC
 ENDM
 
-const: MACRO
-\1 EQU const_value
-const_value = const_value + 1
+MACRO const
+	DEF \1 EQU const_value
+	DEF const_value = const_value + 1
 ENDM

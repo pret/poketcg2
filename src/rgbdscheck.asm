@@ -1,12 +1,12 @@
-; poketcg2 requires rgbds 0.4.1 or newer.
-MAJOR EQU 0
-MINOR EQU 4
-PATCH EQU 1
+; poketcg2 requires rgbds 0.5.0 or newer.
+DEF MAJOR EQU 0
+DEF MINOR EQU 5
+DEF PATCH EQU 0
 
 IF !DEF(__RGBDS_MAJOR__) || !DEF(__RGBDS_MINOR__) || !DEF(__RGBDS_PATCH__)
-	fail "poketcg2 requires rgbds {MAJOR}.{MINOR}.{PATCH} or newer."
+	FAIL "poketcg2 requires rgbds {MAJOR}.{MINOR}.{PATCH} or newer."
 ELIF (__RGBDS_MAJOR__ < MAJOR) || \
 	(__RGBDS_MAJOR__ == MAJOR && __RGBDS_MINOR__ < MINOR) || \
 	(__RGBDS_MAJOR__ == MAJOR && __RGBDS_MINOR__ == MINOR && __RGBDS_PATCH__ < PATCH)
-	fail "poketcg2 requires rgbds {MAJOR}.{MINOR}.{PATCH} or newer."
+	FAIL "poketcg2 requires rgbds {MAJOR}.{MINOR}.{PATCH} or newer."
 ENDC

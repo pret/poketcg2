@@ -10,7 +10,7 @@
 	charmap "É", "@"
 	charmap "é", "`"
 
-fwcharmap: MACRO
+MACRO fwcharmap
 	charmap STRCAT("FW\1_", \2), \3
 ENDM
 
@@ -1036,9 +1036,9 @@ ENDM
 	fwcharmap 4, "◇", $63
 	fwcharmap 4, "ˉ", $64
 
-FW_SPACE EQU $70
+DEF FW_SPACE EQU $70
 
-txsymbol: MACRO
+MACRO txsymbol
 	const SYM_\1
 	charmap "\1>", const_value - 1
 ENDM

@@ -1,4 +1,4 @@
-card_data_struct: MACRO
+MACRO card_data_struct
 \1Type::          ds 1
 \1Gfx::           ds 2
 \1Name::          ds 2
@@ -26,7 +26,7 @@ card_data_struct: MACRO
 ;\1Unknown2::      ds 1
 ENDM
 
-atk_data_struct: MACRO
+MACRO atk_data_struct
 \1EnergyCost::     ds NUM_TYPES / 2
 \1Name::           ds 2
 \1Description::    ds 4
@@ -40,14 +40,14 @@ atk_data_struct: MACRO
 \1Animation::      ds 1
 ENDM
 
-text_header: MACRO
+MACRO text_header
 \1DefaultFont:: ds 1
 \1FontWidth::   ds 1
 \1Address::     ds 2
 \1RomBank::     ds 1
 ENDM
 
-sprite_anim_struct: MACRO
+MACRO sprite_anim_struct
 \1Enabled::             ds 1
 \1Attributes::          ds 1
 \1CoordX::              ds 1
@@ -63,7 +63,7 @@ sprite_anim_struct: MACRO
 \1Flags::               ds 1
 ENDM
 
-loaded_npc_struct: MACRO
+MACRO loaded_npc_struct
 \1ID::         ds 1
 \1Sprite::     ds 1
 \1CoordX::     ds 1
@@ -78,14 +78,14 @@ loaded_npc_struct: MACRO
 \1Field0x0b::  ds 1
 ENDM
 
-sprite_vram_struct: MACRO
+MACRO sprite_vram_struct
 \1Valid::      ds 1
 \1ID::         ds 1
 \1TileOffset:: ds 1
 \1TileSize::   ds 1
 ENDM
 
-duel_anim_struct: MACRO
+MACRO duel_anim_struct
 \1ID::             ds 1
 \1Screen::         ds 1
 \1DuelistSide::    ds 1
@@ -95,7 +95,7 @@ duel_anim_struct: MACRO
 \1Bank::           ds 1
 ENDM
 
-deck_struct: MACRO
+MACRO deck_struct
 \1Name::  ds DECK_NAME_SIZE
 \1Cards:: ds ((DECK_SIZE + 7) / 8 + 1) * 8
 ENDM
