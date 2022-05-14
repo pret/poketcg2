@@ -12,6 +12,11 @@ wTempCardCollection:: ; c000
 
 NEXTU
 
+wc000:: ; c000
+	ds $100
+
+NEXTU
+
 ; aside from wDecompressionBuffer, which stores the
 ; de facto final decompressed data after decompression,
 ; this buffer stores a secondary buffer that is used
@@ -470,7 +475,19 @@ wcd10:: ; cd10
 wcd16:: ; cd16
 	ds $1
 
+	ds $3
+
+wcd1a:: ; cd1a
+	ds $1
+
 SECTION "WRAM0 2", WRAM0
+
+; on CGB, attributes of the text box borders. (values 0-7 seem to be used, which only affect palette)
+; on SGB, colorize text box border with SGB1 if non-0
+wTextBoxFrameType:: ; cd5b
+	ds $1
+
+SECTION "WRAM0 3", WRAM0
 
 wce63:: ; cde9
 	ds $1

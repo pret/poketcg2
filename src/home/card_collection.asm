@@ -216,3 +216,20 @@ GetCardAlbumProgress:
 	pop hl
 	call DisableSRAM
 	ret
+
+Func_1bca:
+	ld a, [wSerialFlags]
+	or a
+	jr nz, .asm_1bd4
+	call Func_0e32
+	ret nc
+.asm_1bd4
+	ld a, $09
+	call BankswitchROM
+	ld hl, wcd1a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld sp, hl
+	scf
+	ret

@@ -2046,14 +2046,14 @@ Func_1bb4:
 	bank1call $4d82 ; DrawDuelHUDs
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
-	call Func_1bca
+	call Func_19e1
 	call $27fa ; WaitForWideTextBoxInput
 	call ExchangeRNG
 	ret
 
 ; prints one of the ThereWasNoEffectFrom*Text if wEffectFailed contains EFFECT_FAILED_NO_EFFECT,
 ; and prints WasUnsuccessfulText if wEffectFailed contains EFFECT_FAILED_UNSUCCESSFUL
-Func_1bca:
+Func_19e1:
 	ld a, [wEffectFailed]
 	or a
 	ret z
