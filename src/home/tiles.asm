@@ -133,7 +133,8 @@ LoadDuelCardSymbolTiles2:
 	ld b, $c
 	jr CopyFontsOrDuelGraphicsTiles
 
-Func_1de9:
+; load the Deck and the Discard Pile icons
+LoadDeckAndDiscardPileIcons:
 	ld hl, $3148
 	ld de, $cb16
 	ld c, $08
@@ -145,27 +146,30 @@ Func_1de9:
 	ld hl, $4240
 	ld a, [wConsole]
 	cp CONSOLE_CGB
-	jr z, .asm_1e0c
+	jr z, .copy
 	ld hl, $4510
-.asm_1e0c
-	ld de, $8d00
+.copy
+	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
 
-Func_1e13:
+; load the tiles for the [O] and [X] symbols used to display the results of a coin toss
+LoadDuelCoinTossResultTiles:
 	ld hl, $3108
 	ld de, $cafe
 	ld c, $08
 	call Func_1eeb
-	ld hl, $48b0
-	ld de, $9300
+	ld hl, $48b0 ; DuelOtherGraphics + $d tiles
+	ld de, v0Tiles2 + $30 tiles
 	ld b, $08
 	jr CopyFontsOrDuelGraphicsTiles
 
-Func_1e28:
-	ld hl, $3150
-	ld de, v0Tiles2
-	ld b, $38
+; load the tiles of the text characters used with TX_SYMBOL
+LoadSymbolsFont:
+	ld hl, SymbolsFont - $4000
+	ld de, v0Tiles2 ; destination
+	ld b, $38 ; (DuelCardHeaderGraphics - SymbolsFont) / TILE_SIZE ; number of tiles
+;	fallthrough
 
 ; if hl ≤ $3fff
 ;   copy b tiles from Gfx1:(hl+$4000) to de
@@ -182,7 +186,7 @@ CopyFontsOrDuelGraphicsTiles:
 ; this function copies gfx data into sram
 Func_212f:
 ; loads symbols fonts to sGfxBuffer1
-	ld hl, $3150 ; SymbolsFont - $4000
+	ld hl, SymbolsFont - $4000
 	ld de, sGfxBuffer1
 	ld b, $30
 	call CopyFontsOrDuelGraphicsTiles
@@ -225,7 +229,7 @@ DrawDuelBoxMessage:
 	call BankswitchVRAM1
 	ld a, 2
 	ld hl, 0
-	call $1eb1
+	call Func_1eb1
 	call BankswitchVRAM0
 	pop af
 	ld l, a
@@ -241,6 +245,9 @@ DrawDuelBoxMessage:
 	call CopyFontsOrDuelGraphicsTiles
 	ld a, $a0
 	lb hl, 1, 10
+;	fallthrough
+
+Func_1eb1:
 	lb bc, 10, 4
 	lb de, 5, 4
 	jp FillRectangle

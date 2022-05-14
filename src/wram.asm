@@ -33,6 +33,8 @@ wDecompressionSecondaryBufferStart:: ; c0ef
 
 ENDU
 
+	ds $100
+
 SECTION "WRAM0 Duels 1", WRAM0
 
 wPlayerDuelVariables:: ; c200
@@ -57,6 +59,20 @@ wNameBuffer:: ; c500
 ; or (less often) the attack list of a Pokemon card
 wDuelTempList:: ; c510
 	ds $80
+
+SECTION "WRAM0 Text Engine", WRAM0
+
+wc600:: ; c600
+	ds $100
+
+wc700:: ; c700
+	ds $100
+
+wc800:: ; c800
+	ds $100
+
+wc900:: ; c900
+	ds $100
 
 SECTION "WRAM0 1", WRAM0
 
@@ -487,7 +503,62 @@ SECTION "WRAM0 2", WRAM0
 wTextBoxFrameType:: ; cd5b
 	ds $1
 
-SECTION "WRAM0 3", WRAM0
+wcd5c:: ; cd5c
+	ds $1
+
+; pixel data of a tile used for text
+; either a combination of two half-width characters or a full-width character
+wTextTileBuffer:: ; cd5d
+	ds TILE_SIZE
+
+wcd04:: ; cd6d
+	ds $1
+
+; used by PlaceNextTextTile
+wCurTextTile:: ; cd6e
+	ds $1
+
+; VRAM tile patterns selector for text tiles
+; if wTilePatternSelector == $80 and wTilePatternSelectorCorrection == $00 -> select tiles at $8000-$8FFF
+; if wTilePatternSelector == $88 and wTilePatternSelectorCorrection == $80 -> select tiles at $8800-$97FF
+wTilePatternSelector:: ; cd6f
+	ds $1
+
+; complements wTilePatternSelector by correcting the VRAM tile order when $8800-$97FF is selected
+; a value of $80 in wTilePatternSelectorCorrection reflects tiles $00-$7f being located after tiles $80-$ff
+wTilePatternSelectorCorrection:: ; cd70
+	ds $1
+
+; if 0, text lines are separated by a blank line
+wLineSeparation:: ; cd71
+	ds $1
+
+; line number in which text is being printed as an offset to
+; the topmost line, including separator lines
+wCurTextLine:: ; cd72
+	ds $1
+
+; how to process the current text tile
+; 0: full-width font | non-0: half-width font
+wFontWidth:: ; cd73
+	ds $1
+
+; when printing half-width text, this variable alternates between 0 and the value
+; of the first character. 0 signals that no text should be printed in the current
+; iteration of Func_235e, while non-0 means to print the character pair
+; made of [wHalfWidthPrintState] (first char) and register e (second char).
+wHalfWidthPrintState:: ; cd74
+	ds $1
+
+; used by CopyTextData
+wTextMaxLength:: ; cd75
+	ds $1
+
+; half-width font letters become uppercase if non-0, lowercase if 0
+wUppercaseHalfWidthLetters:: ; cd76
+	ds $1
+
+SECTION "WRAM0 2@cde9", WRAM0
 
 wce63:: ; cde9
 	ds $1

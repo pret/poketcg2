@@ -75,8 +75,8 @@ DrawLabeledTextBox:
 	pop hl
 	call $2c77 ; CopyText
 	ld hl, wc000 + 3
-	call $20a4 ; GetTextLengthInTiles
-	ld [$cd5c], a
+	call GetTextLengthInTiles
+	ld [wcd5c], a
 	ld l, e
 	ld h, d
 	; white tile after the text
@@ -108,9 +108,9 @@ DrawLabeledTextBox:
 	pop de
 	push de
 	push bc
-	call $1ff4 ; InitTextPrinting
+	call InitTextPrinting
 	ld hl, wc000
-	call $1f05 ; ProcessText
+	call ProcessText
 	pop bc
 	pop de
 	ld a, [wConsole]
@@ -132,7 +132,7 @@ DrawLabeledTextBox:
 	push bc
 	push hl
 	push de
-	ld a, [$cd5c]
+	ld a, [wcd5c]
 	cpl
 	inc a
 	ld c, a

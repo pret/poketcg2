@@ -31,6 +31,8 @@ ROM0
 	"start"
 ROMX $1b
 	"Gfx 1"
+	org $7150
+	"Gfx 1@7150"
 ROMX $1d
 	"Card Gfx 1"
 ROMX $37
@@ -72,9 +74,9 @@ ROMX $48
 	"Text 17"
 WRAM0
 	"WRAM0"
-	org $c200
 	"WRAM0 Duels 1"
-	org $ca00
+	org $c600
+	"WRAM0 Text Engine"
 	"WRAM0 1"
 	org $cb6e
 	"WRAM0 Serial Transfer"
@@ -87,7 +89,7 @@ WRAM0
 	org $cd5b
 	"WRAM0 2"
 	org $cde9
-	"WRAM0 3"
+	"WRAM0 2@cde9"
 WRAMX 1
 	"WRAM1"
 	org $dd02
