@@ -92,6 +92,8 @@ WRAM0
 	"WRAM0 2@cdc2"
 WRAMX 1
 	"WRAM1"
+	org $d0bf
+	"WRAM1@d0bf"
 	org $dd02
 	"WRAM1@dd02"
 VRAM $00

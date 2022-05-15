@@ -722,6 +722,34 @@ wRefreshMenuCursorSFX:: ; d01d
 wDefaultYesOrNo:: ; d01e
 	ds $1
 
+SECTION "WRAM1@d0bf", WRAMX
+
+; set to PLAYER_TURN in the "Your Play Area" screen
+; set to OPPONENT_TURN in the "Opp Play Area" screen
+; alternates when drawing the "In Play Area" screen
+wCheckMenuPlayAreaWhichDuelist:: ; d0bf
+	ds $1
+
+; apparently complements wCheckMenuPlayAreaWhichDuelist to be able to combine
+; the usual player or opponent layout with the opposite duelist information
+; appears not to be relevant in the "In Play Area" screen
+wCheckMenuPlayAreaWhichLayout:: ; d0c0
+	ds $1
+
+	ds $7
+
+; number of prize cards still to be
+; picked by the player
+wNumberOfPrizeCardsToSelect:: ; d0c8
+	ds $1
+
+	ds $6
+
+; $00 when the "In Play Area" screen has been opened from the Check menu
+; $01 when the "In Play Area" screen has been opened by pressing the select button
+wInPlayAreaFromSelectButton:: ; d0cf
+	ds $1
+
 SECTION "WRAM1@dd02", WRAMX
 
 ; stores the player's result in a duel (0: win, 1: loss, 2: ???, -1: transmission error?)
