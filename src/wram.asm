@@ -572,6 +572,15 @@ wTextMaxLength:: ; cd75
 wUppercaseHalfWidthLetters:: ; cd76
 	ds $1
 
+	ds $2
+
+; During a duel, this is always $b after the first attack.
+; $b is the bank where the functions associated to card or effect commands are.
+; Its only purpose seems to be store this value to be read by TryExecuteEffectCommandFunction.
+; possibly used in other contexts too
+wEffectFunctionsBank:: ; cd79
+	ds $1
+
 SECTION "WRAM0 2@cdc2", WRAM0
 
 ; information about the text being currently processed, including font width,
