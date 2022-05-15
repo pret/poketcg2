@@ -123,3 +123,7 @@ hJapaneseSyllabary:: ; ffba
 
 hffb0:: ; ffbb
 	ds $1
+
+; unlike wCurMenuItem, this accounts for the scroll offset (wListScrollOffset)
+hCurMenuItem:: ; ffbc
+	ds $1

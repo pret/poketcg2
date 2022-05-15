@@ -3005,7 +3005,7 @@ Text028b:
 	textfw4 ">"
 	textfw0 "        "
 	line ""
-	textfw0 "<LIGHTNING>", " ", "<GRASS>", " ", "<FIRE>", " ", "<WATER>", " ", "<PSYCHIC>", " ", "<FIGHTING>", " ", "<COLORLESS>", " ", "<POISONED>", "  "
+	textfw0 "<LIGHTNING>", " ", "<GRASS>", " ", "<FIRE>", " ", "<WATER>", " ", "<PSYCHIC>", " ", "<FIGHTING>", " ", "<COLORLESS>", " ", "<RAINBOW>", "  "
 	done
 
 Text028c:

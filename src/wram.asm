@@ -60,6 +60,11 @@ wNameBuffer:: ; c500
 wDuelTempList:: ; c510
 	ds $80
 
+; this is kept updated with some default text that is used
+; when the text printing functions are called with text id $0000
+wDefaultText:: ; c590
+	ds $3c
+
 SECTION "WRAM0 Text Engine", WRAM0
 
 wc600:: ; c600
@@ -572,6 +577,72 @@ wListPointer:: ; d000
 
 wListPointer2:: ; d002
 	ds $2
+
+	ds $7
+
+; handles timing of (horizontal or vertical) arrow blinking while waiting for user input.
+wCursorBlinkCounter:: ; d00b
+	ds $1
+
+wCurMenuItem:: ; d00c
+	ds $1
+
+wCursorXPosition:: ; d00d
+	ds $1
+
+wCursorYPosition:: ; d00e
+	ds $1
+
+wYDisplacementBetweenMenuItems:: ; d00f
+	ds $1
+
+wNumMenuItems:: ; d010
+	ds $1
+
+wCursorTile:: ; d011
+	ds $1
+
+wTileBehindCursor:: ; d012
+	ds $1
+
+; if non-$0000, the function loaded here is called once per frame by HandleMenuInput
+wMenuFunctionPointer:: ; d013
+	ds $2
+
+wListScrollOffset:: ; d015
+	ds $1
+
+wListItemXPosition:: ; d016
+	ds $1
+
+wNumListItems:: ; d017
+	ds $1
+
+wListItemNameMaxLength:: ; d018
+	ds $1
+
+; if non-$0000, the function loaded here is called once per frame by CardListMenuFunction,
+; which is the function loaded to wMenuFunctionPointer for card lists
+wListFunctionPointer:: ; d019
+	ds $2
+
+; in a card list, the Y position where the <sel_item>/<num_items> indicator is placed
+; if wCardListIndicatorYPosition == $ff, no indicator is displayed
+wCardListIndicatorYPosition:: ; d01b
+	ds $1
+
+; x coord of the leftmost item in a horizontal menu
+wLeftmostItemCursorX:: ; d01c
+	ds $1
+
+; used in RefreshMenuCursor_CheckPlaySFX to play a sound during any frame when this address is non-0
+wRefreshMenuCursorSFX:: ; d01d
+	ds $1
+
+; when printing a YES/NO menu, whether the cursor is
+; initialized to the YES ($01) or to the NO ($00) item
+wDefaultYesOrNo:: ; d01e
+	ds $1
 
 SECTION "WRAM1@dd02", WRAMX
 

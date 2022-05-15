@@ -1056,12 +1056,12 @@ ENDM
 	txsymbol FIGHTING   ; $05
 	txsymbol PSYCHIC    ; $06
 	txsymbol COLORLESS  ; $07
-	txsymbol POISONED   ; $08
-	txsymbol ASLEEP     ; $09
-	txsymbol CONFUSED   ; $0a
-	txsymbol PARALYZED  ; $0b
-	txsymbol CURSOR_U   ; $0c
-	txsymbol POKEMON    ; $0d
+	txsymbol RAINBOW    ; $08
+	txsymbol POISONED   ; $09
+	txsymbol ASLEEP     ; $0a
+	txsymbol CONFUSED   ; $0b
+	txsymbol PARALYZED  ; $0c
+	txsymbol CURSOR_U   ; $0d
 	txsymbol ATK_DESCR  ; $0e
 	txsymbol CURSOR_R   ; $0f
 	txsymbol HP         ; $10
@@ -1097,3 +1097,9 @@ ENDM
 	txsymbol SLASH      ; $2e
 	txsymbol CURSOR_D   ; $2f
 	txsymbol PRIZE      ; $30
+	txsymbol BOX_ALT_1  ; $31
+	txsymbol BOX_ALT_2  ; $32
+	txsymbol BOX_ALT_3  ; $33
+	txsymbol BOX_ALT_4  ; $34
+	txsymbol POKEMON    ; $35
+	txsymbol CHERRY     ; $36
