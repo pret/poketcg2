@@ -646,6 +646,46 @@ wCoinTossScreenTextID:: ; cde7
 wce63:: ; cde9
 	ds $1
 
+wce64:: ; cdea
+	ds $1
+
+wce65:: ; cdeb
+	ds $1
+
+wce66:: ; cdec
+	ds $1
+
+wce67:: ; cded
+	ds $1
+
+wce68:: ; cdee
+	ds $1
+
+wce69:: ; cdef
+	ds $1
+
+; pointer to memory of data to send
+; in the data packet to the printer
+wPrinterPacketDataPtr:: ; cdf0
+	ds $2
+
+wce6c:: ; cdf2
+	ds $1
+
+wce6d:: ; cdf3
+	ds $1
+
+wce6e:: ; cdf4
+	ds $1
+
+wPrinterStatus:: ; cdf5
+	ds $1
+
+; pointer to packet data that is
+; being transmitted through serial
+wSerialDataPtr:: ; cdf6
+	ds $2
+
 SECTION "WRAM1", WRAMX
 
 ; stores a pointer to a temporary list of elements (e.g. pointer to wDuelTempList)
