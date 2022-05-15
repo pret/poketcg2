@@ -640,6 +640,7 @@ wTextBoxLabel:: ; cde3
 wcde5:: ; cde5
 	ds $2
 
+wCoinTossScreenTextID:: ; cde7
 	ds $2
 
 wce63:: ; cde9
