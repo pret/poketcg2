@@ -7,4 +7,4 @@
 	const AIACTION_FORCED_SWITCH ; $3
 	const AIACTION_KO_SWITCH     ; $4
 	const AIACTION_TAKE_PRIZE    ; $5
-	const AIACTION_06            ; $5
+	const AIACTION_06            ; $6

@@ -51,6 +51,7 @@ hLCDC:: ; ff96
 hFlushPaletteFlags:: ; ff97
 	ds $1
 
+hff96:: ; ff98
 	ds $1
 
 hWhoseTurn:: ; ff99

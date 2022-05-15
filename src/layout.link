@@ -88,8 +88,8 @@ WRAM0
 	"WRAM0 Duels 2@cc29"
 	org $cd5b
 	"WRAM0 2"
-	org $cde9
-	"WRAM0 2@cde9"
+	org $cdc2
+	"WRAM0 2@cdc2"
 WRAMX 1
 	"WRAM1"
 	org $dd02

@@ -572,7 +572,63 @@ wTextMaxLength:: ; cd75
 wUppercaseHalfWidthLetters:: ; cd76
 	ds $1
 
-SECTION "WRAM0 2@cde9", WRAM0
+SECTION "WRAM0 2@cdc2", WRAM0
+
+; information about the text being currently processed, including font width,
+; the rom bank, and the memory address of the next character to be printed.
+; supports up to four nested texts (used with TX_RAM).
+wTextHeader1:: ; cdc2
+	text_header wTextHeader1
+wTextHeader2:: ; cdc7
+	text_header wTextHeader2
+wTextHeader3:: ; cdcc
+	text_header wTextHeader3
+wTextHeader4:: ; cdd1
+	text_header wTextHeader4
+
+; text id for the first TX_RAM2 of a text
+; prints from wDefaultText if $0000
+wTxRam2:: ; cdd6
+	ds $2
+
+; text id for the second TX_RAM2 of a text
+wTxRam2_b:: ; cdd8
+	ds $2
+
+; text id for the first TX_RAM3 of a text
+; a number between 0 and 65535
+wTxRam3:: ; cdda
+	ds $2
+
+; text id for the second TX_RAM3 of a text
+; a number between 0 and 65535
+wTxRam3_b:: ; cddc
+	ds $2
+
+; when printing text, number of frames to wait between each text tile
+wTextSpeed:: ; cdde
+	ds $1
+
+; a number between 0 and 3 to select a wTextHeader to use for the current text
+wWhichTextHeader:: ; cddf
+	ds $1
+
+; selects wTxRam2 or wTxRam2_b
+wWhichTxRam2:: ; cde0
+	ds $1
+
+; selects wTxRam3 or wTxRam3_b
+wWhichTxRam3:: ; cde1
+	ds $1
+
+wIsTextBoxLabeled:: ; cde2
+	ds $1
+
+; text id of a text box's label
+wTextBoxLabel:: ; cde3
+	ds $2
+
+	ds $4
 
 wce63:: ; cde9
 	ds $1

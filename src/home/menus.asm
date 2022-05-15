@@ -848,7 +848,7 @@ DrawTextBox_PrintTextNoDelay:
 	pop hl
 	ld a, l
 	or h
-	jp nz, $2c38 ; PrintTextNoDelay
+	jp nz, PrintTextNoDelay
 	ld hl, wDefaultText
 	jp ProcessText
 
@@ -863,7 +863,7 @@ DrawWideTextBox_PrintText:
 	call InitTextPrintingInTextbox
 	call EnableLCD
 	pop hl
-	jp $2c00 ; PrintText
+	jp PrintText
 
 ; draw a 12x6 text box aligned to the bottom left of the screen
 DrawNarrowTextBox:
