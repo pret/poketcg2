@@ -77,7 +77,7 @@ DEF CARD_DATA_WEIGHT                EQU $3c
 DEF CARD_DATA_PKMN_DESCRIPTION      EQU $3e
 DEF CARD_DATA_UNKNOWN2              EQU $40
 
-DEF PKMN_CARD_DATA_LENGTH EQU $41
+DEF PKMN_CARD_DATA_LENGTH EQU $42
 
 ; generic type (color) constants
 	const_def

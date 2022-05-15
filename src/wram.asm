@@ -628,7 +628,10 @@ wIsTextBoxLabeled:: ; cde2
 wTextBoxLabel:: ; cde3
 	ds $2
 
-	ds $4
+wcde5:: ; cde5
+	ds $2
+
+	ds $2
 
 wce63:: ; cde9
 	ds $1
