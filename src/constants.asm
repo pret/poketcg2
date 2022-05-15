@@ -1,5 +1,6 @@
 INCLUDE "constants/card_constants.asm"
 INCLUDE "constants/card_data_constants.asm"
+INCLUDE "constants/deck_ai_constants.asm"
 INCLUDE "constants/duel_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
 INCLUDE "constants/hardware_constants.asm"

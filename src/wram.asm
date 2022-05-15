@@ -324,7 +324,14 @@ wcc01:: ; cc01
 wDuelType:: ; cc02
 	ds $1
 
-	ds $8
+	ds $6
+
+; this holds the current opponent's deck minus 2 (that is, a *_DECK_ID constant),
+; in order to account for the two unused pointers at the beginning of DeckPointers.
+wOpponentDeckID:: ; cc0e
+	ds $1
+
+	ds $1
 
 ; index (0-1) of the attack or Pokemon Power being used by the player's arena card
 ; set to $ff when the duel starts and at the end of the opponent's turn
@@ -340,6 +347,7 @@ wPlayerAttackingCardIndex:: ; cc0c
 wPlayerAttackingCardID:: ; cc0d
 	ds $2
 
+wIsPracticeDuel:: ; cc0f
 	ds $1
 
 wcc10:: ; cc10
@@ -496,6 +504,7 @@ wcd10:: ; cd10
 wcd16:: ; cd16
 	ds $1
 
+wcd17:: ; cd17
 	ds $3
 
 wcd1a:: ; cd1a

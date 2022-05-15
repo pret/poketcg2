@@ -1051,3 +1051,6 @@ PrintYesOrNoItems:
 	ld hl, $30 ; YesOrNoText
 	call $29d8 ; InitTextPrinting_ProcessTextFromID
 	ret
+
+BuildVersion:
+	db "VER 1/18 14:36", TX_END
