@@ -72,11 +72,11 @@ Func_3189:
 	jp JumpToFunctionInTable
 
 PointerTable_3190:
-	dw Func_31a8
-	dw Func_31a8
-	dw Func_31a8
-	dw Func_31a8
-	dw Func_31a8
+	dw Func_2fe7
+	dw Func_2fe7
+	dw Func_2fe7
+	dw Func_2fe7
+	dw Func_2fe7
 	dw Func_31b0
 	dw Func_31ca
 	dw Func_31dd
@@ -85,7 +85,7 @@ PointerTable_3190:
 	dw Func_31ea
 	dw Func_31f2
 
-Func_31a8:
+Func_2fe7:
 	call Func_31fc
 Func_31ab:
 	ld hl, wce63

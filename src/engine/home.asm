@@ -92,3 +92,7 @@ INCLUDE "home/load_deck.asm"
 INCLUDE "home/coin_toss.asm"
 INCLUDE "home/duel_menus.asm"
 INCLUDE "home/printer.asm"
+
+INCLUDE "home/unsorted.asm"
+
+INCLUDE "home/audio_callback.asm"

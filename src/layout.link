@@ -29,6 +29,8 @@ ROM0
 	"romheader"
 	org $0150
 	"start"
+	org $3fe0
+	"Audio Callback"
 ROMX $1b
 	"Gfx 1"
 	org $7150
