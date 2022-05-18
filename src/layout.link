@@ -74,6 +74,8 @@ ROMX $47
 	"Text 16"
 ROMX $48
 	"Text 17"
+ROMX $77
+	"Audio 1"
 WRAM0
 	"WRAM0"
 	"WRAM0 Duels 1"
@@ -98,6 +100,8 @@ WRAMX 1
 	"WRAM1@d0bf"
 	org $dd02
 	"WRAM1@dd02"
+WRAMX 7
+	"WRAM7 Audio"
 VRAM $00
 	"VRAM0"
 VRAM $01

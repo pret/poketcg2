@@ -23,6 +23,6 @@ BankswitchVRAM:
 	ret
 
 ; set current dest WRAM bank to a
-BankswitchWRAM: ; 07ab (0:07ab)
+BankswitchWRAM:
 	ldh [rSVBK], a
 	ret

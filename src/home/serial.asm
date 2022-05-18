@@ -652,7 +652,7 @@ SerialRecv8Bytes:
 	pop af
 	ret
 
-Func_f0e: ; 0f0e (0:0f0e)
+Func_0f0e:
 	ld a, $01
 	call BankswitchROM
 	jp $4080

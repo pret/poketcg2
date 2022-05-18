@@ -797,4 +797,180 @@ SECTION "WRAM1@dd02", WRAMX
 wDuelResult:: ; dd02
 	ds $1
 
+SECTION "WRAM7 Audio", WRAMX
+
+	ds $2
+
+; bit 7 is set once the song has been started
+wCurSongID:: ; d002
+	ds $1
+
+wCurSongBank:: ; d003
+	ds $1
+
+; bit 7 is set once the sfx has been started
+wCurSfxID:: ; d004
+	ds $1
+
+wAudio_d005:: ; d005
+	ds $1
+
+; priority value of current sfx (0 if nothing is playing)
+wSfxPriority:: ; d006
+	ds $1
+
+; sfx bank?
+wAudio_d007:: ; d007
+	ds $1
+
+; 8-bit output enable mask for left/right output for each channel
+wMusicStereoPanning:: ; d008
+	ds $1
+
+	ds $1
+
+wMusicDuty1:: ; d00a
+	ds $1
+
+wMusicDuty2:: ; d00b
+	ds $1
+
+	ds $2
+
+wMusicWave:: ; d00e
+	ds $1
+
+wMusicWaveChange:: ; d00f
+	ds $1
+
+wdd8c:: ; d010
+	ds $1
+
+	ds $1
+
+wMusicIsPlaying:: ; d012
+	ds $4
+
+wMusicTie:: ; d016
+	ds $4
+
+; 4 pointers to the current music commands being executed
+wMusicChannelPointers:: ; d01a
+	ds $8
+
+; 4 pointers to the addresses of the beginning of the main loop for each channel
+wMusicMainLoopStart:: ; d022
+	ds $8
+
+wMusicCh1CurPitch:: ; d02a
+	ds $1
+
+wMusicCh1CurOctave:: ; d02b
+	ds $1
+
+wMusicCh2CurPitch:: ; d02c
+	ds $1
+
+wMusicCh2CurOctave:: ; d02d
+	ds $1
+
+wMusicCh3CurPitch:: ; d02e
+	ds $1
+
+wMusicCh3CurOctave:: ; d02f
+	ds $1
+
+wddab:: ; d030
+	ds $1
+
+	ds $3
+
+wMusicOctave:: ; d034
+	ds $4
+
+	ds $4
+
+wddb7:: ; d03c
+	ds $1
+
+wddb8:: ; d03d
+	ds $1
+
+wddb9:: ; d03e
+	ds $1
+
+wddba:: ; d03f
+	ds $1
+
+wddbb:: ; d040
+	ds $4
+
+; the delay (1-8) before a note is cut off early (0 is disabled)
+wMusicCutoff:: ; d044
+	ds $4
+
+wddc3:: ; d048
+	ds $4
+
+; the volume to apply after a cutoff
+wMusicEcho:: ; d04c
+	ds $4
+
+; the pitch offset to apply to each note (see Music1_Pitches)
+wMusicPitchOffset:: ; d050
+	ds $4
+
+wMusicSpeed:: ; d054
+	ds $4
+
+wMusicVibratoType:: ; d058
+	ds $4
+
+wMusicVibratoType2:: ; d05c
+	ds $4
+
+wdddb:: ; d060
+	ds $4
+
+wMusicVibratoDelay:: ; d064
+	ds $4
+
+wdde3:: ; d068
+	ds $4
+
+	ds $8
+
+wMusicVolume:: ; d07c
+	ds $3
+
+; the frequency offset to apply to each note
+wMusicFrequencyOffset:: ; d077
+	ds $3
+
+	ds $9
+
+wAudio_d083:: ; d083
+	ds $1
+
+wdded:: ; d084
+	ds $2
+
+wddef:: ; d086
+	ds $1
+
+	ds $1
+
+wddf0:: ; d088
+	ds $1
+
+wMusicPanning:: ; d089
+	ds $1
+
+wddf2:: ; d08a
+	ds $1
+
+; 4 pointers to the positions on the stack for each channel
+wMusicChannelStackPointers:: ; d08b
+	ds $8
+
 INCLUDE "sram.asm"

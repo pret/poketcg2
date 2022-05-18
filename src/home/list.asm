@@ -62,11 +62,11 @@ SetNextElementOfList2:
 	ld hl, wListPointer2
 	jr SetNextElementOfList_Common
 
-Func_b6e:
+Func_0b6e:
 	push hl
 	push bc
 	ld hl, wListPointer
-Func_b73:
+Func_0b73:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -76,7 +76,7 @@ Func_b73:
 	ld a, [bc]
 	ld d, a
 	inc bc
-Func_b7c:
+Func_0b7c:
 	ld [hl], b
 	dec hl
 	ld [hl], c
@@ -84,17 +84,17 @@ Func_b7c:
 	pop hl
 	ret
 
-Func_b82:
+Func_0b82:
 	push hl
 	push bc
 	ld hl, wListPointer2
-	jr Func_b73
+	jr Func_0b73
 
-Func_b89:
+Func_0b89:
 	push hl
 	push bc
 	ld hl, wListPointer
-Func_b8e:
+Func_0b8e:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -104,18 +104,18 @@ Func_b8e:
 	ld a, d
 	ld [bc], a
 	inc bc
-	jr Func_b7c
+	jr Func_0b7c
 
-Func_b99:
+Func_0b99:
 	push hl
 	push bc
 	ld hl, wListPointer2
-	jr Func_b8e
+	jr Func_0b8e
 
-Func_ba0:
+Func_0ba0:
 	push hl
 	ld hl, wListPointer
-Func_ba4:
+Func_0ba4:
 	add [hl]
 	ld [hli], a
 	ld a, [hl]
@@ -124,7 +124,7 @@ Func_ba4:
 	pop hl
 	ret
 
-Func_bac:
+Func_0bac:
 	push hl
 	ld hl, wListPointer2
-	jr Func_ba4
+	jr Func_0ba4

@@ -218,7 +218,7 @@ RemoveCardFromHand:
 	pop af
 	ret
 
-Func_ffa:
+Func_0ffa:
 	push bc
 	push de
 	ld c, a
@@ -907,7 +907,7 @@ Func_12fc:
 	jr c, .asm_1327
 .asm_1321
 	ld a, l
-	call Func_ffa
+	call Func_0ffa
 	jr .asm_132b
 .asm_1327
 	ld a, l
@@ -935,7 +935,7 @@ MovePlayAreaCardToDiscardPile:
 	jr nz, .not_in_location
 	push de
 	ld a, l
-	call Func_ffa
+	call Func_0ffa
 	pop de
 .not_in_location
 	inc l
