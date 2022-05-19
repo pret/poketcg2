@@ -1,7 +1,7 @@
-Music_Diddly2_Ch2: ; 1ebd67 (7a:7d67)
+Music_Ditty2_Ch2: ; 1ebd67 (7a:7d67)
 	musicf0 2
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 2
 	B_ 5
 	D_ 4
@@ -67,10 +67,10 @@ Music_Diddly2_Ch2: ; 1ebd67 (7a:7d67)
 	music_end
 
 
-Music_Diddly2_Ch1: ; 1ebdaf (7a:7daf)
+Music_Ditty2_Ch1: ; 1ebdaf (7a:7daf)
 	musicf0 2
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 2
 	F_ 4
 	dec_octave
@@ -164,12 +164,12 @@ Music_Diddly2_Ch1: ; 1ebdaf (7a:7daf)
 	music_end
 
 
-Music_Diddly2_Ch3: ; 1ebe13 (7a:7e13)
+Music_Ditty2_Ch3: ; 1ebe13 (7a:7e13)
 	wave 4
 	speed 1
-	musice9 128
-	musicdc 255
-	musice8 7
+	echo 128
+	stereo_panning 15, 15
+	cutoff 7
 	volume 32
 	octave 1
 	G_ 5

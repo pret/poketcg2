@@ -1,7 +1,7 @@
-Music_Diddly5_Ch2: ; 1ebefa (7a:7efa)
+Music_Ditty5_Ch2: ; 1ebefa (7a:7efa)
 	musicf0 2
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 3
 	G_ 2
 	B_ 3
@@ -30,10 +30,10 @@ Music_Diddly5_Ch2: ; 1ebefa (7a:7efa)
 	music_end
 
 
-Music_Diddly5_Ch1: ; 1ebf1b (7a:7f1b)
+Music_Ditty5_Ch1: ; 1ebf1b (7a:7f1b)
 	musicf0 2
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicef 254
 	octave 2
 	B_ 2

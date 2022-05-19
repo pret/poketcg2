@@ -1,7 +1,7 @@
 Music_Song27_Ch1: ; 1e3ea8 (78:7ea8)
 	speed 1
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	volume 52
 	duty 1
 	octave 1

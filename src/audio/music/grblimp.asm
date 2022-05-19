@@ -1,14 +1,14 @@
 Music_GRBlimp_Ch2: ; 1e7bfa (79:7bfa)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 28
-	musice8 8
+	cutoff 8
 	octave 4
 	duty 2
 	volume 117
 	vibrato_delay 28
 	musicf0 0
-	musicdc 255
+	stereo_panning 15, 15
 	musicf1 48
 	music_call Branch_1e7cf5
 	G# 16
@@ -325,10 +325,10 @@ Branch_1e7cf5:
 
 
 Music_GRBlimp_Ch1: ; 1e7d6c (79:7d6c)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 28
-	musice8 8
+	cutoff 8
 	speed 7
 	octave 3
 	musicf0 1
@@ -680,11 +680,11 @@ Branch_1e7e8a:
 
 
 Music_GRBlimp_Ch3: ; 1e7eed (79:7eed)
-	musicdc 17
+	stereo_panning 1, 1
 	wave 1
 	volume 32
-	musice8 3
-	musice9 96
+	cutoff 3
+	echo 96
 	octave 1
 	speed 1
 	rest 14
@@ -743,7 +743,7 @@ Music_GRBlimp_Ch3: ; 1e7eed (79:7eed)
 	E_ 4
 	D# 4
 	A# 4
-	musice8 2
+	cutoff 2
 	speed 1
 	G# 10
 	tie
@@ -754,7 +754,7 @@ Music_GRBlimp_Ch3: ; 1e7eed (79:7eed)
 	G# 10
 	tie
 	G# 8
-	musice8 1
+	cutoff 1
 	G# 4
 	tie
 	A_ 4

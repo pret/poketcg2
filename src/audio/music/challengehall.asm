@@ -1,12 +1,12 @@
 Music_ChallengeHall_Ch2: ; 1e56cc (79:56cc)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 15
-	musice8 7
+	cutoff 7
 	octave 3
 	duty 2
 	volume 128
-	musice8 8
+	cutoff 8
 	speed 1
 	A_ 7
 	G# 4
@@ -397,10 +397,10 @@ Branch_1e58ca:
 
 
 Music_ChallengeHall_Ch1: ; 1e5905 (79:5905)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 15
-	musice8 7
+	cutoff 7
 	octave 3
 	speed 10
 	Loop 2
@@ -409,7 +409,7 @@ Music_ChallengeHall_Ch1: ; 1e5905 (79:5905)
 	MainLoop
 	duty 1
 	volume 144
-	musice8 8
+	cutoff 8
 	speed 10
 	E_ 12
 	speed 1
@@ -665,11 +665,11 @@ Music_ChallengeHall_Ch1: ; 1e5905 (79:5905)
 	C# 15
 	duty 1
 	volume 128
-	musice8 7
+	cutoff 7
 	C# 5
 	C# 5
 	C# 5
-	musice8 8
+	cutoff 8
 	C# 7
 	volume 39
 	C# 8
@@ -761,19 +761,19 @@ Branch_1e5aa2:
 
 
 Music_ChallengeHall_Ch3: ; 1e5b0c (79:5b0c)
-	musicdc 17
+	stereo_panning 1, 1
 	volume 32
 	wave 1
-	musice9 0
-	musice8 8
-	musice8 8
+	echo 0
+	cutoff 8
+	cutoff 8
 	speed 10
 	Loop 2
 	rest 6
 	EndLoop
 	MainLoop
 	octave 1
-	musice8 8
+	cutoff 8
 	E_ 6
 	tie
 	E_ 6
@@ -782,10 +782,10 @@ Music_ChallengeHall_Ch3: ; 1e5b0c (79:5b0c)
 	E_ 7
 	rest 8
 	dec_octave
-	musice8 7
+	cutoff 7
 	E_ 7
 	E_ 8
-	musice8 8
+	cutoff 8
 	E_ 7
 	rest 8
 	E_ 7
@@ -954,11 +954,11 @@ Music_ChallengeHall_Ch3: ; 1e5b0c (79:5b0c)
 	dec_octave
 	A_ 7
 	rest 8
-	musice8 7
+	cutoff 7
 	A_ 5
 	A_ 5
 	A_ 5
-	musice8 8
+	cutoff 8
 	A_ 7
 	rest 8
 	A_ 7

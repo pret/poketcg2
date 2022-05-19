@@ -1,8 +1,8 @@
 Music_MatchVictory_Ch2: ; 1eb8cc (7a:78cc)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 3
 	duty 0
 	volume 176
@@ -54,10 +54,10 @@ Music_MatchVictory_Ch2: ; 1eb8cc (7a:78cc)
 
 
 Music_MatchVictory_Ch1: ; 1eb91b (7a:791b)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 3
 	duty 0
 	volume 176
@@ -117,11 +117,11 @@ Music_MatchVictory_Ch1: ; 1eb91b (7a:791b)
 
 
 Music_MatchVictory_Ch3: ; 1eb974 (7a:7974)
-	musicdc 17
+	stereo_panning 1, 1
 	wave 1
 	volume 32
-	musice8 8
-	musice9 0
+	cutoff 8
+	echo 0
 	octave 1
 	speed 1
 	F_ 15

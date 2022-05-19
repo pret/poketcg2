@@ -2,7 +2,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	MainLoop
 	musicf0 31
 	musicf3
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	octave 2
 	musicf0 31
@@ -84,16 +84,16 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 5
 	tie
-	musice4 19
+	frequency_offset 19
 	G_ 4
 	tie
-	musice4 3
+	frequency_offset 3
 	G# 4
 	tie
-	musice4 27
+	frequency_offset 27
 	G# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 2
 	octave 2
 	A_ 9
@@ -233,28 +233,28 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 4
 	tie
-	musice4 254
+	frequency_offset -2
 	G_ 5
 	tie
-	musice4 252
+	frequency_offset -4
 	G_ 4
 	tie
-	musice4 250
+	frequency_offset -6
 	G_ 4
 	tie
-	musice4 248
+	frequency_offset -8
 	G_ 4
 	tie
-	musice4 255
+	frequency_offset -1
 	F# 4
 	tie
-	musice4 250
+	frequency_offset -6
 	F# 4
 	tie
-	musice4 247
+	frequency_offset -9
 	F# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 1
 	rest 9
 	music_call Branch_1f3762
@@ -269,16 +269,16 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 5
 	tie
-	musice4 19
+	frequency_offset 19
 	G_ 4
 	tie
-	musice4 3
+	frequency_offset 3
 	G# 4
 	tie
-	musice4 27
+	frequency_offset 27
 	G# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 1
 	musicf0 18
 	vibrato_type 17
@@ -338,28 +338,28 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 4
 	tie
-	musice4 254
+	frequency_offset -2
 	G_ 5
 	tie
-	musice4 252
+	frequency_offset -4
 	G_ 4
 	tie
-	musice4 250
+	frequency_offset -6
 	G_ 4
 	tie
-	musice4 248
+	frequency_offset -8
 	G_ 4
 	tie
-	musice4 255
+	frequency_offset -1
 	F# 4
 	tie
-	musice4 250
+	frequency_offset -6
 	F# 4
 	tie
-	musice4 247
+	frequency_offset -9
 	F# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 1
 	musicf0 9
 	octave 2
@@ -452,33 +452,33 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G# 5
 	tie
-	musice4 254
+	frequency_offset -2
 	G# 4
 	tie
-	musice4 252
+	frequency_offset -4
 	G# 4
 	tie
-	musice4 250
+	frequency_offset -6
 	G# 4
 	tie
-	musice4 248
+	frequency_offset -8
 	G# 4
 	tie
-	musice4 255
+	frequency_offset -1
 	G_ 4
 	tie
-	musice4 250
+	frequency_offset -6
 	G_ 4
 	tie
-	musice4 247
+	frequency_offset -9
 	G_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F# 1
 	rest 9
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f3762
-	musicec 0
+	pitch_offset 0
 	rest 8
 	rest 16
 	musicf0 9
@@ -546,28 +546,28 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 4
 	tie
-	musice4 254
+	frequency_offset -2
 	G_ 5
 	tie
-	musice4 252
+	frequency_offset -4
 	G_ 4
 	tie
-	musice4 250
+	frequency_offset -6
 	G_ 4
 	tie
-	musice4 248
+	frequency_offset -8
 	G_ 4
 	tie
-	musice4 255
+	frequency_offset -1
 	F# 4
 	tie
-	musice4 250
+	frequency_offset -6
 	F# 4
 	tie
-	musice4 247
+	frequency_offset -9
 	F# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 1
 	octave 2
 	musicf0 31
@@ -591,7 +591,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	rest 8
 	rest 16
 	musicf0 8
-	musice4 0
+	frequency_offset 0
 	musicef 2
 	octave 3
 	B_ 5
@@ -723,16 +723,16 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	G_ 5
 	tie
-	musice4 19
+	frequency_offset 19
 	G_ 4
 	tie
-	musice4 3
+	frequency_offset 3
 	G# 4
 	tie
-	musice4 27
+	frequency_offset 27
 	G# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 2
 	EndMainLoop
 
@@ -740,7 +740,7 @@ Branch_1f3762:
 	musicf0 9
 	musicf1 101
 	musicf3
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	musicef 255
 	octave 4
@@ -763,7 +763,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	musicf0 9
 	musicf1 103
 	musicf3
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	musicef 255
 	octave 4
@@ -994,9 +994,9 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	E_ 5
 	rest 11
 	rest 9
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1f3762
-	musicec 0
+	pitch_offset 0
 	rest 8
 	rest 16
 	rest 9
@@ -1143,9 +1143,9 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	D_ 5
 	rest 4
 	rest 8
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1f3a58
-	musicec 0
+	pitch_offset 0
 	musicf0 9
 	octave 3
 	rest 9
@@ -1173,9 +1173,9 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	C# 5
 	rest 11
 	rest 9
-	musicec 6
+	pitch_offset 6
 	music_call Branch_1f3762
-	musicec 0
+	pitch_offset 0
 	rest 8
 	rest 16
 	musicf0 9
@@ -1374,7 +1374,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	E_ 2
 	musicf0 8
 	musicef 2
-	musice4 0
+	frequency_offset 0
 	Loop 3
 	B_ 5
 	rest 6
@@ -1408,11 +1408,11 @@ Branch_1f3a58:
 Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	speed 1
 	wave 1
-	musicdc 255
+	stereo_panning 15, 15
 	volume 32
-	musice9 96
+	echo 96
 	MainLoop
-	musice8 8
+	cutoff 8
 	octave 1
 	A_ 9
 	rest 16
@@ -1469,16 +1469,16 @@ Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	tie
 	G_ 5
 	tie
-	musice4 38
+	frequency_offset 38
 	G_ 4
 	tie
-	musice4 6
+	frequency_offset 6
 	G# 4
 	tie
-	musice4 52
+	frequency_offset 52
 	G# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 2
 	A_ 9
 	rest 16
@@ -1620,16 +1620,16 @@ Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	tie
 	G_ 4
 	tie
-	musice4 38
+	frequency_offset 38
 	G_ 4
 	tie
-	musice4 6
+	frequency_offset 6
 	G# 4
 	tie
-	musice4 52
+	frequency_offset 52
 	G# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 1
 	A_ 9
 	rest 16
@@ -1730,16 +1730,16 @@ Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	tie
 	C_ 4
 	tie
-	musice4 28
+	frequency_offset 28
 	C_ 4
 	tie
-	musice4 8
+	frequency_offset 8
 	C# 4
 	tie
-	musice4 37
+	frequency_offset 37
 	C# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 1
 	D_ 9
 	rest 16
@@ -1811,9 +1811,9 @@ Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	dec_octave
 	C# 16
 	D_ 9
-	musicec 7
+	pitch_offset 7
 	music_call Branch_1f3d18
-	musicec 0
+	pitch_offset 0
 	octave 1
 	volume 32
 	rest 16
@@ -2017,21 +2017,21 @@ Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
 	tie
 	G_ 5
 	tie
-	musice4 38
+	frequency_offset 38
 	G_ 4
 	tie
-	musice4 6
+	frequency_offset 6
 	G# 4
 	tie
-	musice4 52
+	frequency_offset 52
 	G# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 2
 	EndMainLoop
 
 Branch_1f3d18:
-	musice8 1
+	cutoff 1
 	volume 32
 	Loop 2
 	volume 32
@@ -2059,7 +2059,7 @@ Branch_1f3d18:
 	C# 7
 	EndLoop
 	rest 1
-	musice8 8
+	cutoff 8
 	music_ret
 
 

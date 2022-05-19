@@ -1,7 +1,7 @@
 Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	MainLoop
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	musicf0 8
 	musicf1 55
 	octave 2
@@ -79,7 +79,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	music_call Branch_1ea5ed
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	D_ 10
 	D_ 11
@@ -93,7 +93,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	musicef 254
 	Loop 3
 	G_ 3
@@ -116,7 +116,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	music_call Branch_1ea5ed
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf1 55
 	musicf2
 	D_ 10
@@ -125,7 +125,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	rest 10
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	B_ 6
 	tie
 	inc_octave
@@ -147,7 +147,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	music_call Branch_1ea5ed
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	D_ 10
 	D_ 11
@@ -161,7 +161,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	musicef 254
 	Loop 3
 	G_ 3
@@ -183,14 +183,14 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf1 55
 	music_call Branch_1ea5ed
 	musicf0 9
-	musice8 4
-	musice8 4
+	cutoff 4
+	cutoff 4
 	octave 4
 	musicf2
 	G_ 10
 	G_ 11
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 3
 	musicf2
 	G_ 10
@@ -220,11 +220,11 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	D_ 11
 	musicf0 9
 	octave 3
-	musice8 8
+	cutoff 8
 	C# 10
 	musicf2
 	D_ 6
@@ -256,7 +256,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf0 9
 	musicf1 16
 	octave 4
-	musice8 6
+	cutoff 6
 	musicf3
 	F_ 10
 	rest 11
@@ -264,7 +264,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	rest 11
 	musicef 1
 	musicf1 55
-	musice8 8
+	cutoff 8
 	musicf3
 	octave 3
 	C# 10
@@ -295,11 +295,11 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	D_ 11
 	musicf0 9
 	octave 3
-	musice8 8
+	cutoff 8
 	C# 10
 	musicf2
 	D_ 6
@@ -327,37 +327,37 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	C_ 11
 	tie
 	dec_octave
-	musice4 15
+	frequency_offset 15
 	B_ 2
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 2
 	tie
-	musice4 13
+	frequency_offset 13
 	A# 1
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 1
 	tie
-	musice4 14
+	frequency_offset 14
 	A_ 1
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 1
 	tie
-	musice4 17
+	frequency_offset 17
 	G# 1
 	tie
-	musice4 0
+	frequency_offset 0
 	G# 1
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 2
 	A# 16
 	tie
 	A# 5
 	musicf0 9
-	musice8 8
+	cutoff 8
 	musicef 2
 	octave 1
 	A_ 3
@@ -392,7 +392,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	musicf1 103
 	G_ 5
 	rest 6
@@ -403,13 +403,13 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicef 252
 	musicf1 39
 	octave 3
-	musice8 4
+	cutoff 4
 	rest 11
 	musicf2
 	F_ 10
 	F_ 11
 	musicf3
-	musice8 8
+	cutoff 8
 	musicef 4
 	musicf1 55
 	musicf3
@@ -421,7 +421,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	rest 1
 	C_ 1
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 2
 	B_ 6
 	tie
@@ -440,7 +440,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	octave 3
 	C_ 11
 	musicf0 9
-	musice8 8
+	cutoff 8
 	inc_octave
 	musicf2
 	F_ 4
@@ -455,14 +455,14 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	inc_octave
 	inc_octave
 	musicf0 9
-	musice8 8
+	cutoff 8
 	musicf2
 	E_ 4
 	E_ 7
 	dec_octave
 	dec_octave
 	musicf0 8
-	musice8 8
+	cutoff 8
 	B_ 5
 	B_ 5
 	musicf3
@@ -470,7 +470,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf0 9
 	inc_octave
 	inc_octave
-	musice8 8
+	cutoff 8
 	musicf2
 	D# 4
 	D# 6
@@ -478,7 +478,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	dec_octave
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	A# 5
 	A# 6
 	musicf3
@@ -486,14 +486,14 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf0 9
 	inc_octave
 	inc_octave
-	musice8 8
+	cutoff 8
 	musicf2
 	C# 4
 	C# 7
 	dec_octave
 	dec_octave
 	musicf0 8
-	musice8 8
+	cutoff 8
 	G# 5
 	G# 5
 	musicf3
@@ -549,14 +549,14 @@ Branch_1ea603:
 	musicf3
 	musicf0 9
 	octave 4
-	musice8 8
+	cutoff 8
 	musicf2
 	C_ 4
 	C_ 6
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	musicf1 55
 	G_ 5
 	rest 6
@@ -567,12 +567,12 @@ Branch_1ea603:
 	musicef 252
 	musicf1 39
 	octave 3
-	musice8 4
+	cutoff 4
 	rest 11
 	musicf2
 	F_ 10
 	F_ 11
-	musice8 8
+	cutoff 8
 	musicf3
 	musicef 4
 	musicf1 55
@@ -596,7 +596,7 @@ Branch_1ea603:
 
 Branch_1ea64e:
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 3
 	musicef 255
 	G# 16
@@ -627,7 +627,7 @@ Branch_1ea64e:
 
 Branch_1ea66f:
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 2
 	E_ 16
 	tie
@@ -645,7 +645,7 @@ Branch_1ea66f:
 Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	MainLoop
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf0 8
 	musicf1 55
@@ -714,7 +714,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea5f8
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	C_ 10
 	C_ 11
@@ -723,14 +723,14 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 11
 	dec_octave
 	musicef 252
-	musice8 4
+	cutoff 4
 	A# 10
 	musicef 4
 	musicf1 55
 	musicf3
 	musicf0 9
 	octave 1
-	musice8 8
+	cutoff 8
 	musicef 254
 	Loop 3
 	D_ 2
@@ -748,7 +748,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea5f8
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	C_ 10
 	C_ 11
@@ -756,7 +756,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	musicf3
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	F# 6
 	tie
 	G_ 5
@@ -776,7 +776,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea5f8
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	C_ 10
 	C_ 11
@@ -791,7 +791,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	musicef 254
 	Loop 3
 	D_ 2
@@ -808,14 +808,14 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea5f8
 	musicf0 9
 	octave 4
-	musice8 4
+	cutoff 4
 	musicf2
 	C_ 10
 	C_ 11
 	musicf3
 	musicf0 8
 	octave 3
-	musice8 8
+	cutoff 8
 	C_ 10
 	dec_octave
 	rest 11
@@ -833,7 +833,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	G# 5
 	G_ 10
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 2
 	A# 11
 	G_ 10
@@ -850,19 +850,19 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 5
 	octave 4
 	rest 11
-	musice8 4
+	cutoff 4
 	C_ 10
 	rest 11
 	dec_octave
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	F_ 10
 	music_call Branch_1ea5ed
 	rest 10
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	G_ 16
 	tie
 	G_ 5
@@ -879,7 +879,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 5
 	rest 11
 	musicf0 9
-	musice8 6
+	cutoff 6
 	musicf1 16
 	octave 3
 	musicf3
@@ -891,7 +891,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	musicf3
 	musicf0 8
 	musicf1 55
-	musice8 8
+	cutoff 8
 	octave 2
 	G_ 10
 	F_ 11
@@ -902,7 +902,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	D_ 10
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	G_ 11
 	tie
 	G_ 10
@@ -919,13 +919,13 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 5
 	octave 4
 	rest 11
-	musice8 4
+	cutoff 4
 	C_ 10
 	rest 11
 	dec_octave
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	F_ 10
 	musicf2
 	G_ 8
@@ -940,7 +940,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	musicf3
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	G_ 16
 	tie
 	G_ 5
@@ -1009,7 +1009,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	octave 2
 	music_call Branch_1ea5ed
 	musicf0 9
-	musice8 4
+	cutoff 4
 	octave 3
 	musicf2
 	A# 10
@@ -1017,18 +1017,18 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	musicf3
 	musicf0 8
 	octave 1
-	musice8 8
+	cutoff 8
 	rest 10
 	musicf0 9
 	musicef 252
 	musicf1 55
 	octave 2
-	musice8 4
+	cutoff 4
 	rest 11
 	A# 10
 	A# 11
 	musicf3
-	musice8 8
+	cutoff 8
 	musicef 4
 	musicf1 55
 	musicf3
@@ -1040,7 +1040,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 1
 	C_ 1
 	musicf0 8
-	musice8 8
+	cutoff 8
 	octave 2
 	F# 6
 	tie
@@ -1058,7 +1058,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	octave 2
 	G_ 11
 	musicf0 9
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	musicf2
@@ -1073,40 +1073,40 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	F# 10
 	inc_octave
 	musicf0 9
-	musice8 8
+	cutoff 8
 	musicf2
 	B_ 4
 	B_ 7
 	dec_octave
 	musicf0 8
-	musice8 8
+	cutoff 8
 	F# 5
 	F# 5
 	musicf3
 	F_ 11
 	musicf0 9
 	inc_octave
-	musice8 8
+	cutoff 8
 	musicf2
 	A# 4
 	A# 6
 	dec_octave
 	musicf0 8
 	octave 2
-	musice8 8
+	cutoff 8
 	F_ 5
 	F_ 6
 	musicf3
 	D# 10
 	musicf0 9
 	inc_octave
-	musice8 8
+	cutoff 8
 	musicf2
 	G# 4
 	G# 7
 	dec_octave
 	musicf0 8
-	musice8 8
+	cutoff 8
 	D# 5
 	D# 5
 	musicf3
@@ -1120,7 +1120,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 
 Branch_1ea8d3:
 	musicf0 8
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 55
 	musicf2
@@ -1134,18 +1134,18 @@ Branch_1ea8d3:
 	G_ 11
 	musicf0 9
 	octave 3
-	musice8 4
+	cutoff 4
 	A# 10
 	A# 11
 	musicf3
 	rest 10
 	musicef 252
 	octave 2
-	musice8 4
+	cutoff 4
 	rest 11
 	A# 10
 	rest 11
-	musice8 8
+	cutoff 8
 	musicef 4
 	musicf1 55
 	musicf3
@@ -1211,8 +1211,8 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	speed 1
 	wave 1
 	volume 32
-	musice9 128
-	musicdc 17
+	echo 128
+	stereo_panning 1, 1
 	MainLoop
 	octave 4
 	octave 1
@@ -1286,9 +1286,9 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	D_ 11
 	inc_octave
 	volume 64
-	musice8 8
+	cutoff 8
 	C_ 10
-	musice8 8
+	cutoff 8
 	volume 32
 	dec_octave
 	C# 11
@@ -1309,19 +1309,19 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	G_ 10
 	rest 11
 	octave 4
-	musice8 4
+	cutoff 4
 	G_ 10
 	volume 96
 	G_ 11
-	musice8 8
+	cutoff 8
 	octave 1
 	volume 64
 	F_ 10
 	G_ 11
 	octave 4
-	musice8 4
+	cutoff 4
 	F_ 10
-	musice8 8
+	cutoff 8
 	octave 1
 	volume 32
 	rest 10
@@ -1343,11 +1343,11 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	G_ 10
 	rest 11
 	octave 4
-	musice8 4
+	cutoff 4
 	G_ 10
 	volume 96
 	G_ 11
-	musice8 8
+	cutoff 8
 	volume 32
 	octave 1
 	rest 10
@@ -1372,19 +1372,19 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	G_ 10
 	rest 11
 	octave 4
-	musice8 4
+	cutoff 4
 	G_ 10
 	volume 96
 	G_ 11
-	musice8 8
+	cutoff 8
 	octave 1
 	volume 64
 	F_ 10
 	G_ 11
 	octave 4
-	musice8 4
+	cutoff 4
 	F_ 10
-	musice8 8
+	cutoff 8
 	volume 32
 	octave 1
 	rest 10
@@ -1485,11 +1485,11 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	rest 11
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	F_ 10
 	volume 96
 	F_ 11
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	volume 64
@@ -1520,11 +1520,11 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	rest 11
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	F_ 10
 	volume 96
 	F_ 11
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	volume 64
@@ -1556,11 +1556,11 @@ Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
 	rest 11
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	F_ 10
 	volume 96
 	F_ 11
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	volume 64
@@ -1655,11 +1655,11 @@ Branch_1eaaf6:
 	G_ 10
 	rest 11
 	octave 4
-	musice8 4
+	cutoff 4
 	G_ 10
 	volume 96
 	G_ 11
-	musice8 8
+	cutoff 8
 	octave 1
 	volume 32
 	rest 10

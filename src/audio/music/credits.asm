@@ -2,7 +2,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	duty 2
 	volume 247
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 1
 	G_ 16
 	tie
@@ -402,18 +402,18 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	duty 1
 	octave 2
 	volume 156
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 214
+	frequency_offset -42
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 4
 	tie
-	musice4 242
+	frequency_offset -14
 	D_ 3
-	musice4 0
+	frequency_offset 0
 	volume 224
 	D_ 4
 	tie
@@ -433,18 +433,18 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D_ 4
 	tie
-	musice4 227
+	frequency_offset -29
 	D_ 3
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 180
+	frequency_offset -76
 	D_ 2
 	tie
-	musice4 147
+	frequency_offset -109
 	D_ 1
-	musice4 0
+	frequency_offset 0
 	octave 1
 	vibrato_type 5
 	vibrato_delay 29
@@ -562,13 +562,13 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 15
 	inc_octave
-	musice4 204
+	frequency_offset -52
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 7
 	volume 156
 	G_ 15
@@ -576,13 +576,13 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	G_ 14
 	tie
 	G_ 15
-	musice4 215
+	frequency_offset -41
 	G_ 4
 	tie
-	musice4 236
+	frequency_offset -20
 	G_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	G_ 7
 	tie
 	G_ 15
@@ -590,16 +590,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	dec_octave
 	G_ 15
 	tie
-	musice4 217
+	frequency_offset -39
 	G_ 4
 	tie
-	musice4 0
+	frequency_offset 0
 	F# 3
 	tie
-	musice4 213
+	frequency_offset -43
 	F# 4
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 3
 	C_ 15
 	tie
@@ -617,18 +617,18 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	G_ 14
 	volume 156
 	inc_octave
-	musice4 196
+	frequency_offset -60
 	C_ 4
 	tie
-	musice4 211
+	frequency_offset -45
 	C_ 4
 	tie
-	musice4 226
+	frequency_offset -30
 	C_ 4
 	tie
-	musice4 241
+	frequency_offset -15
 	C_ 3
-	musice4 0
+	frequency_offset 0
 	volume 224
 	C_ 14
 	tie
@@ -658,16 +658,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	B_ 15
 	tie
-	musice4 224
+	frequency_offset -32
 	B_ 4
 	tie
-	musice4 192
+	frequency_offset -64
 	B_ 3
 	tie
-	musice4 222
+	frequency_offset -34
 	A# 4
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 3
 	speed 4
 	E_ 15
@@ -678,35 +678,35 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	A_ 14
 	speed 1
 	inc_octave
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 214
+	frequency_offset -42
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 4
 	tie
-	musice4 242
+	frequency_offset -14
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 14
 	tie
 	D_ 15
 	tie
-	musice4 242
+	frequency_offset -14
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 4
 	tie
-	musice4 214
+	frequency_offset -42
 	D_ 4
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 3
-	musice4 0
+	frequency_offset 0
 	dec_octave
 	D_ 15
 	tie
@@ -730,7 +730,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	duty 2
 	volume 199
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	octave 2
 	B_ 10
@@ -758,13 +758,13 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	C_ 14
 	tie
 	C_ 15
-	musice4 178
+	frequency_offset -78
 	G_ 4
 	tie
-	musice4 217
+	frequency_offset -39
 	G_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	G_ 7
 	inc_octave
 	speed 4
@@ -787,16 +787,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	B_ 15
 	tie
-	musice4 224
+	frequency_offset -32
 	B_ 4
 	tie
-	musice4 192
+	frequency_offset -64
 	B_ 3
 	tie
-	musice4 222
+	frequency_offset -34
 	A# 4
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 3
 	speed 4
 	E_ 15
@@ -816,35 +816,35 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	inc_octave
 	C_ 15
 	C# 14
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 214
+	frequency_offset -42
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 4
 	tie
-	musice4 242
+	frequency_offset -14
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 14
 	tie
 	D_ 15
 	tie
-	musice4 242
+	frequency_offset -14
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 4
 	tie
-	musice4 214
+	frequency_offset -42
 	D_ 4
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 3
-	musice4 0
+	frequency_offset 0
 	dec_octave
 	D_ 15
 	tie
@@ -857,16 +857,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 14
 	tie
-	musice4 217
+	frequency_offset -39
 	G_ 4
 	tie
-	musice4 0
+	frequency_offset 0
 	F# 4
 	tie
-	musice4 213
+	frequency_offset -43
 	F# 4
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 3
 	D_ 14
 	tie
@@ -905,10 +905,10 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	dec_octave
 	F# 4
 	tie
-	musice4 217
+	frequency_offset -39
 	G_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	G_ 7
 	speed 4
 	C_ 15
@@ -937,10 +937,10 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	inc_octave
 	D# 4
 	tie
-	musice4 232
+	frequency_offset -24
 	E_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	E_ 7
 	A_ 15
 	tie
@@ -997,13 +997,13 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 15
 	inc_octave
-	musice4 204
+	frequency_offset -52
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 7
 	volume 156
 	G_ 15
@@ -1020,18 +1020,18 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 15
 	tie
-	musice4 236
+	frequency_offset -20
 	G_ 4
 	tie
-	musice4 215
+	frequency_offset -41
 	G_ 3
 	tie
-	musice4 194
+	frequency_offset -62
 	G_ 4
 	tie
-	musice4 174
+	frequency_offset -82
 	G_ 3
-	musice4 0
+	frequency_offset 0
 	dec_octave
 	speed 4
 	G_ 15
@@ -1074,13 +1074,13 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	inc_octave
 	C_ 14
 	C# 15
-	musice4 204
+	frequency_offset -52
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 7
 	tie
 	D_ 14
@@ -1130,18 +1130,18 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	C_ 15
 	tie
-	musice4 226
+	frequency_offset -30
 	C_ 4
 	tie
-	musice4 196
+	frequency_offset -60
 	C_ 3
 	tie
-	musice4 163
+	frequency_offset -93
 	C_ 4
 	tie
-	musice4 133
+	frequency_offset -123
 	C_ 3
-	musice4 0
+	frequency_offset 0
 	dec_octave
 	C_ 15
 	tie
@@ -1255,10 +1255,10 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	octave 1
 	A# 4
 	tie
-	musice4 224
+	frequency_offset -32
 	B_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 7
 	tie
 	B_ 15
@@ -1321,16 +1321,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	F_ 15
 	A# 4
 	tie
-	musice4 193
+	frequency_offset -63
 	B_ 3
 	tie
-	musice4 224
+	frequency_offset -32
 	B_ 4
 	tie
-	musice4 240
+	frequency_offset -16
 	B_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 15
 	inc_octave
 	C_ 7
@@ -1355,19 +1355,19 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D_ 15
 	inc_octave
-	musice4 147
+	frequency_offset -109
 	D_ 4
 	tie
-	musice4 181
+	frequency_offset -75
 	D_ 3
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 15
 	dec_octave
 	A_ 14
@@ -1389,19 +1389,19 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	A_ 14
 	inc_octave
 	C_ 15
-	musice4 147
+	frequency_offset -109
 	D_ 4
 	tie
-	musice4 181
+	frequency_offset -75
 	D_ 3
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 15
 	dec_octave
 	A_ 14
@@ -1423,19 +1423,19 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D_ 15
 	inc_octave
-	musice4 147
+	frequency_offset -109
 	D_ 4
 	tie
-	musice4 181
+	frequency_offset -75
 	D_ 3
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 15
 	dec_octave
 	A_ 14
@@ -1482,19 +1482,19 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 15
 	inc_octave
-	musice4 147
+	frequency_offset -109
 	D_ 4
 	tie
-	musice4 180
+	frequency_offset -76
 	D_ 3
 	tie
-	musice4 203
+	frequency_offset -53
 	D_ 4
 	tie
-	musice4 229
+	frequency_offset -27
 	D_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 15
 	C_ 14
 	dec_octave
@@ -1515,16 +1515,16 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	rest 7
 	A# 4
 	tie
-	musice4 222
+	frequency_offset -34
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 4
 	tie
-	musice4 224
+	frequency_offset -32
 	B_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 15
 	F# 14
 	F_ 15
@@ -1708,7 +1708,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	duty 2
 	volume 199
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	rest 15
 	octave 2
 	D_ 14
@@ -4043,16 +4043,16 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 
 Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	wave 6
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	volume 32
-	musice9 96
+	echo 96
 	octave 4
-	musice8 8
+	cutoff 8
 	vibrato_type 3
 	vibrato_delay 15
 	volume 64
-	musice8 8
+	cutoff 8
 	G# 3
 	A_ 12
 	tie
@@ -4070,7 +4070,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	G# 3
 	vibrato_delay 10
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
@@ -4078,7 +4078,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	A_ 15
 	tie
 	A_ 14
-	musice8 8
+	cutoff 8
 	vibrato_delay 0
 	G_ 15
 	tie
@@ -4086,9 +4086,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	A_ 9
 	tie
 	A_ 15
-	musice8 4
+	cutoff 4
 	B_ 14
-	musice8 8
+	cutoff 8
 	B_ 3
 	inc_octave
 	C_ 5
@@ -4099,7 +4099,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	B_ 15
 	vibrato_delay 16
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	speed 4
@@ -4111,7 +4111,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 15
 	tie
 	G_ 14
-	musice8 8
+	cutoff 8
 	speed 1
 	G# 3
 	A_ 12
@@ -4130,23 +4130,23 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	G# 3
 	vibrato_delay 10
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
 	tie
 	A_ 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	G_ 14
 	tie
 	G_ 15
 	A_ 14
 	B_ 15
 	inc_octave
-	musice8 4
+	cutoff 4
 	C_ 14
-	musice8 8
+	cutoff 8
 	C# 3
 	D_ 5
 	tie
@@ -4159,7 +4159,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	B_ 15
 	vibrato_delay 16
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	speed 4
@@ -4173,7 +4173,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	speed 3
 	G_ 9
 	speed 1
-	musice8 8
+	cutoff 8
 	volume 32
 	rest 15
 	rest 14
@@ -4185,7 +4185,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	vibrato_delay 0
 	inc_octave
 	D_ 15
-	musice8 1
+	cutoff 1
 	F# 14
 	tie
 	F# 15
@@ -4193,7 +4193,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	D_ 14
 	tie
 	D_ 15
@@ -4204,7 +4204,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	D_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	C# 3
 	D_ 12
 	tie
@@ -4213,9 +4213,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 7
 	dec_octave
-	musice8 4
+	cutoff 4
 	B_ 14
-	musice8 8
+	cutoff 8
 	B_ 15
 	tie
 	B_ 14
@@ -4223,7 +4223,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	C_ 15
 	dec_octave
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	E_ 14
 	tie
 	E_ 15
@@ -4242,7 +4242,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	E_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	inc_octave
 	C# 3
 	D_ 12
@@ -4252,9 +4252,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 7
 	dec_octave
-	musice8 4
+	cutoff 4
 	B_ 14
-	musice8 8
+	cutoff 8
 	B_ 15
 	tie
 	B_ 14
@@ -4262,7 +4262,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	C_ 15
 	dec_octave
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	D# 14
 	tie
 	D# 15
@@ -4273,7 +4273,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	D# 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	vibrato_delay 15
 	G_ 15
 	tie
@@ -4282,7 +4282,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 15
 	tie
 	G_ 14
-	musice8 1
+	cutoff 1
 	A_ 15
 	tie
 	A_ 14
@@ -4291,7 +4291,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	A_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	volume 64
 	B_ 15
 	tie
@@ -4313,7 +4313,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	rest 15
 	rest 14
 	D# 3
-	musice8 8
+	cutoff 8
 	vibrato_delay 12
 	E_ 12
 	tie
@@ -4321,16 +4321,16 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	E_ 15
 	vibrato_delay 0
-	musice8 4
+	cutoff 4
 	C_ 14
-	musice8 8
+	cutoff 8
 	E_ 15
 	tie
 	E_ 14
 	A# 3
 	B_ 12
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	A_ 14
 	tie
 	A_ 15
@@ -4338,7 +4338,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	A_ 14
 	tie
 	A_ 15
-	musice8 8
+	cutoff 8
 	vibrato_delay 0
 	F_ 3
 	F# 11
@@ -4348,7 +4348,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	E_ 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	D_ 14
 	tie
 	D_ 14
@@ -4358,13 +4358,13 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 15
 	vibrato_delay 0
 	dec_octave
-	musice8 8
+	cutoff 8
 	B_ 14
 	inc_octave
 	D_ 15
 	A_ 14
 	F# 15
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -4380,7 +4380,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	B_ 14
 	tie
 	B_ 15
-	musice8 8
+	cutoff 8
 	B_ 3
 	inc_octave
 	vibrato_delay 14
@@ -4390,9 +4390,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 14
 	vibrato_delay 0
-	musice8 3
+	cutoff 3
 	G_ 15
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -4400,7 +4400,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 15
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	B_ 14
 	tie
@@ -4414,7 +4414,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 15
 	tie
 	G_ 14
-	musice8 1
+	cutoff 1
 	A_ 15
 	tie
 	G_ 14
@@ -4430,10 +4430,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	D_ 14
 	dec_octave
-	musice8 8
+	cutoff 8
 	A# 3
 	vibrato_delay 12
-	musice8 1
+	cutoff 1
 	B_ 12
 	tie
 	B_ 14
@@ -4451,11 +4451,11 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	B_ 7
 	tie
 	B_ 7
-	musice8 8
+	cutoff 8
 	rest 15
 	rest 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	inc_octave
 	D# 3
 	vibrato_delay 12
@@ -4464,16 +4464,16 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	E_ 15
 	vibrato_delay 0
-	musice8 4
+	cutoff 4
 	C_ 14
-	musice8 8
+	cutoff 8
 	E_ 15
 	tie
 	E_ 14
 	A# 3
 	B_ 12
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	A_ 14
 	tie
 	A_ 15
@@ -4498,7 +4498,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	D_ 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	C# 2
 	D_ 12
 	tie
@@ -4506,7 +4506,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	E_ 14
 	F# 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -4549,13 +4549,13 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	tie
 	D_ 15
-	musice8 8
+	cutoff 8
 	vibrato_delay 0
 	F# 3
 	G_ 11
 	F# 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	D_ 14
 	tie
 	speed 4
@@ -4573,7 +4573,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	speed 2
 	D_ 14
-	musice8 8
+	cutoff 8
 	speed 1
 	vibrato_delay 0
 	C# 3
@@ -4581,7 +4581,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	C_ 14
 	dec_octave
 	vibrato_delay 15
-	musice8 1
+	cutoff 1
 	B_ 15
 	tie
 	B_ 14
@@ -4596,10 +4596,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	tie
 	D_ 15
-	musice8 8
+	cutoff 8
 	G# 3
 	vibrato_delay 11
-	musice8 1
+	cutoff 1
 	A_ 11
 	tie
 	A_ 15
@@ -4616,7 +4616,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	speed 1
 	D_ 14
 	tie
@@ -4635,13 +4635,13 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	vibrato_delay 0
 	dec_octave
-	musice8 8
+	cutoff 8
 	B_ 15
 	inc_octave
 	C_ 14
-	musice8 3
+	cutoff 3
 	D_ 15
-	musice8 1
+	cutoff 1
 	vibrato_delay 14
 	D_ 14
 	tie
@@ -4660,7 +4660,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	C_ 15
 	dec_octave
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	B_ 14
 	tie
 	B_ 15
@@ -4671,12 +4671,12 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	A_ 14
 	G_ 15
-	musice8 1
+	cutoff 1
 	B_ 14
 	tie
 	B_ 15
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	A_ 14
 	tie
 	A_ 15
@@ -4687,7 +4687,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	vibrato_delay 0
 	volume 64
 	inc_octave
-	musice8 1
+	cutoff 1
 	C_ 7
 	tie
 	speed 2
@@ -4699,11 +4699,11 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	speed 2
 	E_ 11
 	speed 1
-	musice8 8
+	cutoff 8
 	D_ 14
 	tie
 	D_ 15
-	musice8 4
+	cutoff 4
 	C_ 14
 	dec_octave
 	B_ 15
@@ -4711,12 +4711,12 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 15
 	F# 14
 	inc_octave
-	musice8 8
+	cutoff 8
 	volume 32
 	C# 3
 	D_ 12
 	C_ 14
-	musice8 1
+	cutoff 1
 	dec_octave
 	vibrato_delay 14
 	B_ 15
@@ -4733,10 +4733,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	tie
 	D_ 15
-	musice8 8
+	cutoff 8
 	G# 3
 	vibrato_delay 11
-	musice8 1
+	cutoff 1
 	A_ 11
 	tie
 	A_ 15
@@ -4753,7 +4753,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	B_ 15
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	D_ 14
 	tie
 	D_ 15
@@ -4778,13 +4778,13 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 15
 	dec_octave
-	musice8 4
+	cutoff 4
 	B_ 14
 	A_ 15
 	G# 14
 	F_ 15
 	inc_octave
-	musice8 8
+	cutoff 8
 	volume 32
 	C_ 14
 	dec_octave
@@ -4794,9 +4794,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	C_ 15
 	tie
 	C_ 14
-	musice8 4
+	cutoff 4
 	G_ 15
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -4804,7 +4804,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	C_ 15
 	dec_octave
-	musice8 8
+	cutoff 8
 	A# 3
 	vibrato_delay 11
 	B_ 11
@@ -4880,20 +4880,20 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 14
 	tie
 	volume 64
-	musice8 1
+	cutoff 1
 	G_ 15
 	tie
 	G_ 14
 	rest 15
 	rest 14
-	musice8 8
+	cutoff 8
 	Loop 2
 	rest 15
 	rest 14
 	rest 8
 	octave 2
 	volume 64
-	musice4 253
+	frequency_offset -3
 	D_ 14
 	G_ 15
 	B_ 14
@@ -4901,7 +4901,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 15
 	dec_octave
 	G_ 7
-	musice4 0
+	frequency_offset 0
 	volume 32
 	G_ 7
 	volume 64
@@ -4916,11 +4916,11 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 14
 	tie
 	volume 64
-	musice8 1
+	cutoff 1
 	G_ 15
 	tie
 	G_ 14
-	musice8 8
+	cutoff 8
 	rest 15
 	rest 14
 	EndLoop
@@ -4929,7 +4929,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	rest 8
 	octave 2
 	volume 64
-	musice4 253
+	frequency_offset -3
 	D_ 14
 	G_ 15
 	B_ 14
@@ -4937,7 +4937,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 15
 	dec_octave
 	G_ 7
-	musice4 0
+	frequency_offset 0
 	inc_octave
 	volume 32
 	C_ 7
@@ -4979,7 +4979,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	inc_octave
 	C_ 4
 	D_ 3
@@ -5003,7 +5003,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 14
 	vibrato_delay 29
-	musice8 1
+	cutoff 1
 	F_ 15
 	tie
 	F_ 14
@@ -5021,7 +5021,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	speed 2
 	F_ 14
 	speed 1
-	musice8 8
+	cutoff 8
 	vibrato_delay 29
 	F# 15
 	tie
@@ -5038,7 +5038,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	F# 15
 	tie
 	F# 14
-	musice8 1
+	cutoff 1
 	D_ 15
 	tie
 	D_ 14
@@ -5052,7 +5052,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	D_ 14
 	tie
 	D_ 15
-	musice8 8
+	cutoff 8
 	F# 4
 	G_ 3
 	A_ 4
@@ -5072,7 +5072,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	B_ 15
 	tie
 	B_ 14
-	musice8 1
+	cutoff 1
 	G_ 15
 	tie
 	G_ 14
@@ -5085,7 +5085,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	B_ 4
@@ -5097,7 +5097,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 4
 	G# 3
 	G# 3
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
@@ -5106,7 +5106,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	F# 14
 	tie
 	F# 15
-	musice8 8
+	cutoff 8
 	D_ 14
 	F# 3
 	vibrato_delay 12
@@ -5122,9 +5122,9 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	B_ 14
 	inc_octave
 	C_ 15
-	musice8 4
+	cutoff 4
 	G_ 14
-	musice8 1
+	cutoff 1
 	vibrato_delay 15
 	G_ 15
 	tie
@@ -5140,10 +5140,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	G_ 14
 	speed 1
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	F# 3
 	vibrato_delay 12
-	musice8 1
+	cutoff 1
 	G_ 12
 	tie
 	G_ 14
@@ -5183,11 +5183,11 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	G# 3
-	musice8 1
+	cutoff 1
 	vibrato_delay 12
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
@@ -5221,10 +5221,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	G# 3
 	vibrato_delay 12
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
@@ -5258,10 +5258,10 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	G_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	G# 3
 	vibrato_delay 12
-	musice8 1
+	cutoff 1
 	A_ 12
 	tie
 	A_ 14
@@ -5270,7 +5270,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	A_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	A# 3
 	vibrato_delay 26
 	B_ 12
@@ -5305,7 +5305,7 @@ Music_Credits_Ch3: ; 1df4a3 (77:74a3)
 	tie
 	B_ 14
 	vibrato_delay 0
-	musice8 1
+	cutoff 1
 	speed 1
 	volume 64
 	B_ 14
@@ -5322,7 +5322,7 @@ Branch_1dfa9d:
 	D_ 14
 	G_ 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	F_ 14
 	tie
 	F_ 15
@@ -5339,7 +5339,7 @@ Branch_1dfa9d:
 	tie
 	C_ 15
 	dec_octave
-	musice8 8
+	cutoff 8
 	vibrato_delay 14
 	B_ 14
 	tie
@@ -5348,7 +5348,7 @@ Branch_1dfa9d:
 	B_ 14
 	vibrato_delay 0
 	G_ 15
-	musice8 1
+	cutoff 1
 	D_ 14
 	tie
 	D_ 15
@@ -5356,7 +5356,7 @@ Branch_1dfa9d:
 	tie
 	B_ 15
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	A_ 14
 	tie
 	A_ 15
@@ -5364,7 +5364,7 @@ Branch_1dfa9d:
 	A_ 14
 	vibrato_delay 0
 	F_ 15
-	musice8 1
+	cutoff 1
 	C_ 14
 	tie
 	C_ 15
@@ -5380,7 +5380,7 @@ Branch_1dfa9d:
 	tie
 	G_ 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 14
 	B_ 15
@@ -5390,7 +5390,7 @@ Branch_1dfa9d:
 	F_ 14
 	tie
 	F_ 15
-	musice8 1
+	cutoff 1
 	A_ 14
 	tie
 	A_ 15
@@ -5402,7 +5402,7 @@ Branch_1dfa9d:
 	tie
 	E_ 15
 	vibrato_delay 14
-	musice8 8
+	cutoff 8
 	D_ 14
 	tie
 	D_ 15
@@ -5411,7 +5411,7 @@ Branch_1dfa9d:
 	vibrato_delay 0
 	dec_octave
 	B_ 15
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -5435,9 +5435,9 @@ Branch_1dfa9d:
 	tie
 	F_ 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	D# 14
-	musice8 1
+	cutoff 1
 	E_ 15
 	tie
 	E_ 14
@@ -5458,15 +5458,15 @@ Branch_1dfa9d:
 	tie
 	D# 15
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	G# 3
 	A_ 11
 	tie
 	A_ 15
 	G_ 14
-	musice8 4
+	cutoff 4
 	A_ 15
-	musice8 8
+	cutoff 8
 	A# 3
 	vibrato_delay 11
 	B_ 11
@@ -5475,14 +5475,14 @@ Branch_1dfa9d:
 
 Branch_1dfb57:
 	octave 3
-	musice8 8
+	cutoff 8
 	B_ 15
 	tie
 	B_ 14
 	vibrato_delay 0
 	inc_octave
 	D_ 15
-	musice8 1
+	cutoff 1
 	A_ 14
 	tie
 	A_ 15
@@ -5500,7 +5500,7 @@ Branch_1dfb57:
 	tie
 	D_ 14
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	C# 3
 	D_ 12
 	tie
@@ -5509,9 +5509,9 @@ Branch_1dfb57:
 	tie
 	C_ 7
 	dec_octave
-	musice8 4
+	cutoff 4
 	B_ 14
-	musice8 8
+	cutoff 8
 	B_ 15
 	tie
 	B_ 14
@@ -5540,7 +5540,7 @@ Branch_1dfb57:
 	tie
 	F# 15
 	vibrato_delay 14
-	musice8 1
+	cutoff 1
 	G_ 14
 	tie
 	G_ 15
@@ -5564,7 +5564,7 @@ Branch_1dfb57:
 
 Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	octave 1
-	musicdc 255
+	stereo_panning 15, 15
 	speed 4
 	Loop 40
 	rest 15

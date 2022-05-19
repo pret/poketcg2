@@ -1,9 +1,9 @@
 Music_Imakuni_Ch2: ; 1e7027 (79:7027)
 	speed 3
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 5
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	duty 2
 	volume 160
 	MainLoop
@@ -186,10 +186,10 @@ Branch_1e70ef:
 
 
 Music_Imakuni_Ch1: ; 1e7104 (79:7104)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 0
 	vibrato_delay 0
-	musice8 8
+	cutoff 8
 	duty 1
 	volume 160
 	Loop 6
@@ -292,13 +292,13 @@ Branch_1e7177:
 
 
 Music_Imakuni_Ch3: ; 1e718e (79:718e)
-	musicdc 17
+	stereo_panning 1, 1
 	volume 32
 	wave 1
 	vibrato_type 6
 	vibrato_delay 0
-	musice9 0
-	musice8 8
+	echo 0
+	cutoff 8
 	MainLoop
 	music_call Branch_1e724f
 	vibrato_delay 8

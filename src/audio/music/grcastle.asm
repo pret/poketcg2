@@ -7,7 +7,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	vibrato_delay 1
 	musicf1 80
 	musicf3
-	musice4 0
+	frequency_offset 0
 	B_ 9
 	rest 4
 	B_ 9
@@ -74,10 +74,10 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	rest 3
 	A_ 3
 	tie
-	musice4 17
+	frequency_offset 17
 	A_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 6
 	A_ 13
 	G_ 12
@@ -101,28 +101,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	vibrato_delay 37
 	A_ 4
 	tie
-	musice4 8
+	frequency_offset 8
 	A_ 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A_ 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	A# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 13
 	tie
 	B_ 12
@@ -169,28 +169,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	musicf3
 	C_ 4
 	tie
-	musice4 7
+	frequency_offset 7
 	C_ 3
 	tie
-	musice4 14
+	frequency_offset 14
 	C_ 3
 	tie
-	musice4 22
+	frequency_offset 22
 	C_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	C# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	C# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	C# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	C# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 13
 	tie
 	D_ 12
@@ -207,28 +207,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	musicf3
 	A_ 4
 	tie
-	musice4 8
+	frequency_offset 8
 	A_ 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A_ 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	A# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 13
 	inc_octave
 	C_ 12
@@ -275,28 +275,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	inc_octave
 	C_ 4
 	tie
-	musice4 7
+	frequency_offset 7
 	C_ 3
 	tie
-	musice4 14
+	frequency_offset 14
 	C_ 3
 	tie
-	musice4 22
+	frequency_offset 22
 	C_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	C# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	C# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	C# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	C# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 13
 	dec_octave
 	A_ 12
@@ -311,28 +311,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	dec_octave
 	A_ 4
 	tie
-	musice4 8
+	frequency_offset 8
 	A_ 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A_ 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	A# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 13
 	tie
 	B_ 12
@@ -377,28 +377,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	C_ 12
 	C_ 4
 	tie
-	musice4 7
+	frequency_offset 7
 	C_ 3
 	tie
-	musice4 14
+	frequency_offset 14
 	C_ 3
 	tie
-	musice4 22
+	frequency_offset 22
 	C_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	C# 3
 	tie
-	musice4 8
+	frequency_offset 8
 	C# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	C# 3
 	tie
-	musice4 24
+	frequency_offset 24
 	C# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 13
 	tie
 	D_ 12
@@ -414,28 +414,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	musicf3
 	E_ 4
 	tie
-	musice4 8
+	frequency_offset 8
 	E_ 3
 	tie
-	musice4 16
+	frequency_offset 16
 	E_ 3
 	tie
-	musice4 24
+	frequency_offset 24
 	E_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 3
 	tie
-	musice4 8
+	frequency_offset 8
 	F_ 3
 	tie
-	musice4 16
+	frequency_offset 16
 	F_ 3
 	tie
-	musice4 24
+	frequency_offset 24
 	F_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F# 13
 	G_ 12
 	musicf2
@@ -486,28 +486,28 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	tie
 	E_ 4
 	tie
-	musice4 249
+	frequency_offset -7
 	E_ 3
 	tie
-	musice4 242
+	frequency_offset -14
 	E_ 3
 	tie
-	musice4 235
+	frequency_offset -21
 	E_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	D# 3
 	tie
-	musice4 250
+	frequency_offset -6
 	D# 3
 	tie
-	musice4 244
+	frequency_offset -12
 	D# 3
 	tie
-	musice4 240
+	frequency_offset -16
 	D# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	D_ 1
 	musicf0 14
 	musicf1 71
@@ -781,7 +781,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	musicf0 8
 	vibrato_type 5
 	vibrato_delay 50
-	musice4 247
+	frequency_offset -9
 	Loop 4
 	E_ 16
 	tie
@@ -797,7 +797,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	tie
 	EndLoop
 	E_ 16
-	musice4 0
+	frequency_offset 0
 	musicf0 23
 	octave 3
 	musicf1 32
@@ -903,7 +903,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	vibrato_delay 1
 	musicf1 80
 	musicf3
-	musice4 0
+	frequency_offset 0
 	rest 13
 	rest 12
 	rest 13
@@ -960,10 +960,10 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	inc_octave
 	E_ 3
 	tie
-	musice4 22
+	frequency_offset 22
 	E_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 6
 	E_ 13
 	D_ 12
@@ -1315,28 +1315,28 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	inc_octave
 	D_ 4
 	tie
-	musice4 6
+	frequency_offset 6
 	D_ 3
 	tie
-	musice4 12
+	frequency_offset 12
 	D_ 3
 	tie
-	musice4 15
+	frequency_offset 15
 	D_ 3
 	tie
-	musice4 254
+	frequency_offset -2
 	D# 3
 	tie
-	musice4 5
+	frequency_offset 5
 	D# 3
 	tie
-	musice4 10
+	frequency_offset 10
 	D# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	D# 3
 	tie
-	musice4 255
+	frequency_offset -1
 	E_ 13
 	tie
 	E_ 12
@@ -1463,28 +1463,28 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	inc_octave
 	D_ 4
 	tie
-	musice4 6
+	frequency_offset 6
 	D_ 3
 	tie
-	musice4 12
+	frequency_offset 12
 	D_ 3
 	tie
-	musice4 15
+	frequency_offset 15
 	D_ 3
 	tie
-	musice4 254
+	frequency_offset -2
 	D# 3
 	tie
-	musice4 5
+	frequency_offset 5
 	D# 3
 	tie
-	musice4 10
+	frequency_offset 10
 	D# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	D# 3
 	tie
-	musice4 255
+	frequency_offset -1
 	E_ 13
 	tie
 	E_ 12
@@ -1571,16 +1571,16 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	inc_octave
 	D_ 3
 	tie
-	musice4 6
+	frequency_offset 6
 	D_ 3
 	tie
-	musice4 253
+	frequency_offset -3
 	D# 3
 	tie
-	musice4 13
+	frequency_offset 13
 	D# 3
 	tie
-	musice4 254
+	frequency_offset -2
 	E_ 13
 	tie
 	E_ 12
@@ -1811,8 +1811,8 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	wave 1
 	volume 32
-	musice9 96
-	musicdc 255
+	echo 96
+	stereo_panning 15, 15
 	speed 1
 	rest 12
 	vibrato_type 5
@@ -1884,13 +1884,13 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	E_ 9
 	rest 3
 	rest 13
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f2b72
 	D_ 13
 	E_ 9
 	rest 3
 	rest 13
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f2b9e
 	B_ 9
 	rest 3
@@ -1957,13 +1957,13 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	E_ 9
 	rest 3
 	rest 13
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f2b72
 	D_ 13
 	E_ 9
 	rest 3
 	rest 13
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f2b9e
 	B_ 9
 	rest 3
@@ -2056,10 +2056,10 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	tie
 	A# 3
 	tie
-	musice4 22
+	frequency_offset 22
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 3
 	tie
 	B_ 13
@@ -2190,10 +2190,10 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	tie
 	A# 3
 	tie
-	musice4 22
+	frequency_offset 22
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 3
 	tie
 	B_ 13
@@ -2224,16 +2224,16 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	C_ 12
 	D# 4
 	tie
-	musice4 24
+	frequency_offset 24
 	D# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	E_ 3
 	tie
-	musice4 22
+	frequency_offset 22
 	E_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	F_ 12
 	tie
 	F_ 13
@@ -2265,16 +2265,16 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	vibrato_delay 40
 	A_ 4
 	tie
-	musice4 17
+	frequency_offset 17
 	A_ 3
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 3
 	tie
-	musice4 16
+	frequency_offset 16
 	A# 3
 	tie
-	musice4 0
+	frequency_offset 0
 	B_ 12
 	tie
 	B_ 16
@@ -2289,34 +2289,34 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	tie
 	B_ 2
 	tie
-	musice4 250
+	frequency_offset -6
 	B_ 3
 	tie
-	musice4 244
+	frequency_offset -12
 	B_ 2
 	tie
-	musice4 238
+	frequency_offset -18
 	B_ 2
 	tie
-	musice4 232
+	frequency_offset -24
 	B_ 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 2
 	tie
-	musice4 248
+	frequency_offset -8
 	A# 2
 	tie
-	musice4 240
+	frequency_offset -16
 	A# 2
 	tie
-	musice4 232
+	frequency_offset -24
 	A# 2
 	tie
-	musice4 0
+	frequency_offset 0
 	A_ 1
 	vibrato_delay 50
-	musicec 244
+	pitch_offset 244
 	octave 1
 	speed 10
 	E_ 10
@@ -2335,7 +2335,7 @@ Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
 	volume 96
 	E_ 15
 	volume 32
-	musicec 0
+	pitch_offset 0
 	speed 1
 	D_ 13
 	E_ 12
@@ -2371,7 +2371,7 @@ Branch_1f2b72:
 	vibrato_delay 0
 	volume 32
 	octave 1
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1f2b88:
@@ -2390,7 +2390,7 @@ Branch_1f2b88:
 	vibrato_delay 0
 	volume 32
 	octave 1
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1f2b9e:
@@ -2401,7 +2401,7 @@ Branch_1f2b9e:
 	D_ 13
 	volume 32
 	octave 1
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1f2baa:
@@ -2439,7 +2439,7 @@ Branch_1f2bbf:
 Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	speed 1
 	octave 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicef 251
 	snare1 4
 	snare1 4

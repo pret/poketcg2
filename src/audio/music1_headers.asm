@@ -47,20 +47,20 @@ SongBanks1: ; 1dd443 (77:5443)
 	db BANK(Music_MatchStart3)
 	db BANK(Music_MatchVictory)
 	db BANK(Music_MatchLoss)
-	db BANK(Music_DarkDiddly)
+	db BANK(Music_MatchDraw)
 	db BANK(Music_Unused2E)
 	db BANK(Music_BoosterPack)
 	db BANK(Music_Medal)
 	db BANK(Music_Unused31)
-	db BANK(Music_Diddly1)
-	db BANK(Music_Diddly2)
-	db BANK(Music_Diddly3)
-	db BANK(Music_Diddly4)
-	db BANK(Music_Diddly5)
+	db BANK(Music_Ditty1)
+	db BANK(Music_Ditty2)
+	db BANK(Music_Ditty3)
+	db BANK(Music_Ditty4)
+	db BANK(Music_Ditty5)
 	db BANK(Music_Song37)
 	db BANK(Music_Song38)
 	db BANK(Music_Song39)
-	db BANK(Music_Diddly6)
+	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
 SongHeaderPointers1: ; 1dd47f (77:547f)
@@ -109,20 +109,20 @@ SongHeaderPointers1: ; 1dd47f (77:547f)
 	dw Music_MatchStart3
 	dw Music_MatchVictory
 	dw Music_MatchLoss
-	dw Music_DarkDiddly
+	dw Music_MatchDraw
 	dw Music_Unused2E
 	dw Music_BoosterPack
 	dw Music_Medal
 	dw Music_Unused31
-	dw Music_Diddly1
-	dw Music_Diddly2
-	dw Music_Diddly3
-	dw Music_Diddly4
-	dw Music_Diddly5
+	dw Music_Ditty1
+	dw Music_Ditty2
+	dw Music_Ditty3
+	dw Music_Ditty4
+	dw Music_Ditty5
 	dw Music_Song37
 	dw Music_Song38
 	dw Music_Song39
-	dw Music_Diddly6
+	dw Music_Ditty6
 	dw Music_Song3B
 
 ;Music_Stop
@@ -415,11 +415,11 @@ Music_Credits: ; 1dd621 (77:5621)
 	dw Music_MatchLoss_Ch3
 	dw $0000
 
-;Music_DarkDiddly
+;Music_MatchDraw
 	db %0111
-	dw Music_DarkDiddly_Ch1
-	dw Music_DarkDiddly_Ch2
-	dw Music_DarkDiddly_Ch3
+	dw Music_MatchDraw_Ch1
+	dw Music_MatchDraw_Ch2
+	dw Music_MatchDraw_Ch3
 	dw $0000
 
 ;Music_Unused2E
@@ -450,44 +450,44 @@ Music_Credits: ; 1dd621 (77:5621)
 	dw $0000
 	dw $0000
 
-;Music_Diddly1
+;Music_Ditty1
 	db %0111
-	dw Music_Diddly1_Ch1
-	dw Music_Diddly1_Ch2
-	dw Music_Diddly1_Ch3
+	dw Music_Ditty1_Ch1
+	dw Music_Ditty1_Ch2
+	dw Music_Ditty1_Ch3
 	dw $0000
 
-;Music_Diddly2
+;Music_Ditty2
 	db %0111
-	dw Music_Diddly2_Ch1
-	dw Music_Diddly2_Ch2
-	dw Music_Diddly2_Ch3
+	dw Music_Ditty2_Ch1
+	dw Music_Ditty2_Ch2
+	dw Music_Ditty2_Ch3
 	dw $0000
 
-;Music_Diddly3
+;Music_Ditty3
 	db %0111
-	dw Music_Diddly3_Ch1
-	dw Music_Diddly3_Ch2
-	dw Music_Diddly3_Ch3
+	dw Music_Ditty3_Ch1
+	dw Music_Ditty3_Ch2
+	dw Music_Ditty3_Ch3
 	dw $0000
 
-;Music_Diddly4
+;Music_Ditty4
 	db %0111
-	dw Music_Diddly4_Ch1
-	dw Music_Diddly4_Ch2
-	dw Music_Diddly4_Ch3
+	dw Music_Ditty4_Ch1
+	dw Music_Ditty4_Ch2
+	dw Music_Ditty4_Ch3
 	dw $0000
 
-;Music_Diddly5
+;Music_Ditty5
 	db %0011
-	dw Music_Diddly5_Ch1
-	dw Music_Diddly5_Ch2
+	dw Music_Ditty5_Ch1
+	dw Music_Ditty5_Ch2
 	dw $0000
 	dw $0000
 
-;Music_Diddly6
+;Music_Ditty6
 	db %1111
-	dw Music_Diddly6_Ch1
-	dw Music_Diddly6_Ch2
-	dw Music_Diddly6_Ch3
-	dw Music_Diddly6_Ch4
+	dw Music_Ditty6_Ch1
+	dw Music_Ditty6_Ch2
+	dw Music_Ditty6_Ch3
+	dw Music_Ditty6_Ch4

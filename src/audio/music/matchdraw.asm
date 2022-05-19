@@ -1,7 +1,7 @@
-Music_DarkDiddly_Ch2: ; 1eba48 (7a:7a48)
+Music_MatchDraw_Ch2: ; 1eba48 (7a:7a48)
 	speed 3
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	octave 4
 	duty 1
 	volume 176
@@ -45,10 +45,10 @@ Music_DarkDiddly_Ch2: ; 1eba48 (7a:7a48)
 	music_end
 
 
-Music_DarkDiddly_Ch1: ; 1eba80 (7a:7a80)
+Music_MatchDraw_Ch1: ; 1eba80 (7a:7a80)
 	speed 3
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	octave 3
 	duty 1
 	volume 176
@@ -84,13 +84,13 @@ Music_DarkDiddly_Ch1: ; 1eba80 (7a:7a80)
 	music_end
 
 
-Music_DarkDiddly_Ch3: ; 1ebab0 (7a:7ab0)
+Music_MatchDraw_Ch3: ; 1ebab0 (7a:7ab0)
 	speed 6
-	musicdc 17
+	stereo_panning 1, 1
 	wave 1
 	volume 32
-	musice8 8
-	musice9 0
+	cutoff 8
+	echo 0
 	octave 1
 	rest 16
 	G_ 2
@@ -104,18 +104,4 @@ Music_DarkDiddly_Ch3: ; 1ebab0 (7a:7ab0)
 	inc_octave
 	C_ 1
 	music_end
-	speed 8
-	musicdc 17
-	vibrato_type 5
-	vibrato_delay 20
-	musice8 8
-	octave 3
-	duty 2
-	volume 160
-	C_ 1
-	dec_octave
-	C_ 1
-	rest 1
-	C_ 1
-	music_end
-; 0x1ebade
+; 0x1ebac9

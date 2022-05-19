@@ -1,18 +1,18 @@
 Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	musicf0 22
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 2
 	C_ 16
 	MainLoop
 	musicf0 9
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicef 255
 	musicf1 71
 	octave 2
 	speed 4
-	musice8 7
+	cutoff 7
 	musicf2
 	Loop 4
 	D_ 1
@@ -37,7 +37,7 @@ Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	EndLoop
 	duty 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 8
 	musicf1 103
 	musicf3
@@ -187,11 +187,11 @@ Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	musicf3
 	musicf0 9
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 3
 	musicf1 96
 	speed 4
-	musice8 7
+	cutoff 7
 	musicf2
 	E_ 1
 	rest 1
@@ -231,7 +231,7 @@ Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	EndLoop
 	duty 1
 	octave 3
-	musice8 8
+	cutoff 8
 	vibrato_delay 0
 	speed 8
 	musicf1 103
@@ -302,7 +302,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	volume 241
 	duty 2
 	musicee 28
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	octave 3
@@ -973,7 +973,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	duty 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 8
 	musicf1 103
 	musicf3
@@ -1003,7 +1003,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	volume 241
 	duty 2
 	musicee 28
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	octave 3
@@ -1038,7 +1038,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	musicee 0
 	duty 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 8
 	musicf1 103
 	musicf3
@@ -1060,7 +1060,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	music_call Branch_1f1c7c
 	duty 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 8
 	musicf1 103
 	musicf3
@@ -1188,7 +1188,7 @@ Branch_1f1c69:
 	volume 241
 	duty 2
 	musicee 28
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	octave 3
@@ -1201,7 +1201,7 @@ Branch_1f1c7c:
 	volume 241
 	duty 2
 	musicee 28
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	octave 3
@@ -1219,7 +1219,7 @@ Branch_1f1c97:
 	volume 241
 	duty 2
 	musicee 28
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	octave 4
@@ -1232,22 +1232,22 @@ Branch_1f1c97:
 Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	wave 1
 	volume 32
-	musice9 96
-	musicdc 255
+	echo 96
+	stereo_panning 15, 15
 	speed 1
 	octave 1
 	C_ 16
 	MainLoop
 	music_call Branch_1f1ff8
 	Loop 2
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
 	D_ 4
@@ -1262,14 +1262,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
 	D_ 4
@@ -1284,59 +1284,7 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	A_ 4
 	rest 4
-	musice8 8
-	dec_octave
-	dec_octave
-	dec_octave
-	volume 32
-	C_ 16
-	EndLoop
-	Loop 2
-	musice8 6
-	D_ 16
-	musice8 8
-	inc_octave
-	inc_octave
-	inc_octave
-	volume 64
-	musice8 7
-	G# 4
-	rest 4
-	D_ 4
-	rest 4
-	inc_octave
-	D_ 4
-	rest 4
-	dec_octave
-	G# 4
-	rest 4
-	dec_octave
-	dec_octave
-	dec_octave
-	volume 32
-	musice8 6
-	D_ 16
-	musice8 8
-	inc_octave
-	inc_octave
-	inc_octave
-	volume 64
-	musice8 7
-	G# 4
-	rest 4
-	D_ 4
-	rest 4
-	inc_octave
-	D_ 4
-	rest 4
-	dec_octave
-	G# 4
-	rest 4
-	D_ 4
-	rest 4
-	G# 4
-	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
@@ -1344,115 +1292,117 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	C_ 16
 	EndLoop
 	Loop 2
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
-	G_ 4
+	cutoff 7
+	G# 4
 	rest 4
-	D# 4
+	D_ 4
 	rest 4
 	inc_octave
-	D# 4
+	D_ 4
 	rest 4
 	dec_octave
-	G_ 4
+	G# 4
 	rest 4
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
-	G_ 4
+	cutoff 7
+	G# 4
 	rest 4
-	D# 4
+	D_ 4
 	rest 4
 	inc_octave
-	D# 4
+	D_ 4
 	rest 4
 	dec_octave
-	G_ 4
+	G# 4
 	rest 4
-	D# 4
+	D_ 4
 	rest 4
-	G_ 4
+	G# 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	C_ 16
 	EndLoop
-	musice8 6
+	Loop 2
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
-	A_ 4
+	cutoff 7
+	G_ 4
 	rest 4
-	D_ 4
+	D# 4
 	rest 4
 	inc_octave
-	D_ 4
+	D# 4
 	rest 4
 	dec_octave
-	A_ 4
+	G_ 4
 	rest 4
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
-	A_ 4
+	cutoff 7
+	G_ 4
 	rest 4
-	D_ 4
+	D# 4
 	rest 4
 	inc_octave
-	D_ 4
+	D# 4
 	rest 4
 	dec_octave
-	A_ 4
+	G_ 4
 	rest 4
-	D_ 4
+	D# 4
 	rest 4
-	A_ 4
+	G_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	C_ 16
-	musice8 6
+	EndLoop
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
 	D_ 4
@@ -1467,17 +1417,67 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
-	musice8 8
+	D_ 4
+	rest 4
+	inc_octave
+	D_ 4
+	rest 4
+	dec_octave
+	A_ 4
+	rest 4
+	D_ 4
+	rest 4
+	A_ 4
+	rest 4
+	cutoff 8
+	dec_octave
+	dec_octave
+	dec_octave
+	volume 32
+	C_ 16
+	cutoff 6
+	D_ 16
+	cutoff 8
+	inc_octave
+	inc_octave
+	inc_octave
+	volume 64
+	cutoff 7
+	A_ 4
+	rest 4
+	D_ 4
+	rest 4
+	inc_octave
+	D_ 4
+	rest 4
+	dec_octave
+	A_ 4
+	rest 4
+	dec_octave
+	dec_octave
+	dec_octave
+	volume 32
+	cutoff 6
+	D_ 16
+	cutoff 8
+	inc_octave
+	inc_octave
+	inc_octave
+	volume 64
+	cutoff 7
+	A_ 4
+	rest 4
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
@@ -1494,14 +1494,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	G_ 8
 	C_ 8
 	Loop 2
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
 	D_ 4
@@ -1516,14 +1516,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	A_ 4
 	rest 4
 	D_ 4
@@ -1538,7 +1538,7 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	A_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
@@ -1546,14 +1546,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	C_ 16
 	EndLoop
 	Loop 2
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D# 4
@@ -1568,14 +1568,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D# 4
@@ -1590,21 +1590,21 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	G_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	C_ 16
 	EndLoop
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D_ 4
@@ -1619,14 +1619,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D_ 4
@@ -1641,20 +1641,20 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	G_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	C_ 16
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D_ 4
@@ -1669,14 +1669,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	D_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	G_ 4
 	rest 4
 	D_ 4
@@ -1691,20 +1691,20 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	G_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	G_ 16
-	musice8 6
+	cutoff 6
 	A_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	F_ 4
 	rest 4
 	C# 4
@@ -1719,14 +1719,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	A_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	F_ 4
 	rest 4
 	C# 4
@@ -1741,20 +1741,20 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	F_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
 	volume 32
 	G_ 16
-	musice8 6
+	cutoff 6
 	A_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	E_ 4
 	rest 4
 	C# 4
@@ -1769,14 +1769,14 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	dec_octave
 	dec_octave
 	volume 32
-	musice8 6
+	cutoff 6
 	A_ 16
-	musice8 8
+	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
 	volume 64
-	musice8 7
+	cutoff 7
 	E_ 4
 	rest 4
 	C# 4
@@ -1791,7 +1791,7 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	rest 4
 	E_ 4
 	rest 4
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	dec_octave
@@ -1802,16 +1802,16 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	vibrato_delay 48
 	A_ 4
 	tie
-	musice4 17
+	frequency_offset 17
 	A_ 4
 	tie
-	musice4 34
+	frequency_offset 34
 	A_ 4
 	tie
-	musice4 51
+	frequency_offset 51
 	A_ 4
 	tie
-	musice4 0
+	frequency_offset 0
 	A# 16
 	tie
 	A# 16
@@ -1852,49 +1852,49 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 	tie
 	E_ 16
 	speed 1
-	musice8 6
+	cutoff 6
 	A_ 16
 	rest 16
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 16
-	musice8 6
+	cutoff 6
 	dec_octave
 	A_ 16
 	rest 16
 	rest 16
 	rest 16
-	musice8 8
+	cutoff 8
 	E_ 16
-	musice8 6
+	cutoff 6
 	A# 16
 	rest 16
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	D_ 16
-	musice8 6
+	cutoff 6
 	dec_octave
 	dec_octave
 	A# 16
 	rest 16
 	rest 16
 	rest 16
-	musice8 8
+	cutoff 8
 	G_ 16
-	musice8 6
+	cutoff 6
 	A_ 16
 	rest 16
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 16
-	musice8 6
+	cutoff 6
 	dec_octave
 	A_ 16
 	rest 16
 	rest 16
 	rest 16
-	musice8 8
+	cutoff 8
 	G_ 16
 	A_ 16
 	tie
@@ -1923,67 +1923,67 @@ Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
 Branch_1f1ff8:
 	octave 1
 	Loop 3
-	musice8 6
+	cutoff 6
 	D_ 8
 	rest 8
 	rest 16
 	inc_octave
 	inc_octave
-	musice8 7
+	cutoff 7
 	F_ 5
 	rest 3
 	volume 64
 	F_ 5
 	rest 3
 	volume 32
-	musice8 6
+	cutoff 6
 	dec_octave
 	dec_octave
 	D_ 16
 	rest 16
 	inc_octave
-	musice8 7
+	cutoff 7
 	A_ 5
 	rest 3
 	volume 64
 	A_ 5
 	rest 3
 	volume 32
-	musice8 6
+	cutoff 6
 	dec_octave
 	rest 16
-	musice8 8
+	cutoff 8
 	C_ 16
 	EndLoop
-	musice8 6
+	cutoff 6
 	D_ 16
 	rest 16
 	inc_octave
 	inc_octave
-	musice8 7
+	cutoff 7
 	F_ 5
 	rest 3
 	volume 64
 	F_ 5
 	rest 3
 	volume 32
-	musice8 6
+	cutoff 6
 	dec_octave
 	dec_octave
 	D_ 16
 	rest 16
 	inc_octave
-	musice8 7
+	cutoff 7
 	A_ 5
 	rest 3
 	volume 64
 	A_ 5
 	rest 3
 	volume 32
-	musice8 6
+	cutoff 6
 	dec_octave
 	rest 16
-	musice8 8
+	cutoff 8
 	C_ 8
 	C# 8
 	music_ret

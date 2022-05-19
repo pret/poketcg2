@@ -1,7 +1,7 @@
-Music_Diddly6_Ch2: ; 1f76dc (7d:76dc)
+Music_Ditty6_Ch2: ; 1f76dc (7d:76dc)
 	musicf0 34
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicef 252
 	octave 3
 	F_ 2
@@ -76,10 +76,10 @@ Music_Diddly6_Ch2: ; 1f76dc (7d:76dc)
 	music_end
 
 
-Music_Diddly6_Ch1: ; 1f7731 (7d:7731)
+Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
 	musicf0 23
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicef 252
 	octave 3
 	C_ 2
@@ -223,16 +223,16 @@ Music_Diddly6_Ch1: ; 1f7731 (7d:7731)
 	music_end
 
 
-Music_Diddly6_Ch3: ; 1f77cf (7d:77cf)
+Music_Ditty6_Ch3: ; 1f77cf (7d:77cf)
 	wave 5
 	volume 32
-	musice9 96
+	echo 96
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	rest 10
 	rest 10
 	octave 1
-	musice8 4
+	cutoff 4
 	D# 16
 	tie
 	D# 16
@@ -256,7 +256,7 @@ Music_Diddly6_Ch3: ; 1f77cf (7d:77cf)
 	tie
 	D_ 2
 	Loop 4
-	musice8 4
+	cutoff 4
 	speed 7
 	G_ 3
 	speed 10
@@ -275,15 +275,15 @@ Music_Diddly6_Ch3: ; 1f77cf (7d:77cf)
 	tie
 	G_ 2
 	speed 2
-	musice8 1
+	cutoff 1
 	G_ 10
 	music_end
 
 
-Music_Diddly6_Ch4: ; 1f7812 (7d:7812)
+Music_Ditty6_Ch4: ; 1f7812 (7d:7812)
 	octave 1
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	rest 10
 	rest 10
 	musicef 1

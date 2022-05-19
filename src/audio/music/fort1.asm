@@ -1,6 +1,6 @@
 Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	musicf0 16
 	octave 2
 	A# 3
@@ -129,7 +129,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	musicf2
 	G# 8
 	G# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -139,7 +139,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	B_ 8
 	D# 8
 	D# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -165,7 +165,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	musicf2
 	G# 8
 	G# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -175,7 +175,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	B_ 8
 	D# 8
 	D# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	D# 2
@@ -199,7 +199,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	musicf2
 	G# 8
 	G# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -209,7 +209,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	B_ 8
 	D# 8
 	D# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -235,7 +235,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	musicf2
 	G# 8
 	G# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -245,7 +245,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	B_ 8
 	D# 8
 	D# 7
-	musicec 255
+	pitch_offset 255
 	music_call Branch_1edb5a
 	octave 4
 	D# 2
@@ -286,7 +286,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	A_ 16
 	tie
 	A_ 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1edb5a
 	octave 4
 	F# 15
@@ -294,7 +294,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	F# 16
 	tie
 	F# 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1edb5a
 	octave 4
 	musicf2
@@ -461,7 +461,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	speed 1
 	duty 0
 	volume 144
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 10
 	vibrato_delay 18
 	musicf0 16
@@ -580,7 +580,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	F# 16
 	tie
 	F# 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	inc_octave
 	D_ 15
@@ -588,7 +588,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D_ 16
 	tie
 	D_ 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -596,7 +596,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D_ 7
 	E_ 16
 	D_ 15
-	musicec 252
+	pitch_offset 252
 	music_call Branch_1edb4e
 	musicf2
 	B_ 8
@@ -605,7 +605,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	B_ 8
 	G_ 8
 	G_ 7
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	C_ 15
@@ -613,7 +613,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C_ 16
 	tie
 	C_ 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	rest 15
@@ -641,7 +641,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	F# 16
 	tie
 	F# 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	D_ 15
@@ -649,7 +649,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D_ 16
 	tie
 	D_ 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -722,7 +722,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -733,7 +733,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	dec_octave
 	B_ 8
 	B_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -743,7 +743,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D# 16
 	C# 8
 	C# 7
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	rest 8
 	rest 7
@@ -751,7 +751,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C# 16
 	dec_octave
 	B_ 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -762,7 +762,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -773,7 +773,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	dec_octave
 	B_ 8
 	B_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	C# 15
@@ -781,7 +781,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C# 16
 	tie
 	C# 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 3
 	musicf2
@@ -790,7 +790,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	A_ 8
 	A_ 8
 	A_ 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -801,7 +801,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -812,7 +812,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	dec_octave
 	B_ 8
 	B_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -822,7 +822,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D# 16
 	C# 8
 	C# 7
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	rest 8
 	rest 7
@@ -830,7 +830,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C# 16
 	dec_octave
 	B_ 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -841,7 +841,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -852,7 +852,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	dec_octave
 	B_ 8
 	B_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	C# 15
@@ -860,7 +860,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C# 16
 	tie
 	C# 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 3
 	musicf2
@@ -869,7 +869,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	A_ 8
 	A_ 8
 	A_ 15
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1edb4e
 	octave 3
 	A_ 15
@@ -878,7 +878,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -888,7 +888,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	G_ 8
 	E_ 8
 	E_ 7
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1edb4e
 	octave 4
 	F# 15
@@ -896,7 +896,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	F# 16
 	tie
 	F# 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	D_ 15
@@ -904,7 +904,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	D_ 16
 	tie
 	D_ 15
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -915,7 +915,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	musicf2
 	D_ 8
 	D_ 7
-	musicec 252
+	pitch_offset 252
 	music_call Branch_1edb4e
 	octave 3
 	musicf2
@@ -925,7 +925,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	B_ 8
 	G_ 8
 	G_ 7
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1edb4e
 	octave 4
 	musicf2
@@ -979,7 +979,7 @@ Branch_1edb4e:
 	E_ 10
 	musicf0 30
 	musicf3
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1edb5a:
@@ -990,7 +990,7 @@ Branch_1edb5a:
 	E_ 10
 	musicf0 2
 	musicf3
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 
@@ -998,10 +998,10 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	speed 1
 	wave 4
 	volume 32
-	musice9 96
-	musicdc 17
+	echo 96
+	stereo_panning 1, 1
 	octave 1
-	musice8 1
+	cutoff 1
 	rest 9
 	F# 6
 	tie
@@ -1013,14 +1013,14 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	rest 9
 	MainLoop
 	octave 1
-	musice8 7
+	cutoff 7
 	E_ 16
 	tie
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	inc_octave
@@ -1028,32 +1028,32 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	dec_octave
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	E_ 15
 	A_ 16
 	A_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	A_ 15
 	rest 16
 	E_ 15
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	A_ 15
 	E_ 16
 	tie
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	inc_octave
@@ -1061,17 +1061,17 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	dec_octave
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	E_ 15
 	A_ 16
 	A_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	A_ 15
 	dec_octave
 	A_ 16
@@ -1084,9 +1084,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	tie
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	inc_octave
@@ -1094,32 +1094,32 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	dec_octave
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	E_ 15
 	A_ 16
 	A_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	A_ 15
 	rest 16
 	E_ 15
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	A_ 15
 	E_ 16
 	tie
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	inc_octave
@@ -1127,17 +1127,17 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	dec_octave
 	E_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	E_ 15
 	A_ 16
 	A_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	A_ 15
 	dec_octave
 	A_ 16
@@ -1150,19 +1150,19 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	C_ 16
 	tie
 	C_ 15
-	musice8 3
+	cutoff 3
 	B_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	G_ 15
 	inc_octave
 	C_ 16
 	dec_octave
 	G_ 15
-	musice8 3
+	cutoff 3
 	inc_octave
 	B_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	tie
@@ -1170,33 +1170,33 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	rest 8
 	B_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	B_ 15
 	rest 16
 	F# 15
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	A_ 8
 	rest 8
 	A_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	G_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	A_ 15
 	B_ 8
 	rest 8
 	B_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 4
 	tie
@@ -1205,9 +1205,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	tie
 	C_ 16
 	C_ 15
-	musice8 3
+	cutoff 3
 	B_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	G_ 15
 	inc_octave
@@ -1223,9 +1223,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 15
 	inc_octave
 	inc_octave
-	musice8 3
+	cutoff 3
 	C_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	dec_octave
 	E_ 15
@@ -1233,9 +1233,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 15
 	inc_octave
 	inc_octave
-	musice8 3
+	cutoff 3
 	C_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	dec_octave
 	B_ 15
@@ -1244,15 +1244,15 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	rest 8
 	B_ 15
 	inc_octave
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	B_ 15
 	rest 16
 	F# 15
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	B_ 15
 	inc_octave
@@ -1261,9 +1261,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	G_ 8
 	rest 7
 	inc_octave
-	musice8 3
+	cutoff 3
 	G_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	dec_octave
 	B_ 8
@@ -1271,30 +1271,19 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	inc_octave
 	F# 8
 	rest 8
-	musice8 6
+	cutoff 6
 	F# 8
 	rest 7
-	musice8 7
+	cutoff 7
 	dec_octave
 	F_ 8
 	rest 8
 	F_ 8
 	rest 7
 	inc_octave
-	musice8 3
+	cutoff 3
 	C_ 16
-	musice8 7
-	dec_octave
-	F_ 8
-	rest 7
-	F_ 8
-	rest 8
-	F_ 8
-	rest 7
-	inc_octave
-	musice8 3
-	C_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
 	F_ 8
 	rest 7
@@ -1303,9 +1292,20 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	F_ 8
 	rest 7
 	inc_octave
-	musice8 3
+	cutoff 3
 	C_ 16
-	musice8 8
+	cutoff 7
+	dec_octave
+	F_ 8
+	rest 7
+	F_ 8
+	rest 8
+	F_ 8
+	rest 7
+	inc_octave
+	cutoff 3
+	C_ 16
+	cutoff 8
 	F_ 8
 	rest 7
 	dec_octave
@@ -1320,9 +1320,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1331,9 +1331,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1342,9 +1342,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1353,9 +1353,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1364,9 +1364,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1375,9 +1375,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1386,9 +1386,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1397,9 +1397,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	B_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	F# 8
 	rest 7
 	dec_octave
@@ -1408,9 +1408,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1419,9 +1419,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1430,9 +1430,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1441,9 +1441,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1452,9 +1452,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1463,9 +1463,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	E_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1474,9 +1474,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	A_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	G# 16
-	musice8 7
+	cutoff 7
 	E_ 8
 	rest 7
 	dec_octave
@@ -1485,27 +1485,27 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	B_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	A_ 16
-	musice8 7
+	cutoff 7
 	F# 8
 	rest 7
 	C_ 8
 	rest 8
 	C_ 7
 	rest 8
-	musice8 3
+	cutoff 3
 	G_ 16
-	musice8 7
+	cutoff 7
 	G_ 8
 	rest 7
 	C_ 8
 	rest 8
 	C_ 7
 	rest 8
-	musice8 3
+	cutoff 3
 	G_ 16
-	musice8 7
+	cutoff 7
 	G_ 8
 	rest 7
 	dec_octave
@@ -1514,9 +1514,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	G_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	B_ 16
-	musice8 7
+	cutoff 7
 	D_ 8
 	rest 7
 	dec_octave
@@ -1525,9 +1525,9 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	G_ 7
 	rest 8
 	inc_octave
-	musice8 3
+	cutoff 3
 	B_ 16
-	musice8 7
+	cutoff 7
 	D_ 8
 	rest 7
 	dec_octave
@@ -1536,18 +1536,18 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	inc_octave
 	E_ 8
 	rest 7
-	musice8 3
+	cutoff 3
 	G_ 16
-	musice8 7
+	cutoff 7
 	dec_octave
-	musice8 2
+	cutoff 2
 	B_ 15
 	tie
 	B_ 16
-	musice8 3
+	cutoff 3
 	inc_octave
 	A_ 15
-	musice8 7
+	cutoff 7
 	F# 8
 	rest 8
 	dec_octave
@@ -1578,7 +1578,7 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	F_ 8
 	rest 7
 	Loop 2
-	musice8 1
+	cutoff 1
 	B_ 7
 	tie
 	B_ 16

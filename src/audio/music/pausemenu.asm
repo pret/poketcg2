@@ -1,7 +1,7 @@
 Music_PauseMenu_Ch1: ; 1e2f4d (78:6f4d)
 	speed 7
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	duty 2
 	MainLoop
 	volume 112
@@ -60,12 +60,12 @@ Music_PauseMenu_Ch1: ; 1e2f4d (78:6f4d)
 	music_call Branch_1e3016
 	Loop 3
 	octave 6
-	musice8 4
+	cutoff 4
 	C_ 1
 	music_call Branch_1e307f
 	music_call Branch_1e3016
 	EndLoop
-	musice8 8
+	cutoff 8
 	EndMainLoop
 
 Branch_1e2fba:
@@ -140,11 +140,11 @@ Branch_1e2ff6:
 
 Branch_1e3016:
 	octave 6
-	musice8 4
+	cutoff 4
 	C_ 1
 	octave 3
 	volume 112
-	musice8 8
+	cutoff 8
 	speed 1
 	C_ 4
 	volume 39
@@ -152,11 +152,11 @@ Branch_1e3016:
 	volume 96
 	speed 7
 	octave 5
-	musice8 4
+	cutoff 4
 	G_ 1
 	E_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	volume 112
 	speed 1
 	E_ 4
@@ -165,12 +165,12 @@ Branch_1e3016:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	B_ 1
 	G_ 1
 	dec_octave
 	volume 112
-	musice8 8
+	cutoff 8
 	speed 1
 	C_ 4
 	volume 39
@@ -178,10 +178,10 @@ Branch_1e3016:
 	volume 96
 	speed 7
 	octave 6
-	musice8 4
+	cutoff 4
 	C_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	volume 112
 	speed 1
 	C_ 4
@@ -190,12 +190,12 @@ Branch_1e3016:
 	speed 7
 	octave 5
 	volume 96
-	musice8 4
+	cutoff 4
 	G_ 1
 	E_ 1
 	volume 112
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	E_ 4
 	volume 39
@@ -203,7 +203,7 @@ Branch_1e3016:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	B_ 1
 	G_ 1
 	E_ 1
@@ -212,7 +212,7 @@ Branch_1e3016:
 Branch_1e307f:
 	octave 2
 	speed 1
-	musice8 8
+	cutoff 8
 	volume 112
 	B_ 4
 	volume 39
@@ -220,12 +220,12 @@ Branch_1e307f:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	G_ 1
 	D_ 1
 	octave 3
 	volume 112
-	musice8 8
+	cutoff 8
 	speed 1
 	D_ 4
 	volume 39
@@ -233,12 +233,12 @@ Branch_1e307f:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	B_ 1
 	G_ 1
 	volume 112
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	B_ 4
 	volume 39
@@ -246,11 +246,11 @@ Branch_1e307f:
 	volume 96
 	speed 7
 	octave 6
-	musice8 4
+	cutoff 4
 	C_ 1
 	volume 112
 	octave 2
-	musice8 8
+	cutoff 8
 	speed 1
 	B_ 4
 	volume 39
@@ -258,12 +258,12 @@ Branch_1e307f:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	G_ 1
 	D_ 1
 	volume 112
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	D_ 4
 	volume 39
@@ -271,7 +271,7 @@ Branch_1e307f:
 	speed 7
 	volume 96
 	octave 5
-	musice8 4
+	cutoff 4
 	B_ 1
 	G_ 1
 	D_ 1
@@ -280,8 +280,8 @@ Branch_1e307f:
 
 Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	speed 7
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	duty 2
 	MainLoop
 	volume 128
@@ -312,12 +312,12 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	volume 208
 	speed 7
 	octave 1
-	musice8 6
+	cutoff 6
 	G_ 1
-	musice8 4
+	cutoff 4
 	G_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	volume 112
 	speed 1
 	F# 4
@@ -337,7 +337,7 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	speed 7
 	octave 1
 	volume 208
-	musice8 8
+	cutoff 8
 	G_ 1
 	octave 3
 	volume 112
@@ -348,12 +348,12 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	speed 7
 	volume 208
 	octave 1
-	musice8 6
+	cutoff 6
 	G_ 1
-	musice8 4
+	cutoff 4
 	G_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	F# 4
 	volume 39
@@ -376,12 +376,12 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	volume 208
 	speed 7
 	octave 1
-	musice8 6
+	cutoff 6
 	D_ 1
-	musice8 4
+	cutoff 4
 	D_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	G_ 4
 	volume 39
@@ -400,7 +400,7 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	speed 7
 	octave 1
 	volume 208
-	musice8 8
+	cutoff 8
 	D_ 1
 	octave 3
 	volume 112
@@ -410,13 +410,13 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	E_ 3
 	speed 7
 	volume 208
-	musice8 6
+	cutoff 6
 	octave 1
 	D_ 1
-	musice8 4
+	cutoff 4
 	D_ 1
 	octave 3
-	musice8 8
+	cutoff 8
 	speed 1
 	G_ 4
 	volume 39
@@ -435,13 +435,13 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 Music_PauseMenu_Ch3: ; 1e31c3 (78:71c3)
 	speed 1
 	wave 3
-	musicdc 17
+	stereo_panning 1, 1
 	volume 64
-	musice9 96
-	musice8 4
+	echo 96
+	cutoff 4
 	octave 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	F# 4
 	volume 96
 	G_ 3

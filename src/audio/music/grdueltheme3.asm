@@ -1,7 +1,7 @@
 Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	MainLoop
 	musicf0 27
-	musicdc 255
+	stereo_panning 15, 15
 	musicf3
 	speed 1
 	musicef 1
@@ -792,7 +792,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	MainLoop
 	musicf0 27
 	musicef 255
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	musicf1 80
 	Loop 7
@@ -1701,7 +1701,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 2
 	B_ 4
 	rest 3
-	musicec 0
+	pitch_offset 0
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1726,7 +1726,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 2
 	B_ 4
 	rest 3
-	musicec 0
+	pitch_offset 0
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1753,7 +1753,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 3
 	F# 4
 	rest 3
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1779,7 +1779,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 3
 	F# 4
 	rest 3
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f6dbf
 	rest 7
 	musicf0 28
@@ -1804,7 +1804,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 2
 	B_ 4
 	rest 3
-	musicec 0
+	pitch_offset 0
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1829,7 +1829,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 2
 	B_ 4
 	rest 3
-	musicec 0
+	pitch_offset 0
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1857,7 +1857,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 3
 	F# 4
 	rest 3
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f6dbf
 	musicf0 26
 	octave 3
@@ -1881,7 +1881,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	octave 3
 	F# 4
 	rest 3
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f6dbf
 	rest 7
 	musicf0 28
@@ -2078,7 +2078,7 @@ Branch_1f6dbf:
 	musicef 251
 	G_ 3
 	musicef 5
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1f6dd9:
@@ -2138,13 +2138,13 @@ Branch_1f6df4:
 
 Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	wave 1
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	volume 32
-	musice9 96
+	echo 96
 	MainLoop
 	octave 2
-	musicec 244
+	pitch_offset 244
 	vibrato_type 16
 	vibrato_delay 48
 	Loop 3
@@ -2376,19 +2376,19 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 14
 	tie
 	D_ 7
-	musice8 4
+	cutoff 4
 	E_ 6
-	musice8 8
+	cutoff 8
 	E_ 3
 	rest 4
 	inc_octave
 	inc_octave
 	inc_octave
-	musice9 64
-	musice8 4
+	echo 64
+	cutoff 4
 	E_ 7
-	musice8 8
-	musice9 96
+	cutoff 8
+	echo 96
 	dec_octave
 	dec_octave
 	D_ 5
@@ -2415,19 +2415,19 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 14
 	tie
 	D_ 7
-	musice8 4
+	cutoff 4
 	E_ 6
-	musice8 8
+	cutoff 8
 	E_ 3
 	rest 4
 	inc_octave
 	inc_octave
 	inc_octave
-	musice9 64
-	musice8 4
+	echo 64
+	cutoff 4
 	E_ 7
-	musice8 8
-	musice9 96
+	cutoff 8
+	echo 96
 	dec_octave
 	dec_octave
 	D_ 5
@@ -2798,7 +2798,7 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	B_ 4
 	rest 3
 	inc_octave
-	musice8 4
+	cutoff 4
 	F# 7
 	A_ 7
 	inc_octave
@@ -2808,16 +2808,16 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	A_ 7
 	inc_octave
 	C_ 6
-	musice8 8
+	cutoff 8
 	octave 2
 	C_ 14
 	C_ 2
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 4
 	rest 3
@@ -2827,9 +2827,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	C_ 3
@@ -2843,9 +2843,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 4
 	rest 3
@@ -2855,9 +2855,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	C_ 3
@@ -2871,11 +2871,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -2887,11 +2887,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	C_ 3
@@ -2903,11 +2903,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -2919,11 +2919,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	C_ 3
@@ -2935,9 +2935,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 4
 	rest 3
@@ -2947,9 +2947,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	C_ 3
@@ -2963,9 +2963,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 4
 	rest 3
@@ -2975,9 +2975,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	G_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	C_ 3
@@ -2991,11 +2991,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3007,11 +3007,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	C_ 3
@@ -3023,11 +3023,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	C_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3039,11 +3039,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	C_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	C_ 3
@@ -3055,9 +3055,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	D_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3069,9 +3069,9 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 7
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	F_ 3
@@ -3083,11 +3083,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	D_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	C_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3099,11 +3099,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	C_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	F_ 3
@@ -3115,11 +3115,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	D_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	C_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3131,11 +3131,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	C_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	F_ 3
@@ -3147,11 +3147,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	rest 5
 	D_ 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 4
 	rest 3
@@ -3163,11 +3163,11 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 3
 	rest 4
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	D_ 7
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	F_ 3
@@ -3175,31 +3175,31 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 	D_ 14
 	D_ 13
 	music_call Branch_1f72b7
-	musice8 8
+	cutoff 8
 	D_ 14
-	musice8 5
+	cutoff 5
 	D_ 7
-	musice8 6
+	cutoff 6
 	D_ 6
-	musice8 8
+	cutoff 8
 	D_ 7
 	inc_octave
-	musice8 6
+	cutoff 6
 	D_ 7
 	C_ 7
-	musice8 6
+	cutoff 6
 	D_ 6
 	dec_octave
-	musice8 8
+	cutoff 8
 	A_ 7
-	musice8 6
+	cutoff 6
 	E_ 7
 	C_ 7
-	musice8 7
+	cutoff 7
 	C# 6
-	musice8 8
+	cutoff 8
 	D_ 14
-	musice8 5
+	cutoff 5
 	A_ 13
 	inc_octave
 	C_ 14
@@ -3228,27 +3228,27 @@ Music_GRDuelTheme3_Ch3: ; 1f6e11 (7d:6e11)
 
 Branch_1f72b7:
 	octave 2
-	musice8 8
+	cutoff 8
 	E_ 7
 	inc_octave
-	musice8 5
+	cutoff 5
 	E_ 7
 	D_ 7
 	E_ 6
 	dec_octave
 	B_ 7
 	D_ 7
-	musice8 8
+	cutoff 8
 	E_ 7
-	musice8 6
+	cutoff 6
 	inc_octave
 	E_ 6
-	musice8 5
+	cutoff 5
 	D_ 7
 	E_ 7
 	dec_octave
 	B_ 7
-	musice8 6
+	cutoff 6
 	E_ 6
 	music_ret
 
@@ -3257,7 +3257,7 @@ Music_GRDuelTheme3_Ch4: ; 1f72d5 (7d:72d5)
 	MainLoop
 	speed 1
 	octave 1
-	musicdc 255
+	stereo_panning 15, 15
 	snare3 7
 	snare3 7
 	snare4 7

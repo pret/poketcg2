@@ -1,9 +1,9 @@
 Music_PokemonDome_Ch2: ; 1e60f1 (79:60f1)
 	speed 7
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 9
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 2
 	duty 0
 	volume 160
@@ -307,10 +307,10 @@ Music_PokemonDome_Ch2: ; 1e60f1 (79:60f1)
 
 Music_PokemonDome_Ch1: ; 1e6294 (79:6294)
 	speed 7
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 9
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 1
 	duty 0
 	volume 128
@@ -451,9 +451,9 @@ Music_PokemonDome_Ch1: ; 1e6294 (79:6294)
 	E_ 4
 	F# 8
 	F# 4
-	musice8 6
+	cutoff 6
 	F# 3
-	musice8 8
+	cutoff 8
 	speed 1
 	F# 5
 	rest 2
@@ -616,20 +616,20 @@ Branch_1e63f0:
 
 Music_PokemonDome_Ch3: ; 1e6415 (79:6415)
 	speed 7
-	musicdc 17
+	stereo_panning 1, 1
 	volume 32
 	wave 1
-	musice9 64
-	musice8 6
+	echo 64
+	cutoff 6
 	octave 1
-	musice8 4
+	cutoff 4
 	speed 1
 	Loop 8
 	G_ 5
 	G_ 5
 	G_ 4
 	EndLoop
-	musice8 6
+	cutoff 6
 	speed 7
 	MainLoop
 	inc_octave
@@ -640,10 +640,10 @@ Music_PokemonDome_Ch3: ; 1e6415 (79:6415)
 	C_ 1
 	music_call Branch_1e64af
 	octave 1
-	musice8 4
+	cutoff 4
 	C_ 2
 	inc_octave
-	musice8 6
+	cutoff 6
 	C_ 2
 	rest 2
 	C_ 1
@@ -761,9 +761,9 @@ Branch_1e64af:
 	C_ 2
 	C_ 2
 	dec_octave
-	musice8 4
+	cutoff 4
 	G_ 2
-	musice8 6
+	cutoff 6
 	G_ 2
 	music_ret
 

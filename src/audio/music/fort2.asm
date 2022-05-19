@@ -1,6 +1,6 @@
 Music_Fort2_Ch2: ; 1edefc (7b:5efc)
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	MainLoop
 	octave 3
 	musicf0 16
@@ -538,7 +538,7 @@ Branch_1ee109:
 
 Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	MainLoop
 	musicf0 23
 	musicf1 71
@@ -875,7 +875,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	G_ 16
 	vibrato_delay 0
 	EndLoop
-	musicec 1
+	pitch_offset 1
 	musicf1 32
 	F_ 4
 	F_ 4
@@ -944,7 +944,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	F_ 12
 	C_ 3
 	C_ 4
-	musicec 0
+	pitch_offset 0
 	musicf0 9
 	musicef 1
 	C_ 2
@@ -989,8 +989,8 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	wave 5
 	volume 64
-	musice9 0
-	musicdc 17
+	echo 0
+	stereo_panning 1, 1
 	octave 3
 	musicf3
 	octave 2
@@ -1044,7 +1044,7 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	rest 4
 	rest 7
 	volume 32
-	musice8 8
+	cutoff 8
 	octave 1
 	A_ 2
 	tie
@@ -1308,11 +1308,11 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	B_ 7
 	rest 8
 	octave 1
-	musice8 7
+	cutoff 7
 	E_ 2
 	tie
 	F_ 13
-	musice8 8
+	cutoff 8
 	F# 4
 	rest 3
 	octave 1
@@ -1576,7 +1576,7 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	rest 4
 	octave 2
 	E_ 7
-	musice8 8
+	cutoff 8
 	octave 1
 	Loop 2
 	C_ 15
@@ -1597,10 +1597,10 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	C_ 8
 	C_ 4
 	rest 3
-	musice8 7
+	cutoff 7
 	D_ 15
 	D_ 15
-	musice8 8
+	cutoff 8
 	C_ 15
 	rest 8
 	C_ 4
@@ -1619,11 +1619,11 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	C_ 8
 	C_ 4
 	rest 3
-	musice8 7
+	cutoff 7
 	D_ 15
 	tie
 	D_ 15
-	musice8 8
+	cutoff 8
 	EndLoop
 	octave 1
 	D# 15
@@ -1644,10 +1644,10 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	D# 8
 	D# 4
 	rest 3
-	musice8 7
+	cutoff 7
 	F_ 15
 	F_ 15
-	musice8 8
+	cutoff 8
 	D# 15
 	rest 8
 	D# 4
@@ -1666,11 +1666,11 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	D# 8
 	D# 4
 	rest 3
-	musice8 7
+	cutoff 7
 	F_ 15
 	tie
 	F_ 15
-	musice8 8
+	cutoff 8
 	D# 15
 	rest 8
 	D# 4
@@ -1689,11 +1689,11 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	D# 8
 	D# 4
 	rest 3
-	musice8 7
+	cutoff 7
 	F_ 15
 	F_ 15
-	musice8 8
-	musicec 0
+	cutoff 8
+	pitch_offset 0
 	D# 15
 	rest 8
 	D# 4

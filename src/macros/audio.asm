@@ -114,8 +114,8 @@ MACRO tie
 	db $d9
 ENDM
 
-MACRO musicdc
-	db $dc, \1
+MACRO stereo_panning
+	db $dc, (\1 << 4) | \2
 ENDM
 
 MACRO MainLoop
@@ -149,7 +149,7 @@ MACRO music_ret
 	db $e3
 ENDM
 
-MACRO musice4
+MACRO frequency_offset
 	db $e4, \1
 ENDM
 
@@ -165,11 +165,11 @@ MACRO wave
 	db $e7, \1
 ENDM
 
-MACRO musice8
+MACRO cutoff
 	db $e8, \1
 ENDM
 
-MACRO musice9
+MACRO echo
 	db $e9, \1
 ENDM
 
@@ -181,12 +181,12 @@ MACRO vibrato_delay
 	db $eb, \1
 ENDM
 
-MACRO musicec
+MACRO pitch_offset
 	db $ec, \1
 ENDM
 
 ; unused
-;MACRO musiced
+;MACRO adjust_pitch_offset
 ;	db $ed, \1
 ;ENDM
 

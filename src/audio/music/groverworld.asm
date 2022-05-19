@@ -21,7 +21,7 @@ Music_GROverworld_Ch2: ; 1ead0d (7a:6d0d)
 	G_ 12
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -254,7 +254,7 @@ Branch_1eae1e:
 	musicf0 13
 	octave 3
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_delay 33
 	musicef 1
 	musicf1 48
@@ -398,7 +398,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	MainLoop
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -552,7 +552,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	rest 1
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	B_ 5
@@ -562,7 +562,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 3
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -623,7 +623,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	A_ 5
@@ -633,7 +633,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 3
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -688,7 +688,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 4
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	B_ 5
@@ -698,7 +698,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 3
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -759,14 +759,14 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	musicf0 15
 	octave 3
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	C_ 8
 	C_ 8
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -821,7 +821,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 4
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	B_ 5
@@ -831,7 +831,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 3
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -892,7 +892,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	A_ 5
@@ -902,7 +902,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 3
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -957,7 +957,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 4
 	musicf0 15
 	octave 2
-	musice8 8
+	cutoff 8
 	musicf1 48
 	musicf2
 	B_ 5
@@ -998,7 +998,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicef 2
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -1071,7 +1071,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	musicf2
@@ -1139,7 +1139,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -1211,7 +1211,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 2
 	musicf1 70
 	musicf2
@@ -1282,7 +1282,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	C_ 8
@@ -1347,7 +1347,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 4
 	musicf1 70
 	C_ 8
@@ -1410,7 +1410,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	musicf0 11
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	D# 8
@@ -1496,15 +1496,15 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 
 
 Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
-	musicdc 17
+	stereo_panning 1, 1
 	wave 1
 	volume 32
-	musice8 1
-	musice9 96
+	cutoff 1
+	echo 96
 	speed 1
 	rest 16
 	MainLoop
-	musice8 1
+	cutoff 1
 	Loop 3
 	octave 1
 	G_ 9
@@ -1513,16 +1513,16 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 4
+	cutoff 4
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
-	musice8 1
+	cutoff 1
 	rest 16
 	rest 1
 	rest 16
@@ -1534,18 +1534,18 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
 	rest 16
 	rest 1
-	musice8 1
+	cutoff 1
 	D_ 8
 	tie
 	D_ 8
@@ -1557,16 +1557,16 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
-	musice8 1
+	cutoff 1
 	rest 16
 	rest 1
 	rest 16
@@ -1578,18 +1578,18 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	D# 8
 	D# 8
-	musice8 1
+	cutoff 1
 	F_ 6
 	tie
 	F_ 11
-	musice8 4
+	cutoff 4
 	F_ 16
 	rest 16
 	rest 1
-	musice8 1
+	cutoff 1
 	F_ 8
 	tie
 	F_ 8
@@ -1600,10 +1600,10 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 4
+	cutoff 4
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
@@ -1620,10 +1620,10 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 4
+	cutoff 4
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
@@ -1643,16 +1643,16 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 4
+	cutoff 4
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
-	musice8 1
+	cutoff 1
 	rest 16
 	rest 1
 	rest 16
@@ -1664,18 +1664,18 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
 	rest 16
 	rest 1
-	musice8 1
+	cutoff 1
 	D_ 8
 	tie
 	D_ 8
@@ -1687,16 +1687,16 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	G_ 8
 	G_ 8
-	musice8 1
+	cutoff 1
 	G_ 6
 	tie
 	G_ 11
-	musice8 4
+	cutoff 4
 	G_ 16
-	musice8 1
+	cutoff 1
 	rest 16
 	rest 1
 	rest 16
@@ -1708,23 +1708,23 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	rest 8
 	rest 9
 	rest 8
-	musice8 5
+	cutoff 5
 	A# 8
 	A# 8
 	inc_octave
-	musice8 1
+	cutoff 1
 	C_ 6
 	tie
 	C_ 11
-	musice8 4
+	cutoff 4
 	C_ 16
 	rest 16
 	rest 1
-	musice8 1
+	cutoff 1
 	C_ 8
 	tie
 	C_ 8
-	musice8 1
+	cutoff 1
 	speed 1
 	D_ 16
 	tie
@@ -1733,11 +1733,11 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D_ 9
 	tie
 	D_ 8
-	musice8 4
+	cutoff 4
 	D_ 9
 	dec_octave
 	A_ 8
-	musice8 7
+	cutoff 7
 	D_ 16
 	tie
 	D_ 16
@@ -1748,7 +1748,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	tie
 	D_ 2
 	octave 1
-	musice8 1
+	cutoff 1
 	D# 9
 	tie
 	D# 16
@@ -1760,7 +1760,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D# 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	D# 5
 	tie
 	D# 11
@@ -1768,7 +1768,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D# 16
 	tie
 	D# 1
-	musice8 1
+	cutoff 1
 	A_ 8
 	tie
 	A_ 8
@@ -1784,7 +1784,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	A# 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	A# 5
 	tie
 	A# 11
@@ -1792,7 +1792,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	A# 16
 	tie
 	A# 1
-	musice8 1
+	cutoff 1
 	A# 8
 	tie
 	A# 8
@@ -1808,7 +1808,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	C# 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	C# 5
 	tie
 	C# 11
@@ -1816,7 +1816,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	C# 16
 	tie
 	C# 1
-	musice8 1
+	cutoff 1
 	C# 8
 	tie
 	C# 8
@@ -1832,7 +1832,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	C_ 11
 	rest 9
 	inc_octave
-	musice8 5
+	cutoff 5
 	G_ 8
 	inc_octave
 	C_ 8
@@ -1845,7 +1845,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	A# 8
 	F_ 8
 	octave 1
-	musice8 1
+	cutoff 1
 	G# 9
 	tie
 	G# 16
@@ -1857,7 +1857,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	G# 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	G# 5
 	tie
 	G# 11
@@ -1865,7 +1865,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	G# 16
 	tie
 	G# 1
-	musice8 1
+	cutoff 1
 	G# 8
 	tie
 	G# 8
@@ -1881,7 +1881,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D_ 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	D_ 5
 	tie
 	D_ 11
@@ -1889,7 +1889,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D_ 16
 	tie
 	D_ 1
-	musice8 1
+	cutoff 1
 	D_ 8
 	tie
 	D_ 8
@@ -1905,7 +1905,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D# 11
 	rest 16
 	rest 1
-	musice8 8
+	cutoff 8
 	D# 5
 	tie
 	D# 11
@@ -1913,11 +1913,11 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	D# 16
 	tie
 	D# 1
-	musice8 1
+	cutoff 1
 	D# 8
 	tie
 	D# 8
-	musice8 8
+	cutoff 8
 	vibrato_type 5
 	vibrato_delay 32
 	speed 11

@@ -1,7 +1,7 @@
 Music_MatchStart3_Ch1: ; 1eb77a (7a:777a)
 	speed 1
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	octave 2
 	volume 240
 	duty 1
@@ -165,9 +165,9 @@ Music_MatchStart3_Ch1: ; 1eb77a (7a:777a)
 
 Music_MatchStart3_Ch2: ; 1eb825 (7a:7825)
 	speed 1
-	musicdc 17
-	musice8 8
-	musice4 6
+	stereo_panning 1, 1
+	cutoff 8
+	frequency_offset 6
 	rest 4
 	octave 2
 	volume 96

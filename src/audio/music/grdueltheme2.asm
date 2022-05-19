@@ -2,7 +2,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	musicf0 0
 	octave 3
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicf1 71
 	musicf3
 	G# 3
@@ -93,9 +93,9 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	tie
 	A_ 7
 	G_ 6
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ef5f5
-	musicec 0
+	pitch_offset 0
 	musicf0 35
 	D_ 13
 	F_ 14
@@ -159,9 +159,9 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	tie
 	A_ 7
 	G_ 6
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ef5f5
-	musicec 0
+	pitch_offset 0
 	musicf0 35
 	D_ 13
 	F_ 14
@@ -181,9 +181,9 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	C_ 14
 	dec_octave
 	A# 6
-	musicec 8
+	pitch_offset 8
 	music_call Branch_1ef5f5
-	musicec 0
+	pitch_offset 0
 	musicf0 35
 	F_ 13
 	G# 14
@@ -980,7 +980,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	musicf0 9
 	octave 2
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 3
 	E_ 14
 	rest 7
@@ -1916,8 +1916,8 @@ Music_GRDuelTheme2_Ch3: ; 1efa74 (7b:7a74)
 	wave 5
 	speed 1
 	volume 32
-	musice9 96
-	musicdc 255
+	echo 96
+	stereo_panning 15, 15
 	octave 1
 	A_ 14
 	A_ 4

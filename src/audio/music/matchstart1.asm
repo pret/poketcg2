@@ -1,7 +1,7 @@
 Music_MatchStart1_Ch1: ; 1eb67b (7a:767b)
 	speed 1
-	musicdc 17
-	musice8 8
+	stereo_panning 1, 1
+	cutoff 8
 	musicee 31
 	Loop 3
 	duty 2

@@ -1,7 +1,7 @@
-Music_Diddly4_Ch2: ; 1ebeae (7a:7eae)
+Music_Ditty4_Ch2: ; 1ebeae (7a:7eae)
 	musicf0 0
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 3
 	musicf1 87
 	C_ 4
@@ -22,10 +22,10 @@ Music_Diddly4_Ch2: ; 1ebeae (7a:7eae)
 	music_end
 
 
-Music_Diddly4_Ch1: ; 1ebec7 (7a:7ec7)
+Music_Ditty4_Ch1: ; 1ebec7 (7a:7ec7)
 	musicf0 0
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 2
 	musicf1 87
 	A_ 4
@@ -46,14 +46,14 @@ Music_Diddly4_Ch1: ; 1ebec7 (7a:7ec7)
 	music_end
 
 
-Music_Diddly4_Ch3: ; 1ebee0 (7a:7ee0)
+Music_Ditty4_Ch3: ; 1ebee0 (7a:7ee0)
 	wave 4
 	speed 1
 	volume 64
-	musice9 128
-	musicdc 255
+	echo 128
+	stereo_panning 15, 15
 	speed 1
-	musice8 1
+	cutoff 1
 	rest 6
 	rest 5
 	rest 6

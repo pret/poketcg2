@@ -1,6 +1,6 @@
 Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	rest 13
 	rest 14
 	rest 13
@@ -210,7 +210,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	octave 2
 	musicf3
 	A_ 13
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ddc41
 	musicf0 32
 	musicf1 55
@@ -230,7 +230,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	octave 2
 	musicf3
 	A_ 13
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ddc41
 	music_call Branch_1ddc4e
 	musicf0 2
@@ -239,7 +239,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	musicf0 27
 	octave 2
 	A_ 13
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ddc41
 	musicf0 2
 	musicf1 55
@@ -740,7 +740,7 @@ Branch_1dd880:
 
 Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	musicf1 86
 	rest 13
 	rest 14
@@ -915,9 +915,9 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	musicf0 27
 	octave 3
 	musicf1 32
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1ddc41
-	musicec 249
+	pitch_offset 249
 	music_call Branch_1ddc4e
 	rest 14
 	musicf0 36
@@ -935,7 +935,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	vibrato_delay 0
 	D# 7
 	rest 6
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc41
 	vibrato_delay 7
 	C_ 7
@@ -944,15 +944,15 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	tie
 	C_ 14
 	vibrato_delay 0
-	musicec 252
+	pitch_offset 252
 	music_call Branch_1ddc4e
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc41
-	musicec 253
+	pitch_offset 253
 	music_call Branch_1ddc4e
 	rest 14
 	C# 13
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1ddc41
 	F_ 7
 	rest 6
@@ -977,7 +977,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	octave 2
 	musicf3
 	F_ 13
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc41
 	music_call Branch_1ddc4e
 	C_ 3
@@ -986,9 +986,9 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	tie
 	C# 13
 	vibrato_delay 0
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1ddc41
-	musicec 249
+	pitch_offset 249
 	music_call Branch_1ddc4e
 	rest 14
 	F_ 7
@@ -1003,7 +1003,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	vibrato_delay 0
 	G_ 7
 	rest 6
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1ddc41
 	dec_octave
 	vibrato_delay 7
@@ -1011,17 +1011,17 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	tie
 	A# 14
 	vibrato_delay 0
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc4e
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc41
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc4e
 	octave 3
 	C# 14
 	D# 7
 	rest 6
-	musicec 252
+	pitch_offset 252
 	music_call Branch_1ddc41
 	D# 13
 	tie
@@ -1030,7 +1030,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	dec_octave
 	A# 7
 	rest 6
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc41
 	octave 2
 	A_ 3
@@ -1047,7 +1047,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	A# 7
 	rest 6
 	A_ 14
-	musicec 249
+	pitch_offset 249
 	music_call Branch_1ddc4e
 	octave 2
 	C# 4
@@ -1068,11 +1068,11 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	musicf3
 	G# 7
 	rest 7
-	musicec 249
+	pitch_offset 249
 	music_call Branch_1ddc68
 	octave 4
 	C# 14
-	musicec 249
+	pitch_offset 249
 	music_call Branch_1ddc68
 	octave 4
 	F_ 7
@@ -1081,7 +1081,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	G_ 10
 	tie
 	G_ 14
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc68
 	octave 3
 	G# 7
@@ -1089,9 +1089,9 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	G_ 13
 	tie
 	G_ 14
-	musicec 252
+	pitch_offset 252
 	music_call Branch_1ddc68
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc5b
 	octave 3
 	A_ 7
@@ -1120,7 +1120,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	musicf0 27
 	octave 2
 	F_ 13
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc5b
 	octave 3
 	A_ 7
@@ -1129,7 +1129,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	rest 2
 	G# 7
 	rest 6
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1ddc5b
 	octave 4
 	E_ 3
@@ -1138,7 +1138,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	F_ 14
 	D# 7
 	rest 6
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1ddc5b
 	octave 4
 	D_ 3
@@ -1146,17 +1146,17 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	D# 14
 	G_ 7
 	rest 6
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc5b
 	octave 3
 	G_ 13
 	tie
 	G_ 14
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc4e
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1ddc41
-	musicec 251
+	pitch_offset 251
 	music_call Branch_1ddc4e
 	inc_octave
 	C# 14
@@ -1220,7 +1220,7 @@ Branch_1ddc41:
 	musicf1 32
 	C_ 5
 	C_ 9
-	musicec 0
+	pitch_offset 0
 	musicf0 36
 	musicf3
 	music_ret
@@ -1231,7 +1231,7 @@ Branch_1ddc4e:
 	musicf1 32
 	C_ 5
 	C_ 8
-	musicec 0
+	pitch_offset 0
 	musicf0 36
 	musicf3
 	music_ret
@@ -1242,7 +1242,7 @@ Branch_1ddc5b:
 	musicf1 32
 	C_ 5
 	C_ 9
-	musicec 0
+	pitch_offset 0
 	musicf0 26
 	musicf3
 	music_ret
@@ -1253,7 +1253,7 @@ Branch_1ddc68:
 	musicf1 32
 	C_ 5
 	C_ 8
-	musicec 0
+	pitch_offset 0
 	musicf0 26
 	musicf3
 	music_ret
@@ -1722,8 +1722,8 @@ Branch_1ddc75:
 Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	wave 1
 	volume 32
-	musice9 96
-	musicdc 255
+	echo 96
+	stereo_panning 15, 15
 	speed 1
 	rest 13
 	octave 1
@@ -1917,9 +1917,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	G# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G# 7
 	rest 6
@@ -1929,9 +1929,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	G_ 7
@@ -1942,9 +1942,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	D# 7
@@ -1954,9 +1954,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	G# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	rest 6
@@ -1965,9 +1965,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	A# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	B_ 7
 	rest 6
@@ -1977,9 +1977,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	D# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	C_ 7
 	rest 6
@@ -1989,9 +1989,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 6
@@ -2007,9 +2007,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	G# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G# 7
 	rest 6
@@ -2019,9 +2019,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	C# 7
@@ -2032,9 +2032,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	D# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	G_ 7
@@ -2044,9 +2044,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	rest 6
@@ -2056,9 +2056,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	F_ 7
@@ -2068,9 +2068,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 13
 	tie
@@ -2079,9 +2079,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	C_ 7
 	rest 6
@@ -2099,9 +2099,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	G# 7
@@ -2112,9 +2112,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	G_ 7
@@ -2125,9 +2125,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	D# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	D# 7
@@ -2137,9 +2137,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	G# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	rest 6
@@ -2149,9 +2149,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	C# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	B_ 7
@@ -2162,10 +2162,10 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	D# 14
 	dec_octave
-	musice8 8
+	cutoff 8
 	C_ 7
 	rest 6
 	dec_octave
@@ -2174,9 +2174,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 6
@@ -2192,9 +2192,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	G# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G# 7
 	rest 6
@@ -2203,9 +2203,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	G# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G# 7
 	rest 6
@@ -2214,9 +2214,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	rest 6
@@ -2225,9 +2225,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 7
 	rest 6
@@ -2237,9 +2237,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 2
+	cutoff 2
 	G# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	C_ 13
@@ -2250,9 +2250,9 @@ Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	F_ 13
@@ -2357,9 +2357,9 @@ Branch_1de0c5:
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	F_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 6
@@ -2368,9 +2368,9 @@ Branch_1de0c5:
 	D# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	D# 7
 	rest 6
@@ -2379,9 +2379,9 @@ Branch_1de0c5:
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 6
@@ -2390,9 +2390,9 @@ Branch_1de0c5:
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	C_ 7
 	rest 6
@@ -2401,9 +2401,9 @@ Branch_1de0c5:
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 6
@@ -2412,9 +2412,9 @@ Branch_1de0c5:
 	D# 7
 	rest 6
 	inc_octave
-	musice8 2
+	cutoff 2
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	D# 7
 	rest 6
@@ -2438,19 +2438,19 @@ Branch_1de0c5:
 	A# 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
 	A_ 13
-	musice8 8
+	cutoff 8
 	dec_octave
 	A# 7
 	rest 7
 	A# 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	A# 7
 	rest 6
@@ -2459,19 +2459,19 @@ Branch_1de0c5:
 	A_ 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
 	A_ 13
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	rest 7
 	A_ 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	A_ 7
 	rest 6
@@ -2480,19 +2480,19 @@ Branch_1de0c5:
 	G_ 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A# 14
 	A# 13
-	musice8 8
+	cutoff 8
 	dec_octave
 	C_ 7
 	rest 7
 	C_ 7
 	rest 6
 	inc_octave
-	musice8 8
+	cutoff 8
 	A# 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	C_ 7
 	rest 6
@@ -2501,10 +2501,10 @@ Branch_1de0c5:
 	F_ 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
 	A_ 13
-	musice8 8
+	cutoff 8
 	dec_octave
 	F_ 7
 	rest 7
@@ -2517,10 +2517,10 @@ Branch_1de0c5:
 	A# 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	A_ 14
 	A_ 13
-	musice8 8
+	cutoff 8
 	dec_octave
 	A# 7
 	rest 7
@@ -2528,9 +2528,9 @@ Branch_1de0c5:
 	rest 6
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	C_ 14
-	musice8 8
+	cutoff 8
 	dec_octave
 	dec_octave
 	A# 7
@@ -2549,11 +2549,11 @@ Branch_1de0c5:
 	D_ 7
 	rest 6
 	inc_octave
-	musice8 4
+	cutoff 4
 	inc_octave
 	C_ 14
 	dec_octave
-	musice8 8
+	cutoff 8
 	dec_octave
 	G_ 13
 	tie
@@ -2578,7 +2578,7 @@ Branch_1de0c5:
 
 Music_Ishihara_Ch4: ; 1de20c (77:620c)
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	octave 1
 	snare3 13
 	speed 9

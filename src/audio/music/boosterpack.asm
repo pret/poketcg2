@@ -1,8 +1,8 @@
 Music_BoosterPack_Ch2: ; 1ebade (7a:7ade)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 4
 	duty 1
 	speed 1
@@ -44,10 +44,10 @@ Music_BoosterPack_Ch2: ; 1ebade (7a:7ade)
 
 
 Music_BoosterPack_Ch1: ; 1ebb1c (7a:7b1c)
-	musicdc 17
+	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
-	musice8 8
+	cutoff 8
 	octave 3
 	duty 1
 	speed 1
@@ -88,11 +88,11 @@ Music_BoosterPack_Ch1: ; 1ebb1c (7a:7b1c)
 
 
 Music_BoosterPack_Ch3: ; 1ebb59 (7a:7b59)
-	musicdc 17
+	stereo_panning 1, 1
 	wave 1
 	volume 32
-	musice8 8
-	musice9 0
+	cutoff 8
+	echo 0
 	octave 1
 	speed 1
 	D# 6

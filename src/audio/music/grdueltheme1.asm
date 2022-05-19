@@ -1,5 +1,5 @@
 Music_GRDuelTheme1_Ch2: ; 1f5865 (7d:5865)
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	musicf0 16
 	octave 3
@@ -898,7 +898,7 @@ Branch_1f5ae8:
 
 
 Music_GRDuelTheme1_Ch1: ; 1f5c1b (7d:5c1b)
-	musicdc 255
+	stereo_panning 15, 15
 	speed 1
 	musicf0 16
 	musicef 255
@@ -1504,7 +1504,7 @@ Music_GRDuelTheme1_Ch1: ; 1f5c1b (7d:5c1b)
 	C# 8
 	musicf0 4
 	musicef 251
-	musice4 254
+	frequency_offset -2
 	rest 7
 	musicf3
 	octave 2
@@ -1520,7 +1520,7 @@ Music_GRDuelTheme1_Ch1: ; 1f5c1b (7d:5c1b)
 	rest 4
 	musicf0 16
 	musicef 1
-	musice4 0
+	frequency_offset 0
 	musicf1 70
 	rest 7
 	D_ 7
@@ -1908,11 +1908,11 @@ Music_GRDuelTheme1_Ch3: ; 1f603f (7d:603f)
 	speed 1
 	wave 1
 	volume 32
-	musice9 64
-	musicdc 17
+	echo 64
+	stereo_panning 1, 1
 	octave 2
-	musice8 7
-	musicec 244
+	cutoff 7
+	pitch_offset 244
 	Loop 2
 	music_call Branch_1f6313
 	EndLoop
@@ -2438,7 +2438,7 @@ Music_GRDuelTheme1_Ch3: ; 1f603f (7d:603f)
 	D_ 2
 	speed 1
 	G_ 14
-	musice8 7
+	cutoff 7
 	speed 1
 	D# 16
 	tie
@@ -2446,15 +2446,15 @@ Music_GRDuelTheme1_Ch3: ; 1f603f (7d:603f)
 	D# 16
 	tie
 	D# 13
-	musice8 7
+	cutoff 7
 	music_call Branch_1f6313
 	music_call Branch_1f6313
 	EndMainLoop
 
 Branch_1f6313:
 	octave 2
-	musicec 244
-	musice8 7
+	pitch_offset 244
+	cutoff 7
 	speed 11
 	D_ 2
 	A_ 2

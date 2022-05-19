@@ -368,7 +368,7 @@ Music_GameCorner_Ch1: ; 1e765c (79:765c)
 	volume 194
 	duty 2
 	musicee 30
-	musicdc 255
+	stereo_panning 15, 15
 	vibrato_delay 0
 	speed 1
 	Loop 3
@@ -822,9 +822,9 @@ Branch_1e778f:
 Music_GameCorner_Ch3: ; 1e782f (79:782f)
 	wave 1
 	volume 32
-	musice9 64
+	echo 64
 	speed 1
-	musicdc 255
+	stereo_panning 15, 15
 	MainLoop
 	octave 1
 	A_ 11

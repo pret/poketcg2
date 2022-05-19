@@ -1,7 +1,7 @@
 Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	MainLoop
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	musicf0 0
 	octave 4
 	vibrato_delay 24
@@ -83,7 +83,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	Loop 2
 	octave 2
 	musicf2
-	musice8 8
+	cutoff 8
 	E_ 5
 	E_ 10
 	E_ 5
@@ -105,7 +105,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	Loop 2
 	octave 2
 	musicf2
-	musice8 8
+	cutoff 8
 	F_ 5
 	F_ 10
 	F_ 5
@@ -123,7 +123,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	Loop 2
 	octave 2
 	musicf2
-	musice8 8
+	cutoff 8
 	F# 5
 	F# 10
 	F# 5
@@ -140,7 +140,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	EndLoop
 	octave 2
 	musicf2
-	musice8 8
+	cutoff 8
 	F_ 5
 	F_ 10
 	F_ 5
@@ -156,7 +156,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	F_ 2
 	octave 2
 	musicf2
-	musice8 8
+	cutoff 8
 	F_ 5
 	F_ 10
 	F_ 5
@@ -169,7 +169,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	vibrato_type 1
 	vibrato_delay 15
 	octave 3
-	musice4 0
+	frequency_offset 0
 	musicf1 70
 	E_ 15
 	E_ 8
@@ -475,7 +475,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	MainLoop
 	speed 1
-	musicdc 17
+	stereo_panning 1, 1
 	musicf0 1
 	musicef 255
 	octave 3
@@ -561,7 +561,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	Loop 2
 	octave 1
 	musicf2
-	musice8 8
+	cutoff 8
 	A_ 5
 	A_ 10
 	A_ 5
@@ -583,7 +583,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	Loop 5
 	octave 1
 	musicf2
-	musice8 8
+	cutoff 8
 	A_ 5
 	A_ 10
 	A_ 5
@@ -602,7 +602,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	EndLoop
 	octave 1
 	musicf2
-	musice8 8
+	cutoff 8
 	A_ 5
 	A_ 10
 	A_ 5
@@ -628,20 +628,20 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	rest 15
 	rest 15
 	E_ 15
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	G_ 15
 	F# 15
 	tie
 	F# 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f3140
 	F# 8
 	rest 7
 	F# 15
 	tie
 	F# 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f3140
 	F# 5
 	rest 3
@@ -650,14 +650,14 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	F_ 15
 	tie
 	F_ 15
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	F_ 8
 	rest 7
 	D_ 15
 	C_ 8
 	rest 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	D_ 8
 	rest 7
@@ -681,20 +681,20 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	rest 15
 	rest 15
 	E_ 15
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	G_ 15
 	F# 15
 	tie
 	F# 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f3140
 	F# 8
 	rest 7
 	F# 15
 	tie
 	F# 15
-	musicec 2
+	pitch_offset 2
 	music_call Branch_1f3140
 	F# 5
 	rest 3
@@ -704,21 +704,21 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	tie
 	F_ 8
 	rest 7
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	rest 8
 	rest 7
 	B_ 15
 	rest 5
 	B_ 10
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	rest 15
 	inc_octave
 	C_ 15
 	tie
 	C_ 15
-	musicec 8
+	pitch_offset 8
 	music_call Branch_1f3140
 	octave 3
 	G_ 8
@@ -726,7 +726,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	G_ 15
 	tie
 	G_ 15
-	musicec 6
+	pitch_offset 6
 	music_call Branch_1f3140
 	A_ 8
 	A# 7
@@ -734,7 +734,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	C_ 15
 	tie
 	C_ 15
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	octave 4
 	C_ 8
@@ -743,7 +743,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	B_ 15
 	B_ 8
 	rest 7
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	octave 4
 	D_ 8
@@ -761,7 +761,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	music_call Branch_1f3150
 	rest 8
 	rest 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	octave 3
 	F_ 8
@@ -769,7 +769,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	A_ 15
 	tie
 	A_ 15
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f3140
 	A_ 8
 	rest 7
@@ -777,7 +777,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	rest 2
 	G# 8
 	rest 7
-	musicec 4
+	pitch_offset 4
 	music_call Branch_1f3140
 	G# 8
 	rest 7
@@ -789,21 +789,21 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	rest 8
 	music_call Branch_1f3150
 	rest 15
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	E_ 8
 	G_ 7
 	A_ 15
 	tie
 	A_ 15
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	A_ 8
 	rest 7
 	B_ 15
 	A_ 5
 	rest 10
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	F_ 8
 	rest 7
@@ -819,7 +819,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	C# 15
 	tie
 	C# 15
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f3140
 	rest 8
 	dec_octave
@@ -828,20 +828,20 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	A_ 15
 	tie
 	A_ 15
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	A_ 8
 	F_ 7
 	D_ 15
 	rest 5
 	F_ 10
-	musicec 4
+	pitch_offset 4
 	music_call Branch_1f3140
 	rest 15
 	G_ 15
 	tie
 	G_ 15
-	musicec 1
+	pitch_offset 1
 	music_call Branch_1f3140
 	G_ 4
 	D_ 4
@@ -863,7 +863,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	musicf3
 	B_ 15
 	musicf2
-	musice8 8
+	cutoff 8
 	E_ 5
 	E_ 3
 	E_ 5
@@ -891,7 +891,7 @@ Branch_1f3140:
 	musicf0 21
 	musicf1 128
 	octave 3
-	musicec 0
+	pitch_offset 0
 	music_ret
 
 Branch_1f3150:
@@ -911,8 +911,8 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	speed 1
 	wave 1
 	volume 32
-	musice9 96
-	musicdc 17
+	echo 96
+	stereo_panning 1, 1
 	octave 4
 	rest 16
 	octave 1
@@ -977,7 +977,7 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 10
 	rest 16
 	rest 14
-	musice8 4
+	cutoff 4
 	A_ 15
 	A_ 8
 	A_ 7
@@ -993,7 +993,7 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 8
 	A_ 7
 	MainLoop
-	musice8 4
+	cutoff 4
 	octave 1
 	Loop 3
 	A_ 15
@@ -1020,7 +1020,7 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 15
 	A_ 8
 	A_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	A_ 8
 	A_ 7
@@ -1039,14 +1039,14 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 15
 	A_ 8
 	A_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	A_ 8
 	A_ 7
 	A_ 15
 	A_ 8
 	A_ 7
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f333b
 	A_ 8
 	A_ 7
@@ -1058,16 +1058,16 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 7
 	A_ 8
 	octave 3
-	musice8 4
+	cutoff 4
 	C_ 4
 	rest 3
-	musice8 8
+	cutoff 8
 	octave 1
-	musice8 8
+	cutoff 8
 	F# 15
 	G_ 15
 	G# 15
-	musice8 4
+	cutoff 4
 	A_ 15
 	A_ 8
 	A_ 7
@@ -1077,7 +1077,7 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 15
 	A_ 8
 	A_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	A_ 8
 	A_ 7
@@ -1096,14 +1096,14 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	A_ 15
 	A_ 8
 	A_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	A_ 8
 	A_ 7
 	B_ 15
 	B_ 8
 	B_ 7
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f333b
 	B_ 8
 	B_ 7
@@ -1111,7 +1111,7 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	C_ 15
 	C_ 8
 	C_ 7
-	musicec 8
+	pitch_offset 8
 	music_call Branch_1f333b
 	octave 2
 	C_ 8
@@ -1120,22 +1120,22 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	C_ 8
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	E_ 4
 	rest 3
-	musice8 4
+	cutoff 4
 	dec_octave
 	dec_octave
 	C_ 8
 	C_ 7
-	musice8 8
+	cutoff 8
 	D_ 15
 	E_ 15
-	musice8 4
+	cutoff 4
 	F_ 15
 	F_ 8
 	F_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	F_ 8
 	F_ 7
@@ -1148,35 +1148,35 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	E_ 15
 	E_ 8
 	E_ 7
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1f333b
 	E_ 8
 	E_ 7
 	E_ 8
 	inc_octave
 	inc_octave
-	musice8 4
+	cutoff 4
 	C_ 4
 	rest 3
 	dec_octave
 	dec_octave
 	E_ 8
 	E_ 7
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f333b
 	E_ 8
 	E_ 7
 	D_ 15
 	D_ 8
 	D_ 7
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f333b
 	D_ 8
 	D_ 7
 	E_ 15
 	E_ 8
 	E_ 7
-	musicec 7
+	pitch_offset 7
 	music_call Branch_1f333b
 	E_ 8
 	E_ 7
@@ -1195,28 +1195,28 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	dec_octave
 	G_ 8
 	G_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	G_ 8
 	G_ 7
 	F_ 15
 	F_ 8
 	F_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	F_ 8
 	F_ 7
 	F_ 15
 	F_ 8
 	F_ 7
-	musicec 5
+	pitch_offset 5
 	music_call Branch_1f333b
 	F_ 8
 	F_ 7
 	E_ 15
 	E_ 8
 	E_ 7
-	musicec 254
+	pitch_offset 254
 	music_call Branch_1f333b
 	E_ 8
 	E_ 7
@@ -1229,40 +1229,40 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 	dec_octave
 	D# 8
 	D# 7
-	musicec 4
+	pitch_offset 4
 	music_call Branch_1f333b
 	D# 8
 	D# 7
 	D_ 15
 	D_ 8
 	D_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	D_ 8
 	D_ 7
 	D_ 15
 	D_ 8
 	D_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	D_ 8
 	D_ 7
 	G_ 15
 	G_ 8
 	G_ 7
-	musicec 3
+	pitch_offset 3
 	music_call Branch_1f333b
 	inc_octave
 	D_ 8
 	D_ 7
-	musice8 8
+	cutoff 8
 	G_ 15
 	dec_octave
 	G_ 15
 	G# 15
 	inc_octave
 	G# 15
-	musice8 4
+	cutoff 4
 	dec_octave
 	A_ 15
 	A_ 8
@@ -1281,11 +1281,11 @@ Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
 Branch_1f333b:
 	octave 2
 	volume 64
-	musice8 8
+	cutoff 8
 	A_ 15
 	volume 32
-	musice8 4
-	musicec 0
+	cutoff 4
+	pitch_offset 0
 	octave 1
 	music_ret
 
