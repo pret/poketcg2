@@ -2,7 +2,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
-	musicf0 8
+	preset 8
 	musicf1 55
 	octave 2
 	music_call Branch_1ea5ed
@@ -74,10 +74,10 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	A# 10
 	F_ 11
 	G# 10
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
@@ -86,15 +86,15 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	rest 10
 	rest 11
-	musicef 252
+	musicef -4
 	C_ 10
 	musicef 4
 	musicf1 55
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
-	musicef 254
+	musicef -2
 	Loop 3
 	G_ 3
 	rest 1
@@ -111,10 +111,10 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	F_ 16
 	tie
 	F_ 5
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf1 55
@@ -123,7 +123,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	D_ 11
 	musicf3
 	rest 10
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	B_ 6
@@ -142,10 +142,10 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	B_ 5
 	tie
 	A# 5
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
@@ -154,15 +154,15 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	rest 10
 	rest 11
-	musicef 252
+	musicef -4
 	C_ 10
 	musicef 4
 	musicf1 55
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
-	musicef 254
+	musicef -2
 	Loop 3
 	G_ 3
 	rest 1
@@ -182,14 +182,14 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	octave 2
 	musicf1 55
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	cutoff 4
 	cutoff 4
 	octave 4
 	musicf2
 	G_ 10
 	G_ 11
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 3
 	musicf2
@@ -209,20 +209,20 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	C_ 10
 	music_call Branch_1ea90c
 	music_call Branch_1ea66f
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	octave 4
 	musicf2
 	D_ 4
 	D_ 6
 	musicf3
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	D_ 11
-	musicf0 9
+	preset 9
 	octave 3
 	cutoff 8
 	C# 10
@@ -250,10 +250,10 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	A# 4
 	music_call Branch_1ea90c
 	music_call Branch_1ea66f
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	musicf1 16
 	octave 4
 	cutoff 6
@@ -284,20 +284,20 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	musicf3
 	music_call Branch_1ea90c
 	music_call Branch_1ea66f
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	octave 4
 	musicf2
 	D_ 4
 	D_ 6
 	musicf3
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	D_ 11
-	musicf0 9
+	preset 9
 	octave 3
 	cutoff 8
 	C# 10
@@ -350,13 +350,13 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	tie
 	frequency_offset 0
 	G# 1
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 2
 	A# 16
 	tie
 	A# 5
-	musicf0 9
+	preset 9
 	cutoff 8
 	musicef 2
 	octave 1
@@ -384,13 +384,13 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	C_ 10
 	C_ 11
 	musicf3
-	musicf0 9
+	preset 9
 	octave 4
 	musicf2
 	C_ 4
 	C_ 6
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
 	musicf1 103
@@ -399,8 +399,8 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	G_ 5
 	rest 5
 	musicf3
-	musicf0 9
-	musicef 252
+	preset 9
+	musicef -4
 	musicf1 39
 	octave 3
 	cutoff 4
@@ -420,7 +420,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	C_ 2
 	rest 1
 	C_ 1
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 2
 	B_ 6
@@ -436,17 +436,17 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	music_call Branch_1ea603
 	musicf1 55
 	musicf3
-	musicf0 8
+	preset 8
 	octave 3
 	C_ 11
-	musicf0 9
+	preset 9
 	cutoff 8
 	inc_octave
 	musicf2
 	F_ 4
 	F_ 6
 	dec_octave
-	musicf0 8
+	preset 8
 	C_ 5
 	C_ 6
 	dec_octave
@@ -454,20 +454,20 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	B_ 10
 	inc_octave
 	inc_octave
-	musicf0 9
+	preset 9
 	cutoff 8
 	musicf2
 	E_ 4
 	E_ 7
 	dec_octave
 	dec_octave
-	musicf0 8
+	preset 8
 	cutoff 8
 	B_ 5
 	B_ 5
 	musicf3
 	A# 11
-	musicf0 9
+	preset 9
 	inc_octave
 	inc_octave
 	cutoff 8
@@ -476,14 +476,14 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	D# 6
 	dec_octave
 	dec_octave
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	A# 5
 	A# 6
 	musicf3
 	G# 10
-	musicf0 9
+	preset 9
 	inc_octave
 	inc_octave
 	cutoff 8
@@ -492,7 +492,7 @@ Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
 	C# 7
 	dec_octave
 	dec_octave
-	musicf0 8
+	preset 8
 	cutoff 8
 	G# 5
 	G# 5
@@ -532,7 +532,7 @@ Branch_1ea5f8:
 	music_ret
 
 Branch_1ea603:
-	musicf0 8
+	preset 8
 	musicf3
 	octave 3
 	musicf2
@@ -547,14 +547,14 @@ Branch_1ea603:
 	C_ 10
 	C_ 11
 	musicf3
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 8
 	musicf2
 	C_ 4
 	C_ 6
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
 	musicf1 55
@@ -563,8 +563,8 @@ Branch_1ea603:
 	G_ 5
 	rest 5
 	musicf3
-	musicf0 9
-	musicef 252
+	preset 9
+	musicef -4
 	musicf1 39
 	octave 3
 	cutoff 4
@@ -584,7 +584,7 @@ Branch_1ea603:
 	C_ 2
 	rest 1
 	C_ 1
-	musicf0 8
+	preset 8
 	octave 2
 	A# 16
 	tie
@@ -595,10 +595,10 @@ Branch_1ea603:
 	music_ret
 
 Branch_1ea64e:
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 3
-	musicef 255
+	musicef -1
 	G# 16
 	tie
 	G# 16
@@ -626,7 +626,7 @@ Branch_1ea64e:
 	music_ret
 
 Branch_1ea66f:
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 2
 	E_ 16
@@ -647,7 +647,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	speed 1
 	stereo_panning 1, 1
 	octave 2
-	musicf0 8
+	preset 8
 	musicf1 55
 	octave 2
 	music_call Branch_1ea5f8
@@ -709,10 +709,10 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	F_ 10
 	C_ 11
 	C# 10
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5f8
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
@@ -722,16 +722,16 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 10
 	rest 11
 	dec_octave
-	musicef 252
+	musicef -4
 	cutoff 4
 	A# 10
 	musicef 4
 	musicf1 55
 	musicf3
-	musicf0 9
+	preset 9
 	octave 1
 	cutoff 8
-	musicef 254
+	musicef -2
 	Loop 3
 	D_ 2
 	rest 1
@@ -743,10 +743,10 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 10
 	rest 11
 	rest 10
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5f8
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
@@ -754,7 +754,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 11
 	rest 10
 	musicf3
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	F# 6
@@ -771,10 +771,10 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	F# 5
 	tie
 	F_ 5
-	musicf0 8
+	preset 8
 	octave 2
 	music_call Branch_1ea5f8
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
@@ -784,15 +784,15 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 10
 	rest 11
 	dec_octave
-	musicef 252
+	musicef -4
 	A# 10
 	musicef 4
 	musicf1 55
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
-	musicef 254
+	musicef -2
 	Loop 3
 	D_ 2
 	rest 1
@@ -806,14 +806,14 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 10
 	octave 2
 	music_call Branch_1ea5f8
-	musicf0 9
+	preset 9
 	octave 4
 	cutoff 4
 	musicf2
 	C_ 10
 	C_ 11
 	musicf3
-	musicf0 8
+	preset 8
 	octave 3
 	cutoff 8
 	C_ 10
@@ -832,7 +832,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	G_ 6
 	G# 5
 	G_ 10
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 2
 	A# 11
@@ -854,13 +854,13 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 10
 	rest 11
 	dec_octave
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	F_ 10
 	music_call Branch_1ea5ed
 	rest 10
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	G_ 16
@@ -878,7 +878,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	rest 16
 	rest 5
 	rest 11
-	musicf0 9
+	preset 9
 	cutoff 6
 	musicf1 16
 	octave 3
@@ -889,7 +889,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 10
 	rest 11
 	musicf3
-	musicf0 8
+	preset 8
 	musicf1 55
 	cutoff 8
 	octave 2
@@ -900,7 +900,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	G_ 11
 	musicf3
 	D_ 10
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	G_ 11
@@ -923,7 +923,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 10
 	rest 11
 	dec_octave
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	F_ 10
@@ -938,13 +938,13 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	G_ 11
 	rest 10
 	musicf3
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	G_ 16
 	tie
 	G_ 5
-	musicef 255
+	musicef -1
 	octave 3
 	G# 16
 	tie
@@ -973,9 +973,9 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	F# 5
 	tie
 	G_ 10
-	musicf0 10
+	preset 10
 	musicf1 144
-	musicef 253
+	musicef -3
 	musicf2
 	octave 3
 	G_ 3
@@ -1008,19 +1008,19 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea8d3
 	octave 2
 	music_call Branch_1ea5ed
-	musicf0 9
+	preset 9
 	cutoff 4
 	octave 3
 	musicf2
 	A# 10
 	A# 11
 	musicf3
-	musicf0 8
+	preset 8
 	octave 1
 	cutoff 8
 	rest 10
-	musicf0 9
-	musicef 252
+	preset 9
+	musicef -4
 	musicf1 55
 	octave 2
 	cutoff 4
@@ -1039,7 +1039,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 2
 	rest 1
 	C_ 1
-	musicf0 8
+	preset 8
 	cutoff 8
 	octave 2
 	F# 6
@@ -1054,10 +1054,10 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	music_call Branch_1ea8d3
 	musicf1 55
 	musicf3
-	musicf0 8
+	preset 8
 	octave 2
 	G_ 11
-	musicf0 9
+	preset 9
 	cutoff 8
 	inc_octave
 	inc_octave
@@ -1066,46 +1066,46 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	C_ 6
 	dec_octave
 	dec_octave
-	musicf0 8
+	preset 8
 	G_ 5
 	G_ 6
 	musicf3
 	F# 10
 	inc_octave
-	musicf0 9
+	preset 9
 	cutoff 8
 	musicf2
 	B_ 4
 	B_ 7
 	dec_octave
-	musicf0 8
+	preset 8
 	cutoff 8
 	F# 5
 	F# 5
 	musicf3
 	F_ 11
-	musicf0 9
+	preset 9
 	inc_octave
 	cutoff 8
 	musicf2
 	A# 4
 	A# 6
 	dec_octave
-	musicf0 8
+	preset 8
 	octave 2
 	cutoff 8
 	F_ 5
 	F_ 6
 	musicf3
 	D# 10
-	musicf0 9
+	preset 9
 	inc_octave
 	cutoff 8
 	musicf2
 	G# 4
 	G# 7
 	dec_octave
-	musicf0 8
+	preset 8
 	cutoff 8
 	D# 5
 	D# 5
@@ -1119,7 +1119,7 @@ Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
 	EndMainLoop
 
 Branch_1ea8d3:
-	musicf0 8
+	preset 8
 	stereo_panning 1, 1
 	octave 2
 	musicf1 55
@@ -1132,14 +1132,14 @@ Branch_1ea8d3:
 	musicf2
 	G_ 10
 	G_ 11
-	musicf0 9
+	preset 9
 	octave 3
 	cutoff 4
 	A# 10
 	A# 11
 	musicf3
 	rest 10
-	musicef 252
+	musicef -4
 	octave 2
 	cutoff 4
 	rest 11
@@ -1156,7 +1156,7 @@ Branch_1ea8d3:
 	G_ 2
 	rest 1
 	G_ 1
-	musicf0 8
+	preset 8
 	octave 2
 	F_ 16
 	tie
@@ -1167,7 +1167,7 @@ Branch_1ea8d3:
 	music_ret
 
 Branch_1ea90c:
-	musicf0 9
+	preset 9
 	vibrato_delay 11
 	octave 1
 	A_ 4
@@ -1707,9 +1707,9 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare1 11
 	snare1 10
 	snare3 11
-	musicef 253
+	musicef -3
 	snare1 3
-	musicef 255
+	musicef -1
 	snare1 3
 	musicef 0
 	snare1 4
@@ -1782,7 +1782,7 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	bass 10
 	snare3 11
 	bass 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -1831,7 +1831,7 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare1 11
 	snare4 10
 	bass 11
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	snare1 3
@@ -1839,17 +1839,17 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	bass 11
 	snare1 10
 	snare4 11
-	musicef 253
+	musicef -3
 	snare1 5
-	musicef 254
+	musicef -2
 	snare1 5
 	musicef 0
 	snare1 11
 	snare1 10
 	bass 11
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -1916,7 +1916,7 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare1 11
 	snare4 10
 	bass 11
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	snare1 3
@@ -1924,17 +1924,17 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	bass 11
 	snare1 10
 	snare4 11
-	musicef 253
+	musicef -3
 	snare1 5
-	musicef 254
+	musicef -2
 	snare1 5
 	musicef 0
 	snare1 11
 	snare1 10
 	bass 11
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -1957,7 +1957,7 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare1 5
 	snare1 5
 	snare1 11
-	musicef 253
+	musicef -3
 	snare1 5
 	musicef 0
 	snare1 5
@@ -1975,9 +1975,9 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare3 11
 	bass 10
 	snare4 11
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -2007,9 +2007,9 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	noise6 15
 	speed 1
 	rest 1
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -2027,9 +2027,9 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare3 11
 	bass 10
 	snare4 11
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 3
 	musicef 0
 	snare1 3
@@ -2053,14 +2053,14 @@ Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
 	snare1 11
 	snare3 5
 	snare1 5
-	musicef 254
+	musicef -2
 	snare1 4
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
-	musicef 254
+	musicef -2
 	snare1 4
-	musicef 255
+	musicef -1
 	snare1 3
 	musicef 0
 	snare1 3

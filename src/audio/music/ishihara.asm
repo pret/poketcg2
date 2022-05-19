@@ -5,7 +5,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	rest 14
 	rest 13
 	MainLoop
-	musicf0 27
+	preset 27
 	octave 2
 	musicf1 87
 	musicf3
@@ -62,8 +62,8 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	F_ 5
 	rest 2
 	musicf3
-	musicf0 3
-	musicef 254
+	preset 3
+	musicef -2
 	musicf1 69
 	octave 4
 	musicf3
@@ -94,7 +94,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	rest 2
 	F_ 7
 	musicf3
-	musicf0 27
+	preset 27
 	octave 2
 	musicf3
 	C_ 5
@@ -203,16 +203,16 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	A# 7
 	G_ 7
 	G# 6
-	musicf0 32
+	preset 32
 	musicf1 55
 	music_call Branch_1dd809
-	musicf0 27
+	preset 27
 	octave 2
 	musicf3
 	A_ 13
 	pitch_offset 254
 	music_call Branch_1ddc41
-	musicf0 32
+	preset 32
 	musicf1 55
 	music_call Branch_1dd849
 	F_ 13
@@ -226,22 +226,22 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	F_ 13
 	tie
 	F_ 14
-	musicf0 27
+	preset 27
 	octave 2
 	musicf3
 	A_ 13
 	pitch_offset 254
 	music_call Branch_1ddc41
 	music_call Branch_1ddc4e
-	musicf0 2
+	preset 2
 	musicf1 55
 	music_call Branch_1dd809
-	musicf0 27
+	preset 27
 	octave 2
 	A_ 13
 	pitch_offset 254
 	music_call Branch_1ddc41
-	musicf0 2
+	preset 2
 	musicf1 55
 	music_call Branch_1dd849
 	E_ 3
@@ -249,7 +249,7 @@ Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
 	F_ 10
 	tie
 	F_ 14
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 3
 	musicf3
@@ -397,7 +397,7 @@ Branch_1dd849:
 	music_ret
 
 Branch_1dd880:
-	musicf0 32
+	preset 32
 	musicf1 39
 	octave 4
 	E_ 4
@@ -464,7 +464,7 @@ Branch_1dd880:
 	F_ 7
 	F_ 7
 	G_ 6
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 2
 	A_ 5
@@ -501,7 +501,7 @@ Branch_1dd880:
 	rest 2
 	D_ 5
 	rest 1
-	musicf0 32
+	preset 32
 	musicf1 39
 	octave 4
 	A_ 7
@@ -565,7 +565,7 @@ Branch_1dd880:
 	C_ 7
 	F_ 7
 	D_ 6
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 2
 	musicf2
@@ -599,9 +599,9 @@ Branch_1dd880:
 	rest 2
 	F_ 5
 	rest 1
-	musicf0 2
+	preset 2
 	octave 4
-	musicef 255
+	musicef -1
 	musicf1 39
 	musicf3
 	D_ 14
@@ -757,8 +757,8 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	rest 13
 	EndLoop
 	rest 14
-	musicf0 3
-	musicef 254
+	preset 3
+	musicef -2
 	musicf1 69
 	octave 4
 	musicf3
@@ -789,7 +789,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	A_ 5
 	rest 2
 	musicf3
-	musicf0 27
+	preset 27
 	octave 2
 	musicf3
 	C_ 5
@@ -870,7 +870,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	G_ 4
 	G# 4
 	G_ 5
-	musicf0 27
+	preset 27
 	octave 2
 	F_ 4
 	G_ 3
@@ -897,7 +897,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	G# 4
 	G_ 5
 	F_ 14
-	musicf0 36
+	preset 36
 	octave 2
 	musicf3
 	G# 4
@@ -905,14 +905,14 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	B_ 3
 	inc_octave
 	C_ 3
-	musicf0 1
+	preset 1
 	octave 3
 	musicf2
 	G# 7
 	G# 7
 	musicf3
 	rest 13
-	musicf0 27
+	preset 27
 	octave 3
 	musicf1 32
 	pitch_offset 1
@@ -920,7 +920,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	pitch_offset 249
 	music_call Branch_1ddc4e
 	rest 14
-	musicf0 36
+	preset 36
 	musicf1 69
 	musicf3
 	octave 3
@@ -973,7 +973,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	A# 7
 	rest 6
 	A_ 14
-	musicf0 27
+	preset 27
 	octave 2
 	musicf3
 	F_ 13
@@ -1063,7 +1063,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	C# 14
 	tie
 	C# 13
-	musicf0 26
+	preset 26
 	octave 3
 	musicf3
 	G# 7
@@ -1117,7 +1117,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	A_ 13
 	tie
 	A_ 14
-	musicf0 27
+	preset 27
 	octave 2
 	F_ 13
 	pitch_offset 251
@@ -1160,7 +1160,7 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	music_call Branch_1ddc4e
 	inc_octave
 	C# 14
-	musicf0 27
+	preset 27
 	octave 2
 	C# 4
 	G# 4
@@ -1170,12 +1170,12 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	musicf2
 	C# 5
 	C# 9
-	musicf0 26
+	preset 26
 	musicf3
 	octave 4
 	D# 13
 	rest 14
-	musicf0 27
+	preset 27
 	octave 2
 	D# 4
 	A# 4
@@ -1186,15 +1186,15 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	D# 5
 	D# 9
 	musicf3
-	musicf0 26
+	preset 26
 	octave 3
 	A_ 13
 	tie
 	A_ 14
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 3
-	musicef 254
+	musicef -2
 	musicf3
 	C_ 13
 	musicf2
@@ -1215,51 +1215,51 @@ Music_Ishihara_Ch1: ; 1dd9de (77:59de)
 	EndMainLoop
 
 Branch_1ddc41:
-	musicf0 27
+	preset 27
 	octave 3
 	musicf1 32
 	C_ 5
 	C_ 9
 	pitch_offset 0
-	musicf0 36
+	preset 36
 	musicf3
 	music_ret
 
 Branch_1ddc4e:
-	musicf0 27
+	preset 27
 	octave 3
 	musicf1 32
 	C_ 5
 	C_ 8
 	pitch_offset 0
-	musicf0 36
+	preset 36
 	musicf3
 	music_ret
 
 Branch_1ddc5b:
-	musicf0 27
+	preset 27
 	octave 3
 	musicf1 32
 	C_ 5
 	C_ 9
 	pitch_offset 0
-	musicf0 26
+	preset 26
 	musicf3
 	music_ret
 
 Branch_1ddc68:
-	musicf0 27
+	preset 27
 	octave 3
 	musicf1 32
 	C_ 5
 	C_ 8
 	pitch_offset 0
-	musicf0 26
+	preset 26
 	musicf3
 	music_ret
 
 Branch_1ddc75:
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 2
 	musicf2
@@ -1381,13 +1381,13 @@ Branch_1ddc75:
 	rest 2
 	A# 5
 	rest 1
-	musicf0 26
+	preset 26
 	musicf3
 	octave 4
 	E_ 4
 	F_ 3
 	rest 7
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	A_ 5
@@ -1395,7 +1395,7 @@ Branch_1ddc75:
 	A_ 5
 	rest 1
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	A_ 7
 	rest 16
@@ -1403,7 +1403,7 @@ Branch_1ddc75:
 	D# 14
 	F_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	G_ 5
@@ -1411,11 +1411,11 @@ Branch_1ddc75:
 	G_ 5
 	rest 2
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	F_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	A_ 5
@@ -1423,18 +1423,18 @@ Branch_1ddc75:
 	A_ 5
 	rest 2
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	C_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	octave 3
 	musicf2
 	C_ 5
 	rest 2
 	C_ 5
 	rest 2
-	musicf0 26
+	preset 26
 	octave 4
 	musicf3
 	D_ 3
@@ -1443,7 +1443,7 @@ Branch_1ddc75:
 	D# 14
 	D_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	G_ 5
@@ -1451,13 +1451,13 @@ Branch_1ddc75:
 	G_ 5
 	rest 2
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	D_ 7
 	rest 6
 	C_ 7
 	rest 7
-	musicf0 2
+	preset 2
 	octave 2
 	musicf2
 	A_ 5
@@ -1465,7 +1465,7 @@ Branch_1ddc75:
 	A_ 5
 	rest 1
 	musicf3
-	musicf0 26
+	preset 26
 	octave 3
 	F_ 7
 	rest 7
@@ -1474,7 +1474,7 @@ Branch_1ddc75:
 	G_ 14
 	A_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	G_ 5
@@ -1482,11 +1482,11 @@ Branch_1ddc75:
 	rest 5
 	rest 2
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	C_ 7
 	rest 6
-	musicf0 27
+	preset 27
 	musicf1 32
 	octave 2
 	musicf2
@@ -1502,7 +1502,7 @@ Branch_1ddc75:
 	rest 2
 	G_ 5
 	rest 1
-	musicf0 0
+	preset 0
 	musicf3
 	octave 2
 	C_ 4
@@ -1514,7 +1514,7 @@ Branch_1ddc75:
 	A# 3
 	inc_octave
 	C_ 3
-	musicf0 27
+	preset 27
 	octave 2
 	musicf2
 	rest 14
@@ -2686,9 +2686,9 @@ Music_Ishihara_Ch4: ; 1de20c (77:620c)
 	snare1 14
 	bass 13
 	rest 14
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 4
 	snare1 5
 	musicef 0
@@ -2718,11 +2718,11 @@ Music_Ishihara_Ch4: ; 1de20c (77:620c)
 	snare4 13
 	tie
 	rest 14
-	musicef 252
+	musicef -4
 	snare1 4
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 5
 	musicef 0
 	snare1 14
@@ -2740,11 +2740,11 @@ Music_Ishihara_Ch4: ; 1de20c (77:620c)
 	snare1 14
 	snare1 13
 	bass 14
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 4
-	musicef 255
+	musicef -1
 	snare1 5
 	musicef 0
 	snare1 14
@@ -2760,11 +2760,11 @@ Music_Ishihara_Ch4: ; 1de20c (77:620c)
 	snare1 14
 	snare1 13
 	bass 14
-	musicef 253
+	musicef -3
 	snare1 5
-	musicef 254
+	musicef -2
 	snare1 4
-	musicef 255
+	musicef -1
 	snare1 4
 	musicef 0
 	snare1 14

@@ -19,7 +19,7 @@ Music_GROverworld_Ch2: ; 1ead0d (7a:6d0d)
 	F_ 6
 	speed 11
 	G_ 12
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -74,7 +74,7 @@ Music_GROverworld_Ch2: ; 1ead0d (7a:6d0d)
 	tie
 	D_ 8
 	D_ 16
-	musicf0 14
+	preset 14
 	musicf1 70
 	musicef 2
 	musicf2
@@ -251,7 +251,7 @@ Music_GROverworld_Ch2: ; 1ead0d (7a:6d0d)
 	EndMainLoop
 
 Branch_1eae1e:
-	musicf0 13
+	preset 13
 	octave 3
 	speed 1
 	stereo_panning 1, 1
@@ -396,7 +396,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	speed 1
 	rest 16
 	MainLoop
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -550,7 +550,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 6
 	rest 16
 	rest 1
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -560,7 +560,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 5
 	C_ 3
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -568,7 +568,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	C_ 8
 	C_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -585,7 +585,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
@@ -596,19 +596,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 8
 	C_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	C_ 4
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	C_ 7
 	C_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -621,7 +621,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -631,7 +631,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 5
 	C_ 3
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -639,7 +639,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	B_ 8
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -653,7 +653,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	D_ 4
 	B_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
@@ -664,19 +664,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 8
 	B_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	D_ 4
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
 	B_ 7
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -686,7 +686,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 5
 	D_ 4
 	B_ 4
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -696,7 +696,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	D_ 5
 	D_ 3
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -704,7 +704,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	C_ 8
 	C_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -721,7 +721,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
@@ -732,19 +732,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 8
 	A_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	C_ 4
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
 	A_ 7
 	A_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -757,14 +757,14 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 15
+	preset 15
 	octave 3
 	cutoff 8
 	musicf1 48
 	musicf2
 	C_ 8
 	C_ 8
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -772,7 +772,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	B_ 8
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -786,7 +786,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	D_ 4
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
@@ -797,19 +797,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 8
 	B_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	D_ 4
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
 	B_ 7
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -819,7 +819,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 5
 	D_ 4
 	B_ 4
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -829,7 +829,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 5
 	C_ 3
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -837,7 +837,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	C_ 8
 	C_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -854,7 +854,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
@@ -865,19 +865,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 8
 	C_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	C_ 4
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	C_ 7
 	C_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -890,7 +890,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	inc_octave
 	C_ 4
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -900,7 +900,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 5
 	C_ 3
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -908,7 +908,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	B_ 8
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -922,7 +922,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	D_ 4
 	B_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
@@ -933,19 +933,19 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	B_ 8
 	B_ 1
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
 	D_ 4
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
 	B_ 7
 	B_ 1
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf2
 	octave 5
@@ -955,7 +955,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 5
 	D_ 4
 	B_ 4
-	musicf0 15
+	preset 15
 	octave 2
 	cutoff 8
 	musicf1 48
@@ -965,7 +965,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 5
 	C_ 3
-	musicef 254
+	musicef -2
 	D_ 16
 	tie
 	D_ 9
@@ -986,8 +986,8 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F# 3
 	musicef 2
 	speed 1
-	musicf0 14
-	musicef 254
+	preset 14
+	musicef -2
 	octave 2
 	D_ 6
 	D# 6
@@ -996,7 +996,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 5
 	A# 5
 	musicef 2
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -1004,7 +1004,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	D_ 8
 	D_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	octave 2
 	musicf3
@@ -1024,13 +1024,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	D_ 4
 	G_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	D_ 6
 	D_ 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1044,13 +1044,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	D_ 7
 	D_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1069,7 +1069,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
@@ -1077,7 +1077,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	F_ 8
 	F_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	octave 3
 	musicf3
@@ -1095,13 +1095,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	D_ 6
 	D_ 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 4
@@ -1112,13 +1112,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D_ 4
 	D_ 4
 	A_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 2
 	A_ 7
 	A_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1137,7 +1137,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	D_ 4
 	A_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -1145,7 +1145,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	G# 8
 	G# 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 2
@@ -1165,13 +1165,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	C_ 4
 	F_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	C_ 6
 	C_ 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1185,13 +1185,13 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	musicf2
 	octave 3
 	F_ 7
 	F_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	octave 3
 	C_ 4
@@ -1209,7 +1209,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 2
@@ -1217,7 +1217,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	musicf2
 	A# 8
 	A# 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	octave 2
 	musicf3
@@ -1237,12 +1237,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	D_ 4
 	F_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 2
 	A# 6
 	A# 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1256,12 +1256,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 2
 	A# 7
 	A# 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1280,14 +1280,14 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	F_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	C_ 8
 	C_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1305,12 +1305,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	inc_octave
 	C_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 3
 	G_ 6
 	G_ 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 4
@@ -1321,12 +1321,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	C_ 4
 	G_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 3
 	G_ 7
 	G_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1345,14 +1345,14 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	D# 4
 	C_ 4
 	G_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 4
 	musicf1 70
 	C_ 8
 	C_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1367,12 +1367,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	C_ 4
 	F_ 4
 	A_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 3
 	F_ 6
 	F_ 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1386,12 +1386,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 4
 	inc_octave
 	F_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 3
 	C_ 7
 	C_ 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1408,14 +1408,14 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	A_ 4
 	inc_octave
 	F_ 4
-	musicf0 11
+	preset 11
 	speed 1
 	stereo_panning 1, 1
 	octave 3
 	musicf1 70
 	D# 8
 	D# 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 2
@@ -1435,12 +1435,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	inc_octave
 	D_ 4
 	G_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 2
 	A# 6
 	A# 2
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1454,12 +1454,12 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	inc_octave
 	D_ 4
-	musicf0 11
+	preset 11
 	musicf1 70
 	octave 3
 	D# 7
 	D# 1
-	musicf0 12
+	preset 12
 	musicf1 71
 	musicf3
 	octave 3
@@ -1478,7 +1478,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	G_ 4
 	inc_octave
 	D_ 4
-	musicf0 14
+	preset 14
 	octave 3
 	musicf3
 	speed 11
@@ -1959,9 +1959,9 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	speed 1
 	Loop 16
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 8
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 5
 	snare2 5
@@ -1969,22 +1969,22 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	snare1 16
 	rest 1
 	snare1 16
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 6
 	snare2 5
 	musicef 0
 	snare1 16
-	musicef 253
+	musicef -3
 	snare1 16
 	rest 1
 	musicef 0
 	snare1 16
 	EndLoop
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 8
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 5
 	snare2 5
@@ -1992,13 +1992,13 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	snare1 16
 	rest 1
 	snare1 16
-	musicef 253
+	musicef -3
 	snare1 9
 	musicef 0
 	snare1 8
 	snare1 16
 	snare2 6
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 5
 	snare2 6
@@ -2007,14 +2007,14 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	Loop 7
 	musicef 0
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 8
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 5
 	snare2 5
 	Loop 2
-	musicef 254
+	musicef -2
 	snare1 16
 	rest 1
 	musicef 2
@@ -2023,7 +2023,7 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	musicef 0
 	snare1 16
 	rest 1
-	musicef 253
+	musicef -3
 	snare2 6
 	snare2 5
 	snare2 5

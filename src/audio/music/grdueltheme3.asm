@@ -1,6 +1,6 @@
 Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	MainLoop
-	musicf0 27
+	preset 27
 	stereo_panning 15, 15
 	musicf3
 	speed 1
@@ -109,7 +109,7 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	dec_octave
 	music_call Branch_1f672f
 	B_ 13
-	musicf0 27
+	preset 27
 	musicef 1
 	musicf1 87
 	musicf3
@@ -131,8 +131,8 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	E_ 3
 	rest 4
 	inc_octave
-	musicf0 9
-	musicef 254
+	preset 9
+	musicef -2
 	musicf1 64
 	octave 4
 	musicf2
@@ -141,7 +141,7 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	musicf3
 	dec_octave
 	rest 7
-	musicf0 27
+	preset 27
 	octave 1
 	B_ 3
 	rest 3
@@ -189,8 +189,8 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	E_ 3
 	rest 4
 	inc_octave
-	musicf0 9
-	musicef 254
+	preset 9
+	musicef -2
 	musicf1 64
 	octave 4
 	musicf2
@@ -199,7 +199,7 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	musicf3
 	dec_octave
 	rest 7
-	musicf0 27
+	preset 27
 	octave 1
 	B_ 3
 	rest 3
@@ -229,7 +229,7 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	dec_octave
 	music_call Branch_1f672f
 	musicf3
-	musicf0 0
+	preset 0
 	octave 3
 	musicef 2
 	vibrato_delay 58
@@ -510,7 +510,7 @@ Music_GRDuelTheme3_Ch2: ; 1f6517 (7d:6517)
 	EndMainLoop
 
 Branch_1f672f:
-	musicf0 0
+	preset 0
 	musicef 2
 	musicf1 87
 	musicf3
@@ -790,8 +790,8 @@ Branch_1f672f:
 
 Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	MainLoop
-	musicf0 27
-	musicef 255
+	preset 27
+	musicef -1
 	stereo_panning 15, 15
 	speed 1
 	musicf1 80
@@ -1360,7 +1360,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	F# 3
 	rest 3
 	Loop 7
-	musicf0 27
+	preset 27
 	musicf1 96
 	octave 2
 	A_ 3
@@ -1377,14 +1377,14 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	D_ 3
 	rest 4
 	dec_octave
-	musicf0 9
-	musicef 254
+	preset 9
+	musicef -2
 	musicf1 64
 	musicf2
 	octave 3
 	B_ 3
 	B_ 4
-	musicf0 27
+	preset 27
 	rest 13
 	octave 2
 	musicf2
@@ -1411,7 +1411,7 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	rest 3
 	rest 3
 	EndLoop
-	musicf0 27
+	preset 27
 	musicf1 96
 	octave 2
 	A_ 3
@@ -1428,20 +1428,20 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	D_ 3
 	rest 4
 	dec_octave
-	musicf0 9
-	musicef 254
+	preset 9
+	musicef -2
 	musicf1 64
 	musicf2
 	octave 3
 	B_ 3
 	B_ 4
-	musicf0 27
+	preset 27
 	rest 13
 	octave 2
 	musicf2
 	B_ 3
 	rest 4
-	musicf0 9
+	preset 9
 	musicf3
 	octave 2
 	A_ 7
@@ -1460,12 +1460,12 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	A_ 4
 	A_ 3
 	musicf3
-	musicf0 27
+	preset 27
 	octave 1
 	B_ 3
 	rest 3
 	octave 3
-	musicf0 26
+	preset 26
 	musicef 1
 	musicf3
 	vibrato_delay 0
@@ -1672,8 +1672,8 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	E_ 14
 	rest 13
 	D# 7
-	musicf0 9
-	musicef 255
+	preset 9
+	musicef -1
 	octave 2
 	A_ 3
 	rest 4
@@ -1691,313 +1691,313 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 	rest 3
 	D# 3
 	rest 3
-	musicf0 26
+	preset 26
 	octave 3
 	G_ 14
 	tie
 	G_ 7
 	A_ 6
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	pitch_offset 0
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 7
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	C# 3
 	D_ 11
 	dec_octave
 	B_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 14
 	tie
 	C_ 13
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	pitch_offset 0
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 7
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	D_ 6
-	musicf0 28
+	preset 28
 	octave 2
 	A_ 14
 	B_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	F# 14
 	tie
 	F# 7
 	E_ 6
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	pitch_offset 2
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	dec_octave
 	A_ 7
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 3
 	G_ 11
 	F# 13
-	musicf0 26
+	preset 26
 	octave 3
 	dec_octave
 	A_ 14
 	tie
 	A_ 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	pitch_offset 2
 	music_call Branch_1f6dbf
 	rest 7
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	G_ 5
 	F# 5
 	D_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	dec_octave
 	G_ 14
 	tie
 	G_ 7
 	A_ 6
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	pitch_offset 0
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 7
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	C# 3
 	D_ 11
 	dec_octave
 	B_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 14
 	tie
 	E_ 13
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	pitch_offset 0
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	G_ 7
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	F# 6
-	musicf0 28
+	preset 28
 	octave 2
 	A_ 14
 	B_ 13
 	tie
-	musicf0 26
+	preset 26
 	octave 3
 	D_ 14
 	tie
 	D_ 7
 	C_ 6
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	pitch_offset 2
 	music_call Branch_1f6dbf
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 7
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 3
 	G_ 11
 	F# 13
-	musicf0 26
+	preset 26
 	octave 3
 	D_ 14
 	tie
 	D_ 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	pitch_offset 2
 	music_call Branch_1f6dbf
 	rest 7
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	G_ 5
 	F# 5
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 7
 	D# 6
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 14
 	tie
 	C_ 7
 	dec_octave
 	A_ 6
-	musicf0 28
+	preset 28
 	octave 3
 	C_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 13
 	C_ 7
-	musicf0 28
+	preset 28
 	octave 3
 	C_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	G_ 6
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 3
 	inc_octave
 	C_ 11
 	dec_octave
 	A_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 14
 	tie
 	E_ 13
-	musicf0 28
+	preset 28
 	octave 3
 	E_ 4
 	rest 10
 	rest 13
 	rest 7
-	musicf0 28
+	preset 28
 	octave 3
 	E_ 4
 	rest 3
 	rest 13
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 3
 	inc_octave
 	C_ 11
 	dec_octave
 	A_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	G_ 14
 	tie
 	G_ 7
 	A_ 6
-	musicf0 28
+	preset 28
 	octave 3
 	G_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	A_ 13
 	G_ 7
-	musicf0 28
+	preset 28
 	octave 3
 	G_ 4
 	rest 3
 	rest 7
-	musicf0 26
+	preset 26
 	octave 3
 	C_ 6
-	musicf0 28
+	preset 28
 	octave 2
 	B_ 3
 	inc_octave
 	C_ 11
 	dec_octave
 	A_ 13
-	musicf0 26
+	preset 26
 	octave 3
 	F# 14
 	tie
 	F# 13
-	musicf0 28
+	preset 28
 	octave 2
 	F# 4
 	rest 10
 	rest 13
 	rest 7
-	musicf0 28
+	preset 28
 	octave 3
 	F# 4
 	rest 3
-	musicf0 26
+	preset 26
 	octave 3
 	E_ 7
 	rest 6
@@ -2063,26 +2063,26 @@ Music_GRDuelTheme3_Ch1: ; 1f6849 (7d:6849)
 
 Branch_1f6dbf:
 	octave 3
-	musicf0 12
+	preset 12
 	G_ 4
-	musicef 251
+	musicef -5
 	G_ 3
 	musicef 5
 	inc_octave
 	G_ 4
-	musicef 251
+	musicef -5
 	G_ 3
 	musicef 5
 	dec_octave
 	G_ 3
-	musicef 251
+	musicef -5
 	G_ 3
 	musicef 5
 	pitch_offset 0
 	music_ret
 
 Branch_1f6dd9:
-	musicf0 9
+	preset 9
 	octave 2
 	C# 4
 	rest 3
@@ -2102,13 +2102,13 @@ Branch_1f6dd9:
 	rest 3
 	C# 3
 	rest 3
-	musicf0 26
+	preset 26
 	musicf3
 	musicef 2
 	music_ret
 
 Branch_1f6df4:
-	musicf0 9
+	preset 9
 	octave 1
 	B_ 4
 	rest 3
@@ -2130,7 +2130,7 @@ Branch_1f6df4:
 	dec_octave
 	B_ 3
 	rest 3
-	musicf0 26
+	preset 26
 	musicf3
 	musicef 2
 	music_ret

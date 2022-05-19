@@ -1,7 +1,7 @@
 Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	speed 1
 	rest 12
-	musicf0 8
+	preset 8
 	octave 1
 	vibrato_type 5
 	vibrato_delay 1
@@ -82,7 +82,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	A_ 13
 	G_ 12
 	MainLoop
-	musicf0 0
+	preset 0
 	musicf3
 	octave 2
 	volume 108
@@ -93,7 +93,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	E_ 16
 	tie
 	E_ 9
-	musicf0 0
+	preset 0
 	musicef 2
 	musicf1 119
 	octave 2
@@ -509,7 +509,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	tie
 	frequency_offset 0
 	D_ 1
-	musicf0 14
+	preset 14
 	musicf1 71
 	musicf3
 	octave 2
@@ -517,7 +517,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	B_ 16
 	tie
 	B_ 9
-	musicf0 14
+	preset 14
 	B_ 3
 	inc_octave
 	musicef 1
@@ -778,7 +778,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	F# 12
 	musicf3
 	octave 1
-	musicf0 8
+	preset 8
 	vibrato_type 5
 	vibrato_delay 50
 	frequency_offset -9
@@ -798,7 +798,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	EndLoop
 	E_ 16
 	frequency_offset 0
-	musicf0 23
+	preset 23
 	octave 3
 	musicf1 32
 	musicf2
@@ -897,7 +897,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	speed 1
 	rest 12
-	musicf0 8
+	preset 8
 	octave 1
 	vibrato_type 5
 	vibrato_delay 1
@@ -973,7 +973,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	A_ 13
 	A# 12
 	MainLoop
-	musicf0 8
+	preset 8
 	octave 2
 	vibrato_type 5
 	vibrato_delay 0
@@ -1301,7 +1301,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	dec_octave
 	A_ 12
 	octave 2
-	musicef 254
+	musicef -2
 	E_ 13
 	tie
 	E_ 12
@@ -1447,7 +1447,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	A_ 13
 	tie
 	A_ 12
-	musicef 253
+	musicef -3
 	inc_octave
 	G_ 13
 	tie
@@ -1603,7 +1603,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	tie
 	D# 12
 	musicf3
-	musicf0 23
+	preset 23
 	musicf1 32
 	musicf3
 	octave 3
@@ -2440,7 +2440,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	speed 1
 	octave 1
 	stereo_panning 15, 15
-	musicef 251
+	musicef -5
 	snare1 4
 	snare1 4
 	snare1 4
@@ -2461,7 +2461,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	rest 9
 	bass 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2483,7 +2483,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	snare1 6
 	snare1 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2505,7 +2505,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	rest 9
 	bass 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2526,7 +2526,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	snare1 12
 	bass 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2547,7 +2547,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	rest 9
 	bass 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2572,9 +2572,9 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	snare1 6
 	snare1 13
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	musicef 0
 	music_call Branch_1f2d0c
@@ -2630,9 +2630,9 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	snare1 13
 	bass 12
 	snare4 13
-	musicef 253
+	musicef -3
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	musicef 0
 	snare1 4
@@ -2662,7 +2662,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	rest 16
 	rest 16
 	rest 8
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	snare1 4
@@ -2683,7 +2683,7 @@ Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
 	rest 9
 	bass 13
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0

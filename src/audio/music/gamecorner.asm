@@ -1,6 +1,6 @@
 Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	MainLoop
-	musicf0 17
+	preset 17
 	octave 1
 	musicf3
 	vibrato_delay 1
@@ -35,7 +35,7 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	rest 16
 	rest 11
 	music_call Branch_1e75c7
-	musicf0 20
+	preset 20
 	octave 4
 	A_ 7
 	rest 6
@@ -50,10 +50,10 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	A_ 7
 	rest 13
 	music_call Branch_1e75c7
-	musicf0 20
+	preset 20
 	octave 4
 	A_ 7
-	musicf0 18
+	preset 18
 	octave 4
 	vibrato_type 18
 	vibrato_delay 1
@@ -118,7 +118,7 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	musicf3
 	C_ 6
 	musicf2
-	musicef 255
+	musicef -1
 	musicf1 146
 	C# 14
 	tie
@@ -138,7 +138,7 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	C# 7
 	tie
 	D_ 7
-	musicef 255
+	musicef -1
 	D# 6
 	musicf1 39
 	E_ 7
@@ -197,7 +197,7 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	musicef 1
 	A_ 12
 	A_ 2
-	musicf0 20
+	preset 20
 	musicf3
 	octave 3
 	A_ 7
@@ -219,7 +219,7 @@ Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
 	EndMainLoop
 
 Branch_1e75c7:
-	musicf0 18
+	preset 18
 	musicf1 39
 	musicf3
 	vibrato_type 18
@@ -400,7 +400,7 @@ Music_GameCorner_Ch1: ; 1e765c (79:765c)
 	rest 16
 	rest 11
 	musicee 0
-	musicf0 20
+	preset 20
 	musicf3
 	music_call Branch_1e778f
 	octave 3
@@ -658,7 +658,7 @@ Music_GameCorner_Ch1: ; 1e765c (79:765c)
 	EndMainLoop
 
 Branch_1e778f:
-	musicf0 20
+	preset 20
 	musicf3
 	octave 2
 	A_ 6
@@ -1374,21 +1374,21 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	octave 1
 	speed 1
 	Loop 13
-	musicef 251
+	musicef -5
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 6
 	EndLoop
-	musicef 251
+	musicef -5
 	snare1 7
 	musicef 0
 	snare1 7
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 6
 	musicef 1
 	snare1 14
@@ -1400,7 +1400,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1413,24 +1413,24 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	snare1 14
 	snare1 7
-	musicef 255
+	musicef -1
 	snare1 6
 	musicef 0
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1442,7 +1442,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1453,20 +1453,20 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	snare1 13
 	Loop 5
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 6
 	musicef 0
 	EndLoop
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -1478,16 +1478,16 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	musicef 0
 	Loop 14
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 6
 	musicef 0
 	EndLoop
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 4
 	musicef 0
@@ -1500,7 +1500,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1513,7 +1513,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1521,14 +1521,14 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	snare1 7
 	snare1 13
 	snare1 14
-	musicef 255
+	musicef -1
 	snare1 7
 	musicef 0
 	snare1 6
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1540,7 +1540,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1551,20 +1551,20 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	snare1 13
 	Loop 5
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 6
 	musicef 0
 	EndLoop
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -1578,18 +1578,18 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 6
@@ -1597,7 +1597,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
@@ -1609,51 +1609,51 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	snare1 5
 	snare1 5
 	snare1 4
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 5
 	musicef 0
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 255
+	musicef -1
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 6
 	bass 14
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 13
 	bass 7
-	musicef 255
+	musicef -1
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 6
 	snare1 14
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -1663,7 +1663,7 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	bass 6
 	snare1 14
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -1674,13 +1674,13 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	snare1 7
 	snare1 6
 	bass 7
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
 	snare1 6
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 4
 	musicef 0

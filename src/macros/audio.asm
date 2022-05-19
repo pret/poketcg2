@@ -198,7 +198,7 @@ MACRO musicef
 	db $ef, \1
 ENDM
 
-MACRO musicf0
+MACRO preset
 	db $f0, \1
 ENDM
 
@@ -213,6 +213,11 @@ ENDM
 MACRO musicf3
 	db $f3
 ENDM
+
+; unused
+;MACRO musicf4
+;	db $f4
+;ENDM
 
 MACRO music_end
 	db $ff

@@ -2,10 +2,10 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
-	musicf0 0
+	preset 0
 	octave 4
 	vibrato_delay 24
-	musicef 255
+	musicef -1
 	C_ 4
 	C# 4
 	D_ 4
@@ -61,7 +61,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	G_ 5
 	B_ 15
 	B_ 5
-	musicef 250
+	musicef -6
 	volume 30
 	musicf3
 	speed 6
@@ -77,8 +77,8 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	A_ 15
 	tie
 	A_ 15
-	musicf0 8
-	musicef 255
+	preset 8
+	musicef -1
 	musicf1 67
 	Loop 2
 	octave 2
@@ -99,8 +99,8 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	E_ 2
 	EndLoop
 	MainLoop
-	musicf0 8
-	musicef 255
+	preset 8
+	musicef -1
 	musicf1 67
 	Loop 2
 	octave 2
@@ -164,7 +164,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	F_ 5
 	F_ 2
 	musicf3
-	musicf0 0
+	preset 0
 	musicef 1
 	vibrato_type 1
 	vibrato_delay 15
@@ -453,7 +453,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	C_ 8
 	D_ 7
 	vibrato_delay 30
-	musicef 255
+	musicef -1
 	E_ 15
 	tie
 	E_ 15
@@ -476,8 +476,8 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
-	musicf0 1
-	musicef 255
+	preset 1
+	musicef -1
 	octave 3
 	vibrato_delay 24
 	G_ 4
@@ -540,7 +540,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	inc_octave
 	D_ 15
 	D_ 5
-	musicef 250
+	musicef -6
 	volume 30
 	musicf3
 	speed 6
@@ -556,7 +556,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	C# 15
 	tie
 	C# 15
-	musicf0 8
+	preset 8
 	musicf1 67
 	Loop 2
 	octave 1
@@ -615,7 +615,7 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	tie
 	B_ 8
 	dec_octave
-	musicf0 21
+	preset 21
 	volume 128
 	octave 2
 	A_ 5
@@ -856,8 +856,8 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	A_ 15
 	tie
 	A_ 15
-	musicf0 8
-	musicef 255
+	preset 8
+	musicef -1
 	octave 2
 	musicf1 67
 	musicf3
@@ -883,24 +883,24 @@ Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
 	EndMainLoop
 
 Branch_1f3140:
-	musicf0 8
+	preset 8
 	octave 2
-	musicef 255
+	musicef -1
 	E_ 15
 	musicef 1
-	musicf0 21
+	preset 21
 	musicf1 128
 	octave 3
 	pitch_offset 0
 	music_ret
 
 Branch_1f3150:
-	musicf0 8
+	preset 8
 	octave 2
 	musicf2
 	G_ 4
 	G_ 3
-	musicf0 21
+	preset 21
 	volume 128
 	octave 3
 	musicf3
@@ -1299,7 +1299,7 @@ Music_GRChallengeCup_Ch4: ; 1f3349 (7c:7349)
 	rest 16
 	rest 13
 	snare1 5
-	musicef 254
+	musicef -2
 	snare1 5
 	snare1 5
 	musicef 0
@@ -1328,14 +1328,14 @@ Music_GRChallengeCup_Ch4: ; 1f3349 (7c:7349)
 	snare1 8
 	snare3 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	musicef 0
 	snare1 8
 	snare1 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	musicef 0
@@ -1376,7 +1376,7 @@ Music_GRChallengeCup_Ch4: ; 1f3349 (7c:7349)
 	bass 8
 	snare1 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	musicef 0
@@ -1396,7 +1396,7 @@ Music_GRChallengeCup_Ch4: ; 1f3349 (7c:7349)
 	snare1 8
 	snare3 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 3
 	musicef 0

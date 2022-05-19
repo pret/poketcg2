@@ -4,12 +4,6 @@ INCLUDE "constants.asm"
 SECTION "Audio 1", ROMX
 INCLUDE "audio/music1.asm"
 
-SECTION "Audio 1@5442", ROMX[$5442], BANK[$77]
-INCLUDE "audio/music1_headers.asm"
-INCLUDE "audio/music/ishihara.asm"
-INCLUDE "audio/music/credits.asm"
-	ds $267
-
 SECTION "Audio 2", ROMX[$5442], BANK[$78]
 INCLUDE "audio/music2_headers.asm"
 INCLUDE "audio/music/dueltheme1.asm"

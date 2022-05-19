@@ -1,5 +1,5 @@
 Music_Ditty3_Ch2: ; 1ebe5d (7a:7e5d)
-	musicf0 2
+	preset 2
 	speed 1
 	stereo_panning 15, 15
 	octave 5
@@ -21,10 +21,10 @@ Music_Ditty3_Ch2: ; 1ebe5d (7a:7e5d)
 
 
 Music_Ditty3_Ch1: ; 1ebe76 (7a:7e76)
-	musicf0 2
+	preset 2
 	speed 1
 	stereo_panning 15, 15
-	musicef 253
+	musicef -3
 	rest 1
 	octave 5
 	C_ 3

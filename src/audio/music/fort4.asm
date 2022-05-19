@@ -1,14 +1,14 @@
 Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
-	musicf0 22
+	preset 22
 	speed 1
 	stereo_panning 15, 15
 	octave 2
 	C_ 16
 	MainLoop
-	musicf0 9
+	preset 9
 	speed 1
 	stereo_panning 15, 15
-	musicef 255
+	musicef -1
 	musicf1 71
 	octave 2
 	speed 4
@@ -185,7 +185,7 @@ Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	A_ 1
 	rest 2
 	musicf3
-	musicf0 9
+	preset 9
 	speed 1
 	stereo_panning 15, 15
 	octave 3
@@ -306,7 +306,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	vibrato_delay 0
 	speed 1
 	octave 3
-	musicef 250
+	musicef -6
 	G_ 5
 	musicef 2
 	G_ 5
@@ -322,7 +322,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	rest 16
 	rest 16
 	rest 16
-	musicf0 23
+	preset 23
 	musicf1 23
 	speed 4
 	octave 4
@@ -350,69 +350,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	A_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	inc_octave
 	A_ 1
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
-	A_ 1
-	rest 1
-	musicf2
-	inc_octave
-	D_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	D_ 1
-	E_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	E_ 1
-	A_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	musicf3
-	musicf0 24
-	A_ 1
-	rest 1
-	dec_octave
-	A_ 1
-	musicf0 23
-	A_ 1
-	rest 1
-	musicf2
-	inc_octave
-	D_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	D_ 1
-	E_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	E_ 1
-	A_ 1
-	dec_octave
-	A_ 1
-	A_ 1
-	musicf3
-	musicf0 24
-	inc_octave
-	A_ 1
-	rest 1
-	dec_octave
-	A_ 1
-	musicf0 23
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -435,12 +379,68 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	inc_octave
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
+	preset 23
+	A_ 1
+	rest 1
+	musicf2
+	inc_octave
+	D_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	D_ 1
+	E_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	E_ 1
+	A_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	musicf3
+	preset 24
+	inc_octave
+	A_ 1
+	rest 1
+	dec_octave
+	A_ 1
+	preset 23
+	A_ 1
+	rest 1
+	musicf2
+	inc_octave
+	D_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	D_ 1
+	E_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	E_ 1
+	A_ 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	musicf3
+	preset 24
+	A_ 1
+	rest 1
+	dec_octave
+	A_ 1
+	preset 23
 	G# 1
 	rest 1
 	musicf2
@@ -461,38 +461,12 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	G# 1
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
-	G# 1
-	rest 1
-	musicf2
-	inc_octave
-	D_ 1
-	dec_octave
-	G# 1
-	B_ 1
-	inc_octave
-	D_ 1
-	F_ 1
-	dec_octave
-	B_ 1
-	inc_octave
-	D_ 1
-	F_ 1
-	G# 1
-	D_ 1
-	F_ 1
-	musicf3
-	musicf0 24
-	G# 1
-	rest 1
-	F_ 1
-	dec_octave
-	musicf0 23
+	preset 23
 	G# 1
 	rest 1
 	musicf2
@@ -513,12 +487,12 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	G# 1
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
+	preset 23
 	G# 1
 	rest 1
 	musicf2
@@ -539,13 +513,39 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
+	G# 1
+	rest 1
+	F_ 1
+	dec_octave
+	preset 23
+	G# 1
+	rest 1
+	musicf2
+	inc_octave
+	D_ 1
+	dec_octave
+	G# 1
+	B_ 1
+	inc_octave
+	D_ 1
+	F_ 1
+	dec_octave
+	B_ 1
+	inc_octave
+	D_ 1
+	F_ 1
+	G# 1
+	D_ 1
+	F_ 1
+	musicf3
+	preset 24
 	G# 1
 	Loop 2
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
+	preset 23
 	G_ 1
 	rest 1
 	musicf2
@@ -566,11 +566,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A# 1
 	rest 1
 	F_ 1
-	musicf0 23
+	preset 23
 	dec_octave
 	G_ 1
 	rest 1
@@ -592,13 +592,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A# 1
 	EndLoop
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -620,13 +620,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	A_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	inc_octave
 	A_ 1
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -649,13 +649,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	inc_octave
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	Loop 3
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -678,12 +678,12 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	inc_octave
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -706,13 +706,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	A_ 1
 	inc_octave
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	EndLoop
 	rest 1
 	dec_octave
 	A_ 1
-	musicf0 23
+	preset 23
 	G_ 1
 	rest 1
 	musicf2
@@ -733,63 +733,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A# 1
 	rest 1
 	F_ 1
-	musicf0 23
-	dec_octave
-	G_ 1
-	rest 1
-	musicf2
-	inc_octave
-	D# 1
-	dec_octave
-	G_ 1
-	A# 1
-	inc_octave
-	D# 1
-	F_ 1
-	dec_octave
-	A# 1
-	inc_octave
-	D# 1
-	F_ 1
-	A# 1
-	D# 1
-	F_ 1
-	musicf3
-	musicf0 24
-	A# 1
-	rest 1
-	F_ 1
-	dec_octave
-	musicf0 23
-	G_ 1
-	rest 1
-	musicf2
-	inc_octave
-	D# 1
-	dec_octave
-	G_ 1
-	A# 1
-	inc_octave
-	D# 1
-	F_ 1
-	dec_octave
-	A# 1
-	inc_octave
-	D# 1
-	F_ 1
-	A# 1
-	D# 1
-	F_ 1
-	musicf3
-	musicf0 24
-	A# 1
-	rest 1
-	F_ 1
-	musicf0 23
+	preset 23
 	dec_octave
 	G_ 1
 	rest 1
@@ -811,13 +759,65 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
+	A# 1
+	rest 1
+	F_ 1
+	dec_octave
+	preset 23
+	G_ 1
+	rest 1
+	musicf2
+	inc_octave
+	D# 1
+	dec_octave
+	G_ 1
+	A# 1
+	inc_octave
+	D# 1
+	F_ 1
+	dec_octave
+	A# 1
+	inc_octave
+	D# 1
+	F_ 1
+	A# 1
+	D# 1
+	F_ 1
+	musicf3
+	preset 24
+	A# 1
+	rest 1
+	F_ 1
+	preset 23
+	dec_octave
+	G_ 1
+	rest 1
+	musicf2
+	inc_octave
+	D# 1
+	dec_octave
+	G_ 1
+	A# 1
+	inc_octave
+	D# 1
+	F_ 1
+	dec_octave
+	A# 1
+	inc_octave
+	D# 1
+	F_ 1
+	A# 1
+	D# 1
+	F_ 1
+	musicf3
+	preset 24
 	A# 1
 	Loop 2
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
+	preset 23
 	B_ 1
 	rest 1
 	musicf2
@@ -838,11 +838,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	rest 1
 	F_ 1
-	musicf0 23
+	preset 23
 	dec_octave
 	B_ 1
 	rest 1
@@ -864,13 +864,13 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	EndLoop
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
+	preset 23
 	A# 1
 	rest 1
 	musicf2
@@ -891,11 +891,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	C# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	rest 1
 	F_ 1
-	musicf0 23
+	preset 23
 	dec_octave
 	A# 1
 	rest 1
@@ -917,38 +917,12 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	C# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
 	A_ 1
 	rest 1
 	F_ 1
 	dec_octave
-	musicf0 23
-	A_ 1
-	rest 1
-	musicf2
-	inc_octave
-	C# 1
-	dec_octave
-	A_ 1
-	A_ 1
-	inc_octave
-	C# 1
-	F_ 1
-	dec_octave
-	A_ 1
-	inc_octave
-	C# 1
-	F_ 1
-	A_ 1
-	C# 1
-	F_ 1
-	musicf3
-	musicf0 24
-	A_ 1
-	rest 1
-	F_ 1
-	musicf0 23
-	dec_octave
+	preset 23
 	A_ 1
 	rest 1
 	musicf2
@@ -969,7 +943,33 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	C# 1
 	F_ 1
 	musicf3
-	musicf0 24
+	preset 24
+	A_ 1
+	rest 1
+	F_ 1
+	preset 23
+	dec_octave
+	A_ 1
+	rest 1
+	musicf2
+	inc_octave
+	C# 1
+	dec_octave
+	A_ 1
+	A_ 1
+	inc_octave
+	C# 1
+	F_ 1
+	dec_octave
+	A_ 1
+	inc_octave
+	C# 1
+	F_ 1
+	A_ 1
+	C# 1
+	F_ 1
+	musicf3
+	preset 24
 	A_ 1
 	duty 1
 	octave 3
@@ -1007,7 +1007,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	vibrato_delay 0
 	speed 1
 	octave 3
-	musicef 250
+	musicef -6
 	G_ 4
 	musicef 2
 	G_ 4
@@ -1023,7 +1023,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	rest 3
 	speed 1
 	octave 3
-	musicef 250
+	musicef -6
 	G_ 4
 	musicef 2
 	G_ 4
@@ -1082,7 +1082,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	volume 176
 	D_ 2
 	musicee 0
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 80
 	musicf3
@@ -1092,11 +1092,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	speed 8
 	E_ 5
 	music_call Branch_1f1c69
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 80
 	musicf3
-	musicef 252
+	musicef -4
 	E_ 2
 	musicef 4
 	musicf2
@@ -1104,7 +1104,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	D_ 1
 	musicf3
 	music_call Branch_1f1c97
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 80
 	E_ 1
@@ -1112,18 +1112,18 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	musicf3
 	F_ 6
 	music_call Branch_1f1c69
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 87
 	musicf3
-	musicef 252
+	musicef -4
 	F_ 2
 	musicef 4
 	musicf2
 	G_ 1
 	G_ 1
 	music_call Branch_1f1c97
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 87
 	F_ 1
@@ -1135,11 +1135,11 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	speed 8
 	E_ 5
 	music_call Branch_1f1c69
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 80
 	musicf3
-	musicef 252
+	musicef -4
 	E_ 2
 	musicef 4
 	dec_octave
@@ -1147,7 +1147,7 @@ Music_Fort4_Ch1: ; 1f1852 (7c:5852)
 	B_ 1
 	B_ 1
 	music_call Branch_1f1c97
-	musicf0 4
+	preset 4
 	octave 3
 	musicf1 80
 	D_ 1
@@ -1205,7 +1205,7 @@ Branch_1f1c7c:
 	vibrato_delay 0
 	speed 1
 	octave 3
-	musicef 250
+	musicef -6
 	G_ 5
 	musicef 4
 	G_ 5

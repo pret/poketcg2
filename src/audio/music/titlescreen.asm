@@ -1,5 +1,5 @@
 Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
-	musicf0 0
+	preset 0
 	octave 3
 	speed 1
 	stereo_panning 1, 1
@@ -42,10 +42,10 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	octave 2
 	cutoff 4
 	duty 2
-	musicef 252
+	musicef -4
 	F_ 3
 	E_ 3
-	musicf0 0
+	preset 0
 	octave 3
 	cutoff 8
 	speed 1
@@ -226,7 +226,7 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	D_ 8
 	stereo_panning 0, 1
 	D_ 7
-	musicf0 4
+	preset 4
 	vibrato_delay 26
 	stereo_panning 1, 1
 	musicf1 87
@@ -479,7 +479,7 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	stereo_panning 0, 1
 	G_ 3
 	stereo_panning 1, 1
-	musicf0 0
+	preset 0
 	musicf3
 	octave 4
 	G_ 1
@@ -580,7 +580,7 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	C_ 15
 	tie
 	C_ 15
-	musicf0 7
+	preset 7
 	musicf1 80
 	musicf2
 	cutoff 8
@@ -588,7 +588,7 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	D_ 8
 	stereo_panning 0, 1
 	D_ 7
-	musicf0 0
+	preset 0
 	musicf1 101
 	musicf2
 	octave 4
@@ -751,11 +751,11 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 
 
 Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
-	musicf0 1
+	preset 1
 	octave 3
 	speed 1
 	frequency_offset -1
-	musicef 252
+	musicef -4
 	rest 2
 	stereo_panning 1, 0
 	G_ 3
@@ -867,7 +867,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	G_ 7
 	stereo_panning 1, 1
 	E_ 15
-	musicf0 3
+	preset 3
 	musicf3
 	octave 3
 	stereo_panning 1, 1
@@ -882,14 +882,14 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	musicf3
 	C_ 8
 	D_ 7
-	musicef 255
+	musicef -1
 	Loop 2
 	G_ 4
 	A_ 4
 	G_ 3
 	A_ 4
 	EndLoop
-	musicf0 1
+	preset 1
 	speed 1
 	musicf1 85
 	musicf2
@@ -932,7 +932,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	F_ 7
 	stereo_panning 1, 1
 	F_ 8
-	musicf0 3
+	preset 3
 	musicf3
 	octave 2
 	A_ 7
@@ -978,7 +978,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	D_ 8
 	stereo_panning 1, 0
 	E_ 7
-	musicf0 1
+	preset 1
 	musicf3
 	octave 3
 	speed 5
@@ -1003,7 +1003,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	G_ 7
 	stereo_panning 1, 1
 	E_ 15
-	musicf0 3
+	preset 3
 	musicf3
 	octave 3
 	stereo_panning 1, 1
@@ -1019,13 +1019,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	musicf3
 	C_ 8
 	D_ 7
-	musicef 255
+	musicef -1
 	G_ 4
 	A_ 4
 	G_ 3
-	musicef 255
+	musicef -1
 	A_ 4
-	musicf0 1
+	preset 1
 	speed 1
 	musicf3
 	stereo_panning 1, 1
@@ -1039,7 +1039,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	E_ 7
 	stereo_panning 1, 1
 	F_ 15
-	musicf0 3
+	preset 3
 	musicf3
 	octave 3
 	C_ 8
@@ -1052,7 +1052,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	musicf3
 	F_ 8
 	G# 7
-	musicf0 1
+	preset 1
 	musicf1 87
 	musicf2
 	octave 3
@@ -1070,7 +1070,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 1, 1
 	inc_octave
 	D# 15
-	musicf0 3
+	preset 3
 	stereo_panning 1, 1
 	musicf3
 	octave 3
@@ -1143,7 +1143,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	dec_octave
 	G# 3
 	rest 2
-	musicf0 12
+	preset 12
 	musicf3
 	stereo_panning 1, 1
 	speed 1
@@ -1183,13 +1183,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	G# 3
 	stereo_panning 1, 0
 	inc_octave
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	G_ 8
 	dec_octave
 	G# 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	G# 4
@@ -1226,13 +1226,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 1, 0
 	inc_octave
 	G_ 4
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	G_ 4
 	dec_octave
 	G# 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	D_ 4
@@ -1264,13 +1264,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	D_ 3
 	stereo_panning 1, 0
 	inc_octave
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	D_ 8
 	dec_octave
 	D_ 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	D_ 4
@@ -1303,13 +1303,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 1, 0
 	inc_octave
 	D_ 4
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	D_ 4
 	dec_octave
 	D_ 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	F_ 3
@@ -1343,13 +1343,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	F_ 3
 	stereo_panning 1, 0
 	inc_octave
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	D# 8
 	dec_octave
 	F_ 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	F_ 4
@@ -1384,13 +1384,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 1, 0
 	inc_octave
 	D# 4
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	D# 4
 	dec_octave
 	F_ 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	D# 4
@@ -1422,13 +1422,13 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	D# 3
 	stereo_panning 1, 0
 	inc_octave
-	musicf0 6
+	preset 6
 	musicf3
 	stereo_panning 1, 0
 	D_ 8
 	dec_octave
 	D# 4
-	musicf0 12
+	preset 12
 	stereo_panning 1, 1
 	musicf2
 	D# 4
@@ -1461,7 +1461,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 1, 0
 	inc_octave
 	C_ 4
-	musicf0 1
+	preset 1
 	musicf1 80
 	musicf2
 	stereo_panning 1, 1
@@ -1614,7 +1614,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	D_ 4
 	E_ 4
 	Loop 2
-	musicf0 0
+	preset 0
 	musicf3
 	octave 4
 	cutoff 8
@@ -1622,7 +1622,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	E_ 16
 	tie
 	E_ 14
-	musicf0 7
+	preset 7
 	musicf1 80
 	musicf2
 	cutoff 8
@@ -1657,7 +1657,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	stereo_panning 0, 1
 	C_ 7
 	rest 8
-	musicf0 0
+	preset 0
 	musicf1 101
 	stereo_panning 1, 1
 	octave 4
@@ -1666,7 +1666,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	E_ 5
 	E_ 2
 	EndLoop
-	musicf0 0
+	preset 0
 	musicf3
 	octave 4
 	cutoff 8
@@ -1674,7 +1674,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	E_ 16
 	tie
 	E_ 14
-	musicf0 7
+	preset 7
 	musicf1 80
 	musicf2
 	cutoff 8
@@ -1698,7 +1698,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	F_ 8
 	stereo_panning 1, 0
 	F_ 7
-	musicf0 0
+	preset 0
 	musicf1 85
 	octave 4
 	cutoff 8
@@ -1706,7 +1706,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	E_ 8
 	stereo_panning 1, 0
 	E_ 7
-	musicf0 7
+	preset 7
 	musicf1 80
 	musicf2
 	octave 3
@@ -1715,7 +1715,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	C_ 8
 	stereo_panning 0, 1
 	C_ 7
-	musicf0 0
+	preset 0
 	musicf1 85
 	musicf2
 	stereo_panning 1, 1
@@ -2200,10 +2200,10 @@ Branch_1ea26d:
 Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	octave 1
 	speed 1
-	musicef 252
+	musicef -4
 	snare2 3
 	snare2 4
-	musicef 254
+	musicef -2
 	snare2 3
 	snare2 4
 	musicef 0
@@ -2215,14 +2215,14 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	Loop 4
 	snare5 9
 	snare1 1
-	musicef 252
+	musicef -4
 	snare1 1
 	snare1 1
 	musicef 0
 	EndLoop
 	speed 1
 	snare2 5
-	musicef 252
+	musicef -4
 	Loop 23
 	snare2 5
 	EndLoop
@@ -2233,24 +2233,24 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	speed 1
 	Loop 15
 	snare1 15
-	musicef 252
+	musicef -4
 	snare1 15
 	musicef 0
 	snare1 15
-	musicef 254
+	musicef -2
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
 	musicef 0
 	EndLoop
 	snare1 15
-	musicef 252
+	musicef -4
 	snare1 15
 	musicef 0
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -2266,7 +2266,7 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	snare4 15
 	musicef 0
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -2275,7 +2275,7 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	snare1 15
 	snare1 15
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -2286,24 +2286,24 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	musicef 0
 	Loop 7
 	snare1 15
-	musicef 252
+	musicef -4
 	snare1 15
 	musicef 0
 	snare1 15
-	musicef 254
+	musicef -2
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
 	musicef 0
 	EndLoop
 	snare1 15
-	musicef 252
+	musicef -4
 	snare1 15
 	musicef 0
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -2317,7 +2317,7 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	snare1 16
 	tie
 	snare1 14
-	musicef 252
+	musicef -4
 	snare2 3
 	snare2 4
 	snare2 4
@@ -2326,12 +2326,12 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	EndLoop
 	Loop 8
 	snare1 15
-	musicef 252
+	musicef -4
 	snare1 15
 	musicef 0
 	snare1 15
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -2340,19 +2340,19 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	musicef 1
 	snare1 15
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
 	musicef 0
 	snare1 15
-	musicef 250
+	musicef -6
 	snare2 3
 	snare2 4
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
-	musicef 254
+	musicef -2
 	snare2 3
 	snare2 4
 	snare2 4

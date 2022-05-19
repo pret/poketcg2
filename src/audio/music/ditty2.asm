@@ -1,5 +1,5 @@
 Music_Ditty2_Ch2: ; 1ebd67 (7a:7d67)
-	musicf0 2
+	preset 2
 	speed 1
 	stereo_panning 15, 15
 	octave 2
@@ -51,16 +51,16 @@ Music_Ditty2_Ch2: ; 1ebd67 (7a:7d67)
 	G# 3
 	G_ 3
 	G# 3
-	musicef 254
+	musicef -2
 	G_ 4
 	G# 3
 	G_ 3
 	G# 3
-	musicef 254
+	musicef -2
 	G_ 3
 	G# 3
 	G_ 3
-	musicef 255
+	musicef -1
 	G# 3
 	G_ 4
 	G# 3
@@ -68,7 +68,7 @@ Music_Ditty2_Ch2: ; 1ebd67 (7a:7d67)
 
 
 Music_Ditty2_Ch1: ; 1ebdaf (7a:7daf)
-	musicf0 2
+	preset 2
 	speed 1
 	stereo_panning 15, 15
 	octave 2
@@ -139,13 +139,13 @@ Music_Ditty2_Ch1: ; 1ebdaf (7a:7daf)
 	inc_octave
 	C_ 3
 	dec_octave
-	musicef 254
+	musicef -2
 	B_ 4
 	inc_octave
 	C_ 3
 	dec_octave
 	B_ 3
-	musicef 254
+	musicef -2
 	inc_octave
 	C_ 3
 	dec_octave
@@ -153,7 +153,7 @@ Music_Ditty2_Ch1: ; 1ebdaf (7a:7daf)
 	inc_octave
 	C_ 3
 	dec_octave
-	musicef 255
+	musicef -1
 	B_ 3
 	inc_octave
 	C_ 3

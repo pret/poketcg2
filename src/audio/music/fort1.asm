@@ -1,7 +1,7 @@
 Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	speed 1
 	stereo_panning 1, 1
-	musicf0 16
+	preset 16
 	octave 2
 	A# 3
 	B_ 3
@@ -17,7 +17,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	E_ 16
 	rest 2
 	musicf1 70
-	musicf0 2
+	preset 2
 	musicf3
 	vibrato_delay 16
 	octave 4
@@ -353,7 +353,7 @@ Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
 	EndMainLoop
 
 Branch_1ed865:
-	musicf0 2
+	preset 2
 	octave 4
 	musicf1 70
 	musicf3
@@ -420,7 +420,7 @@ Branch_1ed865:
 	music_ret
 
 Branch_1ed8a8:
-	musicf0 2
+	preset 2
 	octave 4
 	musicf1 70
 	musicf3
@@ -464,7 +464,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	stereo_panning 1, 1
 	vibrato_type 10
 	vibrato_delay 18
-	musicf0 16
+	preset 16
 	octave 2
 	rest 9
 	musicf1 69
@@ -478,7 +478,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	rest 7
 	musicf1 70
 	MainLoop
-	musicf0 16
+	preset 16
 	octave 3
 	musicf1 70
 	Loop 2
@@ -520,7 +520,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	B_ 16
 	tie
 	B_ 15
-	musicf0 16
+	preset 16
 	musicf1 70
 	octave 3
 	D# 6
@@ -551,7 +551,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C# 6
 	C# 10
 	rest 8
-	musicf0 30
+	preset 30
 	octave 4
 	musicf3
 	D_ 3
@@ -665,12 +665,12 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	B_ 15
 	tie
 	B_ 8
-	musicf0 16
+	preset 16
 	octave 3
 	musicf2
 	D_ 6
 	D_ 9
-	musicf0 30
+	preset 30
 	musicf3
 	musicef 2
 	musicf2
@@ -706,7 +706,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	C_ 4
 	D_ 3
 	dec_octave
-	musicef 254
+	musicef -2
 	musicf1 53
 	A_ 6
 	A_ 16
@@ -715,7 +715,7 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	A_ 16
 	rest 9
 	musicf3
-	musicef 254
+	musicef -2
 	musicf1 70
 	inc_octave
 	D# 16
@@ -968,27 +968,27 @@ Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
 	A_ 16
 	rest 9
 	EndLoop
-	musicef 254
+	musicef -2
 	EndMainLoop
 
 Branch_1edb4e:
-	musicf0 16
+	preset 16
 	octave 3
 	musicf2
 	E_ 6
 	E_ 10
-	musicf0 30
+	preset 30
 	musicf3
 	pitch_offset 0
 	music_ret
 
 Branch_1edb5a:
-	musicf0 16
+	preset 16
 	octave 3
 	musicf2
 	E_ 6
 	E_ 10
-	musicf0 2
+	preset 2
 	musicf3
 	pitch_offset 0
 	music_ret
@@ -1631,9 +1631,9 @@ Music_Fort1_Ch4: ; 1ede26 (7b:5e26)
 	snare2 5
 	snare2 5
 	snare2 16
-	musicef 254
+	musicef -2
 	snare3 5
-	musicef 255
+	musicef -1
 	snare3 5
 	musicef 0
 	snare3 5
@@ -1662,9 +1662,9 @@ Music_Fort1_Ch4: ; 1ede26 (7b:5e26)
 	snare2 16
 	snare2 15
 	bass 16
-	musicef 254
+	musicef -2
 	snare2 5
-	musicef 255
+	musicef -1
 	snare2 5
 	musicef 0
 	snare2 5
@@ -1686,9 +1686,9 @@ Music_Fort1_Ch4: ; 1ede26 (7b:5e26)
 	snare2 5
 	snare2 5
 	snare2 16
-	musicef 254
+	musicef -2
 	snare3 5
-	musicef 255
+	musicef -1
 	snare3 5
 	musicef 0
 	snare3 5

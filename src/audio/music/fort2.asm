@@ -3,7 +3,7 @@ Music_Fort2_Ch2: ; 1edefc (7b:5efc)
 	stereo_panning 1, 1
 	MainLoop
 	octave 3
-	musicf0 16
+	preset 16
 	musicf3
 	Loop 4
 	rest 8
@@ -17,7 +17,7 @@ Music_Fort2_Ch2: ; 1edefc (7b:5efc)
 	F# 3
 	G_ 4
 	EndLoop
-	musicf0 0
+	preset 0
 	vibrato_delay 30
 	octave 2
 	musicef 2
@@ -171,11 +171,11 @@ Music_Fort2_Ch2: ; 1edefc (7b:5efc)
 	tie
 	D_ 10
 	D_ 8
-	musicf0 9
+	preset 9
 	musicf3
 	octave 3
 	D# 15
-	musicf0 0
+	preset 0
 	vibrato_delay 30
 	octave 2
 	A_ 3
@@ -540,10 +540,10 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	speed 1
 	stereo_panning 1, 1
 	MainLoop
-	musicf0 23
+	preset 23
 	musicf1 71
 	octave 3
-	musicef 254
+	musicef -2
 	E_ 4
 	E_ 4
 	inc_octave
@@ -657,7 +657,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	dec_octave
 	E_ 4
 	EndLoop
-	musicf0 16
+	preset 16
 	musicf3
 	Loop 2
 	rest 8
@@ -754,7 +754,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	rest 4
 	inc_octave
 	D_ 4
-	musicf0 9
+	preset 9
 	octave 3
 	F# 4
 	G_ 7
@@ -762,7 +762,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	G_ 8
 	G_ 3
 	rest 4
-	musicf0 16
+	preset 16
 	musicf3
 	Loop 2
 	octave 2
@@ -945,7 +945,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	C_ 3
 	C_ 4
 	pitch_offset 0
-	musicf0 9
+	preset 9
 	musicef 1
 	C_ 2
 	musicf1 64
@@ -1790,7 +1790,7 @@ Music_Fort2_Ch4: ; 1ee637 (7b:6637)
 	bass 8
 	snare3 7
 	snare4 8
-	musicef 253
+	musicef -3
 	snare1 3
 	musicef 2
 	snare1 4
@@ -1831,38 +1831,38 @@ Music_Fort2_Ch4: ; 1ee637 (7b:6637)
 	snare1 8
 	snare3 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 4
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	Loop 7
@@ -1902,38 +1902,38 @@ Music_Fort2_Ch4: ; 1ee637 (7b:6637)
 	snare1 8
 	snare3 7
 	snare3 8
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 4
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
-	musicef 253
+	musicef -3
 	snare1 8
 	musicef 0
 	snare1 7
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 8
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	music_call Branch_1ee785

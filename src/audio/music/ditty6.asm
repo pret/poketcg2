@@ -1,8 +1,8 @@
 Music_Ditty6_Ch2: ; 1f76dc (7d:76dc)
-	musicf0 34
+	preset 34
 	speed 1
 	stereo_panning 15, 15
-	musicef 252
+	musicef -4
 	octave 3
 	F_ 2
 	musicef 1
@@ -77,10 +77,10 @@ Music_Ditty6_Ch2: ; 1f76dc (7d:76dc)
 
 
 Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
-	musicf0 23
+	preset 23
 	speed 1
 	stereo_panning 15, 15
-	musicef 252
+	musicef -4
 	octave 3
 	C_ 2
 	musicef 1
@@ -152,11 +152,11 @@ Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
 	C_ 5
 	A_ 5
 	octave 4
-	musicf0 34
-	musicef 253
+	preset 34
+	musicef -3
 	D_ 6
 	octave 4
-	musicf0 23
+	preset 23
 	G_ 5
 	D_ 5
 	B_ 5
@@ -205,7 +205,7 @@ Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
 	B_ 5
 	inc_octave
 	D_ 5
-	musicf0 26
+	preset 26
 	musicf1 87
 	G_ 16
 	tie
@@ -288,7 +288,7 @@ Music_Ditty6_Ch4: ; 1f7812 (7d:7812)
 	rest 10
 	musicef 1
 	snare1 6
-	musicef 254
+	musicef -2
 	Loop 7
 	snare2 5
 	EndLoop

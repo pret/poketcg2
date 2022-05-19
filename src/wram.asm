@@ -799,7 +799,11 @@ wDuelResult:: ; dd02
 
 SECTION "WRAM7 Audio", WRAMX
 
-	ds $2
+wSVBKBackup:: ; d000
+	ds $1
+
+wSVBKBackup2:: ; d001
+	ds $1
 
 ; bit 7 is set once the song has been started
 wCurSongID:: ; d002
@@ -846,6 +850,7 @@ wMusicWaveChange:: ; d00f
 wdd8c:: ; d010
 	ds $1
 
+wAudio_d011:: ; d011
 	ds $1
 
 wMusicIsPlaying:: ; d012
@@ -883,11 +888,15 @@ wMusicCh3CurOctave:: ; d02f
 wddab:: ; d030
 	ds $1
 
-	ds $3
+wddac:: ; d031
+	ds $1
+
+	ds $2
 
 wMusicOctave:: ; d034
 	ds $4
 
+wddb3:: ; d038
 	ds $4
 
 wddb7:: ; d03c
@@ -938,7 +947,11 @@ wMusicVibratoDelay:: ; d064
 wdde3:: ; d068
 	ds $4
 
-	ds $8
+wAudio_d06c:: ; d06c
+	ds $4
+
+wAudio_d070:: ; d070
+	ds $4
 
 wMusicVolume:: ; d07c
 	ds $3
@@ -947,7 +960,14 @@ wMusicVolume:: ; d07c
 wMusicFrequencyOffset:: ; d077
 	ds $3
 
-	ds $9
+wAudio_d07a:: ; d07a
+	ds $3
+
+wAudio_d07d:: ; d07d
+	ds $3
+
+wAudio_d080:: ; d080
+	ds $3
 
 wAudio_d083:: ; d083
 	ds $1
@@ -958,6 +978,7 @@ wdded:: ; d084
 wddef:: ; d086
 	ds $1
 
+wAudio_d087:: ; d087
 	ds $1
 
 wddf0:: ; d088
@@ -972,5 +993,127 @@ wddf2:: ; d08a
 ; 4 pointers to the positions on the stack for each channel
 wMusicChannelStackPointers:: ; d08b
 	ds $8
+
+wMusicCh1Stack:: ; d093
+	ds $c
+
+wMusicCh2Stack:: ; d09f
+	ds $c
+
+wMusicCh3Stack:: ; d0ab
+	ds $c
+
+wMusicCh4Stack:: ; d0b7
+	ds $c
+
+	ds $2b
+
+wCurSongIDBackup:: ; d0ee
+	ds $1
+
+wCurSongBankBackup:: ; d0ef
+	ds $1
+
+wMusicStereoPanningBackup:: ; d0f0
+	ds $1
+
+wMusicDuty1Backup:: ; d0f1
+	ds $4
+
+wMusicWaveBackup:: ; d0f5
+	ds $1
+
+wMusicWaveChangeBackup:: ; d0f6
+	ds $1
+
+wMusicIsPlayingBackup:: ; d0f7
+	ds $4
+
+wMusicTieBackup:: ; d0fb
+	ds $4
+
+wMusicChannelPointersBackup:: ; d0ff
+	ds $8
+
+wMusicMainLoopStartBackup:: ; d107
+	ds $8
+
+wde76:: ; d10f
+	ds $1
+
+wde77:: ; d110
+	ds $1
+
+wMusicOctaveBackup:: ; d111
+	ds $4
+
+wde7c:: ; d115
+	ds $4
+
+wde80:: ; d119
+	ds $4
+
+wde84:: ; d11d
+	ds $4
+
+wMusicCutoffBackup:: ; d121
+	ds $4
+
+wde8c:: ; d125
+	ds $4
+
+wMusicEchoBackup:: ; d129
+	ds $4
+
+wMusicPitchOffsetBackup:: ; d12d
+	ds $4
+
+wMusicSpeedBackup:: ; d131
+	ds $4
+
+wMusicVibratoType2Backup:: ; d135
+	ds $4
+
+wMusicVibratoDelayBackup:: ; d139
+	ds $4
+
+wMusicVolumeBackup:: ; d13d
+	ds $3
+
+wMusicFrequencyOffsetBackup:: ; d140
+	ds $3
+
+wdeaa:: ; d143
+	ds $2
+
+wdeac:: ; d145
+	ds $1
+
+wAudio_d146:: ; d146
+	ds $1
+
+wAudio_d147:: ; d147
+	ds $4
+
+wAudio_d14b:: ; d14b
+	ds $4
+
+wAudio_d14f:: ; d14f
+	ds $3
+
+wAudio_d152:: ; d152
+	ds $3
+
+wAudio_d155:: ; d155
+	ds $3
+
+wAudio_d158:: ; d158
+	ds $1
+
+wMusicChannelStackPointersBackup:: ; d159
+	ds $8
+
+wMusicCh1StackBackup:: ; d161
+	ds $c * 4
 
 INCLUDE "sram.asm"

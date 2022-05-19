@@ -138,7 +138,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	tie
 	A_ 15
@@ -157,7 +157,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	E_ 14
 	tie
 	E_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	tie
 	B_ 15
@@ -174,7 +174,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	A_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	tie
 	A_ 15
@@ -193,7 +193,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	E_ 14
 	tie
 	E_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	tie
 	B_ 15
@@ -210,7 +210,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	tie
 	A_ 15
@@ -229,7 +229,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	E_ 14
 	tie
 	E_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	tie
 	B_ 15
@@ -246,7 +246,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	A_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	tie
 	A_ 15
@@ -264,7 +264,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	A_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	F_ 14
 	tie
 	F_ 15
@@ -281,7 +281,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	E_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 14
 	tie
 	D_ 15
@@ -300,7 +300,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	D# 15
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 14
 	tie
 	D_ 15
@@ -315,7 +315,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	C# 14
 	tie
 	C# 15
-	musicef 252
+	musicef -4
 	A_ 14
 	tie
 	A_ 15
@@ -334,7 +334,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	G_ 14
 	tie
 	G_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	tie
 	B_ 15
@@ -351,7 +351,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	C_ 14
 	tie
 	C_ 15
-	musicef 252
+	musicef -4
 	E_ 14
 	tie
 	E_ 15
@@ -367,7 +367,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	C_ 14
 	tie
 	C_ 15
-	musicef 252
+	musicef -4
 	E_ 14
 	tie
 	E_ 15
@@ -384,7 +384,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	tie
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	C_ 14
 	tie
 	C_ 15
@@ -491,7 +491,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	G_ 14
 	tie
 	G_ 15
-	musicf0 26
+	preset 26
 	octave 3
 	musicf1 87
 	musicf3
@@ -1839,7 +1839,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	G_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	B_ 16
 	tie
 	B_ 13
@@ -1857,7 +1857,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	F_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	C_ 16
 	tie
 	C_ 13
@@ -1875,43 +1875,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	B_ 13
 	inc_octave
-	musicef 252
-	B_ 16
-	tie
-	B_ 13
-	musicef 4
-	dec_octave
-	dec_octave
-	D_ 16
-	tie
-	D_ 13
-	inc_octave
-	D_ 16
-	tie
-	D_ 13
-	F_ 16
-	tie
-	F_ 13
-	inc_octave
-	musicef 252
-	C_ 16
-	tie
-	C_ 13
-	musicef 4
-	dec_octave
-	dec_octave
-	G_ 16
-	tie
-	G_ 13
-	inc_octave
-	G_ 16
-	tie
-	G_ 13
-	G_ 16
-	tie
-	G_ 13
-	inc_octave
-	musicef 252
+	musicef -4
 	B_ 16
 	tie
 	B_ 13
@@ -1929,7 +1893,43 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	F_ 13
 	inc_octave
-	musicef 252
+	musicef -4
+	C_ 16
+	tie
+	C_ 13
+	musicef 4
+	dec_octave
+	dec_octave
+	G_ 16
+	tie
+	G_ 13
+	inc_octave
+	G_ 16
+	tie
+	G_ 13
+	G_ 16
+	tie
+	G_ 13
+	inc_octave
+	musicef -4
+	B_ 16
+	tie
+	B_ 13
+	musicef 4
+	dec_octave
+	dec_octave
+	D_ 16
+	tie
+	D_ 13
+	inc_octave
+	D_ 16
+	tie
+	D_ 13
+	F_ 16
+	tie
+	F_ 13
+	inc_octave
+	musicef -4
 	C_ 16
 	tie
 	C_ 13
@@ -1947,7 +1947,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	B_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	B_ 16
 	tie
 	B_ 13
@@ -1965,7 +1965,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	B_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 16
 	tie
 	D_ 13
@@ -1978,7 +1978,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 16
 	tie
 	D_ 13
-	musicef 252
+	musicef -4
 	G_ 16
 	tie
 	G_ 13
@@ -2001,7 +2001,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	G_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	C_ 16
 	tie
 	C_ 13
@@ -2020,7 +2020,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	D_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 16
 	tie
 	D_ 13
@@ -2039,7 +2039,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 16
 	tie
 	D_ 13
-	musicef 252
+	musicef -4
 	F# 16
 	tie
 	F# 13
@@ -2054,7 +2054,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	B_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	G_ 16
 	tie
 	G_ 13
@@ -2072,7 +2072,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	B_ 13
 	inc_octave
-	musicef 252
+	musicef -4
 	G_ 16
 	tie
 	G_ 13
@@ -2089,7 +2089,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	D# 13
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 16
 	tie
 	D_ 13
@@ -2107,7 +2107,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	E_ 13
 	F# 15
-	musicef 252
+	musicef -4
 	D_ 14
 	C_ 15
 	dec_octave
@@ -2121,7 +2121,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -2136,7 +2136,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 15
 	E_ 14
 	F_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	C_ 15
@@ -2151,7 +2151,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	rest 14
@@ -2164,7 +2164,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 15
 	E_ 14
 	F_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	C_ 15
@@ -2179,7 +2179,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -2194,7 +2194,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 15
 	E_ 14
 	F_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	C_ 15
@@ -2209,7 +2209,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -2223,7 +2223,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	F_ 14
 	D_ 15
 	D# 14
@@ -2234,7 +2234,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	D_ 15
 	E_ 14
-	musicef 252
+	musicef -4
 	G_ 15
 	inc_octave
 	D_ 14
@@ -2250,7 +2250,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D# 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 14
 	C_ 15
 	musicef 4
@@ -2278,7 +2278,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	D_ 15
 	dec_octave
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	F# 15
@@ -2293,7 +2293,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 14
 	inc_octave
 	C_ 15
-	musicef 252
+	musicef -4
 	G_ 14
 	C_ 15
 	dec_octave
@@ -2305,7 +2305,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 15
 	G_ 14
 	F# 15
-	musicef 252
+	musicef -4
 	D_ 14
 	C_ 15
 	D_ 14
@@ -2332,7 +2332,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	tie
 	G_ 14
 	speed 1
-	musicf0 5
+	preset 5
 	musicf1 71
 	octave 3
 	musicf2
@@ -2648,9 +2648,9 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 7
 	D_ 7
 	F# 7
-	musicf0 29
+	preset 29
 	octave 2
-	musicef 255
+	musicef -1
 	musicf1 71
 	D_ 4
 	E_ 4
@@ -2665,7 +2665,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf2
 	D_ 8
 	D_ 7
-	musicf0 5
+	preset 5
 	musicf1 71
 	D_ 7
 	rest 7
@@ -2684,7 +2684,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	D_ 7
@@ -2708,7 +2708,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	D_ 7
@@ -2732,7 +2732,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	D_ 7
@@ -2752,7 +2752,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	E_ 7
@@ -2772,7 +2772,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	E_ 7
 	musicef 3
 	D_ 7
@@ -2792,7 +2792,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	E_ 7
@@ -2839,7 +2839,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	G_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	A_ 7
 	musicef 3
 	D_ 7
@@ -2859,7 +2859,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	D_ 7
@@ -2883,7 +2883,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	D_ 7
 	musicef 3
 	D_ 7
@@ -2930,7 +2930,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	B_ 7
 	musicef 3
 	E_ 7
@@ -2956,7 +2956,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	E_ 7
 	musicef 3
 	D# 7
@@ -2982,7 +2982,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	D# 7
 	musicef 3
 	A_ 7
@@ -3027,7 +3027,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 7
 	F# 7
 	G_ 7
-	musicf0 29
+	preset 29
 	musicf3
 	octave 3
 	rest 15
@@ -3122,7 +3122,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -3137,7 +3137,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 15
 	E_ 14
 	F_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	C_ 15
@@ -3152,10 +3152,10 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
-	musicf0 26
+	preset 26
 	octave 3
 	musicf1 87
 	musicf3
@@ -3175,7 +3175,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	rest 15
 	dec_octave
 	B_ 14
-	musicf0 29
+	preset 29
 	musicf3
 	vibrato_delay 0
 	octave 1
@@ -3186,7 +3186,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -3201,7 +3201,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 15
 	E_ 14
 	F_ 15
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	C_ 15
@@ -3216,7 +3216,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	A_ 14
 	B_ 15
 	inc_octave
@@ -3230,7 +3230,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A_ 14
 	B_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	F_ 14
 	D_ 15
 	D# 14
@@ -3241,7 +3241,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	D_ 15
 	E_ 14
-	musicef 252
+	musicef -4
 	G_ 15
 	inc_octave
 	D_ 14
@@ -3257,7 +3257,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D# 14
 	G_ 15
 	inc_octave
-	musicef 252
+	musicef -4
 	D_ 14
 	C_ 15
 	musicef 4
@@ -3267,24 +3267,24 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	dec_octave
 	F# 14
 	A_ 15
-	musicf0 26
+	preset 26
 	octave 4
 	F# 14
-	musicf0 29
+	preset 29
 	octave 3
 	D_ 15
-	musicf0 26
+	preset 26
 	octave 4
 	E_ 14
-	musicf0 29
+	preset 29
 	octave 3
 	D_ 15
-	musicf0 26
+	preset 26
 	octave 3
 	B_ 14
 	tie
 	B_ 15
-	musicf0 29
+	preset 29
 	octave 1
 	B_ 14
 	inc_octave
@@ -3293,7 +3293,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	D_ 15
 	dec_octave
-	musicef 252
+	musicef -4
 	B_ 14
 	inc_octave
 	F# 15
@@ -3308,7 +3308,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	B_ 14
 	inc_octave
 	C_ 15
-	musicef 252
+	musicef -4
 	G_ 14
 	C_ 15
 	dec_octave
@@ -3320,12 +3320,12 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 15
 	G_ 14
 	F# 15
-	musicef 252
+	musicef -4
 	D_ 14
 	C_ 15
 	D_ 14
 	musicef 4
-	musicf0 5
+	preset 5
 	musicf1 71
 	octave 3
 	rest 15
@@ -3346,7 +3346,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A# 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D# 7
 	musicef 3
 	C_ 7
@@ -3366,7 +3366,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	A# 7
 	musicf3
 	rest 8
-	musicef 253
+	musicef -3
 	D# 7
 	musicef 3
 	F_ 7
@@ -3392,7 +3392,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	G# 7
 	musicef 3
 	F_ 7
@@ -3418,7 +3418,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	G# 7
 	musicef 3
 	D_ 7
@@ -3442,7 +3442,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	F# 7
 	musicef 3
 	D_ 7
@@ -3466,7 +3466,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	F# 7
 	musicef 3
 	E_ 7
@@ -3490,7 +3490,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	musicf3
 	rest 8
 	dec_octave
-	musicef 253
+	musicef -3
 	G_ 7
 	musicef 3
 	E_ 7
@@ -3512,11 +3512,11 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	E_ 7
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	musicf3
 	F# 15
-	musicf0 5
+	preset 5
 	musicf1 71
 	octave 3
 	musicf2
@@ -3531,10 +3531,10 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	dec_octave
 	A_ 3
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	D_ 14
-	musicf0 5
+	preset 5
 	octave 5
 	musicf1 71
 	musicf2
@@ -3545,11 +3545,11 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	D_ 3
 	musicf3
-	musicf0 26
+	preset 26
 	octave 3
 	B_ 14
 	E_ 15
-	musicf0 5
+	preset 5
 	musicf1 71
 	octave 3
 	musicf2
@@ -3564,10 +3564,10 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	dec_octave
 	B_ 3
 	musicf3
-	musicf0 26
+	preset 26
 	octave 4
 	D_ 14
-	musicf0 5
+	preset 5
 	octave 5
 	musicf1 71
 	musicf2
@@ -3578,14 +3578,14 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	inc_octave
 	E_ 3
 	musicf3
-	musicf0 26
+	preset 26
 	octave 3
 	G_ 14
 	A_ 4
-	musicf0 5
+	preset 5
 	musicf1 71
 	musicf3
-	musicef 253
+	musicef -3
 	octave 4
 	E_ 4
 	rest 7
@@ -3607,7 +3607,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	G_ 7
 	inc_octave
 	G_ 7
-	musicf0 26
+	preset 26
 	musicf3
 	octave 3
 	musicef 1
@@ -3663,7 +3663,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3691,7 +3691,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3719,7 +3719,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	F_ 4
 	musicef 4
 	dec_octave
@@ -3747,7 +3747,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	F_ 4
 	musicef 4
 	dec_octave
@@ -3775,7 +3775,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3803,7 +3803,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3831,7 +3831,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	F_ 4
 	musicef 4
 	dec_octave
@@ -3859,7 +3859,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	F_ 4
 	musicef 4
 	dec_octave
@@ -3887,7 +3887,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3915,7 +3915,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	D_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	G_ 4
 	musicef 4
 	dec_octave
@@ -3943,7 +3943,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	C_ 3
 	musicf3
 	rest 4
-	musicef 252
+	musicef -4
 	F_ 4
 	musicef 4
 	dec_octave
@@ -5587,7 +5587,7 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	rest 14
 	rest 15
 	rest 14
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 4
 	snare2 4
@@ -5615,9 +5615,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	snare3 15
 	snare1 14
 	snare4 15
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -5635,9 +5635,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	bass 15
 	snare1 14
 	snare4 15
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -5653,7 +5653,7 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	snare1 15
 	bass 14
 	snare3 15
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 5
 	snare1 5
@@ -5662,9 +5662,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	snare3 15
 	snare1 14
 	snare3 15
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -5680,7 +5680,7 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	snare1 15
 	bass 14
 	snare3 15
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 5
 	snare1 5
@@ -5688,9 +5688,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	bass 15
 	snare1 14
 	snare4 15
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -5750,9 +5750,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	bass 15
 	snare1 14
 	snare4 15
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -5788,9 +5788,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	snare1 7
 	snare1 15
 	snare4 4
-	musicef 250
+	musicef -6
 	snare1 5
-	musicef 252
+	musicef -4
 	snare1 5
 	musicef 0
 	snare1 8
@@ -5822,9 +5822,9 @@ Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
 	bass 8
 	snare1 7
 	snare3 7
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 3
 	musicef 0
 	snare1 8
@@ -5912,7 +5912,7 @@ Branch_1dfd7a:
 	snare1 15
 	bass 14
 	snare3 15
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 5
 	snare1 5

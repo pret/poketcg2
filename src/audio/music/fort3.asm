@@ -2,7 +2,7 @@ Music_Fort3_Ch2: ; 1ee797 (7b:6797)
 	speed 1
 	rest 14
 	MainLoop
-	musicf0 9
+	preset 9
 	octave 3
 	stereo_panning 15, 15
 	musicf1 87
@@ -154,7 +154,7 @@ Music_Fort3_Ch2: ; 1ee797 (7b:6797)
 	A# 7
 	G_ 7
 	F_ 7
-	musicf0 33
+	preset 33
 	musicef 1
 	musicf1 87
 	musicf3
@@ -251,7 +251,7 @@ Music_Fort3_Ch2: ; 1ee797 (7b:6797)
 	tie
 	G_ 14
 	musicf3
-	musicf0 33
+	preset 33
 	octave 3
 	G_ 4
 	tie
@@ -525,7 +525,7 @@ Music_Fort3_Ch2: ; 1ee797 (7b:6797)
 	D_ 15
 	tie
 	D_ 14
-	musicf0 9
+	preset 9
 	musicf1 64
 	musicf3
 	Loop 2
@@ -708,7 +708,7 @@ Music_Fort3_Ch1: ; 1eeaa0 (7b:6aa0)
 	speed 1
 	rest 14
 	MainLoop
-	musicf0 9
+	preset 9
 	octave 3
 	stereo_panning 15, 15
 	vibrato_type 5
@@ -846,7 +846,7 @@ Music_Fort3_Ch1: ; 1eeaa0 (7b:6aa0)
 	A# 15
 	tie
 	A# 14
-	musicef 252
+	musicef -4
 	pitch_offset 0
 	octave 2
 	A# 8
@@ -2325,9 +2325,9 @@ Music_Fort3_Ch4: ; 1ef074 (7b:7074)
 	snare3 7
 	snare2 7
 	snare3 8
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 3
 	musicef 0
 	snare1 7

@@ -1,5 +1,5 @@
 Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
-	musicf0 0
+	preset 0
 	octave 3
 	speed 1
 	stereo_panning 15, 15
@@ -29,13 +29,13 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	A_ 7
 	A_ 7
 	musicf3
-	musicf0 1
+	preset 1
 	vibrato_type 5
 	vibrato_delay 27
 	octave 3
 	C_ 7
 	G_ 6
-	musicf0 0
+	preset 0
 	octave 4
 	D# 4
 	musicf2
@@ -52,13 +52,13 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	E_ 14
 	E_ 13
 	MainLoop
-	musicf0 0
+	preset 0
 	musicf1 71
 	octave 3
 	A_ 7
 	A_ 7
 	music_call Branch_1ef490
-	musicf0 0
+	preset 0
 	musicf1 71
 	musicf3
 	octave 3
@@ -83,7 +83,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	A_ 13
 	rest 7
 	music_call Branch_1ef615
-	musicf0 35
+	preset 35
 	musicf1 71
 	musicf3
 	octave 3
@@ -96,7 +96,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	pitch_offset 254
 	music_call Branch_1ef5f5
 	pitch_offset 0
-	musicf0 35
+	preset 35
 	D_ 13
 	F_ 14
 	tie
@@ -124,7 +124,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	E_ 7
 	C_ 6
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	D_ 13
 	dec_octave
 	A_ 14
@@ -162,7 +162,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	pitch_offset 254
 	music_call Branch_1ef5f5
 	pitch_offset 0
-	musicf0 35
+	preset 35
 	D_ 13
 	F_ 14
 	tie
@@ -184,7 +184,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	pitch_offset 8
 	music_call Branch_1ef5f5
 	pitch_offset 0
-	musicf0 35
+	preset 35
 	F_ 13
 	G# 14
 	tie
@@ -236,7 +236,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	tie
 	A_ 13
 	musicf3
-	musicf0 34
+	preset 34
 	musicf1 71
 	musicf3
 	octave 2
@@ -323,7 +323,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	A_ 13
 	tie
 	A_ 14
-	musicf0 9
+	preset 9
 	octave 2
 	A# 13
 	inc_octave
@@ -331,7 +331,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	D_ 10
 	dec_octave
 	A# 13
-	musicf0 34
+	preset 34
 	octave 3
 	musicf2
 	G_ 14
@@ -356,14 +356,14 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	G_ 14
 	D# 13
 	D# 7
-	musicf0 9
+	preset 9
 	octave 2
 	musicf1 48
 	musicf2
 	A# 5
 	A# 2
 	musicf3
-	musicf0 34
+	preset 34
 	octave 3
 	musicf1 71
 	musicf2
@@ -408,11 +408,11 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	A_ 14
 	tie
 	A_ 13
-	musicf0 9
+	preset 9
 	octave 2
 	G_ 14
 	A_ 13
-	musicf0 35
+	preset 35
 	octave 3
 	musicf1 87
 	G_ 14
@@ -484,14 +484,14 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	F_ 8
 	F_ 5
 	musicf3
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf2
 	C# 5
 	C# 9
 	musicf3
-	musicf0 35
+	preset 35
 	musicf1 71
 	musicf3
 	G_ 13
@@ -554,7 +554,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	E_ 8
 	E_ 5
 	musicf3
-	musicf0 1
+	preset 1
 	musicef 2
 	musicf1 71
 	octave 3
@@ -589,7 +589,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	C_ 13
 	rest 14
 	music_call Branch_1ef490
-	musicf0 0
+	preset 0
 	musicf1 71
 	musicf3
 	octave 3
@@ -602,7 +602,7 @@ Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
 	EndMainLoop
 
 Branch_1ef490:
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf2
@@ -667,7 +667,7 @@ Branch_1ef490:
 	music_ret
 
 Branch_1ef4d1:
-	musicf0 34
+	preset 34
 	musicf1 71
 	musicf3
 	octave 2
@@ -683,7 +683,7 @@ Branch_1ef4d1:
 	E_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	octave 3
 	F# 13
 	tie
@@ -699,7 +699,7 @@ Branch_1ef4d1:
 	tie
 	F# 13
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	octave 3
 	E_ 7
 	F# 6
@@ -716,7 +716,7 @@ Branch_1ef4d1:
 	E_ 7
 	C_ 6
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	octave 3
 	D_ 13
 	tie
@@ -737,13 +737,13 @@ Branch_1ef4d1:
 	D_ 13
 	rest 7
 	music_call Branch_1ef602
-	musicf0 34
+	preset 34
 	E_ 14
 	tie
 	E_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	octave 3
 	F# 13
 	tie
@@ -759,7 +759,7 @@ Branch_1ef4d1:
 	tie
 	F# 13
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	octave 3
 	E_ 7
 	F# 6
@@ -776,7 +776,7 @@ Branch_1ef4d1:
 	B_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 34
+	preset 34
 	musicf1 71
 	musicf2
 	A_ 13
@@ -792,7 +792,7 @@ Branch_1ef4d1:
 	music_ret
 
 Branch_1ef564:
-	musicf0 35
+	preset 35
 	musicf1 71
 	musicf3
 	octave 2
@@ -808,7 +808,7 @@ Branch_1ef564:
 	E_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	octave 3
 	F# 13
 	tie
@@ -824,7 +824,7 @@ Branch_1ef564:
 	tie
 	F# 13
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	octave 3
 	E_ 7
 	F# 6
@@ -841,7 +841,7 @@ Branch_1ef564:
 	E_ 7
 	C_ 6
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	octave 3
 	D_ 13
 	tie
@@ -862,13 +862,13 @@ Branch_1ef564:
 	D_ 13
 	rest 7
 	music_call Branch_1ef602
-	musicf0 35
+	preset 35
 	E_ 14
 	tie
 	E_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	octave 3
 	F# 13
 	tie
@@ -884,7 +884,7 @@ Branch_1ef564:
 	tie
 	F# 13
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	octave 3
 	E_ 7
 	F# 6
@@ -901,7 +901,7 @@ Branch_1ef564:
 	B_ 7
 	G_ 6
 	music_call Branch_1ef5f5
-	musicf0 35
+	preset 35
 	musicf2
 	A_ 13
 	tie
@@ -916,7 +916,7 @@ Branch_1ef564:
 	music_ret
 
 Branch_1ef5f5:
-	musicf0 9
+	preset 9
 	octave 2
 	musicf1 48
 	octave 3
@@ -928,7 +928,7 @@ Branch_1ef5f5:
 	music_ret
 
 Branch_1ef602:
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf3
@@ -946,7 +946,7 @@ Branch_1ef602:
 	music_ret
 
 Branch_1ef615:
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf3
@@ -964,7 +964,7 @@ Branch_1ef615:
 	music_ret
 
 Branch_1ef628:
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf3
@@ -977,7 +977,7 @@ Branch_1ef628:
 
 
 Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
-	musicf0 9
+	preset 9
 	octave 2
 	speed 1
 	stereo_panning 15, 15
@@ -1004,7 +1004,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	rest 2
 	E_ 7
 	rest 7
-	musicf0 1
+	preset 1
 	octave 3
 	rest 3
 	E_ 7
@@ -1023,7 +1023,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	G# 13
 	MainLoop
 	Loop 2
-	musicf0 0
+	preset 0
 	musicf1 71
 	octave 3
 	musicf2
@@ -1034,8 +1034,8 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	music_call Branch_1ef8f0
 	EndLoop
 	music_call Branch_1ef90b
-	musicf0 7
-	musicef 253
+	preset 7
+	musicef -3
 	octave 3
 	F# 14
 	tie
@@ -1046,7 +1046,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	F# 13
 	rest 7
 	music_call Branch_1efa51
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	rest 14
@@ -1130,7 +1130,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	D_ 4
 	E_ 4
 	F_ 4
-	musicf0 1
+	preset 1
 	octave 3
 	musicf1 71
 	C_ 14
@@ -1154,8 +1154,8 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	tie
 	C_ 6
 	musicf3
-	musicf0 0
-	musicf0 4
+	preset 0
+	preset 4
 	musicf1 71
 	musicf2
 	G# 7
@@ -1163,8 +1163,8 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	rest 6
 	musicf3
 	music_call Branch_1ef90b
-	musicf0 7
-	musicef 253
+	preset 7
+	musicef -3
 	octave 3
 	F# 14
 	tie
@@ -1176,7 +1176,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	rest 7
 	music_call Branch_1efa62
 	music_call Branch_1ef997
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf2
@@ -1190,21 +1190,21 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	C_ 5
 	C_ 9
 	musicf3
-	musicf0 0
+	preset 0
 	musicf1 71
 	octave 3
 	E_ 13
 	E_ 7
 	F_ 14
 	E_ 6
-	musicf0 7
+	preset 7
 	octave 3
 	musicf1 48
 	musicf3
 	D# 14
 	tie
 	D# 13
-	musicf0 9
+	preset 9
 	octave 2
 	musicf2
 	A# 5
@@ -1219,18 +1219,18 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	G_ 6
 	A# 14
 	G_ 13
-	musicf0 7
+	preset 7
 	octave 3
 	D# 14
 	tie
 	D# 13
-	musicf0 9
+	preset 9
 	octave 2
 	musicf2
 	A# 5
 	A# 9
 	musicf3
-	musicf0 7
+	preset 7
 	octave 3
 	D_ 7
 	rest 6
@@ -1246,27 +1246,27 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	tie
 	F_ 7
 	G_ 6
-	musicf0 9
+	preset 9
 	octave 3
 	musicf2
 	D_ 5
 	D_ 9
 	musicf3
-	musicf0 7
+	preset 7
 	octave 3
 	A_ 7
 	rest 6
 	F_ 14
 	tie
 	F_ 7
-	musicf0 9
+	preset 9
 	octave 2
 	A# 6
 	inc_octave
 	D_ 14
 	dec_octave
 	A# 13
-	musicf0 7
+	preset 7
 	octave 3
 	F_ 14
 	tie
@@ -1277,7 +1277,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	F_ 13
 	tie
 	F_ 7
-	musicf0 9
+	preset 9
 	octave 3
 	musicf2
 	F_ 5
@@ -1289,12 +1289,12 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	rest 3
 	rest 7
 	G_ 13
-	musicf0 7
+	preset 7
 	octave 3
 	D# 14
 	tie
 	D# 13
-	musicf0 9
+	preset 9
 	octave 2
 	musicf2
 	A# 5
@@ -1309,27 +1309,27 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	G_ 6
 	A# 14
 	G_ 13
-	musicf0 7
+	preset 7
 	octave 3
 	D# 14
 	tie
 	D# 13
-	musicf0 9
+	preset 9
 	octave 2
 	musicf2
 	A# 5
 	A# 9
 	musicf3
-	musicf0 7
+	preset 7
 	octave 3
 	C_ 13
-	musicf0 9
+	preset 9
 	octave 3
 	musicf2
 	D# 5
 	D# 9
 	musicf3
-	musicf0 7
+	preset 7
 	octave 3
 	G_ 7
 	rest 13
@@ -1339,25 +1339,25 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	tie
 	F_ 7
 	G_ 6
-	musicf0 9
+	preset 9
 	octave 3
 	musicf2
 	D_ 5
 	D_ 9
 	musicf3
-	musicf0 7
+	preset 7
 	octave 3
 	F_ 7
 	rest 6
 	D_ 14
 	tie
 	D_ 7
-	musicf0 9
+	preset 9
 	octave 2
 	F_ 6
 	A_ 14
 	F_ 13
-	musicf0 7
+	preset 7
 	octave 3
 	F_ 14
 	tie
@@ -1368,7 +1368,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	F_ 13
 	tie
 	F_ 7
-	musicf0 9
+	preset 9
 	octave 3
 	musicf2
 	D_ 5
@@ -1381,7 +1381,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	G_ 6
 	D# 14
 	F_ 13
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	rest 14
@@ -1439,7 +1439,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	musicf3
 	dec_octave
 	A# 6
-	musicf0 0
+	preset 0
 	musicf3
 	octave 2
 	A_ 5
@@ -1453,12 +1453,12 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	F_ 14
 	tie
 	F_ 7
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	F_ 6
 	F_ 14
-	musicf0 0
+	preset 0
 	musicf1 71
 	G_ 13
 	tie
@@ -1492,25 +1492,25 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	F_ 14
 	tie
 	F_ 7
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	musicf2
 	F_ 6
 	F_ 14
-	musicf0 0
+	preset 0
 	musicf3
 	octave 3
 	G_ 13
 	tie
 	G_ 7
-	musicf0 9
+	preset 9
 	octave 3
 	musicf1 48
 	G_ 5
 	G_ 9
 	rest 6
-	musicf0 0
+	preset 0
 	octave 3
 	musicf1 71
 	G# 14
@@ -1523,7 +1523,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	tie
 	A_ 14
 	A_ 7
-	musicf0 1
+	preset 1
 	musicef 2
 	musicf1 71
 	musicf3
@@ -1566,7 +1566,7 @@ Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
 	EndMainLoop
 
 Branch_1ef8d6:
-	musicf0 9
+	preset 9
 	octave 2
 	musicf3
 	rest 13
@@ -1593,7 +1593,7 @@ Branch_1ef8d6:
 	music_ret
 
 Branch_1ef8f0:
-	musicf0 9
+	preset 9
 	octave 2
 	musicf3
 	rest 13
@@ -1621,7 +1621,7 @@ Branch_1ef8f0:
 	music_ret
 
 Branch_1ef90b:
-	musicf0 7
+	preset 7
 	musicf3
 	octave 3
 	C_ 14
@@ -1629,20 +1629,20 @@ Branch_1ef90b:
 	C_ 7
 	E_ 6
 	music_call Branch_1efa34
-	musicf0 7
+	preset 7
 	D_ 13
 	tie
 	D_ 14
 	tie
 	D_ 7
 	music_call Branch_1efa41
-	musicf0 7
-	musicef 253
+	preset 7
+	musicef -3
 	D_ 14
 	tie
 	D_ 13
 	music_call Branch_1efa34
-	musicf0 7
+	preset 7
 	C_ 7
 	D_ 6
 	E_ 14
@@ -1661,7 +1661,7 @@ Branch_1ef90b:
 	dec_octave
 	A_ 6
 	music_call Branch_1efa34
-	musicf0 7
+	preset 7
 	octave 2
 	F# 13
 	tie
@@ -1669,9 +1669,9 @@ Branch_1ef90b:
 	tie
 	F# 13
 	music_call Branch_1efa4a
-	musicf0 7
+	preset 7
 	octave 2
-	musicef 253
+	musicef -3
 	F# 14
 	tie
 	F# 13
@@ -1681,7 +1681,7 @@ Branch_1ef90b:
 	F# 13
 	rest 7
 	music_call Branch_1efa51
-	musicf0 7
+	preset 7
 	octave 3
 	C_ 14
 	tie
@@ -1694,13 +1694,13 @@ Branch_1ef90b:
 	tie
 	D_ 7
 	music_call Branch_1efa41
-	musicf0 7
-	musicef 253
+	preset 7
+	musicef -3
 	D_ 14
 	tie
 	D_ 13
 	music_call Branch_1efa34
-	musicf0 7
+	preset 7
 	C_ 7
 	D_ 6
 	E_ 14
@@ -1718,7 +1718,7 @@ Branch_1ef90b:
 	G_ 7
 	E_ 6
 	music_call Branch_1efa34
-	musicf0 7
+	preset 7
 	F# 13
 	tie
 	F# 14
@@ -1728,7 +1728,7 @@ Branch_1ef90b:
 	music_ret
 
 Branch_1ef997:
-	musicf0 1
+	preset 1
 	musicf1 71
 	musicf3
 	octave 2
@@ -1738,20 +1738,20 @@ Branch_1ef997:
 	inc_octave
 	C_ 6
 	music_call Branch_1efa34
-	musicf0 1
+	preset 1
 	D_ 13
 	tie
 	D_ 14
 	tie
 	D_ 7
 	music_call Branch_1efa41
-	musicf0 1
-	musicef 253
+	preset 1
+	musicef -3
 	D_ 14
 	tie
 	D_ 13
 	music_call Branch_1efa34
-	musicf0 1
+	preset 1
 	octave 2
 	A_ 7
 	B_ 6
@@ -1773,7 +1773,7 @@ Branch_1ef997:
 	dec_octave
 	E_ 6
 	music_call Branch_1efa34
-	musicf0 1
+	preset 1
 	octave 2
 	F# 13
 	tie
@@ -1781,8 +1781,8 @@ Branch_1ef997:
 	tie
 	F# 13
 	music_call Branch_1efa4a
-	musicf0 1
-	musicef 253
+	preset 1
+	musicef -3
 	octave 2
 	musicf1 71
 	F# 14
@@ -1794,7 +1794,7 @@ Branch_1ef997:
 	F# 13
 	F# 7
 	music_call Branch_1efa51
-	musicf0 1
+	preset 1
 	octave 2
 	A_ 14
 	tie
@@ -1802,21 +1802,21 @@ Branch_1ef997:
 	inc_octave
 	C_ 6
 	music_call Branch_1efa34
-	musicf0 1
+	preset 1
 	D_ 13
 	tie
 	D_ 14
 	tie
 	D_ 7
 	music_call Branch_1efa41
-	musicf0 1
-	musicef 253
+	preset 1
+	musicef -3
 	D_ 14
 	tie
 	D_ 13
 	music_call Branch_1efa34
 	octave 2
-	musicf0 1
+	preset 1
 	A_ 7
 	B_ 6
 	inc_octave
@@ -1838,7 +1838,7 @@ Branch_1ef997:
 	dec_octave
 	A_ 6
 	music_call Branch_1efa34
-	musicf0 1
+	preset 1
 	octave 2
 	F# 13
 	tie
@@ -1849,7 +1849,7 @@ Branch_1ef997:
 	music_ret
 
 Branch_1efa34:
-	musicf0 9
+	preset 9
 	octave 2
 	musicf1 48
 	octave 3
@@ -1861,7 +1861,7 @@ Branch_1efa34:
 	music_ret
 
 Branch_1efa41:
-	musicf0 9
+	preset 9
 	octave 2
 	octave 3
 	musicf3
@@ -1871,7 +1871,7 @@ Branch_1efa41:
 	music_ret
 
 Branch_1efa4a:
-	musicf0 9
+	preset 9
 	octave 2
 	musicf3
 	A_ 14
@@ -1879,7 +1879,7 @@ Branch_1efa4a:
 	music_ret
 
 Branch_1efa51:
-	musicf0 9
+	preset 9
 	musicf1 48
 	musicf2
 	octave 2
@@ -1895,7 +1895,7 @@ Branch_1efa51:
 	music_ret
 
 Branch_1efa62:
-	musicf0 9
+	preset 9
 	musicf1 48
 	musicf2
 	octave 2
@@ -2761,12 +2761,12 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	bass 7
 	snare1 6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 5
 	musicef 0
@@ -2794,32 +2794,32 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	music_call Branch_1effeb
 	musicef 0
 	snare1 7
-	musicef 250
+	musicef -6
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 250
+	musicef -6
 	snare1 6
 	musicef 0
 	snare1 7
 	snare1 7
-	musicef 250
+	musicef -6
 	snare1 7
 	musicef 0
 	snare1 6
-	musicef 250
+	musicef -6
 	snare1 7
 	musicef 0
 	snare1 7
-	musicef 250
+	musicef -6
 	snare1 7
-	musicef 252
+	musicef -4
 	snare1 3
 	snare1 3
 	musicef 0
 	snare1 7
 	snare1 7
-	musicef 250
+	musicef -6
 	snare1 7
 	musicef 0
 	snare1 6
@@ -2839,7 +2839,7 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	bass 7
 	snare1 7
 	snare4 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -2901,17 +2901,17 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	bass 6
 	snare1 14
 	snare3 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
 	snare1 4
-	musicef 253
+	musicef -3
 	snare1 5
 	snare1 5
 	musicef 0
 	snare1 4
-	musicef 253
+	musicef -3
 	snare1 4
 	snare1 5
 	musicef 0
@@ -2956,7 +2956,7 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	bass 7
 	snare1 7
 	snare4 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -2972,7 +2972,7 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	bass 6
 	snare1 15
 	snare3 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0
@@ -3025,12 +3025,12 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	snare1 7
 	bass 6
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 5
 	snare1 5
 	musicef 0
 	snare1 4
-	musicef 254
+	musicef -2
 	snare1 4
 	snare1 5
 	musicef 0
@@ -3088,7 +3088,7 @@ Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
 	snare3 7
 	snare4 7
 	snare3 7
-	musicef 253
+	musicef -3
 	snare1 3
 	snare1 3
 	musicef 0

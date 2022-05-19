@@ -47,7 +47,7 @@ Music_MatchStart1_Ch1: ; 1eb67b (7a:767b)
 	E_ 1
 	inc_octave
 	E_ 1
-	musicef 253
+	musicef -3
 	octave 4
 	dec_octave
 	B_ 1

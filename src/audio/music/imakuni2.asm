@@ -1,15 +1,15 @@
 Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	MainLoop
-	musicf0 31
+	preset 31
 	musicf3
 	stereo_panning 15, 15
 	speed 1
 	octave 2
-	musicf0 31
+	preset 31
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	inc_octave
 	A_ 3
 	inc_octave
@@ -18,23 +18,23 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
-	musicef 254
+	musicef -2
 	E_ 5
 	rest 11
 	inc_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	C_ 16
 	C# 5
 	rest 12
@@ -42,7 +42,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	E_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
@@ -52,7 +52,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	inc_octave
 	A_ 3
 	inc_octave
@@ -61,23 +61,23 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
-	musicef 254
+	musicef -2
 	E_ 5
 	rest 11
 	rest 9
 	music_call Branch_1f3762
 	rest 8
-	musicf0 31
+	preset 31
 	octave 2
 	E_ 16
 	G_ 16
@@ -99,7 +99,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	inc_octave
 	A_ 3
 	inc_octave
@@ -108,23 +108,23 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
-	musicef 254
+	musicef -2
 	E_ 5
 	rest 11
 	inc_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	C_ 16
 	C# 5
 	rest 12
@@ -132,7 +132,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	E_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
@@ -142,7 +142,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	inc_octave
 	A_ 3
 	inc_octave
@@ -151,17 +151,17 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	G_ 16
 	A_ 9
 	inc_octave
@@ -170,13 +170,13 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	rest 8
 	octave 3
 	rest 16
-	musicf0 9
+	preset 9
 	D# 9
 	tie
 	E_ 8
 	tie
 	E_ 16
-	musicf0 18
+	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
@@ -258,7 +258,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	F_ 1
 	rest 9
 	music_call Branch_1f3762
-	musicf0 9
+	preset 9
 	octave 2
 	rest 8
 	octave 2
@@ -280,7 +280,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	frequency_offset 0
 	A_ 1
-	musicf0 18
+	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
@@ -361,7 +361,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	tie
 	frequency_offset 0
 	F_ 1
-	musicf0 9
+	preset 9
 	octave 2
 	A_ 9
 	inc_octave
@@ -379,10 +379,10 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	A_ 5
 	rest 4
 	rest 8
-	musicf0 4
+	preset 4
 	octave 3
 	rest 8
-	musicef 251
+	musicef -5
 	A_ 8
 	musicef 2
 	G# 9
@@ -393,7 +393,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	E_ 8
 	F_ 8
 	musicef 0
-	musicf0 18
+	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
@@ -481,14 +481,14 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	pitch_offset 0
 	rest 8
 	rest 16
-	musicf0 9
+	preset 9
 	octave 3
 	D# 9
 	tie
 	E_ 8
 	tie
 	E_ 16
-	musicf0 18
+	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
@@ -570,10 +570,10 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	frequency_offset 0
 	F_ 1
 	octave 2
-	musicf0 31
+	preset 31
 	A_ 9
 	inc_octave
-	musicf0 9
+	preset 9
 	C# 5
 	rest 3
 	rest 16
@@ -590,7 +590,7 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	rest 4
 	rest 8
 	rest 16
-	musicf0 8
+	preset 8
 	frequency_offset 0
 	musicef 2
 	octave 3
@@ -715,9 +715,9 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	Loop 3
 	E_ 5
 	rest 6
-	musicef 253
+	musicef -3
 	EndLoop
-	musicf0 9
+	preset 9
 	octave 2
 	G_ 16
 	tie
@@ -737,12 +737,12 @@ Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
 	EndMainLoop
 
 Branch_1f3762:
-	musicf0 9
+	preset 9
 	musicf1 101
 	musicf3
 	stereo_panning 15, 15
 	speed 1
-	musicef 255
+	musicef -1
 	octave 4
 	C# 5
 	rest 3
@@ -760,12 +760,12 @@ Branch_1f3762:
 
 Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	MainLoop
-	musicf0 9
+	preset 9
 	musicf1 103
 	musicf3
 	stereo_panning 15, 15
 	speed 1
-	musicef 255
+	musicef -1
 	octave 4
 	rest 9
 	rest 8
@@ -782,12 +782,12 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	dec_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	D# 5
 	rest 11
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	G# 16
 	A_ 5
 	rest 12
@@ -817,7 +817,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	dec_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	D# 5
 	rest 11
 	musicef 2
@@ -857,12 +857,12 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	dec_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	D# 5
 	rest 11
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	G# 16
 	A_ 5
 	rest 12
@@ -892,7 +892,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	dec_octave
 	rest 9
 	rest 8
-	musicef 254
+	musicef -2
 	E_ 5
 	rest 11
 	musicef 2
@@ -918,27 +918,27 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	G# 8
 	tie
 	G# 16
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
@@ -947,7 +947,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 11
 	A_ 9
 	inc_octave
-	musicf0 9
+	preset 9
 	C# 5
 	rest 3
 	rest 16
@@ -966,27 +966,27 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
@@ -1002,27 +1002,27 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 9
 	rest 8
 	rest 16
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
@@ -1031,7 +1031,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 11
 	A_ 9
 	inc_octave
-	musicf0 9
+	preset 9
 	C# 5
 	rest 3
 	rest 16
@@ -1050,35 +1050,35 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
 	dec_octave
 	E_ 5
 	rest 11
-	musicf0 9
-	musicef 255
+	preset 9
+	musicef -1
 	rest 9
 	inc_octave
 	rest 5
@@ -1096,12 +1096,12 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	dec_octave
 	A_ 8
 	music_call Branch_1f3a58
-	musicf0 31
+	preset 31
 	octave 3
 	D_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	D_ 3
 	F# 3
 	A_ 2
@@ -1109,22 +1109,22 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	D_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	A# 16
 	B_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	F# 2
 	rest 15
 	musicef 2
 	C# 5
 	rest 11
 	D_ 9
-	musicf0 9
+	preset 9
 	F# 5
 	rest 3
 	rest 16
@@ -1146,7 +1146,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	pitch_offset 253
 	music_call Branch_1f3a58
 	pitch_offset 0
-	musicf0 9
+	preset 9
 	octave 3
 	rest 9
 	rest 8
@@ -1158,15 +1158,15 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	D_ 5
 	rest 12
 	dec_octave
-	musicf0 31
+	preset 31
 	A# 16
 	B_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	F# 2
 	rest 15
 	musicef 2
@@ -1178,34 +1178,34 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	pitch_offset 0
 	rest 8
 	rest 16
-	musicf0 9
+	preset 9
 	octave 2
 	G_ 9
 	tie
 	G# 8
 	tie
 	G# 16
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
@@ -1213,7 +1213,7 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	E_ 5
 	rest 11
 	A_ 9
-	musicf0 9
+	preset 9
 	inc_octave
 	C# 5
 	rest 3
@@ -1233,34 +1233,34 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
-	musicf0 31
+	preset 31
 	octave 2
 	A_ 9
 	rest 8
 	rest 8
-	musicf0 9
+	preset 9
 	A_ 3
 	inc_octave
 	C# 3
 	E_ 2
 	A_ 5
 	rest 12
-	musicf0 31
+	preset 31
 	F# 16
 	G_ 9
 	rest 8
-	musicf0 9
+	preset 9
 	E_ 5
 	rest 11
-	musicf0 31
-	musicef 254
+	preset 31
+	musicef -2
 	C# 2
 	rest 15
 	musicef 2
 	dec_octave
 	E_ 5
 	rest 11
-	musicf0 9
+	preset 9
 	rest 9
 	inc_octave
 	C_ 5
@@ -1372,13 +1372,13 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	E_ 16
 	tie
 	E_ 2
-	musicf0 8
+	preset 8
 	musicef 2
 	frequency_offset 0
 	Loop 3
 	B_ 5
 	rest 6
-	musicef 253
+	musicef -3
 	EndLoop
 	B_ 5
 	rest 6
@@ -1389,9 +1389,9 @@ Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
 	EndMainLoop
 
 Branch_1f3a58:
-	musicf0 4
+	preset 4
 	octave 4
-	musicef 251
+	musicef -5
 	C_ 8
 	musicef 2
 	C# 8
@@ -2105,9 +2105,9 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare3 16
 	rest 1
 	snare4 8
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	musicef 0
 	snare1 9
@@ -2122,9 +2122,9 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare1 16
 	snare1 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 6
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -2165,10 +2165,10 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare4 16
 	snare1 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 4
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2224,10 +2224,10 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare4 16
 	snare3 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 4
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2243,9 +2243,9 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare1 16
 	snare1 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 6
-	musicef 252
+	musicef -4
 	snare1 5
 	snare1 5
 	musicef 0
@@ -2287,10 +2287,10 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare4 16
 	snare3 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 4
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2345,10 +2345,10 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare4 16
 	snare3 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 4
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2404,10 +2404,10 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare4 16
 	snare3 16
 	rest 1
-	musicef 250
+	musicef -6
 	snare1 4
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	snare1 4
 	musicef 0
@@ -2422,12 +2422,12 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	rest 1
 	snare4 16
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
 	snare1 8
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
@@ -2442,7 +2442,7 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	bass 9
 	snare1 8
 	snare4 8
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
@@ -2458,7 +2458,7 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	rest 1
 	bass 8
 	snare1 8
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
@@ -2487,32 +2487,32 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	snare1 8
 	snare4 8
 	snare3 9
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	musicef 0
 	snare1 8
 	snare1 8
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
 	snare1 8
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
 	snare1 9
-	musicef 250
+	musicef -6
 	snare1 4
 	musicef 0
 	snare1 4
 	snare1 4
-	musicef 250
+	musicef -6
 	snare1 4
-	musicef 252
+	musicef -4
 	snare1 4
 	musicef 0
 	snare1 4

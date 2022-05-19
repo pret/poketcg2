@@ -7,7 +7,7 @@ Music_GRBlimp_Ch2: ; 1e7bfa (79:7bfa)
 	duty 2
 	volume 117
 	vibrato_delay 28
-	musicf0 0
+	preset 0
 	stereo_panning 15, 15
 	musicf1 48
 	music_call Branch_1e7cf5
@@ -63,7 +63,7 @@ Music_GRBlimp_Ch2: ; 1e7bfa (79:7bfa)
 	C_ 14
 	speed 1
 	C_ 14
-	musicf0 2
+	preset 2
 	musicf3
 	speed 1
 	C_ 5
@@ -331,7 +331,7 @@ Music_GRBlimp_Ch1: ; 1e7d6c (79:7d6c)
 	cutoff 8
 	speed 7
 	octave 3
-	musicf0 1
+	preset 1
 	musicf1 64
 	music_call Branch_1e7e8a
 	C# 14
@@ -775,24 +775,24 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	rest 14
 	Loop 11
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 14
 	musicef 0
 	snare2 3
-	musicef 252
+	musicef -4
 	snare2 4
 	snare2 3
 	snare2 4
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 7
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 14
 	musicef 0
 	snare2 3
-	musicef 253
+	musicef -3
 	snare2 4
 	Loop 3
 	snare2 3
@@ -801,19 +801,19 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	musicef 0
 	snare1 14
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 7
 	musicef 0
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 14
 	musicef 0
 	snare2 3
-	musicef 253
+	musicef -3
 	snare2 4
 	Loop 3
 	snare2 3
@@ -822,11 +822,11 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	musicef 0
 	EndLoop
 	snare1 14
-	musicef 253
+	musicef -3
 	snare1 14
 	musicef 0
 	snare2 3
-	musicef 253
+	musicef -3
 	snare2 4
 	snare2 3
 	snare2 4
@@ -834,11 +834,11 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	musicef 0
 	snare1 7
 	snare2 3
-	musicef 253
+	musicef -3
 	snare2 4
 	snare2 3
 	snare2 4
-	musicef 255
+	musicef -1
 	snare1 5
 	musicef 1
 	snare1 16
@@ -848,18 +848,18 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	tie
 	rest 2
 	snare2 3
-	musicef 251
+	musicef -5
 	snare2 4
 	Loop 5
 	snare2 3
 	snare2 4
 	EndLoop
-	musicef 252
+	musicef -4
 	Loop 5
 	snare2 3
 	snare2 4
 	EndLoop
-	musicef 253
+	musicef -3
 	Loop 5
 	snare2 3
 	snare2 4

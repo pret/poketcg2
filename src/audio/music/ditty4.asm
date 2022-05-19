@@ -1,5 +1,5 @@
 Music_Ditty4_Ch2: ; 1ebeae (7a:7eae)
-	musicf0 0
+	preset 0
 	speed 1
 	stereo_panning 15, 15
 	octave 3
@@ -23,7 +23,7 @@ Music_Ditty4_Ch2: ; 1ebeae (7a:7eae)
 
 
 Music_Ditty4_Ch1: ; 1ebec7 (7a:7ec7)
-	musicf0 0
+	preset 0
 	speed 1
 	stereo_panning 15, 15
 	octave 2
