@@ -1,4 +1,4 @@
-Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
+Music_TitleScreen_Ch2:
 	preset 0
 	octave 3
 	speed 1
@@ -750,7 +750,7 @@ Music_TitleScreen_Ch2: ; 1e96cc (7a:56cc)
 	music_end
 
 
-Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
+Music_TitleScreen_Ch1:
 	preset 1
 	octave 3
 	speed 1
@@ -1907,7 +1907,7 @@ Music_TitleScreen_Ch1: ; 1e9abd (7a:5abd)
 	music_end
 
 
-Music_TitleScreen_Ch3: ; 1ea0f8 (7a:60f8)
+Music_TitleScreen_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -2197,7 +2197,7 @@ Branch_1ea26d:
 	music_ret
 
 
-Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
+Music_TitleScreen_Ch4:
 	octave 1
 	speed 1
 	musicef -4
@@ -2365,4 +2365,3 @@ Music_TitleScreen_Ch4: ; 1ea286 (7a:6286)
 	musicef 2
 	snare5 12
 	music_end
-; 0x1ea368

@@ -1,4 +1,4 @@
-Music_GameCorner_Ch2: ; 1e74d4 (79:74d4)
+Music_GameCorner_Ch2:
 	MainLoop
 	preset 17
 	octave 1
@@ -363,7 +363,7 @@ Branch_1e75c7:
 	music_ret
 
 
-Music_GameCorner_Ch1: ; 1e765c (79:765c)
+Music_GameCorner_Ch1:
 	MainLoop
 	volume 194
 	duty 2
@@ -819,7 +819,7 @@ Branch_1e778f:
 	music_ret
 
 
-Music_GameCorner_Ch3: ; 1e782f (79:782f)
+Music_GameCorner_Ch3:
 	wave 1
 	volume 32
 	echo 64
@@ -1369,7 +1369,7 @@ Music_GameCorner_Ch3: ; 1e782f (79:782f)
 	EndMainLoop
 
 
-Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
+Music_GameCorner_Ch4:
 	MainLoop
 	octave 1
 	speed 1
@@ -1690,4 +1690,3 @@ Music_GameCorner_Ch4: ; 1e7a57 (79:7a57)
 	noisea 13
 	musicef 0
 	EndMainLoop
-; 0x1e7bfa

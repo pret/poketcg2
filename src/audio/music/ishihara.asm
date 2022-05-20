@@ -1,4 +1,4 @@
-Music_Ishihara_Ch2: ; 1dd6cc (77:56cc)
+Music_Ishihara_Ch2:
 	speed 1
 	stereo_panning 15, 15
 	rest 13
@@ -738,7 +738,7 @@ Branch_1dd880:
 	music_ret
 
 
-Music_Ishihara_Ch1: ; 1dd9de (77:59de)
+Music_Ishihara_Ch1:
 	speed 1
 	stereo_panning 15, 15
 	musicf1 86
@@ -1719,7 +1719,7 @@ Branch_1ddc75:
 	music_ret
 
 
-Music_Ishihara_Ch3: ; 1dde54 (77:5e54)
+Music_Ishihara_Ch3:
 	wave 1
 	volume 32
 	echo 96
@@ -2576,7 +2576,7 @@ Branch_1de0c5:
 	music_ret
 
 
-Music_Ishihara_Ch4: ; 1de20c (77:620c)
+Music_Ishihara_Ch4:
 	speed 1
 	stereo_panning 15, 15
 	octave 1
@@ -2797,4 +2797,3 @@ Branch_1de321:
 	snare1 14
 	snare4 13
 	music_ret
-; 0x1de32a

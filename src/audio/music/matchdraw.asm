@@ -1,4 +1,4 @@
-Music_MatchDraw_Ch2: ; 1eba48 (7a:7a48)
+Music_MatchDraw_Ch2:
 	speed 3
 	stereo_panning 1, 1
 	cutoff 8
@@ -45,7 +45,7 @@ Music_MatchDraw_Ch2: ; 1eba48 (7a:7a48)
 	music_end
 
 
-Music_MatchDraw_Ch1: ; 1eba80 (7a:7a80)
+Music_MatchDraw_Ch1:
 	speed 3
 	stereo_panning 1, 1
 	cutoff 8
@@ -84,7 +84,7 @@ Music_MatchDraw_Ch1: ; 1eba80 (7a:7a80)
 	music_end
 
 
-Music_MatchDraw_Ch3: ; 1ebab0 (7a:7ab0)
+Music_MatchDraw_Ch3:
 	speed 6
 	stereo_panning 1, 1
 	wave 1
@@ -104,4 +104,3 @@ Music_MatchDraw_Ch3: ; 1ebab0 (7a:7ab0)
 	inc_octave
 	C_ 1
 	music_end
-; 0x1ebac9

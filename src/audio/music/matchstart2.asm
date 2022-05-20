@@ -1,4 +1,4 @@
-Music_MatchStart2_Ch1: ; 1eb6c1 (7a:76c1)
+Music_MatchStart2_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -88,7 +88,7 @@ Music_MatchStart2_Ch1: ; 1eb6c1 (7a:76c1)
 	music_end
 
 
-Music_MatchStart2_Ch2: ; 1eb71f (7a:771f)
+Music_MatchStart2_Ch2:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -173,4 +173,3 @@ Music_MatchStart2_Ch2: ; 1eb71f (7a:771f)
 	C_ 1
 	E_ 1
 	music_end
-; 0x1eb77a

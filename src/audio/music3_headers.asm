@@ -1,7 +1,7 @@
-NumberOfSongs3: ; 1e5442 (79:5442)
+NumberOfSongs3:
 	db 60
 
-SongBanks3: ; 1e5443 (79:5443)
+SongBanks3:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks3: ; 1e5443 (79:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers3: ; 1e547f (79:547f)
+SongHeaderPointers3:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -191,21 +191,21 @@ SongHeaderPointers3: ; 1e547f (79:547f)
 	dw Music_Overworld_Ch3
 	dw Music_Overworld_Ch4
 
-Music_PokemonDome: ; 1e5549 (79:5549)
+Music_PokemonDome:
 	db %1111
 	dw Music_PokemonDome_Ch1
 	dw Music_PokemonDome_Ch2
 	dw Music_PokemonDome_Ch3
 	dw Music_PokemonDome_Ch4
 
-Music_ChallengeHall: ; 1e5552 (79:5552)
+Music_ChallengeHall:
 	db %1111
 	dw Music_ChallengeHall_Ch1
 	dw Music_ChallengeHall_Ch2
 	dw Music_ChallengeHall_Ch3
 	dw Music_ChallengeHall_Ch4
 
-Music_Club1: ; 1e555b (79:555b)
+Music_Club1:
 	db %1111
 	dw Music_Club1_Ch1
 	dw Music_Club1_Ch2
@@ -219,35 +219,35 @@ Music_Club1: ; 1e555b (79:555b)
 	dw Music_Club2_Ch3
 	dw $0000
 
-Music_Club3: ; 1e556d (79:556d)
+Music_Club3:
 	db %1111
 	dw Music_Club3_Ch1
 	dw Music_Club3_Ch2
 	dw Music_Club3_Ch3
 	dw Music_Club3_Ch4
 
-Music_Ronald: ; 1e5576 (79:5576)
+Music_Ronald:
 	db %1111
 	dw Music_Ronald_Ch1
 	dw Music_Ronald_Ch2
 	dw Music_Ronald_Ch3
 	dw Music_Ronald_Ch4
 
-Music_Imakuni: ; 1e557f (79:557f)
+Music_Imakuni:
 	db %1111
 	dw Music_Imakuni_Ch1
 	dw Music_Imakuni_Ch2
 	dw Music_Imakuni_Ch3
 	dw Music_Imakuni_Ch4
 
-Music_HallOfHonor: ; 1e5588 (79:5588)
+Music_HallOfHonor:
 	db %0111
 	dw Music_HallOfHonor_Ch1
 	dw Music_HallOfHonor_Ch2
 	dw Music_HallOfHonor_Ch3
 	dw $0000
 
-Music_Song12: ; 1e5591 (79:5591)
+Music_Song12:
 	db %1111
 	dw Music_Song12_Ch1
 	dw Music_Song12_Ch2
@@ -310,14 +310,14 @@ Music_Song12: ; 1e5591 (79:5591)
 	dw Music_GRChallengeCup_Ch3
 	dw Music_GRChallengeCup_Ch4
 
-Music_GameCorner: ; 1e55e2 (79:55e2)
+Music_GameCorner:
 	db %1111
 	dw Music_GameCorner_Ch1
 	dw Music_GameCorner_Ch2
 	dw Music_GameCorner_Ch3
 	dw Music_GameCorner_Ch4
 
-Music_GRBlimp: ; 1e55eb (79:55eb)
+Music_GRBlimp:
 	db %1111
 	dw Music_GRBlimp_Ch1
 	dw Music_GRBlimp_Ch2

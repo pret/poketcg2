@@ -1,4 +1,4 @@
-Music_ChallengeHall_Ch2: ; 1e56cc (79:56cc)
+Music_ChallengeHall_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 15
@@ -396,7 +396,7 @@ Branch_1e58ca:
 	music_ret
 
 
-Music_ChallengeHall_Ch1: ; 1e5905 (79:5905)
+Music_ChallengeHall_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 15
@@ -760,7 +760,7 @@ Branch_1e5aa2:
 	music_ret
 
 
-Music_ChallengeHall_Ch3: ; 1e5b0c (79:5b0c)
+Music_ChallengeHall_Ch3:
 	stereo_panning 1, 1
 	volume 32
 	wave 1
@@ -1019,7 +1019,7 @@ Branch_1e5c0c:
 	music_ret
 
 
-Music_ChallengeHall_Ch4: ; 1e5c23 (79:5c23)
+Music_ChallengeHall_Ch4:
 	speed 1
 	speed 10
 	Loop 2
@@ -1073,4 +1073,3 @@ Music_ChallengeHall_Ch4: ; 1e5c23 (79:5c23)
 	snare1 3
 	rest 3
 	EndMainLoop
-; 0x1e5c5f

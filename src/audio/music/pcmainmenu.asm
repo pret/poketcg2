@@ -1,4 +1,4 @@
-Music_PCMainMenu_Ch2: ; 1e3287 (78:7287)
+Music_PCMainMenu_Ch2:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -104,7 +104,7 @@ Branch_1e32f7:
 	music_ret
 
 
-Music_PCMainMenu_Ch1: ; 1e3322 (78:7322)
+Music_PCMainMenu_Ch1:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -211,7 +211,7 @@ Branch_1e3393:
 	music_ret
 
 
-Music_PCMainMenu_Ch3: ; 1e33be (78:73be)
+Music_PCMainMenu_Ch3:
 	speed 7
 	volume 32
 	stereo_panning 1, 1
@@ -341,7 +341,7 @@ Music_PCMainMenu_Ch3: ; 1e33be (78:73be)
 	EndMainLoop
 
 
-Music_PCMainMenu_Ch4: ; 1e3460 (78:7460)
+Music_PCMainMenu_Ch4:
 	speed 7
 	octave 1
 	MainLoop
@@ -374,4 +374,3 @@ Branch_1e347d:
 	bass 1
 	snare2 1
 	music_ret
-; 0x1e3486

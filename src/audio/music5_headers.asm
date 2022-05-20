@@ -1,7 +1,7 @@
-NumberOfSongs5: ; 1ed442 (7b:5442)
+NumberOfSongs5:
 	db 60
 
-SongBanks5: ; 1ed443 (7b:5443)
+SongBanks5:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks5: ; 1ed443 (7b:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers5: ; 1ed47f (7b:547f)
+SongHeaderPointers5:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -268,21 +268,21 @@ SongHeaderPointers5: ; 1ed47f (7b:547f)
 	dw Music_GROverworld_Ch3
 	dw Music_GROverworld_Ch4
 
-Music_Fort1: ; 1ed5ac (7b:55ac)
+Music_Fort1:
 	db %1111
 	dw Music_Fort1_Ch1
 	dw Music_Fort1_Ch2
 	dw Music_Fort1_Ch3
 	dw Music_Fort1_Ch4
 
-Music_Fort2: ; 1ed5b5 (7b:55b5)
+Music_Fort2:
 	db %1111
 	dw Music_Fort2_Ch1
 	dw Music_Fort2_Ch2
 	dw Music_Fort2_Ch3
 	dw Music_Fort2_Ch4
 
-Music_Fort3: ; 1ed5be (7b:55be)
+Music_Fort3:
 	db %1111
 	dw Music_Fort3_Ch1
 	dw Music_Fort3_Ch2
@@ -331,7 +331,7 @@ Music_Fort3: ; 1ed5be (7b:55be)
 	dw Music_GRDuelTheme1_Ch3
 	dw Music_GRDuelTheme1_Ch4
 
-Music_GRDuelTheme2: ; 1ed5fd (7b:55fd)
+Music_GRDuelTheme2:
 	db %1111
 	dw Music_GRDuelTheme2_Ch1
 	dw Music_GRDuelTheme2_Ch2

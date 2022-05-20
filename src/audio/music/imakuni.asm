@@ -1,4 +1,4 @@
-Music_Imakuni_Ch2: ; 1e7027 (79:7027)
+Music_Imakuni_Ch2:
 	speed 3
 	stereo_panning 1, 1
 	vibrato_type 5
@@ -185,7 +185,7 @@ Branch_1e70ef:
 	music_ret
 
 
-Music_Imakuni_Ch1: ; 1e7104 (79:7104)
+Music_Imakuni_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 0
 	vibrato_delay 0
@@ -291,7 +291,7 @@ Branch_1e7177:
 	music_ret
 
 
-Music_Imakuni_Ch3: ; 1e718e (79:718e)
+Music_Imakuni_Ch3:
 	stereo_panning 1, 1
 	volume 32
 	wave 1
@@ -472,7 +472,7 @@ Branch_1e724f:
 	music_ret
 
 
-Music_Imakuni_Ch4: ; 1e7276 (79:7276)
+Music_Imakuni_Ch4:
 	speed 1
 	octave 1
 	Loop 10
@@ -536,4 +536,3 @@ Music_Imakuni_Ch4: ; 1e7276 (79:7276)
 	snare1 15
 	snare1 15
 	EndMainLoop
-; 0x1e72bc

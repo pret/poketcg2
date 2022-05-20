@@ -1,7 +1,7 @@
-NumberOfSongs2: ; 1e1442 (78:5442)
+NumberOfSongs2:
 	db 60
 
-SongBanks2: ; 1e1443 (78:5443)
+SongBanks2:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks2: ; 1e1443 (78:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers2: ; 1e147f (78:547f)
+SongHeaderPointers2:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -125,7 +125,7 @@ SongHeaderPointers2: ; 1e147f (78:547f)
 	dw Music_Ditty6
 	dw Music_Song3B
 
-Music_Stop: ; 1e14f7 (78:54f7)
+Music_Stop:
 	db %0000
 
 ;Music_TitleScreen
@@ -135,56 +135,56 @@ Music_Stop: ; 1e14f7 (78:54f7)
 	dw Music_TitleScreen_Ch3
 	dw Music_TitleScreen_Ch4
 
-Music_DuelTheme1: ; 1e1501 (78:5501)
+Music_DuelTheme1:
 	db %1111
 	dw Music_DuelTheme1_Ch1
 	dw Music_DuelTheme1_Ch2
 	dw Music_DuelTheme1_Ch3
 	dw Music_DuelTheme1_Ch4
 
-Music_DuelTheme2: ; 1e150a (78:550a)
+Music_DuelTheme2:
 	db %1111
 	dw Music_DuelTheme2_Ch1
 	dw Music_DuelTheme2_Ch2
 	dw Music_DuelTheme2_Ch3
 	dw Music_DuelTheme2_Ch4
 
-Music_DuelTheme3: ; 1e1513 (78:5513)
+Music_DuelTheme3:
 	db %1111
 	dw Music_DuelTheme3_Ch1
 	dw Music_DuelTheme3_Ch2
 	dw Music_DuelTheme3_Ch3
 	dw Music_DuelTheme3_Ch4
 
-Music_PauseMenu: ; 1e151c (78:551c)
+Music_PauseMenu:
 	db %1111
 	dw Music_PauseMenu_Ch1
 	dw Music_PauseMenu_Ch2
 	dw Music_PauseMenu_Ch3
 	dw Music_PauseMenu_Ch4
 
-Music_PCMainMenu: ; 1e1525 (78:5525)
+Music_PCMainMenu:
 	db %1111
 	dw Music_PCMainMenu_Ch1
 	dw Music_PCMainMenu_Ch2
 	dw Music_PCMainMenu_Ch3
 	dw Music_PCMainMenu_Ch4
 
-Music_DeckMachine: ; 1e152e (78:552e)
+Music_DeckMachine:
 	db %1111
 	dw Music_DeckMachine_Ch1
 	dw Music_DeckMachine_Ch2
 	dw Music_DeckMachine_Ch3
 	dw Music_DeckMachine_Ch4
 
-Music_CardPop: ; 1e1537 (78:5537)
+Music_CardPop:
 	db %1111
 	dw Music_CardPop_Ch1
 	dw Music_CardPop_Ch2
 	dw Music_CardPop_Ch3
 	dw Music_CardPop_Ch4
 
-Music_Overworld: ; 1e1540 (78:5540)
+Music_Overworld:
 	db %1111
 	dw Music_Overworld_Ch1
 	dw Music_Overworld_Ch2
@@ -366,11 +366,11 @@ Music_Overworld: ; 1e1540 (78:5540)
 	dw Music_Credits_Ch3
 	dw Music_Credits_Ch4
 
-Music_Song13: ; 1e162a (78:562a)
-Music_Song1B: ; 1e162a (78:562a)
-Music_Song22: ; 1e162a (78:562a)
-Music_Song26: ; 1e162a (78:562a)
-Music_Song27: ; 1e162a (78:562a)
+Music_Song13:
+Music_Song1B:
+Music_Song22:
+Music_Song26:
+Music_Song27:
 	db %0001
 	dw Music_Song27_Ch1
 	dw $0000

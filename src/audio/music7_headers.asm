@@ -1,7 +1,7 @@
-NumberOfSongs7: ; 1f5442 (7d:5442)
+NumberOfSongs7:
 	db 60
 
-SongBanks7: ; 1f5443 (7d:5443)
+SongBanks7:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks7: ; 1f5443 (7d:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers7: ; 1f547f (7d:547f)
+SongHeaderPointers7:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -212,7 +212,7 @@ SongHeaderPointers7: ; 1f547f (7d:547f)
 	dw Music_Club1_Ch3
 	dw Music_Club1_Ch4
 
-Music_Club2: ; 1f5564 (7d:5564)
+Music_Club2:
 	db %0111
 	dw Music_Club2_Ch1
 	dw Music_Club2_Ch2
@@ -324,7 +324,7 @@ Music_Club2: ; 1f5564 (7d:5564)
 	dw Music_GRBlimp_Ch3
 	dw Music_GRBlimp_Ch4
 
-Music_GRDuelTheme1: ; 1f55f4 (7d:55f4)
+Music_GRDuelTheme1:
 	db %1111
 	dw Music_GRDuelTheme1_Ch1
 	dw Music_GRDuelTheme1_Ch2
@@ -338,7 +338,7 @@ Music_GRDuelTheme1: ; 1f55f4 (7d:55f4)
 	dw Music_GRDuelTheme2_Ch3
 	dw Music_GRDuelTheme2_Ch4
 
-Music_GRDuelTheme3: ; 1f5606 (7d:5606)
+Music_GRDuelTheme3:
 	db %1111
 	dw Music_GRDuelTheme3_Ch1
 	dw Music_GRDuelTheme3_Ch2
@@ -485,7 +485,7 @@ Music_GRDuelTheme3: ; 1f5606 (7d:5606)
 	dw $0000
 	dw $0000
 
-Music_Ditty6: ; 1f56c3 (7d:56c3)
+Music_Ditty6:
 	db %1111
 	dw Music_Ditty6_Ch1
 	dw Music_Ditty6_Ch2

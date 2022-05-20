@@ -1,4 +1,4 @@
-Music_GRBlimp_Ch2: ; 1e7bfa (79:7bfa)
+Music_GRBlimp_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 28
@@ -324,7 +324,7 @@ Branch_1e7cf5:
 	music_ret
 
 
-Music_GRBlimp_Ch1: ; 1e7d6c (79:7d6c)
+Music_GRBlimp_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 28
@@ -679,7 +679,7 @@ Branch_1e7e8a:
 	music_ret
 
 
-Music_GRBlimp_Ch3: ; 1e7eed (79:7eed)
+Music_GRBlimp_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -768,7 +768,7 @@ Music_GRBlimp_Ch3: ; 1e7eed (79:7eed)
 	music_end
 
 
-Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
+Music_GRBlimp_Ch4:
 	speed 9
 	octave 1
 	speed 1
@@ -867,4 +867,3 @@ Music_GRBlimp_Ch4: ; 1e7f50 (79:7f50)
 	musicef 2
 	snare2 14
 	music_end
-; 0x1e7fd6

@@ -1,4 +1,4 @@
-Music_MatchStart1_Ch1: ; 1eb67b (7a:767b)
+Music_MatchStart1_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -56,4 +56,3 @@ Music_MatchStart1_Ch1: ; 1eb67b (7a:767b)
 	musicef 1
 	EndLoop
 	music_end
-; 0x1eb6c1

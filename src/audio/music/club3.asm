@@ -1,4 +1,4 @@
-Music_Club3_Ch2: ; 1e64e2 (79:64e2)
+Music_Club3_Ch2:
 	speed 9
 	stereo_panning 1, 1
 	vibrato_type 5
@@ -432,7 +432,7 @@ Branch_1e66d5:
 	music_ret
 
 
-Music_Club3_Ch1: ; 1e66f5 (79:66f5)
+Music_Club3_Ch1:
 	speed 9
 	stereo_panning 1, 1
 	vibrato_type 5
@@ -798,7 +798,7 @@ Branch_1e6878:
 	music_ret
 
 
-Music_Club3_Ch3: ; 1e6910 (79:6910)
+Music_Club3_Ch3:
 	speed 9
 	stereo_panning 1, 1
 	volume 32
@@ -1062,7 +1062,7 @@ Music_Club3_Ch3: ; 1e6910 (79:6910)
 	EndMainLoop
 
 
-Music_Club3_Ch4: ; 1e6a44 (79:6a44)
+Music_Club3_Ch4:
 	speed 9
 	octave 1
 	MainLoop
@@ -1099,4 +1099,3 @@ Branch_1e6a68:
 	snare4 1
 	bass 1
 	music_ret
-; 0x1e6a72

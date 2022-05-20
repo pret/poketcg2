@@ -1,4 +1,4 @@
-Music_Fort2_Ch2: ; 1edefc (7b:5efc)
+Music_Fort2_Ch2:
 	speed 1
 	stereo_panning 1, 1
 	MainLoop
@@ -536,7 +536,7 @@ Branch_1ee109:
 	music_ret
 
 
-Music_Fort2_Ch1: ; 1ee12f (7b:612f)
+Music_Fort2_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	MainLoop
@@ -986,7 +986,7 @@ Music_Fort2_Ch1: ; 1ee12f (7b:612f)
 	EndMainLoop
 
 
-Music_Fort2_Ch3: ; 1ee319 (7b:6319)
+Music_Fort2_Ch3:
 	wave 5
 	volume 64
 	echo 0
@@ -1757,7 +1757,7 @@ Music_Fort2_Ch3: ; 1ee319 (7b:6319)
 	EndMainLoop
 
 
-Music_Fort2_Ch4: ; 1ee637 (7b:6637)
+Music_Fort2_Ch4:
 	speed 1
 	octave 1
 	MainLoop
@@ -2059,4 +2059,3 @@ Branch_1ee785:
 	snare1 15
 	snare1 15
 	music_ret
-; 0x1ee797

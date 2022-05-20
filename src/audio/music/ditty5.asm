@@ -1,4 +1,4 @@
-Music_Ditty5_Ch2: ; 1ebefa (7a:7efa)
+Music_Ditty5_Ch2:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -30,7 +30,7 @@ Music_Ditty5_Ch2: ; 1ebefa (7a:7efa)
 	music_end
 
 
-Music_Ditty5_Ch1: ; 1ebf1b (7a:7f1b)
+Music_Ditty5_Ch1:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -61,4 +61,3 @@ Music_Ditty5_Ch1: ; 1ebf1b (7a:7f1b)
 	musicef -4
 	B_ 3
 	music_end
-; 0x1ebf3e

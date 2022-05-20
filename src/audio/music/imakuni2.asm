@@ -1,4 +1,4 @@
-Music_Imakuni2_Ch2: ; 1f3411 (7c:7411)
+Music_Imakuni2_Ch2:
 	MainLoop
 	preset 31
 	musicf3
@@ -758,7 +758,7 @@ Branch_1f3762:
 	music_ret
 
 
-Music_Imakuni2_Ch1: ; 1f377a (7c:777a)
+Music_Imakuni2_Ch1:
 	MainLoop
 	preset 9
 	musicf1 103
@@ -1405,7 +1405,7 @@ Branch_1f3a58:
 	music_ret
 
 
-Music_Imakuni2_Ch3: ; 1f3a6c (7c:7a6c)
+Music_Imakuni2_Ch3:
 	speed 1
 	wave 1
 	stereo_panning 15, 15
@@ -2063,7 +2063,7 @@ Branch_1f3d18:
 	music_ret
 
 
-Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
+Music_Imakuni2_Ch4:
 	MainLoop
 	speed 1
 	octave 1
@@ -2524,4 +2524,3 @@ Music_Imakuni2_Ch4: ; 1f3d41 (7c:7d41)
 	speed 1
 	rest 1
 	EndMainLoop
-; 0x1f3f40

@@ -1,4 +1,4 @@
-Music_GRCastle_Ch2: ; 1f213c (7c:613c)
+Music_GRCastle_Ch2:
 	speed 1
 	rest 12
 	preset 8
@@ -894,7 +894,7 @@ Music_GRCastle_Ch2: ; 1f213c (7c:613c)
 	EndMainLoop
 
 
-Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
+Music_GRCastle_Ch1:
 	speed 1
 	rest 12
 	preset 8
@@ -1808,7 +1808,7 @@ Music_GRCastle_Ch1: ; 1f2525 (7c:6525)
 	EndMainLoop
 
 
-Music_GRCastle_Ch3: ; 1f2903 (7c:6903)
+Music_GRCastle_Ch3:
 	wave 1
 	volume 32
 	echo 96
@@ -2436,7 +2436,7 @@ Branch_1f2bbf:
 	music_ret
 
 
-Music_GRCastle_Ch4: ; 1f2bcb (7c:6bcb)
+Music_GRCastle_Ch4:
 	speed 1
 	octave 1
 	stereo_panning 15, 15
@@ -2732,4 +2732,3 @@ Branch_1f2d18:
 	snare3 4
 	snare3 4
 	music_ret
-; 0x1f2d24

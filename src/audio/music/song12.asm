@@ -1,15 +1,14 @@
-Music_Song12_Ch2: ; 1e74d0 (79:74d0)
+Music_Song12_Ch2:
 	music_end
 
 
-Music_Song12_Ch1: ; 1e74d1 (79:74d1)
+Music_Song12_Ch1:
 	music_end
 
 
-Music_Song12_Ch3: ; 1e74d2 (79:74d2)
+Music_Song12_Ch3:
 	music_end
 
 
-Music_Song12_Ch4: ; 1e74d3 (79:74d3)
+Music_Song12_Ch4:
 	music_end
-; 0x1e74d4

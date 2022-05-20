@@ -1,4 +1,4 @@
-Music_Song3B_Ch1: ; 1eb64e (7a:764e)
+Music_Song3B_Ch1:
 	speed 4
 	stereo_panning 1, 1
 	cutoff 8
@@ -9,7 +9,7 @@ Music_Song3B_Ch1: ; 1eb64e (7a:764e)
 	music_end
 
 
-Music_Song3B_Ch2: ; 1eb65b (7a:765b)
+Music_Song3B_Ch2:
 	speed 4
 	stereo_panning 1, 1
 	cutoff 8
@@ -20,7 +20,7 @@ Music_Song3B_Ch2: ; 1eb65b (7a:765b)
 	music_end
 
 
-Music_Song3B_Ch3: ; 1eb668 (7a:7668)
+Music_Song3B_Ch3:
 	speed 4
 	stereo_panning 1, 1
 	wave 1
@@ -32,8 +32,7 @@ Music_Song3B_Ch3: ; 1eb668 (7a:7668)
 	music_end
 
 
-Music_Song3B_Ch4: ; 1eb677 (7a:7677)
+Music_Song3B_Ch4:
 	speed 4
 	snare5 4
 	music_end
-; 0x1eb67b

@@ -1,4 +1,4 @@
-Music_Ditty3_Ch2: ; 1ebe5d (7a:7e5d)
+Music_Ditty3_Ch2:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -20,7 +20,7 @@ Music_Ditty3_Ch2: ; 1ebe5d (7a:7e5d)
 	music_end
 
 
-Music_Ditty3_Ch1: ; 1ebe76 (7a:7e76)
+Music_Ditty3_Ch1:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -44,7 +44,7 @@ Music_Ditty3_Ch1: ; 1ebe76 (7a:7e76)
 	music_end
 
 
-Music_Ditty3_Ch3: ; 1ebe92 (7a:7e92)
+Music_Ditty3_Ch3:
 	wave 5
 	speed 1
 	volume 64
@@ -65,4 +65,3 @@ Music_Ditty3_Ch3: ; 1ebe92 (7a:7e92)
 	volume 128
 	C_ 4
 	music_end
-; 0x1ebeae

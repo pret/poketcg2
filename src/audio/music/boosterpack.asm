@@ -1,4 +1,4 @@
-Music_BoosterPack_Ch2: ; 1ebade (7a:7ade)
+Music_BoosterPack_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -43,7 +43,7 @@ Music_BoosterPack_Ch2: ; 1ebade (7a:7ade)
 	music_end
 
 
-Music_BoosterPack_Ch1: ; 1ebb1c (7a:7b1c)
+Music_BoosterPack_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -87,7 +87,7 @@ Music_BoosterPack_Ch1: ; 1ebb1c (7a:7b1c)
 	music_end
 
 
-Music_BoosterPack_Ch3: ; 1ebb59 (7a:7b59)
+Music_BoosterPack_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -111,4 +111,3 @@ Music_BoosterPack_Ch3: ; 1ebb59 (7a:7b59)
 	tie
 	G_ 6
 	music_end
-; 0x1ebb76

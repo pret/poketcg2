@@ -1,7 +1,7 @@
-NumberOfSongs6: ; 1f1442 (7c:5442)
+NumberOfSongs6:
 	db 60
 
-SongBanks6: ; 1f1443 (7c:5443)
+SongBanks6:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks6: ; 1f1443 (7c:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers6: ; 1f147f (7c:547f)
+SongHeaderPointers6:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -289,21 +289,21 @@ SongHeaderPointers6: ; 1f147f (7c:547f)
 	dw Music_Fort3_Ch3
 	dw Music_Fort3_Ch4
 
-Music_Fort4: ; 1f15c7 (7c:55c7)
+Music_Fort4:
 	db %1111
 	dw Music_Fort4_Ch1
 	dw Music_Fort4_Ch2
 	dw Music_Fort4_Ch3
 	dw Music_Fort4_Ch4
 
-Music_GRCastle: ; 1f15d0 (7c:55d0)
+Music_GRCastle:
 	db %1111
 	dw Music_GRCastle_Ch1
 	dw Music_GRCastle_Ch2
 	dw Music_GRCastle_Ch3
 	dw Music_GRCastle_Ch4
 
-Music_GRChallengeCup: ; 1f15d9 (7c:55d9)
+Music_GRChallengeCup:
 	db %1111
 	dw Music_GRChallengeCup_Ch1
 	dw Music_GRChallengeCup_Ch2
@@ -352,7 +352,7 @@ Music_GRChallengeCup: ; 1f15d9 (7c:55d9)
 	dw Music_Ishihara_Ch3
 	dw Music_Ishihara_Ch4
 
-Music_Imakuni2: ; 1f1618 (7c:5618)
+Music_Imakuni2:
 	db %1111
 	dw Music_Imakuni2_Ch1
 	dw Music_Imakuni2_Ch2

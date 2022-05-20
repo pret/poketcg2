@@ -1,4 +1,4 @@
-Music_GROverworld_Ch2: ; 1ead0d (7a:6d0d)
+Music_GROverworld_Ch2:
 	MainLoop
 	music_call Branch_1eae1e
 	A# 16
@@ -392,7 +392,7 @@ Branch_1eae1e:
 	music_ret
 
 
-Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
+Music_GROverworld_Ch1:
 	speed 1
 	rest 16
 	MainLoop
@@ -1495,7 +1495,7 @@ Music_GROverworld_Ch1: ; 1eaeaf (7a:6eaf)
 	EndMainLoop
 
 
-Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
+Music_GROverworld_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -1951,7 +1951,7 @@ Music_GROverworld_Ch3: ; 1eb3d6 (7a:73d6)
 	music_end
 
 
-Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
+Music_GROverworld_Ch4:
 	speed 1
 	rest 16
 	MainLoop
@@ -2032,4 +2032,3 @@ Music_GROverworld_Ch4: ; 1eb5e4 (7a:75e4)
 	snare5 12
 	rest 12
 	EndMainLoop
-; 0x1eb64e

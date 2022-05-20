@@ -1,4 +1,4 @@
-Music_Medal_Ch2: ; 1ebb76 (7a:7b76)
+Music_Medal_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -60,7 +60,7 @@ Music_Medal_Ch2: ; 1ebb76 (7a:7b76)
 	music_end
 
 
-Music_Medal_Ch1: ; 1ebbc7 (7a:7bc7)
+Music_Medal_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -121,7 +121,7 @@ Music_Medal_Ch1: ; 1ebbc7 (7a:7bc7)
 	music_end
 
 
-Music_Medal_Ch3: ; 1ebc17 (7a:7c17)
+Music_Medal_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -153,4 +153,3 @@ Music_Medal_Ch3: ; 1ebc17 (7a:7c17)
 	speed 1
 	A_ 2
 	music_end
-; 0x1ebc42

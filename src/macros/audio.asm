@@ -255,6 +255,10 @@ MACRO sfx_8
 	db $80, \1
 ENDM
 
+MACRO sfx_9
+	db $90, \1
+ENDM
+
 MACRO sfx_end
 	db $f0
 ENDM

@@ -88,6 +88,10 @@ ROMX $7c
 	"Audio 6"
 ROMX $7d
 	"Audio 7"
+ROMX $7e
+	"Audio 8"
+ROMX $7f
+	"Audio 9"
 WRAM0
 	"WRAM0"
 	"WRAM0 Duels 1"

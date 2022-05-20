@@ -1,4 +1,4 @@
-Music_Ditty4_Ch2: ; 1ebeae (7a:7eae)
+Music_Ditty4_Ch2:
 	preset 0
 	speed 1
 	stereo_panning 15, 15
@@ -22,7 +22,7 @@ Music_Ditty4_Ch2: ; 1ebeae (7a:7eae)
 	music_end
 
 
-Music_Ditty4_Ch1: ; 1ebec7 (7a:7ec7)
+Music_Ditty4_Ch1:
 	preset 0
 	speed 1
 	stereo_panning 15, 15
@@ -46,7 +46,7 @@ Music_Ditty4_Ch1: ; 1ebec7 (7a:7ec7)
 	music_end
 
 
-Music_Ditty4_Ch3: ; 1ebee0 (7a:7ee0)
+Music_Ditty4_Ch3:
 	wave 4
 	speed 1
 	volume 64
@@ -65,4 +65,3 @@ Music_Ditty4_Ch3: ; 1ebee0 (7a:7ee0)
 	tie
 	F_ 6
 	music_end
-; 0x1ebefa

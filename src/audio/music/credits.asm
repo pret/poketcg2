@@ -1,4 +1,4 @@
-Music_Credits_Ch2: ; 1de32a (77:632a)
+Music_Credits_Ch2:
 	duty 2
 	volume 247
 	speed 1
@@ -1704,7 +1704,7 @@ Music_Credits_Ch2: ; 1de32a (77:632a)
 	music_end
 
 
-Music_Credits_Ch1: ; 1deabb (77:6abb)
+Music_Credits_Ch1:
 	duty 2
 	volume 199
 	speed 1
@@ -4041,7 +4041,7 @@ Music_Credits_Ch1: ; 1deabb (77:6abb)
 	music_end
 
 
-Music_Credits_Ch3: ; 1df4a3 (77:74a3)
+Music_Credits_Ch3:
 	wave 6
 	stereo_panning 15, 15
 	speed 1
@@ -5562,7 +5562,7 @@ Branch_1dfb57:
 	music_ret
 
 
-Music_Credits_Ch4: ; 1dfbb7 (77:7bb7)
+Music_Credits_Ch4:
 	octave 1
 	stereo_panning 15, 15
 	speed 4
@@ -5931,4 +5931,3 @@ Branch_1dfd8d:
 	snare1 15
 	snare4 14
 	music_ret
-; 0x1dfd99

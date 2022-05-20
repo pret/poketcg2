@@ -1,4 +1,4 @@
-Music_GRDuelTheme2_Ch2: ; 1ef1ec (7b:71ec)
+Music_GRDuelTheme2_Ch2:
 	preset 0
 	octave 3
 	speed 1
@@ -976,7 +976,7 @@ Branch_1ef628:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch1: ; 1ef634 (7b:7634)
+Music_GRDuelTheme2_Ch1:
 	preset 9
 	octave 2
 	speed 1
@@ -1912,7 +1912,7 @@ Branch_1efa62:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch3: ; 1efa74 (7b:7a74)
+Music_GRDuelTheme2_Ch3:
 	wave 5
 	speed 1
 	volume 32
@@ -2736,7 +2736,7 @@ Branch_1efdd9:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch4: ; 1efdf4 (7b:7df4)
+Music_GRDuelTheme2_Ch4:
 	octave 1
 	speed 1
 	snare4 14
@@ -3134,4 +3134,3 @@ Branch_1effeb:
 	bass 7
 	snare4 13
 	music_ret
-; 0x1efff9

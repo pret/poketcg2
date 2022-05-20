@@ -1,4 +1,4 @@
-Music_MatchStart3_Ch1: ; 1eb77a (7a:777a)
+Music_MatchStart3_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -163,7 +163,7 @@ Music_MatchStart3_Ch1: ; 1eb77a (7a:777a)
 	music_end
 
 
-Music_MatchStart3_Ch2: ; 1eb825 (7a:7825)
+Music_MatchStart3_Ch2:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -322,4 +322,3 @@ Music_MatchStart3_Ch2: ; 1eb825 (7a:7825)
 	C_ 1
 	dec_octave
 	music_end
-; 0x1eb8cc

@@ -1,4 +1,4 @@
-Music_DeckMachine_Ch2: ; 1e3486 (78:7486)
+Music_DeckMachine_Ch2:
 	stereo_panning 1, 1
 	cutoff 8
 	duty 3
@@ -53,7 +53,7 @@ Music_DeckMachine_Ch2: ; 1e3486 (78:7486)
 	EndMainLoop
 
 
-Music_DeckMachine_Ch1: ; 1e34d6 (78:74d6)
+Music_DeckMachine_Ch1:
 	stereo_panning 1, 1
 	cutoff 8
 	duty 1
@@ -97,7 +97,7 @@ Music_DeckMachine_Ch1: ; 1e34d6 (78:74d6)
 	EndMainLoop
 
 
-Music_DeckMachine_Ch3: ; 1e3510 (78:7510)
+Music_DeckMachine_Ch3:
 	stereo_panning 1, 1
 	volume 32
 	wave 1
@@ -224,7 +224,7 @@ Music_DeckMachine_Ch3: ; 1e3510 (78:7510)
 	EndMainLoop
 
 
-Music_DeckMachine_Ch4: ; 1e35ad (78:75ad)
+Music_DeckMachine_Ch4:
 	speed 1
 	octave 1
 	MainLoop
@@ -255,4 +255,3 @@ Branch_1e35c6:
 	bass 7
 	snare3 8
 	music_ret
-; 0x1e35cf

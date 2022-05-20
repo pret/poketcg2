@@ -1,4 +1,4 @@
-Music_HereComesGR_Ch2: ; 1ea368 (7a:6368)
+Music_HereComesGR_Ch2:
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
@@ -642,7 +642,7 @@ Branch_1ea66f:
 	music_ret
 
 
-Music_HereComesGR_Ch1: ; 1ea67f (7a:667f)
+Music_HereComesGR_Ch1:
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
@@ -1207,7 +1207,7 @@ Branch_1ea90c:
 	music_ret
 
 
-Music_HereComesGR_Ch3: ; 1ea934 (7a:6934)
+Music_HereComesGR_Ch3:
 	speed 1
 	wave 1
 	volume 32
@@ -1693,7 +1693,7 @@ Branch_1eaaf6:
 	music_ret
 
 
-Music_HereComesGR_Ch4: ; 1eab4d (7a:6b4d)
+Music_HereComesGR_Ch4:
 	MainLoop
 	speed 1
 	octave 1
@@ -2091,4 +2091,3 @@ Branch_1ead02:
 	snare3 11
 	snare1 10
 	music_ret
-; 0x1ead0d

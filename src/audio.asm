@@ -21,3 +21,9 @@ INCLUDE "audio/music6.asm"
 
 SECTION "Audio 7", ROMX
 INCLUDE "audio/music7.asm"
+
+SECTION "Audio 8", ROMX
+INCLUDE "audio/sfx1.asm"
+
+SECTION "Audio 9", ROMX
+INCLUDE "audio/sfx2.asm"

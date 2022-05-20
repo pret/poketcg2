@@ -1,4 +1,4 @@
-Music_HallOfHonor_Ch2: ; 1e72bc (79:72bc)
+Music_HallOfHonor_Ch2:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -92,7 +92,7 @@ Branch_1e7316:
 	music_ret
 
 
-Music_HallOfHonor_Ch1: ; 1e7340 (79:7340)
+Music_HallOfHonor_Ch1:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -170,7 +170,7 @@ Branch_1e738d:
 	music_ret
 
 
-Music_HallOfHonor_Ch3: ; 1e73a7 (79:73a7)
+Music_HallOfHonor_Ch3:
 	speed 7
 	volume 64
 	stereo_panning 1, 1
@@ -395,4 +395,3 @@ Branch_1e74be:
 	G_ 1
 	rest 1
 	music_ret
-; 0x1e74d0

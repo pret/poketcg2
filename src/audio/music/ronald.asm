@@ -1,4 +1,4 @@
-Music_Ronald_Ch2: ; 1e6a72 (79:6a72)
+Music_Ronald_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 12
@@ -507,7 +507,7 @@ Branch_1e6cbe:
 	music_ret
 
 
-Music_Ronald_Ch1: ; 1e6ce0 (79:6ce0)
+Music_Ronald_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 8
 	vibrato_delay 12
@@ -849,7 +849,7 @@ Branch_1e6e83:
 	music_ret
 
 
-Music_Ronald_Ch3: ; 1e6e92 (79:6e92)
+Music_Ronald_Ch3:
 	speed 1
 	stereo_panning 1, 1
 	volume 32
@@ -1124,7 +1124,7 @@ Branch_1e6f97:
 	music_ret
 
 
-Music_Ronald_Ch4: ; 1e6fb2 (79:6fb2)
+Music_Ronald_Ch4:
 	speed 1
 	octave 1
 	MainLoop
@@ -1214,4 +1214,3 @@ Branch_1e7021:
 	snare1 13
 	bass 6
 	music_ret
-; 0x1e7027

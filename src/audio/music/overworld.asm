@@ -1,4 +1,4 @@
-Music_Overworld_Ch2: ; 1e3735 (78:7735)
+Music_Overworld_Ch2:
 	speed 7
 	duty 0
 	stereo_panning 1, 1
@@ -279,7 +279,7 @@ Branch_1e388a:
 	music_ret
 
 
-Music_Overworld_Ch1: ; 1e38c3 (78:78c3)
+Music_Overworld_Ch1:
 	speed 7
 	duty 0
 	stereo_panning 1, 1
@@ -744,7 +744,7 @@ Branch_1e3ac4:
 	music_ret
 
 
-Music_Overworld_Ch3: ; 1e3b30 (78:7b30)
+Music_Overworld_Ch3:
 	speed 7
 	stereo_panning 1, 1
 	volume 32
@@ -1380,7 +1380,7 @@ Branch_1e3db5:
 	music_ret
 
 
-Music_Overworld_Ch4: ; 1e3e3e (78:7e3e)
+Music_Overworld_Ch4:
 	speed 7
 	octave 1
 	music_call Branch_1e3e7d
@@ -1464,4 +1464,3 @@ Branch_1e3e99:
 	snare1 2
 	snare1 1
 	music_ret
-; 0x1e3ea8

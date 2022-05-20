@@ -1,4 +1,4 @@
-Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
+Music_GRChallengeCup_Ch2:
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
@@ -472,7 +472,7 @@ Music_GRChallengeCup_Ch2: ; 1f2d24 (7c:6d24)
 	EndMainLoop
 
 
-Music_GRChallengeCup_Ch1: ; 1f2f36 (7c:6f36)
+Music_GRChallengeCup_Ch1:
 	MainLoop
 	speed 1
 	stereo_panning 1, 1
@@ -907,7 +907,7 @@ Branch_1f3150:
 	music_ret
 
 
-Music_GRChallengeCup_Ch3: ; 1f315d (7c:715d)
+Music_GRChallengeCup_Ch3:
 	speed 1
 	wave 1
 	volume 32
@@ -1290,7 +1290,7 @@ Branch_1f333b:
 	music_ret
 
 
-Music_GRChallengeCup_Ch4: ; 1f3349 (7c:7349)
+Music_GRChallengeCup_Ch4:
 	speed 1
 	octave 1
 	rest 16
@@ -1452,4 +1452,3 @@ Branch_1f33fd:
 	snare4 8
 	snare1 7
 	music_ret
-; 0x1f3411

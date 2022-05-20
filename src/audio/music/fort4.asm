@@ -1,4 +1,4 @@
-Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
+Music_Fort4_Ch2:
 	preset 22
 	speed 1
 	stereo_panning 15, 15
@@ -298,7 +298,7 @@ Music_Fort4_Ch2: ; 1f16cc (7c:56cc)
 	EndMainLoop
 
 
-Music_Fort4_Ch1: ; 1f1852 (7c:5852)
+Music_Fort4_Ch1:
 	volume 241
 	duty 2
 	musicee 28
@@ -1229,7 +1229,7 @@ Branch_1f1c97:
 	music_ret
 
 
-Music_Fort4_Ch3: ; 1f1caa (7c:5caa)
+Music_Fort4_Ch3:
 	wave 1
 	volume 32
 	echo 96
@@ -1989,7 +1989,7 @@ Branch_1f1ff8:
 	music_ret
 
 
-Music_Fort4_Ch4: ; 1f204f (7c:604f)
+Music_Fort4_Ch4:
 	speed 8
 	rest 2
 	MainLoop
@@ -2193,4 +2193,3 @@ Branch_1f2131:
 	noise2 2
 	snare4 2
 	music_ret
-; 0x1f213c

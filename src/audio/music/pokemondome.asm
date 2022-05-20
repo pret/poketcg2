@@ -1,4 +1,4 @@
-Music_PokemonDome_Ch2: ; 1e60f1 (79:60f1)
+Music_PokemonDome_Ch2:
 	speed 7
 	stereo_panning 1, 1
 	vibrato_type 9
@@ -305,7 +305,7 @@ Music_PokemonDome_Ch2: ; 1e60f1 (79:60f1)
 	EndMainLoop
 
 
-Music_PokemonDome_Ch1: ; 1e6294 (79:6294)
+Music_PokemonDome_Ch1:
 	speed 7
 	stereo_panning 1, 1
 	vibrato_type 9
@@ -614,7 +614,7 @@ Branch_1e63f0:
 	music_ret
 
 
-Music_PokemonDome_Ch3: ; 1e6415 (79:6415)
+Music_PokemonDome_Ch3:
 	speed 7
 	stereo_panning 1, 1
 	volume 32
@@ -768,7 +768,7 @@ Branch_1e64af:
 	music_ret
 
 
-Music_PokemonDome_Ch4: ; 1e64c5 (79:64c5)
+Music_PokemonDome_Ch4:
 	speed 7
 	octave 1
 	snare5 8
@@ -792,4 +792,3 @@ Music_PokemonDome_Ch4: ; 1e64c5 (79:64c5)
 	snare2 3
 	EndLoop
 	EndMainLoop
-; 0x1e64e2

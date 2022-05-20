@@ -1,4 +1,4 @@
-Music_PauseMenu_Ch1: ; 1e2f4d (78:6f4d)
+Music_PauseMenu_Ch1:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -278,7 +278,7 @@ Branch_1e307f:
 	music_ret
 
 
-Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
+Music_PauseMenu_Ch2:
 	speed 7
 	stereo_panning 1, 1
 	cutoff 8
@@ -432,7 +432,7 @@ Music_PauseMenu_Ch2: ; 1e30e4 (78:70e4)
 	EndMainLoop
 
 
-Music_PauseMenu_Ch3: ; 1e31c3 (78:71c3)
+Music_PauseMenu_Ch3:
 	speed 1
 	wave 3
 	stereo_panning 1, 1
@@ -544,7 +544,7 @@ Music_PauseMenu_Ch3: ; 1e31c3 (78:71c3)
 	EndMainLoop
 
 
-Music_PauseMenu_Ch4: ; 1e325e (78:725e)
+Music_PauseMenu_Ch4:
 	speed 7
 	octave 1
 	MainLoop
@@ -580,4 +580,3 @@ Music_PauseMenu_Ch4: ; 1e325e (78:725e)
 	EndLoop
 	EndLoop
 	EndMainLoop
-; 0x1e3287

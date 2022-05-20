@@ -1,4 +1,4 @@
-Music_DuelTheme3_Ch2: ; 1e2737 (78:6737)
+Music_DuelTheme3_Ch2:
 	speed 11
 	stereo_panning 1, 1
 	vibrato_type 8
@@ -473,7 +473,7 @@ Branch_1e29b3:
 	music_ret
 
 
-Music_DuelTheme3_Ch1: ; 1e29df (78:69df)
+Music_DuelTheme3_Ch1:
 	speed 11
 	stereo_panning 1, 1
 	vibrato_type 8
@@ -907,7 +907,7 @@ Branch_1e2bfc:
 	music_ret
 
 
-Music_DuelTheme3_Ch3: ; 1e2c58 (78:6c58)
+Music_DuelTheme3_Ch3:
 	speed 11
 	stereo_panning 1, 1
 	volume 32
@@ -1218,7 +1218,7 @@ Branch_1e2d86:
 	music_ret
 
 
-Music_DuelTheme3_Ch4: ; 1e2dd5 (78:6dd5)
+Music_DuelTheme3_Ch4:
 	speed 11
 	MainLoop
 	Loop 2
@@ -1525,4 +1525,3 @@ Branch_1e2f30:
 	snare1 1
 	EndLoop
 	music_ret
-; 0x1e2f4d

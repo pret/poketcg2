@@ -1,7 +1,7 @@
-NumberOfSongs4: ; 1e9442 (7a:5442)
+NumberOfSongs4:
 	db 60
 
-SongBanks4: ; 1e9443 (7a:5443)
+SongBanks4:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks4: ; 1e9443 (7a:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers4: ; 1e947f (7a:547f)
+SongHeaderPointers4:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -128,7 +128,7 @@ SongHeaderPointers4: ; 1e947f (7a:547f)
 ;Music_Stop
 	db %0000
 
-Music_TitleScreen: ; 1e94f8 (7a:54f8)
+Music_TitleScreen:
 	db %1111
 	dw Music_TitleScreen_Ch1
 	dw Music_TitleScreen_Ch2
@@ -254,14 +254,14 @@ Music_TitleScreen: ; 1e94f8 (7a:54f8)
 	dw Music_Song12_Ch3
 	dw Music_Song12_Ch4
 
-Music_HereComesGR: ; 1e959a (7a:559a)
+Music_HereComesGR:
 	db %1111
 	dw Music_HereComesGR_Ch1
 	dw Music_HereComesGR_Ch2
 	dw Music_HereComesGR_Ch3
 	dw Music_HereComesGR_Ch4
 
-Music_GROverworld: ; 1e95a3 (7a:55a3)
+Music_GROverworld:
 	db %1111
 	dw Music_GROverworld_Ch1
 	dw Music_GROverworld_Ch2
@@ -373,115 +373,115 @@ Music_GROverworld: ; 1e95a3 (7a:55a3)
 	dw $0000
 	dw $0000
 
-Music_Song37: ; 1e9633 (7a:5633)
-Music_Song38: ; 1e9633 (7a:5633)
-Music_Song39: ; 1e9633 (7a:5633)
-Music_Song3B: ; 1e9633 (7a:5633)
+Music_Song37:
+Music_Song38:
+Music_Song39:
+Music_Song3B:
 	db %1111
 	dw Music_Song3B_Ch1
 	dw Music_Song3B_Ch2
 	dw Music_Song3B_Ch3
 	dw Music_Song3B_Ch4
 
-Music_MatchStart1: ; 1e963c (7a:563c)
+Music_MatchStart1:
 	db %0001
 	dw Music_MatchStart1_Ch1
 	dw $0000
 	dw $0000
 	dw $0000
 
-Music_MatchStart2: ; 1e9645 (7a:5645)
+Music_MatchStart2:
 	db %0011
 	dw Music_MatchStart2_Ch1
 	dw Music_MatchStart2_Ch2
 	dw $0000
 	dw $0000
 
-Music_MatchStart3: ; 1e964e (7a:564e)
+Music_MatchStart3:
 	db %0011
 	dw Music_MatchStart3_Ch1
 	dw Music_MatchStart3_Ch2
 	dw $0000
 	dw $0000
 
-Music_MatchVictory: ; 1e9657 (7a:5657)
+Music_MatchVictory:
 	db %0111
 	dw Music_MatchVictory_Ch1
 	dw Music_MatchVictory_Ch2
 	dw Music_MatchVictory_Ch3
 	dw $0000
 
-Music_MatchLoss: ; 1e9660 (7a:5660)
+Music_MatchLoss:
 	db %0111
 	dw Music_MatchLoss_Ch1
 	dw Music_MatchLoss_Ch2
 	dw Music_MatchLoss_Ch3
 	dw $0000
 
-Music_MatchDraw: ; 1e9669 (7a:5669)
+Music_MatchDraw:
 	db %0111
 	dw Music_MatchDraw_Ch1
 	dw Music_MatchDraw_Ch2
 	dw Music_MatchDraw_Ch3
 	dw $0000
 
-Music_Unused2E: ; 1e9672 (7a:5672)
+Music_Unused2E:
 	db %0000
 	dw $0000
 	dw $0000
 	dw $0000
 	dw $0000
 
-Music_BoosterPack: ; 1e967b (7a:567b)
+Music_BoosterPack:
 	db %0111
 	dw Music_BoosterPack_Ch1
 	dw Music_BoosterPack_Ch2
 	dw Music_BoosterPack_Ch3
 	dw $0000
 
-Music_Medal: ; 1e9684 (7a:5684)
+Music_Medal:
 	db %0111
 	dw Music_Medal_Ch1
 	dw Music_Medal_Ch2
 	dw Music_Medal_Ch3
 	dw $0000
 
-Music_Unused31: ; 1e968d (7a:568d)
+Music_Unused31:
 	db %0000
 	dw $0000
 	dw $0000
 	dw $0000
 	dw $0000
 
-Music_Ditty1: ; 1e9696 (7a:5696)
+Music_Ditty1:
 	db %0111
 	dw Music_Ditty1_Ch1
 	dw Music_Ditty1_Ch2
 	dw Music_Ditty1_Ch3
 	dw $0000
 
-Music_Ditty2: ; 1e969f (7a:569f)
+Music_Ditty2:
 	db %0111
 	dw Music_Ditty2_Ch1
 	dw Music_Ditty2_Ch2
 	dw Music_Ditty2_Ch3
 	dw $0000
 
-Music_Ditty3: ; 1e96a8 (7a:56a8)
+Music_Ditty3:
 	db %0111
 	dw Music_Ditty3_Ch1
 	dw Music_Ditty3_Ch2
 	dw Music_Ditty3_Ch3
 	dw $0000
 
-Music_Ditty4: ; 1e96b1 (7a:56b1)
+Music_Ditty4:
 	db %0111
 	dw Music_Ditty4_Ch1
 	dw Music_Ditty4_Ch2
 	dw Music_Ditty4_Ch3
 	dw $0000
 
-Music_Ditty5: ; 1e96ba (7a:56ba)
+Music_Ditty5:
 	db %0011
 	dw Music_Ditty5_Ch1
 	dw Music_Ditty5_Ch2

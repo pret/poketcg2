@@ -823,14 +823,14 @@ wAudio_d005:: ; d005
 wSfxPriority:: ; d006
 	ds $1
 
-; sfx bank?
-wAudio_d007:: ; d007
+wCurSfxBank:: ; d007
 	ds $1
 
 ; 8-bit output enable mask for left/right output for each channel
 wMusicStereoPanning:: ; d008
 	ds $1
 
+wdd85:: ; d009
 	ds $1
 
 wMusicDuty1:: ; d00a
@@ -1006,7 +1006,44 @@ wMusicCh3Stack:: ; d0ab
 wMusicCh4Stack:: ; d0b7
 	ds $c
 
-	ds $2b
+wde2b:: ; d0c3
+	ds $3
+
+wde2e:: ; d0c6
+	ds $1
+
+wde2f:: ; d0c7
+	ds $3
+
+wde32:: ; d0ca
+	ds $1
+
+wde33:: ; d0cb
+	ds $4
+
+wde37:: ; d0cf
+	ds $6
+
+wde3d:: ; d0d5
+	ds $2
+
+wde3f:: ; d0d7
+	ds $4
+
+wde43:: ; d0db
+	ds $8
+
+wde4b:: ; d0e3
+	ds $8
+
+wde53:: ; d0eb
+	ds $1
+
+wde54:: ; d0ec
+	ds $1
+
+wAudio_d0ed:: ; d0ed
+	ds $1
 
 wCurSongIDBackup:: ; d0ee
 	ds $1

@@ -1,4 +1,4 @@
-Music_CardPop_Ch2: ; 1e35cf (78:75cf)
+Music_CardPop_Ch2:
 	speed 4
 	stereo_panning 1, 1
 	cutoff 8
@@ -119,7 +119,7 @@ Music_CardPop_Ch2: ; 1e35cf (78:75cf)
 	EndMainLoop
 
 
-Music_CardPop_Ch1: ; 1e3674 (78:7674)
+Music_CardPop_Ch1:
 	speed 4
 	stereo_panning 1, 1
 	cutoff 8
@@ -205,7 +205,7 @@ Music_CardPop_Ch1: ; 1e3674 (78:7674)
 	EndMainLoop
 
 
-Music_CardPop_Ch3: ; 1e36cf (78:76cf)
+Music_CardPop_Ch3:
 	speed 4
 	wave 1
 	stereo_panning 1, 1
@@ -265,7 +265,7 @@ Branch_1e3701:
 	music_ret
 
 
-Music_CardPop_Ch4: ; 1e3712 (78:7712)
+Music_CardPop_Ch4:
 	speed 4
 	octave 1
 	Loop 11
@@ -296,4 +296,3 @@ Branch_1e372b:
 	bass 2
 	snare1 2
 	music_ret
-; 0x1e3735

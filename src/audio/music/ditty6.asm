@@ -1,4 +1,4 @@
-Music_Ditty6_Ch2: ; 1f76dc (7d:76dc)
+Music_Ditty6_Ch2:
 	preset 34
 	speed 1
 	stereo_panning 15, 15
@@ -76,7 +76,7 @@ Music_Ditty6_Ch2: ; 1f76dc (7d:76dc)
 	music_end
 
 
-Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
+Music_Ditty6_Ch1:
 	preset 23
 	speed 1
 	stereo_panning 15, 15
@@ -223,7 +223,7 @@ Music_Ditty6_Ch1: ; 1f7731 (7d:7731)
 	music_end
 
 
-Music_Ditty6_Ch3: ; 1f77cf (7d:77cf)
+Music_Ditty6_Ch3:
 	wave 5
 	volume 32
 	echo 96
@@ -280,7 +280,7 @@ Music_Ditty6_Ch3: ; 1f77cf (7d:77cf)
 	music_end
 
 
-Music_Ditty6_Ch4: ; 1f7812 (7d:7812)
+Music_Ditty6_Ch4:
 	octave 1
 	speed 1
 	stereo_panning 15, 15
@@ -309,4 +309,3 @@ Music_Ditty6_Ch4: ; 1f7812 (7d:7812)
 	speed 7
 	snare5 12
 	music_end
-; 0x1f783b

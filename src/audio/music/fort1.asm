@@ -1,4 +1,4 @@
-Music_Fort1_Ch2: ; 1ed6cc (7b:56cc)
+Music_Fort1_Ch2:
 	speed 1
 	stereo_panning 1, 1
 	preset 16
@@ -457,7 +457,7 @@ Branch_1ed8a8:
 	music_ret
 
 
-Music_Fort1_Ch1: ; 1ed8cd (7b:58cd)
+Music_Fort1_Ch1:
 	speed 1
 	duty 0
 	volume 144
@@ -994,7 +994,7 @@ Branch_1edb5a:
 	music_ret
 
 
-Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
+Music_Fort1_Ch3:
 	speed 1
 	wave 4
 	volume 32
@@ -1587,7 +1587,7 @@ Music_Fort1_Ch3: ; 1edb66 (7b:5b66)
 	EndMainLoop
 
 
-Music_Fort1_Ch4: ; 1ede26 (7b:5e26)
+Music_Fort1_Ch4:
 	speed 1
 	rest 1
 	octave 1
@@ -1765,4 +1765,3 @@ Branch_1edeef:
 	snare2 16
 	snare4 15
 	music_ret
-; 0x1edefc

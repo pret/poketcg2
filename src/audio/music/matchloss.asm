@@ -1,4 +1,4 @@
-Music_MatchLoss_Ch2: ; 1eb999 (7a:7999)
+Music_MatchLoss_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -64,7 +64,7 @@ Music_MatchLoss_Ch2: ; 1eb999 (7a:7999)
 	music_end
 
 
-Music_MatchLoss_Ch1: ; 1eb9f2 (7a:79f2)
+Music_MatchLoss_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 5
 	vibrato_delay 20
@@ -86,7 +86,7 @@ Music_MatchLoss_Ch1: ; 1eb9f2 (7a:79f2)
 	music_end
 
 
-Music_MatchLoss_Ch3: ; 1eba10 (7a:7a10)
+Music_MatchLoss_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -125,4 +125,3 @@ Music_MatchLoss_Ch3: ; 1eba10 (7a:7a10)
 	cutoff 8
 	F_ 12
 	music_end
-; 0x1eba48

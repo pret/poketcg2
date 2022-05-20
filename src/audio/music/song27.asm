@@ -1,4 +1,4 @@
-Music_Song27_Ch1: ; 1e3ea8 (78:7ea8)
+Music_Song27_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
@@ -9,4 +9,3 @@ Music_Song27_Ch1: ; 1e3ea8 (78:7ea8)
 	E_ 1
 	G_ 16
 	music_end
-; 0x1e3eb7

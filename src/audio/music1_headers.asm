@@ -1,7 +1,7 @@
-NumberOfSongs1: ; 1dd442 (77:5442)
+NumberOfSongs1:
 	db 60
 
-SongBanks1: ; 1dd443 (77:5443)
+SongBanks1:
 	db BANK(Music_Stop)
 	db BANK(Music_TitleScreen)
 	db BANK(Music_DuelTheme1)
@@ -63,7 +63,7 @@ SongBanks1: ; 1dd443 (77:5443)
 	db BANK(Music_Ditty6)
 	db BANK(Music_Song3B)
 
-SongHeaderPointers1: ; 1dd47f (77:547f)
+SongHeaderPointers1:
 	dw Music_Stop
 	dw Music_TitleScreen
 	dw Music_DuelTheme1
@@ -345,7 +345,7 @@ SongHeaderPointers1: ; 1dd47f (77:547f)
 	dw Music_GRDuelTheme3_Ch3
 	dw Music_GRDuelTheme3_Ch4
 
-Music_Ishihara: ; 1dd60f (77:560f)
+Music_Ishihara:
 	db %1111
 	dw Music_Ishihara_Ch1
 	dw Music_Ishihara_Ch2
@@ -359,7 +359,7 @@ Music_Ishihara: ; 1dd60f (77:560f)
 	dw Music_Imakuni2_Ch3
 	dw Music_Imakuni2_Ch4
 
-Music_Credits: ; 1dd621 (77:5621)
+Music_Credits:
 	db %1111
 	dw Music_Credits_Ch1
 	dw Music_Credits_Ch2

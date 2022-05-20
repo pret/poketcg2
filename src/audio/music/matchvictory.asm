@@ -1,4 +1,4 @@
-Music_MatchVictory_Ch2: ; 1eb8cc (7a:78cc)
+Music_MatchVictory_Ch2:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -53,7 +53,7 @@ Music_MatchVictory_Ch2: ; 1eb8cc (7a:78cc)
 	music_end
 
 
-Music_MatchVictory_Ch1: ; 1eb91b (7a:791b)
+Music_MatchVictory_Ch1:
 	stereo_panning 1, 1
 	vibrato_type 1
 	vibrato_delay 20
@@ -116,7 +116,7 @@ Music_MatchVictory_Ch1: ; 1eb91b (7a:791b)
 	music_end
 
 
-Music_MatchVictory_Ch3: ; 1eb974 (7a:7974)
+Music_MatchVictory_Ch3:
 	stereo_panning 1, 1
 	wave 1
 	volume 32
@@ -147,4 +147,3 @@ Music_MatchVictory_Ch3: ; 1eb974 (7a:7974)
 	speed 8
 	A_ 12
 	music_end
-; 0x1eb999

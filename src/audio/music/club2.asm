@@ -1,4 +1,4 @@
-Music_Club2_Ch2: ; 1f56cc (7d:56cc)
+Music_Club2_Ch2:
 	speed 6
 	duty 2
 	stereo_panning 1, 1
@@ -92,7 +92,7 @@ Music_Club2_Ch2: ; 1f56cc (7d:56cc)
 	EndMainLoop
 
 
-Music_Club2_Ch1: ; 1f5738 (7d:5738)
+Music_Club2_Ch1:
 	speed 6
 	duty 2
 	stereo_panning 1, 1
@@ -206,7 +206,7 @@ Music_Club2_Ch1: ; 1f5738 (7d:5738)
 	EndMainLoop
 
 
-Music_Club2_Ch3: ; 1f57b9 (7d:57b9)
+Music_Club2_Ch3:
 	speed 6
 	volume 32
 	stereo_panning 1, 1
@@ -347,4 +347,3 @@ Branch_1f5848:
 	B_ 2
 	cutoff 6
 	music_ret
-; 0x1f5865

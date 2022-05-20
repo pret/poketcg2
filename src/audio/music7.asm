@@ -135,7 +135,7 @@ Music7_Init:
 	ld a, $78
 	ld [wCurSongBank], a
 	ld a, $7e
-	ld [wAudio_d007], a
+	ld [wCurSfxBank], a
 	ld a, $80
 	ld [wCurSongID], a
 	swap a
@@ -144,7 +144,7 @@ Music7_Init:
 	ld [wMusicPanning], a
 	xor a
 	ld [wdd8c], a
-	ld [$d0eb], a ; wde53?
+	ld [wde53], a
 	ld [wMusicWaveChange], a
 	ld [wddef], a
 	ld [wddf0], a
@@ -198,7 +198,7 @@ Music7_Update:
 	call Music7_LoadAudioWRAMBank2
 	call Music7_EmptyFunc
 	call Music7_CheckForNewSound
-	ld hl, $4003 ; SFX_UpdateSFX
+	ld hl, SFX_UpdateSFX
 	call Bankswitch78To7e
 	ld a, [wCurSongBank]
 	ldh [hBankROM], a
@@ -241,7 +241,7 @@ Music7_CheckForNewSound:
 	bit 1, a
 	jr z, .no_new_sound
 	ld a, [wCurSfxID]
-	ld hl, $4000 ; SFX_PlaySFX
+	ld hl, SFX_PlaySFX
 	call Bankswitch78To7e
 	ld a, $1
 	ld [wAudio_d005], a
