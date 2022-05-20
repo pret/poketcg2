@@ -76,6 +76,18 @@ ROMX $48
 	"Text 17"
 ROMX $77
 	"Audio 1"
+ROMX $78
+	"Audio 2"
+ROMX $79
+	"Audio 3"
+ROMX $7a
+	"Audio 4"
+ROMX $7b
+	"Audio 5"
+ROMX $7c
+	"Audio 6"
+ROMX $7d
+	"Audio 7"
 WRAM0
 	"WRAM0"
 	"WRAM0 Duels 1"
