@@ -1,6 +1,6 @@
 DeckPointers: ; 594AC (16:54ac)
-	dw PoisonStormDeck
-	dw StrangePsyshockDeck
+	dw UnknownPoisonStormDeck
+	dw GB1StrangePsyshockDeck
 	dw SamsPracticeDeck
 	dw PlayerPracticeDeck
 	dw StarterDeck
@@ -15,12 +15,12 @@ DeckPointers: ; 594AC (16:54ac)
 	dw AaronsStep2Deck
 	dw AaronPracticeDeck3
 	dw AaronsStep3Deck
-	dw AaronNormalDeck ; BrickWalkDeck
-	dw AaronNormalDeck2 ; BenchTrapDeck
+	dw BrickWalkDeck
+	dw BenchTrapDeck
 	dw SkySparkDeck
-	dw ElectricSuicideDeck
+	dw ElectricSelfdestructDeck
 	dw OverflowDeck
-	dw TripleThunderDeck
+	dw TripleZapdosDeck
 	dw ILovePikachuDeck
 	dw TenThousandVoltsDeck
 	dw HandOverGRDeck
@@ -32,13 +32,13 @@ DeckPointers: ; 594AC (16:54ac)
 	dw RollingStoneDeck
 	dw GreatEarthquakeDeck
 	dw AwesomeFossilDeck
-	dw WavesPunchDeck
+	dw RagingBillowOfFistsDeck
 	dw YouCanDoItMachopDeck
 	dw NewMachokeDeck
 	dw SkilledWarriorDeck
 	dw ILoveToFightDeck
 	dw MaxEnergyDeck
-	dw PoisonBeeDeck
+	dw RemainingGreenDeck
 	dw PoisonCurseDeck
 	dw GlitteringScalesDeck
 	dw SteadyIncreaseDeck
@@ -67,8 +67,8 @@ DeckPointers: ; 594AC (16:54ac)
 	dw DemonicForestDeck
 	dw StickyPoisonGasDeck
 	dw MadPetalsDeck
-	dw TapDeck
-	dw ChainLightingByPikachuDeck
+	dw DangerousBenchDeck
+	dw ChainLightningByPikachuDeck
 	dw ThisIsThePowerOfElectricityDeck
 	dw QuickAttackDeck
 	dw CompleteCombustionDeck
@@ -90,11 +90,11 @@ DeckPointers: ; 594AC (16:54ac)
 	dw SnorlaxGuardDeck
 	dw EyeOfTheStormDeck
 	dw SuddenGrowthDeck
-	dw IshiharaDeck
+	dw VeryRareCardDeck
 	dw BadGuysDeck
 	dw PoisonMistDeck
 	dw UltraRemovalDeck
-	dw RuiPsychicBattleDeck
+	dw PsychicBattleDeck
 	dw StopLifeDeck
 	dw ScorcherDeck
 	dw TsunamiStarterDeck
@@ -106,11 +106,11 @@ DeckPointers: ; 594AC (16:54ac)
 	dw PowerfulPokemonDeck
 	dw WeirdDeck
 	dw StrangeDeck
-	dw RonaldsDeck
-	dw GRXDeck
-	dw HalfWayThroughGB2IslandDeck
-	dw JustOutsideRocketCastleDeck
-	dw Deck_7055
+	dw RonaldsUncoolDeck
+	dw RonaldsGRXDeck
+	dw RonaldsPowerDeck
+	dw RonaldsPsychicDeck
+	dw RonaldsUltraDeck
 	dw EverybodysFriendDeck
 	dw ImmortalPokemonDeck
 	dw TorrentialFloodDeck
@@ -119,12 +119,12 @@ DeckPointers: ; 594AC (16:54ac)
 	dw DamageChaosDeck
 	dw BigThunderDeck
 	dw PowerOfDarknessDeck
-	dw TobichanDeck
+	dw PoisonStormDeck
 	dw Deck_7269
 	dw Deck_7269
 	dw $0000
 
-PoisonStormDeck:
+UnknownPoisonStormDeck:
 	dbw 11, GRASS_ENERGY
 	dbw 10, FIRE_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
@@ -142,7 +142,7 @@ PoisonStormDeck:
 	dbw  2, FULL_HEAL
 	db 0
 
-StrangePsyshockDeck:
+GB1StrangePsyshockDeck:
 	dbw 22, PSYCHIC_ENERGY
 	dbw  4, ABRA_LV10
 	dbw  3, KADABRA_LV38
@@ -772,7 +772,7 @@ AaronsStep3Deck:
 	dbw  1, SCOOP_UP
 	db 0
 
-AaronNormalDeck:
+BrickWalkDeck:
 	dbw 16, GRASS_ENERGY
 	dbw 10, WATER_ENERGY
 	dbw  2, BELLSPROUT_LV10
@@ -795,7 +795,7 @@ AaronNormalDeck:
 	dbw  1, BILLS_TELEPORTER
 	db 0
 
-AaronNormalDeck2:
+BenchTrapDeck:
 	dbw 12, LIGHTNING_ENERGY
 	dbw 12, FIGHTING_ENERGY
 	dbw  2, RAINBOW_ENERGY
@@ -834,7 +834,7 @@ SkySparkDeck:
 	dbw  2, BILL
 	db 0
 
-ElectricSuicideDeck:
+ElectricSelfdestructDeck:
 	dbw 16, LIGHTNING_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
 	dbw  2, POTION_ENERGY
@@ -876,7 +876,7 @@ OverflowDeck:
 	dbw  2, BILL
 	db 0
 
-TripleThunderDeck:
+TripleZapdosDeck:
 	dbw 25, LIGHTNING_ENERGY
 	dbw  2, DOUBLE_COLORLESS_ENERGY
 	dbw  2, POTION_ENERGY
@@ -1129,7 +1129,7 @@ AwesomeFossilDeck:
 	dbw  2, BILL
 	db 0
 
-WavesPunchDeck:
+RagingBillowOfFistsDeck:
 	dbw 19, FIGHTING_ENERGY
 	dbw  4, PSYCHIC_ENERGY
 	dbw  3, DOUBLE_COLORLESS_ENERGY
@@ -1254,7 +1254,7 @@ MaxEnergyDeck:
 	dbw  2, POKEBALL
 	db 0
 
-PoisonBeeDeck:
+RemainingGreenDeck:
 	dbw 27, GRASS_ENERGY
 	dbw  3, BULBASAUR_LV12
 	dbw  1, IVYSAUR_LV26
@@ -1849,7 +1849,7 @@ MadPetalsDeck:
 	dbw  2, NIGHTLY_GARBAGE_RUN
 	db 0
 
-TapDeck:
+DangerousBenchDeck:
 	dbw 18, LIGHTNING_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
 	dbw  2, RECYCLE_ENERGY
@@ -1872,7 +1872,7 @@ TapDeck:
 	dbw  2, BILL
 	db 0
 
-ChainLightingByPikachuDeck:
+ChainLightningByPikachuDeck:
 	dbw 15, LIGHTNING_ENERGY
 	dbw  8, FIGHTING_ENERGY
 	dbw  2, RAINBOW_ENERGY
@@ -2293,7 +2293,7 @@ SuddenGrowthDeck:
 	dbw  3, NIGHTLY_GARBAGE_RUN
 	db 0
 
-IshiharaDeck:
+VeryRareCardDeck:
 	dbw 22, WATER_ENERGY
 	dbw  2, DOUBLE_COLORLESS_ENERGY
 	dbw  2, POTION_ENERGY
@@ -2376,7 +2376,7 @@ UltraRemovalDeck:
 	dbw  2, GUST_OF_WIND
 	db 0
 
-RuiPsychicBattleDeck:
+PsychicBattleDeck:
 	dbw 10, PSYCHIC_ENERGY
 	dbw 12, FIGHTING_ENERGY
 	dbw  3, MR_MIME_LV28
@@ -2612,7 +2612,7 @@ StrangeDeck:
 	dbw  2, POKEMON_FLUTE
 	db 0
 
-RonaldsDeck:
+RonaldsUncoolDeck:
 	dbw 15, WATER_ENERGY
 	dbw 13, FIGHTING_ENERGY
 	dbw  3, TENTACOOL
@@ -2633,7 +2633,7 @@ RonaldsDeck:
 	dbw  2, BILL
 	db 0
 
-GRXDeck:
+RonaldsGRXDeck:
 	dbw 24, GRASS_ENERGY
 	dbw  2, DOUBLE_COLORLESS_ENERGY
 	dbw  2, RECYCLE_ENERGY
@@ -2652,7 +2652,7 @@ GRXDeck:
 	dbw  3, BILL
 	db 0
 
-HalfWayThroughGB2IslandDeck:
+RonaldsPowerDeck:
 	dbw 16, FIGHTING_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
 	dbw  2, POTION_ENERGY
@@ -2675,7 +2675,7 @@ HalfWayThroughGB2IslandDeck:
 	dbw  4, BILL
 	db 0
 
-JustOutsideRocketCastleDeck:
+RonaldsPsychicDeck:
 	dbw 23, PSYCHIC_ENERGY
 	dbw  2, DOUBLE_COLORLESS_ENERGY
 	dbw  2, FULLHEAL_ENERGY
@@ -2695,7 +2695,7 @@ JustOutsideRocketCastleDeck:
 	dbw  1, BILLS_TELEPORTER
 	db 0
 
-Deck_7055:
+RonaldsUltraDeck:
 	dbw  1, FIRE_ENERGY
 	dbw  1, WATER_ENERGY
 	dbw  2, LIGHTNING_ENERGY
@@ -2880,7 +2880,7 @@ PowerOfDarknessDeck:
 	dbw  2, BILLS_TELEPORTER
 	db 0
 
-TobichanDeck:
+PoisonStormDeck:
 	dbw 11, GRASS_ENERGY
 	dbw 10, FIRE_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
