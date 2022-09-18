@@ -1,139 +1,139 @@
 DeckPointers: ; 594AC (16:54ac)
-	dw PoisonStormDeck
-	dw StrangePsyshockDeck
-	dw $57d1 ; SamsPracticeDeck
-	dw $571c ; PlayerPracticeDeck
+	dw UnknownPoisonStormDeck
+	dw GB1StrangePsyshockDeck
+	dw SamsPracticeDeck
+	dw PlayerPracticeDeck
 	dw StarterDeck
-	dw $5637 ; SweatAntiGR1Deck
-	dw $566b ; GiveInAntiGR2Deck
-	dw $56a5 ; VengefulAntiGR3Deck
-	dw $56e2 ; UnforgivingAntiGR4Deck
-	dw $57d1 ; SamsPracticeDeck
-	dw $5886 ; AaronPracticeDeck1
-	dw $593b ; AaronsStep1Deck
-	dw $59f0 ; AaronPracticeDeck2
-	dw $5aa5 ; AaronsStep2Deck
-	dw $5b5a ; AaronPracticeDeck3
-	dw $5c0f ; AaronsStep3Deck
-	dw $5cc4 ; AaronNormalDeck
-	dw $5d01 ; AaronNormalDeck2
-	dw $5d32 ; SkySparkDeck
-	dw $5d66 ; ElectricSuicideDeck
-	dw $5da0 ; OverflowDeck
-	dw $5dd4 ; TripleThunderDeck
-	dw $5e11 ; ILovePikachuDeck
-	dw $5e51 ; 10000VoltsDeck
-	dw $5e7f ; HandOverGRDeck
-	dw $5eb6 ; PsychicEliteDeck
-	dw $5ef0 ; PsychokinesisDeck
-	dw $5f2a ; PhantomDeck
-	dw $5f6d ; PuppetMasterDeck
-	dw $5f9b ; 3YearsOnARockDeck
-	dw $5fc3 ; RollingStoneDeck
-	dw $6000 ; GreatEarthquakeDeck
-	dw $6037 ; AwesomeFossilDeck
-	dw $606b ; WavesPunchDeck
-	dw $60ab ; YouCanDoItMachopDeck
-	dw $60df ; NewMachokeDeck
-	dw $6119 ; SkilledWarriorDeck
-	dw $6150 ; ILoveToFightDeck
-	dw $6181 ; MaxEnergyDeck
-	dw $61b2 ; PoisonBeeDeck
-	dw $61e0 ; PoisonCurseDeck
-	dw $621a ; GlitteringScalesDeck
-	dw $6251 ; SteadyIncreaseDeck
-	dw $627c ; DarkScienceDeck
-	dw $62b3 ; NaturalScienceDeck
-	dw $62e4 ; PoisonousSwampDeck
-	dw $630f ; GatheringNidoranDeck
-	dw $6349 ; RainDanceConfusionDeck
-	dw $637a ; ConservingWaterDeck
-	dw $63ab ; EnergyRemovalDeck
-	dw $63df ; SplashingAboutDeck
-	dw $640d ; BeachDeck
-	dw $6444 ; GoArcanineDeck
-	dw $6481 ; FlameFestivalDeck
-	dw $64af ; ImmortalFlameDeck
-	dw $64da ; ElectricCurrentShockDeck
-	dw $650b ; GreatRocket4Deck
-	dw $654b ; GreatRocket1Deck
-	dw $6585 ; GreatRocket2Deck
-	dw $65c8 ; GreatRocket3Deck
-	dw $6605 ; GrandFireDeck
-	dw $6639 ; LegendaryFossilDeck
-	dw $6676 ; WaterLegendDeck
-	dw $66b0 ; RodDeck?
-	dw $66ed ; BugCollectingDeck
-	dw $6727 ; DemonicForestDeck
-	dw $675b ; StickyPoisonGasDeck
-	dw $678c ; MadPetalsDeck
-	dw $67c3 ; TapDeck?
-	dw $6800 ; ChainLightingByPikachuDeck
-	dw $683a ; ThisIsThePowerOfElectricityDeck
-	dw $6874 ; QuickAttackDeck
-	dw $68a2 ; CompleteCombustionDeck
-	dw $68d0 ; FireballDeck
-	dw $6901 ; EeveeShowdownDeck
-	dw $6935 ; GazeUponThePowerOfFireDeck
-	dw $6960 ; WhirlpoolShowerDeck
-	dw $6988 ; ParalyzedParalyzedDeck
-	dw $69b6 ; BenchCallDeck
-	dw $69e7 ; WaterStreamDeck
-	dw $6a12 ; RockBlastDeck
-	dw $6a3d ; FullStrengthDeck
-	dw $6a6b ; RunningWildDeck
-	dw $6a96 ; DirectHitDeck
-	dw $6ac7 ; SuperdestructivePowerDeck
-	dw $6af8 ; BadDreamDeck
-	dw $6b26 ; PokemonPowerDeck
-	dw $6b4e ; SpiritedAwayDeck
-	dw $6b7c ; SnorlaxGuardDeck
-	dw $6bbf ; EyeOfTheStormDeck
-	dw $6bff ; SuddenGrowthDeck
-	dw $6c3f ; IshiharaDeck?
-	dw $6c88 ; BadGuysDeck
-	dw $6cbf ; PoisonMistDeck
-	dw $6ced ; UltraRemovalDeck
-	dw $6d18 ; RuiPsychicBattleDeck?
-	dw $6d46 ; StopLifeDeck?
-	dw $6d77 ; ScorcherDeck?
-	dw $6da8 ; TsunamiStarterDeck
-	dw $6ddf ; SmashToMincemeatDeck?
-	dw $6e13 ; TestYourLuckDeck
-	dw $6e35 ; ProtohistoricDeck
-	dw $6e6c ; TextureTuner7Deck
-	dw $6e9d ; ColorlessEnergyDeck
-	dw $6ee6 ; PowerfulPokemonDeck
-	dw $6f14 ; WeirdDeck
-	dw $6f4b ; StrangeDeck
-	dw $6f7c ; RonaldsDeck?
-	dw $6fb3 ; GRXDeck?
-	dw $6fe4 ; HalfWayThroughGB2IslandDeck?
-	dw $7021 ; JustOutsideRocketCastleDeck?
-	dw $7055 ; Deck_7055
-	dw $7098 ; EverybodysFriendDeck
-	dw $70cc ; ImmortalPokemonDeck
-	dw $7106 ; TorrentialFloodDeck
-	dw $7137 ; TrainerImprisonDeck
-	dw $7165 ; BlazingFlameDeck
-	dw $7196 ; DamageChaosDeck
-	dw $71d0 ; BigThunderDeck
-	dw $71fb ; PowerOfDarknessDeck
-	dw $7238 ; TobichanDeck?
-	dw $7269 ; Deck_7269
-	dw $7269 ; Deck_7269
+	dw SweatAntiGR1Deck
+	dw GiveInAntiGR2Deck
+	dw VengefulAntiGR3Deck
+	dw UnforgivingAntiGR4Deck
+	dw SamsPracticeDeck
+	dw AaronPracticeDeck1
+	dw AaronsStep1Deck
+	dw AaronPracticeDeck2
+	dw AaronsStep2Deck
+	dw AaronPracticeDeck3
+	dw AaronsStep3Deck
+	dw BrickWalkDeck
+	dw BenchTrapDeck
+	dw SkySparkDeck
+	dw ElectricSelfdestructDeck
+	dw OverflowDeck
+	dw TripleZapdosDeck
+	dw ILovePikachuDeck
+	dw TenThousandVoltsDeck
+	dw HandOverGRDeck
+	dw PsychicEliteDeck
+	dw PsychokinesisDeck
+	dw PhantomDeck
+	dw PuppetMasterDeck
+	dw Even3YearsOnARockDeck
+	dw RollingStoneDeck
+	dw GreatEarthquakeDeck
+	dw AwesomeFossilDeck
+	dw RagingBillowOfFistsDeck
+	dw YouCanDoItMachopDeck
+	dw NewMachokeDeck
+	dw SkilledWarriorDeck
+	dw ILoveToFightDeck
+	dw MaxEnergyDeck
+	dw RemainingGreenDeck
+	dw PoisonCurseDeck
+	dw GlitteringScalesDeck
+	dw SteadyIncreaseDeck
+	dw DarkScienceDeck
+	dw NaturalScienceDeck
+	dw PoisonousSwampDeck
+	dw GatheringNidoranDeck
+	dw RainDanceConfusionDeck
+	dw ConservingWaterDeck
+	dw EnergyRemovalDeck
+	dw SplashingAboutDeck
+	dw BeachDeck
+	dw GoArcanineDeck
+	dw FlameFestivalDeck
+	dw ImmortalFlameDeck
+	dw ElectricCurrentShockDeck
+	dw GreatRocket4Deck
+	dw GreatRocket1Deck
+	dw GreatRocket2Deck
+	dw GreatRocket3Deck
+	dw GrandFireDeck
+	dw LegendaryFossilDeck
+	dw WaterLegendDeck
+	dw GreatDragonDeck
+	dw BugCollectingDeck
+	dw DemonicForestDeck
+	dw StickyPoisonGasDeck
+	dw MadPetalsDeck
+	dw DangerousBenchDeck
+	dw ChainLightningByPikachuDeck
+	dw ThisIsThePowerOfElectricityDeck
+	dw QuickAttackDeck
+	dw CompleteCombustionDeck
+	dw FireballDeck
+	dw EeveeShowdownDeck
+	dw GazeUponThePowerOfFireDeck
+	dw WhirlpoolShowerDeck
+	dw ParalyzedParalyzedDeck
+	dw BenchCallDeck
+	dw WaterStreamDeck
+	dw RockBlastDeck
+	dw FullStrengthDeck
+	dw RunningWildDeck
+	dw DirectHitDeck
+	dw SuperdestructivePowerDeck
+	dw BadDreamDeck
+	dw PokemonPowerDeck
+	dw SpiritedAwayDeck
+	dw SnorlaxGuardDeck
+	dw EyeOfTheStormDeck
+	dw SuddenGrowthDeck
+	dw VeryRareCardDeck
+	dw BadGuysDeck
+	dw PoisonMistDeck
+	dw UltraRemovalDeck
+	dw PsychicBattleDeck
+	dw StopLifeDeck
+	dw ScorcherDeck
+	dw TsunamiStarterDeck
+	dw SmashToMincemeatDeck
+	dw TestYourLuckDeck
+	dw ProtohistoricDeck
+	dw TextureTuner7Deck
+	dw ColorlessEnergyDeck
+	dw PowerfulPokemonDeck
+	dw WeirdDeck
+	dw StrangeDeck
+	dw RonaldsUncoolDeck
+	dw RonaldsGRXDeck
+	dw RonaldsPowerDeck
+	dw RonaldsPsychicDeck
+	dw RonaldsUltraDeck
+	dw EverybodysFriendDeck
+	dw ImmortalPokemonDeck
+	dw TorrentialFloodDeck
+	dw TrainerImprisonDeck
+	dw BlazingFlameDeck
+	dw DamageChaosDeck
+	dw BigThunderDeck
+	dw PowerOfDarknessDeck
+	dw PoisonStormDeck
+	dw Deck_7269
+	dw Deck_7269
 	dw $0000
 
-PoisonStormDeck: ; 595a4 (16:55a4)
+UnknownPoisonStormDeck:
 	dbw 11, GRASS_ENERGY
 	dbw 10, FIRE_ENERGY
 	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, WEEDLE2
-	dbw  4, SCYTHER2
-	dbw  4, CHARMANDER2
+	dbw  4, WEEDLE_LV15
+	dbw  4, SCYTHER_LV25
+	dbw  4, CHARMANDER_LV10
 	dbw  2, CHARMELEON
-	dbw  4, MAGMAR4
-	dbw  2, KANGASKHAN3
+	dbw  4, MAGMAR_LV31
+	dbw  2, KANGASKHAN_LV40
 	dbw  3, POTION
 	dbw  4, GUST_OF_WIND
 	dbw  2, PLUSPOWER
@@ -142,15 +142,15 @@ PoisonStormDeck: ; 595a4 (16:55a4)
 	dbw  2, FULL_HEAL
 	db 0
 
-StrangePsyshockDeck: ; 595d2 (16:55d2)
+GB1StrangePsyshockDeck:
 	dbw 22, PSYCHIC_ENERGY
-	dbw  4, ABRA2
-	dbw  3, KADABRA1
-	dbw  2, ALAKAZAM1
-	dbw  2, MR_MIME2
-	dbw  3, CHANSEY2
-	dbw  3, KANGASKHAN3
-	dbw  2, SNORLAX1
+	dbw  4, ABRA_LV10
+	dbw  3, KADABRA_LV38
+	dbw  2, ALAKAZAM_LV42
+	dbw  2, MR_MIME_LV28
+	dbw  3, CHANSEY_LV55
+	dbw  3, KANGASKHAN_LV40
+	dbw  2, SNORLAX_LV20
 	dbw  2, PROFESSOR_OAK
 	dbw  2, POKEMON_CENTER
 	dbw  3, ENERGY_REMOVAL
@@ -160,24 +160,2773 @@ StrangePsyshockDeck: ; 595d2 (16:55d2)
 	dbw  1, GAMBLER
 	db 0
 
-StarterDeck: ; 59600 (16:5600)
+StarterDeck:
 	dbw 14, FIRE_ENERGY
 	dbw 12, FIGHTING_ENERGY
-	dbw  4, CHARMANDER2
+	dbw  4, CHARMANDER_LV10
 	dbw  3, CHARMELEON
-	dbw  2, GROWLITHE1
-	dbw  3, PONYTA2
-	dbw  2, DIGLETT1
-	dbw  4, MACHOP2
-	dbw  3, MACHOKE3
-	dbw  2, RATTATA1
+	dbw  2, GROWLITHE_LV12
+	dbw  3, PONYTA_LV10
+	dbw  2, DIGLETT_LV8
+	dbw  4, MACHOP_LV20
+	dbw  3, MACHOKE_LV40
+	dbw  2, RATTATA_LV9
 	dbw  1, RATICATE
-	dbw  2, SPEAROW1
-	dbw  1, MEOWTH5
+	dbw  2, SPEAROW_LV9
+	dbw  1, MEOWTH_LV17
 	dbw  1, ENERGY_RETRIEVAL
 	dbw  2, POTION
 	dbw  1, GUST_OF_WIND
 	dbw  2, SWITCH
 	dbw  1, BILL
 	db 0
-; 0x59637
+
+SweatAntiGR1Deck:
+	dbw 12, GRASS_ENERGY
+	dbw 15, FIGHTING_ENERGY
+	dbw  4, CATERPIE
+	dbw  2, METAPOD_LV21
+	dbw  3, NIDORANM_LV20
+	dbw  1, NIDORINO_LV25
+	dbw  2, TANGELA_LV8
+	dbw  3, DIGLETT_LV8
+	dbw  4, GEODUDE_LV15
+	dbw  2, GRAVELER_LV29
+	dbw  2, ONIX_LV12
+	dbw  3, RHYHORN
+	dbw  1, PROFESSOR_OAK
+	dbw  2, ENERGY_SEARCH
+	dbw  2, SWITCH
+	dbw  1, POKEDEX
+	dbw  1, GUST_OF_WIND
+	db 0
+
+GiveInAntiGR2Deck:
+	dbw 15, GRASS_ENERGY
+	dbw 11, WATER_ENERGY
+	dbw  4, BULBASAUR_LV12
+	dbw  2, IVYSAUR_LV26
+	dbw  2, WEEDLE_LV12
+	dbw  1, KAKUNA_LV23
+	dbw  3, PARAS_LV8
+	dbw  2, PARASECT_LV28
+	dbw  2, SEEL_LV12
+	dbw  3, GOLDEEN
+	dbw  2, SEAKING
+	dbw  2, MAGIKARP_LV8
+	dbw  3, DODUO_LV10
+	dbw  1, ENERGY_REMOVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  1, DEFENDER
+	dbw  2, PLUSPOWER
+	dbw  1, BILL
+	db 0
+
+VengefulAntiGR3Deck:
+	dbw 12, FIRE_ENERGY
+	dbw 15, WATER_ENERGY
+	dbw  3, VULPIX_LV11
+	dbw  1, NINETALES_LV32
+	dbw  3, GROWLITHE_LV12
+	dbw  1, ARCANINE_LV45
+	dbw  2, PONYTA_LV10
+	dbw  1, RAPIDASH_LV33
+	dbw  4, SQUIRTLE_LV14
+	dbw  2, WARTORTLE_LV24
+	dbw  4, STARYU_LV15
+	dbw  2, STARMIE
+	dbw  2, MAGIKARP_LV8
+	dbw  1, GYARADOS
+	dbw  1, FARFETCHD_LV20
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  1, FULL_HEAL
+	dbw  1, POKEMON_TRADER
+	dbw  1, BILL
+	db 0
+
+UnforgivingAntiGR4Deck:
+	dbw 13, LIGHTNING_ENERGY
+	dbw 13, PSYCHIC_ENERGY
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  3, PIKACHU_LV12
+	dbw  2, RAICHU_LV33
+	dbw  2, MAGNEMITE_LV14
+	dbw  1, ELECTABUZZ_LV30
+	dbw  2, JOLTEON_LV29
+	dbw  4, ABRA_LV10
+	dbw  2, KADABRA_LV38
+	dbw  3, GASTLY_LV8
+	dbw  2, HAUNTER_LV22
+	dbw  2, JYNX_LV27
+	dbw  3, EEVEE_LV12
+	dbw  1, SUPER_POTION
+	dbw  1, ENERGY_RETRIEVAL
+	dbw  2, POTION
+	dbw  1, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+PlayerPracticeDeck:
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, PIDGEY_LV8
+	dbw  1, DUGTRIO_LV36
+	dbw  1, DIGLETT_LV8
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, NIDORINO_LV25
+	dbw  1, GRASS_ENERGY
+	dbw  1, NIDORANM_LV20
+	dbw  1, MACHOP_LV20
+	dbw  1, GRASS_ENERGY
+	dbw  1, BILL
+	dbw  1, BULBASAUR_LV13
+	dbw  1, GRASS_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, MACHOP_LV20
+	dbw  1, DUGTRIO_LV36
+	dbw  1, ONIX_LV12
+	dbw  1, BILL
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, MACHOKE_LV40
+	dbw  1, PIDGEY_LV8
+	dbw  1, PIDGEOTTO_LV36
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, POTION
+	dbw  1, DIGLETT_LV8
+	dbw  1, BULBASAUR_LV13
+	dbw  1, MACHOP_LV20
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, PIDGEY_LV8
+	dbw  1, MEOWTH_LV13
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, POTION
+	dbw  1, GRASS_ENERGY
+	dbw  1, NIDORANM_LV20
+	dbw  1, NIDORINO_LV25
+	dbw  1, DIGLETT_LV8
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, ONIX_LV12
+	dbw  1, NIDORANM_LV20
+	dbw  1, BULBASAUR_LV13
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, SWITCH
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, MACHOKE_LV40
+	dbw  1, PIDGEOTTO_LV36
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, DIGLETT_LV8
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, NIDORANM_LV20
+	db 0
+
+SamsPracticeDeck:
+	dbw  1, GOLDEEN
+	dbw  1, SEEL_LV12
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, POTION
+	dbw  1, SEAKING
+	dbw  1, POTION
+	dbw  1, STARYU_LV15
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, VOLTORB_LV10
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, PROFESSOR_OAK
+	dbw  1, EEVEE_LV12
+	dbw  1, VOLTORB_LV10
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, SEEL_LV12
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, VOLTORB_LV10
+	dbw  1, PIKACHU_LV12
+	dbw  1, STARMIE
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, PIKACHU_LV12
+	dbw  1, DODUO_LV10
+	dbw  1, GOLDEEN
+	dbw  1, WATER_ENERGY
+	dbw  1, EEVEE_LV12
+	dbw  1, STARMIE
+	dbw  1, WATER_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, FULL_HEAL
+	dbw  1, PIKACHU_LV12
+	dbw  1, POTION
+	dbw  1, PROFESSOR_OAK
+	dbw  1, WATER_ENERGY
+	dbw  1, DODUO_LV10
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, GOLDEEN
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, SEAKING
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, FULL_HEAL
+	dbw  1, SEEL_LV12
+	dbw  1, GOLDEEN
+	dbw  1, WATER_ENERGY
+	dbw  1, PIKACHU_LV12
+	dbw  1, VOLTORB_LV10
+	dbw  1, WATER_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, WATER_ENERGY
+	db 0
+
+AaronPracticeDeck1:
+	dbw  1, GOLDEEN
+	dbw  1, SEAKING
+	dbw  1, DRATINI_LV10
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, CHARMELEON
+	dbw  1, RATICATE
+	dbw  1, FIRE_ENERGY
+	dbw  1, CHARMANDER_LV10
+	dbw  1, BILL
+	dbw  1, RATTATA_LV9
+	dbw  1, WATER_ENERGY
+	dbw  1, BILL
+	dbw  1, STARYU_LV15
+	dbw  1, PROFESSOR_OAK
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, PONYTA_LV10
+	dbw  1, FIRE_ENERGY
+	dbw  1, RAPIDASH_LV33
+	dbw  1, GOLDEEN
+	dbw  1, WATER_ENERGY
+	dbw  1, SEAKING
+	dbw  1, WATER_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, ENERGY_SEARCH
+	dbw  1, GUST_OF_WIND
+	dbw  1, WATER_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, RATTATA_LV9
+	dbw  1, FIRE_ENERGY
+	dbw  1, PONYTA_LV10
+	dbw  1, FIRE_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, WATER_ENERGY
+	dbw  1, POTION
+	dbw  1, ENERGY_SEARCH
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, MEOWTH_LV17
+	dbw  1, WATER_ENERGY
+	dbw  1, CHARMANDER_LV10
+	dbw  1, CHARMANDER_LV10
+	dbw  1, CHARMELEON
+	dbw  1, PONYTA_LV10
+	dbw  1, RAPIDASH_LV33
+	dbw  1, WATER_ENERGY
+	dbw  1, GOLDEEN
+	dbw  1, STARYU_LV15
+	dbw  1, RATTATA_LV9
+	dbw  1, RATICATE
+	dbw  1, DRATINI_LV10
+	dbw  1, POTION
+	db 0
+
+AaronsStep1Deck:
+	dbw  1, HITMONCHAN_LV33
+	dbw  1, BULBASAUR_LV12
+	dbw  1, POTION
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, SPEAROW_LV9
+	dbw  1, SWITCH
+	dbw  1, IVYSAUR_LV26
+	dbw  1, BILL
+	dbw  1, MACHOP_LV20
+	dbw  1, MACHOKE_LV40
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, DIGLETT_LV8
+	dbw  1, BULBASAUR_LV12
+	dbw  1, GRASS_ENERGY
+	dbw  1, DUGTRIO_LV36
+	dbw  1, SPEAROW_LV9
+	dbw  1, IVYSAUR_LV26
+	dbw  1, GRASS_ENERGY
+	dbw  1, BULBASAUR_LV12
+	dbw  1, ENERGY_SEARCH
+	dbw  1, GRASS_ENERGY
+	dbw  1, DIGLETT_LV8
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, SWITCH
+	dbw  1, BILL
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, MACHOP_LV20
+	dbw  1, DUGTRIO_LV36
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, MACHOP_LV20
+	dbw  1, POTION
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, DIGLETT_LV8
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, MEOWTH_LV17
+	dbw  1, ENERGY_SEARCH
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, IVYSAUR_LV26
+	dbw  1, GRASS_ENERGY
+	dbw  1, MACHOKE_LV40
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, PROFESSOR_OAK
+	dbw  1, MEOWTH_LV17
+	dbw  1, HITMONCHAN_LV33
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, BULBASAUR_LV12
+	dbw  1, MACHOP_LV20
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, MEOWTH_LV17
+	db  0
+
+AaronPracticeDeck2:
+	dbw  1, GOLDEEN
+	dbw  1, MAGIKARP_LV8
+	dbw  1, FIRE_ENERGY
+	dbw  1, SWITCH
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WARTORTLE_LV24
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, FULL_HEAL
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, FIRE_ENERGY
+	dbw  1, CHARMANDER_LV10
+	dbw  1, FULL_HEAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, CHARMELEON
+	dbw  1, STARYU_LV15
+	dbw  1, FIRE_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, MAGMAR_LV18
+	dbw  1, STARMIE
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, MAGMAR_LV18
+	dbw  1, ENERGY_SEARCH
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, BILL
+	dbw  1, CHARMELEON
+	dbw  1, ENERGY_SEARCH
+	dbw  1, FULL_HEAL
+	dbw  1, FIRE_ENERGY
+	dbw  1, WARTORTLE_LV24
+	dbw  1, STARYU_LV15
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, CHARMANDER_LV10
+	dbw  1, STARMIE
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, FIRE_ENERGY
+	dbw  1, STARYU_LV15
+	dbw  1, WATER_ENERGY
+	dbw  1, STARMIE
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, BILL
+	dbw  1, FIRE_ENERGY
+	dbw  1, GOLDEEN
+	dbw  1, WATER_ENERGY
+	dbw  1, CHARMANDER_LV10
+	dbw  1, WATER_ENERGY
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, WATER_ENERGY
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, MAGIKARP_LV8
+	db 0
+
+AaronsStep2Deck:
+	dbw  1, GRIMER_LV10
+	dbw  1, RATTATA_LV9
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, SWITCH
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRASS_ENERGY
+	dbw  1, POTION
+	dbw  1, ODDISH_LV8
+	dbw  1, GRASS_ENERGY
+	dbw  1, GLOOM
+	dbw  1, GRASS_ENERGY
+	dbw  1, HAUNTER_LV22
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, GASTLY_LV8
+	dbw  1, BILL
+	dbw  1, PARAS_LV8
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, JYNX_LV27
+	dbw  1, PARASECT_LV28
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, ENERGY_SEARCH
+	dbw  1, GRASS_ENERGY
+	dbw  1, GASTLY_LV8
+	dbw  1, POTION
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, FULL_HEAL
+	dbw  1, RATICATE
+	dbw  1, GRASS_ENERGY
+	dbw  1, ODDISH_LV8
+	dbw  1, HAUNTER_LV22
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, GRIMER_LV10
+	dbw  1, PARAS_LV8
+	dbw  1, GRASS_ENERGY
+	dbw  1, JYNX_LV27
+	dbw  1, KANGASKHAN_LV40
+	dbw  1, BILL
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, GLOOM
+	dbw  1, GRASS_ENERGY
+	dbw  1, PARASECT_LV28
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, RATTATA_LV9
+	dbw  1, SWITCH
+	dbw  1, GRASS_ENERGY
+	dbw  1, GRIMER_LV10
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, FULL_HEAL
+	dbw  1, GRASS_ENERGY
+	dbw  1, ODDISH_LV8
+	dbw  1, GRASS_ENERGY
+	dbw  1, PARAS_LV8
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, GASTLY_LV8
+	dbw  1, PSYCHIC_ENERGY
+	db 0
+
+AaronPracticeDeck3:
+	dbw  1, KANGASKHAN_LV40
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, BLASTOISE_LV52
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, MAGIKARP_LV8
+	dbw  1, POTION
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, WARTORTLE_LV22
+	dbw  1, HITMONCHAN_LV33
+	dbw  1, PROFESSOR_OAK
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, GYARADOS
+	dbw  1, PROFESSOR_OAK
+	dbw  1, LAPRAS_LV31
+	dbw  1, WATER_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, POKEMON_BREEDER
+	dbw  1, BLASTOISE_LV52
+	dbw  1, HITMONCHAN_LV33
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, DRATINI_LV10
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, DRAGONAIR
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, ENERGY_SEARCH
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, POKEMON_BREEDER
+	dbw  1, WATER_ENERGY
+	dbw  1, LAPRAS_LV31
+	dbw  1, WARTORTLE_LV22
+	dbw  1, WATER_ENERGY
+	dbw  1, HITMONCHAN_LV33
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, PROFESSOR_OAK
+	dbw  1, WATER_ENERGY
+	dbw  1, POTION
+	dbw  1, MAGIKARP_LV8
+	dbw  1, WARTORTLE_LV22
+	dbw  1, DRATINI_LV10
+	dbw  1, WATER_ENERGY
+	dbw  1, KANGASKHAN_LV40
+	dbw  1, DRAGONAIR
+	dbw  1, ENERGY_SEARCH
+	dbw  1, WATER_ENERGY
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, DRATINI_LV10
+	dbw  1, SQUIRTLE_LV14
+	dbw  1, WATER_ENERGY
+	db 0
+
+AaronsStep3Deck:
+	dbw  1, CHANSEY_LV55
+	dbw  1, ABRA_LV10
+	dbw  1, ALAKAZAM_LV42
+	dbw  1, POKEMON_BREEDER
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, POKEMON_CENTER
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, CHANSEY_LV55
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, SCOOP_UP
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, JYNX_LV27
+	dbw  1, GASTLY_LV17
+	dbw  1, HAUNTER_LV17
+	dbw  1, BILL
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, GENGAR_LV38
+	dbw  1, ABRA_LV10
+	dbw  1, POKEMON_BREEDER
+	dbw  1, KADABRA_LV38
+	dbw  1, PIKACHU_LV14
+	dbw  1, ENERGY_SEARCH
+	dbw  1, RAICHU_LV45
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, GASTLY_LV17
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, KADABRA_LV38
+	dbw  1, ALAKAZAM_LV42
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, SCOOP_UP
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, ABRA_LV10
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, ABRA_LV10
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, KADABRA_LV38
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  1, PIKACHU_LV14
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, CHANSEY_LV55
+	dbw  1, ENERGY_SEARCH
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, GASTLY_LV17
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, HAUNTER_LV17
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, JYNX_LV27
+	dbw  1, PSYCHIC_ENERGY
+	dbw  1, CHANSEY_LV55
+	dbw  1, SCOOP_UP
+	db 0
+
+BrickWalkDeck:
+	dbw 16, GRASS_ENERGY
+	dbw 10, WATER_ENERGY
+	dbw  2, BELLSPROUT_LV10
+	dbw  2, BELLSPROUT_LV11
+	dbw  2, WEEPINBELL_LV23
+	dbw  1, WEEPINBELL_LV28
+	dbw  2, VICTREEBEL
+	dbw  4, PINSIR_LV15
+	dbw  2, POLIWAG_LV13
+	dbw  1, POLIWAG_LV15
+	dbw  2, POLIWHIRL_LV28
+	dbw  1, POLIWRATH_LV40
+	dbw  3, JIGGLYPUFF_LV13
+	dbw  2, WIGGLYTUFF_LV36
+	dbw  1, SUPER_POTION
+	dbw  1, PROFESSOR_OAK
+	dbw  4, POTION
+	dbw  1, FULL_HEAL
+	dbw  2, BILL
+	dbw  1, BILLS_TELEPORTER
+	db 0
+
+BenchTrapDeck:
+	dbw 12, LIGHTNING_ENERGY
+	dbw 12, FIGHTING_ENERGY
+	dbw  2, RAINBOW_ENERGY
+	dbw  4, PIKACHU_LV14
+	dbw  2, RAICHU_LV45
+	dbw  3, VOLTORB_LV8
+	dbw  2, ELECTRODE_LV42
+	dbw  1, ZAPDOS_LV40
+	dbw  4, HITMONLEE_LV30
+	dbw  4, HITMONCHAN_LV23
+	dbw  4, ENERGY_REMOVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  2, POTION
+	dbw  2, DEFENDER
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+SkySparkDeck:
+	dbw 23, LIGHTNING_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  4, PIKACHU_LV14
+	dbw  2, RAICHU_LV45
+	dbw  1, DARK_RAICHU
+	dbw  3, VOLTORB_LV13
+	dbw  2, DARK_ELECTRODE
+	dbw  2, ZAPDOS_LV40
+	dbw  3, PIDGEY_LV10
+	dbw  2, PIDGEOTTO_LV36
+	dbw  3, SPEAROW_LV9
+	dbw  2, FEAROW_LV24
+	dbw  1, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  2, GUST_OF_WIND
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+ElectricSelfdestructDeck:
+	dbw 16, LIGHTNING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  2, POTION_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  2, MAGNEMITE_LV13
+	dbw  2, MAGNEMITE_LV15
+	dbw  2, MAGNETON_LV28
+	dbw  4, VOLTORB_LV8
+	dbw  2, ELECTRODE_LV35
+	dbw  3, ELECTABUZZ_LV35
+	dbw  2, ZAPDOS_LV40
+	dbw  3, DODUO_LV10
+	dbw  2, DODRIO_LV25
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  4, DEFENDER
+	dbw  2, SWITCH
+	dbw  3, BILL
+	db 0
+
+OverflowDeck:
+	dbw 23, LIGHTNING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, MAGNEMITE_LV12
+	dbw  3, MAGNETON_LV35
+	dbw  4, VOLTORB_LV8
+	dbw  3, ELECTRODE_LV35
+	dbw  3, SPEAROW_LV13
+	dbw  2, FEAROW_LV27
+	dbw  2, FARFETCHD_LV20
+	dbw  2, DODUO_LV10
+	dbw  1, DODRIO_LV25
+	dbw  1, PROFESSOR_OAK
+	dbw  2, FULL_HEAL
+	dbw  2, SLEEP
+	dbw  2, PLUSPOWER
+	dbw  2, POKEMON_RECALL
+	dbw  2, BILL
+	db 0
+
+TripleZapdosDeck:
+	dbw 25, LIGHTNING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, POTION_ENERGY
+	dbw  4, VOLTORB_LV8
+	dbw  3, DARK_ELECTRODE
+	dbw  2, ELECTABUZZ_LV35
+	dbw  1, ZAPDOS_LV28
+	dbw  1, ZAPDOS_LV40
+	dbw  1, ZAPDOS_LV64
+	dbw  1, FARFETCHD_LV20
+	dbw  3, DODUO_LV8
+	dbw  2, DODRIO_LV25
+	dbw  1, KANGASKHAN_LV36
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, POTION
+	dbw  1, MAX_REVIVE
+	dbw  2, DEFENDER
+	dbw  2, MASTER_BALL
+	dbw  2, POKEBALL
+	db 0
+
+ILovePikachuDeck:
+	dbw  9, WATER_ENERGY
+	dbw 20, LIGHTNING_ENERGY
+	dbw  3, SQUIRTLE_LV8
+	dbw  2, WARTORTLE_LV22
+	dbw  1, PIKACHU_LV5
+	dbw  1, PIKACHU_LV13
+	dbw  1, PIKACHU_LV16
+	dbw  1, PIKACHU_ALT_LV16
+	dbw  2, FLYING_PIKACHU_LV12
+	dbw  2, FLYING_PIKACHU_ALT_LV12
+	dbw  2, SURFING_PIKACHU_LV13
+	dbw  2, SURFING_PIKACHU_ALT_LV13
+	dbw  1, RAICHU_LV32
+	dbw  1, RAICHU_LV40
+	dbw  1, RAICHU_LV45
+	dbw  2, ENERGY_SEARCH
+	dbw  2, POTION
+	dbw  1, REVIVE
+	dbw  2, DEFENDER
+	dbw  2, MASTER_BALL
+	dbw  2, POKEBALL
+	db 0
+
+TenThousandVoltsDeck:
+	dbw 26, LIGHTNING_ENERGY
+	dbw  2, PIKACHU_LV12
+	dbw  2, PIKACHU_LV14
+	dbw  3, RAICHU_LV33
+	dbw  2, ELECTABUZZ_LV30
+	dbw  1, ELECTABUZZ_LV35
+	dbw  3, JOLTEON_LV29
+	dbw  2, ZAPDOS_LV64
+	dbw  4, EEVEE_LV12
+	dbw  4, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, SCOOP_UP
+	dbw  4, BILL
+	db 0
+
+HandOverGRDeck:
+	dbw 24, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  3, ABRA_LV8
+	dbw  2, KADABRA_LV39
+	dbw  3, SLOWPOKE_LV9
+	dbw  2, SLOWBRO_LV35
+	dbw  2, MR_MIME_LV20
+	dbw  2, JYNX_LV27
+	dbw  2, MEW_LV23
+	dbw  2, CLEFAIRY_LV15
+	dbw  3, JIGGLYPUFF_LV13
+	dbw  2, WIGGLYTUFF_LV36
+	dbw  2, LICKITUNG_LV26
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, MOON_STONE
+	dbw  2, FULL_HEAL
+	dbw  2, BILLS_TELEPORTER
+	db 0
+
+PsychicEliteDeck:
+	dbw 14, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, ABRA_LV14
+	dbw  2, KADABRA_LV39
+	dbw  2, ALAKAZAM_LV42
+	dbw  4, GASTLY_LV13
+	dbw  3, HAUNTER_LV26
+	dbw  2, MR_MIME_LV20
+	dbw  1, MR_MIME_LV28
+	dbw  2, MEWTWO_LV60
+	dbw  3, CHANSEY_LV55
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  3, SCOOP_UP
+	dbw  2, POKEMON_TRADER
+	dbw  4, BILL
+	dbw  2, BILLS_TELEPORTER
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+PsychokinesisDeck:
+	dbw 26, PSYCHIC_ENERGY
+	dbw  4, ABRA_LV8
+	dbw  3, KADABRA_LV39
+	dbw  2, ALAKAZAM_LV45
+	dbw  3, GASTLY_LV13
+	dbw  2, HAUNTER_LV26
+	dbw  1, GENGAR_LV40
+	dbw  2, JYNX_LV27
+	dbw  2, MEWTWO_LV54
+	dbw  1, MEW_LV23
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  1, POKEMON_RECALL
+	dbw  1, POKEMON_BREEDER
+	dbw  2, BILL
+	dbw  1, MASTER_BALL
+	db 0
+
+PhantomDeck:
+	dbw 24, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, GASTLY_LV8
+	dbw  1, HAUNTER_LV17
+	dbw  1, HAUNTER_LV22
+	dbw  1, HAUNTER_LV26
+	dbw  2, GENGAR_LV38
+	dbw  3, DROWZEE_LV12
+	dbw  2, HYPNO_LV36
+	dbw  1, JYNX_LV23
+	dbw  1, JYNX_LV27
+	dbw  3, JIGGLYPUFF_LV14
+	dbw  2, WIGGLYTUFF_LV36
+	dbw  1, ENERGY_REMOVAL
+	dbw  1, ENERGY_RETRIEVAL
+	dbw  1, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  1, FULL_HEAL
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, BILL
+	db 0
+
+PuppetMasterDeck:
+	dbw 24, PSYCHIC_ENERGY
+	dbw  4, SLOWPOKE_LV18
+	dbw  3, SLOWBRO_LV26
+	dbw  4, DROWZEE_LV12
+	dbw  3, HYPNO_LV30
+	dbw  2, MR_MIME_LV28
+	dbw  1, PROFESSOR_OAK
+	dbw  2, ITEMFINDER
+	dbw  4, DEFENDER
+	dbw  1, GUST_OF_WIND
+	dbw  4, CLEFAIRY_DOLL
+	dbw  2, PLUSPOWER
+	dbw  2, SCOOP_UP
+	dbw  2, BILL
+	dbw  2, MASTER_BALL
+	db 0
+
+Even3YearsOnARockDeck:
+	dbw 26, FIGHTING_ENERGY
+	dbw  4, GEODUDE_LV16
+	dbw  3, GRAVELER_LV28
+	dbw  4, ONIX_LV25
+	dbw  4, CUBONE_LV13
+	dbw  3, MAROWAK_LV32
+	dbw  4, RHYHORN
+	dbw  3, RHYDON_LV48
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, GAMBLER
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+RollingStoneDeck:
+	dbw  8, FIRE_ENERGY
+	dbw 16, FIGHTING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, CHARMANDER_LV10
+	dbw  1, CHARMELEON
+	dbw  3, PONYTA_LV10
+	dbw  2, RAPIDASH_LV33
+	dbw  3, DIGLETT_LV8
+	dbw  2, DUGTRIO_LV36
+	dbw  3, GEODUDE_LV15
+	dbw  1, GEODUDE_LV16
+	dbw  1, GRAVELER_LV27
+	dbw  2, GRAVELER_LV28
+	dbw  2, GOLEM_LV36
+	dbw  2, RHYHORN
+	dbw  2, POTION
+	dbw  2, DEFENDER
+	dbw  2, GUST_OF_WIND
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+GreatEarthquakeDeck:
+	dbw 26, FIGHTING_ENERGY
+	dbw  3, SANDSHREW_LV12
+	dbw  1, SANDSLASH_LV33
+	dbw  3, DIGLETT_LV8
+	dbw  1, DIGLETT_LV16
+	dbw  2, DUGTRIO_LV36
+	dbw  1, DUGTRIO_LV40
+	dbw  4, GEODUDE_LV16
+	dbw  3, GRAVELER_LV28
+	dbw  3, CUBONE_LV13
+	dbw  1, MAROWAK_LV26
+	dbw  1, MAROWAK_LV32
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, FULL_HEAL
+	dbw  2, PLUSPOWER
+	dbw  2, BILL
+	db 0
+
+AwesomeFossilDeck:
+	dbw 27, FIGHTING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  2, OMANYTE_LV20
+	dbw  2, ONIX_LV12
+	dbw  4, RHYHORN
+	dbw  1, RHYDON_LV37
+	dbw  1, RHYDON_LV48
+	dbw  1, KABUTO_LV9
+	dbw  1, KABUTO_LV22
+	dbw  1, KABUTOPS
+	dbw  1, AERODACTYL_LV30
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, SNORLAX_LV20
+	dbw  2, ITEMFINDER
+	dbw  4, MYSTERIOUS_FOSSIL
+	dbw  3, SWITCH
+	dbw  2, BILL
+	db 0
+
+RagingBillowOfFistsDeck:
+	dbw 19, FIGHTING_ENERGY
+	dbw  4, PSYCHIC_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  2, RAINBOW_ENERGY
+	dbw  2, MACHOP_LV18
+	dbw  2, MACHOP_LV24
+	dbw  2, MACHOKE_LV24
+	dbw  1, MACHOKE_LV40
+	dbw  2, MACHAMP_LV54
+	dbw  2, HITMONLEE_LV23
+	dbw  2, HITMONCHAN_LV33
+	dbw  3, MR_MIME_LV20
+	dbw  2, LICKITUNG_LV20
+	dbw  2, KANGASKHAN_LV38
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, GUST_OF_WIND
+	dbw  1, FULL_HEAL
+	dbw  2, PLUSPOWER
+	dbw  2, SCOOP_UP
+	dbw  2, BILL
+	db 0
+
+YouCanDoItMachopDeck:
+	dbw  5, LIGHTNING_ENERGY
+	dbw 22, FIGHTING_ENERGY
+	dbw  2, PIKACHU_LV12
+	dbw  4, MACHOP_LV20
+	dbw  3, MACHOKE_LV40
+	dbw  1, MACHAMP_LV67
+	dbw  2, RATTATA_LV9
+	dbw  1, RATICATE
+	dbw  2, MEOWTH_LV17
+	dbw  4, EEVEE_LV12
+	dbw  2, PORYGON_LV12
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+NewMachokeDeck:
+	dbw 21, FIGHTING_ENERGY
+	dbw  6, PSYCHIC_ENERGY
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  3, MANKEY_LV7
+	dbw  2, PRIMEAPE
+	dbw  4, MACHOP_LV20
+	dbw  2, MACHOKE_LV24
+	dbw  1, MACHOKE_LV40
+	dbw  2, MACHAMP_LV67
+	dbw  1, HITMONLEE_LV23
+	dbw  1, HITMONCHAN_LV33
+	dbw  3, GASTLY_LV13
+	dbw  2, MEOWTH_LV15
+	dbw  1, TAUROS_LV35
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+SkilledWarriorDeck:
+	dbw 25, FIGHTING_ENERGY
+	dbw  4, SANDSHREW_LV12
+	dbw  3, SANDSLASH_LV33
+	dbw  4, MACHOP_LV20
+	dbw  3, MACHOKE_LV40
+	dbw  2, HITMONLEE_LV23
+	dbw  1, HITMONCHAN_LV33
+	dbw  2, RHYHORN
+	dbw  1, KANGASKHAN_LV40
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, GUST_OF_WIND
+	dbw  2, SWITCH
+	dbw  1, SCOOP_UP
+	dbw  2, BILL
+	db 0
+
+ILoveToFightDeck:
+	dbw 25, FIGHTING_ENERGY
+	dbw  3, MANKEY_LV7
+	dbw  2, PRIMEAPE
+	dbw  4, MACHOP_LV18
+	dbw  3, MACHOKE_LV24
+	dbw  2, MACHAMP_LV67
+	dbw  2, HITMONLEE_LV30
+	dbw  2, HITMONCHAN_LV23
+	dbw  3, DODUO_LV10
+	dbw  1, DODRIO_LV28
+	dbw  2, LICKITUNG_LV20
+	dbw  4, POTION
+	dbw  1, MOON_STONE
+	dbw  2, DEFENDER
+	dbw  2, FULL_HEAL
+	dbw  2, PLUSPOWER
+	db 0
+
+MaxEnergyDeck:
+	dbw 20, GRASS_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, BULBASAUR_LV12
+	dbw  3, IVYSAUR_LV26
+	dbw  2, VENUSAUR_LV67
+	dbw  4, CATERPIE
+	dbw  3, METAPOD_LV20
+	dbw  1, BUTTERFREE
+	dbw  4, EXEGGCUTE
+	dbw  3, EXEGGUTOR
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POKEMON_CENTER
+	dbw  2, POKEMON_BREEDER
+	dbw  4, BILL
+	dbw  2, POKEBALL
+	db 0
+
+RemainingGreenDeck:
+	dbw 27, GRASS_ENERGY
+	dbw  3, BULBASAUR_LV12
+	dbw  1, IVYSAUR_LV26
+	dbw  4, WEEDLE_LV12
+	dbw  2, KAKUNA_LV23
+	dbw  1, BEEDRILL
+	dbw  3, NIDORANM_LV20
+	dbw  1, NIDORINO_LV25
+	dbw  3, VENONAT_LV15
+	dbw  3, TANGELA_LV8
+	dbw  2, ENERGY_SEARCH
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	dbw  4, POKEBALL
+	db 0
+
+PoisonCurseDeck:
+	dbw 25, GRASS_ENERGY
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  4, WEEDLE_LV15
+	dbw  3, KAKUNA_LV20
+	dbw  2, BEEDRILL
+	dbw  3, BELLSPROUT_LV11
+	dbw  2, WEEPINBELL_LV28
+	dbw  1, VICTREEBEL
+	dbw  2, TANGELA_LV8
+	dbw  1, TANGELA_LV12
+	dbw  2, SCYTHER_LV23
+	dbw  2, PINSIR_LV24
+	dbw  2, ENERGY_REMOVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, SUPER_ENERGY_REMOVAL
+	dbw  2, DEFENDER
+	dbw  2, SWITCH
+	dbw  1, BILL
+	db 0
+
+GlitteringScalesDeck:
+	dbw 24, GRASS_ENERGY
+	dbw  3, BULBASAUR_LV12
+	dbw  2, IVYSAUR_LV26
+	dbw  4, VENONAT_LV15
+	dbw  3, VENOMOTH_LV28
+	dbw  3, TANGELA_LV8
+	dbw  2, SCYTHER_LV23
+	dbw  2, JIGGLYPUFF_LV14
+	dbw  1, WIGGLYTUFF_LV36
+	dbw  1, CHANSEY_LV55
+	dbw  1, KANGASKHAN_LV40
+	dbw  2, PORYGON_LV12
+	dbw  2, ENERGY_REMOVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  2, GUST_OF_WIND
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+SteadyIncreaseDeck:
+	dbw 23, GRASS_ENERGY
+	dbw  4, ODDISH_LV8
+	dbw  3, GLOOM
+	dbw  2, VILEPLUME
+	dbw  4, PARAS_LV15
+	dbw  3, PARASECT_LV29
+	dbw  4, BELLSPROUT_LV11
+	dbw  3, WEEPINBELL_LV28
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, DEFENDER
+	dbw  2, FULL_HEAL
+	dbw  4, MR_FUJI
+	db 0
+
+DarkScienceDeck:
+	dbw 25, GRASS_ENERGY
+	dbw  3, EKANS_LV15
+	dbw  2, ARBOK_LV30
+	dbw  3, ZUBAT_LV12
+	dbw  4, GRIMER_LV10
+	dbw  4, KOFFING_LV13
+	dbw  3, WEEZING_LV26
+	dbw  2, CHANSEY_LV55
+	dbw  1, SUPER_POTION
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, GAMBLER
+	dbw  2, DEFENDER
+	dbw  2, BILL
+	dbw  1, BILLS_TELEPORTER
+	dbw  2, MASTER_BALL
+	dbw  1, LASS
+	dbw  1, THE_ROCKETS_TRAP
+	db 0
+
+NaturalScienceDeck:
+	dbw 24, GRASS_ENERGY
+	dbw  1, DOUBLE_COLORLESS_ENERGY
+	dbw  3, BULBASAUR_LV12
+	dbw  3, NIDORANF_LV13
+	dbw  4, NIDORANM_LV20
+	dbw  3, NIDORINO_LV25
+	dbw  3, ZUBAT_LV10
+	dbw  2, GOLBAT_LV25
+	dbw  3, VENONAT_LV15
+	dbw  2, PORYGON_LV12
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+PoisonousSwampDeck:
+	dbw 25, GRASS_ENERGY
+	dbw  4, EKANS_LV10
+	dbw  2, ARBOK_LV30
+	dbw  2, NIDORANM_LV20
+	dbw  2, NIDORANM_LV22
+	dbw  3, NIDORINO_LV25
+	dbw  2, NIDOKING
+	dbw  2, ZUBAT_LV10
+	dbw  4, KOFFING_LV14
+	dbw  3, WEEZING_LV27
+	dbw  1, PROFESSOR_OAK
+	dbw  4, POTION
+	dbw  4, DEFENDER
+	dbw  2, BILL
+	db 0
+
+GatheringNidoranDeck:
+	dbw 23, GRASS_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, NIDORANF_LV12
+	dbw  2, NIDORANF_LV13
+	dbw  3, NIDORINA_LV22
+	dbw  2, NIDOQUEEN
+	dbw  4, NIDORANM_LV22
+	dbw  2, NIDORINO_LV23
+	dbw  1, NIDORINO_LV25
+	dbw  2, NIDOKING
+	dbw  2, CLEFAIRY_LV15
+	dbw  2, LICKITUNG_LV20
+	dbw  2, TAUROS_LV35
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POKEMON_TRADER
+	dbw  2, POKEMON_BREEDER
+	dbw  2, BILL
+	dbw  2, POKEBALL
+	db 0
+
+RainDanceConfusionDeck:
+	dbw 25, WATER_ENERGY
+	dbw  2, SQUIRTLE_LV15
+	dbw  2, SQUIRTLE_LV16
+	dbw  3, WARTORTLE_LV22
+	dbw  2, BLASTOISE_LV52
+	dbw  4, SEEL_LV10
+	dbw  3, DEWGONG_LV24
+	dbw  2, LAPRAS_LV31
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  1, POKEMON_BREEDER
+	dbw  4, BILL
+	db 0
+
+ConservingWaterDeck:
+	dbw 25, WATER_ENERGY
+	dbw  4, SEEL_LV12
+	dbw  2, DEWGONG_LV42
+	dbw  4, KRABBY_LV20
+	dbw  2, KINGLER_LV27
+	dbw  4, STARYU_LV15
+	dbw  2, STARMIE
+	dbw  4, MAGIKARP_LV8
+	dbw  2, GYARADOS
+	dbw  1, ENERGY_RETRIEVAL
+	dbw  1, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+EnergyRemovalDeck:
+	dbw 18, WATER_ENERGY
+	dbw  6, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, PSYDUCK_LV16
+	dbw  3, GOLDUCK_LV27
+	dbw  4, POLIWAG_LV15
+	dbw  3, POLIWHIRL_LV30
+	dbw  2, POLIWRATH_LV48
+	dbw  2, MEWTWO_LV67
+	dbw  3, DRATINI_LV12
+	dbw  2, DRAGONAIR
+	dbw  3, ENERGY_REMOVAL
+	dbw  1, ENERGY_RETRIEVAL
+	dbw  1, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  1, SUPER_ENERGY_REMOVAL
+	dbw  2, BILL
+	db 0
+
+SplashingAboutDeck:
+	dbw 26, WATER_ENERGY
+	dbw  4, SQUIRTLE_LV14
+	dbw  3, WARTORTLE_LV24
+	dbw  3, POLIWAG_LV13
+	dbw  4, HORSEA_LV20
+	dbw  2, SEADRA_LV23
+	dbw  1, SEADRA_LV26
+	dbw  2, LAPRAS_LV24
+	dbw  2, VAPOREON_LV42
+	dbw  3, EEVEE_LV12
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, SCOOP_UP
+	dbw  3, BILL
+	db 0
+
+BeachDeck:
+	dbw 24, WATER_ENERGY
+	dbw  3, TENTACOOL
+	dbw  2, TENTACRUEL
+	dbw  3, SHELLDER_LV16
+	dbw  2, CLOYSTER
+	dbw  4, KRABBY_LV17
+	dbw  3, KINGLER_LV33
+	dbw  3, STARYU_LV17
+	dbw  2, STARMIE
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  2, POTION
+	dbw  1, REVIVE
+	dbw  2, GUST_OF_WIND
+	dbw  1, FULL_HEAL
+	dbw  1, IMPOSTER_PROFESSOR_OAK
+	dbw  1, LASS
+	dbw  2, POKEBALL
+	dbw  1, RECYCLE
+	db 0
+
+GoArcanineDeck:
+	dbw 12, FIRE_ENERGY
+	dbw  6, WATER_ENERGY
+	dbw  5, FIGHTING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, GROWLITHE_LV18
+	dbw  2, GROWLITHE_LV12
+	dbw  3, ARCANINE_LV45
+	dbw  3, MAGMAR_LV31
+	dbw  2, SEEL_LV12
+	dbw  1, DEWGONG_LV42
+	dbw  1, HITMONCHAN_LV33
+	dbw  2, HITMONCHAN_LV23
+	dbw  3, DODUO_LV10
+	dbw  2, DODRIO_LV28
+	dbw  2, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  2, PLUSPOWER
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, ENERGY_RETRIEVAL
+	db 0
+
+FlameFestivalDeck:
+	dbw 26, FIRE_ENERGY
+	dbw  4, VULPIX_LV13
+	dbw  3, NINETALES_LV35
+	dbw  2, GROWLITHE_LV16
+	dbw  1, ARCANINE_LV34
+	dbw  4, PONYTA_LV8
+	dbw  3, RAPIDASH_LV30
+	dbw  2, MAGMAR_LV27
+	dbw  2, MAGMAR_LV31
+	dbw  2, MEOWTH_LV14
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  2, POTION
+	dbw  1, SUPER_ENERGY_RETRIEVAL
+	dbw  2, IMPOSTER_PROFESSOR_OAK
+	dbw  3, BILL
+	db 0
+
+ImmortalFlameDeck:
+	dbw 25, FIRE_ENERGY
+	dbw  4, CHARMANDER_LV10
+	dbw  3, CHARMELEON
+	dbw  4, GROWLITHE_LV12
+	dbw  3, ARCANINE_LV35
+	dbw  3, MAGMAR_LV24
+	dbw  2, FLAREON_LV28
+	dbw  2, KANGASKHAN_LV40
+	dbw  3, EEVEE_LV12
+	dbw  4, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	db 0
+
+ElectricCurrentShockDeck:
+	dbw 16, FIRE_ENERGY
+	dbw 12, LIGHTNING_ENERGY
+	dbw  4, VULPIX_LV11
+	dbw  2, NINETALES_LV32
+	dbw  4, PONYTA_LV10
+	dbw  3, RAPIDASH_LV33
+	dbw  1, MOLTRES_LV35
+	dbw  2, PIKACHU_LV14
+	dbw  1, RAICHU_LV45
+	dbw  3, MAGNEMITE_LV13
+	dbw  2, MAGNETON_LV30
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  2, GUST_OF_WIND
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+GreatRocket4Deck:
+	dbw 15, WATER_ENERGY
+	dbw 12, PSYCHIC_ENERGY
+	dbw  3, PSYDUCK_LV16
+	dbw  2, DARK_GOLDUCK
+	dbw  3, KRABBY_LV17
+	dbw  2, KINGLER_LV33
+	dbw  2, HORSEA_LV20
+	dbw  1, SEADRA_LV26
+	dbw  1, DROWZEE_LV10
+	dbw  2, DROWZEE_LV12
+	dbw  2, DARK_HYPNO
+	dbw  1, JYNX_LV18
+	dbw  2, JYNX_LV27
+	dbw  2, MEW_LV23
+	dbw  2, ENERGY_REMOVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, GUST_OF_WIND
+	dbw  2, FULL_HEAL
+	dbw  1, IMPOSTER_PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  1, LASS
+	db 0
+
+GreatRocket1Deck:
+	dbw 13, WATER_ENERGY
+	dbw 13, LIGHTNING_ENERGY
+	dbw  4, VOLTORB_LV13
+	dbw  2, ELECTRODE_LV42
+	dbw  2, MAGNEMITE_LV12
+	dbw  2, MAGNEMITE_LV15
+	dbw  2, PIKACHU_LV5
+	dbw  4, POLIWAG_LV15
+	dbw  2, POLIWHIRL_LV30
+	dbw  1, POLIWRATH_LV40
+	dbw  2, SEEL_LV10
+	dbw  1, DEWGONG_LV24
+	dbw  2, LAPRAS_LV24
+	dbw  2, KANGASKHAN_LV36
+	dbw  1, PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  2, SWITCH
+	dbw  2, POTION
+	dbw  1, SUPER_POTION
+	db 0
+
+GreatRocket2Deck:
+	dbw 12, GRASS_ENERGY
+	dbw 15, FIGHTING_ENERGY
+	dbw  1, FULLHEAL_ENERGY
+	dbw  2, EKANS_LV10
+	dbw  2, EKANS_LV15
+	dbw  2, DARK_ARBOK
+	dbw  2, PARAS_LV8
+	dbw  1, PARASECT_LV29
+	dbw  1, PINSIR_LV15
+	dbw  3, SANDSHREW_LV12
+	dbw  1, SANDSLASH_LV33
+	dbw  1, SANDSLASH_LV35
+	dbw  2, DIGLETT_LV8
+	dbw  2, DIGLETT_LV15
+	dbw  2, DARK_DUGTRIO
+	dbw  2, GEODUDE_LV15
+	dbw  2, ONIX_LV25
+	dbw  1, PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, FULL_HEAL
+	dbw  1, THE_BOSSS_WAY
+	db 0
+
+GreatRocket3Deck:
+	dbw 16, GRASS_ENERGY
+	dbw 10, FIRE_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  3, ODDISH_LV8
+	dbw  2, DARK_GLOOM
+	dbw  1, DARK_VILEPLUME
+	dbw  3, EXEGGCUTE
+	dbw  2, EXEGGUTOR
+	dbw  2, TANGELA_LV12
+	dbw  1, PINSIR_LV24
+	dbw  4, CHARMANDER_LV12
+	dbw  1, CHARMELEON
+	dbw  2, DARK_CHARMELEON
+	dbw  2, MAGMAR_LV18
+	dbw  1, MOLTRES_LV37
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, GUST_OF_WIND
+	dbw  1, THE_BOSSS_WAY
+	dbw  2, BILL
+	db 0
+
+GrandFireDeck:
+	dbw 22, FIRE_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  2, MOLTRES_LV40
+	dbw  2, MOLTRES_LV37
+	dbw  4, PONYTA_LV8
+	dbw  3, RAPIDASH_LV33
+	dbw  2, VULPIX_LV11
+	dbw  1, VULPIX_LV13
+	dbw  2, NINETALES_LV35
+	dbw  4, MAGMAR_LV31
+	dbw  2, PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  2, LASS
+	dbw  3, SCOOP_UP
+	dbw  3, NIGHTLY_GARBAGE_RUN
+	dbw  2, SWITCH
+	dbw  2, POKEBALL
+	db 0
+
+LegendaryFossilDeck:
+	dbw 21, LIGHTNING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  3, VOLTORB_LV13
+	dbw  2, ELECTRODE_LV35
+	dbw  4, ELECTABUZZ_LV35
+	dbw  2, ZAPDOS_LV28
+	dbw  2, ZAPDOS_LV68
+	dbw  2, AERODACTYL_LV28
+	dbw  1, SUPER_POTION
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  2, FOSSIL_EXCAVATION
+	dbw  2, POTION
+	dbw  1, GAMBLER
+	dbw  4, MYSTERIOUS_FOSSIL
+	dbw  1, COMPUTER_SEARCH
+	dbw  2, PLUSPOWER
+	dbw  2, SWITCH
+	dbw  2, BILL
+	dbw  1, NIGHTLY_GARBAGE_RUN
+	db 0
+
+WaterLegendDeck:
+	dbw 20, WATER_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  3, KRABBY_LV17
+	dbw  2, KINGLER_LV33
+	dbw  3, MAGIKARP_LV6
+	dbw  2, DARK_GYARADOS
+	dbw  2, LAPRAS_LV31
+	dbw  2, ARTICUNO_LV34
+	dbw  2, ARTICUNO_LV37
+	dbw  2, JYNX_LV18
+	dbw  2, CHANSEY_LV40
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  1, SUPER_ENERGY_REMOVAL
+	dbw  3, SWITCH
+	dbw  2, SCOOP_UP
+	dbw  3, BILL
+	db 0
+
+GreatDragonDeck:
+	dbw 18, FIRE_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  2, CHARMANDER_LV9
+	dbw  2, CHARMANDER_LV10
+	dbw  3, CHARMELEON
+	dbw  1, CHARIZARD_LV76
+	dbw  1, CHARIZARD_ALT_LV76
+	dbw  2, DRATINI_LV10
+	dbw  2, DRATINI_LV12
+	dbw  2, DRAGONAIR
+	dbw  2, DARK_DRAGONAIR
+	dbw  2, DRAGONITE_LV41
+	dbw  3, KANGASKHAN_LV40
+	dbw  2, SCYTHER_LV25
+	dbw  4, BILL
+	dbw  2, POKEMON_BREEDER
+	dbw  2, SWITCH
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	dbw  2, MASTER_BALL
+	db 0
+
+BugCollectingDeck:
+	dbw 24, GRASS_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  3, CATERPIE
+	dbw  2, METAPOD_LV20
+	dbw  1, BUTTERFREE
+	dbw  3, WEEDLE_LV12
+	dbw  2, KAKUNA_LV20
+	dbw  1, BEEDRILL
+	dbw  3, VENONAT_LV12
+	dbw  2, VENOMOTH_LV22
+	dbw  1, SCYTHER_LV25
+	dbw  2, RATTATA_LV12
+	dbw  1, DARK_RATICATE
+	dbw  3, MEOWTH_LV10
+	dbw  2, DARK_PERSIAN_LV28
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	dbw  2, BILL
+	dbw  2, MASTER_BALL
+	db 0
+
+DemonicForestDeck:
+	dbw 15, GRASS_ENERGY
+	dbw 10, PSYCHIC_ENERGY
+	dbw  4, BULBASAUR_LV15
+	dbw  3, DARK_IVYSAUR
+	dbw  2, DARK_VENUSAUR
+	dbw  4, ZUBAT_LV9
+	dbw  3, DARK_GOLBAT
+	dbw  4, GASTLY_LV13
+	dbw  3, HAUNTER_LV25
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  3, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  1, SWITCH
+	dbw  2, THE_BOSSS_WAY
+	dbw  1, BILL
+	dbw  1, MASTER_BALL
+	dbw  1, POKEBALL
+	db 0
+
+StickyPoisonGasDeck:
+	dbw 24, GRASS_ENERGY
+	dbw  4, EKANS_LV15
+	dbw  3, DARK_ARBOK
+	dbw  4, GRIMER_LV10
+	dbw  3, MUK
+	dbw  3, KOFFING_LV12
+	dbw  2, DARK_WEEZING
+	dbw  3, CHARMANDER_LV10
+	dbw  2, CHARMELEON
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, REVIVE
+	dbw  2, GOOP_GAS_ATTACK
+	dbw  1, BILL
+	dbw  2, MASTER_BALL
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+MadPetalsDeck:
+	dbw 17, GRASS_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  3, RAINBOW_ENERGY
+	dbw  4, ODDISH_LV21
+	dbw  2, GLOOM
+	dbw  2, DARK_GLOOM
+	dbw  2, VILEPLUME
+	dbw  2, DARK_VILEPLUME
+	dbw  2, SCYTHER_LV25
+	dbw  3, SQUIRTLE_LV16
+	dbw  2, WARTORTLE_LV22
+	dbw  3, KANGASKHAN_LV40
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, SWITCH
+	dbw  3, POKEMON_TRADER
+	dbw  2, POKEMON_BREEDER
+	dbw  4, BILL
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+DangerousBenchDeck:
+	dbw 18, LIGHTNING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  2, RECYCLE_ENERGY
+	dbw  4, PIKACHU_LV14
+	dbw  3, DARK_RAICHU
+	dbw  2, ZAPDOS_LV40
+	dbw  1, SNORLAX_LV20
+	dbw  1, SNORLAX_LV35
+	dbw  1, HUNGRY_SNORLAX
+	dbw  4, DRATINI_LV12
+	dbw  3, DARK_DRAGONAIR
+	dbw  2, DARK_DRAGONITE
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, THE_BOSSS_WAY
+	dbw  2, BILL
+	db 0
+
+ChainLightningByPikachuDeck:
+	dbw 15, LIGHTNING_ENERGY
+	dbw  8, FIGHTING_ENERGY
+	dbw  2, RAINBOW_ENERGY
+	dbw  2, PIKACHU_LV5
+	dbw  2, PIKACHU_LV13
+	dbw  3, RAICHU_LV32
+	dbw  4, ELECTABUZZ_LV35
+	dbw  2, DARK_JOLTEON
+	dbw  3, SANDSHREW_LV12
+	dbw  2, SANDSLASH_LV35
+	dbw  2, CUBONE_LV14
+	dbw  1, MAROWAK_LV26
+	dbw  3, EEVEE_LV9
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POTION
+	dbw  2, DEFENDER
+	dbw  2, GUST_OF_WIND
+	dbw  2, BILL
+	dbw  2, MASTER_BALL
+	db 0
+
+ThisIsThePowerOfElectricityDeck:
+	dbw 26, LIGHTNING_ENERGY
+	dbw  2, PIKACHU_LV13
+	dbw  1, FLYING_PIKACHU_LV12
+	dbw  1, FLYING_PIKACHU_ALT_LV12
+	dbw  4, MAGNEMITE_LV13
+	dbw  1, MAGNETON_LV30
+	dbw  2, DARK_MAGNETON
+	dbw  2, VOLTORB_LV8
+	dbw  2, VOLTORB_LV13
+	dbw  1, ELECTRODE_LV42
+	dbw  2, DARK_ELECTRODE
+	dbw  2, ELECTABUZZ_LV35
+	dbw  2, ZAPDOS_LV64
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  4, POTION
+	dbw  1, IMPOSTER_PROFESSOR_OAK
+	dbw  2, BILL
+	db 0
+
+QuickAttackDeck:
+	dbw 20, LIGHTNING_ENERGY
+	dbw  2, PIKACHU_LV5
+	dbw  2, PIKACHU_LV14
+	dbw  3, DARK_RAICHU
+	dbw  3, VOLTORB_LV13
+	dbw  3, DARK_JOLTEON
+	dbw  3, DODUO_LV10
+	dbw  4, EEVEE_LV9
+	dbw  3, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  4, DEFENDER
+	dbw  2, PLUSPOWER
+	dbw  4, BILL
+	db 0
+
+CompleteCombustionDeck:
+	dbw 28, FIRE_ENERGY
+	dbw  3, GROWLITHE_LV12
+	dbw  2, ARCANINE_LV45
+	dbw  4, PONYTA_LV15
+	dbw  3, DARK_RAPIDASH
+	dbw  4, MAGMAR_LV27
+	dbw  2, MEOWTH_LV14
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  2, MASTER_BALL
+	dbw  2, POKEBALL
+	dbw  1, NIGHTLY_GARBAGE_RUN
+	db 0
+
+FireballDeck:
+	dbw 22, FIRE_ENERGY
+	dbw  4, CHARMANDER_LV9
+	dbw  3, DARK_CHARMELEON
+	dbw  2, DARK_CHARIZARD
+	dbw  3, SQUIRTLE_LV16
+	dbw  3, MACHOP_LV24
+	dbw  3, DODUO_LV10
+	dbw  2, DODRIO_LV28
+	dbw  3, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, SUPER_ENERGY_REMOVAL
+	dbw  2, DEFENDER
+	dbw  3, SCOOP_UP
+	dbw  4, BILL
+	dbw  2, POKEBALL
+	db 0
+
+EeveeShowdownDeck:
+	dbw 13, FIRE_ENERGY
+	dbw  9, LIGHTNING_ENERGY
+	dbw  4, CHARMANDER_LV12
+	dbw  3, CHARMELEON
+	dbw  3, MAGMAR_LV31
+	dbw  2, DARK_FLAREON
+	dbw  3, ELECTABUZZ_LV35
+	dbw  2, DARK_JOLTEON
+	dbw  4, EEVEE_LV9
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, IMPOSTER_OAKS_REVENGE
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  4, BILL
+	db 0
+
+GazeUponThePowerOfFireDeck:
+	dbw 22, FIRE_ENERGY
+	dbw  4, CHARMANDER_LV9
+	dbw  2, DARK_CHARMELEON
+	dbw  4, VULPIX_LV11
+	dbw  3, DARK_NINETALES
+	dbw  4, PONYTA_LV8
+	dbw  2, RAPIDASH_LV33
+	dbw  3, MAGMAR_LV31
+	dbw  2, PROFESSOR_OAK
+	dbw  3, PLUSPOWER
+	dbw  2, SWITCH
+	dbw  3, POKEMON_TRADER
+	dbw  4, BILL
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+WhirlpoolShowerDeck:
+	dbw 23, WATER_ENERGY
+	dbw  4, STARYU_LV15
+	dbw  3, DARK_STARMIE
+	dbw  3, DARK_VAPOREON
+	dbw  4, VOLTORB_LV10
+	dbw  3, ELECTRODE_LV42
+	dbw  4, EEVEE_LV9
+	dbw  4, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, SUPER_ENERGY_REMOVAL
+	dbw  2, SWITCH
+	dbw  4, BILL
+	dbw  2, POKEBALL
+	db 0
+
+ParalyzedParalyzedDeck:
+	dbw 20, WATER_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, SQUIRTLE_LV8
+	dbw  3, WARTORTLE_LV24
+	dbw  4, POLIWAG_LV15
+	dbw  3, POLIWHIRL_LV30
+	dbw  4, MAGIKARP_LV6
+	dbw  3, DARK_GYARADOS
+	dbw  3, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  3, PLUSPOWER
+	dbw  2, SWITCH
+	dbw  4, BILL
+	dbw  2, POKEBALL
+	db 0
+
+BenchCallDeck:
+	dbw 23, WATER_ENERGY
+	dbw  4, SEEL_LV10
+	dbw  3, DEWGONG_LV24
+	dbw  4, MAGIKARP_LV6
+	dbw  3, DARK_GYARADOS
+	dbw  1, SURFING_PIKACHU_LV13
+	dbw  1, SURFING_PIKACHU_ALT_LV13
+	dbw  2, JYNX_LV18
+	dbw  2, TAUROS_LV35
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  4, GUST_OF_WIND
+	dbw  2, POKEMON_TRADER
+	dbw  4, POKEMON_FLUTE
+	dbw  2, BILL
+	db 0
+
+WaterStreamDeck:
+	dbw 19, WATER_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  4, GOLDEEN
+	dbw  3, SEAKING
+	dbw  4, STARYU_LV15
+	dbw  3, DARK_STARMIE
+	dbw  3, LAPRAS_LV31
+	dbw  3, ARTICUNO_LV34
+	dbw  2, PROFESSOR_OAK
+	dbw  2, GUST_OF_WIND
+	dbw  4, MR_FUJI
+	dbw  3, PLUSPOWER
+	dbw  3, POKEMON_TRADER
+	dbw  4, BILL
+	db 0
+
+RockBlastDeck:
+	dbw 22, FIGHTING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, DIGLETT_LV15
+	dbw  3, DARK_DUGTRIO
+	dbw  4, GEODUDE_LV16
+	dbw  3, GRAVELER_LV28
+	dbw  3, GOLEM_LV37
+	dbw  4, LICKITUNG_LV26
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  2, DEFENDER
+	dbw  2, DIGGER
+	dbw  2, POKEMON_BREEDER
+	dbw  4, BILL
+	dbw  2, POKEBALL
+	db 0
+
+FullStrengthDeck:
+	dbw 20, FIGHTING_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  2, SCYTHER_LV25
+	dbw  4, MACHOP_LV24
+	dbw  4, DARK_MACHOKE
+	dbw  3, DARK_MACHAMP
+	dbw  3, ONIX_LV25
+	dbw  4, SPEAROW_LV9
+	dbw  3, DARK_FEAROW
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  3, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  3, THE_BOSSS_WAY
+	dbw  3, BILL
+	db 0
+
+RunningWildDeck:
+	dbw 18, FIGHTING_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  3, SCYTHER_LV25
+	dbw  4, MANKEY_LV14
+	dbw  3, DARK_PRIMEAPE
+	dbw  4, CUBONE_LV14
+	dbw  3, DARK_MAROWAK
+	dbw  3, KANGASKHAN_LV40
+	dbw  4, IMAKUNI_CARD
+	dbw  3, ENERGY_REMOVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  2, ITEMFINDER
+	dbw  4, DEFENDER
+	dbw  4, BILL
+	db 0
+
+DirectHitDeck:
+	dbw 23, PSYCHIC_ENERGY
+	dbw  4, PSYDUCK_LV16
+	dbw  3, DARK_GOLDUCK
+	dbw  4, ABRA_LV8
+	dbw  3, DARK_KADABRA
+	dbw  2, DARK_ALAKAZAM
+	dbw  2, MEWTWO_LV30
+	dbw  2, RATTATA_LV15
+	dbw  1, DARK_RATICATE
+	dbw  2, KANGASKHAN_LV40
+	dbw  3, ENERGY_REMOVAL
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, POKEMON_TRADER
+	dbw  3, THE_BOSSS_WAY
+	dbw  2, BILL
+	db 0
+
+SuperdestructivePowerDeck:
+	dbw 10, FIGHTING_ENERGY
+	dbw 15, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, MACHOP_LV24
+	dbw  2, HITMONCHAN_LV33
+	dbw  4, ABRA_LV14
+	dbw  3, KADABRA_LV38
+	dbw  4, DROWZEE_LV12
+	dbw  3, DARK_HYPNO
+	dbw  2, MEWTWO_LV54
+	dbw  2, KANGASKHAN_LV36
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  4, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, BILL
+	db 0
+
+BadDreamDeck:
+	dbw 18, PSYCHIC_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, GASTLY_LV13
+	dbw  2, HAUNTER_LV17
+	dbw  2, HAUNTER_LV22
+	dbw  3, GENGAR_LV40
+	dbw  4, DROWZEE_LV10
+	dbw  3, DARK_HYPNO
+	dbw  4, KANGASKHAN_LV40
+	dbw  1, PROFESSOR_OAK
+	dbw  2, FULL_HEAL
+	dbw  4, SLEEP
+	dbw  2, POKEMON_BREEDER
+	dbw  4, BILL
+	dbw  3, POKEBALL
+	db 0
+
+PokemonPowerDeck:
+	dbw 20, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, POTION_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, ABRA_LV14
+	dbw  3, KADABRA_LV38
+	dbw  2, ALAKAZAM_LV42
+	dbw  4, SLOWPOKE_LV16
+	dbw  3, SLOWBRO_LV26
+	dbw  3, MEOWTH_LV14
+	dbw  2, DARK_PERSIAN_LV28
+	dbw  4, DRATINI_LV12
+	dbw  3, DARK_DRAGONAIR
+	db 0
+
+SpiritedAwayDeck:
+	dbw 18, PSYCHIC_ENERGY
+	dbw  4, GASTLY_LV17
+	dbw  4, DARK_HAUNTER
+	dbw  3, DARK_GENGAR
+	dbw  4, SLOWPOKE_LV16
+	dbw  3, MR_MIME_LV28
+	dbw  4, KANGASKHAN_LV40
+	dbw  2, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, ITEMFINDER
+	dbw  2, POKEMON_BREEDER
+	dbw  4, ENERGY_REMOVAL
+	dbw  2, SUPER_ENERGY_REMOVAL
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+SnorlaxGuardDeck:
+	dbw  1, GRASS_ENERGY
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  1, LIGHTNING_ENERGY
+	dbw  1, FIGHTING_ENERGY
+	dbw  1, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, POTION_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  4, LICKITUNG_LV26
+	dbw  2, CHANSEY_LV55
+	dbw  4, KANGASKHAN_LV40
+	dbw  4, SNORLAX_LV35
+	dbw  4, ENERGY_REMOVAL
+	dbw  2, ITEMFINDER
+	dbw  3, SUPER_ENERGY_REMOVAL
+	dbw  2, PLUSPOWER
+	dbw  4, SWITCH
+	dbw  2, SCOOP_UP
+	dbw  4, BILL
+	dbw  3, BILLS_TELEPORTER
+	db 0
+
+EyeOfTheStormDeck:
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  8, LIGHTNING_ENERGY
+	dbw  4, PIDGEY_LV10
+	dbw  3, PIDGEOTTO_LV38
+	dbw  2, PIDGEOT_LV40
+	dbw  4, SPEAROW_LV13
+	dbw  3, FEAROW_LV27
+	dbw  2, TAUROS_LV35
+	dbw  1, FLYING_PIKACHU_LV12
+	dbw  1, FLYING_PIKACHU_ALT_LV12
+	dbw  2, BILL
+	dbw  2, PROFESSOR_OAK
+	dbw  2, DEFENDER
+	dbw  3, POTION
+	dbw  3, GUST_OF_WIND
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, SWITCH
+	dbw  2, MOON_STONE
+	dbw  2, COMPUTER_SEARCH
+	db 0
+
+SuddenGrowthDeck:
+	dbw  5, FIGHTING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, POTION_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  2, ONIX_LV25
+	dbw  2, HITMONCHAN_LV23
+	dbw  4, CLEFAIRY_LV15
+	dbw  3, DARK_CLEFABLE
+	dbw  3, JIGGLYPUFF_LV13
+	dbw  4, DRATINI_LV12
+	dbw  3, DARK_DRAGONAIR
+	dbw  2, DARK_DRAGONITE
+	dbw  3, SUPER_POTION
+	dbw  2, PROFESSOR_OAK
+	dbw  1, ITEMFINDER
+	dbw  2, MOON_STONE
+	dbw  1, COMPUTER_SEARCH
+	dbw  2, THE_BOSSS_WAY
+	dbw  2, BILL
+	dbw  3, NIGHTLY_GARBAGE_RUN
+	db 0
+
+VeryRareCardDeck:
+	dbw 22, WATER_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, POTION_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  3, MAGIKARP_LV10
+	dbw  1, GYARADOS
+	dbw  2, MARILL
+	dbw  1, SURFING_PIKACHU_LV13
+	dbw  1, SURFING_PIKACHU_ALT_LV13
+	dbw  2, ELECTABUZZ_LV20
+	dbw  2, JIGGLYPUFF_LV12
+	dbw  2, MEOWTH_LV14
+	dbw  1, DARK_PERSIAN_ALT_LV28
+	dbw  2, FARFETCHD_ALT_LV20
+	dbw  2, KANGASKHAN_LV38
+	dbw  2, COOL_PORYGON
+	dbw  2, SUPER_ENERGY_RETRIEVAL
+	dbw  1, SUPER_ENERGY_REMOVAL
+	dbw  1, IMPOSTER_PROFESSOR_OAK
+	dbw  2, COMPUTER_ERROR
+	dbw  1, SCOOP_UP
+	dbw  2, BILL
+	dbw  1, MASTER_BALL
+	dbw  1, LASS
+	db 0
+
+BadGuysDeck:
+	dbw  6, GRASS_ENERGY
+	dbw  8, FIRE_ENERGY
+	dbw  8, PSYCHIC_ENERGY
+	dbw  3, ODDISH_LV21
+	dbw  2, DARK_GLOOM
+	dbw  3, CHARMANDER_LV9
+	dbw  2, DARK_CHARMELEON
+	dbw  3, PSYDUCK_LV16
+	dbw  2, DARK_GOLDUCK
+	dbw  3, SLOWPOKE_LV16
+	dbw  2, DARK_SLOWBRO
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  3, PROFESSOR_OAK
+	dbw  2, POKEMON_TRADER
+	dbw  2, THE_BOSSS_WAY
+	dbw  4, BILL
+	dbw  2, NIGHTLY_GARBAGE_RUN
+	db 0
+
+PoisonMistDeck:
+	dbw 20, GRASS_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  3, SCYTHER_LV25
+	dbw  4, GRIMER_LV10
+	dbw  4, DARK_MUK
+	dbw  4, KOFFING_LV14
+	dbw  3, WEEZING_LV26
+	dbw  1, MR_MIME_LV20
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  2, POKEMON_TRADER
+	dbw  3, ENERGY_REMOVAL
+	dbw  2, DEFENDER
+	dbw  2, GUST_OF_WIND
+	dbw  2, SWITCH
+	db 0
+
+UltraRemovalDeck:
+	dbw 18, WATER_ENERGY
+	dbw  4, SQUIRTLE_LV8
+	dbw  3, WARTORTLE_LV22
+	dbw  3, BLASTOISE_LV52
+	dbw  4, PSYDUCK_LV15
+	dbw  3, GOLDUCK_LV27
+	dbw  4, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  2, POKEMON_TRADER
+	dbw  4, ENERGY_REMOVAL
+	dbw  3, SUPER_ENERGY_REMOVAL
+	dbw  2, SWITCH
+	dbw  2, GUST_OF_WIND
+	db 0
+
+PsychicBattleDeck:
+	dbw 10, PSYCHIC_ENERGY
+	dbw 12, FIGHTING_ENERGY
+	dbw  3, MR_MIME_LV28
+	dbw  3, MEWTWO_LV53
+	dbw  4, SANDSHREW_LV12
+	dbw  3, SANDSLASH_LV33
+	dbw  4, HITMONCHAN_LV33
+	dbw  2, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  2, ENERGY_SEARCH
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  3, POTION
+	dbw  4, GUST_OF_WIND
+	dbw  2, PLUSPOWER
+	dbw  2, SWITCH
+	db 0
+
+StopLifeDeck:
+	dbw 18, GRASS_ENERGY
+	dbw  4, BULBASAUR_LV12
+	dbw  3, DARK_IVYSAUR
+	dbw  3, DARK_VENUSAUR
+	dbw  3, DRATINI_LV10
+	dbw  2, DARK_DRAGONAIR
+	dbw  2, SCYTHER_LV25
+	dbw  2, KANGASKHAN_LV40
+	dbw  1, MR_MIME_LV20
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  3, THE_BOSSS_WAY
+	dbw  3, POKEMON_TRADER
+	dbw  3, PLUSPOWER
+	dbw  3, GUST_OF_WIND
+	dbw  2, SWITCH
+	db 0
+
+ScorcherDeck:
+	dbw 18, FIRE_ENERGY
+	dbw  4, CHARMANDER_LV9
+	dbw  3, DARK_CHARMELEON
+	dbw  3, DARK_CHARIZARD
+	dbw  2, CLEFAIRY_LV15
+	dbw  2, DARK_CLEFABLE
+	dbw  3, MAGMAR_LV31
+	dbw  2, KANGASKHAN_LV40
+	dbw  1, MR_MIME_LV20
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  3, THE_BOSSS_WAY
+	dbw  3, POKEMON_TRADER
+	dbw  3, DEFENDER
+	dbw  3, SWITCH
+	dbw  2, ENERGY_RETRIEVAL
+	db 0
+
+TsunamiStarterDeck:
+	dbw 18, WATER_ENERGY
+	dbw  4, SQUIRTLE_LV8
+	dbw  1, DARK_WARTORTLE
+	dbw  3, DARK_BLASTOISE
+	dbw  2, CLEFAIRY_LV15
+	dbw  2, DARK_CLEFABLE
+	dbw  3, LAPRAS_LV31
+	dbw  2, SCYTHER_LV25
+	dbw  1, MR_MIME_LV20
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  2, THE_BOSSS_WAY
+	dbw  2, POKEMON_TRADER
+	dbw  3, POKEMON_BREEDER
+	dbw  2, PLUSPOWER
+	dbw  2, GUST_OF_WIND
+	dbw  2, SWITCH
+	dbw  3, SUPER_POTION
+	db 0
+
+SmashToMincemeatDeck:
+	dbw 18, FIGHTING_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, MACHOP_LV20
+	dbw  3, DARK_MACHOKE
+	dbw  3, DARK_MACHAMP
+	dbw  2, CLEFAIRY_LV15
+	dbw  2, DARK_CLEFABLE
+	dbw  3, KANGASKHAN_LV40
+	dbw  2, CHANSEY_LV55
+	dbw  1, MR_MIME_LV20
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  2, THE_BOSSS_WAY
+	dbw  2, POKEMON_TRADER
+	dbw  3, DEFENDER
+	dbw  3, GUST_OF_WIND
+	dbw  2, SWITCH
+	db 0
+
+TestYourLuckDeck:
+	dbw 21, FIRE_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, MAGMAR_LV27
+	dbw  4, MOLTRES_LV35
+	dbw  4, LICKITUNG_LV20
+	dbw  4, CHANSEY_LV40
+	dbw  4, KANGASKHAN_LV36
+	dbw  4, ENERGY_REMOVAL
+	dbw  4, ENERGY_RETRIEVAL
+	dbw  4, POTION
+	dbw  3, BILL
+	db 0
+
+ProtohistoricDeck:
+	dbw 18, FIGHTING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, CHARMANDER_LV10
+	dbw  3, CHARMELEON
+	dbw  1, CHARIZARD_LV76
+	dbw  2, OMANYTE_LV20
+	dbw  1, KABUTO_LV9
+	dbw  1, KABUTO_LV22
+	dbw  1, KABUTOPS
+	dbw  1, AERODACTYL_LV30
+	dbw  2, KANGASKHAN_LV36
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, PROFESSOR_OAK
+	dbw  4, FOSSIL_EXCAVATION
+	dbw  4, DEFENDER
+	dbw  4, MYSTERIOUS_FOSSIL
+	dbw  4, BILL
+	db 0
+
+TextureTuner7Deck:
+	dbw 21, GRASS_ENERGY
+	dbw  3, DOUBLE_COLORLESS_ENERGY
+	dbw  4, ZUBAT_LV12
+	dbw  3, GOLBAT_LV29
+	dbw  3, VENONAT_LV12
+	dbw  2, VENOMOTH_LV22
+	dbw  2, SCYTHER_LV25
+	dbw  2, PORYGON_LV12
+	dbw  2, PORYGON_LV18
+	dbw  3, COOL_PORYGON
+	dbw  2, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  4, SWITCH
+	dbw  2, SCOOP_UP
+	dbw  4, BILL
+	db 0
+
+ColorlessEnergyDeck:
+	dbw  8, WATER_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, POTION_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  1, FLAREON_LV22
+	dbw  1, DARK_VAPOREON
+	dbw  1, JOLTEON_LV24
+	dbw  1, SPEAROW_LV9
+	dbw  1, SPEAROW_LV12
+	dbw  1, SPEAROW_LV13
+	dbw  1, FEAROW_LV24
+	dbw  1, FEAROW_LV27
+	dbw  4, EEVEE_LV12
+	dbw  4, DRATINI_LV10
+	dbw  3, DRAGONAIR
+	dbw  1, DRAGONITE_LV43
+	dbw  1, DRAGONITE_LV45
+	dbw  4, ENERGY_REMOVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  1, GAMBLER
+	dbw  4, MOON_STONE
+	dbw  2, POKEMON_TRADER
+	dbw  3, BILL
+	db 0
+
+PowerfulPokemonDeck:
+	dbw  7, FIRE_ENERGY
+	dbw  5, WATER_ENERGY
+	dbw  3, LIGHTNING_ENERGY
+	dbw  6, FIGHTING_ENERGY
+	dbw  2, PSYCHIC_ENERGY
+	dbw  4, RAINBOW_ENERGY
+	dbw  4, MAGMAR_LV31
+	dbw  4, LAPRAS_LV31
+	dbw  4, ELECTABUZZ_LV35
+	dbw  4, HITMONCHAN_LV33
+	dbw  4, JYNX_LV27
+	dbw  4, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  4, SWITCH
+	dbw  4, BILL
+	db 0
+
+WeirdDeck:
+	dbw 10, WATER_ENERGY
+	dbw 16, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, PSYDUCK_LV15
+	dbw  3, GOLDUCK_LV27
+	dbw  3, SLOWPOKE_LV9
+	dbw  1, SLOWBRO_LV26
+	dbw  1, SLOWBRO_LV35
+	dbw  3, DROWZEE_LV12
+	dbw  1, HYPNO_LV36
+	dbw  2, JYNX_LV27
+	dbw  3, FARFETCHD_LV20
+	dbw  2, HUNGRY_SNORLAX
+	dbw  2, IMAKUNI_CARD
+	dbw  1, GAMBLER
+	dbw  2, IMPOSTER_PROFESSOR_OAK
+	dbw  2, POKEMON_FLUTE
+	dbw  2, GOOP_GAS_ATTACK
+	db 0
+
+StrangeDeck:
+	dbw 25, PSYCHIC_ENERGY
+	dbw  3, PSYDUCK_LV16
+	dbw  2, DARK_GOLDUCK
+	dbw  3, SLOWPOKE_LV16
+	dbw  2, DARK_SLOWBRO
+	dbw  4, DROWZEE_LV10
+	dbw  3, DARK_HYPNO
+	dbw  2, MR_MIME_LV20
+	dbw  2, MR_MIME_LV28
+	dbw  2, MEOWTH_LV13
+	dbw  2, MEOWTH_LV14
+	dbw  2, IMAKUNI_CARD
+	dbw  2, IMPOSTER_PROFESSOR_OAK
+	dbw  2, COMPUTER_ERROR
+	dbw  2, DIGGER
+	dbw  2, POKEMON_FLUTE
+	db 0
+
+RonaldsUncoolDeck:
+	dbw 15, WATER_ENERGY
+	dbw 13, FIGHTING_ENERGY
+	dbw  3, TENTACOOL
+	dbw  2, TENTACRUEL
+	dbw  3, SHELLDER_LV8
+	dbw  2, CLOYSTER
+	dbw  2, LAPRAS_LV24
+	dbw  3, MACHOP_LV20
+	dbw  2, MACHOKE_LV40
+	dbw  1, MACHAMP_LV67
+	dbw  1, HITMONLEE_LV23
+	dbw  2, HITMONCHAN_LV33
+	dbw  2, CHANSEY_LV55
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SUPER_ENERGY_RETRIEVAL
+	dbw  2, GUST_OF_WIND
+	dbw  2, BILL
+	db 0
+
+RonaldsGRXDeck:
+	dbw 24, GRASS_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, RECYCLE_ENERGY
+	dbw  4, ZUBAT_LV9
+	dbw  3, DARK_GOLBAT
+	dbw  3, GRIMER_LV10
+	dbw  2, DARK_MUK
+	dbw  3, RATTATA_LV12
+	dbw  2, DARK_RATICATE
+	dbw  3, MEOWTH_LV10
+	dbw  2, DARK_PERSIAN_LV28
+	dbw  1, PROFESSOR_OAK
+	dbw  2, GUST_OF_WIND
+	dbw  2, FULL_HEAL
+	dbw  2, THE_BOSSS_WAY
+	dbw  3, BILL
+	db 0
+
+RonaldsPowerDeck:
+	dbw 16, FIGHTING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  2, POTION_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  2, RECYCLE_ENERGY
+	dbw  2, FLAREON_LV22
+	dbw  2, VAPOREON_LV29
+	dbw  2, JOLTEON_LV24
+	dbw  2, HITMONLEE_LV23
+	dbw  2, HITMONCHAN_LV33
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, TAUROS_LV32
+	dbw  2, DITTO
+	dbw  4, EEVEE_LV9
+	dbw  2, SUPER_SCOOP_UP
+	dbw  2, IMPOSTER_OAKS_REVENGE
+	dbw  1, COMPUTER_ERROR
+	dbw  3, PLUSPOWER
+	dbw  2, SWITCH
+	dbw  4, BILL
+	db 0
+
+RonaldsPsychicDeck:
+	dbw 23, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  4, GASTLY_LV13
+	dbw  3, HAUNTER_LV26
+	dbw  2, GENGAR_LV40
+	dbw  2, MEWTWO_LV67
+	dbw  2, MEW_LV23
+	dbw  2, KANGASKHAN_LV40
+	dbw  4, DRATINI_LV10
+	dbw  3, DARK_DRAGONAIR
+	dbw  2, DARK_DRAGONITE
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, GUST_OF_WIND
+	dbw  2, POKEMON_TRADER
+	dbw  2, BILL
+	dbw  1, BILLS_TELEPORTER
+	db 0
+
+RonaldsUltraDeck:
+	dbw  1, FIRE_ENERGY
+	dbw  1, WATER_ENERGY
+	dbw  2, LIGHTNING_ENERGY
+	dbw  2, FIGHTING_ENERGY
+	dbw  2, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, POTION_ENERGY
+	dbw  4, FULLHEAL_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  4, PIDGEY_LV10
+	dbw  3, PIDGEOTTO_LV38
+	dbw  2, PIDGEOT_LV40
+	dbw  4, SPEAROW_LV13
+	dbw  3, FEAROW_LV27
+	dbw  2, FARFETCHD_LV20
+	dbw  2, MOON_STONE
+	dbw  4, GUST_OF_WIND
+	dbw  2, IMPOSTER_PROFESSOR_OAK
+	dbw  2, MR_FUJI
+	dbw  2, POKEMON_TRADER
+	dbw  4, BILL
+	dbw  2, THE_ROCKETS_TRAP
+	db 0
+
+EverybodysFriendDeck:
+	dbw  5, FIRE_ENERGY
+	dbw  7, FIGHTING_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, JIGGLYPUFF_LV14
+	dbw  4, WIGGLYTUFF_LV36
+	dbw  3, SCYTHER_LV25
+	dbw  3, MAGMAR_LV31
+	dbw  3, HITMONCHAN_LV33
+	dbw  3, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  3, COMPUTER_SEARCH
+	dbw  3, SCOOP_UP
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, SWITCH
+	dbw  4, GUST_OF_WIND
+	dbw  4, PLUSPOWER
+	dbw  2, ITEMFINDER
+	db 0
+
+ImmortalPokemonDeck:
+	dbw 16, PSYCHIC_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, ABRA_LV14
+	dbw  3, KADABRA_LV39
+	dbw  3, ALAKAZAM_LV42
+	dbw  3, MR_MIME_LV28
+	dbw  1, MR_MIME_LV20
+	dbw  2, TENTACOOL
+	dbw  2, SCYTHER_LV25
+	dbw  2, CHANSEY_LV55
+	dbw  2, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  2, BILLS_TELEPORTER
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, POKEMON_BREEDER
+	dbw  2, POKEMON_CENTER
+	dbw  4, NIGHTLY_GARBAGE_RUN
+	dbw  2, SWITCH
+	db 0
+
+TorrentialFloodDeck:
+	dbw 22, WATER_ENERGY
+	dbw  4, SQUIRTLE_LV14
+	dbw  3, WARTORTLE_LV24
+	dbw  3, BLASTOISE_LV52
+	dbw  2, ARTICUNO_LV35
+	dbw  2, ARTICUNO_LV37
+	dbw  2, LAPRAS_LV31
+	dbw  2, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  2, BILLS_TELEPORTER
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  3, POKEMON_TRADER
+	dbw  2, POKEMON_BREEDER
+	dbw  2, POTION
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, SWITCH
+	db 0
+
+TrainerImprisonDeck:
+	dbw 18, PSYCHIC_ENERGY
+	dbw  2, FULLHEAL_ENERGY
+	dbw  4, GASTLY_LV13
+	dbw  3, HAUNTER_LV26
+	dbw  1, HAUNTER_LV25
+	dbw  1, MR_MIME_LV20
+	dbw  3, ODDISH_LV21
+	dbw  3, DARK_GLOOM
+	dbw  3, DARK_VILEPLUME
+	dbw  4, PSYDUCK_LV15
+	dbw  3, DARK_GOLDUCK
+	dbw  3, PROFESSOR_OAK
+	dbw  4, BILL
+	dbw  4, BILLS_TELEPORTER
+	dbw  4, POKEMON_TRADER
+	db 0
+
+BlazingFlameDeck:
+	dbw 20, FIRE_ENERGY
+	dbw  2, DOUBLE_COLORLESS_ENERGY
+	dbw  4, VULPIX_LV13
+	dbw  3, NINETALES_LV32
+	dbw  4, GROWLITHE_LV18
+	dbw  2, ARCANINE_LV34
+	dbw  2, ARCANINE_LV45
+	dbw  3, MAGMAR_LV31
+	dbw  2, PROFESSOR_OAK
+	dbw  3, POTION
+	dbw  2, COMPUTER_SEARCH
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  3, DEFENDER
+	dbw  3, ENERGY_RETRIEVAL
+	dbw  3, BILL
+	db 0
+
+DamageChaosDeck:
+	dbw  2, GRASS_ENERGY
+	dbw 16, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  2, EXEGGCUTE
+	dbw  2, EXEGGUTOR
+	dbw  2, GASTLY_LV13
+	dbw  2, GASTLY_LV17
+	dbw  3, DARK_HAUNTER
+	dbw  2, DARK_GENGAR
+	dbw  3, JYNX_LV27
+	dbw  3, CLEFAIRY_LV15
+	dbw  2, DARK_CLEFABLE
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, THE_BOSSS_WAY
+	dbw  4, BILL
+	db 0
+
+BigThunderDeck:
+	dbw 22, LIGHTNING_ENERGY
+	dbw  4, ZAPDOS_LV68
+	dbw  4, DITTO
+	dbw  4, CHANSEY_LV55
+	dbw  2, SUPER_POTION
+	dbw  4, ENERGY_REMOVAL
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  3, POTION
+	dbw  1, SUPER_ENERGY_REMOVAL
+	dbw  4, DEFENDER
+	dbw  2, SCOOP_UP
+	dbw  2, POKEMON_TRADER
+	dbw  4, BILL
+	dbw  2, MASTER_BALL
+	db 0
+
+PowerOfDarknessDeck:
+	dbw  3, WATER_ENERGY
+	dbw 14, PSYCHIC_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, RECYCLE_ENERGY
+	dbw  3, PSYDUCK_LV16
+	dbw  3, DARK_GOLDUCK
+	dbw  2, GRS_MEWTWO
+	dbw  2, CLEFAIRY_LV15
+	dbw  2, DARK_CLEFABLE
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, DRATINI_LV12
+	dbw  2, DARK_DRAGONAIR
+	dbw  2, ENERGY_RETRIEVAL
+	dbw  2, ENERGY_SEARCH
+	dbw  1, PROFESSOR_OAK
+	dbw  2, SWITCH
+	dbw  2, POKEMON_TRADER
+	dbw  2, THE_BOSSS_WAY
+	dbw  4, BILL
+	dbw  2, BILLS_TELEPORTER
+	db 0
+
+PoisonStormDeck:
+	dbw 11, GRASS_ENERGY
+	dbw 10, FIRE_ENERGY
+	dbw  4, DOUBLE_COLORLESS_ENERGY
+	dbw  4, WEEDLE_LV15
+	dbw  4, SCYTHER_LV25
+	dbw  4, CHARMANDER_LV10
+	dbw  2, CHARMELEON
+	dbw  4, MAGMAR_LV31
+	dbw  2, KANGASKHAN_LV40
+	dbw  2, POTION
+	dbw  3, GUST_OF_WIND
+	dbw  2, FULL_HEAL
+	dbw  3, PLUSPOWER
+	dbw  1, SWITCH
+	dbw  2, BILL
+	dbw  2, ENERGY_REMOVAL
+	db 0
+
+Deck_7269:
+	dbw 10, FIRE_ENERGY
+	dbw  8, LIGHTNING_ENERGY
+	dbw  6, FIGHTING_ENERGY
+	dbw  2, CHARMANDER_LV10
+	dbw  1, CHARMELEON
+	dbw  1, CHARIZARD_LV76
+	dbw  2, GROWLITHE_LV18
+	dbw  1, ARCANINE_LV45
+	dbw  2, PONYTA_LV10
+	dbw  1, MAGMAR_LV24
+	dbw  2, PIKACHU_LV12
+	dbw  1, RAICHU_LV40
+	dbw  2, MAGNEMITE_LV13
+	dbw  1, MAGNETON_LV28
+	dbw  1, ZAPDOS_LV64
+	dbw  2, DIGLETT_LV8
+	dbw  1, DUGTRIO_LV36
+	dbw  1, MACHOP_LV20
+	dbw  1, MACHOKE_LV40
+	dbw  2, RATTATA_LV9
+	dbw  1, RATICATE
+	dbw  1, MEOWTH_LV14
+	dbw  1, PROFESSOR_OAK
+	dbw  2, BILL
+	dbw  1, SWITCH
+	dbw  1, COMPUTER_SEARCH
+	dbw  1, PLUSPOWER
+	dbw  2, POTION
+	dbw  2, FULL_HEAL
+	db 0

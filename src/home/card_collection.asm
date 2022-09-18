@@ -173,20 +173,20 @@ RemoveCardFromCollection:
 
 ; return the amount of different cards that the player has collected in de
 ; return NUM_CARDS in bc, minus 1 for each unowned hidden promo card
-;   (VENUSAUR1, MEW2, HERE_COMES_TEAM_ROCKET, and LUGIA)
+;   (VENUSAUR_LV64, MEW_LV15, HERE_COMES_TEAM_ROCKET, and LUGIA)
 GetCardAlbumProgress:
 	push hl
 	call EnableSRAM
 	ld bc, NUM_CARDS
-	ld hl, sCardCollection + VENUSAUR1
+	ld hl, sCardCollection + VENUSAUR_LV64
 	bit CARD_NOT_OWNED_F, [hl]
 	jr z, .next1
-	dec bc ; if VENUSAUR1 not owned
+	dec bc ; if VENUSAUR_LV64 not owned
 .next1
-	ld hl, sCardCollection + MEW2
+	ld hl, sCardCollection + MEW_LV15
 	bit CARD_NOT_OWNED_F, [hl]
 	jr z, .next2
-	dec bc ; if MEW2 not owned
+	dec bc ; if MEW_LV15 not owned
 .next2
 	ld hl, sCardCollection + HERE_COMES_TEAM_ROCKET
 	bit CARD_NOT_OWNED_F, [hl]
