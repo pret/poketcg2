@@ -169,10 +169,10 @@ GetCardPointer:
 	or e
 	jr z, .invalid
 	ld a, d
-	cp $01
+	cp HIGH(NUM_CARDS + 1)
 	jr nz, .check
 	ld a, e
-	cp $be
+	cp LOW(NUM_CARDS + 1)
 .check
 	jr c, .valid
 .invalid
