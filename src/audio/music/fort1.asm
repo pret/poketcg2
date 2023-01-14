@@ -1,6 +1,6 @@
 Music_Fort1_Ch2:
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	preset 16
 	octave 2
 	A# 3
@@ -461,7 +461,7 @@ Music_Fort1_Ch1:
 	speed 1
 	duty 0
 	volume_envelope 9, 0
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 10
 	vibrato_delay 18
 	preset 16
@@ -999,7 +999,7 @@ Music_Fort1_Ch3:
 	wave 4
 	volume_envelope 2, 0
 	echo 96
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 1
 	cutoff 1
 	rest 9

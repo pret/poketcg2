@@ -1,6 +1,6 @@
 Music_Unused2E_Ch1:
 	speed 8
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 5
 	vibrato_delay 20
 	cutoff 8

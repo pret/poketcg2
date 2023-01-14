@@ -1,6 +1,6 @@
 Music_Song3B_Ch1:
 	speed 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	cutoff 8
 	duty 2
 	volume_envelope 10, 5
@@ -11,7 +11,7 @@ Music_Song3B_Ch1:
 
 Music_Song3B_Ch2:
 	speed 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	cutoff 8
 	duty 2
 	volume_envelope 10, 5
@@ -22,7 +22,7 @@ Music_Song3B_Ch2:
 
 Music_Song3B_Ch3:
 	speed 4
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	wave 1
 	volume_envelope 2, 0
 	echo 0

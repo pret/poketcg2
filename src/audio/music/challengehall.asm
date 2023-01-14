@@ -1,5 +1,5 @@
 Music_ChallengeHall_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 8
 	vibrato_delay 15
 	cutoff 7
@@ -397,7 +397,7 @@ Branch_1e58ca:
 
 
 Music_ChallengeHall_Ch1:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 8
 	vibrato_delay 15
 	cutoff 7
@@ -761,7 +761,7 @@ Branch_1e5aa2:
 
 
 Music_ChallengeHall_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
 	wave 1
 	echo 0

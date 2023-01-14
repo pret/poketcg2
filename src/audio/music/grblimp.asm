@@ -1,5 +1,5 @@
 Music_GRBlimp_Ch2:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 1
 	vibrato_delay 28
 	cutoff 8
@@ -325,7 +325,7 @@ Branch_1e7cf5:
 
 
 Music_GRBlimp_Ch1:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 1
 	vibrato_delay 28
 	cutoff 8
@@ -680,7 +680,7 @@ Branch_1e7e8a:
 
 
 Music_GRBlimp_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	wave 1
 	volume_envelope 2, 0
 	cutoff 3

@@ -1,6 +1,6 @@
 Music_PokemonDome_Ch2:
 	speed 7
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 9
 	vibrato_delay 20
 	cutoff 8
@@ -307,7 +307,7 @@ Music_PokemonDome_Ch2:
 
 Music_PokemonDome_Ch1:
 	speed 7
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_type 9
 	vibrato_delay 20
 	cutoff 8
@@ -616,7 +616,7 @@ Branch_1e63f0:
 
 Music_PokemonDome_Ch3:
 	speed 7
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
 	wave 1
 	echo 64

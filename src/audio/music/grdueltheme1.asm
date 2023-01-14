@@ -1909,7 +1909,7 @@ Music_GRDuelTheme1_Ch3:
 	wave 1
 	volume_envelope 2, 0
 	echo 64
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	cutoff 7
 	pitch_offset 244

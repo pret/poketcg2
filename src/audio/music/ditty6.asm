@@ -228,7 +228,7 @@ Music_Ditty6_Ch3:
 	volume_envelope 2, 0
 	echo 96
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	rest 10
 	rest 10
 	octave 1

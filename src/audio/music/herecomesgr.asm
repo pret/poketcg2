@@ -1,7 +1,7 @@
 Music_HereComesGR_Ch2:
 	MainLoop
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	preset 8
 	musicf1 55
 	octave 2
@@ -645,7 +645,7 @@ Branch_1ea66f:
 Music_HereComesGR_Ch1:
 	MainLoop
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	preset 8
 	musicf1 55
@@ -1120,7 +1120,7 @@ Music_HereComesGR_Ch1:
 
 Branch_1ea8d3:
 	preset 8
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 55
 	musicf2
@@ -1212,7 +1212,7 @@ Music_HereComesGR_Ch3:
 	wave 1
 	volume_envelope 2, 0
 	echo 128
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	MainLoop
 	octave 4
 	octave 1

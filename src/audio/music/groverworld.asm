@@ -21,7 +21,7 @@ Music_GROverworld_Ch2:
 	G_ 12
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -254,7 +254,7 @@ Branch_1eae1e:
 	preset 13
 	octave 3
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	vibrato_delay 33
 	musicef 1
 	musicf1 48
@@ -398,7 +398,7 @@ Music_GROverworld_Ch1:
 	MainLoop
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -562,7 +562,7 @@ Music_GROverworld_Ch1:
 	C_ 3
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -633,7 +633,7 @@ Music_GROverworld_Ch1:
 	C_ 3
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -698,7 +698,7 @@ Music_GROverworld_Ch1:
 	D_ 3
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -766,7 +766,7 @@ Music_GROverworld_Ch1:
 	C_ 8
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -831,7 +831,7 @@ Music_GROverworld_Ch1:
 	C_ 3
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -902,7 +902,7 @@ Music_GROverworld_Ch1:
 	C_ 3
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -998,7 +998,7 @@ Music_GROverworld_Ch1:
 	musicef 2
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -1071,7 +1071,7 @@ Music_GROverworld_Ch1:
 	D_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	musicf2
@@ -1139,7 +1139,7 @@ Music_GROverworld_Ch1:
 	A_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -1211,7 +1211,7 @@ Music_GROverworld_Ch1:
 	C_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 2
 	musicf1 70
 	musicf2
@@ -1282,7 +1282,7 @@ Music_GROverworld_Ch1:
 	D_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	C_ 8
@@ -1347,7 +1347,7 @@ Music_GROverworld_Ch1:
 	G_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 4
 	musicf1 70
 	C_ 8
@@ -1410,7 +1410,7 @@ Music_GROverworld_Ch1:
 	F_ 4
 	preset 11
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf1 70
 	D# 8
@@ -1496,7 +1496,7 @@ Music_GROverworld_Ch1:
 
 
 Music_GROverworld_Ch3:
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	wave 1
 	volume_envelope 2, 0
 	cutoff 1

@@ -1,6 +1,6 @@
 Music_MatchStart1_Ch1:
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	cutoff 8
 	musicee 31
 	Loop 3

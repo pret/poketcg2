@@ -1,7 +1,7 @@
 Music_GRChallengeCup_Ch2:
 	MainLoop
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	preset 0
 	octave 4
 	vibrato_delay 24
@@ -475,7 +475,7 @@ Music_GRChallengeCup_Ch2:
 Music_GRChallengeCup_Ch1:
 	MainLoop
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	preset 1
 	musicef -1
 	octave 3
@@ -912,7 +912,7 @@ Music_GRChallengeCup_Ch3:
 	wave 1
 	volume_envelope 2, 0
 	echo 96
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 4
 	rest 16
 	octave 1

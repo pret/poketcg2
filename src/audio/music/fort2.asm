@@ -1,6 +1,6 @@
 Music_Fort2_Ch2:
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	MainLoop
 	octave 3
 	preset 16
@@ -538,7 +538,7 @@ Branch_1ee109:
 
 Music_Fort2_Ch1:
 	speed 1
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	MainLoop
 	preset 23
 	musicf1 71
@@ -990,7 +990,7 @@ Music_Fort2_Ch3:
 	wave 5
 	volume_envelope 4, 0
 	echo 0
-	stereo_panning 1, 1
+	stereo_panning TRUE, TRUE
 	octave 3
 	musicf3
 	octave 2
