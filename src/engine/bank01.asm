@@ -1,4 +1,4 @@
-GameLoop: ; 4000 (1:4000)
+GameLoop::
 	di
 	ld sp, $d000
 	call ResetSerial

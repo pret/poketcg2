@@ -1,4 +1,4 @@
-DeckPointers: ; 594AC (16:54ac)
+DeckPointers::
 	dw UnknownPoisonStormDeck
 	dw GB1StrangePsyshockDeck
 	dw SamsPracticeDeck

@@ -102,7 +102,7 @@ CopyDataToBGMap0:
 
 ; copy b bytes of data from hl to de
 ; if LCD on, copy during h-blank only
-SafeCopyDataHLtoDE: ; 6fc (0:6fc)
+SafeCopyDataHLtoDE:
 	ldh a, [hLCDC]
 	rla
 	jr c, JPHblankCopyDataHLtoDE

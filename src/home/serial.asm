@@ -383,7 +383,7 @@ Func_0e8e:
 	ret
 
 ; disable serial interrupt, and clear rSB, rSC, and serial registers in WRAM
-ResetSerial:
+ResetSerial::
 	ldh a, [rIE]
 	and ~(1 << INT_SERIAL)
 	ldh [rIE], a

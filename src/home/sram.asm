@@ -9,7 +9,7 @@ BankswitchSRAM:
 	ret
 
 ; enable external RAM (SRAM)
-EnableSRAM:
+EnableSRAM::
 	push af
 	ld a, SRAM_ENABLE
 	ld [MBC3SRamEnable], a
@@ -17,7 +17,7 @@ EnableSRAM:
 	ret
 
 ; disable external RAM (SRAM)
-DisableSRAM:
+DisableSRAM::
 	push af
 	xor a ; SRAM_DISABLE
 	ld [MBC3SRamEnable], a
