@@ -6,7 +6,7 @@ Music_Unused31_Ch1:
 	cutoff 8
 	octave 3
 	duty 2
-	volume 160
+	volume_envelope 10, 0
 	C_ 1
 	dec_octave
 	C_ 1

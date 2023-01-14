@@ -460,7 +460,7 @@ Branch_1ed8a8:
 Music_Fort1_Ch1:
 	speed 1
 	duty 0
-	volume 144
+	volume_envelope 9, 0
 	stereo_panning 1, 1
 	vibrato_type 10
 	vibrato_delay 18
@@ -508,7 +508,7 @@ Music_Fort1_Ch1:
 	C# 10
 	rest 15
 	musicf3
-	volume 128
+	volume_envelope 8, 0
 	D# 3
 	E_ 13
 	tie
@@ -997,7 +997,7 @@ Branch_1edb5a:
 Music_Fort1_Ch3:
 	speed 1
 	wave 4
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 1, 1
 	octave 1

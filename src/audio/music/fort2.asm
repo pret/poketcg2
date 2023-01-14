@@ -988,7 +988,7 @@ Music_Fort2_Ch1:
 
 Music_Fort2_Ch3:
 	wave 5
-	volume 64
+	volume_envelope 4, 0
 	echo 0
 	stereo_panning 1, 1
 	octave 3
@@ -1043,7 +1043,7 @@ Music_Fort2_Ch3:
 	D_ 4
 	rest 4
 	rest 7
-	volume 32
+	volume_envelope 2, 0
 	cutoff 8
 	octave 1
 	A_ 2
@@ -1714,9 +1714,9 @@ Music_Fort2_Ch3:
 	tie
 	F# 8
 	octave 3
-	volume 64
+	volume_envelope 4, 0
 	E_ 7
-	volume 32
+	volume_envelope 2, 0
 	octave 2
 	E_ 8
 	F_ 7
@@ -1725,17 +1725,17 @@ Music_Fort2_Ch3:
 	F# 7
 	B_ 8
 	octave 3
-	volume 64
+	volume_envelope 4, 0
 	D_ 7
 	octave 2
-	volume 64
+	volume_envelope 4, 0
 	A_ 8
 	A# 7
 	B_ 8
-	volume 64
+	volume_envelope 4, 0
 	octave 4
 	D_ 7
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	E_ 8
 	rest 7

@@ -41,9 +41,9 @@ Music_Fort4_Ch2:
 	speed 8
 	musicf1 103
 	musicf3
-	volume 30
+	volume_envelope 1, -6
 	E_ 14
-	volume 176
+	volume_envelope 11, 0
 	vibrato_type 5
 	vibrato_delay 1
 	musicf2
@@ -60,20 +60,20 @@ Music_Fort4_Ch2:
 	E_ 4
 	E_ 2
 	musicf3
-	volume 29
+	volume_envelope 1, -5
 	D_ 10
-	volume 176
+	volume_envelope 11, 0
 	musicf2
 	D_ 14
 	D_ 2
 	musicf3
-	volume 176
+	volume_envelope 11, 0
 	D_ 4
 	D_ 2
 	musicf3
-	volume 30
+	volume_envelope 1, -6
 	G_ 10
-	volume 176
+	volume_envelope 11, 0
 	musicf2
 	G_ 6
 	G_ 2
@@ -96,9 +96,9 @@ Music_Fort4_Ch2:
 	E_ 12
 	E_ 4
 	musicf3
-	volume 30
+	volume_envelope 1, -6
 	E_ 14
-	volume 176
+	volume_envelope 11, 0
 	vibrato_type 5
 	vibrato_delay 1
 	musicf2
@@ -115,39 +115,39 @@ Music_Fort4_Ch2:
 	A_ 4
 	A_ 2
 	musicf3
-	volume 29
+	volume_envelope 1, -5
 	G_ 10
-	volume 176
+	volume_envelope 11, 0
 	musicf2
 	G_ 14
 	G_ 2
 	musicf3
 	vibrato_delay 0
-	volume 28
+	volume_envelope 1, -4
 	musicf2
 	A_ 4
 	A_ 2
-	volume 176
+	volume_envelope 11, 0
 	musicf3
 	G_ 6
 	musicf2
 	D_ 2
 	D_ 2
-	volume 28
+	volume_envelope 1, -4
 	G_ 6
 	G_ 2
 	musicf3
 	F_ 4
-	volume 176
+	volume_envelope 11, 0
 	G_ 3
 	speed 4
 	F_ 1
 	G_ 1
 	speed 8
 	vibrato_delay 0
-	volume 29
+	volume_envelope 1, -5
 	F_ 7
-	volume 176
+	volume_envelope 11, 0
 	vibrato_delay 1
 	F_ 8
 	vibrato_delay 0
@@ -157,29 +157,29 @@ Music_Fort4_Ch2:
 	speed 8
 	vibrato_delay 48
 	E_ 8
-	volume 27
+	volume_envelope 1, -3
 	F_ 4
-	volume 176
+	volume_envelope 11, 0
 	G_ 4
-	volume 29
+	volume_envelope 1, -5
 	A_ 6
-	volume 176
+	volume_envelope 11, 0
 	A_ 2
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 29
+	volume_envelope 1, -5
 	inc_octave
 	C_ 6
-	volume 176
+	volume_envelope 11, 0
 	C_ 2
 	dec_octave
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 192
+	volume_envelope 12, 0
 	musicf2
 	A_ 1
 	A_ 1
@@ -237,35 +237,35 @@ Music_Fort4_Ch2:
 	musicf1 103
 	musicf3
 	Loop 2
-	volume 29
+	volume_envelope 1, -5
 	A_ 6
-	volume 176
+	volume_envelope 11, 0
 	A_ 2
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 29
+	volume_envelope 1, -5
 	inc_octave
 	C_ 6
-	volume 176
+	volume_envelope 11, 0
 	C_ 2
 	dec_octave
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
 	EndLoop
-	volume 128
+	volume_envelope 8, 0
 	speed 1
 	A_ 4
 	speed 8
 	speed 1
-	volume 144
+	volume_envelope 9, 0
 	A# 4
 	speed 8
 	vibrato_delay 40
-	volume 128
+	volume_envelope 8, 0
 	A_ 15
 	A_ 16
 	tie
@@ -275,7 +275,7 @@ Music_Fort4_Ch2:
 	A_ 1
 	dec_octave
 	speed 1
-	volume 192
+	volume_envelope 12, 0
 	musicf1 102
 	musicf3
 	A# 8
@@ -299,7 +299,7 @@ Music_Fort4_Ch2:
 
 
 Music_Fort4_Ch1:
-	volume 241
+	volume_envelope 15, 1
 	duty 2
 	musicee 28
 	stereo_panning 15, 15
@@ -978,29 +978,29 @@ Music_Fort4_Ch1:
 	musicf1 103
 	musicf3
 	octave 3
-	volume 29
+	volume_envelope 1, -5
 	F_ 6
-	volume 176
+	volume_envelope 11, 0
 	F_ 2
-	volume 29
+	volume_envelope 1, -5
 	D_ 6
-	volume 176
+	volume_envelope 11, 0
 	D_ 2
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 29
+	volume_envelope 1, -5
 	D_ 6
-	volume 176
+	volume_envelope 11, 0
 	D_ 2
-	volume 192
+	volume_envelope 12, 0
 	musicf2
 	E_ 1
 	E_ 1
 	rest 1
 	musicf3
-	volume 241
+	volume_envelope 15, 1
 	duty 2
 	musicee 28
 	stereo_panning 15, 15
@@ -1043,19 +1043,19 @@ Music_Fort4_Ch1:
 	musicf1 103
 	musicf3
 	octave 3
-	volume 29
+	volume_envelope 1, -5
 	D# 6
-	volume 176
+	volume_envelope 11, 0
 	D# 2
-	volume 29
+	volume_envelope 1, -5
 	C# 6
-	volume 176
+	volume_envelope 11, 0
 	C# 2
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 29
+	volume_envelope 1, -5
 	C# 6
 	music_call Branch_1f1c7c
 	duty 1
@@ -1065,21 +1065,21 @@ Music_Fort4_Ch1:
 	musicf1 103
 	musicf3
 	octave 3
-	volume 29
+	volume_envelope 1, -5
 	E_ 6
-	volume 176
+	volume_envelope 11, 0
 	E_ 2
-	volume 29
+	volume_envelope 1, -5
 	D_ 6
-	volume 176
+	volume_envelope 11, 0
 	D_ 2
-	volume 29
+	volume_envelope 1, -5
 	G_ 6
-	volume 176
+	volume_envelope 11, 0
 	G_ 2
-	volume 29
+	volume_envelope 1, -5
 	D_ 6
-	volume 176
+	volume_envelope 11, 0
 	D_ 2
 	musicee 0
 	preset 4
@@ -1185,7 +1185,7 @@ Music_Fort4_Ch1:
 	EndMainLoop
 
 Branch_1f1c69:
-	volume 241
+	volume_envelope 15, 1
 	duty 2
 	musicee 28
 	stereo_panning 15, 15
@@ -1198,7 +1198,7 @@ Branch_1f1c69:
 	music_ret
 
 Branch_1f1c7c:
-	volume 241
+	volume_envelope 15, 1
 	duty 2
 	musicee 28
 	stereo_panning 15, 15
@@ -1216,7 +1216,7 @@ Branch_1f1c7c:
 	music_ret
 
 Branch_1f1c97:
-	volume 241
+	volume_envelope 15, 1
 	duty 2
 	musicee 28
 	stereo_panning 15, 15
@@ -1231,7 +1231,7 @@ Branch_1f1c97:
 
 Music_Fort4_Ch3:
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 15, 15
 	speed 1
@@ -1246,7 +1246,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1261,14 +1261,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1288,7 +1288,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	EndLoop
 	Loop 2
@@ -1298,7 +1298,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G# 4
 	rest 4
@@ -1313,14 +1313,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G# 4
 	rest 4
@@ -1340,7 +1340,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	EndLoop
 	Loop 2
@@ -1350,7 +1350,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1365,14 +1365,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1392,7 +1392,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	EndLoop
 	cutoff 6
@@ -1401,7 +1401,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1416,14 +1416,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1443,7 +1443,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	cutoff 6
 	D_ 16
@@ -1451,7 +1451,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1466,14 +1466,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1481,7 +1481,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	G# 4
 	tie
 	A_ 4
@@ -1500,7 +1500,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1515,14 +1515,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	A_ 4
 	rest 4
@@ -1542,7 +1542,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	EndLoop
 	Loop 2
@@ -1552,7 +1552,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1567,14 +1567,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1594,7 +1594,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	EndLoop
 	cutoff 6
@@ -1603,7 +1603,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1618,14 +1618,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1645,7 +1645,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	cutoff 6
 	D_ 16
@@ -1653,7 +1653,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1668,14 +1668,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	D_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	G_ 4
 	rest 4
@@ -1695,7 +1695,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	G_ 16
 	cutoff 6
 	A_ 16
@@ -1703,7 +1703,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	F_ 4
 	rest 4
@@ -1718,14 +1718,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	A_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	F_ 4
 	rest 4
@@ -1745,7 +1745,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	G_ 16
 	cutoff 6
 	A_ 16
@@ -1753,7 +1753,7 @@ Music_Fort4_Ch3:
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	E_ 4
 	rest 4
@@ -1768,14 +1768,14 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	A_ 16
 	cutoff 8
 	inc_octave
 	inc_octave
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 7
 	E_ 4
 	rest 4
@@ -1795,7 +1795,7 @@ Music_Fort4_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	G_ 8
 	A_ 8
 	vibrato_type 5
@@ -1932,10 +1932,10 @@ Branch_1f1ff8:
 	cutoff 7
 	F_ 5
 	rest 3
-	volume 64
+	volume_envelope 4, 0
 	F_ 5
 	rest 3
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	dec_octave
 	dec_octave
@@ -1945,10 +1945,10 @@ Branch_1f1ff8:
 	cutoff 7
 	A_ 5
 	rest 3
-	volume 64
+	volume_envelope 4, 0
 	A_ 5
 	rest 3
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	dec_octave
 	rest 16
@@ -1963,10 +1963,10 @@ Branch_1f1ff8:
 	cutoff 7
 	F_ 5
 	rest 3
-	volume 64
+	volume_envelope 4, 0
 	F_ 5
 	rest 3
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	dec_octave
 	dec_octave
@@ -1976,10 +1976,10 @@ Branch_1f1ff8:
 	cutoff 7
 	A_ 5
 	rest 3
-	volume 64
+	volume_envelope 4, 0
 	A_ 5
 	rest 3
-	volume 32
+	volume_envelope 2, 0
 	cutoff 6
 	dec_octave
 	rest 16

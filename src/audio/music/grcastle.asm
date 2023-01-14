@@ -85,11 +85,11 @@ Music_GRCastle_Ch2:
 	preset 0
 	musicf3
 	octave 2
-	volume 108
+	volume_envelope 6, -4
 	E_ 16
 	tie
 	E_ 9
-	volume 176
+	volume_envelope 11, 0
 	E_ 16
 	tie
 	E_ 9
@@ -513,7 +513,7 @@ Music_GRCastle_Ch2:
 	musicf1 71
 	musicf3
 	octave 2
-	volume 124
+	volume_envelope 7, -4
 	B_ 16
 	tie
 	B_ 9
@@ -1810,7 +1810,7 @@ Music_GRCastle_Ch1:
 
 Music_GRCastle_Ch3:
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 15, 15
 	speed 1
@@ -2332,9 +2332,9 @@ Music_GRCastle_Ch3:
 	E_ 10
 	tie
 	speed 5
-	volume 96
+	volume_envelope 6, 0
 	E_ 15
-	volume 32
+	volume_envelope 2, 0
 	pitch_offset 0
 	speed 1
 	D_ 13
@@ -2356,7 +2356,7 @@ Music_GRCastle_Ch3:
 	EndMainLoop
 
 Branch_1f2b72:
-	volume 64
+	volume_envelope 4, 0
 	octave 1
 	B_ 2
 	rest 2
@@ -2369,13 +2369,13 @@ Branch_1f2b72:
 	tie
 	B_ 12
 	vibrato_delay 0
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	pitch_offset 0
 	music_ret
 
 Branch_1f2b88:
-	volume 64
+	volume_envelope 4, 0
 	octave 2
 	C_ 2
 	rest 1
@@ -2388,24 +2388,24 @@ Branch_1f2b88:
 	tie
 	F_ 12
 	vibrato_delay 0
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	pitch_offset 0
 	music_ret
 
 Branch_1f2b9e:
-	volume 64
+	volume_envelope 4, 0
 	octave 2
 	D_ 12
 	tie
 	D_ 13
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	pitch_offset 0
 	music_ret
 
 Branch_1f2baa:
-	volume 64
+	volume_envelope 4, 0
 	octave 1
 	B_ 13
 	B_ 2
@@ -2419,12 +2419,12 @@ Branch_1f2baa:
 	tie
 	B_ 12
 	vibrato_delay 0
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	music_ret
 
 Branch_1f2bbf:
-	volume 64
+	volume_envelope 4, 0
 	octave 1
 	B_ 2
 	rest 3
@@ -2432,7 +2432,7 @@ Branch_1f2bbf:
 	rest 3
 	B_ 1
 	rest 3
-	volume 32
+	volume_envelope 2, 0
 	music_ret
 
 

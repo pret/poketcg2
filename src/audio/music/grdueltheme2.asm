@@ -1915,7 +1915,7 @@ Branch_1efa62:
 Music_GRDuelTheme2_Ch3:
 	wave 5
 	speed 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 15, 15
 	octave 1

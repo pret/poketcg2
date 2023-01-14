@@ -47,7 +47,7 @@ Music_Ditty3_Ch1:
 Music_Ditty3_Ch3:
 	wave 5
 	speed 1
-	volume 64
+	volume_envelope 4, 0
 	echo 128
 	stereo_panning 15, 15
 	speed 1
@@ -62,6 +62,6 @@ Music_Ditty3_Ch3:
 	E_ 3
 	inc_octave
 	C_ 4
-	volume 128
+	volume_envelope 8, 0
 	C_ 4
 	music_end

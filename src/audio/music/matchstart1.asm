@@ -5,7 +5,7 @@ Music_MatchStart1_Ch1:
 	musicee 31
 	Loop 3
 	duty 2
-	volume 240
+	volume_envelope 15, 0
 	octave 3
 	C_ 1
 	inc_octave
@@ -41,7 +41,7 @@ Music_MatchStart1_Ch1:
 	A_ 1
 	EndLoop
 	musicee 0
-	volume 96
+	volume_envelope 6, 0
 	Loop 2
 	octave 4
 	E_ 1

@@ -1285,7 +1285,7 @@ Music_Fort3_Ch3:
 	speed 1
 	wave 1
 	stereo_panning 15, 15
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	pitch_offset 244
 	octave 2
@@ -1300,7 +1300,7 @@ Music_Fort3_Ch3:
 	cutoff 4
 	D_ 14
 	cutoff 8
-	volume 64
+	volume_envelope 4, 0
 	F_ 4
 	tie
 	F# 4
@@ -1327,10 +1327,10 @@ Music_Fort3_Ch3:
 	F_ 15
 	tie
 	F_ 14
-	volume 96
+	volume_envelope 6, 0
 	F_ 15
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	F_ 7
 	F# 7
 	G_ 15
@@ -1338,7 +1338,7 @@ Music_Fort3_Ch3:
 	cutoff 4
 	D_ 14
 	cutoff 8
-	volume 64
+	volume_envelope 4, 0
 	D# 4
 	tie
 	E_ 4
@@ -1365,10 +1365,10 @@ Music_Fort3_Ch3:
 	D# 15
 	tie
 	D# 14
-	volume 96
+	volume_envelope 6, 0
 	D# 15
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	F_ 7
 	F# 7
 	G_ 15
@@ -1376,7 +1376,7 @@ Music_Fort3_Ch3:
 	cutoff 4
 	D_ 14
 	cutoff 8
-	volume 64
+	volume_envelope 4, 0
 	F_ 4
 	tie
 	F# 4
@@ -1403,10 +1403,10 @@ Music_Fort3_Ch3:
 	F_ 15
 	tie
 	F_ 14
-	volume 96
+	volume_envelope 6, 0
 	F_ 15
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	F_ 7
 	F# 7
 	G_ 15
@@ -1414,7 +1414,7 @@ Music_Fort3_Ch3:
 	cutoff 4
 	D_ 14
 	cutoff 8
-	volume 64
+	volume_envelope 4, 0
 	D# 4
 	tie
 	E_ 4
@@ -1436,7 +1436,7 @@ Music_Fort3_Ch3:
 	tie
 	D# 15
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	F_ 7
 	cutoff 3
 	G_ 15
@@ -1985,12 +1985,12 @@ Branch_1ef040:
 	music_ret
 
 Branch_1ef06a:
-	volume 32
+	volume_envelope 2, 0
 	vibrato_delay 12
 	music_ret
 
 Branch_1ef06f:
-	volume 32
+	volume_envelope 2, 0
 	vibrato_delay 0
 	music_ret
 

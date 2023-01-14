@@ -180,10 +180,10 @@ Music_Ditty1_Ch3:
 	speed 1
 	stereo_panning 15, 15
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	C_ 2
 	C# 3
-	volume 64
+	volume_envelope 4, 0
 	musicef -4
 	C_ 3
 	C# 3
@@ -202,7 +202,7 @@ Music_Ditty1_Ch3:
 	E_ 2
 	G_ 3
 	A# 3
-	volume 32
+	volume_envelope 2, 0
 	inc_octave
 	C_ 3
 	dec_octave
@@ -233,14 +233,14 @@ Music_Ditty1_Ch3:
 	C_ 3
 	E_ 3
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	G_ 2
 	A# 3
 	inc_octave
 	C_ 3
 	E_ 3
 	dec_octave
-	volume 128
+	volume_envelope 8, 0
 	G_ 2
 	A# 3
 	inc_octave

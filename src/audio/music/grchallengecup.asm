@@ -62,7 +62,7 @@ Music_GRChallengeCup_Ch2:
 	B_ 15
 	B_ 5
 	musicef -6
-	volume 30
+	volume_envelope 1, -6
 	musicf3
 	speed 6
 	A_ 10
@@ -71,7 +71,7 @@ Music_GRChallengeCup_Ch2:
 	A_ 15
 	tie
 	A_ 10
-	volume 160
+	volume_envelope 10, 0
 	musicf1 54
 	A_ 5
 	A_ 15
@@ -541,7 +541,7 @@ Music_GRChallengeCup_Ch1:
 	D_ 15
 	D_ 5
 	musicef -6
-	volume 30
+	volume_envelope 1, -6
 	musicf3
 	speed 6
 	C# 10
@@ -550,7 +550,7 @@ Music_GRChallengeCup_Ch1:
 	C# 15
 	tie
 	C# 10
-	volume 144
+	volume_envelope 9, 0
 	musicf1 54
 	C# 5
 	C# 15
@@ -616,7 +616,7 @@ Music_GRChallengeCup_Ch1:
 	B_ 8
 	dec_octave
 	preset 21
-	volume 128
+	volume_envelope 8, 0
 	octave 2
 	A_ 5
 	rest 2
@@ -811,11 +811,11 @@ Music_GRChallengeCup_Ch1:
 	tie
 	E_ 15
 	inc_octave
-	volume 95
+	volume_envelope 5, -7
 	D_ 15
 	tie
 	D_ 15
-	volume 96
+	volume_envelope 6, 0
 	C# 15
 	tie
 	C# 15
@@ -901,7 +901,7 @@ Branch_1f3150:
 	G_ 4
 	G_ 3
 	preset 21
-	volume 128
+	volume_envelope 8, 0
 	octave 3
 	musicf3
 	music_ret
@@ -910,7 +910,7 @@ Branch_1f3150:
 Music_GRChallengeCup_Ch3:
 	speed 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 1, 1
 	octave 4
@@ -1280,10 +1280,10 @@ Music_GRChallengeCup_Ch3:
 
 Branch_1f333b:
 	octave 2
-	volume 64
+	volume_envelope 4, 0
 	cutoff 8
 	A_ 15
-	volume 32
+	volume_envelope 2, 0
 	cutoff 4
 	pitch_offset 0
 	octave 1

@@ -1721,7 +1721,7 @@ Branch_1ddc75:
 
 Music_Ishihara_Ch3:
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	stereo_panning 15, 15
 	speed 1
@@ -2272,10 +2272,10 @@ Music_Ishihara_Ch3:
 	inc_octave
 	inc_octave
 	F_ 7
-	volume 96
+	volume_envelope 6, 0
 	F_ 7
 	rest 13
-	volume 32
+	volume_envelope 2, 0
 	EndMainLoop
 
 Branch_1de0c5:

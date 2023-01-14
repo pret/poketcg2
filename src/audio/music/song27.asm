@@ -2,7 +2,7 @@ Music_Song27_Ch1:
 	speed 1
 	stereo_panning 1, 1
 	cutoff 8
-	volume 52
+	volume_envelope 3, 4
 	duty 1
 	octave 1
 	C_ 1

@@ -5,7 +5,7 @@ Music_GRBlimp_Ch2:
 	cutoff 8
 	octave 4
 	duty 2
-	volume 117
+	volume_envelope 7, 5
 	vibrato_delay 28
 	preset 0
 	stereo_panning 15, 15
@@ -682,7 +682,7 @@ Branch_1e7e8a:
 Music_GRBlimp_Ch3:
 	stereo_panning 1, 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	cutoff 3
 	echo 96
 	octave 1

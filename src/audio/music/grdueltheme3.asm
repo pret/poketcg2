@@ -2140,7 +2140,7 @@ Music_GRDuelTheme3_Ch3:
 	wave 1
 	stereo_panning 15, 15
 	speed 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	MainLoop
 	octave 2
@@ -2181,9 +2181,9 @@ Music_GRDuelTheme3_Ch3:
 	E_ 14
 	tie
 	E_ 7
-	volume 96
+	volume_envelope 6, 0
 	E_ 6
-	volume 32
+	volume_envelope 2, 0
 	EndLoop
 	D_ 14
 	tie
@@ -2210,9 +2210,9 @@ Music_GRDuelTheme3_Ch3:
 	E_ 14
 	tie
 	E_ 13
-	volume 96
+	volume_envelope 6, 0
 	E_ 7
-	volume 32
+	volume_envelope 2, 0
 	inc_octave
 	D_ 7
 	E_ 7
@@ -2258,9 +2258,9 @@ Music_GRDuelTheme3_Ch3:
 	E_ 14
 	tie
 	E_ 7
-	volume 96
+	volume_envelope 6, 0
 	E_ 6
-	volume 32
+	volume_envelope 2, 0
 	D_ 14
 	tie
 	D_ 7
@@ -2286,9 +2286,9 @@ Music_GRDuelTheme3_Ch3:
 	E_ 14
 	tie
 	E_ 13
-	volume 96
+	volume_envelope 6, 0
 	E_ 7
-	volume 32
+	volume_envelope 2, 0
 	B_ 7
 	inc_octave
 	D_ 7
@@ -2333,9 +2333,9 @@ Music_GRDuelTheme3_Ch3:
 	F_ 14
 	tie
 	F_ 7
-	volume 96
+	volume_envelope 6, 0
 	F_ 6
-	volume 32
+	volume_envelope 2, 0
 	vibrato_delay 48
 	F# 14
 	tie
@@ -2359,9 +2359,9 @@ Music_GRDuelTheme3_Ch3:
 	B_ 14
 	tie
 	B_ 13
-	volume 96
+	volume_envelope 6, 0
 	B_ 7
-	volume 32
+	volume_envelope 2, 0
 	B_ 7
 	inc_octave
 	D_ 7

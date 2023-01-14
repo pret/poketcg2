@@ -1135,7 +1135,7 @@ Music_TitleScreen_Ch1:
 	stereo_panning 1, 0
 	G# 2
 	musicf3
-	volume 55
+	volume_envelope 3, 7
 	stereo_panning 1, 0
 	C_ 3
 	musicf1 39
@@ -1910,7 +1910,7 @@ Music_TitleScreen_Ch1:
 Music_TitleScreen_Ch3:
 	stereo_panning 1, 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	cutoff 3
 	echo 96
 	speed 1
@@ -2168,13 +2168,13 @@ Branch_1ea254:
 	cutoff 4
 	stereo_panning 1, 1
 	cutoff 6
-	volume 32
+	volume_envelope 2, 0
 	E_ 8
 	stereo_panning 1, 0
-	volume 96
+	volume_envelope 6, 0
 	E_ 7
 	stereo_panning 1, 1
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	cutoff 7
 	music_ret
@@ -2185,13 +2185,13 @@ Branch_1ea26d:
 	cutoff 4
 	stereo_panning 1, 1
 	cutoff 6
-	volume 32
+	volume_envelope 2, 0
 	G_ 8
 	stereo_panning 1, 0
-	volume 96
+	volume_envelope 6, 0
 	G_ 7
 	stereo_panning 1, 1
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	cutoff 7
 	music_ret

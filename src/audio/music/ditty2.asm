@@ -170,10 +170,10 @@ Music_Ditty2_Ch3:
 	echo 128
 	stereo_panning 15, 15
 	cutoff 7
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	G_ 5
-	volume 64
+	volume_envelope 4, 0
 	G_ 4
 	G_ 4
 	G_ 4
@@ -185,23 +185,23 @@ Music_Ditty2_Ch3:
 	G_ 4
 	G_ 4
 	G_ 4
-	volume 96
+	volume_envelope 6, 0
 	G_ 5
 	G_ 4
 	G_ 4
 	G_ 4
 	G_ 4
 	G_ 4
-	volume 96
+	volume_envelope 6, 0
 	G_ 5
 	G_ 4
 	G_ 4
-	volume 96
+	volume_envelope 6, 0
 	G_ 4
-	volume 64
+	volume_envelope 4, 0
 	G_ 4
 	G_ 4
-	volume 32
+	volume_envelope 2, 0
 	G_ 5
 	G_ 4
 	G_ 4
@@ -209,14 +209,14 @@ Music_Ditty2_Ch3:
 	G_ 4
 	G_ 4
 	G_ 4
-	volume 64
+	volume_envelope 4, 0
 	G_ 5
 	G_ 4
 	G_ 4
 	G_ 4
 	G_ 4
 	G_ 4
-	volume 96
+	volume_envelope 6, 0
 	G_ 5
 	G_ 4
 	G_ 4

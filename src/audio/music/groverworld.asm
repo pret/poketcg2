@@ -1498,7 +1498,7 @@ Music_GROverworld_Ch1:
 Music_GROverworld_Ch3:
 	stereo_panning 1, 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	cutoff 1
 	echo 96
 	speed 1

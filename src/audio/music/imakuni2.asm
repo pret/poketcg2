@@ -222,7 +222,7 @@ Music_Imakuni2_Ch2:
 	dec_octave
 	A_ 5
 	rest 12
-	volume 144
+	volume_envelope 9, 0
 	G_ 16
 	tie
 	G_ 9
@@ -327,7 +327,7 @@ Music_Imakuni2_Ch2:
 	inc_octave
 	A_ 5
 	rest 12
-	volume 128
+	volume_envelope 8, 0
 	G_ 16
 	tie
 	G_ 9
@@ -441,7 +441,7 @@ Music_Imakuni2_Ch2:
 	dec_octave
 	A# 5
 	rest 12
-	volume 144
+	volume_envelope 9, 0
 	G# 16
 	tie
 	G# 9
@@ -535,7 +535,7 @@ Music_Imakuni2_Ch2:
 	inc_octave
 	A_ 5
 	rest 12
-	volume 128
+	volume_envelope 8, 0
 	G_ 16
 	tie
 	G_ 9
@@ -1362,7 +1362,7 @@ Music_Imakuni2_Ch1:
 	C_ 8
 	dec_octave
 	F_ 8
-	volume 60
+	volume_envelope 3, -4
 	E_ 16
 	tie
 	E_ 16
@@ -1409,7 +1409,7 @@ Music_Imakuni2_Ch3:
 	speed 1
 	wave 1
 	stereo_panning 15, 15
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	MainLoop
 	cutoff 8
@@ -1426,10 +1426,10 @@ Music_Imakuni2_Ch3:
 	rest 16
 	rest 9
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	G_ 16
 	A_ 9
-	volume 32
+	volume_envelope 2, 0
 	rest 16
 	rest 8
 	rest 9
@@ -1455,13 +1455,13 @@ Music_Imakuni2_Ch3:
 	rest 9
 	rest 8
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	G_ 16
 	A_ 9
-	volume 32
+	volume_envelope 2, 0
 	music_call Branch_1f3d18
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	rest 8
 	E_ 8
 	rest 8
@@ -1493,10 +1493,10 @@ Music_Imakuni2_Ch3:
 	rest 9
 	rest 8
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	G_ 16
 	A_ 9
-	volume 32
+	volume_envelope 2, 0
 	rest 16
 	rest 8
 	rest 9
@@ -1528,7 +1528,7 @@ Music_Imakuni2_Ch3:
 	rest 8
 	rest 16
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	A_ 9
 	tie
 	A# 16
@@ -1550,9 +1550,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -1600,9 +1600,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -1610,7 +1610,7 @@ Music_Imakuni2_Ch3:
 	A_ 9
 	music_call Branch_1f3d18
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	rest 8
 	E_ 8
 	rest 8
@@ -1647,9 +1647,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -1695,9 +1695,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -1756,9 +1756,9 @@ Music_Imakuni2_Ch3:
 	G# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	F# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	C# 16
@@ -1804,9 +1804,9 @@ Music_Imakuni2_Ch3:
 	G# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	F# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	C# 16
@@ -1815,7 +1815,7 @@ Music_Imakuni2_Ch3:
 	music_call Branch_1f3d18
 	pitch_offset 0
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	rest 16
 	rest 8
 	A_ 9
@@ -1839,9 +1839,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -1889,9 +1889,9 @@ Music_Imakuni2_Ch3:
 	D# 5
 	rest 3
 	rest 8
-	volume 64
+	volume_envelope 4, 0
 	C# 2
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
@@ -2004,14 +2004,14 @@ Music_Imakuni2_Ch3:
 	D_ 4
 	E_ 9
 	rest 2
-	volume 64
+	volume_envelope 4, 0
 	E_ 4
 	rest 6
-	volume 96
+	volume_envelope 6, 0
 	E_ 4
 	rest 6
 	rest 2
-	volume 32
+	volume_envelope 2, 0
 	dec_octave
 	G_ 16
 	tie
@@ -2032,29 +2032,29 @@ Music_Imakuni2_Ch3:
 
 Branch_1f3d18:
 	cutoff 1
-	volume 32
+	volume_envelope 2, 0
 	Loop 2
-	volume 32
+	volume_envelope 2, 0
 	octave 6
 	C# 1
-	volume 96
+	volume_envelope 6, 0
 	dec_octave
 	C# 7
 	EndLoop
 	rest 8
 	octave 6
-	volume 32
+	volume_envelope 2, 0
 	C# 1
-	volume 96
+	volume_envelope 6, 0
 	dec_octave
 	C# 7
 	rest 1
 	rest 16
 	Loop 2
-	volume 32
+	volume_envelope 2, 0
 	octave 6
 	C# 1
-	volume 96
+	volume_envelope 6, 0
 	dec_octave
 	C# 7
 	EndLoop

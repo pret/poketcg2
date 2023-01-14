@@ -365,7 +365,7 @@ Branch_1e75c7:
 
 Music_GameCorner_Ch1:
 	MainLoop
-	volume 194
+	volume_envelope 12, 2
 	duty 2
 	musicee 30
 	stereo_panning 15, 15
@@ -821,7 +821,7 @@ Branch_1e778f:
 
 Music_GameCorner_Ch3:
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 64
 	speed 1
 	stereo_panning 15, 15

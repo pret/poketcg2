@@ -1862,7 +1862,7 @@ Music_GRDuelTheme1_Ch1:
 	preset 16
 	octave 3
 	musicf1 53
-	volume 112
+	volume_envelope 7, 0
 	Loop 2
 	C# 15
 	tie
@@ -1907,7 +1907,7 @@ Music_GRDuelTheme1_Ch1:
 Music_GRDuelTheme1_Ch3:
 	speed 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 64
 	stereo_panning 1, 1
 	octave 2

@@ -225,7 +225,7 @@ Music_Ditty6_Ch1:
 
 Music_Ditty6_Ch3:
 	wave 5
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	speed 1
 	stereo_panning 1, 1

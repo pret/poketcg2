@@ -49,7 +49,7 @@ Music_Ditty4_Ch1:
 Music_Ditty4_Ch3:
 	wave 4
 	speed 1
-	volume 64
+	volume_envelope 4, 0
 	echo 128
 	stereo_panning 15, 15
 	speed 1

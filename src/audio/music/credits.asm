@@ -1,6 +1,6 @@
 Music_Credits_Ch2:
 	duty 2
-	volume 247
+	volume_envelope 15, 7
 	speed 1
 	stereo_panning 15, 15
 	octave 1
@@ -128,7 +128,7 @@ Music_Credits_Ch2:
 	G_ 16
 	tie
 	G_ 4
-	volume 198
+	volume_envelope 12, 6
 	rest 15
 	inc_octave
 	D_ 14
@@ -401,7 +401,7 @@ Music_Credits_Ch2:
 	G_ 14
 	duty 1
 	octave 2
-	volume 156
+	volume_envelope 9, -4
 	frequency_offset -53
 	D_ 4
 	tie
@@ -414,7 +414,7 @@ Music_Credits_Ch2:
 	frequency_offset -14
 	D_ 3
 	frequency_offset 0
-	volume 224
+	volume_envelope 14, 0
 	D_ 4
 	tie
 	D_ 3
@@ -517,9 +517,9 @@ Music_Credits_Ch2:
 	vibrato_type 5
 	vibrato_delay 29
 	octave 1
-	volume 156
+	volume_envelope 9, -4
 	G_ 15
-	volume 224
+	volume_envelope 14, 0
 	G_ 14
 	tie
 	G_ 15
@@ -570,9 +570,9 @@ Music_Credits_Ch2:
 	tie
 	frequency_offset 0
 	D_ 7
-	volume 156
+	volume_envelope 9, -4
 	G_ 15
-	volume 224
+	volume_envelope 14, 0
 	G_ 14
 	tie
 	G_ 15
@@ -615,7 +615,7 @@ Music_Credits_Ch2:
 	tie
 	C_ 15
 	G_ 14
-	volume 156
+	volume_envelope 9, -4
 	inc_octave
 	frequency_offset -60
 	C_ 4
@@ -629,7 +629,7 @@ Music_Credits_Ch2:
 	frequency_offset -15
 	C_ 3
 	frequency_offset 0
-	volume 224
+	volume_envelope 14, 0
 	C_ 14
 	tie
 	C_ 15
@@ -728,7 +728,7 @@ Music_Credits_Ch2:
 	G_ 15
 	A_ 4
 	duty 2
-	volume 199
+	volume_envelope 12, 7
 	speed 1
 	stereo_panning 15, 15
 	vibrato_delay 0
@@ -743,7 +743,7 @@ Music_Credits_Ch2:
 	duty 1
 	vibrato_type 5
 	vibrato_delay 29
-	volume 224
+	volume_envelope 14, 0
 	octave 1
 	C_ 15
 	tie
@@ -1005,9 +1005,9 @@ Music_Credits_Ch2:
 	tie
 	frequency_offset 0
 	D_ 7
-	volume 156
+	volume_envelope 9, -4
 	G_ 15
-	volume 224
+	volume_envelope 14, 0
 	G_ 14
 	tie
 	G_ 15
@@ -1150,9 +1150,9 @@ Music_Credits_Ch2:
 	C_ 15
 	tie
 	C_ 14
-	volume 156
+	volume_envelope 9, -4
 	D_ 15
-	volume 224
+	volume_envelope 14, 0
 	D_ 14
 	tie
 	D_ 15
@@ -1184,7 +1184,7 @@ Music_Credits_Ch2:
 	duty 1
 	vibrato_type 5
 	vibrato_delay 29
-	volume 224
+	volume_envelope 14, 0
 	octave 1
 	G_ 15
 	tie
@@ -1196,7 +1196,7 @@ Music_Credits_Ch2:
 	D_ 14
 	rest 15
 	duty 2
-	volume 199
+	volume_envelope 12, 7
 	speed 1
 	vibrato_delay 0
 	octave 3
@@ -1220,7 +1220,7 @@ Music_Credits_Ch2:
 	duty 1
 	vibrato_type 5
 	vibrato_delay 29
-	volume 224
+	volume_envelope 14, 0
 	octave 1
 	D_ 14
 	octave 1
@@ -1234,7 +1234,7 @@ Music_Credits_Ch2:
 	D_ 14
 	rest 15
 	duty 2
-	volume 199
+	volume_envelope 12, 7
 	speed 1
 	vibrato_delay 0
 	octave 3
@@ -1251,7 +1251,7 @@ Music_Credits_Ch2:
 	duty 1
 	vibrato_type 5
 	vibrato_delay 29
-	volume 224
+	volume_envelope 14, 0
 	octave 1
 	A# 4
 	tie
@@ -1277,7 +1277,7 @@ Music_Credits_Ch2:
 	D_ 14
 	rest 15
 	duty 2
-	volume 199
+	volume_envelope 12, 7
 	speed 1
 	vibrato_delay 0
 	octave 3
@@ -1301,7 +1301,7 @@ Music_Credits_Ch2:
 	duty 1
 	vibrato_type 5
 	vibrato_delay 29
-	volume 224
+	volume_envelope 14, 0
 	octave 1
 	D_ 14
 	G_ 15
@@ -1467,11 +1467,11 @@ Music_Credits_Ch2:
 	A_ 15
 	B_ 14
 	inc_octave
-	volume 108
+	volume_envelope 6, -4
 	C_ 15
 	tie
 	C_ 14
-	volume 224
+	volume_envelope 14, 0
 	C_ 15
 	tie
 	C_ 14
@@ -1706,7 +1706,7 @@ Music_Credits_Ch2:
 
 Music_Credits_Ch1:
 	duty 2
-	volume 199
+	volume_envelope 12, 7
 	speed 1
 	stereo_panning 15, 15
 	rest 15
@@ -1825,7 +1825,7 @@ Music_Credits_Ch1:
 	C_ 16
 	tie
 	C_ 4
-	volume 198
+	volume_envelope 12, 6
 	dec_octave
 	dec_octave
 	G_ 16
@@ -2324,7 +2324,7 @@ Music_Credits_Ch1:
 	A_ 15
 	inc_octave
 	C_ 10
-	volume 199
+	volume_envelope 12, 7
 	D_ 4
 	tie
 	speed 4
@@ -4045,13 +4045,13 @@ Music_Credits_Ch3:
 	wave 6
 	stereo_panning 15, 15
 	speed 1
-	volume 32
+	volume_envelope 2, 0
 	echo 96
 	octave 4
 	cutoff 8
 	vibrato_type 3
 	vibrato_delay 15
-	volume 64
+	volume_envelope 4, 0
 	cutoff 8
 	G# 3
 	A_ 12
@@ -4174,7 +4174,7 @@ Music_Credits_Ch3:
 	G_ 9
 	speed 1
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	rest 14
 	rest 15
@@ -4292,14 +4292,14 @@ Music_Credits_Ch3:
 	A_ 14
 	vibrato_delay 0
 	cutoff 8
-	volume 64
+	volume_envelope 4, 0
 	B_ 15
 	tie
 	B_ 14
 	tie
 	B_ 15
 	dec_octave
-	volume 32
+	volume_envelope 2, 0
 	music_call Branch_1dfa9d
 	music_call Branch_1dfb57
 	speed 2
@@ -4685,7 +4685,7 @@ Music_Credits_Ch3:
 	tie
 	A_ 15
 	vibrato_delay 0
-	volume 64
+	volume_envelope 4, 0
 	inc_octave
 	cutoff 1
 	C_ 7
@@ -4712,7 +4712,7 @@ Music_Credits_Ch3:
 	F# 14
 	inc_octave
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	C# 3
 	D_ 12
 	C_ 14
@@ -4771,7 +4771,7 @@ Music_Credits_Ch3:
 	D_ 15
 	vibrato_delay 0
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	B_ 3
 	inc_octave
 	C_ 11
@@ -4785,7 +4785,7 @@ Music_Credits_Ch3:
 	F_ 15
 	inc_octave
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	C_ 14
 	dec_octave
 	B_ 15
@@ -4868,7 +4868,7 @@ Music_Credits_Ch3:
 	G_ 15
 	dec_octave
 	G_ 7
-	volume 64
+	volume_envelope 4, 0
 	G_ 7
 	tie
 	G_ 15
@@ -4879,7 +4879,7 @@ Music_Credits_Ch3:
 	tie
 	G_ 14
 	tie
-	volume 64
+	volume_envelope 4, 0
 	cutoff 1
 	G_ 15
 	tie
@@ -4892,7 +4892,7 @@ Music_Credits_Ch3:
 	rest 14
 	rest 8
 	octave 2
-	volume 64
+	volume_envelope 4, 0
 	frequency_offset -3
 	D_ 14
 	G_ 15
@@ -4902,9 +4902,9 @@ Music_Credits_Ch3:
 	dec_octave
 	G_ 7
 	frequency_offset 0
-	volume 32
+	volume_envelope 2, 0
 	G_ 7
-	volume 64
+	volume_envelope 4, 0
 	G_ 7
 	tie
 	G_ 15
@@ -4915,7 +4915,7 @@ Music_Credits_Ch3:
 	tie
 	G_ 14
 	tie
-	volume 64
+	volume_envelope 4, 0
 	cutoff 1
 	G_ 15
 	tie
@@ -4928,7 +4928,7 @@ Music_Credits_Ch3:
 	rest 14
 	rest 8
 	octave 2
-	volume 64
+	volume_envelope 4, 0
 	frequency_offset -3
 	D_ 14
 	G_ 15
@@ -4939,9 +4939,9 @@ Music_Credits_Ch3:
 	G_ 7
 	frequency_offset 0
 	inc_octave
-	volume 32
+	volume_envelope 2, 0
 	C_ 7
-	volume 64
+	volume_envelope 4, 0
 	C_ 7
 	tie
 	C_ 15
@@ -4955,11 +4955,11 @@ Music_Credits_Ch3:
 	C_ 15
 	tie
 	C_ 14
-	volume 96
+	volume_envelope 6, 0
 	C_ 15
 	vibrato_delay 0
 	rest 14
-	volume 32
+	volume_envelope 2, 0
 	rest 15
 	rest 14
 	rest 15
@@ -5307,9 +5307,9 @@ Music_Credits_Ch3:
 	vibrato_delay 0
 	cutoff 1
 	speed 1
-	volume 64
+	volume_envelope 4, 0
 	B_ 14
-	volume 96
+	volume_envelope 6, 0
 	B_ 7
 	rest 7
 	music_end

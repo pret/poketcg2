@@ -1210,7 +1210,7 @@ Branch_1ea90c:
 Music_HereComesGR_Ch3:
 	speed 1
 	wave 1
-	volume 32
+	volume_envelope 2, 0
 	echo 128
 	stereo_panning 1, 1
 	MainLoop
@@ -1285,11 +1285,11 @@ Music_HereComesGR_Ch3:
 	C# 10
 	D_ 11
 	inc_octave
-	volume 64
+	volume_envelope 4, 0
 	cutoff 8
 	C_ 10
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	dec_octave
 	C# 11
 	C_ 10
@@ -1300,7 +1300,7 @@ Music_HereComesGR_Ch3:
 	dec_octave
 	F_ 11
 	G# 10
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	G_ 8
 	rest 3
@@ -1311,11 +1311,11 @@ Music_HereComesGR_Ch3:
 	octave 4
 	cutoff 4
 	G_ 10
-	volume 96
+	volume_envelope 6, 0
 	G_ 11
 	cutoff 8
 	octave 1
-	volume 64
+	volume_envelope 4, 0
 	F_ 10
 	G_ 11
 	octave 4
@@ -1323,7 +1323,7 @@ Music_HereComesGR_Ch3:
 	F_ 10
 	cutoff 8
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	rest 10
 	rest 11
 	C_ 5
@@ -1334,7 +1334,7 @@ Music_HereComesGR_Ch3:
 	F_ 16
 	tie
 	F_ 5
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	G_ 8
 	rest 3
@@ -1345,10 +1345,10 @@ Music_HereComesGR_Ch3:
 	octave 4
 	cutoff 4
 	G_ 10
-	volume 96
+	volume_envelope 6, 0
 	G_ 11
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	rest 10
 	G# 6
@@ -1363,7 +1363,7 @@ Music_HereComesGR_Ch3:
 	A_ 16
 	tie
 	A_ 10
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	G_ 8
 	rest 3
@@ -1374,18 +1374,18 @@ Music_HereComesGR_Ch3:
 	octave 4
 	cutoff 4
 	G_ 10
-	volume 96
+	volume_envelope 6, 0
 	G_ 11
 	cutoff 8
 	octave 1
-	volume 64
+	volume_envelope 4, 0
 	F_ 10
 	G_ 11
 	octave 4
 	cutoff 4
 	F_ 10
 	cutoff 8
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	rest 10
 	rest 11
@@ -1487,12 +1487,12 @@ Music_HereComesGR_Ch3:
 	inc_octave
 	cutoff 4
 	F_ 10
-	volume 96
+	volume_envelope 6, 0
 	F_ 11
 	cutoff 8
 	dec_octave
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	dec_octave
 	C_ 10
 	D_ 8
@@ -1503,7 +1503,7 @@ Music_HereComesGR_Ch3:
 	dec_octave
 	G_ 3
 	rest 7
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	tie
 	C_ 5
@@ -1522,12 +1522,12 @@ Music_HereComesGR_Ch3:
 	inc_octave
 	cutoff 4
 	F_ 10
-	volume 96
+	volume_envelope 6, 0
 	F_ 11
 	cutoff 8
 	dec_octave
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	dec_octave
 	C_ 10
 	D_ 8
@@ -1538,7 +1538,7 @@ Music_HereComesGR_Ch3:
 	dec_octave
 	G_ 3
 	rest 7
-	volume 32
+	volume_envelope 2, 0
 	C# 6
 	tie
 	D_ 5
@@ -1558,12 +1558,12 @@ Music_HereComesGR_Ch3:
 	inc_octave
 	cutoff 4
 	F_ 10
-	volume 96
+	volume_envelope 6, 0
 	F_ 11
 	cutoff 8
 	dec_octave
 	dec_octave
-	volume 64
+	volume_envelope 4, 0
 	dec_octave
 	C_ 10
 	D_ 8
@@ -1574,7 +1574,7 @@ Music_HereComesGR_Ch3:
 	dec_octave
 	G_ 3
 	rest 7
-	volume 32
+	volume_envelope 2, 0
 	C_ 16
 	tie
 	C_ 5
@@ -1646,7 +1646,7 @@ Branch_1eaaf6:
 	F# 16
 	tie
 	F# 5
-	volume 32
+	volume_envelope 2, 0
 	octave 1
 	G_ 8
 	rest 3
@@ -1657,11 +1657,11 @@ Branch_1eaaf6:
 	octave 4
 	cutoff 4
 	G_ 10
-	volume 96
+	volume_envelope 6, 0
 	G_ 11
 	cutoff 8
 	octave 1
-	volume 32
+	volume_envelope 2, 0
 	rest 10
 	rest 16
 	rest 16
