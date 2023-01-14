@@ -6,164 +6,164 @@ Music_Imakuni2_Ch2:
 	speed 1
 	octave 2
 	preset 31
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
 	inc_octave
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
 	musicef -2
-	E_ 5
+	note E_, 5
 	rest 11
 	inc_octave
 	rest 9
 	rest 8
 	musicef -2
-	C_ 16
-	C# 5
+	note C_, 16
+	note C#, 5
 	rest 12
-	D# 16
-	E_ 5
+	note D#, 16
+	note E_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
-	G# 8
+	note G#, 8
 	rest 8
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
 	inc_octave
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
 	musicef -2
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 9
 	music_call Branch_1f3762
 	rest 8
 	preset 31
 	octave 2
-	E_ 16
-	G_ 16
+	note E_, 16
+	note G_, 16
 	tie
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset 19
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 3
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 27
-	G# 2
+	note G#, 2
 	tie
 	frequency_offset 0
-	A_ 2
+	note A_, 2
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
 	inc_octave
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
 	musicef -2
-	E_ 5
+	note E_, 5
 	rest 11
 	inc_octave
 	rest 9
 	rest 8
 	musicef -2
-	C_ 16
-	C# 5
+	note C_, 16
+	note C#, 5
 	rest 12
-	D# 16
-	E_ 5
+	note D#, 16
+	note E_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
-	G# 8
+	note G#, 8
 	rest 8
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
 	inc_octave
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	dec_octave
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 5
 	rest 12
 	dec_octave
 	preset 31
-	G_ 16
-	A_ 9
+	note G_, 16
+	note A_, 9
 	inc_octave
 	inc_octave
 	music_call Branch_1f3762
@@ -171,26 +171,26 @@ Music_Imakuni2_Ch2:
 	octave 3
 	rest 16
 	preset 9
-	D# 9
+	note D#, 9
 	tie
-	E_ 8
+	note E_, 8
 	tie
-	E_ 16
+	note E_, 16
 	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
-	D# 5
+	note D#, 5
 	rest 4
 	rest 16
-	D_ 3
-	E_ 3
-	D# 2
-	C_ 9
+	note D_, 3
+	note E_, 3
+	note D#, 2
+	note C_, 9
 	tie
-	C_ 8
-	C# 16
-	E_ 5
+	note C_, 8
+	note C#, 16
+	note E_, 5
 	rest 4
 	rest 8
 	rest 16
@@ -200,101 +200,101 @@ Music_Imakuni2_Ch2:
 	rest 9
 	rest 8
 	rest 16
-	E_ 5
+	note E_, 5
 	rest 12
-	F# 5
+	note F#, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 16
-	F# 3
-	G_ 3
-	F# 2
-	E_ 5
+	note G_, 16
+	note F#, 3
+	note G_, 3
+	note F#, 2
+	note E_, 5
 	rest 12
-	D# 5
+	note D#, 5
 	rest 11
-	E_ 9
+	note E_, 9
 	tie
-	E_ 8
-	C# 5
+	note E_, 8
+	note C#, 5
 	rest 11
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 12
 	volume_envelope 9, 0
-	G_ 16
+	note G_, 16
 	tie
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
+	note G_, 8
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -2
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset -4
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -6
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -8
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -1
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -6
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -9
-	F# 3
+	note F#, 3
 	tie
 	frequency_offset 0
-	F_ 1
+	note F_, 1
 	rest 9
 	music_call Branch_1f3762
 	preset 9
 	octave 2
 	rest 8
 	octave 2
-	E_ 16
-	G_ 9
+	note E_, 16
+	note G_, 9
 	tie
-	G_ 8
+	note G_, 8
 	tie
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset 19
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 3
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 27
-	G# 2
+	note G#, 2
 	tie
 	frequency_offset 0
-	A_ 1
+	note A_, 1
 	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
-	D# 5
+	note D#, 5
 	rest 4
 	rest 16
-	D_ 3
-	E_ 3
-	D# 2
-	C_ 9
+	note D_, 3
+	note E_, 3
+	note D#, 2
+	note C_, 9
 	tie
-	C_ 8
-	C# 16
-	E_ 5
+	note C_, 8
+	note C#, 16
+	note E_, 5
 	rest 4
 	rest 8
 	rest 16
@@ -304,111 +304,111 @@ Music_Imakuni2_Ch2:
 	rest 9
 	rest 8
 	rest 16
-	E_ 5
+	note E_, 5
 	rest 12
-	F# 5
+	note F#, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 16
-	F# 3
-	G_ 3
-	F# 2
-	E_ 5
+	note G_, 16
+	note F#, 3
+	note G_, 3
+	note F#, 2
+	note E_, 5
 	rest 12
-	D# 5
+	note D#, 5
 	rest 11
-	E_ 9
+	note E_, 9
 	tie
-	E_ 8
+	note E_, 8
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 11
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 12
 	volume_envelope 8, 0
-	G_ 16
+	note G_, 16
 	tie
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
+	note G_, 8
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -2
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset -4
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -6
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -8
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -1
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -6
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -9
-	F# 3
+	note F#, 3
 	tie
 	frequency_offset 0
-	F_ 1
+	note F_, 1
 	preset 9
 	octave 2
-	A_ 9
+	note A_, 9
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 3
 	rest 16
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 12
 	dec_octave
-	C# 5
+	note C#, 5
 	rest 3
-	C# 4
-	E_ 4
-	A_ 5
+	note C#, 4
+	note E_, 4
+	note A_, 5
 	rest 4
 	rest 8
 	preset 4
 	octave 3
 	rest 8
 	musicef -5
-	A_ 8
+	note A_, 8
 	musicef 2
-	G# 9
+	note G#, 9
 	musicef 2
-	A_ 8
+	note A_, 8
 	musicef 2
 	inc_octave
-	E_ 8
-	F_ 8
+	note E_, 8
+	note F_, 8
 	musicef 0
 	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
-	F# 5
+	note F#, 5
 	rest 4
 	rest 16
-	F# 3
-	D_ 3
-	F# 2
-	D_ 9
+	note F#, 3
+	note D_, 3
+	note F#, 2
+	note D_, 9
 	tie
-	D_ 8
+	note D_, 8
 	dec_octave
-	A# 16
-	B_ 5
+	note A#, 16
+	note B_, 5
 	rest 4
 	rest 8
 	rest 16
@@ -419,62 +419,62 @@ Music_Imakuni2_Ch2:
 	rest 8
 	rest 16
 	octave 4
-	F# 5
+	note F#, 5
 	rest 12
-	G# 5
+	note G#, 5
 	rest 11
-	A_ 9
+	note A_, 9
 	tie
-	A_ 16
-	G# 3
-	A_ 3
-	G# 2
-	F# 5
+	note A_, 16
+	note G#, 3
+	note A_, 3
+	note G#, 2
+	note F#, 5
 	rest 12
-	F_ 5
+	note F_, 5
 	rest 11
-	F# 9
+	note F#, 9
 	tie
-	F# 8
-	D_ 5
+	note F#, 8
+	note D_, 5
 	rest 11
 	dec_octave
-	A# 5
+	note A#, 5
 	rest 12
 	volume_envelope 9, 0
-	G# 16
+	note G#, 16
 	tie
-	G# 9
+	note G#, 9
 	tie
-	G# 8
+	note G#, 8
 	tie
-	G# 16
+	note G#, 16
 	tie
-	G# 5
+	note G#, 5
 	tie
 	frequency_offset -2
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset -4
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset -6
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset -8
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset -1
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -6
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -9
-	G_ 3
+	note G_, 3
 	tie
 	frequency_offset 0
-	F# 1
+	note F#, 1
 	rest 9
 	pitch_offset 5
 	music_call Branch_1f3762
@@ -483,26 +483,26 @@ Music_Imakuni2_Ch2:
 	rest 16
 	preset 9
 	octave 3
-	D# 9
+	note D#, 9
 	tie
-	E_ 8
+	note E_, 8
 	tie
-	E_ 16
+	note E_, 16
 	preset 18
 	vibrato_type 17
 	vibrato_delay 1
 	octave 4
-	D# 5
+	note D#, 5
 	rest 4
 	rest 16
-	D_ 3
-	E_ 3
-	D# 2
-	C_ 9
+	note D_, 3
+	note E_, 3
+	note D#, 2
+	note C_, 9
 	tie
-	C_ 8
-	C# 16
-	E_ 5
+	note C_, 8
+	note C#, 16
+	note E_, 5
 	rest 4
 	rest 8
 	rest 16
@@ -512,81 +512,81 @@ Music_Imakuni2_Ch2:
 	rest 9
 	rest 8
 	rest 16
-	E_ 5
+	note E_, 5
 	rest 12
-	F# 5
+	note F#, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 16
-	F# 3
-	G_ 3
-	F# 2
-	E_ 5
+	note G_, 16
+	note F#, 3
+	note G_, 3
+	note F#, 2
+	note E_, 5
 	rest 12
-	D# 5
+	note D#, 5
 	rest 11
-	E_ 9
+	note E_, 9
 	tie
-	E_ 8
+	note E_, 8
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 11
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 12
 	volume_envelope 8, 0
-	G_ 16
+	note G_, 16
 	tie
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
+	note G_, 8
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -2
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset -4
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -6
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -8
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset -1
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -6
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset -9
-	F# 3
+	note F#, 3
 	tie
 	frequency_offset 0
-	F_ 1
+	note F_, 1
 	octave 2
 	preset 31
-	A_ 9
+	note A_, 9
 	inc_octave
 	preset 9
-	C# 5
+	note C#, 5
 	rest 3
 	rest 16
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 12
 	dec_octave
-	C# 5
+	note C#, 5
 	rest 3
 	inc_octave
-	C# 4
-	E_ 4
-	A_ 5
+	note C#, 4
+	note E_, 4
+	note A_, 5
 	rest 4
 	rest 8
 	rest 16
@@ -594,146 +594,146 @@ Music_Imakuni2_Ch2:
 	frequency_offset 0
 	musicef 2
 	octave 3
-	B_ 5
-	A_ 4
-	E_ 4
-	C_ 4
+	note B_, 5
+	note A_, 4
+	note E_, 4
+	note C_, 4
 	dec_octave
-	A_ 4
-	F_ 4
-	D_ 4
+	note A_, 4
+	note F_, 4
+	note D_, 4
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	D# 5
+	note D#, 5
 	tie
-	E_ 4
-	G# 8
-	B_ 8
+	note E_, 4
+	note G#, 8
+	note B_, 8
 	inc_octave
-	D_ 8
+	note D_, 8
 	tie
-	D_ 9
-	C# 8
+	note D_, 9
+	note C#, 8
 	dec_octave
-	B_ 8
-	D# 8
-	E_ 9
-	G# 8
-	B_ 8
+	note B_, 8
+	note D#, 8
+	note E_, 9
+	note G#, 8
+	note B_, 8
 	rest 8
 	inc_octave
-	C# 5
-	D_ 4
-	C# 4
-	D_ 4
-	C# 4
-	D_ 4
-	C# 4
-	D_ 4
+	note C#, 5
+	note D_, 4
+	note C#, 4
+	note D_, 4
+	note C#, 4
+	note D_, 4
+	note C#, 4
+	note D_, 4
 	dec_octave
-	C# 5
+	note C#, 5
 	tie
-	D_ 4
-	F# 8
-	A_ 8
+	note D_, 4
+	note F#, 8
+	note A_, 8
 	inc_octave
-	C_ 8
+	note C_, 8
 	tie
-	C_ 9
+	note C_, 9
 	dec_octave
-	B_ 8
-	A_ 8
-	C# 8
-	D_ 9
-	F# 8
-	A_ 8
+	note B_, 8
+	note A_, 8
+	note C#, 8
+	note D_, 9
+	note F#, 8
+	note A_, 8
 	rest 8
-	B_ 5
+	note B_, 5
 	inc_octave
-	C_ 4
+	note C_, 4
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	C_ 4
+	note C_, 4
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	C_ 4
+	note C_, 4
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	C_ 4
+	note C_, 4
 	dec_octave
-	D# 5
+	note D#, 5
 	tie
-	E_ 4
-	G# 8
-	B_ 8
+	note E_, 4
+	note G#, 8
+	note B_, 8
 	inc_octave
-	D_ 8
+	note D_, 8
 	tie
-	D_ 9
-	C# 8
+	note D_, 9
+	note C#, 8
 	dec_octave
-	B_ 8
-	E_ 9
-	F_ 8
-	A_ 8
+	note B_, 8
+	note E_, 9
+	note F_, 8
+	note A_, 8
 	inc_octave
-	C_ 8
-	D# 8
+	note C_, 8
+	note D#, 8
 	tie
-	D# 9
-	D_ 8
-	C_ 8
+	note D#, 9
+	note D_, 8
+	note C_, 8
 	dec_octave
-	F_ 8
-	B_ 5
-	E_ 4
-	G# 4
-	B_ 4
+	note F_, 8
+	note B_, 5
+	note E_, 4
+	note G#, 4
+	note B_, 4
 	inc_octave
-	E_ 4
+	note E_, 4
 	dec_octave
-	G# 4
-	B_ 4
+	note G#, 4
+	note B_, 4
 	inc_octave
-	E_ 4
-	G# 5
+	note E_, 4
+	note G#, 5
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	E_ 4
-	G# 4
-	B_ 4
+	note E_, 4
+	note G#, 4
+	note B_, 4
 	inc_octave
-	E_ 4
-	G# 4
-	B_ 4
+	note E_, 4
+	note G#, 4
+	note B_, 4
 	inc_octave
 	Loop 3
-	E_ 5
+	note E_, 5
 	rest 6
 	musicef -3
 	EndLoop
 	preset 9
 	octave 2
-	G_ 16
+	note G_, 16
 	tie
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset 19
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 3
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 27
-	G# 2
+	note G#, 2
 	tie
 	frequency_offset 0
-	A_ 2
+	note A_, 2
 	EndMainLoop
 
 Branch_1f3762:
@@ -744,16 +744,16 @@ Branch_1f3762:
 	speed 1
 	musicef -1
 	octave 4
-	C# 5
+	note C#, 5
 	rest 3
-	C# 5
+	note C#, 5
 	rest 11
-	C# 5
+	note C#, 5
 	rest 4
 	rest 16
-	C# 5
+	note C#, 5
 	rest 3
-	C# 5
+	note C#, 5
 	rest 4
 	music_ret
 
@@ -771,29 +771,29 @@ Music_Imakuni2_Ch1:
 	rest 8
 	rest 8
 	rest 8
-	E_ 5
+	note E_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
-	D# 5
+	note D#, 5
 	rest 11
 	dec_octave
 	rest 9
 	rest 8
 	musicef -2
-	D# 5
+	note D#, 5
 	rest 11
 	rest 9
 	rest 8
 	musicef -2
-	G# 16
-	A_ 5
+	note G#, 16
+	note A_, 5
 	rest 12
 	inc_octave
-	C_ 16
-	C# 5
+	note C_, 16
+	note C#, 5
 	rest 12
 	rest 16
 	rest 9
@@ -806,34 +806,34 @@ Music_Imakuni2_Ch1:
 	rest 8
 	rest 8
 	rest 8
-	E_ 5
+	note E_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
-	D# 5
+	note D#, 5
 	rest 11
 	dec_octave
 	rest 9
 	rest 8
 	musicef -2
-	D# 5
+	note D#, 5
 	rest 11
 	musicef 2
 	inc_octave
 	inc_octave
 	rest 9
-	C_ 5
+	note C_, 5
 	rest 3
-	C_ 5
+	note C_, 5
 	rest 11
-	C_ 5
+	note C_, 5
 	rest 4
 	rest 16
-	C_ 5
+	note C_, 5
 	rest 3
-	C_ 5
+	note C_, 5
 	rest 12
 	dec_octave
 	dec_octave
@@ -846,29 +846,29 @@ Music_Imakuni2_Ch1:
 	rest 8
 	rest 8
 	rest 8
-	E_ 5
+	note E_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
-	D# 5
+	note D#, 5
 	rest 11
 	dec_octave
 	rest 9
 	rest 8
 	musicef -2
-	D# 5
+	note D#, 5
 	rest 11
 	rest 9
 	rest 8
 	musicef -2
-	G# 16
-	A_ 5
+	note G#, 16
+	note A_, 5
 	rest 12
 	inc_octave
-	C_ 16
-	C# 5
+	note C_, 16
+	note C#, 5
 	rest 12
 	rest 16
 	rest 9
@@ -881,117 +881,117 @@ Music_Imakuni2_Ch1:
 	rest 8
 	rest 8
 	rest 8
-	E_ 5
+	note E_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
-	D# 5
+	note D#, 5
 	rest 11
 	dec_octave
 	rest 9
 	rest 8
 	musicef -2
-	E_ 5
+	note E_, 5
 	rest 11
 	musicef 2
 	inc_octave
 	inc_octave
 	rest 9
-	C_ 5
+	note C_, 5
 	rest 3
-	C_ 5
+	note C_, 5
 	rest 11
-	C_ 5
+	note C_, 5
 	rest 4
 	rest 16
-	C_ 5
+	note C_, 5
 	rest 3
-	C_ 5
+	note C_, 5
 	rest 12
 	dec_octave
 	dec_octave
 	rest 16
-	G_ 9
+	note G_, 9
 	tie
-	G# 8
+	note G#, 8
 	tie
-	G# 16
+	note G#, 16
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	A_ 9
+	note A_, 9
 	inc_octave
 	preset 9
-	C# 5
+	note C#, 5
 	rest 3
 	rest 16
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 4
 	rest 8
 	inc_octave
 	inc_octave
-	G# 5
+	note G#, 5
 	rest 3
 	dec_octave
-	C# 4
-	E_ 4
-	A_ 5
+	note C#, 4
+	note E_, 4
+	note A_, 5
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
 	rest 9
 	pitch_offset 255
@@ -1004,78 +1004,78 @@ Music_Imakuni2_Ch1:
 	rest 16
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	A_ 9
+	note A_, 9
 	inc_octave
 	preset 9
-	C# 5
+	note C#, 5
 	rest 3
 	rest 16
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 4
 	rest 8
 	inc_octave
 	inc_octave
-	G# 5
+	note G#, 5
 	rest 3
 	dec_octave
-	C# 4
-	E_ 4
-	A_ 5
+	note C#, 4
+	note E_, 4
+	note A_, 5
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 9
 	musicef -1
@@ -1085,62 +1085,62 @@ Music_Imakuni2_Ch1:
 	rest 3
 	rest 16
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 12
 	dec_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	rest 8
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
-	A_ 8
+	note A_, 8
 	music_call Branch_1f3a58
 	preset 31
 	octave 3
-	D_ 9
+	note D_, 9
 	rest 8
 	rest 8
 	preset 9
-	D_ 3
-	F# 3
-	A_ 2
+	note D_, 3
+	note F#, 3
+	note A_, 2
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 12
 	dec_octave
 	preset 31
-	A# 16
-	B_ 9
+	note A#, 16
+	note B_, 9
 	rest 8
 	preset 9
-	A_ 5
+	note A_, 5
 	rest 11
 	preset 31
 	musicef -2
-	F# 2
+	note F#, 2
 	rest 15
 	musicef 2
-	C# 5
+	note C#, 5
 	rest 11
-	D_ 9
+	note D_, 9
 	preset 9
-	F# 5
+	note F#, 5
 	rest 3
 	rest 16
-	D_ 5
+	note D_, 5
 	rest 4
 	rest 8
 	inc_octave
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 3
 	dec_octave
 	dec_octave
-	F# 4
-	A_ 4
+	note F#, 4
+	note A_, 4
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 4
 	rest 8
 	pitch_offset 253
@@ -1151,26 +1151,26 @@ Music_Imakuni2_Ch1:
 	rest 9
 	rest 8
 	rest 8
-	D_ 3
-	F# 3
-	A_ 2
+	note D_, 3
+	note F#, 3
+	note A_, 2
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 12
 	dec_octave
 	preset 31
-	A# 16
-	B_ 9
+	note A#, 16
+	note B_, 9
 	rest 8
 	preset 9
-	A_ 5
+	note A_, 5
 	rest 11
 	preset 31
 	musicef -2
-	F# 2
+	note F#, 2
 	rest 15
 	musicef 2
-	C# 5
+	note C#, 5
 	rest 11
 	rest 9
 	pitch_offset 6
@@ -1180,211 +1180,211 @@ Music_Imakuni2_Ch1:
 	rest 16
 	preset 9
 	octave 2
-	G_ 9
+	note G_, 9
 	tie
-	G# 8
+	note G#, 8
 	tie
-	G# 16
+	note G#, 16
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	A_ 9
+	note A_, 9
 	preset 9
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 3
 	rest 16
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 4
 	rest 8
 	inc_octave
 	inc_octave
-	G# 5
+	note G#, 5
 	rest 3
 	dec_octave
-	C# 4
-	E_ 4
-	A_ 5
+	note C#, 4
+	note E_, 4
+	note A_, 5
 	rest 4
 	rest 8
 	music_call Branch_1f3a58
 	preset 31
 	octave 2
-	A_ 9
+	note A_, 9
 	rest 8
 	rest 8
 	preset 9
-	A_ 3
+	note A_, 3
 	inc_octave
-	C# 3
-	E_ 2
-	A_ 5
+	note C#, 3
+	note E_, 2
+	note A_, 5
 	rest 12
 	preset 31
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	preset 9
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 31
 	musicef -2
-	C# 2
+	note C#, 2
 	rest 15
 	musicef 2
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
 	preset 9
 	rest 9
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	rest 16
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 12
 	dec_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	rest 8
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	rest 8
 	octave 2
-	G_ 8
+	note G_, 8
 	rest 8
 	inc_octave
-	C_ 9
+	note C_, 9
 	tie
-	C_ 8
-	D_ 8
+	note C_, 8
+	note D_, 8
 	rest 8
 	vibrato_type 5
 	vibrato_delay 1
 	octave 3
-	E_ 9
-	G# 8
-	B_ 4
+	note E_, 9
+	note G#, 8
+	note B_, 4
 	rest 4
 	inc_octave
-	C# 4
-	D_ 13
-	C# 8
+	note C#, 4
+	note D_, 13
+	note C#, 8
 	dec_octave
-	B_ 8
-	D# 8
-	E_ 9
-	G# 8
-	B_ 8
+	note B_, 8
+	note D#, 8
+	note E_, 9
+	note G#, 8
+	note B_, 8
 	rest 8
 	inc_octave
-	G_ 5
-	G# 4
-	G_ 4
-	G# 4
-	G_ 4
-	G# 4
-	G_ 4
-	G# 4
+	note G_, 5
+	note G#, 4
+	note G_, 4
+	note G#, 4
+	note G_, 4
+	note G#, 4
+	note G_, 4
+	note G#, 4
 	dec_octave
-	D_ 9
-	F# 8
-	A_ 4
+	note D_, 9
+	note F#, 8
+	note A_, 4
 	rest 4
-	B_ 4
+	note B_, 4
 	inc_octave
-	C_ 13
+	note C_, 13
 	dec_octave
-	B_ 8
-	A_ 8
-	C# 8
-	D_ 9
-	F# 8
-	A_ 8
+	note B_, 8
+	note A_, 8
+	note C#, 8
+	note D_, 9
+	note F#, 8
+	note A_, 8
 	rest 8
 	inc_octave
-	F_ 5
-	F# 4
-	F_ 4
-	F# 4
-	F_ 4
-	F# 4
-	F_ 4
-	F# 4
+	note F_, 5
+	note F#, 4
+	note F_, 4
+	note F#, 4
+	note F_, 4
+	note F#, 4
+	note F_, 4
+	note F#, 4
 	dec_octave
-	E_ 9
-	G# 8
-	B_ 4
+	note E_, 9
+	note G#, 8
+	note B_, 4
 	rest 4
 	inc_octave
-	C# 4
-	D_ 13
-	C# 8
+	note C#, 4
+	note D_, 13
+	note C#, 8
 	dec_octave
-	B_ 8
-	E_ 4
+	note B_, 8
+	note E_, 4
 	rest 4
-	F_ 9
-	A_ 8
+	note F_, 9
+	note A_, 8
 	inc_octave
-	C_ 4
+	note C_, 4
 	rest 4
-	D_ 4
-	D# 13
-	D_ 8
-	C_ 8
+	note D_, 4
+	note D#, 13
+	note D_, 8
+	note C_, 8
 	dec_octave
-	F_ 8
+	note F_, 8
 	volume_envelope 3, -4
-	E_ 16
+	note E_, 16
 	tie
-	E_ 16
+	note E_, 16
 	tie
-	E_ 16
+	note E_, 16
 	tie
-	E_ 16
+	note E_, 16
 	tie
-	E_ 2
+	note E_, 2
 	preset 8
 	musicef 2
 	frequency_offset 0
 	Loop 3
-	B_ 5
+	note B_, 5
 	rest 6
 	musicef -3
 	EndLoop
-	B_ 5
+	note B_, 5
 	rest 6
-	B_ 5
+	note B_, 5
 	rest 6
-	B_ 5
+	note B_, 5
 	rest 6
 	EndMainLoop
 
@@ -1392,15 +1392,15 @@ Branch_1f3a58:
 	preset 4
 	octave 4
 	musicef -5
-	C_ 8
+	note C_, 8
 	musicef 2
-	C# 8
+	note C#, 8
 	musicef 2
-	C_ 9
+	note C_, 9
 	musicef 2
-	C# 8
-	C_ 8
-	C# 8
+	note C#, 8
+	note C_, 8
+	note C#, 8
 	musicef 0
 	music_ret
 
@@ -1414,21 +1414,21 @@ Music_Imakuni2_Ch3:
 	MainLoop
 	cutoff 8
 	octave 1
-	A_ 9
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 9
+	note A_, 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 16
 	rest 16
 	rest 9
 	dec_octave
 	volume_envelope 4, 0
-	G_ 16
-	A_ 9
+	note G_, 16
+	note A_, 9
 	volume_envelope 2, 0
 	rest 16
 	rest 8
@@ -1437,65 +1437,65 @@ Music_Imakuni2_Ch3:
 	rest 8
 	rest 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
-	G# 8
+	note G#, 8
 	rest 8
-	A_ 9
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 9
+	note A_, 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 16
 	rest 8
 	rest 9
 	rest 8
 	dec_octave
 	volume_envelope 4, 0
-	G_ 16
-	A_ 9
+	note G_, 16
+	note A_, 9
 	volume_envelope 2, 0
 	music_call Branch_1f3d18
 	octave 1
 	volume_envelope 2, 0
 	rest 8
-	E_ 8
+	note E_, 8
 	rest 8
-	G_ 16
+	note G_, 16
 	tie
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset 38
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 6
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 52
-	G# 2
+	note G#, 2
 	tie
 	frequency_offset 0
-	A_ 2
-	A_ 9
+	note A_, 2
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 9
+	note A_, 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 16
 	rest 8
 	rest 9
 	rest 8
 	dec_octave
 	volume_envelope 4, 0
-	G_ 16
-	A_ 9
+	note G_, 16
+	note A_, 9
 	volume_envelope 2, 0
 	rest 16
 	rest 8
@@ -1504,277 +1504,277 @@ Music_Imakuni2_Ch3:
 	rest 8
 	rest 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
-	G# 8
+	note G#, 8
 	rest 8
-	A_ 9
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 9
+	note A_, 9
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 16
 	rest 8
 	rest 9
 	rest 8
 	dec_octave
-	G_ 16
-	A_ 9
+	note G_, 16
+	note A_, 9
 	music_call Branch_1f3d18
 	rest 8
 	rest 16
 	octave 1
 	volume_envelope 2, 0
-	A_ 9
+	note A_, 9
 	tie
-	A# 16
+	note A#, 16
 	tie
-	A# 8
-	A_ 9
+	note A#, 8
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 5
+	note E_, 16
+	note A_, 5
 	rest 4
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	dec_octave
-	E_ 2
+	note E_, 2
 	rest 6
 	inc_octave
-	D# 2
+	note D#, 2
 	rest 6
-	A_ 5
+	note A_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
-	G# 16
-	A_ 9
+	note G_, 8
+	note G#, 16
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	dec_octave
 	rest 8
 	inc_octave
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 9
+	note E_, 16
+	note A_, 9
 	music_call Branch_1f3d18
 	octave 1
 	volume_envelope 2, 0
 	rest 8
-	E_ 8
+	note E_, 8
 	rest 8
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
+	note G_, 8
 	tie
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 38
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 6
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 52
-	G# 3
+	note G#, 3
 	tie
 	frequency_offset 0
-	A_ 1
-	A_ 9
+	note A_, 1
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 5
+	note E_, 16
+	note A_, 5
 	rest 4
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	dec_octave
-	E_ 2
+	note E_, 2
 	rest 6
 	inc_octave
-	D# 2
+	note D#, 2
 	rest 6
-	A_ 5
+	note A_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
-	G# 16
-	A_ 9
+	note G_, 8
+	note G#, 16
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 5
+	note E_, 16
+	note A_, 5
 	rest 4
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	dec_octave
-	E_ 2
+	note E_, 2
 	rest 6
 	inc_octave
-	D# 2
+	note D#, 2
 	rest 6
-	A_ 5
+	note A_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 11
 	inc_octave
-	C_ 9
+	note C_, 9
 	tie
-	C_ 8
+	note C_, 8
 	tie
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 28
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 8
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 37
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 0
-	D_ 1
-	D_ 9
+	note D_, 1
+	note D_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 4
 	dec_octave
 	rest 8
-	A# 16
-	B_ 9
+	note A#, 16
+	note B_, 9
 	rest 8
 	inc_octave
-	G# 5
+	note G#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	F# 2
+	note F#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
-	C# 16
-	D_ 5
+	note C#, 16
+	note D_, 5
 	rest 4
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 3
 	dec_octave
-	A_ 2
+	note A_, 2
 	rest 6
 	inc_octave
-	D_ 2
+	note D_, 2
 	rest 6
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 12
 	rest 16
 	rest 9
@@ -1782,35 +1782,35 @@ Music_Imakuni2_Ch3:
 	dec_octave
 	dec_octave
 	dec_octave
-	A_ 5
+	note A_, 5
 	rest 11
 	inc_octave
-	C_ 9
+	note C_, 9
 	tie
-	C_ 8
-	C# 16
-	D_ 9
+	note C_, 8
+	note C#, 16
+	note D_, 9
 	rest 16
 	rest 8
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 4
 	dec_octave
 	rest 8
-	A# 16
-	B_ 9
+	note A#, 16
+	note B_, 9
 	rest 8
 	inc_octave
-	G# 5
+	note G#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	F# 2
+	note F#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
-	C# 16
-	D_ 9
+	note C#, 16
+	note D_, 9
 	pitch_offset 7
 	music_call Branch_1f3d18
 	pitch_offset 0
@@ -1818,216 +1818,216 @@ Music_Imakuni2_Ch3:
 	volume_envelope 2, 0
 	rest 16
 	rest 8
-	A_ 9
+	note A_, 9
 	tie
-	A# 16
+	note A#, 16
 	tie
-	A# 8
-	A_ 9
+	note A#, 8
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	rest 8
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 5
+	note E_, 16
+	note A_, 5
 	rest 4
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 3
 	dec_octave
-	E_ 2
+	note E_, 2
 	rest 6
 	inc_octave
-	D# 2
+	note D#, 2
 	rest 6
-	A_ 5
+	note A_, 5
 	rest 12
 	rest 16
 	rest 9
 	rest 8
 	dec_octave
 	dec_octave
-	E_ 5
+	note E_, 5
 	rest 11
-	G_ 9
+	note G_, 9
 	tie
-	G_ 8
-	G# 16
-	A_ 9
+	note G_, 8
+	note G#, 16
+	note A_, 9
 	rest 16
 	rest 8
 	inc_octave
 	inc_octave
-	E_ 5
+	note E_, 5
 	rest 4
 	dec_octave
 	dec_octave
 	rest 8
 	inc_octave
-	F# 16
-	G_ 9
+	note F#, 16
+	note G_, 9
 	rest 8
 	inc_octave
-	D# 5
+	note D#, 5
 	rest 3
 	rest 8
 	volume_envelope 4, 0
-	C# 2
+	note C#, 2
 	volume_envelope 2, 0
 	rest 15
 	dec_octave
 	dec_octave
-	E_ 16
-	A_ 5
+	note E_, 16
+	note A_, 5
 	rest 12
 	inc_octave
-	E_ 2
+	note E_, 2
 	rest 6
-	D# 2
+	note D#, 2
 	rest 6
-	A_ 5
+	note A_, 5
 	rest 12
 	dec_octave
-	G_ 5
+	note G_, 5
 	rest 11
-	A_ 5
+	note A_, 5
 	rest 12
-	G_ 8
+	note G_, 8
 	rest 8
 	inc_octave
-	C_ 9
+	note C_, 9
 	tie
-	C_ 8
-	D_ 8
+	note C_, 8
+	note D_, 8
 	rest 8
 	dec_octave
-	E_ 9
+	note E_, 9
 	tie
-	E_ 8
+	note E_, 8
 	rest 8
 	inc_octave
-	E_ 8
+	note E_, 8
 	rest 9
-	E_ 8
-	D_ 8
-	E_ 8
+	note E_, 8
+	note D_, 8
+	note E_, 8
 	rest 9
 	dec_octave
-	E_ 8
+	note E_, 8
 	inc_octave
-	E_ 8
+	note E_, 8
 	rest 8
 	dec_octave
-	E_ 9
+	note E_, 9
 	tie
-	E_ 8
-	D# 16
-	D_ 9
+	note E_, 8
+	note D#, 16
+	note D_, 9
 	tie
-	D_ 8
+	note D_, 8
 	rest 8
 	inc_octave
-	D_ 8
+	note D_, 8
 	rest 9
-	D_ 8
-	C_ 8
-	D_ 8
+	note D_, 8
+	note C_, 8
+	note D_, 8
 	rest 9
 	dec_octave
-	D_ 8
+	note D_, 8
 	inc_octave
-	D_ 8
+	note D_, 8
 	rest 8
 	dec_octave
-	D_ 9
+	note D_, 9
 	tie
-	D_ 8
-	D# 16
-	E_ 9
+	note D_, 8
+	note D#, 16
+	note E_, 9
 	rest 8
-	E_ 8
+	note E_, 8
 	inc_octave
-	E_ 8
+	note E_, 8
 	rest 9
-	E_ 8
+	note E_, 8
 	dec_octave
-	E_ 8
+	note E_, 8
 	rest 8
-	F_ 9
+	note F_, 9
 	rest 8
-	F_ 8
+	note F_, 8
 	inc_octave
-	F_ 8
+	note F_, 8
 	rest 9
-	F_ 8
+	note F_, 8
 	dec_octave
-	F_ 8
-	D# 8
-	E_ 3
+	note F_, 8
+	note D#, 8
+	note E_, 3
 	rest 2
-	E_ 4
-	D_ 4
-	D# 4
-	E_ 3
+	note E_, 4
+	note D_, 4
+	note D#, 4
+	note E_, 3
 	rest 1
-	E_ 4
-	D_ 4
-	D# 4
-	E_ 3
+	note E_, 4
+	note D_, 4
+	note D#, 4
+	note E_, 3
 	rest 2
-	E_ 4
-	D_ 4
-	D# 4
-	E_ 3
+	note E_, 4
+	note D_, 4
+	note D#, 4
+	note E_, 3
 	rest 1
-	G# 4
-	B_ 4
+	note G#, 4
+	note B_, 4
 	inc_octave
-	D_ 4
-	E_ 9
+	note D_, 4
+	note E_, 9
 	rest 2
 	volume_envelope 4, 0
-	E_ 4
+	note E_, 4
 	rest 6
 	volume_envelope 6, 0
-	E_ 4
+	note E_, 4
 	rest 6
 	rest 2
 	volume_envelope 2, 0
 	dec_octave
-	G_ 16
+	note G_, 16
 	tie
-	G_ 5
+	note G_, 5
 	tie
 	frequency_offset 38
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 6
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 52
-	G# 2
+	note G#, 2
 	tie
 	frequency_offset 0
-	A_ 2
+	note A_, 2
 	EndMainLoop
 
 Branch_1f3d18:
@@ -2036,27 +2036,27 @@ Branch_1f3d18:
 	Loop 2
 	volume_envelope 2, 0
 	octave 6
-	C# 1
+	note C#, 1
 	volume_envelope 6, 0
 	dec_octave
-	C# 7
+	note C#, 7
 	EndLoop
 	rest 8
 	octave 6
 	volume_envelope 2, 0
-	C# 1
+	note C#, 1
 	volume_envelope 6, 0
 	dec_octave
-	C# 7
+	note C#, 7
 	rest 1
 	rest 16
 	Loop 2
 	volume_envelope 2, 0
 	octave 6
-	C# 1
+	note C#, 1
 	volume_envelope 6, 0
 	dec_octave
-	C# 7
+	note C#, 7
 	EndLoop
 	rest 1
 	cutoff 8

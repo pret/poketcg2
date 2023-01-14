@@ -4,75 +4,75 @@ Music_Ditty6_Ch2:
 	stereo_panning 15, 15
 	musicef -4
 	octave 3
-	F_ 2
+	note F_, 2
 	musicef 1
-	G_ 3
+	note G_, 3
 	musicef 1
-	A_ 2
+	note A_, 2
 	musicef 1
-	B_ 3
+	note B_, 3
 	inc_octave
 	musicef 1
-	C_ 2
-	D_ 3
-	E_ 2
-	F_ 3
+	note C_, 2
+	note D_, 3
+	note E_, 2
+	note F_, 3
 	musicf1 87
-	G_ 16
+	note G_, 16
 	tie
-	G_ 14
-	G_ 11
-	A# 16
+	note G_, 14
+	note G_, 11
+	note A#, 16
 	tie
-	A# 5
-	A# 10
-	G_ 6
-	A# 4
-	A_ 16
+	note A#, 5
+	note A#, 10
+	note G_, 6
+	note A#, 4
+	note A_, 16
 	tie
-	A_ 14
-	A_ 11
+	note A_, 14
+	note A_, 11
 	inc_octave
-	C_ 16
+	note C_, 16
 	tie
-	C_ 14
-	C_ 11
+	note C_, 14
+	note C_, 11
 	dec_octave
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 13
+	note B_, 13
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 7
+	note B_, 7
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 16
+	note B_, 16
 	tie
-	B_ 2
+	note B_, 2
 	speed 2
-	B_ 10
+	note B_, 10
 	music_end
 
 
@@ -82,144 +82,144 @@ Music_Ditty6_Ch1:
 	stereo_panning 15, 15
 	musicef -4
 	octave 3
-	C_ 2
+	note C_, 2
 	musicef 1
-	D_ 3
+	note D_, 3
 	musicef 1
-	E_ 2
+	note E_, 2
 	musicef 1
-	F_ 3
+	note F_, 3
 	musicef 1
-	G_ 2
-	A_ 3
-	B_ 2
+	note G_, 2
+	note A_, 3
+	note B_, 2
 	inc_octave
-	C_ 3
+	note C_, 3
 	dec_octave
-	G_ 6
+	note G_, 6
 	inc_octave
-	D# 5
+	note D#, 5
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	G_ 5
+	note G_, 5
 	dec_octave
-	G_ 5
+	note G_, 5
 	inc_octave
-	D# 5
+	note D#, 5
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	G_ 5
+	note G_, 5
 	dec_octave
-	G_ 6
+	note G_, 6
 	inc_octave
-	D# 5
+	note D#, 5
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	G_ 5
+	note G_, 5
 	dec_octave
-	G_ 5
+	note G_, 5
 	inc_octave
-	D# 5
+	note D#, 5
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	G_ 5
+	note G_, 5
 	dec_octave
-	A_ 6
+	note A_, 6
 	inc_octave
-	F_ 5
-	C_ 5
-	A_ 5
+	note F_, 5
+	note C_, 5
+	note A_, 5
 	dec_octave
-	A_ 5
+	note A_, 5
 	inc_octave
-	F_ 5
-	C_ 5
-	A_ 5
+	note F_, 5
+	note C_, 5
+	note A_, 5
 	dec_octave
-	A_ 6
+	note A_, 6
 	inc_octave
-	F_ 5
-	C_ 5
-	A_ 5
+	note F_, 5
+	note C_, 5
+	note A_, 5
 	dec_octave
-	A_ 5
+	note A_, 5
 	inc_octave
-	F_ 5
-	C_ 5
-	A_ 5
+	note F_, 5
+	note C_, 5
+	note A_, 5
 	octave 4
 	preset 34
 	musicef -3
-	D_ 6
+	note D_, 6
 	octave 4
 	preset 23
-	G_ 5
-	D_ 5
-	B_ 5
+	note G_, 5
+	note D_, 5
+	note B_, 5
 	dec_octave
-	G_ 5
+	note G_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	dec_octave
-	D_ 5
-	B_ 5
+	note D_, 5
+	note B_, 5
 	dec_octave
-	B_ 6
+	note B_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	dec_octave
-	G_ 5
+	note G_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	dec_octave
-	D_ 5
-	B_ 5
-	G_ 5
+	note D_, 5
+	note B_, 5
+	note G_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	dec_octave
-	B_ 6
+	note B_, 6
 	inc_octave
-	G_ 5
-	D_ 5
-	B_ 5
-	G_ 5
+	note G_, 5
+	note D_, 5
+	note B_, 5
+	note G_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	dec_octave
-	B_ 5
+	note B_, 5
 	inc_octave
-	G_ 5
-	D_ 6
-	B_ 5
-	G_ 5
+	note G_, 5
+	note D_, 6
+	note B_, 5
+	note G_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	dec_octave
-	B_ 5
-	G_ 5
-	B_ 5
+	note B_, 5
+	note G_, 5
+	note B_, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	preset 26
 	musicf1 87
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 2
+	note G_, 2
 	speed 2
-	G_ 10
+	note G_, 10
 	music_end
 
 
@@ -233,50 +233,50 @@ Music_Ditty6_Ch3:
 	rest 10
 	octave 1
 	cutoff 4
-	D# 16
+	note D#, 16
 	tie
-	D# 16
+	note D#, 16
 	tie
-	D# 16
+	note D#, 16
 	tie
-	D# 16
+	note D#, 16
 	tie
-	D# 16
+	note D#, 16
 	tie
-	D# 2
-	D_ 16
+	note D#, 2
+	note D_, 16
 	tie
-	D_ 16
+	note D_, 16
 	tie
-	D_ 16
+	note D_, 16
 	tie
-	D_ 16
+	note D_, 16
 	tie
-	D_ 16
+	note D_, 16
 	tie
-	D_ 2
+	note D_, 2
 	Loop 4
 	cutoff 4
 	speed 7
-	G_ 3
+	note G_, 3
 	speed 10
-	D_ 2
+	note D_, 2
 	EndLoop
 	speed 1
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 16
+	note G_, 16
 	tie
-	G_ 2
+	note G_, 2
 	speed 2
 	cutoff 1
-	G_ 10
+	note G_, 10
 	music_end
 
 

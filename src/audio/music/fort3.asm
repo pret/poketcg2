@@ -11,695 +11,695 @@ Music_Fort3_Ch2:
 	vibrato_delay 60
 	rest 15
 	rest 14
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
-	D_ 14
+	note D_, 14
 	musicf2
-	C_ 7
+	note C_, 7
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
-	C_ 15
+	note C_, 14
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	musicf3
 	rest 15
 	rest 14
 	dec_octave
-	A# 4
+	note A#, 4
 	tie
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
 	musicf2
-	A# 7
+	note A#, 7
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
-	A# 15
+	note A#, 14
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	inc_octave
 	musicf3
 	rest 15
 	rest 14
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
-	D_ 14
+	note D_, 14
 	musicf2
-	C_ 7
+	note C_, 7
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
-	C_ 15
+	note C_, 14
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	musicf3
 	rest 15
 	rest 14
 	dec_octave
-	A# 4
+	note A#, 4
 	tie
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
 	musicf2
-	A# 7
+	note A#, 7
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
-	A# 8
+	note A#, 14
+	note A#, 8
 	musicf3
 	inc_octave
-	C_ 4
-	C# 3
-	C_ 7
+	note C_, 4
+	note C#, 3
+	note C_, 7
 	dec_octave
-	A# 7
+	note A#, 7
 	inc_octave
-	C_ 8
+	note C_, 8
 	dec_octave
-	A# 7
-	G_ 7
-	F_ 7
+	note A#, 7
+	note G_, 7
+	note F_, 7
 	preset 33
 	musicef 1
 	musicf1 87
 	musicf3
 	octave 3
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 9
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 0
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 9
-	G# 3
+	note G#, 3
 	tie
 	frequency_offset 0
-	A_ 14
+	note A_, 14
 	inc_octave
-	C_ 15
+	note C_, 15
 	dec_octave
 	musicf2
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
-	F_ 15
+	note F_, 14
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	musicf3
-	E_ 8
-	F_ 7
-	E_ 7
-	C_ 7
+	note E_, 8
+	note F_, 7
+	note E_, 7
+	note C_, 7
 	musicf2
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
-	D_ 15
-	F_ 4
-	tie
-	frequency_offset 4
-	F_ 3
-	tie
-	frequency_offset 9
-	F_ 4
-	tie
-	frequency_offset 13
-	F_ 3
-	tie
-	frequency_offset 0
-	F# 4
+	note D_, 14
+	note D_, 15
+	note F_, 4
 	tie
 	frequency_offset 4
-	F# 4
+	note F_, 3
 	tie
 	frequency_offset 9
-	F# 4
+	note F_, 4
 	tie
 	frequency_offset 13
-	F# 3
+	note F_, 3
 	tie
 	frequency_offset 0
-	G_ 14
+	note F#, 4
 	tie
-	G_ 15
+	frequency_offset 4
+	note F#, 4
 	tie
-	G_ 14
+	frequency_offset 9
+	note F#, 4
 	tie
-	G_ 15
+	frequency_offset 13
+	note F#, 3
 	tie
-	G_ 14
+	frequency_offset 0
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
-	G_ 15
+	note G_, 14
 	tie
-	G_ 14
+	note G_, 15
+	tie
+	note G_, 14
+	tie
+	note G_, 15
+	tie
+	note G_, 14
+	note G_, 15
+	tie
+	note G_, 14
 	musicf3
 	preset 33
 	octave 3
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 9
-	G_ 4
+	note G_, 4
 	tie
 	frequency_offset 0
-	G# 4
+	note G#, 4
 	tie
 	frequency_offset 9
-	G# 3
+	note G#, 3
 	tie
 	frequency_offset 0
-	A_ 14
+	note A_, 14
 	inc_octave
-	C_ 15
+	note C_, 15
 	dec_octave
 	musicf2
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
-	F_ 15
+	note F_, 14
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	musicf3
-	E_ 8
-	F_ 7
-	E_ 7
-	C_ 7
+	note E_, 8
+	note F_, 7
+	note E_, 7
+	note C_, 7
 	musicf2
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
-	D_ 15
+	note D_, 14
+	note D_, 15
 	dec_octave
-	F_ 4
+	note F_, 4
 	tie
 	frequency_offset 14
-	F_ 3
+	note F_, 3
 	tie
 	frequency_offset 28
-	F_ 4
+	note F_, 4
 	tie
 	frequency_offset 43
-	F_ 3
+	note F_, 3
 	tie
 	frequency_offset 0
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 14
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 28
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 43
-	F# 3
+	note F#, 3
 	tie
 	frequency_offset 0
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
-	G_ 15
+	note G_, 14
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	musicf3
-	G_ 8
-	A_ 7
-	A# 7
+	note G_, 8
+	note A_, 7
+	note A#, 7
 	inc_octave
-	C_ 7
+	note C_, 7
 	vibrato_delay 11
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 9
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 0
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 9
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 0
-	D_ 14
+	note D_, 14
 	vibrato_delay 0
-	C_ 15
+	note C_, 15
 	vibrato_delay 29
 	musicf2
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
-	F_ 15
+	note F_, 14
+	note F_, 15
 	musicf3
-	D# 14
-	D_ 15
+	note D#, 14
+	note D_, 15
 	musicf2
-	C_ 7
-	C_ 7
+	note C_, 7
+	note C_, 7
 	vibrato_delay 11
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 9
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 9
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 0
-	D_ 14
-	D_ 15
+	note D_, 14
+	note D_, 15
 	dec_octave
 	vibrato_delay 29
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
-	G_ 15
+	note G_, 14
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	musicf3
-	G_ 8
-	A_ 7
-	A# 7
+	note G_, 8
+	note A_, 7
+	note A#, 7
 	inc_octave
-	C_ 7
+	note C_, 7
 	vibrato_delay 11
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 9
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 0
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 9
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 0
-	D_ 14
+	note D_, 14
 	vibrato_delay 0
-	C_ 15
+	note C_, 15
 	vibrato_delay 29
 	musicf2
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
-	F_ 15
+	note F_, 14
+	note F_, 15
 	musicf3
-	D# 14
-	D_ 15
+	note D#, 14
+	note D_, 15
 	musicf2
-	C_ 7
-	C_ 7
+	note C_, 7
+	note C_, 7
 	vibrato_delay 11
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 9
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 19
-	C_ 4
+	note C_, 4
 	tie
 	frequency_offset 28
-	C_ 3
+	note C_, 3
 	tie
 	frequency_offset 0
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 9
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 19
-	C# 4
+	note C#, 4
 	tie
 	frequency_offset 28
-	C# 3
+	note C#, 3
 	tie
 	frequency_offset 0
 	vibrato_delay 30
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 15
+	note D_, 15
 	tie
-	D_ 14
-	D_ 15
+	note D_, 14
+	note D_, 15
 	tie
-	D_ 14
+	note D_, 14
 	preset 9
 	musicf1 64
 	musicf3
 	Loop 2
 	octave 1
-	G_ 15
+	note G_, 15
 	rest 7
-	G_ 4
+	note G_, 4
 	rest 11
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	musicf2
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
-	G_ 2
+	note G_, 2
 	inc_octave
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	F_ 4
+	note F_, 4
 	rest 3
 	rest 4
 	rest 3
 	musicf1 32
-	F_ 4
-	F_ 11
+	note F_, 4
+	note F_, 11
 	musicf3
-	F_ 7
+	note F_, 7
 	musicf1 64
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 4
+	note G_, 4
 	dec_octave
-	G_ 4
-	G_ 10
+	note G_, 4
+	note G_, 10
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
-	G_ 3
+	note G_, 3
 	inc_octave
-	G_ 4
-	G_ 4
+	note G_, 4
+	note G_, 4
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 3
+	note G_, 3
 	musicf3
-	F_ 7
+	note F_, 7
 	musicf2
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 4
+	note G_, 4
 	musicf1 96
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 4
 	rest 3
-	G_ 4
+	note G_, 4
 	rest 3
 	musicf3
-	B_ 4
+	note B_, 4
 	tie
 	frequency_offset 7
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
 	frequency_offset 0
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 14
+	note A#, 14
 	musicf1 64
 	dec_octave
 	dec_octave
-	G_ 15
+	note G_, 15
 	rest 7
 	musicf3
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 8
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	musicf2
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
-	G_ 2
+	note G_, 2
 	inc_octave
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	F_ 4
+	note F_, 4
 	rest 10
 	musicf1 32
-	F_ 4
+	note F_, 4
 	rest 4
-	F_ 4
+	note F_, 4
 	rest 3
 	musicf3
-	F_ 7
+	note F_, 7
 	musicf1 64
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 4
+	note G_, 4
 	dec_octave
 	musicf3
-	G_ 4
+	note G_, 4
 	rest 3
 	dec_octave
 	musicf2
-	G_ 1
+	note G_, 1
 	rest 2
 	inc_octave
-	G_ 4
+	note G_, 4
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	musicf3
 	inc_octave
 	inc_octave
-	G_ 4
+	note G_, 4
 	rest 4
 	dec_octave
 	dec_octave
 	musicf2
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 3
+	note G_, 3
 	musicf3
-	F_ 7
+	note F_, 7
 	musicf2
-	G_ 4
-	F_ 3
+	note G_, 4
+	note F_, 3
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	inc_octave
 	inc_octave
-	G_ 4
+	note G_, 4
 	musicf3
-	C_ 4
-	C# 3
-	C_ 7
+	note C_, 4
+	note C#, 3
+	note C_, 7
 	dec_octave
-	A# 7
+	note A#, 7
 	inc_octave
-	C_ 8
+	note C_, 8
 	dec_octave
-	A# 7
-	G_ 7
-	F_ 7
+	note A#, 7
+	note G_, 7
+	note F_, 7
 	EndLoop
 	EndMainLoop
 
@@ -718,146 +718,146 @@ Music_Fort3_Ch1:
 	musicf3
 	rest 15
 	rest 14
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
-	D_ 14
+	note D_, 14
 	musicf2
-	C_ 7
+	note C_, 7
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
-	C_ 15
+	note C_, 14
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	musicf3
 	rest 15
 	rest 14
 	dec_octave
-	A# 4
+	note A#, 4
 	tie
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
 	musicf2
-	A# 7
+	note A#, 7
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
-	A# 15
+	note A#, 14
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	inc_octave
 	musicf3
 	rest 15
 	rest 14
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
-	D_ 14
+	note D_, 14
 	musicf2
-	C_ 7
+	note C_, 7
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
-	C_ 15
+	note C_, 14
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	musicf3
 	rest 15
 	rest 14
 	dec_octave
-	A# 4
+	note A#, 4
 	tie
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
-	A# 7
+	note A#, 7
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 15
+	note A#, 15
 	tie
-	A# 14
+	note A#, 14
 	musicef -4
 	pitch_offset 0
 	octave 2
-	A# 8
+	note A#, 8
 	rest 7
-	A# 7
+	note A#, 7
 	rest 7
 	rest 8
-	A# 7
+	note A#, 7
 	rest 7
 	inc_octave
-	C_ 7
+	note C_, 7
 	musicef 4
 	vibrato_type 5
 	vibrato_delay 12
@@ -865,418 +865,418 @@ Music_Fort3_Ch1:
 	Loop 2
 	rest 15
 	rest 14
-	G# 4
+	note G#, 4
 	tie
-	A_ 4
+	note A_, 4
 	tie
-	A# 7
-	A_ 14
+	note A#, 7
+	note A_, 14
 	tie
-	A_ 8
-	A_ 4
+	note A_, 8
+	note A_, 4
 	rest 3
-	C_ 7
+	note C_, 7
 	rest 7
-	F_ 15
-	G_ 7
+	note F_, 15
+	note G_, 7
 	rest 7
 	rest 15
 	rest 4
-	F_ 5
-	A_ 5
+	note F_, 5
+	note A_, 5
 	inc_octave
-	E_ 4
-	F_ 4
+	note E_, 4
+	note F_, 4
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	rest 8
 	dec_octave
-	A_ 7
+	note A_, 7
 	rest 14
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 17
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 0
-	A# 7
-	A_ 7
+	note A#, 7
+	note A_, 7
 	rest 7
 	rest 15
 	rest 14
-	A# 4
+	note A#, 4
 	tie
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 14
+	note A#, 14
 	tie
-	A# 8
+	note A#, 8
 	inc_octave
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
 	dec_octave
-	F_ 15
-	G_ 7
+	note F_, 15
+	note G_, 7
 	rest 7
 	rest 15
 	rest 4
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	inc_octave
-	C# 4
-	D_ 4
+	note C#, 4
+	note D_, 4
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	rest 8
 	dec_octave
-	A_ 7
+	note A_, 7
 	rest 14
-	B_ 4
+	note B_, 4
 	tie
 	frequency_offset 15
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
 	frequency_offset 0
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 7
+	note A#, 7
 	rest 7
 	EndLoop
 	rest 15
 	rest 14
-	A# 4
+	note A#, 4
 	tie
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
-	C_ 7
+	note C_, 7
 	dec_octave
-	G# 14
+	note G#, 14
 	tie
-	G# 8
+	note G#, 8
 	inc_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	dec_octave
-	C_ 7
+	note C_, 7
 	rest 7
-	G_ 15
-	G# 7
+	note G_, 15
+	note G#, 7
 	rest 7
 	rest 15
 	rest 4
 	inc_octave
-	C_ 5
-	D# 5
-	A_ 4
-	A# 4
+	note C_, 5
+	note D#, 5
+	note A_, 4
+	note A#, 4
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 7
+	note A#, 7
 	rest 8
-	F_ 7
+	note F_, 7
 	rest 14
 	dec_octave
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 17
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 0
-	A# 7
-	F_ 7
+	note A#, 7
+	note F_, 7
 	rest 7
 	rest 15
 	rest 14
-	A# 4
+	note A#, 4
 	tie
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 14
+	note A#, 14
 	tie
-	A# 8
+	note A#, 8
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	dec_octave
-	C_ 7
+	note C_, 7
 	rest 7
-	F_ 15
-	G_ 7
+	note F_, 15
+	note G_, 7
 	rest 7
 	rest 15
 	rest 4
 	dec_octave
-	A# 5
+	note A#, 5
 	inc_octave
-	D_ 5
+	note D_, 5
 	inc_octave
-	C# 4
-	D_ 4
+	note C#, 4
+	note D_, 4
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	rest 8
 	dec_octave
-	A_ 7
+	note A_, 7
 	rest 14
-	B_ 4
+	note B_, 4
 	tie
 	frequency_offset 15
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
 	frequency_offset 0
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 7
+	note A#, 7
 	rest 7
 	rest 15
 	rest 14
-	A# 4
+	note A#, 4
 	tie
-	B_ 4
+	note B_, 4
 	tie
 	inc_octave
-	C_ 7
+	note C_, 7
 	dec_octave
-	G# 14
+	note G#, 14
 	tie
-	G# 8
+	note G#, 8
 	inc_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	dec_octave
-	C_ 7
+	note C_, 7
 	rest 7
-	G_ 15
-	G# 7
+	note G_, 15
+	note G#, 7
 	rest 7
 	rest 15
 	rest 4
 	inc_octave
-	C_ 5
-	D# 5
-	A_ 4
-	A# 4
+	note C_, 5
+	note D#, 5
+	note A_, 4
+	note A#, 4
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 7
+	note A#, 7
 	rest 8
-	F_ 7
+	note F_, 7
 	rest 14
 	dec_octave
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 17
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 0
-	A# 7
-	F_ 7
+	note A#, 7
+	note F_, 7
 	rest 7
 	rest 15
 	rest 14
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C# 4
+	note C#, 4
 	tie
-	D_ 7
-	C_ 14
+	note D_, 7
+	note C_, 14
 	tie
-	C_ 8
+	note C_, 8
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
 	inc_octave
-	D_ 15
-	G_ 3
+	note D_, 15
+	note G_, 3
 	rest 11
 	rest 8
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
-	G_ 4
-	G_ 4
+	note G_, 4
+	note G_, 4
 	tie
-	G_ 7
+	note G_, 7
 	rest 7
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 8
-	A# 4
+	note A#, 4
 	rest 3
 	rest 14
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 9
-	A_ 4
+	note A_, 4
 	tie
 	frequency_offset 0
-	A# 7
-	F_ 7
+	note A#, 7
+	note F_, 7
 	rest 7
 	rest 15
 	rest 14
 	rest 15
 	rest 14
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	C_ 4
+	note C_, 4
 	rest 4
 	rest 7
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
 	inc_octave
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 10
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 0
-	G_ 7
-	F_ 14
+	note G_, 7
+	note F_, 14
 	rest 15
 	rest 14
 	rest 15
 	rest 14
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	C_ 4
+	note C_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
 	inc_octave
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
-	F_ 14
+	note F_, 14
 	rest 7
-	F_ 8
+	note F_, 8
 	rest 7
-	C_ 7
+	note C_, 7
 	rest 7
 	rest 15
 	rest 14
 	rest 15
 	rest 14
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	C_ 4
+	note C_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
 	inc_octave
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 10
-	F# 4
+	note F#, 4
 	tie
 	frequency_offset 0
-	G_ 7
-	F_ 14
+	note G_, 7
+	note F_, 14
 	rest 15
 	rest 14
 	rest 15
 	rest 14
 	rest 8
-	C_ 4
+	note C_, 4
 	rest 3
 	rest 14
-	C_ 4
+	note C_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 14
 	inc_octave
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 11
-	C_ 7
-	D_ 4
+	note C_, 7
+	note D_, 4
 	rest 3
 	rest 8
-	F_ 14
+	note F_, 14
 	rest 7
-	F_ 8
+	note F_, 8
 	rest 7
-	C_ 7
+	note C_, 7
 	rest 7
 	EndMainLoop
 
@@ -1289,698 +1289,698 @@ Music_Fort3_Ch3:
 	echo 96
 	pitch_offset 244
 	octave 2
-	F_ 7
-	F# 7
+	note F_, 7
+	note F#, 7
 	MainLoop
 	vibrato_type 5
 	vibrato_delay 60
 	octave 2
-	G_ 15
+	note G_, 15
 	inc_octave
 	cutoff 4
-	D_ 14
+	note D_, 14
 	cutoff 8
 	volume_envelope 4, 0
-	F_ 4
+	note F_, 4
 	tie
-	F# 4
+	note F#, 4
 	tie
-	G_ 14
-	F_ 15
+	note G_, 14
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	volume_envelope 6, 0
-	F_ 15
+	note F_, 15
 	dec_octave
 	volume_envelope 2, 0
-	F_ 7
-	F# 7
-	G_ 15
+	note F_, 7
+	note F#, 7
+	note G_, 15
 	inc_octave
 	cutoff 4
-	D_ 14
+	note D_, 14
 	cutoff 8
 	volume_envelope 4, 0
-	D# 4
+	note D#, 4
 	tie
-	E_ 4
+	note E_, 4
 	tie
-	F_ 14
-	D# 14
+	note F_, 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 7
+	note D#, 7
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	volume_envelope 6, 0
-	D# 15
+	note D#, 15
 	dec_octave
 	volume_envelope 2, 0
-	F_ 7
-	F# 7
-	G_ 15
+	note F_, 7
+	note F#, 7
+	note G_, 15
 	inc_octave
 	cutoff 4
-	D_ 14
+	note D_, 14
 	cutoff 8
 	volume_envelope 4, 0
-	F_ 4
+	note F_, 4
 	tie
-	F# 4
+	note F#, 4
 	tie
-	G_ 14
-	F_ 15
+	note G_, 14
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 14
+	note F_, 14
 	volume_envelope 6, 0
-	F_ 15
+	note F_, 15
 	dec_octave
 	volume_envelope 2, 0
-	F_ 7
-	F# 7
-	G_ 15
+	note F_, 7
+	note F#, 7
+	note G_, 15
 	inc_octave
 	cutoff 4
-	D_ 14
+	note D_, 14
 	cutoff 8
 	volume_envelope 4, 0
-	D# 4
+	note D#, 4
 	tie
-	E_ 4
+	note E_, 4
 	tie
-	F_ 14
-	D# 14
+	note F_, 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 7
+	note D#, 7
 	tie
-	D# 15
+	note D#, 15
 	tie
-	D# 14
+	note D#, 14
 	tie
-	D# 15
+	note D#, 15
 	dec_octave
 	volume_envelope 2, 0
-	F_ 7
+	note F_, 7
 	cutoff 3
-	G_ 15
+	note G_, 15
 	cutoff 8
 	inc_octave
-	C# 7
-	C_ 7
+	note C#, 7
+	note C_, 7
 	dec_octave
-	A# 7
+	note A#, 7
 	inc_octave
-	C_ 8
+	note C_, 8
 	dec_octave
-	A# 7
-	F_ 7
-	F# 7
+	note A#, 7
+	note F_, 7
+	note F#, 7
 	Loop 2
-	G_ 15
+	note G_, 15
 	inc_octave
-	D_ 7
+	note D_, 7
 	rest 7
 	music_call Branch_1ef06a
-	F_ 4
+	note F_, 4
 	tie
-	F# 4
+	note F#, 4
 	tie
-	G_ 7
-	F_ 14
+	note G_, 7
+	note F_, 14
 	music_call Branch_1ef06f
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 7
 	inc_octave
 	music_call Branch_1ef06a
-	F_ 4
+	note F_, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
-	D_ 14
-	F_ 15
-	G_ 7
+	note D_, 14
+	note F_, 15
+	note G_, 7
 	rest 7
 	inc_octave
-	D_ 1
+	note D_, 1
 	rest 7
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 6
-	G_ 3
+	note G_, 3
 	rest 11
 	inc_octave
 	inc_octave
 	music_call Branch_1ef06a
-	C_ 15
+	note C_, 15
 	tie
-	C_ 14
+	note C_, 14
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 4
 	inc_octave
 	music_call Branch_1ef06a
-	F_ 7
+	note F_, 7
 	music_call Branch_1ef06f
 	dec_octave
-	D_ 14
-	F_ 15
-	F# 7
+	note D_, 14
+	note F_, 15
+	note F#, 7
 	rest 7
-	G_ 15
+	note G_, 15
 	inc_octave
-	D_ 7
+	note D_, 7
 	rest 7
 	music_call Branch_1ef06a
-	F_ 4
+	note F_, 4
 	tie
-	F# 4
+	note F#, 4
 	tie
-	G_ 7
-	F_ 14
+	note G_, 7
+	note F_, 14
 	music_call Branch_1ef06f
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 7
 	music_call Branch_1ef06a
 	inc_octave
-	A_ 4
+	note A_, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
-	D_ 14
-	F_ 15
-	G_ 7
+	note D_, 14
+	note F_, 15
+	note G_, 7
 	rest 7
 	inc_octave
-	D_ 1
+	note D_, 1
 	rest 7
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 6
-	G_ 3
+	note G_, 3
 	rest 11
 	inc_octave
 	music_call Branch_1ef06a
-	A_ 15
+	note A_, 15
 	tie
-	A_ 14
+	note A_, 14
 	music_call Branch_1ef06f
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 4
 	inc_octave
 	music_call Branch_1ef06a
-	F_ 7
+	note F_, 7
 	music_call Branch_1ef06f
-	D_ 7
+	note D_, 7
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 15
-	G_ 3
+	note F_, 15
+	note G_, 3
 	rest 11
 	EndLoop
-	G# 15
+	note G#, 15
 	inc_octave
-	D# 7
+	note D#, 7
 	rest 7
 	music_call Branch_1ef06a
-	F# 4
+	note F#, 4
 	tie
-	G_ 4
+	note G_, 4
 	tie
-	G# 7
+	note G#, 7
 	music_call Branch_1ef06f
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
 	dec_octave
-	G# 1
+	note G#, 1
 	rest 7
 	inc_octave
 	inc_octave
 	music_call Branch_1ef06a
-	D# 4
+	note D#, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	D# 14
-	A# 15
-	G# 7
+	note D#, 14
+	note A#, 15
+	note G#, 7
 	rest 7
-	G# 1
+	note G#, 1
 	rest 7
-	D# 1
+	note D#, 1
 	rest 6
 	inc_octave
-	D# 3
+	note D#, 3
 	rest 11
 	inc_octave
 	music_call Branch_1ef06a
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	G# 4
+	note G#, 4
 	rest 4
 	inc_octave
 	inc_octave
 	music_call Branch_1ef06a
-	D_ 7
+	note D_, 7
 	music_call Branch_1ef06f
 	dec_octave
-	D# 14
+	note D#, 14
 	dec_octave
-	A# 15
-	F_ 7
+	note A#, 15
+	note F_, 7
 	rest 7
-	G_ 15
+	note G_, 15
 	inc_octave
-	D_ 7
+	note D_, 7
 	rest 7
 	music_call Branch_1ef06a
-	F_ 4
+	note F_, 4
 	tie
-	F# 4
+	note F#, 4
 	tie
-	G_ 7
-	F_ 14
+	note G_, 7
+	note F_, 14
 	music_call Branch_1ef06f
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 7
 	inc_octave
 	music_call Branch_1ef06a
-	A_ 4
+	note A_, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
-	D_ 14
-	F_ 15
-	G_ 7
+	note D_, 14
+	note F_, 15
+	note G_, 7
 	rest 7
 	inc_octave
-	D_ 1
+	note D_, 1
 	rest 7
 	dec_octave
-	G_ 1
+	note G_, 1
 	rest 6
-	G_ 3
+	note G_, 3
 	rest 11
 	inc_octave
 	music_call Branch_1ef06a
-	A_ 15
+	note A_, 15
 	tie
-	A_ 14
+	note A_, 14
 	music_call Branch_1ef06f
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 4
 	inc_octave
 	music_call Branch_1ef06a
-	F_ 7
+	note F_, 7
 	music_call Branch_1ef06f
-	D_ 7
+	note D_, 7
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 15
-	G_ 3
+	note F_, 15
+	note G_, 3
 	rest 11
-	G# 15
+	note G#, 15
 	inc_octave
-	D# 7
+	note D#, 7
 	rest 7
 	music_call Branch_1ef06a
-	F# 4
+	note F#, 4
 	tie
-	G_ 4
+	note G_, 4
 	tie
-	G# 7
+	note G#, 7
 	music_call Branch_1ef06f
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
 	dec_octave
-	G# 1
+	note G#, 1
 	rest 7
 	inc_octave
 	inc_octave
 	music_call Branch_1ef06a
-	D# 4
+	note D#, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	D# 14
-	A# 15
-	G# 7
+	note D#, 14
+	note A#, 15
+	note G#, 7
 	rest 7
-	G# 1
+	note G#, 1
 	rest 7
-	D# 1
+	note D#, 1
 	rest 6
 	inc_octave
-	D# 3
+	note D#, 3
 	rest 11
 	inc_octave
 	music_call Branch_1ef06a
-	G_ 15
+	note G_, 15
 	tie
-	G_ 14
+	note G_, 14
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	G# 4
-	rest 4
-	inc_octave
-	inc_octave
-	music_call Branch_1ef06a
-	D_ 7
-	music_call Branch_1ef06f
-	dec_octave
-	D# 14
-	dec_octave
-	A# 15
-	F_ 7
-	rest 7
-	A_ 15
-	inc_octave
-	E_ 7
-	rest 7
-	music_call Branch_1ef06a
-	A# 4
-	tie
-	B_ 4
-	tie
-	inc_octave
-	C_ 7
-	dec_octave
-	G_ 14
-	music_call Branch_1ef06f
-	dec_octave
-	A_ 1
-	rest 7
-	inc_octave
-	music_call Branch_1ef06a
-	D_ 4
-	rest 3
-	music_call Branch_1ef06f
-	dec_octave
-	E_ 7
-	rest 7
-	A_ 15
-	G_ 7
-	C# 4
-	rest 3
-	D_ 8
-	inc_octave
-	inc_octave
-	music_call Branch_1ef06a
-	C_ 4
-	rest 3
-	music_call Branch_1ef06f
-	dec_octave
-	D_ 4
-	rest 3
-	dec_octave
-	C_ 4
-	rest 3
-	inc_octave
-	inc_octave
-	music_call Branch_1ef06a
-	C_ 15
-	music_call Branch_1ef06f
-	dec_octave
-	dec_octave
-	D_ 1
-	rest 6
-	inc_octave
-	inc_octave
-	music_call Branch_1ef06a
-	C_ 4
-	rest 3
-	music_call Branch_1ef06f
-	dec_octave
-	dec_octave
-	D_ 4
+	note G#, 4
 	rest 4
 	inc_octave
 	inc_octave
 	music_call Branch_1ef06a
-	F_ 4
+	note D_, 7
+	music_call Branch_1ef06f
+	dec_octave
+	note D#, 14
+	dec_octave
+	note A#, 15
+	note F_, 7
+	rest 7
+	note A_, 15
+	inc_octave
+	note E_, 7
+	rest 7
+	music_call Branch_1ef06a
+	note A#, 4
+	tie
+	note B_, 4
+	tie
+	inc_octave
+	note C_, 7
+	dec_octave
+	note G_, 14
+	music_call Branch_1ef06f
+	dec_octave
+	note A_, 1
+	rest 7
+	inc_octave
+	music_call Branch_1ef06a
+	note D_, 4
 	rest 3
 	music_call Branch_1ef06f
 	dec_octave
-	C_ 4
+	note E_, 7
+	rest 7
+	note A_, 15
+	note G_, 7
+	note C#, 4
 	rest 3
-	C# 4
+	note D_, 8
+	inc_octave
+	inc_octave
+	music_call Branch_1ef06a
+	note C_, 4
+	rest 3
+	music_call Branch_1ef06f
+	dec_octave
+	note D_, 4
+	rest 3
+	dec_octave
+	note C_, 4
 	rest 3
 	inc_octave
-	E_ 4
+	inc_octave
+	music_call Branch_1ef06a
+	note C_, 15
+	music_call Branch_1ef06f
+	dec_octave
+	dec_octave
+	note D_, 1
+	rest 6
+	inc_octave
+	inc_octave
+	music_call Branch_1ef06a
+	note C_, 4
+	rest 3
+	music_call Branch_1ef06f
+	dec_octave
+	dec_octave
+	note D_, 4
+	rest 4
+	inc_octave
+	inc_octave
+	music_call Branch_1ef06a
+	note F_, 4
+	rest 3
+	music_call Branch_1ef06f
+	dec_octave
+	note C_, 4
+	rest 3
+	note C#, 4
+	rest 3
+	inc_octave
+	note E_, 4
 	tie
 	frequency_offset 12
-	E_ 4
+	note E_, 4
 	tie
 	frequency_offset 0
-	F_ 7
+	note F_, 7
 	music_call Branch_1ef06f
 	dec_octave
 	dec_octave
-	D_ 14
+	note D_, 14
 	music_call Branch_1ef040
 	octave 1
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	cutoff 2
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	cutoff 4
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	inc_octave
 	cutoff 3
-	D_ 7
+	note D_, 7
 	cutoff 8
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	inc_octave
 	cutoff 4
-	F_ 8
-	F# 7
+	note F_, 8
+	note F#, 7
 	cutoff 2
-	G_ 14
+	note G_, 14
 	cutoff 8
 	music_call Branch_1ef040
 	octave 1
-	G_ 3
+	note G_, 3
 	rest 16
 	rest 3
-	G_ 4
+	note G_, 4
 	rest 3
 	rest 8
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	cutoff 4
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	inc_octave
 	cutoff 4
-	D_ 7
+	note D_, 7
 	cutoff 8
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	inc_octave
 	cutoff 4
-	F_ 8
-	F# 7
+	note F_, 8
+	note F#, 7
 	cutoff 2
-	G_ 14
+	note G_, 14
 	cutoff 8
 	music_call Branch_1ef040
 	octave 1
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	cutoff 2
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	cutoff 4
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	inc_octave
 	cutoff 4
-	D_ 7
+	note D_, 7
 	cutoff 8
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	inc_octave
 	cutoff 4
-	F_ 8
-	F# 7
+	note F_, 8
+	note F#, 7
 	cutoff 2
-	G_ 14
+	note G_, 14
 	music_call Branch_1ef040
 	octave 1
-	G_ 3
+	note G_, 3
 	rest 12
 	inc_octave
 	cutoff 2
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 3
+	note G_, 3
 	rest 12
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	cutoff 4
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 4
 	inc_octave
-	C_ 7
-	C# 7
-	D_ 7
-	F_ 8
-	D_ 7
-	F_ 7
-	F# 7
+	note C_, 7
+	note C#, 7
+	note D_, 7
+	note F_, 8
+	note D_, 7
+	note F_, 7
+	note F#, 7
 	EndMainLoop
 
 Branch_1ef040:
 	octave 1
-	G_ 15
+	note G_, 15
 	rest 7
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
 	cutoff 2
-	G_ 8
+	note G_, 8
 	cutoff 8
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 7
+	note F_, 7
 	cutoff 4
-	G_ 7
+	note G_, 7
 	cutoff 8
 	dec_octave
-	G_ 2
+	note G_, 2
 	rest 6
 	inc_octave
 	inc_octave
 	cutoff 4
-	A# 7
-	D_ 7
+	note A#, 7
+	note D_, 7
 	cutoff 8
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 4
+	note F_, 4
 	rest 4
-	F# 4
+	note F#, 4
 	rest 3
-	G_ 3
+	note G_, 3
 	rest 11
 	music_ret
 

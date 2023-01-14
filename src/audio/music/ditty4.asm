@@ -4,21 +4,21 @@ Music_Ditty4_Ch2:
 	stereo_panning 15, 15
 	octave 3
 	musicf1 87
-	C_ 4
-	C_ 2
-	A_ 4
-	A_ 2
-	F_ 4
-	F_ 2
+	note C_, 4
+	note C_, 2
+	note A_, 4
+	note A_, 2
+	note F_, 4
+	note F_, 2
 	inc_octave
-	C_ 4
-	C_ 1
+	note C_, 4
+	note C_, 1
 	dec_octave
-	A_ 4
-	A_ 2
+	note A_, 4
+	note A_, 2
 	inc_octave
-	F_ 15
-	F_ 11
+	note F_, 15
+	note F_, 11
 	music_end
 
 
@@ -28,21 +28,21 @@ Music_Ditty4_Ch1:
 	stereo_panning 15, 15
 	octave 2
 	musicf1 87
-	A_ 4
-	A_ 2
+	note A_, 4
+	note A_, 2
 	inc_octave
-	C_ 4
-	C_ 2
+	note C_, 4
+	note C_, 2
 	dec_octave
-	A_ 4
-	A_ 2
+	note A_, 4
+	note A_, 2
 	inc_octave
-	F_ 4
-	F_ 1
-	C_ 4
-	C_ 2
-	A_ 15
-	A_ 11
+	note F_, 4
+	note F_, 1
+	note C_, 4
+	note C_, 2
+	note A_, 15
+	note A_, 11
 	music_end
 
 
@@ -61,7 +61,7 @@ Music_Ditty4_Ch3:
 	rest 6
 	musicf1 128
 	octave 3
-	F_ 16
+	note F_, 16
 	tie
-	F_ 6
+	note F_, 6
 	music_end

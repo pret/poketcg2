@@ -5,600 +5,600 @@ Music_GRDuelTheme2_Ch2:
 	stereo_panning 15, 15
 	musicf1 71
 	musicf3
-	G# 3
+	note G#, 3
 	musicf2
-	A_ 11
-	A_ 7
-	G_ 13
-	G_ 7
-	E_ 13
-	E_ 7
-	D_ 4
-	E_ 3
+	note A_, 11
+	note A_, 7
+	note G_, 13
+	note G_, 7
+	note E_, 13
+	note E_, 7
+	note D_, 4
+	note E_, 3
 	musicf3
-	D# 7
-	E_ 6
-	C_ 7
+	note D#, 7
+	note E_, 6
+	note C_, 7
 	dec_octave
-	A_ 7
+	note A_, 7
 	musicf2
-	G_ 4
-	A_ 3
-	G# 3
-	G_ 3
-	A_ 7
-	A_ 7
+	note G_, 4
+	note A_, 3
+	note G#, 3
+	note G_, 3
+	note A_, 7
+	note A_, 7
 	musicf3
 	preset 1
 	vibrato_type 5
 	vibrato_delay 27
 	octave 3
-	C_ 7
-	G_ 6
+	note C_, 7
+	note G_, 6
 	preset 0
 	octave 4
-	D# 4
+	note D#, 4
 	musicf2
-	E_ 3
+	note E_, 3
 	tie
-	E_ 7
+	note E_, 7
 	tie
-	E_ 13
+	note E_, 13
 	tie
-	E_ 14
+	note E_, 14
 	tie
-	E_ 13
+	note E_, 13
 	tie
-	E_ 14
-	E_ 13
+	note E_, 14
+	note E_, 13
 	MainLoop
 	preset 0
 	musicf1 71
 	octave 3
-	A_ 7
-	A_ 7
+	note A_, 7
+	note A_, 7
 	music_call Branch_1ef490
 	preset 0
 	musicf1 71
 	musicf3
 	octave 3
-	C_ 5
-	D_ 5
-	D# 5
-	E_ 4
-	G_ 4
-	G# 4
+	note C_, 5
+	note D_, 5
+	note D#, 5
+	note E_, 4
+	note G_, 4
+	note G#, 4
 	octave 3
 	musicf2
-	A_ 7
-	A_ 7
+	note A_, 7
+	note A_, 7
 	music_call Branch_1ef490
 	music_call Branch_1ef4d1
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	rest 7
 	music_call Branch_1ef615
 	preset 35
 	musicf1 71
 	musicf3
 	octave 3
-	G_ 3
-	G# 3
-	A_ 14
+	note G_, 3
+	note G#, 3
+	note A_, 14
 	tie
-	A_ 7
-	G_ 6
+	note A_, 7
+	note G_, 6
 	pitch_offset 254
 	music_call Branch_1ef5f5
 	pitch_offset 0
 	preset 35
-	D_ 13
-	F_ 14
+	note D_, 13
+	note F_, 14
 	tie
-	F_ 7
-	G_ 13
+	note F_, 7
+	note G_, 13
 	tie
-	G_ 7
+	note G_, 7
 	musicf2
-	E_ 13
+	note E_, 13
 	tie
-	E_ 14
+	note E_, 14
 	tie
-	E_ 13
+	note E_, 13
 	tie
-	E_ 14
+	note E_, 14
 	tie
-	E_ 13
-	E_ 14
+	note E_, 13
+	note E_, 14
 	musicf3
-	F_ 13
-	G_ 14
-	A_ 13
-	E_ 14
+	note F_, 13
+	note G_, 14
+	note A_, 13
+	note E_, 14
 	tie
-	E_ 7
-	C_ 6
+	note E_, 7
+	note C_, 6
 	music_call Branch_1ef5f5
 	preset 35
-	D_ 13
+	note D_, 13
 	dec_octave
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	inc_octave
-	D# 3
-	E_ 3
+	note D#, 3
+	note E_, 3
 	tie
-	E_ 14
+	note E_, 14
 	musicf2
-	C_ 13
+	note C_, 13
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
+	note C_, 13
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
+	note C_, 13
 	tie
-	C_ 14
-	C_ 13
+	note C_, 14
+	note C_, 13
 	musicf3
-	D_ 5
-	E_ 5
-	F_ 5
-	F# 4
-	G_ 4
-	G# 4
-	A_ 14
+	note D_, 5
+	note E_, 5
+	note F_, 5
+	note F#, 4
+	note G_, 4
+	note G#, 4
+	note A_, 14
 	tie
-	A_ 7
-	G_ 6
+	note A_, 7
+	note G_, 6
 	pitch_offset 254
 	music_call Branch_1ef5f5
 	pitch_offset 0
 	preset 35
-	D_ 13
-	F_ 14
+	note D_, 13
+	note F_, 14
 	tie
-	F_ 7
-	G_ 13
+	note F_, 7
+	note G_, 13
 	tie
-	G_ 7
+	note G_, 7
 	musicf2
-	F_ 7
-	F_ 6
+	note F_, 7
+	note F_, 6
 	musicf3
-	A# 3
+	note A#, 3
 	inc_octave
-	C_ 4
+	note C_, 4
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
-	A# 6
+	note A#, 6
 	pitch_offset 8
 	music_call Branch_1ef5f5
 	pitch_offset 0
 	preset 35
-	F_ 13
-	G# 14
+	note F_, 13
+	note G#, 14
 	tie
-	G# 13
-	A# 14
+	note G#, 13
+	note A#, 14
 	tie
-	A# 7
-	A_ 3
-	G# 3
+	note A#, 7
+	note A_, 3
+	note G#, 3
 	musicf2
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
-	G_ 14
-	A_ 13
+	note G_, 13
+	note G_, 14
+	note A_, 13
 	tie
-	A_ 14
-	A_ 13
+	note A_, 14
+	note A_, 13
 	inc_octave
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
-	C_ 14
+	note C_, 13
+	note C_, 14
 	dec_octave
-	B_ 13
+	note B_, 13
 	tie
-	B_ 14
-	B_ 13
-	G_ 7
-	G_ 7
+	note B_, 14
+	note B_, 13
+	note G_, 7
+	note G_, 7
 	rest 13
 	music_call Branch_1ef4d1
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
-	A_ 7
+	note A_, 13
+	note A_, 7
 	musicf3
 	music_call Branch_1ef628
 	music_call Branch_1ef564
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	musicf3
 	preset 34
 	musicf1 71
 	musicf3
 	octave 2
-	G_ 4
+	note G_, 4
 	inc_octave
-	C_ 5
-	F_ 5
+	note C_, 5
+	note F_, 5
 	musicf2
-	G_ 13
-	G_ 7
-	A_ 14
-	A_ 6
+	note G_, 13
+	note G_, 7
+	note A_, 14
+	note A_, 6
 	musicf3
-	A_ 4
+	note A_, 4
 	musicf2
-	A# 16
+	note A#, 16
 	tie
-	A# 7
+	note A#, 7
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 13
+	note A#, 13
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 13
+	note A#, 13
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 13
+	note A#, 13
 	tie
-	A# 14
+	note A#, 14
 	tie
-	A# 13
-	A# 14
-	G_ 7
-	A# 6
+	note A#, 13
+	note A#, 14
+	note G_, 7
+	note A#, 6
 	musicf3
 	inc_octave
-	C# 3
-	D_ 4
+	note C#, 3
+	note D_, 4
 	tie
-	D_ 14
-	C_ 6
+	note D_, 14
+	note C_, 6
 	tie
-	C_ 14
+	note C_, 14
 	dec_octave
 	musicf2
-	A# 7
+	note A#, 7
 	inc_octave
-	C_ 6
+	note C_, 6
 	dec_octave
 	musicf3
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	musicf2
-	A# 6
-	A_ 7
+	note A#, 6
+	note A_, 7
 	tie
-	A# 7
+	note A#, 7
 	inc_octave
-	C_ 7
-	C_ 6
+	note C_, 7
+	note C_, 6
 	dec_octave
 	musicf3
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
-	F_ 6
+	note A_, 7
+	note F_, 6
 	tie
-	F_ 14
+	note F_, 14
 	musicf2
-	D_ 7
-	F_ 6
+	note D_, 7
+	note F_, 6
 	musicf3
-	G# 3
-	A_ 11
+	note G#, 3
+	note A_, 11
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	preset 9
 	octave 2
-	A# 13
+	note A#, 13
 	inc_octave
-	C# 4
-	D_ 10
+	note C#, 4
+	note D_, 10
 	dec_octave
-	A# 13
+	note A#, 13
 	preset 34
 	octave 3
 	musicf2
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
-	G_ 14
-	D# 13
-	D# 7
+	note G_, 13
+	note G_, 14
+	note D#, 13
+	note D#, 7
 	preset 9
 	octave 2
 	musicf1 48
 	musicf2
-	A# 5
-	A# 2
+	note A#, 5
+	note A#, 2
 	musicf3
 	preset 34
 	octave 3
 	musicf1 71
 	musicf2
-	A# 7
-	A# 13
+	note A#, 7
+	note A#, 13
 	inc_octave
-	C_ 14
-	C_ 6
+	note C_, 14
+	note C_, 6
 	musicf3
 	dec_octave
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	musicf2
-	A# 6
-	A_ 7
+	note A#, 6
+	note A_, 7
 	tie
-	A# 7
-	A_ 7
-	A_ 6
+	note A#, 7
+	note A_, 7
+	note A_, 6
 	musicf3
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	musicf2
-	D_ 6
-	F_ 7
+	note D_, 6
+	note F_, 7
 	tie
-	D_ 7
+	note D_, 7
 	musicf3
-	G# 3
-	A_ 10
+	note G#, 3
+	note A_, 10
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	preset 9
 	octave 2
-	G_ 14
-	A_ 13
+	note G_, 14
+	note A_, 13
 	preset 35
 	octave 3
 	musicf1 87
-	G_ 14
+	note G_, 14
 	tie
-	G_ 7
+	note G_, 7
 	musicf2
-	A_ 6
-	G_ 7
+	note A_, 6
+	note G_, 7
 	tie
-	A_ 7
-	A# 7
-	G_ 6
+	note A_, 7
+	note A#, 7
+	note G_, 6
 	musicf3
-	B_ 4
+	note B_, 4
 	vibrato_delay 14
 	musicf2
 	inc_octave
-	C_ 10
+	note C_, 10
 	tie
-	C_ 13
+	note C_, 13
 	tie
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
+	note C_, 13
 	vibrato_delay 0
-	C_ 14
+	note C_, 14
 	tie
-	C_ 7
+	note C_, 7
 	dec_octave
-	A# 6
+	note A#, 6
 	inc_octave
-	C_ 7
+	note C_, 7
 	tie
 	dec_octave
-	A# 7
-	F# 7
-	A# 6
+	note A#, 7
+	note F#, 7
+	note A#, 6
 	musicf3
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
-	A_ 3
-	A# 3
+	note D_, 7
+	note A_, 3
+	note A#, 3
 	tie
-	A# 14
+	note A#, 14
 	musicf2
-	F# 7
-	F# 6
+	note F#, 7
+	note F#, 6
 	musicf3
-	G# 4
+	note G#, 4
 	vibrato_delay 10
-	A_ 10
+	note A_, 10
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	vibrato_delay 0
 	musicf2
-	G_ 13
+	note G_, 13
 	tie
-	G_ 7
-	G_ 7
-	D_ 13
-	D_ 7
-	E_ 14
-	E_ 6
-	F_ 14
+	note G_, 7
+	note G_, 7
+	note D_, 13
+	note D_, 7
+	note E_, 14
+	note E_, 6
+	note F_, 14
 	tie
-	F_ 8
-	F_ 5
+	note F_, 8
+	note F_, 5
 	musicf3
 	preset 9
 	octave 3
 	musicf1 48
 	musicf2
-	C# 5
-	C# 9
+	note C#, 5
+	note C#, 9
 	musicf3
 	preset 35
 	musicf1 71
 	musicf3
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	musicf2
-	A_ 13
-	A_ 7
-	A# 14
-	A# 6
+	note A_, 13
+	note A_, 7
+	note A#, 14
+	note A#, 6
 	inc_octave
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
-	C_ 14
+	note C_, 13
+	note C_, 14
 	vibrato_delay 27
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
-	D_ 14
+	note D_, 13
+	note D_, 14
 	tie
-	D_ 13
-	C_ 14
+	note D_, 13
+	note C_, 14
 	tie
-	C_ 13
-	C_ 14
-	D_ 13
+	note C_, 13
+	note C_, 14
+	note D_, 13
 	tie
-	D_ 14
-	D_ 13
-	D_ 14
+	note D_, 14
+	note D_, 13
+	note D_, 14
 	tie
-	D_ 13
-	D_ 14
+	note D_, 13
+	note D_, 14
 	musicf3
-	D# 3
+	note D#, 3
 	musicf2
-	E_ 10
+	note E_, 10
 	tie
-	E_ 14
+	note E_, 14
 	tie
-	E_ 8
-	E_ 5
+	note E_, 8
+	note E_, 5
 	musicf3
 	preset 1
 	musicef 2
 	musicf1 71
 	octave 3
-	E_ 4
-	E_ 3
+	note E_, 4
+	note E_, 3
 	musicf3
 	inc_octave
-	D_ 7
+	note D_, 7
 	musicf2
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	D_ 3
+	note D_, 3
 	dec_octave
-	G_ 3
-	B_ 3
+	note G_, 3
+	note B_, 3
 	musicf3
-	B_ 7
+	note B_, 7
 	musicf2
-	G_ 4
-	B_ 3
-	D_ 4
-	G_ 3
-	G_ 3
-	D_ 3
-	E_ 7
-	E_ 7
+	note G_, 4
+	note B_, 3
+	note D_, 4
+	note G_, 3
+	note G_, 3
+	note D_, 3
+	note E_, 7
+	note E_, 7
 	music_call Branch_1ef490
 	octave 2
-	B_ 14
+	note B_, 14
 	inc_octave
-	C_ 13
+	note C_, 13
 	rest 14
 	music_call Branch_1ef490
 	preset 0
 	musicf1 71
 	musicf3
 	octave 3
-	C_ 5
-	D_ 5
-	D# 5
-	E_ 4
-	G_ 4
-	G# 4
+	note C_, 5
+	note D_, 5
+	note D#, 5
+	note E_, 4
+	note G_, 4
+	note G#, 4
 	EndMainLoop
 
 Branch_1ef490:
@@ -606,62 +606,62 @@ Branch_1ef490:
 	octave 3
 	musicf1 48
 	musicf2
-	C_ 5
-	C_ 8
+	note C_, 5
+	note C_, 8
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	musicf3
-	D_ 14
-	C_ 13
+	note D_, 14
+	note C_, 13
 	rest 14
 	musicf2
-	C_ 5
-	C_ 8
+	note C_, 5
+	note C_, 8
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	musicf3
 	dec_octave
-	B_ 14
+	note B_, 14
 	inc_octave
-	C_ 13
+	note C_, 13
 	rest 14
 	musicf2
-	C_ 5
-	C_ 8
+	note C_, 5
+	note C_, 8
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	musicf3
-	D_ 14
-	C_ 13
+	note D_, 14
+	note C_, 13
 	rest 14
 	musicf2
-	C_ 5
-	C_ 8
+	note C_, 5
+	note C_, 8
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	rest 7
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 6
 	musicf3
 	music_ret
@@ -671,123 +671,123 @@ Branch_1ef4d1:
 	musicf1 71
 	musicf3
 	octave 2
-	G_ 5
-	G# 5
-	A_ 5
+	note G_, 5
+	note G#, 5
+	note A_, 5
 	inc_octave
-	C_ 4
-	D_ 4
-	D# 4
-	E_ 14
+	note C_, 4
+	note D_, 4
+	note D#, 4
+	note E_, 14
 	tie
-	E_ 7
-	G_ 6
+	note E_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 34
 	octave 3
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1ef5f5
 	preset 34
 	octave 3
-	E_ 7
-	F# 6
-	G_ 14
-	F# 7
-	E_ 6
-	D_ 4
+	note E_, 7
+	note F#, 6
+	note G_, 14
+	note F#, 7
+	note E_, 6
+	note D_, 4
 	rest 3
-	F# 14
+	note F#, 14
 	tie
-	F# 6
-	E_ 14
+	note F#, 6
+	note E_, 14
 	tie
-	E_ 7
-	C_ 6
+	note E_, 7
+	note C_, 6
 	music_call Branch_1ef5f5
 	preset 34
 	octave 3
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	rest 7
 	music_call Branch_1ef602
 	preset 34
-	E_ 14
+	note E_, 14
 	tie
-	E_ 7
-	G_ 6
+	note E_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 34
 	octave 3
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1ef5f5
 	preset 34
 	octave 3
-	E_ 7
-	F# 6
-	G_ 14
-	F# 7
-	E_ 6
-	D_ 4
+	note E_, 7
+	note F#, 6
+	note G_, 14
+	note F#, 7
+	note E_, 6
+	note D_, 4
 	rest 3
-	F# 14
+	note F#, 14
 	tie
-	F# 6
-	B_ 14
+	note F#, 6
+	note B_, 14
 	tie
-	B_ 7
-	G_ 6
+	note B_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 34
 	musicf1 71
 	musicf2
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
 	music_ret
 
@@ -796,122 +796,122 @@ Branch_1ef564:
 	musicf1 71
 	musicf3
 	octave 2
-	G_ 5
-	G# 5
-	A_ 5
+	note G_, 5
+	note G#, 5
+	note A_, 5
 	inc_octave
-	C_ 4
-	D_ 4
-	D# 4
-	E_ 14
+	note C_, 4
+	note D_, 4
+	note D#, 4
+	note E_, 14
 	tie
-	E_ 7
-	G_ 6
+	note E_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 35
 	octave 3
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1ef5f5
 	preset 35
 	octave 3
-	E_ 7
-	F# 6
-	G_ 14
-	F# 7
-	E_ 6
-	D_ 4
+	note E_, 7
+	note F#, 6
+	note G_, 14
+	note F#, 7
+	note E_, 6
+	note D_, 4
 	rest 3
-	F# 14
+	note F#, 14
 	tie
-	F# 6
-	E_ 14
+	note F#, 6
+	note E_, 14
 	tie
-	E_ 7
-	C_ 6
+	note E_, 7
+	note C_, 6
 	music_call Branch_1ef5f5
 	preset 35
 	octave 3
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	rest 7
 	music_call Branch_1ef602
 	preset 35
-	E_ 14
+	note E_, 14
 	tie
-	E_ 7
-	G_ 6
+	note E_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 35
 	octave 3
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1ef5f5
 	preset 35
 	octave 3
-	E_ 7
-	F# 6
-	G_ 14
-	F# 7
-	E_ 6
-	D_ 4
+	note E_, 7
+	note F#, 6
+	note G_, 14
+	note F#, 7
+	note E_, 6
+	note D_, 4
 	rest 3
-	F# 14
+	note F#, 14
 	tie
-	F# 6
-	B_ 14
+	note F#, 6
+	note B_, 14
 	tie
-	B_ 7
-	G_ 6
+	note B_, 7
+	note G_, 6
 	music_call Branch_1ef5f5
 	preset 35
 	musicf2
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
-	A_ 14
+	note A_, 14
 	tie
-	A_ 13
+	note A_, 13
 	tie
 	music_ret
 
@@ -921,8 +921,8 @@ Branch_1ef5f5:
 	musicf1 48
 	octave 3
 	musicf2
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	musicf1 71
 	musicf3
 	music_ret
@@ -932,14 +932,14 @@ Branch_1ef602:
 	octave 3
 	musicf1 48
 	musicf3
-	E_ 7
+	note E_, 7
 	dec_octave
-	G_ 4
-	A_ 4
-	G_ 5
+	note G_, 4
+	note A_, 4
+	note G_, 5
 	inc_octave
-	D_ 14
-	C_ 13
+	note D_, 14
+	note C_, 13
 	octave 3
 	musicf1 71
 	musicf3
@@ -950,14 +950,14 @@ Branch_1ef615:
 	octave 3
 	musicf1 48
 	musicf3
-	E_ 7
+	note E_, 7
 	dec_octave
-	G_ 4
-	A_ 4
-	G_ 5
+	note G_, 4
+	note A_, 4
+	note G_, 5
 	inc_octave
-	D_ 14
-	C_ 7
+	note D_, 14
+	note C_, 7
 	octave 3
 	musicf1 71
 	musicf3
@@ -968,11 +968,11 @@ Branch_1ef628:
 	octave 3
 	musicf1 48
 	musicf3
-	E_ 7
+	note E_, 7
 	dec_octave
-	G_ 4
-	A_ 4
-	G_ 5
+	note G_, 4
+	note A_, 4
+	note G_, 5
 	music_ret
 
 
@@ -982,53 +982,53 @@ Music_GRDuelTheme2_Ch1:
 	speed 1
 	stereo_panning 15, 15
 	octave 3
-	E_ 14
+	note E_, 14
 	rest 7
-	D_ 13
+	note D_, 13
 	rest 7
-	C_ 13
+	note C_, 13
 	rest 7
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
-	A_ 7
+	note A_, 7
 	inc_octave
-	C_ 4
+	note C_, 4
 	rest 2
 	dec_octave
-	A_ 7
-	E_ 7
-	D_ 4
+	note A_, 7
+	note E_, 7
+	note D_, 4
 	rest 3
-	D# 4
+	note D#, 4
 	rest 2
-	E_ 7
+	note E_, 7
 	rest 7
 	preset 1
 	octave 3
 	rest 3
-	E_ 7
-	B_ 3
+	note E_, 7
+	note B_, 3
 	musicf1 71
 	musicf2
-	G# 14
+	note G#, 14
 	tie
-	G# 13
+	note G#, 13
 	tie
-	G# 14
+	note G#, 14
 	tie
-	G# 13
+	note G#, 13
 	tie
-	G# 14
-	G# 13
+	note G#, 14
+	note G#, 13
 	MainLoop
 	Loop 2
 	preset 0
 	musicf1 71
 	octave 3
 	musicf2
-	E_ 7
-	E_ 7
+	note E_, 7
+	note E_, 7
 	music_call Branch_1ef8d6
 	rest 14
 	music_call Branch_1ef8f0
@@ -1037,13 +1037,13 @@ Music_GRDuelTheme2_Ch1:
 	preset 7
 	musicef -3
 	octave 3
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	rest 7
 	music_call Branch_1efa51
 	preset 9
@@ -1052,127 +1052,127 @@ Music_GRDuelTheme2_Ch1:
 	rest 14
 	rest 13
 	musicf2
-	D_ 5
-	D_ 9
+	note D_, 5
+	note D_, 9
 	rest 13
 	rest 7
-	D_ 5
-	D_ 2
+	note D_, 5
+	note D_, 2
 	musicf3
-	D_ 13
-	F_ 14
+	note D_, 13
+	note F_, 14
 	dec_octave
-	A# 13
+	note A#, 13
 	rest 14
 	rest 13
 	musicf2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	rest 13
 	inc_octave
 	rest 7
-	D_ 5
-	D_ 2
+	note D_, 5
+	note D_, 2
 	musicf3
-	D_ 13
-	E_ 14
-	F_ 13
+	note D_, 13
+	note E_, 14
+	note F_, 13
 	Loop 2
 	rest 14
 	rest 13
 	musicf2
-	E_ 5
-	E_ 9
+	note E_, 5
+	note E_, 9
 	rest 13
 	rest 7
-	E_ 5
-	E_ 2
+	note E_, 5
+	note E_, 2
 	musicf3
 	dec_octave
-	A_ 13
+	note A_, 13
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
-	A_ 13
+	note A_, 13
 	inc_octave
 	EndLoop
 	rest 14
 	rest 13
 	musicf2
-	D_ 5
-	D_ 9
+	note D_, 5
+	note D_, 9
 	rest 13
 	rest 7
-	D_ 5
-	D_ 2
+	note D_, 5
+	note D_, 2
 	musicf3
-	D_ 13
-	F_ 14
+	note D_, 13
+	note F_, 14
 	dec_octave
-	A# 13
+	note A#, 13
 	inc_octave
 	rest 14
 	rest 13
 	musicf2
-	C# 5
-	C# 9
+	note C#, 5
+	note C#, 9
 	rest 13
 	rest 7
-	G# 5
-	G# 2
+	note G#, 5
+	note G#, 2
 	musicf3
-	F_ 13
+	note F_, 13
 	dec_octave
-	A_ 5
-	A# 5
+	note A_, 5
+	note A#, 5
 	inc_octave
-	C_ 5
-	D_ 4
-	E_ 4
-	F_ 4
+	note C_, 5
+	note D_, 4
+	note E_, 4
+	note F_, 4
 	preset 1
 	octave 3
 	musicf1 71
-	C_ 14
+	note C_, 14
 	tie
-	C_ 13
-	C_ 14
-	D_ 13
+	note C_, 13
+	note C_, 14
+	note D_, 13
 	tie
-	D_ 14
-	D_ 13
-	F_ 14
+	note D_, 14
+	note D_, 13
+	note F_, 14
 	tie
-	F_ 13
-	F_ 14
-	E_ 13
+	note F_, 13
+	note F_, 14
+	note E_, 13
 	tie
-	E_ 14
-	E_ 13
-	C_ 7
-	C_ 14
+	note E_, 14
+	note E_, 13
+	note C_, 7
+	note C_, 14
 	tie
-	C_ 6
+	note C_, 6
 	musicf3
 	preset 0
 	preset 4
 	musicf1 71
 	musicf2
-	G# 7
-	G# 14
+	note G#, 7
+	note G#, 14
 	rest 6
 	musicf3
 	music_call Branch_1ef90b
 	preset 7
 	musicef -3
 	octave 3
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	rest 7
 	music_call Branch_1efa62
 	music_call Branch_1ef997
@@ -1181,381 +1181,381 @@ Music_GRDuelTheme2_Ch1:
 	musicf1 48
 	musicf2
 	rest 7
-	E_ 5
-	E_ 9
+	note E_, 5
+	note E_, 9
 	rest 6
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 13
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	musicf3
 	preset 0
 	musicf1 71
 	octave 3
-	E_ 13
-	E_ 7
-	F_ 14
-	E_ 6
+	note E_, 13
+	note E_, 7
+	note F_, 14
+	note E_, 6
 	preset 7
 	octave 3
 	musicf1 48
 	musicf3
-	D# 14
+	note D#, 14
 	tie
-	D# 13
+	note D#, 13
 	preset 9
 	octave 2
 	musicf2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	rest 13
 	rest 7
 	octave 3
-	D# 5
-	D# 9
+	note D#, 5
+	note D#, 9
 	musicf3
 	dec_octave
-	G_ 6
-	A# 14
-	G_ 13
+	note G_, 6
+	note A#, 14
+	note G_, 13
 	preset 7
 	octave 3
-	D# 14
+	note D#, 14
 	tie
-	D# 13
+	note D#, 13
 	preset 9
 	octave 2
 	musicf2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	musicf3
 	preset 7
 	octave 3
-	D_ 7
+	note D_, 7
 	rest 6
-	A# 14
+	note A#, 14
 	tie
-	A# 7
-	A_ 13
+	note A#, 7
+	note A_, 13
 	tie
-	A_ 7
-	G_ 7
+	note A_, 7
+	note G_, 7
 	rest 6
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
-	G_ 6
+	note F_, 7
+	note G_, 6
 	preset 9
 	octave 3
 	musicf2
-	D_ 5
-	D_ 9
+	note D_, 5
+	note D_, 9
 	musicf3
 	preset 7
 	octave 3
-	A_ 7
+	note A_, 7
 	rest 6
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	preset 9
 	octave 2
-	A# 6
+	note A#, 6
 	inc_octave
-	D_ 14
+	note D_, 14
 	dec_octave
-	A# 13
+	note A#, 13
 	preset 7
 	octave 3
-	F_ 14
+	note F_, 14
 	tie
-	F_ 13
+	note F_, 13
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 13
+	note F_, 13
 	tie
-	F_ 7
+	note F_, 7
 	preset 9
 	octave 3
 	musicf2
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 2
 	musicf3
 	dec_octave
-	G_ 13
-	A# 4
+	note G_, 13
+	note A#, 4
 	rest 3
 	rest 7
-	G_ 13
+	note G_, 13
 	preset 7
 	octave 3
-	D# 14
+	note D#, 14
 	tie
-	D# 13
+	note D#, 13
 	preset 9
 	octave 2
 	musicf2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	rest 13
 	rest 7
 	octave 3
-	D# 5
-	D# 9
+	note D#, 5
+	note D#, 9
 	musicf3
 	dec_octave
-	G_ 6
-	A# 14
-	G_ 13
+	note G_, 6
+	note A#, 14
+	note G_, 13
 	preset 7
 	octave 3
-	D# 14
+	note D#, 14
 	tie
-	D# 13
+	note D#, 13
 	preset 9
 	octave 2
 	musicf2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	musicf3
 	preset 7
 	octave 3
-	C_ 13
+	note C_, 13
 	preset 9
 	octave 3
 	musicf2
-	D# 5
-	D# 9
+	note D#, 5
+	note D#, 9
 	musicf3
 	preset 7
 	octave 3
-	G_ 7
+	note G_, 7
 	rest 13
-	A_ 14
+	note A_, 14
 	rest 6
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
-	G_ 6
+	note F_, 7
+	note G_, 6
 	preset 9
 	octave 3
 	musicf2
-	D_ 5
-	D_ 9
+	note D_, 5
+	note D_, 9
 	musicf3
 	preset 7
 	octave 3
-	F_ 7
+	note F_, 7
 	rest 6
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	preset 9
 	octave 2
-	F_ 6
-	A_ 14
-	F_ 13
+	note F_, 6
+	note A_, 14
+	note F_, 13
 	preset 7
 	octave 3
-	F_ 14
+	note F_, 14
 	tie
-	F_ 13
+	note F_, 13
 	tie
-	F_ 14
+	note F_, 14
 	tie
-	F_ 13
+	note F_, 13
 	tie
-	F_ 7
+	note F_, 7
 	preset 9
 	octave 3
 	musicf2
-	D_ 5
-	D_ 2
+	note D_, 5
+	note D_, 2
 	musicf3
 	dec_octave
-	F_ 4
-	G_ 3
+	note F_, 4
+	note G_, 3
 	tie
-	G_ 6
-	D# 14
-	F_ 13
+	note G_, 6
+	note D#, 14
+	note F_, 13
 	preset 9
 	octave 3
 	musicf1 48
 	rest 14
 	rest 13
 	musicf2
-	C_ 5
-	C_ 9
+	note C_, 5
+	note C_, 9
 	rest 13
 	rest 7
-	F_ 5
-	F_ 9
+	note F_, 5
+	note F_, 9
 	musicf3
 	dec_octave
-	G_ 6
-	A# 14
-	G_ 13
+	note G_, 6
+	note A#, 14
+	note G_, 13
 	inc_octave
 	rest 14
 	rest 13
 	musicf2
-	F_ 5
-	F_ 9
+	note F_, 5
+	note F_, 9
 	rest 13
 	rest 7
-	A# 5
-	A# 2
+	note A#, 5
+	note A#, 2
 	musicf3
-	C_ 13
-	D# 14
-	F_ 13
+	note C_, 13
+	note D#, 14
+	note F_, 13
 	rest 14
 	rest 13
 	musicf2
 	octave 2
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	rest 13
 	rest 7
-	A# 5
-	A# 9
+	note A#, 5
+	note A#, 9
 	musicf3
-	F_ 6
-	A# 14
-	F_ 13
+	note F_, 6
+	note A#, 14
+	note F_, 13
 	inc_octave
 	rest 14
 	rest 13
 	musicf2
-	F_ 5
-	F_ 9
+	note F_, 5
+	note F_, 9
 	rest 13
 	rest 7
-	F_ 5
-	F_ 9
+	note F_, 5
+	note F_, 9
 	musicf3
 	dec_octave
-	A# 6
+	note A#, 6
 	preset 0
 	musicf3
 	octave 2
-	A_ 5
-	A# 5
+	note A_, 5
+	note A#, 5
 	inc_octave
-	C_ 5
-	D_ 4
-	E_ 4
-	F_ 4
+	note C_, 5
+	note D_, 4
+	note E_, 4
+	note F_, 4
 	musicf1 71
-	F_ 14
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	preset 9
 	octave 3
 	musicf1 48
-	F_ 6
-	F_ 14
+	note F_, 6
+	note F_, 14
 	preset 0
 	musicf1 71
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 13
+	note G_, 13
 	tie
-	G_ 14
+	note G_, 14
 	tie
-	G_ 7
-	G_ 6
+	note G_, 7
+	note G_, 6
 	musicf3
-	D_ 5
-	E_ 5
-	F_ 5
-	G_ 4
-	A_ 4
-	B_ 4
-	F_ 14
+	note D_, 5
+	note E_, 5
+	note F_, 5
+	note G_, 4
+	note A_, 4
+	note B_, 4
+	note F_, 14
 	tie
-	F_ 7
+	note F_, 7
 	preset 9
 	octave 3
 	musicf1 48
 	musicf2
-	F_ 6
-	F_ 14
+	note F_, 6
+	note F_, 14
 	preset 0
 	musicf3
 	octave 3
-	G_ 13
+	note G_, 13
 	tie
-	G_ 7
+	note G_, 7
 	preset 9
 	octave 3
 	musicf1 48
-	G_ 5
-	G_ 9
+	note G_, 5
+	note G_, 9
 	rest 6
 	preset 0
 	octave 3
 	musicf1 71
-	G# 14
+	note G#, 14
 	tie
-	G# 7
-	G# 6
+	note G#, 7
+	note G#, 6
 	tie
-	G# 14
-	A_ 13
+	note G#, 14
+	note A_, 13
 	tie
-	A_ 14
-	A_ 7
+	note A_, 14
+	note A_, 7
 	preset 1
 	musicef 2
 	musicf1 71
 	musicf3
-	D_ 3
-	D# 3
+	note D_, 3
+	note D#, 3
 	dec_octave
 	musicf2
-	B_ 4
-	B_ 3
+	note B_, 4
+	note B_, 3
 	musicf3
 	inc_octave
-	B_ 7
+	note B_, 7
 	musicf2
-	G_ 4
-	B_ 3
-	D_ 3
-	G_ 3
+	note G_, 4
+	note B_, 3
+	note D_, 3
+	note G_, 3
 	musicf3
-	G_ 7
+	note G_, 7
 	musicf2
-	D_ 4
-	G_ 3
+	note D_, 4
+	note G_, 3
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	D_ 3
-	D_ 3
+	note D_, 3
+	note D_, 3
 	dec_octave
-	B_ 3
+	note B_, 3
 	dec_octave
-	B_ 7
-	B_ 7
+	note B_, 7
+	note B_, 7
 	music_call Branch_1ef8d6
 	rest 14
 	music_call Branch_1ef8d6
@@ -1574,22 +1574,22 @@ Branch_1ef8d6:
 	rest 13
 	rest 14
 	rest 13
-	A_ 14
-	G_ 13
+	note A_, 14
+	note G_, 13
 	rest 14
 	rest 13
 	rest 7
 	musicf2
-	G_ 5
-	G_ 9
+	note G_, 5
+	note G_, 9
 	rest 6
 	rest 7
-	G_ 5
-	G_ 9
+	note G_, 5
+	note G_, 9
 	rest 6
 	musicf3
-	F# 14
-	G_ 13
+	note F#, 14
+	note G_, 13
 	music_ret
 
 Branch_1ef8f0:
@@ -1601,129 +1601,129 @@ Branch_1ef8f0:
 	rest 13
 	rest 14
 	rest 13
-	A_ 14
-	G_ 13
+	note A_, 14
+	note G_, 13
 	rest 14
 	rest 13
 	musicf2
 	rest 7
-	G_ 5
-	G_ 9
+	note G_, 5
+	note G_, 9
 	rest 6
 	rest 7
-	G_ 5
-	G_ 9
+	note G_, 5
+	note G_, 9
 	rest 6
 	musicf3
-	B_ 14
+	note B_, 14
 	inc_octave
-	C_ 13
+	note C_, 13
 	music_ret
 
 Branch_1ef90b:
 	preset 7
 	musicf3
 	octave 3
-	C_ 14
+	note C_, 14
 	tie
-	C_ 7
-	E_ 6
+	note C_, 7
+	note E_, 6
 	music_call Branch_1efa34
 	preset 7
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	music_call Branch_1efa41
 	preset 7
 	musicef -3
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	music_call Branch_1efa34
 	preset 7
-	C_ 7
-	D_ 6
-	E_ 14
-	D_ 7
-	C_ 6
+	note C_, 7
+	note D_, 6
+	note E_, 14
+	note D_, 7
+	note C_, 6
 	dec_octave
-	B_ 4
+	note B_, 4
 	rest 3
 	inc_octave
-	D_ 14
+	note D_, 14
 	tie
-	D_ 6
-	C_ 14
+	note D_, 6
+	note C_, 14
 	tie
-	C_ 7
+	note C_, 7
 	dec_octave
-	A_ 6
+	note A_, 6
 	music_call Branch_1efa34
 	preset 7
 	octave 2
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1efa4a
 	preset 7
 	octave 2
 	musicef -3
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	rest 7
 	music_call Branch_1efa51
 	preset 7
 	octave 3
-	C_ 14
+	note C_, 14
 	tie
-	C_ 7
-	E_ 6
+	note C_, 7
+	note E_, 6
 	music_call Branch_1efa34
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	music_call Branch_1efa41
 	preset 7
 	musicef -3
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	music_call Branch_1efa34
 	preset 7
-	C_ 7
-	D_ 6
-	E_ 14
-	D_ 7
-	C_ 6
+	note C_, 7
+	note D_, 6
+	note E_, 14
+	note D_, 7
+	note C_, 6
 	dec_octave
-	B_ 4
+	note B_, 4
 	rest 3
 	inc_octave
-	D_ 14
+	note D_, 14
 	tie
-	D_ 6
-	G_ 14
+	note D_, 6
+	note G_, 14
 	tie
-	G_ 7
-	E_ 6
+	note G_, 7
+	note E_, 6
 	music_call Branch_1efa34
 	preset 7
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1efa4a
 	music_ret
 
@@ -1732,119 +1732,119 @@ Branch_1ef997:
 	musicf1 71
 	musicf3
 	octave 2
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	inc_octave
-	C_ 6
+	note C_, 6
 	music_call Branch_1efa34
 	preset 1
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	music_call Branch_1efa41
 	preset 1
 	musicef -3
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	music_call Branch_1efa34
 	preset 1
 	octave 2
-	A_ 7
-	B_ 6
+	note A_, 7
+	note B_, 6
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
-	B_ 7
-	A_ 6
+	note B_, 7
+	note A_, 6
 	musicf2
-	G_ 4
-	G_ 3
+	note G_, 4
+	note G_, 3
 	musicf3
-	B_ 14
+	note B_, 14
 	tie
-	B_ 6
-	A_ 14
+	note B_, 6
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	dec_octave
-	E_ 6
+	note E_, 6
 	music_call Branch_1efa34
 	preset 1
 	octave 2
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1efa4a
 	preset 1
 	musicef -3
 	octave 2
 	musicf1 71
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
-	F# 7
+	note F#, 13
+	note F#, 7
 	music_call Branch_1efa51
 	preset 1
 	octave 2
-	A_ 14
+	note A_, 14
 	tie
-	A_ 7
+	note A_, 7
 	inc_octave
-	C_ 6
+	note C_, 6
 	music_call Branch_1efa34
 	preset 1
-	D_ 13
+	note D_, 13
 	tie
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	music_call Branch_1efa41
 	preset 1
 	musicef -3
-	D_ 14
+	note D_, 14
 	tie
-	D_ 13
+	note D_, 13
 	music_call Branch_1efa34
 	octave 2
 	preset 1
-	A_ 7
-	B_ 6
+	note A_, 7
+	note B_, 6
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
-	B_ 7
-	A_ 6
+	note B_, 7
+	note A_, 6
 	musicf2
-	G_ 4
-	G_ 3
+	note G_, 4
+	note G_, 3
 	musicf3
-	B_ 14
+	note B_, 14
 	tie
-	B_ 6
+	note B_, 6
 	inc_octave
-	D_ 14
+	note D_, 14
 	tie
-	D_ 7
+	note D_, 7
 	dec_octave
-	A_ 6
+	note A_, 6
 	music_call Branch_1efa34
 	preset 1
 	octave 2
-	F# 13
+	note F#, 13
 	tie
-	F# 14
+	note F#, 14
 	tie
-	F# 13
+	note F#, 13
 	music_call Branch_1efa4a
 	music_ret
 
@@ -1854,8 +1854,8 @@ Branch_1efa34:
 	musicf1 48
 	octave 3
 	musicf2
-	E_ 5
-	E_ 9
+	note E_, 5
+	note E_, 9
 	musicf3
 	musicf1 71
 	music_ret
@@ -1865,17 +1865,17 @@ Branch_1efa41:
 	octave 2
 	octave 3
 	musicf3
-	C_ 6
-	D_ 14
-	C_ 13
+	note C_, 6
+	note D_, 14
+	note C_, 13
 	music_ret
 
 Branch_1efa4a:
 	preset 9
 	octave 2
 	musicf3
-	A_ 14
-	G_ 13
+	note A_, 14
+	note G_, 13
 	music_ret
 
 Branch_1efa51:
@@ -1883,14 +1883,14 @@ Branch_1efa51:
 	musicf1 48
 	musicf2
 	octave 2
-	G_ 5
+	note G_, 5
 	inc_octave
-	C_ 9
+	note C_, 9
 	dec_octave
 	rest 6
 	musicf3
-	A_ 14
-	G_ 13
+	note A_, 14
+	note G_, 13
 	musicf1 71
 	music_ret
 
@@ -1899,15 +1899,15 @@ Branch_1efa62:
 	musicf1 48
 	musicf2
 	octave 2
-	G_ 5
+	note G_, 5
 	inc_octave
-	C_ 9
+	note C_, 9
 	dec_octave
 	rest 6
 	musicf3
 	inc_octave
-	D_ 14
-	C_ 13
+	note D_, 14
+	note C_, 13
 	musicf1 71
 	music_ret
 
@@ -1919,42 +1919,42 @@ Music_GRDuelTheme2_Ch3:
 	echo 96
 	stereo_panning 15, 15
 	octave 1
-	A_ 14
-	A_ 4
+	note A_, 14
+	note A_, 4
 	rest 3
 	inc_octave
-	C_ 13
-	C_ 4
+	note C_, 13
+	note C_, 4
 	rest 3
-	D_ 13
+	note D_, 13
 	inc_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	dec_octave
-	D_ 7
-	D# 7
-	E_ 6
+	note D_, 7
+	note D#, 7
+	note E_, 6
 	dec_octave
-	G_ 7
-	E_ 7
-	G_ 7
-	G# 6
-	A_ 7
+	note G_, 7
+	note E_, 7
+	note G_, 7
+	note G#, 6
+	note A_, 7
 	rest 16
 	rest 4
-	A# 14
+	note A#, 14
 	tie
-	A# 7
-	A# 3
+	note A#, 7
+	note A#, 3
 	rest 3
-	A# 7
+	note A#, 7
 	inc_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	A# 13
-	F_ 14
+	note A#, 13
+	note F_, 14
 	dec_octave
-	A# 13
+	note A#, 13
 	MainLoop
 	music_call Branch_1efd79
 	music_call Branch_1efd91
@@ -1973,199 +1973,199 @@ Music_GRDuelTheme2_Ch3:
 	music_call Branch_1efda8
 	music_call Branch_1efdd9
 	octave 1
-	G_ 14
-	G_ 4
+	note G_, 14
+	note G_, 4
 	rest 3
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 7
-	F# 6
-	G_ 4
+	note F_, 7
+	note F#, 6
+	note G_, 4
 	rest 3
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
 	dec_octave
-	A# 13
+	note A#, 13
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
-	A# 13
-	G_ 14
-	G_ 4
+	note A#, 13
+	note G_, 14
+	note G_, 4
 	rest 3
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 7
-	F# 6
-	G_ 4
+	note F_, 7
+	note F#, 6
+	note G_, 4
 	rest 3
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
 	dec_octave
-	E_ 13
-	F_ 14
-	F# 13
+	note E_, 13
+	note F_, 14
+	note F#, 13
 	Loop 2
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 2
 	dec_octave
 	inc_octave
-	C_ 4
+	note C_, 4
 	rest 3
-	E_ 7
-	F_ 6
+	note E_, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
 	dec_octave
 	inc_octave
-	F_ 13
+	note F_, 13
 	dec_octave
-	A# 14
+	note A#, 14
 	inc_octave
-	C_ 13
+	note C_, 13
 	EndLoop
 	octave 1
-	G_ 14
-	G_ 4
+	note G_, 14
+	note G_, 4
 	rest 3
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 7
-	F# 6
-	G_ 4
+	note F_, 7
+	note F#, 6
+	note G_, 4
 	rest 3
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
 	dec_octave
-	F_ 13
-	G_ 14
-	F_ 13
-	D# 14
-	D# 4
+	note F_, 13
+	note G_, 14
+	note F_, 13
+	note D#, 14
+	note D#, 4
 	rest 3
-	D# 6
+	note D#, 6
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
 	dec_octave
-	A# 4
+	note A#, 4
 	rest 3
 	inc_octave
-	C# 7
-	D_ 6
-	D# 4
+	note C#, 7
+	note D_, 6
+	note D#, 4
 	rest 3
 	inc_octave
-	C# 5
+	note C#, 5
 	rest 2
 	dec_octave
 	dec_octave
-	D# 13
+	note D#, 13
 	inc_octave
-	D# 14
+	note D#, 14
 	dec_octave
-	D# 13
+	note D#, 13
 	inc_octave
-	D_ 7
+	note D_, 7
 	dec_octave
-	A_ 4
+	note A_, 4
 	rest 3
-	D_ 4
+	note D_, 4
 	rest 3
-	A_ 4
+	note A_, 4
 	rest 2
-	D_ 4
+	note D_, 4
 	rest 3
-	A_ 4
+	note A_, 4
 	rest 3
 	inc_octave
-	E_ 7
+	note E_, 7
 	dec_octave
-	B_ 4
+	note B_, 4
 	rest 2
-	E_ 4
+	note E_, 4
 	rest 3
-	B_ 4
+	note B_, 4
 	rest 3
-	E_ 4
+	note E_, 4
 	rest 3
-	B_ 4
+	note B_, 4
 	rest 2
 	inc_octave
-	G_ 7
-	D_ 4
+	note G_, 7
+	note D_, 4
 	rest 3
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	D_ 4
-	rest 2
-	dec_octave
-	G_ 4
-	rest 3
-	inc_octave
-	D_ 4
-	rest 3
-	A_ 7
-	E_ 4
+	note D_, 4
 	rest 2
 	dec_octave
-	A_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	E_ 4
+	note D_, 4
+	rest 3
+	note A_, 7
+	note E_, 4
+	rest 2
+	dec_octave
+	note A_, 4
+	rest 3
+	inc_octave
+	note E_, 4
 	rest 3
 	dec_octave
-	A_ 4
+	note A_, 4
 	rest 3
 	inc_octave
-	E_ 4
+	note E_, 4
 	rest 2
-	D_ 7
+	note D_, 7
 	dec_octave
-	A_ 4
+	note A_, 4
 	rest 3
-	D_ 4
+	note D_, 4
 	rest 3
-	A_ 4
+	note A_, 4
 	rest 2
-	A# 7
+	note A#, 7
 	inc_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	A# 7
-	G# 4
+	note A#, 7
+	note G#, 4
 	rest 2
 	music_call Branch_1efda8
 	music_call Branch_1efdc0
@@ -2183,414 +2183,414 @@ Music_GRDuelTheme2_Ch3:
 	music_call Branch_1efdc0
 	music_call Branch_1efda8
 	octave 1
-	A_ 4
+	note A_, 4
 	rest 3
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 2
-	G_ 7
-	A_ 4
+	note G_, 7
+	note A_, 4
 	rest 2
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
-	G_ 7
-	G# 6
-	A_ 7
+	note G_, 7
+	note G#, 6
+	note A_, 7
 	rest 7
-	A_ 13
-	A_ 4
+	note A_, 13
+	note A_, 4
 	rest 3
-	G_ 14
-	G_ 3
+	note G_, 14
+	note G_, 3
 	rest 3
 	Loop 2
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	C_ 4
+	note C_, 4
 	rest 3
-	D# 7
-	F_ 6
+	note D#, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
-	F_ 13
-	C_ 14
-	D# 13
+	note F_, 13
+	note C_, 14
+	note D#, 13
 	EndLoop
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
-	C_ 4
+	note C_, 4
 	rest 3
-	D# 7
-	F_ 6
+	note D#, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
 	dec_octave
-	F_ 13
-	C_ 14
-	D# 13
+	note F_, 13
+	note C_, 14
+	note D#, 13
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
-	C_ 4
+	note C_, 4
 	rest 3
-	D# 7
-	F_ 6
+	note D#, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
-	F_ 13
-	C_ 14
-	D# 13
+	note F_, 13
+	note C_, 14
+	note D#, 13
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	C_ 4
+	note C_, 4
 	rest 3
-	D# 7
-	F_ 6
+	note D#, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
-	A# 5
+	note A#, 5
 	rest 2
-	F_ 13
-	C_ 14
-	D# 13
+	note F_, 13
+	note C_, 14
+	note D#, 13
 	octave 1
-	F_ 14
-	F_ 4
+	note F_, 14
+	note F_, 4
 	rest 3
-	F_ 6
+	note F_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	C_ 4
+	note C_, 4
 	rest 3
-	D# 7
-	F_ 6
+	note D#, 7
+	note F_, 6
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	F_ 13
-	C_ 14
-	D# 13
+	note F_, 13
+	note C_, 14
+	note D#, 13
 	dec_octave
 	octave 1
-	A# 14
-	A# 4
+	note A#, 14
+	note A#, 4
 	rest 3
-	A# 6
+	note A#, 6
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 2
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	A_ 7
-	A# 6
-	A# 4
+	note A_, 7
+	note A#, 6
+	note A#, 4
 	rest 3
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
-	F_ 13
-	A_ 14
-	F_ 13
+	note F_, 13
+	note A_, 14
+	note F_, 13
 	octave 1
-	A# 14
-	A# 4
+	note A#, 14
+	note A#, 4
 	rest 3
-	A# 6
+	note A#, 6
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	F_ 4
+	note F_, 4
 	rest 3
-	A_ 7
-	A# 6
-	A# 4
+	note A_, 7
+	note A#, 6
+	note A#, 4
 	rest 3
 	inc_octave
-	A_ 5
+	note A_, 5
 	rest 2
 	dec_octave
-	F_ 13
-	A_ 14
-	F_ 13
+	note F_, 13
+	note A_, 14
+	note F_, 13
 	octave 1
-	G# 14
-	G# 4
+	note G#, 14
+	note G#, 4
 	rest 3
-	G# 6
+	note G#, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	D# 4
+	note D#, 4
 	rest 3
-	G_ 7
-	G# 6
+	note G_, 7
+	note G#, 6
 	dec_octave
-	G# 4
+	note G#, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
-	D# 13
-	G_ 14
-	D# 13
+	note D#, 13
+	note G_, 14
+	note D#, 13
 	octave 1
-	D_ 14
-	D_ 4
+	note D_, 14
+	note D_, 4
 	rest 3
-	D_ 6
+	note D_, 6
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	A_ 4
+	note A_, 4
 	rest 3
 	inc_octave
-	C_ 7
-	D_ 6
+	note C_, 7
+	note D_, 6
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	A_ 13
+	note A_, 13
 	inc_octave
-	C_ 14
+	note C_, 14
 	dec_octave
-	A_ 13
-	G_ 14
-	G_ 4
+	note A_, 13
+	note G_, 14
+	note G_, 4
 	rest 3
-	G_ 6
+	note G_, 6
 	inc_octave
-	F_ 5
+	note F_, 5
 	rest 2
-	D_ 4
+	note D_, 4
 	rest 3
-	F_ 7
-	G_ 6
+	note F_, 7
+	note G_, 6
 	dec_octave
-	G_ 4
+	note G_, 4
 	rest 3
 	inc_octave
-	F_ 5
-	rest 2
-	dec_octave
-	G_ 13
-	inc_octave
-	D_ 14
-	C# 13
-	dec_octave
-	D# 14
-	D# 4
-	rest 3
-	D# 6
-	inc_octave
-	A# 5
+	note F_, 5
 	rest 2
 	dec_octave
-	A# 4
-	rest 3
+	note G_, 13
 	inc_octave
-	C# 7
-	D# 6
+	note D_, 14
+	note C#, 13
 	dec_octave
-	D# 4
+	note D#, 14
+	note D#, 4
 	rest 3
+	note D#, 6
 	inc_octave
-	inc_octave
-	C# 5
+	note A#, 5
 	rest 2
 	dec_octave
-	D# 13
-	dec_octave
-	A# 14
-	inc_octave
-	C# 13
-	D_ 7
-	dec_octave
-	A_ 4
+	note A#, 4
 	rest 3
-	D_ 4
+	inc_octave
+	note C#, 7
+	note D#, 6
+	dec_octave
+	note D#, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C#, 5
+	rest 2
+	dec_octave
+	note D#, 13
+	dec_octave
+	note A#, 14
+	inc_octave
+	note C#, 13
+	note D_, 7
+	dec_octave
+	note A_, 4
+	rest 3
+	note D_, 4
+	rest 3
+	inc_octave
+	inc_octave
+	note C_, 5
 	rest 1
 	dec_octave
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	D_ 2
+	note D_, 2
 	rest 5
-	E_ 13
-	E_ 4
+	note E_, 13
+	note E_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	E_ 13
+	note E_, 13
 	dec_octave
-	B_ 14
+	note B_, 14
 	inc_octave
-	D_ 13
-	E_ 7
+	note D_, 13
+	note E_, 7
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
-	E_ 2
+	note E_, 2
 	rest 5
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 1
 	dec_octave
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
 	inc_octave
-	E_ 7
-	D_ 7
-	E_ 6
+	note E_, 7
+	note D_, 7
+	note E_, 6
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	B_ 13
+	note B_, 13
 	inc_octave
-	D_ 14
+	note D_, 14
 	dec_octave
-	B_ 13
+	note B_, 13
 	inc_octave
-	D_ 7
+	note D_, 7
 	dec_octave
-	A_ 4
+	note A_, 4
 	rest 3
-	D_ 4
+	note D_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 1
 	dec_octave
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	D_ 2
+	note D_, 2
 	rest 5
-	E_ 13
-	E_ 4
+	note E_, 13
+	note E_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
-	E_ 13
+	note E_, 13
 	dec_octave
-	A# 14
+	note A#, 14
 	inc_octave
 	inc_octave
-	D_ 5
+	note D_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	A# 3
+	note A#, 3
 	rest 3
-	A# 7
+	note A#, 7
 	inc_octave
-	A# 4
+	note A#, 4
 	rest 3
 	dec_octave
-	E_ 13
-	E_ 14
-	E_ 4
+	note E_, 13
+	note E_, 14
+	note E_, 4
 	rest 3
 	inc_octave
-	D_ 6
-	E_ 7
+	note D_, 6
+	note E_, 7
 	dec_octave
-	D_ 4
+	note D_, 4
 	rest 3
-	D# 4
+	note D#, 4
 	rest 3
-	E_ 4
+	note E_, 4
 	rest 2
-	G_ 7
-	E_ 4
+	note G_, 7
+	note E_, 4
 	rest 3
-	G_ 4
+	note G_, 4
 	rest 3
-	G# 4
+	note G#, 4
 	rest 2
 	music_call Branch_1efd79
 	music_call Branch_1efd91
@@ -2604,135 +2604,135 @@ Music_GRDuelTheme2_Ch3:
 
 Branch_1efd79:
 	octave 1
-	A_ 14
+	note A_, 14
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	A_ 6
-	A_ 4
+	note A_, 6
+	note A_, 4
 	rest 3
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
 	inc_octave
-	G_ 7
-	G# 6
-	A_ 4
+	note G_, 7
+	note G#, 6
+	note A_, 4
 	rest 3
-	G_ 5
+	note G_, 5
 	rest 2
-	C_ 13
-	D_ 14
-	E_ 13
+	note C_, 13
+	note D_, 14
+	note E_, 13
 	music_ret
 
 Branch_1efd91:
 	octave 1
-	A_ 14
+	note A_, 14
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	A_ 6
-	A_ 4
+	note A_, 6
+	note A_, 4
 	rest 3
-	A_ 1
+	note A_, 1
 	rest 6
 	inc_octave
-	G_ 7
-	G# 6
-	A_ 4
+	note G_, 7
+	note G#, 6
+	note A_, 4
 	rest 3
 	dec_octave
-	A_ 2
+	note A_, 2
 	rest 5
-	F# 13
-	G_ 14
-	G# 13
+	note F#, 13
+	note G_, 14
+	note G#, 13
 	music_ret
 
 Branch_1efda8:
 	octave 1
-	A_ 14
-	A_ 4
+	note A_, 14
+	note A_, 4
 	rest 3
-	A_ 6
+	note A_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
-	G_ 7
-	G# 6
-	A_ 4
+	note G_, 7
+	note G#, 6
+	note A_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
-	C_ 13
-	D_ 14
-	C_ 13
+	note C_, 13
+	note D_, 14
+	note C_, 13
 	music_ret
 
 Branch_1efdc0:
 	octave 1
-	A_ 14
-	A_ 4
+	note A_, 14
+	note A_, 4
 	rest 3
-	A_ 6
+	note A_, 6
 	inc_octave
-	G_ 5
+	note G_, 5
 	rest 2
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
-	G_ 7
-	G# 6
-	A_ 4
+	note G_, 7
+	note G#, 6
+	note A_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	F# 13
-	G_ 14
-	G# 13
+	note F#, 13
+	note G_, 14
+	note G#, 13
 	music_ret
 
 Branch_1efdd9:
 	octave 1
-	A_ 14
-	A_ 4
+	note A_, 14
+	note A_, 4
 	rest 3
-	A_ 6
+	note A_, 6
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	E_ 4
+	note E_, 4
 	rest 3
-	G_ 7
-	G# 6
-	A_ 4
+	note G_, 7
+	note G#, 6
+	note A_, 4
 	rest 3
 	inc_octave
 	inc_octave
-	C_ 5
+	note C_, 5
 	rest 2
 	dec_octave
 	dec_octave
-	F# 13
-	G_ 14
-	G# 13
+	note F#, 13
+	note G_, 14
+	note G#, 13
 	music_ret
 
 

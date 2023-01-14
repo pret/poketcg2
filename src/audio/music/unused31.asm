@@ -7,9 +7,9 @@ Music_Unused31_Ch1:
 	octave 3
 	duty 2
 	volume_envelope 10, 0
-	C_ 1
+	note C_, 1
 	dec_octave
-	C_ 1
+	note C_, 1
 	rest 1
-	C_ 1
+	note C_, 1
 	music_end

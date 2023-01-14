@@ -6,77 +6,77 @@ Music_GRChallengeCup_Ch2:
 	octave 4
 	vibrato_delay 24
 	musicef -1
-	C_ 4
-	C# 4
-	D_ 4
-	D# 4
+	note C_, 4
+	note C#, 4
+	note D_, 4
+	note D#, 4
 	musicf1 69
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
-	E_ 5
-	E_ 3
-	F_ 5
-	E_ 2
-	G_ 15
-	G_ 5
-	F_ 15
-	F_ 5
-	D_ 15
-	D_ 5
-	E_ 15
+	note E_, 8
+	note E_, 7
+	note E_, 5
+	note E_, 3
+	note F_, 5
+	note E_, 2
+	note G_, 15
+	note G_, 5
+	note F_, 15
+	note F_, 5
+	note D_, 15
+	note D_, 5
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
-	D_ 15
-	D_ 5
+	note E_, 8
+	note E_, 7
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
+	note D_, 15
+	note D_, 5
 	dec_octave
-	B_ 15
-	B_ 5
+	note B_, 15
+	note B_, 5
 	inc_octave
-	D_ 15
-	D_ 5
-	E_ 15
+	note D_, 15
+	note D_, 5
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
-	A_ 5
-	E_ 5
-	E_ 5
-	A_ 5
-	A_ 5
-	E_ 5
-	B_ 15
-	B_ 5
-	G_ 15
-	G_ 5
-	B_ 15
-	B_ 5
+	note E_, 8
+	note E_, 7
+	note A_, 5
+	note E_, 5
+	note E_, 5
+	note A_, 5
+	note A_, 5
+	note E_, 5
+	note B_, 15
+	note B_, 5
+	note G_, 15
+	note G_, 5
+	note B_, 15
+	note B_, 5
 	musicef -6
 	volume_envelope 1, -6
 	musicf3
 	speed 6
-	A_ 10
+	note A_, 10
 	tie
 	speed 1
-	A_ 15
+	note A_, 15
 	tie
-	A_ 10
+	note A_, 10
 	volume_envelope 10, 0
 	musicf1 54
-	A_ 5
-	A_ 15
+	note A_, 5
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	preset 8
 	musicef -1
 	musicf1 67
@@ -84,19 +84,19 @@ Music_GRChallengeCup_Ch2:
 	octave 2
 	musicf2
 	cutoff 8
-	E_ 5
-	E_ 10
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
+	note E_, 5
+	note E_, 10
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
 	musicf3
-	E_ 15
+	note E_, 15
 	musicf2
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
 	EndLoop
 	MainLoop
 	preset 8
@@ -106,63 +106,63 @@ Music_GRChallengeCup_Ch2:
 	octave 2
 	musicf2
 	cutoff 8
-	F_ 5
-	F_ 10
-	F_ 5
-	F_ 3
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 10
+	note F_, 5
+	note F_, 3
+	note F_, 5
+	note F_, 2
 	musicf3
-	F_ 15
+	note F_, 15
 	musicf2
-	F_ 5
-	F_ 3
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 3
+	note F_, 5
+	note F_, 2
 	EndLoop
 	Loop 2
 	octave 2
 	musicf2
 	cutoff 8
-	F# 5
-	F# 10
-	F# 5
-	F# 3
-	F# 5
-	F# 2
+	note F#, 5
+	note F#, 10
+	note F#, 5
+	note F#, 3
+	note F#, 5
+	note F#, 2
 	musicf3
-	F# 15
+	note F#, 15
 	musicf2
-	F# 5
-	F# 3
-	F# 5
-	F# 2
+	note F#, 5
+	note F#, 3
+	note F#, 5
+	note F#, 2
 	EndLoop
 	octave 2
 	musicf2
 	cutoff 8
-	F_ 5
-	F_ 10
-	F_ 5
-	F_ 3
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 10
+	note F_, 5
+	note F_, 3
+	note F_, 5
+	note F_, 2
 	musicf3
-	F_ 15
+	note F_, 15
 	musicf2
-	F_ 5
-	F_ 3
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 3
+	note F_, 5
+	note F_, 2
 	octave 2
 	musicf2
 	cutoff 8
-	F_ 5
-	F_ 10
-	F_ 5
-	F_ 3
-	F_ 5
-	F_ 2
+	note F_, 5
+	note F_, 10
+	note F_, 5
+	note F_, 3
+	note F_, 5
+	note F_, 2
 	musicf3
 	preset 0
 	musicef 1
@@ -171,304 +171,304 @@ Music_GRChallengeCup_Ch2:
 	octave 3
 	frequency_offset 0
 	musicf1 70
-	E_ 15
-	E_ 8
-	E_ 5
-	E_ 2
+	note E_, 15
+	note E_, 8
+	note E_, 5
+	note E_, 2
 	inc_octave
 	vibrato_delay 30
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
+	note E_, 8
+	note E_, 7
 	dec_octave
 	musicf3
-	A_ 15
-	B_ 15
+	note A_, 15
+	note B_, 15
 	inc_octave
-	C_ 15
+	note C_, 15
 	musicf1 70
 	vibrato_delay 15
-	D_ 15
+	note D_, 15
 	tie
-	D_ 15
-	D_ 15
-	C_ 8
-	D_ 7
-	C_ 15
+	note D_, 15
+	note D_, 15
+	note C_, 8
+	note D_, 7
+	note C_, 15
 	tie
-	C_ 15
-	C_ 15
+	note C_, 15
+	note C_, 15
 	dec_octave
 	musicf3
-	A_ 8
-	B_ 7
+	note A_, 8
+	note B_, 7
 	musicf1 70
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
-	C_ 15
+	note C_, 15
+	note C_, 15
 	vibrato_delay 0
-	C_ 8
-	C_ 7
+	note C_, 8
+	note C_, 7
 	dec_octave
 	musicf3
-	B_ 15
+	note B_, 15
 	musicf1 70
-	A_ 8
-	B_ 7
-	G_ 8
-	A_ 7
-	B_ 8
-	G_ 7
+	note A_, 8
+	note B_, 7
+	note G_, 8
+	note A_, 7
+	note B_, 8
+	note G_, 7
 	vibrato_delay 30
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
-	A_ 15
-	E_ 15
-	E_ 8
-	E_ 5
-	E_ 2
+	note A_, 15
+	note A_, 15
+	note E_, 15
+	note E_, 8
+	note E_, 5
+	note E_, 2
 	inc_octave
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
+	note E_, 8
+	note E_, 7
 	musicf3
 	dec_octave
-	A_ 15
-	B_ 15
+	note A_, 15
+	note B_, 15
 	inc_octave
-	C_ 15
+	note C_, 15
 	musicf1 70
 	vibrato_delay 15
-	D_ 15
+	note D_, 15
 	tie
-	D_ 15
-	D_ 15
-	C_ 8
-	D_ 7
-	C_ 15
+	note D_, 15
+	note D_, 15
+	note C_, 8
+	note D_, 7
+	note C_, 15
 	tie
-	C_ 15
-	C_ 15
+	note C_, 15
+	note C_, 15
 	dec_octave
 	musicf3
-	A_ 8
-	B_ 7
+	note A_, 8
+	note B_, 7
 	musicf1 70
 	vibrato_delay 0
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 8
-	C_ 7
-	E_ 15
+	note C_, 8
+	note C_, 7
+	note E_, 15
 	tie
-	E_ 8
-	E_ 7
-	D_ 15
-	D_ 5
-	G_ 15
-	G_ 5
-	D_ 15
-	D_ 5
+	note E_, 8
+	note E_, 7
+	note D_, 15
+	note D_, 5
+	note G_, 15
+	note G_, 5
+	note D_, 15
+	note D_, 5
 	vibrato_delay 15
 	musicf3
-	F_ 15
+	note F_, 15
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 15
+	note F_, 15
 	musicf1 70
-	E_ 8
-	F_ 7
-	E_ 15
+	note E_, 8
+	note F_, 7
+	note E_, 15
 	tie
-	E_ 15
-	E_ 15
+	note E_, 15
+	note E_, 15
 	musicf3
-	F_ 8
-	G_ 7
+	note F_, 8
+	note G_, 7
 	musicf1 70
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	musicf3
-	A_ 15
+	note A_, 15
 	musicf1 70
-	G_ 8
-	A_ 7
-	F_ 8
-	G_ 7
-	A_ 8
-	F_ 7
-	G_ 15
-	G_ 8
-	C_ 5
-	G_ 2
+	note G_, 8
+	note A_, 7
+	note F_, 8
+	note G_, 7
+	note A_, 8
+	note F_, 7
+	note G_, 15
+	note G_, 8
+	note C_, 5
+	note G_, 2
 	vibrato_delay 0
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
-	C_ 15
+	note C_, 15
+	note C_, 15
 	musicf3
-	D_ 8
-	E_ 7
+	note D_, 8
+	note E_, 7
 	musicf1 70
 	vibrato_delay 15
-	F_ 15
+	note F_, 15
 	tie
-	F_ 15
-	F_ 15
-	F_ 8
-	F_ 7
+	note F_, 15
+	note F_, 15
+	note F_, 8
+	note F_, 7
 	musicf3
-	F_ 15
+	note F_, 15
 	musicf1 70
-	E_ 8
-	F_ 7
-	D_ 8
-	E_ 7
-	F_ 8
-	D_ 7
-	E_ 15
+	note E_, 8
+	note F_, 7
+	note D_, 8
+	note E_, 7
+	note F_, 8
+	note D_, 7
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
-	E_ 15
+	note E_, 15
+	note E_, 15
 	dec_octave
 	musicf3
-	A_ 8
-	B_ 7
+	note A_, 8
+	note B_, 7
 	musicf1 70
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
-	C_ 15
-	C_ 8
-	C_ 7
+	note C_, 15
+	note C_, 15
+	note C_, 8
+	note C_, 7
 	musicf1 70
-	D_ 15
+	note D_, 15
 	musicf1 70
-	C_ 8
-	D_ 7
+	note C_, 8
+	note D_, 7
 	dec_octave
-	B_ 8
+	note B_, 8
 	inc_octave
-	C_ 7
+	note C_, 7
 	dec_octave
-	A_ 8
-	B_ 7
-	G_ 15
-	G_ 15
+	note A_, 8
+	note B_, 7
+	note G_, 15
+	note G_, 15
 	inc_octave
 	musicf3
-	G_ 15
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	musicf1 70
-	F_ 15
-	F_ 8
-	E_ 5
-	F_ 2
-	E_ 15
+	note F_, 15
+	note F_, 8
+	note E_, 5
+	note F_, 2
+	note E_, 15
 	tie
-	E_ 15
-	E_ 8
+	note E_, 15
+	note E_, 8
 	musicf3
-	F_ 7
+	note F_, 7
 	musicf1 70
-	E_ 5
-	F_ 3
-	C_ 5
-	E_ 2
+	note E_, 5
+	note F_, 3
+	note C_, 5
+	note E_, 2
 	dec_octave
-	A_ 15
-	A_ 5
+	note A_, 15
+	note A_, 5
 	inc_octave
-	C_ 15
-	D_ 5
-	D_ 15
-	D_ 5
+	note C_, 15
+	note D_, 5
+	note D_, 15
+	note D_, 5
 	musicf3
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	dec_octave
-	B_ 4
+	note B_, 4
 	inc_octave
-	C_ 4
+	note C_, 4
 	dec_octave
-	B_ 4
-	A_ 3
+	note B_, 4
+	note A_, 3
 	musicf1 70
-	B_ 15
+	note B_, 15
 	tie
-	B_ 15
-	B_ 15
+	note B_, 15
+	note B_, 15
 	inc_octave
 	musicf3
-	C_ 8
-	D_ 7
+	note C_, 8
+	note D_, 7
 	vibrato_delay 30
 	musicef -1
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	EndMainLoop
 
 
@@ -480,103 +480,103 @@ Music_GRChallengeCup_Ch1:
 	musicef -1
 	octave 3
 	vibrato_delay 24
-	G_ 4
-	G# 4
-	A_ 4
-	A# 4
+	note G_, 4
+	note G#, 4
+	note A_, 4
+	note A#, 4
 	inc_octave
 	musicf1 53
-	C# 15
+	note C#, 15
 	tie
-	C# 15
+	note C#, 15
 	tie
-	C# 8
-	C# 7
-	C# 5
-	C# 3
-	C# 5
-	C# 2
-	D_ 15
-	D_ 5
-	D_ 15
-	D_ 5
+	note C#, 8
+	note C#, 7
+	note C#, 5
+	note C#, 3
+	note C#, 5
+	note C#, 2
+	note D_, 15
+	note D_, 5
+	note D_, 15
+	note D_, 5
 	dec_octave
-	A# 15
-	A# 5
+	note A#, 15
+	note A#, 5
 	inc_octave
-	C# 15
+	note C#, 15
 	tie
-	C# 15
+	note C#, 15
 	tie
-	C# 8
-	C# 7
-	C# 5
-	C# 3
-	C# 5
-	C# 2
+	note C#, 8
+	note C#, 7
+	note C#, 5
+	note C#, 3
+	note C#, 5
+	note C#, 2
 	dec_octave
-	B_ 15
-	B_ 5
-	G_ 15
-	G_ 5
-	B_ 15
-	B_ 5
+	note B_, 15
+	note B_, 5
+	note G_, 15
+	note G_, 5
+	note B_, 15
+	note B_, 5
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 8
-	C_ 7
-	C_ 5
-	C_ 5
-	C_ 5
-	C_ 5
-	C_ 5
-	C_ 5
-	D_ 15
-	D_ 5
+	note C_, 8
+	note C_, 7
+	note C_, 5
+	note C_, 5
+	note C_, 5
+	note C_, 5
+	note C_, 5
+	note C_, 5
+	note D_, 15
+	note D_, 5
 	dec_octave
-	B_ 15
-	B_ 5
+	note B_, 15
+	note B_, 5
 	inc_octave
-	D_ 15
-	D_ 5
+	note D_, 15
+	note D_, 5
 	musicef -6
 	volume_envelope 1, -6
 	musicf3
 	speed 6
-	C# 10
+	note C#, 10
 	tie
 	speed 1
-	C# 15
+	note C#, 15
 	tie
-	C# 10
+	note C#, 10
 	volume_envelope 9, 0
 	musicf1 54
-	C# 5
-	C# 15
+	note C#, 5
+	note C#, 15
 	tie
-	C# 15
+	note C#, 15
 	preset 8
 	musicf1 67
 	Loop 2
 	octave 1
 	musicf2
 	cutoff 8
-	A_ 5
-	A_ 10
-	A_ 5
-	A_ 3
-	A_ 5
-	A_ 2
+	note A_, 5
+	note A_, 10
+	note A_, 5
+	note A_, 3
+	note A_, 5
+	note A_, 2
 	musicf3
 	inc_octave
-	B_ 15
+	note B_, 15
 	dec_octave
 	musicf2
-	A_ 5
-	A_ 3
-	A_ 5
-	A_ 2
+	note A_, 5
+	note A_, 3
+	note A_, 5
+	note A_, 2
 	EndLoop
 	MainLoop
 	musicf1 67
@@ -584,206 +584,206 @@ Music_GRChallengeCup_Ch1:
 	octave 1
 	musicf2
 	cutoff 8
-	A_ 5
-	A_ 10
-	A_ 5
-	A_ 3
-	A_ 5
-	A_ 2
+	note A_, 5
+	note A_, 10
+	note A_, 5
+	note A_, 3
+	note A_, 5
+	note A_, 2
 	musicf3
 	inc_octave
-	B_ 15
+	note B_, 15
 	dec_octave
 	musicf2
-	A_ 5
-	A_ 3
-	A_ 5
-	A_ 2
+	note A_, 5
+	note A_, 3
+	note A_, 5
+	note A_, 2
 	EndLoop
 	octave 1
 	musicf2
 	cutoff 8
-	A_ 5
-	A_ 10
-	A_ 5
-	A_ 3
-	A_ 5
-	A_ 2
+	note A_, 5
+	note A_, 10
+	note A_, 5
+	note A_, 3
+	note A_, 5
+	note A_, 2
 	musicf3
 	inc_octave
-	B_ 15
+	note B_, 15
 	tie
-	B_ 8
+	note B_, 8
 	dec_octave
 	preset 21
 	volume_envelope 8, 0
 	octave 2
-	A_ 5
+	note A_, 5
 	rest 2
 	inc_octave
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	music_call Branch_1f3140
 	rest 15
 	rest 15
-	E_ 15
+	note E_, 15
 	pitch_offset 3
 	music_call Branch_1f3140
-	G_ 15
-	F# 15
+	note G_, 15
+	note F#, 15
 	tie
-	F# 15
+	note F#, 15
 	pitch_offset 2
 	music_call Branch_1f3140
-	F# 8
+	note F#, 8
 	rest 7
-	F# 15
+	note F#, 15
 	tie
-	F# 15
+	note F#, 15
 	pitch_offset 2
 	music_call Branch_1f3140
-	F# 5
+	note F#, 5
 	rest 3
-	F# 5
+	note F#, 5
 	rest 2
-	F_ 15
+	note F_, 15
 	tie
-	F_ 15
+	note F_, 15
 	pitch_offset 1
 	music_call Branch_1f3140
-	F_ 8
+	note F_, 8
 	rest 7
-	D_ 15
-	C_ 8
+	note D_, 15
+	note C_, 8
 	rest 7
 	pitch_offset 3
 	music_call Branch_1f3140
-	D_ 8
+	note D_, 8
 	rest 7
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	music_call Branch_1f3140
 	rest 15
 	rest 8
 	music_call Branch_1f3150
 	rest 15
 	dec_octave
-	A_ 15
+	note A_, 15
 	rest 8
-	A_ 7
+	note A_, 7
 	inc_octave
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	music_call Branch_1f3140
 	rest 15
 	rest 15
-	E_ 15
+	note E_, 15
 	pitch_offset 3
 	music_call Branch_1f3140
-	G_ 15
-	F# 15
+	note G_, 15
+	note F#, 15
 	tie
-	F# 15
+	note F#, 15
 	pitch_offset 2
 	music_call Branch_1f3140
-	F# 8
+	note F#, 8
 	rest 7
-	F# 15
+	note F#, 15
 	tie
-	F# 15
+	note F#, 15
 	pitch_offset 2
 	music_call Branch_1f3140
-	F# 5
+	note F#, 5
 	rest 3
-	F# 5
+	note F#, 5
 	rest 2
-	F_ 15
+	note F_, 15
 	tie
-	F_ 8
+	note F_, 8
 	rest 7
 	pitch_offset 1
 	music_call Branch_1f3140
 	rest 8
 	rest 7
-	B_ 15
+	note B_, 15
 	rest 5
-	B_ 10
+	note B_, 10
 	pitch_offset 3
 	music_call Branch_1f3140
 	rest 15
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	pitch_offset 8
 	music_call Branch_1f3140
 	octave 3
-	G_ 8
-	F_ 7
-	G_ 15
+	note G_, 8
+	note F_, 7
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	pitch_offset 6
 	music_call Branch_1f3140
-	A_ 8
-	A# 7
+	note A_, 8
+	note A#, 7
 	inc_octave
-	C_ 15
+	note C_, 15
 	tie
-	C_ 15
+	note C_, 15
 	pitch_offset 1
 	music_call Branch_1f3140
 	octave 4
-	C_ 8
+	note C_, 8
 	rest 7
 	dec_octave
-	B_ 15
-	B_ 8
+	note B_, 15
+	note B_, 8
 	rest 7
 	pitch_offset 1
 	music_call Branch_1f3140
 	octave 4
-	D_ 8
+	note D_, 8
 	rest 7
-	C_ 15
+	note C_, 15
 	rest 8
 	dec_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	G_ 15
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	tie
-	G_ 8
+	note G_, 8
 	music_call Branch_1f3150
 	rest 8
 	rest 7
 	pitch_offset 3
 	music_call Branch_1f3140
 	octave 3
-	F_ 8
-	G_ 7
-	A_ 15
+	note F_, 8
+	note G_, 7
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	pitch_offset 5
 	music_call Branch_1f3140
-	A_ 8
+	note A_, 8
 	rest 7
-	G# 13
+	note G#, 13
 	rest 2
-	G# 8
+	note G#, 8
 	rest 7
 	pitch_offset 4
 	music_call Branch_1f3140
-	G# 8
+	note G#, 8
 	rest 7
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	music_call Branch_1f3140
 	rest 15
 	rest 8
@@ -791,102 +791,102 @@ Music_GRChallengeCup_Ch1:
 	rest 15
 	pitch_offset 3
 	music_call Branch_1f3140
-	E_ 8
-	G_ 7
-	A_ 15
+	note E_, 8
+	note G_, 7
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	pitch_offset 1
 	music_call Branch_1f3140
-	A_ 8
+	note A_, 8
 	rest 7
-	B_ 15
-	A_ 5
+	note B_, 15
+	note A_, 5
 	rest 10
 	pitch_offset 3
 	music_call Branch_1f3140
-	F_ 8
+	note F_, 8
 	rest 7
-	E_ 15
+	note E_, 15
 	tie
-	E_ 15
+	note E_, 15
 	inc_octave
 	volume_envelope 5, -7
-	D_ 15
+	note D_, 15
 	tie
-	D_ 15
+	note D_, 15
 	volume_envelope 6, 0
-	C# 15
+	note C#, 15
 	tie
-	C# 15
+	note C#, 15
 	pitch_offset 3
 	music_call Branch_1f3140
 	rest 8
 	dec_octave
-	G_ 5
+	note G_, 5
 	rest 2
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	pitch_offset 1
 	music_call Branch_1f3140
-	A_ 8
-	F_ 7
-	D_ 15
+	note A_, 8
+	note F_, 7
+	note D_, 15
 	rest 5
-	F_ 10
+	note F_, 10
 	pitch_offset 4
 	music_call Branch_1f3140
 	rest 15
-	G_ 15
+	note G_, 15
 	tie
-	G_ 15
+	note G_, 15
 	pitch_offset 1
 	music_call Branch_1f3140
-	G_ 4
-	D_ 4
-	C_ 4
-	D_ 3
-	D_ 15
+	note G_, 4
+	note D_, 4
+	note C_, 4
+	note D_, 3
+	note D_, 15
 	tie
-	D_ 15
+	note D_, 15
 	rest 15
-	G# 8
-	B_ 7
-	A_ 15
+	note G#, 8
+	note B_, 7
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	preset 8
 	musicef -1
 	octave 2
 	musicf1 67
 	musicf3
-	B_ 15
+	note B_, 15
 	musicf2
 	cutoff 8
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
-	E_ 5
-	E_ 10
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
+	note E_, 5
+	note E_, 10
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
 	musicf3
-	B_ 15
-	E_ 5
-	E_ 3
-	E_ 5
-	E_ 2
+	note B_, 15
+	note E_, 5
+	note E_, 3
+	note E_, 5
+	note E_, 2
 	EndMainLoop
 
 Branch_1f3140:
 	preset 8
 	octave 2
 	musicef -1
-	E_ 15
+	note E_, 15
 	musicef 1
 	preset 21
 	musicf1 128
@@ -898,8 +898,8 @@ Branch_1f3150:
 	preset 8
 	octave 2
 	musicf2
-	G_ 4
-	G_ 3
+	note G_, 4
+	note G_, 3
 	preset 21
 	volume_envelope 8, 0
 	octave 3
@@ -916,373 +916,373 @@ Music_GRChallengeCup_Ch3:
 	octave 4
 	rest 16
 	octave 1
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	tie
-	A_ 8
+	note A_, 8
 	rest 7
-	A_ 5
+	note A_, 5
 	rest 3
-	A_ 5
+	note A_, 5
 	rest 2
-	A# 15
+	note A#, 15
 	rest 5
-	A# 15
+	note A#, 15
 	rest 5
-	A# 15
+	note A#, 15
 	rest 5
-	A_ 15
+	note A_, 15
 	tie
-	A_ 15
+	note A_, 15
 	tie
-	A_ 8
+	note A_, 8
 	rest 7
-	A_ 5
+	note A_, 5
 	rest 3
-	A_ 5
+	note A_, 5
 	rest 2
-	G_ 15
+	note G_, 15
 	rest 5
-	G_ 15
+	note G_, 15
 	rest 5
-	G_ 15
+	note G_, 15
 	rest 5
-	F_ 15
+	note F_, 15
 	tie
-	F_ 15
+	note F_, 15
 	tie
-	F_ 8
+	note F_, 8
 	rest 7
-	F_ 5
+	note F_, 5
 	rest 3
-	F_ 5
+	note F_, 5
 	rest 2
-	G_ 15
+	note G_, 15
 	rest 5
-	G_ 15
+	note G_, 15
 	rest 5
-	G_ 15
+	note G_, 15
 	rest 5
-	A_ 16
+	note A_, 16
 	tie
-	A_ 16
+	note A_, 16
 	tie
-	A_ 16
+	note A_, 16
 	tie
-	A_ 16
+	note A_, 16
 	tie
-	A_ 16
+	note A_, 16
 	tie
-	A_ 10
+	note A_, 10
 	rest 16
 	rest 14
 	cutoff 4
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
 	octave 1
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
 	octave 1
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
 	MainLoop
 	cutoff 4
 	octave 1
 	Loop 3
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
 	octave 1
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
 	octave 1
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
 	EndLoop
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	pitch_offset 5
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 8
+	note A_, 8
+	note A_, 7
+	note A_, 8
 	octave 3
 	cutoff 4
-	C_ 4
+	note C_, 4
 	rest 3
 	cutoff 8
 	octave 1
 	cutoff 8
-	F# 15
-	G_ 15
-	G# 15
+	note F#, 15
+	note G_, 15
+	note G#, 15
 	cutoff 4
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	B_ 15
-	B_ 8
-	B_ 7
+	note A_, 8
+	note A_, 7
+	note B_, 15
+	note B_, 8
+	note B_, 7
 	pitch_offset 5
 	music_call Branch_1f333b
-	B_ 8
-	B_ 7
+	note B_, 8
+	note B_, 7
 	inc_octave
-	C_ 15
-	C_ 8
-	C_ 7
+	note C_, 15
+	note C_, 8
+	note C_, 7
 	pitch_offset 8
 	music_call Branch_1f333b
 	octave 2
-	C_ 8
+	note C_, 8
 	dec_octave
-	G_ 7
-	C_ 8
+	note G_, 7
+	note C_, 8
 	inc_octave
 	inc_octave
 	cutoff 4
-	E_ 4
+	note E_, 4
 	rest 3
 	cutoff 4
 	dec_octave
 	dec_octave
-	C_ 8
-	C_ 7
+	note C_, 8
+	note C_, 7
 	cutoff 8
-	D_ 15
-	E_ 15
+	note D_, 15
+	note E_, 15
 	cutoff 4
-	F_ 15
-	F_ 8
-	F_ 7
+	note F_, 15
+	note F_, 8
+	note F_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	F_ 8
-	F_ 7
-	F_ 15
-	F_ 8
-	F_ 7
+	note F_, 8
+	note F_, 7
+	note F_, 15
+	note F_, 8
+	note F_, 7
 	music_call Branch_1f333b
-	F_ 8
-	F_ 7
-	E_ 15
-	E_ 8
-	E_ 7
+	note F_, 8
+	note F_, 7
+	note E_, 15
+	note E_, 8
+	note E_, 7
 	pitch_offset 254
 	music_call Branch_1f333b
-	E_ 8
-	E_ 7
-	E_ 8
+	note E_, 8
+	note E_, 7
+	note E_, 8
 	inc_octave
 	inc_octave
 	cutoff 4
-	C_ 4
+	note C_, 4
 	rest 3
 	dec_octave
 	dec_octave
-	E_ 8
-	E_ 7
+	note E_, 8
+	note E_, 7
 	pitch_offset 5
 	music_call Branch_1f333b
-	E_ 8
-	E_ 7
-	D_ 15
-	D_ 8
-	D_ 7
+	note E_, 8
+	note E_, 7
+	note D_, 15
+	note D_, 8
+	note D_, 7
 	pitch_offset 5
 	music_call Branch_1f333b
-	D_ 8
-	D_ 7
-	E_ 15
-	E_ 8
-	E_ 7
+	note D_, 8
+	note D_, 7
+	note E_, 15
+	note E_, 8
+	note E_, 7
 	pitch_offset 7
 	music_call Branch_1f333b
-	E_ 8
-	E_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note E_, 8
+	note E_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	G_ 8
+	note A_, 8
+	note A_, 7
+	note G_, 8
 	inc_octave
 	inc_octave
-	C_ 4
+	note C_, 4
 	rest 3
 	dec_octave
 	dec_octave
-	G_ 8
-	G_ 7
+	note G_, 8
+	note G_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	G_ 8
-	G_ 7
-	F_ 15
-	F_ 8
-	F_ 7
+	note G_, 8
+	note G_, 7
+	note F_, 15
+	note F_, 8
+	note F_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	F_ 8
-	F_ 7
-	F_ 15
-	F_ 8
-	F_ 7
+	note F_, 8
+	note F_, 7
+	note F_, 15
+	note F_, 8
+	note F_, 7
 	pitch_offset 5
 	music_call Branch_1f333b
-	F_ 8
-	F_ 7
-	E_ 15
-	E_ 8
-	E_ 7
+	note F_, 8
+	note F_, 7
+	note E_, 15
+	note E_, 8
+	note E_, 7
 	pitch_offset 254
 	music_call Branch_1f333b
-	E_ 8
-	E_ 7
-	D# 8
+	note E_, 8
+	note E_, 7
+	note D#, 8
 	inc_octave
 	inc_octave
-	C# 4
+	note C#, 4
 	rest 3
 	dec_octave
 	dec_octave
-	D# 8
-	D# 7
+	note D#, 8
+	note D#, 7
 	pitch_offset 4
 	music_call Branch_1f333b
-	D# 8
-	D# 7
-	D_ 15
-	D_ 8
-	D_ 7
+	note D#, 8
+	note D#, 7
+	note D_, 15
+	note D_, 8
+	note D_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	D_ 8
-	D_ 7
-	D_ 15
-	D_ 8
-	D_ 7
+	note D_, 8
+	note D_, 7
+	note D_, 15
+	note D_, 8
+	note D_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
-	D_ 8
-	D_ 7
-	G_ 15
-	G_ 8
-	G_ 7
+	note D_, 8
+	note D_, 7
+	note G_, 15
+	note G_, 8
+	note G_, 7
 	pitch_offset 3
 	music_call Branch_1f333b
 	inc_octave
-	D_ 8
-	D_ 7
+	note D_, 8
+	note D_, 7
 	cutoff 8
-	G_ 15
+	note G_, 15
 	dec_octave
-	G_ 15
-	G# 15
+	note G_, 15
+	note G#, 15
 	inc_octave
-	G# 15
+	note G#, 15
 	cutoff 4
 	dec_octave
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
-	A_ 15
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
+	note A_, 15
+	note A_, 8
+	note A_, 7
 	music_call Branch_1f333b
-	A_ 8
-	A_ 7
+	note A_, 8
+	note A_, 7
 	EndMainLoop
 
 Branch_1f333b:
 	octave 2
 	volume_envelope 4, 0
 	cutoff 8
-	A_ 15
+	note A_, 15
 	volume_envelope 2, 0
 	cutoff 4
 	pitch_offset 0

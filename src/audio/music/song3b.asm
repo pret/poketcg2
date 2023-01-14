@@ -5,7 +5,7 @@ Music_Song3B_Ch1:
 	duty 2
 	volume_envelope 10, 5
 	octave 4
-	C_ 4
+	note C_, 4
 	music_end
 
 
@@ -16,7 +16,7 @@ Music_Song3B_Ch2:
 	duty 2
 	volume_envelope 10, 5
 	octave 3
-	E_ 4
+	note E_, 4
 	music_end
 
 
@@ -28,7 +28,7 @@ Music_Song3B_Ch3:
 	echo 0
 	cutoff 8
 	octave 1
-	C_ 4
+	note C_, 4
 	music_end
 
 
