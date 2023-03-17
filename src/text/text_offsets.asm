@@ -1,5 +1,7 @@
 SECTION "Text Offsets", ROMX
 
+	const_def 1
+
 TextOffsets::
 	dw $0000, $0000                                                ; 0x0000
 	textpointer Text0001                                           ; 0x0001

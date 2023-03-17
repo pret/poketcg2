@@ -1,5 +1,5 @@
 ; switch SRAM bank to a
-BankswitchSRAM:
+BankswitchSRAM::
 	push af
 	ldh [hBankSRAM], a
 	ld [MBC3SRamBank], a

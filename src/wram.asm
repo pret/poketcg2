@@ -241,6 +241,9 @@ wDecompSecondaryBufferPtrLow:: ; cadd
 wBackgroundPalettesCGB:: ; caee
 	ds NUM_BACKGROUND_PALETTES palettes
 
+wcb2e:: ; cb2e
+	ds 1 palettes
+
 SECTION "WRAM0 Serial Transfer", WRAM0
 
 wSerialOp:: ; cb6e
@@ -358,6 +361,11 @@ wcc10:: ; cc10
 ; text id of the opponent's name
 wOpponentName:: ; cc13
 	ds $2
+
+	ds $1
+
+wcc16:: ; cc16
+	ds $1
 
 SECTION "WRAM0 Duels 2@cc29", WRAM0
 
@@ -477,7 +485,8 @@ wMetronomeEnergyCost:: ; cd05
 wNoEffectFromWhichStatus:: ; cd06
 	ds $1
 
-wcd07:: ; cd07
+; used to check whether deck indices are within range
+wDeckSize:: ; cd07
 	ds $1
 
 	ds $2
@@ -790,12 +799,335 @@ wNumberOfPrizeCardsToSelect:: ; d0c8
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
+SECTION "WRAM1@d54c", WRAMX
+
+wd54c:: ; d54c
+	ds $1
+
+wd54d:: ; d54d
+	ds $1
+
+wd54e:: ; d54e
+	ds $1
+
+wd54f:: ; d54f
+	ds $1
+
+wd550:: ; d550
+	ds $1
+
+wd551:: ; d551
+	ds $1
+
+wd552:: ; d552
+	ds $1
+
+wd553:: ; d553
+	ds $1
+
+; some flags for something
+wd554:: ; d554
+	ds $1
+
+	ds $2d
+
+wd582:: ; d582
+	ds $1
+
+wd583:: ; d583
+	ds $1
+
+wd584:: ; d584
+	ds $1
+
+wd585:: ; d585
+	ds $1
+
+wd586:: ; d586
+	ds $1
+
+wd587:: ; d587
+	ds $1
+
+	ds $1
+
+wd589:: ; d589
+	ds $1
+
+wd58a:: ; d58a
+	ds $1
+
+wd58b:: ; d58b
+	ds $1
+
+wd58c:: ; d58c
+	ds $1
+
+wd58d:: ; d58d
+	ds $1
+
+wd58e:: ; d58e
+	ds $1
+
+wd58f:: ; d58f
+	ds $1
+
+wd590:: ; d590
+	ds $1
+
+wd591:: ; d591
+	ds $1
+
+	ds $c
+
+wd59e:: ; d59e
+	ds $34
+
+wd5d2:: ; d5d2
+	ds $34
+
+	ds $b
+
+wd611:: ; d611
+	ds $1
+
+wd612:: ; d612
+	ds $1
+
+wd613:: ; d613
+	ds $1
+
+wd614:: ; d614
+	ds $1
+
+	ds $1
+
+wd616:: ; d616
+	ds $1
+
+wd617:: ; d617
+	ds $1
+
+wd618:: ; d618
+	ds $1
+
+wd619:: ; d619
+	ds $1
+
+wd61a:: ; d61a
+	ds $1
+
+wd61b:: ; d61b
+	ds $2
+
+wd61d:: ; d61d
+	ds $1
+
+wd61e:: ; d61e
+	ds $1
+
+	ds $49
+
+wd668:: ; d668
+	ds $1
+
+	ds $1
+
+wd66a:: ; d66a
+	ds $1
+
+wd66b:: ; d66b
+	ds $1
+
+wd66c:: ; d66c
+	ds $1
+
+wd66d:: ; d66d
+	ds $1
+
+wd66e:: ; d66e
+	ds $1
+
+wd66f:: ; d66f
+	ds $1
+
+wd670:: ; d670
+	ds $1
+
+wd671:: ; d671
+	ds $1
+
+wd672:: ; d672
+	ds $1
+
+wd673:: ; d673
+	ds $1
+
+wd674:: ; d674
+	ds $1
+
+	ds $3
+
+wd678:: ; d678
+	ds $1
+
+	ds $13
+
+wd68c:: ; d68c
+	ds $1
+
+	ds $7
+
+wDecompressedBGMap:: ; d694
+	ds 2 * BG_MAP_WIDTH
+
+wd6d4:: ; d6d4
+	ds $100
+
+wBGMapAttribute:: ; d7d4
+	ds $1
+
+wBGMapTileOffset:: ; d7d5
+	ds $1
+
+wBGMapWidth:: ; d7d6
+	ds $1
+
+wBGMapHeight:: ; d7d7
+	ds $1
+
+wd7d8:: ; d7d8
+	ds $1
+
+wd7d9:: ; d7d9
+	ds $1
+
+	ds $c8
+
+; seems like structs for handling sprites in a scene
+wd8a2:: ; d8a2
+wSceneUnkStruct0:: scene_unk_struct wSceneUnkStruct0
+wSceneUnkStruct1:: scene_unk_struct wSceneUnkStruct1
+wSceneUnkStruct2:: scene_unk_struct wSceneUnkStruct2
+wSceneUnkStruct3:: scene_unk_struct wSceneUnkStruct3
+wSceneUnkStruct4:: scene_unk_struct wSceneUnkStruct4
+wSceneUnkStruct5:: scene_unk_struct wSceneUnkStruct5
+wSceneUnkStruct6:: scene_unk_struct wSceneUnkStruct6
+wSceneUnkStruct7:: scene_unk_struct wSceneUnkStruct7
+wSceneUnkStruct8:: scene_unk_struct wSceneUnkStruct8
+wSceneUnkStruct9:: scene_unk_struct wSceneUnkStruct9
+
+wd942:: ; d942
+	ds $1
+
+wd943:: ; d943
+	ds $1
+
+wd944:: ; d944
+	ds $1
+
+	ds $2a
+
+wd96f:: ; d96f
+	ds $1
+
+wd970:: ; d970
+	ds $1
+
+wd971:: ; d971
+	ds $1
+
+wd972:: ; d972
+	ds $1
+
+	ds $2
+
+wd975:: ; d975
+	ds $1
+
+wd976:: ; d976
+	ds $1
+
+wd977:: ; d977
+	ds $1
+
+	ds $1
+
+wd979:: ; d979
+	ds $1
+
+wd97a:: ; d97a
+	ds $1
+
+wd97b:: ; d97b
+	ds $1
+
+wd97c:: ; d97c
+	ds $1
+
+wd97d:: ; d97d
+	ds $1
+
+wd97e:: ; d97e
+	ds $1
+
+wd97f:: ; d97f
+	ds $1
+
+wd980:: ; d980
+	ds $2
+
+	ds $1
+
+wd983:: ; d983
+	ds $1
+
 SECTION "WRAM1@dd02", WRAMX
 
 ; stores the player's result in a duel (0: win, 1: loss, 2: ???, -1: transmission error?)
 ; to be read by the overworld caller
 wDuelResult:: ; dd02
 	ds $1
+
+wdd03:: ; dd03
+	ds $1
+
+	ds $21
+
+wdd25:: ; dd25
+	ds $2
+
+wdd27:: ; dd27
+	ds $2
+
+wdd29:: ; dd29
+	ds $2
+
+wdd2b:: ; dd2b
+	ds $2
+
+wdd2d:: ; dd2d
+	ds $1
+
+wdd2e:: ; dd2e
+	ds $1
+
+	ds $ca
+
+wddf9:: ; ddf9
+	ds $14
+
+wde0d:: ; de0d
+	ds $4
+
+wde11:: ; de11
+	ds $4
+
+wde15:: ; de15
+	ds $4
+
+wde19:: ; de19
+	ds $20
 
 SECTION "WRAM7 Audio", WRAMX
 

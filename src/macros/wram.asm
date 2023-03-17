@@ -99,3 +99,18 @@ MACRO deck_struct
 \1Name::  ds DECK_NAME_SIZE
 \1Cards:: ds ((DECK_SIZE + 7) / 8 + 1) * 8
 ENDM
+
+MACRO scene_unk_struct
+\1Unk0:: ds 1
+\1Unk1:: ds 1
+\1Unk2:: ds 1
+\1Unk3:: ds 2
+\1Unk5:: ds 1
+\1Unk6:: ds 2
+\1Unk8:: ds 1
+\1Unk9:: ds 1
+\1UnkA:: ds 2
+\1UnkC:: ds 1
+\1UnkD:: ds 1
+\1UnkE:: ds 2
+ENDM

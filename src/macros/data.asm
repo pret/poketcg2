@@ -48,3 +48,15 @@ MACRO textpointer
 	const \1_
 	EXPORT \1_
 ENDM
+
+MACRO gfx_ptr1
+	db \1 ; BANK(\1)
+	dw \2 ; \1
+	db $0 ; padding
+ENDM
+
+MACRO gfx_ptr
+	db BANK(\1) - BANK(@)
+	dw \1
+	db $0
+ENDM

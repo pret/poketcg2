@@ -1,5 +1,5 @@
 ; wait for VBlankHandler to finish unless lcd is off
-WaitForVBlank:
+WaitForVBlank::
 	push hl
 	ldh a, [hLCDC]
 	bit LCDC_ENABLE_F, a
@@ -16,7 +16,7 @@ WaitForVBlank:
 	ret
 
 ; turn LCD on
-EnableLCD:
+EnableLCD::
 	ldh a, [hLCDC]       ;
 	bit LCDC_ENABLE_F, a ;
 	ret nz               ; assert that LCD is off
@@ -28,7 +28,7 @@ EnableLCD:
 	ret
 
 ; wait for vblank, then turn LCD off
-DisableLCD:
+DisableLCD::
 	ldh a, [rLCDC]       ;
 	bit LCDC_ENABLE_F, a ;
 	ret z                ; assert that LCD is on
@@ -55,28 +55,28 @@ DisableLCD:
 	ret
 
 ; set OBJ size: 8x8
-Set_OBJ_8x8:
+Set_OBJ_8x8::
 	ldh a, [hLCDC]
 	and LCDC_OBJ8
 	ldh [hLCDC], a
 	ret
 
 ; set OBJ size: 8x16
-Set_OBJ_8x16:
+Set_OBJ_8x16::
 	ldh a, [hLCDC]
 	or LCDC_OBJ16
 	ldh [hLCDC], a
 	ret
 
 ; set Window Display on
-SetWindowOn:
+SetWindowOn::
 	ldh a, [hLCDC]
 	or LCDC_WINON
 	ldh [hLCDC], a
 	ret
 
 ; set Window Display off
-SetWindowOff:
+SetWindowOff::
 	ldh a, [hLCDC]
 	and LCDC_WINOFF
 	ldh [hLCDC], a
