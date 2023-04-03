@@ -57,7 +57,7 @@ LoadCardDataToBuffer2_FromCardID:
 	jr LoadCardDataToHL_FromCardID
 
 ; load data of card with id at de to wLoadedCard1
-LoadCardDataToBuffer1_FromCardID:
+LoadCardDataToBuffer1_FromCardID::
 	push hl
 	ld hl, wLoadedCard1
 ;	fallthrough
@@ -202,10 +202,10 @@ GetCardPointer:
 ; bc are supposed to be $30 (number of tiles of a card gfx) and TILE_SIZE respectively
 ; card_gfx_index = (<Name>CardGfx - CardGraphics) / 8  (using absolute ROM addresses)
 ; also copies the card's palette to wCardPalette
-LoadCardGfx:
+LoadCardGfx::
 	ldh a, [hBankROM]
 	push af
-	call Func_2e00
+	call LoadCardPalettes
 	call CopyGfxData
 	pop af
 	call BankswitchROM
@@ -214,7 +214,7 @@ LoadCardGfx:
 Func_2dc4:
 	ldh a, [hBankROM]
 	push af
-	call Func_2e00
+	call LoadCardPalettes
 	ld a, l
 	ld [wcde5], a
 	ld a, h
@@ -251,7 +251,7 @@ Func_2dc4:
 	call BankswitchROM
 	ret
 
-Func_2e00:
+LoadCardPalettes:
 	push bc
 	push de
 	push hl
@@ -268,7 +268,7 @@ Func_2e00:
 	res 7, h
 	set 6, h ; $4000 ≤ hl ≤ $7fff
 	ld b, $48
-	ld de, $cd7a
+	ld de, wCardPalettes
 .asm_2e1c
 	ld a, [hli]
 	ld [de], a

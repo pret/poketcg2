@@ -241,8 +241,8 @@ wDecompSecondaryBufferPtrLow:: ; cadd
 wBackgroundPalettesCGB:: ; caee
 	ds NUM_BACKGROUND_PALETTES palettes
 
-wcb2e:: ; cb2e
-	ds 1 palettes
+wObjectPalettesCGB:: ; cb2e
+	ds NUM_OBJECT_PALETTES palettes
 
 SECTION "WRAM0 Serial Transfer", WRAM0
 
@@ -489,7 +489,10 @@ wNoEffectFromWhichStatus:: ; cd06
 wDeckSize:: ; cd07
 	ds $1
 
-	ds $2
+wcd08:: ; cd08
+	ds $1
+
+	ds $1
 
 wcd0a:: ; cd0a
 	ds $1
@@ -589,6 +592,12 @@ wUppercaseHalfWidthLetters:: ; cd76
 ; possibly used in other contexts too
 wEffectFunctionsBank:: ; cd79
 	ds $1
+
+wCardPalettes:: ; cd7a
+	ds 3 palettes
+
+wCardAttrMap:: ; cd92
+	ds $30
 
 SECTION "WRAM0 2@cdc2", WRAM0
 
@@ -694,6 +703,23 @@ wPrinterStatus:: ; cdf5
 ; being transmitted through serial
 wSerialDataPtr:: ; cdf6
 	ds $2
+
+	ds $55
+
+wce4d:: ; ce4d
+	ds $1
+
+wTargetBGPalettes:: ; ce4e
+	ds NUM_BACKGROUND_PALETTES palettes
+
+wTargetOBPalettes:: ; ce8e
+	ds NUM_OBJECT_PALETTES palettes
+
+wBGColorFadeConfigList:: ; cece
+	ds (NUM_BACKGROUND_PALETTES palettes) / 2
+
+wOBColorFadeConfigList:: ; ceee
+	ds (NUM_OBJECT_PALETTES palettes) / 2
 
 SECTION "WRAM1", WRAMX
 
@@ -829,7 +855,20 @@ wd553:: ; d553
 wd554:: ; d554
 	ds $1
 
-	ds $2d
+	ds $20
+
+wFilteredListPtr:: ; d575
+	ds $2
+
+wRemainingIntroCards:: ; d577
+	ds $1
+
+	ds $3
+
+wIntroCardsRepeatsAllowed:: ; d57b
+	ds $1
+
+	ds $6
 
 wd582:: ; d582
 	ds $1
@@ -976,7 +1015,10 @@ wd678:: ; d678
 wd68c:: ; d68c
 	ds $1
 
-	ds $7
+	ds $6
+
+wd693:: ; d693
+	ds $1
 
 wDecompressedBGMap:: ; d694
 	ds 2 * BG_MAP_WIDTH
@@ -1002,31 +1044,56 @@ wd7d8:: ; d7d8
 wd7d9:: ; d7d9
 	ds $1
 
-	ds $c8
+	ds $14
 
-; seems like structs for handling sprites in a scene
-wd8a2:: ; d8a2
-wSceneUnkStruct0:: scene_unk_struct wSceneUnkStruct0
-wSceneUnkStruct1:: scene_unk_struct wSceneUnkStruct1
-wSceneUnkStruct2:: scene_unk_struct wSceneUnkStruct2
-wSceneUnkStruct3:: scene_unk_struct wSceneUnkStruct3
-wSceneUnkStruct4:: scene_unk_struct wSceneUnkStruct4
-wSceneUnkStruct5:: scene_unk_struct wSceneUnkStruct5
-wSceneUnkStruct6:: scene_unk_struct wSceneUnkStruct6
-wSceneUnkStruct7:: scene_unk_struct wSceneUnkStruct7
-wSceneUnkStruct8:: scene_unk_struct wSceneUnkStruct8
-wSceneUnkStruct9:: scene_unk_struct wSceneUnkStruct9
+wd7ee:: ; d7ee
+	ds $64
 
-wd942:: ; d942
+wd852:: ; d852
 	ds $1
 
-wd943:: ; d943
+wd853:: ; d853
+	ds $40
+
+	ds $3
+
+wd896:: ; d896
+	ds $2
+
+	ds $5
+
+wd89d:: ; d89d
 	ds $1
 
-wd944:: ; d944
+wd89e:: ; d89e
 	ds $1
 
-	ds $2a
+	ds $2
+
+wd8a1:: ; d8a1
+	ds $1
+
+wSpriteAnimationStructs:: ; d8a2
+; wSpriteAnim1 - wSpriteAnim10
+FOR n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
+wSpriteAnim{d:n}:: sprite_anim_struct wSpriteAnim{d:n}
+ENDR
+
+; used to keep track of tiles being copied to VRAM
+; bit 7: VRAM0 or VRAM1
+wCurVRAMTile:: ; d942
+	ds $1
+
+wNumSpriteTilesets:: ; d943
+	ds $1
+
+wSpriteTilesets:: ; d944
+; wSpriteTileset1 - wSpriteTileset10
+FOR n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
+wSpriteTileset{d:n}:: obj_tile_struct wSpriteTileset{d:n}
+ENDR
+
+	ds $3
 
 wd96f:: ; d96f
 	ds $1
@@ -1045,41 +1112,190 @@ wd972:: ; d972
 wd975:: ; d975
 	ds $1
 
-wd976:: ; d976
+wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
+
+wd986:: ; d986
 	ds $1
 
-wd977:: ; d977
+	ds $36
+
+wFrameFunctionStackSize:: ; d9bd
 	ds $1
 
-	ds $1
+wFrameFunctionStack:: ; d9be
+	ds $10
 
-wd979:: ; d979
-	ds $1
-
-wd97a:: ; d97a
-	ds $1
-
-wd97b:: ; d97b
-	ds $1
-
-wd97c:: ; d97c
-	ds $1
-
-wd97d:: ; d97d
-	ds $1
-
-wd97e:: ; d97e
-	ds $1
-
-wd97f:: ; d97f
-	ds $1
-
-wd980:: ; d980
 	ds $2
 
+wd9d0:: ; d9d0
 	ds $1
 
-wd983:: ; d983
+	ds $2
+
+wd9d3:: ; d9d3
+	ds $1
+
+wd9d4:: ; d9d4
+	ds $1
+
+wd9d5:: ; d9d5
+	ds $1
+
+wTextBoxFrameColor:: ; d9d6
+	ds $1
+
+	ds $5
+
+wd9dc:: ; d9dc
+	ds $1
+
+; $0 = no fading
+; $1 = fade to target palette
+; $2 = fade to black/white
+wPaletteFadeMode:: ; d9dd
+	ds $1
+
+wd9de:: ; d9de
+	ds $1
+
+; whether pal fading happens
+; as an increment or decrement
+; of the color values
+; when fading to black/white:
+;  bit 0 not set = fade to white
+;  bit 0 set     = fade to black
+; when fading to a target pal:
+;  bit 0 not set = color decrement
+;  bit 0 set     = color increment
+wPalFadeDirection:: ; d9df
+	ds $1
+
+wPaletteFadeCounter:: ; d9e0
+	ds $1
+
+wPaletteFadeSpeedMask:: ; d9e1
+	ds $1
+
+; whether palette fading is enabled
+; bit 0 set: enabled for BGP
+; bit 7 set: enabled for OBP
+wPaletteFadeFlags:: ; d9e2
+	ds $1
+
+SECTION "WRAM1@da39", WRAMX
+
+wda39:: ; da39
+	ds $50
+
+	ds $f
+
+wda98:: ; da98
+	ds $1
+
+wda99:: ; da99
+	ds $4
+
+SECTION "WRAM1@da9d", WRAMX
+
+wIntroOrbsStates:: ; da9d
+	ds NUM_INTRO_ORBS
+
+wIntroSceneCounter:: ; daa5
+wIntroCardIndex::
+	ds $1
+
+wIntroStateMode:: ; daa6
+	ds $1
+
+wIntroStateCounter:: ; daa7
+	ds $1
+
+	ds $1
+
+wTitleScreenCards:: ; daa9
+	ds 2 * NUM_TITLE_SCREEN_CARDS
+
+	ds $4
+
+wdabd:: ; dabd
+	ds $1
+
+	ds $1
+
+wdabf:: ; dabf
+	ds $1
+
+	ds $1
+
+wdac1:: ; dac1
+	ds $20
+
+	ds $1c
+
+wdafd:: ; dafd
+	ds $1
+
+	ds $21
+
+wdb1f:: ; db1f
+	ds $1
+
+SECTION "WRAM1@dc06", WRAMX
+
+wdc06:: ; dc06
+	ds $1
+
+	ds $1
+
+wdc08:: ; dc08
+	ds $2
+
+	ds $5
+
+wdc0f:: ; dc0f
+	ds $1
+
+	ds $47
+
+wdc57:: ; dc57
+	ds $1
+
+	ds $1
+
+wdc59:: ; dc59
+	ds $1
+
+	ds $4
+
+wdc5e:: ; dc5e
+	ds $2
+
+wdc60:: ; dc60
+	ds $80
+
+	ds $2
+
+wdce2:: ; dce2
+	ds $1
+
+	ds $2
+
+wdce5:: ; dce5
+	ds $1
+
+	ds $2
+
+wdce8:: ; dce8
+	ds $1
+
+	ds $1
+
+wdcea:: ; dcea
+	ds $1
+
+	ds $5
+
+wdcf0:: ; dcf0
 	ds $1
 
 SECTION "WRAM1@dd02", WRAMX
@@ -1092,7 +1308,19 @@ wDuelResult:: ; dd02
 wdd03:: ; dd03
 	ds $1
 
-	ds $21
+wdd04:: ; dd04
+	ds $1
+
+wdd05:: ; dd05
+	ds $1
+
+wdd06:: ; dd06
+	ds $1
+
+wdd07:: ; dd07
+	ds $1
+
+	ds $1d
 
 wdd25:: ; dd25
 	ds $2
@@ -1112,7 +1340,67 @@ wdd2d:: ; dd2d
 wdd2e:: ; dd2e
 	ds $1
 
-	ds $ca
+wdd2f:: ; dd2f
+	ds $1
+
+	ds $6
+
+wdd36:: ; dd36
+	ds $1
+
+wdd37:: ; dd37
+	ds $19
+
+wdd50:: ; dd50
+	ds $1
+
+wdd51:: ; dd51
+	ds $9
+
+wdd5a:: ; dd5a
+	ds $1
+
+wdd5b:: ; dd5b
+	ds $1
+
+wdd5c:: ; dd5c
+	ds $1
+
+wdd5d:: ; dd5d
+	ds $1
+
+wdd5e:: ; dd5e
+	ds $1
+
+wdd5f:: ; dd5f
+	ds $1
+
+wdd60:: ; dd60
+	ds $1
+
+	ds $12
+
+wdd73:: ; dd73
+	ds $1
+
+wdd74:: ; dd74
+	ds $1
+
+	ds $1f
+
+wCardTilemap:: ; dd94
+	ds $30
+
+wddc4:: ; ddc4
+	ds $30
+
+wCardTilemapOffset:: ; ddf4
+	ds $1
+
+wddf5:: ; ddf5
+	ds $1
+
+	ds $3
 
 wddf9:: ; ddf9
 	ds $14
@@ -1128,6 +1416,24 @@ wde15:: ; de15
 
 wde19:: ; de19
 	ds $20
+
+	ds $30
+
+wde69:: ; de69
+	ds $2
+
+SECTION "WRAM3", WRAMX
+
+w3d000:: ; d000
+	ds $1
+
+	ds $3ff
+
+w3d400:: ; d400
+	ds $1
+
+w3d401:: ; d401
+	ds $1
 
 SECTION "WRAM7 Audio", WRAMX
 

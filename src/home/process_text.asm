@@ -289,15 +289,15 @@ Func_2325::
 	cp [hl]
 	jr nz, .asm_2345
 	ldh a, [hffa9]
-	ld h, $c8
+	ld h, HIGH(wc800)
 .asm_2337
 	ld l, a
 	ld a, [hl]
 	or a
 	jr nz, .asm_2337
-	ld h, $c9
+	ld h, HIGH(wc900)
 	ld c, [hl]
-	ld b, $c8
+	ld b, HIGH(wc800)
 	xor a
 	ld [bc], a
 	jr .asm_234a
@@ -310,15 +310,15 @@ Func_2325::
 .asm_234a
 	ldh a, [hffa9]
 	ld c, a
-	ld b, $c9
+	ld b, HIGH(wc900)
 	ld a, l
 	ldh [hffa9], a
 	ld [bc], a
-	ld h, $c8
+	ld h, HIGH(wc800)
 	ld [hl], c
-	ld h, $c6
+	ld h, HIGH(wc600)
 	ld [hl], e
-	inc h ; $c7
+	inc h ; HIGH(wc700)
 	ld [hl], d
 	ld b, l
 	xor a

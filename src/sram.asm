@@ -3,7 +3,23 @@ SECTION "SRAM0", SRAM
 s0a000:: ; a000
 	ds $3
 
-	ds $9
+	ds $3
+
+sTextSpeed:: ; a006
+	ds $1
+
+s0a007:: ; a007
+	ds $1
+
+	ds $1
+
+s0a009:: ; a009
+	ds $1
+
+	ds $1
+
+s0a00b:: ; a00b
+	ds $1
 
 sTextBoxFrameColor:: ; a00c
 	ds $1
@@ -32,6 +48,9 @@ sDeck4:: deck_struct sDeck4 ; a420
 
 s0a4e0:: ; a4e0
 	ds $12c0
+
+sb7a0:: ; b7a0
+	ds $1
 
 SECTION "SRAM1", SRAM
 

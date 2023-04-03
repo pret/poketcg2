@@ -5,10 +5,10 @@ GameLoop::
 	call EnableInt_VBlank
 	call EnableInt_Timer
 	call EnableSRAM
-	ld a, [$a006] ; sTextSpeed
-	ld [$cdde], a ; wTextSpeed
-	ld a, [$a009] ; sSkipDelayAllowed
-	ld [$cd08], a ; wSkipDelayAllowed
+	ld a, [sTextSpeed]
+	ld [wTextSpeed], a
+	ld a, [s0a009]
+	ld [wcd08], a
 	call DisableSRAM
 	ld a, DECK_SIZE
 	ld [wDeckSize], a

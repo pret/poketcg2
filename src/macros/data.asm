@@ -12,6 +12,10 @@ MACRO dwb
 	db \2
 ENDM
 
+MACRO dba
+	dbw BANK(\1), \1
+ENDM
+
 MACRO dx
 	DEF x = 8 * ((\1) - 1)
 	REPT \1
@@ -49,14 +53,42 @@ MACRO textpointer
 	EXPORT \1_
 ENDM
 
-MACRO gfx_ptr1
-	db \1 ; BANK(\1)
-	dw \2 ; \1
-	db $0 ; padding
+MACRO tx
+	dw \1_
 ENDM
 
 MACRO gfx_ptr
 	db BANK(\1) - BANK(@)
 	dw \1
 	db $0
+ENDM
+
+; \1 = y offset
+; \2 = x offset
+; \3 = vtile
+; \4 = attributes
+MACRO dbsprite
+	db \1, \2, \3, \4
+ENDM
+
+; \1 = frame
+; \2 = duration
+; \3 = x offset
+; \4 = y offset
+MACRO oamframe
+	db \1, \2, \3, \4
+ENDM
+
+MACRO oamreset
+	oamframe 0, 0, 0, 0
+ENDM
+
+; \1 = duration
+MACRO oamwait
+	oamframe $ff, \1, 0, 0
+ENDM
+
+; \1 = frame
+MACRO oamend
+	oamframe \1, -1, 0, 0
 ENDM

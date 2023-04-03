@@ -33,6 +33,7 @@ ROM0
 	"Audio Callback"
 ROMX $01
 	"Game Loop"
+	"Bank 1"
 ROMX $03
 	"Bank 3"
 	org $41c9
@@ -51,6 +52,12 @@ ROMX $03
 	"Bank 3@6883"
 	org $6b97
 	"Bank 3@6b97"
+ROMX $04
+	"Bank 4"
+ROMX $07
+	"Bank 7"
+ROMX $11
+	"Bank 11"
 ROMX $1b
 	"Gfx 1"
 	org $70b0
@@ -175,6 +182,18 @@ ROMX $77
 	"Audio 1"
 ROMX $70
 	"Palettes 2"
+	"OAM 1"
+ROMX $71
+	"OAM 2"
+ROMX $72
+	"OAM 3"
+ROMX $73
+	"OAM 4"
+ROMX $74
+	"OAM 5"
+	"Framesets 1"
+ROMX $75
+	"Framesets 2"
 ROMX $78
 	"Audio 2"
 ROMX $79
@@ -215,8 +234,16 @@ WRAMX 1
 	"WRAM1@d0bf"
 	org $d54c
 	"WRAM1@d54c"
+	org $da39
+	"WRAM1@da39"
+	org $da9d
+	"WRAM1@da9d"
+	org $dc06
+	"WRAM1@dc06"
 	org $dd02
 	"WRAM1@dd02"
+WRAMX 3
+	"WRAM3"
 WRAMX 7
 	"WRAM7 Audio"
 VRAM $00

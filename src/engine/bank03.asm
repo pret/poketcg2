@@ -3,14 +3,14 @@
 _CoreGameLoop::
 	call Func_c240
 .intro
-	farcall $4, $5641 ; play intro and title screen
+	farcall IntroAndTitleScreen
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
 	call Func_c249
 	xor a
-	call Func_3062
+	call PlaySong
 	xor a
-	call Func_3073
+	call PlaySFX
 .start_menu_loop
 	call HandleStartMenu
 	ld hl, .StartMenuFunctionTable
@@ -27,16 +27,16 @@ _CoreGameLoop::
 StartMenu_NewGame:
 	ld hl, wd554
 	bit 0, [hl]
-	jr z, .asm_c037
-	farcall $7, $4f81
+	jr z, .no_save_data
+	farcall AskToOverwriteSaveData
 	ret c
-.asm_c037
+.no_save_data
 	farcall $6, $58f8
 	call Func_e97a
 	call Func_c24d
 	call Func_eb97
 	xor a
-	farcall $7, $5475
+	farcall Func_1d475
 	ld a, $04
 	ld [wd54c], a
 	xor a
@@ -51,12 +51,12 @@ StartMenu_ContinueFromDiary:
 	jr z, .asm_c067
 	bit 1, [hl]
 	jr z, .asm_c067
-	farcall $7, $4fcf
+	farcall AskToContinueFromDiaryInsteadOfDuel
 	ret c
 .asm_c067
 	call Func_eaea
 	xor a
-	call Func_3062
+	call PlaySong
 	ld a, [wd54c]
 	cp $04
 	jr z, .asm_c0a0
@@ -69,7 +69,7 @@ StartMenu_ContinueFromDiary:
 	call Func_c29d
 	call Func_e9a7
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	ld hl, wd583
 	set 7, [hl]
 	ld a, $02
@@ -80,7 +80,7 @@ StartMenu_ContinueFromDiary:
 
 .asm_c0a0
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	call Func_3087
 	scf
 	ret
@@ -93,12 +93,12 @@ StartMenu_ContinueFromDiary:
 	call Func_c29d
 	call Func_e9a7
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	call DisableLCD
 	farcall $4, $4b9c
 	farcall $4, $455e
 	farcall $4, $4417
-	farcall $7, $4990
+	farcall SaveTargetFadePals
 	farcall $4, $509f
 	call DoFrame
 	ld a, $0e
@@ -115,9 +115,9 @@ StartMenu_ContinueFromDiary:
 
 StartMenu_ContinueDuel:
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	xor a
-	call Func_3062
+	call PlaySong
 	call Func_eb16
 	ld a, [wd550]
 	ld b, $01
@@ -247,7 +247,7 @@ HandleStartMenu:
 Func_c240:
 	xor a
 	ld [wd674], a
-	farcall $4, $7dfa
+	farcall Func_13dfa
 	ret
 
 Func_c249:
@@ -831,12 +831,12 @@ Func_d398:
 	farcall $4, $4b9c
 	farcall $4, $455e
 	farcall $4, $4417
-	farcall $7, $4990
+	farcall SaveTargetFadePals
 	farcall $4, $509f
 	call DoFrame
 	ld a, $00
 	ld b, $00
-	farcall $7, $4909
+	farcall StartPalFadeFromBlackOrWhite
 	ld a, $0b
 	ld [wd582], a
 	ld hl, wd583
@@ -876,11 +876,11 @@ Func_d3e9::
 	db -1,  0
 
 Func_d411:
-	call Func_3078
-	ld a, $06
-	call Func_3062
+	call PauseSong
+	ld a, MUSIC_PCMAINMENU
+	call PlaySong
 	farcall $4, $50c6
-	call Func_307d
+	call ResumeSong
 	ret
 
 Func_d421::
