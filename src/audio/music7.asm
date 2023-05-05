@@ -144,7 +144,7 @@ Music7_Init:
 	ld [wMusicPanning], a
 	xor a
 	ld [wdd8c], a
-	ld [wde53], a
+	ld [wd0eb], a
 	ld [wMusicWaveChange], a
 	ld [wddef], a
 	ld [wddf0], a

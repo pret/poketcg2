@@ -273,7 +273,7 @@ _ChooseTitleScreenCards:
 	ld a, [hld]
 	or e
 	jr nz, .got_deck
-	ld de, $60
+	ld de, DECK_COMPRESSED_STRUCT_SIZE
 	add hl, de
 	dec c
 	jr nz, .loop_decks
@@ -468,3 +468,75 @@ _ChooseTitleScreenCards:
 	dw MEOWTH_LV13
 	dw HERE_COMES_TEAM_ROCKET
 	dw $0000
+
+SECTION "Bank 11@4928", ROMX[$4928], BANK[$11]
+
+; a = MUSIC_*
+PlayAfterCurrentSong:
+	ld b, a
+	ld a, [wCurMusic]
+	cp b
+	jr nz, .play_song
+	push bc
+	call AssertSongFinished
+	pop bc
+	or a
+	jr z, .play_song
+	ret
+
+.play_song
+	ld a, b
+	ld [wCurMusic], a
+	ld [wdd04], a
+	call PlaySong
+	ret
+; 0x44943
+
+SECTION "Bank 11@4954", ROMX[$4954], BANK[$11]
+
+InitMusicFadeOut:
+	ld [wMusicFadeOutCounter], a
+	ld [wMusicFadeOutDuration], a
+	ld a, c
+	ld [wMusicFadeOutVolume], a
+	call SetVolume
+	ret
+
+TickMusicFadeOut:
+	ld a, [wMusicFadeOutCounter]
+	dec a
+	ld [wMusicFadeOutCounter], a
+	jr nz, .done
+	ld a, [wMusicFadeOutDuration]
+	ld [wMusicFadeOutCounter], a
+	ld a, [wMusicFadeOutVolume]
+	or a
+	jr z, .done
+	dec a
+	ld [wMusicFadeOutVolume], a
+	call SetVolume
+.done
+	ret
+
+MusicFadeOut:
+.loop
+	call DoFrame
+	call TickMusicFadeOut
+	ld a, [wMusicFadeOutVolume]
+	or a
+	jr nz, .loop
+	ret
+; 0x4498c
+
+SECTION "Bank 11@499e", ROMX[$499e], BANK[$11]
+
+WaitForSFXToFinish::
+.loop_wait
+	call DoFrame
+	call AssertSFXFinished
+	or a
+	jr nz, .loop_wait
+	ret
+
+SECTION "Credits", ROMX[$5c6e], BANK[$11]
+INCLUDE "engine/credits.asm"

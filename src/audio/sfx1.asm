@@ -15,7 +15,7 @@ SFX_Play:
 	add hl, bc
 	ld c, l
 	ld b, h
-	ld a, [wde53]
+	ld a, [wd0eb]
 	or a
 	jr z, .asm_1f805a
 	ld a, [wdd8c]
@@ -53,7 +53,7 @@ SFX_Play:
 	ldh [rNR44], a
 .asm_1f805a
 	ld a, $1
-	ld [wde53], a
+	ld [wd0eb], a
 	ld hl, SFXHeaderPointers1
 	add hl, bc
 	ld a, [hli]
@@ -64,7 +64,7 @@ SFX_Play:
 	ld a, [hli]
 	ld [wdd8c], a
 	ld [wde54], a
-	ld de, wde4b
+	ld de, wd0e3
 	ld c, $0
 	ld b, $0
 .asm_fc031
@@ -134,7 +134,7 @@ SFX_Update:
 	call Func_fc18d
 	jr .asm_fc08d
 .asm_fc082
-	ld hl, wde4b
+	ld hl, wd0e3
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -234,7 +234,7 @@ SFX_0:
 	ld [hl], d
 	pop de
 Func_fc105:
-	ld hl, wde4b
+	ld hl, wd0e3
 	add hl, bc
 	add hl, bc
 	ld [hl], e
@@ -527,7 +527,7 @@ SFX_end:
 
 Func_fc26c:
 	xor a
-	ld [wde53], a
+	ld [wd0eb], a
 	ld [wSfxPriority], a
 	ld [wAudio_d005], a
 	ret

@@ -356,15 +356,25 @@ wIsPracticeDuel:: ; cc0f
 wcc10:: ; cc10
 	ds $1
 
-	ds $2
+	ds $1
+
+wcc12:: ; cc12
+	ds $1
 
 ; text id of the opponent's name
 wOpponentName:: ; cc13
 	ds $2
 
+wcc15:: ; cc15
 	ds $1
 
 wcc16:: ; cc16
+	ds $1
+
+wcc17:: ; cc17
+	ds $1
+
+wcc18:: ; cc18
 	ds $1
 
 SECTION "WRAM0 Duels 2@cc29", WRAM0
@@ -451,7 +461,10 @@ wEffectFunctionsFeedback:: ; cce3
 wIsDamageToSelf:: ; ccfb
 	ds $1
 
-	ds $4
+	ds $2
+
+wOpponentDeckName:: ; ccfe
+	ds $2
 
 ; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
 wTempPlayAreaLocation_cceb:: ; cd00
@@ -506,7 +519,11 @@ wcd0c:: ; cd0c
 wcd0d:: ; cd0d
 	ds $1
 
-	ds $2
+wcd0e:: ; cd0e
+	ds $1
+
+wcd0f:: ; cd0f
+	ds $1
 
 wcd10:: ; cd10
 	ds $4
@@ -706,7 +723,7 @@ wSerialDataPtr:: ; cdf6
 
 	ds $55
 
-wce4d:: ; ce4d
+wWRAMBank:: ; ce4d
 	ds $1
 
 wTargetBGPalettes:: ; ce4e
@@ -825,6 +842,68 @@ wNumberOfPrizeCardsToSelect:: ; d0c8
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
+SECTION "WRAM1@d0e3", WRAMX
+
+wNamingScreenCursorBlinkCounter:: ; d0e3
+	ds $1
+
+wNamingScreenCursorY:: ; d0e4
+	ds $1
+
+	ds $4
+
+wNamingScreenNumRows:: ; d0e9
+	ds $1
+
+wVisibleCursorTile:: ; d0ea
+	ds $1
+
+wInvisibleCursorTile:: ; d0eb
+	ds $1
+
+SECTION "WRAM1@d393", WRAMX
+
+wNamingScreenInputSFX:: ; d393
+	ds $1
+
+	ds $3
+
+wNamingScreenBuffer:: ; d397
+	ds NAMING_SCREEN_BUFFER_LENGTH
+
+	ds $32
+
+wNamingScreenBufferLength:: ; d3e1
+	ds $1
+
+wNamingScreenDestPointer:: ; d3e2
+	ds $2
+
+wNamingScreenQuestionPointer:: ; d3e4
+	ds $2
+
+wNamingScreenBufferMaxLength:: ; d3e6
+	ds $1
+
+wNamingScreenNumColumns:: ; d3e7
+	ds $1
+
+wNamingScreenCursorX:: ; d3e8
+	ds $1
+
+wNamingScreenNamePosition:: ; d3e9
+	ds $2
+
+; NAME_MODE_* constant
+wNamingScreenMode:: ; d3eb
+	ds $1
+
+	ds $3
+
+wd3ef:: ; d3ef
+	ds $1
+
+
 SECTION "WRAM1@d54c", WRAMX
 
 wd54c:: ; d54c
@@ -839,17 +918,14 @@ wd54e:: ; d54e
 wd54f:: ; d54f
 	ds $1
 
-wd550:: ; d550
+wPlayerOWObject:: ; d550
 	ds $1
 
 wd551:: ; d551
 	ds $1
 
 wd552:: ; d552
-	ds $1
-
-wd553:: ; d553
-	ds $1
+	ds $2
 
 ; some flags for something
 wd554:: ; d554
@@ -888,6 +964,7 @@ wd586:: ; d586
 wd587:: ; d587
 	ds $1
 
+wd588:: ; d588
 	ds $1
 
 wd589:: ; d589
@@ -900,10 +977,7 @@ wd58b:: ; d58b
 	ds $1
 
 wd58c:: ; d58c
-	ds $1
-
-wd58d:: ; d58d
-	ds $1
+	ds $2
 
 wd58e:: ; d58e
 	ds $1
@@ -917,9 +991,40 @@ wd590:: ; d590
 wd591:: ; d591
 	ds $1
 
-	ds $c
+wd592:: ; d592
+	ds $1
 
-wd59e:: ; d59e
+wd593:: ; d593
+	ds $2
+
+wd595:: ; d595
+	ds $1
+
+wOWObjTargetX:: ; d596
+	ds $1
+
+wOWObjTargetY:: ; d597
+	ds $1
+
+wd598:: ; d598
+	ds $1
+
+wOWObjXVelocity:: ; d599
+	ds $1
+
+wd59a:: ; d59a
+	ds $1
+
+wOWObjYVelocity:: ; d59b
+	ds $1
+
+wd59c:: ; d59c
+	ds $1
+
+wd59d:: ; d59d
+	ds $1
+
+wEventVars:: ; d59e
 	ds $34
 
 wd5d2:: ; d5d2
@@ -1002,10 +1107,17 @@ wd672:: ; d672
 wd673:: ; d673
 	ds $1
 
-wd674:: ; d674
+wCurMusic:: ; d674
 	ds $1
 
-	ds $3
+wMusicFadeOutCounter:: ; d675
+	ds $1
+
+wMusicFadeOutDuration:: ; d676
+	ds $1
+
+wMusicFadeOutVolume:: ; d677
+	ds $1
 
 wd678:: ; d678
 	ds $1
@@ -1015,7 +1127,12 @@ wd678:: ; d678
 wd68c:: ; d68c
 	ds $1
 
-	ds $6
+; represents a 16-bit value
+; in big endian decimal representation
+wDecimalRepresentation:: ; d68d
+	ds $5
+
+	ds $1
 
 wd693:: ; d693
 	ds $1
@@ -1044,10 +1161,47 @@ wd7d8:: ; d7d8
 wd7d9:: ; d7d9
 	ds $1
 
-	ds $14
+	ds $2
 
-wd7ee:: ; d7ee
-	ds $64
+wd7dc:: ; d7dc
+	ds $1
+
+wd7dd:: ; d7dd
+	ds $1
+
+wd7de:: ; d7de
+	ds $1
+
+wd7df:: ; d7df
+	ds $2
+
+wOWAnimBank:: ; d7e1
+	ds $1
+
+wOWAnimPtr:: ; d7e2
+	ds $2
+
+	ds $1
+
+wd7e5:: ; d7e5
+	ds $2
+
+wd7e7:: ; d7e7
+	ds $1
+
+wd7e8:: ; d7e8
+	ds $1
+
+wd7e9:: ; d7e9
+	ds $1
+
+	ds $2
+
+wd7ec:: ; d7ec
+	ds $2
+
+wOWAnimatedTiles:: ; d7ee
+	ds NUM_OW_ANIMATED_TILES * $4
 
 wd852:: ; d852
 	ds $1
@@ -1055,12 +1209,22 @@ wd852:: ; d852
 wd853:: ; d853
 	ds $40
 
-	ds $3
+wd893:: ; d893
+	ds $2
+
+wd895:: ; d895
+	ds $1
 
 wd896:: ; d896
 	ds $2
 
-	ds $5
+	ds $3
+
+wd89b:: ; d89b
+	ds $1
+
+wd89c:: ; d89c
+	ds $1
 
 wd89d:: ; d89d
 	ds $1
@@ -1117,7 +1281,19 @@ wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
 wd986:: ; d986
 	ds $1
 
-	ds $36
+wd987:: ; d987
+	ds $1
+
+	ds $1
+
+wd989:: ; d989
+	ds $1
+
+wd98a:: ; d98a
+	ds $1
+
+wd98b:: ; d98b
+	ds 5 * MAX_NUM_OW_OBJECTS
 
 wFrameFunctionStackSize:: ; d9bd
 	ds $1
@@ -1125,7 +1301,11 @@ wFrameFunctionStackSize:: ; d9bd
 wFrameFunctionStack:: ; d9be
 	ds $10
 
-	ds $2
+wPortraitSlot:: ; d9ce
+	ds $1
+
+wPortraitVariant:: ; d9cf
+	ds $1
 
 wd9d0:: ; d9d0
 	ds $1
@@ -1182,20 +1362,107 @@ wPaletteFadeSpeedMask:: ; d9e1
 wPaletteFadeFlags:: ; d9e2
 	ds $1
 
-SECTION "WRAM1@da39", WRAMX
+wMenuBoxX:: ; d9e3
+	ds $1
 
-wda39:: ; da39
-	ds $50
+wMenuBoxY:: ; d9e4
+	ds $1
 
-	ds $f
+wMenuBoxWidth:: ; d9e5
+	ds $1
+
+wMenuBoxHeight:: ; d9e6
+	ds $1
+
+wMenuBoxSkipClear:: ; d9e7
+	ds $1
+
+wMenuBoxLabelTextID:: ; d9e8
+	ds $2
+
+wMenuBoxHasHorizontalScroll:: ; d9ea
+	ds $1
+
+wMenuBoxVerticalStep:: ; d9eb
+	ds $1
+
+wMenuBoxBlinkSymbol:: ; d9ec
+	ds $1
+
+wMenuBoxSpaceSymbol:: ; d9ed
+	ds $1
+
+wMenuBoxCursorSymbol:: ; d9ee
+	ds $1
+
+wMenuBoxSelectionSymbol:: ; d9ef
+	ds $1
+
+wMenuBoxPressKeys:: ; d9f0
+	ds $1
+
+wMenuBoxHeldKeys:: ; d9f1
+	ds $1
+
+wMenuBoxNumItems:: ; d9f2
+	ds $1
+
+wMenuBoxItemsXPositions:: ; d9f3
+	ds $10
+
+wMenuBoxItemsYPositions:: ; da03
+	ds $10
+
+wMenuBoxItemsTextIDs:: ; da13
+	ds 2 * $10
+
+wMenuBoxBlinkCounter:: ; da33
+	ds $1
+
+wMenuBoxUpdateFunction:: ; da34
+	ds $2
+
+wMenuBoxFocusedItem:: ; da36
+	ds $1
+
+wda37:: ; da37
+	ds $1
+
+wMenuBoxDelay:: ; da38
+	ds $1
+
+wOWObjects:: ; da39
+; wOWObj1 - wOWObj10
+FOR n, 1, MAX_NUM_OW_OBJECTS + 1
+wOWObj{d:n}:: ow_obj_struct wOWObj{d:n}
+ENDR
+
+	ds $2
+
+wda8b:: ; da8b
+	ds $1
+
+wda8c:: ; da8c
+	ds $1
+
+wda8d:: ; da8d
+	ds $1
+
+	ds $6
+
+wda94:: ; da94
+	ds $2
+
+	ds $1
+
+wda97:: ; da97
+	ds $1
 
 wda98:: ; da98
 	ds $1
 
 wda99:: ; da99
 	ds $4
-
-SECTION "WRAM1@da9d", WRAMX
 
 wIntroOrbsStates:: ; da9d
 	ds NUM_INTRO_ORBS
@@ -1235,7 +1502,33 @@ wdac1:: ; dac1
 wdafd:: ; dafd
 	ds $1
 
-	ds $21
+	ds $1
+
+; STARTMENU_CONFIG_* constant
+wStartMenuConfiguration:: ; daff
+	ds $1
+
+wMenuCursorPosition:: ; db00
+	ds $1
+
+wMenuBoxLastFocusedItem:: ; db01
+	ds $1
+
+	ds $e
+
+wDisplayHours:: ; db10
+	ds $2
+
+wDisplayMinutes:: ; db12
+	ds $1
+
+wTotalNumCardsToCollect:: ; db13
+	ds $2
+
+wTotalNumCardsCollected:: ; db15
+	ds $2
+
+	ds $8
 
 wdb1f:: ; db1f
 	ds $1
@@ -1386,7 +1679,16 @@ wdd73:: ; dd73
 wdd74:: ; dd74
 	ds $1
 
-	ds $1f
+wdd75:: ; dd75
+	ds $1
+
+wdd76:: ; dd76
+	ds $1
+
+wdd77:: ; dd77
+	ds $1
+
+	ds $1c
 
 wCardTilemap:: ; dd94
 	ds $30
@@ -1417,7 +1719,48 @@ wde15:: ; de15
 wde19:: ; de19
 	ds $20
 
-	ds $30
+	ds $10
+
+wCreditsCmdArg1:: ; de49
+	ds $1
+
+wCreditsCmdArg2:: ; de4a
+	ds $1
+
+wCreditsCmdArg3:: ; de4b
+	ds $1
+
+wCreditsCmdArg4:: ; de4c
+	ds $1
+
+wCreditsCmdArg5:: ; de4d
+	ds $1
+
+wde4e:: ; de4e
+	ds $1
+
+wde4f:: ; de4f
+	ds $1
+
+wde50:: ; de50
+	ds $1
+
+wde51:: ; de51
+	ds $1
+
+wde52:: ; de52
+	ds $1
+
+wde53:: ; de53
+	ds $1
+
+wPlayerName:: ; de54
+	ds NAME_BUFFER_LENGTH
+
+wde64:: ; de64
+	ds $1
+
+	ds $4
 
 wde69:: ; de69
 	ds $2
@@ -1671,10 +2014,10 @@ wde3f:: ; d0d7
 wde43:: ; d0db
 	ds $8
 
-wde4b:: ; d0e3
+wd0e3:: ; d0e3
 	ds $8
 
-wde53:: ; d0eb
+wd0eb:: ; d0eb
 	ds $1
 
 wde54:: ; d0ec

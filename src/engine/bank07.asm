@@ -1,3 +1,284 @@
+; prints decimal digit in a
+; to coordinates de
+PrintDigit:
+	push af
+	push bc
+	push de
+	push hl
+	add SYM_0
+	ld b, d ; x
+	ld c, e ; y
+	call WriteByteToBGMap0
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; hl = 16-bit input value
+; de = coordinates
+; b = FALSE: left-padded with zeroes
+;     TRUE:  left-padded with empty spaces
+; a = identation
+PrintNumber:
+	ld c, a
+	push de
+	ld de, wDecimalRepresentation
+	call .CalculateDecimalDigits
+	pop de
+	ld a, d
+	add c
+	ld d, a
+	ld hl, wDecimalRepresentation + $4
+.loop_digits
+	ld a, [hld]
+	cp $ff
+	jr nz, .print
+	dec d
+	push af
+	push bc
+	push de
+	push hl
+	ld b, d ; x
+	ld c, e ; y
+	ld a, SYM_SPACE
+	call WriteByteToBGMap0
+	pop hl
+	pop de
+	pop bc
+	pop af
+	jr .next_digit
+.print
+	dec d
+	call PrintDigit
+.next_digit
+	dec c
+	jr nz, .loop_digits
+	ret
+
+.CalculateDecimalDigits:
+	push af
+	push bc
+	push de
+	push hl
+	push bc
+	push de
+	ld bc, -10000
+	call .GetDigit ; ten-thousands digit
+	ld bc, -1000
+	call .GetDigit ; thousands digit
+	ld bc, -100
+	call .GetDigit ; hundreds digit
+	ld bc, -10
+	call .GetDigit ; tens digit
+	ld bc, -1
+	call .GetDigit ; ones digit
+	pop de
+	pop bc
+	ld a, b
+	and a
+	jr z, .done
+; left pad with $ff
+	ld c, 4
+.loop_pad
+	ld a, [de]
+	and a
+	jr nz, .done
+	ld a, $ff
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop_pad
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.GetDigit:
+	ld a, -1
+.loop
+	inc a
+	add hl, bc
+	jr c, .loop
+	push af
+	ld a, l
+	sub c
+	ld l, a
+	ld a, h
+	sbc b
+	ld h, a
+	pop af
+	ld [de], a
+	inc de
+	ret
+
+Func_1c08b::
+	push af
+	push bc
+	push de
+	push hl
+	xor a
+	call BankswitchVRAM
+	ld a, c ; unused
+	ld hl, v0Tiles1
+	add hl, bc
+	inc d
+.loop_tiles
+	ld c, TILE_SIZE / 2
+.loop_inner
+	di
+	call WaitForLCDOff
+	ld a, $ff
+	ld [hli], a
+	inc hl
+	ei
+	dec c
+	jr nz, .loop_inner
+	dec e
+	jr nz, .loop_tiles
+	dec d
+	jr nz, .loop_tiles
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1c0b2
+
+SECTION "Bank 7@40ec", ROMX[$40ec], BANK[$7]
+
+Func_1c0ec::
+	push bc
+	push de
+	push hl
+	ld a, EVENT_PLAYER_GENDER
+	farcall GetEventValue
+	jr nz, .female
+; male
+	ld a, $00
+	jr .asm_1c0fd
+.female
+	ld a, $01
+.asm_1c0fd
+	pop hl
+	pop de
+	pop bc
+	ret
+
+; converts a into PORTRAIT_* constant
+Func_1c101::
+	push bc
+	push hl
+	ld c, a
+	ld b, $00
+	ld hl, .PortraitIDs
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	pop bc
+	ret
+
+.PortraitIDs
+	db PORTRAIT_00 ; $00
+	db PORTRAIT_01 ; $01
+	db PORTRAIT_02 ; $02
+	db PORTRAIT_03 ; $03
+	db PORTRAIT_04 ; $04
+	db PORTRAIT_05 ; $05
+	db PORTRAIT_06 ; $06
+	db PORTRAIT_07 ; $07
+	db PORTRAIT_5E ; $08
+	db PORTRAIT_5F ; $09
+	db PORTRAIT_08 ; $0a
+	db PORTRAIT_09 ; $0b
+	db PORTRAIT_0A ; $0c
+	db PORTRAIT_0B ; $0d
+	db PORTRAIT_0C ; $0e
+	db PORTRAIT_0D ; $0f
+	db PORTRAIT_0E ; $10
+	db PORTRAIT_0F ; $11
+	db PORTRAIT_10 ; $12
+	db PORTRAIT_11 ; $13
+	db PORTRAIT_12 ; $14
+	db PORTRAIT_13 ; $15
+	db PORTRAIT_14 ; $16
+	db PORTRAIT_15 ; $17
+	db PORTRAIT_16 ; $18
+	db PORTRAIT_17 ; $19
+	db PORTRAIT_18 ; $1a
+	db PORTRAIT_19 ; $1b
+	db PORTRAIT_1A ; $1c
+	db PORTRAIT_1B ; $1d
+	db PORTRAIT_1C ; $1e
+	db PORTRAIT_1D ; $1f
+	db PORTRAIT_1E ; $20
+	db PORTRAIT_1F ; $21
+	db PORTRAIT_20 ; $22
+	db PORTRAIT_21 ; $23
+	db PORTRAIT_22 ; $24
+	db PORTRAIT_23 ; $25
+	db PORTRAIT_24 ; $26
+	db PORTRAIT_25 ; $27
+	db PORTRAIT_26 ; $28
+	db PORTRAIT_27 ; $29
+	db PORTRAIT_28 ; $2a
+	db PORTRAIT_29 ; $2b
+	db PORTRAIT_2A ; $2c
+	db PORTRAIT_2B ; $2d
+	db PORTRAIT_2C ; $2e
+	db PORTRAIT_2D ; $2f
+	db PORTRAIT_2E ; $30
+	db PORTRAIT_2F ; $31
+	db PORTRAIT_30 ; $32
+	db PORTRAIT_31 ; $33
+	db PORTRAIT_32 ; $34
+	db PORTRAIT_33 ; $35
+	db PORTRAIT_34 ; $36
+	db PORTRAIT_35 ; $37
+	db PORTRAIT_36 ; $38
+	db PORTRAIT_37 ; $39
+	db PORTRAIT_38 ; $3a
+	db PORTRAIT_39 ; $3b
+	db PORTRAIT_3A ; $3c
+	db PORTRAIT_3B ; $3d
+	db PORTRAIT_3C ; $3e
+	db PORTRAIT_3D ; $3f
+	db PORTRAIT_3E ; $40
+	db PORTRAIT_3F ; $41
+	db PORTRAIT_40 ; $42
+	db PORTRAIT_41 ; $43
+	db PORTRAIT_42 ; $44
+	db PORTRAIT_43 ; $45
+	db PORTRAIT_44 ; $46
+	db PORTRAIT_45 ; $47
+	db PORTRAIT_46 ; $48
+	db PORTRAIT_47 ; $49
+	db PORTRAIT_48 ; $4a
+	db PORTRAIT_49 ; $4b
+	db PORTRAIT_4A ; $4c
+	db PORTRAIT_4B ; $4d
+	db PORTRAIT_4C ; $4e
+	db PORTRAIT_4D ; $4f
+	db PORTRAIT_4E ; $50
+	db PORTRAIT_4F ; $51
+	db PORTRAIT_50 ; $52
+	db PORTRAIT_51 ; $53
+	db PORTRAIT_52 ; $54
+	db PORTRAIT_53 ; $55
+	db PORTRAIT_54 ; $56
+	db PORTRAIT_55 ; $57
+	db PORTRAIT_56 ; $58
+	db PORTRAIT_57 ; $59
+	db PORTRAIT_58 ; $5a
+	db PORTRAIT_59 ; $5b
+	db PORTRAIT_5A ; $5c
+	db PORTRAIT_5B ; $5d
+	db PORTRAIT_5C ; $5e
+	db PORTRAIT_5D ; $5f
+; 0x1c116
+
 SECTION "Bank 7@4395", ROMX[$4395], BANK[$7]
 
 Func_1c395:
@@ -112,7 +393,7 @@ Func_1c448:
 	push bc
 	ld c, a
 	ld b, $00
-	ld hl, $4453
+	ld hl, .data
 	add hl, bc
 	ld a, [hl]
 	pop bc
@@ -593,7 +874,8 @@ StartPalFadeToBlackOrWhite:
 
 SECTION "Bank 7@493c", ROMX[$493c], BANK[$7]
 
-Func_1c93c::
+; returns nz if palettes are still fading
+CheckPalFading::
 	ld a, [wPaletteFadeMode]
 	and a
 	ret
@@ -738,7 +1020,7 @@ WaitPalFading:
 	push af
 .loop_wait
 	call DoFrame
-	call Func_1c93c
+	call CheckPalFading
 	jr nz, .loop_wait
 	pop af
 	ret
@@ -856,9 +1138,28 @@ SetOBPaletteFadeConfigToEnabled:
 	pop bc
 	pop af
 	ret
-; 0x1ca87
 
-SECTION "Bank 7@4a9f", ROMX[$4a9f], BANK[$7]
+SetOBPaletteFadeConfigToDisabled:
+	push af
+	push bc
+	push de
+	push hl
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wOBColorFadeConfigList
+	add hl, bc
+	ld a, $ff ; disable fading
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 SetAllBGPaletteFadeConfigsToEnabled:
 	push af
@@ -894,7 +1195,717 @@ SetAllOBPaletteFadeConfigsToEnabled:
 	ret
 ; 0x1cac3
 
-SECTION "Bank 7@4f81", ROMX[$4f81], BANK[$7]
+SECTION "Bank 7@4b00", ROMX[$4b00], BANK[$7]
+
+; a = default cursor position
+DrawMenuBox:
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	ld a, [wMenuBoxX]
+	ld d, a
+	ld a, [wMenuBoxY]
+	ld e, a
+	ld a, [wMenuBoxWidth]
+	ld b, a
+	ld a, [wMenuBoxHeight]
+	ld c, a
+	ld a, [wMenuBoxSkipClear]
+	and a
+	jr nz, .skip_clear
+	farcall FillBoxInBGMapWithZero
+	jr .print_items
+.skip_clear
+	ld a, [wMenuBoxLabelTextID + 0]
+	ld l, a
+	ld a, [wMenuBoxLabelTextID + 1]
+	ld h, a
+	or l
+	jr nz, .asm_1cb31
+	call DrawRegularTextBoxVRAM0
+	jr .print_items
+.asm_1cb31
+	call Func_38ad
+
+.print_items
+	ld a, [wMenuBoxNumItems]
+	ld b, a
+	ld c, 0
+.loop_text_items
+	push bc
+	push de
+	ld b, $00
+	ld hl, wMenuBoxItemsXPositions
+	add hl, bc
+	ld d, [hl]
+	ld hl, wMenuBoxItemsYPositions
+	add hl, bc
+	ld e, [hl]
+	ld hl, wMenuBoxItemsTextIDs
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_35af
+	pop de
+	pop bc
+	inc c
+	ld a, c
+	cp b
+	jr nz, .loop_text_items
+	pop af
+
+	; place cursor in default position
+	ld b, $00
+	ld c, a
+	ld hl, wMenuBoxItemsXPositions
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld hl, wMenuBoxItemsYPositions
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	ld b, d
+	dec b
+	ld c, e
+	xor a
+	call BankswitchVRAM
+	ld a, [wMenuBoxCursorSymbol]
+	call WriteByteToBGMap0
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+HandleMenuBox:
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld [wMenuBoxFocusedItem], a
+	xor a
+	ld [wMenuBoxBlinkCounter], a
+	call .UnfocusItem
+	ld a, [wMenuBoxDelay]
+	and a
+	jr z, .no_delay
+.loop_delay
+	call DoFrame
+	dec a
+	jr nz, .loop_delay
+
+.no_delay
+	call .InitAndUpdateBlinkCounter
+.loop_main
+	call DoFrame
+	call UpdateRNGSources
+	ld a, [wMenuBoxNumItems]
+	ld h, a
+	ld a, [wMenuBoxFocusedItem]
+	ld c, a
+	call .CallUpdateFunction
+	ld a, [wda37]
+	and a
+	jr nz, .asm_1cbc3
+	call .DownPress
+	call .UpPress
+	call .RightPress
+	call .LeftPress
+	ld a, c
+	ld [wMenuBoxFocusedItem], a
+.asm_1cbc3
+	ld a, [wMenuBoxFocusedItem]
+	ld c, a
+	xor a
+	ld [wda37], a
+	call .CheckKeysPressed
+	jr nz, .asm_1cbda
+	call .CheckKeysHeld
+	jr nz, .asm_1cbda
+	call .UpdateBlinkCounter
+	jr .loop_main
+.asm_1cbda
+	call .FocusItem
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.UpPress:
+	ldh a, [hDPadHeld]
+	and D_UP
+	ret z
+	ld a, [wMenuBoxHasHorizontalScroll]
+	ld l, a ; unused
+	ld a, [wMenuBoxVerticalStep]
+	and a
+	ret z
+	ld b, a
+	ld a, c
+	sub b
+	jr nc, .asm_1cbf6
+	add h ; warp around
+.asm_1cbf6
+	push af
+	ld a, SFX_01
+	call Func_3cfe
+	pop af
+	call .UnfocusItem
+	ld c, a
+	ret
+
+.DownPress:
+	ldh a, [hDPadHeld]
+	and D_DOWN
+	ret z
+	ld a, [wMenuBoxHasHorizontalScroll]
+	ld l, a ; unused
+	ld a, [wMenuBoxVerticalStep]
+	and a
+	ret z
+	ld b, a
+	ld a, c
+	add b
+	cp h
+	jr c, .asm_1cc17
+	sub h ; warp around
+.asm_1cc17
+	push af
+	ld a, SFX_01
+	call Func_3cfe
+	pop af
+	call .UnfocusItem
+	ld c, a
+	ret
+
+.LeftPress:
+	ldh a, [hDPadHeld]
+	and D_LEFT
+	ret z
+	ld a, [wMenuBoxHasHorizontalScroll]
+	and a
+	ret z
+	ld b, a
+	ld a, c
+	sub b
+	jr nc, .asm_1cc33
+	add h
+.asm_1cc33
+	push af
+	ld a, SFX_01
+	call Func_3cfe
+	pop af
+	call .UnfocusItem
+	ld c, a
+	ret
+
+.RightPress:
+	ldh a, [hDPadHeld]
+	and D_RIGHT
+	ret z
+	ld a, [wMenuBoxHasHorizontalScroll]
+	and a
+	ret z
+	ld b, a
+	ld a, c
+	add b
+	cp h
+	jr c, .asm_1cc50
+	sub h
+.asm_1cc50
+	push af
+	ld a, SFX_01
+	call Func_3cfe
+	pop af
+	call .UnfocusItem
+	ld c, a
+	ret
+
+; returns carry if any of the keys
+; in wMenuBoxPressKeys are pressed
+.CheckKeysPressed:
+	ld a, [wMenuBoxPressKeys]
+	ld b, a
+	ldh a, [hKeysPressed]
+	and b
+	ret z
+	scf
+	ccf
+	ret
+
+; returns carry if any of the keys
+; in wMenuBoxHeldKeys are held
+.CheckKeysHeld:
+	ld a, [wMenuBoxHeldKeys]
+	ld b, a
+	ldh a, [hDPadHeld]
+	and b
+	ret z
+	scf
+	ret
+
+.InitAndUpdateBlinkCounter:
+	xor a
+	ld [wMenuBoxBlinkCounter], a
+; fallthrough
+
+.UpdateBlinkCounter:
+	push bc
+	push hl
+	ld b, $00
+	ld hl, wMenuBoxItemsXPositions
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld hl, wMenuBoxItemsYPositions
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	ld b, d
+	dec b
+	ld c, e
+	ld a, [wMenuBoxBlinkCounter]
+	and $10
+	ld a, [wMenuBoxBlinkSymbol]
+	jr z, .blink
+	ld a, [wMenuBoxSpaceSymbol]
+.blink
+	push af
+	xor a
+	call BankswitchVRAM
+	pop af
+	call WriteByteToBGMap0
+	ld a, $01
+	call BankswitchVRAM
+	ld a, $80 ; priority
+	call WriteByteToBGMap0
+	xor a
+	call BankswitchVRAM
+	; increment counter
+	ld hl, wMenuBoxBlinkCounter
+	inc [hl]
+	pop hl
+	pop bc
+	ret
+
+; c = cursor position
+.UnfocusItem:
+	push af
+	push bc
+	push hl
+	ld b, $00
+	ld hl, wMenuBoxItemsXPositions
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld hl, wMenuBoxItemsYPositions
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	ld b, d
+	dec b
+	ld c, e
+	ld a, [wMenuBoxSpaceSymbol]
+	call WriteByteToBGMap0
+	xor a
+	ld [wMenuBoxBlinkCounter], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; c = cursor position
+; carry = doing selection
+.FocusItem:
+	push af
+	push bc
+	push hl
+	ld a, [wMenuBoxCursorSymbol]
+	jr nc, .not_selection
+	ld a, [wMenuBoxSelectionSymbol]
+.not_selection
+	push af
+	ld b, $00
+	ld hl, wMenuBoxItemsXPositions
+	add hl, bc
+	ld a, [hl]
+	ld d, a
+	ld hl, wMenuBoxItemsYPositions
+	add hl, bc
+	ld a, [hl]
+	ld e, a
+	ld b, d
+	dec b
+	ld c, e
+	pop af
+	call WriteByteToBGMap0
+	pop hl
+	pop bc
+	pop af
+	ret
+
+.CallUpdateFunction:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wMenuBoxUpdateFunction + 0]
+	ld l, a
+	ld a, [wMenuBoxUpdateFunction + 1]
+	ld h, a
+	or l
+	jr z, .done
+; call hl
+	ld de, .done
+	push de
+	jp hl
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+GetMenuBoxFocusedItem:
+	ld a, [wMenuBoxFocusedItem]
+	ret
+; 0x1cd17
+
+SECTION "Bank 7@4d6f", ROMX[$4d6f], BANK[$7]
+
+; outputs in a what option the player chose
+ShowStartMenu:
+	push bc
+	push de
+	push hl
+	ld [wStartMenuConfiguration], a
+	push af
+	ld a, MUSIC_PCMAINMENU
+	call SetMusic
+	pop af
+	call .HandleMenu
+	ld a, [wMenuCursorPosition]
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.HandleMenu:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld de, $4090
+	call SetupText
+	call .DrawMenu
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall SetFadePalsFrameFunc
+	call HandleStartMenuBox
+	farcall UnsetFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+.DrawMenu:
+	ld a, [wStartMenuConfiguration]
+	and a
+	jr z, .skip_portrait_and_name
+
+; draw player portrait
+	call Func_1c0ec
+	add 0
+	lb bc, 13, 1
+	ld e, PORTRAITVARIANT_NORMAL
+	call Func_3ab2
+
+; print player's name
+	farcall LoadPlayerName
+	ld b, a
+	ld a, MAX_PLAYER_NAME_CHARS
+	sub b
+	ld d, 13
+	add d
+	ld d, a
+	ld e, 8
+	ldtx hl, Text05be
+	call Func_35bf
+
+.skip_portrait_and_name
+	ld a, [wStartMenuConfiguration]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, .MenuBoxParamPointers
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, BANK(.MenuBoxParamPointers)
+	lb de, 0, 0
+	call LoadMenuBoxParams
+	ld a, [wStartMenuConfiguration]
+	ld c, a
+	ld b, $00
+	ld hl, .DefaultCursorPositions
+	add hl, bc
+	ld a, [hl]
+	ld [wMenuCursorPosition], a
+	call DrawMenuBox
+	lb de, 0, 10
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	ret
+
+.DefaultCursorPositions
+	db 0 ; STARTMENU_CONFIG_0
+	db 0 ; STARTMENU_CONFIG_1
+	db 1 ; STARTMENU_CONFIG_2
+	db 1 ; STARTMENU_CONFIG_3
+	db 0 ; STARTMENU_CONFIG_4
+
+.MenuBoxParamPointers:
+	dw .Config0Params ; STARTMENU_CONFIG_0
+	dw .Config1Params ; STARTMENU_CONFIG_1
+	dw .Config2Params ; STARTMENU_CONFIG_2
+	dw .Config3Params ; STARTMENU_CONFIG_3
+	dw .Config4Params ; STARTMENU_CONFIG_4
+
+.Config0Params
+	db TRUE ; ?
+	db 12, 4 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db $00 ; held keys
+	db FALSE ; has horizontal scroll
+	db 0 ; vertical step
+	dw StartMenuBoxUpdate ; update function
+	dw NULL ; label text ID
+
+	textitem 2, 2, Text05ce
+	db $ff ; end
+
+.Config1Params
+	db TRUE ; ?
+	db 12, 6 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db $00 ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw StartMenuBoxUpdate ; update function
+	dw NULL ; label text ID
+
+	textitem 2, 2, Text05cf
+	textitem 2, 4, Text05ce
+	db $ff ; end
+
+.Config2Params
+	db TRUE ; ?
+	db 12, 8 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db $00 ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw StartMenuBoxUpdate ; update function
+	dw NULL ; label text ID
+
+	textitem 2, 2, Text05d0
+	textitem 2, 4, Text05cf
+	textitem 2, 6, Text05ce
+	db $ff ; end
+
+.Config3Params
+	db TRUE ; ?
+	db 12, 10 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db $00 ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw StartMenuBoxUpdate ; update function
+	dw NULL ; label text ID
+
+	textitem 2, 2, Text05d0
+	textitem 2, 4, Text05cf
+	textitem 2, 6, Text05ce
+	textitem 2, 8, Text05d1
+	db $ff ; end
+
+.Config4Params
+	db TRUE ; ?
+	db 12, 8 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db $00 ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw StartMenuBoxUpdate ; update function
+	dw NULL ; label text ID
+
+	textitem 2, 2, Text05cf
+	textitem 2, 4, Text05ce
+	textitem 2, 6, Text05d1
+	db $ff ; end
+
+_StartMenuBoxUpdate::
+	push af
+	push bc
+	push de
+	push hl
+	call GetMenuBoxFocusedItem
+	ld b, a
+	ld a, [wMenuBoxLastFocusedItem]
+	cp b
+	jr z, .done
+	call .DrawTextBox
+	sla b
+	ld a, [wStartMenuConfiguration]
+	sla a
+	sla a
+	sla a ; *8
+	add b
+	ld c, a
+	ld b, $00
+	ld hl, .PointerTables
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+; call hl
+	ld de, .done
+	push de
+	jp hl
+.done
+	call GetMenuBoxFocusedItem
+	ld [wMenuBoxLastFocusedItem], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.PointerTables:
+; STARTMENU_CONFIG_0
+	dw .NewGame
+	dw NULL
+	dw NULL
+	dw NULL
+
+; STARTMENU_CONFIG_1
+	dw .ContinueFromDiary
+	dw .NewGame
+	dw NULL
+	dw NULL
+
+; STARTMENU_CONFIG_2
+	dw .CardPop
+	dw .ContinueFromDiary
+	dw .NewGame
+	dw NULL
+
+; STARTMENU_CONFIG_3
+	dw .CardPop
+	dw .ContinueFromDiary
+	dw .NewGame
+	dw .ContinueDuel
+
+; STARTMENU_CONFIG_4
+	dw .ContinueFromDiary
+	dw .NewGame
+	dw .ContinueDuel
+	dw NULL
+
+.DrawTextBox:
+	push bc
+	lb de, 0, 10
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	pop bc
+	ret
+
+.NewGame:
+	lb de, 1, 12
+	ldtx hl, Text05d2
+	call Func_35af
+	ret
+
+.ContinueFromDiary:
+	farcall Func_c53e
+	call LoadTxRam2
+	ldtx hl, Text077b
+	lb de, 1, 10
+	call Func_2c4b
+	ld hl, .TextItems
+	call Func_35cf
+	call Func_1d0aa
+	ld l, a
+	ld h, $00
+	lb de, 13, 12
+	ld a, 2
+	ld b, TRUE
+	call PrintNumber
+	lb de, 10, 16
+	farcall PrintPlayTime
+	lb de, 9, 14
+	farcall PrintCardAlbumProgress
+	ret
+
+.TextItems:
+	textitem  3, 12, Text05af
+	textitem 15, 12, Text05ca
+	textitem  3, 14, Text05b0
+	textitem  3, 16, Text05b1
+	db $ff
+
+.CardPop:
+	lb de, 1, 12
+	ldtx hl, Text05d3
+	call Func_35af
+	ret
+
+.ContinueDuel:
+	lb de, 1, 12
+	ldtx hl, Text05d4
+	call Func_35af
+	ret
+
+HandleStartMenuBox:
+	ld a, -1
+	ld [wMenuBoxLastFocusedItem], a
+	ld a, [wMenuCursorPosition]
+	call HandleMenuBox
+	ld [wMenuCursorPosition], a
+	jr c, .selected
+	push af
+	ld a, SFX_02
+	call Func_3cfe
+	pop af
+	ret
+.selected
+	push af
+	ld a, SFX_03
+	call Func_3cfe
+	pop af
+	ret
 
 ; return carry if "no" selected
 AskToOverwriteSaveData:
@@ -966,35 +1977,154 @@ AskToContinueFromDiaryInsteadOfDuel:
 	tx Text078a
 	tx Text078b
 	tx $ffff
-; 0x1d016
+
+ConfirmPlayerNameAndGender:
+	push bc
+	push de
+	push hl
+	call .ShowInfoAndAskPlayer
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.ShowInfoAndAskPlayer:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call .ShowPlayerInfo
+	farcall SetFrameFuncAndFadeFromWhite
+	call .ShowYesOrNoMenu
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+.ShowPlayerInfo:
+	lb de, 0, 0
+	lb bc, 20, 12
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	ld hl, .TextItems
+	call Func_35cf
+	lb bc, 12, 3
+	call DrawPlayerPortrait
+	; print name
+	ldtx hl, Text05be
+	lb de, 5, 4
+	call Func_35bf
+	; print gender
+	farcall GetPlayerGender
+	and a
+	ldtx hl, Text05d5
+	jr z, .got_gender_text
+	ldtx hl, Text05d6
+.got_gender_text
+	lb de, 5, 8
+	call Func_35af
+	ret
+
+.TextItems:
+	textitem 2, 2, Text05ad
+	textitem 2, 6, Text05de
+	db $ff
+
+.ShowYesOrNoMenu:
+	ldtx hl, Text05dd
+	ld a, $1
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ret
+; 0x1d081
+
+SECTION "Bank 7@5081", ROMX[$5081], BANK[$7]
+
+Func_1d081:
+	push bc
+	push hl
+	ld c, a
+	ld b, $00
+	ld hl, .EventIDs
+	add hl, bc
+	ld a, [hl]
+	farcall GetEventValue
+	pop hl
+	pop bc
+	ret
+
+.EventIDs
+	db EVENT_04
+	db EVENT_0B
+	db EVENT_05
+	db EVENT_06
+	db EVENT_07
+	db EVENT_08
+	db EVENT_09
+	db EVENT_0A
+	db EVENT_10
+	db EVENT_11
+	db EVENT_12
+	db EVENT_13
+	db EVENT_14
+	db EVENT_15
+	db EVENT_16
+	db EVENT_17
+	db EVENT_18
+	db EVENT_19
+	db EVENT_1A
+	db EVENT_1B
+	db EVENT_1C
+	db EVENT_1D
+	db EVENT_1E
+	db EVENT_1F
+
+Func_1d0aa:
+	push bc
+	push hl
+	ld c, $18
+	ld b, $00
+	xor a
+.asm_1d0b1
+	push af
+	call Func_1d081
+	jr z, .asm_1d0b8
+	inc b
+.asm_1d0b8
+	pop af
+	inc a
+	dec c
+	jr nz, .asm_1d0b1
+	ld a, b
+	and a
+	pop hl
+	pop bc
+	ret
+; 0x1d0c2
 
 SECTION "Bank 7@5475", ROMX[$5475], BANK[$7]
 
 Func_1d475:
 	ld hl, .FunctionMap
-	call Func_3535
+	call CallMappedFunction
 	ret
 
 .FunctionMap
-	db $0
-	dba Func_1d485
-	
-	db $1
-	dba Func_1d4b9
-	
+	key_func $0, Func_1d485
+	key_func $1, Func_1d4b9
 	db $ff ; end
 
 Func_1d485:
-	ld a, $00
-	farcall Func_13dcd
-	ld a, $04
-	farcall Func_d6d3
+	ld a, PLAYER_MALE
+	farcall SetPlayerGender
+	ld a, EVENT_04
+	farcall MaxOutEventValue
 	farcall Func_1157c
 	call Func_1eca5
 	call Func_1d7a1
 	call Func_1d9f9
 	call Func_1dcb7
-	farcall $6, $601a
+
+	; this is unnecessary since Card Pop list
+	; was already cleared in InitSaveData
+	farcall ClearCardPopNameList
+
 	call Func_1e419
 	call Func_1e767
 	farcall Func_111f0
@@ -1119,3 +2249,144 @@ Func_1eca5:
 	pop af
 	ret
 ; 0x1ece4
+
+SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
+
+Func_1f57b::
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdd75]
+	and a
+	jr z, .asm_1f588
+	call .Func_1f58d
+.asm_1f588
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.Func_1f58d:
+	dec a
+	add a ; *2
+	ld c, a
+	ld b, $00
+	ld hl, .OffsetPointers
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [wdd76]
+	add a ; *2
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	cp $80
+	jr z, .asm_1f5b6
+	ld c, [hl]
+	ldh a, [hSCX]
+	sub c
+	ldh [hSCX], a
+	inc hl
+	ld c, [hl]
+	ldh a, [hSCY]
+	sub c
+	ldh [hSCY], a
+	ld hl, wdd76
+	inc [hl]
+	ret
+
+.asm_1f5b6
+	xor a
+	ld [wdd76], a
+	ld a, [wdd77]
+	and a
+	jr z, .asm_1f5c5
+	dec a
+	ld [wdd77], a
+	ret nz
+.asm_1f5c5
+	xor a
+	ld [wdd75], a
+	ret
+
+.OffsetPointers:
+	dw .offsets1 ; $1
+	dw .offsets2 ; $2
+	dw .offsets3 ; $3
+	dw .offsets4 ; $4
+	dw .offsets5 ; $5
+	dw .offsets6 ; $6
+
+.offsets1
+	db -1,  0
+	db  1,  0
+	db  1,  0
+	db -1,  0
+	db $80 ; end
+
+.offsets2
+	db  0, -1
+	db  0,  1
+	db  0,  1
+	db  0, -1
+	db $80 ; end
+
+.offsets3
+	db -1, -1
+	db  1,  1
+	db  1,  1
+	db -1, -1
+	db $80 ; end
+
+.offsets4
+	db -2,  0
+	db  2,  0
+	db  2,  0
+	db -2,  0
+	db $80 ; end
+
+.offsets5
+	db  0, -2
+	db  0,  2
+	db  0,  2
+	db  0, -2
+	db $80 ; end
+
+.offsets6
+	db -2,  2
+	db  2, -2
+	db  2, -2
+	db -2,  2
+	db $80 ; end
+; 0x1f60c
+
+SECTION "Bank 7@78bd", ROMX[$78bd], BANK[$7]
+
+PlayerGenderAndNameSelection::
+	push af
+	push bc
+	push de
+	push hl
+.start
+	farcall SetFadePalsFrameFunc
+	call StartFadeToWhite
+	call WaitPalFading
+	farcall UnsetFadePalsFrameFunc
+	push af
+	ld a, MUSIC_PCMAINMENU
+	call SetMusic
+	pop af
+	farcall PlayerGenderSelection
+	farcall PlayerNameSelection
+	call ConfirmPlayerNameAndGender
+	jr c, .start ; player selected no
+	call SetNoMusic
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1f8eb

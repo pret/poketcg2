@@ -679,7 +679,7 @@ Tileset066::
 
 Tileset145::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset145.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset145.2bpp"
 
 Tileset17E::
 	dw 2 ; length
@@ -823,7 +823,7 @@ Tileset087::
 
 Tileset146::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset146.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset146.2bpp"
 
 Tileset158::
 	dw 7 ; length
@@ -895,6 +895,15 @@ Palette05F::
 	rgb 12, 12, 11
 	rgb  7,  7,  6
 	rgb  0,  0,  0
+
+OWAnimation10::
+	db  1 ; length
+
+	; durations
+	db  0
+
+	; data
+	ow_anim $45, 1, OW_FRAMES_0C8
 
 SECTION "Tilesets 16", ROMX
 
@@ -1721,7 +1730,7 @@ Tileset13F::
 
 Tileset147::
 	dw 37 ; length
-	INCBIN "gfx/tilesets/tileset147.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset147.2bpp"
 
 Tileset14E::
 	dw 25 ; length
@@ -2463,6 +2472,15 @@ INCLUDE "data/framesets1.asm"
 
 SECTION "Framesets 2", ROMX
 INCLUDE "data/framesets2.asm"
+
+SECTION "OW Tile Frames 1", ROMX
+INCLUDE "data/ow_tile_frames1.asm"
+
+SECTION "OW Animations", ROMX
+INCLUDE "data/ow_animations.asm"
+
+SECTION "OW Tile Frames 2", ROMX
+INCLUDE "data/ow_tile_frames2.asm"
 
 SECTION "Palettes 2", ROMX
 INCLUDE "data/palettes2.asm"

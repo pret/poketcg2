@@ -100,7 +100,7 @@ HandleMenuInput::
 	xor a ; wrapping around, so load the topmost item
 .handle_up_or_down
 	push af
-	ld a, $1
+	ld a, SFX_01
 	ld [wRefreshMenuCursorSFX], a ; buffer sound for up/down
 	call EraseCursor
 	pop af
@@ -151,12 +151,12 @@ PlayOpenOrExitScreenSFX::
 	ldh a, [hCurMenuItem]
 	inc a
 	jr z, .play_exit_sfx
-	ld a, $02 ; SFX_02
+	ld a, SFX_02
 	jr .play_sfx
 .play_exit_sfx
-	ld a, $03 ; SFX_03
+	ld a, SFX_03
 .play_sfx
-	call $3073 ; PlaySFX
+	call PlaySFX
 	pop af
 	ret
 
@@ -167,7 +167,7 @@ RefreshMenuCursor_CheckPlaySFX::
 	ld a, [wRefreshMenuCursorSFX]
 	or a
 	jr z, RefreshMenuCursor
-	call $3073 ; PlaySFX
+	call PlaySFX
 ;	fallthrough
 
 RefreshMenuCursor::
@@ -258,8 +258,8 @@ HandleDuelMenuInput::
 	and 1
 .dpad_pressed
 	push af
-	ld a, $01 ; SFX_01
-	call $3073 ; PlaySFX
+	ld a, SFX_01
+	call PlaySFX
 	call .erase_cursor
 	pop af
 	ld [wCurMenuItem], a
@@ -722,7 +722,7 @@ CopyCardNameAndLevel::
 	ld l, a
 	ld de, wDefaultText
 	push de
-	call $2c77 ; CopyText
+	call CopyText
 	pop hl
 	push de
 	ld e, c
@@ -1010,8 +1010,8 @@ HandleYesOrNoMenu::
 	and D_RIGHT | D_LEFT
 	jr z, .wait_button_loop
 	; left or right pressed, so switch to the other menu item
-	ld a, $01 ; SFX_01
-	call $3073 ; PlaySFX
+	ld a, SFX_01
+	call PlaySFX
 	call EraseCursor
 .refresh_menu
 	ld a, [wLeftmostItemCursorX]

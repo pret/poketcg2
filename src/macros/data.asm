@@ -60,7 +60,7 @@ ENDM
 MACRO gfx_ptr
 	db BANK(\1) - BANK(@)
 	dw \1
-	db $0
+	db $0 ; padding
 ENDM
 
 ; \1 = y offset
@@ -91,4 +91,36 @@ ENDM
 ; \1 = frame
 MACRO oamend
 	oamframe \1, -1, 0, 0
+ENDM
+
+; \1 = vtile
+; \2 = VRAM
+; \3 = OW_FRAMES_* constant
+MACRO ow_anim
+	db \1, (\2 ^ $1)
+	dw \3
+ENDM
+
+; \1 = tile index in tileset
+; \2 = frame duration
+MACRO ow_frame
+	dw \1
+	db \2
+	db $00 ; padding
+ENDM
+
+MACRO ow_frame_end
+	dw $ffff
+ENDM
+
+MACRO textitem
+	db \1, \2 ; x, y
+	tx \3     ; text ID
+ENDM
+
+; key-value pairs
+; for function maps
+MACRO key_func
+	db \1  ; key
+	dba \2 ; text ID
 ENDM

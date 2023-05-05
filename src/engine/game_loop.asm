@@ -42,8 +42,9 @@ GameLoop::
 .reset_game
 	jp Reset
 
+; unreferenced?
 Func_405b:
-	farcall $6, $58f8
+	farcall InitSaveData
 	ret
 
 SetupResetBackUpRAMScreen:

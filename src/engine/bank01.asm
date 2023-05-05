@@ -19,11 +19,13 @@ SetZeroLineSeparation:
 
 SECTION "Bank 1@610c", ROMX[$610c], BANK[$1]
 
+; loads a player deck (sDeck*Cards) from SRAM to wPlayerDeck
+; sCurrentlySelectedDeck determines which sDeck*Cards source (0-3)
 LoadPlayerDeck:
 	call EnableSRAM
-	ld a, [sb7a0]
+	ld a, [sCurrentlySelectedDeck]
 	ld l, a
-	ld h, $60
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
 	ld de, sDeck1Cards
 	add hl, de
@@ -35,7 +37,43 @@ LoadPlayerDeck:
 	ret
 ; 0x6128
 
-SECTION "Bank 1@68bc", ROMX[$68bc], BANK[$1]
+SECTION "Bank 1@6897", ROMX[$6897], BANK[$1]
+
+; writes the cards in de to hl
+; in a compressed format
+SaveDeckCards:
+	push hl
+	push de
+	push bc
+	ld a, 8
+.loop
+	push af
+	inc hl
+	ld c, 8
+.loop_bits
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	inc de
+	rra
+	rl b
+	dec c
+	jr nz, .loop_bits
+	push hl
+	push de
+	ld de, -9
+	add hl, de
+	ld [hl], b
+	pop de
+	pop hl
+	pop af
+	dec a
+	jr nz, .loop
+	pop bc
+	pop de
+	pop hl
+	ret
 
 ; loads deck saved in SRAM to hl
 LoadDeckFromSRAM:

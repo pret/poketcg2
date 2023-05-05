@@ -81,7 +81,7 @@ ENDM
 
 MACRO deck_struct
 \1Name::  ds DECK_NAME_SIZE
-\1Cards:: ds ((DECK_SIZE + 7) / 8 + 1) * 8
+\1Cards:: ds DECK_COMPRESSED_SIZE
 ENDM
 
 MACRO sprite_anim_struct
@@ -103,5 +103,14 @@ ENDM
 MACRO obj_tile_struct
 \1ID::         ds 2 ; TILESET_* constant
 \1TileOffset:: ds 1 ; tile offset
-ds 1 ; padding
+	ds 1 ; padding
+ENDM
+
+MACRO ow_obj_struct
+\1Flags::   ds 1
+\1ID::      ds 1
+\1AnimPtr:: ds 2
+\1Unk4::    ds 1
+\1Unk5::    ds 1
+\1Unk6::    ds 2
 ENDM
