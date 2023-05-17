@@ -1,5 +1,5 @@
 ; initialize the screen by emptying the tilemap. used during screen transitions
-EmptyScreen:
+EmptyScreen::
 	call DisableLCD
 	call FillTileMap
 	xor a
@@ -8,7 +8,7 @@ EmptyScreen:
 
 ; returns v*BGMap0 + BG_MAP_WIDTH * c + b in de.
 ; used to map coordinates at bc to a BGMap0 address.
-BCCoordToBGMap0Address:
+BCCoordToBGMap0Address::
 	ld l, c
 	ld h, $0
 	add hl, hl

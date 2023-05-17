@@ -31,8 +31,30 @@ ROM0
 	"start"
 	org $3fe0
 	"Audio Callback"
+ROMX $01
+	"Game Loop"
+ROMX $03
+	"Bank 3"
+	org $41c9
+	"Bank 3@41c9"
+	org $4651
+	"Bank 3@4651"
+	org $5299
+	"Bank 3@5299"
+	org $53e9
+	"Bank 3@53e9"
+	org $5671
+	"Bank 3@5671"
+	org $5bdb
+	"Bank 3@5bdb"
+	org $6883
+	"Bank 3@6883"
+	org $6b97
+	"Bank 3@6b97"
 ROMX $1b
 	"Gfx 1"
+	org $70b0
+	"Gfx 1@70b0"
 	org $7150
 	"Gfx 1@7150"
 ROMX $1d
@@ -74,8 +96,85 @@ ROMX $47
 	"Text 16"
 ROMX $48
 	"Text 17"
+ROMX $4c
+	org $45ed
+	"Tilemaps 2"
+ROMX $4d
+	"Tilemaps 3"
+ROMX $4e
+	"Tilemaps 4"
+ROMX $4f
+	"Tilemaps 5"
+ROMX $50
+	"Tilemaps 6"
+	"Tilesets 1"
+ROMX $51
+	"Tilesets 2"
+ROMX $52
+	"Tilesets 3"
+ROMX $53
+	"Tilesets 4"
+ROMX $54
+	"Tilesets 5"
+ROMX $55
+	"Tilesets 6"
+ROMX $56
+	"Tilesets 7"
+ROMX $57
+	"Tilesets 8"
+ROMX $58
+	"Tilesets 9"
+ROMX $59
+	"Tilesets 10"
+ROMX $5a
+	"Tilesets 11"
+ROMX $5b
+	"Tilesets 12"
+ROMX $5c
+	"Tilesets 13"
+ROMX $5d
+	"Tilesets 14"
+ROMX $5e
+	"Tilesets 15"
+ROMX $5f
+	"Tilesets 16"
+ROMX $60
+	"Tilesets 17"
+ROMX $61
+	"Tilesets 18"
+ROMX $62
+	"Tilesets 19"
+ROMX $63
+	"Tilesets 20"
+ROMX $64
+	"Tilesets 21"
+ROMX $65
+	"Tilesets 22"
+ROMX $66
+	"Tilesets 23"
+ROMX $67
+	"Tilesets 24"
+ROMX $68
+	"Tilesets 25"
+ROMX $69
+	"Tilesets 26"
+ROMX $6a
+	"Tilesets 27"
+ROMX $6b
+	"Tilesets 28"
+ROMX $6c
+	"Tilesets 29"
+ROMX $6d
+	"Tilesets 30"
+ROMX $6e
+	"Tilesets 31"
+ROMX $6f
+	"Tilesets 32"
+	"Palettes 1"
 ROMX $77
 	"Audio 1"
+ROMX $70
+	"Palettes 2"
 ROMX $78
 	"Audio 2"
 ROMX $79
@@ -114,6 +213,8 @@ WRAMX 1
 	"WRAM1"
 	org $d0bf
 	"WRAM1@d0bf"
+	org $d54c
+	"WRAM1@d54c"
 	org $dd02
 	"WRAM1@dd02"
 WRAMX 7
@@ -126,3 +227,5 @@ SRAM $00
 	"SRAM0"
 SRAM $01
 	"SRAM1"
+SRAM $02
+	"SRAM2"

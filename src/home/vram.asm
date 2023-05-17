@@ -17,7 +17,7 @@ BankswitchVRAM1:
 	ret
 
 ; set current dest VRAM bank to a
-BankswitchVRAM:
+_BankswitchVRAM:
 	ldh [hBankVRAM], a
 	ldh [rVBK], a
 	ret

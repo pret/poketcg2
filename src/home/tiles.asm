@@ -3,7 +3,7 @@
 ; | a+0*l+0*h | a+0*l+1*h | a+0*l+2*h |
 ; | a+1*l+0*h | a+1*l+1*h | a+1*l+2*h |
 ; | a+2*l+0*h | a+2*l+1*h | a+2*l+2*h |
-FillRectangle:
+FillRectangle::
 	push de
 	push af
 	push hl
@@ -48,7 +48,7 @@ FillRectangle:
 
 ; loads the four tiles of the card set 2 icon constant provided in register a
 ; returns carry if the specified set does not have an icon
-LoadCardSet2Tiles:
+LoadCardSet2Tiles::
 	add $2
 	ld e, a
 	ld d, 0
@@ -76,17 +76,17 @@ LoadCardSet2Tiles:
 	db 8, -1, -1, 0, 4, 12, 16, 20, 24, 28
 
 ; loads the Deck and Hand icons for the "Draw X card(s) from the deck." screen
-LoadDuelDrawCardsScreenTiles:
+LoadDuelDrawCardsScreenTiles::
 	ld hl, $49b0 ; DuelOtherGraphics + $29 tiles
 	ld de, v0Tiles1 + $74 tiles
 	ld b, $08
 	jp CopyFontsOrDuelGraphicsTiles
 
-Func_1da5:
+Func_1da5::
 	ld b, $10
 	jr Func_1da9.asm_1dab
 
-Func_1da9:
+Func_1da9::
 	ld b, $24
 ;	fallthrough
 
@@ -99,7 +99,7 @@ Func_1da9:
 
 ; loads the 8 tiles that make up the border of the main duel menu as well as the border
 ; of a large card picture (displayed after drawing the card or placing it in the arena).
-LoadCardOrDuelMenuBorderTiles:
+LoadCardOrDuelMenuBorderTiles::
 	ld hl, $4930 ; DuelOtherGraphics + $15 tiles
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $08
@@ -107,7 +107,7 @@ LoadCardOrDuelMenuBorderTiles:
 
 ; loads the graphics of a card type header, used to display a picture of a card after drawing it
 ; or placing it in the arena. register e determines which header (TRAINER, ENERGY, PoKéMoN)
-LoadCardTypeHeaderTiles:
+LoadCardTypeHeaderTiles::
 	ld d, a
 	ld e, 0
 	ld hl, $34d0 ; DuelCardHeaderGraphics - $4000
@@ -119,7 +119,7 @@ LoadCardTypeHeaderTiles:
 	ret
 
 ; loads the symbols that are displayed near the names of a list of cards in the hand or discard pile
-LoadDuelCardSymbolTiles:
+LoadDuelCardSymbolTiles::
 	ld hl, $37d0 ; DuelCgbSymbolGraphics - $4000
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
@@ -127,18 +127,18 @@ LoadDuelCardSymbolTiles:
 
 ; loads the symbols for Stage 1 Pkmn card, Stage 2 Pkmn card, and Trainer card.
 ; unlike LoadDuelCardSymbolTiles excludes the symbols for Basic Pkmn and all energies.
-LoadDuelCardSymbolTiles2:
+LoadDuelCardSymbolTiles2::
 	ld hl, $3810 ; DuelCgbSymbolGraphics + $4 tiles - $4000
 	ld de, v0Tiles1 + $54 tiles
 	ld b, $c
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the Deck and the Discard Pile icons
-LoadDeckAndDiscardPileIcons:
+LoadDeckAndDiscardPileIcons::
 	ld hl, $3148
 	ld de, $cb16
 	ld c, $08
-	call Func_1eeb
+	call CopyFontsOrDuelGraphicsBytes
 	ld hl, $47e0
 	ld de, $8a00
 	ld b, $0d
@@ -154,18 +154,18 @@ LoadDeckAndDiscardPileIcons:
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the tiles for the [O] and [X] symbols used to display the results of a coin toss
-LoadDuelCoinTossResultTiles:
+LoadDuelCoinTossResultTiles::
 	ld hl, $3108
 	ld de, $cafe
 	ld c, $08
-	call Func_1eeb
+	call CopyFontsOrDuelGraphicsBytes
 	ld hl, $48b0 ; DuelOtherGraphics + $d tiles
 	ld de, v0Tiles2 + $30 tiles
 	ld b, $08
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the tiles of the text characters used with TX_SYMBOL
-LoadSymbolsFont:
+LoadSymbolsFont::
 	ld hl, SymbolsFont - $4000
 	ld de, v0Tiles2 ; destination
 	ld b, $38 ; (DuelCardHeaderGraphics - SymbolsFont) / TILE_SIZE ; number of tiles
@@ -175,7 +175,7 @@ LoadSymbolsFont:
 ;   copy b tiles from Gfx1:(hl+$4000) to de
 ; if $4000 ≤ hl ≤ $7fff
 ;   copy b tiles from Gfx2:hl to de
-CopyFontsOrDuelGraphicsTiles:
+CopyFontsOrDuelGraphicsTiles::
 	ld a, BANK(Fonts) ; BANK(DuelGraphics)
 	call BankpushROM
 	ld c, TILE_SIZE
@@ -184,7 +184,7 @@ CopyFontsOrDuelGraphicsTiles:
 	ret
 
 ; this function copies gfx data into sram
-Func_212f:
+Func_212f::
 ; loads symbols fonts to sGfxBuffer1
 	ld hl, SymbolsFont - $4000
 	ld de, sGfxBuffer1
@@ -214,7 +214,7 @@ Func_212f:
 	jr CopyFontsOrDuelGraphicsTiles
 
 ; load the graphics and draw the duel box message given a BOXMSG_* constant in a
-DrawDuelBoxMessage:
+DrawDuelBoxMessage::
 	push af
 	add a
 	add a
@@ -225,7 +225,7 @@ DrawDuelBoxMessage:
 	add hl, de
 	ld de, $cafe
 	ld c, 8
-	call Func_1eeb
+	call CopyFontsOrDuelGraphicsBytes
 	call BankswitchVRAM1
 	ld a, 2
 	ld hl, 0
@@ -247,14 +247,14 @@ DrawDuelBoxMessage:
 	lb hl, 1, 10
 ;	fallthrough
 
-Func_1eb1:
+Func_1eb1::
 	lb bc, 10, 4
 	lb de, 5, 4
 	jp FillRectangle
 
 ; load the tiles for the latin, katakana, and hiragana fonts into VRAM
 ; from gfx/fonts/full_width/3.1bpp and gfx/fonts/full_width/4.1bpp
-LoadFullWidthFontTiles:
+LoadFullWidthFontTiles::
 	ld hl, FullWidthFonts + $4b5 tiles_1bpp - $4000
 	ld a, BANK(Fonts) ; BANK(DuelGraphics)
 	call BankpushROM
@@ -272,7 +272,7 @@ LoadFullWidthFontTiles:
 	ret
 
 ; copy 128 1bpp tiles from de to hl as 2bpp
-Copy1bppTiles:
+Copy1bppTiles::
 	ld b, $80
 .tile_loop
 	ld c, TILE_SIZE_1BPP
@@ -287,14 +287,14 @@ Copy1bppTiles:
 	jr nz, .tile_loop
 	ret
 
-Func_1eeb:
+CopyFontsOrDuelGraphicsBytes::
 	ld a, BANK(Fonts) ; BANK(DuelGraphics)
 	call BankpushROM
-.asm_1ef0
+.loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_1ef0
+	jr nz, .loop_copy
 	call BankpopROM
 	ret

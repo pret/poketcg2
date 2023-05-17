@@ -97,7 +97,7 @@ DrawCardFromDeck:
 ; the card is identified by register a, which contains the deck index (0-59) of the card
 ReturnCardToDeck:
 	push hl
-	call Func_112a
+	call CheckDeckIndexRange
 	push af
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -121,7 +121,7 @@ SearchCardInDeckAndAddToHand:
 	push hl
 	push de
 	push bc
-	call Func_112a
+	call CheckDeckIndexRange
 	ld c, a
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -157,7 +157,7 @@ AddCardToHand:
 	push af
 	push hl
 	push de
-	call Func_112a
+	call CheckDeckIndexRange
 	ld e, a
 	ld l, a
 	ldh a, [hWhoseTurn]
@@ -184,7 +184,7 @@ RemoveCardFromHand:
 	push hl
 	push bc
 	push de
-	call Func_112a
+	call CheckDeckIndexRange
 	ld c, a
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
@@ -245,7 +245,7 @@ Func_0ffa:
 ; moves a card to the turn holder's discard pile, as long as it is in the hand
 ; the card is identified by register a, which contains the deck index (0-59) of the card
 MoveHandCardToDiscardPile:
-	call Func_112a
+	call CheckDeckIndexRange
 	get_turn_duelist_var
 	ld a, [hl]
 	and $ff ^ CARD_LOCATION_JUST_DRAWN
@@ -260,7 +260,7 @@ PutCardInDiscardPile:
 	push af
 	push hl
 	push de
-	call Func_112a
+	call CheckDeckIndexRange
 	get_turn_duelist_var
 	ld [hl], CARD_LOCATION_DISCARD_PILE
 	ld e, l
@@ -282,7 +282,7 @@ MoveDiscardPileCardToHand:
 	push hl
 	push de
 	push bc
-	call Func_112a
+	call CheckDeckIndexRange
 	get_turn_duelist_var
 	set CARD_LOCATION_JUST_DRAWN_F, [hl]
 	ld b, l
@@ -501,14 +501,17 @@ GetCardIDFromDeckIndex:
 	pop af
 	ret
 
-Func_112a:
+; checks whether deck index in a
+; is within range of deck size
+CheckDeckIndexRange:
 	push hl
-	ld hl, wcd07
+	ld hl, wDeckSize
 	cp [hl]
-	jr c, .asm_1133
+	jr c, .within_range
+	; outside range
 	debug_nop
 	xor a
-.asm_1133
+.within_range
 	pop hl
 	ret
 
@@ -518,7 +521,7 @@ RemoveCardFromDuelTempList:
 	push hl
 	push de
 	push bc
-	call Func_112a
+	call CheckDeckIndexRange
 	ld hl, wDuelTempList
 	ld e, l
 	ld d, h
@@ -566,7 +569,7 @@ CountCardsInDuelTempList:
 ; returns, in register hl, a pointer to the id of the card with the deck index (0-59) specified in register a
 _GetCardIDFromDeckIndex:
 	push de
-	call Func_112a
+	call CheckDeckIndexRange
 	add a
 	ld e, a
 	ld d, $0
@@ -808,7 +811,7 @@ ClearAllStatusConditions:
 ; return carry if there is no room for more Pokemon
 PutHandPokemonCardInPlayArea:
 	push af
-	call Func_112a
+	call CheckDeckIndexRange
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	push hl

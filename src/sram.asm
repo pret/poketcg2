@@ -3,7 +3,12 @@ SECTION "SRAM0", SRAM
 s0a000:: ; a000
 	ds $3
 
-	ds $d
+	ds $9
+
+sTextBoxFrameColor:: ; a00c
+	ds $1
+
+	ds $3
 
 sPlayerName:: ; a010
 	ds NAME_BUFFER_LENGTH
@@ -22,6 +27,11 @@ sDeck1:: deck_struct sDeck1 ; a300
 sDeck2:: deck_struct sDeck2 ; a360
 sDeck3:: deck_struct sDeck3 ; a3c0
 sDeck4:: deck_struct sDeck4 ; a420
+
+	ds $60
+
+s0a4e0:: ; a4e0
+	ds $12c0
 
 SECTION "SRAM1", SRAM
 
@@ -44,3 +54,5 @@ sGfxBuffer4:: ; b000
 
 sGfxBuffer5:: ; b400
 	ds $400
+
+SECTION "SRAM2", SRAM
