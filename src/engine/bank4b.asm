@@ -403,11 +403,11 @@ Func_12c1c1:
 	ret
 
 ; bc = map ID
-Func_12c206:
+LoadOWMap:
 	ld a, c
-	ld [wd7ec + 0], a
+	ld [wOWMap + 0], a
 	ld a, b
-	ld [wd7ec + 1], a
+	ld [wOWMap + 1], a
 	ld l, c
 	ld h, b
 	sla c

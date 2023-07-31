@@ -3,7 +3,7 @@
 	const EVENT_01 ; $01
 	const EVENT_02 ; $02
 	const EVENT_03 ; $03
-	const EVENT_04 ; $04
+	const EVENT_GOT_CHANSEY_COIN ; $04
 	const EVENT_05 ; $05
 	const EVENT_06 ; $06
 	const EVENT_07 ; $07

@@ -120,18 +120,34 @@
 
 DEF NUM_OW_ANIMATED_TILES EQU 25
 
-; OW location constants
+; TCG Island OW map location constants
 	const_def
-	const OWMAP_MASON_LABORATORY ; $0
-	const OWMAP_ISHIHARAS_HOUSE  ; $1
-	const OWMAP_LIGHTNING_CLUB   ; $2
-	const OWMAP_PSYCHIC_CLUB     ; $3
-	const OWMAP_ROCK_CLUB        ; $4
-	const OWMAP_FIGHTING_CLUB    ; $5
-	const OWMAP_GRASS_CLUB       ; $6
-	const OWMAP_SCIENCE_CLUB     ; $7
-	const OWMAP_WATER_CLUB       ; $8
-	const OWMAP_FIRE_CLUB        ; $9
-	const OWMAP_AIRPORT          ; $a
-	const OWMAP_CHALLENGE_HALL   ; $b
-	const OWMAP_POKEMON_DOME     ; $c
+	const OWMAP_MASON_LABORATORY   ; $0
+	const OWMAP_ISHIHARAS_HOUSE    ; $1
+	const OWMAP_LIGHTNING_CLUB     ; $2
+	const OWMAP_PSYCHIC_CLUB       ; $3
+	const OWMAP_ROCK_CLUB          ; $4
+	const OWMAP_FIGHTING_CLUB      ; $5
+	const OWMAP_GRASS_CLUB         ; $6
+	const OWMAP_SCIENCE_CLUB       ; $7
+	const OWMAP_WATER_CLUB         ; $8
+	const OWMAP_FIRE_CLUB          ; $9
+	const OWMAP_TCG_AIRPORT        ; $a
+	const OWMAP_TCG_CHALLENGE_HALL ; $b
+	const OWMAP_POKEMON_DOME       ; $c
+
+; GR Island OW map location constants
+	const_def
+	const OWMAP_GR_AIRPORT            ; $0
+	const OWMAP_ISHIHARAS_VILLA       ; $1
+	const OWMAP_ARCADE                ; $2
+	const OWMAP_SEALED_FORT           ; $3
+	const OWMAP_GR_CHALLENGE_HALL     ; $4
+	const OWMAP_GR_GRASS_FORT         ; $5
+	const OWMAP_GR_LIGHTNING_FORT     ; $6
+	const OWMAP_GR_FIRE_FORT          ; $7
+	const OWMAP_GR_WATER_FORT         ; $8
+	const OWMAP_GR_FIGHTING_FORT      ; $9
+	const OWMAP_GR_PSYCHIC_STRONGHOLD ; $a
+	const OWMAP_COLORLESS_ALTAR       ; $b
+	const OWMAP_GR_CASTLE             ; $c

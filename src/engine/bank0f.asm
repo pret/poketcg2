@@ -11,19 +11,19 @@ Prologue::
 
 	farcall Func_102ef
 	xor a
-	farcall Func_111f6
+	farcall InitOWObjects
 
 	; load map and fade in
 	ld a, MUSIC_HERECOMESGR
 	farcall PlayAfterCurrentSong
 	ld bc, OVERWORLD_MAP
-	farcall Func_12c206
+	farcall LoadOWMap
 	ld bc, TILEMAP_001
 	lb de, 0, 0
 	farcall Func_12c0ce
 	ld a, $00
 	call Func_338f
-	call WaitPalFading_Home
+	call WaitPalFading
 	call EnableLCD
 
 	; do GR Ship movement
@@ -115,8 +115,8 @@ Prologue::
 	farcall FillBoxInBGMapWithZero
 
 	ld a, OWMAP_POKEMON_DOME
-	ld [wd587], a
-	farcall PrintLocationTitle
+	ld [wCurOWLocation], a
+	farcall PrintTCGIslandLocationName
 
 	ld a, [wPlayerOWObject]
 	call WaitForOWObjectAnimation
@@ -132,8 +132,8 @@ Prologue::
 	call .MovePlayer
 
 	ld a, OWMAP_MASON_LABORATORY
-	ld [wd587], a
-	farcall PrintLocationTitle
+	ld [wCurOWLocation], a
+	farcall PrintTCGIslandLocationName
 
 	ld a, 60
 	call WaitAFrames

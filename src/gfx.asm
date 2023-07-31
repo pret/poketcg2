@@ -72,26 +72,26 @@ SECTION "Card Gfx 1", ROMX
 CardGraphics::
 
 SECTION "Tilemaps 1", ROMX[$74f5], BANK[$4b]
-INCLUDE "src/data/maps/tilemaps1.asm"
+INCLUDE "data/maps/tilemaps1.asm"
 
 SECTION "Tilemaps 2", ROMX
-INCLUDE "src/data/maps/tilemaps2.asm"
+INCLUDE "data/maps/tilemaps2.asm"
 
 Frameset081::
 	oamframe  0,  1,   0,   0
 	oamreset
 
 SECTION "Tilemaps 3", ROMX
-INCLUDE "src/data/maps/tilemaps3.asm"
+INCLUDE "data/maps/tilemaps3.asm"
 
 SECTION "Tilemaps 4", ROMX
-INCLUDE "src/data/maps/tilemaps4.asm"
+INCLUDE "data/maps/tilemaps4.asm"
 
 SECTION "Tilemaps 5", ROMX
-INCLUDE "src/data/maps/tilemaps5.asm"
+INCLUDE "data/maps/tilemaps5.asm"
 
 SECTION "Tilemaps 6", ROMX
-INCLUDE "src/data/maps/tilemaps6.asm"
+INCLUDE "data/maps/tilemaps6.asm"
 
 SECTION "Tilesets 1", ROMX
 

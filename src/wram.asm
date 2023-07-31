@@ -909,6 +909,10 @@ SECTION "WRAM1@d54c", WRAMX
 wd54c:: ; d54c
 	ds $1
 
+; how far has the player progressed
+; $0: no save data
+; $1: entered player info
+; $2: watched prologue
 wd54d:: ; d54d
 	ds $1
 
@@ -927,11 +931,27 @@ wd551:: ; d551
 wd552:: ; d552
 	ds $2
 
-; some flags for something
+; bit 0: has save data
+; bit 1: has saved duel + ?
+; bit 2: has saved duel
 wd554:: ; d554
 	ds $1
 
-	ds $20
+	ds $c
+
+wd561:: ; d561
+	ds $1
+
+wd562:: ; d562
+	ds $1
+
+wd563:: ; d563
+	ds $2
+
+wd565:: ; d565
+	ds $1
+
+	ds $f
 
 wFilteredListPtr:: ; d575
 	ds $2
@@ -961,10 +981,10 @@ wd585:: ; d585
 wd586:: ; d586
 	ds $1
 
-wd587:: ; d587
+wCurOWLocation:: ; d587
 	ds $1
 
-wd588:: ; d588
+wPlayerOWLocation:: ; d588
 	ds $1
 
 wd589:: ; d589
@@ -1122,7 +1142,15 @@ wMusicFadeOutVolume:: ; d677
 wd678:: ; d678
 	ds $1
 
-	ds $13
+	ds $7
+
+wd680:: ; d680
+	ds $1
+
+wOWScrollSpeed:: ; d681
+	ds $1
+
+	ds $a
 
 wd68c:: ; d68c
 	ds $1
@@ -1197,7 +1225,8 @@ wd7e9:: ; d7e9
 
 	ds $2
 
-wd7ec:: ; d7ec
+; OW map constant
+wOWMap:: ; d7ec
 	ds $2
 
 wOWAnimatedTiles:: ; d7ee
@@ -1220,10 +1249,10 @@ wd896:: ; d896
 
 	ds $3
 
-wd89b:: ; d89b
+wOWScrollX:: ; d89b
 	ds $1
 
-wd89c:: ; d89c
+wOWScrollY:: ; d89c
 	ds $1
 
 wd89d:: ; d89d
@@ -1514,7 +1543,13 @@ wMenuCursorPosition:: ; db00
 wMenuBoxLastFocusedItem:: ; db01
 	ds $1
 
-	ds $e
+	ds $c
+
+wBackupWX:: ; db0e
+	ds $1
+
+wBackupWY:: ; db0f
+	ds $1
 
 wDisplayHours:: ; db10
 	ds $2
@@ -1776,6 +1811,11 @@ w3d400:: ; d400
 	ds $1
 
 w3d401:: ; d401
+	ds $1
+
+	ds $13
+
+w3d415:: ; d415
 	ds $1
 
 SECTION "WRAM7 Audio", WRAMX

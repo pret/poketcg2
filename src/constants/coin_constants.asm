@@ -1,0 +1,26 @@
+	const_def
+	const COIN_CHANSEY ; $00
+	const COIN_01 ; $01
+	const COIN_02 ; $02
+	const COIN_03 ; $03
+	const COIN_04 ; $04
+	const COIN_05 ; $05
+	const COIN_06 ; $06
+	const COIN_07 ; $07
+	const COIN_08 ; $08
+	const COIN_09 ; $09
+	const COIN_0A ; $0a
+	const COIN_0B ; $0b
+	const COIN_0C ; $0c
+	const COIN_0D ; $0d
+	const COIN_0E ; $0e
+	const COIN_0F ; $0f
+	const COIN_10 ; $10
+	const COIN_11 ; $11
+	const COIN_12 ; $12
+	const COIN_13 ; $13
+	const COIN_14 ; $14
+	const COIN_15 ; $15
+	const COIN_16 ; $16
+	const COIN_17 ; $17
+DEF NUM_COINS EQU const_value

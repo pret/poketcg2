@@ -48,12 +48,12 @@ StartMenu_NewGame:
 StartMenu_ContinueFromDiary:
 	ld hl, wd554
 	bit 2, [hl]
-	jr z, .asm_c067
+	jr z, .no_saved_duel
 	bit 1, [hl]
-	jr z, .asm_c067
+	jr z, .no_saved_duel
 	farcall AskToContinueFromDiaryInsteadOfDuel
 	ret c
-.asm_c067
+.no_saved_duel
 	call Func_eaea
 	xor a
 	call PlaySong
@@ -145,9 +145,9 @@ Func_c12e::
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .no_cap
+	jr nc, .no_overflow
 	inc h
-.no_cap
+.no_overflow
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -191,7 +191,7 @@ HandleStartMenu:
 	set 0, [hl]
 	call Func_eaf6
 	farcall CheckSavedDuelChecksum
-	jr c, .asm_c204
+	jr c, .no_saved_duel
 	ld hl, wd554
 	set 2, [hl]
 	ld a, $04
@@ -205,7 +205,7 @@ HandleStartMenu:
 	ld hl, wd554
 	set 1, [hl]
 	jr .menu_config3
-.asm_c204
+.no_saved_duel
 	ld a, $04
 	call Func_d6bb
 	cp $02
@@ -274,7 +274,7 @@ Func_c24d:
 	ld [wd552 + 1], a
 	ld [wd589], a
 	ld [wd586], a
-	ld [wd587], a
+	ld [wCurOWLocation], a
 	ld [wCurMusic], a
 	ld [wd611], a
 	ld [wd612], a
@@ -326,24 +326,24 @@ ClearSavedDecks:
 Func_c2d6:
 	ld a, EVENT_0D
 	call GetEventValue
-	jr nz, .asm_c2fe
-	ld a, [wd587]
-	cp $06
-	jr z, .asm_c2fe
-	cp $07
-	jr z, .asm_c2fe
+	jr nz, .done
+	ld a, [wCurOWLocation]
+	cp OWMAP_GRASS_CLUB
+	jr z, .done
+	cp OWMAP_SCIENCE_CLUB
+	jr z, .done
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_c2f7
 	ld a, $0f
 	ld c, $06
 	call Func_d6fe
-	jr .asm_c2fe
+	jr .done
 .asm_c2f7
 	ld a, $0f
 	ld c, $07
 	call Func_d6fe
-.asm_c2fe
+.done
 	ret
 
 Func_c2ff:
@@ -405,16 +405,16 @@ Func_c366:
 	ld a, $21
 	call Func_d6bb
 	cp $02
-	jr c, .asm_c3d3
+	jr c, .done
 	ld a, [wd589]
 	cp $00
 	jr nz, .asm_c382
 	ld a, $25
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
-	jr z, .asm_c3d3
+	jr z, .done
 .asm_c382
 	ld a, $05
 	call Random
@@ -429,39 +429,39 @@ Func_c366:
 	jr .asm_c3b9
 .asm_c395
 	ld a, $25
-	ld c, $04
+	ld c, OWMAP_ROCK_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c39e
 	ld a, $25
-	ld c, $03
+	ld c, OWMAP_PSYCHIC_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3a7
 	ld a, $25
-	ld c, $07
+	ld c, OWMAP_SCIENCE_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3b0
 	ld a, $25
-	ld c, $09
+	ld c, OWMAP_FIRE_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3b9
 	ld a, $25
-	ld c, $08
+	ld c, OWMAP_WATER_CLUB
 	call Func_d6fe
 .asm_c3c0
 	ld a, [wd589]
 	cp $00
-	jr nz, .asm_c3d3
+	jr nz, .done
 	ld a, $25
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c382
-.asm_c3d3
+.done
 	ret
 
 Func_c3d4:
@@ -471,7 +471,7 @@ Func_c3d4:
 	ld a, $26
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c438
 .asm_c3e7
@@ -517,7 +517,7 @@ Func_c3d4:
 	ld a, $26
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c3e7
 .asm_c438
@@ -531,7 +531,7 @@ Func_c439:
 	ld a, [wd589]
 	cp $00
 	jr nz, .asm_c450
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp $0b
 	jr z, .asm_c476
 .asm_c450
@@ -563,7 +563,7 @@ Func_c477:
 	ld a, [wd589]
 	cp $01
 	jr nz, .asm_c48e
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp $04
 	jr z, .asm_c4b4
 .asm_c48e
@@ -618,7 +618,7 @@ Func_c53e:
 	push bc
 	ld a, [wd589]
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	call Func_c522
 	pop bc
 	pop af
@@ -627,124 +627,124 @@ Func_c53e:
 
 SECTION "Bank 3@4651", ROMX[$4651], BANK[$3]
 
-; bank and offset table of data for Func_d421
-Data_c651:
-	dba Data_40462
-	dbw $0c, $4080
-	dbw $10, $4db3
-	dbw $0f, $4603
-	dbw $0f, $47dc
-	dbw $0b, $4000
-	dbw $0f, $4b88
-	dbw $0f, $4c62
-	dbw $0b, $4479
-	dbw $0b, $4936
-	dbw $0b, $4afa
-	dbw $0b, $4d23
-	dbw $0b, $530a
-	dbw $0b, $53c4
-	dbw $0b, $55f8
-	dbw $0b, $5930
-	dbw $0b, $5a26
-	dbw $0b, $5c9f
-	dbw $0b, $606d
-	dbw $0f, $4ee6
-	dbw $0b, $6163
-	dbw $0b, $64b7
-	dbw $0b, $663f
-	dbw $0b, $68e6
-	dbw $0b, $6cc8
-	dbw $0b, $6dc5
-	dbw $0b, $7012
-	dbw $0b, $74ff
-	dbw $0b, $75fc
-	dbw $0b, $77ca
-	dbw $0d, $4575
-	dbw $0d, $4773
-	dbw $0f, $519e
-	dbw $0f, $52d7
-	dbw $10, $5592
-	dbw $0b, $7cd5
-	dbw $0f, $55d1
-	dbw $0f, $5d58
-	dbw $0b, $7e45
-	dbw $0d, $4aaf
-	dbw $10, $5be9
-	dbw $0f, $6698
-	dbw $0f, $68e0
-	dbw $0f, $6cea
-	dbw $0f, $6efa
-	dbw $0d, $4ba8
-	dbw $0d, $4e4d
-	dbw $0f, $704c
-	dbw $0f, $71f2
-	dbw $0d, $509f
-	dbw $0f, $73c2
-	dbw $0c, $518a
-	dbw $0c, $5324
-	dbw $10, $5e8e
-	dbw $0c, $53ce
-	dbw $0d, $5288
-	dbw $10, $65cf
-	dbw $0c, $54fe
-	dbw $0c, $55d8
-	dbw $0c, $5785
-	dbw $0c, $5973
-	dbw $0c, $5b29
-	dbw $0d, $54a2
-	dbw $0c, $5cbf
-	dbw $0c, $5dd2
-	dbw $0c, $5fad
-	dbw $0c, $6148
-	dbw $0c, $641e
-	dbw $0c, $6531
-	dbw $0c, $6696
-	dbw $0c, $6804
-	dbw $0c, $696d
-	dbw $0c, $6beb
-	dbw $0c, $6e20
-	dbw $0c, $6f5b
-	dbw $0f, $75ab
-	dbw $0c, $70c0
-	dbw $0d, $55de
-	dbw $0d, $580f
-	dbw $0c, $724d
-	dbw $0c, $7357
-	dbw $0d, $5989
-	dbw $10, $6e2b
-	dbw $0c, $7506
-	dbw $0c, $75da
-	dbw $0c, $762f
-	dbw $0c, $7723
-	dbw $0c, $7766
-	dbw $0c, $77bb
-	dbw $0c, $7822
-	dbw $0c, $7928
-	dbw $0c, $797d
-	dbw $0c, $79b2
-	dbw $0c, $7a19
-	dbw $0c, $7ab4
-	dbw $0c, $7b1b
-	dbw $0c, $7ba4
-	dbw $0d, $5c10
-	dbw $0c, $7bf9
-	dbw $0d, $5c9a
-	dbw $0f, $77b5
-	dbw $0c, $7d2e
-	dbw $10, $6e80
-	dbw $0c, $7d63
-	dbw $0f, $7884
-	dbw $0d, $5d36
-	dbw $0d, $5f14
-	dbw $0d, $6097
-	dbw $0d, $6173
-	dbw $0d, $631f
-	dbw $0d, $6c9b
-	dbw $0c, $7d98
-	dbw $0d, $6f9a
-	dbw $0d, $7365
-	dbw $0d, $75df
-	dbw $10, $6ed5
+; bank and offset table of data for Func_d421 and Func_33b7
+Data_c651::
+	dba Data_40462 ; $00
+	dba Data_30080 ; $01
+	dbw $10, $4db3 ; $02
+	dbw $0f, $4603 ; $03
+	dbw $0f, $47dc ; $04
+	dbw $0b, $4000 ; $05
+	dbw $0f, $4b88 ; $06
+	dbw $0f, $4c62 ; $07
+	dbw $0b, $4479 ; $08
+	dbw $0b, $4936 ; $09
+	dbw $0b, $4afa ; $0a
+	dbw $0b, $4d23 ; $0b
+	dbw $0b, $530a ; $0c
+	dbw $0b, $53c4 ; $0d
+	dbw $0b, $55f8 ; $0e
+	dbw $0b, $5930 ; $0f
+	dbw $0b, $5a26 ; $10
+	dbw $0b, $5c9f ; $11
+	dbw $0b, $606d ; $12
+	dbw $0f, $4ee6 ; $13
+	dbw $0b, $6163 ; $14
+	dbw $0b, $64b7 ; $15
+	dbw $0b, $663f ; $16
+	dbw $0b, $68e6 ; $17
+	dbw $0b, $6cc8 ; $18
+	dbw $0b, $6dc5 ; $19
+	dbw $0b, $7012 ; $1a
+	dbw $0b, $74ff ; $1b
+	dbw $0b, $75fc ; $1c
+	dbw $0b, $77ca ; $1d
+	dbw $0d, $4575 ; $1e
+	dbw $0d, $4773 ; $1f
+	dbw $0f, $519e ; $20
+	dbw $0f, $52d7 ; $21
+	dbw $10, $5592 ; $22
+	dbw $0b, $7cd5 ; $23
+	dbw $0f, $55d1 ; $24
+	dbw $0f, $5d58 ; $25
+	dbw $0b, $7e45 ; $26
+	dbw $0d, $4aaf ; $27
+	dbw $10, $5be9 ; $28
+	dbw $0f, $6698 ; $29
+	dbw $0f, $68e0 ; $2a
+	dbw $0f, $6cea ; $2b
+	dbw $0f, $6efa ; $2c
+	dbw $0d, $4ba8 ; $2d
+	dbw $0d, $4e4d ; $2e
+	dbw $0f, $704c ; $2f
+	dbw $0f, $71f2 ; $30
+	dbw $0d, $509f ; $31
+	dbw $0f, $73c2 ; $32
+	dbw $0c, $518a ; $33
+	dbw $0c, $5324 ; $34
+	dbw $10, $5e8e ; $35
+	dbw $0c, $53ce ; $36
+	dbw $0d, $5288 ; $37
+	dbw $10, $65cf ; $38
+	dbw $0c, $54fe ; $39
+	dbw $0c, $55d8 ; $3a
+	dbw $0c, $5785 ; $3b
+	dbw $0c, $5973 ; $3c
+	dbw $0c, $5b29 ; $3d
+	dbw $0d, $54a2 ; $3e
+	dbw $0c, $5cbf ; $3f
+	dbw $0c, $5dd2 ; $40
+	dbw $0c, $5fad ; $41
+	dbw $0c, $6148 ; $42
+	dbw $0c, $641e ; $43
+	dbw $0c, $6531 ; $44
+	dbw $0c, $6696 ; $45
+	dbw $0c, $6804 ; $46
+	dbw $0c, $696d ; $47
+	dbw $0c, $6beb ; $48
+	dbw $0c, $6e20 ; $49
+	dbw $0c, $6f5b ; $4a
+	dbw $0f, $75ab ; $4b
+	dbw $0c, $70c0 ; $4c
+	dbw $0d, $55de ; $4d
+	dbw $0d, $580f ; $4e
+	dbw $0c, $724d ; $4f
+	dbw $0c, $7357 ; $50
+	dbw $0d, $5989 ; $51
+	dbw $10, $6e2b ; $52
+	dbw $0c, $7506 ; $53
+	dbw $0c, $75da ; $54
+	dbw $0c, $762f ; $55
+	dbw $0c, $7723 ; $56
+	dbw $0c, $7766 ; $57
+	dbw $0c, $77bb ; $58
+	dbw $0c, $7822 ; $59
+	dbw $0c, $7928 ; $5a
+	dbw $0c, $797d ; $5b
+	dbw $0c, $79b2 ; $5c
+	dbw $0c, $7a19 ; $5d
+	dbw $0c, $7ab4 ; $5e
+	dbw $0c, $7b1b ; $5f
+	dbw $0c, $7ba4 ; $60
+	dbw $0d, $5c10 ; $61
+	dbw $0c, $7bf9 ; $62
+	dbw $0d, $5c9a ; $63
+	dbw $0f, $77b5 ; $64
+	dbw $0c, $7d2e ; $65
+	dbw $10, $6e80 ; $66
+	dbw $0c, $7d63 ; $67
+	dbw $0f, $7884 ; $68
+	dbw $0d, $5d36 ; $69
+	dbw $0d, $5f14 ; $6a
+	dbw $0d, $6097 ; $6b
+	dbw $0d, $6173 ; $6c
+	dbw $0d, $631f ; $6d
+	dbw $0d, $6c9b ; $6e
+	dbw $0c, $7d98 ; $6f
+	dbw $0d, $6f9a ; $70
+	dbw $0d, $7365 ; $71
+	dbw $0d, $75df ; $72
+	dbw $10, $6ed5 ; $73
 
 SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
 
@@ -826,7 +826,7 @@ Func_d299::
 	ld b, $00
 	ld a, [wd58a]
 	ld c, a
-	farcall Func_12c206
+	farcall LoadOWMap
 	ld a, [wd58f]
 	ld d, a
 	ld a, [wd590]
@@ -917,7 +917,91 @@ Func_d398:
 	res 7, [hl]
 	jp Func_d333
 
-SECTION "Bank 3@544e", ROMX[$544e], BANK[$3]
+; a = ?
+; b = direction
+; de = coordinates
+Func_d3c4:
+	ld [wd54d], a
+	ld a, $02
+	ld [wd54c], a
+	ld a, d
+	ld [wd58f], a
+	ld a, e
+	ld [wd590], a
+	ld a, b
+	ld [wd591], a
+	ld a, $00
+	ld [wd582], a
+	ld hl, wd583
+	set 0, [hl]
+	ld a, [wd54d]
+	ld [wd585], a
+	ret
+
+Func_d3e9::
+	ld a, [wPlayerOWObject]
+	push af
+	farcall Func_10da7
+	pop af
+	push de
+	farcall Func_10dcb
+	pop de
+	ld a, b
+	rlca
+	ld hl, .data
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	ld a, [hli]
+	add d
+	ld d, a
+	ld a, [hl]
+	add e
+	ld e, a
+	ret
+
+.data
+	db  0, -1
+	db  1,  0
+	db  0,  1
+	db -1,  0
+
+Func_d411:
+	call PauseSong
+	ld a, MUSIC_PCMAINMENU
+	call PlaySong
+	farcall $4, $50c6
+	call ResumeSong
+	ret
+
+Func_d421::
+	push af
+	ld c, a
+	ld b, $00
+	sla c
+	add c ; *3
+	ld c, a
+	rl b
+	ld hl, Data_c651
+	add hl, bc
+	ld a, [hli]
+	ld c, a     ; bank
+	ld a, [hli] ; offset
+	ld h, [hl]  ;
+	ld l, a
+	ld a, c
+	ld de, wd58a
+	ld bc, $5
+	call CopyFarHLToDE
+	ld a, [wd586]
+	ld [wd584], a
+	pop af
+	ld [wd586], a
+	ld a, $ff
+	ld [wd585], a
+	ret
 
 ; a = OW object ID
 ; de = target position
@@ -1096,76 +1180,170 @@ MoveOWObjectToTargetPosition:
 	farcall SetOWObjectPosition
 	scf
 	ret
-; 0xd56b
 
-SECTION "Bank 3@53e9", ROMX[$53e9], BANK[$3]
-
-Func_d3e9::
-	ld a, [wPlayerOWObject]
-	push af
-	farcall Func_10da7
-	pop af
-	push de
-	farcall Func_10dcb
-	pop de
+; de = coordinates
+Func_d56b:
+	ld a, d
+	ld [wOWObjTargetX], a
+	ld a, e
+	ld [wOWObjTargetY], a
+	xor a
+	ld [wd59c], a
+	ld [wd59d], a
+	ld a, [wOWScrollX]
+	ld b, a
+	ld a, [wOWScrollY]
+	ld c, a
+	ld a, d
+	sub b
+	bit 7, a
+	jr z, .asm_d58a
+	cpl
+	inc a
+.asm_d58a
+	ld b, a
+	ld a, e
+	sub c
+	bit 7, a
+	jr z, .asm_d593
+	cpl
+	inc a
+.asm_d593
+	ld c, a
 	ld a, b
-	rlca
-	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .no_cap
-	inc h
-.no_cap
-	ld a, [hli]
-	add d
-	ld d, a
-	ld a, [hl]
-	add e
-	ld e, a
-	ret
+	cp c
+	jr c, .asm_d5e2
 
-.data
-	db  0, -1
-	db  1,  0
-	db  0,  1
-	db -1,  0
-
-Func_d411:
-	call PauseSong
-	ld a, MUSIC_PCMAINMENU
-	call PlaySong
-	farcall $4, $50c6
-	call ResumeSong
-	ret
-
-Func_d421::
-	push af
-	ld c, a
+	push bc
+	xor a
+	ld [wd598], a
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld a, [wOWScrollX]
+	cp d
+	jr c, .asm_d5ad
+	ld a, -1
+	ld [wOWObjXVelocity], a
+.asm_d5ad
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld a, [wOWScrollY]
+	cp e
+	jr c, .asm_d5bd
+	ld a, -1
+	ld [wOWObjYVelocity], a
+.asm_d5bd
+	pop bc
+	ld d, c
+	ld e, $00
+	ld c, b
 	ld b, $00
-	sla c
-	add c ; *3
-	ld c, a
-	rl b
-	ld hl, Data_c651
-	add hl, bc
-	ld a, [hli]
-	ld c, a     ; bank
-	ld a, [hli] ; offset
-	ld h, [hl]  ;
-	ld l, a
-	ld a, c
-	ld de, wd58a
-	ld bc, $5
-	call CopyFarHLToDE
-	ld a, [wd586]
-	ld [wd584], a
-	pop af
-	ld [wd586], a
-	ld a, $ff
-	ld [wd585], a
+	call DivideDEByBC
+	ld a, [wOWObjYVelocity]
+	bit 7, a
+	jr z, .asm_d5d8
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+.asm_d5d8
+	ld a, e
+	ld [wd59a], a
+	ld a, d
+	ld [wOWObjYVelocity], a
+	jr .done
+
+.asm_d5e2
+	push bc
+	xor a
+	ld [wd59a], a
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld a, [wOWScrollY]
+	cp e
+	jr c, .asm_d5f7
+	ld a, -1
+	ld [wOWObjYVelocity], a
+.asm_d5f7
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld a, [wOWScrollX]
+	cp d
+	jr c, .asm_d607
+	ld a, -1
+	ld [wOWObjXVelocity], a
+.asm_d607
+	pop bc
+	ld d, b
+	ld e, $00
+	ld b, $00
+	call DivideDEByBC
+	ld a, [wOWObjXVelocity]
+	bit 7, a
+	jr z, .asm_d621
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+.asm_d621
+	ld a, e
+	ld [wd598], a
+	ld a, d
+	ld [wOWObjXVelocity], a
+.done
 	ret
 
-SECTION "Bank 3@5671", ROMX[$5671], BANK[$3]
+Func_d62a:
+	ld a, [wOWScrollX]
+	ld d, a
+	ld a, [wOWScrollY]
+	ld e, a
+	ld a, [wOWObjTargetX]
+	cp d
+	jr nz, .asm_d641
+	ld a, [wOWObjTargetY]
+	cp e
+	jr nz, .asm_d651
+	scf
+	ccf
+	ret
+
+.asm_d641
+	ld a, [wd59c]
+	ld b, a
+	ld a, [wd598]
+	add b
+	ld [wd59c], a
+	ld a, [wOWObjXVelocity]
+	adc d
+	ld d, a
+.asm_d651
+	ld a, [wOWObjTargetY]
+	cp e
+	jr z, .asm_d667
+	ld a, [wd59d]
+	ld b, a
+	ld a, [wd59a]
+	add b
+	ld [wd59d], a
+	ld a, [wOWObjYVelocity]
+	adc e
+	ld e, a
+.asm_d667
+	ld a, d
+	ld [wOWScrollX], a
+	ld a, e
+	ld [wOWScrollY], a
+	scf
+	ret
 
 ; reset data at wEventVars and wd5d2
 ClearEvents:
@@ -1382,7 +1560,7 @@ EventVarMasks:
 	db $00, %00000010 ; EVENT_01
 	db $00, %00000100 ; EVENT_02
 	db $00, %00001000 ; EVENT_03
-	db $01, %00000001 ; EVENT_04
+	db $01, %00000001 ; EVENT_GOT_CHANSEY_COIN
 	db $01, %00000010 ; EVENT_05
 	db $01, %00000100 ; EVENT_06
 	db $01, %00001000 ; EVENT_07
@@ -1625,6 +1803,7 @@ EventVarMasks:
 	db $33, %00010000 ; EVENT_F4
 	db $33, %00100000 ; EVENT_F5
 
+; extra events?
 Data_d946:
 	db $00, %11111111 ; $00
 	db $01, %00000011 ; $01
@@ -1863,6 +2042,7 @@ Func_dbf2::
 
 SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
 
+; returns carry if no save data
 Func_e883:
 	ldh a, [hBankSRAM]
 	push af
@@ -1876,11 +2056,12 @@ Func_e883:
 	call DisableSRAM
 	ld a, b
 	bit 0, a
-	jr z, .asm_e8a1
+	jr z, .set_carry
+; no carry
 	scf
 	ccf
 	ret
-.asm_e8a1
+.set_carry
 	scf
 	ret
 
@@ -2148,16 +2329,17 @@ Func_ea30::
 	call DisableSRAM
 	ld a, b
 	cp d
-	jr nz, .asm_eaa5
+	jr nz, .error
 	ld a, c
 	cp e
-	jr nz, .asm_eaa5
+	jr nz, .error
 	ld a, $01
 	call Func_e9d6
 	ld a, $0d
 	call Func_3154
 	ret
-.asm_eaa5
+
+.error
 	debug_nop
 	jr .asm_ea3d
 

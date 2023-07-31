@@ -46,6 +46,8 @@ ROMX $07
 	"Bank 7"
 ROMX $09
 	"Bank 9"
+ROMX $0c
+	"Bank c"
 ROMX $0f
 	"Bank f"
 ROMX $10

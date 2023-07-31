@@ -31,6 +31,9 @@ INCLUDE "engine/bank09.asm"
 SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
 INCLUDE "engine/gbc_only_disclaimer.asm"
 
+SECTION "Bank c", ROMX
+INCLUDE "engine/bank0c.asm"
+
 SECTION "Bank f", ROMX
 INCLUDE "engine/bank0f.asm"
 

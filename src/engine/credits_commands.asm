@@ -378,11 +378,11 @@ CreditsCmd_LoadMap:
 	ld b, a
 	ld a, [wCreditsCmdArg3]
 	ld c, a
-	farcall Func_12c206
+	farcall LoadOWMap
 	ret
 
 CreditsCmd_InitOW:
-	call Func_111f6
+	call InitOWObjects
 	call Func_1109f
 	ret
 

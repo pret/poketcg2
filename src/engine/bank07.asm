@@ -1016,7 +1016,7 @@ SaveTargetFadePals::
 	pop af
 	ret
 
-WaitPalFading:
+WaitPalFading_Bank07:
 	push af
 .loop_wait
 	call DoFrame
@@ -1856,13 +1856,17 @@ _StartMenuBoxUpdate::
 	call Func_2c4b
 	ld hl, .TextItems
 	call Func_35cf
-	call Func_1d0aa
+
+	; print number of event coins
+	; obtained by the player
+	call CountEventCoinsObtained
 	ld l, a
 	ld h, $00
 	lb de, 13, 12
 	ld a, 2
 	ld b, TRUE
 	call PrintNumber
+
 	lb de, 10, 16
 	farcall PrintPlayTime
 	lb de, 9, 14
@@ -1919,7 +1923,7 @@ AskToOverwriteSaveData:
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
 	call StartFadeFromWhite
-	call WaitPalFading
+	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
 	ldtx hl, Text0760
@@ -1931,7 +1935,7 @@ AskToOverwriteSaveData:
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 .fade_out
 	call StartFadeToWhite
-	call WaitPalFading
+	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
 	pop hl
 	pop de
@@ -1955,7 +1959,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
 	call StartFadeFromWhite
-	call WaitPalFading
+	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
 	ldtx hl, Text078c
@@ -1964,7 +1968,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	jr c, .fade_out ; unnecessary jump
 .fade_out
 	call StartFadeToWhite
-	call WaitPalFading
+	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
 	pop hl
 	pop de
@@ -2036,12 +2040,13 @@ ConfirmPlayerNameAndGender:
 
 SECTION "Bank 7@5081", ROMX[$5081], BANK[$7]
 
-Func_1d081:
+; a = COIN_* constant
+CheckIfCoinWasObtained:
 	push bc
 	push hl
 	ld c, a
 	ld b, $00
-	ld hl, .EventIDs
+	ld hl, .CoinEventIDs
 	add hl, bc
 	ld a, [hl]
 	farcall GetEventValue
@@ -2049,48 +2054,50 @@ Func_1d081:
 	pop bc
 	ret
 
-.EventIDs
-	db EVENT_04
-	db EVENT_0B
-	db EVENT_05
-	db EVENT_06
-	db EVENT_07
-	db EVENT_08
-	db EVENT_09
-	db EVENT_0A
-	db EVENT_10
-	db EVENT_11
-	db EVENT_12
-	db EVENT_13
-	db EVENT_14
-	db EVENT_15
-	db EVENT_16
-	db EVENT_17
-	db EVENT_18
-	db EVENT_19
-	db EVENT_1A
-	db EVENT_1B
-	db EVENT_1C
-	db EVENT_1D
-	db EVENT_1E
-	db EVENT_1F
+.CoinEventIDs
+	db EVENT_GOT_CHANSEY_COIN ; COIN_CHANSEY
+	db EVENT_0B ; COIN_01
+	db EVENT_05 ; COIN_02
+	db EVENT_06 ; COIN_03
+	db EVENT_07 ; COIN_04
+	db EVENT_08 ; COIN_05
+	db EVENT_09 ; COIN_06
+	db EVENT_0A ; COIN_07
+	db EVENT_10 ; COIN_08
+	db EVENT_11 ; COIN_09
+	db EVENT_12 ; COIN_0A
+	db EVENT_13 ; COIN_0B
+	db EVENT_14 ; COIN_0C
+	db EVENT_15 ; COIN_0D
+	db EVENT_16 ; COIN_0E
+	db EVENT_17 ; COIN_0F
+	db EVENT_18 ; COIN_10
+	db EVENT_19 ; COIN_11
+	db EVENT_1A ; COIN_12
+	db EVENT_1B ; COIN_13
+	db EVENT_1C ; COIN_14
+	db EVENT_1D ; COIN_15
+	db EVENT_1E ; COIN_16
+	db EVENT_1F ; COIN_17
 
-Func_1d0aa:
+; outputs in a the number of event coins
+; that has been obtained by the player
+CountEventCoinsObtained:
 	push bc
 	push hl
-	ld c, $18
-	ld b, $00
-	xor a
-.asm_1d0b1
+	ld c, NUM_COINS
+	ld b, 0
+	xor a ; COIN_CHANSEY
+.loop
 	push af
-	call Func_1d081
-	jr z, .asm_1d0b8
+	call CheckIfCoinWasObtained
+	jr z, .next
 	inc b
-.asm_1d0b8
+.next
 	pop af
 	inc a
 	dec c
-	jr nz, .asm_1d0b1
+	jr nz, .loop
 	ld a, b
 	and a
 	pop hl
@@ -2100,21 +2107,26 @@ Func_1d0aa:
 
 SECTION "Bank 7@5475", ROMX[$5475], BANK[$7]
 
+; a = $0: initializes values for new save
+; a = $1: reads values from SRAM
 Func_1d475:
 	ld hl, .FunctionMap
 	call CallMappedFunction
 	ret
 
 .FunctionMap
-	key_func $0, Func_1d485
-	key_func $1, Func_1d4b9
+	key_func $0, .Initialize
+	key_func $1, .Read
 	db $ff ; end
 
-Func_1d485:
+.Initialize:
 	ld a, PLAYER_MALE
 	farcall SetPlayerGender
-	ld a, EVENT_04
+
+	; give Chansey coin
+	ld a, EVENT_GOT_CHANSEY_COIN
 	farcall MaxOutEventValue
+
 	farcall Func_1157c
 	call Func_1eca5
 	call Func_1d7a1
@@ -2133,12 +2145,75 @@ Func_1d485:
 	call Func_1c395
 	ret
 
-Func_1d4b9:
+.Read:
 	call Func_1c395
 	ld a, $01
 	farcall Func_108c9
 	ret
-; 0x1d4c3
+
+ShowOWMapLocationBox:
+	push af
+	push bc
+	push de
+	push hl
+	ldh a, [hWX]
+	ld [wBackupWX], a
+	ldh a, [hWY]
+	ld [wBackupWY], a
+	ld a, $40
+	ldh [hWX], a
+	ld a, $78
+	ldh [hWY], a
+	ld bc, TILEMAP_004
+	lb de, 0, 16
+	farcall Func_12c0ce
+	lb de,  1, 33
+	lb bc, 11,  1
+	farcall FillBoxInBGMapWithZero
+	lb de,  0, 32
+	lb bc, 13,  3
+	farcall Func_10742
+	call .LoadPal
+	call SetWindowOn
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.LoadPal:
+	ld b, BANK(Pals_1d50d)
+	ld c, $00
+	ld hl, Pals_1d50d
+	call Func_3861
+	ret
+
+Pals_1d50d:
+	db 2 ; number of palettes
+
+	rgb 31, 31, 31
+	rgb 31, 31, 31
+	rgb  8,  8,  8
+	rgb  0,  0,  0
+
+	rgb 31, 31, 31
+	rgb 31, 31, 31
+	rgb 31,  0,  0
+	rgb  1,  0,  5
+; 0x1d51d
+
+SECTION "Bank 7@551e", ROMX[$551e], BANK[$7]
+
+Func_1d51e:
+	push af
+	ld a, [wBackupWX]
+	ldh [hWX], a
+	ld a, [wBackupWY]
+	ldh [hWY], a
+	call SetWindowOff
+	pop af
+	ret
+; 0x1d52e
 
 SECTION "Bank 7@57a1", ROMX[$57a1], BANK[$7]
 
@@ -2249,6 +2324,93 @@ Func_1eca5:
 	pop af
 	ret
 ; 0x1ece4
+
+SECTION "Bank 7@7293", ROMX[$7293], BANK[$7]
+
+Func_1f293:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdd36]
+	and a
+	jr z, .asm_1f2eb
+	ld a, $ff
+	ld [wdd5a], a
+	ld a, [wdd50]
+	cp $08
+	jr z, .asm_1f2eb
+	ld de, wdd51
+	ld hl, wdd37
+	ld a, [wdd50]
+	ld b, a
+	ld a, $08
+	sub b
+	ld b, a
+	ld c, $00
+.asm_1f2b9
+	ld a, [hli]
+	and a
+	jr z, .asm_1f2c6
+	res 7, a
+	call .Func_1f2f6
+	inc c
+	dec b
+	jr nz, .asm_1f2b9
+.asm_1f2c6
+	ld a, [wdd50]
+	add c
+	ld [wdd50], a
+	ld a, [wdd36]
+	sub c
+	ld [wdd36], a
+	ld hl, wdd37
+	ld b, $00
+	add hl, bc
+	ld de, wdd37
+	ld a, $18
+	sub c
+	ld c, a
+	ld a, [hli]
+.asm_1f2e2
+	ld [de], a
+	inc de
+	ld b, [hl]
+	xor a
+	ld [hli], a
+	ld a, b
+	dec c
+	jr nz, .asm_1f2e2
+.asm_1f2eb
+	ld a, [wdd36]
+	ld [wdd5b], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; shift data in de 1 byte right
+.Func_1f2f6:
+	push bc
+	push de
+	push hl
+	ld c, $08
+.loop
+	ld l, a
+	ld a, [de]
+	ld h, a
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	dec c
+	jr nz, .loop
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x1f309
 
 SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
 
@@ -2373,7 +2535,7 @@ PlayerGenderAndNameSelection::
 .start
 	farcall SetFadePalsFrameFunc
 	call StartFadeToWhite
-	call WaitPalFading
+	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
 	push af
 	ld a, MUSIC_PCMAINMENU

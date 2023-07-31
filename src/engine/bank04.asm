@@ -19,7 +19,7 @@ Func_1022a:
 	farcall SetAllBGPaletteFadeConfigsToEnabled
 	farcall SetAllOBPaletteFadeConfigsToEnabled
 	farcall StartFadeToWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call Func_110a8
 	call Func_10ea7
 	call Func_1059f
@@ -59,13 +59,13 @@ Func_10252:
 SetFrameFuncAndFadeFromWhite:
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	farcall StartFadeFromWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	ret
 
 ; use with SetFrameFuncAndFadeFromWhite
 FadeToWhiteAndUnsetFrameFunc:
 	farcall StartFadeToWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 
@@ -100,7 +100,7 @@ Func_102ef:
 	ld bc, $40
 	call WriteBCBytesToHL
 
-	call Func_10327
+	call .Func_10327
 
 	xor a
 	ld [wd896 + 0], a
@@ -111,7 +111,7 @@ Func_102ef:
 	pop af
 	ret
 
-Func_10327:
+.Func_10327:
 	ld a, [wWRAMBank]
 	push af
 	ld a, $03
@@ -150,9 +150,9 @@ Func_10417::
 	jr nz, .asm_1042d
 	call .Func_1043c
 .asm_1042d
-	ld a, [wd89b]
+	ld a, [wOWScrollX]
 	ldh [hSCX], a
-	ld a, [wd89c]
+	ld a, [wOWScrollY]
 	ldh [hSCY], a
 	pop hl
 	pop de
@@ -168,10 +168,11 @@ Func_10417::
 	call GetSpriteAnimPosition
 	ld a, d
 	sub $08
-	ld d, a
+	ld d, a ; x
 	ld a, e
 	sub $10
-	ld e, a
+	ld e, a ; y
+
 	ld a, d
 	cp $40
 	ld a, $00
@@ -188,7 +189,8 @@ Func_10417::
 	jr c, .asm_10469
 	ld a, b
 .asm_10469
-	ld [wd89b], a
+	ld [wOWScrollX], a
+
 	ld a, e
 	cp $40
 	ld a, $00
@@ -205,13 +207,13 @@ Func_10417::
 	jr c, .asm_10486
 	ld a, b
 .asm_10486
-	ld [wd89c], a
+	ld [wOWScrollY], a
 	ret
 
 .Func_1048a:
 	ld a, [wd7e8]
 	ld b, a
-	ld hl, wd89b
+	ld hl, wOWScrollX
 	ld a, [hl]
 	cp b
 	jr z, .asm_1049b
@@ -223,7 +225,7 @@ Func_10417::
 .asm_1049b
 	ld a, [wd7e9]
 	ld b, a
-	ld hl, wd89c
+	ld hl, wOWScrollY
 	ld a, [hl]
 	cp b
 	jr z, .asm_104ac
@@ -277,11 +279,11 @@ Func_1055e:
 	push bc
 	push de
 	push hl
-	ld a, [$d7ec]
+	ld a, [wOWMap + 0]
 	ld c, a
-	ld a, [$d7ed]
+	ld a, [wOWMap + 1]
 	ld b, a
-	farcall Func_12c206
+	farcall LoadOWMap
 	ld a, $00
 	ld hl, wOWAnimatedTiles
 	ld bc, $64
@@ -321,10 +323,10 @@ Func_1059f:
 	push bc
 	push de
 	push hl
-	ld de, $d415
-	ld hl, $d7ec
+	ld de, w3d415
+	ld hl, wOWMap
 	ld c, $b1
-.asm_105ab
+.loop_copy
 	ld b, [hl]
 	ld a, [wWRAMBank]
 	push af
@@ -337,14 +339,14 @@ Func_1059f:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_105ab
+	jr nz, .loop_copy
 	ld a, [wWRAMBank]
 	push af
 	ld a, $03
 	call SwitchWRAMBank
 	ld bc, $415
 	ld de, $d4c6
-	ld hl, wListPointer
+	ld hl, w3d000
 	call CopyBCBytesFromHLToDE
 	pop af
 	call SwitchWRAMBank
@@ -359,10 +361,10 @@ Func_105de:
 	push bc
 	push de
 	push hl
-	ld de, $d415
-	ld hl, $d7ec
+	ld de, w3d415
+	ld hl, wOWMap
 	ld c, $b1
-.asm_105ea
+.loop_copy
 	ld a, [wWRAMBank]
 	push af
 	ld a, $03
@@ -375,13 +377,13 @@ Func_105de:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_105ea
+	jr nz, .loop_copy
 	ld a, [wWRAMBank]
 	push af
 	ld a, $03
 	call SwitchWRAMBank
 	ld bc, $415
-	ld de, wListPointer
+	ld de, w3d000
 	ld hl, $d4c6
 	call CopyBCBytesFromHLToDE
 	pop af
@@ -572,7 +574,51 @@ FillBoxInBGMapWithZero:
 	call FillBoxInBGMap
 	pop hl
 	ret
-; 0x10742
+
+; sets priority flag in all tiles
+; inside a box in BGMap
+; d = x
+; e = y
+; b = width
+; c = height
+Func_10742:
+	push af
+	push bc
+	push de
+	push hl
+	push bc
+	ld b, d
+	ld c, e
+	call BCCoordToBGMap0Address
+	pop bc
+	ld a, $01
+	call BankswitchVRAM
+.loop
+	push bc
+	push hl
+.loop_tiles
+	di
+	call WaitForLCDOff
+	ld a, [hl]
+	set 7, a ; priority
+	ld [hli], a
+	ei
+	dec b
+	jr nz, .loop_tiles
+	pop hl
+	ld de, BG_MAP_WIDTH
+	add hl, de
+	pop bc
+	dec c
+	jr nz, .loop
+	xor a
+	call BankswitchVRAM
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x10772
 
 SECTION "Bank 4@488a", ROMX[$488a], BANK[$4]
 
@@ -996,6 +1042,17 @@ Func_10aa8:
 	ret
 ; 0x10ab7
 
+SECTION "Bank 4@4ab9", ROMX[$4ab9], BANK[$4]
+
+Func_10ab9:
+	res 6, [hl] ; SPRITEANIMSTRUCT_FLAGS
+	ret
+
+Func_10abc:
+	set 6, [hl] ; SPRITEANIMSTRUCT_FLAGS
+	ret
+; 0x10abf
+
 SECTION "Bank 4@4b71", ROMX[$4b71], BANK[$4]
 
 Func_10b71:
@@ -1301,7 +1358,7 @@ Func_10d17:
 SECTION "Bank 4@4d40", ROMX[$4d40], BANK[$4]
 
 Func_10d40::
-	call Func_111f6
+	call InitOWObjects
 	ld a, $01
 	call Func_108c9
 	call Func_10f26
@@ -1934,7 +1991,8 @@ Func_111f0:
 	ret
 ; 0x111f6
 
-Func_111f6:
+; clears animations and all OW objects
+InitOWObjects:
 	push af
 	push bc
 	push de
@@ -2126,9 +2184,22 @@ ResetOWObjectSpriteAnimating:
 	call ResetSpriteAnimAnimating
 	pop hl
 	ret
-; 0x112e8
 
-SECTION "Bank 4@5300", ROMX[$5300], BANK[$4]
+Func_112e8:
+	push hl
+	call GetOWObjectWithID
+	call GetOWObjectSpriteAnim
+	call Func_10abc
+	pop hl
+	ret
+
+Func_112f4:
+	push hl
+	call GetOWObjectWithID
+	call GetOWObjectSpriteAnim
+	call Func_10ab9
+	pop hl
+	ret
 
 Func_11300:
 	push af
@@ -2464,7 +2535,7 @@ IntroAndTitleScreen:
 	call SetNoMusic
 	call SetFadePalsFrameFunc
 	farcall StartFadeToWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
 	jr nc, .start
 
@@ -3187,7 +3258,7 @@ AnimateSubtitleExit:
 .asm_11b46
 	call SetFadePalsFrameFunc
 	farcall StartFadeToWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
 	ret
 
@@ -3376,7 +3447,7 @@ AnimateIntroCards:
 .FadeOutAndExit
 	call SetFadePalsFrameFunc
 	farcall StartFadeToWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
 	ret
 
@@ -3522,7 +3593,7 @@ FadeInTitleScreen:
 	call EnableLCD
 	call SetFadePalsFrameFunc
 	farcall StartFadeFromWhite
-	farcall WaitPalFading
+	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
 	ret
 

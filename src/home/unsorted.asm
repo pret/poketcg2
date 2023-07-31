@@ -37,22 +37,22 @@ SetVolume::
 Func_3087::
 	ldh a, [hBankROM]
 	push af
-.asm_308a
+.loop
 	ld a, [wd54c]
 	or a
-	jr z, .asm_30a5
+	jr z, .done
 	cp $06
-	jr c, .asm_3096
+	jr c, .ok
 	ld a, $01
-.asm_3096
+.ok
 	ld l, a
 	ld a, $01
 	ld [wd54c], a
 	ld a, l
 	ld hl, PointerTable_30aa
 	call JumpToFunctionInTable
-	jr .asm_308a
-.asm_30a5
+	jr .loop
+.done
 	pop af
 	call BankswitchROM
 	ret
@@ -62,7 +62,7 @@ PointerTable_30aa::
 	dw Func_30b6 ; $1
 	dw Func_30b7 ; $2
 	dw Func_30d6 ; $3
-	dw Func_30ef ; $4
+	dw NewGameAndPrologue ; $4
 	dw PlayCredits ; $5
 
 Func_30b6::
@@ -97,10 +97,10 @@ Func_30d6::
 	farcall ZeroOutEventValue
 	ret
 
-Func_30ef::
+NewGameAndPrologue::
 	ld a, [wd54d]
 	or a
-	jr nz, .asm_312e
+	jr nz, .has_entered_info
 
 	; get player's name and gender
 	farcall PlayerGenderAndNameSelection
@@ -110,12 +110,12 @@ Func_30ef::
 ; male
 	ld a, OW_PLAYERM
 	ld [wPlayerOWObject], a
-	jr .asm_310d
+	jr .got_info
 .female
 	ld a, OW_PLAYERF
 	ld [wPlayerOWObject], a
 
-.asm_310d
+.got_info
 	ld a, $04
 	ld [wd54c], a
 	ld a, $01
@@ -123,18 +123,18 @@ Func_30ef::
 	ld a, $00
 	ld [wd589], a
 	ld a, $0e
-	ld [wd587], a
+	ld [wCurOWLocation], a
 	farcall Func_ea30
 	ld a, SFX_56
 	call PlaySFX
 	farcall WaitForSFXToFinish
 
-.asm_312e
+.has_entered_info
 	farcall Prologue
 	ld a, $00
 	ld [wd589], a
-	ld a, $00
-	ld [wd587], a
+	ld a, OWMAP_MASON_LABORATORY
+	ld [wCurOWLocation], a
 	ld a, $02
 	ld [wd54c], a
 	ld a, $02
@@ -172,7 +172,7 @@ Func_3154::
 
 .found
 	push bc
-	call .JumpToFunction
+	call .JumpToHL
 	pop bc
 	jr nc, .asm_317f
 	ld a, c
@@ -193,7 +193,7 @@ Func_3154::
 	scf
 	ret
 
-.JumpToFunction:
+.JumpToHL:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -475,11 +475,11 @@ Func_3332::
 	call DoFrame
 	ret
 
-WaitPalFading_Home::
-.asm_3336
+WaitPalFading::
+.loop
 	call DoFrame
 	farcall CheckPalFading
-	jr nz, .asm_3336
+	jr nz, .loop
 	ret
 
 Func_3340::
@@ -541,21 +541,21 @@ Func_338f::
 Func_33a3::
 	ld b, $00
 	farcall $7, $4927
-	call WaitPalFading_Home
+	call WaitPalFading
 	farcall Func_110a8
 	ld a, EVENT_EF
 	farcall ZeroOutEventValue
 	ret
 
 Func_33b7::
-	ld a, [$d586]
+	ld a, [wd586]
 	ld c, a
 	ld b, $00
 	sla c
-	add c
+	add c ; *3
 	ld c, a
 	rl b
-	ld hl, $4651
+	ld hl, Data_c651
 	add hl, bc
 	ld a, [hli]
 	ld c, a
@@ -563,18 +563,18 @@ Func_33b7::
 	ld h, [hl]
 	ld l, a
 	ld a, c
-	ld de, $d561
+	ld de, wd561
 	ld bc, $5
 	call CopyFarHLToDE
-	ld a, [$d562]
+	ld a, [wd562]
 	ld [wd551], a
-	ld [$d58b], a
-	ld a, [$d563]
-	ld [wd552], a
-	ld [$d58c], a
-	ld a, [$d564]
-	ld [$d553], a
-	ld [$d58d], a
+	ld [wd58b], a
+	ld a, [wd563 + 0]
+	ld [wd552 + 0], a
+	ld [wd58c + 0], a
+	ld a, [wd563 + 1]
+	ld [wd552 + 1], a
+	ld [wd58c + 1], a
 	ret
 
 Func_33f2::
@@ -958,6 +958,8 @@ Func_35a0::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35af::
 	push af
 	push bc
@@ -1000,6 +1002,8 @@ Func_35cf::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35df::
 	call Func_35af
 	push bc
@@ -1474,6 +1478,7 @@ Func_383b::
 	ret
 
 ; b = source bank
+; hl = pointer to palette
 ; c = starting CGB BG pal number
 Func_3861::
 	ldh a, [hBankROM]
