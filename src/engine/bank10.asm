@@ -66,7 +66,7 @@ Func_4048a:
 	farcall LoadOWObject
 
 	ld a, [wCurOWLocation]
-	call Func_405a6
+	call UpdateTCGIslandCursorPosition
 
 	ld a, $0a
 	ld [wd582], a
@@ -87,9 +87,9 @@ Func_4048a:
 
 	ld a, $0a
 	ld [wd582], a
-	ld a, $10
+	ld a, BANK(DoGRShipMovement)
 	ld [wd592], a
-	ld hl, $4ce3
+	ld hl, DoGRShipMovement
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -150,13 +150,13 @@ Func_4056c:
 	farcall Func_d683
 	farcall Func_1f293
 	call WaitPalFading
-.asm_40577
+.loop_input
 	call DoFrame
 	call UpdateRNGSources
-	call Func_405bd
+	call HandleTCGIslandDirectionInput
 	ldh a, [hKeysPressed]
 	bit A_BUTTON_F, a
-	jr z, .asm_40577
+	jr z, .loop_input
 	call Func_406d1
 	xor a
 	call PlaySFX
@@ -178,7 +178,7 @@ PlacePlayerInTCGIslandLocation:
 	farcall SetOWObjectPosition
 	ret
 
-Func_405a6:
+UpdateTCGIslandCursorPosition:
 	sla a ; *2
 	ld hl, TCGIslandLocationPositions
 	add l
@@ -195,17 +195,18 @@ Func_405a6:
 	farcall SetOWObjectPosition
 	ret
 
-Func_405bd:
+HandleTCGIslandDirectionInput:
 	lb bc, 4, 0
 	ldh a, [hKeysPressed]
 .loop_shift
 	sla a
-	jr c, .asm_405cb
+	jr c, .got_key
 	inc c
 	dec b
 	jr nz, .loop_shift
 	ret
-.asm_405cb
+
+.got_key
 	ld a, SFX_01
 	call PlaySFX
 	ld a, [wCurOWLocation]
@@ -215,20 +216,20 @@ Func_405bd:
 	ld hl, .LocationConnections
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .no_overflow_1
 	inc h
-.no_overflow
+.no_overflow_1
 	ld a, c
 	add l
 	ld l, a
-	jr nc, .asm_405e6
+	jr nc, .no_overflow_2
 	inc h
-.asm_405e6
+.no_overflow_2
 	ld a, [hl]
 	cp b
 	jr z, .done
 	ld [wCurOWLocation], a
-	call Func_405a6
+	call UpdateTCGIslandCursorPosition
 	ld a, [wCurOWLocation]
 	call PrintTCGIslandLocationName
 .done
@@ -394,12 +395,12 @@ Func_406d1:
 
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
-	ld hl, $4789
+	ld hl, TCGIslandPlayerPaths
 	add l
 	ld l, a
-	jr nc, .asm_406e7
+	jr nc, .no_overflow_1
 	inc h
-.asm_406e7
+.no_overflow_1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -407,9 +408,9 @@ Func_406d1:
 	sla a ; *2
 	add l
 	ld l, a
-	jr nc, .asm_406f4
+	jr nc, .no_overflow_2
 	inc h
-.asm_406f4
+.no_overflow_2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -441,9 +442,9 @@ Func_406d1:
 	ld hl, TCGIslandLocationPositions
 	add l ; *2
 	ld l, a
-	jr nc, .asm_40722
+	jr nc, .no_overflow_3
 	inc h
-.asm_40722
+.no_overflow_3
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -500,4 +501,129 @@ TCGIslandLocationPositions:
 	db $50, $78 ; OWMAP_TCG_AIRPORT
 	db $3c, $20 ; OWMAP_TCG_CHALLENGE_HALL
 	db $44, $44 ; OWMAP_POKEMON_DOME
-; 0x40789
+
+INCLUDE "data/tcg_island_paths.asm"
+
+DoGRShipMovement:
+	ld a, [wd584]
+	cp $1f
+	jr z, .asm_40cfa
+
+	ld a, $1f
+	lb de, 0, 0
+	ld b, NORTH
+	farcall Func_d3c4
+	ld hl, .movement_3
+	jr .start_movement
+.asm_40cfa
+	ld a, $26
+	lb de, 0, 0
+	ld b, NORTH
+	farcall Func_d3c4
+	ld hl, .movement_2
+	ld a, EVENT_D9
+	farcall GetEventValue
+	jr nz, .start_movement
+	ld hl, wd583
+	set 3, [hl]
+	ld hl, .movement_1
+
+.start_movement
+	ld a, [hli] ; coordinates
+	ld e, [hl]  ;
+	inc hl
+	ld d, a
+	cp $ff
+	jr z, .done_movement
+	ld a, [hli] ; direction
+	ld b, a
+	push hl
+	push bc
+	ld a, OW_GRSHIP
+	farcall SetOWObjectTargetPosition
+	ld a, OW_GRSHIP
+	pop bc
+	farcall SetOWObjectDirection
+
+; does movement every 4 frames
+; can be skipped with B button
+.loop_movement
+	ld c, 4
+.loop_wait
+	push bc
+	call DoFrame
+	ld hl, wd583
+	bit 3, [hl]
+	jr nz, .skip_fade_out
+	bit 2, [hl]
+	jr nz, .skip_fade_out
+	ldh a, [hKeysPressed]
+	bit B_BUTTON_F, a
+	jr z, .skip_fade_out
+	set 2, [hl]
+	call .FadeOut
+.skip_fade_out
+	pop bc
+	dec c
+	jr nz, .loop_wait
+	farcall MoveOWObjectToTargetPosition
+	jr c, .still_moving
+	pop hl
+	jr .start_movement
+.still_moving
+	ld a, [wd583]
+	bit 2, a
+	jr z, .loop_movement
+	farcall CheckPalFading
+	jr nz, .loop_movement
+	pop hl
+	jr .finish
+
+.done_movement
+	ld a, [wd585]
+	cp $26
+	jr z, .asm_40d71 ; unnecessary cp
+.asm_40d71
+	call .FadeOut
+.finish
+	call WaitPalFading
+	farcall Func_110a8
+	ret
+
+; fades out to white or black
+; dependent on wd585
+.FadeOut:
+	ld a, [wd585]
+	cp $26
+	jr nz, .to_black
+; to white
+	ld a, $0
+	ld b, $00
+	farcall StartPalFadeToBlackOrWhite
+	ret
+.to_black
+	ld a, $1
+	ld b, $00
+	farcall StartPalFadeToBlackOrWhite
+	ret
+
+.movement_1
+	; goes up and east (high)
+	db $50, $58, EAST
+	db $90, $40, EAST
+	db $a0, $40, EAST
+	db $ff, $ff ; end
+
+.movement_2
+	; goes up and east (low)
+	db $50, $58, EAST
+	db $90, $60, EAST
+	db $a0, $60, EAST
+	db $ff, $ff ; end
+
+.movement_3
+	; goes down
+	db $50, $58, WEST
+	db $50, $78, EAST
+	db $ff, $ff ; end
+; 0x40db3

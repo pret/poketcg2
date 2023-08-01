@@ -1238,7 +1238,7 @@ wd852:: ; d852
 wd853:: ; d853
 	ds $40
 
-wd893:: ; d893
+wScrollTargetSpritePtr:: ; d893
 	ds $2
 
 wd895:: ; d895
@@ -1484,7 +1484,7 @@ wda94:: ; da94
 
 	ds $1
 
-wda97:: ; da97
+wScrollTargetObject:: ; da97
 	ds $1
 
 wda98:: ; da98

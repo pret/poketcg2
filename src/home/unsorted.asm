@@ -1109,9 +1109,9 @@ Func_365b::
 	push af
 	ld a, b
 	call BankswitchROM
-	ld b, [hl]
+	ld b, [hl] ; width
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; height
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -1857,7 +1857,7 @@ Func_3a39::
 	push bc
 	push de
 	push hl
-	farcall Func_10417
+	farcall UpdateOWScroll
 	farcall Func_108cd
 	and a
 	jr nz, .asm_3a50

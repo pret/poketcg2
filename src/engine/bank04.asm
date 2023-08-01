@@ -43,7 +43,7 @@ Func_10252:
 	call DisableLCD
 	call Func_10b9c
 	call Func_1055e
-	call Func_10417
+	call UpdateOWScroll
 	call EnableLCD
 	call Func_1109f
 	farcall SetAllBGPaletteFadeConfigsToEnabled
@@ -134,7 +134,12 @@ Func_10413:
 	ld [wd895], a
 	ret
 
-Func_10417::
+; updates scrolling, depending on wd895:
+; - if $0 then move to target position
+;   with wd7e8 = x and wd7e9 = y
+; - if $1 then move scroll so that
+;   wScrollTargetObject is at the center
+UpdateOWScroll::
 	push af
 	push bc
 	push de
@@ -142,14 +147,14 @@ Func_10417::
 	ld a, [wd895]
 	inc a
 	dec a
-	jr nz, .asm_10427
-	call .Func_1048a
-	jr .asm_1042d
-.asm_10427
+	jr nz, .no_target_position
+	call .MoveToTargetPosition
+	jr .apply_scroll
+.no_target_position
 	dec a
-	jr nz, .asm_1042d
-	call .Func_1043c
-.asm_1042d
+	jr nz, .apply_scroll
+	call .FollowScrollTargetObject
+.apply_scroll
 	ld a, [wOWScrollX]
 	ldh [hSCX], a
 	ld a, [wOWScrollY]
@@ -160,10 +165,10 @@ Func_10417::
 	pop af
 	ret
 
-.Func_1043c:
-	ld a, [wd893 + 0]
+.FollowScrollTargetObject:
+	ld a, [wScrollTargetSpritePtr + 0]
 	ld l, a
-	ld a, [wd893 + 1]
+	ld a, [wScrollTargetSpritePtr + 1]
 	ld h, a
 	call GetSpriteAnimPosition
 	ld a, d
@@ -176,7 +181,7 @@ Func_10417::
 	ld a, d
 	cp $40
 	ld a, $00
-	jr c, .asm_10469
+	jr c, .got_x_scroll
 	ld a, [wd7dc]
 	sla a
 	sla a
@@ -186,15 +191,15 @@ Func_10417::
 	ld a, d
 	sub $40
 	cp b
-	jr c, .asm_10469
+	jr c, .got_x_scroll
 	ld a, b
-.asm_10469
+.got_x_scroll
 	ld [wOWScrollX], a
 
 	ld a, e
 	cp $40
 	ld a, $00
-	jr c, .asm_10486
+	jr c, .got_y_scroll
 	ld a, [wd7dd]
 	sla a
 	sla a
@@ -204,48 +209,50 @@ Func_10417::
 	ld a, e
 	sub $40
 	cp b
-	jr c, .asm_10486
+	jr c, .got_y_scroll
 	ld a, b
-.asm_10486
+.got_y_scroll
 	ld [wOWScrollY], a
 	ret
 
-.Func_1048a:
+.MoveToTargetPosition:
 	ld a, [wd7e8]
 	ld b, a
 	ld hl, wOWScrollX
 	ld a, [hl]
 	cp b
-	jr z, .asm_1049b
-	jr c, .asm_1049a
+	jr z, .no_x_scroll
+	jr c, .incr_x_scroll
+; decr x scroll
 	dec [hl]
-	jr .asm_1049b
-.asm_1049a
+	jr .no_x_scroll
+.incr_x_scroll
 	inc [hl]
-.asm_1049b
+.no_x_scroll
 	ld a, [wd7e9]
 	ld b, a
 	ld hl, wOWScrollY
 	ld a, [hl]
 	cp b
-	jr z, .asm_104ac
-	jr c, .asm_104ab
+	jr z, .done
+	jr c, .incr_y_scroll
+; decr y scroll
 	dec [hl]
-	jr .asm_104ac
-.asm_104ab
+	jr .done
+.incr_y_scroll
 	inc [hl]
-.asm_104ac
+.done
 	ret
 ; 0x104ad
 
 SECTION "Bank 4@44fe", ROMX[$44fe], BANK[$4]
 
-Func_104fe:
+StoreScrollTargetObjectPtr:
 	push af
 	ld a, l
-	ld [wd893 + 0], a
+	ld [wScrollTargetSpritePtr + 0], a
 	ld a, h
-	ld [wd893 + 1], a
+	ld [wScrollTargetSpritePtr + 1], a
 	pop af
 	ret
 ; 0x10509
@@ -421,7 +428,7 @@ SetInitialGraphicsConfiguration:
 	pop af
 	ret
 
-Func_10666:
+SetFontAndTextBoxFrameColor_PreserveRegisters:
 	push af
 	push bc
 	push de
@@ -1761,8 +1768,8 @@ Func_10f78:
 	dec c
 	jr nz, .loop
 .done
-	ld a, [wda97]
-	call Func_11450
+	ld a, [wScrollTargetObject]
+	call SetOWObjectAsScrollTarget
 	pop hl
 	pop de
 	pop bc
@@ -2434,11 +2441,11 @@ Func_11424:
 	pop af
 	ret
 
-Func_11450:
-	ld [wda97], a
+SetOWObjectAsScrollTarget:
+	ld [wScrollTargetObject], a
 	call GetOWObjectWithID
 	call GetOWObjectSpriteAnim
-	call Func_104fe
+	call StoreScrollTargetObjectPtr
 	ret
 ; 0x1145d
 
@@ -3803,8 +3810,8 @@ LoadAttrmap::
 	push hl
 	farcall GetTilemapGfxPointer
 	xor a
-	ld c, $80
-	farcall Func_12c10b
+	ld c, $80 ; Tiles1
+	farcall LoadTilemap
 	pop hl
 	pop de
 	pop bc

@@ -97,7 +97,7 @@ StartMenu_ContinueFromDiary:
 	call DisableLCD
 	farcall Func_10b9c
 	farcall Func_1055e
-	farcall Func_10417
+	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
@@ -836,7 +836,7 @@ Func_d299::
 	ld a, [wPlayerOWObject]
 	farcall LoadOWObjectInMap
 	farcall Func_10dd7
-	farcall Func_11450
+	farcall SetOWObjectAsScrollTarget
 	farcall Func_10eff
 	ld b, $01
 	farcall Func_10f16
@@ -904,7 +904,7 @@ Func_d377:
 Func_d398:
 	farcall Func_10b9c
 	farcall Func_1055e
-	farcall Func_10417
+	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame

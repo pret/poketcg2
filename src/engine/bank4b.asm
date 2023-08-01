@@ -155,18 +155,19 @@ GetOWObjectFrameset:
 	pop af
 	ret
 
+; b:hl = tilemap pointer
 Func_12c0b7:
 	push af
 	push bc
 	push de
 	push hl
 	xor a
-	ld c, $00
-	call Func_12c10b
+	ld c, $00 ; Tiles0
+	call LoadTilemap
 	ld a, b
-	ld [wd7dc], a
+	ld [wd7dc], a ; width
 	ld a, c
-	ld [wd7dd], a
+	ld [wd7dd], a ; height
 	pop hl
 	pop de
 	pop bc
@@ -210,14 +211,15 @@ Func_12c0ce:
 	pop af
 	ret
 
+; b:hl = tilemap pointer
 Func_12c0fc:
 	push af
 	push bc
 	push de
 	push hl
 	xor a
-	ld c, $00
-	call Func_12c10b
+	ld c, $00 ; Tiles0
+	call LoadTilemap
 	pop hl
 	pop de
 	pop bc
@@ -233,7 +235,7 @@ Func_12c0fc:
 ; output:
 ;  b = tilemap width
 ;  c = tilemap height
-Func_12c10b:
+LoadTilemap:
 	push af
 	push de
 	push hl
@@ -342,9 +344,9 @@ Func_12c10b:
 	ld a, [wd7d9]
 	ld h, a
 	or l
-	jr z, .asm_12c1b1
+	jr z, .null
 	call Func_12c1c1
-.asm_12c1b1
+.null
 	ld a, [wBGMapWidth]
 	ld b, a
 	ld a, [wBGMapHeight]
@@ -388,12 +390,12 @@ Func_12c1c1:
 	ld a, [wBGMapWidth]
 	srl a
 	ld b, a
-.asm_12c1f6
+.loop_cols
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
-	jr nz, .asm_12c1f6
+	jr nz, .loop_cols
 	pop hl
 	ld bc, BG_MAP_WIDTH / 2
 	add hl, bc
@@ -486,7 +488,7 @@ LoadOWMap:
 	ld c, $00
 	call LoadGfxPalettes
 
-	farcall Func_10666
+	farcall SetFontAndTextBoxFrameColor_PreserveRegisters
 
 	; very inefficient...
 	ld a, [wd693]
@@ -732,7 +734,7 @@ LoadPortraitAttributeMap:
 	ld c, a
 	ld a, 5 | (1 << OAM_TILE_BANK)
 .got_pal_and_tiles
-	call Func_12c10b
+	call LoadTilemap
 	pop hl
 	pop de
 	pop bc

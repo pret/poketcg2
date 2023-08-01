@@ -125,7 +125,7 @@ Func_300a8:
 
 .Func_30175:
 	ld a, OW_GRSHIP
-	farcall Func_11450
+	farcall SetOWObjectAsScrollTarget
 	ld a, $01
 	farcall Func_10413
 	ld a, OW_GRSHIP
