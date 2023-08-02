@@ -38,7 +38,7 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_UNK_C8
+	ld a, OW_VULCANO_SMOKE_TCG
 	lb de, $78, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -48,31 +48,31 @@ Func_4048a:
 
 	ld a, [wd584]
 	cp $1f
-	jr z, .asm_404f5
+	jr z, .gr_ship_cutscene
 	cp $26
-	jr z, .asm_404f5
+	jr z, .gr_ship_cutscene
 
+	; this is the case where player is
+	; on OW map and navigating
 	ld a, [wPlayerOWObject]
 	lb de, 0, 0
 	ld b, SOUTH
 	farcall LoadOWObject
-
 	ld a, [wCurOWLocation]
 	call PlacePlayerInTCGIslandLocation
 
-	ld a, OW_UNK_CA
+	ld a, OW_CURSOR_TCG
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
-
 	ld a, [wCurOWLocation]
 	call UpdateTCGIslandCursorPosition
 
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_4056c)
+	ld a, BANK(HandleTCGIslandInput)
 	ld [wd592], a
-	ld hl, Func_4056c
+	ld hl, HandleTCGIslandInput
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -80,7 +80,7 @@ Func_4048a:
 	scf
 	ret
 
-.asm_404f5
+.gr_ship_cutscene
 	ld bc, TILEMAP_001
 	lb de, 0, 0
 	farcall Func_12c0ce
@@ -146,14 +146,14 @@ Func_4053e:
 	ccf
 	ret
 
-Func_4056c:
+HandleTCGIslandInput:
 	farcall Func_d683
 	farcall Func_1f293
 	call WaitPalFading
 .loop_input
 	call DoFrame
 	call UpdateRNGSources
-	call HandleTCGIslandDirectionInput
+	call HandleTCGIslandDirectionalInput
 	ldh a, [hKeysPressed]
 	bit A_BUTTON_F, a
 	jr z, .loop_input
@@ -191,11 +191,11 @@ UpdateTCGIslandCursorPosition:
 	ld a, [hl]
 	sub 12
 	ld e, a
-	ld a, OW_UNK_CA
+	ld a, OW_CURSOR_TCG
 	farcall SetOWObjectPosition
 	ret
 
-HandleTCGIslandDirectionInput:
+HandleTCGIslandDirectionalInput:
 	lb bc, 4, 0
 	ldh a, [hKeysPressed]
 .loop_shift

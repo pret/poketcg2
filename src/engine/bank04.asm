@@ -735,7 +735,7 @@ SetNewSpriteAnimValues::
 	call SetSpriteAnimFrameDuration
 	call SetSpriteAnimTileOffset
 	call SetSpriteAnimAnimation
-	call Func_10cc1
+	call SetSpriteAnimMoveDuration
 	call SetSpriteAnimStartDelay
 	pop hl
 	pop de
@@ -861,13 +861,12 @@ MoveSpriteAnim:
 	ld [hl], e ; SPRITEANIMSTRUCT_Y_POS
 	dec hl
 	ld [hl], d ; SPRITEANIMSTRUCT_X_POS
-	ld bc, SPRITEANIMSTRUCT_C - SPRITEANIMSTRUCT_X_POS
+	ld bc, SPRITEANIMSTRUCT_MOVE_DURATION - SPRITEANIMSTRUCT_X_POS
 	add hl, bc
-	dec [hl] ; SPRITEANIMSTRUCT_C
+	dec [hl] ; SPRITEANIMSTRUCT_MOVE_DURATION
 	pop hl
 	jr nz, .done
 	res SPRITEANIMSTRUCT_MOVE_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
-
 .done
 	pop hl
 	pop de
@@ -973,7 +972,10 @@ Func_10a5c:
 	pop af
 	ret
 
-Func_10a66:
+; b = direction
+; c = speed
+; e = move duration
+SetSpriteAnimMotion:
 	push af
 	push bc
 	push de
@@ -982,13 +984,13 @@ Func_10a66:
 	jr nz, .done
 	dec c
 	ld a, [hl]
-	and $d0
+	and SPRITEANIMSTRUCT_ANIMATING | SPRITEANIMSTRUCT_FLAG6 | SPRITEANIMSTRUCT_ACTIVE
 	or SPRITEANIMSTRUCT_MOVE
 	sla b
 	or b
 	or c
 	ld [hl], a
-	ld bc, SPRITEANIMSTRUCT_C - SPRITEANIMSTRUCT_FLAGS
+	ld bc, SPRITEANIMSTRUCT_MOVE_DURATION - SPRITEANIMSTRUCT_FLAGS
 	add hl, bc
 	ld [hl], e
 .done
@@ -1009,7 +1011,7 @@ Func_10a83:
 	and SPRITEANIMSTRUCT_SPEED
 	inc a
 	ld c, a
-	ld de, SPRITEANIMSTRUCT_C - SPRITEANIMSTRUCT_FLAGS
+	ld de, SPRITEANIMSTRUCT_MOVE_DURATION - SPRITEANIMSTRUCT_FLAGS
 	add hl, de
 	ld e, [hl]
 	pop hl
@@ -1023,10 +1025,10 @@ Func_10a94:
 	dec c
 	set SPRITEANIMSTRUCT_MOVE_F, [hl]
 	ld a, [hl] ; SPRITEANIMSTRUCT_FLAGS
-	and $fe
+	and ~SPRITEANIMSTRUCT_SPEED
 	or c
 	ld [hl], a
-	ld bc, SPRITEANIMSTRUCT_C - SPRITEANIMSTRUCT_FLAGS
+	ld bc, SPRITEANIMSTRUCT_MOVE_DURATION - SPRITEANIMSTRUCT_FLAGS
 	add hl, bc
 	ld [hl], e
 	pop hl
@@ -1041,7 +1043,7 @@ Func_10aa8:
 	and SPRITEANIMSTRUCT_SPEED
 	ld c, a
 	inc c
-	ld de, SPRITEANIMSTRUCT_C - SPRITEANIMSTRUCT_FLAGS
+	ld de, SPRITEANIMSTRUCT_MOVE_DURATION - SPRITEANIMSTRUCT_FLAGS
 	add hl, de
 	ld e, [hl]
 	pop hl
@@ -1088,14 +1090,14 @@ Func_10b81:
 	srl d
 	srl d
 	srl d
-	srl d
+	srl d ; *16
 	ld a, e
 	sub $10
 	ld e, a
 	srl e
 	srl e
 	srl e
-	srl e
+	srl e ; *16
 	pop af
 	ret
 
@@ -1317,12 +1319,12 @@ SetSpriteAnimFrameIndex:
 	pop bc
 	ret
 
-Func_10cc1:
+SetSpriteAnimMoveDuration:
 	push bc
 	push hl
-	ld bc, SPRITEANIMSTRUCT_C
+	ld bc, SPRITEANIMSTRUCT_MOVE_DURATION
 	add hl, bc
-	ld [hl], a ; SPRITEANIMSTRUCT_C
+	ld [hl], a ; SPRITEANIMSTRUCT_MOVE_DURATION
 	pop hl
 	pop bc
 	ret
@@ -1450,22 +1452,22 @@ Func_10dd3::
 	call SetOWObjectSpriteAnimating
 	ret
 
-Func_10dd7::
+StopOWObjectAnimation::
 	call ResetOWObjectSpriteAnimating
 	ret
 ; 0x10ddb
 
 SECTION "Bank 4@4de3", ROMX[$4de3], BANK[$4]
 
-Func_10de3::
+StopAndGetOWObjectSpeedAndMoveDuration::
 	call Func_11300
 	ret
 
-Func_10de7::
+MoveAndSetOWObjectSpeedAndMoveDuration::
 	call Func_1130e
 	ret
 
-Func_10deb::
+GetOWObjectSpeedAndMoveDuration::
 	call Func_11320
 	ret
 ; 0x10def
@@ -1479,6 +1481,9 @@ Func_10df3::
 
 SECTION "Bank 4@4dfb", ROMX[$4dfb], BANK[$4]
 
+; outputs ID of OW object that is
+; in the grid position de
+; if no object, then output $ff
 Func_10dfb::
 	push bc
 	push de
@@ -1486,7 +1491,7 @@ Func_10dfb::
 	ld a, $ff
 	ld [wd987], a
 
-	call Func_113f4
+	call GetOWObjectsPointer
 	ld c, MAX_NUM_OW_OBJECTS
 .loop
 	push bc
@@ -1530,6 +1535,7 @@ Func_10dfb::
 	ret
 
 ; b = direction
+; c = speed
 Func_10e3c::
 	push bc
 	push de
@@ -1550,48 +1556,48 @@ Func_10e3c::
 	jr nz, .check_east
 	; NORTH
 	dec e
-	jr nz, .asm_10e6e
+	jr nz, .got_direction
 .check_east
 	dec a
 	jr nz, .check_south
 	; EAST
 	inc d
-	jr nz, .asm_10e6e
+	jr nz, .got_direction
 .check_south
 	dec a
 	jr nz, .check_west
 	; SOUTH
 	inc e
-	jr nz, .asm_10e6e
+	jr nz, .got_direction
 .check_west
 	dec a
-	jr nz, .asm_10e6e
+	jr nz, .got_direction
 	; WEST
 	dec d
 
-.asm_10e6e
+.got_direction
 	ld a, [wd986]
 	cp $ff
 	jr z, .asm_10e7f
 	ld a, d
 	cp $10
-	jr nc, .asm_10e94
+	jr nc, .blocked
 	ld a, e
 	cp $10
-	jr nc, .asm_10e94
+	jr nc, .blocked
 .asm_10e7f
 	call Func_10dfb
 	inc a
-	jr nz, .asm_10e94
+	jr nz, .blocked
 	sla d
 	sla e
 	call Func_10541
 	and a
-	jr nz, .asm_10e94
+	jr nz, .blocked
 .asm_10e8f
 	ld a, $10
 	ld [wd98a], a
-.asm_10e94
+.blocked
 	pop bc
 	ld a, [wd98a]
 	ld e, a
@@ -1764,7 +1770,7 @@ Func_10f78:
 	ld a, [hl]
 	cp $ff
 	jr z, .done
-	call .Func_10f9a
+	call .LoadObject
 	dec c
 	jr nz, .loop
 .done
@@ -1776,7 +1782,7 @@ Func_10f78:
 	pop af
 	ret
 
-.Func_10f9a:
+.LoadObject:
 	push bc
 	ld a, [hl] ; OW ID
 	inc hl
@@ -1789,11 +1795,10 @@ Func_10f78:
 	ld e, [hl] ; y
 	inc hl
 	call LoadOWObjectInMap
-
 	bit SPRITEANIMSTRUCT_ANIMATING_F, c
-	jr nz, .asm_10faf
-	call Func_10dd7
-.asm_10faf
+	jr nz, .no_animation
+	call StopOWObjectAnimation
+.no_animation
 	bit 1, c
 	jr z, .asm_10fb6
 	call Func_10eff
@@ -1862,9 +1867,9 @@ IsStillOWObject:
 	db OW_GRCLERK15
 	db OW_GRCLERK16
 	db OW_GRCLERK17
-	db OW_UNK_C8
+	db OW_VULCANO_SMOKE_TCG
 	db OW_UNK_C9
-	db OW_UNK_CA
+	db OW_CURSOR_TCG
 	db OW_UNK_CB
 	db OW_UNK_CC
 	db OW_UNK_CD
@@ -2242,6 +2247,9 @@ Func_11320:
 	pop af
 	ret
 
+; a = OW object ID
+; b = direction
+; c = speed
 Func_1132e:
 	push bc
 	push de
@@ -2251,9 +2259,9 @@ Func_1132e:
 	bit SPRITEANIMSTRUCT_MOVE_F, [hl]
 	jr nz, .done
 	bit 7, b
-	jr nz, .asm_11342
+	jr nz, .skip_set_direction
 	call SetSpriteAnimDirection
-.asm_11342
+.skip_set_direction
 	ld a, b
 	and $07
 	ld b, a
@@ -2265,14 +2273,14 @@ Func_1132e:
 	dec c
 	jr c, .done
 	jr z, .asm_11355
-	srl e
+	srl e ; /2
 .asm_11355
 	ld a, e
 	and a
 	jr z, .done
 	ld [wda8b], a
 	inc c
-	call Func_10a66
+	call SetSpriteAnimMotion
 .done
 	pop hl
 	pop de
@@ -2283,6 +2291,7 @@ Func_1132e:
 
 SECTION "Bank 4@5384", ROMX[$5384], BANK[$4]
 
+; e = ?
 Func_11384::
 	push af
 	push bc
@@ -2299,7 +2308,7 @@ Func_11384::
 	call GetOWObjectSpriteAnim
 	bit SPRITEANIMSTRUCT_MOVE_F, [hl]
 	pop hl
-	jr nz, .next
+	jr nz, .next ; is moving
 	push de
 	call .Func_113af
 	pop de
@@ -2373,7 +2382,7 @@ Func_113d2:
 
 SECTION "Bank 4@53f4", ROMX[$53f4], BANK[$4]
 
-Func_113f4:
+GetOWObjectsPointer:
 	ld hl, wOWObjects
 	ret
 

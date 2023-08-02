@@ -217,40 +217,41 @@ Func_31a8::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectSpriteAnimFlags
 	bit SPRITEANIMSTRUCT_MOVE_F, a
-	jr z, .asm_31f8
+	jr z, .not_moving
 	ldh a, [hKeysHeld]
 	bit B_BUTTON_F, a
-	jr nz, .asm_31d8
+	jr nz, .b_btn_pressed
 	ld a, [wPlayerOWObject]
-	farcall Func_10deb
-	ld a, $01
+	farcall GetOWObjectSpeedAndMoveDuration
+	ld a, $1
 	cp c
 	jr z, .done
 	ld a, [wPlayerOWObject]
-	farcall Func_10de3
+	farcall StopAndGetOWObjectSpeedAndMoveDuration
 	sla e
 	dec c
-	farcall Func_10de7
+	farcall MoveAndSetOWObjectSpeedAndMoveDuration
 	jr .done
-.asm_31d8
+.b_btn_pressed
 	ld a, [wPlayerOWObject]
-	farcall Func_10deb
-	ld a, $02
+	farcall GetOWObjectSpeedAndMoveDuration
+	ld a, $2
 	cp c
 	jr z, .done
 	bit 0, e
 	jr nz, .done
 	ld a, [wPlayerOWObject]
-	farcall Func_10de3
+	farcall StopAndGetOWObjectSpeedAndMoveDuration
 	srl e
 	inc c
-	farcall Func_10de7
+	farcall MoveAndSetOWObjectSpeedAndMoveDuration
 	jr .done
-.asm_31f8
+
+.not_moving
 	ld a, $06
 	ld [wd582], a
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd7
+	farcall StopOWObjectAnimation
 .done
 	ret
 
@@ -416,21 +417,21 @@ Func_32bf::
 
 Func_32d8::
 	call Func_32f6
-	jr nc, .asm_32f5
+	jr nc, .done
 	ldh a, [hKeysPressed]
 	bit 0, a
 	jr nz, .asm_32e9
 	bit 3, a
 	jr nz, .asm_32f0
-	jr .asm_32f5
+	jr .done
 .asm_32e9
 	ld a, $08
 	ld [wd582], a
-	jr .asm_32f5
+	jr .done
 .asm_32f0
 	ld a, $12
 	ld [wd582], a
-.asm_32f5
+.done
 	ret
 
 Func_32f6::
@@ -494,11 +495,11 @@ Func_3340::
 	bit SPRITEANIMSTRUCT_ANIMATING_F, a
 	jr z, .asm_3340
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd7
+	farcall StopOWObjectAnimation
 	jr .asm_3340
 .asm_3361
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd7
+	farcall StopOWObjectAnimation
 	farcall Func_10eff
 	ret
 

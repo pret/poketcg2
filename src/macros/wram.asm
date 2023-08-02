@@ -95,7 +95,7 @@ MACRO sprite_anim_struct
 \1FrameDuration:: ds 1
 \1TileOffset:: ds 1
 \1AnimID:: ds 2
-\1UnkC:: ds 1
+\1MoveDuration:: ds 1
 \1StartDelay:: ds 1
 \1UnkE:: ds 2
 ENDM

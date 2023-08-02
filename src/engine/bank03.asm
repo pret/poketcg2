@@ -154,25 +154,25 @@ Func_c12e::
 	jp hl
 
 .PointerTable
-	dw Func_31a1
-	dw Func_c162
-	dw $417d
-	dw $4169
-	dw $4183
-	dw $31a8
-	dw $4199
-	dw Func_c162
-	dw $4163
-	dw $4189
-	dw $3234
-	dw $418f
-	dw Func_c162
-	dw Func_c162
-	dw Func_c162
-	dw $416f
-	dw $4175
-	dw $41a2
-	dw $41a6
+	dw Func_31a1 ; $00
+	dw Func_c162 ; $01
+	dw $417d     ; $02
+	dw $4169     ; $03
+	dw $4183     ; $04
+	dw Func_31a8 ; $05
+	dw $4199     ; $06
+	dw Func_c162 ; $07
+	dw $4163     ; $08
+	dw $4189     ; $09
+	dw Func_3234 ; $0a
+	dw $418f     ; $0b
+	dw Func_c162 ; $0c
+	dw Func_c162 ; $0d
+	dw Func_c162 ; $0e
+	dw $416f     ; $0f
+	dw $4175     ; $10
+	dw $41a2     ; $11
+	dw $41a6     ; $12
 
 Func_c162:
 	ret
@@ -835,7 +835,7 @@ Func_d299::
 	ld b, a
 	ld a, [wPlayerOWObject]
 	farcall LoadOWObjectInMap
-	farcall Func_10dd7
+	farcall StopOWObjectAnimation
 	farcall SetOWObjectAsScrollTarget
 	farcall Func_10eff
 	ld b, $01

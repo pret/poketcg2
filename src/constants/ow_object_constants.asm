@@ -199,9 +199,9 @@
 	const OW_UNK_C5        ; $c5
 	const OW_UNK_C6        ; $c6
 	const OW_UNK_C7        ; $c7
-	const OW_UNK_C8        ; $c8
+	const OW_VULCANO_SMOKE_TCG ; $c8
 	const OW_UNK_C9        ; $c9
-	const OW_UNK_CA        ; $ca
+	const OW_CURSOR_TCG    ; $ca
 	const OW_UNK_CB        ; $cb
 	const OW_UNK_CC        ; $cc
 	const OW_UNK_CD        ; $cd
@@ -343,8 +343,8 @@
 	const OWSPRITE_68          ; $68
 	const OWSPRITE_GRSHIP      ; $69
 	const OWSPRITE_GRSHIPBEAM  ; $6a
-	const OWSPRITE_6B          ; $6b
-	const OWSPRITE_6C          ; $6c
+	const OWSPRITE_VULCANO_SMOKE_TCG ; $6b
+	const OWSPRITE_CURSOR_TCG  ; $6c
 	const OWSPRITE_6D          ; $6d
 	const OWSPRITE_6E          ; $6e
 	const OWSPRITE_6F          ; $6f
