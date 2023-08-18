@@ -1786,7 +1786,7 @@ wde51:: ; de51
 wde52:: ; de52
 	ds $1
 
-wde53:: ; de53
+wProloguePortraitScene:: ; de53
 	ds $1
 
 wPlayerName:: ; de54
@@ -2057,7 +2057,7 @@ wde43:: ; d0db
 wd0e3:: ; d0e3
 	ds $8
 
-wd0eb:: ; d0eb
+wde53:: ; d0eb
 	ds $1
 
 wde54:: ; d0ec

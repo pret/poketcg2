@@ -144,7 +144,7 @@ Music5_Init:
 	ld [wMusicPanning], a
 	xor a
 	ld [wdd8c], a
-	ld [wd0eb], a
+	ld [wde53], a
 	ld [wMusicWaveChange], a
 	ld [wddef], a
 	ld [wddf0], a

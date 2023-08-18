@@ -4090,7 +4090,7 @@ ShowProloguePortraitAndText:
 	push bc
 	push de
 	push hl
-	ld [wde53], a
+	ld [wProloguePortraitScene], a
 	call .Show
 	pop hl
 	pop de
@@ -4107,7 +4107,7 @@ ShowProloguePortraitAndText:
 	ret
 
 .DrawPortraitAndTextBox:
-	ld a, [wde53]
+	ld a, [wProloguePortraitScene]
 	ld hl, .FunctionMap
 	call CallMappedFunction
 	lb de, 0, 12
@@ -4135,7 +4135,7 @@ ShowProloguePortraitAndText:
 
 .PrintText:
 	ld hl, .TextListPointers
-	ld a, [wde53]
+	ld a, [wProloguePortraitScene]
 	add a
 	ld c, a
 	ld b, $00
