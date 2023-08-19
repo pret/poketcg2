@@ -455,12 +455,12 @@
 	const TILESET_1C5 ; $1c5
 	const TILESET_1C6 ; $1c6
 	const TILESET_1C7 ; $1c7
-	const TILESET_1C8 ; $1c8
-	const TILESET_1C9 ; $1c9
-	const TILESET_1CA ; $1ca
-	const TILESET_1CB ; $1cb
+	const TILESET_INTRO_BASE_SET ; $1c8
+	const TILESET_INTRO_JUNGLE ; $1c9
+	const TILESET_INTRO_FOSSIL ; $1ca
+	const TILESET_INTRO_TEAM_ROCKET ; $1cb
 	const TILESET_1CC ; $1cc
-	const TILESET_1CD ; $1cd
+	const TILESET_TITLE_SCREEN ; $1cd
 	const TILESET_1CE ; $1ce
 	const TILESET_1CF ; $1cf
 	const TILESET_1D0 ; $1d0

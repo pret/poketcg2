@@ -73,7 +73,7 @@ DrawLabeledTextBox:
 	ld e, l
 	ld d, h
 	pop hl
-	call $2c77 ; CopyText
+	call CopyText
 	ld hl, wc000 + 3
 	call GetTextLengthInTiles
 	ld [wcd5c], a
@@ -162,7 +162,7 @@ DrawLabeledTextBox:
 ; Draws a bxc text box at de to print menu data in the overworld.
 ; Also used to print a text box during a duel.
 ; When talking to NPCs, DrawLabeledTextBox is used instead.
-DrawRegularTextBox:
+DrawRegularTextBox::
 	ld a, [wConsole]
 	cp CONSOLE_CGB
 	jr z, DrawRegularTextBoxCGB

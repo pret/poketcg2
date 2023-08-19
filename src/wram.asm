@@ -241,8 +241,8 @@ wDecompSecondaryBufferPtrLow:: ; cadd
 wBackgroundPalettesCGB:: ; caee
 	ds NUM_BACKGROUND_PALETTES palettes
 
-wcb2e:: ; cb2e
-	ds 1 palettes
+wObjectPalettesCGB:: ; cb2e
+	ds NUM_OBJECT_PALETTES palettes
 
 SECTION "WRAM0 Serial Transfer", WRAM0
 
@@ -356,15 +356,25 @@ wIsPracticeDuel:: ; cc0f
 wcc10:: ; cc10
 	ds $1
 
-	ds $2
+	ds $1
+
+wcc12:: ; cc12
+	ds $1
 
 ; text id of the opponent's name
 wOpponentName:: ; cc13
 	ds $2
 
+wcc15:: ; cc15
 	ds $1
 
 wcc16:: ; cc16
+	ds $1
+
+wcc17:: ; cc17
+	ds $1
+
+wcc18:: ; cc18
 	ds $1
 
 SECTION "WRAM0 Duels 2@cc29", WRAM0
@@ -451,7 +461,10 @@ wEffectFunctionsFeedback:: ; cce3
 wIsDamageToSelf:: ; ccfb
 	ds $1
 
-	ds $4
+	ds $2
+
+wOpponentDeckName:: ; ccfe
+	ds $2
 
 ; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
 wTempPlayAreaLocation_cceb:: ; cd00
@@ -489,7 +502,10 @@ wNoEffectFromWhichStatus:: ; cd06
 wDeckSize:: ; cd07
 	ds $1
 
-	ds $2
+wcd08:: ; cd08
+	ds $1
+
+	ds $1
 
 wcd0a:: ; cd0a
 	ds $1
@@ -503,7 +519,11 @@ wcd0c:: ; cd0c
 wcd0d:: ; cd0d
 	ds $1
 
-	ds $2
+wcd0e:: ; cd0e
+	ds $1
+
+wcd0f:: ; cd0f
+	ds $1
 
 wcd10:: ; cd10
 	ds $4
@@ -589,6 +609,12 @@ wUppercaseHalfWidthLetters:: ; cd76
 ; possibly used in other contexts too
 wEffectFunctionsBank:: ; cd79
 	ds $1
+
+wCardPalettes:: ; cd7a
+	ds 3 palettes
+
+wCardAttrMap:: ; cd92
+	ds $30
 
 SECTION "WRAM0 2@cdc2", WRAM0
 
@@ -695,6 +721,23 @@ wPrinterStatus:: ; cdf5
 wSerialDataPtr:: ; cdf6
 	ds $2
 
+	ds $55
+
+wWRAMBank:: ; ce4d
+	ds $1
+
+wTargetBGPalettes:: ; ce4e
+	ds NUM_BACKGROUND_PALETTES palettes
+
+wTargetOBPalettes:: ; ce8e
+	ds NUM_OBJECT_PALETTES palettes
+
+wBGColorFadeConfigList:: ; cece
+	ds (NUM_BACKGROUND_PALETTES palettes) / 2
+
+wOBColorFadeConfigList:: ; ceee
+	ds (NUM_OBJECT_PALETTES palettes) / 2
+
 SECTION "WRAM1", WRAMX
 
 ; stores a pointer to a temporary list of elements (e.g. pointer to wDuelTempList)
@@ -799,11 +842,77 @@ wNumberOfPrizeCardsToSelect:: ; d0c8
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
+SECTION "WRAM1@d0e3", WRAMX
+
+wNamingScreenCursorBlinkCounter:: ; d0e3
+	ds $1
+
+wNamingScreenCursorY:: ; d0e4
+	ds $1
+
+	ds $4
+
+wNamingScreenNumRows:: ; d0e9
+	ds $1
+
+wVisibleCursorTile:: ; d0ea
+	ds $1
+
+wInvisibleCursorTile:: ; d0eb
+	ds $1
+
+SECTION "WRAM1@d393", WRAMX
+
+wNamingScreenInputSFX:: ; d393
+	ds $1
+
+	ds $3
+
+wNamingScreenBuffer:: ; d397
+	ds NAMING_SCREEN_BUFFER_LENGTH
+
+	ds $32
+
+wNamingScreenBufferLength:: ; d3e1
+	ds $1
+
+wNamingScreenDestPointer:: ; d3e2
+	ds $2
+
+wNamingScreenQuestionPointer:: ; d3e4
+	ds $2
+
+wNamingScreenBufferMaxLength:: ; d3e6
+	ds $1
+
+wNamingScreenNumColumns:: ; d3e7
+	ds $1
+
+wNamingScreenCursorX:: ; d3e8
+	ds $1
+
+wNamingScreenNamePosition:: ; d3e9
+	ds $2
+
+; NAME_MODE_* constant
+wNamingScreenMode:: ; d3eb
+	ds $1
+
+	ds $3
+
+wd3ef:: ; d3ef
+	ds $1
+
+
 SECTION "WRAM1@d54c", WRAMX
 
 wd54c:: ; d54c
 	ds $1
 
+; how far has the player progressed
+; $0: no save data
+; $1: entered player info
+; $2: watched prologue
 wd54d:: ; d54d
 	ds $1
 
@@ -813,23 +922,49 @@ wd54e:: ; d54e
 wd54f:: ; d54f
 	ds $1
 
-wd550:: ; d550
+wPlayerOWObject:: ; d550
 	ds $1
 
 wd551:: ; d551
 	ds $1
 
 wd552:: ; d552
-	ds $1
+	ds $2
 
-wd553:: ; d553
-	ds $1
-
-; some flags for something
+; bit 0: has save data
+; bit 1: has saved duel + ?
+; bit 2: has saved duel
 wd554:: ; d554
 	ds $1
 
-	ds $2d
+	ds $c
+
+wd561:: ; d561
+	ds $1
+
+wd562:: ; d562
+	ds $1
+
+wd563:: ; d563
+	ds $2
+
+wd565:: ; d565
+	ds $1
+
+	ds $f
+
+wFilteredListPtr:: ; d575
+	ds $2
+
+wRemainingIntroCards:: ; d577
+	ds $1
+
+	ds $3
+
+wIntroCardsRepeatsAllowed:: ; d57b
+	ds $1
+
+	ds $6
 
 wd582:: ; d582
 	ds $1
@@ -846,9 +981,10 @@ wd585:: ; d585
 wd586:: ; d586
 	ds $1
 
-wd587:: ; d587
+wCurOWLocation:: ; d587
 	ds $1
 
+wPlayerOWLocation:: ; d588
 	ds $1
 
 wd589:: ; d589
@@ -861,10 +997,7 @@ wd58b:: ; d58b
 	ds $1
 
 wd58c:: ; d58c
-	ds $1
-
-wd58d:: ; d58d
-	ds $1
+	ds $2
 
 wd58e:: ; d58e
 	ds $1
@@ -878,9 +1011,40 @@ wd590:: ; d590
 wd591:: ; d591
 	ds $1
 
-	ds $c
+wd592:: ; d592
+	ds $1
 
-wd59e:: ; d59e
+wd593:: ; d593
+	ds $2
+
+wd595:: ; d595
+	ds $1
+
+wOWObjTargetX:: ; d596
+	ds $1
+
+wOWObjTargetY:: ; d597
+	ds $1
+
+wd598:: ; d598
+	ds $1
+
+wOWObjXVelocity:: ; d599
+	ds $1
+
+wd59a:: ; d59a
+	ds $1
+
+wOWObjYVelocity:: ; d59b
+	ds $1
+
+wd59c:: ; d59c
+	ds $1
+
+wd59d:: ; d59d
+	ds $1
+
+wEventVars:: ; d59e
 	ds $34
 
 wd5d2:: ; d5d2
@@ -963,20 +1127,43 @@ wd672:: ; d672
 wd673:: ; d673
 	ds $1
 
-wd674:: ; d674
+wCurMusic:: ; d674
 	ds $1
 
-	ds $3
+wMusicFadeOutCounter:: ; d675
+	ds $1
+
+wMusicFadeOutDuration:: ; d676
+	ds $1
+
+wMusicFadeOutVolume:: ; d677
+	ds $1
 
 wd678:: ; d678
 	ds $1
 
-	ds $13
+	ds $7
+
+wd680:: ; d680
+	ds $1
+
+wOWScrollSpeed:: ; d681
+	ds $1
+
+	ds $a
 
 wd68c:: ; d68c
 	ds $1
 
-	ds $7
+; represents a 16-bit value
+; in big endian decimal representation
+wDecimalRepresentation:: ; d68d
+	ds $5
+
+	ds $1
+
+wd693:: ; d693
+	ds $1
 
 wDecompressedBGMap:: ; d694
 	ds 2 * BG_MAP_WIDTH
@@ -1002,31 +1189,104 @@ wd7d8:: ; d7d8
 wd7d9:: ; d7d9
 	ds $1
 
-	ds $c8
+	ds $2
 
-; seems like structs for handling sprites in a scene
-wd8a2:: ; d8a2
-wSceneUnkStruct0:: scene_unk_struct wSceneUnkStruct0
-wSceneUnkStruct1:: scene_unk_struct wSceneUnkStruct1
-wSceneUnkStruct2:: scene_unk_struct wSceneUnkStruct2
-wSceneUnkStruct3:: scene_unk_struct wSceneUnkStruct3
-wSceneUnkStruct4:: scene_unk_struct wSceneUnkStruct4
-wSceneUnkStruct5:: scene_unk_struct wSceneUnkStruct5
-wSceneUnkStruct6:: scene_unk_struct wSceneUnkStruct6
-wSceneUnkStruct7:: scene_unk_struct wSceneUnkStruct7
-wSceneUnkStruct8:: scene_unk_struct wSceneUnkStruct8
-wSceneUnkStruct9:: scene_unk_struct wSceneUnkStruct9
-
-wd942:: ; d942
+wd7dc:: ; d7dc
 	ds $1
 
-wd943:: ; d943
+wd7dd:: ; d7dd
 	ds $1
 
-wd944:: ; d944
+wd7de:: ; d7de
 	ds $1
 
-	ds $2a
+wd7df:: ; d7df
+	ds $2
+
+wOWAnimBank:: ; d7e1
+	ds $1
+
+wOWAnimPtr:: ; d7e2
+	ds $2
+
+	ds $1
+
+wd7e5:: ; d7e5
+	ds $2
+
+wd7e7:: ; d7e7
+	ds $1
+
+wd7e8:: ; d7e8
+	ds $1
+
+wd7e9:: ; d7e9
+	ds $1
+
+	ds $2
+
+; OW map constant
+wOWMap:: ; d7ec
+	ds $2
+
+wOWAnimatedTiles:: ; d7ee
+	ds NUM_OW_ANIMATED_TILES * $4
+
+wd852:: ; d852
+	ds $1
+
+wd853:: ; d853
+	ds $40
+
+wScrollTargetSpritePtr:: ; d893
+	ds $2
+
+wd895:: ; d895
+	ds $1
+
+wd896:: ; d896
+	ds $2
+
+	ds $3
+
+wOWScrollX:: ; d89b
+	ds $1
+
+wOWScrollY:: ; d89c
+	ds $1
+
+wd89d:: ; d89d
+	ds $1
+
+wd89e:: ; d89e
+	ds $1
+
+	ds $2
+
+wd8a1:: ; d8a1
+	ds $1
+
+wSpriteAnimationStructs:: ; d8a2
+; wSpriteAnim1 - wSpriteAnim10
+FOR n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
+wSpriteAnim{d:n}:: sprite_anim_struct wSpriteAnim{d:n}
+ENDR
+
+; used to keep track of tiles being copied to VRAM
+; bit 7: VRAM0 or VRAM1
+wCurVRAMTile:: ; d942
+	ds $1
+
+wNumSpriteTilesets:: ; d943
+	ds $1
+
+wSpriteTilesets:: ; d944
+; wSpriteTileset1 - wSpriteTileset10
+FOR n, 1, NUM_SPRITE_ANIM_STRUCTS + 1
+wSpriteTileset{d:n}:: obj_tile_struct wSpriteTileset{d:n}
+ENDR
+
+	ds $3
 
 wd96f:: ; d96f
 	ds $1
@@ -1045,41 +1305,325 @@ wd972:: ; d972
 wd975:: ; d975
 	ds $1
 
-wd976:: ; d976
+wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
+
+wd986:: ; d986
 	ds $1
 
-wd977:: ; d977
+wd987:: ; d987
 	ds $1
 
 	ds $1
 
-wd979:: ; d979
+wd989:: ; d989
 	ds $1
 
-wd97a:: ; d97a
+wd98a:: ; d98a
 	ds $1
 
-wd97b:: ; d97b
+wd98b:: ; d98b
+	ds 5 * MAX_NUM_OW_OBJECTS
+
+wFrameFunctionStackSize:: ; d9bd
 	ds $1
 
-wd97c:: ; d97c
+wFrameFunctionStack:: ; d9be
+	ds $10
+
+wPortraitSlot:: ; d9ce
 	ds $1
 
-wd97d:: ; d97d
+wPortraitVariant:: ; d9cf
 	ds $1
 
-wd97e:: ; d97e
+wd9d0:: ; d9d0
 	ds $1
 
-wd97f:: ; d97f
+	ds $2
+
+wd9d3:: ; d9d3
 	ds $1
 
-wd980:: ; d980
+wd9d4:: ; d9d4
+	ds $1
+
+wd9d5:: ; d9d5
+	ds $1
+
+wTextBoxFrameColor:: ; d9d6
+	ds $1
+
+	ds $5
+
+wd9dc:: ; d9dc
+	ds $1
+
+; $0 = no fading
+; $1 = fade to target palette
+; $2 = fade to black/white
+wPaletteFadeMode:: ; d9dd
+	ds $1
+
+wd9de:: ; d9de
+	ds $1
+
+; whether pal fading happens
+; as an increment or decrement
+; of the color values
+; when fading to black/white:
+;  bit 0 not set = fade to white
+;  bit 0 set     = fade to black
+; when fading to a target pal:
+;  bit 0 not set = color decrement
+;  bit 0 set     = color increment
+wPalFadeDirection:: ; d9df
+	ds $1
+
+wPaletteFadeCounter:: ; d9e0
+	ds $1
+
+wPaletteFadeSpeedMask:: ; d9e1
+	ds $1
+
+; whether palette fading is enabled
+; bit 0 set: enabled for BGP
+; bit 7 set: enabled for OBP
+wPaletteFadeFlags:: ; d9e2
+	ds $1
+
+wMenuBoxX:: ; d9e3
+	ds $1
+
+wMenuBoxY:: ; d9e4
+	ds $1
+
+wMenuBoxWidth:: ; d9e5
+	ds $1
+
+wMenuBoxHeight:: ; d9e6
+	ds $1
+
+wMenuBoxSkipClear:: ; d9e7
+	ds $1
+
+wMenuBoxLabelTextID:: ; d9e8
+	ds $2
+
+wMenuBoxHasHorizontalScroll:: ; d9ea
+	ds $1
+
+wMenuBoxVerticalStep:: ; d9eb
+	ds $1
+
+wMenuBoxBlinkSymbol:: ; d9ec
+	ds $1
+
+wMenuBoxSpaceSymbol:: ; d9ed
+	ds $1
+
+wMenuBoxCursorSymbol:: ; d9ee
+	ds $1
+
+wMenuBoxSelectionSymbol:: ; d9ef
+	ds $1
+
+wMenuBoxPressKeys:: ; d9f0
+	ds $1
+
+wMenuBoxHeldKeys:: ; d9f1
+	ds $1
+
+wMenuBoxNumItems:: ; d9f2
+	ds $1
+
+wMenuBoxItemsXPositions:: ; d9f3
+	ds $10
+
+wMenuBoxItemsYPositions:: ; da03
+	ds $10
+
+wMenuBoxItemsTextIDs:: ; da13
+	ds 2 * $10
+
+wMenuBoxBlinkCounter:: ; da33
+	ds $1
+
+wMenuBoxUpdateFunction:: ; da34
+	ds $2
+
+wMenuBoxFocusedItem:: ; da36
+	ds $1
+
+wda37:: ; da37
+	ds $1
+
+wMenuBoxDelay:: ; da38
+	ds $1
+
+wOWObjects:: ; da39
+; wOWObj1 - wOWObj10
+FOR n, 1, MAX_NUM_OW_OBJECTS + 1
+wOWObj{d:n}:: ow_obj_struct wOWObj{d:n}
+ENDR
+
+	ds $2
+
+wda8b:: ; da8b
+	ds $1
+
+wda8c:: ; da8c
+	ds $1
+
+wda8d:: ; da8d
+	ds $1
+
+	ds $6
+
+wda94:: ; da94
 	ds $2
 
 	ds $1
 
-wd983:: ; d983
+wScrollTargetObject:: ; da97
+	ds $1
+
+wda98:: ; da98
+	ds $1
+
+wda99:: ; da99
+	ds $4
+
+wIntroOrbsStates:: ; da9d
+	ds NUM_INTRO_ORBS
+
+wIntroSceneCounter:: ; daa5
+wIntroCardIndex::
+	ds $1
+
+wIntroStateMode:: ; daa6
+	ds $1
+
+wIntroStateCounter:: ; daa7
+	ds $1
+
+	ds $1
+
+wTitleScreenCards:: ; daa9
+	ds 2 * NUM_TITLE_SCREEN_CARDS
+
+	ds $4
+
+wdabd:: ; dabd
+	ds $1
+
+	ds $1
+
+wdabf:: ; dabf
+	ds $1
+
+	ds $1
+
+wdac1:: ; dac1
+	ds $20
+
+	ds $1c
+
+wdafd:: ; dafd
+	ds $1
+
+	ds $1
+
+; STARTMENU_CONFIG_* constant
+wStartMenuConfiguration:: ; daff
+	ds $1
+
+wMenuCursorPosition:: ; db00
+	ds $1
+
+wMenuBoxLastFocusedItem:: ; db01
+	ds $1
+
+	ds $c
+
+wBackupWX:: ; db0e
+	ds $1
+
+wBackupWY:: ; db0f
+	ds $1
+
+wDisplayHours:: ; db10
+	ds $2
+
+wDisplayMinutes:: ; db12
+	ds $1
+
+wTotalNumCardsToCollect:: ; db13
+	ds $2
+
+wTotalNumCardsCollected:: ; db15
+	ds $2
+
+	ds $8
+
+wdb1f:: ; db1f
+	ds $1
+
+SECTION "WRAM1@dc06", WRAMX
+
+wdc06:: ; dc06
+	ds $1
+
+	ds $1
+
+wdc08:: ; dc08
+	ds $2
+
+	ds $5
+
+wdc0f:: ; dc0f
+	ds $1
+
+	ds $47
+
+wdc57:: ; dc57
+	ds $1
+
+	ds $1
+
+wdc59:: ; dc59
+	ds $1
+
+	ds $4
+
+wdc5e:: ; dc5e
+	ds $2
+
+wdc60:: ; dc60
+	ds $80
+
+	ds $2
+
+wdce2:: ; dce2
+	ds $1
+
+	ds $2
+
+wdce5:: ; dce5
+	ds $1
+
+	ds $2
+
+wdce8:: ; dce8
+	ds $1
+
+	ds $1
+
+wdcea:: ; dcea
+	ds $1
+
+	ds $5
+
+wdcf0:: ; dcf0
 	ds $1
 
 SECTION "WRAM1@dd02", WRAMX
@@ -1092,7 +1636,19 @@ wDuelResult:: ; dd02
 wdd03:: ; dd03
 	ds $1
 
-	ds $21
+wdd04:: ; dd04
+	ds $1
+
+wdd05:: ; dd05
+	ds $1
+
+wdd06:: ; dd06
+	ds $1
+
+wdd07:: ; dd07
+	ds $1
+
+	ds $1d
 
 wdd25:: ; dd25
 	ds $2
@@ -1112,7 +1668,76 @@ wdd2d:: ; dd2d
 wdd2e:: ; dd2e
 	ds $1
 
-	ds $ca
+wdd2f:: ; dd2f
+	ds $1
+
+	ds $6
+
+wdd36:: ; dd36
+	ds $1
+
+wdd37:: ; dd37
+	ds $19
+
+wdd50:: ; dd50
+	ds $1
+
+wdd51:: ; dd51
+	ds $9
+
+wdd5a:: ; dd5a
+	ds $1
+
+wdd5b:: ; dd5b
+	ds $1
+
+wdd5c:: ; dd5c
+	ds $1
+
+wdd5d:: ; dd5d
+	ds $1
+
+wdd5e:: ; dd5e
+	ds $1
+
+wdd5f:: ; dd5f
+	ds $1
+
+wdd60:: ; dd60
+	ds $1
+
+	ds $12
+
+wdd73:: ; dd73
+	ds $1
+
+wdd74:: ; dd74
+	ds $1
+
+wdd75:: ; dd75
+	ds $1
+
+wdd76:: ; dd76
+	ds $1
+
+wdd77:: ; dd77
+	ds $1
+
+	ds $1c
+
+wCardTilemap:: ; dd94
+	ds $30
+
+wddc4:: ; ddc4
+	ds $30
+
+wCardTilemapOffset:: ; ddf4
+	ds $1
+
+wddf5:: ; ddf5
+	ds $1
+
+	ds $3
 
 wddf9:: ; ddf9
 	ds $14
@@ -1128,6 +1753,70 @@ wde15:: ; de15
 
 wde19:: ; de19
 	ds $20
+
+	ds $10
+
+wCreditsCmdArg1:: ; de49
+	ds $1
+
+wCreditsCmdArg2:: ; de4a
+	ds $1
+
+wCreditsCmdArg3:: ; de4b
+	ds $1
+
+wCreditsCmdArg4:: ; de4c
+	ds $1
+
+wCreditsCmdArg5:: ; de4d
+	ds $1
+
+wde4e:: ; de4e
+	ds $1
+
+wde4f:: ; de4f
+	ds $1
+
+wde50:: ; de50
+	ds $1
+
+wde51:: ; de51
+	ds $1
+
+wde52:: ; de52
+	ds $1
+
+wProloguePortraitScene:: ; de53
+	ds $1
+
+wPlayerName:: ; de54
+	ds NAME_BUFFER_LENGTH
+
+wde64:: ; de64
+	ds $1
+
+	ds $4
+
+wde69:: ; de69
+	ds $2
+
+SECTION "WRAM3", WRAMX
+
+w3d000:: ; d000
+	ds $1
+
+	ds $3ff
+
+w3d400:: ; d400
+	ds $1
+
+w3d401:: ; d401
+	ds $1
+
+	ds $13
+
+w3d415:: ; d415
+	ds $1
 
 SECTION "WRAM7 Audio", WRAMX
 
@@ -1365,7 +2054,7 @@ wde3f:: ; d0d7
 wde43:: ; d0db
 	ds $8
 
-wde4b:: ; d0e3
+wd0e3:: ; d0e3
 	ds $8
 
 wde53:: ; d0eb

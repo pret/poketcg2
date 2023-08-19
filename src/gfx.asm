@@ -71,6 +71,27 @@ SECTION "Card Gfx 1", ROMX
 
 CardGraphics::
 
+SECTION "Tilemaps 1", ROMX[$74f5], BANK[$4b]
+INCLUDE "data/maps/tilemaps1.asm"
+
+SECTION "Tilemaps 2", ROMX
+INCLUDE "data/maps/tilemaps2.asm"
+
+Frameset081::
+	oamframe  0,  1,   0,   0
+	oamreset
+
+SECTION "Tilemaps 3", ROMX
+INCLUDE "data/maps/tilemaps3.asm"
+
+SECTION "Tilemaps 4", ROMX
+INCLUDE "data/maps/tilemaps4.asm"
+
+SECTION "Tilemaps 5", ROMX
+INCLUDE "data/maps/tilemaps5.asm"
+
+SECTION "Tilemaps 6", ROMX
+INCLUDE "data/maps/tilemaps6.asm"
 
 SECTION "Tilesets 1", ROMX
 
@@ -151,6 +172,10 @@ Tileset142::
 Tileset143::
 	dw 4 ; length
 	INCBIN "gfx/overworld_sprites/tileset143.2bpp"
+
+Frameset085::
+	oamframe  0,  1,   0,   0
+	oamreset
 
 SECTION "Tilesets 3", ROMX
 
@@ -402,6 +427,10 @@ Tileset1E9::
 	dw 1 ; length
 	INCBIN "gfx/tilesets/tileset1E9.2bpp"
 
+Frameset086::
+	oamframe  4,  1,   0,   0
+	oamreset
+
 SECTION "Tilesets 8", ROMX
 
 Tileset033::
@@ -451,6 +480,10 @@ Tileset140::
 Tileset156::
 	dw 3 ; length
 	INCBIN "gfx/tilesets/tileset156.2bpp"
+
+Frameset0BE::
+	oamframe  0, 16,   0,   0
+	oamreset
 
 SECTION "Tilesets 9", ROMX
 
@@ -502,6 +535,10 @@ Tileset17D::
 	dw 2 ; length
 	INCBIN "gfx/tilesets/tileset17D.2bpp"
 
+Frameset103::
+	oamframe  0,  1,   0,   0
+	oamreset
+
 SECTION "Tilesets 10", ROMX
 
 Tileset047::
@@ -551,6 +588,10 @@ Tileset053::
 Tileset056::
 	dw 56 ; length
 	INCBIN "gfx/tilesets/tileset056.2bpp"
+
+Frameset104::
+	oamframe  1,  1,   0,   0
+	oamreset
 
 SECTION "Tilesets 11", ROMX
 
@@ -638,7 +679,7 @@ Tileset066::
 
 Tileset145::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset145.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset145.2bpp"
 
 Tileset17E::
 	dw 2 ; length
@@ -782,11 +823,15 @@ Tileset087::
 
 Tileset146::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset146.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset146.2bpp"
 
 Tileset158::
 	dw 7 ; length
 	INCBIN "gfx/tilesets/tileset158.2bpp"
+
+Frameset105::
+	oamframe  2,  1,   0,   0
+	oamreset
 
 SECTION "Tilesets 15", ROMX
 
@@ -850,6 +895,15 @@ Palette05F::
 	rgb 12, 12, 11
 	rgb  7,  7,  6
 	rgb  0,  0,  0
+
+OWAnimation10::
+	db  1 ; length
+
+	; durations
+	db  0
+
+	; data
+	ow_anim $45, 1, OW_FRAMES_0C8
 
 SECTION "Tilesets 16", ROMX
 
@@ -1018,6 +1072,10 @@ Tileset14F::
 	dw 10 ; length
 	INCBIN "gfx/tilesets/tileset14F.2bpp"
 
+Frameset106::
+	oamframe  3,  1,   0,   0
+	oamreset
+
 SECTION "Tilesets 19", ROMX
 
 Tileset0AC::
@@ -1131,6 +1189,10 @@ Tileset17F::
 	dw 3 ; length
 	INCBIN "gfx/tilesets/tileset17F.2bpp"
 
+Frameset107::
+	oamframe  0,  1,   0,   0
+	oamreset
+
 SECTION "Tilesets 21", ROMX
 
 Tileset0BE::
@@ -1181,6 +1243,10 @@ Tileset182::
 	dw 3 ; length
 	INCBIN "gfx/tilesets/tileset182.2bpp"
 
+Frameset108::
+	oamframe  1,  1,   0,   0
+	oamreset
+
 SECTION "Tilesets 22", ROMX
 
 Tileset0C7::
@@ -1230,6 +1296,10 @@ Tileset0EE::
 Tileset15D::
 	dw 10 ; length
 	INCBIN "gfx/tilesets/tileset15D.2bpp"
+
+Frameset109::
+	oamframe  2,  1,   0,   0
+	oamreset
 
 SECTION "Tilesets 23", ROMX
 
@@ -1660,7 +1730,7 @@ Tileset13F::
 
 Tileset147::
 	dw 37 ; length
-	INCBIN "gfx/tilesets/tileset147.2bpp"
+	INCBIN "gfx/overworld_sprites/tileset147.2bpp"
 
 Tileset14E::
 	dw 25 ; length
@@ -2168,25 +2238,25 @@ Tileset1C7::
 	dw 86 ; length
 	INCBIN "gfx/scenes/tileset1C7.2bpp"
 
-Tileset1C8::
+IntroBaseSetGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/tileset1C8.2bpp"
+	INCBIN "gfx/scenes/intro_base_set.2bpp"
 
-Tileset1C9::
+IntroJungleGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/tileset1C9.2bpp"
+	INCBIN "gfx/scenes/intro_jungle.2bpp"
 
-Tileset1CA::
+IntroFossilGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/tileset1CA.2bpp"
+	INCBIN "gfx/scenes/intro_fossil.2bpp"
 
-Tileset1CB::
+IntroTeamRocketGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/tileset1CB.2bpp"
+	INCBIN "gfx/scenes/intro_team_rocket.2bpp"
 
-Tileset1CD::
+TitleScreenGfx::
 	dw 188 ; length
-	INCBIN "gfx/scenes/tileset1CD.2bpp"
+	INCBIN "gfx/scenes/title_screen.2bpp"
 
 Tileset1CE::
 	dw 52 ; length
@@ -2393,5 +2463,39 @@ Tileset1EE::
 SECTION "Palettes 1", ROMX
 INCLUDE "data/palettes1.asm"
 
+Frameset10A::
+	oamframe  3,  1,   0,   0
+	oamreset
+
+SECTION "Framesets 1", ROMX
+INCLUDE "data/framesets1.asm"
+
+SECTION "Framesets 2", ROMX
+INCLUDE "data/framesets2.asm"
+
+SECTION "OW Tile Frames 1", ROMX
+INCLUDE "data/ow_tile_frames1.asm"
+
+SECTION "OW Animations", ROMX
+INCLUDE "data/ow_animations.asm"
+
+SECTION "OW Tile Frames 2", ROMX
+INCLUDE "data/ow_tile_frames2.asm"
+
 SECTION "Palettes 2", ROMX
 INCLUDE "data/palettes2.asm"
+
+SECTION "OAM 1", ROMX
+INCLUDE "data/oam1.asm"
+
+SECTION "OAM 2", ROMX
+INCLUDE "data/oam2.asm"
+
+SECTION "OAM 3", ROMX
+INCLUDE "data/oam3.asm"
+
+SECTION "OAM 4", ROMX
+INCLUDE "data/oam4.asm"
+
+SECTION "OAM 5", ROMX
+INCLUDE "data/oam5.asm"

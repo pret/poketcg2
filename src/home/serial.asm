@@ -508,7 +508,7 @@ DuelTransmissionError:
 	ld l, a
 	ld sp, hl
 	xor a
-	call $3062 ; PlaySong
+	call PlaySong
 	call ResetSerial
 	ret
 

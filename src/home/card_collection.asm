@@ -3,7 +3,7 @@ GetAmountOfCardsOwned:
 	push de
 	push bc
 	call EnableSRAM
-	ld hl, $0000
+	ld hl, 0
 	ld de, sDeck1Cards
 	ld c, NUM_DECKS
 .next_deck
@@ -174,7 +174,7 @@ RemoveCardFromCollection:
 ; return the amount of different cards that the player has collected in de
 ; return NUM_CARDS in bc, minus 1 for each unowned hidden promo card
 ;   (VENUSAUR_LV64, MEW_LV15, HERE_COMES_TEAM_ROCKET, and LUGIA)
-GetCardAlbumProgress:
+GetCardAlbumProgress::
 	push hl
 	call EnableSRAM
 	ld bc, NUM_CARDS

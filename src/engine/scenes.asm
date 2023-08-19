@@ -17,7 +17,7 @@ _LoadScene::
 	ld h, [hl]
 	ld l, a
 	ld c, $02
-	call Func_3d61
+	call LoadBGGraphics
 	ld a, d
 	add a
 	add a
@@ -45,8 +45,8 @@ _LoadScene::
 	ld e, a
 	ld b, BANK(SceneDataPointers)
 	ld a, $ff
-	ld c, $00
-	call Func_3dcf
+	ld c, 0
+	call CreateSpriteAnim
 	pop de
 	jr .loop
 .done
@@ -67,10 +67,10 @@ SceneDataPointers:
 	dw .Scene07 ; SCENE_07
 	dw .Scene08 ; SCENE_08
 	dw .Scene09 ; SCENE_09
-	dw .Scene0a ; SCENE_0A
-	dw .Scene0b ; SCENE_0B
-	dw .Scene0c ; SCENE_0C
-	dw .Scene0d ; SCENE_0D
+	dw .SceneIntroBaseSet ; SCENE_INTRO_BASE_SET
+	dw .SceneIntroJungle ; SCENE_INTRO_JUNGLE
+	dw .SceneIntroFossil ; SCENE_INTRO_FOSSIL
+	dw .SceneIntroTeamRocket ; SCENE_INTRO_TEAM_ROCKET
 	dw .Scene0e ; SCENE_0E
 	dw .Scene0f ; SCENE_0F
 	dw .Scene10 ; SCENE_10
@@ -203,26 +203,26 @@ SceneDataPointers:
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene0a
-	dw TILESET_1C8
+.SceneIntroBaseSet
+	dw TILESET_INTRO_BASE_SET
 	dw PALETTE_15C
 	dw TILEMAP_21A
 	db $ff, $ff ; end
 
-.Scene0b
-	dw TILESET_1C9
+.SceneIntroJungle
+	dw TILESET_INTRO_JUNGLE
 	dw PALETTE_15D
 	dw TILEMAP_21B
 	db $ff, $ff ; end
 
-.Scene0c
-	dw TILESET_1CA
+.SceneIntroFossil
+	dw TILESET_INTRO_FOSSIL
 	dw PALETTE_15E
 	dw TILEMAP_21C
 	db $ff, $ff ; end
 
-.Scene0d
-	dw TILESET_1CB
+.SceneIntroTeamRocket
+	dw TILESET_INTRO_TEAM_ROCKET
 	dw PALETTE_15F
 	dw TILEMAP_21D
 	db $ff, $ff ; end
@@ -330,25 +330,25 @@ SceneDataPointers:
 	db $ff, $ff ; end
 
 .Scene16
-	dw TILESET_1CD
+	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_21E
 	db $ff, $ff ; end
 
 .Scene17
-	dw TILESET_1CD
+	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_21F
 	db $ff, $ff ; end
 
 .Scene18
-	dw TILESET_1CD
+	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_220
 	db $ff, $ff ; end
 
 .Scene19
-	dw TILESET_1CD
+	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_221
 	db $ff, $ff ; end

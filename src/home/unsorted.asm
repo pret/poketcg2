@@ -1,69 +1,69 @@
-Func_305c::
-	farcall $77, $4000
+SetupSound::
+	farcall _SetupSound
 	ret
 
-Func_3061::
-	xor a
-Func_3062::
-	farcall $77, $4006
+StopMusic::
+	xor a ; MUSIC_STOP
+PlaySong::
+	farcall _PlaySong
 	ret
 
-Func_3067::
-	farcall $77, $400f
+AssertSongFinished::
+	farcall _AssertSongFinished
 	ret
 
-Func_306c::
-	farcall $77, $4012
+AssertSFXFinished::
+	farcall _AssertSFXFinished
 	ret
 
 Func_3071::
-	ld a, $04
-Func_3073::
-	farcall $77, $4009
+	ld a, SFX_04
+PlaySFX::
+	farcall _PlaySFX
 	ret
 
-Func_3078::
-	farcall $77, $401b
+PauseSong::
+	farcall _PauseSong
 	ret
 
-Func_307d::
-	farcall $77, $401e
+ResumeSong::
+	farcall _ResumeSong
 	ret
 
-Func_3082::
-	farcall $77, $4018
+SetVolume::
+	farcall _SetVolume
 	ret
 
 Func_3087::
 	ldh a, [hBankROM]
 	push af
-.asm_308a
+.loop
 	ld a, [wd54c]
 	or a
-	jr z, .asm_30a5
+	jr z, .done
 	cp $06
-	jr c, .asm_3096
+	jr c, .ok
 	ld a, $01
-.asm_3096
+.ok
 	ld l, a
 	ld a, $01
 	ld [wd54c], a
 	ld a, l
 	ld hl, PointerTable_30aa
 	call JumpToFunctionInTable
-	jr .asm_308a
-.asm_30a5
+	jr .loop
+.done
 	pop af
 	call BankswitchROM
 	ret
 
 PointerTable_30aa::
-	dw Func_30b6
-	dw Func_30b6
-	dw Func_30b7
-	dw Func_30d6
-	dw Func_30ef
-	dw Func_314a
+	dw Func_30b6 ; $0
+	dw Func_30b6 ; $1
+	dw Func_30b7 ; $2
+	dw Func_30d6 ; $3
+	dw NewGameAndPrologue ; $4
+	dw PlayCredits ; $5
 
 Func_30b6::
 	ret
@@ -74,8 +74,8 @@ Func_30b7::
 	jr nz, .asm_30ca
 	bit 7, [hl]
 	jr nz, .asm_30d1
-	ld a, $02
-	farcall Func_d698
+	ld a, EVENT_02
+	farcall GetEventValue
 	jr nz, .asm_30d1
 .asm_30ca
 	ld a, [wd54d]
@@ -89,29 +89,33 @@ Func_30d6::
 	ld [wd54c], a
 	farcall $7, $65a2
 	jr c, .asm_30e8
-	ld a, $f1
-	farcall Func_d6d3
+	ld a, EVENT_F1
+	farcall MaxOutEventValue
 	ret
 .asm_30e8
-	ld a, $f1
-	farcall Func_d6e3
+	ld a, EVENT_F1
+	farcall ZeroOutEventValue
 	ret
 
-Func_30ef::
+NewGameAndPrologue::
 	ld a, [wd54d]
 	or a
-	jr nz, .asm_312e
-	farcall $7, $78bd
-	ld a, $00
-	farcall Func_d698
-	jr nz, .asm_3108
-	ld a, $00
-	ld [wd550], a
-	jr .asm_310d
-.asm_3108
-	ld a, $01
-	ld [wd550], a
-.asm_310d
+	jr nz, .has_entered_info
+
+	; get player's name and gender
+	farcall PlayerGenderAndNameSelection
+	ld a, EVENT_PLAYER_GENDER
+	farcall GetEventValue
+	jr nz, .female
+; male
+	ld a, OW_PLAYERM
+	ld [wPlayerOWObject], a
+	jr .got_info
+.female
+	ld a, OW_PLAYERF
+	ld [wPlayerOWObject], a
+
+.got_info
 	ld a, $04
 	ld [wd54c], a
 	ld a, $01
@@ -119,17 +123,18 @@ Func_30ef::
 	ld a, $00
 	ld [wd589], a
 	ld a, $0e
-	ld [wd587], a
+	ld [wCurOWLocation], a
 	farcall Func_ea30
-	ld a, $56
-	call Func_3073
-	farcall $11, $499e
-.asm_312e
-	farcall $f, $4000
+	ld a, SFX_56
+	call PlaySFX
+	farcall WaitForSFXToFinish
+
+.has_entered_info
+	farcall Prologue
 	ld a, $00
 	ld [wd589], a
-	ld a, $00
-	ld [wd587], a
+	ld a, OWMAP_MASON_LABORATORY
+	ld [wCurOWLocation], a
 	ld a, $02
 	ld [wd54c], a
 	ld a, $02
@@ -137,8 +142,8 @@ Func_30ef::
 	call Func_3087
 	ret
 
-Func_314a::
-	farcall $4, $7890
+PlayCredits::
+	farcall _PlayCredits
 	ld a, $00
 	ld [wd54c], a
 	ret
@@ -147,26 +152,27 @@ Func_3154::
 	ld c, a
 	ldh a, [hBankROM]
 	push af
-	ld a, [$d551]
+	ld a, [wd551]
 	call BankswitchROM
-	ld hl, $d552
+	ld hl, wd552
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
-	jr z, .asm_318b
-.asm_3167
+	jr z, .null
+.loop
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3186
+	jr z, .not_found
 	cp c
-	jr z, .asm_3173
+	jr z, .found
 	inc hl
 	inc hl
-	jr .asm_3167
-.asm_3173
+	jr .loop
+
+.found
 	push bc
-	call Func_3191
+	call .JumpToHL
 	pop bc
 	jr nc, .asm_317f
 	ld a, c
@@ -177,24 +183,25 @@ Func_3154::
 	scf
 	ccf
 	ret
-.asm_3186
+
+.not_found
 	ld a, c
 	farcall Func_c12e
-.asm_318b
+.null
 	pop af
 	call BankswitchROM
 	scf
 	ret
 
-Func_3191::
+.JumpToHL:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
 Func_3195::
-	ld a, [wd550]
-	farcall $4, $4dcb
+	ld a, [wPlayerOWObject]
+	farcall Func_10dcb
 	ld a, b
 	xor $02
 	ld b, a
@@ -207,44 +214,45 @@ Func_31a1::
 
 Func_31a8::
 	call Func_3332
-	ld a, [wd550]
-	farcall $4, $4d58
-	bit 5, a
-	jr z, .asm_31f8
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpriteAnimFlags
+	bit SPRITEANIMSTRUCT_MOVE_F, a
+	jr z, .not_moving
 	ldh a, [hKeysHeld]
-	bit 1, a
-	jr nz, .asm_31d8
-	ld a, [wd550]
-	farcall $4, $4deb
-	ld a, $01
+	bit B_BUTTON_F, a
+	jr nz, .b_btn_pressed
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpeedAndMoveDuration
+	ld a, $1
 	cp c
-	jr z, .asm_3204
-	ld a, [wd550]
-	farcall $4, $4de3
+	jr z, .done
+	ld a, [wPlayerOWObject]
+	farcall StopAndGetOWObjectSpeedAndMoveDuration
 	sla e
 	dec c
-	farcall $4, $4de7
-	jr .asm_3204
-.asm_31d8
-	ld a, [wd550]
-	farcall $4, $4deb
-	ld a, $02
+	farcall MoveAndSetOWObjectSpeedAndMoveDuration
+	jr .done
+.b_btn_pressed
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpeedAndMoveDuration
+	ld a, $2
 	cp c
-	jr z, .asm_3204
+	jr z, .done
 	bit 0, e
-	jr nz, .asm_3204
-	ld a, [wd550]
-	farcall $4, $4de3
+	jr nz, .done
+	ld a, [wPlayerOWObject]
+	farcall StopAndGetOWObjectSpeedAndMoveDuration
 	srl e
 	inc c
-	farcall $4, $4de7
-	jr .asm_3204
-.asm_31f8
+	farcall MoveAndSetOWObjectSpeedAndMoveDuration
+	jr .done
+
+.not_moving
 	ld a, $06
-	ld [$d582], a
-	ld a, [wd550]
-	farcall $4, $4dd7
-.asm_3204
+	ld [wd582], a
+	ld a, [wPlayerOWObject]
+	farcall StopOWObjectAnimation
+.done
 	ret
 
 Func_3205::
@@ -275,7 +283,7 @@ Func_3205::
 	pop de
 	pop af
 	push hl
-	farcall $4, $4d77
+	farcall LoadOWObjectInMap
 	pop hl
 	inc hl
 	inc hl
@@ -299,18 +307,18 @@ Func_3234::
 	ret
 
 Func_323f::
-	ld hl, $d592
+	ld hl, wd592
 	ld a, [hl]
 	call BankswitchROM
-	ld hl, $d593
+	ld hl, wd593
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
 Func_324d::
-	ld a, [wd550]
-	farcall $4, $4da7
+	ld a, [wPlayerOWObject]
+	farcall Func_10da7
 .asm_3254
 	ld a, [hli]
 	cp $ff
@@ -364,17 +372,17 @@ Func_324d::
 Func_328c::
 	push hl
 	farcall Func_d3e9
-	farcall $4, $4dfb
+	farcall Func_10dfb
 	cp $ff
-	jr z, .asm_32a7
+	jr z, .set_carry
 	push af
 	call Func_3195
 	pop af
-	farcall $4, $4dcf
+	farcall Func_10dcf
 	pop hl
 	call Func_344c
 	ret
-.asm_32a7
+.set_carry
 	pop hl
 	scf
 	ret
@@ -382,25 +390,25 @@ Func_328c::
 Func_32aa::
 	push hl
 	farcall Func_d3e9
-	farcall $4, $4dfb
+	farcall Func_10dfb
 	cp $ff
-	jr z, .asm_32bc
+	jr z, .set_carry
 	pop hl
 	call Func_344c
 	ret
-.asm_32bc
+.set_carry
 	pop hl
 	scf
 	ret
 
 Func_32bf::
-	ld a, [wd550]
-	farcall $4, $4dcb
+	ld a, [wPlayerOWObject]
+	farcall Func_10dcb
 	ld a, $00
 	cp b
 	jr nz, .asm_32d6
-	ld a, [wd550]
-	farcall $4, $4da7
+	ld a, [wPlayerOWObject]
+	farcall Func_10da7
 	call Func_324d.asm_3254
 	ret
 .asm_32d6
@@ -409,145 +417,146 @@ Func_32bf::
 
 Func_32d8::
 	call Func_32f6
-	jr nc, .asm_32f5
+	jr nc, .done
 	ldh a, [hKeysPressed]
 	bit 0, a
 	jr nz, .asm_32e9
 	bit 3, a
 	jr nz, .asm_32f0
-	jr .asm_32f5
+	jr .done
 .asm_32e9
 	ld a, $08
-	ld [$d582], a
-	jr .asm_32f5
+	ld [wd582], a
+	jr .done
 .asm_32f0
 	ld a, $12
-	ld [$d582], a
-.asm_32f5
+	ld [wd582], a
+.done
 	ret
 
 Func_32f6::
 	ldh a, [hKeysHeld]
-	and $f0
-	jr z, .asm_3330
-	ld b, $00
-	bit 6, a
-	jr nz, .asm_330d
-	inc b
-	bit 4, a
-	jr nz, .asm_330d
-	inc b
-	bit 7, a
-	jr nz, .asm_330d
-	inc b
-.asm_330d
-	ld c, $01
+	and D_RIGHT | D_LEFT | D_UP | D_DOWN
+	jr z, .set_carry
+	ld b, NORTH
+	bit D_UP_F, a
+	jr nz, .got_direction
+	inc b ; EAST
+	bit D_RIGHT_F, a
+	jr nz, .got_direction
+	inc b ; SOUTH
+	bit D_DOWN_F, a
+	jr nz, .got_direction
+	; D_LEFT_F set
+	inc b ; WEST
+.got_direction
+	ld c, 1
 	ldh a, [hKeysHeld]
-	bit 1, a
-	jr z, .asm_3316
+	bit B_BUTTON_F, a
+	jr z, .got_speed
 	inc c
-.asm_3316
-	ld a, [wd550]
-	farcall $4, $4e3c
+.got_speed
+	ld a, [wPlayerOWObject]
+	farcall Func_10e3c
 	or a
-	jr z, .asm_3330
+	jr z, .set_carry
 	ld a, $05
-	ld [$d582], a
-	ld a, [wd550]
-	farcall $4, $4dd3
+	ld [wd582], a
+	ld a, [wPlayerOWObject]
+	farcall Func_10dd3
 	scf
 	ccf
-	jr .asm_3331
-.asm_3330
+	jr .exit
+.set_carry
 	scf
-.asm_3331
+.exit
 	ret
 
 Func_3332::
 	call DoFrame
 	ret
 
-Func_3336::
-.asm_3336
+WaitPalFading::
+.loop
 	call DoFrame
-	farcall $7, $493c
-	jr nz, .asm_3336
+	farcall CheckPalFading
+	jr nz, .loop
 	ret
 
 Func_3340::
 .asm_3340
 	call DoFrame
-	farcall $4, $4df3
+	farcall Func_10df3
 	jr z, .asm_3361
-	ld a, [wd550]
-	farcall $4, $4d58
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpriteAnimFlags
 	bit 2, a
 	jr nz, .asm_3340
-	bit 4, a
+	bit SPRITEANIMSTRUCT_ANIMATING_F, a
 	jr z, .asm_3340
-	ld a, [wd550]
-	farcall $4, $4dd7
+	ld a, [wPlayerOWObject]
+	farcall StopOWObjectAnimation
 	jr .asm_3340
 .asm_3361
-	ld a, [wd550]
-	farcall $4, $4dd7
-	farcall $4, $4eff
+	ld a, [wPlayerOWObject]
+	farcall StopOWObjectAnimation
+	farcall Func_10eff
 	ret
 
 Func_336d::
 	push af
-.asm_336e
+.loop_wait
 	call DoFrame
-	farcall $4, $4d58
-	bit 5, a
-	jr z, .asm_337d
+	farcall GetOWObjectSpriteAnimFlags
+	bit SPRITEANIMSTRUCT_MOVE_F, a
+	jr z, .done
 	pop af
 	push af
-	jr .asm_336e
-.asm_337d
+	jr .loop_wait
+.done
 	pop af
 	ret
 
-Func_337f::
+WaitForOWObjectAnimation::
 	push af
-.asm_3380
+.loop
 	call DoFrame
 	pop af
 	push af
-	farcall $4, $4d58
-	bit 4, a
-	jr nz, .asm_3380
+	farcall GetOWObjectSpriteAnimFlags
+	bit SPRITEANIMSTRUCT_ANIMATING_F, a
+	jr nz, .loop
 	pop af
 	ret
 
 Func_338f::
 	push af
-	farcall $7, $4990
-	farcall $4, $509f
+	farcall SaveTargetFadePals
+	farcall Func_1109f
 	call DoFrame
 	pop af
 	ld b, $00
-	farcall $7, $4909
+	farcall StartPalFadeFromBlackOrWhite
 	ret
 
 Func_33a3::
 	ld b, $00
 	farcall $7, $4927
-	call Func_3336
-	farcall $4, $50a8
-	ld a, $ef
-	farcall Func_d6e3
+	call WaitPalFading
+	farcall Func_110a8
+	ld a, EVENT_EF
+	farcall ZeroOutEventValue
 	ret
 
 Func_33b7::
-	ld a, [$d586]
+	ld a, [wd586]
 	ld c, a
 	ld b, $00
 	sla c
-	add c
+	add c ; *3
 	ld c, a
 	rl b
-	ld hl, $4651
+	ld hl, Data_c651
 	add hl, bc
 	ld a, [hli]
 	ld c, a
@@ -555,18 +564,18 @@ Func_33b7::
 	ld h, [hl]
 	ld l, a
 	ld a, c
-	ld de, $d561
+	ld de, wd561
 	ld bc, $5
 	call CopyFarHLToDE
-	ld a, [$d562]
-	ld [$d551], a
-	ld [$d58b], a
-	ld a, [$d563]
-	ld [$d552], a
-	ld [$d58c], a
-	ld a, [$d564]
-	ld [$d553], a
-	ld [$d58d], a
+	ld a, [wd562]
+	ld [wd551], a
+	ld [wd58b], a
+	ld a, [wd563 + 0]
+	ld [wd552 + 0], a
+	ld [wd58c + 0], a
+	ld a, [wd563 + 1]
+	ld [wd552 + 1], a
+	ld [wd58c + 1], a
 	ret
 
 Func_33f2::
@@ -670,12 +679,12 @@ Func_3473::
 	pop bc
 	ret
 
-Func_3485::
-	ld hl, $0
+DivideDEByBC::
+	ld hl, 0
 	rl e
 	rl d
-	ld a, $10
-.asm_348e
+	ld a, 16 ; number of bits
+.loop
 	ld [wd678], a
 	rl l
 	rl h
@@ -686,28 +695,29 @@ Func_3485::
 	ld a, h
 	sbc b
 	ccf
-	jr nc, .asm_34a4
+	; carry set if bc < hl
+	jr nc, .pop_hl
 	ld h, a
-	add sp, $02
+	add sp, $2
 	scf
-	jr .asm_34a5
-.asm_34a4
+	jr .skip_pop_hl
+.pop_hl
 	pop hl
-.asm_34a5
+.skip_pop_hl
 	rl e
 	rl d
 	ld a, [wd678]
 	dec a
-	jr nz, .asm_348e
+	jr nz, .loop
 	ld a, h
 	or l
 	ret
 
-Func_34b2::
-.asm_34b2
+WaitAFrames::
+.loop
 	call DoFrame
 	dec a
-	jr nz, .asm_34b2
+	jr nz, .loop
 	ret
 
 CoreGameLoop::
@@ -718,11 +728,11 @@ Func_34be::
 	farcall $4, $4000
 	ret
 
-Func_34c3::
-.asm_34c3
+WaitForLCDOff::
+.loop_wait
 	ldh a, [rSTAT]
-	and $03
-	jr nz, .asm_34c3
+	and STAT_LCDC_STATUS
+	jr nz, .loop_wait
 	ret
 
 Func_34ca::
@@ -736,17 +746,22 @@ Func_34ca::
 	add c
 	ret
 
-Func_34d4::
+; ouputs result in hl
+MultiplyBCByDE::
 	push af
 	push bc
 	push de
-	call Func_34e5
+	call .Multiply
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_34de::
+; compares bc and de
+; ouput:
+;  carry if bc < de
+;  z if bc == de
+.CompareBCAndDE:
 	ld a, b
 	cp d
 	ret c
@@ -755,17 +770,20 @@ Func_34de::
 	cp e
 	ret
 
-Func_34e5::
-	call Func_34de
-	jr c, .asm_34ee
+.Multiply:
+	call .CompareBCAndDE
+	jr c, .ok
+	; bc > de
+	; swap bc and de
 	push bc
 	push de
 	pop bc
 	pop de
-.asm_34ee
-	ld hl, $0
-	ld a, $10
-.asm_34f3
+.ok
+	; de is larger than bc
+	ld hl, 0
+	ld a, 16 ; number of bits
+.loop
 	rr d
 	rr e
 	jr nc, .asm_34fa
@@ -774,46 +792,46 @@ Func_34e5::
 	sla c
 	rl b
 	dec a
-	jr nz, .asm_34f3
+	jr nz, .loop
 	ret
 
-Func_3502::
+WriteBCBytesToHL::
 	push af
 	ld a, c
 	or b
-	jr nz, .asm_3509
+	jr nz, .write
 	pop af
 	ret
-.asm_3509
+.write
 	pop af
 	inc b
-.asm_350b
+.loop
 	ld [hli], a
 	dec c
-	jr nz, .asm_350b
+	jr nz, .loop
 	dec b
-	jr nz, .asm_350b
+	jr nz, .loop
 	ret
 
-Func_3513::
+CopyBCBytesFromHLToDE::
 	ld a, c
 	or b
-	jr nz, .asm_3518
+	jr nz, .copy
 	ret
-.asm_3518
+.copy
 	inc b
-.asm_3519
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_3519
+	jr nz, .loop
 	dec b
-	jr nz, .asm_3519
+	jr nz, .loop
 	ret
 
-Func_3523::
-	ld [$ce4d], a
+SwitchWRAMBank::
+	ld [wWRAMBank], a
 	ldh [rSVBK], a
 	ret
 
@@ -829,24 +847,24 @@ Func_3529::
 	pop af
 	ret
 
-Func_3535::
+CallMappedFunction::
 	ld c, a
-.asm_3536
+.loop_entries
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_355a
+	jr z, .set_carry
 	cp c
-	jr nz, .asm_3555
+	jr nz, .next
 	ldh a, [hBankROM]
 	push af
-	call .asm_354b
+	call .CallFunc
 	pop af
 	call BankswitchROM
 	scf
 	ccf
 	ret
 
-.asm_354b
+.CallFunc
 	ld a, [hli]
 	push af
 	ld a, [hli]
@@ -855,12 +873,14 @@ Func_3535::
 	pop af
 	call BankswitchROM
 	jp hl
-.asm_3555
+
+.next
 	inc hl
 	inc hl
 	inc hl
-	jr .asm_3536
-.asm_355a
+	jr .loop_entries
+
+.set_carry
 	scf
 	ret
 
@@ -939,6 +959,8 @@ Func_35a0::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35af::
 	push af
 	push bc
@@ -981,17 +1003,21 @@ Func_35cf::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35df::
 	call Func_35af
 	push bc
 	push de
-	ld bc, $c00
-	ld de, $40
-	farcall $7, $408b
+	ld bc, $c0 tiles
+	ld de, $40 ; number of tiles
+	farcall Func_1c08b
 	pop de
 	pop bc
 	ret
 
+; hl = source
+; de = destination
 ; a = VRAM bank
 ; c = number of tiles
 ; if c is $00, copy $100 tiles
@@ -1017,6 +1043,7 @@ CopyTiles::
 	pop af
 	ret
 
+; hl = source
 ; a = VRAM bank
 ; b = tile number in Tiles1
 ; c = number of tiles
@@ -1046,6 +1073,7 @@ CopyTilesToTiles1::
 	pop af
 	ret
 
+; hl = source
 ; a = VRAM bank
 ; b = tile number in Tiles0
 ; c = number of tiles
@@ -1082,9 +1110,9 @@ Func_365b::
 	push af
 	ld a, b
 	call BankswitchROM
-	ld b, [hl]
+	ld b, [hl] ; width
 	inc hl
-	ld c, [hl]
+	ld c, [hl] ; height
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
@@ -1138,30 +1166,28 @@ Func_3698::
 	push hl
 	ldh a, [hBankROM]
 	push af
-	ld a, [$d7e1]
+	ld a, [wOWAnimBank]
 	call BankswitchROM
-	ld a, [$d7e2]
+	ld a, [wOWAnimPtr + 0]
 	ld l, a
-	ld a, [$d7e3]
+	ld a, [wOWAnimPtr + 1]
 	ld h, a
 	or l
-	jr z, Func_36b8.asm_3724
+	jr z, .done
 	ld a, [hli]
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld de, $d7ee
-;	fallthrough
-
-Func_36b8::
+	ld de, wOWAnimatedTiles
+.asm_36b8
 	push bc
 	push hl
 	ld a, [de]
 	and a
 	jr nz, .asm_3713
-	ld a, [hli]
+	ld a, [hli] ; tile number
 	ld c, a
-	ld a, [hli]
+	ld a, [hli] ; VRAM
 	ld b, a
 	push bc
 	ld c, [hl]
@@ -1169,21 +1195,22 @@ Func_36b8::
 	ld b, [hl]
 	farcall Func_12c06e
 	ld a, b
-	ld [$d7e7], a
+	ld [wd7e7], a
 	pop bc
 	ld a, l
-	ld [$d7e5], a
+	ld [wd7e5 + 0], a
 	ld a, h
-	ld [$d7e6], a
+	ld [wd7e5 + 1], a
+
 	ldh a, [hBankROM]
 	push af
-	ld a, [$d7e7]
+	ld a, [wd7e7]
 	call BankswitchROM
 	push bc
 	inc de
 	ld a, [de]
 	add a
-	add a
+	add a ; *4
 	ld c, a
 	ld b, $00
 	add hl, bc
@@ -1194,17 +1221,17 @@ Func_36b8::
 	ld a, [hld]
 	bit 7, a
 	jr z, .asm_36fe
-	ld a, [$d7e5]
+	ld a, [wd7e5 + 0]
 	ld l, a
-	ld a, [$d7e6]
+	ld a, [wd7e5 + 1]
 	ld h, a
 	ld a, $00
 	ld [de], a
 	jr .asm_36eb
 .asm_36fe
-	ld a, [hli]
-	ld e, a
-	ld a, [hli]
+	ld a, [hli] ; tile index
+	ld e, a     ;
+	ld a, [hli] ;
 	ld d, a
 	push hl
 	call Func_372d
@@ -1232,9 +1259,9 @@ Func_36b8::
 	inc hl
 	pop bc
 	dec c
-	jr z, .asm_3724
-	jp Func_36b8
-.asm_3724
+	jr z, .done
+	jp .asm_36b8
+.done
 	pop af
 	call BankswitchROM
 	pop hl
@@ -1243,17 +1270,20 @@ Func_36b8::
 	pop af
 	ret
 
+; de = tile index
+; b = $0 if VRAM1, $1 if VRAM0
+; c = destination tile number in VRAM
 Func_372d::
 	ldh a, [hBankROM]
 	push af
-	ld a, [$d7de]
+	ld a, [wd7de]
 	call BankswitchROM
-	ld a, [$d7df]
+	ld a, [wd7df + 0]
 	ld l, a
-	ld a, [$d7e0]
+	ld a, [wd7df + 1]
 	ld h, a
-	inc hl
-	inc hl
+	inc hl ; skip length
+	inc hl ;
 	sla e
 	rl d
 	sla e
@@ -1261,10 +1291,10 @@ Func_372d::
 	sla e
 	rl d
 	sla e
-	rl d
+	rl d ; *16 (TILE_SIZE)
 	add hl, de
 	ld a, b
-	xor $01
+	xor $1
 	ld b, c
 	ld c, 1
 	call CopyTilesToTiles1
@@ -1272,32 +1302,32 @@ Func_372d::
 	call BankswitchROM
 	ret
 
-Func_375f::
+LoadOWAnimatedTiles::
 	push af
 	push bc
 	push de
 	push hl
 	ldh a, [hBankROM]
 	push af
-	ld a, [$d7e1]
+	ld a, [wOWAnimBank]
 	call BankswitchROM
-	ld a, [$d7e2]
+	ld a, [wOWAnimPtr + 0]
 	ld l, a
-	ld a, [$d7e3]
+	ld a, [wOWAnimPtr + 1]
 	ld h, a
 	or l
-	jr z, .asm_3783
-	ld de, $d7ee
+	jr z, .null
+	ld de, wOWAnimatedTiles
 	ld a, [hli]
 	ld c, a
-.asm_377c
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	inc de
 	dec c
-	jr nz, .asm_377c
-.asm_3783
+	jr nz, .loop
+.null
 	pop af
 	call BankswitchROM
 	pop hl
@@ -1324,10 +1354,10 @@ Func_3792::
 	ld c, a
 	ld a, [hli]
 	or a
-	jr z, .asm_37be
+	jr z, .copy
 	ld a, [wConsole]
 	cp CONSOLE_CGB
-	jr nz, .asm_37be
+	jr nz, .copy
 	push hl
 	push bc
 	ld bc, $1000
@@ -1335,14 +1365,14 @@ Func_3792::
 	pop bc
 	ld a, c
 	or a
-	jr z, .asm_37bb
+	jr z, .no_copy
 	xor a ; BANK("VRAM0")
 	ld b, $00
 	call CopyTilesToTiles1
-.asm_37bb
+.no_copy
 	pop hl
-	ld c, $00
-.asm_37be
+	ld c, 0
+.copy
 	ld a, BANK("VRAM1")
 	ld b, $00
 	call CopyTilesToTiles1
@@ -1365,7 +1395,7 @@ Func_37ce::
 	ld b, a
 	or c
 	jr z, .asm_3823
-	farcall $7, $493c
+	farcall CheckPalFading
 	jr nz, .asm_3823
 	farcall $7, $4941
 	cp $02
@@ -1427,7 +1457,7 @@ Func_383b::
 	push de
 	ld d, b
 	ld e, c
-	farcall $4, $4673
+	farcall Func_10673
 	ld b, d
 	ld c, e
 	pop de
@@ -1449,6 +1479,7 @@ Func_383b::
 	ret
 
 ; b = source bank
+; hl = pointer to palette
 ; c = starting CGB BG pal number
 Func_3861::
 	ldh a, [hBankROM]
@@ -1495,7 +1526,7 @@ Func_3861::
 	ldh [rBGP], a
 	ret
 
-Func_389d::
+DrawRegularTextBoxVRAM0::
 	push af
 	push bc
 	push de
@@ -1523,7 +1554,7 @@ Func_38ad::
 	pop af
 	ret
 
-Func_38bd::
+LoadGfxPalettes::
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -1532,8 +1563,8 @@ Func_38bd::
 	ld b, $00
 	sla c
 	sla c
-	sla c
-	ld hl, wcb2e
+	sla c ; *CGB_PAL_SIZE
+	ld hl, wObjectPalettesCGB
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -1556,11 +1587,11 @@ Func_38bd::
 	call BankswitchROM
 	ret
 
-Func_38e8::
+LoadGfxFromTileset::
 	push bc
 	push de
 	push hl
-	ld a, [wd942]
+	ld a, [wCurVRAMTile]
 	push af
 	ldh a, [hBankROM]
 	push af
@@ -1568,15 +1599,15 @@ Func_38e8::
 	call BankswitchROM
 	ld a, [hli]
 	ld c, a
-	ld a, [hli]
-	ld a, [wd942]
+	ld a, [hli] ; unused
+	ld a, [wCurVRAMTile]
 	ld e, a
-.asm_38fd
+.loop_tiles
 	push bc
 	ld a, e
 	and $7f
 	ld b, a
-	ld c, $01
+	ld c, 1 ; number of tiles
 	ld a, e
 	and $80
 	swap a
@@ -1587,9 +1618,9 @@ Func_38e8::
 	pop bc
 	inc e
 	dec c
-	jr nz, .asm_38fd
+	jr nz, .loop_tiles
 	ld a, e
-	ld [wd942], a
+	ld [wCurVRAMTile], a
 	pop af
 	call BankswitchROM
 	pop af
@@ -1599,8 +1630,11 @@ Func_38e8::
 	ret
 
 ; input:
-; a = ?
 ; b:hl = sprite animation pointer
+; a = tile offset in VRAM
+; c = frame number
+; d = x position
+; e = y position
 Func_3924::
 	push af
 	push bc
@@ -1641,6 +1675,7 @@ Func_3924::
 	ld a, e
 	sub c
 	ld e, a
+
 	ld a, [hli] ; x
 	add d
 	ld d, a
@@ -1657,9 +1692,11 @@ Func_3924::
 	ld a, d
 	sub c
 	ld d, a
-	ld a, [hli]
+
+	ld a, [hli] ; tile index
 	add b
 	ld c, a
+
 	ld a, [wd96f]
 	ld b, a
 	ld a, [hli] ; attributes
@@ -1667,10 +1704,10 @@ Func_3924::
 	ld b, a
 	ld a, c
 	bit 7, a
-	jr z, .asm_3981
+	jr z, .set_attr
 	set OAM_TILE_BANK, b
 	res 7, c
-.asm_3981
+.set_attr
 	call SetOneObjectAttributes
 	pop de
 	pop bc
@@ -1684,7 +1721,7 @@ Func_3924::
 	pop af
 	ret
 
-Func_3992::
+GetFramesetData::
 	push hl
 	ldh a, [hBankROM]
 	push af
@@ -1695,7 +1732,7 @@ Func_3992::
 	sla c
 	rl b
 	sla c
-	rl b
+	rl b ; *4
 	add hl, bc
 	pop bc
 	ld c, [hl]
@@ -1726,43 +1763,45 @@ Func_3992::
 	pop hl
 	ret
 
-Func_39cc::
+; hl = list of text IDs
+PrintScrollableTextFromList::
 	push af
 	push hl
-.asm_39ce
+.loop_text_ids
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_39e0
+	jr z, .done
 	push hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	farcall $4, $502c
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	pop hl
 	inc hl
 	inc hl
-	jr .asm_39ce
-.asm_39e0
+	jr .loop_text_ids
+.done
 	pop hl
 	pop af
 	ret
 
-Func_39e3::
+ResetFrameFunctionStack::
 	xor a
-	ld [$d9bd], a
+	ld [wFrameFunctionStackSize], a
 	ret
 
-Func_39e8::
+; hl = new frame function
+PushFrameFunction::
 	push af
 	push bc
 	push hl
-	ld hl, $d9bd
+	ld hl, wFrameFunctionStackSize
 	ld a, [hl]
 	inc [hl]
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $d9be
+	ld hl, wFrameFunctionStack
 	add hl, bc
 	ld a, [wDoFrameFunction + 0]
 	ld [hli], a
@@ -1779,17 +1818,17 @@ Func_39e8::
 	pop af
 	ret
 
-Func_3a0e::
+PopFrameFunction::
 	push af
 	push bc
 	push hl
-	ld hl, $d9bd
+	ld hl, wFrameFunctionStackSize
 	dec [hl]
 	ld a, [hl]
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $d9be
+	ld hl, wFrameFunctionStack
 	add hl, bc
 	di
 	ld a, [hli]
@@ -1802,12 +1841,12 @@ Func_3a0e::
 	pop af
 	ret
 
-Func_3a2c::
+FrameFunc_FadePals::
 	push af
 	push bc
 	push de
 	push hl
-	farcall $7, $46c2
+	farcall FadePalettes
 	pop hl
 	pop de
 	pop bc
@@ -1819,36 +1858,36 @@ Func_3a39::
 	push bc
 	push de
 	push hl
-	farcall $4, $4417
-	farcall $4, $48cd
+	farcall UpdateOWScroll
+	farcall Func_108cd
 	and a
 	jr nz, .asm_3a50
 	ld e, $01
-	farcall $4, $5384
+	farcall Func_11384
 	jr .asm_3a56
 .asm_3a50
 	ld e, $10
-	farcall $4, $4ea3
+	farcall Func_10ea3
 .asm_3a56
-	farcall $7, $757b
-	farcall Func_109fa
+	farcall Func_1f57b
+	farcall UpdateSpriteAnims
 	call Func_3698
 	call Func_37ce
-	farcall $7, $46c2
+	farcall FadePalettes
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_3a6d::
+FrameFunc_SpriteAnimationAndFadePals::
 	push af
 	push bc
 	push de
 	push hl
 	call Func_3f78
-	farcall Func_109fa
-	farcall $7, $46c2
+	farcall UpdateSpriteAnims
+	farcall FadePalettes
 	pop hl
 	pop de
 	pop bc
@@ -1864,7 +1903,7 @@ Func_3a81::
 	ld a, [$dcea]
 	cp $ff
 	jr nz, .asm_3a94
-	farcall Func_109fa
+	farcall UpdateSpriteAnims
 .asm_3a94
 	pop hl
 	pop de
@@ -1872,47 +1911,53 @@ Func_3a81::
 	pop af
 	ret
 
-Func_3a99::
+; draws player's portrait at bc
+DrawPlayerPortrait::
 	push af
 	push bc
 	push de
 	push hl
-	farcall $7, $40ec
+	farcall Func_1c0ec
 	add $00
 	ld d, b
 	ld e, c
-	ld c, $00
-	ld b, $00
-	farcall $4c, $4000
+	ld c, PORTRAITVARIANT_NORMAL
+	ld b, 0
+	farcall DrawPortrait
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
+; bc = coordinates
+; e = PORTRAITVARIANT_* constant
 Func_3ab2::
 	push af
 	push bc
 	push de
 	push hl
 	cp $04
-	jr nc, .asm_3abc
-	ld e, $00
-.asm_3abc
-	farcall $7, $4101
+	jr nc, .ok
+	ld e, PORTRAITVARIANT_NORMAL
+.ok
+	farcall Func_1c101
 	ld h, e
 	ld d, b
 	ld e, c
 	ld c, h
-	ld b, $01
-	farcall $4c, $4000
+	ld b, 1
+	farcall DrawPortrait
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_3acf::
+; c = portrait variant
+; e = portrait slot (0 or 1)
+; b:hl = tileset pointer
+LoadPortraitTiles::
 	push af
 	push bc
 	push de
@@ -1926,8 +1971,8 @@ Func_3acf::
 	push de
 	push hl
 	ld b, $00
-	ld de, $240
-	call Func_34d4
+	ld de, 36 tiles
+	call MultiplyBCByDE
 	ld b, h
 	ld c, l
 	pop hl
@@ -1950,7 +1995,7 @@ Func_3acf::
 	pop af
 	ret
 
-Func_3b02::
+LoadPortraitPalettes::
 	push af
 	push bc
 	push de
@@ -1986,7 +2031,9 @@ Func_3b1e::
 	pop af
 	ret
 
-Func_3b2b::
+; b = bank
+; de = coordinates
+LoadMenuBoxParams::
 	push af
 	push bc
 	push de
@@ -1995,59 +2042,60 @@ Func_3b2b::
 	push af
 	ld a, b
 	call BankswitchROM
-	farcall $4, $4673
+	farcall Func_10673
 	ld a, d
-	ld [$d9e3], a
+	ld [wMenuBoxX], a
 	ld a, e
-	ld [$d9e4], a
+	ld [wMenuBoxY], a
 	ld a, [hli]
-	ld [$d9e7], a
+	ld [wMenuBoxSkipClear], a
 	ld a, [hli]
-	ld [$d9e5], a
+	ld [wMenuBoxWidth], a
 	ld a, [hli]
-	ld [$d9e6], a
+	ld [wMenuBoxHeight], a
 	ld a, [hli]
-	ld [$d9ec], a
+	ld [wMenuBoxBlinkSymbol], a
 	ld a, [hli]
-	ld [$d9ed], a
+	ld [wMenuBoxSpaceSymbol], a
 	ld a, [hli]
-	ld [$d9ee], a
+	ld [wMenuBoxCursorSymbol], a
 	ld a, [hli]
-	ld [$d9ef], a
+	ld [wMenuBoxSelectionSymbol], a
 	ld a, [hli]
-	ld [$d9f0], a
+	ld [wMenuBoxPressKeys], a
 	ld a, [hli]
-	ld [$d9f1], a
+	ld [wMenuBoxHeldKeys], a
 	ld a, [hli]
-	ld [$d9ea], a
+	ld [wMenuBoxHasHorizontalScroll], a
 	ld a, [hli]
-	ld [$d9eb], a
+	ld [wMenuBoxVerticalStep], a
 	ld a, [hli]
-	ld [$da34], a
+	ld [wMenuBoxUpdateFunction + 0], a
 	ld a, [hli]
-	ld [$da35], a
+	ld [wMenuBoxUpdateFunction + 1], a
 	ld a, [hli]
-	ld [$d9e8], a
+	ld [wMenuBoxLabelTextID + 0], a
 	ld a, [hli]
-	ld [$d9e9], a
-	ld bc, $0
-.asm_3b81
+	ld [wMenuBoxLabelTextID + 1], a
+
+	ld bc, 0
+.loop
 	ld a, [hl]
 	cp $ff
 	jr z, .asm_3bb0
 	push bc
 	push de
 	ld a, [hli]
-	add d
+	add d ; x
 	push hl
-	ld hl, $d9f3
+	ld hl, wMenuBoxItemsXPositions
 	add hl, bc
 	ld [hl], a
 	pop hl
 	ld a, [hli]
-	add e
+	add e ; y
 	push hl
-	ld hl, $da03
+	ld hl, wMenuBoxItemsYPositions
 	add hl, bc
 	ld [hl], a
 	pop hl
@@ -2056,7 +2104,7 @@ Func_3b2b::
 	ld a, [hli]
 	ld d, a
 	push hl
-	ld hl, $da13
+	ld hl, wMenuBoxItemsTextIDs
 	sla c
 	rl b
 	add hl, bc
@@ -2067,12 +2115,13 @@ Func_3b2b::
 	pop de
 	pop bc
 	inc c
-	jr .asm_3b81
+	jr .loop
+
 .asm_3bb0
 	ld a, c
-	ld [$d9f2], a
+	ld [wMenuBoxNumItems], a
 	xor a
-	ld [$da38], a
+	ld [wMenuBoxDelay], a
 	pop af
 	call BankswitchROM
 	pop hl
@@ -2081,18 +2130,19 @@ Func_3b2b::
 	pop af
 	ret
 
+; a = ?
 Func_3bc1::
 	push af
 	push hl
 	ld c, a
 	ldh a, [hBankROM]
 	push af
-	ld a, $4c
+	ld a, BANK(Data_13005b)
 	call BankswitchROM
 	ld b, $00
 	sla c
 	rl b
-	ld hl, $405b
+	ld hl, Data_13005b
 	add hl, bc
 	ld c, [hl]
 	inc hl
@@ -2103,6 +2153,7 @@ Func_3bc1::
 	pop af
 	ret
 
+; e = ?
 Func_3be0::
 	push af
 	push hl
@@ -2111,7 +2162,7 @@ Func_3be0::
 	ld a, b
 	call BankswitchROM
 	ld b, $00
-	sla c
+	sla c ; *2
 	add hl, bc
 	ld b, [hl]
 	inc hl
@@ -2120,12 +2171,12 @@ Func_3be0::
 	ld e, c
 	srl e
 	srl e
-.asm_3bf7
+.loop
 	srl a
 	and a
 	jr z, .asm_3c00
 	sla e
-	jr .asm_3bf7
+	jr .loop
 .asm_3c00
 	ld a, c
 	and $03
@@ -2136,8 +2187,8 @@ Func_3be0::
 	pop af
 	ret
 
-Func_3c0b::
-	farcall $7, $4e92
+StartMenuBoxUpdate::
+	farcall _StartMenuBoxUpdate
 	ret
 
 Func_3c10::
@@ -2187,7 +2238,7 @@ Func_3c42::
 	push af
 	call Func_3c55
 	farcall $7, $5fb9
-	farcall $4, $50b9
+	farcall Func_110b9
 	ld a, $01
 	ld [$dc57], a
 	pop af
@@ -2198,7 +2249,7 @@ Func_3c55::
 	ld a, [$dc57]
 	and a
 	jr z, .asm_3c60
-	farcall $4, $50c2
+	farcall Func_110c2
 .asm_3c60
 	xor a
 	ld [$dc57], a
@@ -2271,33 +2322,34 @@ Func_3cc3::
 
 Func_3cdd::
 	xor a
-	ld [$dd04], a
-	ld [$dd05], a
+	ld [wdd04], a
+	ld [wdd05], a
 	ret
 
-Func_3ce5::
+; a = MUSIC_* constant
+SetMusic::
 	push bc
 	push hl
-	ld hl, $dd04
+	ld hl, wdd04
 	ld b, [hl]
 	cp b
-	jr z, .asm_3cf4
-	ld [$dd04], a
-	call Func_3062
-.asm_3cf4
+	jr z, .skip
+	ld [wdd04], a
+	call PlaySong
+.skip
 	pop hl
 	pop bc
 	ret
 
-Func_3cf7::
+SetNoMusic::
 	push af
 	xor a
-	call Func_3ce5
+	call SetMusic
 	pop af
 	ret
 
 Func_3cfe::
-	call Func_3073
+	call PlaySFX
 	ret
 
 Func_3d02::
@@ -2308,63 +2360,63 @@ Func_3d02::
 	ret
 
 Func_3d09::
-	call Func_3062
+	call PlaySong
 	ret
 
 Func_3d0d::
 	push af
 	call Func_3d1f
-	call Func_3078
+	call PauseSong
 	pop af
 	ret
 
 Func_3d16::
 	push af
 	call Func_3d32
-	call Func_307d
+	call ResumeSong
 	pop af
 	ret
 
 Func_3d1f::
 	push bc
-	ld a, [$dd05]
+	ld a, [wdd05]
 	ld b, a
-	ld a, [$dd06]
+	ld a, [wdd06]
 	or b
-	ld [$dd06], a
+	ld [wdd06], a
 	ld a, $ff
-	ld [$dd05], a
+	ld [wdd05], a
 	pop bc
 	ret
 
 Func_3d32::
 	xor a
-	ld [$dd05], a
-	ld [$dd04], a
+	ld [wdd05], a
+	ld [wdd04], a
 	ret
 
 Func_3d3a::
-	call Func_3082
+	call SetVolume
 	ret
 
 Func_3d3e::
 	push af
 .asm_3d3f
 	call DoFrame
-	call Func_3067
+	call AssertSongFinished
 	or a
 	jr nz, .asm_3d3f
 	pop af
 	ret
 
 Func_3d4a::
-	ld a, [$dd06]
+	ld a, [wdd06]
 	and a
 	ret
 
 Func_3d4f::
 	xor a
-	ld [$dd06], a
+	ld [wdd06], a
 	ret
 
 Func_3d54::
@@ -2380,32 +2432,39 @@ Func_3d54::
 	ret
 
 ; c = starting CGB BG pal
-Func_3d61::
+LoadBGGraphics::
 	push af
 	push bc
 	push de
 	ld a, c
-	ld [$dd2f], a
+	ld [wdd2f], a
 	ldh a, [hBankROM]
 	push af
 	ld a, b
 	call BankswitchROM
+
+	; tileset
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	call Func_3d90
+	call LoadTileset
+
+	; palette
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, [$dd2f]
-	call Func_3db2
+	ld a, [wdd2f]
+	call LoadBGPalette
+
+	; tilemap
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	farcall Func_12e68
+	farcall LoadAttrmap
+
 	pop af
 	call BankswitchROM
 	pop de
@@ -2414,7 +2473,7 @@ Func_3d61::
 	ret
 
 ; bc = TILESET_* constant
-Func_3d90::
+LoadTileset::
 	push af
 	push bc
 	push de
@@ -2440,7 +2499,7 @@ Func_3d90::
 
 ; a = starting CGB BG pal
 ; bc = PALETTE_* constant
-Func_3db2::
+LoadBGPalette::
 	push af
 	push bc
 	push de
@@ -2462,10 +2521,12 @@ Func_3db2::
 	ret
 
 ; input:
-; a = ?
-; b = bank
-; c = pal index
-Func_3dcf::
+; b:hl = object gfx params
+; de = coordinates
+; a = $00 to overwrite cth object slot
+;     $ff to write on next empty object slot
+; c = object index to overwrite
+CreateSpriteAnim::
 	push af
 	push bc
 	push de
@@ -2486,30 +2547,34 @@ Func_3dcf::
 	pop bc
 	ld a, [wdd2d]
 	cp $ff
-	jr z, .asm_3dfb
-	farcall Func_10948
-	jr .asm_3dff
-.asm_3dfb
-	farcall Func_1090e
-.asm_3dff
-	farcall Func_10959
-	farcall Func_10a1e
+	jr z, .get_inactive
+	farcall GetCthSpriteAnim
+	jr .got_obj
+.get_inactive
+	farcall GetNextInactiveSpriteAnim
+.got_obj
+	farcall SetNewSpriteAnimValues
+	farcall SetSpriteAnimPosition
+
 	ld a, [wdd25 + 0]
 	ld c, a
 	ld a, [wdd25 + 1]
 	ld b, a
-	farcall Func_12c2a6
-	farcall Func_10cad
+	farcall LoadSpriteAnimGfx
+	farcall SetSpriteAnimTileOffset
+
 	ld a, [wdd27 + 0]
 	ld c, a
 	ld a, [wdd27 + 1]
 	ld b, a
-	farcall Func_10ccb
+	farcall SetSpriteAnimAnimation
+
 	ld a, [wdd29 + 0]
 	ld c, a
 	ld a, [wdd29 + 1]
 	ld b, a
-	farcall Func_10c5a
+	farcall SetAndInitSpriteAnimFrameset
+
 	ld a, [wdd2b + 0]
 	ld c, a
 	ld a, [wdd2b + 1]
@@ -2517,7 +2582,8 @@ Func_3dcf::
 	farcall GetPaletteGfxPointer
 	ld a, [wdd2e]
 	ld c, a
-	call Func_38bd
+	call LoadGfxPalettes
+
 	pop af
 	call BankswitchROM
 	pop hl
@@ -2529,17 +2595,17 @@ Func_3dcf::
 	ret
 
 Func_3e4f::
-	farcall $4, $50ac
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	ret
 
 Func_3e54::
-	farcall $4, $50b5
-	farcall $4, $4d40
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	farcall Func_10d40
 	ret
 
 Func_3e5d::
 	push af
-	farcall $4, $429d
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call EmptyScreen
 	pop af
 	call LoadScene
@@ -2564,7 +2630,7 @@ Func_3e7a::
 	push bc
 	push de
 	push hl
-	farcall $4, $7ac1
+	farcall Func_13ac1
 	pop hl
 	pop de
 	pop bc
@@ -2684,34 +2750,37 @@ Func_3f53::
 	pop hl
 	ret
 
+; clears wde69
 Func_3f61::
 	di
 	xor a
-	ld [$de69], a
-	ld [$de6a], a
+	ld [wde69 + 0], a
+	ld [wde69 + 1], a
 	ei
 	ret
 
+; sets wde69 to function in hl
 Func_3f6b::
 	di
 	push af
 	ld a, l
-	ld [$de69], a
+	ld [wde69 + 0], a
 	ld a, h
-	ld [$de6a], a
+	ld [wde69 + 1], a
 	pop af
 	ei
 	ret
 
+; jumps to wde69 if not null
 Func_3f78::
 	push af
-	ld hl, $de69
+	ld hl, wde69
 	ld a, [hli]
 	or [hl]
-	jr nz, .asm_3f82
+	jr nz, .not_null
 	pop af
 	ret
-.asm_3f82
+.not_null
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a

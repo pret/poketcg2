@@ -33,24 +33,27 @@ ROM0
 	"Audio Callback"
 ROMX $01
 	"Game Loop"
+	"Bank 1"
+ROMX $02
+	"Bank 2"
 ROMX $03
 	"Bank 3"
-	org $41c9
-	"Bank 3@41c9"
-	org $4651
-	"Bank 3@4651"
-	org $5299
-	"Bank 3@5299"
-	org $53e9
-	"Bank 3@53e9"
-	org $5671
-	"Bank 3@5671"
-	org $5bdb
-	"Bank 3@5bdb"
-	org $6883
-	"Bank 3@6883"
-	org $6b97
-	"Bank 3@6b97"
+ROMX $04
+	"Bank 4"
+ROMX $06
+	"Bank 6"
+ROMX $07
+	"Bank 7"
+ROMX $09
+	"Bank 9"
+ROMX $0c
+	"Bank c"
+ROMX $0f
+	"Bank f"
+ROMX $10
+	"Bank 10"
+ROMX $11
+	"Bank 11"
 ROMX $1b
 	"Gfx 1"
 	org $70b0
@@ -97,6 +100,7 @@ ROMX $47
 ROMX $48
 	"Text 17"
 ROMX $4c
+	"Bank 4c"
 	org $45ed
 	"Tilemaps 2"
 ROMX $4d
@@ -175,6 +179,22 @@ ROMX $77
 	"Audio 1"
 ROMX $70
 	"Palettes 2"
+	"OAM 1"
+ROMX $71
+	"OAM 2"
+ROMX $72
+	"OAM 3"
+ROMX $73
+	"OAM 4"
+ROMX $74
+	"OAM 5"
+	"Framesets 1"
+ROMX $75
+	"Framesets 2"
+	"OW Tile Frames 1"
+ROMX $76
+	"OW Animations"
+	"OW Tile Frames 2"
 ROMX $78
 	"Audio 2"
 ROMX $79
@@ -213,10 +233,18 @@ WRAMX 1
 	"WRAM1"
 	org $d0bf
 	"WRAM1@d0bf"
+	org $d0e3
+	"WRAM1@d0e3"
+	org $d393
+	"WRAM1@d393"
 	org $d54c
 	"WRAM1@d54c"
+	org $dc06
+	"WRAM1@dc06"
 	org $dd02
 	"WRAM1@dd02"
+WRAMX 3
+	"WRAM3"
 WRAMX 7
 	"WRAM7 Audio"
 VRAM $00

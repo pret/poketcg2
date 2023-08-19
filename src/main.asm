@@ -4,18 +4,44 @@ INCLUDE "constants.asm"
 SECTION "Game Loop", ROMX
 INCLUDE "engine/game_loop.asm"
 
-INCLUDE "engine/duel/core.asm"
+SECTION "Bank 1", ROMX
+INCLUDE "engine/bank01.asm"
+
+SECTION "Bank 2", ROMX
+INCLUDE "engine/bank02.asm"
 
 SECTION "Bank 3", ROMX
 INCLUDE "engine/bank03.asm"
 
+SECTION "Bank 4", ROMX
 INCLUDE "engine/bank04.asm"
 
 SECTION "Scenes", ROMX[$6eb9], BANK[$4]
 INCLUDE "engine/scenes.asm"
 
+SECTION "Bank 6", ROMX
+INCLUDE "engine/bank06.asm"
+
+SECTION "Bank 7", ROMX
+INCLUDE "engine/bank07.asm"
+
+SECTION "Bank 9", ROMX
+INCLUDE "engine/bank09.asm"
+
 SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
 INCLUDE "engine/gbc_only_disclaimer.asm"
+
+SECTION "Bank c", ROMX
+INCLUDE "engine/bank0c.asm"
+
+SECTION "Bank f", ROMX
+INCLUDE "engine/bank0f.asm"
+
+SECTION "Bank 10", ROMX
+INCLUDE "engine/bank10.asm"
+
+SECTION "Bank 11", ROMX
+INCLUDE "engine/bank11.asm"
 
 SECTION "Decks", ROMX[$54ac], BANK[$16]
 INCLUDE "data/decks.asm"
@@ -27,24 +53,12 @@ INCLUDE "data/gfx_pointers/tilemaps.asm"
 INCLUDE "data/gfx_pointers/tilesets.asm"
 INCLUDE "data/gfx_pointers/palettes.asm"
 INCLUDE "data/gfx_pointers/sprite_animations.asm"
-INCLUDE "data/gfx_pointers/gfx_unknown3.asm"
-INCLUDE "data/gfx_pointers/gfx_unknown2.asm"
-INCLUDE "data/gfx_pointers/gfx_unknown1.asm"
+INCLUDE "data/gfx_pointers/framesets.asm"
+INCLUDE "data/gfx_pointers/ow_tile_frames.asm"
+INCLUDE "data/gfx_pointers/ow_animations.asm"
 
-SECTION "Tilemaps 1", ROMX[$74f5], BANK[$4b]
-INCLUDE "src/data/maps/tilemaps1.asm"
+SECTION "Map Gfx", ROMX[$6c59], BANK[$4b]
+INCLUDE "data/map_gfx.asm"
 
-SECTION "Tilemaps 2", ROMX
-INCLUDE "src/data/maps/tilemaps2.asm"
-
-SECTION "Tilemaps 3", ROMX
-INCLUDE "src/data/maps/tilemaps3.asm"
-
-SECTION "Tilemaps 4", ROMX
-INCLUDE "src/data/maps/tilemaps4.asm"
-
-SECTION "Tilemaps 5", ROMX
-INCLUDE "src/data/maps/tilemaps5.asm"
-
-SECTION "Tilemaps 6", ROMX
-INCLUDE "src/data/maps/tilemaps6.asm"
+SECTION "Bank 4c", ROMX
+INCLUDE "engine/bank4c.asm"

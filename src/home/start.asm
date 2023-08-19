@@ -21,7 +21,7 @@ Start:
 	call SetupVRAM
 	call SetupRegisters
 	call SetupPalettes
-	call $305c ; SetupSound
+	call SetupSound
 	call SetupTimer
 	call ResetSerial
 	call CopyDMAFunction

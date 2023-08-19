@@ -455,12 +455,12 @@ Tilesets:
 	gfx_ptr Tileset1C5 ; TILESET_1C5
 	gfx_ptr Tileset1C6 ; TILESET_1C6
 	gfx_ptr Tileset1C7 ; TILESET_1C7
-	gfx_ptr Tileset1C8 ; TILESET_1C8
-	gfx_ptr Tileset1C9 ; TILESET_1C9
-	gfx_ptr Tileset1CA ; TILESET_1CA
-	gfx_ptr Tileset1CB ; TILESET_1CB
+	gfx_ptr IntroBaseSetGfx ; TILESET_INTRO_BASE_SET
+	gfx_ptr IntroJungleGfx ; TILESET_INTRO_JUNGLE
+	gfx_ptr IntroFossilGfx ; TILESET_INTRO_FOSSIL
+	gfx_ptr IntroTeamRocketGfx ; TILESET_INTRO_TEAM_ROCKET
 	gfx_ptr Tileset1CC ; TILESET_1CC
-	gfx_ptr Tileset1CD ; TILESET_1CD
+	gfx_ptr TitleScreenGfx ; TILESET_TITLE_SCREEN
 	gfx_ptr Tileset1CE ; TILESET_1CE
 	gfx_ptr Tileset1CF ; TILESET_1CF
 	gfx_ptr Tileset1D0 ; TILESET_1D0

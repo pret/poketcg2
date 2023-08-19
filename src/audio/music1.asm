@@ -22,8 +22,8 @@ _AssertSFXFinished::
 Music1_f4015::
 	jp Music1_f4066
 
-Music1_f4018::
-	jp Music1_f406f
+_SetVolume::
+	jp Music1_SetVolume
 
 _PauseSong::
 	jp Music1_PauseSong
@@ -108,7 +108,7 @@ Music1_f4066:
 	call Music1_UnloadAudioWRAMBank
 	ret
 
-Music1_f406f:
+Music1_SetVolume:
 	call Music1_LoadAudioWRAMBank
 	push bc
 	push af
@@ -2371,22 +2371,254 @@ INCLUDE "audio/presets.asm"
 
 ; all real SFX have the same priority (SFX_STOP does not use this table)
 Music1_SFXPriorities:
-	db $00, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
-	db $0a, $0a, $0a, $0a, $0a, $0a, $0a, $0a
+	db $00 ; SFX_STOP
+	db $0a ; SFX_01
+	db $0a ; SFX_02
+	db $0a ; SFX_03
+	db $0a ; SFX_04
+	db $0a ; SFX_05
+	db $0a ; SFX_06
+	db $0a ; SFX_07
+	db $0a ; SFX_08
+	db $0a ; SFX_09
+	db $0a ; SFX_0A
+	db $0a ; SFX_0B
+	db $0a ; SFX_0C
+	db $0a ; SFX_0D
+	db $0a ; SFX_0E
+	db $0a ; SFX_0F
+	db $0a ; SFX_10
+	db $0a ; SFX_11
+	db $0a ; SFX_12
+	db $0a ; SFX_13
+	db $0a ; SFX_14
+	db $0a ; SFX_15
+	db $0a ; SFX_16
+	db $0a ; SFX_17
+	db $0a ; SFX_18
+	db $0a ; SFX_19
+	db $0a ; SFX_1A
+	db $0a ; SFX_1B
+	db $0a ; SFX_1C
+	db $0a ; SFX_1D
+	db $0a ; SFX_1E
+	db $0a ; SFX_1F
+	db $0a ; SFX_20
+	db $0a ; SFX_21
+	db $0a ; SFX_22
+	db $0a ; SFX_23
+	db $0a ; SFX_24
+	db $0a ; SFX_25
+	db $0a ; SFX_26
+	db $0a ; SFX_27
+	db $0a ; SFX_28
+	db $0a ; SFX_29
+	db $0a ; SFX_2A
+	db $0a ; SFX_2B
+	db $0a ; SFX_2C
+	db $0a ; SFX_2D
+	db $0a ; SFX_2E
+	db $0a ; SFX_2F
+	db $0a ; SFX_30
+	db $0a ; SFX_31
+	db $0a ; SFX_32
+	db $0a ; SFX_33
+	db $0a ; SFX_34
+	db $0a ; SFX_35
+	db $0a ; SFX_36
+	db $0a ; SFX_37
+	db $0a ; SFX_38
+	db $0a ; SFX_39
+	db $0a ; SFX_3A
+	db $0a ; SFX_3B
+	db $0a ; SFX_3C
+	db $0a ; SFX_3D
+	db $0a ; SFX_3E
+	db $0a ; SFX_3F
+	db $0a ; SFX_40
+	db $0a ; SFX_41
+	db $0a ; SFX_42
+	db $0a ; SFX_43
+	db $0a ; SFX_44
+	db $0a ; SFX_45
+	db $0a ; SFX_46
+	db $0a ; SFX_47
+	db $0a ; SFX_48
+	db $0a ; SFX_49
+	db $0a ; SFX_4A
+	db $0a ; SFX_4B
+	db $0a ; SFX_4C
+	db $0a ; SFX_4D
+	db $0a ; SFX_4E
+	db $0a ; SFX_4F
+	db $0a ; SFX_50
+	db $0a ; SFX_51
+	db $0a ; SFX_52
+	db $0a ; SFX_53
+	db $0a ; SFX_54
+	db $0a ; SFX_55
+	db $0a ; SFX_56
+	db $0a ; SFX_57
+	db $0a ; SFX_58
+	db $0a ; SFX_59
+	db $0a ; SFX_5A
+	db $0a ; SFX_5B
+	db $0a ; SFX_5C
+	db $0a ; SFX_5D
+	db $0a ; SFX_5E
+	db $0a ; SFX_5F
+	db $0a ; SFX_60
+	db $0a ; SFX_61
+	db $0a ; SFX_62
+	db $0a ; SFX_63
+	db $0a ; SFX_64
+	db $0a ; SFX_65
+	db $0a ; SFX_66
+	db $0a ; SFX_67
+	db $0a ; SFX_68
+	db $0a ; SFX_69
+	db $0a ; SFX_6A
+	db $0a ; SFX_6B
+	db $0a ; SFX_6C
+	db $0a ; SFX_6D
+	db $0a ; SFX_6E
+	db $0a ; SFX_6F
+	db $0a ; SFX_70
+	db $0a ; SFX_71
+	db $0a ; SFX_72
+	db $0a ; SFX_73
+	db $0a ; SFX_74
+	db $0a ; SFX_75
+	db $0a ; SFX_76
+	db $0a ; SFX_77
+	db $0a ; SFX_78
+	db $0a ; SFX_79
+	db $0a ; SFX_7A
+	db $0a ; SFX_7B
+	db $0a ; SFX_7C
+	db $0a ; SFX_7D
+	db $0a ; SFX_7E
+	db $0a ; SFX_7F
+	db $0a ; SFX_80
+	db $0a ; SFX_81
+	db $0a ; SFX_82
+	db $0a ; SFX_83
+	db $0a ; SFX_84
+	db $0a ; SFX_85
+	db $0a ; SFX_86
+	db $0a ; SFX_87
+	db $0a ; SFX_88
+	db $0a ; SFX_89
+	db $0a ; SFX_8A
+	db $0a ; SFX_8B
+	db $0a ; SFX_8C
+	db $0a ; SFX_8D
+	db $0a ; SFX_8E
+	db $0a ; SFX_8F
+	db $0a ; SFX_90
+	db $0a ; SFX_91
+	db $0a ; SFX_92
+	db $0a ; SFX_93
+	db $0a ; SFX_94
+	db $0a ; SFX_95
+	db $0a ; SFX_96
+	db $0a ; SFX_97
+	db $0a ; SFX_98
+	db $0a ; SFX_99
+	db $0a ; SFX_9A
+	db $0a ; SFX_9B
+	db $0a ; SFX_9C
+	db $0a ; SFX_9D
+	db $0a ; SFX_9E
+	db $0a ; SFX_9F
+	db $0a ; SFX_A0
+	db $0a ; SFX_A1
+	db $0a ; SFX_A2
+	db $0a ; SFX_A3
+	db $0a ; SFX_A4
+	db $0a ; SFX_A5
+	db $0a ; SFX_A6
+	db $0a ; SFX_A7
+	db $0a ; SFX_A8
+	db $0a ; SFX_A9
+	db $0a ; SFX_AA
+	db $0a ; SFX_AB
+	db $0a ; SFX_AC
+	db $0a ; SFX_AD
+	db $0a ; SFX_AE
+	db $0a ; SFX_AF
+	db $0a ; SFX_B0
+	db $0a ; SFX_B1
+	db $0a ; SFX_B2
+	db $0a ; SFX_B3
+	db $0a ; SFX_B4
+	db $0a ; SFX_B5
+	db $0a ; SFX_B6
+	db $0a ; SFX_B7
+	db $0a ; SFX_B8
+	db $0a ; SFX_B9
+	db $0a ; SFX_BA
+	db $0a ; SFX_BB
+	db $0a ; SFX_BC
+	db $0a ; SFX_BD
+	db $0a ; SFX_BE
+	db $0a ; SFX_BF
+	db $0a ; SFX_C0
+	db $0a ; SFX_C1
+	db $0a ; SFX_C2
+	db $0a ; SFX_C3
+	db $0a ; SFX_C4
+	db $0a ; SFX_C5
+	db $0a ; SFX_C6
+	db $0a ; SFX_C7
+	db $0a ; SFX_C8
+	db $0a ; SFX_C9
+	db $0a ; SFX_CA
+	db $0a ; SFX_CB
+	db $0a ; SFX_CC
+	db $0a ; SFX_CD
+	db $0a ; SFX_CE
+	db $0a ; SFX_CF
+	db $0a ; SFX_D0
+	db $0a ; SFX_D1
+	db $0a ; SFX_D2
+	db $0a ; SFX_D3
+	db $0a ; SFX_D4
+	db $0a ; SFX_D5
+	db $0a ; SFX_D6
+	db $0a ; SFX_D7
+	db $0a ; SFX_D8
+	db $0a ; SFX_D9
+	db $0a ; SFX_DA
+	db $0a ; SFX_DB
+	db $0a ; SFX_DC
+	db $0a ; SFX_DD
+	db $0a ; SFX_DE
+	db $0a ; SFX_DF
+	db $0a ; SFX_E0
+	db $0a ; SFX_E1
+	db $0a ; SFX_E2
+	db $0a ; SFX_E3
+	db $0a ; SFX_E4
+	db $0a ; SFX_E5
+	db $0a ; SFX_E6
+	db $0a ; SFX_E7
+	db $0a ; SFX_E8
+	db $0a ; SFX_E9
+	db $0a ; SFX_EA
+	db $0a ; SFX_EB
+	db $0a ; SFX_EC
+	db $0a ; SFX_ED
+	db $0a ; SFX_EE
+	db $0a ; SFX_EF
+	db $0a ; SFX_F0
+	db $0a ; SFX_F1
+	db $0a ; SFX_F2
+	db $0a ; SFX_F3
+	db $0a ; SFX_F4
+	db $0a ; SFX_F5
+	db $0a ; SFX_F6
+	db $0a ; SFX_F7
 
 INCLUDE "audio/music1_headers.asm"
 

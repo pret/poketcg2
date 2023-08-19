@@ -64,7 +64,7 @@ SFX2_Play:
 	ld a, [hli]
 	ld [wdd8c], a
 	ld [wde54], a
-	ld de, wde4b
+	ld de, wd0e3
 	ld c, $0
 	ld b, $0
 .asm_fc031
@@ -134,7 +134,7 @@ SFX2_Update:
 	call Func_fc18d_2
 	jr .asm_fc08d
 .asm_fc082
-	ld hl, wde4b
+	ld hl, wd0e3
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -234,7 +234,7 @@ SFX2_0:
 	ld [hl], d
 	pop de
 Func_fc105_2:
-	ld hl, wde4b
+	ld hl, wd0e3
 	add hl, bc
 	add hl, bc
 	ld [hl], e

@@ -3,14 +3,14 @@
 _CoreGameLoop::
 	call Func_c240
 .intro
-	farcall $4, $5641 ; play intro and title screen
+	farcall IntroAndTitleScreen
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-	call Func_c249
+	call InitEvents
 	xor a
-	call Func_3062
+	call PlaySong
 	xor a
-	call Func_3073
+	call PlaySFX
 .start_menu_loop
 	call HandleStartMenu
 	ld hl, .StartMenuFunctionTable
@@ -27,16 +27,16 @@ _CoreGameLoop::
 StartMenu_NewGame:
 	ld hl, wd554
 	bit 0, [hl]
-	jr z, .asm_c037
-	farcall $7, $4f81
+	jr z, .no_save_data
+	farcall AskToOverwriteSaveData
 	ret c
-.asm_c037
-	farcall $6, $58f8
+.no_save_data
+	farcall InitSaveData
 	call Func_e97a
 	call Func_c24d
 	call Func_eb97
 	xor a
-	farcall $7, $5475
+	farcall Func_1d475
 	ld a, $04
 	ld [wd54c], a
 	xor a
@@ -48,28 +48,28 @@ StartMenu_NewGame:
 StartMenu_ContinueFromDiary:
 	ld hl, wd554
 	bit 2, [hl]
-	jr z, .asm_c067
+	jr z, .no_saved_duel
 	bit 1, [hl]
-	jr z, .asm_c067
-	farcall $7, $4fcf
+	jr z, .no_saved_duel
+	farcall AskToContinueFromDiaryInsteadOfDuel
 	ret c
-.asm_c067
+.no_saved_duel
 	call Func_eaea
 	xor a
-	call Func_3062
+	call PlaySong
 	ld a, [wd54c]
 	cp $04
 	jr z, .asm_c0a0
 	cp $03
 	jr z, .asm_c0ab
-	ld a, [wd550]
+	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall $4, $4f16
+	farcall Func_10f16
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	ld hl, wd583
 	set 7, [hl]
 	ld a, $02
@@ -80,26 +80,26 @@ StartMenu_ContinueFromDiary:
 
 .asm_c0a0
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	call Func_3087
 	scf
 	ret
 
 .asm_c0ab
-	ld a, [wd550]
+	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall $4, $4f16
+	farcall Func_10f16
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	call DisableLCD
-	farcall $4, $4b9c
-	farcall $4, $455e
-	farcall $4, $4417
-	farcall $7, $4990
-	farcall $4, $509f
+	farcall Func_10b9c
+	farcall Func_1055e
+	farcall UpdateOWScroll
+	farcall SaveTargetFadePals
+	farcall Func_1109f
 	call DoFrame
 	ld a, $0e
 	call Func_3154
@@ -115,17 +115,17 @@ StartMenu_ContinueFromDiary:
 
 StartMenu_ContinueDuel:
 	ld a, $01
-	farcall $7, $5475
+	farcall Func_1d475
 	xor a
-	call Func_3062
+	call PlaySong
 	call Func_eb16
-	ld a, [wd550]
+	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall $4, $4f16
+	farcall Func_10f16
 	call Func_33b7
 	call EnablePlayTimeCounter
-	ld a, $f0
-	call Func_d6d3
+	ld a, EVENT_F0
+	call MaxOutEventValue
 	ld a, $0e
 	call Func_3154
 	ld a, $03
@@ -145,117 +145,117 @@ Func_c12e::
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .no_cap
+	jr nc, .no_overflow
 	inc h
-.no_cap
+.no_overflow
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
 .PointerTable
-	dw $31a1
-	dw Func_c162
-	dw $417d
-	dw $4169
-	dw $4183
-	dw $31a8
-	dw $4199
-	dw Func_c162
-	dw $4163
-	dw $4189
-	dw $3234
-	dw $418f
-	dw Func_c162
-	dw Func_c162
-	dw Func_c162
-	dw $416f
-	dw $4175
-	dw $41a2
-	dw $41a6
+	dw Func_31a1 ; $00
+	dw Func_c162 ; $01
+	dw $417d     ; $02
+	dw $4169     ; $03
+	dw $4183     ; $04
+	dw Func_31a8 ; $05
+	dw $4199     ; $06
+	dw Func_c162 ; $07
+	dw $4163     ; $08
+	dw $4189     ; $09
+	dw Func_3234 ; $0a
+	dw $418f     ; $0b
+	dw Func_c162 ; $0c
+	dw Func_c162 ; $0d
+	dw Func_c162 ; $0e
+	dw $416f     ; $0f
+	dw $4175     ; $10
+	dw $41a2     ; $11
+	dw $41a6     ; $12
 
 Func_c162:
 	ret
 
-SECTION "Bank 3@41c9", ROMX
+SECTION "Bank 3@41c9", ROMX[$41c9], BANK[$3]
 
 HandleStartMenu:
 	xor a
 	ld [wd554], a
 	call Func_e883
-	jr c, .asm_c21a
+	jr c, .menu_config0
 	call Func_e8b7
 	jr c, .asm_c20f
 .asm_c1d7
 	ld hl, wd554
 	set 0, [hl]
 	call Func_eaf6
-	farcall $9, $409a
-	jr c, .asm_c204
+	farcall CheckSavedDuelChecksum
+	jr c, .no_saved_duel
 	ld hl, wd554
 	set 2, [hl]
 	ld a, $04
 	call Func_d6bb
 	cp $02
-	jr c, .asm_c238
+	jr c, .menu_config4
 	call Func_e8a3
-	jr c, .asm_c22a
+	jr c, .menu_config2
 	call Func_e91a
-	jr c, .asm_c22a
+	jr c, .menu_config2
 	ld hl, wd554
 	set 1, [hl]
-	jr .asm_c231
-.asm_c204
+	jr .menu_config3
+.no_saved_duel
 	ld a, $04
 	call Func_d6bb
 	cp $02
-	jr c, .asm_c222
-	jr .asm_c22a
+	jr c, .menu_config1
+	jr .menu_config2
 
 .asm_c20f
 	debug_nop
 	call Func_e91a
-	jr c, .asm_c21a
+	jr c, .menu_config0
 	call Func_e9b7
 	jr .asm_c1d7
 
-.asm_c21a
-	xor a
-	farcall $7, $4d6f
+.menu_config0
+	xor a ; STARTMENU_CONFIG_0
+	farcall ShowStartMenu
 	ld a, STARTMENU_NEW_GAME
 	ret
-.asm_c222
-	ld a, $01
-	farcall $7, $4d6f
+.menu_config1
+	ld a, STARTMENU_CONFIG_1
+	farcall ShowStartMenu
 	inc a
 	ret
-.asm_c22a
-	ld a, $02
-	farcall $7, $4d6f
+.menu_config2
+	ld a, STARTMENU_CONFIG_2
+	farcall ShowStartMenu
 	ret
-.asm_c231
-	ld a, $03
-	farcall $7, $4d6f
+.menu_config3
+	ld a, STARTMENU_CONFIG_3
+	farcall ShowStartMenu
 	ret
-.asm_c238
-	ld a, $04
-	farcall $7, $4d6f
+.menu_config4
+	ld a, STARTMENU_CONFIG_4
+	farcall ShowStartMenu
 	inc a
 	ret
 
 ; called before intro starts
 Func_c240:
 	xor a
-	ld [wd674], a
-	farcall $4, $7dfa
+	ld [wCurMusic], a
+	farcall Func_13dfa
 	ret
 
-Func_c249:
-	call Func_d671
+InitEvents:
+	call ClearEvents
 	ret
 
 Func_c24d:
-	call Func_d671
+	call ClearEvents
 	; reset play time
 	xor a
 	ld [wPlayTimeCounter + 0], a
@@ -263,19 +263,19 @@ Func_c24d:
 	ld [wPlayTimeCounter + 2], a
 	ld [wPlayTimeCounter + 3], a
 	ld [wPlayTimeCounter + 4], a
-	call Func_c2c2
+	call ClearSavedDecks
 	xor a
 	ld [wd54c], a
 	ld [wd54d], a
 	ld [wd54e], a
 	ld [wd54f], a
 	ld [wd551], a
-	ld [wd552], a
-	ld [wd553], a
+	ld [wd552 + 0], a
+	ld [wd552 + 1], a
 	ld [wd589], a
 	ld [wd586], a
-	ld [wd587], a
-	ld [wd674], a
+	ld [wCurOWLocation], a
+	ld [wCurMusic], a
 	ld [wd611], a
 	ld [wd612], a
 	ld [wd613], a
@@ -308,10 +308,10 @@ Func_c2a7:
 	call Func_c477
 	ret
 
-; clears s0a4e0
-Func_c2c2:
-	ld hl, s0a4e0
-	ld bc, $12c0
+; clears sSavedDecks
+ClearSavedDecks:
+	ld hl, sSavedDecks
+	ld bc, NUM_DECK_SAVE_MACHINE_SLOTS * DECK_COMPRESSED_STRUCT_SIZE
 	call EnableSRAM
 .loop_clear
 	xor a
@@ -324,26 +324,26 @@ Func_c2c2:
 	ret
 
 Func_c2d6:
-	ld a, $0d
-	call Func_d698
-	jr nz, .asm_c2fe
-	ld a, [wd587]
-	cp $06
-	jr z, .asm_c2fe
-	cp $07
-	jr z, .asm_c2fe
+	ld a, EVENT_0D
+	call GetEventValue
+	jr nz, .done
+	ld a, [wCurOWLocation]
+	cp OWMAP_GRASS_CLUB
+	jr z, .done
+	cp OWMAP_SCIENCE_CLUB
+	jr z, .done
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_c2f7
 	ld a, $0f
 	ld c, $06
 	call Func_d6fe
-	jr .asm_c2fe
+	jr .done
 .asm_c2f7
 	ld a, $0f
 	ld c, $07
 	call Func_d6fe
-.asm_c2fe
+.done
 	ret
 
 Func_c2ff:
@@ -351,13 +351,13 @@ Func_c2ff:
 	call Func_d6bb
 	cp $06
 	jr c, .asm_c318
-	ld a, $f5
-	call Func_d6e3
+	ld a, EVENT_F5
+	call ZeroOutEventValue
 	call UpdateRNGSources
 	rra
 	jr nc, .asm_c318
-	ld a, $f5
-	call Func_d6d3
+	ld a, EVENT_F5
+	call MaxOutEventValue
 .asm_c318
 	ret
 
@@ -405,16 +405,16 @@ Func_c366:
 	ld a, $21
 	call Func_d6bb
 	cp $02
-	jr c, .asm_c3d3
+	jr c, .done
 	ld a, [wd589]
 	cp $00
 	jr nz, .asm_c382
 	ld a, $25
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
-	jr z, .asm_c3d3
+	jr z, .done
 .asm_c382
 	ld a, $05
 	call Random
@@ -429,39 +429,39 @@ Func_c366:
 	jr .asm_c3b9
 .asm_c395
 	ld a, $25
-	ld c, $04
+	ld c, OWMAP_ROCK_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c39e
 	ld a, $25
-	ld c, $03
+	ld c, OWMAP_PSYCHIC_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3a7
 	ld a, $25
-	ld c, $07
+	ld c, OWMAP_SCIENCE_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3b0
 	ld a, $25
-	ld c, $09
+	ld c, OWMAP_FIRE_CLUB
 	call Func_d6fe
 	jr .asm_c3c0
 .asm_c3b9
 	ld a, $25
-	ld c, $08
+	ld c, OWMAP_WATER_CLUB
 	call Func_d6fe
 .asm_c3c0
 	ld a, [wd589]
 	cp $00
-	jr nz, .asm_c3d3
+	jr nz, .done
 	ld a, $25
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c382
-.asm_c3d3
+.done
 	ret
 
 Func_c3d4:
@@ -471,7 +471,7 @@ Func_c3d4:
 	ld a, $26
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c438
 .asm_c3e7
@@ -517,7 +517,7 @@ Func_c3d4:
 	ld a, $26
 	call Func_d6bb
 	ld c, a
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp c
 	jr z, .asm_c3e7
 .asm_c438
@@ -531,7 +531,7 @@ Func_c439:
 	ld a, [wd589]
 	cp $00
 	jr nz, .asm_c450
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp $0b
 	jr z, .asm_c476
 .asm_c450
@@ -563,7 +563,7 @@ Func_c477:
 	ld a, [wd589]
 	cp $01
 	jr nz, .asm_c48e
-	ld a, [wd587]
+	ld a, [wCurOWLocation]
 	cp $04
 	jr z, .asm_c4b4
 .asm_c48e
@@ -587,128 +587,202 @@ Func_c477:
 .asm_c4b4
 	ret
 
-SECTION "Bank 3@4651", ROMX
+SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
 
-; bank and offset table of data for Func_d421
-Data_c651:
-	dbw $10, $4462
-	dbw $0c, $4080
-	dbw $10, $4db3
-	dbw $0f, $4603
-	dbw $0f, $47dc
-	dbw $0b, $4000
-	dbw $0f, $4b88
-	dbw $0f, $4c62
-	dbw $0b, $4479
-	dbw $0b, $4936
-	dbw $0b, $4afa
-	dbw $0b, $4d23
-	dbw $0b, $530a
-	dbw $0b, $53c4
-	dbw $0b, $55f8
-	dbw $0b, $5930
-	dbw $0b, $5a26
-	dbw $0b, $5c9f
-	dbw $0b, $606d
-	dbw $0f, $4ee6
-	dbw $0b, $6163
-	dbw $0b, $64b7
-	dbw $0b, $663f
-	dbw $0b, $68e6
-	dbw $0b, $6cc8
-	dbw $0b, $6dc5
-	dbw $0b, $7012
-	dbw $0b, $74ff
-	dbw $0b, $75fc
-	dbw $0b, $77ca
-	dbw $0d, $4575
-	dbw $0d, $4773
-	dbw $0f, $519e
-	dbw $0f, $52d7
-	dbw $10, $5592
-	dbw $0b, $7cd5
-	dbw $0f, $55d1
-	dbw $0f, $5d58
-	dbw $0b, $7e45
-	dbw $0d, $4aaf
-	dbw $10, $5be9
-	dbw $0f, $6698
-	dbw $0f, $68e0
-	dbw $0f, $6cea
-	dbw $0f, $6efa
-	dbw $0d, $4ba8
-	dbw $0d, $4e4d
-	dbw $0f, $704c
-	dbw $0f, $71f2
-	dbw $0d, $509f
-	dbw $0f, $73c2
-	dbw $0c, $518a
-	dbw $0c, $5324
-	dbw $10, $5e8e
-	dbw $0c, $53ce
-	dbw $0d, $5288
-	dbw $10, $65cf
-	dbw $0c, $54fe
-	dbw $0c, $55d8
-	dbw $0c, $5785
-	dbw $0c, $5973
-	dbw $0c, $5b29
-	dbw $0d, $54a2
-	dbw $0c, $5cbf
-	dbw $0c, $5dd2
-	dbw $0c, $5fad
-	dbw $0c, $6148
-	dbw $0c, $641e
-	dbw $0c, $6531
-	dbw $0c, $6696
-	dbw $0c, $6804
-	dbw $0c, $696d
-	dbw $0c, $6beb
-	dbw $0c, $6e20
-	dbw $0c, $6f5b
-	dbw $0f, $75ab
-	dbw $0c, $70c0
-	dbw $0d, $55de
-	dbw $0d, $580f
-	dbw $0c, $724d
-	dbw $0c, $7357
-	dbw $0d, $5989
-	dbw $10, $6e2b
-	dbw $0c, $7506
-	dbw $0c, $75da
-	dbw $0c, $762f
-	dbw $0c, $7723
-	dbw $0c, $7766
-	dbw $0c, $77bb
-	dbw $0c, $7822
-	dbw $0c, $7928
-	dbw $0c, $797d
-	dbw $0c, $79b2
-	dbw $0c, $7a19
-	dbw $0c, $7ab4
-	dbw $0c, $7b1b
-	dbw $0c, $7ba4
-	dbw $0d, $5c10
-	dbw $0c, $7bf9
-	dbw $0d, $5c9a
-	dbw $0f, $77b5
-	dbw $0c, $7d2e
-	dbw $10, $6e80
-	dbw $0c, $7d63
-	dbw $0f, $7884
-	dbw $0d, $5d36
-	dbw $0d, $5f14
-	dbw $0d, $6097
-	dbw $0d, $6173
-	dbw $0d, $631f
-	dbw $0d, $6c9b
-	dbw $0c, $7d98
-	dbw $0d, $6f9a
-	dbw $0d, $7365
-	dbw $0d, $75df
-	dbw $10, $6ed5
+Func_c522:
+	push af
+	push bc
+	ld b, a
+	ld a, c
+	ld hl, TextIDs_d171
+	cp $00
+	jr z, .asm_c530
+	ld hl, TextIDs_d18f
+.asm_c530
+	ld a, b
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_c538
+	inc h
+.asm_c538
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc
+	pop af
+	ret
 
-SECTION "Bank 3@5299", ROMX
+Func_c53e:
+	push af
+	push bc
+	ld a, [wd589]
+	ld c, a
+	ld a, [wCurOWLocation]
+	call Func_c522
+	pop bc
+	pop af
+	ret
+; 0xc54d
+
+SECTION "Bank 3@4651", ROMX[$4651], BANK[$3]
+
+; bank and offset table of data for Func_d421 and Func_33b7
+Data_c651::
+	dba Data_40462 ; $00
+	dba Data_30080 ; $01
+	dbw $10, $4db3 ; $02
+	dbw $0f, $4603 ; $03
+	dbw $0f, $47dc ; $04
+	dbw $0b, $4000 ; $05
+	dbw $0f, $4b88 ; $06
+	dbw $0f, $4c62 ; $07
+	dbw $0b, $4479 ; $08
+	dbw $0b, $4936 ; $09
+	dbw $0b, $4afa ; $0a
+	dbw $0b, $4d23 ; $0b
+	dbw $0b, $530a ; $0c
+	dbw $0b, $53c4 ; $0d
+	dbw $0b, $55f8 ; $0e
+	dbw $0b, $5930 ; $0f
+	dbw $0b, $5a26 ; $10
+	dbw $0b, $5c9f ; $11
+	dbw $0b, $606d ; $12
+	dbw $0f, $4ee6 ; $13
+	dbw $0b, $6163 ; $14
+	dbw $0b, $64b7 ; $15
+	dbw $0b, $663f ; $16
+	dbw $0b, $68e6 ; $17
+	dbw $0b, $6cc8 ; $18
+	dbw $0b, $6dc5 ; $19
+	dbw $0b, $7012 ; $1a
+	dbw $0b, $74ff ; $1b
+	dbw $0b, $75fc ; $1c
+	dbw $0b, $77ca ; $1d
+	dbw $0d, $4575 ; $1e
+	dbw $0d, $4773 ; $1f
+	dbw $0f, $519e ; $20
+	dbw $0f, $52d7 ; $21
+	dbw $10, $5592 ; $22
+	dbw $0b, $7cd5 ; $23
+	dbw $0f, $55d1 ; $24
+	dbw $0f, $5d58 ; $25
+	dbw $0b, $7e45 ; $26
+	dbw $0d, $4aaf ; $27
+	dbw $10, $5be9 ; $28
+	dbw $0f, $6698 ; $29
+	dbw $0f, $68e0 ; $2a
+	dbw $0f, $6cea ; $2b
+	dbw $0f, $6efa ; $2c
+	dbw $0d, $4ba8 ; $2d
+	dbw $0d, $4e4d ; $2e
+	dbw $0f, $704c ; $2f
+	dbw $0f, $71f2 ; $30
+	dbw $0d, $509f ; $31
+	dbw $0f, $73c2 ; $32
+	dbw $0c, $518a ; $33
+	dbw $0c, $5324 ; $34
+	dbw $10, $5e8e ; $35
+	dbw $0c, $53ce ; $36
+	dbw $0d, $5288 ; $37
+	dbw $10, $65cf ; $38
+	dbw $0c, $54fe ; $39
+	dbw $0c, $55d8 ; $3a
+	dbw $0c, $5785 ; $3b
+	dbw $0c, $5973 ; $3c
+	dbw $0c, $5b29 ; $3d
+	dbw $0d, $54a2 ; $3e
+	dbw $0c, $5cbf ; $3f
+	dbw $0c, $5dd2 ; $40
+	dbw $0c, $5fad ; $41
+	dbw $0c, $6148 ; $42
+	dbw $0c, $641e ; $43
+	dbw $0c, $6531 ; $44
+	dbw $0c, $6696 ; $45
+	dbw $0c, $6804 ; $46
+	dbw $0c, $696d ; $47
+	dbw $0c, $6beb ; $48
+	dbw $0c, $6e20 ; $49
+	dbw $0c, $6f5b ; $4a
+	dbw $0f, $75ab ; $4b
+	dbw $0c, $70c0 ; $4c
+	dbw $0d, $55de ; $4d
+	dbw $0d, $580f ; $4e
+	dbw $0c, $724d ; $4f
+	dbw $0c, $7357 ; $50
+	dbw $0d, $5989 ; $51
+	dbw $10, $6e2b ; $52
+	dbw $0c, $7506 ; $53
+	dbw $0c, $75da ; $54
+	dbw $0c, $762f ; $55
+	dbw $0c, $7723 ; $56
+	dbw $0c, $7766 ; $57
+	dbw $0c, $77bb ; $58
+	dbw $0c, $7822 ; $59
+	dbw $0c, $7928 ; $5a
+	dbw $0c, $797d ; $5b
+	dbw $0c, $79b2 ; $5c
+	dbw $0c, $7a19 ; $5d
+	dbw $0c, $7ab4 ; $5e
+	dbw $0c, $7b1b ; $5f
+	dbw $0c, $7ba4 ; $60
+	dbw $0d, $5c10 ; $61
+	dbw $0c, $7bf9 ; $62
+	dbw $0d, $5c9a ; $63
+	dbw $0f, $77b5 ; $64
+	dbw $0c, $7d2e ; $65
+	dbw $10, $6e80 ; $66
+	dbw $0c, $7d63 ; $67
+	dbw $0f, $7884 ; $68
+	dbw $0d, $5d36 ; $69
+	dbw $0d, $5f14 ; $6a
+	dbw $0d, $6097 ; $6b
+	dbw $0d, $6173 ; $6c
+	dbw $0d, $631f ; $6d
+	dbw $0d, $6c9b ; $6e
+	dbw $0c, $7d98 ; $6f
+	dbw $0d, $6f9a ; $70
+	dbw $0d, $7365 ; $71
+	dbw $0d, $75df ; $72
+	dbw $10, $6ed5 ; $73
+
+SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
+
+TextIDs_d171:
+	tx Text09b6
+	tx Text09b7
+	tx Text09b8
+	tx Text09b9
+	tx Text09ba
+	tx Text09bb
+	tx Text09bc
+	tx Text09bd
+	tx Text09be
+	tx Text09bf
+	tx Text09c0
+	tx Text09c1
+	tx Text09c2
+	dw NULL
+	tx Text09b5
+
+TextIDs_d18f:
+	tx Text09c3
+	tx Text09c4
+	tx Text09c5
+	tx Text09c6
+	tx Text09c7
+	tx Text09c8
+	tx Text09c9
+	tx Text09ca
+	tx Text09cb
+	tx Text09cc
+	tx Text09cd
+	tx Text09ce
+	tx Text09cf
+	tx Text0069
+; 0xd1ab
+
+SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
 
 Func_d299::
 	push af
@@ -728,8 +802,8 @@ Func_d299::
 	jr nz, .asm_d2c1
 	bit 7, [hl]
 	jp nz, Func_d398
-	ld a, $02
-	call Func_d698
+	ld a, EVENT_02
+	call GetEventValue
 	jp nz, Func_d377
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
@@ -739,33 +813,33 @@ Func_d299::
 	ld [wd551], a
 	ld hl, wd58c
 	ld a, [hli]
-	ld [wd552], a
+	ld [wd552 + 0], a
 	ld a, [hl]
-	ld [wd553], a
+	ld [wd552 + 1], a
 	ld a, $01
 	call Func_3154
-	farcall $4, $42ef
+	farcall Func_102ef
 	xor a
-	farcall $4, $4d40
+	farcall Func_10d40
 	ld a, $01
-	farcall $4, $4413
+	farcall Func_10413
 	ld b, $00
 	ld a, [wd58a]
 	ld c, a
-	farcall $4b, $4206
+	farcall LoadOWMap
 	ld a, [wd58f]
 	ld d, a
 	ld a, [wd590]
 	ld e, a
 	ld a, [wd591]
 	ld b, a
-	ld a, [wd550]
-	farcall $4, $4d77
-	farcall $4, $4dd7
-	farcall $4, $5450
-	farcall $4, $4eff
+	ld a, [wPlayerOWObject]
+	farcall LoadOWObjectInMap
+	farcall StopOWObjectAnimation
+	farcall SetOWObjectAsScrollTarget
+	farcall Func_10eff
 	ld b, $01
-	farcall $4, $4f16
+	farcall Func_10f16
 	ld a, $00
 	ld [wd582], a
 	xor a
@@ -805,8 +879,8 @@ Func_d333:
 	ld c, a
 	ld a, $3d
 	call Func_d6fe
-	ld a, $02
-	call Func_d6d3
+	ld a, EVENT_02
+	call MaxOutEventValue
 	ld a, $03
 	ld [wd54c], a
 	call Func_eaa8
@@ -815,11 +889,11 @@ Func_d333:
 Func_d377:
 	ld a, $11
 	call Func_3154
-	ld a, $02
-	call Func_d6e3
+	ld a, EVENT_02
+	call ZeroOutEventValue
 	call Func_e9a7
-	ld a, $f0
-	call Func_d6e3
+	ld a, EVENT_F0
+	call ZeroOutEventValue
 	farcall $11, $4943
 	ld a, $09
 	ld [wd582], a
@@ -828,39 +902,58 @@ Func_d377:
 	jr Func_d333
 
 Func_d398:
-	farcall $4, $4b9c
-	farcall $4, $455e
-	farcall $4, $4417
-	farcall $7, $4990
-	farcall $4, $509f
+	farcall Func_10b9c
+	farcall Func_1055e
+	farcall UpdateOWScroll
+	farcall SaveTargetFadePals
+	farcall Func_1109f
 	call DoFrame
 	ld a, $00
 	ld b, $00
-	farcall $7, $4909
+	farcall StartPalFadeFromBlackOrWhite
 	ld a, $0b
 	ld [wd582], a
 	ld hl, wd583
 	res 7, [hl]
 	jp Func_d333
 
-SECTION "Bank 3@53e9", ROMX
+; a = ?
+; b = direction
+; de = coordinates
+Func_d3c4:
+	ld [wd54d], a
+	ld a, $02
+	ld [wd54c], a
+	ld a, d
+	ld [wd58f], a
+	ld a, e
+	ld [wd590], a
+	ld a, b
+	ld [wd591], a
+	ld a, $00
+	ld [wd582], a
+	ld hl, wd583
+	set 0, [hl]
+	ld a, [wd54d]
+	ld [wd585], a
+	ret
 
 Func_d3e9::
-	ld a, [wd550]
+	ld a, [wPlayerOWObject]
 	push af
-	farcall $4, $4da7
+	farcall Func_10da7
 	pop af
 	push de
-	farcall $4, $4dcb
+	farcall Func_10dcb
 	pop de
 	ld a, b
 	rlca
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_cap
+	jr nc, .no_overflow
 	inc h
-.no_cap
+.no_overflow
 	ld a, [hli]
 	add d
 	ld d, a
@@ -876,11 +969,11 @@ Func_d3e9::
 	db -1,  0
 
 Func_d411:
-	call Func_3078
-	ld a, $06
-	call Func_3062
+	call PauseSong
+	ld a, MUSIC_PCMAINMENU
+	call PlaySong
 	farcall $4, $50c6
-	call Func_307d
+	call ResumeSong
 	ret
 
 Func_d421::
@@ -910,13 +1003,353 @@ Func_d421::
 	ld [wd585], a
 	ret
 
-SECTION "Bank 3@5671", ROMX
+; a = OW object ID
+; de = target position
+SetOWObjectTargetPosition:
+	ld [wd595], a
+	push af
+	ld a, d
+	ld [wOWObjTargetX], a
+	ld a, e
+	ld [wOWObjTargetY], a
+	xor a
+	ld [wd59c], a
+	ld [wd59d], a
+	pop af
+	push de
+	farcall GetOWObjectPosition
+	pop bc
+	ld a, b
+	sub d ; target_x - x
+	bit 7, a
+	jr z, .got_x_distance
+	cpl
+	inc a
+.got_x_distance
+	ld b, a ; x distance
+	ld a, c
+	sub e ; target_y - y
+	bit 7, a
+	jr z, .got_y_distance
+	cpl
+	inc a
+.got_y_distance
+	ld c, a ; y distance
+	ld a, b
+	cp c
+	jr c, .asm_d4d3
 
-; reset data at wd59e
-Func_d671:
+; x distance >= y distance
+	push bc
+	xor a
+	ld [wd598], a
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld b, EAST
+	ld a, [wOWObjTargetX]
+	cp d
+	jr nc, .got_x_dir
+	ld a, -1
+	ld [wOWObjXVelocity], a
+	ld b, WEST
+.got_x_dir
+	ld a, [wd595]
+	farcall SetOWObjectDirection
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld a, [wOWObjTargetY]
+	cp e
+	jr nc, .got_y_vel
+	ld a, -1
+	ld [wOWObjYVelocity], a
+.got_y_vel
+	pop bc
+	ld d, c ; y distance
+	ld e, $00
+	ld c, b ; x distance
+	ld b, $00
+	call DivideDEByBC
+	; de = ((y distance) / (x distance)) * $100
+	ld a, [wOWObjYVelocity]
+	bit 7, a
+	jr z, .positive_y_vel
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+	; de = -de
+.positive_y_vel
+	ld a, e
+	ld [wd59a], a
+	ld a, d
+	ld [wOWObjYVelocity], a
+	jr .done
+
+.asm_d4d3
+; x distance < y distance
+	push bc
+	xor a
+	ld [wd59a], a
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld b, SOUTH
+	ld a, [wOWObjTargetY]
+	cp e
+	jr nc, .got_y_dir
+	ld a, -1
+	ld [wOWObjYVelocity], a
+	ld b, NORTH
+.got_y_dir
+	ld a, [wd595]
+	farcall SetOWObjectDirection
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld a, [wOWObjTargetX]
+	cp d
+	jr nc, .got_x_vel
+	ld a, -1
+	ld [wOWObjXVelocity], a
+.got_x_vel
+	pop bc
+	ld d, b
+	ld e, $00
+	ld b, $00
+	call DivideDEByBC
+	; de = ((x distance) / (y distance)) * $100
+	ld a, [wOWObjXVelocity]
+	bit 7, a
+	jr z, .positive_x_vel
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+	; de = -de
+.positive_x_vel
+	ld a, e
+	ld [wd598], a
+	ld a, d
+	ld [wOWObjXVelocity], a
+.done
+	ret
+
+; returns carry if still moving
+MoveOWObjectToTargetPosition:
+	ld a, [wd595]
+	farcall GetOWObjectPosition
+	ld a, [wOWObjTargetX]
+	cp d
+	jr nz, .change_x
+	ld a, [wOWObjTargetY]
+	cp e
+	jr nz, .change_y
+	scf
+	ccf
+	ret
+
+.change_x
+	ld a, [wd59c]
+	ld b, a
+	ld a, [wd598]
+	add b
+	ld [wd59c], a
+	ld a, [wOWObjXVelocity]
+	adc d
+	ld d, a
+.change_y
+	ld a, [wOWObjTargetY]
+	cp e
+	jr z, .asm_d562
+	ld a, [wd59d]
+	ld b, a
+	ld a, [wd59a]
+	add b
+	ld [wd59d], a
+	ld a, [wOWObjYVelocity]
+	adc e
+	ld e, a
+.asm_d562
+	ld a, [wd595]
+	farcall SetOWObjectPosition
+	scf
+	ret
+
+; de = coordinates
+Func_d56b:
+	ld a, d
+	ld [wOWObjTargetX], a
+	ld a, e
+	ld [wOWObjTargetY], a
+	xor a
+	ld [wd59c], a
+	ld [wd59d], a
+	ld a, [wOWScrollX]
+	ld b, a
+	ld a, [wOWScrollY]
+	ld c, a
+	ld a, d
+	sub b
+	bit 7, a
+	jr z, .asm_d58a
+	cpl
+	inc a
+.asm_d58a
+	ld b, a
+	ld a, e
+	sub c
+	bit 7, a
+	jr z, .asm_d593
+	cpl
+	inc a
+.asm_d593
+	ld c, a
+	ld a, b
+	cp c
+	jr c, .asm_d5e2
+
+	push bc
+	xor a
+	ld [wd598], a
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld a, [wOWScrollX]
+	cp d
+	jr c, .asm_d5ad
+	ld a, -1
+	ld [wOWObjXVelocity], a
+.asm_d5ad
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld a, [wOWScrollY]
+	cp e
+	jr c, .asm_d5bd
+	ld a, -1
+	ld [wOWObjYVelocity], a
+.asm_d5bd
+	pop bc
+	ld d, c
+	ld e, $00
+	ld c, b
+	ld b, $00
+	call DivideDEByBC
+	ld a, [wOWObjYVelocity]
+	bit 7, a
+	jr z, .asm_d5d8
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+.asm_d5d8
+	ld a, e
+	ld [wd59a], a
+	ld a, d
+	ld [wOWObjYVelocity], a
+	jr .done
+
+.asm_d5e2
+	push bc
+	xor a
+	ld [wd59a], a
+	ld a, 1
+	ld [wOWObjYVelocity], a
+	ld a, [wOWScrollY]
+	cp e
+	jr c, .asm_d5f7
+	ld a, -1
+	ld [wOWObjYVelocity], a
+.asm_d5f7
+	ld a, 1
+	ld [wOWObjXVelocity], a
+	ld a, [wOWScrollX]
+	cp d
+	jr c, .asm_d607
+	ld a, -1
+	ld [wOWObjXVelocity], a
+.asm_d607
+	pop bc
+	ld d, b
+	ld e, $00
+	ld b, $00
+	call DivideDEByBC
+	ld a, [wOWObjXVelocity]
+	bit 7, a
+	jr z, .asm_d621
+	ld a, e
+	cpl
+	add 1
+	ld e, a
+	ld a, d
+	cpl
+	adc 0
+	ld d, a
+.asm_d621
+	ld a, e
+	ld [wd598], a
+	ld a, d
+	ld [wOWObjXVelocity], a
+.done
+	ret
+
+Func_d62a:
+	ld a, [wOWScrollX]
+	ld d, a
+	ld a, [wOWScrollY]
+	ld e, a
+	ld a, [wOWObjTargetX]
+	cp d
+	jr nz, .asm_d641
+	ld a, [wOWObjTargetY]
+	cp e
+	jr nz, .asm_d651
+	scf
+	ccf
+	ret
+
+.asm_d641
+	ld a, [wd59c]
+	ld b, a
+	ld a, [wd598]
+	add b
+	ld [wd59c], a
+	ld a, [wOWObjXVelocity]
+	adc d
+	ld d, a
+.asm_d651
+	ld a, [wOWObjTargetY]
+	cp e
+	jr z, .asm_d667
+	ld a, [wd59d]
+	ld b, a
+	ld a, [wd59a]
+	add b
+	ld [wd59d], a
+	ld a, [wOWObjYVelocity]
+	adc e
+	ld e, a
+.asm_d667
+	ld a, d
+	ld [wOWScrollX], a
+	ld a, e
+	ld [wOWScrollY], a
+	scf
+	ret
+
+; reset data at wEventVars and wd5d2
+ClearEvents:
 	push bc
 	push hl
-	ld hl, wd59e
+	ld hl, wEventVars
 	ld bc, $68
 .loop
 	xor a
@@ -930,91 +1363,97 @@ Func_d671:
 	ret
 
 Func_d683:
-	ld a, $ed
-	call Func_d6e3
-	ld a, $ee
-	call Func_d6e3
+	ld a, EVENT_ED
+	call ZeroOutEventValue
+	ld a, EVENT_EE
+	call ZeroOutEventValue
 	ld a, $3b
 	ld c, $00
 	call Func_d6fe
 	ret
 
-Func_d695:
-	call Func_d74b
-Func_d698::
+GetStackEventValue:
+	call GetByteAfterCall
+;	fallthrough
+GetEventValue::
 	push bc
 	push hl
-	call Func_d71d
+	call GetEventVar
 	ld c, [hl]
-.asm_d69e
+.loop
 	bit 0, a
-	jr nz, .asm_d6a8
+	jr nz, .got_bit
 	srl a
 	srl c
-	jr .asm_d69e
-.asm_d6a8
+	jr .loop
+.got_bit
 	ld b, a
 	ld a, c
 	and b
-	jr z, .asm_d6b4
+	jr z, .not_set
 	cp b
-	jr nz, .asm_d6b4
+	jr nz, .not_set
+; set
 	pop hl
 	pop bc
 	or a
 	ret
-.asm_d6b4
+.not_set
 	pop hl
 	pop bc
 	xor a
 	ret
 
 Func_d6b8:
-	call Func_d74b
+	call GetByteAfterCall
+;	fallthrough
 Func_d6bb:
 	push bc
 	push hl
 	call Func_d734
 	ld c, [hl]
-.asm_d6c1
+.loop
 	bit 0, a
-	jr nz, .asm_d6cb
+	jr nz, .got_bit
 	srl a
 	srl c
-	jr .asm_d6c1
-.asm_d6cb
+	jr .loop
+.got_bit
 	and c
 	pop hl
 	pop bc
 	or a
 	ret
 
-Func_d6d0:
-	call Func_d74b
-Func_d6d3::
+MaxStackEventValue:
+	call GetByteAfterCall
+;	fallthrough
+MaxOutEventValue::
 	push bc
 	push hl
-	call Func_d71d
+	call GetEventVar
 	ld c, $ff
-	call Func_d709
+	call SetEventValue
 	pop hl
 	pop bc
 	ret
 
-Func_d6e0:
-	call Func_d74b
-Func_d6e3::
+SetStackEventFalse:
+	call GetByteAfterCall
+;	fallthrough
+ZeroOutEventValue::
 	push bc
 	push hl
-	call Func_d71d
+	call GetEventVar
 	ld c, $00
-	call Func_d709
+	call SetEventValue
 	pop hl
 	pop bc
 	ret
 
 Func_d6f0:
-	call Func_d74b
+	call GetByteAfterCall
+;	fallthrough
 Func_d6f3:
 	push bc
 	ld c, $00
@@ -1023,25 +1462,28 @@ Func_d6f3:
 	ret
 
 Func_d6fb:
-	call Func_d74b
+	call GetByteAfterCall
+;	fallthrough
 Func_d6fe:
 	push bc
 	push hl
 	call Func_d734
-	call Func_d709
+	call SetEventValue
 	pop hl
 	pop bc
 	ret
 
-Func_d709:
+; a - event
+; c - value - truncated to fit only the event var's bounds
+SetEventValue:
 	ld b, a
-.asm_d70a
+.loop
 	bit 0, a
-	jr nz, .asm_d714
+	jr nz, .got_bit
 	srl a
 	sla c
-	jr .asm_d70a
-.asm_d714
+	jr .loop
+.got_bit
 	ld a, b
 	and c
 	ld c, a
@@ -1052,21 +1494,23 @@ Func_d709:
 	ld [hl], a
 	ret
 
-Func_d71d:
+; returns wEventVars byte in hl
+; and related bits in a
+GetEventVar:
 	push bc
 	ld c, a
 	xor a
 	ld b, a
 	sla c
-	rl b
-	ld hl, Data_d75a
+	rl b ; *2
+	ld hl, EventVarMasks
 	add hl, bc
 	ld a, [hli]
 	ld c, a
 	xor a
 	ld b, a
 	ld a, [hl]
-	ld hl, wd59e
+	ld hl, wEventVars
 	add hl, bc
 	pop bc
 	ret
@@ -1090,7 +1534,9 @@ Func_d734:
 	pop bc
 	ret
 
-Func_d74b:
+; returns in a the byte db'd after the call
+; to a function that calls this
+GetByteAfterCall:
 	push hl
 	ld hl, sp+$04
 	push bc
@@ -1106,320 +1552,324 @@ Func_d74b:
 	pop hl
 	ret
 
-Data_d75a:
-	db $00, $1 << 0
-	db $00, $1 << 1
-	db $00, $1 << 2
-	db $00, $1 << 3
-	db $01, $1 << 0
-	db $01, $1 << 1
-	db $01, $1 << 2
-	db $01, $1 << 3
-	db $01, $1 << 4
-	db $01, $1 << 5
-	db $01, $1 << 6
-	db $02, ($1 << 0) | ($1 << 1) | ($1 << 2) | ($1 << 3)
-	db $02, $1 << 0
-	db $02, $1 << 1
-	db $02, $1 << 2
-	db $02, $1 << 3
-	db $02, $1 << 4
-	db $02, $1 << 5
-	db $02, $1 << 6
-	db $02, $1 << 7
-	db $03, $1 << 0
-	db $03, $1 << 1
-	db $03, $1 << 2
-	db $03, $1 << 3
-	db $03, $1 << 4
-	db $03, $1 << 5
-	db $03, $1 << 6
-	db $03, $1 << 7
-	db $04, $1 << 0
-	db $04, $1 << 1
-	db $04, $1 << 2
-	db $04, $1 << 3
-	db $05, $1 << 0
-	db $05, $1 << 1
-	db $05, $1 << 2
-	db $05, $1 << 3
-	db $06, $1 << 0
-	db $06, $1 << 1
-	db $06, $1 << 2
-	db $06, $1 << 3
-	db $07, $1 << 0
-	db $07, $1 << 1
-	db $07, $1 << 2
-	db $07, $1 << 3
-	db $07, $1 << 4
-	db $08, $1 << 0
-	db $08, $1 << 1
-	db $08, $1 << 2
-	db $08, $1 << 3
-	db $09, $1 << 0
-	db $09, $1 << 1
-	db $09, $1 << 2
-	db $09, $1 << 3
-	db $09, $1 << 4
-	db $09, $1 << 5
-	db $0a, $1 << 0
-	db $0a, $1 << 1
-	db $0a, $1 << 2
-	db $0a, $1 << 3
-	db $0a, $1 << 4
-	db $0b, $1 << 0
-	db $0b, $1 << 1
-	db $0b, $1 << 2
-	db $0b, $1 << 3
-	db $0c, $1 << 0
-	db $0c, $1 << 1
-	db $0c, $1 << 2
-	db $0c, $1 << 3
-	db $0c, $1 << 5
-	db $0c, $1 << 6
-	db $0d, $1 << 0
-	db $0d, $1 << 1
-	db $0d, $1 << 2
-	db $0d, $1 << 3
-	db $0d, $1 << 4
-	db $0d, $1 << 5
-	db $0d, $1 << 6
-	db $0d, $1 << 7
-	db $0e, $1 << 0
-	db $0e, $1 << 1
-	db $0e, $1 << 2
-	db $0e, $1 << 3
-	db $0e, $1 << 4
-	db $0e, $1 << 5
-	db $0e, $1 << 6
-	db $0f, $1 << 0
-	db $0f, $1 << 1
-	db $0f, $1 << 2
-	db $0f, $1 << 3
-	db $0f, $1 << 4
-	db $0f, $1 << 5
-	db $0f, $1 << 6
-	db $0f, $1 << 7
-	db $10, $1 << 0
-	db $10, $1 << 1
-	db $10, $1 << 2
-	db $10, $1 << 3
-	db $10, $1 << 4
-	db $10, $1 << 5
-	db $10, $1 << 6
-	db $10, $1 << 7
-	db $11, $1 << 0
-	db $11, $1 << 1
-	db $11, $1 << 2
-	db $11, $1 << 3
-	db $11, $1 << 4
-	db $11, $1 << 5
-	db $12, $1 << 0
-	db $12, $1 << 1
-	db $12, $1 << 2
-	db $12, $1 << 3
-	db $12, $1 << 4
-	db $12, $1 << 5
-	db $12, $1 << 6
-	db $12, $1 << 7
-	db $13, $1 << 0
-	db $13, $1 << 1
-	db $14, $1 << 0
-	db $14, $1 << 1
-	db $14, $1 << 2
-	db $14, $1 << 3
-	db $14, $1 << 4
-	db $14, $1 << 5
-	db $14, ($1 << 3) | ($1 << 4) | ($1 << 5)
-	db $14, $1 << 6
-	db $14, $1 << 7
-	db $15, $1 << 0
-	db $16, $1 << 0
-	db $16, $1 << 1
-	db $16, $1 << 2
-	db $16, $1 << 3
-	db $16, $1 << 4
-	db $17, $1 << 0
-	db $18, $1 << 0
-	db $18, $1 << 1
-	db $18, $1 << 2
-	db $18, $1 << 3
-	db $18, $1 << 4
-	db $18, $1 << 5
-	db $18, $1 << 6
-	db $18, $1 << 7
-	db $19, $1 << 0
-	db $19, $1 << 1
-	db $19, $1 << 2
-	db $19, $1 << 3
-	db $19, $1 << 4
-	db $19, $1 << 5
-	db $19, $1 << 6
-	db $19, $1 << 7
-	db $1a, $1 << 0
-	db $1a, $1 << 1
-	db $1a, $1 << 2
-	db $1b, $1 << 0
-	db $1b, $1 << 1
-	db $1b, $1 << 2
-	db $1b, $1 << 3
-	db $1b, $1 << 4
-	db $1b, $1 << 5
-	db $1b, $1 << 6
-	db $1b, $1 << 7
-	db $1c, $1 << 0
-	db $1c, $1 << 1
-	db $1c, $1 << 2
-	db $1d, $1 << 0
-	db $1d, $1 << 1
-	db $1d, $1 << 2
-	db $1d, $1 << 3
-	db $1d, $1 << 4
-	db $1d, $1 << 5
-	db $1d, $1 << 6
-	db $1d, $1 << 7
-	db $1e, $1 << 0
-	db $1e, $1 << 1
-	db $1e, $1 << 2
-	db $1e, $1 << 3
-	db $1e, $1 << 4
-	db $1e, $1 << 5
-	db $1e, $1 << 6
-	db $1e, $1 << 7
-	db $1f, $1 << 0
-	db $1f, $1 << 1
-	db $1f, $1 << 2
-	db $1f, $1 << 3
-	db $1f, $1 << 4
-	db $1f, $1 << 5
-	db $20, $1 << 0
-	db $20, $1 << 1
-	db $21, $1 << 0
-	db $21, $1 << 1
-	db $21, $1 << 2
-	db $21, $1 << 3
-	db $21, $1 << 4
-	db $21, $1 << 5
-	db $21, $1 << 6
-	db $21, $1 << 7
-	db $22, $1 << 0
-	db $22, $1 << 1
-	db $22, $1 << 2
-	db $22, $1 << 3
-	db $23, $1 << 0
-	db $23, $1 << 1
-	db $23, $1 << 2
-	db $23, ($1 << 3) | ($1 << 4)
-	db $23, $1 << 3
-	db $23, $1 << 4
-	db $23, $1 << 5
-	db $24, ($1 << 0) | ($1 << 1)
-	db $24, $1 << 0
-	db $24, $1 << 1
-	db $24, $1 << 2
-	db $25, $1 << 0
-	db $25, $1 << 1
-	db $25, $1 << 2
-	db $25, $1 << 3
-	db $25, $1 << 4
-	db $25, $1 << 5
-	db $25, $1 << 6
-	db $26, $1 << 0
-	db $26, $1 << 1
-	db $26, $1 << 2
-	db $27, $1 << 0
-	db $27, $1 << 1
-	db $28, $1 << 0
-	db $28, $1 << 1
-	db $28, $1 << 2
-	db $28, $1 << 3
-	db $28, $1 << 4
-	db $28, $1 << 5
-	db $28, $1 << 6
-	db $28, $1 << 7
-	db $29, $1 << 0
-	db $29, $1 << 1
-	db $29, $1 << 2
-	db $29, $1 << 3
-	db $29, $1 << 4
-	db $2a, $1 << 0
-	db $2a, $1 << 1
-	db $2b, $1 << 0
-	db $2b, $1 << 1
-	db $2b, $1 << 2
-	db $33, $1 << 0
-	db $33, $1 << 1
-	db $33, $1 << 2
-	db $33, $1 << 3
-	db $33, $1 << 4
-	db $33, $1 << 5
+; location in wEventVars of each event var:
+; offset - which byte holds the event value
+; mask - which bits in the byte hold the value
+EventVarMasks:
+	db $00, %00000001 ; EVENT_PLAYER_GENDER
+	db $00, %00000010 ; EVENT_01
+	db $00, %00000100 ; EVENT_02
+	db $00, %00001000 ; EVENT_03
+	db $01, %00000001 ; EVENT_GOT_CHANSEY_COIN
+	db $01, %00000010 ; EVENT_05
+	db $01, %00000100 ; EVENT_06
+	db $01, %00001000 ; EVENT_07
+	db $01, %00010000 ; EVENT_08
+	db $01, %00100000 ; EVENT_09
+	db $01, %01000000 ; EVENT_0A
+	db $02, %00001111 ; EVENT_0B
+	db $02, %00000001 ; EVENT_0C
+	db $02, %00000010 ; EVENT_0D
+	db $02, %00000100 ; EVENT_0E
+	db $02, %00001000 ; EVENT_0F
+	db $02, %00010000 ; EVENT_10
+	db $02, %00100000 ; EVENT_11
+	db $02, %01000000 ; EVENT_12
+	db $02, %10000000 ; EVENT_13
+	db $03, %00000001 ; EVENT_14
+	db $03, %00000010 ; EVENT_15
+	db $03, %00000100 ; EVENT_16
+	db $03, %00001000 ; EVENT_17
+	db $03, %00010000 ; EVENT_18
+	db $03, %00100000 ; EVENT_19
+	db $03, %01000000 ; EVENT_1A
+	db $03, %10000000 ; EVENT_1B
+	db $04, %00000001 ; EVENT_1C
+	db $04, %00000010 ; EVENT_1D
+	db $04, %00000100 ; EVENT_1E
+	db $04, %00001000 ; EVENT_1F
+	db $05, %00000001 ; EVENT_20
+	db $05, %00000010 ; EVENT_21
+	db $05, %00000100 ; EVENT_22
+	db $05, %00001000 ; EVENT_23
+	db $06, %00000001 ; EVENT_24
+	db $06, %00000010 ; EVENT_25
+	db $06, %00000100 ; EVENT_26
+	db $06, %00001000 ; EVENT_27
+	db $07, %00000001 ; EVENT_28
+	db $07, %00000010 ; EVENT_29
+	db $07, %00000100 ; EVENT_2A
+	db $07, %00001000 ; EVENT_2B
+	db $07, %00010000 ; EVENT_2C
+	db $08, %00000001 ; EVENT_2D
+	db $08, %00000010 ; EVENT_2E
+	db $08, %00000100 ; EVENT_2F
+	db $08, %00001000 ; EVENT_30
+	db $09, %00000001 ; EVENT_31
+	db $09, %00000010 ; EVENT_32
+	db $09, %00000100 ; EVENT_33
+	db $09, %00001000 ; EVENT_34
+	db $09, %00010000 ; EVENT_35
+	db $09, %00100000 ; EVENT_36
+	db $0a, %00000001 ; EVENT_37
+	db $0a, %00000010 ; EVENT_38
+	db $0a, %00000100 ; EVENT_39
+	db $0a, %00001000 ; EVENT_3A
+	db $0a, %00010000 ; EVENT_3B
+	db $0b, %00000001 ; EVENT_3C
+	db $0b, %00000010 ; EVENT_3D
+	db $0b, %00000100 ; EVENT_3E
+	db $0b, %00001000 ; EVENT_3F
+	db $0c, %00000001 ; EVENT_40
+	db $0c, %00000010 ; EVENT_41
+	db $0c, %00000100 ; EVENT_42
+	db $0c, %00001000 ; EVENT_43
+	db $0c, %00100000 ; EVENT_44
+	db $0c, %01000000 ; EVENT_45
+	db $0d, %00000001 ; EVENT_46
+	db $0d, %00000010 ; EVENT_47
+	db $0d, %00000100 ; EVENT_48
+	db $0d, %00001000 ; EVENT_49
+	db $0d, %00010000 ; EVENT_4A
+	db $0d, %00100000 ; EVENT_4B
+	db $0d, %01000000 ; EVENT_4C
+	db $0d, %10000000 ; EVENT_4D
+	db $0e, %00000001 ; EVENT_4E
+	db $0e, %00000010 ; EVENT_4F
+	db $0e, %00000100 ; EVENT_50
+	db $0e, %00001000 ; EVENT_51
+	db $0e, %00010000 ; EVENT_52
+	db $0e, %00100000 ; EVENT_53
+	db $0e, %01000000 ; EVENT_54
+	db $0f, %00000001 ; EVENT_55
+	db $0f, %00000010 ; EVENT_56
+	db $0f, %00000100 ; EVENT_57
+	db $0f, %00001000 ; EVENT_58
+	db $0f, %00010000 ; EVENT_59
+	db $0f, %00100000 ; EVENT_5A
+	db $0f, %01000000 ; EVENT_5B
+	db $0f, %10000000 ; EVENT_5C
+	db $10, %00000001 ; EVENT_5D
+	db $10, %00000010 ; EVENT_5E
+	db $10, %00000100 ; EVENT_5F
+	db $10, %00001000 ; EVENT_60
+	db $10, %00010000 ; EVENT_61
+	db $10, %00100000 ; EVENT_62
+	db $10, %01000000 ; EVENT_63
+	db $10, %10000000 ; EVENT_64
+	db $11, %00000001 ; EVENT_65
+	db $11, %00000010 ; EVENT_66
+	db $11, %00000100 ; EVENT_67
+	db $11, %00001000 ; EVENT_68
+	db $11, %00010000 ; EVENT_69
+	db $11, %00100000 ; EVENT_6A
+	db $12, %00000001 ; EVENT_6B
+	db $12, %00000010 ; EVENT_6C
+	db $12, %00000100 ; EVENT_6D
+	db $12, %00001000 ; EVENT_6E
+	db $12, %00010000 ; EVENT_6F
+	db $12, %00100000 ; EVENT_70
+	db $12, %01000000 ; EVENT_71
+	db $12, %10000000 ; EVENT_72
+	db $13, %00000001 ; EVENT_73
+	db $13, %00000010 ; EVENT_74
+	db $14, %00000001 ; EVENT_75
+	db $14, %00000010 ; EVENT_76
+	db $14, %00000100 ; EVENT_77
+	db $14, %00001000 ; EVENT_78
+	db $14, %00010000 ; EVENT_79
+	db $14, %00100000 ; EVENT_7A
+	db $14, %00111000 ; EVENT_7B
+	db $14, %01000000 ; EVENT_7C
+	db $14, %10000000 ; EVENT_7D
+	db $15, %00000001 ; EVENT_7E
+	db $16, %00000001 ; EVENT_7F
+	db $16, %00000010 ; EVENT_80
+	db $16, %00000100 ; EVENT_81
+	db $16, %00001000 ; EVENT_82
+	db $16, %00010000 ; EVENT_83
+	db $17, %00000001 ; EVENT_84
+	db $18, %00000001 ; EVENT_85
+	db $18, %00000010 ; EVENT_86
+	db $18, %00000100 ; EVENT_87
+	db $18, %00001000 ; EVENT_88
+	db $18, %00010000 ; EVENT_89
+	db $18, %00100000 ; EVENT_8A
+	db $18, %01000000 ; EVENT_8B
+	db $18, %10000000 ; EVENT_8C
+	db $19, %00000001 ; EVENT_8D
+	db $19, %00000010 ; EVENT_8E
+	db $19, %00000100 ; EVENT_8F
+	db $19, %00001000 ; EVENT_90
+	db $19, %00010000 ; EVENT_91
+	db $19, %00100000 ; EVENT_92
+	db $19, %01000000 ; EVENT_93
+	db $19, %10000000 ; EVENT_94
+	db $1a, %00000001 ; EVENT_95
+	db $1a, %00000010 ; EVENT_96
+	db $1a, %00000100 ; EVENT_97
+	db $1b, %00000001 ; EVENT_98
+	db $1b, %00000010 ; EVENT_99
+	db $1b, %00000100 ; EVENT_9A
+	db $1b, %00001000 ; EVENT_9B
+	db $1b, %00010000 ; EVENT_9C
+	db $1b, %00100000 ; EVENT_9D
+	db $1b, %01000000 ; EVENT_9E
+	db $1b, %10000000 ; EVENT_9F
+	db $1c, %00000001 ; EVENT_A0
+	db $1c, %00000010 ; EVENT_A1
+	db $1c, %00000100 ; EVENT_A2
+	db $1d, %00000001 ; EVENT_A3
+	db $1d, %00000010 ; EVENT_A4
+	db $1d, %00000100 ; EVENT_A5
+	db $1d, %00001000 ; EVENT_A6
+	db $1d, %00010000 ; EVENT_A7
+	db $1d, %00100000 ; EVENT_A8
+	db $1d, %01000000 ; EVENT_A9
+	db $1d, %10000000 ; EVENT_AA
+	db $1e, %00000001 ; EVENT_AB
+	db $1e, %00000010 ; EVENT_AC
+	db $1e, %00000100 ; EVENT_AD
+	db $1e, %00001000 ; EVENT_AE
+	db $1e, %00010000 ; EVENT_AF
+	db $1e, %00100000 ; EVENT_B0
+	db $1e, %01000000 ; EVENT_B1
+	db $1e, %10000000 ; EVENT_B2
+	db $1f, %00000001 ; EVENT_B3
+	db $1f, %00000010 ; EVENT_B4
+	db $1f, %00000100 ; EVENT_B5
+	db $1f, %00001000 ; EVENT_B6
+	db $1f, %00010000 ; EVENT_B7
+	db $1f, %00100000 ; EVENT_B8
+	db $20, %00000001 ; EVENT_B9
+	db $20, %00000010 ; EVENT_BA
+	db $21, %00000001 ; EVENT_BB
+	db $21, %00000010 ; EVENT_BC
+	db $21, %00000100 ; EVENT_BD
+	db $21, %00001000 ; EVENT_BE
+	db $21, %00010000 ; EVENT_BF
+	db $21, %00100000 ; EVENT_C0
+	db $21, %01000000 ; EVENT_C1
+	db $21, %10000000 ; EVENT_C2
+	db $22, %00000001 ; EVENT_C3
+	db $22, %00000010 ; EVENT_C4
+	db $22, %00000100 ; EVENT_C5
+	db $22, %00001000 ; EVENT_C6
+	db $23, %00000001 ; EVENT_C7
+	db $23, %00000010 ; EVENT_C8
+	db $23, %00000100 ; EVENT_C9
+	db $23, %00011000 ; EVENT_CA
+	db $23, %00001000 ; EVENT_CB
+	db $23, %00010000 ; EVENT_CC
+	db $23, %00100000 ; EVENT_CD
+	db $24, %00000011 ; EVENT_CE
+	db $24, %00000001 ; EVENT_CF
+	db $24, %00000010 ; EVENT_D0
+	db $24, %00000100 ; EVENT_D1
+	db $25, %00000001 ; EVENT_D2
+	db $25, %00000010 ; EVENT_D3
+	db $25, %00000100 ; EVENT_D4
+	db $25, %00001000 ; EVENT_D5
+	db $25, %00010000 ; EVENT_D6
+	db $25, %00100000 ; EVENT_D7
+	db $25, %01000000 ; EVENT_D8
+	db $26, %00000001 ; EVENT_D9
+	db $26, %00000010 ; EVENT_DA
+	db $26, %00000100 ; EVENT_DB
+	db $27, %00000001 ; EVENT_DC
+	db $27, %00000010 ; EVENT_DD
+	db $28, %00000001 ; EVENT_DE
+	db $28, %00000010 ; EVENT_DF
+	db $28, %00000100 ; EVENT_E0
+	db $28, %00001000 ; EVENT_E1
+	db $28, %00010000 ; EVENT_E2
+	db $28, %00100000 ; EVENT_E3
+	db $28, %01000000 ; EVENT_E4
+	db $28, %10000000 ; EVENT_E5
+	db $29, %00000001 ; EVENT_E6
+	db $29, %00000010 ; EVENT_E7
+	db $29, %00000100 ; EVENT_E8
+	db $29, %00001000 ; EVENT_E9
+	db $29, %00010000 ; EVENT_EA
+	db $2a, %00000001 ; EVENT_EB
+	db $2a, %00000010 ; EVENT_EC
+	db $2b, %00000001 ; EVENT_ED
+	db $2b, %00000010 ; EVENT_EE
+	db $2b, %00000100 ; EVENT_EF
+	db $33, %00000001 ; EVENT_F0
+	db $33, %00000010 ; EVENT_F1
+	db $33, %00000100 ; EVENT_F2
+	db $33, %00001000 ; EVENT_F3
+	db $33, %00010000 ; EVENT_F4
+	db $33, %00100000 ; EVENT_F5
 
+; extra events?
 Data_d946:
-	db $00, $ff
-	db $01, $03
-	db $01, $3c
-	db $01, $c0
-	db $02, $0f
-	db $03, $03
-	db $03, $0c
-	db $03, $30
-	db $04, $0f
-	db $04, $30
-	db $04, $c0
-	db $05, $03
-	db $06, $03
-	db $06, $1c
-	db $06, $e0
-	db $07, $0f
-	db $08, $ff
-	db $09, $ff
-	db $0a, $ff
-	db $0b, $ff
-	db $0c, $ff
-	db $0d, $ff
-	db $0e, $ff
-	db $0f, $ff
-	db $10, $ff
-	db $11, $ff
-	db $12, $ff
-	db $13, $ff
-	db $14, $ff
-	db $15, $ff
-	db $16, $ff
-	db $17, $03
-	db $17, $3c
-	db $18, $07
-	db $18, $f0
-	db $19, $01
-	db $19, $f0
-	db $1a, $0f
-	db $1a, $f0
-	db $1b, $0f
-	db $1b, $70
-	db $1c, $1f
-	db $1d, $0f
-	db $1d, $30
-	db $1d, $c0
-	db $1e, $ff
-	db $1f, $ff
-	db $20, $ff
-	db $21, $07
-	db $21, $f8
-	db $22, $0f
-	db $22, $30
-	db $23, $07
-	db $24, $ff
-	db $25, $ff
-	db $26, $ff
-	db $27, $ff
-	db $28, $ff
-	db $29, $07
-	db $2a, $ff
-	db $2b, $ff
-	db $2c, $ff
-	db $33, $ff
+	db $00, %11111111 ; $00
+	db $01, %00000011 ; $01
+	db $01, %00111100 ; $02
+	db $01, %11000000 ; $03
+	db $02, %00001111 ; $04
+	db $03, %00000011 ; $05
+	db $03, %00001100 ; $06
+	db $03, %00110000 ; $07
+	db $04, %00001111 ; $08
+	db $04, %00110000 ; $09
+	db $04, %11000000 ; $0a
+	db $05, %00000011 ; $0b
+	db $06, %00000011 ; $0c
+	db $06, %00011100 ; $0d
+	db $06, %11100000 ; $0e
+	db $07, %00001111 ; $0f
+	db $08, %11111111 ; $10
+	db $09, %11111111 ; $11
+	db $0a, %11111111 ; $12
+	db $0b, %11111111 ; $13
+	db $0c, %11111111 ; $14
+	db $0d, %11111111 ; $15
+	db $0e, %11111111 ; $16
+	db $0f, %11111111 ; $17
+	db $10, %11111111 ; $18
+	db $11, %11111111 ; $19
+	db $12, %11111111 ; $1a
+	db $13, %11111111 ; $1b
+	db $14, %11111111 ; $1c
+	db $15, %11111111 ; $1d
+	db $16, %11111111 ; $1e
+	db $17, %00000011 ; $1f
+	db $17, %00111100 ; $20
+	db $18, %00000111 ; $21
+	db $18, %11110000 ; $22
+	db $19, %00000001 ; $23
+	db $19, %11110000 ; $24
+	db $1a, %00001111 ; $25
+	db $1a, %11110000 ; $26
+	db $1b, %00001111 ; $27
+	db $1b, %01110000 ; $28
+	db $1c, %00011111 ; $29
+	db $1d, %00001111 ; $2a
+	db $1d, %00110000 ; $2b
+	db $1d, %11000000 ; $2c
+	db $1e, %11111111 ; $2d
+	db $1f, %11111111 ; $2e
+	db $20, %11111111 ; $2f
+	db $21, %00000111 ; $30
+	db $21, %11111000 ; $31
+	db $22, %00001111 ; $32
+	db $22, %00110000 ; $33
+	db $23, %00000111 ; $34
+	db $24, %11111111 ; $35
+	db $25, %11111111 ; $36
+	db $26, %11111111 ; $37
+	db $27, %11111111 ; $38
+	db $28, %11111111 ; $39
+	db $29, %00000111 ; $3a
+	db $2a, %11111111 ; $3b
+	db $2b, %11111111 ; $3c
+	db $2c, %11111111 ; $3d
+	db $33, %11111111 ; $3e
 
-SECTION "Bank 3@5bdb", ROMX
+SECTION "Bank 3@5bdb", ROMX[$5bdb], BANK[$3]
 
 Func_dbdb::
 	xor a
@@ -1590,8 +2040,9 @@ Func_dbf2::
 	dw $6871
 	dw $687d
 
-SECTION "Bank 3@6883", ROMX
+SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
 
+; returns carry if no save data
 Func_e883:
 	ldh a, [hBankSRAM]
 	push af
@@ -1605,11 +2056,12 @@ Func_e883:
 	call DisableSRAM
 	ld a, b
 	bit 0, a
-	jr z, .asm_e8a1
+	jr z, .set_carry
+; no carry
 	scf
 	ccf
 	ret
-.asm_e8a1
+.set_carry
 	scf
 	ret
 
@@ -1752,7 +2204,7 @@ Func_e97a:
 	ld [hl], a
 	ld [$b800], a
 	call DisableSRAM
-	farcall $9, $40d8
+	farcall ClearSavedDuel
 	call DisableSRAM
 	ret
 
@@ -1762,7 +2214,7 @@ Func_e9a7:
 	xor a
 	ld [hl], a
 	call DisableSRAM
-	farcall $9, $40d8
+	farcall ClearSavedDuel
 	ret
 
 Func_e9b7:
@@ -1838,7 +2290,7 @@ Func_ea19:
 Func_ea30::
 	ld a, $0c
 	call Func_3154
-	farcall $4, $4f32
+	farcall Func_10f32
 	xor a
 	ld [wd668], a
 .asm_ea3d
@@ -1877,21 +2329,22 @@ Func_ea30::
 	call DisableSRAM
 	ld a, b
 	cp d
-	jr nz, .asm_eaa5
+	jr nz, .error
 	ld a, c
 	cp e
-	jr nz, .asm_eaa5
+	jr nz, .error
 	ld a, $01
 	call Func_e9d6
 	ld a, $0d
 	call Func_3154
 	ret
-.asm_eaa5
+
+.error
 	debug_nop
 	jr .asm_ea3d
 
 Func_eaa8:
-	farcall $4, $4f32
+	farcall Func_10f32
 	xor a
 	ld [wd668], a
 	ld a, $ec
@@ -1921,7 +2374,7 @@ Func_eaea:
 	call Func_eaf6
 	xor a
 	call Func_e9d6
-	farcall $4, $4f78
+	farcall Func_10f78
 	ret
 
 Func_eaf6:
@@ -1952,7 +2405,7 @@ Func_eb16:
 	ld [wd672], a
 	call Func_ea19
 	call Func_ed0b
-	farcall $4, $4f78
+	farcall Func_10f78
 	ret
 
 Func_eb39:
@@ -2002,7 +2455,7 @@ Func_eb39:
 .data
 	db $04, $13, $79, $15, $0f, $6b, $0f, $34, $0f, $2f, $0f, $00, $00, $00, $00, $00, $4e, $0f, $39, $0f, $38, $0f, $5f, $0f, $21, $0f, $00, $00, $00, $00, $00, $00
 
-SECTION "Bank 3@6b97", ROMX
+SECTION "Bank 3@6b97", ROMX[$6b97], BANK[$3]
 
 Func_eb97:
 	call Func_ebc6

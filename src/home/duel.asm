@@ -903,10 +903,10 @@ Func_12fc:
 	push de
 	ld a, l
 	call GetCardIDFromDeckIndex
-	call $2d2c ; Func_2d2c
-	cp $08
+	call GetCardType
+	cp TYPE_ENERGY
 	jr c, .asm_1321
-	cp $0f
+	cp TYPE_TRAINER - 1
 	jr c, .asm_1327
 .asm_1321
 	ld a, l
@@ -2210,7 +2210,7 @@ CopyOpponentName:
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	jp $2c77 ; CopyText
+	jp CopyText
 .special_name
 	ld hl, wNameBuffer
 	ld a, [hl]
@@ -2219,4 +2219,4 @@ CopyOpponentName:
 	jr CopyPlayerName.loop
 .print_player2
 	ld hl, $0097 ; Player2Text
-	jp $2c77 ; CopyText
+	jp CopyText

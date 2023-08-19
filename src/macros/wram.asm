@@ -47,22 +47,6 @@ MACRO text_header
 \1RomBank::     ds 1
 ENDM
 
-MACRO sprite_anim_struct
-\1Enabled::             ds 1
-\1Attributes::          ds 1
-\1CoordX::              ds 1
-\1CoordY::              ds 1
-\1TileID::              ds 1
-\1ID::                  ds 1
-\1Bank::                ds 1
-\1Pointer::             ds 2
-\1FrameOffsetPointer::  ds 2
-\1FrameBank::           ds 1
-\1FrameDataPointer::    ds 2
-\1Counter::             ds 1
-\1Flags::               ds 1
-ENDM
-
 MACRO loaded_npc_struct
 \1ID::         ds 1
 \1Sprite::     ds 1
@@ -97,20 +81,36 @@ ENDM
 
 MACRO deck_struct
 \1Name::  ds DECK_NAME_SIZE
-\1Cards:: ds ((DECK_SIZE + 7) / 8 + 1) * 8
+\1Cards:: ds DECK_COMPRESSED_SIZE
 ENDM
 
-MACRO scene_unk_struct
+MACRO sprite_anim_struct
 \1Unk0:: ds 1
 \1Unk1:: ds 1
 \1Unk2:: ds 1
-\1Unk3:: ds 2
-\1Unk5:: ds 1
-\1Unk6:: ds 2
-\1Unk8:: ds 1
-\1Unk9:: ds 1
-\1UnkA:: ds 2
-\1UnkC:: ds 1
-\1UnkD:: ds 1
+\1XPos:: ds 1
+\1YPos:: ds 1
+\1FrameIndex:: ds 1
+\1FramesetID:: ds 2
+\1FrameDuration:: ds 1
+\1TileOffset:: ds 1
+\1AnimID:: ds 2
+\1MoveDuration:: ds 1
+\1StartDelay:: ds 1
 \1UnkE:: ds 2
+ENDM
+
+MACRO obj_tile_struct
+\1ID::         ds 2 ; TILESET_* constant
+\1TileOffset:: ds 1 ; tile offset
+	ds 1 ; padding
+ENDM
+
+MACRO ow_obj_struct
+\1Flags::   ds 1
+\1ID::      ds 1
+\1AnimPtr:: ds 2
+\1Unk4::    ds 1
+\1Unk5::    ds 1
+\1Unk6::    ds 2
 ENDM
