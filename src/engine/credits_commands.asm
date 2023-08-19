@@ -163,7 +163,7 @@ CreditsCmd_ShowCompanies:
 	ret
 
 .BGGraphics:
-	dw TILESET_1D0, PALETTE_16A, TILEMAP_224
+	dw TILESET_COMPANIES, PALETTE_16A, TILEMAP_224
 
 CreditsCmd_ShowTitle:
 	lb de, 0, 1

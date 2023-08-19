@@ -14,7 +14,7 @@ INCBIN "gfx/fonts/full_width/2_kanji3.1bpp"
 INCBIN "gfx/fonts/full_width/3_kanji4.1bpp"
 INCBIN "gfx/fonts/full_width/4.1bpp"
 
-INCBIN "gfx/fonts/extra.1bpp"
+INCBIN "gfx/fonts/full_width/extra.1bpp"
 
 HalfWidthFont::
 INCBIN "gfx/fonts/half_width.1bpp"
@@ -95,83 +95,83 @@ INCLUDE "data/maps/tilemaps6.asm"
 
 SECTION "Tilesets 1", ROMX
 
-Tileset000::
+TCGIslandTilesetGfx::
 	dw 179 ; length
-	INCBIN "gfx/tilesets/tileset000.2bpp"
+	INCBIN "gfx/overworld_map/tcg_island.2bpp"
 
-Tileset001::
+TCGIslandOAMGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset001.2bpp"
+	INCBIN "gfx/overworld_map/tcg_oam.2bpp"
 
-Tileset003::
+GRIslandOAMGfx::
 	dw 27 ; length
-	INCBIN "gfx/tilesets/tileset003.2bpp"
+	INCBIN "gfx/overworld_map/gr_oam.2bpp"
 
-Tileset02B::
+IshiharaVilla2Tileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset02B.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa2.2bpp"
 
-Tileset07B::
+OWCoinsFortGfx::
 	dw 4 ; length
-	INCBIN "gfx/tilesets/tileset07B.2bpp"
+	INCBIN "gfx/overworld_sprites/coins_fort.2bpp"
 
-Tileset07C::
+OWCoinsCastleGfx::
 	dw 2 ; length
-	INCBIN "gfx/tilesets/tileset07C.2bpp"
+	INCBIN "gfx/overworld_sprites/coins_castle.2bpp"
 
-Tileset15A::
+DuelSnowGfx::
 	dw 1 ; length
-	INCBIN "gfx/tilesets/tileset15A.2bpp"
+	INCBIN "gfx/duel/anims/snow.2bpp"
 
 SECTION "Tilesets 2", ROMX
 
-Tileset002::
+GRIslandTilesetGfx::
 	dw 214 ; length
-	INCBIN "gfx/tilesets/tileset002.2bpp"
+	INCBIN "gfx/overworld_map/gr_island.2bpp"
 
-Tileset004::
+MasonLabMainTileset::
 	dw 148 ; length
-	INCBIN "gfx/tilesets/tileset004.2bpp"
+	INCBIN "gfx/tilesets/mason_lab_main.2bpp"
 
-Tileset005::
+MasonLabSide1Tileset::
 	dw 134 ; length
-	INCBIN "gfx/tilesets/tileset005.2bpp"
+	INCBIN "gfx/tilesets/mason_lab_side1.2bpp"
 
-Tileset006::
+MasonLabSide2Tileset::
 	dw 97 ; length
-	INCBIN "gfx/tilesets/tileset006.2bpp"
+	INCBIN "gfx/tilesets/mason_lab_side2.2bpp"
 
-Tileset007::
+IshiharaHouseTileset::
 	dw 66 ; length
-	INCBIN "gfx/tilesets/tileset007.2bpp"
+	INCBIN "gfx/tilesets/ishihara_house.2bpp"
 
-Tileset008::
+LightningClubEntranceTileset::
 	dw 82 ; length
-	INCBIN "gfx/tilesets/tileset008.2bpp"
+	INCBIN "gfx/tilesets/lightning_club_entrance.2bpp"
 
-Tileset009::
+LightningClubLobbyTileset::
 	dw 138 ; length
-	INCBIN "gfx/tilesets/tileset009.2bpp"
+	INCBIN "gfx/tilesets/lightning_club_lobby.2bpp"
 
-Tileset00B::
+PsychicClubEntranceTileset::
 	dw 78 ; length
-	INCBIN "gfx/tilesets/tileset00B.2bpp"
+	INCBIN "gfx/tilesets/psychic_club_entrance.2bpp"
 
-Tileset03A::
+GrassFortEntranceTileset::
 	dw 46 ; length
-	INCBIN "gfx/tilesets/tileset03A.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_entrance.2bpp"
 
-Tileset077::
+OWChestGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset077.2bpp"
+	INCBIN "gfx/overworld_sprites/chest.2bpp"
 
-Tileset142::
+OWCapturedAmyGfx::
 	dw 3 ; length
-	INCBIN "gfx/overworld_sprites/tileset142.2bpp"
+	INCBIN "gfx/overworld_sprites/amy_captured.2bpp"
 
-Tileset143::
+OWCapturedSaraGfx::
 	dw 4 ; length
-	INCBIN "gfx/overworld_sprites/tileset143.2bpp"
+	INCBIN "gfx/overworld_sprites/sara_captured.2bpp"
 
 Frameset085::
 	oamframe  0,  1,   0,   0
@@ -179,45 +179,45 @@ Frameset085::
 
 SECTION "Tilesets 3", ROMX
 
-Tileset00A::
+LightningClubTileset::
 	dw 214 ; length
-	INCBIN "gfx/tilesets/tileset00A.2bpp"
+	INCBIN "gfx/tilesets/lightning_club.2bpp"
 
-Tileset00C::
+PsychicClubLobbyTileset::
 	dw 129 ; length
-	INCBIN "gfx/tilesets/tileset00C.2bpp"
+	INCBIN "gfx/tilesets/psychic_club_lobby.2bpp"
 
-Tileset00D::
+PsychicClubTileset::
 	dw 193 ; length
-	INCBIN "gfx/tilesets/tileset00D.2bpp"
+	INCBIN "gfx/tilesets/psychic_club.2bpp"
 
-Tileset00E::
+RockClubEntranceTileset::
 	dw 100 ; length
-	INCBIN "gfx/tilesets/tileset00E.2bpp"
+	INCBIN "gfx/tilesets/rock_club_entrance.2bpp"
 
-Tileset00F::
+RockClubLobbyTileset::
 	dw 155 ; length
-	INCBIN "gfx/tilesets/tileset00F.2bpp"
+	INCBIN "gfx/tilesets/rock_club_lobby.2bpp"
 
-Tileset010::
+RockClubTileset::
 	dw 133 ; length
-	INCBIN "gfx/tilesets/tileset010.2bpp"
+	INCBIN "gfx/tilesets/rock_club.2bpp"
 
-Tileset011::
+FightingClubEntranceTileset::
 	dw 73 ; length
-	INCBIN "gfx/tilesets/tileset011.2bpp"
+	INCBIN "gfx/tilesets/fighting_club_entrance.2bpp"
 
-Tileset078::
+OWPodDoorsGfx::
 	dw 16 ; length
-	INCBIN "gfx/tilesets/tileset078.2bpp"
+	INCBIN "gfx/overworld_sprites/pod_doors.2bpp"
 
-Tileset07A::
+OWPlatformGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset07A.2bpp"
+	INCBIN "gfx/overworld_sprites/platform.2bpp"
 
-Tileset16B::
+DuelPowderGfx::
 	dw 1 ; length
-	INCBIN "gfx/tilesets/tileset16B.2bpp"
+	INCBIN "gfx/duel/anims/powder.2bpp"
 
 Palette0D8::
 	db 1 ; number of palettes
@@ -229,45 +229,45 @@ Palette0D8::
 
 SECTION "Tilesets 4", ROMX
 
-Tileset012::
+FightingClubLobbyTileset::
 	dw 146 ; length
-	INCBIN "gfx/tilesets/tileset012.2bpp"
+	INCBIN "gfx/tilesets/fighting_club_lobby.2bpp"
 
-Tileset013::
+FightingClubTileset::
 	dw 119 ; length
-	INCBIN "gfx/tilesets/tileset013.2bpp"
+	INCBIN "gfx/tilesets/fighting_club.2bpp"
 
-Tileset014::
+GrassClubEntranceTileset::
 	dw 78 ; length
-	INCBIN "gfx/tilesets/tileset014.2bpp"
+	INCBIN "gfx/tilesets/grass_club_entrance.2bpp"
 
-Tileset015::
+GrassClubLobbyTileset::
 	dw 137 ; length
-	INCBIN "gfx/tilesets/tileset015.2bpp"
+	INCBIN "gfx/tilesets/grass_club_lobby.2bpp"
 
-Tileset016::
+GrassClubTileset::
 	dw 163 ; length
-	INCBIN "gfx/tilesets/tileset016.2bpp"
+	INCBIN "gfx/tilesets/grass_club.2bpp"
 
-Tileset017::
+ScienceClubEntranceTileset::
 	dw 91 ; length
-	INCBIN "gfx/tilesets/tileset017.2bpp"
+	INCBIN "gfx/tilesets/science_club_entrance.2bpp"
 
-Tileset018::
+ScienceClubLobbyTileset::
 	dw 137 ; length
-	INCBIN "gfx/tilesets/tileset018.2bpp"
+	INCBIN "gfx/tilesets/science_club_lobby.2bpp"
 
-Tileset01A::
+WaterClubEntranceTileset::
 	dw 106 ; length
-	INCBIN "gfx/tilesets/tileset01A.2bpp"
+	INCBIN "gfx/tilesets/water_club_entrance.2bpp"
 
-Tileset04B::
+WaterFortEntranceTileset::
 	dw 44 ; length
-	INCBIN "gfx/tilesets/tileset04B.2bpp"
+	INCBIN "gfx/tilesets/water_fort_entrance.2bpp"
 
-Tileset175::
+DuelPetalDanceGfx::
 	dw 1 ; length
-	INCBIN "gfx/tilesets/tileset175.2bpp"
+	INCBIN "gfx/duel/anims/petal.2bpp"
 
 Palette0D9::
 	db 1 ; number of palettes
@@ -279,41 +279,41 @@ Palette0D9::
 
 SECTION "Tilesets 5", ROMX
 
-Tileset019::
+ScienceClubTileset::
 	dw 169 ; length
-	INCBIN "gfx/tilesets/tileset019.2bpp"
+	INCBIN "gfx/tilesets/science_club.2bpp"
 
-Tileset01B::
+WaterClubLobbyTileset::
 	dw 137 ; length
-	INCBIN "gfx/tilesets/tileset01B.2bpp"
+	INCBIN "gfx/tilesets/water_club_lobby.2bpp"
 
-Tileset01C::
+WaterClubTileset::
 	dw 171 ; length
-	INCBIN "gfx/tilesets/tileset01C.2bpp"
+	INCBIN "gfx/tilesets/water_club.2bpp"
 
-Tileset01D::
+FireClubEntranceTileset::
 	dw 98 ; length
-	INCBIN "gfx/tilesets/tileset01D.2bpp"
+	INCBIN "gfx/tilesets/fire_club_entrance.2bpp"
 
-Tileset01E::
+FireClubLobbyTileset::
 	dw 143 ; length
-	INCBIN "gfx/tilesets/tileset01E.2bpp"
+	INCBIN "gfx/tilesets/fire_club_lobby.2bpp"
 
-Tileset01F::
+FireClubTileset::
 	dw 222 ; length
-	INCBIN "gfx/tilesets/tileset01F.2bpp"
+	INCBIN "gfx/tilesets/fire_club.2bpp"
 
-Tileset025::
+PokemonDomeEntranceTileset::
 	dw 67 ; length
-	INCBIN "gfx/tilesets/tileset025.2bpp"
+	INCBIN "gfx/tilesets/pokemon_dome_entrance.2bpp"
 
-Tileset079::
+OWFireGfx::
 	dw 13 ; length
-	INCBIN "gfx/tilesets/tileset079.2bpp"
+	INCBIN "gfx/overworld_sprites/fire.2bpp"
 
-Tileset14B::
+DuelConfusionStarGfx::
 	dw 2 ; length
-	INCBIN "gfx/tilesets/tileset14B.2bpp"
+	INCBIN "gfx/duel/anims/confusion_star.2bpp"
 
 Palette0DE::
 	db 1 ; number of palettes
@@ -325,49 +325,49 @@ Palette0DE::
 
 SECTION "Tilesets 6", ROMX
 
-Tileset020::
+TCGAirportEntranceTileset::
 	dw 87 ; length
-	INCBIN "gfx/tilesets/tileset020.2bpp"
+	INCBIN "gfx/tilesets/tcg_airport_entrance.2bpp"
 
-Tileset021::
+TCGAirportTileset::
 	dw 208 ; length
-	INCBIN "gfx/tilesets/tileset021.2bpp"
+	INCBIN "gfx/tilesets/tcg_airport.2bpp"
 
-Tileset022::
+TCGChallengeHallEntranceTileset::
 	dw 91 ; length
-	INCBIN "gfx/tilesets/tileset022.2bpp"
+	INCBIN "gfx/tilesets/tcg_challenge_hall_entrance.2bpp"
 
-Tileset023::
+TCGChallengeHallLobbyTileset::
 	dw 146 ; length
-	INCBIN "gfx/tilesets/tileset023.2bpp"
+	INCBIN "gfx/tilesets/tcg_challenge_hall_lobby.2bpp"
 
-Tileset024::
+TCGChallengeHallTileset::
 	dw 177 ; length
-	INCBIN "gfx/tilesets/tileset024.2bpp"
+	INCBIN "gfx/tilesets/tcg_challenge_hall.2bpp"
 
-Tileset026::
+PokemonDomeTileset::
 	dw 99 ; length
-	INCBIN "gfx/tilesets/tileset026.2bpp"
+	INCBIN "gfx/tilesets/pokemon_dome.2bpp"
 
-Tileset027::
+OverheadIslandsGfx::
 	dw 70 ; length
-	INCBIN "gfx/tilesets/tileset027.2bpp"
+	INCBIN "gfx/overworld_map/overhead_islands.2bpp"
 
-Tileset028::
+GRAirportEntranceTileset::
 	dw 87 ; length
-	INCBIN "gfx/tilesets/tileset028.2bpp"
+	INCBIN "gfx/tilesets/gr_airport_entrance.2bpp"
 
-Tileset045::
+FireFortEntranceTileset::
 	dw 50 ; length
-	INCBIN "gfx/tilesets/tileset045.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_entrance.2bpp"
 
-Tileset144::
+OWCapturedAmandaGfx::
 	dw 4 ; length
-	INCBIN "gfx/overworld_sprites/tileset144.2bpp"
+	INCBIN "gfx/overworld_sprites/amanda_captured.2bpp"
 
-Tileset151::
+DuelSparkGfx::
 	dw 3 ; length
-	INCBIN "gfx/tilesets/tileset151.2bpp"
+	INCBIN "gfx/duel/anims/spark.2bpp"
 
 Palette0E4::
 	db 1 ; number of palettes
@@ -379,53 +379,53 @@ Palette0E4::
 
 SECTION "Tilesets 7", ROMX
 
-Tileset029::
+GRAirportTileset::
 	dw 208 ; length
-	INCBIN "gfx/tilesets/tileset029.2bpp"
+	INCBIN "gfx/tilesets/gr_airport.2bpp"
 
-Tileset02A::
+IshiharaVilla1Tileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset02A.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa1.2bpp"
 
-Tileset02C::
+GameCenterEntranceTileset::
 	dw 74 ; length
-	INCBIN "gfx/tilesets/tileset02C.2bpp"
+	INCBIN "gfx/tilesets/game_center_entrance.2bpp"
 
-Tileset02D::
+GameCenterLobbyTileset::
 	dw 92 ; length
-	INCBIN "gfx/tilesets/tileset02D.2bpp"
+	INCBIN "gfx/tilesets/game_center_lobby.2bpp"
 
-Tileset02E::
+GameCenter1Tileset::
 	dw 175 ; length
-	INCBIN "gfx/tilesets/tileset02E.2bpp"
+	INCBIN "gfx/tilesets/game_center1.2bpp"
 
-Tileset02F::
+GameCenter2Tileset::
 	dw 135 ; length
-	INCBIN "gfx/tilesets/tileset02F.2bpp"
+	INCBIN "gfx/tilesets/game_center2.2bpp"
 
-Tileset030::
+CardDungeonPawnTileset::
 	dw 70 ; length
-	INCBIN "gfx/tilesets/tileset030.2bpp"
+	INCBIN "gfx/tilesets/card_dungeon_pawn.2bpp"
 
-Tileset031::
+CardDungeonKnightTileset::
 	dw 79 ; length
-	INCBIN "gfx/tilesets/tileset031.2bpp"
+	INCBIN "gfx/tilesets/card_dungeon_knight.2bpp"
 
-Tileset032::
+CardDungeonBishopTileset::
 	dw 78 ; length
-	INCBIN "gfx/tilesets/tileset032.2bpp"
+	INCBIN "gfx/tilesets/card_dungeon_bishop.2bpp"
 
-Tileset054::
+FightingFortMaze2Tileset::
 	dw 34 ; length
-	INCBIN "gfx/tilesets/tileset054.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze2.2bpp"
 
-Tileset14C::
+DuelPoisonGfx::
 	dw 4 ; length
-	INCBIN "gfx/tilesets/tileset14C.2bpp"
+	INCBIN "gfx/duel/anims/poison.2bpp"
 
-Tileset1E9::
+SmallEnvelopeGfx::
 	dw 1 ; length
-	INCBIN "gfx/tilesets/tileset1E9.2bpp"
+	INCBIN "gfx/minicom/envelope.2bpp"
 
 Frameset086::
 	oamframe  4,  1,   0,   0
@@ -433,53 +433,53 @@ Frameset086::
 
 SECTION "Tilesets 8", ROMX
 
-Tileset033::
+CardDungeonRookTileset::
 	dw 76 ; length
-	INCBIN "gfx/tilesets/tileset033.2bpp"
+	INCBIN "gfx/tilesets/card_dungeon_rook.2bpp"
 
-Tileset034::
+CardDungeonQueenTileset::
 	dw 112 ; length
-	INCBIN "gfx/tilesets/tileset034.2bpp"
+	INCBIN "gfx/tilesets/card_dungeon_queen.2bpp"
 
-Tileset035::
+SealedFortEntranceTileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset035.2bpp"
+	INCBIN "gfx/tilesets/sealed_fort_entrance.2bpp"
 
-Tileset036::
+SealedFortTileset::
 	dw 159 ; length
-	INCBIN "gfx/tilesets/tileset036.2bpp"
+	INCBIN "gfx/tilesets/sealed_fort.2bpp"
 
-Tileset037::
+GRChallengeHallEntranceTileset::
 	dw 84 ; length
-	INCBIN "gfx/tilesets/tileset037.2bpp"
+	INCBIN "gfx/tilesets/gr_challenge_hall_entrance.2bpp"
 
-Tileset038::
+GRChallengeHallLobbyTileset::
 	dw 163 ; length
-	INCBIN "gfx/tilesets/tileset038.2bpp"
+	INCBIN "gfx/tilesets/gr_challenge_hall_lobby.2bpp"
 
-Tileset039::
+GRChallengeHall1Tileset::
 	dw 182 ; length
-	INCBIN "gfx/tilesets/tileset039.2bpp"
+	INCBIN "gfx/tilesets/gr_challenge_hall1.2bpp"
 
-Tileset03B::
+GrassFortLobbyTileset::
 	dw 85 ; length
-	INCBIN "gfx/tilesets/tileset03B.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_lobby.2bpp"
 
-Tileset03E::
+GrassFortMiyukiTileset::
 	dw 58 ; length
-	INCBIN "gfx/tilesets/tileset03E.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_miyuki.2bpp"
 
-Tileset0DD::
+OWMarkGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0DD.2bpp"
+	INCBIN "gfx/overworld_sprites/mark.2bpp"
 
-Tileset140::
+OWClerkGfx::
 	dw 8 ; length
-	INCBIN "gfx/overworld_sprites/tileset140.2bpp"
+	INCBIN "gfx/overworld_sprites/clerk.2bpp"
 
-Tileset156::
+DuelWaterDrop::
 	dw 3 ; length
-	INCBIN "gfx/tilesets/tileset156.2bpp"
+	INCBIN "gfx/duel/anims/water_drop.2bpp"
 
 Frameset0BE::
 	oamframe  0, 16,   0,   0
@@ -487,53 +487,53 @@ Frameset0BE::
 
 SECTION "Tilesets 9", ROMX
 
-Tileset03C::
+GrassFortMidoriTileset::
 	dw 140 ; length
-	INCBIN "gfx/tilesets/tileset03C.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_midori.2bpp"
 
-Tileset03D::
+GrassFortYuutaTileset::
 	dw 90 ; length
-	INCBIN "gfx/tilesets/tileset03D.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_yuuta.2bpp"
 
-Tileset03F::
+GrassFortMorinoTileset::
 	dw 102 ; length
-	INCBIN "gfx/tilesets/tileset03F.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_morino.2bpp"
 
-Tileset040::
+LightningFortEntranceTileset::
 	dw 61 ; length
-	INCBIN "gfx/tilesets/tileset040.2bpp"
+	INCBIN "gfx/tilesets/lightning_fort_entrance.2bpp"
 
-Tileset041::
+LightningFortLobbyTileset::
 	dw 105 ; length
-	INCBIN "gfx/tilesets/tileset041.2bpp"
+	INCBIN "gfx/tilesets/lightning_fort_lobby.2bpp"
 
-Tileset042::
+LightningFortRennaTileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset042.2bpp"
+	INCBIN "gfx/tilesets/lightning_fort_renna.2bpp"
 
-Tileset043::
+LightningFortIchikawaTileset::
 	dw 168 ; length
-	INCBIN "gfx/tilesets/tileset043.2bpp"
+	INCBIN "gfx/tilesets/lightning_fort_ichikawa.2bpp"
 
-Tileset044::
+LightningFortCatherineTileset::
 	dw 184 ; length
-	INCBIN "gfx/tilesets/tileset044.2bpp"
+	INCBIN "gfx/tilesets/lightning_fort_catherine.2bpp"
 
-Tileset046::
+FireFortLobbyTileset::
 	dw 84 ; length
-	INCBIN "gfx/tilesets/tileset046.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_lobby.2bpp"
 
-Tileset141::
+OWGRClerkGfx::
 	dw 8 ; length
-	INCBIN "gfx/overworld_sprites/tileset141.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_clerk.2bpp"
 
-Tileset149::
+DuelParalysisGfx::
 	dw 6 ; length
-	INCBIN "gfx/tilesets/tileset149.2bpp"
+	INCBIN "gfx/duel/anims/paralysis.2bpp"
 
-Tileset17D::
+DuelHealMovesGfx::
 	dw 2 ; length
-	INCBIN "gfx/tilesets/tileset17D.2bpp"
+	INCBIN "gfx/duel/anims/heal.2bpp"
 
 Frameset103::
 	oamframe  0,  1,   0,   0
@@ -541,53 +541,53 @@ Frameset103::
 
 SECTION "Tilesets 10", ROMX
 
-Tileset047::
+FireFortJesTileset::
 	dw 66 ; length
-	INCBIN "gfx/tilesets/tileset047.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_jes.2bpp"
 
-Tileset048::
+FireFortYukiTileset::
 	dw 80 ; length
-	INCBIN "gfx/tilesets/tileset048.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_yuki.2bpp"
 
-Tileset049::
+FireFortShokoTileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset049.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_shoko.2bpp"
 
-Tileset04A::
+FireFortHideroTileset::
 	dw 155 ; length
-	INCBIN "gfx/tilesets/tileset04A.2bpp"
+	INCBIN "gfx/tilesets/fire_fort_hidero.2bpp"
 
-Tileset04C::
+WaterFortLobbyTileset::
 	dw 93 ; length
-	INCBIN "gfx/tilesets/tileset04C.2bpp"
+	INCBIN "gfx/tilesets/water_fort_lobby.2bpp"
 
-Tileset04D::
+WaterFortMiyajimaTileset::
 	dw 59 ; length
-	INCBIN "gfx/tilesets/tileset04D.2bpp"
+	INCBIN "gfx/tilesets/water_fort_miyajima.2bpp"
 
-Tileset04E::
+WaterFortSentaTileset::
 	dw 113 ; length
-	INCBIN "gfx/tilesets/tileset04E.2bpp"
+	INCBIN "gfx/tilesets/water_fort_senta.2bpp"
 
-Tileset04F::
+WaterFortAiraTileset::
 	dw 79 ; length
-	INCBIN "gfx/tilesets/tileset04F.2bpp"
+	INCBIN "gfx/tilesets/water_fort_aira.2bpp"
 
-Tileset050::
+WaterFortKanokoTileset::
 	dw 116 ; length
-	INCBIN "gfx/tilesets/tileset050.2bpp"
+	INCBIN "gfx/tilesets/water_fort_kanoko.2bpp"
 
-Tileset051::
+FightingFortEntranceTileset::
 	dw 76 ; length
-	INCBIN "gfx/tilesets/tileset051.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_entrance.2bpp"
 
-Tileset053::
+FightingFortMaze1Tileset::
 	dw 57 ; length
-	INCBIN "gfx/tilesets/tileset053.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze1.2bpp"
 
-Tileset056::
+FightingFortMaze4Tileset::
 	dw 56 ; length
-	INCBIN "gfx/tilesets/tileset056.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze4.2bpp"
 
 Frameset104::
 	oamframe  1,  1,   0,   0
@@ -595,45 +595,45 @@ Frameset104::
 
 SECTION "Tilesets 11", ROMX
 
-Tileset052::
+FightingFortTileset::
 	dw 118 ; length
-	INCBIN "gfx/tilesets/tileset052.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort.2bpp"
 
-Tileset055::
+FightingFortMaze3Tileset::
 	dw 57 ; length
-	INCBIN "gfx/tilesets/tileset055.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze3.2bpp"
 
-Tileset057::
+FightingFortMaze5Tileset::
 	dw 50 ; length
-	INCBIN "gfx/tilesets/tileset057.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze5.2bpp"
 
-Tileset058::
+FightingFortMaze6Tileset::
 	dw 42 ; length
-	INCBIN "gfx/tilesets/tileset058.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze6.2bpp"
 
-Tileset059::
+FightingFortGodaTileset::
 	dw 131 ; length
-	INCBIN "gfx/tilesets/tileset059.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_goda.2bpp"
 
-Tileset05A::
+FightingFortGraceTileset::
 	dw 81 ; length
-	INCBIN "gfx/tilesets/tileset05A.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_grace.2bpp"
 
-Tileset05B::
+PsychicStrongholdEntranceTileset::
 	dw 103 ; length
-	INCBIN "gfx/tilesets/tileset05B.2bpp"
+	INCBIN "gfx/tilesets/psychic_stronghold_entrance.2bpp"
 
-Tileset05C::
+PsychicStrongholdLobbyTileset::
 	dw 210 ; length
-	INCBIN "gfx/tilesets/tileset05C.2bpp"
+	INCBIN "gfx/tilesets/psychic_stronghold_lobby.2bpp"
 
-Tileset05D::
+PsychicStrongholdTileset::
 	dw 210 ; length
-	INCBIN "gfx/tilesets/tileset05D.2bpp"
+	INCBIN "gfx/tilesets/psychic_stronghold.2bpp"
 
-Tileset0DE::
+OWMintGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0DE.2bpp"
+	INCBIN "gfx/overworld_sprites/mint.2bpp"
 
 Palette0E7::
 	db 1 ; number of palettes
@@ -645,45 +645,45 @@ Palette0E7::
 
 SECTION "Tilesets 12", ROMX
 
-Tileset05E::
+PsychicStrongholdMamiTileset::
 	dw 207 ; length
-	INCBIN "gfx/tilesets/tileset05E.2bpp"
+	INCBIN "gfx/tilesets/psychic_stronghold_mami.2bpp"
 
-Tileset05F::
+ColorlessAltarEntranceTileset::
 	dw 73 ; length
-	INCBIN "gfx/tilesets/tileset05F.2bpp"
+	INCBIN "gfx/tilesets/colorless_altar_entrance.2bpp"
 
-Tileset060::
+ColorlessAltarTileset::
 	dw 143 ; length
-	INCBIN "gfx/tilesets/tileset060.2bpp"
+	INCBIN "gfx/tilesets/colorless_altar.2bpp"
 
-Tileset061::
+GRCastleEntranceTileset::
 	dw 121 ; length
-	INCBIN "gfx/tilesets/tileset061.2bpp"
+	INCBIN "gfx/tilesets/gr_castle_entrance.2bpp"
 
-Tileset062::
+GRCastleTileset::
 	dw 176 ; length
-	INCBIN "gfx/tilesets/tileset062.2bpp"
+	INCBIN "gfx/tilesets/gr_castle.2bpp"
 
-Tileset063::
+GRCastleBiruritchiTileset::
 	dw 176 ; length
-	INCBIN "gfx/tilesets/tileset063.2bpp"
+	INCBIN "gfx/tilesets/gr_castle_biruritchi.2bpp"
 
-Tileset065::
+FightingFortMaze7Tileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset065.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze7.2bpp"
 
-Tileset066::
+FightingFortMaze8Tileset::
 	dw 60 ; length
-	INCBIN "gfx/tilesets/tileset066.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze8.2bpp"
 
-Tileset145::
+OWWarpSparklesGfx::
 	dw 12 ; length
-	INCBIN "gfx/overworld_sprites/tileset145.2bpp"
+	INCBIN "gfx/overworld_sprites/warp_sparkles.2bpp"
 
-Tileset17E::
+DuelDrainMovesGfx::
 	dw 2 ; length
-	INCBIN "gfx/tilesets/tileset17E.2bpp"
+	INCBIN "gfx/duel/anims/drain.2bpp"
 
 Palette0EA::
 	db 1 ; number of palettes
@@ -695,81 +695,81 @@ Palette0EA::
 
 SECTION "Tilesets 13", ROMX
 
-Tileset064::
+PokemonDomeBackTileset::
 	dw 203 ; length
-	INCBIN "gfx/tilesets/tileset064.2bpp"
+	INCBIN "gfx/tilesets/pokemon_dome_back.2bpp"
 
-Tileset067::
+FightingFortMaze9Tileset::
 	dw 54 ; length
-	INCBIN "gfx/tilesets/tileset067.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze9.2bpp"
 
-Tileset068::
+FightingFortMaze10Tileset::
 	dw 39 ; length
-	INCBIN "gfx/tilesets/tileset068.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze10.2bpp"
 
-Tileset069::
+FightingFortMaze11Tileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset069.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze11.2bpp"
 
-Tileset06A::
+FightingFortMaze12Tileset::
 	dw 56 ; length
-	INCBIN "gfx/tilesets/tileset06A.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze12.2bpp"
 
-Tileset06B::
+FightingFortMaze13Tileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset06B.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze13.2bpp"
 
-Tileset06C::
+FightingFortMaze14Tileset::
 	dw 60 ; length
-	INCBIN "gfx/tilesets/tileset06C.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze14.2bpp"
 
-Tileset06D::
+FightingFortMaze15Tileset::
 	dw 38 ; length
-	INCBIN "gfx/tilesets/tileset06D.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze15.2bpp"
 
-Tileset06E::
+FightingFortMaze16Tileset::
 	dw 56 ; length
-	INCBIN "gfx/tilesets/tileset06E.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze16.2bpp"
 
-Tileset06F::
+FightingFortMaze17Tileset::
 	dw 61 ; length
-	INCBIN "gfx/tilesets/tileset06F.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze17.2bpp"
 
-Tileset070::
+FightingFortMaze18Tileset::
 	dw 54 ; length
-	INCBIN "gfx/tilesets/tileset070.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze18.2bpp"
 
-Tileset071::
+FightingFortMaze19Tileset::
 	dw 32 ; length
-	INCBIN "gfx/tilesets/tileset071.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze19.2bpp"
 
-Tileset072::
+FightingFortMaze20Tileset::
 	dw 38 ; length
-	INCBIN "gfx/tilesets/tileset072.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze20.2bpp"
 
-Tileset073::
+FightingFortMaze21Tileset::
 	dw 48 ; length
-	INCBIN "gfx/tilesets/tileset073.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze21.2bpp"
 
-Tileset074::
+FightingFortMaze22Tileset::
 	dw 34 ; length
-	INCBIN "gfx/tilesets/tileset074.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_maze22.2bpp"
 
-Tileset075::
+FightingFortBasementTileset::
 	dw 68 ; length
-	INCBIN "gfx/tilesets/tileset075.2bpp"
+	INCBIN "gfx/tilesets/fighting_fort_basement.2bpp"
 
-Tileset07D::
+MarkPortraitGfx::
 	dw 36 ; length
-	INCBIN "gfx/duelists/tileset07D.2bpp"
+	INCBIN "gfx/duelists/mark.2bpp"
 
-Tileset07E::
+MintPortraitGfx::
 	dw 36 ; length
-	INCBIN "gfx/duelists/tileset07E.2bpp"
+	INCBIN "gfx/duelists/mint.2bpp"
 
-Tileset172::
+DuelConfuseRayGfx::
 	dw 4 ; length
-	INCBIN "gfx/tilesets/tileset172.2bpp"
+	INCBIN "gfx/duel/anims/confuse_ray.2bpp"
 
 Palette0F1::
 	db 1 ; number of palettes
@@ -781,53 +781,53 @@ Palette0F1::
 
 SECTION "Tilesets 14", ROMX
 
-Tileset076::
+GRChallengeHall2Tileset::
 	dw 175 ; length
-	INCBIN "gfx/tilesets/tileset076.2bpp"
+	INCBIN "gfx/tilesets/gr_challenge_hall2.2bpp"
 
-Tileset07F::
+MarkLinkPortraitGfx::
 	dw 36 ; length
-	INCBIN "gfx/duelists/tileset07F.2bpp"
+	INCBIN "gfx/duelists/mark_link.2bpp"
 
-Tileset080::
+MintLinkPortraitGfx::
 	dw 36 ; length
-	INCBIN "gfx/duelists/tileset080.2bpp"
+	INCBIN "gfx/duelists/mint_link.2bpp"
 
-Tileset081::
+RonaldPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset081.2bpp"
+	INCBIN "gfx/duelists/ronald.2bpp"
 
-Tileset082::
+SamPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset082.2bpp"
+	INCBIN "gfx/duelists/sam.2bpp"
 
-Tileset083::
+AaronPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset083.2bpp"
+	INCBIN "gfx/duelists/aaron.2bpp"
 
-Tileset084::
+IshiharaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset084.2bpp"
+	INCBIN "gfx/duelists/ishihara.2bpp"
 
-Tileset085::
+ImakuniBlackPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset085.2bpp"
+	INCBIN "gfx/duelists/imakuni_black.2bpp"
 
-Tileset086::
+ImakuniRedPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset086.2bpp"
+	INCBIN "gfx/duelists/imakuni_red.2bpp"
 
-Tileset087::
+IsaacPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset087.2bpp"
+	INCBIN "gfx/duelists/isaac.2bpp"
 
-Tileset146::
+OWGRBlimpGfx::
 	dw 12 ; length
-	INCBIN "gfx/overworld_sprites/tileset146.2bpp"
+	INCBIN "gfx/overworld_map/gr_blimp.2bpp"
 
-Tileset158::
+DuelWhirlpoolGfx::
 	dw 7 ; length
-	INCBIN "gfx/tilesets/tileset158.2bpp"
+	INCBIN "gfx/duel/anims/whirlpool.2bpp"
 
 Frameset105::
 	oamframe  2,  1,   0,   0
@@ -835,53 +835,53 @@ Frameset105::
 
 SECTION "Tilesets 15", ROMX
 
-Tileset088::
+JenniferPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset088.2bpp"
+	INCBIN "gfx/duelists/jennifer.2bpp"
 
-Tileset089::
+NicholasPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset089.2bpp"
+	INCBIN "gfx/duelists/nicholas.2bpp"
 
-Tileset08A::
+BrandonPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08A.2bpp"
+	INCBIN "gfx/duelists/brandon.2bpp"
 
-Tileset08B::
+MurrayPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08B.2bpp"
+	INCBIN "gfx/duelists/murray.2bpp"
 
-Tileset08C::
+StephaniePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08C.2bpp"
+	INCBIN "gfx/duelists/stephanie.2bpp"
 
-Tileset08D::
+DanielPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08D.2bpp"
+	INCBIN "gfx/duelists/daniel.2bpp"
 
-Tileset08E::
+RobertPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08E.2bpp"
+	INCBIN "gfx/duelists/robert.2bpp"
 
-Tileset08F::
+GenePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset08F.2bpp"
+	INCBIN "gfx/duelists/gene.2bpp"
 
-Tileset090::
+MatthewPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset090.2bpp"
+	INCBIN "gfx/duelists/matthew.2bpp"
 
-Tileset0DF::
+OWDrMasonGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0DF.2bpp"
+	INCBIN "gfx/overworld_sprites/dr_mason.2bpp"
 
-Tileset0E0::
+OWRonaldGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E0.2bpp"
+	INCBIN "gfx/overworld_sprites/ronald.2bpp"
 
-Tileset148::
+DuelPhysicalMovesGfx::
 	dw 9 ; length
-	INCBIN "gfx/tilesets/tileset148.2bpp"
+	INCBIN "gfx/duel/anims/glow.2bpp"
 
 Palette05F::
 	db 2 ; number of palettes
@@ -907,107 +907,107 @@ OWAnimation10::
 
 SECTION "Tilesets 16", ROMX
 
-Tileset091::
+RyanPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset091.2bpp"
+	INCBIN "gfx/duelists/ryan.2bpp"
 
-Tileset092::
+AndrewPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset092.2bpp"
+	INCBIN "gfx/duelists/andrew.2bpp"
 
-Tileset093::
+MitchPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset093.2bpp"
+	INCBIN "gfx/duelists/mitch.2bpp"
 
-Tileset094::
+MichaelPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset094.2bpp"
+	INCBIN "gfx/duelists/michael.2bpp"
 
-Tileset095::
+ChrisPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset095.2bpp"
+	INCBIN "gfx/duelists/chris.2bpp"
 
-Tileset096::
+JessicaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset096.2bpp"
+	INCBIN "gfx/duelists/jessica.2bpp"
 
-Tileset097::
+NikkiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset097.2bpp"
+	INCBIN "gfx/duelists/nikki.2bpp"
 
-Tileset098::
+BrittanyPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset098.2bpp"
+	INCBIN "gfx/duelists/brittany.2bpp"
 
-Tileset099::
+KristinPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset099.2bpp"
+	INCBIN "gfx/duelists/kristin.2bpp"
 
-Tileset0E1::
+OWIshiharaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E1.2bpp"
+	INCBIN "gfx/overworld_sprites/ishihara.2bpp"
 
-Tileset0E2::
+OWImakuniBlackGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E2.2bpp"
+	INCBIN "gfx/overworld_sprites/imakuni_black.2bpp"
 
-Tileset14A::
+DuelSleepGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset14A.2bpp"
+	INCBIN "gfx/duel/anims/sleep.2bpp"
 
 Tileset1D8::
 	dw 2 ; length
-	INCBIN "gfx/tilesets/tileset1D8.2bpp"
+	INCBIN "gfx/tileset1D8.2bpp"
 
 SECTION "Tilesets 17", ROMX
 
-Tileset09A::
+HeatherPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09A.2bpp"
+	INCBIN "gfx/duelists/heather.2bpp"
 
-Tileset09B::
+RickPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09B.2bpp"
+	INCBIN "gfx/duelists/rick.2bpp"
 
-Tileset09C::
+JosephPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09C.2bpp"
+	INCBIN "gfx/duelists/joseph.2bpp"
 
-Tileset09D::
+DavidPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09D.2bpp"
+	INCBIN "gfx/duelists/david.2bpp"
 
-Tileset09E::
+ErikPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09E.2bpp"
+	INCBIN "gfx/duelists/erik.2bpp"
 
-Tileset09F::
+AmyPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset09F.2bpp"
+	INCBIN "gfx/duelists/amy.2bpp"
 
-Tileset0A0::
+JoshuaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A0.2bpp"
+	INCBIN "gfx/duelists/joshua.2bpp"
 
-Tileset0A1::
+SaraPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A1.2bpp"
+	INCBIN "gfx/duelists/sara.2bpp"
 
-Tileset0A2::
+AmandaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A2.2bpp"
+	INCBIN "gfx/duelists/amanda.2bpp"
 
-Tileset0E3::
+OWImakuniRedGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E3.2bpp"
+	INCBIN "gfx/overworld_sprites/imakuni_red.2bpp"
 
-Tileset0E4::
+OWIsaacGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E4.2bpp"
+	INCBIN "gfx/overworld_sprites/isaac.2bpp"
 
-Tileset14D::
+DuelImpactGfx::
 	dw 9 ; length
-	INCBIN "gfx/tilesets/tileset14D.2bpp"
+	INCBIN "gfx/duel/anims/hit.2bpp"
 
 Palette0DB::
 	db 2 ; number of palettes
@@ -1024,53 +1024,53 @@ Palette0DB::
 
 SECTION "Tilesets 18", ROMX
 
-Tileset0A3::
+KenPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A3.2bpp"
+	INCBIN "gfx/duelists/ken.2bpp"
 
-Tileset0A4::
+JohnPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A4.2bpp"
+	INCBIN "gfx/duelists/john.2bpp"
 
-Tileset0A5::
+AdamPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A5.2bpp"
+	INCBIN "gfx/duelists/adam.2bpp"
 
-Tileset0A6::
+JonathanPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A6.2bpp"
+	INCBIN "gfx/duelists/jonathan.2bpp"
 
-Tileset0A7::
+CourtneyPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A7.2bpp"
+	INCBIN "gfx/duelists/courtney.2bpp"
 
-Tileset0A8::
+StevePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A8.2bpp"
+	INCBIN "gfx/duelists/steve.2bpp"
 
-Tileset0A9::
+JackPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0A9.2bpp"
+	INCBIN "gfx/duelists/jack.2bpp"
 
-Tileset0AA::
+RodPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AA.2bpp"
+	INCBIN "gfx/duelists/rod.2bpp"
 
-Tileset0AB::
+EijiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AB.2bpp"
+	INCBIN "gfx/duelists/eiji.2bpp"
 
-Tileset0E5::
+OWMurrayGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E5.2bpp"
+	INCBIN "gfx/overworld_sprites/murray.2bpp"
 
-Tileset0E6::
+OWGeneGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E6.2bpp"
+	INCBIN "gfx/overworld_sprites/gene.2bpp"
 
-Tileset14F::
+DuelThunderGfx::
 	dw 10 ; length
-	INCBIN "gfx/tilesets/tileset14F.2bpp"
+	INCBIN "gfx/duel/anims/thunder.2bpp"
 
 Frameset106::
 	oamframe  3,  1,   0,   0
@@ -1078,53 +1078,53 @@ Frameset106::
 
 SECTION "Tilesets 19", ROMX
 
-Tileset0AC::
+MagicianPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AC.2bpp"
+	INCBIN "gfx/duelists/magician.2bpp"
 
-Tileset0AD::
+YuiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AD.2bpp"
+	INCBIN "gfx/duelists/yui.2bpp"
 
-Tileset0AE::
+ToshironPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AE.2bpp"
+	INCBIN "gfx/duelists/toshiron.2bpp"
 
-Tileset0AF::
+PierrotPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0AF.2bpp"
+	INCBIN "gfx/duelists/pierrot.2bpp"
 
-Tileset0B0::
+AnnaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B0.2bpp"
+	INCBIN "gfx/duelists/anna.2bpp"
 
-Tileset0B1::
+DeePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B1.2bpp"
+	INCBIN "gfx/duelists/dee.2bpp"
 
-Tileset0B2::
+MasqueradePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B2.2bpp"
+	INCBIN "gfx/duelists/masquerade.2bpp"
 
-Tileset0B3::
+PawnPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B3.2bpp"
+	INCBIN "gfx/duelists/pawn.2bpp"
 
-Tileset0B4::
+KnightPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B4.2bpp"
+	INCBIN "gfx/duelists/knight.2bpp"
 
-Tileset0E7::
+OWMitchGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E7.2bpp"
+	INCBIN "gfx/overworld_sprites/mitch.2bpp"
 
-Tileset0E8::
+OWNikkiGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E8.2bpp"
+	INCBIN "gfx/overworld_sprites/nikki.2bpp"
 
-Tileset161::
+DuelStretchKickGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset161.2bpp"
+	INCBIN "gfx/duel/anims/stretch_kick.2bpp"
 
 Palette0DD::
 	db 2 ; number of palettes
@@ -1141,53 +1141,53 @@ Palette0DD::
 
 SECTION "Tilesets 20", ROMX
 
-Tileset0B5::
+BishopPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B5.2bpp"
+	INCBIN "gfx/duelists/bishop.2bpp"
 
-Tileset0B6::
+RookPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B6.2bpp"
+	INCBIN "gfx/duelists/rook.2bpp"
 
-Tileset0B7::
+QueenPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B7.2bpp"
+	INCBIN "gfx/duelists/queen.2bpp"
 
-Tileset0B8::
+GR1PortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B8.2bpp"
+	INCBIN "gfx/duelists/gr_1.2bpp"
 
-Tileset0B9::
+GR2PortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0B9.2bpp"
+	INCBIN "gfx/duelists/gr_2.2bpp"
 
-Tileset0BA::
+GR3PortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BA.2bpp"
+	INCBIN "gfx/duelists/gr_3.2bpp"
 
-Tileset0BB::
+GR4PortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BB.2bpp"
+	INCBIN "gfx/duelists/gr_4.2bpp"
 
-Tileset0BC::
+MidoriPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BC.2bpp"
+	INCBIN "gfx/duelists/midori.2bpp"
 
-Tileset0BD::
+YuutaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BD.2bpp"
+	INCBIN "gfx/duelists/yuuta.2bpp"
 
-Tileset0E9::
+OWRickGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0E9.2bpp"
+	INCBIN "gfx/overworld_sprites/rick.2bpp"
 
-Tileset0EA::
+OWAmyGfx::
 	dw 27 ; length
-	INCBIN "gfx/overworld_sprites/tileset0EA.2bpp"
+	INCBIN "gfx/overworld_sprites/amy.2bpp"
 
-Tileset17F::
+DuelDevolutionBeamGfx::
 	dw 3 ; length
-	INCBIN "gfx/tilesets/tileset17F.2bpp"
+	INCBIN "gfx/duel/anims/small_glow.2bpp"
 
 Frameset107::
 	oamframe  0,  1,   0,   0
@@ -1195,53 +1195,53 @@ Frameset107::
 
 SECTION "Tilesets 21", ROMX
 
-Tileset0BE::
+MiyukiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BE.2bpp"
+	INCBIN "gfx/duelists/miyuki.2bpp"
 
-Tileset0BF::
+MorinoPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0BF.2bpp"
+	INCBIN "gfx/duelists/morino.2bpp"
 
-Tileset0C0::
+RennaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C0.2bpp"
+	INCBIN "gfx/duelists/renna.2bpp"
 
-Tileset0C1::
+IchikawaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C1.2bpp"
+	INCBIN "gfx/duelists/ichikawa.2bpp"
 
-Tileset0C2::
+CatherinePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C2.2bpp"
+	INCBIN "gfx/duelists/catherine.2bpp"
 
-Tileset0C3::
+TapPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C3.2bpp"
+	INCBIN "gfx/duelists/tap.2bpp"
 
-Tileset0C4::
+JesPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C4.2bpp"
+	INCBIN "gfx/duelists/jes.2bpp"
 
-Tileset0C5::
+YukiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C5.2bpp"
+	INCBIN "gfx/duelists/yuki.2bpp"
 
-Tileset0C6::
+ShokoPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C6.2bpp"
+	INCBIN "gfx/duelists/shoko.2bpp"
 
-Tileset0EB::
+OWAmyCopyGfx::
 	dw 27 ; length
-	INCBIN "gfx/overworld_sprites/tileset0EB.2bpp"
+	INCBIN "gfx/overworld_sprites/amy_copy.2bpp"
 
-Tileset0EC::
+OWSaraGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0EC.2bpp"
+	INCBIN "gfx/overworld_sprites/sara.2bpp"
 
-Tileset182::
+DuelElectricWaveGfx::
 	dw 3 ; length
-	INCBIN "gfx/tilesets/tileset182.2bpp"
+	INCBIN "gfx/duel/anims/electric_wave.2bpp"
 
 Frameset108::
 	oamframe  1,  1,   0,   0
@@ -1249,53 +1249,53 @@ Frameset108::
 
 SECTION "Tilesets 22", ROMX
 
-Tileset0C7::
+HideroPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C7.2bpp"
+	INCBIN "gfx/duelists/hidero.2bpp"
 
-Tileset0C8::
+MiyajimaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C8.2bpp"
+	INCBIN "gfx/duelists/miyajima.2bpp"
 
-Tileset0C9::
+SentaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0C9.2bpp"
+	INCBIN "gfx/duelists/senta.2bpp"
 
-Tileset0CA::
+AiraPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CA.2bpp"
+	INCBIN "gfx/duelists/aira.2bpp"
 
-Tileset0CB::
+KanokoPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CB.2bpp"
+	INCBIN "gfx/duelists/kanoko.2bpp"
 
-Tileset0CC::
+GodaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CC.2bpp"
+	INCBIN "gfx/duelists/goda.2bpp"
 
-Tileset0CD::
+GracePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CD.2bpp"
+	INCBIN "gfx/duelists/grace.2bpp"
 
-Tileset0CE::
+KamiyaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CE.2bpp"
+	INCBIN "gfx/duelists/kamiya.2bpp"
 
-Tileset0CF::
+MiwaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0CF.2bpp"
+	INCBIN "gfx/duelists/miwa.2bpp"
 
-Tileset0ED::
+OWAmandaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0ED.2bpp"
+	INCBIN "gfx/overworld_sprites/amanda.2bpp"
 
-Tileset0EE::
+OWKenGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0EE.2bpp"
+	INCBIN "gfx/overworld_sprites/ken.2bpp"
 
-Tileset15D::
+DuelBeamMovesGfx::
 	dw 10 ; length
-	INCBIN "gfx/tilesets/tileset15D.2bpp"
+	INCBIN "gfx/duel/anims/beam.2bpp"
 
 Frameset109::
 	oamframe  2,  1,   0,   0
@@ -1303,53 +1303,53 @@ Frameset109::
 
 SECTION "Tilesets 23", ROMX
 
-Tileset0D0::
+KevinPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D0.2bpp"
+	INCBIN "gfx/duelists/kevin.2bpp"
 
-Tileset0D1::
+YosukePortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D1.2bpp"
+	INCBIN "gfx/duelists/yosuke.2bpp"
 
-Tileset0D2::
+RyokoPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D2.2bpp"
+	INCBIN "gfx/duelists/ryoko.2bpp"
 
-Tileset0D3::
+MamiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D3.2bpp"
+	INCBIN "gfx/duelists/mami.2bpp"
 
-Tileset0D4::
+NishijimaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D4.2bpp"
+	INCBIN "gfx/duelists/nishijima.2bpp"
 
-Tileset0D5::
+IshiiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D5.2bpp"
+	INCBIN "gfx/duelists/ishii.2bpp"
 
-Tileset0D6::
+SamejimaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D6.2bpp"
+	INCBIN "gfx/duelists/samejima.2bpp"
 
-Tileset0D7::
+KanzakiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D7.2bpp"
+	INCBIN "gfx/duelists/kanzaki.2bpp"
 
-Tileset0D8::
+RuiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D8.2bpp"
+	INCBIN "gfx/duelists/rui.2bpp"
 
-Tileset0EF::
+OWCourtneyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0EF.2bpp"
+	INCBIN "gfx/overworld_sprites/courtney.2bpp"
 
-Tileset0F0::
+OWSteveGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F0.2bpp"
+	INCBIN "gfx/overworld_sprites/steve.2bpp"
 
-Tileset169::
+DuelNeedleMovesGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset169.2bpp"
+	INCBIN "gfx/duel/anims/needles.2bpp"
 
 Palette03B::
 	db 4 ; number of palettes
@@ -1376,327 +1376,327 @@ Palette03B::
 
 SECTION "Tilesets 24", ROMX
 
-Tileset0D9::
+BiruritchiPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0D9.2bpp"
+	INCBIN "gfx/duelists/biruritchi.2bpp"
 
-Tileset0DA::
+GRXPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0DA.2bpp"
+	INCBIN "gfx/duelists/gr_x.2bpp"
 
-Tileset0DB::
+TobiChanPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0DB.2bpp"
+	INCBIN "gfx/duelists/tobi_chan.2bpp"
 
-Tileset0DC::
+DrMasonPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tileset0DC.2bpp"
+	INCBIN "gfx/duelists/dr_mason.2bpp"
 
-Tileset0F1::
+OWJackGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F1.2bpp"
+	INCBIN "gfx/overworld_sprites/jack.2bpp"
 
-Tileset0F2::
+OWRodGfx::
 	dw 23 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F2.2bpp"
+	INCBIN "gfx/overworld_sprites/rod.2bpp"
 
-Tileset0F3::
+OWEijiGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F3.2bpp"
+	INCBIN "gfx/overworld_sprites/eiji.2bpp"
 
-Tileset0F4::
+OWMagicianGfx::
 	dw 28 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F4.2bpp"
+	INCBIN "gfx/overworld_sprites/magician.2bpp"
 
-Tileset0F5::
+OWToshironGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F5.2bpp"
+	INCBIN "gfx/overworld_sprites/toshiron.2bpp"
 
-Tileset0F6::
+OWPierrotGfx::
 	dw 23 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F6.2bpp"
+	INCBIN "gfx/overworld_sprites/pierrot.2bpp"
 
-Tileset0F7::
+OWAnnaGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F7.2bpp"
+	INCBIN "gfx/overworld_sprites/anna.2bpp"
 
-Tileset0F8::
+OWDeeGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F8.2bpp"
+	INCBIN "gfx/overworld_sprites/dee.2bpp"
 
-Tileset0F9::
+OWMasqueradeGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0F9.2bpp"
+	INCBIN "gfx/overworld_sprites/masquerade.2bpp"
 
-Tileset0FA::
+OWPawnGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FA.2bpp"
+	INCBIN "gfx/overworld_sprites/pawn.2bpp"
 
-Tileset0FB::
+OWKnightGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FB.2bpp"
+	INCBIN "gfx/overworld_sprites/knight.2bpp"
 
-Tileset0FC::
+OWBishopGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FC.2bpp"
+	INCBIN "gfx/overworld_sprites/bishop.2bpp"
 
-Tileset0FD::
+OWRookGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FD.2bpp"
+	INCBIN "gfx/overworld_sprites/rook.2bpp"
 
-Tileset0FE::
+OWQueenGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FE.2bpp"
+	INCBIN "gfx/overworld_sprites/queen.2bpp"
 
-Tileset0FF::
+OWGR1Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset0FF.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_1.2bpp"
 
-Tileset100::
+OWGR2Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset100.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_2.2bpp"
 
-Tileset101::
+OWGR3Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset101.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_3.2bpp"
 
-Tileset102::
+OWGR4Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset102.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_4.2bpp"
 
-Tileset103::
+OWGR5Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset103.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_5.2bpp"
 
-Tileset104::
+OWMidoriGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset104.2bpp"
+	INCBIN "gfx/overworld_sprites/midori.2bpp"
 
-Tileset105::
+OWMorinoGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset105.2bpp"
+	INCBIN "gfx/overworld_sprites/morino.2bpp"
 
-Tileset106::
+OWRennaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset106.2bpp"
+	INCBIN "gfx/overworld_sprites/renna.2bpp"
 
-Tileset107::
+OWIchikawaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset107.2bpp"
+	INCBIN "gfx/overworld_sprites/ichikawa.2bpp"
 
-Tileset108::
+OWCatherineGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset108.2bpp"
+	INCBIN "gfx/overworld_sprites/catherine.2bpp"
 
-Tileset109::
+OWJesGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset109.2bpp"
+	INCBIN "gfx/overworld_sprites/jes.2bpp"
 
-Tileset10A::
+OWYukiGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset10A.2bpp"
+	INCBIN "gfx/overworld_sprites/yuki.2bpp"
 
-Tileset10B::
+OWShokoGfx::
 	dw 40 ; length
-	INCBIN "gfx/overworld_sprites/tileset10B.2bpp"
+	INCBIN "gfx/overworld_sprites/shoko.2bpp"
 
-Tileset153::
+DuelEmberGfx::
 	dw 13 ; length
-	INCBIN "gfx/tilesets/tileset153.2bpp"
+	INCBIN "gfx/duel/anims/ember.2bpp"
 
 SECTION "Tilesets 25", ROMX
 
-Tileset10C::
+OWHideroGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset10C.2bpp"
+	INCBIN "gfx/overworld_sprites/hidero.2bpp"
 
-Tileset10D::
+OWAiraGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset10D.2bpp"
+	INCBIN "gfx/overworld_sprites/aira.2bpp"
 
-Tileset10E::
+OWKanokoGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset10E.2bpp"
+	INCBIN "gfx/overworld_sprites/kanoko.2bpp"
 
-Tileset10F::
+OWGodaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset10F.2bpp"
+	INCBIN "gfx/overworld_sprites/goda.2bpp"
 
-Tileset110::
+OWGraceGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset110.2bpp"
+	INCBIN "gfx/overworld_sprites/grace.2bpp"
 
-Tileset111::
+OWKamiyaGfx::
 	dw 24 ; length
-	INCBIN "gfx/overworld_sprites/tileset111.2bpp"
+	INCBIN "gfx/overworld_sprites/kamiya.2bpp"
 
-Tileset112::
+OWMiwaGfx::
 	dw 25 ; length
-	INCBIN "gfx/overworld_sprites/tileset112.2bpp"
+	INCBIN "gfx/overworld_sprites/miwa.2bpp"
 
-Tileset113::
+OWKevinGfx::
 	dw 25 ; length
-	INCBIN "gfx/overworld_sprites/tileset113.2bpp"
+	INCBIN "gfx/overworld_sprites/kevin.2bpp"
 
-Tileset114::
+OWYosukeGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset114.2bpp"
+	INCBIN "gfx/overworld_sprites/yosuke.2bpp"
 
-Tileset115::
+OWRyokoGfx::
 	dw 27 ; length
-	INCBIN "gfx/overworld_sprites/tileset115.2bpp"
+	INCBIN "gfx/overworld_sprites/ryoko.2bpp"
 
-Tileset116::
+OWMamiGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset116.2bpp"
+	INCBIN "gfx/overworld_sprites/mami.2bpp"
 
-Tileset117::
+OWNishijimaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset117.2bpp"
+	INCBIN "gfx/overworld_sprites/nishijima.2bpp"
 
-Tileset118::
+OWIshiiGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset118.2bpp"
+	INCBIN "gfx/overworld_sprites/ishii.2bpp"
 
-Tileset119::
+OWSamejimaGfx::
 	dw 21 ; length
-	INCBIN "gfx/overworld_sprites/tileset119.2bpp"
+	INCBIN "gfx/overworld_sprites/samejima.2bpp"
 
-Tileset11A::
+OWKanzakiGfx::
 	dw 34 ; length
-	INCBIN "gfx/overworld_sprites/tileset11A.2bpp"
+	INCBIN "gfx/overworld_sprites/kanzaki.2bpp"
 
-Tileset11B::
+OWRuiGfx::
 	dw 38 ; length
-	INCBIN "gfx/overworld_sprites/tileset11B.2bpp"
+	INCBIN "gfx/overworld_sprites/rui.2bpp"
 
-Tileset11C::
+OWBiruritchiGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset11C.2bpp"
+	INCBIN "gfx/overworld_sprites/biruritchi.2bpp"
 
-Tileset11D::
+OWGRXGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset11D.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_x.2bpp"
 
-Tileset11E::
+OWTobiChanGfx::
 	dw 23 ; length
-	INCBIN "gfx/overworld_sprites/tileset11E.2bpp"
+	INCBIN "gfx/overworld_sprites/tobi_chan.2bpp"
 
-Tileset11F::
+OWYoungsterGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset11F.2bpp"
+	INCBIN "gfx/overworld_sprites/youngster.2bpp"
 
-Tileset120::
+OWLadGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset120.2bpp"
+	INCBIN "gfx/overworld_sprites/lad.2bpp"
 
-Tileset121::
+OWSpecsGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset121.2bpp"
+	INCBIN "gfx/overworld_sprites/specs.2bpp"
 
-Tileset122::
+OWButchGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset122.2bpp"
+	INCBIN "gfx/overworld_sprites/butch.2bpp"
 
-Tileset123::
+OWManiaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset123.2bpp"
+	INCBIN "gfx/overworld_sprites/mania.2bpp"
 
-Tileset124::
+OWJoshuaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset124.2bpp"
+	INCBIN "gfx/overworld_sprites/joshua.2bpp"
 
-Tileset125::
+OWHoodGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset125.2bpp"
+	INCBIN "gfx/overworld_sprites/hood.2bpp"
 
-Tileset126::
+OWTechGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset126.2bpp"
+	INCBIN "gfx/overworld_sprites/tech.2bpp"
 
-Tileset127::
+OWChapGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset127.2bpp"
+	INCBIN "gfx/overworld_sprites/chap.2bpp"
 
-Tileset128::
+OWManGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset128.2bpp"
+	INCBIN "gfx/overworld_sprites/man.2bpp"
 
-Tileset129::
+OWPappyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset129.2bpp"
+	INCBIN "gfx/overworld_sprites/pappy.2bpp"
 
-Tileset12A::
+OWGamblerGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12A.2bpp"
+	INCBIN "gfx/overworld_sprites/gambler.2bpp"
 
-Tileset12B::
+OWGRLadGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12B.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_lad.2bpp"
 
-Tileset12C::
+OWGRChapGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12C.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_chap.2bpp"
 
-Tileset12D::
+OWMiyajimaGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12D.2bpp"
+	INCBIN "gfx/overworld_sprites/miyajima.2bpp"
 
-Tileset12E::
+OWGRPappyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12E.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_pappy.2bpp"
 
-Tileset12F::
+OWDealerBoyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset12F.2bpp"
+	INCBIN "gfx/overworld_sprites/dealer_boy.2bpp"
 
-Tileset130::
+OWMonocleGfx::
 	dw 30 ; length
-	INCBIN "gfx/overworld_sprites/tileset130.2bpp"
+	INCBIN "gfx/overworld_sprites/monocle.2bpp"
 
-Tileset131::
+OWGirlGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset131.2bpp"
+	INCBIN "gfx/overworld_sprites/girl.2bpp"
 
-Tileset132::
+OWLass1Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset132.2bpp"
+	INCBIN "gfx/overworld_sprites/lass1.2bpp"
 
-Tileset133::
+OWLass2Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset133.2bpp"
+	INCBIN "gfx/overworld_sprites/lass2.2bpp"
 
-Tileset134::
+OWLass3Gfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset134.2bpp"
+	INCBIN "gfx/overworld_sprites/lass3.2bpp"
 
-Tileset135::
+OWSwimmerGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset135.2bpp"
+	INCBIN "gfx/overworld_sprites/swimmer.2bpp"
 
-Tileset136::
+OWGalGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset136.2bpp"
+	INCBIN "gfx/overworld_sprites/gal.2bpp"
 
-Tileset137::
+OWWomanGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset137.2bpp"
+	INCBIN "gfx/overworld_sprites/woman.2bpp"
 
-Tileset138::
+OWGrannyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset138.2bpp"
+	INCBIN "gfx/overworld_sprites/granny.2bpp"
 
-Tileset139::
+OWGRStaffGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset139.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_staff.2bpp"
 
-Tileset13A::
+OWGRLassGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13A.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_lass.2bpp"
 
-Tileset16A::
+DuelSmokeMovesGfx::
 	dw 7 ; length
-	INCBIN "gfx/tilesets/tileset16A.2bpp"
+	INCBIN "gfx/duel/anims/gas.2bpp"
 
 Palette0FD::
 	db 1 ; number of palettes
@@ -1708,173 +1708,173 @@ Palette0FD::
 
 SECTION "Tilesets 26", ROMX
 
-Tileset13B::
+OWGRGalGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13B.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_gal.2bpp"
 
-Tileset13C::
+OWGRWomanGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13C.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_woman.2bpp"
 
-Tileset13D::
+OWGRGrannyGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13D.2bpp"
+	INCBIN "gfx/overworld_sprites/gr_granny.2bpp"
 
-Tileset13E::
+OWChipGirlGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13E.2bpp"
+	INCBIN "gfx/overworld_sprites/chip_girl.2bpp"
 
-Tileset13F::
+OWDealerGirlGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/tileset13F.2bpp"
+	INCBIN "gfx/overworld_sprites/dealer_girl.2bpp"
 
-Tileset147::
+OWTractorBeamGfx::
 	dw 37 ; length
-	INCBIN "gfx/overworld_sprites/tileset147.2bpp"
+	INCBIN "gfx/overworld_map/tractor_beam.2bpp"
 
-Tileset14E::
+DuelDamageGfx::
 	dw 25 ; length
-	INCBIN "gfx/tilesets/tileset14E.2bpp"
+	INCBIN "gfx/duel/anims/damage.2bpp"
 
-Tileset150::
+DuelLightningGfx::
 	dw 17 ; length
-	INCBIN "gfx/tilesets/tileset150.2bpp"
+	INCBIN "gfx/duel/anims/lightning.2bpp"
 
-Tileset152::
+DuelBigLightningGfx::
 	dw 46 ; length
-	INCBIN "gfx/tilesets/tileset152.2bpp"
+	INCBIN "gfx/duel/anims/big_lightning.2bpp"
 
-Tileset154::
+DuelFireSpinGfx::
 	dw 28 ; length
-	INCBIN "gfx/tilesets/tileset154.2bpp"
+	INCBIN "gfx/duel/anims/fire_spin.2bpp"
 
-Tileset155::
+DuelFireBirdGfx::
 	dw 76 ; length
-	INCBIN "gfx/tilesets/tileset155.2bpp"
+	INCBIN "gfx/duel/anims/fire_bird.2bpp"
 
-Tileset157::
+DuelWaterGunGfx::
 	dw 27 ; length
-	INCBIN "gfx/tilesets/tileset157.2bpp"
+	INCBIN "gfx/duel/anims/water_gun.2bpp"
 
-Tileset159::
+DuelHydroPumpGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset159.2bpp"
+	INCBIN "gfx/duel/anims/hydro_pump.2bpp"
 
-Tileset15B::
+DuelPsychicGfx::
 	dw 36 ; length
-	INCBIN "gfx/tilesets/tileset15B.2bpp"
+	INCBIN "gfx/duel/anims/psychic.2bpp"
 
-Tileset15C::
+DuelEvilEyesGfx::
 	dw 32 ; length
-	INCBIN "gfx/tilesets/tileset15C.2bpp"
+	INCBIN "gfx/duel/anims/evil_eyes.2bpp"
 
-Tileset15E::
+DuelHyperBeamGfx::
 	dw 37 ; length
-	INCBIN "gfx/tilesets/tileset15E.2bpp"
+	INCBIN "gfx/duel/anims/hyper_beam.2bpp"
 
-Tileset15F::
+DuelRockMovesGfx::
 	dw 24 ; length
-	INCBIN "gfx/tilesets/tileset15F.2bpp"
+	INCBIN "gfx/duel/anims/rock.2bpp"
 
-Tileset160::
+DuelPunchMovesGfx::
 	dw 27 ; length
-	INCBIN "gfx/tilesets/tileset160.2bpp"
+	INCBIN "gfx/duel/anims/punch.2bpp"
 
-Tileset162::
+DuelSlashMovesGfx::
 	dw 13 ; length
-	INCBIN "gfx/tilesets/tileset162.2bpp"
+	INCBIN "gfx/duel/anims/slash.2bpp"
 
-Tileset163::
+DuelVineWhipGfx::
 	dw 34 ; length
-	INCBIN "gfx/tilesets/tileset163.2bpp"
+	INCBIN "gfx/duel/anims/vine_whip.2bpp"
 
-Tileset164::
+DuelSonicBoomGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset164.2bpp"
+	INCBIN "gfx/duel/anims/sonicboom.2bpp"
 
-Tileset165::
+DuelHornDrillGfx::
 	dw 37 ; length
-	INCBIN "gfx/tilesets/tileset165.2bpp"
+	INCBIN "gfx/duel/anims/horn_drill.2bpp"
 
-Tileset166::
+DuelPotSmashGfx::
 	dw 34 ; length
-	INCBIN "gfx/tilesets/tileset166.2bpp"
+	INCBIN "gfx/duel/anims/pot_smash.2bpp"
 
-Tileset167::
+DuelBoneGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset167.2bpp"
+	INCBIN "gfx/duel/anims/bone.2bpp"
 
-Tileset168::
+DuelSeismicTossGfx::
 	dw 76 ; length
-	INCBIN "gfx/tilesets/tileset168.2bpp"
+	INCBIN "gfx/duel/anims/seismic_toss.2bpp"
 
-Tileset16C::
+DuelGooGfx::
 	dw 26 ; length
-	INCBIN "gfx/tilesets/tileset16C.2bpp"
+	INCBIN "gfx/duel/anims/goo.2bpp"
 
-Tileset16D::
+DuelBubbleGfx::
 	dw 10 ; length
-	INCBIN "gfx/tilesets/tileset16D.2bpp"
+	INCBIN "gfx/duel/anims/bubble.2bpp"
 
-Tileset16E::
+DuelStringShotGfx::
 	dw 46 ; length
-	INCBIN "gfx/tilesets/tileset16E.2bpp"
+	INCBIN "gfx/duel/anims/string_shot.2bpp"
 
-Tileset16F::
+DuelBoyfriendsGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset16F.2bpp"
+	INCBIN "gfx/duel/anims/heart.2bpp"
 
-Tileset170::
+DuelLureGfx::
 	dw 7 ; length
-	INCBIN "gfx/tilesets/tileset170.2bpp"
+	INCBIN "gfx/duel/anims/lure.2bpp"
 
-Tileset171::
+DuelToxicGfx::
 	dw 28 ; length
-	INCBIN "gfx/tilesets/tileset171.2bpp"
+	INCBIN "gfx/duel/anims/skull.2bpp"
 
-Tileset173::
+DuelSingGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset173.2bpp"
+	INCBIN "gfx/duel/anims/notes.2bpp"
 
-Tileset174::
+DuelSoundMovesGfx::
 	dw 11 ; length
-	INCBIN "gfx/tilesets/tileset174.2bpp"
+	INCBIN "gfx/duel/anims/sound.2bpp"
 
-Tileset176::
+DuelBuildUpMoves::
 	dw 28 ; length
-	INCBIN "gfx/tilesets/tileset176.2bpp"
+	INCBIN "gfx/duel/anims/protect.2bpp"
 
-Tileset177::
+DuelLightScreenGfx::
 	dw 22 ; length
-	INCBIN "gfx/tilesets/tileset177.2bpp"
+	INCBIN "gfx/duel/anims/barrier.2bpp"
 
-Tileset178::
+DuelSpeedMovesGfx::
 	dw 16 ; length
-	INCBIN "gfx/tilesets/tileset178.2bpp"
+	INCBIN "gfx/duel/anims/speed.2bpp"
 
-Tileset179::
+DuelWhirlwindGfx::
 	dw 15 ; length
-	INCBIN "gfx/tilesets/tileset179.2bpp"
+	INCBIN "gfx/duel/anims/whirlwind.2bpp"
 
-Tileset17A::
+DuelSnivelGfx::
 	dw 7 ; length
-	INCBIN "gfx/tilesets/tileset17A.2bpp"
+	INCBIN "gfx/duel/anims/snivel.2bpp"
 
-Tileset17B::
+DuelQuestionMarkGfx::
 	dw 10 ; length
-	INCBIN "gfx/tilesets/tileset17B.2bpp"
+	INCBIN "gfx/duel/anims/question_mark.2bpp"
 
-Tileset17C::
+DuelSelfDestructGfx::
 	dw 9 ; length
-	INCBIN "gfx/tilesets/tileset17C.2bpp"
+	INCBIN "gfx/duel/anims/explosion.2bpp"
 
-Tileset180::
+DuelExpandGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset180.2bpp"
+	INCBIN "gfx/duel/anims/expand.2bpp"
 
-Tileset181::
+DuelCatPunchGfx::
 	dw 17 ; length
-	INCBIN "gfx/tilesets/tileset181.2bpp"
+	INCBIN "gfx/duel/anims/cat_punch.2bpp"
 
 Palette103::
 	db 1 ; number of palettes
@@ -1886,117 +1886,117 @@ Palette103::
 
 SECTION "Tilesets 27", ROMX
 
-Tileset183::
+DuelFireballsGfx::
 	dw 43 ; length
-	INCBIN "gfx/tilesets/tileset183.2bpp"
+	INCBIN "gfx/duel/anims/fireballs.2bpp"
 
-Tileset184::
+DuelBenchManipGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset184.2bpp"
+	INCBIN "gfx/duel/anims/bench_manip.2bpp"
 
-Tileset185::
+DuelPsychicBeamGfx::
 	dw 49 ; length
-	INCBIN "gfx/tilesets/tileset185.2bpp"
+	INCBIN "gfx/duel/anims/psychic_beam.2bpp"
 
-Tileset186::
+DuelBenchPsychicBeamGfx::
 	dw 34 ; length
-	INCBIN "gfx/tilesets/tileset186.2bpp"
+	INCBIN "gfx/duel/anims/psychic_beam_bench.2bpp"
 
-Tileset187::
+DuelRockThrowGfx::
 	dw 67 ; length
-	INCBIN "gfx/tilesets/tileset187.2bpp"
+	INCBIN "gfx/duel/anims/rock_throw.2bpp"
 
-Tileset188::
+DuelMegaPunchGfx::
 	dw 45 ; length
-	INCBIN "gfx/tilesets/tileset188.2bpp"
+	INCBIN "gfx/duel/anims/mega_punch.2bpp"
 
-Tileset189::
+DuelPsypunchGfx::
 	dw 46 ; length
-	INCBIN "gfx/tilesets/tileset189.2bpp"
+	INCBIN "gfx/duel/anims/psypunch.2bpp"
 
-Tileset18A::
+DuelSludgePunchGfx::
 	dw 49 ; length
-	INCBIN "gfx/tilesets/tileset18A.2bpp"
+	INCBIN "gfx/duel/anims/sludge_punch.2bpp"
 
-Tileset18B::
+DuelIcePunchGfx::
 	dw 15 ; length
-	INCBIN "gfx/tilesets/tileset18B.2bpp"
+	INCBIN "gfx/duel/anims/ice_punch.2bpp"
 
-Tileset18C::
+DuelKickGfx::
 	dw 94 ; length
-	INCBIN "gfx/tilesets/tileset18C.2bpp"
+	INCBIN "gfx/duel/anims/kick.2bpp"
 
-Tileset18D::
+DuelTailSlapGfx::
 	dw 90 ; length
-	INCBIN "gfx/tilesets/tileset18D.2bpp"
+	INCBIN "gfx/duel/anims/tail_slap.2bpp"
 
-Tileset18E::
+DuelTailWhipGfx::
 	dw 60 ; length
-	INCBIN "gfx/tilesets/tileset18E.2bpp"
+	INCBIN "gfx/duel/anims/tail_whip.2bpp"
 
-Tileset18F::
+DuelSlapGfx::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset18F.2bpp"
+	INCBIN "gfx/duel/anims/slap.2bpp"
 
-Tileset190::
+DuelSmallQuestionMarkGfx::
 	dw 7 ; length
-	INCBIN "gfx/tilesets/tileset190.2bpp"
+	INCBIN "gfx/duel/anims/question_mark_small.2bpp"
 
-Tileset191::
+DuelSkullBashGfx::
 	dw 63 ; length
-	INCBIN "gfx/tilesets/tileset191.2bpp"
+	INCBIN "gfx/duel/anims/skull_bash.2bpp"
 
-Tileset192::
+DuelCoinHurlGfx::
 	dw 18 ; length
-	INCBIN "gfx/tilesets/tileset192.2bpp"
+	INCBIN "gfx/duel/anims/coin_hurl.2bpp"
 
 Tileset193::
 	dw 50 ; length
-	INCBIN "gfx/tilesets/tileset193.2bpp"
+	INCBIN "gfx/duel/anims/tileset193.2bpp"
 
-Tileset194::
+DuelFollowMeGfx::
 	dw 38 ; length
-	INCBIN "gfx/tilesets/tileset194.2bpp"
+	INCBIN "gfx/duel/anims/follow_me.2bpp"
 
-Tileset195::
+DuelSwiftGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset195.2bpp"
+	INCBIN "gfx/duel/anims/swift.2bpp"
 
-Tileset196::
+Duel3DAttackGfx::
 	dw 25 ; length
-	INCBIN "gfx/tilesets/tileset196.2bpp"
+	INCBIN "gfx/duel/anims/3D_attack.2bpp"
 
-Tileset197::
+DuelWaterDrop2Gfx::
 	dw 3 ; length
-	INCBIN "gfx/tilesets/tileset197.2bpp"
+	INCBIN "gfx/duel/anims/water_drop2.2bpp"
 
-Tileset198::
+DuelFocusBlastGfx::
 	dw 23 ; length
-	INCBIN "gfx/tilesets/tileset198.2bpp"
+	INCBIN "gfx/duel/anims/focus_blast.2bpp"
 
-Tileset199::
+DuelBenchFocusBlastGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset199.2bpp"
+	INCBIN "gfx/duel/anims/focus_blast_bench.2bpp"
 
-Tileset19A::
+DuelBone2Gfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset19A.2bpp"
+	INCBIN "gfx/duel/anims/bone2.2bpp"
 
-Tileset19B::
+DuelBigSnoreGfx::
 	dw 70 ; length
-	INCBIN "gfx/tilesets/tileset19B.2bpp"
+	INCBIN "gfx/duel/anims/big_snore.2bpp"
 
-Tileset19C::
+DuelRazorLeafGfx::
 	dw 12 ; length
-	INCBIN "gfx/tilesets/tileset19C.2bpp"
+	INCBIN "gfx/duel/anims/razor_leaf.2bpp"
 
-Tileset19E::
+DuelVinePullGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset19E.2bpp"
+	INCBIN "gfx/duel/anims/vine_pull.2bpp"
 
-Tileset1A3::
+DuelDarkSongGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset1A3.2bpp"
+	INCBIN "gfx/duel/anims/dark_song.2bpp"
 
 Palette000::
 	db 6 ; number of palettes
@@ -2033,41 +2033,41 @@ Palette000::
 
 SECTION "Tilesets 28", ROMX
 
-Tileset19D::
+DuelGuillotineGfx::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset19D.2bpp"
+	INCBIN "gfx/duel/anims/guillotine.2bpp"
 
-Tileset19F::
+DuelPerplexGfx::
 	dw 23 ; length
-	INCBIN "gfx/tilesets/tileset19F.2bpp"
+	INCBIN "gfx/duel/anims/perplex.2bpp"
 
-Tileset1A0::
+DuelNineTailsGfx::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/tileset1A0.2bpp"
+	INCBIN "gfx/duel/anims/nine_tails.2bpp"
 
-Tileset1A1::
+DuelBoneHeadbuttGfx::
 	dw 22 ; length
-	INCBIN "gfx/tilesets/tileset1A1.2bpp"
+	INCBIN "gfx/duel/anims/bone_headbutt.2bpp"
 
-Tileset1A2::
+DuelDrillDiveGfx::
 	dw 16 ; length
-	INCBIN "gfx/tilesets/tileset1A2.2bpp"
+	INCBIN "gfx/duel/anims/drill_dive.2bpp"
 
-Tileset1A4::
+DuelCardGfx::
 	dw 5 ; length
-	INCBIN "gfx/tilesets/tileset1A4.2bpp"
+	INCBIN "gfx/duel/anims/card.2bpp"
 
-Pikachu2CoinGfx::
+TCG1PikachuCoinGfx::
 	dw 23 ; length
-	INCBIN "gfx/coins/pikachu2.2bpp"
+	INCBIN "gfx/coins/tcg1_pikachu.2bpp"
 
-Tileset1A6::
+DuelResultGfx::
 	dw 54 ; length
-	INCBIN "gfx/tilesets/tileset1A6.2bpp"
+	INCBIN "gfx/duel/anims/result.2bpp"
 
-Tileset1A7::
+SmallCoinsGfx::
 	dw 239 ; length
-	INCBIN "gfx/coins/tileset1A7.2bpp"
+	INCBIN "gfx/coins/small_coins.2bpp"
 
 ChanseyCoinGfx::
 	dw 39 ; length
@@ -2117,13 +2117,13 @@ PsyduckCoinGfx::
 	dw 39 ; length
 	INCBIN "gfx/coins/psyduck.2bpp"
 
-Tileset1CC::
+BoosterPackOAMGfx::
 	dw 23 ; length
-	INCBIN "gfx/scenes/tileset1CC.2bpp"
+	INCBIN "gfx/booster_packs/pack_oam.2bpp"
 
-Tileset1E5::
+MailboxCrossGfx::
 	dw 4 ; length
-	INCBIN "gfx/tilesets/tileset1E5.2bpp"
+	INCBIN "gfx/minicom/mail_cross.2bpp"
 
 SECTION "Tilesets 29", ROMX
 
@@ -2175,45 +2175,45 @@ LugiaCoinGfx::
 	dw 39 ; length
 	INCBIN "gfx/coins/lugia.2bpp"
 
-Tileset1C0::
+BeginningPackGfx::
 	dw 86 ; length
-	INCBIN "gfx/scenes/tileset1C0.2bpp"
+	INCBIN "gfx/booster_packs/beginning_pack.2bpp"
 
-Tileset1C1::
+LegendaryPackGfx::
 	dw 95 ; length
-	INCBIN "gfx/scenes/tileset1C1.2bpp"
+	INCBIN "gfx/booster_packs/legendary_pack.2bpp"
 
-Tileset1C2::
+FossilPackGfx::
 	dw 86 ; length
-	INCBIN "gfx/scenes/tileset1C2.2bpp"
+	INCBIN "gfx/booster_packs/fossil_pack.2bpp"
 
-Tileset1C3::
+PsychicPackGfx::
 	dw 95 ; length
-	INCBIN "gfx/scenes/tileset1C3.2bpp"
+	INCBIN "gfx/booster_packs/psychic_pack.2bpp"
 
-Tileset1C4::
+FlyingPackGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/tileset1C4.2bpp"
+	INCBIN "gfx/booster_packs/flying_pack.2bpp"
 
-Tileset1C5::
+RocketPackGfx::
 	dw 68 ; length
-	INCBIN "gfx/scenes/tileset1C5.2bpp"
+	INCBIN "gfx/booster_packs/rocket_pack.2bpp"
 
-Tileset1D2::
+BlackBoxCardGfx::
 	dw 6 ; length
-	INCBIN "gfx/tilesets/tileset1D2.2bpp"
+	INCBIN "gfx/black_box/black_box_card.2bpp"
 
-Tileset1D3::
+BlackBoxEnvelopeGfx::
 	dw 6 ; length
-	INCBIN "gfx/tilesets/tileset1D3.2bpp"
+	INCBIN "gfx/black_box/envelope.2bpp"
 
-Tileset1D4::
+CoinsWindowGfx::
 	dw 8 ; length
-	INCBIN "gfx/tilesets/tileset1D4.2bpp"
+	INCBIN "gfx/coins_menu/window.2bpp"
 
-Tileset1DC::
+ConnectionLostCrossGfx::
 	dw 6 ; length
-	INCBIN "gfx/scenes/tileset1DC.2bpp"
+	INCBIN "gfx/link/link_cross.2bpp"
 
 Palette0E1::
 	db 2 ; number of palettes
@@ -2230,61 +2230,61 @@ Palette0E1::
 
 SECTION "Tilesets 30", ROMX
 
-Tileset1C6::
+AmbitionPackGfx::
 	dw 86 ; length
-	INCBIN "gfx/scenes/tileset1C6.2bpp"
+	INCBIN "gfx/booster_packs/ambition_pack.2bpp"
 
-Tileset1C7::
+PresentPackGfx::
 	dw 86 ; length
-	INCBIN "gfx/scenes/tileset1C7.2bpp"
+	INCBIN "gfx/booster_packs/present_pack.2bpp"
 
 IntroBaseSetGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/intro_base_set.2bpp"
+	INCBIN "gfx/titlescreen/booster_packs/intro_base_set.2bpp"
 
 IntroJungleGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/intro_jungle.2bpp"
+	INCBIN "gfx/titlescreen/booster_packs/intro_jungle.2bpp"
 
 IntroFossilGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/intro_fossil.2bpp"
+	INCBIN "gfx/titlescreen/booster_packs/intro_fossil.2bpp"
 
 IntroTeamRocketGfx::
 	dw 96 ; length
-	INCBIN "gfx/scenes/intro_team_rocket.2bpp"
+	INCBIN "gfx/titlescreen/booster_packs/intro_team_rocket.2bpp"
 
 TitleScreenGfx::
 	dw 188 ; length
-	INCBIN "gfx/scenes/title_screen.2bpp"
+	INCBIN "gfx/titlescreen/title_screen.2bpp"
 
-Tileset1CE::
+StartEnergiesGfx::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/tileset1CE.2bpp"
+	INCBIN "gfx/titlescreen/start_energies.2bpp"
 
-Tileset1CF::
+GBErrorGfx::
 	dw 70 ; length
-	INCBIN "gfx/scenes/tileset1CF.2bpp"
+	INCBIN "gfx/titlescreen/gb_error.2bpp"
 
-Tileset1D0::
+CompanyCreditsGfx::
 	dw 66 ; length
-	INCBIN "gfx/tilesets/tileset1D0.2bpp"
+	INCBIN "gfx/titlescreen/companies.2bpp"
 
-Tileset1D5::
+TournamentTableGfx::
 	dw 64 ; length
-	INCBIN "gfx/scenes/tileset1D5.2bpp"
+	INCBIN "gfx/duel/tournament_table.2bpp"
 
-Tileset1DA::
+CardPopMenuOAMGfx::
 	dw 13 ; length
-	INCBIN "gfx/scenes/tileset1DA.2bpp"
+	INCBIN "gfx/link/card_pop_menu_oam.2bpp"
 
-Tileset1E3::
+PrinterOAMGfx::
 	dw 6 ; length
-	INCBIN "gfx/tilesets/tileset1E3.2bpp"
+	INCBIN "gfx/link/printer_oam.2bpp"
 
-Tileset1EC::
+LinkOamGfx::
 	dw 4 ; length
-	INCBIN "gfx/tilesets/tileset1EC.2bpp"
+	INCBIN "gfx/link/link_oam.2bpp"
 
 Palette001::
 	db 6 ; number of palettes
@@ -2321,49 +2321,49 @@ Palette001::
 
 SECTION "Tilesets 31", ROMX
 
-Tileset1D1::
+BlackBoxBackgroundGfx::
 	dw 91 ; length
-	INCBIN "gfx/scenes/tileset1D1.2bpp"
+	INCBIN "gfx/black_box/black_box_bg.2bpp"
 
-Tileset1D6::
+SlotsBGIconsGfx::
 	dw 256 ; length
-	INCBIN "gfx/scenes/tileset1D6.2bpp"
+	INCBIN "gfx/slots/slots_bg_icons.2bpp"
 
-Tileset1D7::
+SlotsMessagesGfx::
 	dw 144 ; length
-	INCBIN "gfx/tilesets/tileset1D7.2bpp"
+	INCBIN "gfx/slots/slots_messages.2bpp"
 
-Tileset1D9::
+CardPopMenuGfx::
 	dw 50 ; length
-	INCBIN "gfx/scenes/tileset1D9.2bpp"
+	INCBIN "gfx/link/card_pop_menu.2bpp"
 
-Tileset1DB::
+CardPopSceneGfx::
 	dw 103 ; length
-	INCBIN "gfx/scenes/tileset1DB.2bpp"
+	INCBIN "gfx/link/card_pop_scene.2bpp"
 
-Tileset1DD::
+CardPopOAMGfx::
 	dw 95 ; length
-	INCBIN "gfx/scenes/tileset1DD.2bpp"
+	INCBIN "gfx/link/card_pop_oam.2bpp"
 
-Tileset1DE::
+LinkSceneGfx::
 	dw 73 ; length
-	INCBIN "gfx/scenes/tileset1DE.2bpp"
+	INCBIN "gfx/link/link_scene.2bpp"
 
-Tileset1DF::
+RareCardPopSceneGfx::
 	dw 124 ; length
-	INCBIN "gfx/tilesets/tileset1DF.2bpp"
+	INCBIN "gfx/link/rare_card_pop_scene.2bpp"
 
-Tileset1E1::
+SpecialRulesGfx::
 	dw 21 ; length
-	INCBIN "gfx/tilesets/tileset1E1.2bpp"
+	INCBIN "gfx/duel/special_rules.2bpp"
 
-Tileset1E4::
+FullMailboxGfx::
 	dw 55 ; length
-	INCBIN "gfx/tilesets/tileset1E4.2bpp"
+	INCBIN "gfx/minicom/full_mailbox.2bpp"
 
-Tileset1ED::
+CoinTossResultGfx::
 	dw 5 ; length
-	INCBIN "gfx/tilesets/tileset1ED.2bpp"
+	INCBIN "gfx/duel/coin_toss_result.2bpp"
 
 Palette002::
 	db 6 ; number of palettes
@@ -2428,37 +2428,37 @@ Palette053::
 
 SECTION "Tilesets 32", ROMX
 
-Tileset1E0::
+RareCardPopOAMGfx::
 	dw 256 ; length
-	INCBIN "gfx/tilesets/tileset1E0.2bpp"
+	INCBIN "gfx/link/rare_card_pop_oam.2bpp"
 
-Tileset1E2::
+PrinterSceneGfx::
 	dw 78 ; length
-	INCBIN "gfx/tilesets/tileset1E2.2bpp"
+	INCBIN "gfx/link/printer_scene.2bpp"
 
-Tileset1E6::
+MailboxGfx::
 	dw 45 ; length
-	INCBIN "gfx/tilesets/tileset1E6.2bpp"
+	INCBIN "gfx/minicom/mailbox.2bpp"
 
-Tileset1E7::
+GotMailAnimGfx::
 	dw 19 ; length
-	INCBIN "gfx/tilesets/tileset1E7.2bpp"
+	INCBIN "gfx/minicom/got_mail_anim.2bpp"
 
-Tileset1E8::
+MailboxCopyGfx::
 	dw 45 ; length
-	INCBIN "gfx/tilesets/tileset1E8.2bpp"
+	INCBIN "gfx/minicom/mailbox_copy.2bpp"
 
-Tileset1EA::
+DeckDiagnosisGfx::
 	dw 33 ; length
-	INCBIN "gfx/tilesets/tileset1EA.2bpp"
+	INCBIN "gfx/duel/deck_diagnosis.2bpp"
 
-Tileset1EB::
+LinkSceneIntroGfx::
 	dw 64 ; length
-	INCBIN "gfx/tilesets/tileset1EB.2bpp"
+	INCBIN "gfx/link/link_scene_intro.2bpp"
 
-Tileset1EE::
+GRCoinPiecesGfx::
 	dw 24 ; length
-	INCBIN "gfx/tilesets/tileset1EE.2bpp"
+	INCBIN "gfx/coins_menu/gr_pieces.2bpp"
 
 SECTION "Palettes 1", ROMX
 INCLUDE "data/palettes1.asm"

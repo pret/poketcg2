@@ -38,7 +38,7 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_VULCANO_SMOKE_TCG
+	ld a, OW_VOLCANO_SMOKE_TCG
 	lb de, $78, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -98,14 +98,14 @@ Func_4048a:
 	ld a, [wd584]
 	cp $26
 	jr z, .asm_40528
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $50, $78
 	ld b, EAST
 	farcall LoadOWObject
 	scf
 	ret
 .asm_40528
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $90, $60
 	ld b, WEST
 	farcall LoadOWObject
@@ -539,9 +539,9 @@ DoGRShipMovement:
 	ld b, a
 	push hl
 	push bc
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall SetOWObjectTargetPosition
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	pop bc
 	farcall SetOWObjectDirection
 

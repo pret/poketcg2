@@ -38,12 +38,12 @@ Func_300a8:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_UNK_C9
+	ld a, OW_VOLCANO_SMOKE_GR
 	lb de, $3c, $20
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CD
+	ld a, OW_GR_CASTLE_FLAG
 	lb de, $b0, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -62,12 +62,12 @@ Func_300a8:
 	ld b, SOUTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
@@ -102,7 +102,7 @@ Func_300a8:
 	ld a, [wd584]
 	cp $26
 	jr z, .asm_30159
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $18, $b0
 	ld b, EAST
 	farcall LoadOWObject
@@ -110,7 +110,7 @@ Func_300a8:
 	ret
 
 .asm_30159
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $30, $f0
 	ld b, EAST
 	farcall LoadOWObject
@@ -124,11 +124,11 @@ Func_300a8:
 	ret
 
 .Func_30175:
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
 	farcall Func_10413
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $40, $f0
 	farcall SetOWObjectPosition
 	ret
@@ -214,25 +214,25 @@ Func_30202:
 	ld a, [hl]
 	sub 12
 	ld e, a
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall SetOWObjectPosition
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall SetOWObjectPosition
 	pop af
 
 	call Func_3030a
 	jr c, .asm_30233
 
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall Func_112e8
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall Func_112f4
 	jr .done
 
 .asm_30233
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall Func_112f4
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall Func_112e8
 	jr .done ; unnecessary jump
 

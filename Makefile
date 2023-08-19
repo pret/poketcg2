@@ -101,18 +101,18 @@ $(rom): $(rom_obj) src/layout.link
 
 src/gfx/coins/%.2bpp: rgbgfx += -x 1
 
-src/gfx/scenes/tileset1C0.2bpp: rgbgfx += -x 2
-src/gfx/scenes/tileset1C1.2bpp: rgbgfx += -x 1
-src/gfx/scenes/tileset1C2.2bpp: rgbgfx += -x 2
-src/gfx/scenes/tileset1C3.2bpp: rgbgfx += -x 1
-src/gfx/scenes/tileset1C6.2bpp: rgbgfx += -x 2
-src/gfx/scenes/tileset1C7.2bpp: rgbgfx += -x 2
-src/gfx/scenes/tileset1CC.2bpp: rgbgfx += -x 1
-src/gfx/scenes/title_screen.2bpp: rgbgfx += -x 4
-src/gfx/scenes/tileset1CF.2bpp: rgbgfx += -x 10
-src/gfx/scenes/tileset1D1.2bpp: rgbgfx += -x 5
-src/gfx/scenes/tileset1DB.2bpp: rgbgfx += -x 9
-src/gfx/scenes/tileset1DE.2bpp: rgbgfx += -x 7
+src/gfx/booster_packs/beginning_pack.2bpp: rgbgfx += -x 2
+src/gfx/booster_packs/legendary_pack.2bpp: rgbgfx += -x 1
+src/gfx/booster_packs/fossil_pack.2bpp: rgbgfx += -x 2
+src/gfx/booster_packs/psychic_pack.2bpp: rgbgfx += -x 1
+src/gfx/booster_packs/ambition_pack.2bpp: rgbgfx += -x 2
+src/gfx/booster_packs/present_pack.2bpp: rgbgfx += -x 2
+src/gfx/booster_packs/pack_oam.2bpp: rgbgfx += -x 1
+src/gfx/titlescreen/title_screen.2bpp: rgbgfx += -x 4
+src/gfx/titlescreen/gb_error.2bpp: rgbgfx += -x 10
+src/gfx/black_box/black_box_bg.2bpp: rgbgfx += -x 5
+src/gfx/link/card_pop_scene.2bpp: rgbgfx += -x 9
+src/gfx/link/link_scene.2bpp: rgbgfx += -x 7
 
 ### Catch-all graphics rules
 
