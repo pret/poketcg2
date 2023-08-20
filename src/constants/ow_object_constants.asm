@@ -343,9 +343,9 @@
 	const OWSPRITE_WARP_SPARKLES         ; $68
 	const OWSPRITE_GR_BLIMP              ; $69
 	const OWSPRITE_GR_BLIMP_BEAM         ; $6a
-	const OWSPRITE_VULCANO_SMOKE_TCG     ; $6b
+	const OWSPRITE_VOLCANO_SMOKE_TCG     ; $6b
 	const OWSPRITE_CURSOR_TCG            ; $6c
-	const OWSPRITE_VULCANO_SMOKE_GR      ; $6d
+	const OWSPRITE_VOLCANO_SMOKE_GR      ; $6d
 	const OWSPRITE_GR_CASTLE_FLAG        ; $6e
 	const OWSPRITE_CURSOR_GR             ; $6f
 	const OWSPRITE_GR_CROSS              ; $70

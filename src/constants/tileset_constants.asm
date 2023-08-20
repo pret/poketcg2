@@ -420,33 +420,33 @@
 	const TILESET_DRILL_DIVE                  ; $1a2
 	const TILESET_DARK_SONG                   ; $1a3
 	const TILESET_CARD                        ; $1a4
-	const TILESET_TCG1_PIKACHU                ; $1a5
-	const TILESET_1A6                         ; $1a6
+	const TILESET_TCG1_PIKACHU_COIN           ; $1a5
+	const TILESET_DUEL_RESULT		  ; $1a6
 	const TILESET_SMALL_COINS                 ; $1a7
-	const TILESET_CHANSEY                     ; $1a8
-	const TILESET_ODDISH                      ; $1a9
-	const TILESET_CHARMANDER                  ; $1aa
-	const TILESET_STARMIE                     ; $1ab
-	const TILESET_PIKACHU                     ; $1ac
-	const TILESET_ALAKAZAM                    ; $1ad
-	const TILESET_KABUTO                      ; $1ae
+	const TILESET_CHANSEY_COIN                ; $1a8
+	const TILESET_ODDISH_COIN                 ; $1a9
+	const TILESET_CHARMANDER_COIN             ; $1aa
+	const TILESET_STARMIE_COIN                ; $1ab
+	const TILESET_PIKACHU_COIN                ; $1ac
+	const TILESET_ALAKAZAM_COIN               ; $1ad
+	const TILESET_KABUTO_COIN                 ; $1ae
 	const TILESET_GR_COIN                     ; $1af
-	const TILESET_GOLBAT                      ; $1b0
-	const TILESET_MAGNEMITE                   ; $1b1
-	const TILESET_MAGMAR                      ; $1b2
-	const TILESET_PSYDUCK                     ; $1b3
-	const TILESET_MACHAMP                     ; $1b4
-	const TILESET_MEW                         ; $1b5
-	const TILESET_SNORLAX                     ; $1b6
-	const TILESET_TOGEPI                      ; $1b7
-	const TILESET_PONYTA                      ; $1b8
-	const TILESET_HORSEA                      ; $1b9
-	const TILESET_ARBOK                       ; $1ba
-	const TILESET_JIGGLYPUFF                  ; $1bb
-	const TILESET_DUGTRIO                     ; $1bc
-	const TILESET_GENGAR                      ; $1bd
-	const TILESET_RAICHU                      ; $1be
-	const TILESET_LUGIA                       ; $1bf
+	const TILESET_GOLBAT_COIN                 ; $1b0
+	const TILESET_MAGNEMITE_COIN              ; $1b1
+	const TILESET_MAGMAR_COIN                 ; $1b2
+	const TILESET_PSYDUCK_COIN                ; $1b3
+	const TILESET_MACHAMP_COIN                ; $1b4
+	const TILESET_MEW_COIN                    ; $1b5
+	const TILESET_SNORLAX_COIN                ; $1b6
+	const TILESET_TOGEPI_COIN                 ; $1b7
+	const TILESET_PONYTA_COIN                 ; $1b8
+	const TILESET_HORSEA_COIN                 ; $1b9
+	const TILESET_ARBOK_COIN                  ; $1ba
+	const TILESET_JIGGLYPUFF_COIN             ; $1bb
+	const TILESET_DUGTRIO_COIN                ; $1bc
+	const TILESET_GENGAR_COIN                 ; $1bd
+	const TILESET_RAICHU_COIN                 ; $1be
+	const TILESET_LUGIA_COIN                  ; $1bf
 	const TILESET_BEGINNING_PACK              ; $1c0
 	const TILESET_LEGENDARY_PACK              ; $1c1
 	const TILESET_FOSSIL_PACK                 ; $1c2
