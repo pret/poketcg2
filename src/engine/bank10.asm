@@ -1,7 +1,7 @@
 SECTION "Bank 10@4462", ROMX[$4462], BANK[$10]
 
 Data_40462:
-	db OVERWORLD_MAP
+	db OVERWORLD_MAP_TCG
 	dba Data_40467
 	db $09
 

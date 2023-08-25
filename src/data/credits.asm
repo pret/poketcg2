@@ -567,7 +567,7 @@ Credits:
 
 	credits_draw_box  0,  0, 20, 18
 	credits_init_ow
-	credits_load_map OVERWORLD_MAP
+	credits_load_map OVERWORLD_MAP_TCG
 	credits_load_tilemap TILEMAP_100, 0, 0
 	credits_load_ow_obj OW_MARK, SOUTH, $34, $30
 	credits_fade_in CREDITS_FADE_ALL, $0a
