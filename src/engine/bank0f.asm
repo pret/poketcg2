@@ -16,7 +16,7 @@ Prologue::
 	; load map and fade in
 	ld a, MUSIC_HERECOMESGR
 	farcall PlayAfterCurrentSong
-	ld bc, OVERWORLD_MAP
+	ld bc, OVERWORLD_MAP_TCG
 	farcall LoadOWMap
 	ld bc, TILEMAP_001
 	lb de, 0, 0
@@ -27,7 +27,7 @@ Prologue::
 	call EnableLCD
 
 	; do GR Ship movement
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $a0, $30
 	ld b, WEST
 	farcall LoadOWObject
@@ -103,7 +103,7 @@ Prologue::
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectFrameset
 
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall ClearOWObject
 
 	ld bc, TILEMAP_002
@@ -149,7 +149,7 @@ Prologue::
 ; de = target position
 .MoveGRShip:
 	push bc
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall SetOWObjectTargetPosition
 	pop bc
 .loop
@@ -159,7 +159,7 @@ Prologue::
 	farcall MoveOWObjectToTargetPosition
 	pop bc
 	; override direction
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall SetOWObjectDirection
 	jr c, .loop
 	ret
@@ -167,7 +167,7 @@ Prologue::
 .DoGRShipBeamAnimation:
 	ld a, SFX_8B
 	call PlaySFX
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall GetOWObjectPosition
 	ld a, e
 	add $10
@@ -175,11 +175,11 @@ Prologue::
 	ld a, d
 	sub $04
 	ld d, a
-	ld a, OW_GRSHIPBEAM
+	ld a, OW_GR_BLIMP_BEAM
 	ld b, SOUTH
 	farcall LoadOWObject
 	call WaitForOWObjectAnimation
-	ld a, OW_GRSHIPBEAM
+	ld a, OW_GR_BLIMP_BEAM
 	farcall ClearOWObject
 	ret
 

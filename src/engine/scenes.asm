@@ -57,147 +57,147 @@ _LoadScene::
 	ret
 
 SceneDataPointers:
-	dw .Scene00 ; SCENE_00
-	dw .Scene01 ; SCENE_01
-	dw .Scene02 ; SCENE_02
-	dw .Scene03 ; SCENE_03
-	dw .Scene04 ; SCENE_04
-	dw .Scene05 ; SCENE_05
-	dw .Scene06 ; SCENE_06
-	dw .Scene07 ; SCENE_07
-	dw .Scene08 ; SCENE_08
-	dw .Scene09 ; SCENE_09
-	dw .SceneIntroBaseSet ; SCENE_INTRO_BASE_SET
-	dw .SceneIntroJungle ; SCENE_INTRO_JUNGLE
-	dw .SceneIntroFossil ; SCENE_INTRO_FOSSIL
-	dw .SceneIntroTeamRocket ; SCENE_INTRO_TEAM_ROCKET
-	dw .Scene0e ; SCENE_0E
-	dw .Scene0f ; SCENE_0F
-	dw .Scene10 ; SCENE_10
-	dw .Scene11 ; SCENE_11
-	dw .Scene12 ; SCENE_12
-	dw .Scene13 ; SCENE_13
-	dw .Scene14 ; SCENE_14
-	dw .Scene15 ; SCENE_15
-	dw .Scene16 ; SCENE_16
-	dw .Scene17 ; SCENE_17
-	dw .Scene18 ; SCENE_18
-	dw .Scene19 ; SCENE_19
-	dw .Scene1a ; SCENE_1A
-	dw .Scene1b ; SCENE_1B
-	dw .Scene1c ; SCENE_1C
-	dw .Scene1d ; SCENE_1D
-	dw .Scene1e ; SCENE_1E
-	dw .Scene1f ; SCENE_1F
-	dw .Scene20 ; SCENE_20
-	dw .Scene21 ; SCENE_21
-	dw .Scene22 ; SCENE_22
-	dw .Scene23 ; SCENE_23
+	dw .SceneSpecialRules      ; SCENE_SPECIAL_RULES
+	dw .SceneSlotMachine       ; SCENE_SLOT_MACHINE
+	dw .SceneBeginningPack     ; SCENE_BEGINNING_PACK
+	dw .SceneLegendaryPack     ; SCENE_LEGENDARY_PACK
+	dw .SceneFossilPack        ; SCENE_FOSSIL_PACK
+	dw .ScenePsychicPack       ; SCENE_PSYCHIC_PACK
+	dw .SceneFlyingPack        ; SCENE_FLYING_PACK
+	dw .SceneRocketPack        ; SCENE_ROCKET_PACK
+	dw .SceneAmbitionPack      ; SCENE_AMBITION_PACK
+	dw .ScenePresentPack       ; SCENE_PRESENT_PACK
+	dw .SceneIntroBaseSet      ; SCENE_INTRO_BASE_SET
+	dw .SceneIntroJungle       ; SCENE_INTRO_JUNGLE
+	dw .SceneIntroFossil       ; SCENE_INTRO_FOSSIL
+	dw .SceneIntroTeamRocket   ; SCENE_INTRO_TEAM_ROCKET
+	dw .SceneTournamentTable   ; SCENE_TOURNAMENT_TABLE
+	dw .SceneCardPopMenu       ; SCENE_CARD_POP_MENU
+	dw .SceneCardPop           ; SCENE_CARD_POP
+	dw .SceneCardPopError      ; SCENE_CARD_POP_ERROR
+	dw .SceneLink              ; SCENE_LINK
+	dw .SceneRareCardPop       ; SCENE_RARE_CARD_POP
+	dw .SceneRareCardPopError  ; SCENE_RARE_CARD_POP_ERRORR
+	dw .SceneBlackBox          ; SCENE_BLACK_BOX
+	dw .SceneTitleScreen1      ; SCENE_TITLE_SCREEN_1
+	dw .SceneTitleScreen2      ; SCENE_TITLE_SCREEN_2
+	dw .SceneTitleScreen3      ; SCENE_TITLE_SCREEN_3
+	dw .SceneTitleScreen4      ; SCENE_TITLE_SCREEN_4
+	dw .ScenePrinter1          ; SCENE_PRINTER_1
+	dw .ScenePrinter2          ; SCENE_PRINTER_2
+	dw .SceneFullMailbox       ; SCENE_FULL_MAILBOX
+	dw .SceneGotMail           ; SCENE_GOT_MAIL
+	dw .SceneMailbox           ; SCENE_MAILBOX
+	dw .SceneDeckDiagnosis     ; SCENE_DECK_DIAGNOSIS
+	dw .SceneLinkIntro1        ; SCENE_LINK_INTRO_1
+	dw .SceneLinkIntro2        ; SCENE_LINK_INTRO_2
+	dw .SceneCoinTossResult1   ; SCENE_COIN_TOSS_RESULT_1
+	dw .SceneCoinTossResult2   ; SCENE_COIN_TOSS_RESULT_2
 	dw .SceneGBCOnlyDisclaimer ; SCENE_GBC_ONLY_DISCLAIMER
 
-.Scene00
-	dw TILESET_1E1
+.SceneSpecialRules
+	dw TILESET_SPECIAL_RULES
 	dw PALETTE_178
 	dw TILEMAP_22E
 	db $ff, $ff ; end
 
-.Scene01
-	dw TILESET_1D6
+.SceneSlotMachine
+	dw TILESET_SLOTS_BG_ICONS
 	dw PALETTE_16D
 	dw TILEMAP_227
 	db $ff, $ff ; end
 
-.Scene02
-	dw TILESET_1C0
+.SceneBeginningPack
+	dw TILESET_BEGINNING_PACK
 	dw PALETTE_154
 	dw TILEMAP_212
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene03
-	dw TILESET_1C1
+.SceneLegendaryPack
+	dw TILESET_LEGENDARY_PACK
 	dw PALETTE_155
 	dw TILEMAP_213
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene04
-	dw TILESET_1C2
+.SceneFossilPack
+	dw TILESET_FOSSIL_PACK
 	dw PALETTE_156
 	dw TILEMAP_214
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene05
-	dw TILESET_1C3
+.ScenePsychicPack
+	dw TILESET_PSYCHIC_PACK
 	dw PALETTE_157
 	dw TILEMAP_215
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene06
-	dw TILESET_1C4
+.SceneFlyingPack
+	dw TILESET_FLYING_PACK
 	dw PALETTE_158
 	dw TILEMAP_216
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene07
-	dw TILESET_1C5
+.SceneRocketPack
+	dw TILESET_ROCKET_PACK
 	dw PALETTE_159
 	dw TILEMAP_217
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene08
-	dw TILESET_1C6
+.SceneAmbitionPack
+	dw TILESET_AMBITION_PACK
 	dw PALETTE_15A
 	dw TILEMAP_218
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
 	db $ff, $ff ; end
 
-.Scene09
-	dw TILESET_1C7
+.ScenePresentPack
+	dw TILESET_PRESENT_PACK
 	dw PALETTE_15B
 	dw TILEMAP_219
 
 	db $00, $00 ; x, y
-	dw TILESET_1CC
+	dw TILESET_PACK_OAM
 	dw $091 ; ?
 	dw $158 ; ?
 	dw PALETTE_160
@@ -227,206 +227,206 @@ SceneDataPointers:
 	dw TILEMAP_21D
 	db $ff, $ff ; end
 
-.Scene0e
-	dw TILESET_1D5
+.SceneTournamentTable
+	dw TILESET_TOURNAMENT_TABLE
 	dw PALETTE_16C
 	dw TILEMAP_226
 	db $ff, $ff ; end
 
-.Scene0f
-	dw TILESET_1D9
+.SceneCardPopMenu
+	dw TILESET_CARD_POP_MENU
 	dw PALETTE_170
 	dw TILEMAP_22A
 
 	db $00, $00 ; x, y
-	dw TILESET_1DA
+	dw TILESET_CARD_POP_MENU_OAM
 	dw $0a3 ; ?
 	dw $16b ; ?
 	dw PALETTE_171
 	db $ff, $ff ; end
 
-.Scene10
-	dw TILESET_1DB
+.SceneCardPop
+	dw TILESET_CARD_POP_SCENE
 	dw PALETTE_172
 	dw TILEMAP_22B
 
 	db $50, $48 ; x, y
-	dw TILESET_1DD
+	dw TILESET_CARD_POP_OAM
 	dw $0a5 ; ?
 	dw $16d ; ?
 	dw PALETTE_174
 	db $ff, $ff ; end
 
-.Scene11
-	dw TILESET_1DB
+.SceneCardPopError
+	dw TILESET_CARD_POP_SCENE
 	dw PALETTE_172
 	dw TILEMAP_22B
 
 	db $40, $30 ; x, y
-	dw TILESET_1DC
+	dw TILESET_LINK_CROSS
 	dw $0a4 ; ?
 	dw $16c ; ?
 	dw PALETTE_173
 	db $ff, $ff ; end
 
-.Scene12
-	dw TILESET_1DE
+.SceneLink
+	dw TILESET_LINK_SCENE
 	dw PALETTE_175
 	dw TILEMAP_22C
 	db $ff, $ff ; end
 
-.Scene13
-	dw TILESET_1DF
+.SceneRareCardPop
+	dw TILESET_RARE_CARD_POP_SCENE
 	dw PALETTE_176
 	dw TILEMAP_22D
 
 	db $50, $30 ; x, y
-	dw TILESET_1E0
+	dw TILESET_RARE_CARD_POP_OAM
 	dw $0a6 ; ?
 	dw $16e ; ?
 	dw PALETTE_177
 	db $ff, $ff ; end
 
-.Scene14
-	dw TILESET_1DF
+.SceneRareCardPopError
+	dw TILESET_RARE_CARD_POP_SCENE
 	dw PALETTE_176
 	dw TILEMAP_22D
 
 	db $40, $30 ; x, y
-	dw TILESET_1DC
+	dw TILESET_LINK_CROSS
 	dw $0a4 ; ?
 	dw $16c ; ?
 	dw PALETTE_173
 	db $ff, $ff ; end
 
-.Scene1a
-	dw TILESET_1E2
+.ScenePrinter1
+	dw TILESET_PRINTER_SCENE
 	dw PALETTE_179
 	dw TILEMAP_22F
 
 	db $50, $48 ; x, y
-	dw TILESET_1E3
+	dw TILESET_PRINTER_OAM
 	dw $0a7 ; ?
 	dw $16f ; ?
 	dw PALETTE_17A
 	db $ff, $ff ; end
 
-.Scene1b
-	dw TILESET_1E2
+.ScenePrinter2
+	dw TILESET_PRINTER_SCENE
 	dw PALETTE_179
 	dw TILEMAP_22F
 
 	db $50, $40 ; x, y
-	dw TILESET_1E3
+	dw TILESET_PRINTER_OAM
 	dw $0a7 ; ?
 	dw $170 ; ?
 	dw PALETTE_17A
 	db $ff, $ff ; end
 
-.Scene15
-	dw TILESET_1D1
+.SceneBlackBox
+	dw TILESET_BLACK_BOX_BG
 	dw PALETTE_138
 	dw TILEMAP_225
 	db $ff, $ff ; end
 
-.Scene16
+.SceneTitleScreen1
 	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_21E
 	db $ff, $ff ; end
 
-.Scene17
+.SceneTitleScreen2
 	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_21F
 	db $ff, $ff ; end
 
-.Scene18
+.SceneTitleScreen3
 	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_220
 	db $ff, $ff ; end
 
-.Scene19
+.SceneTitleScreen4
 	dw TILESET_TITLE_SCREEN
 	dw PALETTE_167
 	dw TILEMAP_221
 	db $ff, $ff ; end
 
-.Scene1c
-	dw TILESET_1E4
+.SceneFullMailbox
+	dw TILESET_FULL_MAILBOX
 	dw PALETTE_17B
 	dw TILEMAP_230
 
 	db $28, $20 ; x, y
-	dw TILESET_1E5
+	dw TILESET_MAIL_CROSS
 	dw $0a8 ; ?
 	dw $171 ; ?
 	dw PALETTE_17C
 	db $ff, $ff ; end
 
-.Scene1d
-	dw TILESET_1E6
+.SceneGotMail
+	dw TILESET_MAILBOX
 	dw PALETTE_17D
 	dw TILEMAP_231
 
 	db $28, $20 ; x, y
-	dw TILESET_1E7
+	dw TILESET_GOT_MAIL_ANIM
 	dw $0a9 ; ?
 	dw $172 ; ?
 	dw PALETTE_17E
 	db $ff, $ff ; end
 
-.Scene1e
-	dw TILESET_1E8
+.SceneMailbox
+	dw TILESET_MAILBOX_COPY
 	dw PALETTE_17F
 	dw TILEMAP_232
 	db $ff, $ff ; end
 
-.Scene1f
-	dw TILESET_1EA
+.SceneDeckDiagnosis
+	dw TILESET_DECK_DIAGNOSIS
 	dw PALETTE_181
 	dw TILEMAP_233
 	db $ff, $ff ; end
 
-.Scene20
-	dw TILESET_1EB
+.SceneLinkIntro1
+	dw TILESET_LINK_SCENE_INTRO
 	dw PALETTE_182
 	dw TILEMAP_234
 
 	db $50, $4c ; x, y
-	dw TILESET_1EC
+	dw TILESET_LINK_OAM
 	dw $0ab ; ?
 	dw $174 ; ?
 	dw PALETTE_183
 	db $ff, $ff ; end
 
-.Scene21
-	dw TILESET_1EB
+.SceneLinkIntro2
+	dw TILESET_LINK_SCENE_INTRO
 	dw PALETTE_182
 	dw TILEMAP_234
 
 	db $50, $48 ; x, y
-	dw TILESET_1EC
+	dw TILESET_LINK_OAM
 	dw $0ab ; ?
 	dw $175 ; ?
 	dw PALETTE_183
 	db $ff, $ff ; end
 
-.Scene22
-	dw TILESET_1ED
+.SceneCoinTossResult1
+	dw TILESET_COIN_TOSS_RESULT
 	dw PALETTE_184
 	dw TILEMAP_235
 	db $ff, $ff ; end
 
-.Scene23
-	dw TILESET_1ED
+.SceneCoinTossResult2
+	dw TILESET_COIN_TOSS_RESULT
 	dw PALETTE_184
 	dw TILEMAP_236
 	db $ff, $ff ; end
 
 .SceneGBCOnlyDisclaimer
-	dw TILESET_1CF
+	dw TILESET_GB_ERROR
 	dw PALETTE_169
 	dw TILEMAP_223
 	db $ff, $ff ; end

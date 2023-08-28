@@ -1,7 +1,7 @@
 SECTION "Bank c@4080", ROMX[$4080], BANK[$c]
 
 Data_30080:
-	db MAP_01
+	db OVERWORLD_MAP_GR
 	dba Data_30085
 	db $15
 
@@ -38,12 +38,12 @@ Func_300a8:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_UNK_C9
+	ld a, OW_VOLCANO_SMOKE_GR
 	lb de, $3c, $20
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CD
+	ld a, OW_GR_CASTLE_FLAG
 	lb de, $b0, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -62,12 +62,12 @@ Func_300a8:
 	ld b, SOUTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
@@ -102,7 +102,7 @@ Func_300a8:
 	ld a, [wd584]
 	cp $26
 	jr z, .asm_30159
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $18, $b0
 	ld b, EAST
 	farcall LoadOWObject
@@ -110,7 +110,7 @@ Func_300a8:
 	ret
 
 .asm_30159
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $30, $f0
 	ld b, EAST
 	farcall LoadOWObject
@@ -124,11 +124,11 @@ Func_300a8:
 	ret
 
 .Func_30175:
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
 	farcall Func_10413
-	ld a, OW_GRSHIP
+	ld a, OW_GR_BLIMP
 	lb de, $40, $f0
 	farcall SetOWObjectPosition
 	ret
@@ -214,25 +214,25 @@ Func_30202:
 	ld a, [hl]
 	sub 12
 	ld e, a
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall SetOWObjectPosition
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall SetOWObjectPosition
 	pop af
 
 	call Func_3030a
 	jr c, .asm_30233
 
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall Func_112e8
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall Func_112f4
 	jr .done
 
 .asm_30233
-	ld a, OW_UNK_CB
+	ld a, OW_CURSOR_GR
 	farcall Func_112f4
-	ld a, OW_UNK_CC
+	ld a, OW_GR_CROSS
 	farcall Func_112e8
 	jr .done ; unnecessary jump
 
@@ -281,7 +281,7 @@ Func_30242:
 
 .LocationConnections:
 	; OWMAP_GR_AIRPORT
-	db OWMAP_ARCADE ; down
+	db OWMAP_GAME_CENTER ; down
 	db OWMAP_SEALED_FORT ; up
 	db OWMAP_GR_AIRPORT ; left
 	db OWMAP_GR_GRASS_FORT ; right
@@ -292,11 +292,11 @@ Func_30242:
 	db OWMAP_ISHIHARAS_VILLA ; left
 	db OWMAP_GR_PSYCHIC_STRONGHOLD ; right
 
-	; OWMAP_ARCADE
-	db OWMAP_ARCADE ; down
+	; OWMAP_GAME_CENTER
+	db OWMAP_GAME_CENTER ; down
 	db OWMAP_GR_GRASS_FORT ; up
 	db OWMAP_GR_AIRPORT ; left
-	db OWMAP_ARCADE ; right
+	db OWMAP_GAME_CENTER ; right
 
 	; OWMAP_SEALED_FORT
 	db OWMAP_GR_AIRPORT ; down
@@ -311,7 +311,7 @@ Func_30242:
 	db OWMAP_GR_FIGHTING_FORT ; right
 
 	; OWMAP_GR_GRASS_FORT
-	db OWMAP_ARCADE ; down
+	db OWMAP_GAME_CENTER ; down
 	db OWMAP_SEALED_FORT ; up
 	db OWMAP_GR_AIRPORT ; left
 	db OWMAP_GR_LIGHTNING_FORT ; right
@@ -384,7 +384,7 @@ PrintGRIslandLocationName:
 .data
 	textitem 33, 4, Text09c3 ; OWMAP_GR_AIRPORT
 	textitem 33, 2, Text09c4 ; OWMAP_ISHIHARAS_VILLA
-	textitem 33, 3, Text09c5 ; OWMAP_ARCADE
+	textitem 33, 3, Text09c5 ; OWMAP_GAME_CENTER
 	textitem 33, 2, Text09c6 ; OWMAP_SEALED_FORT
 	textitem 33, 2, Text09c7 ; OWMAP_GR_CHALLENGE_HALL
 	textitem 33, 2, Text09c8 ; OWMAP_GR_GRASS_FORT
@@ -412,7 +412,7 @@ Func_3030a:
 .PointerTable:
 	dw .NoCheckEventCD ; OWMAP_GR_AIRPORT
 	dw .CheckEventCD   ; OWMAP_ISHIHARAS_VILLA
-	dw .NoCheckEventCD ; OWMAP_ARCADE
+	dw .NoCheckEventCD ; OWMAP_GAME_CENTER
 	dw .NoCheckEventCD ; OWMAP_SEALED_FORT
 	dw .NoCheckEventCD ; OWMAP_GR_CHALLENGE_HALL
 	dw .NoCheckEventCD ; OWMAP_GR_GRASS_FORT
@@ -576,7 +576,7 @@ Func_303c7:
 .data
 	db $27, 5, 11, NORTH ; OWMAP_GR_AIRPORT
 	db $29, 4,  9, NORTH ; OWMAP_ISHIHARAS_VILLA
-	db $2b, 5, 14, NORTH ; OWMAP_ARCADE
+	db $2b, 5, 14, NORTH ; OWMAP_GAME_CENTER
 	db $34, 5,  7, NORTH ; OWMAP_SEALED_FORT
 	db $36, 4,  7, NORTH ; OWMAP_GR_CHALLENGE_HALL
 	db $39, 4,  7, NORTH ; OWMAP_GR_GRASS_FORT
@@ -744,7 +744,7 @@ GRIslandLocationPositions:
 	; x, y
 	db $18, $b0 ; OWMAP_GR_AIRPORT
 	db $88, $08 ; OWMAP_ISHIHARAS_VILLA
-	db $38, $c0 ; OWMAP_ARCADE
+	db $38, $c0 ; OWMAP_GAME_CENTER
 	db $10, $80 ; OWMAP_SEALED_FORT
 	db $68, $60 ; OWMAP_GR_CHALLENGE_HALL
 	db $3c, $88 ; OWMAP_GR_GRASS_FORT
@@ -759,7 +759,7 @@ GRIslandLocationPositions:
 Data_3056a:
 	db 0, $00, $60, $00 ; OWMAP_GR_AIRPORT
 	db 2, $30, $00, $00 ; OWMAP_ISHIHARAS_VILLA
-	db 0, $00, $60, $00 ; OWMAP_ARCADE
+	db 0, $00, $60, $00 ; OWMAP_GAME_CENTER
 	db 0, $00, $60, $00 ; OWMAP_SEALED_FORT
 	db 1, $20, $30, $00 ; OWMAP_GR_CHALLENGE_HALL
 	db 0, $00, $60, $00 ; OWMAP_GR_GRASS_FORT
@@ -774,7 +774,7 @@ Data_3056a:
 GRIslandMovementCommands:
 	dw .GRAirport           ; OWMAP_GR_AIRPORT
 	dw .IshiharasVilla      ; OWMAP_ISHIHARAS_VILLA
-	dw .Arcade              ; OWMAP_ARCADE
+	dw .GameCenter          ; OWMAP_GAME_CENTER
 	dw .SealedFort          ; OWMAP_SEALED_FORT
 	dw .GRChallengeHall     ; OWMAP_GR_CHALLENGE_HALL
 	dw .GRGrassFort         ; OWMAP_GR_GRASS_FORT
@@ -789,7 +789,7 @@ GRIslandMovementCommands:
 .GRAirport:
 	dw NULL ; OWMAP_GR_AIRPORT
 	dw $470a ; OWMAP_ISHIHARAS_VILLA
-	dw $4724 ; OWMAP_ARCADE
+	dw $4724 ; OWMAP_GAME_CENTER
 	dw $472a ; OWMAP_SEALED_FORT
 	dw $4732 ; OWMAP_GR_CHALLENGE_HALL
 	dw $4740 ; OWMAP_GR_GRASS_FORT
@@ -804,7 +804,7 @@ GRIslandMovementCommands:
 .IshiharasVilla:
 	dw $47d4 ; OWMAP_GR_AIRPORT
 	dw NULL ; OWMAP_ISHIHARAS_VILLA
-	dw $47ee ; OWMAP_ARCADE
+	dw $47ee ; OWMAP_GAME_CENTER
 	dw $480c ; OWMAP_SEALED_FORT
 	dw $482a ; OWMAP_GR_CHALLENGE_HALL
 	dw $4836 ; OWMAP_GR_GRASS_FORT
@@ -816,10 +816,10 @@ GRIslandMovementCommands:
 	dw $488c ; OWMAP_COLORLESS_ALTAR
 	dw $4896 ; OWMAP_GR_CASTLE
 
-.Arcade:
+.GameCenter:
 	dw $489e ; OWMAP_GR_AIRPORT
 	dw $48a4 ; OWMAP_ISHIHARAS_VILLA
-	dw NULL ; OWMAP_ARCADE
+	dw NULL ; OWMAP_GAME_CENTER
 	dw $48c0 ; OWMAP_SEALED_FORT
 	dw $48cc ; OWMAP_GR_CHALLENGE_HALL
 	dw $48de ; OWMAP_GR_GRASS_FORT
@@ -834,7 +834,7 @@ GRIslandMovementCommands:
 .SealedFort:
 	dw $4992 ; OWMAP_GR_AIRPORT
 	dw $499a ; OWMAP_ISHIHARAS_VILLA
-	dw $49b6 ; OWMAP_ARCADE
+	dw $49b6 ; OWMAP_GAME_CENTER
 	dw NULL ; OWMAP_SEALED_FORT
 	dw $49c2 ; OWMAP_GR_CHALLENGE_HALL
 	dw $49d4 ; OWMAP_GR_GRASS_FORT
@@ -849,7 +849,7 @@ GRIslandMovementCommands:
 .GRChallengeHall:
 	dw $4a88 ; OWMAP_GR_AIRPORT
 	dw $4a98 ; OWMAP_ISHIHARAS_VILLA
-	dw $4aa4 ; OWMAP_ARCADE
+	dw $4aa4 ; OWMAP_GAME_CENTER
 	dw $4ab8 ; OWMAP_SEALED_FORT
 	dw NULL ; OWMAP_GR_CHALLENGE_HALL
 	dw $4acc ; OWMAP_GR_GRASS_FORT
@@ -864,7 +864,7 @@ GRIslandMovementCommands:
 .GRGrassFort:
 	dw $4b12 ; OWMAP_GR_AIRPORT
 	dw $4b1a ; OWMAP_ISHIHARAS_VILLA
-	dw $4b2e ; OWMAP_ARCADE
+	dw $4b2e ; OWMAP_GAME_CENTER
 	dw $4b3a ; OWMAP_SEALED_FORT
 	dw $4b46 ; OWMAP_GR_CHALLENGE_HALL
 	dw NULL ; OWMAP_GR_GRASS_FORT
@@ -879,7 +879,7 @@ GRIslandMovementCommands:
 .GRLightningFort:
 	dw $4bc0 ; OWMAP_GR_AIRPORT
 	dw $4bd0 ; OWMAP_ISHIHARAS_VILLA
-	dw $4bdc ; OWMAP_ARCADE
+	dw $4bdc ; OWMAP_GAME_CENTER
 	dw $4bf0 ; OWMAP_SEALED_FORT
 	dw $50a4 ; OWMAP_GR_CHALLENGE_HALL
 	dw $4c04 ; OWMAP_GR_GRASS_FORT
@@ -894,7 +894,7 @@ GRIslandMovementCommands:
 .GRFireFort:
 	dw $4c50 ; OWMAP_GR_AIRPORT
 	dw $4c64 ; OWMAP_ISHIHARAS_VILLA
-	dw $4c74 ; OWMAP_ARCADE
+	dw $4c74 ; OWMAP_GAME_CENTER
 	dw $4c8c ; OWMAP_SEALED_FORT
 	dw $4ca4 ; OWMAP_GR_CHALLENGE_HALL
 	dw $4cac ; OWMAP_GR_GRASS_FORT
@@ -909,7 +909,7 @@ GRIslandMovementCommands:
 .GRWaterFort:
 	dw $4d0c ; OWMAP_GR_AIRPORT
 	dw $4d1e ; OWMAP_ISHIHARAS_VILLA
-	dw $4d2e ; OWMAP_ARCADE
+	dw $4d2e ; OWMAP_GAME_CENTER
 	dw $4d44 ; OWMAP_SEALED_FORT
 	dw $4d5a ; OWMAP_GR_CHALLENGE_HALL
 	dw $4d62 ; OWMAP_GR_GRASS_FORT
@@ -924,7 +924,7 @@ GRIslandMovementCommands:
 .GRFightingFort:
 	dw $4dc0 ; OWMAP_GR_AIRPORT
 	dw $4dd4 ; OWMAP_ISHIHARAS_VILLA
-	dw $4dde ; OWMAP_ARCADE
+	dw $4dde ; OWMAP_GAME_CENTER
 	dw $4df6 ; OWMAP_SEALED_FORT
 	dw $4e0e ; OWMAP_GR_CHALLENGE_HALL
 	dw $4e14 ; OWMAP_GR_GRASS_FORT
@@ -939,7 +939,7 @@ GRIslandMovementCommands:
 .GRPsychicStronghold:
 	dw $4e60 ; OWMAP_GR_AIRPORT
 	dw $4e78 ; OWMAP_ISHIHARAS_VILLA
-	dw $4e80 ; OWMAP_ARCADE
+	dw $4e80 ; OWMAP_GAME_CENTER
 	dw $4e9c ; OWMAP_SEALED_FORT
 	dw $4eb8 ; OWMAP_GR_CHALLENGE_HALL
 	dw $4ec2 ; OWMAP_GR_GRASS_FORT
@@ -954,7 +954,7 @@ GRIslandMovementCommands:
 .ColorlessAltar:
 	dw $4f0e ; OWMAP_GR_AIRPORT
 	dw $4f2c ; OWMAP_ISHIHARAS_VILLA
-	dw $4f38 ; OWMAP_ARCADE
+	dw $4f38 ; OWMAP_GAME_CENTER
 	dw $4f5a ; OWMAP_SEALED_FORT
 	dw $4f7c ; OWMAP_GR_CHALLENGE_HALL
 	dw $4f8c ; OWMAP_GR_GRASS_FORT
@@ -969,7 +969,7 @@ GRIslandMovementCommands:
 .GRCastle:
 	dw $4ff6 ; OWMAP_GR_AIRPORT
 	dw $500e ; OWMAP_ISHIHARAS_VILLA
-	dw $5016 ; OWMAP_ARCADE
+	dw $5016 ; OWMAP_GAME_CENTER
 	dw $5032 ; OWMAP_SEALED_FORT
 	dw $504e ; OWMAP_GR_CHALLENGE_HALL
 	dw $5058 ; OWMAP_GR_GRASS_FORT
