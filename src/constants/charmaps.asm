@@ -311,7 +311,7 @@ ENDM
 	fwcharmap 0, "手", $80
 	fwcharmap 0, "戦", $81
 	fwcharmap 0, "対", $82
-	fwcharmap 0, "説", $83
+	fwcharmap 0, "說", $83
 	fwcharmap 0, "枚", $84
 	fwcharmap 0, "札", $85
 	fwcharmap 0, "相", $86
@@ -325,7 +325,7 @@ ENDM
 	fwcharmap 0, "場", $8e
 	fwcharmap 0, "山", $8f
 	fwcharmap 0, "勝", $90
-	fwcharmap 0, "便", $91
+	fwcharmap 0, "使", $91
 	fwcharmap 0, "択", $92
 	fwcharmap 0, "化", $93
 	fwcharmap 0, "時", $94
@@ -349,7 +349,7 @@ ENDM
 	fwcharmap 0, "物", $a6
 	fwcharmap 0, "判", $a7
 	fwcharmap 0, "炎", $a8
-	fwcharmap 0, "a9", $a9
+	fwcharmap 0, "数", $a9
 	fwcharmap 0, "水", $aa
 	fwcharmap 0, "後", $ab
 	fwcharmap 0, "控", $ac
@@ -360,8 +360,8 @@ ENDM
 	fwcharmap 0, "弱", $b1
 	fwcharmap 0, "点", $b2
 	fwcharmap 0, "超", $b3
-	fwcharmap 0, "気", $b4
-	fwcharmap 0, "b5", $b5
+	fwcharmap 0, "氛", $b4
+	fwcharmap 0, "動", $b5
 	fwcharmap 0, "上", $b6
 	fwcharmap 0, "体", $b7
 	fwcharmap 0, "目", $b8
@@ -369,13 +369,13 @@ ENDM
 	fwcharmap 0, "抵", $ba
 	fwcharmap 0, "拡", $bb
 	fwcharmap 0, "通", $bc
-	fwcharmap 0, "bd", $bd
-	fwcharmap 0, "be", $be
+	fwcharmap 0, "替", $bd
+	fwcharmap 0, "張", $be
 	fwcharmap 0, "加", $bf
 	fwcharmap 0, "特", $c0
 	fwcharmap 0, "殊", $c1
 	fwcharmap 0, "能", $c2
-	fwcharmap 0, "c3", $c3
+	fwcharmap 0, "建", $c3
 	fwcharmap 0, "子", $c4
 	fwcharmap 0, "全", $c5
 	fwcharmap 0, "次", $c6
@@ -398,7 +398,7 @@ ENDM
 	fwcharmap 0, "岩", $d7
 	fwcharmap 0, "空", $d8
 	fwcharmap 0, "身", $d9
-	fwcharmap 0, "da", $da
+	fwcharmap 0, "関", $da
 	fwcharmap 0, "係", $db
 	fwcharmap 0, "飛", $dc
 	fwcharmap 0, "持", $dd
@@ -429,8 +429,8 @@ ENDM
 	fwcharmap 0, "消", $f6
 	fwcharmap 0, "長", $f7
 	fwcharmap 0, "外", $f8
-	fwcharmap 0, "f9", $f9
-	fwcharmap 0, "fa", $fa
+	fwcharmap 0, "毒", $f9
+	fwcharmap 0, "意", $fa
 	fwcharmap 0, "交", $fb
 	fwcharmap 0, "高", $fc
 	fwcharmap 0, "失", $fd
@@ -440,7 +440,7 @@ ENDM
 ; TX_FULLWIDTH1
 	fwcharmap 1, "攻", $10
 	fwcharmap 1, "性", $11
-	fwcharmap 1, "変", $12
+	fwcharmap 1, "变", $12
 	fwcharmap 1, "尾", $13
 	fwcharmap 1, "所", $14
 	fwcharmap 1, "小", $15
@@ -462,20 +462,20 @@ ENDM
 	fwcharmap 1, "頭", $25
 	fwcharmap 1, "栄", $26
 	fwcharmap 1, "格", $27
-	fwcharmap 1, "28", $28
+	fwcharmap 1, "怒", $28
 	fwcharmap 1, "光", $29
 	fwcharmap 1, "元", $2a
 	fwcharmap 1, "了", $2b
-	fwcharmap 1, "角", $2c
+	fwcharmap 1, "鱼", $2c
 	fwcharmap 1, "口", $2d
 	fwcharmap 1, "別", $2e
-	fwcharmap 1, "税", $2f
+	fwcharmap 1, "銳", $2f
 	fwcharmap 1, "左", $30
 	fwcharmap 1, "右", $31
-	fwcharmap 1, "32", $32
-	fwcharmap 1, "33", $33
+	fwcharmap 1, "擊", $32
+	fwcharmap 1, "覆", $33
 	fwcharmap 1, "皮", $34
-	fwcharmap 1, "35", $35
+	fwcharmap 1, "毛", $35
 	fwcharmap 1, "逃", $36
 	fwcharmap 1, "方", $37
 	fwcharmap 1, "弟", $38
@@ -486,7 +486,7 @@ ENDM
 	fwcharmap 1, "現", $3d
 	fwcharmap 1, "少", $3e
 	fwcharmap 1, "多", $3f
-	fwcharmap 1, "40", $40
+	fwcharmap 1, "幻", $40
 	fwcharmap 1, "心", $41
 	fwcharmap 1, "眠", $42
 	fwcharmap 1, "待", $43
@@ -494,38 +494,38 @@ ENDM
 	fwcharmap 1, "送", $45
 	fwcharmap 1, "常", $46
 	fwcharmap 1, "歩", $47
-	fwcharmap 1, "48", $48
+	fwcharmap 1, "姿", $48
 	fwcharmap 1, "得", $49
 	fwcharmap 1, "火", $4a
 	fwcharmap 1, "合", $4b
 	fwcharmap 1, "詞", $4c
-	fwcharmap 1, "4d", $4d
-	fwcharmap 1, "4e", $4e
-	fwcharmap 1, "4f", $4f
+	fwcharmap 1, "暴", $4d
+	fwcharmap 1, "泳", $4e
+	fwcharmap 1, "鳥", $4f
 	fwcharmap 1, "実", $50
 	fwcharmap 1, "羽", $51
 	fwcharmap 1, "射", $52
 	fwcharmap 1, "非", $53
 	fwcharmap 1, "女", $54
-	fwcharmap 1, "逹", $55
+	fwcharmap 1, "達", $55
 	fwcharmap 1, "針", $56
-	fwcharmap 1, "57", $57
+	fwcharmap 1, "機", $57
 	fwcharmap 1, "近", $58
 	fwcharmap 1, "年", $59
 	fwcharmap 1, "開", $5a
 	fwcharmap 1, "音", $5b
 	fwcharmap 1, "先", $5c
 	fwcharmap 1, "半", $5d
-	fwcharmap 1, "5e", $5e
+	fwcharmap 1, "要", $5e
 	fwcharmap 1, "必", $5f
 	fwcharmap 1, "突", $60
-	fwcharmap 1, "戻", $61
+	fwcharmap 1, "民", $61
 	fwcharmap 1, "両", $62
 	fwcharmap 1, "立", $63
 	fwcharmap 1, "波", $64
 	fwcharmap 1, "獲", $65
-	fwcharmap 1, "芙", $66
-	fwcharmap 1, "67", $67
+	fwcharmap 1, "美", $66
+	fwcharmap 1, "息", $67
 	fwcharmap 1, "知", $68
 	fwcharmap 1, "放", $69
 	fwcharmap 1, "言", $6a
@@ -534,213 +534,233 @@ ENDM
 	fwcharmap 1, "種", $6d
 	fwcharmap 1, "退", $6e
 	fwcharmap 1, "食", $6f
-	fwcharmap 1, "70", $70
-	fwcharmap 1, "71", $71
-	fwcharmap 1, "72", $72
-	fwcharmap 1, "73", $73
-	fwcharmap 1, "76", $76
+	fwcharmap 1, "字", $70
+	fwcharmap 1, "木", $71
+	fwcharmap 1, "猛", $72
+	fwcharmap 1, "絕", $73
+	fwcharmap 1, "削", $74
+	fwcharmap 1, "設", $75
+	fwcharmap 1, "初", $76
 	fwcharmap 1, "重", $77
 	fwcharmap 1, "速", $78
-	fwcharmap 1, "79", $79
-	fwcharmap 1, "7a", $7a
-	fwcharmap 1, "7b", $7b
-	fwcharmap 1, "7c", $7c
-	fwcharmap 1, "7d", $7d
-	fwcharmap 1, "7e", $7e
-	fwcharmap 1, "7f", $7f
-	fwcharmap 1, "80", $80
-	fwcharmap 1, "81", $81
+	fwcharmap 1, "事", $79
+	fwcharmap 1, "復", $7a
+	fwcharmap 1, "敵", $7b
+	fwcharmap 1, "続", $7c
+	fwcharmap 1, "住", $7d
+	fwcharmap 1, "部", $7e
+	fwcharmap 1, "様", $7f
+	fwcharmap 1, "狂", $80
+	fwcharmap 1, "線", $81
 	fwcharmap 1, "背", $82
 	fwcharmap 1, "植", $83
 	fwcharmap 1, "走", $84
-	fwcharmap 1, "85", $85
-	fwcharmap 1, "86", $86
-	fwcharmap 1, "87", $87
-	fwcharmap 1, "88", $88
-	fwcharmap 1, "8b", $8b
-	fwcharmap 1, "8c", $8c
-	fwcharmap 1, "8d", $8d
-	fwcharmap 1, "8e", $8e
+	fwcharmap 1, "膚", $85
+	fwcharmap 1, "完", $86
+	fwcharmap 1, "未", $87
+	fwcharmap 1, "国", $88
+	fwcharmap 1, "助", $89
+	fwcharmap 1, "補", $8a
+	fwcharmap 1, "在", $8b
+	fwcharmap 1, "活", $8c
+	fwcharmap 1, "始", $8d
+	fwcharmap 1, "表", $8e
 	fwcharmap 1, "掘", $8f
-	fwcharmap 1, "90", $90
-	fwcharmap 1, "92", $92
-	fwcharmap 1, "93", $93
-	fwcharmap 1, "94", $94
+	fwcharmap 1, "暗", $90
+	fwcharmap 1, "列", $91
+	fwcharmap 1, "行", $92
+	fwcharmap 1, "連", $93
+	fwcharmap 1, "結", $94
 	fwcharmap 1, "残", $95
-	fwcharmap 1, "96", $96
-	fwcharmap 1, "98", $98
-	fwcharmap 1, "99", $99
-	fwcharmap 1, "9a", $9a
-	fwcharmap 1, "9b", $9b
-	fwcharmap 1, "9d", $9d
-	fwcharmap 1, "9e", $9e
+	fwcharmap 1, "断", $96
+	fwcharmap 1, "除", $97
+	fwcharmap 1, "主", $98
+	fwcharmap 1, "闇", $99
+	fwcharmap 1, "命", $9a
+	fwcharmap 1, "屋", $9b
+	fwcharmap 1, "捨", $9c
+	fwcharmap 1, "滅", $9d
+	fwcharmap 1, "胞", $9e
 	fwcharmap 1, "思", $9f
-	fwcharmap 1, "a0", $a0
-	fwcharmap 1, "a1", $a1
-	fwcharmap 1, "a2", $a2
-	fwcharmap 1, "a3", $a3
+	fwcharmap 1, "揺", $a0
+	fwcharmap 1, "利", $a1
+	fwcharmap 1, "遺", $a2
+	fwcharmap 1, "注", $a3
 	fwcharmap 1, "夜", $a4
-	fwcharmap 1, "a5", $a5
-	fwcharmap 1, "a6", $a6
-	fwcharmap 1, "a7", $a7
+	fwcharmap 1, "険", $a5
+	fwcharmap 1, "倍", $a6
+	fwcharmap 1, "威", $a7
+	fwcharmap 1, "試", $a8
 	fwcharmap 1, "巣", $a9
-	fwcharmap 1, "aa", $aa
-	fwcharmap 1, "ab", $ab
-	fwcharmap 1, "ac", $ac
-	fwcharmap 1, "ad", $ad
-	fwcharmap 1, "ae", $ae
-	fwcharmap 1, "af", $af
-	fwcharmap 1, "b0", $b0
-	fwcharmap 1, "b1", $b1
-	fwcharmap 1, "b2", $b2
-	fwcharmap 1, "b3", $b3
-	fwcharmap 1, "b4", $b4
+	fwcharmap 1, "離", $aa
+	fwcharmap 1, "決", $ab
+	fwcharmap 1, "骨", $ac
+	fwcharmap 1, "燃", $ad
+	fwcharmap 1, "覚", $ae
+	fwcharmap 1, "液", $af
+	fwcharmap 1, "磁", $b0
+	fwcharmap 1, "倒", $b1
+	fwcharmap 1, "落", $b2
+	fwcharmap 1, "学", $b3
+	fwcharmap 1, "顏", $b4
 	fwcharmap 1, "風", $b5
-	fwcharmap 1, "b6", $b6
-	fwcharmap 1, "b7", $b7
-	fwcharmap 1, "b8", $b8
-	fwcharmap 1, "b9", $b9
-	fwcharmap 1, "ba", $ba
-	fwcharmap 1, "bb", $bb
+	fwcharmap 1, "昔", $b6
+	fwcharmap 1, "影", $b7
+	fwcharmap 1, "難", $b8
+	fwcharmap 1, "巻", $b9
+	fwcharmap 1, "響", $ba
+	fwcharmap 1, "工", $bb
 	fwcharmap 1, "粉", $bc
-	fwcharmap 1, "bd", $bd
-	fwcharmap 1, "be", $be
-	fwcharmap 1, "bf", $bf
-	fwcharmap 1, "c0", $c0
-	fwcharmap 1, "c1", $c1
+	fwcharmap 1, "脱", $bd
+	fwcharmap 1, "危", $be
+	fwcharmap 1, "吸", $bf
+	fwcharmap 1, "殻", $c0
+	fwcharmap 1, "寒", $c1
 	fwcharmap 1, "養", $c2
-	fwcharmap 1, "c3", $c3
-	fwcharmap 1, "c4", $c4
-	fwcharmap 1, "c5", $c5
-	fwcharmap 1, "c7", $c7
-	fwcharmap 1, "c8", $c8
-	fwcharmap 1, "c9", $c9
-	fwcharmap 1, "ca", $ca
-	fwcharmap 1, "cb", $cb
-	fwcharmap 1, "cc", $cc
-	fwcharmap 1, "cd", $cd
-	fwcharmap 1, "ce", $ce
-	fwcharmap 1, "cf", $cf
-	fwcharmap 1, "d0", $d0
-	fwcharmap 1, "d1", $d1
-	fwcharmap 1, "d2", $d2
+	fwcharmap 1, "歌", $c3
+	fwcharmap 1, "理", $c4
+	fwcharmap 1, "組", $c5
+	fwcharmap 1, "更", $c6
+	fwcharmap 1, "由", $c7
+	fwcharmap 1, "取", $c8
+	fwcharmap 1, "順", $c9
+	fwcharmap 1, "逆", $ca
+	fwcharmap 1, "細", $cb
+	fwcharmap 1, "丸", $cc
+	fwcharmap 1, "葉", $cd
+	fwcharmap 1, "裂", $ce
+	fwcharmap 1, "当", $cf
+	fwcharmap 1, "温", $d0
+	fwcharmap 1, "痛", $d1
+	fwcharmap 1, "耳", $d2
 	fwcharmap 1, "然", $d3
-	fwcharmap 1, "d4", $d4
-	fwcharmap 1, "d5", $d5
-	fwcharmap 1, "d6", $d6
+	fwcharmap 1, "轻", $d4
+	fwcharmap 1, "激", $d5
+	fwcharmap 1, "袋", $d6
 	fwcharmap 1, "議", $d7
-	fwcharmap 1, "d8", $d8
-	fwcharmap 1, "d9", $d9
-	fwcharmap 1, "da", $da
-	fwcharmap 1, "db", $db
-	fwcharmap 1, "dc", $dc
-	fwcharmap 1, "dd", $dd
-	fwcharmap 1, "de", $de
-	fwcharmap 1, "df", $df
-	fwcharmap 1, "e0", $e0
-	fwcharmap 1, "e1", $e1
-	fwcharmap 1, "e2", $e2
-	fwcharmap 1, "e3", $e3
-	fwcharmap 1, "e4", $e4
-	fwcharmap 1, "e5", $e5
-	fwcharmap 1, "e6", $e6
-	fwcharmap 1, "e7", $e7
-	fwcharmap 1, "e8", $e8
-	fwcharmap 1, "e9", $e9
-	fwcharmap 1, "ea", $ea
-	fwcharmap 1, "ec", $ec
-	fwcharmap 1, "ef", $ef
-	fwcharmap 1, "f0", $f0
-	fwcharmap 1, "f2", $f2
-	fwcharmap 1, "f3", $f3
-	fwcharmap 1, "f4", $f4
-	fwcharmap 1, "f5", $f5
-	fwcharmap 1, "f6", $f6
-	fwcharmap 1, "f7", $f7
-	fwcharmap 1, "f8", $f8
-	fwcharmap 1, "f9", $f9
-	fwcharmap 1, "fa", $fa
-	fwcharmap 1, "fb", $fb
-	fwcharmap 1, "fc", $fc
+	fwcharmap 1, "下", $d8
+	fwcharmap 1, "起", $d9
+	fwcharmap 1, "界", $da
+	fwcharmap 1, "世", $db
+	fwcharmap 1, "臭", $dc
+	fwcharmap 1, "根", $dd
+	fwcharmap 1, "伸", $de
+	fwcharmap 1, "聞", $df
+	fwcharmap 1, "遠", $e0
+	fwcharmap 1, "烈", $e1
+	fwcharmap 1, "模", $e2
+	fwcharmap 1, "腹", $e3
+	fwcharmap 1, "感", $e4
+	fwcharmap 1, "舌", $e5
+	fwcharmap 1, "集", $e6
+	fwcharmap 1, "雨", $e7
+	fwcharmap 1, "硬", $e8
+	fwcharmap 1, "香", $e9
+	fwcharmap 1, "寄", $ea
+	fwcharmap 1, "絵", $eb
+	fwcharmap 1, "話", $ec
+	fwcharmap 1, "西", $ed
+	fwcharmap 1, "北", $ee
+	fwcharmap 1, "室", $ef
+	fwcharmap 1, "算", $f0
+	fwcharmap 1, "氏", $f1
+	fwcharmap 1, "第", $f2
+	fwcharmap 1, "誘", $f3
+	fwcharmap 1, "溶", $f4
+	fwcharmap 1, "役", $f5
+	fwcharmap 1, "道", $f6
+	fwcharmap 1, "普", $f7
+	fwcharmap 1, "段", $f8
+	fwcharmap 1, "孫", $f9
+	fwcharmap 1, "熱", $fa
+	fwcharmap 1, "帶", $fb
+	fwcharmap 1, "呼", $fc
 	fwcharmap 1, "異", $fd
-	fwcharmap 1, "fe", $fe
-	fwcharmap 1, "ff", $ff
+	fwcharmap 1, "仮", $fe
+	fwcharmap 1, "正", $ff
 
 ; TX_FULLWIDTH2
-	fwcharmap 2, "10", $10
-	fwcharmap 2, "11", $11
-	fwcharmap 2, "12", $12
-	fwcharmap 2, "13", $13
+	fwcharmap 2, "書", $10
+	fwcharmap 2, "複", $11
+	fwcharmap 2, "満", $12
+	fwcharmap 2, "杯", $13
 	fwcharmap 2, "抜", $14
-	fwcharmap 2, "15", $15
-	fwcharmap 2, "16", $16
-	fwcharmap 2, "17", $17
-	fwcharmap 2, "18", $18
-	fwcharmap 2, "19", $19
-	fwcharmap 2, "1a", $1a
-	fwcharmap 2, "1b", $1b
+	fwcharmap 2, "鎌", $15
+	fwcharmap 2, "登", $16
+	fwcharmap 2, "鑑", $17
+	fwcharmap 2, "図", $18
+	fwcharmap 2, "笛", $19
+	fwcharmap 2, "辉", $1a
+	fwcharmap 2, "良", $1b
 	fwcharmap 2, "深", $1c
-	fwcharmap 2, "1d", $1d
-	fwcharmap 2, "1f", $1f
-	fwcharmap 2, "21", $21
-	fwcharmap 2, "22", $22
-	fwcharmap 2, "23", $23
-	fwcharmap 2, "24", $24
-	fwcharmap 2, "25", $25
-	fwcharmap 2, "26", $26
-	fwcharmap 2, "27", $27
-	fwcharmap 2, "28", $28
-	fwcharmap 2, "29", $29
-	fwcharmap 2, "2a", $2a
-	fwcharmap 2, "2c", $2c
-	fwcharmap 2, "2d", $2d
-	fwcharmap 2, "2e", $2e
+	fwcharmap 2, "処", $1d
+	fwcharmap 2, "継", $1e
+	fwcharmap 2, "幹", $1f
+	fwcharmap 2, "裏", $20
+	fwcharmap 2, "捕", $21
+	fwcharmap 2, "紙", $22
+	fwcharmap 2, "池", $23
+	fwcharmap 2, "内", $24
+	fwcharmap 2, "翼", $25
+	fwcharmap 2, "負", $26
+	fwcharmap 2, "圧", $27
+	fwcharmap 2, "教", $28
+	fwcharmap 2, "湖", $29
+	fwcharmap 2, "優", $2a
+	fwcharmap 2, "印", $2b
+	fwcharmap 2, "透", $2c
+	fwcharmap 2, "触", $2d
+	fwcharmap 2, "壊", $2e
 	fwcharmap 2, "万", $2f
-	fwcharmap 2, "30", $30
-	fwcharmap 2, "31", $31
-	fwcharmap 2, "32", $32
-	fwcharmap 2, "33", $33
-	fwcharmap 2, "34", $34
-	fwcharmap 2, "35", $35
-	fwcharmap 2, "36", $36
-	fwcharmap 2, "37", $37
-	fwcharmap 2, "38", $38
-	fwcharmap 2, "39", $39
-	fwcharmap 2, "3a", $3a
-	fwcharmap 2, "3b", $3b
-	fwcharmap 2, "3c", $3c
-	fwcharmap 2, "3d", $3d
-	fwcharmap 2, "3e", $3e
-	fwcharmap 2, "3f", $3f
-	fwcharmap 2, "40", $40
-	fwcharmap 2, "41", $41
-	fwcharmap 2, "42", $42
+	fwcharmap 2, "辺", $30
+	fwcharmap 2, "赤", $31
+	fwcharmap 2, "乱", $32
+	fwcharmap 2, "混", $33
+	fwcharmap 2, "魚", $34
+	fwcharmap 2, "古", $35
+	fwcharmap 2, "代", $36
+	fwcharmap 2, "死", $37
+	fwcharmap 2, "側", $38
+	fwcharmap 2, "愛", $39
+	fwcharmap 2, "浮", $3a
+	fwcharmap 2, "爆", $3b
+	fwcharmap 2, "膨", $3c
+	fwcharmap 2, "驚", $3d
+	fwcharmap 2, "雲", $3e
+	fwcharmap 2, "穴", $3f
+	fwcharmap 2, "肉", $40
+	fwcharmap 2, "運", $41
+	fwcharmap 2, "秒", $42
 	fwcharmap 2, "転", $43
-	fwcharmap 2, "44", $44
-	fwcharmap 2, "45", $45
-	fwcharmap 2, "46", $46
-	fwcharmap 2, "47", $47
-	fwcharmap 2, "48", $48
-	fwcharmap 2, "49", $49
-	fwcharmap 2, "4a", $4a
-	fwcharmap 2, "4b", $4b
-	fwcharmap 2, "4c", $4c
-	fwcharmap 2, "4d", $4d
-	fwcharmap 2, "4e", $4e
-	fwcharmap 2, "4f", $4f
-	fwcharmap 2, "51", $51
-	fwcharmap 2, "52", $52
-	fwcharmap 2, "54", $54
-	fwcharmap 2, "55", $55
-	fwcharmap 2, "56", $56
-	fwcharmap 2, "57", $57
-	fwcharmap 2, "58", $58
-	fwcharmap 2, "5a", $5a
-	fwcharmap 2, "5b", $5b
-	fwcharmap 2, "5c", $5c
-	fwcharmap 2, "5d", $5d
-	fwcharmap 2, "5e", $5e
-	fwcharmap 2, "60", $60
+	fwcharmap 2, "声", $44
+	fwcharmap 2, "寝", $45
+	fwcharmap 2, "考", $46
+	fwcharmap 2, "催", $47
+	fwcharmap 2, "術", $48
+	fwcharmap 2, "広", $49
+	fwcharmap 2, "嚇", $4a
+	fwcharmap 2, "瞳", $4b
+	fwcharmap 2, "虫", $4c
+	fwcharmap 2, "隠", $4d
+	fwcharmap 2, "金", $4e
+	fwcharmap 2, "接", $4f
+	fwcharmap 2, "片", $50
+	fwcharmap 2, "丈", $51
+	fwcharmap 2, "黃", $52
+	fwcharmap 2, "53", $53
+	fwcharmap 2, "夫", $54
+	fwcharmap 2, "零", $55
+	fwcharmap 2, "真", $56
+	fwcharmap 2, "白", $57
+	fwcharmap 2, "増", $58
+	fwcharmap 2, "象", $59
+	fwcharmap 2, "彈", $5a
+	fwcharmap 2, "血", $5b
+	fwcharmap 2, "匂", $5c
+	fwcharmap 2, "馬", $5d
+	fwcharmap 2, "錄", $5e
+	fwcharmap 2, "済", $5f
+	fwcharmap 2, "鈍", $60
 	fwcharmap 2, "押", $61
 	fwcharmap 2, "刷", $62
 	fwcharmap 2, "王", $63
@@ -754,292 +774,321 @@ ENDM
 	fwcharmap 2, "志", $6b
 	fwcharmap 2, "林", $6c
 	fwcharmap 2, "川", $6d
-	fwcharmap 2, "6e", $6e
+	fwcharmap 2, "幾", $6e
 	fwcharmap 2, "止", $6f
-	fwcharmap 2, "70", $70
-	fwcharmap 2, "71", $71
-	fwcharmap 2, "73", $73
-	fwcharmap 2, "75", $75
-	fwcharmap 2, "78", $78
-	fwcharmap 2, "79", $79
-	fwcharmap 2, "7a", $7a
-	fwcharmap 2, "7b", $7b
+	fwcharmap 2, "源", $70
+	fwcharmap 2, "卵", $71
+	fwcharmap 2, "棚", $72
+	fwcharmap 2, "宇", $73
+	fwcharmap 2, "質", $74
+	fwcharmap 2, "問", $75
+	fwcharmap 2, "備", $76
+	fwcharmap 2, "準", $77
+	fwcharmap 2, "宙", $78
+	fwcharmap 2, "疑", $79
+	fwcharmap 2, "周", $7a
+	fwcharmap 2, "汚", $7b
 	fwcharmap 2, "月", $7c
-	fwcharmap 2, "7e", $7e
-	fwcharmap 2, "7f", $7f
-	fwcharmap 2, "80", $80
-	fwcharmap 2, "82", $82
-	fwcharmap 2, "83", $83
-	fwcharmap 2, "84", $84
-	fwcharmap 2, "85", $85
-	fwcharmap 2, "86", $86
-	fwcharmap 2, "87", $87
-	fwcharmap 2, "88", $88
-	fwcharmap 2, "89", $89
-	fwcharmap 2, "8a", $8a
-	fwcharmap 2, "8b", $8b
-	fwcharmap 2, "8c", $8c
-	fwcharmap 2, "8d", $8d
-	fwcharmap 2, "8e", $8e
-	fwcharmap 2, "8f", $8f
-	fwcharmap 2, "90", $90
-	fwcharmap 2, "91", $91
-	fwcharmap 2, "92", $92
-	fwcharmap 2, "93", $93
-	fwcharmap 2, "94", $94
-	fwcharmap 2, "95", $95
-	fwcharmap 2, "96", $96
-	fwcharmap 2, "97", $97
-	fwcharmap 2, "98", $98
-	fwcharmap 2, "99", $99
-	fwcharmap 2, "9a", $9a
-	fwcharmap 2, "9b", $9b
-	fwcharmap 2, "9c", $9c
-	fwcharmap 2, "9d", $9d
-	fwcharmap 2, "9e", $9e
-	fwcharmap 2, "9f", $9f
-	fwcharmap 2, "a0", $a0
-	fwcharmap 2, "a1", $a1
-	fwcharmap 2, "a2", $a2
-	fwcharmap 2, "a3", $a3
-	fwcharmap 2, "a4", $a4
-	fwcharmap 2, "a5", $a5
-	fwcharmap 2, "a6", $a6
-	fwcharmap 2, "a7", $a7
-	fwcharmap 2, "a8", $a8
-	fwcharmap 2, "a9", $a9
-	fwcharmap 2, "aa", $aa
-	fwcharmap 2, "ab", $ab
-	fwcharmap 2, "ac", $ac
+	fwcharmap 2, "德", $7d
+	fwcharmap 2, "蜜", $7e
+	fwcharmap 2, "法", $7f
+	fwcharmap 2, "破", $80
+	fwcharmap 2, "殴", $81
+	fwcharmap 2, "忙", $82
+	fwcharmap 2, "降", $83
+	fwcharmap 2, "乗", $84
+	fwcharmap 2, "十", $85
+	fwcharmap 2, "薬", $86
+	fwcharmap 2, "違", $87
+	fwcharmap 2, "会", $88
+	fwcharmap 2, "似", $89
+	fwcharmap 2, "眼", $8a
+	fwcharmap 2, "船", $8b
+	fwcharmap 2, "雪", $8c
+	fwcharmap 2, "級", $8d
+	fwcharmap 2, "冷", $8e
+	fwcharmap 2, "凍", $8f
+	fwcharmap 2, "拾", $90
+	fwcharmap 2, "帰", $91
+	fwcharmap 2, "敬", $92
+	fwcharmap 2, "克", $93
+	fwcharmap 2, "服", $94
+	fwcharmap 2, "夏", $95
+	fwcharmap 2, "休", $96
+	fwcharmap 2, "岸", $97
+	fwcharmap 2, "昼", $98
+	fwcharmap 2, "咲", $99
+	fwcharmap 2, "太", $9a
+	fwcharmap 2, "噛", $9b
+	fwcharmap 2, "反", $9c
+	fwcharmap 2, "珍", $9d
+	fwcharmap 2, "喜", $9e
+	fwcharmap 2, "陽", $9f
+	fwcharmap 2, "緑", $a0
+	fwcharmap 2, "糸", $a1
+	fwcharmap 2, "約", $a2
+	fwcharmap 2, "包", $a3
+	fwcharmap 2, "識", $a4
+	fwcharmap 2, "悲", $a5
+	fwcharmap 2, "耐", $a6
+	fwcharmap 2, "貫", $a7
+	fwcharmap 2, "天", $a8
+	fwcharmap 2, "司", $a9
+	fwcharmap 2, "神", $aa
+	fwcharmap 2, "情", $ab
+	fwcharmap 2, "千", $ac
 	fwcharmap 2, "過", $ad
 	fwcharmap 2, "巨", $ae
-	fwcharmap 2, "af", $af
-	fwcharmap 2, "b0", $b0
-	fwcharmap 2, "b1", $b1
-	fwcharmap 2, "b2", $b2
-	fwcharmap 2, "b3", $b3
-	fwcharmap 2, "b4", $b4
-	fwcharmap 2, "b5", $b5
+	fwcharmap 2, "稲", $af
+	fwcharmap 2, "妻", $b0
+	fwcharmap 2, "守", $b1
+	fwcharmap 2, "産", $b2
+	fwcharmap 2, "森", $b3
+	fwcharmap 2, "球", $b4
+	fwcharmap 2, "迫", $b5
 	fwcharmap 2, "団", $b6
-	fwcharmap 2, "b7", $b7
-	fwcharmap 2, "b8", $b8
-	fwcharmap 2, "b9", $b9
-	fwcharmap 2, "ba", $ba
-	fwcharmap 2, "bb", $bb
-	fwcharmap 2, "bc", $bc
-	fwcharmap 2, "bd", $bd
-	fwcharmap 2, "be", $be
-	fwcharmap 2, "bf", $bf
-	fwcharmap 2, "c0", $c0
-	fwcharmap 2, "c1", $c1
-	fwcharmap 2, "c2", $c2
-	fwcharmap 2, "c3", $c3
-	fwcharmap 2, "c4", $c4
-	fwcharmap 2, "c5", $c5
-	fwcharmap 2, "c6", $c6
-	fwcharmap 2, "c7", $c7
-	fwcharmap 2, "c8", $c8
-	fwcharmap 2, "c9", $c9
-	fwcharmap 2, "ca", $ca
-	fwcharmap 2, "cb", $cb
-	fwcharmap 2, "cc", $cc
-	fwcharmap 2, "cd", $cd
-	fwcharmap 2, "ce", $ce
-	fwcharmap 2, "cf", $cf
-	fwcharmap 2, "d0", $d0
-	fwcharmap 2, "d1", $d1
-	fwcharmap 2, "d2", $d2
-	fwcharmap 2, "d3", $d3
-	fwcharmap 2, "d4", $d4
-	fwcharmap 2, "d5", $d5
-	fwcharmap 2, "d6", $d6
-	fwcharmap 2, "d7", $d7
-	fwcharmap 2, "d8", $d8
-	fwcharmap 2, "d9", $d9
-	fwcharmap 2, "da", $da
-	fwcharmap 2, "dc", $dc
-	fwcharmap 2, "dd", $dd
-	fwcharmap 2, "de", $de
-	fwcharmap 2, "df", $df
-	fwcharmap 2, "e0", $e0
-	fwcharmap 2, "e1", $e1
-	fwcharmap 2, "e2", $e2
-	fwcharmap 2, "e4", $e4
-	fwcharmap 2, "e5", $e5
-	fwcharmap 2, "e6", $e6
-	fwcharmap 2, "e8", $e8
-	fwcharmap 2, "e9", $e9
-	fwcharmap 2, "ea", $ea
-	fwcharmap 2, "eb", $eb
-	fwcharmap 2, "ec", $ec
-	fwcharmap 2, "ed", $ed
-	fwcharmap 2, "ee", $ee
-	fwcharmap 2, "ef", $ef
-	fwcharmap 2, "f0", $f0
-	fwcharmap 2, "f1", $f1
-	fwcharmap 2, "f2", $f2
-	fwcharmap 2, "f3", $f3
-	fwcharmap 2, "f4", $f4
-	fwcharmap 2, "f5", $f5
-	fwcharmap 2, "f6", $f6
-	fwcharmap 2, "f7", $f7
-	fwcharmap 2, "f8", $f8
-	fwcharmap 2, "f9", $f9
-	fwcharmap 2, "fa", $fa
-	fwcharmap 2, "fb", $fb
+	fwcharmap 2, "爪", $b7
+	fwcharmap 2, "浅", $b8
+	fwcharmap 2, "盛", $b9
+	fwcharmap 2, "油", $ba
+	fwcharmap 2, "凶", $bb
+	fwcharmap 2, "筋", $bc
+	fwcharmap 2, "織", $bd
+	fwcharmap 2, "供", $be
+	fwcharmap 2, "墓", $bf
+	fwcharmap 2, "疲", $c0
+	fwcharmap 2, "靱", $c1
+	fwcharmap 2, "荷", $c2
+	fwcharmap 2, "瞬", $c3
+	fwcharmap 2, "搬", $c4
+	fwcharmap 2, "仕", $c5
+	fwcharmap 2, "腕", $c6
+	fwcharmap 2, "類", $c7
+	fwcharmap 2, "坂", $c8
+	fwcharmap 2, "可", $c9
+	fwcharmap 2, "盤", $ca
+	fwcharmap 2, "土", $cb
+	fwcharmap 2, "母", $cc
+	fwcharmap 2, "親", $cd
+	fwcharmap 2, "棲", $ce
+	fwcharmap 2, "寂", $cf
+	fwcharmap 2, "科", $d0
+	fwcharmap 2, "泣", $d1
+	fwcharmap 2, "武", $d2
+	fwcharmap 2, "器", $d3
+	fwcharmap 2, "縮", $d4
+	fwcharmap 2, "蹴", $d5
+	fwcharmap 2, "魂", $d6
+	fwcharmap 2, "悪", $d7
+	fwcharmap 2, "層", $d8
+	fwcharmap 2, "厚", $d9
+	fwcharmap 2, "砕", $da
+	fwcharmap 2, "計", $db
+	fwcharmap 2, "惑", $dc
+	fwcharmap 2, "再", $dd
+	fwcharmap 2, "護", $de
+	fwcharmap 2, "恐", $df
+	fwcharmap 2, "竜", $e0
+	fwcharmap 2, "形", $e1
+	fwcharmap 2, "鳴", $e2
+	fwcharmap 2, "原", $e3
+	fwcharmap 2, "朝", $e4
+	fwcharmap 2, "存", $e5
+	fwcharmap 2, "割", $e6
+	fwcharmap 2, "因", $e7
+	fwcharmap 2, "興", $e8
+	fwcharmap 2, "漢", $e9
+	fwcharmap 2, "奮", $ea
+	fwcharmap 2, "謎", $eb
+	fwcharmap 2, "誰", $ec
+	fwcharmap 2, "遭", $ed
+	fwcharmap 2, "串", $ee
+	fwcharmap 2, "牙", $ef
+	fwcharmap 2, "黑", $f0
+	fwcharmap 2, "薄", $f1
+	fwcharmap 2, "念", $f2
+	fwcharmap 2, "湿", $f3
+	fwcharmap 2, "臓", $f4
+	fwcharmap 2, "南", $f5
+	fwcharmap 2, "渦", $f6
+	fwcharmap 2, "暮", $f7
+	fwcharmap 2, "晶", $f8
+	fwcharmap 2, "執", $f9
+	fwcharmap 2, "並", $fa
+	fwcharmap 2, "期", $fb
 	fwcharmap 2, "配", $fc
-	fwcharmap 2, "fd", $fd
-	fwcharmap 2, "fe", $fe
-	fwcharmap 2, "ff", $ff
+	fwcharmap 2, "魅", $fd
+	fwcharmap 2, "夕", $fe
+	fwcharmap 2, "彗", $ff
 
 ; TX_FULLWIDTH3
 	fwcharmap 3, "散", $10
-	fwcharmap 3, "11", $11
-	fwcharmap 3, "12", $12
-	fwcharmap 3, "13", $13
-	fwcharmap 3, "14", $14
-	fwcharmap 3, "15", $15
-	fwcharmap 3, "16", $16
-	fwcharmap 3, "17", $17
-	fwcharmap 3, "18", $18
-	fwcharmap 3, "1c", $1c
-	fwcharmap 3, "1d", $1d
-	fwcharmap 3, "1f", $1f
-	fwcharmap 3, "20", $20
-	fwcharmap 3, "21", $21
-	fwcharmap 3, "22", $22
-	fwcharmap 3, "23", $23
-	fwcharmap 3, "25", $25
-	fwcharmap 3, "26", $26
-	fwcharmap 3, "27", $27
-	fwcharmap 3, "28", $28
-	fwcharmap 3, "29", $29
-	fwcharmap 3, "2b", $2b
-	fwcharmap 3, "2c", $2c
+	fwcharmap 3, "振", $11
+	fwcharmap 3, "去", $12
+	fwcharmap 3, "件", $13
+	fwcharmap 3, "首", $14
+	fwcharmap 3, "甲", $15
+	fwcharmap 3, "羅", $16
+	fwcharmap 3, "込", $17
+	fwcharmap 3, "勢", $18
+	fwcharmap 3, "召", $19
+	fwcharmap 3, "喚", $1a
+	fwcharmap 3, "酔", $1b
+	fwcharmap 3, "直", $1c
+	fwcharmap 3, "悩", $1d
+	fwcharmap 3, "詰", $1e
+	fwcharmap 3, "例", $1f
+	fwcharmap 3, "越", $20
+	fwcharmap 3, "京", $21
+	fwcharmap 3, "東", $22
+	fwcharmap 3, "壁", $23
+	fwcharmap 3, "付", $24
+	fwcharmap 3, "跳", $25
+	fwcharmap 3, "吠", $26
+	fwcharmap 3, "徵", $27
+	fwcharmap 3, "誕", $28
+	fwcharmap 3, "今", $29
+	fwcharmap 3, "封", $2a
+	fwcharmap 3, "雅", $2b
+	fwcharmap 3, "誠", $2c
 	fwcharmap 3, "置", $2d
-	fwcharmap 3, "2e", $2e
-	fwcharmap 3, "2f", $2f
-	fwcharmap 3, "30", $30
-	fwcharmap 3, "31", $31
-	fwcharmap 3, "32", $32
-	fwcharmap 3, "33", $33
-	fwcharmap 3, "34", $34
-	fwcharmap 3, "35", $35
-	fwcharmap 3, "37", $37
-	fwcharmap 3, "38", $38
-	fwcharmap 3, "39", $39
-	fwcharmap 3, "3a", $3a
-	fwcharmap 3, "3b", $3b
-	fwcharmap 3, "3c", $3c
-	fwcharmap 3, "3d", $3d
-	fwcharmap 3, "3e", $3e
-	fwcharmap 3, "3f", $3f
-	fwcharmap 3, "40", $40
-	fwcharmap 3, "41", $41
+	fwcharmap 3, "祟", $2e
+	fwcharmap 3, "掴", $2f
+	fwcharmap 3, "飲", $30
+	fwcharmap 3, "噂", $31
+	fwcharmap 3, "稼", $32
+	fwcharmap 3, "介", $33
+	fwcharmap 3, "塊", $34
+	fwcharmap 3, "階", $35
+	fwcharmap 3, "観", $36
+	fwcharmap 3, "棄", $37
+	fwcharmap 3, "技", $38
+	fwcharmap 3, "急", $39
+	fwcharmap 3, "牛", $3a
+	fwcharmap 3, "業", $3b
+	fwcharmap 3, "窟", $3c
+	fwcharmap 3, "繰", $3d
+	fwcharmap 3, "嫌", $3e
+	fwcharmap 3, "検", $3f
+	fwcharmap 3, "向", $40
+	fwcharmap 3, "校", $41
 	fwcharmap 3, "参", $42
-	fwcharmap 3, "43", $43
-	fwcharmap 3, "44", $44
-	fwcharmap 3, "45", $45
-	fwcharmap 3, "46", $46
-	fwcharmap 3, "47", $47
-	fwcharmap 3, "48", $48
-	fwcharmap 3, "49", $49
-	fwcharmap 3, "4a", $4a
-	fwcharmap 3, "4b", $4b
-	fwcharmap 3, "4c", $4c
-	fwcharmap 3, "4d", $4d
-	fwcharmap 3, "4e", $4e
-	fwcharmap 3, "4f", $4f
+	fwcharmap 3, "飼", $43
+	fwcharmap 3, "歯", $44
+	fwcharmap 3, "襲", $45
+	fwcharmap 3, "従", $46
+	fwcharmap 3, "傷", $47
+	fwcharmap 3, "焼", $48
+	fwcharmap 3, "殖", $49
+	fwcharmap 3, "瀬", $4a
+	fwcharmap 3, "星", $4b
+	fwcharmap 3, "造", $4c
+	fwcharmap 3, "他", $4d
+	fwcharmap 3, "探", $4e
+	fwcharmap 3, "致", $4f
 	fwcharmap 3, "挑", $50
-	fwcharmap 3, "51", $51
-	fwcharmap 3, "52", $52
-	fwcharmap 3, "53", $53
-	fwcharmap 3, "54", $54
-	fwcharmap 3, "55", $55
-	fwcharmap 3, "56", $56
-	fwcharmap 3, "57", $57
-	fwcharmap 3, "58", $58
+	fwcharmap 3, "町", $51
+	fwcharmap 3, "釣", $52
+	fwcharmap 3, "低", $53
+	fwcharmap 3, "提", $54
+	fwcharmap 3, "吐", $55
+	fwcharmap 3, "洞", $56
+	fwcharmap 3, "独", $57
+	fwcharmap 3, "乳", $58
 	fwcharmap 3, "廃", $59
-	fwcharmap 3, "5a", $5a
-	fwcharmap 3, "5b", $5b
-	fwcharmap 3, "5c", $5c
-	fwcharmap 3, "5d", $5d
-	fwcharmap 3, "5e", $5e
-	fwcharmap 3, "5f", $5f
-	fwcharmap 3, "60", $60
-	fwcharmap 3, "61", $61
-	fwcharmap 3, "62", $62
-	fwcharmap 3, "62", $62
-	fwcharmap 3, "63", $63
-	fwcharmap 3, "64", $64
-	fwcharmap 3, "65", $65
-	fwcharmap 3, "66", $66
+	fwcharmap 3, "兵", $5a
+	fwcharmap 3, "癖", $5b
+	fwcharmap 3, "保", $5c
+	fwcharmap 3, "抱", $5d
+	fwcharmap 3, "貌", $5e
+	fwcharmap 3, "防", $5f
+	fwcharmap 3, "没", $60
+	fwcharmap 3, "煙", $61
+	fwcharmap 3, "応", $62
+	fwcharmap 3, "横", $63
+	fwcharmap 3, "汗", $64
+	fwcharmap 3, "規", $65
+	fwcharmap 3, "競", $66
+	fwcharmap 3, "茶", $67
 	fwcharmap 3, "苦", $68
-	fwcharmap 3, "駆", $69
-	fwcharmap 3, "6b", $6b
-	fwcharmap 3, "6c", $6c
-	fwcharmap 3, "6d", $6d
-	fwcharmap 3, "6e", $6e
-	fwcharmap 3, "6f", $6f
-	fwcharmap 3, "70", $70
-	fwcharmap 3, "71", $71
-	fwcharmap 3, "72", $72
+	fwcharmap 3, "驱", $69
+	fwcharmap 3, "訓", $6a
+	fwcharmap 3, "幸", $6b
+	fwcharmap 3, "腰", $6c
+	fwcharmap 3, "砂", $6d
+	fwcharmap 3, "邪", $6e
+	fwcharmap 3, "掌", $6f
+	fwcharmap 3, "衝", $70
+	fwcharmap 3, "寸", $71
+	fwcharmap 3, "制", $72
 	fwcharmap 3, "跡", $73
-	fwcharmap 3, "74", $74
-	fwcharmap 3, "75", $75
-	fwcharmap 3, "76", $76
-	fwcharmap 3, "77", $77
-	fwcharmap 3, "78", $78
-	fwcharmap 3, "79", $79
-	fwcharmap 3, "7a", $7a
-	fwcharmap 3, "7c", $7c
-	fwcharmap 3, "7d", $7d
+	fwcharmap 3, "争", $74
+	fwcharmap 3, "則", $75
+	fwcharmap 3, "短", $76
+	fwcharmap 3, "着", $77
+	fwcharmap 3, "踏", $78
+	fwcharmap 3, "読", $79
+	fwcharmap 3, "濡", $7a
+	fwcharmap 3, "版", $7b
+	fwcharmap 3, "氷", $7c
+	fwcharmap 3, "布", $7d
 	fwcharmap 3, "平", $7e
-	fwcharmap 3, "7f", $7f
-	fwcharmap 3, "81", $81
-	fwcharmap 3, "82", $82
-	fwcharmap 3, "83", $83
-	fwcharmap 3, "84", $84
-	fwcharmap 3, "85", $85
-	fwcharmap 3, "86", $86
-	fwcharmap 3, "87", $87
-	fwcharmap 3, "88", $88
-	fwcharmap 3, "89", $89
-	fwcharmap 3, "8a", $8a
-	fwcharmap 3, "8b", $8b
-	fwcharmap 3, "8c", $8c
-	fwcharmap 3, "8d", $8d
-	fwcharmap 3, "8f", $8f
-	fwcharmap 3, "90", $90
-	fwcharmap 3, "91", $91
-	fwcharmap 3, "92", $92
-	fwcharmap 3, "95", $95
-	fwcharmap 3, "96", $96
-	fwcharmap 3, "97", $97
-	fwcharmap 3, "98", $98
-	fwcharmap 3, "99", $99
-	fwcharmap 3, "9a", $9a
-	fwcharmap 3, "9b", $9b
+	fwcharmap 3, "返", $7f
+	fwcharmap 3, "募", $80
+	fwcharmap 3, "魔", $81
+	fwcharmap 3, "容", $82
+	fwcharmap 3, "踊", $83
+	fwcharmap 3, "陸", $84
+	fwcharmap 3, "侵", $85
+	fwcharmap 3, "域", $86
+	fwcharmap 3, "遅", $87
+	fwcharmap 3, "素", $88
+	fwcharmap 3, "腦", $89
+	fwcharmap 3, "吹", $8a
+	fwcharmap 3, "笑", $8b
+	fwcharmap 3, "己", $8c
+	fwcharmap 3, "忍", $8d
+	fwcharmap 3, "条", $8e
+	fwcharmap 3, "刀", $8f
+	fwcharmap 3, "怠", $90
+	fwcharmap 3, "遊", $91
+	fwcharmap 3, "型", $92
+	fwcharmap 3, "博", $93
+	fwcharmap 3, "士", $94
+	fwcharmap 3, "勇", $95
+	fwcharmap 3, "環", $96
+	fwcharmap 3, "境", $97
+	fwcharmap 3, "暑", $98
+	fwcharmap 3, "玉", $99
+	fwcharmap 3, "喷", $9a
+	fwcharmap 3, "停", $9b
 	fwcharmap 3, "装", $9c
-	fwcharmap 3, "9d", $9d
-	fwcharmap 3, "9e", $9e
-	fwcharmap 3, "9f", $9f
-	fwcharmap 3, "a0", $a0
-	fwcharmap 3, "a4", $a4
-	fwcharmap 3, "a5", $a5
-	fwcharmap 3, "a6", $a6
+	fwcharmap 3, "号", $9d
+	fwcharmap 3, "島", $9e
+	fwcharmap 3, "覽", $9f
+	fwcharmap 3, "莊", $a0
+	fwcharmap 3, "祭", $a1
+	fwcharmap 3, "壇", $a2
+	fwcharmap 3, "予", $a3
+	fwcharmap 3, "範", $a4
+	fwcharmap 3, "囲", $a5
+	fwcharmap 3, "商", $a6
+	fwcharmap 3, "報", $a7
 	fwcharmap 3, "率", $a8
-	fwcharmap 3, "ab", $ab
-	fwcharmap 3, "ac", $ac
-	fwcharmap 3, "ad", $ad
-	fwcharmap 3, "ae", $ae
+	fwcharmap 3, "私", $a9
+	fwcharmap 3, "語", $aa
+	fwcharmap 3, "妖", $ab
+	fwcharmap 3, "脅", $ac
+	fwcharmap 3, "精", $ad
+	fwcharmap 3, "仲", $ae
 	fwcharmap 3, "底", $af
-	fwcharmap 3, "b0", $b0
-	fwcharmap 3, "b1", $b1
-	fwcharmap 3, "b3", $b3
-	fwcharmap 3, "b4", $b4
-	fwcharmap 3, "b5", $b5
-	fwcharmap 3, "b6", $b6
+	fwcharmap 3, "静", $b0
+	fwcharmap 3, "撒", $b1
+	fwcharmap 3, "街", $b2
+	fwcharmap 3, "題", $b3
+	fwcharmap 3, "秘", $b4
+	fwcharmap 3, "密", $b5
+	fwcharmap 3, "靭", $b6
 
 ; TX_FULLWIDTH4
 	fwcharmap 4, "A", $10
