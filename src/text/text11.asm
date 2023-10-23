@@ -181,7 +181,7 @@ Text0fb1:
 Text0fb2:
 	hiragana "さあ "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "を"
 	line ""
 	textfw0 "かいさいします!!"
@@ -282,7 +282,7 @@ Text0fbd:
 	textfw0 "対戦を はじめましょう"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "の "
 	katakana "ルール"
 	hiragana "で"
@@ -354,7 +354,7 @@ Text0fc3:
 	textfw0 "けっしょう戦を はじめましょう"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "の "
 	katakana "ルール"
 	hiragana "で"
@@ -503,7 +503,7 @@ Text0fd0:
 Text0fd1:
 	hiragana "こんかいの "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "の"
 	line ""
 	textfw0 "対戦あいては・・・"
@@ -628,7 +628,7 @@ Text0fdf:
 
 Text0fe0:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	textfw0 "!"
 	line ""
 	hiragana "ゆうしょうです!!"
@@ -674,14 +674,14 @@ Text0fe5:
 Text0fe6:
 	hiragana "こんかいの "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	textfw0 "<RAMNAME>", "さんの ゆうしょうでした"
 	line ""
 	textfw0 "では つぎの"
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "まで"
 	line ""
 	textfw0 "ごきげんよう さようなら!!"
@@ -1057,11 +1057,11 @@ Text0ffb:
 	katakana "ステキ"
 	hiragana "な"
 	katakana "カード大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	hiragana "を やります"
 	line ""
 	textfw0 "大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "には "
 	katakana "ユー"
 	hiragana "も"
@@ -1079,7 +1079,7 @@ Text0ffc:
 	textfw0 "?"
 	line ""
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	textfw0 "きょうは "
@@ -1299,13 +1299,13 @@ Text1007:
 	line ""
 	textfw0 "「"
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	textfw0 "」"
 	hiragana "という"
 	line ""
 	katakana "ゴージャス"
 	hiragana "な大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "です"
 	line ""
 	textfw0 "まあ"
@@ -1315,18 +1315,18 @@ Text1007:
 
 Text1008:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	katakana "ゴージャス"
 	hiragana "な大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "だったでしょう"
 	line ""
 	textfw0 "また いつか"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "を ひらきますから"
 	line ""
 	textfw0 "たまには "
@@ -1553,7 +1553,7 @@ Text1013:
 
 Text1014:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	textfw0 "たのしんで もらえたかな"
@@ -1640,7 +1640,7 @@ Text1016:
 Text1017:
 	hiragana "ただいま "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "を"
 	line ""
 	textfw0 "かいさいしています!"
@@ -1676,7 +1676,7 @@ Text1019:
 	hiragana "さん さんかなさいますか"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "に?"
 	done
 
@@ -1687,7 +1687,7 @@ Text101a:
 	line ""
 	textfw0 "つぎの "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	textfw0 "がんばって くださいね"
@@ -1700,7 +1700,7 @@ Text101b:
 	line ""
 	textfw0 "つぎの "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "も"
 	line ""
 	textfw0 "また ゆうしょう してくださいね"
@@ -1708,7 +1708,7 @@ Text101b:
 
 Text101c:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "にさんかしますか?"
 	done
 
@@ -1727,7 +1727,7 @@ Text101e:
 
 Text101f:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "を"
 	line ""
 	textfw4 "GR"
@@ -1760,12 +1760,12 @@ Text1022:
 	hiragana "さまが"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "を ひらいたんだ"
 	line ""
 	textfw0 "でも "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "には"
 	line ""
 	textfw0 "えらばれたものしか でれないんだ"
@@ -1781,7 +1781,7 @@ Text1023:
 	hiragana "ねぇ ねぇ"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "に でたんだろ"
 	line ""
 	textfw0 "こんかいの ゆうしょうしゃは"
@@ -1796,7 +1796,7 @@ Text1023:
 
 Text1024:
 	textfw0 "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は "
 	katakana "ルール"
 	hiragana "は"
@@ -1832,7 +1832,7 @@ Text1024:
 Text1025:
 	hiragana "きいたわよ "
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "に"
 	line ""
 	textfw0 "ゆうしょう したんですってね"
@@ -2041,7 +2041,7 @@ Text1030:
 	hiragana "たちが ひらく"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は "
 	katakana "スゴイ!"
 	line ""
@@ -2067,11 +2067,11 @@ Text1031:
 	hiragana "では"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "が かいさい中だ!"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は"
 	line ""
 	katakana "トーナメント戦"
@@ -2095,7 +2095,7 @@ Text1032:
 	textfw0 "ゆうしょう できたかい?"
 	line ""
 	katakana "グランドマスター"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	hiragana "は めったに"
 	line ""
 	textfw0 "ひらかれないからなぁ・・・"
@@ -2215,7 +2215,7 @@ Text103a:
 	katakana "カード"
 	hiragana "を もってきてくれました"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あたらしくしましたので"
 	line ""
@@ -2230,7 +2230,7 @@ Text103b:
 	line ""
 	textfw0 "勝てば わたしのもっている"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を さしあげます"
 	done
@@ -2254,7 +2254,7 @@ Text103d:
 Text103e:
 	hiragana "うーん まけましたか"
 	line ""
-	textfw0 "では 拡", "FW0_be"
+	textfw0 "では 拡張"
 	katakana "パック"
 	hiragana "を さしあげましょう"
 	done
@@ -2280,7 +2280,7 @@ Text1040:
 Text1041:
 	hiragana "まけた わたしは よろこんで"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を おわたししましょう"
 	done
@@ -2370,7 +2370,7 @@ Text1049:
 	line ""
 	textfw0 "まけた・・・"
 	line ""
-	textfw0 "あっ 拡", "FW0_be"
+	textfw0 "あっ 拡張"
 	katakana "パック"
 	hiragana "だね"
 	done
@@ -2395,7 +2395,7 @@ Text104b:
 Text104c:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "を おいだしてくれて"
 	line ""
 	textfw0 "ありがとう ", "<RAMNAME>", "!"
@@ -2437,7 +2437,7 @@ Text104f:
 	textfw0 "<RAMNAME>"
 	hiragana "くん 対戦で 勝ったら"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あげる!"
 	line ""
@@ -2515,13 +2515,13 @@ Text1054:
 Text1055:
 	hiragana "うん! やっぱりまけたかぁ!"
 	line ""
-	textfw0 "それじゃ 拡", "FW0_be"
+	textfw0 "それじゃ 拡張"
 	katakana "パック"
 	hiragana "を わたすね!"
 	done
 
 Text1056:
-	textfw0 "拡", "FW0_be", "パック"
+	textfw0 "拡張パック"
 	hiragana "を あげることで"
 	line ""
 	textfw0 "きみが つよくなる"
@@ -2611,7 +2611,7 @@ Text105f:
 	katakana "カード"
 	hiragana "で つくった"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を わたすよ"
 	done
@@ -2700,7 +2700,7 @@ Text1063:
 Text1064:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "と 対戦しますか?"
 	done
 
@@ -2720,7 +2720,7 @@ Text1066:
 Text1067:
 	hiragana "おろろ・・・まけちゃったよ"
 	line ""
-	textfw0 "ちぇっ 拡", "FW0_be"
+	textfw0 "ちぇっ 拡張"
 	katakana "パック"
 	hiragana "を やるよー"
 	done
@@ -2749,7 +2749,7 @@ Text106a:
 	hiragana "で"
 	line ""
 	textfw0 "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれるんだー"
 	line ""
 	textfw0 "ところで "
@@ -2783,7 +2783,7 @@ Text106b:
 	hiragana "に いってみなー"
 	line ""
 	textfw0 "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれるんだー"
 	line ""
 	textfw0 "ところで "
@@ -2824,7 +2824,7 @@ Text106c:
 	textfw0 "の"
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "が せめてきたんだ"
 	line ""
 	katakana "クラブマスター"
@@ -2863,7 +2863,7 @@ Text106d:
 Text106e:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "は "
 	katakana "グリーンクラブ"
 	hiragana "が"
@@ -2901,7 +2901,7 @@ Text1070:
 	hiragana "に いった"
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "なら"
 	line ""
 	textfw0 "しってるのかなぁ・・・"
@@ -2910,7 +2910,7 @@ Text1070:
 Text1071:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "が にげていったぞ"
 	line ""
 	textfw0 "へっへー ざまあみろ!"
@@ -2943,7 +2943,7 @@ Text1072:
 Text1073:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "が いなくならないと"
 	line ""
 	katakana "デッキマシン"
@@ -2987,7 +2987,7 @@ Text1076:
 Text1077:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "が でていったんだな"
 	line ""
 	textfw0 "これで "
@@ -3007,7 +3007,7 @@ Text1078:
 	line ""
 	textfw0 "まけは まけだから"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を わたすよ"
 	done
@@ -3045,7 +3045,7 @@ Text107b:
 	textfw0 "まいったよ "
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に まけたから"
 	line ""
 	katakana "マシン"
@@ -3403,7 +3403,7 @@ Text1098:
 	hiragana "あっれー まけちゃったの "
 	katakana "ボク?"
 	line ""
-	hiragana "へへっ じゃあ 拡", "FW0_be"
+	hiragana "へへっ じゃあ 拡張"
 	katakana "パック"
 	hiragana "を あげる"
 	done
@@ -3554,7 +3554,7 @@ Text10a6:
 	katakana "チッ! "
 	hiragana "しかたねぇな"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を やるぜ"
 	done
@@ -3707,7 +3707,7 @@ Text10b3:
 	done
 
 Text10b4:
-	hiragana "おつりの 拡", "FW0_be"
+	hiragana "おつりの 拡張"
 	katakana "パック"
 	hiragana "でーす"
 	line ""
@@ -3814,7 +3814,7 @@ Text10c1:
 
 Text10c2:
 	textfw0 "勝"
-	hiragana "ったものには 拡", "FW0_be"
+	hiragana "ったものには 拡張"
 	katakana "パック"
 	hiragana "を・・・"
 	done
@@ -3953,7 +3953,7 @@ Text10ce:
 	textfw0 "この"
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "のまえに ひれふすのだ!"
 	done
 
@@ -3978,7 +3978,7 @@ Text10d1:
 	hiragana "が "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "が まけた・・・"
 	done
 

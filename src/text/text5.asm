@@ -2,14 +2,14 @@ Text0810:
 	textfw0 "プレイヤー"
 	hiragana "の"
 	textfw1 "性別"
-	textfw0 "を入れ", "FW0_bd", "える"
+	textfw0 "を入れ替える"
 	done
 
 Text0811:
 	hiragana "はじまりの"
-	textfw3 "FW3_9e"
+	textfw3 "島"
 	textfw0 "に"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	textfw0 "く"
 	done
 
@@ -17,9 +17,9 @@ Text0812:
 	textfw4 "GR"
 	textfw2 "団"
 	hiragana "の"
-	textfw3 "FW3_9e"
+	textfw3 "島"
 	textfw0 "に"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	textfw0 "く"
 	done
 
@@ -44,7 +44,7 @@ Text0815:
 	hiragana "の"
 	katakana "データ"
 	hiragana "を"
-	textfw2 "FW2_2e"
+	textfw2 "壊"
 	textfw0 "す"
 	done
 
@@ -56,9 +56,9 @@ Text0816:
 
 Text0817:
 	textfw4 "GM"
-	textfw2 "FW2_13"
+	textfw2 "杯"
 	textfw1 "開"
-	textfw2 "FW2_47"
+	textfw2 "催"
 	textfw0 "(クリアデータ"
 	hiragana "のみ)"
 	done
@@ -76,7 +76,7 @@ Text0819:
 
 Text081a:
 	hiragana "このひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれ"
 	line ""
 	textfw4 "GR"
@@ -90,7 +90,7 @@ Text081a:
 
 Text081b:
 	hiragana "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のりたいんだな?"
 	done
 
@@ -131,12 +131,12 @@ Text081f:
 	hiragana "に "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "から"
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "までが いっている"
 	line ""
 	textfw0 "全員と たたかって 勝ってくるんだな"
@@ -163,11 +163,11 @@ Text081f:
 Text0820:
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "から "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "と たたかい"
 	line ""
 	textfw0 "勝って くるんだな!"
@@ -215,7 +215,7 @@ Text0821:
 
 Text0822:
 	hiragana "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれば "
 	textfw4 "GR"
 	textfw2 "団"
@@ -224,7 +224,7 @@ Text0822:
 	textfw0 "いくことが できます"
 	line ""
 	textfw0 "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のるには"
 	line ""
 	textfw0 "「"
@@ -249,7 +249,7 @@ Text0823:
 	textfw0 "それでは "
 	textfw4 "GR"
 	textfw0 "5"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "さまと"
 	line ""
 	textfw0 "おはなしくださいませ"
@@ -288,7 +288,7 @@ Text0825:
 
 Text0826:
 	hiragana "ここから ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれるらしいよ"
 	line ""
 	textfw0 "でも ひつようなものが あるんだ"
@@ -299,7 +299,7 @@ Text0826:
 	hiragana "それが あると"
 	line ""
 	textfw0 "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれるんだって!"
 	line ""
 	textfw0 "でも どうやって 「"
@@ -341,7 +341,7 @@ Text0828:
 	hiragana "しなくても"
 	line ""
 	textfw0 "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれるようになった"
 	line ""
 	katakana "オレ"
@@ -357,7 +357,7 @@ Text0828:
 
 Text0829:
 	hiragana "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のりたいんだな?"
 	done
 
@@ -391,7 +391,7 @@ Text082d:
 
 Text082e:
 	hiragana "ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "に のれば むこうに"
 	line ""
 	textfw0 "かえることが できます"
@@ -399,7 +399,7 @@ Text082e:
 	textfw0 "おくに すすんで "
 	textfw4 "GR"
 	textfw0 "5"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "さまに"
 	line ""
 	textfw0 "はなしかけて くださいませ"
@@ -503,7 +503,7 @@ Text0836:
 	line ""
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "との たたかいに"
 	line ""
 	textfw0 "ぜったいに やくにたつわ!"
@@ -580,7 +580,7 @@ Text083c:
 	line ""
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "は "
 	katakana "ファイアクラブ"
 	hiragana "よ"
@@ -596,7 +596,7 @@ Text083c:
 Text083d:
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "は "
 	katakana "ファイアクラブ"
 	hiragana "よ"
@@ -832,7 +832,7 @@ Text0853:
 
 Text0854:
 	textfw0 "サイドカード"
-	hiragana "の枚", "FW0_a9", "は かえないよ"
+	hiragana "の枚数は かえないよ"
 	line ""
 	textfw0 "こんかいも 4枚だからね!"
 	done
@@ -846,7 +846,7 @@ Text0855:
 	done
 
 Text0856:
-	hiragana "まけたからには 拡", "FW0_be"
+	hiragana "まけたからには 拡張"
 	katakana "パック"
 	hiragana "を"
 	line ""
@@ -1143,7 +1143,7 @@ Text0872:
 	textfw0 "の"
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "じゃ!"
 	line ""
 	katakana "アクアクラブ"
@@ -1212,7 +1212,7 @@ Text0875:
 Text0876:
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "と 対戦しますか?"
 	done
 
@@ -1252,7 +1252,7 @@ Text0879:
 	line ""
 	textfw0 "やるもんじゃわい!"
 	line ""
-	textfw0 "ほれ 拡", "FW0_be"
+	textfw0 "ほれ 拡張"
 	katakana "パック"
 	hiragana "じゃい"
 	done
@@ -1295,7 +1295,7 @@ Text087b:
 	line ""
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に つかまってしまった"
 	line ""
 	katakana "キミ "
@@ -1309,7 +1309,7 @@ Text087b:
 	hiragana "に "
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "がいるんだ"
 	line ""
 	textfw0 "やっつけてくれよ"
@@ -1357,7 +1357,7 @@ Text087f:
 Text0880:
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "は "
 	katakana "ファイアクラブ"
 	hiragana "に"
@@ -1378,7 +1378,7 @@ Text0880:
 Text0881:
 	hiragana "まけた・・・"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を やるよ!"
 	done
@@ -1657,7 +1657,7 @@ Text0899:
 	katakana "デッキ"
 	hiragana "も あたらしくできたよ"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "も あたらしいのを"
 	line ""
@@ -1670,11 +1670,11 @@ Text089a:
 	line ""
 	textfw0 "対戦の あいてになるよ"
 	line ""
-	textfw0 "勝ったら 拡", "FW0_be"
+	textfw0 "勝ったら 拡張"
 	katakana "パック"
-	textfw1 "FW1_f2"
+	textfw1 "第"
 	textfw0 "3"
-	textfw2 "FW2_5a"
+	textfw2 "彈"
 	textfw0 "!"
 	line ""
 	textfw0 "「化"
@@ -1725,7 +1725,7 @@ Text089e:
 	line ""
 	textfw0 "つよい つよい"
 	line ""
-	textfw0 "じゃあ 拡", "FW0_be"
+	textfw0 "じゃあ 拡張"
 	katakana "パック"
 	hiragana "を わたすよ"
 	done
@@ -1818,7 +1818,7 @@ Text08a6:
 	line ""
 	textfw0 "対戦してくれるかい?"
 	line ""
-	textfw0 "勝ったら 拡", "FW0_be"
+	textfw0 "勝ったら 拡張"
 	katakana "パック"
 	hiragana "を"
 	line ""
@@ -1836,7 +1836,7 @@ Text08a8:
 	textfw0 "サイドカード"
 	hiragana "は 4枚!"
 	line ""
-	textfw0 "勝ったら 拡", "FW0_be"
+	textfw0 "勝ったら 拡張"
 	katakana "パック"
 	hiragana "は2つ!"
 	done
@@ -1921,11 +1921,11 @@ Text08b0:
 	line ""
 	textfw0 "あたしとしょうぶしたいのー?"
 	line ""
-	textfw0 "どうせ 拡", "FW0_be"
+	textfw0 "どうせ 拡張"
 	katakana "パック"
-	textfw1 "FW1_f2"
+	textfw1 "第"
 	textfw0 "4"
-	textfw2 "FW2_5a"
+	textfw2 "彈"
 	line ""
 	textfw0 "「超バトル」"
 	hiragana "が ほしいだけでしょ"
@@ -1959,7 +1959,7 @@ Text08b4:
 	katakana "ゴホウビ"
 	hiragana "に"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あげるわ"
 	done
@@ -2047,7 +2047,7 @@ Text08b9:
 	textfw0 "だが おまえに この"
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "と"
 	line ""
 	textfw0 "しょうぶする"
@@ -2067,7 +2067,7 @@ Text08ba:
 Text08bb:
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "と 対戦しますか?"
 	done
 
@@ -2195,7 +2195,7 @@ Text08c2:
 	line ""
 	katakana "エアポート"
 	hiragana "から ひこう"
-	textfw2 "FW2_8b"
+	textfw2 "船"
 	textfw0 "にのれ"
 	line ""
 	textfw4 "GR"
@@ -2241,7 +2241,7 @@ Text08c4:
 	line ""
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に さらわれちゃったんだ!"
 	line ""
 	katakana "バトルクラブ"
@@ -2266,7 +2266,7 @@ Text08c4:
 	line ""
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に 勝てない・・・"
 	done
 
@@ -2274,7 +2274,7 @@ Text08c5:
 	hiragana "たのむ! "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "をたおしてくれ!"
 	done
 
@@ -2292,7 +2292,7 @@ Text08c7:
 	textfw0 "じゃ "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "とたたかうまえに"
 	line ""
 	textfw0 "ぼくと しゅぎょうをしよう"
@@ -2310,7 +2310,7 @@ Text08c8:
 	hiragana "さんをさらった "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "は"
 	line ""
 	katakana "ストーンクラブ"
@@ -2319,7 +2319,7 @@ Text08c8:
 	textfw0 "たのむ! "
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "を"
 	line ""
 	textfw0 "かならず たおしてくれよ!"
@@ -2339,7 +2339,7 @@ Text08c9:
 	line ""
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "が "
 	katakana "プレイホール"
 	hiragana "に"
@@ -2381,7 +2381,7 @@ Text08cc:
 Text08cd:
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "を たおしてくれたんだ"
 	line ""
 	textfw0 "ありがとう!!"
@@ -3227,7 +3227,7 @@ Text090a:
 	done
 
 Text090b:
-	textfw0 "・・・拡", "FW0_be", "パック"
+	textfw0 "・・・拡張パック"
 	hiragana "だ"
 	done
 

@@ -85,21 +85,21 @@ Text03ec:
 Text03ed:
 	textfw0 "「勝"
 	hiragana "ちまけの"
-	textfw1 "FW1_ab"
+	textfw1 "決"
 	textfw0 "定1」について"
 	done
 
 Text03ee:
 	textfw0 "「勝"
 	hiragana "ちまけの"
-	textfw1 "FW1_ab"
+	textfw1 "決"
 	textfw0 "定2」について"
 	done
 
 Text03ef:
 	textfw0 "「勝"
 	hiragana "ちまけの"
-	textfw1 "FW1_ab"
+	textfw1 "決"
 	textfw0 "定3」について"
 	done
 
@@ -270,7 +270,7 @@ Text03fe:
 	textfw0 "ド"
 	hiragana "を 「手札(てふだ)」と いいます"
 	line ""
-	textfw0 "「手札」の枚", "FW0_a9", "には せいげんがありま"
+	textfw0 "「手札」の枚数には せいげんがありま"
 	line ""
 	textfw0 "せん。10枚でも 20枚でももつこと"
 	line ""
@@ -405,7 +405,7 @@ Text0402:
 Text0403:
 	hiragana "あいての"
 	katakana "ポケモン"
-	hiragana "を たおした", "FW0_a9", "を"
+	hiragana "を たおした数を"
 	line ""
 	textfw0 "かぞえるための"
 	katakana "カード"
@@ -438,7 +438,7 @@ Text0403:
 	line ""
 	textfw0 "「"
 	katakana "サイドカード」"
-	hiragana "の", "FW0_a9", "だけ あいての"
+	hiragana "の数だけ あいての"
 	katakana "ポ"
 	line ""
 	textfw0 "ケモン"
@@ -848,7 +848,7 @@ Text040e:
 	line ""
 	textfw0 "うな"
 	katakana "エネルギー"
-	hiragana "の", "FW0_a9", "は "
+	hiragana "の数は "
 	katakana "ポケモン"
 	hiragana "によっ"
 	line ""
@@ -856,7 +856,7 @@ Text040e:
 	katakana "エ"
 	line ""
 	textfw0 "ネルギー"
-	hiragana "の", "FW0_a9", "だけ "
+	hiragana "の数だけ "
 	katakana "エネルギーカード"
 	hiragana "を"
 	line ""
@@ -1090,7 +1090,7 @@ Text0414:
 	line ""
 	textfw0 "山札の"
 	katakana "カード"
-	hiragana "の のこり枚", "FW0_a9", "には"
+	hiragana "の のこり枚数には"
 	line ""
 	textfw0 "きを つけましょう。"
 	done
@@ -1269,14 +1269,14 @@ Text041a:
 	line ""
 	line ""
 	hiragana "この対戦では おたがいの"
-	katakana "ベンチ", "FW0_a9"
+	katakana "ベンチ数"
 	hiragana "が"
 	line ""
 	textfw0 "「3」になる"
 	line ""
 	textfw0 "(「ひかえ"
 	katakana "ポケモン」"
-	hiragana "のおける", "FW0_a9", "が"
+	hiragana "のおける数が"
 	line ""
 	textfw0 " 「3」びきになる)"
 	line ""
@@ -1309,7 +1309,7 @@ Text041b:
 	line ""
 	textfw0 "ひつような "
 	katakana "エネルギー"
-	hiragana "の", "FW0_a9", "が"
+	hiragana "の数が"
 	line ""
 	textfw0 "「-1」される"
 	line ""
@@ -1443,7 +1443,7 @@ Text041f:
 	katakana "トラッシュ"
 	hiragana "する "
 	katakana "エネルギー"
-	hiragana "の", "FW0_a9", "が"
+	hiragana "の数が"
 	line ""
 	textfw0 "「+1」される。"
 	line ""
@@ -1560,25 +1560,25 @@ Text0426:
 Text0427:
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0428:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0429:
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text042a:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text042b:
@@ -2454,7 +2454,7 @@ Text04f5:
 	done
 
 Text04f6:
-	textfw1 "FW1_98"
+	textfw1 "主"
 	textfw0 "人"
 	textfw2 "公"
 	done
@@ -3494,9 +3494,9 @@ Text0551:
 Text0552:
 	textfw0 "「"
 	hiragana "そっこう"
-	textfw3 "FW3_92"
+	textfw3 "型"
 	textfw0 "」と「かべ"
-	textfw3 "FW3_92"
+	textfw3 "型"
 	textfw0 "」の"
 	line ""
 	katakana "デッキ"
@@ -3759,7 +3759,7 @@ Text0562:
 
 Text0563:
 	textfw0 "ポケモン"
-	hiragana "は ", "FW0_7a", "FW0_7b", "FW0_7c", "のこうげきで"
+	hiragana "は ", "[相手]", "のこうげきで"
 	line ""
 	textfw0 "「どく」や「"
 	katakana "マヒ」「"
@@ -3830,7 +3830,7 @@ Text0565:
 	line ""
 	textfw0 "「無色"
 	katakana "ポケモン(飛"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	textfw0 "タイプ)」"
 	hiragana "を"
 	line ""
@@ -3863,7 +3863,7 @@ Text0566:
 	line ""
 	textfw0 "「無色"
 	katakana "ポケモン(飛"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	textfw0 "タイプ)」"
 	hiragana "も "
 	line ""
@@ -3876,7 +3876,7 @@ Text0567:
 	hiragana "つまり"
 	line ""
 	textfw0 "「炎+雷+無色(飛"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	katakana "タイプ)」"
 	hiragana "という"
 	line ""
@@ -3982,7 +3982,7 @@ Text056b:
 Text056c:
 	textfw0 "「"
 	hiragana "それぞれの色の特"
-	textfw3 "FW3_27"
+	textfw3 "徵"
 	textfw0 "」"
 	line ""
 	line ""
@@ -4012,7 +4012,7 @@ Text056c:
 
 Text056d:
 	textfw0 "「雷」ポケモン"
-	hiragana "は ", "FW0_7d", "FW0_7e", "FW0_7f", "にも"
+	hiragana "は ", "[自分]", "にも"
 	line ""
 	katakana "ダメージ"
 	hiragana "を あたえてしまう"
@@ -4058,7 +4058,7 @@ Text056e:
 	line ""
 	textfw1 "育"
 	hiragana "て"
-	textfw1 "FW1_9b"
+	textfw1 "屋"
 	textfw0 "さん」を2枚ずつぐらいいれると"
 	line ""
 	textfw0 "よいぞ"
@@ -4070,7 +4070,7 @@ Text056f:
 	katakana "エネルギー"
 	hiragana "を"
 	line ""
-	textfw0 "追加すると", "FW0_7a", "FW0_7b", "FW0_7c", "にあたえる"
+	textfw0 "追加すると", "[相手]", "にあたえる"
 	line ""
 	katakana "ダメージ"
 	hiragana "が ふえる"
@@ -4173,7 +4173,7 @@ Text0572:
 	textfw0 "「"
 	katakana "ノーマルタイプ」"
 	hiragana "と「飛"
-	textfw1 "FW1_92"
+	textfw1 "行"
 	katakana "タイプ」"
 	hiragana "で"
 	line ""
@@ -4248,7 +4248,7 @@ Text0575:
 	line ""
 	textfw0 " 手札を せんぶすててしまうのは"
 	line ""
-	textfw3 "FW3_95"
+	textfw3 "勇"
 	textfw0 "気が いるけれど "
 	katakana "ゲーム"
 	hiragana "のはじめで"
@@ -4292,7 +4292,7 @@ Text0576:
 
 Text0577:
 	hiragana "そっこう"
-	textfw3 "FW3_92"
+	textfw3 "型"
 	katakana "デッキ"
 	line ""
 	textfw0 "「ヒトデマン」「ワンリキー」「ビリリ"
@@ -4316,7 +4316,7 @@ Text0577:
 	hiragana "がな・・・"
 	line ""
 	textfw0 "「大"
-	textfw3 "FW3_38"
+	textfw3 "技"
 	textfw0 "」をもった"
 	katakana "ポケモン"
 	hiragana "も すこしは"
@@ -4328,7 +4328,7 @@ Text0577:
 
 Text0578:
 	hiragana "かべ"
-	textfw3 "FW3_92"
+	textfw3 "型"
 	katakana "デッキ"
 	line ""
 	textfw0 "「イワーク」「ラッキー」「ベロリンガ"
@@ -4342,7 +4342,7 @@ Text0578:
 	hiragana "をまもり "
 	katakana "ベンチ"
 	hiragana "で「大"
-	textfw3 "FW3_38"
+	textfw3 "技"
 	textfw0 "」を"
 	line ""
 	textfw0 "もった"
@@ -4352,7 +4352,7 @@ Text0578:
 	textfw0 "てる ほうほうじゃ"
 	line ""
 	textfw0 "そっこう"
-	textfw3 "FW3_92"
+	textfw3 "型"
 	textfw0 "の ぎゃくじゃぞ"
 	done
 
@@ -4624,9 +4624,9 @@ Text058e:
 
 Text058f:
 	textfw0 "地"
-	textfw2 "FW2_18"
+	textfw2 "図"
 	hiragana "の"
-	textfw1 "FW1_8e"
+	textfw1 "表"
 	textfw2 "示"
 	katakana "テスト"
 	done

@@ -8,8 +8,8 @@ Text12b3:
 	textfw4 "B"
 	textfw0 "ボタン"
 	hiragana "をおしながら "
-	textfw2 "FW2_85"
-	textfw1 "FW1_70"
+	textfw2 "十"
+	textfw1 "字"
 	katakana "ボタン!"
 	line ""
 	hiragana "じぶんや あいての場と"
@@ -20,7 +20,7 @@ Text12b3:
 	line ""
 	textfw4 "B"
 	textfw0 "+"
-	textfw1 "FW1_d8"
+	textfw1 "下"
 	katakana "ボタン"
 	hiragana "で じぶんの場"
 	line ""
@@ -82,7 +82,7 @@ Text12b5:
 	textfw0 "対戦"
 	hiragana "あいてを たおすと"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を "
 	katakana "ゲット"
@@ -513,7 +513,7 @@ Text12c2:
 	line ""
 	katakana "チャレンジカップ"
 	hiragana "の大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "や"
 	line ""
 	katakana "ゲームセンター"
@@ -760,7 +760,7 @@ Text12ce:
 	line ""
 	hiragana "けっこう つよいんだな"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あげちゃうからさ"
 	line ""
@@ -1181,7 +1181,7 @@ Text12e4:
 	katakana "バトルセンター"
 	hiragana "へ ようこそ!!"
 	line ""
-	textfw0 "通信対戦で 拡", "FW0_be"
+	textfw0 "通信対戦で 拡張"
 	katakana "パック"
 	hiragana "を "
 	katakana "ゲット!"
@@ -1218,7 +1218,7 @@ Text12e8:
 	line ""
 	textfw0 "勝った ", "<RAMNAME>", "さんには"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を 3つ"
 	katakana "プレゼント!"
@@ -1231,7 +1231,7 @@ Text12e9:
 	line ""
 	textfw0 "<RAMNAME>", "さんには"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を 1つ"
 	katakana "プレゼント"
@@ -1492,7 +1492,7 @@ Text12ff:
 	hiragana "こん"
 	line ""
 	textfw0 "らん」状態をすべて回"
-	textfw1 "FW1_7a"
+	textfw1 "復"
 	textfw0 "させる。"
 	done
 
@@ -1524,7 +1524,7 @@ Text1301:
 	katakana "ポケモ"
 	line ""
 	textfw0 "ン"
-	hiragana "に、「弱点・抵抗力」に", "FW0_da", "係なく10"
+	hiragana "に、「弱点・抵抗力」に関係なく10"
 	line ""
 	katakana "ダメージ。"
 	done
@@ -1554,7 +1554,7 @@ Text1303:
 	textfw0 "この"
 	katakana "カード"
 	hiragana "を持ち"
-	textfw1 "FW1_98"
+	textfw1 "主"
 	textfw0 "の手札に"
 	textfw1 "戻"
 	textfw0 "す。"
@@ -1605,10 +1605,10 @@ Text1309:
 	done
 
 Text130a:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "に"
 	katakana "ダメージ"
-	hiragana "を与えたら、", "FW0_7d", "FW0_7e", "FW0_7f", "に"
+	hiragana "を与えたら、", "[自分]", "に"
 	line ""
 	textfw0 "のっている"
 	katakana "ダメージカウンター"
@@ -1638,7 +1638,7 @@ Text130c:
 	done
 
 Text130d:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "にのっている"
 	katakana "ダメージカウンター"
 	line ""
@@ -1650,7 +1650,7 @@ Text130e:
 	done
 
 Text130f:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を「どく」状態にする。"
 	done
 
@@ -1689,11 +1689,11 @@ Text1314:
 	textfw1 "養"
 	textfw0 "分を"
 	line ""
-	textfw1 "FW1_bf"
+	textfw1 "吸"
 	textfw0 "収していくと、大きな"
 	textfw1 "花"
 	textfw0 "が"
-	textfw2 "FW2_99"
+	textfw2 "咲"
 	textfw0 "くという"
 	done
 
@@ -1702,10 +1702,10 @@ Text1315:
 	done
 
 Text1316:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "に"
 	katakana "ダメージ"
-	hiragana "を与えたら、", "FW0_7d", "FW0_7e", "FW0_7f", "に"
+	hiragana "を与えたら、", "[自分]", "に"
 	line ""
 	textfw0 "のっている"
 	katakana "ダメージカウンター"
@@ -1724,7 +1724,7 @@ Text1318:
 	textfw0 "分"
 	hiragana "をとって大きくなったつぼみから、"
 	line ""
-	textfw1 "FW1_e9"
+	textfw1 "香"
 	textfw0 "りがただよいだすと、もうすぐ"
 	textfw1 "花"
 	textfw0 "が"
@@ -1753,7 +1753,7 @@ Text131b:
 	katakana "ランダム"
 	hiragana "で1匹"
 	line ""
-	textfw0 "選ばれ、", "FW0_7a", "FW0_7b", "FW0_7c", "と入れ", "FW0_bd", "わる。"
+	textfw0 "選ばれ、", "[相手]", "と入れ替わる。"
 	line ""
 	textfw0 "相手に控えがいないとき、この力は、"
 	line ""
@@ -1765,11 +1765,11 @@ Text131c:
 	done
 
 Text131d:
-	textfw0 "自", "FW0_b5", "的"
+	textfw0 "自動的"
 	hiragana "にえらばれた相手の場の"
 	katakana "ポケモン"
 	line ""
-	hiragana "に「弱点・抵抗力」に", "FW0_da", "係なく、10"
+	hiragana "に「弱点・抵抗力」に関係なく、10"
 	line ""
 	katakana "ダメージ。"
 	hiragana "これを3回くりかえす。"
@@ -1779,11 +1779,11 @@ Text131e:
 	textfw1 "背"
 	textfw0 "中"
 	hiragana "からのびる、よく発"
-	textfw1 "逹"
+	textfw1 "達"
 	textfw0 "した"
 	line ""
 	textfw0 "つるを自"
-	textfw1 "FW1_8b"
+	textfw1 "在"
 	textfw0 "に"
 	textfw1 "操"
 	textfw0 "り、相手をむやみに"
@@ -1800,7 +1800,7 @@ Text1320:
 	done
 
 Text1321:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	textfw0 "おたがいの対戦"
 	katakana "ポケモン"
@@ -1811,7 +1811,7 @@ Text1321:
 	hiragana "こんらん」状態を、すべて"
 	line ""
 	textfw0 "回"
-	textfw1 "FW1_7a"
+	textfw1 "復"
 	textfw0 "させる。この"
 	katakana "カード"
 	hiragana "が「ねむり・"
@@ -1819,7 +1819,7 @@ Text1321:
 	katakana "マヒ・"
 	hiragana "こんらん」状態のとき、この力は"
 	line ""
-	textfw0 "便えない。"
+	textfw0 "使えない。"
 	done
 
 Text1322:
@@ -1827,7 +1827,7 @@ Text1322:
 	done
 
 Text1323:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "に"
 	katakana "ダメージ"
 	hiragana "を与えたら、その"
@@ -1838,11 +1838,11 @@ Text1323:
 	katakana "ダメージカウンター"
 	hiragana "を、"
 	line ""
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "からとりのぞく。"
+	textfw0 "[自分]", "からとりのぞく。"
 	done
 
 Text1324:
-	textfw2 "FW2_9a", "FW2_9f"
+	textfw2 "太陽"
 	textfw0 "エネルギー"
 	hiragana "を"
 	textfw1 "栄養"
@@ -1852,10 +1852,10 @@ Text1324:
 	line ""
 	textfw1 "開"
 	textfw0 "く。ひなたに引き"
-	textfw1 "FW1_ea"
+	textfw1 "寄"
 	textfw0 "せられるように移"
 	line ""
-	textfw0 "FW0_b5", "する。"
+	textfw0 "動する。"
 	done
 
 Text1325:
@@ -1865,7 +1865,7 @@ Text1325:
 Text1326:
 	hiragana "この力は、自分の番の中で"
 	textfw1 "何"
-	textfw0 "度でも便え"
+	textfw0 "度でも使え"
 	line ""
 	textfw0 "る。自分の場の"
 	katakana "ポケモン"
@@ -1886,7 +1886,7 @@ Text1326:
 	katakana "マヒ・"
 	hiragana "こんらん」状態のとき"
 	line ""
-	textfw0 "この力は便えない。"
+	textfw0 "この力は使えない。"
 	done
 
 Text1327:
@@ -1896,7 +1896,7 @@ Text1327:
 Text1328:
 	textfw1 "花"
 	hiragana "からうっとりする"
-	textfw1 "FW1_e9"
+	textfw1 "香"
 	textfw0 "りがただよい、"
 	line ""
 	textfw0 "戦う"
@@ -1916,7 +1916,7 @@ Text132a:
 Text132b:
 	hiragana "この"
 	katakana "ワザ"
-	hiragana "を受けた", "FW0_7a", "FW0_7b", "FW0_7c", "は、"
+	hiragana "を受けた", "[相手]", "は、"
 	katakana "ランダム"
 	line ""
 	hiragana "で、「どく」+「こんらん」、「どく」"
@@ -1959,7 +1959,7 @@ Text132e:
 
 Text132f:
 	textfw0 "コイン"
-	hiragana "を投げて「おもて」なら、", "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "を投げて「おもて」なら、", "[相手]"
 	line ""
 	textfw0 "を「"
 	katakana "マヒ」状態"
@@ -1971,16 +1971,16 @@ Text1330:
 	done
 
 Text1331:
-	textfw2 "FW2_a0"
+	textfw2 "緑"
 	hiragana "の"
-	textfw1 "皮", "FW1_85"
+	textfw1 "皮膚"
 	textfw0 "に"
-	textfw1 "FW1_33"
+	textfw1 "覆"
 	textfw0 "われている。"
 	line ""
-	textfw1 "FW1_bd", "皮"
+	textfw1 "脱皮"
 	textfw0 "して成長すると"
-	textfw2 "FW2_a1"
+	textfw2 "糸"
 	textfw0 "をかけて"
 	line ""
 	katakana "サナギ"
@@ -2009,7 +2009,7 @@ Text1334:
 	hiragana "を受けるとき"
 	line ""
 	textfw0 "「弱点」の"
-	textfw1 "FW1_b7", "FW1_ba"
+	textfw1 "影響"
 	textfw0 "を受けない。"
 	line ""
 	textfw0 "この"
@@ -2029,7 +2029,7 @@ Text1336:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「こんらん」状態にする。"
+	textfw0 "[相手]", "を「こんらん」状態にする。"
 	done
 
 Text1337:
@@ -2043,13 +2043,13 @@ Text1338:
 	textfw0 "くなる"
 	textfw1 "前"
 	textfw0 "に、強い"
-	textfw3 "FW3_70"
-	textfw1 "FW1_32"
+	textfw3 "衝"
+	textfw1 "擊"
 	textfw0 "を"
 	line ""
 	textfw0 "受けると、中身が出てしまうので"
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "。"
+	textfw1 "注"
+	textfw0 "意。"
 	done
 
 Text1339:
@@ -2078,19 +2078,19 @@ Text133b:
 	done
 
 Text133c:
-	textfw1 "FW1_e8"
+	textfw1 "硬"
 	hiragana "い"
 	katakana "カラ"
 	hiragana "に"
-	textfw2 "FW2_a3"
+	textfw2 "包"
 	textfw0 "まれているが"
 	line ""
 	textfw0 "中身はやわらかいので、"
 	line ""
 	textfw0 "強い"
-	textfw1 "攻", "FW1_32"
+	textfw1 "攻擊"
 	textfw0 "には"
-	textfw2 "FW2_a6"
+	textfw2 "耐"
 	textfw0 "えられない。"
 	done
 
@@ -2103,16 +2103,16 @@ Text133e:
 	done
 
 Text133f:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を、控え"
 	katakana "ポケモン"
-	hiragana "と入れ", "FW0_bd", "える。"
+	hiragana "と入れ替える。"
 	line ""
-	textfw0 "入れ", "FW0_bd", "わる"
+	textfw0 "入れ替わる"
 	katakana "ポケモン"
 	hiragana "は、相手が選ぶ。"
 	line ""
-	textfw0 "(相手に控えがいないとき、入れ", "FW0_bd", "えは"
+	textfw0 "(相手に控えがいないとき、入れ替えは"
 	line ""
 	textfw0 "おこらない)"
 	done
@@ -2126,10 +2126,10 @@ Text1341:
 	hiragana "は水をはじく"
 	katakana "リンプン"
 	hiragana "に"
-	textfw2 "FW2_b1"
+	textfw2 "守"
 	textfw0 "られている"
 	line ""
-	textfw1 "FW1_e7"
+	textfw1 "雨"
 	textfw0 "の日でも空を飛ぶことができる。"
 	done
 
@@ -2143,7 +2143,7 @@ Text1343:
 
 Text1344:
 	textfw0 "コイン"
-	hiragana "を投げて「おもて」なら、", "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "を投げて「おもて」なら、", "[相手]"
 	line ""
 	textfw0 "を「どく」状態にする。"
 	done
@@ -2153,11 +2153,11 @@ Text1345:
 	done
 
 Text1346:
-	textfw2 "FW2_b3"
+	textfw2 "森"
 	hiragana "や草地に"
 	textfw1 "多"
 	textfw0 "く生"
-	textfw1 "FW1_67"
+	textfw1 "息"
 	textfw0 "する。"
 	line ""
 	textfw1 "頭"
@@ -2169,8 +2169,8 @@ Text1346:
 	line ""
 	textfw1 "小"
 	textfw0 "さく"
-	textfw1 "税"
-	textfw0 "い", "FW0_f9"
+	textfw1 "鋭"
+	textfw0 "い毒"
 	katakana "バリ"
 	hiragana "をもつ。"
 	done
@@ -2184,16 +2184,16 @@ Text1348:
 	done
 
 Text1349:
-	textfw1 "FW1_cd"
+	textfw1 "葉"
 	hiragana "っぱが大好物で、"
-	textfw2 "FW2_b3"
+	textfw2 "森"
 	textfw0 "の中で見つける"
 	line ""
-	textfw0 "ことができる。", "FW0_f9", "を持っているので"
+	textfw0 "ことができる。毒を持っているので"
 	line ""
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "が"
-	textfw1 "必", "FW1_5e"
+	textfw1 "注"
+	textfw0 "意が"
+	textfw1 "必要"
 	textfw0 "。"
 	done
 
@@ -2244,13 +2244,13 @@ Text134d:
 
 Text134e:
 	textfw0 "自分"
-	hiragana "ではほとんど", "FW0_b5", "けないが、"
+	hiragana "ではほとんど動けないが、"
 	line ""
-	textfw1 "FW1_be"
+	textfw1 "危"
 	textfw0 "ない時は"
 	textfw1 "固"
 	textfw0 "くなって身を"
-	textfw2 "FW2_de"
+	textfw2 "護"
 	textfw0 "っている"
 	line ""
 	textfw0 "ようだ。"
@@ -2260,7 +2260,7 @@ Text134f:
 	textfw0 "大人"
 	hiragana "の体をつくるための一時的な状態。"
 	line ""
-	textfw0 "自分ではほとんど", "FW0_b5", "けない。"
+	textfw0 "自分ではほとんど動けない。"
 	done
 
 Text1350:
@@ -2273,7 +2273,7 @@ Text1351:
 
 Text1352:
 	textfw0 "コイン"
-	hiragana "を2枚投げ、「おもて」の", "FW0_a9"
+	hiragana "を2枚投げ、「おもて」の数"
 	line ""
 	textfw0 "×30の"
 	katakana "ダメージ。"
@@ -2284,17 +2284,17 @@ Text1353:
 	done
 
 Text1354:
-	textfw1 "FW1_e6"
+	textfw1 "集"
 	textfw2 "団"
 	hiragana "で"
 	textfw1 "現"
 	textfw0 "れることもある。"
 	line ""
-	textfw1 "FW1_72"
+	textfw1 "猛"
 	katakana "スピード"
 	hiragana "で飛び回りおしりの"
 	line ""
-	textfw0 "FW0_f9"
+	textfw0 "毒"
 	katakana "バリ"
 	hiragana "で"
 	textfw1 "刺"
@@ -2318,24 +2318,24 @@ Text1358:
 	done
 
 Text1359:
-	textfw2 "FW2_bf"
+	textfw2 "墓"
 	textfw0 "地"
 	hiragana "などに"
-	textfw2 "FW2_ce"
-	textfw1 "FW1_67"
+	textfw2 "棲"
+	textfw1 "息"
 	textfw0 "する。"
 	line ""
-	textfw1 "FW1_e5"
+	textfw1 "舌"
 	textfw0 "を"
 	katakana "チロチロ"
 	hiragana "させて、"
 	line ""
 	textfw0 "まわりの"
-	textfw1 "FW1_be", "FW1_a5"
+	textfw1 "危険"
 	textfw0 "を"
-	textfw1 "FW1_e4"
+	textfw1 "感"
 	textfw0 "じ"
-	textfw1 "FW1_c8"
+	textfw1 "取"
 	textfw0 "る。"
 	done
 
@@ -2347,18 +2347,18 @@ Text135b:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」状態にする。"
+	textfw0 "[相手]", "を「どく」状態にする。"
 	done
 
 Text135c:
-	textfw2 "FW2_40"
+	textfw2 "肉"
 	textfw1 "食"
 	hiragana "でなんでも"
-	textfw2 "FW2_9b"
+	textfw2 "噛"
 	textfw0 "まずに"
-	textfw3 "FW3_30"
+	textfw3 "飲"
 	textfw0 "み"
-	textfw3 "FW3_17"
+	textfw3 "込"
 	textfw0 "んで"
 	line ""
 	textfw0 "しまう。"
@@ -2366,7 +2366,7 @@ Text135c:
 	hiragana "や"
 	katakana "オニスズメ"
 	hiragana "の"
-	textfw2 "FW2_71"
+	textfw2 "卵"
 	textfw0 "が"
 	line ""
 	textfw0 "大好物。"
@@ -2382,17 +2382,17 @@ Text135e:
 
 Text135f:
 	textfw0 "コイン"
-	hiragana "を投げて「おもて」なら、", "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "を投げて「おもて」なら、", "[相手]"
 	line ""
 	textfw0 "を控え"
 	katakana "ポケモン"
-	hiragana "と入れ", "FW0_bd", "える。"
+	hiragana "と入れ替える。"
 	line ""
-	textfw0 "入れ", "FW0_bd", "わる"
+	textfw0 "入れ替わる"
 	katakana "ポケモン"
 	hiragana "は、相手が選ぶ。"
 	line ""
-	textfw0 "(相手に控えがいないとき、入れ", "FW0_bd", "えは"
+	textfw0 "(相手に控えがいないとき、入れ替えは"
 	line ""
 	textfw0 "おこらない)"
 	done
@@ -2407,17 +2407,17 @@ Text1361:
 
 Text1362:
 	hiragana "お"
-	textfw1 "FW1_e3"
+	textfw1 "腹"
 	textfw0 "の"
-	textfw1 "FW1_e2", "FW1_7f"
+	textfw1 "模様"
 	textfw0 "がこわい"
-	textfw1 "FW1_b4"
+	textfw1 "顏"
 	textfw0 "に見える。"
 	line ""
 	textfw0 "弱い"
-	textfw1 "FW1_7b"
+	textfw1 "敵"
 	textfw0 "はその"
-	textfw1 "FW1_e2", "FW1_7f"
+	textfw1 "模様"
 	textfw0 "を見ただけで"
 	line ""
 	textfw1 "逃"
@@ -2428,7 +2428,7 @@ Text1363:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	textfw0 "[相手]", "を「"
 	katakana "マヒ」状態"
 	hiragana "にする。"
 	done
@@ -2438,14 +2438,14 @@ Text1364:
 	done
 
 Text1365:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を「どく」状態にする。"
 	line ""
 	textfw0 "この"
 	katakana "ワザ"
 	hiragana "を受ける"
 	textfw1 "前"
-	textfw0 "から", "FW0_7a", "FW0_7b", "FW0_7c", "が"
+	textfw0 "から", "[相手]", "が"
 	line ""
 	textfw0 "「どく」状態なら、10"
 	katakana "ダメージ"
@@ -2456,15 +2456,15 @@ Text1365:
 
 Text1366:
 	hiragana "おなかの"
-	textfw2 "FW2_df"
+	textfw2 "恐"
 	textfw0 "ろしい"
-	textfw1 "FW1_e2", "FW1_7f"
+	textfw1 "模様"
 	textfw0 "は、地"
-	textfw3 "FW3_86"
+	textfw3 "域"
 	textfw0 "によって"
 	line ""
 	textfw1 "何種"
-	textfw2 "FW2_c7"
+	textfw2 "類"
 	textfw0 "か"
 	katakana "パターン"
 	hiragana "があるといううわさだ"
@@ -2485,14 +2485,14 @@ Text1369:
 	katakana "ポケモン"
 	hiragana "を1匹選び、"
 	line ""
-	textfw0 "「弱点・抵抗力」に", "FW0_da", "係なく、10"
+	textfw0 "「弱点・抵抗力」に関係なく、10"
 	line ""
 	katakana "ダメージ。次"
 	hiragana "の相手の番の終わりまで、"
 	line ""
 	textfw0 "その"
 	katakana "ポケモン"
-	hiragana "は特殊能力を便うことが"
+	hiragana "は特殊能力を使うことが"
 	line ""
 	textfw0 "できず、その力も消える。"
 	done
@@ -2502,14 +2502,14 @@ Text136a:
 	done
 
 Text136b:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を「どく」状態にする。"
 	line ""
 	textfw0 "相手の控え"
 	katakana "ポケモン全員"
 	hiragana "にも、「弱点・"
 	line ""
-	textfw0 "抵抗力」に", "FW0_da", "係なく、それぞれ10"
+	textfw0 "抵抗力」に関係なく、それぞれ10"
 	line ""
 	katakana "ダメージ。"
 	done
@@ -2520,7 +2520,7 @@ Text136c:
 	hiragana "がかたまって"
 	line ""
 	textfw0 "しまう。出"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "ったら、まず目をそらした"
 	line ""
 	textfw1 "方"
@@ -2544,7 +2544,7 @@ Text136f:
 	katakana "ワザ"
 	hiragana "を受けた"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "はこの"
+	textfw0 "[相手]", "はこの"
 	katakana "カード"
 	hiragana "が"
 	katakana "バトル場"
@@ -2553,20 +2553,20 @@ Text136f:
 	textfw1 "限"
 	textfw0 "り、"
 	katakana "ワザ"
-	hiragana "を便えない。"
+	hiragana "を使えない。"
 	done
 
 Text1370:
 	textfw0 "身体"
 	hiragana "は"
 	textfw1 "小"
-	textfw0 "さくても", "FW0_f9"
+	textfw0 "さくても毒"
 	katakana "バリ"
 	hiragana "を持つので"
 	line ""
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "が"
-	textfw1 "必", "FW1_5e"
+	textfw1 "注"
+	textfw0 "意が"
+	textfw1 "必要"
 	textfw0 "だ。"
 	katakana "メス"
 	hiragana "のほうが"
@@ -2582,7 +2582,7 @@ Text1371:
 
 Text1372:
 	textfw0 "コイン"
-	hiragana "を3枚投げ、「おもて」の", "FW0_a9"
+	hiragana "を3枚投げ、「おもて」の数"
 	line ""
 	textfw0 "×10の"
 	katakana "ダメージ。"
@@ -2614,22 +2614,22 @@ Text1374:
 	hiragana "に空きがないとき、この"
 	line ""
 	katakana "ワザ"
-	hiragana "は便えない)"
+	hiragana "は使えない)"
 	done
 
 Text1375:
 	textfw1 "小"
-	hiragana "さくても", "FW0_f9"
+	hiragana "さくても毒"
 	katakana "バリ"
 	hiragana "の"
-	textfw1 "FW1_a7"
+	textfw1 "威"
 	textfw0 "力は強"
-	textfw1 "FW1_e1"
+	textfw1 "烈"
 	textfw0 "で"
 	line ""
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "が"
-	textfw1 "必", "FW1_5e"
+	textfw1 "注"
+	textfw0 "意が"
+	textfw1 "必要"
 	textfw0 "。"
 	line ""
 	katakana "メス"
@@ -2662,7 +2662,7 @@ Text1378:
 	textfw0 "」「ニドリーノ」「ニドリーナ"
 	line ""
 	textfw0 "」「ニドキング」「ニドクイン」"
-	hiragana "の", "FW0_a9"
+	hiragana "の数"
 	line ""
 	textfw0 "×10の"
 	katakana "ダメージ"
@@ -2671,7 +2671,7 @@ Text1378:
 
 Text1379:
 	textfw0 "コイン"
-	hiragana "を3枚投げ、「おもて」の", "FW0_a9"
+	hiragana "を3枚投げ、「おもて」の数"
 	line ""
 	textfw0 "×30の"
 	katakana "ダメージ。"
@@ -2684,12 +2684,12 @@ Text137a:
 	hiragana "の"
 	textfw1 "育"
 	textfw0 "ちが"
-	textfw3 "FW3_87"
+	textfw3 "遅"
 	textfw0 "い。"
 	line ""
 	textfw0 "ひっかいたりかみついたりと、"
 	line ""
-	textfw2 "FW2_40"
+	textfw2 "肉"
 	textfw0 "だん戦を好む。"
 	done
 
@@ -2699,7 +2699,7 @@ Text137b:
 
 Text137c:
 	textfw0 "コイン"
-	hiragana "を投げて「おもて」なら、", "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "を投げて「おもて」なら、", "[相手]"
 	line ""
 	textfw0 "を「こんらん」状態にする。"
 	done
@@ -2713,15 +2713,15 @@ Text137e:
 	hiragana "なので"
 	textfw1 "性格"
 	textfw0 "は"
-	textfw1 "FW1_d0"
-	textfw2 "FW2_d9"
+	textfw1 "温"
+	textfw2 "厚"
 	textfw0 "。"
 	line ""
 	textfw1 "口"
 	textfw0 "から出す超"
 	textfw1 "音波"
 	textfw0 "は相手を"
-	textfw2 "FW2_dc"
+	textfw2 "惑"
 	textfw0 "わす力が"
 	line ""
 	textfw0 "ある。"
@@ -2739,7 +2739,7 @@ Text1381:
 	textfw0 "自分"
 	hiragana "の場にいる「"
 	katakana "ニドキング」"
-	hiragana "の", "FW0_a9"
+	hiragana "の数"
 	line ""
 	textfw0 "×20の"
 	katakana "ダメージ"
@@ -2762,16 +2762,16 @@ Text1384:
 	katakana "ウロコ"
 	hiragana "が"
 	line ""
-	textfw1 "FW1_e3"
+	textfw1 "腹"
 	textfw0 "を"
-	textfw1 "FW1_33"
+	textfw1 "覆"
 	textfw0 "っている。"
 	line ""
-	textfw2 "FW2_e8", "FW2_ea"
+	textfw2 "興奮"
 	textfw0 "すると"
 	textfw1 "針"
 	textfw0 "が"
-	textfw1 "FW1_ca", "立"
+	textfw1 "逆立"
 	textfw0 "つ。"
 	done
 
@@ -2793,22 +2793,22 @@ Text1387:
 	done
 
 Text1388:
-	textfw1 "FW1_d2"
+	textfw1 "耳"
 	hiragana "が大きく、"
-	textfw1 "FW1_e0"
+	textfw1 "遠"
 	textfw0 "くの"
 	textfw1 "音"
 	textfw0 "を"
-	textfw1 "FW1_df"
+	textfw1 "聞"
 	textfw0 "くときに、"
 	line ""
-	textfw1 "FW1_d2"
+	textfw1 "耳"
 	textfw0 "がはばたく"
-	textfw1 "FW1_7f"
-	textfw0 "に", "FW0_b5", "く。"
+	textfw1 "様"
+	textfw0 "に動く。"
 	line ""
-	textfw1 "FW1_28"
-	textfw0 "ると", "FW0_f9"
+	textfw1 "怒"
+	textfw0 "ると毒"
 	katakana "バリ"
 	hiragana "をだす。"
 	done
@@ -2821,12 +2821,12 @@ Text138a:
 	textfw0 "次"
 	hiragana "の自分の番、この"
 	katakana "カード"
-	hiragana "が便う"
+	hiragana "が使う"
 	line ""
 	textfw0 "「つのでとっしん」の"
 	katakana "ダメージ"
 	hiragana "は2"
-	textfw1 "FW1_a6"
+	textfw1 "倍"
 	textfw0 "に"
 	line ""
 	textfw0 "なる。"
@@ -2846,17 +2846,17 @@ Text138c:
 	done
 
 Text138d:
-	textfw1 "FW1_d2"
+	textfw1 "耳"
 	hiragana "を"
 	textfw1 "立"
 	textfw0 "てて"
-	textfw1 "FW1_be", "FW1_a5"
+	textfw1 "危険"
 	textfw0 "を"
-	textfw1 "FW1_e4"
+	textfw1 "感"
 	textfw0 "じとる。身体の"
 	line ""
 	katakana "トゲ"
-	hiragana "が大きいほど強い", "FW0_f9", "をだす。"
+	hiragana "が大きいほど強い毒をだす。"
 	done
 
 Text138e:
@@ -2869,17 +2869,17 @@ Text138f:
 
 Text1390:
 	textfw0 "コイン"
-	hiragana "を投げて「うら」なら、", "FW0_7a", "FW0_7b", "FW0_7c", "に"
+	hiragana "を投げて「うら」なら、", "[相手]", "に"
 	line ""
 	katakana "ダメージ"
-	hiragana "を与えられず、", "FW0_7d", "FW0_7e", "FW0_7f", "に20"
+	hiragana "を与えられず、", "[自分]", "に20"
 	line ""
 	katakana "ダメージ。"
 	done
 
 Text1391:
 	hiragana "すぐに"
-	textfw1 "FW1_28"
+	textfw1 "怒"
 	textfw0 "って戦おうとする。"
 	line ""
 	textfw0 "しかも"
@@ -2888,8 +2888,8 @@ Text1391:
 	katakana "ツノ"
 	hiragana "はささると強れつな"
 	line ""
-	textfw0 "FW0_f9"
-	textfw3 "FW3_88"
+	textfw0 "毒"
+	textfw3 "素"
 	textfw0 "を出すしくみ。"
 	done
 
@@ -2899,20 +2899,20 @@ Text1392:
 	done
 
 Text1393:
-	textfw1 "FW1_28"
+	textfw1 "怒"
 	hiragana "りやすい"
 	textfw1 "性格"
 	textfw0 "。"
 	line ""
 	textfw0 "発"
-	textfw1 "逹"
+	textfw1 "達"
 	textfw0 "した"
 	textfw1 "角"
 	textfw0 "をふりまわして"
 	line ""
 	katakana "ダイヤモンド"
 	hiragana "も"
-	textfw2 "FW2_ee"
+	textfw2 "串"
 	textfw1 "刺"
 	textfw0 "しにする。"
 	done
@@ -2933,7 +2933,7 @@ Text1396:
 	katakana "ダメージ"
 	hiragana "を追加する。「うら」なら"
 	line ""
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "にも10"
+	textfw0 "[自分]", "にも10"
 	katakana "ダメージ。"
 	done
 
@@ -2942,7 +2942,7 @@ Text1397:
 	done
 
 Text1398:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を「どく」状態にする。この"
 	katakana "ワザ"
 	line ""
@@ -2963,22 +2963,22 @@ Text1399:
 	hiragana "のように"
 	textfw1 "固"
 	textfw0 "い"
-	textfw1 "皮", "FW1_85"
+	textfw1 "皮膚"
 	textfw0 "と"
 	line ""
 	textfw0 "長く"
-	textfw1 "FW1_de"
+	textfw1 "伸"
 	textfw0 "びた"
 	textfw1 "角"
 	textfw0 "が特"
-	textfw3 "FW3_27"
+	textfw3 "徵"
 	textfw0 "。"
 	line ""
 	textfw1 "角"
-	textfw0 "には", "FW0_f9", "もあるので"
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "が"
-	textfw1 "必", "FW1_5e"
+	textfw0 "には毒もあるので"
+	textfw1 "注"
+	textfw0 "意が"
+	textfw1 "必要"
 	textfw0 "だ。"
 	done
 
@@ -2995,19 +2995,19 @@ Text139c:
 	done
 
 Text139d:
-	textfw1 "FW1_90"
+	textfw1 "暗"
 	hiragana "い"
-	textfw3 "FW3_56", "FW3_3c"
+	textfw3 "洞窟"
 	textfw0 "に生"
-	textfw1 "FW1_67"
+	textfw1 "息"
 	textfw0 "する。"
 	textfw1 "夜"
 	textfw0 "になると、"
 	line ""
 	textfw0 "まれに飛んでいく"
-	textfw1 "FW1_48"
+	textfw1 "姿"
 	textfw0 "が目"
-	textfw1 "FW1_32"
+	textfw1 "擊"
 	textfw0 "されることも"
 	line ""
 	textfw0 "ある。"
@@ -3018,14 +3018,14 @@ Text139e:
 	done
 
 Text139f:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "に"
 	katakana "ダメージ"
 	hiragana "を与えたら、与えたぶ"
 	line ""
 	textfw0 "んの"
 	katakana "ダメージカウンター"
-	hiragana "を、", "FW0_7d", "FW0_7e", "FW0_7f", "から"
+	hiragana "を、", "[自分]", "から"
 	line ""
 	textfw0 "とりのぞく。"
 	done
@@ -3033,17 +3033,17 @@ Text139f:
 Text13a0:
 	textfw1 "両方"
 	hiragana "の"
-	textfw2 "FW2_8a"
+	textfw2 "眼"
 	textfw0 "が"
-	textfw2 "FW2_e5"
-	textfw1 "FW1_8b"
+	textfw2 "存"
+	textfw1 "在"
 	textfw0 "しない。"
 	line ""
 	textfw1 "口"
 	textfw0 "から超"
 	textfw1 "音波"
 	textfw0 "を出して"
-	textfw1 "FW1_90", "FW1_99"
+	textfw1 "暗闇"
 	textfw0 "を飛び回る。"
 	done
 
@@ -3052,11 +3052,11 @@ Text13a1:
 	done
 
 Text13a2:
-	textfw1 "FW1_90"
+	textfw1 "暗"
 	hiragana "い場"
 	textfw1 "所"
 	textfw0 "に"
-	textfw1 "FW1_e6"
+	textfw1 "集"
 	textfw2 "団"
 	textfw0 "で発生する。超"
 	textfw1 "音波"
@@ -3074,7 +3074,7 @@ Text13a3:
 	done
 
 Text13a4:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "に"
 	katakana "ダメージ"
 	hiragana "を与えたら、"
@@ -3083,7 +3083,7 @@ Text13a4:
 	katakana "ダメージカウンター"
 	hiragana "を、"
 	line ""
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "からとりのぞく。"
+	textfw0 "[自分]", "からとりのぞく。"
 	done
 
 Text13a5:
@@ -3094,15 +3094,15 @@ Text13a6:
 	textfw0 "コイン"
 	hiragana "を投げて「うら」なら、"
 	line ""
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "にも40"
+	textfw0 "[自分]", "にも40"
 	katakana "ダメージ。"
 	done
 
 Text13a7:
 	hiragana "かみついたら最後、"
-	textfw2 "FW2_5b"
+	textfw2 "血"
 	textfw0 "を"
-	textfw1 "FW1_bf"
+	textfw1 "吸"
 	textfw0 "いまくるので"
 	line ""
 	textfw1 "重"
@@ -3116,19 +3116,19 @@ Text13a8:
 	done
 
 Text13a9:
-	textfw1 "税"
+	textfw1 "鋭"
 	hiragana "い"
-	textfw2 "FW2_ef"
+	textfw2 "牙"
 	textfw0 "でかみついて、"
 	line ""
 	textfw0 "1度に300"
 	textfw4 "cc"
 	textfw0 "の"
-	textfw2 "FW2_5b"
+	textfw2 "血"
 	textfw0 "を"
-	textfw1 "FW1_bf"
+	textfw1 "吸"
 	textfw0 "い"
-	textfw1 "FW1_c8"
+	textfw1 "取"
 	textfw0 "って"
 	line ""
 	textfw0 "しまう。"
@@ -3148,13 +3148,13 @@ Text13ac:
 	katakana "カード"
 	hiragana "を手札から場に"
 	line ""
-	textfw0 "出したとき、1度だけ便える。"
+	textfw0 "出したとき、1度だけ使える。"
 	line ""
 	textfw0 "相手の場の"
 	katakana "ポケモン"
 	hiragana "を1匹選び、"
 	line ""
-	textfw0 "「弱点・抵抗力」に", "FW0_da", "係なく、"
+	textfw0 "「弱点・抵抗力」に関係なく、"
 	line ""
 	textfw0 "10"
 	katakana "ダメージ。"
@@ -3170,7 +3170,7 @@ Text13ae:
 	katakana "ポケモン"
 	hiragana "を1匹選び、"
 	line ""
-	textfw0 "「弱点・抵抗力」に", "FW0_da", "係なく、"
+	textfw0 "「弱点・抵抗力」に関係なく、"
 	line ""
 	textfw0 "20"
 	katakana "ダメージ。"
@@ -3184,9 +3184,9 @@ Text13af:
 	textfw0 "後にしのびより、"
 	line ""
 	textfw0 "かみつく。時には、"
-	textfw3 "FW3_4f"
-	textfw1 "FW1_9a"
-	textfw3 "FW3_47"
+	textfw3 "致"
+	textfw1 "命"
+	textfw3 "傷"
 	textfw0 "になりかね"
 	line ""
 	textfw0 "ない。"
@@ -3218,7 +3218,7 @@ Text13b2:
 	katakana "ワザ"
 	hiragana "は"
 	line ""
-	textfw0 "便えない)"
+	textfw0 "使えない)"
 	done
 
 Text13b3:
@@ -3231,7 +3231,7 @@ Text13b4:
 	line ""
 	textfw1 "夜"
 	hiragana "になると2本の"
-	textfw1 "FW1_dd"
+	textfw1 "根"
 	textfw0 "っこで"
 	line ""
 	textfw0 "300"
@@ -3246,7 +3246,7 @@ Text13b5:
 	done
 
 Text13b6:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を「ねむり」状態にする。"
 	done
 
@@ -3254,8 +3254,8 @@ Text13b7:
 	textfw0 "「"
 	textfw1 "種"
 	hiragana "の"
-	textfw3 "FW3_5c"
-	textfw2 "FW2_e5"
+	textfw3 "保"
+	textfw2 "存"
 	textfw0 "」のため、"
 	textfw1 "夜"
 	textfw0 "になると"
@@ -3264,7 +3264,7 @@ Text13b7:
 	textfw0 "きまわり、"
 	textfw1 "花粉"
 	textfw0 "を"
-	textfw3 "FW3_b1"
+	textfw3 "撒"
 	textfw0 "き"
 	textfw3 "散"
 	textfw0 "らしている"
@@ -3282,7 +3282,7 @@ Text13b9:
 
 Text13ba:
 	textfw0 "ダメージ"
-	hiragana "を与えた後、", "FW0_7d", "FW0_7e", "FW0_7f", "と", "FW0_7a", "FW0_7b", "FW0_7c", "を"
+	hiragana "を与えた後、", "[自分]", "と", "[相手]", "を"
 	line ""
 	textfw0 "それぞれ「こんらん」状態にする。"
 	done
@@ -3291,9 +3291,9 @@ Text13bb:
 	hiragana "めしべが"
 	textfw1 "放"
 	textfw0 "つとてつもなく"
-	textfw1 "FW1_dc"
+	textfw1 "臭"
 	textfw0 "い"
-	textfw2 "FW2_5c"
+	textfw2 "匂"
 	textfw0 "いは、"
 	line ""
 	textfw0 "2"
@@ -3312,7 +3312,7 @@ Text13bd:
 	done
 
 Text13be:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	katakana "コイン"
 	hiragana "を投げて「おもて」なら、相手の"
@@ -3333,20 +3333,20 @@ Text13be:
 	katakana "マヒ・"
 	hiragana "こんらん」状態のとき"
 	line ""
-	textfw0 "この力は便えない。"
+	textfw0 "この力は使えない。"
 	done
 
 Text13bf:
 	hiragana "あまりにも強"
-	textfw1 "FW1_e1"
+	textfw1 "烈"
 	textfw0 "な"
-	textfw2 "FW2_5c"
+	textfw2 "匂"
 	textfw0 "いなのか、"
 	line ""
 	textfw0 "自分の"
 	textfw1 "花粉"
 	textfw0 "で"
-	textfw2 "FW2_33", "FW2_32"
+	textfw2 "混乱"
 	textfw0 "してしまうこともある"
 	line ""
 	textfw0 "という。"
@@ -3361,7 +3361,7 @@ Text13c1:
 	done
 
 Text13c2:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	katakana "コイン"
 	hiragana "を投げて「おもて」なら、自分の"
@@ -3380,7 +3380,7 @@ Text13c2:
 	katakana "マヒ・"
 	hiragana "こんらん」状態のとき"
 	line ""
-	textfw0 "この力は便えない。"
+	textfw0 "この力は使えない。"
 	done
 
 Text13c3:
@@ -3389,11 +3389,11 @@ Text13c3:
 
 Text13c4:
 	textfw0 "コイン"
-	hiragana "を3枚投げ、「おもて」の", "FW0_a9"
+	hiragana "を3枚投げ、「おもて」の数"
 	line ""
 	textfw0 "×40の"
 	katakana "ダメージ。"
-	hiragana "その後、", "FW0_7d", "FW0_7e", "FW0_7f", "を"
+	hiragana "その後、", "[自分]", "を"
 	line ""
 	textfw0 "「こんらん」状態にする。"
 	done
@@ -3403,7 +3403,7 @@ Text13c5:
 	done
 
 Text13c6:
-	textfw1 "FW1_db", "FW1_da"
+	textfw1 "世界"
 	textfw0 "一大"
 	hiragana "きい"
 	textfw1 "花"
@@ -3411,7 +3411,7 @@ Text13c6:
 	line ""
 	katakana "アレルギー"
 	hiragana "を"
-	textfw1 "FW1_d9"
+	textfw1 "起"
 	textfw0 "こす"
 	textfw1 "花粉"
 	textfw0 "を"
@@ -3443,13 +3443,13 @@ Text13c9:
 	katakana "プレイヤー"
 	hiragana "は、"
 	katakana "トレーナーカード"
-	hiragana "を便う"
+	hiragana "を使う"
 	line ""
 	textfw0 "ことができない。(すでに場に出ている"
 	line ""
 	katakana "トレーナーカード"
 	hiragana "には"
-	textfw1 "FW1_b7", "FW1_ba"
+	textfw1 "影響"
 	textfw0 "がない)。"
 	line ""
 	textfw0 "この"
@@ -3467,31 +3467,31 @@ Text13ca:
 
 Text13cb:
 	textfw0 "コイン"
-	hiragana "を3枚投げ、「おもて」の", "FW0_a9"
+	hiragana "を3枚投げ、「おもて」の数"
 	line ""
 	textfw0 "×30の"
 	katakana "ダメージ。"
 	line ""
 	textfw0 "2枚以上"
-	hiragana "が「おもて」なら、", "FW0_7d", "FW0_7e", "FW0_7f", "を"
+	hiragana "が「おもて」なら、", "[自分]", "を"
 	line ""
 	textfw0 "「こんらん」状態にする。"
 	done
 
 Text13cc:
 	textfw0 "強"
-	textfw1 "FW1_e1"
+	textfw1 "烈"
 	hiragana "な"
 	textfw1 "花粉"
 	textfw0 "のためか、"
 	katakana "ラフレシア"
 	hiragana "の生"
-	textfw1 "FW1_67"
+	textfw1 "息"
 	line ""
 	textfw0 "する場"
 	textfw1 "所"
 	textfw0 "に"
-	textfw3 "FW3_4d"
+	textfw3 "他"
 	textfw0 "の"
 	katakana "ポケモン"
 	hiragana "は"
@@ -3519,7 +3519,7 @@ Text13d0:
 	done
 
 Text13d1:
-	textfw2 "FW2_4c"
+	textfw2 "虫"
 	hiragana "の"
 	textfw1 "背"
 	textfw0 "中にはえているのは"
@@ -3553,19 +3553,19 @@ Text13d3:
 	line ""
 	textfw0 "この"
 	katakana "ワザ"
-	hiragana "は便えない)"
+	hiragana "は使えない)"
 	done
 
 Text13d4:
-	textfw2 "FW2_3f"
+	textfw2 "穴"
 	hiragana "を"
 	textfw1 "掘"
 	textfw0 "って、"
-	textfw1 "FW1_71"
+	textfw1 "木"
 	textfw0 "の"
-	textfw1 "FW1_dd"
+	textfw1 "根"
 	textfw0 "っこを"
-	textfw1 "FW1_bf"
+	textfw1 "吸"
 	textfw0 "う。"
 	line ""
 	textfw1 "背"
@@ -3590,22 +3590,22 @@ Text13d7:
 	textfw0 "キノコ"
 	hiragana "の"
 	katakana "カサ"
-	hiragana "から", "FW0_f9"
-	textfw1 "FW1_9e"
+	hiragana "から毒"
+	textfw1 "胞"
 	textfw0 "子を"
-	textfw1 "FW1_b9"
+	textfw1 "巻"
 	textfw0 "き"
 	textfw3 "散"
 	textfw0 "らす。"
 	line ""
 	textfw0 "しかし中"
-	textfw1 "FW1_88"
+	textfw1 "国"
 	textfw0 "ではこの"
-	textfw1 "FW1_9e"
+	textfw1 "胞"
 	textfw0 "子を"
-	textfw2 "FW2_e9"
+	textfw2 "漢"
 	textfw1 "方"
-	textfw2 "FW2_86"
+	textfw2 "薬"
 	textfw0 "にする"
 	done
 
@@ -3614,17 +3614,17 @@ Text13d8:
 	done
 
 Text13d9:
-	textfw2 "FW2_4c"
+	textfw2 "虫"
 	hiragana "の身体より大きくなった"
 	katakana "キノコ"
 	hiragana "の"
 	line ""
-	textfw0 "FW0_fa"
+	textfw0 "意"
 	textfw1 "思"
 	textfw0 "で"
-	textfw1 "FW1_8c"
-	textfw0 "FW0_b5", "する。"
-	textfw2 "FW2_f3"
+	textfw1 "活"
+	textfw0 "動する。"
+	textfw2 "湿"
 	textfw0 "った場"
 	textfw1 "所"
 	textfw0 "を好む"
@@ -3641,16 +3641,16 @@ Text13db:
 	done
 
 Text13dc:
-	textfw1 "FW1_90", "FW1_99"
+	textfw1 "暗闇"
 	hiragana "でも目が"
 	katakana "レーダー"
 	hiragana "の"
-	textfw1 "FW1_f5"
-	textfw2 "FW2_e6"
+	textfw1 "役"
+	textfw2 "割"
 	textfw0 "をして、"
 	line ""
-	textfw1 "FW1_8c"
-	textfw0 "FW0_b5", "できる。"
+	textfw1 "活"
+	textfw0 "動できる。"
 	line ""
 	textfw0 "目から"
 	katakana "ビーム"
@@ -3667,7 +3667,7 @@ Text13de:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "の"
+	textfw0 "[相手]", "の"
 	katakana "ワザ"
 	hiragana "を1つ選ぶ。"
 	line ""
@@ -3677,7 +3677,7 @@ Text13de:
 	line ""
 	textfw0 "その"
 	katakana "ワザ"
-	hiragana "を便えない。"
+	hiragana "を使えない。"
 	done
 
 Text13df:
@@ -3688,11 +3688,11 @@ Text13df:
 Text13e0:
 	textfw0 "大"
 	hiragana "きな"
-	textfw1 "FW1_71"
+	textfw1 "木"
 	textfw0 "の"
-	textfw1 "FW1_d8"
+	textfw1 "下"
 	textfw0 "にすんでいて"
-	textfw2 "FW2_4c"
+	textfw2 "虫"
 	textfw0 "などを"
 	line ""
 	textfw1 "食"
@@ -3714,12 +3714,12 @@ Text13e2:
 	done
 
 Text13e3:
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c"
+	textfw0 "[相手]"
 	hiragana "を控え"
 	katakana "ポケモン"
-	hiragana "と入れ", "FW0_bd", "える。"
+	hiragana "と入れ替える。"
 	line ""
-	textfw0 "入れ", "FW0_bd", "わる"
+	textfw0 "入れ替わる"
 	katakana "ポケモン"
 	hiragana "は相手が選ぶ。"
 	line ""
@@ -3727,11 +3727,11 @@ Text13e3:
 	katakana "ポケモン"
 	hiragana "から1匹を"
 	line ""
-	textfw0 "選び、", "FW0_7d", "FW0_7e", "FW0_7f", "と入れ", "FW0_bd", "える。"
+	textfw0 "選び、", "[自分]", "と入れ替える。"
 	line ""
 	textfw0 "(控えがいない"
-	textfw2 "FW2_38"
-	textfw0 "は、入れ", "FW0_bd", "えをしない"
+	textfw2 "側"
+	textfw0 "は、入れ替えをしない"
 	line ""
 	textfw0 ")"
 	done
@@ -3744,7 +3744,7 @@ Text13e5:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "を「"
+	textfw0 "[相手]", "を「"
 	katakana "マヒ」状態"
 	hiragana "に、"
 	line ""
@@ -3760,8 +3760,8 @@ Text13e7:
 	hiragana "をおおっているりんぷんは、"
 	line ""
 	textfw0 "色の"
-	textfw2 "FW2_87"
-	textfw0 "いによってさまざまな", "FW0_f9", "を"
+	textfw2 "違"
+	textfw0 "いによってさまざまな毒を"
 	line ""
 	textfw0 "持っているらしい。"
 	done
@@ -3771,7 +3771,7 @@ Text13e8:
 	done
 
 Text13e9:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	textfw0 "この"
 	katakana "カード"
@@ -3804,7 +3804,7 @@ Text13ea:
 	katakana "マヒ・"
 	hiragana "こんらん"
 	line ""
-	textfw0 "」状態のとき、この力は便えず、"
+	textfw0 "」状態のとき、この力は使えず、"
 	line ""
 	textfw0 "この"
 	katakana "カード"
@@ -3821,7 +3821,7 @@ Text13eb:
 
 Text13ec:
 	textfw0 "コイン"
-	hiragana "を投げて「おもて」なら、", "FW0_7a", "FW0_7b", "FW0_7c"
+	hiragana "を投げて「おもて」なら、", "[相手]"
 	line ""
 	textfw0 "を「どく」と「こんらん」の"
 	textfw1 "両方"
@@ -3839,8 +3839,8 @@ Text13ed:
 	katakana "ヒラヒラ"
 	hiragana "とはばたくたびに"
 	line ""
-	textfw1 "FW1_72"
-	textfw0 "FW0_f9", "の"
+	textfw1 "猛"
+	textfw0 "毒の"
 	textfw1 "粉"
 	textfw0 "をばらまく。"
 	done
@@ -3856,12 +3856,12 @@ Text13ef:
 Text13f0:
 	textfw1 "小"
 	hiragana "さい"
-	textfw2 "FW2_4c"
+	textfw2 "虫"
 	textfw0 "をとらえて"
 	textfw1 "食"
 	textfw0 "べる。"
 	line ""
-	textfw0 "足のねっこを便い、水分をほきゅうする"
+	textfw0 "足のねっこを使い、水分をほきゅうする"
 	line ""
 	textfw0 "こともあるらしい。"
 	done
@@ -3884,13 +3884,13 @@ Text13f1:
 	katakana "ワザ"
 	hiragana "は"
 	line ""
-	textfw0 "便えない)"
+	textfw0 "使えない)"
 	done
 
 Text13f2:
 	textfw0 "人"
 	hiragana "の"
-	textfw1 "FW1_b4"
+	textfw1 "顏"
 	textfw0 "のような"
 	katakana "ツボミ"
 	hiragana "から、"
@@ -3913,11 +3913,11 @@ Text13f4:
 	done
 
 Text13f5:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "にのっている"
 	katakana "ダメージカウンター"
 	line ""
-	hiragana "をすべてとりのぞく。その後、", "FW0_7d", "FW0_7e", "FW0_7f", "に"
+	hiragana "をすべてとりのぞく。その後、", "[自分]", "に"
 	line ""
 	textfw0 "ついている「進化"
 	katakana "カード」"
@@ -3942,7 +3942,7 @@ Text13f7:
 	textfw0 "コイン"
 	hiragana "を投げて「おもて」なら、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "についている「"
+	textfw0 "[相手]", "についている「"
 	katakana "エネルギーカード"
 	line ""
 	textfw0 "」"
@@ -3957,9 +3957,9 @@ Text13f8:
 	done
 
 Text13f9:
-	hiragana "まず", "FW0_f9", "の"
+	hiragana "まず毒の"
 	textfw1 "粉"
-	textfw0 "をはき、相手の", "FW0_b5", "きを"
+	textfw0 "をはき、相手の動きを"
 	line ""
 	textfw2 "止"
 	textfw0 "めてしまってから、ようかいえきで"
@@ -3968,20 +3968,20 @@ Text13f9:
 	done
 
 Text13fa:
-	textfw1 "FW1_cd"
+	textfw1 "葉"
 	hiragana "っぱの"
-	textfw1 "FW1_7e"
+	textfw1 "部"
 	textfw0 "分は"
 	katakana "カッター"
 	hiragana "になって"
 	line ""
 	textfw0 "相手を切り"
-	textfw1 "FW1_ce"
+	textfw1 "裂"
 	textfw0 "く。"
 	line ""
 	textfw1 "口"
 	textfw0 "からはなんでもとかす"
-	textfw1 "FW1_af"
+	textfw1 "液"
 	textfw0 "体をはく。"
 	done
 
@@ -3999,13 +3999,13 @@ Text13fd:
 	katakana "ポケモン"
 	hiragana "を1匹選び、"
 	line ""
-	textfw0 "FW0_7a", "FW0_7b", "FW0_7c", "と入れ", "FW0_bd", "える。"
+	textfw0 "[相手]", "と入れ替える。"
 	line ""
 	textfw0 "(相手に控えがいないとき、この"
 	katakana "ワザ"
 	hiragana "は"
 	line ""
-	textfw0 "便えない)"
+	textfw0 "使えない)"
 	done
 
 Text13fe:
@@ -4018,29 +4018,29 @@ Text13ff:
 	line ""
 	textfw0 "相手の番、この"
 	katakana "ワザ"
-	hiragana "を受けた", "FW0_7a", "FW0_7b", "FW0_7c", "は"
+	hiragana "を受けた", "[相手]", "は"
 	line ""
 	textfw0 "「にげる」ことができない。"
 	done
 
 Text1400:
-	textfw2 "FW2_7e"
+	textfw2 "蜜"
 	hiragana "のような"
-	textfw1 "FW1_e9"
+	textfw1 "香"
 	textfw0 "りで、"
 	line ""
 	textfw1 "口"
 	textfw0 "の中に"
-	textfw1 "FW1_f3"
+	textfw1 "誘"
 	textfw0 "いこまれたら最"
-	textfw2 "FW2_fb"
+	textfw2 "期"
 	textfw0 "。"
 	line ""
-	textfw1 "FW1_f4"
+	textfw1 "溶"
 	textfw0 "解"
-	textfw1 "FW1_af"
+	textfw1 "液"
 	textfw0 "で"
-	textfw1 "FW1_f4"
+	textfw1 "溶"
 	textfw0 "かされてしまう。"
 	done
 
@@ -4063,7 +4063,7 @@ Text1404:
 	line ""
 	textfw0 "20"
 	katakana "ダメージ"
-	hiragana "を追加して、", "FW0_7a", "FW0_7b", "FW0_7c", "を"
+	hiragana "を追加して、", "[相手]", "を"
 	line ""
 	textfw0 "「"
 	katakana "マヒ」状態"
@@ -4075,20 +4075,20 @@ Text1405:
 	done
 
 Text1406:
-	textfw2 "FW2_7b"
+	textfw2 "汚"
 	textfw0 "水"
-	textfw2 "FW2_1d"
-	textfw1 "FW1_c4"
+	textfw2 "処"
+	textfw1 "理"
 	textfw0 "場"
 	hiragana "で発生し、"
-	textfw1 "FW1_d8"
+	textfw1 "下"
 	textfw0 "水"
-	textfw1 "FW1_f6"
-	textfw0 "を移", "FW0_b5", "して"
+	textfw1 "道"
+	textfw0 "を移動して"
 	line ""
-	textfw3 "FW3_51"
+	textfw3 "町"
 	textfw0 "に出"
-	textfw3 "FW3_60"
+	textfw3 "没"
 	textfw0 "することが、最"
 	textfw1 "近"
 	textfw0 "確認された。"
@@ -4125,7 +4125,7 @@ Text140a:
 	textfw2 "月"
 	hiragana "からの"
 	katakana "エックス"
-	textfw1 "FW1_81"
+	textfw1 "線"
 	hiragana "をあびた"
 	line ""
 	katakana "ヘドロ"
@@ -4135,7 +4135,7 @@ Text140a:
 	textfw1 "変"
 	textfw0 "化した。"
 	line ""
-	textfw2 "FW2_7b"
+	textfw2 "汚"
 	textfw0 "い"
 	katakana "モノ"
 	hiragana "が大好物。"
@@ -4161,7 +4161,7 @@ Text140d:
 	katakana "ガス」以外"
 	hiragana "のすべての"
 	line ""
-	textfw0 "特殊能力は便えず、その力も消える。"
+	textfw0 "特殊能力は使えず、その力も消える。"
 	line ""
 	textfw0 "この"
 	katakana "カード"
@@ -4178,12 +4178,12 @@ Text140e:
 	done
 
 Text140f:
-	textfw1 "FW1_f7", "FW1_f8"
+	textfw1 "普段"
 	hiragana "は地面にまざっていてわからない。"
 	line ""
 	textfw0 "体にさわると"
-	textfw1 "FW1_72"
-	textfw0 "FW0_f9", "におかされる。"
+	textfw1 "猛"
+	textfw0 "毒におかされる。"
 	done
 
 Text1410:
@@ -4215,7 +4215,7 @@ Text1412:
 	line ""
 	textfw1 "多"
 	textfw0 "く"
-	textfw1 "必", "FW1_5e"
+	textfw1 "必要"
 	textfw0 "になる。この"
 	katakana "カード"
 	hiragana "が「ねむり"
@@ -4243,7 +4243,7 @@ Text1414:
 	hiragana "が"
 	textfw1 "現"
 	textfw0 "れると"
-	textfw3 "FW3_51"
+	textfw3 "町"
 	textfw0 "中が"
 	katakana "パニック"
 	hiragana "に"
@@ -4266,7 +4266,7 @@ Text1417:
 Text1418:
 	textfw1 "何"
 	hiragana "かの"
-	textfw2 "FW2_71"
+	textfw2 "卵"
 	textfw0 "のようだが、"
 	textfw1 "実"
 	textfw0 "は"
@@ -4293,7 +4293,7 @@ Text141b:
 	katakana "ポケモン"
 	hiragana "を1匹選び、"
 	line ""
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f", "と入れ", "FW0_bd", "える。"
+	textfw0 "[自分]", "と入れ替える。"
 	done
 
 Text141c:
@@ -4302,13 +4302,13 @@ Text141c:
 	done
 
 Text141d:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "についている"
 	katakana "エネルギー"
-	hiragana "の", "FW0_a9", "だけ"
+	hiragana "の数だけ"
 	line ""
 	katakana "コイン"
-	hiragana "を投げ、「おもて」の", "FW0_a9", "×20の"
+	hiragana "を投げ、「おもて」の数×20の"
 	line ""
 	katakana "ダメージ。"
 	done
@@ -4320,18 +4320,18 @@ Text141e:
 Text141f:
 	textfw1 "歩"
 	hiragana "く"
-	textfw1 "FW1_fa", "FW1_fb", "FW1_e7"
+	textfw1 "熱帶雨"
 	textfw2 "林"
 	textfw0 "と"
-	textfw1 "FW1_fc"
+	textfw1 "呼"
 	textfw0 "ばれる。"
 	line ""
 	textfw1 "実"
 	textfw0 "の1つ1つに"
-	textfw1 "FW1_b4"
+	textfw1 "顏"
 	textfw0 "があって"
 	line ""
-	textfw0 "それぞれ", "FW0_fa"
+	textfw0 "それぞれ意"
 	textfw2 "志"
 	textfw0 "を持っている。"
 	done
@@ -4341,20 +4341,20 @@ Text1420:
 	done
 
 Text1421:
-	textfw1 "FW1_f2"
+	textfw1 "第"
 	textfw0 "一発見場"
 	textfw1 "所"
 	hiragana "は"
-	textfw3 "FW3_5a"
-	textfw2 "FW2_d3"
-	textfw1 "FW1_bb"
+	textfw3 "兵"
+	textfw2 "器"
+	textfw1 "工"
 	textfw0 "場であったが、"
 	line ""
 	textfw1 "近年"
 	textfw0 "、生"
-	textfw1 "FW1_67"
+	textfw1 "息"
 	textfw0 "地が"
-	textfw2 "FW2_49"
+	textfw2 "広"
 	textfw0 "まってきているらしい"
 	done
 
@@ -4367,7 +4367,7 @@ Text1423:
 	textfw0 "コイン"
 	hiragana "を投げ、"
 	line ""
-	textfw0 "「おもて」なら", "FW0_7a", "FW0_7b", "FW0_7c", "を「どく」状態に"
+	textfw0 "「おもて」なら", "[相手]", "を「どく」状態に"
 	line ""
 	textfw0 "「うら」なら「こんらん」状態にする。"
 	done
@@ -4377,15 +4377,15 @@ Text1424:
 	katakana "バルーン状"
 	hiragana "の体に"
 	line ""
-	textfw1 "FW1_72"
-	textfw0 "FW0_f9", "の"
+	textfw1 "猛"
+	textfw0 "毒の"
 	katakana "ガス"
 	hiragana "がつまっている。"
 	line ""
 	textfw0 "ちかくに"
 	textfw2 "来"
 	textfw0 "ると"
-	textfw1 "FW1_dc"
+	textfw1 "臭"
 	textfw0 "い。"
 	done
 
@@ -4395,20 +4395,20 @@ Text1425:
 	done
 
 Text1426:
-	textfw3 "FW3_98"
+	textfw3 "暑"
 	hiragana "いところでは、体の中の"
 	katakana "ガス"
 	hiragana "が"
 	line ""
 	textfw0 "ふくらんで"
-	textfw2 "FW2_80"
-	textfw1 "FW1_ce"
+	textfw2 "破"
+	textfw1 "裂"
 	textfw0 "する"
-	textfw1 "FW1_be", "FW1_a5"
+	textfw1 "危険"
 	textfw0 "もあるので"
 	line ""
-	textfw1 "FW1_a3"
-	textfw0 "FW0_fa", "だ。"
+	textfw1 "注"
+	textfw0 "意だ。"
 	done
 
 Text1427:
@@ -4420,13 +4420,13 @@ Text1428:
 	done
 
 Text1429:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	katakana "コイン"
 	hiragana "を投げて「おもて」なら、次の"
 	line ""
 	textfw0 "自分の番の"
-	textfw1 "FW1_8d"
+	textfw1 "始"
 	textfw0 "めまで、「どく」状態に"
 	line ""
 	textfw0 "なった"
@@ -4450,7 +4450,7 @@ Text142a:
 	katakana "マヒ・"
 	hiragana "こんらん"
 	line ""
-	textfw0 "」状態のとき、この力は便えず、"
+	textfw0 "」状態のとき、この力は使えず、"
 	line ""
 	textfw0 "その効果も消える。"
 	done
@@ -4461,13 +4461,13 @@ Text142b:
 	done
 
 Text142c:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "にも30"
 	katakana "ダメージ。"
 	line ""
 	hiragana "この"
 	katakana "ワザ"
-	hiragana "によって", "FW0_7a", "FW0_7b", "FW0_7c", "が「きぜつ」"
+	hiragana "によって", "[相手]", "が「きぜつ」"
 	line ""
 	textfw0 "したなら、そのかわりに出てくる相手の"
 	line ""
@@ -4478,7 +4478,7 @@ Text142c:
 
 Text142d:
 	textfw0 "2"
-	hiragana "つの", "FW0_f9"
+	hiragana "つの毒"
 	katakana "ガス"
 	hiragana "の成分が長い時間"
 	line ""
@@ -4502,7 +4502,7 @@ Text142f:
 	done
 
 Text1430:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "にも60"
 	katakana "ダメージ。"
 	line ""
@@ -4510,7 +4510,7 @@ Text1430:
 	katakana "ポケモン全員"
 	hiragana "にも、"
 	line ""
-	textfw0 "「弱点・抵抗力」に", "FW0_da", "係なく、それぞれ"
+	textfw0 "「弱点・抵抗力」に関係なく、それぞれ"
 	line ""
 	textfw0 "10"
 	katakana "ダメージ。"
@@ -4527,7 +4527,7 @@ Text1431:
 	textfw0 "さい"
 	katakana "ドガース"
 	hiragana "が"
-	textfw1 "FW1_93", "FW1_94"
+	textfw1 "連結"
 	textfw0 "したまま"
 	line ""
 	textfw0 "出ることがある。"
@@ -4550,7 +4550,7 @@ Text1434:
 	hiragana "わるい"
 	katakana "マタドガス」"
 	line ""
-	hiragana "の", "FW0_a9", "×20の"
+	hiragana "の数×20の"
 	katakana "ダメージ。"
 	hiragana "その後、お"
 	textfw1 "互"
@@ -4585,8 +4585,8 @@ Text1436:
 	done
 
 Text1437:
-	textfw2 "FW2_b2"
-	textfw3 "FW3_3b", "廃", "FW3_37"
+	textfw2 "産"
+	textfw3 "業廃棄"
 	textfw0 "物"
 	hiragana "の"
 	textfw1 "放"
@@ -4594,12 +4594,12 @@ Text1437:
 	textfw0 "場"
 	textfw1 "所"
 	textfw0 "で"
-	textfw2 "FW2_58"
-	textfw3 "FW3_49"
+	textfw2 "増"
+	textfw3 "殖"
 	textfw0 "している"
 	line ""
 	textfw0 "ところを目"
-	textfw1 "FW1_32"
+	textfw1 "擊"
 	textfw0 "された。"
 	done
 
@@ -4624,7 +4624,7 @@ Text143b:
 	textfw0 "物"
 	hiragana "がからみあい、"
 	line ""
-	textfw1 "FW1_ff"
+	textfw1 "正"
 	textfw0 "体は見えない。"
 	line ""
 	textfw1 "近"
@@ -4642,12 +4642,12 @@ Text143d:
 	textfw0 "草のような"
 	katakana "ツル"
 	hiragana "に"
-	textfw1 "FW1_33"
+	textfw1 "覆"
 	textfw0 "われていて"
 	line ""
 	textfw1 "歩"
 	textfw0 "くたびにゆらゆら"
-	textfw1 "FW1_a0"
+	textfw1 "揺"
 	textfw0 "れる。"
 	done
 
@@ -4669,7 +4669,7 @@ Text1440:
 	katakana "スラッシュダウン」"
 	hiragana "を"
 	line ""
-	textfw0 "便えない。"
+	textfw0 "使えない。"
 	done
 
 Text1441:
@@ -4677,16 +4677,16 @@ Text1441:
 	done
 
 Text1442:
-	textfw3 "FW3_8d"
+	textfw3 "忍"
 	textfw1 "者"
 	hiragana "のようなすばやさ。"
 	line ""
 	textfw0 "あまりに"
 	textfw1 "速"
-	textfw0 "く", "FW0_b5", "いた時は"
+	textfw0 "く動いた時は"
 	textfw1 "何"
 	textfw0 "匹もいる"
-	textfw1 "FW1_7f"
+	textfw1 "様"
 	textfw0 "に"
 	line ""
 	textfw0 "見える。"
@@ -4700,33 +4700,33 @@ Text1444:
 	textfw0 "次"
 	hiragana "の自分の番、この"
 	katakana "カード"
-	hiragana "が便う"
+	hiragana "が使う"
 	line ""
 	textfw0 "「きりさく」の"
 	katakana "ダメージ"
 	hiragana "は2"
-	textfw1 "FW1_a6"
+	textfw1 "倍"
 	textfw0 "になる。"
 	done
 
 Text1445:
-	textfw1 "税"
+	textfw1 "鋭"
 	hiragana "い"
-	textfw2 "FW2_15"
+	textfw2 "鎌"
 	textfw0 "で"
 	textfw1 "獲"
 	textfw0 "物を切り"
-	textfw1 "FW1_ce"
+	textfw1 "裂"
 	textfw0 "き、"
 	line ""
-	textfw1 "FW1_67"
+	textfw1 "息"
 	textfw0 "の"
-	textfw1 "FW1_dd"
+	textfw1 "根"
 	textfw0 "をとめる。"
 	line ""
 	textfw0 "ごくまれに"
 	textfw1 "羽"
-	textfw0 "を便って飛ぶ。"
+	textfw0 "を使って飛ぶ。"
 	done
 
 Text1446:
@@ -4757,11 +4757,11 @@ Text144a:
 	textfw0 "は"
 	line ""
 	textfw0 "はさんだまま"
-	textfw3 "FW3_11"
+	textfw3 "振"
 	textfw0 "り回し、投げ飛ばす戦"
-	textfw2 "FW2_7f"
+	textfw2 "法"
 	line ""
-	textfw0 "を便う。"
+	textfw0 "を使う。"
 	done
 
 Text144b:
@@ -4782,7 +4782,7 @@ Text144d:
 	textfw0 "1度"
 	hiragana "はさまれてしまったらちぎれるまで"
 	line ""
-	textfw1 "FW1_aa"
+	textfw1 "離"
 	textfw0 "さない。"
 	done
 
@@ -4795,7 +4795,7 @@ Text144f:
 	done
 
 Text1450:
-	hiragana "この力は、自分の番ごとに1回便える。"
+	hiragana "この力は、自分の番ごとに1回使える。"
 	line ""
 	textfw0 "自分の場の"
 	katakana "ポケモン"
@@ -4814,7 +4814,7 @@ Text1450:
 	katakana "マヒ・"
 	hiragana "こんらん」状態のとき"
 	line ""
-	textfw0 "この力は便えない。"
+	textfw0 "この力は使えない。"
 	done
 
 Text1451:
@@ -4827,7 +4827,7 @@ Text1452:
 
 Text1453:
 	hiragana "かわいいので、つい"
-	textfw3 "FW3_5d"
+	textfw3 "抱"
 	textfw0 "きしめようとして"
 	line ""
 	textfw0 "やけどをしてしまう人が"
@@ -4840,7 +4840,7 @@ Text1454:
 	done
 
 Text1455:
-	textfw0 "FW0_7d", "FW0_7e", "FW0_7f"
+	textfw0 "[自分]"
 	hiragana "についている「炎」"
 	katakana "エネルギーカ"
 	line ""
@@ -4867,7 +4867,7 @@ Text1456:
 	textfw0 "に炎がともっている。"
 	line ""
 	textfw0 "炎が消えたとき、その"
-	textfw1 "FW1_9a"
+	textfw1 "命"
 	textfw0 "はつきてしまう"
 	done
 

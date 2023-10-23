@@ -201,7 +201,7 @@ Text094a:
 Text094b:
 	hiragana "きみが 勝ったのだから"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を わたそう"
 	done
@@ -437,7 +437,7 @@ Text0957:
 	hiragana "は"
 	line ""
 	textfw0 "さんにん 勝ちぬきの大"
-	textfw2 "FW2_88"
+	textfw2 "会"
 	textfw0 "だ"
 	line ""
 	textfw0 "さんにんに 勝つと"
@@ -1687,7 +1687,7 @@ Text09c4:
 	textfw0 "ṛイシハラ"
 	hiragana "の"
 	textfw1 "別"
-	textfw3 "FW3_a0"
+	textfw3 "莊"
 	done
 
 Text09c5:
@@ -2128,31 +2128,31 @@ Text0a27:
 Text0a28:
 	textfw4 "GR"
 	textfw0 "1"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0a29:
 	textfw4 "GR"
 	textfw0 "2"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0a2a:
 	textfw4 "GR"
 	textfw0 "3"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0a2b:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0a2c:
 	textfw4 "GR"
 	textfw0 "5"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	done
 
 Text0a2d:
@@ -2757,7 +2757,7 @@ Text0aa7:
 
 Text0aa8:
 	textfw0 "パソコン大"
-	textfw1 "FW1_4d", "走"
+	textfw1 "暴走"
 	textfw0 "!"
 	done
 
@@ -3055,7 +3055,7 @@ Text0ad8:
 	hiragana "の"
 	textfw1 "必"
 	textfw0 "勝"
-	textfw2 "FW2_7f"
+	textfw2 "法"
 	done
 
 Text0ad9:
@@ -3092,7 +3092,7 @@ Text0ade:
 	hiragana "と"
 	textfw1 "育"
 	textfw0 "て"
-	textfw1 "FW1_9b"
+	textfw1 "屋"
 	textfw0 "さん"
 	done
 
@@ -3112,7 +3112,7 @@ Text0ae1:
 	katakana "ポケモン"
 	textfw1 "必"
 	textfw0 "勝"
-	textfw2 "FW2_7f"
+	textfw2 "法"
 	done
 
 Text0ae2:
@@ -3237,7 +3237,7 @@ Text0af8:
 Text0af9:
 	textfw4 "***"
 	textfw0 " エラー("
-	textfw1 "不", "FW1_ff"
+	textfw1 "不正"
 	textfw0 "データ) "
 	textfw4 "***"
 	done
@@ -3332,7 +3332,7 @@ Text0b04:
 	hiragana "はい! "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "さま"
 	done
 
@@ -3426,7 +3426,7 @@ Text0b0c:
 Text0b0d:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "は "
 	katakana "エスパークラブ"
 	hiragana "も"
@@ -3452,7 +3452,7 @@ Text0b0d:
 Text0b0e:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "の めいれいだ"
 	line ""
 	textfw0 "さきに "
@@ -3478,7 +3478,7 @@ Text0b0f:
 Text0b10:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "のまえに"
 	line ""
 	katakana "オレ"
@@ -3520,7 +3520,7 @@ Text0b13:
 Text0b14:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "が いるときは"
 	line ""
 	textfw0 "いやな対戦で わるかったな"
@@ -3548,11 +3548,11 @@ Text0b14:
 	line ""
 	textfw0 "つまり対戦は できるってことだ"
 	line ""
-	textfw0 "勝てば 拡", "FW0_be"
+	textfw0 "勝てば 拡張"
 	katakana "パック"
 	hiragana "を やるぜ"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "の なかみは"
 	line ""
@@ -3639,7 +3639,7 @@ Text0b19:
 	katakana "デッキ"
 	hiragana "を こうかんしたぞ!"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "も かえた!"
 	line ""
@@ -3690,7 +3690,7 @@ Text0b1d:
 	textfw0 "おつぎは "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "だぜ!"
 	done
 
@@ -3701,7 +3701,7 @@ Text0b1e:
 	done
 
 Text0b1f:
-	textfw0 "拡", "FW0_be", "パック"
+	textfw0 "拡張パック"
 	hiragana "を わたすぜ"
 	line ""
 	textfw0 "なかを かくにんしな"
@@ -3872,7 +3872,7 @@ Text0b2e:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "さまの めいれいで"
 	line ""
 	textfw0 "おまえと たたかうで"
@@ -3883,7 +3883,7 @@ Text0b2f:
 	hiragana "に 勝たな "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "さまと"
 	line ""
 	textfw0 "たたかうことは できへんで"
@@ -3946,7 +3946,7 @@ Text0b34:
 	line ""
 	textfw0 "せやから 勝ったら"
 	line ""
-	textfw0 "ちゃんと 拡", "FW0_be"
+	textfw0 "ちゃんと 拡張"
 	katakana "パック"
 	hiragana "を やるで"
 	done
@@ -3983,7 +3983,7 @@ Text0b37:
 Text0b38:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "は "
 	katakana "エスパークラブ"
 	hiragana "やな"
@@ -3991,7 +3991,7 @@ Text0b38:
 	textfw0 "とぼけとるが "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "は つよいで"
 	line ""
 	textfw0 "きっと "
@@ -4008,7 +4008,7 @@ Text0b39:
 	katakana "デッキ"
 	hiragana "が できたで"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "も あたらしくなっとるで"
 	line ""
@@ -4063,7 +4063,7 @@ Text0b3e:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "との たたかい くろうするで"
 	line ""
 	textfw0 "がんばってや ", "<RAMNAME>", "くん"
@@ -4072,7 +4072,7 @@ Text0b3e:
 Text0b3f:
 	hiragana "やくそくどおりに きちんと"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を わたすで"
 	done
@@ -4149,7 +4149,7 @@ Text0b45:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "を おいだすなんて"
 	line ""
 	textfw0 "すごい"
@@ -4177,7 +4177,7 @@ Text0b46:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "を たおした きみとの"
 	line ""
 	textfw0 "しょうぶを たのしみにしてるよ"
@@ -4212,7 +4212,7 @@ Text0b4a:
 Text0b4b:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "を たおしたのは"
 	line ""
 	katakana "マグレ"
@@ -4229,7 +4229,7 @@ Text0b4d:
 	hiragana "こんなんじゃ "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に 勝ったの"
 	line ""
 	katakana "マグレ"
@@ -4302,7 +4302,7 @@ Text0b50:
 Text0b51:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "さんは にげたのね"
 	line ""
 	katakana "ピカチュウ "
@@ -4318,7 +4318,7 @@ Text0b52:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "に "
 	katakana "エレキクラブ"
 	hiragana "は"
@@ -4336,7 +4336,7 @@ Text0b52:
 	textfw0 "<RAMNAME>", "くん "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "を"
 	line ""
 	textfw0 "たおしてくれよ"
@@ -4379,7 +4379,7 @@ Text0b53:
 Text0b54:
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "が なきながら でていったぞ"
 	line ""
 	textfw0 "<RAMNAME>", "くん 勝ったんだな"
@@ -4565,7 +4565,7 @@ Text0b5f:
 Text0b60:
 	textfw4 "GR"
 	hiragana "なん"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "だか しらないけど"
 	line ""
 	textfw0 "あのかめん "
@@ -4583,7 +4583,7 @@ Text0b60:
 Text0b61:
 	textfw4 "GR"
 	textfw0 "5"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	hiragana "さんに きいたら "
 	textfw4 "GR"
 	textfw2 "団"
@@ -4690,7 +4690,7 @@ Text0b67:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "サマ・・・"
 	done
 
@@ -4720,7 +4720,7 @@ Text0b6a:
 	line ""
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "サマノ メイレイデ"
 	line ""
 	hiragana "きみ"
@@ -4762,7 +4762,7 @@ Text0b6f:
 	katakana "ハ "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "サマノ メイレイデ"
 	line ""
 	hiragana "きみ"
@@ -4774,7 +4774,7 @@ Text0b70:
 	katakana "ハ "
 	textfw4 "GR"
 	textfw0 "4"
-	textfw3 "FW3_9d"
+	textfw3 "号"
 	textfw0 "サマノ メイレイデ"
 	line ""
 	textfw0 "ナンドデモ "

@@ -111,7 +111,7 @@ Text0c9e:
 Text0c9f:
 	hiragana "ええと ぼくが まけたから"
 	line ""
-	textfw0 "まずは 拡", "FW0_be"
+	textfw0 "まずは 拡張"
 	katakana "パック"
 	hiragana "だっけ"
 	done
@@ -128,7 +128,7 @@ Text0ca0:
 
 Text0ca1:
 	textfw0 "勝"
-	hiragana "ったきみには 拡", "FW0_be"
+	hiragana "ったきみには 拡張"
 	katakana "パック"
 	done
 
@@ -603,7 +603,7 @@ Text0cc6:
 	line ""
 	textfw0 "勝ったら"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を 1つ あげまーす!"
 	done
@@ -684,7 +684,7 @@ Text0ccc:
 	line ""
 	textfw0 "対戦に 勝てば"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あげまーす!"
 	done
@@ -779,7 +779,7 @@ Text0cd7:
 	line ""
 	textfw0 "対戦に 勝てば"
 	line ""
-	textfw0 "拡", "FW0_be"
+	textfw0 "拡張"
 	katakana "パック"
 	hiragana "を あげまーす!"
 	done
@@ -803,7 +803,7 @@ Text0cd9:
 	done
 
 Text0cda:
-	hiragana "えーと まけたら 拡", "FW0_be"
+	hiragana "えーと まけたら 拡張"
 	katakana "パック"
 	hiragana "を"
 	line ""
@@ -838,7 +838,7 @@ Text0cdd:
 	done
 
 Text0cde:
-	textfw0 "拡", "FW0_be", "パック"
+	textfw0 "拡張パック"
 	hiragana "を わたしまーす!"
 	done
 
@@ -3042,7 +3042,7 @@ Text0d90:
 	line ""
 	textfw0 "対戦してくれるでしょ?"
 	line ""
-	textfw0 "勝ったら 拡", "FW0_be"
+	textfw0 "勝ったら 拡張"
 	katakana "パック"
 	hiragana "も あげるし"
 	line ""
@@ -3093,7 +3093,7 @@ Text0d96:
 	line ""
 	textfw0 "さきに いけないんだよー"
 	line ""
-	textfw3 "FW3_4d"
+	textfw3 "他"
 	textfw0 "の"
 	textfw4 "GR"
 	textfw2 "団"
