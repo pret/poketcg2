@@ -311,7 +311,7 @@ ENDM
 	fwcharmap 0, "手", $80
 	fwcharmap 0, "戦", $81
 	fwcharmap 0, "対", $82
-	fwcharmap 0, "說", $83
+	fwcharmap 0, "説", $83
 	fwcharmap 0, "枚", $84
 	fwcharmap 0, "札", $85
 	fwcharmap 0, "相", $86
@@ -360,7 +360,7 @@ ENDM
 	fwcharmap 0, "弱", $b1
 	fwcharmap 0, "点", $b2
 	fwcharmap 0, "超", $b3
-	fwcharmap 0, "氛", $b4
+	fwcharmap 0, "気", $b4
 	fwcharmap 0, "動", $b5
 	fwcharmap 0, "上", $b6
 	fwcharmap 0, "体", $b7
@@ -440,7 +440,7 @@ ENDM
 ; TX_FULLWIDTH1
 	fwcharmap 1, "攻", $10
 	fwcharmap 1, "性", $11
-	fwcharmap 1, "变", $12
+	fwcharmap 1, "変", $12
 	fwcharmap 1, "尾", $13
 	fwcharmap 1, "所", $14
 	fwcharmap 1, "小", $15
@@ -466,10 +466,10 @@ ENDM
 	fwcharmap 1, "光", $29
 	fwcharmap 1, "元", $2a
 	fwcharmap 1, "了", $2b
-	fwcharmap 1, "鱼", $2c
+	fwcharmap 1, "角", $2c
 	fwcharmap 1, "口", $2d
 	fwcharmap 1, "別", $2e
-	fwcharmap 1, "銳", $2f
+	fwcharmap 1, "鋭", $2f
 	fwcharmap 1, "左", $30
 	fwcharmap 1, "右", $31
 	fwcharmap 1, "擊", $32
@@ -519,7 +519,7 @@ ENDM
 	fwcharmap 1, "要", $5e
 	fwcharmap 1, "必", $5f
 	fwcharmap 1, "突", $60
-	fwcharmap 1, "民", $61
+	fwcharmap 1, "戻", $61
 	fwcharmap 1, "両", $62
 	fwcharmap 1, "立", $63
 	fwcharmap 1, "波", $64
@@ -1011,7 +1011,7 @@ ENDM
 	fwcharmap 3, "競", $66
 	fwcharmap 3, "茶", $67
 	fwcharmap 3, "苦", $68
-	fwcharmap 3, "驱", $69
+	fwcharmap 3, "駆", $69
 	fwcharmap 3, "訓", $6a
 	fwcharmap 3, "幸", $6b
 	fwcharmap 3, "腰", $6c
