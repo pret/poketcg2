@@ -537,7 +537,7 @@ ENDM
 	fwcharmap 1, "字", $70
 	fwcharmap 1, "木", $71
 	fwcharmap 1, "猛", $72
-	fwcharmap 1, "絕", $73
+	fwcharmap 1, "絶", $73
 	fwcharmap 1, "削", $74
 	fwcharmap 1, "設", $75
 	fwcharmap 1, "初", $76
@@ -634,7 +634,7 @@ ENDM
 	fwcharmap 1, "痛", $d1
 	fwcharmap 1, "耳", $d2
 	fwcharmap 1, "然", $d3
-	fwcharmap 1, "轻", $d4
+	fwcharmap 1, "軽", $d4
 	fwcharmap 1, "激", $d5
 	fwcharmap 1, "袋", $d6
 	fwcharmap 1, "議", $d7
@@ -690,7 +690,7 @@ ENDM
 	fwcharmap 2, "鑑", $17
 	fwcharmap 2, "図", $18
 	fwcharmap 2, "笛", $19
-	fwcharmap 2, "辉", $1a
+	fwcharmap 2, "輝", $1a
 	fwcharmap 2, "良", $1b
 	fwcharmap 2, "深", $1c
 	fwcharmap 2, "処", $1d
@@ -1060,7 +1060,7 @@ ENDM
 	fwcharmap 3, "境", $97
 	fwcharmap 3, "暑", $98
 	fwcharmap 3, "玉", $99
-	fwcharmap 3, "喷", $9a
+	fwcharmap 3, "噴", $9a
 	fwcharmap 3, "停", $9b
 	fwcharmap 3, "装", $9c
 	fwcharmap 3, "号", $9d
