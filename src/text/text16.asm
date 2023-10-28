@@ -258,7 +258,7 @@ Text166e:
 Text166f:
 	textfw0 "身"
 	hiragana "のこなしが"
-	textfw1 "轻"
+	textfw1 "軽"
 	textfw0 "く、"
 	textfw2 "凶"
 	textfw1 "暴"
@@ -1351,7 +1351,7 @@ Text16dc:
 	textfw0 "物にぶつけ"
 	line ""
 	textfw0 "気"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "させる。"
 	done
 
@@ -3931,7 +3931,7 @@ Text17c4:
 	hiragana "に生"
 	textfw1 "息"
 	textfw0 "する、"
-	textfw1 "絕滅"
+	textfw1 "絶滅"
 	textfw0 "したはずの"
 	line ""
 	katakana "ポケモン。"
@@ -5090,7 +5090,7 @@ Text1830:
 	line ""
 	textfw1 "夜"
 	textfw0 "になると目が"
-	textfw2 "辉"
+	textfw2 "輝"
 	textfw0 "き、"
 	line ""
 	textfw0 "なわばりを"

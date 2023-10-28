@@ -331,7 +331,7 @@ Text1478:
 Text1479:
 	textfw2 "黃金"
 	hiragana "に"
-	textfw2 "辉"
+	textfw2 "輝"
 	textfw0 "く体"
 	textfw1 "毛"
 	textfw0 "と9本の長い"
@@ -622,7 +622,7 @@ Text1495:
 	line ""
 	textfw3 "跳"
 	hiragana "ぶように、"
-	textfw1 "轻"
+	textfw1 "軽"
 	textfw0 "やかに"
 	textfw1 "走"
 	textfw0 "る。"
@@ -725,7 +725,7 @@ Text14a0:
 Text14a1:
 	textfw0 "体"
 	hiragana "が"
-	textfw1 "轻"
+	textfw1 "軽"
 	textfw0 "く足の力がものすごい。"
 	line ""
 	textfw0 "1回の"
@@ -1347,7 +1347,7 @@ Text14da:
 Text14db:
 	textfw0 "水面"
 	hiragana "から水を"
-	textfw3 "喷"
+	textfw3 "噴"
 	textfw1 "射"
 	textfw0 "して、"
 	katakana "エサ"
@@ -1603,7 +1603,7 @@ Text14f3:
 	textfw0 "たく、のしかかって相手を"
 	line ""
 	textfw0 "気"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "させる。"
 	line ""
 	katakana "ピンチ"
@@ -1619,7 +1619,7 @@ Text14f4:
 	textfw0 "たく、のしかかって相手を"
 	line ""
 	textfw0 "気"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "させる。"
 	katakana "ピンチ"
 	hiragana "のときは、"
@@ -2638,7 +2638,7 @@ Text155e:
 	textfw0 "されて"
 	line ""
 	textfw0 "気"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "することもある。"
 	done
 
@@ -3214,7 +3214,7 @@ Text1597:
 
 Text1598:
 	hiragana "かつてたくさんつかまえたため、"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "めつ"
 	line ""
 	textfw3 "寸"
@@ -3435,7 +3435,7 @@ Text15ab:
 	done
 
 Text15ac:
-	textfw1 "絕"
+	textfw1 "絶"
 	hiragana "めつした"
 	katakana "ポケモン"
 	hiragana "だが、まれに化"
@@ -4048,7 +4048,7 @@ Text15e7:
 	hiragana "にさわると"
 	katakana "インドゾウ"
 	hiragana "でも気"
-	textfw1 "絕"
+	textfw1 "絶"
 	textfw0 "する"
 	done
 
