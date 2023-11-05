@@ -1,883 +1,669 @@
 Text0001:
-	hiragana "てふだ"
+	textfw "てふだ"
 	done
 
 Text0002:
-	hiragana "しらべる"
+	textfw "しらべる"
 	done
 
 Text0003:
-	textfw0 "ワ ザ"
+	textfw "ワ ザ"
 	done
 
 Text0004:
-	hiragana "とくしゅ"
+	textfw "とくしゅ"
 	done
 
 Text0005:
-	hiragana "おわり"
+	textfw "おわり"
 	done
 
 Text0006:
-	textfw0 "色"
+	textfw "色"
 	done
 
 Text0007:
-	hiragana "にげる"
+	textfw "にげる"
 	done
 
 Text0008:
-	textfw0 "弱点"
+	textfw "弱点"
 	done
 
 Text0009:
-	textfw0 "抵抗力"
+	textfw "抵抗力"
 	done
 
 Text000a:
-	textfw0 "特殊能力"
+	textfw "特殊能力"
 	done
 
 Text000b:
-	textfw0 "ポケモンカード"
+	textfw "ポケモンカード"
 	done
 
 Text000c:
-	textfw0 "身長"
+	textfw "身長"
 	done
 
 Text000d:
-	textfw0 "体"
-	textfw1 "重"
+	textfw "体重"
 	done
 
 Text000e:
-	textfw0 "ポケモン"
+	textfw "ポケモン"
 	done
 
 Text000f:
-	textfw4 "m"
+	textfw "m"
 	done
 
 Text0010:
-	textfw4 "Kg"
+	textfw "Kg"
 	done
 
 Text0011:
-	textfw0 " "
+	textfw " "
 	done
 
 Text0012:
-	textfw4 "●"
+	textfw "●"
 	done
 
 Text0013:
-	textfw4 "◆"
+	textfw "◆"
 	done
 
 Text0014:
-	textfw4 "★"
+	textfw "★"
 	done
 
 Text0015:
-	textfw4 "☆"
+	textfw "☆"
 	done
 
 Text0016:
-	hiragana "のもっている全"
-	katakana "カード"
+	textfw "のもっている全カード"
 	done
 
 Text0017:
-	textfw0 "カード"
-	hiragana "のごうけい         枚"
+	textfw "カードのごうけい         枚"
 	done
 
 Text0018:
-	textfw0 "カード"
-	hiragana "のしゅるい         "
-	textfw1 "種"
+	textfw "カードのしゅるい         種"
 	done
 
 Text0019:
-	textfw0 "草ポケモン"
+	textfw "草ポケモン"
 	done
 
 Text001a:
-	textfw0 "炎ポケモン"
+	textfw "炎ポケモン"
 	done
 
 Text001b:
-	textfw0 "水ポケモン"
+	textfw "水ポケモン"
 	done
 
 Text001c:
-	textfw0 "雷ポケモン"
+	textfw "雷ポケモン"
 	done
 
 Text001d:
-	textfw0 "闘ポケモン"
+	textfw "闘ポケモン"
 	done
 
 Text001e:
-	textfw0 "超ポケモン"
+	textfw "超ポケモン"
 	done
 
 Text001f:
-	textfw0 "無色ポケモン"
+	textfw "無色ポケモン"
 	done
 
 Text0020:
-	textfw0 "トレーナーカード"
+	textfw "トレーナーカード"
 	done
 
 Text0021:
-	textfw0 "エネルギーカード"
+	textfw "エネルギーカード"
 	done
 
 Text0022:
-	textfw0 "デッキ"
+	textfw "デッキ"
 	done
 
 Text0023:
-	hiragana "のこうげき"
+	textfw "のこうげき"
 	done
 
 Text0024:
-	textfw0 "控"
-	hiragana "え"
-	katakana "ポケモン"
-	hiragana "が いません"
+	textfw "控えポケモンが いません"
 	done
 
 Text0025:
-	textfw0 "「"
-	hiragana "ねむり」状態なので できません"
+	textfw "「ねむり」状態なので できません"
 	done
 
 Text0026:
-	textfw0 "「マヒ」状態"
-	hiragana "なので できません"
+	textfw "「マヒ」状態なので できません"
 	done
 
 Text0027:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "「どく」状態なので ", "<RAMNUM>"
-	katakana "ダメージ"
+	textfw "<RAMTEXT>", "は"
+	linefw "「どく」状態なので ", "<RAMNUM>", "ダメージ"
 	done
 
 Text0028:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "「どくどく」状態なので ", "<RAMNUM>"
-	katakana "ダメージ"
+	textfw "<RAMTEXT>", "は"
+	linefw "「どくどく」状態なので ", "<RAMNUM>", "ダメージ"
 	done
 
 Text0029:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "ねむり つづけている"
+	textfw "<RAMTEXT>", "は"
+	linefw "ねむり つづけている"
 	done
 
 Text002a:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "ねむりから さめた"
+	textfw "<RAMTEXT>", "は"
+	linefw "ねむりから さめた"
 	done
 
 Text002b:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	katakana "マヒ"
-	hiragana "が とけた"
+	textfw "<RAMTEXT>", "は"
+	linefw "マヒが とけた"
 	done
 
 Text002c:
-	textfw0 "ポケモンチェック"
-	hiragana "をします"
+	textfw "ポケモンチェックをします"
 	done
 
 Text002d:
-	hiragana "つかえない状態です"
+	textfw "つかえない状態です"
 	done
 
 Text002e:
-	textfw0 "エネルギーカード"
-	hiragana "が ありません"
+	textfw "エネルギーカードが ありません"
 	done
 
 Text002f:
-	hiragana "これで いいですか?"
+	textfw "これで いいですか?"
 	done
 
 Text0030:
-	hiragana "はい  いいえ"
+	textfw "はい  いいえ"
 	done
 
 Text0031:
-	textfw0 "トラッシュ"
-	hiragana "する"
+	textfw "トラッシュする"
 	done
 
 Text0032:
-	textfw1 "未完"
-	textfw0 "成"
+	textfw "未完成"
 	done
 
 Text0033:
-	textfw0 "ダメージ"
+	textfw "ダメージ"
 	done
 
 Text0034:
-	textfw0 "<RAMTEXT>"
-	hiragana "を"
-	line ""
-	textfw0 "つかいます"
+	textfw "<RAMTEXT>", "を"
+	linefw "つかいます"
 	done
 
 Text0035:
-	textfw0 "ダメージ"
-	hiragana "を うけた"
+	textfw "ダメージを うけた"
 	done
 
 Text0036:
-	textfw0 "<RAMTEXT>"
-	hiragana "の"
-	line ""
-	textfw0 "<RAMTEXT>", "!"
+	textfw "<RAMTEXT>", "の"
+	linefw "<RAMTEXT>", "!"
 	done
 
 Text0037:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "抵抗力で ", "<RAMNUM>"
-	katakana "ダメージ"
-	hiragana "を うけた"
+	textfw "<RAMTEXT>", "は"
+	linefw "抵抗力で ", "<RAMNUM>", "ダメージを うけた"
 	done
 
 Text0038:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "弱点で ", "<RAMNUM>"
-	katakana "ダメージ"
-	hiragana "を うけた"
+	textfw "<RAMTEXT>", "は"
+	linefw "弱点で ", "<RAMNUM>", "ダメージを うけた"
 	done
 
 Text0039:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "弱点などで ", "<RAMNUM>"
-	katakana "ダメージ"
-	hiragana "を うけた"
+	textfw "<RAMTEXT>", "は"
+	linefw "弱点などで ", "<RAMNUM>", "ダメージを うけた"
 	done
 
 Text003a:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "抵抗力で "
-	katakana "ダメージ"
-	hiragana "を うけなかった!"
+	textfw "<RAMTEXT>", "は"
+	linefw "抵抗力で ダメージを うけなかった!"
 	done
 
 Text003b:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "<RAMNUM>"
-	katakana "ダメージ"
-	hiragana "を うけた"
+	textfw "<RAMTEXT>", "は"
+	linefw "<RAMNUM>", "ダメージを うけた"
 	done
 
 Text003c:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	katakana "ダメージ"
-	hiragana "を うけなかった!"
+	textfw "<RAMTEXT>", "は"
+	linefw "ダメージを うけなかった!"
 	done
 
 Text003d:
-	hiragana "せんたくできる"
-	katakana "ワザ"
-	hiragana "が ありません"
+	textfw "せんたくできるワザが ありません"
 	done
 
 Text003e:
-	hiragana "にげられない"
+	textfw "にげられない"
 	done
 
 Text003f:
-	textfw0 "エネルギーカード"
-	hiragana "は"
-	line ""
-	textfw0 "じぶんの番には 1枚しか だせません"
+	textfw "エネルギーカードは"
+	linefw "じぶんの番には 1枚しか だせません"
 	done
 
 Text0040:
-	hiragana "この特殊能力を つかいますか?"
+	textfw "この特殊能力を つかいますか?"
 	done
 
 Text0041:
-	hiragana "この特殊能力は"
-	line ""
-	textfw0 "えらぶ ひつようがありません"
+	textfw "この特殊能力は"
+	linefw "えらぶ ひつようがありません"
 	done
 
 Text0042:
-	textfw0 "自分"
-	hiragana "の番のとき この"
-	katakana "カード"
-	hiragana "を"
-	line ""
-	katakana "トラッシュ"
-	hiragana "することができる。"
-	line ""
-	textfw0 "これは「きぜつ」と"
-	katakana "カウント"
-	hiragana "されない"
-	line ""
-	textfw0 "(この「"
-	katakana "トラッシュ"
-	hiragana "する」は特殊能力"
-	line ""
-	textfw0 "ではない)"
+	textfw "自分の番のとき このカードを"
+	linefw "トラッシュすることができる。"
+	linefw "これは「きぜつ」とカウントされない"
+	linefw "(この「トラッシュする」は特殊能力"
+	linefw "ではない)"
 	done
 
 Text0043:
-	textfw0 "<RAMNAME>"
-	hiragana "は"
-	line ""
-	katakana "サイドカード"
-	hiragana "を", "<RAMNUM>", "枚 ひきます"
+	textfw "<RAMNAME>", "は"
+	linefw "サイドカードを", "<RAMNUM>", "枚 ひきます"
 	done
 
 Text0044:
-	textfw0 "<RAMNAME>"
-	hiragana "は"
-	line ""
-	katakana "サイドカード"
-	hiragana "を", "<RAMNUM>", "枚 ひきました"
+	textfw "<RAMNAME>", "は"
+	linefw "サイドカードを", "<RAMNUM>", "枚 ひきました"
 	done
 
 Text0045:
-	textfw0 "<RAMNAME>"
-	hiragana "は "
-	katakana "バトル場"
-	hiragana "に"
-	line ""
-	textfw0 "<RAMTEXT>", "をだした"
+	textfw "<RAMNAME>", "は バトル場に"
+	linefw "<RAMTEXT>", "をだした"
 	done
 
 Text0046:
-	hiragana "せんたくできません"
+	textfw "せんたくできません"
 	done
 
 Text0047:
-	textfw0 "草"
-	line ""
-	textfw0 "炎"
-	line ""
-	textfw0 "水"
-	line ""
-	textfw0 "雷"
-	line ""
-	textfw0 "闘"
-	line ""
-	textfw0 "超"
+	textfw "草"
+	linefw "炎"
+	linefw "水"
+	linefw "雷"
+	linefw "闘"
+	linefw "超"
 	done
 
 Text0048:
-	textfw0 "<GRASS>"
+	textfw "<GRASS>"
 	done
 
 Text0049:
-	textfw0 "<FIRE>"
+	textfw "<FIRE>"
 	done
 
 Text004a:
-	textfw0 "<WATER>"
+	textfw "<WATER>"
 	done
 
 Text004b:
-	textfw0 "<LIGHTNING>"
+	textfw "<LIGHTNING>"
 	done
 
 Text004c:
-	textfw0 "<FIGHTING>"
+	textfw "<FIGHTING>"
 	done
 
 Text004d:
-	textfw0 "<PSYCHIC>"
+	textfw "<PSYCHIC>"
 	done
 
 Text004e:
-	textfw0 "ベンチ"
+	textfw "ベンチ"
 	done
 
 Text004f:
-	hiragana "きぜつ         "
+	textfw "きぜつ         "
 	done
 
 Text0050:
-	hiragana "わけもわからず ", "[自分]", "をこうげき!!"
+	textfw "わけもわからず ", "[自分]", "をこうげき!!"
 	done
 
 Text0051:
-	hiragana "はがす "
-	katakana "エネルギーカード"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "はがす エネルギーカードを"
+	linefw "えらんでください"
 	done
 
 Text0052:
-	textfw0 "トラッシュ"
-	hiragana "する "
-	katakana "エネルギーカード"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "トラッシュする エネルギーカードを"
+	linefw "えらんでください"
 	done
 
 Text0053:
-	textfw0 "バトル場"
-	hiragana "の"
-	katakana "ポケモン"
-	hiragana "が、きぜつしました"
-	line ""
-	textfw0 "だす "
-	katakana "ポケモン"
-	hiragana "を えらんでください"
+	textfw "バトル場のポケモンが、きぜつしました"
+	linefw "だす ポケモンを えらんでください"
 	done
 
 Text0054:
-	hiragana "じゅんびができたら どちらかが"
-	line ""
-	textfw4 "START"
-	katakana "ボタン"
-	hiragana "を おしてください"
+	textfw "じゅんびができたら どちらかが"
+	linefw "STARTボタンを おしてください"
 	done
 
 Text0055:
-	hiragana "あなたは せんこうです"
+	textfw "あなたは せんこうです"
 	done
 
 Text0056:
-	hiragana "あなたは こうこうです"
+	textfw "あなたは こうこうです"
 	done
 
 Text0057:
-	textfw0 "通信エラー"
-	hiragana "です"
-	line ""
-	textfw0 "はじめから やりなおしてください"
+	textfw "通信エラーです"
+	linefw "はじめから やりなおしてください"
 	done
 
 Text0058:
-	hiragana "しらべる "
-	katakana "カード"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "しらべる カードを"
+	linefw "えらんでください"
 	done
 
 Text0059:
-	hiragana "つうしん中です"
+	textfw "つうしん中です"
 	done
 
 Text005a:
-	hiragana "たいき中です"
-	line ""
-	textfw0 "  てふだ   しらべる"
+	textfw "たいき中です"
+	linefw "  てふだ   しらべる"
 	done
 
 Text005b:
-	textfw0 "ベンチポケモン "
-	hiragana "せんたく中"
-	line ""
-	textfw0 "  てふだ   しらべる  もどる"
+	textfw "ベンチポケモン せんたく中"
+	linefw "  てふだ   しらべる  もどる"
 	done
 
 Text005c:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	katakana "ベンチ"
-	hiragana "へ にげた"
+	textfw "<RAMTEXT>", "は"
+	linefw "ベンチへ にげた"
 	done
 
 Text005d:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "にげるのに しっぱいした"
+	textfw "<RAMTEXT>", "は"
+	linefw "にげるのに しっぱいした"
 	done
 
 Text005e:
-	textfw0 "<RAMTEXT>"
-	hiragana "は特殊能力"
-	line ""
-	textfw0 "<RAMTEXT>", "を つかいます"
+	textfw "<RAMTEXT>", "は特殊能力"
+	linefw "<RAMTEXT>", "を つかいます"
 	done
 
 Text005f:
-	textfw0 "ワザ"
-	hiragana "を つかわずに"
-	line ""
-	textfw0 "番を しゅうりょう した"
+	textfw "ワザを つかわずに"
+	linefw "番を しゅうりょう した"
 	done
 
 Text0060:
-	textfw0 "<RAMNAME>"
-	hiragana "の 番です"
+	textfw "<RAMNAME>", "の 番です"
 	done
 
 Text0061:
-	textfw0 "<RAMTEXT>"
-	hiragana "を"
-	line ""
-	textfw0 "<RAMTEXT>", "に つけました"
+	textfw "<RAMTEXT>", "を"
+	linefw "<RAMTEXT>", "に つけました"
 	done
 
 Text0062:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "<RAMTEXT>", "に 進化しました"
+	textfw "<RAMTEXT>", "は"
+	linefw "<RAMTEXT>", "に 進化しました"
 	done
 
 Text0063:
-	textfw0 "<RAMTEXT>"
-	hiragana "を"
-	line ""
-	katakana "ベンチ"
-	hiragana "に だしました"
+	textfw "<RAMTEXT>", "を"
+	linefw "ベンチに だしました"
 	done
 
 Text0064:
-	textfw0 "<RAMTEXT>"
-	hiragana "を"
-	line ""
-	katakana "バトル場"
-	hiragana "に だしました"
+	textfw "<RAMTEXT>", "を"
+	linefw "バトル場に だしました"
 	done
 
 Text0065:
-	textfw0 "<RAMNAME>"
-	hiragana "の山札を よくきります"
+	textfw "<RAMNAME>", "の山札を よくきります"
 	done
 
 Text0066:
-	hiragana "れんしゅうなので 山札をきりません"
+	textfw "れんしゅうなので 山札をきりません"
 	done
 
 Text0067:
-	hiragana "おたがいの山札を よくきります"
+	textfw "おたがいの山札を よくきります"
 	done
 
 Text0068:
-	hiragana "おたがいに 7枚ずつひきます"
+	textfw "おたがいに 7枚ずつひきます"
 	done
 
 Text0069:
-	textfw0 "<RAMNAME>"
-	hiragana "は"
-	line ""
-	textfw0 "手札を7枚ひきます"
+	textfw "<RAMNAME>", "は"
+	linefw "手札を7枚ひきます"
 	done
 
 Text006a:
-	textfw0 "<RAMNAME>"
-	hiragana "の山札は ", "<RAMNUM>", "枚です"
+	textfw "<RAMNAME>", "の山札は ", "<RAMNUM>", "枚です"
 	done
 
 Text006b:
-	textfw0 "バトル場"
-	hiragana "に だす"
-	line ""
-	textfw0 "たね"
-	katakana "ポケモン"
-	hiragana "を えらんでください"
+	textfw "バトル場に だす"
+	linefw "たねポケモンを えらんでください"
 	done
 
 Text006c:
-	textfw0 "<RAMNAME>"
-	hiragana "の 手札の中には"
-	line ""
-	textfw0 "たね"
-	katakana "ポケモン"
-	hiragana "が ありませんでした"
+	textfw "<RAMNAME>", "の 手札の中には"
+	linefw "たねポケモンが ありませんでした"
 	done
 
 Text006d:
-	hiragana "おたがいに 手札の中には"
-	line ""
-	textfw0 "たね"
-	katakana "ポケモン"
-	hiragana "が ありませんでした"
+	textfw "おたがいに 手札の中には"
+	linefw "たねポケモンが ありませんでした"
 	done
 
 Text006e:
-	textfw0 "山札"
-	hiragana "に もどして"
-	line ""
-	katakana "カード"
-	hiragana "をひきなおします"
+	textfw "山札に もどして"
+	linefw "カードをひきなおします"
 	done
 
 Text006f:
-	textfw0 "ベンチ"
-	hiragana "に だす たね"
-	katakana "ポケモン"
-	hiragana "を"
-	line ""
-	textfw0 "<RAMNUM>", "ひきまで えらべます"
+	textfw "ベンチに だす たねポケモンを"
+	linefw "<RAMNUM>", "ひきまで えらべます"
 	done
 
 Text0070:
-	textfw0 "バトル場"
-	hiragana "の"
-	katakana "ポケモン"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "バトル場のポケモンを"
+	linefw "えらんでください"
 	done
 
 Text0071:
-	textfw0 "ベンチ"
-	hiragana "の"
-	katakana "ポケモン"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "ベンチのポケモンを"
+	linefw "えらんでください"
 	done
 
 Text0072:
-	textfw0 "<RAMTEXT>"
-	hiragana "を ひいた"
+	textfw "<RAMTEXT>", "を ひいた"
 	done
 
 Text0073:
-	hiragana "この"
-	katakana "カード"
-	hiragana "は えらべません"
+	textfw "このカードは えらべません"
 	done
 
 Text0074:
-	textfw0 "サイドカード"
-	hiragana "を "
-	katakana "セット"
-	hiragana "します"
+	textfw "サイドカードを セットします"
 	done
 
 Text0075:
-	hiragana "おたがいに"
-	line ""
-	katakana "サイドカード"
-	hiragana "を ", "<RAMNUM>", "枚"
-	katakana "セット"
-	hiragana "します"
+	textfw "おたがいに"
+	linefw "サイドカードを ", "<RAMNUM>", "枚セットします"
 	done
 
 Text0076:
-	textfw0 "「"
-	hiragana "おもて」が でれば"
-	line ""
-	textfw0 "<RAMTEXT>", "の せんこうです"
+	textfw "「おもて」が でれば"
+	linefw "<RAMTEXT>", "の せんこうです"
 	done
 
 Text0077:
-	textfw0 "コイン"
-	hiragana "をなげて"
-	line ""
-	textfw0 "せんこう・こうこうを きめます"
+	textfw "コインをなげて"
+	linefw "せんこう・こうこうを きめます"
 	done
 
 Text0078:
-	hiragana "はんていを おこないます"
+	textfw "はんていを おこないます"
 	done
 
 Text0079:
-	textfw0 "<RAMNAME>"
-	hiragana "との対戦に ひきわけた"
+	textfw "<RAMNAME>", "との対戦に ひきわけた"
 	done
 
 Text007a:
-	textfw0 "<RAMNAME>"
-	hiragana "との対戦に 勝った!"
+	textfw "<RAMNAME>", "との対戦に 勝った!"
 	done
 
 Text007b:
-	textfw0 "<RAMNAME>"
-	hiragana "との対戦に"
-	line ""
-	textfw0 "まけてしまった・・・"
+	textfw "<RAMNAME>", "との対戦に"
+	linefw "まけてしまった・・・"
 	done
 
 Text007c:
-	textfw0 "「サドン・デス」スタート!"
-	line ""
-	textfw0 "サイドカード1枚"
-	hiragana "で 対戦です"
+	textfw "「サドン・デス」スタート!"
+	linefw "サイドカード1枚で 対戦です"
 	done
 
 Text007d:
-	textfw0 "サイドカード"
-	line ""
-	textfw0 "対戦ポケモン"
-	line ""
-	textfw0 "山札"
-	hiragana "の数"
+	textfw "サイドカード"
+	linefw "対戦ポケモン"
+	linefw "山札の数"
 	done
 
 Text007e:
-	hiragana "なし"
+	textfw "なし"
 	done
 
 Text007f:
-	hiragana "あり"
+	textfw "あり"
 	done
 
 Text0080:
-	textfw0 "枚"
+	textfw "枚"
 	done
 
 Text0081:
-	textfw0 "<RAMNAME>"
-	hiragana "は "
-	katakana "サイドカード"
-	hiragana "から"
-	line ""
-	textfw0 "<RAMTEXT>", "を ひいた"
+	textfw "<RAMNAME>", "は サイドカードから"
+	linefw "<RAMTEXT>", "を ひいた"
 	done
 
 Text0082:
-	textfw0 "<RAMNAME>"
-	hiragana "は "
-	katakana "サイドカード"
-	hiragana "を"
-	line ""
-	textfw0 "すべて とりおえた!"
+	textfw "<RAMNAME>", "は サイドカードを"
+	linefw "すべて とりおえた!"
 	done
 
 Text0083:
-	textfw0 "<RAMNAME>"
-	hiragana "の 場には"
-	line ""
-	katakana "ポケモン"
-	hiragana "が いなくなった"
+	textfw "<RAMNAME>", "の 場には"
+	linefw "ポケモンが いなくなった"
 	done
 
 Text0084:
-	textfw0 "<RAMTEXT>"
-	hiragana "は きぜつした"
+	textfw "<RAMTEXT>", "は きぜつした"
 	done
 
 Text0085:
-	textfw0 "<RAMTEXT>"
-	hiragana "は"
-	line ""
-	textfw0 "特殊能力を もっている"
+	textfw "<RAMTEXT>", "は"
+	linefw "特殊能力を もっている"
 	done
 
 Text0086:
-	hiragana "しかし 「かがくへんか"
-	katakana "ガス」"
-	hiragana "の効果で"
-	line ""
-	textfw0 "特殊能力は つかえない"
+	textfw "しかし 「かがくへんかガス」の効果で"
+	linefw "特殊能力は つかえない"
 	done
 
 Text0087:
-	hiragana "しかし 「まきちらせ!"
-	katakana "ベトベトガス」"
-	line ""
-	hiragana "の効果で 特殊能力は つかえない"
+	textfw "しかし 「まきちらせ!ベトベトガス」"
+	linefw "の効果で 特殊能力は つかえない"
 	done
 
 Text0088:
-	hiragana "しかし 「"
-	katakana "ショックアイ」"
-	line ""
-	hiragana "の効果で 特殊能力は つかえない"
+	textfw "しかし 「ショックアイ」"
+	linefw "の効果で 特殊能力は つかえない"
 	done
 
 Text0089:
-	textfw0 " "
-	hiragana "つかう"
-	line ""
-	textfw0 " しらべる"
+	textfw " つかう"
+	linefw " しらべる"
 	done
 
 Text008a:
-	textfw0 " "
-	hiragana "だす"
-	line ""
-	textfw0 " しらべる"
+	textfw " だす"
+	linefw " しらべる"
 	done
 
 Text008b:
-	textfw0 " "
-	hiragana "えらぶ"
-	line ""
-	textfw0 " しらべる"
+	textfw " えらぶ"
+	linefw " しらべる"
 	done
 
 Text008c:
-	textfw4 "B", "<RAMNUM>", "S", "<RAMNUM>"
+	textfw "B", "<RAMNUM>", "S", "<RAMNUM>"
 	done
 
 Text008d:
-	textfw0 "<RAMNAME>"
-	hiragana "は かんがえ中"
+	textfw "<RAMNAME>", "は かんがえ中"
 	done
 
 Text008e:
-	textfw0 "          "
+	textfw "          "
 	done
 
 Text008f:
-	textfw0 "対戦コンピューター選択"
+	textfw "対戦コンピューター選択"
 	done
 
 Text0090:
-	textfw0 "サイド枚数"
+	textfw "サイド枚数"
 	done
 
 Text0091:
-	textfw0 "ランダム1"
+	textfw "ランダム1"
 	done
 
 Text0092:
-	textfw0 "ランダム2"
+	textfw "ランダム2"
 	done
 
 Text0093:
-	textfw0 "ランダム3"
+	textfw "ランダム3"
 	done
 
 Text0094:
-	textfw0 "ランダム4"
+	textfw "ランダム4"
 	done
 
 Text0095:
-	textfw2 "教"
-	textfw1 "育用"
-	textfw4 "COM"
+	textfw "教育用COM"
 	done
 
 Text0096:
-	textfw0 "プレイヤー1"
+	textfw "プレイヤー1"
 	done
 
 Text0097:
@@ -885,1472 +671,840 @@ Text0097:
 	done
 
 Text0098:
-	textfw1 "左"
-	hiragana "から"
-	textfw1 "右"
+	textfw "左から右"
 	done
 
 Text0099:
-	textfw1 "右"
-	hiragana "から"
-	textfw1 "左"
+	textfw "右から左"
 	done
 
 Text009a:
-	textfw4 "START:"
-	textfw0 "入替"
-	hiragana "え"
-	line ""
-	textfw0 "    "
-	textfw4 "A:"
-	textfw1 "実行"
-	line ""
-	textfw0 "    "
-	textfw4 "B:"
-	textfw0 "終"
-	textfw1 "了"
+	textfw "START:入替え"
+	linefw "    A:実行"
+	linefw "    B:終了"
 	done
 
 Text009b:
-	hiragana "そのた"
-	line ""
-	textfw0 "どく"
-	line ""
-	textfw0 "ねむり"
-	line ""
-	katakana "マヒ"
-	line ""
-	hiragana "こんらん"
-	line ""
-	textfw0 "どくどく"
-	line ""
-	katakana "クリア"
-	line ""
-	hiragana "えんまく状態"
-	line ""
-	textfw0 "相手の手札"
-	line ""
-	textfw0 "手札から"
-	katakana "トラッシュ"
-	line ""
-	textfw0 "山札選択"
-	line ""
-	textfw0 "トラッシュ選択"
-	line ""
-	textfw0 "手札"
-	hiragana "を山札へ"
-	line ""
-	katakana "サイド"
-	hiragana "ひく"
-	line ""
-	katakana "プレイヤー入替"
-	hiragana "え"
-	line ""
-	textfw0 "山札"
-	katakana "シャッフル"
-	line ""
-	textfw0 "ベンチ"
-	hiragana "を"
-	katakana "トラッシュ"
-	line ""
-	textfw0 "カード入替"
-	hiragana "え"
+	textfw "そのた"
+	linefw "どく"
+	linefw "ねむり"
+	linefw "マヒ"
+	linefw "こんらん"
+	linefw "どくどく"
+	linefw "クリア"
+	linefw "えんまく状態"
+	linefw "相手の手札"
+	linefw "手札からトラッシュ"
+	linefw "山札選択"
+	linefw "トラッシュ選択"
+	linefw "手札を山札へ"
+	linefw "サイドひく"
+	linefw "プレイヤー入替え"
+	linefw "山札シャッフル"
+	linefw "ベンチをトラッシュ"
+	linefw "カード入替え"
 	done
 
 Text009c:
-	textfw0 "ゲーム勝"
-	hiragana "ち"
-	line ""
-	katakana "ゲーム"
-	textfw2 "負"
-	hiragana "け"
-	line ""
-	katakana "ゲーム引"
-	hiragana "き分け"
-	line ""
-	textfw1 "限"
-	textfw0 "定"
-	textfw3 "環境"
-	line ""
-	katakana "ポーズモード"
-	line ""
-	textfw0 "コンピューター対戦切"
-	hiragana "り替え"
-	line ""
-	katakana "プレイヤー2"
-	hiragana "を"
-	textfw4 "COM"
-	textfw0 "にする"
-	line ""
-	katakana "コイン投"
-	hiragana "げ20回"
-	line ""
-	textfw1 "現在"
-	textfw0 "の状態を"
-	katakana "セーブ"
-	hiragana "する"
-	line ""
-	katakana "ファイル"
-	hiragana "を"
-	katakana "ロード"
-	hiragana "する"
+	textfw "ゲーム勝ち"
+	linefw "ゲーム負け"
+	linefw "ゲーム引き分け"
+	linefw "限定環境"
+	linefw "ポーズモード"
+	linefw "コンピューター対戦切り替え"
+	linefw "プレイヤー2をCOMにする"
+	linefw "コイン投げ20回"
+	linefw "現在の状態をセーブする"
+	linefw "ファイルをロードする"
 	done
 
 Text009d:
-	textfw0 "ファイルセーブ"
+	textfw "ファイルセーブ"
 	done
 
 Text009e:
-	textfw0 "ファイルロード"
-	line ""
-	textfw0 " 0 最後"
-	hiragana "に"
-	katakana "セーブ"
-	hiragana "された"
-	katakana "ファイル"
+	textfw "ファイルロード"
+	linefw " 0 最後にセーブされたファイル"
 	done
 
 Text009f:
-	textfw0 "ポーズモード"
-	hiragana "が"
-	textfw4 "ON"
-	textfw0 "になりました"
-	line ""
-	textfw4 "SELECT"
-	textfw0 "で"
-	katakana "ポーズ"
-	hiragana "がかかります"
+	textfw "ポーズモードがONになりました"
+	linefw "SELECTでポーズがかかります"
 	done
 
 Text00a0:
-	textfw0 "ポーズモード"
-	hiragana "が"
-	textfw4 "OFF"
-	textfw0 "になりました"
+	textfw "ポーズモードがOFFになりました"
 	done
 
 Text00a1:
-	textfw0 "コンピューターモード"
-	hiragana "が"
-	line ""
-	textfw4 "OFF"
-	textfw0 "になりました"
+	textfw "コンピューターモードが"
+	linefw "OFFになりました"
 	done
 
 Text00a2:
-	textfw0 "コンピューターモード"
-	hiragana "が"
-	line ""
-	textfw4 "ON"
-	textfw0 "になりました"
+	textfw "コンピューターモードが"
+	linefw "ONになりました"
 	done
 
 Text00a3:
-	textfw0 "<GRASS>", "ポケモン"
-	line ""
-	textfw0 "<FIRE>", "ポケモン"
-	line ""
-	textfw0 "<WATER>", "ポケモン"
-	line ""
-	textfw0 "<LIGHTNING>", "ポケモン"
-	line ""
-	textfw0 "<FIGHTING>", "ポケモン"
-	line ""
-	textfw0 "<PSYCHIC>", "ポケモン"
-	line ""
-	textfw0 "<COLORLESS>", "ポケモン"
-	line ""
-	textfw0 "トレーナーカード"
-	line ""
-	textfw0 "エネルギーカード"
+	textfw "<GRASS>", "ポケモン"
+	linefw "<FIRE>", "ポケモン"
+	linefw "<WATER>", "ポケモン"
+	linefw "<LIGHTNING>", "ポケモン"
+	linefw "<FIGHTING>", "ポケモン"
+	linefw "<PSYCHIC>", "ポケモン"
+	linefw "<COLORLESS>", "ポケモン"
+	linefw "トレーナーカード"
+	linefw "エネルギーカード"
 	done
 
 Text00a4:
-	hiragana "はじめての"
-	katakana "ポケモン"
-	line ""
-	hiragana "でんせつのちから"
-	line ""
-	textfw0 "化"
-	textfw1 "石"
-	textfw0 "のしま"
-	line ""
-	textfw0 "超"
-	katakana "バトル"
-	line ""
-	hiragana "そらをとぶ"
-	katakana "ポケモン"
-	line ""
-	hiragana "われら"
-	katakana "ロケット"
-	textfw2 "団"
-	line ""
-	textfw0 "ロケット"
-	textfw2 "団"
-	hiragana "のやぼう"
-	line ""
-	katakana "スペシャル"
-	line ""
-	textfw0 "エネルギー"
-	line ""
-	textfw0 "プレゼントパック1"
-	line ""
-	textfw0 "プレゼントパック2"
-	line ""
-	textfw0 "プレゼントパック3"
-	line ""
-	textfw0 "プレゼントパック4"
-	line ""
-	textfw4 "DDI"
-	textfw0 "パック"
+	textfw "はじめてのポケモン"
+	linefw "でんせつのちから"
+	linefw "化石のしま"
+	linefw "超バトル"
+	linefw "そらをとぶポケモン"
+	linefw "われらロケット団"
+	linefw "ロケット団のやぼう"
+	linefw "スペシャル"
+	linefw "エネルギー"
+	linefw "プレゼントパック1"
+	linefw "プレゼントパック2"
+	linefw "プレゼントパック3"
+	linefw "プレゼントパック4"
+	linefw "DDIパック"
 	done
 
 Text00a5:
-	textfw0 "クリア"
-	line ""
-	textfw0 "草ポケモン"
-	hiragana "は特殊にならない"
-	line ""
-	textfw0 "雷"
-	katakana "ポケモン"
-	hiragana "は"
-	textfw1 "攻擊"
-	textfw0 "力+10"
-	line ""
-	textfw0 "炎"
-	katakana "ポケモン"
-	hiragana "は水の弱点なし"
-	line ""
-	katakana "ベンチ数"
-	hiragana "が3"
-	line ""
-	textfw0 "水"
-	katakana "ポケモン"
-	hiragana "はにげる"
-	katakana "コスト-1"
-	line ""
-	textfw0 "闘ポケモン"
-	hiragana "からの"
-	katakana "ダメージ抵抗力無効"
-	line ""
-	textfw0 "抵抗力"
-	hiragana "は-30から-10になる"
-	line ""
-	katakana "ポケモントラッシュ基本"
-	textfw4 "E"
-	textfw0 "手札"
-	hiragana "に"
-	textfw1 "戻"
-	textfw0 "る"
-	line ""
-	textfw1 "逃"
-	textfw0 "げるとき"
-	katakana "コスト+1"
-	line ""
-	textfw0 "トラッシュカード使"
-	hiragana "えない"
+	textfw "クリア"
+	linefw "草ポケモンは特殊にならない"
+	linefw "雷ポケモンは攻擊力+10"
+	linefw "炎ポケモンは水の弱点なし"
+	linefw "ベンチ数が3"
+	linefw "水ポケモンはにげるコスト-1"
+	linefw "闘ポケモンからのダメージ抵抗力無効"
+	linefw "抵抗力は-30から-10になる"
+	linefw "ポケモントラッシュ基本E手札に戻る"
+	linefw "逃げるときコスト+1"
+	linefw "トラッシュカード使えない"
 	done
 
 Text00a6:
-	textfw0 "カードリスト"
+	textfw "カードリスト"
 	done
 
 Text00a7:
-	textfw0 "コイン投"
-	hiragana "げを"
-	katakana "テスト"
-	hiragana "します"
+	textfw "コイン投げをテストします"
 	done
 
 Text00a8:
-	textfw0 "サイドカード"
-	hiragana "なし 終わりにする?"
+	textfw "サイドカードなし 終わりにする?"
 	done
 
 Text00a9:
-	textfw0 "バックアップ"
-	textfw4 "RAM"
-	hiragana "を"
-	textfw1 "初"
-	textfw2 "期"
-	textfw0 "化する?"
+	textfw "バックアップRAMを初期化する?"
 	done
 
 Text00aa:
-	textfw0 "!!!! "
-	textfw4 "ABORT"
-	textfw0 " !!!!"
-	line ""
-	textfw1 "重"
-	textfw0 "大"
-	hiragana "な"
-	textfw2 "問"
-	textfw3 "題"
-	textfw0 "が発生しました"
-	line ""
-	katakana "プログラム"
-	hiragana "を"
-	textfw3 "停"
-	textfw2 "止"
-	textfw0 "します"
-	line ""
-	katakana "カートリッジ"
-	hiragana "を"
-	textfw3 "提"
-	textfw0 "出してください"
+	textfw "!!!! ABORT !!!!"
+	linefw "重大な問題が発生しました"
+	linefw "プログラムを停止します"
+	linefw "カートリッジを提出してください"
 	done
 
 Text00ab:
-	textfw0 "手札"
-	hiragana "が ありません"
+	textfw "手札が ありません"
 	done
 
 Text00ac:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	katakana "カード"
-	hiragana "が ありません"
+	textfw "トラッシュにカードが ありません"
 	done
 
 Text00ad:
-	textfw0 "<RAMNAME>"
-	hiragana "の"
-	katakana "トラッシュ"
+	textfw "<RAMNAME>", "のトラッシュ"
 	done
 
 Text00ae:
-	textfw0 "<RAMNAME>"
-	hiragana "のてふだ"
+	textfw "<RAMNAME>", "のてふだ"
 	done
 
 Text00af:
-	textfw0 "<RAMNAME>"
-	hiragana "の場"
+	textfw "<RAMNAME>", "の場"
 	done
 
 Text00b0:
-	textfw0 "<RAMNAME>"
-	hiragana "の山札"
+	textfw "<RAMNAME>", "の山札"
 	done
 
 Text00b1:
-	textfw0 "<RAMNAME>"
-	hiragana "の"
-	katakana "サイドカード"
+	textfw "<RAMNAME>", "のサイドカード"
 	done
 
 Text00b2:
-	hiragana "てふだを"
-	line ""
-	textfw0 "えらんでください"
+	textfw "てふだを"
+	linefw "えらんでください"
 	done
 
 Text00b3:
-	textfw0 "ポケモン"
-	hiragana "についている"
-	line ""
-	katakana "エネルギーカード "
-	hiragana "いちらん"
+	textfw "ポケモンについている"
+	linefw "エネルギーカード いちらん"
 	done
 
 Text00b4:
-	textfw0 "カード"
-	hiragana "を"
-	line ""
-	textfw0 "えらんでください"
+	textfw "カードを"
+	linefw "えらんでください"
 	done
 
 Text00b5:
-	textfw0 "ダメージカウンター"
-	hiragana "の のっている"
-	line ""
-	katakana "ポケモン"
-	hiragana "が いません"
+	textfw "ダメージカウンターの のっている"
+	linefw "ポケモンが いません"
 	done
 
 Text00b6:
-	textfw0 "ダメージカウンター"
-	hiragana "が のっていません"
+	textfw "ダメージカウンターが のっていません"
 	done
 
 Text00b7:
-	textfw0 "相手"
-	hiragana "の場の "
-	katakana "ポケモン"
-	hiragana "に"
-	line ""
-	katakana "エネルギー"
-	hiragana "が ついていません"
+	textfw "相手の場の ポケモンに"
+	linefw "エネルギーが ついていません"
 	done
 
 Text00b8:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	katakana "エネルギーカード"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "エネルギーカードが ありません"
 	done
 
 Text00b9:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	textfw0 "基本"
-	katakana "エネルギーカード"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "基本エネルギーカードが ありません"
 	done
 
 Text00ba:
-	textfw0 "山札"
-	hiragana "に "
-	katakana "カード"
-	hiragana "がありません"
+	textfw "山札に カードがありません"
 	done
 
 Text00bb:
-	textfw0 "ベンチ"
-	hiragana "に あきがありません"
+	textfw "ベンチに あきがありません"
 	done
 
 Text00bc:
-	textfw0 "進化"
-	hiragana "できる "
-	katakana "ポケモン"
-	hiragana "がいません"
+	textfw "進化できる ポケモンがいません"
 	done
 
 Text00bd:
-	hiragana "だした おなじ番には 進化できません"
+	textfw "だした おなじ番には 進化できません"
 	done
 
 Text00be:
-	textfw0 "「"
-	hiragana "どく・ねむり・"
-	katakana "マヒ・"
-	hiragana "こんらん」の"
-	line ""
-	textfw0 "特殊状態に なっていません"
+	textfw "「どく・ねむり・マヒ・こんらん」の"
+	linefw "特殊状態に なっていません"
 	done
 
 Text00bf:
-	textfw0 "手札"
-	hiragana "が たりません"
+	textfw "手札が たりません"
 	done
 
 Text00c0:
-	textfw0 "控"
-	hiragana "え"
-	katakana "ポケモン"
-	hiragana "が いません"
+	textfw "控えポケモンが いません"
 	done
 
 Text00c1:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	textfw0 "たね"
-	katakana "ポケモン"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "たねポケモンが ありません"
 	done
 
 Text00c2:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	katakana "ポケモン"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "ポケモンが ありません"
 	done
 
 Text00c3:
-	textfw0 "2進化ポケモン"
-	hiragana "に 進化させる"
-	line ""
-	textfw0 "じょうけんが そろっていません"
+	textfw "2進化ポケモンに 進化させる"
+	linefw "じょうけんが そろっていません"
 	done
 
 Text00c4:
-	textfw0 "手札"
-	hiragana "に 交"
-	textfw1 "換"
-	textfw0 "できる"
-	katakana "カード"
-	hiragana "がありません"
+	textfw "手札に 交換できるカードがありません"
 	done
 
 Text00c5:
-	textfw0 "トラッシュ"
-	hiragana "に "
-	katakana "カード"
-	hiragana "がありません"
+	textfw "トラッシュに カードがありません"
 	done
 
 Text00c6:
-	textfw0 "進化ポケモン"
-	hiragana "が 場にいません"
+	textfw "進化ポケモンが 場にいません"
 	done
 
 Text00c7:
-	textfw0 "自分"
-	hiragana "の場の "
-	katakana "ポケモン"
-	hiragana "に"
-	line ""
-	katakana "エネルギーカード"
-	hiragana "に ついていません"
+	textfw "自分の場の ポケモンに"
+	linefw "エネルギーカードに ついていません"
 	done
 
 Text00c8:
-	textfw0 "相手"
-	hiragana "の場の "
-	katakana "ポケモン"
-	hiragana "に"
-	line ""
-	katakana "エネルギーカード"
-	hiragana "が ついていません"
+	textfw "相手の場の ポケモンに"
+	linefw "エネルギーカードが ついていません"
 	done
 
 Text00c9:
-	hiragana "にげるためには"
-	line ""
-	katakana "エネルギー"
-	hiragana "が ", "<RAMNUM>"
-	katakana "コ"
-	hiragana "ひつようです"
+	textfw "にげるためには"
+	linefw "エネルギーが ", "<RAMNUM>", "コひつようです"
 	done
 
 Text00ca:
-	textfw0 "エネルギーカード"
-	hiragana "が たりません"
+	textfw "エネルギーカードが たりません"
 	done
 
 Text00cb:
-	textfw0 "「炎」エネルギー"
-	hiragana "が たりません"
+	textfw "「炎」エネルギーが たりません"
 	done
 
 Text00cc:
-	textfw0 "「超」エネルギー"
-	hiragana "が たりません"
+	textfw "「超」エネルギーが たりません"
 	done
 
 Text00cd:
-	textfw0 "「水」エネルギー"
-	hiragana "が たりません"
+	textfw "「水」エネルギーが たりません"
 	done
 
 Text00ce:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	katakana "トレーナーカード"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "トレーナーカードが ありません"
 	done
 
 Text00cf:
-	hiragana "せんたくできる"
-	katakana "ワザ"
-	hiragana "が ありません"
+	textfw "せんたくできるワザが ありません"
 	done
 
 Text00d0:
-	textfw0 "相手"
-	hiragana "の番に "
-	katakana "オウム"
-	hiragana "がえしできる"
-	line ""
-	katakana "ワザ"
-	hiragana "を うけていません"
+	textfw "相手の番に オウムがえしできる"
+	linefw "ワザを うけていません"
 	done
 
 Text00d1:
-	hiragana "すでに つかっているので"
-	line ""
-	textfw0 "つかえません"
+	textfw "すでに つかっているので"
+	linefw "つかえません"
 	done
 
 Text00d2:
-	textfw0 "「弱点」"
-	hiragana "が ありません"
+	textfw "「弱点」が ありません"
 	done
 
 Text00d3:
-	textfw0 "「抵抗力」"
-	hiragana "が ありません"
+	textfw "「抵抗力」が ありません"
 	done
 
 Text00d4:
-	textfw0 "[相手]"
-	hiragana "に「弱点」が ないので"
-	line ""
-	textfw0 "「弱点」の へんこうはできません"
+	textfw "[相手]", "に「弱点」が ないので"
+	linefw "「弱点」の へんこうはできません"
 	done
 
 Text00d5:
-	textfw0 "自分"
-	hiragana "の番に いちど だけです"
+	textfw "自分の番に いちど だけです"
 	done
 
 Text00d6:
-	textfw0 "「"
-	hiragana "ねむり・"
-	katakana "マヒ・"
-	hiragana "こんらん」の"
-	line ""
-	textfw0 "特殊状態のため つかえません"
+	textfw "「ねむり・マヒ・こんらん」の"
+	linefw "特殊状態のため つかえません"
 	done
 
 Text00d7:
-	textfw0 "場"
-	hiragana "にだした番には つかえません"
+	textfw "場にだした番には つかえません"
 	done
 
 Text00d8:
-	textfw0 "エネルギーカード"
-	hiragana "が ついていません"
+	textfw "エネルギーカードが ついていません"
 	done
 
 Text00d9:
-	textfw0 "「草」エネルギー"
-	hiragana "が ありません"
+	textfw "「草」エネルギーが ありません"
 	done
 
 Text00da:
-	textfw0 "1体"
-	hiragana "しかいないので つかえません"
+	textfw "1体しかいないので つかえません"
 	done
 
 Text00db:
-	textfw0 "「"
-	hiragana "きぜつ」してしまうので"
-	line ""
-	textfw0 "つかえません"
+	textfw "「きぜつ」してしまうので"
+	linefw "つかえません"
 	done
 
 Text00dc:
-	textfw0 "ベンチ"
-	hiragana "でしか つかえません"
+	textfw "ベンチでしか つかえません"
 	done
 
 Text00dd:
-	textfw0 "ベンチ"
-	hiragana "に 控え"
-	katakana "ポケモン"
-	hiragana "がいません"
+	textfw "ベンチに 控えポケモンがいません"
 	done
 
 Text00de:
-	textfw0 "[相手]"
-	hiragana "が"
-	line ""
-	textfw0 "「ねむり」状態に なってません"
+	textfw "[相手]", "が"
+	linefw "「ねむり」状態に なってません"
 	done
 
 Text00df:
-	textfw0 "「"
-	hiragana "かがくへんか"
-	katakana "ガス」"
-	hiragana "の効果で"
-	line ""
-	textfw0 "つかえない"
+	textfw "「かがくへんかガス」の効果で"
+	linefw "つかえない"
 	done
 
 Text00e0:
-	textfw0 "「ショックアイ」"
-	hiragana "の効果で"
-	line ""
-	textfw0 "つかえない"
+	textfw "「ショックアイ」の効果で"
+	linefw "つかえない"
 	done
 
 Text00e1:
-	textfw0 "[相手]"
-	hiragana "に 基本"
-	katakana "エネルギーカード"
-	hiragana "が"
-	line ""
-	textfw0 "ついていません"
+	textfw "[相手]", "に 基本エネルギーカードが"
+	linefw "ついていません"
 	done
 
 Text00e2:
-	textfw0 "トラッシュ"
-	hiragana "に"
-	line ""
-	textfw0 "特殊"
-	katakana "エネルギーカード"
-	hiragana "が ありません"
+	textfw "トラッシュに"
+	linefw "特殊エネルギーカードが ありません"
 	done
 
 Text00e3:
-	textfw0 "相手"
-	hiragana "の場の "
-	katakana "ポケモン"
-	hiragana "に"
-	line ""
-	textfw0 "基本"
-	katakana "エネルギー"
-	hiragana "が ついていません"
+	textfw "相手の場の ポケモンに"
+	linefw "基本エネルギーが ついていません"
 	done
 
 Text00e4:
-	textfw0 "自分"
-	hiragana "の場の "
-	katakana "ポケモン"
-	hiragana "に"
-	line ""
-	textfw0 "基本"
-	katakana "エネルギー"
-	hiragana "が ついていません"
+	textfw "自分の場の ポケモンに"
+	linefw "基本エネルギーが ついていません"
 	done
 
 Text00e5:
-	hiragana "この番では つかえません"
+	textfw "この番では つかえません"
 	done
 
 Text00e6:
-	textfw0 "「"
-	hiragana "ねむり」状態ではないため"
-	line ""
-	textfw0 "つかえません"
+	textfw "「ねむり」状態ではないため"
+	linefw "つかえません"
 	done
 
 Text00e7:
-	textfw0 "相手"
-	hiragana "に 手札がありません"
+	textfw "相手に 手札がありません"
 	done
 
 Text00e8:
-	textfw0 "トラッシュ"
-	hiragana "に 進化"
-	katakana "カード"
-	hiragana "が"
-	line ""
-	textfw0 "ありません"
+	textfw "トラッシュに 進化カードが"
+	linefw "ありません"
 	done
 
 Text00e9:
-	textfw0 "「"
-	hiragana "なにかの化"
-	textfw1 "石"
-	textfw0 "」から 進化した"
-	line ""
-	katakana "ポケモン"
-	hiragana "がいません"
+	textfw "「なにかの化石」から 進化した"
+	linefw "ポケモンがいません"
 	done
 
 Text00ea:
-	textfw0 "「"
-	hiragana "たべもの"
-	katakana "カウンター」"
-	hiragana "が"
-	line ""
-	textfw0 "2"
-	katakana "コ"
-	hiragana "のっているので つかえません"
+	textfw "「たべものカウンター」が"
+	linefw "2コのっているので つかえません"
 	done
 
 Text00eb:
-	textfw0 "進化"
-	hiragana "できません"
+	textfw "進化できません"
 	done
 
 Text00ec:
-	hiragana "つかえません"
+	textfw "つかえません"
 	done
 
 Text00ed:
-	textfw0 "手札"
-	hiragana "の"
-	katakana "エネルギーカード"
-	hiragana "が たりません"
+	textfw "手札のエネルギーカードが たりません"
 	done
 
 Text00ee:
-	textfw0 "相手"
-	hiragana "の場に 水"
-	katakana "エネルギー"
-	hiragana "がありません"
+	textfw "相手の場に 水エネルギーがありません"
 	done
 
 Text00ef:
-	hiragana "この"
-	katakana "ワザ"
-	hiragana "は つかえません"
+	textfw "このワザは つかえません"
 	done
 
 Text00f0:
-	textfw0 "通信エラー"
-	hiragana "が はっせいしました"
+	textfw "通信エラーが はっせいしました"
 	done
 
 Text00f1:
-	textfw0 "バックアップ"
-	hiragana "が こわれてます"
+	textfw "バックアップが こわれてます"
 	done
 
 Text00f2:
-	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
-	line ""
-	textfw0 "プリンター"
-	hiragana "が つながってません"
+	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	linefw "プリンターが つながってません"
 	done
 
 Text00f3:
-	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
-	line ""
-	textfw0 "プリンター"
-	hiragana "の電"
-	textfw2 "池"
-	textfw0 "が のこりわずかです"
+	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	linefw "プリンターの電池が のこりわずかです"
 	done
 
 Text00f4:
-	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
-	line ""
-	textfw0 "プリンター"
-	hiragana "の"
-	textfw2 "紙"
-	textfw0 "が つまっています"
+	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	linefw "プリンターの紙が つまっています"
 	done
 
 Text00f5:
-	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
-	line ""
-	textfw0 "プリンター"
-	hiragana "の"
-	katakana "エラー"
-	hiragana "です"
+	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	linefw "プリンターのエラーです"
 	done
 
 Text00f6:
-	textfw0 "エラー ", "<No>", "0", "<RAMNUM>"
-	line ""
-	textfw0 "プリンター"
-	hiragana "の"
-	katakana "パケットエラー"
-	hiragana "です"
+	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	linefw "プリンターのパケットエラーです"
 	done
 
 Text00f7:
-	textfw0 "プリント"
-	hiragana "が ちゅうだん されました"
+	textfw "プリントが ちゅうだん されました"
 	done
 
 Text00f8:
-	textfw0 "スーパーゲームボーイ"
-	hiragana "では"
-	line ""
-	textfw0 "「"
-	katakana "カードポン!」"
-	hiragana "は あそべません"
-	line ""
-	katakana "ゲームボーイ ゲームボーイカラー"
-	hiragana "で"
-	line ""
-	textfw0 "あそんでください"
+	textfw "スーパーゲームボーイでは"
+	linefw "「カードポン!」は あそべません"
+	linefw "ゲームボーイ ゲームボーイカラーで"
+	linefw "あそんでください"
 	done
 
 Text00f9:
-	textfw0 "  "
-	hiragana "この"
-	katakana "カートリッジ"
-	hiragana "は"
-	line ""
-	katakana "ゲームボーイカラー"
-	hiragana "せんようです"
-	line ""
-	textfw0 "  "
-	katakana "ゲームボーイカラー"
-	hiragana "で"
-	line ""
-	textfw0 "  しようしてください"
+	textfw "  このカートリッジは"
+	linefw "ゲームボーイカラーせんようです"
+	linefw "  ゲームボーイカラーで"
+	linefw "  しようしてください"
 	done
 
 Text00fa:
-	textfw0 "「"
-	hiragana "すなかけ」判定"
-	line ""
-	textfw0 "「うら」なら"
-	katakana "ワザ"
-	hiragana "は しっぱい"
+	textfw "「すなかけ」判定"
+	linefw "「うら」ならワザは しっぱい"
 	done
 
 Text00fb:
-	textfw0 "「"
-	hiragana "えんまく」判定"
-	line ""
-	textfw0 "「うら」なら"
-	katakana "ワザ"
-	hiragana "は しっぱい"
+	textfw "「えんまく」判定"
+	linefw "「うら」ならワザは しっぱい"
 	done
 
 Text00fc:
-	textfw0 "「サンダーフラッシュ」判定"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら"
-	katakana "ワザ"
-	hiragana "は しっぱい"
+	textfw "「サンダーフラッシュ」判定"
+	linefw "「うら」ならワザは しっぱい"
 	done
 
 Text00fd:
-	textfw0 "「マヒ」判定!"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "を「"
-	katakana "マヒ」"
+	textfw "「マヒ」判定!"
+	linefw "「おもて」なら", "[相手]", "を「マヒ」"
 	done
 
 Text00fe:
-	textfw0 "「"
-	hiragana "ねむり」判定!"
-	line ""
-	textfw0 "「おもて」なら", "[相手]", "を「ねむり」"
+	textfw "「ねむり」判定!"
+	linefw "「おもて」なら", "[相手]", "を「ねむり」"
 	done
 
 Text00ff:
-	textfw0 "「"
-	hiragana "どく」判定!"
-	line ""
-	textfw0 "「おもて」なら", "[相手]", "を「どく」"
+	textfw "「どく」判定!"
+	linefw "「おもて」なら", "[相手]", "を「どく」"
 	done
 
 Text0100:
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "を「どく」"
-	line ""
-	textfw0 "「うら」なら", "[相手]", "を「"
-	katakana "マヒ」"
+	textfw "「おもて」なら", "[相手]", "を「どく」"
+	linefw "「うら」なら", "[相手]", "を「マヒ」"
 	done
 
 Text0101:
-	textfw0 "「"
-	hiragana "おもて」なら20"
-	katakana "ダメージ"
-	hiragana "ついかと"
-	line ""
-	textfw0 "[相手]", "を「"
-	katakana "マヒ」"
+	textfw "「おもて」なら20ダメージついかと"
+	linefw "[相手]", "を「マヒ」"
 	done
 
 Text0102:
-	textfw0 "「"
-	hiragana "こんらん」判定!"
-	line ""
-	textfw0 "「おもて」なら", "[相手]", "を「こんらん」"
+	textfw "「こんらん」判定!"
+	linefw "「おもて」なら", "[相手]", "を「こんらん」"
 	done
 
 Text0103:
-	textfw0 "「"
-	hiragana "りんぷん」判定! 「おもて」なら"
-	line ""
-	textfw0 "[相手]", "を「どく」と「こんらん」"
+	textfw "「りんぷん」判定! 「おもて」なら"
+	linefw "[相手]", "を「どく」と「こんらん」"
 	done
 
 Text0104:
-	textfw0 "「"
-	hiragana "うら」なら"
-	line ""
-	textfw0 "[自分]", "は「こんらん」"
+	textfw "「うら」なら"
+	linefw "[自分]", "は「こんらん」"
 	done
 
 Text0105:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら "
-	katakana "ダメージ"
-	hiragana "なし!!"
+	textfw "ダメージ判定!"
+	linefw "「うら」なら ダメージなし!!"
 	done
 
 Text0106:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	textfw0 "山札から1枚"
-	katakana "カード"
-	hiragana "をひく!"
+	textfw "「おもて」なら"
+	linefw "山札から1枚カードをひく!"
 	done
 
 Text0107:
-	textfw0 "「"
-	hiragana "うら」が でるまで ふる"
-	line ""
-	textfw0 "「おもて」×10"
-	katakana "ダメージ!!"
+	textfw "「うら」が でるまで ふる"
+	linefw "「おもて」×10ダメージ!!"
 	done
 
 Text0108:
-	textfw0 "「"
-	hiragana "おもて」なら +10"
-	katakana "ダメージ!"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら", "[自分]", "に 10"
-	katakana "ダメージ!"
+	textfw "「おもて」なら +10ダメージ!"
+	linefw "「うら」なら", "[自分]", "に 10ダメージ!"
 	done
 
 Text0109:
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "の 「うら」なら"
-	line ""
-	textfw0 "自分の控え全員に 10"
-	katakana "ダメージ!"
+	textfw "「おもて」なら", "[相手]", "の 「うら」なら"
+	linefw "自分の控え全員に 10ダメージ!"
 	done
 
 Text010a:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	textfw0 "相手の対戦"
-	katakana "ポケモン"
-	hiragana "をいれかえる"
+	textfw "「おもて」なら"
+	linefw "相手の対戦ポケモンをいれかえる"
 	done
 
 Text010b:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	textfw0 "「"
-	katakana "ヒーリング」成"
-	textfw1 "功"
-	textfw0 "!!"
+	textfw "「おもて」なら"
+	linefw "「ヒーリング」成功!!"
 	done
 
 Text010c:
-	textfw0 "「"
-	hiragana "うら」なら"
-	line ""
-	textfw0 "[自分]", "にも ", "<RAMNUM>"
-	katakana "ダメージ!"
+	textfw "「うら」なら"
+	linefw "[自分]", "にも ", "<RAMNUM>", "ダメージ!"
 	done
 
 Text010d:
-	textfw0 "ワザ"
-	hiragana "の成"
-	textfw1 "功"
-	textfw0 "判定!"
-	line ""
-	textfw0 "「おもて」なら "
-	katakana "ワザ成"
-	textfw1 "功"
-	textfw0 "!!"
+	textfw "ワザの成功判定!"
+	linefw "「おもて」なら ワザ成功!!"
 	done
 
 Text010e:
-	textfw0 "トレーナーカード"
-	hiragana "の成"
-	textfw1 "功"
-	textfw0 "判定!"
-	line ""
-	textfw0 "「おもて」なら成"
-	textfw1 "功"
-	textfw0 "!"
+	textfw "トレーナーカードの成功判定!"
+	linefw "「おもて」なら成功!"
 	done
 
 Text010f:
-	textfw0 "枚数判定!"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」8枚!「うら」1枚!"
+	textfw "枚数判定!"
+	linefw "「おもて」8枚!「うら」1枚!"
 	done
 
 Text0110:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの相手の番に"
-	line ""
-	katakana "ダメージ"
-	hiragana "を うけなくなる!"
+	textfw "「おもて」なら つぎの相手の番に"
+	linefw "ダメージを うけなくなる!"
 	done
 
 Text0111:
-	textfw0 "ダメージ判定"
+	textfw "ダメージ判定"
 	done
 
 Text0112:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」なら+", "<RAMNUM>"
-	katakana "ダメージ!!"
+	textfw "ダメージ判定!"
+	linefw "「おもて」なら+", "<RAMNUM>", "ダメージ!!"
 	done
 
 Text0113:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」×", "<RAMNUM>"
-	katakana "ダメージ!!"
+	textfw "ダメージ判定!"
+	linefw "「おもて」×", "<RAMNUM>", "ダメージ!!"
 	done
 
 Text0114:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」×", "<RAMNUM>"
-	katakana "ダメージ追加!!"
+	textfw "ダメージ判定!"
+	linefw "「おもて」×", "<RAMNUM>", "ダメージ追加!!"
 	done
 
 Text0115:
-	textfw0 "「"
-	hiragana "ようかいえき」判定"
-	line ""
-	textfw0 "「おもて」ならつぎの番ににげられない"
+	textfw "「ようかいえき」判定"
+	linefw "「おもて」ならつぎの番ににげられない"
 	done
 
 Text0116:
-	textfw0 "「"
-	hiragana "とうめい」判定"
-	line ""
-	textfw0 "「おもて」なら "
-	katakana "ワザ"
-	hiragana "をうけない"
+	textfw "「とうめい」判定"
+	linefw "「おもて」なら ワザをうけない"
 	done
 
 Text0117:
-	textfw0 "「"
-	hiragana "こんらん」"
-	katakana "チェック"
-	hiragana "をします"
-	line ""
-	textfw0 "「うら」なら ", "[自分]", "に"
-	katakana "ダメージ"
+	textfw "「こんらん」チェックをします"
+	linefw "「うら」なら ", "[自分]", "にダメージ"
 	done
 
 Text0118:
-	textfw0 "「"
-	hiragana "こんらん」判定!"
-	line ""
-	textfw0 "「うら」なら にげられない"
+	textfw "「こんらん」判定!"
+	linefw "「うら」なら にげられない"
 	done
 
 Text0119:
-	textfw0 "<RAMTEXT>"
-	hiragana "の"
-	line ""
-	textfw0 "「ねむり」のけいぞく "
-	katakana "チェック!"
+	textfw "<RAMTEXT>", "の"
+	linefw "「ねむり」のけいぞく チェック!"
 	done
 
 Text011a:
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "を「どく」状態"
-	line ""
-	textfw0 "「うら」なら「こんらん」状態"
+	textfw "「おもて」なら", "[相手]", "を「どく」状態"
+	linefw "「うら」なら「こんらん」状態"
 	done
 
 Text011b:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの相手の番に"
-	line ""
-	katakana "ワザ"
-	hiragana "の"
-	katakana "ダメージ"
-	hiragana "と効果を うけない!"
+	textfw "「おもて」なら つぎの相手の番に"
+	linefw "ワザのダメージと効果を うけない!"
 	done
 
 Text011c:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの相手の番に"
-	line ""
-	textfw0 "[相手]", "は "
-	katakana "ワザ"
-	hiragana "をつかえない!"
+	textfw "「おもて」なら つぎの相手の番に"
+	linefw "[相手]", "は ワザをつかえない!"
 	done
 
 Text011d:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	textfw0 "「"
-	katakana "ファイナルビーム」成"
-	textfw1 "功"
-	textfw0 "!"
+	textfw "「おもて」なら"
+	linefw "「ファイナルビーム」成功!"
 	done
 
 Text011e:
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "を「うら」なら"
-	line ""
-	textfw0 "[自分]", "を「こんらん」状態"
+	textfw "「おもて」なら", "[相手]", "を「うら」なら"
+	linefw "[自分]", "を「こんらん」状態"
 	done
 
 Text011f:
-	textfw0 "「"
-	hiragana "おもて」なら", "[相手]", "を「うら」なら"
-	line ""
-	textfw0 "[自分]", "を「ねむり」状態"
+	textfw "「おもて」なら", "[相手]", "を「うら」なら"
+	linefw "[自分]", "を「ねむり」状態"
 	done
 
 Text0120:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "うら」×", "<RAMNUM>"
-	katakana "ダメージ!!"
+	textfw "ダメージ判定!"
+	linefw "「うら」×", "<RAMNUM>", "ダメージ!!"
 	done
 
 Text0121:
-	textfw0 "ダメージ判定!"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら+", "<RAMNUM>"
-	katakana "ダメージ!!"
+	textfw "ダメージ判定!"
+	linefw "「うら」なら+", "<RAMNUM>", "ダメージ!!"
 	done
 
 Text0122:
-	hiragana "おとしあな判定!"
-	line ""
-	textfw0 "「うら」なら 20"
-	katakana "ダメージ!!"
+	textfw "おとしあな判定!"
+	linefw "「うら」なら 20ダメージ!!"
 	done
 
 Text0123:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "を「こんらん」"
-	line ""
-	textfw0 "「うら」なら 「ねむり」状態"
+	textfw "「おもて」なら ", "[相手]", "を「こんらん」"
+	linefw "「うら」なら 「ねむり」状態"
 	done
 
 Text0124:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "を 「"
-	katakana "マヒ」"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら 「どく」状態"
+	textfw "「おもて」なら ", "[相手]", "を 「マヒ」"
+	linefw "「うら」なら 「どく」状態"
 	done
 
 Text0125:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "を「ねむり」"
-	line ""
-	textfw0 "「うら」なら 「こんらん」状態"
+	textfw "「おもて」なら ", "[相手]", "を「ねむり」"
+	linefw "「うら」なら 「こんらん」状態"
 	done
 
 Text0126:
-	textfw0 "「"
-	hiragana "うら」なら"
-	line ""
-	textfw0 "[自分]", "にも 40"
-	katakana "ダメージ!!"
+	textfw "「うら」なら"
+	linefw "[自分]", "にも 40ダメージ!!"
 	done
 
 Text0127:
-	textfw0 "「"
-	hiragana "うら」が でるまで ふる"
-	line ""
-	textfw0 "「おもて」×20"
-	katakana "ダメージ!!"
+	textfw "「うら」が でるまで ふる"
+	linefw "「おもて」×20ダメージ!!"
 	done
 
 Text0128:
-	textfw0 "「"
-	hiragana "おもて」なら "
-	katakana "エネルギーカード"
-	hiragana "を"
-	line ""
-	textfw0 "1枚"
-	katakana "トラッシュ!"
+	textfw "「おもて」なら エネルギーカードを"
+	linefw "1枚トラッシュ!"
 	done
 
 Text0129:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	textfw0 "[相手]", "は つぎの番に にげられない"
+	textfw "「おもて」なら"
+	linefw "[相手]", "は つぎの番に にげられない"
 	done
 
 Text012a:
-	textfw0 "「"
-	hiragana "おもて」なら"
-	line ""
-	katakana "ベンチ"
-	hiragana "の"
-	katakana "ポケモン"
-	hiragana "に 10"
-	katakana "ダメージ!"
+	textfw "「おもて」なら"
+	linefw "ベンチのポケモンに 10ダメージ!"
 	done
 
 Text012b:
-	textfw0 "「"
-	hiragana "うら」なら 自分の場の"
-	line ""
-	katakana "ポケモン"
-	hiragana "に 30"
-	katakana "ダメージ!"
+	textfw "「うら」なら 自分の場の"
+	linefw "ポケモンに 30ダメージ!"
 	done
 
 Text012c:
-	textfw0 "「"
-	hiragana "おもて」なら 20"
-	katakana "ダメージ"
-	hiragana "ついか"
-	line ""
-	textfw0 "「うら」なら ", "[自分]", "に20"
-	katakana "ダメージ"
+	textfw "「おもて」なら 20ダメージついか"
+	linefw "「うら」なら ", "[自分]", "に20ダメージ"
 	done
 
 Text012d:
-	textfw0 "「"
-	hiragana "うら」なら "
-	katakana "ダメージ無"
-	hiragana "しと"
-	line ""
-	textfw0 "[自分]", "に20"
-	katakana "ダメージ"
+	textfw "「うら」なら ダメージ無しと"
+	linefw "[自分]", "に20ダメージ"
 	done
 
 Text012e:
-	textfw0 "「ブリンク」判定"
-	line ""
-	textfw0 "「"
-	hiragana "おもて」なら "
-	katakana "ダメージ"
-	hiragana "をうけない"
+	textfw "「ブリンク」判定"
+	linefw "「おもて」なら ダメージをうけない"
 	done
 
 Text012f:
-	textfw0 "「"
-	hiragana "おもて」なら あいての場の"
-	line ""
-	katakana "ポケモン"
-	hiragana "に 20"
-	katakana "ダメージ!"
+	textfw "「おもて」なら あいての場の"
+	linefw "ポケモンに 20ダメージ!"
 	done
 
 Text0130:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの相手の番に"
-	line ""
-	katakana "ワザ"
-	hiragana "の"
-	katakana "ダメージ"
-	hiragana "を うけない!"
+	textfw "「おもて」なら つぎの相手の番に"
+	linefw "ワザのダメージを うけない!"
 	done
 
 Text0131:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "の"
-	line ""
-	katakana "エネルギーカード"
-	hiragana "を 1枚"
-	katakana "トラッシュ!"
+	textfw "「おもて」なら ", "[相手]", "の"
+	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
 Text0132:
-	textfw0 "「"
-	hiragana "うら」なら ", "[自分]", "の"
-	line ""
-	katakana "エネルギーカード"
-	hiragana "を 1枚"
-	katakana "トラッシュ!"
+	textfw "「うら」なら ", "[自分]", "の"
+	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
 Text0133:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "に30"
-	katakana "ダメージ"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら "
-	katakana "ベンチ"
-	hiragana "に10"
-	katakana "ダメージ"
+	textfw "「おもて」なら ", "[相手]", "に30ダメージ"
+	linefw "「うら」なら ベンチに10ダメージ"
 	done
 
 Text0134:
-	textfw0 "コイン"
-	hiragana "を 2枚なげて 1枚でも"
-	line ""
-	textfw0 "「うら」なら この"
-	katakana "ワザ"
-	hiragana "は しっぱい!"
+	textfw "コインを 2枚なげて 1枚でも"
+	linefw "「うら」なら このワザは しっぱい!"
 	done
 
 Text0135:
-	textfw0 "「"
-	hiragana "おもて」なら 10"
-	katakana "ダメージ"
-	hiragana "ついか"
-	line ""
-	textfw0 "「うら」なら ", "[相手]", "をいれかえる"
+	textfw "「おもて」なら 10ダメージついか"
+	linefw "「うら」なら ", "[相手]", "をいれかえる"
 	done
 
 Text0136:
-	textfw0 "「"
-	hiragana "おもて」の数だけ "
-	katakana "カード"
-	hiragana "をひく"
+	textfw "「おもて」の数だけ カードをひく"
 	done
 
 Text0137:
-	textfw0 "「"
-	hiragana "うら」がでるまで "
-	katakana "コイン"
-	hiragana "をなげて"
-	line ""
-	textfw0 "「おもて」の数だけ "
-	katakana "カード"
-	hiragana "をひく"
+	textfw "「うら」がでるまで コインをなげて"
+	linefw "「おもて」の数だけ カードをひく"
 	done
 
 Text0138:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの番「どつく」が"
-	line ""
-	textfw0 "2"
-	textfw1 "倍"
-	katakana "ダメージ 「"
-	hiragana "うら」ならつかえない"
+	textfw "「おもて」なら つぎの番「どつく」が"
+	linefw "2倍ダメージ 「うら」ならつかえない"
 	done
 
 Text0139:
-	textfw0 "「"
-	hiragana "おもて」なら ", "[相手]", "を「"
-	katakana "マヒ」"
-	line ""
-	textfw0 "「"
-	hiragana "うら」なら つぎの番つかえない"
+	textfw "「おもて」なら ", "[相手]", "を「マヒ」"
+	linefw "「うら」なら つぎの番つかえない"
 	done
 
 Text013a:
-	textfw0 "「"
-	hiragana "おもて」の数 ×10"
-	katakana "ダメージ"
-	hiragana "を"
-	line ""
-	textfw0 "自"
-	textfw1 "由"
-	textfw0 "に控え"
-	katakana "ポケモン"
-	hiragana "に わりふる"
+	textfw "「おもて」の数 ×10ダメージを"
+	linefw "自由に控えポケモンに わりふる"
 	done
 
 Text013b:
-	textfw0 "「"
-	hiragana "おもて」なら つぎの自分の番の"
-	line ""
-	textfw0 "はじめまで 毒"
-	katakana "ダメージ"
-	hiragana "が20になる"
+	textfw "「おもて」なら つぎの自分の番の"
+	linefw "はじめまで 毒ダメージが20になる"
 	done
 
 Text013c:
-	textfw0 "「"
-	hiragana "おもて」の数だけ"
-	line ""
-	textfw0 "「水」"
-	katakana "エネルギー"
-	hiragana "を はがす"
+	textfw "「おもて」の数だけ"
+	linefw "「水」エネルギーを はがす"
 	done
 
 Text013d:
-	textfw0 "「"
-	hiragana "おもて」なら 「なにかの化"
-	textfw1 "石"
-	textfw0 "」から"
-	line ""
-	textfw0 "進化した進化"
-	katakana "カード"
-	hiragana "を 手札にもどせる"
-	line ""
+	textfw "「おもて」なら 「なにかの化石」から"
+	linefw "進化した進化カードを 手札にもどせる"
+	linefw ""
 	done
