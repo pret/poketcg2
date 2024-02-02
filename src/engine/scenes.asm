@@ -57,43 +57,43 @@ _LoadScene::
 	ret
 
 SceneDataPointers:
-	dw .SceneSpecialRules      ; SCENE_SPECIAL_RULES
-	dw .SceneSlotMachine       ; SCENE_SLOT_MACHINE
-	dw .SceneBeginningPack     ; SCENE_BEGINNING_PACK
-	dw .SceneLegendaryPack     ; SCENE_LEGENDARY_PACK
-	dw .SceneFossilPack        ; SCENE_FOSSIL_PACK
-	dw .ScenePsychicPack       ; SCENE_PSYCHIC_PACK
-	dw .SceneFlyingPack        ; SCENE_FLYING_PACK
-	dw .SceneRocketPack        ; SCENE_ROCKET_PACK
-	dw .SceneAmbitionPack      ; SCENE_AMBITION_PACK
-	dw .ScenePresentPack       ; SCENE_PRESENT_PACK
-	dw .SceneIntroBaseSet      ; SCENE_INTRO_BASE_SET
-	dw .SceneIntroJungle       ; SCENE_INTRO_JUNGLE
-	dw .SceneIntroFossil       ; SCENE_INTRO_FOSSIL
-	dw .SceneIntroTeamRocket   ; SCENE_INTRO_TEAM_ROCKET
-	dw .SceneTournamentTable   ; SCENE_TOURNAMENT_TABLE
-	dw .SceneCardPopMenu       ; SCENE_CARD_POP_MENU
-	dw .SceneCardPop           ; SCENE_CARD_POP
-	dw .SceneCardPopError      ; SCENE_CARD_POP_ERROR
-	dw .SceneLink              ; SCENE_LINK
-	dw .SceneRareCardPop       ; SCENE_RARE_CARD_POP
-	dw .SceneRareCardPopError  ; SCENE_RARE_CARD_POP_ERRORR
-	dw .SceneBlackBox          ; SCENE_BLACK_BOX
-	dw .SceneTitleScreen1      ; SCENE_TITLE_SCREEN_1
-	dw .SceneTitleScreen2      ; SCENE_TITLE_SCREEN_2
-	dw .SceneTitleScreen3      ; SCENE_TITLE_SCREEN_3
-	dw .SceneTitleScreen4      ; SCENE_TITLE_SCREEN_4
-	dw .ScenePrinter1          ; SCENE_PRINTER_1
-	dw .ScenePrinter2          ; SCENE_PRINTER_2
-	dw .SceneFullMailbox       ; SCENE_FULL_MAILBOX
-	dw .SceneGotMail           ; SCENE_GOT_MAIL
-	dw .SceneMailbox           ; SCENE_MAILBOX
-	dw .SceneDeckDiagnosis     ; SCENE_DECK_DIAGNOSIS
-	dw .SceneLinkIntro1        ; SCENE_LINK_INTRO_1
-	dw .SceneLinkIntro2        ; SCENE_LINK_INTRO_2
-	dw .SceneCoinTossResult1   ; SCENE_COIN_TOSS_RESULT_1
-	dw .SceneCoinTossResult2   ; SCENE_COIN_TOSS_RESULT_2
-	dw .SceneGBCOnlyDisclaimer ; SCENE_GBC_ONLY_DISCLAIMER
+	dw .SceneSpecialRules        ; SCENE_SPECIAL_RULES
+	dw .SceneSlotMachine         ; SCENE_SLOT_MACHINE
+	dw .SceneBeginningPack       ; SCENE_BEGINNING_PACK
+	dw .SceneLegendaryPack       ; SCENE_LEGENDARY_PACK
+	dw .SceneFossilPack          ; SCENE_FOSSIL_PACK
+	dw .ScenePsychicPack         ; SCENE_PSYCHIC_PACK
+	dw .SceneFlyingPack          ; SCENE_FLYING_PACK
+	dw .SceneRocketPack          ; SCENE_ROCKET_PACK
+	dw .SceneAmbitionPack        ; SCENE_AMBITION_PACK
+	dw .ScenePresentPack         ; SCENE_PRESENT_PACK
+	dw .SceneIntroBaseSet        ; SCENE_INTRO_BASE_SET
+	dw .SceneIntroJungle         ; SCENE_INTRO_JUNGLE
+	dw .SceneIntroFossil         ; SCENE_INTRO_FOSSIL
+	dw .SceneIntroTeamRocket     ; SCENE_INTRO_TEAM_ROCKET
+	dw .SceneTournamentTable     ; SCENE_TOURNAMENT_TABLE
+	dw .SceneCardPopMenu         ; SCENE_CARD_POP_MENU
+	dw .SceneCardPop             ; SCENE_CARD_POP
+	dw .SceneCardPopError        ; SCENE_CARD_POP_ERROR
+	dw .SceneLink                ; SCENE_LINK
+	dw .SceneRareCardPop         ; SCENE_RARE_CARD_POP
+	dw .SceneRareCardPopError    ; SCENE_RARE_CARD_POP_ERRORR
+	dw .SceneBlackBox            ; SCENE_BLACK_BOX
+	dw .SceneTitleScreen1        ; SCENE_TITLE_SCREEN_1
+	dw .SceneTitleScreen2        ; SCENE_TITLE_SCREEN_2
+	dw .SceneTitleScreen3        ; SCENE_TITLE_SCREEN_3
+	dw .SceneTitleScreen4        ; SCENE_TITLE_SCREEN_4
+	dw .ScenePrinterTransmitting ; SCENE_GAMEBOY_PRINTER_TRANSMITTING
+	dw .ScenePrinterNotConnected ; SCENE_GAMEBOY_PRINTER_NOT_CONNECTED
+	dw .SceneFullMailbox         ; SCENE_FULL_MAILBOX
+	dw .SceneGotMail             ; SCENE_GOT_MAIL
+	dw .SceneMailbox             ; SCENE_MAILBOX
+	dw .SceneDeckDiagnosis       ; SCENE_DECK_DIAGNOSIS
+	dw .SceneLinkIntro1          ; SCENE_LINK_INTRO_1
+	dw .SceneLinkIntro2          ; SCENE_LINK_INTRO_2
+	dw .SceneCoinTossResult1     ; SCENE_COIN_TOSS_RESULT_1
+	dw .SceneCoinTossResult2     ; SCENE_COIN_TOSS_RESULT_2
+	dw .SceneGBCOnlyDisclaimer   ; SCENE_GBC_ONLY_DISCLAIMER
 
 .SceneSpecialRules
 	dw TILESET_SPECIAL_RULES
@@ -299,7 +299,7 @@ SceneDataPointers:
 	dw PALETTE_173
 	db $ff, $ff ; end
 
-.ScenePrinter1
+.ScenePrinterTransmitting
 	dw TILESET_PRINTER_SCENE
 	dw PALETTE_179
 	dw TILEMAP_22F
@@ -311,7 +311,7 @@ SceneDataPointers:
 	dw PALETTE_17A
 	db $ff, $ff ; end
 
-.ScenePrinter2
+.ScenePrinterNotConnected
 	dw TILESET_PRINTER_SCENE
 	dw PALETTE_179
 	dw TILEMAP_22F

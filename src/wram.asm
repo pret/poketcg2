@@ -8,7 +8,7 @@ SECTION "WRAM0", WRAM0
 UNION
 
 wTempCardCollection:: ; c000
-	ds $100
+	ds CARD_COLLECTION_SIZE
 
 NEXTU
 
@@ -32,8 +32,6 @@ wDecompressionSecondaryBufferStart:: ; c0ef
 	ds $11
 
 ENDU
-
-	ds $100
 
 SECTION "WRAM0 Duels 1", WRAM0
 
@@ -299,6 +297,50 @@ wSerialRecvBuf:: ; cb9f
 
 wSerialEnd:: ; cbbf
 
+	ds $1
+
+; When we're viewing a card's information, the page we are currently at.
+; For Pokemon cards, values from $1 to $6 (two pages for attack descriptions)
+; For Energy cards, it's always $9
+; For Trainer cards, $d or $e (two pages for trainer card descriptions)
+; see CARDPAGE_* constants
+wCardPageNumber:: ; cbc0
+	ds $1
+
+	ds $1
+
+; selects a PLAY_AREA_* slot in order to display information related to it. used by functions
+; such as PrintPlayAreaCardLocation, PrintPlayAreaCardInformation and PrintPlayAreaCardHeader
+wCurPlayAreaSlot:: ; cbc2
+
+; X position to display the attached energies, HP bar, and Pluspower/Defender icons
+; obviously different for player and opponent side. used by DrawDuelHUD.
+wHUDEnergyAndHPBarsX:: ; cbc2
+	ds $1
+
+; current Y coordinate where some play area information is being printed at. used by functions
+; such as PrintPlayAreaCardLocation, PrintPlayAreaCardInformation and PrintPlayAreaCardHeader
+wCurPlayAreaY:: ; cbc3
+
+; current Y coordinate where some play area information is being printed at. used by functions
+; such as PrintPlayAreaCardLocation, PrintPlayAreaCardInformation and PrintPlayAreaCardHeader
+wHUDEnergyAndHPBarsY:: ; cbc3
+	ds $1
+
+	ds $6
+
+; CARDPAGETYPE_PLAY_AREA or CARDPAGETYPE_NOT_PLAY_AREA
+; some of the elements displayed in a card page change depending on which value
+wCardPageType:: ; cbca
+	ds $1
+
+	ds $5
+
+; when viewing a card page, which keys (among B_BUTTON, D_UP, and D_DOWN) will exit the page,
+; either to go back to the previous menu or list, or to load the card page of the card above/below it
+wCardPageExitKeys:: ; cbd0
+	ds $1
+
 SECTION "WRAM0 Duels 2", WRAM0
 
 wOppRNG1:: ; cbda
@@ -318,7 +360,16 @@ wDuelReturnAddress:: ; cbdd
 wTempSerialBuf:: ; cbe2
 	ds $8
 
-SECTION "WRAM0 Duels 2@cc01", WRAM0
+	ds $13
+
+wcbfd:: ; cbfd
+	ds $1
+
+	ds $2
+
+; current duel is a [wDuelInitialPrizes]-prize match
+wDuelInitialPrizes:: ; cc00
+	ds $1
 
 wcc01:: ; cc01
 	ds $1
@@ -327,11 +378,16 @@ wcc01:: ; cc01
 wDuelType:: ; cc02
 	ds $1
 
-	ds $6
+	ds $3
+
+wGoopGasAttackActive:: ; cc06
+	ds $1
+
+	ds $2
 
 ; this holds the current opponent's deck minus 2 (that is, a *_DECK_ID constant),
 ; in order to account for the two unused pointers at the beginning of DeckPointers.
-wOpponentDeckID:: ; cc0e
+wOpponentDeckID:: ; cc09
 	ds $1
 
 	ds $1
@@ -353,7 +409,8 @@ wPlayerAttackingCardID:: ; cc0d
 wIsPracticeDuel:: ; cc0f
 	ds $1
 
-wcc10:: ; cc10
+; index of special rules for this duel
+wSpecialRule:: ; cc10
 	ds $1
 
 	ds $1
@@ -616,8 +673,6 @@ wCardPalettes:: ; cd7a
 wCardAttrMap:: ; cd92
 	ds $30
 
-SECTION "WRAM0 2@cdc2", WRAM0
-
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.
 ; supports up to four nested texts (used with TX_RAM).
@@ -678,39 +733,30 @@ wcde5:: ; cde5
 wCoinTossScreenTextID:: ; cde7
 	ds $2
 
-wce63:: ; cde9
+; which routine in ExecutePrinterPacketSequence to run
+wPrinterPacketSequence:: ; cde9
 	ds $1
 
-wce64:: ; cdea
-	ds $1
+wPrinterPacket:: ; cdea
 
-wce65:: ; cdeb
-	ds $1
+wPrinterPacketPreamble::
+	ds $2
 
-wce66:: ; cdec
-	ds $1
+wPrinterPacketInstructions:: ; cdec
+	ds $2
 
-wce67:: ; cded
-	ds $1
-
-wce68:: ; cdee
-	ds $1
-
-wce69:: ; cdef
-	ds $1
+wPrinterPacketDataSize:: ; cdee
+	ds $2
 
 ; pointer to memory of data to send
 ; in the data packet to the printer
 wPrinterPacketDataPtr:: ; cdf0
 	ds $2
 
-wce6c:: ; cdf2
-	ds $1
+wPrinterPacketChecksum:: ; cdf2
+	ds $2
 
-wce6d:: ; cdf3
-	ds $1
-
-wce6e:: ; cdf4
+wSerialTransferData:: ; cdf4
 	ds $1
 
 wPrinterStatus:: ; cdf5
@@ -721,7 +767,77 @@ wPrinterStatus:: ; cdf5
 wSerialDataPtr:: ; cdf6
 	ds $2
 
-	ds $55
+	ds $10
+
+wTempCardID_ce08:: ; ce08
+	ds $2
+
+	ds $2
+
+wce0c:: ; ce0c
+	ds $1
+
+	ds $1
+
+wVBlankFunctionTrampolineBackup:: ; ce0e
+	ds $2
+
+wTempPrinterSRAM:: ; ce10
+	ds $1
+
+wPrinterHorizontalOffset:: ; ce11
+	ds $1
+
+; the count of some card ID in the deck to be printed
+wPrinterCardCount:: ; ce12
+	ds $1
+
+; total card count of list to be printed
+wPrinterTotalCardCount:: ; ce13
+	ds $2
+
+wCurPrinterCardType:: ; ce15
+	ds $1
+
+; total card count of the current card type
+; in list to be printed
+wPrinterCurCardTypeCount:: ; ce16
+	ds $2
+
+wPrinterNumCardTypes:: ; ce18
+	ds $2
+
+; related to printer functions
+; only written to but never read
+wce98:: ; ce1a
+	ds $1
+
+wPrinterContrastLevel:: ; ce1b
+	ds $1
+
+	ds $1
+
+wPrinterNumberLineFeeds:: ; ce1d
+	ds $1
+
+wPrintOnlyStarRarity:: ; ce1e
+	ds $1
+
+; only used in unreferenced function Func_1a14b
+; otherwise unused
+wce9d:: ; ce1f
+	ds $1
+
+wPrinterInitAttempts:: ; ce20
+	ds $1
+
+wce9f:: ; ce21
+	ds $1
+
+	ds $2a
+
+wce4c:: ; ce4c
+	ds $1
 
 wWRAMBank:: ; ce4d
 	ds $1
@@ -766,7 +882,7 @@ wCursorYPosition:: ; d00e
 wYDisplacementBetweenMenuItems:: ; d00f
 	ds $1
 
-wNumMenuItems:: ; d010
+wNumScrollMenuItems:: ; d010
 	ds $1
 
 wCursorTile:: ; d011
@@ -828,7 +944,17 @@ wCheckMenuPlayAreaWhichDuelist:: ; d0bf
 wCheckMenuPlayAreaWhichLayout:: ; d0c0
 	ds $1
 
-	ds $7
+wd0c1:: ; d0c1
+	ds $1
+
+; pointer to transition table data
+wTransitionTablePtr:: ; d0c2
+	ds $2
+
+wd0c4:: ; d0c4
+	ds $1
+
+	ds $3
 
 ; number of prize cards still to be
 ; picked by the player
@@ -842,31 +968,251 @@ wNumberOfPrizeCardsToSelect:: ; d0c8
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
-SECTION "WRAM1@d0e3", WRAMX
+wd0d0:: ; d0d0
+	ds $1
 
+; GLOSSARY_* constant
+wGlossaryMenu:: ; d0d1
+	ds $1
+
+wd0d2:: ; d0d2
+	ds $1
+
+SECTION "WRAM1@d0e1", WRAMX
+
+wScrollMenuScrollOffset:: ; d0e1
+	ds $1
+
+	ds $1
+
+wScrollMenuCursorBlinkCounter:: ; d0e3
 wNamingScreenCursorBlinkCounter:: ; d0e3
 	ds $1
+
+; used to temporarily store wCurCardTypeFilter
+; to check whether a new filter is to be applied
+wTempCardTypeFilter:: ; d0e4
+
+wCurScrollMenuItem:: ; d0e4
 
 wNamingScreenCursorY:: ; d0e4
 	ds $1
 
-	ds $4
+wMenuParams::
 
+wMenuCursorXOffset:: ; d0e5
+	ds $1
+
+wMenuCursorYOffset:: ; d0e6
+	ds $1
+
+wMenuYSeparation:: ; d0e7
+	ds $1
+
+wMenuXSeparation:: ; d0e8
+	ds $1
+
+wNumMenuItems:: ; d0e9
 wNamingScreenNumRows:: ; d0e9
 	ds $1
 
-wVisibleCursorTile:: ; d0ea
+wMenuVisibleCursorTile:: ; d0ea
 	ds $1
 
-wInvisibleCursorTile:: ; d0eb
+wMenuInvisibleCursorTile:: ; d0eb
 	ds $1
 
-SECTION "WRAM1@d393", WRAMX
+; if non-NULL, the function loaded here is called once per frame by HandleMenuInput
+wMenuUpdateFunc:: ; d0ec
+	ds $2
 
-wNamingScreenInputSFX:: ; d393
+wMenuParamsEnd::
+
+; number of cards that are listed
+; in the current filtered list
+wNumEntriesInCurFilter::
+
+wBoosterPackCardListSize:: ; d0ee
 	ds $1
 
-	ds $3
+	ds $2
+
+; deck selected by the player in the Decks screen
+wCurDeck:: ; d0f1
+	ds $1
+
+	ds $4
+
+; holds symbols for representing a number in decimal
+; goes up in magnitude (first byte is ones place,
+; second byte is tens place, etc) up to 5 digits
+wDecimalDigitsSymbols:: ; d0f6
+	ds $5
+
+UNION
+
+; each of these stores the card count
+; of each filter in the deck building screen
+; the order follows CardTypeFilters
+wCardFilterCounts:: ; d0fb
+	ds NUM_FILTERS
+
+NEXTU
+
+; represents which Booster Packs have been
+; collected by the player in the Card Album
+; - $0 is obtained
+; - non-$0 is not obtained yet
+wBoosterPackItems:: ; d0fb
+	ds NUM_CARD_SETS
+
+ENDU
+
+; buffer used to show which card IDs
+; are visible in a given list
+wVisibleListCardIDs:: ; d104
+	ds $e
+
+; number of visible entries
+; when showing a list of cards
+wNumVisibleCardListEntries:: ; d112
+	ds $1
+
+wTotalCardCount:: ; d113
+	ds $1
+
+; is TRUE if list cannot be scrolled down
+; past the last visible entry
+wUnableToScrollDown:: ; d114
+	ds $1
+
+wScrollMenuScrollFunc:: ; d115
+	ds $2
+
+; holds y and x coordinates (in that order)
+; of start of card list (top-left corner)
+wCardListCoords:: ; d117
+	ds $2
+
+wd119:: ; d119
+	ds $1
+
+; the current filter being used
+; from the CardTypeFilters list
+wCurCardTypeFilter:: ; d11a
+	ds $1
+
+; temporarily stores wCurMenuItem value
+wTempCurMenuItem:: ; d11b
+	ds $1
+
+	ds $2
+
+wced7:: ; d11e
+	ds $1
+
+	ds $1
+
+; stores how many different cards there are in a deck
+wNumUniqueCards:: ; d120
+	ds $1
+
+wd121:: ; d121
+	ds $1
+
+; cards that belong to a Booster Pack
+; for showing in the Card Album
+wBoosterPackCardList:: ; d122
+
+; temporary card list for multiple purposes
+wTempCardList:: ; d122
+	ds 2 * 80
+
+	ds $2
+
+; holds cards for the current deck
+wCurDeckCards:: ; d1c4
+	ds $a2
+
+; list of all the different cards in a deck configuration
+wUniqueDeckCardList:: ; d266
+
+; stores the count number of cards owned
+; can be 0 in the case that a card is not available
+; i.e. already inside a built deck
+wOwnedCardsCountList::
+
+wBoosterPackCardCounts:: ; d266
+	ds $51
+
+	ds $29
+
+; name of the selected deck
+wCurDeckName:: ; d2e0
+
+wBoosterPackCardListPrefixBuffer:: ; d2e0
+	ds DECK_NAME_SIZE
+
+	ds $6
+
+wTempSavedDeckCards:: ; d2fe
+	ds 2 * DECK_SIZE
+
+SECTION "WRAM1@d380", WRAMX
+
+; max number of cards that are allowed
+; to include when building a deck configuration
+wMaxNumCardsAllowed:: ; d380
+	ds $1
+
+wd381:: ; d381
+	ds $1
+
+; max number of cards with same name that are allowed
+; to be included when building a deck configuration
+wSameNameCardsLimit:: ; d382
+	ds $1
+
+	ds $5
+
+wCurCardListPtr:: ; d388
+	ds $1
+
+	ds $5
+
+; the tile to draw in place of the cursor, in case
+; the cursor is not to be drawn
+wCursorAlternateTile:: ; d38e
+	ds $1
+
+wTempScrollMenuNumVisibleItems:: ; d38f
+	ds $1
+
+; which Booster Pack was selected
+; in the Card Album menu
+wCardAlbumBoosterPack:: ; d390
+	ds $1
+
+wBoosterPackCardListNumItems:: ; d391
+	ds $1
+
+
+wOwnedPhantomCards:: ; d392
+	ds $1
+
+; value containing a SFX to play
+; due to a menu input
+wMenuInputSFX:: ; d393
+	ds $1
+
+wSelectedPrinterMenuItem:: ; d394
+	ds $1
+
+wFirstOwnedCardIndex:: ; d395
+	ds $1
+
+wNumCardListEntries:: ; d396
+	ds $1
 
 wNamingScreenBuffer:: ; d397
 	ds NAMING_SCREEN_BUFFER_LENGTH
@@ -903,6 +1249,53 @@ wNamingScreenMode:: ; d3eb
 wd3ef:: ; d3ef
 	ds $1
 
+	ds $26
+
+; pointers to all decks of current deck machine
+wMachineDeckPtrs:: ; d416
+	ds 2 * NUM_DECK_SAVE_MACHINE_SLOTS
+
+wNumSavedDecks:: ; d47a
+	ds $1
+
+wTempScrollMenuItem:: ; d47b
+	ds $1
+
+wTempScrollMenuScrollOffset:: ; d47c
+	ds $1
+
+; which list entry was selected in the Deck Machine screen
+wSelectedDeckMachineEntry:: ; d47d
+	ds $1
+
+	ds $19
+
+wDeckMachineTitleText:: ; d497
+	ds $2
+
+wNumDeckMachineEntries:: ; d499
+	ds $1
+
+	ds $1
+
+wd49b:: ; d49b
+	ds $1
+
+; text ID to print in the text box when
+; inside the Deck Machine menu
+wDeckMachineText:: ; d49c
+	ds $2
+
+wd49e:: ; d49e
+	ds $1
+
+wd49f:: ; d49f
+	ds $1
+
+SECTION "WRAM1@d4c8", WRAMX
+
+wd4c8:: ; d4c8
+	ds $80
 
 SECTION "WRAM1@d54c", WRAMX
 
@@ -1355,7 +1748,7 @@ wTextBoxFrameColor:: ; d9d6
 
 	ds $5
 
-wd9dc:: ; d9dc
+wPCMenuCursorPosition:: ; d9dc
 	ds $1
 
 ; $0 = no fading
@@ -1800,6 +2193,16 @@ wde64:: ; de64
 wde69:: ; de69
 	ds $2
 
+SECTION "WRAM2", WRAMX
+
+wScratchCardCollection:: ; d000
+	ds CARD_COLLECTION_SIZE
+
+SECTION "WRAM2@d58e", WRAMX
+
+w2d58e:: ; d58e
+	ds $80
+
 SECTION "WRAM3", WRAMX
 
 w3d000:: ; d000
@@ -1810,13 +2213,17 @@ w3d000:: ; d000
 w3d400:: ; d400
 	ds $1
 
+; pointers to BG map
 w3d401:: ; d401
-	ds $1
-
-	ds $13
+	ds 2 * 10
 
 w3d415:: ; d415
 	ds $1
+
+	ds $b0
+
+w3d4c6:: ; d4c6
+	ds $415
 
 SECTION "WRAM7 Audio", WRAMX
 

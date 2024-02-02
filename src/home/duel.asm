@@ -54,7 +54,7 @@ CopyDeckData:
 	ret
 
 ; return, in register a, the amount of prizes that the turn holder has not yet drawn
-CountPrizes:
+CountPrizes::
 	push hl
 	ld a, DUELVARS_PRIZES
 	get_turn_duelist_var
@@ -223,19 +223,14 @@ Func_0ffa:
 	push de
 	ld c, a
 	call GetCardIDFromDeckIndex
-	ld a, d
-	cp HIGH(RECYCLE_ENERGY)
-	jr nz, .asm_1008
-	ld a, e
-	cp LOW(RECYCLE_ENERGY)
-.asm_1008
+	cp16 RECYCLE_ENERGY
 	ld a, c
 	pop de
 	pop bc
 	jr nz, PutCardInDiscardPile
 	push bc
 	ld c, a
-	ld a, [wcc10]
+	ld a, [wSpecialRule]
 	cp $0a
 	ld a, c
 	pop bc
@@ -490,7 +485,7 @@ ShuffleCards:
 
 ; returns, in register de, the id of the card with the deck index (0-59) specified by register a
 ; preserves af and hl
-GetCardIDFromDeckIndex:
+GetCardIDFromDeckIndex::
 	push af
 	push hl
 	call _GetCardIDFromDeckIndex
@@ -584,7 +579,7 @@ _GetCardIDFromDeckIndex:
 	ret
 
 ; load data of card with deck index a (0-59) to wLoadedCard1
-LoadCardDataToBuffer1_FromDeckIndex:
+LoadCardDataToBuffer1_FromDeckIndex::
 	push hl
 	push de
 	push bc
@@ -600,7 +595,7 @@ LoadCardDataToBuffer1_FromDeckIndex:
 	ret
 
 ; load data of card with deck index a (0-59) to wLoadedCard2
-LoadCardDataToBuffer2_FromDeckIndex:
+LoadCardDataToBuffer2_FromDeckIndex::
 	push hl
 	push de
 	push bc
@@ -888,7 +883,7 @@ PutHandCardInPlayArea:
 	ret
 
 Func_12fc:
-	ld a, [wcc10]
+	ld a, [wSpecialRule]
 	cp $08
 	jr nz, MovePlayAreaCardToDiscardPile
 	call EmptyPlayAreaSlot
@@ -1086,7 +1081,7 @@ SwapPlayAreaPokemon:
 ; or a Pokemon card in the bench, depending on the value of register e.
 ; input: e = location to check, i.e. PLAY_AREA_*
 ; Feedback is returned in wAttachedEnergies and wTotalAttachedEnergies.
-GetPlayAreaCardAttachedEnergies:
+GetPlayAreaCardAttachedEnergies::
 	push hl
 	push de
 	push bc
@@ -1206,7 +1201,7 @@ GetTurnDuelistVariable:
 
 ; returns [([hWhoseTurn] ^ $1) << 8 + a] in a and in [hl]
 ; i.e. duelvar a of the player whose turn it is not
-GetNonTurnDuelistVariable:
+GetNonTurnDuelistVariable::
 	ld l, a
 	ldh a, [hWhoseTurn]
 	ld h, OPPONENT_TURN
@@ -1720,7 +1715,7 @@ ApplyDamageModifiers_DamageToTarget:
 	and b
 	jr z, .check_pluspower_and_defender ; jump if not resistant
 	ld hl, -30
-	ld a, [wcc10]
+	ld a, [wSpecialRule]
 	cp $07
 	jr nz, .asm_1801
 	ld hl, -10
@@ -2044,7 +2039,7 @@ DealDamageToPlayAreaPokemon:
 	ret
 
 Func_1bb4:
-	call $3c55 ; Func_3c55
+	call FinishQueuedAnimations
 	bank1call $4cd7 ; DrawDuelMainScene
 	bank1call $4d82 ; DrawDuelHUDs
 	xor a
@@ -2174,7 +2169,7 @@ CheckLoadedAttackFlag:
 ;   As a side effect, this also returns a duelist variable in a similar manner to
 ;   GetNonTurnDuelistVariable, but this function appears to be
 ;   only called to swap the turn value.
-SwapTurn:
+SwapTurn::
 	push af
 	push hl
 	call GetNonTurnDuelistVariable
@@ -2185,7 +2180,7 @@ SwapTurn:
 	ret
 
 ; copy the TX_END-terminated player's name from sPlayerName to de
-CopyPlayerName:
+CopyPlayerName::
 	call EnableSRAM
 	ld hl, sPlayerName
 .loop

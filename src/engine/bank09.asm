@@ -62,6 +62,35 @@ ClearSavedDuel:
 	ret
 ; 0x240e6
 
+SECTION "Bank 9@425e", ROMX[$425e], BANK[$9]
+
+DrawDuelHorizontalSeparator:
+	ld hl, .LineSeparatorTileData
+	call WriteDataBlocksToBGMap0
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	ret nz
+	call BankswitchVRAM1
+	ld hl, .LineSeparatorAttributeData
+	call WriteDataBlocksToBGMap0
+	call BankswitchVRAM0
+	ret
+
+.LineSeparatorTileData:
+	db 0, 4, $34, $34, $34, $34, $34, $34, $34, $34, $34, $31, $32, 0
+	db 9, 5, $33, $33, 0
+	db 9, 6, $33, $33, 0
+	db 9, 7, $32, $31, $34, $34, $34, $34, $34, $34, $34, $34, $34, 0
+	db $ff ; end
+
+.LineSeparatorAttributeData:
+	db 0, 4, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, 0
+	db 9, 5, $01, $21, 0
+	db 9, 6, $01, $21, 0
+	db 9, 7, $61, $61, $01, $01, $01, $01, $01, $01, $01, $01, $01, 0
+	db $ff ; end
+; 0x242c5
+
 SECTION "Bank 9@5934", ROMX[$5934], BANK[$9]
 
 ; a = deck ID
@@ -97,7 +126,7 @@ LoadDeckIDData:
 	ld a, [hli]
 	ld [wcc15], a
 	ld a, [hli]
-	ld [wcc10], a
+	ld [wSpecialRule], a
 	ld a, [hli]
 	ld [wcd0e], a
 	ld a, [hli]
@@ -115,7 +144,7 @@ DeckIDData:
 	tx Text04d5 ; opponent name
 	db $05 ; ?
 	db $02 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -126,7 +155,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -137,7 +166,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -148,7 +177,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -159,7 +188,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -170,7 +199,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -181,7 +210,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -192,7 +221,7 @@ DeckIDData:
 	tx Text04d5 ; opponent name
 	db $05 ; ?
 	db $02 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -203,7 +232,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -214,7 +243,7 @@ DeckIDData:
 	tx Text0432 ; opponent name
 	db $06 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -225,7 +254,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -236,7 +265,7 @@ DeckIDData:
 	tx Text0432 ; opponent name
 	db $06 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -247,7 +276,7 @@ DeckIDData:
 	tx Text04f6 ; opponent name
 	db $00 ; ?
 	db $00 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $00 ; ?
 	db $00 ; ?
@@ -258,7 +287,7 @@ DeckIDData:
 	tx Text0432 ; opponent name
 	db $06 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -269,7 +298,7 @@ DeckIDData:
 	tx Text0432 ; opponent name
 	db $06 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -280,7 +309,7 @@ DeckIDData:
 	tx Text0432 ; opponent name
 	db $06 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $12 ; ?
@@ -291,7 +320,7 @@ DeckIDData:
 	tx Text04a3 ; opponent name
 	db $0a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $09 ; ?
@@ -302,7 +331,7 @@ DeckIDData:
 	tx Text04a3 ; opponent name
 	db $0a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $09 ; ?
@@ -313,7 +342,7 @@ DeckIDData:
 	tx Text04a0 ; opponent name
 	db $0c ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $01 ; ?
@@ -324,7 +353,7 @@ DeckIDData:
 	tx Text04a0 ; opponent name
 	db $0c ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $01 ; ?
@@ -335,7 +364,7 @@ DeckIDData:
 	tx Text04e4 ; opponent name
 	db $0b ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $01 ; ?
@@ -346,7 +375,7 @@ DeckIDData:
 	tx Text04aa ; opponent name
 	db $0d ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $01 ; ?
@@ -357,7 +386,7 @@ DeckIDData:
 	tx Text04d4 ; opponent name
 	db $0e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0a ; ?
@@ -368,7 +397,7 @@ DeckIDData:
 	tx Text04d4 ; opponent name
 	db $0e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0a ; ?
@@ -379,7 +408,7 @@ DeckIDData:
 	tx Text04ec ; opponent name
 	db $0f ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $02 ; ?
@@ -390,7 +419,7 @@ DeckIDData:
 	tx Text04bd ; opponent name
 	db $11 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $02 ; ?
@@ -401,7 +430,7 @@ DeckIDData:
 	tx Text0491 ; opponent name
 	db $10 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $02 ; ?
@@ -412,7 +441,7 @@ DeckIDData:
 	tx Text0493 ; opponent name
 	db $12 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0b ; ?
@@ -423,7 +452,7 @@ DeckIDData:
 	tx Text04de ; opponent name
 	db $13 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $03 ; ?
@@ -434,7 +463,7 @@ DeckIDData:
 	tx Text04b8 ; opponent name
 	db $14 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $03 ; ?
@@ -445,7 +474,7 @@ DeckIDData:
 	tx Text049c ; opponent name
 	db $15 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $03 ; ?
@@ -456,7 +485,7 @@ DeckIDData:
 	tx Text04e0 ; opponent name
 	db $16 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0c ; ?
@@ -467,7 +496,7 @@ DeckIDData:
 	tx Text04ce ; opponent name
 	db $17 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $04 ; ?
@@ -478,7 +507,7 @@ DeckIDData:
 	tx Text04ce ; opponent name
 	db $17 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $04 ; ?
@@ -489,7 +518,7 @@ DeckIDData:
 	tx Text04a5 ; opponent name
 	db $18 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $04 ; ?
@@ -500,7 +529,7 @@ DeckIDData:
 	tx Text04b5 ; opponent name
 	db $19 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $04 ; ?
@@ -511,7 +540,7 @@ DeckIDData:
 	tx Text0489 ; opponent name
 	db $1a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0d ; ?
@@ -522,7 +551,7 @@ DeckIDData:
 	tx Text0475 ; opponent name
 	db $1b ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $05 ; ?
@@ -533,7 +562,7 @@ DeckIDData:
 	tx Text0475 ; opponent name
 	db $1b ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $05 ; ?
@@ -544,7 +573,7 @@ DeckIDData:
 	tx Text04b9 ; opponent name
 	db $1c ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $05 ; ?
@@ -555,7 +584,7 @@ DeckIDData:
 	tx Text04d7 ; opponent name
 	db $1d ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $05 ; ?
@@ -566,7 +595,7 @@ DeckIDData:
 	tx Text048a ; opponent name
 	db $1e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0e ; ?
@@ -577,7 +606,7 @@ DeckIDData:
 	tx Text04df ; opponent name
 	db $20 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $06 ; ?
@@ -588,7 +617,7 @@ DeckIDData:
 	tx Text04a1 ; opponent name
 	db $1f ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $06 ; ?
@@ -599,7 +628,7 @@ DeckIDData:
 	tx Text04cc ; opponent name
 	db $21 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $06 ; ?
@@ -610,7 +639,7 @@ DeckIDData:
 	tx Text047d ; opponent name
 	db $22 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $0f ; ?
@@ -621,7 +650,7 @@ DeckIDData:
 	tx Text049a ; opponent name
 	db $23 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $07 ; ?
@@ -632,7 +661,7 @@ DeckIDData:
 	tx Text049a ; opponent name
 	db $23 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $07 ; ?
@@ -643,7 +672,7 @@ DeckIDData:
 	tx Text04d3 ; opponent name
 	db $24 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $07 ; ?
@@ -654,7 +683,7 @@ DeckIDData:
 	tx Text04dc ; opponent name
 	db $25 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $07 ; ?
@@ -665,7 +694,7 @@ DeckIDData:
 	tx Text0474 ; opponent name
 	db $26 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $10 ; ?
@@ -676,7 +705,7 @@ DeckIDData:
 	tx Text04a2 ; opponent name
 	db $27 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $08 ; ?
@@ -687,7 +716,7 @@ DeckIDData:
 	tx Text04cd ; opponent name
 	db $29 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $08 ; ?
@@ -698,7 +727,7 @@ DeckIDData:
 	tx Text04f5 ; opponent name
 	db $28 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $08 ; ?
@@ -709,7 +738,7 @@ DeckIDData:
 	tx Text042a ; opponent name
 	db $3e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $16 ; ?
@@ -720,7 +749,7 @@ DeckIDData:
 	tx Text0427 ; opponent name
 	db $3b ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $16 ; ?
@@ -731,7 +760,7 @@ DeckIDData:
 	tx Text0428 ; opponent name
 	db $3c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $16 ; ?
@@ -742,7 +771,7 @@ DeckIDData:
 	tx Text0429 ; opponent name
 	db $3d ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $16 ; ?
@@ -753,7 +782,7 @@ DeckIDData:
 	tx Text04be ; opponent name
 	db $2a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $04 ; ?
 	db $11 ; ?
@@ -764,7 +793,7 @@ DeckIDData:
 	tx Text049e ; opponent name
 	db $2b ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $04 ; ?
 	db $11 ; ?
@@ -775,7 +804,7 @@ DeckIDData:
 	tx Text0482 ; opponent name
 	db $2c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $04 ; ?
 	db $11 ; ?
@@ -786,7 +815,7 @@ DeckIDData:
 	tx Text04ed ; opponent name
 	db $2d ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $04 ; ?
 	db $11 ; ?
@@ -797,7 +826,7 @@ DeckIDData:
 	tx Text04d8 ; opponent name
 	db $3f ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $17 ; ?
@@ -808,7 +837,7 @@ DeckIDData:
 	tx Text04e3 ; opponent name
 	db $40 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $17 ; ?
@@ -819,7 +848,7 @@ DeckIDData:
 	tx Text04da ; opponent name
 	db $41 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $01 ; ?
 	db $1f ; ?
 	db $17 ; ?
@@ -830,7 +859,7 @@ DeckIDData:
 	tx Text04dd ; opponent name
 	db $42 ; ?
 	db $06 ; ?
-	db $01 ; ?
+	db $01 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $1d ; ?
@@ -841,7 +870,7 @@ DeckIDData:
 	tx Text04a4 ; opponent name
 	db $46 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $26 ; ?
@@ -852,7 +881,7 @@ DeckIDData:
 	tx Text04f2 ; opponent name
 	db $43 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $07 ; ?
 	db $1f ; ?
 	db $18 ; ?
@@ -863,7 +892,7 @@ DeckIDData:
 	tx Text0479 ; opponent name
 	db $44 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $02 ; ?
 	db $1f ; ?
 	db $18 ; ?
@@ -874,7 +903,7 @@ DeckIDData:
 	tx Text0487 ; opponent name
 	db $45 ; ?
 	db $06 ; ?
-	db $02 ; ?
+	db $02 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $1e ; ?
@@ -885,7 +914,7 @@ DeckIDData:
 	tx Text049b ; opponent name
 	db $47 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $19 ; ?
@@ -896,7 +925,7 @@ DeckIDData:
 	tx Text04e2 ; opponent name
 	db $48 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $03 ; ?
 	db $1f ; ?
 	db $19 ; ?
@@ -907,7 +936,7 @@ DeckIDData:
 	tx Text0499 ; opponent name
 	db $49 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $08 ; ?
 	db $1f ; ?
 	db $19 ; ?
@@ -918,7 +947,7 @@ DeckIDData:
 	tx Text04bc ; opponent name
 	db $4a ; ?
 	db $06 ; ?
-	db $03 ; ?
+	db $03 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $1f ; ?
@@ -929,7 +958,7 @@ DeckIDData:
 	tx Text04d9 ; opponent name
 	db $4b ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $04 ; ?
 	db $1f ; ?
 	db $1a ; ?
@@ -940,7 +969,7 @@ DeckIDData:
 	tx Text049f ; opponent name
 	db $4c ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $09 ; ?
 	db $1f ; ?
 	db $1a ; ?
@@ -951,7 +980,7 @@ DeckIDData:
 	tx Text0473 ; opponent name
 	db $4d ; ?
 	db $04 ; ?
-	db $04 ; ?
+	db $04 ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $1a ; ?
@@ -962,7 +991,7 @@ DeckIDData:
 	tx Text0483 ; opponent name
 	db $4e ; ?
 	db $06 ; ?
-	db $05 ; ?
+	db $05 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $20 ; ?
@@ -973,7 +1002,7 @@ DeckIDData:
 	tx Text0494 ; opponent name
 	db $4f ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0c ; ?
 	db $1f ; ?
 	db $1b ; ?
@@ -984,7 +1013,7 @@ DeckIDData:
 	tx Text048c ; opponent name
 	db $50 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $05 ; ?
 	db $1f ; ?
 	db $1b ; ?
@@ -995,7 +1024,7 @@ DeckIDData:
 	tx Text0485 ; opponent name
 	db $51 ; ?
 	db $06 ; ?
-	db $06 ; ?
+	db $06 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $21 ; ?
@@ -1006,7 +1035,7 @@ DeckIDData:
 	tx Text04db ; opponent name
 	db $52 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $06 ; ?
 	db $1f ; ?
 	db $1c ; ?
@@ -1017,7 +1046,7 @@ DeckIDData:
 	tx Text0492 ; opponent name
 	db $53 ; ?
 	db $04 ; ?
-	db $07 ; ?
+	db $07 ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $1c ; ?
@@ -1028,7 +1057,7 @@ DeckIDData:
 	tx Text04e5 ; opponent name
 	db $54 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0a ; ?
 	db $1f ; ?
 	db $1c ; ?
@@ -1039,7 +1068,7 @@ DeckIDData:
 	tx Text04ee ; opponent name
 	db $55 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0d ; ?
 	db $1f ; ?
 	db $1c ; ?
@@ -1050,7 +1079,7 @@ DeckIDData:
 	tx Text04d2 ; opponent name
 	db $56 ; ?
 	db $06 ; ?
-	db $08 ; ?
+	db $08 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $22 ; ?
@@ -1061,7 +1090,7 @@ DeckIDData:
 	tx Text04b6 ; opponent name
 	db $57 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0e ; ?
 	db $20 ; ?
 	db $23 ; ?
@@ -1072,7 +1101,7 @@ DeckIDData:
 	tx Text0478 ; opponent name
 	db $58 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0f ; ?
 	db $20 ; ?
 	db $23 ; ?
@@ -1083,7 +1112,7 @@ DeckIDData:
 	tx Text0497 ; opponent name
 	db $59 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $10 ; ?
 	db $20 ; ?
 	db $23 ; ?
@@ -1094,7 +1123,7 @@ DeckIDData:
 	tx Text042d ; opponent name
 	db $07 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $23 ; ?
 	db $14 ; ?
@@ -1105,7 +1134,7 @@ DeckIDData:
 	tx Text0486 ; opponent name
 	db $5a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $0b ; ?
 	db $20 ; ?
 	db $24 ; ?
@@ -1116,7 +1145,7 @@ DeckIDData:
 	tx Text04f0 ; opponent name
 	db $5b ; ?
 	db $06 ; ?
-	db $09 ; ?
+	db $09 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $24 ; ?
@@ -1127,7 +1156,7 @@ DeckIDData:
 	tx Text04f0 ; opponent name
 	db $5b ; ?
 	db $06 ; ?
-	db $0a ; ?
+	db $0a ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $24 ; ?
@@ -1138,7 +1167,7 @@ DeckIDData:
 	tx Text04f0 ; opponent name
 	db $5b ; ?
 	db $06 ; ?
-	db $07 ; ?
+	db $07 ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $24 ; ?
@@ -1149,7 +1178,7 @@ DeckIDData:
 	tx Text04c2 ; opponent name
 	db $5c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $21 ; ?
 	db $25 ; ?
@@ -1160,7 +1189,7 @@ DeckIDData:
 	tx Text04c2 ; opponent name
 	db $5c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $21 ; ?
 	db $25 ; ?
@@ -1171,7 +1200,7 @@ DeckIDData:
 	tx Text04c2 ; opponent name
 	db $5c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $21 ; ?
 	db $25 ; ?
@@ -1182,7 +1211,7 @@ DeckIDData:
 	tx Text04c2 ; opponent name
 	db $5c ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $21 ; ?
 	db $25 ; ?
@@ -1193,7 +1222,7 @@ DeckIDData:
 	tx Text04c8 ; opponent name
 	db $36 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $02 ; ?
 	db $27 ; ?
@@ -1204,7 +1233,7 @@ DeckIDData:
 	tx Text04b4 ; opponent name
 	db $37 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $03 ; ?
 	db $27 ; ?
@@ -1215,7 +1244,7 @@ DeckIDData:
 	tx Text04bf ; opponent name
 	db $38 ; ?
 	db $04 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $27 ; ?
@@ -1226,7 +1255,7 @@ DeckIDData:
 	tx Text04ef ; opponent name
 	db $39 ; ?
 	db $05 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $1f ; ?
 	db $27 ; ?
@@ -1237,7 +1266,7 @@ DeckIDData:
 	tx Text0488 ; opponent name
 	db $3a ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $27 ; ?
@@ -1248,7 +1277,7 @@ DeckIDData:
 	tx Text047a ; opponent name
 	db $08 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $10 ; ?
 	db $13 ; ?
@@ -1259,7 +1288,7 @@ DeckIDData:
 	tx Text047a ; opponent name
 	db $09 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $24 ; ?
 	db $13 ; ?
@@ -1270,7 +1299,7 @@ DeckIDData:
 	tx Text04e6 ; opponent name
 	db $04 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $0f ; ?
 	db $15 ; ?
@@ -1281,7 +1310,7 @@ DeckIDData:
 	tx Text042b ; opponent name
 	db $5d ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $0f ; ?
 	db $16 ; ?
@@ -1292,7 +1321,7 @@ DeckIDData:
 	tx Text04e6 ; opponent name
 	db $04 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $0f ; ?
 	db $15 ; ?
@@ -1303,7 +1332,7 @@ DeckIDData:
 	tx Text04e6 ; opponent name
 	db $04 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $0f ; ?
 	db $15 ; ?
@@ -1314,7 +1343,7 @@ DeckIDData:
 	tx Text04e6 ; opponent name
 	db $04 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $0f ; ?
 	db $15 ; ?
@@ -1325,7 +1354,7 @@ DeckIDData:
 	tx Text047f ; opponent name
 	db $2e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1336,7 +1365,7 @@ DeckIDData:
 	tx Text04cf ; opponent name
 	db $2f ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1347,7 +1376,7 @@ DeckIDData:
 	tx Text04e1 ; opponent name
 	db $30 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1358,7 +1387,7 @@ DeckIDData:
 	tx Text04ab ; opponent name
 	db $31 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1369,7 +1398,7 @@ DeckIDData:
 	tx Text04c3 ; opponent name
 	db $32 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1380,7 +1409,7 @@ DeckIDData:
 	tx Text0476 ; opponent name
 	db $33 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1391,7 +1420,7 @@ DeckIDData:
 	tx Text04a9 ; opponent name
 	db $34 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1402,7 +1431,7 @@ DeckIDData:
 	tx Text04d0 ; opponent name
 	db $35 ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?
@@ -1413,7 +1442,7 @@ DeckIDData:
 	tx Text04ac ; opponent name
 	db $5e ; ?
 	db $06 ; ?
-	db $00 ; ?
+	db NO_RULES ; special duel rules
 	db $00 ; ?
 	db $20 ; ?
 	db $28 ; ?

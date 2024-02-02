@@ -436,7 +436,7 @@ Func_32d8::
 
 Func_32f6::
 	ldh a, [hKeysHeld]
-	and D_RIGHT | D_LEFT | D_UP | D_DOWN
+	and D_PAD
 	jr z, .set_carry
 	ld b, NORTH
 	bit D_UP_F, a
@@ -852,7 +852,7 @@ CallMappedFunction::
 .loop_entries
 	ld a, [hli]
 	cp $ff
-	jr z, .set_carry
+	jr z, .not_found
 	cp c
 	jr nz, .next
 	ldh a, [hBankROM]
@@ -880,7 +880,7 @@ CallMappedFunction::
 	inc hl
 	jr .loop_entries
 
-.set_carry
+.not_found
 	scf
 	ret
 
@@ -2236,26 +2236,26 @@ Func_3c3d::
 
 Func_3c42::
 	push af
-	call Func_3c55
-	farcall $7, $5fb9
+	call FinishQueuedAnimations
+	farcall Func_1dfb9
 	farcall Func_110b9
 	ld a, $01
-	ld [$dc57], a
+	ld [wdc57], a
 	pop af
 	ret
 
-Func_3c55::
+FinishQueuedAnimations::
 	push af
-	ld a, [$dc57]
+	ld a, [wdc57]
 	and a
 	jr z, .asm_3c60
 	farcall Func_110c2
 .asm_3c60
 	xor a
-	ld [$dc57], a
-	ld [$dc5e], a
-	ld [$dc5f], a
-	farcall $7, $5fb9
+	ld [wdc57], a
+	ld [wdc5e + 0], a
+	ld [wdc5e + 1], a
+	farcall Func_1dfb9
 	pop af
 	ret
 
@@ -2348,14 +2348,14 @@ SetNoMusic::
 	pop af
 	ret
 
-Func_3cfe::
+CallPlaySFX::
 	call PlaySFX
 	ret
 
 Func_3d02::
 	push af
 	xor a
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	ret
 
@@ -2603,7 +2603,11 @@ Func_3e54::
 	farcall Func_10d40
 	ret
 
-Func_3e5d::
+; input
+; a = scene ID (SCENE_* constant)
+; b = base X position in tiles
+; c = base Y position in tiles
+EmptyScreenAndLoadScene::
 	push af
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call EmptyScreen

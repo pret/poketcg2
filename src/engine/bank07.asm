@@ -1195,7 +1195,38 @@ SetAllOBPaletteFadeConfigsToEnabled:
 	ret
 ; 0x1cac3
 
-SECTION "Bank 7@4b00", ROMX[$4b00], BANK[$7]
+SECTION "Bank 7@4acf", ROMX[$4acf], BANK[$7]
+
+Func_1cacf:
+	push af
+	push bc
+	push de
+	ld a, [wMenuBoxX]
+	ld d, a
+	ld a, [wMenuBoxY]
+	ld e, a
+	ld a, [wMenuBoxWidth]
+	ld b, a
+	ld a, [wMenuBoxHeight]
+	ld c, a
+	farcall Func_10abf
+	call DoFrame
+	farcall Func_10342
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1caf1:
+	push af
+	push bc
+	push de
+	farcall Func_103b6
+	farcall Func_10b18
+	pop de
+	pop bc
+	pop af
+	ret
 
 ; a = default cursor position
 DrawMenuBox:
@@ -1283,6 +1314,11 @@ DrawMenuBox:
 	pop af
 	ret
 
+; handles player input inside a menu box
+; that was initialized with LoadMenuBoxParams
+; returns carry if a selection was made
+; input:
+; a = default cursor position
 HandleMenuBox:
 	push bc
 	push de
@@ -1350,12 +1386,12 @@ HandleMenuBox:
 	ld b, a
 	ld a, c
 	sub b
-	jr nc, .asm_1cbf6
+	jr nc, .no_overflow_1
 	add h ; warp around
-.asm_1cbf6
+.no_overflow_1
 	push af
 	ld a, SFX_01
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	call .UnfocusItem
 	ld c, a
@@ -1374,12 +1410,12 @@ HandleMenuBox:
 	ld a, c
 	add b
 	cp h
-	jr c, .asm_1cc17
+	jr c, .no_overflow_2
 	sub h ; warp around
-.asm_1cc17
+.no_overflow_2
 	push af
 	ld a, SFX_01
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	call .UnfocusItem
 	ld c, a
@@ -1395,12 +1431,12 @@ HandleMenuBox:
 	ld b, a
 	ld a, c
 	sub b
-	jr nc, .asm_1cc33
+	jr nc, .no_overflow_3
 	add h
-.asm_1cc33
+.no_overflow_3
 	push af
 	ld a, SFX_01
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	call .UnfocusItem
 	ld c, a
@@ -1417,12 +1453,12 @@ HandleMenuBox:
 	ld a, c
 	add b
 	cp h
-	jr c, .asm_1cc50
+	jr c, .no_overflow_4
 	sub h
-.asm_1cc50
+.no_overflow_4
 	push af
 	ld a, SFX_01
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	call .UnfocusItem
 	ld c, a
@@ -1901,13 +1937,13 @@ HandleStartMenuBox:
 	jr c, .selected
 	push af
 	ld a, SFX_02
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	ret
 .selected
 	push af
 	ld a, SFX_03
-	call Func_3cfe
+	call CallPlaySFX
 	pop af
 	ret
 
@@ -2242,7 +2278,7 @@ Func_1dcb7:
 
 SECTION "Bank 7@5fb9", ROMX[$5fb9], BANK[$7]
 
-Func_1dfb9:
+Func_1dfb9::
 	push af
 	push bc
 	push de

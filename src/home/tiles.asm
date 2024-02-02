@@ -82,15 +82,17 @@ LoadDuelDrawCardsScreenTiles::
 	ld b, $08
 	jp CopyFontsOrDuelGraphicsTiles
 
-Func_1da5::
+; load the face down basic / stage1 / stage2 card images shown in the check Pokemon screens
+LoadDuelFaceDownCardTiles::
 	ld b, $10
-	jr Func_1da9.asm_1dab
+	jr LoadDuelCheckPokemonScreenTiles.got_num_tiles
 
-Func_1da9::
+; same as LoadDuelFaceDownCardTiles, plus also load the ACT / BPx tiles
+LoadDuelCheckPokemonScreenTiles::
 	ld b, $24
 ;	fallthrough
 
-.asm_1dab
+.got_num_tiles
 	ld hl, $4000
 	ld de, v0Tiles1 + $50 tiles
 	call CopyFontsOrDuelGraphicsTiles

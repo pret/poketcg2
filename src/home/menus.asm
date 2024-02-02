@@ -10,7 +10,7 @@ InitializeCardListParameters::
 	ld a, e
 	ld [wCurMenuItem], a
 	add d
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	ld a, [hli]
 	ld [wCursorXPosition], a
 	ld a, [hli]
@@ -20,7 +20,7 @@ InitializeCardListParameters::
 	ld a, [hli]
 	ld [wListItemNameMaxLength], a
 	ld a, [hli]
-	ld [wNumMenuItems], a
+	ld [wNumScrollMenuItems], a
 	ld a, [hli]
 	ld [wCursorTile], a
 	ld a, [hli]
@@ -46,18 +46,18 @@ HandleCardListInput::
 	ld d, a
 	ld a, [wCurMenuItem]
 	ld e, a
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	scf
 	ret
 
 ; initializes parameters for a menu, given the 8 bytes starting at hl,
 ; which are loaded to the following addresses:
-;	wCursorXPosition, wCursorYPosition, wYDisplacementBetweenMenuItems, wNumMenuItems,
+;	wCursorXPosition, wCursorYPosition, wYDisplacementBetweenMenuItems, wNumScrollMenuItems,
 ;	wCursorTile, wTileBehindCursor, wMenuFunctionPointer.
 ; also sets the current menu item (wCurMenuItem) to the one specified in register a.
 InitializeMenuParameters::
 	ld [wCurMenuItem], a
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	ld de, wCursorXPosition
 	ld b, wMenuFunctionPointer + $2 - wCursorXPosition
 .loop
@@ -80,7 +80,7 @@ HandleMenuInput::
 	or a
 	jr z, .up_down_done
 	ld b, a
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	ld c, a
 	ld a, [wCurMenuItem]
 	bit D_UP_F, b
@@ -88,7 +88,7 @@ HandleMenuInput::
 	dec a
 	bit 7, a
 	jr z, .handle_up_or_down
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	dec a ; wrapping around, so load the bottommost item
 	jr .handle_up_or_down
 .not_up
@@ -109,7 +109,7 @@ HandleMenuInput::
 	ld [wCursorBlinkCounter], a
 .up_down_done
 	ld a, [wCurMenuItem]
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	ld hl, wMenuFunctionPointer ; call the function if non-0 (periodically)
 	ld a, [hli]
 	or [hl]
@@ -117,7 +117,7 @@ HandleMenuInput::
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	call CallHL
 	jr nc, RefreshMenuCursor_CheckPlaySFX
 .A_pressed_draw_cursor
@@ -126,7 +126,7 @@ HandleMenuInput::
 	call PlayOpenOrExitScreenSFX
 	ld a, [wCurMenuItem]
 	ld e, a
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	scf
 	ret
 .check_A_or_B
@@ -139,16 +139,16 @@ HandleMenuInput::
 	ld a, [wCurMenuItem]
 	ld e, a
 	ld a, $ff
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	call PlayOpenOrExitScreenSFX
 	scf
 	ret
 
-; plays an "open screen" sound (SFX_02) if [hCurMenuItem] != 0xff
-; plays an "exit screen" sound (SFX_03) if [hCurMenuItem] == 0xff
+; plays an "open screen" sound (SFX_02) if [hCurScrollMenuItem] != 0xff
+; plays an "exit screen" sound (SFX_03) if [hCurScrollMenuItem] == 0xff
 PlayOpenOrExitScreenSFX::
 	push af
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	inc a
 	jr z, .play_exit_sfx
 	ld a, SFX_02
@@ -214,10 +214,10 @@ DrawCursor2::
 	ld a, [wCursorTile]
 	jr DrawCursor
 
-; set wCurMenuItem, and hCurMenuItem to a, and zero wCursorBlinkCounter
+; set wCurMenuItem, and hCurScrollMenuItem to a, and zero wCursorBlinkCounter
 SetMenuItem::
 	ld [wCurMenuItem], a
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	xor a
 	ld [wCursorBlinkCounter], a
 	ret
@@ -263,7 +263,7 @@ HandleDuelMenuInput::
 	call .erase_cursor
 	pop af
 	ld [wCurMenuItem], a
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	xor a
 	ld [wCursorBlinkCounter], a
 	jr .blink_cursor
@@ -345,14 +345,14 @@ ReloadCardListItems::
 	call WriteByteToBGMap0
 	ld e, SYM_SPACE
 	ld a, [wListScrollOffset]
-	ld hl, wNumMenuItems
+	ld hl, wNumScrollMenuItems
 	add [hl]
 	ld hl, wNumListItems
 	cp [hl]
 	jr nc, .cant_go_down
 	ld e, SYM_CURSOR_D
 .cant_go_down
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	add a
 	add c
 	dec a
@@ -364,7 +364,7 @@ ReloadCardListItems::
 	ld d, $00
 	ld hl, wDuelTempList
 	add hl, de
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	ld b, a
 	ld a, [wListItemXPosition]
 	ld d, a
@@ -404,10 +404,10 @@ ReloadCardListItems::
 ; reload a list of cards, except don't print their names
 Func_2827::
 	ld a, $01
-	ldh [hffb0], a
+	ldh [hffbb], a
 	call ReloadCardListItems
 	xor a
-	ldh [hffb0], a
+	ldh [hffbb], a
 	ret
 
 ; convert the number at a to TX_SYMBOL text format and write it to wDefaultText
@@ -429,7 +429,7 @@ OneByteNumberToTxSymbol_TrimLeadingZerosAndAlign::
 CardListMenuFunction::
 	ldh a, [hDPadHeld]
 	ld b, a
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	dec a
 	ld c, a
 	ld a, [wCurMenuItem]
@@ -484,7 +484,7 @@ CardListMenuFunction::
 	ld a, [wListScrollOffset]
 	or a
 	jr z, .continue
-	ld hl, wNumMenuItems
+	ld hl, wNumScrollMenuItems
 	sub [hl]
 	jr c, .top_of_page_reached
 	ld [wListScrollOffset], a
@@ -496,7 +496,7 @@ CardListMenuFunction::
 	ld hl, wCurMenuItem
 	add [hl]
 	ld c, a
-	ld hl, wNumMenuItems
+	ld hl, wNumScrollMenuItems
 	sub [hl]
 	jr nc, .asm_28c4
 	add [hl]
@@ -510,12 +510,12 @@ CardListMenuFunction::
 .not_left
 	bit D_RIGHT_F, b
 	jr z, .continue
-	ld a, [wNumMenuItems]
+	ld a, [wNumScrollMenuItems]
 	ld hl, wNumListItems
 	cp [hl]
 	jr nc, .continue
 	ld a, [wListScrollOffset]
-	ld hl, wNumMenuItems
+	ld hl, wNumScrollMenuItems
 	add [hl]
 	ld c, a
 	add [hl]
@@ -534,7 +534,7 @@ CardListMenuFunction::
 	add [hl]
 	ld c, a
 	ld a, [wNumListItems]
-	ld hl, wNumMenuItems
+	ld hl, wNumScrollMenuItems
 	sub [hl]
 	ld [wListScrollOffset], a
 	ld b, a
@@ -549,13 +549,13 @@ CardListMenuFunction::
 	ld a, [wListScrollOffset]
 	ld hl, wCurMenuItem
 	add [hl]
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	ld a, [wCardListIndicatorYPosition]
 	cp $ff
 	jr z, .skip_printing_indicator
 	; print <sel_item>/<num_items>
 	ld c, a
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	inc a
 	call OneByteNumberToTxSymbol_TrimLeadingZeros
 	ld b, 14
@@ -577,7 +577,7 @@ CardListMenuFunction::
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	ldh a, [hCurMenuItem]
+	ldh a, [hCurScrollMenuItem]
 	jp hl ; execute the function at wListFunctionPointer
 .no_list_function
 	ldh a, [hKeysPressed]
@@ -589,7 +589,7 @@ CardListMenuFunction::
 	ret
 .pressed_b
 	ld a, $ff
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	scf
 	ret
 
@@ -811,7 +811,7 @@ SetCursorParametersForTextBox::
 	inc hl
 	ld [hl], 0 ; wYDisplacementBetweenMenuItems
 	inc hl
-	ld [hl], 1 ; wNumMenuItems
+	ld [hl], 1 ; wNumScrollMenuItems
 	inc hl
 	ld [hl], b ; wCursorTile
 	inc hl
@@ -1031,7 +1031,7 @@ HandleYesOrNoMenu::
 	jr .wait_button_loop
 .a_pressed
 	ld a, [wCurMenuItem]
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	or a
 	jr nz, .no
 ;.yes
@@ -1041,7 +1041,7 @@ HandleYesOrNoMenu::
 	xor a
 	ld [wDefaultYesOrNo], a ; 0
 	ld a, 1
-	ldh [hCurMenuItem], a
+	ldh [hCurScrollMenuItem], a
 	scf
 	ret
 

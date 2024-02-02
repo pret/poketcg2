@@ -168,7 +168,7 @@ DrawRegularTextBox::
 	jr z, DrawRegularTextBoxCGB
 ;	fallthrough
 
-DrawRegularTextBoxDMG:
+DrawRegularTextBoxDMG::
 	call DECoordToBGMap0Address
 	; top line (border) of the text box
 	ld a, SYM_BOX_TOP
@@ -197,7 +197,7 @@ ContinueDrawingTextBoxDMGorSGB:
 ; e = value of byte b
 ; a = value of bytes [1, b-1]
 ; b is supposed to be BG_MAP_WIDTH or smaller, else the stack would get corrupted
-CopyLine:
+CopyLine::
 	add sp, -BG_MAP_WIDTH
 	push hl
 	push bc

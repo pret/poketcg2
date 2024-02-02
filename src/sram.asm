@@ -66,7 +66,17 @@ ENDR
 sCurrentlySelectedDeck:: ; b7a0
 	ds $1
 
-	ds $6
+s0b7a1:: ; b7a1
+	ds $1
+
+	ds $1
+
+; each bit represents whether the player has
+; obtained a card from a given set
+sBoosterPacksObtained:: ; b7a3
+	ds $1
+
+	ds $3
 
 sCardAndDeckSaveDataEnd::
 
@@ -92,6 +102,10 @@ s1a100:: ; a100
 	ds $1
 
 SECTION "SRAM2", SRAM
+
+
+
+SECTION "SRAM3", SRAM
 
 ; buffers used to temporary store gfx related data
 ; such as tiles or BG maps
