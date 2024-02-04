@@ -1,5 +1,5 @@
 ; set current dest VRAM bank to 0
-BankswitchVRAM0:
+BankswitchVRAM0::
 	push af
 	xor a
 	ldh [hBankVRAM], a
@@ -8,7 +8,7 @@ BankswitchVRAM0:
 	ret
 
 ; set current dest VRAM bank to 1
-BankswitchVRAM1:
+BankswitchVRAM1::
 	push af
 	ld a, $1
 	ldh [hBankVRAM], a

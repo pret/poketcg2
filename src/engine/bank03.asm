@@ -972,7 +972,7 @@ Func_d411:
 	call PauseSong
 	ld a, MUSIC_PCMAINMENU
 	call PlaySong
-	farcall $4, $50c6
+	farcall Func_110c6
 	call ResumeSong
 	ret
 

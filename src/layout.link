@@ -48,6 +48,8 @@ ROMX $09
 	"Bank 9"
 ROMX $0c
 	"Bank c"
+ROMX $0e
+	"Bank e"
 ROMX $0f
 	"Bank f"
 ROMX $10
@@ -221,28 +223,30 @@ WRAM0
 	"WRAM0 Serial Transfer"
 	org $cbda
 	"WRAM0 Duels 2"
-	org $cc01
-	"WRAM0 Duels 2@cc01"
 	org $cc29
 	"WRAM0 Duels 2@cc29"
 	org $cd5b
 	"WRAM0 2"
-	org $cdc2
-	"WRAM0 2@cdc2"
 WRAMX 1
 	"WRAM1"
 	org $d0bf
 	"WRAM1@d0bf"
-	org $d0e3
-	"WRAM1@d0e3"
-	org $d393
-	"WRAM1@d393"
+	org $d0e1
+	"WRAM1@d0e1"
+	org $d380
+	"WRAM1@d380"
+	org $d4c8
+	"WRAM1@d4c8"
 	org $d54c
 	"WRAM1@d54c"
 	org $dc06
 	"WRAM1@dc06"
 	org $dd02
 	"WRAM1@dd02"
+WRAMX 2
+	"WRAM2"
+	org $d58e
+	"WRAM2@d58e"
 WRAMX 3
 	"WRAM3"
 WRAMX 7
@@ -257,3 +261,5 @@ SRAM $01
 	"SRAM1"
 SRAM $02
 	"SRAM2"
+SRAM $03
+	"SRAM3"

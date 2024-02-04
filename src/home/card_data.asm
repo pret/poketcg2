@@ -87,7 +87,7 @@ LoadCardDataToHL_FromCardID:
 	ret
 
 ; return in a the type (TYPE_* constant) of the card with id at de
-GetCardType:
+GetCardType::
 	push hl
 	call GetCardPointer
 	jr c, .done
@@ -120,7 +120,7 @@ Func_2d3f:
 	ret
 
 ; return in de the 2-byte text id of the name of the card with id at de
-GetCardName:
+GetCardName::
 	push hl
 	call GetCardPointer
 	jr c, .done
@@ -138,7 +138,7 @@ GetCardName:
 	ret
 
 ; from the card id in de, returns type into a, rarity into b, and set into c
-GetCardTypeRarityAndSet:
+GetCardTypeRarityAndSet::
 	push hl
 	push de
 	call GetCardPointer
@@ -168,12 +168,7 @@ GetCardPointer:
 	ld a, d
 	or e
 	jr z, .invalid
-	ld a, d
-	cp HIGH(NUM_CARDS + 1)
-	jr nz, .check
-	ld a, e
-	cp LOW(NUM_CARDS + 1)
-.check
+	cp16 NUM_CARDS + 1
 	jr c, .valid
 .invalid
 	scf
@@ -211,17 +206,17 @@ LoadCardGfx::
 	call BankswitchROM
 	ret
 
-Func_2dc4:
+Func_2dc4::
 	ldh a, [hBankROM]
 	push af
 	call LoadCardPalettes
 	ld a, l
-	ld [wcde5], a
+	ld [wcde5 + 0], a
 	ld a, h
 	ld [wcde5 + 1], a
-	ld hl, $cd92
-	ld bc, $3000
-.asm_2dd8
+	ld hl, wCardAttrMap
+	lb bc, $30, 0
+.loop_copy
 	ld a, [hl]
 	and $3f
 	ld [hli], a
@@ -233,20 +228,20 @@ Func_2dc4:
 	add hl, hl
 	add hl, hl
 	add hl, hl
-	add hl, hl
-	ld a, [wcde5]
+	add hl, hl ; *TILE_SIZE
+	ld a, [wcde5 + 0]
 	add l
 	ld l, a
 	ld a, [wcde5 + 1]
 	adc h
 	ld h, a
-	ld b, $10
+	ld b, TILE_SIZE
 	call SafeCopyDataHLtoDE
 	pop bc
 	pop hl
 	inc c
 	dec b
-	jr nz, .asm_2dd8
+	jr nz, .loop_copy
 	pop af
 	call BankswitchROM
 	ret
@@ -258,23 +253,23 @@ LoadCardPalettes:
 	ld a, h
 	srl a
 	srl a
-	srl a
+	srl a ; /8
 	add BANK(CardGraphics)
 	call BankswitchROM
 	pop hl
 	add hl, hl
 	add hl, hl
-	add hl, hl
+	add hl, hl ; *8
 	res 7, h
 	set 6, h ; $4000 ≤ hl ≤ $7fff
-	ld b, $48
+	ld b, 3 palettes + $30 ; palettes + attributes
 	ld de, wCardPalettes
-.asm_2e1c
+.loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_2e1c
+	jr nz, .loop_copy
 	pop de
 	pop bc
 	ret

@@ -88,7 +88,7 @@ hTemp_ffa0:: ; ffa2
 
 	ds $10
 
-; hffa8 through hffb0 belong to the text engine
+; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3
 	ds $1
 
@@ -122,9 +122,18 @@ hTextLineLength:: ; ffb9
 hJapaneseSyllabary:: ; ffba
 	ds $1
 
-hffb0:: ; ffbb
+hffbb:: ; ffbb
 	ds $1
 
 ; unlike wCurMenuItem, this accounts for the scroll offset (wListScrollOffset)
-hCurMenuItem:: ; ffbc
+hCurScrollMenuItem:: ; ffbc
+	ds $1
+
+hCurMenuItem:: ; ffbd
+	ds $1
+
+hffbe:: ; ffbe
+	ds $1
+
+hffbf:: ; ffbf
 	ds $1

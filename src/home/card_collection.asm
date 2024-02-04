@@ -134,7 +134,7 @@ AddCardToCollection:
 	push hl
 	push bc
 	push de
-	bank1call $6a0c ; CreateTempCardCollection
+	bank1call CreateTempCardCollection
 	pop de
 	call EnableSRAM
 	ld hl, wTempCardCollection

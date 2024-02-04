@@ -500,7 +500,7 @@ Func_2c4b::
 	call PrintTextNoDelay_Init
 	pop de
 	pop hl
-	ldh a, [hffb0]
+	ldh a, [hffbb]
 	or a
 	ret nz
 	ldh a, [hTextLineCurPos]

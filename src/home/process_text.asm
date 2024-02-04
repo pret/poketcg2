@@ -90,7 +90,7 @@ ProcessSpecialTextCharacter::
 	call TerminateHalfWidthText
 	pop af
 	ld [wFontWidth], a
-	ldh a, [hffb0]
+	ldh a, [hffbb]
 	or a
 	jr nz, .skip_placing_tile
 	ld a, [hl]
@@ -146,7 +146,7 @@ SetupText::
 	ldh [hffa8], a
 	call InitTextFormat
 	xor a
-	ldh [hffb0], a
+	ldh [hffbb], a
 	ldh [hffa9], a
 	ld a, $88
 	ld [wTilePatternSelector], a
@@ -206,15 +206,15 @@ InitTextPrinting::
 	ret
 
 ; requests a text tile to be generated and prints it in the screen
-; different modes depending on hffb0:
-   ; hffb0 == $0: generate and place text tile
-   ; hffb0 == $2 (bit 1 set): only generate text tile?
-   ; hffb0 == $1 (bit 0 set): not even generate it, but just update text buffers?
+; different modes depending on hffbb:
+   ; hffbb == $0: generate and place text tile
+   ; hffbb == $2 (bit 1 set): only generate text tile?
+   ; hffbb == $1 (bit 0 set): not even generate it, but just update text buffers?
 Func_22ca::
 	push hl
 	push de
 	push bc
-	ldh a, [hffb0]
+	ldh a, [hffbb]
 	and $1
 	jr nz, .asm_22ed
 	call Func_2325
@@ -223,7 +223,7 @@ Func_22ca::
 	jr nz, .done
 	call GenerateTextTile
 .tile_already_exists
-	ldh a, [hffb0]
+	ldh a, [hffbb]
 	and $2
 	jr nz, .done
 	ldh a, [hffa9]

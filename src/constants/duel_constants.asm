@@ -63,6 +63,13 @@ DEF DUELVARS_BENCH2_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench2CardAttache
 DEF DUELVARS_BENCH3_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench3CardAttachedPluspower)" ; e3
 DEF DUELVARS_BENCH4_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench4CardAttachedPluspower)" ; e4
 DEF DUELVARS_BENCH5_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench5CardAttachedPluspower)" ; e5
+DEF DUELVARS_ARENA_CARD_FOOD_COUNTERS         EQU $e6 ; EQUS "LOW(wPlayerArenaCardFoodCounters)"       ; e6
+DEF DUELVARS_BENCH1_CARD_FOOD_COUNTERS        EQU $e7 ; EQUS "LOW(wPlayerBench1FoodCounters)"          ; e7
+DEF DUELVARS_BENCH2_CARD_FOOD_COUNTERS        EQU $e8 ; EQUS "LOW(wPlayerBench2FoodCounters)"          ; e8
+DEF DUELVARS_BENCH3_CARD_FOOD_COUNTERS        EQU $e9 ; EQUS "LOW(wPlayerBench3FoodCounters)"          ; e9
+DEF DUELVARS_BENCH4_CARD_FOOD_COUNTERS        EQU $ea ; EQUS "LOW(wPlayerBench4FoodCounters)"          ; ea
+DEF DUELVARS_BENCH5_CARD_FOOD_COUNTERS        EQU $eb ; EQUS "LOW(wPlayerBench5FoodCounters)"          ; eb
+DEF DUELVARS_ARENA_CARD_STATUS                EQU $ec ; EQUS "LOW(wPlayerArenaCardStatus)"             ; f0
 DEF DUELVARS_ARENA_CARD_SUBSTATUS1            EQU $ed ; EQUS "LOW(wPlayerArenaCardSubstatus1)"         ; e7
 DEF DUELVARS_ARENA_CARD_SUBSTATUS2            EQU $ee ; EQUS "LOW(wPlayerArenaCardSubstatus2)"         ; e8
 DEF DUELVARS_ARENA_CARD_CHANGED_WEAKNESS      EQU $ef ; EQUS "LOW(wPlayerArenaCardChangedWeakness)"    ; e9
@@ -72,7 +79,6 @@ DEF DUELVARS_PRIZES                           EQU $f2 ; EQUS "LOW(wPlayerPrizes)
 DEF DUELVARS_NUMBER_OF_CARDS_IN_DISCARD_PILE  EQU $f3 ; EQUS "LOW(wPlayerNumberOfCardsInDiscardPile)"  ; ed
 DEF DUELVARS_NUMBER_OF_CARDS_IN_HAND          EQU $f4 ; EQUS "LOW(wPlayerNumberOfCardsInHand)"         ; ee
 DEF DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA   EQU $f5 ; EQUS "LOW(wPlayerNumberOfPokemonInPlayArea)"   ; ef
-DEF DUELVARS_ARENA_CARD_STATUS                EQU $ec ; EQUS "LOW(wPlayerArenaCardStatus)"             ; f0
 DEF DUELVARS_DUELIST_TYPE                     EQU $f6 ; EQUS "LOW(wPlayerDuelistType)"                 ; f1
 DEF DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX EQU $f7 ; EQUS "LOW(wPlayerArenaCardDisabledAttackIndex)" ; f2
 DEF DUELVARS_ARENA_CARD_LAST_TURN_DAMAGE      EQUS "LOW(wPlayerArenaCardLastTurnDamage)"     ; f3
@@ -266,8 +272,23 @@ DEF PRIZES_5    EQU $05
 DEF PRIZES_6    EQU $06
 
 ; constants to use as input to LookForCardInDeck
-DEF SEARCHEFFECT_CARD_ID        EQU $0
-DEF SEARCHEFFECT_NIDORAN        EQU $1
-DEF SEARCHEFFECT_BASIC_FIGHTING EQU $2
-DEF SEARCHEFFECT_BASIC_ENERGY   EQU $3
-DEF SEARCHEFFECT_POKEMON        EQU $4
+	const_def
+	const SEARCHEFFECT_CARD_ID        ; $0
+	const SEARCHEFFECT_NIDORAN        ; $1
+	const SEARCHEFFECT_BASIC_FIGHTING ; $2
+	const SEARCHEFFECT_BASIC_ENERGY   ; $3
+	const SEARCHEFFECT_POKEMON        ; $4
+
+; special rule constants, stored in wSpecialRule
+	const_def
+	const NO_RULES       ; $0
+	const CHLOROPHYLL    ; $1
+	const THUNDER_CHARGE ; $2
+	const FLAME_ARMOR    ; $3
+	const SMALL_BENCH    ; $4
+	const RUNNING_WATER  ; $5
+	const EARTH_POWER    ; $6
+	const LOW_RESISTANCE ; $7
+	const ENERGY_RETURN  ; $8
+	const TOUGH_ESCAPE   ; $9
+	const BLACK_HOLE     ; $a
