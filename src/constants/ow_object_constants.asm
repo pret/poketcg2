@@ -415,16 +415,16 @@
 DEF MAX_NUM_OW_OBJECTS EQU 10
 
 RSRESET
-OWOBJSTRUCT_FLAGS                  RB ; $0
-OWOBJSTRUCT_ID                     RB ; $1
-OWOBJSTRUCT_ANIM_PTR               RW ; $2
-OWOBJSTRUCT_4                      RB ; $4
-OWOBJSTRUCT_5                      RB ; $5
-OWOBJSTRUCT_6                      RW ; $6
+DEF OWOBJSTRUCT_FLAGS                  RB ; $0
+DEF OWOBJSTRUCT_ID                     RB ; $1
+DEF OWOBJSTRUCT_ANIM_PTR               RW ; $2
+DEF OWOBJSTRUCT_4                      RB ; $4
+DEF OWOBJSTRUCT_5                      RB ; $5
+DEF OWOBJSTRUCT_6                      RW ; $6
 DEF OWOBJSTRUCT_LENGTH EQU _RS
 
 ; OWOBJSTRUCT_FLAGS bit flags
 	const_def 7
 	const ACTIVE_OBJ_F ; 7
 
-ACTIVE_OBJ EQU 1 << ACTIVE_OBJ_F
+DEF ACTIVE_OBJ EQU 1 << ACTIVE_OBJ_F

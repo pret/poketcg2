@@ -90,7 +90,7 @@ endif
 %.asm: ;
 
 
-opts = -Cv -k 2P -l 0x33 -m 0x1b -p 0xff -r 03 -t "POKEMON-CG2" -i BP7J
+opts = -Cv -k 2P -l 0x33 -m 0x1b -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
 	$(RGBLINK) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)

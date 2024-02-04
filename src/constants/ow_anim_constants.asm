@@ -43,7 +43,7 @@
 	const OW_ANIM_29   ; $29
 	const OW_ANIM_2A   ; $2a
 	const OW_ANIM_2B   ; $2b
-const_value = $ff
+DEF const_value = $ff
 	const OW_ANIM_NONE ; $ff
 
 	const_def
