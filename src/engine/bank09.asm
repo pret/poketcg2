@@ -91,6 +91,1418 @@ DrawDuelHorizontalSeparator:
 	db $ff ; end
 ; 0x242c5
 
+SECTION "Bank 9@4fe0", ROMX[$4fe0], BANK[$9]
+
+DeckDiagnosis:
+	farcall GetNumberOfDeckDiagnosisStepsUnlocked
+	ld [wNumDeckDiagnosisSteps], a
+
+	bank1call Func_4278
+
+	call DisableLCD
+	call LoadDeckDiagnosisScene
+	call PrintDeckDiagnosisSteps
+	call EnableLCD
+
+	; initial text
+	ldtx hl, Text053e
+	call CheckDeck.PrintDrMasonText
+
+	xor a
+	ld [wDeckDiagnosisStep], a
+.loop_menu
+	ld a, [wDeckDiagnosisStep]
+	ldh [hCurScrollMenuItem], a
+	xor a ; menu to select the step
+	ld [wDeckDiagnosisMenuStepSelected], a
+	call HandleDeckDiagnosisMenu
+	ld [wDeckDiagnosisStep], a
+	cp $ff
+	ret z ; exit Deck Diagnosis screen
+	inc a
+	ld [wDeckDiagnosisMenuStepSelected], a
+	xor a
+	ld [wcd29], a
+.selected_step_menu
+	ld a, [wcd29]
+	ldh [hCurScrollMenuItem], a
+	ld a, [wDeckDiagnosisMenuStepSelected]
+	call HandleDeckDiagnosisMenu
+	cp $ff
+	jr z, .loop_menu
+	ld [wcd29], a
+	call Func_2517f
+	call EmptyScreen
+	call LoadDeckDiagnosisScene
+	jr .selected_step_menu
+
+DeckDiagnosisTextTables:
+	dw .steps_menu
+	dw .step_1
+	dw .step_2
+	dw .step_3
+	dw .step_4
+
+.steps_menu
+	db $00
+	dw NULL
+	tx Text053f
+
+	tx Text0540 ; Step 1
+	tx Text0541 ; Step 2
+	tx Text0542 ; Step 3
+	tx Text0543 ; Step 4
+
+.step_1
+	db 5 ; number of items
+	tx Text0532 ; text ID with all items
+
+	; menu items
+	tx Text0544 ; Check Deck
+	tx Text0545 ; Advice 1
+	tx Text0546 ; Advice 2
+	tx Text0547 ; Advice 3
+	tx Text0548 ; Back
+
+.step_2
+	db 4 ; number of items
+	tx Text0533 ; text ID with all items
+
+	; menu items
+	tx Text0549 ; Advice 1
+	tx Text054a ; Advice 2
+	tx Text054b ; Advice 3
+	tx Text0548 ; Back
+
+.step_3
+	db 4 ; number of items
+	tx Text0534 ; text ID with all items
+
+	; menu items
+	tx Text054c ; Advice 1
+	tx Text054d ; Advice 2
+	tx Text054e ; Advice 3
+	tx Text0548 ; Back
+
+.step_4
+	db 5 ; number of items
+	tx Text0535 ; text ID with all items
+
+	; menu items
+	tx Text054f ; Advice 1
+	tx Text0550 ; Advice 2
+	tx Text0551 ; Advice 3
+	tx Text0552 ; Advice 4
+	tx Text0548 ; Back
+
+; prints menu for the current Deck Diagnosis step
+; depending on a:
+; - 0 = menu to select which step to view
+; - 1 = Step 1 menu
+; - 2 = Step 2 menu
+; - 3 = Step 3 menu
+; - 4 = Step 4 menu
+; returns item that player selected in a
+; if player selected cancel (last item),
+; returns $ff instead
+HandleDeckDiagnosisMenu:
+	add a ; *2
+	ld e, a
+	ld d, $00
+	ld hl, DeckDiagnosisTextTables
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push af
+	push de
+	ld a, l
+	ld [wDeckDiagnosisTextIDsPtr + 0], a
+	ld a, h
+	ld [wDeckDiagnosisTextIDsPtr + 1], a
+	lb de, 10, 0
+	lb bc, 10, 12
+	call DrawRegularTextBox
+	pop hl
+
+	; print the menu items
+	lb de, 12, 0
+	ld a, $06
+	call Func_2c5c
+	call InitTextPrinting_ProcessTextFromID
+
+	; initialize the menu
+	ld hl, .MenuParameters
+	ldh a, [hCurScrollMenuItem]
+	call InitializeMenuParameters
+
+	call .PrintCursorMenuItemText
+	pop af
+	or a
+	call z, PrintDeckDiagnosisSteps
+	ld [wNumScrollMenuItems], a
+	call EnableLCD
+.loop_input
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .loop_input
+	ld hl, wNumScrollMenuItems
+	ld c, [hl]
+	dec c
+	cp c
+	ret c
+	ld a, $ff
+	ret
+
+.MenuParameters:
+	db 11, 2 ; cursor x, cursor y
+	db 2 ; y displacement between items
+	db 5 ; number of items
+	db SYM_CURSOR_R ; cursor tile number
+	db SYM_SPACE ; tile behind cursor
+	dw .UpdateFunc ; function pointer if non-0
+
+.UpdateFunc:
+	ldh a, [hDPadHeld]
+	and D_UP | D_DOWN
+	jr z, .check_a_btn
+	call .PrintCursorMenuItemText
+.check_a_btn
+	ldh a, [hKeysPressed]
+	bit A_BUTTON_F, a
+	jr nz, .a_btn_pressed
+	and B_BUTTON
+	ret z
+	; b btn pressed
+	ld a, $ff
+	ldh [hCurScrollMenuItem], a
+.a_btn_pressed
+	scf
+	ret
+
+.PrintCursorMenuItemText:
+	ld a, [wDeckDiagnosisMenuStepSelected]
+	or a
+	jr nz, .load_text_id
+	; is inside menu to select which step
+	ld a, [wNumDeckDiagnosisSteps]
+	ld hl, hCurScrollMenuItem
+	cp [hl]
+	jr nc, .load_text_id
+	; cursor is on cancel (last item)
+	ldtx hl, Text0543
+	jr .print_text
+.load_text_id
+	; loads text ID from wDeckDiagnosisTextIDsPtr
+	; depending on which menu item the cursor is on
+	ldh a, [hCurScrollMenuItem]
+	add a ; *2
+	ld e, a
+	ld d, $00
+	ld hl, wDeckDiagnosisTextIDsPtr
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.print_text
+	push hl
+	lb de, 0, 12
+	lb bc, 20, 6
+	ldtx hl, Text04f7
+	call DrawLabeledTextBox
+	pop hl
+	lb de, 1, 14
+	call InitTextPrinting_ProcessTextFromID
+	ret
+
+PrintDeckDiagnosisSteps:
+	lb de, 10,  0
+	lb bc, 10, 12
+	call DrawRegularTextBox
+
+	ld a, [wNumDeckDiagnosisSteps]
+	inc a
+	ld c, a
+	lb de, 12, 2
+	ld hl, .text_ids
+.loop
+	push hl
+	push de
+	push bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call InitTextPrinting_ProcessTextFromID
+	pop bc
+	pop de
+	pop hl
+	inc hl
+	inc hl
+	inc e
+	inc e
+	dec c
+	jr nz, .loop
+
+	ldtx hl, Text0531
+	call InitTextPrinting_ProcessTextFromID
+	ld a, [wNumDeckDiagnosisSteps]
+	add 2
+	ret
+
+.text_ids
+	tx Text0529 ; Step 1
+	tx Text052a ; Step 2
+	tx Text052b ; Step 3
+	tx Text052c ; Step 4
+
+; loads Deck Diagnosis scene together
+; with Dr. Mason's portrait
+LoadDeckDiagnosisScene:
+	lb bc, 1, 1
+	ld a, SCENE_DECK_DIAGNOSIS
+	call LoadScene
+	lb bc, 2, 6
+;	fallthrough
+DrawDrMasonsPortrait:
+	ld a, $5f
+	ld e, PORTRAITVARIANT_NORMAL
+	call Func_3ab2
+	call FlushAllPalettes
+	ret
+
+Func_2517f:
+	call EmptyScreen
+	ldh a, [hCurScrollMenuItem]
+	ld [wDeckDiagnosisAdvice], a
+	call .GetTextIDsForAdvice
+	jp c, CheckDeck
+	call .Func_251c2
+	bank1call SetNoLineSeparation
+.loop
+	push hl
+	lb de, 0, 8
+	lb bc, 20, 10
+	call DrawRegularTextBox
+	pop hl
+
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 1, 9
+	call InitTextPrinting_ProcessTextFromID
+	call WaitForWideTextBoxInput
+	pop hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr z, .done
+	push hl
+	call .GetTextIDsForAdvice
+	call .Func_251c2
+	pop hl
+	jr .loop
+.done
+	bank1call SetOneLineSeparation
+	or a
+	ret
+
+.Func_251c2:
+	push de
+	push hl
+	ld a, [wDeckDiagnosisStep]
+	add a ; *2
+	ld e, a
+	ld d, $00
+	ld hl, .StepTextIDs
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 10, 2
+	call InitTextPrinting_ProcessTextFromID
+	pop hl
+	lb de, 10, 5
+	call InitTextPrinting_ProcessTextFromID
+	lb bc, 2, 1
+	call DrawDrMasonsPortrait
+	call EnableLCD
+	pop hl
+	ret
+
+; output:
+; hl = textID of advice (Advice1, Advice2, etc)
+; de = pointer to text IDs of that advice's explanation
+; if hl is NULL, then return carry set, this is
+; done in the Check Deck option, or an invalid entry
+.GetTextIDsForAdvice:
+	ld a, [wDeckDiagnosisAdvice]
+	ld c, a
+	ld a, [wDeckDiagnosisStep]
+	add a
+	add a
+	add c
+	add a
+	add a
+	; a = (wDeckDiagnosisStep * 4 + wDeckDiagnosisAdvice) * 4
+	ld e, a
+	ld d, $00
+	ld hl, .AdviceTexts
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	or h
+	ret nz
+	scf
+	ret
+
+.StepTextIDs:
+	tx Text0529 ; Step 1
+	tx Text052a ; Step 2
+	tx Text052b ; Step 3
+	tx Text052c ; Step 4
+
+MACRO advice
+	dw \1
+	tx \2
+ENDM
+
+.AdviceTexts:
+	; Step 1
+	dw NULL, NULL                   ; Check Deck
+	advice .step1_advice1, Text052d ; Advice 1
+	advice .step1_advice2, Text052e ; Advice 2
+	advice .step1_advice3, Text052f ; Advice 3
+
+	; Step 2
+	advice .step2_advice1, Text052d ; Advice 1
+	advice .step2_advice2, Text052e ; Advice 2
+	advice .step2_advice3, Text052f ; Advice 3
+	dw NULL, NULL
+
+	; Step 3
+	advice .step3_advice1, Text052d ; Advice 1
+	advice .step3_advice2, Text052e ; Advice 2
+	advice .step3_advice3, Text052f ; Advice 3
+	dw NULL, NULL
+
+	; Step 4
+	advice .step4_advice1, Text052d ; Advice 1
+	advice .step4_advice2, Text052e ; Advice 2
+	advice .step4_advice3, Text052f ; Advice 3
+	advice .step4_advice4, Text0530 ; Advice 4
+
+.step1_advice1
+	tx Text055b
+	tx Text055c
+	dw NULL
+
+.step1_advice2
+	tx Text055d
+	tx Text055e
+	dw NULL
+
+.step1_advice3
+	tx Text055f
+	tx Text0560
+	dw NULL
+
+.step2_advice1
+	tx Text0561
+	dw NULL
+
+.step2_advice2
+	tx Text0562
+	dw NULL
+
+.step2_advice3
+	tx Text0563
+	dw NULL
+
+.step3_advice1
+	tx Text0564
+	tx Text0565
+	tx Text0566
+	tx Text0567
+	dw NULL
+
+.step3_advice2
+	tx Text0568
+	tx Text0569
+	dw NULL
+
+.step3_advice3
+	tx Text056a
+	tx Text056b
+	dw NULL
+
+.step4_advice1
+	tx Text056c
+	tx Text056d
+	tx Text056e
+	tx Text056f
+	tx Text0570
+	tx Text0571
+	dw NULL
+
+.step4_advice2
+	tx Text0572
+	tx Text0573
+	tx Text0574
+	dw NULL
+
+.step4_advice3
+	tx Text0575
+	tx Text0576
+	dw NULL
+
+.step4_advice4
+	tx Text0577
+	tx Text0578
+	dw NULL
+
+CheckDeck:
+.start
+	ldtx de, Text0553
+	farcall Func_2bc4f
+	ret c
+	ld l, a
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
+	call HtimesL
+	ld de, sDeck1
+	add hl, de
+	ld a, l
+	ld [wcd2b + 0], a
+	ld a, h
+	ld [wcd2b + 1], a
+
+	call EnableSRAM
+	ld de, wDefaultText
+	ld c, DECK_NAME_SIZE
+.loop_copy_name
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop_copy_name
+	xor a ; TX_END
+	ld [de], a
+	call DisableSRAM
+	ld hl, $0
+	call LoadTxRam2
+
+	call .CheckDeckDelay
+	call .GetDeckCardCountsAndPrintCounts
+
+	xor a
+	ld [wcd4e], a
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	call .DoChecks
+
+	ldtx de, Text04f7
+	ldtx hl, Text055a
+	call PrintScrollableText_WithTextBoxLabel_NoWait
+	call YesOrNoMenu
+	jr nc, .start
+	ret
+
+.DoChecks:
+	; check has enough Basic cards
+	ldtx hl, Text0579
+	ld a, [wDeckCheckBasicCount]
+	cp 12
+	jp c, .PrintDrMasonText ; < 12 Basic cards
+
+	; check color diversity
+	call .CountTypesOfPkmnCards
+	ldtx hl, Text057a
+	cp 4
+	jp nc, .PrintDrMasonText ; >= 4 different types
+
+	call .DiagnoseNumberOfPkmnAndEnergyCards
+	ret c ; already printed a diagnosis
+
+	call .CheckIfEvolutionCardsHaveTheirPreEvos
+	jr nc, .check_mismatched_evos
+	ldtx hl, Text0580
+	ldtx de, Text0581
+	jp .asm_25352
+
+.check_mismatched_evos
+	call .LookForBasicCardsWithMismatchedEvolutionCounts
+	jr nc, .check_mismatched_energy
+	ldtx hl, Text0582
+	ldtx de, Text0583
+	jp .asm_25352
+
+.check_mismatched_energy
+	call .CheckIfAllEnergyCardsMatchPkmnColors
+	jr c, .check_amount_energy_cards
+	ldtx hl, Text0584
+	ldtx de, Text0585
+	jp .asm_25352
+
+.check_amount_energy_cards
+	call .CheckEnergyAmountVsPkmnCards
+	ret c
+	ldtx hl, Text058a
+	ld a, [wDeckCheckTrainerCount]
+	or a
+	jr nz, .asm_2534d
+	ldtx hl, Text058b
+.asm_2534d
+	call .PrintDrMasonText
+	or a
+	ret
+
+.asm_25352
+	push de
+	call .PrintDrMasonText
+	pop hl
+	farcall DeckDiagnosisResult
+	ret
+
+; print a given text in the text box
+; with Dr. Mason as the box header
+; hl = text ID
+.PrintDrMasonText:
+	ldtx de, Text04f7 ; "Dr. Mason"
+	call PrintScrollableText_WithTextBoxLabel
+	ld hl, wcd4e
+	inc [hl]
+	ret
+
+; outputs in a number of different colored types
+; that are found in wDeckCheckPkmnCounts
+.CountTypesOfPkmnCards:
+	lb bc, 0, NUM_COLORED_TYPES
+	ld hl, wDeckCheckPkmnCounts
+.loop_pkmn_colored_types
+	ld a, [hli]
+	or a
+	jr z, .none
+	inc b
+.none
+	dec c
+	jr nz, .loop_pkmn_colored_types
+	ld a, b
+	or a
+	ret nz
+	; output at least 1
+	ld a, 1
+	ret
+
+.DiagnoseNumberOfPkmnAndEnergyCards:
+	ld hl, wDeckCheckBasicCount
+	ld a, [hli]
+	add [hl]
+	inc hl
+	add [hl]
+	ldtx hl, Text057c
+	cp 31
+	jr nc, .asm_25390
+	ldtx hl, Text057b
+	cp 18
+	jr nc, .asm_25393
+.asm_25390
+	call .PrintDrMasonText
+
+.asm_25393
+	ld a, [wDeckCheckEnergyCount]
+	ldtx hl, Text057f
+	or a
+	jr z, .asm_253aa
+	ldtx hl, Text057d
+	cp 20
+	jr c, .asm_253aa
+	ldtx hl, Text057e
+	cp 31
+	jr c, .asm_253ad
+.asm_253aa
+	call .PrintDrMasonText
+
+.asm_253ad
+	ld a, [wcd4e]
+	or a
+	ret z
+	scf
+	ret
+
+.CheckDeckDelay:
+	call EmptyScreen
+
+	lb de,  0, 0
+	lb bc, 20, 3
+	call DrawRegularTextBox
+	lb de, 3, 1
+	ldtx hl, Text0536
+	call PrintTextNoDelay_Init
+	call EnableLCD
+	ldtx de, Text04f7
+	ldtx hl, Text0554
+	call PrintScrollableText_WithTextBoxLabel_NoWait
+
+	; delays for $80 frames,
+	; every $10 frames cycle Dr. Mason's portrait
+	; between normal and sad variants
+	ld d, $80
+	ld e, PORTRAITVARIANT_NORMAL
+.check_delay
+	ld a, d
+	and %1111
+	jr nz, .skip_portrait_switch
+	; swap between normal and sad portrait
+	ld a, e
+	xor $2
+	ld e, a
+.skip_portrait_switch
+	push de
+	call DoFrame
+	ld a, $5f
+	lb bc, 7, 4
+	call Func_3ab2
+	call FlushAllPalettes
+	pop de
+	dec d
+	jr nz, .check_delay
+
+	; show happy portrait
+	ld a, $5f
+	ld e, PORTRAITVARIANT_HAPPY
+	lb bc, 7, 4
+	call Func_3ab2
+	call FlushAllPalettes
+
+	call WaitForWideTextBoxInput
+	ret
+
+.GetDeckCardCountsAndPrintCounts:
+	call EmptyScreen
+
+	lb de,  0,  0
+	lb bc, 20, 12
+	call DrawRegularTextBox
+	lb de, 2, 0
+	ldtx hl, Text0536
+	call Func_2c4b
+	lb de, 2, 2
+	ldtx hl, Text0537
+	call PrintTextNoDelay_Init
+
+	ld hl, wcd2b
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, DECK_NAME_SIZE
+	add hl, de
+	call .GetDeckCardCounts
+
+	; prints counts for Energy, Basic,
+	; Stage1, Stage2 and Trainer cards
+	lb bc, 14, 2
+	ld hl, wDeckCheckCardCounts
+	ld e, (wDeckCheckTrainerCount - wDeckCheckEnergyCount) + 1
+.loop_counts
+	ld a, [hli]
+	push hl
+	bank1call WriteTwoByteNumberInTxSymbolFormat
+	pop hl
+	inc c
+	inc c ; two tiles spacing
+	dec e
+	jr nz, .loop_counts
+	call EnableLCD
+	ldtx de, Text04f7
+	ldtx hl, Text0555
+	call PrintScrollableText_WithTextBoxLabel
+	ret
+
+; given deck in hl, count how many cards
+; of each type there are (Basic, Stage1, Stage2, Energy, Trainer)
+; and within Energy cards, count each color as well
+; outputs all results in wDeckCheckCardCounts
+.GetDeckCardCounts:
+	ld e, l
+	ld d, h
+	ld hl, wPlayerDeck
+	push hl
+	call EnableSRAM
+	bank1call DecompressSRAMDeck
+	call DisableSRAM
+	pop hl
+
+	push hl
+	ld hl, wDeckCheckCardCounts
+	ld c, wDeckCheckCardCountsEnd - wDeckCheckCardCounts
+	xor a
+.loop_clear
+	ld [hli], a
+	dec c
+	jr nz, .loop_clear
+	pop hl
+
+.loop_deck
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call LoadCardDataToBuffer1_FromCardID
+	ret c ; done
+	push hl
+	cp16 RAINBOW_ENERGY
+	jr nz, .not_rainbow
+	; rainbow energy has its own count
+	ld hl, wDeckCheckRainbowEnergyCount
+	inc [hl]
+.not_rainbow
+	ld a, [wLoadedCard1Type]
+	ld e, $4
+	cp TYPE_TRAINER
+	jr z, .got_type
+	ld e, $0
+	cp TYPE_ENERGY
+	jr nc, .got_type
+	ld e, $1
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr z, .got_type
+	ld e, $2
+	cp STAGE1
+	jr z, .got_type
+	ld e, $3
+.got_type
+	ld d, $00
+	ld hl, wDeckCheckCardCounts
+	add hl, de
+	inc [hl]
+	ld a, [wLoadedCard1Type]
+	bit TYPE_ENERGY_F, a
+	jr z, .not_energy
+	; is an energy card
+	and TYPE_PKMN
+	ld e, a
+	ld hl, wDeckCheckEnergyCounts
+	add hl, de
+	inc [hl]
+.not_energy
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
+	jr nc, .not_pkmn
+	; is a pkmn card
+	and TYPE_PKMN
+	ld e, a
+	ld hl, wDeckCheckPkmnCounts
+	add hl, de
+	inc [hl]
+.not_pkmn
+	pop hl
+	jr .loop_deck
+
+.CheckIfEvolutionCardsHaveTheirPreEvos:
+	ld de, wCurDeckCards
+	call SetListPointer2
+	ld hl, wPlayerDeck
+	ld a, DECK_SIZE ; unused
+.loop_evo_cards
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call LoadCardDataToBuffer1_FromCardID
+	jr c, .done_evo_cards
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
+	jr nc, .check_next_evo_card
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr z, .check_next_evo_card
+	call .CheckIfHasPreEvo
+	jr nc, .check_next_evo_card
+	call Func_0b99
+.check_next_evo_card
+	jr .loop_evo_cards
+.done_evo_cards
+	ld de, $0
+	call Func_0b99
+	ld hl, wCurDeckCards
+	ld a, [hli]
+	or [hl]
+	ret z
+	scf
+	ret
+
+; returns carry if wPlayerDeck does not
+; contain the pre-evolution of wLoadedCard1
+.CheckIfHasPreEvo:
+	push hl
+	push de
+	push bc
+	ld hl, wLoadedCard1PreEvoName
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld hl, wPlayerDeck
+.loop_search_pre_evo
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardName
+	jr c, .pre_evo_not_found
+	ld a, c
+	cp e
+	jr nz, .loop_search_pre_evo
+	ld a, b
+	cp d
+	jr nz, .loop_search_pre_evo
+	or a
+.pre_evo_not_found
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; creates a list in wCurDeckCards of Basic cards
+; that have mismatched Stage 1 and Stage 2 card counts
+; if this list is not empty, return carry set
+.LookForBasicCardsWithMismatchedEvolutionCounts:
+	ld de, wCurDeckCards
+	call SetListPointer2
+
+	; fills wDuelTempList with sequence
+	; 0, 1, 2, 3, 4, ... to serve as deck indices
+	ld hl, wDuelTempList
+	xor a
+.loop_fill_list_sequence
+	ld [hli], a
+	inc a
+	cp DECK_SIZE
+	jr c, .loop_fill_list_sequence
+	ld [hl], $ff
+
+	bank1call SortDuelTempListByCardID
+
+	ld hl, wDuelTempList
+.loop_filter_only_pkmn
+	ld a, [hli]
+	ldh [hTempCardIndex_ff98], a
+	cp $ff
+	jp z, .got_basic_card_list
+	; keeps only PKMN cards or Mysterious Fossil
+	; and removes all other cards
+	call GetCardIDFromDeckIndex
+	call LoadCardDataToBuffer1_FromCardID
+	cp16 MYSTERIOUS_FOSSIL
+	jr z, .basic_stage
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
+	jr c, .check_stage
+	; is not PKMN card or Mysterious Fossil
+	ldh a, [hTempCardIndex_ff98]
+	call RemoveCardFromDuelTempList
+	jr .loop_filter_only_pkmn
+.check_stage
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr nz, .loop_filter_only_pkmn
+
+.basic_stage
+	ld a, [wListPointer2 + 0]
+	ld [wListPointer + 0], a
+	ld a, [wListPointer2 + 1]
+	ld [wListPointer + 1], a
+
+	xor a
+	ld hl, wDeckCheckCurBasicCount
+	ld [hli], a ; wDeckCheckCurBasicCount
+	ld [hli], a ; wDeckCheckCurStage1Count
+	ld [hl], a  ; wDeckCheckCurStage2Count
+
+	ld hl, wLoadedCard1Name
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call .CountAndRemoveCardsWithSameName
+	ld [wDeckCheckCurBasicCount], a
+
+; goes through 1st and 2nd stage cards
+; that evolve from current basic card
+; counts how many cards of each stage there are
+.loop_search_stage1_and_stage2_cards
+	call .CountAndRemoveCardsWithPreEvolution
+	or a
+	jr z, .no_more_evolutions
+	push de
+	ld hl, wDeckCheckCurStage1Count
+	add [hl]
+	ld [hl], a
+	ld hl, wLoadedCard2Name
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call .CountAndRemoveCardsWithPreEvolution
+	ld hl, wDeckCheckCurStage2Count
+	add [hl]
+	ld [hl], a
+	pop de
+	jr .loop_search_stage1_and_stage2_cards
+
+.no_more_evolutions
+	ld hl, wDeckCheckCurBasicCount
+	ld a, [hli]
+	cp [hl] ; wDeckCheckCurStage1Count
+	jr c, .mismatched_evo_cards
+	ld a, [hli] ; wDeckCheckCurStage1Count
+	cp [hl] ; wDeckCheckCurStage2Count
+	jr c, .mismatched_evo_cards
+	ld a, [wListPointer + 0]
+	ld [wListPointer2 + 0], a
+	ld a, [wListPointer + 1]
+	ld [wListPointer2 + 1], a
+.mismatched_evo_cards
+	ld hl, wDuelTempList
+	jp .loop_filter_only_pkmn
+
+.got_basic_card_list
+	ld de, $0
+	call Func_0b99
+	ld hl, wCurDeckCards
+	ld a, [hli]
+	or a
+	ret z
+	; at least 1 entry
+	scf
+	ret
+
+; outputs in a the number of cards that
+; have card name in de as its pre-evolution
+; if it finds any, also removes them from wDuelTempList
+; only does this to first card ID it finds, so
+; if a card has different evolution cards, this needs
+; to be called again until there are not cards left
+; de = card name
+.CountAndRemoveCardsWithPreEvolution:
+	push hl
+	push de
+	push bc
+	ld hl, wDeckCheckCardName
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+	ld c, 0
+	ld hl, wDuelTempList
+.loop_search_card_evos
+	ld a, [hli]
+	cp $ff
+	jr z, .got_card_evo_count
+	call GetCardIDFromDeckIndex
+	call LoadCardDataToBuffer2_FromCardID
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .loop_search_card_evos
+
+	; check if it evolves from card currently looked at
+	; if so, add to count and remove it from wDuelTempList
+	push hl
+	ld hl, wDeckCheckCardName
+	ld a, [wLoadedCard2PreEvoName + 0]
+	cp [hl]
+	jr nz, .not_cards_evo
+	ld a, [wLoadedCard2PreEvoName + 1]
+	inc hl
+	cp [hl]
+.not_cards_evo
+	pop hl
+	jr nz, .loop_search_card_evos
+
+	ld a, [wLoadedCard2Name + 0]
+	ld e, a
+	ld a, [wLoadedCard2Name + 1]
+	ld d, a
+	call .CountAndRemoveCardsWithSameName
+	ld c, a
+.got_card_evo_count
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; outputs in a the number of cards with the name in de
+; if it finds any, also removes them from wDuelTempList
+; de = card name
+.CountAndRemoveCardsWithSameName:
+	push hl
+	push de
+	push bc
+	ld hl, wDeckCheckCardName
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+	ld c, 0
+	ld hl, wDuelTempList
+.loop_search_cards_with_same_name
+	ld a, [hli]
+	ldh [hTempCardIndex_ff98], a
+	cp $ff
+	jr z, .got_card_with_same_name_count
+	call GetCardIDFromDeckIndex
+	call GetCardName
+	jr c, .got_card_with_same_name_count
+	push hl
+	ld hl, wDeckCheckCardName
+	ld a, e
+	cp [hl]
+	jr nz, .not_same_name
+	inc hl
+	ld a, d
+	cp [hl]
+.not_same_name
+	pop hl
+	jr nz, .loop_search_cards_with_same_name
+
+	; has same name, remove it from wDuelTempList
+	; and add this card to list in wListPointer2
+	ldh a, [hTempCardIndex_ff98]
+	call GetCardIDFromDeckIndex
+	call Func_0b99
+	ldh a, [hTempCardIndex_ff98]
+	call RemoveCardFromDuelTempList
+	dec hl
+	inc c
+	jr .loop_search_cards_with_same_name
+
+.got_card_with_same_name_count
+	ld a, c
+	pop bc
+	pop de
+	pop hl
+	ret
+
+; returns carry if for all energy cards there is at least
+; one Pokémon card in the deck that matches its color
+.CheckIfAllEnergyCardsMatchPkmnColors:
+	ld hl, wPlayerDeck
+	ld bc, wCurDeckCards
+.loop_basic_energy
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardType
+	jr c, .check_nonmatching_energy
+	cp TYPE_ENERGY
+	jr c, .matching_pkmn_found
+	cp TYPE_ENERGY_DOUBLE_COLORLESS
+	jr nc, .matching_pkmn_found
+
+	; is basic energy card
+	; check if there is at least a Pokémon
+	; that has the same color as it
+	push hl
+	push de
+	push bc
+	and TYPE_PKMN
+	ld c, a
+	ld hl, wPlayerDeck
+.loop_pkmn_cards
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardType
+	jr c, .break_pkmn_loop
+	cp TYPE_ENERGY
+	jr nc, .next_pkmn_card ; not Pkmn
+	cp c
+	jr nz, .next_pkmn_card ; not same type as energy
+	or a ; unset carry
+	jr .break_pkmn_loop
+.next_pkmn_card
+	jr .loop_pkmn_cards
+.break_pkmn_loop
+	pop bc
+	pop de
+	pop hl
+	jr nc, .matching_pkmn_found
+	; reaching here means that no
+	; Pokémon with matching color was found
+	; so add the energy card ID to wCurDeckCards
+	ld a, e
+	ld [bc], a
+	inc bc
+	ld a, d
+	ld [bc], a
+	inc bc
+.matching_pkmn_found
+	jr .loop_basic_energy
+
+.check_nonmatching_energy
+	xor a
+	ld [bc], a
+	inc bc
+	ld [bc], a
+	ld hl, wCurDeckCards
+	ld a, [hli]
+	or [hl]
+	jr z, .return_carry
+	; first check if all Pokémon are colorless
+	; in that case, return carry
+	call .CountTypesOfPkmnCards
+	cp 2
+	jr nc, .at_least_2_types
+	ld a, [wDeckCheckPkmnCounts + COLORLESS]
+	or a
+	jr nz, .return_carry
+.at_least_2_types
+	or a
+	ret
+.return_carry
+	scf
+	ret
+
+; checks if each every type has right amount
+; of energy, dependent on number of Pokémon cards
+; for that type
+.CheckEnergyAmountVsPkmnCards:
+	call .CountTypesOfPkmnCards
+	ld [wcd4b], a
+
+	; counts total amount of energy that the deck provides
+	; Double Colorless counts as 2 energies
+	ld c, 0
+	ld hl, wPlayerDeck
+.loop_count_amount_energy
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardType
+	jr c, .done_counting_energy
+	cp TYPE_ENERGY
+	jr c, .next_card
+	cp TYPE_TRAINER
+	jr nc, .next_card
+	inc c
+	cp16 DOUBLE_COLORLESS_ENERGY
+	jr nz, .next_card
+	inc c
+.next_card
+	jr .loop_count_amount_energy
+
+.done_counting_energy
+	ld hl, wDeckCheckBasicCount
+	ld a, [hli] ; wDeckCheckBasicCount
+	add [hl] ; wDeckCheckStage1Count
+	inc hl
+	add [hl] ; wDeckCheckStage2Count
+	ld b, a ; total count of all Pkmn cards
+	ld hl, wcd4b
+	sub [hl]
+	sub c
+	jr z, .asm_256f4
+	jr c, .asm_256f4
+	; total Pkmn cards > wcd4b + total energy
+	ldtx hl, Text0586
+	call .PrintDrMasonText
+
+.asm_256f4
+	call .CalculateEnergySurplus
+	ld hl, wDeckCheckEnergySurplus
+	ld c, FIRE
+	ld b, NUM_COLORED_TYPES
+.loop_colored_types_1
+	ld a, [hli]
+	push hl
+	push bc
+	or a
+	jr z, .asm_25737
+	bit 7, a
+	jr nz, .negative
+	; surplus of energy cards
+	ldtx hl, Text0587
+	jr .get_energy_name
+.negative
+	; not enough energy cards
+	ldtx hl, Text0588
+
+.get_energy_name
+	push hl
+	ld a, c
+	add a ; *2
+	ld c, a
+	ld b, $00
+	ld hl, .TypeTextIDs
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, wTxRam2
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, [wcd4e]
+	or a
+	jr nz, .asm_25733
+	ldtx hl, Text058c
+	call .PrintDrMasonText
+.asm_25733
+	pop hl
+	call .PrintDrMasonText
+.asm_25737
+	pop bc
+	pop hl
+	inc c
+	dec b
+	jr nz, .loop_colored_types_1
+	ld a, [wcd4e]
+	or a
+	ret z
+	scf
+	ret
+
+.TypeTextIDs:
+	tx Text053b ; FIRE
+	tx Text0538 ; GRASS
+	tx Text053a ; LIGHTNING
+	tx Text0539 ; WATER
+	tx Text053c ; FIGHTING
+	tx Text053d ; PSYCHIC
+
+.CalculateEnergySurplus:
+	; divide colorless card counts
+	; between the different types found
+	ld a, [wDeckCheckPkmnCounts + COLORLESS]
+	ld b, a
+	ld c, 0
+	ld a, [wcd4b]
+	ld d, 0
+	ld e, a
+	; bc = colorless counts * 16
+	; de = number different Pkmn types in deck
+	call DivideBCbyDE
+	; round up
+	ld hl, $80
+	add hl, bc
+	ld a, h
+	ld [wDeckCheckColorlessCardsPerType], a
+
+	xor a
+	ld [wDeckCheckTotalEnergySurplus], a
+	ld hl, wDeckCheckPkmnCounts
+	ld de, .TypeEnergyWeights
+	ld b, NUM_COLORED_TYPES
+	ld c, FIRE
+.loop_colored_types_2
+	push bc
+	ld a, [de] ; weight
+	ld b, a
+	ld a, [hl] ; pkmn counts
+	push de
+	push hl
+	ld l, a
+	ld h, b
+	or a
+	jr z, .got_surplus_energy
+	cp 2
+	jr nc, .at_least_2_pkmn
+	; count = 1
+	dec a
+.at_least_2_pkmn
+	ld [wcd4c], a
+
+	; multiply Pkmn count with type weight
+	call HtimesL
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	add hl, hl ; *16
+	; round up
+	ld de, $80
+	add hl, de
+	ld a, [wDeckCheckColorlessCardsPerType]
+	add h
+	ld [wDeckCheckTotalEnergyRequirement], a
+
+	; sum this type's energy count
+	; with rainbow energy count
+	ld b, $00
+	ld hl, wDeckCheckEnergyCounts
+	add hl, bc
+	ld a, [wDeckCheckRainbowEnergyCount]
+	add [hl]
+	ld e, a
+
+	ld hl, wcd4c
+	sub [hl]
+	jr c, .got_surplus_energy ; jump if (total energy) < Pkmn count
+	ld a, e
+	ld hl, wDeckCheckTotalEnergyRequirement
+	sub [hl]
+	jr nc, .got_surplus_energy ; jump if (total energy) >= (energy requirement)
+	xor a
+.got_surplus_energy
+	; a = 0, if (total energy) < (energy requirement)
+	; a = (energy requirement) - (total energy), otherwise
+	ld hl, wDeckCheckEnergySurplus
+	add hl, bc
+	ld [hl], a
+	ld hl, wDeckCheckTotalEnergySurplus
+	add [hl]
+	ld [hl], a
+	pop hl
+	pop de
+	pop bc
+	inc de
+	inc hl
+	inc c
+	dec b
+	jr nz, .loop_colored_types_2
+
+	ld a, [wDeckCheckEnergyCount]
+	ld hl, wDeckCheckTotalEnergySurplus
+	add [hl]
+	cp 31
+	jr nc, .asm_257d2
+	; less than 31, set to 0
+	xor a
+.asm_257d2
+	ld [hl], a
+	ret
+
+; these will contribute as weights to the number
+; of energy cards each Pkmn of that type requires
+.TypeEnergyWeights:
+	db $13 ; x1.2 FIRE
+	db $13 ; x1.2 GRASS
+	db $13 ; x1.2 LIGHTNING
+	db $13 ; x1.2 WATER
+	db $15 ; x1.3 FIGHTING
+	db $15 ; x1.3 PSYCHIC
+; 0x257da
+
 SECTION "Bank 9@5934", ROMX[$5934], BANK[$9]
 
 ; a = deck ID

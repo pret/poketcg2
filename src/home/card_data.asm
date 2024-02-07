@@ -51,7 +51,7 @@ LoadCardDataToBuffer1_FromName:
 	ret
 
 ; load data of card with id at de to wLoadedCard2
-LoadCardDataToBuffer2_FromCardID:
+LoadCardDataToBuffer2_FromCardID::
 	push hl
 	ld hl, wLoadedCard2
 	jr LoadCardDataToHL_FromCardID

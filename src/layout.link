@@ -46,6 +46,8 @@ ROMX $07
 	"Bank 7"
 ROMX $09
 	"Bank 9"
+ROMX $0a
+	"Bank a"
 ROMX $0c
 	"Bank c"
 ROMX $0e
@@ -237,8 +239,8 @@ WRAMX 1
 	"WRAM1@d380"
 	org $d4c8
 	"WRAM1@d4c8"
-	org $d54c
-	"WRAM1@d54c"
+	org $d548
+	"WRAM1@d548"
 	org $dc06
 	"WRAM1@dc06"
 	org $dd02

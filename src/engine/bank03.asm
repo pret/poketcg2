@@ -1869,7 +1869,28 @@ Data_d946:
 	db $2c, %11111111 ; $3d
 	db $33, %11111111 ; $3e
 
-SECTION "Bank 3@5bdb", ROMX[$5bdb], BANK[$3]
+SECTION "Bank 3@5bbd", ROMX[$5bbd], BANK[$3]
+
+GetNumberOfDeckDiagnosisStepsUnlocked:
+	push bc
+	xor a
+	ld c, a
+	ld a, EVENT_07
+	call GetEventValue
+	jr z, .got_num_steps
+	inc c
+	ld a, EVENT_0B
+	call GetEventValue
+	jr z, .got_num_steps
+	inc c
+	ld a, EVENT_11
+	call GetEventValue
+	jr z, .got_num_steps
+	inc c
+.got_num_steps
+	ld a, c
+	pop bc
+	ret
 
 Func_dbdb::
 	xor a

@@ -308,7 +308,35 @@ PrepareMenuGraphics:
 	ret
 ; 0x8f6b
 
-SECTION "Bank 2@4fee", ROMX[$4fee], BANK[$2]
+SECTION "Bank 2@4fb9", ROMX[$4fb9], BANK[$2]
+
+Func_8fb9:
+	ldh a, [hDPadHeld]
+	and START
+	ret z
+	ld a, [wCurMenuItem]
+	ld [wCurDeck], a
+	call CheckIfCurDeckIsEmpty
+	jp nc, .valid_deck ; can be jr
+	ld a, $ff
+	call PlayAcceptOrDeclineSFX
+	call Func_9215
+	scf
+	ret
+
+.valid_deck
+	ld a, SFX_01
+	call PlayAcceptOrDeclineSFX
+	call GetSRAMPointerToCurDeckCards
+	push hl
+	call GetSRAMPointerToCurDeck
+	pop de
+	call OpenDeckConfirmationMenu
+	ld a, $ff ; all decks
+	call DrawDeckSelectionMenu
+	ld a, [wCurDeck]
+	scf
+	ret
 
 OpenDeckConfirmationMenu:
 ; copy deck name
@@ -332,6 +360,55 @@ OpenDeckConfirmationMenu:
 	call HandleDeckConfirmationMenu
 	ret
 
+SECTION "Bank 2@5215", ROMX[$5215], BANK[$2]
+
+Func_9215:
+	ldtx hl, Text0299
+	call DrawWideTextBox_WaitForInput
+	ld a, [wCurDeck]
+	ret
+
+; returns carry if deck in wCurDeck is empty
+CheckIfCurDeckIsEmpty:
+	ld a, [wCurDeck]
+	ld hl, wDecksValid
+	ld b, $00
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	or a
+	ret nz
+	scf
+	ret
+; 0x922e
+
+SECTION "Bank 2@5265", ROMX[$5265], BANK[$2]
+
+GetSRAMPointerToCurDeck:
+	ld a, [wCurDeck]
+	ld h, a
+	ld l, DECK_COMPRESSED_STRUCT_SIZE
+	call HtimesL
+	push de
+	ld de, sDeck1
+	add hl, de
+	pop de
+	ret
+
+GetSRAMPointerToCurDeckCards:
+	push af
+	ld a, [wCurDeck]
+	ld h, a
+	ld l, DECK_COMPRESSED_STRUCT_SIZE
+	call HtimesL
+	push de
+	ld de, sDeck1Cards
+	add hl, de
+	pop de
+	pop af
+	ret
+; 0x9287
+
 SECTION "Bank 2@5328", ROMX[$5328], BANK[$2]
 
 ; play different sfx by a.
@@ -351,7 +428,185 @@ PlayAcceptOrDeclineSFX:
 	ret
 ; 0x9337
 
-SECTION "Bank 2@54fc", ROMX[$54fc], BANK[$2]
+SECTION "Bank 2@53bd", ROMX[$53bd], BANK[$2]
+
+DrawDeckSelectionMenu:
+	ld [hffbf], a
+
+	call EmptyScreenAndLoadFontDuelAndHandCardsIcons
+
+	; draw deck boxes
+	lb de,  0, 0
+	lb bc, 20, 4
+	call DrawRegularTextBox
+	lb de,  0, 3
+	lb bc, 20, 4
+	call DrawRegularTextBox
+	lb de,  0, 6
+	lb bc, 20, 4
+	call DrawRegularTextBox
+	lb de,  0, 9
+	lb bc, 20, 4
+	call DrawRegularTextBox
+
+	; draw numbering text
+	ld hl, .text_items
+	call PlaceTextItems
+
+	ld a, NUM_DECKS + 1
+	ld hl, wDecksValid
+	call ClearNBytesFromHL
+
+; for each deck, check if it has cards and if so
+; mark is as valid in wDecksValid
+
+	ld a, [hffbf]
+	bit DECK_1_F, a
+	jr z, .skip_name_1
+	ld hl, sDeck1
+	lb de, 6, 2
+	call PrintDeckName
+.skip_name_1
+	ld hl, sDeck1
+	call CheckIfDeckHasCards
+	jr c, .check_deck_2
+	ld a, TRUE
+	ld [wDeck1Valid], a
+
+.check_deck_2
+	ld a, [hffbf]
+	bit DECK_2_F, a
+	jr z, .skip_name_2
+	ld hl, sDeck2
+	lb de, 6, 5
+	call PrintDeckName
+.skip_name_2
+	ld hl, sDeck2
+	call CheckIfDeckHasCards
+	jr c, .check_deck_3
+	ld a, TRUE
+	ld [wDeck2Valid], a
+
+.check_deck_3
+	ld a, [hffbf]
+	bit DECK_3_F, a
+	jr z, .skip_name_3
+	ld hl, sDeck3
+	lb de, 6, 8
+	call PrintDeckName
+.skip_name_3
+	ld hl, sDeck3
+	call CheckIfDeckHasCards
+	jr c, .check_deck_4
+	ld a, TRUE
+	ld [wDeck3Valid], a
+
+.check_deck_4
+	ld a, [hffbf]
+	bit DECK_4_F, a
+	jr z, .skip_name_4
+	ld hl, sDeck4
+	lb de, 6, 11
+	call PrintDeckName
+.skip_name_4
+	ld hl, sDeck4
+	call CheckIfDeckHasCards
+	jr c, .place_cursor
+	ld a, TRUE
+	ld [wDeck4Valid], a
+
+.place_cursor
+; places cursor on sCurrentlySelectedDeck
+; if it's an empty deck, then advance the cursor
+; until it's selecting a valid deck
+	call EnableSRAM
+	ld a, [sCurrentlySelectedDeck]
+	ld c, a
+	ld b, 0
+	ld d, 2
+.loop_decks
+	ld hl, wDecksValid
+	add hl, bc
+	ld a, [hl]
+	or a
+	jr nz, .valid_deck
+	; invalid deck
+	inc c
+	ld a, NUM_DECKS
+	cp c
+	jr nz, .loop_decks
+	ld c, 0 ; wrap back to deck 1
+	dec d
+	jr z, .valid_deck
+	jr .loop_decks
+
+.valid_deck
+	ld a, c
+	ld [sCurrentlySelectedDeck], a
+
+	call DisableSRAM
+	call DrawHandCardsTileOnCurDeck
+	call EnableLCD
+	ret
+
+.text_items
+	textitem 4,  2, Text0294 ; "1・"
+	textitem 4,  5, Text0295 ; "2・"
+	textitem 4,  8, Text0296 ; "3・"
+	textitem 4, 11, Text0297 ; "4・"
+	db $ff
+
+CopyDeckName:
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld b, $00
+	ld hl, wDefaultText
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, DeckNameSuffix
+	call CopyListFromHLToDE
+	ret
+
+; prints deck name given in hl in position de
+; if it's an empty deck, print "NEW DECK" instead
+; returns carry if it's an empty deck
+; hl = deck name (sDeck1Name ~ sDeck4Name)
+; de = coordinates to print text
+PrintDeckName:
+	push hl
+	call CheckIfDeckHasCards
+	pop hl
+	jr c, .empty_deck
+
+	; valid deck, get its name
+	push de
+	ld de, wDefaultText
+	call CopyListFromHLToDEInSRAM
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld b, $00
+	ld hl, wDefaultText
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, DeckNameSuffix
+	call CopyListFromHLToDE
+	pop de
+	ld hl, wDefaultText
+	call InitTextPrinting
+	call ProcessText
+	or a
+	ret
+
+.empty_deck
+	call InitTextPrinting
+	ldtx hl, Text028c
+	call ProcessTextFromID
+	scf
+	ret
 
 DeckNameSuffix:
 	katakana "デ"
@@ -483,9 +738,20 @@ CheckIfDeckHasCards:
 	ret c
 	or a
 	ret
-; 0x95b7
 
-SECTION "Bank 2@55ca", ROMX[$55ca], BANK[$2]
+; calculates the y coordinate of the currently selected deck
+; and draws the hands card tile at that position
+DrawHandCardsTileOnCurDeck:
+	call EnableSRAM
+	ld a, [sCurrentlySelectedDeck]
+	call DisableSRAM
+	ld h, 3
+	ld l, a
+	call HtimesL
+	ld e, l
+	inc e ; (sCurrentlySelectedDeck * 3) + 1
+	ld d, 2
+;	fallthrough
 
 ; de = coordinates to draw rectangle
 DrawHandCardsTileAtDE:
@@ -494,6 +760,7 @@ DrawHandCardsTileAtDE:
 	lb bc, 2, 2
 	call FillRectangle
 	ret
+; 0x95d6
 
 SECTION "Bank 2@5a31", ROMX[$5a31], BANK[$2]
 
@@ -2443,7 +2710,26 @@ CopyBBytesFromHLToDE_Bank02:
 	ret
 ; 0xa786
 
-SECTION "Bank 2@68b4", ROMX[$68b4], BANK[$2]
+SECTION "Bank 2@689d", ROMX[$689d], BANK[$2]
+
+GeneralCardListMenuParams:
+	db 1 ; x pos
+	db 5 ; y pos
+	db 2 ; y spacing
+	db 0 ; x spacing
+	db 7 ; num entries
+	db SYM_CURSOR_R ; visible cursor tile
+	db SYM_SPACE ; invisible cursor tile
+	dw NULL ; wCardListHandlerFunction
+
+GeneralCardListUpdateFunc:
+	ld a, $01
+	ldh [hffbb], a
+	call PrintPlayersCardsText
+	xor a
+	ldh [hffbb], a
+	call PrintCardSelectionList
+	ret
 
 ; a = which card type filter
 PrintFilteredCardSelectionList:
@@ -2762,7 +3048,7 @@ PrintTotalNumberOfCardsInCollection:
 	call .PlaceNumericalChar
 	call .PlaceNumericalChar
 	call .PlaceNumericalChar
-	lb bc, TX_END, "FW0_枚"
+	lb bc, TX_FULLWIDTH0, "FW0_枚"
 	ld [hl], c ; 枚
 	inc hl
 	ld [hl], b
@@ -4073,7 +4359,7 @@ PrinterMenu_PokemonCards:
 	jr z, .loop_frame_1
 
 	xor a
-	ld hl, $689d
+	ld hl, GeneralCardListMenuParams
 	call InitializeScrollMenuParameters
 	ld a, [wBoosterPackCardListSize]
 	ld [wNumCardListEntries], a
@@ -4083,7 +4369,7 @@ PrinterMenu_PokemonCards:
 	ld [wNumMenuItems], a
 	ld [wTempScrollMenuNumVisibleItems], a
 .asm_b367
-	ld hl, $68a6
+	ld hl, GeneralCardListUpdateFunc
 	ld d, h
 	ld a, l
 	ld hl, wScrollMenuScrollFunc
@@ -4138,7 +4424,7 @@ PrinterMenu_PokemonCards:
 	call DrawHorizontalListCursor_Visible
 	call PrintCardSelectionList
 	call EnableLCD
-	ld hl, $689d
+	ld hl, GeneralCardListMenuParams
 	call InitializeScrollMenuParameters
 	ld a, [wTempScrollMenuNumVisibleItems]
 	ld [wNumMenuItems], a
@@ -4348,6 +4634,250 @@ PrinterMenu:
 	db SYM_SPACE ; invisible cursor
 	dw NULL ; update func
 ; 0xb57c
+
+SECTION "Bank 2@7947", ROMX[$7947], BANK[$2]
+
+; hl = text ID for text box
+DeckDiagnosisResult:
+	ld a, l
+	ld [wd394 + 0], a
+	ld a, h
+	ld [wd394 + 1], a
+
+	call GetSRAMPointerToCurDeck
+	call EnableSRAM
+	call CopyDeckName
+	call DisableSRAM
+	ld hl, wDefaultText
+	ld de, wCurDeckName
+	call CopyListFromHLToDE
+
+	call WriteCardListsTerminatorBytes
+	call .InitMenu
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	call .SortAndPrintCardList
+
+	xor a
+	ld hl, GeneralCardListMenuParams
+	call InitializeScrollMenuParameters
+	ld a, [wNumUniqueCards]
+	ld [wNumCardListEntries], a
+	ld hl, wNumVisibleCardListEntries
+	cp [hl]
+	jr nc, .set_update_func
+	ld [wNumMenuItems], a
+.set_update_func
+	ld hl, .UpdateFunc
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	xor a
+	ld [wd119], a
+
+.loop_input
+	call DoFrame
+	call HandleSelectUpAndDownInList
+	jr c, .loop_input
+	call HandleScrollListInput
+	jr c, .selection_made
+	ldh a, [hDPadHeld]
+	and START
+	jr z, .loop_input
+.open_card_page
+	ld a, SFX_01
+	call PlayAcceptOrDeclineSFX
+	ld a, [wNumMenuItems]
+	ld [wTempScrollMenuNumVisibleItems], a
+	ld a, [wCurScrollMenuItem]
+	ld [wTempCurMenuItem], a
+	ld de, wUniqueDeckCardList
+	ld hl, wCurCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call OpenCardPageFromCardList
+	call .InitMenu
+	call .PrintCardList
+	call EnableLCD
+	ld hl, GeneralCardListMenuParams
+	call InitializeScrollMenuParameters
+	ld a, [wTempScrollMenuNumVisibleItems]
+	ld [wNumMenuItems], a
+	ld a, [wTempCurMenuItem]
+	ld [wCurScrollMenuItem], a
+	jr .loop_input
+
+.selection_made
+	call DrawListCursor_Invisible
+	ld a, [wCurScrollMenuItem]
+	ld [wTempCurMenuItem], a
+	ld a, [hCurMenuItem]
+	cp $ff
+	jr nz, .open_card_page
+	ret ; exit menu
+
+.UpdateFunc:
+	ld a, $01
+	ldh [hffbb], a
+	call .PrintText
+	xor a
+	ldh [hffbb], a
+	call .PrintCardList
+	ret
+
+.InitMenu:
+	call PrepareMenuGraphics
+	lb bc, 0, 4
+	ld a, SYM_BOX_TOP
+	call FillBGMapLineWithA
+	call .PrintText
+	call EnableLCD
+	ret
+
+.PrintText:
+	ld hl, wCurDeckName
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	xor a
+	ld [wTxRam2 + 0], a
+	ld [wTxRam2 + 1], a
+	ld a, [wd394 + 0]
+	ld l, a
+	ld a, [wd394 + 1]
+	ld h, a
+	lb de, 1, 1
+	call PrintTextNoDelay_Init
+	ret
+
+.SortAndPrintCardList:
+	call SortCurDeckCardsByID
+	call CreateCurDeckUniqueCardList
+	ld a, 7
+	ld [wNumVisibleCardListEntries], a
+	lb de, 2, 5
+	ld hl, wCardListCoords
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, SYM_SPACE
+	ld [wCursorAlternateTile], a
+	call .PrintCardList ; can be fallthrough
+	ret
+
+.PrintCardList:
+	push bc
+	ld hl, wCardListCoords
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld b, 19
+	ld c, e
+
+	ld a, [wScrollMenuScrollOffset]
+	or a
+	jr z, .asm_ba63
+	ld a, SYM_CURSOR_U
+	jr .asm_ba65
+.asm_ba63
+	ld a, SYM_SPACE
+.asm_ba65
+	call WriteByteToBGMap0
+
+	ld a, [wScrollMenuScrollOffset]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wUniqueDeckCardList
+	add hl, bc
+	ld a, [wNumVisibleCardListEntries]
+.loop_list_entries
+	push de
+	or a
+	jr z, .done_print_card_list
+	ld b, a
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call CheckIfCardIDIsZero
+	jr c, .at_last_entry
+	call AddCardIDToVisibleList
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 14
+	push bc
+	push hl
+	push de
+	call CopyCardNameAndLevel
+	pop de
+	call .PrintCardCount
+	pop hl
+	pop bc
+	pop de
+	push hl
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+	pop hl
+	ld a, b
+	dec a
+	inc e
+	inc e
+	jr .loop_list_entries
+
+.done_print_card_list
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call CheckIfCardIDIsZero
+	jr c, .at_last_entry
+	pop de
+	xor a
+	ld [wUnableToScrollDown], a
+	ld a, SYM_CURSOR_D
+	jr .asm_bac3
+.at_last_entry
+	pop de
+	ld a, TRUE
+	ld [wUnableToScrollDown], a
+	ld a, SYM_SPACE
+.asm_bac3
+	ld b, 19
+	ld c, e
+	dec c
+	dec c
+	call WriteByteToBGMap0
+	pop bc
+	ret
+
+.PrintCardCount:
+	push af
+	push bc
+	push de
+	push hl
+.asm_bad1
+	ld a, [hl]
+	or a
+	jr z, .asm_bad8
+	inc hl
+	jr .asm_bad1
+.asm_bad8
+	call GetCountOfCardInCurDeck
+	call ConvertToNumericalDigits
+	lb bc, TX_FULLWIDTH0, "FW0_枚"
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	inc hl
+	ld [hl], TX_END
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xbaec
 
 SECTION "Bank 2@7af6", ROMX[$7af6], BANK[$2]
 

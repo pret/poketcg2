@@ -2417,10 +2417,9 @@ Func_110c6:
 
 .function_map
 	key_func $0, .CardAlbum
-	db $1, BANK(@)
-	dw $51d7
+	key_func $1, .DeckDiagnosis
 	key_func $2, .Glossary
-	key_func $3, .Func_111be
+	key_func $3, .Printer
 	db $ff ; end
 
 .Func_11181:
@@ -2449,7 +2448,7 @@ Func_110c6:
 	call Func_10252
 	ret
 
-.Func_111be:
+.Printer:
 	call Func_1022a
 	call SetFadePalsFrameFunc
 	farcall PrinterMenu
@@ -2458,9 +2457,16 @@ Func_110c6:
 	call UnsetFadePalsFrameFunc
 	call Func_10252
 	ret
-; 0x111d7
 
-SECTION "Bank 4@51f0", ROMX[$51f0], BANK[$4]
+.DeckDiagnosis:
+	call Func_1022a
+	call SetFadePalsFrameFunc
+	farcall DeckDiagnosis
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call UnsetFadePalsFrameFunc
+	call Func_10252
+	ret
 
 Func_111f0:
 	ld a, $04

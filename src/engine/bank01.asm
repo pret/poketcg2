@@ -1,3 +1,18 @@
+SECTION "Bank 1@4278", ROMX[$4278], BANK[$1]
+
+Func_4278:
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call LoadSymbolsFont
+	call SetDefaultPalettes
+	lb de, $38, $9f
+	call SetupText
+	call EnableLCD
+	ret
+; 0x4292
+
 SECTION "Bank 1@4cd7", ROMX[$4cd7], BANK[$1]
 
 DrawDuelMainScene:
@@ -1953,6 +1968,86 @@ CreateTempCardCollection::
 	ld e, l
 	ld d, h
 	ret
+
+SECTION "Bank 1@6a96", ROMX[$6a96], BANK[$1]
+
+SortDuelTempListByCardID:
+	ld hl, hTempListPtr_ff99
+	ld [hl], LOW(wDuelTempList)
+	inc hl
+	ld [hl], HIGH(wDuelTempList)
+	jr .asm_6ae2
+
+.asm_6aa0
+	ld hl, hTempListPtr_ff99
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld e, l
+	ld d, h
+	ld a, [de]
+	call .GetCardID
+	ld a, c
+	ldh [hTempCardID_ff9b + 0], a
+	ld a, b
+	ldh [hTempCardID_ff9b + 1], a
+	inc hl
+	jr .asm_6acc
+
+.compare_card_ids
+	ld a, [hl]
+	call .GetCardID
+	ldh a, [hTempCardID_ff9b + 1]
+	cp b
+	jr nz, .swap_card_ids
+	ldh a, [hTempCardID_ff9b + 0]
+	cp c
+.swap_card_ids
+	jr c, .sorted
+	ld e, l
+	ld d, h
+	ld a, c
+	ldh [hTempCardID_ff9b + 0], a
+	ld a, b
+	ldh [hTempCardID_ff9b + 1], a
+.sorted
+	inc hl
+.asm_6acc
+	bit 7, [hl]
+	jr z, .compare_card_ids
+	ld hl, hTempListPtr_ff99
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld c, [hl]
+	ld a, [de]
+	ld [hl], a
+	ld a, c
+	ld [de], a
+	pop hl
+	inc [hl]
+	jr nz, .asm_6ae2
+	inc hl
+	inc [hl]
+.asm_6ae2
+	ld hl, hTempListPtr_ff99
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	bit 7, [hl]
+	jr z, .asm_6aa0
+	ret
+
+.GetCardID:
+	push hl
+	call _GetCardIDFromDeckIndex
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	pop hl
+	ret
+; 0x6af6
 
 SECTION "Bank 1@6bc8", ROMX[$6bc8], BANK[$1]
 

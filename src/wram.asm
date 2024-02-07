@@ -596,6 +596,98 @@ wcd17:: ; cd17
 wcd1a:: ; cd1a
 	ds $1
 
+	ds $9
+
+wDeckDiagnosisTextIDsPtr:: ; cd24
+	ds $2
+
+wDeckDiagnosisMenuStepSelected:: ; cd26
+	ds $1
+
+; number of steps unlocked for
+; the Deck Diagnosis menu
+wNumDeckDiagnosisSteps:: ; cd27
+	ds $1
+
+wDeckDiagnosisStep:: ; cd28
+	ds $1
+
+wcd29:: ; cd29
+	ds $1
+
+wDeckDiagnosisAdvice:: ; cd2a
+	ds $1
+
+wcd2b:: ; cd2b
+	ds $2
+
+wDeckCheckCardCounts:: ; cd2d
+
+wDeckCheckEnergyCount:: ; cd2d
+	ds $1
+
+wDeckCheckBasicCount:: ; cd2e
+	ds $1
+
+wDeckCheckStage1Count:: ; cd2f
+	ds $1
+
+wDeckCheckStage2Count:: ; cd30
+	ds $1
+
+wDeckCheckTrainerCount:: ; cd31
+	ds $1
+
+wDeckCheckEnergyCounts:: ; cd32
+	ds NUM_TYPES
+
+wDeckCheckPkmnCounts:: ; cd3a
+	ds NUM_TYPES
+
+wDeckCheckEnergySurplus:: ; cd42
+	ds NUM_TYPES
+
+wDeckCheckRainbowEnergyCount:: ; cd4a
+	ds $1
+
+wDeckCheckCardCountsEnd::
+
+wcd4b:: ; cd4b
+	ds $1
+
+wcd4c:: ; cd4c
+	ds $1
+
+wDeckCheckTotalEnergyRequirement:: ; cd4d
+	ds $1
+
+wcd4e:: ; cd4e
+	ds $1
+
+wDeckCheckTotalEnergySurplus:: ; cd4f
+	ds $1
+
+; is equal to number of colorless cards in deck divided by
+; the number of unique Pokémon types in deck (rounded up)
+wDeckCheckColorlessCardsPerType:: ; cd50
+	ds $1
+
+	ds $5
+
+wDeckCheckCardName:: ; cd56
+	ds $2
+
+; these are counts for a single evolutionary line
+; counts basic, stage 1 and stage 2 cards
+wDeckCheckCurBasicCount:: ; cd58
+	ds $1
+
+wDeckCheckCurStage1Count:: ; cd59
+	ds $1
+
+wDeckCheckCurStage2Count:: ; cd5a
+	ds $1
+
 SECTION "WRAM0 2", WRAM0
 
 ; on CGB, attributes of the text box borders. (values 0-7 seem to be used, which only affect palette)
@@ -1041,7 +1133,14 @@ wBoosterPackCardListSize:: ; d0ee
 wCurDeck:: ; d0f1
 	ds $1
 
-	ds $4
+; each of these are a boolean to
+; represent whether a given deck
+; that the player has is a valid deck
+wDecksValid::
+wDeck1Valid:: ds $1 ; d0f2
+wDeck2Valid:: ds $1 ; d0f3
+wDeck3Valid:: ds $1 ; d0f4
+wDeck4Valid:: ds $1 ; d0f5
 
 ; holds symbols for representing a number in decimal
 ; goes up in magnitude (first byte is ones place,
@@ -1205,11 +1304,20 @@ wOwnedPhantomCards:: ; d392
 wMenuInputSFX:: ; d393
 	ds $1
 
+UNION
+
 wSelectedPrinterMenuItem:: ; d394
 	ds $1
 
 wFirstOwnedCardIndex:: ; d395
 	ds $1
+
+NEXTU
+
+wd394:: ; d394
+	ds $2
+
+ENDU
 
 wNumCardListEntries:: ; d396
 	ds $1
@@ -1297,7 +1405,12 @@ SECTION "WRAM1@d4c8", WRAMX
 wd4c8:: ; d4c8
 	ds $80
 
-SECTION "WRAM1@d54c", WRAMX
+SECTION "WRAM1@d548", WRAMX
+
+wd548:: ; d548
+	ds $2
+
+	ds $2
 
 wd54c:: ; d54c
 	ds $1

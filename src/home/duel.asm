@@ -512,7 +512,7 @@ CheckDeckIndexRange:
 
 ; remove card c from wDuelTempList (it contains a $ff-terminated list of deck indexes)
 ; returns carry if no matches were found.
-RemoveCardFromDuelTempList:
+RemoveCardFromDuelTempList::
 	push hl
 	push de
 	push bc
@@ -562,7 +562,7 @@ CountCardsInDuelTempList:
 	ret
 
 ; returns, in register hl, a pointer to the id of the card with the deck index (0-59) specified in register a
-_GetCardIDFromDeckIndex:
+_GetCardIDFromDeckIndex::
 	push de
 	call CheckDeckIndexRange
 	add a
@@ -601,7 +601,7 @@ LoadCardDataToBuffer2_FromDeckIndex::
 	push bc
 	push af
 	call GetCardIDFromDeckIndex
-	call $2d04 ; LoadCardDataToBuffer2_FromCardID
+	call LoadCardDataToBuffer2_FromCardID
 	pop af
 	ld hl, wLoadedCard2
 	farcall $9, $4e25 ; ConvertSpecialTrainerCardToPokemon

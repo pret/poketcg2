@@ -137,3 +137,6 @@ hffbe:: ; ffbe
 
 hffbf:: ; ffbf
 	ds $1
+
+hffc0:: ; ffc0
+	ds $1

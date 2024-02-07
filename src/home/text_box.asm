@@ -56,7 +56,7 @@ AdjustCoordinatesForBGScroll:
 ; Draws a bxc text box at de printing a name in the left side of the top border.
 ; The name's text id must be at hl when this function is called.
 ; Mostly used to print text boxes for talked-to NPCs, but occasionally used in duels as well.
-DrawLabeledTextBox:
+DrawLabeledTextBox::
 	push de
 	push bc
 	push hl

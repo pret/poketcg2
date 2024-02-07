@@ -891,13 +891,14 @@ Func_355d::
 	push bc
 	ret
 
-Func_355f::
-	ld hl, $0
+; divides BC by DE. Stores result in BC and stores remainder in HL
+DivideBCbyDE::
+	ld hl, $0000
 	rl c
 	rl b
 	ld a, $10
 .asm_3568
-	ldh [$ffc0], a
+	ldh [hffc0], a
 	rl l
 	rl h
 	push hl
@@ -909,7 +910,7 @@ Func_355f::
 	ccf
 	jr nc, .asm_357d
 	ld h, a
-	add sp, $02
+	add sp, $2
 	scf
 	jr .asm_357e
 .asm_357d
@@ -917,7 +918,7 @@ Func_355f::
 .asm_357e
 	rl c
 	rl b
-	ldh a, [$ffc0]
+	ldh a, [hffc0]
 	dec a
 	jr nz, .asm_3568
 	ret
