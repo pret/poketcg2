@@ -135,7 +135,7 @@ StartMenu_ContinueDuel:
 	ret
 
 StartMenu_CardPop:
-	farcall $7, $782b
+	farcall CardPopMenu
 	scf
 	ccf
 	ret

@@ -504,25 +504,27 @@ Func_2c4b::
 	or a
 	ret nz
 	ldh a, [hTextLineCurPos]
-	call Func_2c5c
+	call ZeroAttributesAtDE ; can be fallthrough
 	ret
 
-Func_2c5c::
+; a = number of zero bytes
+; de = coordinates
+ZeroAttributesAtDE::
 	push hl
 	push de
 	push bc
 	ld b, a
 	ld a, l
 	or h
-	jr z, .asm_2c73
+	jr z, .null
 	ld a, b
 	ld b, d
 	ld c, e
-	ld hl, $61
+	ld hl, Zeroes
 	call BankswitchVRAM1
 	call CopyDataToBGMap0
 	call BankswitchVRAM0
-.asm_2c73
+.null
 	pop bc
 	pop de
 	pop hl

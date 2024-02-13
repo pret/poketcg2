@@ -23,7 +23,7 @@ s0a007:: ; a007
 s0a009:: ; a009
 	ds $1
 
-s0a00a:: ; a00a
+sClearedGame:: ; a00a
 	ds $1
 
 s0a00b:: ; a00b
@@ -98,8 +98,8 @@ SECTION "SRAM1", SRAM
 sCardPopNameList:: ; a000
 	ds CARDPOP_NAME_LIST_SIZE
 
-s1a100:: ; a100
-	ds $1
+sCardPopRecords:: ; a100
+	ds MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE
 
 SECTION "SRAM2", SRAM
 

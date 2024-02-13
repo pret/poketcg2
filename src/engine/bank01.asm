@@ -1741,9 +1741,20 @@ WriteTwoByteNumberInTxSymbolFormat:
 	pop bc
 	pop de
 	ret
-; 0x6079
 
-SECTION "Bank 1@608e", ROMX[$608e], BANK[$1]
+Func_6079:
+	push de
+	push bc
+	call TwoByteNumberToTxSymbol_TrimLeadingZeros_Bank1
+	pop bc
+	push bc
+	call BCCoordToBGMap0Address
+	ld hl, wStringBuffer
+	ld b, 5
+	call SafeCopyDataHLtoDE
+	pop bc
+	pop de
+	ret
 
 ; given a number between 0-99 in a, converts it to TX_SYMBOL format,
 ; and writes it to wStringBuffer + 3 and to the BGMap0 address at bc.

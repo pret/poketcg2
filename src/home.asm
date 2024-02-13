@@ -43,7 +43,13 @@ SECTION "serial", ROM0
 	ds 5
 SECTION "joypad", ROM0
 	reti
-	ds $9f
+
+; array of $00 used in ZeroAttributesAtDE
+; to set some BGMap values to zero
+Zeroes:
+REPT $9f
+	db $00
+ENDR
 
 SECTION "romheader", ROM0
 	nop

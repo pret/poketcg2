@@ -31,9 +31,24 @@ wDecompressionSecondaryBuffer:: ; c000
 wDecompressionSecondaryBufferStart:: ; c0ef
 	ds $11
 
+NEXTU
+
+; names of the last players who have done
+; Card Pop! with current save file
+wCardPopNameList:: ; c000
+	ds CARDPOP_NAME_LIST_SIZE
+
+NEXTU
+
+; candidate cards for Card Pop! to randomly choose
+wCardPopCandidateList:: ; c000
+	ds CARD_COLLECTION_SIZE
+
 ENDU
 
 SECTION "WRAM0 Duels 1", WRAM0
+
+UNION
 
 wPlayerDuelVariables:: ; c200
 
@@ -42,6 +57,15 @@ wPlayerDuelVariables:: ; c200
 wOpponentDuelVariables:: ; c300
 
 	ds $100
+
+NEXTU
+
+; buffer used to store the Card Pop! name list
+; that is received from the other player
+wOtherPlayerCardPopNameList:: ; c200
+	ds CARDPOP_NAME_LIST_SIZE
+
+ENDU
 
 wPlayerDeck:: ; c400
 	ds $80
@@ -62,6 +86,37 @@ wDuelTempList:: ; c510
 ; when the text printing functions are called with text id $0000
 wDefaultText:: ; c590
 	ds $3c
+
+	ds $1e
+
+; signals what error, if any, occurred
+; during IR communications
+; 0 means there was no error
+wIRCommunicationErrorCode:: ; c5ea
+	ds $1
+
+; parameters set for IR communications on own device
+; and received from the other device respectively
+; these must match for successful communication
+wOwnIRCommunicationParams:: ; c5eb
+	ds $4
+wOtherIRCommunicationParams:: ; c5ef
+	ds $4
+
+
+; stores the result from LookUpNameInCardPopNameList
+; is $ff if name was found in the Card Pop! list
+; is $00 otherwise
+wCardPopNameSearchResult:: ; c5f3
+	ds $1
+
+; information to send to other player in Card Pop!
+; bytes 0-1: card ID obtained
+; bytes 2-3: number of battles
+; bytes 4-5: number of cards owned
+; byte 7: number of event coins obtained
+wCardPopSummary:: ; c5f4
+	ds $7
 
 SECTION "WRAM0 Text Engine", WRAM0
 
@@ -672,7 +727,19 @@ wDeckCheckTotalEnergySurplus:: ; cd4f
 wDeckCheckColorlessCardsPerType:: ; cd50
 	ds $1
 
-	ds $5
+wcd51:: ; cd51
+	ds $1
+
+wcd52:: ; cd52
+	ds $1
+
+wcd53:: ; cd53
+	ds $1
+
+wcd54:: ; cd54
+	ds $1
+
+	ds $1
 
 wDeckCheckCardName:: ; cd56
 	ds $2
@@ -926,7 +993,61 @@ wPrinterInitAttempts:: ; ce20
 wce9f:: ; ce21
 	ds $1
 
-	ds $2a
+; which song to play when obtaining the card from Card Pop!
+; the card's rarity determines which song to play
+wCardPopCardObtainSong:: ; ce22
+	ds $1
+
+	ds $2
+
+; either IRPARAM_CARD_POP or IRPARAM_RARE_CARD_POP
+wCardPopType:: ; ce25
+	ds $1
+
+; whether the player has cleared the game
+wClearedGame:: ; ce26
+	ds $1
+
+wce27:: ; ce27
+	ds $1
+
+wce28:: ; ce28
+	ds $1
+
+wce29:: ; ce29
+	ds $1
+
+wce2a:: ; ce2a
+	ds $1
+
+wNumCardPopRecords:: ; ce2b
+	ds $1
+
+wCardPopRecord:: ; ce2c
+
+wCardPopRecordName:: ; ce2c
+	ds NAME_BUFFER_LENGTH
+
+wCardPopRecordYourCardID:: ; ce3c
+	ds $2
+
+wCardPopRecordTheirCardID:: ; ce3e
+	ds $2
+
+wCardPopRecordNumBattles:: ; ce40
+	ds $2
+
+wCardPopRecordNumCards:: ; ce42
+	ds $2
+
+wCardPopRecordNumCoins:: ; ce44
+	ds $1
+
+; either IRPARAM_CARD_POP or IRPARAM_RARE_CARD_POP
+wCardPopRecordType:: ; ce45
+	ds $1
+
+	ds $6 ; padding to align to $20
 
 wce4c:: ; ce4c
 	ds $1
@@ -1069,6 +1190,12 @@ wGlossaryMenu:: ; d0d1
 
 wd0d2:: ; d0d2
 	ds $1
+
+	ds $6
+
+; buffer to store data that will be sent/received through IR
+wIRDataBuffer:: ; d0d9
+	ds $8
 
 SECTION "WRAM1@d0e1", WRAMX
 

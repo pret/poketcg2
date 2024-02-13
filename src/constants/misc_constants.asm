@@ -43,3 +43,24 @@ DEF TRUE  EQU 1
 ; can be written to sCardPopNameList
 DEF CARDPOP_NAME_LIST_MAX_ELEMS EQU 16
 DEF CARDPOP_NAME_LIST_SIZE EQUS "CARDPOP_NAME_LIST_MAX_ELEMS * NAME_BUFFER_LENGTH"
+DEF MAX_NUM_CARDPOP_RECORDS EQU 98
+DEF CARDPOP_RECORD_SIZE     EQU $20
+
+; commands transmitted through IR to be
+; executed by the other device
+; (see ExecuteReceivedIRCommands)
+	const_def
+	const IRCMD_CLOSE             ; $0
+	const IRCMD_RETURN_WO_CLOSING ; $1
+	const IRCMD_TRANSMIT_DATA     ; $2
+	const IRCMD_RECEIVE_DATA      ; $3
+	const IRCMD_CALL_FUNCTION     ; $4
+DEF NUM_IR_COMMANDS EQU const_value
+
+; parameters for IR communication
+; (see InitIRCommunications)
+	const_def 1
+	const IRPARAM_CARD_POP      ; $1
+	const IRPARAM_SEND_CARDS    ; $2
+	const IRPARAM_SEND_DECK     ; $3
+	const IRPARAM_RARE_CARD_POP ; $4

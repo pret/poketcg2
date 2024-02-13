@@ -2561,6 +2561,27 @@ Func_1f57b::
 	db $80 ; end
 ; 0x1f60c
 
+SECTION "Bank 7@782b", ROMX[$782b], BANK[$7]
+
+CardPopMenu:
+	push af
+	push bc
+	push de
+	push hl
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+	farcall _CardPopMenu
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1f84c
+
 SECTION "Bank 7@78bd", ROMX[$78bd], BANK[$7]
 
 PlayerGenderAndNameSelection::

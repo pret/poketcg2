@@ -62,7 +62,81 @@ ClearSavedDuel:
 	ret
 ; 0x240e6
 
-SECTION "Bank 9@425e", ROMX[$425e], BANK[$9]
+SECTION "Bank 9@4158", ROMX[$4158], BANK[$9]
+
+Func_24158:
+	push hl
+	call .Func_2416e
+	ld a, $12
+	call CopyCardNameAndLevel
+	ld [hl], TX_END
+	ld hl, $0
+	call LoadTxRam2
+	pop hl
+	call DrawWideTextBox_WaitForInput
+	ret
+
+.Func_2416e:
+	bank1call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call LoadSymbolsFont
+	bank1call SetDefaultPalettes
+	ld a, $08
+	ld [wDuelDisplayedScreen], a
+	call LoadCardOrDuelMenuBorderTiles
+	ld e, $00 ; trainer
+	ld a, [wLoadedCard1Type]
+	cp TYPE_TRAINER
+	jr z, .asm_24193
+	ld e, $01 ; energy
+	and TYPE_ENERGY
+	jr nz, .asm_24193
+	ld e, $02 ; pkmn
+.asm_24193
+	push de
+	ld a, e
+	call LoadCardTypeHeaderTiles
+	pop de
+	ld d, $00
+	ld hl, .CardTypeTileAttributes
+	add hl, de
+	ld a, [hl]
+	lb de, 6, 1
+	lb bc, 8, 2
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+	ld de, v0Tiles1 + $200
+	bank1call LoadLoadedCard1Gfx
+	lb de, 6, 3
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	bank1call FlushAllPalettesIfNotDMG
+	ld hl, .TileData
+	call WriteDataBlocksToBGMap0
+	ret
+
+.CardTypeTileAttributes:
+	db $04 ; Trainer
+	db $03 ; Energy
+	db $02 ; Pkmn
+
+.TileData:
+	db  5,  0, $d0, $d4, $d4, $d4, $d4, $d4, $d4, $d4, $d4, $d1, 0
+	db  5,  1, $d6, $e0, $e1, $e2, $e3, $e4, $e5, $e6, $e7, $d7, 0
+	db  5,  2, $d6, $e8, $e9, $ea, $eb, $ec, $ed, $ee, $ef, $d7, 0
+	db  5,  3, $d6, $a0, $a6, $ac, $b2, $b8, $be, $c4, $ca, $d7, 0
+	db  5,  4, $d6, $a1, $a7, $ad, $b3, $b9, $bf, $c5, $cb, $d7, 0
+	db  5,  5, $d6, $a2, $a8, $ae, $b4, $ba, $c0, $c6, $cc, $d7, 0
+	db  5,  6, $d6, $a3, $a9, $af, $b5, $bb, $c1, $c7, $cd, $d7, 0
+	db  5,  7, $d6, $a4, $aa, $b0, $b6, $bc, $c2, $c8, $ce, $d7, 0
+	db  5,  8, $d6, $a5, $ab, $b1, $b7, $bd, $c3, $c9, $cf, $d7, 0
+	db  5,  9, $d6, 0
+	db 14,  9, $d7, 0
+	db  5, 10, $d6, 0
+	db 14, 10, $d7, 0
+	db  5, 11, $d2, $d5, $d5, $d5, $d5, $d5, $d5, $d5, $d5, $d3, 0
+	db $ff ; end
 
 DrawDuelHorizontalSeparator:
 	ld hl, .LineSeparatorTileData
@@ -233,7 +307,7 @@ HandleDeckDiagnosisMenu:
 	; print the menu items
 	lb de, 12, 0
 	ld a, $06
-	call Func_2c5c
+	call ZeroAttributesAtDE
 	call InitTextPrinting_ProcessTextFromID
 
 	; initialize the menu
@@ -1503,7 +1577,125 @@ CheckDeck:
 	db $15 ; x1.3 PSYCHIC
 ; 0x257da
 
-SECTION "Bank 9@5934", ROMX[$5934], BANK[$9]
+SECTION "Bank 9@58a2", ROMX[$58a2], BANK[$9]
+
+; fills wCardPopCandidateList with cards that satisfy
+; certain criteria:
+; if a == $ff, then only output energy cards
+; if a == $fe, then only output Phantom cards
+; otherwise, output cards with:
+; - rarity == a
+; - b <= set <= c
+; outputs in a the number of cards in the list
+CreateCardPopCandidateList:
+	cp $ff
+	jr z, .energy_cards
+	cp $fe
+	jr z, .phantom_cards
+
+	ld hl, wcd51
+	ld [hli], a
+	ld [hl], b ; wcd52
+	inc hl
+	ld [hl], c ; wcd53
+	xor a
+	ld [wcd54], a
+
+	ld de, 0
+	ld hl, wCardPopCandidateList
+	jr .start_loop
+
+.loop_ids
+	push hl
+	ld hl, wcd51
+	ld a, b ; rarity
+	cp [hl]
+	jr nz, .next_card
+	inc hl
+
+	; accept sets >= minimum set
+	ld a, c ; set
+	cp [hl] ; wcd52
+	jr z, .add_card
+	jr c, .next_card
+
+	; accept sets <= maximum set
+	inc hl
+	cp [hl] ; wcd53
+	jr z, .add_card
+	jr nc, .next_card
+
+.add_card
+	ld hl, wcd54
+	inc [hl]
+	pop hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+.start_loop
+	push hl
+.next_card
+	inc de
+	call GetCardTypeRarityAndSet
+	pop hl
+	jr nc, .loop_ids
+	; no more cards
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld a, [wcd54] ; number of cards
+	ret
+
+.phantom_cards
+	ld hl, .phantom_card_list
+	jr .got_card_list
+.energy_cards
+	ld hl, .energy_card_list
+.got_card_list
+	ld c, 0
+	ld de, wCardPopCandidateList
+.loop_list
+	ld a, [hli]
+	ld b, a
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	inc c
+	or b
+	jr nz, .loop_list
+	ld a, c
+	dec a
+	ld [wcd54], a
+	ret
+
+.energy_card_list
+	dw GRASS_ENERGY
+	dw FIRE_ENERGY
+	dw WATER_ENERGY
+	dw LIGHTNING_ENERGY
+	dw FIGHTING_ENERGY
+	dw PSYCHIC_ENERGY
+	dw GRASS_ENERGY
+	dw FIRE_ENERGY
+	dw WATER_ENERGY
+	dw LIGHTNING_ENERGY
+	dw FIGHTING_ENERGY
+	dw PSYCHIC_ENERGY
+	dw NULL
+
+.phantom_card_list
+	dw VENUSAUR_LV64
+	dw MEW_LV15
+	dw HERE_COMES_TEAM_ROCKET
+	dw LUGIA
+	dw VENUSAUR_LV64
+	dw MEW_LV15
+	dw HERE_COMES_TEAM_ROCKET
+	dw LUGIA
+	dw NULL
 
 ; a = deck ID
 LoadDeckIDData:

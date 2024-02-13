@@ -1,9 +1,541 @@
 SECTION "Bank 6@46a6", ROMX[$46a6], BANK[$6]
 
 INCLUDE "engine/glossary.asm"
+; 0x1897e
 
+SECTION "Bank 6@5657", ROMX[$5657], BANK[$6]
 
-SECTION "Bank 6@58ca", ROMX[$58ca], BANK[$6]
+; if carry flag is set, only delays
+; if carry not set:
+; - set rRP edge up, wait;
+; - set rRP edge down, wait;
+; - return
+TransmitIRBit:
+	jr c, .delay_once
+	ld [hl], RPF_WRITE_HI | RPF_ENREAD
+	ld a, 5
+	jr .loop_delay_1 ; jump to possibly to add more cycles?
+.loop_delay_1
+	dec a
+	jr nz, .loop_delay_1
+	ld [hl], RPF_WRITE_LO | RPF_ENREAD
+	ld a, 14
+	jr .loop_delay_2 ; jump to possibly to add more cycles?
+.loop_delay_2
+	dec a
+	jr nz, .loop_delay_2
+	ret
+
+.delay_once
+	ld a, 21
+	jr .loop_delay_3 ; jump to possibly to add more cycles?
+.loop_delay_3
+	dec a
+	jr nz, .loop_delay_3
+	nop
+	ret
+
+; input a = byte to transmit through IR
+TransmitByteThroughIR:
+	push hl
+	ld hl, rRP
+	push de
+	push bc
+	ld b, a
+	scf  ; carry set
+	call TransmitIRBit
+	or a ; carry not set
+	call TransmitIRBit
+	ld c, 8
+	ld c, 8 ; number of input bits
+.loop
+	ld a, $00
+	rr b
+	call TransmitIRBit
+	dec c
+	jr nz, .loop
+	pop bc
+	pop de
+	pop hl
+	ldh a, [rJOYP]
+	bit 1, a ; P11
+	jr z, ReturnZFlagUnsetAndCarryFlagSet
+	xor a ; return z set
+	ret
+
+; same as ReceiveByteThroughIR but
+; returns $0 in a if there's an error in IR
+ReceiveByteThroughIR_ZeroIfUnsuccessful:
+	call ReceiveByteThroughIR
+	ret nc
+	xor a
+	ret
+
+	; returns carry if there's some time out
+; and output in register a of $ff
+; otherwise returns in a some sequence of bits
+; related to how rRP sets/unsets bit 1
+ReceiveByteThroughIR:
+	push de
+	push bc
+	push hl
+
+; waits for bit 1 in rRP to be unset
+; up to $100 loops
+	ld b, 0
+	ld hl, rRP
+.wait_ir
+	bit RPB_DATAIN, [hl]
+	jr z, .ok
+	dec b
+	jr nz, .wait_ir
+	; looped around $100 times
+	; return $ff and carry set
+	pop hl
+	pop bc
+	pop de
+	scf
+	ld a, $ff
+	ret
+
+.ok
+; delay for some cycles
+	ld a, 15
+.loop_delay
+	dec a
+	jr nz, .loop_delay
+
+; loop for each bit
+	ld e, 8
+.loop
+	ld a, $01
+	; possibly delay cycles?
+	ld b, 9
+	ld b, 9
+	ld b, 9
+	ld b, 9
+
+; checks for bit 1 in rRP
+; if in any of the checks it is unset,
+; then a is set to 0
+; this is done a total of 9 times
+	bit RPB_DATAIN, [hl]
+	jr nz, .asm_196ec
+	xor a
+.asm_196ec
+	bit RPB_DATAIN, [hl]
+	jr nz, .asm_196f1
+	xor a
+.asm_196f1
+	dec b
+	jr nz, .asm_196ec
+	; one bit received
+	rrca
+	rr d
+	dec e
+	jr nz, .loop
+	ld a, d ; has bits set for each "cycle" that bit 1 was not unset
+	pop hl
+	pop bc
+	pop de
+	or a
+	ret
+
+ReturnZFlagUnsetAndCarryFlagSet:
+	ld a, $ff
+	or a ; z not set
+	scf  ; carry set
+	ret
+
+; called when expecting to transmit data
+Func_196e8:
+	ld hl, rRP
+.loop
+	ldh a, [rJOYP]
+	bit 1, a
+	jr z, ReturnZFlagUnsetAndCarryFlagSet
+	ld a, $a5 ; request
+	call TransmitByteThroughIR
+	push hl
+	pop hl
+	call ReceiveByteThroughIR_ZeroIfUnsuccessful
+	cp $35 ; acknowledge
+	jr nz, .loop
+	xor a
+	ret
+
+; called when expecting to receive data
+Func_1971e:
+	ld hl, rRP
+.asm_19721
+	ldh a, [rJOYP]
+	bit 1, a
+	jr z, ReturnZFlagUnsetAndCarryFlagSet
+	call ReceiveByteThroughIR_ZeroIfUnsuccessful
+	cp $a5 ; request
+	jr nz, .asm_19721
+	ld a, $35 ; acknowledge
+	call TransmitByteThroughIR
+	xor a
+	ret
+
+ReturnZFlagUnsetAndCarryFlagSet2:
+	jp ReturnZFlagUnsetAndCarryFlagSet
+
+TransmitIRDataBuffer:
+	call Func_196e8
+	jr c, ReturnZFlagUnsetAndCarryFlagSet2
+	ld a, $49
+	call TransmitByteThroughIR
+	ld a, $52
+	call TransmitByteThroughIR
+	ld hl, wIRDataBuffer
+	ld c, 8
+	jr TransmitNBytesFromHLThroughIR
+
+ReceiveIRDataBuffer:
+	call Func_1971e
+	jr c, ReturnZFlagUnsetAndCarryFlagSet2
+	call ReceiveByteThroughIR
+	cp $49
+	jr nz, ReceiveIRDataBuffer
+	call ReceiveByteThroughIR
+	cp $52
+	jr nz, ReceiveIRDataBuffer
+	ld hl, wIRDataBuffer
+	ld c, 8
+	jr ReceiveNBytesToHLThroughIR
+
+; hl = start of data to transmit
+; c = number of bytes to transmit
+TransmitNBytesFromHLThroughIR:
+	ld b, $0
+.loop_data_bytes
+	ld a, b
+	add [hl]
+	ld b, a
+	ld a, [hli]
+	call TransmitByteThroughIR
+	jr c, .asm_1977c
+	dec c
+	jr nz, .loop_data_bytes
+	ld a, b
+	cpl
+	inc a
+	call TransmitByteThroughIR
+.asm_1977c
+	ret
+
+; hl = address to write received data
+; c = number of bytes to be received
+ReceiveNBytesToHLThroughIR:
+	ld b, 0
+.loop_data_bytes
+	call ReceiveByteThroughIR
+	jr c, ReturnZFlagUnsetAndCarryFlagSet2
+	ld [hli], a
+	add b
+	ld b, a
+	dec c
+	jr nz, .loop_data_bytes
+	call ReceiveByteThroughIR
+	add b
+	or a
+	jr nz, ReturnZFlagUnsetAndCarryFlagSet2
+	ret
+
+; disables interrupts, and sets joypad and IR communication port
+; switches to CGB normal speed
+StartIRCommunications:
+	di
+	call SwitchToCGBNormalSpeed
+	ld a, P14
+	ldh [rJOYP], a
+	ld a, RPF_ENREAD
+	ldh [rRP], a
+	ret
+
+; reenables interrupts, and switches CGB back to double speed
+CloseIRCommunications:
+	ld a, P14 | P15
+	ldh [rJOYP], a
+.wait_vblank_on
+	ldh a, [rSTAT]
+	and STAT_LCDC_STATUS
+	cp STAT_ON_VBLANK
+	jr z, .wait_vblank_on
+.wait_vblank_off
+	ldh a, [rSTAT]
+	and STAT_LCDC_STATUS
+	cp STAT_ON_VBLANK
+	jr nz, .wait_vblank_off
+	call SwitchToCGBDoubleSpeed
+	ei
+	ret
+
+; set rRP to 0
+ClearRP:
+	ld a, $00
+	ldh [rRP], a
+	ret
+
+; expects to receive a command (IRCMD_* constant)
+; in wIRDataBuffer + 1, then calls the subroutine
+; corresponding to that command
+ExecuteReceivedIRCommands:
+	call StartIRCommunications
+.loop_commands
+	call ReceiveIRDataBuffer
+	jr c, .error
+	jr nz, .loop_commands
+	ld hl, wIRDataBuffer + 1
+	ld a, [hl]
+	ld hl, .CmdPointerTable
+	cp NUM_IR_COMMANDS
+	jr nc, .loop_commands ; invalid command
+	call .JumpToCmdPointer ; execute command
+	jr .loop_commands
+.error
+	call CloseIRCommunications
+	xor a
+	scf
+	ret
+
+.JumpToCmdPointer
+	add a ; *2
+	add l
+	ld l, a
+	ld a, 0
+	adc h
+	ld h, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.jp_hl
+	jp hl
+
+.CmdPointerTable
+	dw .Close                ; IRCMD_CLOSE
+	dw .ReturnWithoutClosing ; IRCMD_RETURN_WO_CLOSING
+	dw .TransmitData         ; IRCMD_TRANSMIT_DATA
+	dw .ReceiveData          ; IRCMD_RECEIVE_DATA
+	dw .CallFunction         ; IRCMD_CALL_FUNCTION
+
+; closes the IR communications
+; pops hl so that the sp points
+; to the return address of ExecuteReceivedIRCommands
+.Close
+	pop hl
+	call CloseIRCommunications
+	or a
+	ret
+
+; returns without closing the IR communications
+; will continue the command loop
+.ReturnWithoutClosing
+	or a
+	ret
+
+; receives an address and number of bytes
+; and transmits starting at that address
+.TransmitData
+	call Func_196e8
+	ret c
+	call LoadRegistersFromIRDataBuffer
+	jp TransmitNBytesFromHLThroughIR
+
+; receives an address and number of bytes
+; and writes the data received to that address
+.ReceiveData
+	call LoadRegistersFromIRDataBuffer
+	ld l, e
+	ld h, d
+	call ReceiveNBytesToHLThroughIR
+	jr c, .asm_19812
+	sub b
+	call TransmitByteThroughIR
+.asm_19812
+	ret
+
+; receives an address to call, then stores
+; the registers in the IR data buffer
+.CallFunction
+	call LoadRegistersFromIRDataBuffer
+	call .jp_hl
+	call StoreRegistersInIRDataBuffer
+	ret
+
+; returns carry set if request sent was not acknowledged
+TrySendIRRequest:
+	call StartIRCommunications
+	ld hl, rRP
+	ld c, 4
+.send_request
+	ld a, $a5 ; request
+	push bc
+	call TransmitByteThroughIR
+	push bc
+	pop bc
+	call ReceiveByteThroughIR_ZeroIfUnsuccessful
+	pop bc
+	cp $35 ; acknowledgement
+	jr z, .received_ack
+	dec c
+	jr nz, .send_request
+	scf
+	jr .close
+
+.received_ack
+	xor a
+.close
+	push af
+	call CloseIRCommunications
+	pop af
+	ret
+
+; returns carry set if request was not received
+TryReceiveIRRequest:
+	call StartIRCommunications
+	ld hl, rRP
+.wait_request
+	call ReceiveByteThroughIR_ZeroIfUnsuccessful
+	cp $a5 ; request
+	jr z, .send_ack
+	ldh a, [rJOYP]
+	cpl
+	and P10 | P11
+	jr z, .wait_request
+	scf
+	jr .close
+
+.send_ack
+	ld a, $35 ; acknowledgement
+	call TransmitByteThroughIR
+	xor a
+.close
+	push af
+	call CloseIRCommunications
+	pop af
+	ret
+
+; sends request for other device to close current communication
+RequestCloseIRCommunication:
+	call StartIRCommunications
+	ld a, IRCMD_CLOSE
+	ld [wIRDataBuffer + 1], a
+	call TransmitIRDataBuffer
+;	fallthrough
+
+; calls CloseIRCommunications while preserving af
+SafelyCloseIRCommunications:
+	push af
+	call CloseIRCommunications
+	pop af
+	ret
+
+; sends a request for data to be transmitted
+; from the other device
+; hl = start of data to request to transmit
+; de = address to write data received
+; c = length of data
+RequestDataTransmissionThroughIR:
+	ld a, IRCMD_TRANSMIT_DATA
+	call TransmitRegistersThroughIR
+	push de
+	push bc
+	call Func_1971e
+	pop bc
+	pop hl
+	jr c, SafelyCloseIRCommunications
+	call ReceiveNBytesToHLThroughIR
+	jr SafelyCloseIRCommunications
+
+; transmits data to be written in the other device
+; hl = start of data to transmit
+; de = address for other device to write data
+; c = length of data
+RequestDataReceivalThroughIR:
+	ld a, IRCMD_RECEIVE_DATA
+	call TransmitRegistersThroughIR
+	call TransmitNBytesFromHLThroughIR
+	jr c, SafelyCloseIRCommunications
+	call ReceiveByteThroughIR
+	jr c, SafelyCloseIRCommunications
+	add b
+	jr nz, .asm_1989e
+	xor a
+	jr SafelyCloseIRCommunications
+.asm_1989e
+	call ReturnZFlagUnsetAndCarryFlagSet
+	jr SafelyCloseIRCommunications
+
+; first stores all the current registers in wIRDataBuffer
+; then transmits it through IR
+TransmitRegistersThroughIR:
+	push hl
+	push de
+	push bc
+	call StoreRegistersInIRDataBuffer
+	call StartIRCommunications
+	call TransmitIRDataBuffer
+	pop bc
+	pop de
+	pop hl
+	ret nc
+	inc sp
+	inc sp
+	jr SafelyCloseIRCommunications
+
+; stores af, hl, de and bc in wIRDataBuffer
+StoreRegistersInIRDataBuffer:
+	push de
+	push hl
+	push af
+	ld hl, wIRDataBuffer
+	pop de
+	ld [hl], e ; <- f
+	inc hl
+	ld [hl], d ; <- a
+	inc hl
+	pop de
+	ld [hl], e ; <- l
+	inc hl
+	ld [hl], d ; <- h
+	inc hl
+	pop de
+	ld [hl], e ; <- e
+	inc hl
+	ld [hl], d ; <- d
+	inc hl
+	ld [hl], c ; <- c
+	inc hl
+	ld [hl], b ; <- b
+	ret
+
+; loads all the registers that were stored
+; from StoreRegistersInIRDataBuffer
+LoadRegistersFromIRDataBuffer:
+	ld hl, wIRDataBuffer
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	pop hl
+	pop af
+	ret
 
 ; empties screen and enables sprite animations
 SetSpriteAnimationsAsVBlankFunction:
@@ -38,9 +570,10 @@ BackupVBlankFunctionTrampoline:
 	ld [de], a
 	ei
 	ret
-; 0x198f7
 
-SECTION "Bank 6@58f8", ROMX[$58f8], BANK[$6]
+; unreferenced
+Func_198f7:
+	ret
 
 ; clears saved data (card Collection/saved decks/Card Pop! data/etc)
 ; then adds the old starter decks as saved decks
@@ -102,7 +635,7 @@ InitSaveData:
 	add hl, de
 	dec c
 	jr nz, .loop_card_pop_names
-	ld hl, s1a100
+	ld hl, sCardPopRecords
 	ld [hl], $00
 	xor a
 	call BankswitchSRAM
@@ -120,7 +653,7 @@ InitSaveData:
 	ld [s0a009], a
 	ld [s0a004], a
 	ld [sTotalCardPopsDone], a
-	ld [s0a00a], a
+	ld [sClearedGame], a
 	ld hl, s0a020
 	ld [hli], a
 	ld [hli], a
@@ -216,7 +749,769 @@ InitSaveData:
 	ret
 ; 0x199fa
 
-SECTION "Bank 6@601a", ROMX[$601a], BANK[$6]
+SECTION "Bank 6@5a30", ROMX[$5a30], BANK[$6]
+
+; prepares IR communication parameter data
+; a = a IRPARAM_* constant for the function of this connection
+InitIRCommunications:
+	ld hl, wOwnIRCommunicationParams
+	ld [hl], a
+	inc hl
+	ld [hl], $50
+	inc hl
+	ld [hl], $4b
+	inc hl
+	ld [hl], $32
+	ld a, $ff
+	ld [wIRCommunicationErrorCode], a
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+; clear wNameBuffer and wOpponentName
+	xor a
+	ld [wNameBuffer], a
+	ld hl, wOpponentName
+	ld [hli], a
+	ld [hl], a
+; loads player's name from SRAM
+; to wDefaultText
+	call EnableSRAM
+	ld hl, sPlayerName
+	ld de, wDefaultText
+	ld c, NAME_BUFFER_LENGTH
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop
+	call DisableSRAM
+	ret
+; 0x19a64
+
+SECTION "Bank 6@5a92", ROMX[$5a92], BANK[$6]
+
+; exchanges player names and IR communication parameters
+; checks whether parameters for communication match
+; and if they don't, an error is issued
+ExchangeIRCommunicationParameters:
+	ld hl, wOwnIRCommunicationParams
+	ld de, wOtherIRCommunicationParams
+	ld c, 4
+	call RequestDataTransmissionThroughIR
+	jr c, .error
+	ld hl, wOtherIRCommunicationParams + 1
+	ld a, [hli]
+	cp $50
+	jr nz, .error
+	ld a, [hli]
+	cp $4b
+	jr nz, .error
+	ld a, [wOwnIRCommunicationParams]
+	ld hl, wOtherIRCommunicationParams
+	cp [hl] ; do parameters match?
+	jr nz, SetIRCommunicationErrorCode_Error
+
+; receives wDefaultText from other device
+; and writes it to wNameBuffer
+	ld hl, wDefaultText
+	ld de, wNameBuffer
+	ld c, NAME_BUFFER_LENGTH
+	call RequestDataTransmissionThroughIR
+	jr c, .error
+; transmits wDefaultText to be
+; written in wNameBuffer in the other device
+	ld hl, wDefaultText
+	ld de, wNameBuffer
+	ld c, NAME_BUFFER_LENGTH
+	call RequestDataReceivalThroughIR
+	jr c, .error
+	or a
+	ret
+
+.error
+	xor a
+	scf
+	ret
+
+SetIRCommunicationErrorCode_Error:
+	ld hl, wIRCommunicationErrorCode
+	ld [hl], $01
+	ld de, wIRCommunicationErrorCode
+	ld c, 1
+	call RequestDataReceivalThroughIR
+	call RequestCloseIRCommunication
+	ld a, $01
+	scf
+	ret
+
+SetIRCommunicationErrorCode_NoError:
+	ld hl, wOwnIRCommunicationParams
+	ld [hl], $00
+	ld de, wIRCommunicationErrorCode
+	ld c, 1
+	call RequestDataReceivalThroughIR
+	ret c
+	call RequestCloseIRCommunication
+	or a
+	ret
+; 0x19afb
+
+SECTION "Bank 6@5bf9", ROMX[$5bf9], BANK[$6]
+
+_CardPopMenu:
+	call EnableSRAM
+	ld a, [sClearedGame]
+	ld [wClearedGame], a
+	call DisableSRAM
+	xor a
+	ld [wce27], a
+
+; loads scene for Card Pop! menu
+.asm_19c09
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_CARD_POP_MENU
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+
+	ld a, [wClearedGame]
+	or a
+	jr nz, .cleared_game
+	lb de,  8, 0
+	lb bc, 12, 8
+	call DrawRegularTextBox
+	ldtx hl, Text0254
+	lb de, 10, 2
+	call InitTextPrinting_ProcessTextFromID
+	ld hl, CardPopMenuParams
+	ld a, [wce27]
+	call InitializeMenuParameters
+	call DrawCardPopMenuBox
+
+	call EnableLCD
+.loop_input_1
+	call DoFrame
+	call HandleMenuInput
+	ld [wce27], a
+	jr nc, .loop_input_1
+
+	; selected an option
+	call RestoreVBlankFunction
+	ldh a, [hCurScrollMenuItem]
+	or a
+	jr z, .card_pop
+	cp 1
+	jr z, .view_records
+	jr .exit
+
+.card_pop
+	call DoCardPop
+	jr .asm_19c09
+
+.view_records
+	call ViewCardPopRecords
+	jr .asm_19c09
+
+.cleared_game
+	lb de,  8,  0
+	lb bc, 12, 10
+	call DrawRegularTextBox
+	ldtx hl, Text0255
+	lb de, 10, 2
+	call InitTextPrinting_ProcessTextFromID
+	ld hl, CardPopMenuParams
+	ld a, [wce27]
+	call InitializeMenuParameters
+	ld a, 4 ; override num items
+	ld [wNumScrollMenuItems], a
+	call DrawCardPopMenuBox
+
+	call EnableLCD
+.loop_input_2
+	call DoFrame
+	call HandleMenuInput
+	ld [wce27], a
+	jr nc, .loop_input_2
+
+	call RestoreVBlankFunction
+	ldh a, [hCurScrollMenuItem]
+	or a
+	jr z, .card_pop
+	cp 1
+	jr z, .rare_card_pop
+	cp 2
+	jr z, .view_records
+	jr .exit
+
+.rare_card_pop
+	call DoRareCardPop
+	jp .asm_19c09
+
+.exit
+	ret
+
+; draws the Card Pop! menu box with the
+; options the player can select
+; Rare Card Pop! is only available after
+; the player has cleared the game
+DrawCardPopMenuBox:
+	lb de,  0, 12
+	lb bc, 20,  6
+	call DrawRegularTextBox
+	ldh a, [hCurScrollMenuItem]
+	add a ; *2
+	ld e, a
+	ld d, $00
+	ld hl, .text_ids_without_rare_card_pop
+	ld a, [wClearedGame]
+	or a
+	jr z, .got_menu_text_ids
+	ld hl, .text_ids_with_rare_card_pop
+.got_menu_text_ids
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 1, 14
+	call InitTextPrinting_ProcessTextFromID
+	ret
+
+.text_ids_without_rare_card_pop
+	tx Text0256 ; Card Pop!
+	tx Text0258 ; View Records
+	tx Text0259 ; Exit
+
+.text_ids_with_rare_card_pop
+	tx Text0256 ; Card Pop!
+	tx Text0257 ; Rare Card Pop!
+	tx Text0258 ; View Records
+	tx Text0259 ; Exit
+
+CardPopMenuParams:
+	db 9 ; x pos
+	db 2 ; y pos
+	db 2 ; y spacing
+	db 3 ; num entries
+	db SYM_CURSOR_R ; visible cursor tile
+	db SYM_SPACE ; invisible cursor tile
+	dw HandleCardPopMenuInput ; wCardListHandlerFunction
+
+; returns carry if selection with A btn was made
+HandleCardPopMenuInput:
+	ldh a, [hDPadHeld]
+	and D_UP | D_DOWN
+	jr z, .no_up_down
+	call DrawCardPopMenuBox
+.no_up_down
+	ldh a, [hKeysPressed]
+	bit A_BUTTON_F, a
+	jr nz, .set_carry
+	and B_BUTTON
+	ret z
+	ld a, $ff
+	ldh [hCurScrollMenuItem], a
+.set_carry
+	scf
+	ret
+
+DoCardPop:
+	ld a, IRPARAM_CARD_POP
+	ld [wCardPopType], a
+
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_CARD_POP
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, Text025a
+	call PrintScrollableText_NoTextBoxLabel
+
+	call RestoreVBlankFunction
+	call PauseSong
+	ld a, SCENE_LINK
+	call LoadCardPopSceneAndHandleCommunications
+	ld a, SCENE_CARD_POP_ERROR
+	jr c, ShowCardPopError
+	ldtx hl, Text025e
+;	fallthrough
+
+; hl = text ID
+Func_19d24:
+	farcall Func_24158
+	call ResumeSong
+	bank1call Func_4278
+	call DisableLCD
+	bank1call OpenCardPage_FromHand
+	ret
+
+; a = scene ID
+; hl = text ID for text box
+ShowCardPopError:
+	push hl
+	push af
+	call ResumeSong
+	call SetSpriteAnimationsAsVBlankFunction
+	pop af
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	pop hl
+	call PrintScrollableText_NoTextBoxLabel
+	call RestoreVBlankFunction
+	ret
+
+DoRareCardPop:
+	ld a, IRPARAM_RARE_CARD_POP
+	ld [wCardPopType], a
+
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_RARE_CARD_POP
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, Text025f
+	call PrintScrollableText_NoTextBoxLabel
+	call RestoreVBlankFunction
+	call PauseSong
+	ld a, SCENE_LINK
+	call LoadCardPopSceneAndHandleCommunications
+	ld a, SCENE_RARE_CARD_POP_ERROR
+	jr c, ShowCardPopError
+	ldtx hl, Text0260
+	jr Func_19d24
+
+; a = scene ID
+LoadCardPopSceneAndHandleCommunications:
+	push af
+	call SetSpriteAnimationsAsVBlankFunction
+	pop af
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, Text025d
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	call HandleCardPopCommunications
+	push af
+	push hl
+	call ClearRP
+	call RestoreVBlankFunction
+	pop hl
+	pop af
+	ret c ; not successful
+
+	; Card Pop! successful, add to collection
+	ld hl, wLoadedCard1ID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld a, BANK("SRAM2")
+	call BankswitchSRAM
+	call AddCardToCollection
+	xor a
+	call BankswitchSRAM
+	ld hl, wLoadedCard1ID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call AddCardToCollection
+
+	; loads card name and plays obtain song
+	ld hl, wLoadedCard1Name
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call LoadTxRam2
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	ld a, SFX_5D
+	call PlaySFX
+.wait_sfx
+	call AssertSFXFinished
+	or a
+	jr nz, .wait_sfx
+	ld a, [wCardPopCardObtainSong]
+	call PlaySong
+	or a
+	ret
+
+; handles all communications to the other device to do Card Pop!
+; returns carry if Card Pop! is unsuccessful
+; and returns in hl the corresponding error text ID
+HandleCardPopCommunications:
+; copy CardPopNameList from SRAM to WRAM
+	ld a, BANK("SRAM1")
+	call BankswitchSRAM
+	ld hl, sCardPopNameList
+	ld de, wCardPopNameList
+	ld bc, CARDPOP_NAME_LIST_SIZE
+	call CopyDataHLtoDE
+	xor a
+	call BankswitchSRAM
+	call DisableSRAM
+
+	ld a, [wCardPopType]
+	call InitIRCommunications
+.loop_request
+	call TryReceiveIRRequest ; receive request
+	jr nc, .execute_commands
+	bit 1, a
+	jp nz, .asm_19e7f
+	call TrySendIRRequest ; send request
+	jr c, .loop_request
+
+; do the player name search, then transmit the result
+	call ExchangeIRCommunicationParameters
+	jr c, .fail
+	ld hl, wCardPopNameList
+	ld de, wOtherPlayerCardPopNameList
+	ld c, 0 ; $100 bytes = CARDPOP_NAME_LIST_SIZE
+	call RequestDataTransmissionThroughIR
+	jr c, .fail
+
+	call LookUpNameInCardPopNameList
+	call DecideCardToReceiveFromCardPop
+	call FillCardPopSummary
+
+	ld hl, wCardPopNameSearchResult
+	ld e, l
+	ld d, h
+	ld c, 8 ; wCardPopNameSearchResult + wCardPopSummary
+	call RequestDataReceivalThroughIR
+	jr c, .fail
+	call SetIRCommunicationErrorCode_NoError
+	jr c, .fail
+	call ExecuteReceivedIRCommands
+	jr c, .fail
+	call SetCardPopRecord
+	jr .check_search_result
+
+.execute_commands
+; will receive commands to send card pop name list,
+; and to receive the result of the name list search
+	call ExecuteReceivedIRCommands
+	ld a, [wIRCommunicationErrorCode]
+	or a
+	jr nz, .fail
+
+	ld a, $32
+	ld [wOtherIRCommunicationParams + 3], a
+	call DecideCardToReceiveFromCardPop
+	call SetCardPopRecord
+	call FillCardPopSummary
+
+	ld hl, wCardPopNameSearchResult
+	ld e, l
+	ld d, h
+	ld c, 8 ; wCardPopNameSearchResult + wCardPopSummary
+	call RequestDataReceivalThroughIR
+	jr c, .fail
+	call RequestCloseIRCommunication
+	jr c, .fail
+
+.check_search_result
+	ld a, [wCardPopNameSearchResult]
+	or a
+	jr z, .success
+	; not $00, means the name was found in the list
+	ldtx hl, Text025c ; CannotCardPopWithFriendPreviouslyPoppedWithText
+	ld a, [wCardPopType]
+	cp $01
+	jr z, .set_carry
+	ldtx hl, Text0261
+	jr .set_carry
+
+.fail
+	ld a, [wIRCommunicationErrorCode]
+	cp $01
+	jr nz, .asm_19e7f
+	ldtx hl, Text0262 ; ThePopWasntSuccessfulText
+	scf
+	ret
+
+.asm_19e7f
+	ldtx hl, Text025b
+.set_carry
+	scf
+	ret
+
+.success
+
+; increment number of times Card Pop! was done
+; and write the other player's name to sCardPopNameList
+; the spot where this is written in the list is derived
+; from the lower nybble of sTotalCardPopsDone
+; that means that after 16 Card Pop!, the older
+; names start to get overwritten
+	call EnableSRAM
+	ld hl, sTotalCardPopsDone
+	ld a, [hl]
+	inc [hl]
+	and $0f
+	swap a ; *NAME_BUFFER_LENGTH
+	ld l, a
+	ld h, $0
+	ld de, sCardPopNameList
+	add hl, de
+	ld e, l
+	ld d, h
+	ld hl, wNameBuffer
+	ld bc, NAME_BUFFER_LENGTH
+	ld a, BANK("SRAM1")
+	call BankswitchSRAM
+	call CopyDataHLtoDE
+	ld a, [wOtherIRCommunicationParams + 3]
+	cp $32
+	jr nz, .asm_19ecb
+
+	; copy SRAM so that sCardPopRecords is moved $20 forward
+	ld hl, sCardPopRecords + MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE - 1
+	ld de, sCardPopRecords + MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE - 1 + CARDPOP_RECORD_SIZE
+	ld bc, MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE
+.loop_copy_sram
+	ld a, [hld]
+	ld [de], a
+	dec de
+	dec bc
+	ld a, c
+	or b
+	jr nz, .loop_copy_sram
+	ld hl, wCardPopRecord
+	ld de, sCardPopRecords
+	ld bc, CARDPOP_RECORD_SIZE
+	call CopyDataHLtoDE
+.asm_19ecb
+	xor a
+	call BankswitchSRAM
+	call DisableSRAM
+	or a
+	ret
+
+; looks up the name in wNameBuffer in wCardPopNameList
+; used to know whether this save file has done Card Pop!
+; with the other player already
+; returns carry and wCardPopNameSearchResult = $ff if the name was found;
+; returns no carry and wCardPopNameSearchResult = $00 otherwise
+LookUpNameInCardPopNameList:
+; searches for other player's name in this game's name list
+	ld hl, wCardPopNameList
+	ld c, CARDPOP_NAME_LIST_MAX_ELEMS
+.loop_own_card_pop_name_list
+	push hl
+	ld de, wNameBuffer
+	call .CompareNames
+	pop hl
+	jr nc, .found_name
+	ld de, NAME_BUFFER_LENGTH
+	add hl, de
+	dec c
+	jr nz, .loop_own_card_pop_name_list
+
+; name was not found in wCardPopNameList
+
+; searches for this player's name in the other game's name list
+	call EnableSRAM
+	ld hl, wOtherPlayerCardPopNameList
+	ld c, CARDPOP_NAME_LIST_MAX_ELEMS
+.loop_other_card_pop_name_list
+	push hl
+	ld de, sPlayerName
+	call .CompareNames ; discards result from comparison
+	pop hl
+	jr nc, .found_name
+	ld de, NAME_BUFFER_LENGTH
+	add hl, de
+	dec c
+	jr nz, .loop_other_card_pop_name_list
+	xor a
+	jr .no_carry
+
+.found_name
+	ld a, $ff
+	scf
+.no_carry
+	ld [wCardPopNameSearchResult], a ; $00 if name was not found, $ff otherwise
+	call DisableSRAM
+	ret
+
+; compares names in hl and de
+; if they are different, return carry
+.CompareNames
+	ld b, NAME_BUFFER_LENGTH
+.loop_chars
+	ld a, [de]
+	inc de
+	cp [hl]
+	jr nz, .not_same
+	inc hl
+	dec b
+	jr nz, .loop_chars
+	or a
+	ret
+.not_same
+	scf
+	ret
+; 0x19f1f
+
+SECTION "Bank 6@5f49", ROMX[$5f49], BANK[$6]
+
+; loads in wLoadedCard1 a random card to be received
+; this selection is done based on the rarity
+; decided from the names of both participants
+; the result will always be a non-Energy card that
+; is not from a Promotional set, with the exception
+; of VenusaurLv64 and MewLv15
+; output:
+; - e = card ID chosen
+DecideCardToReceiveFromCardPop:
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	call EnableSRAM
+	ld hl, sPlayerName
+	call .CalculateNameHash
+	call DisableSRAM
+	push de
+	ld hl, wNameBuffer
+	call .CalculateNameHash
+	pop bc
+
+; de = other player's name  hash
+; bc = this player's name hash
+
+; updates RNG values to subtraction of these two hashes
+	ld hl, wRNG1
+	ld a, b
+	sub d
+	ld d, a ; b - d
+	ld [hli], a ; wRNG1
+	ld a, c
+	sub e
+	ld e, a ; c - e
+	ld [hli], a ; wRNG2
+	add d
+	ld [hl], a ; wRNGCounter
+
+	ld a, [wCardPopType]
+	cp IRPARAM_RARE_CARD_POP
+	jr nz, .not_rare
+	; Rare Card Pop!
+	ld a, e
+	cp 5
+	jr z, .phantom
+	jr .star_rarity
+.not_rare
+
+; depending on the values obtained from the hashes,
+; determine which rarity card to give to the player
+; along with the song to play with each rarity
+; the probabilities of each possibility can be calculated
+; as follows (given 2 random player names):
+; 101/256 ~ 39% for Circle
+;  90/256 ~ 35% for Diamond
+;  63/256 ~ 25% for Star
+;   1/256 ~ .4% for VenusaurLv64 or MewLv15
+	ld a, e
+	cp 5
+	jr z, .phantom
+	cp 64
+	jr c, .star_rarity ; < 64
+	cp 154
+	jr c, .diamond_rarity ; < 154
+	; >= 154
+
+	ld a, MUSIC_BOOSTER_PACK
+	ld b, CIRCLE
+	jr .got_rarity
+.diamond_rarity
+	ld a, MUSIC_BOOSTER_PACK
+	ld b, DIAMOND
+	jr .got_rarity
+.star_rarity
+	ld a, MUSIC_MATCH_VICTORY
+	ld b, STAR
+	jr .got_rarity
+.phantom
+	ld a, MUSIC_MEDAL
+	ld b, $fe
+.got_rarity
+	ld [wCardPopCardObtainSong], a
+	ld a, b
+	lb bc, BEGINNING_POKEMON, TEAM_ROCKETS_AMBITION
+	farcall CreateCardPopCandidateList
+	; pick randomly from list
+	call Random
+	ld l, a
+	ld h, $00
+	add hl, hl
+	ld de, wCardPopCandidateList
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ret
+
+; creates a unique two-byte hash from the name given in hl
+; the low byte is calculated by simply adding up all characters
+; the high byte is calculated by xoring all characters together
+; input:
+; - hl = points to the start of the name buffer
+; output:
+; - de = hash
+.CalculateNameHash:
+	ld c, NAME_BUFFER_LENGTH
+	ld de, $0
+.loop
+	ld a, e
+	add [hl]
+	ld e, a
+	ld a, d
+	xor [hl]
+	ld d, a
+	inc hl
+	dec c
+	jr nz, .loop
+	ret
+
+FillCardPopSummary:
+	ld hl, wLoadedCard1ID
+	ld de, wCardPopSummary
+	call CopyWordFromHLToDE
+	call EnableSRAM
+	ld hl, s0a020
+	call CopyWordFromHLToDE
+	call DisableSRAM
+	call GetAmountOfCardsOwned
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	inc de
+	push de
+	xor a
+	farcall CountEventCoinsObtained
+	pop de
+	ld [de], a
+	ret
+
+CopyWordFromHLToDE:
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ret
+
+SetCardPopRecord:
+	ld hl, wNameBuffer
+	ld de, wCardPopRecord
+	ld bc, NAME_BUFFER_LENGTH
+	call CopyDataHLtoDE
+	ld hl, wLoadedCard1ID
+	call CopyWordFromHLToDE
+	ld hl, wCardPopSummary
+	ld bc, 7
+	call CopyDataHLtoDE
+	ld a, [wCardPopType]
+	ld [de], a
+	ret
 
 ClearCardPopNameList:
 	call EnableSRAM
@@ -238,8 +1533,447 @@ ClearCardPopNameList:
 	call BankswitchSRAM ; SRAM0
 	call DisableSRAM
 	ret
-; 0x1a03b
 
+ViewCardPopRecords:
+	xor a
+	ld [wce28], a
+	ld [wCurMenuItem], a
+	call .CountNumberOfRecords
+	ld a, [wNumCardPopRecords]
+	or a
+	jr nz, .init_list
+	ret nz
+
+	; no Card Pop! records
+	ldtx hl, Text026d
+	call DrawWideTextBox_WaitForInput
+	ret
+
+.init_list
+	bank1call Func_4278
+	call .DrawSlashAndTopLineSeparator
+	ld hl, .MenuParams
+	ld a, [wCurMenuItem]
+	call InitializeMenuParameters
+	ld a, [wNumCardPopRecords]
+	cp 5
+	jr nc, .num_items_ok
+	; overwrite number of items
+	ld [wNumScrollMenuItems], a
+.num_items_ok
+	call .PrintRecordEntries
+.loop_input
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .loop_input
+	cp $ff
+	ret z
+	; selected a record entry
+	call .LoadRecord
+	ldh a, [hKeysPressed]
+	and A_BUTTON
+	jr nz, .show_record_page
+	ld hl, wCardPopRecordYourCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	bank1call OpenCardPage_FromHand
+	jr .init_list
+
+.show_record_page
+	; opens page to show details about this record
+	call EmptyScreen
+	lb de, 0, 0
+	lb bc, 20, 10
+	call DrawRegularTextBox
+	lb de, 0, 10
+	lb bc, 20, 8
+	call DrawRegularTextBox
+	ld hl, .text_items
+	call PlaceTextItems
+	lb de, 1, 0
+	ld a, 11
+	call ZeroAttributesAtDE
+	lb de, 1, 10
+	ld a, 5
+	call ZeroAttributesAtDE
+
+	lb de, 8, 2
+	ld hl, wCardPopRecord
+	call .PrintText
+	ld a, [wCardPopRecordType]
+	cp IRPARAM_RARE_CARD_POP
+	jr nz, .rare_card_pop_1
+	ldtx hl, Text0014
+	lb de, 15, 2
+	call InitTextPrinting_ProcessTextFromID
+.rare_card_pop_1
+	ld a, [wCardPopRecordNumCoins]
+	lb bc, 13, 4
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	ld hl, wCardPopRecordNumCards
+	ld c, 6
+	call .PrintNumberAtYCoord
+	ld hl, wCardPopRecordNumBattles
+	ld c, 8
+	call .PrintNumberAtYCoord
+	lb de, 4, 13
+	ld hl, wCardPopRecordYourCardID
+	call .PrintCardName
+	lb de, 4, 16
+	ld hl, wCardPopRecordTheirCardID
+	call .PrintCardName
+
+	; chooses a portrait based on player name
+	ld a, [wCardPopRecordName + $d]
+	ld e, a
+	ld d, $00
+	ld hl, .portraits
+	add hl, de
+	ld a, [hl]
+	ld e, PORTRAITVARIANT_NORMAL
+	lb bc, 1, 2
+	call Func_3ab2
+
+	call EnableLCD
+.loop_record_page_input
+	call DoFrame
+	ldh a, [hDPadHeld]
+	bit START_F, a
+	jr nz, .open_card_page
+	bit D_UP_F, a
+	jr nz, .show_previous_record
+	bit D_DOWN_F, a
+	jr nz, .show_next_record
+	and A_BUTTON | B_BUTTON
+	jr z, .loop_record_page_input
+	jp .init_list
+
+.open_card_page
+	ld hl, wCardPopRecordTheirCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	bank1call OpenCardPage_FromHand
+	jp .show_record_page
+
+.show_previous_record
+	ldh a, [hCurScrollMenuItem]
+	or a
+	jp z, .show_record_page
+	dec a
+	jr .update_menu_item
+.show_next_record
+	ldh a, [hCurScrollMenuItem]
+	ld hl, wNumCardPopRecords
+	inc a
+	cp [hl]
+	jp nc, .show_record_page
+.update_menu_item
+	ldh [hCurScrollMenuItem], a
+	call .LoadRecord
+	jp .show_record_page
+
+; hl = pointer to card ID
+; de = coordinates
+.PrintCardName:
+	push de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 14
+	call CopyCardNameAndLevel
+	pop de
+	ld hl, wDefaultText
+	call .PrintText
+	ret
+
+; c = y coordinate
+.PrintNumberAtYCoord:
+	ld b, 12 ; x coordinate
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	bank1call Func_6079
+	ret
+
+.text_items
+	textitem 1,  0, Text0266
+	textitem 8,  4, Text0267
+	textitem 8,  6, Text0268
+	textitem 8,  8, Text0269
+	textitem 1, 10, Text026a
+	textitem 1, 12, Text026b
+	textitem 1, 15, Text026c
+	db $ff ; end
+
+.portraits
+	db $00, $01, $04, $08, $09
+
+.DrawSlashAndTopLineSeparator:
+	lb bc, 17, 1
+	ld a, [wNumCardPopRecords]
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	ld hl, .SlashAndLineSeparatorTileData
+	call WriteDataBlocksToBGMap0
+	call BankswitchVRAM1
+	ld hl, .LineSeparatorAttributes
+	call WriteDataBlocksToBGMap0
+	call BankswitchVRAM0
+	ret
+
+.SlashAndLineSeparatorTileData:
+	db 16, 1, $2e, 0 ; slash
+	db  0, 2, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, $1c, 0
+	db $ff ; end
+
+.LineSeparatorAttributes:
+	db 0, 2, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, $01, 0
+	db $ff ; end
+
+.CountNumberOfRecords:
+	ld a, BANK("SRAM1")
+	call BankswitchSRAM
+	ld c, -1
+	ld hl, sCardPopRecords - CARDPOP_RECORD_SIZE
+	ld de, CARDPOP_RECORD_SIZE
+.loop_records
+	inc c
+	add hl, de
+	ld a, c
+	cp MAX_NUM_CARDPOP_RECORDS + 1
+	jr z, .got_count
+	ld a, [hl]
+	or a
+	jr nz, .loop_records
+.got_count
+	ld a, c
+	ld [wNumCardPopRecords], a
+	xor a
+	call BankswitchSRAM
+	call DisableSRAM
+	ret
+
+; loads record with index in register a
+; from SRAM to wCardPopRecord
+.LoadRecord:
+	ld l, a
+	ld h, CARDPOP_RECORD_SIZE
+	call HtimesL
+	ld de, sCardPopRecords
+	add hl, de
+	ld a, BANK("SRAM1")
+	call BankswitchSRAM
+	ld de, wCardPopRecord
+	ld bc, CARDPOP_RECORD_SIZE
+	call CopyDataHLtoDE
+	xor a
+	call BankswitchSRAM
+	call DisableSRAM
+	ret
+
+.MenuParams:
+	db 1 ; x pos
+	db 4 ; y pos
+	db 3 ; y spacing
+	db 5 ; num entries
+	db SYM_CURSOR_R ; visible cursor tile
+	db SYM_SPACE ; invisible cursor tile
+	dw .HandleMenuInput ; wCardListHandlerFunction
+
+.HandleMenuInput:
+	ldh a, [hDPadHeld]
+	ld b, a
+	and D_PAD
+	jr z, .got_cur_menu_item
+	bit D_UP_F, b
+	jr nz, .d_up
+	bit D_DOWN_F, b
+	jr nz, .d_down
+	bit D_RIGHT_F, b
+	jr nz, .d_right
+
+; d left
+	ld hl, wce28
+	ld a, [hl]
+	or a
+	jr z, .got_cur_menu_item
+	sub 5
+	jr nc, .asm_1a252
+	xor a
+.asm_1a252
+	ld [hl], a
+	jr .update_list_entries
+
+.d_right
+	ld a, [wNumCardPopRecords]
+	ld e, a
+	ld hl, wce28
+	ld a, [hl]
+	add 5
+	cp e
+	jr nc, .got_cur_menu_item
+	ld [hl], a
+	add 5
+	cp e
+	jr c, .update_list_entries
+	ld a, e
+	sub 5
+	ld [hl], a
+	jr .update_list_entries
+
+.d_up
+	ld hl, wCurMenuItem
+	ld a, [wNumScrollMenuItems]
+	dec a
+	cp [hl]
+	jr nz, .update_highlighted_record_number
+	xor a
+	ld [wCurMenuItem], a
+	ld hl, wce28
+	ld a, [hl]
+	or a
+	jr z, .update_highlighted_record_number
+	dec [hl]
+	jr .update_list_entries
+
+.d_down
+	ld hl, wCurMenuItem
+	ld a, [hl]
+	or a
+	jr nz, .update_highlighted_record_number
+	ld a, [wNumScrollMenuItems]
+	dec a
+	ld [hl], a
+	ld hl, wce28
+	add [hl]
+	inc a
+	ld hl, wNumCardPopRecords
+	cp [hl]
+	jr nc, .update_highlighted_record_number
+	ld hl, wce28
+	inc [hl]
+
+.update_list_entries
+	call .PrintRecordEntries
+	jr .got_cur_menu_item
+.update_highlighted_record_number
+	call .UpdateHighlightedRecordNumber
+.got_cur_menu_item
+	ld a, [wCurMenuItem]
+	ld hl, wce28
+	add [hl]
+	ldh [hCurScrollMenuItem], a
+
+	ldh a, [hKeysPressed]
+	and A_BUTTON | START
+	jr nz, .a_btn_or_start
+	ldh a, [hKeysPressed]
+	and B_BUTTON
+	ret z
+; cancel
+	ld a, $ff
+	ldh [hCurScrollMenuItem], a
+.a_btn_or_start
+	scf
+	ret
+
+.UpdateHighlightedRecordNumber:
+	ld a, [wCurMenuItem]
+	ld hl, wce28
+	add [hl]
+	inc a
+	lb bc, 14, 1
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	ret
+
+.PrintRecordEntries:
+	lb de, 1, 1
+	ldtx hl, Text0263
+	call InitTextPrinting_ProcessTextFromID
+	ld a, $04
+	ld [wce2a], a
+	call .UpdateHighlightedRecordNumber
+
+	; up arrow in list
+	ld e, SYM_SPACE
+	ld a, [wce28]
+	ld [wce29], a
+	or a
+	jr z, .got_up_arrow_tile
+	ld e, SYM_CURSOR_U
+.got_up_arrow_tile
+	ld a, e
+	lb bc, 18, 4
+	call WriteByteToBGMap0
+
+	; down arrow in list
+	ld e, SYM_SPACE
+	ld a, [wce28]
+	add 5
+	ld hl, wNumCardPopRecords
+	cp [hl]
+	jr nc, .got_down_arrow_tile
+	ld e, SYM_CURSOR_D
+.got_down_arrow_tile
+	ld a, e
+	lb bc, 18, 17
+	call WriteByteToBGMap0
+
+.loop_visible_record_entries
+	ld a, [wce29]
+	call .LoadRecord
+	ld a, [wce2a]
+	ld e, a
+	ld d, 2
+	ldtx hl, Text0264
+	ld a, [wCardPopRecordType]
+	cp IRPARAM_RARE_CARD_POP
+	jr nz, .rare_card_pop_2
+	ldtx hl, Text0265
+.rare_card_pop_2
+	push de
+	call InitTextPrinting_ProcessTextFromID
+	pop de
+
+	ld d, 7
+	ld hl, wCardPopRecord
+	call .PrintText
+	ld hl, wCardPopRecordYourCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 14
+	call CopyCardNameAndLevel
+	ld a, [wce2a]
+	inc a
+	ld e, a
+	ld d, 4
+	ld hl, wDefaultText
+	call .PrintText
+	ld hl, wce29
+	inc [hl]
+	ld a, [wNumCardPopRecords]
+	cp [hl]
+	jr z, .done_print_entries
+	ld hl, wce2a
+	ld a, [hl]
+	add $03
+	ld [hl], a
+	cp $12
+	jr c, .loop_visible_record_entries
+
+.done_print_entries
+	ret
+
+.PrintText:
+	call InitTextPrinting
+	jp ProcessText
+; 0x1a36a
 
 SECTION "Bank 6@64b1", ROMX[$64b1], BANK[$6]
 

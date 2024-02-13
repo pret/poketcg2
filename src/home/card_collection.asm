@@ -1,5 +1,5 @@
 ; return, in hl, the total amount of cards owned anywhere, including duplicates
-GetAmountOfCardsOwned:
+GetAmountOfCardsOwned::
 	push de
 	push bc
 	call EnableSRAM
@@ -130,7 +130,7 @@ GetCardCountInCollection:
 
 ; add card with id given in de to sCardCollection, provided that
 ; the player has less than MAX_AMOUNT_OF_CARD (99) of them
-AddCardToCollection:
+AddCardToCollection::
 	push hl
 	push bc
 	push de
