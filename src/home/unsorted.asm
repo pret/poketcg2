@@ -120,8 +120,8 @@ NewGameAndPrologue::
 	ld [wd54c], a
 	ld a, $01
 	ld [wd54d], a
-	ld a, $00
-	ld [wd589], a
+	ld a, TCG_ISLAND
+	ld [wCurIsland], a
 	ld a, $0e
 	ld [wCurOWLocation], a
 	farcall Func_ea30
@@ -131,8 +131,8 @@ NewGameAndPrologue::
 
 .has_entered_info
 	farcall Prologue
-	ld a, $00
-	ld [wd589], a
+	ld a, TCG_ISLAND
+	ld [wCurIsland], a
 	ld a, OWMAP_MASON_LABORATORY
 	ld [wCurOWLocation], a
 	ld a, $02

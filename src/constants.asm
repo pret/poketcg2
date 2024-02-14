@@ -28,5 +28,6 @@ INCLUDE "constants/sprite_anim_constants.asm"
 INCLUDE "constants/text_constants.asm"
 INCLUDE "constants/tilemap_constants.asm"
 INCLUDE "constants/tileset_constants.asm"
+INCLUDE "constants/var_constants.asm"
 
 INCLUDE "constants/charmaps.asm"

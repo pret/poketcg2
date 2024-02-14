@@ -1620,7 +1620,9 @@ wCurOWLocation:: ; d587
 wPlayerOWLocation:: ; d588
 	ds $1
 
-wd589:: ; d589
+; island where player is located
+; either TCG_ISLAND or GR_ISLAND
+wCurIsland:: ; d589
 	ds $1
 
 wd58a:: ; d58a
@@ -1680,7 +1682,7 @@ wd59d:: ; d59d
 wEventVars:: ; d59e
 	ds $34
 
-wd5d2:: ; d5d2
+wGeneralVars:: ; d5d2
 	ds $34
 
 	ds $b
