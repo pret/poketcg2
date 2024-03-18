@@ -1422,7 +1422,7 @@ DecideCardToReceiveFromCardPop:
 	ld b, DIAMOND
 	jr .got_rarity
 .star_rarity
-	ld a, MUSIC_MATCH_VICTORY
+	ld a, MUSIC_MATCHVICTORY
 	ld b, STAR
 	jr .got_rarity
 .phantom

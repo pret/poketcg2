@@ -42,7 +42,7 @@
 	const MUSIC_MATCHSTART_1   ; $28
 	const MUSIC_MATCHSTART_2   ; $29
 	const MUSIC_MATCHSTART_3   ; $2a
-	const MUSIC_MATCH_VICTORY  ; $2b
+	const MUSIC_MATCHVICTORY   ; $2b
 	const MUSIC_MATCHLOSS      ; $2c
 	const MUSIC_MATCHDRAW      ; $2d
 	const MUSIC_UNUSED_2E      ; $2e
