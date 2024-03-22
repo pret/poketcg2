@@ -34,7 +34,7 @@ DECoordToBGMap0Address:
 	ret
 
 ; Apply SCX and SCY correction to xy coordinates at de
-AdjustCoordinatesForBGScroll:
+AdjustCoordinatesForBGScroll::
 	push af
 	ldh a, [hSCX]
 	rra

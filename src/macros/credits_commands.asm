@@ -84,7 +84,7 @@ MACRO credits_show_set
 	db $00, $00
 ENDM
 
-; \1 = ID
+; \1 = NPC_* constant
 ; \2 = x
 ; \3 = y
 ; \4 = portrait variant

@@ -87,12 +87,13 @@ Func_30b7::
 Func_30d6::
 	ld a, $02
 	ld [wd54c], a
-	farcall $7, $65a2
-	jr c, .asm_30e8
+	farcall Func_1e5a2
+	jr c, .lost
+; won
 	ld a, EVENT_F1
 	farcall MaxOutEventValue
 	ret
-.asm_30e8
+.lost
 	ld a, EVENT_F1
 	farcall ZeroOutEventValue
 	ret
@@ -1931,18 +1932,20 @@ DrawPlayerPortrait::
 	pop af
 	ret
 
+; a = NPC_* constant
 ; bc = coordinates
 ; e = PORTRAITVARIANT_* constant
-Func_3ab2::
+DrawNPCPortrait::
 	push af
 	push bc
 	push de
 	push hl
-	cp $04
+	cp NPC_MINT_LINK + 1
 	jr nc, .ok
+	; Mark and Mint don't have portrait variants
 	ld e, PORTRAITVARIANT_NORMAL
 .ok
-	farcall Func_1c101
+	farcall GetDuelistPortrait
 	ld h, e
 	ld d, b
 	ld e, c
@@ -2228,14 +2231,15 @@ Func_3c2e::
 	pop af
 	ret
 
-Func_3c3c::
+; PlayDefaultSong in TCG1
+StubbedPlayDefaultSong::
 	ret
 
 Func_3c3d::
 	farcall $7, $5ef1
 	ret
 
-Func_3c42::
+ResetAnimationQueue::
 	push af
 	call FinishQueuedAnimations
 	farcall Func_1dfb9
@@ -2260,7 +2264,12 @@ FinishQueuedAnimations::
 	pop af
 	ret
 
-Func_3c70::
+; plays duel animation
+; the animations are loaded to a buffer
+; and played in order, so they can be stacked
+; input:
+; - a = animation index
+PlayDuelAnimation::
 	ld [$dce2], a
 	call Func_3c77
 	ret
@@ -2274,7 +2283,9 @@ Func_3c77::
 	call BankswitchROM
 	ret
 
-Func_3c86::
+; return nc if wActiveScreenAnim, wd4c0, and wAnimationQueue[] are all equal to $ff
+; nc means no animation is playing (or animation(s) has/have ended)
+CheckAnyAnimationPlaying::
 	farcall $7, $6420
 	scf
 	ret nz
@@ -2400,13 +2411,13 @@ Func_3d3a::
 	call SetVolume
 	ret
 
-Func_3d3e::
+WaitForSongToFinish::
 	push af
-.asm_3d3f
+.wait
 	call DoFrame
 	call AssertSongFinished
 	or a
-	jr nz, .asm_3d3f
+	jr nz, .wait
 	pop af
 	ret
 

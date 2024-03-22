@@ -59,6 +59,6 @@
 	const VAR_39 ; $39
 	const VAR_3A ; $3a
 	const VAR_3B ; $3b
-	const VAR_3C ; $3c
+	const VAR_NPC_DECK_ID ; $3c
 	const VAR_3D ; $3d
 	const VAR_3E ; $3e

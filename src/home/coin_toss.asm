@@ -16,7 +16,7 @@ TossCoinATimes:
 ; text at de is printed in a text box during the coin toss.
 ; returns: - carry, and 1 in a and in wCoinTossNumHeads if heads
 ;          - nc, and 0 in a and in wCoinTossNumHeads if tails
-TossCoin:
+TossCoin::
 	push hl
 	ld hl, wCoinTossScreenTextID
 	ld [hl], e

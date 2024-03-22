@@ -1,5 +1,5 @@
 ; returns a *= 10
-ATimes10:
+ATimes10::
 	push de
 	ld e, a
 	add a

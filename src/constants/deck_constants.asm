@@ -1,6 +1,6 @@
 MACRO deck_const
-	IF const_value >= 3
-		DEF \1_ID EQU const_value - 3
+	IF const_value >= 2
+		DEF \1_ID EQU const_value - 2
 	ENDC
 	const \1
 ENDM
@@ -8,7 +8,7 @@ ENDM
 ; Both *_DECK and *_DECK_ID constants are defined here.
 ; *_DECK constants are to be used with LoadDeck and related routines.
 ; *_DECK_ID constants are specific to be loaded into wOpponentDeckID.
-; Always, *_DECK_ID = *_DECK - 3. UNKNOWN_POISON_STORM_DECK_ID,
+; Always, *_DECK_ID = *_DECK - 2. UNKNOWN_POISON_STORM_DECK_ID,
 ; GB1_STRANGE_PSYSHOCK_DECK_ID and UNKNOWN_SAMS_PRACTICE_DECK_ID do not exist.
 	const_def
 	deck_const UNKNOWN_POISON_STORM_DECK             ; $00

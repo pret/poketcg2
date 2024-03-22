@@ -103,12 +103,12 @@ StartMenu_ContinueFromDiary:
 	call DoFrame
 	ld a, $0e
 	call Func_3154
-	ld a, VAR_3C
+	ld a, VAR_NPC_DECK_ID
 	call GetVarValue
-	ld [wcc16], a
+	ld [wNPCDuelDeckID], a
 	ld a, VAR_3D
 	call GetVarValue
-	ld [wdd03], a
+	ld [wDuelStartTheme], a
 	call Func_3087
 	scf
 	ret
@@ -876,11 +876,11 @@ Func_d299::
 	call Func_3154
 	ret
 .asm_d357
-	ld a, [wcc16]
+	ld a, [wNPCDuelDeckID]
 	ld c, a
-	ld a, VAR_3C
+	ld a, VAR_NPC_DECK_ID
 	call SetVarValue
-	ld a, [wdd03]
+	ld a, [wDuelStartTheme]
 	ld c, a
 	ld a, VAR_3D
 	call SetVarValue
@@ -899,7 +899,7 @@ Func_d299::
 	call Func_e9a7
 	ld a, EVENT_F0
 	call ZeroOutEventValue
-	farcall $11, $4943
+	farcall PlayCurrentSong
 	ld a, $09
 	ld [wd582], a
 	xor a
@@ -1877,7 +1877,7 @@ GeneralVarMasks:
 	db $28, %11111111 ; VAR_39
 	db $29, %00000111 ; VAR_3A
 	db $2a, %11111111 ; VAR_3B
-	db $2b, %11111111 ; VAR_3C
+	db $2b, %11111111 ; VAR_NPC_DECK_ID
 	db $2c, %11111111 ; VAR_3D
 	db $33, %11111111 ; VAR_3E
 

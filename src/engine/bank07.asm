@@ -157,18 +157,19 @@ Func_1c0ec::
 	farcall GetEventValue
 	jr nz, .female
 ; male
-	ld a, $00
+	ld a, NPC_MARK
 	jr .asm_1c0fd
 .female
-	ld a, $01
+	ld a, NPC_MINT
 .asm_1c0fd
 	pop hl
 	pop de
 	pop bc
 	ret
 
-; converts a into PORTRAIT_* constant
-Func_1c101::
+; converts NPC_* in a
+; into PORTRAIT_* constant
+GetDuelistPortrait::
 	push bc
 	push hl
 	ld c, a
@@ -181,126 +182,126 @@ Func_1c101::
 	ret
 
 .PortraitIDs
-	db PORTRAIT_00 ; $00
-	db PORTRAIT_01 ; $01
-	db PORTRAIT_02 ; $02
-	db PORTRAIT_03 ; $03
-	db PORTRAIT_04 ; $04
-	db PORTRAIT_05 ; $05
-	db PORTRAIT_06 ; $06
-	db PORTRAIT_07 ; $07
-	db PORTRAIT_5E ; $08
-	db PORTRAIT_5F ; $09
-	db PORTRAIT_08 ; $0a
-	db PORTRAIT_09 ; $0b
-	db PORTRAIT_0A ; $0c
-	db PORTRAIT_0B ; $0d
-	db PORTRAIT_0C ; $0e
-	db PORTRAIT_0D ; $0f
-	db PORTRAIT_0E ; $10
-	db PORTRAIT_0F ; $11
-	db PORTRAIT_10 ; $12
-	db PORTRAIT_11 ; $13
-	db PORTRAIT_12 ; $14
-	db PORTRAIT_13 ; $15
-	db PORTRAIT_14 ; $16
-	db PORTRAIT_15 ; $17
-	db PORTRAIT_16 ; $18
-	db PORTRAIT_17 ; $19
-	db PORTRAIT_18 ; $1a
-	db PORTRAIT_19 ; $1b
-	db PORTRAIT_1A ; $1c
-	db PORTRAIT_1B ; $1d
-	db PORTRAIT_1C ; $1e
-	db PORTRAIT_1D ; $1f
-	db PORTRAIT_1E ; $20
-	db PORTRAIT_1F ; $21
-	db PORTRAIT_20 ; $22
-	db PORTRAIT_21 ; $23
-	db PORTRAIT_22 ; $24
-	db PORTRAIT_23 ; $25
-	db PORTRAIT_24 ; $26
-	db PORTRAIT_25 ; $27
-	db PORTRAIT_26 ; $28
-	db PORTRAIT_27 ; $29
-	db PORTRAIT_28 ; $2a
-	db PORTRAIT_29 ; $2b
-	db PORTRAIT_2A ; $2c
-	db PORTRAIT_2B ; $2d
-	db PORTRAIT_2C ; $2e
-	db PORTRAIT_2D ; $2f
-	db PORTRAIT_2E ; $30
-	db PORTRAIT_2F ; $31
-	db PORTRAIT_30 ; $32
-	db PORTRAIT_31 ; $33
-	db PORTRAIT_32 ; $34
-	db PORTRAIT_33 ; $35
-	db PORTRAIT_34 ; $36
-	db PORTRAIT_35 ; $37
-	db PORTRAIT_36 ; $38
-	db PORTRAIT_37 ; $39
-	db PORTRAIT_38 ; $3a
-	db PORTRAIT_39 ; $3b
-	db PORTRAIT_3A ; $3c
-	db PORTRAIT_3B ; $3d
-	db PORTRAIT_3C ; $3e
-	db PORTRAIT_3D ; $3f
-	db PORTRAIT_3E ; $40
-	db PORTRAIT_3F ; $41
-	db PORTRAIT_40 ; $42
-	db PORTRAIT_41 ; $43
-	db PORTRAIT_42 ; $44
-	db PORTRAIT_43 ; $45
-	db PORTRAIT_44 ; $46
-	db PORTRAIT_45 ; $47
-	db PORTRAIT_46 ; $48
-	db PORTRAIT_47 ; $49
-	db PORTRAIT_48 ; $4a
-	db PORTRAIT_49 ; $4b
-	db PORTRAIT_4A ; $4c
-	db PORTRAIT_4B ; $4d
-	db PORTRAIT_4C ; $4e
-	db PORTRAIT_4D ; $4f
-	db PORTRAIT_4E ; $50
-	db PORTRAIT_4F ; $51
-	db PORTRAIT_50 ; $52
-	db PORTRAIT_51 ; $53
-	db PORTRAIT_52 ; $54
-	db PORTRAIT_53 ; $55
-	db PORTRAIT_54 ; $56
-	db PORTRAIT_55 ; $57
-	db PORTRAIT_56 ; $58
-	db PORTRAIT_57 ; $59
-	db PORTRAIT_58 ; $5a
-	db PORTRAIT_59 ; $5b
-	db PORTRAIT_5A ; $5c
-	db PORTRAIT_5B ; $5d
-	db PORTRAIT_5C ; $5e
-	db PORTRAIT_5D ; $5f
+	db PORTRAIT_MARK          ; NPC_MARK
+	db PORTRAIT_MINT          ; NPC_MINT
+	db PORTRAIT_MARK_LINK     ; NPC_MARK_LINK
+	db PORTRAIT_MINT_LINK     ; NPC_MINT_LINK
+	db PORTRAIT_RONALD        ; NPC_RONALD
+	db PORTRAIT_SAM           ; NPC_SAM
+	db PORTRAIT_AARON         ; NPC_AARON
+	db PORTRAIT_ISHIHARA      ; NPC_ISHIHARA
+	db PORTRAIT_IMAKUNI_BLACK ; NPC_IMAKUNI_BLACK
+	db PORTRAIT_IMAKUNI_RED   ; NPC_IMAKUNI_RED
+	db PORTRAIT_ISAAC         ; NPC_ISAAC
+	db PORTRAIT_JENNIFER      ; NPC_JENNIFER
+	db PORTRAIT_NICHOLAS      ; NPC_NICHOLAS
+	db PORTRAIT_BRANDON       ; NPC_BRANDON
+	db PORTRAIT_MURRAY        ; NPC_MURRAY
+	db PORTRAIT_STEPHANIE     ; NPC_STEPHANIE
+	db PORTRAIT_DANIEL        ; NPC_DANIEL
+	db PORTRAIT_ROBERT        ; NPC_ROBERT
+	db PORTRAIT_GENE          ; NPC_GENE
+	db PORTRAIT_MATTHEW       ; NPC_MATTHEW
+	db PORTRAIT_RYAN          ; NPC_RYAN
+	db PORTRAIT_ANDREW        ; NPC_ANDREW
+	db PORTRAIT_MITCH         ; NPC_MITCH
+	db PORTRAIT_MICHAEL       ; NPC_MICHAEL
+	db PORTRAIT_CHRIS         ; NPC_CHRIS
+	db PORTRAIT_JESSICA       ; NPC_JESSICA
+	db PORTRAIT_NIKKI         ; NPC_NIKKI
+	db PORTRAIT_BRITTANY      ; NPC_BRITTANY
+	db PORTRAIT_KRISTIN       ; NPC_KRISTIN
+	db PORTRAIT_HEATHER       ; NPC_HEATHER
+	db PORTRAIT_RICK          ; NPC_RICK
+	db PORTRAIT_JOSEPH        ; NPC_JOSEPH
+	db PORTRAIT_DAVID         ; NPC_DAVID
+	db PORTRAIT_ERIK          ; NPC_ERIK
+	db PORTRAIT_AMY           ; NPC_AMY
+	db PORTRAIT_JOSHUA        ; NPC_JOSHUA
+	db PORTRAIT_SARA          ; NPC_SARA
+	db PORTRAIT_AMANDA        ; NPC_AMANDA
+	db PORTRAIT_KEN           ; NPC_KEN
+	db PORTRAIT_JOHN          ; NPC_JOHN
+	db PORTRAIT_ADAM          ; NPC_ADAM
+	db PORTRAIT_JONATHAN      ; NPC_JONATHAN
+	db PORTRAIT_COURTNEY      ; NPC_COURTNEY
+	db PORTRAIT_STEVE         ; NPC_STEVE
+	db PORTRAIT_JACK          ; NPC_JACK
+	db PORTRAIT_ROD           ; NPC_ROD
+	db PORTRAIT_EIJI          ; NPC_EIJI
+	db PORTRAIT_MAGICIAN      ; NPC_MAGICIAN
+	db PORTRAIT_YUI           ; NPC_YUI
+	db PORTRAIT_TOSHIRON      ; NPC_TOSHIRON
+	db PORTRAIT_PIERROT       ; NPC_PIERROT
+	db PORTRAIT_ANNA          ; NPC_ANNA
+	db PORTRAIT_DEE           ; NPC_DEE
+	db PORTRAIT_MASQUERADE    ; NPC_MASQUERADE
+	db PORTRAIT_PAWN          ; NPC_PAWN
+	db PORTRAIT_KNIGHT        ; NPC_KNIGHT
+	db PORTRAIT_BISHOP        ; NPC_BISHOP
+	db PORTRAIT_ROOK          ; NPC_ROOK
+	db PORTRAIT_QUEEN         ; NPC_QUEEN
+	db PORTRAIT_GR_1          ; NPC_GR_1
+	db PORTRAIT_GR_2          ; NPC_GR_2
+	db PORTRAIT_GR_3          ; NPC_GR_3
+	db PORTRAIT_GR_4          ; NPC_GR_4
+	db PORTRAIT_MIDORI        ; NPC_MIDORI
+	db PORTRAIT_YUUTA         ; NPC_YUUTA
+	db PORTRAIT_MIYUKI        ; NPC_MIYUKI
+	db PORTRAIT_MORINO        ; NPC_MORINO
+	db PORTRAIT_RENNA         ; NPC_RENNA
+	db PORTRAIT_ICHIKAWA      ; NPC_ICHIKAWA
+	db PORTRAIT_CATHERINE     ; NPC_CATHERINE
+	db PORTRAIT_TAP           ; NPC_TAP
+	db PORTRAIT_JES           ; NPC_JES
+	db PORTRAIT_YUKI          ; NPC_YUKI
+	db PORTRAIT_SHOKO         ; NPC_SHOKO
+	db PORTRAIT_HIDERO        ; NPC_HIDERO
+	db PORTRAIT_MIYAJIMA      ; NPC_MIYAJIMA
+	db PORTRAIT_SENTA         ; NPC_SENTA
+	db PORTRAIT_AIRA          ; NPC_AIRA
+	db PORTRAIT_KANOKO        ; NPC_KANOKO
+	db PORTRAIT_GODA          ; NPC_GODA
+	db PORTRAIT_GRACE         ; NPC_GRACE
+	db PORTRAIT_KAMIYA        ; NPC_KAMIYA
+	db PORTRAIT_MIWA          ; NPC_MIWA
+	db PORTRAIT_KEVIN         ; NPC_KEVIN
+	db PORTRAIT_YOSUKE        ; NPC_YOSUKE
+	db PORTRAIT_RYOKO         ; NPC_RYOKO
+	db PORTRAIT_MAMI          ; NPC_MAMI
+	db PORTRAIT_NISHIJIMA     ; NPC_NISHIJIMA
+	db PORTRAIT_ISHII         ; NPC_ISHII
+	db PORTRAIT_SAMEJIMA      ; NPC_SAMEJIMA
+	db PORTRAIT_KANZAKI       ; NPC_KANZAKI
+	db PORTRAIT_RUI           ; NPC_RUI
+	db PORTRAIT_BIRURITCHI    ; NPC_BIRURITCHI
+	db PORTRAIT_GR_X          ; NPC_GR_X
+	db PORTRAIT_TOBI_CHAN     ; NPC_TOBI_CHAN
+	db PORTRAIT_DR_MASON      ; NPC_DR_MASON
 ; 0x1c116
 
 SECTION "Bank 7@4395", ROMX[$4395], BANK[$7]
 
-Func_1c395:
+LoadSavedOptions:
 	call EnableSRAM
-	call Func_1c3a8
-	call Func_1c3b9
-	call Func_1c3c7
-	call Func_1c3ce
+	call .LoadTextSpeed
+	call .LoadDuelAnimation
+	call .LoadCoinTossAnimation
+	call .LoadTextFrameColor
 	call DisableSRAM
 	ret
 
-Func_1c3a8:
+.LoadTextSpeed:
 	ld a, [sTextSpeed]
 	ld [wTextSpeed], a
 	call Func_1c448
 	ld b, a
-	ld a, $04
+	ld a, 4
 	sub b
 	ld [wd9d5], a
 	ret
 
-Func_1c3b9:
+.LoadDuelAnimation:
 	ld a, [s0a007]
 	ld [wd9d3], a
 	srl a
@@ -308,12 +309,12 @@ Func_1c3b9:
 	ld [wdc0f], a
 	ret
 
-Func_1c3c7:
+.LoadCoinTossAnimation:
 	ld a, [s0a00b]
 	ld [wd9d4], a
 	ret
 
-Func_1c3ce:
+.LoadTextFrameColor:
 	ld a, [sTextBoxFrameColor]
 	ld [wTextBoxFrameColor], a
 	ret
@@ -350,7 +351,7 @@ Func_1c3f9:
 	ld hl, .data
 	add hl, bc
 	ld a, [hl]
-	ld [s0a009], a
+	ld [sSkipDelayAllowed], a
 	ret
 
 .data
@@ -1655,7 +1656,7 @@ ShowStartMenu:
 	add 0
 	lb bc, 13, 1
 	ld e, PORTRAITVARIANT_NORMAL
-	call Func_3ab2
+	call DrawNPCPortrait
 
 ; print player's name
 	farcall LoadPlayerName
@@ -2178,11 +2179,11 @@ Func_1d475:
 	farcall Func_111f0
 	call Func_1c425
 	call Func_1c3d5
-	call Func_1c395
+	call LoadSavedOptions
 	ret
 
 .Read:
-	call Func_1c395
+	call LoadSavedOptions
 	ld a, $01
 	farcall Func_108c9
 	ret
@@ -2293,7 +2294,7 @@ Func_1dfb9::
 	ld [wdce2], a
 	ld [wdc59], a
 	ld [wdce8], a
-	ld [wdce5], a
+	ld [wDuelAnimLocationParam], a
 	ld [wdcf0], a
 	ld [wdc57], a
 	ld a, $ff
@@ -2318,6 +2319,243 @@ Func_1e419:
 	pop af
 	ret
 ; 0x1e420
+
+SECTION "Bank 7@65a2", ROMX[$65a2], BANK[$7]
+
+; returns carry if player lost
+Func_1e5a2::
+	push bc
+	push de
+	push hl
+	ld a, EVENT_F0
+	farcall GetEventValue
+	jr nz, .from_sram
+	call .RunDuel
+	jr .check_result
+.from_sram
+	call RunDuelFromSRAM
+.check_result
+	scf
+	ccf
+	ld a, [wDuelResult]
+	and a
+	jr z, .won
+	scf ; lost
+.won
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.RunDuel:
+	farcall Func_1022a
+	call Func_1e73a
+	ld a, EVENT_EB
+	farcall GetEventValue
+	jr nz, .start_duel
+	call Func_1e60c
+	ld a, [wSpecialRule]
+	and a
+	jr z, .start_duel
+	call ShowSpecialRuleDescription
+.start_duel
+	bank1call StartDuel_VSAIOpp
+	farcall Func_10252
+	ret
+; 0x1e5e5
+
+SECTION "Bank 7@65f8", ROMX[$65f8], BANK[$7]
+
+RunDuelFromSRAM:
+	farcall Func_10cfe
+	farcall Func_1109f
+	farcall Func_1022a
+	bank1call StartDuelFromSRAM
+	farcall Func_10252
+	ret
+
+Func_1e60c:
+	push af
+	push bc
+	push de
+	push hl
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+
+	; show opponent portrait
+	ld a, [wOpponentNPCID]
+	lb bc, 7, 3
+	ld e, PORTRAITVARIANT_NORMAL
+	call DrawNPCPortrait
+
+	farcall SetFrameFuncAndFadeFromWhite
+
+	; play duel start theme
+	ld a, [wDuelStartTheme]
+	push af
+	ld a, a ; wow
+	call Func_3d09
+	pop af
+
+	; print duelist intro text
+	ld a, [wOpponentName + 0]
+	ld [wTxRam2 + 0], a
+	ld a, [wOpponentName + 1]
+	ld [wTxRam2 + 1], a
+	ld a, [wOpponentDeckName + 0]
+	ld [wTxRam2_b + 0], a
+	ld a, [wOpponentDeckName + 1]
+	ld [wTxRam2_b + 1], a
+	ld a, [wcd0f]
+	dec a
+	add a ; *2
+	ld c, a
+	ld b, $00
+	ld hl, .DuelistIntroTextIDs
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	farcall Func_1107c
+
+	call WaitForSongToFinish
+	call WaitForWideTextBoxInput
+	farcall FadeToWhiteAndUnsetFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.DuelistIntroTextIDs
+	tx Text0651
+	tx Text0652
+	tx Text0653
+	tx Text0654
+	tx Text0655
+	tx Text0656
+	tx Text0657
+	tx Text0658
+	tx Text0659
+	tx Text065a
+	tx Text065b
+	tx Text065c
+	tx Text065d
+	tx Text065e
+	tx Text065f
+	tx Text0660
+	tx Text0661
+	tx Text0662
+	tx Text0663
+	tx Text0664
+	tx Text0665
+	tx Text0666
+	tx Text0667
+	tx Text0668
+	tx Text0669
+	tx Text066a
+	tx Text066b
+	tx Text066c
+	tx Text066d
+	tx Text066e
+	tx Text066f
+	tx Text0670
+	tx Text0671
+	tx Text0672
+	tx Text0673
+	tx Text0674
+	tx Text0675
+	tx Text0676
+	tx Text0677
+	tx Text0678
+
+ShowSpecialRuleDescription:
+	push af
+	push bc
+	push de
+	push hl
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call .DrawScreen
+	farcall SetFrameFuncAndFadeFromWhite
+	call WaitForWideTextBoxInput
+	farcall FadeToWhiteAndUnsetFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.DrawScreen:
+	ld a, [wSpecialRule]
+	add a
+	add a
+	ld c, a ; *4
+	ld b, $00
+	ld hl, .TitleAndDescriptionTextIDs
+	add hl, bc
+
+	; draws scene with text box drawn around
+	lb de,  0, 0
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	ld a, SCENE_SPECIAL_RULES
+	lb bc, 5, 1
+	call LoadScene
+
+	; print title
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 3, 4
+	call Func_35af
+	pop hl
+
+	; print description
+	inc hl
+	inc hl
+	lb de,  0,  6
+	lb bc, 20, 12
+	call DrawRegularTextBoxVRAM0
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 1, 8
+	call Func_35af
+	ret
+
+.TitleAndDescriptionTextIDs:
+	;  title,    description
+	dw NULL,     NULL     ; NO_SPECIAL_RULE
+	tx Text063b, Text063c ; CHLOROPHYLL
+	tx Text063d, Text063e ; THUNDER_CHARGE
+	tx Text063f, Text0640 ; FLAME_ARMOR
+	tx Text0641, Text0642 ; SMALL_BENCH
+	tx Text0643, Text0644 ; RUNNING_WATER
+	tx Text0645, Text0646 ; EARTH_POWER
+	tx Text0647, Text0648 ; LOW_RESISTANCE
+	tx Text0649, Text064a ; ENERGY_RETURN
+	tx Text064b, Text064c ; TOUGH_ESCAPE
+	tx Text064d, Text064e ; BLACK_HOLE
+; 0x1e73a
+
+SECTION "Bank 7@673a", ROMX[$673a], BANK[$7]
+
+Func_1e73a:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wNPCDuelDeckID]
+	push af
+	farcall LoadDeckIDData
+	pop af
+	ld [wNPCDuelDeckID], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1e74f
 
 SECTION "Bank 7@6767", ROMX[$6767], BANK[$7]
 

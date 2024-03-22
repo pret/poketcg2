@@ -18,9 +18,10 @@ sTextSpeed:: ; a006
 s0a007:: ; a007
 	ds $1
 
+s0a008:: ; a008
 	ds $1
 
-s0a009:: ; a009
+sSkipDelayAllowed:: ; a009
 	ds $1
 
 sClearedGame:: ; a00a
@@ -37,8 +38,12 @@ sTextBoxFrameColor:: ; a00c
 sPlayerName:: ; a010
 	ds NAME_BUFFER_LENGTH
 
-s0a020:: ; a020
-	ds $4
+sTotalDuelCounter:: ; a020
+	ds $2
+
+; number of link battles the player has played
+sLinkDuelCounter:: ; a022
+	ds $2
 
 	ds $dc
 
@@ -84,11 +89,11 @@ sCardAndDeckSaveDataEnd::
 
 ; saved data of the current duel, including a two-byte checksum
 ; see SaveDuelDataToDE
-sSavedDuel:: ; bb00
+sCurrentDuel:: ; bb00
 	ds $1
-sSavedDuelChecksum:: ; bb01
+sCurrentDuelChecksum:: ; bb01
 	ds $3
-sSavedDuelData:: ; bb04
+sCurrentDuelData:: ; bb04
 	ds $352
 
 SECTION "SRAM1", SRAM

@@ -56,7 +56,7 @@ SetNextElementOfList_Common:
 	inc de
 	jr SetListToNextPosition
 
-SetNextElementOfList2:
+SetNextElementOfList2::
 	push hl
 	push de
 	ld hl, wListPointer2

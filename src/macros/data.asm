@@ -54,7 +54,10 @@ MACRO textpointer
 ENDM
 
 MACRO tx
+REPT _NARG
 	dw \1_
+	SHIFT
+ENDR
 ENDM
 
 MACRO gfx_ptr
