@@ -1635,6 +1635,12 @@ SetSpriteAnimAnimation::
 	ret
 ; 0x10cd9
 
+SECTION "Bank 4@4cfe", ROMX[$4cfe], BANK[$4]
+
+Func_10cfe:
+	ret
+; 0x10cff
+
 SECTION "Bank 4@4d17", ROMX[$4d17], BANK[$4]
 
 Func_10d17:
@@ -1642,7 +1648,7 @@ Func_10d17:
 	push bc
 	push hl
 	sla b
-	sla b
+	sla b ; *4
 	inc hl
 	ld a, [hl] ; SPRITEANIMSTRUCT_1
 	and $fb
@@ -1681,6 +1687,7 @@ GetOWObjectSpriteAnimFlags::
 
 SECTION "Bank 4@4d77", ROMX[$4d77], BANK[$4]
 
+; a = OW_* constant
 LoadOWObjectInMap::
 	push af
 	push bc
@@ -2253,6 +2260,7 @@ DrawWideTextBox_PrintTextWithYesOrNoMenu:
 
 SECTION "Bank 4@507c", ROMX[$507c], BANK[$4]
 
+; hl = text ID
 Func_1107c:
 	push af
 	push bc
@@ -4598,10 +4606,10 @@ ShowProloguePortraitAndText:
 	ret
 
 .Func_13bdf:
-	ld a, $3b
+	ld a, NPC_GR_1
 	lb bc, 7, 3
 	ld e, PORTRAITVARIANT_NORMAL
-	call Func_3ab2
+	call DrawNPCPortrait
 	ret
 
 .PrintText:
@@ -4834,14 +4842,14 @@ PlayerGenderSelection:
 
 .LoadPortraitsAndMenuParams:
 	; male portrait
-	ld a, PORTRAIT_00
+	ld a, PORTRAIT_MARK
 	ld b, 0
 	ld c, PORTRAITVARIANT_NORMAL
 	lb de, 2, 4
 	farcall DrawPortrait
 
 	; female portrait
-	ld a, PORTRAIT_01
+	ld a, PORTRAIT_MINT
 	ld b, 1
 	ld c, PORTRAITVARIANT_NORMAL
 	lb de, 12, 4

@@ -197,7 +197,7 @@ Func_212f::
 	ld de, sGfxBuffer1 + $30 tiles
 	ld b, $8
 	call CopyFontsOrDuelGraphicsTiles
-	call $2684 ; GetCardSymbolData
+	call GetCardSymbolData
 	sub $d0
 	ld l, a
 	ld h, $00

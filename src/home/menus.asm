@@ -1049,7 +1049,7 @@ HandleYesOrNoMenu::
 PrintYesOrNoItems::
 	call AdjustCoordinatesForBGScroll
 	ld hl, $30 ; YesOrNoText
-	call $29d8 ; InitTextPrinting_ProcessTextFromID
+	call InitTextPrinting_ProcessTextFromID
 	ret
 
 BuildVersion::

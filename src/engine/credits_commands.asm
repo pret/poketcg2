@@ -226,7 +226,7 @@ CreditsCmd_ShowPortrait:
 	ld a, [wCreditsCmdArg5]
 	ld e, a
 	ld a, [wCreditsCmdArg1]
-	call Func_3ab2
+	call DrawNPCPortrait
 	ret
 
 CreditsCmd_PrintHeader:

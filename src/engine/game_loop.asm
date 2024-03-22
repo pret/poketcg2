@@ -7,8 +7,8 @@ GameLoop::
 	call EnableSRAM
 	ld a, [sTextSpeed]
 	ld [wTextSpeed], a
-	ld a, [s0a009]
-	ld [wcd08], a
+	ld a, [sSkipDelayAllowed]
+	ld [wSkipDelayAllowed], a
 	call DisableSRAM
 	ld a, DECK_SIZE
 	ld [wDeckSize], a

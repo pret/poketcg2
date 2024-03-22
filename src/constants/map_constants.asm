@@ -1,3 +1,7 @@
+; constants for wCurIsland
+DEF TCG_ISLAND EQU $0
+DEF GR_ISLAND  EQU $1
+
 	const_def
 	const OVERWORLD_MAP_TCG               ; $00
 	const OVERWORLD_MAP_GR                ; $01

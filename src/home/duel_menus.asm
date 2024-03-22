@@ -1,4 +1,4 @@
-OpenDuelCheckMenu:
+OpenDuelCheckMenu::
 	ldh a, [hBankROM]
 	push af
 	ld a, $02 ; BANK(_OpenDuelCheckMenu)
@@ -8,7 +8,7 @@ OpenDuelCheckMenu:
 	call BankswitchROM
 	ret
 
-OpenInPlayAreaScreen_FromSelectButton:
+OpenInPlayAreaScreen_FromSelectButton::
 	ldh a, [hBankROM]
 	push af
 	ld a, $06 ; BANK(OpenInPlayAreaScreen)
@@ -27,7 +27,7 @@ OpenInPlayAreaScreen_FromSelectButton:
 ; similar to DrawYourOrOppPlayArea (bank 2) except it also draws a wide text box.
 ; this is because bank 2's DrawYourOrOppPlayArea is supposed to come from the Check Menu,
 ; so the text box is always already there.
-DrawYourOrOppPlayAreaScreen_Bank0:
+DrawYourOrOppPlayAreaScreen_Bank0::
 	ld a, h
 	ld [wCheckMenuPlayAreaWhichDuelist], a
 	ld a, l
@@ -76,7 +76,7 @@ DrawAIPeekScreen:
 	ret
 
 ; a = number of prize cards for player to select to take
-SelectPrizeCards:
+SelectPrizeCards::
 	ld [wNumberOfPrizeCardsToSelect], a
 	ldh a, [hBankROM]
 	push af
@@ -87,7 +87,7 @@ SelectPrizeCards:
 	call BankswitchROM
 	ret
 
-DrawPlayAreaToPlacePrizeCards:
+DrawPlayAreaToPlacePrizeCards::
 	ldh a, [hBankROM]
 	push af
 	ld a, $02 ; BANK(_DrawPlayAreaToPlacePrizeCards)

@@ -3,6 +3,14 @@ SECTION "Bank 6@46a6", ROMX[$46a6], BANK[$6]
 INCLUDE "engine/glossary.asm"
 ; 0x1897e
 
+SECTION "Bank 6@4a14", ROMX[$4a14], BANK[$6]
+
+Func_18a14::
+	xor a
+	ld [wd0d3], a
+	ret
+; 0x18a19
+
 SECTION "Bank 6@5657", ROMX[$5657], BANK[$6]
 
 ; if carry flag is set, only delays
@@ -618,10 +626,10 @@ InitSaveData:
 	or b
 	jr nz, .loop_collection
 
-	ld hl, sSavedDuel
+	ld hl, sCurrentDuel
 	xor a
 	ld [hli], a
-	ld [hli], a ; sSavedDuelChecksum
+	ld [hli], a ; sCurrentDuelChecksum
 	ld [hl], a
 
 	; clears Card Pop! names
@@ -643,21 +651,21 @@ InitSaveData:
 ; saved configuration options
 	ld a, 2
 	ld [sPrinterContrastLevel], a
-	ld a, $2
+	ld a, 2
 	ld [sTextSpeed], a
 	ld [wTextSpeed], a
 
 ; miscellaneous data
 	xor a
 	ld [s0a007], a
-	ld [s0a009], a
+	ld [sSkipDelayAllowed], a
 	ld [s0a004], a
 	ld [sTotalCardPopsDone], a
 	ld [sClearedGame], a
-	ld hl, s0a020
+	ld hl, sTotalDuelCounter
 	ld [hli], a
 	ld [hli], a
-	ld [hli], a
+	ld [hli], a ; sLinkDuelCounter
 	ld [hli], a
 
 	farcall Func_8f10
@@ -669,7 +677,7 @@ InitSaveData:
 	push de
 	push bc
 	push hl
-	ld [wcc16], a
+	ld [wNPCDuelDeckID], a
 	call LoadDeck
 	jr c, .done
 	call .LoadDeckName
@@ -698,7 +706,7 @@ InitSaveData:
 	ret
 
 .LoadDeckName:
-	ld a, [wcc16]
+	ld a, [wNPCDuelDeckID]
 	sub 3
 	farcall LoadDeckIDData
 	ld hl, wOpponentDeckName
@@ -1035,9 +1043,9 @@ DoCardPop:
 
 ; hl = text ID
 Func_19d24:
-	farcall Func_24158
+	farcall _DisplayCardDetailScreen
 	call ResumeSong
-	bank1call Func_4278
+	bank1call SetupDuel
 	call DisableLCD
 	bank1call OpenCardPage_FromHand
 	ret
@@ -1473,7 +1481,7 @@ FillCardPopSummary:
 	ld de, wCardPopSummary
 	call CopyWordFromHLToDE
 	call EnableSRAM
-	ld hl, s0a020
+	ld hl, sTotalDuelCounter
 	call CopyWordFromHLToDE
 	call DisableSRAM
 	call GetAmountOfCardsOwned
@@ -1550,7 +1558,7 @@ ViewCardPopRecords:
 	ret
 
 .init_list
-	bank1call Func_4278
+	bank1call SetupDuel
 	call .DrawSlashAndTopLineSeparator
 	ld hl, .MenuParams
 	ld a, [wCurMenuItem]
@@ -1629,12 +1637,12 @@ ViewCardPopRecords:
 	ld a, [wCardPopRecordName + $d]
 	ld e, a
 	ld d, $00
-	ld hl, .portraits
+	ld hl, .DuelistIDs
 	add hl, de
 	ld a, [hl]
 	ld e, PORTRAITVARIANT_NORMAL
 	lb bc, 1, 2
-	call Func_3ab2
+	call DrawNPCPortrait
 
 	call EnableLCD
 .loop_record_page_input
@@ -1710,8 +1718,12 @@ ViewCardPopRecords:
 	textitem 1, 15, Text026c
 	db $ff ; end
 
-.portraits
-	db $00, $01, $04, $08, $09
+.DuelistIDs
+	db NPC_MARK
+	db NPC_MINT
+	db NPC_RONALD
+	db NPC_IMAKUNI_BLACK
+	db NPC_IMAKUNI_RED
 
 .DrawSlashAndTopLineSeparator:
 	lb bc, 17, 1

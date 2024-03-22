@@ -831,7 +831,7 @@ _LoadOWObject:
 	ld [hli], a ; OWOBJSTRUCT_4
 	ld [hli], a ; OWOBJSTRUCT_5
 	ld [hli], a ; OWOBJSTRUCT_6
-	ld [hl], a  ; OWOBJSTRUCT_7
+	ld [hl], a  ;
 	pop hl
 	pop de
 	pop bc

@@ -331,7 +331,7 @@ SerialRecvByte:
 	ret
 
 ; exchange c bytes. send bytes at hl and store received bytes in de
-SerialExchangeBytes:
+SerialExchangeBytes::
 	ld b, c
 .asm_e64
 	ld a, b
@@ -493,13 +493,13 @@ Func_0f05:
 
 ; load the number at wSerialFlags (error code?) to TxRam3, print
 ; TransmissionErrorText, exit the duel, and reset serial registers.
-DuelTransmissionError:
+DuelTransmissionError::
 	ld a, [wSerialFlags]
 	ld l, a
 	ld h, 0
-	call $2cb2 ; LoadTxRam3
+	call LoadTxRam3
 	ld hl, $0057 ; TransmissionErrorText
-	call $27f7 ; DrawWideTextBox_WaitForInput
+	call DrawWideTextBox_WaitForInput
 	ld a, -1
 	ld [wDuelResult], a
 	ld hl, wDuelReturnAddress
@@ -513,7 +513,7 @@ DuelTransmissionError:
 	ret
 
 ; exchange RNG during a link duel between both games
-ExchangeRNG:
+ExchangeRNG::
 	ld a, [wDuelType]
 	cp DUELTYPE_LINK
 	jr z, .link_duel
@@ -542,7 +542,7 @@ ExchangeRNG:
 ; finally exchange RNG data.
 ; the receiving side will use this data to read the OPPACTION_* value in
 ; [hOppActionTableIndex] and match it by calling the corresponding OppAction* function
-SetOppAction_SerialSendDuelData:
+SetOppAction_SerialSendDuelData::
 	push hl
 	push bc
 	ldh [hOppActionTableIndex], a
@@ -561,7 +561,7 @@ SetOppAction_SerialSendDuelData:
 ; receive 18 bytes of data from wSerialRecvBuf and store them into hOppActionTableIndex,
 ; hTempCardIndex_ff9f, hTemp_ffa0, and hTempPlayAreaLocation_ffa1,
 ; and hTempRetreatCostCards. also exchange RNG data.
-SerialRecvDuelData:
+SerialRecvDuelData::
 	push hl
 	push bc
 	ld hl, hOppActionTableIndex
@@ -574,7 +574,7 @@ SerialRecvDuelData:
 
 ; serial send 8 bytes at f, a, l, h, e, d, c, b
 ; only during a duel against a link opponent
-SerialSend8Bytes:
+SerialSend8Bytes::
 	push hl
 	push af
 	ld a, [wDuelType]
@@ -624,7 +624,7 @@ SerialSend8Bytes:
 	ret
 
 ; serial recv 8 bytes to f, a, l, h, e, d, c, b
-SerialRecv8Bytes:
+SerialRecv8Bytes::
 	ld hl, wTempSerialBuf
 	ld bc, 8
 	push hl

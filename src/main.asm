@@ -19,6 +19,9 @@ INCLUDE "engine/bank04.asm"
 SECTION "Scenes", ROMX[$6eb9], BANK[$4]
 INCLUDE "engine/scenes.asm"
 
+SECTION "Bank 5", ROMX
+INCLUDE "engine/bank05.asm"
+
 SECTION "Bank 6", ROMX
 INCLUDE "engine/bank06.asm"
 

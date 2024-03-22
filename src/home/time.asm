@@ -25,9 +25,9 @@ TimerHandler:
 	set IN_TIMER, [hl]
 	ldh a, [hBankROM]
 	push af
-	ld a, $77 ; BANK(SoundTimerHandler)
+	ld a, BANK(SoundTimerHandler)
 	call BankswitchROM
-	call $4003 ; SoundTimerHandler
+	call SoundTimerHandler
 	pop af
 	call BankswitchROM
 	; clear in-timer flag

@@ -1,5 +1,6 @@
 DEF MAX_BENCH_POKEMON     EQU 5
 DEF MAX_PLAY_AREA_POKEMON EQU 6 ; arena + bench
+DEF MAX_SMALL_BENCH_PLAY_AREA_POKEMON EQU 4 ; arena + bench
 DEF MAX_HP                EQU 120
 DEF HP_BAR_LENGTH         EQU MAX_HP / 10
 
@@ -25,67 +26,68 @@ DEF DUEL_WIN  EQU $0
 DEF DUEL_LOSS EQU $1
 
 ; wPlayerDuelVariables or wOpponentDuelVariables constants
-DEF DUELVARS_CARD_LOCATIONS                   EQU $00 ; EQUS "LOW(wPlayerCardLocations)"               ; 00
+DEF DUELVARS_CARD_LOCATIONS                   EQUS "LOW(wPlayerCardLocations)"               ; 00
 DEF DUELVARS_PRIZE_CARDS                      EQUS "LOW(wPlayerPrizeCards)"                  ; 3c
-DEF DUELVARS_HAND                             EQU $42 ; EQUS "LOW(wPlayerHand)"                        ; 42
-DEF DUELVARS_DECK_CARDS                       EQU $7e ; EQUS "LOW(wPlayerDeckCards)"                   ; 7e
-DEF DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK      EQU $ba ; EQUS "LOW(wPlayerNumberOfCardsNotInDeck)"      ; ba
-DEF DUELVARS_ARENA_CARD                       EQU $bb ; EQUS "LOW(wPlayerArenaCard)"                   ; bb
+DEF DUELVARS_HAND                             EQUS "LOW(wPlayerHand)"                        ; 42
+DEF DUELVARS_DECK_CARDS                       EQUS "LOW(wPlayerDeckCards)"                   ; 7e
+DEF DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK      EQUS "LOW(wPlayerNumberOfCardsNotInDeck)"      ; ba
+DEF DUELVARS_ARENA_CARD                       EQUS "LOW(wPlayerArenaCard)"                   ; bb
 DEF DUELVARS_BENCH                            EQUS "LOW(wPlayerBench)"                       ; bc
-DEF DUELVARS_ARENA_CARD_FLAGS                 EQU $c2 ; EQUS "LOW(wPlayerArenaCardFlags)"              ; c2
-DEF DUELVARS_ARENA_CARD_HP                    EQU $c8 ; EQUS "LOW(wPlayerArenaCardHP)"                 ; c8
+DEF DUELVARS_ARENA_CARD_FLAGS                 EQUS "LOW(wPlayerArenaCardFlags)"              ; c2
+DEF DUELVARS_ARENA_CARD_HP                    EQUS "LOW(wPlayerArenaCardHP)"                 ; c8
 DEF DUELVARS_BENCH1_CARD_HP                   EQUS "LOW(wPlayerBench1CardHP)"                ; c9
 DEF DUELVARS_BENCH2_CARD_HP                   EQUS "LOW(wPlayerBench2CardHP)"                ; ca
 DEF DUELVARS_BENCH3_CARD_HP                   EQUS "LOW(wPlayerBench3CardHP)"                ; cb
 DEF DUELVARS_BENCH4_CARD_HP                   EQUS "LOW(wPlayerBench4CardHP)"                ; cc
 DEF DUELVARS_BENCH5_CARD_HP                   EQUS "LOW(wPlayerBench5CardHP)"                ; cd
-DEF DUELVARS_ARENA_CARD_STAGE                 EQU $ce ; EQUS "LOW(wPlayerArenaCardStage)"              ; ce
+DEF DUELVARS_ARENA_CARD_STAGE                 EQUS "LOW(wPlayerArenaCardStage)"              ; ce
 DEF DUELVARS_BENCH1_CARD_STAGE                EQUS "LOW(wPlayerBench1CardStage)"             ; cf
 DEF DUELVARS_BENCH2_CARD_STAGE                EQUS "LOW(wPlayerBench2CardStage)"             ; d0
 DEF DUELVARS_BENCH3_CARD_STAGE                EQUS "LOW(wPlayerBench3CardStage)"             ; d1
 DEF DUELVARS_BENCH4_CARD_STAGE                EQUS "LOW(wPlayerBench4CardStage)"             ; d2
 DEF DUELVARS_BENCH5_CARD_STAGE                EQUS "LOW(wPlayerBench5CardStage)"             ; d3
-DEF DUELVARS_ARENA_CARD_CHANGED_TYPE          EQU $d4 ; EQUS "LOW(wPlayerArenaCardChangedType)"        ; d4
+DEF DUELVARS_ARENA_CARD_CHANGED_TYPE          EQUS "LOW(wPlayerArenaCardChangedType)"        ; d4
 DEF DUELVARS_BENCH1_CARD_CHANGED_COLOR        EQUS "LOW(wPlayerBench1CardChangedType)"       ; d5
 DEF DUELVARS_BENCH2_CARD_CHANGED_COLOR        EQUS "LOW(wPlayerBench2CardChangedType)"       ; d6
 DEF DUELVARS_BENCH3_CARD_CHANGED_COLOR        EQUS "LOW(wPlayerBench3CardChangedType)"       ; d7
 DEF DUELVARS_BENCH4_CARD_CHANGED_COLOR        EQUS "LOW(wPlayerBench4CardChangedType)"       ; d8
 DEF DUELVARS_BENCH5_CARD_CHANGED_COLOR        EQUS "LOW(wPlayerBench5CardChangedType)"       ; d9
-DEF DUELVARS_ARENA_CARD_ATTACHED_DEFENDER     EQU $da ; EQUS "LOW(wPlayerArenaCardAttachedDefender)"   ; da
+DEF DUELVARS_ARENA_CARD_ATTACHED_DEFENDER     EQUS "LOW(wPlayerArenaCardAttachedDefender)"   ; da
 DEF DUELVARS_BENCH1_CARD_ATTACHED_DEFENDER    EQUS "LOW(wPlayerBench1CardAttachedDefender)"  ; db
 DEF DUELVARS_BENCH2_CARD_ATTACHED_DEFENDER    EQUS "LOW(wPlayerBench2CardAttachedDefender)"  ; dc
 DEF DUELVARS_BENCH3_CARD_ATTACHED_DEFENDER    EQUS "LOW(wPlayerBench3CardAttachedDefender)"  ; dd
 DEF DUELVARS_BENCH4_CARD_ATTACHED_DEFENDER    EQUS "LOW(wPlayerBench4CardAttachedDefender)"  ; de
 DEF DUELVARS_BENCH5_CARD_ATTACHED_DEFENDER    EQUS "LOW(wPlayerBench5CardAttachedDefender)"  ; df
-DEF DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER    EQU $e0 ; EQUS "LOW(wPlayerArenaCardAttachedPluspower)"  ; e0
+DEF DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER    EQUS "LOW(wPlayerArenaCardAttachedPluspower)"  ; e0
 DEF DUELVARS_BENCH1_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench1CardAttachedPluspower)" ; e1
 DEF DUELVARS_BENCH2_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench2CardAttachedPluspower)" ; e2
 DEF DUELVARS_BENCH3_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench3CardAttachedPluspower)" ; e3
 DEF DUELVARS_BENCH4_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench4CardAttachedPluspower)" ; e4
 DEF DUELVARS_BENCH5_CARD_ATTACHED_PLUSPOWER   EQUS "LOW(wPlayerBench5CardAttachedPluspower)" ; e5
-DEF DUELVARS_ARENA_CARD_FOOD_COUNTERS         EQU $e6 ; EQUS "LOW(wPlayerArenaCardFoodCounters)"       ; e6
-DEF DUELVARS_BENCH1_CARD_FOOD_COUNTERS        EQU $e7 ; EQUS "LOW(wPlayerBench1FoodCounters)"          ; e7
-DEF DUELVARS_BENCH2_CARD_FOOD_COUNTERS        EQU $e8 ; EQUS "LOW(wPlayerBench2FoodCounters)"          ; e8
-DEF DUELVARS_BENCH3_CARD_FOOD_COUNTERS        EQU $e9 ; EQUS "LOW(wPlayerBench3FoodCounters)"          ; e9
-DEF DUELVARS_BENCH4_CARD_FOOD_COUNTERS        EQU $ea ; EQUS "LOW(wPlayerBench4FoodCounters)"          ; ea
-DEF DUELVARS_BENCH5_CARD_FOOD_COUNTERS        EQU $eb ; EQUS "LOW(wPlayerBench5FoodCounters)"          ; eb
-DEF DUELVARS_ARENA_CARD_STATUS                EQU $ec ; EQUS "LOW(wPlayerArenaCardStatus)"             ; f0
-DEF DUELVARS_ARENA_CARD_SUBSTATUS1            EQU $ed ; EQUS "LOW(wPlayerArenaCardSubstatus1)"         ; e7
-DEF DUELVARS_ARENA_CARD_SUBSTATUS2            EQU $ee ; EQUS "LOW(wPlayerArenaCardSubstatus2)"         ; e8
-DEF DUELVARS_ARENA_CARD_CHANGED_WEAKNESS      EQU $ef ; EQUS "LOW(wPlayerArenaCardChangedWeakness)"    ; e9
-DEF DUELVARS_ARENA_CARD_CHANGED_RESISTANCE    EQU $f0 ; EQUS "LOW(wPlayerArenaCardChangedResistance)"  ; ea
-DEF DUELVARS_ARENA_CARD_SUBSTATUS3            EQU $f1 ; EQUS "LOW(wPlayerArenaCardSubstatus3)"         ; eb
-DEF DUELVARS_PRIZES                           EQU $f2 ; EQUS "LOW(wPlayerPrizes)"                      ; ec
-DEF DUELVARS_NUMBER_OF_CARDS_IN_DISCARD_PILE  EQU $f3 ; EQUS "LOW(wPlayerNumberOfCardsInDiscardPile)"  ; ed
-DEF DUELVARS_NUMBER_OF_CARDS_IN_HAND          EQU $f4 ; EQUS "LOW(wPlayerNumberOfCardsInHand)"         ; ee
-DEF DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA   EQU $f5 ; EQUS "LOW(wPlayerNumberOfPokemonInPlayArea)"   ; ef
-DEF DUELVARS_DUELIST_TYPE                     EQU $f6 ; EQUS "LOW(wPlayerDuelistType)"                 ; f1
-DEF DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX EQU $f7 ; EQUS "LOW(wPlayerArenaCardDisabledAttackIndex)" ; f2
-DEF DUELVARS_ARENA_CARD_LAST_TURN_DAMAGE      EQUS "LOW(wPlayerArenaCardLastTurnDamage)"     ; f3
-DEF DUELVARS_ARENA_CARD_LAST_TURN_STATUS      EQUS "LOW(wPlayerArenaCardLastTurnStatus)"     ; f5
-DEF DUELVARS_ARENA_CARD_LAST_TURN_SUBSTATUS2  EQUS "LOW(wPlayerArenaCardLastTurnSubstatus2)" ; f6
-DEF DUELVARS_ARENA_CARD_LAST_TURN_CHANGE_WEAK EQUS "LOW(wPlayerArenaCardLastTurnChangeWeak)" ; f7
-DEF DUELVARS_ARENA_CARD_LAST_TURN_EFFECT      EQUS "LOW(wPlayerArenaCardLastTurnEffect)"     ; f8
+DEF DUELVARS_ARENA_CARD_FOOD_COUNTERS         EQUS "LOW(wPlayerArenaCardFoodCounters)"       ; e6
+DEF DUELVARS_BENCH1_CARD_FOOD_COUNTERS        EQUS "LOW(wPlayerBench1FoodCounters)"          ; e7
+DEF DUELVARS_BENCH2_CARD_FOOD_COUNTERS        EQUS "LOW(wPlayerBench2FoodCounters)"          ; e8
+DEF DUELVARS_BENCH3_CARD_FOOD_COUNTERS        EQUS "LOW(wPlayerBench3FoodCounters)"          ; e9
+DEF DUELVARS_BENCH4_CARD_FOOD_COUNTERS        EQUS "LOW(wPlayerBench4FoodCounters)"          ; ea
+DEF DUELVARS_BENCH5_CARD_FOOD_COUNTERS        EQUS "LOW(wPlayerBench5FoodCounters)"          ; eb
+DEF DUELVARS_ARENA_CARD_STATUS                EQUS "LOW(wPlayerArenaCardStatus)"             ; ec
+DEF DUELVARS_ARENA_CARD_SUBSTATUS1            EQUS "LOW(wPlayerArenaCardSubstatus1)"         ; ed
+DEF DUELVARS_ARENA_CARD_SUBSTATUS2            EQUS "LOW(wPlayerArenaCardSubstatus2)"         ; ee
+DEF DUELVARS_ARENA_CARD_CHANGED_WEAKNESS      EQUS "LOW(wPlayerArenaCardChangedWeakness)"    ; ef
+DEF DUELVARS_ARENA_CARD_CHANGED_RESISTANCE    EQUS "LOW(wPlayerArenaCardChangedResistance)"  ; f0
+DEF DUELVARS_ARENA_CARD_SUBSTATUS3            EQUS "LOW(wPlayerArenaCardSubstatus3)"         ; f1
+DEF DUELVARS_PRIZES                           EQUS "LOW(wPlayerPrizes)"                      ; f2
+DEF DUELVARS_NUMBER_OF_CARDS_IN_DISCARD_PILE  EQUS "LOW(wPlayerNumberOfCardsInDiscardPile)"  ; f3
+DEF DUELVARS_NUMBER_OF_CARDS_IN_HAND          EQUS "LOW(wPlayerNumberOfCardsInHand)"         ; f4
+DEF DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA   EQUS "LOW(wPlayerNumberOfPokemonInPlayArea)"   ; f5
+DEF DUELVARS_DUELIST_TYPE                     EQUS "LOW(wPlayerDuelistType)"                 ; f6
+DEF DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX EQUS "LOW(wPlayerArenaCardDisabledAttackIndex)" ; f7
+DEF DUELVARS_ARENA_CARD_LAST_TURN_DAMAGE      EQUS "LOW(wPlayerArenaCardLastTurnDamage)"     ; f8
+DEF DUELVARS_ARENA_CARD_LAST_TURN_STATUS      EQUS "LOW(wPlayerArenaCardLastTurnStatus)"     ; fa
+DEF DUELVARS_ARENA_CARD_LAST_TURN_SUBSTATUS2  EQUS "LOW(wPlayerArenaCardLastTurnSubstatus2)" ; fb
+DEF DUELVARS_ARENA_CARD_LAST_TURN_CHANGE_WEAK EQUS "LOW(wPlayerArenaCardLastTurnChangeWeak)" ; fc
+DEF DUELVARS_ARENA_CARD_LAST_TURN_EFFECT      EQUS "LOW(wPlayerArenaCardLastTurnEffect)"     ; fd
+DEF DUELVARS_UNK_FE                           EQUS "LOW(wPlayerUnkfe)"                       ; fe
 
 ; card location constants (DUELVARS_CARD_LOCATIONS)
 DEF CARD_LOCATION_DECK         EQU $00
@@ -140,41 +142,56 @@ DEF DBLPSN_DAMAGE EQU 20
 ; substatus conditions (DUELVARS_ARENA_CARD_SUBSTATUS*)
 
 ; SUBSTATUS1 are checked on a defending Pokemon
-DEF SUBSTATUS1_AGILITY      EQU $0c
-DEF SUBSTATUS1_FLY          EQU $0d
-DEF SUBSTATUS1_HARDEN       EQU $0e
-DEF SUBSTATUS1_NO_DAMAGE_STIFFEN  EQU $0f
-DEF SUBSTATUS1_NO_DAMAGE_10 EQU $10
-DEF SUBSTATUS1_NO_DAMAGE_11 EQU $11
-DEF SUBSTATUS1_REDUCE_BY_20 EQU $13
-DEF SUBSTATUS1_BARRIER      EQU $14
-DEF SUBSTATUS1_HALVE_DAMAGE EQU $15
-DEF SUBSTATUS1_DESTINY_BOND EQU $16
-DEF SUBSTATUS1_NO_DAMAGE_17 EQU $17
-DEF SUBSTATUS1_NEXT_TURN_DOUBLE_DAMAGE EQU $19
-DEF SUBSTATUS1_REDUCE_BY_10 EQU $1e
+DEF SUBSTATUS1_UNK_0D       EQU $0d
+DEF SUBSTATUS1_AGILITY      EQU $11
+DEF SUBSTATUS1_FLY          EQU $12
+DEF SUBSTATUS1_HARDEN       EQU $13
+DEF SUBSTATUS1_NO_DAMAGE_STIFFEN  EQU $14
+DEF SUBSTATUS1_NO_DAMAGE_10 EQU $15
+DEF SUBSTATUS1_NO_DAMAGE_11 EQU $16
+DEF SUBSTATUS1_REDUCE_BY_20 EQU $18
+DEF SUBSTATUS1_BARRIER      EQU $19
+DEF SUBSTATUS1_HALVE_DAMAGE EQU $1a
+DEF SUBSTATUS1_DESTINY_BOND EQU $1b
+DEF SUBSTATUS1_NO_DAMAGE_17 EQU $1c
+DEF SUBSTATUS1_NEXT_TURN_DOUBLE_DAMAGE EQU $1e
+DEF SUBSTATUS1_REDUCE_BY_10 EQU $23
+DEF SUBSTATUS1_HIDE         EQU $2a
+DEF SUBSTATUS1_USED_DRILL_DIVE EQU $30
 
 ; SUBSTATUS2 are checked on an attacking Pokemon
-DEF SUBSTATUS2_SMOKESCREEN    EQU $01
-DEF SUBSTATUS2_SAND_ATTACK    EQU $02
-DEF SUBSTATUS2_REDUCE_BY_20   EQU $03
-DEF SUBSTATUS2_AMNESIA        EQU $04
-DEF SUBSTATUS2_TAIL_WAG       EQU $05
-DEF SUBSTATUS2_LEER           EQU $06
-DEF SUBSTATUS2_POUNCE         EQU $07
-DEF SUBSTATUS2_CONVERSION2    EQU $08
-DEF SUBSTATUS2_UNABLE_RETREAT EQU $09
-DEF SUBSTATUS2_BONE_ATTACK    EQU $0b
-DEF SUBSTATUS2_GROWL          EQU $12
+DEF SUBSTATUS2_SMOKESCREEN  EQU $01
+DEF SUBSTATUS2_SAND_ATTACK  EQU $02
+DEF SUBSTATUS2_REDUCE_BY_20 EQU $03
+DEF SUBSTATUS2_AMNESIA      EQU $04
+DEF SUBSTATUS2_TAIL_WAG     EQU $05
+DEF SUBSTATUS2_LEER         EQU $06
+DEF SUBSTATUS2_POUNCE       EQU $07
+DEF SUBSTATUS2_CONVERSION2  EQU $08
+DEF SUBSTATUS2_ACID         EQU $09
+DEF SUBSTATUS2_BONE_ATTACK  EQU $0b
+DEF SUBSTATUS2_ROCK_SEAL    EQU $0e
+DEF SUBSTATUS2_DISABLE      EQU $0f
+DEF SUBSTATUS2_GROWL        EQU $17
 
-DEF SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE EQU 0
-DEF SUBSTATUS3_HEADACHE                EQU 1
+DEF SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F EQU 0
+DEF SUBSTATUS3_HEADACHE_F                EQU 2
+DEF SUBSTATUS3_SPOOKIFY_F                EQU 3
+DEF SUBSTATUS3_UNK_4_F                   EQU 4
+DEF SUBSTATUS3_UNK_5_F                   EQU 5
+DEF SUBSTATUS3_UNK_6_F                   EQU 6
+DEF SUBSTATUS3_PERPLEX_F                 EQU 7
 
 ; DUELVARS_ARENA_CARD_FLAGS constants
+DEF PLAY_AREA_FLAG_UNK_1_F      EQU 1
+DEF PLAY_AREA_FLAG_UNK_2_F      EQU 2
+DEF PLAY_AREA_FLAG_UNK_3_F      EQU 3
+DEF AFFECTED_BY_STARE_F         EQU 4
 DEF USED_PKMN_POWER_THIS_TURN_F EQU 5
 DEF USED_LEEK_SLAP_THIS_DUEL_F  EQU 6
 DEF CAN_EVOLVE_THIS_TURN_F      EQU 7
 
+DEF AFFECTED_BY_STARE           EQU 1 << AFFECTED_BY_STARE_F
 DEF USED_PKMN_POWER_THIS_TURN   EQU 1 << USED_PKMN_POWER_THIS_TURN_F
 DEF USED_LEEK_SLAP_THIS_DUEL    EQU 1 << USED_LEEK_SLAP_THIS_DUEL_F
 DEF CAN_EVOLVE_THIS_TURN        EQU 1 << CAN_EVOLVE_THIS_TURN_F
@@ -243,12 +260,18 @@ DEF NO_DAMAGE_OR_EFFECT_NSHIELD      EQU $05
 	const OPPACTION_USE_METRONOME_ATTACK      ; $15
 	const OPPACTION_6B15                      ; $16
 	const OPPACTION_DUEL_MAIN_SCENE           ; $17
+	const OPPACTION_UNK_18                    ; $18
+	const OPPACTION_UNK_19                    ; $19
+	const OPPACTION_UNK_1A                    ; $1a
+	const OPPACTION_UNK_1B                    ; $1b
+	const OPPACTION_UNK_1C                    ; $1c
+DEF NUM_OPP_ACTIONS EQU const_value
 
 ; constants for PracticeDuelActionTable entries
 	const_def 1
 	const PRACTICEDUEL_DRAW_SEVEN_CARDS
-	const PRACTICEDUEL_PLAY_GOLDEEN
-	const PRACTICEDUEL_PUT_STARYU_IN_BENCH
+	const PRACTICEDUEL_PLAY_DIGLETT
+	const PRACTICEDUEL_PUT_NIDORANM_IN_BENCH
 	const PRACTICEDUEL_VERIFY_INITIAL_PLAY
 	const PRACTICEDUEL_DONE_PUTTING_ON_BENCH
 	const PRACTICEDUEL_PRINT_TURN_INSTRUCTIONS
@@ -281,14 +304,14 @@ DEF PRIZES_6    EQU $06
 
 ; special rule constants, stored in wSpecialRule
 	const_def
-	const NO_RULES       ; $0
-	const CHLOROPHYLL    ; $1
-	const THUNDER_CHARGE ; $2
-	const FLAME_ARMOR    ; $3
-	const SMALL_BENCH    ; $4
-	const RUNNING_WATER  ; $5
-	const EARTH_POWER    ; $6
-	const LOW_RESISTANCE ; $7
-	const ENERGY_RETURN  ; $8
-	const TOUGH_ESCAPE   ; $9
-	const BLACK_HOLE     ; $a
+	const NO_SPECIAL_RULE ; $0
+	const CHLOROPHYLL     ; $1
+	const THUNDER_CHARGE  ; $2
+	const FLAME_ARMOR     ; $3
+	const SMALL_BENCH     ; $4
+	const RUNNING_WATER   ; $5
+	const EARTH_POWER     ; $6
+	const LOW_RESISTANCE  ; $7
+	const ENERGY_RETURN   ; $8
+	const TOUGH_ESCAPE    ; $9
+	const BLACK_HOLE      ; $a

@@ -101,7 +101,7 @@ GetCardType::
 	pop hl
 	ret
 
-Func_2d3f:
+Func_2d3f::
 	push hl
 	push de
 	call GetCardPointer

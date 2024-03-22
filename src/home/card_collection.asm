@@ -217,16 +217,19 @@ GetCardAlbumProgress::
 	call DisableSRAM
 	ret
 
-Func_1bca:
+; frame function during Link Opponent's turn
+; if opponent makes a decision, jump directly
+; to the address in wLinkOpponentTurnReturnAddress
+LinkOpponentTurnFrameFunction::
 	ld a, [wSerialFlags]
 	or a
-	jr nz, .asm_1bd4
+	jr nz, .return
 	call Func_0e32
 	ret nc
-.asm_1bd4
+.return
 	ld a, $09
 	call BankswitchROM
-	ld hl, wcd1a
+	ld hl, wLinkOpponentTurnReturnAddress
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

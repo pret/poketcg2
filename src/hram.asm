@@ -86,7 +86,15 @@ hTempCardIndex_ff9f:: ; ffa1
 hTemp_ffa0:: ; ffa2
 	ds $1
 
-	ds $10
+; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
+hTempPlayAreaLocation_ffa1:: ; ffa3
+	ds $1
+
+; $ff-terminated list of cards to be discarded upon retreat
+hTempRetreatCostCards:: ; ffa4
+	ds $6
+
+	ds $9
 
 ; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3

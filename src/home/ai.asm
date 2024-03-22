@@ -1,7 +1,7 @@
 ; loads opponent deck at wOpponentDeckID to wOpponentDeck, and initializes wPlayerDuelistType.
 ; on a duel against Sam, also loads PRACTICE_PLAYER_DECK to wPlayerDeck.
 ; also, sets wRNG1 and wRNGCounter to $20 and wRNG2 to 0.
-LoadOpponentDeck:
+LoadOpponentDeck::
 	xor a
 	ld [wIsPracticeDuel], a
 	ld [wcd17], a
@@ -36,7 +36,7 @@ LoadOpponentDeck:
 	call SwapTurn
 	ld a, e
 	add $02
-	call $2e85 ; LoadDeck
+	call LoadDeck
 	call SwapTurn
 	ld hl, wRNG1
 	ld a, $20
@@ -48,7 +48,7 @@ LoadOpponentDeck:
 	ld a, [wOpponentDeckID]
 	inc a
 	inc a ; convert from *_DECK_ID constant read from wOpponentDeckID to *_DECK constant
-	call $2e85 ; LoadDeck
+	call LoadDeck
 	ld a, [wOpponentDeckID]
 	cp $7a ; DECKS_END
 	jr c, .valid_deck
@@ -63,11 +63,11 @@ LoadOpponentDeck:
 	ld [hl], a
 	ret
 
-AIDoAction_Turn:
+AIDoAction_Turn::
 	ld a, AIACTION_DO_TURN
 	jr AIDoAction
 
-AIDoAction_StartDuel:
+AIDoAction_StartDuel::
 	ld a, AIACTION_START_DUEL
 	jr AIDoAction
 
@@ -77,17 +77,17 @@ AIDoAction_ForcedSwitch:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ret
 
-AIDoAction_KOSwitch:
+AIDoAction_KOSwitch::
 	ld a, AIACTION_KO_SWITCH
 	call AIDoAction
 	ldh [hTemp_ffa0], a
 	ret
 
-AIDoAction_TakePrize:
+AIDoAction_TakePrize::
 	ld a, AIACTION_TAKE_PRIZE
 	jr AIDoAction
 
-AIDoAction_06:
+AIDoAction_06::
 	ld a, AIACTION_06
 	jr AIDoAction
 
@@ -133,7 +133,7 @@ AIDoAction:
 ; load bank for Opponent Deck pointer table
 	ldh a, [hBankROM]
 	push af
-	ld a, $05 ; BANK(DeckAIPointerTable)
+	ld a, BANK(DeckAIPointerTable)
 	call BankswitchROM
 
 ; load hl with the corresponding pointer
