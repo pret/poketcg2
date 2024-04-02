@@ -1062,7 +1062,7 @@ AttachedEnergyCardListParameters:
 
 ; triggered by selecting the "Attack" item in the duel menu
 DuelMenu_Attack:
-	call CheckIfArencaCardIsUnableToAttack
+	call CheckIfArenaCardIsUnableToAttack
 	jr nc, .can_attack
 	call DrawWideTextBox_WaitForInput
 	jp PrintDuelMenuAndHandleInput
@@ -7973,7 +7973,7 @@ IsClairvoyanceActive:
 	call CountTurnDuelistPokemonWithActivePkmnPower
 	ret
 
-CheckIfArencaCardIsUnableToAttack:
+CheckIfArenaCardIsUnableToAttack:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS2
 	get_turn_duelist_var
 	or a

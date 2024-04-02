@@ -2737,7 +2737,7 @@ DeckIDData:
 	db $12 ; ?
 	db $00 ; ?
 
-	db PLAYER_PRACTICE_DECK_ID
+	db STARTER_DECK_ID - 1
 	tx Text0448 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2748,7 +2748,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db STARTER_DECK_ID
+	db SWEAT_ANTI_GR1_DECK_ID - 1
 	tx Text044d ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2759,7 +2759,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db SWEAT_ANTI_GR1_DECK_ID
+	db GIVE_IN_ANTI_GR2_DECK_ID - 1
 	tx Text0466 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2770,7 +2770,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db GIVE_IN_ANTI_GR2_DECK_ID
+	db VENGEFUL_ANTI_GR3_DECK_ID - 1
 	tx Text0449 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2781,7 +2781,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db VENGEFUL_ANTI_GR3_DECK_ID
+	db UNFORGIVING_ANTI_GR4_DECK_ID - 1
 	tx Text0470 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2792,7 +2792,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db UNFORGIVING_ANTI_GR4_DECK_ID
+	db SAMS_PRACTICE_DECK_ID - 1
 	tx Text04f1 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID

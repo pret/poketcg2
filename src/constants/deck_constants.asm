@@ -8,8 +8,8 @@ ENDM
 ; Both *_DECK and *_DECK_ID constants are defined here.
 ; *_DECK constants are to be used with LoadDeck and related routines.
 ; *_DECK_ID constants are specific to be loaded into wOpponentDeckID.
-; Always, *_DECK_ID = *_DECK - 2. UNKNOWN_POISON_STORM_DECK_ID,
-; GB1_STRANGE_PSYSHOCK_DECK_ID and UNKNOWN_SAMS_PRACTICE_DECK_ID do not exist.
+; Always, *_DECK_ID = *_DECK - 2. UNKNOWN_POISON_STORM_DECK_ID and
+; GB1_STRANGE_PSYSHOCK_DECK_ID do not exist.
 	const_def
 	deck_const UNKNOWN_POISON_STORM_DECK             ; $00
 	deck_const GB1_STRANGE_PSYSHOCK_DECK             ; $01

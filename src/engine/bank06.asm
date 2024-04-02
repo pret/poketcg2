@@ -2504,7 +2504,7 @@ PrintDeckConfiguration:
 	ld l, a
 	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
-	ld de, sSavedDeck1
+	ld de, sSavedDecks
 	add hl, de
 	ld de, wDuelTempList
 	ld bc, DECK_COMPRESSED_STRUCT_SIZE
