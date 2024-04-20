@@ -103,12 +103,12 @@ StartMenu_ContinueFromDiary:
 	call DoFrame
 	ld a, $0e
 	call Func_3154
-	ld a, $3c
-	call Func_d6bb
-	ld [wcc16], a
-	ld a, $3d
-	call Func_d6bb
-	ld [wdd03], a
+	ld a, VAR_NPC_DECK_ID
+	call GetVarValue
+	ld [wNPCDuelDeckID], a
+	ld a, VAR_3D
+	call GetVarValue
+	ld [wDuelStartTheme], a
 	call Func_3087
 	scf
 	ret
@@ -194,8 +194,8 @@ HandleStartMenu:
 	jr c, .no_saved_duel
 	ld hl, wd554
 	set 2, [hl]
-	ld a, $04
-	call Func_d6bb
+	ld a, VAR_04
+	call GetVarValue
 	cp $02
 	jr c, .menu_config4
 	call Func_e8a3
@@ -206,8 +206,8 @@ HandleStartMenu:
 	set 1, [hl]
 	jr .menu_config3
 .no_saved_duel
-	ld a, $04
-	call Func_d6bb
+	ld a, VAR_04
+	call GetVarValue
 	cp $02
 	jr c, .menu_config1
 	jr .menu_config2
@@ -272,7 +272,7 @@ Func_c24d:
 	ld [wd551], a
 	ld [wd552 + 0], a
 	ld [wd552 + 1], a
-	ld [wd589], a
+	ld [wCurIsland], a
 	ld [wd586], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
@@ -324,7 +324,7 @@ ClearSavedDecks:
 	ret
 
 Func_c2d6:
-	ld a, EVENT_0D
+	ld a, EVENT_GOT_GR_COIN_PIECE_2
 	call GetEventValue
 	jr nz, .done
 	ld a, [wCurOWLocation]
@@ -335,20 +335,20 @@ Func_c2d6:
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_c2f7
-	ld a, $0f
-	ld c, $06
-	call Func_d6fe
+	ld a, VAR_0F
+	ld c, OWMAP_GRASS_CLUB
+	call SetVarValue
 	jr .done
 .asm_c2f7
-	ld a, $0f
-	ld c, $07
-	call Func_d6fe
+	ld a, VAR_0F
+	ld c, OWMAP_SCIENCE_CLUB
+	call SetVarValue
 .done
 	ret
 
 Func_c2ff:
-	ld a, $02
-	call Func_d6bb
+	ld a, VAR_02
+	call GetVarValue
 	cp $06
 	jr c, .asm_c318
 	ld a, EVENT_F5
@@ -362,14 +362,14 @@ Func_c2ff:
 	ret
 
 Func_c319:
-	ld a, $0d
-	call Func_d6bb
+	ld a, VAR_0D
+	call GetVarValue
 	cp $04
 	jr c, .asm_c32d
 	jr z, .asm_c357
-	ld a, $0d
+	ld a, VAR_0D
 	ld c, $01
-	call Func_d6fe
+	call SetVarValue
 	jr .asm_c357
 .asm_c32d
 	ld a, [wd586]
@@ -379,211 +379,217 @@ Func_c319:
 	jr z, .asm_c357
 	cp $25
 	jr z, .asm_c357
-	ld a, $0d
-	call Func_d6bb
+	ld a, VAR_0D
+	call GetVarValue
 	cp $02
 	jr z, .asm_c357
 	jr nc, .asm_c358
-	ld a, $20
-	call Func_d6bb
+	ld a, VAR_20
+	call GetVarValue
 	cp $0a
 	jr c, .asm_c357
-	ld a, $0d
+	ld a, VAR_0D
 	ld c, $02
-	call Func_d6fe
+	call SetVarValue
 .asm_c357
 	ret
 .asm_c358
-	ld a, $0d
+	ld a, VAR_0D
 	ld c, $01
-	call Func_d6fe
-	ld a, $20
-	call Func_d6f3
+	call SetVarValue
+	ld a, VAR_20
+	call ZeroOutVarValue
 	jr .asm_c357
 
 Func_c366:
-	ld a, $21
-	call Func_d6bb
+	ld a, VAR_21
+	call GetVarValue
 	cp $02
 	jr c, .done
-	ld a, [wd589]
-	cp $00
-	jr nz, .asm_c382
-	ld a, $25
-	call Func_d6bb
+	ld a, [wCurIsland]
+	cp TCG_ISLAND
+	jr nz, .randomly_choose_club
+	ld a, VAR_25
+	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
 	jr z, .done
-.asm_c382
-	ld a, $05
+
+.randomly_choose_club
+	ld a, 5
 	call Random
 	or a
-	jr z, .asm_c395
+	jr z, .rock_club
 	dec a
-	jr z, .asm_c39e
+	jr z, .psychic_club
 	dec a
-	jr z, .asm_c3a7
+	jr z, .science_club
 	dec a
-	jr z, .asm_c3b0
-	jr .asm_c3b9
-.asm_c395
-	ld a, $25
+	jr z, .fire_club
+	jr .water_club
+.rock_club
+	ld a, VAR_25
 	ld c, OWMAP_ROCK_CLUB
-	call Func_d6fe
-	jr .asm_c3c0
-.asm_c39e
-	ld a, $25
+	call SetVarValue
+	jr .club_chosen
+.psychic_club
+	ld a, VAR_25
 	ld c, OWMAP_PSYCHIC_CLUB
-	call Func_d6fe
-	jr .asm_c3c0
-.asm_c3a7
-	ld a, $25
+	call SetVarValue
+	jr .club_chosen
+.science_club
+	ld a, VAR_25
 	ld c, OWMAP_SCIENCE_CLUB
-	call Func_d6fe
-	jr .asm_c3c0
-.asm_c3b0
-	ld a, $25
+	call SetVarValue
+	jr .club_chosen
+.fire_club
+	ld a, VAR_25
 	ld c, OWMAP_FIRE_CLUB
-	call Func_d6fe
-	jr .asm_c3c0
-.asm_c3b9
-	ld a, $25
+	call SetVarValue
+	jr .club_chosen
+.water_club
+	ld a, VAR_25
 	ld c, OWMAP_WATER_CLUB
-	call Func_d6fe
-.asm_c3c0
-	ld a, [wd589]
-	cp $00
+	call SetVarValue
+
+.club_chosen
+	ld a, [wCurIsland]
+	cp TCG_ISLAND
 	jr nz, .done
-	ld a, $25
-	call Func_d6bb
+	ld a, VAR_25
+	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
-	jr z, .asm_c382
+	jr z, .randomly_choose_club
 .done
 	ret
 
 Func_c3d4:
-	ld a, [wd589]
-	cp $01
-	jr nz, .asm_c3e7
-	ld a, $26
-	call Func_d6bb
+	ld a, [wCurIsland]
+	cp GR_ISLAND
+	jr nz, .randomly_choose_club
+	ld a, VAR_26
+	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
-	jr z, .asm_c438
-.asm_c3e7
-	ld a, $05
+	jr z, .done
+
+.randomly_choose_club
+	ld a, 5
 	call Random
 	or a
-	jr z, .asm_c3fa
+	jr z, .grass_fort
 	dec a
-	jr z, .asm_c403
+	jr z, .fire_fort
 	dec a
-	jr z, .asm_c40c
+	jr z, .water_fort
 	dec a
-	jr z, .asm_c415
-	jr .asm_c41e
-.asm_c3fa
-	ld a, $26
-	ld c, $05
-	call Func_d6fe
-	jr .asm_c425
-.asm_c403
-	ld a, $26
-	ld c, $07
-	call Func_d6fe
-	jr .asm_c425
-.asm_c40c
-	ld a, $26
-	ld c, $08
-	call Func_d6fe
-	jr .asm_c425
-.asm_c415
-	ld a, $26
-	ld c, $0a
-	call Func_d6fe
-	jr .asm_c425
-.asm_c41e
-	ld a, $26
-	ld c, $02
-	call Func_d6fe
-.asm_c425
-	ld a, [wd589]
-	cp $01
-	jr nz, .asm_c438
-	ld a, $26
-	call Func_d6bb
+	jr z, .psychic_stronghold
+	jr .game_center
+.grass_fort
+	ld a, VAR_26
+	ld c, OWMAP_GR_GRASS_FORT
+	call SetVarValue
+	jr .club_chosen
+.fire_fort
+	ld a, VAR_26
+	ld c, OWMAP_GR_FIRE_FORT
+	call SetVarValue
+	jr .club_chosen
+.water_fort
+	ld a, VAR_26
+	ld c, OWMAP_GR_WATER_FORT
+	call SetVarValue
+	jr .club_chosen
+.psychic_stronghold
+	ld a, VAR_26
+	ld c, OWMAP_GR_PSYCHIC_STRONGHOLD
+	call SetVarValue
+	jr .club_chosen
+.game_center
+	ld a, VAR_26
+	ld c, OWMAP_GAME_CENTER
+	call SetVarValue
+
+.club_chosen
+	ld a, [wCurIsland]
+	cp GR_ISLAND
+	jr nz, .done
+	ld a, VAR_26
+	call GetVarValue
 	ld c, a
 	ld a, [wCurOWLocation]
 	cp c
-	jr z, .asm_c3e7
-.asm_c438
+	jr z, .randomly_choose_club
+.done
 	ret
 
 Func_c439:
-	ld a, $28
-	call Func_d6bb
+	ld a, VAR_28
+	call GetVarValue
 	cp $05
-	jr c, .asm_c476
-	ld a, [wd589]
-	cp $00
+	jr c, .skip
+	ld a, [wCurIsland]
+	cp TCG_ISLAND
 	jr nz, .asm_c450
 	ld a, [wCurOWLocation]
-	cp $0b
-	jr z, .asm_c476
+	cp OWMAP_TCG_CHALLENGE_HALL
+	jr z, .skip
 .asm_c450
-	ld a, $28
+	ld a, VAR_28
 	ld c, $05
-	call Func_d6fe
+	call SetVarValue
 	ld a, $04
 	call Random
 	or a
-	jr nz, .asm_c476
-	ld a, $28
+	jr nz, .skip
+	; 1/4 chance
+	ld a, VAR_28
 	ld c, $06
-	call Func_d6fe
-	ld a, $2b
-	call Func_d6f3
+	call SetVarValue
+	ld a, VAR_2B
+	call ZeroOutVarValue
 	ld a, $11
 	call Random
 	ld c, a
-	ld a, $29
-	call Func_d6fe
-.asm_c476
+	ld a, VAR_29
+	call SetVarValue
+.skip
 	ret
 
 Func_c477:
-	ld a, $30
-	call Func_d6bb
+	ld a, VAR_30
+	call GetVarValue
 	cp $05
 	jr c, .asm_c4b4
-	ld a, [wd589]
-	cp $01
+	ld a, [wCurIsland]
+	cp GR_ISLAND
 	jr nz, .asm_c48e
 	ld a, [wCurOWLocation]
-	cp $04
+	cp OWMAP_GR_CHALLENGE_HALL
 	jr z, .asm_c4b4
 .asm_c48e
-	ld a, $30
+	ld a, VAR_30
 	ld c, $05
-	call Func_d6fe
+	call SetVarValue
 	ld a, $05
 	call Random
 	or a
 	jr nz, .asm_c4b4
-	ld a, $30
+	; 1/5 chance
+	ld a, VAR_30
 	ld c, $06
-	call Func_d6fe
-	ld a, $33
-	call Func_d6f3
+	call SetVarValue
+	ld a, VAR_33
+	call ZeroOutVarValue
 	ld a, $11
 	call Random
 	ld c, a
-	ld a, $31
-	call Func_d6fe
+	ld a, VAR_31
+	call SetVarValue
 .asm_c4b4
 	ret
 
@@ -594,11 +600,11 @@ Func_c522:
 	push bc
 	ld b, a
 	ld a, c
-	ld hl, TextIDs_d171
-	cp $00
-	jr z, .asm_c530
-	ld hl, TextIDs_d18f
-.asm_c530
+	ld hl, TextIDs_d171 ; TCG island
+	cp TCG_ISLAND
+	jr z, .got_text
+	ld hl, TextIDs_d18f ; GR island
+.got_text
 	ld a, b
 	sla a
 	add l
@@ -616,7 +622,7 @@ Func_c522:
 Func_c53e:
 	push af
 	push bc
-	ld a, [wd589]
+	ld a, [wCurIsland]
 	ld c, a
 	ld a, [wCurOWLocation]
 	call Func_c522
@@ -749,36 +755,36 @@ Data_c651::
 SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
 
 TextIDs_d171:
-	tx Text09b6
-	tx Text09b7
-	tx Text09b8
-	tx Text09b9
-	tx Text09ba
-	tx Text09bb
-	tx Text09bc
-	tx Text09bd
-	tx Text09be
-	tx Text09bf
-	tx Text09c0
-	tx Text09c1
-	tx Text09c2
+	tx Text09b6 ; OWMAP_MASON_LABORATORY
+	tx Text09b7 ; OWMAP_ISHIHARAS_HOUSE
+	tx Text09b8 ; OWMAP_LIGHTNING_CLUB
+	tx Text09b9 ; OWMAP_PSYCHIC_CLUB
+	tx Text09ba ; OWMAP_ROCK_CLUB
+	tx Text09bb ; OWMAP_FIGHTING_CLUB
+	tx Text09bc ; OWMAP_GRASS_CLUB
+	tx Text09bd ; OWMAP_SCIENCE_CLUB
+	tx Text09be ; OWMAP_WATER_CLUB
+	tx Text09bf ; OWMAP_FIRE_CLUB
+	tx Text09c0 ; OWMAP_TCG_AIRPORT
+	tx Text09c1 ; OWMAP_TCG_CHALLENGE_HALL
+	tx Text09c2 ; OWMAP_POKEMON_DOME
 	dw NULL
 	tx Text09b5
 
 TextIDs_d18f:
-	tx Text09c3
-	tx Text09c4
-	tx Text09c5
-	tx Text09c6
-	tx Text09c7
-	tx Text09c8
-	tx Text09c9
-	tx Text09ca
-	tx Text09cb
-	tx Text09cc
-	tx Text09cd
-	tx Text09ce
-	tx Text09cf
+	tx Text09c3 ; OWMAP_GR_AIRPORT
+	tx Text09c4 ; OWMAP_ISHIHARAS_VILLA
+	tx Text09c5 ; OWMAP_GAME_CENTER
+	tx Text09c6 ; OWMAP_SEALED_FORT
+	tx Text09c7 ; OWMAP_GR_CHALLENGE_HALL
+	tx Text09c8 ; OWMAP_GR_GRASS_FORT
+	tx Text09c9 ; OWMAP_GR_LIGHTNING_FORT
+	tx Text09ca ; OWMAP_GR_FIRE_FORT
+	tx Text09cb ; OWMAP_GR_WATER_FORT
+	tx Text09cc ; OWMAP_GR_FIGHTING_FORT
+	tx Text09cd ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	tx Text09ce ; OWMAP_COLORLESS_ALTAR
+	tx Text09cf ; OWMAP_GR_CASTLE
 	tx Text0069
 ; 0xd1ab
 
@@ -801,10 +807,10 @@ Func_d299::
 	bit 6, [hl]
 	jr nz, .asm_d2c1
 	bit 7, [hl]
-	jp nz, Func_d398
+	jp nz, .asm_d398
 	ld a, EVENT_02
 	call GetEventValue
-	jp nz, Func_d377
+	jp nz, .asm_d377
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
 .asm_d2c1
@@ -852,9 +858,8 @@ Func_d299::
 	call Func_3154
 	ld a, $03
 	call Func_3154
-;	fallthrough
 
-Func_d333:
+.asm_d333
 	ld a, [wVBlankCounter]
 	and $3f
 	call z, UpdateRNGSources
@@ -864,21 +869,21 @@ Func_d333:
 	bit 1, a
 	jr nz, .asm_d357
 	bit 0, a
-	jr z, Func_d333
+	jr z, .asm_d333
 	ld a, $04
 	call Func_3154
 	ld a, $0f
 	call Func_3154
 	ret
 .asm_d357
-	ld a, [wcc16]
+	ld a, [wNPCDuelDeckID]
 	ld c, a
-	ld a, $3c
-	call Func_d6fe
-	ld a, [wdd03]
+	ld a, VAR_NPC_DECK_ID
+	call SetVarValue
+	ld a, [wDuelStartTheme]
 	ld c, a
-	ld a, $3d
-	call Func_d6fe
+	ld a, VAR_3D
+	call SetVarValue
 	ld a, EVENT_02
 	call MaxOutEventValue
 	ld a, $03
@@ -886,7 +891,7 @@ Func_d333:
 	call Func_eaa8
 	ret
 
-Func_d377:
+.asm_d377
 	ld a, $11
 	call Func_3154
 	ld a, EVENT_02
@@ -894,14 +899,14 @@ Func_d377:
 	call Func_e9a7
 	ld a, EVENT_F0
 	call ZeroOutEventValue
-	farcall $11, $4943
+	farcall PlayCurrentSong
 	ld a, $09
 	ld [wd582], a
 	xor a
 	ld [wd583], a
-	jr Func_d333
+	jr .asm_d333
 
-Func_d398:
+.asm_d398
 	farcall Func_10b9c
 	farcall Func_1055e
 	farcall UpdateOWScroll
@@ -915,7 +920,7 @@ Func_d398:
 	ld [wd582], a
 	ld hl, wd583
 	res 7, [hl]
-	jp Func_d333
+	jp .asm_d333
 
 ; a = ?
 ; b = direction
@@ -1345,7 +1350,7 @@ Func_d62a:
 	scf
 	ret
 
-; reset data at wEventVars and wd5d2
+; reset data at wEventVars and wGeneralVars
 ClearEvents:
 	push bc
 	push hl
@@ -1367,9 +1372,9 @@ Func_d683:
 	call ZeroOutEventValue
 	ld a, EVENT_EE
 	call ZeroOutEventValue
-	ld a, $3b
+	ld a, VAR_3B
 	ld c, $00
-	call Func_d6fe
+	call SetVarValue
 	ret
 
 GetStackEventValue:
@@ -1407,10 +1412,12 @@ GetEventValue::
 Func_d6b8:
 	call GetByteAfterCall
 ;	fallthrough
-Func_d6bb:
+
+; a = VAR_* constant
+GetVarValue:
 	push bc
 	push hl
-	call Func_d734
+	call GetGeneralVar
 	ld c, [hl]
 .loop
 	bit 0, a
@@ -1454,20 +1461,23 @@ ZeroOutEventValue::
 Func_d6f0:
 	call GetByteAfterCall
 ;	fallthrough
-Func_d6f3:
+ZeroOutVarValue:
 	push bc
-	ld c, $00
-	call Func_d6fe
+	ld c, 0
+	call SetVarValue
 	pop bc
 	ret
 
 Func_d6fb:
 	call GetByteAfterCall
 ;	fallthrough
-Func_d6fe:
+
+; a = VAR_* constant
+; c = value
+SetVarValue:
 	push bc
 	push hl
-	call Func_d734
+	call GetGeneralVar
 	call SetEventValue
 	pop hl
 	pop bc
@@ -1515,21 +1525,23 @@ GetEventVar:
 	pop bc
 	ret
 
-Func_d734:
+; returns wGeneralVars byte in hl
+; and related bits in a
+GetGeneralVar:
 	push bc
 	ld c, a
 	xor a
 	ld b, a
 	sla c
 	rl b
-	ld hl, Data_d946
+	ld hl, GeneralVarMasks
 	add hl, bc
 	ld a, [hli]
 	ld c, a
 	xor a
 	ld b, a
 	ld a, [hl]
-	ld hl, wd5d2
+	ld hl, wGeneralVars
 	add hl, bc
 	pop bc
 	ret
@@ -1561,33 +1573,33 @@ EventVarMasks:
 	db $00, %00000100 ; EVENT_02
 	db $00, %00001000 ; EVENT_03
 	db $01, %00000001 ; EVENT_GOT_CHANSEY_COIN
-	db $01, %00000010 ; EVENT_05
-	db $01, %00000100 ; EVENT_06
-	db $01, %00001000 ; EVENT_07
-	db $01, %00010000 ; EVENT_08
-	db $01, %00100000 ; EVENT_09
-	db $01, %01000000 ; EVENT_0A
-	db $02, %00001111 ; EVENT_0B
-	db $02, %00000001 ; EVENT_0C
-	db $02, %00000010 ; EVENT_0D
-	db $02, %00000100 ; EVENT_0E
-	db $02, %00001000 ; EVENT_0F
-	db $02, %00010000 ; EVENT_10
-	db $02, %00100000 ; EVENT_11
-	db $02, %01000000 ; EVENT_12
-	db $02, %10000000 ; EVENT_13
-	db $03, %00000001 ; EVENT_14
-	db $03, %00000010 ; EVENT_15
-	db $03, %00000100 ; EVENT_16
-	db $03, %00001000 ; EVENT_17
-	db $03, %00010000 ; EVENT_18
-	db $03, %00100000 ; EVENT_19
-	db $03, %01000000 ; EVENT_1A
-	db $03, %10000000 ; EVENT_1B
-	db $04, %00000001 ; EVENT_1C
-	db $04, %00000010 ; EVENT_1D
-	db $04, %00000100 ; EVENT_1E
-	db $04, %00001000 ; EVENT_1F
+	db $01, %00000010 ; EVENT_GOT_ODDISH_COIN
+	db $01, %00000100 ; EVENT_GOT_CHARMANDER_COIN
+	db $01, %00001000 ; EVENT_GOT_STARMIE_COIN
+	db $01, %00010000 ; EVENT_GOT_PIKACHU_COIN
+	db $01, %00100000 ; EVENT_GOT_ALAKAZAM_COIN
+	db $01, %01000000 ; EVENT_GOT_KABUTO_COIN
+	db $02, %00001111 ; EVENT_GOT_GR_COIN
+	db $02, %00000001 ; EVENT_GOT_GR_COIN_PIECE_1
+	db $02, %00000010 ; EVENT_GOT_GR_COIN_PIECE_2
+	db $02, %00000100 ; EVENT_GOT_GR_COIN_PIECE_3
+	db $02, %00001000 ; EVENT_GOT_GR_COIN_PIECE_4
+	db $02, %00010000 ; EVENT_GOT_MAGNEMITE_COIN
+	db $02, %00100000 ; EVENT_GOT_GOLBAT_COIN
+	db $02, %01000000 ; EVENT_GOT_MAGMAR_COIN
+	db $02, %10000000 ; EVENT_GOT_PSYDUCK_COIN
+	db $03, %00000001 ; EVENT_GOT_MACHAMP_COIN
+	db $03, %00000010 ; EVENT_GOT_MEW_COIN
+	db $03, %00000100 ; EVENT_GOT_SNORLAX_COIN
+	db $03, %00001000 ; EVENT_GOT_TOGEPI_COIN
+	db $03, %00010000 ; EVENT_GOT_PONYTA_COIN
+	db $03, %00100000 ; EVENT_GOT_HORSEA_COIN
+	db $03, %01000000 ; EVENT_GOT_ARBOK_COIN
+	db $03, %10000000 ; EVENT_GOT_JIGGLYPUFF_COIN
+	db $04, %00000001 ; EVENT_GOT_DUGTRIO_COIN
+	db $04, %00000010 ; EVENT_GOT_GENGAR_COIN
+	db $04, %00000100 ; EVENT_GOT_RAICHU_COIN
+	db $04, %00001000 ; EVENT_GOT_LUGIA_COIN
 	db $05, %00000001 ; EVENT_20
 	db $05, %00000010 ; EVENT_21
 	db $05, %00000100 ; EVENT_22
@@ -1804,70 +1816,70 @@ EventVarMasks:
 	db $33, %00100000 ; EVENT_F5
 
 ; extra events?
-Data_d946:
-	db $00, %11111111 ; $00
-	db $01, %00000011 ; $01
-	db $01, %00111100 ; $02
-	db $01, %11000000 ; $03
-	db $02, %00001111 ; $04
-	db $03, %00000011 ; $05
-	db $03, %00001100 ; $06
-	db $03, %00110000 ; $07
-	db $04, %00001111 ; $08
-	db $04, %00110000 ; $09
-	db $04, %11000000 ; $0a
-	db $05, %00000011 ; $0b
-	db $06, %00000011 ; $0c
-	db $06, %00011100 ; $0d
-	db $06, %11100000 ; $0e
-	db $07, %00001111 ; $0f
-	db $08, %11111111 ; $10
-	db $09, %11111111 ; $11
-	db $0a, %11111111 ; $12
-	db $0b, %11111111 ; $13
-	db $0c, %11111111 ; $14
-	db $0d, %11111111 ; $15
-	db $0e, %11111111 ; $16
-	db $0f, %11111111 ; $17
-	db $10, %11111111 ; $18
-	db $11, %11111111 ; $19
-	db $12, %11111111 ; $1a
-	db $13, %11111111 ; $1b
-	db $14, %11111111 ; $1c
-	db $15, %11111111 ; $1d
-	db $16, %11111111 ; $1e
-	db $17, %00000011 ; $1f
-	db $17, %00111100 ; $20
-	db $18, %00000111 ; $21
-	db $18, %11110000 ; $22
-	db $19, %00000001 ; $23
-	db $19, %11110000 ; $24
-	db $1a, %00001111 ; $25
-	db $1a, %11110000 ; $26
-	db $1b, %00001111 ; $27
-	db $1b, %01110000 ; $28
-	db $1c, %00011111 ; $29
-	db $1d, %00001111 ; $2a
-	db $1d, %00110000 ; $2b
-	db $1d, %11000000 ; $2c
-	db $1e, %11111111 ; $2d
-	db $1f, %11111111 ; $2e
-	db $20, %11111111 ; $2f
-	db $21, %00000111 ; $30
-	db $21, %11111000 ; $31
-	db $22, %00001111 ; $32
-	db $22, %00110000 ; $33
-	db $23, %00000111 ; $34
-	db $24, %11111111 ; $35
-	db $25, %11111111 ; $36
-	db $26, %11111111 ; $37
-	db $27, %11111111 ; $38
-	db $28, %11111111 ; $39
-	db $29, %00000111 ; $3a
-	db $2a, %11111111 ; $3b
-	db $2b, %11111111 ; $3c
-	db $2c, %11111111 ; $3d
-	db $33, %11111111 ; $3e
+GeneralVarMasks:
+	db $00, %11111111 ; VAR_00
+	db $01, %00000011 ; VAR_01
+	db $01, %00111100 ; VAR_02
+	db $01, %11000000 ; VAR_03
+	db $02, %00001111 ; VAR_04
+	db $03, %00000011 ; VAR_05
+	db $03, %00001100 ; VAR_06
+	db $03, %00110000 ; VAR_07
+	db $04, %00001111 ; VAR_08
+	db $04, %00110000 ; VAR_09
+	db $04, %11000000 ; VAR_0A
+	db $05, %00000011 ; VAR_0B
+	db $06, %00000011 ; VAR_0C
+	db $06, %00011100 ; VAR_0D
+	db $06, %11100000 ; VAR_0E
+	db $07, %00001111 ; VAR_0F
+	db $08, %11111111 ; VAR_10
+	db $09, %11111111 ; VAR_11
+	db $0a, %11111111 ; VAR_12
+	db $0b, %11111111 ; VAR_13
+	db $0c, %11111111 ; VAR_14
+	db $0d, %11111111 ; VAR_15
+	db $0e, %11111111 ; VAR_16
+	db $0f, %11111111 ; VAR_17
+	db $10, %11111111 ; VAR_18
+	db $11, %11111111 ; VAR_19
+	db $12, %11111111 ; VAR_1A
+	db $13, %11111111 ; VAR_1B
+	db $14, %11111111 ; VAR_1C
+	db $15, %11111111 ; VAR_1D
+	db $16, %11111111 ; VAR_1E
+	db $17, %00000011 ; VAR_1F
+	db $17, %00111100 ; VAR_20
+	db $18, %00000111 ; VAR_21
+	db $18, %11110000 ; VAR_22
+	db $19, %00000001 ; VAR_23
+	db $19, %11110000 ; VAR_24
+	db $1a, %00001111 ; VAR_25
+	db $1a, %11110000 ; VAR_26
+	db $1b, %00001111 ; VAR_27
+	db $1b, %01110000 ; VAR_28
+	db $1c, %00011111 ; VAR_29
+	db $1d, %00001111 ; VAR_2A
+	db $1d, %00110000 ; VAR_2B
+	db $1d, %11000000 ; VAR_2C
+	db $1e, %11111111 ; VAR_2D
+	db $1f, %11111111 ; VAR_2E
+	db $20, %11111111 ; VAR_2F
+	db $21, %00000111 ; VAR_30
+	db $21, %11111000 ; VAR_31
+	db $22, %00001111 ; VAR_32
+	db $22, %00110000 ; VAR_33
+	db $23, %00000111 ; VAR_34
+	db $24, %11111111 ; VAR_35
+	db $25, %11111111 ; VAR_36
+	db $26, %11111111 ; VAR_37
+	db $27, %11111111 ; VAR_38
+	db $28, %11111111 ; VAR_39
+	db $29, %00000111 ; VAR_3A
+	db $2a, %11111111 ; VAR_3B
+	db $2b, %11111111 ; VAR_NPC_DECK_ID
+	db $2c, %11111111 ; VAR_3D
+	db $33, %11111111 ; VAR_3E
 
 SECTION "Bank 3@5bbd", ROMX[$5bbd], BANK[$3]
 
@@ -1875,15 +1887,15 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc
 	xor a
 	ld c, a
-	ld a, EVENT_07
+	ld a, EVENT_GOT_STARMIE_COIN
 	call GetEventValue
 	jr z, .got_num_steps
 	inc c
-	ld a, EVENT_0B
+	ld a, EVENT_GOT_GR_COIN
 	call GetEventValue
 	jr z, .got_num_steps
 	inc c
-	ld a, EVENT_11
+	ld a, EVENT_GOT_GOLBAT_COIN
 	call GetEventValue
 	jr z, .got_num_steps
 	inc c

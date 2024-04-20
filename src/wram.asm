@@ -50,13 +50,8 @@ SECTION "WRAM0 Duels 1", WRAM0
 
 UNION
 
-wPlayerDuelVariables:: ; c200
-
-	ds $100
-
-wOpponentDuelVariables:: ; c300
-
-	ds $100
+wPlayerDuelVariables::   duel_vars wPlayer   ; c200
+wOpponentDuelVariables:: duel_vars wOpponent ; c300
 
 NEXTU
 
@@ -352,6 +347,9 @@ wSerialRecvBuf:: ; cb9f
 
 wSerialEnd:: ; cbbf
 
+; In a duel, the main menu current or last selected menu item
+; From 0 to 5: Hand, Attack, Check, Pkmn Power, Retreat, Done
+wCurrentDuelMenuItem:: ; cbbf
 	ds $1
 
 ; When we're viewing a card's information, the page we are currently at.
@@ -362,6 +360,10 @@ wSerialEnd:: ; cbbf
 wCardPageNumber:: ; cbc0
 	ds $1
 
+; how many selectable items are in a play area screen. used to set wNumMenuItems
+; in order to navigate through a play area screen. this becomes the number of bench
+; Pokemon cards if wExcludeArenaPokemon is 1, and that number plus 1 if it's 0.
+wNumPlayAreaItems:: ; cbc1
 	ds $1
 
 ; selects a PLAY_AREA_* slot in order to display information related to it. used by functions
@@ -380,20 +382,88 @@ wCurPlayAreaY:: ; cbc3
 ; current Y coordinate where some play area information is being printed at. used by functions
 ; such as PrintPlayAreaCardLocation, PrintPlayAreaCardInformation and PrintPlayAreaCardHeader
 wHUDEnergyAndHPBarsY:: ; cbc3
+
+wPracticeDuelTextY:: ; cbc3
 	ds $1
 
-	ds $6
+; selected bench slot (1-5, that is, a PLAY_AREA_BENCH_* constant)
+wBenchSelectedPokemon:: ; cbc4
+	ds $1
+
+; used by CheckIfEnoughEnergiesToRetreat and DisplayRetreatScreen
+wEnergyCardsRequiredToRetreat:: ; cbc5
+	ds $1
+
+wNumRetreatEnergiesSelected:: ; cbc6
+	ds $1
+
+	ds $1
+
+; when you're in a duel submenu like the cards in your hand and you press A,
+; the following two addresses keep track of which item was selected by the cursor
+wSelectedDuelSubMenuItem:: ; cbc8
+	ds $1
+
+	ds $1
 
 ; CARDPAGETYPE_PLAY_AREA or CARDPAGETYPE_NOT_PLAY_AREA
 ; some of the elements displayed in a card page change depending on which value
 wCardPageType:: ; cbca
 	ds $1
 
-	ds $5
+; when processing or displaying the play area Pokemon cards of a duelist,
+; whether to account for only the benched Pokemon ($01) or also the arena Pokemon ($00).
+wExcludeArenaPokemon:: ; cbcb
+	ds $1
+
+wPlayAreaScreenLoaded:: ; cbcc
+	ds $1
+
+; determines what to do when player presses the Select button
+; while viewing the Play Area:
+; - if $0 or $2: no action
+; - if $1: menu is accessible where player can examine Hand or other screens
+; $2 is reserved for Func_4597
+wPlayAreaSelectAction:: ; cbcd
+	ds $1
+
+; low byte of the address of the next slot in the hTempRetreatCostCards array to be used
+wTempRetreatCostCardsPos:: ; cbce
+	ds $1
+
+; in a card list, which keys (among START and A_BUTTON) do not open the item selection
+; menu when a card is selected, directly "submitting" the selected card instead.
+wNoItemSelectionMenuKeys:: ; cbcf
+	ds $1
 
 ; when viewing a card page, which keys (among B_BUTTON, D_UP, and D_DOWN) will exit the page,
 ; either to go back to the previous menu or list, or to load the card page of the card above/below it
 wCardPageExitKeys:: ; cbd0
+	ds $1
+
+; used to store function pointer for printing card order
+; in card list reordering screen.
+wPrintSortNumberInCardListPtr:: ; cbd1
+	ds $2
+
+; in the hand or discard pile card screen, id of the text printed in the bottom-left box
+wCardListInfoBoxText:: ; cbd3
+	ds $2
+
+; in the hand or discard pile card screen, id of the text printed as the header title
+wCardListHeaderText:: ; cbd5
+	ds $2
+
+; when selecting an item of a list of cards which type of menu shows up.
+; PLAY_CHECK, SELECT_CHECK, or $00 for none.
+wCardListItemSelectionMenuType:: ; cbd7
+	ds $1
+
+; flag indicating whether a list of cards should be sorted by ID
+wSortCardListByID:: ; cbd8
+	ds $1
+
+wAttachedEnergyMenuPlayAreaLocation:: ; cbd9
 	ds $1
 
 SECTION "WRAM0 Duels 2", WRAM0
@@ -408,43 +478,122 @@ wOppRNG1:: ; cbda
 wDuelReturnAddress:: ; cbdd
 	ds $2
 
-	ds $3
+; if non-zero, duel menu input is not checked
+wDebugSkipDuelMenuInput:: ; cbdf
+	ds $1
+
+	ds $2
 
 ; temporarily stores 8 bytes for serial send/recv.
 ; used by SerialSend8Bytes and SerialRecv8Bytes
 wTempSerialBuf:: ; cbe2
 	ds $8
 
-	ds $13
-
-wcbfd:: ; cbfd
 	ds $1
 
+wcbeb:: ; cbeb
+	ds $1
+
+wAttachedEnergyMenuDenominator:: ; cbec
+	ds $1
+
+wAttachedEnergyMenuNumerator:: ; cbed
+	ds $1
+
+; text ID to show in the Attached Energy screen
+wAttachedEnergyMenuTextID:: ; cbee
 	ds $2
+
+; used by TurnDuelistTakePrizes to store the remaining Prizes, so that if more than that
+; amount would be taken, only the remaining amount is taken
+wTempNumRemainingPrizeCards:: ; cbf0
+	ds $1
+
+; if FALSE, player is placing initial arena pokemon
+; if TRUE, player is placing initial bench pokemon
+wPlacingInitialBenchPokemon:: ; cbf1
+	ds $1
+
+; during a practice duel, identifies an entry of PracticeDuelActionTable
+wPracticeDuelAction:: ; cbf2
+	ds $1
+
+wDuelMainSceneSelectHotkeyAction:: ; cbf3
+	ds $1
+
+wPracticeDuelTurn:: ; cbf4
+	ds $1
+
+wcbf5:: ; cbf5
+	ds $1
+
+	ds $6
+
+; used when opening the card page of an attack when attacking,
+; serving as an index for AttackPageDisplayPointerTable.
+; see ATTACKPAGE_* constants
+wAttackPageNumber:: ; cbfc
+	ds $1
+
+; the value of hWhoseTurn gets loaded here at the beginning of each duelist's turn.
+; more reliable than hWhoseTurn, as hWhoseTurn may change temporarily in order to handle status
+; conditions or other events of the non-turn duelist. used mostly between turns (to check which
+; duelist's turn just finished), or to restore the value of hWhoseTurn at some point.
+wWhoseTurn:: ; cbfd
+	ds $1
+
+; number of turns taken by both players
+wDuelTurns:: ; cbfe
+	ds $1
+
+; used to signal that the current duel has finished, not to be mistaken with wDuelResult
+; 0 = no one has won duel yet
+; 1 = player whose turn it is has won the duel
+; 2 = player whose turn it is has lost the duel
+; 3 = duel ended in a draw (start sudden death match)
+wDuelFinished:: ; cbff
+	ds $1
 
 ; current duel is a [wDuelInitialPrizes]-prize match
 wDuelInitialPrizes:: ; cc00
 	ds $1
 
-wcc01:: ; cc01
+; maximum number of Pokémon in Play Area
+; normally it's 6, but when dueling with the
+; Small Bench rule, it's reduced to 4
+wMaxNumPlayAreaPokemon:: ; cc01
 	ds $1
 
 ; a DUELTYPE_* constant. note that for a practice duel, wIsPracticeDuel must also be set to $1
 wDuelType:: ; cc02
 	ds $1
 
-	ds $3
+wcc03:: ; cc03
+	ds $1
+
+wAlreadyPlayedEnergy:: ; cc04
+	ds $1
+
+; set to 1 if the confusion check coin toss in AttemptRetreat is heads
+wGotHeadsFromConfusionCheckDuringRetreat:: ; cc05
+	ds $1
 
 wGoopGasAttackActive:: ; cc06
 	ds $1
 
-	ds $2
+wcc07:: ; cc07
+	ds $1
+
+; DUELIST_TYPE_* of the turn holder
+wDuelistType:: ; cc08
+	ds $1
 
 ; this holds the current opponent's deck minus 2 (that is, a *_DECK_ID constant),
 ; in order to account for the two unused pointers at the beginning of DeckPointers.
 wOpponentDeckID:: ; cc09
 	ds $1
 
+wcc0f:: ; cc0a
 	ds $1
 
 ; index (0-1) of the attack or Pokemon Power being used by the player's arena card
@@ -470,7 +619,7 @@ wSpecialRule:: ; cc10
 
 	ds $1
 
-wcc12:: ; cc12
+wOpponentNPCID:: ; cc12
 	ds $1
 
 ; text id of the opponent's name
@@ -480,16 +629,29 @@ wOpponentName:: ; cc13
 wcc15:: ; cc15
 	ds $1
 
-wcc16:: ; cc16
+wNPCDuelDeckID:: ; cc16
 	ds $1
 
-wcc17:: ; cc17
+; song played during a duel
+wDuelTheme:: ; cc17
 	ds $1
 
 wcc18:: ; cc18
 	ds $1
 
-SECTION "WRAM0 Duels 2@cc29", WRAM0
+wcc19:: ; cc19
+	ds $1
+
+wcc1a:: ; cc1a
+	ds $1
+
+wcc1b:: ; cc1b
+	ds $1
+
+SECTION "WRAM0 Duels 2@cc21", WRAM0
+
+wAttackEnergyCost:: ; cc21
+	ds NUM_TYPES
 
 ; holds the energies attached to a given pokemon card. 1 byte for each of the
 ; 8 energy types (includes the unused one that shares byte with the colorless energy)
@@ -535,7 +697,15 @@ wTempTurnDuelistCardID:: ; ccd4
 wTempNonTurnDuelistCardID:: ; ccd6
 	ds $2
 
-	ds $3
+wccd8:: ; ccd8
+	ds $1
+
+wccd9:: ; ccd9
+	ds $1
+
+; the status condition of the defending Pokemon is loaded here after an attack
+wccc5:: ; ccda
+	ds $1
 
 ; *_ATTACK constants for selected attack
 ; 0 for the first attack (or PKMN Power)
@@ -573,7 +743,11 @@ wEffectFunctionsFeedback:: ; cce3
 wIsDamageToSelf:: ; ccfb
 	ds $1
 
-	ds $2
+wccfc:: ; ccfc
+	ds $1
+
+wDuelFinishParam:: ; cce8
+	ds $1
 
 wOpponentDeckName:: ; ccfe
 	ds $2
@@ -614,9 +788,12 @@ wNoEffectFromWhichStatus:: ; cd06
 wDeckSize:: ; cd07
 	ds $1
 
-wcd08:: ; cd08
+; when non-0, allows the player to skip some delays during a duel by pressing B.
+; value read from sSkipDelayAllowed. probably only used for debugging.
+wSkipDelayAllowed:: ; cd08
 	ds $1
 
+wcd09:: ; cd09
 	ds $1
 
 wcd0a:: ; cd0a
@@ -640,18 +817,42 @@ wcd0f:: ; cd0f
 wcd10:: ; cd10
 	ds $4
 
-	ds $2
+wcd14:: ; cd14
+	ds $1
+
+wcd15:: ; cd15
+	ds $1
 
 wcd16:: ; cd16
 	ds $1
 
 wcd17:: ; cd17
-	ds $3
-
-wcd1a:: ; cd1a
 	ds $1
 
-	ds $9
+wcd18:: ; cd18
+	ds $1
+
+; when non-0, AIMakeDecision doesn't wait 60 frames and print DuelistIsThinkingText
+wSkipDuelistIsThinkingDelay:: ; cd19
+	ds $1
+
+; return address for when the Link Opponent has
+; made a decision on his turn, so that the duel continues
+wLinkOpponentTurnReturnAddress:: ; cd1a
+	ds $2
+
+wNumCardsTryingToDraw:: ; cd1c
+	ds $1
+
+; number of cards being drawn in order to animate the number of cards in
+; the hand and in the deck in the draw card screen
+wNumCardsBeingDrawn:: ; cd1d
+	ds $1
+
+wOpponentTurnEnded:: ; cd1e
+	ds $1
+
+	ds $5
 
 wDeckDiagnosisTextIDsPtr:: ; cd24
 	ds $2
@@ -817,7 +1018,11 @@ wTextMaxLength:: ; cd75
 wUppercaseHalfWidthLetters:: ; cd76
 	ds $1
 
-	ds $2
+wcd77:: ; cd77
+	ds $1
+
+wcd78:: ; cd78
+	ds $1
 
 ; During a duel, this is always $b after the first attack.
 ; $b is the bank where the functions associated to card or effect commands are.
@@ -931,6 +1136,7 @@ wSerialDataPtr:: ; cdf6
 wTempCardID_ce08:: ; ce08
 	ds $2
 
+wce0a:: ; ce0a
 	ds $2
 
 wce0c:: ; ce0c
@@ -1164,6 +1370,9 @@ wd0c1:: ; d0c1
 wTransitionTablePtr:: ; d0c2
 	ds $2
 
+; same as wDuelInitialPrizes but with upper 2 bits set
+wDuelInitialPrizesUpperBitsSet:: ; d0c4
+
 wd0c4:: ; d0c4
 	ds $1
 
@@ -1191,7 +1400,10 @@ wGlossaryMenu:: ; d0d1
 wd0d2:: ; d0d2
 	ds $1
 
-	ds $6
+wd0d3:: ; d0d3
+	ds $1
+
+	ds $5
 
 ; buffer to store data that will be sent/received through IR
 wIRDataBuffer:: ; d0d9
@@ -1620,7 +1832,9 @@ wCurOWLocation:: ; d587
 wPlayerOWLocation:: ; d588
 	ds $1
 
-wd589:: ; d589
+; island where player is located
+; either TCG_ISLAND or GR_ISLAND
+wCurIsland:: ; d589
 	ds $1
 
 wd58a:: ; d58a
@@ -1680,7 +1894,7 @@ wd59d:: ; d59d
 wEventVars:: ; d59e
 	ds $34
 
-wd5d2:: ; d5d2
+wGeneralVars:: ; d5d2
 	ds $34
 
 	ds $b
@@ -2239,11 +2453,28 @@ wdc60:: ; dc60
 wdce2:: ; dce2
 	ds $1
 
-	ds $2
-
-wdce5:: ; dce5
+; used to know what coordinate offsets to use to place animations
+; for use in GetAnimCoordsAndFlags
+; DUEL_ANIM_SCREEN_MAIN_SCENE       = main scene
+; DUEL_ANIM_SCREEN_PLAYER_PLAY_AREA = Player's Play Area screen
+; DUEL_ANIM_SCREEN_OPP_PLAY_AREA    = Opponent's Play Area screen
+wDuelAnimationScreen:: ; dce3
 	ds $1
 
+; which side to play animation
+; uses PLAYER_TURN and OPPONENT_TURN constants
+wDuelAnimDuelistSide:: ; dce4
+	ds $1
+
+; used in GetAnimCoordsAndFlags to determine
+; what coordinates to draw the animation in.
+; e.g. used to know what Play Area card
+; to draw a hit animation in the Play Area screen.
+wDuelAnimLocationParam:: ; dce5
+	ds $1
+
+; damage value to display with animation
+wDuelAnimDamage:: ; dce6
 	ds $2
 
 wdce8:: ; dce8
@@ -2266,7 +2497,7 @@ SECTION "WRAM1@dd02", WRAMX
 wDuelResult:: ; dd02
 	ds $1
 
-wdd03:: ; dd03
+wDuelStartTheme:: ; dd03
 	ds $1
 
 wdd04:: ; dd04

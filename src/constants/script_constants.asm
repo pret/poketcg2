@@ -4,33 +4,33 @@
 	const EVENT_02 ; $02
 	const EVENT_03 ; $03
 	const EVENT_GOT_CHANSEY_COIN ; $04
-	const EVENT_05 ; $05
-	const EVENT_06 ; $06
-	const EVENT_07 ; $07
-	const EVENT_08 ; $08
-	const EVENT_09 ; $09
-	const EVENT_0A ; $0a
-	const EVENT_0B ; $0b
-	const EVENT_0C ; $0c
-	const EVENT_0D ; $0d
-	const EVENT_0E ; $0e
-	const EVENT_0F ; $0f
-	const EVENT_10 ; $10
-	const EVENT_11 ; $11
-	const EVENT_12 ; $12
-	const EVENT_13 ; $13
-	const EVENT_14 ; $14
-	const EVENT_15 ; $15
-	const EVENT_16 ; $16
-	const EVENT_17 ; $17
-	const EVENT_18 ; $18
-	const EVENT_19 ; $19
-	const EVENT_1A ; $1a
-	const EVENT_1B ; $1b
-	const EVENT_1C ; $1c
-	const EVENT_1D ; $1d
-	const EVENT_1E ; $1e
-	const EVENT_1F ; $1f
+	const EVENT_GOT_ODDISH_COIN ; $05
+	const EVENT_GOT_CHARMANDER_COIN ; $06
+	const EVENT_GOT_STARMIE_COIN ; $07
+	const EVENT_GOT_PIKACHU_COIN ; $08
+	const EVENT_GOT_ALAKAZAM_COIN ; $09
+	const EVENT_GOT_KABUTO_COIN ; $0a
+	const EVENT_GOT_GR_COIN ; $0b
+	const EVENT_GOT_GR_COIN_PIECE_1 ; $0c
+	const EVENT_GOT_GR_COIN_PIECE_2 ; $0d
+	const EVENT_GOT_GR_COIN_PIECE_3 ; $0e
+	const EVENT_GOT_GR_COIN_PIECE_4 ; $0f
+	const EVENT_GOT_MAGNEMITE_COIN ; $10
+	const EVENT_GOT_GOLBAT_COIN ; $11
+	const EVENT_GOT_MAGMAR_COIN ; $12
+	const EVENT_GOT_PSYDUCK_COIN ; $13
+	const EVENT_GOT_MACHAMP_COIN ; $14
+	const EVENT_GOT_MEW_COIN ; $15
+	const EVENT_GOT_SNORLAX_COIN ; $16
+	const EVENT_GOT_TOGEPI_COIN ; $17
+	const EVENT_GOT_PONYTA_COIN ; $18
+	const EVENT_GOT_HORSEA_COIN ; $19
+	const EVENT_GOT_ARBOK_COIN ; $1a
+	const EVENT_GOT_JIGGLYPUFF_COIN ; $1b
+	const EVENT_GOT_DUGTRIO_COIN ; $1c
+	const EVENT_GOT_GENGAR_COIN ; $1d
+	const EVENT_GOT_RAICHU_COIN ; $1e
+	const EVENT_GOT_LUGIA_COIN ; $1f
 	const EVENT_20 ; $20
 	const EVENT_21 ; $21
 	const EVENT_22 ; $22

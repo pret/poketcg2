@@ -490,7 +490,12 @@ PlayAfterCurrentSong:
 	ld [wdd04], a
 	call PlaySong
 	ret
-; 0x44943
+
+PlayCurrentSong:
+	ld a, [wCurMusic]
+	call PlaySong
+	ret
+; 0x4494a
 
 SECTION "Bank 11@4954", ROMX[$4954], BANK[$11]
 

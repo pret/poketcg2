@@ -40,6 +40,8 @@ ROMX $03
 	"Bank 3"
 ROMX $04
 	"Bank 4"
+ROMX $05
+	"Bank 5"
 ROMX $06
 	"Bank 6"
 ROMX $07
@@ -225,8 +227,8 @@ WRAM0
 	"WRAM0 Serial Transfer"
 	org $cbda
 	"WRAM0 Duels 2"
-	org $cc29
-	"WRAM0 Duels 2@cc29"
+	org $cc21
+	"WRAM0 Duels 2@cc21"
 	org $cd5b
 	"WRAM0 2"
 WRAMX 1

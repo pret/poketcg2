@@ -1,3 +1,132 @@
+SECTION "Bank 2@43b3", ROMX[$43b3], BANK[$2]
+
+Func_82b6:
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ld a, [wCheckMenuPlayAreaWhichLayout]
+	cp b
+	jr nz, .not_equal
+
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.player
+	call DrawPlayArea_PrizeCards
+	ret
+
+.not_equal
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.opponent
+	call DrawPlayArea_PrizeCards
+	ret
+; 0x83cb
+
+SECTION "Bank 2@4587", ROMX[$4587], BANK[$2]
+
+; draws prize cards depending on the turn
+; loaded in wCheckMenuPlayAreaWhichDuelist
+; input:
+; hl = pointer to coordinates
+DrawPlayArea_PrizeCards:
+	push hl
+	call GetDuelInitialPrizesUpperBitsSet
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld l, DUELVARS_PRIZES
+	ld a, [hl]
+
+	pop hl
+	ld b, 0
+	push af
+; loop each prize card
+.loop
+	inc b
+	ld a, [wDuelInitialPrizes]
+	inc a
+	cp b
+	jr z, .done
+
+	pop af
+	srl a ; right shift prize cards left
+	push af
+	jr c, .not_taken
+	ld a, $e0 ; tile byte for empty slot
+	jr .draw
+.not_taken
+	ld a, [wcc07]
+	or a
+	jr z, .asm_85b2
+	ld a, $f9
+	jr .draw
+.asm_85b2
+	ld a, $dc ; tile byte for card
+.draw
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+
+	push hl
+	push bc
+	lb hl, $01, $02 ; card tile gfx
+	lb bc, 2, 2 ; rectangle size
+	call FillRectangle
+
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jr nz, .not_cgb
+	ld a, $03 ; blue colour
+	lb bc, 2, 2
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+.not_cgb
+	pop bc
+	pop hl
+	jr .loop
+.done
+	pop af
+	ret
+
+PrizeCardsCoordinateData_YourOrOppPlayArea:
+; x and y coordinates for player prize cards
+.player
+	db 2, 1
+	db 2, 3
+	db 4, 1
+	db 4, 3
+	db 6, 1
+	db 6, 3
+; x and y coordinates for opponent prize cards
+.opponent
+	db 9, 17
+	db 9, 15
+	db 7, 17
+	db 7, 15
+	db 5, 17
+	db 5, 15
+
+SECTION "Bank 2@4629", ROMX[$4629], BANK[$2]
+
+; calculates bits set up to the number of initial prizes, with upper 2 bits set, i.e:
+; 6 prizes: a = %11111111
+; 4 prizes: a = %11001111
+; 3 prizes: a = %11000111
+; 2 prizes: a = %11000011
+GetDuelInitialPrizesUpperBitsSet:
+	ld a, [wDuelInitialPrizes]
+	ld b, $01
+.loop
+	or a
+	jr z, .done
+	sla b
+	dec a
+	jr .loop
+.done
+	dec b
+	ld a, b
+	or %11000000
+	ld [wDuelInitialPrizesUpperBitsSet], a
+	ret
+; 0x863e
+
 SECTION "Bank 2@4acb", ROMX[$4acb], BANK[$2]
 
 LoadMenuCursorTile:
@@ -84,7 +213,7 @@ HandleMultiDirectionalMenu:
 
 .make_bitmask_done
 ; check if the moved cursor refers to an existing item.
-	ld a, [wd0c4]
+	ld a, [wDuelInitialPrizesUpperBitsSet]
 	and b
 	jr nz, .sfx
 	ld a, [wd0d0]

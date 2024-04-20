@@ -72,7 +72,7 @@ CountPrizes::
 ; draw a card from the turn holder's deck, saving its location as CARD_LOCATION_JUST_DRAWN.
 ; returns carry if deck is empty, nc if a card was successfully drawn.
 ; AddCardToHand is meant to be called next (unless this function returned carry).
-DrawCardFromDeck:
+DrawCardFromDeck::
 	push hl
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -153,7 +153,7 @@ SearchCardInDeckAndAddToHand:
 
 ; adds a card to the turn holder's hand and increments the number of cards in the hand
 ; the card is identified by register a, which contains the deck index (0-59) of the card
-AddCardToHand:
+AddCardToHand::
 	push af
 	push hl
 	push de
@@ -218,7 +218,7 @@ RemoveCardFromHand:
 	pop af
 	ret
 
-Func_0ffa:
+Func_0ffa::
 	push bc
 	push de
 	ld c, a
@@ -239,7 +239,7 @@ Func_0ffa:
 
 ; moves a card to the turn holder's discard pile, as long as it is in the hand
 ; the card is identified by register a, which contains the deck index (0-59) of the card
-MoveHandCardToDiscardPile:
+MoveHandCardToDiscardPile::
 	call CheckDeckIndexRange
 	get_turn_duelist_var
 	ld a, [hl]
@@ -251,7 +251,7 @@ MoveHandCardToDiscardPile:
 ;	fallthrough
 
 ; puts the turn holder's card with the deck index (0-59) given in a into the discard pile
-PutCardInDiscardPile:
+PutCardInDiscardPile::
 	push af
 	push hl
 	push de
@@ -273,7 +273,7 @@ PutCardInDiscardPile:
 ; search a card in the turn holder's discard pile, extract it, and set its location to
 ; CARD_LOCATION_JUST_DRAWN. AddCardToHand is meant to be called next.
 ; the card is identified by register a, which contains the deck index (0-59) of the card
-MoveDiscardPileCardToHand:
+MoveDiscardPileCardToHand::
 	push hl
 	push de
 	push bc
@@ -365,7 +365,7 @@ CreateDeckCardList:
 ; if a == 0: search in CARD_LOCATION_ARENA
 ; if a != 0: search in CARD_LOCATION_BENCH_[A]
 ; return carry if no energy cards were found
-CreateArenaOrBenchEnergyCardList:
+CreateArenaOrBenchEnergyCardList::
 	or CARD_LOCATION_PLAY_AREA
 	ld c, a
 	ld b, $00
@@ -402,7 +402,7 @@ CreateArenaOrBenchEnergyCardList:
 ; fill wDuelTempList with the turn holder's hand cards (their 0-59 deck indexes)
 ; return carry if the turn holder has no cards in hand
 ; and outputs in a number of cards.
-CreateHandCardList:
+CreateHandCardList::
 	call FindLastCardInHand
 	inc b
 	jr .skip_card
@@ -433,7 +433,7 @@ CreateHandCardList:
 ; b = turn holder's number of cards in hand (DUELVARS_NUMBER_OF_CARDS_IN_HAND)
 ; hl = pointer to turn holder's last (newest) card in DUELVARS_HAND
 ; de = wDuelTempList
-FindLastCardInHand:
+FindLastCardInHand::
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ld l, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -448,7 +448,7 @@ FindLastCardInHand:
 ; input:
    ; a  = how many cards to shuffle
    ; hl = DUELVARS_DECK_CARDS + [DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK]
-ShuffleCards:
+ShuffleCards::
 	cp 1
 	ret c ; return if less than 2 cards in deck
 	push hl
@@ -546,7 +546,7 @@ RemoveCardFromDuelTempList::
 	ret
 
 ; return the number of cards in wDuelTempList in a
-CountCardsInDuelTempList:
+CountCardsInDuelTempList::
 	push hl
 	push bc
 	ld hl, wDuelTempList
@@ -585,10 +585,10 @@ LoadCardDataToBuffer1_FromDeckIndex::
 	push bc
 	push af
 	call GetCardIDFromDeckIndex
-	call $2d0a ; LoadCardDataToBuffer1_FromCardID
+	call LoadCardDataToBuffer1_FromCardID
 	pop af
 	ld hl, wLoadedCard1
-	farcall $9, $4e25 ; ConvertSpecialTrainerCardToPokemon
+	farcall ConvertSpecialTrainerCardToPokemon
 	pop bc
 	pop de
 	pop hl
@@ -604,7 +604,7 @@ LoadCardDataToBuffer2_FromDeckIndex::
 	call LoadCardDataToBuffer2_FromCardID
 	pop af
 	ld hl, wLoadedCard2
-	farcall $9, $4e25 ; ConvertSpecialTrainerCardToPokemon
+	farcall ConvertSpecialTrainerCardToPokemon
 	pop bc
 	pop de
 	pop hl
@@ -613,7 +613,7 @@ LoadCardDataToBuffer2_FromDeckIndex::
 ; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation_ff9d
 ; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex_ff98.
 ; return nc if evolution was successful.
-EvolvePokemonCardIfPossible:
+EvolvePokemonCardIfPossible::
 	; first make sure the attempted evolution is viable
 	ldh a, [hTempCardIndex_ff98]
 	ld d, a
@@ -678,7 +678,7 @@ EvolvePokemonCard:
 ; e is the play area location offset (PLAY_AREA_*) of the Pokemon trying to evolve.
 ; d is the deck index (0-59) of the Pokemon card that was selected to be the evolution target.
 ; return carry if can't evolve, plus nz if the reason for it is the card was played this turn.
-CheckIfCanEvolveInto:
+CheckIfCanEvolveInto::
 	push de
 	ld a, e
 	add DUELVARS_ARENA_CARD
@@ -749,7 +749,7 @@ CheckIfCanEvolveInto_BasicToStage2:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call $2cbb ; LoadCardDataToBuffer1_FromName
+	call LoadCardDataToBuffer1_FromName
 	ld hl, wLoadedCard2Name
 	ld de, wLoadedCard1PreEvoName
 	ld a, [de]
@@ -770,7 +770,7 @@ CheckIfCanEvolveInto_BasicToStage2:
 ; clear the status, all substatuses, and temporary duelvars of the turn holder's
 ; arena Pokemon. called when sending a new Pokemon into the arena.
 ; does not reset Headache, since it targets a player rather than a Pokemon.
-ClearAllStatusConditions:
+ClearAllStatusConditions::
 	push hl
 	ldh a, [hWhoseTurn]
 	ld h, a
@@ -804,13 +804,13 @@ ClearAllStatusConditions:
 ; input:
    ; a = deck index of the card
 ; return carry if there is no room for more Pokemon
-PutHandPokemonCardInPlayArea:
+PutHandPokemonCardInPlayArea::
 	push af
 	call CheckDeckIndexRange
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	push hl
-	ld hl, wcc01 ; max play area pokemon ?
+	ld hl, wMaxNumPlayAreaPokemon ; max play area pokemon ?
 	cp [hl]
 	pop hl
 	jr nc, .already_max_pkmn_in_play
@@ -874,7 +874,7 @@ PutHandPokemonCardInPlayArea:
    ; e = play area location offset (PLAY_AREA_*)
 ; returns:
    ; a = CARD_LOCATION_PLAY_AREA + e
-PutHandCardInPlayArea:
+PutHandCardInPlayArea::
 	call RemoveCardFromHand
 	get_turn_duelist_var
 	ld a, e
@@ -882,7 +882,7 @@ PutHandCardInPlayArea:
 	ld [hl], a
 	ret
 
-Func_12fc:
+Func_12fc::
 	ld a, [wSpecialRule]
 	cp ENERGY_RETURN
 	jr nz, MovePlayAreaCardToDiscardPile
@@ -921,7 +921,7 @@ Func_12fc:
 
 ; move the Pokemon card of the turn holder in the
 ; PLAY_AREA_* location given in e to the discard pile
-MovePlayAreaCardToDiscardPile:
+MovePlayAreaCardToDiscardPile::
 	call EmptyPlayAreaSlot
 	ld l, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	dec [hl]
@@ -969,7 +969,7 @@ EmptyPlayAreaSlot:
 	ret
 
 ; shift play area Pokemon of both players to the first available play area (arena + benchx) slots
-ShiftAllPokemonToFirstPlayAreaSlots:
+ShiftAllPokemonToFirstPlayAreaSlots::
 	call ShiftTurnPokemonToFirstPlayAreaSlots
 	call SwapTurn
 	call ShiftTurnPokemonToFirstPlayAreaSlots
@@ -998,7 +998,7 @@ ShiftTurnPokemonToFirstPlayAreaSlots:
 ; data of the turn holder's Pokemon card in play area e.
 ; reset the status and all substatuses of the arena Pokemon before swapping.
 ; e is the play area location offset of the bench Pokemon (PLAY_AREA_*).
-SwapArenaWithBenchPokemon:
+SwapArenaWithBenchPokemon::
 	push de
 	call ClearAllStatusConditions
 	ld d, PLAY_AREA_ARENA
@@ -1009,7 +1009,7 @@ SwapArenaWithBenchPokemon:
 ; swap the data of the turn holder's Pokemon card in play area d with the
 ; data of the turn holder's Pokemon card in play area e.
 ; d and e are play area location offsets (PLAY_AREA_*).
-SwapPlayAreaPokemon:
+SwapPlayAreaPokemon::
 	push bc
 	push de
 	push hl
@@ -1225,7 +1225,7 @@ CopyAttackDataAndDamage_FromCardID:
 	ld a, d
 	ldh [hTempCardIndex_ff9f], a
 	pop de
-	call $2d0a ; LoadCardDataToBuffer1_FromCardID
+	call LoadCardDataToBuffer1_FromCardID
 	pop de
 	jr CopyAttackDataAndDamage
 
@@ -1234,7 +1234,7 @@ CopyAttackDataAndDamage_FromCardID:
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
-CopyAttackDataAndDamage_FromDeckIndex:
+CopyAttackDataAndDamage_FromDeckIndex::
 	ld a, e
 	ld [wSelectedAttack], a
 	ld a, d
@@ -1276,7 +1276,7 @@ Func_14e5:
 	get_turn_duelist_var
 	ldh [hTempCardIndex_ff9f], a
 	call Func_14f1
-	call Func_1500
+	call ClearTwoTurnDuelVars
 	ret
 
 Func_14f1:
@@ -1288,7 +1288,9 @@ Func_14f1:
 	call SwapTurn
 	ret
 
-Func_1500:
+; zeroes temp variables that only last between each two-player turn.
+; this is called when a Pokemon card is played or when an attack is used
+ClearTwoTurnDuelVars::
 	xor a
 	ld [wccec], a
 	ld [wEffectFunctionsFeedbackIndex], a
@@ -1306,14 +1308,14 @@ Func_1500:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	bank1call $6b13 ; Func_6b13
-	ld a, $ed
+	bank1call ClearNonTurnTemporaryDuelvars_CopyStatus
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
 	call GetNonTurnDuelistVariable
 	ld [wcd0b], a
 	ret
 
 ; Use an attack (from DuelMenu_Attack) or a Pokemon Power (from DuelMenu_PkmnPower)
-UseAttackOrPokemonPower:
+UseAttackOrPokemonPower::
 	ld a, [wSelectedAttack]
 	ld [wPlayerAttackingAttackIndex], a
 	ldh a, [hTempCardIndex_ff9f]
@@ -1329,10 +1331,10 @@ UseAttackOrPokemonPower:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call Func_14e5
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	jp c, DrawWideTextBox_WaitForInput_ReturnCarry
 	farcall $9, $4375 ; Func_24375
-	call $27fa ; WaitForWideTextBoxInput
+	call WaitForWideTextBoxInput
 	call SendAttackDataToLinkOpponent
 	bank1call $784a ; HandleSandAttackOrSmokescreenSubstatus ?
 	jp c, ClearNonTurnTemporaryDuelvars_ResetCarry
@@ -1343,7 +1345,7 @@ UseAttackOrPokemonPower:
 	call ExchangeRNG
 .asm_1580
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	jr nc, .asm_159b
 	ld a, [wcd16]
 	or a
@@ -1357,9 +1359,9 @@ UseAttackOrPokemonPower:
 	ret
 .asm_159b
 	ld a, EFFECTCMDTYPE_DISCARD_ENERGY
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	ld a, OPPACTION_ATTACK_ANIM_AND_DAMAGE
 	call SetOppAction_SerialSendDuelData
 ;	fallthrough
@@ -1367,7 +1369,7 @@ UseAttackOrPokemonPower:
 PlayAttackAnimation_DealAttackDamage:
 	call Func_14f1
 	bank1call $6e68 ; Func_6e68
-	farcall $6, $4a14 ; Func_18a14
+	farcall Func_18a14
 	ld a, [wLoadedAttackCategory]
 	and RESIDUAL
 	jr nz, .deal_damage
@@ -1378,7 +1380,7 @@ PlayAttackAnimation_DealAttackDamage:
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	call ApplyDamageModifiers_DamageToTarget
 	call Func_189d
 	ld a, e
@@ -1409,7 +1411,7 @@ PlayAttackAnimation_DealAttackDamage:
 	jr Func_17fb
 
 Func_17ed:
-	call $27f7 ; DrawWideTextBox_WaitForInput
+	call DrawWideTextBox_WaitForInput
 	xor a
 	ld hl, wDamage
 	ld [hli], a
@@ -1426,7 +1428,7 @@ Func_17fb:
 	push hl
 	push de
 	ld a, EFFECTCMDTYPE_AFTER_DAMAGE
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	pop de
 	pop hl
 	ld [hl], d
@@ -1443,7 +1445,7 @@ Func_17fb:
 	ret
 
 DrawWideTextBox_WaitForInput_ReturnCarry:
-	call $27f7 ; DrawWideTextBox_WaitForInput
+	call DrawWideTextBox_WaitForInput
 ;	fallthrough
 
 ReturnCarry:
@@ -1466,9 +1468,9 @@ HandleConfusionDamageToSelf:
 	bank1call $4cd7 ; DrawDuelMainScene
 	pop hl
 	push hl
-	call $2cb2 ; Func_2cb2
+	call LoadTxRam3
 	ld hl, $50 ; DamageToSelfDueToConfusionText
-	call $27a5 ; DrawWideTextBox_PrintText
+	call DrawWideTextBox_PrintText
 	ld a, ATK_ANIM_CONFUSION_HIT
 	ld [wLoadedAttackAnimation], a
 	pop hl
@@ -1482,10 +1484,10 @@ HandleConfusionDamageToSelf:
 
 ; use Pokemon Power
 UsePokemonPower:
-	call Func_1500
-	farcall $6, $4a14 ; Func_18a14
+	call ClearTwoTurnDuelVars
+	farcall Func_18a14
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	jr c, DrawWideTextBox_WaitForInput_ReturnCarry
 	ld a, [wcd0d]
 	or a
@@ -1494,7 +1496,7 @@ UsePokemonPower:
 	call SetOppAction_SerialSendDuelData
 .asm_1687
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	jr c, ReturnCarry
 	ld a, OPPACTION_USE_PKMN_POWER
 	call SetOppAction_SerialSendDuelData
@@ -1502,7 +1504,7 @@ UsePokemonPower:
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	call SetOppAction_SerialSendDuelData
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
-	call $2e33 ; TryExecuteEffectCommandFunction
+	call TryExecuteEffectCommandFunction
 	ld a, OPPACTION_DUEL_MAIN_SCENE
 	call SetOppAction_SerialSendDuelData
 	ret
@@ -1578,7 +1580,7 @@ Func_189d:
 	push hl
 	bank1call $4cd7 ; DrawDuelMainScene
 	pop hl
-	call $27a5 ; DrawWideTextBox_PrintText
+	call DrawWideTextBox_PrintText
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS2
 	call GetNonTurnDuelistVariable
 	ld [hl], $0
@@ -1598,7 +1600,7 @@ CheckSelfConfusionDamage:
 	ret
 .confused
 	ld de, $117 ; ConfusionCheckDamageText
-	call $2ebb ; TossCoin
+	call TossCoin
 	jr c, .no_confusion_damage
 	ld a, 1
 	ld [wGotHeadsFromConfusionCheck], a
@@ -1629,7 +1631,7 @@ DealConfusionDamageToSelf:
 	ld [wNoDamageOrEffect], a
 	ld a, $01
 	ld [wIsDamageToSelf], a
-	farcall $6, $4a14 ; Func_18a14
+	farcall Func_18a14
 	ld hl, wTempNonTurnDuelistCardID
 	ld e, [hl]
 	inc hl
@@ -1741,7 +1743,7 @@ ApplyDamageModifiers_DamageToTarget:
 	ret
 
 ; convert a color to its equivalent WR_* (weakness/resistance) value
-TranslateColorToWR:
+TranslateColorToWR::
 	push hl
 	add LOW(InvertedPowersOf2)
 	ld l, a
@@ -1843,7 +1845,7 @@ ApplyAttachedDefender:
 ; hl: address to subtract HP from
 ; de: how much HP to subtract (damage to deal)
 ; returns carry if the HP does not become 0 as a result
-SubtractHP:
+SubtractHP::
 	push hl
 	push de
 	ld a, [hl]
@@ -1866,7 +1868,7 @@ SubtractHP:
 
 ; given a play area location offset in a, check if the turn holder's Pokemon card in
 ; that location has no HP left, and, if so, print that it was knocked out.
-PrintPlayAreaCardKnockedOutIfNoHP:
+PrintPlayAreaCardKnockedOutIfNoHP::
 	ld c, a
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -1895,7 +1897,7 @@ PrintPlayAreaCardKnockedOutIfNoHP:
 	scf
 	ret
 
-PrintKnockedOutIfHLZero:
+PrintKnockedOutIfHLZero::
 	ld a, [hl] ; this is supposed to point to a remaining HP value after some form of damage calculation
 	or a
 	ret nz
@@ -1908,14 +1910,14 @@ PrintKnockedOut:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call $2d0a ; LoadCardDataToBuffer1_FromCardID
+	call LoadCardDataToBuffer1_FromCardID
 	ld hl, wLoadedCard1Name
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call $2ca9 ; LoadTxRam2
+	call LoadTxRam2
 	ld hl, $84 ; WasKnockedOutText
-	call $27a5 ; DrawWideTextBox_PrintText
+	call DrawWideTextBox_PrintText
 	ld a, 40
 .wait_frames
 	call DoFrame
@@ -1938,7 +1940,7 @@ DealDamageToPlayAreaPokemon_RegularAnim:
 ; shows the defending player's play area screen when dealing the damage
 ; instead of the main duel interface.
 ; plays animation that is loaded in wLoadedAttackAnimation.
-DealDamageToPlayAreaPokemon:
+DealDamageToPlayAreaPokemon::
 	xor a
 	ld [wNoDamageOrEffect], a
 	ld a, b
@@ -2045,7 +2047,7 @@ Func_1bb4:
 	xor a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call Func_19e1
-	call $27fa ; WaitForWideTextBoxInput
+	call WaitForWideTextBoxInput
 	call ExchangeRNG
 	ret
 
@@ -2059,12 +2061,12 @@ Func_19e1:
 	jr z, .no_effect_from_status
 	call Func_19fd
 	ld hl, $1a1 ; WasUnsuccessfulText
-	call $27a5 ; DrawWideTextBox_PrintText
+	call DrawWideTextBox_PrintText
 	scf
 	ret
 .no_effect_from_status
 	bank1call $66d0 ; PrintThereWasNoEffectFromStatusText
-	call $27a5 ; DrawWideTextBox_PrintText
+	call DrawWideTextBox_PrintText
 	scf
 	ret
 
@@ -2074,11 +2076,11 @@ Func_19fd:
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, 18
-	call $26da ; CopyCardNameAndLevel
+	call CopyCardNameAndLevel
 	; zero wTxRam2 so that the name & level text just loaded to wDefaultText is printed
 	ld [hl], $0
 	ld hl, $0000
-	call $2ca9 ; LoadTxRam2
+	call LoadTxRam2
 	ld hl, wLoadedAttackName
 	ld de, $cdd8 ; wTxRam2_b
 	ld a, [hli]
@@ -2092,11 +2094,11 @@ Func_1a1e:
 	bank1call $6b05 ; ClearNonTurnTemporaryDuelvars
 	call Func_19fd
 	ld hl, $1a2
-	jp $27f7 ; DrawWideTextBox_WaitForInput
+	jp DrawWideTextBox_WaitForInput
 
 ; return in a the retreat cost of the turn holder's arena or bench Pokemon
 ; given the PLAY_AREA_* value in hTempPlayAreaLocation_ff9d
-GetPlayAreaCardRetreatCost:
+GetPlayAreaCardRetreatCost::
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -2197,7 +2199,7 @@ CopyPlayerName::
 ; if text ID at wOpponentName is non-0, copy it from there
 ; else, if text at wc500 is non-0, copy if from there
 ; else, copy Player2Text
-CopyOpponentName:
+CopyOpponentName::
 	ld hl, wOpponentName
 	ld a, [hli]
 	or [hl]
