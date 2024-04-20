@@ -521,7 +521,7 @@ DoGRShipMovement:
 	ld b, NORTH
 	farcall Func_d3c4
 	ld hl, .movement_2
-	ld a, EVENT_D9
+	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .start_movement
 	ld hl, wd583

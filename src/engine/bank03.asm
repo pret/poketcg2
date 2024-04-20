@@ -324,7 +324,7 @@ ClearSavedDecks:
 	ret
 
 Func_c2d6:
-	ld a, EVENT_GOT_GR_COIN_PIECE_2
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jr nz, .done
 	ld a, [wCurOWLocation]
@@ -1368,7 +1368,7 @@ ClearEvents:
 	ret
 
 Func_d683:
-	ld a, EVENT_ED
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	call ZeroOutEventValue
 	ld a, EVENT_EE
 	call ZeroOutEventValue

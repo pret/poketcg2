@@ -114,7 +114,7 @@ Func_300a8:
 	lb de, $30, $f0
 	ld b, EAST
 	farcall LoadOWObject
-	ld a, EVENT_D9
+	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	call z, .Func_30175
 	ld a, $00
@@ -428,7 +428,7 @@ Func_3030a:
 	jr .no_carry
 
 .CheckEventCD:
-	ld a, EVENT_CD
+	ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
 	farcall GetEventValue
 	jr nz, .no_carry
 	jr .set_carry
