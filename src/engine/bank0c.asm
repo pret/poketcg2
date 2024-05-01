@@ -114,7 +114,7 @@ Func_300a8:
 	lb de, $30, $f0
 	ld b, EAST
 	farcall LoadOWObject
-	ld a, EVENT_D9
+	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	call z, .Func_30175
 	ld a, $00
@@ -410,25 +410,25 @@ Func_3030a:
 	jp hl
 
 .PointerTable:
-	dw .NoCheckEventCD ; OWMAP_GR_AIRPORT
-	dw .CheckEventCD   ; OWMAP_ISHIHARAS_VILLA
-	dw .NoCheckEventCD ; OWMAP_GAME_CENTER
-	dw .NoCheckEventCD ; OWMAP_SEALED_FORT
-	dw .NoCheckEventCD ; OWMAP_GR_CHALLENGE_HALL
-	dw .NoCheckEventCD ; OWMAP_GR_GRASS_FORT
-	dw .NoCheckEventCD ; OWMAP_GR_LIGHTNING_FORT
-	dw .NoCheckEventCD ; OWMAP_GR_FIRE_FORT
-	dw .NoCheckEventCD ; OWMAP_GR_WATER_FORT
-	dw .NoCheckEventCD ; OWMAP_GR_FIGHTING_FORT
-	dw .CheckEventCD   ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw .CheckEventCD   ; OWMAP_COLORLESS_ALTAR
-	dw .CheckEventCD   ; OWMAP_GR_CASTLE
+	dw .NotPastFightingFort ; OWMAP_GR_AIRPORT
+	dw .PastFightingFort    ; OWMAP_ISHIHARAS_VILLA
+	dw .NotPastFightingFort ; OWMAP_GAME_CENTER
+	dw .NotPastFightingFort ; OWMAP_SEALED_FORT
+	dw .NotPastFightingFort ; OWMAP_GR_CHALLENGE_HALL
+	dw .NotPastFightingFort ; OWMAP_GR_GRASS_FORT
+	dw .NotPastFightingFort ; OWMAP_GR_LIGHTNING_FORT
+	dw .NotPastFightingFort ; OWMAP_GR_FIRE_FORT
+	dw .NotPastFightingFort ; OWMAP_GR_WATER_FORT
+	dw .NotPastFightingFort ; OWMAP_GR_FIGHTING_FORT
+	dw .PastFightingFort    ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	dw .PastFightingFort    ; OWMAP_COLORLESS_ALTAR
+	dw .PastFightingFort    ; OWMAP_GR_CASTLE
 
-.NoCheckEventCD:
+.NotPastFightingFort:
 	jr .no_carry
 
-.CheckEventCD:
-	ld a, EVENT_CD
+.PastFightingFort:
+	ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
 	farcall GetEventValue
 	jr nz, .no_carry
 	jr .set_carry

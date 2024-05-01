@@ -90,11 +90,11 @@ Func_30d6::
 	farcall Func_1e5a2
 	jr c, .lost
 ; won
-	ld a, EVENT_F1
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall MaxOutEventValue
 	ret
 .lost
-	ld a, EVENT_F1
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall ZeroOutEventValue
 	ret
 
