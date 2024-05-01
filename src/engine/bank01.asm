@@ -162,7 +162,7 @@ MainDuelLoop:
 
 .not_link_duel
 	ld b, DUEL_ANIM_DUEL_WIN
-	ld c, MUSIC_MATCH_VICTORY
+	ld c, MUSIC_MATCHVICTORY
 	ldtx hl, Text007a
 	xor a
 	jr .set_duel_result
