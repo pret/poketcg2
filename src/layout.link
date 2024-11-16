@@ -46,6 +46,8 @@ ROMX $06
 	"Bank 6"
 ROMX $07
 	"Bank 7"
+ROMX $08
+	"Bank 8"
 ROMX $09
 	"Bank 9"
 ROMX $0a
@@ -60,6 +62,12 @@ ROMX $10
 	"Bank 10"
 ROMX $11
 	"Bank 11"
+ROMX $12
+	"Bank 12"
+ROMX $13
+	"Bank 13"
+ROMX $1a
+	"Bank 1a"
 ROMX $1b
 	"Gfx 1"
 	org $70b0
@@ -233,8 +241,6 @@ WRAM0
 	"WRAM0 2"
 WRAMX 1
 	"WRAM1"
-	org $d0bf
-	"WRAM1@d0bf"
 	org $d0e1
 	"WRAM1@d0e1"
 	org $d380

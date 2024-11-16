@@ -423,7 +423,7 @@ wPlayAreaScreenLoaded:: ; cbcc
 ; while viewing the Play Area:
 ; - if $0 or $2: no action
 ; - if $1: menu is accessible where player can examine Hand or other screens
-; $2 is reserved for Func_4597
+; $2 is reserved for OpenVariousPlayAreaScreens_FromSelectPresses
 wPlayAreaSelectAction:: ; cbcd
 	ds $1
 
@@ -677,7 +677,16 @@ wLoadedAttack:: ; ccb6
 wDamage:: ; ccc9
 	ds $2
 
-	ds $4
+; wAIMinDamage and wAIMaxDamage appear to be used for AI scoring
+; they are updated with the minimum (or floor) damage of the current attack
+; and with the maximum (or ceiling) damage of the current attack
+wAIMinDamage:: ; cccb
+	ds $1
+
+wAIMaxDamage:: ; cccc
+	ds $1
+
+	ds $2
 
 ; damage dealt by an attack to a target
 wDealtDamage:: ; cccf
@@ -814,8 +823,13 @@ wcd0e:: ; cd0e
 wcd0f:: ; cd0f
 	ds $1
 
-wcd10:: ; cd10
-	ds $4
+; values used by Dark Wave and Darkness Veil
+; determined in SetDarkWaveAndDarknessVeilDamageModifiers
+wDarkWaveAndDarknessVeilDamageModifiers::
+wDarkWaveDamageModifier:: ; cd10
+	ds $2
+wDarknessVeilDamageModifier:: ; cd12
+	ds $2
 
 wcd14:: ; cd14
 	ds $1
@@ -1349,7 +1363,318 @@ wRefreshMenuCursorSFX:: ; d01d
 wDefaultYesOrNo:: ; d01e
 	ds $1
 
-SECTION "WRAM1@d0bf", WRAMX
+	ds $4
+
+wAIDuelVars::
+; saves the prizes that the AI already used Peek on
+; each bit corresponds to a Prize card
+wAIPeekedPrizes:: ; d023
+	ds $1
+
+; this is used by AI in order to determine whether
+; it should use Pokedex Trainer card.
+; starts with 5 when Duel starts and counts up by 1 every turn.
+; only when it's higher than 5 is AI allowed to use Pokedex,
+; in which case it sets the counter to 0.
+; this stops the AI from using Pokedex right after using another one
+; while still drawing cards that were ordered.
+wAIPokedexCounter:: ; d024
+	ds $1
+
+; variable to keep track of MewtwoLv53's Barrier usage during Player' turn.
+; AI_MEWTWO_MILL set means Player is running MewtwoLv53 mill deck.
+; 	- when flag is not set, this counts how many turns in a row
+;	  Player used MewtwoLv53's Barrier attack;
+;	- when flag is set, this counts how many turns in a row
+;	  Player has NOT used Barrier attack.
+wAIBarrierFlagCounter:: ; d025
+	ds $1
+
+	ds $8
+
+; pointer to $00-terminated list of card IDs and AI scores.
+; these are for giving certain cards more or less
+; likelihood of being picked by AI to switch to.
+; (see AIDecideBenchPokemonToSwitchTo)
+wAICardListRetreatBonus:: ; d02e
+	ds $2
+
+; pointer to $00-terminated list of card IDs,
+; number of energy cards and AI score.
+; these are for giving certain cards more or less
+; likelihood of being picked for AI to attach energy.
+; also has the maximum number of energy cards that
+; the AI is willing to provide for it.
+; (see AIProcessEnergyCards)
+wAICardListEnergyBonus:: ; d030
+	ds $2
+
+wd032:: ; d032
+	ds $1
+
+wd033:: ; d033
+	ds $1
+
+wd034:: ; d034
+	ds $1
+
+wd035:: ; d035
+	ds $1
+
+wd036:: ; d036
+	ds $1
+
+wd037:: ; d037
+	ds $1
+
+wd038:: ; d038
+	ds $1
+
+	ds $a
+
+wAIDuelVarsEnd::
+
+	ds $1
+
+; when AI decides which Bench Pokemon to switch to
+; it stores it Play Area location here.
+wAIPlayAreaCardToSwitch:: ; d044
+	ds $1
+
+; the index of attack chosen by AI
+; to use with Pluspower.
+wAIPluspowerAttack:: ; d045
+	ds $1
+
+; whether AI is allowed to play an energy card
+; from the hand in order to retreat arena card
+;	FALSE = not allowed
+;	TRUE  = allowed
+wAIPlayEnergyCardForRetreat:: ; d046
+	ds $1
+
+; flags defined by AI_ENERGY_FLAG_* constants
+; used as input for AIProcessEnergyCards
+; to determine what to check in the routine.
+wAIEnergyAttachLogicFlags:: ; d047
+	ds $1
+
+; used as input to AIProcessAttacks.
+; if 0, execute the attack chosen by the AI.
+; if not 0, return without executing attack.
+wAIExecuteProcessedAttack:: ; d048
+	ds $1
+
+; flags used by AI for retreat logic
+; if bit 0 set, then it means the current Pokémon
+; can KO the defending card with one of its attacks
+; if bit 7 is set, then it means the switch is due
+; to the effect of an attack (not Pkmn Power)
+wAIRetreatFlags:: ; d049
+	ds $1
+
+wAITriedAttack:: ; d04a
+	ds $1
+
+wcddc:: ; d04b
+	ds $1
+
+; used to temporarily backup wPlayAreaAIScore values.
+wTempPlayAreaAIScore:: ; cd04c
+	ds MAX_PLAY_AREA_POKEMON
+
+	ds $1
+
+; used for AI decisions that involve
+; each card in the Play Area involving
+; attaching Energy cards.
+wPlayAreaEnergyAIScore:: ; d053
+	ds MAX_PLAY_AREA_POKEMON
+
+wSamePokemonEnergyScore:: ; d059
+	ds MAX_PLAY_AREA_POKEMON
+
+wd05f:: ; d05f
+	ds $1
+
+; used by AI to store variable information
+wTempAI:: ; d060
+	ds $1
+
+wd061:: ; d061
+	ds $1
+
+wd062:: ; d062
+	ds $1
+
+wd063:: ; d063
+	ds $1
+
+	ds $4
+
+wSamePokemonCardID:: ; d068
+	ds $2
+
+UNION
+
+wSamePokemonEnergyScoreHandled:: ; d06a
+	ds MAX_PLAY_AREA_POKEMON
+
+NEXTU
+
+wd06a:: ; d06a
+	ds $1
+
+wd06b:: ; d06b
+	ds $1
+
+ENDU
+
+wAIFirstAttackDamage:: ; d070
+	ds $1
+wAISecondAttackDamage:: ; d071
+	ds $1
+
+wd072:: ; d072
+	ds $1
+
+wd073:: ; d073
+	ds $1
+
+wd074:: ; d074
+	ds $1
+
+wd075:: ; d075
+	ds $1
+
+wd076:: ; d076
+	ds $1
+
+	ds $2
+
+wd079:: ; d079
+	ds $1
+
+	ds $1
+
+wd07b:: ; d07b
+	ds $1
+
+wd07c:: ; d07c
+	ds $1
+
+; whether AI already retreated this turn or not.
+;	- $0 has not retreated;
+;	- $1 has retreated.
+wAIRetreatedThisTurn::  ; d07d
+	ds $1
+
+	ds $2
+
+wAIRetreatConsiderStatus:: ; d080
+	ds $1
+
+wd081:: ; d081
+	ds $1
+
+wd082:: ; d082
+	ds $1
+
+	ds $1
+
+wd084:: ; d084
+	ds $1
+
+	ds $d
+
+; stores the deck index (0-59) of the Trainer card
+; the AI intends to play from hand.
+wAITrainerCardToPlay:: ; d092
+	ds $1
+
+; temporarily stores the card ID from AITrainerCardLogic
+; to compare with the card in AI's hand
+wAITrainerLogicCard:: ; d093
+	ds $2
+
+wAITrainerCardPhase:: ; d095
+	ds $1
+
+; parameters output by AI Trainer card logic routines
+; (e.g. what Pokemon in Play Area to use card on, etc)
+wAITrainerCardParameter:: ; d096
+	ds $1
+
+	ds $6
+
+; used to store previous/current flags of AI actions
+; see AI_FLAG_* constants
+wPreviousAIFlags:: ; d09d
+	ds $1
+wCurrentAIFlags:: ; d09e
+	ds $1
+
+; information about various properties of
+; loaded attack for AI calculations
+wTempLoadedAttackEnergyCost:: ; d09f
+	ds $1
+wTempLoadedAttackEnergyNeededType:: ; d0a0
+	ds $1
+wTempLoadedAttackEnergyNeededAmount:: ; d0a1
+	ds $1
+
+wd0a2:: ; d0a2
+	ds $1
+
+wd0a3:: ; d0a3
+	ds $1
+
+wd0a4:: ; d0a4
+	ds $1
+
+wd0a5:: ; d0a5
+	ds $1
+
+	ds $3
+
+; used for AI to score decisions for actions
+wAIScore:: ; d0a9
+	ds $1
+
+UNION
+
+; used for AI decisions that involve
+; each card in the Play Area.
+wPlayAreaAIScore:: ; d0aa
+	ds MAX_PLAY_AREA_POKEMON
+
+NEXTU
+
+; stores the score determined by AI for first attack
+wFirstAttackAIScore:: ; d0aa
+	ds $1
+
+ENDU
+
+	ds $a
+
+; information about the defending Pokémon and
+; the prize card count on both sides for AI:
+; player's active Pokémon color
+wAIPlayerColor:: ; d0ba
+	ds $1
+; player's active Pokémon weakness
+wAIPlayerWeakness:: ; d0bb
+	ds $1
+; player's active Pokémon resistance
+wAIPlayerResistance:: ; d0bc
+	ds $1
+; player's prize count
+wAIPlayerPrizeCount:: ; d0bd
+	ds $1
+; opponent's prize count
+wAIOpponentPrizeCount:: ; d0be
+	ds $1
 
 ; set to PLAYER_TURN in the "Your Play Area" screen
 ; set to OPPONENT_TURN in the "Opp Play Area" screen
@@ -1578,7 +1903,10 @@ wUniqueDeckCardList:: ; d266
 ; stores the count number of cards owned
 ; can be 0 in the case that a card is not available
 ; i.e. already inside a built deck
-wOwnedCardsCountList::
+wOwnedCardsCountList:: ; d266
+
+; used by _AIProcessHandTrainerCards, AI related
+wTempHandCardList:: ; d266
 
 wBoosterPackCardCounts:: ; d266
 	ds $51
@@ -2180,7 +2508,7 @@ wFrameFunctionStack:: ; d9be
 wPortraitSlot:: ; d9ce
 	ds $1
 
-wPortraitVariant:: ; d9cf
+wPortraitEmotion:: ; d9cf
 	ds $1
 
 wd9d0:: ; d9d0

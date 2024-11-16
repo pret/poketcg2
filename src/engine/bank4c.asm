@@ -1,7 +1,7 @@
 ; input:
 ;  a = PORTRAIT_* constant
 ;  b = portrait slot (0 or 1)
-;  c = portrait variant
+;  c = EMOTION_* constant
 ;  de = coordinates
 DrawPortrait::
 	push af
@@ -49,8 +49,8 @@ DrawPortrait::
 	pop bc
 	ld a, b ; slot
 	ld [wPortraitSlot], a
-	ld a, c ; variant
-	ld [wPortraitVariant], a
+	ld a, c ; emotion
+	ld [wPortraitEmotion], a
 	ld b, $00
 	sla c ; *2
 	add hl, bc
@@ -59,7 +59,7 @@ DrawPortrait::
 	ld a, [hli]
 	ld b, a
 	farcall GetTilemapGfxPointer
-	ld a, [wPortraitVariant]
+	ld a, [wPortraitEmotion]
 	ld c, a
 	ld a, [wPortraitSlot]
 	farcall LoadPortraitAttributeMap

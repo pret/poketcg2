@@ -13,14 +13,14 @@ ENDM
 	const_def
 	deck_const UNKNOWN_POISON_STORM_DECK             ; $00
 	deck_const GB1_STRANGE_PSYSHOCK_DECK             ; $01
-	deck_const UNKNOWN_SAMS_PRACTICE_DECK            ; $02
+	deck_const SAMS_PRACTICE_DECK                    ; $02
 	deck_const PLAYER_PRACTICE_DECK                  ; $03
 	deck_const STARTER_DECK                          ; $04
 	deck_const SWEAT_ANTI_GR1_DECK                   ; $05
 	deck_const GIVE_IN_ANTI_GR2_DECK                 ; $06
 	deck_const VENGEFUL_ANTI_GR3_DECK                ; $07
 	deck_const UNFORGIVING_ANTI_GR4_DECK             ; $08
-	deck_const SAMS_PRACTICE_DECK                    ; $09
+	deck_const UNUSED_SAMS_PRACTICE_DECK             ; $09 is overwritten by SAMS_PRACTICE_DECK
 	deck_const AARON_PRACTICE_DECK1                  ; $0a
 	deck_const AARONS_STEP1_DECK                     ; $0b
 	deck_const AARON_PRACTICE_DECK2                  ; $0c
@@ -133,4 +133,4 @@ ENDM
 	deck_const POWER_OF_DARKNESS_DECK                ; $77
 	deck_const POISON_STORM_DECK                     ; $78
 	deck_const DECK_7269                             ; $79
-DEF NUM_DECK_IDS EQU const_value - 3
+DEF NUM_DECK_IDS EQU const_value - 2

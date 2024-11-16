@@ -561,9 +561,45 @@ DoAIOpponentTurn:
 	ld [wPlayerAttackingCardIndex], a
 	ld [wPlayerAttackingAttackIndex], a
 	ret
-; 0x244f4
 
-SECTION "Bank 9@4531", ROMX[$4531], BANK[$9]
+; related to AI taking their turn in a duel
+; called multiple times during one AI turn
+; each call results in the execution of an OppActionTable function
+AIMakeDecision:
+	ldh [hOppActionTableIndex], a
+	ld hl, wSkipDuelistIsThinkingDelay
+	ld a, [hl]
+	ld [hl], $0
+	or a
+	jr nz, .skip_delay
+.delay_loop
+	call DoFrame
+	ld a, [wVBlankCounter]
+	cp 60
+	jr c, .delay_loop
+
+.skip_delay
+	ldh a, [hOppActionTableIndex]
+	ld hl, wOpponentTurnEnded
+	ld [hl], 0
+	ld hl, OppActionTable
+	call JumpToFunctionInTable
+	ld a, [wDuelFinished]
+	ld hl, wOpponentTurnEnded
+	or [hl]
+	jr nz, .turn_ended
+	ld a, [wSkipDuelistIsThinkingDelay]
+	or a
+	ret nz
+	ld [wVBlankCounter], a
+	ldtx hl, Text008d ; DuelistIsThinkingText
+	call DrawWideTextBox_PrintTextNoDelay
+	or a
+	ret
+
+.turn_ended
+	scf
+	ret
 
 ; handle the opponent's turn in a link duel
 ; loop until either [wOpponentTurnEnded] or [wDuelFinished] is non-0
@@ -604,6 +640,41 @@ DoLinkOpponentTurn:
 	jr z, .link_opp_turn_loop
 	ret
 
+; actions for the opponent's turn
+; on a link duel, this is referenced by DoLinkOpponentTurn in a loop (on each opponent's HandleTurn)
+; on a non-link duel (vs AI opponent), this is referenced by AIMakeDecision
+OppActionTable:
+	dw DuelTransmissionError
+	dw $4613
+	dw $45f9
+	dw $45d6
+	dw $462f
+	dw $45bf
+	dw $4659
+	dw $466b
+	dw $4684
+	dw $46ae
+	dw $46c5
+	dw $45b8
+	dw $46fc
+	dw $4725
+	dw $4761
+	dw $46e2
+	dw $4828
+	dw $4828
+	dw $477f
+	dw $4790
+	dw $4828
+	dw $479e
+	dw $4770
+	dw $477b
+	dw $47d7
+	dw $47e3
+	dw $47ea
+	dw $4805
+	dw $4818
+; 0x245b8
+
 SECTION "Bank 9@4829", ROMX[$4829], BANK[$9]
 
 ; load the text ID of the card name with deck index given in a to TxRam2
@@ -631,7 +702,7 @@ LoadCardNameToTxRam2_b:
 DrawDuelistPortraitsAndNames:
 	ld a, $00
 	ld [wcd77], a
-	call AIDoAction_06
+	call AIDoAction_UpdatePortrait
 
 	call LoadSymbolsFont
 
@@ -919,7 +990,7 @@ DisplayDrawNCardsScreen:
 
 	ld a, [wNumCardsTryingToDraw]
 	ld [wcd77], a
-	call AIDoAction_06
+	call AIDoAction_UpdatePortrait
 	call DrawOpponentPortrait
 
 	ld c, 30
@@ -1430,7 +1501,7 @@ LoadDeckDiagnosisScene:
 ;	fallthrough
 DrawDrMasonsPortrait:
 	ld a, NPC_DR_MASON
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 	call FlushAllPalettes
 	ret
@@ -1819,7 +1890,7 @@ CheckDeck:
 	; every $10 frames cycle Dr. Mason's portrait
 	; between normal and sad variants
 	ld d, $80
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 .check_delay
 	ld a, d
 	and %1111
@@ -1841,7 +1912,7 @@ CheckDeck:
 
 	; show happy portrait
 	ld a, NPC_DR_MASON
-	ld e, PORTRAITVARIANT_HAPPY
+	ld e, EMOTION_HAPPY
 	lb bc, 7, 4
 	call DrawNPCPortrait
 	call FlushAllPalettes
@@ -2726,7 +2797,7 @@ LoadDeckIDData:
 	ret
 
 DeckIDData:
-	db UNKNOWN_SAMS_PRACTICE_DECK_ID
+	db SAMS_PRACTICE_DECK_ID
 	tx Text04d6 ; deck name
 	tx Text04d5 ; opponent name
 	db NPC_SAM ; NPC ID
@@ -2792,7 +2863,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db SAMS_PRACTICE_DECK_ID - 1
+	db UNUSED_SAMS_PRACTICE_DECK_ID - 1
 	tx Text04f1 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2803,7 +2874,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db SAMS_PRACTICE_DECK_ID
+	db UNUSED_SAMS_PRACTICE_DECK_ID
 	tx Text04d6 ; deck name
 	tx Text04d5 ; opponent name
 	db NPC_SAM ; NPC ID

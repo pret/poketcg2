@@ -95,7 +95,7 @@ DrawCardFromDeck::
 
 ; add a card to the top of the turn holder's deck
 ; the card is identified by register a, which contains the deck index (0-59) of the card
-ReturnCardToDeck:
+ReturnCardToDeck::
 	push hl
 	call CheckDeckIndexRange
 	push af
@@ -686,8 +686,8 @@ CheckIfCanEvolveInto::
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, d
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ld a, [wLoadedCard1]
-	cp $08
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
 	jr nc, .cant_evolve
 	ld hl, wLoadedCard2Name
 	ld de, wLoadedCard1PreEvoName
@@ -1217,7 +1217,7 @@ GetNonTurnDuelistVariable::
 ; - Attack1 (if e == 0) or Attack2 (if e == 1) data into wLoadedAttack
 ; - Also from that attack, its Damage field into wDamage
 ; finally, clears wNoDamageOrEffect and wDealtDamage
-CopyAttackDataAndDamage_FromCardID:
+CopyAttackDataAndDamage_FromCardID::
 	push de
 	push hl
 	ld a, e
@@ -1271,7 +1271,7 @@ CopyAttackDataAndDamage:
 	ld [hl], a
 	ret
 
-Func_14e5:
+Func_14e5::
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ldh [hTempCardIndex_ff9f], a
@@ -1281,10 +1281,10 @@ Func_14e5:
 
 Func_14f1:
 	xor a
-	bank1call $6196 ; Func_6196
+	bank1call LoadPlayAreaCardID_ToTempTurnDuelistCardID
 	call SwapTurn
 	xor a
-	bank1call $619e ; Func_619e
+	bank1call LoadPlayAreaCardID_ToTempNonTurnDuelistCardID
 	call SwapTurn
 	ret
 
@@ -1303,7 +1303,7 @@ ClearTwoTurnDuelVars::
 	ld [wcd0c], a
 	ld [wcd0d], a
 	ld [wcd16], a
-	ld hl, wcd10
+	ld hl, wDarkWaveAndDarknessVeilDamageModifiers
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -1327,7 +1327,7 @@ UseAttackOrPokemonPower::
 	ld a, [wLoadedAttackCategory]
 	cp POKEMON_POWER
 	jp z, UsePokemonPower
-	xor a
+	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call Func_14e5
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
@@ -1368,16 +1368,16 @@ UseAttackOrPokemonPower::
 
 PlayAttackAnimation_DealAttackDamage:
 	call Func_14f1
-	bank1call $6e68 ; Func_6e68
+	bank1call SetDarkWaveAndDarknessVeilDamageModifiers
 	farcall Func_18a14
 	ld a, [wLoadedAttackCategory]
 	and RESIDUAL
 	jr nz, .deal_damage
 	call SwapTurn
-	bank1call $6fcc ; HandleNoDamageOrEffectSubstatus
+	bank1call HandleNoDamageOrEffectSubstatus
 	call SwapTurn
 .deal_damage
-	xor a
+	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ld a, EFFECTCMDTYPE_BEFORE_DAMAGE
 	call TryExecuteEffectCommandFunction
@@ -1492,7 +1492,7 @@ UsePokemonPower:
 	ld a, [wcd0d]
 	or a
 	jr z, .asm_1687
-	ld a, OPPACTION_UNKNOWN
+	ld a, OPPACTION_UNK_0C
 	call SetOppAction_SerialSendDuelData
 .asm_1687
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
@@ -1733,7 +1733,7 @@ ApplyDamageModifiers_DamageToTarget:
 	call SwapTurn
 	ld b, CARD_LOCATION_ARENA
 	call ApplyAttachedDefender
-	bank1call $6c6e ; Func_6c6e
+	bank1call HandleDamageReduction
 	bank1call $6c99 ; Func_6c99
 	bit 7, d
 	jr z, .no_underflow
@@ -1761,7 +1761,7 @@ InvertedPowersOf2:
 ; - if the turn holder's arena card is weak to its own color: double damage
 ; - if the turn holder's arena card resists its own color: reduce damage by 30
 ; return resulting damage in de
-ApplyDamageModifiers_DamageToSelf:
+ApplyDamageModifiers_DamageToSelf::
 	xor a
 	ld [wDamageEffectiveness], a
 	ld hl, wDamage
@@ -1790,7 +1790,7 @@ ApplyDamageModifiers_DamageToSelf:
 	bank1call $75a7 ; GetArenaCardResistance
 	and b
 	jr z, .not_resistant
-	bank1call $7b37 ; Func_7b37
+	bank1call $7b37 ; GetResistanceModifer
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1808,7 +1808,7 @@ ApplyDamageModifiers_DamageToSelf:
 	ret
 
 ; increases de by 10 points for each Pluspower found in location b
-ApplyAttachedPluspower:
+ApplyAttachedPluspower::
 	push de
 	ld a, b
 	and $07
@@ -1824,7 +1824,7 @@ ApplyAttachedPluspower:
 	ret
 
 ; reduces de by 20 points for each Defender found in location b
-ApplyAttachedDefender:
+ApplyAttachedDefender::
 	push de
 	ld a, b
 	and $07
@@ -1991,9 +1991,9 @@ DealDamageToPlayAreaPokemon::
 	or d
 	jr z, .in_bench
 	push de
-	bank1call $6fcc ; HandleNoDamageOrEffectSubstatus
+	bank1call HandleNoDamageOrEffectSubstatus
 	pop de
-	bank1call $6c6e ; Func_6c6e
+	bank1call HandleDamageReduction
 	bank1call $6c99 ; Func_6c99
 .in_bench
 	bit 7, d
@@ -2044,7 +2044,7 @@ Func_1bb4:
 	call FinishQueuedAnimations
 	bank1call $4cd7 ; DrawDuelMainScene
 	bank1call $4d82 ; DrawDuelHUDs
-	xor a
+	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call Func_19e1
 	call WaitForWideTextBoxInput
@@ -2053,7 +2053,7 @@ Func_1bb4:
 
 ; prints one of the ThereWasNoEffectFrom*Text if wEffectFailed contains EFFECT_FAILED_NO_EFFECT,
 ; and prints WasUnsuccessfulText if wEffectFailed contains EFFECT_FAILED_UNSUCCESSFUL
-Func_19e1:
+Func_19e1::
 	ld a, [wEffectFailed]
 	or a
 	ret z
@@ -2113,7 +2113,7 @@ GetPlayAreaCardRetreatCost::
 ; output:
 ;	a = damage;
 ;	c = max HP.
-GetCardDamageAndMaxHP:
+GetCardDamageAndMaxHP::
 	push hl
 	push de
 	ld a, DUELVARS_ARENA_CARD
@@ -2138,7 +2138,7 @@ GetCardDamageAndMaxHP:
       ; fffff = flag address counting from wLoadedAttackFlag1
       ; bbb = flag bit
 ; return carry if the flag is set
-CheckLoadedAttackFlag:
+CheckLoadedAttackFlag::
 	push hl
 	push de
 	push bc

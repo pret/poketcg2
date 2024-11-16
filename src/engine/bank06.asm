@@ -610,7 +610,7 @@ InitSaveData:
 	ld a, VENGEFUL_ANTI_GR3_DECK ; old SQUIRTLE_AND_FRIENDS_DECK
 	ld hl, sSavedDeck2
 	call .SaveDeck
-	ld a, SAMS_PRACTICE_DECK ; old BULBASAUR_AND_FRIENDS_DECK
+	ld a, UNUSED_SAMS_PRACTICE_DECK ; old BULBASAUR_AND_FRIENDS_DECK
 	ld hl, sSavedDeck3
 	call .SaveDeck
 
@@ -1640,7 +1640,7 @@ ViewCardPopRecords:
 	ld hl, .DuelistIDs
 	add hl, de
 	ld a, [hl]
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	lb bc, 1, 2
 	call DrawNPCPortrait
 
