@@ -866,7 +866,13 @@ wNumCardsBeingDrawn:: ; cd1d
 wOpponentTurnEnded:: ; cd1e
 	ds $1
 
-	ds $5
+	ds $2
+
+wCardSearchFunc:: ; cd21
+	ds $1
+
+wCardSearchFuncParam:: ; cd22
+	ds $2
 
 wDeckDiagnosisTextIDsPtr:: ; cd24
 	ds $2
@@ -1390,7 +1396,30 @@ wAIPokedexCounter:: ; d024
 wAIBarrierFlagCounter:: ; d025
 	ds $1
 
-	ds $8
+; pointer to $00-terminated list of card IDs
+; to avoid being placed as prize cards
+; when setting up AI duelist's cards at duel start.
+; (see SetUpBossStartingHandAndDeck)
+wAICardListAvoidPrize:: ; d026
+	ds $2
+
+; pointer to $00-terminated list of card IDs
+; sorted by priority of AI placing in the Arena
+; at duel start (see TrySetUpBossStartingPlayArea)
+wAICardListArenaPriority:: ; d028
+	ds $2
+
+; pointer to $00-terminated list of card IDs
+; sorted by priority of AI placing in the Bench
+; at duel start (see TrySetUpBossStartingPlayArea)
+wAICardListBenchPriority:: ; d02a
+	ds $2
+
+; pointer to $00-terminated list of card IDs
+; sorted by priority of AI playing it from Hand
+; to the Bench (see AIDecidePlayPokemonCard)
+wAICardListPlayFromHandPriority:: ; d02c
+	ds $2
 
 ; pointer to $00-terminated list of card IDs and AI scores.
 ; these are for giving certain cards more or less
@@ -1504,7 +1533,10 @@ wTempAI:: ; d060
 wd061:: ; d061
 	ds $1
 
-wd062:: ; d062
+; used to temporarily store the card deck index
+; while AI is deciding whether to evolve Pokémon
+; or deciding whether to play Pokémon card from hand
+wTempAIPokemonCard:: ; d062
 	ds $1
 
 wd063:: ; d063
@@ -1569,7 +1601,12 @@ wd07c:: ; d07c
 wAIRetreatedThisTurn::  ; d07d
 	ds $1
 
-	ds $2
+; used by AI to store information of VenusaurLv67
+; while handling Energy Trans logic.
+wAIVenusaurLv67DeckIndex::  ; d07e
+	ds $1
+
+	ds $1
 
 wAIRetreatConsiderStatus:: ; d080
 	ds $1
@@ -1577,11 +1614,18 @@ wAIRetreatConsiderStatus:: ; d080
 wd081:: ; d081
 	ds $1
 
+; number of Basic Pokemon cards when
+; setting up AI Boss deck
+wAISetupBasicPokemonCount:: ; d082
 wd082:: ; d082
 	ds $1
 
 	ds $1
 
+; number of Energy cards when
+; setting up AI Boss deck
+wAISetupEnergyCount:: ; d084
+wAIPkmnPowerUserCardIndex:: ; d084
 wd084:: ; d084
 	ds $1
 
@@ -1623,16 +1667,13 @@ wTempLoadedAttackEnergyNeededType:: ; d0a0
 wTempLoadedAttackEnergyNeededAmount:: ; d0a1
 	ds $1
 
-wd0a2:: ; d0a2
+; used for the AI to store various
+; details about a given card
+wTempCardRetreatCost:: ; d0a2
 	ds $1
-
-wd0a3:: ; d0a3
-	ds $1
-
-wd0a4:: ; d0a4
-	ds $1
-
-wd0a5:: ; d0a5
+wTempCardID_d0a3:: ; d0a3
+	ds $2
+wTempCardType:: ; d0a5
 	ds $1
 
 	ds $3

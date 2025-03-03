@@ -896,15 +896,15 @@ AIUpdatePortrait:
 	push bc
 	call GetCardIDFromDeckIndex
 	ld a, e
-	ld [wd0a3], a
+	ld [wTempCardID_d0a3 + 0], a
 	ld a, d
-	ld [wd0a4], a
+	ld [wTempCardID_d0a3 + 1], a
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
 	or TYPE_ENERGY
-	ld [wd0a5], a
+	ld [wTempCardType], a
 	ld a, [wd061]
-	farcall Func_17a72
+	farcall CheckIfEnergyIsUseful
 	pop bc
 	jr c, .set_happy_based_on_personality
 	ld a, b

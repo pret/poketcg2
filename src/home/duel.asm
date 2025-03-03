@@ -116,7 +116,7 @@ ReturnCardToDeck::
 ; search a card in the turn holder's deck, extract it, and set its location to
 ; CARD_LOCATION_JUST_DRAWN. AddCardToHand is meant to be called next.
 ; the card is identified by register a, which contains the deck index (0-59) of the card.
-SearchCardInDeckAndAddToHand:
+SearchCardInDeckAndAddToHand::
 	push af
 	push hl
 	push de
@@ -179,7 +179,7 @@ AddCardToHand::
 
 ; removes a card from the turn holder's hand and decrements the number of cards in the hand
 ; the card is identified by register a, which contains the deck index (0-59) of the card
-RemoveCardFromHand:
+RemoveCardFromHand::
 	push af
 	push hl
 	push bc
@@ -327,7 +327,7 @@ PowersOf2:
 
 ; fill wDuelTempList with the turn holder's remaining deck cards (their 0-59 deck indexes)
 ; return carry if the turn holder has no cards left in the deck
-CreateDeckCardList:
+CreateDeckCardList::
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE

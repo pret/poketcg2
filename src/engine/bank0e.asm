@@ -1,4 +1,396 @@
-SECTION "Bank e@41fe", ROMX[$41fe], BANK[$e]
+; handle AI routines for Energy Trans.
+; uses AI_ENERGY_TRANS_* constants as input:
+;	- AI_ENERGY_TRANS_RETREAT: transfers enough Grass Energy cards to
+;	Arena Pokemon for it to be able to pay the Retreat Cost;
+;	- AI_ENERGY_TRANS_ATTACK: transfers enough Grass Energy cards to
+;	Arena Pokemon for it to be able to use its second attack;
+;	- AI_ENERGY_TRANS_TO_BENCH: transfers all Grass Energy cards from
+;	Arena Pokemon to Bench in case Arena card will be KO'd.
+HandleAIEnergyTrans:
+	ld [wd082], a
+
+	farcall StubbedAIChooseRandomlyNotToDoAction
+	ret c
+
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	dec a
+	ret z ; return if no Bench cards
+
+	ld de, VENUSAUR_LV67
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret nc ; return if no VenusaurLv67 found in own Play Area
+
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	ret c ; return if cannot use Energy Trans
+
+	ld a, [wd082]
+	cp AI_ENERGY_TRANS_RETREAT
+	jr z, .check_retreat
+
+	cp AI_ENERGY_TRANS_TO_BENCH
+	jp z, AIEnergyTransTransferEnergyToBench
+
+	; AI_ENERGY_TRANS_ATTACK
+	call .CheckEnoughGrassEnergyCardsForAttack
+	ret nc
+	jr .TransferEnergyToArena
+
+.check_retreat
+	call .CheckEnoughGrassEnergyCardsForRetreatCost
+	ret nc
+
+; use Energy Trans to transfer number of Grass energy cards
+; equal to input a from the Bench to the Arena card.
+.TransferEnergyToArena
+	ld [wd082], a
+
+; look for VenusaurLv67 in Play Area
+; so that its PKMN Power can be used.
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	dec a
+	ld b, a
+.loop_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add b
+	get_turn_duelist_var
+	ldh [hTempCardIndex_ff9f], a
+	call GetCardIDFromDeckIndex
+	cp16 VENUSAUR_LV67
+	jr z, .use_pkmn_power
+
+	ld a, b
+	or a
+	ret z ; return when finished Play Area loop
+
+	dec b
+	jr .loop_play_area
+
+.use_pkmn_power
+	ld a, b
+	ldh [hTemp_ffa0], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+
+	xor a
+	ldh [hAIEnergyTransPlayAreaLocation], a
+	ld a, [wd082]
+	ld d, a
+
+	ld e, 0
+.loop_deck_locations
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	and %00011111
+	cp CARD_LOCATION_BENCH_1
+	jr c, .next_card
+
+	and %00001111
+	ldh [hAIPkmnPowerEffectParam], a
+
+	ld a, e
+	push de
+	call GetCardIDFromDeckIndex
+	cp16 GRASS_ENERGY
+	pop de
+	jr nz, .next_card
+
+	; store the deck index of energy card
+	ld a, e
+	ldh [hTempRetreatCostCards], a
+
+	push de
+	ld d, 30
+.small_delay_loop
+	call DoFrame
+	dec d
+	jr nz, .small_delay_loop
+
+	ld a, OPPACTION_6B15
+	farcall AIMakeDecision
+	pop de
+	dec d
+	jr z, .done_transfer
+
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_locations
+
+; transfer is done, perform delay
+; and return to main scene.
+.done_transfer
+	ld d, 60
+.big_delay_loop
+	call DoFrame
+	dec d
+	jr nz, .big_delay_loop
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
+
+; checks if the Arena card needs energy for its second attack,
+; and if it does, return carry if transferring Grass energy from Bench
+; would be enough to use it. Outputs number of energy cards needed in a.
+.CheckEnoughGrassEnergyCardsForAttack:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 EXEGGUTOR
+	jr z, .is_exeggutor
+
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	farcall CheckEnergyNeededForAttack
+	jr nc, .attack_false ; return if no energy needed
+
+; check if colorless energy is needed...
+	ld a, c
+	or a
+	jr nz, .count_if_enough
+
+; ...otherwise check if basic energy card is needed
+; and it's grass energy.
+	ld a, b
+	or a
+	jr z, .attack_false
+	cp16 GRASS_ENERGY
+	jr nz, .attack_false
+	ld c, b
+	jr .count_if_enough
+
+.attack_false
+	or a
+	ret
+
+.count_if_enough
+; if there's enough Grass energy cards in Bench
+; to satisfy the attack energy cost, return carry.
+	push bc
+	call .CountGrassEnergyInBench
+	pop bc
+	cp c
+	jr c, .attack_false
+	ld a, c
+	scf
+	ret
+
+.is_exeggutor
+; in case it's Exeggutor in Arena, return carry
+; if there are any Grass energy cards in Bench.
+	call .CountGrassEnergyInBench
+	or a
+	jr z, .attack_false
+
+	scf
+	ret
+
+; outputs in a the number of Grass energy cards
+; currently attached to Bench cards.
+.CountGrassEnergyInBench:
+	lb de, 0, 0
+.count_loop
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	and %00011111
+	cp CARD_LOCATION_BENCH_1
+	jr c, .count_next
+
+; is in bench
+	ld a, e
+	push de
+	call GetCardIDFromDeckIndex
+	cp16 GRASS_ENERGY
+	pop de
+	jr nz, .count_next
+	inc d
+.count_next
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .count_loop
+	ld a, d
+	ret
+
+; returns carry if there are enough Grass energy cards in Bench
+; to satisfy the retreat cost of the Arena card.
+; if so, output the number of energy cards still needed in a.
+.CheckEnoughGrassEnergyCardsForRetreatCost:
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call GetPlayAreaCardRetreatCost
+	ld b, a
+	xor a ; PLAY_AREA_ARENA
+	push bc
+	call CreateArenaOrBenchEnergyCardList
+	pop bc
+	cp b
+	jr nc, .retreat_false
+
+; see if there's enough Grass energy cards
+; in the Bench to satisfy retreat cost
+	ld c, a
+	ld a, b
+	sub c
+	ld c, a
+	push bc
+	call .CountGrassEnergyInBench
+	pop bc
+	cp c
+	jr c, .retreat_false ; return if less cards than needed
+
+; output number of cards needed to retreat
+	ld a, c
+	scf
+	ret
+.retreat_false
+	or a
+	ret
+
+; AI logic to determine whether to use Energy Trans Pkmn Power
+; to transfer energy cards attached from the Arena Pokemon to
+; some card in the Bench.
+AIEnergyTransTransferEnergyToBench:
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call CheckIfDefendingPokemonCanKnockOut
+	ret nc ; return if Defending can't KO
+
+; processes attacks and see if any attack would be used by AI.
+; if so, return.
+	farcall AIProcessButDontUseAttack
+	ret c
+
+; return if Arena card has no Grass energy cards attached.
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wAttachedEnergies + GRASS]
+	or a
+	ret z
+
+; if no energy card attachment is needed, return.
+	farcall AIProcessButDontPlayEnergy_SkipEvolutionAndArena
+	ret nc
+
+; AI decided that an energy card is needed
+; so look for VenusaurLv67 in Play Area
+; so that its PKMN Power can be used.
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	dec a
+	ld b, a
+.loop_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add b
+	get_turn_duelist_var
+	ldh [hTempCardIndex_ff9f], a
+	ld [wAIVenusaurLv67DeckIndex], a
+	call GetCardIDFromDeckIndex
+	cp16 VENUSAUR_LV67
+	jr z, .use_pkmn_power
+
+	ld a, b
+	or a
+	ret z ; return when Play Area loop is ended
+
+	dec b
+	jr .loop_play_area
+
+; use Energy Trans Pkmn Power
+.use_pkmn_power
+	ld a, b
+	ldh [hTemp_ffa0], a
+	ld [$d07f], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+
+; loop for each energy cards that are going to be transferred.
+.loop_energy
+	xor a
+	ldh [hAIPkmnPowerEffectParam], a
+	ld a, [$d07f]
+	ldh [hTemp_ffa0], a
+
+	; returns when Arena card has no Grass energy cards attached.
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wAttachedEnergies + GRASS]
+	or a
+	jr z, .done_transfer
+
+; look for Grass energy cards that
+; are currently attached to Arena card.
+	ld e, 0
+.loop_deck_locations
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	cp CARD_LOCATION_ARENA
+	jr nz, .next_card
+
+	ld a, e
+	push de
+	call GetCardIDFromDeckIndex
+	cp16 GRASS_ENERGY
+	pop de
+	jr nz, .next_card
+
+	; store the deck index of energy card
+	ld a, e
+	ldh [hTempRetreatCostCards], a
+	jr .transfer
+
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_locations
+	jr .done_transfer
+
+.transfer
+; get the Bench card location to transfer Grass energy card to.
+	farcall AIProcessButDontPlayEnergy_SkipEvolutionAndArena
+	jr nc, .done_transfer
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ldh [hAIEnergyTransPlayAreaLocation], a
+
+	ld d, 30
+.small_delay_loop
+	call DoFrame
+	dec d
+	jr nz, .small_delay_loop
+
+	ld a, [wAIVenusaurLv67DeckIndex]
+	ldh [hTempCardIndex_ff9f], a
+	ld d, a
+	ld e, FIRST_ATTACK_OR_PKMN_POWER
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld a, OPPACTION_6B15
+	farcall AIMakeDecision
+	jr .loop_energy
+
+; transfer is done, perform delay
+; and return to main scene.
+.done_transfer
+	ld d, 60
+.big_delay_loop
+	call DoFrame
+	dec d
+	jr nz, .big_delay_loop
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
 
 ; handles AI logic for using some Pkmn Powers.
 ; Pkmn Powers handled here are:
@@ -882,13 +1274,7 @@ HandleAIPollenStench:
 	ret z ; player's Arena card is Grass type
 
 	ld hl, wLoadedCard2ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(SNORLAX_LV20)
-	jr nz, .asm_386e8
-	ld a, [hl]
-	cp LOW(SNORLAX_LV20)
-.asm_386e8
+	cphl SNORLAX_LV20
 	ret z ; player has Snorlax lv20
 
 	ld a, DUELVARS_ARENA_CARD
@@ -1479,9 +1865,103 @@ HandleAIStepIn:
 	ld a, OPPACTION_DUEL_MAIN_SCENE
 	farcall AIMakeDecision
 	ret
-; 0x38b61
 
-SECTION "Bank e@4c00", ROMX[$4c00], BANK[$e]
+HandleAIMagnet:
+	farcall StubbedAIChooseRandomlyNotToDoAction
+	ccf
+	ret nc
+
+	; check if there is a Magnemite lv15 in the Play Area
+	; for each of them, attempt to use its Magnet Pkmn Power
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld b, a
+	ld c, PLAY_AREA_ARENA
+.loop_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add c
+	get_turn_duelist_var
+	ld [wAIPkmnPowerUserCardIndex], a
+	call GetCardIDFromDeckIndex
+	push bc
+	cp16 MAGNEMITE_LV15
+	call z, .TryUseMagnet
+	pop bc
+	inc c
+	ld a, c
+	cp b
+	jr nz, .loop_play_area
+	ret
+
+; input:
+; - c = PLAY_AREA_* location of Magnemite lv15
+; - [wAIPkmnPowerUserCardIndex] = Magnemite lv15 deck index
+.TryUseMagnet:
+	push bc
+	ld a, c
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, [wAIPkmnPowerUserCardIndex]
+	ld d, a ; card index
+	ld e, FIRST_ATTACK_OR_PKMN_POWER
+	call CopyAttackDataAndDamage_FromDeckIndex
+
+	; check if can use Magnet Pkmn Power
+	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
+	call TryExecuteEffectCommandFunction
+	pop bc
+	ret c ; cannot use Magnet
+	push bc
+	ld a, c
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	pop bc
+	ret c ; cannot use Magnet
+
+	; check if there's space in the Bench
+	ld a, c
+	ldh [hTemp_ffa0], a
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	inc a
+	ld hl, wMaxNumPlayAreaPokemon
+	cp [hl]
+	ret nc ; no space in Bench
+
+	; set up the card search func
+	ld a, CARDSEARCH_POKEDEX_NUMBER
+	ld de, DEX_MAGNEMITE
+	farcall SetCardSearchFuncParams
+
+	call CreateDeckCardList
+	ret c ; no cards in Deck
+	ld hl, wDuelTempList
+.loop_deck
+	ld a, [hli]
+	cp $ff
+	ret z
+	ldh [hTempRetreatCostCards], a
+	farcall ExecuteCardSearchFunc
+	jr nc, .loop_deck
+
+	; a Magnemite is found in the Deck
+	ld a, [wAIPkmnPowerUserCardIndex]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_UNK_0C
+	farcall AIMakeDecision
+	ldtx de, Text0147
+	farcall Func_68079
+	ldh [hAIPkmnPowerEffectParam], a
+	jr c, .heads
+	farcall Func_6809a
+	call Func_19e1
+	call WaitForWideTextBoxInput
+.heads
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
 
 ; handles AI logic for Cowardice
 HandleAICowardice:
@@ -1629,7 +2109,161 @@ HandleAICowardice:
 	ret
 ; 0x38cd4
 
-SECTION "Bank e@4dbf", ROMX[$4dbf], BANK[$e]
+SECTION "Bank e@4cdf", ROMX[$4cdf], BANK[$e]
+
+HandleAITrickery:
+	farcall StubbedAIChooseRandomlyNotToDoAction
+	ret c
+
+	ld de, RATTATA_LV12
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret nc ; no Rattata in Play Area
+	ldh [hTemp_ffa0], a
+
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	ret c ; incapable of using Trickery
+
+	; 50% chance of not using Trickery
+	ld a, 2
+	call Random
+	or a
+	ret z
+
+	ldh a, [hTemp_ffa0]
+	add DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	ldh [hTempCardIndex_ff9f], a
+
+	; sample random prize cards
+	; until we get one that hasn't been picked yet
+.sample_prize_card
+	ld a, 6
+	call Random
+	ld c, a
+	ld b, $1
+.loop_get_bit_mask
+	or a
+	jr z, .got_bit_mask
+	sla b
+	dec a
+	jr .loop_get_bit_mask
+.got_bit_mask
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	jr z, .sample_prize_card
+
+	; use Trickery with selected prize card
+	ld a, c
+	or $40
+	ldh [hAIPkmnPowerEffectParam], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
+
+HandleAIRebirth:
+	farcall StubbedAIChooseRandomlyNotToDoAction
+	ret c
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 1
+	ret z ; return if no Bench
+	ld b, a
+	ld c, PLAY_AREA_ARENA
+
+	; if Arena card is statused, then skip it
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .next_play_area_pkmn
+
+.loop_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add c
+	get_turn_duelist_var
+	ld [wAIPkmnPowerUserCardIndex], a
+	call GetCardIDFromDeckIndex
+	push bc
+	cp16 DARK_STARMIE
+	call z, .TryUseRebirth
+	pop bc
+	jr nc, .next_play_area_pkmn
+	dec b
+	ld a, 1
+	cp b
+	ret z
+	; restart from Arena card
+	ld c, PLAY_AREA_ARENA
+	jr .loop_play_area
+.next_play_area_pkmn
+	inc c
+	ld a, c
+	cp b
+	jr nz, .loop_play_area
+	ret
+
+; input:
+; - c = Dark Starmie's PLAY_AREA_* location
+.TryUseRebirth:
+	ld a, c
+	ldh [hTemp_ffa0], a
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	ret c ; incapable of using Pkmn Power
+
+	; check if any Staryu lv15 in Deck
+	ld a, CARD_LOCATION_DECK
+	ld de, STARYU_LV15
+	farcall FindCardIDInLocation
+	ret nc ; no Staryu in deck
+
+	ldh a, [hTemp_ffa0]
+	or a
+	jr nz, .is_on_bench
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call CheckIfDefendingPokemonCanKnockOut
+	ret nc ; player cannot KO
+	; player can KO next turn
+	; use Rebirth if has <= 20 HP remaining
+	ldh a, [hTemp_ffa0]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 20 + 1
+	jr c, .use_rebirth
+
+	; has > 20 HP remaining, use Rebirth
+	; if Dark Starmie cannot use its attack
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .use_rebirth
+	or a
+	ret
+
+.is_on_bench
+	; Dark Starmie is on the Bench, use Rebirth
+	; if remaining HP is <= 20
+	ldh a, [hTemp_ffa0]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 20 + 1
+	ret nc ; exit if > 20 HP remaining
+
+.use_rebirth
+	ld a, [wAIPkmnPowerUserCardIndex]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	scf
+	ret
 
 ; AI logic for Damage Swap to transfer damage from Arena card
 ; to a card in Bench with more than 10 HP remaining
@@ -1909,9 +2543,238 @@ HandleAIRainDanceEnergy:
 	farcall AIProcessAndTryToPlayEnergy
 	jr c, .loop_play_energy_cards
 	ret
-; 0x38f84
 
-SECTION "Bank e@514f", ROMX[$514f], BANK[$e]
+HandleAIPrehistoricDreamAndPoisonMist:
+	farcall StubbedAIChooseRandomlyNotToDoAction
+	ccf
+	ret nc
+
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld b, a
+	ld c, PLAY_AREA_ARENA
+
+.loop_play_area
+	ld a, DUELVARS_ARENA_CARD
+	add c
+	get_turn_duelist_var
+	ld [wAIPkmnPowerUserCardIndex], a
+	push af
+	push bc
+	ld d, a
+	ld a, c
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld e, FIRST_ATTACK_OR_PKMN_POWER
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld a, [wLoadedAttackCategory]
+	cp POKEMON_POWER
+	jr z, .is_pkmn_power
+	pop bc
+	jp .next_pop_af
+.is_pkmn_power
+	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
+	call TryExecuteEffectCommandFunction
+	pop bc
+	jp c, .next_pop_af
+	push bc
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	pop bc
+	jp c, .next_pop_af
+	pop af
+	call GetCardIDFromDeckIndex
+	push bc
+	cp16 OMANYTE_LV20
+	jr nz, .check_weezing
+	call .HandlePrehistoricDream
+	jr .next_pop_bc
+.check_weezing
+	cp16 WEEZING_LV26
+	jr nz, .next_pop_bc
+	call .HandlePoisonMist
+.next_pop_bc
+	pop bc
+.next
+	inc c
+	ld a, c
+	cp b
+	jp nz, .loop_play_area
+	ret
+.next_pop_af
+	pop af
+	jr .next
+
+; unreachable
+	pop bc
+	ret
+
+.HandlePrehistoricDream:
+	ld a, [wcc1a]
+	or a
+	ret nz
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 OMANYTE_LV19
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 OMANYTE_LV20
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 OMANYTE_LV22
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 OMASTAR_LV32
+	ld a, %11 ; any attack
+	jr z, .simulate_attack
+	cp16 OMASTAR_LV36
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 KABUTO_LV9
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 KABUTO_LV22
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 KABUTOPS
+	ld a, %11 ; any attack
+	jr z, .simulate_attack
+	cp16 AERODACTYL_LV28
+	ld a, %10 ; only second attack
+	jr z, .simulate_attack
+	cp16 AERODACTYL_LV30
+	ld a, %10 ; only second attack
+	ret nz
+.simulate_attack
+	; temporarily add Pluspower to simulate
+	; the attack boost by Prehistoric Dream
+	push af
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
+	get_turn_duelist_var
+	inc [hl]
+	farcall AIProcessButDontUseAttack
+	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
+	get_turn_duelist_var
+	dec [hl]
+	pop bc
+	ret nc ; no attack chosen
+
+	ld a, [wSelectedAttack]
+	inc a
+	; if FIRST_ATTACK_OR_PKMN_POWER, a = 1
+	; if SECOND_ATTACK,              a = 2
+	and b
+	ret z
+
+	; use Prehistoric Dream
+	ld a, [wAIPkmnPowerUserCardIndex]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
+
+.HandlePoisonMist:
+	call CheckIfArenaCardCanKnockOutDefendingCard
+	jr nc, .cannot_ko
+	; can KO
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 WEEZING_LV26
+	ret nz ; not Weezing
+.cannot_ko
+	; exit if AI duelist has Poisoned Arena card
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and POISONED | DOUBLE_POISONED
+	jr nz, .poisoned
+	; bug, this check will never result in nz
+	; since we just jumped on nz above
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and POISONED
+	ret nz
+.poisoned
+	; exit if player has double poisoned Arena card
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and PSN_DBLPSN
+	cp DOUBLE_POISONED
+	ret z ; player is double poisoned
+
+	; use Poison Mist if player has poisoned Arena card
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and POISONED
+	jr nz, .use_poison_mist
+
+	farcall AIProcessButDontUseAttack
+	ret nc ; no selected attack
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 GRIMER_LV10
+	jr z, .grimer
+	cp16 WEEZING_LV26
+	jr nz, .not_weezing
+
+; weezing
+	call CheckIfArenaCardCanKnockOutDefendingCard
+	jr c, .use_poison_mist
+	jr .check_snorlax
+
+.not_weezing
+	; check if AI's selected attack inflicts poison
+	; if not, then exit
+	ld a, [wSelectedAttack]
+	ld e, a
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	ld d, a
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
+	call CheckLoadedAttackFlag
+	ret nc ; doesn't inflict poison
+	jr .check_snorlax
+
+.grimer
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
+	farcall CheckIfSelectedAttackIsUnusable
+	ccf
+	ret nc ; cannot use Poison Gas
+
+.check_snorlax
+	; if defending Pokémon is Snorlax lv20
+	; and can use its Pkmn Power, then exit
+	xor a ; PLAY_AREA_ARENA
+	call SwapTurn
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	call SwapTurn
+	jr c, .use_poison_mist
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 SNORLAX_LV20
+	call SwapTurn
+	ret z ; is Snorlax with active Pkmn Power
+
+.use_poison_mist
+	ld a, [wAIPkmnPowerUserCardIndex]
+	ldh [hTempCardIndex_ff9f], a
+	ld a, OPPACTION_USE_PKMN_POWER
+	farcall AIMakeDecision
+	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
+	farcall AIMakeDecision
+	ld a, OPPACTION_DUEL_MAIN_SCENE
+	farcall AIMakeDecision
+	ret
 
 ; input:
 ; - a = number of Basic Pokémon to choose
@@ -2277,13 +3140,7 @@ CheckIfPlayerHasPokemonOtherThanMewtwoLv53:
 	cp TYPE_ENERGY
 	jp nc, .next ; can be a jr
 	ld hl, wLoadedCard2ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MEWTWO_LV53)
-	jr nz, .asm_39803
-	ld a, [hl]
-	cp LOW(MEWTWO_LV53)
-.asm_39803
+	cphl MEWTWO_LV53
 	jr nz, .not_mewtwo1
 .next
 	inc e
@@ -3097,29 +3954,11 @@ GetEnergyCardForDiscardOrEnergyBoostAttack:
 ; for these to be treated differently.
 ; for both attacks, load its energy cost.
 	ld hl, wLoadedCard2ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(ZAPDOS_LV64)
-	jr nz, .asm_3a5ec
-	ld a, [hl]
-	cp LOW(ZAPDOS_LV64)
-.asm_3a5ec
+	cphl ZAPDOS_LV64
 	jr z, .zapdos_lv64
-	inc hl
-	ld a, [hld]
-	cp HIGH(CHARIZARD_LV76)
-	jr nz, .asm_3a5f7
-	ld a, [hl]
-	cp LOW(CHARIZARD_LV76)
-.asm_3a5f7
+	cphl CHARIZARD_LV76
 	jr z, .charizard_or_exeggutor
-	inc hl
-	ld a, [hld]
-	cp HIGH(EXEGGUTOR)
-	jr nz, .asm_3a602
-	ld a, [hl]
-	cp LOW(EXEGGUTOR)
-.asm_3a602
+	cphl EXEGGUTOR
 	jr z, .charizard_or_exeggutor
 	ld hl, wLoadedCard2Atk2EnergyCost
 	jr .fire

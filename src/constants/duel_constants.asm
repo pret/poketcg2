@@ -321,3 +321,21 @@ DEF PRIZES_6    EQU $06
 	const ENERGY_RETURN   ; $8
 	const TOUGH_ESCAPE    ; $9
 	const BLACK_HOLE      ; $a
+
+; constants to use as input to SetCardSearchFuncParams
+	const_def
+	const CARDSEARCH_CARD_ID                     ; $0
+	const CARDSEARCH_NIDORAN                     ; $1
+	const CARDSEARCH_BASIC_FIGHTING_POKEMON      ; $2
+	const CARDSEARCH_BASIC_ENERGY                ; $3
+	const CARDSEARCH_ANY_ENERGY                  ; $4
+	const CARDSEARCH_POKEDEX_NUMBER              ; $5
+	const CARDSEARCH_UNK_6                       ; $6
+	const CARDSEARCH_PSYCHIC_ENERGY              ; $7
+	const CARDSEARCH_EVOLUTION_POKEMON           ; $8
+	const CARDSEARCH_UNK_9                       ; $9
+	const CARDSEARCH_TRAINER                     ; $a
+	const CARDSEARCH_EVOLUTION_COLORLESS_POKEMON ; $b
+	const CARDSEARCH_LIGHTNING_ENERGY            ; $c
+	const CARDSEARCH_UNK_D                       ; $d
+	const CARDSEARCH_BASIC_POKEMON               ; $e

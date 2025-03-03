@@ -7,7 +7,8 @@ TossCoin_Bank1a:
 
 SECTION "Bank 1a@4079", ROMX[$4079], BANK[$1a]
 
-; de = text ID
+; input:
+; - de = text ID
 Func_68079:
 	ld a, 1
 	push hl

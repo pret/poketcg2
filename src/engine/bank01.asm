@@ -1776,21 +1776,9 @@ ShuffleDeckAndDrawSevenCards:
 ; MYSTERIOUS_FOSSIL and CLEFAIRY_DOLL do count as basic Pokemon cards
 IsLoadedCard1BasicPokemon:
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MYSTERIOUS_FOSSIL)
-	jr nz, .asm_4c38
-	ld a, [hl]
-	cp LOW(MYSTERIOUS_FOSSIL)
-.asm_4c38
+	cphl MYSTERIOUS_FOSSIL
 	jr z, .basic
-	inc hl
-	ld a, [hld]
-	cp HIGH(CLEFAIRY_DOLL)
-	jr nz, .asm_4c43
-	ld a, [hl]
-	cp LOW(CLEFAIRY_DOLL)
-.asm_4c43
+	cphl CLEFAIRY_DOLL
 	jr z, .basic
 ;	fallthrough
 
@@ -2193,13 +2181,7 @@ PracticeDuel_DrawSevenCards:
 
 PracticeDuel_PlayDiglett:
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(DIGLETT_LV8)
-	jr nz, .asm_4f05
-	ld a, [hl]
-	cp LOW(DIGLETT_LV8)
-.asm_4f05
+	cphl DIGLETT_LV8
 	ret z
 	ldtx hl, Text04fb ; ChooseDiglettPracticeDuelText
 	scf
@@ -2418,25 +2400,13 @@ PracticeDuelTurnVerificationPointerTable:
 
 PracticeDuelVerify_Turn1:
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(DIGLETT_LV8)
-	jr nz, .asm_50cd
-	ld a, [hl]
-	cp LOW(DIGLETT_LV8)
-.asm_50cd
+	cphl DIGLETT_LV8
 	jp nz, ReturnWrongAction
 	ret
 
 PracticeDuelVerify_Turn2:
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(DIGLETT_LV8)
-	jr nz, .asm_50dd
-	ld a, [hl]
-	cp LOW(DIGLETT_LV8)
-.asm_50dd
+	cphl DIGLETT_LV8
 	jp nz, ReturnWrongAction
 	ld a, [wSelectedAttack]
 	cp SECOND_ATTACK
@@ -2445,13 +2415,7 @@ PracticeDuelVerify_Turn2:
 
 PracticeDuelVerify_Turn3:
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(DUGTRIO_LV36)
-	jr nz, .asm_50f5
-	ld a, [hl]
-	cp LOW(DUGTRIO_LV36)
-.asm_50f5
+	cphl DUGTRIO_LV36
 	jp nz, ReturnWrongAction
 	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
@@ -2471,13 +2435,7 @@ PracticeDuelVerify_Turn4:
 	or a
 	jr z, ReturnWrongAction
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(DUGTRIO_LV36)
-	jr nz, .asm_5124
-	ld a, [hl]
-	cp LOW(DUGTRIO_LV36)
-.asm_5124
+	cphl DUGTRIO_LV36
 	jp nz, ReturnWrongAction
 	or a
 	ret
@@ -2492,25 +2450,13 @@ PracticeDuelVerify_Turn5:
 	cp 2
 	jr nz, ReturnWrongAction
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(NIDORANM_LV20)
-	jr nz, .asm_5148
-	ld a, [hl]
-	cp LOW(NIDORANM_LV20)
-.asm_5148
+	cphl NIDORANM_LV20
 	jr nz, ReturnWrongAction
 	ret
 
 PracticeDuelVerify_Turn6:
 	ld hl, wTempCardID_ccc2
-	inc hl
-	ld a, [hld]
-	cp HIGH(NIDORINO_LV25)
-	jr nz, .asm_5157
-	ld a, [hl]
-	cp LOW(NIDORINO_LV25)
-.asm_5157
+	cphl NIDORINO_LV25
 	jr nz, ReturnWrongAction
 	or a
 	ret
@@ -5329,13 +5275,7 @@ ProcessPlayedPokemonCard:
 	farcall DisplayUsePokemonPowerScreen
 	call WaitForWideTextBoxInput
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MUK)
-	jr nz, .asm_6219
-	ld a, [hl]
-	cp LOW(MUK)
-.asm_6219
+	cphl MUK
 	jr z, .use_pokemon_power
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	call CheckIsIncapableOfUsingPkmnPower
@@ -7076,21 +7016,9 @@ HandleDamageReductionExceptSubstatus2:
 	cp POKEMON_POWER
 	ret z
 	ld hl, wTempNonTurnDuelistCardID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MR_MIME_LV28)
-	jr nz, .asm_6d19
-	ld a, [hl]
-	cp LOW(MR_MIME_LV28)
-.asm_6d19
+	cphl MR_MIME_LV28
 	jr z, .invisible_wall
-	inc hl
-	ld a, [hld]
-	cp HIGH(KABUTO_LV9)
-	jr nz, .asm_6d24
-	ld a, [hl]
-	cp LOW(KABUTO_LV9)
-.asm_6d24
+	cphl KABUTO_LV9
 	jr z, .kabuto_armor
 	ret
 
@@ -7475,13 +7403,7 @@ HandleNoDamageOrEffectSubstatus::
 	ccf
 	ret nc
 	ld hl, wTempNonTurnDuelistCardID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MEW_LV8)
-	jr nz, .asm_700e
-	ld a, [hl]
-	cp LOW(MEW_LV8)
-.asm_700e
+	cphl MEW_LV8
 	jr z, .neutralizing_shield
 	or a
 	ret
@@ -8197,6 +8119,7 @@ HandleEnergyBurn:
 
 SECTION "Bank 1@7650", ROMX[$7650], BANK[$1]
 
+; returns carry if unable to retreat
 CheckUnableToRetreatDueToEffect:
 	; can't retreat if affected by sleep or paralysis
 	call CheckIfArenaCardIsParalyzedOrAsleep
@@ -8724,9 +8647,9 @@ HandlePrehistoricDreamDamageBoost:
 	call LoadCardDataToBuffer2_FromCardID
 	pop de
 	ld a, [wLoadedCard2PokedexNumber]
-	cp $8a
+	cp DEX_OMANYTE
 	jr c, .not_fossil_card
-	cp $8f
+	cp DEX_AERODACTYL + 1
 	jr nc, .not_fossil_card
 	ld a, [wcc1a]
 	call ATimes10

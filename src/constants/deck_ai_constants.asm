@@ -118,6 +118,13 @@ DEF AI_ENERGY_FLAG_SKIP_ARENA_CARD EQU 1 << 7 ; whether to include Arena card in
 DEF AI_MEWTWO_MILL_F EQU 7
 DEF AI_MEWTWO_MILL   EQU 1 << AI_MEWTWO_MILL_F
 
+; defines the behaviour of HandleAIEnergyTrans, for determining
+; whether to move energy cards from the Bench to the Arena or vice-versa
+; and the number of energy cards needed for achieving that.
+DEF AI_ENERGY_TRANS_RETREAT  EQU $9 ; moves energy cards needed for Retreat Cost
+DEF AI_ENERGY_TRANS_ATTACK   EQU $d ; moves energy cards needed for second attack
+DEF AI_ENERGY_TRANS_TO_BENCH EQU $e ; moves energy cards away from Arena card
+
 ; used to know which AI routine to call in
 ; the AIAction pointer tables in AIDoAction
 	const_def 1

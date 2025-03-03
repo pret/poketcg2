@@ -1,3 +1,25 @@
+; AI card retreat score bonus
+; when the AI retreat routine runs through the Bench to choose
+; a Pokemon to switch to, it looks up in this list and if
+; a card ID matches, applies a retreat score bonus to this card.
+; positive (negative) means more (less) likely to switch to this card.
+MACRO ai_retreat
+	dw \1       ; card ID
+	db $80 + \2 ; retreat score (ranges between -128 and 127)
+ENDM
+
+; AI card energy attach score bonus
+; when the AI energy attachment routine runs through the Play Area to choose
+; a Pokemon to attach an energy card, it looks up in this list and if
+; a card ID matches, skips this card if the maximum number of energy
+; cards attached has been reached. If it hasn't been reached, additionally
+; applies a positive (or negative) AI score to attach energy to this card.
+MACRO ai_energy
+	dw \1       ; card ID
+	db \2       ; maximum number of attached cards
+	db $80 + \3 ; energy score (ranges between -128 and 127)
+ENDM
+
 DeckAIPointerTable::
 	dw AIActionTable_ScriptedSamPracticeDeck ; SAMS_PRACTICE_DECK_ID
 	dw AIActionTable_GeneralDecks ; PLAYER_PRACTICE_DECK_ID
@@ -15,13 +37,13 @@ DeckAIPointerTable::
 	dw AIActionTable_AaronStep3Deck ; AARONS_STEP3_DECK_ID
 	dw AIActionTable_GeneralDecks ; BRICK_WALK_DECK_ID
 	dw AIActionTable_GeneralDecks ; BENCH_TRAP_DECK_ID
-	dw $42e4 ; SKY_SPARK_DECK_ID
-	dw $4376 ; ELECTRIC_SELFDESTRUCT_DECK_ID
+	dw AIActionTable_SkySparkDeck ; SKY_SPARK_DECK_ID
+	dw AIActionTable_ElectricSelfdestructDeck ; ELECTRIC_SELFDESTRUCT_DECK_ID
 	dw AIActionTable_GeneralDecks ; OVERFLOW_DECK_ID
 	dw AIActionTable_GeneralDecks ; TRIPLE_ZAPDOS_DECK_ID
 	dw AIActionTable_GeneralDecks ; I_LOVE_PIKACHU_DECK_ID
 	dw AIActionTable_GeneralDecks ; TEN_THOUSAND_VOLTS_DECK_ID
-	dw $41ab ; HAND_OVER_GR_DECK_ID
+	dw AIActionTable_HandOverGRDeck ; HAND_OVER_GR_DECK_ID
 	dw $4408 ; PSYCHIC_ELITE_DECK_ID
 	dw AIActionTable_GeneralDecks ; PSYCHOKINESIS_DECK_ID
 	dw AIActionTable_GeneralDecks ; PHANTOM_DECK_ID
@@ -132,7 +154,7 @@ AIActionTable_140f4:
 	dw .update_portrait
 
 .do_turn:
-	call Func_16989
+	call AIDecidePlayPokemonCard
 	call AIDecideWhetherToRetreat_ConsiderStatus
 	jr nc, .asm_1411b
 	call AIDecideBenchPokemonToSwitchTo
@@ -169,9 +191,58 @@ AIActionTable_140f4:
 	xor a
 	ld [wcd78], a
 	ret
-; 0x1413e
 
-SECTION "Bank 5@4178", ROMX[$4178], BANK[$5]
+; input:
+; - [hl] = pointer table of AI card lists
+StoreAICardListPointers:
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push hl
+	ld hl, wAICardListAvoidPrize
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push hl
+	ld hl, wAICardListArenaPriority
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push hl
+	ld hl, wAICardListBenchPriority
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push hl
+	ld hl, wAICardListPlayFromHandPriority
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, wAICardListEnergyBonus
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
 
 Func_14178:
 	xor a
@@ -212,9 +283,40 @@ AIActionTable_GeneralDecks:
 .update_portrait
 	farcall AIUpdatePortrait
 	ret
-; 0x141ab
 
-SECTION "Bank 5@41d6", ROMX[$41d6], BANK[$5]
+AIActionTable_HandOverGRDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall $12, $467a ; Func_4867a
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
 
 AIActionTable_ScriptedSamPracticeDeck:
 	dw .do_turn
@@ -400,7 +502,178 @@ AIActionTable_AaronStep3Deck:
 .update_portrait
 	farcall AIUpdatePortrait
 	ret
-; 0x142e4
+
+AIActionTable_SkySparkDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw VOLTORB_LV13
+	dw PIDGEY_LV10
+	dw SPEAROW_LV9
+	dw PIKACHU_LV14
+	dw ZAPDOS_LV40
+	dw NULL ; end
+
+.list_bench
+	dw PIKACHU_LV14
+	dw ZAPDOS_LV40
+	dw SPEAROW_LV9
+	dw VOLTORB_LV13
+	dw PIDGEY_LV10
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat ZAPDOS_LV40, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy PIKACHU_LV14,   3, +1
+	ai_energy RAICHU_LV45,    4, +1
+	ai_energy DARK_RAICHU,    3, +1
+	ai_energy VOLTORB_LV13,   1, +0
+	ai_energy DARK_ELECTRODE, 2, +0
+	ai_energy ZAPDOS_LV40,    4, +0
+	ai_energy PIDGEY_LV10,    3, +0
+	ai_energy PIDGEOTTO_LV36, 3, +0
+	ai_energy SPEAROW_LV9,    3, +0
+	ai_energy FEAROW_LV24,    3, +0
+	dw NULL ; end
+
+.list_prize
+	dw PIKACHU_LV14
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_bench
+	dw .list_energy
+
+AIActionTable_ElectricSelfdestructDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+	dw ELECTABUZZ_LV35
+	dw DODUO_LV10
+	dw VOLTORB_LV8
+	dw MAGNEMITE_LV13
+	dw MAGNEMITE_LV15
+	dw ZAPDOS_LV40
+	dw NULL ; end
+
+	dw MAGNEMITE_LV13
+	dw MAGNEMITE_LV15
+	dw VOLTORB_LV8
+	dw ELECTABUZZ_LV35
+	dw DODUO_LV10
+	dw ZAPDOS_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MAGNEMITE_LV15, -2
+	dw NULL ; end
+
+	ai_energy MAGNEMITE_LV13,  2, +1
+	ai_energy MAGNEMITE_LV15,  2, +1
+	ai_energy MAGNETON_LV28,   3, +1
+	ai_energy VOLTORB_LV8,     2, +1
+	ai_energy ELECTRODE_LV35,  3, +0
+	ai_energy ELECTABUZZ_LV35, 3, +0
+	ai_energy ZAPDOS_LV40,     4, +0
+	ai_energy DODUO_LV10,      1, +0
+	ai_energy DODRIO_LV25,     3, +0
+	dw NULL ; end
+
+	dw DEFENDER
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw $43F3
+	dw $43AC
+	dw $43AC
+	dw $43BA
+	dw $43CD
+; 0x14408
 
 SECTION "Bank 5@6065", ROMX[$6065], BANK[$5]
 
@@ -984,7 +1257,76 @@ AIDecideWhetherToRetreat:
 	pop de
 	jr nc, .loop_ko_3
 	jr .set_carry
-; 0x163e7
+
+; given a list of card IDs sorted by preference in [de]
+; play a Pkmn card from the hand (wDuelTempList) that is
+; highest in that list
+; returns carry if none of the cards in the list are found.
+; returns number of Pokemon in Play Area in a.
+PlayPkmnCardWithHighestPreference:
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+
+; go in order of the list in bc and
+; add first card that matches ID.
+; returns carry if hand doesn't have any card in list.
+.loop_id_list
+	ld a, [bc]
+	inc bc
+	ld e, a
+	ld a, [bc]
+	inc bc
+	ld d, a
+	call CheckIfCardIDIsZero_Bank5
+	jr c, .not_found
+	farcall RemoveCardIDInList
+	jr nc, .loop_id_list
+	push hl
+	call PutHandPokemonCardInPlayArea
+	pop hl
+	or a
+	ret
+.not_found
+	scf
+	ret
+
+; play Pokemon cards from the hand to set the starting
+; Play Area of Boss decks.
+; each Boss deck has two ID lists in order of preference.
+; one list is for the Arena card is the other is for the Bench cards.
+; if Arena card could not be set (due to hand not having any card in its list)
+; or if list is null, return carry and do not play any cards.
+TrySetUpBossStartingPlayArea:
+	ld de, wAICardListArenaPriority
+	ld a, d
+	or a
+	jr z, .set_carry ; return if null
+
+; pick Arena card
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wAICardListArenaPriority
+	call PlayPkmnCardWithHighestPreference
+	ret c
+
+; play Pokemon cards to Bench until there are
+; a maximum of 3 cards in Play Area.
+.loop
+	ld de, wAICardListBenchPriority
+	call PlayPkmnCardWithHighestPreference
+	jr c, .done
+	cp 3
+	jr c, .loop
+
+.done
+	or a
+	ret
+.set_carry
+	scf
+	ret
 
 SECTION "Bank 5@6566", ROMX[$6566], BANK[$5]
 
@@ -1123,13 +1465,7 @@ AIDecideBenchPokemonToSwitchTo:
 	call LoadCardDataToBuffer2_FromDeckIndex
 	call SwapTurn
 	ld hl, wLoadedCard2ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(MR_MIME_LV28)
-	jr nz, .asm_1663d
-	ld a, [hl]
-	cp LOW(MR_MIME_LV28)
-.asm_1663d
+	cphl MR_MIME_LV28
 	jr nz, .check_defending_weak
 	xor a
 	call EstimateDamage_VersusDefendingCard
@@ -1388,23 +1724,34 @@ AIDecideBenchPokemonToSwitchTo:
 Func_167e5:
 	push af
 	bank1call CheckUnableToRetreatDueToEffect
-	jr nc, .asm_167ee
+	jr nc, .able_to_retreat
 	add sp, $02
 	ret
-.asm_167ee
+.able_to_retreat
 	ld a, [wAIPlayEnergyCardForRetreat]
 	or a
-	jr z, .asm_16838
+	jr z, .dont_play_energy_card
+
+; AI is allowed to play an energy card
+; from the hand in order to provide
+; the necessary energy for retreat cost
+
+; check status
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
 	cp ASLEEP
-	jp z, .asm_16838 ; can be jr
+	jp z, .dont_play_energy_card ; can be jr
 	cp PARALYZED
-	jp z, .asm_16838 ; can be jr
+	jp z, .dont_play_energy_card ; can be jr
+
+; if an energy card hasn't been played yet,
+; checks if the Pokémon needs just one more energy to retreat
+; if it does, check if there are any energy cards in hand
+; and if there are, play that energy card
 	ld a, [wAlreadyPlayedEnergy]
 	or a
-	jr nz, .asm_16838
+	jr nz, .dont_play_energy_card
 	call CreateArenaOrBenchEnergyCardList
 	push af
 	xor a ; PLAY_AREA_ARENA
@@ -1412,15 +1759,16 @@ Func_167e5:
 	call GetPlayAreaCardRetreatCost
 	pop bc
 	cp b
-	jr c, .asm_16838
-	jr z, .asm_16838
+	jr c, .dont_play_energy_card
+	jr z, .dont_play_energy_card
+	; energy attached < retreat cost
 	sub b
 	cp 1
-	jr nz, .asm_16838
+	jr nz, .dont_play_energy_card
 	farcall $12, $7f14
 	jr nc, .asm_1682a
 	farcall $12, $7f6d
-	jr c, .asm_16838
+	jr c, .dont_play_energy_card
 .asm_1682a
 	ld a, [wDuelTempList]
 	ldh [hTemp_ffa0], a
@@ -1428,14 +1776,18 @@ Func_167e5:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
-.asm_16838
+
+.dont_play_energy_card
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MYSTERIOUS_FOSSIL
-	jp z, .asm_16958
+	jp z, .mysterious_fossil_or_clefairy_doll
 	cp16 CLEFAIRY_DOLL
-	jp z, .asm_16958
+	jp z, .mysterious_fossil_or_clefairy_doll
+
+; if card is Asleep or Paralyzed, set carry and exit
+; else, load the status in hTemp_ffa0
 	pop af
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -1450,109 +1802,133 @@ Func_167e5:
 	ldh [hTemp_ffa0], a
 	ld a, $ff
 	ldh [hTempRetreatCostCards], a
+
+; check energy required to retreat
+; if the cost is 0, retreat right away
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call GetPlayAreaCardRetreatCost
-	ld [wd0a2], a
+	ld [wTempCardRetreatCost], a
 	or a
-	jp z, .asm_1694b
+	jp z, .retreat
+
+; if cost > 0 and number of energy cards attached == cost
+; discard them all
 	xor a ; PLAY_AREA_ARENA
 	call CreateArenaOrBenchEnergyCardList
-	ld e, $00
+	ld e, PLAY_AREA_ARENA
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
 	ld c, a
-	ld a, [wd0a2]
+	ld a, [wTempCardRetreatCost]
 	cp c
-	jr nz, .asm_1689e
+	jr nz, .choose_energy_discard
+
 	ld hl, hTempRetreatCostCards
 	ld de, wDuelTempList
-.asm_16894
+.loop_select_all_cards
 	ld a, [de]
 	inc de
 	ld [hli], a
 	cp $ff
-	jr nz, .asm_16894
-	jp .asm_1694b
-.asm_1689e
+	jr nz, .loop_select_all_cards
+	jp .retreat
+
+; if cost > 0 and number of energy cards attached > cost
+; choose energy cards to discard according to color
+.choose_energy_discard
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	ld a, e
-	ld [wd0a3], a
+	ld [wTempCardID_d0a3 + 0], a
 	ld a, d
-	ld [wd0a4], a
+	ld [wTempCardID_d0a3 + 1], a
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	or $08
-	ld [wd0a5], a
-	ld a, [wd0a2]
+	or TYPE_ENERGY
+	ld [wTempCardType], a
+	ld a, [wTempCardRetreatCost]
 	ld c, a
+
+; first, look for and discard any Recycle energy cards
 	ld hl, wDuelTempList
 	ld de, hTempRetreatCostCards
-.asm_168c1
+.loop_select_recycle_energy
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_168e1
+	jr z, .check_dce
 	ld [de], a
 	push de
 	call GetCardIDFromDeckIndex
 	cp16 RECYCLE_ENERGY
 	pop de
-	jr nz, .asm_168c1
+	jr nz, .loop_select_recycle_energy
 	ld a, [de]
 	call RemoveCardFromDuelTempList
 	dec hl
 	inc de
 	dec c
-	jr nz, .asm_168c1
-	jr .asm_16948
-.asm_168e1
+	jr nz, .loop_select_recycle_energy
+	jr .end_retreat_list
+
+; next, look for and discard Double Colorless energy
+; if retreat cost is >= 2
+.check_dce
 	ld hl, wDuelTempList
 	call CountCardsInDuelTempList
 	call ShuffleCards
-.asm_168ea
+.loop_select_dce
 	ld a, c
-	cp $02
-	jr c, .asm_16910
+	cp 2
+	jr c, .check_non_useful_energy
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_16910
+	jr z, .check_non_useful_energy
 	ld [de], a
 	push de
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
 	pop de
-	jr nz, .asm_168ea
+	jr nz, .loop_select_dce
 	ld a, [de]
 	call RemoveCardFromDuelTempList
 	dec hl
 	inc de
 	dec c
 	dec c
-	jr nz, .asm_168ea
-	jr .asm_16948
-.asm_16910
+	jr nz, .loop_select_dce
+	jr .end_retreat_list
+
+; next, shuffle attached cards and discard energy cards
+; that are not of the same type as the Pokémon
+; the exception for this are cards that are needed for
+; some attacks but are not of the same color as the Pokémon
+; (i.e. Psyduck's Headache attack)
+.check_non_useful_energy
 	ld hl, wDuelTempList
 	call CountCardsInDuelTempList
 	call ShuffleCards
-.asm_16919
+.loop_select_non_useful_energy
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_1692f
+	jr z, .discard_rest
 	ld [de], a
-	call Func_17a72
-	jr c, .asm_16919
+	call CheckIfEnergyIsUseful
+	jr c, .loop_select_non_useful_energy
 	ld a, [de]
 	call RemoveCardFromDuelTempList
 	dec hl
 	inc de
 	dec c
-	jr nz, .asm_16919
-	jr .asm_16948
-.asm_1692f
+	jr nz, .loop_select_non_useful_energy
+	jr .end_retreat_list
+
+; lastly, discard any card until
+; cost requirement is met
+.discard_rest
 	ld hl, wDuelTempList
-.asm_16932
+.loop_select_rest
 	ld a, [hli]
 	cp $ff
 	jr z, .set_carry
@@ -1560,18 +1936,20 @@ Func_167e5:
 	inc de
 	push de
 	call GetCardIDFromDeckIndex
-	cp $07
+	cp DOUBLE_COLORLESS_ENERGY ; bug, should be cp16 DOUBLE_COLORLESS_ENERGY
 	pop de
-	jr nz, .asm_16945
+	jr nz, .not_dce
 	dec c
-	jr z, .asm_16948
-.asm_16945
+	jr z, .end_retreat_list
+.not_dce
 	dec c
-	jr nz, .asm_16932
-.asm_16948
+	jr nz, .loop_select_rest
+
+.end_retreat_list
 	ld a, $ff
 	ld [de], a
-.asm_1694b
+
+.retreat
 	ld a, OPPACTION_ATTEMPT_RETREAT
 	farcall AIMakeDecision
 	xor a
@@ -1581,20 +1959,22 @@ Func_167e5:
 	scf
 	ret
 
-.asm_16958
+; handle Mysterious Fossil and Clefairy Doll
+; if there are bench Pokémon, use effect to discard card
+; this is equivalent to using its Pokémon Power
+.mysterious_fossil_or_clefairy_doll
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $02
-	jr nc, .asm_16962
+	cp 2
+	jr nc, .has_bench
+	; doesn't have any bench
 	pop af
 	jr .set_carry
-.asm_16962
+.has_bench
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ldh [hTempCardIndex_ff9f], a
-	xor a
-;	fallthrough
-
+	xor a ; PLAY_AREA_ARENA
 Func_16968:
 	ldh [hTemp_ffa0], a
 	ld a, OPPACTION_USE_PKMN_POWER
@@ -1608,95 +1988,126 @@ Func_16968:
 	or a
 	ret
 
-Func_16981:
-.asm_16981
+; copies an $ff-terminated list from hl to de.
+; preserves bc
+; input:
+;	hl = address from which to start copying the data
+;	de = where to copy the data
+CopyListWithFFTerminatorFromHLToDE_Bank5:
 	ld a, [hli]
 	ld [de], a
 	cp $ff
 	ret z
 	inc de
-	jr .asm_16981
+	jr CopyListWithFFTerminatorFromHLToDE_Bank5
 
-Func_16989:
+; determine whether AI plays
+; basic cards from hand
+AIDecidePlayPokemonCard:
 	call CreateHandCardList
-	call Func_16cc6
+	call SortTempHandByIDList
 	ld hl, wDuelTempList
 	ld de, wTempCardList
-	call Func_16981
+	call CopyListWithFFTerminatorFromHLToDE_Bank5
 	ld hl, wTempCardList
-.asm_1699b
+.loop_hand_cards
 	ld a, [hli]
 	cp $ff
-	jp z, .asm_16a60
-	ld [wd062], a
+	jp z, AIDecideEvolution
+
+	ld [wTempAIPokemonCard], a
 	push hl
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Type]
 	cp TYPE_ENERGY
-	jp nc, .asm_16a5a
+	jp nc, .skip
+	; skip non-pokemon cards
+
 	ld a, [wLoadedCard1Stage]
 	or a
-	jp nz, .asm_16a5a
-	farcall $a, $5e02
+	jp nz, .skip
+	; skip non-basic pokemon
+
+	farcall Func_29e02
 	ld [wAIScore], a
+
 	ld a, [wMaxNumPlayAreaPokemon]
-	cp $04
-	jr z, .asm_169d3
+	cp 4
+	jr z, .small_bench
+; normal conditions, if Play Area has more than 3 Pokémon,
+; decrease AI score, else increase AI score
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $04
-	jr c, .asm_169e1
-	ld a, $14
+	cp 4
+	jr c, .has_space_in_bench
+	ld a, 20
 	call AIDiscourage
-	jr .asm_169e6
-.asm_169d3
+	jr .check_defending_can_ko
+
+.small_bench
+; small bench rules, if Play Area has more than 2 Pokémon,
+; decrease AI score, else increase AI score
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $03
-	jr c, .asm_169e1
-	ld a, $14
+	cp 3
+	jr c, .has_space_in_bench
+	ld a, 20
 	call AIDiscourage
-	jr .asm_169e6
-.asm_169e1
-	ld a, $32
+	jr .check_defending_can_ko
+
+.has_space_in_bench
+	ld a, 50
 	call AIEncourage
-.asm_169e6
+
+; if defending Pokémon can KO active card, increase AI score
+.check_defending_can_ko
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
-	jr nc, .asm_169f4
-	ld a, $14
+	jr nc, .check_energy_cards
+	ld a, 20
 	call AIEncourage
-.asm_169f4
-	ld a, [wd062]
-	farcall $e, $6549
-	farcall $e, $64a1
-	jr nc, .asm_16a06
-	ld a, $14
+
+; if energy cards are found in hand
+; for this card's attacks, raise AI score
+.check_energy_cards
+	ld a, [wTempAIPokemonCard]
+	farcall GetAttacksEnergyCostBits
+	farcall CheckEnergyFlagsNeededInList
+	jr nc, .check_evolution_hand
+	ld a, 20
 	call AIEncourage
-.asm_16a06
-	ld a, [wd062]
-	farcall $a, $58f9
-	jr nc, .asm_16a14
-	ld a, $14
+
+; if evolution card is found in hand
+; for this card, raise AI score
+.check_evolution_hand
+	ld a, [wTempAIPokemonCard]
+	farcall CheckIfPokemonEvolutionIsFoundInHand
+	jr nc, .check_evolution_deck
+	ld a, 20
 	call AIEncourage
-.asm_16a14
-	ld a, [wd062]
-	farcall $a, $5921
-	jr nc, .asm_16a22
-	ld a, $0a
+
+; if evolution card is found in deck
+; for this card, raise AI score
+.check_evolution_deck
+	ld a, [wTempAIPokemonCard]
+	farcall $a, $5921 ; Func_29921 ; CheckForEvolutionInDeck
+	jr nc, .check_score
+	ld a, 10
 	call AIEncourage
-.asm_16a22
+
+; if AI score is >= 180, play card from hand
+.check_score
 	ld a, [wAIScore]
-	cp $b4
-	jr c, .asm_16a5a
-	ld a, [wd062]
+	cp 180
+	jr c, .skip
+	ld a, [wTempAIPokemonCard]
 	ldh [hTemp_ffa0], a
-	call Func_17cd6
-	jr c, .asm_16a5a
+	call CheckIfCardCanBePlayed
+	jr c, .skip
 	ld a, OPPACTION_PLAY_BASIC_PKMN
 	farcall AIMakeDecision
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
@@ -1704,63 +2115,76 @@ Func_16989:
 	farcall AIMakeDecision
 	ld a, [wcd18]
 	or a
-	jr z, .asm_16a5a
-	farcall $12, $62cf
+	jr z, .skip
+	farcall AIHandlePkmnPowersWhenPlayingPkmnFromHand
 	ld a, OPPACTION_UNK_19
 	farcall AIMakeDecision
-	jr c, .asm_16a5e
-.asm_16a5a
+	jr c, .done
+.skip
 	pop hl
-	jp .asm_1699b
-.asm_16a5e
+	jp .loop_hand_cards
+.done
 	pop hl
 	ret
 
-.asm_16a60
+; determine whether AI evolves
+; Pokémon in the Play Area
+AIDecideEvolution:
 	bank1call IsPrehistoricPowerActive
-	jp c, .asm_16aec
+	jp c, .done ; skip if Prehistoric is active
+
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardList
-	call Func_16981
+	call CopyListWithFFTerminatorFromHLToDE_Bank5
 	ld hl, wTempCardList
-.asm_16a75
+
+.next_hand_card
 	ld a, [hli]
 	cp $ff
-	jp z, .asm_16aec
-	ld [wd062], a
+	jp z, .done
+	ld [wTempAIPokemonCard], a
+
+; load evolution data to buffer1
+; skip if it's not a Pokémon card
+; and if it's a basic stage card
 	push hl
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard] ; unnecessary
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Type]
 	cp TYPE_ENERGY
-	jp nc, .asm_16ae8
+	jp nc, .done_hand_card
 	ld a, [wLoadedCard1Stage]
 	or a
-	jp z, .asm_16ae8
+	jp z, .done_hand_card
+
+; start looping Pokémon in Play Area
+; to find a card to evolve
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
-	ld b, $00
-.asm_16a9a
+	ld b, 0
+.next_bench_pokemon
 	push bc
 	ld e, b
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	ld d, a
 	call CheckIfCanEvolveInto
 	pop bc
 	push bc
-	jp c, .asm_16ae2
+	jp c, .done_bench_pokemon
+
 	ld a, b
 	call Func_16af1
-	jr nc, .asm_16ae2
+	jr nc, .done_bench_pokemon
+
 	ld a, [wTempAI]
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	ldh [hTemp_ffa0], a
 	ld a, OPPACTION_EVOLVE_PKMN
 	farcall AIMakeDecision
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
@@ -1769,63 +2193,75 @@ Func_16989:
 	ld a, [wcd18]
 	or a
 	jr z, .asm_16adf
-	farcall $12, $62cf
+	farcall AIHandlePkmnPowersWhenPlayingPkmnFromHand
 	ld a, OPPACTION_UNK_19
 	farcall AIMakeDecision
 	jr c, .asm_16aee
+
 .asm_16adf
 	pop bc
-	jr .asm_16ae8
-.asm_16ae2
+	jr .done_hand_card
+.done_bench_pokemon
 	pop bc
 	inc b
 	dec c
-	jp nz, .asm_16a9a
-.asm_16ae8
+	jp nz, .next_bench_pokemon
+.done_hand_card
 	pop hl
-	jp .asm_16a75
-.asm_16aec
+	jp .next_hand_card
+.done
 	or a
 	ret
+
 .asm_16aee
 	pop bc
 	pop hl
 	ret
 
 Func_16af1:
+; store this Play Area location in wTempAI
+; and initialize the AI score
 	ld [wTempAI], a
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall $a, $597a
 	ld [wAIScore], a
+
+; check if the card can use any attacks
+; and if any of those attacks can KO
 	xor a
 	ld [wd07b], a
 	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
 	call CheckIfSelectedAttackIsUnusable
-	jr nc, .asm_16b13
+	jr nc, .can_attack
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	call CheckIfSelectedAttackIsUnusable
-	jr c, .asm_16b29
-.asm_16b13
+	jr c, .cant_attack_or_ko
+.can_attack
 	ld a, $01
 	ld [wd061], a
 	call CheckIfAnyAttackKnocksOutDefendingCard
-	jr nc, .asm_16b30
+	jr nc, .check_evolution_attacks
 	call CheckIfSelectedAttackIsUnusable
-	jr c, .asm_16b30
+	jr c, .check_evolution_attacks
 	ld a, $01
 	ld [wd063], a
-	jr .asm_16b30
-.asm_16b29
+	jr .check_evolution_attacks
+.cant_attack_or_ko
 	xor a
 	ld [wd061], a
 	ld [wd063], a
-.asm_16b30
+
+; check evolution to see if it can use any of its attacks:
+; if it can, raise AI score;
+; if it can't, decrease AI score and if an energy card that is needed
+; can be played from the hand, raise AI score.
+.check_evolution_attacks
 	ld a, [wTempAI]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	push af
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	ld [hl], a
 	ld a, [wTempAI]
 	add DUELVARS_ARENA_CARD_HP
@@ -1835,85 +2271,95 @@ Func_16af1:
 	ld e, a
 	call GetCardDamageAndMaxHP
 	push af
-	ld a, [wd062]
+	ld a, [wTempAIPokemonCard]
 	push hl
 	call LoadCardDataToBuffer2_FromDeckIndex
 	pop hl
-	ld a, [wLoadedCard2EffectCommands]
+	ld a, [wLoadedCard2HP]
 	pop bc
 	sub b
 	ld [hl], a
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	call CheckIfSelectedAttackIsUnusable
-	jr nc, .asm_16b6b
+	jr nc, .evolution_can_attack
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	call CheckIfSelectedAttackIsUnusable
-	jr c, .asm_16b72
-.asm_16b6b
-	ld a, $05
+	jr c, .evolution_cant_attack
+.evolution_can_attack
+	ld a, 5
 	call AIEncourage
-	jr .asm_16b8e
-.asm_16b72
+	jr .check_evolution_ko
+.evolution_cant_attack
 	ld a, [wd061]
 	or a
-	jr z, .asm_16b8e
-	ld a, $02
+	jr z, .check_evolution_ko
+	ld a, 2
 	call AIDiscourage
 	ld a, [wAlreadyPlayedEnergy]
 	or a
-	jr nz, .asm_16b8e
-	farcall $a, $6331
-	jr nc, .asm_16b8e
-	ld a, $07
+	jr nz, .check_evolution_ko
+	farcall $a, $6331 ; LookForEnergyNeededInHand
+	jr nc, .check_evolution_ko
+	ld a, 7
 	call AIEncourage
-.asm_16b8e
+
+; if it's an active card:
+; if evolution can't KO but the current card can, lower AI score;
+; if evolution can KO as well, raise AI score.
+.check_evolution_ko
 	ld a, [wd061]
 	or a
-	jr z, .asm_16bbc
+	jr z, .check_defending_can_ko_evolution
 	ld a, [wTempAI]
 	or a
-	jr nz, .asm_16bbc
+	jr nz, .check_defending_can_ko_evolution
 	call CheckIfAnyAttackKnocksOutDefendingCard
-	jr nc, .asm_16bb1
+	jr nc, .evolution_cant_ko
 	call CheckIfSelectedAttackIsUnusable
 	jr nc, .asm_16baa
 	farcall LookForEnergyNeededForAttackInHand
-	jr nc, .asm_16bb1
+	jr nc, .evolution_cant_ko
 .asm_16baa
-	ld a, $05
+	ld a, 5
 	call AIEncourage
-	jr .asm_16bbc
-.asm_16bb1
+	jr .check_defending_can_ko_evolution
+.evolution_cant_ko
 	ld a, [wd063]
 	or a
-	jr z, .asm_16bbc
-	ld a, $14
+	jr z, .check_defending_can_ko_evolution
+	ld a, 20
 	call AIDiscourage
-.asm_16bbc
+
+; if defending Pokémon can KO evolution, lower AI score
+.check_defending_can_ko_evolution
 	ld a, [wTempAI]
 	or a
-	jr nz, .asm_16bd5
+	jr nz, .check_mr_mime
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
-	jr nc, .asm_16bd5
-	ld a, $0a
+	jr nc, .check_mr_mime
+	ld a, 10
 	call AIDiscourage
 	ld a, $01
 	ld [wd07b], a
-.asm_16bd5
-	ld a, [wd062]
+
+; if evolution can't damage player's Mr Mime, lower AI score
+.check_mr_mime
+	ld a, [wTempAIPokemonCard]
 	call GetCardIDFromDeckIndex
 	cp16 MUK
-	jr z, .asm_16bf3
+	jr z, .check_defending_can_ko
 	ld a, [wTempAI]
 	farcall $13, $4437
-	jr c, .asm_16bf3
-	ld a, $1e
+	jr c, .check_defending_can_ko
+	ld a, 30
 	call AIDiscourage
-.asm_16bf3
+
+; if defending Pokémon can KO current card, raise AI score
+.check_defending_can_ko
 	ld a, [wTempAI]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -1926,124 +2372,122 @@ Func_16af1:
 	ld [hl], a
 	ld a, [wTempAI]
 	or a
-	jr nz, .asm_16c28
+	jr nz, .check_2nd_stage_hand
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
-	jr nc, .asm_16c1d
+	jr nc, .check_status
+	; encourage unless it can KO the evolution as well
 	ld a, [wd07b]
 	or a
-	jr nz, .asm_16c1d
-	ld a, $05
+	jr nz, .check_status
+	ld a, 5
 	call AIEncourage
-.asm_16c1d
+
+; if current card has a status condition, raise AI score
+.check_status
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
-	jr z, .asm_16c28
-	ld a, $04
+	jr z, .check_2nd_stage_hand
+	ld a, 4
 	call AIEncourage
-.asm_16c28
-	ld a, [wd062]
-	farcall $a, $58f9
-	jr nc, .asm_16c38
-	ld a, $02
+
+; if hand has 2nd stage card to evolve evolution card, raise AI score
+.check_2nd_stage_hand
+	ld a, [wTempAIPokemonCard]
+	farcall $a, $58f9 ; CheckForEvolutionInList
+	jr nc, .check_2nd_stage_deck
+	ld a, 2
 	call AIEncourage
-	jr .asm_16c46
-.asm_16c38
-	ld a, [wd062]
+	jr .check_damage
+
+; if deck has 2nd stage card to evolve evolution card, raise AI score
+.check_2nd_stage_deck
+	ld a, [wTempAIPokemonCard]
 	farcall $a, $5921
-	jr nc, .asm_16c46
-	ld a, $01
+	jr nc, .check_damage
+	ld a, 1
 	call AIEncourage
-.asm_16c46
+
+; decrease AI score proportional to damage
+; AI score -= floor(Damage / 40)
+.check_damage
 	ld a, [wTempAI]
 	ld e, a
 	call GetCardDamageAndMaxHP
 	or a
-	jr z, .asm_16c5a
+	jr z, .check_mysterious_fossil
 	srl a
 	srl a
 	call ConvertHPToCounters
 	call AIDiscourage
-.asm_16c5a
+
+; if is Mysterious Fossil or
+; wLoadedCard1AIInfo is AI_INFO_ENCOURAGE_EVO,
+; raise AI score
+.check_mysterious_fossil
 	ld a, [wTempAI]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp $01
-	jr nz, .asm_16c6f
-	ld a, [hl]
-	cp $9d
-.asm_16c6f
-	jr z, .asm_16c7f
-	ld a, [$cc73]
-	cp $02
-	jr nz, .asm_16c84
-	ld a, $02
+	cphl MYSTERIOUS_FOSSIL
+	jr z, .mysterious_fossil
+	ld a, [wLoadedCard1AIInfo]
+	; bug, should mask out HAS_EVOLUTION flag first
+	cp AI_INFO_ENCOURAGE_EVO
+	jr nz, .i_love_pikachu_deck
+	ld a, 2
 	call AIEncourage
-	jr .asm_16c84
-.asm_16c7f
-	ld a, $05
+	jr .i_love_pikachu_deck
+
+.mysterious_fossil
+	ld a, 5
 	call AIEncourage
-.asm_16c84
+
+; in I Love Pikachu Deck, decrease AI score for evolving Pikachu
+.i_love_pikachu_deck
 	ld a, [wOpponentDeckID]
-	cp $14
-	jr nz, .asm_16cbf
+	cp I_LOVE_PIKACHU_DECK_ID
+	jr nz, .check_score
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_16c97
-	ld a, [hl]
-	cp $bb
-.asm_16c97
-	jr z, .asm_16cba
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_16ca2
-	ld a, [hl]
-	cp $bd
-.asm_16ca2
-	jr z, .asm_16cba
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_16cad
-	ld a, [hl]
-	cp $bf
-.asm_16cad
-	jr z, .asm_16cba
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_16cb8
-	ld a, [hl]
-	cp $c0
-.asm_16cb8
-	jr nz, .asm_16cbf
-.asm_16cba
-	ld a, $03
+	cphl PIKACHU_LV5
+	jr z, .pikachu
+	cphl PIKACHU_LV13
+	jr z, .pikachu
+	cphl PIKACHU_LV16
+	jr z, .pikachu
+	cphl PIKACHU_ALT_LV16
+	jr nz, .check_score
+.pikachu
+	ld a, 3
 	call AIDiscourage
-.asm_16cbf
+
+; if AI score >= 133, return carry
+.check_score
 	ld a, [wAIScore]
-	cp $85
+	cp 133
 	ccf
 	ret
 
-Func_16cc6:
-	ld a, [wMusicCh2CurOctave]
+; goes through $00 terminated list pointed
+; by wAICardListPlayFromHandPriority and compares it to each card in hand.
+; Sorts the hand in wDuelTempList so that the found card IDs
+; are in the same order as the list pointed by de.
+SortTempHandByIDList:
+	ld a, [wAICardListPlayFromHandPriority + 1]
 	or a
-	ret z
+	ret z ; return if list is empty
+
+; start going down the ID list
 	ld d, a
-	ld a, [wMusicCh2CurPitch]
+	ld a, [wAICardListPlayFromHandPriority]
 	ld e, a
-	ld c, $00
-.asm_16cd2
+	ld c, 0
+.loop_list_id
+; get this item's ID
+; if $00, list has ended
 	ld a, [de]
 	ld b, a
 	inc de
@@ -2053,18 +2497,20 @@ Func_16cc6:
 	ld e, b
 	ld d, a
 	call CheckIfCardIDIsZero_Bank5
-	jr c, .asm_16d16
+	jr c, .done ; return when list is over
 	ld hl, wDuelTempList
-	ld b, $00
+	ld b, 0
 	add hl, bc
-.asm_16ce5
+
+; search in the hand card list
+.next_hand_card
 	ld a, [hl]
 	ldh [hTempCardIndex_ff98], a
-	cp $ff
-	jr nz, .asm_16cef
+	cp -1
+	jr nz, .valid_card
 	pop de
-	jr .asm_16cd2
-.asm_16cef
+	jr .loop_list_id
+.valid_card
 	push bc
 	push de
 	call GetCardIDFromDeckIndex
@@ -2072,14 +2518,18 @@ Func_16cc6:
 	ld a, d
 	pop de
 	cp d
-	jr nz, .asm_16d12
+	jr nz, .not_same
 	ld a, c
 	cp e
-	jr nz, .asm_16d12
+	jr nz, .not_same
+
+; found
+; swap this hand card with the spot
+; in hand corresponding to c
 	pop bc
 	push bc
 	push hl
-	ld b, $00
+	ld b, 0
 	ld hl, wDuelTempList
 	add hl, bc
 	ld b, [hl]
@@ -2090,12 +2540,12 @@ Func_16cc6:
 	pop bc
 	inc c
 	inc hl
-	jr .asm_16ce5
-.asm_16d12
+	jr .next_hand_card
+.not_same
 	pop bc
 	inc hl
-	jr .asm_16ce5
-.asm_16d16
+	jr .next_hand_card
+.done
 	pop de
 	ret
 ; 0x16d18
@@ -2571,13 +3021,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 ; if there is no surplus energy, encourage playing energy.
 .discard_energy
 	ld hl, wLoadedCard1ID
-	inc hl
-	ld a, [hld]
-	cp HIGH(ZAPDOS_LV64)
-	jr nz, .asm_16fce
-	ld a, [hl]
-	cp LOW(ZAPDOS_LV64)
-.asm_16fce
+	cphl ZAPDOS_LV64
 	jp z, .check_evolution
 	farcall CheckIfNoSurplusEnergyForAttack
 	jr c, .asm_166cd
@@ -4017,9 +4461,47 @@ GetAIScoreOfAttack:
 	call AIDiscourage
 .asm_17969
 	ret
-; 0x1796a
 
-SECTION "Bank 5@7993", ROMX[$7993], BANK[$5]
+; return carry if card ID corresponding
+; to the input deck index is listed in wAICardListAvoidPrize;
+; input:
+;	- a = deck index of card to check
+CheckIfCardIDIsInList:
+	ld b, a
+	ld a, [wAICardListAvoidPrize + 1]
+	or a
+	ret z ; null
+	push hl
+	ld h, a
+	ld a, [wAICardListAvoidPrize]
+	ld l, a
+
+	ld a, b
+	call GetCardIDFromDeckIndex
+	ld c, e
+	ld b, d
+.loop_id_list
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call CheckIfCardIDIsZero_Bank5
+	jr c, .false
+	ld a, e
+	cp c
+	jr nz, .loop_id_list
+	ld a, d
+	cp b
+	jr nz, .loop_id_list
+
+; true
+	pop hl
+	scf
+	ret
+.false
+	pop hl
+	or a
+	ret
 
 ; returns carry if damage dealt from any of
 ; a card's attacks KOs defending Pokémon
@@ -4174,154 +4656,105 @@ AITryUseAttack:
 	farcall AIMakeDecision
 	ret
 
-Func_17a72:
+; return carry if input energy card is useful to
+; the Pokémon card ID in wTempCardID_d0a3
+; used for knowing if a given energy card can be discarded
+; from a given Pokémon card
+; input:
+;	a = energy card attached to Pokémon to check
+;	[wTempCardType] = TYPE_ENERGY_* of given Pokémon
+;	wTempCardID_d0a3 = card index of Pokémon card to check
+CheckIfEnergyIsUseful:
 	push hl
 	push de
 	push bc
 	call GetCardIDFromDeckIndex
+
+	; Recycle energy isn't useful
 	cp16 RECYCLE_ENERGY
-	jp z, .asm_17b66
+	jp z, .no_carry
+
+	; Double Colorless and Rainbow energy are useful
 	cp16 DOUBLE_COLORLESS_ENERGY
-	jp z, .asm_17b73
+	jp z, .set_carry
 	cp16 RAINBOW_ENERGY
-	jp z, .asm_17b73
-	ld a, [wd0a5]
-	cp $0e
-	jp z, .asm_17b73
-	ld hl, wd0a3
-	ld bc, $6
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17ab0
-	ld a, [hl]
-	cp $4b
-.asm_17ab0
-	jp z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17abc
-	ld a, [hl]
-	cp $4c
-.asm_17abc
-	jp z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17ac8
-	ld a, [hl]
-	cp $86
-.asm_17ac8
-	jp z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17ad4
-	ld a, [hl]
-	cp $87
-.asm_17ad4
-	jp z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17ae0
-	ld a, [hl]
-	cp $88
-.asm_17ae0
-	jp z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17aec
-	ld a, [hl]
-	cp $89
-.asm_17aec
-	jr z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17af7
-	ld a, [hl]
-	cp $8a
-.asm_17af7
-	jr z, .asm_17b6b
-	ld bc, $3
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17b05
-	ld a, [hl]
-	cp $c3
-.asm_17b05
-	jr z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $00
-	jr nz, .asm_17b10
-	ld a, [hl]
-	cp $c4
-.asm_17b10
-	jr z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $01
-	jr nz, .asm_17b1b
-	ld a, [hl]
-	cp $36
-.asm_17b1b
-	jr z, .asm_17b6b
-	inc hl
-	ld a, [hld]
-	cp $01
-	jr nz, .asm_17b26
-	ld a, [hl]
-	cp $76
-.asm_17b26
-	jr z, .asm_17b3e
-	inc hl
-	ld a, [hld]
-	cp $01
-	jr nz, .asm_17b31
-	ld a, [hl]
-	cp $75
-.asm_17b31
-	jr z, .asm_17b3e
-	inc hl
-	ld a, [hld]
-	cp $01
-	jr nz, .asm_17b3c
-	ld a, [hl]
-	cp $77
-.asm_17b3c
-	jr nz, .asm_17b5c
-.asm_17b3e
+	jp z, .set_carry
+
+	; Pokémon in colorless, so all energies are useful
+	ld a, [wTempCardType]
+	cp TYPE_ENERGY_DOUBLE_COLORLESS
+	jp z, .set_carry
+
+	; check cards that have Psychic energy
+	; as a useful energy for attack
+	ld hl, wTempCardID_d0a3
+	ld bc, PSYCHIC_ENERGY
+	cphl EXEGGCUTE
+	jp z, .compare_energy_id
+	cphl EXEGGUTOR
+	jp z, .compare_energy_id
+	cphl PSYDUCK_LV15
+	jp z, .compare_energy_id
+	cphl PSYDUCK_LV16
+	jp z, .compare_energy_id
+	cphl GOLDUCK_LV27
+	jp z, .compare_energy_id
+	cphl GOLDUCK_LV28
+	jr z, .compare_energy_id
+	cphl DARK_GOLDUCK
+	jr z, .compare_energy_id
+
+	; check cards that have Water energy
+	; as a useful energy for attack
+	ld bc, WATER_ENERGY
+	cphl SURFING_PIKACHU_LV13
+	jr z, .compare_energy_id
+	cphl SURFING_PIKACHU_ALT_LV13
+	jr z, .compare_energy_id
+	cphl JYNX_LV18
+	jr z, .compare_energy_id
+
+	; Eevee has a number of useful energy cards
+	cphl EEVEE_LV9
+	jr z, .check_eevee
+	cphl EEVEE_LV5
+	jr z, .check_eevee
+	cphl EEVEE_LV12
+	jr nz, .check_type
+.check_eevee
 	cp16 WATER_ENERGY
-	jr z, .asm_17b73
+	jr z, .set_carry
 	cp16 FIRE_ENERGY
-	jr z, .asm_17b73
+	jr z, .set_carry
 	cp16 LIGHTNING_ENERGY
-	jr z, .asm_17b73
-.asm_17b5c
+	jr z, .set_carry
+
+.check_type
+	; if same type as Pokémon, is useful
 	call GetCardType
 	ld d, a
-	ld a, [wd0a5]
+	ld a, [wTempCardType]
 	cp d
-	jr z, .asm_17b73
-.asm_17b66
+	jr z, .set_carry
+
+.no_carry
+	; not useful
 	pop bc
 	pop de
 	pop hl
 	or a
 	ret
-.asm_17b6b
+
+.compare_energy_id
 	ld a, c
 	cp e
-	jr nz, .asm_17b5c
+	jr nz, .check_type
 	ld a, b
 	cp d
-	jr nz, .asm_17b5c
-.asm_17b73
+	jr nz, .check_type
+
+.set_carry
+	; is useful
 	pop bc
 	pop de
 	pop hl
@@ -4633,37 +5066,49 @@ ConvertColorToEnergyCardID:
 	dw PSYCHIC_ENERGY
 	dw DOUBLE_COLORLESS_ENERGY
 
-Func_17cd6:
+; return carry depending on card index in a:
+;	- if energy card, return carry if no energy card has been played yet
+;	- if basic Pokémon card, return carry if there's space in bench
+;	- if evolution card, return carry if there's a Pokémon
+;	  in Play Area it can evolve
+;	- if trainer card, return carry if it can be used
+; input:
+;	a = card index to check
+CheckIfCardCanBePlayed:
 	ldh [hTempCardIndex_ff9f], a
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Type]
 	cp TYPE_ENERGY
-	jr c, .asm_17ced
-	cp $10
-	jr z, .asm_17d16
+	jr c, .pokemon_card
+	cp TYPE_TRAINER
+	jr z, .trainer_card
+
+; enegy card
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	ret z
 	scf
 	ret
-.asm_17ced
+
+.pokemon_card
 	ld a, [wLoadedCard1Stage]
 	or a
-	jr nz, .asm_17cfc
+	jr nz, .evolution_card
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld hl, wMaxNumPlayAreaPokemon
 	cp [hl]
 	ccf
 	ret
-.asm_17cfc
+
+.evolution_card
 	bank1call IsPrehistoricPowerActive
 	ret c
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
 	ld b, $00
-.asm_17d06
+.loop
 	push bc
 	ld e, b
 	ldh a, [hTempCardIndex_ff9f]
@@ -4673,14 +5118,15 @@ Func_17cd6:
 	ret nc
 	inc b
 	dec c
-	jr nz, .asm_17d06
+	jr nz, .loop
 	scf
 	ret
-.asm_17d16
+
+.trainer_card
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
 	call Func_16968
-	ld a, $01
+	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret
 

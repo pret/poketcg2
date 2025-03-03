@@ -99,9 +99,12 @@ hTempRetreatCostCards:: ; ffa4
 ; PLAY_AREA_*  of target selected for some Pkmn Powers,
 ; (e.g. Curse, Damage Swap) and for trainer card effect.
 hPlayAreaEffectTarget:: ; ffa4
-	ds $6
+	ds $1
 
-	ds $9
+hAIEnergyTransPlayAreaLocation:: ; ffa5
+	ds $1
+
+	ds $d
 
 ; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3

@@ -1122,6 +1122,227 @@ DeckAndHandIconsCGBPalData:
 	db $ff
 ; 0x24b83
 
+SECTION "Bank 9@4cd7", ROMX[$4cd7], BANK[$9]
+
+; saves a to wCardSearchFunc and de to wCardSearchFuncParam
+; input:
+; - a = CARDSEARCH_* constant
+; - de = parameter for card search function
+SetCardSearchFuncParams:
+	push hl
+	ld [wCardSearchFunc], a
+	ld hl, wCardSearchFuncParam
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ret
+
+; runs the card search function loaded in wCardSearchFunc
+; if the input card passes the predicate, then carry set is returned
+; input:
+; - a = card index
+; - [wCardSearchFunc] = CARDSEARCH_* constant
+; - wCardSearchFuncParam = parameter for func
+; output:
+; - carry set if input card passes all checks of the function
+ExecuteCardSearchFunc:
+	push hl
+	push de
+	push bc
+	ld e, a
+	ld a, [wCardSearchFunc]
+	ld hl, .FuncTable
+	call JumpToFunctionInTable
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.FuncTable:
+	dw .SearchCardID                 ; CARDSEARCH_CARD_ID
+	dw .SearchNidoran                ; CARDSEARCH_NIDORAN
+	dw .SearchBasicFightingPkmn      ; CARDSEARCH_BASIC_FIGHTING_POKEMON
+	dw .SearchBasicEnergy            ; CARDSEARCH_BASIC_ENERGY
+	dw .SearchAnyEnergy              ; CARDSEARCH_ANY_ENERGY
+	dw .SearchPokedexNumber          ; CARDSEARCH_POKEDEX_NUMBER
+	dw .Func_24d77                   ; CARDSEARCH_UNK_6
+	dw .SearchPsychicEnergy          ; CARDSEARCH_PSYCHIC_ENERGY
+	dw .SearchEvolutionPkmn          ; CARDSEARCH_EVOLUTION_POKEMON
+	dw .Func_24df6                   ; CARDSEARCH_UNK_9
+	dw .SearchTrainer                ; CARDSEARCH_TRAINER
+	dw .SearchEvolutionColorlessPkmn ; CARDSEARCH_EVOLUTION_COLORLESS_POKEMON
+	dw .SearchLightningEnergy        ; CARDSEARCH_LIGHTNING_ENERGY
+	dw .Func_24df6                   ; CARDSEARCH_UNK_D
+	dw .SearchBasicPkmn              ; CARDSEARCH_BASIC_POKEMON
+
+.no_carry
+	or a
+	ret
+
+; returns carry if input card has same card ID
+; as wCardSearchFuncParam
+.SearchCardID:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	ld hl, wCardSearchFuncParam + 1
+	ld a, d
+	cp [hl]
+	jr nz, .no_carry
+	dec hl
+	ld a, e
+	cp [hl]
+	jr nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a NidoranF or NidoranM
+.SearchNidoran:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2PokedexNumber]
+	cp DEX_NIDORAN_F
+	jr z, .is_nidoran
+	cp DEX_NIDORAN_M
+	jr nz, .no_carry
+.is_nidoran
+	scf
+	ret
+
+; returns carry if input card is a Basic Fighting Pokémon
+.SearchBasicFightingPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_PKMN_FIGHTING
+	jr nz, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Basic energy
+.SearchBasicEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_DOUBLE_COLORLESS
+	jr nc, .no_carry
+	and TYPE_ENERGY
+	jr z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an energy card
+.SearchAnyEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY
+	jr nc, .no_carry
+	scf
+	ret
+
+; returns carry if input card has same Pokédex number
+; as wCardSearchFuncParam
+.SearchPokedexNumber:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2PokedexNumber]
+	ld hl, wCardSearchFuncParam
+	cp [hl]
+	jr nz, .no_carry
+	scf
+	ret
+
+.Func_24d77:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .no_carry
+	ld a, [wLoadedCard2Unk3a]
+	or a
+	jr z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Psychic energy
+.SearchPsychicEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_PSYCHIC
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an Evolution Pokémon
+.SearchEvolutionPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jp nc, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Trainer card
+.SearchTrainer:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_TRAINER
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an Evolution Colorless Pokémon
+.SearchEvolutionColorlessPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_PKMN_COLORLESS
+	jp nz, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Lightning energy
+.SearchLightningEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_LIGHTNING
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Basic Pokémon
+.SearchBasicPkmn:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jp nc, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp nz, .no_carry
+	scf
+	ret
+
+.Func_24df6:
+	scf
+	ret
+; 0x24df8
+
 SECTION "Bank 9@4e25", ROMX[$4e25], BANK[$9]
 
 ; given the deck index of a turn holder's card in register a,
