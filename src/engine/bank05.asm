@@ -21,125 +21,125 @@ MACRO ai_energy
 ENDM
 
 DeckAIPointerTable::
-	dw AIActionTable_ScriptedSamPracticeDeck ; SAMS_PRACTICE_DECK_ID
-	dw AIActionTable_GeneralDecks ; PLAYER_PRACTICE_DECK_ID
-	dw AIActionTable_GeneralDecks ; STARTER_DECK_ID
-	dw AIActionTable_GeneralDecks ; SWEAT_ANTI_GR1_DECK_ID
-	dw AIActionTable_GeneralDecks ; GIVE_IN_ANTI_GR2_DECK_ID
-	dw AIActionTable_GeneralDecks ; VENGEFUL_ANTI_GR3_DECK_ID
-	dw AIActionTable_GeneralDecks ; UNFORGIVING_ANTI_GR4_DECK_ID
-	dw AIActionTable_GeneralDecks ; UNUSED_SAMS_PRACTICE_DECK_ID
-	dw AIActionTable_GeneralDecks ; AARON_PRACTICE_DECK1_ID
-	dw AIActionTable_AaronStep1Deck ; AARONS_STEP1_DECK_ID
-	dw AIActionTable_GeneralDecks ; AARON_PRACTICE_DECK2_ID
-	dw AIActionTable_AaronStep2Deck ; AARONS_STEP2_DECK_ID
-	dw AIActionTable_GeneralDecks ; AARON_PRACTICE_DECK3_ID
-	dw AIActionTable_AaronStep3Deck ; AARONS_STEP3_DECK_ID
-	dw AIActionTable_GeneralDecks ; BRICK_WALK_DECK_ID
-	dw AIActionTable_GeneralDecks ; BENCH_TRAP_DECK_ID
-	dw AIActionTable_SkySparkDeck ; SKY_SPARK_DECK_ID
-	dw AIActionTable_ElectricSelfdestructDeck ; ELECTRIC_SELFDESTRUCT_DECK_ID
-	dw AIActionTable_GeneralDecks ; OVERFLOW_DECK_ID
-	dw AIActionTable_GeneralDecks ; TRIPLE_ZAPDOS_DECK_ID
-	dw AIActionTable_GeneralDecks ; I_LOVE_PIKACHU_DECK_ID
-	dw AIActionTable_GeneralDecks ; TEN_THOUSAND_VOLTS_DECK_ID
-	dw AIActionTable_HandOverGRDeck ; HAND_OVER_GR_DECK_ID
-	dw $4408 ; PSYCHIC_ELITE_DECK_ID
-	dw AIActionTable_GeneralDecks ; PSYCHOKINESIS_DECK_ID
-	dw AIActionTable_GeneralDecks ; PHANTOM_DECK_ID
-	dw $44aa ; PUPPET_MASTER_DECK_ID
-	dw $4532 ; EVEN3_YEARS_ON_A_ROCK_DECK_ID
-	dw AIActionTable_GeneralDecks ; ROLLING_STONE_DECK_ID
-	dw AIActionTable_GeneralDecks ; GREAT_EARTHQUAKE_DECK_ID
-	dw AIActionTable_GeneralDecks ; AWESOME_FOSSIL_DECK_ID
-	dw $45b4 ; RAGING_BILLOW_OF_FISTS_DECK_ID
-	dw AIActionTable_GeneralDecks ; YOU_CAN_DO_IT_MACHOP_DECK_ID
-	dw AIActionTable_GeneralDecks ; NEW_MACHOKE_DECK_ID
-	dw $41ab ; SKILLED_WARRIOR_DECK_ID
-	dw AIActionTable_GeneralDecks ; I_LOVE_TO_FIGHT_DECK_ID
-	dw $464c ; MAX_ENERGY_DECK_ID
-	dw AIActionTable_GeneralDecks ; REMAINING_GREEN_DECK_ID
-	dw AIActionTable_GeneralDecks ; POISON_CURSE_DECK_ID
-	dw AIActionTable_GeneralDecks ; GLITTERING_SCALES_DECK_ID
-	dw AIActionTable_GeneralDecks ; STEADY_INCREASE_DECK_ID
-	dw $46d4 ; DARK_SCIENCE_DECK_ID
-	dw AIActionTable_GeneralDecks ; NATURAL_SCIENCE_DECK_ID
-	dw AIActionTable_GeneralDecks ; POISONOUS_SWAMP_DECK_ID
-	dw AIActionTable_GeneralDecks ; GATHERING_NIDORAN_DECK_ID
-	dw $475d ; RAIN_DANCE_CONFUSION_DECK_ID
-	dw AIActionTable_GeneralDecks ; CONSERVING_WATER_DECK_ID
-	dw AIActionTable_GeneralDecks ; ENERGY_REMOVAL_DECK_ID
-	dw $47e5 ; SPLASHING_ABOUT_DECK_ID
-	dw $4843 ; BEACH_DECK_ID
-	dw $489d ; GO_ARCANINE_DECK_ID
-	dw AIActionTable_GeneralDecks ; FLAME_FESTIVAL_DECK_ID
-	dw AIActionTable_GeneralDecks ; IMMORTAL_FLAME_DECK_ID
-	dw AIActionTable_GeneralDecks ; ELECTRIC_CURRENT_SHOCK_DECK_ID
-	dw $4946 ; GREAT_ROCKET4_DECK_ID
-	dw $49ec ; GREAT_ROCKET1_DECK_ID
-	dw $4a95 ; GREAT_ROCKET2_DECK_ID
-	dw $4b56 ; GREAT_ROCKET3_DECK_ID
-	dw $4bfa ; GRAND_FIRE_DECK_ID
-	dw $4ca6 ; LEGENDARY_FOSSIL_DECK_ID
-	dw $4d2b ; WATER_LEGEND_DECK_ID
-	dw $4dc2 ; GREAT_DRAGON_DECK_ID
-	dw AIActionTable_GeneralDecks ; BUG_COLLECTING_DECK_ID
-	dw AIActionTable_GeneralDecks ; DEMONIC_FOREST_DECK_ID
-	dw AIActionTable_GeneralDecks ; STICKY_POISON_GAS_DECK_ID
-	dw $4e6c ; MAD_PETALS_DECK_ID
-	dw $4f02 ; DANGEROUS_BENCH_DECK_ID
-	dw AIActionTable_GeneralDecks ; CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
-	dw AIActionTable_GeneralDecks ; THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
-	dw $4f6c ; QUICK_ATTACK_DECK_ID
-	dw $4ffa ; COMPLETE_COMBUSTION_DECK_ID
-	dw AIActionTable_GeneralDecks ; FIREBALL_DECK_ID
-	dw AIActionTable_GeneralDecks ; EEVEE_SHOWDOWN_DECK_ID
-	dw $5057 ; GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
-	dw AIActionTable_GeneralDecks ; WHIRLPOOL_SHOWER_DECK_ID
-	dw AIActionTable_GeneralDecks ; PARALYZED_PARALYZED_DECK_ID
-	dw AIActionTable_GeneralDecks ; BENCH_CALL_DECK_ID
-	dw $50df ; WATER_STREAM_DECK_ID
-	dw AIActionTable_GeneralDecks ; ROCK_BLAST_DECK_ID
-	dw AIActionTable_GeneralDecks ; FULL_STRENGTH_DECK_ID
-	dw $515d ; RUNNING_WILD_DECK_ID
-	dw AIActionTable_GeneralDecks ; DIRECT_HIT_DECK_ID
-	dw AIActionTable_GeneralDecks ; SUPERDESTRUCTIVE_POWER_DECK_ID
-	dw AIActionTable_GeneralDecks ; BAD_DREAM_DECK_ID
-	dw AIActionTable_GeneralDecks ; POKEMON_POWER_DECK_ID
-	dw $51e4 ; SPIRITED_AWAY_DECK_ID
-	dw $5262 ; SNORLAX_GUARD_DECK_ID
-	dw $52d8 ; EYE_OF_THE_STORM_DECK_ID
-	dw $5368 ; SUDDEN_GROWTH_DECK_ID
-	dw $53fb ; VERY_RARE_CARD_DECK_ID
-	dw $5478 ; BAD_GUYS_DECK_ID
-	dw $5506 ; POISON_MIST_DECK_ID
-	dw $558c ; ULTRA_REMOVAL_DECK_ID
-	dw $5600 ; PSYCHIC_BATTLE_DECK_ID
-	dw $567c ; STOP_LIFE_DECK_ID
-	dw $5713 ; SCORCHER_DECK_ID
-	dw $57a7 ; TSUNAMI_STARTER_DECK_ID
-	dw $583b ; SMASH_TO_MINCEMEAT_DECK_ID
-	dw AIActionTable_GeneralDecks ; TEST_YOUR_LUCK_DECK_ID
-	dw AIActionTable_GeneralDecks ; PROTOHISTORIC_DECK_ID
-	dw $58d5 ; TEXTURE_TUNER7_DECK_ID
-	dw $596a ; COLORLESS_ENERGY_DECK_ID
-	dw $5a0e ; POWERFUL_POKEMON_DECK_ID
-	dw AIActionTable_GeneralDecks ; WEIRD_DECK_ID
-	dw AIActionTable_GeneralDecks ; STRANGE_DECK_ID
-	dw AIActionTable_GeneralDecks ; RONALDS_UNCOOL_DECK_ID
-	dw AIActionTable_GeneralDecks ; RONALDS_GRX_DECK_ID
-	dw AIActionTable_GeneralDecks ; RONALDS_POWER_DECK_ID
-	dw $5a8c ; RONALDS_PSYCHIC_DECK_ID
-	dw $5b1c ; RONALDS_ULTRA_DECK_ID
-	dw $5b98 ; EVERYBODYS_FRIEND_DECK_ID
-	dw $5c17 ; IMMORTAL_POKEMON_DECK_ID
-	dw $5cbb ; TORRENTIAL_FLOOD_DECK_ID
-	dw $5d46 ; TRAINER_IMPRISON_DECK_ID
-	dw $5dd7 ; BLAZING_FLAME_DECK_ID
-	dw $5e54 ; DAMAGE_CHAOS_DECK_ID
-	dw $5ee4 ; BIG_THUNDER_DECK_ID
-	dw $5f57 ; POWER_OF_DARKNESS_DECK_ID
-	dw $5fe1 ; POISON_STORM_DECK_ID
+	dw AIActionTable_ScriptedSamPracticeDeck    ; SAMS_PRACTICE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; PLAYER_PRACTICE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; STARTER_DECK_ID
+	dw AIActionTable_GeneralDecks               ; SWEAT_ANTI_GR1_DECK_ID
+	dw AIActionTable_GeneralDecks               ; GIVE_IN_ANTI_GR2_DECK_ID
+	dw AIActionTable_GeneralDecks               ; VENGEFUL_ANTI_GR3_DECK_ID
+	dw AIActionTable_GeneralDecks               ; UNFORGIVING_ANTI_GR4_DECK_ID
+	dw AIActionTable_GeneralDecks               ; UNUSED_SAMS_PRACTICE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; AARON_PRACTICE_DECK1_ID
+	dw AIActionTable_AaronStep1Deck             ; AARONS_STEP1_DECK_ID
+	dw AIActionTable_GeneralDecks               ; AARON_PRACTICE_DECK2_ID
+	dw AIActionTable_AaronStep2Deck             ; AARONS_STEP2_DECK_ID
+	dw AIActionTable_GeneralDecks               ; AARON_PRACTICE_DECK3_ID
+	dw AIActionTable_AaronStep3Deck             ; AARONS_STEP3_DECK_ID
+	dw AIActionTable_GeneralDecks               ; BRICK_WALK_DECK_ID
+	dw AIActionTable_GeneralDecks               ; BENCH_TRAP_DECK_ID
+	dw AIActionTable_SkySparkDeck               ; SKY_SPARK_DECK_ID
+	dw AIActionTable_ElectricSelfdestructDeck   ; ELECTRIC_SELFDESTRUCT_DECK_ID
+	dw AIActionTable_GeneralDecks               ; OVERFLOW_DECK_ID
+	dw AIActionTable_GeneralDecks               ; TRIPLE_ZAPDOS_DECK_ID
+	dw AIActionTable_GeneralDecks               ; I_LOVE_PIKACHU_DECK_ID
+	dw AIActionTable_GeneralDecks               ; TEN_THOUSAND_VOLTS_DECK_ID
+	dw AIActionTable_HandOverGRDeck             ; HAND_OVER_GR_DECK_ID
+	dw AIActionTable_PsychicEliteDeck           ; PSYCHIC_ELITE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; PSYCHOKINESIS_DECK_ID
+	dw AIActionTable_GeneralDecks               ; PHANTOM_DECK_ID
+	dw AIActionTable_PuppetMasterDeck           ; PUPPET_MASTER_DECK_ID
+	dw AIActionTable_Even3YearsOnARockDeck      ; EVEN3_YEARS_ON_A_ROCK_DECK_ID
+	dw AIActionTable_GeneralDecks               ; ROLLING_STONE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; GREAT_EARTHQUAKE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; AWESOME_FOSSIL_DECK_ID
+	dw AIActionTable_RagingBillowOfFistsDeck    ; RAGING_BILLOW_OF_FISTS_DECK_ID
+	dw AIActionTable_GeneralDecks               ; YOU_CAN_DO_IT_MACHOP_DECK_ID
+	dw AIActionTable_GeneralDecks               ; NEW_MACHOKE_DECK_ID
+	dw AIActionTable_SkilledWarriorDeck         ; SKILLED_WARRIOR_DECK_ID
+	dw AIActionTable_GeneralDecks               ; I_LOVE_TO_FIGHT_DECK_ID
+	dw AIActionTable_MaxEnergyDeck              ; MAX_ENERGY_DECK_ID
+	dw AIActionTable_GeneralDecks               ; REMAINING_GREEN_DECK_ID
+	dw AIActionTable_GeneralDecks               ; POISON_CURSE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; GLITTERING_SCALES_DECK_ID
+	dw AIActionTable_GeneralDecks               ; STEADY_INCREASE_DECK_ID
+	dw AIActionTable_DarkScienceDeck            ; DARK_SCIENCE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; NATURAL_SCIENCE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; POISONOUS_SWAMP_DECK_ID
+	dw AIActionTable_GeneralDecks               ; GATHERING_NIDORAN_DECK_ID
+	dw AIActionTable_RainDanceConfusionDeck     ; RAIN_DANCE_CONFUSION_DECK_ID
+	dw AIActionTable_GeneralDecks               ; CONSERVING_WATER_DECK_ID
+	dw AIActionTable_GeneralDecks               ; ENERGY_REMOVAL_DECK_ID
+	dw AIActionTable_SplashingAboutDeck         ; SPLASHING_ABOUT_DECK_ID
+	dw AIActionTable_BeachDeck                  ; BEACH_DECK_ID
+	dw AIActionTable_GoArcanineDeck             ; GO_ARCANINE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; FLAME_FESTIVAL_DECK_ID
+	dw AIActionTable_GeneralDecks               ; IMMORTAL_FLAME_DECK_ID
+	dw AIActionTable_GeneralDecks               ; ELECTRIC_CURRENT_SHOCK_DECK_ID
+	dw AIActionTable_GreatRocket4Deck           ; GREAT_ROCKET4_DECK_ID
+	dw AIActionTable_GreatRocket1Deck           ; GREAT_ROCKET1_DECK_ID
+	dw AIActionTable_GreatRocket2Deck           ; GREAT_ROCKET2_DECK_ID
+	dw AIActionTable_GreatRocket3Deck           ; GREAT_ROCKET3_DECK_ID
+	dw AIActionTable_GrandFireDeck              ; GRAND_FIRE_DECK_ID
+	dw AIActionTable_LegendaryFossilDeck        ; LEGENDARY_FOSSIL_DECK_ID
+	dw AIActionTable_WaterLegendDeck            ; WATER_LEGEND_DECK_ID
+	dw AIActionTable_GreatDragonDeck            ; GREAT_DRAGON_DECK_ID
+	dw AIActionTable_GeneralDecks               ; BUG_COLLECTING_DECK_ID
+	dw AIActionTable_GeneralDecks               ; DEMONIC_FOREST_DECK_ID
+	dw AIActionTable_GeneralDecks               ; STICKY_POISON_GAS_DECK_ID
+	dw AIActionTable_MadPetalsDeck              ; MAD_PETALS_DECK_ID
+	dw AIActionTable_DangerousBenchDeck         ; DANGEROUS_BENCH_DECK_ID
+	dw AIActionTable_GeneralDecks               ; CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
+	dw AIActionTable_GeneralDecks               ; THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
+	dw AIActionTable_QuickAttackDeck            ; QUICK_ATTACK_DECK_ID
+	dw AIActionTable_CompleteCombustionDeck     ; COMPLETE_COMBUSTION_DECK_ID
+	dw AIActionTable_GeneralDecks               ; FIREBALL_DECK_ID
+	dw AIActionTable_GeneralDecks               ; EEVEE_SHOWDOWN_DECK_ID
+	dw AIActionTable_GazeUponThePowerOfFireDeck ; GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; WHIRLPOOL_SHOWER_DECK_ID
+	dw AIActionTable_GeneralDecks               ; PARALYZED_PARALYZED_DECK_ID
+	dw AIActionTable_GeneralDecks               ; BENCH_CALL_DECK_ID
+	dw AIActionTable_WaterStreamDeck            ; WATER_STREAM_DECK_ID
+	dw AIActionTable_GeneralDecks               ; ROCK_BLAST_DECK_ID
+	dw AIActionTable_GeneralDecks               ; FULL_STRENGTH_DECK_ID
+	dw AIActionTable_RunningWildDeck            ; RUNNING_WILD_DECK_ID
+	dw AIActionTable_GeneralDecks               ; DIRECT_HIT_DECK_ID
+	dw AIActionTable_GeneralDecks               ; SUPERDESTRUCTIVE_POWER_DECK_ID
+	dw AIActionTable_GeneralDecks               ; BAD_DREAM_DECK_ID
+	dw AIActionTable_GeneralDecks               ; POKEMON_POWER_DECK_ID
+	dw AIActionTable_SpiritedAwayDeck           ; SPIRITED_AWAY_DECK_ID
+	dw AIActionTable_SnorlaxGuardDeck           ; SNORLAX_GUARD_DECK_ID
+	dw AIActionTable_EyeOfTheStormDeck          ; EYE_OF_THE_STORM_DECK_ID
+	dw AIActionTable_SuddenGrowthDeck           ; SUDDEN_GROWTH_DECK_ID
+	dw AIActionTable_VeryRareCardDeck           ; VERY_RARE_CARD_DECK_ID
+	dw AIActionTable_BadGuysDeck                ; BAD_GUYS_DECK_ID
+	dw AIActionTable_PoisonMistDeck             ; POISON_MIST_DECK_ID
+	dw AIActionTable_UltraRemovalDeck           ; ULTRA_REMOVAL_DECK_ID
+	dw AIActionTable_PsychicBattleDeck          ; PSYCHIC_BATTLE_DECK_ID
+	dw AIActionTable_StopLifeDeck               ; STOP_LIFE_DECK_ID
+	dw AIActionTable_ScorcherDeck               ; SCORCHER_DECK_ID
+	dw AIActionTable_TsunamiStarterDeck         ; TSUNAMI_STARTER_DECK_ID
+	dw AIActionTable_SmashToMincemeatDeck       ; SMASH_TO_MINCEMEAT_DECK_ID
+	dw AIActionTable_GeneralDecks               ; TEST_YOUR_LUCK_DECK_ID
+	dw AIActionTable_GeneralDecks               ; PROTOHISTORIC_DECK_ID
+	dw AIActionTable_TextureTuner7Deck          ; TEXTURE_TUNER7_DECK_ID
+	dw AIActionTable_ColorlessEnergyDeck        ; COLORLESS_ENERGY_DECK_ID
+	dw AIActionTable_PowerfulPokemonDeck        ; POWERFUL_POKEMON_DECK_ID
+	dw AIActionTable_GeneralDecks               ; WEIRD_DECK_ID
+	dw AIActionTable_GeneralDecks               ; STRANGE_DECK_ID
+	dw AIActionTable_GeneralDecks               ; RONALDS_UNCOOL_DECK_ID
+	dw AIActionTable_GeneralDecks               ; RONALDS_GRX_DECK_ID
+	dw AIActionTable_GeneralDecks               ; RONALDS_POWER_DECK_ID
+	dw AIActionTable_RonaldsPsychicDeck         ; RONALDS_PSYCHIC_DECK_ID
+	dw AIActionTable_RonaldsUltraDeck           ; RONALDS_ULTRA_DECK_ID
+	dw AIActionTable_EverybodysFriendDeck       ; EVERYBODYS_FRIEND_DECK_ID
+	dw AIActionTable_ImmortalPokemonDeck        ; IMMORTAL_POKEMON_DECK_ID
+	dw AIActionTable_TorrentialFloodDeck        ; TORRENTIAL_FLOOD_DECK_ID
+	dw AIActionTable_TrainerImprisonDeck        ; TRAINER_IMPRISON_DECK_ID
+	dw AIActionTable_BlazingFlameDeck           ; BLAZING_FLAME_DECK_ID
+	dw AIActionTable_DamageChaosDeck            ; DAMAGE_CHAOS_DECK_ID
+	dw AIActionTable_BigThunderDeck             ; BIG_THUNDER_DECK_ID
+	dw AIActionTable_PowerOfDarknessDeck        ; POWER_OF_DARKNESS_DECK_ID
+	dw AIActionTable_PoisonStormDeck            ; POISON_STORM_DECK_ID
 	dw AIActionTable_GeneralDecks
 	dw AIActionTable_GeneralDecks
 	dw AIActionTable_140f4
@@ -285,6 +285,7 @@ AIActionTable_GeneralDecks:
 	ret
 
 AIActionTable_HandOverGRDeck:
+AIActionTable_SkilledWarriorDeck:
 	dw .do_turn
 	dw .do_turn
 	dw .start_duel
@@ -294,7 +295,7 @@ AIActionTable_HandOverGRDeck:
 	dw .update_portrait
 
 .do_turn
-	farcall $12, $467a ; Func_4867a
+	farcall AIDoTurn_GeneralNoRetreat
 	ret
 
 .start_duel
@@ -550,6 +551,7 @@ AIActionTable_SkySparkDeck:
 	dw NULL ; end
 
 .list_bench
+.list_play_from_hand
 	dw PIKACHU_LV14
 	dw ZAPDOS_LV40
 	dw SPEAROW_LV9
@@ -587,7 +589,7 @@ AIActionTable_SkySparkDeck:
 	dw .list_prize
 	dw .list_arena
 	dw .list_bench
-	dw .list_bench
+	dw .list_play_from_hand
 	dw .list_energy
 
 AIActionTable_ElectricSelfdestructDeck:
@@ -628,6 +630,8 @@ AIActionTable_ElectricSelfdestructDeck:
 	farcall AIUpdatePortrait
 	ret
 
+.list_arena
+.list_bench
 	dw ELECTABUZZ_LV35
 	dw DODUO_LV10
 	dw VOLTORB_LV8
@@ -636,6 +640,7 @@ AIActionTable_ElectricSelfdestructDeck:
 	dw ZAPDOS_LV40
 	dw NULL ; end
 
+.list_play_from_hand
 	dw MAGNEMITE_LV13
 	dw MAGNEMITE_LV15
 	dw VOLTORB_LV8
@@ -648,6 +653,7 @@ AIActionTable_ElectricSelfdestructDeck:
 	ai_retreat MAGNEMITE_LV15, -2
 	dw NULL ; end
 
+.list_energy
 	ai_energy MAGNEMITE_LV13,  2, +1
 	ai_energy MAGNEMITE_LV15,  2, +1
 	ai_energy MAGNETON_LV28,   3, +1
@@ -659,6 +665,7 @@ AIActionTable_ElectricSelfdestructDeck:
 	ai_energy DODRIO_LV25,     3, +0
 	dw NULL ; end
 
+.list_prize
 	dw DEFENDER
 	dw NULL ; end
 
@@ -668,16 +675,4476 @@ AIActionTable_ElectricSelfdestructDeck:
 	ret
 
 .CardListPointerTable:
-	dw $43F3
-	dw $43AC
-	dw $43AC
-	dw $43BA
-	dw $43CD
-; 0x14408
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
 
-SECTION "Bank 5@6065", ROMX[$6065], BANK[$5]
+AIActionTable_PsychicEliteDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
 
-; returns carry if card ID in de is $0000
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw GASTLY_LV13
+	dw CHANSEY_LV55
+	dw MEWTWO_LV60
+	dw MR_MIME_LV28
+	dw MR_MIME_LV20
+	dw ABRA_LV14
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw ABRA_LV14
+	dw GASTLY_LV13
+	dw MEWTWO_LV60
+	dw MR_MIME_LV28
+	dw CHANSEY_LV55
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat HAUNTER_LV26,  +1
+	ai_retreat MEWTWO_LV60,   +1
+	ai_retreat ABRA_LV14,     -5
+	ai_retreat KADABRA_LV39,  -5
+	ai_retreat ALAKAZAM_LV42, -8
+	ai_retreat MR_MIME_LV20,  -8
+	ai_retreat CHANSEY_LV55,  -8
+	dw NULL ; end
+
+.list_energy
+	ai_energy ABRA_LV14,     1, -1
+	ai_energy KADABRA_LV39,  3, -1
+	ai_energy ALAKAZAM_LV42, 3, -1
+	ai_energy GASTLY_LV13,   2, +0
+	ai_energy HAUNTER_LV26,  2, -2
+	ai_energy MR_MIME_LV20,  2, -3
+	ai_energy MR_MIME_LV28,  2, +0
+	ai_energy MEWTWO_LV60,   3, +0
+	ai_energy CHANSEY_LV55,  4, -2
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PuppetMasterDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw SLOWPOKE_LV18
+	dw MR_MIME_LV28
+	dw DROWZEE_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw DROWZEE_LV12
+	dw MR_MIME_LV28
+	dw SLOWPOKE_LV18
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DROWZEE_LV12, -5
+	ai_retreat HYPNO_LV30,   -8
+	ai_retreat SLOWBRO_LV26, -5
+	dw NULL ; end
+
+.list_energy
+	ai_energy SLOWPOKE_LV18, 2, +0
+	ai_energy SLOWBRO_LV26,  2, -1
+	ai_energy DROWZEE_LV12,  2, +2
+	ai_energy HYPNO_LV30,    2, +4
+	ai_energy MR_MIME_LV28,  2, +0
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, wAICardListArenaPriority
+	ld de, .list_arena
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListBenchPriority
+	ld de, .list_bench
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListPlayFromHandPriority
+	ld de, .list_play_from_hand
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListEnergyBonus
+	ld de, .list_energy
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_Even3YearsOnARockDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ONIX_LV25
+	dw CUBONE_LV13
+	dw RHYHORN
+	dw GEODUDE_LV16
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw RHYHORN
+	dw GEODUDE_LV16
+	dw CUBONE_LV13
+	dw ONIX_LV25
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GEODUDE_LV16, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy GEODUDE_LV16,  2, +0
+	ai_energy GRAVELER_LV28, 2, +0
+	ai_energy ONIX_LV25,     2, +0
+	ai_energy CUBONE_LV13,   2, +0
+	ai_energy MAROWAK_LV32,  3, -1
+	ai_energy RHYHORN,       3, +0
+	ai_energy RHYDON_LV48,   4, +0
+	dw NULL ; end
+
+.list_prize
+	dw GAMBLER
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_RagingBillowOfFistsDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw LICKITUNG_LV20
+	dw KANGASKHAN_LV38
+	dw HITMONCHAN_LV33
+	dw HITMONLEE_LV23
+	dw MACHOP_LV18
+	dw MACHOP_LV24
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MACHOP_LV18
+	dw MACHOP_LV24
+	dw HITMONCHAN_LV33
+	dw HITMONLEE_LV23
+	dw LICKITUNG_LV20
+	dw KANGASKHAN_LV38
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MR_MIME_LV20, -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy MACHOP_LV18,     3, +0
+	ai_energy MACHOP_LV24,     3, +0
+	ai_energy MACHOKE_LV24,    3, +0
+	ai_energy MACHOKE_LV40,    4, +0
+	ai_energy MACHAMP_LV54,    4, +0
+	ai_energy HITMONLEE_LV23,  3, +0
+	ai_energy HITMONCHAN_LV33, 3, +0
+	ai_energy MR_MIME_LV20,    2, -8
+	ai_energy LICKITUNG_LV20,  2, +0
+	ai_energy KANGASKHAN_LV38, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_MaxEnergyDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw BULBASAUR_LV12
+	dw CATERPIE
+	dw EXEGGCUTE
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw EXEGGCUTE
+	dw BULBASAUR_LV12
+	dw CATERPIE
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat VENUSAUR_LV67, -8
+	ai_retreat EXEGGCUTE,     -2
+	ai_retreat EXEGGUTOR,     +2
+	dw NULL ; end
+
+.list_energy
+	ai_energy BULBASAUR_LV12, 2, +0
+	ai_energy IVYSAUR_LV26,   3, +0
+	ai_energy VENUSAUR_LV67,  4, +0
+	ai_energy CATERPIE,       1, +0
+	ai_energy METAPOD_LV20,   2, +0
+	ai_energy BUTTERFREE,     4, +0
+	ai_energy EXEGGCUTE,      2, +0
+	ai_energy EXEGGUTOR,      6, +0
+	dw NULL ; end
+
+.list_prize
+	dw VENUSAUR_LV67
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_DarkScienceDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ZUBAT_LV12
+	dw GRIMER_LV10
+	dw EKANS_LV15
+	dw CHANSEY_LV55
+	dw KOFFING_LV13
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw KOFFING_LV13
+	dw EKANS_LV15
+	dw ZUBAT_LV12
+	dw GRIMER_LV10
+	dw CHANSEY_LV55
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat WEEZING_LV26, -2
+	ai_retreat KOFFING_LV13, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy EKANS_LV15,   2,  +0
+	ai_energy ARBOK_LV30,   3,  +0
+	ai_energy ZUBAT_LV12,   2,  +0
+	ai_energy GRIMER_LV10,  2,  +0
+	ai_energy KOFFING_LV13, 2,  -1
+	ai_energy WEEZING_LV26, 3,  -1
+	ai_energy CHANSEY_LV55, 4, -28
+	dw NULL ; end
+
+.list_prize
+	dw WEEZING_LV26
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_RainDanceConfusionDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw LAPRAS_LV31
+	dw SEEL_LV10
+	dw SQUIRTLE_LV15
+	dw SQUIRTLE_LV16
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw SQUIRTLE_LV16
+	dw SQUIRTLE_LV15
+	dw LAPRAS_LV31
+	dw SEEL_LV10
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SQUIRTLE_LV15,  -2
+	ai_retreat SQUIRTLE_LV16,  -2
+	ai_retreat WARTORTLE_LV22, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy SQUIRTLE_LV15,  1, +0
+	ai_energy SQUIRTLE_LV16,  2, +0
+	ai_energy WARTORTLE_LV22, 3, +0
+	ai_energy BLASTOISE_LV52, 5, +1
+	ai_energy SEEL_LV10,      2, +0
+	ai_energy DEWGONG_LV24,   3, +0
+	ai_energy LAPRAS_LV31,    3, +0
+	dw NULL ; end
+
+.list_prize
+	dw BLASTOISE_LV52
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_SplashingAboutDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_energy
+	ai_energy SQUIRTLE_LV14,  2, +0
+	ai_energy WARTORTLE_LV24, 2, +0
+	ai_energy POLIWAG_LV13,   2, +0
+	ai_energy HORSEA_LV20,    2, +0
+	ai_energy SEADRA_LV23,    3, +0
+	ai_energy SEADRA_LV26,    3, +0
+	ai_energy LAPRAS_LV24,    2, +0
+	ai_energy VAPOREON_LV42,  4, +0
+	ai_energy EEVEE_LV12,     2, +0
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, wAICardListEnergyBonus
+	ld de, .list_energy
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_BeachDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_energy
+	ai_energy TENTACOOL,     1, +0
+	ai_energy TENTACRUEL,    2, +0
+	ai_energy SHELLDER_LV16, 2, +0
+	ai_energy CLOYSTER,      2, +0
+	ai_energy KRABBY_LV17,   3, +0
+	ai_energy KINGLER_LV33,  1, +0
+	ai_energy STARYU_LV17,   2, +0
+	ai_energy STARMIE,       3, +0
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, wAICardListEnergyBonus
+	ld de, .list_energy
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_GoArcanineDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw DODUO_LV10
+	dw HITMONCHAN_LV23
+	dw HITMONCHAN_LV33
+	dw SEEL_LV12
+	dw GROWLITHE_LV12
+	dw GROWLITHE_LV18
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MAGMAR_LV31
+	dw DODUO_LV10
+	dw GROWLITHE_LV12
+	dw GROWLITHE_LV18
+	dw HITMONCHAN_LV33
+	dw HITMONCHAN_LV23
+	dw SEEL_LV12
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GROWLITHE_LV12, -2
+	ai_retreat GROWLITHE_LV18, -2
+	ai_retreat DODUO_LV10,     -1
+	ai_retreat DODRIO_LV28,    -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy GROWLITHE_LV12,  2, +1
+	ai_energy GROWLITHE_LV18,  2, +1
+	ai_energy ARCANINE_LV45,   4, +1
+	ai_energy MAGMAR_LV31,     1, +1
+	ai_energy SEEL_LV12,       1, +0
+	ai_energy DEWGONG_LV42,    4, +0
+	ai_energy HITMONCHAN_LV23, 1, +0
+	ai_energy HITMONCHAN_LV33, 3, -1
+	ai_energy DODUO_LV10,      1, +0
+	ai_energy DODRIO_LV28,     3, -1
+	dw NULL ; end
+
+.list_prize
+	dw GROWLITHE_LV12
+	dw GROWLITHE_LV18
+	dw ARCANINE_LV45
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GreatRocket4Deck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw JYNX_LV18
+	dw JYNX_LV27
+	dw PSYDUCK_LV16
+	dw MEW_LV23
+	dw DROWZEE_LV12
+	dw HORSEA_LV20
+	dw KRABBY_LV17
+	dw DROWZEE_LV10
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw KRABBY_LV17
+	dw HORSEA_LV20
+	dw PSYDUCK_LV16
+	dw MEW_LV23
+	dw JYNX_LV18
+	dw JYNX_LV27
+	dw DROWZEE_LV12
+	dw DROWZEE_LV10
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DROWZEE_LV10, -8
+	dw NULL ; end
+
+.list_energy
+	ai_energy PSYDUCK_LV16, 1, +0
+	ai_energy DARK_GOLDUCK, 3, +0
+	ai_energy KRABBY_LV17,  3, +0
+	ai_energy KINGLER_LV33, 4, +0
+	ai_energy HORSEA_LV20,  3, +0
+	ai_energy SEADRA_LV26,  4, +0
+	ai_energy DROWZEE_LV10, 2, -3
+	ai_energy DROWZEE_LV12, 3, +0
+	ai_energy DARK_HYPNO,   3, +0
+	ai_energy JYNX_LV18,    2, +0
+	ai_energy JYNX_LV27,    2, +0
+	ai_energy MEW_LV23,     2, +0
+	dw NULL ; end
+
+.list_prize
+	dw FULL_HEAL
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GreatRocket1Deck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw POLIWAG_LV15
+	dw LAPRAS_LV24
+	dw PIKACHU_LV5
+	dw MAGNEMITE_LV12
+	dw VOLTORB_LV13
+	dw KANGASKHAN_LV36
+	dw SEEL_LV10
+	dw MAGNEMITE_LV15
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MAGNEMITE_LV15
+	dw POLIWAG_LV15
+	dw SEEL_LV10
+	dw KANGASKHAN_LV36
+	dw LAPRAS_LV24
+	dw VOLTORB_LV13
+	dw MAGNEMITE_LV12
+	dw PIKACHU_LV5
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MAGNEMITE_LV12, -1
+	ai_retreat MAGNEMITE_LV15, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy VOLTORB_LV13,    1, +0
+	ai_energy ELECTRODE_LV42,  4, +0
+	ai_energy MAGNEMITE_LV12,  3, +0
+	ai_energy MAGNEMITE_LV15,  1, +0
+	ai_energy PIKACHU_LV5,     2, +0
+	ai_energy POLIWAG_LV15,    2, +0
+	ai_energy POLIWHIRL_LV30,  3, +0
+	ai_energy POLIWRATH_LV40,  5, +0
+	ai_energy SEEL_LV10,       3, +0
+	ai_energy DEWGONG_LV24,    5, +0
+	ai_energy LAPRAS_LV24,     3, +0
+	ai_energy KANGASKHAN_LV36, 3, +1
+	dw NULL ; end
+
+.list_prize
+	dw SWITCH
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GreatRocket2Deck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ONIX_LV25
+	dw GEODUDE_LV15
+	dw PINSIR_LV15
+	dw DIGLETT_LV8
+	dw DIGLETT_LV15
+	dw PARAS_LV8
+	dw SANDSHREW_LV12
+	dw EKANS_LV10
+	dw EKANS_LV15
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw EKANS_LV10
+	dw EKANS_LV15
+	dw SANDSHREW_LV12
+	dw PARAS_LV8
+	dw DIGLETT_LV8
+	dw DIGLETT_LV15
+	dw ONIX_LV25
+	dw GEODUDE_LV15
+	dw PINSIR_LV15
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat EKANS_LV10,     -2
+	ai_retreat EKANS_LV15,     -2
+	ai_retreat PARAS_LV8,      -2
+	ai_retreat SANDSHREW_LV12, -1
+	ai_retreat DIGLETT_LV8,    -1
+	ai_retreat DIGLETT_LV15,   -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy EKANS_LV10,     2, +0
+	ai_energy EKANS_LV15,     2, +0
+	ai_energy DARK_ARBOK,     4, +0
+	ai_energy PARAS_LV8,      4, +0
+	ai_energy PARASECT_LV29,  4, +0
+	ai_energy PINSIR_LV15,    3, +0
+	ai_energy SANDSHREW_LV12, 1, +0
+	ai_energy SANDSLASH_LV33, 3, +0
+	ai_energy SANDSLASH_LV35, 3, +0
+	ai_energy DIGLETT_LV8,    2, +0
+	ai_energy DIGLETT_LV15,   2, +0
+	ai_energy DARK_DUGTRIO,   2, +0
+	ai_energy GEODUDE_LV15,   2, +0
+	ai_energy ONIX_LV25,      2, +0
+	dw NULL ; end
+
+.list_prize
+	dw DARK_ARBOK
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GreatRocket3Deck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV18
+	dw TANGELA_LV12
+	dw PINSIR_LV24
+	dw MOLTRES_LV37
+	dw ODDISH_LV8
+	dw CHARMANDER_LV12
+	dw EXEGGCUTE
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw EXEGGCUTE
+	dw CHARMANDER_LV12
+	dw ODDISH_LV8
+	dw MAGMAR_LV18
+	dw TANGELA_LV12
+	dw PINSIR_LV24
+	dw MOLTRES_LV37
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat EXEGGCUTE, -3
+	dw NULL ; end
+
+.list_energy
+	ai_energy ODDISH_LV8,       2, +0
+	ai_energy DARK_GLOOM,       2, +0
+	ai_energy DARK_VILEPLUME,   3, +0
+	ai_energy EXEGGCUTE,        3, +0
+	ai_energy EXEGGUTOR,       28, +1
+	ai_energy TANGELA_LV12,     3, +0
+	ai_energy PINSIR_LV24,      4, +0
+	ai_energy CHARMANDER_LV12,  2, +0
+	ai_energy CHARMELEON,       5, +0
+	ai_energy DARK_CHARMELEON,  5, +0
+	ai_energy MAGMAR_LV18,      2, +0
+	ai_energy MOLTRES_LV37,     4, +0
+	dw NULL ; end
+
+.list_prize
+	dw EXEGGCUTE
+	dw EXEGGUTOR
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GrandFireDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw PONYTA_LV8
+	dw VULPIX_LV11
+	dw VULPIX_LV13
+	dw MOLTRES_LV37
+	dw MOLTRES_LV40
+	dw NULL ; end
+
+.list_bench
+	dw MAGMAR_LV31
+	dw VULPIX_LV13
+	dw VULPIX_LV11
+	dw PONYTA_LV8
+	dw MOLTRES_LV37
+	dw NULL ; end
+
+.list_play_from_hand
+	dw MOLTRES_LV40
+	dw VULPIX_LV13
+	dw VULPIX_LV11
+	dw PONYTA_LV8
+	dw MAGMAR_LV31
+	dw MOLTRES_LV37
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MOLTRES_LV40,   -2
+	ai_retreat MOLTRES_LV37,   -2
+	ai_retreat PONYTA_LV8,     -3
+	ai_retreat RAPIDASH_LV33,  +1
+	ai_retreat VULPIX_LV11,    -3
+	ai_retreat VULPIX_LV13,    -3
+	ai_retreat NINETALES_LV35, +1
+	dw NULL ; end
+
+.list_energy
+	ai_energy MOLTRES_LV40,   3, -3
+	ai_energy MOLTRES_LV37,   4, -3
+	ai_energy PONYTA_LV8,     2, +2
+	ai_energy RAPIDASH_LV33,  3, +1
+	ai_energy VULPIX_LV11,    2, +2
+	ai_energy VULPIX_LV13,    2, +2
+	ai_energy NINETALES_LV35, 3, +1
+	ai_energy MAGMAR_LV31,    1, +2
+	dw NULL ; end
+
+.list_prize
+	dw MOLTRES_LV40
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_LegendaryFossilDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIDoTurn_GeneralNoPkmnPowers
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ELECTABUZZ_LV35
+	dw VOLTORB_LV13
+	dw ZAPDOS_LV28
+	dw ZAPDOS_LV68
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw VOLTORB_LV13
+	dw ELECTABUZZ_LV35
+	dw ZAPDOS_LV28
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat AERODACTYL_LV28, -3
+	ai_retreat ZAPDOS_LV68,     -2
+	ai_retreat ZAPDOS_LV28,     -2
+	ai_retreat VOLTORB_LV13,    -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy VOLTORB_LV13,    1, +0
+	ai_energy ELECTRODE_LV35,  2, +0
+	ai_energy ELECTABUZZ_LV35, 2, +0
+	ai_energy ZAPDOS_LV28,     4, -1
+	ai_energy ZAPDOS_LV68,     3, -1
+	ai_energy AERODACTYL_LV28, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw ZAPDOS_LV68
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_WaterLegendDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw CHANSEY_LV40
+	dw JYNX_LV18
+	dw LAPRAS_LV31
+	dw KRABBY_LV17
+	dw ARTICUNO_LV34
+	dw MAGIKARP_LV6
+	dw ARTICUNO_LV37
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MAGIKARP_LV6
+	dw ARTICUNO_LV34
+	dw KRABBY_LV17
+	dw LAPRAS_LV31
+	dw JYNX_LV18
+	dw CHANSEY_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MAGIKARP_LV6,  -2
+	ai_retreat ARTICUNO_LV37, -5
+	dw NULL ; end
+
+.list_energy
+	ai_energy KRABBY_LV17,   3, +0
+	ai_energy KINGLER_LV33,  4, +0
+	ai_energy MAGIKARP_LV6,  3, +1
+	ai_energy DARK_GYARADOS, 3, +0
+	ai_energy LAPRAS_LV31,   3, +0
+	ai_energy ARTICUNO_LV34, 4, +1
+	ai_energy ARTICUNO_LV37, 0, -8
+	ai_energy JYNX_LV18,     2, +0
+	ai_energy CHANSEY_LV40,  3, -2
+	dw NULL ; end
+
+.list_prize
+	dw ARTICUNO_LV37
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_GreatDragonDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw SCYTHER_LV25
+	dw DRATINI_LV10
+	dw DRATINI_LV12
+	dw CHARMANDER_LV9
+	dw CHARMANDER_LV10
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw DRATINI_LV10
+	dw DRATINI_LV12
+	dw CHARMANDER_LV9
+	dw CHARMANDER_LV10
+	dw SCYTHER_LV25
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DRATINI_LV10,    -2
+	ai_retreat DRATINI_LV12,    -2
+	ai_retreat CHARMANDER_LV9,  -4
+	ai_retreat CHARMANDER_LV10, -5
+	ai_retreat CHARMELEON,      -3
+	dw NULL ; end
+
+.list_energy
+	ai_energy CHARMANDER_LV9,     3, +1
+	ai_energy CHARMANDER_LV10,    3, +1
+	ai_energy CHARMELEON,         4, +1
+	ai_energy CHARIZARD_LV76,     6, +1
+	ai_energy CHARIZARD_ALT_LV76, 6, +1
+	ai_energy DRATINI_LV10,       2, +0
+	ai_energy DRATINI_LV12,       2, +0
+	ai_energy DRAGONAIR,          4, +1
+	ai_energy DARK_DRAGONAIR,     3, -1
+	ai_energy DRAGONITE_LV41,     3, +0
+	ai_energy KANGASKHAN_LV40,    4, -8
+	ai_energy SCYTHER_LV25,       3, +0
+	dw NULL ; end
+
+.list_prize
+	dw DRAGONITE_LV41
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_MadPetalsDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw SCYTHER_LV25
+	dw ODDISH_LV21
+	dw SQUIRTLE_LV16
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw ODDISH_LV21
+	dw SQUIRTLE_LV16
+	dw SCYTHER_LV25
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat ODDISH_LV21,    -3
+	ai_retreat GLOOM,          -2
+	ai_retreat DARK_GLOOM,     -3
+	ai_retreat SQUIRTLE_LV16,  -2
+	ai_retreat WARTORTLE_LV22, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy ODDISH_LV21,     2, +1
+	ai_energy GLOOM,           2, +1
+	ai_energy DARK_GLOOM,      2, +1
+	ai_energy VILEPLUME,       3, +1
+	ai_energy DARK_VILEPLUME,  3, +1
+	ai_energy SCYTHER_LV25,    3, +0
+	ai_energy SQUIRTLE_LV16,   2, +0
+	ai_energy WARTORTLE_LV22,  3, +0
+	ai_energy KANGASKHAN_LV40, 4, -5
+	dw NULL ; end
+
+.list_prize
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_DangerousBenchDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw HUNGRY_SNORLAX
+	dw SNORLAX_LV20
+	dw SNORLAX_LV35
+	dw PIKACHU_LV14
+	dw ZAPDOS_LV40
+	dw DRATINI_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw DRATINI_LV12
+	dw PIKACHU_LV14
+	dw ZAPDOS_LV40
+	dw SNORLAX_LV35
+	dw SNORLAX_LV20
+	dw HUNGRY_SNORLAX
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, wAICardListArenaPriority
+	ld de, .list_arena
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListBenchPriority
+	ld de, .list_bench
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListPlayFromHandPriority
+	ld de, .list_play_from_hand
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_QuickAttackDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw VOLTORB_LV13
+	dw DODUO_LV10
+	dw EEVEE_LV9
+	dw PIKACHU_LV14
+	dw PIKACHU_LV5
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw EEVEE_LV9
+	dw PIKACHU_LV5
+	dw PIKACHU_LV14
+	dw VOLTORB_LV13
+	dw DODUO_LV10
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat PIKACHU_LV5,  -1
+	ai_retreat PIKACHU_LV14, -1
+	ai_retreat EEVEE_LV9,    -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy PIKACHU_LV5,  2, +0
+	ai_energy PIKACHU_LV14, 2, +0
+	ai_energy DARK_RAICHU,  3, +0
+	ai_energy VOLTORB_LV13, 1, +1
+	ai_energy DARK_JOLTEON, 3, +0
+	ai_energy DODUO_LV10,   1, +1
+	ai_energy EEVEE_LV9,    2, +1
+	dw NULL ; end
+
+.list_prize
+	dw DARK_JOLTEON
+	dw DARK_RAICHU
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_CompleteCombustionDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw MEOWTH_LV14
+	dw GROWLITHE_LV12
+	dw PONYTA_LV15
+	dw MAGMAR_LV27
+	dw NULL; end
+
+.list_bench
+	dw MAGMAR_LV27
+	dw PONYTA_LV15
+	dw GROWLITHE_LV12
+	dw MEOWTH_LV14
+	dw KANGASKHAN_LV40
+	dw NULL; end
+
+.StoreListPointers:
+	ld hl, wAICardListArenaPriority
+	ld de, .list_arena
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListBenchPriority
+	ld de, .list_bench
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_GazeUponThePowerOfFireDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw CHARMANDER_LV9
+	dw PONYTA_LV8
+	dw VULPIX_LV11
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw VULPIX_LV11
+	dw PONYTA_LV8
+	dw CHARMANDER_LV9
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat CHARMANDER_LV9, -3
+	ai_retreat VULPIX_LV11,    -3
+	ai_retreat PONYTA_LV8,     -3
+	dw NULL ; end
+
+.list_energy
+	ai_energy CHARMANDER_LV9,  1, +0
+	ai_energy DARK_CHARMELEON, 3, +1
+	ai_energy VULPIX_LV11,     2, +0
+	ai_energy DARK_NINETALES,  3, +1
+	ai_energy PONYTA_LV8,      1, +0
+	ai_energy RAPIDASH_LV33,   3, +1
+	ai_energy MAGMAR_LV31,     2, +0
+	dw NULL ; end
+
+.list_prize
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_WaterStreamDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw LAPRAS_LV31
+	dw STARYU_LV15
+	dw GOLDEEN
+	dw ARTICUNO_LV34
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw STARYU_LV15
+	dw ARTICUNO_LV34
+	dw GOLDEEN
+	dw LAPRAS_LV31
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GOLDEEN, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy GOLDEEN,       1, +0
+	ai_energy SEAKING,       2, +0
+	ai_energy STARYU_LV15,   1, +0
+	ai_energy DARK_STARMIE,  2, +0
+	ai_energy LAPRAS_LV31,   3, +0
+	ai_energy ARTICUNO_LV34, 4, +0
+	dw NULL ; end
+
+.list_prize
+	dw LAPRAS_LV31
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_RunningWildDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw SCYTHER_LV25
+	dw CUBONE_LV14
+	dw MANKEY_LV14
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw CUBONE_LV14
+	dw MANKEY_LV14
+	dw SCYTHER_LV25
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MANKEY_LV14,   -1
+	ai_retreat DARK_PRIMEAPE, +1
+	ai_retreat CUBONE_LV14,   -1
+	ai_retreat DARK_MAROWAK,  +1
+	dw NULL ; end
+
+.list_energy
+	ai_energy SCYTHER_LV25,    3, +0
+	ai_energy MANKEY_LV14,     2, +0
+	ai_energy DARK_PRIMEAPE,   2, +1
+	ai_energy CUBONE_LV14,     2, +0
+	ai_energy DARK_MAROWAK,    2, +1
+	ai_energy KANGASKHAN_LV40, 4, -5
+	dw NULL ; end
+
+.list_prize
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_SpiritedAwayDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw SLOWPOKE_LV16
+	dw MR_MIME_LV28
+	dw GASTLY_LV17
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw GASTLY_LV17
+	dw MR_MIME_LV28
+	dw SLOWPOKE_LV16
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GASTLY_LV17, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy GASTLY_LV17,     2, +0
+	ai_energy DARK_HAUNTER,    2, +0
+	ai_energy DARK_GENGAR,     3, +0
+	ai_energy SLOWPOKE_LV16,   1, +3
+	ai_energy MR_MIME_LV28,    2, +0
+	ai_energy KANGASKHAN_LV40, 4, -5
+	dw NULL ; end
+
+.list_prize
+	dw SLOWPOKE_LV16
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_SnorlaxGuardDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw LICKITUNG_LV26
+	dw CHANSEY_LV55
+	dw SNORLAX_LV35
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw SNORLAX_LV35
+	dw LICKITUNG_LV26
+	dw KANGASKHAN_LV40
+	dw CHANSEY_LV55
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SNORLAX_LV35, +1
+	dw NULL ; end
+
+.list_energy
+	ai_energy LICKITUNG_LV26,  2, +0
+	ai_energy CHANSEY_LV55,    4, +0
+	ai_energy KANGASKHAN_LV40, 4, +0
+	ai_energy SNORLAX_LV35,    4, +1
+	dw NULL ; end
+
+.list_prize
+	dw SNORLAX_LV35
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_EyeOfTheStormDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw TAUROS_LV35
+	dw PIDGEY_LV10
+	dw SPEAROW_LV13
+	dw FLYING_PIKACHU_LV12
+	dw FLYING_PIKACHU_ALT_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw PIDGEY_LV10
+	dw SPEAROW_LV13
+	dw TAUROS_LV35
+	dw FLYING_PIKACHU_LV12
+	dw FLYING_PIKACHU_ALT_LV12
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat PIDGEOTTO_LV38, +1
+	ai_retreat PIDGEOT_LV40,   +1
+	ai_retreat FEAROW_LV27,    +1
+	dw NULL ; end
+
+.list_energy
+	ai_energy PIDGEY_LV10,             2, +0
+	ai_energy PIDGEOTTO_LV38,          3, +0
+	ai_energy PIDGEOT_LV40,            4, +1
+	ai_energy SPEAROW_LV13,            3, +0
+	ai_energy FEAROW_LV27,             4, +1
+	ai_energy TAUROS_LV35,             2, +0
+	ai_energy FLYING_PIKACHU_LV12,     3, +0
+	ai_energy FLYING_PIKACHU_ALT_LV12, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw GUST_OF_WIND
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_SuddenGrowthDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ONIX_LV25
+	dw HITMONCHAN_LV23
+	dw JIGGLYPUFF_LV13
+	dw CLEFAIRY_LV15
+	dw DRATINI_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw DRATINI_LV12
+	dw CLEFAIRY_LV15
+	dw HITMONCHAN_LV23
+	dw ONIX_LV25
+	dw JIGGLYPUFF_LV13
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DRATINI_LV12,    -5
+	ai_retreat DARK_DRAGONAIR,  -3
+	ai_retreat CLEFAIRY_LV15,   -5
+	ai_retreat JIGGLYPUFF_LV13, -5
+	dw NULL ; end
+
+.list_energy
+	ai_energy ONIX_LV25,       1, +0
+	ai_energy HITMONCHAN_LV23, 1, +0
+	ai_energy CLEFAIRY_LV15,   3, +1
+	ai_energy DARK_CLEFABLE,   4, +0
+	ai_energy JIGGLYPUFF_LV13, 1, +0
+	ai_energy DRATINI_LV12,    3, +1
+	ai_energy DARK_DRAGONAIR,  4, +0
+	ai_energy DARK_DRAGONITE,  5, +0
+	dw NULL ; end
+
+.list_prize
+	dw GUST_OF_WIND
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_VeryRareCardDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_energy
+	ai_energy MAGIKARP_LV10,            2, +0
+	ai_energy GYARADOS,                 4, +0
+	ai_energy MARILL,                   3, +0
+	ai_energy SURFING_PIKACHU_LV13,     2, +0
+	ai_energy SURFING_PIKACHU_ALT_LV13, 2, +0
+	ai_energy ELECTABUZZ_LV20,          2, +0
+	ai_energy JIGGLYPUFF_LV12,          1, +0
+	ai_energy MEOWTH_LV14,              1, +0
+	ai_energy DARK_PERSIAN_ALT_LV28,    2, +0
+	ai_energy FARFETCHD_ALT_LV20,       3, +0
+	ai_energy KANGASKHAN_LV38,          3, +0
+	ai_energy COOL_PORYGON,             3, +0
+	dw NULL ; end
+
+.list_prize
+	dw SURFING_PIKACHU_LV13
+	dw SURFING_PIKACHU_ALT_LV13
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, wAICardListAvoidPrize
+	ld de, .list_prize
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wAICardListEnergyBonus
+	ld de, .list_energy
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ret
+
+AIActionTable_BadGuysDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ODDISH_LV21
+	dw SLOWPOKE_LV16
+	dw CHARMANDER_LV9
+	dw PSYDUCK_LV16
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw ODDISH_LV21
+	dw PSYDUCK_LV16
+	dw CHARMANDER_LV9
+	dw SLOWPOKE_LV16
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat CHARMANDER_LV9, -1
+	ai_retreat PSYDUCK_LV16,   -3
+	ai_retreat DARK_GOLDUCK,   +2
+	dw NULL ; end
+
+.list_energy
+	ai_energy ODDISH_LV21,     1, +1
+	ai_energy DARK_GLOOM,      2, -1
+	ai_energy CHARMANDER_LV9,  1, +1
+	ai_energy DARK_CHARMELEON, 3, +0
+	ai_energy PSYDUCK_LV16,    1, +1
+	ai_energy DARK_GOLDUCK,    3, +1
+	ai_energy SLOWPOKE_LV16,   1, +0
+	ai_energy DARK_SLOWBRO,    2, -1
+	dw NULL ; end
+
+.list_prize
+	dw PSYDUCK_LV16
+	dw DARK_GOLDUCK
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PoisonMistDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw GRIMER_LV10
+	dw SCYTHER_LV25
+	dw KOFFING_LV14
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw KOFFING_LV14
+	dw GRIMER_LV10
+	dw SCYTHER_LV25
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MR_MIME_LV20, -28
+	ai_retreat KOFFING_LV14,  -2
+	ai_retreat WEEZING_LV26,  -5
+	dw NULL ; end
+
+.list_energy
+	ai_energy SCYTHER_LV25, 3, +0
+	ai_energy GRIMER_LV10,  2, +0
+	ai_energy DARK_MUK,     2, +0
+	ai_energy KOFFING_LV14, 2, +0
+	ai_energy WEEZING_LV26, 3, -1
+	ai_energy MR_MIME_LV20, 2, +0
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw WEEZING_LV26
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_UltraRemovalDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw SQUIRTLE_LV8
+	dw PSYDUCK_LV15
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw PSYDUCK_LV15
+	dw SQUIRTLE_LV8
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat PSYDUCK_LV15, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy SQUIRTLE_LV8,   2, +0
+	ai_energy WARTORTLE_LV22, 3, +0
+	ai_energy BLASTOISE_LV52, 5, +0
+	ai_energy PSYDUCK_LV15,   2, +1
+	ai_energy GOLDUCK_LV27,   3, +1
+	dw NULL ; end
+
+.list_prize
+	dw ENERGY_REMOVAL
+	dw SUPER_ENERGY_REMOVAL
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PsychicBattleDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw HITMONCHAN_LV33
+	dw SANDSHREW_LV12
+	dw MR_MIME_LV28
+	dw MEWTWO_LV53
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw SANDSHREW_LV12
+	dw HITMONCHAN_LV33
+	dw MEWTWO_LV53
+	dw MR_MIME_LV28
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SANDSHREW_LV12, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy MR_MIME_LV28,    2, +0
+	ai_energy MEWTWO_LV53,     2, +0
+	ai_energy SANDSHREW_LV12,  1, +0
+	ai_energy SANDSLASH_LV33,  4, +0
+	ai_energy HITMONCHAN_LV33, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw SWITCH
+	dw GUST_OF_WIND
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_StopLifeDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw SCYTHER_LV25
+	dw BULBASAUR_LV12
+	dw DRATINI_LV10
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw BULBASAUR_LV12
+	dw DRATINI_LV10
+	dw SCYTHER_LV25
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat BULBASAUR_LV12,  -5
+	ai_retreat DARK_IVYSAUR,    -5
+	ai_retreat DARK_VENUSAUR,   -3
+	ai_retreat DRATINI_LV10,    -3
+	ai_retreat DARK_DRAGONAIR,  -3
+	ai_retreat MR_MIME_LV20,   -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy BULBASAUR_LV12,  2,  +0
+	ai_energy DARK_IVYSAUR,    2,  +0
+	ai_energy DARK_VENUSAUR,   3,  +0
+	ai_energy DRATINI_LV10,    2,  +0
+	ai_energy DARK_DRAGONAIR,  3,  -3
+	ai_energy SCYTHER_LV25,    3,  +0
+	ai_energy KANGASKHAN_LV40, 4,  -5
+	ai_energy MR_MIME_LV20,    0, -28
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_ScorcherDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw MAGMAR_LV31
+	dw CHARMANDER_LV9
+	dw CLEFAIRY_LV15
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw CHARMANDER_LV9
+	dw CLEFAIRY_LV15
+	dw MAGMAR_LV31
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat CHARMANDER_LV9,   -3
+	ai_retreat DARK_CHARMELEON,  -3
+	ai_retreat CLEFAIRY_LV15,    -5
+	ai_retreat DARK_CLEFABLE,    -3
+	ai_retreat MR_MIME_LV20,    -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy CHARMANDER_LV9,  1,  +1
+	ai_energy DARK_CHARMELEON, 3,  +1
+	ai_energy DARK_CHARIZARD,  5,  +2
+	ai_energy CLEFAIRY_LV15,   2,  -2
+	ai_energy DARK_CLEFABLE,   3,  -2
+	ai_energy MAGMAR_LV31,     2,  +0
+	ai_energy KANGASKHAN_LV40, 4,  -5
+	ai_energy MR_MIME_LV20,    0, -28
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_TsunamiStarterDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw LAPRAS_LV31
+	dw SCYTHER_LV25
+	dw SQUIRTLE_LV8
+	dw CLEFAIRY_LV15
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw SQUIRTLE_LV8
+	dw CLEFAIRY_LV15
+	dw LAPRAS_LV31
+	dw SCYTHER_LV25
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SQUIRTLE_LV8,    -3
+	ai_retreat DARK_WARTORTLE,  -3
+	ai_retreat CLEFAIRY_LV15,   -5
+	ai_retreat DARK_CLEFABLE,   -3
+	ai_retreat MR_MIME_LV20,   -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy SQUIRTLE_LV8,   2,  +1
+	ai_energy DARK_WARTORTLE, 2,  +1
+	ai_energy DARK_BLASTOISE, 4,  +2
+	ai_energy CLEFAIRY_LV15,  2,  -2
+	ai_energy DARK_CLEFABLE,  3,  -2
+	ai_energy LAPRAS_LV31,    3,  +0
+	ai_energy SCYTHER_LV25,   3,  -8
+	ai_energy MR_MIME_LV20,   0, -28
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_SmashToMincemeatDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw CHANSEY_LV55
+	dw MACHOP_LV20
+	dw CLEFAIRY_LV15
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MACHOP_LV20
+	dw CLEFAIRY_LV15
+	dw CHANSEY_LV55
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MACHOP_LV20,    -3
+	ai_retreat DARK_MACHOKE,   -3
+	ai_retreat DARK_MACHAMP,   -2
+	ai_retreat CLEFAIRY_LV15,  -5
+	ai_retreat DARK_CLEFABLE,  -3
+	ai_retreat CHANSEY_LV55,   -5
+	ai_retreat MR_MIME_LV20,  -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy MACHOP_LV20,     2,  +1
+	ai_energy DARK_MACHOKE,    3,  +1
+	ai_energy DARK_MACHAMP,    4,  +2
+	ai_energy CLEFAIRY_LV15,   2,  -2
+	ai_energy DARK_CLEFABLE,   3,  -2
+	ai_energy KANGASKHAN_LV40, 4,  -5
+	ai_energy CHANSEY_LV55,    4,  -4
+	ai_energy MR_MIME_LV20,    0, -28
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_TextureTuner7Deck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw PORYGON_LV18
+	dw PORYGON_LV12
+	dw COOL_PORYGON
+	dw SCYTHER_LV25
+	dw VENONAT_LV12
+	dw ZUBAT_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw COOL_PORYGON
+	dw PORYGON_LV18
+	dw PORYGON_LV12
+	dw ZUBAT_LV12
+	dw VENONAT_LV12
+	dw SCYTHER_LV25
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat ZUBAT_LV12,   -1
+	ai_retreat VENONAT_LV12, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy ZUBAT_LV12,    2, +0
+	ai_energy GOLBAT_LV29,   3, +0
+	ai_energy VENONAT_LV12,  2, +0
+	ai_energy VENOMOTH_LV22, 3, +0
+	ai_energy SCYTHER_LV25,  3, +0
+	ai_energy PORYGON_LV12,  2, +0
+	ai_energy PORYGON_LV18,  2, +0
+	ai_energy COOL_PORYGON,  3, +0
+	dw NULL ; end
+
+.list_prize
+	dw PORYGON_LV12
+	dw PORYGON_LV18
+	dw COOL_PORYGON
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_ColorlessEnergyDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw SPEAROW_LV9
+	dw SPEAROW_LV13
+	dw SPEAROW_LV12
+	dw DRATINI_LV10
+	dw EEVEE_LV12
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw EEVEE_LV12
+	dw DRATINI_LV10
+	dw SPEAROW_LV9
+	dw SPEAROW_LV13
+	dw SPEAROW_LV12
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat EEVEE_LV12,     -1
+	ai_retreat DRATINI_LV10,   -1
+	ai_retreat DRAGONITE_LV45, -8
+	dw NULL ; end
+
+.list_energy
+	ai_energy FLAREON_LV22,   3, +0
+	ai_energy DARK_VAPOREON,  4, +0
+	ai_energy JOLTEON_LV24,   4, +0
+	ai_energy SPEAROW_LV9,    2, +0
+	ai_energy SPEAROW_LV12,   1, +0
+	ai_energy SPEAROW_LV13,   3, +0
+	ai_energy FEAROW_LV24,    3, +0
+	ai_energy FEAROW_LV27,    4, +0
+	ai_energy EEVEE_LV12,     2, +0
+	ai_energy DRATINI_LV10,   2, +0
+	ai_energy DRAGONAIR,      4, +0
+	ai_energy DRAGONITE_LV43, 3, +0
+	ai_energy DRAGONITE_LV45, 4, +0
+	dw NULL ; end
+
+.list_prize
+	dw EEVEE_LV12
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PowerfulPokemonDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpStartingPlayArea_PowerfulPokemonDeck
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw JYNX_LV27
+	dw ELECTABUZZ_LV35
+	dw LAPRAS_LV31
+	dw HITMONCHAN_LV33
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw MAGMAR_LV31
+	dw JYNX_LV27
+	dw ELECTABUZZ_LV35
+	dw LAPRAS_LV31
+	dw HITMONCHAN_LV33
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MAGMAR_LV31, +0
+	dw NULL ; end
+
+.list_energy
+	ai_energy MAGMAR_LV31,     2, +0
+	ai_energy LAPRAS_LV31,     2, +0
+	ai_energy ELECTABUZZ_LV35, 2, +0
+	ai_energy HITMONCHAN_LV33, 1, +0
+	ai_energy JYNX_LV27,       2, +0
+	dw NULL ; end
+
+.list_prize
+	dw SWITCH
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_RonaldsPsychicDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw DRATINI_LV10
+	dw GASTLY_LV13
+	dw MEWTWO_LV67
+	dw MEW_LV23
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw DRATINI_LV10
+	dw GASTLY_LV13
+	dw MEW_LV23
+	dw MEWTWO_LV67
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DARK_DRAGONAIR, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy GASTLY_LV13,     2, +0
+	ai_energy HAUNTER_LV26,    2, +0
+	ai_energy GENGAR_LV40,     3, +0
+	ai_energy MEWTWO_LV67,     3, +0
+	ai_energy MEW_LV23,        2, +0
+	ai_energy KANGASKHAN_LV40, 4, +0
+	ai_energy DRATINI_LV10,    2, +0
+	ai_energy DARK_DRAGONAIR,  3, +0
+	ai_energy DARK_DRAGONITE,  4, +0
+	dw NULL ; end
+
+.list_prize
+	dw GENGAR_LV40
+	dw MEW_LV23
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_RonaldsUltraDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw SPEAROW_LV13
+	dw FARFETCHD_LV20
+	dw PIDGEY_LV10
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw SPEAROW_LV13
+	dw PIDGEY_LV10
+	dw FARFETCHD_LV20
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat PIDGEY_LV10, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy PIDGEY_LV10,    2, +0
+	ai_energy PIDGEOTTO_LV38, 2, +0
+	ai_energy PIDGEOT_LV40,   3, +1
+	ai_energy SPEAROW_LV13,   3, +0
+	ai_energy FEAROW_LV27,    4, +0
+	ai_energy FARFETCHD_LV20, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw PIDGEOTTO_LV38
+	dw PIDGEOT_LV40
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_EverybodysFriendDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw HITMONCHAN_LV33
+	dw SCYTHER_LV25
+	dw JIGGLYPUFF_LV14
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw JIGGLYPUFF_LV14
+	dw SCYTHER_LV25
+	dw MAGMAR_LV31
+	dw HITMONCHAN_LV33
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat JIGGLYPUFF_LV14, -8
+	ai_retreat WIGGLYTUFF_LV36, -2
+	dw NULL ; end
+
+.list_energy
+	ai_energy JIGGLYPUFF_LV14, 3, +1
+	ai_energy WIGGLYTUFF_LV36, 3, +2
+	ai_energy SCYTHER_LV25,    3, +0
+	ai_energy MAGMAR_LV31,     2, +0
+	ai_energy HITMONCHAN_LV33, 3, +0
+	dw NULL ; end
+
+.list_prize
+	dw JIGGLYPUFF_LV14
+	dw WIGGLYTUFF_LV36
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_ImmortalPokemonDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw SCYTHER_LV25
+	dw CHANSEY_LV55
+	dw MR_MIME_LV28
+	dw TENTACOOL
+	dw ABRA_LV14
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+	dw ABRA_LV14
+	dw MR_MIME_LV28
+	dw SCYTHER_LV25
+	dw CHANSEY_LV55
+	dw NULL ; end
+
+.list_play_from_hand
+	dw MR_MIME_LV20
+	dw ABRA_LV14
+	dw MR_MIME_LV28
+	dw SCYTHER_LV25
+	dw CHANSEY_LV55
+	dw TENTACOOL
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MR_MIME_LV20,  -28
+	ai_retreat TENTACOOL,     -28
+	ai_retreat ALAKAZAM_LV42, -28
+	ai_retreat ABRA_LV14,      -8
+	ai_retreat CHANSEY_LV55,   -8
+	dw NULL ; end
+
+.list_energy
+	ai_energy ABRA_LV14,     1,  +1
+	ai_energy KADABRA_LV39,  3,  +1
+	ai_energy ALAKAZAM_LV42, 3,  +0
+	ai_energy MR_MIME_LV28,  2,  +1
+	ai_energy MR_MIME_LV20,  2,  -8
+	ai_energy TENTACOOL,     0, -28
+	ai_energy SCYTHER_LV25,  3,  -8
+	ai_energy CHANSEY_LV55,  4,  +0
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_TorrentialFloodDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw LAPRAS_LV31
+	dw ARTICUNO_LV35
+	dw SQUIRTLE_LV14
+	dw ARTICUNO_LV37
+	dw NULL ; end
+
+.list_bench
+	dw SQUIRTLE_LV14
+	dw LAPRAS_LV31
+	dw ARTICUNO_LV35
+	dw NULL ; end
+
+.list_play_from_hand
+	dw SQUIRTLE_LV14
+	dw LAPRAS_LV31
+	dw ARTICUNO_LV37
+	dw ARTICUNO_LV35
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SQUIRTLE_LV14,  -5
+	ai_retreat WARTORTLE_LV24, -3
+	dw NULL ; end
+
+.list_energy
+	ai_energy SQUIRTLE_LV14,  2, +0
+	ai_energy WARTORTLE_LV24, 2, +0
+	ai_energy BLASTOISE_LV52, 5, +0
+	ai_energy ARTICUNO_LV35,  4, +0
+	ai_energy ARTICUNO_LV37,  3, +0
+	ai_energy LAPRAS_LV31,    3, +0
+	dw NULL ; end
+
+.list_prize
+	dw WARTORTLE_LV24
+	dw BLASTOISE_LV52
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_TrainerImprisonDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw PSYDUCK_LV15
+	dw GASTLY_LV13
+	dw ODDISH_LV21
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw ODDISH_LV21
+	dw GASTLY_LV13
+	dw PSYDUCK_LV15
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat MR_MIME_LV20,   -28
+	ai_retreat ODDISH_LV21,    -28
+	ai_retreat DARK_GLOOM,     -28
+	ai_retreat DARK_VILEPLUME, -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy GASTLY_LV13,    2,  +0
+	ai_energy HAUNTER_LV26,   3,  +0
+	ai_energy HAUNTER_LV25,   3,  +0
+	ai_energy MR_MIME_LV20,   0,  -8
+	ai_energy ODDISH_LV21,    0, -28
+	ai_energy DARK_GLOOM,     0, -28
+	ai_energy DARK_VILEPLUME, 0, -28
+	ai_energy PSYDUCK_LV15,   1,  +0
+	ai_energy DARK_GOLDUCK,   3,  +0
+	dw NULL ; end
+
+.list_prize
+	dw MR_MIME_LV20
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_BlazingFlameDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw MAGMAR_LV31
+	dw GROWLITHE_LV18
+	dw VULPIX_LV13
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw GROWLITHE_LV18
+	dw VULPIX_LV13
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GROWLITHE_LV18, -2
+	ai_retreat VULPIX_LV13,    -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy VULPIX_LV13,    2, +0
+	ai_energy NINETALES_LV32, 6, +0
+	ai_energy GROWLITHE_LV18, 2, +0
+	ai_energy ARCANINE_LV34,  4, +0
+	ai_energy ARCANINE_LV45,  4, +0
+	ai_energy MAGMAR_LV31,    2, -3
+	dw NULL ; end
+
+.list_prize
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_DamageChaosDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw JYNX_LV27
+	dw EXEGGCUTE
+	dw CLEFAIRY_LV15
+	dw GASTLY_LV13
+	dw GASTLY_LV17
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw GASTLY_LV13
+	dw GASTLY_LV17
+	dw EXEGGCUTE
+	dw CLEFAIRY_LV15
+	dw JYNX_LV27
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DARK_GENGAR, -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy EXEGGCUTE,      3, +0
+	ai_energy EXEGGUTOR,     12, +0
+	ai_energy GASTLY_LV13,    2, +0
+	ai_energy GASTLY_LV17,    2, +0
+	ai_energy DARK_HAUNTER,   3, +0
+	ai_energy DARK_GENGAR,    3, -1
+	ai_energy JYNX_LV27,      2, +0
+	ai_energy CLEFAIRY_LV15,  2, +0
+	ai_energy DARK_CLEFABLE,  3, +0
+	dw NULL ; end
+
+.list_prize
+	dw DARK_HAUNTER
+	dw DARK_GENGAR
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_BigThunderDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpStartingPlayArea_BigThunderDeck
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw ZAPDOS_LV68
+	dw CHANSEY_LV55
+	dw DITTO
+	dw NULL ; end
+
+.list_bench
+	dw NULL ; end
+
+.list_play_from_hand
+	dw ZAPDOS_LV68
+	dw CHANSEY_LV55
+	dw DITTO
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat DITTO,        -1
+	ai_retreat CHANSEY_LV55, -1
+	dw NULL ; end
+
+.list_energy
+	ai_energy ZAPDOS_LV68,  4, +10
+	ai_energy DITTO,        4,  +3
+	ai_energy CHANSEY_LV55, 4,  +3
+	dw NULL ; end
+
+.list_prize
+	dw ZAPDOS_LV68
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PowerOfDarknessDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpBossStartingPlayArea
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw KANGASKHAN_LV40
+	dw PSYDUCK_LV16
+	dw DRATINI_LV12
+	dw CLEFAIRY_LV15
+	dw GRS_MEWTWO
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw PSYDUCK_LV16
+	dw DRATINI_LV12
+	dw CLEFAIRY_LV15
+	dw GRS_MEWTWO
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat GRS_MEWTWO, -28
+	dw NULL ; end
+
+.list_energy
+	ai_energy PSYDUCK_LV16,    2, +0
+	ai_energy DARK_GOLDUCK,    4, +0
+	ai_energy GRS_MEWTWO,      2, -8
+	ai_energy CLEFAIRY_LV15,   2, +0
+	ai_energy DARK_CLEFABLE,   3, +0
+	ai_energy KANGASKHAN_LV40, 4, -5
+	ai_energy DRATINI_LV12,    2, +0
+	ai_energy DARK_DRAGONAIR,  3, +0
+	dw NULL ; end
+
+.list_prize
+	dw GRS_MEWTWO
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+AIActionTable_PoisonStormDeck:
+	dw .do_turn
+	dw .do_turn
+	dw .start_duel
+	dw .forced_switch
+	dw .ko_switch
+	dw .take_prize
+	dw .update_portrait
+
+.do_turn
+	farcall AIMainTurnLogic
+	ret
+
+.start_duel
+	call InitAIDuelVars
+	call .StoreListPointers
+	farcall SetUpBossStartingHandAndDeck
+	call TrySetUpStartingPlayArea_PoisonStormDeck
+	ret nc
+	call AIPlayInitialBasicCards
+	ret
+
+.forced_switch
+	call Func_14178
+	ret
+
+.ko_switch
+	call Func_14178
+	ret
+
+.take_prize
+	call AIPickPrizeCards
+	ret
+
+.update_portrait
+	farcall AIUpdatePortrait
+	ret
+
+.list_arena
+	dw WEEDLE_LV15
+	dw KANGASKHAN_LV40
+	dw MAGMAR_LV31
+	dw CHARMANDER_LV10
+	dw SCYTHER_LV25
+	dw NULL ; end
+
+.list_bench
+.list_play_from_hand
+	dw CHARMANDER_LV10
+	dw SCYTHER_LV25
+	dw MAGMAR_LV31
+	dw WEEDLE_LV15
+	dw KANGASKHAN_LV40
+	dw NULL ; end
+
+; unreferenced
+	ai_retreat SCYTHER_LV25, +1
+	dw NULL ; end
+
+.list_energy
+	ai_energy WEEDLE_LV15,     2, +0
+	ai_energy SCYTHER_LV25,    3, +0
+	ai_energy CHARMANDER_LV10, 3, +0
+	ai_energy CHARMELEON,      4, +0
+	ai_energy MAGMAR_LV31,     2, +0
+	ai_energy KANGASKHAN_LV40, 4, +0
+	dw NULL ; end
+
+.list_prize
+	dw WEEDLE_LV15
+	dw MAGMAR_LV31
+	dw NULL ; end
+
+.StoreListPointers:
+	ld hl, .CardListPointerTable
+	call StoreAICardListPointers
+	ret
+
+.CardListPointerTable:
+	dw .list_prize
+	dw .list_arena
+	dw .list_bench
+	dw .list_play_from_hand
+	dw .list_energy
+
+; returns carry if card ID in de is NULL ; end
 ; de = card ID
 CheckIfCardIDIsZero_Bank5:
 	push af
@@ -1328,7 +5795,205 @@ TrySetUpBossStartingPlayArea:
 	scf
 	ret
 
-SECTION "Bank 5@6566", ROMX[$6566], BANK[$5]
+TrySetUpStartingPlayArea_PowerfulPokemonDeck:
+	ld de, wAICardListArenaPriority
+	ld a, d
+	or a
+	jr z, .set_carry ; return if null
+
+; copy hand list to wc000
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wc000
+.loop_copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $ff
+	jr nz, .loop_copy
+
+	ld hl, wc000
+	ld de, wAICardListArenaPriority
+	call .PlayHighestPreferenceWithMatchingEnergyInHand
+	jr nc, .play_bench
+	ld de, wAICardListArenaPriority
+	call PlayPkmnCardWithHighestPreference
+	ret c
+.play_bench
+	ld de, wAICardListBenchPriority
+	call .PlayHighestPreferenceWithMatchingEnergyInHand
+	jr c, .done
+	cp 3
+	jr c, .play_bench
+
+.done
+	or a
+	ret
+.set_carry
+	scf
+	ret
+
+; loops through list in [de], and for the first card found
+; that has a matching energy card in the hand, play it from the hand
+; if none is found, then returns carry
+; input:
+; - [de] = pointer to Arena/Bench card priority list
+.PlayHighestPreferenceWithMatchingEnergyInHand:
+	; load list pointer to bc
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	ld b, a
+.loop_list
+	ld a, [bc]
+	inc bc
+	ld e, a
+	ld a, [bc]
+	inc bc
+	ld d, a
+	call CheckIfCardIDIsZero_Bank5
+	jr c, .none_found
+	call .CheckMatchingEnergyInHand
+	jr nc, .loop_list
+	farcall RemoveCardIDInList
+	jr nc, .loop_list
+	push hl
+	call PutHandPokemonCardInPlayArea
+	pop hl
+	or a
+	ret
+.none_found
+	scf
+	ret
+
+; input:
+; - de = card ID
+; output:
+; - carry set if an energy card is found in the hand
+; that matches the type of the card given in de
+.CheckMatchingEnergyInHand:
+	push hl
+	push de
+	push bc
+	cp16 MAGMAR_LV31
+	jr nz, .not_magmar
+	ld de, FIRE_ENERGY
+	jr .look_for_energy
+.not_magmar
+	cp16 LAPRAS_LV31
+	jr nz, .not_lapras
+	ld de, WATER_ENERGY
+	jr .look_for_energy
+.not_lapras
+	cp16 ELECTABUZZ_LV35
+	jr nz, .not_electabuzz
+	ld de, LIGHTNING_ENERGY
+	jr .look_for_energy
+.not_electabuzz
+	cp16 HITMONCHAN_LV33
+	jr nz, .not_hitmonchan
+	ld de, FIGHTING_ENERGY
+	jr .look_for_energy
+.not_hitmonchan
+	ld de, PSYCHIC_ENERGY
+.look_for_energy
+	farcall LookForCardIDInHandList
+	pop bc
+	pop de
+	pop hl
+	ret
+
+TrySetUpStartingPlayArea_BigThunderDeck:
+	ld de, wAICardListArenaPriority
+	ld a, d
+	or a
+	jr z, .set_carry ; return if null
+
+	; play Arena card first, based on preference
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wAICardListArenaPriority
+	call PlayPkmnCardWithHighestPreference
+	ret c
+
+	; next check which card was placed in Arena
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	; if Zapdos lv68, we're done
+	cp16 ZAPDOS_LV68
+	jr z, .done
+	; if Chansey lv55, try placing Ditto from hand
+	cp16 CHANSEY_LV55
+	jr z, .search_ditto
+	; else, try placing a Chansey lv55 from hand
+	ld de, CHANSEY_LV55
+	farcall LookForCardIDInHandList
+	jr c, .place_in_bench
+	jr .done
+.search_ditto
+	ld de, DITTO
+	farcall LookForCardIDInHandList
+	jr c, .place_in_bench
+	jr .done
+.place_in_bench
+	call PutHandPokemonCardInPlayArea
+
+.done
+	or a
+	ret
+
+.set_carry
+	scf
+	ret
+
+TrySetUpStartingPlayArea_PoisonStormDeck:
+	; check if has Double Colorless
+	ld de, DOUBLE_COLORLESS_ENERGY
+	farcall LookForCardIDInHandList
+	jr nc, .no_scyther ; no Double Colorless
+	; check if has Grass energy
+	ld de, GRASS_ENERGY
+	farcall LookForCardIDInHandList
+	jr nc, .no_scyther ; no Grass energy
+	; check if has Scyther lv25
+	ld de, SCYTHER_LV25
+	farcall LookForCardIDInHandList
+	jr nc, .no_scyther
+	; has all 3 cards, put Scyther in Arena
+	call PutHandPokemonCardInPlayArea
+
+	; now move on to the bench
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	jr .loop_place_bench
+
+.no_scyther
+	; doesn't have conditions to place Scyther in Arena
+	; run through the list of card preferences
+	ld de, wAICardListArenaPriority
+	ld a, d
+	or a
+	jr z, .set_carry
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wAICardListArenaPriority
+	call PlayPkmnCardWithHighestPreference
+	ret c
+.loop_place_bench
+	ld de, wAICardListBenchPriority
+	call PlayPkmnCardWithHighestPreference
+	jr c, .done
+	cp 3
+	jr c, .loop_place_bench
+
+.done
+	or a
+	ret
+.set_carry
+	scf
+	ret
 
 ; if player's turn and loaded attack is not a Pokémon Power OR
 ; if opponent's turn and wAITriedAttack == 0
@@ -1975,7 +6640,6 @@ Func_167e5:
 	get_turn_duelist_var
 	ldh [hTempCardIndex_ff9f], a
 	xor a ; PLAY_AREA_ARENA
-Func_16968:
 	ldh [hTemp_ffa0], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
@@ -5123,9 +9787,12 @@ CheckIfCardCanBePlayed:
 	ret
 
 .trainer_card
+	; bug, this seems like remnants from TCG1 code
+	; a call is made in the middle of another routine
+	; this seems like a branch that is never taken
 	bank1call CheckCantUseTrainerDueToEffect
 	ret c
-	call Func_16968
+	call $6968
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	ret

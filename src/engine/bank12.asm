@@ -514,9 +514,97 @@ IsAIAaronStepScriptedTurn:
 	cp 5
 	ccf
 	ret
-; 0x483f7
 
-SECTION "Bank 12@44b5", ROMX[$44b5], BANK[$12]
+AIDoTurn_GeneralNoPkmnPowers:
+; initialize variables
+	call InitAITurnVars
+; process Trainer cards
+; phase 1, 2, 4 and 5.
+	ld a, AI_TRAINER_CARD_PHASE_01
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_02
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_04
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_05
+	farcall AIProcessHandTrainerCards
+; play Pokemon from hand
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+; process Trainer cards
+; phase 7 and 8
+	ld a, AI_TRAINER_CARD_PHASE_07
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_08
+	farcall AIProcessHandTrainerCards
+
+	call AIProcessRetreat
+
+; process Trainer cards
+; phase 10 and 11
+	ld a, AI_TRAINER_CARD_PHASE_10
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_11
+	farcall AIProcessHandTrainerCards
+
+	call AITryPlayEnergyCard
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+
+; process Trainer cards
+; phase 13 and 15
+	ld a, AI_TRAINER_CARD_PHASE_13
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_15
+	farcall AIProcessHandTrainerCards
+; if used Professor Oak, process new hand
+; if not, then proceed to attack.
+	ld a, [wPreviousAIFlags]
+	and AI_FLAG_USED_PROFESSOR_OAK
+	jr z, .try_attack
+	ld a, AI_TRAINER_CARD_PHASE_01
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_02
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_04
+	farcall AIProcessHandTrainerCards
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	ld a, AI_TRAINER_CARD_PHASE_05
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_07
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_08
+	farcall AIProcessHandTrainerCards
+	call AIProcessRetreat
+	ld a, AI_TRAINER_CARD_PHASE_10
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_11
+	farcall AIProcessHandTrainerCards
+	call AITryPlayEnergyCard
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+	ld a, AI_TRAINER_CARD_PHASE_13
+	farcall AIProcessHandTrainerCards
+	; skip AI_TRAINER_CARD_PHASE_15
+
+.try_attack
+	ld a, AI_ENERGY_TRANS_TO_BENCH
+	farcall HandleAIEnergyTrans
+	farcall AIProcessAndTryToUseAttack
+	ret c ; return if turn ended
+	ld a, OPPACTION_FINISH_NO_ATTACK
+	farcall AIMakeDecision
+	ret
+
+AITryPlayEnergyCard:
+	ld a, [wAlreadyPlayedEnergy]
+	or a
+	ret nz
+	farcall AIProcessAndTryToPlayEnergy
+	ret
 
 ; handle AI routines for a whole turn
 AIMainTurnLogic:
@@ -662,19 +750,6 @@ AIMainTurnLogic:
 	ld a, OPPACTION_FINISH_NO_ATTACK
 	farcall AIMakeDecision
 	ret
-; 0x48611
-
-SECTION "Bank 12@44ab", ROMX[$44ab], BANK[$12]
-
-AITryPlayEnergyCard:
-	ld a, [wAlreadyPlayedEnergy]
-	or a
-	ret nz
-	farcall AIProcessAndTryToPlayEnergy
-	ret
-; 0x484b5
-
-SECTION "Bank 12@4611", ROMX[$4611], BANK[$12]
 
 ; handles AI retreating logic
 AIProcessRetreat:
@@ -727,8 +802,8 @@ AIProcessRetreat:
 	and ~AI_FLAG_USED_SWITCH ; clear Switch flag
 	ld [wPreviousAIFlags], a
 
-	ld a, $09 ; AI_ENERGY_TRANS_RETREAT
-	farcall $e, $4000 ; HandleAIEnergyTrans
+	ld a, AI_ENERGY_TRANS_RETREAT
+	farcall HandleAIEnergyTrans
 	ret
 
 .asm_48670
@@ -736,7 +811,143 @@ AIProcessRetreat:
 	ret c ; no Bench Pokémon
 	farcall Func_167e5
 	ret
-; 0x4867a
+
+AIDoTurn_GeneralNoRetreat:
+; initialize variables
+	call InitAITurnVars
+	ld a, AI_TRAINER_CARD_PHASE_01
+	farcall AIProcessHandTrainerCards
+	ret c ; return if turn ended
+	farcall HandleAIAntiMewtwoDeckStrategy
+	jp nc, .try_attack
+; handle Pkmn Powers
+	farcall HandleAIRainDanceEnergy
+	farcall HandleAIDamageSwap
+	farcall HandleAIPkmnPowers
+	ret c ; return if turn ended
+	farcall HandleAICowardice
+	call HandleAIDarkPokemonSearchStrategies
+; process Trainer cards
+; phase 2 through 4.
+	ld a, AI_TRAINER_CARD_PHASE_02
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_03
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_04
+	farcall AIProcessHandTrainerCards
+; play Pokemon from hand
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+
+	farcall HandleAIMagnet
+	farcall HandleAIDamageSwap
+	farcall HandleAICowardice
+
+; process Trainer cards
+; phase 5 through 12.
+	ld a, AI_TRAINER_CARD_PHASE_05
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_06
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_07
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_08
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_10
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_11
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_12
+	farcall AIProcessHandTrainerCards
+
+	call AITryPlayEnergyCard
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+	farcall HandleAIMagnet
+	farcall HandleAIPkmnPowers
+	ret c ; return if turn ended
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+	farcall HandleAIRainDanceEnergy
+	ld a, AI_ENERGY_TRANS_ATTACK
+	farcall HandleAIEnergyTrans
+; process Trainer cards phases 13 and 15
+	ld a, AI_TRAINER_CARD_PHASE_13
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_15
+	farcall AIProcessHandTrainerCards
+; if used Professor Oak, process new hand
+; if not, then proceed to attack.
+	ld a, [wPreviousAIFlags]
+	and AI_FLAG_USED_PROFESSOR_OAK
+	jr z, .try_attack
+	ld a, AI_TRAINER_CARD_PHASE_01
+	farcall AIProcessHandTrainerCards
+	ret c ; return if turn ended
+	call HandleAIDarkPokemonSearchStrategies
+	ld a, AI_TRAINER_CARD_PHASE_02
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_03
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_04
+	farcall AIProcessHandTrainerCards
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	ld a, AI_TRAINER_CARD_PHASE_05
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_06
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_07
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_08
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_10
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_11
+	farcall AIProcessHandTrainerCards
+	ld a, AI_TRAINER_CARD_PHASE_12
+	farcall AIProcessHandTrainerCards
+	call AITryPlayEnergyCard
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+	farcall HandleAIDamageSwap
+	farcall HandleAIPkmnPowers
+	ret c ; return if turn ended
+	farcall AIDecidePlayPokemonCard
+	ret c ; return if turn ended
+	call AITryPlayEnergyCard
+	farcall HandleAIRainDanceEnergy
+	farcall HandleAICowardice
+	ld a, AI_ENERGY_TRANS_ATTACK
+	farcall HandleAIEnergyTrans
+	ld a, AI_TRAINER_CARD_PHASE_13
+	farcall AIProcessHandTrainerCards
+	; skip AI_TRAINER_CARD_PHASE_15
+
+.try_attack
+	ld a, AI_ENERGY_TRANS_TO_BENCH
+	farcall HandleAIEnergyTrans
+
+	farcall HandleAITrickery
+	farcall HandleAIPrehistoricDreamAndPoisonMist
+
+	ld a, AI_TRAINER_CARD_PHASE_17
+	farcall AIProcessHandTrainerCards
+	ld a, [wd033]
+	cp $02
+	jr z, .finish_wo_attack
+; attack if possible, if not,
+; finish turn without attacking.
+	farcall AIProcessAndTryToUseAttack
+	ret c ; return if turn ended
+.finish_wo_attack
+	ld a, OPPACTION_FINISH_NO_ATTACK
+	farcall AIMakeDecision
+	ret
+; 0x487c7
 
 SECTION "Bank 12@4856", ROMX[$4856], BANK[$12]
 
