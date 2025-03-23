@@ -28,6 +28,9 @@ INCLUDE "engine/bank06.asm"
 SECTION "Bank 7", ROMX
 INCLUDE "engine/bank07.asm"
 
+SECTION "Bank 8", ROMX
+INCLUDE "engine/bank08.asm"
+
 SECTION "Bank 9", ROMX
 INCLUDE "engine/bank09.asm"
 
@@ -52,8 +55,17 @@ INCLUDE "engine/bank10.asm"
 SECTION "Bank 11", ROMX
 INCLUDE "engine/bank11.asm"
 
+SECTION "Bank 12", ROMX
+INCLUDE "engine/bank12.asm"
+
+SECTION "Bank 13", ROMX
+INCLUDE "engine/bank13.asm"
+
 SECTION "Decks", ROMX[$54ac], BANK[$16]
 INCLUDE "data/decks.asm"
+
+SECTION "Bank 1a", ROMX
+INCLUDE "engine/bank1a.asm"
 
 INCLUDE "engine/bank4b.asm"
 

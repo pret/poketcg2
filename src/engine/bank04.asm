@@ -4608,7 +4608,7 @@ ShowProloguePortraitAndText:
 .Func_13bdf:
 	ld a, NPC_GR_1
 	lb bc, 7, 3
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 	ret
 
@@ -4844,14 +4844,14 @@ PlayerGenderSelection:
 	; male portrait
 	ld a, PORTRAIT_MARK
 	ld b, 0
-	ld c, PORTRAITVARIANT_NORMAL
+	ld c, EMOTION_NORMAL
 	lb de, 2, 4
 	farcall DrawPortrait
 
 	; female portrait
 	ld a, PORTRAIT_MINT
 	ld b, 1
-	ld c, PORTRAITVARIANT_NORMAL
+	ld c, EMOTION_NORMAL
 	lb de, 12, 4
 	farcall DrawPortrait
 

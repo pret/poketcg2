@@ -298,7 +298,7 @@ Func_0e32:
 	ret
 
 ; receive byte in wSerialRecvBuf
-SerialRecvByte:
+SerialRecvByte::
 	push hl
 	ld hl, wSerialRecvCounter
 	ld a, [hl]

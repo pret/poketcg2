@@ -561,9 +561,45 @@ DoAIOpponentTurn:
 	ld [wPlayerAttackingCardIndex], a
 	ld [wPlayerAttackingAttackIndex], a
 	ret
-; 0x244f4
 
-SECTION "Bank 9@4531", ROMX[$4531], BANK[$9]
+; related to AI taking their turn in a duel
+; called multiple times during one AI turn
+; each call results in the execution of an OppActionTable function
+AIMakeDecision:
+	ldh [hOppActionTableIndex], a
+	ld hl, wSkipDuelistIsThinkingDelay
+	ld a, [hl]
+	ld [hl], $0
+	or a
+	jr nz, .skip_delay
+.delay_loop
+	call DoFrame
+	ld a, [wVBlankCounter]
+	cp 60
+	jr c, .delay_loop
+
+.skip_delay
+	ldh a, [hOppActionTableIndex]
+	ld hl, wOpponentTurnEnded
+	ld [hl], 0
+	ld hl, OppActionTable
+	call JumpToFunctionInTable
+	ld a, [wDuelFinished]
+	ld hl, wOpponentTurnEnded
+	or [hl]
+	jr nz, .turn_ended
+	ld a, [wSkipDuelistIsThinkingDelay]
+	or a
+	ret nz
+	ld [wVBlankCounter], a
+	ldtx hl, Text008d ; DuelistIsThinkingText
+	call DrawWideTextBox_PrintTextNoDelay
+	or a
+	ret
+
+.turn_ended
+	scf
+	ret
 
 ; handle the opponent's turn in a link duel
 ; loop until either [wOpponentTurnEnded] or [wDuelFinished] is non-0
@@ -604,6 +640,41 @@ DoLinkOpponentTurn:
 	jr z, .link_opp_turn_loop
 	ret
 
+; actions for the opponent's turn
+; on a link duel, this is referenced by DoLinkOpponentTurn in a loop (on each opponent's HandleTurn)
+; on a non-link duel (vs AI opponent), this is referenced by AIMakeDecision
+OppActionTable:
+	dw DuelTransmissionError
+	dw $4613
+	dw $45f9
+	dw $45d6
+	dw $462f
+	dw $45bf
+	dw $4659
+	dw $466b
+	dw $4684
+	dw $46ae
+	dw $46c5
+	dw $45b8
+	dw $46fc
+	dw $4725
+	dw $4761
+	dw $46e2
+	dw $4828
+	dw $4828
+	dw $477f
+	dw $4790
+	dw $4828
+	dw $479e
+	dw $4770
+	dw $477b
+	dw $47d7
+	dw $47e3
+	dw $47ea
+	dw $4805
+	dw $4818
+; 0x245b8
+
 SECTION "Bank 9@4829", ROMX[$4829], BANK[$9]
 
 ; load the text ID of the card name with deck index given in a to TxRam2
@@ -631,7 +702,7 @@ LoadCardNameToTxRam2_b:
 DrawDuelistPortraitsAndNames:
 	ld a, $00
 	ld [wcd77], a
-	call AIDoAction_06
+	call AIDoAction_UpdatePortrait
 
 	call LoadSymbolsFont
 
@@ -919,7 +990,7 @@ DisplayDrawNCardsScreen:
 
 	ld a, [wNumCardsTryingToDraw]
 	ld [wcd77], a
-	call AIDoAction_06
+	call AIDoAction_UpdatePortrait
 	call DrawOpponentPortrait
 
 	ld c, 30
@@ -1050,6 +1121,227 @@ DeckAndHandIconsCGBPalData:
 	db 13, 10, $03, $03, 0
 	db $ff
 ; 0x24b83
+
+SECTION "Bank 9@4cd7", ROMX[$4cd7], BANK[$9]
+
+; saves a to wCardSearchFunc and de to wCardSearchFuncParam
+; input:
+; - a = CARDSEARCH_* constant
+; - de = parameter for card search function
+SetCardSearchFuncParams:
+	push hl
+	ld [wCardSearchFunc], a
+	ld hl, wCardSearchFuncParam
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ret
+
+; runs the card search function loaded in wCardSearchFunc
+; if the input card passes the predicate, then carry set is returned
+; input:
+; - a = card index
+; - [wCardSearchFunc] = CARDSEARCH_* constant
+; - wCardSearchFuncParam = parameter for func
+; output:
+; - carry set if input card passes all checks of the function
+ExecuteCardSearchFunc:
+	push hl
+	push de
+	push bc
+	ld e, a
+	ld a, [wCardSearchFunc]
+	ld hl, .FuncTable
+	call JumpToFunctionInTable
+	pop bc
+	pop de
+	pop hl
+	ret
+
+.FuncTable:
+	dw .SearchCardID                 ; CARDSEARCH_CARD_ID
+	dw .SearchNidoran                ; CARDSEARCH_NIDORAN
+	dw .SearchBasicFightingPkmn      ; CARDSEARCH_BASIC_FIGHTING_POKEMON
+	dw .SearchBasicEnergy            ; CARDSEARCH_BASIC_ENERGY
+	dw .SearchAnyEnergy              ; CARDSEARCH_ANY_ENERGY
+	dw .SearchPokedexNumber          ; CARDSEARCH_POKEDEX_NUMBER
+	dw .Func_24d77                   ; CARDSEARCH_UNK_6
+	dw .SearchPsychicEnergy          ; CARDSEARCH_PSYCHIC_ENERGY
+	dw .SearchEvolutionPkmn          ; CARDSEARCH_EVOLUTION_POKEMON
+	dw .Func_24df6                   ; CARDSEARCH_UNK_9
+	dw .SearchTrainer                ; CARDSEARCH_TRAINER
+	dw .SearchEvolutionColorlessPkmn ; CARDSEARCH_EVOLUTION_COLORLESS_POKEMON
+	dw .SearchLightningEnergy        ; CARDSEARCH_LIGHTNING_ENERGY
+	dw .Func_24df6                   ; CARDSEARCH_UNK_D
+	dw .SearchBasicPkmn              ; CARDSEARCH_BASIC_POKEMON
+
+.no_carry
+	or a
+	ret
+
+; returns carry if input card has same card ID
+; as wCardSearchFuncParam
+.SearchCardID:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	ld hl, wCardSearchFuncParam + 1
+	ld a, d
+	cp [hl]
+	jr nz, .no_carry
+	dec hl
+	ld a, e
+	cp [hl]
+	jr nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a NidoranF or NidoranM
+.SearchNidoran:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2PokedexNumber]
+	cp DEX_NIDORAN_F
+	jr z, .is_nidoran
+	cp DEX_NIDORAN_M
+	jr nz, .no_carry
+.is_nidoran
+	scf
+	ret
+
+; returns carry if input card is a Basic Fighting Pokémon
+.SearchBasicFightingPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_PKMN_FIGHTING
+	jr nz, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Basic energy
+.SearchBasicEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_DOUBLE_COLORLESS
+	jr nc, .no_carry
+	and TYPE_ENERGY
+	jr z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an energy card
+.SearchAnyEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY
+	jr nc, .no_carry
+	scf
+	ret
+
+; returns carry if input card has same Pokédex number
+; as wCardSearchFuncParam
+.SearchPokedexNumber:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2PokedexNumber]
+	ld hl, wCardSearchFuncParam
+	cp [hl]
+	jr nz, .no_carry
+	scf
+	ret
+
+.Func_24d77:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .no_carry
+	ld a, [wLoadedCard2Unk3a]
+	or a
+	jr z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Psychic energy
+.SearchPsychicEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_PSYCHIC
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an Evolution Pokémon
+.SearchEvolutionPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jp nc, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Trainer card
+.SearchTrainer:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_TRAINER
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is an Evolution Colorless Pokémon
+.SearchEvolutionColorlessPkmn:
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_PKMN_COLORLESS
+	jp nz, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp z, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Lightning energy
+.SearchLightningEnergy:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call GetCardType
+	cp TYPE_ENERGY_LIGHTNING
+	jp nz, .no_carry
+	scf
+	ret
+
+; returns carry if input card is a Basic Pokémon
+.SearchBasicPkmn:
+	ld a, e
+	call GetCardIDFromDeckIndex
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jp nc, .no_carry
+	ld a, [wLoadedCard2Stage]
+	or a
+	jp nz, .no_carry
+	scf
+	ret
+
+.Func_24df6:
+	scf
+	ret
+; 0x24df8
 
 SECTION "Bank 9@4e25", ROMX[$4e25], BANK[$9]
 
@@ -1430,7 +1722,7 @@ LoadDeckDiagnosisScene:
 ;	fallthrough
 DrawDrMasonsPortrait:
 	ld a, NPC_DR_MASON
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 	call FlushAllPalettes
 	ret
@@ -1819,7 +2111,7 @@ CheckDeck:
 	; every $10 frames cycle Dr. Mason's portrait
 	; between normal and sad variants
 	ld d, $80
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 .check_delay
 	ld a, d
 	and %1111
@@ -1841,7 +2133,7 @@ CheckDeck:
 
 	; show happy portrait
 	ld a, NPC_DR_MASON
-	ld e, PORTRAITVARIANT_HAPPY
+	ld e, EMOTION_HAPPY
 	lb bc, 7, 4
 	call DrawNPCPortrait
 	call FlushAllPalettes
@@ -2726,7 +3018,7 @@ LoadDeckIDData:
 	ret
 
 DeckIDData:
-	db UNKNOWN_SAMS_PRACTICE_DECK_ID
+	db SAMS_PRACTICE_DECK_ID
 	tx Text04d6 ; deck name
 	tx Text04d5 ; opponent name
 	db NPC_SAM ; NPC ID
@@ -2792,7 +3084,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db SAMS_PRACTICE_DECK_ID - 1
+	db UNUSED_SAMS_PRACTICE_DECK_ID - 1
 	tx Text04f1 ; deck name
 	tx Text04f6 ; opponent name
 	db NPC_MARK ; NPC ID
@@ -2803,7 +3095,7 @@ DeckIDData:
 	db $00 ; ?
 	db $00 ; ?
 
-	db SAMS_PRACTICE_DECK_ID
+	db UNUSED_SAMS_PRACTICE_DECK_ID
 	tx Text04d6 ; deck name
 	tx Text04d5 ; opponent name
 	db NPC_SAM ; NPC ID

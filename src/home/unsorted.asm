@@ -1923,7 +1923,7 @@ DrawPlayerPortrait::
 	add $00
 	ld d, b
 	ld e, c
-	ld c, PORTRAITVARIANT_NORMAL
+	ld c, EMOTION_NORMAL
 	ld b, 0
 	farcall DrawPortrait
 	pop hl
@@ -1934,7 +1934,7 @@ DrawPlayerPortrait::
 
 ; a = NPC_* constant
 ; bc = coordinates
-; e = PORTRAITVARIANT_* constant
+; e = EMOTION_* constant
 DrawNPCPortrait::
 	push af
 	push bc
@@ -1943,7 +1943,7 @@ DrawNPCPortrait::
 	cp NPC_MINT_LINK + 1
 	jr nc, .ok
 	; Mark and Mint don't have portrait variants
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 .ok
 	farcall GetDuelistPortrait
 	ld h, e
@@ -1958,7 +1958,7 @@ DrawNPCPortrait::
 	pop af
 	ret
 
-; c = portrait variant
+; c = EMOTION_* constant
 ; e = portrait slot (0 or 1)
 ; b:hl = tileset pointer
 LoadPortraitTiles::

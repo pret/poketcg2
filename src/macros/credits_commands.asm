@@ -87,7 +87,7 @@ ENDM
 ; \1 = NPC_* constant
 ; \2 = x
 ; \3 = y
-; \4 = portrait variant
+; \4 = EMOTION_* constant
 MACRO credits_show_portrait
 	db CREDITSCMD_SHOW_PORTRAIT
 	db \1

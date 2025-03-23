@@ -23,8 +23,7 @@ MACRO card_data_struct
 \1Length::        ds 1
 \1Weight::        ds 2
 \1Description::   ds 2
-	ds 1
-;\1Unknown2::      ds 1
+\1AIInfo::        ds 1
 ENDM
 
 MACRO atk_data_struct

@@ -7,35 +7,35 @@ LoadOpponentDeck::
 	ld [wcd17], a
 	ld a, [wOpponentDeckID]
 	or a
-	jr z, .asm_2907
-	cp $07
-	jr z, .asm_290f
-	cp $09
-	jr z, .asm_2917
-	cp $0b
-	jr z, .asm_2917
-	cp $0d
-	jr z, .asm_2917
+	jr z, .set_practice_duel
+	cp UNUSED_SAMS_PRACTICE_DECK_ID
+	jr z, .overwrite_opp_id
+	cp AARONS_STEP1_DECK_ID
+	jr z, .decr_by_1
+	cp AARONS_STEP2_DECK_ID
+	jr z, .decr_by_1
+	cp AARONS_STEP3_DECK_ID
+	jr z, .decr_by_1
 	jr .not_special_duel
-.asm_2907
-	ld a, $01
+.set_practice_duel
+	ld a, TRUE
 	ld [wIsPracticeDuel], a
 	ld e, a
-	jr .asm_2919
-.asm_290f
-	xor a
+	jr .load_predefined_player_deck
+.overwrite_opp_id
+	xor a ; SAMS_PRACTICE_DECK_ID
 	ld [wOpponentDeckID], a
 	ld e, $01
-	jr .asm_2919
-.asm_2917
+	jr .load_predefined_player_deck
+.decr_by_1
 	ld e, a
 	dec e
-.asm_2919
+.load_predefined_player_deck
 	ld a, $01
 	ld [wcd17], a
 	call SwapTurn
 	ld a, e
-	add $02
+	add 2
 	call LoadDeck
 	call SwapTurn
 	ld hl, wRNG1
@@ -71,7 +71,7 @@ AIDoAction_StartDuel::
 	ld a, AIACTION_START_DUEL
 	jr AIDoAction
 
-AIDoAction_ForcedSwitch:
+AIDoAction_ForcedSwitch::
 	ld a, AIACTION_FORCED_SWITCH
 	call AIDoAction
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -87,8 +87,8 @@ AIDoAction_TakePrize::
 	ld a, AIACTION_TAKE_PRIZE
 	jr AIDoAction
 
-AIDoAction_06::
-	ld a, AIACTION_06
+AIDoAction_UpdatePortrait::
+	ld a, AIACTION_UPDATE_PORTRAIT
 	jr AIDoAction
 
 Func_2972:
@@ -141,7 +141,7 @@ AIDoAction:
 	ld l, a
 	ld h, $0
 	add hl, hl ; two bytes per deck
-	ld de, $4000 ; DeckAIPointerTable
+	ld de, DeckAIPointerTable
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]

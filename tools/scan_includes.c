@@ -94,9 +94,9 @@ void scan_file(char *filename) {
 
 			case 'i':
 			case 'I':
-				if ((strncmp(buffer, "INCBIN", 6) == 0) || (strncmp(buffer, "incbin", 6) == 0)) {
+				if ((strncmp(buffer, "INCBIN ", 7) == 0) || (strncmp(buffer, "incbin ", 7) == 0)) {
 					is_incbin = true;
-				} else if ((strncmp(buffer, "INCLUDE", 7) == 0) || (strncmp(buffer, "include", 7) == 0)) {
+				} else if ((strncmp(buffer, "INCLUDE ", 8) == 0) || (strncmp(buffer, "include ", 8) == 0)) {
 					is_include = true;
 				}
 				if (is_incbin || is_include) {

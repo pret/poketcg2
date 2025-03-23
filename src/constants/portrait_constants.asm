@@ -98,6 +98,14 @@
 
 ; each portrait has 3 variants
 	const_def
-	const PORTRAITVARIANT_NORMAL ; $0
-	const PORTRAITVARIANT_HAPPY  ; $1
-	const PORTRAITVARIANT_SAD    ; $2
+	const EMOTION_NORMAL ; $0
+	const EMOTION_HAPPY  ; $1
+	const EMOTION_SAD    ; $2
+
+; each AI opponent has a personality
+; that will decide which portrait to use
+	const_def
+	const PERSONALITY_STANDARD    ; $0
+	const PERSONALITY_SERIOUS     ; $1
+	const PERSONALITY_EMOTIONAL   ; $2
+	const PERSONALITY_EMOTIONLESS ; $3

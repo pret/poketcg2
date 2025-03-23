@@ -88,13 +88,23 @@ hTemp_ffa0:: ; ffa2
 
 ; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
 hTempPlayAreaLocation_ffa1:: ; ffa3
+
+; parameter to be used by the AI's Pkmn Power effect
+hAIPkmnPowerEffectParam:: ; ffa3
 	ds $1
 
 ; $ff-terminated list of cards to be discarded upon retreat
 hTempRetreatCostCards:: ; ffa4
-	ds $6
 
-	ds $9
+; PLAY_AREA_*  of target selected for some Pkmn Powers,
+; (e.g. Curse, Damage Swap) and for trainer card effect.
+hPlayAreaEffectTarget:: ; ffa4
+	ds $1
+
+hAIEnergyTransPlayAreaLocation:: ; ffa5
+	ds $1
+
+	ds $d
 
 ; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3

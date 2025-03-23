@@ -1655,7 +1655,7 @@ ShowStartMenu:
 	call Func_1c0ec
 	add 0
 	lb bc, 13, 1
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 
 ; print player's name
@@ -2384,7 +2384,7 @@ Func_1e60c:
 	; show opponent portrait
 	ld a, [wOpponentNPCID]
 	lb bc, 7, 3
-	ld e, PORTRAITVARIANT_NORMAL
+	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 
 	farcall SetFrameFuncAndFadeFromWhite

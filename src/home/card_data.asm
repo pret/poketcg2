@@ -101,7 +101,7 @@ GetCardType::
 	pop hl
 	ret
 
-Func_2d3f::
+CheckIfCardIDIsDarkPokemon::
 	push hl
 	push de
 	call GetCardPointer
