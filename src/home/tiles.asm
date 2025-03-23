@@ -73,7 +73,16 @@ LoadCardSet2Tiles::
 	ret
 
 .tile_offsets
-	db 8, -1, -1, 0, 4, 12, 16, 20, 24, 28
+	db  8 ; GB
+	db -1 ; PRO
+	db -1 ; BEGINNING_POKEMON
+	db  0 ; LEGENDARY_POWER
+	db  4 ; ISLAND_OF_FOSSIL
+	db 12 ; PSYCHIC_BATTLE
+	db 16 ; SKY_FLYING_POKEMON
+	db 20 ; WE_ARE_TEAM_ROCKET
+	db 24 ; TEAM_ROCKETS_AMBITION
+	db 28 ; SQUIRTLE_DECK
 
 ; loads the Deck and Hand icons for the "Draw X card(s) from the deck." screen
 LoadDuelDrawCardsScreenTiles::

@@ -139,15 +139,18 @@ DEF PROMOSTAR EQU $ff
 
 ; card set constants (set 1)
 	const_def
-	const BEGINNING_POKEMON     ; $0
-	const LEGENDARY_POWER       ; $1
-	const ISLAND_OF_FOSSIL      ; $2
-	const PSYCHIC_BATTLE        ; $3
-	const SKY_FLYING_POKEMON    ; $4
-	const WE_ARE_TEAM_ROCKET    ; $5
-	const TEAM_ROCKETS_AMBITION ; $6
-	const PROMOTIONAL           ; $7
+	const BEGINNING_POKEMON     ; $00
+	const LEGENDARY_POWER       ; $01
+	const ISLAND_OF_FOSSIL      ; $02
+	const PSYCHIC_BATTLE        ; $03
+	const SKY_FLYING_POKEMON    ; $04
+	const WE_ARE_TEAM_ROCKET    ; $05
+	const TEAM_ROCKETS_AMBITION ; $06
+	const SQUIRTLE_DECK         ; $07
 DEF NUM_CARD_SETS EQU const_value
+	const_def -2
+	const GB                    ; $fe
+	const PRO                   ; $ff
 
 ; CARD_DATA_STAGE constants
 DEF BASIC  EQU $00
@@ -204,6 +207,7 @@ DEF FLAG_2_BIT_7_F             EQU %111
 ; bits 2-7 are unused
 DEF BOOST_IF_TAKEN_DAMAGE_F    EQU %000
 DEF SPECIAL_AI_HANDLING_F      EQU %001
+DEF FLAG_3_BIT_2_F             EQU %010
 
 ; CARD_DATA_ATTACK*_FLAG1_F constants
 DEF INFLICT_POISON           EQU $1 << INFLICT_POISON_F
@@ -231,6 +235,7 @@ DEF FLAG_2_BIT_7             EQU $1 << FLAG_2_BIT_7_F
 ; bits 2-7 are unused
 DEF BOOST_IF_TAKEN_DAMAGE    EQU $1 << BOOST_IF_TAKEN_DAMAGE_F
 DEF SPECIAL_AI_HANDLING      EQU $1 << SPECIAL_AI_HANDLING_F
+DEF FLAG_3_BIT_2             EQU $1 << FLAG_3_BIT_2_F
 
 ; special CARD_DATA_RETREAT_COST values
 DEF UNABLE_RETREAT EQU $64
@@ -251,4 +256,5 @@ DEF AI_INFO_UNK_03        EQU $3
 DEF AI_INFO_UNK_05        EQU $5
 DEF AI_INFO_UNK_08        EQU $8
 
-DEF HAS_EVOLUTION         EQU 1 << 4
+DEF HAS_EVOLUTION_F       EQU 4
+DEF HAS_EVOLUTION         EQU 1 << HAS_EVOLUTION_F

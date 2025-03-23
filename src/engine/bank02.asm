@@ -3597,7 +3597,7 @@ PrepareBoosterPackCardList:
 ; a = CARD_SET_* constant
 .GetEntryPrefix:
 	push af
-	cp PROMOTIONAL
+	cp $7
 	jr nz, .check_team_rockets_ambition
 	lb de, $4, "FW4_P"
 	jr .got_letter
@@ -4202,7 +4202,7 @@ CardAlbum:
 	call InitTextPrinting
 
 	ld a, [wCardAlbumBoosterPack]
-	cp PROMOTIONAL
+	cp $7
 	jr nz, .check_team_rockets_ambition
 	ldtx hl, Text02cd
 	ld e, NUM_CARDS_PROMOTIONAL
