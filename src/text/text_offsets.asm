@@ -4851,1602 +4851,1602 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text12ea                                           ; 0x12ea
 	textpointer Text12eb                                           ; 0x12eb
 	textpointer Text12ec                                           ; 0x12ec
-	textpointer Text12ed                                           ; 0x12ed
-	textpointer Text12ee                                           ; 0x12ee
-	textpointer Text12ef                                           ; 0x12ef
-	textpointer Text12f0                                           ; 0x12f0
-	textpointer Text12f1                                           ; 0x12f1
-	textpointer Text12f2                                           ; 0x12f2
-	textpointer Text12f3                                           ; 0x12f3
-	textpointer Text12f4                                           ; 0x12f4
-	textpointer Text12f5                                           ; 0x12f5
-	textpointer Text12f6                                           ; 0x12f6
-	textpointer Text12f7                                           ; 0x12f7
-	textpointer Text12f8                                           ; 0x12f8
-	textpointer Text12f9                                           ; 0x12f9
-	textpointer Text12fa                                           ; 0x12fa
-	textpointer Text12fb                                           ; 0x12fb
-	textpointer Text12fc                                           ; 0x12fc
-	textpointer Text12fd                                           ; 0x12fd
-	textpointer Text12fe                                           ; 0x12fe
-	textpointer Text12ff                                           ; 0x12ff
-	textpointer Text1300                                           ; 0x1300
-	textpointer Text1301                                           ; 0x1301
-	textpointer Text1302                                           ; 0x1302
-	textpointer Text1303                                           ; 0x1303
-	textpointer Text1304                                           ; 0x1304
+	textpointer GrassEnergyName                                    ; 0x12ed
+	textpointer GrassEnergyDescription                             ; 0x12ee
+	textpointer FireEnergyName                                     ; 0x12ef
+	textpointer FireEnergyDescription                              ; 0x12f0
+	textpointer WaterEnergyName                                    ; 0x12f1
+	textpointer WaterEnergyDescription                             ; 0x12f2
+	textpointer LightningEnergyName                                ; 0x12f3
+	textpointer LightningEnergyDescription                         ; 0x12f4
+	textpointer FightingEnergyName                                 ; 0x12f5
+	textpointer FightingEnergyDescription                          ; 0x12f6
+	textpointer PsychicEnergyName                                  ; 0x12f7
+	textpointer PsychicEnergyDescription                           ; 0x12f8
+	textpointer DoubleColorlessEnergyName                          ; 0x12f9
+	textpointer DoubleColorlessEnergyDescription                   ; 0x12fa
+	textpointer PotionEnergyName                                   ; 0x12fb
+	textpointer PotionEnergyDescription                            ; 0x12fc
+	textpointer PotionEnergyDescriptionCont                        ; 0x12fd
+	textpointer FullhealEnergyName                                 ; 0x12fe
+	textpointer FullhealEnergyDescription                          ; 0x12ff
+	textpointer RainbowEnergyName                                  ; 0x1300
+	textpointer RainbowEnergyDescription                           ; 0x1301
+	textpointer RecycleEnergyName                                  ; 0x1302
+	textpointer RecycleEnergyDescription                           ; 0x1303
+	textpointer BulbasaurName                                      ; 0x1304
 	textpointer Text1305                                           ; 0x1305
 	textpointer Text1306                                           ; 0x1306
 	textpointer Text1307                                           ; 0x1307
-	textpointer Text1308                                           ; 0x1308
+	textpointer BulbasaurDescription1                              ; 0x1308
 	textpointer Text1309                                           ; 0x1309
 	textpointer Text130a                                           ; 0x130a
-	textpointer Text130b                                           ; 0x130b
+	textpointer BulbasaurDescription2                              ; 0x130b
 	textpointer Text130c                                           ; 0x130c
 	textpointer Text130d                                           ; 0x130d
 	textpointer Text130e                                           ; 0x130e
 	textpointer Text130f                                           ; 0x130f
-	textpointer Text1310                                           ; 0x1310
-	textpointer Text1311                                           ; 0x1311
+	textpointer BulbasaurDescription3                              ; 0x1310
+	textpointer IvysaurName                                        ; 0x1311
 	textpointer Text1312                                           ; 0x1312
 	textpointer Text1313                                           ; 0x1313
-	textpointer Text1314                                           ; 0x1314
+	textpointer IvysaurDescription1                                ; 0x1314
 	textpointer Text1315                                           ; 0x1315
 	textpointer Text1316                                           ; 0x1316
 	textpointer Text1317                                           ; 0x1317
-	textpointer Text1318                                           ; 0x1318
-	textpointer Text1319                                           ; 0x1319
+	textpointer IvysaurDescription2                                ; 0x1318
+	textpointer DarkIvysaurName                                    ; 0x1319
 	textpointer Text131a                                           ; 0x131a
 	textpointer Text131b                                           ; 0x131b
 	textpointer Text131c                                           ; 0x131c
 	textpointer Text131d                                           ; 0x131d
-	textpointer Text131e                                           ; 0x131e
-	textpointer Text131f                                           ; 0x131f
+	textpointer DarkIvysaurDescription                             ; 0x131e
+	textpointer VenusaurName                                       ; 0x131f
 	textpointer Text1320                                           ; 0x1320
 	textpointer Text1321                                           ; 0x1321
 	textpointer Text1322                                           ; 0x1322
 	textpointer Text1323                                           ; 0x1323
-	textpointer Text1324                                           ; 0x1324
+	textpointer VenusaurDescription1                               ; 0x1324
 	textpointer Text1325                                           ; 0x1325
 	textpointer Text1326                                           ; 0x1326
 	textpointer Text1327                                           ; 0x1327
-	textpointer Text1328                                           ; 0x1328
-	textpointer Text1329                                           ; 0x1329
+	textpointer VenusaurDescription2                               ; 0x1328
+	textpointer DarkVenusaurName                                   ; 0x1329
 	textpointer Text132a                                           ; 0x132a
 	textpointer Text132b                                           ; 0x132b
-	textpointer Text132c                                           ; 0x132c
-	textpointer Text132d                                           ; 0x132d
+	textpointer DarkVenusaurDescription                            ; 0x132c
+	textpointer CaterpieName                                       ; 0x132d
 	textpointer Text132e                                           ; 0x132e
 	textpointer Text132f                                           ; 0x132f
 	textpointer Text1330                                           ; 0x1330
-	textpointer Text1331                                           ; 0x1331
-	textpointer Text1332                                           ; 0x1332
+	textpointer CaterpieDescription                                ; 0x1331
+	textpointer MetapodName                                        ; 0x1332
 	textpointer Text1333                                           ; 0x1333
 	textpointer Text1334                                           ; 0x1334
 	textpointer Text1335                                           ; 0x1335
 	textpointer Text1336                                           ; 0x1336
 	textpointer Text1337                                           ; 0x1337
-	textpointer Text1338                                           ; 0x1338
+	textpointer MetapodDescription1                                ; 0x1338
 	textpointer Text1339                                           ; 0x1339
 	textpointer Text133a                                           ; 0x133a
 	textpointer Text133b                                           ; 0x133b
-	textpointer Text133c                                           ; 0x133c
-	textpointer Text133d                                           ; 0x133d
+	textpointer MetapodDescription2                                ; 0x133c
+	textpointer ButterfreeName                                     ; 0x133d
 	textpointer Text133e                                           ; 0x133e
 	textpointer Text133f                                           ; 0x133f
 	textpointer Text1340                                           ; 0x1340
-	textpointer Text1341                                           ; 0x1341
-	textpointer Text1342                                           ; 0x1342
+	textpointer ButterfreeDescription                              ; 0x1341
+	textpointer WeedleName                                         ; 0x1342
 	textpointer Text1343                                           ; 0x1343
 	textpointer Text1344                                           ; 0x1344
 	textpointer Text1345                                           ; 0x1345
-	textpointer Text1346                                           ; 0x1346
+	textpointer WeedleDescription1                                 ; 0x1346
 	textpointer Text1347                                           ; 0x1347
 	textpointer Text1348                                           ; 0x1348
-	textpointer Text1349                                           ; 0x1349
-	textpointer Text134a                                           ; 0x134a
+	textpointer WeedleDescription2                                 ; 0x1349
+	textpointer KakunaName                                         ; 0x134a
 	textpointer Text134b                                           ; 0x134b
 	textpointer Text134c                                           ; 0x134c
 	textpointer Text134d                                           ; 0x134d
-	textpointer Text134e                                           ; 0x134e
-	textpointer Text134f                                           ; 0x134f
-	textpointer Text1350                                           ; 0x1350
+	textpointer KakunaDescription1                                 ; 0x134e
+	textpointer KakunaDescription2                                 ; 0x134f
+	textpointer BeedrillName                                       ; 0x1350
 	textpointer Text1351                                           ; 0x1351
 	textpointer Text1352                                           ; 0x1352
 	textpointer Text1353                                           ; 0x1353
-	textpointer Text1354                                           ; 0x1354
-	textpointer Text1355                                           ; 0x1355
+	textpointer BeedrillDescription                                ; 0x1354
+	textpointer EkansName                                          ; 0x1355
 	textpointer Text1356                                           ; 0x1356
 	textpointer Text1357                                           ; 0x1357
 	textpointer Text1358                                           ; 0x1358
-	textpointer Text1359                                           ; 0x1359
+	textpointer EkansDescription1                                  ; 0x1359
 	textpointer Text135a                                           ; 0x135a
 	textpointer Text135b                                           ; 0x135b
-	textpointer Text135c                                           ; 0x135c
-	textpointer Text135d                                           ; 0x135d
+	textpointer EkansDescription2                                  ; 0x135c
+	textpointer ArbokName                                          ; 0x135d
 	textpointer Text135e                                           ; 0x135e
 	textpointer Text135f                                           ; 0x135f
 	textpointer Text1360                                           ; 0x1360
 	textpointer Text1361                                           ; 0x1361
-	textpointer Text1362                                           ; 0x1362
+	textpointer ArbokDescription1                                  ; 0x1362
 	textpointer Text1363                                           ; 0x1363
 	textpointer Text1364                                           ; 0x1364
 	textpointer Text1365                                           ; 0x1365
-	textpointer Text1366                                           ; 0x1366
-	textpointer Text1367                                           ; 0x1367
+	textpointer ArbokDescription2                                  ; 0x1366
+	textpointer DarkArbokName                                      ; 0x1367
 	textpointer Text1368                                           ; 0x1368
 	textpointer Text1369                                           ; 0x1369
 	textpointer Text136a                                           ; 0x136a
 	textpointer Text136b                                           ; 0x136b
-	textpointer Text136c                                           ; 0x136c
-	textpointer Text136d                                           ; 0x136d
+	textpointer DarkArbokDescription                               ; 0x136c
+	textpointer NidoranfName                                       ; 0x136d
 	textpointer Text136e                                           ; 0x136e
 	textpointer Text136f                                           ; 0x136f
-	textpointer Text1370                                           ; 0x1370
+	textpointer NidoranfDescription1                               ; 0x1370
 	textpointer Text1371                                           ; 0x1371
 	textpointer Text1372                                           ; 0x1372
 	textpointer Text1373                                           ; 0x1373
 	textpointer Text1374                                           ; 0x1374
-	textpointer Text1375                                           ; 0x1375
-	textpointer Text1376                                           ; 0x1376
+	textpointer NidoranfDescription2                               ; 0x1375
+	textpointer NidorinaName                                       ; 0x1376
 	textpointer Text1377                                           ; 0x1377
 	textpointer Text1378                                           ; 0x1378
 	textpointer Text1379                                           ; 0x1379
-	textpointer Text137a                                           ; 0x137a
+	textpointer NidorinaDescription1                               ; 0x137a
 	textpointer Text137b                                           ; 0x137b
 	textpointer Text137c                                           ; 0x137c
 	textpointer Text137d                                           ; 0x137d
-	textpointer Text137e                                           ; 0x137e
-	textpointer Text137f                                           ; 0x137f
+	textpointer NidorinaDescription2                               ; 0x137e
+	textpointer NidoqueenName                                      ; 0x137f
 	textpointer Text1380                                           ; 0x1380
 	textpointer Text1381                                           ; 0x1381
 	textpointer Text1382                                           ; 0x1382
 	textpointer Text1383                                           ; 0x1383
-	textpointer Text1384                                           ; 0x1384
-	textpointer Text1385                                           ; 0x1385
+	textpointer NidoqueenDescription                               ; 0x1384
+	textpointer NidoranmName                                       ; 0x1385
 	textpointer Text1386                                           ; 0x1386
 	textpointer Text1387                                           ; 0x1387
-	textpointer Text1388                                           ; 0x1388
+	textpointer NidoranmDescription1                               ; 0x1388
 	textpointer Text1389                                           ; 0x1389
 	textpointer Text138a                                           ; 0x138a
 	textpointer Text138b                                           ; 0x138b
 	textpointer Text138c                                           ; 0x138c
-	textpointer Text138d                                           ; 0x138d
-	textpointer Text138e                                           ; 0x138e
+	textpointer NidoranmDescription2                               ; 0x138d
+	textpointer NidorinoName                                       ; 0x138e
 	textpointer Text138f                                           ; 0x138f
 	textpointer Text1390                                           ; 0x1390
-	textpointer Text1391                                           ; 0x1391
+	textpointer NidorinoDescription1                               ; 0x1391
 	textpointer Text1392                                           ; 0x1392
-	textpointer Text1393                                           ; 0x1393
-	textpointer Text1394                                           ; 0x1394
+	textpointer NidorinoDescription2                               ; 0x1393
+	textpointer NidokingName                                       ; 0x1394
 	textpointer Text1395                                           ; 0x1395
 	textpointer Text1396                                           ; 0x1396
 	textpointer Text1397                                           ; 0x1397
 	textpointer Text1398                                           ; 0x1398
-	textpointer Text1399                                           ; 0x1399
-	textpointer Text139a                                           ; 0x139a
+	textpointer NidokingDescription                                ; 0x1399
+	textpointer ZubatName                                          ; 0x139a
 	textpointer Text139b                                           ; 0x139b
 	textpointer Text139c                                           ; 0x139c
-	textpointer Text139d                                           ; 0x139d
+	textpointer ZubatDescription1                                  ; 0x139d
 	textpointer Text139e                                           ; 0x139e
 	textpointer Text139f                                           ; 0x139f
-	textpointer Text13a0                                           ; 0x13a0
+	textpointer ZubatDescription2                                  ; 0x13a0
 	textpointer Text13a1                                           ; 0x13a1
-	textpointer Text13a2                                           ; 0x13a2
-	textpointer Text13a3                                           ; 0x13a3
+	textpointer ZubatDescription3                                  ; 0x13a2
+	textpointer GolbatName                                         ; 0x13a3
 	textpointer Text13a4                                           ; 0x13a4
 	textpointer Text13a5                                           ; 0x13a5
 	textpointer Text13a6                                           ; 0x13a6
-	textpointer Text13a7                                           ; 0x13a7
+	textpointer GolbatDescription1                                 ; 0x13a7
 	textpointer Text13a8                                           ; 0x13a8
-	textpointer Text13a9                                           ; 0x13a9
-	textpointer Text13aa                                           ; 0x13aa
+	textpointer GolbatDescription2                                 ; 0x13a9
+	textpointer DarkGolbatName                                     ; 0x13aa
 	textpointer Text13ab                                           ; 0x13ab
 	textpointer Text13ac                                           ; 0x13ac
 	textpointer Text13ad                                           ; 0x13ad
 	textpointer Text13ae                                           ; 0x13ae
-	textpointer Text13af                                           ; 0x13af
-	textpointer Text13b0                                           ; 0x13b0
+	textpointer DarkGolbatDescription                              ; 0x13af
+	textpointer OddishName                                         ; 0x13b0
 	textpointer Text13b1                                           ; 0x13b1
 	textpointer Text13b2                                           ; 0x13b2
 	textpointer Text13b3                                           ; 0x13b3
-	textpointer Text13b4                                           ; 0x13b4
+	textpointer OddishDescription1                                 ; 0x13b4
 	textpointer Text13b5                                           ; 0x13b5
 	textpointer Text13b6                                           ; 0x13b6
-	textpointer Text13b7                                           ; 0x13b7
-	textpointer Text13b8                                           ; 0x13b8
+	textpointer OddishDescription2                                 ; 0x13b7
+	textpointer GloomName                                          ; 0x13b8
 	textpointer Text13b9                                           ; 0x13b9
 	textpointer Text13ba                                           ; 0x13ba
-	textpointer Text13bb                                           ; 0x13bb
-	textpointer Text13bc                                           ; 0x13bc
+	textpointer GloomDescription                                   ; 0x13bb
+	textpointer DarkGloomName                                      ; 0x13bc
 	textpointer Text13bd                                           ; 0x13bd
 	textpointer Text13be                                           ; 0x13be
-	textpointer Text13bf                                           ; 0x13bf
-	textpointer Text13c0                                           ; 0x13c0
+	textpointer DarkGloomDescription                               ; 0x13bf
+	textpointer VileplumeName                                      ; 0x13c0
 	textpointer Text13c1                                           ; 0x13c1
 	textpointer Text13c2                                           ; 0x13c2
 	textpointer Text13c3                                           ; 0x13c3
 	textpointer Text13c4                                           ; 0x13c4
 	textpointer Text13c5                                           ; 0x13c5
-	textpointer Text13c6                                           ; 0x13c6
-	textpointer Text13c7                                           ; 0x13c7
+	textpointer VileplumeDescription                               ; 0x13c6
+	textpointer DarkVileplumeName                                  ; 0x13c7
 	textpointer Text13c8                                           ; 0x13c8
 	textpointer Text13c9                                           ; 0x13c9
 	textpointer Text13ca                                           ; 0x13ca
 	textpointer Text13cb                                           ; 0x13cb
-	textpointer Text13cc                                           ; 0x13cc
-	textpointer Text13cd                                           ; 0x13cd
+	textpointer DarkVileplumeDescription                           ; 0x13cc
+	textpointer ParasName                                          ; 0x13cd
 	textpointer Text13ce                                           ; 0x13ce
 	textpointer Text13cf                                           ; 0x13cf
 	textpointer Text13d0                                           ; 0x13d0
-	textpointer Text13d1                                           ; 0x13d1
+	textpointer ParasDescription1                                  ; 0x13d1
 	textpointer Text13d2                                           ; 0x13d2
 	textpointer Text13d3                                           ; 0x13d3
-	textpointer Text13d4                                           ; 0x13d4
-	textpointer Text13d5                                           ; 0x13d5
+	textpointer ParasDescription2                                  ; 0x13d4
+	textpointer ParasectName                                       ; 0x13d5
 	textpointer Text13d6                                           ; 0x13d6
-	textpointer Text13d7                                           ; 0x13d7
+	textpointer ParasectDescription1                               ; 0x13d7
 	textpointer Text13d8                                           ; 0x13d8
-	textpointer Text13d9                                           ; 0x13d9
-	textpointer Text13da                                           ; 0x13da
+	textpointer ParasectDescription2                               ; 0x13d9
+	textpointer VenonatName                                        ; 0x13da
 	textpointer Text13db                                           ; 0x13db
-	textpointer Text13dc                                           ; 0x13dc
+	textpointer VenonatDescription1                                ; 0x13dc
 	textpointer Text13dd                                           ; 0x13dd
 	textpointer Text13de                                           ; 0x13de
 	textpointer Text13df                                           ; 0x13df
-	textpointer Text13e0                                           ; 0x13e0
-	textpointer Text13e1                                           ; 0x13e1
+	textpointer VenonatDescription2                                ; 0x13e0
+	textpointer VenomothName                                       ; 0x13e1
 	textpointer Text13e2                                           ; 0x13e2
 	textpointer Text13e3                                           ; 0x13e3
 	textpointer Text13e4                                           ; 0x13e4
 	textpointer Text13e5                                           ; 0x13e5
 	textpointer Text13e6                                           ; 0x13e6
-	textpointer Text13e7                                           ; 0x13e7
+	textpointer VenomothDescription1                               ; 0x13e7
 	textpointer Text13e8                                           ; 0x13e8
 	textpointer Text13e9                                           ; 0x13e9
 	textpointer Text13ea                                           ; 0x13ea
 	textpointer Text13eb                                           ; 0x13eb
 	textpointer Text13ec                                           ; 0x13ec
-	textpointer Text13ed                                           ; 0x13ed
-	textpointer Text13ee                                           ; 0x13ee
+	textpointer VenomothDescription2                               ; 0x13ed
+	textpointer BellsproutName                                     ; 0x13ee
 	textpointer Text13ef                                           ; 0x13ef
-	textpointer Text13f0                                           ; 0x13f0
+	textpointer BellsproutDescription1                             ; 0x13f0
 	textpointer Text13f1                                           ; 0x13f1
-	textpointer Text13f2                                           ; 0x13f2
-	textpointer Text13f3                                           ; 0x13f3
+	textpointer BellsproutDescription2                             ; 0x13f2
+	textpointer WeepinbellName                                     ; 0x13f3
 	textpointer Text13f4                                           ; 0x13f4
 	textpointer Text13f5                                           ; 0x13f5
 	textpointer Text13f6                                           ; 0x13f6
 	textpointer Text13f7                                           ; 0x13f7
 	textpointer Text13f8                                           ; 0x13f8
-	textpointer Text13f9                                           ; 0x13f9
-	textpointer Text13fa                                           ; 0x13fa
-	textpointer Text13fb                                           ; 0x13fb
+	textpointer WeepinbellDescription1                             ; 0x13f9
+	textpointer WeepinbellDescription2                             ; 0x13fa
+	textpointer VictreebelName                                     ; 0x13fb
 	textpointer Text13fc                                           ; 0x13fc
 	textpointer Text13fd                                           ; 0x13fd
 	textpointer Text13fe                                           ; 0x13fe
 	textpointer Text13ff                                           ; 0x13ff
-	textpointer Text1400                                           ; 0x1400
-	textpointer Text1401                                           ; 0x1401
+	textpointer VictreebelDescription                              ; 0x1400
+	textpointer GrimerName                                         ; 0x1401
 	textpointer Text1402                                           ; 0x1402
 	textpointer Text1403                                           ; 0x1403
 	textpointer Text1404                                           ; 0x1404
 	textpointer Text1405                                           ; 0x1405
-	textpointer Text1406                                           ; 0x1406
+	textpointer GrimerDescription1                                 ; 0x1406
 	textpointer Text1407                                           ; 0x1407
 	textpointer Text1408                                           ; 0x1408
 	textpointer Text1409                                           ; 0x1409
-	textpointer Text140a                                           ; 0x140a
-	textpointer Text140b                                           ; 0x140b
+	textpointer GrimerDescription2                                 ; 0x140a
+	textpointer MukName                                            ; 0x140b
 	textpointer Text140c                                           ; 0x140c
 	textpointer Text140d                                           ; 0x140d
 	textpointer Text140e                                           ; 0x140e
-	textpointer Text140f                                           ; 0x140f
-	textpointer Text1410                                           ; 0x1410
+	textpointer MukDescription                                     ; 0x140f
+	textpointer DarkMukName                                        ; 0x1410
 	textpointer Text1411                                           ; 0x1411
 	textpointer Text1412                                           ; 0x1412
 	textpointer Text1413                                           ; 0x1413
-	textpointer Text1414                                           ; 0x1414
-	textpointer Text1415                                           ; 0x1415
+	textpointer DarkMukDescription                                 ; 0x1414
+	textpointer ExeggcuteName                                      ; 0x1415
 	textpointer Text1416                                           ; 0x1416
 	textpointer Text1417                                           ; 0x1417
-	textpointer Text1418                                           ; 0x1418
-	textpointer Text1419                                           ; 0x1419
+	textpointer ExeggcuteDescription                               ; 0x1418
+	textpointer ExeggutorName                                      ; 0x1419
 	textpointer Text141a                                           ; 0x141a
 	textpointer Text141b                                           ; 0x141b
 	textpointer Text141c                                           ; 0x141c
 	textpointer Text141d                                           ; 0x141d
 	textpointer Text141e                                           ; 0x141e
-	textpointer Text141f                                           ; 0x141f
-	textpointer Text1420                                           ; 0x1420
-	textpointer Text1421                                           ; 0x1421
+	textpointer ExeggutorDescription                               ; 0x141f
+	textpointer KoffingName                                        ; 0x1420
+	textpointer KoffingDescription1                                ; 0x1421
 	textpointer Text1422                                           ; 0x1422
 	textpointer Text1423                                           ; 0x1423
-	textpointer Text1424                                           ; 0x1424
+	textpointer KoffingDescription2                                ; 0x1424
 	textpointer Text1425                                           ; 0x1425
-	textpointer Text1426                                           ; 0x1426
-	textpointer Text1427                                           ; 0x1427
+	textpointer KoffingDescription3                                ; 0x1426
+	textpointer WeezingName                                        ; 0x1427
 	textpointer Text1428                                           ; 0x1428
 	textpointer Text1429                                           ; 0x1429
 	textpointer Text142a                                           ; 0x142a
 	textpointer Text142b                                           ; 0x142b
 	textpointer Text142c                                           ; 0x142c
-	textpointer Text142d                                           ; 0x142d
+	textpointer WeezingDescription1                                ; 0x142d
 	textpointer Text142e                                           ; 0x142e
 	textpointer Text142f                                           ; 0x142f
 	textpointer Text1430                                           ; 0x1430
-	textpointer Text1431                                           ; 0x1431
-	textpointer Text1432                                           ; 0x1432
+	textpointer WeezingDescription2                                ; 0x1431
+	textpointer DarkWeezingName                                    ; 0x1432
 	textpointer Text1433                                           ; 0x1433
 	textpointer Text1434                                           ; 0x1434
 	textpointer Text1435                                           ; 0x1435
 	textpointer Text1436                                           ; 0x1436
-	textpointer Text1437                                           ; 0x1437
-	textpointer Text1438                                           ; 0x1438
+	textpointer DarkWeezingDescription                             ; 0x1437
+	textpointer TangelaName                                        ; 0x1438
 	textpointer Text1439                                           ; 0x1439
 	textpointer Text143a                                           ; 0x143a
-	textpointer Text143b                                           ; 0x143b
+	textpointer TangelaDescription1                                ; 0x143b
 	textpointer Text143c                                           ; 0x143c
-	textpointer Text143d                                           ; 0x143d
-	textpointer Text143e                                           ; 0x143e
+	textpointer TangelaDescription2                                ; 0x143d
+	textpointer ScytherName                                        ; 0x143e
 	textpointer Text143f                                           ; 0x143f
 	textpointer Text1440                                           ; 0x1440
 	textpointer Text1441                                           ; 0x1441
-	textpointer Text1442                                           ; 0x1442
+	textpointer ScytherDescription1                                ; 0x1442
 	textpointer Text1443                                           ; 0x1443
 	textpointer Text1444                                           ; 0x1444
-	textpointer Text1445                                           ; 0x1445
-	textpointer Text1446                                           ; 0x1446
+	textpointer ScytherDescription2                                ; 0x1445
+	textpointer PinsirName                                         ; 0x1446
 	textpointer Text1447                                           ; 0x1447
 	textpointer Text1448                                           ; 0x1448
 	textpointer Text1449                                           ; 0x1449
-	textpointer Text144a                                           ; 0x144a
+	textpointer PinsirDescription1                                 ; 0x144a
 	textpointer Text144b                                           ; 0x144b
 	textpointer Text144c                                           ; 0x144c
-	textpointer Text144d                                           ; 0x144d
-	textpointer Text144e                                           ; 0x144e
+	textpointer PinsirDescription2                                 ; 0x144d
+	textpointer CharmanderName                                     ; 0x144e
 	textpointer Text144f                                           ; 0x144f
 	textpointer Text1450                                           ; 0x1450
 	textpointer Text1451                                           ; 0x1451
 	textpointer Text1452                                           ; 0x1452
-	textpointer Text1453                                           ; 0x1453
+	textpointer CharmanderDescription1                             ; 0x1453
 	textpointer Text1454                                           ; 0x1454
 	textpointer Text1455                                           ; 0x1455
-	textpointer Text1456                                           ; 0x1456
+	textpointer CharmanderDescription2                             ; 0x1456
 	textpointer Text1457                                           ; 0x1457
 	textpointer Text1458                                           ; 0x1458
-	textpointer Text1459                                           ; 0x1459
-	textpointer Text145a                                           ; 0x145a
+	textpointer CharmanderDescription3                             ; 0x1459
+	textpointer CharmeleonName                                     ; 0x145a
 	textpointer Text145b                                           ; 0x145b
 	textpointer Text145c                                           ; 0x145c
-	textpointer Text145d                                           ; 0x145d
-	textpointer Text145e                                           ; 0x145e
+	textpointer CharmeleonDescription                              ; 0x145d
+	textpointer DarkCharmeleonName                                 ; 0x145e
 	textpointer Text145f                                           ; 0x145f
 	textpointer Text1460                                           ; 0x1460
 	textpointer Text1461                                           ; 0x1461
-	textpointer Text1462                                           ; 0x1462
-	textpointer Text1463                                           ; 0x1463
+	textpointer DarkCharmeleonDescription                          ; 0x1462
+	textpointer CharizardName                                      ; 0x1463
 	textpointer Text1464                                           ; 0x1464
 	textpointer Text1465                                           ; 0x1465
 	textpointer Text1466                                           ; 0x1466
 	textpointer Text1467                                           ; 0x1467
-	textpointer Text1468                                           ; 0x1468
-	textpointer Text1469                                           ; 0x1469
-	textpointer Text146a                                           ; 0x146a
+	textpointer CharizardDescription                               ; 0x1468
+	textpointer CharizardAltDescription                            ; 0x1469
+	textpointer DarkCharizardName                                  ; 0x146a
 	textpointer Text146b                                           ; 0x146b
 	textpointer Text146c                                           ; 0x146c
 	textpointer Text146d                                           ; 0x146d
-	textpointer Text146e                                           ; 0x146e
-	textpointer Text146f                                           ; 0x146f
+	textpointer DarkCharizardDescription                           ; 0x146e
+	textpointer VulpixName                                         ; 0x146f
 	textpointer Text1470                                           ; 0x1470
 	textpointer Text1471                                           ; 0x1471
-	textpointer Text1472                                           ; 0x1472
+	textpointer VulpixDescription1                                 ; 0x1472
 	textpointer Text1473                                           ; 0x1473
 	textpointer Text1474                                           ; 0x1474
-	textpointer Text1475                                           ; 0x1475
-	textpointer Text1476                                           ; 0x1476
+	textpointer VulpixDescription2                                 ; 0x1475
+	textpointer NinetalesName                                      ; 0x1476
 	textpointer Text1477                                           ; 0x1477
 	textpointer Text1478                                           ; 0x1478
-	textpointer Text1479                                           ; 0x1479
+	textpointer NinetalesDescription1                              ; 0x1479
 	textpointer Text147a                                           ; 0x147a
 	textpointer Text147b                                           ; 0x147b
 	textpointer Text147c                                           ; 0x147c
 	textpointer Text147d                                           ; 0x147d
-	textpointer Text147e                                           ; 0x147e
-	textpointer Text147f                                           ; 0x147f
+	textpointer NinetalesDescription2                              ; 0x147e
+	textpointer DarkNinetalesName                                  ; 0x147f
 	textpointer Text1480                                           ; 0x1480
 	textpointer Text1481                                           ; 0x1481
 	textpointer Text1482                                           ; 0x1482
 	textpointer Text1483                                           ; 0x1483
-	textpointer Text1484                                           ; 0x1484
-	textpointer Text1485                                           ; 0x1485
+	textpointer DarkNinetalesDescription                           ; 0x1484
+	textpointer GrowlitheName                                      ; 0x1485
 	textpointer Text1486                                           ; 0x1486
 	textpointer Text1487                                           ; 0x1487
-	textpointer Text1488                                           ; 0x1488
+	textpointer GrowlitheDescription1                              ; 0x1488
 	textpointer Text1489                                           ; 0x1489
 	textpointer Text148a                                           ; 0x148a
 	textpointer Text148b                                           ; 0x148b
-	textpointer Text148c                                           ; 0x148c
+	textpointer GrowlitheDescription2                              ; 0x148c
 	textpointer Text148d                                           ; 0x148d
-	textpointer Text148e                                           ; 0x148e
-	textpointer Text148f                                           ; 0x148f
+	textpointer GrowlitheDescription3                              ; 0x148e
+	textpointer ArcanineName                                       ; 0x148f
 	textpointer Text1490                                           ; 0x1490
 	textpointer Text1491                                           ; 0x1491
 	textpointer Text1492                                           ; 0x1492
 	textpointer Text1493                                           ; 0x1493
 	textpointer Text1494                                           ; 0x1494
-	textpointer Text1495                                           ; 0x1495
+	textpointer ArcanineDescription1                               ; 0x1495
 	textpointer Text1496                                           ; 0x1496
 	textpointer Text1497                                           ; 0x1497
-	textpointer Text1498                                           ; 0x1498
+	textpointer ArcanineDescription2                               ; 0x1498
 	textpointer Text1499                                           ; 0x1499
-	textpointer Text149a                                           ; 0x149a
-	textpointer Text149b                                           ; 0x149b
+	textpointer ArcanineDescription3                               ; 0x149a
+	textpointer PonytaName                                         ; 0x149b
 	textpointer Text149c                                           ; 0x149c
 	textpointer Text149d                                           ; 0x149d
 	textpointer Text149e                                           ; 0x149e
 	textpointer Text149f                                           ; 0x149f
-	textpointer Text14a0                                           ; 0x14a0
-	textpointer Text14a1                                           ; 0x14a1
-	textpointer Text14a2                                           ; 0x14a2
-	textpointer Text14a3                                           ; 0x14a3
+	textpointer PonytaDescription1                                 ; 0x14a0
+	textpointer PonytaDescription2                                 ; 0x14a1
+	textpointer PonytaDescription3                                 ; 0x14a2
+	textpointer RapidashName                                       ; 0x14a3
 	textpointer Text14a4                                           ; 0x14a4
 	textpointer Text14a5                                           ; 0x14a5
 	textpointer Text14a6                                           ; 0x14a6
 	textpointer Text14a7                                           ; 0x14a7
-	textpointer Text14a8                                           ; 0x14a8
+	textpointer RapidashDescription1                               ; 0x14a8
 	textpointer Text14a9                                           ; 0x14a9
 	textpointer Text14aa                                           ; 0x14aa
 	textpointer Text14ab                                           ; 0x14ab
 	textpointer Text14ac                                           ; 0x14ac
-	textpointer Text14ad                                           ; 0x14ad
-	textpointer Text14ae                                           ; 0x14ae
+	textpointer RapidashDescription2                               ; 0x14ad
+	textpointer DarkRapidashName                                   ; 0x14ae
 	textpointer Text14af                                           ; 0x14af
 	textpointer Text14b0                                           ; 0x14b0
 	textpointer Text14b1                                           ; 0x14b1
-	textpointer Text14b2                                           ; 0x14b2
-	textpointer Text14b3                                           ; 0x14b3
+	textpointer DarkRapidashDescription                            ; 0x14b2
+	textpointer MagmarName                                         ; 0x14b3
 	textpointer Text14b4                                           ; 0x14b4
 	textpointer Text14b5                                           ; 0x14b5
-	textpointer Text14b6                                           ; 0x14b6
-	textpointer Text14b7                                           ; 0x14b7
+	textpointer MagmarDescription1                                 ; 0x14b6
+	textpointer MagmarDescription2                                 ; 0x14b7
 	textpointer Text14b8                                           ; 0x14b8
 	textpointer Text14b9                                           ; 0x14b9
 	textpointer Text14ba                                           ; 0x14ba
-	textpointer Text14bb                                           ; 0x14bb
+	textpointer MagmarDescription3                                 ; 0x14bb
 	textpointer Text14bc                                           ; 0x14bc
 	textpointer Text14bd                                           ; 0x14bd
-	textpointer Text14be                                           ; 0x14be
-	textpointer Text14bf                                           ; 0x14bf
-	textpointer Text14c0                                           ; 0x14c0
+	textpointer MagmarDescription4                                 ; 0x14be
+	textpointer FlareonName                                        ; 0x14bf
+	textpointer EeveeName                                          ; 0x14c0
 	textpointer Text14c1                                           ; 0x14c1
 	textpointer Text14c2                                           ; 0x14c2
-	textpointer Text14c3                                           ; 0x14c3
-	textpointer Text14c4                                           ; 0x14c4
-	textpointer Text14c5                                           ; 0x14c5
+	textpointer FlareonDescription1                                ; 0x14c3
+	textpointer FlareonDescription2                                ; 0x14c4
+	textpointer DarkFlareonName                                    ; 0x14c5
 	textpointer Text14c6                                           ; 0x14c6
 	textpointer Text14c7                                           ; 0x14c7
-	textpointer Text14c8                                           ; 0x14c8
-	textpointer Text14c9                                           ; 0x14c9
+	textpointer DarkFlareonDescription                             ; 0x14c8
+	textpointer MoltresName                                        ; 0x14c9
 	textpointer Text14ca                                           ; 0x14ca
 	textpointer Text14cb                                           ; 0x14cb
 	textpointer Text14cc                                           ; 0x14cc
-	textpointer Text14cd                                           ; 0x14cd
+	textpointer MoltresDescription1                                ; 0x14cd
 	textpointer Text14ce                                           ; 0x14ce
 	textpointer Text14cf                                           ; 0x14cf
 	textpointer Text14d0                                           ; 0x14d0
-	textpointer Text14d1                                           ; 0x14d1
+	textpointer MoltresDescription2                                ; 0x14d1
 	textpointer Text14d2                                           ; 0x14d2
 	textpointer Text14d3                                           ; 0x14d3
 	textpointer Text14d4                                           ; 0x14d4
-	textpointer Text14d5                                           ; 0x14d5
+	textpointer SquirtleName                                       ; 0x14d5
 	textpointer Text14d6                                           ; 0x14d6
 	textpointer Text14d7                                           ; 0x14d7
 	textpointer Text14d8                                           ; 0x14d8
-	textpointer Text14d9                                           ; 0x14d9
+	textpointer SquirtleDescription1                               ; 0x14d9
 	textpointer Text14da                                           ; 0x14da
-	textpointer Text14db                                           ; 0x14db
+	textpointer SquirtleDescription2                               ; 0x14db
 	textpointer Text14dc                                           ; 0x14dc
 	textpointer Text14dd                                           ; 0x14dd
 	textpointer Text14de                                           ; 0x14de
-	textpointer Text14df                                           ; 0x14df
+	textpointer SquirtleDescription3                               ; 0x14df
 	textpointer Text14e0                                           ; 0x14e0
-	textpointer Text14e1                                           ; 0x14e1
-	textpointer Text14e2                                           ; 0x14e2
+	textpointer SquirtleDescription4                               ; 0x14e1
+	textpointer WartortleName                                      ; 0x14e2
 	textpointer Text14e3                                           ; 0x14e3
-	textpointer Text14e4                                           ; 0x14e4
+	textpointer WartortleDescription1                              ; 0x14e4
 	textpointer Text14e5                                           ; 0x14e5
-	textpointer Text14e6                                           ; 0x14e6
-	textpointer Text14e7                                           ; 0x14e7
+	textpointer WartortleDescription2                              ; 0x14e6
+	textpointer DarkWartortleName                                  ; 0x14e7
 	textpointer Text14e8                                           ; 0x14e8
 	textpointer Text14e9                                           ; 0x14e9
 	textpointer Text14ea                                           ; 0x14ea
 	textpointer Text14eb                                           ; 0x14eb
-	textpointer Text14ec                                           ; 0x14ec
-	textpointer Text14ed                                           ; 0x14ed
+	textpointer DarkWartortleDescription                           ; 0x14ec
+	textpointer BlastoiseName                                      ; 0x14ed
 	textpointer Text14ee                                           ; 0x14ee
 	textpointer Text14ef                                           ; 0x14ef
 	textpointer Text14f0                                           ; 0x14f0
 	textpointer Text14f1                                           ; 0x14f1
 	textpointer Text14f2                                           ; 0x14f2
-	textpointer Text14f3                                           ; 0x14f3
-	textpointer Text14f4                                           ; 0x14f4
-	textpointer Text14f5                                           ; 0x14f5
+	textpointer BlastoiseDescription                               ; 0x14f3
+	textpointer BlastoiseAltDescription                            ; 0x14f4
+	textpointer DarkBlastoiseName                                  ; 0x14f5
 	textpointer Text14f6                                           ; 0x14f6
 	textpointer Text14f7                                           ; 0x14f7
 	textpointer Text14f8                                           ; 0x14f8
 	textpointer Text14f9                                           ; 0x14f9
-	textpointer Text14fa                                           ; 0x14fa
-	textpointer Text14fb                                           ; 0x14fb
+	textpointer DarkBlastoiseDescription                           ; 0x14fa
+	textpointer PsyduckName                                        ; 0x14fb
 	textpointer Text14fc                                           ; 0x14fc
 	textpointer Text14fd                                           ; 0x14fd
 	textpointer Text14fe                                           ; 0x14fe
-	textpointer Text14ff                                           ; 0x14ff
+	textpointer PsyduckDescription1                                ; 0x14ff
 	textpointer Text1500                                           ; 0x1500
 	textpointer Text1501                                           ; 0x1501
 	textpointer Text1502                                           ; 0x1502
-	textpointer Text1503                                           ; 0x1503
-	textpointer Text1504                                           ; 0x1504
+	textpointer PsyduckDescription2                                ; 0x1503
+	textpointer GolduckName                                        ; 0x1504
 	textpointer Text1505                                           ; 0x1505
 	textpointer Text1506                                           ; 0x1506
 	textpointer Text1507                                           ; 0x1507
-	textpointer Text1508                                           ; 0x1508
+	textpointer GolduckDescription1                                ; 0x1508
 	textpointer Text1509                                           ; 0x1509
 	textpointer Text150a                                           ; 0x150a
 	textpointer Text150b                                           ; 0x150b
-	textpointer Text150c                                           ; 0x150c
-	textpointer Text150d                                           ; 0x150d
+	textpointer GolduckDescription2                                ; 0x150c
+	textpointer DarkGolduckName                                    ; 0x150d
 	textpointer Text150e                                           ; 0x150e
 	textpointer Text150f                                           ; 0x150f
 	textpointer Text1510                                           ; 0x1510
-	textpointer Text1511                                           ; 0x1511
-	textpointer Text1512                                           ; 0x1512
+	textpointer DarkGolduckDescription                             ; 0x1511
+	textpointer PoliwagName                                        ; 0x1512
 	textpointer Text1513                                           ; 0x1513
 	textpointer Text1514                                           ; 0x1514
-	textpointer Text1515                                           ; 0x1515
-	textpointer Text1516                                           ; 0x1516
-	textpointer Text1517                                           ; 0x1517
+	textpointer PoliwagDescription1                                ; 0x1515
+	textpointer PoliwagDescription2                                ; 0x1516
+	textpointer PoliwhirlName                                      ; 0x1517
 	textpointer Text1518                                           ; 0x1518
 	textpointer Text1519                                           ; 0x1519
-	textpointer Text151a                                           ; 0x151a
+	textpointer PoliwhirlDescription1                              ; 0x151a
 	textpointer Text151b                                           ; 0x151b
 	textpointer Text151c                                           ; 0x151c
 	textpointer Text151d                                           ; 0x151d
-	textpointer Text151e                                           ; 0x151e
-	textpointer Text151f                                           ; 0x151f
-	textpointer Text1520                                           ; 0x1520
+	textpointer PoliwhirlDescription2                              ; 0x151e
+	textpointer PoliwrathName                                      ; 0x151f
+	textpointer PoliwrathDescription1                              ; 0x1520
 	textpointer Text1521                                           ; 0x1521
-	textpointer Text1522                                           ; 0x1522
-	textpointer Text1523                                           ; 0x1523
+	textpointer PoliwrathDescription2                              ; 0x1522
+	textpointer TentacoolName                                      ; 0x1523
 	textpointer Text1524                                           ; 0x1524
 	textpointer Text1525                                           ; 0x1525
 	textpointer Text1526                                           ; 0x1526
-	textpointer Text1527                                           ; 0x1527
-	textpointer Text1528                                           ; 0x1528
+	textpointer TentacoolDescription                               ; 0x1527
+	textpointer TentacruelName                                     ; 0x1528
 	textpointer Text1529                                           ; 0x1529
-	textpointer Text152a                                           ; 0x152a
-	textpointer Text152b                                           ; 0x152b
+	textpointer TentacruelDescription                              ; 0x152a
+	textpointer SeelName                                           ; 0x152b
 	textpointer Text152c                                           ; 0x152c
 	textpointer Text152d                                           ; 0x152d
 	textpointer Text152e                                           ; 0x152e
-	textpointer Text152f                                           ; 0x152f
+	textpointer SeelDescription1                                   ; 0x152f
 	textpointer Text1530                                           ; 0x1530
-	textpointer Text1531                                           ; 0x1531
-	textpointer Text1532                                           ; 0x1532
+	textpointer SeelDescription2                                   ; 0x1531
+	textpointer DewgongName                                        ; 0x1532
 	textpointer Text1533                                           ; 0x1533
 	textpointer Text1534                                           ; 0x1534
 	textpointer Text1535                                           ; 0x1535
-	textpointer Text1536                                           ; 0x1536
+	textpointer DewgongDescription1                                ; 0x1536
 	textpointer Text1537                                           ; 0x1537
-	textpointer Text1538                                           ; 0x1538
-	textpointer Text1539                                           ; 0x1539
+	textpointer DewgongDescription2                                ; 0x1538
+	textpointer ShellderName                                       ; 0x1539
 	textpointer Text153a                                           ; 0x153a
 	textpointer Text153b                                           ; 0x153b
-	textpointer Text153c                                           ; 0x153c
+	textpointer ShellderDescription1                               ; 0x153c
 	textpointer Text153d                                           ; 0x153d
 	textpointer Text153e                                           ; 0x153e
-	textpointer Text153f                                           ; 0x153f
-	textpointer Text1540                                           ; 0x1540
+	textpointer ShellderDescription2                               ; 0x153f
+	textpointer CloysterName                                       ; 0x1540
 	textpointer Text1541                                           ; 0x1541
 	textpointer Text1542                                           ; 0x1542
 	textpointer Text1543                                           ; 0x1543
-	textpointer Text1544                                           ; 0x1544
-	textpointer Text1545                                           ; 0x1545
+	textpointer CloysterDescription                                ; 0x1544
+	textpointer KrabbyName                                         ; 0x1545
 	textpointer Text1546                                           ; 0x1546
 	textpointer Text1547                                           ; 0x1547
-	textpointer Text1548                                           ; 0x1548
+	textpointer KrabbyDescription1                                 ; 0x1548
 	textpointer Text1549                                           ; 0x1549
 	textpointer Text154a                                           ; 0x154a
-	textpointer Text154b                                           ; 0x154b
-	textpointer Text154c                                           ; 0x154c
+	textpointer KrabbyDescription2                                 ; 0x154b
+	textpointer KinglerName                                        ; 0x154c
 	textpointer Text154d                                           ; 0x154d
 	textpointer Text154e                                           ; 0x154e
 	textpointer Text154f                                           ; 0x154f
 	textpointer Text1550                                           ; 0x1550
-	textpointer Text1551                                           ; 0x1551
+	textpointer KinglerDescription1                                ; 0x1551
 	textpointer Text1552                                           ; 0x1552
 	textpointer Text1553                                           ; 0x1553
 	textpointer Text1554                                           ; 0x1554
 	textpointer Text1555                                           ; 0x1555
-	textpointer Text1556                                           ; 0x1556
-	textpointer Text1557                                           ; 0x1557
+	textpointer KinglerDescription2                                ; 0x1556
+	textpointer HorseaName                                         ; 0x1557
 	textpointer Text1558                                           ; 0x1558
-	textpointer Text1559                                           ; 0x1559
+	textpointer HorseaDescription1                                 ; 0x1559
 	textpointer Text155a                                           ; 0x155a
 	textpointer Text155b                                           ; 0x155b
-	textpointer Text155c                                           ; 0x155c
-	textpointer Text155d                                           ; 0x155d
-	textpointer Text155e                                           ; 0x155e
+	textpointer HorseaDescription2                                 ; 0x155c
+	textpointer SeadraName                                         ; 0x155d
+	textpointer SeadraDescription1                                 ; 0x155e
 	textpointer Text155f                                           ; 0x155f
 	textpointer Text1560                                           ; 0x1560
 	textpointer Text1561                                           ; 0x1561
-	textpointer Text1562                                           ; 0x1562
-	textpointer Text1563                                           ; 0x1563
+	textpointer SeadraDescription2                                 ; 0x1562
+	textpointer GoldeenName                                        ; 0x1563
 	textpointer Text1564                                           ; 0x1564
 	textpointer Text1565                                           ; 0x1565
-	textpointer Text1566                                           ; 0x1566
-	textpointer Text1567                                           ; 0x1567
+	textpointer GoldeenDescription                                 ; 0x1566
+	textpointer SeakingName                                        ; 0x1567
 	textpointer Text1568                                           ; 0x1568
-	textpointer Text1569                                           ; 0x1569
-	textpointer Text156a                                           ; 0x156a
+	textpointer SeakingDescription                                 ; 0x1569
+	textpointer StaryuName                                         ; 0x156a
 	textpointer Text156b                                           ; 0x156b
 	textpointer Text156c                                           ; 0x156c
-	textpointer Text156d                                           ; 0x156d
+	textpointer StaryuDescription1                                 ; 0x156d
 	textpointer Text156e                                           ; 0x156e
 	textpointer Text156f                                           ; 0x156f
 	textpointer Text1570                                           ; 0x1570
-	textpointer Text1571                                           ; 0x1571
-	textpointer Text1572                                           ; 0x1572
+	textpointer StaryuDescription2                                 ; 0x1571
+	textpointer StarmieName                                        ; 0x1572
 	textpointer Text1573                                           ; 0x1573
 	textpointer Text1574                                           ; 0x1574
 	textpointer Text1575                                           ; 0x1575
 	textpointer Text1576                                           ; 0x1576
-	textpointer Text1577                                           ; 0x1577
-	textpointer Text1578                                           ; 0x1578
+	textpointer StarmieDescription                                 ; 0x1577
+	textpointer DarkStarmieName                                    ; 0x1578
 	textpointer Text1579                                           ; 0x1579
 	textpointer Text157a                                           ; 0x157a
 	textpointer Text157b                                           ; 0x157b
 	textpointer Text157c                                           ; 0x157c
 	textpointer Text157d                                           ; 0x157d
-	textpointer Text157e                                           ; 0x157e
-	textpointer Text157f                                           ; 0x157f
+	textpointer DarkStarmieDescription                             ; 0x157e
+	textpointer MagikarpName                                       ; 0x157f
 	textpointer Text1580                                           ; 0x1580
 	textpointer Text1581                                           ; 0x1581
 	textpointer Text1582                                           ; 0x1582
 	textpointer Text1583                                           ; 0x1583
-	textpointer Text1584                                           ; 0x1584
-	textpointer Text1585                                           ; 0x1585
+	textpointer MagikarpDescription1                               ; 0x1584
+	textpointer MagikarpDescription2                               ; 0x1585
 	textpointer Text1586                                           ; 0x1586
 	textpointer Text1587                                           ; 0x1587
 	textpointer Text1588                                           ; 0x1588
 	textpointer Text1589                                           ; 0x1589
-	textpointer Text158a                                           ; 0x158a
-	textpointer Text158b                                           ; 0x158b
+	textpointer MagikarpDescription3                               ; 0x158a
+	textpointer GyaradosName                                       ; 0x158b
 	textpointer Text158c                                           ; 0x158c
 	textpointer Text158d                                           ; 0x158d
-	textpointer Text158e                                           ; 0x158e
-	textpointer Text158f                                           ; 0x158f
+	textpointer GyaradosDescription                                ; 0x158e
+	textpointer DarkGyaradosName                                   ; 0x158f
 	textpointer Text1590                                           ; 0x1590
 	textpointer Text1591                                           ; 0x1591
 	textpointer Text1592                                           ; 0x1592
-	textpointer Text1593                                           ; 0x1593
-	textpointer Text1594                                           ; 0x1594
+	textpointer DarkGyaradosDescription                            ; 0x1593
+	textpointer LaprasName                                         ; 0x1594
 	textpointer Text1595                                           ; 0x1595
 	textpointer Text1596                                           ; 0x1596
 	textpointer Text1597                                           ; 0x1597
-	textpointer Text1598                                           ; 0x1598
-	textpointer Text1599                                           ; 0x1599
-	textpointer Text159a                                           ; 0x159a
+	textpointer LaprasDescription1                                 ; 0x1598
+	textpointer LaprasDescription2                                 ; 0x1599
+	textpointer VaporeonName                                       ; 0x159a
 	textpointer Text159b                                           ; 0x159b
 	textpointer Text159c                                           ; 0x159c
-	textpointer Text159d                                           ; 0x159d
-	textpointer Text159e                                           ; 0x159e
-	textpointer Text159f                                           ; 0x159f
+	textpointer VaporeonDescription1                               ; 0x159d
+	textpointer VaporeonDescription2                               ; 0x159e
+	textpointer DarkVaporeonName                                   ; 0x159f
 	textpointer Text15a0                                           ; 0x15a0
-	textpointer Text15a1                                           ; 0x15a1
-	textpointer Text15a2                                           ; 0x15a2
-	textpointer Text15a3                                           ; 0x15a3
+	textpointer DarkVaporeonDescription                            ; 0x15a1
+	textpointer OmanyteName                                        ; 0x15a2
+	textpointer MysteriousFossilName                               ; 0x15a3
 	textpointer Text15a4                                           ; 0x15a4
 	textpointer Text15a5                                           ; 0x15a5
 	textpointer Text15a6                                           ; 0x15a6
-	textpointer Text15a7                                           ; 0x15a7
+	textpointer OmanyteDescription1                                ; 0x15a7
 	textpointer Text15a8                                           ; 0x15a8
 	textpointer Text15a9                                           ; 0x15a9
 	textpointer Text15aa                                           ; 0x15aa
 	textpointer Text15ab                                           ; 0x15ab
-	textpointer Text15ac                                           ; 0x15ac
+	textpointer OmanyteDescription2                                ; 0x15ac
 	textpointer Text15ad                                           ; 0x15ad
 	textpointer Text15ae                                           ; 0x15ae
-	textpointer Text15af                                           ; 0x15af
-	textpointer Text15b0                                           ; 0x15b0
+	textpointer OmastarName                                        ; 0x15af
+	textpointer OmastarDescription1                                ; 0x15b0
 	textpointer Text15b1                                           ; 0x15b1
 	textpointer Text15b2                                           ; 0x15b2
 	textpointer Text15b3                                           ; 0x15b3
 	textpointer Text15b4                                           ; 0x15b4
-	textpointer Text15b5                                           ; 0x15b5
-	textpointer Text15b6                                           ; 0x15b6
+	textpointer OmastarDescription2                                ; 0x15b5
+	textpointer ArticunoName                                       ; 0x15b6
 	textpointer Text15b7                                           ; 0x15b7
 	textpointer Text15b8                                           ; 0x15b8
 	textpointer Text15b9                                           ; 0x15b9
-	textpointer Text15ba                                           ; 0x15ba
+	textpointer ArticunoDescription1                               ; 0x15ba
 	textpointer Text15bb                                           ; 0x15bb
 	textpointer Text15bc                                           ; 0x15bc
 	textpointer Text15bd                                           ; 0x15bd
-	textpointer Text15be                                           ; 0x15be
+	textpointer ArticunoDescription2                               ; 0x15be
 	textpointer Text15bf                                           ; 0x15bf
 	textpointer Text15c0                                           ; 0x15c0
 	textpointer Text15c1                                           ; 0x15c1
 	textpointer Text15c2                                           ; 0x15c2
-	textpointer Text15c3                                           ; 0x15c3
-	textpointer Text15c4                                           ; 0x15c4
+	textpointer ArticunoDescription3                               ; 0x15c3
+	textpointer MarillName                                         ; 0x15c4
 	textpointer Text15c5                                           ; 0x15c5
-	textpointer Text15c6                                           ; 0x15c6
-	textpointer Text15c7                                           ; 0x15c7
+	textpointer MarillDescription                                  ; 0x15c6
+	textpointer PikachuName                                        ; 0x15c7
 	textpointer Text15c8                                           ; 0x15c8
 	textpointer Text15c9                                           ; 0x15c9
-	textpointer Text15ca                                           ; 0x15ca
+	textpointer PikachuDescription1                                ; 0x15ca
 	textpointer Text15cb                                           ; 0x15cb
 	textpointer Text15cc                                           ; 0x15cc
 	textpointer Text15cd                                           ; 0x15cd
-	textpointer Text15ce                                           ; 0x15ce
+	textpointer PikachuDescription2                                ; 0x15ce
 	textpointer Text15cf                                           ; 0x15cf
 	textpointer Text15d0                                           ; 0x15d0
 	textpointer Text15d1                                           ; 0x15d1
 	textpointer Text15d2                                           ; 0x15d2
-	textpointer Text15d3                                           ; 0x15d3
+	textpointer PikachuDescription3                                ; 0x15d3
 	textpointer Text15d4                                           ; 0x15d4
 	textpointer Text15d5                                           ; 0x15d5
-	textpointer Text15d6                                           ; 0x15d6
-	textpointer Text15d7                                           ; 0x15d7
+	textpointer PikachuDescription4                                ; 0x15d6
+	textpointer FlyingPikachuName                                  ; 0x15d7
 	textpointer Text15d8                                           ; 0x15d8
 	textpointer Text15d9                                           ; 0x15d9
-	textpointer Text15da                                           ; 0x15da
-	textpointer Text15db                                           ; 0x15db
-	textpointer Text15dc                                           ; 0x15dc
-	textpointer Text15dd                                           ; 0x15dd
+	textpointer FlyingPikachuDescription                           ; 0x15da
+	textpointer SurfingPikachuName                                 ; 0x15db
+	textpointer SurfingPikachuDescription                          ; 0x15dc
+	textpointer RaichuName                                         ; 0x15dd
 	textpointer Text15de                                           ; 0x15de
 	textpointer Text15df                                           ; 0x15df
 	textpointer Text15e0                                           ; 0x15e0
-	textpointer Text15e1                                           ; 0x15e1
+	textpointer RaichuDescription1                                 ; 0x15e1
 	textpointer Text15e2                                           ; 0x15e2
 	textpointer Text15e3                                           ; 0x15e3
-	textpointer Text15e4                                           ; 0x15e4
+	textpointer RaichuDescription2                                 ; 0x15e4
 	textpointer Text15e5                                           ; 0x15e5
 	textpointer Text15e6                                           ; 0x15e6
-	textpointer Text15e7                                           ; 0x15e7
+	textpointer RaichuDescription3                                 ; 0x15e7
 	textpointer Text15e8                                           ; 0x15e8
 	textpointer Text15e9                                           ; 0x15e9
-	textpointer Text15ea                                           ; 0x15ea
+	textpointer DarkRaichuName                                     ; 0x15ea
 	textpointer Text15eb                                           ; 0x15eb
 	textpointer Text15ec                                           ; 0x15ec
-	textpointer Text15ed                                           ; 0x15ed
-	textpointer Text15ee                                           ; 0x15ee
+	textpointer DarkRaichuDescription                              ; 0x15ed
+	textpointer MagnemiteName                                      ; 0x15ee
 	textpointer Text15ef                                           ; 0x15ef
 	textpointer Text15f0                                           ; 0x15f0
 	textpointer Text15f1                                           ; 0x15f1
-	textpointer Text15f2                                           ; 0x15f2
+	textpointer MagnemiteDescription1                              ; 0x15f2
 	textpointer Text15f3                                           ; 0x15f3
 	textpointer Text15f4                                           ; 0x15f4
-	textpointer Text15f5                                           ; 0x15f5
+	textpointer MagnemiteDescription2                              ; 0x15f5
 	textpointer Text15f6                                           ; 0x15f6
 	textpointer Text15f7                                           ; 0x15f7
-	textpointer Text15f8                                           ; 0x15f8
+	textpointer MagnemiteDescription3                              ; 0x15f8
 	textpointer Text15f9                                           ; 0x15f9
 	textpointer Text15fa                                           ; 0x15fa
 	textpointer Text15fb                                           ; 0x15fb
 	textpointer Text15fc                                           ; 0x15fc
-	textpointer Text15fd                                           ; 0x15fd
-	textpointer Text15fe                                           ; 0x15fe
+	textpointer MagnemiteDescription4                              ; 0x15fd
+	textpointer MagnetonName                                       ; 0x15fe
 	textpointer Text15ff                                           ; 0x15ff
-	textpointer Text1600                                           ; 0x1600
+	textpointer MagnetonDescription1                               ; 0x1600
 	textpointer Text1601                                           ; 0x1601
 	textpointer Text1602                                           ; 0x1602
-	textpointer Text1603                                           ; 0x1603
+	textpointer MagnetonDescription2                               ; 0x1603
 	textpointer Text1604                                           ; 0x1604
 	textpointer Text1605                                           ; 0x1605
 	textpointer Text1606                                           ; 0x1606
-	textpointer Text1607                                           ; 0x1607
+	textpointer DarkMagnetonName                                   ; 0x1607
 	textpointer Text1608                                           ; 0x1608
 	textpointer Text1609                                           ; 0x1609
 	textpointer Text160a                                           ; 0x160a
-	textpointer Text160b                                           ; 0x160b
-	textpointer Text160c                                           ; 0x160c
+	textpointer DarkMagnetonDescription                            ; 0x160b
+	textpointer VoltorbName                                        ; 0x160c
 	textpointer Text160d                                           ; 0x160d
 	textpointer Text160e                                           ; 0x160e
 	textpointer Text160f                                           ; 0x160f
-	textpointer Text1610                                           ; 0x1610
-	textpointer Text1611                                           ; 0x1611
+	textpointer VoltorbDescription1                                ; 0x1610
+	textpointer VoltorbDescription2                                ; 0x1611
 	textpointer Text1612                                           ; 0x1612
-	textpointer Text1613                                           ; 0x1613
-	textpointer Text1614                                           ; 0x1614
+	textpointer VoltorbDescription3                                ; 0x1613
+	textpointer ElectrodeName                                      ; 0x1614
 	textpointer Text1615                                           ; 0x1615
 	textpointer Text1616                                           ; 0x1616
-	textpointer Text1617                                           ; 0x1617
+	textpointer ElectrodeDescription1                              ; 0x1617
 	textpointer Text1618                                           ; 0x1618
 	textpointer Text1619                                           ; 0x1619
-	textpointer Text161a                                           ; 0x161a
-	textpointer Text161b                                           ; 0x161b
+	textpointer ElectrodeDescription2                              ; 0x161a
+	textpointer DarkElectrodeName                                  ; 0x161b
 	textpointer Text161c                                           ; 0x161c
 	textpointer Text161d                                           ; 0x161d
-	textpointer Text161e                                           ; 0x161e
-	textpointer Text161f                                           ; 0x161f
+	textpointer DarkElectrodeDescription                           ; 0x161e
+	textpointer ElectabuzzName                                     ; 0x161f
 	textpointer Text1620                                           ; 0x1620
 	textpointer Text1621                                           ; 0x1621
-	textpointer Text1622                                           ; 0x1622
-	textpointer Text1623                                           ; 0x1623
+	textpointer ElectabuzzDescription1                             ; 0x1622
+	textpointer ElectabuzzDescription2                             ; 0x1623
 	textpointer Text1624                                           ; 0x1624
 	textpointer Text1625                                           ; 0x1625
-	textpointer Text1626                                           ; 0x1626
-	textpointer Text1627                                           ; 0x1627
+	textpointer ElectabuzzDescription3                             ; 0x1626
+	textpointer JolteonName                                        ; 0x1627
 	textpointer Text1628                                           ; 0x1628
 	textpointer Text1629                                           ; 0x1629
-	textpointer Text162a                                           ; 0x162a
+	textpointer JolteonDescription1                                ; 0x162a
 	textpointer Text162b                                           ; 0x162b
 	textpointer Text162c                                           ; 0x162c
 	textpointer Text162d                                           ; 0x162d
-	textpointer Text162e                                           ; 0x162e
-	textpointer Text162f                                           ; 0x162f
+	textpointer JolteonDescription2                                ; 0x162e
+	textpointer DarkJolteonName                                    ; 0x162f
 	textpointer Text1630                                           ; 0x1630
 	textpointer Text1631                                           ; 0x1631
 	textpointer Text1632                                           ; 0x1632
 	textpointer Text1633                                           ; 0x1633
-	textpointer Text1634                                           ; 0x1634
-	textpointer Text1635                                           ; 0x1635
+	textpointer DarkJolteonDescription                             ; 0x1634
+	textpointer ZapdosName                                         ; 0x1635
 	textpointer Text1636                                           ; 0x1636
 	textpointer Text1637                                           ; 0x1637
 	textpointer Text1638                                           ; 0x1638
 	textpointer Text1639                                           ; 0x1639
-	textpointer Text163a                                           ; 0x163a
+	textpointer ZapdosDescription1                                 ; 0x163a
 	textpointer Text163b                                           ; 0x163b
 	textpointer Text163c                                           ; 0x163c
-	textpointer Text163d                                           ; 0x163d
+	textpointer ZapdosDescription2                                 ; 0x163d
 	textpointer Text163e                                           ; 0x163e
-	textpointer Text163f                                           ; 0x163f
+	textpointer ZapdosDescription3                                 ; 0x163f
 	textpointer Text1640                                           ; 0x1640
 	textpointer Text1641                                           ; 0x1641
 	textpointer Text1642                                           ; 0x1642
 	textpointer Text1643                                           ; 0x1643
-	textpointer Text1644                                           ; 0x1644
-	textpointer Text1645                                           ; 0x1645
+	textpointer ZapdosDescription4                                 ; 0x1644
+	textpointer SandshrewName                                      ; 0x1645
 	textpointer Text1646                                           ; 0x1646
-	textpointer Text1647                                           ; 0x1647
+	textpointer SandshrewDescription1                              ; 0x1647
 	textpointer Text1648                                           ; 0x1648
 	textpointer Text1649                                           ; 0x1649
-	textpointer Text164a                                           ; 0x164a
-	textpointer Text164b                                           ; 0x164b
+	textpointer SandshrewDescription2                              ; 0x164a
+	textpointer SandslashName                                      ; 0x164b
 	textpointer Text164c                                           ; 0x164c
-	textpointer Text164d                                           ; 0x164d
+	textpointer SandslashDescription1                              ; 0x164d
 	textpointer Text164e                                           ; 0x164e
 	textpointer Text164f                                           ; 0x164f
 	textpointer Text1650                                           ; 0x1650
-	textpointer Text1651                                           ; 0x1651
-	textpointer Text1652                                           ; 0x1652
+	textpointer SandslashDescription2                              ; 0x1651
+	textpointer DiglettName                                        ; 0x1652
 	textpointer Text1653                                           ; 0x1653
 	textpointer Text1654                                           ; 0x1654
 	textpointer Text1655                                           ; 0x1655
-	textpointer Text1656                                           ; 0x1656
+	textpointer DiglettDescription1                                ; 0x1656
 	textpointer Text1657                                           ; 0x1657
 	textpointer Text1658                                           ; 0x1658
-	textpointer Text1659                                           ; 0x1659
+	textpointer DiglettDescription2                                ; 0x1659
 	textpointer Text165a                                           ; 0x165a
-	textpointer Text165b                                           ; 0x165b
-	textpointer Text165c                                           ; 0x165c
+	textpointer DiglettDescription3                                ; 0x165b
+	textpointer DugtrioName                                        ; 0x165c
 	textpointer Text165d                                           ; 0x165d
 	textpointer Text165e                                           ; 0x165e
-	textpointer Text165f                                           ; 0x165f
+	textpointer DugtrioDescription1                                ; 0x165f
 	textpointer Text1660                                           ; 0x1660
 	textpointer Text1661                                           ; 0x1661
 	textpointer Text1662                                           ; 0x1662
 	textpointer Text1663                                           ; 0x1663
-	textpointer Text1664                                           ; 0x1664
-	textpointer Text1665                                           ; 0x1665
+	textpointer DugtrioDescription2                                ; 0x1664
+	textpointer DarkDugtrioName                                    ; 0x1665
 	textpointer Text1666                                           ; 0x1666
 	textpointer Text1667                                           ; 0x1667
 	textpointer Text1668                                           ; 0x1668
 	textpointer Text1669                                           ; 0x1669
-	textpointer Text166a                                           ; 0x166a
-	textpointer Text166b                                           ; 0x166b
+	textpointer DarkDugtrioDescription                             ; 0x166a
+	textpointer MankeyName                                         ; 0x166b
 	textpointer Text166c                                           ; 0x166c
 	textpointer Text166d                                           ; 0x166d
 	textpointer Text166e                                           ; 0x166e
-	textpointer Text166f                                           ; 0x166f
+	textpointer MankeyDescription1                                 ; 0x166f
 	textpointer Text1670                                           ; 0x1670
 	textpointer Text1671                                           ; 0x1671
 	textpointer Text1672                                           ; 0x1672
-	textpointer Text1673                                           ; 0x1673
-	textpointer Text1674                                           ; 0x1674
+	textpointer MankeyDescription2                                 ; 0x1673
+	textpointer PrimeapeName                                       ; 0x1674
 	textpointer Text1675                                           ; 0x1675
 	textpointer Text1676                                           ; 0x1676
-	textpointer Text1677                                           ; 0x1677
-	textpointer Text1678                                           ; 0x1678
+	textpointer PrimeapeDescription                                ; 0x1677
+	textpointer DarkPrimeapeName                                   ; 0x1678
 	textpointer Text1679                                           ; 0x1679
 	textpointer Text167a                                           ; 0x167a
 	textpointer Text167b                                           ; 0x167b
 	textpointer Text167c                                           ; 0x167c
-	textpointer Text167d                                           ; 0x167d
-	textpointer Text167e                                           ; 0x167e
+	textpointer DarkPrimeapeDescription                            ; 0x167d
+	textpointer MachopName                                         ; 0x167e
 	textpointer Text167f                                           ; 0x167f
 	textpointer Text1680                                           ; 0x1680
 	textpointer Text1681                                           ; 0x1681
 	textpointer Text1682                                           ; 0x1682
-	textpointer Text1683                                           ; 0x1683
+	textpointer MachopDescription1                                 ; 0x1683
 	textpointer Text1684                                           ; 0x1684
-	textpointer Text1685                                           ; 0x1685
+	textpointer MachopDescription2                                 ; 0x1685
 	textpointer Text1686                                           ; 0x1686
 	textpointer Text1687                                           ; 0x1687
-	textpointer Text1688                                           ; 0x1688
-	textpointer Text1689                                           ; 0x1689
+	textpointer MachopDescription3                                 ; 0x1688
+	textpointer MachokeName                                        ; 0x1689
 	textpointer Text168a                                           ; 0x168a
 	textpointer Text168b                                           ; 0x168b
 	textpointer Text168c                                           ; 0x168c
-	textpointer Text168d                                           ; 0x168d
+	textpointer MachokeDescription1                                ; 0x168d
 	textpointer Text168e                                           ; 0x168e
 	textpointer Text168f                                           ; 0x168f
-	textpointer Text1690                                           ; 0x1690
+	textpointer MachokeDescription2                                ; 0x1690
 	textpointer Text1691                                           ; 0x1691
 	textpointer Text1692                                           ; 0x1692
 	textpointer Text1693                                           ; 0x1693
-	textpointer Text1694                                           ; 0x1694
-	textpointer Text1695                                           ; 0x1695
+	textpointer MachokeDescription3                                ; 0x1694
+	textpointer DarkMachokeName                                    ; 0x1695
 	textpointer Text1696                                           ; 0x1696
 	textpointer Text1697                                           ; 0x1697
 	textpointer Text1698                                           ; 0x1698
-	textpointer Text1699                                           ; 0x1699
-	textpointer Text169a                                           ; 0x169a
+	textpointer DarkMachokeDescription                             ; 0x1699
+	textpointer MachampName                                        ; 0x169a
 	textpointer Text169b                                           ; 0x169b
 	textpointer Text169c                                           ; 0x169c
 	textpointer Text169d                                           ; 0x169d
-	textpointer Text169e                                           ; 0x169e
+	textpointer MachampDescription1                                ; 0x169e
 	textpointer Text169f                                           ; 0x169f
 	textpointer Text16a0                                           ; 0x16a0
 	textpointer Text16a1                                           ; 0x16a1
 	textpointer Text16a2                                           ; 0x16a2
-	textpointer Text16a3                                           ; 0x16a3
-	textpointer Text16a4                                           ; 0x16a4
+	textpointer MachampDescription2                                ; 0x16a3
+	textpointer DarkMachampName                                    ; 0x16a4
 	textpointer Text16a5                                           ; 0x16a5
 	textpointer Text16a6                                           ; 0x16a6
-	textpointer Text16a7                                           ; 0x16a7
-	textpointer Text16a8                                           ; 0x16a8
+	textpointer DarkMachampDescription                             ; 0x16a7
+	textpointer GeodudeName                                        ; 0x16a8
 	textpointer Text16a9                                           ; 0x16a9
 	textpointer Text16aa                                           ; 0x16aa
 	textpointer Text16ab                                           ; 0x16ab
-	textpointer Text16ac                                           ; 0x16ac
+	textpointer GeodudeDescription1                                ; 0x16ac
 	textpointer Text16ad                                           ; 0x16ad
 	textpointer Text16ae                                           ; 0x16ae
-	textpointer Text16af                                           ; 0x16af
-	textpointer Text16b0                                           ; 0x16b0
+	textpointer GeodudeDescription2                                ; 0x16af
+	textpointer GravelerName                                       ; 0x16b0
 	textpointer Text16b1                                           ; 0x16b1
 	textpointer Text16b2                                           ; 0x16b2
-	textpointer Text16b3                                           ; 0x16b3
+	textpointer GravelerDescription1                               ; 0x16b3
 	textpointer Text16b4                                           ; 0x16b4
 	textpointer Text16b5                                           ; 0x16b5
 	textpointer Text16b6                                           ; 0x16b6
-	textpointer Text16b7                                           ; 0x16b7
+	textpointer GravelerDescription2                               ; 0x16b7
 	textpointer Text16b8                                           ; 0x16b8
 	textpointer Text16b9                                           ; 0x16b9
-	textpointer Text16ba                                           ; 0x16ba
-	textpointer Text16bb                                           ; 0x16bb
+	textpointer GravelerDescription3                               ; 0x16ba
+	textpointer GolemName                                          ; 0x16bb
 	textpointer Text16bc                                           ; 0x16bc
 	textpointer Text16bd                                           ; 0x16bd
-	textpointer Text16be                                           ; 0x16be
+	textpointer GolemDescription1                                  ; 0x16be
 	textpointer Text16bf                                           ; 0x16bf
 	textpointer Text16c0                                           ; 0x16c0
 	textpointer Text16c1                                           ; 0x16c1
-	textpointer Text16c2                                           ; 0x16c2
-	textpointer Text16c3                                           ; 0x16c3
+	textpointer GolemDescription2                                  ; 0x16c2
+	textpointer OnixName                                           ; 0x16c3
 	textpointer Text16c4                                           ; 0x16c4
 	textpointer Text16c5                                           ; 0x16c5
-	textpointer Text16c6                                           ; 0x16c6
+	textpointer OnixDescription1                                   ; 0x16c6
 	textpointer Text16c7                                           ; 0x16c7
 	textpointer Text16c8                                           ; 0x16c8
-	textpointer Text16c9                                           ; 0x16c9
-	textpointer Text16ca                                           ; 0x16ca
+	textpointer OnixDescription2                                   ; 0x16c9
+	textpointer CuboneName                                         ; 0x16ca
 	textpointer Text16cb                                           ; 0x16cb
 	textpointer Text16cc                                           ; 0x16cc
 	textpointer Text16cd                                           ; 0x16cd
-	textpointer Text16ce                                           ; 0x16ce
+	textpointer CuboneDescription1                                 ; 0x16ce
 	textpointer Text16cf                                           ; 0x16cf
 	textpointer Text16d0                                           ; 0x16d0
-	textpointer Text16d1                                           ; 0x16d1
-	textpointer Text16d2                                           ; 0x16d2
+	textpointer CuboneDescription2                                 ; 0x16d1
+	textpointer MarowakName                                        ; 0x16d2
 	textpointer Text16d3                                           ; 0x16d3
 	textpointer Text16d4                                           ; 0x16d4
 	textpointer Text16d5                                           ; 0x16d5
 	textpointer Text16d6                                           ; 0x16d6
-	textpointer Text16d7                                           ; 0x16d7
+	textpointer MarowakDescription1                                ; 0x16d7
 	textpointer Text16d8                                           ; 0x16d8
 	textpointer Text16d9                                           ; 0x16d9
 	textpointer Text16da                                           ; 0x16da
 	textpointer Text16db                                           ; 0x16db
-	textpointer Text16dc                                           ; 0x16dc
-	textpointer Text16dd                                           ; 0x16dd
+	textpointer MarowakDescription2                                ; 0x16dc
+	textpointer DarkMarowakName                                    ; 0x16dd
 	textpointer Text16de                                           ; 0x16de
 	textpointer Text16df                                           ; 0x16df
-	textpointer Text16e0                                           ; 0x16e0
-	textpointer Text16e1                                           ; 0x16e1
+	textpointer DarkMarowakDescription                             ; 0x16e0
+	textpointer HitmonleeName                                      ; 0x16e1
 	textpointer Text16e2                                           ; 0x16e2
-	textpointer Text16e3                                           ; 0x16e3
+	textpointer HitmonleeDescription1                              ; 0x16e3
 	textpointer Text16e4                                           ; 0x16e4
 	textpointer Text16e5                                           ; 0x16e5
 	textpointer Text16e6                                           ; 0x16e6
-	textpointer Text16e7                                           ; 0x16e7
-	textpointer Text16e8                                           ; 0x16e8
+	textpointer HitmonleeDescription2                              ; 0x16e7
+	textpointer HitmonchanName                                     ; 0x16e8
 	textpointer Text16e9                                           ; 0x16e9
 	textpointer Text16ea                                           ; 0x16ea
-	textpointer Text16eb                                           ; 0x16eb
+	textpointer HitmonchanDescription1                             ; 0x16eb
 	textpointer Text16ec                                           ; 0x16ec
 	textpointer Text16ed                                           ; 0x16ed
-	textpointer Text16ee                                           ; 0x16ee
-	textpointer Text16ef                                           ; 0x16ef
+	textpointer HitmonchanDescription2                             ; 0x16ee
+	textpointer RhyhornName                                        ; 0x16ef
 	textpointer Text16f0                                           ; 0x16f0
 	textpointer Text16f1                                           ; 0x16f1
 	textpointer Text16f2                                           ; 0x16f2
-	textpointer Text16f3                                           ; 0x16f3
-	textpointer Text16f4                                           ; 0x16f4
+	textpointer RhyhornDescription                                 ; 0x16f3
+	textpointer RhydonName                                         ; 0x16f4
 	textpointer Text16f5                                           ; 0x16f5
 	textpointer Text16f6                                           ; 0x16f6
 	textpointer Text16f7                                           ; 0x16f7
-	textpointer Text16f8                                           ; 0x16f8
+	textpointer RhydonDescription1                                 ; 0x16f8
 	textpointer Text16f9                                           ; 0x16f9
 	textpointer Text16fa                                           ; 0x16fa
-	textpointer Text16fb                                           ; 0x16fb
-	textpointer Text16fc                                           ; 0x16fc
+	textpointer RhydonDescription2                                 ; 0x16fb
+	textpointer KabutoName                                         ; 0x16fc
 	textpointer Text16fd                                           ; 0x16fd
 	textpointer Text16fe                                           ; 0x16fe
-	textpointer Text16ff                                           ; 0x16ff
+	textpointer KabutoDescription1                                 ; 0x16ff
 	textpointer Text1700                                           ; 0x1700
 	textpointer Text1701                                           ; 0x1701
 	textpointer Text1702                                           ; 0x1702
 	textpointer Text1703                                           ; 0x1703
-	textpointer Text1704                                           ; 0x1704
-	textpointer Text1705                                           ; 0x1705
+	textpointer KabutoDescription2                                 ; 0x1704
+	textpointer KabutopsName                                       ; 0x1705
 	textpointer Text1706                                           ; 0x1706
 	textpointer Text1707                                           ; 0x1707
-	textpointer Text1708                                           ; 0x1708
-	textpointer Text1709                                           ; 0x1709
+	textpointer KabutopsDescription                                ; 0x1708
+	textpointer AerodactylName                                     ; 0x1709
 	textpointer Text170a                                           ; 0x170a
 	textpointer Text170b                                           ; 0x170b
 	textpointer Text170c                                           ; 0x170c
-	textpointer Text170d                                           ; 0x170d
+	textpointer AerodactylDescription1                             ; 0x170d
 	textpointer Text170e                                           ; 0x170e
 	textpointer Text170f                                           ; 0x170f
-	textpointer Text1710                                           ; 0x1710
-	textpointer Text1711                                           ; 0x1711
+	textpointer AerodactylDescription2                             ; 0x1710
+	textpointer AbraName                                           ; 0x1711
 	textpointer Text1712                                           ; 0x1712
 	textpointer Text1713                                           ; 0x1713
-	textpointer Text1714                                           ; 0x1714
-	textpointer Text1715                                           ; 0x1715
+	textpointer AbraDescription1                                   ; 0x1714
+	textpointer AbraDescription2                                   ; 0x1715
 	textpointer Text1716                                           ; 0x1716
 	textpointer Text1717                                           ; 0x1717
-	textpointer Text1718                                           ; 0x1718
-	textpointer Text1719                                           ; 0x1719
+	textpointer AbraDescription3                                   ; 0x1718
+	textpointer KadabraName                                        ; 0x1719
 	textpointer Text171a                                           ; 0x171a
-	textpointer Text171b                                           ; 0x171b
+	textpointer KadabraDescription1                                ; 0x171b
 	textpointer Text171c                                           ; 0x171c
 	textpointer Text171d                                           ; 0x171d
 	textpointer Text171e                                           ; 0x171e
 	textpointer Text171f                                           ; 0x171f
-	textpointer Text1720                                           ; 0x1720
-	textpointer Text1721                                           ; 0x1721
+	textpointer KadabraDescription2                                ; 0x1720
+	textpointer DarkKadabraName                                    ; 0x1721
 	textpointer Text1722                                           ; 0x1722
 	textpointer Text1723                                           ; 0x1723
 	textpointer Text1724                                           ; 0x1724
 	textpointer Text1725                                           ; 0x1725
-	textpointer Text1726                                           ; 0x1726
-	textpointer Text1727                                           ; 0x1727
+	textpointer DarkKadabraDescription                             ; 0x1726
+	textpointer AlakazamName                                       ; 0x1727
 	textpointer Text1728                                           ; 0x1728
 	textpointer Text1729                                           ; 0x1729
-	textpointer Text172a                                           ; 0x172a
+	textpointer AlakazamDescription1                               ; 0x172a
 	textpointer Text172b                                           ; 0x172b
 	textpointer Text172c                                           ; 0x172c
-	textpointer Text172d                                           ; 0x172d
-	textpointer Text172e                                           ; 0x172e
+	textpointer AlakazamDescription2                               ; 0x172d
+	textpointer DarkAlakazamName                                   ; 0x172e
 	textpointer Text172f                                           ; 0x172f
 	textpointer Text1730                                           ; 0x1730
-	textpointer Text1731                                           ; 0x1731
-	textpointer Text1732                                           ; 0x1732
+	textpointer DarkAlakazamDescription                            ; 0x1731
+	textpointer SlowpokeName                                       ; 0x1732
 	textpointer Text1733                                           ; 0x1733
-	textpointer Text1734                                           ; 0x1734
+	textpointer SlowpokeDescription1                               ; 0x1734
 	textpointer Text1735                                           ; 0x1735
 	textpointer Text1736                                           ; 0x1736
-	textpointer Text1737                                           ; 0x1737
+	textpointer SlowpokeDescription2                               ; 0x1737
 	textpointer Text1738                                           ; 0x1738
 	textpointer Text1739                                           ; 0x1739
 	textpointer Text173a                                           ; 0x173a
 	textpointer Text173b                                           ; 0x173b
-	textpointer Text173c                                           ; 0x173c
-	textpointer Text173d                                           ; 0x173d
+	textpointer SlowpokeDescription3                               ; 0x173c
+	textpointer SlowbroName                                        ; 0x173d
 	textpointer Text173e                                           ; 0x173e
 	textpointer Text173f                                           ; 0x173f
 	textpointer Text1740                                           ; 0x1740
-	textpointer Text1741                                           ; 0x1741
+	textpointer SlowbroDescription1                                ; 0x1741
 	textpointer Text1742                                           ; 0x1742
 	textpointer Text1743                                           ; 0x1743
 	textpointer Text1744                                           ; 0x1744
 	textpointer Text1745                                           ; 0x1745
-	textpointer Text1746                                           ; 0x1746
-	textpointer Text1747                                           ; 0x1747
+	textpointer SlowbroDescription2                                ; 0x1746
+	textpointer DarkSlowbroName                                    ; 0x1747
 	textpointer Text1748                                           ; 0x1748
 	textpointer Text1749                                           ; 0x1749
 	textpointer Text174a                                           ; 0x174a
-	textpointer Text174b                                           ; 0x174b
-	textpointer Text174c                                           ; 0x174c
+	textpointer DarkSlowbroDescription                             ; 0x174b
+	textpointer GastlyName                                         ; 0x174c
 	textpointer Text174d                                           ; 0x174d
 	textpointer Text174e                                           ; 0x174e
 	textpointer Text174f                                           ; 0x174f
 	textpointer Text1750                                           ; 0x1750
 	textpointer Text1751                                           ; 0x1751
-	textpointer Text1752                                           ; 0x1752
+	textpointer GastlyDescription1                                 ; 0x1752
 	textpointer Text1753                                           ; 0x1753
 	textpointer Text1754                                           ; 0x1754
 	textpointer Text1755                                           ; 0x1755
-	textpointer Text1756                                           ; 0x1756
+	textpointer GastlyDescription2                                 ; 0x1756
 	textpointer Text1757                                           ; 0x1757
 	textpointer Text1758                                           ; 0x1758
 	textpointer Text1759                                           ; 0x1759
-	textpointer Text175a                                           ; 0x175a
-	textpointer Text175b                                           ; 0x175b
+	textpointer GastlyDescription3                                 ; 0x175a
+	textpointer HaunterName                                        ; 0x175b
 	textpointer Text175c                                           ; 0x175c
 	textpointer Text175d                                           ; 0x175d
 	textpointer Text175e                                           ; 0x175e
-	textpointer Text175f                                           ; 0x175f
+	textpointer HaunterDescription1                                ; 0x175f
 	textpointer Text1760                                           ; 0x1760
 	textpointer Text1761                                           ; 0x1761
 	textpointer Text1762                                           ; 0x1762
 	textpointer Text1763                                           ; 0x1763
 	textpointer Text1764                                           ; 0x1764
-	textpointer Text1765                                           ; 0x1765
+	textpointer HaunterDescription2                                ; 0x1765
 	textpointer Text1766                                           ; 0x1766
 	textpointer Text1767                                           ; 0x1767
 	textpointer Text1768                                           ; 0x1768
 	textpointer Text1769                                           ; 0x1769
-	textpointer Text176a                                           ; 0x176a
+	textpointer DarkHaunterName                                    ; 0x176a
 	textpointer Text176b                                           ; 0x176b
 	textpointer Text176c                                           ; 0x176c
-	textpointer Text176d                                           ; 0x176d
-	textpointer Text176e                                           ; 0x176e
+	textpointer DarkHaunterDescription                             ; 0x176d
+	textpointer GengarName                                         ; 0x176e
 	textpointer Text176f                                           ; 0x176f
 	textpointer Text1770                                           ; 0x1770
 	textpointer Text1771                                           ; 0x1771
 	textpointer Text1772                                           ; 0x1772
-	textpointer Text1773                                           ; 0x1773
+	textpointer GengarDescription1                                 ; 0x1773
 	textpointer Text1774                                           ; 0x1774
 	textpointer Text1775                                           ; 0x1775
 	textpointer Text1776                                           ; 0x1776
-	textpointer Text1777                                           ; 0x1777
-	textpointer Text1778                                           ; 0x1778
+	textpointer GengarDescription2                                 ; 0x1777
+	textpointer DarkGengarName                                     ; 0x1778
 	textpointer Text1779                                           ; 0x1779
 	textpointer Text177a                                           ; 0x177a
 	textpointer Text177b                                           ; 0x177b
 	textpointer Text177c                                           ; 0x177c
-	textpointer Text177d                                           ; 0x177d
-	textpointer Text177e                                           ; 0x177e
+	textpointer DarkGengarDescription                              ; 0x177d
+	textpointer DrowzeeName                                        ; 0x177e
 	textpointer Text177f                                           ; 0x177f
 	textpointer Text1780                                           ; 0x1780
 	textpointer Text1781                                           ; 0x1781
-	textpointer Text1782                                           ; 0x1782
-	textpointer Text1783                                           ; 0x1783
-	textpointer Text1784                                           ; 0x1784
+	textpointer DrowzeeDescription1                                ; 0x1782
+	textpointer DrowzeeDescription2                                ; 0x1783
+	textpointer HypnoName                                          ; 0x1784
 	textpointer Text1785                                           ; 0x1785
 	textpointer Text1786                                           ; 0x1786
-	textpointer Text1787                                           ; 0x1787
+	textpointer HypnoDescription1                                  ; 0x1787
 	textpointer Text1788                                           ; 0x1788
 	textpointer Text1789                                           ; 0x1789
-	textpointer Text178a                                           ; 0x178a
-	textpointer Text178b                                           ; 0x178b
+	textpointer HypnoDescription2                                  ; 0x178a
+	textpointer DarkHypnoName                                      ; 0x178b
 	textpointer Text178c                                           ; 0x178c
 	textpointer Text178d                                           ; 0x178d
 	textpointer Text178e                                           ; 0x178e
-	textpointer Text178f                                           ; 0x178f
-	textpointer Text1790                                           ; 0x1790
+	textpointer DarkHypnoDescription                               ; 0x178f
+	textpointer MrMimeName                                         ; 0x1790
 	textpointer Text1791                                           ; 0x1791
 	textpointer Text1792                                           ; 0x1792
 	textpointer Text1793                                           ; 0x1793
 	textpointer Text1794                                           ; 0x1794
 	textpointer Text1795                                           ; 0x1795
-	textpointer Text1796                                           ; 0x1796
+	textpointer MrMimeDescription1                                 ; 0x1796
 	textpointer Text1797                                           ; 0x1797
 	textpointer Text1798                                           ; 0x1798
 	textpointer Text1799                                           ; 0x1799
 	textpointer Text179a                                           ; 0x179a
-	textpointer Text179b                                           ; 0x179b
-	textpointer Text179c                                           ; 0x179c
+	textpointer MrMimeDescription2                                 ; 0x179b
+	textpointer JynxName                                           ; 0x179c
 	textpointer Text179d                                           ; 0x179d
 	textpointer Text179e                                           ; 0x179e
 	textpointer Text179f                                           ; 0x179f
-	textpointer Text17a0                                           ; 0x17a0
-	textpointer Text17a1                                           ; 0x17a1
-	textpointer Text17a2                                           ; 0x17a2
-	textpointer Text17a3                                           ; 0x17a3
+	textpointer JynxDescription1                                   ; 0x17a0
+	textpointer JynxDescription2                                   ; 0x17a1
+	textpointer JynxDescription3                                   ; 0x17a2
+	textpointer MewtwoName                                         ; 0x17a3
 	textpointer Text17a4                                           ; 0x17a4
 	textpointer Text17a5                                           ; 0x17a5
 	textpointer Text17a6                                           ; 0x17a6
 	textpointer Text17a7                                           ; 0x17a7
-	textpointer Text17a8                                           ; 0x17a8
+	textpointer MewtwoDescription1                                 ; 0x17a8
 	textpointer Text17a9                                           ; 0x17a9
-	textpointer Text17aa                                           ; 0x17aa
+	textpointer MewtwoDescription2                                 ; 0x17aa
 	textpointer Text17ab                                           ; 0x17ab
 	textpointer Text17ac                                           ; 0x17ac
-	textpointer Text17ad                                           ; 0x17ad
+	textpointer MewtwoDescription3                                 ; 0x17ad
 	textpointer Text17ae                                           ; 0x17ae
 	textpointer Text17af                                           ; 0x17af
 	textpointer Text17b0                                           ; 0x17b0
-	textpointer Text17b1                                           ; 0x17b1
+	textpointer MewtwoDescription4                                 ; 0x17b1
 	textpointer Text17b2                                           ; 0x17b2
 	textpointer Text17b3                                           ; 0x17b3
 	textpointer Text17b4                                           ; 0x17b4
 	textpointer Text17b5                                           ; 0x17b5
-	textpointer Text17b6                                           ; 0x17b6
-	textpointer Text17b7                                           ; 0x17b7
+	textpointer MewtwoDescription5                                 ; 0x17b6
+	textpointer GrsMewtwoName                                      ; 0x17b7
 	textpointer Text17b8                                           ; 0x17b8
 	textpointer Text17b9                                           ; 0x17b9
 	textpointer Text17ba                                           ; 0x17ba
 	textpointer Text17bb                                           ; 0x17bb
-	textpointer Text17bc                                           ; 0x17bc
-	textpointer Text17bd                                           ; 0x17bd
+	textpointer GrsMewtwoDescription                               ; 0x17bc
+	textpointer MewName                                            ; 0x17bd
 	textpointer Text17be                                           ; 0x17be
 	textpointer Text17bf                                           ; 0x17bf
 	textpointer Text17c0                                           ; 0x17c0
-	textpointer Text17c1                                           ; 0x17c1
+	textpointer MewDescription1                                    ; 0x17c1
 	textpointer Text17c2                                           ; 0x17c2
 	textpointer Text17c3                                           ; 0x17c3
-	textpointer Text17c4                                           ; 0x17c4
+	textpointer MewDescription2                                    ; 0x17c4
 	textpointer Text17c5                                           ; 0x17c5
 	textpointer Text17c6                                           ; 0x17c6
 	textpointer Text17c7                                           ; 0x17c7
 	textpointer Text17c8                                           ; 0x17c8
-	textpointer Text17c9                                           ; 0x17c9
-	textpointer Text17ca                                           ; 0x17ca
+	textpointer MewDescription3                                    ; 0x17c9
+	textpointer PidgeyName                                         ; 0x17ca
 	textpointer Text17cb                                           ; 0x17cb
-	textpointer Text17cc                                           ; 0x17cc
+	textpointer PidgeyDescription1                                 ; 0x17cc
 	textpointer Text17cd                                           ; 0x17cd
-	textpointer Text17ce                                           ; 0x17ce
-	textpointer Text17cf                                           ; 0x17cf
+	textpointer PidgeyDescription2                                 ; 0x17ce
+	textpointer PidgeottoName                                      ; 0x17cf
 	textpointer Text17d0                                           ; 0x17d0
 	textpointer Text17d1                                           ; 0x17d1
 	textpointer Text17d2                                           ; 0x17d2
-	textpointer Text17d3                                           ; 0x17d3
+	textpointer PidgeottoDescription1                              ; 0x17d3
 	textpointer Text17d4                                           ; 0x17d4
 	textpointer Text17d5                                           ; 0x17d5
 	textpointer Text17d6                                           ; 0x17d6
-	textpointer Text17d7                                           ; 0x17d7
-	textpointer Text17d8                                           ; 0x17d8
+	textpointer PidgeottoDescription2                              ; 0x17d7
+	textpointer PidgeotName                                        ; 0x17d8
 	textpointer Text17d9                                           ; 0x17d9
 	textpointer Text17da                                           ; 0x17da
 	textpointer Text17db                                           ; 0x17db
 	textpointer Text17dc                                           ; 0x17dc
-	textpointer Text17dd                                           ; 0x17dd
+	textpointer PidgeotDescription1                                ; 0x17dd
 	textpointer Text17de                                           ; 0x17de
 	textpointer Text17df                                           ; 0x17df
-	textpointer Text17e0                                           ; 0x17e0
-	textpointer Text17e1                                           ; 0x17e1
-	textpointer Text17e2                                           ; 0x17e2
+	textpointer PidgeotDescription2                                ; 0x17e0
+	textpointer RattataName                                        ; 0x17e1
+	textpointer RattataDescription1                                ; 0x17e2
 	textpointer Text17e3                                           ; 0x17e3
 	textpointer Text17e4                                           ; 0x17e4
-	textpointer Text17e5                                           ; 0x17e5
-	textpointer Text17e6                                           ; 0x17e6
-	textpointer Text17e7                                           ; 0x17e7
+	textpointer RattataDescription2                                ; 0x17e5
+	textpointer RattataDescription3                                ; 0x17e6
+	textpointer RaticateName                                       ; 0x17e7
 	textpointer Text17e8                                           ; 0x17e8
 	textpointer Text17e9                                           ; 0x17e9
-	textpointer Text17ea                                           ; 0x17ea
-	textpointer Text17eb                                           ; 0x17eb
+	textpointer RaticateDescription                                ; 0x17ea
+	textpointer DarkRaticateName                                   ; 0x17eb
 	textpointer Text17ec                                           ; 0x17ec
-	textpointer Text17ed                                           ; 0x17ed
-	textpointer Text17ee                                           ; 0x17ee
-	textpointer Text17ef                                           ; 0x17ef
+	textpointer DarkRaticateDescription                            ; 0x17ed
+	textpointer SpearowName                                        ; 0x17ee
+	textpointer SpearowDescription1                                ; 0x17ef
 	textpointer Text17f0                                           ; 0x17f0
-	textpointer Text17f1                                           ; 0x17f1
-	textpointer Text17f2                                           ; 0x17f2
-	textpointer Text17f3                                           ; 0x17f3
+	textpointer SpearowDescription2                                ; 0x17f1
+	textpointer SpearowDescription3                                ; 0x17f2
+	textpointer FearowName                                         ; 0x17f3
 	textpointer Text17f4                                           ; 0x17f4
 	textpointer Text17f5                                           ; 0x17f5
-	textpointer Text17f6                                           ; 0x17f6
+	textpointer FearowDescription1                                 ; 0x17f6
 	textpointer Text17f7                                           ; 0x17f7
-	textpointer Text17f8                                           ; 0x17f8
-	textpointer Text17f9                                           ; 0x17f9
+	textpointer FearowDescription2                                 ; 0x17f8
+	textpointer DarkFearowName                                     ; 0x17f9
 	textpointer Text17fa                                           ; 0x17fa
 	textpointer Text17fb                                           ; 0x17fb
 	textpointer Text17fc                                           ; 0x17fc
 	textpointer Text17fd                                           ; 0x17fd
-	textpointer Text17fe                                           ; 0x17fe
-	textpointer Text17ff                                           ; 0x17ff
+	textpointer DarkFearowDescription                              ; 0x17fe
+	textpointer ClefairyName                                       ; 0x17ff
 	textpointer Text1800                                           ; 0x1800
 	textpointer Text1801                                           ; 0x1801
 	textpointer Text1802                                           ; 0x1802
-	textpointer Text1803                                           ; 0x1803
+	textpointer ClefairyDescription1                               ; 0x1803
 	textpointer Text1804                                           ; 0x1804
 	textpointer Text1805                                           ; 0x1805
-	textpointer Text1806                                           ; 0x1806
-	textpointer Text1807                                           ; 0x1807
+	textpointer ClefairyDescription2                               ; 0x1806
+	textpointer ClefableName                                       ; 0x1807
 	textpointer Text1808                                           ; 0x1808
-	textpointer Text1809                                           ; 0x1809
-	textpointer Text180a                                           ; 0x180a
+	textpointer ClefableDescription                                ; 0x1809
+	textpointer DarkClefableName                                   ; 0x180a
 	textpointer Text180b                                           ; 0x180b
 	textpointer Text180c                                           ; 0x180c
 	textpointer Text180d                                           ; 0x180d
 	textpointer Text180e                                           ; 0x180e
-	textpointer Text180f                                           ; 0x180f
-	textpointer Text1810                                           ; 0x1810
+	textpointer DarkClefableDescription                            ; 0x180f
+	textpointer JigglypuffName                                     ; 0x1810
 	textpointer Text1811                                           ; 0x1811
 	textpointer Text1812                                           ; 0x1812
-	textpointer Text1813                                           ; 0x1813
+	textpointer JigglypuffDescription1                             ; 0x1813
 	textpointer Text1814                                           ; 0x1814
 	textpointer Text1815                                           ; 0x1815
 	textpointer Text1816                                           ; 0x1816
 	textpointer Text1817                                           ; 0x1817
-	textpointer Text1818                                           ; 0x1818
+	textpointer JigglypuffDescription2                             ; 0x1818
 	textpointer Text1819                                           ; 0x1819
-	textpointer Text181a                                           ; 0x181a
-	textpointer Text181b                                           ; 0x181b
+	textpointer JigglypuffDescription3                             ; 0x181a
+	textpointer WigglytuffName                                     ; 0x181b
 	textpointer Text181c                                           ; 0x181c
 	textpointer Text181d                                           ; 0x181d
-	textpointer Text181e                                           ; 0x181e
+	textpointer WigglytuffDescription1                             ; 0x181e
 	textpointer Text181f                                           ; 0x181f
 	textpointer Text1820                                           ; 0x1820
 	textpointer Text1821                                           ; 0x1821
-	textpointer Text1822                                           ; 0x1822
-	textpointer Text1823                                           ; 0x1823
+	textpointer WigglytuffDescription2                             ; 0x1822
+	textpointer MeowthName                                         ; 0x1823
 	textpointer Text1824                                           ; 0x1824
 	textpointer Text1825                                           ; 0x1825
 	textpointer Text1826                                           ; 0x1826
-	textpointer Text1827                                           ; 0x1827
+	textpointer MeowthDescription1                                 ; 0x1827
 	textpointer Text1828                                           ; 0x1828
 	textpointer Text1829                                           ; 0x1829
-	textpointer Text182a                                           ; 0x182a
+	textpointer MeowthDescription2                                 ; 0x182a
 	textpointer Text182b                                           ; 0x182b
 	textpointer Text182c                                           ; 0x182c
-	textpointer Text182d                                           ; 0x182d
+	textpointer MeowthDescription3                                 ; 0x182d
 	textpointer Text182e                                           ; 0x182e
 	textpointer Text182f                                           ; 0x182f
-	textpointer Text1830                                           ; 0x1830
-	textpointer Text1831                                           ; 0x1831
-	textpointer Text1832                                           ; 0x1832
+	textpointer MeowthDescription4                                 ; 0x1830
+	textpointer MeowthDescription5                                 ; 0x1831
+	textpointer PersianName                                        ; 0x1832
 	textpointer Text1833                                           ; 0x1833
 	textpointer Text1834                                           ; 0x1834
 	textpointer Text1835                                           ; 0x1835
-	textpointer Text1836                                           ; 0x1836
-	textpointer Text1837                                           ; 0x1837
+	textpointer PersianDescription                                 ; 0x1836
+	textpointer DarkPersianName                                    ; 0x1837
 	textpointer Text1838                                           ; 0x1838
 	textpointer Text1839                                           ; 0x1839
 	textpointer Text183a                                           ; 0x183a
-	textpointer Text183b                                           ; 0x183b
-	textpointer Text183c                                           ; 0x183c
+	textpointer DarkPersianDescription                             ; 0x183b
+	textpointer FarfetchdName                                      ; 0x183c
 	textpointer Text183d                                           ; 0x183d
 	textpointer Text183e                                           ; 0x183e
 	textpointer Text183f                                           ; 0x183f
 	textpointer Text1840                                           ; 0x1840
-	textpointer Text1841                                           ; 0x1841
+	textpointer FarfetchdDescription                               ; 0x1841
 	textpointer Text1842                                           ; 0x1842
-	textpointer Text1843                                           ; 0x1843
-	textpointer Text1844                                           ; 0x1844
+	textpointer FarfetchdAltDescription                            ; 0x1843
+	textpointer DoduoName                                          ; 0x1844
 	textpointer Text1845                                           ; 0x1845
 	textpointer Text1846                                           ; 0x1846
-	textpointer Text1847                                           ; 0x1847
-	textpointer Text1848                                           ; 0x1848
-	textpointer Text1849                                           ; 0x1849
+	textpointer DoduoDescription1                                  ; 0x1847
+	textpointer DoduoDescription2                                  ; 0x1848
+	textpointer DodrioName                                         ; 0x1849
 	textpointer Text184a                                           ; 0x184a
 	textpointer Text184b                                           ; 0x184b
-	textpointer Text184c                                           ; 0x184c
+	textpointer DodrioDescription1                                 ; 0x184c
 	textpointer Text184d                                           ; 0x184d
 	textpointer Text184e                                           ; 0x184e
-	textpointer Text184f                                           ; 0x184f
-	textpointer Text1850                                           ; 0x1850
+	textpointer DodrioDescription2                                 ; 0x184f
+	textpointer LickitungName                                      ; 0x1850
 	textpointer Text1851                                           ; 0x1851
 	textpointer Text1852                                           ; 0x1852
-	textpointer Text1853                                           ; 0x1853
+	textpointer LickitungDescription1                              ; 0x1853
 	textpointer Text1854                                           ; 0x1854
-	textpointer Text1855                                           ; 0x1855
-	textpointer Text1856                                           ; 0x1856
+	textpointer LickitungDescription2                              ; 0x1855
+	textpointer ChanseyName                                        ; 0x1856
 	textpointer Text1857                                           ; 0x1857
-	textpointer Text1858                                           ; 0x1858
+	textpointer ChanseyDescription1                                ; 0x1858
 	textpointer Text1859                                           ; 0x1859
 	textpointer Text185a                                           ; 0x185a
-	textpointer Text185b                                           ; 0x185b
-	textpointer Text185c                                           ; 0x185c
+	textpointer ChanseyDescription2                                ; 0x185b
+	textpointer KangaskhanName                                     ; 0x185c
 	textpointer Text185d                                           ; 0x185d
 	textpointer Text185e                                           ; 0x185e
-	textpointer Text185f                                           ; 0x185f
+	textpointer KangaskhanDescription1                             ; 0x185f
 	textpointer Text1860                                           ; 0x1860
-	textpointer Text1861                                           ; 0x1861
+	textpointer KangaskhanDescription2                             ; 0x1861
 	textpointer Text1862                                           ; 0x1862
 	textpointer Text1863                                           ; 0x1863
 	textpointer Text1864                                           ; 0x1864
-	textpointer Text1865                                           ; 0x1865
-	textpointer Text1866                                           ; 0x1866
+	textpointer KangaskhanDescription3                             ; 0x1865
+	textpointer TaurosName                                         ; 0x1866
 	textpointer Text1867                                           ; 0x1867
 	textpointer Text1868                                           ; 0x1868
 	textpointer Text1869                                           ; 0x1869
-	textpointer Text186a                                           ; 0x186a
+	textpointer TaurosDescription1                                 ; 0x186a
 	textpointer Text186b                                           ; 0x186b
 	textpointer Text186c                                           ; 0x186c
-	textpointer Text186d                                           ; 0x186d
-	textpointer Text186e                                           ; 0x186e
+	textpointer TaurosDescription2                                 ; 0x186d
+	textpointer DittoName                                          ; 0x186e
 	textpointer Text186f                                           ; 0x186f
 	textpointer Text1870                                           ; 0x1870
 	textpointer Text1871                                           ; 0x1871
 	textpointer Text1872                                           ; 0x1872
-	textpointer Text1873                                           ; 0x1873
+	textpointer DittoDescription                                   ; 0x1873
 	textpointer Text1874                                           ; 0x1874
-	textpointer Text1875                                           ; 0x1875
+	textpointer EeveeDescription1                                  ; 0x1875
 	textpointer Text1876                                           ; 0x1876
-	textpointer Text1877                                           ; 0x1877
-	textpointer Text1878                                           ; 0x1878
-	textpointer Text1879                                           ; 0x1879
+	textpointer EeveeDescription2                                  ; 0x1877
+	textpointer EeveeDescription3                                  ; 0x1878
+	textpointer PorygonName                                        ; 0x1879
 	textpointer Text187a                                           ; 0x187a
 	textpointer Text187b                                           ; 0x187b
 	textpointer Text187c                                           ; 0x187c
 	textpointer Text187d                                           ; 0x187d
 	textpointer Text187e                                           ; 0x187e
-	textpointer Text187f                                           ; 0x187f
+	textpointer PorygonDescription1                                ; 0x187f
 	textpointer Text1880                                           ; 0x1880
 	textpointer Text1881                                           ; 0x1881
-	textpointer Text1882                                           ; 0x1882
+	textpointer PorygonDescription2                                ; 0x1882
 	textpointer Text1883                                           ; 0x1883
-	textpointer Text1884                                           ; 0x1884
-	textpointer Text1885                                           ; 0x1885
+	textpointer PorygonDescription3                                ; 0x1884
+	textpointer CoolPorygonName                                    ; 0x1885
 	textpointer Text1886                                           ; 0x1886
 	textpointer Text1887                                           ; 0x1887
 	textpointer Text1888                                           ; 0x1888
-	textpointer Text1889                                           ; 0x1889
+	textpointer SnorlaxName                                        ; 0x1889
 	textpointer Text188a                                           ; 0x188a
 	textpointer Text188b                                           ; 0x188b
 	textpointer Text188c                                           ; 0x188c
-	textpointer Text188d                                           ; 0x188d
+	textpointer SnorlaxDescription1                                ; 0x188d
 	textpointer Text188e                                           ; 0x188e
 	textpointer Text188f                                           ; 0x188f
 	textpointer Text1890                                           ; 0x1890
 	textpointer Text1891                                           ; 0x1891
-	textpointer Text1892                                           ; 0x1892
-	textpointer Text1893                                           ; 0x1893
+	textpointer SnorlaxDescription2                                ; 0x1892
+	textpointer HungrySnorlaxName                                  ; 0x1893
 	textpointer Text1894                                           ; 0x1894
 	textpointer Text1895                                           ; 0x1895
 	textpointer Text1896                                           ; 0x1896
-	textpointer Text1897                                           ; 0x1897
-	textpointer Text1898                                           ; 0x1898
-	textpointer Text1899                                           ; 0x1899
-	textpointer Text189a                                           ; 0x189a
-	textpointer Text189b                                           ; 0x189b
+	textpointer HungrySnorlaxDescription                           ; 0x1897
+	textpointer DratiniName                                        ; 0x1898
+	textpointer DratiniDescription1                                ; 0x1899
+	textpointer DratiniDescription2                                ; 0x189a
+	textpointer DragonairName                                      ; 0x189b
 	textpointer Text189c                                           ; 0x189c
-	textpointer Text189d                                           ; 0x189d
-	textpointer Text189e                                           ; 0x189e
+	textpointer DragonairDescription                               ; 0x189d
+	textpointer DarkDragonairName                                  ; 0x189e
 	textpointer Text189f                                           ; 0x189f
 	textpointer Text18a0                                           ; 0x18a0
 	textpointer Text18a1                                           ; 0x18a1
-	textpointer Text18a2                                           ; 0x18a2
-	textpointer Text18a3                                           ; 0x18a3
+	textpointer DarkDragonairDescription                           ; 0x18a2
+	textpointer DragoniteName                                      ; 0x18a3
 	textpointer Text18a4                                           ; 0x18a4
 	textpointer Text18a5                                           ; 0x18a5
-	textpointer Text18a6                                           ; 0x18a6
+	textpointer DragoniteDescription1                              ; 0x18a6
 	textpointer Text18a7                                           ; 0x18a7
 	textpointer Text18a8                                           ; 0x18a8
 	textpointer Text18a9                                           ; 0x18a9
-	textpointer Text18aa                                           ; 0x18aa
+	textpointer DragoniteDescription2                              ; 0x18aa
 	textpointer Text18ab                                           ; 0x18ab
 	textpointer Text18ac                                           ; 0x18ac
 	textpointer Text18ad                                           ; 0x18ad
-	textpointer Text18ae                                           ; 0x18ae
+	textpointer DarkDragoniteName                                  ; 0x18ae
 	textpointer Text18af                                           ; 0x18af
 	textpointer Text18b0                                           ; 0x18b0
 	textpointer Text18b1                                           ; 0x18b1
-	textpointer Text18b2                                           ; 0x18b2
-	textpointer Text18b3                                           ; 0x18b3
+	textpointer DarkDragoniteDescription                           ; 0x18b2
+	textpointer TogepiName                                         ; 0x18b3
 	textpointer Text18b4                                           ; 0x18b4
 	textpointer Text18b5                                           ; 0x18b5
 	textpointer Text18b6                                           ; 0x18b6
-	textpointer Text18b7                                           ; 0x18b7
-	textpointer Text18b8                                           ; 0x18b8
+	textpointer TogepiDescription                                  ; 0x18b7
+	textpointer LugiaName                                          ; 0x18b8
 	textpointer Text18b9                                           ; 0x18b9
 	textpointer Text18ba                                           ; 0x18ba
 	textpointer Text18bb                                           ; 0x18bb
-	textpointer Text18bc                                           ; 0x18bc
-	textpointer Text18bd                                           ; 0x18bd
-	textpointer Text18be                                           ; 0x18be
-	textpointer Text18bf                                           ; 0x18bf
-	textpointer Text18c0                                           ; 0x18c0
-	textpointer Text18c1                                           ; 0x18c1
-	textpointer Text18c2                                           ; 0x18c2
-	textpointer Text18c3                                           ; 0x18c3
-	textpointer Text18c4                                           ; 0x18c4
-	textpointer Text18c5                                           ; 0x18c5
-	textpointer Text18c6                                           ; 0x18c6
-	textpointer Text18c7                                           ; 0x18c7
-	textpointer Text18c8                                           ; 0x18c8
-	textpointer Text18c9                                           ; 0x18c9
-	textpointer Text18ca                                           ; 0x18ca
-	textpointer Text18cb                                           ; 0x18cb
-	textpointer Text18cc                                           ; 0x18cc
-	textpointer Text18cd                                           ; 0x18cd
-	textpointer Text18ce                                           ; 0x18ce
-	textpointer Text18cf                                           ; 0x18cf
-	textpointer Text18d0                                           ; 0x18d0
-	textpointer Text18d1                                           ; 0x18d1
-	textpointer Text18d2                                           ; 0x18d2
-	textpointer Text18d3                                           ; 0x18d3
-	textpointer Text18d4                                           ; 0x18d4
-	textpointer Text18d5                                           ; 0x18d5
-	textpointer Text18d6                                           ; 0x18d6
-	textpointer Text18d7                                           ; 0x18d7
-	textpointer Text18d8                                           ; 0x18d8
-	textpointer Text18d9                                           ; 0x18d9
-	textpointer Text18da                                           ; 0x18da
-	textpointer Text18db                                           ; 0x18db
-	textpointer Text18dc                                           ; 0x18dc
-	textpointer Text18dd                                           ; 0x18dd
-	textpointer Text18de                                           ; 0x18de
-	textpointer Text18df                                           ; 0x18df
-	textpointer Text18e0                                           ; 0x18e0
-	textpointer Text18e1                                           ; 0x18e1
-	textpointer Text18e2                                           ; 0x18e2
-	textpointer Text18e3                                           ; 0x18e3
-	textpointer Text18e4                                           ; 0x18e4
-	textpointer Text18e5                                           ; 0x18e5
-	textpointer Text18e6                                           ; 0x18e6
-	textpointer Text18e7                                           ; 0x18e7
-	textpointer Text18e8                                           ; 0x18e8
-	textpointer Text18e9                                           ; 0x18e9
-	textpointer Text18ea                                           ; 0x18ea
-	textpointer Text18eb                                           ; 0x18eb
-	textpointer Text18ec                                           ; 0x18ec
-	textpointer Text18ed                                           ; 0x18ed
-	textpointer Text18ee                                           ; 0x18ee
-	textpointer Text18ef                                           ; 0x18ef
-	textpointer Text18f0                                           ; 0x18f0
-	textpointer Text18f1                                           ; 0x18f1
-	textpointer Text18f2                                           ; 0x18f2
-	textpointer Text18f3                                           ; 0x18f3
-	textpointer Text18f4                                           ; 0x18f4
-	textpointer Text18f5                                           ; 0x18f5
-	textpointer Text18f6                                           ; 0x18f6
-	textpointer Text18f7                                           ; 0x18f7
-	textpointer Text18f8                                           ; 0x18f8
-	textpointer Text18f9                                           ; 0x18f9
-	textpointer Text18fa                                           ; 0x18fa
-	textpointer Text18fb                                           ; 0x18fb
-	textpointer Text18fc                                           ; 0x18fc
-	textpointer Text18fd                                           ; 0x18fd
-	textpointer Text18fe                                           ; 0x18fe
-	textpointer Text18ff                                           ; 0x18ff
-	textpointer Text1900                                           ; 0x1900
-	textpointer Text1901                                           ; 0x1901
-	textpointer Text1902                                           ; 0x1902
-	textpointer Text1903                                           ; 0x1903
-	textpointer Text1904                                           ; 0x1904
-	textpointer Text1905                                           ; 0x1905
-	textpointer Text1906                                           ; 0x1906
-	textpointer Text1907                                           ; 0x1907
-	textpointer Text1908                                           ; 0x1908
-	textpointer Text1909                                           ; 0x1909
-	textpointer Text190a                                           ; 0x190a
-	textpointer Text190b                                           ; 0x190b
-	textpointer Text190c                                           ; 0x190c
-	textpointer Text190d                                           ; 0x190d
-	textpointer Text190e                                           ; 0x190e
-	textpointer Text190f                                           ; 0x190f
-	textpointer Text1910                                           ; 0x1910
-	textpointer Text1911                                           ; 0x1911
-	textpointer Text1912                                           ; 0x1912
-	textpointer Text1913                                           ; 0x1913
-	textpointer Text1914                                           ; 0x1914
-	textpointer Text1915                                           ; 0x1915
-	textpointer Text1916                                           ; 0x1916
-	textpointer Text1917                                           ; 0x1917
-	textpointer Text1918                                           ; 0x1918
-	textpointer Text1919                                           ; 0x1919
-	textpointer Text191a                                           ; 0x191a
-	textpointer Text191b                                           ; 0x191b
-	textpointer Text191c                                           ; 0x191c
-	textpointer Text191d                                           ; 0x191d
-	textpointer Text191e                                           ; 0x191e
-	textpointer Text191f                                           ; 0x191f
-	textpointer Text1920                                           ; 0x1920
-	textpointer Text1921                                           ; 0x1921
-	textpointer Text1922                                           ; 0x1922
-	textpointer Text1923                                           ; 0x1923
-	textpointer Text1924                                           ; 0x1924
-	textpointer Text1925                                           ; 0x1925
-	textpointer Text1926                                           ; 0x1926
-	textpointer Text1927                                           ; 0x1927
-	textpointer Text1928                                           ; 0x1928
-	textpointer Text1929                                           ; 0x1929
-	textpointer Text192a                                           ; 0x192a
-	textpointer Text192b                                           ; 0x192b
+	textpointer LugiaDescription                                   ; 0x18bc
+	textpointer SuperPotionName                                    ; 0x18bd
+	textpointer SuperPotionDescription                             ; 0x18be
+	textpointer ImakuniCardName                                    ; 0x18bf
+	textpointer ImakuniCardDescription                             ; 0x18c0
+	textpointer EnergyRemovalName                                  ; 0x18c1
+	textpointer EnergyRemovalDescription                           ; 0x18c2
+	textpointer EnergyRetrievalName                                ; 0x18c3
+	textpointer EnergyRetrievalDescription                         ; 0x18c4
+	textpointer EnergySearchName                                   ; 0x18c5
+	textpointer EnergySearchDescription                            ; 0x18c6
+	textpointer ProfessorOakName                                   ; 0x18c7
+	textpointer ProfessorOakDescription                            ; 0x18c8
+	textpointer FossilExcavationName                               ; 0x18c9
+	textpointer FossilExcavationDescription                        ; 0x18ca
+	textpointer PotionName                                         ; 0x18cb
+	textpointer PotionDescription                                  ; 0x18cc
+	textpointer GamblerName                                        ; 0x18cd
+	textpointer GamblerDescription                                 ; 0x18ce
+	textpointer ReviveName                                         ; 0x18cf
+	textpointer ReviveDescription                                  ; 0x18d0
+	textpointer MaxReviveName                                      ; 0x18d1
+	textpointer MaxReviveDescription                               ; 0x18d2
+	textpointer MaxReviveDescriptionCont                           ; 0x18d3
+	textpointer SuperScoopUpName                                   ; 0x18d4
+	textpointer SuperScoopUpDescription                            ; 0x18d5
+	textpointer DevolutionSprayName                                ; 0x18d6
+	textpointer DevolutionSprayDescription                         ; 0x18d7
+	textpointer ItemfinderName                                     ; 0x18d8
+	textpointer ItemfinderDescription                              ; 0x18d9
+	textpointer ChallengeName                                      ; 0x18da
+	textpointer ChallengeDescription                               ; 0x18db
+	textpointer ChallengeDescriptionCont                           ; 0x18dc
+	textpointer SuperEnergyRetrievalName                           ; 0x18dd
+	textpointer SuperEnergyRetrievalDescription                    ; 0x18de
+	textpointer SuperEnergyRemovalName                             ; 0x18df
+	textpointer SuperEnergyRemovalDescription                      ; 0x18e0
+	textpointer MoonStoneName                                      ; 0x18e1
+	textpointer MoonStoneDescription                               ; 0x18e2
+	textpointer DefenderName                                       ; 0x18e3
+	textpointer DefenderDescription                                ; 0x18e4
+	textpointer GustOfWindName                                     ; 0x18e5
+	textpointer GustOfWindDescription                              ; 0x18e6
+	textpointer MysteriousFossilDescription                        ; 0x18e7
+	textpointer MysteriousFossilDescriptionCont                    ; 0x18e8
+	textpointer FullHealName                                       ; 0x18e9
+	textpointer FullHealDescription                                ; 0x18ea
+	textpointer ImposterOaksRevengeName                            ; 0x18eb
+	textpointer ImposterOaksRevengeDescription                     ; 0x18ec
+	textpointer ImposterProfessorOakName                           ; 0x18ed
+	textpointer ImposterProfessorOakDescription                    ; 0x18ee
+	textpointer SleepName                                          ; 0x18ef
+	textpointer SleepDescription                                   ; 0x18f0
+	textpointer ComputerErrorName                                  ; 0x18f1
+	textpointer ComputerErrorDescription                           ; 0x18f2
+	textpointer ComputerSearchName                                 ; 0x18f3
+	textpointer ComputerSearchDescription                          ; 0x18f4
+	textpointer DiggerName                                         ; 0x18f5
+	textpointer DiggerDescription                                  ; 0x18f6
+	textpointer ClefairyDollName                                   ; 0x18f7
+	textpointer ClefairyDollDescription                            ; 0x18f8
+	textpointer ClefairyDollDescriptionCont                        ; 0x18f9
+	textpointer MrFujiName                                         ; 0x18fa
+	textpointer MrFujiDescription                                  ; 0x18fb
+	textpointer PluspowerName                                      ; 0x18fc
+	textpointer PluspowerDescription                               ; 0x18fd
+	textpointer SwitchName                                         ; 0x18fe
+	textpointer SwitchDescription                                  ; 0x18ff
+	textpointer ScoopUpName                                        ; 0x1900
+	textpointer ScoopUpDescription                                 ; 0x1901
+	textpointer PokemonTraderName                                  ; 0x1902
+	textpointer PokemonTraderDescription                           ; 0x1903
+	textpointer PokemonTraderDescriptionCont                       ; 0x1904
+	textpointer PokemonRecallName                                  ; 0x1905
+	textpointer PokemonRecallDescription                           ; 0x1906
+	textpointer PokedexName                                        ; 0x1907
+	textpointer PokedexDescription                                 ; 0x1908
+	textpointer PokemonCenterName                                  ; 0x1909
+	textpointer PokemonCenterDescription                           ; 0x190a
+	textpointer PokemonBreederName                                 ; 0x190b
+	textpointer PokemonBreederDescription                          ; 0x190c
+	textpointer PokemonFluteName                                   ; 0x190d
+	textpointer PokemonFluteDescription                            ; 0x190e
+	textpointer TheBosssWayName                                    ; 0x190f
+	textpointer TheBosssWayDescription                             ; 0x1910
+	textpointer GoopGasAttackName                                  ; 0x1911
+	textpointer GoopGasAttackDescription                           ; 0x1912
+	textpointer BillName                                           ; 0x1913
+	textpointer BillDescription                                    ; 0x1914
+	textpointer BillsTeleporterName                                ; 0x1915
+	textpointer BillsTeleporterDescription                         ; 0x1916
+	textpointer BillsComputerName                                  ; 0x1917
+	textpointer BillsComputerDescription                           ; 0x1918
+	textpointer BillsComputerDescriptionCont                       ; 0x1919
+	textpointer MasterBallName                                     ; 0x191a
+	textpointer MasterBallDescription                              ; 0x191b
+	textpointer LassName                                           ; 0x191c
+	textpointer LassDescription                                    ; 0x191d
+	textpointer MaintenenceName                                    ; 0x191e
+	textpointer MaintenenceDescription                             ; 0x191f
+	textpointer PokeballName                                       ; 0x1920
+	textpointer PokeballDescription                                ; 0x1921
+	textpointer NightlyGarbageRunName                              ; 0x1922
+	textpointer NightlyGarbageRunDescription                       ; 0x1923
+	textpointer RecycleName                                        ; 0x1924
+	textpointer RecycleDescription                                 ; 0x1925
+	textpointer RocketsSneakAttackName                             ; 0x1926
+	textpointer RocketsSneakAttackDescription                      ; 0x1927
+	textpointer HereComesTeamRocketName                            ; 0x1928
+	textpointer HereComesTeamRocketDescription                     ; 0x1929
+	textpointer TheRocketsTrapName                                 ; 0x192a
+	textpointer TheRocketsTrapDescription                          ; 0x192b

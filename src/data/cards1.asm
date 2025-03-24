@@ -1,7 +1,7 @@
 BulbasaurLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c430 ; gfx
-	tx Text1304 ; name
+	tx BulbasaurName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKETS_AMBITION ; set
 	db 0 ; ?
@@ -47,13 +47,13 @@ BulbasaurLv12Card:
 	db 12 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
-	tx Text1308 ; description
+	tx BulbasaurDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 BulbasaurLv13Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $538 ; gfx
-	tx Text1304 ; name
+	tx BulbasaurName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 6 ; ?
@@ -99,13 +99,13 @@ BulbasaurLv13Card:
 	db 13 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
-	tx Text130b ; description
+	tx BulbasaurDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 BulbasaurLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $713b ; gfx
-	tx Text1304 ; name
+	tx BulbasaurName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -151,20 +151,20 @@ BulbasaurLv15Card:
 	db 15 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
-	tx Text1310 ; description
+	tx BulbasaurDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 IvysaurLv20Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $5a1 ; gfx
-	tx Text1311 ; name
+	tx IvysaurName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
 	dw IVYSAUR_LV20
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1304 ; pre-evo name
+	tx BulbasaurName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 2 ; energies
@@ -203,20 +203,20 @@ IvysaurLv20Card:
 	db 20 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
-	tx Text1314 ; description
+	tx IvysaurDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 IvysaurLv26Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c000 ; gfx
-	tx Text1311 ; name
+	tx IvysaurName ; name
 	db DIAMOND ; rarity
 	db TEAM_ROCKETS_AMBITION ; set
 	db 0 ; ?
 	dw IVYSAUR_LV26
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1304 ; pre-evo name
+	tx BulbasaurName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -255,20 +255,20 @@ IvysaurLv26Card:
 	db 26 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
-	tx Text1318 ; description
+	tx IvysaurDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DarkIvysaurCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $c5d7 ; gfx
-	tx Text1319 ; name
+	tx DarkIvysaurName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 6 ; ?
 	dw DARK_IVYSAUR
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text1304 ; pre-evo name
+	tx BulbasaurName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -307,20 +307,20 @@ DarkIvysaurCard:
 	db 16 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
-	tx Text131e ; description
+	tx DarkIvysaurDescription ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 VenusaurLv64Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $618 ; gfx
-	tx Text131f ; name
+	tx VenusaurName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 7 ; ?
 	dw VENUSAUR_LV64
 	db 100 ; hp
 	db STAGE2 ; stage
-	tx Text1311 ; pre-evo name
+	tx IvysaurName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -359,20 +359,20 @@ VenusaurLv64Card:
 	db 64 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
-	tx Text1324 ; description
+	tx VenusaurDescription1 ; description
 	db NONE ; AI info
 
 VenusaurLv67Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $6b3 ; gfx
-	tx Text131f ; name
+	tx VenusaurName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
 	dw VENUSAUR_LV67
 	db 100 ; hp
 	db STAGE2 ; stage
-	tx Text1311 ; pre-evo name
+	tx IvysaurName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -411,20 +411,20 @@ VenusaurLv67Card:
 	db 67 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
-	tx Text1328 ; description
+	tx VenusaurDescription2 ; description
 	db NONE ; AI info
 
 VenusaurAltLv67Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $a3f7 ; gfx
-	tx Text131f ; name
+	tx VenusaurName ; name
 	db STAR ; rarity
 	db PRO ; set
 	db 7 ; ?
 	dw VENUSAUR_ALT_LV67
 	db 100 ; hp
 	db STAGE2 ; stage
-	tx Text1311 ; pre-evo name
+	tx IvysaurName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -463,20 +463,20 @@ VenusaurAltLv67Card:
 	db 67 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
-	tx Text1328 ; description
+	tx VenusaurDescription2 ; description
 	db NONE ; AI info
 
 DarkVenusaurCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $c6bb ; gfx
-	tx Text1329 ; name
+	tx DarkVenusaurName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 6 ; ?
 	dw DARK_VENUSAUR
 	db 70 ; hp
 	db STAGE2 ; stage
-	tx Text1319 ; pre-evo name
+	tx DarkIvysaurName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 3 ; energies
@@ -515,13 +515,13 @@ DarkVenusaurCard:
 	db 37 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
-	tx Text132c ; description
+	tx DarkVenusaurDescription ; description
 	db NONE ; AI info
 
 CaterpieCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $71c ; gfx
-	tx Text132d ; name
+	tx CaterpieName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
@@ -567,20 +567,20 @@ CaterpieCard:
 	db 13 ; level
 	length 0.3 ; length
 	weight 2.9 ; weight
-	tx Text1331 ; description
+	tx CaterpieDescription ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 MetapodLv20Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7278 ; gfx
-	tx Text1332 ; name
+	tx MetapodName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw METAPOD_LV20
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text132d ; pre-evo name
+	tx CaterpieName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -619,20 +619,20 @@ MetapodLv20Card:
 	db 20 ; level
 	length 0.7 ; length
 	weight 9.9 ; weight
-	tx Text1338 ; description
+	tx MetapodDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MetapodLv21Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $785 ; gfx
-	tx Text1332 ; name
+	tx MetapodName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
 	dw METAPOD_LV21
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text132d ; pre-evo name
+	tx CaterpieName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -671,20 +671,20 @@ MetapodLv21Card:
 	db 21 ; level
 	length 0.7 ; length
 	weight 9.9 ; weight
-	tx Text133c ; description
+	tx MetapodDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ButterfreeCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $800 ; gfx
-	tx Text133d ; name
+	tx ButterfreeName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw BUTTERFREE
 	db 70 ; hp
 	db STAGE2 ; stage
-	tx Text1332 ; pre-evo name
+	tx MetapodName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -723,13 +723,13 @@ ButterfreeCard:
 	db 28 ; level
 	length 1.1 ; length
 	weight 32.0 ; weight
-	tx Text1341 ; description
+	tx ButterfreeDescription ; description
 	db NONE ; AI info
 
 WeedleLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $8a5 ; gfx
-	tx Text1342 ; name
+	tx WeedleName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -775,13 +775,13 @@ WeedleLv12Card:
 	db 12 ; level
 	length 0.3 ; length
 	weight 3.2 ; weight
-	tx Text1346 ; description
+	tx WeedleDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 WeedleLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $730b ; gfx
-	tx Text1342 ; name
+	tx WeedleName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -827,20 +827,20 @@ WeedleLv15Card:
 	db 15 ; level
 	length 0.3 ; length
 	weight 3.2 ; weight
-	tx Text1349 ; description
+	tx WeedleDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KakunaLv20Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $73d0 ; gfx
-	tx Text134a ; name
+	tx KakunaName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw KAKUNA_LV20
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1342 ; pre-evo name
+	tx WeedleName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -879,20 +879,20 @@ KakunaLv20Card:
 	db 20 ; level
 	length 0.6 ; length
 	weight 10.0 ; weight
-	tx Text134e ; description
+	tx KakunaDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KakunaLv23Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $90e ; gfx
-	tx Text134a ; name
+	tx KakunaName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw KAKUNA_LV23
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text1342 ; pre-evo name
+	tx WeedleName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -931,20 +931,20 @@ KakunaLv23Card:
 	db 23 ; level
 	length 0.6 ; length
 	weight 10.0 ; weight
-	tx Text134f ; description
+	tx KakunaDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 BeedrillCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $977 ; gfx
-	tx Text1350 ; name
+	tx BeedrillName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw BEEDRILL
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text134a ; pre-evo name
+	tx KakunaName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
@@ -983,13 +983,13 @@ BeedrillCard:
 	db 32 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
-	tx Text1354 ; description
+	tx BeedrillDescription ; description
 	db NONE ; AI info
 
 EkansLv10Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $9e2 ; gfx
-	tx Text1355 ; name
+	tx EkansName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -1035,13 +1035,13 @@ EkansLv10Card:
 	db 10 ; level
 	length 2.0 ; length
 	weight 6.9 ; weight
-	tx Text1359 ; description
+	tx EkansDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 EkansLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $6000 ; gfx
-	tx Text1355 ; name
+	tx EkansName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -1087,20 +1087,20 @@ EkansLv15Card:
 	db 15 ; level
 	length 2.0 ; length
 	weight 6.9 ; weight
-	tx Text135c ; description
+	tx EkansDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ArbokLv27Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $a5b ; gfx
-	tx Text135d ; name
+	tx ArbokName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 3 ; ?
 	dw ARBOK_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1355 ; pre-evo name
+	tx EkansName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -1139,20 +1139,20 @@ ArbokLv27Card:
 	db 27 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
-	tx Text1362 ; description
+	tx ArbokDescription1 ; description
 	db NONE ; AI info
 
 ArbokLv30Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $8daf ; gfx
-	tx Text135d ; name
+	tx ArbokName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 2 ; ?
 	dw ARBOK_LV30
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1355 ; pre-evo name
+	tx EkansName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 1 ; energies
@@ -1191,20 +1191,20 @@ ArbokLv30Card:
 	db 30 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
-	tx Text1366 ; description
+	tx ArbokDescription2 ; description
 	db NONE ; AI info
 
 DarkArbokCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $6075 ; gfx
-	tx Text1367 ; name
+	tx DarkArbokName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_ARBOK
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1355 ; pre-evo name
+	tx EkansName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -1243,13 +1243,13 @@ DarkArbokCard:
 	db 25 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
-	tx Text136c ; description
+	tx DarkArbokDescription ; description
 	db NONE ; AI info
 
 NidoranfLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $75ac ; gfx
-	tx Text136d ; name
+	tx NidoranfName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -1295,13 +1295,13 @@ NidoranfLv12Card:
 	db 12 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
-	tx Text1370 ; description
+	tx NidoranfDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidoranfLv13Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $ae2 ; gfx
-	tx Text136d ; name
+	tx NidoranfName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
@@ -1347,20 +1347,20 @@ NidoranfLv13Card:
 	db 13 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
-	tx Text1375 ; description
+	tx NidoranfDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 NidorinaLv22Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $8e87 ; gfx
-	tx Text1376 ; name
+	tx NidorinaName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw NIDORINA_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text136d ; pre-evo name
+	tx NidoranfName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -1399,20 +1399,20 @@ NidorinaLv22Card:
 	db 22 ; level
 	length 0.8 ; length
 	weight 20.0 ; weight
-	tx Text137a ; description
+	tx NidorinaDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidorinaLv24Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $b4d ; gfx
-	tx Text1376 ; name
+	tx NidorinaName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw NIDORINA_LV24
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text136d ; pre-evo name
+	tx NidoranfName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -1451,20 +1451,20 @@ NidorinaLv24Card:
 	db 24 ; level
 	length 0.8 ; length
 	weight 20.0 ; weight
-	tx Text137e ; description
+	tx NidorinaDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidoqueenCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $bbe ; gfx
-	tx Text137f ; name
+	tx NidoqueenName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw NIDOQUEEN
 	db 90 ; hp
 	db STAGE2 ; stage
-	tx Text1376 ; pre-evo name
+	tx NidorinaName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 1 ; energies
@@ -1503,13 +1503,13 @@ NidoqueenCard:
 	db 43 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
-	tx Text1384 ; description
+	tx NidoqueenDescription ; description
 	db NONE ; AI info
 
 NidoranmLv20Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c27 ; gfx
-	tx Text1385 ; name
+	tx NidoranmName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -1555,13 +1555,13 @@ NidoranmLv20Card:
 	db 20 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text1388 ; description
+	tx NidoranmDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 NidoranmLv22Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7675 ; gfx
-	tx Text1385 ; name
+	tx NidoranmName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -1607,20 +1607,20 @@ NidoranmLv22Card:
 	db 22 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text138d ; description
+	tx NidoranmDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidorinoLv23Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $8ef0 ; gfx
-	tx Text138e ; name
+	tx NidorinoName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw NIDORINO_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1385 ; pre-evo name
+	tx NidoranmName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -1659,20 +1659,20 @@ NidorinoLv23Card:
 	db 23 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
-	tx Text1391 ; description
+	tx NidorinoDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidorinoLv25Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c92 ; gfx
-	tx Text138e ; name
+	tx NidorinoName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw NIDORINO_LV25
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1385 ; pre-evo name
+	tx NidoranmName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 2 ; energies
@@ -1711,20 +1711,20 @@ NidorinoLv25Card:
 	db 25 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
-	tx Text1393 ; description
+	tx NidorinoDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidokingCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $cfb ; gfx
-	tx Text1394 ; name
+	tx NidokingName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
 	dw NIDOKING
 	db 90 ; hp
 	db STAGE2 ; stage
-	tx Text138e ; pre-evo name
+	tx NidorinoName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 2 ; energies
@@ -1763,13 +1763,13 @@ NidokingCard:
 	db 48 ; level
 	length 1.4 ; length
 	weight 62.0 ; weight
-	tx Text1399 ; description
+	tx NidokingDescription ; description
 	db NONE ; AI info
 
 ZubatLv9Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $60e2 ; gfx
-	tx Text139a ; name
+	tx ZubatName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
@@ -1815,13 +1815,13 @@ ZubatLv9Card:
 	db 9 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
-	tx Text139d ; description
+	tx ZubatDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ZubatLv10Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $d64 ; gfx
-	tx Text139a ; name
+	tx ZubatName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -1867,13 +1867,13 @@ ZubatLv10Card:
 	db 10 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
-	tx Text13a0 ; description
+	tx ZubatDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ZubatLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7800 ; gfx
-	tx Text139a ; name
+	tx ZubatName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -1919,20 +1919,20 @@ ZubatLv12Card:
 	db 12 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
-	tx Text13a2 ; description
+	tx ZubatDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GolbatLv25Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7869 ; gfx
-	tx Text13a3 ; name
+	tx GolbatName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 2 ; ?
 	dw GOLBAT_LV25
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text139a ; pre-evo name
+	tx ZubatName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2, COLORLESS, 1 ; energies
@@ -1971,20 +1971,20 @@ GolbatLv25Card:
 	db 25 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
-	tx Text13a7 ; description
+	tx GolbatDescription1 ; description
 	db NONE ; AI info
 
 GolbatLv29Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $dcd ; gfx
-	tx Text13a3 ; name
+	tx GolbatName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 4 ; ?
 	dw GOLBAT_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text139a ; pre-evo name
+	tx ZubatName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
@@ -2023,20 +2023,20 @@ GolbatLv29Card:
 	db 29 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
-	tx Text13a9 ; description
+	tx GolbatDescription2 ; description
 	db NONE ; AI info
 
 DarkGolbatCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $614b ; gfx
-	tx Text13aa ; name
+	tx DarkGolbatName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
 	dw DARK_GOLBAT
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text139a ; pre-evo name
+	tx ZubatName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -2075,13 +2075,13 @@ DarkGolbatCard:
 	db 25 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
-	tx Text13af ; description
+	tx DarkGolbatDescription ; description
 	db NONE ; AI info
 
 OddishLv8Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $e36 ; gfx
-	tx Text13b0 ; name
+	tx OddishName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
@@ -2127,13 +2127,13 @@ OddishLv8Card:
 	db 8 ; level
 	length 0.5 ; length
 	weight 5.4 ; weight
-	tx Text13b4 ; description
+	tx OddishDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 OddishLv21Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $61bc ; gfx
-	tx Text13b0 ; name
+	tx OddishName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
@@ -2179,20 +2179,20 @@ OddishLv21Card:
 	db 21 ; level
 	length 0.5 ; length
 	weight 5.4 ; weight
-	tx Text13b7 ; description
+	tx OddishDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GloomCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $e9f ; gfx
-	tx Text13b8 ; name
+	tx GloomName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw GLOOM
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text13b0 ; pre-evo name
+	tx OddishName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -2231,20 +2231,20 @@ GloomCard:
 	db 22 ; level
 	length 0.8 ; length
 	weight 8.6 ; weight
-	tx Text13bb ; description
+	tx GloomDescription ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DarkGloomCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $6225 ; gfx
-	tx Text13bc ; name
+	tx DarkGloomName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
 	dw DARK_GLOOM
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text13b0 ; pre-evo name
+	tx OddishName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -2283,20 +2283,20 @@ DarkGloomCard:
 	db 21 ; level
 	length 0.8 ; length
 	weight 8.6 ; weight
-	tx Text13bf ; description
+	tx DarkGloomDescription ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 VileplumeCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $f08 ; gfx
-	tx Text13c0 ; name
+	tx VileplumeName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw VILEPLUME
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text13b8 ; pre-evo name
+	tx GloomName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -2335,20 +2335,20 @@ VileplumeCard:
 	db 35 ; level
 	length 1.2 ; length
 	weight 18.6 ; weight
-	tx Text13c6 ; description
+	tx VileplumeDescription ; description
 	db NONE ; AI info
 
 DarkVileplumeCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $628e ; gfx
-	tx Text13c7 ; name
+	tx DarkVileplumeName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
 	dw DARK_VILEPLUME
 	db 60 ; hp
 	db STAGE2 ; stage
-	tx Text13bc ; pre-evo name
+	tx DarkGloomName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -2387,13 +2387,13 @@ DarkVileplumeCard:
 	db 29 ; level
 	length 1.2 ; length
 	weight 18.6 ; weight
-	tx Text13cc ; description
+	tx DarkVileplumeDescription ; description
 	db NONE ; AI info
 
 ParasLv8Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $f71 ; gfx
-	tx Text13cd ; name
+	tx ParasName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 3 ; ?
@@ -2439,13 +2439,13 @@ ParasLv8Card:
 	db 8 ; level
 	length 0.3 ; length
 	weight 5.4 ; weight
-	tx Text13d1 ; description
+	tx ParasDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ParasLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $78d6 ; gfx
-	tx Text13cd ; name
+	tx ParasName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 1 ; ?
@@ -2491,20 +2491,20 @@ ParasLv15Card:
 	db 15 ; level
 	length 0.3 ; length
 	weight 5.4 ; weight
-	tx Text13d4 ; description
+	tx ParasDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ParasectLv28Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $1000 ; gfx
-	tx Text13d5 ; name
+	tx ParasectName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 3 ; ?
 	dw PARASECT_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text13cd ; pre-evo name
+	tx ParasName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -2543,20 +2543,20 @@ ParasectLv28Card:
 	db 28 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
-	tx Text13d7 ; description
+	tx ParasectDescription1 ; description
 	db NONE ; AI info
 
 ParasectLv29Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $793f ; gfx
-	tx Text13d5 ; name
+	tx ParasectName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 1 ; ?
 	dw PARASECT_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text13cd ; pre-evo name
+	tx ParasName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -2595,13 +2595,13 @@ ParasectLv29Card:
 	db 29 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
-	tx Text13d9 ; description
+	tx ParasectDescription2 ; description
 	db NONE ; AI info
 
 VenonatLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $106f ; gfx
-	tx Text13da ; name
+	tx VenonatName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 3 ; ?
@@ -2647,13 +2647,13 @@ VenonatLv12Card:
 	db 12 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
-	tx Text13dc ; description
+	tx VenonatDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 VenonatLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $9000 ; gfx
-	tx Text13da ; name
+	tx VenonatName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 0 ; ?
@@ -2699,20 +2699,20 @@ VenonatLv15Card:
 	db 15 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
-	tx Text13e0 ; description
+	tx VenonatDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 VenomothLv22Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $833b ; gfx
-	tx Text13e1 ; name
+	tx VenomothName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw VENOMOTH_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text13da ; pre-evo name
+	tx VenonatName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -2751,20 +2751,20 @@ VenomothLv22Card:
 	db 22 ; level
 	length 1.5 ; length
 	weight 12.5 ; weight
-	tx Text13e7 ; description
+	tx VenomothDescription1 ; description
 	db NONE ; AI info
 
 VenomothLv28Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $10d8 ; gfx
-	tx Text13e1 ; name
+	tx VenomothName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 0 ; ?
 	dw VENOMOTH_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text13da ; pre-evo name
+	tx VenonatName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -2803,13 +2803,13 @@ VenomothLv28Card:
 	db 28 ; level
 	length 1.5 ; length
 	weight 12.5 ; weight
-	tx Text13ed ; description
+	tx VenomothDescription2 ; description
 	db NONE ; AI info
 
 BellsproutLv10Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $930b ; gfx
-	tx Text13ee ; name
+	tx BellsproutName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -2855,13 +2855,13 @@ BellsproutLv10Card:
 	db 10 ; level
 	length 0.7 ; length
 	weight 4.0 ; weight
-	tx Text13f0 ; description
+	tx BellsproutDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 BellsproutLv11Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $1141 ; gfx
-	tx Text13ee ; name
+	tx BellsproutName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
@@ -2907,20 +2907,20 @@ BellsproutLv11Card:
 	db 11 ; level
 	length 0.7 ; length
 	weight 4.0 ; weight
-	tx Text13f2 ; description
+	tx BellsproutDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 WeepinbellLv23Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $9374 ; gfx
-	tx Text13f3 ; name
+	tx WeepinbellName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw WEEPINBELL_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text13ee ; pre-evo name
+	tx BellsproutName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -2959,20 +2959,20 @@ WeepinbellLv23Card:
 	db 23 ; level
 	length 1.0 ; length
 	weight 6.4 ; weight
-	tx Text13f9 ; description
+	tx WeepinbellDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 WeepinbellLv28Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $11aa ; gfx
-	tx Text13f3 ; name
+	tx WeepinbellName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw WEEPINBELL_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text13ee ; pre-evo name
+	tx BellsproutName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -3011,20 +3011,20 @@ WeepinbellLv28Card:
 	db 28 ; level
 	length 1.0 ; length
 	weight 6.4 ; weight
-	tx Text13fa ; description
+	tx WeepinbellDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 VictreebelCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $1213 ; gfx
-	tx Text13fb ; name
+	tx VictreebelName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw VICTREEBEL
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text13f3 ; pre-evo name
+	tx WeepinbellName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -3063,13 +3063,13 @@ VictreebelCard:
 	db 42 ; level
 	length 1.7 ; length
 	weight 15.5 ; weight
-	tx Text1400 ; description
+	tx VictreebelDescription ; description
 	db NONE ; AI info
 
 GrimerLv10Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $62f7 ; gfx
-	tx Text1401 ; name
+	tx GrimerName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -3115,13 +3115,13 @@ GrimerLv10Card:
 	db 10 ; level
 	length 0.9 ; length
 	weight 30.0 ; weight
-	tx Text1406 ; description
+	tx GrimerDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GrimerLv17Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $127c ; gfx
-	tx Text1401 ; name
+	tx GrimerName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -3167,20 +3167,20 @@ GrimerLv17Card:
 	db 17 ; level
 	length 0.9 ; length
 	weight 30.0 ; weight
-	tx Text140a ; description
+	tx GrimerDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 MukCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $12e5 ; gfx
-	tx Text140b ; name
+	tx MukName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw MUK
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1401 ; pre-evo name
+	tx GrimerName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -3219,20 +3219,20 @@ MukCard:
 	db 34 ; level
 	length 1.2 ; length
 	weight 30.0 ; weight
-	tx Text140f ; description
+	tx MukDescription ; description
 	db NONE ; AI info
 
 DarkMukCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $6360 ; gfx
-	tx Text1410 ; name
+	tx DarkMukName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_MUK
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1401 ; pre-evo name
+	tx GrimerName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -3271,13 +3271,13 @@ DarkMukCard:
 	db 25 ; level
 	length 1.2 ; length
 	weight 30.0 ; weight
-	tx Text1414 ; description
+	tx DarkMukDescription ; description
 	db NONE ; AI info
 
 ExeggcuteCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $134e ; gfx
-	tx Text1415 ; name
+	tx ExeggcuteName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
@@ -3323,20 +3323,20 @@ ExeggcuteCard:
 	db 14 ; level
 	length 0.4 ; length
 	weight 2.5 ; weight
-	tx Text1418 ; description
+	tx ExeggcuteDescription ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 ExeggutorCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $13cf ; gfx
-	tx Text1419 ; name
+	tx ExeggutorName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw EXEGGUTOR
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text1415 ; pre-evo name
+	tx ExeggcuteName ; pre-evo name
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
@@ -3375,13 +3375,13 @@ ExeggutorCard:
 	db 35 ; level
 	length 2.0 ; length
 	weight 120.0 ; weight
-	tx Text141f ; description
+	tx ExeggutorDescription ; description
 	db NONE ; AI info
 
 KoffingLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $63c9 ; gfx
-	tx Text1420 ; name
+	tx KoffingName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
@@ -3427,13 +3427,13 @@ KoffingLv12Card:
 	db 12 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
-	tx Text1421 ; description
+	tx KoffingDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KoffingLv13Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $143e ; gfx
-	tx Text1420 ; name
+	tx KoffingName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
@@ -3479,13 +3479,13 @@ KoffingLv13Card:
 	db 13 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
-	tx Text1424 ; description
+	tx KoffingDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KoffingLv14Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c069 ; gfx
-	tx Text1420 ; name
+	tx KoffingName ; name
 	db CIRCLE ; rarity
 	db TEAM_ROCKETS_AMBITION ; set
 	db 2 ; ?
@@ -3531,20 +3531,20 @@ KoffingLv14Card:
 	db 14 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
-	tx Text1426 ; description
+	tx KoffingDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 WeezingLv26Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $98d2 ; gfx
-	tx Text1427 ; name
+	tx WeezingName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw WEEZING_LV26
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1420 ; pre-evo name
+	tx KoffingName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -3583,20 +3583,20 @@ WeezingLv26Card:
 	db 26 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
-	tx Text142d ; description
+	tx WeezingDescription1 ; description
 	db NONE ; AI info
 
 WeezingLv27Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $14a7 ; gfx
-	tx Text1427 ; name
+	tx WeezingName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw WEEZING_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1420 ; pre-evo name
+	tx KoffingName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -3635,20 +3635,20 @@ WeezingLv27Card:
 	db 27 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
-	tx Text1431 ; description
+	tx WeezingDescription2 ; description
 	db NONE ; AI info
 
 DarkWeezingCard:
 	db TYPE_PKMN_GRASS ; type
 	dw $6432 ; gfx
-	tx Text1432 ; name
+	tx DarkWeezingName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
 	dw DARK_WEEZING
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1420 ; pre-evo name
+	tx KoffingName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 1 ; energies
@@ -3687,13 +3687,13 @@ DarkWeezingCard:
 	db 24 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
-	tx Text1437 ; description
+	tx DarkWeezingDescription ; description
 	db NONE ; AI info
 
 TangelaLv8Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $151e ; gfx
-	tx Text1438 ; name
+	tx TangelaName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -3739,13 +3739,13 @@ TangelaLv8Card:
 	db 8 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
-	tx Text143b ; description
+	tx TangelaDescription1 ; description
 	db NONE ; AI info
 
 TangelaLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $1593 ; gfx
-	tx Text1438 ; name
+	tx TangelaName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 3 ; ?
@@ -3791,13 +3791,13 @@ TangelaLv12Card:
 	db 12 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
-	tx Text143d ; description
+	tx TangelaDescription2 ; description
 	db NONE ; AI info
 
 ScytherLv23Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $9ba2 ; gfx
-	tx Text143e ; name
+	tx ScytherName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 1 ; ?
@@ -3843,13 +3843,13 @@ ScytherLv23Card:
 	db 23 ; level
 	length 1.5 ; length
 	weight 56.0 ; weight
-	tx Text1442 ; description
+	tx ScytherDescription1 ; description
 	db NONE ; AI info
 
 ScytherLv25Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $15fc ; gfx
-	tx Text143e ; name
+	tx ScytherName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 5 ; ?
@@ -3895,13 +3895,13 @@ ScytherLv25Card:
 	db 25 ; level
 	length 1.5 ; length
 	weight 56.0 ; weight
-	tx Text1445 ; description
+	tx ScytherDescription2 ; description
 	db NONE ; AI info
 
 PinsirLv15Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7ecf ; gfx
-	tx Text1446 ; name
+	tx PinsirName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 6 ; ?
@@ -3947,13 +3947,13 @@ PinsirLv15Card:
 	db 15 ; level
 	length 1.5 ; length
 	weight 55.0 ; weight
-	tx Text144a ; description
+	tx PinsirDescription1 ; description
 	db NONE ; AI info
 
 PinsirLv24Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $1665 ; gfx
-	tx Text1446 ; name
+	tx PinsirName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
@@ -3999,13 +3999,13 @@ PinsirLv24Card:
 	db 24 ; level
 	length 1.5 ; length
 	weight 55.0 ; weight
-	tx Text144d ; description
+	tx PinsirDescription2 ; description
 	db NONE ; AI info
 
 CharmanderLv9Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $59aa ; gfx
-	tx Text144e ; name
+	tx CharmanderName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -4051,13 +4051,13 @@ CharmanderLv9Card:
 	db 9 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
-	tx Text1453 ; description
+	tx CharmanderDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 CharmanderLv10Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $16ce ; gfx
-	tx Text144e ; name
+	tx CharmanderName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -4103,13 +4103,13 @@ CharmanderLv10Card:
 	db 10 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
-	tx Text1456 ; description
+	tx CharmanderDescription2 ; description
 	db AI_INFO_UNK_05 | HAS_EVOLUTION ; AI info
 
 CharmanderLv12Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $71a6 ; gfx
-	tx Text144e ; name
+	tx CharmanderName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -4155,20 +4155,20 @@ CharmanderLv12Card:
 	db 12 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
-	tx Text1459 ; description
+	tx CharmanderDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 CharmeleonCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $173d ; gfx
-	tx Text145a ; name
+	tx CharmeleonName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw CHARMELEON
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text144e ; pre-evo name
+	tx CharmanderName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
@@ -4207,20 +4207,20 @@ CharmeleonCard:
 	db 32 ; level
 	length 1.1 ; length
 	weight 19.0 ; weight
-	tx Text145d ; description
+	tx CharmeleonDescription ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 DarkCharmeleonCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $5a13 ; gfx
-	tx Text145e ; name
+	tx DarkCharmeleonName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_CHARMELEON
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text144e ; pre-evo name
+	tx CharmanderName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -4259,20 +4259,20 @@ DarkCharmeleonCard:
 	db 23 ; level
 	length 1.1 ; length
 	weight 19.0 ; weight
-	tx Text1462 ; description
+	tx DarkCharmeleonDescription ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 CharizardLv76Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1800 ; gfx
-	tx Text1463 ; name
+	tx CharizardName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw CHARIZARD_LV76
 	db 120 ; hp
 	db STAGE2 ; stage
-	tx Text145a ; pre-evo name
+	tx CharmeleonName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -4311,20 +4311,20 @@ CharizardLv76Card:
 	db 76 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
-	tx Text1468 ; description
+	tx CharizardDescription ; description
 	db NONE ; AI info
 
 CharizardAltLv76Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $a468 ; gfx
-	tx Text1463 ; name
+	tx CharizardName ; name
 	db STAR ; rarity
 	db PRO ; set
 	db 7 ; ?
 	dw CHARIZARD_ALT_LV76
 	db 120 ; hp
 	db STAGE2 ; stage
-	tx Text145a ; pre-evo name
+	tx CharmeleonName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -4363,20 +4363,20 @@ CharizardAltLv76Card:
 	db 76 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
-	tx Text1469 ; description
+	tx CharizardAltDescription ; description
 	db NONE ; AI info
 
 DarkCharizardCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $5a7c ; gfx
-	tx Text146a ; name
+	tx DarkCharizardName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_CHARIZARD
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text145e ; pre-evo name
+	tx DarkCharmeleonName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
@@ -4415,13 +4415,13 @@ DarkCharizardCard:
 	db 38 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
-	tx Text146e ; description
+	tx DarkCharizardDescription ; description
 	db NONE ; AI info
 
 VulpixLv11Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1869 ; gfx
-	tx Text146f ; name
+	tx VulpixName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -4467,13 +4467,13 @@ VulpixLv11Card:
 	db 11 ; level
 	length 0.6 ; length
 	weight 9.9 ; weight
-	tx Text1472 ; description
+	tx VulpixDescription1 ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 VulpixLv13Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $8f59 ; gfx
-	tx Text146f ; name
+	tx VulpixName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -4519,20 +4519,20 @@ VulpixLv13Card:
 	db 13 ; level
 	length 0.6 ; length
 	weight 9.9 ; weight
-	tx Text1475 ; description
+	tx VulpixDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NinetalesLv32Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $18d2 ; gfx
-	tx Text1476 ; name
+	tx NinetalesName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw NINETALES_LV32
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text146f ; pre-evo name
+	tx VulpixName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -4571,20 +4571,20 @@ NinetalesLv32Card:
 	db 32 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
-	tx Text1479 ; description
+	tx NinetalesDescription1 ; description
 	db NONE ; AI info
 
 NinetalesLv35Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $193b ; gfx
-	tx Text1476 ; name
+	tx NinetalesName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 3 ; ?
 	dw NINETALES_LV35
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text146f ; pre-evo name
+	tx VulpixName ; pre-evo name
 
 	; attack 1
 	energy FIRE, 2 ; energies
@@ -4623,20 +4623,20 @@ NinetalesLv35Card:
 	db 35 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
-	tx Text147e ; description
+	tx NinetalesDescription2 ; description
 	db NONE ; AI info
 
 DarkNinetalesCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $c8d2 ; gfx
-	tx Text147f ; name
+	tx DarkNinetalesName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 6 ; ?
 	dw DARK_NINETALES
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text146f ; pre-evo name
+	tx VulpixName ; pre-evo name
 
 	; attack 1
 	energy FIRE, 1 ; energies
@@ -4675,13 +4675,13 @@ DarkNinetalesCard:
 	db 28 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
-	tx Text1484 ; description
+	tx DarkNinetalesDescription ; description
 	db NONE ; AI info
 
 GrowlitheLv12Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $c0d2 ; gfx
-	tx Text1485 ; name
+	tx GrowlitheName ; name
 	db DIAMOND ; rarity
 	db SQUIRTLE_DECK ; set
 	db 0 ; ?
@@ -4727,13 +4727,13 @@ GrowlitheLv12Card:
 	db 12 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
-	tx Text1488 ; description
+	tx GrowlitheDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GrowlitheLv16Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $90fa ; gfx
-	tx Text1485 ; name
+	tx GrowlitheName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 6 ; ?
@@ -4779,13 +4779,13 @@ GrowlitheLv16Card:
 	db 16 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
-	tx Text148c ; description
+	tx GrowlitheDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GrowlitheLv18Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $19ac ; gfx
-	tx Text1485 ; name
+	tx GrowlitheName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
@@ -4831,20 +4831,20 @@ GrowlitheLv18Card:
 	db 18 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
-	tx Text148e ; description
+	tx GrowlitheDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ArcanineLv34Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1a15 ; gfx
-	tx Text148f ; name
+	tx ArcanineName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
 	dw ARCANINE_LV34
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1485 ; pre-evo name
+	tx GrowlitheName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -4883,20 +4883,20 @@ ArcanineLv34Card:
 	db 34 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
-	tx Text1495 ; description
+	tx ArcanineDescription1 ; description
 	db NONE ; AI info
 
 ArcanineLv35Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $c1a4 ; gfx
-	tx Text148f ; name
+	tx ArcanineName ; name
 	db STAR ; rarity
 	db SQUIRTLE_DECK ; set
 	db 0 ; ?
 	dw ARCANINE_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1485 ; pre-evo name
+	tx GrowlitheName ; pre-evo name
 
 	; attack 1
 	energy FIRE, 2, COLORLESS, 1 ; energies
@@ -4935,20 +4935,20 @@ ArcanineLv35Card:
 	db 35 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
-	tx Text1498 ; description
+	tx ArcanineDescription2 ; description
 	db NONE ; AI info
 
 ArcanineLv45Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1a82 ; gfx
-	tx Text148f ; name
+	tx ArcanineName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
 	dw ARCANINE_LV45
 	db 100 ; hp
 	db STAGE1 ; stage
-	tx Text1485 ; pre-evo name
+	tx GrowlitheName ; pre-evo name
 
 	; attack 1
 	energy FIRE, 2, COLORLESS, 1 ; energies
@@ -4987,13 +4987,13 @@ ArcanineLv45Card:
 	db 45 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
-	tx Text149a ; description
+	tx ArcanineDescription3 ; description
 	db NONE ; AI info
 
 PonytaLv8Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $94af ; gfx
-	tx Text149b ; name
+	tx PonytaName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -5039,13 +5039,13 @@ PonytaLv8Card:
 	db 8 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
-	tx Text14a0 ; description
+	tx PonytaDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PonytaLv10Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1aeb ; gfx
-	tx Text149b ; name
+	tx PonytaName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -5091,13 +5091,13 @@ PonytaLv10Card:
 	db 10 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
-	tx Text14a1 ; description
+	tx PonytaDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PonytaLv15Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $5ae5 ; gfx
-	tx Text149b ; name
+	tx PonytaName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -5143,20 +5143,20 @@ PonytaLv15Card:
 	db 15 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
-	tx Text14a2 ; description
+	tx PonytaDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 RapidashLv30Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $7bf9 ; gfx
-	tx Text14a3 ; name
+	tx RapidashName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw RAPIDASH_LV30
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text149b ; pre-evo name
+	tx PonytaName ; pre-evo name
 
 	; attack 1
 	energy FIRE, 1 ; energies
@@ -5195,20 +5195,20 @@ RapidashLv30Card:
 	db 30 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
-	tx Text14a8 ; description
+	tx RapidashDescription1 ; description
 	db NONE ; AI info
 
 RapidashLv33Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1b66 ; gfx
-	tx Text14a3 ; name
+	tx RapidashName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 0 ; ?
 	dw RAPIDASH_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text149b ; pre-evo name
+	tx PonytaName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -5247,20 +5247,20 @@ RapidashLv33Card:
 	db 33 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
-	tx Text14ad ; description
+	tx RapidashDescription2 ; description
 	db NONE ; AI info
 
 DarkRapidashCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $5b4e ; gfx
-	tx Text14ae ; name
+	tx DarkRapidashName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_RAPIDASH
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text149b ; pre-evo name
+	tx PonytaName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -5299,13 +5299,13 @@ DarkRapidashCard:
 	db 24 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
-	tx Text14b2 ; description
+	tx DarkRapidashDescription ; description
 	db NONE ; AI info
 
 MagmarLv18Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $c4a5 ; gfx
-	tx Text14b3 ; name
+	tx MagmarName ; name
 	db DIAMOND ; rarity
 	db SQUIRTLE_DECK ; set
 	db 1 ; ?
@@ -5351,13 +5351,13 @@ MagmarLv18Card:
 	db 18 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
-	tx Text14b6 ; description
+	tx MagmarDescription1 ; description
 	db NONE ; AI info
 
 MagmarLv24Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1beb ; gfx
-	tx Text14b3 ; name
+	tx MagmarName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 2 ; ?
@@ -5403,13 +5403,13 @@ MagmarLv24Card:
 	db 24 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
-	tx Text14b7 ; description
+	tx MagmarDescription2 ; description
 	db NONE ; AI info
 
 MagmarLv27Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $9c3d ; gfx
-	tx Text14b3 ; name
+	tx MagmarName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -5455,13 +5455,13 @@ MagmarLv27Card:
 	db 27 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
-	tx Text14bb ; description
+	tx MagmarDescription3 ; description
 	db NONE ; AI info
 
 MagmarLv31Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1c54 ; gfx
-	tx Text14b3 ; name
+	tx MagmarName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 5 ; ?
@@ -5507,20 +5507,20 @@ MagmarLv31Card:
 	db 31 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
-	tx Text14be ; description
+	tx MagmarDescription4 ; description
 	db AI_INFO_UNK_03 ; AI info
 
 FlareonLv22Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1cbd ; gfx
-	tx Text14bf ; name
+	tx FlareonName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 3 ; ?
 	dw FLAREON_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
@@ -5559,20 +5559,20 @@ FlareonLv22Card:
 	db 22 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
-	tx Text14c3 ; description
+	tx FlareonDescription1 ; description
 	db NONE ; AI info
 
 FlareonLv28Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1d26 ; gfx
-	tx Text14bf ; name
+	tx FlareonName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw FLAREON_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -5611,20 +5611,20 @@ FlareonLv28Card:
 	db 28 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
-	tx Text14c4 ; description
+	tx FlareonDescription2 ; description
 	db NONE ; AI info
 
 DarkFlareonCard:
 	db TYPE_PKMN_FIRE ; type
 	dw $5bb7 ; gfx
-	tx Text14c5 ; name
+	tx DarkFlareonName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_FLAREON
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
@@ -5663,13 +5663,13 @@ DarkFlareonCard:
 	db 23 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
-	tx Text14c8 ; description
+	tx DarkFlareonDescription ; description
 	db NONE ; AI info
 
 MoltresLv35Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1d8f ; gfx
-	tx Text14c9 ; name
+	tx MoltresName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
@@ -5715,13 +5715,13 @@ MoltresLv35Card:
 	db 35 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
-	tx Text14cd ; description
+	tx MoltresDescription1 ; description
 	db NONE ; AI info
 
 MoltresLv37Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $8cd3 ; gfx
-	tx Text14c9 ; name
+	tx MoltresName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 6 ; ?
@@ -5767,13 +5767,13 @@ MoltresLv37Card:
 	db 37 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
-	tx Text14d1 ; description
+	tx MoltresDescription2 ; description
 	db NONE ; AI info
 
 MoltresLv40Card:
 	db TYPE_PKMN_FIRE ; type
 	dw $1df8 ; gfx
-	tx Text14c9 ; name
+	tx MoltresName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 7 ; ?
@@ -5819,13 +5819,13 @@ MoltresLv40Card:
 	db 40 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
-	tx Text14d1 ; description
+	tx MoltresDescription2 ; description
 	db NONE ; AI info
 
 SquirtleLv8Card:
 	db TYPE_PKMN_WATER ; type
 	dw $1e61 ; gfx
-	tx Text14d5 ; name
+	tx SquirtleName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 2 ; ?
@@ -5871,13 +5871,13 @@ SquirtleLv8Card:
 	db 8 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text14d9 ; description
+	tx SquirtleDescription1 ; description
 	db AI_INFO_UNK_05 | HAS_EVOLUTION ; AI info
 
 SquirtleLv14Card:
 	db TYPE_PKMN_WATER ; type
 	dw $be5c ; gfx
-	tx Text14d5 ; name
+	tx SquirtleName ; name
 	db CIRCLE ; rarity
 	db SQUIRTLE_DECK ; set
 	db 1 ; ?
@@ -5923,13 +5923,13 @@ SquirtleLv14Card:
 	db 14 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text14db ; description
+	tx SquirtleDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SquirtleLv15Card:
 	db TYPE_PKMN_WATER ; type
 	dw $720f ; gfx
-	tx Text14d5 ; name
+	tx SquirtleName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -5975,13 +5975,13 @@ SquirtleLv15Card:
 	db 15 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text14df ; description
+	tx SquirtleDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SquirtleLv16Card:
 	db TYPE_PKMN_WATER ; type
 	dw $5c20 ; gfx
-	tx Text14d5 ; name
+	tx SquirtleName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -6027,20 +6027,20 @@ SquirtleLv16Card:
 	db 16 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx Text14e1 ; description
+	tx SquirtleDescription4 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 WartortleLv22Card:
 	db TYPE_PKMN_WATER ; type
 	dw $1f28 ; gfx
-	tx Text14e2 ; name
+	tx WartortleName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 2 ; ?
 	dw WARTORTLE_LV22
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14d5 ; pre-evo name
+	tx SquirtleName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1, COLORLESS, 1 ; energies
@@ -6079,20 +6079,20 @@ WartortleLv22Card:
 	db 22 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
-	tx Text14e4 ; description
+	tx WartortleDescription1 ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 WartortleLv24Card:
 	db TYPE_PKMN_WATER ; type
 	dw $c276 ; gfx
-	tx Text14e2 ; name
+	tx WartortleName ; name
 	db DIAMOND ; rarity
 	db SQUIRTLE_DECK ; set
 	db 1 ; ?
 	dw WARTORTLE_LV24
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14d5 ; pre-evo name
+	tx SquirtleName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -6131,20 +6131,20 @@ WartortleLv24Card:
 	db 24 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
-	tx Text14e6 ; description
+	tx WartortleDescription2 ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 DarkWartortleCard:
 	db TYPE_PKMN_WATER ; type
 	dw $5c97 ; gfx
-	tx Text14e7 ; name
+	tx DarkWartortleName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_WARTORTLE
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14d5 ; pre-evo name
+	tx SquirtleName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -6183,20 +6183,20 @@ DarkWartortleCard:
 	db 21 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
-	tx Text14ec ; description
+	tx DarkWartortleDescription ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 BlastoiseLv52Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2000 ; gfx
-	tx Text14ed ; name
+	tx BlastoiseName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
 	dw BLASTOISE_LV52
 	db 100 ; hp
 	db STAGE2 ; stage
-	tx Text14e2 ; pre-evo name
+	tx WartortleName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -6235,20 +6235,20 @@ BlastoiseLv52Card:
 	db 52 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
-	tx Text14f3 ; description
+	tx BlastoiseDescription ; description
 	db NONE ; AI info
 
 BlastoiseAltLv52Card:
 	db TYPE_PKMN_WATER ; type
 	dw $a4d1 ; gfx
-	tx Text14ed ; name
+	tx BlastoiseName ; name
 	db STAR ; rarity
 	db PRO ; set
 	db 7 ; ?
 	dw BLASTOISE_ALT_LV52
 	db 100 ; hp
 	db STAGE2 ; stage
-	tx Text14e2 ; pre-evo name
+	tx WartortleName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -6287,20 +6287,20 @@ BlastoiseAltLv52Card:
 	db 52 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
-	tx Text14f4 ; description
+	tx BlastoiseAltDescription ; description
 	db NONE ; AI info
 
 DarkBlastoiseCard:
 	db TYPE_PKMN_WATER ; type
 	dw $5d3c ; gfx
-	tx Text14f5 ; name
+	tx DarkBlastoiseName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_BLASTOISE
 	db 70 ; hp
 	db STAGE2 ; stage
-	tx Text14e7 ; pre-evo name
+	tx DarkWartortleName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -6339,13 +6339,13 @@ DarkBlastoiseCard:
 	db 28 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
-	tx Text14fa ; description
+	tx DarkBlastoiseDescription ; description
 	db NONE ; AI info
 
 PsyduckLv15Card:
 	db TYPE_PKMN_WATER ; type
 	dw $207d ; gfx
-	tx Text14fb ; name
+	tx PsyduckName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -6391,13 +6391,13 @@ PsyduckLv15Card:
 	db 15 ; level
 	length 0.8 ; length
 	weight 19.6 ; weight
-	tx Text14ff ; description
+	tx PsyduckDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 PsyduckLv16Card:
 	db TYPE_PKMN_WATER ; type
 	dw $5da5 ; gfx
-	tx Text14fb ; name
+	tx PsyduckName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
@@ -6443,20 +6443,20 @@ PsyduckLv16Card:
 	db 16 ; level
 	length 0.8 ; length
 	weight 19.6 ; weight
-	tx Text1503 ; description
+	tx PsyduckDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GolduckLv27Card:
 	db TYPE_PKMN_WATER ; type
 	dw $20f2 ; gfx
-	tx Text1504 ; name
+	tx GolduckName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 4 ; ?
 	dw GOLDUCK_LV27
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14fb ; pre-evo name
+	tx PsyduckName ; pre-evo name
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
@@ -6495,20 +6495,20 @@ GolduckLv27Card:
 	db 27 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
-	tx Text1508 ; description
+	tx GolduckDescription1 ; description
 	db AI_INFO_UNK_03 ; AI info
 
 GolduckLv28Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9089 ; gfx
-	tx Text1504 ; name
+	tx GolduckName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 2 ; ?
 	dw GOLDUCK_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14fb ; pre-evo name
+	tx PsyduckName ; pre-evo name
 
 	; attack 1
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
@@ -6547,20 +6547,20 @@ GolduckLv28Card:
 	db 28 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
-	tx Text150c ; description
+	tx GolduckDescription2 ; description
 	db NONE ; AI info
 
 DarkGolduckCard:
 	db TYPE_PKMN_WATER ; type
 	dw $5e0e ; gfx
-	tx Text150d ; name
+	tx DarkGolduckName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 6 ; ?
 	dw DARK_GOLDUCK
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14fb ; pre-evo name
+	tx PsyduckName ; pre-evo name
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
@@ -6599,13 +6599,13 @@ DarkGolduckCard:
 	db 23 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
-	tx Text1511 ; description
+	tx DarkGolduckDescription ; description
 	db NONE ; AI info
 
 PoliwagLv13Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2161 ; gfx
-	tx Text1512 ; name
+	tx PoliwagName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 2 ; ?
@@ -6651,13 +6651,13 @@ PoliwagLv13Card:
 	db 13 ; level
 	length 0.6 ; length
 	weight 12.4 ; weight
-	tx Text1515 ; description
+	tx PoliwagDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 PoliwagLv15Card:
 	db TYPE_PKMN_WATER ; type
 	dw $79ae ; gfx
-	tx Text1512 ; name
+	tx PoliwagName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -6703,20 +6703,20 @@ PoliwagLv15Card:
 	db 15 ; level
 	length 0.6 ; length
 	weight 12.4 ; weight
-	tx Text1516 ; description
+	tx PoliwagDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PoliwhirlLv28Card:
 	db TYPE_PKMN_WATER ; type
 	dw $21d8 ; gfx
-	tx Text1517 ; name
+	tx PoliwhirlName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 4 ; ?
 	dw POLIWHIRL_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1512 ; pre-evo name
+	tx PoliwagName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -6755,20 +6755,20 @@ PoliwhirlLv28Card:
 	db 28 ; level
 	length 1.0 ; length
 	weight 20.0 ; weight
-	tx Text151a ; description
+	tx PoliwhirlDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PoliwhirlLv30Card:
 	db TYPE_PKMN_WATER ; type
 	dw $7a17 ; gfx
-	tx Text1517 ; name
+	tx PoliwhirlName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 2 ; ?
 	dw POLIWHIRL_LV30
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1512 ; pre-evo name
+	tx PoliwagName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -6807,20 +6807,20 @@ PoliwhirlLv30Card:
 	db 30 ; level
 	length 1.0 ; length
 	weight 20.0 ; weight
-	tx Text151e ; description
+	tx PoliwhirlDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PoliwrathLv40Card:
 	db TYPE_PKMN_WATER ; type
 	dw $7a86 ; gfx
-	tx Text151f ; name
+	tx PoliwrathName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 2 ; ?
 	dw POLIWRATH_LV40
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text1517 ; pre-evo name
+	tx PoliwhirlName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -6859,20 +6859,20 @@ PoliwrathLv40Card:
 	db 40 ; level
 	length 1.3 ; length
 	weight 54.0 ; weight
-	tx Text1520 ; description
+	tx PoliwrathDescription1 ; description
 	db NONE ; AI info
 
 PoliwrathLv48Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2241 ; gfx
-	tx Text151f ; name
+	tx PoliwrathName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 4 ; ?
 	dw POLIWRATH_LV48
 	db 90 ; hp
 	db STAGE2 ; stage
-	tx Text1517 ; pre-evo name
+	tx PoliwhirlName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2, COLORLESS, 1 ; energies
@@ -6911,13 +6911,13 @@ PoliwrathLv48Card:
 	db 48 ; level
 	length 1.3 ; length
 	weight 54.0 ; weight
-	tx Text1522 ; description
+	tx PoliwrathDescription2 ; description
 	db NONE ; AI info
 
 TentacoolCard:
 	db TYPE_PKMN_WATER ; type
 	dw $22aa ; gfx
-	tx Text1523 ; name
+	tx TentacoolName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
@@ -6963,20 +6963,20 @@ TentacoolCard:
 	db 10 ; level
 	length 0.9 ; length
 	weight 45.5 ; weight
-	tx Text1527 ; description
+	tx TentacoolDescription ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 TentacruelCard:
 	db TYPE_PKMN_WATER ; type
 	dw $2313 ; gfx
-	tx Text1528 ; name
+	tx TentacruelName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
 	dw TENTACRUEL
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1523 ; pre-evo name
+	tx TentacoolName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -7015,13 +7015,13 @@ TentacruelCard:
 	db 21 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
-	tx Text152a ; description
+	tx TentacruelDescription ; description
 	db NONE ; AI info
 
 SeelLv10Card:
 	db TYPE_PKMN_WATER ; type
 	dw $862b ; gfx
-	tx Text152b ; name
+	tx SeelName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -7067,13 +7067,13 @@ SeelLv10Card:
 	db 10 ; level
 	length 1.1 ; length
 	weight 90.0 ; weight
-	tx Text152f ; description
+	tx SeelDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SeelLv12Card:
 	db TYPE_PKMN_WATER ; type
 	dw $23c8 ; gfx
-	tx Text152b ; name
+	tx SeelName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -7119,20 +7119,20 @@ SeelLv12Card:
 	db 12 ; level
 	length 1.1 ; length
 	weight 90.0 ; weight
-	tx Text1531 ; description
+	tx SeelDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 DewgongLv24Card:
 	db TYPE_PKMN_WATER ; type
 	dw $869c ; gfx
-	tx Text1532 ; name
+	tx DewgongName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw DEWGONG_LV24
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text152b ; pre-evo name
+	tx SeelName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -7171,20 +7171,20 @@ DewgongLv24Card:
 	db 24 ; level
 	length 1.7 ; length
 	weight 120.0 ; weight
-	tx Text1536 ; description
+	tx DewgongDescription1 ; description
 	db NONE ; AI info
 
 DewgongLv42Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2431 ; gfx
-	tx Text1532 ; name
+	tx DewgongName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw DEWGONG_LV42
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text152b ; pre-evo name
+	tx SeelName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2, COLORLESS, 1 ; energies
@@ -7223,13 +7223,13 @@ DewgongLv42Card:
 	db 42 ; level
 	length 1.7 ; length
 	weight 120.0 ; weight
-	tx Text1538 ; description
+	tx DewgongDescription2 ; description
 	db NONE ; AI info
 
 ShellderLv8Card:
 	db TYPE_PKMN_WATER ; type
 	dw $249a ; gfx
-	tx Text1539 ; name
+	tx ShellderName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
@@ -7275,13 +7275,13 @@ ShellderLv8Card:
 	db 8 ; level
 	length 0.3 ; length
 	weight 4.0 ; weight
-	tx Text153c ; description
+	tx ShellderDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 ShellderLv16Card:
 	db TYPE_PKMN_WATER ; type
 	dw $8705 ; gfx
-	tx Text1539 ; name
+	tx ShellderName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -7327,20 +7327,20 @@ ShellderLv16Card:
 	db 16 ; level
 	length 0.3 ; length
 	weight 4.0 ; weight
-	tx Text153f ; description
+	tx ShellderDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 CloysterCard:
 	db TYPE_PKMN_WATER ; type
 	dw $2523 ; gfx
-	tx Text1540 ; name
+	tx CloysterName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
 	dw CLOYSTER
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text1539 ; pre-evo name
+	tx ShellderName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -7379,13 +7379,13 @@ CloysterCard:
 	db 25 ; level
 	length 1.5 ; length
 	weight 132.5 ; weight
-	tx Text1544 ; description
+	tx CloysterDescription ; description
 	db NONE ; AI info
 
 KrabbyLv17Card:
 	db TYPE_PKMN_WATER ; type
 	dw $8800 ; gfx
-	tx Text1545 ; name
+	tx KrabbyName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -7431,13 +7431,13 @@ KrabbyLv17Card:
 	db 17 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
-	tx Text1548 ; description
+	tx KrabbyDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KrabbyLv20Card:
 	db TYPE_PKMN_WATER ; type
 	dw $258c ; gfx
-	tx Text1545 ; name
+	tx KrabbyName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 0 ; ?
@@ -7483,20 +7483,20 @@ KrabbyLv20Card:
 	db 20 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
-	tx Text154b ; description
+	tx KrabbyDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KinglerLv27Card:
 	db TYPE_PKMN_WATER ; type
 	dw $25f9 ; gfx
-	tx Text154c ; name
+	tx KinglerName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 0 ; ?
 	dw KINGLER_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1545 ; pre-evo name
+	tx KrabbyName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -7535,20 +7535,20 @@ KinglerLv27Card:
 	db 27 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
-	tx Text1551 ; description
+	tx KinglerDescription1 ; description
 	db NONE ; AI info
 
 KinglerLv33Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9800 ; gfx
-	tx Text154c ; name
+	tx KinglerName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
 	dw KINGLER_LV33
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text1545 ; pre-evo name
+	tx KrabbyName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -7587,13 +7587,13 @@ KinglerLv33Card:
 	db 33 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
-	tx Text1556 ; description
+	tx KinglerDescription2 ; description
 	db NONE ; AI info
 
 HorseaLv19Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2666 ; gfx
-	tx Text1557 ; name
+	tx HorseaName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -7639,13 +7639,13 @@ HorseaLv19Card:
 	db 19 ; level
 	length 0.4 ; length
 	weight 8.0 ; weight
-	tx Text1559 ; description
+	tx HorseaDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 HorseaLv20Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9a43 ; gfx
-	tx Text1557 ; name
+	tx HorseaName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -7691,20 +7691,20 @@ HorseaLv20Card:
 	db 20 ; level
 	length 0.4 ; length
 	weight 8.0 ; weight
-	tx Text155c ; description
+	tx HorseaDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SeadraLv23Card:
 	db TYPE_PKMN_WATER ; type
 	dw $26cf ; gfx
-	tx Text155d ; name
+	tx SeadraName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw SEADRA_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text1557 ; pre-evo name
+	tx HorseaName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1, COLORLESS, 1 ; energies
@@ -7743,20 +7743,20 @@ SeadraLv23Card:
 	db 23 ; level
 	length 1.2 ; length
 	weight 25.0 ; weight
-	tx Text155e ; description
+	tx SeadraDescription1 ; description
 	db NONE ; AI info
 
 SeadraLv26Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9aac ; gfx
-	tx Text155d ; name
+	tx SeadraName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw SEADRA_LV26
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1557 ; pre-evo name
+	tx HorseaName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -7795,13 +7795,13 @@ SeadraLv26Card:
 	db 26 ; level
 	length 1.2 ; length
 	weight 25.0 ; weight
-	tx Text1562 ; description
+	tx SeadraDescription2 ; description
 	db NONE ; AI info
 
 GoldeenCard:
 	db TYPE_PKMN_WATER ; type
 	dw $2738 ; gfx
-	tx Text1563 ; name
+	tx GoldeenName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
@@ -7847,20 +7847,20 @@ GoldeenCard:
 	db 12 ; level
 	length 0.6 ; length
 	weight 15.0 ; weight
-	tx Text1566 ; description
+	tx GoldeenDescription ; description
 	db AI_INFO_UNK_05 | HAS_EVOLUTION ; AI info
 
 SeakingCard:
 	db TYPE_PKMN_WATER ; type
 	dw $2800 ; gfx
-	tx Text1567 ; name
+	tx SeakingName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw SEAKING
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1563 ; pre-evo name
+	tx GoldeenName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -7899,13 +7899,13 @@ SeakingCard:
 	db 28 ; level
 	length 1.3 ; length
 	weight 39.0 ; weight
-	tx Text1569 ; description
+	tx SeakingDescription ; description
 	db NONE ; AI info
 
 StaryuLv15Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2869 ; gfx
-	tx Text156a ; name
+	tx StaryuName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -7951,13 +7951,13 @@ StaryuLv15Card:
 	db 15 ; level
 	length 0.8 ; length
 	weight 34.5 ; weight
-	tx Text156d ; description
+	tx StaryuDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 StaryuLv17Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9b15 ; gfx
-	tx Text156a ; name
+	tx StaryuName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -8003,20 +8003,20 @@ StaryuLv17Card:
 	db 17 ; level
 	length 0.8 ; length
 	weight 34.5 ; weight
-	tx Text1571 ; description
+	tx StaryuDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 StarmieCard:
 	db TYPE_PKMN_WATER ; type
 	dw $28d8 ; gfx
-	tx Text1572 ; name
+	tx StarmieName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw STARMIE
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text156a ; pre-evo name
+	tx StaryuName ; pre-evo name
 
 	; attack 1
 	energy WATER, 2 ; energies
@@ -8055,20 +8055,20 @@ StarmieCard:
 	db 28 ; level
 	length 1.1 ; length
 	weight 80.0 ; weight
-	tx Text1577 ; description
+	tx StarmieDescription ; description
 	db NONE ; AI info
 
 DarkStarmieCard:
 	db TYPE_PKMN_WATER ; type
 	dw $c869 ; gfx
-	tx Text1578 ; name
+	tx DarkStarmieName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 6 ; ?
 	dw DARK_STARMIE
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text156a ; pre-evo name
+	tx StaryuName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -8107,13 +8107,13 @@ DarkStarmieCard:
 	db 27 ; level
 	length 1.1 ; length
 	weight 80.0 ; weight
-	tx Text157e ; description
+	tx DarkStarmieDescription ; description
 	db NONE ; AI info
 
 MagikarpLv6Card:
 	db TYPE_PKMN_WATER ; type
 	dw $5e77 ; gfx
-	tx Text157f ; name
+	tx MagikarpName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -8159,13 +8159,13 @@ MagikarpLv6Card:
 	db 6 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
-	tx Text1584 ; description
+	tx MagikarpDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MagikarpLv8Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2941 ; gfx
-	tx Text157f ; name
+	tx MagikarpName ; name
 	db DIAMOND ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -8211,13 +8211,13 @@ MagikarpLv8Card:
 	db 8 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
-	tx Text1585 ; description
+	tx MagikarpDescription2 ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 MagikarpLv10Card:
 	db TYPE_PKMN_WATER ; type
 	dw $a376 ; gfx
-	tx Text157f ; name
+	tx MagikarpName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -8263,20 +8263,20 @@ MagikarpLv10Card:
 	db 10 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
-	tx Text158a ; description
+	tx MagikarpDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GyaradosCard:
 	db TYPE_PKMN_WATER ; type
 	dw $29aa ; gfx
-	tx Text158b ; name
+	tx GyaradosName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw GYARADOS
 	db 100 ; hp
 	db STAGE1 ; stage
-	tx Text157f ; pre-evo name
+	tx MagikarpName ; pre-evo name
 
 	; attack 1
 	energy WATER, 3 ; energies
@@ -8315,20 +8315,20 @@ GyaradosCard:
 	db 41 ; level
 	length 6.5 ; length
 	weight 235.0 ; weight
-	tx Text158e ; description
+	tx GyaradosDescription ; description
 	db NONE ; AI info
 
 DarkGyaradosCard:
 	db TYPE_PKMN_WATER ; type
 	dw $5ee0 ; gfx
-	tx Text158f ; name
+	tx DarkGyaradosName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_GYARADOS
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text157f ; pre-evo name
+	tx MagikarpName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -8367,13 +8367,13 @@ DarkGyaradosCard:
 	db 31 ; level
 	length 6.5 ; length
 	weight 235.0 ; weight
-	tx Text1593 ; description
+	tx DarkGyaradosDescription ; description
 	db NONE ; AI info
 
 LaprasLv24Card:
 	db TYPE_PKMN_WATER ; type
 	dw $8a2b ; gfx
-	tx Text1594 ; name
+	tx LaprasName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 1 ; ?
@@ -8419,13 +8419,13 @@ LaprasLv24Card:
 	db 24 ; level
 	length 2.5 ; length
 	weight 220.0 ; weight
-	tx Text1598 ; description
+	tx LaprasDescription1 ; description
 	db NONE ; AI info
 
 LaprasLv31Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2a17 ; gfx
-	tx Text1594 ; name
+	tx LaprasName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 4 ; ?
@@ -8471,20 +8471,20 @@ LaprasLv31Card:
 	db 31 ; level
 	length 2.5 ; length
 	weight 220.0 ; weight
-	tx Text1599 ; description
+	tx LaprasDescription2 ; description
 	db NONE ; AI info
 
 VaporeonLv29Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2a80 ; gfx
-	tx Text159a ; name
+	tx VaporeonName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 3 ; ?
 	dw VAPOREON_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
@@ -8523,20 +8523,20 @@ VaporeonLv29Card:
 	db 29 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
-	tx Text159d ; description
+	tx VaporeonDescription1 ; description
 	db NONE ; AI info
 
 VaporeonLv42Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2ae9 ; gfx
-	tx Text159a ; name
+	tx VaporeonName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw VAPOREON_LV42
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -8575,20 +8575,20 @@ VaporeonLv42Card:
 	db 42 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
-	tx Text159e ; description
+	tx VaporeonDescription2 ; description
 	db NONE ; AI info
 
 DarkVaporeonCard:
 	db TYPE_PKMN_WATER ; type
 	dw $5f49 ; gfx
-	tx Text159f ; name
+	tx DarkVaporeonName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_VAPOREON
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
@@ -8627,20 +8627,20 @@ DarkVaporeonCard:
 	db 28 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
-	tx Text15a1 ; description
+	tx DarkVaporeonDescription ; description
 	db NONE ; AI info
 
 OmanyteLv19Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2b52 ; gfx
-	tx Text15a2 ; name
+	tx OmanyteName ; name
 	db CIRCLE ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw OMANYTE_LV19
 	db 40 ; hp
 	db STAGE1 ; stage
-	tx Text15a3 ; pre-evo name
+	tx MysteriousFossilName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -8679,20 +8679,20 @@ OmanyteLv19Card:
 	db 19 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
-	tx Text15a7 ; description
+	tx OmanyteDescription1 ; description
 	db AI_INFO_BENCH_UTILITY | HAS_EVOLUTION ; AI info
 
 OmanyteLv20Card:
 	db TYPE_PKMN_WATER ; type
 	dw $8a96 ; gfx
-	tx Text15a2 ; name
+	tx OmanyteName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 5 ; ?
 	dw OMANYTE_LV20
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text15a3 ; pre-evo name
+	tx MysteriousFossilName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -8731,20 +8731,20 @@ OmanyteLv20Card:
 	db 20 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
-	tx Text15ac ; description
+	tx OmanyteDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 OmanyteLv22Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9d55 ; gfx
-	tx Text15a2 ; name
+	tx OmanyteName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw OMANYTE_LV22
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text15a3 ; pre-evo name
+	tx MysteriousFossilName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -8783,20 +8783,20 @@ OmanyteLv22Card:
 	db 22 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
-	tx Text15ac ; description
+	tx OmanyteDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 OmastarLv32Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2bbb ; gfx
-	tx Text15af ; name
+	tx OmastarName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw OMASTAR_LV32
 	db 70 ; hp
 	db STAGE2 ; stage
-	tx Text15a2 ; pre-evo name
+	tx OmanyteName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1, COLORLESS, 1 ; energies
@@ -8835,20 +8835,20 @@ OmastarLv32Card:
 	db 32 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
-	tx Text15b0 ; description
+	tx OmastarDescription1 ; description
 	db NONE ; AI info
 
 OmastarLv36Card:
 	db TYPE_PKMN_WATER ; type
 	dw $9dbe ; gfx
-	tx Text15af ; name
+	tx OmastarName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 7 ; ?
 	dw OMASTAR_LV36
 	db 80 ; hp
 	db STAGE2 ; stage
-	tx Text15a2 ; pre-evo name
+	tx OmanyteName ; pre-evo name
 
 	; attack 1
 	energy WATER, 1 ; energies
@@ -8887,13 +8887,13 @@ OmastarLv36Card:
 	db 36 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
-	tx Text15b5 ; description
+	tx OmastarDescription2 ; description
 	db NONE ; AI info
 
 ArticunoLv34Card:
 	db TYPE_PKMN_WATER ; type
 	dw $8bf5 ; gfx
-	tx Text15b6 ; name
+	tx ArticunoName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 6 ; ?
@@ -8939,13 +8939,13 @@ ArticunoLv34Card:
 	db 34 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
-	tx Text15ba ; description
+	tx ArticunoDescription1 ; description
 	db NONE ; AI info
 
 ArticunoLv35Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2c3c ; gfx
-	tx Text15b6 ; name
+	tx ArticunoName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
@@ -8991,13 +8991,13 @@ ArticunoLv35Card:
 	db 35 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
-	tx Text15be ; description
+	tx ArticunoDescription2 ; description
 	db NONE ; AI info
 
 ArticunoLv37Card:
 	db TYPE_PKMN_WATER ; type
 	dw $2ca5 ; gfx
-	tx Text15b6 ; name
+	tx ArticunoName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 7 ; ?
@@ -9043,13 +9043,13 @@ ArticunoLv37Card:
 	db 37 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
-	tx Text15c3 ; description
+	tx ArticunoDescription3 ; description
 	db NONE ; AI info
 
 MarillCard:
 	db TYPE_PKMN_WATER ; type
 	dw $a60e ; gfx
-	tx Text15c4 ; name
+	tx MarillName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9095,13 +9095,13 @@ MarillCard:
 	db 17 ; level
 	length 0.4 ; length
 	weight 8.5 ; weight
-	tx Text15c6 ; description
+	tx MarillDescription ; description
 	db NONE ; AI info
 
 PikachuLv5Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $7543 ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -9147,13 +9147,13 @@ PikachuLv5Card:
 	db 5 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15ca ; description
+	tx PikachuDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PikachuLv12Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $2d0e ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -9199,13 +9199,13 @@ PikachuLv12Card:
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15ce ; description
+	tx PikachuDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 PikachuLv13Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $a0d2 ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db STAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9251,13 +9251,13 @@ PikachuLv13Card:
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15d3 ; description
+	tx PikachuDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PikachuLv14Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $2d77 ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
@@ -9303,13 +9303,13 @@ PikachuLv14Card:
 	db 14 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15d6 ; description
+	tx PikachuDescription4 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PikachuLv16Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $2de0 ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9355,13 +9355,13 @@ PikachuLv16Card:
 	db 16 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15ce ; description
+	tx PikachuDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PikachuAltLv16Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $2ea9 ; gfx
-	tx Text15c7 ; name
+	tx PikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9407,13 +9407,13 @@ PikachuAltLv16Card:
 	db 16 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15ce ; description
+	tx PikachuDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 FlyingPikachuLv12Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $2f18 ; gfx
-	tx Text15d7 ; name
+	tx FlyingPikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9459,13 +9459,13 @@ FlyingPikachuLv12Card:
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15da ; description
+	tx FlyingPikachuDescription ; description
 	db AI_INFO_UNK_03 ; AI info
 
 FlyingPikachuAltLv12Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $a53a ; gfx
-	tx Text15d7 ; name
+	tx FlyingPikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9511,13 +9511,13 @@ FlyingPikachuAltLv12Card:
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15da ; description
+	tx FlyingPikachuDescription ; description
 	db AI_INFO_UNK_03 ; AI info
 
 SurfingPikachuLv13Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3000 ; gfx
-	tx Text15db ; name
+	tx SurfingPikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9563,13 +9563,13 @@ SurfingPikachuLv13Card:
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15dc ; description
+	tx SurfingPikachuDescription ; description
 	db NONE ; AI info
 
 SurfingPikachuAltLv13Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $30ab ; gfx
-	tx Text15db ; name
+	tx SurfingPikachuName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -9615,20 +9615,20 @@ SurfingPikachuAltLv13Card:
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
-	tx Text15dc ; description
+	tx SurfingPikachuDescription ; description
 	db NONE ; AI info
 
 RaichuLv32Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $8263 ; gfx
-	tx Text15dd ; name
+	tx RaichuName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw RAICHU_LV32
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text15c7 ; pre-evo name
+	tx PikachuName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 2 ; energies
@@ -9667,20 +9667,20 @@ RaichuLv32Card:
 	db 32 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
-	tx Text15e1 ; description
+	tx RaichuDescription1 ; description
 	db NONE ; AI info
 
 RaichuLv33Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $bf5a ; gfx
-	tx Text15dd ; name
+	tx RaichuName ; name
 	db STAR ; rarity
 	db TEAM_ROCKETS_AMBITION ; set
 	db 0 ; ?
 	dw RAICHU_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text15c7 ; pre-evo name
+	tx PikachuName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -9719,20 +9719,20 @@ RaichuLv33Card:
 	db 33 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
-	tx Text15e4 ; description
+	tx RaichuDescription2 ; description
 	db NONE ; AI info
 
 RaichuLv40Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $311e ; gfx
-	tx Text15dd ; name
+	tx RaichuName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
 	dw RAICHU_LV40
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text15c7 ; pre-evo name
+	tx PikachuName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 1, COLORLESS, 2 ; energies
@@ -9771,20 +9771,20 @@ RaichuLv40Card:
 	db 40 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
-	tx Text15e7 ; description
+	tx RaichuDescription3 ; description
 	db NONE ; AI info
 
 RaichuLv45Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3187 ; gfx
-	tx Text15dd ; name
+	tx RaichuName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 2 ; ?
 	dw RAICHU_LV45
 	db 90 ; hp
 	db STAGE1 ; stage
-	tx Text15c7 ; pre-evo name
+	tx PikachuName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 4 ; energies
@@ -9823,20 +9823,20 @@ RaichuLv45Card:
 	db 45 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
-	tx Text15e7 ; description
+	tx RaichuDescription3 ; description
 	db NONE ; AI info
 
 DarkRaichuCard:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $c78d ; gfx
-	tx Text15ea ; name
+	tx DarkRaichuName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 6 ; ?
 	dw DARK_RAICHU
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text15c7 ; pre-evo name
+	tx PikachuName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 3 ; energies
@@ -9875,13 +9875,13 @@ DarkRaichuCard:
 	db 31 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
-	tx Text15ed ; description
+	tx DarkRaichuDescription ; description
 	db NONE ; AI info
 
 MagnemiteLv12Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $6f04 ; gfx
-	tx Text15ee ; name
+	tx MagnemiteName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -9927,13 +9927,13 @@ MagnemiteLv12Card:
 	db 12 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
-	tx Text15f2 ; description
+	tx MagnemiteDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MagnemiteLv13Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $31f0 ; gfx
-	tx Text15ee ; name
+	tx MagnemiteName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
@@ -9979,13 +9979,13 @@ MagnemiteLv13Card:
 	db 13 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
-	tx Text15f5 ; description
+	tx MagnemiteDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 MagnemiteLv14Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3271 ; gfx
-	tx Text15ee ; name
+	tx MagnemiteName ; name
 	db CIRCLE ; rarity
 	db GB ; set
 	db 1 ; ?
@@ -10031,13 +10031,13 @@ MagnemiteLv14Card:
 	db 14 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
-	tx Text15f8 ; description
+	tx MagnemiteDescription3 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 MagnemiteLv15Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $8559 ; gfx
-	tx Text15ee ; name
+	tx MagnemiteName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -10083,20 +10083,20 @@ MagnemiteLv15Card:
 	db 15 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
-	tx Text15fd ; description
+	tx MagnemiteDescription4 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MagnetonLv28Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $32dc ; gfx
-	tx Text15fe ; name
+	tx MagnetonName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 3 ; ?
 	dw MAGNETON_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text15ee ; pre-evo name
+	tx MagnemiteName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 2, COLORLESS, 1 ; energies
@@ -10135,20 +10135,20 @@ MagnetonLv28Card:
 	db 28 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
-	tx Text1600 ; description
+	tx MagnetonDescription1 ; description
 	db NONE ; AI info
 
 MagnetonLv30Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $85c2 ; gfx
-	tx Text15fe ; name
+	tx MagnetonName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 1 ; ?
 	dw MAGNETON_LV30
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text15ee ; pre-evo name
+	tx MagnemiteName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 2, COLORLESS, 1 ; energies
@@ -10187,20 +10187,20 @@ MagnetonLv30Card:
 	db 30 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
-	tx Text1603 ; description
+	tx MagnetonDescription2 ; description
 	db NONE ; AI info
 
 MagnetonLv35Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $337d ; gfx
-	tx Text15fe ; name
+	tx MagnetonName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 4 ; ?
 	dw MAGNETON_LV35
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text15ee ; pre-evo name
+	tx MagnemiteName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 1, COLORLESS, 1 ; energies
@@ -10239,20 +10239,20 @@ MagnetonLv35Card:
 	db 35 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
-	tx Text1600 ; description
+	tx MagnetonDescription1 ; description
 	db NONE ; AI info
 
 DarkMagnetonCard:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $6f6d ; gfx
-	tx Text1607 ; name
+	tx DarkMagnetonName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_MAGNETON
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text15ee ; pre-evo name
+	tx MagnemiteName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -10291,13 +10291,13 @@ DarkMagnetonCard:
 	db 26 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
-	tx Text160b ; description
+	tx DarkMagnetonDescription ; description
 	db NONE ; AI info
 
 VoltorbLv8Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $8869 ; gfx
-	tx Text160c ; name
+	tx VoltorbName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -10343,13 +10343,13 @@ VoltorbLv8Card:
 	db 8 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
-	tx Text1610 ; description
+	tx VoltorbDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 VoltorbLv10Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $33e6 ; gfx
-	tx Text160c ; name
+	tx VoltorbName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 2 ; ?
@@ -10395,13 +10395,13 @@ VoltorbLv10Card:
 	db 10 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
-	tx Text1611 ; description
+	tx VoltorbDescription2 ; description
 	db AI_INFO_UNK_05 | HAS_EVOLUTION ; AI info
 
 VoltorbLv13Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $7000 ; gfx
-	tx Text160c ; name
+	tx VoltorbName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -10447,20 +10447,20 @@ VoltorbLv13Card:
 	db 13 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
-	tx Text1613 ; description
+	tx VoltorbDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ElectrodeLv35Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3487 ; gfx
-	tx Text1614 ; name
+	tx ElectrodeName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 2 ; ?
 	dw ELECTRODE_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text160c ; pre-evo name
+	tx VoltorbName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 2 ; energies
@@ -10499,20 +10499,20 @@ ElectrodeLv35Card:
 	db 35 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
-	tx Text1617 ; description
+	tx ElectrodeDescription1 ; description
 	db NONE ; AI info
 
 ElectrodeLv42Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $34f0 ; gfx
-	tx Text1614 ; name
+	tx ElectrodeName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 4 ; ?
 	dw ELECTRODE_LV42
 	db 90 ; hp
 	db STAGE1 ; stage
-	tx Text160c ; pre-evo name
+	tx VoltorbName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -10551,20 +10551,20 @@ ElectrodeLv42Card:
 	db 42 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
-	tx Text161a ; description
+	tx ElectrodeDescription2 ; description
 	db NONE ; AI info
 
 DarkElectrodeCard:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $7069 ; gfx
-	tx Text161b ; name
+	tx DarkElectrodeName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_ELECTRODE
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text160c ; pre-evo name
+	tx VoltorbName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
@@ -10603,13 +10603,13 @@ DarkElectrodeCard:
 	db 24 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
-	tx Text161e ; description
+	tx DarkElectrodeDescription ; description
 	db NONE ; AI info
 
 ElectabuzzLv20Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3559 ; gfx
-	tx Text161f ; name
+	tx ElectabuzzName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -10655,13 +10655,13 @@ ElectabuzzLv20Card:
 	db 20 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
-	tx Text1622 ; description
+	tx ElectabuzzDescription1 ; description
 	db NONE ; AI info
 
 ElectabuzzLv30Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $c20d ; gfx
-	tx Text161f ; name
+	tx ElectabuzzName ; name
 	db STAR ; rarity
 	db TEAM_ROCKETS_AMBITION ; set
 	db 0 ; ?
@@ -10707,13 +10707,13 @@ ElectabuzzLv30Card:
 	db 30 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
-	tx Text1623 ; description
+	tx ElectabuzzDescription2 ; description
 	db NONE ; AI info
 
 ElectabuzzLv35Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $35c2 ; gfx
-	tx Text161f ; name
+	tx ElectabuzzName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
@@ -10759,20 +10759,20 @@ ElectabuzzLv35Card:
 	db 35 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
-	tx Text1626 ; description
+	tx ElectabuzzDescription3 ; description
 	db NONE ; AI info
 
 JolteonLv24Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3633 ; gfx
-	tx Text1627 ; name
+	tx JolteonName ; name
 	db DIAMOND ; rarity
 	db GB ; set
 	db 3 ; ?
 	dw JOLTEON_LV24
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -10811,20 +10811,20 @@ JolteonLv24Card:
 	db 24 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
-	tx Text162a ; description
+	tx JolteonDescription1 ; description
 	db NONE ; AI info
 
 JolteonLv29Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $369c ; gfx
-	tx Text1627 ; name
+	tx JolteonName ; name
 	db STAR ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
 	dw JOLTEON_LV29
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -10863,20 +10863,20 @@ JolteonLv29Card:
 	db 29 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
-	tx Text162e ; description
+	tx JolteonDescription2 ; description
 	db NONE ; AI info
 
 DarkJolteonCard:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $70d2 ; gfx
-	tx Text162f ; name
+	tx DarkJolteonName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_JOLTEON
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text14c0 ; pre-evo name
+	tx EeveeName ; pre-evo name
 
 	; attack 1
 	energy LIGHTNING, 1 ; energies
@@ -10915,13 +10915,13 @@ DarkJolteonCard:
 	db 23 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
-	tx Text1634 ; description
+	tx DarkJolteonDescription ; description
 	db NONE ; AI info
 
 ZapdosLv28Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $8c6a ; gfx
-	tx Text1635 ; name
+	tx ZapdosName ; name
 	db STAR ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 6 ; ?
@@ -10967,13 +10967,13 @@ ZapdosLv28Card:
 	db 28 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
-	tx Text163a ; description
+	tx ZapdosDescription1 ; description
 	db NONE ; AI info
 
 ZapdosLv40Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3705 ; gfx
-	tx Text1635 ; name
+	tx ZapdosName ; name
 	db STAR ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 4 ; ?
@@ -11019,13 +11019,13 @@ ZapdosLv40Card:
 	db 40 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
-	tx Text163d ; description
+	tx ZapdosDescription2 ; description
 	db NONE ; AI info
 
 ZapdosLv64Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $376e ; gfx
-	tx Text1635 ; name
+	tx ZapdosName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -11071,13 +11071,13 @@ ZapdosLv64Card:
 	db 64 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
-	tx Text163f ; description
+	tx ZapdosDescription3 ; description
 	db NONE ; AI info
 
 ZapdosLv68Card:
 	db TYPE_PKMN_LIGHTNING ; type
 	dw $3800 ; gfx
-	tx Text1635 ; name
+	tx ZapdosName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 7 ; ?
@@ -11123,13 +11123,13 @@ ZapdosLv68Card:
 	db 68 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
-	tx Text1644 ; description
+	tx ZapdosDescription4 ; description
 	db NONE ; AI info
 
 SandshrewLv12Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $3869 ; gfx
-	tx Text1645 ; name
+	tx SandshrewName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 1 ; ?
@@ -11175,13 +11175,13 @@ SandshrewLv12Card:
 	db 12 ; level
 	length 0.6 ; length
 	weight 12.0 ; weight
-	tx Text1647 ; description
+	tx SandshrewDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 SandshrewLv15Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $82cc ; gfx
-	tx Text1645 ; name
+	tx SandshrewName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -11227,20 +11227,20 @@ SandshrewLv15Card:
 	db 15 ; level
 	length 0.6 ; length
 	weight 12.0 ; weight
-	tx Text164a ; description
+	tx SandshrewDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SandslashLv33Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $38ea ; gfx
-	tx Text164b ; name
+	tx SandslashName ; name
 	db DIAMOND ; rarity
 	db ISLAND_OF_FOSSIL ; set
 	db 1 ; ?
 	dw SANDSLASH_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1645 ; pre-evo name
+	tx SandshrewName ; pre-evo name
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
@@ -11279,20 +11279,20 @@ SandslashLv33Card:
 	db 33 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
-	tx Text164d ; description
+	tx SandslashDescription1 ; description
 	db NONE ; AI info
 
 SandslashLv35Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $8e18 ; gfx
-	tx Text164b ; name
+	tx SandslashName ; name
 	db DIAMOND ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
 	dw SANDSLASH_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1645 ; pre-evo name
+	tx SandshrewName ; pre-evo name
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
@@ -11331,13 +11331,13 @@ SandslashLv35Card:
 	db 35 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
-	tx Text1651 ; description
+	tx SandslashDescription2 ; description
 	db NONE ; AI info
 
 DiglettLv8Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $3961 ; gfx
-	tx Text1652 ; name
+	tx DiglettName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -11383,13 +11383,13 @@ DiglettLv8Card:
 	db 8 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
-	tx Text1656 ; description
+	tx DiglettDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 DiglettLv15Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $6800 ; gfx
-	tx Text1652 ; name
+	tx DiglettName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -11435,13 +11435,13 @@ DiglettLv15Card:
 	db 15 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
-	tx Text1659 ; description
+	tx DiglettDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DiglettLv16Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $a221 ; gfx
-	tx Text1652 ; name
+	tx DiglettName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -11487,20 +11487,20 @@ DiglettLv16Card:
 	db 16 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
-	tx Text165b ; description
+	tx DiglettDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DugtrioLv36Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $39ca ; gfx
-	tx Text165c ; name
+	tx DugtrioName ; name
 	db STAR ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
 	dw DUGTRIO_LV36
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text1652 ; pre-evo name
+	tx DiglettName ; pre-evo name
 
 	; attack 1
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
@@ -11539,20 +11539,20 @@ DugtrioLv36Card:
 	db 36 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
-	tx Text165f ; description
+	tx DugtrioDescription1 ; description
 	db NONE ; AI info
 
 DugtrioLv40Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $a298 ; gfx
-	tx Text165c ; name
+	tx DugtrioName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
 	dw DUGTRIO_LV40
 	db 80 ; hp
 	db STAGE1 ; stage
-	tx Text1652 ; pre-evo name
+	tx DiglettName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -11591,20 +11591,20 @@ DugtrioLv40Card:
 	db 40 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
-	tx Text1664 ; description
+	tx DugtrioDescription2 ; description
 	db NONE ; AI info
 
 DarkDugtrioCard:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $686d ; gfx
-	tx Text1665 ; name
+	tx DarkDugtrioName ; name
 	db STAR ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_DUGTRIO
 	db 50 ; hp
 	db STAGE1 ; stage
-	tx Text1652 ; pre-evo name
+	tx DiglettName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -11643,13 +11643,13 @@ DarkDugtrioCard:
 	db 18 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
-	tx Text166a ; description
+	tx DarkDugtrioDescription ; description
 	db NONE ; AI info
 
 MankeyLv7Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $3a39 ; gfx
-	tx Text166b ; name
+	tx MankeyName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
@@ -11695,13 +11695,13 @@ MankeyLv7Card:
 	db 7 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
-	tx Text166f ; description
+	tx MankeyDescription1 ; description
 	db AI_INFO_BENCH_UTILITY | HAS_EVOLUTION ; AI info
 
 MankeyAltLv7Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $a687 ; gfx
-	tx Text166b ; name
+	tx MankeyName ; name
 	db PROMOSTAR ; rarity
 	db PRO ; set
 	db 7 ; ?
@@ -11747,13 +11747,13 @@ MankeyAltLv7Card:
 	db 7 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
-	tx Text166f ; description
+	tx MankeyDescription1 ; description
 	db AI_INFO_BENCH_UTILITY | HAS_EVOLUTION ; AI info
 
 MankeyLv14Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $68d6 ; gfx
-	tx Text166b ; name
+	tx MankeyName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -11799,20 +11799,20 @@ MankeyLv14Card:
 	db 14 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
-	tx Text1673 ; description
+	tx MankeyDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PrimeapeCard:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $3aa8 ; gfx
-	tx Text1674 ; name
+	tx PrimeapeName ; name
 	db DIAMOND ; rarity
 	db LEGENDARY_POWER ; set
 	db 2 ; ?
 	dw PRIMEAPE
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx Text166b ; pre-evo name
+	tx MankeyName ; pre-evo name
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
@@ -11851,20 +11851,20 @@ PrimeapeCard:
 	db 35 ; level
 	length 1.0 ; length
 	weight 32.0 ; weight
-	tx Text1677 ; description
+	tx PrimeapeDescription ; description
 	db NONE ; AI info
 
 DarkPrimeapeCard:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $6963 ; gfx
-	tx Text1678 ; name
+	tx DarkPrimeapeName ; name
 	db DIAMOND ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
 	dw DARK_PRIMEAPE
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx Text166b ; pre-evo name
+	tx MankeyName ; pre-evo name
 
 	; attack 1
 	energy 0 ; energies
@@ -11903,13 +11903,13 @@ DarkPrimeapeCard:
 	db 23 ; level
 	length 1.0 ; length
 	weight 32.0 ; weight
-	tx Text167d ; description
+	tx DarkPrimeapeDescription ; description
 	db NONE ; AI info
 
 MachopLv18Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $83a4 ; gfx
-	tx Text167e ; name
+	tx MachopName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 4 ; ?
@@ -11955,13 +11955,13 @@ MachopLv18Card:
 	db 18 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
-	tx Text1683 ; description
+	tx MachopDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MachopLv20Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $3b11 ; gfx
-	tx Text167e ; name
+	tx MachopName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -12007,13 +12007,13 @@ MachopLv20Card:
 	db 20 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
-	tx Text1685 ; description
+	tx MachopDescription2 ; description
 	db AI_INFO_UNK_05 | HAS_EVOLUTION ; AI info
 
 MachopLv24Card:
 	db TYPE_PKMN_FIGHTING ; type
 	dw $69d2 ; gfx
-	tx Text167e ; name
+	tx MachopName ; name
 	db CIRCLE ; rarity
 	db PSYCHIC_BATTLE ; set
 	db 5 ; ?
@@ -12059,5 +12059,5 @@ MachopLv24Card:
 	db 24 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
-	tx Text1688 ; description
+	tx MachopDescription3 ; description
 	db NONE | HAS_EVOLUTION ; AI info
