@@ -154,7 +154,7 @@ Then, in the above example, you can label ``ProcessText`` subroutines and/or fun
 
 Here, the first two are "``ProcessText`` with a twist" and the last two do something else in addition to that. You can use ``_`` in function labels for readability and to prefix functions that belong to the same specific module, but don't overuse it.
 
-Another common case is functions that are declared in the home bank for accessibility but their code resides somehwere else. In these cases you can prepend ``_`` to the non-home function to suggest that it's not intended to be called directly. For example:
+Another common case is functions that are declared in the home bank for accessibility but their code resides somewhere else. In these cases you can prepend ``_`` to the non-home function to suggest that it's not intended to be called directly. For example:
 
 ```
 CopyCardNameAndLevel: ; 29f5 (0:29f5)
@@ -297,7 +297,7 @@ DuelHorizontalSeparatorTileData:
 
 # RAM addresses
 
-Naming RAM addresses and using them in code is extremely helpful towards having easily readable code. RAM addresses are pascal case and prefixed with a letter depending on whether they are a WRAM address (``wAddressName``), a VRAM address (``vÀddressName``), a HRAM address (``hAddressName``), or a hardware register (for example, ``rLCDC``). These all go in their respective files, which are, wram.asm, vram.asm, hram.asm, and constants/hardware_constants.asm. You will most often want to label some WRAM addresses, or maybe some HRAM address, but VRAM addresses should already be covered and hardware constants are all already defined.
+Naming RAM addresses and using them in code is extremely helpful towards having easily readable code. RAM addresses are pascal case and prefixed with a letter depending on whether they are a WRAM address (``wAddressName``), a VRAM address (``vAddressName``), a HRAM address (``hAddressName``), or a hardware register (for example, ``rLCDC``). These all go in their respective files, which are, wram.asm, vram.asm, hram.asm, and constants/hardware_constants.asm. You will most often want to label some WRAM addresses, or maybe some HRAM address, but VRAM addresses should already be covered and hardware constants are all already defined.
 
 Note how RAM addresses aren't always necessarily one byte long. A simple example would be addresses that hold some pointer which would be 16-bit long. It's important that the ``ds`` below indicates what it's actual size is. If for example there's a 5-byte space unassigned below a ``ds 1`` address, it's better to have ``ds 1`` followed by ``ds 5`` rather than a single ``ds 6``. Speaking of ``ds``, prefer ``ds 1`` to ``db`` and ``ds 2`` to ``dw`` for declaring the size of a memory address.
 
@@ -368,7 +368,7 @@ A constant almost never comes alone. For example a single ``BULBASAUR`` or ``BUL
 
 There are, however, other cases where individual constants also help improve the readability of the code (or data structure) that is going to use them. Sizes/lengths and maximum values are good examples of this. For example, ``MAX_BENCH_POKEMON``, ``MAX_PLAY_AREA_POKEMON``, ``DECK_SIZE``, or just a generic one like ``SCREEN_WIDTH``. Do this when there are multiple candidates to replace in the code. For example, if a specific feature drew a cursor in screen coordinates 8,9 and nothing else did it, it wouldn't make sense to create a constant like ``FEATURE_X_CURSOR_COORDS`` just to replace those very specific numbers (an inline comment near the instruction might be appropriate instead).
 
-Speaking of generic constants, there are multiple constants aleady defined for dealing with close-to-hardware stuff that you should be looking to use when appropriate (button constans such as ``A_BUTTON`` are another good examples of this). The already defined text constants (and macros) help dealing with text-related code and data, and are particularly helpful for distingushing between the different game fonts.
+Speaking of generic constants, there are multiple constants already defined for dealing with close-to-hardware stuff that you should be looking to use when appropriate (button constants such as ``A_BUTTON`` are another good examples of this). The already defined text constants (and macros) help dealing with text-related code and data, and are particularly helpful for distinguishing between the different game fonts.
 
 Constants for WRAM address offsets (i.e. for the likes of ``wAddressN - wAddress``) are sometimes a good idea as well, and typically follow the addresses defined in some WRAM macro. For example, look at the constants defined with the previously seen ``card_data_struct`` macro in mind:
 
@@ -383,7 +383,7 @@ DEF ENERGY_CARD_DATA_LENGTH EQU $0e
 DEF PKMN_CARD_DATA_LENGTH   EQU $41
 ```
 
-Some constants make sense to have as both a value and a flag. Again, button constants are a good example of this. For these, the convention is to use ``CONSTANT_NAME`` for the value, and ``CONSTANT_NAME_F`` for the flag, so you can use either of them depending on the assembly instruction (e.g. ``and CONSTANT_NAME`` or ``bit CONSTANT_NAME_F, a``. For example:
+Some constants make sense to have as both a value and a flag. Again, button constants are a good example of this. For these, the convention is to use ``CONSTANT_NAME`` for the value, and ``CONSTANT_NAME_F`` for the flag, so you can use either of them depending on the assembly instruction (e.g. ``and CONSTANT_NAME`` or ``bit CONSTANT_NAME_F, a``). For example:
 
 ```
 DEF A_BUTTON_F EQU 0
@@ -411,11 +411,11 @@ Prefer decimal numbers over hexadecimal numbers when the number is referring to 
 
 # Macros
 
-Macros are particularly useful for making data structures more readable. If some block of data is just a bunch ``db`` and/or ``dw`` entries it may not benefit much for a macro, but as soon as there are ways to simplify it, a macro should be welcome. In general, don't hesitate to make a complex macro if it gratly simplfies the way the data that uses it is laid out. Macros are defined in the macros/ directory, in different files depending on what type of macro it is. When creating a macro, capitalize the ``MACRO`` and ``ENDM`` words, and leave everything else lowercase. Macro names are ``snake_case``, though if it's just two words, no underscore is also fine.
+Macros are particularly useful for making data structures more readable. If some block of data is just a bunch ``db`` and/or ``dw`` entries it may not benefit much for a macro, but as soon as there are ways to simplify it, a macro should be welcome. In general, don't hesitate to make a complex macro if it greatly simplifies the way the data that uses it is laid out. Macros are defined in the macros/ directory, in different files depending on what type of macro it is. When creating a macro, capitalize the ``MACRO`` and ``ENDM`` words, and leave everything else lowercase. Macro names are ``snake_case``, though if it's just two words, no underscore is also fine.
 
 When disassembling code and declaring data make sure to have a quick look at the existing macros defined in primarily macros/code/, macros/data/, and macros/text/ for an idea of where to use them. The tcg2disasm script already takes care of using the ``farcall`` and ``bank1call`` macros, but not others.
 
-If a macro is very specific to a feature and you are almost 100% sure that it won't be ever used anywhere else, it's a good idea to put it along with the data structure that uses it (right above it) instead of in the macros/ directory. This makes the macro more immediate to look up. As a more general suggestion, I would advice against creating a macro for a data structure that has not been fully understood. The macro tends to hide its internal structure, which makes it harder to eventaully refractor and also to follow the code that travels through said data structure.
+If a macro is very specific to a feature and you are almost 100% sure that it won't be ever used anywhere else, it's a good idea to put it along with the data structure that uses it (right above it) instead of in the macros/ directory. This makes the macro more immediate to look up. As a more general suggestion, I would advice against creating a macro for a data structure that has not been fully understood. The macro tends to hide its internal structure, which makes it harder to eventually refactor and also to follow the code that travels through said data structure.
 
 
 # Refactoring
