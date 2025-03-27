@@ -108,7 +108,7 @@ CheckIfCardIDIsDarkPokemon::
 	jr c, .done
 	ld a, BANK(CardPointers)
 	call BankpushROM
-	ld de, $3a ; CARD_DATA_LENGTH?
+	ld de, CARD_DATA_DARK
 	add hl, de
 	ld l, [hl]
 	call BankpopROM

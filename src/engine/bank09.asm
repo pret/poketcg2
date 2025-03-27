@@ -1348,7 +1348,7 @@ SECTION "Bank 9@4e25", ROMX[$4e25], BANK[$9]
 ; given the deck index of a turn holder's card in register a,
 ; and a pointer in hl to the wLoadedCard* buffer where the card data is loaded,
 ; check if the card is Clefairy Doll or Mysterious Fossil, and, if so, convert it
-; to a Pokemon card in the wLoadedCard* buffer, using .trainer_to_pkmn_data_1.
+; to a Pokemon card in the wLoadedCard* buffer, using .trainer_to_pkmn_data.
 ConvertSpecialTrainerCardToPokemon::
 	ld c, a
 	ld a, [hl]
@@ -1375,13 +1375,17 @@ ConvertSpecialTrainerCardToPokemon::
 	ld a, d
 	cp HIGH(CLEFAIRY_DOLL)
 	ret nz
+
+	; in the case of Clefairy Doll, also overwrite
+	; the second attack with Mind Shock attack data
+	; in case Hypno's Pupper Master is in effect
 	bank1call CheckHypnoPuppetMaster
-	jr nc, .OverwriteCardData
+	jr nc, .OverwriteCardData ; no Puppet Master
 	call .OverwriteCardData
-	ld bc, $21
+	ld bc, CARD_DATA_ATTACK2
 	add hl, bc
-	ld c, $13
-	ld de, .trainer_to_pkmn_data_2
+	ld c, CARD_DATA_ATTACK2_ANIMATION - CARD_DATA_ATTACK2 + 1
+	ld de, .mind_shock_attack_data
 .loop_copy_1
 	ld a, [de]
 	inc de
@@ -1394,10 +1398,10 @@ ConvertSpecialTrainerCardToPokemon::
 	push hl
 	push de
 	ld [hl], TYPE_PKMN_COLORLESS
-	ld bc, $a ; CARD_DATA_HP
+	ld bc, CARD_DATA_HP
 	add hl, bc
-	ld de, .trainer_to_pkmn_data_1
-	ld c, $38 ; CARD_DATA_UNKNOWN2 - CARD_DATA_HP
+	ld de, .trainer_to_pkmn_data
+	ld c, CARD_DATA_UNKNOWN2 - CARD_DATA_HP + 1
 .loop_copy_2
 	ld a, [de]
 	inc de
@@ -1408,36 +1412,31 @@ ConvertSpecialTrainerCardToPokemon::
 	pop hl
 	ret
 
-.trainer_to_pkmn_data_1
-	db 10                 ; CARD_DATA_HP
-	ds $07                ; CARD_DATA_ATTACK1_NAME - (CARD_DATA_HP + 1)
+.trainer_to_pkmn_data
+	db CARD_DATA_HP
+	ds CARD_DATA_ATTACK1_NAME - (CARD_DATA_HP + 1)
 	tx Text0031 ; DiscardName ; CARD_DATA_ATTACK1_NAME
 	tx Text0042 ; DiscardDescription ; CARD_DATA_ATTACK1_DESCRIPTION
-	ds $03                ; CARD_DATA_ATTACK1_CATEGORY - (CARD_DATA_ATTACK1_DESCRIPTION + 2)
+	ds CARD_DATA_ATTACK1_CATEGORY - (CARD_DATA_ATTACK1_DESCRIPTION + 2)
 	db POKEMON_POWER      ; CARD_DATA_ATTACK1_CATEGORY
 	dw $4896; TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
-	ds $18                ; CARD_DATA_RETREAT_COST - (CARD_DATA_ATTACK1_EFFECT_COMMANDS + 2)
+	ds CARD_DATA_RETREAT_COST - (CARD_DATA_ATTACK1_EFFECT_COMMANDS + 2)
 	db UNABLE_RETREAT     ; CARD_DATA_RETREAT_COST
-	ds $0d                ; PKMN_CARD_DATA_LENGTH - (CARD_DATA_RETREAT_COST + 1)
+	ds PKMN_CARD_DATA_LENGTH - (CARD_DATA_RETREAT_COST + 1)
 
-.trainer_to_pkmn_data_2
-	db $00
-	db $00
-	db $00
-	db $00
-	tx Text01ce
-	tx Text01cf
-	db $00
-	db $00
-	db $1e
-	db $00
-	db $ab
-	db $50
-	db $00
-	db $00
-	db $00
-	db $00
-	db $00
+.mind_shock_attack_data
+	energy 0 ; energies
+	tx Text01ce ; name
+	tx Text01cf ; description
+	dw NONE ; description (cont)
+	db 30 ; damage
+	db DAMAGE_NORMAL ; category
+	dw $50ab ; effect commands
+	db NONE ; flags 1
+	db NONE ; flags 2
+	db NONE ; flags 3
+	db 0 ; ?
+	db ATK_ANIM_NONE ; animation
 ; 0x24ebf
 
 SECTION "Bank 9@4fe0", ROMX[$4fe0], BANK[$9]

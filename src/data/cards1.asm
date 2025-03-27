@@ -42,8 +42,8 @@ BulbasaurLv12Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 1 ; Pokedex number
-	db 0 ; ?
+	db DEX_BULBASAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
@@ -94,8 +94,8 @@ BulbasaurLv13Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 1 ; Pokedex number
-	db 0 ; ?
+	db DEX_BULBASAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
@@ -146,8 +146,8 @@ BulbasaurLv15Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 1 ; Pokedex number
-	db 0 ; ?
+	db DEX_BULBASAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.7 ; length
 	weight 6.9 ; weight
@@ -198,8 +198,8 @@ IvysaurLv20Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 2 ; Pokedex number
-	db 0 ; ?
+	db DEX_IVYSAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
@@ -250,8 +250,8 @@ IvysaurLv26Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 2 ; Pokedex number
-	db 0 ; ?
+	db DEX_IVYSAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 26 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
@@ -302,8 +302,8 @@ DarkIvysaurCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 2 ; Pokedex number
-	db 1 ; ?
+	db DEX_IVYSAUR ; Pokedex number
+	db TRUE ; is Dark
 	db 16 ; level
 	length 1.0 ; length
 	weight 13.0 ; weight
@@ -354,8 +354,8 @@ VenusaurLv64Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 3 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENUSAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 64 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
@@ -406,8 +406,8 @@ VenusaurLv67Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 3 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENUSAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 67 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
@@ -458,8 +458,8 @@ VenusaurAltLv67Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 3 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENUSAUR ; Pokedex number
+	db FALSE ; is Dark
 	db 67 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
@@ -510,8 +510,8 @@ DarkVenusaurCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1307 ; category
-	db 3 ; Pokedex number
-	db 1 ; ?
+	db DEX_VENUSAUR ; Pokedex number
+	db TRUE ; is Dark
 	db 37 ; level
 	length 2.0 ; length
 	weight 100.0 ; weight
@@ -562,8 +562,8 @@ CaterpieCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1330 ; category
-	db 10 ; Pokedex number
-	db 0 ; ?
+	db DEX_CATERPIE ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.3 ; length
 	weight 2.9 ; weight
@@ -614,8 +614,8 @@ MetapodLv20Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1337 ; category
-	db 11 ; Pokedex number
-	db 0 ; ?
+	db DEX_METAPOD ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.7 ; length
 	weight 9.9 ; weight
@@ -666,8 +666,8 @@ MetapodLv21Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1337 ; category
-	db 11 ; Pokedex number
-	db 0 ; ?
+	db DEX_METAPOD ; Pokedex number
+	db FALSE ; is Dark
 	db 21 ; level
 	length 0.7 ; length
 	weight 9.9 ; weight
@@ -718,8 +718,8 @@ ButterfreeCard:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text1340 ; category
-	db 12 ; Pokedex number
-	db 0 ; ?
+	db DEX_BUTTERFREE ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.1 ; length
 	weight 32.0 ; weight
@@ -770,8 +770,8 @@ WeedleLv12Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1345 ; category
-	db 13 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEDLE ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.3 ; length
 	weight 3.2 ; weight
@@ -822,8 +822,8 @@ WeedleLv15Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1345 ; category
-	db 13 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEDLE ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.3 ; length
 	weight 3.2 ; weight
@@ -874,8 +874,8 @@ KakunaLv20Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1337 ; category
-	db 14 ; Pokedex number
-	db 0 ; ?
+	db DEX_KAKUNA ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.6 ; length
 	weight 10.0 ; weight
@@ -926,8 +926,8 @@ KakunaLv23Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1337 ; category
-	db 14 ; Pokedex number
-	db 0 ; ?
+	db DEX_KAKUNA ; Pokedex number
+	db FALSE ; is Dark
 	db 23 ; level
 	length 0.6 ; length
 	weight 10.0 ; weight
@@ -978,8 +978,8 @@ BeedrillCard:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text1353 ; category
-	db 15 ; Pokedex number
-	db 0 ; ?
+	db DEX_BEEDRILL ; Pokedex number
+	db FALSE ; is Dark
 	db 32 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
@@ -1030,8 +1030,8 @@ EkansLv10Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1358 ; category
-	db 23 ; Pokedex number
-	db 0 ; ?
+	db DEX_EKANS ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 2.0 ; length
 	weight 6.9 ; weight
@@ -1082,8 +1082,8 @@ EkansLv15Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1358 ; category
-	db 23 ; Pokedex number
-	db 0 ; ?
+	db DEX_EKANS ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 2.0 ; length
 	weight 6.9 ; weight
@@ -1134,8 +1134,8 @@ ArbokLv27Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1361 ; category
-	db 24 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARBOK ; Pokedex number
+	db FALSE ; is Dark
 	db 27 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
@@ -1186,8 +1186,8 @@ ArbokLv30Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1361 ; category
-	db 24 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARBOK ; Pokedex number
+	db FALSE ; is Dark
 	db 30 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
@@ -1238,8 +1238,8 @@ DarkArbokCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1361 ; category
-	db 24 ; Pokedex number
-	db 1 ; ?
+	db DEX_ARBOK ; Pokedex number
+	db TRUE ; is Dark
 	db 25 ; level
 	length 3.5 ; length
 	weight 65.0 ; weight
@@ -1290,8 +1290,8 @@ NidoranfLv12Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 29 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORAN_F ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
@@ -1342,8 +1342,8 @@ NidoranfLv13Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 29 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORAN_F ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
@@ -1394,8 +1394,8 @@ NidorinaLv22Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 30 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORINA ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 0.8 ; length
 	weight 20.0 ; weight
@@ -1446,8 +1446,8 @@ NidorinaLv24Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 30 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORINA ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 0.8 ; length
 	weight 20.0 ; weight
@@ -1498,8 +1498,8 @@ NidoqueenCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1383 ; category
-	db 31 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDOQUEEN ; Pokedex number
+	db FALSE ; is Dark
 	db 43 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
@@ -1550,8 +1550,8 @@ NidoranmLv20Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 32 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORAN_M ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -1602,8 +1602,8 @@ NidoranmLv22Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 32 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORAN_M ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -1654,8 +1654,8 @@ NidorinoLv23Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 33 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORINO ; Pokedex number
+	db FALSE ; is Dark
 	db 23 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
@@ -1706,8 +1706,8 @@ NidorinoLv25Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1343 ; category
-	db 33 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDORINO ; Pokedex number
+	db FALSE ; is Dark
 	db 25 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
@@ -1758,8 +1758,8 @@ NidokingCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1383 ; category
-	db 34 ; Pokedex number
-	db 0 ; ?
+	db DEX_NIDOKING ; Pokedex number
+	db FALSE ; is Dark
 	db 48 ; level
 	length 1.4 ; length
 	weight 62.0 ; weight
@@ -1810,8 +1810,8 @@ ZubatLv9Card:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 41 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZUBAT ; Pokedex number
+	db FALSE ; is Dark
 	db 9 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
@@ -1862,8 +1862,8 @@ ZubatLv10Card:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 41 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZUBAT ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
@@ -1914,8 +1914,8 @@ ZubatLv12Card:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 41 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZUBAT ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.8 ; length
 	weight 7.5 ; weight
@@ -1966,8 +1966,8 @@ GolbatLv25Card:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 42 ; Pokedex number
-	db 0 ; ?
+	db DEX_GOLBAT ; Pokedex number
+	db FALSE ; is Dark
 	db 25 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
@@ -2018,8 +2018,8 @@ GolbatLv29Card:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 42 ; Pokedex number
-	db 0 ; ?
+	db DEX_GOLBAT ; Pokedex number
+	db FALSE ; is Dark
 	db 29 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
@@ -2070,8 +2070,8 @@ DarkGolbatCard:
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text139c ; category
-	db 42 ; Pokedex number
-	db 1 ; ?
+	db DEX_GOLBAT ; Pokedex number
+	db TRUE ; is Dark
 	db 25 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
@@ -2122,8 +2122,8 @@ OddishLv8Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13b3 ; category
-	db 43 ; Pokedex number
-	db 0 ; ?
+	db DEX_ODDISH ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.5 ; length
 	weight 5.4 ; weight
@@ -2174,8 +2174,8 @@ OddishLv21Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13b3 ; category
-	db 43 ; Pokedex number
-	db 0 ; ?
+	db DEX_ODDISH ; Pokedex number
+	db FALSE ; is Dark
 	db 21 ; level
 	length 0.5 ; length
 	weight 5.4 ; weight
@@ -2226,8 +2226,8 @@ GloomCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13b3 ; category
-	db 44 ; Pokedex number
-	db 0 ; ?
+	db DEX_GLOOM ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 0.8 ; length
 	weight 8.6 ; weight
@@ -2278,8 +2278,8 @@ DarkGloomCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13b3 ; category
-	db 44 ; Pokedex number
-	db 1 ; ?
+	db DEX_GLOOM ; Pokedex number
+	db TRUE ; is Dark
 	db 21 ; level
 	length 0.8 ; length
 	weight 8.6 ; weight
@@ -2330,8 +2330,8 @@ VileplumeCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13c5 ; category
-	db 45 ; Pokedex number
-	db 0 ; ?
+	db DEX_VILEPLUME ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.2 ; length
 	weight 18.6 ; weight
@@ -2382,8 +2382,8 @@ DarkVileplumeCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13c5 ; category
-	db 45 ; Pokedex number
-	db 1 ; ?
+	db DEX_VILEPLUME ; Pokedex number
+	db TRUE ; is Dark
 	db 29 ; level
 	length 1.2 ; length
 	weight 18.6 ; weight
@@ -2434,8 +2434,8 @@ ParasLv8Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13d0 ; category
-	db 46 ; Pokedex number
-	db 0 ; ?
+	db DEX_PARAS ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.3 ; length
 	weight 5.4 ; weight
@@ -2486,8 +2486,8 @@ ParasLv15Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13d0 ; category
-	db 46 ; Pokedex number
-	db 0 ; ?
+	db DEX_PARAS ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.3 ; length
 	weight 5.4 ; weight
@@ -2538,8 +2538,8 @@ ParasectLv28Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13d0 ; category
-	db 47 ; Pokedex number
-	db 0 ; ?
+	db DEX_PARASECT ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
@@ -2590,8 +2590,8 @@ ParasectLv29Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13d0 ; category
-	db 47 ; Pokedex number
-	db 0 ; ?
+	db DEX_PARASECT ; Pokedex number
+	db FALSE ; is Dark
 	db 29 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
@@ -2642,8 +2642,8 @@ VenonatLv12Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13db ; category
-	db 48 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENONAT ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
@@ -2694,8 +2694,8 @@ VenonatLv15Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13db ; category
-	db 48 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENONAT ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
@@ -2746,8 +2746,8 @@ VenomothLv22Card:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text13e6 ; category
-	db 49 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENOMOTH ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 1.5 ; length
 	weight 12.5 ; weight
@@ -2798,8 +2798,8 @@ VenomothLv28Card:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text13e6 ; category
-	db 49 ; Pokedex number
-	db 0 ; ?
+	db DEX_VENOMOTH ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.5 ; length
 	weight 12.5 ; weight
@@ -2850,8 +2850,8 @@ BellsproutLv10Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13c5 ; category
-	db 69 ; Pokedex number
-	db 0 ; ?
+	db DEX_BELLSPROUT ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.7 ; length
 	weight 4.0 ; weight
@@ -2902,8 +2902,8 @@ BellsproutLv11Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13c5 ; category
-	db 69 ; Pokedex number
-	db 0 ; ?
+	db DEX_BELLSPROUT ; Pokedex number
+	db FALSE ; is Dark
 	db 11 ; level
 	length 0.7 ; length
 	weight 4.0 ; weight
@@ -2954,8 +2954,8 @@ WeepinbellLv23Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13f8 ; category
-	db 70 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEPINBELL ; Pokedex number
+	db FALSE ; is Dark
 	db 23 ; level
 	length 1.0 ; length
 	weight 6.4 ; weight
@@ -3006,8 +3006,8 @@ WeepinbellLv28Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13f8 ; category
-	db 70 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEPINBELL ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 6.4 ; weight
@@ -3058,8 +3058,8 @@ VictreebelCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text13f8 ; category
-	db 71 ; Pokedex number
-	db 0 ; ?
+	db DEX_VICTREEBEL ; Pokedex number
+	db FALSE ; is Dark
 	db 42 ; level
 	length 1.7 ; length
 	weight 15.5 ; weight
@@ -3110,8 +3110,8 @@ GrimerLv10Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1405 ; category
-	db 88 ; Pokedex number
-	db 0 ; ?
+	db DEX_GRIMER ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.9 ; length
 	weight 30.0 ; weight
@@ -3162,8 +3162,8 @@ GrimerLv17Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1405 ; category
-	db 88 ; Pokedex number
-	db 0 ; ?
+	db DEX_GRIMER ; Pokedex number
+	db FALSE ; is Dark
 	db 17 ; level
 	length 0.9 ; length
 	weight 30.0 ; weight
@@ -3214,8 +3214,8 @@ MukCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1405 ; category
-	db 89 ; Pokedex number
-	db 0 ; ?
+	db DEX_MUK ; Pokedex number
+	db FALSE ; is Dark
 	db 34 ; level
 	length 1.2 ; length
 	weight 30.0 ; weight
@@ -3266,8 +3266,8 @@ DarkMukCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1405 ; category
-	db 89 ; Pokedex number
-	db 1 ; ?
+	db DEX_MUK ; Pokedex number
+	db TRUE ; is Dark
 	db 25 ; level
 	length 1.2 ; length
 	weight 30.0 ; weight
@@ -3318,8 +3318,8 @@ ExeggcuteCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1417 ; category
-	db 102 ; Pokedex number
-	db 0 ; ?
+	db DEX_EXEGGCUTE ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.4 ; length
 	weight 2.5 ; weight
@@ -3370,8 +3370,8 @@ ExeggutorCard:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text141e ; category
-	db 103 ; Pokedex number
-	db 0 ; ?
+	db DEX_EXEGGUTOR ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 2.0 ; length
 	weight 120.0 ; weight
@@ -3422,8 +3422,8 @@ KoffingLv12Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 109 ; Pokedex number
-	db 0 ; ?
+	db DEX_KOFFING ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
@@ -3474,8 +3474,8 @@ KoffingLv13Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 109 ; Pokedex number
-	db 0 ; ?
+	db DEX_KOFFING ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
@@ -3526,8 +3526,8 @@ KoffingLv14Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 109 ; Pokedex number
-	db 0 ; ?
+	db DEX_KOFFING ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.6 ; length
 	weight 1.0 ; weight
@@ -3578,8 +3578,8 @@ WeezingLv26Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 110 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEZING ; Pokedex number
+	db FALSE ; is Dark
 	db 26 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
@@ -3630,8 +3630,8 @@ WeezingLv27Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 110 ; Pokedex number
-	db 0 ; ?
+	db DEX_WEEZING ; Pokedex number
+	db FALSE ; is Dark
 	db 27 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
@@ -3682,8 +3682,8 @@ DarkWeezingCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1402 ; category
-	db 110 ; Pokedex number
-	db 1 ; ?
+	db DEX_WEEZING ; Pokedex number
+	db TRUE ; is Dark
 	db 24 ; level
 	length 1.2 ; length
 	weight 9.5 ; weight
@@ -3734,8 +3734,8 @@ TangelaLv8Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text143a ; category
-	db 114 ; Pokedex number
-	db 0 ; ?
+	db DEX_TANGELA ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
@@ -3786,8 +3786,8 @@ TangelaLv12Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text143a ; category
-	db 114 ; Pokedex number
-	db 0 ; ?
+	db DEX_TANGELA ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
@@ -3838,8 +3838,8 @@ ScytherLv23Card:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text1441 ; category
-	db 123 ; Pokedex number
-	db 0 ; ?
+	db DEX_SCYTHER ; Pokedex number
+	db FALSE ; is Dark
 	db 23 ; level
 	length 1.5 ; length
 	weight 56.0 ; weight
@@ -3890,8 +3890,8 @@ ScytherLv25Card:
 	db WR_FIRE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text1441 ; category
-	db 123 ; Pokedex number
-	db 0 ; ?
+	db DEX_SCYTHER ; Pokedex number
+	db FALSE ; is Dark
 	db 25 ; level
 	length 1.5 ; length
 	weight 56.0 ; weight
@@ -3942,8 +3942,8 @@ PinsirLv15Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1449 ; category
-	db 127 ; Pokedex number
-	db 0 ; ?
+	db DEX_PINSIR ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 1.5 ; length
 	weight 55.0 ; weight
@@ -3994,8 +3994,8 @@ PinsirLv24Card:
 	db WR_FIRE ; weakness
 	db NONE ; resistance
 	tx Text1449 ; category
-	db 127 ; Pokedex number
-	db 0 ; ?
+	db DEX_PINSIR ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 1.5 ; length
 	weight 55.0 ; weight
@@ -4046,8 +4046,8 @@ CharmanderLv9Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1452 ; category
-	db 4 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARMANDER ; Pokedex number
+	db FALSE ; is Dark
 	db 9 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
@@ -4098,8 +4098,8 @@ CharmanderLv10Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1452 ; category
-	db 4 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARMANDER ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
@@ -4150,8 +4150,8 @@ CharmanderLv12Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1452 ; category
-	db 4 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARMANDER ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.6 ; length
 	weight 8.5 ; weight
@@ -4202,8 +4202,8 @@ CharmeleonCard:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text145c ; category
-	db 5 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARMELEON ; Pokedex number
+	db FALSE ; is Dark
 	db 32 ; level
 	length 1.1 ; length
 	weight 19.0 ; weight
@@ -4254,8 +4254,8 @@ DarkCharmeleonCard:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text145c ; category
-	db 5 ; Pokedex number
-	db 1 ; ?
+	db DEX_CHARMELEON ; Pokedex number
+	db TRUE ; is Dark
 	db 23 ; level
 	length 1.1 ; length
 	weight 19.0 ; weight
@@ -4306,8 +4306,8 @@ CharizardLv76Card:
 	db WR_WATER ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 6 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARIZARD ; Pokedex number
+	db FALSE ; is Dark
 	db 76 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
@@ -4358,8 +4358,8 @@ CharizardAltLv76Card:
 	db WR_WATER ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 6 ; Pokedex number
-	db 0 ; ?
+	db DEX_CHARIZARD ; Pokedex number
+	db FALSE ; is Dark
 	db 76 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
@@ -4410,8 +4410,8 @@ DarkCharizardCard:
 	db WR_WATER ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 6 ; Pokedex number
-	db 1 ; ?
+	db DEX_CHARIZARD ; Pokedex number
+	db TRUE ; is Dark
 	db 38 ; level
 	length 1.7 ; length
 	weight 90.5 ; weight
@@ -4462,8 +4462,8 @@ VulpixLv11Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1471 ; category
-	db 37 ; Pokedex number
-	db 0 ; ?
+	db DEX_VULPIX ; Pokedex number
+	db FALSE ; is Dark
 	db 11 ; level
 	length 0.6 ; length
 	weight 9.9 ; weight
@@ -4514,8 +4514,8 @@ VulpixLv13Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1471 ; category
-	db 37 ; Pokedex number
-	db 0 ; ?
+	db DEX_VULPIX ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.6 ; length
 	weight 9.9 ; weight
@@ -4566,8 +4566,8 @@ NinetalesLv32Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1471 ; category
-	db 38 ; Pokedex number
-	db 0 ; ?
+	db DEX_NINETALES ; Pokedex number
+	db FALSE ; is Dark
 	db 32 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
@@ -4618,8 +4618,8 @@ NinetalesLv35Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1471 ; category
-	db 38 ; Pokedex number
-	db 0 ; ?
+	db DEX_NINETALES ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
@@ -4670,8 +4670,8 @@ DarkNinetalesCard:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1471 ; category
-	db 38 ; Pokedex number
-	db 1 ; ?
+	db DEX_NINETALES ; Pokedex number
+	db TRUE ; is Dark
 	db 28 ; level
 	length 1.1 ; length
 	weight 19.9 ; weight
@@ -4722,8 +4722,8 @@ GrowlitheLv12Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1487 ; category
-	db 58 ; Pokedex number
-	db 0 ; ?
+	db DEX_GROWLITHE ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
@@ -4774,8 +4774,8 @@ GrowlitheLv16Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1487 ; category
-	db 58 ; Pokedex number
-	db 0 ; ?
+	db DEX_GROWLITHE ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
@@ -4826,8 +4826,8 @@ GrowlitheLv18Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1487 ; category
-	db 58 ; Pokedex number
-	db 0 ; ?
+	db DEX_GROWLITHE ; Pokedex number
+	db FALSE ; is Dark
 	db 18 ; level
 	length 0.7 ; length
 	weight 19.0 ; weight
@@ -4878,8 +4878,8 @@ ArcanineLv34Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1494 ; category
-	db 59 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARCANINE ; Pokedex number
+	db FALSE ; is Dark
 	db 34 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
@@ -4930,8 +4930,8 @@ ArcanineLv35Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1494 ; category
-	db 59 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARCANINE ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
@@ -4982,8 +4982,8 @@ ArcanineLv45Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text1494 ; category
-	db 59 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARCANINE ; Pokedex number
+	db FALSE ; is Dark
 	db 45 ; level
 	length 1.9 ; length
 	weight 155.0 ; weight
@@ -5034,8 +5034,8 @@ PonytaLv8Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 77 ; Pokedex number
-	db 0 ; ?
+	db DEX_PONYTA ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
@@ -5086,8 +5086,8 @@ PonytaLv10Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 77 ; Pokedex number
-	db 0 ; ?
+	db DEX_PONYTA ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
@@ -5138,8 +5138,8 @@ PonytaLv15Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 77 ; Pokedex number
-	db 0 ; ?
+	db DEX_PONYTA ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 1.0 ; length
 	weight 30.0 ; weight
@@ -5190,8 +5190,8 @@ RapidashLv30Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 78 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAPIDASH ; Pokedex number
+	db FALSE ; is Dark
 	db 30 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
@@ -5242,8 +5242,8 @@ RapidashLv33Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 78 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAPIDASH ; Pokedex number
+	db FALSE ; is Dark
 	db 33 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
@@ -5294,8 +5294,8 @@ DarkRapidashCard:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text149f ; category
-	db 78 ; Pokedex number
-	db 1 ; ?
+	db DEX_RAPIDASH ; Pokedex number
+	db TRUE ; is Dark
 	db 24 ; level
 	length 1.7 ; length
 	weight 95.0 ; weight
@@ -5346,8 +5346,8 @@ MagmarLv18Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text14b5 ; category
-	db 126 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGMAR ; Pokedex number
+	db FALSE ; is Dark
 	db 18 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
@@ -5398,8 +5398,8 @@ MagmarLv24Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text14b5 ; category
-	db 126 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGMAR ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
@@ -5450,8 +5450,8 @@ MagmarLv27Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text14b5 ; category
-	db 126 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGMAR ; Pokedex number
+	db FALSE ; is Dark
 	db 27 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
@@ -5502,8 +5502,8 @@ MagmarLv31Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text14b5 ; category
-	db 126 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGMAR ; Pokedex number
+	db FALSE ; is Dark
 	db 31 ; level
 	length 1.3 ; length
 	weight 44.5 ; weight
@@ -5554,8 +5554,8 @@ FlareonLv22Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text148d ; category
-	db 136 ; Pokedex number
-	db 0 ; ?
+	db DEX_FLAREON ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
@@ -5606,8 +5606,8 @@ FlareonLv28Card:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text148d ; category
-	db 136 ; Pokedex number
-	db 0 ; ?
+	db DEX_FLAREON ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
@@ -5658,8 +5658,8 @@ DarkFlareonCard:
 	db WR_WATER ; weakness
 	db NONE ; resistance
 	tx Text148d ; category
-	db 136 ; Pokedex number
-	db 1 ; ?
+	db DEX_FLAREON ; Pokedex number
+	db TRUE ; is Dark
 	db 23 ; level
 	length 0.9 ; length
 	weight 25.0 ; weight
@@ -5710,8 +5710,8 @@ MoltresLv35Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 146 ; Pokedex number
-	db 0 ; ?
+	db DEX_MOLTRES ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
@@ -5762,8 +5762,8 @@ MoltresLv37Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 146 ; Pokedex number
-	db 0 ; ?
+	db DEX_MOLTRES ; Pokedex number
+	db FALSE ; is Dark
 	db 37 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
@@ -5814,8 +5814,8 @@ MoltresLv40Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text145c ; category
-	db 146 ; Pokedex number
-	db 0 ; ?
+	db DEX_MOLTRES ; Pokedex number
+	db FALSE ; is Dark
 	db 40 ; level
 	length 2.0 ; length
 	weight 60.0 ; weight
@@ -5866,8 +5866,8 @@ SquirtleLv8Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14d8 ; category
-	db 7 ; Pokedex number
-	db 0 ; ?
+	db DEX_SQUIRTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -5918,8 +5918,8 @@ SquirtleLv14Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14d8 ; category
-	db 7 ; Pokedex number
-	db 0 ; ?
+	db DEX_SQUIRTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -5970,8 +5970,8 @@ SquirtleLv15Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14d8 ; category
-	db 7 ; Pokedex number
-	db 0 ; ?
+	db DEX_SQUIRTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -6022,8 +6022,8 @@ SquirtleLv16Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14d8 ; category
-	db 7 ; Pokedex number
-	db 0 ; ?
+	db DEX_SQUIRTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
@@ -6074,8 +6074,8 @@ WartortleLv22Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14e3 ; category
-	db 8 ; Pokedex number
-	db 0 ; ?
+	db DEX_WARTORTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
@@ -6126,8 +6126,8 @@ WartortleLv24Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14e3 ; category
-	db 8 ; Pokedex number
-	db 0 ; ?
+	db DEX_WARTORTLE ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
@@ -6178,8 +6178,8 @@ DarkWartortleCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14e3 ; category
-	db 8 ; Pokedex number
-	db 1 ; ?
+	db DEX_WARTORTLE ; Pokedex number
+	db TRUE ; is Dark
 	db 21 ; level
 	length 1.0 ; length
 	weight 22.5 ; weight
@@ -6230,8 +6230,8 @@ BlastoiseLv52Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14f2 ; category
-	db 9 ; Pokedex number
-	db 0 ; ?
+	db DEX_BLASTOISE ; Pokedex number
+	db FALSE ; is Dark
 	db 52 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
@@ -6282,8 +6282,8 @@ BlastoiseAltLv52Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14f2 ; category
-	db 9 ; Pokedex number
-	db 0 ; ?
+	db DEX_BLASTOISE ; Pokedex number
+	db FALSE ; is Dark
 	db 52 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
@@ -6334,8 +6334,8 @@ DarkBlastoiseCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14f2 ; category
-	db 9 ; Pokedex number
-	db 1 ; ?
+	db DEX_BLASTOISE ; Pokedex number
+	db TRUE ; is Dark
 	db 28 ; level
 	length 1.6 ; length
 	weight 85.5 ; weight
@@ -6386,8 +6386,8 @@ PsyduckLv15Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14fe ; category
-	db 54 ; Pokedex number
-	db 0 ; ?
+	db DEX_PSYDUCK ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.8 ; length
 	weight 19.6 ; weight
@@ -6438,8 +6438,8 @@ PsyduckLv16Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14fe ; category
-	db 54 ; Pokedex number
-	db 0 ; ?
+	db DEX_PSYDUCK ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.8 ; length
 	weight 19.6 ; weight
@@ -6490,8 +6490,8 @@ GolduckLv27Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14fe ; category
-	db 55 ; Pokedex number
-	db 0 ; ?
+	db DEX_GOLDUCK ; Pokedex number
+	db FALSE ; is Dark
 	db 27 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
@@ -6542,8 +6542,8 @@ GolduckLv28Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14fe ; category
-	db 55 ; Pokedex number
-	db 0 ; ?
+	db DEX_GOLDUCK ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
@@ -6594,8 +6594,8 @@ DarkGolduckCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text14fe ; category
-	db 55 ; Pokedex number
-	db 1 ; ?
+	db DEX_GOLDUCK ; Pokedex number
+	db TRUE ; is Dark
 	db 23 ; level
 	length 1.7 ; length
 	weight 76.6 ; weight
@@ -6646,8 +6646,8 @@ PoliwagLv13Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 60 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWAG ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.6 ; length
 	weight 12.4 ; weight
@@ -6698,8 +6698,8 @@ PoliwagLv15Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 60 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWAG ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.6 ; length
 	weight 12.4 ; weight
@@ -6750,8 +6750,8 @@ PoliwhirlLv28Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 61 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWHIRL ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 20.0 ; weight
@@ -6802,8 +6802,8 @@ PoliwhirlLv30Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 61 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWHIRL ; Pokedex number
+	db FALSE ; is Dark
 	db 30 ; level
 	length 1.0 ; length
 	weight 20.0 ; weight
@@ -6854,8 +6854,8 @@ PoliwrathLv40Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 62 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWRATH ; Pokedex number
+	db FALSE ; is Dark
 	db 40 ; level
 	length 1.3 ; length
 	weight 54.0 ; weight
@@ -6906,8 +6906,8 @@ PoliwrathLv48Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text1514 ; category
-	db 62 ; Pokedex number
-	db 0 ; ?
+	db DEX_POLIWRATH ; Pokedex number
+	db FALSE ; is Dark
 	db 48 ; level
 	length 1.3 ; length
 	weight 54.0 ; weight
@@ -6958,8 +6958,8 @@ TentacoolCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1526 ; category
-	db 72 ; Pokedex number
-	db 0 ; ?
+	db DEX_TENTACOOL ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.9 ; length
 	weight 45.5 ; weight
@@ -7010,8 +7010,8 @@ TentacruelCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1526 ; category
-	db 73 ; Pokedex number
-	db 0 ; ?
+	db DEX_TENTACRUEL ; Pokedex number
+	db FALSE ; is Dark
 	db 21 ; level
 	length 1.6 ; length
 	weight 55.0 ; weight
@@ -7062,8 +7062,8 @@ SeelLv10Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text152e ; category
-	db 86 ; Pokedex number
-	db 0 ; ?
+	db DEX_SEEL ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 1.1 ; length
 	weight 90.0 ; weight
@@ -7114,8 +7114,8 @@ SeelLv12Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text152e ; category
-	db 86 ; Pokedex number
-	db 0 ; ?
+	db DEX_SEEL ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 1.1 ; length
 	weight 90.0 ; weight
@@ -7166,8 +7166,8 @@ DewgongLv24Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text152e ; category
-	db 87 ; Pokedex number
-	db 0 ; ?
+	db DEX_DEWGONG ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 1.7 ; length
 	weight 120.0 ; weight
@@ -7218,8 +7218,8 @@ DewgongLv42Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text152e ; category
-	db 87 ; Pokedex number
-	db 0 ; ?
+	db DEX_DEWGONG ; Pokedex number
+	db FALSE ; is Dark
 	db 42 ; level
 	length 1.7 ; length
 	weight 120.0 ; weight
@@ -7270,8 +7270,8 @@ ShellderLv8Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text153b ; category
-	db 90 ; Pokedex number
-	db 0 ; ?
+	db DEX_SHELLDER ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.3 ; length
 	weight 4.0 ; weight
@@ -7322,8 +7322,8 @@ ShellderLv16Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text153b ; category
-	db 90 ; Pokedex number
-	db 0 ; ?
+	db DEX_SHELLDER ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.3 ; length
 	weight 4.0 ; weight
@@ -7374,8 +7374,8 @@ CloysterCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text153b ; category
-	db 91 ; Pokedex number
-	db 0 ; ?
+	db DEX_CLOYSTER ; Pokedex number
+	db FALSE ; is Dark
 	db 25 ; level
 	length 1.5 ; length
 	weight 132.5 ; weight
@@ -7426,8 +7426,8 @@ KrabbyLv17Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1547 ; category
-	db 98 ; Pokedex number
-	db 0 ; ?
+	db DEX_KRABBY ; Pokedex number
+	db FALSE ; is Dark
 	db 17 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
@@ -7478,8 +7478,8 @@ KrabbyLv20Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1547 ; category
-	db 98 ; Pokedex number
-	db 0 ; ?
+	db DEX_KRABBY ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
@@ -7530,8 +7530,8 @@ KinglerLv27Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1550 ; category
-	db 99 ; Pokedex number
-	db 0 ; ?
+	db DEX_KINGLER ; Pokedex number
+	db FALSE ; is Dark
 	db 27 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
@@ -7582,8 +7582,8 @@ KinglerLv33Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1550 ; category
-	db 99 ; Pokedex number
-	db 0 ; ?
+	db DEX_KINGLER ; Pokedex number
+	db FALSE ; is Dark
 	db 33 ; level
 	length 1.3 ; length
 	weight 60.0 ; weight
@@ -7634,8 +7634,8 @@ HorseaLv19Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1558 ; category
-	db 116 ; Pokedex number
-	db 0 ; ?
+	db DEX_HORSEA ; Pokedex number
+	db FALSE ; is Dark
 	db 19 ; level
 	length 0.4 ; length
 	weight 8.0 ; weight
@@ -7686,8 +7686,8 @@ HorseaLv20Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1558 ; category
-	db 116 ; Pokedex number
-	db 0 ; ?
+	db DEX_HORSEA ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.4 ; length
 	weight 8.0 ; weight
@@ -7738,8 +7738,8 @@ SeadraLv23Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1558 ; category
-	db 117 ; Pokedex number
-	db 0 ; ?
+	db DEX_SEADRA ; Pokedex number
+	db FALSE ; is Dark
 	db 23 ; level
 	length 1.2 ; length
 	weight 25.0 ; weight
@@ -7790,8 +7790,8 @@ SeadraLv26Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1558 ; category
-	db 117 ; Pokedex number
-	db 0 ; ?
+	db DEX_SEADRA ; Pokedex number
+	db FALSE ; is Dark
 	db 26 ; level
 	length 1.2 ; length
 	weight 25.0 ; weight
@@ -7842,8 +7842,8 @@ GoldeenCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1565 ; category
-	db 118 ; Pokedex number
-	db 0 ; ?
+	db DEX_GOLDEEN ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.6 ; length
 	weight 15.0 ; weight
@@ -7894,8 +7894,8 @@ SeakingCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1565 ; category
-	db 119 ; Pokedex number
-	db 0 ; ?
+	db DEX_SEAKING ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.3 ; length
 	weight 39.0 ; weight
@@ -7946,8 +7946,8 @@ StaryuLv15Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text156c ; category
-	db 120 ; Pokedex number
-	db 0 ; ?
+	db DEX_STARYU ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.8 ; length
 	weight 34.5 ; weight
@@ -7998,8 +7998,8 @@ StaryuLv17Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text156c ; category
-	db 120 ; Pokedex number
-	db 0 ; ?
+	db DEX_STARYU ; Pokedex number
+	db FALSE ; is Dark
 	db 17 ; level
 	length 0.8 ; length
 	weight 34.5 ; weight
@@ -8050,8 +8050,8 @@ StarmieCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1576 ; category
-	db 121 ; Pokedex number
-	db 0 ; ?
+	db DEX_STARMIE ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.1 ; length
 	weight 80.0 ; weight
@@ -8102,8 +8102,8 @@ DarkStarmieCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1576 ; category
-	db 121 ; Pokedex number
-	db 1 ; ?
+	db DEX_STARMIE ; Pokedex number
+	db TRUE ; is Dark
 	db 27 ; level
 	length 1.1 ; length
 	weight 80.0 ; weight
@@ -8154,8 +8154,8 @@ MagikarpLv6Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1583 ; category
-	db 129 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGIKARP ; Pokedex number
+	db FALSE ; is Dark
 	db 6 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
@@ -8206,8 +8206,8 @@ MagikarpLv8Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1583 ; category
-	db 129 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGIKARP ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
@@ -8258,8 +8258,8 @@ MagikarpLv10Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1583 ; category
-	db 129 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGIKARP ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.9 ; length
 	weight 10.0 ; weight
@@ -8310,8 +8310,8 @@ GyaradosCard:
 	db WR_GRASS ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text158d ; category
-	db 130 ; Pokedex number
-	db 0 ; ?
+	db DEX_GYARADOS ; Pokedex number
+	db FALSE ; is Dark
 	db 41 ; level
 	length 6.5 ; length
 	weight 235.0 ; weight
@@ -8362,8 +8362,8 @@ DarkGyaradosCard:
 	db WR_GRASS ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text158d ; category
-	db 130 ; Pokedex number
-	db 1 ; ?
+	db DEX_GYARADOS ; Pokedex number
+	db TRUE ; is Dark
 	db 31 ; level
 	length 6.5 ; length
 	weight 235.0 ; weight
@@ -8414,8 +8414,8 @@ LaprasLv24Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1597 ; category
-	db 131 ; Pokedex number
-	db 0 ; ?
+	db DEX_LAPRAS ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 2.5 ; length
 	weight 220.0 ; weight
@@ -8466,8 +8466,8 @@ LaprasLv31Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text1597 ; category
-	db 131 ; Pokedex number
-	db 0 ; ?
+	db DEX_LAPRAS ; Pokedex number
+	db FALSE ; is Dark
 	db 31 ; level
 	length 2.5 ; length
 	weight 220.0 ; weight
@@ -8518,8 +8518,8 @@ VaporeonLv29Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text159c ; category
-	db 134 ; Pokedex number
-	db 0 ; ?
+	db DEX_VAPOREON ; Pokedex number
+	db FALSE ; is Dark
 	db 29 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
@@ -8570,8 +8570,8 @@ VaporeonLv42Card:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text159c ; category
-	db 134 ; Pokedex number
-	db 0 ; ?
+	db DEX_VAPOREON ; Pokedex number
+	db FALSE ; is Dark
 	db 42 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
@@ -8622,8 +8622,8 @@ DarkVaporeonCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text159c ; category
-	db 134 ; Pokedex number
-	db 1 ; ?
+	db DEX_VAPOREON ; Pokedex number
+	db TRUE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 29.0 ; weight
@@ -8674,8 +8674,8 @@ OmanyteLv19Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text15a6 ; category
-	db 138 ; Pokedex number
-	db 0 ; ?
+	db DEX_OMANYTE ; Pokedex number
+	db FALSE ; is Dark
 	db 19 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
@@ -8726,8 +8726,8 @@ OmanyteLv20Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text15a6 ; category
-	db 138 ; Pokedex number
-	db 0 ; ?
+	db DEX_OMANYTE ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
@@ -8778,8 +8778,8 @@ OmanyteLv22Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text15a6 ; category
-	db 138 ; Pokedex number
-	db 0 ; ?
+	db DEX_OMANYTE ; Pokedex number
+	db FALSE ; is Dark
 	db 22 ; level
 	length 0.4 ; length
 	weight 7.5 ; weight
@@ -8830,8 +8830,8 @@ OmastarLv32Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text15a6 ; category
-	db 139 ; Pokedex number
-	db 0 ; ?
+	db DEX_OMASTAR ; Pokedex number
+	db FALSE ; is Dark
 	db 32 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
@@ -8882,8 +8882,8 @@ OmastarLv36Card:
 	db WR_GRASS ; weakness
 	db NONE ; resistance
 	tx Text15a6 ; category
-	db 139 ; Pokedex number
-	db 0 ; ?
+	db DEX_OMASTAR ; Pokedex number
+	db FALSE ; is Dark
 	db 36 ; level
 	length 1.0 ; length
 	weight 35.0 ; weight
@@ -8934,8 +8934,8 @@ ArticunoLv34Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15b9 ; category
-	db 144 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARTICUNO ; Pokedex number
+	db FALSE ; is Dark
 	db 34 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
@@ -8986,8 +8986,8 @@ ArticunoLv35Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15b9 ; category
-	db 144 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARTICUNO ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
@@ -9038,8 +9038,8 @@ ArticunoLv37Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15b9 ; category
-	db 144 ; Pokedex number
-	db 0 ; ?
+	db DEX_ARTICUNO ; Pokedex number
+	db FALSE ; is Dark
 	db 37 ; level
 	length 1.7 ; length
 	weight 55.4 ; weight
@@ -9090,8 +9090,8 @@ MarillCard:
 	db WR_LIGHTNING ; weakness
 	db NONE ; resistance
 	tx Text15c5 ; category
-	db 183 ; Pokedex number
-	db 0 ; ?
+	db DEX_MARILL ; Pokedex number
+	db FALSE ; is Dark
 	db 17 ; level
 	length 0.4 ; length
 	weight 8.5 ; weight
@@ -9142,8 +9142,8 @@ PikachuLv5Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 5 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9194,8 +9194,8 @@ PikachuLv12Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9246,8 +9246,8 @@ PikachuLv13Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9298,8 +9298,8 @@ PikachuLv14Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9350,8 +9350,8 @@ PikachuLv16Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9402,8 +9402,8 @@ PikachuAltLv16Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9454,8 +9454,8 @@ FlyingPikachuLv12Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9506,8 +9506,8 @@ FlyingPikachuAltLv12Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9558,8 +9558,8 @@ SurfingPikachuLv13Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9610,8 +9610,8 @@ SurfingPikachuAltLv13Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 25 ; Pokedex number
-	db 0 ; ?
+	db DEX_PIKACHU ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.0 ; weight
@@ -9662,8 +9662,8 @@ RaichuLv32Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 26 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAICHU ; Pokedex number
+	db FALSE ; is Dark
 	db 32 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
@@ -9714,8 +9714,8 @@ RaichuLv33Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 26 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAICHU ; Pokedex number
+	db FALSE ; is Dark
 	db 33 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
@@ -9766,8 +9766,8 @@ RaichuLv40Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 26 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAICHU ; Pokedex number
+	db FALSE ; is Dark
 	db 40 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
@@ -9818,8 +9818,8 @@ RaichuLv45Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 26 ; Pokedex number
-	db 0 ; ?
+	db DEX_RAICHU ; Pokedex number
+	db FALSE ; is Dark
 	db 45 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
@@ -9870,8 +9870,8 @@ DarkRaichuCard:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15c9 ; category
-	db 26 ; Pokedex number
-	db 1 ; ?
+	db DEX_RAICHU ; Pokedex number
+	db TRUE ; is Dark
 	db 31 ; level
 	length 0.8 ; length
 	weight 30.0 ; weight
@@ -9922,8 +9922,8 @@ MagnemiteLv12Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 81 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNEMITE ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
@@ -9974,8 +9974,8 @@ MagnemiteLv13Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 81 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNEMITE ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
@@ -10026,8 +10026,8 @@ MagnemiteLv14Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 81 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNEMITE ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
@@ -10078,8 +10078,8 @@ MagnemiteLv15Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 81 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNEMITE ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.3 ; length
 	weight 6.0 ; weight
@@ -10130,8 +10130,8 @@ MagnetonLv28Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 82 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNETON ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
@@ -10182,8 +10182,8 @@ MagnetonLv30Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 82 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNETON ; Pokedex number
+	db FALSE ; is Dark
 	db 30 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
@@ -10234,8 +10234,8 @@ MagnetonLv35Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 82 ; Pokedex number
-	db 0 ; ?
+	db DEX_MAGNETON ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
@@ -10286,8 +10286,8 @@ DarkMagnetonCard:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15f1 ; category
-	db 82 ; Pokedex number
-	db 1 ; ?
+	db DEX_MAGNETON ; Pokedex number
+	db TRUE ; is Dark
 	db 26 ; level
 	length 1.0 ; length
 	weight 60.0 ; weight
@@ -10338,8 +10338,8 @@ VoltorbLv8Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 100 ; Pokedex number
-	db 0 ; ?
+	db DEX_VOLTORB ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
@@ -10390,8 +10390,8 @@ VoltorbLv10Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 100 ; Pokedex number
-	db 0 ; ?
+	db DEX_VOLTORB ; Pokedex number
+	db FALSE ; is Dark
 	db 10 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
@@ -10442,8 +10442,8 @@ VoltorbLv13Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 100 ; Pokedex number
-	db 0 ; ?
+	db DEX_VOLTORB ; Pokedex number
+	db FALSE ; is Dark
 	db 13 ; level
 	length 0.5 ; length
 	weight 10.4 ; weight
@@ -10494,8 +10494,8 @@ ElectrodeLv35Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 101 ; Pokedex number
-	db 0 ; ?
+	db DEX_ELECTRODE ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
@@ -10546,8 +10546,8 @@ ElectrodeLv42Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 101 ; Pokedex number
-	db 0 ; ?
+	db DEX_ELECTRODE ; Pokedex number
+	db FALSE ; is Dark
 	db 42 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
@@ -10598,8 +10598,8 @@ DarkElectrodeCard:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text160f ; category
-	db 101 ; Pokedex number
-	db 1 ; ?
+	db DEX_ELECTRODE ; Pokedex number
+	db TRUE ; is Dark
 	db 24 ; level
 	length 1.2 ; length
 	weight 66.6 ; weight
@@ -10650,8 +10650,8 @@ ElectabuzzLv20Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15cc ; category
-	db 125 ; Pokedex number
-	db 0 ; ?
+	db DEX_ELECTABUZZ ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
@@ -10702,8 +10702,8 @@ ElectabuzzLv30Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15cc ; category
-	db 125 ; Pokedex number
-	db 0 ; ?
+	db DEX_ELECTABUZZ ; Pokedex number
+	db FALSE ; is Dark
 	db 30 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
@@ -10754,8 +10754,8 @@ ElectabuzzLv35Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15cc ; category
-	db 125 ; Pokedex number
-	db 0 ; ?
+	db DEX_ELECTABUZZ ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
@@ -10806,8 +10806,8 @@ JolteonLv24Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15e5 ; category
-	db 135 ; Pokedex number
-	db 0 ; ?
+	db DEX_JOLTEON ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
@@ -10858,8 +10858,8 @@ JolteonLv29Card:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15e5 ; category
-	db 135 ; Pokedex number
-	db 0 ; ?
+	db DEX_JOLTEON ; Pokedex number
+	db FALSE ; is Dark
 	db 29 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
@@ -10910,8 +10910,8 @@ DarkJolteonCard:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx Text15e5 ; category
-	db 135 ; Pokedex number
-	db 1 ; ?
+	db DEX_JOLTEON ; Pokedex number
+	db TRUE ; is Dark
 	db 23 ; level
 	length 0.8 ; length
 	weight 24.5 ; weight
@@ -10962,8 +10962,8 @@ ZapdosLv28Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15cc ; category
-	db 145 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZAPDOS ; Pokedex number
+	db FALSE ; is Dark
 	db 28 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
@@ -11014,8 +11014,8 @@ ZapdosLv40Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15cc ; category
-	db 145 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZAPDOS ; Pokedex number
+	db FALSE ; is Dark
 	db 40 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
@@ -11066,8 +11066,8 @@ ZapdosLv64Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15cc ; category
-	db 145 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZAPDOS ; Pokedex number
+	db FALSE ; is Dark
 	db 64 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
@@ -11118,8 +11118,8 @@ ZapdosLv68Card:
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
 	tx Text15cc ; category
-	db 145 ; Pokedex number
-	db 0 ; ?
+	db DEX_ZAPDOS ; Pokedex number
+	db FALSE ; is Dark
 	db 68 ; level
 	length 1.6 ; length
 	weight 52.6 ; weight
@@ -11170,8 +11170,8 @@ SandshrewLv12Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text15c9 ; category
-	db 27 ; Pokedex number
-	db 0 ; ?
+	db DEX_SANDSHREW ; Pokedex number
+	db FALSE ; is Dark
 	db 12 ; level
 	length 0.6 ; length
 	weight 12.0 ; weight
@@ -11222,8 +11222,8 @@ SandshrewLv15Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text15c9 ; category
-	db 27 ; Pokedex number
-	db 0 ; ?
+	db DEX_SANDSHREW ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.6 ; length
 	weight 12.0 ; weight
@@ -11274,8 +11274,8 @@ SandslashLv33Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text15c9 ; category
-	db 28 ; Pokedex number
-	db 0 ; ?
+	db DEX_SANDSLASH ; Pokedex number
+	db FALSE ; is Dark
 	db 33 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
@@ -11326,8 +11326,8 @@ SandslashLv35Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text15c9 ; category
-	db 28 ; Pokedex number
-	db 0 ; ?
+	db DEX_SANDSLASH ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.0 ; length
 	weight 29.5 ; weight
@@ -11378,8 +11378,8 @@ DiglettLv8Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 50 ; Pokedex number
-	db 0 ; ?
+	db DEX_DIGLETT ; Pokedex number
+	db FALSE ; is Dark
 	db 8 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
@@ -11430,8 +11430,8 @@ DiglettLv15Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 50 ; Pokedex number
-	db 0 ; ?
+	db DEX_DIGLETT ; Pokedex number
+	db FALSE ; is Dark
 	db 15 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
@@ -11482,8 +11482,8 @@ DiglettLv16Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 50 ; Pokedex number
-	db 0 ; ?
+	db DEX_DIGLETT ; Pokedex number
+	db FALSE ; is Dark
 	db 16 ; level
 	length 0.2 ; length
 	weight 0.8 ; weight
@@ -11534,8 +11534,8 @@ DugtrioLv36Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 51 ; Pokedex number
-	db 0 ; ?
+	db DEX_DUGTRIO ; Pokedex number
+	db FALSE ; is Dark
 	db 36 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
@@ -11586,8 +11586,8 @@ DugtrioLv40Card:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 51 ; Pokedex number
-	db 0 ; ?
+	db DEX_DUGTRIO ; Pokedex number
+	db FALSE ; is Dark
 	db 40 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
@@ -11638,8 +11638,8 @@ DarkDugtrioCard:
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
 	tx Text1655 ; category
-	db 51 ; Pokedex number
-	db 1 ; ?
+	db DEX_DUGTRIO ; Pokedex number
+	db TRUE ; is Dark
 	db 18 ; level
 	length 0.7 ; length
 	weight 33.3 ; weight
@@ -11690,8 +11690,8 @@ MankeyLv7Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text166e ; category
-	db 56 ; Pokedex number
-	db 0 ; ?
+	db DEX_MANKEY ; Pokedex number
+	db FALSE ; is Dark
 	db 7 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
@@ -11742,8 +11742,8 @@ MankeyAltLv7Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text166e ; category
-	db 56 ; Pokedex number
-	db 0 ; ?
+	db DEX_MANKEY ; Pokedex number
+	db FALSE ; is Dark
 	db 7 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
@@ -11794,8 +11794,8 @@ MankeyLv14Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text166e ; category
-	db 56 ; Pokedex number
-	db 0 ; ?
+	db DEX_MANKEY ; Pokedex number
+	db FALSE ; is Dark
 	db 14 ; level
 	length 0.5 ; length
 	weight 28.0 ; weight
@@ -11846,8 +11846,8 @@ PrimeapeCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text166e ; category
-	db 57 ; Pokedex number
-	db 0 ; ?
+	db DEX_PRIMEAPE ; Pokedex number
+	db FALSE ; is Dark
 	db 35 ; level
 	length 1.0 ; length
 	weight 32.0 ; weight
@@ -11898,8 +11898,8 @@ DarkPrimeapeCard:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text166e ; category
-	db 57 ; Pokedex number
-	db 1 ; ?
+	db DEX_PRIMEAPE ; Pokedex number
+	db TRUE ; is Dark
 	db 23 ; level
 	length 1.0 ; length
 	weight 32.0 ; weight
@@ -11950,8 +11950,8 @@ MachopLv18Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1682 ; category
-	db 66 ; Pokedex number
-	db 0 ; ?
+	db DEX_MACHOP ; Pokedex number
+	db FALSE ; is Dark
 	db 18 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
@@ -12002,8 +12002,8 @@ MachopLv20Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1682 ; category
-	db 66 ; Pokedex number
-	db 0 ; ?
+	db DEX_MACHOP ; Pokedex number
+	db FALSE ; is Dark
 	db 20 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
@@ -12054,8 +12054,8 @@ MachopLv24Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx Text1682 ; category
-	db 66 ; Pokedex number
-	db 0 ; ?
+	db DEX_MACHOP ; Pokedex number
+	db FALSE ; is Dark
 	db 24 ; level
 	length 0.8 ; length
 	weight 19.5 ; weight
