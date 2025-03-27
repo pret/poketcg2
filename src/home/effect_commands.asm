@@ -50,7 +50,7 @@ CheckMatchingCommand::
 .not_null_pointer
 	ldh a, [hBankROM]
 	push af
-	ld a, $16 ; BANK(EffectCommands)
+	ld a, BANK(EffectCommands)
 	call BankswitchROM
 	; store the bank number of command functions in wEffectFunctionsBank
 	ld a, [hli]

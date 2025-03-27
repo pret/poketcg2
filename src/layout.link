@@ -66,6 +66,8 @@ ROMX $12
 	"Bank 12"
 ROMX $13
 	"Bank 13"
+ROMX $16
+	"Bank 16"
 ROMX $17
 	"Bank 17"
 ROMX $18
