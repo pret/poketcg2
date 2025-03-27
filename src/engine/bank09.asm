@@ -1166,7 +1166,7 @@ ExecuteCardSearchFunc:
 	dw .SearchBasicEnergy            ; CARDSEARCH_BASIC_ENERGY
 	dw .SearchAnyEnergy              ; CARDSEARCH_ANY_ENERGY
 	dw .SearchPokedexNumber          ; CARDSEARCH_POKEDEX_NUMBER
-	dw .Func_24d77                   ; CARDSEARCH_UNK_6
+	dw .SearchDarkPkmn               ; CARDSEARCH_DARK_POKEMON
 	dw .SearchPsychicEnergy          ; CARDSEARCH_PSYCHIC_ENERGY
 	dw .SearchEvolutionPkmn          ; CARDSEARCH_EVOLUTION_POKEMON
 	dw .Func_24df6                   ; CARDSEARCH_UNK_9
@@ -1256,15 +1256,16 @@ ExecuteCardSearchFunc:
 	scf
 	ret
 
-.Func_24d77:
+; returns carry if input card is a Dark Pokémon
+.SearchDarkPkmn:
 	ld a, e
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Type]
 	cp TYPE_ENERGY
 	jr nc, .no_carry
-	ld a, [wLoadedCard2Unk3a]
+	ld a, [wLoadedCard2Dark]
 	or a
-	jr z, .no_carry
+	jr z, .no_carry ; not Dark
 	scf
 	ret
 

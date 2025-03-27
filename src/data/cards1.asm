@@ -1246,10 +1246,10 @@ DarkArbokCard:
 	tx DarkArbokDescription ; description
 	db NONE ; AI info
 
-NidoranfLv12Card:
+NidoranFLv12Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $75ac ; gfx
-	tx NidoranfName ; name
+	tx NidoranFName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -1295,13 +1295,13 @@ NidoranfLv12Card:
 	db 12 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
-	tx NidoranfDescription1 ; description
+	tx NidoranFDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
-NidoranfLv13Card:
+NidoranFLv13Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $ae2 ; gfx
-	tx NidoranfName ; name
+	tx NidoranFName ; name
 	db CIRCLE ; rarity
 	db LEGENDARY_POWER ; set
 	db 1 ; ?
@@ -1347,7 +1347,7 @@ NidoranfLv13Card:
 	db 13 ; level
 	length 0.4 ; length
 	weight 7.0 ; weight
-	tx NidoranfDescription2 ; description
+	tx NidoranFDescription2 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 NidorinaLv22Card:
@@ -1360,7 +1360,7 @@ NidorinaLv22Card:
 	dw NIDORINA_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx NidoranfName ; pre-evo name
+	tx NidoranFName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -1412,7 +1412,7 @@ NidorinaLv24Card:
 	dw NIDORINA_LV24
 	db 70 ; hp
 	db STAGE1 ; stage
-	tx NidoranfName ; pre-evo name
+	tx NidoranFName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1 ; energies
@@ -1506,10 +1506,10 @@ NidoqueenCard:
 	tx NidoqueenDescription ; description
 	db NONE ; AI info
 
-NidoranmLv20Card:
+NidoranMLv20Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $c27 ; gfx
-	tx NidoranmName ; name
+	tx NidoranMName ; name
 	db CIRCLE ; rarity
 	db BEGINNING_POKEMON ; set
 	db 0 ; ?
@@ -1555,13 +1555,13 @@ NidoranmLv20Card:
 	db 20 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx NidoranmDescription1 ; description
+	tx NidoranMDescription1 ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
-NidoranmLv22Card:
+NidoranMLv22Card:
 	db TYPE_PKMN_GRASS ; type
 	dw $7675 ; gfx
-	tx NidoranmName ; name
+	tx NidoranMName ; name
 	db CIRCLE ; rarity
 	db SKY_FLYING_POKEMON ; set
 	db 3 ; ?
@@ -1607,7 +1607,7 @@ NidoranmLv22Card:
 	db 22 ; level
 	length 0.5 ; length
 	weight 9.0 ; weight
-	tx NidoranmDescription2 ; description
+	tx NidoranMDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 NidorinoLv23Card:
@@ -1620,7 +1620,7 @@ NidorinoLv23Card:
 	dw NIDORINO_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx NidoranmName ; pre-evo name
+	tx NidoranMName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 2 ; energies
@@ -1672,7 +1672,7 @@ NidorinoLv25Card:
 	dw NIDORINO_LV25
 	db 60 ; hp
 	db STAGE1 ; stage
-	tx NidoranmName ; pre-evo name
+	tx NidoranMName ; pre-evo name
 
 	; attack 1
 	energy GRASS, 1, COLORLESS, 2 ; energies

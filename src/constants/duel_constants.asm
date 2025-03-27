@@ -330,7 +330,7 @@ DEF PRIZES_6    EQU $06
 	const CARDSEARCH_BASIC_ENERGY                ; $3
 	const CARDSEARCH_ANY_ENERGY                  ; $4
 	const CARDSEARCH_POKEDEX_NUMBER              ; $5
-	const CARDSEARCH_UNK_6                       ; $6
+	const CARDSEARCH_DARK_POKEMON                ; $6
 	const CARDSEARCH_PSYCHIC_ENERGY              ; $7
 	const CARDSEARCH_EVOLUTION_POKEMON           ; $8
 	const CARDSEARCH_UNK_9                       ; $9

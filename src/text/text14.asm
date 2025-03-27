@@ -1153,7 +1153,7 @@ DarkArbokDescription:
 	linefw "方がよい。"
 	done
 
-NidoranfName:
+NidoranFName:
 	textfw "ニドラン♀"
 	done
 
@@ -1168,7 +1168,7 @@ Text136f:
 	linefw "限り、ワザを使えない。"
 	done
 
-NidoranfDescription1:
+NidoranFDescription1:
 	textfw "身体は小さくても毒バリを持つので"
 	linefw "注意が必要だ。メスのほうが角が小さい"
 	done
@@ -1194,7 +1194,7 @@ Text1374:
 	linefw "ワザは使えない)"
 	done
 
-NidoranfDescription2:
+NidoranFDescription2:
 	textfw "小さくても毒バリの威力は強烈で"
 	linefw "注意が必要。"
 	linefw "メスのほうが角が小さい。"
@@ -1272,7 +1272,7 @@ NidoqueenDescription:
 	linefw "興奮すると針が逆立つ。"
 	done
 
-NidoranmName:
+NidoranMName:
 	textfw "ニドラン♂"
 	done
 
@@ -1285,7 +1285,7 @@ Text1387:
 	linefw "は失敗する。"
 	done
 
-NidoranmDescription1:
+NidoranMDescription1:
 	textfw "耳が大きく、遠くの音を聞くときに、"
 	linefw "耳がはばたく様に動く。"
 	linefw "怒ると毒バリをだす。"
@@ -1310,7 +1310,7 @@ Text138c:
 	linefw "このワザは失敗する。"
 	done
 
-NidoranmDescription2:
+NidoranMDescription2:
 	textfw "耳を立てて危険を感じとる。身体の"
 	linefw "トゲが大きいほど強い毒をだす。"
 	done

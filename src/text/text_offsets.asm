@@ -4979,15 +4979,15 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text136a                                           ; 0x136a
 	textpointer Text136b                                           ; 0x136b
 	textpointer DarkArbokDescription                               ; 0x136c
-	textpointer NidoranfName                                       ; 0x136d
+	textpointer NidoranFName                                       ; 0x136d
 	textpointer Text136e                                           ; 0x136e
 	textpointer Text136f                                           ; 0x136f
-	textpointer NidoranfDescription1                               ; 0x1370
+	textpointer NidoranFDescription1                               ; 0x1370
 	textpointer Text1371                                           ; 0x1371
 	textpointer Text1372                                           ; 0x1372
 	textpointer Text1373                                           ; 0x1373
 	textpointer Text1374                                           ; 0x1374
-	textpointer NidoranfDescription2                               ; 0x1375
+	textpointer NidoranFDescription2                               ; 0x1375
 	textpointer NidorinaName                                       ; 0x1376
 	textpointer Text1377                                           ; 0x1377
 	textpointer Text1378                                           ; 0x1378
@@ -5003,15 +5003,15 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text1382                                           ; 0x1382
 	textpointer Text1383                                           ; 0x1383
 	textpointer NidoqueenDescription                               ; 0x1384
-	textpointer NidoranmName                                       ; 0x1385
+	textpointer NidoranMName                                       ; 0x1385
 	textpointer Text1386                                           ; 0x1386
 	textpointer Text1387                                           ; 0x1387
-	textpointer NidoranmDescription1                               ; 0x1388
+	textpointer NidoranMDescription1                               ; 0x1388
 	textpointer Text1389                                           ; 0x1389
 	textpointer Text138a                                           ; 0x138a
 	textpointer Text138b                                           ; 0x138b
 	textpointer Text138c                                           ; 0x138c
-	textpointer NidoranmDescription2                               ; 0x138d
+	textpointer NidoranMDescription2                               ; 0x138d
 	textpointer NidorinoName                                       ; 0x138e
 	textpointer Text138f                                           ; 0x138f
 	textpointer Text1390                                           ; 0x1390
@@ -6077,12 +6077,12 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text17b4                                           ; 0x17b4
 	textpointer Text17b5                                           ; 0x17b5
 	textpointer MewtwoDescription5                                 ; 0x17b6
-	textpointer GrsMewtwoName                                      ; 0x17b7
+	textpointer GRsMewtwoName                                      ; 0x17b7
 	textpointer Text17b8                                           ; 0x17b8
 	textpointer Text17b9                                           ; 0x17b9
 	textpointer Text17ba                                           ; 0x17ba
 	textpointer Text17bb                                           ; 0x17bb
-	textpointer GrsMewtwoDescription                               ; 0x17bc
+	textpointer GRsMewtwoDescription                               ; 0x17bc
 	textpointer MewName                                            ; 0x17bd
 	textpointer Text17be                                           ; 0x17be
 	textpointer Text17bf                                           ; 0x17bf

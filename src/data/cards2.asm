@@ -3898,10 +3898,10 @@ MewtwoLv67Card:
 	tx MewtwoDescription5 ; description
 	db NONE ; AI info
 
-GrsMewtwoCard:
+GRsMewtwoCard:
 	db TYPE_PKMN_PSYCHIC ; type
 	dw $c56e ; gfx
-	tx GrsMewtwoName ; name
+	tx GRsMewtwoName ; name
 	db STAR ; rarity
 	db GB ; set
 	db 7 ; ?
@@ -3947,7 +3947,7 @@ GrsMewtwoCard:
 	db 35 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx GrsMewtwoDescription ; description
+	tx GRsMewtwoDescription ; description
 	db NONE ; AI info
 
 MewLv8Card:

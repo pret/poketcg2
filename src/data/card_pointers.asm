@@ -39,13 +39,13 @@ CardPointers::
 	card_ptr ArbokLv27Card             ; ARBOK_LV27
 	card_ptr ArbokLv30Card             ; ARBOK_LV30
 	card_ptr DarkArbokCard             ; DARK_ARBOK
-	card_ptr NidoranfLv12Card          ; NIDORANF_LV12
-	card_ptr NidoranfLv13Card          ; NIDORANF_LV13
+	card_ptr NidoranFLv12Card          ; NIDORANF_LV12
+	card_ptr NidoranFLv13Card          ; NIDORANF_LV13
 	card_ptr NidorinaLv22Card          ; NIDORINA_LV22
 	card_ptr NidorinaLv24Card          ; NIDORINA_LV24
 	card_ptr NidoqueenCard             ; NIDOQUEEN
-	card_ptr NidoranmLv20Card          ; NIDORANM_LV20
-	card_ptr NidoranmLv22Card          ; NIDORANM_LV22
+	card_ptr NidoranMLv20Card          ; NIDORANM_LV20
+	card_ptr NidoranMLv22Card          ; NIDORANM_LV22
 	card_ptr NidorinoLv23Card          ; NIDORINO_LV23
 	card_ptr NidorinoLv25Card          ; NIDORINO_LV25
 	card_ptr NidokingCard              ; NIDOKING
@@ -322,7 +322,7 @@ CardPointers::
 	card_ptr MewtwoLv60Card            ; MEWTWO_LV60
 	card_ptr MewtwoAltLv60Card         ; MEWTWO_ALT_LV60
 	card_ptr MewtwoLv67Card            ; MEWTWO_LV67
-	card_ptr GrsMewtwoCard             ; GRS_MEWTWO
+	card_ptr GRsMewtwoCard             ; GRS_MEWTWO
 	card_ptr MewLv8Card                ; MEW_LV8
 	card_ptr MewLv15Card               ; MEW_LV15
 	card_ptr MewLv23Card               ; MEW_LV23

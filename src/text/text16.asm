@@ -1818,7 +1818,7 @@ MewtwoDescription5:
 	linefw "遺伝子研究を続けた結果、誕生した。"
 	done
 
-GrsMewtwoName:
+GRsMewtwoName:
 	textfw "GR団のミュウツー"
 	done
 
@@ -1846,7 +1846,7 @@ Text17bb:
 	linefw "×20のダメージを追加する。"
 	done
 
-GrsMewtwoDescription:
+GRsMewtwoDescription:
 	textfw "わるいポケモンをコントロールする力を"
 	linefw "もつという。なかなか、その姿をみる"
 	linefw "ことはできない。"
