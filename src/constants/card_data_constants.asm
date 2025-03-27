@@ -28,8 +28,8 @@ DEF CARD_DATA_TYPE                  RB ; $00
 DEF CARD_DATA_GFX                   RW ; $01
 DEF CARD_DATA_NAME                  RW ; $03
 DEF CARD_DATA_RARITY                RB ; $05
-DEF CARD_DATA_SET                   RB ; $06
-DEF CARD_DATA_UNKNOWN7              RB ; $07
+DEF CARD_DATA_REAL_SET              RB ; $06
+DEF CARD_DATA_SET                   RB ; $07
 DEF CARD_DATA_ID                    RW ; $08
 DEF CARD_DATA_EFFECT_COMMANDS       EQU _RS ; !TYPE_PKMN
 DEF CARD_DATA_HP                    RB ; TYPE_PKMN $0a
@@ -148,11 +148,23 @@ DEF PROMOSTAR EQU $ff
 	const SKY_FLYING_POKEMON    ; $04
 	const WE_ARE_TEAM_ROCKET    ; $05
 	const TEAM_ROCKETS_AMBITION ; $06
-	const SQUIRTLE_DECK         ; $07
+	const PROMOTIONAL           ; $07
 DEF NUM_CARD_SETS EQU const_value
+	const ENERGY                ; $08
+
+; real card set constants
+	const_def
+	const BASE_SET        ; $00
+	const JUNGLE          ; $01
+	const FOSSIL          ; $02
+	const TEAM_ROCKET     ; $03
+	const EXPANSION_SHEET ; $04
+	const GYM_HEROES      ; $05
+	const BULBASAUR_DECK  ; $06
+	const SQUIRTLE_DECK   ; $07
 	const_def -2
-	const GB                    ; $fe
-	const PRO                   ; $ff
+	const GB              ; $fe
+	const PRO             ; $ff
 
 ; CARD_DATA_STAGE constants
 DEF BASIC  EQU $00

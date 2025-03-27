@@ -3809,7 +3809,7 @@ PrintCardPageRarityIcon:
 
 ; prints the card's set 2 icon and the full width text character of the card's rarity
 DrawCardPageSet2AndRarityIcons:
-	ld a, [wLoadedCard1Set]
+	ld a, [wLoadedCard1RealSet]
 	call LoadCardSet2Tiles
 	jr c, .icon_done
 	; draw the 2x2 set 2 icon of this card

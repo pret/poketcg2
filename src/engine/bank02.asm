@@ -3268,7 +3268,7 @@ CreateBoosterPackCardList:
 	inc de
 	call LoadCardDataToBuffer1_FromCardID
 	jp c, .handle_energy_cards
-	ld a, [wLoadedCard1Unk07]
+	ld a, [wLoadedCard1Set]
 	cp b
 	jr nz, .loop_create_booster_pack_list
 
@@ -3597,7 +3597,7 @@ PrepareBoosterPackCardList:
 ; a = CARD_SET_* constant
 .GetEntryPrefix:
 	push af
-	cp $7
+	cp PROMOTIONAL
 	jr nz, .check_team_rockets_ambition
 	lb de, $4, "FW4_P"
 	jr .got_letter
@@ -4202,7 +4202,7 @@ CardAlbum:
 	call InitTextPrinting
 
 	ld a, [wCardAlbumBoosterPack]
-	cp $7
+	cp PROMOTIONAL
 	jr nz, .check_team_rockets_ambition
 	ldtx hl, Text02cd
 	ld e, NUM_CARDS_PROMOTIONAL

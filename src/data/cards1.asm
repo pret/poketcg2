@@ -3,8 +3,8 @@ BulbasaurLv12Card:
 	dw $c430 ; gfx
 	tx BulbasaurName ; name
 	db CIRCLE ; rarity
-	db TEAM_ROCKETS_AMBITION ; set
-	db 0 ; ?
+	db BULBASAUR_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw BULBASAUR_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -55,8 +55,8 @@ BulbasaurLv13Card:
 	dw $538 ; gfx
 	tx BulbasaurName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 6 ; ?
+	db BASE_SET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw BULBASAUR_LV13
 	db 40 ; hp
 	db BASIC ; stage
@@ -107,8 +107,8 @@ BulbasaurLv15Card:
 	dw $713b ; gfx
 	tx BulbasaurName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw BULBASAUR_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -159,8 +159,8 @@ IvysaurLv20Card:
 	dw $5a1 ; gfx
 	tx IvysaurName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw IVYSAUR_LV20
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -211,8 +211,8 @@ IvysaurLv26Card:
 	dw $c000 ; gfx
 	tx IvysaurName ; name
 	db DIAMOND ; rarity
-	db TEAM_ROCKETS_AMBITION ; set
-	db 0 ; ?
+	db BULBASAUR_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw IVYSAUR_LV26
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -263,8 +263,8 @@ DarkIvysaurCard:
 	dw $c5d7 ; gfx
 	tx DarkIvysaurName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 6 ; ?
+	db GB ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_IVYSAUR
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -315,8 +315,8 @@ VenusaurLv64Card:
 	dw $618 ; gfx
 	tx VenusaurName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 7 ; ?
+	db GB ; real set
+	db PROMOTIONAL ; in-game set
 	dw VENUSAUR_LV64
 	db 100 ; hp
 	db STAGE2 ; stage
@@ -367,8 +367,8 @@ VenusaurLv67Card:
 	dw $6b3 ; gfx
 	tx VenusaurName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw VENUSAUR_LV67
 	db 100 ; hp
 	db STAGE2 ; stage
@@ -419,8 +419,8 @@ VenusaurAltLv67Card:
 	dw $a3f7 ; gfx
 	tx VenusaurName ; name
 	db STAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw VENUSAUR_ALT_LV67
 	db 100 ; hp
 	db STAGE2 ; stage
@@ -471,8 +471,8 @@ DarkVenusaurCard:
 	dw $c6bb ; gfx
 	tx DarkVenusaurName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 6 ; ?
+	db GB ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_VENUSAUR
 	db 70 ; hp
 	db STAGE2 ; stage
@@ -523,8 +523,8 @@ CaterpieCard:
 	dw $71c ; gfx
 	tx CaterpieName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw CATERPIE
 	db 40 ; hp
 	db BASIC ; stage
@@ -575,8 +575,8 @@ MetapodLv20Card:
 	dw $7278 ; gfx
 	tx MetapodName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw METAPOD_LV20
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -627,8 +627,8 @@ MetapodLv21Card:
 	dw $785 ; gfx
 	tx MetapodName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw METAPOD_LV21
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -679,8 +679,8 @@ ButterfreeCard:
 	dw $800 ; gfx
 	tx ButterfreeName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw BUTTERFREE
 	db 70 ; hp
 	db STAGE2 ; stage
@@ -731,8 +731,8 @@ WeedleLv12Card:
 	dw $8a5 ; gfx
 	tx WeedleName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw WEEDLE_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -783,8 +783,8 @@ WeedleLv15Card:
 	dw $730b ; gfx
 	tx WeedleName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw WEEDLE_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -835,8 +835,8 @@ KakunaLv20Card:
 	dw $73d0 ; gfx
 	tx KakunaName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw KAKUNA_LV20
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -887,8 +887,8 @@ KakunaLv23Card:
 	dw $90e ; gfx
 	tx KakunaName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw KAKUNA_LV23
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -939,8 +939,8 @@ BeedrillCard:
 	dw $977 ; gfx
 	tx BeedrillName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw BEEDRILL
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -991,8 +991,8 @@ EkansLv10Card:
 	dw $9e2 ; gfx
 	tx EkansName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw EKANS_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -1043,8 +1043,8 @@ EkansLv15Card:
 	dw $6000 ; gfx
 	tx EkansName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw EKANS_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -1095,8 +1095,8 @@ ArbokLv27Card:
 	dw $a5b ; gfx
 	tx ArbokName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 3 ; ?
+	db FOSSIL ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw ARBOK_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1147,8 +1147,8 @@ ArbokLv30Card:
 	dw $8daf ; gfx
 	tx ArbokName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 2 ; ?
+	db EXPANSION_SHEET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw ARBOK_LV30
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1199,8 +1199,8 @@ DarkArbokCard:
 	dw $6075 ; gfx
 	tx DarkArbokName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_ARBOK
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1251,8 +1251,8 @@ NidoranFLv12Card:
 	dw $75ac ; gfx
 	tx NidoranFName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw NIDORANF_LV12
 	db 50 ; hp
 	db BASIC ; stage
@@ -1303,8 +1303,8 @@ NidoranFLv13Card:
 	dw $ae2 ; gfx
 	tx NidoranFName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw NIDORANF_LV13
 	db 60 ; hp
 	db BASIC ; stage
@@ -1355,8 +1355,8 @@ NidorinaLv22Card:
 	dw $8e87 ; gfx
 	tx NidorinaName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw NIDORINA_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1407,8 +1407,8 @@ NidorinaLv24Card:
 	dw $b4d ; gfx
 	tx NidorinaName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw NIDORINA_LV24
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -1459,8 +1459,8 @@ NidoqueenCard:
 	dw $bbe ; gfx
 	tx NidoqueenName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw NIDOQUEEN
 	db 90 ; hp
 	db STAGE2 ; stage
@@ -1511,8 +1511,8 @@ NidoranMLv20Card:
 	dw $c27 ; gfx
 	tx NidoranMName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw NIDORANM_LV20
 	db 40 ; hp
 	db BASIC ; stage
@@ -1563,8 +1563,8 @@ NidoranMLv22Card:
 	dw $7675 ; gfx
 	tx NidoranMName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw NIDORANM_LV22
 	db 50 ; hp
 	db BASIC ; stage
@@ -1615,8 +1615,8 @@ NidorinoLv23Card:
 	dw $8ef0 ; gfx
 	tx NidorinoName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw NIDORINO_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1667,8 +1667,8 @@ NidorinoLv25Card:
 	dw $c92 ; gfx
 	tx NidorinoName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw NIDORINO_LV25
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -1719,8 +1719,8 @@ NidokingCard:
 	dw $cfb ; gfx
 	tx NidokingName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw NIDOKING
 	db 90 ; hp
 	db STAGE2 ; stage
@@ -1771,8 +1771,8 @@ ZubatLv9Card:
 	dw $60e2 ; gfx
 	tx ZubatName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw ZUBAT_LV9
 	db 40 ; hp
 	db BASIC ; stage
@@ -1823,8 +1823,8 @@ ZubatLv10Card:
 	dw $d64 ; gfx
 	tx ZubatName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw ZUBAT_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -1875,8 +1875,8 @@ ZubatLv12Card:
 	dw $7800 ; gfx
 	tx ZubatName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw ZUBAT_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -1927,8 +1927,8 @@ GolbatLv25Card:
 	dw $7869 ; gfx
 	tx GolbatName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 2 ; ?
+	db EXPANSION_SHEET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw GOLBAT_LV25
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -1979,8 +1979,8 @@ GolbatLv29Card:
 	dw $dcd ; gfx
 	tx GolbatName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 4 ; ?
+	db FOSSIL ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw GOLBAT_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2031,8 +2031,8 @@ DarkGolbatCard:
 	dw $614b ; gfx
 	tx DarkGolbatName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_GOLBAT
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -2083,8 +2083,8 @@ OddishLv8Card:
 	dw $e36 ; gfx
 	tx OddishName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw ODDISH_LV8
 	db 50 ; hp
 	db BASIC ; stage
@@ -2135,8 +2135,8 @@ OddishLv21Card:
 	dw $61bc ; gfx
 	tx OddishName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw ODDISH_LV21
 	db 50 ; hp
 	db BASIC ; stage
@@ -2187,8 +2187,8 @@ GloomCard:
 	dw $e9f ; gfx
 	tx GloomName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw GLOOM
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2239,8 +2239,8 @@ DarkGloomCard:
 	dw $6225 ; gfx
 	tx DarkGloomName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_GLOOM
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -2291,8 +2291,8 @@ VileplumeCard:
 	dw $f08 ; gfx
 	tx VileplumeName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw VILEPLUME
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -2343,8 +2343,8 @@ DarkVileplumeCard:
 	dw $628e ; gfx
 	tx DarkVileplumeName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_VILEPLUME
 	db 60 ; hp
 	db STAGE2 ; stage
@@ -2395,8 +2395,8 @@ ParasLv8Card:
 	dw $f71 ; gfx
 	tx ParasName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 3 ; ?
+	db JUNGLE ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw PARAS_LV8
 	db 40 ; hp
 	db BASIC ; stage
@@ -2447,8 +2447,8 @@ ParasLv15Card:
 	dw $78d6 ; gfx
 	tx ParasName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 1 ; ?
+	db EXPANSION_SHEET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw PARAS_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -2499,8 +2499,8 @@ ParasectLv28Card:
 	dw $1000 ; gfx
 	tx ParasectName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 3 ; ?
+	db JUNGLE ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw PARASECT_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2551,8 +2551,8 @@ ParasectLv29Card:
 	dw $793f ; gfx
 	tx ParasectName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 1 ; ?
+	db EXPANSION_SHEET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw PARASECT_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2603,8 +2603,8 @@ VenonatLv12Card:
 	dw $106f ; gfx
 	tx VenonatName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 3 ; ?
+	db JUNGLE ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw VENONAT_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -2655,8 +2655,8 @@ VenonatLv15Card:
 	dw $9000 ; gfx
 	tx VenonatName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 0 ; ?
+	db EXPANSION_SHEET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw VENONAT_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -2707,8 +2707,8 @@ VenomothLv22Card:
 	dw $833b ; gfx
 	tx VenomothName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw VENOMOTH_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2759,8 +2759,8 @@ VenomothLv28Card:
 	dw $10d8 ; gfx
 	tx VenomothName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 0 ; ?
+	db JUNGLE ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw VENOMOTH_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -2811,8 +2811,8 @@ BellsproutLv10Card:
 	dw $930b ; gfx
 	tx BellsproutName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw BELLSPROUT_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -2863,8 +2863,8 @@ BellsproutLv11Card:
 	dw $1141 ; gfx
 	tx BellsproutName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw BELLSPROUT_LV11
 	db 40 ; hp
 	db BASIC ; stage
@@ -2915,8 +2915,8 @@ WeepinbellLv23Card:
 	dw $9374 ; gfx
 	tx WeepinbellName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw WEEPINBELL_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -2967,8 +2967,8 @@ WeepinbellLv28Card:
 	dw $11aa ; gfx
 	tx WeepinbellName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw WEEPINBELL_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -3019,8 +3019,8 @@ VictreebelCard:
 	dw $1213 ; gfx
 	tx VictreebelName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw VICTREEBEL
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -3071,8 +3071,8 @@ GrimerLv10Card:
 	dw $62f7 ; gfx
 	tx GrimerName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw GRIMER_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -3123,8 +3123,8 @@ GrimerLv17Card:
 	dw $127c ; gfx
 	tx GrimerName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw GRIMER_LV17
 	db 50 ; hp
 	db BASIC ; stage
@@ -3175,8 +3175,8 @@ MukCard:
 	dw $12e5 ; gfx
 	tx MukName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw MUK
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -3227,8 +3227,8 @@ DarkMukCard:
 	dw $6360 ; gfx
 	tx DarkMukName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_MUK
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -3279,8 +3279,8 @@ ExeggcuteCard:
 	dw $134e ; gfx
 	tx ExeggcuteName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw EXEGGCUTE
 	db 50 ; hp
 	db BASIC ; stage
@@ -3331,8 +3331,8 @@ ExeggutorCard:
 	dw $13cf ; gfx
 	tx ExeggutorName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw EXEGGUTOR
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -3383,8 +3383,8 @@ KoffingLv12Card:
 	dw $63c9 ; gfx
 	tx KoffingName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw KOFFING_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -3435,8 +3435,8 @@ KoffingLv13Card:
 	dw $143e ; gfx
 	tx KoffingName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw KOFFING_LV13
 	db 50 ; hp
 	db BASIC ; stage
@@ -3487,8 +3487,8 @@ KoffingLv14Card:
 	dw $c069 ; gfx
 	tx KoffingName ; name
 	db CIRCLE ; rarity
-	db TEAM_ROCKETS_AMBITION ; set
-	db 2 ; ?
+	db BULBASAUR_DECK ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw KOFFING_LV14
 	db 50 ; hp
 	db BASIC ; stage
@@ -3539,8 +3539,8 @@ WeezingLv26Card:
 	dw $98d2 ; gfx
 	tx WeezingName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw WEEZING_LV26
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -3591,8 +3591,8 @@ WeezingLv27Card:
 	dw $14a7 ; gfx
 	tx WeezingName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw WEEZING_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -3643,8 +3643,8 @@ DarkWeezingCard:
 	dw $6432 ; gfx
 	tx DarkWeezingName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_WEEZING
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -3695,8 +3695,8 @@ TangelaLv8Card:
 	dw $151e ; gfx
 	tx TangelaName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw TANGELA_LV8
 	db 50 ; hp
 	db BASIC ; stage
@@ -3747,8 +3747,8 @@ TangelaLv12Card:
 	dw $1593 ; gfx
 	tx TangelaName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 3 ; ?
+	db GB ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw TANGELA_LV12
 	db 50 ; hp
 	db BASIC ; stage
@@ -3799,8 +3799,8 @@ ScytherLv23Card:
 	dw $9ba2 ; gfx
 	tx ScytherName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 1 ; ?
+	db EXPANSION_SHEET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SCYTHER_LV23
 	db 60 ; hp
 	db BASIC ; stage
@@ -3851,8 +3851,8 @@ ScytherLv25Card:
 	dw $15fc ; gfx
 	tx ScytherName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 5 ; ?
+	db JUNGLE ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw SCYTHER_LV25
 	db 70 ; hp
 	db BASIC ; stage
@@ -3903,8 +3903,8 @@ PinsirLv15Card:
 	dw $7ecf ; gfx
 	tx PinsirName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 6 ; ?
+	db EXPANSION_SHEET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw PINSIR_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -3955,8 +3955,8 @@ PinsirLv24Card:
 	dw $1665 ; gfx
 	tx PinsirName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw PINSIR_LV24
 	db 60 ; hp
 	db BASIC ; stage
@@ -4007,8 +4007,8 @@ CharmanderLv9Card:
 	dw $59aa ; gfx
 	tx CharmanderName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw CHARMANDER_LV9
 	db 40 ; hp
 	db BASIC ; stage
@@ -4059,8 +4059,8 @@ CharmanderLv10Card:
 	dw $16ce ; gfx
 	tx CharmanderName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw CHARMANDER_LV10
 	db 50 ; hp
 	db BASIC ; stage
@@ -4111,8 +4111,8 @@ CharmanderLv12Card:
 	dw $71a6 ; gfx
 	tx CharmanderName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw CHARMANDER_LV12
 	db 50 ; hp
 	db BASIC ; stage
@@ -4163,8 +4163,8 @@ CharmeleonCard:
 	dw $173d ; gfx
 	tx CharmeleonName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw CHARMELEON
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -4215,8 +4215,8 @@ DarkCharmeleonCard:
 	dw $5a13 ; gfx
 	tx DarkCharmeleonName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_CHARMELEON
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -4267,8 +4267,8 @@ CharizardLv76Card:
 	dw $1800 ; gfx
 	tx CharizardName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw CHARIZARD_LV76
 	db 120 ; hp
 	db STAGE2 ; stage
@@ -4319,8 +4319,8 @@ CharizardAltLv76Card:
 	dw $a468 ; gfx
 	tx CharizardName ; name
 	db STAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw CHARIZARD_ALT_LV76
 	db 120 ; hp
 	db STAGE2 ; stage
@@ -4371,8 +4371,8 @@ DarkCharizardCard:
 	dw $5a7c ; gfx
 	tx DarkCharizardName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_CHARIZARD
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -4423,8 +4423,8 @@ VulpixLv11Card:
 	dw $1869 ; gfx
 	tx VulpixName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw VULPIX_LV11
 	db 50 ; hp
 	db BASIC ; stage
@@ -4475,8 +4475,8 @@ VulpixLv13Card:
 	dw $8f59 ; gfx
 	tx VulpixName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw VULPIX_LV13
 	db 50 ; hp
 	db BASIC ; stage
@@ -4527,8 +4527,8 @@ NinetalesLv32Card:
 	dw $18d2 ; gfx
 	tx NinetalesName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw NINETALES_LV32
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -4579,8 +4579,8 @@ NinetalesLv35Card:
 	dw $193b ; gfx
 	tx NinetalesName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 3 ; ?
+	db GB ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw NINETALES_LV35
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -4631,8 +4631,8 @@ DarkNinetalesCard:
 	dw $c8d2 ; gfx
 	tx DarkNinetalesName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 6 ; ?
+	db GB ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_NINETALES
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -4683,8 +4683,8 @@ GrowlitheLv12Card:
 	dw $c0d2 ; gfx
 	tx GrowlitheName ; name
 	db DIAMOND ; rarity
-	db SQUIRTLE_DECK ; set
-	db 0 ; ?
+	db SQUIRTLE_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw GROWLITHE_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -4735,8 +4735,8 @@ GrowlitheLv16Card:
 	dw $90fa ; gfx
 	tx GrowlitheName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 6 ; ?
+	db EXPANSION_SHEET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw GROWLITHE_LV16
 	db 50 ; hp
 	db BASIC ; stage
@@ -4787,8 +4787,8 @@ GrowlitheLv18Card:
 	dw $19ac ; gfx
 	tx GrowlitheName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw GROWLITHE_LV18
 	db 60 ; hp
 	db BASIC ; stage
@@ -4839,8 +4839,8 @@ ArcanineLv34Card:
 	dw $1a15 ; gfx
 	tx ArcanineName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw ARCANINE_LV34
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -4891,8 +4891,8 @@ ArcanineLv35Card:
 	dw $c1a4 ; gfx
 	tx ArcanineName ; name
 	db STAR ; rarity
-	db SQUIRTLE_DECK ; set
-	db 0 ; ?
+	db SQUIRTLE_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw ARCANINE_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -4943,8 +4943,8 @@ ArcanineLv45Card:
 	dw $1a82 ; gfx
 	tx ArcanineName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw ARCANINE_LV45
 	db 100 ; hp
 	db STAGE1 ; stage
@@ -4995,8 +4995,8 @@ PonytaLv8Card:
 	dw $94af ; gfx
 	tx PonytaName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw PONYTA_LV8
 	db 40 ; hp
 	db BASIC ; stage
@@ -5047,8 +5047,8 @@ PonytaLv10Card:
 	dw $1aeb ; gfx
 	tx PonytaName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw PONYTA_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -5099,8 +5099,8 @@ PonytaLv15Card:
 	dw $5ae5 ; gfx
 	tx PonytaName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw PONYTA_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -5151,8 +5151,8 @@ RapidashLv30Card:
 	dw $7bf9 ; gfx
 	tx RapidashName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw RAPIDASH_LV30
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -5203,8 +5203,8 @@ RapidashLv33Card:
 	dw $1b66 ; gfx
 	tx RapidashName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 0 ; ?
+	db JUNGLE ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw RAPIDASH_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -5255,8 +5255,8 @@ DarkRapidashCard:
 	dw $5b4e ; gfx
 	tx DarkRapidashName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_RAPIDASH
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -5307,8 +5307,8 @@ MagmarLv18Card:
 	dw $c4a5 ; gfx
 	tx MagmarName ; name
 	db DIAMOND ; rarity
-	db SQUIRTLE_DECK ; set
-	db 1 ; ?
+	db SQUIRTLE_DECK ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw MAGMAR_LV18
 	db 50 ; hp
 	db BASIC ; stage
@@ -5359,8 +5359,8 @@ MagmarLv24Card:
 	dw $1beb ; gfx
 	tx MagmarName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 2 ; ?
+	db BASE_SET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw MAGMAR_LV24
 	db 50 ; hp
 	db BASIC ; stage
@@ -5411,8 +5411,8 @@ MagmarLv27Card:
 	dw $9c3d ; gfx
 	tx MagmarName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw MAGMAR_LV27
 	db 60 ; hp
 	db BASIC ; stage
@@ -5463,8 +5463,8 @@ MagmarLv31Card:
 	dw $1c54 ; gfx
 	tx MagmarName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 5 ; ?
+	db FOSSIL ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MAGMAR_LV31
 	db 70 ; hp
 	db BASIC ; stage
@@ -5515,8 +5515,8 @@ FlareonLv22Card:
 	dw $1cbd ; gfx
 	tx FlareonName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 3 ; ?
+	db GB ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw FLAREON_LV22
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -5567,8 +5567,8 @@ FlareonLv28Card:
 	dw $1d26 ; gfx
 	tx FlareonName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw FLAREON_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -5619,8 +5619,8 @@ DarkFlareonCard:
 	dw $5bb7 ; gfx
 	tx DarkFlareonName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_FLAREON
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -5671,8 +5671,8 @@ MoltresLv35Card:
 	dw $1d8f ; gfx
 	tx MoltresName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw MOLTRES_LV35
 	db 70 ; hp
 	db BASIC ; stage
@@ -5723,8 +5723,8 @@ MoltresLv37Card:
 	dw $8cd3 ; gfx
 	tx MoltresName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 6 ; ?
+	db EXPANSION_SHEET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw MOLTRES_LV37
 	db 80 ; hp
 	db BASIC ; stage
@@ -5775,8 +5775,8 @@ MoltresLv40Card:
 	dw $1df8 ; gfx
 	tx MoltresName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 7 ; ?
+	db GB ; real set
+	db PROMOTIONAL ; in-game set
 	dw MOLTRES_LV40
 	db 100 ; hp
 	db BASIC ; stage
@@ -5827,8 +5827,8 @@ SquirtleLv8Card:
 	dw $1e61 ; gfx
 	tx SquirtleName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 2 ; ?
+	db BASE_SET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw SQUIRTLE_LV8
 	db 40 ; hp
 	db BASIC ; stage
@@ -5879,8 +5879,8 @@ SquirtleLv14Card:
 	dw $be5c ; gfx
 	tx SquirtleName ; name
 	db CIRCLE ; rarity
-	db SQUIRTLE_DECK ; set
-	db 1 ; ?
+	db SQUIRTLE_DECK ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SQUIRTLE_LV14
 	db 50 ; hp
 	db BASIC ; stage
@@ -5931,8 +5931,8 @@ SquirtleLv15Card:
 	dw $720f ; gfx
 	tx SquirtleName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw SQUIRTLE_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -5983,8 +5983,8 @@ SquirtleLv16Card:
 	dw $5c20 ; gfx
 	tx SquirtleName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw SQUIRTLE_LV16
 	db 50 ; hp
 	db BASIC ; stage
@@ -6035,8 +6035,8 @@ WartortleLv22Card:
 	dw $1f28 ; gfx
 	tx WartortleName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 2 ; ?
+	db BASE_SET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw WARTORTLE_LV22
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -6087,8 +6087,8 @@ WartortleLv24Card:
 	dw $c276 ; gfx
 	tx WartortleName ; name
 	db DIAMOND ; rarity
-	db SQUIRTLE_DECK ; set
-	db 1 ; ?
+	db SQUIRTLE_DECK ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw WARTORTLE_LV24
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -6139,8 +6139,8 @@ DarkWartortleCard:
 	dw $5c97 ; gfx
 	tx DarkWartortleName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_WARTORTLE
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -6191,8 +6191,8 @@ BlastoiseLv52Card:
 	dw $2000 ; gfx
 	tx BlastoiseName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw BLASTOISE_LV52
 	db 100 ; hp
 	db STAGE2 ; stage
@@ -6243,8 +6243,8 @@ BlastoiseAltLv52Card:
 	dw $a4d1 ; gfx
 	tx BlastoiseName ; name
 	db STAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw BLASTOISE_ALT_LV52
 	db 100 ; hp
 	db STAGE2 ; stage
@@ -6295,8 +6295,8 @@ DarkBlastoiseCard:
 	dw $5d3c ; gfx
 	tx DarkBlastoiseName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_BLASTOISE
 	db 70 ; hp
 	db STAGE2 ; stage
@@ -6347,8 +6347,8 @@ PsyduckLv15Card:
 	dw $207d ; gfx
 	tx PsyduckName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw PSYDUCK_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -6399,8 +6399,8 @@ PsyduckLv16Card:
 	dw $5da5 ; gfx
 	tx PsyduckName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw PSYDUCK_LV16
 	db 50 ; hp
 	db BASIC ; stage
@@ -6451,8 +6451,8 @@ GolduckLv27Card:
 	dw $20f2 ; gfx
 	tx GolduckName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 4 ; ?
+	db FOSSIL ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw GOLDUCK_LV27
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -6503,8 +6503,8 @@ GolduckLv28Card:
 	dw $9089 ; gfx
 	tx GolduckName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 2 ; ?
+	db EXPANSION_SHEET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw GOLDUCK_LV28
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -6555,8 +6555,8 @@ DarkGolduckCard:
 	dw $5e0e ; gfx
 	tx DarkGolduckName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 6 ; ?
+	db TEAM_ROCKET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_GOLDUCK
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -6607,8 +6607,8 @@ PoliwagLv13Card:
 	dw $2161 ; gfx
 	tx PoliwagName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 2 ; ?
+	db BASE_SET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw POLIWAG_LV13
 	db 40 ; hp
 	db BASIC ; stage
@@ -6659,8 +6659,8 @@ PoliwagLv15Card:
 	dw $79ae ; gfx
 	tx PoliwagName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw POLIWAG_LV15
 	db 50 ; hp
 	db BASIC ; stage
@@ -6711,8 +6711,8 @@ PoliwhirlLv28Card:
 	dw $21d8 ; gfx
 	tx PoliwhirlName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 4 ; ?
+	db BASE_SET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw POLIWHIRL_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -6763,8 +6763,8 @@ PoliwhirlLv30Card:
 	dw $7a17 ; gfx
 	tx PoliwhirlName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 2 ; ?
+	db EXPANSION_SHEET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw POLIWHIRL_LV30
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -6815,8 +6815,8 @@ PoliwrathLv40Card:
 	dw $7a86 ; gfx
 	tx PoliwrathName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 2 ; ?
+	db EXPANSION_SHEET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw POLIWRATH_LV40
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -6867,8 +6867,8 @@ PoliwrathLv48Card:
 	dw $2241 ; gfx
 	tx PoliwrathName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 4 ; ?
+	db BASE_SET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw POLIWRATH_LV48
 	db 90 ; hp
 	db STAGE2 ; stage
@@ -6919,8 +6919,8 @@ TentacoolCard:
 	dw $22aa ; gfx
 	tx TentacoolName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw TENTACOOL
 	db 30 ; hp
 	db BASIC ; stage
@@ -6971,8 +6971,8 @@ TentacruelCard:
 	dw $2313 ; gfx
 	tx TentacruelName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw TENTACRUEL
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -7023,8 +7023,8 @@ SeelLv10Card:
 	dw $862b ; gfx
 	tx SeelName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw SEEL_LV10
 	db 50 ; hp
 	db BASIC ; stage
@@ -7075,8 +7075,8 @@ SeelLv12Card:
 	dw $23c8 ; gfx
 	tx SeelName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw SEEL_LV12
 	db 60 ; hp
 	db BASIC ; stage
@@ -7127,8 +7127,8 @@ DewgongLv24Card:
 	dw $869c ; gfx
 	tx DewgongName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw DEWGONG_LV24
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -7179,8 +7179,8 @@ DewgongLv42Card:
 	dw $2431 ; gfx
 	tx DewgongName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw DEWGONG_LV42
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -7231,8 +7231,8 @@ ShellderLv8Card:
 	dw $249a ; gfx
 	tx ShellderName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SHELLDER_LV8
 	db 30 ; hp
 	db BASIC ; stage
@@ -7283,8 +7283,8 @@ ShellderLv16Card:
 	dw $8705 ; gfx
 	tx ShellderName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw SHELLDER_LV16
 	db 50 ; hp
 	db BASIC ; stage
@@ -7335,8 +7335,8 @@ CloysterCard:
 	dw $2523 ; gfx
 	tx CloysterName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw CLOYSTER
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -7387,8 +7387,8 @@ KrabbyLv17Card:
 	dw $8800 ; gfx
 	tx KrabbyName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw KRABBY_LV17
 	db 40 ; hp
 	db BASIC ; stage
@@ -7439,8 +7439,8 @@ KrabbyLv20Card:
 	dw $258c ; gfx
 	tx KrabbyName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 0 ; ?
+	db FOSSIL ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw KRABBY_LV20
 	db 50 ; hp
 	db BASIC ; stage
@@ -7491,8 +7491,8 @@ KinglerLv27Card:
 	dw $25f9 ; gfx
 	tx KinglerName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 0 ; ?
+	db FOSSIL ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw KINGLER_LV27
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -7543,8 +7543,8 @@ KinglerLv33Card:
 	dw $9800 ; gfx
 	tx KinglerName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw KINGLER_LV33
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -7595,8 +7595,8 @@ HorseaLv19Card:
 	dw $2666 ; gfx
 	tx HorseaName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw HORSEA_LV19
 	db 40 ; hp
 	db BASIC ; stage
@@ -7647,8 +7647,8 @@ HorseaLv20Card:
 	dw $9a43 ; gfx
 	tx HorseaName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw HORSEA_LV20
 	db 40 ; hp
 	db BASIC ; stage
@@ -7699,8 +7699,8 @@ SeadraLv23Card:
 	dw $26cf ; gfx
 	tx SeadraName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw SEADRA_LV23
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -7751,8 +7751,8 @@ SeadraLv26Card:
 	dw $9aac ; gfx
 	tx SeadraName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw SEADRA_LV26
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -7803,8 +7803,8 @@ GoldeenCard:
 	dw $2738 ; gfx
 	tx GoldeenName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw GOLDEEN
 	db 40 ; hp
 	db BASIC ; stage
@@ -7855,8 +7855,8 @@ SeakingCard:
 	dw $2800 ; gfx
 	tx SeakingName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SEAKING
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -7907,8 +7907,8 @@ StaryuLv15Card:
 	dw $2869 ; gfx
 	tx StaryuName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw STARYU_LV15
 	db 40 ; hp
 	db BASIC ; stage
@@ -7959,8 +7959,8 @@ StaryuLv17Card:
 	dw $9b15 ; gfx
 	tx StaryuName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 3 ; ?
+	db EXPANSION_SHEET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw STARYU_LV17
 	db 50 ; hp
 	db BASIC ; stage
@@ -8011,8 +8011,8 @@ StarmieCard:
 	dw $28d8 ; gfx
 	tx StarmieName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw STARMIE
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -8063,8 +8063,8 @@ DarkStarmieCard:
 	dw $c869 ; gfx
 	tx DarkStarmieName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 6 ; ?
+	db GB ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_STARMIE
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -8115,8 +8115,8 @@ MagikarpLv6Card:
 	dw $5e77 ; gfx
 	tx MagikarpName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MAGIKARP_LV6
 	db 30 ; hp
 	db BASIC ; stage
@@ -8167,8 +8167,8 @@ MagikarpLv8Card:
 	dw $2941 ; gfx
 	tx MagikarpName ; name
 	db DIAMOND ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw MAGIKARP_LV8
 	db 30 ; hp
 	db BASIC ; stage
@@ -8219,8 +8219,8 @@ MagikarpLv10Card:
 	dw $a376 ; gfx
 	tx MagikarpName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw MAGIKARP_LV10
 	db 30 ; hp
 	db BASIC ; stage
@@ -8271,8 +8271,8 @@ GyaradosCard:
 	dw $29aa ; gfx
 	tx GyaradosName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw GYARADOS
 	db 100 ; hp
 	db STAGE1 ; stage
@@ -8323,8 +8323,8 @@ DarkGyaradosCard:
 	dw $5ee0 ; gfx
 	tx DarkGyaradosName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_GYARADOS
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -8375,8 +8375,8 @@ LaprasLv24Card:
 	dw $8a2b ; gfx
 	tx LaprasName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 1 ; ?
+	db EXPANSION_SHEET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw LAPRAS_LV24
 	db 60 ; hp
 	db BASIC ; stage
@@ -8427,8 +8427,8 @@ LaprasLv31Card:
 	dw $2a17 ; gfx
 	tx LaprasName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 4 ; ?
+	db FOSSIL ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw LAPRAS_LV31
 	db 80 ; hp
 	db BASIC ; stage
@@ -8479,8 +8479,8 @@ VaporeonLv29Card:
 	dw $2a80 ; gfx
 	tx VaporeonName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 3 ; ?
+	db GB ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw VAPOREON_LV29
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -8531,8 +8531,8 @@ VaporeonLv42Card:
 	dw $2ae9 ; gfx
 	tx VaporeonName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw VAPOREON_LV42
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -8583,8 +8583,8 @@ DarkVaporeonCard:
 	dw $5f49 ; gfx
 	tx DarkVaporeonName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_VAPOREON
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -8635,8 +8635,8 @@ OmanyteLv19Card:
 	dw $2b52 ; gfx
 	tx OmanyteName ; name
 	db CIRCLE ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw OMANYTE_LV19
 	db 40 ; hp
 	db STAGE1 ; stage
@@ -8687,8 +8687,8 @@ OmanyteLv20Card:
 	dw $8a96 ; gfx
 	tx OmanyteName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 5 ; ?
+	db EXPANSION_SHEET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw OMANYTE_LV20
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -8739,8 +8739,8 @@ OmanyteLv22Card:
 	dw $9d55 ; gfx
 	tx OmanyteName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw OMANYTE_LV22
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -8791,8 +8791,8 @@ OmastarLv32Card:
 	dw $2bbb ; gfx
 	tx OmastarName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw OMASTAR_LV32
 	db 70 ; hp
 	db STAGE2 ; stage
@@ -8843,8 +8843,8 @@ OmastarLv36Card:
 	dw $9dbe ; gfx
 	tx OmastarName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 7 ; ?
+	db EXPANSION_SHEET ; real set
+	db PROMOTIONAL ; in-game set
 	dw OMASTAR_LV36
 	db 80 ; hp
 	db STAGE2 ; stage
@@ -8895,8 +8895,8 @@ ArticunoLv34Card:
 	dw $8bf5 ; gfx
 	tx ArticunoName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 6 ; ?
+	db EXPANSION_SHEET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw ARTICUNO_LV34
 	db 80 ; hp
 	db BASIC ; stage
@@ -8947,8 +8947,8 @@ ArticunoLv35Card:
 	dw $2c3c ; gfx
 	tx ArticunoName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw ARTICUNO_LV35
 	db 70 ; hp
 	db BASIC ; stage
@@ -8999,8 +8999,8 @@ ArticunoLv37Card:
 	dw $2ca5 ; gfx
 	tx ArticunoName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 7 ; ?
+	db GB ; real set
+	db PROMOTIONAL ; in-game set
 	dw ARTICUNO_LV37
 	db 100 ; hp
 	db BASIC ; stage
@@ -9051,8 +9051,8 @@ MarillCard:
 	dw $a60e ; gfx
 	tx MarillName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw MARILL
 	db 50 ; hp
 	db BASIC ; stage
@@ -9103,8 +9103,8 @@ PikachuLv5Card:
 	dw $7543 ; gfx
 	tx PikachuName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw PIKACHU_LV5
 	db 30 ; hp
 	db BASIC ; stage
@@ -9155,8 +9155,8 @@ PikachuLv12Card:
 	dw $2d0e ; gfx
 	tx PikachuName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw PIKACHU_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -9207,8 +9207,8 @@ PikachuLv13Card:
 	dw $a0d2 ; gfx
 	tx PikachuName ; name
 	db STAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw PIKACHU_LV13
 	db 50 ; hp
 	db BASIC ; stage
@@ -9259,8 +9259,8 @@ PikachuLv14Card:
 	dw $2d77 ; gfx
 	tx PikachuName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw PIKACHU_LV14
 	db 50 ; hp
 	db BASIC ; stage
@@ -9311,8 +9311,8 @@ PikachuLv16Card:
 	dw $2de0 ; gfx
 	tx PikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw PIKACHU_LV16
 	db 60 ; hp
 	db BASIC ; stage
@@ -9363,8 +9363,8 @@ PikachuAltLv16Card:
 	dw $2ea9 ; gfx
 	tx PikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw PIKACHU_ALT_LV16
 	db 60 ; hp
 	db BASIC ; stage
@@ -9415,8 +9415,8 @@ FlyingPikachuLv12Card:
 	dw $2f18 ; gfx
 	tx FlyingPikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw FLYING_PIKACHU_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -9467,8 +9467,8 @@ FlyingPikachuAltLv12Card:
 	dw $a53a ; gfx
 	tx FlyingPikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw FLYING_PIKACHU_ALT_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -9519,8 +9519,8 @@ SurfingPikachuLv13Card:
 	dw $3000 ; gfx
 	tx SurfingPikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw SURFING_PIKACHU_LV13
 	db 50 ; hp
 	db BASIC ; stage
@@ -9571,8 +9571,8 @@ SurfingPikachuAltLv13Card:
 	dw $30ab ; gfx
 	tx SurfingPikachuName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw SURFING_PIKACHU_ALT_LV13
 	db 50 ; hp
 	db BASIC ; stage
@@ -9623,8 +9623,8 @@ RaichuLv32Card:
 	dw $8263 ; gfx
 	tx RaichuName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw RAICHU_LV32
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -9675,8 +9675,8 @@ RaichuLv33Card:
 	dw $bf5a ; gfx
 	tx RaichuName ; name
 	db STAR ; rarity
-	db TEAM_ROCKETS_AMBITION ; set
-	db 0 ; ?
+	db BULBASAUR_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw RAICHU_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -9727,8 +9727,8 @@ RaichuLv40Card:
 	dw $311e ; gfx
 	tx RaichuName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw RAICHU_LV40
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -9779,8 +9779,8 @@ RaichuLv45Card:
 	dw $3187 ; gfx
 	tx RaichuName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 2 ; ?
+	db FOSSIL ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw RAICHU_LV45
 	db 90 ; hp
 	db STAGE1 ; stage
@@ -9831,8 +9831,8 @@ DarkRaichuCard:
 	dw $c78d ; gfx
 	tx DarkRaichuName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 6 ; ?
+	db GB ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DARK_RAICHU
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -9883,8 +9883,8 @@ MagnemiteLv12Card:
 	dw $6f04 ; gfx
 	tx MagnemiteName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MAGNEMITE_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -9935,8 +9935,8 @@ MagnemiteLv13Card:
 	dw $31f0 ; gfx
 	tx MagnemiteName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw MAGNEMITE_LV13
 	db 40 ; hp
 	db BASIC ; stage
@@ -9987,8 +9987,8 @@ MagnemiteLv14Card:
 	dw $3271 ; gfx
 	tx MagnemiteName ; name
 	db CIRCLE ; rarity
-	db GB ; set
-	db 1 ; ?
+	db GB ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw MAGNEMITE_LV14
 	db 40 ; hp
 	db BASIC ; stage
@@ -10039,8 +10039,8 @@ MagnemiteLv15Card:
 	dw $8559 ; gfx
 	tx MagnemiteName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw MAGNEMITE_LV15
 	db 40 ; hp
 	db BASIC ; stage
@@ -10091,8 +10091,8 @@ MagnetonLv28Card:
 	dw $32dc ; gfx
 	tx MagnetonName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 3 ; ?
+	db BASE_SET ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw MAGNETON_LV28
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -10143,8 +10143,8 @@ MagnetonLv30Card:
 	dw $85c2 ; gfx
 	tx MagnetonName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 1 ; ?
+	db EXPANSION_SHEET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw MAGNETON_LV30
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -10195,8 +10195,8 @@ MagnetonLv35Card:
 	dw $337d ; gfx
 	tx MagnetonName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 4 ; ?
+	db FOSSIL ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw MAGNETON_LV35
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -10247,8 +10247,8 @@ DarkMagnetonCard:
 	dw $6f6d ; gfx
 	tx DarkMagnetonName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_MAGNETON
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -10299,8 +10299,8 @@ VoltorbLv8Card:
 	dw $8869 ; gfx
 	tx VoltorbName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw VOLTORB_LV8
 	db 30 ; hp
 	db BASIC ; stage
@@ -10351,8 +10351,8 @@ VoltorbLv10Card:
 	dw $33e6 ; gfx
 	tx VoltorbName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 2 ; ?
+	db BASE_SET ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw VOLTORB_LV10
 	db 40 ; hp
 	db BASIC ; stage
@@ -10403,8 +10403,8 @@ VoltorbLv13Card:
 	dw $7000 ; gfx
 	tx VoltorbName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw VOLTORB_LV13
 	db 40 ; hp
 	db BASIC ; stage
@@ -10455,8 +10455,8 @@ ElectrodeLv35Card:
 	dw $3487 ; gfx
 	tx ElectrodeName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 2 ; ?
+	db GB ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw ELECTRODE_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -10507,8 +10507,8 @@ ElectrodeLv42Card:
 	dw $34f0 ; gfx
 	tx ElectrodeName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 4 ; ?
+	db JUNGLE ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw ELECTRODE_LV42
 	db 90 ; hp
 	db STAGE1 ; stage
@@ -10559,8 +10559,8 @@ DarkElectrodeCard:
 	dw $7069 ; gfx
 	tx DarkElectrodeName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_ELECTRODE
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -10611,8 +10611,8 @@ ElectabuzzLv20Card:
 	dw $3559 ; gfx
 	tx ElectabuzzName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw ELECTABUZZ_LV20
 	db 60 ; hp
 	db BASIC ; stage
@@ -10663,8 +10663,8 @@ ElectabuzzLv30Card:
 	dw $c20d ; gfx
 	tx ElectabuzzName ; name
 	db STAR ; rarity
-	db TEAM_ROCKETS_AMBITION ; set
-	db 0 ; ?
+	db BULBASAUR_DECK ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw ELECTABUZZ_LV30
 	db 70 ; hp
 	db BASIC ; stage
@@ -10715,8 +10715,8 @@ ElectabuzzLv35Card:
 	dw $35c2 ; gfx
 	tx ElectabuzzName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw ELECTABUZZ_LV35
 	db 70 ; hp
 	db BASIC ; stage
@@ -10767,8 +10767,8 @@ JolteonLv24Card:
 	dw $3633 ; gfx
 	tx JolteonName ; name
 	db DIAMOND ; rarity
-	db GB ; set
-	db 3 ; ?
+	db GB ; real set
+	db PSYCHIC_BATTLE ; in-game set
 	dw JOLTEON_LV24
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -10819,8 +10819,8 @@ JolteonLv29Card:
 	dw $369c ; gfx
 	tx JolteonName ; name
 	db STAR ; rarity
-	db LEGENDARY_POWER ; set
-	db 1 ; ?
+	db JUNGLE ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw JOLTEON_LV29
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -10871,8 +10871,8 @@ DarkJolteonCard:
 	dw $70d2 ; gfx
 	tx DarkJolteonName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_JOLTEON
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -10923,8 +10923,8 @@ ZapdosLv28Card:
 	dw $8c6a ; gfx
 	tx ZapdosName ; name
 	db STAR ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 6 ; ?
+	db EXPANSION_SHEET ; real set
+	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw ZAPDOS_LV28
 	db 70 ; hp
 	db BASIC ; stage
@@ -10975,8 +10975,8 @@ ZapdosLv40Card:
 	dw $3705 ; gfx
 	tx ZapdosName ; name
 	db STAR ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 4 ; ?
+	db FOSSIL ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw ZAPDOS_LV40
 	db 80 ; hp
 	db BASIC ; stage
@@ -11027,8 +11027,8 @@ ZapdosLv64Card:
 	dw $376e ; gfx
 	tx ZapdosName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw ZAPDOS_LV64
 	db 90 ; hp
 	db BASIC ; stage
@@ -11079,8 +11079,8 @@ ZapdosLv68Card:
 	dw $3800 ; gfx
 	tx ZapdosName ; name
 	db STAR ; rarity
-	db GB ; set
-	db 7 ; ?
+	db GB ; real set
+	db PROMOTIONAL ; in-game set
 	dw ZAPDOS_LV68
 	db 100 ; hp
 	db BASIC ; stage
@@ -11131,8 +11131,8 @@ SandshrewLv12Card:
 	dw $3869 ; gfx
 	tx SandshrewName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 1 ; ?
+	db BASE_SET ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SANDSHREW_LV12
 	db 40 ; hp
 	db BASIC ; stage
@@ -11183,8 +11183,8 @@ SandshrewLv15Card:
 	dw $82cc ; gfx
 	tx SandshrewName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw SANDSHREW_LV15
 	db 40 ; hp
 	db BASIC ; stage
@@ -11235,8 +11235,8 @@ SandslashLv33Card:
 	dw $38ea ; gfx
 	tx SandslashName ; name
 	db DIAMOND ; rarity
-	db ISLAND_OF_FOSSIL ; set
-	db 1 ; ?
+	db FOSSIL ; real set
+	db LEGENDARY_POWER ; in-game set
 	dw SANDSLASH_LV33
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -11287,8 +11287,8 @@ SandslashLv35Card:
 	dw $8e18 ; gfx
 	tx SandslashName ; name
 	db DIAMOND ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw SANDSLASH_LV35
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -11339,8 +11339,8 @@ DiglettLv8Card:
 	dw $3961 ; gfx
 	tx DiglettName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw DIGLETT_LV8
 	db 30 ; hp
 	db BASIC ; stage
@@ -11391,8 +11391,8 @@ DiglettLv15Card:
 	dw $6800 ; gfx
 	tx DiglettName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DIGLETT_LV15
 	db 40 ; hp
 	db BASIC ; stage
@@ -11443,8 +11443,8 @@ DiglettLv16Card:
 	dw $a221 ; gfx
 	tx DiglettName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw DIGLETT_LV16
 	db 50 ; hp
 	db BASIC ; stage
@@ -11495,8 +11495,8 @@ DugtrioLv36Card:
 	dw $39ca ; gfx
 	tx DugtrioName ; name
 	db STAR ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw DUGTRIO_LV36
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -11547,8 +11547,8 @@ DugtrioLv40Card:
 	dw $a298 ; gfx
 	tx DugtrioName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw DUGTRIO_LV40
 	db 80 ; hp
 	db STAGE1 ; stage
@@ -11599,8 +11599,8 @@ DarkDugtrioCard:
 	dw $686d ; gfx
 	tx DarkDugtrioName ; name
 	db STAR ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_DUGTRIO
 	db 50 ; hp
 	db STAGE1 ; stage
@@ -11651,8 +11651,8 @@ MankeyLv7Card:
 	dw $3a39 ; gfx
 	tx MankeyName ; name
 	db CIRCLE ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw MANKEY_LV7
 	db 30 ; hp
 	db BASIC ; stage
@@ -11703,8 +11703,8 @@ MankeyAltLv7Card:
 	dw $a687 ; gfx
 	tx MankeyName ; name
 	db PROMOSTAR ; rarity
-	db PRO ; set
-	db 7 ; ?
+	db PRO ; real set
+	db PROMOTIONAL ; in-game set
 	dw MANKEY_ALT_LV7
 	db 30 ; hp
 	db BASIC ; stage
@@ -11755,8 +11755,8 @@ MankeyLv14Card:
 	dw $68d6 ; gfx
 	tx MankeyName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MANKEY_LV14
 	db 40 ; hp
 	db BASIC ; stage
@@ -11807,8 +11807,8 @@ PrimeapeCard:
 	dw $3aa8 ; gfx
 	tx PrimeapeName ; name
 	db DIAMOND ; rarity
-	db LEGENDARY_POWER ; set
-	db 2 ; ?
+	db JUNGLE ; real set
+	db ISLAND_OF_FOSSIL ; in-game set
 	dw PRIMEAPE
 	db 70 ; hp
 	db STAGE1 ; stage
@@ -11859,8 +11859,8 @@ DarkPrimeapeCard:
 	dw $6963 ; gfx
 	tx DarkPrimeapeName ; name
 	db DIAMOND ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DARK_PRIMEAPE
 	db 60 ; hp
 	db STAGE1 ; stage
@@ -11911,8 +11911,8 @@ MachopLv18Card:
 	dw $83a4 ; gfx
 	tx MachopName ; name
 	db CIRCLE ; rarity
-	db SKY_FLYING_POKEMON ; set
-	db 4 ; ?
+	db EXPANSION_SHEET ; real set
+	db SKY_FLYING_POKEMON ; in-game set
 	dw MACHOP_LV18
 	db 50 ; hp
 	db BASIC ; stage
@@ -11963,8 +11963,8 @@ MachopLv20Card:
 	dw $3b11 ; gfx
 	tx MachopName ; name
 	db CIRCLE ; rarity
-	db BEGINNING_POKEMON ; set
-	db 0 ; ?
+	db BASE_SET ; real set
+	db BEGINNING_POKEMON ; in-game set
 	dw MACHOP_LV20
 	db 50 ; hp
 	db BASIC ; stage
@@ -12015,8 +12015,8 @@ MachopLv24Card:
 	dw $69d2 ; gfx
 	tx MachopName ; name
 	db CIRCLE ; rarity
-	db PSYCHIC_BATTLE ; set
-	db 5 ; ?
+	db TEAM_ROCKET ; real set
+	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MACHOP_LV24
 	db 50 ; hp
 	db BASIC ; stage

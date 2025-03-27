@@ -3,8 +3,8 @@ MACRO card_data_struct
 \1Gfx::           ds 2
 \1Name::          ds 2
 \1Rarity::        ds 1
+\1RealSet::       ds 1
 \1Set::           ds 1
-\1Unk07::         ds 1 ; ???
 \1ID::            ds 2
 \1EffectCommands:: ; ds 2
 \1HP::            ds 1
