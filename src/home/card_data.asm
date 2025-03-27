@@ -1,7 +1,7 @@
 ; load data of card with text id of name at de to wLoadedCard1
 LoadCardDataToBuffer1_FromName:
-	ld hl, 2 ; skip first NULL pointer
-	ld a, $17 ; BANK(CardPointers)
+	ld hl, CardPointers - $4000 + $2 ; skip first NULL pointer
+	ld a, BANK(CardPointers)
 	call BankpushROM
 .find_card_loop
 	ld a, [hli]
@@ -11,7 +11,7 @@ LoadCardDataToBuffer1_FromName:
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld bc, CARD_DATA_NAME
 	add hl, bc
@@ -32,7 +32,7 @@ LoadCardDataToBuffer1_FromName:
 	ld a, [hld]
 	ld l, [hl]
 	ld h, a
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld de, wLoadedCard1
 	ld b, PKMN_CARD_DATA_LENGTH
@@ -69,7 +69,7 @@ LoadCardDataToHL_FromCardID:
 	call GetCardPointer
 	pop de
 	jr c, .done
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld b, PKMN_CARD_DATA_LENGTH
 .copy_card_data_loop
@@ -91,7 +91,7 @@ GetCardType::
 	push hl
 	call GetCardPointer
 	jr c, .done
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld l, [hl]
 	call BankpopROM
@@ -106,9 +106,9 @@ CheckIfCardIDIsDarkPokemon::
 	push de
 	call GetCardPointer
 	jr c, .done
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
-	ld de, $3a ; CARD_DATA_LENGTH?
+	ld de, CARD_DATA_DARK
 	add hl, de
 	ld l, [hl]
 	call BankpopROM
@@ -124,7 +124,7 @@ GetCardName::
 	push hl
 	call GetCardPointer
 	jr c, .done
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld de, CARD_DATA_NAME
 	add hl, de
@@ -143,7 +143,7 @@ GetCardTypeRarityAndSet::
 	push de
 	call GetCardPointer
 	jr c, .done
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld e, [hl] ; CARD_DATA_TYPE
 	ld bc, CARD_DATA_RARITY
@@ -177,9 +177,9 @@ GetCardPointer:
 	ld l, e
 	ld h, d
 	add hl, hl
-	ld bc, 0
+	ld bc, CardPointers - $4000
 	add hl, bc
-	ld a, $17 ; BANK(CardPointers)
+	ld a, BANK(CardPointers)
 	call BankpushROM
 	ld a, [hli]
 	ld h, [hl]

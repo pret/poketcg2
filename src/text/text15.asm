@@ -5,12 +5,12 @@ Text1458:
 	linefw "「-10」される。"
 	done
 
-Text1459:
+CharmanderDescription3:
 	textfw "熱いものを好む性格。雨に濡れると"
 	linefw "尻尾の先から煙が出るという。"
 	done
 
-Text145a:
+CharmeleonName:
 	textfw "リザード"
 	done
 
@@ -22,13 +22,13 @@ Text145c:
 	textfw "かえん"
 	done
 
-Text145d:
+CharmeleonDescription:
 	textfw "しっぽをふりまわして"
 	linefw "相手をなぎ倒し、鋭いツメで"
 	linefw "ズタズタに引き裂いてしまう。"
 	done
 
-Text145e:
+DarkCharmeleonName:
 	textfw "わるいリザード"
 	done
 
@@ -49,12 +49,12 @@ Text1461:
 	linefw "ダメージはなくなる。"
 	done
 
-Text1462:
+DarkCharmeleonDescription:
 	textfw "しっぽの力は、大人5人を持ち上げて"
 	linefw "しまうほど強い。"
 	done
 
-Text1463:
+CharizardName:
 	textfw "リザードン"
 	done
 
@@ -82,18 +82,18 @@ Text1467:
 	linefw "なくなる。"
 	done
 
-Text1468:
+CharizardDescription:
 	textfw "地上1400メートルまで"
 	linefw "羽をつかって飛ぶことができる。"
 	linefw "高熱の炎をはく。"
 	done
 
-Text1469:
+CharizardAltDescription:
 	textfw "地上1400メートルまで翼をつかって"
 	linefw "飛ぶことができる。高熱の炎をはく。"
 	done
 
-Text146a:
+DarkCharizardName:
 	textfw "わるいリザードン"
 	done
 
@@ -115,12 +115,12 @@ Text146d:
 	linefw "ダメージはなくなる。"
 	done
 
-Text146e:
+DarkCharizardDescription:
 	textfw "とりつかれたように炎の塊を吐き出して"
 	linefw "あらゆるものを焼きつくそうとする。"
 	done
 
-Text146f:
+VulpixName:
 	textfw "ロコン"
 	done
 
@@ -132,7 +132,7 @@ Text1471:
 	textfw "きつね"
 	done
 
-Text1472:
+VulpixDescription1:
 	textfw "子どもだが6本の尻尾が美しい。"
 	linefw "成長するとさらに尻尾が増える。"
 	done
@@ -149,13 +149,13 @@ Text1474:
 	linefw "あたえる)"
 	done
 
-Text1475:
+VulpixDescription2:
 	textfw "生まれた時、しっぽは真っ白で1本"
 	linefw "しかない。育つと、やがて先が分れて"
 	linefw "しっぽが増える。"
 	done
 
-Text1476:
+NinetalesName:
 	textfw "キュウコン"
 	done
 
@@ -167,7 +167,7 @@ Text1478:
 	textfw "だいもんじ"
 	done
 
-Text1479:
+NinetalesDescription1:
 	textfw "黃金に輝く体毛と9本の長い尻尾を持つ"
 	linefw "1000年は生きると言われている。"
 	done
@@ -195,13 +195,13 @@ Text147d:
 	linefw "×10のダメージ。"
 	done
 
-Text147e:
+NinetalesDescription2:
 	textfw "頭が良くて執念深い。"
 	linefw "ふざけてしっぽを掴むと1000年"
 	linefw "祟られるという。"
 	done
 
-Text147f:
+DarkNinetalesName:
 	textfw "わるいキュウコン"
 	done
 
@@ -225,12 +225,12 @@ Text1483:
 	linefw "×10のダメージ。"
 	done
 
-Text1484:
+DarkNinetalesDescription:
 	textfw "不思議な妖力で、ときにはトレーナーを"
 	linefw "幻惑させることがある。"
 	done
 
-Text1485:
+GrowlitheName:
 	textfw "ガーディ"
 	done
 
@@ -242,7 +242,7 @@ Text1487:
 	textfw "こいぬ"
 	done
 
-Text1488:
+GrowlitheDescription1:
 	textfw "ひとなつっこい性格だが、なわばりに"
 	linefw "入ってきた敵に対しては、激しく吠える"
 	done
@@ -266,7 +266,7 @@ Text148b:
 	linefw "なくなる"
 	done
 
-Text148c:
+GrowlitheDescription2:
 	textfw "なわばり意識がとても強い。"
 	linefw "ゆだんして近づくとほえられ、"
 	linefw "かみつかれ、痛い目にあう。"
@@ -276,13 +276,13 @@ Text148d:
 	textfw "ほのお"
 	done
 
-Text148e:
+GrowlitheDescription3:
 	textfw "ひとなつこく誠実な性格。"
 	linefw "敵には吠えてかみつき、追いはらおうと"
 	linefw "する。"
 	done
 
-Text148f:
+ArcanineName:
 	textfw "ウィンディ"
 	done
 
@@ -312,7 +312,7 @@ Text1494:
 	textfw "でんせつ"
 	done
 
-Text1495:
+ArcanineDescription1:
 	textfw "昔から多くの人をとりこにした、"
 	linefw "美しいポケモン。"
 	linefw "跳ぶように、軽やかに走る。"
@@ -326,7 +326,7 @@ Text1497:
 	textfw "[自分]", "にも20ダメージ。"
 	done
 
-Text1498:
+ArcanineDescription2:
 	textfw "中国で伝説のポケモン。かろやかに走る"
 	linefw "その姿に、とりこにされる者も多い。"
 	done
@@ -335,12 +335,12 @@ Text1499:
 	textfw "[自分]", "にも30ダメージ。"
 	done
 
-Text149a:
+ArcanineDescription3:
 	textfw "中国の言い伝えのある伝説のポケモン。"
 	linefw "ものすごいスピードで走るという。"
 	done
 
-Text149b:
+PonytaName:
 	textfw "ポニータ"
 	done
 
@@ -362,25 +362,25 @@ Text149f:
 	textfw "ひのうま"
 	done
 
-Text14a0:
+PonytaDescription1:
 	textfw "足のヒヅメはダイヤモンドの10倍"
 	linefw "かたい。どんなものでもペチャンコに"
 	linefw "ふみつぶしてしまう。"
 	done
 
-Text14a1:
+PonytaDescription2:
 	textfw "体が軽く足の力がものすごい。"
 	linefw "1回のジャンプで東京タワーも"
 	linefw "飛び越える。"
 	done
 
-Text14a2:
+PonytaDescription3:
 	textfw "草食性で温厚な性格なので、やけどに"
 	linefw "さえ気をつければ、背中に乗ることも"
 	linefw "できる。"
 	done
 
-Text14a3:
+RapidashName:
 	textfw "ギャロップ"
 	done
 
@@ -407,7 +407,7 @@ Text14a7:
 	linefw "おこらない)"
 	done
 
-Text14a8:
+RapidashDescription1:
 	textfw "速く動く物体をみると競争したくなり、"
 	linefw "猛烈なスピードで追いかけ始める。"
 	done
@@ -431,13 +431,13 @@ Text14ac:
 	linefw "ダメージや効果を受けない。"
 	done
 
-Text14ad:
+RapidashDescription2:
 	textfw "時速は最高240キロ。"
 	linefw "メラメラ燃えながら新幹線と"
 	linefw "同じスピードでかけぬける。"
 	done
 
-Text14ae:
+DarkRapidashName:
 	textfw "わるいギャロップ"
 	done
 
@@ -457,12 +457,12 @@ Text14b1:
 	linefw "10ダメージを与えてもよい。"
 	done
 
-Text14b2:
+DarkRapidashDescription:
 	textfw "気性が激しく、暴れると手がつけられ"
 	linefw "ない。高速で走る姿は赤い彗星のようだ"
 	done
 
-Text14b3:
+MagmarName:
 	textfw "ブーバー"
 	done
 
@@ -474,13 +474,13 @@ Text14b5:
 	textfw "ひふき"
 	done
 
-Text14b6:
+MagmarDescription1:
 	textfw "火山の火口から生まれた。全身が"
 	linefw "燃えているため、火の玉と見分けが"
 	linefw "つかない。"
 	done
 
-Text14b7:
+MagmarDescription2:
 	textfw "火山の火口近くでみつかった。"
 	linefw "口から炎をはく。"
 	linefw "体温は1200℃もある。"
@@ -502,7 +502,7 @@ Text14ba:
 	textfw "マグマパンチ"
 	done
 
-Text14bb:
+MagmarDescription3:
 	textfw "自らオレンジ色に燃えていて、炎の中に"
 	linefw "かくれると、全く見分けがつかなくなる"
 	done
@@ -517,17 +517,17 @@ Text14bd:
 	linefw "「うら」なら、そのワザは失敗する。"
 	done
 
-Text14be:
+MagmarDescription4:
 	textfw "火山の火口の近くで見つかった。"
 	linefw "非常に見つけにくいポケモンで、"
 	linefw "捕獲例は少ない。"
 	done
 
-Text14bf:
+FlareonName:
 	textfw "ブースター"
 	done
 
-Text14c0:
+EeveeName:
 	textfw "イーブイ"
 	done
 
@@ -540,18 +540,18 @@ Text14c2:
 	linefw "の数×10のダメージを追加する。"
 	done
 
-Text14c3:
+FlareonDescription1:
 	textfw "体に炎をためてるとき、"
 	linefw "体温が900度以上に上がるので"
 	linefw "非常に危険。"
 	done
 
-Text14c4:
+FlareonDescription2:
 	textfw "体内に炎袋があり深く息を吸いこんだ後"
 	linefw "1700℃の火をはく。"
 	done
 
-Text14c5:
+DarkFlareonName:
 	textfw "わるいブースター"
 	done
 
@@ -567,13 +567,13 @@ Text14c7:
 	linefw "このワザのダメージはなくなる。"
 	done
 
-Text14c8:
+DarkFlareonDescription:
 	textfw "一度怒りはじめたら、手をつけられなく"
 	linefw "なる。深く息を吸い込んだ後、1700"
 	linefw "℃の火を吐く。"
 	done
 
-Text14c9:
+MoltresName:
 	textfw "ファイヤー"
 	done
 
@@ -593,7 +593,7 @@ Text14cc:
 	textfw "ゴットバード"
 	done
 
-Text14cd:
+MoltresDescription1:
 	textfw "伝説の鳥ポケモンの一匹。"
 	linefw "オレンジ色の燃えるような翼は"
 	linefw "見るものを圧倒する。"
@@ -615,7 +615,7 @@ Text14d0:
 	textfw "ほのおのつばさ"
 	done
 
-Text14d1:
+MoltresDescription2:
 	textfw "昔から火の鳥伝説として知られる。"
 	linefw "はばたくたびにハネが明るく燃え上がり"
 	linefw "美しい。"
@@ -639,7 +639,7 @@ Text14d4:
 	textfw "その後、その山札をよく切る。"
 	done
 
-Text14d5:
+SquirtleName:
 	textfw "ゼニガメ"
 	done
 
@@ -655,7 +655,7 @@ Text14d8:
 	textfw "かめのこ"
 	done
 
-Text14d9:
+SquirtleDescription1:
 	textfw "長い首を甲羅の中に引っ込める時、"
 	linefw "勢いよく水を発射する。"
 	done
@@ -664,7 +664,7 @@ Text14da:
 	textfw "ロケットずつき"
 	done
 
-Text14db:
+SquirtleDescription2:
 	textfw "水面から水を噴射して、エサをとる。"
 	linefw "危なくなると甲羅に手足をひっこめて"
 	linefw "身を守る。"
@@ -683,7 +683,7 @@ Text14de:
 	textfw "はたく"
 	done
 
-Text14df:
+SquirtleDescription3:
 	textfw "生まれた後、背中がふくらみ、"
 	linefw "固い甲羅ができる。口から強力な"
 	linefw "あわをだす。"
@@ -693,12 +693,12 @@ Text14e0:
 	textfw "こうらアタック"
 	done
 
-Text14e1:
+SquirtleDescription4:
 	textfw "つぶらな瞳が魅力的なポケモンだ。"
 	linefw "水の中で泳ぐのが好きらしい。"
 	done
 
-Text14e2:
+WartortleName:
 	textfw "カメール"
 	done
 
@@ -706,7 +706,7 @@ Text14e3:
 	textfw "かめ"
 	done
 
-Text14e4:
+WartortleDescription1:
 	textfw "ペットとして人気が高い。"
 	linefw "また毛で覆われたしっぽは"
 	linefw "長生きするシンボルだ。"
@@ -716,13 +716,13 @@ Text14e5:
 	textfw "なみのり"
 	done
 
-Text14e6:
+WartortleDescription2:
 	textfw "ポカンと頭をたたかれるとき、甲羅に"
 	linefw "ひっこんでよける。でも、ちょっとだけ"
 	linefw "シッポがでているよ。"
 	done
 
-Text14e7:
+DarkWartortleName:
 	textfw "わるいカメール"
 	done
 
@@ -747,13 +747,13 @@ Text14eb:
 	linefw "(ダメージ以外の効果は与えない)"
 	done
 
-Text14ec:
+DarkWartortleDescription:
 	textfw "機嫌が悪いとすぐに甲羅の中に身を"
 	linefw "隠してしまう。少し、性格がひねて"
 	linefw "しまったようだ。"
 	done
 
-Text14ed:
+BlastoiseName:
 	textfw "カメックス"
 	done
 
@@ -786,19 +786,19 @@ Text14f2:
 	textfw "こうら"
 	done
 
-Text14f3:
+BlastoiseDescription:
 	textfw "体が重たく、のしかかって相手を"
 	linefw "気絶させる。"
 	linefw "ピンチのときは、カラにかくれる。"
 	done
 
-Text14f4:
+BlastoiseAltDescription:
 	textfw "体が重たく、のしかかって相手を"
 	linefw "気絶させる。ピンチのときは、カラに"
 	linefw "かくれる。"
 	done
 
-Text14f5:
+DarkBlastoiseName:
 	textfw "わるいカメックス"
 	done
 
@@ -826,12 +826,12 @@ Text14f9:
 	linefw "そのまま)"
 	done
 
-Text14fa:
+DarkBlastoiseDescription:
 	textfw "好戦的な性格で、相手がなんであれ、"
 	linefw "タックルしてくる。"
 	done
 
-Text14fb:
+PsyduckName:
 	textfw "コダック"
 	done
 
@@ -849,7 +849,7 @@ Text14fe:
 	textfw "あひる"
 	done
 
-Text14ff:
+PsyduckDescription1:
 	textfw "いつも頭痛に悩まされている。"
 	linefw "この頭痛が激しくなると"
 	linefw "不思議な力を使い始める。"
@@ -867,12 +867,12 @@ Text1502:
 	textfw "みずでっぽう"
 	done
 
-Text1503:
+PsyduckDescription2:
 	textfw "頭痛に悩まされるためか、頭をかかえて"
 	linefw "いることが多い。"
 	done
 
-Text1504:
+GolduckName:
 	textfw "ゴルダック"
 	done
 
@@ -889,7 +889,7 @@ Text1507:
 	linefw "」を1枚選び、トラッシュする。"
 	done
 
-Text1508:
+GolduckDescription1:
 	textfw "手のひらが水かきになっていて"
 	linefw "泳ぐのが得意。"
 	linefw "湖などで優雅な姿が見かけられる。"
@@ -908,12 +908,12 @@ Text150b:
 	textfw "スプラッシュ"
 	done
 
-Text150c:
+GolduckDescription2:
 	textfw "夕方、湖のほとりをかれいに泳ぐ姿を"
 	linefw "カッパと間違える人がいる。"
 	done
 
-Text150d:
+DarkGolduckName:
 	textfw "わるいゴルダック"
 	done
 
@@ -932,12 +932,12 @@ Text1510:
 	textfw "ちょうねんりき"
 	done
 
-Text1511:
+DarkGolduckDescription:
 	textfw "コダック時代の頭痛がウソのように消え"
 	linefw "いつのまにか強力な超能力を身につけた"
 	done
 
-Text1512:
+PoliwagName:
 	textfw "ニョロモ"
 	done
 
@@ -953,17 +953,17 @@ Text1514:
 	textfw "おたま"
 	done
 
-Text1515:
+PoliwagDescription1:
 	textfw "スベスベした黑い皮膚は薄く湿っている"
 	linefw "内臓の一部が透けて渦巻状にみえる。"
 	done
 
-Text1516:
+PoliwagDescription2:
 	textfw "まだ足がはえたばかりでうまく歩けない"
 	linefw "水の中を歩いているほうが好きなようだ"
 	done
 
-Text1517:
+PoliwhirlName:
 	textfw "ニョロゾ"
 	done
 
@@ -976,7 +976,7 @@ Text1519:
 	linefw "そのポケモンは、そのワザを使えない。"
 	done
 
-Text151a:
+PoliwhirlDescription1:
 	textfw "2本の足は発達しており地上で"
 	linefw "暮らせるのに、なぜか水中生活が好き。"
 	done
@@ -995,17 +995,17 @@ Text151d:
 	textfw "のしかかり"
 	done
 
-Text151e:
+PoliwhirlDescription2:
 	textfw "陸でも水中でも暮らせる。地上では"
 	linefw "いつも汗をかき、皮膚をぬめぬめ"
 	linefw "させている。"
 	done
 
-Text151f:
+PoliwrathName:
 	textfw "ニョロボン"
 	done
 
-Text1520:
+PoliwrathDescription1:
 	textfw "クロールやバタフライが得意で、"
 	linefw "オリンピックの選手でもぐんぐん追い"
 	linefw "抜いてゆく。"
@@ -1015,13 +1015,13 @@ Text1521:
 	textfw "うずしお"
 	done
 
-Text1522:
+PoliwrathDescription2:
 	textfw "泳ぎが得意でクロールやバタフライが"
 	linefw "できる。オリンピックの選手も"
 	linefw "かなわないほど速い。"
 	done
 
-Text1523:
+TentacoolName:
 	textfw "メノクラゲ"
 	done
 
@@ -1043,12 +1043,12 @@ Text1526:
 	textfw "くらげ"
 	done
 
-Text1527:
+TentacoolDescription:
 	textfw "水晶のように透き通った頭部から、"
 	linefw "不思議なビームを発射する。"
 	done
 
-Text1528:
+TentacruelName:
 	textfw "ドククラゲ"
 	done
 
@@ -1056,13 +1056,13 @@ Text1529:
 	textfw "クラゲばり"
 	done
 
-Text152a:
+TentacruelDescription:
 	textfw "80本の触手が自由に動く。"
 	linefw "刺されると毒におかされ、"
 	linefw "鋭い痛みがはしる。"
 	done
 
-Text152b:
+SeelName:
 	textfw "パウワウ"
 	done
 
@@ -1080,7 +1080,7 @@ Text152e:
 	textfw "あしか"
 	done
 
-Text152f:
+SeelDescription1:
 	textfw "頭にでっぱりがあって非常にかたい。"
 	linefw "頭つきで氷山を割って進む。"
 	done
@@ -1089,13 +1089,13 @@ Text1530:
 	textfw "ずつき"
 	done
 
-Text1531:
+SeelDescription2:
 	textfw "水色の体毛に覆われた皮膚は、"
 	linefw "ぶあつくて丈夫。"
 	linefw "零下40℃でも活動できる。"
 	done
 
-Text1532:
+DewgongName:
 	textfw "ジュゴン"
 	done
 
@@ -1115,7 +1115,7 @@ Text1535:
 	textfw "オーロラウェーブ"
 	done
 
-Text1536:
+DewgongDescription1:
 	textfw "寒さに勝つため、体の中に熱エネルギー"
 	linefw "をたくわえる。寒い海も8ノットで進む"
 	done
@@ -1124,12 +1124,12 @@ Text1537:
 	textfw "オーロラビーム"
 	done
 
-Text1538:
+DewgongDescription2:
 	textfw "全身が真っ白な毛で覆われている。"
 	linefw "寒さに強くむしろ寒いほど元気になる。"
 	done
 
-Text1539:
+ShellderName:
 	textfw "シェルダー"
 	done
 
@@ -1141,7 +1141,7 @@ Text153b:
 	textfw "2まいがい"
 	done
 
-Text153c:
+ShellderDescription1:
 	textfw "ダイヤモンドより固い殻に覆われている"
 	linefw "しかし、中身は意外とやわらかい。"
 	done
@@ -1158,12 +1158,12 @@ Text153e:
 	linefw "ダメージ追加は2個ぶんまで。"
 	done
 
-Text153f:
+ShellderDescription2:
 	textfw "かたいカラはどんな攻げきもはね返す。"
 	linefw "開いた時に中を攻げきされると弱い。"
 	done
 
-Text1540:
+CloysterName:
 	textfw "パルシェン"
 	done
 
@@ -1181,13 +1181,13 @@ Text1543:
 	textfw "とげキャノン"
 	done
 
-Text1544:
+CloysterDescription:
 	textfw "殻が非常に固く、"
 	linefw "ナパーム彈でも壊せない。"
 	linefw "攻擊するときだけ開く。"
 	done
 
-Text1545:
+KrabbyName:
 	textfw "クラブ"
 	done
 
@@ -1199,7 +1199,7 @@ Text1547:
 	textfw "さわがに"
 	done
 
-Text1548:
+KrabbyDescription1:
 	textfw "ハサミは強力な武器であり、横に歩く時"
 	linefw "体のバランスをとる役目もはたす。"
 	done
@@ -1216,13 +1216,13 @@ Text154a:
 	textfw "はさむ"
 	done
 
-Text154b:
+KrabbyDescription2:
 	textfw "海の近くで見つかる。"
 	linefw "大きなハサミはもぎとっても"
 	linefw "後からまたはえてくる。"
 	done
 
-Text154c:
+KinglerName:
 	textfw "キングラー"
 	done
 
@@ -1243,7 +1243,7 @@ Text1550:
 	textfw "はさみ"
 	done
 
-Text1551:
+KinglerDescription1:
 	textfw "固いハサミは1万馬力のパワーを"
 	linefw "持っているが、大きすぎて動きが鈍い。"
 	done
@@ -1268,13 +1268,13 @@ Text1555:
 	linefw "ダメージは2倍になる。"
 	done
 
-Text1556:
+KinglerDescription2:
 	textfw "ハサミは1万馬力のスーパーパワーを"
 	linefw "ひめているのだが、大きすぎてうまく"
 	linefw "動かない。"
 	done
 
-Text1557:
+HorseaName:
 	textfw "タッツー"
 	done
 
@@ -1282,7 +1282,7 @@ Text1558:
 	textfw "ドラゴン"
 	done
 
-Text1559:
+HorseaDescription1:
 	textfw "ぜんまいのようにクルクル巻かれた"
 	linefw "尻尾で体のバランスをとる。"
 	linefw "口からスミをはくことがある。"
@@ -1298,17 +1298,17 @@ Text155b:
 	linefw "よるダメージや効果を受けない。"
 	done
 
-Text155c:
+HorseaDescription2:
 	textfw "水面から勢いよくスミを発射して、"
 	linefw "飛んでいるムシをうち落とすことがある"
 	linefw "という。"
 	done
 
-Text155d:
+SeadraName:
 	textfw "シードラ"
 	done
 
-Text155e:
+SeadraDescription1:
 	textfw "うかつにさわろうとすると"
 	linefw "体中にはえるトゲに刺されて"
 	linefw "気絶することもある。"
@@ -1332,13 +1332,13 @@ Text1561:
 	linefw "抵抗力」の影響を受けない)"
 	done
 
-Text1562:
+SeadraDescription2:
 	textfw "ハネとしっぽをすばやく動かし、"
 	linefw "前を向いたまま後ろへ泳ぐこともできる"
 	linefw "ポケモン。"
 	done
 
-Text1563:
+GoldeenName:
 	textfw "トサキント"
 	done
 
@@ -1350,13 +1350,13 @@ Text1565:
 	textfw "きんぎょ"
 	done
 
-Text1566:
+GoldeenDescription:
 	textfw "泳ぐ時、尾びれがドレスのように"
 	linefw "しなやかに揺れるので、"
 	linefw "水中の女王と呼ばれる。"
 	done
 
-Text1567:
+SeakingName:
 	textfw "アズマオウ"
 	done
 
@@ -1364,13 +1364,13 @@ Text1568:
 	textfw "たきのぼり"
 	done
 
-Text1569:
+SeakingDescription:
 	textfw "角がドリルのようにとがっていて、"
 	linefw "岩肌を角でくりぬき自分の巣を"
 	linefw "つくっている。"
 	done
 
-Text156a:
+StaryuName:
 	textfw "ヒトデマン"
 	done
 
@@ -1382,7 +1382,7 @@ Text156c:
 	textfw "ほしがた"
 	done
 
-Text156d:
+StaryuDescription1:
 	textfw "海辺に多くあらわれ、"
 	linefw "夜になると中心が赤く点滅する。"
 	done
@@ -1401,12 +1401,12 @@ Text1570:
 	textfw "かいてんアタック"
 	done
 
-Text1571:
+StaryuDescription2:
 	textfw "体の一部を切り取られても、自己再生"
 	linefw "して元に戻るなぞの多い生きものだ。"
 	done
 
-Text1572:
+StarmieName:
 	textfw "スターミー"
 	done
 
@@ -1431,12 +1431,12 @@ Text1576:
 	textfw "なぞの"
 	done
 
-Text1577:
+StarmieDescription:
 	textfw "幾何学的なボディから宇宙生物では"
 	linefw "ないかと地元では疑われている。"
 	done
 
-Text1578:
+DarkStarmieName:
 	textfw "わるいスターミー"
 	done
 
@@ -1476,13 +1476,13 @@ Text157d:
 	linefw "トラッシュされる。"
 	done
 
-Text157e:
+DarkStarmieDescription:
 	textfw "その生態がいまだつかめていない"
 	linefw "ポケモン。不思議な力で生まれか"
 	linefw "わることがあるという。"
 	done
 
-Text157f:
+MagikarpName:
 	textfw "コイキング"
 	done
 
@@ -1505,13 +1505,13 @@ Text1583:
 	textfw "さかな"
 	done
 
-Text1584:
+MagikarpDescription1:
 	textfw "最新の研究で、コイキングの体から"
 	linefw "竜のDNAが検出されることが判明した"
 	linefw "らしい。"
 	done
 
-Text1585:
+MagikarpDescription2:
 	textfw "力もスピードもほとんどダメ。"
 	linefw "世界で一番弱くて、"
 	linefw "なさけないポケモンだ。"
@@ -1535,13 +1535,13 @@ Text1589:
 	linefw "なら、このワザは失敗する。"
 	done
 
-Text158a:
+MagikarpDescription3:
 	textfw "最新の研究で、コイキングの体から、"
 	linefw "竜のDNAが検出されることが判明した"
 	linefw "らしい。"
 	done
 
-Text158b:
+GyaradosName:
 	textfw "ギャラドス"
 	done
 
@@ -1553,13 +1553,13 @@ Text158d:
 	textfw "きょうあく"
 	done
 
-Text158e:
+GyaradosDescription:
 	textfw "非常に狂暴な性格。"
 	linefw "「りゅうのいかり」は全てのものを"
 	linefw "破壊しつくす。"
 	done
 
-Text158f:
+DarkGyaradosName:
 	textfw "わるいギャラドス"
 	done
 
@@ -1582,13 +1582,13 @@ Text1592:
 	linefw "この力は使えない。"
 	done
 
-Text1593:
+DarkGyaradosDescription:
 	textfw "深海に生息しているので滅多に見かける"
 	linefw "ことがなかったが、ついに浅瀬に姿を"
 	linefw "現した。"
 	done
 
-Text1594:
+LaprasName:
 	textfw "ラプラス"
 	done
 
@@ -1605,17 +1605,17 @@ Text1597:
 	textfw "のりもの"
 	done
 
-Text1598:
+LaprasDescription1:
 	textfw "かつてたくさんつかまえたため、絶めつ"
 	linefw "寸前になっている。人を乗せて進む。"
 	done
 
-Text1599:
+LaprasDescription2:
 	textfw "人の言葉を理解する、高い知能を持つ。"
 	linefw "海の上を人を乗せて進むのが好き。"
 	done
 
-Text159a:
+VaporeonName:
 	textfw "シャワーズ"
 	done
 
@@ -1628,19 +1628,19 @@ Text159c:
 	textfw "あわはき"
 	done
 
-Text159d:
+VaporeonDescription1:
 	textfw "水辺に住むが、しっぽには魚のような"
 	linefw "ひれが残っていて、人魚と間違う人も"
 	linefw "いる。"
 	done
 
-Text159e:
+VaporeonDescription2:
 	textfw "体の細胞のつくりが、"
 	linefw "水の分子と似ている。"
 	linefw "水にとけると見えなくなる。"
 	done
 
-Text159f:
+DarkVaporeonName:
 	textfw "わるいシャワーズ"
 	done
 
@@ -1650,16 +1650,16 @@ Text15a0:
 	linefw "トラッシュさせる。"
 	done
 
-Text15a1:
+DarkVaporeonDescription:
 	textfw "水を自在にコントロールして、巨大な"
 	linefw "うずしおを作ることができるらしい。"
 	done
 
-Text15a2:
+OmanyteName:
 	textfw "オムナイト"
 	done
 
-Text15a3:
+MysteriousFossilName:
 	textfw "なにかの化石"
 	done
 
@@ -1679,7 +1679,7 @@ Text15a6:
 	textfw "うずまき"
 	done
 
-Text15a7:
+OmanyteDescription1:
 	textfw "大昔、海に住んでいた古代のポケモン。"
 	linefw "10本の足をくねらせて泳ぐ。"
 	done
@@ -1707,7 +1707,7 @@ Text15ab:
 	textfw "ころがりタックル"
 	done
 
-Text15ac:
+OmanyteDescription2:
 	textfw "絶めつしたポケモンだが、まれに化石が"
 	linefw "発見され、そこから生き返らせることが"
 	linefw "できる。"
@@ -1726,11 +1726,11 @@ Text15ae:
 	linefw "この力は使えない。"
 	done
 
-Text15af:
+OmastarName:
 	textfw "オムスター"
 	done
 
-Text15b0:
+OmastarDescription1:
 	textfw "触手が手足のように発達している。"
 	linefw "しがみつくと同時にかみついてくる。"
 	done
@@ -1756,13 +1756,13 @@ Text15b4:
 	linefw "このカードはこのワザを使えない。"
 	done
 
-Text15b5:
+OmastarDescription2:
 	textfw "するどいキバとしょくしゅを持ちながら"
 	linefw "カラが大きすぎてエサをとれず、全滅"
 	linefw "したらしい。"
 	done
 
-Text15b6:
+ArticunoName:
 	textfw "フリーザー"
 	done
 
@@ -1782,7 +1782,7 @@ Text15b9:
 	textfw "れいとう"
 	done
 
-Text15ba:
+ArticunoDescription1:
 	textfw "雪山で寒くて死にそうな時、"
 	linefw "目の前に現れるといわれる伝説の"
 	linefw "れいとうポケモン。"
@@ -1804,7 +1804,7 @@ Text15bd:
 	linefw "10ダメージ。"
 	done
 
-Text15be:
+ArticunoDescription2:
 	textfw "伝説の鳥ポケモンの一匹。"
 	linefw "長い尻尾がたなびいて飛んでいく姿は"
 	linefw "すばらしい。"
@@ -1833,12 +1833,12 @@ Text15c2:
 	linefw "れる。"
 	done
 
-Text15c3:
+ArticunoDescription3:
 	textfw "雪山で寒くて死にそうなとき、目の前"
 	linefw "に現れるという伝説の冷凍ポケモン。"
 	done
 
-Text15c4:
+MarillName:
 	textfw "マリル"
 	done
 
@@ -1846,12 +1846,12 @@ Text15c5:
 	textfw "みずねずみ"
 	done
 
-Text15c6:
+MarillDescription:
 	textfw "全身の体毛は水をはじくので、"
 	linefw "水遊びのあとでも体はふかふかしている"
 	done
 
-Text15c7:
+PikachuName:
 	textfw "ピカチュウ"
 	done
 
@@ -1863,7 +1863,7 @@ Text15c9:
 	textfw "ねずみ"
 	done
 
-Text15ca:
+PikachuDescription1:
 	textfw "トキワの森で見つけることができる。"
 	linefw "ただ、すばしっこいので捕まえるのが"
 	linefw "大変。"
@@ -1882,7 +1882,7 @@ Text15cd:
 	linefw "も10ダメージ。"
 	done
 
-Text15ce:
+PikachuDescription2:
 	textfw "ほっぺたの両側に小さい電気袋をもつ。"
 	linefw "ピンチのときに放電する。"
 	done
@@ -1906,7 +1906,7 @@ Text15d2:
 	linefw "」をすべてトラッシュする。"
 	done
 
-Text15d3:
+PikachuDescription3:
 	textfw "何匹か集まっているとそこに猛烈な"
 	linefw "電気がたまり、稲妻が落ちることがある"
 	linefw "という。"
@@ -1922,13 +1922,13 @@ Text15d5:
 	linefw "関係なく、10ダメージ。"
 	done
 
-Text15d6:
+PikachuDescription4:
 	textfw "優しい性格で知能が高く、"
 	linefw "愛敬もあるので、研究者の間でも"
 	linefw "人気ナンバー1のポケモンだ。"
 	done
 
-Text15d7:
+FlyingPikachuName:
 	textfw "そらをとぶピカチュウ"
 	done
 
@@ -1943,22 +1943,22 @@ Text15d9:
 	linefw "ダメージや効果を受けない。"
 	done
 
-Text15da:
+FlyingPikachuDescription:
 	textfw "空を飛ぶことによって自らの弱点を"
 	linefw "克服したピカチュウだ。"
 	done
 
-Text15db:
+SurfingPikachuName:
 	textfw "なみのりピカチュウ"
 	done
 
-Text15dc:
+SurfingPikachuDescription:
 	textfw "ある夏休み。波の高い海岸で、"
 	linefw "なみのりをしているピカチュウが発見"
 	linefw "された。"
 	done
 
-Text15dd:
+RaichuName:
 	textfw "ライチュウ"
 	done
 
@@ -1978,7 +1978,7 @@ Text15e0:
 	textfw "ビリビリキック"
 	done
 
-Text15e1:
+RaichuDescription1:
 	textfw "長いしっぽがアースになって身を守る"
 	linefw "ため、自分自身は高電圧にもしびれない"
 	linefw "のだ。"
@@ -1994,7 +1994,7 @@ Text15e3:
 	linefw "」を、すべてトラッシュする。"
 	done
 
-Text15e4:
+RaichuDescription2:
 	textfw "体に電気がたまってくると、攻擊的な"
 	linefw "性格に変る。暗いところで光って見える"
 	done
@@ -2008,7 +2008,7 @@ Text15e6:
 	linefw "も30ダメージ。"
 	done
 
-Text15e7:
+RaichuDescription3:
 	textfw "電擊は10万ボルトに達することもあり"
 	linefw "ヘタにさわるとインドゾウでも気絶する"
 	done
@@ -2023,7 +2023,7 @@ Text15e9:
 	linefw "」に関係なく、それぞれ10ダメージ。"
 	done
 
-Text15ea:
+DarkRaichuName:
 	textfw "わるいライチュウ"
 	done
 
@@ -2037,12 +2037,12 @@ Text15ec:
 	linefw "「0、10、20」いずれかのダメージ"
 	done
 
-Text15ed:
+DarkRaichuDescription:
 	textfw "身体にたまった電気を、いたずらに"
 	linefw "放電して、まわりをおどろかせる。"
 	done
 
-Text15ee:
+MagnemiteName:
 	textfw "コイル"
 	done
 
@@ -2060,7 +2060,7 @@ Text15f1:
 	textfw "じしゃく"
 	done
 
-Text15f2:
+MagnemiteDescription1:
 	textfw "複数のコイル、レアコイルが集まると"
 	linefw "強力な磁力結界が形成されるという。"
 	done
@@ -2076,7 +2076,7 @@ Text15f4:
 	linefw "10ダメージ。"
 	done
 
-Text15f5:
+MagnemiteDescription2:
 	textfw "空中に浮いたまま移動して、"
 	linefw "左右のユニットから電磁波などを"
 	linefw "放射する。"
@@ -2095,7 +2095,7 @@ Text15f7:
 	linefw "決まる。"
 	done
 
-Text15f8:
+MagnemiteDescription3:
 	textfw "反重力で浮いてるらしい。"
 	linefw "どこからともなく現われて電磁波などを"
 	linefw "放射する。"
@@ -2125,13 +2125,13 @@ Text15fc:
 	linefw "10ダメージ。"
 	done
 
-Text15fd:
+MagnemiteDescription4:
 	textfw "反重力で浮いているらしい。"
 	linefw "どこからともなく現れて電磁波などを"
 	linefw "放射する。"
 	done
 
-Text15fe:
+MagnetonName:
 	textfw "レアコイル"
 	done
 
@@ -2142,7 +2142,7 @@ Text15ff:
 	linefw "20ダメージ。"
 	done
 
-Text1600:
+MagnetonDescription1:
 	textfw "複数のコイルが連結して"
 	linefw "強力な磁力線と高電圧を放射する。"
 	done
@@ -2160,7 +2160,7 @@ Text1602:
 	linefw "1枚選び、トラッシュする。"
 	done
 
-Text1603:
+MagnetonDescription2:
 	textfw "連けつしたタイプのコイルは、"
 	linefw "太陽の黑点が多い時、たくさん現れると"
 	linefw "言われる。"
@@ -2182,7 +2182,7 @@ Text1606:
 	linefw "20ダメージ。"
 	done
 
-Text1607:
+DarkMagnetonName:
 	textfw "わるいレアコイル"
 	done
 
@@ -2204,13 +2204,13 @@ Text160a:
 	linefw "エネルギーのつけ替えはしない。"
 	done
 
-Text160b:
+DarkMagnetonDescription:
 	textfw "レアコイルの磁力線を利用して、"
 	linefw "パソコンのデータを破壊する事件が"
 	linefw "多発しているという。"
 	done
 
-Text160c:
+VoltorbName:
 	textfw "ビリリダマ"
 	done
 
@@ -2227,13 +2227,13 @@ Text160f:
 	textfw "ボール"
 	done
 
-Text1610:
+VoltorbDescription1:
 	textfw "発電所などに現れる。"
 	linefw "モンスターボールとまちがえてさわって"
 	linefw "しびれる人が多い。"
 	done
 
-Text1611:
+VoltorbDescription2:
 	textfw "正体不明の生き物。いやな音をだしたり"
 	linefw "突然自爆したりすることもあるという。"
 	done
@@ -2242,13 +2242,13 @@ Text1612:
 	textfw "スピードボール"
 	done
 
-Text1613:
+VoltorbDescription3:
 	textfw "発電所などに多く生息するが、"
 	linefw "電線などを伝わってくるのか、町でも"
 	linefw "見かけるようになった。"
 	done
 
-Text1614:
+ElectrodeName:
 	textfw "マルマイン"
 	done
 
@@ -2263,7 +2263,7 @@ Text1616:
 	linefw "切る。"
 	done
 
-Text1617:
+ElectrodeDescription1:
 	textfw "膨大なエレクトンエネルギーを"
 	linefw "ためこんでおり、ちょっとした刺激で"
 	linefw "大爆発を起こす。"
@@ -2280,13 +2280,13 @@ Text1619:
 	linefw "10ダメージ。"
 	done
 
-Text161a:
+ElectrodeDescription2:
 	textfw "帶電性でしかも、好戦的な性格のため、"
 	linefw "なるべく近くに寄らないほうが"
 	linefw "無難である。"
 	done
 
-Text161b:
+DarkElectrodeName:
 	textfw "わるいマルマイン"
 	done
 
@@ -2302,13 +2302,13 @@ Text161d:
 	linefw "トラッシュする)"
 	done
 
-Text161e:
+DarkElectrodeDescription:
 	textfw "研究者の間で、マルマインは、ある種の"
 	linefw "エネルギー体ではないかと考えられて"
 	linefw "いるようだ。"
 	done
 
-Text161f:
+ElectabuzzName:
 	textfw "エレブー"
 	done
 
@@ -2322,12 +2322,12 @@ Text1621:
 	linefw "(ダメージ以外の効果はそのまま)"
 	done
 
-Text1622:
+ElectabuzzDescription1:
 	textfw "捕獲することがとても難しいポケモン。"
 	linefw "色を識別する能力があり、赤色を好む。"
 	done
 
-Text1623:
+ElectabuzzDescription2:
 	textfw "大きな停電がおきた時は、エレブーが"
 	linefw "発電所の電気を食べたにちがいない。"
 	done
@@ -2342,13 +2342,13 @@ Text1625:
 	linefw "[自分]", "にも10ダメージ。"
 	done
 
-Text1626:
+ElectabuzzDescription3:
 	textfw "つよい電気が大好物で、"
 	linefw "大きな発電所などにしばしば"
 	linefw "あらわれる。"
 	done
 
-Text1627:
+JolteonName:
 	textfw "サンダース"
 	done
 
@@ -2361,7 +2361,7 @@ Text1629:
 	textfw "しびればり"
 	done
 
-Text162a:
+JolteonDescription1:
 	textfw "怒ったり驚いたりすると、"
 	linefw "全身の毛が針のように逆立って"
 	linefw "相手を貫く。"
@@ -2382,13 +2382,13 @@ Text162d:
 	linefw "×20のダメージ。"
 	done
 
-Text162e:
+JolteonDescription2:
 	textfw "怒ったり驚いたりすると、"
 	linefw "全身の毛が針の様に逆立って"
 	linefw "相手をつらぬく。"
 	done
 
-Text162f:
+DarkJolteonName:
 	textfw "わるいサンダース"
 	done
 
@@ -2412,13 +2412,13 @@ Text1633:
 	linefw "自分に10ダメージ。"
 	done
 
-Text1634:
+DarkJolteonDescription:
 	textfw "体内にためた電気をつかって、"
 	linefw "イタズラをすることがある。"
 	linefw "怒らせると恐いポケモンだ。"
 	done
 
-Text1635:
+ZapdosName:
 	textfw "サンダー"
 	done
 
@@ -2443,7 +2443,7 @@ Text1639:
 	linefw "[自分]", "にも20ダメージ。"
 	done
 
-Text163a:
+ZapdosDescription1:
 	textfw "雲の上から巨大な稲妻を落としながら"
 	linefw "現れる伝説のとりポケモンである。"
 	done
@@ -2462,7 +2462,7 @@ Text163c:
 	linefw "ジを", "[自分]", "に与える。"
 	done
 
-Text163d:
+ZapdosDescription2:
 	textfw "天を司る神の鳥として、"
 	linefw "雲の上で数千年の時を過ごしている。"
 	linefw "雷はサンダーの怒りか?!"
@@ -2473,7 +2473,7 @@ Text163e:
 	linefw "すべてトラッシュする。"
 	done
 
-Text163f:
+ZapdosDescription3:
 	textfw "伝説の鳥ポケモンのひとつ。"
 	linefw "飛ぶときにバチバチとなにかの"
 	linefw "はじけるような音がする。"
@@ -2505,12 +2505,12 @@ Text1643:
 	linefw "選ばれる。"
 	done
 
-Text1644:
+ZapdosDescription4:
 	textfw "雲の上から巨大な稲妻を落としながら"
 	linefw "現れる、伝説の鳥ポケモンである。"
 	done
 
-Text1645:
+SandshrewName:
 	textfw "サンド"
 	done
 
@@ -2518,7 +2518,7 @@ Text1646:
 	textfw "すなかけ"
 	done
 
-Text1647:
+SandshrewDescription1:
 	textfw "地面に穴を掘って住む。"
 	linefw "自分に危険が迫ると丸くなって"
 	linefw "身をまもる。"
@@ -2535,13 +2535,13 @@ Text1649:
 	linefw "受けない。"
 	done
 
-Text164a:
+SandshrewDescription2:
 	textfw "水気の少ない場所に、深い穴を掘って"
 	linefw "かくれる。えものをねらうときは出て"
 	linefw "くる。"
 	done
 
-Text164b:
+SandslashName:
 	textfw "サンドパン"
 	done
 
@@ -2550,7 +2550,7 @@ Text164c:
 	linefw "×20のダメージ。"
 	done
 
-Text164d:
+SandslashDescription1:
 	textfw "すばしっこく走りまわり、"
 	linefw "背中の針と鋭い爪の攻擊が得意。"
 	done
@@ -2570,13 +2570,13 @@ Text1650:
 	linefw "×10のダメージ。"
 	done
 
-Text1651:
+SandslashDescription2:
 	textfw "背中を丸めるとトゲトゲのボールみたい"
 	linefw "だ。そのまま転がってぶつかってきたり"
 	linefw "逃げたりする。"
 	done
 
-Text1652:
+DiglettName:
 	textfw "ディグダ"
 	done
 
@@ -2592,7 +2592,7 @@ Text1655:
 	textfw "もぐら"
 	done
 
-Text1656:
+DiglettDescription1:
 	textfw "地中の浅い所を移動。"
 	linefw "掘り進んでいった後は、地面が"
 	linefw "盛り上がっているのですぐにわかる。"

@@ -3268,7 +3268,7 @@ CreateBoosterPackCardList:
 	inc de
 	call LoadCardDataToBuffer1_FromCardID
 	jp c, .handle_energy_cards
-	ld a, [wLoadedCard1Unk07]
+	ld a, [wLoadedCard1Set]
 	cp b
 	jr nz, .loop_create_booster_pack_list
 

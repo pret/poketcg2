@@ -2732,7 +2732,7 @@ PrintCardList:
 	ld a, [wPrintOnlyStarRarity]
 	or a
 	jr z, .all_owned_cards_mode
-	ld a, [wLoadedCard1Set]
+	ld a, [wLoadedCard1RealSet]
 	and %11110000
 	cp $40 ; PROMOTIONAL
 	jr z, .next_card
