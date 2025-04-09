@@ -402,7 +402,7 @@ Tilesets:
 	gfx_ptr DuelSmallQuestionMarkGfx          ; $190
 	gfx_ptr DuelSkullBashGfx                  ; $191
 	gfx_ptr DuelCoinHurlGfx                   ; $192
-	gfx_ptr Tileset193                        ; $193
+	gfx_ptr DuelTeleportGfx                   ; $193
 	gfx_ptr DuelFollowMeGfx                   ; $194
 	gfx_ptr DuelSwiftGfx                      ; $195
 	gfx_ptr Duel3DAttackGfx                   ; $196

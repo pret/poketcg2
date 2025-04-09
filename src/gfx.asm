@@ -1950,9 +1950,9 @@ DuelCoinHurlGfx::
 	dw 18 ; length
 	INCBIN "gfx/duel/anims/coin_hurl.2bpp"
 
-Tileset193::
+DuelTeleportGfx::
 	dw 50 ; length
-	INCBIN "gfx/duel/anims/tileset193.2bpp"
+	INCBIN "gfx/duel/anims/teleport.2bpp"
 
 DuelFollowMeGfx::
 	dw 38 ; length

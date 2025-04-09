@@ -636,57 +636,57 @@ BulbasaurName:
 	textfw "フシギダネ"
 	done
 
-Text1305:
+TackleName:
 	textfw "たいあたり"
 	done
 
-Text1306:
+RazorLeafName:
 	textfw "はっぱカッター"
 	done
 
-Text1307:
+SeedName:
 	textfw "たね"
 	done
 
-BulbasaurDescription1:
+BulbasaurLv12Description:
 	textfw "何日だって、何も食べなくても元気。"
 	linefw "背中のタネにたくさんの栄養があるから"
 	linefw "平気だ。"
 	done
 
-Text1309:
+LeechSeedName:
 	textfw "やどりぎのタネ"
 	done
 
-Text130a:
+LeechSeedDescription:
 	textfw "[相手]", "にダメージを与えたら、", "[自分]", "に"
 	linefw "のっているダメージカウンターを1個"
 	linefw "とりのぞく。"
 	done
 
-BulbasaurDescription2:
+BulbasaurLv13Description:
 	textfw "生まれたときから背中に植物の"
 	linefw "タネがあって少しづつ大きく育つ。"
 	done
 
-Text130c:
+FirstAidName:
 	textfw "かいふく"
 	done
 
-Text130d:
+FirstAidDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "を、1個とりのぞく。"
 	done
 
-Text130e:
+PoisonSeedName:
 	textfw "どくのたね"
 	done
 
-Text130f:
+InflictPoisonDescription:
 	textfw "[相手]", "を「どく」状態にする。"
 	done
 
-BulbasaurDescription3:
+BulbasaurLv15Description:
 	textfw "生まれた時から背中に不思議なタネが"
 	linefw "植えてあって、身体とともに育つという"
 	done
@@ -695,34 +695,34 @@ IvysaurName:
 	textfw "フシギソウ"
 	done
 
-Text1312:
+VineWhipName:
 	textfw "つるのむち"
 	done
 
-Text1313:
+PoisonPowderName:
 	textfw "どくのこな"
 	done
 
-IvysaurDescription1:
+IvysaurLv20Description:
 	textfw "つぼみが背中についていて養分を"
 	linefw "吸収していくと、大きな花が咲くという"
 	done
 
-Text1315:
+LeechSeedAltName:
 	textfw "やどりぎのたね"
 	done
 
-Text1316:
+IvysaursLeechSeedDescription:
 	textfw "[相手]", "にダメージを与えたら、", "[自分]", "に"
 	linefw "のっているダメージカウンターを"
 	linefw "1個とりのぞく。"
 	done
 
-Text1317:
+VineWhipAltName:
 	textfw "つるのムチ"
 	done
 
-IvysaurDescription2:
+IvysaurLv26Description:
 	textfw "養分をとって大きくなったつぼみから、"
 	linefw "香りがただよいだすと、もうすぐ花が"
 	linefw "ひらくしょうこだよ。"
@@ -732,11 +732,11 @@ DarkIvysaurName:
 	textfw "わるいフシギソウ"
 	done
 
-Text131a:
+VinePullName:
 	textfw "つるでひっぱる"
 	done
 
-Text131b:
+VinePullDescription:
 	textfw "この力は、自分の番ごとに1回、この"
 	linefw "カードが「にげる」とき、はたらく。"
 	linefw "相手の控えポケモンがランダムで1匹"
@@ -745,11 +745,11 @@ Text131b:
 	linefw "はたらかない。"
 	done
 
-Text131c:
+FuryStrikesName:
 	textfw "みだれうち"
 	done
 
-Text131d:
+FuryStrikesDescription:
 	textfw "自動的にえらばれた相手の場のポケモン"
 	linefw "に「弱点・抵抗力」に関係なく、10"
 	linefw "ダメージ。これを3回くりかえす。"
@@ -765,11 +765,11 @@ VenusaurName:
 	textfw "フシギバナ"
 	done
 
-Text1320:
+SolarPowerName:
 	textfw "ソーラーパワー"
 	done
 
-Text1321:
+SolarPowerDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "おたがいの対戦ポケモンの「どく・ねむ"
 	linefw "り・マヒ・こんらん」状態を、すべて"
@@ -778,27 +778,27 @@ Text1321:
 	linefw "使えない。"
 	done
 
-Text1322:
+MegaDrainName:
 	textfw "メガドレイン"
 	done
 
-Text1323:
+MegaDrainDescription:
 	textfw "[相手]", "にダメージを与えたら、その半分"
 	linefw "(切り上げ)のダメージカウンターを、"
 	linefw "[自分]", "からとりのぞく。"
 	done
 
-VenusaurDescription1:
+VenusaurLv64Description:
 	textfw "太陽エネルギーを栄養にして大きな花が"
 	linefw "開く。ひなたに引き寄せられるように移"
 	linefw "動する。"
 	done
 
-Text1325:
+EnergyTransName:
 	textfw "エナジートランス"
 	done
 
-Text1326:
+EnergyTransDescription:
 	textfw "この力は、自分の番の中で何度でも使え"
 	linefw "る。自分の場のポケモンについている"
 	linefw "「草」エネルギーを、自分の場の別の"
@@ -807,11 +807,11 @@ Text1326:
 	linefw "この力は使えない。"
 	done
 
-Text1327:
+SolarbeamName:
 	textfw "ソーラービーム"
 	done
 
-VenusaurDescription2:
+VenusaurLv67Description:
 	textfw "花からうっとりする香りがただよい、"
 	linefw "戦う者の気持ちをなだめてしまう。"
 	done
@@ -820,11 +820,11 @@ DarkVenusaurName:
 	textfw "わるいフシギバナ"
 	done
 
-Text132a:
+HorridPollenName:
 	textfw "いやなかふん"
 	done
 
-Text132b:
+HorridPollenDescription:
 	textfw "このワザを受けた", "[相手]", "は、ランダム"
 	linefw "で、「どく」+「こんらん」、「どく」"
 	linefw "+「ねむり」、「どく」+「マヒ」の"
@@ -841,16 +841,16 @@ CaterpieName:
 	textfw "キャタピー"
 	done
 
-Text132e:
+StringShotName:
 	textfw "いとをはく"
 	done
 
-Text132f:
+MayInflictParalysisDescription:
 	textfw "コインを投げて「おもて」なら、", "[相手]"
 	linefw "を「マヒ」状態にする。"
 	done
 
-Text1330:
+WormName:
 	textfw "いもむし"
 	done
 
@@ -864,11 +864,11 @@ MetapodName:
 	textfw "トランセル"
 	done
 
-Text1333:
+GreenShieldName:
 	textfw "グリーンシールド"
 	done
 
-Text1334:
+GreenShieldDescription:
 	textfw "このカードが場にいる限り、自分の場の"
 	linefw "「草」ポケモンがダメージを受けるとき"
 	linefw "「弱点」の影響を受けない。"
@@ -876,40 +876,40 @@ Text1334:
 	linefw "」状態のとき、この力は消える。"
 	done
 
-Text1335:
+MysteriousPowerName:
 	textfw "ふしぎなこな"
 	done
 
-Text1336:
+MayInflictConfusionDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「こんらん」状態にする。"
 	done
 
-Text1337:
+CocoonName:
 	textfw "さなぎ"
 	done
 
-MetapodDescription1:
+MetapodLv20Description:
 	textfw "カラが固くなる前に、強い衝擊を"
 	linefw "受けると、中身が出てしまうので注意。"
 	done
 
-Text1339:
+StiffenName:
 	textfw "かたまる"
 	done
 
-Text133a:
+PreventDamageCardEffectDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このカードはダメージを"
 	linefw "受けない。"
 	linefw "(ダメージ以外の効果はそのまま)"
 	done
 
-Text133b:
+StunSporeName:
 	textfw "しびれごな"
 	done
 
-MetapodDescription2:
+MetapodLv21Description:
 	textfw "硬いカラに包まれているが"
 	linefw "中身はやわらかいので、"
 	linefw "強い攻擊には耐えられない。"
@@ -919,18 +919,18 @@ ButterfreeName:
 	textfw "バタフリー"
 	done
 
-Text133e:
+WhirlwindName:
 	textfw "ふきとばし"
 	done
 
-Text133f:
+WhirlwindDescription:
 	textfw "[相手]", "を、控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは、相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
 	linefw "おこらない)"
 	done
 
-Text1340:
+ButterflyName:
 	textfw "ちょうちょ"
 	done
 
@@ -943,34 +943,34 @@ WeedleName:
 	textfw "ビードル"
 	done
 
-Text1343:
+PoisonStingName:
 	textfw "どくばり"
 	done
 
-Text1344:
+MayInflictPoisonDescription:
 	textfw "コインを投げて「おもて」なら、", "[相手]"
 	linefw "を「どく」状態にする。"
 	done
 
-Text1345:
+HairyBugName:
 	textfw "けむし"
 	done
 
-WeedleDescription1:
+WeedleLv12Description:
 	textfw "森や草地に多く生息する。"
 	linefw "頭の先に5センチぐらいの"
 	linefw "小さく鋭い毒バリをもつ。"
 	done
 
-Text1347:
+PeckName:
 	textfw "つつく"
 	done
 
-Text1348:
+PoisonHornName:
 	textfw "どくのつの"
 	done
 
-WeedleDescription2:
+WeedleLv15Description:
 	textfw "葉っぱが大好物で、森の中で見つける"
 	linefw "ことができる。毒を持っているので"
 	linefw "注意が必要。"
@@ -980,11 +980,11 @@ KakunaName:
 	textfw "コクーン"
 	done
 
-Text134b:
+PoisonFluidName:
 	textfw "どくのたいえき"
 	done
 
-Text134c:
+PoisonFluidDescription:
 	textfw "このカードが相手のワザによってダメー"
 	linefw "ジを受けたとき、(このカードが「きぜ"
 	linefw "つ」しても)、そのダメージを与えたポ"
@@ -994,17 +994,17 @@ Text134c:
 	linefw "なら、この力は、はたらかない。"
 	done
 
-Text134d:
+RolloutName:
 	textfw "ころがる"
 	done
 
-KakunaDescription1:
+KakunaLv20Description:
 	textfw "自分ではほとんど動けないが、"
 	linefw "危ない時は固くなって身を護っている"
 	linefw "ようだ。"
 	done
 
-KakunaDescription2:
+KakunaLv23Description:
 	textfw "大人の体をつくるための一時的な状態。"
 	linefw "自分ではほとんど動けない。"
 	done
@@ -1013,16 +1013,16 @@ BeedrillName:
 	textfw "スピアー"
 	done
 
-Text1351:
+TwineedleName:
 	textfw "ダブルニードル"
 	done
 
-Text1352:
+Do30DamageNumberOfHeadsDescription:
 	textfw "コインを2枚投げ、「おもて」の数"
 	linefw "×30のダメージ。"
 	done
 
-Text1353:
+PoisonBeeName:
 	textfw "どくばち"
 	done
 
@@ -1036,34 +1036,34 @@ EkansName:
 	textfw "アーボ"
 	done
 
-Text1356:
+SpitPoisonName:
 	textfw "どくえき"
 	done
 
-Text1357:
+WrapName:
 	textfw "まきつく"
 	done
 
-Text1358:
+SnakeName:
 	textfw "へび"
 	done
 
-EkansDescription1:
+EkansLv10Description:
 	textfw "墓地などに棲息する。"
 	linefw "舌をチロチロさせて、"
 	linefw "まわりの危険を感じ取る。"
 	done
 
-Text135a:
+BiteName:
 	textfw "かみつく"
 	done
 
-Text135b:
+MayInflictPoisonAltDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「どく」状態にする。"
 	done
 
-EkansDescription2:
+EkansLv15Description:
 	textfw "肉食でなんでも噛まずに飲み込んで"
 	linefw "しまう。ポッポやオニスズメの卵が"
 	linefw "大好物。"
@@ -1073,11 +1073,11 @@ ArbokName:
 	textfw "アーボック"
 	done
 
-Text135e:
+TerrorStrikeName:
 	textfw "いかくこうげき"
 	done
 
-Text135f:
+TerrorStrikeDescription:
 	textfw "コインを投げて「おもて」なら、", "[相手]"
 	linefw "を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは、相手が選ぶ。"
@@ -1085,37 +1085,37 @@ Text135f:
 	linefw "おこらない)"
 	done
 
-Text1360:
+PoisonFangName:
 	textfw "どくのきば"
 	done
 
-Text1361:
+CobraName:
 	textfw "コブラ"
 	done
 
-ArbokDescription1:
+ArbokLv27Description:
 	textfw "お腹の模様がこわい顏に見える。"
 	linefw "弱い敵はその模様を見ただけで"
 	linefw "逃げ出してしまう。"
 	done
 
-Text1363:
+MayInflictParalysisAltDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「マヒ」状態にする。"
 	done
 
-Text1364:
+DeadlyPoisonName:
 	textfw "もうどく"
 	done
 
-Text1365:
+DeadlyPoisonDescription:
 	textfw "[相手]", "を「どく」状態にする。"
 	linefw "このワザを受ける前から", "[相手]", "が"
 	linefw "「どく」状態なら、10ダメージを"
 	linefw "追加する。"
 	done
 
-ArbokDescription2:
+ArbokLv30Description:
 	textfw "おなかの恐ろしい模様は、地域によって"
 	linefw "何種類かパターンがあるといううわさだ"
 	done
@@ -1124,11 +1124,11 @@ DarkArbokName:
 	textfw "わるいアーボック"
 	done
 
-Text1368:
+StareName:
 	textfw "ショックアイ"
 	done
 
-Text1369:
+StareDescription:
 	textfw "相手の場にいるポケモンを1匹選び、"
 	linefw "「弱点・抵抗力」に関係なく、10"
 	linefw "ダメージ。次の相手の番の終わりまで、"
@@ -1136,11 +1136,11 @@ Text1369:
 	linefw "できず、その力も消える。"
 	done
 
-Text136a:
+PoisonVaporName:
 	textfw "どくのきり"
 	done
 
-Text136b:
+PoisonVaporDescription:
 	textfw "[相手]", "を「どく」状態にする。"
 	linefw "相手の控えポケモン全員にも、「弱点・"
 	linefw "抵抗力」に関係なく、それぞれ10"
@@ -1157,36 +1157,36 @@ NidoranFName:
 	textfw "ニドラン♀"
 	done
 
-Text136e:
+TailWhipName:
 	textfw "しっぽをふる"
 	done
 
-Text136f:
+TailWhipDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "はこのカードがバトル場にいる"
 	linefw "限り、ワザを使えない。"
 	done
 
-NidoranFDescription1:
+NidoranFLv12Description:
 	textfw "身体は小さくても毒バリを持つので"
 	linefw "注意が必要だ。メスのほうが角が小さい"
 	done
 
-Text1371:
+FurySwipesName:
 	textfw "みだれひっかき"
 	done
 
-Text1372:
+FurySwipes10DamageDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-Text1373:
+CallForFamilyName:
 	textfw "なかまをよぶ"
 	done
 
-Text1374:
+CallForFamilyNidoranDescription:
 	textfw "自分の山札から「ニドラン♂」または"
 	linefw "「ニドラン♀」を1枚選び出し、自分の"
 	linefw "ベンチに出す。その後、その山札をよく"
@@ -1194,7 +1194,7 @@ Text1374:
 	linefw "ワザは使えない)"
 	done
 
-NidoranFDescription2:
+NidoranFLv13Description:
 	textfw "小さくても毒バリの威力は強烈で"
 	linefw "注意が必要。"
 	linefw "メスのほうが角が小さい。"
@@ -1204,42 +1204,42 @@ NidorinaName:
 	textfw "ニドリーナ"
 	done
 
-Text1377:
+StrengthInNumbersName:
 	textfw "なかまのちから"
 	done
 
-Text1378:
+StrengthInNumbersDescription:
 	textfw "自分のベンチにいる「ニドラン♂」「ニ"
 	linefw "ドラン♀」「ニドリーノ」「ニドリーナ"
 	linefw "」「ニドキング」「ニドクイン」の数"
 	linefw "×10のダメージを追加する。"
 	done
 
-Text1379:
+FurySwipes30DamageDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×30のダメージ。"
 	done
 
-NidorinaDescription1:
+NidorinaLv22Description:
 	textfw "メスなのでツノの育ちが遅い。"
 	linefw "ひっかいたりかみついたりと、"
 	linefw "肉だん戦を好む。"
 	done
 
-Text137b:
+SupersonicName:
 	textfw "ちょうおんぱ"
 	done
 
-Text137c:
+MayInflictConfusionAltDescription:
 	textfw "コインを投げて「おもて」なら、", "[相手]"
 	linefw "を「こんらん」状態にする。"
 	done
 
-Text137d:
+DoubleKickName:
 	textfw "にどげり"
 	done
 
-NidorinaDescription2:
+NidorinaLv24Description:
 	textfw "メスなので性格は温厚。"
 	linefw "口から出す超音波は相手を惑わす力が"
 	linefw "ある。"
@@ -1249,20 +1249,20 @@ NidoqueenName:
 	textfw "ニドクイン"
 	done
 
-Text1380:
+BoyfriendsName:
 	textfw "ラブラブアタック"
 	done
 
-Text1381:
+BoyfriendsDescription:
 	textfw "自分の場にいる「ニドキング」の数"
 	linefw "×20のダメージを追加する。"
 	done
 
-Text1382:
+MegaPunchName:
 	textfw "メガトンパンチ"
 	done
 
-Text1383:
+DrillName:
 	textfw "ドリル"
 	done
 
@@ -1276,41 +1276,41 @@ NidoranMName:
 	textfw "ニドラン♂"
 	done
 
-Text1386:
+HornHazardName:
 	textfw "つのでつつく"
 	done
 
-Text1387:
+IfTailsDoNothingDescription:
 	textfw "コインを投げて「うら」なら、このワザ"
 	linefw "は失敗する。"
 	done
 
-NidoranMDescription1:
+NidoranMLv20Description:
 	textfw "耳が大きく、遠くの音を聞くときに、"
 	linefw "耳がはばたく様に動く。"
 	linefw "怒ると毒バリをだす。"
 	done
 
-Text1389:
+FocusEnergyName:
 	textfw "きあいだめ"
 	done
 
-Text138a:
+FocusEnergyHornRushDescription:
 	textfw "次の自分の番、このカードが使う"
 	linefw "「つのでとっしん」のダメージは2倍に"
 	linefw "なる。"
 	done
 
-Text138b:
+HornRushName:
 	textfw "つのでとっしん"
 	done
 
-Text138c:
+IfTailsDoNothingAltDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "このワザは失敗する。"
 	done
 
-NidoranMDescription2:
+NidoranMLv22Description:
 	textfw "耳を立てて危険を感じとる。身体の"
 	linefw "トゲが大きいほど強い毒をだす。"
 	done
@@ -1319,27 +1319,27 @@ NidorinoName:
 	textfw "ニドリーノ"
 	done
 
-Text138f:
+SwiftLungeName:
 	textfw "こうそくづき"
 	done
 
-Text1390:
+SwiftLungeDescription:
 	textfw "コインを投げて「うら」なら、", "[相手]", "に"
 	linefw "ダメージを与えられず、", "[自分]", "に20"
 	linefw "ダメージ。"
 	done
 
-NidorinoDescription1:
+NidorinoLv23Description:
 	textfw "すぐに怒って戦おうとする。"
 	linefw "しかも頭のツノはささると強れつな"
 	linefw "毒素を出すしくみ。"
 	done
 
-Text1392:
+HornDrillName:
 	textfw "つのドリル"
 	done
 
-NidorinoDescription2:
+NidorinoLv25Description:
 	textfw "怒りやすい性格。"
 	linefw "発達した角をふりまわして"
 	linefw "ダイヤモンドも串刺しにする。"
@@ -1349,21 +1349,21 @@ NidokingName:
 	textfw "ニドキング"
 	done
 
-Text1395:
+ThrashName:
 	textfw "あばれる"
 	done
 
-Text1396:
+ThrashDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "10ダメージを追加する。「うら」なら"
 	linefw "[自分]", "にも10ダメージ。"
 	done
 
-Text1397:
+ToxicName:
 	textfw "どくどく"
 	done
 
-Text1398:
+ToxicDescription:
 	textfw "[相手]", "を「どく」状態にする。このワザ"
 	linefw "によって「どく」状態になったポケモン"
 	linefw "がポケモンチェックで受ける「どく」の"
@@ -1380,40 +1380,40 @@ ZubatName:
 	textfw "ズバット"
 	done
 
-Text139b:
+RamName:
 	textfw "ぶつかる"
 	done
 
-Text139c:
+BatName:
 	textfw "こうもり"
 	done
 
-ZubatDescription1:
+ZubatLv9Description:
 	textfw "暗い洞窟に生息する。夜になると、"
 	linefw "まれに飛んでいく姿が目擊されることも"
 	linefw "ある。"
 	done
 
-Text139e:
+LeechLifeName:
 	textfw "きゅうけつ"
 	done
 
-Text139f:
+LeechLifeDescription:
 	textfw "[相手]", "にダメージを与えたら、与えたぶ"
 	linefw "んのダメージカウンターを、", "[自分]", "から"
 	linefw "とりのぞく。"
 	done
 
-ZubatDescription2:
+ZubatLv10Description:
 	textfw "両方の眼が存在しない。"
 	linefw "口から超音波を出して暗闇を飛び回る。"
 	done
 
-Text13a1:
+SuspiciousSoundwaveName:
 	textfw "あやしいおんぱ"
 	done
 
-ZubatDescription3:
+ZubatLv12Description:
 	textfw "暗い場所に集団で発生する。超音波を"
 	linefw "出して、ターゲットに近づいていく。"
 	done
@@ -1422,32 +1422,32 @@ GolbatName:
 	textfw "ゴルバット"
 	done
 
-Text13a4:
+LeechLifeAltDescription:
 	textfw "[相手]", "にダメージを与えたら、"
 	linefw "与えたぶんのダメージカウンターを、"
 	linefw "[自分]", "からとりのぞく。"
 	done
 
-Text13a5:
+NosediveName:
 	textfw "きゅうこうか"
 	done
 
-Text13a6:
+NosediveDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "[自分]", "にも40ダメージ。"
 	done
 
-GolbatDescription1:
+GolbatLv25Description:
 	textfw "かみついたら最後、血を吸いまくるので"
 	linefw "重たくなって、自分で飛べなくなること"
 	linefw "もある。"
 	done
 
-Text13a8:
+WingAttackName:
 	textfw "つばさでうつ"
 	done
 
-GolbatDescription2:
+GolbatLv29Description:
 	textfw "鋭い牙でかみついて、"
 	linefw "1度に300ccの血を吸い取って"
 	linefw "しまう。"
@@ -1457,11 +1457,11 @@ DarkGolbatName:
 	textfw "わるいゴルバット"
 	done
 
-Text13ab:
+SneakAttackName:
 	textfw "こっそりかみつく"
 	done
 
-Text13ac:
+SneakAttackDescription:
 	textfw "この力は、このカードを手札から場に"
 	linefw "出したとき、1度だけ使える。"
 	linefw "相手の場のポケモンを1匹選び、"
@@ -1469,11 +1469,11 @@ Text13ac:
 	linefw "10ダメージ。"
 	done
 
-Text13ad:
+FlitterName:
 	textfw "ふらふらとぶ"
 	done
 
-Text13ae:
+FlitterDescription:
 	textfw "相手の場のポケモンを1匹選び、"
 	linefw "「弱点・抵抗力」に関係なく、"
 	linefw "20ダメージ。"
@@ -1489,11 +1489,11 @@ OddishName:
 	textfw "ナゾノクサ"
 	done
 
-Text13b1:
+SproutName:
 	textfw "ふえる"
 	done
 
-Text13b2:
+SproutDescription:
 	textfw "自分の山札から「ナゾノクサ」を1枚"
 	linefw "選び出し、自分のベンチに出す。"
 	linefw "その後、その山札をよく切る。"
@@ -1501,25 +1501,25 @@ Text13b2:
 	linefw "使えない)"
 	done
 
-Text13b3:
+WeedName:
 	textfw "ざっそう"
 	done
 
-OddishDescription1:
+OddishLv8Description:
 	textfw "別名アルキメンデス。"
 	linefw "夜になると2本の根っこで"
 	linefw "300メートルも歩くという。"
 	done
 
-Text13b5:
+SleepPowderName:
 	textfw "ねむりごな"
 	done
 
-Text13b6:
+InflictSleepDescription:
 	textfw "[相手]", "を「ねむり」状態にする。"
 	done
 
-OddishDescription2:
+OddishLv21Description:
 	textfw "「種の保存」のため、夜になると"
 	linefw "歩きまわり、花粉を撒き散らしている"
 	linefw "という。"
@@ -1529,11 +1529,11 @@ GloomName:
 	textfw "クサイハナ"
 	done
 
-Text13b9:
+FoulOdorName:
 	textfw "くさいにおい"
 	done
 
-Text13ba:
+FoulOdorDescription:
 	textfw "ダメージを与えた後、", "[自分]", "と", "[相手]", "を"
 	linefw "それぞれ「こんらん」状態にする。"
 	done
@@ -1547,11 +1547,11 @@ DarkGloomName:
 	textfw "わるいクサイハナ"
 	done
 
-Text13bd:
+PollenStenchName:
 	textfw "くさいかふん"
 	done
 
-Text13be:
+PollenStenchDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、相手の"
 	linefw "対戦ポケモンを「こんらん」状態にする"
@@ -1571,11 +1571,11 @@ VileplumeName:
 	textfw "ラフレシア"
 	done
 
-Text13c1:
+HealName:
 	textfw "ヒーリング"
 	done
 
-Text13c2:
+HealDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、自分の"
 	linefw "場のポケモン1匹から、ダメージカウン"
@@ -1584,17 +1584,17 @@ Text13c2:
 	linefw "この力は使えない。"
 	done
 
-Text13c3:
+PetalDanceName:
 	textfw "はなびらのまい"
 	done
 
-Text13c4:
+PetalDanceDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×40のダメージ。その後、", "[自分]", "を"
 	linefw "「こんらん」状態にする。"
 	done
 
-Text13c5:
+FlowerName:
 	textfw "フラワー"
 	done
 
@@ -1608,11 +1608,11 @@ DarkVileplumeName:
 	textfw "わるいラフレシア"
 	done
 
-Text13c8:
+HayFeverName:
 	textfw "アレルギーかふん"
 	done
 
-Text13c9:
+HayFeverDescription:
 	textfw "このカードが場にいる限り、お互いの"
 	linefw "プレイヤーは、トレーナーカードを使う"
 	linefw "ことができない。(すでに場に出ている"
@@ -1621,11 +1621,11 @@ Text13c9:
 	linefw "」状態のとき、この力は消える。"
 	done
 
-Text13ca:
+PetalWhirlwindName:
 	textfw "はなびらのうず"
 	done
 
-Text13cb:
+PetalWhirlwindDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×30のダメージ。"
 	linefw "2枚以上が「おもて」なら、", "[自分]", "を"
@@ -1642,36 +1642,36 @@ ParasName:
 	textfw "パラス"
 	done
 
-Text13ce:
+ScratchName:
 	textfw "ひっかく"
 	done
 
-Text13cf:
+SporeName:
 	textfw "キノコのほうし"
 	done
 
-Text13d0:
+MushroomName:
 	textfw "きのこ"
 	done
 
-ParasDescription1:
+ParasLv8Description:
 	textfw "虫の背中にはえているのは"
 	linefw "トウチュウカソウというキノコ。"
 	linefw "育つとキノコも大きくなる。"
 	done
 
-Text13d2:
+ScatterSporesName:
 	textfw "ほうしをとばす"
 	done
 
-Text13d3:
+ScatterSporesDescription:
 	textfw "自分の山札から「パラス」を選び出し、"
 	linefw "ベンチに出す。その後、その山札をよく"
 	linefw "切る。(自分のベンチに空きがないとき"
 	linefw "このワザは使えない)"
 	done
 
-ParasDescription2:
+ParasLv15Description:
 	textfw "穴を掘って、木の根っこを吸う。"
 	linefw "背中のキノコは身体からエキスをもらい"
 	linefw "成長する。"
@@ -1681,20 +1681,20 @@ ParasectName:
 	textfw "パラセクト"
 	done
 
-Text13d6:
+SlashName:
 	textfw "きりさく"
 	done
 
-ParasectDescription1:
+ParasectLv28Description:
 	textfw "キノコのカサから毒胞子を巻き散らす。"
 	linefw "しかし中国ではこの胞子を漢方薬にする"
 	done
 
-Text13d8:
+ToxicSporeName:
 	textfw "どくのほうし"
 	done
 
-ParasectDescription2:
+ParasectLv29Description:
 	textfw "虫の身体より大きくなったキノコの"
 	linefw "意思で活動する。湿った場所を好む"
 	linefw "という。"
@@ -1704,32 +1704,32 @@ VenonatName:
 	textfw "コンパン"
 	done
 
-Text13db:
+InsectName:
 	textfw "こんちゅう"
 	done
 
-VenonatDescription1:
+VenonatLv12Description:
 	textfw "暗闇でも目がレーダーの役割をして、"
 	linefw "活動できる。"
 	linefw "目からビームを発射する。"
 	done
 
-Text13dd:
+DisableName:
 	textfw "かなしばり"
 	done
 
-Text13de:
+DisableDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "のワザを1つ選ぶ。"
 	linefw "次の相手の番、そのポケモンは、"
 	linefw "そのワザを使えない。"
 	done
 
-Text13df:
+PsybeamName:
 	textfw "サイケこうせん"
 	done
 
-VenonatDescription2:
+VenonatLv15Description:
 	textfw "大きな木の下にすんでいて虫などを"
 	linefw "食べているらしい。夜は明かりのそばに"
 	linefw "やって来る。"
@@ -1739,11 +1739,11 @@ VenomothName:
 	textfw "モルフォン"
 	done
 
-Text13e2:
+StirUpTwisterName:
 	textfw "たつまきおこし"
 	done
 
-Text13e3:
+StirUpTwisterDescription:
 	textfw "[相手]", "を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは相手が選ぶ。"
 	linefw "その後、自分の控えポケモンから1匹を"
@@ -1752,31 +1752,31 @@ Text13e3:
 	linefw ")"
 	done
 
-Text13e4:
+RainbowPowderName:
 	textfw "レインボーパウダー"
 	done
 
-Text13e5:
+RainbowPowderDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「マヒ」状態に、"
 	linefw "「うら」なら「どく」状態にする。"
 	done
 
-Text13e6:
+PoisonMothName:
 	textfw "どくが"
 	done
 
-VenomothDescription1:
+VenomothLv22Description:
 	textfw "ハネをおおっているりんぷんは、"
 	linefw "色の違いによってさまざまな毒を"
 	linefw "持っているらしい。"
 	done
 
-Text13e8:
+ShiftName:
 	textfw "へんしょく"
 	done
 
-Text13e9:
+ShiftDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "このカードの「色(タイプ)」を、"
 	linefw "おたがいの場にいるポケモンどれかと"
@@ -1785,24 +1785,24 @@ Text13e9:
 	linefw "この効果はつづく。"
 	done
 
-Text13ea:
+ShiftDescriptionCont:
 	textfw "このカードが「ねむり・マヒ・こんらん"
 	linefw "」状態のとき、この力は使えず、"
 	linefw "このカードはもとの「色(タイプ)」に"
 	linefw "もどる。"
 	done
 
-Text13eb:
+VenomPowderName:
 	textfw "りんぷん"
 	done
 
-Text13ec:
+VenomPowderDescription:
 	textfw "コインを投げて「おもて」なら、", "[相手]"
 	linefw "を「どく」と「こんらん」の両方の状態"
 	linefw "にする。"
 	done
 
-VenomothDescription2:
+VenomothLv28Description:
 	textfw "羽にリンプンがついていて、"
 	linefw "ヒラヒラとはばたくたびに"
 	linefw "猛毒の粉をばらまく。"
@@ -1812,17 +1812,17 @@ BellsproutName:
 	textfw "マダツボミ"
 	done
 
-Text13ef:
+SwayName:
 	textfw "ゆれる"
 	done
 
-BellsproutDescription1:
+BellsproutLv10Description:
 	textfw "小さい虫をとらえて食べる。"
 	linefw "足のねっこを使い、水分をほきゅうする"
 	linefw "こともあるらしい。"
 	done
 
-Text13f1:
+CallForFamilyBellsproutDescription:
 	textfw "自分の山札から「マダツボミ」を1枚"
 	linefw "選び出し、自分のベンチに出す。"
 	linefw "その後、その山札をよく切る。"
@@ -1830,7 +1830,7 @@ Text13f1:
 	linefw "使えない)"
 	done
 
-BellsproutDescription2:
+BellsproutLv11Description:
 	textfw "人の顏のようなツボミから、"
 	linefw "伝説のマンドラゴラの1種ではないかと"
 	linefw "ささやかれている。"
@@ -1840,11 +1840,11 @@ WeepinbellName:
 	textfw "ウツドン"
 	done
 
-Text13f4:
+RegenerationName:
 	textfw "さいせい"
 	done
 
-Text13f5:
+RegenerationDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "をすべてとりのぞく。その後、", "[自分]", "に"
 	linefw "ついている「進化カード」と「エネルギ"
@@ -1852,27 +1852,27 @@ Text13f5:
 	linefw "「たねポケモン」にもどる。"
 	done
 
-Text13f6:
+DissolveName:
 	textfw "ようかい"
 	done
 
-Text13f7:
+DissolveDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	done
 
-Text13f8:
+FlycatcherName:
 	textfw "ハエとり"
 	done
 
-WeepinbellDescription1:
+WeepinbellLv23Description:
 	textfw "まず毒の粉をはき、相手の動きを"
 	linefw "止めてしまってから、ようかいえきで"
 	linefw "とどめをさす。"
 	done
 
-WeepinbellDescription2:
+WeepinbellLv28Description:
 	textfw "葉っぱの部分はカッターになって"
 	linefw "相手を切り裂く。"
 	linefw "口からはなんでもとかす液体をはく。"
@@ -1882,22 +1882,22 @@ VictreebelName:
 	textfw "ウツボット"
 	done
 
-Text13fc:
+LureName:
 	textfw "さそうかおり"
 	done
 
-Text13fd:
+LureDescription:
 	textfw "相手の控えポケモンを1匹選び、"
 	linefw "[相手]", "と入れ替える。"
 	linefw "(相手に控えがいないとき、このワザは"
 	linefw "使えない)"
 	done
 
-Text13fe:
+AcidName:
 	textfw "ようかいえき"
 	done
 
-Text13ff:
+AcidDescription:
 	textfw "コインを投げて「おもて」なら、次の"
 	linefw "相手の番、このワザを受けた", "[相手]", "は"
 	linefw "「にげる」ことができない。"
@@ -1913,45 +1913,45 @@ GrimerName:
 	textfw "ベトベター"
 	done
 
-Text1402:
+PoisonGasName:
 	textfw "どくガス"
 	done
 
-Text1403:
+StickyHandsName:
 	textfw "ねばりつく"
 	done
 
-Text1404:
+StickyHandsDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "20ダメージを追加して、", "[相手]", "を"
 	linefw "「マヒ」状態にする。"
 	done
 
-Text1405:
+SludgeCategoryName:
 	textfw "ヘドロ"
 	done
 
-GrimerDescription1:
+GrimerLv10Description:
 	textfw "汚水処理場で発生し、下水道を移動して"
 	linefw "町に出没することが、最近確認された。"
 	done
 
-Text1407:
+NastyGooName:
 	textfw "ベトベト"
 	done
 
-Text1408:
+MinimizeName:
 	textfw "ちいさくなる"
 	done
 
-Text1409:
+MinimizeDescription:
 	textfw "次の相手の番、このカードがワザに"
 	linefw "よって受けるダメージは「-20」"
 	linefw "される。"
 	linefw "(ダメージ以外の効果はそのまま)"
 	done
 
-GrimerDescription2:
+GrimerLv17Description:
 	textfw "月からのエックス線をあびた"
 	linefw "ヘドロがベトベターに変化した。"
 	linefw "汚いモノが大好物。"
@@ -1961,11 +1961,11 @@ MukName:
 	textfw "ベトベトン"
 	done
 
-Text140c:
+ToxicGasName:
 	textfw "かがくへんかガス"
 	done
 
-Text140d:
+ToxicGasDescription:
 	textfw "このカードが場にある限り、"
 	linefw "「かがくへんかガス」以外のすべての"
 	linefw "特殊能力は使えず、その力も消える。"
@@ -1973,7 +1973,7 @@ Text140d:
 	linefw "」状態のとき、この力は消える。"
 	done
 
-Text140e:
+SludgeMoveName:
 	textfw "ヘドロこうげき"
 	done
 
@@ -1986,11 +1986,11 @@ DarkMukName:
 	textfw "わるいベトベトン"
 	done
 
-Text1411:
+StickyGooName:
 	textfw "ねんちゃくえき"
 	done
 
-Text1412:
+StickyGooDescription:
 	textfw "このカードがバトル場にいる限り、"
 	linefw "相手の対戦ポケモンは、「にげる」とき"
 	linefw "トラッシュするエネルギーが2個ぶん"
@@ -1999,7 +1999,7 @@ Text1412:
 	linefw "は消える。"
 	done
 
-Text1413:
+SludgePunchName:
 	textfw "ヘドロパンチ"
 	done
 
@@ -2013,11 +2013,11 @@ ExeggcuteName:
 	textfw "タマタマ"
 	done
 
-Text1416:
+HypnosisMoveName:
 	textfw "さいみんじゅつ"
 	done
 
-Text1417:
+EggName:
 	textfw "たまご"
 	done
 
@@ -2030,26 +2030,26 @@ ExeggutorName:
 	textfw "ナッシー"
 	done
 
-Text141a:
+TeleportName:
 	textfw "テレポート"
 	done
 
-Text141b:
+TeleportDescription:
 	textfw "自分の控えポケモンを1匹選び、"
 	linefw "[自分]", "と入れ替える。"
 	done
 
-Text141c:
+BigEggsplosionName:
 	textfw "たまなげMAX"
 	done
 
-Text141d:
+BigEggsplosionDescription:
 	textfw "[自分]", "についているエネルギーの数だけ"
 	linefw "コインを投げ、「おもて」の数×20の"
 	linefw "ダメージ。"
 	done
 
-Text141e:
+CoconutName:
 	textfw "やしのみ"
 	done
 
@@ -2063,32 +2063,32 @@ KoffingName:
 	textfw "ドガース"
 	done
 
-KoffingDescription1:
+KoffingLv12Description:
 	textfw "第一発見場所は兵器工場であったが、"
 	linefw "近年、生息地が広まってきているらしい"
 	done
 
-Text1422:
+FoulGasName:
 	textfw "くさいガス"
 	done
 
-Text1423:
+FoulGasDescription:
 	textfw "コインを投げ、"
 	linefw "「おもて」なら", "[相手]", "を「どく」状態に"
 	linefw "「うら」なら「こんらん」状態にする。"
 	done
 
-KoffingDescription2:
+KoffingLv13Description:
 	textfw "うすいバルーン状の体に"
 	linefw "猛毒のガスがつまっている。"
 	linefw "ちかくに来ると臭い。"
 	done
 
-Text1425:
+ConfusionGasName:
 	textfw "こんらんガス"
 	done
 
-KoffingDescription3:
+KoffingLv14Description:
 	textfw "暑いところでは、体の中のガスが"
 	linefw "ふくらんで破裂する危険もあるので"
 	linefw "注意だ。"
@@ -2098,11 +2098,11 @@ WeezingName:
 	textfw "マタドガス"
 	done
 
-Text1428:
+PoisonMistName:
 	textfw "ポイズンミスト"
 	done
 
-Text1429:
+PoisonMistDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、次の"
 	linefw "自分の番の始めまで、「どく」状態に"
@@ -2111,45 +2111,45 @@ Text1429:
 	linefw "ダメージになる。"
 	done
 
-Text142a:
+PoisonMistDescriptionCont:
 	textfw "このカードが「ねむり・マヒ・こんらん"
 	linefw "」状態のとき、この力は使えず、"
 	linefw "その効果も消える。"
 	done
 
-Text142b:
+GasExplosionName:
 	textfw "ガスばくはつ"
 	done
 
-Text142c:
+GasExplosionDescription:
 	textfw "[自分]", "にも30ダメージ。"
 	linefw "このワザによって", "[相手]", "が「きぜつ」"
 	linefw "したなら、そのかわりに出てくる相手の"
 	linefw "対戦ポケモンを「どく」状態にする。"
 	done
 
-WeezingDescription1:
+WeezingLv26Description:
 	textfw "2つの毒ガスの成分が長い時間"
 	linefw "ふきだまる場所で、双子のドガースが"
 	linefw "でるらしい。"
 	done
 
-Text142e:
+SmogName:
 	textfw "スモッグ"
 	done
 
-Text142f:
+SelfdestructName:
 	textfw "じばく"
 	done
 
-Text1430:
+Selfdestruct60DamageDescription:
 	textfw "[自分]", "にも60ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
 	done
 
-WeezingDescription2:
+WeezingLv27Description:
 	textfw "ごくまれに突然変異で"
 	linefw "双子の小さいドガースが連結したまま"
 	linefw "出ることがある。"
@@ -2159,11 +2159,11 @@ DarkWeezingName:
 	textfw "わるいマタドガス"
 	done
 
-Text1433:
+MassExplosionName:
 	textfw "みんなでばくはつ"
 	done
 
-Text1434:
+MassExplosionDescription:
 	textfw "おたがいの場にいるすべての「ドガース"
 	linefw "」「マタドガス」「わるいマタドガス」"
 	linefw "の数×20のダメージ。その後、お互い"
@@ -2172,11 +2172,11 @@ Text1434:
 	linefw "ぞれ20ダメージ。"
 	done
 
-Text1435:
+StunGasName:
 	textfw "しびれガス"
 	done
 
-Text1436:
+StunGasDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "相手を「どく」状態に、"
 	linefw "「うら」なら「マヒ」状態にする。"
@@ -2191,25 +2191,25 @@ TangelaName:
 	textfw "モンジャラ"
 	done
 
-Text1439:
+BindName:
 	textfw "しめつける"
 	done
 
-Text143a:
+VineName:
 	textfw "ツルじょう"
 	done
 
-TangelaDescription1:
+TangelaLv8Description:
 	textfw "ブルーのツル植物がからみあい、"
 	linefw "正体は見えない。"
 	linefw "近づくものにからみついてくる。"
 	done
 
-Text143c:
+PoisonWhipName:
 	textfw "どくのむち"
 	done
 
-TangelaDescription2:
+TangelaLv12Description:
 	textfw "全身が海草のようなツルに覆われていて"
 	linefw "歩くたびにゆらゆら揺れる。"
 	done
@@ -2218,36 +2218,36 @@ ScytherName:
 	textfw "ストライク"
 	done
 
-Text143f:
+SlashingStrikeName:
 	textfw "スラッシュダウン"
 	done
 
-Text1440:
+SlashingStrikeDescription:
 	textfw "次の自分の番、"
 	linefw "このカードは「スラッシュダウン」を"
 	linefw "使えない。"
 	done
 
-Text1441:
+MantisName:
 	textfw "かまきり"
 	done
 
-ScytherDescription1:
+ScytherLv23Description:
 	textfw "忍者のようなすばやさ。"
 	linefw "あまりに速く動いた時は何匹もいる様に"
 	linefw "見える。"
 	done
 
-Text1443:
+SwordsDanceName:
 	textfw "つるぎのまい"
 	done
 
-Text1444:
+SwordsDanceDescription:
 	textfw "次の自分の番、このカードが使う"
 	linefw "「きりさく」のダメージは2倍になる。"
 	done
 
-ScytherDescription2:
+ScytherLv25Description:
 	textfw "鋭い鎌で獲物を切り裂き、"
 	linefw "息の根をとめる。"
 	linefw "ごくまれに羽を使って飛ぶ。"
@@ -2257,34 +2257,34 @@ PinsirName:
 	textfw "カイロス"
 	done
 
-Text1447:
+SlicingThrowName:
 	textfw "はさんでなげる"
 	done
 
-Text1448:
+IfHeadsDo10DamageDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "10ダメージを追加する。"
 	done
 
-Text1449:
+StagbeetleName:
 	textfw "くわがた"
 	done
 
-PinsirDescription1:
+PinsirLv15Description:
 	textfw "ツノではさんでもちぎれない場合は"
 	linefw "はさんだまま振り回し、投げ飛ばす戦法"
 	linefw "を使う。"
 	done
 
-Text144b:
+IrongripName:
 	textfw "まんりきばさみ"
 	done
 
-Text144c:
+GuillotineName:
 	textfw "ハサミギロチン"
 	done
 
-PinsirDescription2:
+PinsirLv24Description:
 	textfw "2本の長い角はパワフル。"
 	linefw "1度はさまれてしまったらちぎれるまで"
 	linefw "離さない。"
@@ -2294,11 +2294,11 @@ CharmanderName:
 	textfw "ヒトカゲ"
 	done
 
-Text144f:
+GatherFireName:
 	textfw "ほのおをもらう"
 	done
 
-Text1450:
+GatherFireDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "自分の場のポケモンについている「炎」"
 	linefw "エネルギーカードを1枚はがし、"
@@ -2307,36 +2307,36 @@ Text1450:
 	linefw "この力は使えない。"
 	done
 
-Text1451:
+FireTailName:
 	textfw "ほのおのしっぽ"
 	done
 
-Text1452:
+LizardName:
 	textfw "とかげ"
 	done
 
-CharmanderDescription1:
+CharmanderLv9Description:
 	textfw "かわいいので、つい抱きしめようとして"
 	linefw "やけどをしてしまう人が多いらしい。"
 	done
 
-Text1454:
+EmberName:
 	textfw "ひのこ"
 	done
 
-Text1455:
+DiscardOneFireEnergyDescription:
 	textfw "[自分]", "についている「炎」エネルギーカ"
 	linefw "ードを1枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
 	linefw "なくなる。"
 	done
 
-CharmanderDescription2:
+CharmanderLv10Description:
 	textfw "生まれたときから"
 	linefw "尻尾に炎がともっている。"
 	linefw "炎が消えたとき、その命はつきてしまう"
 	done
 
-Text1457:
+GrowlName:
 	textfw "なきごえ"
 	done

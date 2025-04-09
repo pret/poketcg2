@@ -1,25 +1,25 @@
-Text183e:
+LeekSlapDescription:
 	textfw "このワザは、このカードが場に出てから"
 	linefw "1回しか使えない。コインを投げて"
 	linefw "「うら」なら、このワザは失敗する。("
 	linefw "その場合も、ワザは使ったことになる)"
 	done
 
-Text183f:
+PotSmashName:
 	textfw "ナベでたたく"
 	done
 
-Text1840:
+WildDuckName:
 	textfw "かるがも"
 	done
 
-FarfetchdDescription:
+FarfetchdLv20Description:
 	textfw "自分の巣を作るための"
 	linefw "植物のクキを一本"
 	linefw "いつも持って歩いている。"
 	done
 
-Text1842:
+LeekSlapAltDescription:
 	textfw "このワザは、このカードが場に出てから"
 	linefw "1回しか使えない。コインを投げて"
 	linefw "「うら」なら、このワザのダメージは"
@@ -37,22 +37,22 @@ DoduoName:
 	textfw "ドードー"
 	done
 
-Text1845:
+GrowlAltDescription2:
 	textfw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "が、このカードに与える"
 	linefw "ダメージは「-10」される。"
 	done
 
-Text1846:
+TwinBirdName:
 	textfw "ふたごどり"
 	done
 
-DoduoDescription1:
+DoduoLv8Description:
 	textfw "飛ぶのは苦手だが走るのは速い。"
 	linefw "巨大な足跡を残して大地を駆け抜ける。"
 	done
 
-DoduoDescription2:
+DoduoLv10Description:
 	textfw "突然変異で見つかった"
 	linefw "ふたつの頭を持つポケモン。"
 	linefw "時速100キロで走る。"
@@ -62,31 +62,31 @@ DodrioName:
 	textfw "ドードリオ"
 	done
 
-Text184a:
+TriAttackName:
 	textfw "トライアタック"
 	done
 
-Text184b:
+TripleBirdName:
 	textfw "みつごどり"
 	done
 
-DodrioDescription1:
+DodrioLv25Description:
 	textfw "3つの頭で高度な作戦をねる。寝る時も"
 	linefw "どれか、1つは起きているという。"
 	done
 
-Text184d:
+RetreatAidName:
 	textfw "にげるサポート"
 	done
 
-Text184e:
+RetreatAidDescription:
 	textfw "このカードが自分のベンチにいる限り、"
 	linefw "自分の対戦ポケモンが「にげる」ときに"
 	linefw "トラッシュするエネルギーの数は、"
 	linefw "1個ぶん少なくなる。"
 	done
 
-DodrioDescription2:
+DodrioLv28Description:
 	textfw "滅多に見つからない珍種。"
 	linefw "3つの頭は「喜び」「悲しみ」"
 	linefw "「怒り」の感情を表わす。"
@@ -96,25 +96,25 @@ LickitungName:
 	textfw "ベロリンガ"
 	done
 
-Text1851:
+LickAltName:
 	textfw "なめる"
 	done
 
-Text1852:
+LickingName:
 	textfw "なめまわし"
 	done
 
-LickitungDescription1:
+LickitungLv20Description:
 	textfw "ベロがカメレオンみたいにぐんぐん"
 	linefw "伸びてゆく。なめられるとなぜか"
 	linefw "ピリピリしびれてくる。"
 	done
 
-Text1854:
+TongueWrapName:
 	textfw "まきつくベロ"
 	done
 
-LickitungDescription2:
+LickitungLv26Description:
 	textfw "舌が身長の2倍もある。"
 	linefw "エサをとったり、攻擊をしたりと、"
 	linefw "まるで手のように動かせる。"
@@ -124,24 +124,24 @@ ChanseyName:
 	textfw "ラッキー"
 	done
 
-Text1857:
+DoubleSlapAltName:
 	textfw "おうふくビンタ"
 	done
 
-ChanseyDescription1:
+ChanseyLv40Description:
 	textfw "生息数がとても少ない。捕まえた人には"
 	linefw "幸せをもたらすといわれている。"
 	done
 
-Text1859:
+ScrunchName:
 	textfw "まるまる"
 	done
 
-Text185a:
+Do80DamageToSelfDescription:
 	textfw "[自分]", "にも80ダメージ。"
 	done
 
-ChanseyDescription2:
+ChanseyLv55Description:
 	textfw "1日にいくつかタマゴを産む。"
 	linefw "そのタマゴは栄養満点で"
 	linefw "ものすごくおいしいらしい。"
@@ -151,44 +151,44 @@ KangaskhanName:
 	textfw "ガルーラ"
 	done
 
-Text185d:
+TailDropName:
 	textfw "テールドロップ"
 	done
 
-Text185e:
+ParentName:
 	textfw "おやこ"
 	done
 
-KangaskhanDescription1:
+KangaskhanLv36Description:
 	textfw "子どもは母親のおなかにある袋から"
 	linefw "ほとんど出てこない。約3年で親ばなれ"
 	linefw "する。"
 	done
 
-Text1860:
+DizzyPunchName:
 	textfw "ピヨピヨパンチ"
 	done
 
-KangaskhanDescription2:
+KangaskhanLv38Description:
 	textfw "子どもは、母親のおなかにある袋から"
 	linefw "ほとんど出てこない。約3年で親ばなれ"
 	linefw "する。"
 	done
 
-Text1862:
+FetchName:
 	textfw "こどものおつかい"
 	done
 
-Text1863:
+FetchDescription:
 	textfw "山札からカードを1枚引いて、手札に加"
 	linefw "える。"
 	done
 
-Text1864:
+CometPunchName:
 	textfw "れんぞくパンチ"
 	done
 
-KangaskhanDescription3:
+KangaskhanLv40Description:
 	textfw "メスはおなかの袋に"
 	linefw "子どもをいれて育てる。"
 	linefw "連続パンチ攻擊が得意。"
@@ -198,32 +198,32 @@ TaurosName:
 	textfw "ケンタロス"
 	done
 
-Text1867:
+RampageName:
 	textfw "いかりくるう"
 	done
 
-Text1868:
+RampageDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "の数×10のダメージを追加する。その"
 	linefw "後、コインを投げて「うら」なら、"
 	linefw "[自分]", "を「こんらん」状態にする。"
 	done
 
-Text1869:
+WildBullName:
 	textfw "あばれうし"
 	done
 
-TaurosDescription1:
+TaurosLv32Description:
 	textfw "体当たりしてくるとき"
 	linefw "2本の尻尾で自分の体を"
 	linefw "ピシピシとたたく。"
 	done
 
-Text186b:
+KickingAndStampingName:
 	textfw "ふんだりけったり"
 	done
 
-Text186c:
+KickingAndStampingDescription:
 	textfw "コインを投げて「おもて」なら、10"
 	linefw "ダメージを追加する。「うら」なら、"
 	linefw "[相手]", "を控えポケモンと入れ替える。"
@@ -232,7 +232,7 @@ Text186c:
 	linefw "おこらない)"
 	done
 
-TaurosDescription2:
+TaurosLv35Description:
 	textfw "えものにねらいをつけると、しっぽで"
 	linefw "体をたたきながらまっすぐつっこんで"
 	linefw "くる。"
@@ -242,11 +242,11 @@ DittoName:
 	textfw "メタモン"
 	done
 
-Text186f:
+MorphName:
 	textfw "ずっとへんしん"
 	done
 
-Text1870:
+MorphDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "を、すべてとりのぞく。その後、自分の"
 	linefw "山札から「たねポケモン」(「メタモン"
@@ -256,12 +256,12 @@ Text1870:
 	linefw "れる。"
 	done
 
-Text1871:
+MorphDescriptionCont:
 	textfw "(「たねポケモン」がいないとき、"
 	linefw "このワザは失敗する)"
 	done
 
-Text1872:
+TransformName:
 	textfw "へんしん"
 	done
 
@@ -270,29 +270,29 @@ DittoDescription:
 	linefw "相手そっくりに変身する能力がある。"
 	done
 
-Text1874:
+EvolutionName:
 	textfw "しんか"
 	done
 
-EeveeDescription1:
+EeveeLv5Description:
 	textfw "不規則な遺伝子を持つ。石からでる"
 	linefw "放射線によって、身体が突然変異を"
 	linefw "おこす。"
 	done
 
-Text1876:
+SandAttackDescription:
 	textfw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "は、ワザを使うときにコインを"
 	linefw "投げ、「うら」なら、そのワザは失敗"
 	linefw "する。"
 	done
 
-EeveeDescription2:
+EeveeLv9Description:
 	textfw "捕獲例が非常に少なく、分類が難しい、"
 	linefw "特殊なポケモンだ。"
 	done
 
-EeveeDescription3:
+EeveeLv12Description:
 	textfw "3種類のポケモンに進化する"
 	linefw "可能性をもつめずらしいポケモンだ。"
 	done
@@ -301,11 +301,11 @@ PorygonName:
 	textfw "ポリゴン"
 	done
 
-Text187a:
+Conversion1Name:
 	textfw "テクスチャー1"
 	done
 
-Text187b:
+Conversion1Description:
 	textfw "[相手]", "に「弱点」があれば、それを"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
@@ -313,11 +313,11 @@ Text187b:
 	linefw "このワザの効果は消える)"
 	done
 
-Text187c:
+Conversion2Name:
 	textfw "テクスチャー2"
 	done
 
-Text187d:
+Conversion2Description:
 	textfw "[自分]", "の「抵抗力」を、"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
@@ -325,32 +325,32 @@ Text187d:
 	linefw "このワザの効果は消える)"
 	done
 
-Text187e:
+VirtualName:
 	textfw "シージー"
 	done
 
-PorygonDescription1:
+PorygonLv12Description:
 	textfw "最高の科学力をつかい、"
 	linefw "ついに人工のポケモンをつくることに"
 	linefw "成功した。"
 	done
 
-Text1880:
+Porygon3DAttackName:
 	textfw "3Dアタック"
 	done
 
-Text1881:
+Porygon3DAttack10DamageDescription:
 	textfw "コインを3枚投げて「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-PorygonDescription2:
+PorygonSharedDescription:
 	textfw "身体がプログラムでできている。"
 	linefw "電子空間を自由自在に移動できる能力を"
 	linefw "持つ。"
 	done
 
-Text1883:
+Conversion1AltDescription:
 	textfw "[相手]", "に「弱点」があれば、それを"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
@@ -358,7 +358,7 @@ Text1883:
 	linefw "このワザの効果は消える)"
 	done
 
-PorygonDescription3:
+PorygonLv20Description:
 	textfw "ポリゴンを手に入れるため、日夜"
 	linefw "スロットに向かう大人が急増している。"
 	done
@@ -367,11 +367,11 @@ CoolPorygonName:
 	textfw "かっこいいポリゴン"
 	done
 
-Text1886:
+TextureMagicName:
 	textfw "テクスチャーマジック"
 	done
 
-Text1887:
+TextureMagicDescription:
 	textfw "[相手]", "に弱点があれば、それを「草・炎"
 	linefw "・水・雷・超・闘」の中の、好きな色("
 	linefw "タイプ)に変える。", "[自分]", "の抵抗力も、"
@@ -381,7 +381,7 @@ Text1887:
 	linefw "このワザの効果は消える。"
 	done
 
-Text1888:
+Porygon3DAttack20DamageDescription:
 	textfw "コインを3枚投げて「おもて」の数"
 	linefw "×20のダメージ。"
 	done
@@ -390,11 +390,11 @@ SnorlaxName:
 	textfw "カビゴン"
 	done
 
-Text188a:
+ThickSkinnedName:
 	textfw "めんえき"
 	done
 
-Text188b:
+ThickSkinnedDescription:
 	textfw "このカードを「どく・ねむり・マヒ・"
 	linefw "こんらん」状態にしようとする効果は、"
 	linefw "なくなる。このカードが「ねむり・マヒ"
@@ -402,21 +402,21 @@ Text188b:
 	linefw "この力は消える。"
 	done
 
-Text188c:
+SleepingName:
 	textfw "いねむり"
 	done
 
-SnorlaxDescription1:
+SnorlaxLv20Description:
 	textfw "1日に食べ物を400キロ"
 	linefw "食べないと気がすまない。"
 	linefw "食べおわると眠ってしまう。"
 	done
 
-Text188e:
+GuardName:
 	textfw "とおせんぼ"
 	done
 
-Text188f:
+GuardDescription:
 	textfw "このカードがバトル場にいる限り、"
 	linefw "相手の対戦ポケモンは「にげる」ことが"
 	linefw "できない。このカードが「ねむり・マヒ"
@@ -424,18 +424,18 @@ Text188f:
 	linefw "消える。"
 	done
 
-Text1890:
+RollOverName:
 	textfw "ねころぶ"
 	done
 
-Text1891:
+RollOverDescription:
 	textfw "ダメージを与えた後、", "[自分]", "を"
 	linefw "「ねむり」状態にする。コインを投げて"
 	linefw "「おもて」なら、", "[相手]", "も「ねむり」"
 	linefw "状態にする。"
 	done
 
-SnorlaxDescription2:
+SnorlaxLv35Description:
 	textfw "いねむりが大好きで、道の真ん中で"
 	linefw "眠り込んでしまうことがある。"
 	done
@@ -444,18 +444,18 @@ HungrySnorlaxName:
 	textfw "くいしんぼカビゴン"
 	done
 
-Text1894:
+EatName:
 	textfw "たべる"
 	done
 
-Text1895:
+EatDescription:
 	textfw "「たべものカウンター」を1つ、この"
 	linefw "カードの上にのせる。(このカードに"
 	linefw "「たべものカウンター」が2つ以上"
 	linefw "のっているとき、このワザは使えない)"
 	done
 
-Text1896:
+RolloutDescription:
 	textfw "のぞむなら、このカードにのっている"
 	linefw "「たべものカウンター」を好きなだけ"
 	linefw "取りのぞき、取りのぞいた数×30"
@@ -472,12 +472,12 @@ DratiniName:
 	textfw "ミニリュウ"
 	done
 
-DratiniDescription1:
+DratiniLv10Description:
 	textfw "子どもでも身長は2メートル以上。"
 	linefw "脱皮をくりかえして大きくなる。"
 	done
 
-DratiniDescription2:
+DratiniLv12Description:
 	textfw "ミニリュウの捕獲が、「伝説のポケモン"
 	linefw "」探しのきっかけとなった。"
 	done
@@ -486,7 +486,7 @@ DragonairName:
 	textfw "ハクリュー"
 	done
 
-Text189c:
+SlamName:
 	textfw "たたきつける"
 	done
 
@@ -500,11 +500,11 @@ DarkDragonairName:
 	textfw "わるいハクリュー"
 	done
 
-Text189f:
+EvolutionaryLightName:
 	textfw "しんかのひかり"
 	done
 
-Text18a0:
+EvolutionaryLightDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "自分の山札から「進化カード」を1枚"
 	linefw "選び出し、相手プレイヤーに見せてから"
@@ -514,7 +514,7 @@ Text18a0:
 	linefw "ない。"
 	done
 
-Text18a1:
+TailStrikeName:
 	textfw "しっぽでつく"
 	done
 
@@ -528,27 +528,27 @@ DragoniteName:
 	textfw "カイリュー"
 	done
 
-Text18a4:
+HealingWindName:
 	textfw "いやしのかぜ"
 	done
 
-Text18a5:
+HealingWindDescription:
 	textfw "この力は、このカードを手札から場に出"
 	linefw "したとき、1度だけ使える。自分の場の"
 	linefw "ポケモン全員から、ダメージカウンター"
 	linefw "を、それぞれ2個ずつとりのぞいてよい"
 	done
 
-DragoniteDescription1:
+DragoniteLv41Description:
 	textfw "姿を見た人は少ないが実在する海の化身"
 	linefw "知能も人間に匹敵するらしい。"
 	done
 
-Text18a7:
+SpecialDeliveryName:
 	textfw "トランスポート"
 	done
 
-Text18a8:
+SpecialDeliveryDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "自分の山札からカードを1枚引いて、"
 	linefw "手札に加える。その後、自分の手札から"
@@ -557,27 +557,27 @@ Text18a8:
 	linefw "」状態のとき、この力は使えない。"
 	done
 
-Text18a9:
+SupersonicFlightName:
 	textfw "マッハひこう"
 	done
 
-DragoniteDescription2:
+DragoniteSharedDescription:
 	textfw "大きな体格で空を飛ぶ。"
 	linefw "地球を約16時間で1周してしまう。"
 	done
 
-Text18ab:
+StepInName:
 	textfw "かけつける"
 	done
 
-Text18ac:
+StepInDescription:
 	textfw "この力は、自分の番ごとに1回、"
 	linefw "このカードがベンチにいるときに使える"
 	linefw "バトル場にいる自分の対戦ポケモンと、"
 	linefw "このカードを入れ替える。"
 	done
 
-Text18ad:
+SlamDescription:
 	textfw "コインを2枚投げ、「おもて」の数"
 	linefw "×40のダメージ。"
 	done
@@ -586,11 +586,11 @@ DarkDragoniteName:
 	textfw "わるいカイリュー"
 	done
 
-Text18af:
+SummonMinionsName:
 	textfw "てしたをよぶ"
 	done
 
-Text18b0:
+SummonMinionsDescription:
 	textfw "この力は、このカードを手札から場に出"
 	linefw "したとき、1度だけ使える。"
 	linefw "自分の山札から「たねポケモン」を2枚"
@@ -598,7 +598,7 @@ Text18b0:
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text18b1:
+GiantTailName:
 	textfw "きょだいなしっぽ"
 	done
 
@@ -612,13 +612,13 @@ TogepiName:
 	textfw "トゲピー"
 	done
 
-Text18b4:
+SnivelAltDescription:
 	textfw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "がこのカードに与えるダメージは"
 	linefw "「-20」される。"
 	done
 
-Text18b5:
+MetronomeCoinTossDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "のワザを1つ選び、それを、"
 	linefw "[自分]", "が持っているワザとして使う。"
@@ -626,7 +626,7 @@ Text18b5:
 	linefw "いなくてもかまわない)"
 	done
 
-Text18b6:
+SpikeBallName:
 	textfw "とげたま"
 	done
 
@@ -640,16 +640,16 @@ LugiaName:
 	textfw "ルギア"
 	done
 
-Text18b9:
+AeroblastName:
 	textfw "エアロブラスト"
 	done
 
-Text18ba:
+AeroblastDescription:
 	textfw "コインを2枚投げて、「おもて」の数"
 	linefw "×20のダメージを追加する"
 	done
 
-Text18bb:
+DivingName:
 	textfw "せんすい"
 	done
 
