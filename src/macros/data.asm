@@ -60,6 +60,31 @@ REPT _NARG
 ENDR
 ENDM
 
+MACRO energy
+	DEF en = 0
+	IF _NARG > 1
+		REPT _NARG / 2
+			DEF x = 4 - 8 * ((\1) % 2)
+			DEF en += \2 << (((\1) * 4) + x)
+			SHIFT 2
+		ENDR
+		REPT NUM_TYPES / 2
+			db LOW(en)
+			DEF en >>= 8
+		ENDR
+	ELSE
+		db 0, 0, 0, 0
+	ENDC
+ENDM
+
+MACRO length
+	db ROUND(\1 * 10) >> 16
+ENDM
+
+MACRO weight
+	dw ROUND(\1 * 10) >> 16
+ENDM
+
 MACRO gfx_ptr
 	db BANK(\1) - BANK(@)
 	dw \1

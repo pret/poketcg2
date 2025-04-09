@@ -13,7 +13,7 @@ Text1840:
 	textfw "かるがも"
 	done
 
-Text1841:
+FarfetchdDescription:
 	textfw "自分の巣を作るための"
 	linefw "植物のクキを一本"
 	linefw "いつも持って歩いている。"
@@ -27,13 +27,13 @@ Text1842:
 	linefw "(その場合もワザは使ったことになる)"
 	done
 
-Text1843:
+FarfetchdAltDescription:
 	textfw "もっているクキは大切な武器であり、"
 	linefw "刀を振るようにいろんなものを切ること"
 	linefw "ができる。"
 	done
 
-Text1844:
+DoduoName:
 	textfw "ドードー"
 	done
 
@@ -47,18 +47,18 @@ Text1846:
 	textfw "ふたごどり"
 	done
 
-Text1847:
+DoduoDescription1:
 	textfw "飛ぶのは苦手だが走るのは速い。"
 	linefw "巨大な足跡を残して大地を駆け抜ける。"
 	done
 
-Text1848:
+DoduoDescription2:
 	textfw "突然変異で見つかった"
 	linefw "ふたつの頭を持つポケモン。"
 	linefw "時速100キロで走る。"
 	done
 
-Text1849:
+DodrioName:
 	textfw "ドードリオ"
 	done
 
@@ -70,7 +70,7 @@ Text184b:
 	textfw "みつごどり"
 	done
 
-Text184c:
+DodrioDescription1:
 	textfw "3つの頭で高度な作戦をねる。寝る時も"
 	linefw "どれか、1つは起きているという。"
 	done
@@ -86,13 +86,13 @@ Text184e:
 	linefw "1個ぶん少なくなる。"
 	done
 
-Text184f:
+DodrioDescription2:
 	textfw "滅多に見つからない珍種。"
 	linefw "3つの頭は「喜び」「悲しみ」"
 	linefw "「怒り」の感情を表わす。"
 	done
 
-Text1850:
+LickitungName:
 	textfw "ベロリンガ"
 	done
 
@@ -104,7 +104,7 @@ Text1852:
 	textfw "なめまわし"
 	done
 
-Text1853:
+LickitungDescription1:
 	textfw "ベロがカメレオンみたいにぐんぐん"
 	linefw "伸びてゆく。なめられるとなぜか"
 	linefw "ピリピリしびれてくる。"
@@ -114,13 +114,13 @@ Text1854:
 	textfw "まきつくベロ"
 	done
 
-Text1855:
+LickitungDescription2:
 	textfw "舌が身長の2倍もある。"
 	linefw "エサをとったり、攻擊をしたりと、"
 	linefw "まるで手のように動かせる。"
 	done
 
-Text1856:
+ChanseyName:
 	textfw "ラッキー"
 	done
 
@@ -128,7 +128,7 @@ Text1857:
 	textfw "おうふくビンタ"
 	done
 
-Text1858:
+ChanseyDescription1:
 	textfw "生息数がとても少ない。捕まえた人には"
 	linefw "幸せをもたらすといわれている。"
 	done
@@ -141,13 +141,13 @@ Text185a:
 	textfw "[自分]", "にも80ダメージ。"
 	done
 
-Text185b:
+ChanseyDescription2:
 	textfw "1日にいくつかタマゴを産む。"
 	linefw "そのタマゴは栄養満点で"
 	linefw "ものすごくおいしいらしい。"
 	done
 
-Text185c:
+KangaskhanName:
 	textfw "ガルーラ"
 	done
 
@@ -159,7 +159,7 @@ Text185e:
 	textfw "おやこ"
 	done
 
-Text185f:
+KangaskhanDescription1:
 	textfw "子どもは母親のおなかにある袋から"
 	linefw "ほとんど出てこない。約3年で親ばなれ"
 	linefw "する。"
@@ -169,7 +169,7 @@ Text1860:
 	textfw "ピヨピヨパンチ"
 	done
 
-Text1861:
+KangaskhanDescription2:
 	textfw "子どもは、母親のおなかにある袋から"
 	linefw "ほとんど出てこない。約3年で親ばなれ"
 	linefw "する。"
@@ -188,13 +188,13 @@ Text1864:
 	textfw "れんぞくパンチ"
 	done
 
-Text1865:
+KangaskhanDescription3:
 	textfw "メスはおなかの袋に"
 	linefw "子どもをいれて育てる。"
 	linefw "連続パンチ攻擊が得意。"
 	done
 
-Text1866:
+TaurosName:
 	textfw "ケンタロス"
 	done
 
@@ -213,7 +213,7 @@ Text1869:
 	textfw "あばれうし"
 	done
 
-Text186a:
+TaurosDescription1:
 	textfw "体当たりしてくるとき"
 	linefw "2本の尻尾で自分の体を"
 	linefw "ピシピシとたたく。"
@@ -232,13 +232,13 @@ Text186c:
 	linefw "おこらない)"
 	done
 
-Text186d:
+TaurosDescription2:
 	textfw "えものにねらいをつけると、しっぽで"
 	linefw "体をたたきながらまっすぐつっこんで"
 	linefw "くる。"
 	done
 
-Text186e:
+DittoName:
 	textfw "メタモン"
 	done
 
@@ -265,7 +265,7 @@ Text1872:
 	textfw "へんしん"
 	done
 
-Text1873:
+DittoDescription:
 	textfw "細胞組織を一瞬でコピーして、"
 	linefw "相手そっくりに変身する能力がある。"
 	done
@@ -274,7 +274,7 @@ Text1874:
 	textfw "しんか"
 	done
 
-Text1875:
+EeveeDescription1:
 	textfw "不規則な遺伝子を持つ。石からでる"
 	linefw "放射線によって、身体が突然変異を"
 	linefw "おこす。"
@@ -287,17 +287,17 @@ Text1876:
 	linefw "する。"
 	done
 
-Text1877:
+EeveeDescription2:
 	textfw "捕獲例が非常に少なく、分類が難しい、"
 	linefw "特殊なポケモンだ。"
 	done
 
-Text1878:
+EeveeDescription3:
 	textfw "3種類のポケモンに進化する"
 	linefw "可能性をもつめずらしいポケモンだ。"
 	done
 
-Text1879:
+PorygonName:
 	textfw "ポリゴン"
 	done
 
@@ -329,7 +329,7 @@ Text187e:
 	textfw "シージー"
 	done
 
-Text187f:
+PorygonDescription1:
 	textfw "最高の科学力をつかい、"
 	linefw "ついに人工のポケモンをつくることに"
 	linefw "成功した。"
@@ -344,7 +344,7 @@ Text1881:
 	linefw "×10のダメージ。"
 	done
 
-Text1882:
+PorygonDescription2:
 	textfw "身体がプログラムでできている。"
 	linefw "電子空間を自由自在に移動できる能力を"
 	linefw "持つ。"
@@ -358,12 +358,12 @@ Text1883:
 	linefw "このワザの効果は消える)"
 	done
 
-Text1884:
+PorygonDescription3:
 	textfw "ポリゴンを手に入れるため、日夜"
 	linefw "スロットに向かう大人が急増している。"
 	done
 
-Text1885:
+CoolPorygonName:
 	textfw "かっこいいポリゴン"
 	done
 
@@ -386,7 +386,7 @@ Text1888:
 	linefw "×20のダメージ。"
 	done
 
-Text1889:
+SnorlaxName:
 	textfw "カビゴン"
 	done
 
@@ -406,7 +406,7 @@ Text188c:
 	textfw "いねむり"
 	done
 
-Text188d:
+SnorlaxDescription1:
 	textfw "1日に食べ物を400キロ"
 	linefw "食べないと気がすまない。"
 	linefw "食べおわると眠ってしまう。"
@@ -435,12 +435,12 @@ Text1891:
 	linefw "状態にする。"
 	done
 
-Text1892:
+SnorlaxDescription2:
 	textfw "いねむりが大好きで、道の真ん中で"
 	linefw "眠り込んでしまうことがある。"
 	done
 
-Text1893:
+HungrySnorlaxName:
 	textfw "くいしんぼカビゴン"
 	done
 
@@ -462,27 +462,27 @@ Text1896:
 	linefw "ダメージを追加してもよい。"
 	done
 
-Text1897:
+HungrySnorlaxDescription:
 	textfw "ぐうだらで食べて寝るだけ。だから"
 	linefw "どんどん太っていき、ますます怠けて"
 	linefw "しまうらしい。"
 	done
 
-Text1898:
+DratiniName:
 	textfw "ミニリュウ"
 	done
 
-Text1899:
+DratiniDescription1:
 	textfw "子どもでも身長は2メートル以上。"
 	linefw "脱皮をくりかえして大きくなる。"
 	done
 
-Text189a:
+DratiniDescription2:
 	textfw "ミニリュウの捕獲が、「伝説のポケモン"
 	linefw "」探しのきっかけとなった。"
 	done
 
-Text189b:
+DragonairName:
 	textfw "ハクリュー"
 	done
 
@@ -490,13 +490,13 @@ Text189c:
 	textfw "たたきつける"
 	done
 
-Text189d:
+DragonairDescription:
 	textfw "海や湖などに住むという。"
 	linefw "羽を持たないが、"
 	linefw "たまに空を飛ぶ姿が目擊される。"
 	done
 
-Text189e:
+DarkDragonairName:
 	textfw "わるいハクリュー"
 	done
 
@@ -518,13 +518,13 @@ Text18a1:
 	textfw "しっぽでつく"
 	done
 
-Text18a2:
+DarkDragonairDescription:
 	textfw "自由に雨や雪を降らせたり、"
 	linefw "伝説のポケモンらしい不思議な力を"
 	linefw "使うことができるという。"
 	done
 
-Text18a3:
+DragoniteName:
 	textfw "カイリュー"
 	done
 
@@ -539,7 +539,7 @@ Text18a5:
 	linefw "を、それぞれ2個ずつとりのぞいてよい"
 	done
 
-Text18a6:
+DragoniteDescription1:
 	textfw "姿を見た人は少ないが実在する海の化身"
 	linefw "知能も人間に匹敵するらしい。"
 	done
@@ -561,7 +561,7 @@ Text18a9:
 	textfw "マッハひこう"
 	done
 
-Text18aa:
+DragoniteDescription2:
 	textfw "大きな体格で空を飛ぶ。"
 	linefw "地球を約16時間で1周してしまう。"
 	done
@@ -582,7 +582,7 @@ Text18ad:
 	linefw "×40のダメージ。"
 	done
 
-Text18ae:
+DarkDragoniteName:
 	textfw "わるいカイリュー"
 	done
 
@@ -602,13 +602,13 @@ Text18b1:
 	textfw "きょだいなしっぽ"
 	done
 
-Text18b2:
+DarkDragoniteDescription:
 	textfw "「破壊の神」の化身。200kgを"
 	linefw "越える重さだが、2つの翼で自由自在に"
 	linefw "空を飛ぶ。"
 	done
 
-Text18b3:
+TogepiName:
 	textfw "トゲピー"
 	done
 
@@ -630,13 +630,13 @@ Text18b6:
 	textfw "とげたま"
 	done
 
-Text18b7:
+TogepiDescription:
 	textfw "赤んぼうなので、もしものときは、"
 	linefw "頭の先から毒を出して、敵を追い"
 	linefw "はらおうとがんばる。"
 	done
 
-Text18b8:
+LugiaName:
 	textfw "ルギア"
 	done
 
@@ -653,16 +653,16 @@ Text18bb:
 	textfw "せんすい"
 	done
 
-Text18bc:
+LugiaDescription:
 	textfw "強すぎる能力を持つため、深い海の底で"
 	linefw "静かに時を過ごすと伝えられる。"
 	done
 
-Text18bd:
+SuperPotionName:
 	textfw "いいきずぐすり"
 	done
 
-Text18be:
+SuperPotionDescription:
 	textfw "あなたの場にいる、「エネルギーカード"
 	linefw "」のついているポケモンを1匹選ぶ。"
 	linefw "そのポケモンについている「エネルギー"
@@ -671,31 +671,31 @@ Text18be:
 	linefw "カウンターを、4個とりのぞく。"
 	done
 
-Text18bf:
+ImakuniCardName:
 	textfw "イマクニ?"
 	done
 
-Text18c0:
+ImakuniCardDescription:
 	textfw "あなたの対戦ポケモンは「こんらん」"
 	linefw "状態になる。(このカードをポケモン"
 	linefw "として場に出すことはできない)"
 	done
 
-Text18c1:
+EnergyRemovalName:
 	textfw "エネルギー・リムーブ"
 	done
 
-Text18c2:
+EnergyRemovalDescription:
 	textfw "相手の場のポケモンを1匹選び、"
 	linefw "そのポケモンについている「エネルギー"
 	linefw "カード」を1枚選んで、トラッシュする"
 	done
 
-Text18c3:
+EnergyRetrievalName:
 	textfw "エネルギー回収"
 	done
 
-Text18c4:
+EnergyRetrievalDescription:
 	textfw "手札からカードを1枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "あなたのトラッシュから「基本エネルギ"
@@ -705,32 +705,32 @@ Text18c4:
 	linefw "ない。"
 	done
 
-Text18c5:
+EnergySearchName:
 	textfw "エネルギー転送"
 	done
 
-Text18c6:
+EnergySearchDescription:
 	textfw "あなたの山札から「基本エネルギーカー"
 	linefw "ド」を1枚選び出し、相手プレイヤーに"
 	linefw "見せてから、手札に加える。"
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text18c7:
+ProfessorOakName:
 	textfw "オーキドはかせ"
 	done
 
-Text18c8:
+ProfessorOakDescription:
 	textfw "あなたの手札をすべてトラッシュする。"
 	linefw "その後、山札からカードを7枚引いて、"
 	linefw "手札にする。"
 	done
 
-Text18c9:
+FossilExcavationName:
 	textfw "化石の発掘"
 	done
 
-Text18ca:
+FossilExcavationDescription:
 	textfw "あなたの山札かトラッシュのどちらかを"
 	linefw "選ぶ。その中から「なにかの化石」を"
 	linefw "1枚選び出し、相手プレイヤーに見せて"
@@ -738,21 +738,21 @@ Text18ca:
 	linefw "は、その山札をよく切る)"
 	done
 
-Text18cb:
+PotionName:
 	textfw "きずぐすり"
 	done
 
-Text18cc:
+PotionDescription:
 	textfw "あなたの場にいるポケモンを1匹選び、"
 	linefw "そのポケモンにのっているダメージ"
 	linefw "カウンターを、2個とりのぞく。"
 	done
 
-Text18cd:
+GamblerName:
 	textfw "ギャンブラー"
 	done
 
-Text18ce:
+GamblerDescription:
 	textfw "あなたの手札をすべて山札にもどし、"
 	linefw "その山札をよく切る。コインを投げ、"
 	linefw "「おもて」なら8枚、「うら」なら"
@@ -760,11 +760,11 @@ Text18ce:
 	linefw "手札にする。"
 	done
 
-Text18cf:
+ReviveName:
 	textfw "元気のかけら"
 	done
 
-Text18d0:
+ReviveDescription:
 	textfw "あなたのトラッシュから「たねポケモン"
 	linefw "」を1枚選び、あなたのベンチに出す。"
 	linefw "その後、そのポケモンに、HPの半分"
@@ -774,11 +774,11 @@ Text18d0:
 	linefw "このカードは使えない)"
 	done
 
-Text18d1:
+MaxReviveName:
 	textfw "元気のかたまり"
 	done
 
-Text18d2:
+MaxReviveDescription:
 	textfw "手札からエネルギーカードを2枚選んで"
 	linefw "トラッシュしなければ、このカードは使"
 	linefw "えない。あなたのトラッシュから「たね"
@@ -786,18 +786,18 @@ Text18d2:
 	linefw "ンチに出す。"
 	done
 
-Text18d3:
+MaxReviveDescriptionCont:
 	textfw "(あなたのトラッシュに「たねポケモン"
 	linefw "」が1枚もないときや、あなたのベンチ"
 	linefw "に空きがないとき、このカードは使えな"
 	linefw "い)"
 	done
 
-Text18d4:
+SuperScoopUpName:
 	textfw "スーパーポケモン回収"
 	done
 
-Text18d5:
+SuperScoopUpDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "あなたの場にいるポケモンを1匹選び、"
 	linefw "そのポケモンと、そのポケモンについて"
@@ -805,22 +805,22 @@ Text18d5:
 	linefw "もどす。"
 	done
 
-Text18d6:
+DevolutionSprayName:
 	textfw "退化スプレー"
 	done
 
-Text18d7:
+DevolutionSprayDescription:
 	textfw "あなたの場にいるポケモンを1匹選ぶ。"
 	linefw "そのポケモンにのっている「進化カード"
 	linefw "」を、好きなだけトラッシュして、"
 	linefw "そのポケモンを「退化」させる。"
 	done
 
-Text18d8:
+ItemfinderName:
 	textfw "ダウジングマシーン"
 	done
 
-Text18d9:
+ItemfinderDescription:
 	textfw "手札からカードを2枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "あなたのトラッシュから「トレーナーカ"
@@ -828,11 +828,11 @@ Text18d9:
 	linefw "に見せてから、手札に加える。"
 	done
 
-Text18da:
+ChallengeName:
 	textfw "たたきつけろ!挑戦状"
 	done
 
-Text18db:
+ChallengeDescription:
 	textfw "あなたの挑戦を受けるかどうか、相手プ"
 	linefw "レイヤーにたずねる。相手が挑戦を受け"
 	linefw "ないなら、あなたは山札からカードを2"
@@ -842,17 +842,17 @@ Text18db:
 	linefw "ドを選び出し、ベンチに出す。"
 	done
 
-Text18dc:
+ChallengeDescriptionCont:
 	textfw "(おたがいが出し終わるまで、出したカ"
 	linefw "ードはうらにしておく)。その後、それ"
 	linefw "ぞれの山札をよく切る。"
 	done
 
-Text18dd:
+SuperEnergyRetrievalName:
 	textfw "超エネルギー回収"
 	done
 
-Text18de:
+SuperEnergyRetrievalDescription:
 	textfw "手札からカードを2枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "あなたのトラッシュから「基本エネルギ"
@@ -862,11 +862,11 @@ Text18de:
 	linefw "ない。"
 	done
 
-Text18df:
+SuperEnergyRemovalName:
 	textfw "超エネルギーリムーブ"
 	done
 
-Text18e0:
+SuperEnergyRemovalDescription:
 	textfw "あなたの場のポケモンについている「エ"
 	linefw "ネルギーカード」を1枚トラッシュしな"
 	linefw "ければ、このカードは使えない。相手の"
@@ -875,11 +875,11 @@ Text18e0:
 	linefw "枚選んで、トラッシュする。"
 	done
 
-Text18e1:
+MoonStoneName:
 	textfw "月の石"
 	done
 
-Text18e2:
+MoonStoneDescription:
 	textfw "あなたの山札から、「無色」ポケモン"
 	linefw "への「進化カード」を1枚選び出し、"
 	linefw "相手プレイヤーに見せてから、"
@@ -887,11 +887,11 @@ Text18e2:
 	linefw "切る。"
 	done
 
-Text18e3:
+DefenderName:
 	textfw "ディフェンダー"
 	done
 
-Text18e4:
+DefenderDescription:
 	textfw "このカードは、あなたの場にいるポケモ"
 	linefw "ンにつけて使い、次の相手の番の終わり"
 	linefw "にトラッシュする。このカードをつけて"
@@ -900,16 +900,16 @@ Text18e4:
 	linefw "れる。"
 	done
 
-Text18e5:
+GustOfWindName:
 	textfw "突風"
 	done
 
-Text18e6:
+GustOfWindDescription:
 	textfw "相手の控えポケモンを1匹選び、相手の"
 	linefw "対戦ポケモンと入れ替える。"
 	done
 
-Text18e7:
+MysteriousFossilDescription:
 	textfw "このカードはポケモンとして場に出すこ"
 	linefw "とができ、場に出ている限り、ポケモン"
 	linefw "としてあつかわれる。"
@@ -919,7 +919,7 @@ Text18e7:
 	linefw "とができず、特殊状態にならない。"
 	done
 
-Text18e8:
+MysteriousFossilDescriptionCont:
 	textfw "また、このカードが「きぜつ」しても、"
 	linefw "相手プレイヤーはサイドカードを取るこ"
 	linefw "とができない。"
@@ -929,21 +929,21 @@ Text18e8:
 	linefw "としてあつかわない)"
 	done
 
-Text18e9:
+FullHealName:
 	textfw "なんでもなおし"
 	done
 
-Text18ea:
+FullHealDescription:
 	textfw "あなたの対戦ポケモンの「どく・ねむり"
 	linefw "・マヒ・こんらん」状態を、すべて回復"
 	linefw "させる。"
 	done
 
-Text18eb:
+ImposterOaksRevengeName:
 	textfw "にせオーキドの逆襲"
 	done
 
-Text18ec:
+ImposterOaksRevengeDescription:
 	textfw "手札からカードを1枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "相手プレイヤーは手札をすべて山札に"
@@ -951,32 +951,32 @@ Text18ec:
 	linefw "4枚を引いて手札にする。"
 	done
 
-Text18ed:
+ImposterProfessorOakName:
 	textfw "にせオーキドはかせ"
 	done
 
-Text18ee:
+ImposterProfessorOakDescription:
 	textfw "相手の手札をすべて山札にもどし、その"
 	linefw "山札をよく切る。その後、相手プレイヤ"
 	linefw "ーは山札からカードを7枚引いて、"
 	linefw "手札にする。"
 	done
 
-Text18ef:
+SleepName:
 	textfw "ねむれ!ねむれ!"
 	done
 
-Text18f0:
+SleepDescription:
 	textfw "【ロケット団秘密メカ】"
 	linefw "コインを投げて「おもて」なら、相手の"
 	linefw "対戦ポケモンを「ねむり」状態にする。"
 	done
 
-Text18f1:
+ComputerErrorName:
 	textfw "パソコン大暴走!"
 	done
 
-Text18f2:
+ComputerErrorDescription:
 	textfw "【ロケット団秘密メカ】"
 	linefw "このカードを使ったら、あなたの番は自"
 	linefw "動的に終わりになる。おたがいのプレイ"
@@ -986,11 +986,11 @@ Text18f2:
 	linefw ")"
 	done
 
-Text18f3:
+ComputerSearchName:
 	textfw "パソコン通信"
 	done
 
-Text18f4:
+ComputerSearchDescription:
 	textfw "手札からカードを2枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "あなたの山札からカードを1枚選び出し"
@@ -998,11 +998,11 @@ Text18f4:
 	linefw "切る。"
 	done
 
-Text18f5:
+DiggerName:
 	textfw "バトル場は穴だらけ!"
 	done
 
-Text18f6:
+DiggerDescription:
 	textfw "【ロケット団秘密メカ】"
 	linefw "おたがいのプレイヤーは交互にコインを"
 	linefw "投げ、先に「うら」を出したプレイヤー"
@@ -1012,11 +1012,11 @@ Text18f6:
 	linefw "このカードを使ったプレイヤー)"
 	done
 
-Text18f7:
+ClefairyDollName:
 	textfw "ピッピ人形"
 	done
 
-Text18f8:
+ClefairyDollDescription:
 	textfw "このカードはポケモンとして場に出すこ"
 	linefw "とができ、場に出ている限り、ポケモン"
 	linefw "としてあつかわれる。"
@@ -1026,29 +1026,29 @@ Text18f8:
 	linefw "サイドカードを取ることができない。"
 	done
 
-Text18f9:
+ClefairyDollDescriptionCont:
 	textfw "あなたは、あなたの番の中で、いつでも"
 	linefw "このカードをトラッシュしてよい。"
 	linefw "(この「トラッシュする」は、特殊能力"
 	linefw "としてあつかわない)"
 	done
 
-Text18fa:
+MrFujiName:
 	textfw "フジろうじん"
 	done
 
-Text18fb:
+MrFujiDescription:
 	textfw "あなたの控えポケモンを1匹選び、その"
 	linefw "カードと、それについているすべてのカ"
 	linefw "ードを、あなたの山札にもどす。その後"
 	linefw "その山札をよく切る。"
 	done
 
-Text18fc:
+PluspowerName:
 	textfw "プラスパワー"
 	done
 
-Text18fd:
+PluspowerDescription:
 	textfw "このカードはあなたの対戦ポケモンに"
 	linefw "つけて使い、あなたの番の終わりにトラ"
 	linefw "ッシュする。このカードをつけている"
@@ -1057,20 +1057,20 @@ Text18fd:
 	linefw "「+10」される。"
 	done
 
-Text18fe:
+SwitchName:
 	textfw "ポケモンいれかえ"
 	done
 
-Text18ff:
+SwitchDescription:
 	textfw "あなたの控えポケモンを1匹選び、あな"
 	linefw "たの対戦ポケモンと入れ替える。"
 	done
 
-Text1900:
+ScoopUpName:
 	textfw "ポケモン回収"
 	done
 
-Text1901:
+ScoopUpDescription:
 	textfw "あなたの場にいるポケモンを1匹選び、"
 	linefw "その「たねポケモン」のカードだけを"
 	linefw "手札にもどす。(そのカードにのって"
@@ -1078,11 +1078,11 @@ Text1901:
 	linefw "カードは、すべてトラッシュする)"
 	done
 
-Text1902:
+PokemonTraderName:
 	textfw "ポケモン交換おじさん"
 	done
 
-Text1903:
+PokemonTraderDescription:
 	textfw "手札から「たねポケモン」または「進化"
 	linefw "カード」を1枚選び、相手プレイヤーに"
 	linefw "見せてから、あなたの山札にもどす。"
@@ -1090,38 +1090,38 @@ Text1903:
 	linefw "ない。"
 	done
 
-Text1904:
+PokemonTraderDescriptionCont:
 	textfw "あなたの山札から「たねポケモン」"
 	linefw "または「進化カード」を1枚選び出し"
 	linefw "相手プレイヤーに見せてから、手札に"
 	linefw "加える。その後、その山札をよく切る。"
 	done
 
-Text1905:
+PokemonRecallName:
 	textfw "ポケモン再転送"
 	done
 
-Text1906:
+PokemonRecallDescription:
 	textfw "あなたのトラッシュから「進化カード」"
 	linefw "を1枚選び出し、相手プレイヤーに"
 	linefw "見せてから、自分の山札の上に置く。"
 	done
 
-Text1907:
+PokedexName:
 	textfw "ポケモン図鑑"
 	done
 
-Text1908:
+PokedexDescription:
 	textfw "あなたの山札の上から5枚のカードを"
 	linefw "見て、好きな順番に入れ替えて、山札の"
 	linefw "上にもどす。"
 	done
 
-Text1909:
+PokemonCenterName:
 	textfw "ポケモンセンター"
 	done
 
-Text190a:
+PokemonCenterDescription:
 	textfw "あなたの場の、ダメージカウンターが"
 	linefw "のっているすべてのポケモンから、ダメ"
 	linefw "ージカウンターと「エネルギーカード」"
@@ -1129,11 +1129,11 @@ Text190a:
 	linefw "カード」はトラッシュする)"
 	done
 
-Text190b:
+PokemonBreederName:
 	textfw "ポケモン育て屋さん"
 	done
 
-Text190c:
+PokemonBreederDescription:
 	textfw "このカードは、あなたが自分の場のポケ"
 	linefw "モンを進化させるときにだけ、使える。"
 	linefw "そのポケモンの上に「2進化カード」を"
@@ -1141,62 +1141,62 @@ Text190c:
 	linefw "ケモン」に進化させる。"
 	done
 
-Text190d:
+PokemonFluteName:
 	textfw "ポケモンの笛"
 	done
 
-Text190e:
+PokemonFluteDescription:
 	textfw "相手のトラッシュから「たねポケモン」"
 	linefw "を1枚選び出し、相手のベンチに出す。"
 	linefw "(相手のベンチに空きがないとき、"
 	linefw "このカードは使えない)"
 	done
 
-Text190f:
+TheBosssWayName:
 	textfw "ボスのやりかた"
 	done
 
-Text1910:
+TheBosssWayDescription:
 	textfw "あなたの山札から、わるいポケモンへの"
 	linefw "「進化カード」を1枚選び出し、相手"
 	linefw "プレイヤーに見せてから、手札に加える"
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text1911:
+GoopGasAttackName:
 	textfw "まきちらせ!ベトベトガス"
 	done
 
-Text1912:
+GoopGasAttackDescription:
 	textfw "次の相手の番が終わるまで、すべての"
 	linefw "ポケモンは特殊能力を使うことができず"
 	linefw "その力も消える。"
 	done
 
-Text1913:
+BillName:
 	textfw "マサキ"
 	done
 
-Text1914:
+BillDescription:
 	textfw "山札からカードを2枚引いて、手札に加"
 	linefw "える。"
 	done
 
-Text1915:
+BillsTeleporterName:
 	textfw "マサキの転送装置"
 	done
 
-Text1916:
+BillsTeleporterDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "山札からカードを4枚引いて、"
 	linefw "手札に加える。"
 	done
 
-Text1917:
+BillsComputerName:
 	textfw "マサキのパソコン"
 	done
 
-Text1918:
+BillsComputerDescription:
 	textfw "このカードは、「オムナイト」、「ゴー"
 	linefw "スト」、「ゴーリキー」、「ゴローン」"
 	linefw "「ユンゲラー」、のうち1枚のカードを"
@@ -1206,17 +1206,17 @@ Text1918:
 	linefw "必要なカードです。"
 	done
 
-Text1919:
+BillsComputerDescriptionCont:
 	textfw "くわしい内容は、ゲームセンターの"
 	linefw "かかりいんにおたずねください。(この"
 	linefw "カードは、ゲームでは使えません。)"
 	done
 
-Text191a:
+MasterBallName:
 	textfw "マスターボール"
 	done
 
-Text191b:
+MasterBallDescription:
 	textfw "あなたの山札の上から7枚を見る。"
 	linefw "その中に「たねポケモン」または「進化"
 	linefw "カード」があれば、1枚を選び、"
@@ -1225,32 +1225,32 @@ Text191b:
 	linefw "戻し、よく切る。"
 	done
 
-Text191c:
+LassName:
 	textfw "ミニスカート"
 	done
 
-Text191d:
+LassDescription:
 	textfw "おたがいのプレイヤーは手札を見せ合い"
 	linefw "それぞれの手札にあるすべての「トレー"
 	linefw "ナーカード」を、それぞれの山札にもど"
 	linefw "す。その後、それぞれの山札をよく切る"
 	done
 
-Text191e:
+MaintenenceName:
 	textfw "メンテナンス"
 	done
 
-Text191f:
+MaintenenceDescription:
 	textfw "手札からカードを2枚選び、山札にもど"
 	linefw "す。その後、山札をよく切り、カードを"
 	linefw "1枚引いて、手札に加える。"
 	done
 
-Text1920:
+PokeballName:
 	textfw "モンスターボール"
 	done
 
-Text1921:
+PokeballDescription:
 	textfw "コインを投げて「おもて」なら、あなた"
 	linefw "の山札から「たねポケモン」または"
 	linefw "「進化カード」を1枚選び出し、"
@@ -1258,11 +1258,11 @@ Text1921:
 	linefw "加える。その後、その山札をよく切る。"
 	done
 
-Text1922:
+NightlyGarbageRunName:
 	textfw "夜の廃品回収"
 	done
 
-Text1923:
+NightlyGarbageRunDescription:
 	textfw "【ロケット団秘密メカ】"
 	linefw "あなたのトラッシュにある「たねポケモ"
 	linefw "ン」「進化カード」「基本エネルギーカ"
@@ -1271,32 +1271,32 @@ Text1923:
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text1924:
+RecycleName:
 	textfw "リサイクル"
 	done
 
-Text1925:
+RecycleDescription:
 	textfw "コインを投げて「おもて」なら、あなた"
 	linefw "のトラッシュからカードを1枚選び出し"
 	linefw "あなたの山札の上に置く。"
 	done
 
-Text1926:
+RocketsSneakAttackName:
 	textfw "ロケット団のおねーさん"
 	done
 
-Text1927:
+RocketsSneakAttackDescription:
 	textfw "相手の手札を見る。その中にトレーナー"
 	linefw "カードがあれば、1枚を選び、それを"
 	linefw "相手の山札にもどす。"
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text1928:
+HereComesTeamRocketName:
 	textfw "ロケット団参上!"
 	done
 
-Text1929:
+HereComesTeamRocketDescription:
 	textfw "おたがいのプレイヤーのサイドカード"
 	linefw "全てをおもてにして、おたがいのプレイ"
 	linefw "ヤーに見えるようにする。"
@@ -1304,11 +1304,11 @@ Text1929:
 	linefw "対戦が終わるまでそのまま)"
 	done
 
-Text192a:
+TheRocketsTrapName:
 	textfw "ロケット団のワナ"
 	done
 
-Text192b:
+TheRocketsTrapDescription:
 	textfw "コインを投げて「おもて」なら、相手の"
 	linefw "手札から3枚のカードを、おもてを見な"
 	linefw "いで選び、相手の山札にもどす。その後"

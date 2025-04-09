@@ -499,71 +499,71 @@ Text12ec:
 	linefw "きねんのコインを さしあげます!"
 	done
 
-Text12ed:
+GrassEnergyName:
 	textfw "草エネルギー"
 	done
 
-Text12ee:
+GrassEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「草」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12ef:
+FireEnergyName:
 	textfw "炎エネルギー"
 	done
 
-Text12f0:
+FireEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「炎」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12f1:
+WaterEnergyName:
 	textfw "水エネルギー"
 	done
 
-Text12f2:
+WaterEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「水」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12f3:
+LightningEnergyName:
 	textfw "雷エネルギー"
 	done
 
-Text12f4:
+LightningEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「雷」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12f5:
+FightingEnergyName:
 	textfw "闘エネルギー"
 	done
 
-Text12f6:
+FightingEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「闘」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12f7:
+PsychicEnergyName:
 	textfw "超エネルギー"
 	done
 
-Text12f8:
+PsychicEnergyDescription:
 	textfw "【基本エネルギーカード】"
 	linefw "このカードは「超」エネルギー1個ぶん"
 	linefw "としてあつかう。"
 	done
 
-Text12f9:
+DoubleColorlessEnergyName:
 	textfw "無色2個エネルギー"
 	done
 
-Text12fa:
+DoubleColorlessEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "このカードは「無色」エネルギー2個"
 	linefw "ぶんとしてあつかう。(「無色」エネ"
@@ -573,11 +573,11 @@ Text12fa:
 	linefw "なる)"
 	done
 
-Text12fb:
+PotionEnergyName:
 	textfw "きずぐすり配合エネルギー"
 	done
 
-Text12fc:
+PotionEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "このカードは「無色」エネルギー1個"
 	linefw "ぶんとしてあつかう。このカードを手札"
@@ -586,18 +586,18 @@ Text12fc:
 	linefw "とりのぞく。"
 	done
 
-Text12fd:
+PotionEnergyDescriptionCont:
 	textfw "「無色」エネルギーは、ほかの色のエネ"
 	linefw "ルギーのかわりにはならない。ほかの色"
 	linefw "のエネルギーは「無色」エネルギーのか"
 	linefw "わりになる。"
 	done
 
-Text12fe:
+FullhealEnergyName:
 	textfw "なんでもなおし配合E"
 	done
 
-Text12ff:
+FullhealEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "このカードは「無色」エネルギー1個"
 	linefw "ぶんとしてあつかう。このカードを手札"
@@ -606,11 +606,11 @@ Text12ff:
 	linefw "らん」状態をすべて回復させる。"
 	done
 
-Text1300:
+RainbowEnergyName:
 	textfw "レインボーエネルギー"
 	done
 
-Text1301:
+RainbowEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "場にある限り、「草・炎・水・雷・超・"
 	linefw "闘」の、どのエネルギーカードとしても"
@@ -620,11 +620,11 @@ Text1301:
 	linefw "ダメージ。"
 	done
 
-Text1302:
+RecycleEnergyName:
 	textfw "リサイクルエネルギー"
 	done
 
-Text1303:
+RecycleEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "このカードは「無色」エネルギー1個"
 	linefw "ぶんとしてあつかう。このカードが、"
@@ -632,7 +632,7 @@ Text1303:
 	linefw "このカードを持ち主の手札に戻す。"
 	done
 
-Text1304:
+BulbasaurName:
 	textfw "フシギダネ"
 	done
 
@@ -648,7 +648,7 @@ Text1307:
 	textfw "たね"
 	done
 
-Text1308:
+BulbasaurDescription1:
 	textfw "何日だって、何も食べなくても元気。"
 	linefw "背中のタネにたくさんの栄養があるから"
 	linefw "平気だ。"
@@ -664,7 +664,7 @@ Text130a:
 	linefw "とりのぞく。"
 	done
 
-Text130b:
+BulbasaurDescription2:
 	textfw "生まれたときから背中に植物の"
 	linefw "タネがあって少しづつ大きく育つ。"
 	done
@@ -686,12 +686,12 @@ Text130f:
 	textfw "[相手]", "を「どく」状態にする。"
 	done
 
-Text1310:
+BulbasaurDescription3:
 	textfw "生まれた時から背中に不思議なタネが"
 	linefw "植えてあって、身体とともに育つという"
 	done
 
-Text1311:
+IvysaurName:
 	textfw "フシギソウ"
 	done
 
@@ -703,7 +703,7 @@ Text1313:
 	textfw "どくのこな"
 	done
 
-Text1314:
+IvysaurDescription1:
 	textfw "つぼみが背中についていて養分を"
 	linefw "吸収していくと、大きな花が咲くという"
 	done
@@ -722,13 +722,13 @@ Text1317:
 	textfw "つるのムチ"
 	done
 
-Text1318:
+IvysaurDescription2:
 	textfw "養分をとって大きくなったつぼみから、"
 	linefw "香りがただよいだすと、もうすぐ花が"
 	linefw "ひらくしょうこだよ。"
 	done
 
-Text1319:
+DarkIvysaurName:
 	textfw "わるいフシギソウ"
 	done
 
@@ -755,13 +755,13 @@ Text131d:
 	linefw "ダメージ。これを3回くりかえす。"
 	done
 
-Text131e:
+DarkIvysaurDescription:
 	textfw "背中からのびる、よく発達した"
 	linefw "つるを自在に操り、相手をむやみに"
 	linefw "ひっぱったりすることがある。"
 	done
 
-Text131f:
+VenusaurName:
 	textfw "フシギバナ"
 	done
 
@@ -788,7 +788,7 @@ Text1323:
 	linefw "[自分]", "からとりのぞく。"
 	done
 
-Text1324:
+VenusaurDescription1:
 	textfw "太陽エネルギーを栄養にして大きな花が"
 	linefw "開く。ひなたに引き寄せられるように移"
 	linefw "動する。"
@@ -811,12 +811,12 @@ Text1327:
 	textfw "ソーラービーム"
 	done
 
-Text1328:
+VenusaurDescription2:
 	textfw "花からうっとりする香りがただよい、"
 	linefw "戦う者の気持ちをなだめてしまう。"
 	done
 
-Text1329:
+DarkVenusaurName:
 	textfw "わるいフシギバナ"
 	done
 
@@ -831,13 +831,13 @@ Text132b:
 	linefw "いずれかの状態になる。"
 	done
 
-Text132c:
+DarkVenusaurDescription:
 	textfw "大きな花が開いたとき、100万分の1"
 	linefw "の確率で、花粉をまき散らし、相手を"
 	linefw "特殊状態にする。"
 	done
 
-Text132d:
+CaterpieName:
 	textfw "キャタピー"
 	done
 
@@ -854,13 +854,13 @@ Text1330:
 	textfw "いもむし"
 	done
 
-Text1331:
+CaterpieDescription:
 	textfw "緑の皮膚に覆われている。"
 	linefw "脱皮して成長すると糸をかけて"
 	linefw "サナギにかわる。"
 	done
 
-Text1332:
+MetapodName:
 	textfw "トランセル"
 	done
 
@@ -889,7 +889,7 @@ Text1337:
 	textfw "さなぎ"
 	done
 
-Text1338:
+MetapodDescription1:
 	textfw "カラが固くなる前に、強い衝擊を"
 	linefw "受けると、中身が出てしまうので注意。"
 	done
@@ -909,13 +909,13 @@ Text133b:
 	textfw "しびれごな"
 	done
 
-Text133c:
+MetapodDescription2:
 	textfw "硬いカラに包まれているが"
 	linefw "中身はやわらかいので、"
 	linefw "強い攻擊には耐えられない。"
 	done
 
-Text133d:
+ButterfreeName:
 	textfw "バタフリー"
 	done
 
@@ -934,12 +934,12 @@ Text1340:
 	textfw "ちょうちょ"
 	done
 
-Text1341:
+ButterfreeDescription:
 	textfw "羽は水をはじくリンプンに守られている"
 	linefw "雨の日でも空を飛ぶことができる。"
 	done
 
-Text1342:
+WeedleName:
 	textfw "ビードル"
 	done
 
@@ -956,7 +956,7 @@ Text1345:
 	textfw "けむし"
 	done
 
-Text1346:
+WeedleDescription1:
 	textfw "森や草地に多く生息する。"
 	linefw "頭の先に5センチぐらいの"
 	linefw "小さく鋭い毒バリをもつ。"
@@ -970,13 +970,13 @@ Text1348:
 	textfw "どくのつの"
 	done
 
-Text1349:
+WeedleDescription2:
 	textfw "葉っぱが大好物で、森の中で見つける"
 	linefw "ことができる。毒を持っているので"
 	linefw "注意が必要。"
 	done
 
-Text134a:
+KakunaName:
 	textfw "コクーン"
 	done
 
@@ -998,18 +998,18 @@ Text134d:
 	textfw "ころがる"
 	done
 
-Text134e:
+KakunaDescription1:
 	textfw "自分ではほとんど動けないが、"
 	linefw "危ない時は固くなって身を護っている"
 	linefw "ようだ。"
 	done
 
-Text134f:
+KakunaDescription2:
 	textfw "大人の体をつくるための一時的な状態。"
 	linefw "自分ではほとんど動けない。"
 	done
 
-Text1350:
+BeedrillName:
 	textfw "スピアー"
 	done
 
@@ -1026,13 +1026,13 @@ Text1353:
 	textfw "どくばち"
 	done
 
-Text1354:
+BeedrillDescription:
 	textfw "集団で現れることもある。"
 	linefw "猛スピードで飛び回りおしりの"
 	linefw "毒バリで刺しまくる。"
 	done
 
-Text1355:
+EkansName:
 	textfw "アーボ"
 	done
 
@@ -1048,7 +1048,7 @@ Text1358:
 	textfw "へび"
 	done
 
-Text1359:
+EkansDescription1:
 	textfw "墓地などに棲息する。"
 	linefw "舌をチロチロさせて、"
 	linefw "まわりの危険を感じ取る。"
@@ -1063,13 +1063,13 @@ Text135b:
 	linefw "[相手]", "を「どく」状態にする。"
 	done
 
-Text135c:
+EkansDescription2:
 	textfw "肉食でなんでも噛まずに飲み込んで"
 	linefw "しまう。ポッポやオニスズメの卵が"
 	linefw "大好物。"
 	done
 
-Text135d:
+ArbokName:
 	textfw "アーボック"
 	done
 
@@ -1093,7 +1093,7 @@ Text1361:
 	textfw "コブラ"
 	done
 
-Text1362:
+ArbokDescription1:
 	textfw "お腹の模様がこわい顏に見える。"
 	linefw "弱い敵はその模様を見ただけで"
 	linefw "逃げ出してしまう。"
@@ -1115,12 +1115,12 @@ Text1365:
 	linefw "追加する。"
 	done
 
-Text1366:
+ArbokDescription2:
 	textfw "おなかの恐ろしい模様は、地域によって"
 	linefw "何種類かパターンがあるといううわさだ"
 	done
 
-Text1367:
+DarkArbokName:
 	textfw "わるいアーボック"
 	done
 
@@ -1147,13 +1147,13 @@ Text136b:
 	linefw "ダメージ。"
 	done
 
-Text136c:
+DarkArbokDescription:
 	textfw "にらまれるだけで、カラダがかたまって"
 	linefw "しまう。出会ったら、まず目をそらした"
 	linefw "方がよい。"
 	done
 
-Text136d:
+NidoranFName:
 	textfw "ニドラン♀"
 	done
 
@@ -1168,7 +1168,7 @@ Text136f:
 	linefw "限り、ワザを使えない。"
 	done
 
-Text1370:
+NidoranFDescription1:
 	textfw "身体は小さくても毒バリを持つので"
 	linefw "注意が必要だ。メスのほうが角が小さい"
 	done
@@ -1194,13 +1194,13 @@ Text1374:
 	linefw "ワザは使えない)"
 	done
 
-Text1375:
+NidoranFDescription2:
 	textfw "小さくても毒バリの威力は強烈で"
 	linefw "注意が必要。"
 	linefw "メスのほうが角が小さい。"
 	done
 
-Text1376:
+NidorinaName:
 	textfw "ニドリーナ"
 	done
 
@@ -1220,7 +1220,7 @@ Text1379:
 	linefw "×30のダメージ。"
 	done
 
-Text137a:
+NidorinaDescription1:
 	textfw "メスなのでツノの育ちが遅い。"
 	linefw "ひっかいたりかみついたりと、"
 	linefw "肉だん戦を好む。"
@@ -1239,13 +1239,13 @@ Text137d:
 	textfw "にどげり"
 	done
 
-Text137e:
+NidorinaDescription2:
 	textfw "メスなので性格は温厚。"
 	linefw "口から出す超音波は相手を惑わす力が"
 	linefw "ある。"
 	done
 
-Text137f:
+NidoqueenName:
 	textfw "ニドクイン"
 	done
 
@@ -1266,13 +1266,13 @@ Text1383:
 	textfw "ドリル"
 	done
 
-Text1384:
+NidoqueenDescription:
 	textfw "固くて針のようなウロコが"
 	linefw "腹を覆っている。"
 	linefw "興奮すると針が逆立つ。"
 	done
 
-Text1385:
+NidoranMName:
 	textfw "ニドラン♂"
 	done
 
@@ -1285,7 +1285,7 @@ Text1387:
 	linefw "は失敗する。"
 	done
 
-Text1388:
+NidoranMDescription1:
 	textfw "耳が大きく、遠くの音を聞くときに、"
 	linefw "耳がはばたく様に動く。"
 	linefw "怒ると毒バリをだす。"
@@ -1310,12 +1310,12 @@ Text138c:
 	linefw "このワザは失敗する。"
 	done
 
-Text138d:
+NidoranMDescription2:
 	textfw "耳を立てて危険を感じとる。身体の"
 	linefw "トゲが大きいほど強い毒をだす。"
 	done
 
-Text138e:
+NidorinoName:
 	textfw "ニドリーノ"
 	done
 
@@ -1329,7 +1329,7 @@ Text1390:
 	linefw "ダメージ。"
 	done
 
-Text1391:
+NidorinoDescription1:
 	textfw "すぐに怒って戦おうとする。"
 	linefw "しかも頭のツノはささると強れつな"
 	linefw "毒素を出すしくみ。"
@@ -1339,13 +1339,13 @@ Text1392:
 	textfw "つのドリル"
 	done
 
-Text1393:
+NidorinoDescription2:
 	textfw "怒りやすい性格。"
 	linefw "発達した角をふりまわして"
 	linefw "ダイヤモンドも串刺しにする。"
 	done
 
-Text1394:
+NidokingName:
 	textfw "ニドキング"
 	done
 
@@ -1370,13 +1370,13 @@ Text1398:
 	linefw "ダメージは、20ダメージ。"
 	done
 
-Text1399:
+NidokingDescription:
 	textfw "石のように固い皮膚と"
 	linefw "長く伸びた角が特徵。"
 	linefw "角には毒もあるので注意が必要だ。"
 	done
 
-Text139a:
+ZubatName:
 	textfw "ズバット"
 	done
 
@@ -1388,7 +1388,7 @@ Text139c:
 	textfw "こうもり"
 	done
 
-Text139d:
+ZubatDescription1:
 	textfw "暗い洞窟に生息する。夜になると、"
 	linefw "まれに飛んでいく姿が目擊されることも"
 	linefw "ある。"
@@ -1404,7 +1404,7 @@ Text139f:
 	linefw "とりのぞく。"
 	done
 
-Text13a0:
+ZubatDescription2:
 	textfw "両方の眼が存在しない。"
 	linefw "口から超音波を出して暗闇を飛び回る。"
 	done
@@ -1413,12 +1413,12 @@ Text13a1:
 	textfw "あやしいおんぱ"
 	done
 
-Text13a2:
+ZubatDescription3:
 	textfw "暗い場所に集団で発生する。超音波を"
 	linefw "出して、ターゲットに近づいていく。"
 	done
 
-Text13a3:
+GolbatName:
 	textfw "ゴルバット"
 	done
 
@@ -1437,7 +1437,7 @@ Text13a6:
 	linefw "[自分]", "にも40ダメージ。"
 	done
 
-Text13a7:
+GolbatDescription1:
 	textfw "かみついたら最後、血を吸いまくるので"
 	linefw "重たくなって、自分で飛べなくなること"
 	linefw "もある。"
@@ -1447,13 +1447,13 @@ Text13a8:
 	textfw "つばさでうつ"
 	done
 
-Text13a9:
+GolbatDescription2:
 	textfw "鋭い牙でかみついて、"
 	linefw "1度に300ccの血を吸い取って"
 	linefw "しまう。"
 	done
 
-Text13aa:
+DarkGolbatName:
 	textfw "わるいゴルバット"
 	done
 
@@ -1479,13 +1479,13 @@ Text13ae:
 	linefw "20ダメージ。"
 	done
 
-Text13af:
+DarkGolbatDescription:
 	textfw "物音をたてずに背後にしのびより、"
 	linefw "かみつく。時には、致命傷になりかね"
 	linefw "ない。"
 	done
 
-Text13b0:
+OddishName:
 	textfw "ナゾノクサ"
 	done
 
@@ -1505,7 +1505,7 @@ Text13b3:
 	textfw "ざっそう"
 	done
 
-Text13b4:
+OddishDescription1:
 	textfw "別名アルキメンデス。"
 	linefw "夜になると2本の根っこで"
 	linefw "300メートルも歩くという。"
@@ -1519,13 +1519,13 @@ Text13b6:
 	textfw "[相手]", "を「ねむり」状態にする。"
 	done
 
-Text13b7:
+OddishDescription2:
 	textfw "「種の保存」のため、夜になると"
 	linefw "歩きまわり、花粉を撒き散らしている"
 	linefw "という。"
 	done
 
-Text13b8:
+GloomName:
 	textfw "クサイハナ"
 	done
 
@@ -1538,12 +1538,12 @@ Text13ba:
 	linefw "それぞれ「こんらん」状態にする。"
 	done
 
-Text13bb:
+GloomDescription:
 	textfw "めしべが放つとてつもなく臭い匂いは、"
 	linefw "2キロ先までとどき、気を失わせる。"
 	done
 
-Text13bc:
+DarkGloomName:
 	textfw "わるいクサイハナ"
 	done
 
@@ -1561,13 +1561,13 @@ Text13be:
 	linefw "この力は使えない。"
 	done
 
-Text13bf:
+DarkGloomDescription:
 	textfw "あまりにも強烈な匂いなのか、"
 	linefw "自分の花粉で混乱してしまうこともある"
 	linefw "という。"
 	done
 
-Text13c0:
+VileplumeName:
 	textfw "ラフレシア"
 	done
 
@@ -1598,13 +1598,13 @@ Text13c5:
 	textfw "フラワー"
 	done
 
-Text13c6:
+VileplumeDescription:
 	textfw "世界一大きい花びらから"
 	linefw "アレルギーを起こす花粉をオニのように"
 	linefw "ばらまく。"
 	done
 
-Text13c7:
+DarkVileplumeName:
 	textfw "わるいラフレシア"
 	done
 
@@ -1632,13 +1632,13 @@ Text13cb:
 	linefw "「こんらん」状態にする。"
 	done
 
-Text13cc:
+DarkVileplumeDescription:
 	textfw "強烈な花粉のためか、ラフレシアの生息"
 	linefw "する場所に他のポケモンは近づくことが"
 	linefw "できない。"
 	done
 
-Text13cd:
+ParasName:
 	textfw "パラス"
 	done
 
@@ -1654,7 +1654,7 @@ Text13d0:
 	textfw "きのこ"
 	done
 
-Text13d1:
+ParasDescription1:
 	textfw "虫の背中にはえているのは"
 	linefw "トウチュウカソウというキノコ。"
 	linefw "育つとキノコも大きくなる。"
@@ -1671,13 +1671,13 @@ Text13d3:
 	linefw "このワザは使えない)"
 	done
 
-Text13d4:
+ParasDescription2:
 	textfw "穴を掘って、木の根っこを吸う。"
 	linefw "背中のキノコは身体からエキスをもらい"
 	linefw "成長する。"
 	done
 
-Text13d5:
+ParasectName:
 	textfw "パラセクト"
 	done
 
@@ -1685,7 +1685,7 @@ Text13d6:
 	textfw "きりさく"
 	done
 
-Text13d7:
+ParasectDescription1:
 	textfw "キノコのカサから毒胞子を巻き散らす。"
 	linefw "しかし中国ではこの胞子を漢方薬にする"
 	done
@@ -1694,13 +1694,13 @@ Text13d8:
 	textfw "どくのほうし"
 	done
 
-Text13d9:
+ParasectDescription2:
 	textfw "虫の身体より大きくなったキノコの"
 	linefw "意思で活動する。湿った場所を好む"
 	linefw "という。"
 	done
 
-Text13da:
+VenonatName:
 	textfw "コンパン"
 	done
 
@@ -1708,7 +1708,7 @@ Text13db:
 	textfw "こんちゅう"
 	done
 
-Text13dc:
+VenonatDescription1:
 	textfw "暗闇でも目がレーダーの役割をして、"
 	linefw "活動できる。"
 	linefw "目からビームを発射する。"
@@ -1729,13 +1729,13 @@ Text13df:
 	textfw "サイケこうせん"
 	done
 
-Text13e0:
+VenonatDescription2:
 	textfw "大きな木の下にすんでいて虫などを"
 	linefw "食べているらしい。夜は明かりのそばに"
 	linefw "やって来る。"
 	done
 
-Text13e1:
+VenomothName:
 	textfw "モルフォン"
 	done
 
@@ -1766,7 +1766,7 @@ Text13e6:
 	textfw "どくが"
 	done
 
-Text13e7:
+VenomothDescription1:
 	textfw "ハネをおおっているりんぷんは、"
 	linefw "色の違いによってさまざまな毒を"
 	linefw "持っているらしい。"
@@ -1802,13 +1802,13 @@ Text13ec:
 	linefw "にする。"
 	done
 
-Text13ed:
+VenomothDescription2:
 	textfw "羽にリンプンがついていて、"
 	linefw "ヒラヒラとはばたくたびに"
 	linefw "猛毒の粉をばらまく。"
 	done
 
-Text13ee:
+BellsproutName:
 	textfw "マダツボミ"
 	done
 
@@ -1816,7 +1816,7 @@ Text13ef:
 	textfw "ゆれる"
 	done
 
-Text13f0:
+BellsproutDescription1:
 	textfw "小さい虫をとらえて食べる。"
 	linefw "足のねっこを使い、水分をほきゅうする"
 	linefw "こともあるらしい。"
@@ -1830,13 +1830,13 @@ Text13f1:
 	linefw "使えない)"
 	done
 
-Text13f2:
+BellsproutDescription2:
 	textfw "人の顏のようなツボミから、"
 	linefw "伝説のマンドラゴラの1種ではないかと"
 	linefw "ささやかれている。"
 	done
 
-Text13f3:
+WeepinbellName:
 	textfw "ウツドン"
 	done
 
@@ -1866,19 +1866,19 @@ Text13f8:
 	textfw "ハエとり"
 	done
 
-Text13f9:
+WeepinbellDescription1:
 	textfw "まず毒の粉をはき、相手の動きを"
 	linefw "止めてしまってから、ようかいえきで"
 	linefw "とどめをさす。"
 	done
 
-Text13fa:
+WeepinbellDescription2:
 	textfw "葉っぱの部分はカッターになって"
 	linefw "相手を切り裂く。"
 	linefw "口からはなんでもとかす液体をはく。"
 	done
 
-Text13fb:
+VictreebelName:
 	textfw "ウツボット"
 	done
 
@@ -1903,13 +1903,13 @@ Text13ff:
 	linefw "「にげる」ことができない。"
 	done
 
-Text1400:
+VictreebelDescription:
 	textfw "蜜のような香りで、"
 	linefw "口の中に誘いこまれたら最期。"
 	linefw "溶解液で溶かされてしまう。"
 	done
 
-Text1401:
+GrimerName:
 	textfw "ベトベター"
 	done
 
@@ -1931,7 +1931,7 @@ Text1405:
 	textfw "ヘドロ"
 	done
 
-Text1406:
+GrimerDescription1:
 	textfw "汚水処理場で発生し、下水道を移動して"
 	linefw "町に出没することが、最近確認された。"
 	done
@@ -1951,13 +1951,13 @@ Text1409:
 	linefw "(ダメージ以外の効果はそのまま)"
 	done
 
-Text140a:
+GrimerDescription2:
 	textfw "月からのエックス線をあびた"
 	linefw "ヘドロがベトベターに変化した。"
 	linefw "汚いモノが大好物。"
 	done
 
-Text140b:
+MukName:
 	textfw "ベトベトン"
 	done
 
@@ -1977,12 +1977,12 @@ Text140e:
 	textfw "ヘドロこうげき"
 	done
 
-Text140f:
+MukDescription:
 	textfw "普段は地面にまざっていてわからない。"
 	linefw "体にさわると猛毒におかされる。"
 	done
 
-Text1410:
+DarkMukName:
 	textfw "わるいベトベトン"
 	done
 
@@ -2003,13 +2003,13 @@ Text1413:
 	textfw "ヘドロパンチ"
 	done
 
-Text1414:
+DarkMukDescription:
 	textfw "突然現れ、ヘドロをまき散らす。"
 	linefw "ベトベトンが現れると町中がパニックに"
 	linefw "なる。"
 	done
 
-Text1415:
+ExeggcuteName:
 	textfw "タマタマ"
 	done
 
@@ -2021,12 +2021,12 @@ Text1417:
 	textfw "たまご"
 	done
 
-Text1418:
+ExeggcuteDescription:
 	textfw "何かの卵のようだが、実は植物の種に"
 	linefw "近い生き物であることがわかった。"
 	done
 
-Text1419:
+ExeggutorName:
 	textfw "ナッシー"
 	done
 
@@ -2053,17 +2053,17 @@ Text141e:
 	textfw "やしのみ"
 	done
 
-Text141f:
+ExeggutorDescription:
 	textfw "歩く熱帶雨林と呼ばれる。"
 	linefw "実の1つ1つに顏があって"
 	linefw "それぞれ意志を持っている。"
 	done
 
-Text1420:
+KoffingName:
 	textfw "ドガース"
 	done
 
-Text1421:
+KoffingDescription1:
 	textfw "第一発見場所は兵器工場であったが、"
 	linefw "近年、生息地が広まってきているらしい"
 	done
@@ -2078,7 +2078,7 @@ Text1423:
 	linefw "「うら」なら「こんらん」状態にする。"
 	done
 
-Text1424:
+KoffingDescription2:
 	textfw "うすいバルーン状の体に"
 	linefw "猛毒のガスがつまっている。"
 	linefw "ちかくに来ると臭い。"
@@ -2088,13 +2088,13 @@ Text1425:
 	textfw "こんらんガス"
 	done
 
-Text1426:
+KoffingDescription3:
 	textfw "暑いところでは、体の中のガスが"
 	linefw "ふくらんで破裂する危険もあるので"
 	linefw "注意だ。"
 	done
 
-Text1427:
+WeezingName:
 	textfw "マタドガス"
 	done
 
@@ -2128,7 +2128,7 @@ Text142c:
 	linefw "対戦ポケモンを「どく」状態にする。"
 	done
 
-Text142d:
+WeezingDescription1:
 	textfw "2つの毒ガスの成分が長い時間"
 	linefw "ふきだまる場所で、双子のドガースが"
 	linefw "でるらしい。"
@@ -2149,13 +2149,13 @@ Text1430:
 	linefw "10ダメージ。"
 	done
 
-Text1431:
+WeezingDescription2:
 	textfw "ごくまれに突然変異で"
 	linefw "双子の小さいドガースが連結したまま"
 	linefw "出ることがある。"
 	done
 
-Text1432:
+DarkWeezingName:
 	textfw "わるいマタドガス"
 	done
 
@@ -2182,12 +2182,12 @@ Text1436:
 	linefw "「うら」なら「マヒ」状態にする。"
 	done
 
-Text1437:
+DarkWeezingDescription:
 	textfw "産業廃棄物の放置場所で増殖している"
 	linefw "ところを目擊された。"
 	done
 
-Text1438:
+TangelaName:
 	textfw "モンジャラ"
 	done
 
@@ -2199,7 +2199,7 @@ Text143a:
 	textfw "ツルじょう"
 	done
 
-Text143b:
+TangelaDescription1:
 	textfw "ブルーのツル植物がからみあい、"
 	linefw "正体は見えない。"
 	linefw "近づくものにからみついてくる。"
@@ -2209,12 +2209,12 @@ Text143c:
 	textfw "どくのむち"
 	done
 
-Text143d:
+TangelaDescription2:
 	textfw "全身が海草のようなツルに覆われていて"
 	linefw "歩くたびにゆらゆら揺れる。"
 	done
 
-Text143e:
+ScytherName:
 	textfw "ストライク"
 	done
 
@@ -2232,7 +2232,7 @@ Text1441:
 	textfw "かまきり"
 	done
 
-Text1442:
+ScytherDescription1:
 	textfw "忍者のようなすばやさ。"
 	linefw "あまりに速く動いた時は何匹もいる様に"
 	linefw "見える。"
@@ -2247,13 +2247,13 @@ Text1444:
 	linefw "「きりさく」のダメージは2倍になる。"
 	done
 
-Text1445:
+ScytherDescription2:
 	textfw "鋭い鎌で獲物を切り裂き、"
 	linefw "息の根をとめる。"
 	linefw "ごくまれに羽を使って飛ぶ。"
 	done
 
-Text1446:
+PinsirName:
 	textfw "カイロス"
 	done
 
@@ -2270,7 +2270,7 @@ Text1449:
 	textfw "くわがた"
 	done
 
-Text144a:
+PinsirDescription1:
 	textfw "ツノではさんでもちぎれない場合は"
 	linefw "はさんだまま振り回し、投げ飛ばす戦法"
 	linefw "を使う。"
@@ -2284,13 +2284,13 @@ Text144c:
 	textfw "ハサミギロチン"
 	done
 
-Text144d:
+PinsirDescription2:
 	textfw "2本の長い角はパワフル。"
 	linefw "1度はさまれてしまったらちぎれるまで"
 	linefw "離さない。"
 	done
 
-Text144e:
+CharmanderName:
 	textfw "ヒトカゲ"
 	done
 
@@ -2315,7 +2315,7 @@ Text1452:
 	textfw "とかげ"
 	done
 
-Text1453:
+CharmanderDescription1:
 	textfw "かわいいので、つい抱きしめようとして"
 	linefw "やけどをしてしまう人が多いらしい。"
 	done
@@ -2331,7 +2331,7 @@ Text1455:
 	linefw "なくなる。"
 	done
 
-Text1456:
+CharmanderDescription2:
 	textfw "生まれたときから"
 	linefw "尻尾に炎がともっている。"
 	linefw "炎が消えたとき、その命はつきてしまう"

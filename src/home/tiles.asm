@@ -73,7 +73,16 @@ LoadCardSet2Tiles::
 	ret
 
 .tile_offsets
-	db 8, -1, -1, 0, 4, 12, 16, 20, 24, 28
+	db  8 ; GB
+	db -1 ; PRO
+	db -1 ; BASE_SET
+	db  0 ; JUNGLE
+	db  4 ; FOSSIL
+	db 12 ; TEAM_ROCKET
+	db 16 ; EXPANSION_SHEET
+	db 20 ; GYM_HEROES
+	db 24 ; BULBASAUR_DECK
+	db 28 ; SQUIRTLE_DECK
 
 ; loads the Deck and Hand icons for the "Draw X card(s) from the deck." screen
 LoadDuelDrawCardsScreenTiles::

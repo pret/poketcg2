@@ -151,3 +151,8 @@
 	const DEX_DRAGONITE  ; $95
 	const DEX_MEWTWO     ; $96
 	const DEX_MEW        ; $97
+
+; Gen 2 Pokémon
+DEF DEX_TOGEPI EQU 175   ; $af
+DEF DEX_MARILL EQU 183   ; $b7
+DEF DEX_LUGIA  EQU 249   ; $f9
