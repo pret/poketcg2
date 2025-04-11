@@ -12,8 +12,8 @@ MachokeLv24Card:
 
 	; attack 1
 	energy FIGHTING, 1, COLORLESS, 1 ; energies
-	tx Text168a ; name
-	tx Text1363 ; description
+	tx WickedJabName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -26,8 +26,8 @@ MachokeLv24Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text168b ; name
-	tx Text168c ; description
+	tx FocusBlastName ; name
+	tx FocusBlastDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -36,18 +36,18 @@ MachokeLv24Card:
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_226 ; animation
+	db ATK_ANIM_FOCUS_BLAST ; animation
 
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 24 ; level
 	length 1.5 ; length
 	weight 70.5 ; weight
-	tx MachokeDescription1 ; description
+	tx MachokeLv24Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MachokeLv28Card:
@@ -64,7 +64,7 @@ MachokeLv28Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text168e ; name
+	tx MegaKickName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -74,12 +74,12 @@ MachokeLv28Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_182 ; animation
+	db ATK_ANIM_LEG_SWEEP ; animation
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text168f ; name
-	tx Text15e2 ; description
+	tx SteadyPunchName ; name
+	tx QuickAttackAltDescription1 ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_PLUS ; category
@@ -93,13 +93,13 @@ MachokeLv28Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.5 ; length
 	weight 70.5 ; weight
-	tx MachokeDescription2 ; description
+	tx MachokeLv28Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MachokeLv40Card:
@@ -116,8 +116,8 @@ MachokeLv40Card:
 
 	; attack 1
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text1691 ; name
-	tx Text1692 ; description
+	tx KarateChopName ; name
+	tx KarateChopDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_MINUS ; category
@@ -130,8 +130,8 @@ MachokeLv40Card:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 2 ; energies
-	tx Text1693 ; name
-	tx Text1497 ; description
+	tx SubmissionName ; name
+	tx Do20DamageToSelfDescription ; description
 	dw NONE ; description (cont)
 	db 60 ; damage
 	db DAMAGE_NORMAL ; category
@@ -145,13 +145,13 @@ MachokeLv40Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 1.5 ; length
 	weight 70.5 ; weight
-	tx MachokeDescription3 ; description
+	tx MachokeLv40Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DarkMachokeCard:
@@ -168,8 +168,8 @@ DarkMachokeCard:
 
 	; attack 1
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text1696 ; name
-	tx Text1697 ; description
+	tx DragOffName ; name
+	tx DragOffDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db RESIDUAL ; category
@@ -182,8 +182,8 @@ DarkMachokeCard:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text1698 ; name
-	tx Text14a7 ; description
+	tx KnockBackName ; name
+	tx SwitchWithBenchedMonDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -197,7 +197,7 @@ DarkMachokeCard:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHOKE ; Pokedex number
 	db TRUE ; is Dark
 	db 28 ; level
@@ -220,8 +220,8 @@ MachampLv54Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text169b ; name
-	tx Text169c ; description
+	tx SeethingAngerName ; name
+	tx SeethingAngerDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -234,8 +234,8 @@ MachampLv54Card:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 2 ; energies
-	tx Text169d ; name
-	tx Text14a7 ; description
+	tx FlingName ; name
+	tx SwitchWithBenchedMonDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -244,18 +244,18 @@ MachampLv54Card:
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_176 ; animation
+	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHAMP ; Pokedex number
 	db FALSE ; is Dark
 	db 54 ; level
 	length 1.6 ; length
 	weight 130.0 ; weight
-	tx MachampDescription1 ; description
+	tx MachampLv54Description ; description
 	db NONE ; AI info
 
 MachampLv67Card:
@@ -272,9 +272,9 @@ MachampLv67Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text169f ; name
-	tx Text16a0 ; description
-	tx Text16a1 ; description (cont)
+	tx StrikesBackName ; name
+	tx StrikesBackDescription ; description
+	tx StrikesBackDescriptionCont ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
 	dw EffectCommands_585be ; effect commands
@@ -286,7 +286,7 @@ MachampLv67Card:
 
 	; attack 2
 	energy FIGHTING, 3, COLORLESS, 1 ; energies
-	tx Text16a2 ; name
+	tx SeismicTossName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 60 ; damage
@@ -301,13 +301,13 @@ MachampLv67Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHAMP ; Pokedex number
 	db FALSE ; is Dark
 	db 67 ; level
 	length 1.6 ; length
 	weight 130.0 ; weight
-	tx MachampDescription2 ; description
+	tx MachampLv67Description ; description
 	db NONE ; AI info
 
 DarkMachampCard:
@@ -324,7 +324,7 @@ DarkMachampCard:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text1382 ; name
+	tx MegaPunchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -334,12 +334,12 @@ DarkMachampCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_176 ; animation
+	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	; attack 2
 	energy FIGHTING, 3, COLORLESS, 1 ; energies
-	tx Text16a5 ; name
-	tx Text16a6 ; description
+	tx FlingAltName ; name
+	tx FlingDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -353,7 +353,7 @@ DarkMachampCard:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1682 ; category
+	tx SuperpowerName ; category
 	db DEX_MACHAMP ; Pokedex number
 	db TRUE ; is Dark
 	db 30 ; level
@@ -376,7 +376,7 @@ GeodudeLv15Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1305 ; name
+	tx TackleName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -390,8 +390,8 @@ GeodudeLv15Card:
 
 	; attack 2
 	energy FIGHTING, 1, COLORLESS, 1 ; energies
-	tx Text16a9 ; name
-	tx Text16aa ; description
+	tx HardenName ; name
+	tx Harden20DamageDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -405,13 +405,13 @@ GeodudeLv15Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16ab ; category
+	tx RockName ; category
 	db DEX_GEODUDE ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.4 ; length
 	weight 20.0 ; weight
-	tx GeodudeDescription1 ; description
+	tx GeodudeLv15Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GeodudeLv16Card:
@@ -428,8 +428,8 @@ GeodudeLv16Card:
 
 	; attack 1
 	energy FIGHTING, 1, COLORLESS, 1 ; energies
-	tx Text16ad ; name
-	tx Text16ae ; description
+	tx StoneBarrageName ; name
+	tx StoneBarrage10DamageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -457,13 +457,13 @@ GeodudeLv16Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16ab ; category
+	tx RockName ; category
 	db DEX_GEODUDE ; Pokedex number
 	db FALSE ; is Dark
 	db 16 ; level
 	length 0.4 ; length
 	weight 20.0 ; weight
-	tx GeodudeDescription2 ; description
+	tx GeodudeLv16Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 GravelerLv27Card:
@@ -480,8 +480,8 @@ GravelerLv27Card:
 
 	; attack 1
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text16b1 ; name
-	tx Text16b2 ; description
+	tx BoulderSmashName ; name
+	tx BoulderSmashDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -490,7 +490,7 @@ GravelerLv27Card:
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_175 ; animation
+	db ATK_ANIM_BOULDER_SMASH ; animation
 
 	; attack 2
 	energy 0 ; energies
@@ -509,13 +509,13 @@ GravelerLv27Card:
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16ab ; category
+	tx RockName ; category
 	db DEX_GRAVELER ; Pokedex number
 	db FALSE ; is Dark
 	db 27 ; level
 	length 1.0 ; length
 	weight 105.0 ; weight
-	tx GravelerDescription1 ; description
+	tx GravelerLv27Description; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GravelerLv28Card:
@@ -532,8 +532,8 @@ GravelerLv28Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text16b4 ; name
-	tx Text16b5 ; description
+	tx StoneBarrageAltName ; name
+	tx StoneBarrage20DamageDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -546,8 +546,8 @@ GravelerLv28Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text165d ; name
-	tx Text16b6 ; description
+	tx EarthquakeName ; name
+	tx EarthquakeAltDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -556,18 +556,18 @@ GravelerLv28Card:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_3 ; animation
+	db ATK_ANIM_EARTHQUAKE ; animation
 
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16ab ; category
+	tx RockName ; category
 	db DEX_GRAVELER ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.0 ; length
 	weight 105.0 ; weight
-	tx GravelerDescription2 ; description
+	tx GravelerLv28Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GravelerLv29Card:
@@ -584,8 +584,8 @@ GravelerLv29Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text16a9 ; name
-	tx Text16b8 ; description
+	tx HardenName ; name
+	tx Harden30DamageDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -598,7 +598,7 @@ GravelerLv29Card:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text16b9 ; name
+	tx RockThrowName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
@@ -608,18 +608,18 @@ GravelerLv29Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_174 ; animation
+	db ATK_ANIM_ROCK_THROW ; animation
 
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16ab ; category
+	tx RockName ; category
 	db DEX_GRAVELER ; Pokedex number
 	db FALSE ; is Dark
 	db 29 ; level
 	length 1.0 ; length
 	weight 105.0 ; weight
-	tx GravelerDescription3 ; description
+	tx GravelerLv29Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GolemLv36Card:
@@ -636,7 +636,7 @@ GolemLv36Card:
 
 	; attack 1
 	energy FIGHTING, 3, COLORLESS, 1 ; energies
-	tx Text16bc ; name
+	tx AvalancheName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 60 ; damage
@@ -646,12 +646,12 @@ GolemLv36Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_ROCK_THROW ; animation
+	db ATK_ANIM_AVALANCHE ; animation
 
 	; attack 2
 	energy FIGHTING, 4 ; energies
-	tx Text142f ; name
-	tx Text1606 ; description
+	tx SelfdestructName ; name
+	tx Selfdestruct100DamageDescription ; description
 	dw NONE ; description (cont)
 	db 100 ; damage
 	db DAMAGE_NORMAL ; category
@@ -665,13 +665,13 @@ GolemLv36Card:
 	db 4 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16bd ; category
+	tx MegatonName ; category
 	db DEX_GOLEM ; Pokedex number
 	db FALSE ; is Dark
 	db 36 ; level
 	length 1.4 ; length
 	weight 300.0 ; weight
-	tx GolemDescription1 ; description
+	tx GolemLv36Description ; description
 	db NONE ; AI info
 
 GolemLv37Card:
@@ -688,7 +688,7 @@ GolemLv37Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text134d ; name
+	tx RolloutName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -702,9 +702,9 @@ GolemLv37Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text16bf ; name
-	tx Text16c0 ; description
-	tx Text16c1 ; description (cont)
+	tx RockBlastName ; name
+	tx RockBlastDescription ; description
+	tx RockBlastDescriptionCont ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
 	dw EffectCommands_5903b ; effect commands
@@ -712,18 +712,18 @@ GolemLv37Card:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_175 ; animation
+	db ATK_ANIM_BOULDER_SMASH ; animation
 
 	db 3 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16bd ; category
+	tx MegatonName ; category
 	db DEX_GOLEM ; Pokedex number
 	db FALSE ; is Dark
 	db 37 ; level
 	length 1.4 ; length
 	weight 300.0 ; weight
-	tx GolemDescription2 ; description
+	tx GolemLv37Description ; description
 	db NONE ; AI info
 
 OnixLv12Card:
@@ -740,7 +740,7 @@ OnixLv12Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text16b9 ; name
+	tx RockThrowName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -750,12 +750,12 @@ OnixLv12Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_174 ; animation
+	db ATK_ANIM_ROCK_THROW ; animation
 
 	; attack 2
 	energy FIGHTING, 2 ; energies
-	tx Text16a9 ; name
-	tx Text16c4 ; description
+	tx HardenName ; name
+	tx Harden30DamageAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -769,13 +769,13 @@ OnixLv12Card:
 	db 3 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16c5 ; category
+	tx RockSnakeName ; category
 	db DEX_ONIX ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 8.8 ; length
 	weight 210.0 ; weight
-	tx OnixDescription1 ; description
+	tx OnixLv12Description ; description
 	db NONE ; AI info
 
 OnixLv25Card:
@@ -792,8 +792,8 @@ OnixLv25Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text1439 ; name
-	tx Text1363 ; description
+	tx BindName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -806,8 +806,8 @@ OnixLv25Card:
 
 	; attack 2
 	energy FIGHTING, 2 ; energies
-	tx Text16c7 ; name
-	tx Text16c8 ; description
+	tx RockSealName ; name
+	tx RockSealDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -816,18 +816,18 @@ OnixLv25Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_174 ; animation
+	db ATK_ANIM_ROCK_THROW ; animation
 
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text16c5 ; category
+	tx RockSnakeName ; category
 	db DEX_ONIX ; Pokedex number
 	db FALSE ; is Dark
 	db 25 ; level
 	length 8.8 ; length
 	weight 210.0 ; weight
-	tx OnixDescription2 ; description
+	tx OnixLv25Description ; description
 	db NONE ; AI info
 
 CuboneLv13Card:
@@ -844,8 +844,8 @@ CuboneLv13Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text16cb ; name
-	tx Text16cc ; description
+	tx SnivelName ; name
+	tx SnivelDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -858,8 +858,8 @@ CuboneLv13Card:
 
 	; attack 2
 	energy FIGHTING, 2 ; energies
-	tx Text14c1 ; name
-	tx Text14c2 ; description
+	tx RageName ; name
+	tx RageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -873,13 +873,13 @@ CuboneLv13Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16cd ; category
+	tx LonelyName ; category
 	db DEX_CUBONE ; Pokedex number
 	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
-	tx CuboneDescription1 ; description
+	tx CuboneLv13Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 CuboneLv14Card:
@@ -896,8 +896,8 @@ CuboneLv14Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text16cf ; name
-	tx Text16d0 ; description
+	tx BoneTossName ; name
+	tx BoneTossDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -925,13 +925,13 @@ CuboneLv14Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16cd ; category
+	tx LonelyName ; category
 	db DEX_CUBONE ; Pokedex number
 	db FALSE ; is Dark
 	db 14 ; level
 	length 0.4 ; length
 	weight 6.5 ; weight
-	tx CuboneDescription2 ; description
+	tx CuboneLv14Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MarowakLv26Card:
@@ -948,8 +948,8 @@ MarowakLv26Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text16d3 ; name
-	tx Text1352 ; description
+	tx BonemerangName ; name
+	tx Do30DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
@@ -962,8 +962,8 @@ MarowakLv26Card:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text16d4 ; name
-	tx Text16d5 ; description
+	tx CallForFriendName ; name
+	tx CallForFriendDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -977,13 +977,13 @@ MarowakLv26Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16d6 ; category
+	tx BoneKeeperName ; category
 	db DEX_MAROWAK ; Pokedex number
 	db FALSE ; is Dark
 	db 26 ; level
 	length 1.0 ; length
 	weight 45.0 ; weight
-	tx MarowakDescription1 ; description
+	tx MarowakLv26Description ; description
 	db NONE ; AI info
 
 MarowakLv32Card:
@@ -1000,8 +1000,8 @@ MarowakLv32Card:
 
 	; attack 1
 	energy FIGHTING, 1, COLORLESS, 1 ; energies
-	tx Text16d8 ; name
-	tx Text16d9 ; description
+	tx BoneAttackName ; name
+	tx BoneAttackDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1014,8 +1014,8 @@ MarowakLv32Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text16da ; name
-	tx Text16db ; description
+	tx WailName ; name
+	tx WailDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -1029,13 +1029,13 @@ MarowakLv32Card:
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16d6 ; category
+	tx BoneKeeperName ; category
 	db DEX_MAROWAK ; Pokedex number
 	db FALSE ; is Dark
 	db 32 ; level
 	length 1.0 ; length
 	weight 45.0 ; weight
-	tx MarowakDescription2 ; description
+	tx MarowakLv32Description ; description
 	db NONE ; AI info
 
 DarkMarowakCard:
@@ -1052,8 +1052,8 @@ DarkMarowakCard:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text16de ; name
-	tx Text16df ; description
+	tx BoneHeadbuttName ; name
+	tx BoneHeadbuttDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1062,7 +1062,7 @@ DarkMarowakCard:
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_254 ; animation
+	db ATK_ANIM_BONE_HEADBUTT ; animation
 
 	; attack 2
 	energy 0 ; energies
@@ -1081,7 +1081,7 @@ DarkMarowakCard:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16d6 ; category
+	tx BoneKeeperName ; category
 	db DEX_MAROWAK ; Pokedex number
 	db TRUE ; is Dark
 	db 27 ; level
@@ -1104,8 +1104,8 @@ HitmonleeLv23Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text137d ; name
-	tx Text1352 ; description
+	tx DoubleKickName ; name
+	tx Do30DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
@@ -1114,12 +1114,12 @@ HitmonleeLv23Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_182 ; animation
+	db ATK_ANIM_LEG_SWEEP ; animation
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text16e2 ; name
-	tx Text1363 ; description
+	tx RollingKickName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1128,18 +1128,18 @@ HitmonleeLv23Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_182 ; animation
+	db ATK_ANIM_LEG_SWEEP ; animation
 
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1687 ; category
+	tx KickName ; category
 	db DEX_HITMONLEE ; Pokedex number
 	db FALSE ; is Dark
 	db 23 ; level
 	length 1.5 ; length
 	weight 49.8 ; weight
-	tx HitmonleeDescription1 ; description
+	tx HitmonleeLv23Description ; description
 	db NONE ; AI info
 
 HitmonleeLv30Card:
@@ -1156,8 +1156,8 @@ HitmonleeLv30Card:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text16e4 ; name
-	tx Text16e5 ; description
+	tx StretchKickName ; name
+	tx StretchKickDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -1170,7 +1170,7 @@ HitmonleeLv30Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text16e6 ; name
+	tx HighJumpKick ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
@@ -1180,18 +1180,18 @@ HitmonleeLv30Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_182 ; animation
+	db ATK_ANIM_LEG_SWEEP ; animation
 
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1687 ; category
+	tx KickName ; category
 	db DEX_HITMONLEE ; Pokedex number
 	db FALSE ; is Dark
 	db 30 ; level
 	length 1.5 ; length
 	weight 49.8 ; weight
-	tx HitmonleeDescription2 ; description
+	tx HitmonleeLv30Description ; description
 	db NONE ; AI info
 
 HitmonchanLv23Card:
@@ -1208,8 +1208,8 @@ HitmonchanLv23Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text16e9 ; name
-	tx Text16ea ; description
+	tx MatchPunchName ; name
+	tx MatchPunchDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1237,13 +1237,13 @@ HitmonchanLv23Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1686 ; category
+	tx PunchName ; category
 	db DEX_HITMONCHAN ; Pokedex number
 	db FALSE ; is Dark
 	db 23 ; level
 	length 1.4 ; length
 	weight 50.2 ; weight
-	tx HitmonchanDescription1 ; description
+	tx HitmonchanLv23Description ; description
 	db NONE ; AI info
 
 HitmonchanLv33Card:
@@ -1260,7 +1260,7 @@ HitmonchanLv33Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text16ec ; name
+	tx JabName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -1274,7 +1274,7 @@ HitmonchanLv33Card:
 
 	; attack 2
 	energy FIGHTING, 2, COLORLESS, 1 ; energies
-	tx Text16ed ; name
+	tx SpecialPunchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
@@ -1284,18 +1284,18 @@ HitmonchanLv33Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_176 ; animation
+	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1686 ; category
+	tx PunchName ; category
 	db DEX_HITMONCHAN ; Pokedex number
 	db FALSE ; is Dark
 	db 33 ; level
 	length 1.4 ; length
 	weight 50.2 ; weight
-	tx HitmonchanDescription2 ; description
+	tx HitmonchanLv33Description ; description
 	db NONE ; AI info
 
 RhyhornCard:
@@ -1312,8 +1312,8 @@ RhyhornCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text16f0 ; name
-	tx Text16f1 ; description
+	tx LeerName ; name
+	tx LeerDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1326,7 +1326,7 @@ RhyhornCard:
 
 	; attack 2
 	energy FIGHTING, 1, COLORLESS, 2 ; energies
-	tx Text1564 ; name
+	tx HornAttackName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -1341,7 +1341,7 @@ RhyhornCard:
 	db 3 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text16f2 ; category
+	tx SpikesName ; category
 	db DEX_RHYHORN ; Pokedex number
 	db FALSE ; is Dark
 	db 18 ; level
@@ -1364,8 +1364,8 @@ RhydonLv37Card:
 
 	; attack 1
 	energy FIGHTING, 1 ; energies
-	tx Text16f5 ; name
-	tx Text16f6 ; description
+	tx MountainBreakName ; name
+	tx MountainBreakDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1378,8 +1378,8 @@ RhydonLv37Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx Text16f7 ; name
-	tx Text15e2 ; description
+	tx OneTwoStrikeName ; name
+	tx QuickAttackAltDescription1 ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_PLUS ; category
@@ -1393,13 +1393,13 @@ RhydonLv37Card:
 	db 3 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text1383 ; category
+	tx DrillName ; category
 	db DEX_RHYDON ; Pokedex number
 	db FALSE ; is Dark
 	db 37 ; level
 	length 1.9 ; length
 	weight 120.0 ; weight
-	tx RhydonDescription1 ; description
+	tx RhydonLv37Description ; description
 	db NONE ; AI info
 
 RhydonLv48Card:
@@ -1416,7 +1416,7 @@ RhydonLv48Card:
 
 	; attack 1
 	energy FIGHTING, 1, COLORLESS, 2 ; energies
-	tx Text1564 ; name
+	tx HornAttackName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -1430,8 +1430,8 @@ RhydonLv48Card:
 
 	; attack 2
 	energy FIGHTING, 4 ; energies
-	tx Text16f9 ; name
-	tx Text16fa ; description
+	tx RamAltName ; name
+	tx RamDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1445,13 +1445,13 @@ RhydonLv48Card:
 	db 3 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_LIGHTNING ; resistance
-	tx Text1383 ; category
+	tx DrillName ; category
 	db DEX_RHYDON ; Pokedex number
 	db FALSE ; is Dark
 	db 48 ; level
 	length 1.9 ; length
 	weight 120.0 ; weight
-	tx RhydonDescription2 ; description
+	tx RhydonLv48Description ; description
 	db NONE ; AI info
 
 KabutoLv9Card:
@@ -1468,8 +1468,8 @@ KabutoLv9Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text16fd ; name
-	tx Text16fe ; description
+	tx KabutoArmorName ; name
+	tx KabutoArmorDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -1482,7 +1482,7 @@ KabutoLv9Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text13ce ; name
+	tx ScratchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -1497,13 +1497,13 @@ KabutoLv9Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text14f2 ; category
+	tx ShellfishName ; category
 	db DEX_KABUTO ; Pokedex number
 	db FALSE ; is Dark
 	db 9 ; level
 	length 0.5 ; length
 	weight 11.5 ; weight
-	tx KabutoDescription1 ; description
+	tx KabutoLv9Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 KabutoLv22Card:
@@ -1520,9 +1520,9 @@ KabutoLv22Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1700 ; name
-	tx Text1701 ; description
-	tx Text15aa ; description (cont)
+	tx FossilizeName ; name
+	tx FossilizeDescription ; description
+	tx PowerCantBeUsedIfStatusDescription ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
 	dw EffectCommands_58edd ; effect commands
@@ -1534,8 +1534,8 @@ KabutoLv22Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1702 ; name
-	tx Text1703 ; description
+	tx SharpClawsName ; name
+	tx SharpClawsDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -1549,13 +1549,13 @@ KabutoLv22Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text14f2 ; category
+	tx ShellfishName ; category
 	db DEX_KABUTO ; Pokedex number
 	db FALSE ; is Dark
 	db 22 ; level
 	length 0.5 ; length
 	weight 11.5 ; weight
-	tx KabutoDescription2 ; description
+	tx KabutoLv22Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KabutopsCard:
@@ -1572,7 +1572,7 @@ KabutopsCard:
 
 	; attack 1
 	energy FIGHTING, 2 ; energies
-	tx Text1706 ; name
+	tx SharpSickleName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -1586,8 +1586,8 @@ KabutopsCard:
 
 	; attack 2
 	energy FIGHTING, 4 ; energies
-	tx Text1707 ; name
-	tx Text1323 ; description
+	tx AbsorbName ; name
+	tx MegaDrainDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1601,7 +1601,7 @@ KabutopsCard:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db NONE ; resistance
-	tx Text14f2 ; category
+	tx ShellfishName ; category
 	db DEX_KABUTOPS ; Pokedex number
 	db FALSE ; is Dark
 	db 30 ; level
@@ -1624,8 +1624,8 @@ AerodactylLv28Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text170a ; name
-	tx Text170b ; description
+	tx PrehistoricPowerName ; name
+	tx PrehistoricPowerDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -1638,7 +1638,7 @@ AerodactylLv28Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text13a8 ; name
+	tx WingAttackName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -1653,13 +1653,13 @@ AerodactylLv28Card:
 	db 2 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text170c ; category
+	tx FossilName ; category
 	db DEX_AERODACTYL ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.8 ; length
 	weight 59.0 ; weight
-	tx AerodactylDescription1 ; description
+	tx AerodactylLv28Description ; description
 	db AI_INFO_BENCH_UTILITY ; AI info
 
 AerodactylLv30Card:
@@ -1676,8 +1676,8 @@ AerodactylLv30Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text137b ; name
-	tx Text1336 ; description
+	tx SupersonicName ; name
+	tx MayInflictConfusionDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1686,12 +1686,12 @@ AerodactylLv30Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_77 ; animation
+	db ATK_ANIM_SUPERSONIC_COPY ; animation
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text170e ; name
-	tx Text170f ; description
+	tx TailspinAttackName ; name
+	tx TailspinAttackDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1705,13 +1705,13 @@ AerodactylLv30Card:
 	db 1 ; retreat cost
 	db WR_GRASS ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text170c ; category
+	tx FossilName ; category
 	db DEX_AERODACTYL ; Pokedex number
 	db FALSE ; is Dark
 	db 30 ; level
 	length 1.8 ; length
 	weight 59.0 ; weight
-	tx AerodactylDescription2 ; description
+	tx AerodactylLv30Description ; description
 	db NONE ; AI info
 
 AbraLv8Card:
@@ -1728,8 +1728,8 @@ AbraLv8Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1712 ; name
-	tx Text1713 ; description
+	tx PsychicBeamName ; name
+	tx PsychicBeamDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -1738,7 +1738,7 @@ AbraLv8Card:
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_169 ; animation
+	db ATK_ANIM_PSYBEAM ; animation
 
 	; attack 2
 	energy 0 ; energies
@@ -1757,13 +1757,13 @@ AbraLv8Card:
 	db 0 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ABRA ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
-	tx AbraDescription1 ; description
+	tx AbraLv8Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 AbraLv10Card:
@@ -1780,8 +1780,8 @@ AbraLv10Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1505 ; name
-	tx Text132f ; description
+	tx PsyshockName ; name
+	tx MayInflictParalysisDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1809,13 +1809,13 @@ AbraLv10Card:
 	db 0 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ABRA ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
-	tx AbraDescription2 ; description
+	tx AbraLv10Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 AbraLv14Card:
@@ -1832,8 +1832,8 @@ AbraLv14Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1716 ; name
-	tx Text1717 ; description
+	tx VanishName ; name
+	tx VanishDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -1842,12 +1842,12 @@ AbraLv14Card:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_210 ; animation
+	db ATK_ANIM_TELEPORT ; animation
 
 	; attack 2
 	energy PSYCHIC, 1 ; energies
-	tx Text1505 ; name
-	tx Text1363 ; description
+	tx PsyshockName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1856,18 +1856,18 @@ AbraLv14Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_27 ; animation
+	db ATK_ANIM_PSYSHOCK ; animation
 
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ABRA ; Pokedex number
 	db FALSE ; is Dark
 	db 14 ; level
 	length 0.9 ; length
 	weight 19.5 ; weight
-	tx AbraDescription3 ; description
+	tx AbraLv14Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KadabraLv38Card:
@@ -1884,8 +1884,8 @@ KadabraLv38Card:
 
 	; attack 1
 	energy PSYCHIC, 2 ; energies
-	tx Text1573 ; name
-	tx Text171a ; description
+	tx RecoverName ; name
+	tx RecoverPsychicDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -1898,7 +1898,7 @@ KadabraLv38Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text1510 ; name
+	tx SuperPsyName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
@@ -1913,13 +1913,13 @@ KadabraLv38Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_KADABRA ; Pokedex number
 	db FALSE ; is Dark
 	db 38 ; level
 	length 1.3 ; length
 	weight 56.5 ; weight
-	tx KadabraDescription1 ; description
+	tx KadabraLv38Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 KadabraLv39Card:
@@ -1936,8 +1936,8 @@ KadabraLv39Card:
 
 	; attack 1
 	energy PSYCHIC, 2 ; energies
-	tx Text171c ; name
-	tx Text171d ; description
+	tx PsychoPanicName ; name
+	tx PsychoPanicDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1950,8 +1950,8 @@ KadabraLv39Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text171e ; name
-	tx Text171f ; description
+	tx BlinkName ; name
+	tx BlinkDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -1960,18 +1960,18 @@ KadabraLv39Card:
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_166 ; animation
+	db ATK_ANIM_BLINK ; animation
 
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_KADABRA ; Pokedex number
 	db FALSE ; is Dark
 	db 39 ; level
 	length 1.3 ; length
 	weight 56.5 ; weight
-	tx KadabraDescription2 ; description
+	tx KadabraLv39Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DarkKadabraCard:
@@ -1988,8 +1988,8 @@ DarkKadabraCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1722 ; name
-	tx Text1723 ; description
+	tx MatterExchangeName ; name
+	tx MatterExchangeDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2002,8 +2002,8 @@ DarkKadabraCard:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1724 ; name
-	tx Text1725 ; description
+	tx MindShockName ; name
+	tx MindShockDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2017,7 +2017,7 @@ DarkKadabraCard:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_KADABRA ; Pokedex number
 	db TRUE ; is Dark
 	db 24 ; level
@@ -2040,8 +2040,8 @@ AlakazamLv42Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1728 ; name
-	tx Text1729 ; description
+	tx DamageSwapName ; name
+	tx DamageSwapDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2054,8 +2054,8 @@ AlakazamLv42Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text1470 ; name
-	tx Text137c ; description
+	tx ConfuseRayName ; name
+	tx MayInflictConfusionAltDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2069,13 +2069,13 @@ AlakazamLv42Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ALAKAZAM ; Pokedex number
 	db FALSE ; is Dark
 	db 42 ; level
 	length 1.5 ; length
 	weight 48.0 ; weight
-	tx AlakazamDescription1 ; description
+	tx AlakazamLv42Description ; description
 	db NONE ; AI info
 
 AlakazamLv45Card:
@@ -2092,8 +2092,8 @@ AlakazamLv45Card:
 
 	; attack 1
 	energy PSYCHIC, 2 ; energies
-	tx Text171c ; name
-	tx Text171d ; description
+	tx PsychoPanicName ; name
+	tx PsychoPanicDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2106,8 +2106,8 @@ AlakazamLv45Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text172b ; name
-	tx Text172c ; description
+	tx TransDamageName ; name
+	tx TransDamageDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2116,18 +2116,18 @@ AlakazamLv45Card:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_225 ; animation
+	db ATK_ANIM_TRANS_DAMAGE ; animation
 
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ALAKAZAM ; Pokedex number
 	db FALSE ; is Dark
 	db 45 ; level
 	length 1.5 ; length
 	weight 48.0 ; weight
-	tx AlakazamDescription2 ; description
+	tx AlakazamLv45Description ; description
 	db NONE ; AI info
 
 DarkAlakazamCard:
@@ -2144,8 +2144,8 @@ DarkAlakazamCard:
 
 	; attack 1
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text172f ; name
-	tx Text1730 ; description
+	tx TeleportBlastName ; name
+	tx TeleportBlastDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2154,12 +2154,12 @@ DarkAlakazamCard:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_211 ; animation
+	db ATK_ANIM_TELEPORT_BLAST ; animation
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text1724 ; name
-	tx Text1608 ; description
+	tx MindShockName ; name
+	tx SonicboomAltDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2173,7 +2173,7 @@ DarkAlakazamCard:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1505 ; category
+	tx PsyshockName ; category
 	db DEX_ALAKAZAM ; Pokedex number
 	db TRUE ; is Dark
 	db 30 ; level
@@ -2196,7 +2196,7 @@ SlowpokeLv9Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1530 ; name
+	tx HeadbuttName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -2210,8 +2210,8 @@ SlowpokeLv9Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1518 ; name
-	tx Text1519 ; description
+	tx AmnesiaName ; name
+	tx AmnesiaDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2225,13 +2225,13 @@ SlowpokeLv9Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1733 ; category
+	tx DopeyName ; category
 	db DEX_SLOWPOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 9 ; level
 	length 1.2 ; length
 	weight 36.0 ; weight
-	tx SlowpokeDescription1 ; description
+	tx SlowpokeLv9Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 SlowpokeLv16Card:
@@ -2248,8 +2248,8 @@ SlowpokeLv16Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1735 ; name
-	tx Text1736 ; description
+	tx AfternoonNapName ; name
+	tx AfternoonNapDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2262,7 +2262,7 @@ SlowpokeLv16Card:
 
 	; attack 2
 	energy PSYCHIC, 1 ; energies
-	tx Text1530 ; name
+	tx HeadbuttName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -2277,13 +2277,13 @@ SlowpokeLv16Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1733 ; category
+	tx DopeyName ; category
 	db DEX_SLOWPOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 16 ; level
 	length 1.2 ; length
 	weight 36.0 ; weight
-	tx SlowpokeDescription2 ; description
+	tx SlowpokeLv16Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SlowpokeLv18Card:
@@ -2300,8 +2300,8 @@ SlowpokeLv18Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1738 ; name
-	tx Text1739 ; description
+	tx SpacingOutName ; name
+	tx SpacingOutDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2314,8 +2314,8 @@ SlowpokeLv18Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text173a ; name
-	tx Text173b ; description
+	tx ScavengeName ; name
+	tx ScavengeDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2329,13 +2329,13 @@ SlowpokeLv18Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1733 ; category
+	tx DopeyName ; category
 	db DEX_SLOWPOKE ; Pokedex number
 	db FALSE ; is Dark
 	db 18 ; level
 	length 1.2 ; length
 	weight 36.0 ; weight
-	tx SlowpokeDescription3 ; description
+	tx SlowpokeLv18Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SlowbroLv26Card:
@@ -2352,8 +2352,8 @@ SlowbroLv26Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text173e ; name
-	tx Text173f ; description
+	tx StrangeBehaviorName ; name
+	tx StrangeBehaviorDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2366,8 +2366,8 @@ SlowbroLv26Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1505 ; name
-	tx Text132f ; description
+	tx PsyshockName ; name
+	tx MayInflictParalysisDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2381,13 +2381,13 @@ SlowbroLv26Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1740 ; category
+	tx HermitcrabName ; category
 	db DEX_SLOWBRO ; Pokedex number
 	db FALSE ; is Dark
 	db 26 ; level
 	length 1.6 ; length
 	weight 78.5 ; weight
-	tx SlowbroDescription1 ; description
+	tx SlowbroLv26Description ; description
 	db AI_INFO_BENCH_UTILITY ; AI info
 
 SlowbroLv35Card:
@@ -2404,8 +2404,8 @@ SlowbroLv35Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1742 ; name
-	tx Text1743 ; description
+	tx BigYawnName ; name
+	tx BigYawnDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2414,12 +2414,12 @@ SlowbroLv35Card:
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_234 ; animation
+	db ATK_ANIM_BIG_YAWN ; animation
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1744 ; name
-	tx Text1745 ; description
+	tx BigSnoreName ; name
+	tx BigSnoreDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2428,18 +2428,18 @@ SlowbroLv35Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_235 ; animation
+	db ATK_ANIM_BIG_SNORE ; animation
 
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1740 ; category
+	tx HermitcrabName ; category
 	db DEX_SLOWBRO ; Pokedex number
 	db FALSE ; is Dark
 	db 35 ; level
 	length 1.6 ; length
 	weight 78.5 ; weight
-	tx SlowbroDescription2 ; description
+	tx SlowbroLv35Description ; description
 	db NONE ; AI info
 
 DarkSlowbroCard:
@@ -2456,8 +2456,8 @@ DarkSlowbroCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1748 ; name
-	tx Text1749 ; description
+	tx ReelInName ; name
+	tx ReelInDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2466,12 +2466,12 @@ DarkSlowbroCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_191 ; animation
+	db ATK_ANIM_POISON_GAS_COPY ; animation
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text174a ; name
-	tx Text138c ; description
+	tx FickleAttackName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2485,7 +2485,7 @@ DarkSlowbroCard:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1740 ; category
+	tx HermitcrabName ; category
 	db DEX_SLOWBRO ; Pokedex number
 	db TRUE ; is Dark
 	db 27 ; level
@@ -2508,8 +2508,8 @@ GastlyLv8Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text174d ; name
-	tx Text174e ; description
+	tx SleepingGasName ; name
+	tx MayInflictSleepAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2522,8 +2522,8 @@ GastlyLv8Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text174f ; name
-	tx Text1750 ; description
+	tx DestinyBondName ; name
+	tx DestinyBondDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2537,13 +2537,13 @@ GastlyLv8Card:
 	db 0 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_GASTLY ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
 	length 1.3 ; length
 	weight 0.1 ; weight
-	tx GastlyDescription1 ; description
+	tx GastlyLv8Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GastlyLv13Card:
@@ -2560,8 +2560,8 @@ GastlyLv13Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1753 ; name
-	tx Text1754 ; description
+	tx SpookifyName ; name
+	tx SpookifyDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2570,12 +2570,12 @@ GastlyLv13Card:
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 1 ; ?
-	db ATK_ANIM_193 ; animation
+	db ATK_ANIM_SPOOKIFY ; animation
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text1755 ; name
-	tx Text1336 ; description
+	tx FadeToBlackName ; name
+	tx MayInflictConfusionDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2584,18 +2584,18 @@ GastlyLv13Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_229 ; animation
+	db ATK_ANIM_FADE_TO_BLACK ; animation
 
 	db 0 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_GASTLY ; Pokedex number
 	db FALSE ; is Dark
 	db 13 ; level
 	length 1.3 ; length
 	weight 0.1 ; weight
-	tx GastlyDescription2 ; description
+	tx GastlyLv13Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GastlyLv17Card:
@@ -2612,8 +2612,8 @@ GastlyLv17Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1757 ; name
-	tx Text132f ; description
+	tx LickName ; name
+	tx MayInflictParalysisDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2626,8 +2626,8 @@ GastlyLv17Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1758 ; name
-	tx Text1759 ; description
+	tx EnergyConversionName ; name
+	tx EnergyConversionDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -2641,13 +2641,13 @@ GastlyLv17Card:
 	db 0 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_GASTLY ; Pokedex number
 	db FALSE ; is Dark
 	db 17 ; level
 	length 1.3 ; length
 	weight 0.1 ; weight
-	tx GastlyDescription3 ; description
+	tx GastlyLv17Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 HaunterLv17Card:
@@ -2664,8 +2664,8 @@ HaunterLv17Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text175c ; name
-	tx Text175d ; description
+	tx TransparencyName ; name
+	tx TransparencyDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2678,8 +2678,8 @@ HaunterLv17Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text175e ; name
-	tx Text13b6 ; description
+	tx NightmareName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2693,13 +2693,13 @@ HaunterLv17Card:
 	db 0 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_HAUNTER ; Pokedex number
 	db FALSE ; is Dark
 	db 17 ; level
 	length 1.6 ; length
 	weight 0.1 ; weight
-	tx HaunterDescription1 ; description
+	tx HaunterSharedDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 HaunterLv22Card:
@@ -2716,8 +2716,8 @@ HaunterLv22Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1416 ; name
-	tx Text13b6 ; description
+	tx HypnosisMoveName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2730,8 +2730,8 @@ HaunterLv22Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1760 ; name
-	tx Text1761 ; description
+	tx DreamEaterName ; name
+	tx DreamEaterDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2745,13 +2745,13 @@ HaunterLv22Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_HAUNTER ; Pokedex number
 	db FALSE ; is Dark
 	db 22 ; level
 	length 1.6 ; length
 	weight 0.1 ; weight
-	tx HaunterDescription1 ; description
+	tx HaunterSharedDescription1 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 HaunterLv25Card:
@@ -2768,8 +2768,8 @@ HaunterLv25Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1762 ; name
-	tx Text1336 ; description
+	tx EerieLightName ; name
+	tx MayInflictConfusionDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2778,12 +2778,12 @@ HaunterLv25Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_192 ; animation
+	db ATK_ANIM_EERIE_LIGHT ; animation
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1763 ; name
-	tx Text1764 ; description
+	tx GrudgeName ; name
+	tx GrudgeDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -2797,13 +2797,13 @@ HaunterLv25Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_HAUNTER ; Pokedex number
 	db FALSE ; is Dark
 	db 25 ; level
 	length 1.6 ; length
 	weight 0.1 ; weight
-	tx HaunterDescription2 ; description
+	tx HaunterSharedDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 HaunterLv26Card:
@@ -2820,8 +2820,8 @@ HaunterLv26Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1766 ; name
-	tx Text1767 ; description
+	tx PoltergeistName ; name
+	tx PoltergeistDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -2834,8 +2834,8 @@ HaunterLv26Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1768 ; name
-	tx Text1769 ; description
+	tx BadDreamsName ; name
+	tx BadDreamsDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2849,13 +2849,13 @@ HaunterLv26Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_HAUNTER ; Pokedex number
 	db FALSE ; is Dark
 	db 26 ; level
 	length 1.6 ; length
 	weight 0.1 ; weight
-	tx HaunterDescription2 ; description
+	tx HaunterSharedDescription2 ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DarkHaunterCard:
@@ -2872,8 +2872,8 @@ DarkHaunterCard:
 
 	; attack 1
 	energy PSYCHIC, 2 ; energies
-	tx Text176b ; name
-	tx Text176c ; description
+	tx BotherName ; name
+	tx BotherDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2901,7 +2901,7 @@ DarkHaunterCard:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1751 ; category
+	tx GasName ; category
 	db DEX_HAUNTER ; Pokedex number
 	db TRUE ; is Dark
 	db 23 ; level
@@ -2924,8 +2924,8 @@ GengarLv38Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text176f ; name
-	tx Text1770 ; description
+	tx CurseName ; name
+	tx CurseDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2938,8 +2938,8 @@ GengarLv38Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text1771 ; name
-	tx Text15d5 ; description
+	tx DarkMindName ; name
+	tx Do10DamageToABenchedMonDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -2953,13 +2953,13 @@ GengarLv38Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1772 ; category
+	tx ShadowName ; category
 	db DEX_GENGAR ; Pokedex number
 	db FALSE ; is Dark
 	db 38 ; level
 	length 1.5 ; length
 	weight 40.5 ; weight
-	tx GengarDescription1 ; description
+	tx GengarLv38Description ; description
 	db AI_INFO_BENCH_UTILITY ; AI info
 
 GengarLv40Card:
@@ -2976,8 +2976,8 @@ GengarLv40Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1774 ; name
-	tx Text1775 ; description
+	tx PowerOfDarknessName ; name
+	tx PowerOfDarknessDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -2990,8 +2990,8 @@ GengarLv40Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text1776 ; name
-	tx Text1769 ; description
+	tx PsyHorrorName ; name
+	tx BadDreamsDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3005,13 +3005,13 @@ GengarLv40Card:
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1772 ; category
+	tx ShadowName ; category
 	db DEX_GENGAR ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 1.5 ; length
 	weight 40.5 ; weight
-	tx GengarDescription2 ; description
+	tx GengarLv40Description ; description
 	db NONE ; AI info
 
 DarkGengarCard:
@@ -3028,8 +3028,8 @@ DarkGengarCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1779 ; name
-	tx Text177a ; description
+	tx PlayTricksName ; name
+	tx PlayTricksDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3042,8 +3042,8 @@ DarkGengarCard:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text177b ; name
-	tx Text177c ; description
+	tx PushAsideName ; name
+	tx PushAsideDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3052,12 +3052,12 @@ DarkGengarCard:
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 1 ; ?
-	db ATK_ANIM_253 ; animation
+	db ATK_ANIM_PUSH_ASIDE ; animation
 
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1772 ; category
+	tx ShadowName ; category
 	db DEX_GENGAR ; Pokedex number
 	db TRUE ; is Dark
 	db 33 ; level
@@ -3080,8 +3080,8 @@ DrowzeeLv10Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text177f ; name
-	tx Text1780 ; description
+	tx LongDistanceHypnosisName ; name
+	tx LongDistanceHypnosisDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3094,8 +3094,8 @@ DrowzeeLv10Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text175e ; name
-	tx Text13b6 ; description
+	tx NightmareName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3109,13 +3109,13 @@ DrowzeeLv10Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1781 ; category
+	tx HypnosisCategoryName ; category
 	db DEX_DROWZEE ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 1.0 ; length
 	weight 32.4 ; weight
-	tx DrowzeeDescription1 ; description
+	tx DrowzeeLv10Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DrowzeeLv12Card:
@@ -3132,7 +3132,7 @@ DrowzeeLv12Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text14de ; name
+	tx PoundName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -3146,8 +3146,8 @@ DrowzeeLv12Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1470 ; name
-	tx Text137c ; description
+	tx ConfuseRayName ; name
+	tx MayInflictConfusionAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3161,13 +3161,13 @@ DrowzeeLv12Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1781 ; category
+	tx HypnosisCategoryName ; category
 	db DEX_DROWZEE ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 1.0 ; length
 	weight 32.4 ; weight
-	tx DrowzeeDescription2 ; description
+	tx DrowzeeLv12Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 HypnoLv30Card:
@@ -3184,8 +3184,8 @@ HypnoLv30Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1785 ; name
-	tx Text1786 ; description
+	tx PuppetMasterName ; name
+	tx PuppetMasterDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3198,8 +3198,8 @@ HypnoLv30Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1724 ; name
-	tx Text1608 ; description
+	tx MindShockName ; name
+	tx SonicboomAltDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3213,13 +3213,13 @@ HypnoLv30Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1781 ; category
+	tx HypnosisCategoryName ; category
 	db DEX_HYPNO ; Pokedex number
 	db FALSE ; is Dark
 	db 30 ; level
 	length 1.6 ; length
 	weight 75.6 ; weight
-	tx HypnoDescription1 ; description
+	tx HypnoLv30Description ; description
 	db NONE ; AI info
 
 HypnoLv36Card:
@@ -3236,8 +3236,8 @@ HypnoLv36Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1788 ; name
-	tx Text1789 ; description
+	tx ProphecyName ; name
+	tx ProphecyDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3250,8 +3250,8 @@ HypnoLv36Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text1771 ; name
-	tx Text15d5 ; description
+	tx DarkMindName ; name
+	tx Do10DamageToABenchedMonDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3265,13 +3265,13 @@ HypnoLv36Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1781 ; category
+	tx HypnosisCategoryName ; category
 	db DEX_HYPNO ; Pokedex number
 	db FALSE ; is Dark
 	db 36 ; level
 	length 1.6 ; length
 	weight 75.6 ; weight
-	tx HypnoDescription2 ; description
+	tx HypnoLv36Description ; description
 	db NONE ; AI info
 
 DarkHypnoCard:
@@ -3288,7 +3288,7 @@ DarkHypnoCard:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text178c ; name
+	tx PsypunchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -3298,12 +3298,12 @@ DarkHypnoCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_177 ; animation
+	db ATK_ANIM_PSYPUNCH ; animation
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text178d ; name
-	tx Text178e ; description
+	tx BenchManipulationName ; name
+	tx BenchManipulationDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -3312,12 +3312,12 @@ DarkHypnoCard:
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
 	db 1 ; ?
-	db ATK_ANIM_165 ; animation
+	db ATK_ANIM_BENCH_MANIPULATION ; animation
 
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1781 ; category
+	tx HypnosisCategoryName ; category
 	db DEX_HYPNO ; Pokedex number
 	db TRUE ; is Dark
 	db 26 ; level
@@ -3340,8 +3340,8 @@ MrMimeLv20Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1791 ; name
-	tx Text1792 ; description
+	tx DampeningShieldName ; name
+	tx DampeningShieldDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3354,8 +3354,8 @@ MrMimeLv20Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text1793 ; name
-	tx Text1794 ; description
+	tx JugglingName ; name
+	tx JugglingDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -3369,13 +3369,13 @@ MrMimeLv20Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1795 ; category
+	tx BarrierName ; category
 	db DEX_MR__MIME ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 1.3 ; length
 	weight 54.5 ; weight
-	tx MrMimeDescription1 ; description
+	tx MrMimeLv20Description ; description
 	db NONE ; AI info
 
 MrMimeLv28Card:
@@ -3392,8 +3392,8 @@ MrMimeLv28Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text1797 ; name
-	tx Text1798 ; description
+	tx InvisibleWallName ; name
+	tx InvisibleWallDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3406,8 +3406,8 @@ MrMimeLv28Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text1799 ; name
-	tx Text179a ; description
+	tx MeditateName ; name
+	tx MeditateDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -3421,13 +3421,13 @@ MrMimeLv28Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text1795 ; category
+	tx BarrierName ; category
 	db DEX_MR__MIME ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.3 ; length
 	weight 54.5 ; weight
-	tx MrMimeDescription2 ; description
+	tx MrMimeLv28Description ; description
 	db AI_INFO_UNK_03 ; AI info
 
 JynxLv18Card:
@@ -3444,8 +3444,8 @@ JynxLv18Card:
 
 	; attack 1
 	energy WATER, 1 ; energies
-	tx Text179d ; name
-	tx Text1363 ; description
+	tx IcePunchName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3454,12 +3454,12 @@ JynxLv18Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_181 ; animation
+	db ATK_ANIM_ICE_PUNCH ; animation
 
 	; attack 2
 	energy WATER, 2 ; energies
-	tx Text179e ; name
-	tx Text1596 ; description
+	tx ColdBreathName ; name
+	tx MayInflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3468,18 +3468,18 @@ JynxLv18Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_222 ; animation
+	db ATK_ANIM_COLD_BREATH ; animation
 
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text179f ; category
+	tx HumanShapeName ; category
 	db DEX_JYNX ; Pokedex number
 	db FALSE ; is Dark
 	db 18 ; level
 	length 1.4 ; length
 	weight 40.6 ; weight
-	tx JynxDescription1 ; description
+	tx JynxLv18Description ; description
 	db NONE ; AI info
 
 JynxLv23Card:
@@ -3496,8 +3496,8 @@ JynxLv23Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text14e8 ; name
-	tx Text1587 ; description
+	tx DoubleSlapName ; name
+	tx Plus10DamagePerHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -3506,12 +3506,12 @@ JynxLv23Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_203 ; animation
+	db ATK_ANIM_SLAP ; animation
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text1799 ; name
-	tx Text179a ; description
+	tx MeditateName ; name
+	tx MeditateDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -3525,13 +3525,13 @@ JynxLv23Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text179f ; category
+	tx HumanShapeName ; category
 	db DEX_JYNX ; Pokedex number
 	db FALSE ; is Dark
 	db 23 ; level
 	length 1.4 ; length
 	weight 40.6 ; weight
-	tx JynxDescription2 ; description
+	tx JynxLv23Description ; description
 	db NONE ; AI info
 
 JynxLv27Card:
@@ -3548,7 +3548,7 @@ JynxLv27Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text14de ; name
+	tx PoundName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -3562,8 +3562,8 @@ JynxLv27Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text14e8 ; name
-	tx Text1628 ; description
+	tx DoubleSlapName ; name
+	tx Do20DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -3572,18 +3572,18 @@ JynxLv27Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_203 ; animation
+	db ATK_ANIM_SLAP ; animation
 
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text179f ; category
+	tx HumanShapeName ; category
 	db DEX_JYNX ; Pokedex number
 	db FALSE ; is Dark
 	db 27 ; level
 	length 1.4 ; length
 	weight 40.6 ; weight
-	tx JynxDescription3 ; description
+	tx JynxLv27Description ; description
 	db NONE ; AI info
 
 MewtwoLv30Card:
@@ -3600,8 +3600,8 @@ MewtwoLv30Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text1615 ; name
-	tx Text17a4 ; description
+	tx EnergySpikeName ; name
+	tx EnergyControlDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3614,8 +3614,8 @@ MewtwoLv30Card:
 
 	; attack 2
 	energy PSYCHIC, 3 ; energies
-	tx Text17a5 ; name
-	tx Text17a6 ; description
+	tx TelekinesisName ; name
+	tx TelekinesisDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3629,13 +3629,13 @@ MewtwoLv30Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 30 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription1 ; description
+	tx MewtwoLv30Description ; description
 	db NONE ; AI info
 
 MewtwoLv53Card:
@@ -3652,8 +3652,8 @@ MewtwoLv53Card:
 
 	; attack 1
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text1509 ; name
-	tx Text150a ; description
+	tx PsychicName ; name
+	tx PsychicDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -3666,8 +3666,8 @@ MewtwoLv53Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text1795 ; name
-	tx Text17a9 ; description
+	tx BarrierName ; name
+	tx BarrierDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3681,13 +3681,13 @@ MewtwoLv53Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 53 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription2 ; description
+	tx MewtwoLv53Description ; description
 	db NONE ; AI info
 
 MewtwoLv54Card:
@@ -3704,8 +3704,8 @@ MewtwoLv54Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text17ab ; name
-	tx Text17ac ; description
+	tx PsycrushName ; name
+	tx PsycrushDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -3718,7 +3718,7 @@ MewtwoLv54Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text1510 ; name
+	tx SuperPsyName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
@@ -3733,13 +3733,13 @@ MewtwoLv54Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 54 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription3 ; description
+	tx MewtwoLv54Description ; description
 	db NONE ; AI info
 
 MewtwoLv60Card:
@@ -3756,8 +3756,8 @@ MewtwoLv60Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text17ae ; name
-	tx Text17af ; description
+	tx EnergyAbsorptionName ; name
+	tx EnergyAbsorptionDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3770,7 +3770,7 @@ MewtwoLv60Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text17b0 ; name
+	tx PsyburnName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
@@ -3785,13 +3785,13 @@ MewtwoLv60Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 60 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription4 ; description
+	tx MewtwoLv60Description ; description
 	db NONE ; AI info
 
 MewtwoAltLv60Card:
@@ -3808,8 +3808,8 @@ MewtwoAltLv60Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text17ae ; name
-	tx Text17af ; description
+	tx EnergyAbsorptionName ; name
+	tx EnergyAbsorptionDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3822,7 +3822,7 @@ MewtwoAltLv60Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text17b0 ; name
+	tx PsyburnName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
@@ -3837,13 +3837,13 @@ MewtwoAltLv60Card:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 60 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription4 ; description
+	tx MewtwoLv60Description ; description
 	db NONE ; AI info
 
 MewtwoLv67Card:
@@ -3860,8 +3860,8 @@ MewtwoLv67Card:
 
 	; attack 1
 	energy PSYCHIC, 2 ; energies
-	tx Text17b2 ; name
-	tx Text17b3 ; description
+	tx CompleteRecoveryName ; name
+	tx CompleteRecoveryDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -3874,8 +3874,8 @@ MewtwoLv67Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx Text17b4 ; name
-	tx Text17b5 ; description
+	tx PsychoBlastName ; name
+	tx PsychoBlastDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3889,13 +3889,13 @@ MewtwoLv67Card:
 	db 3 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 67 ; level
 	length 2.0 ; length
 	weight 122.0 ; weight
-	tx MewtwoDescription5 ; description
+	tx MewtwoLv67Description ; description
 	db NONE ; AI info
 
 GRsMewtwoCard:
@@ -3912,8 +3912,8 @@ GRsMewtwoCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text17b8 ; name
-	tx Text17b9 ; description
+	tx DarkWaveName ; name
+	tx DarkWaveDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3926,8 +3926,8 @@ GRsMewtwoCard:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text17ba ; name
-	tx Text17bb ; description
+	tx DarkAmplificationName ; name
+	tx DarkAmplificationDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -3941,7 +3941,7 @@ GRsMewtwoCard:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17a7 ; category
+	tx GeneticName ; category
 	db DEX_MEWTWO ; Pokedex number
 	db FALSE ; is Dark
 	db 35 ; level
@@ -3964,8 +3964,8 @@ MewLv8Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text17be ; name
-	tx Text17bf ; description
+	tx NeutralShieldName ; name
+	tx NeutralShieldDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -3978,8 +3978,8 @@ MewLv8Card:
 
 	; attack 2
 	energy PSYCHIC, 1 ; energies
-	tx Text1505 ; name
-	tx Text1363 ; description
+	tx PsyshockName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -3993,13 +3993,13 @@ MewLv8Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17c0 ; category
+	tx NewSpeciesName ; category
 	db DEX_MEW ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
 	length 0.4 ; length
 	weight 4.0 ; weight
-	tx MewDescription1 ; description
+	tx MewLv8Description ; description
 	db AI_INFO_UNK_03 ; AI info
 
 MewLv15Card:
@@ -4016,8 +4016,8 @@ MewLv15Card:
 
 	; attack 1
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx Text17c2 ; name
-	tx Text17c3 ; description
+	tx MysteryAttackName ; name
+	tx MysteryAttackDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4045,13 +4045,13 @@ MewLv15Card:
 	db 0 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17c0 ; category
+	tx NewSpeciesName ; category
 	db DEX_MEW ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.4 ; length
 	weight 4.0 ; weight
-	tx MewDescription2 ; description
+	tx MewLv15Description ; description
 	db NONE ; AI info
 
 MewLv23Card:
@@ -4068,8 +4068,8 @@ MewLv23Card:
 
 	; attack 1
 	energy PSYCHIC, 1 ; energies
-	tx Text17c5 ; name
-	tx Text17c6 ; description
+	tx PsywaveName ; name
+	tx PsywaveDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -4082,8 +4082,8 @@ MewLv23Card:
 
 	; attack 2
 	energy PSYCHIC, 2 ; energies
-	tx Text17c7 ; name
-	tx Text17c8 ; description
+	tx DevolutionBeamName ; name
+	tx DevolutionBeamDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -4097,13 +4097,13 @@ MewLv23Card:
 	db 1 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
-	tx Text17c0 ; category
+	tx NewSpeciesName ; category
 	db DEX_MEW ; Pokedex number
 	db FALSE ; is Dark
 	db 23 ; level
 	length 0.4 ; length
 	weight 4.0 ; weight
-	tx MewDescription3 ; description
+	tx MewLv23Description ; description
 	db AI_INFO_UNK_08 ; AI info
 
 PidgeyLv8Card:
@@ -4120,8 +4120,8 @@ PidgeyLv8Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text133e ; name
-	tx Text133f ; description
+	tx WhirlwindName ; name
+	tx WhirlwindDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4149,13 +4149,13 @@ PidgeyLv8Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17cb ; category
+	tx TinyBirdName ; category
 	db DEX_PIDGEY ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
 	length 0.3 ; length
 	weight 1.8 ; weight
-	tx PidgeyDescription1 ; description
+	tx PidgeyLv8Description ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 PidgeyLv10Card:
@@ -4172,7 +4172,7 @@ PidgeyLv10Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text17cd ; name
+	tx GustName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -4186,8 +4186,8 @@ PidgeyLv10Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1490 ; name
-	tx Text15e2 ; description
+	tx QuickAttackName ; name
+	tx QuickAttackAltDescription1 ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -4201,13 +4201,13 @@ PidgeyLv10Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17cb ; category
+	tx TinyBirdName ; category
 	db DEX_PIDGEY ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 0.3 ; length
 	weight 1.8 ; weight
-	tx PidgeyDescription2 ; description
+	tx PidgeyLv10Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PidgeottoLv36Card:
@@ -4224,8 +4224,8 @@ PidgeottoLv36Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text133e ; name
-	tx Text133f ; description
+	tx WhirlwindName ; name
+	tx WhirlwindDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4238,8 +4238,8 @@ PidgeottoLv36Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17d0 ; name
-	tx Text17d1 ; description
+	tx MirrorMoveName ; name
+	tx MirrorMoveDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4253,13 +4253,13 @@ PidgeottoLv36Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17d2 ; category
+	tx BirdName ; category
 	db DEX_PIDGEOTTO ; Pokedex number
 	db FALSE ; is Dark
 	db 36 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
-	tx PidgeottoDescription1 ; description
+	tx PidgeottoLv36Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PidgeottoLv38Card:
@@ -4276,8 +4276,8 @@ PidgeottoLv38Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text17d4 ; name
-	tx Text17d5 ; description
+	tx TwisterName ; name
+	tx TwisterDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4290,8 +4290,8 @@ PidgeottoLv38Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text15d8 ; name
-	tx Text17d6 ; description
+	tx FlyName ; name
+	tx FlyAltDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4305,13 +4305,13 @@ PidgeottoLv38Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17d2 ; category
+	tx BirdName ; category
 	db DEX_PIDGEOTTO ; Pokedex number
 	db FALSE ; is Dark
 	db 38 ; level
 	length 1.1 ; length
 	weight 30.0 ; weight
-	tx PidgeottoDescription2 ; description
+	tx PidgeottoLv38Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PidgeotLv38Card:
@@ -4328,8 +4328,8 @@ PidgeotLv38Card:
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
-	tx Text17d9 ; name
-	tx Text17da ; description
+	tx SlicingWingName ; name
+	tx SlicingWingDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -4342,8 +4342,8 @@ PidgeotLv38Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text17db ; name
-	tx Text17dc ; description
+	tx GaleName ; name
+	tx GaleDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4357,13 +4357,13 @@ PidgeotLv38Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17d2 ; category
+	tx BirdName ; category
 	db DEX_PIDGEOT ; Pokedex number
 	db FALSE ; is Dark
 	db 38 ; level
 	length 1.5 ; length
 	weight 39.5 ; weight
-	tx PidgeotDescription1 ; description
+	tx PidgeotLv38Description ; description
 	db NONE ; AI info
 
 PidgeotLv40Card:
@@ -4380,7 +4380,7 @@ PidgeotLv40Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text13a8 ; name
+	tx WingAttackName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -4394,8 +4394,8 @@ PidgeotLv40Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17de ; name
-	tx Text17df ; description
+	tx HurricaneName ; name
+	tx HurricaneDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4409,13 +4409,13 @@ PidgeotLv40Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17d2 ; category
+	tx BirdName ; category
 	db DEX_PIDGEOT ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 1.5 ; length
 	weight 39.5 ; weight
-	tx PidgeotDescription2 ; description
+	tx PidgeotLv40Description ; description
 	db NONE ; AI info
 
 RattataLv9Card:
@@ -4432,7 +4432,7 @@ RattataLv9Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text135a ; name
+	tx BiteName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -4461,13 +4461,13 @@ RattataLv9Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text15c9 ; category
+	tx MouseName ; category
 	db DEX_RATTATA ; Pokedex number
 	db FALSE ; is Dark
 	db 9 ; level
 	length 0.3 ; length
 	weight 3.5 ; weight
-	tx RattataDescription1 ; description
+	tx RattataLv9Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 RattataLv12Card:
@@ -4484,8 +4484,8 @@ RattataLv12Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text17e3 ; name
-	tx Text17e4 ; description
+	tx TrickeryName ; name
+	tx TrickeryDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -4498,8 +4498,8 @@ RattataLv12Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text1490 ; name
-	tx Text1448 ; description
+	tx QuickAttackName ; name
+	tx IfHeadsDo10DamageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -4513,13 +4513,13 @@ RattataLv12Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text15c9 ; category
+	tx MouseName ; category
 	db DEX_RATTATA ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 0.3 ; length
 	weight 3.5 ; weight
-	tx RattataDescription2 ; description
+	tx RattataLv12Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 RattataLv15Card:
@@ -4536,7 +4536,7 @@ RattataLv15Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text13ce ; name
+	tx ScratchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -4550,8 +4550,8 @@ RattataLv15Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text136e ; name
-	tx Text136f ; description
+	tx TailWhipName ; name
+	tx TailWhipDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4560,18 +4560,18 @@ RattataLv15Card:
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_201 ; animation
+	db ATK_ANIM_TAIL_WHIP ; animation
 
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text15c9 ; category
+	tx MouseName ; category
 	db DEX_RATTATA ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.3 ; length
 	weight 3.5 ; weight
-	tx RattataDescription3 ; description
+	tx RattataLv15Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 RaticateCard:
@@ -4588,7 +4588,7 @@ RaticateCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text135a ; name
+	tx BiteName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -4602,8 +4602,8 @@ RaticateCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17e8 ; name
-	tx Text17e9 ; description
+	tx SuperFangName ; name
+	tx SuperFangDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4617,7 +4617,7 @@ RaticateCard:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text15c9 ; category
+	tx MouseName ; category
 	db DEX_RATICATE ; Pokedex number
 	db FALSE ; is Dark
 	db 41 ; level
@@ -4640,7 +4640,7 @@ DarkRaticateCard:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text15cb ; name
+	tx GnawName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -4654,8 +4654,8 @@ DarkRaticateCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17ec ; name
-	tx Text138c ; description
+	tx HyperFangName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4669,7 +4669,7 @@ DarkRaticateCard:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text15c9 ; category
+	tx MouseName ; category
 	db DEX_RATICATE ; Pokedex number
 	db TRUE ; is Dark
 	db 25 ; level
@@ -4692,7 +4692,7 @@ SpearowLv9Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1347 ; name
+	tx PeckName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -4706,7 +4706,7 @@ SpearowLv9Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text13a8 ; name
+	tx WingAttackName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -4721,13 +4721,13 @@ SpearowLv9Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17cb ; category
+	tx TinyBirdName ; category
 	db DEX_SPEAROW ; Pokedex number
 	db FALSE ; is Dark
 	db 9 ; level
 	length 0.3 ; length
 	weight 2.0 ; weight
-	tx SpearowDescription1 ; description
+	tx SpearowLv9Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SpearowLv12Card:
@@ -4744,8 +4744,8 @@ SpearowLv12Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text17f0 ; name
-	tx Text1587 ; description
+	tx FuryAttackName ; name
+	tx Plus10DamagePerHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -4758,7 +4758,7 @@ SpearowLv12Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text17cd ; name
+	tx GustName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -4773,13 +4773,13 @@ SpearowLv12Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17cb ; category
+	tx TinyBirdName ; category
 	db DEX_SPEAROW ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 0.3 ; length
 	weight 2.0 ; weight
-	tx SpearowDescription2 ; description
+	tx SpearowLv12Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 SpearowLv13Card:
@@ -4796,7 +4796,7 @@ SpearowLv13Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1347 ; name
+	tx PeckName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -4810,8 +4810,8 @@ SpearowLv13Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17d0 ; name
-	tx Text17d1 ; description
+	tx MirrorMoveName ; name
+	tx MirrorMoveDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4825,13 +4825,13 @@ SpearowLv13Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17cb ; category
+	tx TinyBirdName ; category
 	db DEX_SPEAROW ; Pokedex number
 	db FALSE ; is Dark
 	db 13 ; level
 	length 0.3 ; length
 	weight 2.0 ; weight
-	tx SpearowDescription3 ; description
+	tx SpearowLv13Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 FearowLv24Card:
@@ -4848,8 +4848,8 @@ FearowLv24Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text1490 ; name
-	tx Text15e2 ; description
+	tx QuickAttackName ; name
+	tx QuickAttackAltDescription1 ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -4862,8 +4862,8 @@ FearowLv24Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text17f4 ; name
-	tx Text138c ; description
+	tx DrillDescentName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4877,13 +4877,13 @@ FearowLv24Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17f5 ; category
+	tx BeakName ; category
 	db DEX_FEAROW ; Pokedex number
 	db FALSE ; is Dark
 	db 24 ; level
 	length 1.2 ; length
 	weight 38.0 ; weight
-	tx FearowDescription1 ; description
+	tx FearowLv24Description ; description
 	db NONE ; AI info
 
 FearowLv27Card:
@@ -4900,8 +4900,8 @@ FearowLv27Card:
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
-	tx Text14ab ; name
-	tx Text14ac ; description
+	tx AgilityName ; name
+	tx AgilityDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4914,7 +4914,7 @@ FearowLv27Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text17f7 ; name
+	tx DrillPeckName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
@@ -4929,13 +4929,13 @@ FearowLv27Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17f5 ; category
+	tx BeakName ; category
 	db DEX_FEAROW ; Pokedex number
 	db FALSE ; is Dark
 	db 27 ; level
 	length 1.2 ; length
 	weight 38.0 ; weight
-	tx FearowDescription2 ; description
+	tx FearowLv27Description ; description
 	db NONE ; AI info
 
 DarkFearowCard:
@@ -4952,8 +4952,8 @@ DarkFearowCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text17fa ; name
-	tx Text17fb ; description
+	tx FlyHighName ; name
+	tx FlyHighDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -4966,8 +4966,8 @@ DarkFearowCard:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text17fc ; name
-	tx Text17fd ; description
+	tx DrillDiveName ; name
+	tx DrillDiveDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -4976,12 +4976,12 @@ DarkFearowCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_246 ; animation
+	db ATK_ANIM_DRILL_DIVE ; animation
 
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text17f5 ; category
+	tx BeakName ; category
 	db DEX_FEAROW ; Pokedex number
 	db TRUE ; is Dark
 	db 25 ; level
@@ -5004,8 +5004,8 @@ ClefairyLv14Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1595 ; name
-	tx Text174e ; description
+	tx SingName ; name
+	tx MayInflictSleepAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5018,8 +5018,8 @@ ClefairyLv14Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1800 ; name
-	tx Text1801 ; description
+	tx MetronomeName ; name
+	tx MetronomeDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5033,13 +5033,13 @@ ClefairyLv14Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1802 ; category
+	tx FairyName ; category
 	db DEX_CLEFAIRY ; Pokedex number
 	db FALSE ; is Dark
 	db 14 ; level
 	length 0.6 ; length
 	weight 7.5 ; weight
-	tx ClefairyDescription1 ; description
+	tx ClefairyLv14Description ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 ClefairyLv15Card:
@@ -5056,8 +5056,8 @@ ClefairyLv15Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1804 ; name
-	tx Text13fd ; description
+	tx FollowMeName ; name
+	tx LureDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5066,12 +5066,12 @@ ClefairyLv15Card:
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_212 ; animation
+	db ATK_ANIM_FOLLOW_ME ; animation
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1805 ; name
-	tx Text13b6 ; description
+	tx ShiningFingersName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5080,18 +5080,18 @@ ClefairyLv15Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_213 ; animation
+	db ATK_ANIM_SHINING_FINGER ; animation
 
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1802 ; category
+	tx FairyName ; category
 	db DEX_CLEFAIRY ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.6 ; length
 	weight 7.5 ; weight
-	tx ClefairyDescription2 ; description
+	tx ClefairyLv15Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 ClefableCard:
@@ -5108,8 +5108,8 @@ ClefableCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1800 ; name
-	tx Text1801 ; description
+	tx MetronomeName ; name
+	tx MetronomeDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5122,8 +5122,8 @@ ClefableCard:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1408 ; name
-	tx Text1808 ; description
+	tx MinimizeName ; name
+	tx MinimizeAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5137,7 +5137,7 @@ ClefableCard:
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1802 ; category
+	tx FairyName ; category
 	db DEX_CLEFABLE ; Pokedex number
 	db FALSE ; is Dark
 	db 34 ; level
@@ -5160,8 +5160,8 @@ DarkClefableCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text180b ; name
-	tx Text180c ; description
+	tx DarknessVeilName ; name
+	tx DarknessVeiDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -5174,8 +5174,8 @@ DarkClefableCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text180d ; name
-	tx Text180e ; description
+	tx DarkSongName ; name
+	tx DarkSongDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5184,12 +5184,12 @@ DarkClefableCard:
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_247 ; animation
+	db ATK_ANIM_DARK_SONG ; animation
 
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1802 ; category
+	tx FairyName ; category
 	db DEX_CLEFABLE ; Pokedex number
 	db TRUE ; is Dark
 	db 33 ; level
@@ -5212,8 +5212,8 @@ JigglypuffLv12Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text130c ; name
-	tx Text130d ; description
+	tx FirstAidName ; name
+	tx FirstAidDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5226,8 +5226,8 @@ JigglypuffLv12Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1811 ; name
-	tx Text1497 ; description
+	tx DoubleEdgeName ; name
+	tx Do20DamageToSelfDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5241,13 +5241,13 @@ JigglypuffLv12Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1812 ; category
+	tx BalloonName ; category
 	db DEX_JIGGLYPUFF ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 0.5 ; length
 	weight 5.5 ; weight
-	tx JigglypuffDescription1 ; description
+	tx JigglypuffLv12Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 JigglypuffLv13Card:
@@ -5264,8 +5264,8 @@ JigglypuffLv13Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1814 ; name
-	tx Text1815 ; description
+	tx FriendshipSongName ; name
+	tx FriendshipSongDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5278,8 +5278,8 @@ JigglypuffLv13Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1816 ; name
-	tx Text1817 ; description
+	tx ExpandName ; name
+	tx ExpandDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5293,13 +5293,13 @@ JigglypuffLv13Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1812 ; category
+	tx BalloonName ; category
 	db DEX_JIGGLYPUFF ; Pokedex number
 	db FALSE ; is Dark
 	db 13 ; level
 	length 0.5 ; length
 	weight 5.5 ; weight
-	tx JigglypuffDescription2 ; description
+	tx JigglypuffLv13Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 JigglypuffLv14Card:
@@ -5316,8 +5316,8 @@ JigglypuffLv14Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1819 ; name
-	tx Text13b6 ; description
+	tx LullabyName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5330,7 +5330,7 @@ JigglypuffLv14Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text14de ; name
+	tx PoundName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -5345,13 +5345,13 @@ JigglypuffLv14Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1812 ; category
+	tx BalloonName ; category
 	db DEX_JIGGLYPUFF ; Pokedex number
 	db FALSE ; is Dark
 	db 14 ; level
 	length 0.5 ; length
 	weight 5.5 ; weight
-	tx JigglypuffDescription3 ; description
+	tx JigglypuffLv14Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 WigglytuffLv36Card:
@@ -5368,8 +5368,8 @@ WigglytuffLv36Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1819 ; name
-	tx Text13b6 ; description
+	tx LullabyName ; name
+	tx InflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5382,8 +5382,8 @@ WigglytuffLv36Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text181c ; name
-	tx Text181d ; description
+	tx DoTheWaveName ; name
+	tx DoTheWaveDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -5397,13 +5397,13 @@ WigglytuffLv36Card:
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1812 ; category
+	tx BalloonName ; category
 	db DEX_WIGGLYTUFF ; Pokedex number
 	db FALSE ; is Dark
 	db 36 ; level
 	length 1.0 ; length
 	weight 12.0 ; weight
-	tx WigglytuffDescription1 ; description
+	tx WigglytuffLv36Description ; description
 	db NONE ; AI info
 
 WigglytuffLv40Card:
@@ -5420,8 +5420,8 @@ WigglytuffLv40Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text181f ; name
-	tx Text1820 ; description
+	tx HelpingHandName ; name
+	tx HelpingHandDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -5430,12 +5430,12 @@ WigglytuffLv40Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_238 ; animation
+	db ATK_ANIM_HELPING_HAND ; animation
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text1816 ; name
-	tx Text1821 ; description
+	tx ExpandName ; name
+	tx ExpandAltDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5449,13 +5449,13 @@ WigglytuffLv40Card:
 	db 3 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1812 ; category
+	tx BalloonName ; category
 	db DEX_WIGGLYTUFF ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 1.0 ; length
 	weight 12.0 ; weight
-	tx WigglytuffDescription2 ; description
+	tx WigglytuffLv40Description ; description
 	db NONE ; AI info
 
 MeowthLv10Card:
@@ -5472,8 +5472,8 @@ MeowthLv10Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text1824 ; name
-	tx Text1825 ; description
+	tx CoinHurlName ; name
+	tx CoinHurlDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5482,7 +5482,7 @@ MeowthLv10Card:
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
 	db 2 ; ?
-	db ATK_ANIM_208 ; animation
+	db ATK_ANIM_COIN_HURL ; animation
 
 	; attack 2
 	energy 0 ; energies
@@ -5501,13 +5501,13 @@ MeowthLv10Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1826 ; category
+	tx ScratchCatName ; category
 	db DEX_MEOWTH ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 0.4 ; length
 	weight 4.2 ; weight
-	tx MeowthDescription1 ; description
+	tx MeowthLv10Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MeowthLv13Card:
@@ -5524,8 +5524,8 @@ MeowthLv13Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text1828 ; name
-	tx Text1829 ; description
+	tx CatPunchName ; name
+	tx CatPunchDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5553,13 +5553,13 @@ MeowthLv13Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1826 ; category
+	tx ScratchCatName ; category
 	db DEX_MEOWTH ; Pokedex number
 	db FALSE ; is Dark
 	db 13 ; level
 	length 0.4 ; length
 	weight 4.2 ; weight
-	tx MeowthDescription2 ; description
+	tx MeowthLv13Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MeowthLv14Card:
@@ -5576,7 +5576,7 @@ MeowthLv14Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text13ce ; name
+	tx ScratchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -5590,8 +5590,8 @@ MeowthLv14Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text182b ; name
-	tx Text182c ; description
+	tx ClearProfitName ; name
+	tx ClearProfitDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5605,13 +5605,13 @@ MeowthLv14Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1826 ; category
+	tx ScratchCatName ; category
 	db DEX_MEOWTH ; Pokedex number
 	db FALSE ; is Dark
 	db 14 ; level
 	length 0.4 ; length
 	weight 4.2 ; weight
-	tx MeowthDescription3 ; description
+	tx MeowthLv14Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MeowthLv15Card:
@@ -5628,8 +5628,8 @@ MeowthLv15Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text182e ; name
-	tx Text182f ; description
+	tx PayDayName ; name
+	tx PayDayDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5657,13 +5657,13 @@ MeowthLv15Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1826 ; category
+	tx ScratchCatName ; category
 	db DEX_MEOWTH ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.4 ; length
 	weight 4.2 ; weight
-	tx MeowthDescription4 ; description
+	tx MeowthLv15Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 MeowthLv17Card:
@@ -5680,7 +5680,7 @@ MeowthLv17Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text135a ; name
+	tx BiteName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -5694,8 +5694,8 @@ MeowthLv17Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1371 ; name
-	tx Text1372 ; description
+	tx FurySwipesName ; name
+	tx FurySwipes10DamageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -5709,13 +5709,13 @@ MeowthLv17Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1826 ; category
+	tx ScratchCatName ; category
 	db DEX_MEOWTH ; Pokedex number
 	db FALSE ; is Dark
 	db 17 ; level
 	length 0.4 ; length
 	weight 4.2 ; weight
-	tx MeowthDescription5 ; description
+	tx MeowthLv17Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 PersianCard:
@@ -5732,7 +5732,7 @@ PersianCard:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text13ce ; name
+	tx ScratchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -5746,8 +5746,8 @@ PersianCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1833 ; name
-	tx Text1834 ; description
+	tx PounceName ; name
+	tx PounceDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5761,7 +5761,7 @@ PersianCard:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1835 ; category
+	tx ClassyCatName ; category
 	db DEX_PERSIAN ; Pokedex number
 	db FALSE ; is Dark
 	db 25 ; level
@@ -5784,8 +5784,8 @@ DarkPersianLv28Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1838 ; name
-	tx Text1839 ; description
+	tx FascinateName ; name
+	tx FascinateDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5798,8 +5798,8 @@ DarkPersianLv28Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text183a ; name
-	tx Text135b ; description
+	tx PoisonClawsName ; name
+	tx MayInflictPoisonAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5813,7 +5813,7 @@ DarkPersianLv28Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1835 ; category
+	tx ClassyCatName ; category
 	db DEX_PERSIAN ; Pokedex number
 	db TRUE ; is Dark
 	db 28 ; level
@@ -5836,8 +5836,8 @@ DarkPersianAltLv28Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1838 ; name
-	tx Text1839 ; description
+	tx FascinateName ; name
+	tx FascinateDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -5850,8 +5850,8 @@ DarkPersianAltLv28Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text183a ; name
-	tx Text135b ; description
+	tx PoisonClawsName ; name
+	tx MayInflictPoisonAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5865,7 +5865,7 @@ DarkPersianAltLv28Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1835 ; category
+	tx ClassyCatName ; category
 	db DEX_PERSIAN ; Pokedex number
 	db TRUE ; is Dark
 	db 28 ; level
@@ -5888,8 +5888,8 @@ FarfetchdLv20Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text183d ; name
-	tx Text183e ; description
+	tx LeekSlapName ; name
+	tx LeekSlapDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5902,7 +5902,7 @@ FarfetchdLv20Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text183f ; name
+	tx PotSmashName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -5917,13 +5917,13 @@ FarfetchdLv20Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1840 ; category
+	tx WildDuckName ; category
 	db DEX_FARFETCH_D ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 0.8 ; length
 	weight 15.0 ; weight
-	tx FarfetchdDescription ; description
+	tx FarfetchdLv20Description ; description
 	db AI_INFO_UNK_03 ; AI info
 
 FarfetchdAltLv20Card:
@@ -5940,8 +5940,8 @@ FarfetchdAltLv20Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text183d ; name
-	tx Text1842 ; description
+	tx LeekSlapName ; name
+	tx LeekSlapAltDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -5954,7 +5954,7 @@ FarfetchdAltLv20Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text183f ; name
+	tx PotSmashName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -5969,7 +5969,7 @@ FarfetchdAltLv20Card:
 	db 1 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1840 ; category
+	tx WildDuckName ; category
 	db DEX_FARFETCH_D ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
@@ -5992,8 +5992,8 @@ DoduoLv8Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1457 ; name
-	tx Text1845 ; description
+	tx GrowlName ; name
+	tx GrowlAltDescription2 ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6006,7 +6006,7 @@ DoduoLv8Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1347 ; name
+	tx PeckName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -6021,13 +6021,13 @@ DoduoLv8Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1846 ; category
+	tx TwinBirdName ; category
 	db DEX_DODUO ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
 	length 1.4 ; length
 	weight 39.2 ; weight
-	tx DoduoDescription1 ; description
+	tx DoduoLv8Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DoduoLv10Card:
@@ -6044,8 +6044,8 @@ DoduoLv10Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text17f0 ; name
-	tx Text1587 ; description
+	tx FuryAttackName ; name
+	tx Plus10DamagePerHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -6073,13 +6073,13 @@ DoduoLv10Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1846 ; category
+	tx TwinBirdName ; category
 	db DEX_DODUO ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 1.4 ; length
 	weight 39.2 ; weight
-	tx DoduoDescription2 ; description
+	tx DoduoLv10Description ; description
 	db AI_INFO_UNK_03 | HAS_EVOLUTION ; AI info
 
 DodrioLv25Card:
@@ -6096,7 +6096,7 @@ DodrioLv25Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text149c ; name
+	tx SmashKickName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -6110,8 +6110,8 @@ DodrioLv25Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text184a ; name
-	tx Text164c ; description
+	tx TriAttackName ; name
+	tx FurySwipes20DamageDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -6125,13 +6125,13 @@ DodrioLv25Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text184b ; category
+	tx TripleBirdName ; category
 	db DEX_DODRIO ; Pokedex number
 	db FALSE ; is Dark
 	db 25 ; level
 	length 1.8 ; length
 	weight 85.2 ; weight
-	tx DodrioDescription1 ; description
+	tx DodrioLv25Description ; description
 	db NONE ; AI info
 
 DodrioLv28Card:
@@ -6148,8 +6148,8 @@ DodrioLv28Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text184d ; name
-	tx Text184e ; description
+	tx RetreatAidName ; name
+	tx RetreatAidDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -6162,8 +6162,8 @@ DodrioLv28Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text14c1 ; name
-	tx Text14c2 ; description
+	tx RageName ; name
+	tx RageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -6177,13 +6177,13 @@ DodrioLv28Card:
 	db 0 ; retreat cost
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text184b ; category
+	tx TripleBirdName ; category
 	db DEX_DODRIO ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.8 ; length
 	weight 85.2 ; weight
-	tx DodrioDescription2 ; description
+	tx DodrioLv28Description ; description
 	db AI_INFO_BENCH_UTILITY ; AI info
 
 LickitungLv20Card:
@@ -6200,8 +6200,8 @@ LickitungLv20Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1851 ; name
-	tx Text1363 ; description
+	tx LickAltName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6210,12 +6210,12 @@ LickitungLv20Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_198 ; animation
+	db ATK_ANIM_LICK ; animation
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text14a9 ; name
-	tx Text1448 ; description
+	tx StompName ; name
+	tx IfHeadsDo10DamageDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -6229,13 +6229,13 @@ LickitungLv20Card:
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1852 ; category
+	tx LickingName ; category
 	db DEX_LICKITUNG ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 1.2 ; length
 	weight 65.5 ; weight
-	tx LickitungDescription1 ; description
+	tx LickitungLv20Description ; description
 	db NONE ; AI info
 
 LickitungLv26Card:
@@ -6252,8 +6252,8 @@ LickitungLv26Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1854 ; name
-	tx Text132f ; description
+	tx TongueWrapName ; name
+	tx MayInflictParalysisDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6266,8 +6266,8 @@ LickitungLv26Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text137b ; name
-	tx Text137c ; description
+	tx SupersonicName ; name
+	tx MayInflictConfusionAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6281,13 +6281,13 @@ LickitungLv26Card:
 	db 3 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1852 ; category
+	tx LickingName ; category
 	db DEX_LICKITUNG ; Pokedex number
 	db FALSE ; is Dark
 	db 26 ; level
 	length 1.2 ; length
 	weight 65.5 ; weight
-	tx LickitungDescription2 ; description
+	tx LickitungLv26Description ; description
 	db NONE ; AI info
 
 ChanseyLv40Card:
@@ -6304,8 +6304,8 @@ ChanseyLv40Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1595 ; name
-	tx Text1596 ; description
+	tx SingName ; name
+	tx MayInflictSleepDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6318,8 +6318,8 @@ ChanseyLv40Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1857 ; name
-	tx Text1628 ; description
+	tx DoubleSlapAltName ; name
+	tx Do20DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -6328,18 +6328,18 @@ ChanseyLv40Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_203 ; animation
+	db ATK_ANIM_SLAP ; animation
 
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1417 ; category
+	tx EggName ; category
 	db DEX_CHANSEY ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 1.1 ; length
 	weight 34.6 ; weight
-	tx ChanseyDescription1 ; description
+	tx ChanseyLv40Description ; description
 	db NONE ; AI info
 
 ChanseyLv55Card:
@@ -6356,8 +6356,8 @@ ChanseyLv55Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text1859 ; name
-	tx Text133a ; description
+	tx ScrunchName ; name
+	tx PreventDamageCardEffectDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -6370,8 +6370,8 @@ ChanseyLv55Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text1811 ; name
-	tx Text185a ; description
+	tx DoubleEdgeName ; name
+	tx Do80DamageToSelfDescription ; description
 	dw NONE ; description (cont)
 	db 80 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6385,13 +6385,13 @@ ChanseyLv55Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1417 ; category
+	tx EggName ; category
 	db DEX_CHANSEY ; Pokedex number
 	db FALSE ; is Dark
 	db 55 ; level
 	length 1.1 ; length
 	weight 34.6 ; weight
-	tx ChanseyDescription2 ; description
+	tx ChanseyLv55Description ; description
 	db AI_INFO_UNK_08 ; AI info
 
 KangaskhanLv36Card:
@@ -6408,7 +6408,7 @@ KangaskhanLv36Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text135a ; name
+	tx BiteName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
@@ -6422,8 +6422,8 @@ KangaskhanLv36Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text185d ; name
-	tx Text1589 ; description
+	tx TailDropName ; name
+	tx IfEitherTailsDoNothingDescription ; description
 	dw NONE ; description (cont)
 	db 80 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6432,18 +6432,18 @@ KangaskhanLv36Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_200 ; animation
+	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 3 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text185e ; category
+	tx ParentName ; category
 	db DEX_KANGASKHAN ; Pokedex number
 	db FALSE ; is Dark
 	db 36 ; level
 	length 2.2 ; length
 	weight 80.0 ; weight
-	tx KangaskhanDescription1 ; description
+	tx KangaskhanLv36Description ; description
 	db NONE ; AI info
 
 KangaskhanLv38Card:
@@ -6460,8 +6460,8 @@ KangaskhanLv38Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1860 ; name
-	tx Text1587 ; description
+	tx DizzyPunchName ; name
+	tx Plus10DamagePerHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -6474,7 +6474,7 @@ KangaskhanLv38Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1382 ; name
+	tx MegaPunchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
@@ -6484,18 +6484,18 @@ KangaskhanLv38Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_176 ; animation
+	db ATK_ANIM_MEGA_PUNCH ; animation
 
 	db 3 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text185e ; category
+	tx ParentName ; category
 	db DEX_KANGASKHAN ; Pokedex number
 	db FALSE ; is Dark
 	db 38 ; level
 	length 2.2 ; length
 	weight 80.0 ; weight
-	tx KangaskhanDescription2 ; description
+	tx KangaskhanLv38Description ; description
 	db NONE ; AI info
 
 KangaskhanLv40Card:
@@ -6512,8 +6512,8 @@ KangaskhanLv40Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1862 ; name
-	tx Text1863 ; description
+	tx FetchName ; name
+	tx FetchDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -6526,8 +6526,8 @@ KangaskhanLv40Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text1864 ; name
-	tx Text162d ; description
+	tx CometPunchName ; name
+	tx PinMissileDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -6541,13 +6541,13 @@ KangaskhanLv40Card:
 	db 3 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text185e ; category
+	tx ParentName ; category
 	db DEX_KANGASKHAN ; Pokedex number
 	db FALSE ; is Dark
 	db 40 ; level
 	length 2.2 ; length
 	weight 80.0 ; weight
-	tx KangaskhanDescription3 ; description
+	tx KangaskhanLv40Description ; description
 	db NONE ; AI info
 
 TaurosLv32Card:
@@ -6564,8 +6564,8 @@ TaurosLv32Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text14a9 ; name
-	tx Text14aa ; description
+	tx StompName ; name
+	tx StompDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -6578,8 +6578,8 @@ TaurosLv32Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1867 ; name
-	tx Text1868 ; description
+	tx RampageName ; name
+	tx RampageDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -6593,13 +6593,13 @@ TaurosLv32Card:
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1869 ; category
+	tx WildBullName ; category
 	db DEX_TAUROS ; Pokedex number
 	db FALSE ; is Dark
 	db 32 ; level
 	length 1.4 ; length
 	weight 88.4 ; weight
-	tx TaurosDescription1 ; description
+	tx TaurosLv32Description ; description
 	db NONE ; AI info
 
 TaurosLv35Card:
@@ -6616,8 +6616,8 @@ TaurosLv35Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text186b ; name
-	tx Text186c ; description
+	tx KickingAndStampingName ; name
+	tx KickingAndStampingDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -6645,13 +6645,13 @@ TaurosLv35Card:
 	db 2 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1869 ; category
+	tx WildBullName ; category
 	db DEX_TAUROS ; Pokedex number
 	db FALSE ; is Dark
 	db 35 ; level
 	length 1.4 ; length
 	weight 88.4 ; weight
-	tx TaurosDescription2 ; description
+	tx TaurosLv35Description ; description
 	db NONE ; AI info
 
 DittoCard:
@@ -6668,7 +6668,7 @@ DittoCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text14de ; name
+	tx PoundName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -6682,9 +6682,9 @@ DittoCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text186f ; name
-	tx Text1870 ; description
-	tx Text1871 ; description (cont)
+	tx MorphName ; name
+	tx MorphDescription ; description
+	tx MorphDescriptionCont ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
 	dw EffectCommands_588b6 ; effect commands
@@ -6697,7 +6697,7 @@ DittoCard:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1872 ; category
+	tx TransformName ; category
 	db DEX_DITTO ; Pokedex number
 	db FALSE ; is Dark
 	db 19 ; level
@@ -6720,7 +6720,7 @@ EeveeLv5Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text15cb ; name
+	tx GnawName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -6734,8 +6734,8 @@ EeveeLv5Card:
 
 	; attack 2
 	energy COLORLESS, 1 ; energies
-	tx Text1486 ; name
-	tx Text138c ; description
+	tx LungeName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6749,13 +6749,13 @@ EeveeLv5Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1874 ; category
+	tx EvolutionName ; category
 	db DEX_EEVEE ; Pokedex number
 	db FALSE ; is Dark
 	db 5 ; level
 	length 0.3 ; length
 	weight 6.5 ; weight
-	tx EeveeDescription1 ; description
+	tx EeveeLv5Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 EeveeLv9Card:
@@ -6772,7 +6772,7 @@ EeveeLv9Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1305 ; name
+	tx TackleName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -6786,8 +6786,8 @@ EeveeLv9Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1646 ; name
-	tx Text1876 ; description
+	tx SandAttackName ; name
+	tx SandAttackDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6801,13 +6801,13 @@ EeveeLv9Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1874 ; category
+	tx EvolutionName ; category
 	db DEX_EEVEE ; Pokedex number
 	db FALSE ; is Dark
 	db 9 ; level
 	length 0.3 ; length
 	weight 6.5 ; weight
-	tx EeveeDescription2 ; description
+	tx EeveeLv9Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 EeveeLv12Card:
@@ -6824,8 +6824,8 @@ EeveeLv12Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text136e ; name
-	tx Text16f1 ; description
+	tx TailWhipName ; name
+	tx LeerDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6838,8 +6838,8 @@ EeveeLv12Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1490 ; name
-	tx Text1491 ; description
+	tx QuickAttackName ; name
+	tx QuickAttackDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -6853,13 +6853,13 @@ EeveeLv12Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1874 ; category
+	tx EvolutionName ; category
 	db DEX_EEVEE ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 0.3 ; length
 	weight 6.5 ; weight
-	tx EeveeDescription3 ; description
+	tx EeveeLv12Description ; description
 	db AI_INFO_BENCH_UTILITY | HAS_EVOLUTION ; AI info
 
 PorygonLv12Card:
@@ -6876,8 +6876,8 @@ PorygonLv12Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text187a ; name
-	tx Text187b ; description
+	tx Conversion1Name ; name
+	tx Conversion1Description ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6890,8 +6890,8 @@ PorygonLv12Card:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text187c ; name
-	tx Text187d ; description
+	tx Conversion2Name ; name
+	tx Conversion2Description ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -6905,13 +6905,13 @@ PorygonLv12Card:
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text187e ; category
+	tx VirtualName ; category
 	db DEX_PORYGON ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 0.8 ; length
 	weight 36.5 ; weight
-	tx PorygonDescription1 ; description
+	tx PorygonLv12Description ; description
 	db NONE ; AI info
 
 PorygonLv18Card:
@@ -6928,8 +6928,8 @@ PorygonLv18Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1880 ; name
-	tx Text1881 ; description
+	tx Porygon3DAttackName ; name
+	tx Porygon3DAttack10DamageDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
@@ -6938,12 +6938,12 @@ PorygonLv18Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_216 ; animation
+	db ATK_ANIM_3D_ATTACK ; animation
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text187c ; name
-	tx Text187d ; description
+	tx Conversion2Name ; name
+	tx Conversion2Description ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -6957,13 +6957,13 @@ PorygonLv18Card:
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text187e ; category
+	tx VirtualName ; category
 	db DEX_PORYGON ; Pokedex number
 	db FALSE ; is Dark
 	db 18 ; level
 	length 0.8 ; length
 	weight 36.5 ; weight
-	tx PorygonDescription2 ; description
+	tx PorygonSharedDescription ; description
 	db NONE ; AI info
 
 PorygonLv20Card:
@@ -6980,8 +6980,8 @@ PorygonLv20Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text187a ; name
-	tx Text1883 ; description
+	tx Conversion1Name ; name
+	tx Conversion1AltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -6994,8 +6994,8 @@ PorygonLv20Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text13df ; name
-	tx Text1336 ; description
+	tx PsybeamName ; name
+	tx MayInflictConfusionDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7004,18 +7004,18 @@ PorygonLv20Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_169 ; animation
+	db ATK_ANIM_PSYBEAM ; animation
 
 	db 0 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text187e ; category
+	tx VirtualName ; category
 	db DEX_PORYGON ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 0.8 ; length
 	weight 36.5 ; weight
-	tx PorygonDescription3 ; description
+	tx PorygonLv20Description ; description
 	db NONE ; AI info
 
 CoolPorygonCard:
@@ -7032,8 +7032,8 @@ CoolPorygonCard:
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
-	tx Text1886 ; name
-	tx Text1887 ; description
+	tx TextureMagicName ; name
+	tx TextureMagicDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7046,8 +7046,8 @@ CoolPorygonCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text1880 ; name
-	tx Text1888 ; description
+	tx Porygon3DAttackName ; name
+	tx Porygon3DAttack20DamageDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
@@ -7056,18 +7056,18 @@ CoolPorygonCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_216 ; animation
+	db ATK_ANIM_3D_ATTACK ; animation
 
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text187e ; category
+	tx VirtualName ; category
 	db DEX_PORYGON ; Pokedex number
 	db FALSE ; is Dark
 	db 15 ; level
 	length 0.8 ; length
 	weight 36.5 ; weight
-	tx PorygonDescription2 ; description
+	tx PorygonSharedDescription ; description
 	db NONE ; AI info
 
 SnorlaxLv20Card:
@@ -7084,8 +7084,8 @@ SnorlaxLv20Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text188a ; name
-	tx Text188b ; description
+	tx ThickSkinnedName ; name
+	tx ThickSkinnedDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7098,8 +7098,8 @@ SnorlaxLv20Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text151d ; name
-	tx Text132f ; description
+	tx BodySlamName ; name
+	tx MayInflictParalysisDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7113,13 +7113,13 @@ SnorlaxLv20Card:
 	db 4 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text188c ; category
+	tx SleepingName ; category
 	db DEX_SNORLAX ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 2.1 ; length
 	weight 460.0 ; weight
-	tx SnorlaxDescription1 ; description
+	tx SnorlaxLv20Description ; description
 	db NONE ; AI info
 
 SnorlaxLv35Card:
@@ -7136,8 +7136,8 @@ SnorlaxLv35Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text188e ; name
-	tx Text188f ; description
+	tx GuardName ; name
+	tx GuardDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7150,8 +7150,8 @@ SnorlaxLv35Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text1890 ; name
-	tx Text1891 ; description
+	tx RollOverName ; name
+	tx RollOverDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7160,18 +7160,18 @@ SnorlaxLv35Card:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_218 ; animation
+	db ATK_ANIM_ROLL_OVER ; animation
 
 	db 4 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text188c ; category
+	tx SleepingName ; category
 	db DEX_SNORLAX ; Pokedex number
 	db FALSE ; is Dark
 	db 35 ; level
 	length 2.1 ; length
 	weight 460.0 ; weight
-	tx SnorlaxDescription2 ; description
+	tx SnorlaxLv35Description ; description
 	db NONE ; AI info
 
 HungrySnorlaxCard:
@@ -7188,8 +7188,8 @@ HungrySnorlaxCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text1894 ; name
-	tx Text1895 ; description
+	tx EatName ; name
+	tx EatDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -7202,8 +7202,8 @@ HungrySnorlaxCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text134d ; name
-	tx Text1896 ; description
+	tx RolloutName ; name
+	tx RolloutDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -7217,7 +7217,7 @@ HungrySnorlaxCard:
 	db 4 ; retreat cost
 	db WR_FIGHTING ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text188c ; category
+	tx SleepingName ; category
 	db DEX_SNORLAX ; Pokedex number
 	db FALSE ; is Dark
 	db 50 ; level
@@ -7240,7 +7240,7 @@ DratiniLv10Card:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text14de ; name
+	tx PoundName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
@@ -7269,13 +7269,13 @@ DratiniLv10Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRATINI ; Pokedex number
 	db FALSE ; is Dark
 	db 10 ; level
 	length 1.8 ; length
 	weight 3.3 ; weight
-	tx DratiniDescription1 ; description
+	tx DratiniLv10Description ; description
 	db AI_INFO_ENCOURAGE_EVO | HAS_EVOLUTION ; AI info
 
 DratiniLv12Card:
@@ -7292,8 +7292,8 @@ DratiniLv12Card:
 
 	; attack 1
 	energy COLORLESS, 2 ; energies
-	tx Text1357 ; name
-	tx Text1363 ; description
+	tx WrapName ; name
+	tx MayInflictParalysisAltDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7321,13 +7321,13 @@ DratiniLv12Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRATINI ; Pokedex number
 	db FALSE ; is Dark
 	db 12 ; level
 	length 1.8 ; length
 	weight 3.3 ; weight
-	tx DratiniDescription2 ; description
+	tx DratiniLv12Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 DragonairCard:
@@ -7344,8 +7344,8 @@ DragonairCard:
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
-	tx Text189c ; name
-	tx Text1352 ; description
+	tx SlamName ; name
+	tx Do30DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
@@ -7358,8 +7358,8 @@ DragonairCard:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text1506 ; name
-	tx Text1507 ; description
+	tx HyperBeamName ; name
+	tx HyperBeamDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7373,7 +7373,7 @@ DragonairCard:
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONAIR ; Pokedex number
 	db FALSE ; is Dark
 	db 33 ; level
@@ -7396,8 +7396,8 @@ DarkDragonairCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text189f ; name
-	tx Text18a0 ; description
+	tx EvolutionaryLightName ; name
+	tx EvolutionaryLightDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7410,8 +7410,8 @@ DarkDragonairCard:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text18a1 ; name
-	tx Text15e2 ; description
+	tx TailStrikeName ; name
+	tx QuickAttackAltDescription1 ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -7420,12 +7420,12 @@ DarkDragonairCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_200 ; animation
+	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONAIR ; Pokedex number
 	db TRUE ; is Dark
 	db 28 ; level
@@ -7448,8 +7448,8 @@ DragoniteLv41Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text18a4 ; name
-	tx Text18a5 ; description
+	tx HealingWindName ; name
+	tx HealingWindDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7462,8 +7462,8 @@ DragoniteLv41Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text189c ; name
-	tx Text1352 ; description
+	tx SlamName ; name
+	tx Do30DamageNumberOfHeadsDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
@@ -7477,13 +7477,13 @@ DragoniteLv41Card:
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONITE ; Pokedex number
 	db FALSE ; is Dark
 	db 41 ; level
 	length 2.2 ; length
 	weight 210.0 ; weight
-	tx DragoniteDescription1 ; description
+	tx DragoniteLv41Description ; description
 	db NONE ; AI info
 
 DragoniteLv43Card:
@@ -7500,8 +7500,8 @@ DragoniteLv43Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text18a7 ; name
-	tx Text18a8 ; description
+	tx SpecialDeliveryName ; name
+	tx SpecialDeliveryDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7514,8 +7514,8 @@ DragoniteLv43Card:
 
 	; attack 2
 	energy COLORLESS, 3 ; energies
-	tx Text18a9 ; name
-	tx Text138c ; description
+	tx SupersonicFlightName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 60 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7529,13 +7529,13 @@ DragoniteLv43Card:
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONITE ; Pokedex number
 	db FALSE ; is Dark
 	db 43 ; level
 	length 2.2 ; length
 	weight 210.0 ; weight
-	tx DragoniteDescription2 ; description
+	tx DragoniteSharedDescription ; description
 	db NONE ; AI info
 
 DragoniteLv45Card:
@@ -7552,8 +7552,8 @@ DragoniteLv45Card:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text18ab ; name
-	tx Text18ac ; description
+	tx StepInName ; name
+	tx StepInDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7566,8 +7566,8 @@ DragoniteLv45Card:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text189c ; name
-	tx Text18ad ; description
+	tx SlamName ; name
+	tx SlamDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_X ; category
@@ -7581,13 +7581,13 @@ DragoniteLv45Card:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONITE ; Pokedex number
 	db FALSE ; is Dark
 	db 45 ; level
 	length 2.2 ; length
 	weight 210.0 ; weight
-	tx DragoniteDescription2 ; description
+	tx DragoniteSharedDescription ; description
 	db NONE ; AI info
 
 DarkDragoniteCard:
@@ -7604,8 +7604,8 @@ DarkDragoniteCard:
 
 	; attack 1
 	energy 0 ; energies
-	tx Text18af ; name
-	tx Text18b0 ; description
+	tx SummonMinionsName ; name
+	tx SummonMinionsDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
@@ -7618,8 +7618,8 @@ DarkDragoniteCard:
 
 	; attack 2
 	energy COLORLESS, 4 ; energies
-	tx Text18b1 ; name
-	tx Text138c ; description
+	tx GiantTailName ; name
+	tx IfTailsDoNothingAltDescription ; description
 	dw NONE ; description (cont)
 	db 70 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7628,12 +7628,12 @@ DarkDragoniteCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_200 ; animation
+	db ATK_ANIM_TAIL_SLAP ; animation
 
 	db 2 ; retreat cost
 	db NONE ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text1558 ; category
+	tx DragonName ; category
 	db DEX_DRAGONITE ; Pokedex number
 	db TRUE ; is Dark
 	db 33 ; level
@@ -7656,8 +7656,8 @@ TogepiCard:
 
 	; attack 1
 	energy COLORLESS, 1 ; energies
-	tx Text16cb ; name
-	tx Text18b4 ; description
+	tx SnivelName ; name
+	tx SnivelAltDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
@@ -7670,8 +7670,8 @@ TogepiCard:
 
 	; attack 2
 	energy COLORLESS, 2 ; energies
-	tx Text1800 ; name
-	tx Text18b5 ; description
+	tx MetronomeName ; name
+	tx MetronomeCoinTossDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -7685,7 +7685,7 @@ TogepiCard:
 	db 1 ; retreat cost
 	db NONE ; weakness
 	db WR_PSYCHIC ; resistance
-	tx Text18b6 ; category
+	tx SpikeBallName ; category
 	db DEX_TOGEPI ; Pokedex number
 	db FALSE ; is Dark
 	db 8 ; level
@@ -7708,8 +7708,8 @@ LugiaCard:
 
 	; attack 1
 	energy COLORLESS, 3 ; energies
-	tx Text18b9 ; name
-	tx Text18ba ; description
+	tx AeroblastName ; name
+	tx AeroblastDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
@@ -7718,7 +7718,7 @@ LugiaCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0 ; ?
-	db ATK_ANIM_23 ; animation
+	db ATK_ANIM_AEROBLAST ; animation
 
 	; attack 2
 	energy 0 ; energies
@@ -7737,7 +7737,7 @@ LugiaCard:
 	db 2 ; retreat cost
 	db WR_PSYCHIC ; weakness
 	db WR_FIGHTING ; resistance
-	tx Text18bb ; category
+	tx DivingName ; category
 	db DEX_LUGIA ; Pokedex number
 	db FALSE ; is Dark
 	db 55 ; level

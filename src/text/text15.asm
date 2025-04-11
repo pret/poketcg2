@@ -1,11 +1,11 @@
-Text1458:
+GrowlDescription:
 	textfw "次の相手の番、"
 	linefw "このワザを受けた", "[相手]", "が、"
 	linefw "このカードに与えるダメージは"
 	linefw "「-10」される。"
 	done
 
-CharmanderDescription3:
+CharmanderLv12Description:
 	textfw "熱いものを好む性格。雨に濡れると"
 	linefw "尻尾の先から煙が出るという。"
 	done
@@ -14,11 +14,11 @@ CharmeleonName:
 	textfw "リザード"
 	done
 
-Text145b:
+FlamethrowerName:
 	textfw "かえんほうしゃ"
 	done
 
-Text145c:
+FlameName:
 	textfw "かえん"
 	done
 
@@ -32,15 +32,15 @@ DarkCharmeleonName:
 	textfw "わるいリザード"
 	done
 
-Text145f:
+TailSlapName:
 	textfw "しっぽでたたく"
 	done
 
-Text1460:
+FireballName:
 	textfw "ファイヤーボール"
 	done
 
-Text1461:
+FireballDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "このワザは失敗する。「おもて」なら、"
 	linefw "[自分]", "についている「炎」エネルギー"
@@ -58,11 +58,11 @@ CharizardName:
 	textfw "リザードン"
 	done
 
-Text1464:
+EnergyBurnName:
 	textfw "エナジーバーン"
 	done
 
-Text1465:
+EnergyBurnDescription:
 	textfw "この力は、自分の番の中で何度でも使え"
 	linefw "る。このカードについているすべての"
 	linefw "エネルギーは「炎」エネルギーになり、"
@@ -71,11 +71,11 @@ Text1465:
 	linefw "」状態のとき、この力は使えない。"
 	done
 
-Text1466:
+FireSpinName:
 	textfw "ほのおのうず"
 	done
 
-Text1467:
+FireSpinDescription:
 	textfw "[自分]", "についている「エネルギーカード"
 	linefw "」を2枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
@@ -97,15 +97,15 @@ DarkCharizardName:
 	textfw "わるいリザードン"
 	done
 
-Text146b:
+NailFlickName:
 	textfw "つめではじく"
 	done
 
-Text146c:
+ContinuousFireballName:
 	textfw "れんぞくファイヤーボール"
 	done
 
-Text146d:
+ContinuousFireballDescription:
 	textfw "[自分]", "についている「炎」エネルギーカ"
 	linefw "ードの数だけコインを投げ、「おもて」"
 	linefw "の数×50のダメージ。その後、「おも"
@@ -124,24 +124,24 @@ VulpixName:
 	textfw "ロコン"
 	done
 
-Text1470:
+ConfuseRayName:
 	textfw "あやしいひかり"
 	done
 
-Text1471:
+FoxName:
 	textfw "きつね"
 	done
 
-VulpixDescription1:
+VulpixLv11Description:
 	textfw "子どもだが6本の尻尾が美しい。"
 	linefw "成長するとさらに尻尾が増える。"
 	done
 
-Text1473:
+FoxFireName:
 	textfw "きつねび"
 	done
 
-Text1474:
+FoxFireDescription:
 	textfw "のぞむなら、ダメージを与える前に"
 	linefw "相手の控えポケモンを1匹選び、"
 	linefw "[相手]", "と入れ替えてよい。"
@@ -149,7 +149,7 @@ Text1474:
 	linefw "あたえる)"
 	done
 
-VulpixDescription2:
+VulpixLv13Description:
 	textfw "生まれた時、しっぽは真っ白で1本"
 	linefw "しかない。育つと、やがて先が分れて"
 	linefw "しっぽが増える。"
@@ -159,24 +159,24 @@ NinetalesName:
 	textfw "キュウコン"
 	done
 
-Text1477:
+LureAltName:
 	textfw "かどわかす"
 	done
 
-Text1478:
+FireBlastName:
 	textfw "だいもんじ"
 	done
 
-NinetalesDescription1:
+NinetalesLv32Description:
 	textfw "黃金に輝く体毛と9本の長い尻尾を持つ"
 	linefw "1000年は生きると言われている。"
 	done
 
-Text147a:
+MixUpName:
 	textfw "かきみだす"
 	done
 
-Text147b:
+MixUpDescription:
 	textfw "相手の手札に「たねポケモン」または「"
 	linefw "進化カード」があれば、それらはすべて"
 	linefw "山札にもどる。その後、相手の山札から"
@@ -186,16 +186,16 @@ Text147b:
 	linefw "切る。"
 	done
 
-Text147c:
+DancingEmbersName:
 	textfw "ひのこのまい"
 	done
 
-Text147d:
+DancingEmbersDescription:
 	textfw "コインを8枚投げ、「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-NinetalesDescription2:
+NinetalesLv35Description:
 	textfw "頭が良くて執念深い。"
 	linefw "ふざけてしっぽを掴むと1000年"
 	linefw "祟られるという。"
@@ -205,22 +205,22 @@ DarkNinetalesName:
 	textfw "わるいキュウコン"
 	done
 
-Text1480:
+PerplexName:
 	textfw "まどわす"
 	done
 
-Text1481:
+PerplexDescription:
 	textfw "相手プレイヤーは、コインを投げ「うら"
 	linefw "」がでたら、次の相手プレイヤーの番の"
 	linefw "最初、山札からカードを引くことができ"
 	linefw "ない。"
 	done
 
-Text1482:
+NineTailsName:
 	textfw "9ほんのしっぽ"
 	done
 
-Text1483:
+NineTailsDescription:
 	textfw "コインを9枚投げ、「おもて」の数"
 	linefw "×10のダメージ。"
 	done
@@ -234,24 +234,24 @@ GrowlitheName:
 	textfw "ガーディ"
 	done
 
-Text1486:
+LungeName:
 	textfw "とびかかる"
 	done
 
-Text1487:
+PuppyName:
 	textfw "こいぬ"
 	done
 
-GrowlitheDescription1:
+GrowlitheLv12Description:
 	textfw "ひとなつっこい性格だが、なわばりに"
 	linefw "入ってきた敵に対しては、激しく吠える"
 	done
 
-Text1489:
+ErrandRunningName:
 	textfw "おつかい"
 	done
 
-Text148a:
+ErrandRunningDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "自分の山札から「トレーナーカード」を"
 	linefw "1枚選び出し、相手プレイヤーに見せて"
@@ -259,24 +259,24 @@ Text148a:
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text148b:
+DiscardOneFireEnergyAltDescription:
 	textfw "[自分]", "についている「炎」エネルギーカ"
 	linefw "ードを1枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
 	linefw "なくなる"
 	done
 
-GrowlitheDescription2:
+GrowlitheLv16Description:
 	textfw "なわばり意識がとても強い。"
 	linefw "ゆだんして近づくとほえられ、"
 	linefw "かみつかれ、痛い目にあう。"
 	done
 
-Text148d:
+FlareName:
 	textfw "ほのお"
 	done
 
-GrowlitheDescription3:
+GrowlitheLv18Description:
 	textfw "ひとなつこく誠実な性格。"
 	linefw "敵には吠えてかみつき、追いはらおうと"
 	linefw "する。"
@@ -286,20 +286,20 @@ ArcanineName:
 	textfw "ウィンディ"
 	done
 
-Text1490:
+QuickAttackName:
 	textfw "でんこうせっか"
 	done
 
-Text1491:
+QuickAttackDescription:
 	textfw "コインを投げて「おもて」なら、20ダ"
 	linefw "メージを追加する。"
 	done
 
-Text1492:
+FlamesOfRageName:
 	textfw "いかりのほのお"
 	done
 
-Text1493:
+FlamesOfRageDescription:
 	textfw "[自分]", "についている「炎」エネルギーカ"
 	linefw "ードを2枚トラッシュして、", "[自分]", "に"
 	linefw "のっているダメージカウンターの数"
@@ -308,34 +308,34 @@ Text1493:
 	linefw "ダメージはなくなる。"
 	done
 
-Text1494:
+LegendaryName:
 	textfw "でんせつ"
 	done
 
-ArcanineDescription1:
+ArcanineLv34Description:
 	textfw "昔から多くの人をとりこにした、"
 	linefw "美しいポケモン。"
 	linefw "跳ぶように、軽やかに走る。"
 	done
 
-Text1496:
+TakeDownName:
 	textfw "とっしん"
 	done
 
-Text1497:
+Do20DamageToSelfDescription:
 	textfw "[自分]", "にも20ダメージ。"
 	done
 
-ArcanineDescription2:
+ArcanineLv35Description:
 	textfw "中国で伝説のポケモン。かろやかに走る"
 	linefw "その姿に、とりこにされる者も多い。"
 	done
 
-Text1499:
+Do30DamageToSelfDescription:
 	textfw "[自分]", "にも30ダメージ。"
 	done
 
-ArcanineDescription3:
+ArcanineLv45Description:
 	textfw "中国の言い伝えのある伝説のポケモン。"
 	linefw "ものすごいスピードで走るという。"
 	done
@@ -344,37 +344,37 @@ PonytaName:
 	textfw "ポニータ"
 	done
 
-Text149c:
+SmashKickName:
 	textfw "けとばす"
 	done
 
-Text149d:
+FireworksName:
 	textfw "ひばな"
 	done
 
-Text149e:
+FireworksDescription:
 	textfw "コインを投げて「うら」なら、", "[自分]", "に"
 	linefw "ついている「エネルギーカード」を1枚"
 	linefw "選び、トラッシュする。"
 	done
 
-Text149f:
+FireHorseName:
 	textfw "ひのうま"
 	done
 
-PonytaDescription1:
+PonytaLv8Description:
 	textfw "足のヒヅメはダイヤモンドの10倍"
 	linefw "かたい。どんなものでもペチャンコに"
 	linefw "ふみつぶしてしまう。"
 	done
 
-PonytaDescription2:
+PonytaLv10Description:
 	textfw "体が軽く足の力がものすごい。"
 	linefw "1回のジャンプで東京タワーも"
 	linefw "飛び越える。"
 	done
 
-PonytaDescription3:
+PonytaLv15Description:
 	textfw "草食性で温厚な性格なので、やけどに"
 	linefw "さえ気をつければ、背中に乗ることも"
 	linefw "できる。"
@@ -384,11 +384,11 @@ RapidashName:
 	textfw "ギャロップ"
 	done
 
-Text14a4:
+FlameInfernoName:
 	textfw "かえんじごく"
 	done
 
-Text14a5:
+FlameInfernoDescription:
 	textfw "のぞむなら、", "[自分]", "についている"
 	linefw "「炎」エネルギーカードを2枚まで"
 	linefw "トラッシュし、トラッシュした"
@@ -396,42 +396,42 @@ Text14a5:
 	linefw "ダメージを追加してよい。"
 	done
 
-Text14a6:
+KickAwayName:
 	textfw "けりとばす"
 	done
 
-Text14a7:
+SwitchWithBenchedMonDescription:
 	textfw "[相手]", "を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
 	linefw "おこらない)"
 	done
 
-RapidashDescription1:
+RapidashLv30Description:
 	textfw "速く動く物体をみると競争したくなり、"
 	linefw "猛烈なスピードで追いかけ始める。"
 	done
 
-Text14a9:
+StompName:
 	textfw "ふみつけ"
 	done
 
-Text14aa:
+StompDescription:
 	textfw "コインを投げて「おもて」なら、10ダ"
 	linefw "メージを追加する。"
 	done
 
-Text14ab:
+AgilityName:
 	textfw "こうそくいどう"
 	done
 
-Text14ac:
+AgilityDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このカードはワザによる"
 	linefw "ダメージや効果を受けない。"
 	done
 
-RapidashDescription2:
+RapidashLv33Description:
 	textfw "時速は最高240キロ。"
 	linefw "メラメラ燃えながら新幹線と"
 	linefw "同じスピードでかけぬける。"
@@ -441,15 +441,15 @@ DarkRapidashName:
 	textfw "わるいギャロップ"
 	done
 
-Text14af:
+RearKickName:
 	textfw "うしろげり"
 	done
 
-Text14b0:
+FlamePillarName:
 	textfw "ひばしら"
 	done
 
-Text14b1:
+FlamePillarDescription:
 	textfw "のぞむなら、", "[自分]", "についている「炎」"
 	linefw "エネルギーカードを1枚トラッシュし、"
 	linefw "その後、相手の控えポケモンを1匹"
@@ -466,31 +466,31 @@ MagmarName:
 	textfw "ブーバー"
 	done
 
-Text14b4:
+FirePunchName:
 	textfw "ほのおパンチ"
 	done
 
-Text14b5:
+SpitfireName:
 	textfw "ひふき"
 	done
 
-MagmarDescription1:
+MagmarLv18Description:
 	textfw "火山の火口から生まれた。全身が"
 	linefw "燃えているため、火の玉と見分けが"
 	linefw "つかない。"
 	done
 
-MagmarDescription2:
+MagmarLv24Description:
 	textfw "火山の火口近くでみつかった。"
 	linefw "口から炎をはく。"
 	linefw "体温は1200℃もある。"
 	done
 
-Text14b8:
+BurningFireName:
 	textfw "ファイヤーバーン"
 	done
 
-Text14b9:
+BurningFireDescription:
 	textfw "のぞむなら、", "[自分]", "や自分の控え"
 	linefw "ポケモンについている「炎」エネルギー"
 	linefw "カードを好きなだけトラッシュして、"
@@ -498,26 +498,26 @@ Text14b9:
 	linefw "追加してよい。"
 	done
 
-Text14ba:
+MagmaPunchName:
 	textfw "マグマパンチ"
 	done
 
-MagmarDescription3:
+MagmarLv27Description:
 	textfw "自らオレンジ色に燃えていて、炎の中に"
 	linefw "かくれると、全く見分けがつかなくなる"
 	done
 
-Text14bc:
+SmokescreenName:
 	textfw "えんまく"
 	done
 
-Text14bd:
+SmokescreenDescription:
 	textfw "次の相手の番、このワザを受けた", "[相手]"
 	linefw "は、ワザを使うときにコインを投げ、"
 	linefw "「うら」なら、そのワザは失敗する。"
 	done
 
-MagmarDescription4:
+MagmarLv31Description:
 	textfw "火山の火口の近くで見つかった。"
 	linefw "非常に見つけにくいポケモンで、"
 	linefw "捕獲例は少ない。"
@@ -531,22 +531,22 @@ EeveeName:
 	textfw "イーブイ"
 	done
 
-Text14c1:
+RageName:
 	textfw "いかり"
 	done
 
-Text14c2:
+RageDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "の数×10のダメージを追加する。"
 	done
 
-FlareonDescription1:
+FlareonLv22Description:
 	textfw "体に炎をためてるとき、"
 	linefw "体温が900度以上に上がるので"
 	linefw "非常に危険。"
 	done
 
-FlareonDescription2:
+FlareonLv28Description:
 	textfw "体内に炎袋があり深く息を吸いこんだ後"
 	linefw "1700℃の火をはく。"
 	done
@@ -555,11 +555,11 @@ DarkFlareonName:
 	textfw "わるいブースター"
 	done
 
-Text14c6:
+PlayingWithFireName:
 	textfw "ひあそび"
 	done
 
-Text14c7:
+PlayingWithFireDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[自分]", "についている「炎」エネルギー"
 	linefw "カードをトラッシュして、20ダメージ"
@@ -577,11 +577,11 @@ MoltresName:
 	textfw "ファイヤー"
 	done
 
-Text14ca:
+WildfireName:
 	textfw "やまやき"
 	done
 
-Text14cb:
+WildfireDescription:
 	textfw "[自分]", "についている「炎」エネルギー"
 	linefw "カードを、好きなだけトラッシュする。"
 	linefw "その後、トラッシュしたのと同じ枚数の"
@@ -589,21 +589,21 @@ Text14cb:
 	linefw "トラッシュする。"
 	done
 
-Text14cc:
+DiveBombName:
 	textfw "ゴットバード"
 	done
 
-MoltresDescription1:
+MoltresLv35Description:
 	textfw "伝説の鳥ポケモンの一匹。"
 	linefw "オレンジ色の燃えるような翼は"
 	linefw "見るものを圧倒する。"
 	done
 
-Text14ce:
+DryUpName:
 	textfw "ドライアップ"
 	done
 
-Text14cf:
+DryUpDescription:
 	textfw "相手の場のポケモンを1匹選ぶ。"
 	linefw "その後、「うら」が出るまでコインを"
 	linefw "投げ続け、「おもて」の数ぶんの「水」"
@@ -611,21 +611,21 @@ Text14cf:
 	linefw "はがしてトラッシュする。"
 	done
 
-Text14d0:
+FireWingDescription:
 	textfw "ほのおのつばさ"
 	done
 
-MoltresDescription2:
+MoltresSharedDescription:
 	textfw "昔から火の鳥伝説として知られる。"
 	linefw "はばたくたびにハネが明るく燃え上がり"
 	linefw "美しい。"
 	done
 
-Text14d2:
+FiregiverName:
 	textfw "ほのおをもたらす"
 	done
 
-Text14d3:
+FiregiverDescription:
 	textfw "この力は、このカードを手札から場に"
 	linefw "出したとき、1度だけ使える。(対戦の"
 	linefw "初めに場に出したときには、使えない)"
@@ -635,7 +635,7 @@ Text14d3:
 	linefw "ドの枚数は、自動的に決まる。"
 	done
 
-Text14d4:
+FiregiverDescriptionCont:
 	textfw "その後、その山札をよく切る。"
 	done
 
@@ -643,57 +643,57 @@ SquirtleName:
 	textfw "ゼニガメ"
 	done
 
-Text14d6:
+BubbleName:
 	textfw "あわ"
 	done
 
-Text14d7:
+WithdrawName:
 	textfw "からにこもる"
 	done
 
-Text14d8:
+TinyTurtleName:
 	textfw "かめのこ"
 	done
 
-SquirtleDescription1:
+SquirtleLv8Description:
 	textfw "長い首を甲羅の中に引っ込める時、"
 	linefw "勢いよく水を発射する。"
 	done
 
-Text14da:
+SkullBashName:
 	textfw "ロケットずつき"
 	done
 
-SquirtleDescription2:
+SquirtleLv14Description:
 	textfw "水面から水を噴射して、エサをとる。"
 	linefw "危なくなると甲羅に手足をひっこめて"
 	linefw "身を守る。"
 	done
 
-Text14dc:
+WaterPowerName:
 	textfw "ウォーターパワー"
 	done
 
-Text14dd:
+WaterPowerDescription:
 	textfw "次の自分の番、このカードが使う"
 	linefw "「はたく」のダメージは3倍になる。"
 	done
 
-Text14de:
+PoundName:
 	textfw "はたく"
 	done
 
-SquirtleDescription3:
+SquirtleLv15Description:
 	textfw "生まれた後、背中がふくらみ、"
 	linefw "固い甲羅ができる。口から強力な"
 	linefw "あわをだす。"
 	done
 
-Text14e0:
+ShellAttackName:
 	textfw "こうらアタック"
 	done
 
-SquirtleDescription4:
+SquirtleLv16Description:
 	textfw "つぶらな瞳が魅力的なポケモンだ。"
 	linefw "水の中で泳ぐのが好きらしい。"
 	done
@@ -702,21 +702,21 @@ WartortleName:
 	textfw "カメール"
 	done
 
-Text14e3:
+TurtleName:
 	textfw "かめ"
 	done
 
-WartortleDescription1:
+WartortleLv22Description:
 	textfw "ペットとして人気が高い。"
 	linefw "また毛で覆われたしっぽは"
 	linefw "長生きするシンボルだ。"
 	done
 
-Text14e5:
+SurfName:
 	textfw "なみのり"
 	done
 
-WartortleDescription2:
+WartortleLv24Description:
 	textfw "ポカンと頭をたたかれるとき、甲羅に"
 	linefw "ひっこんでよける。でも、ちょっとだけ"
 	linefw "シッポがでているよ。"
@@ -726,20 +726,20 @@ DarkWartortleName:
 	textfw "わるいカメール"
 	done
 
-Text14e8:
+DoubleSlapName:
 	textfw "おうふくびんた"
 	done
 
-Text14e9:
+Do10DamageNumberOfHeadsDescription:
 	textfw "コインを2枚投げて「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-Text14ea:
+MirrorShellName:
 	textfw "こうらがえし"
 	done
 
-Text14eb:
+MirrorShellDescription:
 	textfw "次の相手の番、このカードがワザによる"
 	linefw "ダメージを受けたとき(このカードが「"
 	linefw "きぜつ」しても)、ダメージを与えたポ"
@@ -757,11 +757,11 @@ BlastoiseName:
 	textfw "カメックス"
 	done
 
-Text14ee:
+RainDanceName:
 	textfw "あまごい"
 	done
 
-Text14ef:
+RainDanceDescription:
 	textfw "この力は、自分の番の中で何度でも使え"
 	linefw "る。自分の手札から「水」エネルギーカ"
 	linefw "ードを出して、自分の場の「水」ポケモ"
@@ -770,11 +770,11 @@ Text14ef:
 	linefw "使えない。"
 	done
 
-Text14f0:
+HydroPumpName:
 	textfw "ハイドロポンプ"
 	done
 
-Text14f1:
+Do20DamagePlus10WaterEnergyDescription:
 	textfw "ワザに必要なエネルギーよりも多く"
 	linefw "「水」エネルギーがついているとき、"
 	linefw "多い「水」エネルギー1個につき、"
@@ -782,7 +782,7 @@ Text14f1:
 	linefw "ダメージ追加は2個ぶんまで。"
 	done
 
-Text14f2:
+ShellfishName:
 	textfw "こうら"
 	done
 
@@ -802,11 +802,11 @@ DarkBlastoiseName:
 	textfw "わるいカメックス"
 	done
 
-Text14f6:
+HydrocannonName:
 	textfw "ハイドロキャノン"
 	done
 
-Text14f7:
+HydrocannonDescription:
 	textfw "ワザに必要なエネルギーよりも多く"
 	linefw "「水」エネルギーがついているとき、"
 	linefw "多い「水」エネルギー1個につき、20"
@@ -814,11 +814,11 @@ Text14f7:
 	linefw "2個ぶんまで。"
 	done
 
-Text14f8:
+RocketTackleName:
 	textfw "ロケットタックル"
 	done
 
-Text14f9:
+RocketTackleDescription:
 	textfw "[自分]", "にも10ダメージ。"
 	linefw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このカードはダメージを"
@@ -835,39 +835,39 @@ PsyduckName:
 	textfw "コダック"
 	done
 
-Text14fc:
+HeadacheName:
 	textfw "ずつう"
 	done
 
-Text14fd:
+HeadacheDescription:
 	textfw "次の相手の番の終わりまで、"
 	linefw "相手プレイヤーは「トレーナーカード」"
 	linefw "を使うことができない。"
 	done
 
-Text14fe:
+DuckName:
 	textfw "あひる"
 	done
 
-PsyduckDescription1:
+PsyduckLv15Description:
 	textfw "いつも頭痛に悩まされている。"
 	linefw "この頭痛が激しくなると"
 	linefw "不思議な力を使い始める。"
 	done
 
-Text1500:
+DizzinessName:
 	textfw "めまい"
 	done
 
-Text1501:
+DizzinessDescription:
 	textfw "山札からカードを1枚引く。"
 	done
 
-Text1502:
+WaterGunName:
 	textfw "みずでっぽう"
 	done
 
-PsyduckDescription2:
+PsyduckLv16Description:
 	textfw "頭痛に悩まされるためか、頭をかかえて"
 	linefw "いることが多い。"
 	done
@@ -876,39 +876,39 @@ GolduckName:
 	textfw "ゴルダック"
 	done
 
-Text1505:
+PsyshockName:
 	textfw "ねんりき"
 	done
 
-Text1506:
+HyperBeamName:
 	textfw "はかいこうせん"
 	done
 
-Text1507:
+HyperBeamDescription:
 	textfw "[相手]", "についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	done
 
-GolduckDescription1:
+GolduckLv27Description:
 	textfw "手のひらが水かきになっていて"
 	linefw "泳ぐのが得意。"
 	linefw "湖などで優雅な姿が見かけられる。"
 	done
 
-Text1509:
+PsychicName:
 	textfw "サイコキネシス"
 	done
 
-Text150a:
+PsychicDescription:
 	textfw "[相手]", "についているエネルギーカード"
 	linefw "×10のダメージを追加する。"
 	done
 
-Text150b:
+WaveSplashName:
 	textfw "スプラッシュ"
 	done
 
-GolduckDescription2:
+GolduckLv28Description:
 	textfw "夕方、湖のほとりをかれいに泳ぐ姿を"
 	linefw "カッパと間違える人がいる。"
 	done
@@ -917,18 +917,18 @@ DarkGolduckName:
 	textfw "わるいゴルダック"
 	done
 
-Text150e:
+ThirdEyeName:
 	textfw "だい3のめ"
 	done
 
-Text150f:
+ThirdEyeDescription:
 	textfw "[自分]", "についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	linefw "その後、自分の山札からカードを3枚"
 	linefw "引く。"
 	done
 
-Text1510:
+SuperPsyName:
 	textfw "ちょうねんりき"
 	done
 
@@ -941,7 +941,7 @@ PoliwagName:
 	textfw "ニョロモ"
 	done
 
-Text1513:
+Do20DamagePlus10WaterEnergyAltDescription1:
 	textfw "ワザに必要なエネルギーよりも多く"
 	linefw "「水」エネルギーがついているとき、"
 	linefw "多い「水」エネルギー1個につき、10"
@@ -949,16 +949,16 @@ Text1513:
 	linefw "2個ぶんまで。"
 	done
 
-Text1514:
+TadpoleName:
 	textfw "おたま"
 	done
 
-PoliwagDescription1:
+PoliwagLv13Description:
 	textfw "スベスベした黑い皮膚は薄く湿っている"
 	linefw "内臓の一部が透けて渦巻状にみえる。"
 	done
 
-PoliwagDescription2:
+PoliwagLv15Description:
 	textfw "まだ足がはえたばかりでうまく歩けない"
 	linefw "水の中を歩いているほうが好きなようだ"
 	done
@@ -967,35 +967,35 @@ PoliwhirlName:
 	textfw "ニョロゾ"
 	done
 
-Text1518:
+AmnesiaName:
 	textfw "ドわすれ"
 	done
 
-Text1519:
+AmnesiaDescription:
 	textfw "[相手]", "のワザを1つ選ぶ。次の相手の番"
 	linefw "そのポケモンは、そのワザを使えない。"
 	done
 
-PoliwhirlDescription1:
+PoliwhirlLv28Description:
 	textfw "2本の足は発達しており地上で"
 	linefw "暮らせるのに、なぜか水中生活が好き。"
 	done
 
-Text151b:
+TwiddleName:
 	textfw "ぐるぐる"
 	done
 
-Text151c:
+TwiddleDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「こんらん」状態に、"
 	linefw "「うら」なら「ねむり」状態にする。"
 	done
 
-Text151d:
+BodySlamName:
 	textfw "のしかかり"
 	done
 
-PoliwhirlDescription2:
+PoliwhirlLv30Description:
 	textfw "陸でも水中でも暮らせる。地上では"
 	linefw "いつも汗をかき、皮膚をぬめぬめ"
 	linefw "させている。"
@@ -1005,17 +1005,17 @@ PoliwrathName:
 	textfw "ニョロボン"
 	done
 
-PoliwrathDescription1:
+PoliwrathLv40Description:
 	textfw "クロールやバタフライが得意で、"
 	linefw "オリンピックの選手でもぐんぐん追い"
 	linefw "抜いてゆく。"
 	done
 
-Text1521:
+WhirlpoolName:
 	textfw "うずしお"
 	done
 
-PoliwrathDescription2:
+PoliwrathLv48Description:
 	textfw "泳ぎが得意でクロールやバタフライが"
 	linefw "できる。オリンピックの選手も"
 	linefw "かなわないほど速い。"
@@ -1025,11 +1025,11 @@ TentacoolName:
 	textfw "メノクラゲ"
 	done
 
-Text1524:
+CowardiceName:
 	textfw "おくびょう"
 	done
 
-Text1525:
+CowardiceDescription:
 	textfw "この力は、自分の番で使える。"
 	linefw "このカードについているカードをすべて"
 	linefw "トラッシュして、このカードを手札に"
@@ -1039,7 +1039,7 @@ Text1525:
 	linefw "にも、この力は使えない。"
 	done
 
-Text1526:
+JellyfishName:
 	textfw "くらげ"
 	done
 
@@ -1052,7 +1052,7 @@ TentacruelName:
 	textfw "ドククラゲ"
 	done
 
-Text1529:
+JellyfishStingName:
 	textfw "クラゲばり"
 	done
 
@@ -1066,30 +1066,30 @@ SeelName:
 	textfw "パウワウ"
 	done
 
-Text152c:
+GrowlAltDescription1:
 	textfw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "がこのカードに与えるダメージは"
 	linefw "「-10」される。"
 	done
 
-Text152d:
+IceBeamName:
 	textfw "れいとうビーム"
 	done
 
-Text152e:
+SeaLionName:
 	textfw "あしか"
 	done
 
-SeelDescription1:
+SeelLv10Description:
 	textfw "頭にでっぱりがあって非常にかたい。"
 	linefw "頭つきで氷山を割って進む。"
 	done
 
-Text1530:
+HeadbuttName:
 	textfw "ずつき"
 	done
 
-SeelDescription2:
+SeelLv12Description:
 	textfw "水色の体毛に覆われた皮膚は、"
 	linefw "ぶあつくて丈夫。"
 	linefw "零下40℃でも活動できる。"
@@ -1099,11 +1099,11 @@ DewgongName:
 	textfw "ジュゴン"
 	done
 
-Text1533:
+RestName:
 	textfw "ねむる"
 	done
 
-Text1534:
+RestDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "をすべてとりのぞき、", "[自分]", "の「どく・"
 	linefw "ねむり・マヒ・こんらん」状態を、"
@@ -1111,20 +1111,20 @@ Text1534:
 	linefw "「ねむり」状態にする。"
 	done
 
-Text1535:
+AuroraWaveName:
 	textfw "オーロラウェーブ"
 	done
 
-DewgongDescription1:
+DewgongLv24Description:
 	textfw "寒さに勝つため、体の中に熱エネルギー"
 	linefw "をたくわえる。寒い海も8ノットで進む"
 	done
 
-Text1537:
+AuroraBeamName:
 	textfw "オーロラビーム"
 	done
 
-DewgongDescription2:
+DewgongLv42Description:
 	textfw "全身が真っ白な毛で覆われている。"
 	linefw "寒さに強くむしろ寒いほど元気になる。"
 	done
@@ -1133,24 +1133,24 @@ ShellderName:
 	textfw "シェルダー"
 	done
 
-Text153a:
+HideInShellName:
 	textfw "からをとじる"
 	done
 
-Text153b:
+BivalveName:
 	textfw "2まいがい"
 	done
 
-ShellderDescription1:
+ShellderLv8Description:
 	textfw "ダイヤモンドより固い殻に覆われている"
 	linefw "しかし、中身は意外とやわらかい。"
 	done
 
-Text153d:
+WaterSpoutName:
 	textfw "しおふき"
 	done
 
-Text153e:
+Do20DamagePlus10WaterEnergyAltDescription2:
 	textfw "ワザに必要なエネルギーよりも多く"
 	linefw "「水」エネルギーがついているとき、"
 	linefw "多い「水」エネルギー1個につき、10"
@@ -1158,7 +1158,7 @@ Text153e:
 	linefw "ダメージ追加は2個ぶんまで。"
 	done
 
-ShellderDescription2:
+ShellderLv16Description:
 	textfw "かたいカラはどんな攻げきもはね返す。"
 	linefw "開いた時に中を攻げきされると弱い。"
 	done
@@ -1167,17 +1167,17 @@ CloysterName:
 	textfw "パルシェン"
 	done
 
-Text1541:
+ClampName:
 	textfw "からではさむ"
 	done
 
-Text1542:
+ClampDescription:
 	textfw "コインを投げて「うら」なら、このワザ"
 	linefw "は失敗する。「おもて」なら、", "[相手]", "を"
 	linefw "「マヒ」状態にする。"
 	done
 
-Text1543:
+SpikeCannonName:
 	textfw "とげキャノン"
 	done
 
@@ -1191,20 +1191,20 @@ KrabbyName:
 	textfw "クラブ"
 	done
 
-Text1546:
+GuillotineAltName:
 	textfw "はさみギロチン"
 	done
 
-Text1547:
+RiverCrabName:
 	textfw "さわがに"
 	done
 
-KrabbyDescription1:
+KrabbyLv17Description:
 	textfw "ハサミは強力な武器であり、横に歩く時"
 	linefw "体のバランスをとる役目もはたす。"
 	done
 
-Text1549:
+CallForFamilyKrabbyDescription:
 	textfw "自分の山札から「クラブ」を1枚"
 	linefw "選び出し、自分のベンチに出す。"
 	linefw "その後、その山札をよく切る。"
@@ -1212,11 +1212,11 @@ Text1549:
 	linefw "使えない)"
 	done
 
-Text154a:
+IrongripAltName:
 	textfw "はさむ"
 	done
 
-KrabbyDescription2:
+KrabbyLv20Description:
 	textfw "海の近くで見つかる。"
 	linefw "大きなハサミはもぎとっても"
 	linefw "後からまたはえてくる。"
@@ -1226,49 +1226,49 @@ KinglerName:
 	textfw "キングラー"
 	done
 
-Text154d:
+FlailName:
 	textfw "じたばた"
 	done
 
-Text154e:
+FlailDescription:
 	textfw "[自分]", "にのっているダメージカウンター"
 	linefw "の数×10のダメージ。"
 	done
 
-Text154f:
+CrabhammerName:
 	textfw "クラブハンマー"
 	done
 
-Text1550:
+PincerName:
 	textfw "はさみ"
 	done
 
-KinglerDescription1:
+KinglerLv27Description:
 	textfw "固いハサミは1万馬力のパワーを"
 	linefw "持っているが、大きすぎて動きが鈍い。"
 	done
 
-Text1552:
+SaltWaterName:
 	textfw "しおまねき"
 	done
 
-Text1553:
+SaltWaterDescription:
 	textfw "コインを投げて「おもて」なら、自分の"
 	linefw "山札から「水」エネルギーカードを3枚"
 	linefw "選び出し、このカードにつける。"
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text1554:
+DoubleEdgedPincersName:
 	textfw "もろばバサミ"
 	done
 
-Text1555:
+DoubleEdgedPincersDescription:
 	textfw "次の相手の番、このカードが受ける"
 	linefw "ダメージは2倍になる。"
 	done
 
-KinglerDescription2:
+KinglerLv33Description:
 	textfw "ハサミは1万馬力のスーパーパワーを"
 	linefw "ひめているのだが、大きすぎてうまく"
 	linefw "動かない。"
@@ -1278,27 +1278,27 @@ HorseaName:
 	textfw "タッツー"
 	done
 
-Text1558:
+DragonName:
 	textfw "ドラゴン"
 	done
 
-HorseaDescription1:
+HorseaLv19Description:
 	textfw "ぜんまいのようにクルクル巻かれた"
 	linefw "尻尾で体のバランスをとる。"
 	linefw "口からスミをはくことがある。"
 	done
 
-Text155a:
+HideName:
 	textfw "かくれる"
 	done
 
-Text155b:
+HideDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このカードはワザに"
 	linefw "よるダメージや効果を受けない。"
 	done
 
-HorseaDescription2:
+HorseaLv20Description:
 	textfw "水面から勢いよくスミを発射して、"
 	linefw "飛んでいるムシをうち落とすことがある"
 	linefw "という。"
@@ -1308,17 +1308,17 @@ SeadraName:
 	textfw "シードラ"
 	done
 
-SeadraDescription1:
+SeadraLv23Description:
 	textfw "うかつにさわろうとすると"
 	linefw "体中にはえるトゲに刺されて"
 	linefw "気絶することもある。"
 	done
 
-Text155f:
+WaterBombName:
 	textfw "ウォーターボム"
 	done
 
-Text1560:
+WaterBombDescription:
 	textfw "ワザに必要なエネルギーよりも多く"
 	linefw "「水」エネルギーがついているとき、"
 	linefw "多い「水」エネルギー1個につき10"
@@ -1326,13 +1326,13 @@ Text1560:
 	linefw "好きなようにわりふって与える。"
 	done
 
-Text1561:
+WaterBombDescriptionCont:
 	textfw "(控えへのダメージ追加は2個ぶんまで"
 	linefw "また、控えへのダメージは「弱点・"
 	linefw "抵抗力」の影響を受けない)"
 	done
 
-SeadraDescription2:
+SeadraLv26Description:
 	textfw "ハネとしっぽをすばやく動かし、"
 	linefw "前を向いたまま後ろへ泳ぐこともできる"
 	linefw "ポケモン。"
@@ -1342,11 +1342,11 @@ GoldeenName:
 	textfw "トサキント"
 	done
 
-Text1564:
+HornAttackName:
 	textfw "つのでつく"
 	done
 
-Text1565:
+GoldfishName:
 	textfw "きんぎょ"
 	done
 
@@ -1360,7 +1360,7 @@ SeakingName:
 	textfw "アズマオウ"
 	done
 
-Text1568:
+WaterfallName:
 	textfw "たきのぼり"
 	done
 
@@ -1374,34 +1374,34 @@ StaryuName:
 	textfw "ヒトデマン"
 	done
 
-Text156b:
+SlapName:
 	textfw "ひらてうち"
 	done
 
-Text156c:
+StarshapeName:
 	textfw "ほしがた"
 	done
 
-StaryuDescription1:
+StaryuLv15Description:
 	textfw "海辺に多くあらわれ、"
 	linefw "夜になると中心が赤く点滅する。"
 	done
 
-Text156e:
+StrangeBeamName:
 	textfw "なぞのこうせん"
 	done
 
-Text156f:
+StrangeBeamDescription:
 	textfw "次の相手の番、"
 	linefw "自分の場の「水」ポケモンは「弱点」の"
 	linefw "影響を受けない。"
 	done
 
-Text1570:
+SpinningAttackName:
 	textfw "かいてんアタック"
 	done
 
-StaryuDescription2:
+StaryuLv17Description:
 	textfw "体の一部を切り取られても、自己再生"
 	linefw "して元に戻るなぞの多い生きものだ。"
 	done
@@ -1410,11 +1410,11 @@ StarmieName:
 	textfw "スターミー"
 	done
 
-Text1573:
+RecoverName:
 	textfw "じこさいせい"
 	done
 
-Text1574:
+RecoverWaterDescription:
 	textfw "[自分]", "についている「水」エネルギー"
 	linefw "カードを1枚トラッシュして、", "[自分]", "に"
 	linefw "のっているダメージカウンターを、"
@@ -1423,11 +1423,11 @@ Text1574:
 	linefw "このワザの効果はなくなる。"
 	done
 
-Text1575:
+StarFreezeName:
 	textfw "スターフリーズ"
 	done
 
-Text1576:
+MysteriousName:
 	textfw "なぞの"
 	done
 
@@ -1440,11 +1440,11 @@ DarkStarmieName:
 	textfw "わるいスターミー"
 	done
 
-Text1579:
+RebirthName:
 	textfw "うまれかわる"
 	done
 
-Text157a:
+RebirthDescription:
 	textfw "この力は、自分の番に使える。このカー"
 	linefw "ドにのっているダメージカウンターをす"
 	linefw "べてとりのぞき、このカードとこのカー"
@@ -1454,7 +1454,7 @@ Text157a:
 	linefw "出される。"
 	done
 
-Text157b:
+RebirthDescriptionCont:
 	textfw "山札に「ヒトデマン」がなかった場合、"
 	linefw "「うまれかわる」は失敗する。"
 	linefw "自分に控えがいないとき、または、この"
@@ -1462,11 +1462,11 @@ Text157b:
 	linefw "状態のとき、この力は使えない。"
 	done
 
-Text157c:
+SpinningShowerName:
 	textfw "スピニングシャワー"
 	done
 
-Text157d:
+SpinningShowerDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "相手の場のポケモンからランダムに"
 	linefw "「1、2」匹えらばれ、そのポケモンに"
@@ -1486,56 +1486,56 @@ MagikarpName:
 	textfw "コイキング"
 	done
 
-Text1580:
+FlopName:
 	textfw "はねまわる"
 	done
 
-Text1581:
+RapidEvolutionName:
 	textfw "たきのぼりしんか"
 	done
 
-Text1582:
+RapidEvolutionDescription:
 	textfw "「コイキング」から進化するカードを"
 	linefw "自分の山札から1枚選び出し、"
 	linefw "このコイキングにつける。その後、"
 	linefw "その山札をよく切る。"
 	done
 
-Text1583:
+FishName:
 	textfw "さかな"
 	done
 
-MagikarpDescription1:
+MagikarpLv6Description:
 	textfw "最新の研究で、コイキングの体から"
 	linefw "竜のDNAが検出されることが判明した"
 	linefw "らしい。"
 	done
 
-MagikarpDescription2:
+MagikarpLv8Description:
 	textfw "力もスピードもほとんどダメ。"
 	linefw "世界で一番弱くて、"
 	linefw "なさけないポケモンだ。"
 	done
 
-Text1586:
+TrickleName:
 	textfw "びちびち"
 	done
 
-Text1587:
+Plus10DamagePerHeadsDescription:
 	textfw "コインを2枚投げ、「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-Text1588:
+DragonRageName:
 	textfw "りゅうのいかり"
 	done
 
-Text1589:
+IfEitherTailsDoNothingDescription:
 	textfw "コインを2枚投げ、1つでも「うら」"
 	linefw "なら、このワザは失敗する。"
 	done
 
-MagikarpDescription3:
+MagikarpLv10Description:
 	textfw "最新の研究で、コイキングの体から、"
 	linefw "竜のDNAが検出されることが判明した"
 	linefw "らしい。"
@@ -1545,11 +1545,11 @@ GyaradosName:
 	textfw "ギャラドス"
 	done
 
-Text158c:
+BubblebeamName:
 	textfw "バブルこうせん"
 	done
 
-Text158d:
+AtrociousName:
 	textfw "きょうあく"
 	done
 
@@ -1563,11 +1563,11 @@ DarkGyaradosName:
 	textfw "わるいギャラドス"
 	done
 
-Text1590:
+FinalBeamName:
 	textfw "ファイナルビーム"
 	done
 
-Text1591:
+FinalBeamDescription:
 	textfw "この力は、このカードが相手のワザに"
 	linefw "よって「きぜつ」するとき、1度だけ"
 	linefw "使える。コインを投げて「おもて」なら"
@@ -1576,7 +1576,7 @@ Text1591:
 	linefw "ルギーの数×20のダメージ。"
 	done
 
-Text1592:
+FinalBeamDescriptionCont:
 	textfw "このカードが「ねむり・マヒ・こんらん"
 	linefw "」状態のまま「きぜつ」するとき、"
 	linefw "この力は使えない。"
@@ -1592,25 +1592,25 @@ LaprasName:
 	textfw "ラプラス"
 	done
 
-Text1595:
+SingName:
 	textfw "うたう"
 	done
 
-Text1596:
+MayInflictSleepDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「ねむり」状態にする。"
 	done
 
-Text1597:
+TransportName:
 	textfw "のりもの"
 	done
 
-LaprasDescription1:
+LaprasLv24Description:
 	textfw "かつてたくさんつかまえたため、絶めつ"
 	linefw "寸前になっている。人を乗せて進む。"
 	done
 
-LaprasDescription2:
+LaprasLv31Description:
 	textfw "人の言葉を理解する、高い知能を持つ。"
 	linefw "海の上を人を乗せて進むのが好き。"
 	done
@@ -1619,22 +1619,22 @@ VaporeonName:
 	textfw "シャワーズ"
 	done
 
-Text159b:
+FocusEnergyBiteDescription:
 	textfw "次の自分の番、このカードが使う"
 	linefw "「かみつく」のダメージは2倍になる。"
 	done
 
-Text159c:
+BubbleJetName:
 	textfw "あわはき"
 	done
 
-VaporeonDescription1:
+VaporeonLv29Description:
 	textfw "水辺に住むが、しっぽには魚のような"
 	linefw "ひれが残っていて、人魚と間違う人も"
 	linefw "いる。"
 	done
 
-VaporeonDescription2:
+VaporeonLv42Description:
 	textfw "体の細胞のつくりが、"
 	linefw "水の分子と似ている。"
 	linefw "水にとけると見えなくなる。"
@@ -1644,7 +1644,7 @@ DarkVaporeonName:
 	textfw "わるいシャワーズ"
 	done
 
-Text15a0:
+WhirlpoolDescription:
 	textfw "相手の対戦ポケモンについている"
 	linefw "エネルギーカードを1枚選び、"
 	linefw "トラッシュさせる。"
@@ -1663,11 +1663,11 @@ MysteriousFossilName:
 	textfw "なにかの化石"
 	done
 
-Text15a4:
+ClairvoyanceName:
 	textfw "おみとおし"
 	done
 
-Text15a5:
+ClairvoyanceDescription:
 	textfw "このカードが場にある限り、"
 	linefw "相手プレイヤーは、手札がこのカードの"
 	linefw "持ち主にも見えるようにしておく。"
@@ -1675,20 +1675,20 @@ Text15a5:
 	linefw "」状態のとき、この力は消える。"
 	done
 
-Text15a6:
+SpiralName:
 	textfw "うずまき"
 	done
 
-OmanyteDescription1:
+OmanyteLv19Description:
 	textfw "大昔、海に住んでいた古代のポケモン。"
 	linefw "10本の足をくねらせて泳ぐ。"
 	done
 
-Text15a8:
+PrehistoricDreamName:
 	textfw "げんしのゆめ"
 	done
 
-Text15a9:
+PrehistoricDreamDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、"
 	linefw "「なにかの化石」から進化したポケモン"
@@ -1698,26 +1698,26 @@ Text15a9:
 	linefw "そのまま)。"
 	done
 
-Text15aa:
+PowerCantBeUsedIfStatusDescription:
 	textfw "このカードが「ねむり・マヒ・こんらん"
 	linefw "」状態のとき、この力は使えない。"
 	done
 
-Text15ab:
+RollingTackleName:
 	textfw "ころがりタックル"
 	done
 
-OmanyteDescription2:
+OmanyteSharedDescription:
 	textfw "絶めつしたポケモンだが、まれに化石が"
 	linefw "発見され、そこから生き返らせることが"
 	linefw "できる。"
 	done
 
-Text15ad:
+FossilGuidanceName:
 	textfw "かせきのみちびき"
 	done
 
-Text15ae:
+FossilGuidanceDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、自分の"
 	linefw "トラッシュから「なにかの化石」を1枚"
@@ -1730,33 +1730,33 @@ OmastarName:
 	textfw "オムスター"
 	done
 
-OmastarDescription1:
+OmastarLv32Description:
 	textfw "触手が手足のように発達している。"
 	linefw "しがみつくと同時にかみついてくる。"
 	done
 
-Text15b1:
+TentacleGripName:
 	textfw "しょくしゅをつかう"
 	done
 
-Text15b2:
+TentacleGripDescription:
 	textfw "[自分]", "についている「水」エネルギーの"
 	linefw "数ぶんコインを投げ、「おもて」の数"
 	linefw "×2枚のカードを、自分の山札から引く"
 	done
 
-Text15b3:
+CorrosiveAcidName:
 	textfw "ふしょくえき"
 	done
 
-Text15b4:
+CorrosiveAcidDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "[相手]", "を「マヒ」状態にする。"
 	linefw "「うら」なら、次の自分の番、"
 	linefw "このカードはこのワザを使えない。"
 	done
 
-OmastarDescription2:
+OmastarLv36Description:
 	textfw "するどいキバとしょくしゅを持ちながら"
 	linefw "カラが大きすぎてエサをとれず、全滅"
 	linefw "したらしい。"
@@ -1766,11 +1766,11 @@ ArticunoName:
 	textfw "フリーザー"
 	done
 
-Text15b7:
+AuroraVeilName:
 	textfw "オーロラヴェール"
 	done
 
-Text15b8:
+AuroraVeilDescription:
 	textfw "このカードがバトル場にいる限り、"
 	linefw "自分のベンチにいるすべてのポケモンは"
 	linefw "ワザによるダメージや効果を受けない。"
@@ -1778,25 +1778,25 @@ Text15b8:
 	linefw "」状態のとき、この力は消える。"
 	done
 
-Text15b9:
+FreezeName:
 	textfw "れいとう"
 	done
 
-ArticunoDescription1:
+ArticunoLv34Description:
 	textfw "雪山で寒くて死にそうな時、"
 	linefw "目の前に現れるといわれる伝説の"
 	linefw "れいとうポケモン。"
 	done
 
-Text15bb:
+FreezeDryName:
 	textfw "フリーズドライ"
 	done
 
-Text15bc:
+BlizzardName:
 	textfw "ふぶき"
 	done
 
-Text15bd:
+BlizzardDescription:
 	textfw "コインを投げ、「おもて」なら相手の"
 	linefw "控えポケモン全員にも、「うら」なら"
 	linefw "自分の控えポケモン全員にも、"
@@ -1804,17 +1804,17 @@ Text15bd:
 	linefw "10ダメージ。"
 	done
 
-ArticunoDescription2:
+ArticunoLv35Description:
 	textfw "伝説の鳥ポケモンの一匹。"
 	linefw "長い尻尾がたなびいて飛んでいく姿は"
 	linefw "すばらしい。"
 	done
 
-Text15bf:
+QuickfreezeName:
 	textfw "こおりつかせる"
 	done
 
-Text15c0:
+QuickfreezeDescription:
 	textfw "この力は、このカードを手札から場に"
 	linefw "出したとき、1度だけ使える。(対戦の"
 	linefw "初めに場に出したときには、使えない)"
@@ -1822,18 +1822,18 @@ Text15c0:
 	linefw "対戦ポケモンを「マヒ」状態にする。"
 	done
 
-Text15c1:
+IceBreathName:
 	textfw "こおりのいき"
 	done
 
-Text15c2:
+IceBreathDescription:
 	textfw "相手の場のポケモン1匹に、「弱点・抵"
 	linefw "抗力」に関係なく、40ダメージ。ダメ"
 	linefw "ージを受けるポケモンは、自動的に選ば"
 	linefw "れる。"
 	done
 
-ArticunoDescription3:
+ArticunoLv37Description:
 	textfw "雪山で寒くて死にそうなとき、目の前"
 	linefw "に現れるという伝説の冷凍ポケモン。"
 	done
@@ -1842,7 +1842,7 @@ MarillName:
 	textfw "マリル"
 	done
 
-Text15c5:
+AquamouseName:
 	textfw "みずねずみ"
 	done
 
@@ -1855,74 +1855,74 @@ PikachuName:
 	textfw "ピカチュウ"
 	done
 
-Text15c8:
+ThundershockName:
 	textfw "でんきショック"
 	done
 
-Text15c9:
+MouseName:
 	textfw "ねずみ"
 	done
 
-PikachuDescription1:
+PikachuLv5Description:
 	textfw "トキワの森で見つけることができる。"
 	linefw "ただ、すばしっこいので捕まえるのが"
 	linefw "大変。"
 	done
 
-Text15cb:
+GnawName:
 	textfw "かじる"
 	done
 
-Text15cc:
+ThunderJoltName:
 	textfw "でんげき"
 	done
 
-Text15cd:
+ThunderJoltDescription:
 	textfw "コインを投げて「うら」なら、", "[自分]", "に"
 	linefw "も10ダメージ。"
 	done
 
-PikachuDescription2:
+PikachuSharedDescription:
 	textfw "ほっぺたの両側に小さい電気袋をもつ。"
 	linefw "ピンチのときに放電する。"
 	done
 
-Text15cf:
+RechargeName:
 	textfw "じゅうでん"
 	done
 
-Text15d0:
+RechargeDescription:
 	textfw "自分の山札から「雷」エネルギーカード"
 	linefw "を1枚選び出し、", "[自分]", "につける。"
 	linefw "その後、その山札をよく切る。"
 	done
 
-Text15d1:
+ThunderboltName:
 	textfw "10まんボルト"
 	done
 
-Text15d2:
+ThunderboltDescription:
 	textfw "[自分]", "についている「エネルギーカード"
 	linefw "」をすべてトラッシュする。"
 	done
 
-PikachuDescription3:
+PikachuLv13Description:
 	textfw "何匹か集まっているとそこに猛烈な"
 	linefw "電気がたまり、稲妻が落ちることがある"
 	linefw "という。"
 	done
 
-Text15d4:
+SparkName:
 	textfw "スパーク"
 	done
 
-Text15d5:
+Do10DamageToABenchedMonDescription:
 	textfw "相手の控えポケモンを1匹選び、"
 	linefw "そのポケモンにも、「弱点・抵抗力」に"
 	linefw "関係なく、10ダメージ。"
 	done
 
-PikachuDescription4:
+PikachuLv14Description:
 	textfw "優しい性格で知能が高く、"
 	linefw "愛敬もあるので、研究者の間でも"
 	linefw "人気ナンバー1のポケモンだ。"
@@ -1932,11 +1932,11 @@ FlyingPikachuName:
 	textfw "そらをとぶピカチュウ"
 	done
 
-Text15d8:
+FlyName:
 	textfw "そらをとぶ"
 	done
 
-Text15d9:
+FlyDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "このワザは失敗する。「おもて」なら、"
 	linefw "次の相手の番、このカードはワザによる"
@@ -1962,11 +1962,11 @@ RaichuName:
 	textfw "ライチュウ"
 	done
 
-Text15de:
+ShortCircuitName:
 	textfw "ろうでん"
 	done
 
-Text15df:
+ShortCircuitDescription:
 	textfw "相手の場のポケモンから1匹を選び、"
 	linefw "そのポケモンについている「水」エネル"
 	linefw "ギーの数×10ダメージを、"
@@ -1974,50 +1974,50 @@ Text15df:
 	linefw "そのポケモンに与える。"
 	done
 
-Text15e0:
+SparkingKickName:
 	textfw "ビリビリキック"
 	done
 
-RaichuDescription1:
+RaichuLv32Description:
 	textfw "長いしっぽがアースになって身を守る"
 	linefw "ため、自分自身は高電圧にもしびれない"
 	linefw "のだ。"
 	done
 
-Text15e2:
+QuickAttackAltDescription1:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "20ダメージを追加する。"
 	done
 
-Text15e3:
+ThunderboltAltDescription1:
 	textfw "[自分]", "についている「エネルギーカード"
 	linefw "」を、すべてトラッシュする。"
 	done
 
-RaichuDescription2:
+RaichuLv33Description:
 	textfw "体に電気がたまってくると、攻擊的な"
 	linefw "性格に変る。暗いところで光って見える"
 	done
 
-Text15e5:
+ThunderName:
 	textfw "かみなり"
 	done
 
-Text15e6:
+ThunderDescription:
 	textfw "コインを投げて「うら」なら、", "[自分]", "に"
 	linefw "も30ダメージ。"
 	done
 
-RaichuDescription3:
+RaichuSharedDescription:
 	textfw "電擊は10万ボルトに達することもあり"
 	linefw "ヘタにさわるとインドゾウでも気絶する"
 	done
 
-Text15e8:
+GigashockName:
 	textfw "ギガスパーク"
 	done
 
-Text15e9:
+GigashockDescription:
 	textfw "相手の控えポケモンを3匹選び、"
 	linefw "それらのポケモンにも、「弱点・抵抗力"
 	linefw "」に関係なく、それぞれ10ダメージ。"
@@ -2027,11 +2027,11 @@ DarkRaichuName:
 	textfw "わるいライチュウ"
 	done
 
-Text15eb:
+SurpriseThunderName:
 	textfw "びっくりサンダー"
 	done
 
-Text15ec:
+SurpriseThunderDescription:
 	textfw "相手のベンチのポケモン全員に"
 	linefw "ランダムで「弱点・抵抗力」に関係なく"
 	linefw "「0、10、20」いずれかのダメージ"
@@ -2046,47 +2046,47 @@ MagnemiteName:
 	textfw "コイル"
 	done
 
-Text15ef:
+MagnetismName:
 	textfw "ちょくれつじりょく"
 	done
 
-Text15f0:
+MagnetismDescription:
 	textfw "自分のベンチにいる「コイル」「レアコ"
 	linefw "イル」「わるいレアコイル」1匹につき"
 	linefw "10ダメージを追加する。"
 	done
 
-Text15f1:
+MagnetCategoryName:
 	textfw "じしゃく"
 	done
 
-MagnemiteDescription1:
+MagnemiteLv12Description:
 	textfw "複数のコイル、レアコイルが集まると"
 	linefw "強力な磁力結界が形成されるという。"
 	done
 
-Text15f3:
+ThunderWaveName:
 	textfw "でんじは"
 	done
 
-Text15f4:
+Selfdestruct40DamageDescription:
 	textfw "[自分]", "にも40ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
 	done
 
-MagnemiteDescription2:
+MagnemiteLv13Description:
 	textfw "空中に浮いたまま移動して、"
 	linefw "左右のユニットから電磁波などを"
 	linefw "放射する。"
 	done
 
-Text15f6:
+MagneticStormName:
 	textfw "じきあらし"
 	done
 
-Text15f7:
+MagneticStormDescription:
 	textfw "自分の場にいるポケモンについている"
 	linefw "「エネルギーカード」はすべてはがされ"
 	linefw "自分の場のポケモンにつけなおされる。"
@@ -2095,17 +2095,17 @@ Text15f7:
 	linefw "決まる。"
 	done
 
-MagnemiteDescription3:
+MagnemiteLv14Description:
 	textfw "反重力で浮いてるらしい。"
 	linefw "どこからともなく現われて電磁波などを"
 	linefw "放射する。"
 	done
 
-Text15f9:
+MagnetMoveName:
 	textfw "マグネット"
 	done
 
-Text15fa:
+MagnetMoveDescription:
 	textfw "この力は、自分の番ごとに1回使える。"
 	linefw "コインを投げて「おもて」なら、自分の"
 	linefw "山札から「コイル」を選び出し、ベンチ"
@@ -2115,17 +2115,17 @@ Text15fa:
 	linefw "状態のとき、この力は使えない。"
 	done
 
-Text15fb:
+SuperconductivityName:
 	textfw "ちょうでんどう"
 	done
 
-Text15fc:
+SuperconductivityDescription:
 	textfw "相手の場のポケモンから1匹を選び、"
 	linefw "「弱点・抵抗力」に関係なく、"
 	linefw "10ダメージ。"
 	done
 
-MagnemiteDescription4:
+MagnemiteLv15Description:
 	textfw "反重力で浮いているらしい。"
 	linefw "どこからともなく現れて電磁波などを"
 	linefw "放射する。"
@@ -2135,23 +2135,23 @@ MagnetonName:
 	textfw "レアコイル"
 	done
 
-Text15ff:
+Selfdestruct80DamageDescription:
 	textfw "[自分]", "にも80ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "20ダメージ。"
 	done
 
-MagnetonDescription1:
+MagnetonSharedDescription:
 	textfw "複数のコイルが連結して"
 	linefw "強力な磁力線と高電圧を放射する。"
 	done
 
-Text1601:
+MicrowaveName:
 	textfw "マイクロウェーブ"
 	done
 
-Text1602:
+MicrowaveDescription:
 	textfw "相手の場のポケモンから1匹を選び、"
 	linefw "「弱点・抵抗力」に関係なく、"
 	linefw "20ダメージ。コインを投げて"
@@ -2160,22 +2160,22 @@ Text1602:
 	linefw "1枚選び、トラッシュする。"
 	done
 
-MagnetonDescription2:
+MagnetonLv30Description:
 	textfw "連けつしたタイプのコイルは、"
 	linefw "太陽の黑点が多い時、たくさん現れると"
 	linefw "言われる。"
 	done
 
-Text1604:
+SonicboomName:
 	textfw "ソニックブーム"
 	done
 
-Text1605:
+SonicboomDescription:
 	textfw "このワザのダメージは、", "[相手]", "の「弱点"
 	linefw "・抵抗力」の影響を受けない。"
 	done
 
-Text1606:
+Selfdestruct100DamageDescription:
 	textfw "[自分]", "にも100ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
@@ -2186,16 +2186,16 @@ DarkMagnetonName:
 	textfw "わるいレアコイル"
 	done
 
-Text1608:
+SonicboomAltDescription:
 	textfw "このワザのダメージは、", "[相手]", "の"
 	linefw "「弱点・抵抗力」の影響を受けない。"
 	done
 
-Text1609:
+MagneticLinesName:
 	textfw "じりょくせん"
 	done
 
-Text160a:
+MagneticLinesDescription:
 	textfw "[相手]", "についている「基本エネルギー"
 	linefw "カード」を1枚選んではがす。その後、"
 	linefw "相手の控えポケモンを1匹選び、"
@@ -2214,35 +2214,35 @@ VoltorbName:
 	textfw "ビリリダマ"
 	done
 
-Text160d:
+GroupSparkName:
 	textfw "みんなでスパーク"
 	done
 
-Text160e:
+GroupSparkDescription:
 	textfw "おたがいの場にいる「ビリリダマ」の数"
 	linefw "×10のダメージを追加する。"
 	done
 
-Text160f:
+BallName:
 	textfw "ボール"
 	done
 
-VoltorbDescription1:
+VoltorbLv8Description:
 	textfw "発電所などに現れる。"
 	linefw "モンスターボールとまちがえてさわって"
 	linefw "しびれる人が多い。"
 	done
 
-VoltorbDescription2:
+VoltorbLv10Description:
 	textfw "正体不明の生き物。いやな音をだしたり"
 	linefw "突然自爆したりすることもあるという。"
 	done
 
-Text1612:
+SpeedBallName:
 	textfw "スピードボール"
 	done
 
-VoltorbDescription3:
+VoltorbLv13Description:
 	textfw "発電所などに多く生息するが、"
 	linefw "電線などを伝わってくるのか、町でも"
 	linefw "見かけるようになった。"
@@ -2252,35 +2252,35 @@ ElectrodeName:
 	textfw "マルマイン"
 	done
 
-Text1615:
+EnergySpikeName:
 	textfw "エナジーコントロール"
 	done
 
-Text1616:
+EnergySpikeDescription:
 	textfw "自分の山札から「基本エネルギーカード"
 	linefw "」を1枚選び出し、自分の場のポケモン"
 	linefw "1匹につける。その後、その山札をよく"
 	linefw "切る。"
 	done
 
-ElectrodeDescription1:
+ElectrodeLv35Description:
 	textfw "膨大なエレクトンエネルギーを"
 	linefw "ためこんでおり、ちょっとした刺激で"
 	linefw "大爆発を起こす。"
 	done
 
-Text1618:
+ChainLightningName:
 	textfw "ビリビリ"
 	done
 
-Text1619:
+ChainLightningDescription:
 	textfw "おたがいの控えポケモンのうち、", "[相手]"
 	linefw "と同じ「色(タイプ)」のもの全員に、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
 	done
 
-ElectrodeDescription2:
+ElectrodeLv42Description:
 	textfw "帶電性でしかも、好戦的な性格のため、"
 	linefw "なるべく近くに寄らないほうが"
 	linefw "無難である。"
@@ -2290,11 +2290,11 @@ DarkElectrodeName:
 	textfw "わるいマルマイン"
 	done
 
-Text161c:
+EnergyBombName:
 	textfw "エナジーボム"
 	done
 
-Text161d:
+EnergyBombDescription:
 	textfw "[自分]", "についている「エネルギーカード"
 	linefw "」をすべてはがし、自分の控えポケモン"
 	linefw "に好きなようにつける。(自分に控えが"
@@ -2312,37 +2312,37 @@ ElectabuzzName:
 	textfw "エレブー"
 	done
 
-Text1620:
+LightScreenName:
 	textfw "ひかりのかべ"
 	done
 
-Text1621:
+LightScreenDescription:
 	textfw "次の相手の番、このカードが受ける"
 	linefw "ダメージは半分(切りすて)になる。"
 	linefw "(ダメージ以外の効果はそのまま)"
 	done
 
-ElectabuzzDescription1:
+ElectabuzzLv20Description:
 	textfw "捕獲することがとても難しいポケモン。"
 	linefw "色を識別する能力があり、赤色を好む。"
 	done
 
-ElectabuzzDescription2:
+ElectabuzzLv30Description:
 	textfw "大きな停電がおきた時は、エレブーが"
 	linefw "発電所の電気を食べたにちがいない。"
 	done
 
-Text1624:
+ThunderpunchName:
 	textfw "かみなりパンチ"
 	done
 
-Text1625:
+ThunderpunchDescription:
 	textfw "コインを投げて「おもて」なら、10ダ"
 	linefw "メージを追加する。「うら」なら、"
 	linefw "[自分]", "にも10ダメージ。"
 	done
 
-ElectabuzzDescription3:
+ElectabuzzLv35Description:
 	textfw "つよい電気が大好物で、"
 	linefw "大きな発電所などにしばしば"
 	linefw "あらわれる。"
@@ -2352,37 +2352,37 @@ JolteonName:
 	textfw "サンダース"
 	done
 
-Text1628:
+Do20DamageNumberOfHeadsDescription:
 	textfw "コインを2枚投げ、「おもて」の数"
 	linefw "×20のダメージ。"
 	done
 
-Text1629:
+StunNeedleName:
 	textfw "しびればり"
 	done
 
-JolteonDescription1:
+JolteonLv24Description:
 	textfw "怒ったり驚いたりすると、"
 	linefw "全身の毛が針のように逆立って"
 	linefw "相手を貫く。"
 	done
 
-Text162b:
+QuickAttackAltDescription2:
 	textfw "コインを投げて「おもて」なら、20ダ"
 	linefw "メージを追加する。"
 	linefw ""
 	done
 
-Text162c:
+PinMissileName:
 	textfw "ミサイルばり"
 	done
 
-Text162d:
+PinMissileDescription:
 	textfw "コインを4枚投げ、「おもて」の数"
 	linefw "×20のダメージ。"
 	done
 
-JolteonDescription2:
+JolteonLv29Description:
 	textfw "怒ったり驚いたりすると、"
 	linefw "全身の毛が針の様に逆立って"
 	linefw "相手をつらぬく。"
@@ -2392,21 +2392,21 @@ DarkJolteonName:
 	textfw "わるいサンダース"
 	done
 
-Text1630:
+LightningFlashName:
 	textfw "サンダーフラッシュ"
 	done
 
-Text1631:
+LightningFlashDescription:
 	textfw "次の相手の番、このワザを受けた"
 	linefw "[相手]", "は、ワザを使うときにコインを"
 	linefw "投げ、「うら」ならそのワザは失敗する"
 	done
 
-Text1632:
+ThunderAttackName:
 	textfw "サンダーアタック"
 	done
 
-Text1633:
+ThunderAttackDescription:
 	textfw "コインを投げて「おもて」なら", "[相手]", "を"
 	linefw "「マヒ」状態にする。「うら」なら"
 	linefw "自分に10ダメージ。"
@@ -2422,37 +2422,37 @@ ZapdosName:
 	textfw "サンダー"
 	done
 
-Text1636:
+RagingThunderName:
 	textfw "らくらい"
 	done
 
-Text1637:
+RagingThunderDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "自分の場のポケモンから1匹を選び、"
 	linefw "そのポケモンにも、「弱点・抵抗力」に"
 	linefw "関係なく、30ダメージ。"
 	done
 
-Text1638:
+ThunderCrashName:
 	textfw "サンダークラッシュ"
 	done
 
-Text1639:
+ThunderCrashDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "20ダメージを追加する。「うら」なら"
 	linefw "[自分]", "にも20ダメージ。"
 	done
 
-ZapdosDescription1:
+ZapdosLv28Description:
 	textfw "雲の上から巨大な稲妻を落としながら"
 	linefw "現れる伝説のとりポケモンである。"
 	done
 
-Text163b:
+ThunderstormName:
 	textfw "サンダーストーム"
 	done
 
-Text163c:
+ThunderstormDescription:
 	textfw "相手の控えポケモンそれぞれに対して"
 	linefw "コインを投げ、「おもて」ならそのポケ"
 	linefw "モンに、「弱点・抵抗力」に関係なく、"
@@ -2462,28 +2462,28 @@ Text163c:
 	linefw "ジを", "[自分]", "に与える。"
 	done
 
-ZapdosDescription2:
+ZapdosLv40Description:
 	textfw "天を司る神の鳥として、"
 	linefw "雲の上で数千年の時を過ごしている。"
 	linefw "雷はサンダーの怒りか?!"
 	done
 
-Text163e:
+ThunderboltAltDescription2:
 	textfw "[自分]", "についているエネルギーカードを"
 	linefw "すべてトラッシュする。"
 	done
 
-ZapdosDescription3:
+ZapdosLv64Description:
 	textfw "伝説の鳥ポケモンのひとつ。"
 	linefw "飛ぶときにバチバチとなにかの"
 	linefw "はじけるような音がする。"
 	done
 
-Text1640:
+PealOfThunderName:
 	textfw "カミングサンダー"
 	done
 
-Text1641:
+PealOfThunderDescription:
 	textfw "この力は、このカードを手札から場に"
 	linefw "出したとき、1度だけ使える。(対戦の"
 	linefw "初めに場に出したときには、使えない)"
@@ -2493,11 +2493,11 @@ Text1641:
 	linefw "受けるポケモンは、自動的に選ばれる。"
 	done
 
-Text1642:
+BigThunderName:
 	textfw "ビッグサンダー"
 	done
 
-Text1643:
+BigThunderDescription:
 	textfw "場にいる全てのポケモンのうち、このカ"
 	linefw "ード以外の1匹に、「弱点・抵抗力」に"
 	linefw "関係なく、70ダメージ。"
@@ -2505,7 +2505,7 @@ Text1643:
 	linefw "選ばれる。"
 	done
 
-ZapdosDescription4:
+ZapdosLv68Description:
 	textfw "雲の上から巨大な稲妻を落としながら"
 	linefw "現れる、伝説の鳥ポケモンである。"
 	done
@@ -2514,28 +2514,28 @@ SandshrewName:
 	textfw "サンド"
 	done
 
-Text1646:
+SandAttackName:
 	textfw "すなかけ"
 	done
 
-SandshrewDescription1:
+SandshrewLv12Description:
 	textfw "地面に穴を掘って住む。"
 	linefw "自分に危険が迫ると丸くなって"
 	linefw "身をまもる。"
 	done
 
-Text1648:
+SwiftName:
 	textfw "スピードスター"
 	done
 
-Text1649:
+SwiftDescription:
 	textfw "このワザのダメージは、"
 	linefw "[相手]", "の持っている「弱点・抵抗力・"
 	linefw "特殊能力・その他の効果」の影響を"
 	linefw "受けない。"
 	done
 
-SandshrewDescription2:
+SandshrewLv15Description:
 	textfw "水気の少ない場所に、深い穴を掘って"
 	linefw "かくれる。えものをねらうときは出て"
 	linefw "くる。"
@@ -2545,32 +2545,32 @@ SandslashName:
 	textfw "サンドパン"
 	done
 
-Text164c:
+FurySwipes20DamageDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×20のダメージ。"
 	done
 
-SandslashDescription1:
+SandslashLv33Description:
 	textfw "すばしっこく走りまわり、"
 	linefw "背中の針と鋭い爪の攻擊が得意。"
 	done
 
-Text164e:
+SandVeilName:
 	textfw "すながくれ"
 	done
 
-Text164f:
+RollingNeedleName:
 	textfw "ローリングニードル"
 	done
 
-Text1650:
+RollingNeedleDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×10のダメージを追加する。"
 	linefw "その後、", "[自分]", "にも「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 
-SandslashDescription2:
+SandslashLv35Description:
 	textfw "背中を丸めるとトゲトゲのボールみたい"
 	linefw "だ。そのまま転がってぶつかってきたり"
 	linefw "逃げたりする。"
@@ -2580,24 +2580,24 @@ DiglettName:
 	textfw "ディグダ"
 	done
 
-Text1653:
+DigName:
 	textfw "あなをほる"
 	done
 
-Text1654:
+MudSlapName:
 	textfw "どろかけ"
 	done
 
-Text1655:
+MoleName:
 	textfw "もぐら"
 	done
 
-DiglettDescription1:
+DiglettLv8Description:
 	textfw "地中の浅い所を移動。"
 	linefw "掘り進んでいった後は、地面が"
 	linefw "盛り上がっているのですぐにわかる。"
 	done
 
-Text1657:
+DigUnderName:
 	textfw "じめんにもぐる"
 	done
