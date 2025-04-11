@@ -5360,8 +5360,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer DarkWartortleName                                  ; 0x14e7
 	textpointer DoubleSlapName                                     ; 0x14e8
 	textpointer Do10DamageNumberOfHeadsDescription                 ; 0x14e9
-	textpointer WirrorShellName                                    ; 0x14ea
-	textpointer WirrorShellDescription                             ; 0x14eb
+	textpointer MirrorShellName                                    ; 0x14ea
+	textpointer MirrorShellDescription                             ; 0x14eb
 	textpointer DarkWartortleDescription                           ; 0x14ec
 	textpointer BlastoiseName                                      ; 0x14ed
 	textpointer RainDanceName                                      ; 0x14ee
@@ -5717,7 +5717,7 @@ SECTION "Text Offsets 2", ROMX
 	textpointer FurySwipes20DamageDescription                      ; 0x164c
 	textpointer SandslashLv33Description                           ; 0x164d
 	textpointer SandVeilName                                       ; 0x164e
-	textpointer RollingNeedlelName                                 ; 0x164f
+	textpointer RollingNeedleName                                  ; 0x164f
 	textpointer RollingNeedleDescription                           ; 0x1650
 	textpointer SandslashLv35Description                           ; 0x1651
 	textpointer DiglettName                                        ; 0x1652
@@ -6047,8 +6047,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer MrMimeLv20Description                              ; 0x1796
 	textpointer InvisibleWallName                                  ; 0x1797
 	textpointer InvisibleWallDescription                           ; 0x1798
-	textpointer MeditatelName                                      ; 0x1799
-	textpointer MeditatelDescription                               ; 0x179a
+	textpointer MeditateName                                       ; 0x1799
+	textpointer MeditateDescription                                ; 0x179a
 	textpointer MrMimeLv28Description                              ; 0x179b
 	textpointer JynxName                                           ; 0x179c
 	textpointer IcePunchName                                       ; 0x179d

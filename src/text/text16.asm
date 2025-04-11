@@ -1663,11 +1663,11 @@ InvisibleWallDescription:
 	linefw "だったなら、この力は、はたらかない。"
 	done
 
-MeditatelName:
+MeditateName:
 	textfw "ヨガのポーズ"
 	done
 
-MeditatelDescription:
+MeditateDescription:
 	textfw "[相手]", "にのっているダメージカウンター"
 	linefw "×10のダメージを追加する。"
 	done

@@ -735,11 +735,11 @@ Do10DamageNumberOfHeadsDescription:
 	linefw "×10のダメージ。"
 	done
 
-WirrorShellName:
+MirrorShellName:
 	textfw "こうらがえし"
 	done
 
-WirrorShellDescription:
+MirrorShellDescription:
 	textfw "次の相手の番、このカードがワザによる"
 	linefw "ダメージを受けたとき(このカードが「"
 	linefw "きぜつ」しても)、ダメージを与えたポ"
@@ -2559,7 +2559,7 @@ SandVeilName:
 	textfw "すながくれ"
 	done
 
-RollingNeedlelName:
+RollingNeedleName:
 	textfw "ローリングニードル"
 	done
 

@@ -3406,8 +3406,8 @@ MrMimeLv28Card:
 
 	; attack 2
 	energy PSYCHIC, 1, COLORLESS, 1 ; energies
-	tx MeditatelName ; name
-	tx MeditatelDescription ; description
+	tx MeditateName ; name
+	tx MeditateDescription ; description
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
@@ -3510,8 +3510,8 @@ JynxLv23Card:
 
 	; attack 2
 	energy PSYCHIC, 2, COLORLESS, 1 ; energies
-	tx MeditatelName ; name
-	tx MeditatelDescription ; description
+	tx MeditateName ; name
+	tx MeditateDescription ; description
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category

@@ -6162,8 +6162,8 @@ DarkWartortleCard:
 
 	; attack 2
 	energy WATER, 1, COLORLESS, 1 ; energies
-	tx WirrorShellName ; name
-	tx WirrorShellDescription ; description
+	tx MirrorShellName ; name
+	tx MirrorShellDescription ; description
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
@@ -11310,7 +11310,7 @@ SandslashLv35Card:
 
 	; attack 2
 	energy FIGHTING, 3 ; energies
-	tx RollingNeedlelName ; name
+	tx RollingNeedleName ; name
 	tx RollingNeedleDescription ; description
 	dw NONE ; description (cont)
 	db 40 ; damage
