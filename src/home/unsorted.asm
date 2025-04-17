@@ -885,10 +885,10 @@ CallMappedFunction::
 	scf
 	ret
 
-Func_355c::
+CallHL2::
 	jp hl
 
-Func_355d::
+CallBC::
 	push bc
 	ret
 
@@ -1750,7 +1750,7 @@ GetFramesetData::
 	ld a, d
 	xor $ff
 	inc a
-	ld d, a
+	ld d, a ; d = -d
 .asm_39ba
 	ld a, [wd970]
 	bit 6, a
@@ -1758,7 +1758,7 @@ GetFramesetData::
 	ld a, e
 	xor $ff
 	inc a
-	ld e, a
+	ld e, a ; e = -e
 .asm_39c6
 	pop af
 	call BankswitchROM
@@ -1901,12 +1901,12 @@ Func_3a81::
 	push bc
 	push de
 	push hl
-	farcall $7, $6088
-	ld a, [$dcea]
+	farcall Func_1e088
+	ld a, [wActiveScreenAnim]
 	cp $ff
-	jr nz, .asm_3a94
+	jr nz, .skip_update_sprites
 	farcall UpdateSpriteAnims
-.asm_3a94
+.skip_update_sprites
 	pop hl
 	pop de
 	pop bc
@@ -2258,8 +2258,8 @@ FinishQueuedAnimations::
 .asm_3c60
 	xor a
 	ld [wdc57], a
-	ld [wdc5e + 0], a
-	ld [wdc5e + 1], a
+	ld [wDuelAnimBufferSize], a
+	ld [wDuelAnimBufferCurPos], a
 	farcall Func_1dfb9
 	pop af
 	ret
@@ -2270,66 +2270,72 @@ FinishQueuedAnimations::
 ; input:
 ; - a = animation index
 PlayDuelAnimation::
-	ld [$dce2], a
-	call Func_3c77
+	ld [wCurAnimation], a ; hold an animation temporarily
+	call .LoadDuelAnimationToBuffer
 	ret
 
-Func_3c77::
+.LoadDuelAnimationToBuffer:
 	ldh a, [hBankROM]
 	push af
-	ld [$dce9], a
-	farcall $7, $5ff5
+	ld [wDuelAnimReturnBank], a
+	farcall _LoadDuelAnimationToBuffer
 	pop af
 	call BankswitchROM
 	ret
 
-; return nc if wActiveScreenAnim, wd4c0, and wAnimationQueue[] are all equal to $ff
-; nc means no animation is playing (or animation(s) has/have ended)
+; return c if an animation is still playing
 CheckAnyAnimationPlaying::
-	farcall $7, $6420
+	farcall _CheckAnyAnimationPlaying
 	scf
 	ret nz
 	ccf
 	ret
 
 Func_3c8e::
-	ld a, [$dce2]
-	cp $9e
+	ld a, [wCurAnimation]
+	cp DUEL_ANIM_158_UNUSED
 	jr z, .asm_3ca8
-	ld a, [$dce2]
+	ld a, [wCurAnimation]
 	sub $96
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, Data_3cb3
+	ld hl, .pointer_table
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp Func_3cc3
+
 .asm_3ca8
-	ld a, [$dce6]
+	ld a, [wDuelAnimDamage]
 	ld l, a
-	ld a, [$dce7]
+	ld a, [wDuelAnimDamage + 1]
 	ld h, a
 	jp Func_3cc3
 
-Data_3cb3::
-	dw $4C62, $4CA0, $4D07, $4D0B
-	dw $4D0B, $4D0B, $4D0B, $4D0B
+.pointer_table
+	dw SetScreenForDuelAnimation ; DUEL_ANIM_SET_SCREEN
+	dw PrintDamageText    ; DUEL_ANIM_SHOW_DAMAGE
+	dw UpdateMainSceneHUD ; DUEL_ANIM_UPDATE_HUD
+	dw DuelAnim153        ; DUEL_ANIM_153_UNUSED
+	dw DuelAnim154        ; DUEL_ANIM_154_UNUSED
+	dw DuelAnim155        ; DUEL_ANIM_155_UNUSED
+	dw DuelAnim156        ; DUEL_ANIM_156_UNUSED
+	dw DuelAnim157        ; DUEL_ANIM_157_UNUSED
 
 Func_3cc3::
 	ld a, $ff
-	ld [$dcf0], a
+	ld [wdcf0], a
 	ldh a, [hBankROM]
 	push af
-	ld a, [$dce9]
+	ld a, [wDuelAnimReturnBank]
 	call BankswitchROM
-	call Func_355c
+	call CallHL2
 	pop af
 	call BankswitchROM
 	xor a
-	ld [$dcf0], a
+	ld [wdcf0], a
 	ret
 
 Func_3cdd::
@@ -2653,116 +2659,121 @@ Func_3e7a::
 	pop af
 	ret
 
-Func_3e87::
+; apply background scroll for lines 0 to 96 using the values at BGScrollData
+; skip if wApplyBGScroll is non-0
+ApplyBackgroundScroll::
 	push af
 	push hl
+
 	ldh a, [rSVBK]
 	push af
-	ld a, $01
+	ld a, BANK("WRAM1")
 	ldh [rSVBK], a
-	call Func_3f53
+
+	call DisableInt_LYCoincidence
 	ld hl, rSTAT
-	res 2, [hl]
+	res STAT_LYCFLAG, [hl] ; reset coincidence flag
 	ei
-	ld hl, $de66
+	ld hl, wApplyBGScroll
 	ld a, [hl]
 	or a
-	jr nz, .asm_3edd
+	jr nz, .done
 	inc [hl]
 	push bc
 	push de
 	xor a
-	ld [$de67], a
-.asm_3ea7
-	ld a, [$de67]
+	ld [wNextScrollLY], a
+.ly_loop
+	ld a, [wNextScrollLY]
 	ld b, a
-.asm_3eab
+.wait_ly
 	ldh a, [rLY]
 	cp $60
-	jr nc, .asm_3ec8
-	cp b
-	jr c, .asm_3eab
-	call Func_3f23
+	jr nc, .ly_over_0x60
+	cp b ; already hit LY=b?
+	jr c, .wait_ly
+	call GetNextBackgroundScroll
 	ld hl, rSTAT
-.asm_3eba
-	bit 1, [hl]
-	jr nz, .asm_3eba
+.wait_hblank_or_vblank
+	bit STAT_BUSY, [hl]
+	jr nz, .wait_hblank_or_vblank
 	ldh [rSCX], a
 	ldh a, [rLY]
 	inc a
-	ld [$de67], a
-	jr .asm_3ea7
-.asm_3ec8
+	ld [wNextScrollLY], a
+	jr .ly_loop
+.ly_over_0x60
 	xor a
 	ldh [rSCX], a
 	ld a, $00
 	ldh [rLYC], a
-	call Func_3f23
+	call GetNextBackgroundScroll
 	ldh [hSCX], a
 	pop de
 	pop bc
 	xor a
-	ld [$de66], a
-	call Func_3f45
-.asm_3edd
+	ld [wApplyBGScroll], a
+	call EnableInt_LYCoincidence
+.done
 	pop af
 	ldh [rSVBK], a
 	pop hl
 	pop af
 	ret
 
-Data_3ee3::
-	db $00, $00, $00, $01, $01, $01, $02, $02
-	db $02, $03, $03, $03, $03, $03, $03, $03
-	db $04, $03, $03, $03, $03, $03, $03, $03
-	db $02, $02, $02, $01, $01, $01, $00, $00
-	db $00, $FF, $FF, $FF, $FE, $FE, $FE, $FD
-	db $FD, $FD, $FC, $FC, $FC, $FC, $FC, $FC
-	db $FB, $FC, $FC, $FC, $FC, $FC, $FC, $FD
-	db $FD, $FD, $FE, $FE, $FE, $FF, $FF, $FF
+BGScrollData::
+	db  0,  0,  0,  1,  1,  1,  2,  2,  2,  3,  3,  3,  3,  3,  3,  3
+	db  4,  3,  3,  3,  3,  3,  3,  3,  2,  2,  2,  1,  1,  1,  0,  0
+	db  0, -1, -1, -1, -2, -2, -2, -3, -3, -3, -4, -4, -4, -4, -4, -4
+	db -5, -4, -4, -4, -4, -4, -4, -3, -3, -3, -2, -2, -2, -1, -1, -1
 
-Func_3f23::
+; x = BGScrollData[(wVBlankCounter + a) & $3f]
+; return, in register a, x rotated right [wBGScrollMod]-1 times (max 3 times)
+GetNextBackgroundScroll::
 	ld hl, wVBlankCounter
 	add [hl]
 	and $3f
 	ld c, a
 	ld b, $00
-	ld hl, Data_3ee3
+	ld hl, BGScrollData
 	add hl, bc
-	ld a, [$de65]
+	ld a, [wBGScrollMod]
 	ld c, a
 	ld a, [hl]
 	dec c
-	jr z, .asm_3f44
+	jr z, .done
 	dec c
-	jr z, .asm_3f42
+	jr z, .halve
 	dec c
-	jr z, .asm_3f40
+	jr z, .quarter
+; effectively zero
 	sra a
-.asm_3f40
+.quarter
 	sra a
-.asm_3f42
+.halve
 	sra a
-.asm_3f44
+.done
 	ret
 
-Func_3f45::
+; enable lcdc interrupt on LYC=LC coincidence
+EnableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
-	set 6, [hl]
+	set STAT_LYC, [hl]
 	xor a
 	ld hl, rIE
-	set 1, [hl]
+	set INT_LCD_STAT, [hl]
 	pop hl
 	ret
 
-Func_3f53::
+; disable lcdc interrupt and the LYC=LC coincidence trigger
+DisableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
-	res 6, [hl]
+	res STAT_LYC, [hl]
 	xor a
 	ld hl, rIE
-	res 1, [hl]
+	res INT_LCD_STAT, [hl]
 	pop hl
 	ret
 

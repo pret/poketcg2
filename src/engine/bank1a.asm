@@ -32,6 +32,66 @@ Func_6809a:
 	ret
 ; 0x680a0
 
+SECTION "Bank 1a@42f4", ROMX[$42f4], BANK[$1a]
+
+; applies HP recovery on Pokemon after an attack
+; with HP recovery effect, and handles its animation.
+; input:
+;	d = damage effectiveness
+;	e = HP amount to recover
+ApplyAndAnimateHPRecovery:
+	push de
+	ld hl, wccbd
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+; get Arena card's damage
+	ld e, PLAY_AREA_ARENA
+	call GetCardDamageAndMaxHP
+	pop de
+	or a
+	ret z ; return if no damage
+
+; load correct animation
+	push de
+	ld a, ATK_ANIM_HEAL
+	ld [wLoadedAttackAnimation], a
+	farcall ResetAttackAnimationIsPlaying
+
+	ldh a, [hWhoseTurn]
+	ld h, a
+	lb bc, PLAY_AREA_ARENA, $1 ; arrow
+	farcall PlayAttackAnimation
+
+; compare HP to be restored with max HP
+; if HP to be restored would cause HP to
+; be larger than max HP, cap it accordingly
+	ld e, PLAY_AREA_ARENA
+	call GetCardDamageAndMaxHP
+	ld b, $00
+	pop de
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	add e
+	ld e, a
+	ld a, 0
+	adc d
+	ld d, a
+	; de = damage dealt + current HP
+	; bc = max HP of card
+	call CompareDEtoBC
+	jr c, .skip_cap
+	; cap de to value in bc
+	ld e, c
+	ld d, b
+
+.skip_cap
+	ld [hl], e ; apply new HP to arena card
+	farcall WaitAttackAnimation
+	ret
+; 0x68335
+
 SECTION "Bank 1a@43ec", ROMX[$43ec], BANK[$1a]
 
 ; makes a list in wDuelTempList with the deck indices

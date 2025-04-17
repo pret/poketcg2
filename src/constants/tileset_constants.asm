@@ -421,7 +421,7 @@
 	const TILESET_DARK_SONG                   ; $1a3
 	const TILESET_CARD                        ; $1a4
 	const TILESET_TCG1_PIKACHU_COIN           ; $1a5
-	const TILESET_DUEL_RESULT		  ; $1a6
+	const TILESET_DUEL_RESULT                 ; $1a6
 	const TILESET_SMALL_COINS                 ; $1a7
 	const TILESET_CHANSEY_COIN                ; $1a8
 	const TILESET_ODDISH_COIN                 ; $1a9
