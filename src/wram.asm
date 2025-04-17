@@ -636,10 +636,14 @@ wNPCDuelDeckID:: ; cc16
 wDuelTheme:: ; cc17
 	ds $1
 
-wcc18:: ; cc18
+; which coin the opponent is using for this duel
+; holds a COIN_* constant
+wOppCoin:: ; cc18
 	ds $1
 
-wcc19:: ; cc19
+; which coin the player is using for this duel
+; holds a COIN_* constant
+wPlayerCoin:: ; cc19
 	ds $1
 
 wcc1a:: ; cc1a
@@ -686,6 +690,8 @@ wAIMinDamage:: ; cccb
 wAIMaxDamage:: ; cccc
 	ds $1
 
+; only written, never read
+wccbd:: ; cccd
 	ds $2
 
 ; damage dealt by an attack to a target
@@ -1766,10 +1772,20 @@ wGlossaryMenu:: ; d0d1
 wd0d2:: ; d0d2
 	ds $1
 
-wd0d3:: ; d0d3
+wAttackAnimationIsPlaying:: ; d0d3
 	ds $1
 
-	ds $5
+wDamageAnimAmount:: ; d0d4
+	ds $2
+
+wDamageAnimPlayAreaLocation:: ; d0d6
+	ds $1
+
+wDamageAnimEffectiveness:: ; d0d7
+	ds $1
+
+wDamageAnimPlayAreaSide:: ; d0d8
+	ds $1
 
 ; buffer to store data that will be sent/received through IR
 wIRDataBuffer:: ; d0d9
@@ -2792,34 +2808,74 @@ wdc06:: ; dc06
 	ds $1
 
 wdc08:: ; dc08
-	ds $2
+	ds $1
+
+wdc09:: ; dc09
+	ds $1
 
 	ds $5
 
-wdc0f:: ; dc0f
+; store settings for animation enabled/disabled
+; FALSE means enabled, TRUE means disabled
+wAnimationsDisabled:: ; dc0f
 	ds $1
 
-	ds $47
+; temporarily holds the palettes from
+; wBackgroundPalettesCGB
+wTempBackgroundPalettesCGB:: ; dc10
+	ds NUM_BACKGROUND_PALETTES palettes
+
+	ds $7
 
 wdc57:: ; dc57
 	ds $1
 
+wdc58:: ; dc58
 	ds $1
 
-wdc59:: ; dc59
+wNumActiveAnimations:: ; dc59
 	ds $1
 
-	ds $4
+wdc5a:: ; dc5a
+	ds $1
 
-wdc5e:: ; dc5e
+	ds $1
+	
+wAnimFlags:: ; dc5c
+	ds $1
+	
+wAnimAllowedFlags:: ; dc5d
+	ds $1
+
+wDuelAnimBufferSize:: ; dc5e
+	ds $1
+
+wDuelAnimBufferCurPos:: ; dc5e
+	ds $1
+
+wDuelAnimBuffer:: ; dc60
+	duel_anim_struct wDuelAnim1
+	duel_anim_struct wDuelAnim2
+	duel_anim_struct wDuelAnim3
+	duel_anim_struct wDuelAnim4
+	duel_anim_struct wDuelAnim5
+	duel_anim_struct wDuelAnim6
+	duel_anim_struct wDuelAnim7
+	duel_anim_struct wDuelAnim8
+	duel_anim_struct wDuelAnim9
+	duel_anim_struct wDuelAnim10
+	duel_anim_struct wDuelAnim11
+	duel_anim_struct wDuelAnim12
+	duel_anim_struct wDuelAnim13
+	duel_anim_struct wDuelAnim14
+	duel_anim_struct wDuelAnim15
+	duel_anim_struct wDuelAnim16
+wDuelAnimBufferEnd::
+
 	ds $2
 
-wdc60:: ; dc60
-	ds $80
-
-	ds $2
-
-wdce2:: ; dce2
+; holds an animation to play
+wCurAnimation:: ; dce2
 	ds $1
 
 ; used to know what coordinate offsets to use to place animations
@@ -2846,17 +2902,52 @@ wDuelAnimLocationParam:: ; dce5
 wDuelAnimDamage:: ; dce6
 	ds $2
 
-wdce8:: ; dce8
+wDuelAnimSetScreen:: ; dce8
+wDuelAnimEffectiveness::
 	ds $1
 
+; bank number to return to after processing animation
+wDuelAnimReturnBank:: ; dce9
 	ds $1
 
-wdcea:: ; dcea
+wActiveScreenAnim:: ; dcea
 	ds $1
 
-	ds $5
+; pointer to a function to update
+; the current screen animation
+wScreenAnimUpdatePtr:: ; dceb
+	ds $2
+
+; duration of the current screen animation
+wScreenAnimDuration:: ; dced
+	ds $1
+
+wdcee:: ; dcee
+	ds $2
 
 wdcf0:: ; dcf0
+	ds $1
+
+wAnimationTileset:: ; dcf1
+	ds $2
+
+wAnimationSpriteAnim:: ; dcf3
+	ds $2
+
+wAnimationFrameset:: ; dcf5
+	ds $2
+
+wAnimationPalette:: ; dcf7
+	ds $2
+
+wAnimationDataFlags:: ; dcf9
+	ds $1
+
+wAnimationSFX:: ; dcfa
+	ds $1
+
+; only written, always equals 0
+wAnimationUnknownParam:: ; dcfb
 	ds $1
 
 SECTION "WRAM1@dd02", WRAMX
@@ -3028,7 +3119,19 @@ wPlayerName:: ; de54
 wde64:: ; de64
 	ds $1
 
-	ds $4
+; used by GetNextBackgroundScroll
+wBGScrollMod:: ; de65
+	ds $1
+
+; used by ApplyBackgroundScroll
+wApplyBGScroll:: ; de66
+	ds $1
+
+; used by ApplyBackgroundScroll
+wNextScrollLY:: ; de67
+	ds $1
+
+	ds $1
 
 wde69:: ; de69
 	ds $2

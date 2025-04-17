@@ -257,3 +257,4 @@
 	const ATK_ANIM_SURPRISE_THUNDER       ; $fc
 	const ATK_ANIM_PUSH_ASIDE             ; $fd
 	const ATK_ANIM_BONE_HEADBUTT          ; $fe
+	const ATK_ANIM_FF                     ; $ff

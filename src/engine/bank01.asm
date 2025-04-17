@@ -43,12 +43,14 @@ StartDuel_VSAIOpp:
 	ld a, DUELIST_TYPE_PLAYER
 	ld [wPlayerDuelistType], a
 	ld [wOpponentDuelistType], a
-	ld a, $17
-	ld [wcc18], a
+
+	ld a, COIN_LUGIA
+	ld [wOppCoin], a
 	ld a, $06
 	ld [wcc15], a
-	xor a
-	ld [wcc19], a
+	xor a ; COIN_CHANSEY
+	ld [wPlayerCoin], a
+
 	ld a, NUM_NPC_IDS
 	call Random
 	ld [wOpponentNPCID], a
@@ -5325,7 +5327,7 @@ ProcessPlayedPokemonCard:
 	ret
 
 .TriggerPkmnPower:
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ld a, EFFECTCMDTYPE_PKMN_POWER_TRIGGER
 	call TryExecuteEffectCommandFunction
 	ret
@@ -6043,7 +6045,7 @@ InitVariablesToBeginDuel:
 	ld [wPlayerAttackingAttackIndex], a
 
 	ld a, [wdc08]
-	ld [wcc19], a
+	ld [wPlayerCoin], a
 	call Func_6838
 
 	ld b, MAX_PLAY_AREA_POKEMON
@@ -6087,7 +6089,7 @@ InitVariablesToBeginTurn:
 	ld [wcc1b], a
 	ldh a, [hWhoseTurn]
 	ld [wWhoseTurn], a
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ret
 
 ; make all Pokemon in the turn holder's play area able to evolve. called from the
@@ -6422,7 +6424,7 @@ Func_6986:
 	ld a, EFFECTCMDTYPE_PKMN_POWER_TRIGGER
 	call CheckMatchingCommand
 	ret c
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ld a, EFFECTCMDTYPE_PKMN_POWER_TRIGGER
 	call TryExecuteEffectCommandFunction
 	ret
@@ -7465,7 +7467,42 @@ CheckHaunterTransparency:
 	or a
 	ret
 
-SECTION "Bank 1@70b3", ROMX[$70b3], BANK[$1]
+; return carry and return the appropriate text id in hl if the target has an
+; special status or power that prevents any damage or effect done to it this turn
+; input: a = NO_DAMAGE_OR_EFFECT_*
+CheckNoDamageOrEffect::
+	ld a, [wNoDamageOrEffect]
+	or a
+	ret z
+	bit 7, a
+	jr nz, .dont_print_text ; already been here so don't repeat the text
+	ld hl, wNoDamageOrEffect
+	set 7, [hl]
+	dec a
+	add a
+	ld e, a
+	ld d, $0
+	ld hl, NoDamageOrEffectTextIDTable
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	scf
+	ret
+
+.dont_print_text
+	ld hl, NULL
+	scf
+	ret
+
+NoDamageOrEffectTextIDTable::
+	tx Text015b ; NoDamageOrEffectDueToAgilityText      ; NO_DAMAGE_OR_EFFECT_AGILITY
+	tx Text015a ; NoDamageOrEffectDueToBarrierText      ; NO_DAMAGE_OR_EFFECT_BARRIER
+	tx Text0159 ; NoDamageOrEffectDueToFlyText          ; NO_DAMAGE_OR_EFFECT_FLY
+	tx Text015f ; NoDamageOrEffectDueToTransparencyText ; NO_DAMAGE_OR_EFFECT_TRANSPARENCY
+	tx Text015e ; NoDamageOrEffectDueToNShieldText      ; NO_DAMAGE_OR_EFFECT_NSHIELD
+	tx Text015c ; NoDamageOrEffectDueToHideText         ; NO_DAMAGE_OR_EFFECT_HIDE
+	tx Text01c9 ; NoDamageOrEffectDueToAuroraVeilText   ; NO_DAMAGE_OR_EFFECT_AURORA_VEIL
 
 CheckIsIncapableOfUsingPkmnPower_ArenaCard:
 	xor a ; PLAY_AREA_ARENA

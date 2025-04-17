@@ -1369,7 +1369,7 @@ UseAttackOrPokemonPower::
 PlayAttackAnimation_DealAttackDamage:
 	call Func_14f1
 	bank1call SetDarkWaveAndDarknessVeilDamageModifiers
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ld a, [wLoadedAttackCategory]
 	and RESIDUAL
 	jr nz, .deal_damage
@@ -1398,9 +1398,9 @@ PlayAttackAnimation_DealAttackDamage:
 	call GetNonTurnDuelistVariable
 	push de
 	push hl
-	farcall $6, $4ac1 ; PlayAttackAnimation
-	farcall $6, $4a19 ; Func_741a
-	farcall $6, $4ab1 ; WaitAttackAnimation
+	farcall PlayAttackAnimation
+	farcall $6, $4a19 ; PlayStatusConditionQueueAnimations
+	farcall WaitAttackAnimation
 	pop hl
 	pop de
 	call SubtractHP
@@ -1485,7 +1485,7 @@ HandleConfusionDamageToSelf:
 ; use Pokemon Power
 UsePokemonPower:
 	call ClearTwoTurnDuelVars
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_2
 	call TryExecuteEffectCommandFunction
 	jr c, DrawWideTextBox_WaitForInput_ReturnCarry
@@ -1631,7 +1631,7 @@ DealConfusionDamageToSelf:
 	ld [wNoDamageOrEffect], a
 	ld a, $01
 	ld [wIsDamageToSelf], a
-	farcall Func_18a14
+	farcall ResetAttackAnimationIsPlaying
 	ld hl, wTempNonTurnDuelistCardID
 	ld e, [hl]
 	inc hl
