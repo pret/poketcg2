@@ -833,9 +833,11 @@ ClearSpriteAnims:
 	pop bc
 	pop af
 	ret
-; 0x10908
 
-SECTION "Bank 4@490e", ROMX[$490e], BANK[$4]
+Func_10908:
+	ld c, $00
+	call LoadGfxPalettes
+	ret
 
 GetNextInactiveSpriteAnim::
 	push af
@@ -898,7 +900,15 @@ SetNewSpriteAnimValues::
 	pop af
 	ret
 
-SECTION "Bank 4@4991", ROMX[$4991], BANK[$4]
+SECTION "Bank 4@4989", ROMX[$4989], BANK[$4]
+
+Func_10989:
+	ld [wd96f], a
+	ret
+
+Func_1098d:
+	ld [wd970], a
+	ret
 
 MoveSpriteAnim:
 	push af
@@ -1154,9 +1164,6 @@ SetSpriteAnimMotion:
 	pop bc
 	pop af
 	ret
-; 0x10a83
-
-SECTION "Bank 4@4a83", ROMX[$4a83], BANK[$4]
 
 Func_10a83:
 	push af
@@ -1204,9 +1211,10 @@ Func_10aa8:
 	pop hl
 	pop af
 	ret
-; 0x10ab7
 
-SECTION "Bank 4@4ab9", ROMX[$4ab9], BANK[$4]
+Func_10ab7:
+	ld a, [hl]
+	ret
 
 Func_10ab9:
 	res SPRITEANIMSTRUCT_FLAG6_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
@@ -1421,9 +1429,10 @@ Func_10b9c:
 	pop bc
 	pop af
 	ret
-; 0x10bc4
 
-SECTION "Bank 4@4bc8", ROMX[$4bc8], BANK[$4]
+Func_10bc4:
+	ld hl, wSpriteAnimationStructs
+	ret
 
 SetSpriteAnimAnimating:
 	set SPRITEANIMSTRUCT_ANIMATING_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
@@ -4951,6 +4960,6 @@ Func_13dfa:
 	farcall InitFadePalettes
 	call Func_3f61
 	farcall Func_1dfb9
-	farcall Func_1e419
+	farcall EnableAnimations
 	ret
 ; 0x13e27

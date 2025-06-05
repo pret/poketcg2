@@ -5,11 +5,2186 @@ INCLUDE "engine/glossary.asm"
 
 SECTION "Bank 6@4a14", ROMX[$4a14], BANK[$6]
 
-Func_18a14::
-	xor a
-	ld [wd0d3], a
+ResetAttackAnimationIsPlaying::
+	xor a ; FALSE
+	ld [wAttackAnimationIsPlaying], a
 	ret
 ; 0x18a19
+
+SECTION "Bank 6@4ab1", ROMX[$4ab1], BANK[$6]
+
+; if [wLoadedAttackAnimation] != 0, wait until the animation is over
+WaitAttackAnimation::
+	ld a, [wLoadedAttackAnimation]
+	or a
+	ret z
+	push de
+.anim_loop
+	call DoFrame
+	call CheckAnyAnimationPlaying
+	jr c, .anim_loop
+	pop de
+	ret
+
+; play attack animation
+; input:
+; - [wLoadedAttackAnimation]: animation to play
+; - de: damage dealt by the attack (to display the animation with the number)
+; - b: PLAY_AREA_* location, if applicable
+; - c: a wDamageEffectiveness constant (to print WEAK or RESIST if necessary)
+PlayAttackAnimation::
+	ldh a, [hWhoseTurn]
+	push af
+	push hl
+	push de
+	push bc
+	ld a, [wWhoseTurn]
+	ldh [hWhoseTurn], a
+	ld a, c
+	ld [wDamageAnimEffectiveness], a
+	ldh a, [hWhoseTurn]
+	cp h
+	jr z, .got_location
+	; on the non-turn duelist's side
+	set 7, b
+.got_location
+	ld a, b
+	ld [wDamageAnimPlayAreaLocation], a
+	ld a, [wWhoseTurn]
+	ld [wDamageAnimPlayAreaSide], a
+	ld hl, wDamageAnimAmount
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+; if damage >= 70, ATK_ANIM_HIT becomes ATK_ANIM_BIG_HIT
+	ld a, [wLoadedAttackAnimation]
+	cp ATK_ANIM_HIT
+	jr nz, .got_anim
+	ld a, e
+	cp 70
+	jr c, .got_anim
+	ld a, ATK_ANIM_BIG_HIT
+	ld [wLoadedAttackAnimation], a
+
+.got_anim
+	call PlayAttackAnimationCommands
+	pop bc
+	pop de
+	pop hl
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+; reads the animation commands from PointerTable_AttackAnimation
+; of attack in wLoadedAttackAnimation and plays them
+PlayAttackAnimationCommands:
+	ld a, [wLoadedAttackAnimation]
+	or a
+	ret z
+
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, PointerTable_AttackAnimation
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+
+	push de
+	ld hl, wAttackAnimationIsPlaying
+	ld a, [hl]
+	or a
+	jr nz, .read_command
+	ld [hl], TRUE ; wAttackAnimationIsPlaying
+	call ResetAnimationQueue
+	pop de
+	push de
+	ld a, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ld [wDuelAnimationScreen], a
+	ld a, SET_ANIM_SCREEN_MAIN
+	ld [wDuelAnimSetScreen], a
+	xor a
+	ld [wDuelAnimLocationParam], a
+	ld a, [de]
+	cp ANIMCMD_SET_SCREEN
+	jr z, .read_command
+	ld a, DUEL_ANIM_SET_SCREEN
+	call PlayDuelAnimation
+.read_command
+	pop de
+	; fallthrough
+
+PlayAttackAnimationCommands_NextCommand:
+	ld a, [de]
+	inc de
+	ld hl, AnimationCommandPointerTable
+	jp JumpToFunctionInTable
+
+AnimationCommand_AnimEnd:
+	ret
+
+AnimationCommand_AnimPlayer:
+	xor a
+	ld [wDuelAnimLocationParam], a
+	ldh a, [hWhoseTurn]
+	ld [wDuelAnimDuelistSide], a
+	ld a, [wDuelType]
+	cp $00
+	jr nz, AnimationCommand_AnimNormal
+	ld a, PLAYER_TURN
+	ld [wDuelAnimDuelistSide], a
+	jr AnimationCommand_AnimNormal
+
+AnimationCommand_AnimOpponent:
+	xor a
+	ld [wDuelAnimLocationParam], a
+	call SwapTurn
+	ldh a, [hWhoseTurn]
+	ld [wDuelAnimDuelistSide], a
+	call SwapTurn
+	ld a, [wDuelType]
+	cp $00
+	jr nz, AnimationCommand_AnimNormal
+	ld a, OPPONENT_TURN
+	ld [wDuelAnimDuelistSide], a
+	jr AnimationCommand_AnimNormal
+
+AnimationCommand_AnimPlayArea:
+	ld a, [wDamageAnimPlayAreaLocation]
+	and $7f
+	ld [wDuelAnimLocationParam], a
+	jr AnimationCommand_AnimNormal
+
+AnimationCommand_AnimEnd2:
+	ret
+
+AnimationCommand_AnimNormal:
+	ld a, [de]
+	inc de
+	cp DUEL_ANIM_SHOW_DAMAGE
+	jr z, .show_damage
+	cp DUEL_ANIM_SMALL_SHAKE_X
+	jr z, .shake_1
+	cp DUEL_ANIM_BIG_SHAKE_X
+	jr z, .shake_2
+	cp DUEL_ANIM_SMALL_SHAKE_Y
+	jr z, .shake_3
+
+.play_anim
+	call PlayDuelAnimation
+	jr PlayAttackAnimationCommands_NextCommand
+
+.show_damage
+	ld a, DUEL_PRINT_DAMAGE
+	call PlayDuelAnimation
+	ld a, [wDamageAnimEffectiveness]
+	ld [wDuelAnimEffectiveness], a
+
+	push de
+	ld hl, wDamageAnimAmount
+	ld de, wDuelAnimDamage
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	pop de
+
+	ld a, DUEL_ANIM_DAMAGE_HUD
+	call PlayDuelAnimation
+	ld a, [wDuelDisplayedScreen]
+	cp DUEL_MAIN_SCENE
+	jr nz, .skip_update_hud
+	ld a, DUEL_ANIM_UPDATE_HUD
+	call PlayDuelAnimation
+.skip_update_hud
+	jp PlayAttackAnimationCommands_NextCommand
+
+; screen shake happens differently
+; depending on whose turn it is
+.shake_1
+	ld c, DUEL_ANIM_SMALL_SHAKE_X
+	ld b, DUEL_ANIM_SMALL_SHAKE_Y
+	jr .check_duelist
+
+.shake_2
+	ld c, DUEL_ANIM_BIG_SHAKE_X
+	ld b, DUEL_ANIM_BIG_SHAKE_Y
+	jr .check_duelist
+
+.shake_3
+	ld c, DUEL_ANIM_SMALL_SHAKE_Y
+	ld b, DUEL_ANIM_SMALL_SHAKE_X
+
+.check_duelist
+	ldh a, [hWhoseTurn]
+	cp PLAYER_TURN
+	ld a, c
+	jr z, .play_anim
+	ld a, [wDuelType]
+	cp $00
+	ld a, c
+	jr z, .play_anim
+	ld a, b
+	jr .play_anim
+
+AnimationCommand_AnimScreen:
+	ld a, [de]
+	inc de
+	ld [wDuelAnimSetScreen], a
+	ld a, [wDamageAnimPlayAreaLocation]
+	ld [wDuelAnimLocationParam], a
+	call UpdateDuelAnimationScreen
+	ld a, DUEL_ANIM_SET_SCREEN
+	call PlayDuelAnimation
+	jp PlayAttackAnimationCommands_NextCommand
+
+AnimationCommandPointerTable:
+	dw AnimationCommand_AnimEnd      ; ANIMCMD_END
+	dw AnimationCommand_AnimNormal   ; ANIMCMD_NORMAL
+	dw AnimationCommand_AnimPlayer   ; ANIMCMD_PLAYER_SIDE
+	dw AnimationCommand_AnimOpponent ; ANIMCMD_OPP_SIDE
+	dw AnimationCommand_AnimScreen   ; ANIMCMD_SET_SCREEN
+	dw AnimationCommand_AnimPlayArea ; ANIMCMD_PLAY_AREA
+	dw AnimationCommand_AnimEnd2     ; ANIMCMD_END_UNUSED
+
+; sets wDuelAnimationScreen according to wDuelAnimSetScreen
+; if SET_ANIM_SCREEN_MAIN,      set it to Main Scene
+; if SET_ANIM_SCREEN_PLAY_AREA, set it to Play Area scene
+UpdateDuelAnimationScreen:
+	ld a, [wDuelAnimSetScreen]
+	cp SET_ANIM_SCREEN_PLAY_AREA
+	jr z, .set_play_area_screen
+	cp SET_ANIM_SCREEN_MAIN
+	ret nz
+	ld a, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ld [wDuelAnimationScreen], a
+	ret
+
+.set_play_area_screen
+	ld a, [wDuelAnimLocationParam]
+	ld l, a
+	ld a, [wWhoseTurn]
+	ld h, a
+	cp PLAYER_TURN
+	jr z, .players_turn
+
+; opponent's turn
+	ld a, [wDuelType]
+	cp $00
+	jr z, .asm_50c6
+; link duel or vs. AI
+	bit 7, l
+	jr z, .asm_50e2
+	jr .asm_50d2
+.asm_50c6
+	bit 7, l
+	jr z, .asm_50da
+	jr .asm_50ea
+
+.players_turn
+	bit 7, l
+	jr z, .asm_50d2
+	jr .asm_50e2
+
+.asm_50d2
+	ld l, UNKNOWN_SCREEN_4
+	ld h, PLAYER_TURN
+	ld a, DUEL_ANIM_SCREEN_PLAYER_PLAY_AREA
+	jr .ok
+.asm_50da
+	ld l, UNKNOWN_SCREEN_4
+	ld h, OPPONENT_TURN
+	ld a, DUEL_ANIM_SCREEN_PLAYER_PLAY_AREA
+	jr .ok
+.asm_50e2
+	ld l, UNKNOWN_SCREEN_5
+	ld h, OPPONENT_TURN
+	ld a, DUEL_ANIM_SCREEN_OPP_PLAY_AREA
+	jr .ok
+.asm_50ea
+	ld l, UNKNOWN_SCREEN_5
+	ld h, PLAYER_TURN
+	ld a, DUEL_ANIM_SCREEN_OPP_PLAY_AREA
+
+.ok
+	ld [wDuelAnimationScreen], a
+	ret
+
+SetScreenForDuelAnimation::
+	ld a, [wDuelAnimSetScreen]
+	cp SET_ANIM_SCREEN_PLAY_AREA
+	jr z, .set_play_area_screen
+	cp SET_ANIM_SCREEN_MAIN
+	jr nz, .done
+; set duel main screen
+	ld a, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ld [wDuelAnimationScreen], a
+	ld a, [wDuelDisplayedScreen]
+	cp DUEL_MAIN_SCENE
+	jr z, .done
+	bank1call DrawDuelMainScene
+.done
+	ret
+
+.set_play_area_screen
+	call UpdateDuelAnimationScreen
+
+	ld a, [wDuelDisplayedScreen]
+	cp l
+	jr z, .skip_change_screen
+	ld a, l
+	push af
+	ld l, PLAYER_TURN
+	ld a, [wDuelType]
+	cp $00
+	jr nz, .asm_5127
+	ld a, [wWhoseTurn]
+	ld l, a
+.asm_5127
+	call DrawYourOrOppPlayAreaScreen_Bank0
+	pop af
+	ld [wDuelDisplayedScreen], a
+.skip_change_screen
+	call DrawWideTextBox
+	ret
+
+; prints text related to the damage received
+; by card stored in wTempNonTurnDuelistCardID
+; takes into account type effectiveness
+PrintDamageText::
+	push hl
+	push bc
+	push de
+	ld a, [wLoadedAttackAnimation]
+	cp ATK_ANIM_HEAL
+	jr z, .skip
+	cp ATK_ANIM_HEALING_WIND_PLAY_AREA
+	jr z, .skip
+
+	ld hl, wTempNonTurnDuelistCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], TX_END
+	ld hl, wTxRam2
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wDamageAnimAmount
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call GetDamageText
+	ld a, l
+	or h
+	call nz, DrawWideTextBox_PrintText
+.skip
+	pop de
+	pop bc
+	pop hl
+	ret
+
+; returns in hl the text id associated with
+; the damage in hl and its effectiveness
+GetDamageText:
+	ld a, l
+	or h
+	jr z, .no_damage
+	call LoadTxRam3
+	ld a, [wDamageAnimEffectiveness]
+	ldtx hl, Text003b ; AttackDamageText
+	and (1 << RESISTANCE) | (1 << WEAKNESS)
+	ret z ; not weak or resistant
+	ldtx hl, Text0039 ; WeaknessMoreDamage2Text
+	cp (1 << RESISTANCE) | (1 << WEAKNESS)
+	ret z ; weak and resistant
+	and (1 << WEAKNESS)
+	ldtx hl, Text0038 ; WeaknessMoreDamageText
+	ret nz ; weak
+	ldtx hl, Text0037 ; ResistanceLessDamageText
+	ret ; resistant
+
+.no_damage
+	bank1call CheckNoDamageOrEffect
+	ret c
+	ldtx hl, Text003c ; NoDamageText
+	ld a, [wDamageAnimEffectiveness]
+	and (1 << RESISTANCE)
+	ret z ; not resistant
+	ldtx hl, Text003a ; ResistanceNoDamageText
+	ret ; resistant
+
+UpdateMainSceneHUD::
+	bank1call DrawDuelHUDs
+	ret
+
+DuelAnim153::
+DuelAnim154::
+DuelAnim155::
+DuelAnim156::
+DuelAnim157::
+	ret
+
+PointerTable_AttackAnimation:
+	dw NULL                                ; ATK_ANIM_NONE
+	dw AttackAnimation_Hit                 ; ATK_ANIM_HIT
+	dw AttackAnimation_BigHit              ; ATK_ANIM_BIG_HIT
+	dw AttackAnimation_Earthquake          ; ATK_ANIM_EARTHQUAKE
+	dw AttackAnimation_HitRecoil           ; ATK_ANIM_HIT_RECOIL
+	dw AttackAnimation_HitEffect           ; ATK_ANIM_HIT_EFFECT
+	dw AttackAnimation_Thundershock        ; ATK_ANIM_THUNDERSHOCK
+	dw AttackAnimation_Thunder             ; ATK_ANIM_THUNDER
+	dw AttackAnimation_Thunderbolt         ; ATK_ANIM_THUNDERBOLT
+	dw AttackAnimation_ThundershockCopy    ; ATK_ANIM_THUNDERSHOCK_COPY
+	dw AttackAnimation_ThunderWholeScreen  ; ATK_ANIM_THUNDER_WHOLE_SCREEN
+	dw AttackAnimation_Unused0B            ; ATK_ANIM_UNUSED_0B
+	dw AttackAnimation_Thunderstorm        ; ATK_ANIM_THUNDERSTORM
+	dw AttackAnimation_ChainLightning      ; ATK_ANIM_CHAIN_LIGHTNING
+	dw AttackAnimation_SmallFlame          ; ATK_ANIM_SMALL_FLAME
+	dw AttackAnimation_BigFlame            ; ATK_ANIM_BIG_FLAME
+	dw AttackAnimation_FireSpin            ; ATK_ANIM_FIRE_SPIN
+	dw AttackAnimation_DiveBomb            ; ATK_ANIM_DIVE_BOMB
+	dw AttackAnimation_WaterJets           ; ATK_ANIM_WATER_JETS
+	dw AttackAnimation_WaterGun            ; ATK_ANIM_WATER_GUN
+	dw AttackAnimation_Whirlpool           ; ATK_ANIM_WHIRLPOOL
+	dw AttackAnimation_DragonRage          ; ATK_ANIM_DRAGON_RAGE
+	dw AttackAnimation_HydroPump           ; ATK_ANIM_HYDRO_PUMP
+	dw AttackAnimation_Aeroblast           ; ATK_ANIM_AEROBLAST
+	dw AttackAnimation_Blizzard            ; ATK_ANIM_BLIZZARD
+	dw AttackAnimation_PsychicHit          ; ATK_ANIM_PSYCHIC_HIT
+	dw AttackAnimation_Nightmare           ; ATK_ANIM_NIGHTMARE
+	dw AttackAnimation_Psyshock            ; ATK_ANIM_PSYSHOCK
+	dw AttackAnimation_DarkMind            ; ATK_ANIM_DARK_MIND
+	dw AttackAnimation_Beam                ; ATK_ANIM_BEAM
+	dw AttackAnimation_HyperBeam           ; ATK_ANIM_HYPER_BEAM
+	dw AttackAnimation_IceBeam             ; ATK_ANIM_ICE_BEAM
+	dw AttackAnimation_Avalanche           ; ATK_ANIM_AVALANCHE
+	dw AttackAnimation_StoneBarrage        ; ATK_ANIM_STONE_BARRAGE
+	dw AttackAnimation_Punch               ; ATK_ANIM_PUNCH
+	dw AttackAnimation_Thunderpunch        ; ATK_ANIM_THUNDERPUNCH
+	dw AttackAnimation_FirePunch           ; ATK_ANIM_FIRE_PUNCH
+	dw AttackAnimation_StretchKick         ; ATK_ANIM_STRETCH_KICK
+	dw AttackAnimation_Slash               ; ATK_ANIM_SLASH
+	dw AttackAnimation_Whip                ; ATK_ANIM_WHIP
+	dw AttackAnimation_Tear                ; ATK_ANIM_TEAR
+	dw AttackAnimation_MultipleSlash       ; ATK_ANIM_MULTIPLE_SLASH
+	dw AttackAnimation_Unused2A            ; ATK_ANIM_UNUSED_2A
+	dw AttackAnimation_Rampage             ; ATK_ANIM_RAMPAGE
+	dw AttackAnimation_Drill               ; ATK_ANIM_DRILL
+	dw AttackAnimation_PotSmash            ; ATK_ANIM_POT_SMASH
+	dw AttackAnimation_Bonemerang          ; ATK_ANIM_BONEMERANG
+	dw AttackAnimation_SeismicToss         ; ATK_ANIM_SEISMIC_TOSS
+	dw AttackAnimation_Needles             ; ATK_ANIM_NEEDLES
+	dw AttackAnimation_PoisonNeedle        ; ATK_ANIM_POISON_NEEDLE
+	dw AttackAnimation_Smog                ; ATK_ANIM_SMOG
+	dw AttackAnimation_PoisonGas           ; ATK_ANIM_POISON_GAS
+	dw AttackAnimation_Unused34            ; ATK_ANIM_UNUSED_34
+	dw AttackAnimation_FoulGas             ; ATK_ANIM_FOUL_GAS
+	dw AttackAnimation_FoulOdor            ; ATK_ANIM_FOUL_ODOR
+	dw AttackAnimation_PowderEffectChance  ; ATK_ANIM_POWDER_EFFECT_CHANCE
+	dw AttackAnimation_PowderHitPoison     ; ATK_ANIM_POWDER_HIT_POISON
+	dw AttackAnimation_PoisonPowder        ; ATK_ANIM_POISON_POWDER
+	dw AttackAnimation_Unused3A            ; ATK_ANIM_UNUSED_3A
+	dw AttackAnimation_StunSpore           ; ATK_ANIM_STUN_SPORE
+	dw AttackAnimation_Poisonpowder        ; ATK_ANIM_POISONPOWDER
+	dw AttackAnimation_Goo                 ; ATK_ANIM_GOO
+	dw AttackAnimation_Unused3E            ; ATK_ANIM_UNUSED_3E
+	dw AttackAnimation_SpitPoison          ; ATK_ANIM_SPIT_POISON
+	dw AttackAnimation_StickyHands         ; ATK_ANIM_STICKY_HANDS
+	dw AttackAnimation_Bubbles             ; ATK_ANIM_BUBBLES
+	dw AttackAnimation_BubblesCopy         ; ATK_ANIM_BUBBLES_COPY
+	dw AttackAnimation_StringShot          ; ATK_ANIM_STRING_SHOT
+	dw AttackAnimation_Unused44            ; ATK_ANIM_UNUSED_44
+	dw AttackAnimation_Boyfriends          ; ATK_ANIM_BOYFRIENDS
+	dw AttackAnimation_Lure                ; ATK_ANIM_LURE
+	dw AttackAnimation_Toxic               ; ATK_ANIM_TOXIC
+	dw AttackAnimation_ConfuseRay          ; ATK_ANIM_CONFUSE_RAY
+	dw AttackAnimation_Unused49            ; ATK_ANIM_UNUSED_49
+	dw AttackAnimation_Sing                ; ATK_ANIM_SING
+	dw AttackAnimation_Lullaby             ; ATK_ANIM_LULLABY
+	dw AttackAnimation_Supersonic          ; ATK_ANIM_SUPERSONIC
+	dw AttackAnimation_SupersonicCopy      ; ATK_ANIM_SUPERSONIC_COPY
+	dw AttackAnimation_PetalDance          ; ATK_ANIM_PETAL_DANCE
+	dw AttackAnimation_Protect             ; ATK_ANIM_PROTECT
+	dw AttackAnimation_Barrier             ; ATK_ANIM_BARRIER
+	dw AttackAnimation_QuickAttack         ; ATK_ANIM_QUICK_ATTACK
+	dw AttackAnimation_AgilityProtect      ; ATK_ANIM_AGILITY_PROTECT
+	dw AttackAnimation_Whirlwind           ; ATK_ANIM_WHIRLWIND
+	dw AttackAnimation_Cry                 ; ATK_ANIM_CRY
+	dw AttackAnimation_Amnesia             ; ATK_ANIM_AMNESIA
+	dw AttackAnimation_Selfdestruct        ; ATK_ANIM_SELFDESTRUCT
+	dw AttackAnimation_BigSelfdestruction  ; ATK_ANIM_BIG_SELFDESTRUCTION
+	dw AttackAnimation_Recover             ; ATK_ANIM_RECOVER
+	dw AttackAnimation_Drain               ; ATK_ANIM_DRAIN
+	dw AttackAnimation_DarkGas             ; ATK_ANIM_DARK_GAS
+	dw AttackAnimation_GlowEffect          ; ATK_ANIM_GLOW_EFFECT
+	dw AttackAnimation_MirrorMove          ; ATK_ANIM_MIRROR_MOVE
+	dw AttackAnimation_DevolutionBeam      ; ATK_ANIM_DEVOLUTION_BEAM
+	dw AttackAnimation_PkmnPower1          ; ATK_ANIM_PKMN_POWER_1
+	dw AttackAnimation_Firegiver           ; ATK_ANIM_FIREGIVER
+	dw AttackAnimation_Quickfreeze         ; ATK_ANIM_QUICKFREEZE
+	dw AttackAnimation_PealOfThunder       ; ATK_ANIM_PEAL_OF_THUNDER
+	dw AttackAnimation_HealingWind         ; ATK_ANIM_HEALING_WIND
+	dw AttackAnimation_WhirlwindZigzag     ; ATK_ANIM_WHIRLWIND_ZIGZAG
+	dw AttackAnimation_BigThunder          ; ATK_ANIM_BIG_THUNDER
+	dw AttackAnimation_SolarPower          ; ATK_ANIM_SOLAR_POWER
+	dw AttackAnimation_PoisonFang          ; ATK_ANIM_POISON_FANG
+	dw AttackAnimation_Unused67            ; ATK_ANIM_UNUSED_67
+	dw AttackAnimation_Unused68            ; ATK_ANIM_UNUSED_68
+	dw AttackAnimation_Unused69            ; ATK_ANIM_UNUSED_69
+	dw AttackAnimation_FriendshipSong      ; ATK_ANIM_FRIENDSHIP_SONG
+	dw AttackAnimation_Scrunch             ; ATK_ANIM_SCRUNCH
+	dw AttackAnimation_CatPunch            ; ATK_ANIM_CAT_PUNCH
+	dw AttackAnimation_MagneticStorm       ; ATK_ANIM_MAGNETIC_STORM
+	dw AttackAnimation_PoisonWhip          ; ATK_ANIM_POISON_WHIP
+	dw AttackAnimation_ThunderWave         ; ATK_ANIM_THUNDER_WAVE
+	dw AttackAnimation_Unused70            ; ATK_ANIM_UNUSED_70
+	dw AttackAnimation_Spore               ; ATK_ANIM_SPORE
+	dw AttackAnimation_Hypnosis            ; ATK_ANIM_HYPNOSIS
+	dw AttackAnimation_EnergyConversion    ; ATK_ANIM_ENERGY_CONVERSION
+	dw AttackAnimation_Leer                ; ATK_ANIM_LEER
+	dw AttackAnimation_ConfusionHit        ; ATK_ANIM_CONFUSION_HIT
+	dw AttackAnimation_Unused76            ; ATK_ANIM_UNUSED_76
+	dw AttackAnimation_Unused77            ; ATK_ANIM_UNUSED_77
+	dw AttackAnimation_BenchHit            ; ATK_ANIM_BENCH_HIT
+	dw AttackAnimation_Heal                ; ATK_ANIM_HEAL
+	dw AttackAnimation_RecoilHit           ; ATK_ANIM_RECOIL_HIT
+	dw AttackAnimation_Poison              ; ATK_ANIM_POISON
+	dw AttackAnimation_Confusion           ; ATK_ANIM_CONFUSION
+	dw AttackAnimation_Paralysis           ; ATK_ANIM_PARALYSIS
+	dw AttackAnimation_Sleep               ; ATK_ANIM_SLEEP
+	dw AttackAnimation_ImakuniConfusion    ; ATK_ANIM_IMAKUNI_CONFUSION
+	dw AttackAnimation_SleepingGas         ; ATK_ANIM_SLEEPING_GAS
+	dw AttackAnimation_Unused81            ; ATK_ANIM_UNUSED_81
+	dw AttackAnimation_ThunderPlayArea     ; ATK_ANIM_THUNDER_PLAY_AREA
+	dw AttackAnimation_CatPunchPlayArea    ; ATK_ANIM_CAT_PUNCH_PLAY_AREA
+	dw AttackAnimation_FiregiverPlayer     ; ATK_ANIM_FIREGIVER_PLAYER
+	dw AttackAnimation_FiregiverOpp        ; ATK_ANIM_FIREGIVER_OPP
+	dw AttackAnimation_HealingWindPlayArea ; ATK_ANIM_HEALING_WIND_PLAY_AREA
+	dw AttackAnimation_Gale                ; ATK_ANIM_GALE
+	dw AttackAnimation_Expand              ; ATK_ANIM_EXPAND
+	dw AttackAnimation_Unused89            ; ATK_ANIM_UNUSED_89
+	dw AttackAnimation_FullHeal            ; ATK_ANIM_FULL_HEAL
+	dw AttackAnimation_Unused8B            ; ATK_ANIM_UNUSED_8B
+	dw AttackAnimation_SpitPoisonSuccess   ; ATK_ANIM_SPIT_POISON_SUCCESS
+	dw AttackAnimation_GustOfWind          ; ATK_ANIM_GUST_OF_WIND
+	dw AttackAnimation_HealBothSides       ; ATK_ANIM_HEAL_BOTH_SIDES
+	dw AttackAnimation_Unused8F            ; ATK_ANIM_UNUSED_8F
+	dw AttackAnimation_Unused90            ; ATK_ANIM_UNUSED_90
+	dw AttackAnimation_Unused91            ; ATK_ANIM_UNUSED_91
+	dw AttackAnimation_Unused92            ; ATK_ANIM_UNUSED_92
+	dw AttackAnimation_Unused93            ; ATK_ANIM_UNUSED_93
+	dw AttackAnimation_Unused94            ; ATK_ANIM_UNUSED_94
+	dw AttackAnimation_Unused95            ; ATK_ANIM_UNUSED_95
+	dw AttackAnimation_Unused96            ; ATK_ANIM_UNUSED_96
+	dw AttackAnimation_SneakAttack         ; ATK_ANIM_SNEAK_ATTACK
+	dw AttackAnimation_Unused98            ; ATK_ANIM_UNUSED_98
+	dw AttackAnimation_Unused99            ; ATK_ANIM_UNUSED_99
+	dw AttackAnimation_LightningFlash      ; ATK_ANIM_LIGHTNING_FLASH
+	dw AttackAnimation_Unused9B            ; ATK_ANIM_UNUSED_9B
+	dw AttackAnimation_Unused9C            ; ATK_ANIM_UNUSED_9C
+	dw AttackAnimation_Unused9D            ; ATK_ANIM_UNUSED_9D
+	dw AttackAnimation_Fireball            ; ATK_ANIM_FIREBALL
+	dw AttackAnimation_ContinuousFireball  ; ATK_ANIM_CONTINUOUS_FIREBALL
+	dw AttackAnimation_FlamePillar         ; ATK_ANIM_FLAME_PILLAR
+	dw AttackAnimation_WaterBomb           ; ATK_ANIM_WATER_BOMB
+	dw AttackAnimation_UnusedA2            ; ATK_ANIM_UNUSED_A2
+	dw AttackAnimation_UnusedA3            ; ATK_ANIM_UNUSED_A3
+	dw AttackAnimation_UnusedA4            ; ATK_ANIM_UNUSED_A4
+	dw AttackAnimation_BenchManipulation   ; ATK_ANIM_BENCH_MANIPULATION
+	dw AttackAnimation_Blink               ; ATK_ANIM_BLINK
+	dw AttackAnimation_UnusedA7            ; ATK_ANIM_UNUSED_A7
+	dw AttackAnimation_UnusedA8            ; ATK_ANIM_UNUSED_A8
+	dw AttackAnimation_Psybeam             ; ATK_ANIM_PSYBEAM
+	dw AttackAnimation_UnusedAA            ; ATK_ANIM_UNUSED_AA
+	dw AttackAnimation_UnusedAB            ; ATK_ANIM_UNUSED_AB
+	dw AttackAnimation_AuroraWave          ; ATK_ANIM_AURORA_WAVE
+	dw AttackAnimation_UnusedAD            ; ATK_ANIM_UNUSED_AD
+	dw AttackAnimation_RockThrow           ; ATK_ANIM_ROCK_THROW
+	dw AttackAnimation_BoulderSmash        ; ATK_ANIM_BOULDER_SMASH
+	dw AttackAnimation_MegaPunch           ; ATK_ANIM_MEGA_PUNCH
+	dw AttackAnimation_Psypunch            ; ATK_ANIM_PSYPUNCH
+	dw AttackAnimation_SludgePunch         ; ATK_ANIM_SLUDGE_PUNCH
+	dw AttackAnimation_UnusedB3            ; ATK_ANIM_UNUSED_B3
+	dw AttackAnimation_UnusedB4            ; ATK_ANIM_UNUSED_B4
+	dw AttackAnimation_IcePunch            ; ATK_ANIM_ICE_PUNCH
+	dw AttackAnimation_LegSweep            ; ATK_ANIM_LEG_SWEEP
+	dw AttackAnimation_UnusedB7            ; ATK_ANIM_UNUSED_B7
+	dw AttackAnimation_SparkingKick        ; ATK_ANIM_SPARKING_KICK
+	dw AttackAnimation_UnusedB9            ; ATK_ANIM_UNUSED_B9
+	dw AttackAnimation_PollenStench        ; ATK_ANIM_POLLEN_STENCH
+	dw AttackAnimation_UnusedBB            ; ATK_ANIM_UNUSED_BB
+	dw AttackAnimation_UnusedBC            ; ATK_ANIM_UNUSED_BC
+	dw AttackAnimation_UnusedBD            ; ATK_ANIM_UNUSED_BD
+	dw AttackAnimation_PoisonVapor         ; ATK_ANIM_POISON_VAPOR
+	dw AttackAnimation_PoisonGasCopy       ; ATK_ANIM_POISON_GAS_COPY
+	dw AttackAnimation_EerieLight          ; ATK_ANIM_EERIE_LIGHT
+	dw AttackAnimation_Spookify            ; ATK_ANIM_SPOOKIFY
+	dw AttackAnimation_MassExplosion       ; ATK_ANIM_MASS_EXPLOSION
+	dw AttackAnimation_GasExplosion        ; ATK_ANIM_GAS_EXPLOSION
+	dw AttackAnimation_UnusedC4            ; ATK_ANIM_UNUSED_C4
+	dw AttackAnimation_UnusedC5            ; ATK_ANIM_UNUSED_C5
+	dw AttackAnimation_Lick                ; ATK_ANIM_LICK
+	dw AttackAnimation_UnusedC7            ; ATK_ANIM_UNUSED_C7
+	dw AttackAnimation_TailSlap            ; ATK_ANIM_TAIL_SLAP
+	dw AttackAnimation_TailWhip            ; ATK_ANIM_TAIL_WHIP
+	dw AttackAnimation_UnusedCA            ; ATK_ANIM_UNUSED_CA
+	dw AttackAnimation_Slap                ; ATK_ANIM_SLAP
+	dw AttackAnimation_UnusedCC            ; ATK_ANIM_UNUSED_CC
+	dw AttackAnimation_RocketTackle        ; ATK_ANIM_ROCKET_TACKLE
+	dw AttackAnimation_Stare               ; ATK_ANIM_STARE
+	dw AttackAnimation_UnusedCF            ; ATK_ANIM_UNUSED_CF
+	dw AttackAnimation_CoinHurl            ; ATK_ANIM_COIN_HURL
+	dw AttackAnimation_UnusedD1            ; ATK_ANIM_UNUSED_D1
+	dw AttackAnimation_Teleport            ; ATK_ANIM_TELEPORT
+	dw AttackAnimation_TeleportBlast       ; ATK_ANIM_TELEPORT_BLAST
+	dw AttackAnimation_FollowMe            ; ATK_ANIM_FOLLOW_ME
+	dw AttackAnimation_ShiningFinger       ; ATK_ANIM_SHINING_FINGER
+	dw AttackAnimation_UnusedD6            ; ATK_ANIM_UNUSED_D6
+	dw AttackAnimation_SuspiciousSoundwave ; ATK_ANIM_SUSPICIOUS_SOUNDWAVE
+	dw AttackAnimation_3dAttack            ; ATK_ANIM_3D_ATTACK
+	dw AttackAnimation_UnusedD9            ; ATK_ANIM_UNUSED_D9
+	dw AttackAnimation_RollOver            ; ATK_ANIM_ROLL_OVER
+	dw AttackAnimation_Swift               ; ATK_ANIM_SWIFT
+	dw AttackAnimation_UnusedDC            ; ATK_ANIM_UNUSED_DC
+	dw AttackAnimation_UnusedDD            ; ATK_ANIM_UNUSED_DD
+	dw AttackAnimation_ColdBreath          ; ATK_ANIM_COLD_BREATH
+	dw AttackAnimation_DryUp               ; ATK_ANIM_DRY_UP
+	dw AttackAnimation_UnusedE0            ; ATK_ANIM_UNUSED_E0
+	dw AttackAnimation_TransDamage         ; ATK_ANIM_TRANS_DAMAGE
+	dw AttackAnimation_FocusBlast          ; ATK_ANIM_FOCUS_BLAST
+	dw AttackAnimation_UnusedE3            ; ATK_ANIM_UNUSED_E3
+	dw AttackAnimation_UnusedE4            ; ATK_ANIM_UNUSED_E4
+	dw AttackAnimation_FadeToBlack         ; ATK_ANIM_FADE_TO_BLACK
+	dw AttackAnimation_UnusedE8            ; ATK_ANIM_UNUSED_E8
+	dw AttackAnimation_PoisonSeed          ; ATK_ANIM_POISON_SEED
+	dw AttackAnimation_Twiddle             ; ATK_ANIM_TWIDDLE
+	dw AttackAnimation_UnusedE9            ; ATK_ANIM_UNUSED_E9
+	dw AttackAnimation_BigYawn             ; ATK_ANIM_BIG_YAWN
+	dw AttackAnimation_BigSnore            ; ATK_ANIM_BIG_SNORE
+	dw AttackAnimation_SandVeil            ; ATK_ANIM_SAND_VEIL
+	dw AttackAnimation_UnusedED            ; ATK_ANIM_UNUSED_ED
+	dw AttackAnimation_HelpingHand         ; ATK_ANIM_HELPING_HAND
+	dw AttackAnimation_Rest                ; ATK_ANIM_REST
+	dw AttackAnimation_TerrorStrike        ; ATK_ANIM_TERROR_STRIKE
+	dw AttackAnimation_SkullBash           ; ATK_ANIM_SKULL_BASH
+	dw AttackAnimation_RazorLeaf           ; ATK_ANIM_RAZOR_LEAF
+	dw AttackAnimation_Guillotine          ; ATK_ANIM_GUILLOTINE
+	dw AttackAnimation_VinePull            ; ATK_ANIM_VINE_PULL
+	dw AttackAnimation_FuryStrikes         ; ATK_ANIM_FURY_STRIKES
+	dw AttackAnimation_DrillDive           ; ATK_ANIM_DRILL_DIVE
+	dw AttackAnimation_DarkSong            ; ATK_ANIM_DARK_SONG
+	dw AttackAnimation_UnusedF8            ; ATK_ANIM_UNUSED_F8
+	dw AttackAnimation_Perplex             ; ATK_ANIM_PERPLEX
+	dw AttackAnimation_NineTails           ; ATK_ANIM_NINE_TAILS
+	dw AttackAnimation_SpinningShower      ; ATK_ANIM_SPINNING_SHOWER
+	dw AttackAnimation_SurpriseThunder     ; ATK_ANIM_SURPRISE_THUNDER
+	dw AttackAnimation_PushAside           ; ATK_ANIM_PUSH_ASIDE
+	dw AttackAnimation_BoneHeadbutt        ; ATK_ANIM_BONE_HEADBUTT
+	dw AttackAnimation_UnusedFF            ; ATK_ANIM_UNUSED_FF
+
+AttackAnimation_Hit:
+AttackAnimation_Earthquake:
+AttackAnimation_HitRecoil:
+AttackAnimation_HitEffect:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_BigHit:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BIG_HIT
+	anim_normal    DUEL_ANIM_BIG_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Thundershock:
+AttackAnimation_Thunder:
+AttackAnimation_ThundershockCopy:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_THUNDER_SHOCK
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Thunderbolt:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_LIGHTNING
+	anim_opponent  DUEL_ANIM_BORDER_SPARK
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_ThunderWholeScreen:
+AttackAnimation_Unused0B:
+AttackAnimation_Thunderstorm:
+AttackAnimation_ChainLightning:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_normal    DUEL_ANIM_BIG_LIGHTNING
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SmallFlame:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SMALL_FLAME
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_BigFlame:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BIG_FLAME
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FireSpin:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FIRE_SPIN
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DiveBomb:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DIVE_BOMB
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_WaterJets:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_WATER_JETS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_WaterGun:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WATER_GUN
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Whirlpool:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_WHIRLPOOL
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DragonRage:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_LIGHTNING
+	anim_opponent  DUEL_ANIM_WATER_GUN
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_HydroPump:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HYDRO_PUMP
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Aeroblast:
+AttackAnimation_Blizzard:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_BLIZZARD
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PsychicHit:
+AttackAnimation_Nightmare:
+AttackAnimation_Psyshock:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PSYCHIC
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DarkMind:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_LEER
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Beam:
+AttackAnimation_IceBeam:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BEAM
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_HyperBeam:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HYPER_BEAM
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Avalanche:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_ROCK_THROW
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_StoneBarrage:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_STONE_BARRAGE
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Punch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PUNCH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Thunderpunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_THUNDERPUNCH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FirePunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_FIRE_PUNCH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_StretchKick:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_STRETCH_KICK
+	anim_end
+
+AttackAnimation_Slash:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SLASH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Whip:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHIP
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Tear:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SONICBOOM
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_MultipleSlash:
+AttackAnimation_Unused2A:
+AttackAnimation_Rampage:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_FURY_SWIPES
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Drill:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DRILL
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PotSmash:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POT_SMASH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Bonemerang:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BONEMERANG
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SeismicToss:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SEISMIC_TOSS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Needles:
+AttackAnimation_PoisonNeedle:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_NEEDLES
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Smog:
+AttackAnimation_PoisonGas:
+AttackAnimation_Unused34:
+AttackAnimation_FoulGas:
+AttackAnimation_FoulOdor:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHITE_GAS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PowderEffectChance:
+AttackAnimation_PowderHitPoison:
+AttackAnimation_Unused3A:
+AttackAnimation_StunSpore:
+AttackAnimation_Poisonpowder:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POWDER
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PoisonPowder:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POWDER
+	anim_end
+
+AttackAnimation_Goo:
+AttackAnimation_Unused3E:
+AttackAnimation_StickyHands:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_GOO
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SpitPoison:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_GOO
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_end
+
+AttackAnimation_Bubbles:
+AttackAnimation_BubblesCopy:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BUBBLES
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_StringShot:
+AttackAnimation_Unused44:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_STRING_SHOT
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Boyfriends:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BOYFRIENDS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Lure:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_LURE
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_end
+
+AttackAnimation_Toxic:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_opponent  DUEL_ANIM_TOXIC
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_ConfuseRay:
+AttackAnimation_Unused49:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_CONFUSE_RAY
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Sing:
+AttackAnimation_Lullaby:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SING
+	anim_end
+
+AttackAnimation_Supersonic:
+AttackAnimation_SupersonicCopy:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SUPERSONIC
+	anim_end
+
+AttackAnimation_PetalDance:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_PETAL_DANCE
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Protect:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_PROTECT
+	anim_end
+
+AttackAnimation_Barrier:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_BARRIER
+	anim_end
+
+AttackAnimation_QuickAttack:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SPEED
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_AgilityProtect:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SPEED
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_player    DUEL_ANIM_PROTECT
+	anim_end
+
+AttackAnimation_Whirlwind:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHIRLWIND
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Cry:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_CRY
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_end
+
+AttackAnimation_Amnesia:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_Selfdestruct:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_SELFDESTRUCT
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_BigSelfdestruction:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_BIG_SELFDESTRUCT_1
+	anim_normal    DUEL_ANIM_FLASH
+	anim_player    DUEL_ANIM_BIG_SELFDESTRUCT_2
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Recover:
+	anim_player    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_Drain:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DRAIN
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DarkGas:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DARK_GAS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_GlowEffect:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_MirrorMove:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_DevolutionBeam:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_end
+
+AttackAnimation_PkmnPower1:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_Firegiver:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_play_area DUEL_ANIM_FIREGIVER_START
+	anim_play_area DUEL_ANIM_FIREGIVER_START
+	anim_end
+
+AttackAnimation_Quickfreeze:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_normal    DUEL_ANIM_QUICKFREEZE
+	anim_screen    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_PealOfThunder:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_HealingWind:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_HEALING_WIND
+	anim_end
+
+AttackAnimation_WhirlwindZigzag:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_BENCH_WHIRLWIND
+	anim_end
+
+AttackAnimation_BigThunder:
+	anim_player    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_SolarPower:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_PoisonFang:
+AttackAnimation_Unused67:
+AttackAnimation_Unused68:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused69:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_NEEDLES
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FriendshipSong:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_SING
+	anim_end
+
+AttackAnimation_Scrunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_EXPAND
+	anim_end
+
+AttackAnimation_CatPunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_MagneticStorm:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_THUNDER_WAVE
+	anim_end
+
+AttackAnimation_PoisonWhip:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHIP
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_ThunderWave:
+AttackAnimation_Unused70:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_THUNDER_WAVE
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Spore:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POWDER
+	anim_end
+
+AttackAnimation_Hypnosis:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PSYCHIC
+	anim_end
+
+AttackAnimation_EnergyConversion:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_Leer:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_LEER
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_ConfusionHit:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_CONFUSION
+	anim_player    DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_Y
+	anim_player    DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused76:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_WATER_JETS
+	anim_end
+
+AttackAnimation_Unused77:
+	anim_end
+
+AttackAnimation_BenchHit:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Heal:
+	anim_player    DUEL_ANIM_HEAL
+	anim_player    DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_RecoilHit:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_Y
+	anim_player    DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Poison:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POISON
+	anim_end
+
+AttackAnimation_Confusion:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_CONFUSION
+	anim_end
+
+AttackAnimation_Paralysis:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PARALYSIS
+	anim_end
+
+AttackAnimation_Sleep:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SLEEP
+	anim_end
+
+AttackAnimation_ImakuniConfusion:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_CONFUSION
+	anim_end
+
+AttackAnimation_SleepingGas:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHITE_GAS
+	anim_end
+
+AttackAnimation_Unused81:
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_ThunderPlayArea:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_CatPunchPlayArea:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_CAT_PUNCH
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FiregiverPlayer:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_FIREGIVER_PLAYER
+	anim_end
+
+AttackAnimation_FiregiverOpp:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_FIREGIVER_OPP
+	anim_end
+
+AttackAnimation_HealingWindPlayArea:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Gale:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHIRLWIND
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_Expand:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_EXPAND
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused89:
+	anim_player    DUEL_ANIM_POISON
+	anim_player    DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FullHeal:
+	anim_player    DUEL_ANIM_HEAL
+	anim_normal    DUEL_ANIM_UPDATE_HUD
+	anim_end
+
+AttackAnimation_Unused8B:
+	anim_player    DUEL_ANIM_SLEEP
+	anim_normal    DUEL_ANIM_UPDATE_HUD
+	anim_end
+
+AttackAnimation_SpitPoisonSuccess:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_GOO
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_end
+
+AttackAnimation_GustOfWind:
+	anim_opponent  DUEL_ANIM_WHIRLWIND
+	anim_end
+
+AttackAnimation_HealBothSides:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_HEAL
+	anim_opponent  DUEL_ANIM_HEAL
+	anim_end
+
+AttackAnimation_Unused8F:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused90:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_SLEEP
+	anim_end
+
+AttackAnimation_Unused91:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_play_area DUEL_ANIM_72
+	anim_end
+
+AttackAnimation_Unused92:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_POISON
+	anim_end
+
+AttackAnimation_Unused93:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_THUNDER_WAVE
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused94:
+AttackAnimation_Unused95:
+AttackAnimation_Unused96:
+	anim_end
+
+AttackAnimation_SneakAttack:
+AttackAnimation_Unused98:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+AttackAnimation_Unused99:
+	anim_end
+
+AttackAnimation_LightningFlash:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_THUNDER_SHOCK
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_Unused9B:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Unused9C:
+AttackAnimation_Unused9D:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_LIGHTNING
+	anim_opponent  DUEL_ANIM_BORDER_SPARK
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Fireball:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_64
+	anim_opponent  DUEL_ANIM_BIG_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_ContinuousFireball:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_65
+	anim_opponent  DUEL_ANIM_BIG_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FlamePillar:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SMALL_FLAME
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_WaterBomb:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HYDRO_PUMP
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedA2:
+	anim_opponent  DUEL_ANIM_PSYCHIC
+	anim_end
+
+AttackAnimation_UnusedA3:
+	anim_player    DUEL_ANIM_PSYCHIC
+	anim_end
+
+AttackAnimation_UnusedA4:
+	anim_end
+
+AttackAnimation_BenchManipulation:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_66
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Blink:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BEAM
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_player    DUEL_ANIM_PROTECT
+	anim_end
+
+AttackAnimation_UnusedA7:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PSYCHIC
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedA8:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_66
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Psybeam:
+AttackAnimation_AuroraWave:
+AttackAnimation_UnusedAD:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_67
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedAA:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_67
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedAB:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_68
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_RockThrow:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_69
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_BoulderSmash:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_69
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_MegaPunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6A
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Psypunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6B
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SludgePunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6C
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedB3:
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_69
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedB4:
+AttackAnimation_IcePunch:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6D
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_LegSweep:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedB7:
+AttackAnimation_SparkingKick:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_BORDER_SPARK
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedB9:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PollenStench:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POWDER
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_end
+
+AttackAnimation_UnusedBB:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_screen    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_POWDER
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_end
+
+AttackAnimation_UnusedBC:
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_screen    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_POWDER
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_end
+
+AttackAnimation_UnusedBD:
+	anim_end
+
+AttackAnimation_PoisonVapor:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHITE_GAS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_EerieLight:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_CONFUSE_RAY
+	anim_end
+
+AttackAnimation_PoisonGasCopy:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_WHITE_GAS
+	anim_end
+
+AttackAnimation_Spookify:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_LEER
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_MassExplosion:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_BIG_SELFDESTRUCT_1
+	anim_normal    DUEL_ANIM_FLASH
+	anim_player    DUEL_ANIM_BIG_SELFDESTRUCT_2
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_GasExplosion:
+AttackAnimation_UnusedC4:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_SELFDESTRUCT
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedC5:
+AttackAnimation_Lick:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_GOO
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_end
+
+AttackAnimation_UnusedC7:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_GOO
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_player    DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_TailSlap:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_6F
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_TailWhip:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_70
+	anim_normal    DUEL_ANIM_DISTORT
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_UnusedCA:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_70
+	anim_end
+
+AttackAnimation_Slap:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_71
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedCC:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_RocketTackle:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_player    DUEL_ANIM_PROTECT
+	anim_end
+
+AttackAnimation_Stare:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_LEER
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_UnusedCF:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_LEER
+	anim_normal    DUEL_ANIM_FLASH
+	anim_end
+
+AttackAnimation_CoinHurl:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_74
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedD1:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_7D
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Teleport:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_75
+	anim_end
+
+AttackAnimation_TeleportBlast:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_PSYCHIC
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_player    DUEL_ANIM_75
+	anim_end
+
+AttackAnimation_FollowMe:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_76
+	anim_end
+
+AttackAnimation_ShiningFinger:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_76
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedD6:
+AttackAnimation_SuspiciousSoundwave:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_SUPERSONIC
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_3dAttack:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_78
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedD9:
+AttackAnimation_RollOver:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Swift:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_77
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedDC:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_THUNDER_WAVE
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedDD:
+AttackAnimation_ColdBreath:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_QUICKFREEZE
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DryUp:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_79
+	anim_end
+
+AttackAnimation_UnusedE0:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SPEED
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_TransDamage:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DRAIN
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_FocusBlast:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_7A
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedE3:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_7B
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedE4:
+AttackAnimation_FadeToBlack:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_DARK_GAS
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedE8:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_play_area DUEL_ANIM_7C
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_play_area DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PoisonSeed:
+AttackAnimation_Twiddle:
+	anim_end
+
+AttackAnimation_UnusedE9:
+AttackAnimation_BigYawn:
+	anim_player    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_BigSnore:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_SLEEP
+	anim_opponent  DUEL_ANIM_7E
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SandVeil:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_PROTECT
+	anim_end
+
+AttackAnimation_UnusedED:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_Y
+	anim_player    DUEL_ANIM_QUESTION_MARK
+	anim_end
+
+AttackAnimation_HelpingHand:
+	anim_player    DUEL_ANIM_HEAL
+	anim_end
+
+AttackAnimation_Rest:
+	anim_player    DUEL_ANIM_GLOW
+	anim_end
+
+AttackAnimation_TerrorStrike:
+	anim_player    DUEL_ANIM_GLOW
+	anim_player    DUEL_ANIM_LEER
+	anim_normal    DUEL_ANIM_FLASH
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SkullBash:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_RazorLeaf:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_7F
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_Guillotine:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_80
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_VinePull:
+	anim_opponent  DUEL_ANIM_81
+	anim_end
+
+AttackAnimation_FuryStrikes:
+	anim_end
+
+AttackAnimation_DrillDive:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_85
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_DarkSong:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_86
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedF8:
+	anim_end
+
+AttackAnimation_Perplex:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_82
+	anim_end
+
+AttackAnimation_NineTails:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_83
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_SpinningShower:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_WATER_JETS
+	anim_end
+
+AttackAnimation_SurpriseThunder:
+	anim_player    DUEL_ANIM_GLOW
+	anim_normal    DUEL_ANIM_FLASH
+	anim_normal    DUEL_ANIM_BIG_LIGHTNING
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_PushAside:
+	anim_player    DUEL_ANIM_GLOW
+	anim_screen    DUEL_ANIM_CONFUSION
+	anim_normal    DUEL_ANIM_HEALING_WIND
+	anim_play_area DUEL_ANIM_SINGLE_HIT
+	anim_end
+
+AttackAnimation_BoneHeadbutt:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_84
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_end
+
+AttackAnimation_UnusedFF:
+	anim_player    DUEL_ANIM_GLOW
+	anim_opponent  DUEL_ANIM_BONEMERANG
+	anim_opponent  DUEL_ANIM_HIT
+	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
+	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
+	anim_opponent  DUEL_ANIM_QUESTION_MARK
+	anim_end
+; 0x19657
 
 SECTION "Bank 6@5657", ROMX[$5657], BANK[$6]
 

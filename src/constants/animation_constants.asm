@@ -1,3 +1,9 @@
+; Animation duel screen constants (see wDuelAnimationScreen)
+	const_def
+	const DUEL_ANIM_SCREEN_MAIN_SCENE
+	const DUEL_ANIM_SCREEN_PLAYER_PLAY_AREA
+	const DUEL_ANIM_SCREEN_OPP_PLAY_AREA
+
 	const_def
 	; Normal animations
 	const DUEL_ANIM_NONE               ; $00
@@ -97,11 +103,92 @@
 	const DUEL_ANIM_DUEL_LOSS          ; $5e
 	const DUEL_ANIM_DUEL_DRAW          ; $5f
 	const DUEL_ANIM_UNUSED_60          ; $60
+	const DUEL_ANIM_61                 ; $61
+	const DUEL_ANIM_62                 ; $62
+	const DUEL_ANIM_63                 ; $63
+	const DUEL_ANIM_64                 ; $64
+	const DUEL_ANIM_65                 ; $65
+	const DUEL_ANIM_66                 ; $66
+	const DUEL_ANIM_67                 ; $67
+	const DUEL_ANIM_68                 ; $68
+	const DUEL_ANIM_69                 ; $69
+	const DUEL_ANIM_6A                 ; $6a
+	const DUEL_ANIM_6B                 ; $6b
+	const DUEL_ANIM_6C                 ; $6c
+	const DUEL_ANIM_6D                 ; $6d
+	const DUEL_ANIM_6E                 ; $6e
+	const DUEL_ANIM_6F                 ; $6f
+	const DUEL_ANIM_70                 ; $70
+	const DUEL_ANIM_71                 ; $71
+	const DUEL_ANIM_72                 ; $72
+	const DUEL_ANIM_73                 ; $73
+	const DUEL_ANIM_74                 ; $74
+	const DUEL_ANIM_75                 ; $75
+	const DUEL_ANIM_76                 ; $76
+	const DUEL_ANIM_77                 ; $77
+	const DUEL_ANIM_78                 ; $78
+	const DUEL_ANIM_79                 ; $79
+	const DUEL_ANIM_7A                 ; $7a
+	const DUEL_ANIM_7B                 ; $7b
+	const DUEL_ANIM_7C                 ; $7c
+	const DUEL_ANIM_7D                 ; $7d
+	const DUEL_ANIM_7E                 ; $7e
+	const DUEL_ANIM_7F                 ; $7f
+	const DUEL_ANIM_80                 ; $80
+	const DUEL_ANIM_81                 ; $81
+	const DUEL_ANIM_82                 ; $82
+	const DUEL_ANIM_83                 ; $83
+	const DUEL_ANIM_84                 ; $84
+	const DUEL_ANIM_85                 ; $85
+	const DUEL_ANIM_86                 ; $86
 
-DEF NUM_REGULAR_DUEL_ANIMS EQU const_value
+	; screen animations
+DEF DUEL_SCREEN_ANIMS EQU const_value
+	const DUEL_ANIM_SMALL_SHAKE_X      ; $87
+	const DUEL_ANIM_BIG_SHAKE_X        ; $88
+	const DUEL_ANIM_SMALL_SHAKE_Y      ; $89
+	const DUEL_ANIM_BIG_SHAKE_Y        ; $8a
+	const DUEL_ANIM_FLASH              ; $8b
+	const DUEL_ANIM_DISTORT            ; $8c
 
-; Animation duel screen constants (see wDuelAnimationScreen)
-	const_def
-	const DUEL_ANIM_SCREEN_MAIN_SCENE
-	const DUEL_ANIM_SCREEN_PLAYER_PLAY_AREA
-	const DUEL_ANIM_SCREEN_OPP_PLAY_AREA
+	; this animation is only played within DUEL_ANIM_SHOW_DAMAGE
+	const DUEL_ANIM_DAMAGE_HUD         ; $8d
+
+	const_def $96
+	; animations passed this point are treated differently
+DEF DUEL_SPECIAL_ANIMS EQU const_value
+	const DUEL_ANIM_SET_SCREEN         ; $96
+	const DUEL_PRINT_DAMAGE            ; $97
+	const DUEL_ANIM_UPDATE_HUD         ; $98
+	const DUEL_ANIM_153_UNUSED         ; $99
+	const DUEL_ANIM_154_UNUSED         ; $9a
+	const DUEL_ANIM_155_UNUSED         ; $9b
+	const DUEL_ANIM_156_UNUSED         ; $9c
+	const DUEL_ANIM_157_UNUSED         ; $9d
+	const DUEL_ANIM_158_UNUSED         ; $9e
+
+	; Duel Anim Struct constants
+RSRESET
+DEF DUEL_ANIM_STRUCT_ID             RB ; $0
+DEF DUEL_ANIM_STRUCT_SCREEN         RB ; $1
+DEF DUEL_ANIM_STRUCT_DUELIST_SIDE   RB ; $2
+DEF DUEL_ANIM_STRUCT_LOCATION_PARAM RB ; $3
+DEF DUEL_ANIM_STRUCT_DAMAGE         RW ; $4
+DEF DUEL_ANIM_STRUCT_UNKNOWN_2      RB ; $6
+DEF DUEL_ANIM_STRUCT_BANK           RB ; $7
+DEF DUEL_ANIM_STRUCT_SIZE EQU _RS
+
+	; ow_frame struct constants
+RSRESET
+DEF OW_FRAME_STRUCT_DURATION         RB ; $0
+DEF OW_FRAME_STRUCT_VRAM_TILE_OFFSET RB ; $1
+DEF OW_FRAME_STRUCT_VRAM_BANK        RB ; $2
+DEF OW_FRAME_STRUCT_TILESET_BANK     RB ; $3
+DEF OW_FRAME_STRUCT_TILESET          RW ; $4
+DEF OW_FRAME_STRUCT_TILESET_OFFSET   RW ; $6
+DEF OW_FRAME_STRUCT_SIZE EQU _RS
+
+DEF NUM_OW_FRAMESET_SUBGROUPS EQU 3
+
+DEF SET_ANIM_SCREEN_MAIN      EQU $1
+DEF SET_ANIM_SCREEN_PLAY_AREA EQU $4

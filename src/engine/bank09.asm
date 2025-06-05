@@ -3013,7 +3013,7 @@ LoadDeckIDData:
 	ld a, [hli]
 	ld [wcd0f], a
 	ld a, [hli]
-	ld [wcc18], a
+	ld [wOppCoin], a
 	or a
 	ret
 
@@ -3027,7 +3027,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db STARTER_DECK_ID - 1
 	tx Text0448 ; deck name
@@ -3038,7 +3038,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db SWEAT_ANTI_GR1_DECK_ID - 1
 	tx Text044d ; deck name
@@ -3049,7 +3049,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db GIVE_IN_ANTI_GR2_DECK_ID - 1
 	tx Text0466 ; deck name
@@ -3060,7 +3060,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db VENGEFUL_ANTI_GR3_DECK_ID - 1
 	tx Text0449 ; deck name
@@ -3071,7 +3071,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db UNFORGIVING_ANTI_GR4_DECK_ID - 1
 	tx Text0470 ; deck name
@@ -3082,7 +3082,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db UNUSED_SAMS_PRACTICE_DECK_ID - 1
 	tx Text04f1 ; deck name
@@ -3093,7 +3093,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db UNUSED_SAMS_PRACTICE_DECK_ID
 	tx Text04d6 ; deck name
@@ -3104,7 +3104,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK1_ID
 	tx Text04af ; deck name
@@ -3115,7 +3115,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP1_DECK_ID
 	tx Text0433 ; deck name
@@ -3126,7 +3126,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK2_ID
 	tx Text04b0 ; deck name
@@ -3137,7 +3137,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP2_DECK_ID
 	tx Text0434 ; deck name
@@ -3148,7 +3148,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK3_ID
 	tx Text04b1 ; deck name
@@ -3159,7 +3159,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_STOP ; duel theme
 	db $00 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP3_DECK_ID
 	tx Text0435 ; deck name
@@ -3170,7 +3170,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db BRICK_WALK_DECK_ID
 	tx Text043e ; deck name
@@ -3181,7 +3181,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db BENCH_TRAP_DECK_ID
 	tx Text044b ; deck name
@@ -3192,7 +3192,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $12 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db SKY_SPARK_DECK_ID
 	tx Text049d ; deck name
@@ -3203,7 +3203,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $09 ; ?
-	db $05 ; ?
+	db COIN_PIKACHU ; coin
 
 	db ELECTRIC_SELFDESTRUCT_DECK_ID
 	tx Text04c1 ; deck name
@@ -3214,7 +3214,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $09 ; ?
-	db $05 ; ?
+	db COIN_PIKACHU ; coin
 
 	db OVERFLOW_DECK_ID
 	tx Text0481 ; deck name
@@ -3225,7 +3225,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $01 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db TRIPLE_ZAPDOS_DECK_ID
 	tx Text04ad ; deck name
@@ -3236,7 +3236,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $01 ; ?
-	db $05 ; ?
+	db COIN_PIKACHU ; coin
 
 	db I_LOVE_PIKACHU_DECK_ID
 	tx Text04c4 ; deck name
@@ -3247,7 +3247,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $01 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db TEN_THOUSAND_VOLTS_DECK_ID
 	tx Text0426 ; deck name
@@ -3258,7 +3258,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $01 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db HAND_OVER_GR_DECK_ID
 	tx Text0471 ; deck name
@@ -3269,7 +3269,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0a ; ?
-	db $06 ; ?
+	db COIN_ALAKAZAM ; coin
 
 	db PSYCHIC_ELITE_DECK_ID
 	tx Text0453 ; deck name
@@ -3280,7 +3280,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0a ; ?
-	db $06 ; ?
+	db COIN_ALAKAZAM ; coin
 
 	db PSYCHOKINESIS_DECK_ID
 	tx Text0496 ; deck name
@@ -3291,7 +3291,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $02 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db PHANTOM_DECK_ID
 	tx Text046e ; deck name
@@ -3302,7 +3302,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $02 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db PUPPET_MASTER_DECK_ID
 	tx Text045f ; deck name
@@ -3313,7 +3313,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $02 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db EVEN3_YEARS_ON_A_ROCK_DECK_ID
 	tx Text0438 ; deck name
@@ -3324,7 +3324,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0b ; ?
-	db $07 ; ?
+	db COIN_KABUTO ; coin
 
 	db ROLLING_STONE_DECK_ID
 	tx Text04f3 ; deck name
@@ -3335,7 +3335,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $03 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db GREAT_EARTHQUAKE_DECK_ID
 	tx Text044f ; deck name
@@ -3346,7 +3346,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $03 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db AWESOME_FOSSIL_DECK_ID
 	tx Text0498 ; deck name
@@ -3357,7 +3357,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $03 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db RAGING_BILLOW_OF_FISTS_DECK_ID
 	tx Text04b2 ; deck name
@@ -3368,7 +3368,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0c ; ?
-	db $0c ; ?
+	db COIN_MACHAMP ; coin
 
 	db YOU_CAN_DO_IT_MACHOP_DECK_ID
 	tx Text0440 ; deck name
@@ -3379,7 +3379,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $04 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db NEW_MACHOKE_DECK_ID
 	tx Text04b7 ; deck name
@@ -3390,7 +3390,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $04 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db SKILLED_WARRIOR_DECK_ID
 	tx Text046a ; deck name
@@ -3401,7 +3401,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $04 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db I_LOVE_TO_FIGHT_DECK_ID
 	tx Text04bb ; deck name
@@ -3412,7 +3412,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $04 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db MAX_ENERGY_DECK_ID
 	tx Text042c ; deck name
@@ -3423,7 +3423,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0d ; ?
-	db $02 ; ?
+	db COIN_ODDISH ; coin
 
 	db REMAINING_GREEN_DECK_ID
 	tx Text0461 ; deck name
@@ -3434,7 +3434,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $05 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db POISON_CURSE_DECK_ID
 	tx Text045d ; deck name
@@ -3445,7 +3445,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $05 ; ?
-	db $02 ; ?
+	db COIN_ODDISH ; coin
 
 	db GLITTERING_SCALES_DECK_ID
 	tx Text043c ; deck name
@@ -3456,7 +3456,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $05 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db STEADY_INCREASE_DECK_ID
 	tx Text04b3 ; deck name
@@ -3467,7 +3467,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $05 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db DARK_SCIENCE_DECK_ID
 	tx Text04a6 ; deck name
@@ -3478,7 +3478,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0e ; ?
-	db $08 ; ?
+	db COIN_MAGNEMITE ; coin
 
 	db NATURAL_SCIENCE_DECK_ID
 	tx Text044a ; deck name
@@ -3489,7 +3489,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $06 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db POISONOUS_SWAMP_DECK_ID
 	tx Text045b ; deck name
@@ -3500,7 +3500,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $06 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db GATHERING_NIDORAN_DECK_ID
 	tx Text042f ; deck name
@@ -3511,7 +3511,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $06 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db RAIN_DANCE_CONFUSION_DECK_ID
 	tx Text0431 ; deck name
@@ -3522,7 +3522,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0f ; ?
-	db $04 ; ?
+	db COIN_STARMIE ; coin
 
 	db CONSERVING_WATER_DECK_ID
 	tx Text0460 ; deck name
@@ -3533,7 +3533,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $07 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db ENERGY_REMOVAL_DECK_ID
 	tx Text0480 ; deck name
@@ -3544,7 +3544,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $07 ; ?
-	db $04 ; ?
+	db COIN_STARMIE ; coin
 
 	db SPLASHING_ABOUT_DECK_ID
 	tx Text0467 ; deck name
@@ -3555,7 +3555,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $07 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db BEACH_DECK_ID
 	tx Text045e ; deck name
@@ -3566,7 +3566,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $07 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db GO_ARCANINE_DECK_ID
 	tx Text046f ; deck name
@@ -3577,7 +3577,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $10 ; ?
-	db $03 ; ?
+	db COIN_CHARMANDER ; coin
 
 	db FLAME_FESTIVAL_DECK_ID
 	tx Text0465 ; deck name
@@ -3588,7 +3588,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $08 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db IMMORTAL_FLAME_DECK_ID
 	tx Text0463 ; deck name
@@ -3599,7 +3599,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $08 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db ELECTRIC_CURRENT_SHOCK_DECK_ID
 	tx Text0459 ; deck name
@@ -3610,7 +3610,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $08 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db GREAT_ROCKET4_DECK_ID
 	tx Text0490 ; deck name
@@ -3621,7 +3621,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $16 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db GREAT_ROCKET1_DECK_ID
 	tx Text048d ; deck name
@@ -3632,7 +3632,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $16 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db GREAT_ROCKET2_DECK_ID
 	tx Text048e ; deck name
@@ -3643,7 +3643,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $16 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db GREAT_ROCKET3_DECK_ID
 	tx Text048f ; deck name
@@ -3654,7 +3654,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $16 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db GRAND_FIRE_DECK_ID
 	tx Text048b ; deck name
@@ -3665,7 +3665,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_3 ; duel theme
 	db $11 ; ?
-	db $03 ; ?
+	db COIN_CHARMANDER ; coin
 
 	db LEGENDARY_FOSSIL_DECK_ID
 	tx Text0458 ; deck name
@@ -3676,7 +3676,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_3 ; duel theme
 	db $11 ; ?
-	db $05 ; ?
+	db COIN_PIKACHU ; coin
 
 	db WATER_LEGEND_DECK_ID
 	tx Text047c ; deck name
@@ -3687,7 +3687,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_3 ; duel theme
 	db $11 ; ?
-	db $04 ; ?
+	db COIN_STARMIE ; coin
 
 	db GREAT_DRAGON_DECK_ID
 	tx Text0450 ; deck name
@@ -3698,7 +3698,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_3 ; duel theme
 	db $11 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db BUG_COLLECTING_DECK_ID
 	tx Text0447 ; deck name
@@ -3709,7 +3709,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $17 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db DEMONIC_FOREST_DECK_ID
 	tx Text042e ; deck name
@@ -3720,7 +3720,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $17 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db STICKY_POISON_GAS_DECK_ID
 	tx Text045c ; deck name
@@ -3731,7 +3731,7 @@ DeckIDData:
 	db $01 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $17 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db MAD_PETALS_DECK_ID
 	tx Text0445 ; deck name
@@ -3742,7 +3742,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $1d ; ?
-	db $08 ; ?
+	db COIN_MAGNEMITE ; coin
 
 	db DANGEROUS_BENCH_DECK_ID
 	tx Text0441 ; deck name
@@ -3753,7 +3753,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $26 ; ?
-	db $00 ; ?
+	db COIN_CHANSEY ; coin
 
 	db CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
 	tx Text04c5 ; deck name
@@ -3764,7 +3764,7 @@ DeckIDData:
 	db $07 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $18 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
 	tx Text0456 ; deck name
@@ -3775,7 +3775,7 @@ DeckIDData:
 	db $02 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $18 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db QUICK_ATTACK_DECK_ID
 	tx Text0457 ; deck name
@@ -3786,7 +3786,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $1e ; ?
-	db $09 ; ?
+	db COIN_GOLBAT ; coin
 
 	db COMPLETE_COMBUSTION_DECK_ID
 	tx Text043f ; deck name
@@ -3797,7 +3797,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $19 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db FIREBALL_DECK_ID
 	tx Text04c6 ; deck name
@@ -3808,7 +3808,7 @@ DeckIDData:
 	db $03 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $19 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db EEVEE_SHOWDOWN_DECK_ID
 	tx Text0477 ; deck name
@@ -3819,7 +3819,7 @@ DeckIDData:
 	db $08 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $19 ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	tx Text0468 ; deck name
@@ -3830,7 +3830,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $1f ; ?
-	db $0a ; ?
+	db COIN_MAGMAR ; coin
 
 	db WHIRLPOOL_SHOWER_DECK_ID
 	tx Text0439 ; deck name
@@ -3841,7 +3841,7 @@ DeckIDData:
 	db $04 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1a ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db PARALYZED_PARALYZED_DECK_ID
 	tx Text04d1 ; deck name
@@ -3852,7 +3852,7 @@ DeckIDData:
 	db $09 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1a ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db BENCH_CALL_DECK_ID
 	tx Text04c7 ; deck name
@@ -3863,7 +3863,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1a ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db WATER_STREAM_DECK_ID
 	tx Text047b ; deck name
@@ -3874,7 +3874,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $20 ; ?
-	db $0b ; ?
+	db COIN_PSYDUCK ; coin
 
 	db ROCK_BLAST_DECK_ID
 	tx Text04f4 ; deck name
@@ -3885,7 +3885,7 @@ DeckIDData:
 	db $0c ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1b ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db FULL_STRENGTH_DECK_ID
 	tx Text0451 ; deck name
@@ -3896,7 +3896,7 @@ DeckIDData:
 	db $05 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1b ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db RUNNING_WILD_DECK_ID
 	tx Text0430 ; deck name
@@ -3907,7 +3907,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $21 ; ?
-	db $0c ; ?
+	db COIN_MACHAMP ; coin
 
 	db DIRECT_HIT_DECK_ID
 	tx Text0454 ; deck name
@@ -3918,7 +3918,7 @@ DeckIDData:
 	db $06 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1c ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db SUPERDESTRUCTIVE_POWER_DECK_ID
 	tx Text0452 ; deck name
@@ -3929,7 +3929,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1c ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db BAD_DREAM_DECK_ID
 	tx Text04ba ; deck name
@@ -3940,7 +3940,7 @@ DeckIDData:
 	db $0a ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1c ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db POKEMON_POWER_DECK_ID
 	tx Text04cb ; deck name
@@ -3951,7 +3951,7 @@ DeckIDData:
 	db $0d ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $1c ; ?
-	db $01 ; ?
+	db COIN_GR ; coin
 
 	db SPIRITED_AWAY_DECK_ID
 	tx Text043d ; deck name
@@ -3962,7 +3962,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $22 ; ?
-	db $0d ; ?
+	db COIN_MEW ; coin
 
 	db SNORLAX_GUARD_DECK_ID
 	tx Text0484 ; deck name
@@ -3973,7 +3973,7 @@ DeckIDData:
 	db $0e ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $23 ; ?
-	db $0e ; ?
+	db COIN_SNORLAX ; coin
 
 	db EYE_OF_THE_STORM_DECK_ID
 	tx Text044c ; deck name
@@ -3984,7 +3984,7 @@ DeckIDData:
 	db $0f ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $23 ; ?
-	db $0e ; ?
+	db COIN_SNORLAX ; coin
 
 	db SUDDEN_GROWTH_DECK_ID
 	tx Text0443 ; deck name
@@ -3995,7 +3995,7 @@ DeckIDData:
 	db $10 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $23 ; ?
-	db $0e ; ?
+	db COIN_SNORLAX ; coin
 
 	db VERY_RARE_CARD_DECK_ID
 	tx Text045a ; deck name
@@ -4006,7 +4006,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_ISHIHARA ; duel theme
 	db $14 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db BAD_GUYS_DECK_ID
 	tx Text0472 ; deck name
@@ -4017,7 +4017,7 @@ DeckIDData:
 	db $0b ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $24 ; ?
-	db $11 ; ?
+	db COIN_HORSEA ; coin
 
 	db POISON_MIST_DECK_ID
 	tx Text04ca ; deck name
@@ -4028,7 +4028,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $24 ; ?
-	db $12 ; ?
+	db COIN_ARBOK ; coin
 
 	db ULTRA_REMOVAL_DECK_ID
 	tx Text047e ; deck name
@@ -4039,7 +4039,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $24 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db PSYCHIC_BATTLE_DECK_ID
 	tx Text0495 ; deck name
@@ -4050,7 +4050,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $24 ; ?
-	db $15 ; ?
+	db COIN_GENGAR ; coin
 
 	db STOP_LIFE_DECK_ID
 	tx Text0437 ; deck name
@@ -4061,7 +4061,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_3 ; duel theme
 	db $25 ; ?
-	db $0f ; ?
+	db COIN_TOGEPI ; coin
 
 	db SCORCHER_DECK_ID
 	tx Text046d ; deck name
@@ -4072,7 +4072,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_3 ; duel theme
 	db $25 ; ?
-	db $0f ; ?
+	db COIN_TOGEPI ; coin
 
 	db TSUNAMI_STARTER_DECK_ID
 	tx Text044e ; deck name
@@ -4083,7 +4083,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_3 ; duel theme
 	db $25 ; ?
-	db $0f ; ?
+	db COIN_TOGEPI ; coin
 
 	db SMASH_TO_MINCEMEAT_DECK_ID
 	tx Text0455 ; deck name
@@ -4094,7 +4094,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_3 ; duel theme
 	db $25 ; ?
-	db $0f ; ?
+	db COIN_TOGEPI ; coin
 
 	db TEST_YOUR_LUCK_DECK_ID
 	tx Text043a ; deck name
@@ -4105,7 +4105,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_1 ; duel theme
 	db $27 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db PROTOHISTORIC_DECK_ID
 	tx Text0446 ; deck name
@@ -4116,7 +4116,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $27 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db TEXTURE_TUNER7_DECK_ID
 	tx Text04a8 ; deck name
@@ -4127,7 +4127,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $27 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db COLORLESS_ENERGY_DECK_ID
 	tx Text046b ; deck name
@@ -4138,7 +4138,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_1 ; duel theme
 	db $27 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db POWERFUL_POKEMON_DECK_ID
 	tx Text0444 ; deck name
@@ -4149,7 +4149,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $27 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db WEIRD_DECK_ID
 	tx Text0464 ; deck name
@@ -4160,7 +4160,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_IMAKUNI ; duel theme
 	db $13 ; ?
-	db $0b ; ?
+	db COIN_PSYDUCK ; coin
 
 	db STRANGE_DECK_ID
 	tx Text0442 ; deck name
@@ -4171,7 +4171,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_IMAKUNI2 ; duel theme
 	db $13 ; ?
-	db $13 ; ?
+	db COIN_JIGGLYPUFF ; coin
 
 	db RONALDS_UNCOOL_DECK_ID
 	tx Text04e8 ; deck name
@@ -4182,7 +4182,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_RONALD ; duel theme
 	db $15 ; ?
-	db $16 ; ?
+	db COIN_RAICHU ; coin
 
 	db RONALDS_GRX_DECK_ID
 	tx Text04e7 ; deck name
@@ -4193,7 +4193,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_RONALD ; duel theme
 	db $16 ; ?
-	db $16 ; ?
+	db COIN_RAICHU ; coin
 
 	db RONALDS_POWER_DECK_ID
 	tx Text04eb ; deck name
@@ -4204,7 +4204,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_RONALD ; duel theme
 	db $15 ; ?
-	db $16 ; ?
+	db COIN_RAICHU ; coin
 
 	db RONALDS_PSYCHIC_DECK_ID
 	tx Text04ea ; deck name
@@ -4215,7 +4215,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_RONALD ; duel theme
 	db $15 ; ?
-	db $16 ; ?
+	db COIN_RAICHU ; coin
 
 	db RONALDS_ULTRA_DECK_ID
 	tx Text04e9 ; deck name
@@ -4226,7 +4226,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_RONALD ; duel theme
 	db $15 ; ?
-	db $16 ; ?
+	db COIN_RAICHU ; coin
 
 	db EVERYBODYS_FRIEND_DECK_ID
 	tx Text0469 ; deck name
@@ -4237,7 +4237,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db IMMORTAL_POKEMON_DECK_ID
 	tx Text0462 ; deck name
@@ -4248,7 +4248,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db TORRENTIAL_FLOOD_DECK_ID
 	tx Text043b ; deck name
@@ -4259,7 +4259,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db TRAINER_IMPRISON_DECK_ID
 	tx Text04ae ; deck name
@@ -4270,7 +4270,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db BLAZING_FLAME_DECK_ID
 	tx Text046c ; deck name
@@ -4281,7 +4281,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db DAMAGE_CHAOS_DECK_ID
 	tx Text04a7 ; deck name
@@ -4292,7 +4292,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db BIG_THUNDER_DECK_ID
 	tx Text04c0 ; deck name
@@ -4303,7 +4303,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db POWER_OF_DARKNESS_DECK_ID
 	tx Text0436 ; deck name
@@ -4314,7 +4314,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db POISON_STORM_DECK_ID
 	tx Text04c9 ; deck name
@@ -4325,6 +4325,6 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $28 ; ?
-	db $17 ; ?
+	db COIN_LUGIA ; coin
 
 	db $ff ; end
