@@ -687,7 +687,7 @@ PointerTable_AttackAnimation:
 	dw AttackAnimation_SurpriseThunder     ; ATK_ANIM_SURPRISE_THUNDER
 	dw AttackAnimation_PushAside           ; ATK_ANIM_PUSH_ASIDE
 	dw AttackAnimation_BoneHeadbutt        ; ATK_ANIM_BONE_HEADBUTT
-	dw AttackAnimation_UnusedFF            ; ATK_ANIM_FF
+	dw AttackAnimation_UnusedFF            ; ATK_ANIM_UNUSED_FF
 
 AttackAnimation_Hit:
 AttackAnimation_Earthquake:

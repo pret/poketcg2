@@ -1665,13 +1665,13 @@ Func_3924::
 	add e
 	ld e, a
 	ld a, [wd96f]
-	bit 6, a
-	jr z, .asm_3953
+	bit SPRITE_ANIM_FLAG_Y_FLIP_F, a
+	jr z, .got_y
 	ld a, e
 	xor $ff
 	inc a
 	ld e, a
-.asm_3953
+.got_y
 	ldh a, [hSCY]
 	ld c, a
 	ld a, e
@@ -1682,13 +1682,13 @@ Func_3924::
 	add d
 	ld d, a
 	ld a, [wd96f]
-	bit 5, a
-	jr z, .asm_3968
+	bit SPRITE_ANIM_FLAG_X_FLIP_F, a
+	jr z, .got_x
 	ld a, d
 	xor $ff
 	inc a
 	ld d, a
-.asm_3968
+.got_x
 	ldh a, [hSCX]
 	ld c, a
 	ld a, d
