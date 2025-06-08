@@ -4345,7 +4345,7 @@ CardAlbum:
 	call DisableSRAM
 	cp $ff
 	jr z, .draw_box ; has all sets
-	
+
 	; copies whole card collection from SRAM to WRAM,
 	; in two batches of $100 cards each
 	call EnableSRAM

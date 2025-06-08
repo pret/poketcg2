@@ -3682,7 +3682,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	cp STRANGE_DECK_ID
 	jr z, .StrangeDeck
 	ret
- 
+
 .StrangeDeck
 	ld bc, PSYDUCK_LV16
 	ld de, DARK_GOLDUCK

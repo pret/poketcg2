@@ -1919,7 +1919,7 @@ Func_10ea3::
 	ret
 
 Func_10ea7:
-	ei 
+	ei
 	di
 	push af
 	push bc

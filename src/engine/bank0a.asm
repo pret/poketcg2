@@ -2534,7 +2534,7 @@ Func_29e02:
 	call SwapTurn
 	and WR_PSYCHIC
 	jr z, .asm_29fa5 ; not resistant to Psychic
-	
+
 	; Defending card is resistant to Psychic,
 	; give standard score if there's already
 	; a Mr. Mime in the Bench

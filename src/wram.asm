@@ -2840,10 +2840,10 @@ wdc5a:: ; dc5a
 	ds $1
 
 	ds $1
-	
+
 wAnimFlags:: ; dc5c
 	ds $1
-	
+
 wAnimAllowedFlags:: ; dc5d
 	ds $1
 

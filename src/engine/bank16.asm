@@ -7,7 +7,7 @@ EffectCommands::
 	;	dw Function
 	;	...
 	;	db $00
-	
+
 	; The first byte is the bank where the effect function is located
 	; Commands are associated to a time or a scope (EFFECTCMDTYPE_*) that determines when their function is executed during the turn.
 	; - EFFECTCMDTYPE_INITIAL_EFFECT_1: Executed right after attack or trainer card is used. Bypasses Smokescreen and Sand Attack effects.
@@ -21,13 +21,13 @@ EffectCommands::
 	; - EFFECTCMDTYPE_AI: Used for AI scoring.
 	; - EFFECTCMDTYPE_AI_SELECTION: When AI is required to select a card
 	; - EFFECTCMDTYPE_UNK_11: ?
-	
+
 	; Attacks that have an EFFECTCMDTYPE_REQUIRE_SELECTION also must have either an EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN or an
 	; EFFECTCMDTYPE_AI_SELECTION (for anything not involving switching the defending Pokemon), to handle selections involving the AI.
-	
+
 	; Similar attack effects of different Pokemon cards all point to a different command list,
 	; even though in some cases their commands and function pointers match.
-	
+
 	; Function name examples
 	;	PoisonEffect                     ; generic effect shared by multiple attacks.
 	;	Paralysis50PercentEffect         ;
