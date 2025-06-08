@@ -437,7 +437,7 @@
 	const BILLS_COMPUTER           ; $1b4
 	const MASTER_BALL              ; $1b5
 	const LASS                     ; $1b6
-	const MAINTENENCE              ; $1b7
+	const MAINTENANCE              ; $1b7
 	const POKEBALL                 ; $1b8
 	const NIGHTLY_GARBAGE_RUN      ; $1b9
 	const RECYCLE                  ; $1ba

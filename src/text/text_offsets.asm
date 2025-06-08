@@ -6436,8 +6436,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer MasterBallDescription                              ; 0x191b
 	textpointer LassName                                           ; 0x191c
 	textpointer LassDescription                                    ; 0x191d
-	textpointer MaintenenceName                                    ; 0x191e
-	textpointer MaintenenceDescription                             ; 0x191f
+	textpointer MaintenanceName                                    ; 0x191e
+	textpointer MaintenanceDescription                             ; 0x191f
 	textpointer PokeballName                                       ; 0x1920
 	textpointer PokeballDescription                                ; 0x1921
 	textpointer NightlyGarbageRunName                              ; 0x1922

@@ -812,7 +812,7 @@ AISelectSpecialAttackParameters:
 	call FindTargetInPlayAreaToKO
 	jr c, .can_ko_both
 	; cannot KO another one, choose target
-	; with lowest remining HP
+	; with lowest remaining HP
 	ld a, PLAY_AREA_BENCH_1
 	ld d, 20
 	call AIFindPlayAreaPkmnWithMinimumLeastRemainingHP
@@ -2562,7 +2562,7 @@ Func_29e02:
 	; if no Alakazam lv42 in Play Area, give standard score
 	farcall FindAlakazamLv42WithActivePkmnPowerInPlayArea
 	jp nc, .standard_score
-	; otherwise enourage if there are no targets
+	; otherwise encourage if there are no targets
 	; for Alakazam's lv42 Damage Swap
 	farcall HandleAIDamageSwap.FindTargets
 	jr c, .encourage_if_has_space_in_bench

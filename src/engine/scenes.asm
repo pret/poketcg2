@@ -77,7 +77,7 @@ SceneDataPointers:
 	dw .SceneCardPopError        ; SCENE_CARD_POP_ERROR
 	dw .SceneLink                ; SCENE_LINK
 	dw .SceneRareCardPop         ; SCENE_RARE_CARD_POP
-	dw .SceneRareCardPopError    ; SCENE_RARE_CARD_POP_ERRORR
+	dw .SceneRareCardPopError    ; SCENE_RARE_CARD_POP_ERROR
 	dw .SceneBlackBox            ; SCENE_BLACK_BOX
 	dw .SceneTitleScreen1        ; SCENE_TITLE_SCREEN_1
 	dw .SceneTitleScreen2        ; SCENE_TITLE_SCREEN_2

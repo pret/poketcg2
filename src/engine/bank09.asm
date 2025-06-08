@@ -632,7 +632,7 @@ DoLinkOpponentTurn:
 	ldh a, [hOppActionTableIndex]
 	cp NUM_OPP_ACTIONS
 	jp nc, DuelTransmissionError
-	ld hl, $457e ; OppActionTable
+	ld hl, OppActionTable
 	call JumpToFunctionInTable
 	ld a, [wDuelFinished]
 	ld hl, wOpponentTurnEnded
@@ -1379,7 +1379,7 @@ ConvertSpecialTrainerCardToPokemon::
 
 	; in the case of Clefairy Doll, also overwrite
 	; the second attack with Mind Shock attack data
-	; in case Hypno's Pupper Master is in effect
+	; in case Hypno's Puppet Master is in effect
 	bank1call CheckHypnoPuppetMaster
 	jr nc, .OverwriteCardData ; no Puppet Master
 	call .OverwriteCardData

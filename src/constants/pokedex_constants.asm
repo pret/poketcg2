@@ -82,7 +82,7 @@
 	const DEX_SLOWBRO    ; $50
 	const DEX_MAGNEMITE  ; $51
 	const DEX_MAGNETON   ; $52
-	const DEX_FARFETCH_D ; $53
+	const DEX_FARFETCHD  ; $53
 	const DEX_DODUO      ; $54
 	const DEX_DODRIO     ; $55
 	const DEX_SEEL       ; $56
@@ -121,7 +121,7 @@
 	const DEX_SEAKING    ; $77
 	const DEX_STARYU     ; $78
 	const DEX_STARMIE    ; $79
-	const DEX_MR__MIME   ; $7a
+	const DEX_MR_MIME    ; $7a
 	const DEX_SCYTHER    ; $7b
 	const DEX_JYNX       ; $7c
 	const DEX_ELECTABUZZ ; $7d

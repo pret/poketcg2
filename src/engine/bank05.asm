@@ -6430,7 +6430,7 @@ Func_167e5:
 	sub b
 	cp 1
 	jr nz, .dont_play_energy_card
-	farcall $12, $7f14
+	farcall CreateEnergyCardListFromHand_OnlyBasic
 	jr nc, .asm_1682a
 	farcall $12, $7f6d
 	jr c, .dont_play_energy_card
@@ -7060,7 +7060,7 @@ Func_16af1:
 ; if hand has 2nd stage card to evolve evolution card, raise AI score
 .check_2nd_stage_hand
 	ld a, [wTempAIPokemonCard]
-	farcall $a, $58f9 ; CheckForEvolutionInList
+	farcall CheckIfPokemonEvolutionIsFoundInHand
 	jr nc, .check_2nd_stage_deck
 	ld a, 2
 	call AIEncourage
@@ -8709,7 +8709,7 @@ GetAIScoreOfAttack:
 	call GetNonTurnDuelistVariable
 	or a
 	jr z, .asm_17643
-	farcall $12, $74b1
+	farcall CheckIfPlayerHasAuroraVeilActive
 	jr c, .asm_17643
 	ld a, $02
 	call AIEncourage
@@ -9747,7 +9747,7 @@ CheckIfCardCanBePlayed:
 	cp TYPE_TRAINER
 	jr z, .trainer_card
 
-; enegy card
+; energy card
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	ret z
@@ -10012,7 +10012,7 @@ CalculateDamage_VersusDefendingPokemon:
 	call SwapTurn
 	and b
 	jr z, .not_resistant
-	bank1call GetResistanceModifer
+	bank1call GetResistanceModifier
 	add hl, de
 	ld e, l
 	ld d, h
@@ -10020,11 +10020,11 @@ CalculateDamage_VersusDefendingPokemon:
 .not_resistant
 	ld a, e
 	or d
-	jr nz, .apply_plusplower_and_defender
+	jr nz, .apply_pluspower_and_defender
 	call SwapTurn
 	jr .handle_poison
 
-.apply_plusplower_and_defender
+.apply_pluspower_and_defender
 	; apply pluspower and defender boosts
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add CARD_LOCATION_ARENA
@@ -10248,7 +10248,7 @@ CalculateDamage_FromDefendingPokemon:
 .unchanged_res
 	and b
 	jr z, .not_resistant
-	bank1call GetResistanceModifer
+	bank1call GetResistanceModifier
 	add hl, de
 	ld e, l
 	ld d, h

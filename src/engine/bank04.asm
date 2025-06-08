@@ -675,7 +675,7 @@ SECTION "Bank 4@46f4", ROMX[$46f4], BANK[$4]
 
 ; h = tile index
 ; l = attributes
-; de = coodinates
+; de = coordinates
 ; b = width
 ; c = height
 FillBoxInBGMap:

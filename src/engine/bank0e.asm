@@ -1703,7 +1703,7 @@ HandleAIPlayTricks:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 EXEGGUTOR
-	jr z, .exeggcutor
+	jr z, .exeggutor
 	cp16 DARK_CLEFABLE
 	jr z, .dark_clefable
 	call CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
@@ -1712,7 +1712,7 @@ HandleAIPlayTricks:
 	or a
 	ret
 
-.exeggcutor
+.exeggutor
 	; use Pkmn Power if on last Prize card
 	call CountPrizes
 	cp 1

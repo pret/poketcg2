@@ -542,7 +542,7 @@ Func_338f::
 
 Func_33a3::
 	ld b, $00
-	farcall $7, $4927
+	farcall StartPalFadeToBlackOrWhite
 	call WaitPalFading
 	farcall Func_110a8
 	ld a, EVENT_EF
@@ -747,7 +747,7 @@ Func_34ca::
 	add c
 	ret
 
-; ouputs result in hl
+; outputs result in hl
 MultiplyBCByDE::
 	push af
 	push bc
@@ -759,7 +759,7 @@ MultiplyBCByDE::
 	ret
 
 ; compares bc and de
-; ouput:
+; output:
 ;  carry if bc < de
 ;  z if bc == de
 .CompareBCAndDE:

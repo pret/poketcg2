@@ -3370,7 +3370,7 @@ MrMimeLv20Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx BarrierName ; category
-	db DEX_MR__MIME ; Pokedex number
+	db DEX_MR_MIME ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 1.3 ; length
@@ -3422,7 +3422,7 @@ MrMimeLv28Card:
 	db WR_PSYCHIC ; weakness
 	db NONE ; resistance
 	tx BarrierName ; category
-	db DEX_MR__MIME ; Pokedex number
+	db DEX_MR_MIME ; Pokedex number
 	db FALSE ; is Dark
 	db 28 ; level
 	length 1.3 ; length
@@ -5918,7 +5918,7 @@ FarfetchdLv20Card:
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
 	tx WildDuckName ; category
-	db DEX_FARFETCH_D ; Pokedex number
+	db DEX_FARFETCHD ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 0.8 ; length
@@ -5970,7 +5970,7 @@ FarfetchdAltLv20Card:
 	db WR_LIGHTNING ; weakness
 	db WR_FIGHTING ; resistance
 	tx WildDuckName ; category
-	db DEX_FARFETCH_D ; Pokedex number
+	db DEX_FARFETCHD ; Pokedex number
 	db FALSE ; is Dark
 	db 20 ; level
 	length 0.8 ; length
@@ -8430,16 +8430,16 @@ LassCard:
 	tx LassDescription ; description
 	dw NONE ; description (cont)
 
-MaintenenceCard:
+MaintenanceCard:
 	db TYPE_TRAINER ; type
 	dw $b4d2 ; gfx
-	tx MaintenenceName ; name
+	tx MaintenanceName ; name
 	db DIAMOND ; rarity
 	db BASE_SET ; real set
 	db SKY_FLYING_POKEMON ; in-game set
-	dw MAINTENENCE
+	dw MAINTENANCE
 	dw EffectCommands_59451 ; effect commands
-	tx MaintenenceDescription ; description
+	tx MaintenanceDescription ; description
 	dw NONE ; description (cont)
 
 PokeballCard:

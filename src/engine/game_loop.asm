@@ -42,8 +42,7 @@ GameLoop::
 .reset_game
 	jp Reset
 
-; unreferenced?
-Func_405b:
+_InitSaveData::
 	farcall InitSaveData
 	ret
 

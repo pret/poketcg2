@@ -34,7 +34,7 @@ AITrainerCardLogic:
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_07, FULL_HEAL,              $5f6f, $5f63
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, MR_FUJI,                $604f, $603e
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_10, SCOOP_UP,               $60ed, $60d7
-	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENENCE,            $6269, $624b
+	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_02, MAINTENANCE,            $6269, $624b
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_03, RECYCLE,                $62b9, $629a
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_13, LASS,                   $6340, $632c
 	ai_trainer_card_logic AI_TRAINER_CARD_PHASE_04, ITEMFINDER,             $6396, $6373

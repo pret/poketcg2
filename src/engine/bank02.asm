@@ -4677,7 +4677,7 @@ PrinterMenu_CardList:
 
 PrinterMenu:
 	farcall ConnectPrinter
-	ret c ; error occured
+	ret c ; error occurred
 	xor a
 .loop
 	ld hl, .MenuParameters

@@ -18,7 +18,7 @@ ValidateSRAM:
 	jr nz, .check_pattern_loop
 	call RestartSRAM
 	scf
-	call $405b ; InitSaveDataAndSetUppercase
+	call _InitSaveData
 	call DisableSRAM
 	ret
 .check_sequence
@@ -36,7 +36,7 @@ ValidateSRAM:
 .restart_sram
 	call RestartSRAM
 	or a
-	call $405b ; InitSaveDataAndSetUppercase
+	call _InitSaveData
 	call DisableSRAM
 	ret
 

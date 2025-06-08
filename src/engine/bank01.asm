@@ -1871,7 +1871,7 @@ DisplayPracticeDuelPlayerHandScreen:
 	call EnableLCD
 	ret
 
-DrawDuelMainScene:
+DrawDuelMainScene::
 	ld a, [wDuelType]
 	cp $00
 	jr nz, .asm_4ced
@@ -1957,7 +1957,7 @@ DrawDuelMainScene:
 	call EnableLCD
 	ret
 
-DrawDuelHUDs:
+DrawDuelHUDs::
 	ld a, [wDuelDisplayedScreen]
 	cp $01
 	ret nz
@@ -5667,7 +5667,7 @@ MoveCardToDiscardPileIfInArena:
 
 SECTION "Bank 1@6518", ROMX[$6518], BANK[$1]
 
-Func_6518:
+Func_6518::
 	call Func_7234
 ;	fallthrough
 
@@ -6274,7 +6274,7 @@ SaveDeckCards:
 	ret
 
 ; loads deck saved in SRAM to hl
-DecompressSRAMDeck:
+DecompressSRAMDeck::
 	push hl
 	push de
 	push bc
@@ -6701,7 +6701,7 @@ SECTION "Bank 1@6b05", ROMX[$6b05], BANK[$1]
 
 ; clear the non-turn holder's duelvars starting at DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX
 ; these duelvars only last a two-player turn at most.
-ClearNonTurnTemporaryDuelvars:
+ClearNonTurnTemporaryDuelvars::
 	ld a, DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX
 	call GetNonTurnDuelistVariable
 	xor a
@@ -6857,7 +6857,7 @@ SetFontAndTextBoxFrameColor:
 
 SECTION "Bank 1@6c12", ROMX[$6c12], BANK[$1]
 
-Func_6c12:
+Func_6c12::
 	ld hl, $30d8
 	ld de, wBackgroundPalettesCGB + 2 * CGB_PAL_SIZE
 	ld c, 3 palettes
@@ -6866,7 +6866,7 @@ Func_6c12:
 
 SECTION "Bank 1@6c22", ROMX[$6c22], BANK[$1]
 
-HandleDamageModifiersEffects:
+HandleDamageModifiersEffects::
 	call HandlePrehistoricDreamDamageBoost
 	call HandleThunderChargeDamageBoost
 	call Func_6f25
@@ -7963,7 +7963,7 @@ HandleFinalBeam:
 	ldtx de, Text011d
 	call TossCoin
 	call SwapTurn
-	ret nc ; not sucessful
+	ret nc ; not successful
 
 	ld a, [wTotalAttachedEnergies]
 	ld l, a
@@ -8041,12 +8041,12 @@ Func_7518:
 	ret
 
 ; return the turn holder's arena card's color in a, accounting for Venomoth's Shift Pokemon Power if active
-GetArenaCardColor:
+GetArenaCardColor::
 	xor a
 
 ; input: a = play area location offset (PLAY_AREA_*) of the desired card
 ; return the turn holder's card's color in a, accounting for Venomoth's Shift Pokemon Power if active
-GetPlayAreaCardColor:
+GetPlayAreaCardColor::
 	push hl
 	push de
 	ld e, a
@@ -8089,7 +8089,7 @@ GetArenaOrBenchCardWeakness:
 	add DUELVARS_ARENA_CARD
 	jr GetPlayAreaCardWeakness
 
-GetArenaCardWeakness:
+GetArenaCardWeakness::
 	ld a, DUELVARS_ARENA_CARD_CHANGED_WEAKNESS
 	get_turn_duelist_var
 	or a
@@ -8113,7 +8113,7 @@ GetArenaOrBenchCardResistance:
 	add DUELVARS_ARENA_CARD
 	jr GetPlayAreaCardResistance
 
-GetArenaCardResistance:
+GetArenaCardResistance::
 	ld a, DUELVARS_ARENA_CARD_CHANGED_RESISTANCE
 	get_turn_duelist_var
 	or a
@@ -8518,7 +8518,7 @@ CheckIfArenaCardIsProtectedFromStatusCondition:
 
 ; returns carry if weakness should not be applied
 ; in the current damage calculation
-CheckWhetherToApplyWeakness:
+CheckWhetherToApplyWeakness::
 	call HandleFlameArmorWaterWeakness
 	ret c ; don't apply Water weakness on Fire types
 	call CheckGoopGasAttackAndToxicGasActive
@@ -8573,7 +8573,7 @@ CheckWhetherToApplyWeakness:
 
 ; returns carry if resistance should not be applied
 ; in the current damage calculation
-CheckWhetherToApplyResistance:
+CheckWhetherToApplyResistance::
 	call HandleEarthPowerRockResistance
 	ret c ; don't apply Fighting resistance
 	call CheckGoopGasAttackAndToxicGasActive
@@ -8916,7 +8916,7 @@ GetPlayAreaPokemonType:
 
 ; outputs -30 in hl if it's a normal duel,
 ; outputs -10 in hl if using Low Resistance rule
-GetResistanceModifer:
+GetResistanceModifier::
 	ld hl, -30
 	ld a, [wSpecialRule]
 	cp LOW_RESISTANCE

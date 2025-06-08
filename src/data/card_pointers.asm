@@ -442,7 +442,7 @@ CardPointers::
 	card_ptr BillsComputerCard         ; BILLS_COMPUTER
 	card_ptr MasterBallCard            ; MASTER_BALL
 	card_ptr LassCard                  ; LASS
-	card_ptr MaintenenceCard           ; MAINTENENCE
+	card_ptr MaintenanceCard           ; MAINTENANCE
 	card_ptr PokeballCard              ; POKEBALL
 	card_ptr NightlyGarbageRunCard     ; NIGHTLY_GARBAGE_RUN
 	card_ptr RecycleCard               ; RECYCLE

@@ -1236,11 +1236,11 @@ LassDescription:
 	linefw "す。その後、それぞれの山札をよく切る"
 	done
 
-MaintenenceName:
+MaintenanceName:
 	textfw "メンテナンス"
 	done
 
-MaintenenceDescription:
+MaintenanceDescription:
 	textfw "手札からカードを2枚選び、山札にもど"
 	linefw "す。その後、山札をよく切り、カードを"
 	linefw "1枚引いて、手札に加える。"

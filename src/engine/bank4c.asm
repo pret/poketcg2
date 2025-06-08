@@ -237,7 +237,7 @@ Data_13005b::
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_11
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_12
 	dw OWSPRITE_MANIA                 ; OW_MANIA_6
-	dw OWSPRITE_GR_LASS               ; OW_GRLASS_5
+	dw OWSPRITE_GR_LASS               ; OW_GR_LASS_5
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_13
 	dw OWSPRITE_TECH                  ; OW_TECH_8
 	dw OWSPRITE_GR_LASS               ; OW_GR_LASS_6

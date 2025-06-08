@@ -1405,7 +1405,7 @@ PlayAttackAnimation_DealAttackDamage:
 	pop de
 	call SubtractHP
 	push hl
-	bank1call $4d82 ; DrawDuelHUDs
+	bank1call DrawDuelHUDs
 	pop hl
 	call PrintKnockedOutIfHLZero
 	jr Func_17fb
@@ -1440,7 +1440,7 @@ Func_17fb:
 	bank1call $64a5 ; Func_64a5
 	call Func_1bb4
 	bank1call $6b1f ; Func_6b1f
-	bank1call $6518 ; Func_6518
+	bank1call Func_6518
 	or a
 	ret
 
@@ -1453,7 +1453,7 @@ ReturnCarry:
 	ret
 
 ClearNonTurnTemporaryDuelvars_ResetCarry:
-	bank1call $6b05 ; ClearNonTurnTemporaryDuelvars
+	bank1call ClearNonTurnTemporaryDuelvars
 	or a
 	ret
 
@@ -1465,7 +1465,7 @@ HandleConfusionDamageToSelf:
 	ld de, 20 ; damage
 .asm_164a
 	push de
-	bank1call $4cd7 ; DrawDuelMainScene
+	bank1call DrawDuelMainScene
 	pop hl
 	push hl
 	call LoadTxRam3
@@ -1477,8 +1477,8 @@ HandleConfusionDamageToSelf:
 	ld a, l
 	call DealConfusionDamageToSelf
 	call Func_1bb4
-	bank1call $6518 ; Func_6518
-	bank1call $6b05 ; ClearNonTurnTemporaryDuelvars
+	bank1call Func_6518
+	bank1call ClearNonTurnTemporaryDuelvars
 	or a
 	ret
 
@@ -1578,7 +1578,7 @@ Func_189d:
 	pop de
 	ret nc
 	push hl
-	bank1call $4cd7 ; DrawDuelMainScene
+	bank1call DrawDuelMainScene
 	pop hl
 	call DrawWideTextBox_PrintText
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS2
@@ -1686,21 +1686,21 @@ ApplyDamageModifiers_DamageToTarget:
 	res 7, d ; cap at 2^15
 	xor a
 	ld [wDamageEffectiveness], a
-	bank1call $6c22 ; HandleDoubleDamageSubstatus
+	bank1call HandleDamageModifiersEffects
 	jr .check_pluspower_and_defender
 .safe
-	bank1call $6c22 ; HandleDoubleDamageSubstatus
+	bank1call HandleDamageModifiersEffects
 	ld a, e
 	or d
 	ret z
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	bank1call $755e ; GetPlayAreaCardColor
+	bank1call GetPlayAreaCardColor
 	call TranslateColorToWR
 	ld b, a
-	bank1call $78c1 ; Func_78c1
+	bank1call CheckWhetherToApplyWeakness
 	jr c, .not_weak
 	call SwapTurn
-	bank1call $7591 ; GetArenaCardWeakness
+	bank1call GetArenaCardWeakness
 	call SwapTurn
 	and b
 	jr z, .not_weak
@@ -1709,10 +1709,10 @@ ApplyDamageModifiers_DamageToTarget:
 	ld hl, wDamageEffectiveness
 	set WEAKNESS, [hl]
 .not_weak
-	bank1call $791a ; Func_791a
+	bank1call CheckWhetherToApplyResistance
 	jr c, .check_pluspower_and_defender
 	call SwapTurn
-	bank1call $75a7 ; GetArenaCardResistance
+	bank1call GetArenaCardResistance
 	call SwapTurn
 	and b
 	jr z, .check_pluspower_and_defender ; jump if not resistant
@@ -1772,12 +1772,12 @@ ApplyDamageModifiers_DamageToSelf::
 	ld d, [hl]
 	dec hl
 	ld e, [hl]
-	bank1call $755d ; GetArenaCardColor
+	bank1call GetArenaCardColor
 	call TranslateColorToWR
 	ld b, a
-	bank1call $78c1 ; Func_78c1
+	bank1call CheckWhetherToApplyWeakness
 	jr c, .not_weak
-	bank1call $7591 ; GetArenaCardWeakness
+	bank1call GetArenaCardWeakness
 	and b
 	jr z, .not_weak
 	sla e
@@ -1785,12 +1785,12 @@ ApplyDamageModifiers_DamageToSelf::
 	ld hl, wDamageEffectiveness
 	set WEAKNESS, [hl]
 .not_weak
-	bank1call $791a ; Func_791a
+	bank1call CheckWhetherToApplyResistance
 	jr c, .not_resistant
-	bank1call $75a7 ; GetArenaCardResistance
+	bank1call GetArenaCardResistance
 	and b
 	jr z, .not_resistant
-	bank1call $7b37 ; GetResistanceModifer
+	bank1call GetResistanceModifier
 	add hl, de
 	ld e, l
 	ld d, h
@@ -1966,7 +1966,7 @@ DealDamageToPlayAreaPokemon::
 	ld a, [wTempPlayAreaLocation_cceb]
 	or a ; cp PLAY_AREA_ARENA
 	jr nz, .next
-	bank1call $6c22 ; HandleDoubleDamageSubstatus
+	bank1call HandleDamageModifiersEffects
 	ld a, [wIsDamageToSelf]
 	or a
 	jr z, .turn_swapped
@@ -2042,8 +2042,8 @@ DealDamageToPlayAreaPokemon::
 
 Func_1bb4:
 	call FinishQueuedAnimations
-	bank1call $4cd7 ; DrawDuelMainScene
-	bank1call $4d82 ; DrawDuelHUDs
+	bank1call DrawDuelMainScene
+	bank1call DrawDuelHUDs
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call Func_19e1
@@ -2091,7 +2091,7 @@ Func_19fd:
 	ret
 
 Func_1a1e:
-	bank1call $6b05 ; ClearNonTurnTemporaryDuelvars
+	bank1call ClearNonTurnTemporaryDuelvars
 	call Func_19fd
 	ld hl, $1a2
 	jp DrawWideTextBox_WaitForInput

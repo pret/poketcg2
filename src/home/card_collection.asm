@@ -76,7 +76,7 @@ GetCardCountInCollectionAndDecks:
 .next_deck
 	push de
 	ld hl, wDuelTempList
-	bank1call $68bc ; Func_68bc expand compressed deck list
+	bank1call DecompressSRAMDeck
 .next_card
 	ld a, [hli]
 	or [hl]

@@ -238,7 +238,7 @@ _CheckIfEnoughEnergiesToAttack:
 IsArenaPokemonAsleepOrDoublePoisoned:
 ```
 
-Function headers can also be effective to highlight the difference between functions that do similar things, but with a twist or an additional feaure. For example:
+Function headers can also be effective to highlight the difference between functions that do similar things, but with a twist or an additional feature. For example:
 
 ```
 ; draw a 12x6 text box aligned to the bottom left of the screen

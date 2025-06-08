@@ -19,7 +19,7 @@ PrintDigit:
 ; de = coordinates
 ; b = FALSE: left-padded with zeroes
 ;     TRUE:  left-padded with empty spaces
-; a = identation
+; a = indentation
 PrintNumber:
 	ld c, a
 	push de
@@ -865,7 +865,7 @@ StartPalFadeFromBlackOrWhite::
 ;     for deciding when to fade color
 ; if a = 0, fade to white
 ; if a = 1, fade to black
-StartPalFadeToBlackOrWhite:
+StartPalFadeToBlackOrWhite::
 	ld [wPalFadeDirection], a
 	ld a, b
 	ld [wPaletteFadeSpeedMask], a

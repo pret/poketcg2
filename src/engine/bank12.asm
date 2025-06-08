@@ -1903,7 +1903,7 @@ AIDeckSpecificRetreatLogic:
 	ret
 
 ; some Decks rely on using The Boss' Way and
-; Dark Dragnoair's Evolutionary Light together
+; Dark Dragonair's Evolutionary Light together
 ; with Pokémon Trader to search cards in the deck
 HandleAIDarkPokemonSearchStrategies:
 	bank1call CheckCantUseTrainerDueToEffect
@@ -3567,7 +3567,7 @@ CheckIfHasSpecificEnergyAttached:
 
 SECTION "Bank 12@62a0", ROMX[$62a0], BANK[$12]
 
-; returns carry if Alakazam lv42 is foundin Play Area
+; returns carry if Alakazam lv42 is found in Play Area
 ; with Pkmn Power active and outputs its Play Area location
 FindAlakazamLv42WithActivePkmnPowerInPlayArea:
 	ld c, PLAY_AREA_ARENA

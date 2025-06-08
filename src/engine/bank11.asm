@@ -2,7 +2,7 @@ SECTION "Bank 11@4039", ROMX[$4039], BANK[$11]
 
 ; counts number of cards in
 ; $0000 terminated list in hl
-; ouptut:
+; output:
 ;  a = number of cards
 CountCardsInHL:
 	push bc
