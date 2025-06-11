@@ -111,7 +111,7 @@ Text05ab:
 	done
 
 Text05ac:
-	textfw "<RAMNAME>", "のにっき"
+	textfw "<RAMNAME>のにっき"
 	done
 
 Text05ad:
@@ -171,12 +171,12 @@ Text05ba:
 	done
 
 Text05bb:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを いれた!"
 	done
 
 Text05bc:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを きった!"
 	done
 
@@ -360,11 +360,11 @@ Text05e7:
 	done
 
 Text05e8:
-	textfw "フシギバナ", "<Lv>", "64"
+	textfw "フシギバナ<Lv>64"
 	done
 
 Text05e9:
-	textfw "ミュウ", "<Lv>", "15"
+	textfw "ミュウ<Lv>15"
 	done
 
 Text05ea:
@@ -409,7 +409,7 @@ Text05f2:
 
 Text05f3:
 	textfw "わかりました"
-	linefw "「", "<RAMTEXT>", "」ですね"
+	linefw "「<RAMTEXT>」ですね"
 	done
 
 Text05f4:
@@ -626,11 +626,11 @@ Text0627:
 	done
 
 Text0628:
-	textfw "<", "実行中>"
+	textfw "<実行中>"
 	done
 
 Text0629:
-	textfw "<", "テイ止>"
+	textfw "<テイ止>"
 	done
 
 Text062a:
@@ -642,12 +642,12 @@ Text062b:
 	done
 
 Text062c:
-	textfw "「", "<RAMTEXT>", "」を"
+	textfw "「<RAMTEXT>」を"
 	linefw "ゲットしました!"
 	done
 
 Text062d:
-	textfw "ごうけい", "<RAMNUM>", "枚めの コインです!"
+	textfw "ごうけい<RAMNUM>枚めの コインです!"
 	done
 
 Text062e:
@@ -670,12 +670,12 @@ Text0631:
 	done
 
 Text0632:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "にっきを つけました"
 	done
 
 Text0633:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "にっきをつけるのを やめました"
 	done
 
@@ -828,203 +828,203 @@ Text0650:
 	done
 
 Text0651:
-	textfw "エレキクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "エレキクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0652:
-	textfw "エスパークラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "エスパークラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0653:
-	textfw "ストーンクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ストーンクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0654:
-	textfw "バトルクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "バトルクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0655:
-	textfw "グリーンクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "グリーンクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0656:
-	textfw "サイエンスクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "サイエンスクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0657:
-	textfw "アクアクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "アクアクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0658:
-	textfw "ファイアクラブメンバー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ファイアクラブメンバー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0659:
-	textfw "エレキクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "エレキクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065a:
-	textfw "エスパークラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "エスパークラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065b:
-	textfw "ストーンクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ストーンクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065c:
-	textfw "バトルクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "バトルクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065d:
-	textfw "グリーンクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "グリーンクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065e:
-	textfw "サイエンスクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "サイエンスクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text065f:
-	textfw "アクアクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "アクアクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0660:
-	textfw "ファイアクラブマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ファイアクラブマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0661:
-	textfw "グランドマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "グランドマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0662:
-	textfw "研究員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "研究員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0663:
-	textfw "ふしぎないきもの ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ふしぎないきもの <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0664:
-	textfw "コレクター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "コレクター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0665:
-	textfw "ライバル ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ライバル <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0666:
-	textfw "ナゾのかめん ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ナゾのかめん <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0667:
-	textfw "草のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "草のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0668:
-	textfw "雷のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "雷のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0669:
-	textfw "炎のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "炎のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066a:
-	textfw "水のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "水のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066b:
-	textfw "闘のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "闘のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066c:
-	textfw "超のGR団員 ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "超のGR団員 <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066d:
-	textfw "草のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "草のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066e:
-	textfw "雷のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "雷のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text066f:
-	textfw "炎のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "炎のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0670:
-	textfw "水のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "水のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0671:
-	textfw "闘のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "闘のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0672:
-	textfw "超のGR団リーダー ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "超のGR団リーダー <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0673:
-	textfw "無のばんにん ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "無のばんにん <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0674:
-	textfw "GR団 大かんぶ ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "GR団 大かんぶ <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0675:
-	textfw "GR団 キング ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "GR団 キング <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0676:
 	textfw "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0677:
-	textfw "ダンジョンマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ダンジョンマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0678:
-	textfw "ゴーストカードマスター ", "<RAMTEXT>"
-	linefw "<RAMTEXT>", "デッキ!"
+	textfw "ゴーストカードマスター <RAMTEXT>"
+	linefw "<RAMTEXT>デッキ!"
 	done
 
 Text0679:
@@ -1044,7 +1044,7 @@ Text067c:
 	done
 
 Text067d:
-	textfw " ", "<RAMNAME>", "のチップ "
+	textfw " <RAMNAME>のチップ "
 	done
 
 Text067e:
@@ -1084,13 +1084,13 @@ Text0686:
 	done
 
 Text0687:
-	textfw "<RAMNAME>", "は ", "<RAMTEXT>"
-	linefw "「", "<RAMTEXT>", "」を ゲット!"
+	textfw "<RAMNAME>は <RAMTEXT>"
+	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
 Text0688:
-	textfw "さらに ", "<RAMTEXT>"
-	linefw "「", "<RAMTEXT>", "」を ゲット!"
+	textfw "さらに <RAMTEXT>"
+	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
 Text0689:
@@ -1145,7 +1145,7 @@ Text0694:
 
 Text0695:
 	textfw "ボーナスチップマークが そろいました"
-	linefw "チップ", "<RAMNUM>", "枚を ゲット!"
+	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
 Text0696:
@@ -1170,7 +1170,7 @@ Text069a:
 	done
 
 Text069b:
-	textfw "<", "グランドマスター杯トーナメント表>"
+	textfw "<グランドマスター杯トーナメント表>"
 	done
 
 Text069c:
@@ -1178,7 +1178,7 @@ Text069c:
 	done
 
 Text069d:
-	textfw "<RAMNAME>", "は "
+	textfw "<RAMNAME>は "
 	linefw "カードを かくにんした!!"
 	done
 
@@ -1243,7 +1243,7 @@ Text06a7:
 	done
 
 Text06a8:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06a9:
@@ -1251,8 +1251,8 @@ Text06a9:
 	done
 
 Text06aa:
-	textfw "<RAMNAME>", "!"
-	linefw "わしじゃ Dṛオーヤマじゃ"
+	textfw "<RAMNAME>!"
+	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ちゃんと このメールを"
 	linefw "よむことが できたかな?"
 	linefw "よいか いろいろな じょうほうが"
@@ -1273,8 +1273,8 @@ Text06ac:
 	linefw "しておくと あたらしいメールが"
 	linefw "うけとれないことが あるからのう"
 	linefw ""
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06ad:
@@ -1285,7 +1285,7 @@ Text06ad:
 	done
 
 Text06ae:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06af:
@@ -1293,8 +1293,8 @@ Text06af:
 	done
 
 Text06b0:
-	textfw "<RAMNAME>", "!"
-	linefw "わしじゃ Dṛオーヤマじゃ"
+	textfw "<RAMNAME>!"
+	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "しんはつめいの おしらせじゃ"
 	linefw "わしのながねんの ポケモンカードの"
 	linefw "研究せいかを けっしゅうした"
@@ -1315,8 +1315,8 @@ Text06b2:
 	linefw "あくまでも きほんてきなアドバイスと"
 	linefw "デッキチェックじゃがな・・・"
 	linefw ""
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06b3:
@@ -1326,7 +1326,7 @@ Text06b3:
 	done
 
 Text06b4:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06b5:
@@ -1334,7 +1334,7 @@ Text06b5:
 	done
 
 Text06b6:
-	textfw "<RAMNAME>", "! Dṛオーヤマじゃ"
+	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
 	linefw "ちょっと ポケモンカードになれた"
@@ -1356,8 +1356,8 @@ Text06b8:
 	linefw "「パソコン」から アクセスできるぞ"
 	linefw "どんなもんか ためしてみてくれ"
 	linefw ""
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06b9:
@@ -1367,7 +1367,7 @@ Text06b9:
 	done
 
 Text06ba:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06bb:
@@ -1375,7 +1375,7 @@ Text06bb:
 	done
 
 Text06bc:
-	textfw "わしじゃ Dṛオーヤマじゃ"
+	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
 	linefw "「ステップ3」の かんせいじゃ"
@@ -1388,8 +1388,8 @@ Text06bd:
 	linefw "きほんてきな アドバイスは"
 	linefw "これで おわりじゃな・・・"
 	linefw ""
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06be:
@@ -1399,7 +1399,7 @@ Text06be:
 	done
 
 Text06bf:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06c0:
@@ -1407,7 +1407,7 @@ Text06c0:
 	done
 
 Text06c1:
-	textfw "<RAMNAME>", " Dṛオーヤマじゃ"
+	textfw "<RAMNAME> Dr.オーヤマじゃ"
 	linefw "また 「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
 	linefw "「ステップ4」は よりよいデッキを"
@@ -1420,12 +1420,12 @@ Text06c2:
 	linefw "デッキに もんだいが あるのじゃ"
 	linefw "そんなときは デッキを キチンと"
 	linefw "みなおして みるのも たいせつじゃぞ"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06c3:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06c4:
@@ -1433,7 +1433,7 @@ Text06c4:
 	done
 
 Text06c5:
-	textfw "<RAMNAME>", "! Dṛオーヤマじゃ"
+	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "デッキをつくるのが たいへんなら"
 	linefw "オートデッキマシンを つかうと"
 	linefw "いいじゃろう"
@@ -1446,8 +1446,8 @@ Text06c6:
 	linefw "だんだん バージョンアップさせる"
 	linefw "よていじゃ!"
 	linefw "これからの対戦に やくだててくれ"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06c7:
@@ -1458,7 +1458,7 @@ Text06c7:
 	done
 
 Text06c8:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06c9:
@@ -1466,8 +1466,8 @@ Text06c9:
 	done
 
 Text06ca:
-	textfw "Dṛオーヤマじゃ"
-	linefw "<RAMNAME>", "! オートデッキマシンに"
+	textfw "Dr.オーヤマじゃ"
+	linefw "<RAMNAME>! オートデッキマシンに"
 	linefw "だいぶ デッキが あつまっておるぞ"
 	linefw "たまには 研究所へ もどって"
 	linefw "オートデッキマシンを かくにんして"
@@ -1479,8 +1479,8 @@ Text06cb:
 	linefw "バージョンアップする つもりじゃ"
 	linefw "どんどん つかって 対戦に"
 	linefw "やくだてて くれ"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06cc:
@@ -1490,7 +1490,7 @@ Text06cc:
 	done
 
 Text06cd:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06ce:
@@ -1498,7 +1498,7 @@ Text06ce:
 	done
 
 Text06cf:
-	textfw "おお ", "<RAMNAME>", "! げんきかな"
+	textfw "おお <RAMNAME>! げんきかな"
 	linefw "オートデッキマシン2号が"
 	linefw "かんせいしたんじゃ!!"
 	linefw "オートデッキマシン2号は GR団の"
@@ -1511,8 +1511,8 @@ Text06d0:
 	linefw "もってこいの マシンじゃぞ"
 	linefw "たまには 研究所へもどってきて"
 	linefw "あいてを 研究するんじゃ!"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06d1:
@@ -1522,7 +1522,7 @@ Text06d1:
 	done
 
 Text06d2:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06d3:
@@ -1530,7 +1530,7 @@ Text06d3:
 	done
 
 Text06d4:
-	textfw "<RAMNAME>", "! Dṛオーヤマじゃ"
+	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "GR団との対戦は どうじゃ?"
 	linefw "オートデッキマシン2号には"
 	linefw "けっこう GR団のカードをつかった"
@@ -1543,8 +1543,8 @@ Text06d5:
 	linefw "とりもどしたし たまには"
 	linefw "こちらのしまの れんちゅうとも"
 	linefw "対戦してみては どうかな?"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06d6:
@@ -1554,7 +1554,7 @@ Text06d6:
 	done
 
 Text06d7:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06d8:
@@ -1562,7 +1562,7 @@ Text06d8:
 	done
 
 Text06d9:
-	textfw "わしじゃ Dṛオーヤマじゃ"
+	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ついに GR団のキング ビルリッチを"
 	linefw "かいしんさせた そうじゃな"
 	linefw "だが まだまだポケモンカードを"
@@ -1583,12 +1583,12 @@ Text06db:
 	textfw "オートデッキマシン1号も 2号も"
 	linefw "まだまだ デッキは ふえるぞ!"
 	linefw ""
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^о^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
 Text06dc:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text06dd:
@@ -1596,7 +1596,7 @@ Text06dd:
 	done
 
 Text06de:
-	textfw "わしじゃ! Dṛオーヤマじゃ"
+	textfw "わしじゃ! Dr.オーヤマじゃ"
 	linefw "チャレンジマシーンは"
 	linefw "たのしんで もらえておるかな?"
 	linefw "さいきょうの デッキをつくって"
@@ -1606,11 +1606,11 @@ Text06de:
 
 Text06df:
 	textfw "50れんしょうしたら わしがステキな"
-	linefw "コインを ", "<RAMNAME>", "に やろう"
+	linefw "コインを <RAMNAME>に やろう"
 	linefw "「ダグトリオ」のコインじゃ!!"
 	linefw "さあ レッツ チャレンジじゃ"
-	linefw "Dṛオーヤマ研究所"
-	linefw "   所長 Dṛオーヤマ (^◇^)"
+	linefw "Dr.オーヤマ研究所"
+	linefw "   所長 Dr.オーヤマ (^◇^)"
 	done
 
 Text06e0:
@@ -1623,7 +1623,7 @@ Text06e1:
 
 Text06e2:
 	textfw "げんきで ポケモンカードを"
-	linefw "あそんでいるかな ", "<RAMNAME>", "くん"
+	linefw "あそんでいるかな <RAMNAME>くん"
 	linefw "すてきな おしらせだ"
 	linefw "GR団のチャレンジホールに"
 	linefw "「GR団チャレンジマシン」を"
@@ -1631,7 +1631,7 @@ Text06e2:
 	done
 
 Text06e3:
-	textfw "マシンは Dṛオーヤマに"
+	textfw "マシンは Dr.オーヤマに"
 	linefw "つくって もらったものだが"
 	linefw "けっこう たのしいものだ"
 	linefw "ぜひ チャレンジしてみてくれ!"
@@ -1656,7 +1656,7 @@ Text06e6:
 	done
 
 Text06e7:
-	textfw "<RAMNAME>", "くん!"
+	textfw "<RAMNAME>くん!"
 	linefw "グランドマスターのリュウドーだ"
 	linefw "われら グランドマスターは"
 	linefw "さいこうの ポケモンカードの大会を"
@@ -1682,7 +1682,7 @@ Text06ea:
 	done
 
 Text06eb:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "いいか こうやって メールで"
 	linefw "GR団のやつらの じょうほうを"
 	linefw "おくってやるからよ"
@@ -1708,12 +1708,12 @@ Text06ee:
 	done
 
 Text06ef:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと オレのじょうほうを"
 	linefw "やくだててるだろうな えっ!"
 	linefw "ちゃんと メールをチェックすんだぜ!"
 	linefw "メールのあきにも きを くばってな"
-	linefw "いいな ", "<RAMNAME>", "!"
+	linefw "いいな <RAMNAME>!"
 	done
 
 Text06f0:
@@ -1734,7 +1734,7 @@ Text06f2:
 	done
 
 Text06f3:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと メールをよんでるか?"
 	linefw "GR団のじょうほうを てに いれたぜ"
 	linefw "オレが いのちがけで さぐってきた"
@@ -1760,7 +1760,7 @@ Text06f6:
 	done
 
 Text06f7:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "メールを チェックしてるか?"
 	linefw "GR4号のデッキの じょうほうだ"
 	linefw "やつのデッキは 水と超のデッキだぜ!"
@@ -1785,7 +1785,7 @@ Text06fa:
 	done
 
 Text06fb:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "草のGR団リーダー モリノの"
 	linefw "じょうほうを てにいれたぜ!"
 	linefw "なんと モリノのとこの 対戦では"
@@ -1803,7 +1803,7 @@ Text06fc:
 	done
 
 Text06fd:
-	textfw "それらポケモンのワザで ", "[自分]", "も"
+	textfw "それらポケモンのワザで [自分]も"
 	linefw "「こんらん」する ワザをつかって"
 	linefw "こうげきしてくるぞ! ふつうなら"
 	linefw "こうげきしたポケモンが 「こんらん」"
@@ -1829,7 +1829,7 @@ Text0700:
 	done
 
 Text0701:
-	textfw "<RAMNAME>", "! げんきか!"
+	textfw "<RAMNAME>! げんきか!"
 	linefw "こんかいは 雷のGR団リーダー"
 	linefw "キャサリンの じょうほうだぜ!"
 	linefw "キャサリンは エレキパワーバリバリだ"
@@ -1864,7 +1864,7 @@ Text0705:
 	done
 
 Text0706:
-	textfw "<RAMNAME>", "! オレだ! ランドだ!"
+	textfw "<RAMNAME>! オレだ! ランドだ!"
 	linefw "炎のGR団リーダー ヒデロウの"
 	linefw "じょうほうを ゲットだぜ!"
 	linefw "やつのところは 炎で いっぱい!"
@@ -1885,7 +1885,7 @@ Text0708:
 	textfw "せいせいどうどう しょうぶするしか"
 	linefw "ほうほうは ないぜ!"
 	linefw "どんなデッキで たたかうかは"
-	linefw "<RAMNAME>", "が かんがえな!"
+	linefw "<RAMNAME>が かんがえな!"
 	linefw ""
 	linefw "          ランド(●_●)"
 	done
@@ -1899,7 +1899,7 @@ Text070a:
 	done
 
 Text070b:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "水のGR団リーダー カノコの"
 	linefw "じょうほうを おしえてやるぜ!"
 	linefw "あのへやは 水ポケモンが すばやい!"
@@ -1934,7 +1934,7 @@ Text070f:
 	done
 
 Text0710:
-	textfw "いいちょうしだな ", "<RAMNAME>", "!"
+	textfw "いいちょうしだな <RAMNAME>!"
 	linefw "わすれんなよ!"
 	linefw "オレが こうやって メールで"
 	linefw "おしえてやってる おかげだってな!"
@@ -1969,7 +1969,7 @@ Text0714:
 	done
 
 Text0715:
-	textfw "<RAMNAME>", "! ランドだぜ!"
+	textfw "<RAMNAME>! ランドだぜ!"
 	linefw "超のGR団リーダー マミの"
 	linefw "じょうほうを ゲットしたぜ!"
 	linefw "マミってのは バアさんなんだぜ!"
@@ -2021,7 +2021,7 @@ Text071b:
 	done
 
 Text071c:
-	textfw "よう ", "<RAMNAME>", "!"
+	textfw "よう <RAMNAME>!"
 	linefw "無のさいだんの じょうほうだ!"
 	linefw "無のばんにんの 「ニシジマ」"
 	linefw "「イシイ」「サメジマ」の3にんは"
@@ -2065,19 +2065,19 @@ Text0721:
 	done
 
 Text0722:
-	textfw "<RAMNAME>", "・・・"
+	textfw "<RAMNAME>・・・"
 	linefw "ついに GR団との たたかいも"
 	linefw "おおづめって かんじだな・・・"
 	linefw "オレも まけちまって・・・"
 	linefw "もう おまえしか いないんだからな!"
-	linefw "たのむぞ ", "<RAMNAME>", "!"
+	linefw "たのむぞ <RAMNAME>!"
 	done
 
 Text0723:
 	textfw "GR団に! キングのビルリッチに!"
 	linefw "オレたちの カードへのおもいを"
 	linefw "ちからのかぎり ぶつけてくれ!!"
-	linefw "たのむぞ ", "<RAMNAME>", "・・・・"
+	linefw "たのむぞ <RAMNAME>・・・・"
 	linefw "オレのさいごの じょうほうを"
 	linefw "おまえに おしえるよ"
 	done
@@ -2104,7 +2104,7 @@ Text0726:
 	textfw "だから"
 	linefw "おまえも 対戦デッキを"
 	linefw "たくさん よういしていけ!"
-	linefw "ガンバレよ! ", "<RAMNAME>", "!!"
+	linefw "ガンバレよ! <RAMNAME>!!"
 	linefw ""
 	linefw "          ランド(●_●)"
 	done
@@ -2383,12 +2383,12 @@ Text0761:
 	done
 
 Text0762:
-	textfw "<RAMNAME>", "は ポケモンカードを"
+	textfw "<RAMNAME>は ポケモンカードを"
 	linefw "あつめるのが だいすきです"
 	done
 
 Text0763:
-	textfw "<RAMNAME>", "は このしまにつたわる"
+	textfw "<RAMNAME>は このしまにつたわる"
 	linefw "伝説のポケモンカードを ゲットのため"
 	done
 
@@ -2434,7 +2434,7 @@ Text076b:
 
 Text076c:
 	textfw "もっていたカードを GR団に"
-	linefw "うばわれた ", "<RAMNAME>", "は"
+	linefw "うばわれた <RAMNAME>は"
 	done
 
 Text076d:
@@ -2443,7 +2443,7 @@ Text076d:
 	done
 
 Text076e:
-	textfw "Dṛオーヤマのいる 研究所へ"
+	textfw "Dr.オーヤマのいる 研究所へ"
 	linefw "むかったのでした・・・"
 	done
 
@@ -2493,11 +2493,11 @@ Text0779:
 	done
 
 Text077a:
-	textfw "<RAMNUM>", "/", "<RAMNUM>"
+	textfw "<RAMNUM>/<RAMNUM>"
 	done
 
 Text077b:
-	textfw " ", "<RAMTEXT>", " "
+	textfw " <RAMTEXT> "
 	done
 
 Text077c:
@@ -2587,7 +2587,7 @@ Text078e:
 	done
 
 Text078f:
-	textfw "<RAMNAME>", "のスコア"
+	textfw "<RAMNAME>のスコア"
 	done
 
 Text0790:
@@ -2615,27 +2615,27 @@ Text0795:
 	done
 
 Text0796:
-	textfw "クラブメンバー", "<GRASS>"
+	textfw "クラブメンバー<GRASS>"
 	done
 
 Text0797:
-	textfw "クラブメンバー", "<WATER>"
+	textfw "クラブメンバー<WATER>"
 	done
 
 Text0798:
-	textfw "クラブメンバー", "<FIRE>"
+	textfw "クラブメンバー<FIRE>"
 	done
 
 Text0799:
-	textfw "クラブメンバー", "<PSYCHIC>"
+	textfw "クラブメンバー<PSYCHIC>"
 	done
 
 Text079a:
-	textfw "クラブメンバー", "<LIGHTNING>"
+	textfw "クラブメンバー<LIGHTNING>"
 	done
 
 Text079b:
-	textfw "クラブメンバー", "<FIGHTING>"
+	textfw "クラブメンバー<FIGHTING>"
 	done
 
 Text079c:
@@ -2643,8 +2643,8 @@ Text079c:
 	done
 
 Text079d:
-	textfw "<RAMNAME>", "は ", "<RAMNUM>", "れんしょう中!"
-	linefw "1人目は 「", "<RAMTEXT>", "」です"
+	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
+	linefw "1人目は 「<RAMTEXT>」です"
 	done
 
 Text079e:
@@ -2660,7 +2660,7 @@ Text07a0:
 	done
 
 Text07a1:
-	textfw "チップ", "<RAMNUM>", "枚"
+	textfw "チップ<RAMNUM>枚"
 	done
 
 Text07a2:
@@ -2668,23 +2668,23 @@ Text07a2:
 	done
 
 Text07a3:
-	textfw "<RAMNAME>", "は ", "<RAMNUM>", "れんしょう中!"
-	linefw "<RAMNUM>", "人目は 「", "<RAMTEXT>", "」です"
+	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
+	linefw "<RAMNUM>人目は 「<RAMTEXT>」です"
 	done
 
 Text07a4:
-	textfw "<RAMNUM>", "人目"
-	linefw "「", "<RAMTEXT>", "」に 勝ちました!"
+	textfw "<RAMNUM>人目"
+	linefw "「<RAMTEXT>」に 勝ちました!"
 	done
 
 Text07a5:
-	textfw "<RAMNUM>", "人目"
-	linefw "「", "<RAMTEXT>", "」に まけました!"
+	textfw "<RAMNUM>人目"
+	linefw "「<RAMTEXT>」に まけました!"
 	done
 
 Text07a6:
-	textfw "<RAMNAME>", "の れんしょうきろくは"
-	linefw "<RAMNUM>", "で とまりました"
+	textfw "<RAMNAME>の れんしょうきろくは"
+	linefw "<RAMNUM>で とまりました"
 	done
 
 Text07a7:
@@ -3043,7 +3043,7 @@ Text07f5:
 	done
 
 Text07f6:
-	textfw "<RAMNUM>", "枚めのGRコインのカケラです!"
+	textfw "<RAMNUM>枚めのGRコインのカケラです!"
 	done
 
 Text07f7:
@@ -3061,8 +3061,8 @@ Text07f9:
 	done
 
 Text07fa:
-	textfw "<RAMNAME>", " 5人勝ちぬき せいこう"
-	linefw "<RAMNUM>", "回目!!"
+	textfw "<RAMNAME> 5人勝ちぬき せいこう"
+	linefw "<RAMNUM>回目!!"
 	done
 
 Text07fb:
@@ -3071,7 +3071,7 @@ Text07fb:
 	done
 
 Text07fc:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "拡張パックのなかを みた!!"
 	done
 
@@ -3140,11 +3140,11 @@ Text080b:
 	done
 
 Text080c:
-	textfw "カードNоˍ", "<RAMNUM>"
+	textfw "カードNоˍ<RAMNUM>"
 	done
 
 Text080d:
-	textfw "【", "<RAMTEXT>", "】"
+	textfw "【<RAMTEXT>】"
 	done
 
 Text080e:

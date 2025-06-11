@@ -39,7 +39,7 @@ DoduoName:
 
 GrowlAltDescription2:
 	textfw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "が、このカードに与える"
+	linefw "[相手]が、このカードに与える"
 	linefw "ダメージは「-10」される。"
 	done
 
@@ -138,7 +138,7 @@ ScrunchName:
 	done
 
 Do80DamageToSelfDescription:
-	textfw "[自分]", "にも80ダメージ。"
+	textfw "[自分]にも80ダメージ。"
 	done
 
 ChanseyLv55Description:
@@ -203,10 +203,10 @@ RampageName:
 	done
 
 RampageDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
+	textfw "[自分]にのっているダメージカウンター"
 	linefw "の数×10のダメージを追加する。その"
 	linefw "後、コインを投げて「うら」なら、"
-	linefw "[自分]", "を「こんらん」状態にする。"
+	linefw "[自分]を「こんらん」状態にする。"
 	done
 
 WildBullName:
@@ -226,7 +226,7 @@ KickingAndStampingName:
 KickingAndStampingDescription:
 	textfw "コインを投げて「おもて」なら、10"
 	linefw "ダメージを追加する。「うら」なら、"
-	linefw "[相手]", "を控えポケモンと入れ替える。"
+	linefw "[相手]を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは、相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
 	linefw "おこらない)"
@@ -247,7 +247,7 @@ MorphName:
 	done
 
 MorphDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
+	textfw "[自分]にのっているダメージカウンター"
 	linefw "を、すべてとりのぞく。その後、自分の"
 	linefw "山札から「たねポケモン」(「メタモン"
 	linefw "」以外)が自動的に選ばれ、対戦が終わ"
@@ -282,7 +282,7 @@ EeveeLv5Description:
 
 SandAttackDescription:
 	textfw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "は、ワザを使うときにコインを"
+	linefw "[相手]は、ワザを使うときにコインを"
 	linefw "投げ、「うら」なら、そのワザは失敗"
 	linefw "する。"
 	done
@@ -306,7 +306,7 @@ Conversion1Name:
 	done
 
 Conversion1Description:
-	textfw "[相手]", "に「弱点」があれば、それを"
+	textfw "[相手]に「弱点」があれば、それを"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
 	linefw "(バトル場をはなれたポケモンからは、"
@@ -318,7 +318,7 @@ Conversion2Name:
 	done
 
 Conversion2Description:
-	textfw "[自分]", "の「抵抗力」を、"
+	textfw "[自分]の「抵抗力」を、"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
 	linefw "(バトル場をはなれたポケモンからは、"
@@ -351,7 +351,7 @@ PorygonSharedDescription:
 	done
 
 Conversion1AltDescription:
-	textfw "[相手]", "に「弱点」があれば、それを"
+	textfw "[相手]に「弱点」があれば、それを"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな「色(タイプ)」に変える。"
 	linefw "(バトル場をはなれたポケモンからは"
@@ -372,9 +372,9 @@ TextureMagicName:
 	done
 
 TextureMagicDescription:
-	textfw "[相手]", "に弱点があれば、それを「草・炎"
+	textfw "[相手]に弱点があれば、それを「草・炎"
 	linefw "・水・雷・超・闘」の中の、好きな色("
-	linefw "タイプ)に変える。", "[自分]", "の抵抗力も、"
+	linefw "タイプ)に変える。[自分]の抵抗力も、"
 	linefw "「草・炎・水・雷・超・闘」の中の、"
 	linefw "好きな色(タイプ)に変える。"
 	linefw "バトル場をはなれたポケモンからは、"
@@ -429,9 +429,9 @@ RollOverName:
 	done
 
 RollOverDescription:
-	textfw "ダメージを与えた後、", "[自分]", "を"
+	textfw "ダメージを与えた後、[自分]を"
 	linefw "「ねむり」状態にする。コインを投げて"
-	linefw "「おもて」なら、", "[相手]", "も「ねむり」"
+	linefw "「おもて」なら、[相手]も「ねむり」"
 	linefw "状態にする。"
 	done
 
@@ -614,14 +614,14 @@ TogepiName:
 
 SnivelAltDescription:
 	textfw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "がこのカードに与えるダメージは"
+	linefw "[相手]がこのカードに与えるダメージは"
 	linefw "「-20」される。"
 	done
 
 MetronomeCoinTossDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "のワザを1つ選び、それを、"
-	linefw "[自分]", "が持っているワザとして使う。"
+	linefw "[相手]のワザを1つ選び、それを、"
+	linefw "[自分]が持っているワザとして使う。"
 	linefw "(そのワザに必要なエネルギーがついて"
 	linefw "いなくてもかまわない)"
 	done

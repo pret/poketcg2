@@ -151,27 +151,27 @@ Text0026:
 	done
 
 Text0027:
-	textfw "<RAMTEXT>", "は"
-	linefw "「どく」状態なので ", "<RAMNUM>", "ダメージ"
+	textfw "<RAMTEXT>は"
+	linefw "「どく」状態なので <RAMNUM>ダメージ"
 	done
 
 Text0028:
-	textfw "<RAMTEXT>", "は"
-	linefw "「どくどく」状態なので ", "<RAMNUM>", "ダメージ"
+	textfw "<RAMTEXT>は"
+	linefw "「どくどく」状態なので <RAMNUM>ダメージ"
 	done
 
 Text0029:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "ねむり つづけている"
 	done
 
 Text002a:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "ねむりから さめた"
 	done
 
 Text002b:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "マヒが とけた"
 	done
 
@@ -208,7 +208,7 @@ Text0033:
 	done
 
 Text0034:
-	textfw "<RAMTEXT>", "を"
+	textfw "<RAMTEXT>を"
 	linefw "つかいます"
 	done
 
@@ -217,37 +217,37 @@ Text0035:
 	done
 
 Text0036:
-	textfw "<RAMTEXT>", "の"
-	linefw "<RAMTEXT>", "!"
+	textfw "<RAMTEXT>の"
+	linefw "<RAMTEXT>!"
 	done
 
 Text0037:
-	textfw "<RAMTEXT>", "は"
-	linefw "抵抗力で ", "<RAMNUM>", "ダメージを うけた"
+	textfw "<RAMTEXT>は"
+	linefw "抵抗力で <RAMNUM>ダメージを うけた"
 	done
 
 Text0038:
-	textfw "<RAMTEXT>", "は"
-	linefw "弱点で ", "<RAMNUM>", "ダメージを うけた"
+	textfw "<RAMTEXT>は"
+	linefw "弱点で <RAMNUM>ダメージを うけた"
 	done
 
 Text0039:
-	textfw "<RAMTEXT>", "は"
-	linefw "弱点などで ", "<RAMNUM>", "ダメージを うけた"
+	textfw "<RAMTEXT>は"
+	linefw "弱点などで <RAMNUM>ダメージを うけた"
 	done
 
 Text003a:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "抵抗力で ダメージを うけなかった!"
 	done
 
 Text003b:
-	textfw "<RAMTEXT>", "は"
-	linefw "<RAMNUM>", "ダメージを うけた"
+	textfw "<RAMTEXT>は"
+	linefw "<RAMNUM>ダメージを うけた"
 	done
 
 Text003c:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "ダメージを うけなかった!"
 	done
 
@@ -282,18 +282,18 @@ Text0042:
 	done
 
 Text0043:
-	textfw "<RAMNAME>", "は"
-	linefw "サイドカードを", "<RAMNUM>", "枚 ひきます"
+	textfw "<RAMNAME>は"
+	linefw "サイドカードを<RAMNUM>枚 ひきます"
 	done
 
 Text0044:
-	textfw "<RAMNAME>", "は"
-	linefw "サイドカードを", "<RAMNUM>", "枚 ひきました"
+	textfw "<RAMNAME>は"
+	linefw "サイドカードを<RAMNUM>枚 ひきました"
 	done
 
 Text0045:
-	textfw "<RAMNAME>", "は バトル場に"
-	linefw "<RAMTEXT>", "をだした"
+	textfw "<RAMNAME>は バトル場に"
+	linefw "<RAMTEXT>をだした"
 	done
 
 Text0046:
@@ -342,7 +342,7 @@ Text004f:
 	done
 
 Text0050:
-	textfw "わけもわからず ", "[自分]", "をこうげき!!"
+	textfw "わけもわからず [自分]をこうげき!!"
 	done
 
 Text0051:
@@ -398,18 +398,18 @@ Text005b:
 	done
 
 Text005c:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "ベンチへ にげた"
 	done
 
 Text005d:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "にげるのに しっぱいした"
 	done
 
 Text005e:
-	textfw "<RAMTEXT>", "は特殊能力"
-	linefw "<RAMTEXT>", "を つかいます"
+	textfw "<RAMTEXT>は特殊能力"
+	linefw "<RAMTEXT>を つかいます"
 	done
 
 Text005f:
@@ -418,31 +418,31 @@ Text005f:
 	done
 
 Text0060:
-	textfw "<RAMNAME>", "の 番です"
+	textfw "<RAMNAME>の 番です"
 	done
 
 Text0061:
-	textfw "<RAMTEXT>", "を"
-	linefw "<RAMTEXT>", "に つけました"
+	textfw "<RAMTEXT>を"
+	linefw "<RAMTEXT>に つけました"
 	done
 
 Text0062:
-	textfw "<RAMTEXT>", "は"
-	linefw "<RAMTEXT>", "に 進化しました"
+	textfw "<RAMTEXT>は"
+	linefw "<RAMTEXT>に 進化しました"
 	done
 
 Text0063:
-	textfw "<RAMTEXT>", "を"
+	textfw "<RAMTEXT>を"
 	linefw "ベンチに だしました"
 	done
 
 Text0064:
-	textfw "<RAMTEXT>", "を"
+	textfw "<RAMTEXT>を"
 	linefw "バトル場に だしました"
 	done
 
 Text0065:
-	textfw "<RAMNAME>", "の山札を よくきります"
+	textfw "<RAMNAME>の山札を よくきります"
 	done
 
 Text0066:
@@ -458,12 +458,12 @@ Text0068:
 	done
 
 Text0069:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "手札を7枚ひきます"
 	done
 
 Text006a:
-	textfw "<RAMNAME>", "の山札は ", "<RAMNUM>", "枚です"
+	textfw "<RAMNAME>の山札は <RAMNUM>枚です"
 	done
 
 Text006b:
@@ -472,7 +472,7 @@ Text006b:
 	done
 
 Text006c:
-	textfw "<RAMNAME>", "の 手札の中には"
+	textfw "<RAMNAME>の 手札の中には"
 	linefw "たねポケモンが ありませんでした"
 	done
 
@@ -488,7 +488,7 @@ Text006e:
 
 Text006f:
 	textfw "ベンチに だす たねポケモンを"
-	linefw "<RAMNUM>", "ひきまで えらべます"
+	linefw "<RAMNUM>ひきまで えらべます"
 	done
 
 Text0070:
@@ -502,7 +502,7 @@ Text0071:
 	done
 
 Text0072:
-	textfw "<RAMTEXT>", "を ひいた"
+	textfw "<RAMTEXT>を ひいた"
 	done
 
 Text0073:
@@ -515,12 +515,12 @@ Text0074:
 
 Text0075:
 	textfw "おたがいに"
-	linefw "サイドカードを ", "<RAMNUM>", "枚セットします"
+	linefw "サイドカードを <RAMNUM>枚セットします"
 	done
 
 Text0076:
 	textfw "「おもて」が でれば"
-	linefw "<RAMTEXT>", "の せんこうです"
+	linefw "<RAMTEXT>の せんこうです"
 	done
 
 Text0077:
@@ -533,15 +533,15 @@ Text0078:
 	done
 
 Text0079:
-	textfw "<RAMNAME>", "との対戦に ひきわけた"
+	textfw "<RAMNAME>との対戦に ひきわけた"
 	done
 
 Text007a:
-	textfw "<RAMNAME>", "との対戦に 勝った!"
+	textfw "<RAMNAME>との対戦に 勝った!"
 	done
 
 Text007b:
-	textfw "<RAMNAME>", "との対戦に"
+	textfw "<RAMNAME>との対戦に"
 	linefw "まけてしまった・・・"
 	done
 
@@ -569,26 +569,26 @@ Text0080:
 	done
 
 Text0081:
-	textfw "<RAMNAME>", "は サイドカードから"
-	linefw "<RAMTEXT>", "を ひいた"
+	textfw "<RAMNAME>は サイドカードから"
+	linefw "<RAMTEXT>を ひいた"
 	done
 
 Text0082:
-	textfw "<RAMNAME>", "は サイドカードを"
+	textfw "<RAMNAME>は サイドカードを"
 	linefw "すべて とりおえた!"
 	done
 
 Text0083:
-	textfw "<RAMNAME>", "の 場には"
+	textfw "<RAMNAME>の 場には"
 	linefw "ポケモンが いなくなった"
 	done
 
 Text0084:
-	textfw "<RAMTEXT>", "は きぜつした"
+	textfw "<RAMTEXT>は きぜつした"
 	done
 
 Text0085:
-	textfw "<RAMTEXT>", "は"
+	textfw "<RAMTEXT>は"
 	linefw "特殊能力を もっている"
 	done
 
@@ -623,11 +623,11 @@ Text008b:
 	done
 
 Text008c:
-	textfw "B", "<RAMNUM>", "S", "<RAMNUM>"
+	textfw "B<RAMNUM>S<RAMNUM>"
 	done
 
 Text008d:
-	textfw "<RAMNAME>", "は かんがえ中"
+	textfw "<RAMNAME>は かんがえ中"
 	done
 
 Text008e:
@@ -747,13 +747,13 @@ Text00a2:
 	done
 
 Text00a3:
-	textfw "<GRASS>", "ポケモン"
-	linefw "<FIRE>", "ポケモン"
-	linefw "<WATER>", "ポケモン"
-	linefw "<LIGHTNING>", "ポケモン"
-	linefw "<FIGHTING>", "ポケモン"
-	linefw "<PSYCHIC>", "ポケモン"
-	linefw "<COLORLESS>", "ポケモン"
+	textfw "<GRASS>ポケモン"
+	linefw "<FIRE>ポケモン"
+	linefw "<WATER>ポケモン"
+	linefw "<LIGHTNING>ポケモン"
+	linefw "<FIGHTING>ポケモン"
+	linefw "<PSYCHIC>ポケモン"
+	linefw "<COLORLESS>ポケモン"
 	linefw "トレーナーカード"
 	linefw "エネルギーカード"
 	done
@@ -821,23 +821,23 @@ Text00ac:
 	done
 
 Text00ad:
-	textfw "<RAMNAME>", "のトラッシュ"
+	textfw "<RAMNAME>のトラッシュ"
 	done
 
 Text00ae:
-	textfw "<RAMNAME>", "のてふだ"
+	textfw "<RAMNAME>のてふだ"
 	done
 
 Text00af:
-	textfw "<RAMNAME>", "の場"
+	textfw "<RAMNAME>の場"
 	done
 
 Text00b0:
-	textfw "<RAMNAME>", "の山札"
+	textfw "<RAMNAME>の山札"
 	done
 
 Text00b1:
-	textfw "<RAMNAME>", "のサイドカード"
+	textfw "<RAMNAME>のサイドカード"
 	done
 
 Text00b2:
@@ -947,7 +947,7 @@ Text00c8:
 
 Text00c9:
 	textfw "にげるためには"
-	linefw "エネルギーが ", "<RAMNUM>", "コひつようです"
+	linefw "エネルギーが <RAMNUM>コひつようです"
 	done
 
 Text00ca:
@@ -994,7 +994,7 @@ Text00d3:
 	done
 
 Text00d4:
-	textfw "[相手]", "に「弱点」が ないので"
+	textfw "[相手]に「弱点」が ないので"
 	linefw "「弱点」の へんこうはできません"
 	done
 
@@ -1037,7 +1037,7 @@ Text00dd:
 	done
 
 Text00de:
-	textfw "[相手]", "が"
+	textfw "[相手]が"
 	linefw "「ねむり」状態に なってません"
 	done
 
@@ -1052,7 +1052,7 @@ Text00e0:
 	done
 
 Text00e1:
-	textfw "[相手]", "に 基本エネルギーカードが"
+	textfw "[相手]に 基本エネルギーカードが"
 	linefw "ついていません"
 	done
 
@@ -1128,27 +1128,27 @@ Text00f1:
 	done
 
 Text00f2:
-	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターが つながってません"
 	done
 
 Text00f3:
-	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの電池が のこりわずかです"
 	done
 
 Text00f4:
-	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの紙が つまっています"
 	done
 
 Text00f5:
-	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターのエラーです"
 	done
 
 Text00f6:
-	textfw "エラー ", "<No>", "0", "<RAMNUM>"
+	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターのパケットエラーです"
 	done
 
@@ -1187,42 +1187,42 @@ Text00fc:
 
 Text00fd:
 	textfw "「マヒ」判定!"
-	linefw "「おもて」なら", "[相手]", "を「マヒ」"
+	linefw "「おもて」なら[相手]を「マヒ」"
 	done
 
 Text00fe:
 	textfw "「ねむり」判定!"
-	linefw "「おもて」なら", "[相手]", "を「ねむり」"
+	linefw "「おもて」なら[相手]を「ねむり」"
 	done
 
 Text00ff:
 	textfw "「どく」判定!"
-	linefw "「おもて」なら", "[相手]", "を「どく」"
+	linefw "「おもて」なら[相手]を「どく」"
 	done
 
 Text0100:
-	textfw "「おもて」なら", "[相手]", "を「どく」"
-	linefw "「うら」なら", "[相手]", "を「マヒ」"
+	textfw "「おもて」なら[相手]を「どく」"
+	linefw "「うら」なら[相手]を「マヒ」"
 	done
 
 Text0101:
 	textfw "「おもて」なら20ダメージついかと"
-	linefw "[相手]", "を「マヒ」"
+	linefw "[相手]を「マヒ」"
 	done
 
 Text0102:
 	textfw "「こんらん」判定!"
-	linefw "「おもて」なら", "[相手]", "を「こんらん」"
+	linefw "「おもて」なら[相手]を「こんらん」"
 	done
 
 Text0103:
 	textfw "「りんぷん」判定! 「おもて」なら"
-	linefw "[相手]", "を「どく」と「こんらん」"
+	linefw "[相手]を「どく」と「こんらん」"
 	done
 
 Text0104:
 	textfw "「うら」なら"
-	linefw "[自分]", "は「こんらん」"
+	linefw "[自分]は「こんらん」"
 	done
 
 Text0105:
@@ -1242,11 +1242,11 @@ Text0107:
 
 Text0108:
 	textfw "「おもて」なら +10ダメージ!"
-	linefw "「うら」なら", "[自分]", "に 10ダメージ!"
+	linefw "「うら」なら[自分]に 10ダメージ!"
 	done
 
 Text0109:
-	textfw "「おもて」なら", "[相手]", "の 「うら」なら"
+	textfw "「おもて」なら[相手]の 「うら」なら"
 	linefw "自分の控え全員に 10ダメージ!"
 	done
 
@@ -1262,7 +1262,7 @@ Text010b:
 
 Text010c:
 	textfw "「うら」なら"
-	linefw "[自分]", "にも ", "<RAMNUM>", "ダメージ!"
+	linefw "[自分]にも <RAMNUM>ダメージ!"
 	done
 
 Text010d:
@@ -1291,17 +1291,17 @@ Text0111:
 
 Text0112:
 	textfw "ダメージ判定!"
-	linefw "「おもて」なら+", "<RAMNUM>", "ダメージ!!"
+	linefw "「おもて」なら+<RAMNUM>ダメージ!!"
 	done
 
 Text0113:
 	textfw "ダメージ判定!"
-	linefw "「おもて」×", "<RAMNUM>", "ダメージ!!"
+	linefw "「おもて」×<RAMNUM>ダメージ!!"
 	done
 
 Text0114:
 	textfw "ダメージ判定!"
-	linefw "「おもて」×", "<RAMNUM>", "ダメージ追加!!"
+	linefw "「おもて」×<RAMNUM>ダメージ追加!!"
 	done
 
 Text0115:
@@ -1316,7 +1316,7 @@ Text0116:
 
 Text0117:
 	textfw "「こんらん」チェックをします"
-	linefw "「うら」なら ", "[自分]", "にダメージ"
+	linefw "「うら」なら [自分]にダメージ"
 	done
 
 Text0118:
@@ -1325,12 +1325,12 @@ Text0118:
 	done
 
 Text0119:
-	textfw "<RAMTEXT>", "の"
+	textfw "<RAMTEXT>の"
 	linefw "「ねむり」のけいぞく チェック!"
 	done
 
 Text011a:
-	textfw "「おもて」なら", "[相手]", "を「どく」状態"
+	textfw "「おもて」なら[相手]を「どく」状態"
 	linefw "「うら」なら「こんらん」状態"
 	done
 
@@ -1341,7 +1341,7 @@ Text011b:
 
 Text011c:
 	textfw "「おもて」なら つぎの相手の番に"
-	linefw "[相手]", "は ワザをつかえない!"
+	linefw "[相手]は ワザをつかえない!"
 	done
 
 Text011d:
@@ -1350,23 +1350,23 @@ Text011d:
 	done
 
 Text011e:
-	textfw "「おもて」なら", "[相手]", "を「うら」なら"
-	linefw "[自分]", "を「こんらん」状態"
+	textfw "「おもて」なら[相手]を「うら」なら"
+	linefw "[自分]を「こんらん」状態"
 	done
 
 Text011f:
-	textfw "「おもて」なら", "[相手]", "を「うら」なら"
-	linefw "[自分]", "を「ねむり」状態"
+	textfw "「おもて」なら[相手]を「うら」なら"
+	linefw "[自分]を「ねむり」状態"
 	done
 
 Text0120:
 	textfw "ダメージ判定!"
-	linefw "「うら」×", "<RAMNUM>", "ダメージ!!"
+	linefw "「うら」×<RAMNUM>ダメージ!!"
 	done
 
 Text0121:
 	textfw "ダメージ判定!"
-	linefw "「うら」なら+", "<RAMNUM>", "ダメージ!!"
+	linefw "「うら」なら+<RAMNUM>ダメージ!!"
 	done
 
 Text0122:
@@ -1375,23 +1375,23 @@ Text0122:
 	done
 
 Text0123:
-	textfw "「おもて」なら ", "[相手]", "を「こんらん」"
+	textfw "「おもて」なら [相手]を「こんらん」"
 	linefw "「うら」なら 「ねむり」状態"
 	done
 
 Text0124:
-	textfw "「おもて」なら ", "[相手]", "を 「マヒ」"
+	textfw "「おもて」なら [相手]を 「マヒ」"
 	linefw "「うら」なら 「どく」状態"
 	done
 
 Text0125:
-	textfw "「おもて」なら ", "[相手]", "を「ねむり」"
+	textfw "「おもて」なら [相手]を「ねむり」"
 	linefw "「うら」なら 「こんらん」状態"
 	done
 
 Text0126:
 	textfw "「うら」なら"
-	linefw "[自分]", "にも 40ダメージ!!"
+	linefw "[自分]にも 40ダメージ!!"
 	done
 
 Text0127:
@@ -1406,7 +1406,7 @@ Text0128:
 
 Text0129:
 	textfw "「おもて」なら"
-	linefw "[相手]", "は つぎの番に にげられない"
+	linefw "[相手]は つぎの番に にげられない"
 	done
 
 Text012a:
@@ -1421,12 +1421,12 @@ Text012b:
 
 Text012c:
 	textfw "「おもて」なら 20ダメージついか"
-	linefw "「うら」なら ", "[自分]", "に20ダメージ"
+	linefw "「うら」なら [自分]に20ダメージ"
 	done
 
 Text012d:
 	textfw "「うら」なら ダメージ無しと"
-	linefw "[自分]", "に20ダメージ"
+	linefw "[自分]に20ダメージ"
 	done
 
 Text012e:
@@ -1445,17 +1445,17 @@ Text0130:
 	done
 
 Text0131:
-	textfw "「おもて」なら ", "[相手]", "の"
+	textfw "「おもて」なら [相手]の"
 	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
 Text0132:
-	textfw "「うら」なら ", "[自分]", "の"
+	textfw "「うら」なら [自分]の"
 	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
 Text0133:
-	textfw "「おもて」なら ", "[相手]", "に30ダメージ"
+	textfw "「おもて」なら [相手]に30ダメージ"
 	linefw "「うら」なら ベンチに10ダメージ"
 	done
 
@@ -1466,7 +1466,7 @@ Text0134:
 
 Text0135:
 	textfw "「おもて」なら 10ダメージついか"
-	linefw "「うら」なら ", "[相手]", "をいれかえる"
+	linefw "「うら」なら [相手]をいれかえる"
 	done
 
 Text0136:
@@ -1484,7 +1484,7 @@ Text0138:
 	done
 
 Text0139:
-	textfw "「おもて」なら ", "[相手]", "を「マヒ」"
+	textfw "「おもて」なら [相手]を「マヒ」"
 	linefw "「うら」なら つぎの番つかえない"
 	done
 

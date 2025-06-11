@@ -46,7 +46,7 @@ Text12b6:
 
 Text12b7:
 	textfw "伝説のポケモンカード"
-	linefw "1枚目は 「ファイヤー", "<Lv>", "40」"
+	linefw "1枚目は 「ファイヤー<Lv>40」"
 	linefw "「ほのおをもたらす」で"
 	linefw "炎エネルギーが 手札にはいる!"
 	linefw "「ゴットバード」も"
@@ -57,7 +57,7 @@ Text12b7:
 
 Text12b8:
 	textfw "伝説のポケモンカード"
-	linefw "2枚目は 「サンダー", "<Lv>", "68」"
+	linefw "2枚目は 「サンダー<Lv>68」"
 	linefw "「カミングサンダー」は"
 	linefw "場にだすだけで ダメージはっせい"
 	linefw "「ビッグサンダー」は 場のポケモンの"
@@ -68,7 +68,7 @@ Text12b8:
 
 Text12b9:
 	textfw "伝説のポケモンカード"
-	linefw "3枚目は 「フリーザー", "<Lv>", "37」"
+	linefw "3枚目は 「フリーザー<Lv>37」"
 	linefw "「こおりつかせる」で 場にでるだけで"
 	linefw "あいてのポケモンを マヒさせる!"
 	linefw "「こおりのいき」も"
@@ -79,7 +79,7 @@ Text12b9:
 
 Text12ba:
 	textfw "伝説のポケモンカード"
-	linefw "4枚目は 「カイリュー", "<Lv>", "41」"
+	linefw "4枚目は 「カイリュー<Lv>41」"
 	linefw "「いやしのかぜ」は 場にでるだけで"
 	linefw "ポケモンのダメージを かいふくする!"
 	linefw "「たたきつける」で こうげき!"
@@ -109,14 +109,14 @@ Text12bc:
 Text12bd:
 	textfw "カードポン!でしか ゲットできない"
 	linefw "まぼろしのカードが あるらしい"
-	linefw "「フシギバナ", "<Lv>", "64」「ミュウ", "<Lv>", "15」"
+	linefw "「フシギバナ<Lv>64」「ミュウ<Lv>15」"
 	linefw "この2枚も そうだったが"
 	linefw "このほかに もう2枚"
 	linefw "まぼろしのカードが あるらしい"
 	linefw "どんなカードなのかは ふめいだそうだ"
 	linefw "いったい どんなカードなのだろう"
 	linefw "まぼろしのカードを てにいれるぞ"
-	linefw "          Mṛイシハラ"
+	linefw "          Mr.イシハラ"
 	done
 
 Text12be:
@@ -132,7 +132,7 @@ Text12bf:
 	textfw "「シャワーズ」「サンダース」"
 	linefw "「ブースター」を デッキにいれたい"
 	linefw "イーブイが 4枚じゃあ たりない"
-	linefw "そんなときには 「メタモン", "<Lv>", "19」だ"
+	linefw "そんなときには 「メタモン<Lv>19」だ"
 	linefw "メタモンの 「ずっとへんしん」は"
 	linefw "たねポケモンに へんしんする"
 	linefw "これで イーブイに へんしんさせて"
@@ -198,7 +198,7 @@ Text12c4:
 
 Text12c5:
 	textfw "オレの カードは"
-	linefw "「", "<RAMTEXT>", "」だ!"
+	linefw "「<RAMTEXT>」だ!"
 	linefw "オマエのカードは・・・「イマクニ?」"
 	linefw "オマエ ラッキーだな! よろこべ!"
 	linefw "じゃぁ 「カードポン!」したから"
@@ -469,21 +469,21 @@ Text12e7:
 Text12e8:
 	textfw "おめでとうございます!"
 	linefw "みごと対戦に 勝ちましたね"
-	linefw "勝った ", "<RAMNAME>", "さんには"
+	linefw "勝った <RAMNAME>さんには"
 	linefw "拡張パックを 3つプレゼント!"
 	done
 
 Text12e9:
 	textfw "ざんねんでしたね・・・"
 	linefw " "
-	linefw "<RAMNAME>", "さんには"
+	linefw "<RAMNAME>さんには"
 	linefw "拡張パックを 1つプレゼントします!"
 	done
 
 Text12ea:
 	textfw "おめでとうございます"
 	linefw "通信対戦 50勝めです!"
-	linefw "<RAMNAME>", "さんには"
+	linefw "<RAMNAME>さんには"
 	linefw "きねんのコインを さしあげます!"
 	done
 
@@ -495,7 +495,7 @@ Text12eb:
 Text12ec:
 	textfw "おめでとうございます"
 	linefw "なんと 通信対戦 100勝めです!"
-	linefw "<RAMNAME>", "さんには"
+	linefw "<RAMNAME>さんには"
 	linefw "きねんのコインを さしあげます!"
 	done
 
@@ -659,7 +659,7 @@ LeechSeedName:
 	done
 
 LeechSeedDescription:
-	textfw "[相手]", "にダメージを与えたら、", "[自分]", "に"
+	textfw "[相手]にダメージを与えたら、[自分]に"
 	linefw "のっているダメージカウンターを1個"
 	linefw "とりのぞく。"
 	done
@@ -674,7 +674,7 @@ FirstAidName:
 	done
 
 FirstAidDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
+	textfw "[自分]にのっているダメージカウンター"
 	linefw "を、1個とりのぞく。"
 	done
 
@@ -683,7 +683,7 @@ PoisonSeedName:
 	done
 
 InflictPoisonDescription:
-	textfw "[相手]", "を「どく」状態にする。"
+	textfw "[相手]を「どく」状態にする。"
 	done
 
 BulbasaurLv15Description:
@@ -713,7 +713,7 @@ LeechSeedAltName:
 	done
 
 IvysaursLeechSeedDescription:
-	textfw "[相手]", "にダメージを与えたら、", "[自分]", "に"
+	textfw "[相手]にダメージを与えたら、[自分]に"
 	linefw "のっているダメージカウンターを"
 	linefw "1個とりのぞく。"
 	done
@@ -740,7 +740,7 @@ VinePullDescription:
 	textfw "この力は、自分の番ごとに1回、この"
 	linefw "カードが「にげる」とき、はたらく。"
 	linefw "相手の控えポケモンがランダムで1匹"
-	linefw "選ばれ、", "[相手]", "と入れ替わる。"
+	linefw "選ばれ、[相手]と入れ替わる。"
 	linefw "相手に控えがいないとき、この力は、"
 	linefw "はたらかない。"
 	done
@@ -783,9 +783,9 @@ MegaDrainName:
 	done
 
 MegaDrainDescription:
-	textfw "[相手]", "にダメージを与えたら、その半分"
+	textfw "[相手]にダメージを与えたら、その半分"
 	linefw "(切り上げ)のダメージカウンターを、"
-	linefw "[自分]", "からとりのぞく。"
+	linefw "[自分]からとりのぞく。"
 	done
 
 VenusaurLv64Description:
@@ -825,7 +825,7 @@ HorridPollenName:
 	done
 
 HorridPollenDescription:
-	textfw "このワザを受けた", "[相手]", "は、ランダム"
+	textfw "このワザを受けた[相手]は、ランダム"
 	linefw "で、「どく」+「こんらん」、「どく」"
 	linefw "+「ねむり」、「どく」+「マヒ」の"
 	linefw "いずれかの状態になる。"
@@ -846,7 +846,7 @@ StringShotName:
 	done
 
 MayInflictParalysisDescription:
-	textfw "コインを投げて「おもて」なら、", "[相手]"
+	textfw "コインを投げて「おもて」なら、[相手]"
 	linefw "を「マヒ」状態にする。"
 	done
 
@@ -882,7 +882,7 @@ MysteriousPowerName:
 
 MayInflictConfusionDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「こんらん」状態にする。"
+	linefw "[相手]を「こんらん」状態にする。"
 	done
 
 CocoonName:
@@ -924,7 +924,7 @@ WhirlwindName:
 	done
 
 WhirlwindDescription:
-	textfw "[相手]", "を、控えポケモンと入れ替える。"
+	textfw "[相手]を、控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは、相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
 	linefw "おこらない)"
@@ -948,7 +948,7 @@ PoisonStingName:
 	done
 
 MayInflictPoisonDescription:
-	textfw "コインを投げて「おもて」なら、", "[相手]"
+	textfw "コインを投げて「おもて」なら、[相手]"
 	linefw "を「どく」状態にする。"
 	done
 
@@ -1060,7 +1060,7 @@ BiteName:
 
 MayInflictPoisonAltDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「どく」状態にする。"
+	linefw "[相手]を「どく」状態にする。"
 	done
 
 EkansLv15Description:
@@ -1078,7 +1078,7 @@ TerrorStrikeName:
 	done
 
 TerrorStrikeDescription:
-	textfw "コインを投げて「おもて」なら、", "[相手]"
+	textfw "コインを投げて「おもて」なら、[相手]"
 	linefw "を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは、相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
@@ -1101,7 +1101,7 @@ ArbokLv27Description:
 
 MayInflictParalysisAltDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「マヒ」状態にする。"
+	linefw "[相手]を「マヒ」状態にする。"
 	done
 
 DeadlyPoisonName:
@@ -1109,8 +1109,8 @@ DeadlyPoisonName:
 	done
 
 DeadlyPoisonDescription:
-	textfw "[相手]", "を「どく」状態にする。"
-	linefw "このワザを受ける前から", "[相手]", "が"
+	textfw "[相手]を「どく」状態にする。"
+	linefw "このワザを受ける前から[相手]が"
 	linefw "「どく」状態なら、10ダメージを"
 	linefw "追加する。"
 	done
@@ -1141,7 +1141,7 @@ PoisonVaporName:
 	done
 
 PoisonVaporDescription:
-	textfw "[相手]", "を「どく」状態にする。"
+	textfw "[相手]を「どく」状態にする。"
 	linefw "相手の控えポケモン全員にも、「弱点・"
 	linefw "抵抗力」に関係なく、それぞれ10"
 	linefw "ダメージ。"
@@ -1164,7 +1164,7 @@ TailWhipName:
 TailWhipDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "はこのカードがバトル場にいる"
+	linefw "[相手]はこのカードがバトル場にいる"
 	linefw "限り、ワザを使えない。"
 	done
 
@@ -1231,7 +1231,7 @@ SupersonicName:
 	done
 
 MayInflictConfusionAltDescription:
-	textfw "コインを投げて「おもて」なら、", "[相手]"
+	textfw "コインを投げて「おもて」なら、[相手]"
 	linefw "を「こんらん」状態にする。"
 	done
 
@@ -1324,8 +1324,8 @@ SwiftLungeName:
 	done
 
 SwiftLungeDescription:
-	textfw "コインを投げて「うら」なら、", "[相手]", "に"
-	linefw "ダメージを与えられず、", "[自分]", "に20"
+	textfw "コインを投げて「うら」なら、[相手]に"
+	linefw "ダメージを与えられず、[自分]に20"
 	linefw "ダメージ。"
 	done
 
@@ -1356,7 +1356,7 @@ ThrashName:
 ThrashDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "10ダメージを追加する。「うら」なら"
-	linefw "[自分]", "にも10ダメージ。"
+	linefw "[自分]にも10ダメージ。"
 	done
 
 ToxicName:
@@ -1364,7 +1364,7 @@ ToxicName:
 	done
 
 ToxicDescription:
-	textfw "[相手]", "を「どく」状態にする。このワザ"
+	textfw "[相手]を「どく」状態にする。このワザ"
 	linefw "によって「どく」状態になったポケモン"
 	linefw "がポケモンチェックで受ける「どく」の"
 	linefw "ダメージは、20ダメージ。"
@@ -1399,8 +1399,8 @@ LeechLifeName:
 	done
 
 LeechLifeDescription:
-	textfw "[相手]", "にダメージを与えたら、与えたぶ"
-	linefw "んのダメージカウンターを、", "[自分]", "から"
+	textfw "[相手]にダメージを与えたら、与えたぶ"
+	linefw "んのダメージカウンターを、[自分]から"
 	linefw "とりのぞく。"
 	done
 
@@ -1423,9 +1423,9 @@ GolbatName:
 	done
 
 LeechLifeAltDescription:
-	textfw "[相手]", "にダメージを与えたら、"
+	textfw "[相手]にダメージを与えたら、"
 	linefw "与えたぶんのダメージカウンターを、"
-	linefw "[自分]", "からとりのぞく。"
+	linefw "[自分]からとりのぞく。"
 	done
 
 NosediveName:
@@ -1434,7 +1434,7 @@ NosediveName:
 
 NosediveDescription:
 	textfw "コインを投げて「うら」なら、"
-	linefw "[自分]", "にも40ダメージ。"
+	linefw "[自分]にも40ダメージ。"
 	done
 
 GolbatLv25Description:
@@ -1516,7 +1516,7 @@ SleepPowderName:
 	done
 
 InflictSleepDescription:
-	textfw "[相手]", "を「ねむり」状態にする。"
+	textfw "[相手]を「ねむり」状態にする。"
 	done
 
 OddishLv21Description:
@@ -1534,7 +1534,7 @@ FoulOdorName:
 	done
 
 FoulOdorDescription:
-	textfw "ダメージを与えた後、", "[自分]", "と", "[相手]", "を"
+	textfw "ダメージを与えた後、[自分]と[相手]を"
 	linefw "それぞれ「こんらん」状態にする。"
 	done
 
@@ -1590,7 +1590,7 @@ PetalDanceName:
 
 PetalDanceDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
-	linefw "×40のダメージ。その後、", "[自分]", "を"
+	linefw "×40のダメージ。その後、[自分]を"
 	linefw "「こんらん」状態にする。"
 	done
 
@@ -1628,7 +1628,7 @@ PetalWhirlwindName:
 PetalWhirlwindDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×30のダメージ。"
-	linefw "2枚以上が「おもて」なら、", "[自分]", "を"
+	linefw "2枚以上が「おもて」なら、[自分]を"
 	linefw "「こんらん」状態にする。"
 	done
 
@@ -1720,7 +1720,7 @@ DisableName:
 
 DisableDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "のワザを1つ選ぶ。"
+	linefw "[相手]のワザを1つ選ぶ。"
 	linefw "次の相手の番、そのポケモンは、"
 	linefw "そのワザを使えない。"
 	done
@@ -1744,10 +1744,10 @@ StirUpTwisterName:
 	done
 
 StirUpTwisterDescription:
-	textfw "[相手]", "を控えポケモンと入れ替える。"
+	textfw "[相手]を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは相手が選ぶ。"
 	linefw "その後、自分の控えポケモンから1匹を"
-	linefw "選び、", "[自分]", "と入れ替える。"
+	linefw "選び、[自分]と入れ替える。"
 	linefw "(控えがいない側は、入れ替えをしない"
 	linefw ")"
 	done
@@ -1758,7 +1758,7 @@ RainbowPowderName:
 
 RainbowPowderDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「マヒ」状態に、"
+	linefw "[相手]を「マヒ」状態に、"
 	linefw "「うら」なら「どく」状態にする。"
 	done
 
@@ -1797,7 +1797,7 @@ VenomPowderName:
 	done
 
 VenomPowderDescription:
-	textfw "コインを投げて「おもて」なら、", "[相手]"
+	textfw "コインを投げて「おもて」なら、[相手]"
 	linefw "を「どく」と「こんらん」の両方の状態"
 	linefw "にする。"
 	done
@@ -1845,8 +1845,8 @@ RegenerationName:
 	done
 
 RegenerationDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
-	linefw "をすべてとりのぞく。その後、", "[自分]", "に"
+	textfw "[自分]にのっているダメージカウンター"
+	linefw "をすべてとりのぞく。その後、[自分]に"
 	linefw "ついている「進化カード」と「エネルギ"
 	linefw "ーカード」をすべてトラッシュして、"
 	linefw "「たねポケモン」にもどる。"
@@ -1858,7 +1858,7 @@ DissolveName:
 
 DissolveDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "についている「エネルギーカード"
+	linefw "[相手]についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	done
 
@@ -1888,7 +1888,7 @@ LureName:
 
 LureDescription:
 	textfw "相手の控えポケモンを1匹選び、"
-	linefw "[相手]", "と入れ替える。"
+	linefw "[相手]と入れ替える。"
 	linefw "(相手に控えがいないとき、このワザは"
 	linefw "使えない)"
 	done
@@ -1899,7 +1899,7 @@ AcidName:
 
 AcidDescription:
 	textfw "コインを投げて「おもて」なら、次の"
-	linefw "相手の番、このワザを受けた", "[相手]", "は"
+	linefw "相手の番、このワザを受けた[相手]は"
 	linefw "「にげる」ことができない。"
 	done
 
@@ -1923,7 +1923,7 @@ StickyHandsName:
 
 StickyHandsDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "20ダメージを追加して、", "[相手]", "を"
+	linefw "20ダメージを追加して、[相手]を"
 	linefw "「マヒ」状態にする。"
 	done
 
@@ -2036,7 +2036,7 @@ TeleportName:
 
 TeleportDescription:
 	textfw "自分の控えポケモンを1匹選び、"
-	linefw "[自分]", "と入れ替える。"
+	linefw "[自分]と入れ替える。"
 	done
 
 BigEggsplosionName:
@@ -2044,7 +2044,7 @@ BigEggsplosionName:
 	done
 
 BigEggsplosionDescription:
-	textfw "[自分]", "についているエネルギーの数だけ"
+	textfw "[自分]についているエネルギーの数だけ"
 	linefw "コインを投げ、「おもて」の数×20の"
 	linefw "ダメージ。"
 	done
@@ -2074,7 +2074,7 @@ FoulGasName:
 
 FoulGasDescription:
 	textfw "コインを投げ、"
-	linefw "「おもて」なら", "[相手]", "を「どく」状態に"
+	linefw "「おもて」なら[相手]を「どく」状態に"
 	linefw "「うら」なら「こんらん」状態にする。"
 	done
 
@@ -2122,8 +2122,8 @@ GasExplosionName:
 	done
 
 GasExplosionDescription:
-	textfw "[自分]", "にも30ダメージ。"
-	linefw "このワザによって", "[相手]", "が「きぜつ」"
+	textfw "[自分]にも30ダメージ。"
+	linefw "このワザによって[相手]が「きぜつ」"
 	linefw "したなら、そのかわりに出てくる相手の"
 	linefw "対戦ポケモンを「どく」状態にする。"
 	done
@@ -2143,7 +2143,7 @@ SelfdestructName:
 	done
 
 Selfdestruct60DamageDescription:
-	textfw "[自分]", "にも60ダメージ。"
+	textfw "[自分]にも60ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
@@ -2325,7 +2325,7 @@ EmberName:
 	done
 
 DiscardOneFireEnergyDescription:
-	textfw "[自分]", "についている「炎」エネルギーカ"
+	textfw "[自分]についている「炎」エネルギーカ"
 	linefw "ードを1枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
 	linefw "なくなる。"

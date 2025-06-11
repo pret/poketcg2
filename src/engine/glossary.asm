@@ -111,10 +111,10 @@ Glossary:
 	ld a, [hl]
 	and $0f
 	ret nz
-	lb de, 4, "FW4_★"
+	ldfw de, "★"
 	bit 4, [hl]
 	jr z, .got_tile
-	lb de, 0, "FW0_ "
+	ldfw de, " "
 .got_tile
 	ld b, $00
 	ld hl, .rule_coords

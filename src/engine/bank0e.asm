@@ -5166,7 +5166,7 @@ PrintDeckMachineEntry:
 	ld hl, wDefaultText
 	inc a
 	farcall ConvertToNumericalDigits
-	ld [hl], "FW0_・"
+	ldfw [hl], "・"
 	inc hl
 	ld [hl], TX_END
 	call InitTextPrinting
@@ -5227,12 +5227,12 @@ PrintDeckMachineEntry:
 	inc e ; *2 + 1
 	add hl, de
 	ld [hl], a
-	lb de, TX_FULLWIDTH4, "FW4_○" ; can build
+	ldfw de, "○" ; can build
 	jp .asm_3b18e
 
 .cannot_build
 	; deck cannot be built
-	lb de, TX_FULLWIDTH0, "FW0_ "
+	ldfw de, " "
 	call Func_22ca
 
 	; figure out how many cards are being
@@ -5281,7 +5281,7 @@ PrintDeckMachineEntry:
 	inc e
 	ld d, $10
 	call InitTextPrinting
-	lb de, TX_FULLWIDTH0, "FW0_×"
+	ldfw de, "×"
 	call Func_22ca
 	ld a, [wd49e]
 	ld hl, wDefaultText
@@ -5298,7 +5298,7 @@ PrintDeckMachineEntry:
 	inc e
 	ld d, 12
 	call InitTextPrinting
-	lb de, TX_FULLWIDTH4, "FW4_※"
+	ldfw de, "※"
 	call Func_22ca
 	ld a, [wd49b]
 	ld hl, wDefaultText

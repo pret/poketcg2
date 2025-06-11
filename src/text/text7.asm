@@ -9,14 +9,14 @@ Text0b76:
 Text0b77:
 	textfw "おかげで さいみんじゅつから"
 	linefw "かんぜんに ぬけだせた"
-	linefw "ありがとう ", "<RAMNAME>", "くん"
+	linefw "ありがとう <RAMNAME>くん"
 	linefw "たすかったよ うん"
 	linefw "こんどは GR団は かんけいなしに"
 	linefw "たのしんで 対戦しようか"
 	done
 
 Text0b78:
-	textfw "対戦しないかい ", "<RAMNAME>", "くん"
+	textfw "対戦しないかい <RAMNAME>くん"
 	linefw "いままでの ボクとは ちがうよ"
 	linefw "なんたって あたらしく かんがえた"
 	linefw "デッキに かえてあるんだ"
@@ -57,7 +57,7 @@ Text0b7c:
 Text0b7d:
 	textfw "ふう・・・ まけたか・・・"
 	linefw "さいみんじゅつが とけた"
-	linefw "たのむよ ", "<RAMNAME>", "くん"
+	linefw "たのむよ <RAMNAME>くん"
 	linefw "こんどこそ GR4号を たおしてくれ"
 	done
 
@@ -75,7 +75,7 @@ Text0b7f:
 
 Text0b80:
 	textfw "うん やっぱり このデッキじゃ"
-	linefw "<RAMNAME>", "くんに かなわないな"
+	linefw "<RAMNAME>くんに かなわないな"
 	linefw "タイミングをみて きてくれないかい?"
 	linefw "デッキを かえておくから"
 	linefw "デッキをかえたら また 対戦して"
@@ -84,7 +84,7 @@ Text0b80:
 
 Text0b81:
 	textfw "こんかいは ボクの かちだな"
-	linefw "また 対戦しよう ", "<RAMNAME>", "くん"
+	linefw "また 対戦しよう <RAMNAME>くん"
 	done
 
 Text0b82:
@@ -124,7 +124,7 @@ Text0b87:
 	textfw "はっ! ボクは なにを?"
 	linefw " "
 	linefw "えっ? そうなの?"
-	linefw "ありがとう ", "<RAMNAME>", "くん"
+	linefw "ありがとう <RAMNAME>くん"
 	linefw "ボクは ヒロ"
 	linefw "エスパークラブのメンバーだよ"
 	linefw "エスパークラブを たすけてくれて"
@@ -191,7 +191,7 @@ Text0b91:
 	done
 
 Text0b92:
-	textfw "きいてくれよ ", "<RAMNAME>", "!"
+	textfw "きいてくれよ <RAMNAME>!"
 	linefw "ゆるしてくれたんだ!"
 	linefw "なにがって? そんけいする"
 	linefw "ミウラさんを わすれたことをさ"
@@ -482,7 +482,7 @@ Text0bbe:
 
 Text0bbf:
 	textfw "マケタ・・・ぼくハ・・・"
-	linefw "<RAMNAME>", "ニ まけタ・・・"
+	linefw "<RAMNAME>ニ まけタ・・・"
 	linefw "うわーーーーーーーー!!"
 	done
 
@@ -490,7 +490,7 @@ Text0bc0:
 	textfw "なにも いわなくていい だいじょうぶ"
 	linefw "さいみんじゅつは とけているよ"
 	linefw "キミが ボクをたおしてくれたおかげだ"
-	linefw "ありがとう ", "<RAMNAME>", "くん"
+	linefw "ありがとう <RAMNAME>くん"
 	linefw "GR4号と たたかうんだろう?"
 	linefw "キミに プレゼントを わたすよ"
 	linefw "このデッキが あれば GR4号を"
@@ -498,7 +498,7 @@ Text0bc0:
 	done
 
 Text0bc1:
-	textfw "<RAMNAME>", "は デッキ"
+	textfw "<RAMNAME>は デッキ"
 	linefw "「ゆるさんGR4ごう」をゲット!"
 	done
 
@@ -510,7 +510,7 @@ Text0bc2:
 	done
 
 Text0bc3:
-	textfw "<RAMNAME>", "は デッキつくるための"
+	textfw "<RAMNAME>は デッキつくるための"
 	linefw "カード60枚を ゲット!"
 	done
 
@@ -537,7 +537,7 @@ Text0bc6:
 	linefw "GR4号をたおさないと かんぜんには"
 	linefw "さいみんじゅつは とけない"
 	linefw "だから がんばってくれ"
-	linefw "<RAMNAME>", "くん!"
+	linefw "<RAMNAME>くん!"
 	done
 
 Text0bc7:
@@ -585,16 +585,16 @@ Text0bcb:
 Text0bcc:
 	textfw "うーん こまっちゃったなぁ"
 	linefw "みんな カード もってないんだもん"
-	linefw "きみ 「フーディン", "<Lv>", "42」って"
+	linefw "きみ 「フーディン<Lv>42」って"
 	linefw "もってない?"
 	linefw "もってたら トレードしない?"
 	linefw "超めずらしいカード もってるんだけど"
 	done
 
 Text0bcd:
-	textfw "もしかして 「フーディン", "<Lv>", "42」"
+	textfw "もしかして 「フーディン<Lv>42」"
 	linefw "トレードしてくれるの?"
-	linefw "それなら ぼくの「ガルーラ", "<Lv>", "38」と"
+	linefw "それなら ぼくの「ガルーラ<Lv>38」と"
 	linefw "トレードするよ!"
 	done
 
@@ -602,7 +602,7 @@ Text0bce:
 	textfw "トレードするの いやなんだ"
 	linefw "じゃあ しょうがないや"
 	linefw "トレードするカードは・・・"
-	linefw "「ガルーラ", "<Lv>", "38」なのに"
+	linefw "「ガルーラ<Lv>38」なのに"
 	linefw "いやなら しょーが ないよね"
 	linefw " "
 	linefw "トレードしたくなったら"
@@ -610,14 +610,14 @@ Text0bce:
 	done
 
 Text0bcf:
-	textfw "ダメだよー 「フーディン", "<Lv>", "42」が"
+	textfw "ダメだよー 「フーディン<Lv>42」が"
 	linefw "ほしいんだもん"
-	linefw "ほかのじゃ 「ガルーラ", "<Lv>", "38」と"
+	linefw "ほかのじゃ 「ガルーラ<Lv>38」と"
 	linefw "トレードしないよ!"
 	done
 
 Text0bd0:
-	textfw "あれ? 「フーディン", "<Lv>", "42」"
+	textfw "あれ? 「フーディン<Lv>42」"
 	linefw "ぜんぶ デッキのなかだよ"
 	linefw "デッキに はいってるんじゃ"
 	linefw "ぼく トレードできないよ"
@@ -629,13 +629,13 @@ Text0bd0:
 
 Text0bd1:
 	textfw "やったー やったー やったー"
-	linefw "「フーディン", "<Lv>", "42」ゲット"
+	linefw "「フーディン<Lv>42」ゲット"
 	done
 
 Text0bd2:
 	textfw "あっ ごめんね"
 	linefw "すっごく うれしくってさ"
-	linefw "はい きみの「ガルーラ", "<Lv>", "38」"
+	linefw "はい きみの「ガルーラ<Lv>38」"
 	done
 
 Text0bd3:
@@ -646,14 +646,14 @@ Text0bd3:
 Text0bd4:
 	textfw "ダメージスワップ!"
 	linefw "あやしいひかり!"
-	linefw "「フーディン", "<Lv>", "42」は"
+	linefw "「フーディン<Lv>42」は"
 	linefw "かっこいいー!"
 	linefw "トレードしてくれて"
 	linefw "どうも ありがとう"
 	done
 
 Text0bd5:
-	textfw "<RAMNAME>", "ちゃんって イマクニ?"
+	textfw "<RAMNAME>ちゃんって イマクニ?"
 	linefw "そんなナマエ しってる?"
 	linefw "ここに でるの!"
 	linefw "まえから いたんだけど・・・"
@@ -744,7 +744,7 @@ Text0bdf:
 	done
 
 Text0be0:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "「炎のGR団コイン」を はめた"
 	done
 
@@ -763,7 +763,7 @@ Text0be3:
 	done
 
 Text0be4:
-	textfw "<RAMNAME>", "は"
+	textfw "<RAMNAME>は"
 	linefw "「水のGR団コイン」を はめた"
 	done
 
@@ -806,7 +806,7 @@ Text0be8:
 	linefw "勝てば うしろのクラブマスター"
 	linefw "ヤマグチを だして やるぞぉぉ!!"
 	linefw "せいせい どうどうと しょうぶだ"
-	linefw "<RAMNAME>", "!!!!"
+	linefw "<RAMNAME>!!!!"
 	done
 
 Text0be9:
@@ -844,7 +844,7 @@ Text0bed:
 Text0bee:
 	textfw "よぉし よぉし!"
 	linefw "まぁた きたなぁぁぁぁ!!!"
-	linefw "しょうぶだ! ", "<RAMNAME>", "!!"
+	linefw "しょうぶだ! <RAMNAME>!!"
 	linefw " "
 	linefw "だが そのまえに いっておくぞ"
 	linefw "ちゃんと カードは ぬいてあるかぁ?"
@@ -898,7 +898,7 @@ Text0bf5:
 Text0bf6:
 	textfw "がっはははははは!!"
 	linefw "いい しょうぶだったぞぉぉ!!"
-	linefw "<RAMNAME>", "は つよい!!"
+	linefw "<RAMNAME>は つよい!!"
 	linefw "がっはははははは!!!"
 	done
 
@@ -915,7 +915,7 @@ Text0bf8:
 	done
 
 Text0bf9:
-	textfw "ありがとう ", "<RAMNAME>"
+	textfw "ありがとう <RAMNAME>"
 	linefw "たすかった"
 	linefw "こんなやつらに つかまってしまうとは"
 	linefw "まだまだ しゅぎょうが たりないな"
@@ -951,8 +951,8 @@ Text0bfd:
 
 Text0bfe:
 	textfw "ヤマグチも つよい男だ"
-	linefw "だが ", "<RAMNAME>", "は もっと つよい"
-	linefw "<RAMNAME>", "! じしんを もって"
+	linefw "だが <RAMNAME>は もっと つよい"
+	linefw "<RAMNAME>! じしんを もって"
 	linefw "たたかい つづけるがいいぃぃぃぃ!!"
 	done
 
@@ -1065,13 +1065,13 @@ Text0c0f:
 
 Text0c10:
 	textfw "たからばこに カードが はいってる"
-	linefw "もっていけよ ", "<RAMNAME>"
+	linefw "もっていけよ <RAMNAME>"
 	linefw "くやしいけど てめぇにこそ"
 	linefw "ふさわしいよ"
 	done
 
 Text0c11:
-	textfw "よく きたな ", "<RAMNAME>", "くん!"
+	textfw "よく きたな <RAMNAME>くん!"
 	linefw "まちかねたぞ"
 	linefw "おれが 闘のGR団のリーダー"
 	linefw "カミヤだ!"
@@ -1121,7 +1121,7 @@ Text0c17:
 
 Text0c18:
 	textfw "ゴウダも グレースも たおすとは"
-	linefw "たいしたものだ ", "<RAMNAME>", "くん"
+	linefw "たいしたものだ <RAMNAME>くん"
 	linefw "やくそくどおりに 対戦をしてやろう!"
 	linefw "だが ひとつ おしえておく"
 	linefw "ここには おれの!"
@@ -1168,7 +1168,7 @@ Text0c1d:
 	linefw "闘ポケモンに 抵抗力をもっていても"
 	linefw "ここでは いみが ないぞ!"
 	linefw "それでも たたかうのか?"
-	linefw "<RAMNAME>", "くん!"
+	linefw "<RAMNAME>くん!"
 	done
 
 Text0c1e:
@@ -1211,7 +1211,7 @@ Text0c24:
 	linefw " "
 	linefw "おれの 闘のちからは"
 	linefw "まだ まだ つよくなる"
-	linefw "<RAMNAME>", "くんも 対戦を"
+	linefw "<RAMNAME>くんも 対戦を"
 	linefw "くりかえして つよくなれ!!"
 	done
 
@@ -1220,7 +1220,7 @@ Text0c25:
 	linefw " "
 	linefw "「闘のGR団コイン」を もつに"
 	linefw "ふさわしいちからが きみにはある"
-	linefw "さあ ", "<RAMNAME>", "くん"
+	linefw "さあ <RAMNAME>くん"
 	linefw "「闘のGR団コイン」を もっていけ"
 	done
 
@@ -1241,7 +1241,7 @@ Text0c28:
 	done
 
 Text0c29:
-	textfw "<RAMNAME>", " おれいを したい"
+	textfw "<RAMNAME> おれいを したい"
 	linefw "ぼくのところに きてくれ"
 	done
 
@@ -1276,7 +1276,7 @@ Text0c2d:
 	linefw "GR3号が くやしがっていたぞ"
 	linefw "ヤツが おくで まっている"
 	linefw "きみなら 勝てる!"
-	linefw "たのむぞ ", "<RAMNAME>", "!!"
+	linefw "たのむぞ <RAMNAME>!!"
 	done
 
 Text0c2e:
@@ -1300,7 +1300,7 @@ Text0c31:
 	textfw "カードが ないので"
 	linefw "いまは なにもできない"
 	linefw "だが おうえんしている"
-	linefw "<RAMNAME>", " がんばってくれ!!"
+	linefw "<RAMNAME> がんばってくれ!!"
 	done
 
 Text0c32:
@@ -1311,7 +1311,7 @@ Text0c32:
 	done
 
 Text0c33:
-	textfw "よく きた ", "<RAMNAME>"
+	textfw "よく きた <RAMNAME>"
 	linefw " "
 	linefw "ぼくと きみの あついしょうぶを"
 	linefw "はじめようじゃないか!"
@@ -1338,12 +1338,12 @@ Text0c37:
 	linefw "すこしでも やくに たちたくてね"
 	linefw "拡張パックを かえたんだ"
 	linefw "しょうぶで 勝てば プレゼントだ"
-	linefw "<RAMNAME>", " あついしょうぶで"
+	linefw "<RAMNAME> あついしょうぶで"
 	linefw "ぜひ ぼくから 勝ちとってくれ!"
 	done
 
 Text0c38:
-	textfw "よく きた ", "<RAMNAME>"
+	textfw "よく きた <RAMNAME>"
 	linefw " "
 	linefw "あつい しょうぶを"
 	linefw "はじめようじゃないか!"
@@ -1360,7 +1360,7 @@ Text0c3a:
 	textfw "きみの あつく もえるこころが"
 	linefw "GR団をも もやしたようだな"
 	linefw "さあ しょうぶだ!"
-	linefw "ともに もえよう ", "<RAMNAME>", "!"
+	linefw "ともに もえよう <RAMNAME>!"
 	done
 
 Text0c3b:
@@ -1385,7 +1385,7 @@ Text0c3d:
 
 Text0c3e:
 	textfw "あつい しょうぶだった"
-	linefw "さすが ", "<RAMNAME>", "!"
+	linefw "さすが <RAMNAME>!"
 	done
 
 Text0c3f:
@@ -1488,7 +1488,7 @@ Text0c4f:
 Text0c50:
 	textfw "GR3号に きみが 勝てば"
 	linefw "きっと みんなも またもえる"
-	linefw "だから たのむ ", "<RAMNAME>", "くん"
+	linefw "だから たのむ <RAMNAME>くん"
 	linefw "きみが たよりなんだ!"
 	done
 
@@ -1500,7 +1500,7 @@ Text0c51:
 	done
 
 Text0c52:
-	textfw "<RAMNAME>", "くん もえているかー?"
+	textfw "<RAMNAME>くん もえているかー?"
 	linefw "ぼくは もえてる!"
 	linefw "なんたって アカバネさんが"
 	linefw "もってたカードを くれたんだ"
@@ -1535,7 +1535,7 @@ Text0c57:
 	linefw "ずっと きにしてたから"
 	linefw "ボクは うれしいんだ!"
 	linefw "よーし もっと もえてきたぞ"
-	linefw "<RAMNAME>", "くん 対戦だ!"
+	linefw "<RAMNAME>くん 対戦だ!"
 	done
 
 Text0c58:
@@ -1548,7 +1548,7 @@ Text0c59:
 	done
 
 Text0c5a:
-	textfw "なんだぁ? さては", "<RAMNAME>"
+	textfw "なんだぁ? さては<RAMNAME>"
 	linefw "もえてないな!"
 	linefw "いつでも もえてないと"
 	linefw "ダメなんだぜ!"
@@ -1570,11 +1570,11 @@ Text0c5c:
 
 Text0c5d:
 	textfw "GR3号を やっつけてくれ!"
-	linefw "<RAMNAME>", "くん! ファイヤーだ!!"
+	linefw "<RAMNAME>くん! ファイヤーだ!!"
 	done
 
 Text0c5e:
-	textfw "ありがとう ", "<RAMNAME>", "くん!"
+	textfw "ありがとう <RAMNAME>くん!"
 	linefw "きみは まさに ファイヤー!"
 	linefw "ほのおが よくにあう"
 	linefw "いつか 対戦だ ファイヤー!!"
@@ -1625,7 +1625,7 @@ Text0c66:
 	done
 
 Text0c67:
-	textfw "きおったな ", "<RAMNAME>", "!"
+	textfw "きおったな <RAMNAME>!"
 	linefw "まちくたびれたぞい!"
 	linefw "アクアクラブでは ゆだんして"
 	linefw "おヌシに まけてしもうた"
@@ -1713,18 +1713,18 @@ Text0c74:
 	linefw "だれも カードを もってないんだぜ"
 	linefw "ぜんぶ GR団のせいなんだぜ"
 	linefw " "
-	linefw "ほしいのは「ブースター", "<Lv>", "28」"
+	linefw "ほしいのは「ブースター<Lv>28」"
 	linefw "なんだぜ ベイベー"
 	linefw "そしたら チョーめずらしい"
-	linefw "「ニャース", "<Lv>", "14」あげるぜ ベイベー"
+	linefw "「ニャース<Lv>14」あげるぜ ベイベー"
 	done
 
 Text0c75:
 	textfw "ヘイ ヘイ ヘーイ!"
 	linefw "こうかんしようぜ ベイベー"
-	linefw "「ブースター", "<Lv>", "28」を くれたら"
+	linefw "「ブースター<Lv>28」を くれたら"
 	linefw "GR団も みつけられなかった コレ"
-	linefw "チョーめずらしい「ニャース", "<Lv>", "14」"
+	linefw "チョーめずらしい「ニャース<Lv>14」"
 	linefw "あげちゃうんだぜ ベイベー"
 	done
 
@@ -1737,7 +1737,7 @@ Text0c76:
 
 Text0c77:
 	textfw "ヘイ ヘイ ヘーイ!"
-	linefw "「ブースター", "<Lv>", "28」ないぜ ベイベー"
+	linefw "「ブースター<Lv>28」ないぜ ベイベー"
 	linefw "もってなけりゃ"
 	linefw "こうかんは できないぜ ベイベー!"
 	done
@@ -1752,7 +1752,7 @@ Text0c78:
 Text0c79:
 	textfw "ヘイ ヘイ ヘーイ!"
 	linefw "それじゃ こうかんだぜ ベイベー"
-	linefw "「ニャース", "<Lv>", "14」を"
+	linefw "「ニャース<Lv>14」を"
 	linefw "おまえに わたすぜ ベイベー"
 	done
 
@@ -1762,7 +1762,7 @@ Text0c7a:
 
 Text0c7b:
 	textfw "ヘイ ヘイ ヘーイ!"
-	linefw "「ブースター", "<Lv>", "28」 サンキュウだぜ"
+	linefw "「ブースター<Lv>28」 サンキュウだぜ"
 	done
 
 Text0c7c:
@@ -1944,7 +1944,7 @@ Text0c8f:
 	done
 
 Text0c90:
-	textfw "やるな! ", "<RAMNAME>", "くん!"
+	textfw "やるな! <RAMNAME>くん!"
 	done
 
 Text0c91:

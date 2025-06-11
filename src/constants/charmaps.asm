@@ -102,8 +102,30 @@
 	charmap "|", $7e
 	charmap "‾", $7f
 
+NEWCHARMAP katakana
+NEWCHARMAP hiragana
+NEWCHARMAP fullwidth
+
+	charmap "<RAMNAME>", TX_RAM1
+	charmap "<RAMTEXT>", TX_RAM2
+	charmap "<RAMNUM>",  TX_RAM3
+
 MACRO fwcharmap
-	charmap STRCAT("FW{x:\1}_", \2), \3
+	IF \1 == TX_KATAKANA
+		charmap \2, \3
+		PUSHC katakana
+		charmap \2, \3
+		POPC
+	ELIF \1 == TX_HIRAGANA
+		charmap \2, \3
+		PUSHC hiragana
+		charmap \2, \3
+		POPC
+	ELIF \1 == TX_FULLWIDTH0
+		charmap \2, \3
+	ELSE
+		charmap \2, \1, \3
+	ENDC
 ENDM
 
 ; TX_KATAKANA
@@ -296,17 +318,10 @@ ENDM
 	fwcharmap TX_FULLWIDTH0, "。", $76
 	fwcharmap TX_FULLWIDTH0, "・", $77
 	fwcharmap TX_FULLWIDTH0, "ー", $78
-	fwcharmap TX_FULLWIDTH0, "ṛ", $79 ; r.
+	fwcharmap TX_FULLWIDTH0, "r.", $79
 
-	; [相手]
-	fwcharmap TX_FULLWIDTH0, "7a", $7a
-	fwcharmap TX_FULLWIDTH0, "7b", $7b
-	fwcharmap TX_FULLWIDTH0, "7c", $7c
-
-	; [自分]
-	fwcharmap TX_FULLWIDTH0, "7d", $7d
-	fwcharmap TX_FULLWIDTH0, "7e", $7e
-	fwcharmap TX_FULLWIDTH0, "7f", $7f
+	charmap "[相手]", $7a, $7b, $7c
+	charmap "[自分]", $7d, $7e, $7f
 
 	fwcharmap TX_FULLWIDTH0, "手", $80
 	fwcharmap TX_FULLWIDTH0, "戦", $81
@@ -1177,67 +1192,71 @@ ENDM
 	fwcharmap TX_FULLWIDTH4, "◇", $63
 	fwcharmap TX_FULLWIDTH4, "ˉ", $64
 
-DEF FW_SPACE EQU $70
-
 MACRO txsymbol
-	const SYM_\1
-	charmap "<\1>", TX_SYMBOL, const_value - 1
+	REDEF symbol EQUS \1
+	charmap "<{symbol}>", TX_SYMBOL, const_value
+	PUSHC main
+	charmap "<{symbol}>", TX_SYMBOL, const_value
+	POPC
+	const SYM_{symbol}
 ENDM
 
 ; TX_SYMBOL
 	const_def
-	txsymbol SPACE      ; $00
-	txsymbol FIRE       ; $01
-	txsymbol GRASS      ; $02
-	txsymbol LIGHTNING  ; $03
-	txsymbol WATER      ; $04
-	txsymbol FIGHTING   ; $05
-	txsymbol PSYCHIC    ; $06
-	txsymbol COLORLESS  ; $07
-	txsymbol RAINBOW    ; $08
-	txsymbol POISONED   ; $09
-	txsymbol ASLEEP     ; $0a
-	txsymbol CONFUSED   ; $0b
-	txsymbol PARALYZED  ; $0c
-	txsymbol CURSOR_U   ; $0d
-	txsymbol ATK_DESCR  ; $0e
-	txsymbol CURSOR_R   ; $0f
-	txsymbol HP         ; $10
-	txsymbol Lv         ; $11
-	txsymbol E          ; $12
-	txsymbol No         ; $13
-	txsymbol PLUSPOWER  ; $14
-	txsymbol DEFENDER   ; $15
-	txsymbol HP_OK      ; $16
-	txsymbol HP_NOK     ; $17
-	txsymbol BOX_TOP_L  ; $18
-	txsymbol BOX_TOP_R  ; $19
-	txsymbol BOX_BTM_L  ; $1a
-	txsymbol BOX_BTM_R  ; $1b
-	txsymbol BOX_TOP    ; $1c
-	txsymbol BOX_BOTTOM ; $1d
-	txsymbol BOX_LEFT   ; $1e
-	txsymbol BOX_RIGHT  ; $1f
-	txsymbol 0          ; $20
-	txsymbol 1          ; $21
-	txsymbol 2          ; $22
-	txsymbol 3          ; $23
-	txsymbol 4          ; $24
-	txsymbol 5          ; $25
-	txsymbol 6          ; $26
-	txsymbol 7          ; $27
-	txsymbol 8          ; $28
-	txsymbol 9          ; $29
-	txsymbol DOT        ; $2a
-	txsymbol PLUS       ; $2b
-	txsymbol MINUS      ; $2c
-	txsymbol CROSS      ; $2d
-	txsymbol SLASH      ; $2e
-	txsymbol CURSOR_D   ; $2f
-	txsymbol PRIZE      ; $30
-	txsymbol BOX_ALT_1  ; $31
-	txsymbol BOX_ALT_2  ; $32
-	txsymbol BOX_ALT_3  ; $33
-	txsymbol BOX_ALT_4  ; $34
-	txsymbol POKEMON    ; $35
-	txsymbol CHERRY     ; $36
+	txsymbol "SPACE"      ; $00
+	txsymbol "FIRE"       ; $01
+	txsymbol "GRASS"      ; $02
+	txsymbol "LIGHTNING"  ; $03
+	txsymbol "WATER"      ; $04
+	txsymbol "FIGHTING"   ; $05
+	txsymbol "PSYCHIC"    ; $06
+	txsymbol "COLORLESS"  ; $07
+	txsymbol "RAINBOW"    ; $08
+	txsymbol "POISONED"   ; $09
+	txsymbol "ASLEEP"     ; $0a
+	txsymbol "CONFUSED"   ; $0b
+	txsymbol "PARALYZED"  ; $0c
+	txsymbol "CURSOR_U"   ; $0d
+	txsymbol "ATK_DESCR"  ; $0e
+	txsymbol "CURSOR_R"   ; $0f
+	txsymbol "HP"         ; $10
+	txsymbol "Lv"         ; $11
+	txsymbol "E"          ; $12
+	txsymbol "No"         ; $13
+	txsymbol "PLUSPOWER"  ; $14
+	txsymbol "DEFENDER"   ; $15
+	txsymbol "HP_OK"      ; $16
+	txsymbol "HP_NOK"     ; $17
+	txsymbol "BOX_TOP_L"  ; $18
+	txsymbol "BOX_TOP_R"  ; $19
+	txsymbol "BOX_BTM_L"  ; $1a
+	txsymbol "BOX_BTM_R"  ; $1b
+	txsymbol "BOX_TOP"    ; $1c
+	txsymbol "BOX_BOTTOM" ; $1d
+	txsymbol "BOX_LEFT"   ; $1e
+	txsymbol "BOX_RIGHT"  ; $1f
+	txsymbol "0"          ; $20
+	txsymbol "1"          ; $21
+	txsymbol "2"          ; $22
+	txsymbol "3"          ; $23
+	txsymbol "4"          ; $24
+	txsymbol "5"          ; $25
+	txsymbol "6"          ; $26
+	txsymbol "7"          ; $27
+	txsymbol "8"          ; $28
+	txsymbol "9"          ; $29
+	txsymbol "DOT"        ; $2a
+	txsymbol "PLUS"       ; $2b
+	txsymbol "MINUS"      ; $2c
+	txsymbol "CROSS"      ; $2d
+	txsymbol "SLASH"      ; $2e
+	txsymbol "CURSOR_D"   ; $2f
+	txsymbol "PRIZE"      ; $30
+	txsymbol "BOX_ALT_1"  ; $31
+	txsymbol "BOX_ALT_2"  ; $32
+	txsymbol "BOX_ALT_3"  ; $33
+	txsymbol "BOX_ALT_4"  ; $34
+	txsymbol "POKEMON"    ; $35
+	txsymbol "CHERRY"     ; $36
+
+SETCHARMAP main

@@ -138,7 +138,7 @@ Text0826:
 	done
 
 Text0827:
-	textfw "<RAMNAME>", "くん!"
+	textfw "<RAMNAME>くん!"
 	linefw "それが 「GRコイン」だね!"
 	linefw "よーし オレも がんばって"
 	linefw "「GRコイン」を ゲットするぞー!!"
@@ -208,7 +208,7 @@ Text0831:
 
 Text0832:
 	textfw "ふーん あなたね"
-	linefw "<RAMNAME>", "って"
+	linefw "<RAMNAME>って"
 	linefw "びっくり! ビルリッチさまに"
 	linefw "勝っちゃうなんて・・・"
 	done
@@ -240,7 +240,7 @@ Text0836:
 	done
 
 Text0837:
-	textfw "<RAMNAME>", "は デッキ"
+	textfw "<RAMNAME>は デッキ"
 	linefw "「しかえしGR3ごう」をゲット!"
 	done
 
@@ -252,7 +252,7 @@ Text0838:
 	done
 
 Text0839:
-	textfw "<RAMNAME>", "は デッキつくるための"
+	textfw "<RAMNAME>は デッキつくるための"
 	linefw "カード60枚を ゲット!"
 	done
 
@@ -273,19 +273,19 @@ Text083c:
 	linefw "かえるのも いいわよ"
 	linefw "GR3号は ファイアクラブよ"
 	linefw "ガッツンと やっつけちゃってね!"
-	linefw "<RAMNAME>", "くんなら"
+	linefw "<RAMNAME>くんなら"
 	linefw "ぜったいに 勝てるわ!!"
 	done
 
 Text083d:
 	textfw "GR3号は ファイアクラブよ"
 	linefw "ガッツンと やっつけちゃってね!"
-	linefw "<RAMNAME>", "くんなら"
+	linefw "<RAMNAME>くんなら"
 	linefw "ぜったいに 勝てるわ!!"
 	done
 
 Text083e:
-	textfw "こんにちは ", "<RAMNAME>", "くん"
+	textfw "こんにちは <RAMNAME>くん"
 	linefw "あげたデッキは やくにたってる?"
 	linefw "GR団とのたたかいは たいへんだけど"
 	linefw "みんなのために がんばってね!"
@@ -299,7 +299,7 @@ Text083f:
 	done
 
 Text0840:
-	textfw "あら ", "<RAMNAME>", "くん!"
+	textfw "あら <RAMNAME>くん!"
 	linefw "かつやくは きいてるわよ"
 	linefw "GR団のしままで いったんですってね"
 	linefw "そのつよさを わたしにも みせて"
@@ -309,7 +309,7 @@ Text0840:
 	done
 
 Text0841:
-	textfw "<RAMNAME>", "くん よくきてくれたわ"
+	textfw "<RAMNAME>くん よくきてくれたわ"
 	linefw "GR団との たたかいは どう?"
 	linefw "せっかく きたんだから"
 	linefw "対戦していかない?"
@@ -329,7 +329,7 @@ Text0844:
 	done
 
 Text0845:
-	textfw "<RAMNAME>", "くん おつかれさま"
+	textfw "<RAMNAME>くん おつかれさま"
 	linefw "GR団まで たおしちゃったのね"
 	linefw "これで もう 勝てるひとは"
 	linefw "いないかもしれないわね"
@@ -338,7 +338,7 @@ Text0845:
 	done
 
 Text0846:
-	textfw "つよい", "<RAMNAME>", "くんとの対戦なら"
+	textfw "つよい<RAMNAME>くんとの対戦なら"
 	linefw "いつでも いいわよ"
 	done
 
@@ -357,19 +357,19 @@ Text0849:
 	textfw "GR団のほうが わたしより"
 	linefw "ぜったいに つよいわ"
 	linefw "だから がんばってね!"
-	linefw "<RAMNAME>", "くん"
+	linefw "<RAMNAME>くん"
 	done
 
 Text084a:
 	textfw "わたしだけじゃなくて"
 	linefw "みんなも つよくならないとね"
-	linefw "そうしないと ", "<RAMNAME>", "くんも"
+	linefw "そうしないと <RAMNAME>くんも"
 	linefw "たのしくないでしょ"
 	done
 
 Text084b:
 	textfw "また 対戦に きてね"
-	linefw "<RAMNAME>", "くん"
+	linefw "<RAMNAME>くん"
 	done
 
 Text084c:
@@ -381,13 +381,13 @@ Text084d:
 	textfw "ぼくだよ シンタローだ"
 	linefw "プレイホールに もどってきたんだ"
 	linefw "みんなを たすけてくれて"
-	linefw "ありがとう ", "<RAMNAME>", "!"
+	linefw "ありがとう <RAMNAME>!"
 	linefw "それで・・・どうする?"
 	linefw "対戦するかい?"
 	done
 
 Text084e:
-	textfw "<RAMNAME>", "か! どうしたんだい?"
+	textfw "<RAMNAME>か! どうしたんだい?"
 	linefw "対戦するのかい?"
 	done
 
@@ -408,7 +408,7 @@ Text0851:
 	done
 
 Text0852:
-	textfw "<RAMNAME>", "!"
+	textfw "<RAMNAME>!"
 	linefw "デッキを あたらしくしたよ!"
 	linefw "さいしょに きみと 対戦したくて"
 	linefw "くるのを まってたんだ!"
@@ -416,7 +416,7 @@ Text0852:
 	done
 
 Text0853:
-	textfw "<RAMNAME>", " まってたよ!"
+	textfw "<RAMNAME> まってたよ!"
 	linefw "さあ 対戦しよう!!"
 	done
 
@@ -443,7 +443,7 @@ Text0857:
 	done
 
 Text0858:
-	textfw "<RAMNAME>", "に 勝てたなんて"
+	textfw "<RAMNAME>に 勝てたなんて"
 	linefw "じまんできそうだ"
 	done
 
@@ -469,7 +469,7 @@ Text085c:
 	linefw "プールで おぼれそうだったわ"
 	linefw "だって ずっと オリのなかで"
 	linefw "およいでて つかれちゃったんだもん"
-	linefw "ありがと ", "<RAMNAME>", "くん"
+	linefw "ありがと <RAMNAME>くん"
 	linefw "おぼれるまえに たすけてくれて"
 	done
 
@@ -479,7 +479,7 @@ Text085d:
 	done
 
 Text085e:
-	textfw "<RAMNAME>", "くんの おかげで"
+	textfw "<RAMNAME>くんの おかげで"
 	linefw "やっと オリから でられたんだし"
 	linefw "じゆうなきもちで 対戦しません?"
 	done
@@ -487,7 +487,7 @@ Text085e:
 Text085f:
 	textfw "やっぱり じゆうに あそばないと"
 	linefw "ポケモンカードは おもしろくないわ"
-	linefw "わたし ", "<RAMNAME>", "くんと"
+	linefw "わたし <RAMNAME>くんと"
 	linefw "対戦したいんだけど・・・"
 	linefw "よかったら 対戦してくれない?"
 	done
@@ -510,7 +510,7 @@ Text0862:
 
 Text0863:
 	textfw "あらら まけちゃった・・・"
-	linefw "<RAMNAME>", "くんは つよいわねー"
+	linefw "<RAMNAME>くんは つよいわねー"
 	done
 
 Text0864:
@@ -521,14 +521,14 @@ Text0864:
 	done
 
 Text0865:
-	textfw "<RAMNAME>", "くんに 勝てたってことは"
+	textfw "<RAMNAME>くんに 勝てたってことは"
 	linefw "わたし・・・つよいのかしら?"
 	done
 
 Text0866:
 	textfw "あたしは メグミ!"
 	linefw "たすけてくれて ありがと"
-	linefw "さっすが ", "<RAMNAME>", "!"
+	linefw "さっすが <RAMNAME>!"
 	linefw "たよりになるぅー"
 	done
 
@@ -595,7 +595,7 @@ Text0870:
 	done
 
 Text0871:
-	textfw "つよい", "<RAMNAME>", "に 勝つって"
+	textfw "つよい<RAMNAME>に 勝つって"
 	linefw "サイコーのきぶんだわぁ!"
 	linefw "また 対戦して あたしを"
 	linefw "いいきぶんに してねぇ"
@@ -668,7 +668,7 @@ Text087b:
 	linefw "ウッチーさんも マリも メグミも"
 	linefw "GR3号に つかまってしまった"
 	linefw "キミ GR団を やっつけようとしてる"
-	linefw "<RAMNAME>", "だろ!"
+	linefw "<RAMNAME>だろ!"
 	linefw "プレイホールに GR3号がいるんだ"
 	linefw "やっつけてくれよ"
 	linefw "でも ボクでも 勝てないんだ"
@@ -686,7 +686,7 @@ Text087d:
 
 Text087e:
 	textfw "サイドカードは 4枚で いいよな"
-	linefw "いくぞ! ", "<RAMNAME>", "!!"
+	linefw "いくぞ! <RAMNAME>!!"
 	done
 
 Text087f:
@@ -750,7 +750,7 @@ Text0887:
 	textfw "ウッチーさんたちを たすけて"
 	linefw "くれたそうじゃな"
 	linefw "さすがは グランドマスターを"
-	linefw "たおした", "<RAMNAME>", "さんじゃ"
+	linefw "たおした<RAMNAME>さんじゃ"
 	linefw "かんしゃしておりますぞ"
 	done
 
@@ -767,7 +767,7 @@ Text0889:
 	done
 
 Text088a:
-	textfw "ありがとー! ", "<RAMNAME>", "ちゃん!!"
+	textfw "ありがとー! <RAMNAME>ちゃん!!"
 	linefw "カード かえってきたよ"
 	linefw "このまま"
 	linefw "GR団に しかえししてね!"
@@ -776,7 +776,7 @@ Text088a:
 Text088b:
 	textfw "GR団の いちばんエライひとに"
 	linefw "勝ったんだって"
-	linefw "<RAMNAME>", "ちゃん! さいきょー!!"
+	linefw "<RAMNAME>ちゃん! さいきょー!!"
 	done
 
 Text088c:
@@ -791,7 +791,7 @@ Text088d:
 	textfw "いろいろと せわになったが"
 	linefw "しょうぶに なさけは かけない"
 	linefw "しんけんしょうぶだ!"
-	linefw "<RAMNAME>", "!!"
+	linefw "<RAMNAME>!!"
 	done
 
 Text088e:
@@ -802,7 +802,7 @@ Text088f:
 	textfw "オレとのしょうぶは"
 	linefw "サイドカード6枚だ!"
 	linefw "さあ! いくぞ!"
-	linefw "<RAMNAME>", "!!"
+	linefw "<RAMNAME>!!"
 	done
 
 Text0890:
@@ -857,7 +857,7 @@ Text0898:
 
 Text0899:
 	textfw "GR団も いなくなったし"
-	linefw "だいかつやくだね ", "<RAMNAME>", "くん"
+	linefw "だいかつやくだね <RAMNAME>くん"
 	linefw "おかげで カードが ふえて"
 	linefw "デッキも あたらしくできたよ"
 	linefw "拡張パックも あたらしいのを"
@@ -865,7 +865,7 @@ Text0899:
 	done
 
 Text089a:
-	textfw "<RAMNAME>", "くんなら いつでも"
+	textfw "<RAMNAME>くんなら いつでも"
 	linefw "対戦の あいてになるよ"
 	linefw "勝ったら 拡張パック第3彈!"
 	linefw "「化石のしま」を あげよう"
@@ -891,7 +891,7 @@ Text089d:
 	done
 
 Text089e:
-	textfw "うーん さすが", "<RAMNAME>", "くん!"
+	textfw "うーん さすが<RAMNAME>くん!"
 	linefw "つよい つよい"
 	linefw "じゃあ 拡張パックを わたすよ"
 	done
@@ -910,7 +910,7 @@ Text08a0:
 
 Text08a1:
 	textfw "ふぅ また まけた・・・"
-	linefw "つよすぎるよ ", "<RAMNAME>", "くん"
+	linefw "つよすぎるよ <RAMNAME>くん"
 	done
 
 Text08a2:
@@ -935,14 +935,14 @@ Text08a4:
 	done
 
 Text08a5:
-	textfw "<RAMNAME>", " きいてくれ!"
+	textfw "<RAMNAME> きいてくれ!"
 	linefw "ポケモンカードが もどってきたんだ"
-	linefw "これも ", "<RAMNAME>", "のおかげだ"
+	linefw "これも <RAMNAME>のおかげだ"
 	linefw "せっかくだから 対戦しないか?"
 	done
 
 Text08a6:
-	textfw "やあ ", "<RAMNAME>"
+	textfw "やあ <RAMNAME>"
 	linefw "ちょうしは どうだい?"
 	linefw "つよくなったか たしかめたいんだ"
 	linefw "対戦してくれるかい?"
@@ -966,9 +966,9 @@ Text08a9:
 
 Text08aa:
 	textfw "ヤマグチさんが もどってきたんだ"
-	linefw "<RAMNAME>", "のおかげだってな"
+	linefw "<RAMNAME>のおかげだってな"
 	linefw "オレも しゅぎょうして"
-	linefw "<RAMNAME>", "みたいになるぜ!"
+	linefw "<RAMNAME>みたいになるぜ!"
 	done
 
 Text08ab:
@@ -1187,7 +1187,7 @@ Text08c8:
 	done
 
 Text08c9:
-	textfw "<RAMNAME>", "くん!"
+	textfw "<RAMNAME>くん!"
 	linefw "いいところに きてくれた!"
 	linefw "GR1号が プレイホールに"
 	linefw "もどってきてるんだ"
@@ -1250,9 +1250,9 @@ Text08d2:
 	done
 
 Text08d3:
-	textfw "「サワムラー", "<Lv>", "23」を くれたら"
+	textfw "「サワムラー<Lv>23」を くれたら"
 	linefw "超めずらしいカードを あげるんじゃが"
-	linefw "「ミュウツー", "<Lv>", "60」なんじゃが"
+	linefw "「ミュウツー<Lv>60」なんじゃが"
 	linefw "だれか こうかんしてくれんかのぉ"
 	done
 
@@ -1264,7 +1264,7 @@ Text08d4:
 	done
 
 Text08d5:
-	textfw "むむむ 「サワムラー", "<Lv>", "23」は"
+	textfw "むむむ 「サワムラー<Lv>23」は"
 	linefw "もって いないようですじゃ"
 	linefw "もって いないのであれば"
 	linefw "どうにも ならんのぉ"
@@ -1279,12 +1279,12 @@ Text08d6:
 Text08d7:
 	textfw "おお こうかんしてくださるか"
 	linefw "やさしいひとじゃ"
-	linefw "では 「ミュウツー", "<Lv>", "60」を"
+	linefw "では 「ミュウツー<Lv>60」を"
 	linefw "おわたししますじゃ"
 	done
 
 Text08d8:
-	textfw "「サワムラー", "<Lv>", "23」 ゲットじゃ!"
+	textfw "「サワムラー<Lv>23」 ゲットじゃ!"
 	linefw "それ まわしげりじゃ!!"
 	done
 
@@ -1440,7 +1440,7 @@ Text08f0:
 
 Text08f1:
 	textfw "とうとう ここまで きたか・・・"
-	linefw "ほめてあげよう ", "<RAMNAME>", "くん"
+	linefw "ほめてあげよう <RAMNAME>くん"
 	done
 
 Text08f2:
@@ -1476,7 +1476,7 @@ Text08f7:
 	done
 
 Text08f8:
-	textfw "<RAMNAME>", "!"
+	textfw "<RAMNAME>!"
 	linefw "このふたりの 大かんぶに 勝つのだ!"
 	linefw "さすれば わたしが ちょくせつ"
 	linefw "たたかってやろうでは ないか!"
@@ -1505,10 +1505,10 @@ Text08fb:
 	linefw "伝説のポケモンカード・・・"
 	linefw "しっては いるだろうが"
 	linefw "伝説のポケモンカードは この4枚だ!"
-	linefw "「ファイヤー", "<Lv>", "40」!!"
-	linefw "「フリーザー", "<Lv>", "37」!!"
-	linefw "「サンダー", "<Lv>", "68」!!"
-	linefw "「カイリュー", "<Lv>", "41」!!"
+	linefw "「ファイヤー<Lv>40」!!"
+	linefw "「フリーザー<Lv>37」!!"
+	linefw "「サンダー<Lv>68」!!"
+	linefw "「カイリュー<Lv>41」!!"
 	linefw "この4枚の 伝説のポケモンカードを"
 	linefw "デッキに いれるのだ"
 	linefw "そうすれば オレは よろこんで"
@@ -1516,10 +1516,10 @@ Text08fb:
 	done
 
 Text08fc:
-	textfw "「ファイヤー", "<Lv>", "40」!!"
-	linefw "「フリーザー", "<Lv>", "37」!!"
-	linefw "「サンダー", "<Lv>", "68」!!"
-	linefw "「カイリュー", "<Lv>", "41」!!"
+	textfw "「ファイヤー<Lv>40」!!"
+	linefw "「フリーザー<Lv>37」!!"
+	linefw "「サンダー<Lv>68」!!"
+	linefw "「カイリュー<Lv>41」!!"
 	linefw "伝説のポケモンカードを"
 	linefw "1枚ずつ デッキに いれる"
 	linefw "それが!"
@@ -1533,7 +1533,7 @@ Text08fd:
 	done
 
 Text08fe:
-	textfw "ふざけるな ", "<RAMNAME>", "!!"
+	textfw "ふざけるな <RAMNAME>!!"
 	linefw "オレを バカにしているのか!"
 	linefw "どこに 伝説のポケモンカードが"
 	linefw "はいっていると いうのだ!"
@@ -1574,7 +1574,7 @@ Text0902:
 	done
 
 Text0903:
-	textfw "みずを さすな ", "<RAMNAME>"
+	textfw "みずを さすな <RAMNAME>"
 	linefw " "
 	linefw "デッキに 伝説のポケモンカードが"
 	linefw "はいっておらん!"
@@ -1589,7 +1589,7 @@ Text0904:
 
 Text0905:
 	textfw "サイドカードは 6枚だ"
-	linefw "いくぞ ", "<RAMNAME>", "!!"
+	linefw "いくぞ <RAMNAME>!!"
 	done
 
 Text0906:
@@ -1608,7 +1608,7 @@ Text0907:
 	linefw "どうだ? たたかってみるか?"
 	linefw "じょうけんは いままでどおりだ"
 	linefw "伝説のポケモンカードを 1枚ずつ"
-	linefw "いいか ", "<RAMNAME>", "?"
+	linefw "いいか <RAMNAME>?"
 	done
 
 Text0908:
@@ -1719,7 +1719,7 @@ Text0916:
 
 Text0917:
 	textfw "サイドカードは 6枚よ"
-	linefw "さあ いくわよ ", "<RAMNAME>", "!"
+	linefw "さあ いくわよ <RAMNAME>!"
 	done
 
 Text0918:
@@ -1772,7 +1772,7 @@ Text091e:
 	done
 
 Text091f:
-	textfw "たいしたものね ", "<RAMNAME>"
+	textfw "たいしたものね <RAMNAME>"
 	done
 
 Text0920:
@@ -1840,7 +1840,7 @@ Text0927:
 	linefw "たのしみかたの ひとつ!"
 	linefw "きみは 対戦で わたしに"
 	linefw "それを おもいださせてくれた!"
-	linefw "<RAMNAME>", "くん・・・"
+	linefw "<RAMNAME>くん・・・"
 	linefw "ありがとう!"
 	linefw "もう つかっていないからといって"
 	linefw "カードを うばうことは やめよう"
@@ -1859,7 +1859,7 @@ Text0928:
 
 Text0929:
 	textfw "あらそいは これでおわりだ!"
-	linefw "さあ ", "<RAMNAME>", "くん"
+	linefw "さあ <RAMNAME>くん"
 	linefw "これからは ポケモンカードを"
 	linefw "おおいに たのしもうでは ないか!"
 	done
@@ -1896,7 +1896,7 @@ Text092e:
 
 Text092f:
 	textfw "いいか"
-	linefw "<RAMNAME>", "!"
+	linefw "<RAMNAME>!"
 	done
 
 Text0930:
@@ -1976,7 +1976,7 @@ Text0938:
 	done
 
 Text0939:
-	textfw "<RAMNAME>", "くんか"
+	textfw "<RAMNAME>くんか"
 	linefw "たのしんで 対戦をしているかね?"
 	linefw "また わたしと"
 	linefw "たのしい対戦を しないかね?"

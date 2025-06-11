@@ -234,10 +234,10 @@ Text0405:
 	linefw "あらわすカードです。"
 	linefw "エネルギーのしゅるいは ぜんぶで"
 	linefw "7しゅるい あります。"
-	linefw "「", "<GRASS>", "草(くさ)」「", "<FIRE>", "炎(ほのお)」"
-	linefw "「", "<WATER>", "水(みず)」「", "<LIGHTNING>", "雷(かみなり)」"
-	linefw "「", "<PSYCHIC>", "超(ちょう)」「", "<FIGHTING>", "闘(とう)」"
-	linefw "「", "<COLORLESS>", "無色(むしょく)」の 7つです。"
+	linefw "「<GRASS>草(くさ)」「<FIRE>炎(ほのお)」"
+	linefw "「<WATER>水(みず)」「<LIGHTNING>雷(かみなり)」"
+	linefw "「<PSYCHIC>超(ちょう)」「<FIGHTING>闘(とう)」"
+	linefw "「<COLORLESS>無色(むしょく)」の 7つです。"
 	linefw "「エネルギーカード」は じぶんの番に"
 	linefw "1枚しか 手札からだすことが"
 	linefw "できません。"
@@ -647,7 +647,7 @@ Text042c:
 	done
 
 Text042d:
-	textfw "Mṛイシハラ"
+	textfw "Mr.イシハラ"
 	done
 
 Text042e:
@@ -1455,11 +1455,11 @@ Text04f6:
 	done
 
 Text04f7:
-	textfw "Dṛオーヤマ"
+	textfw "Dr.オーヤマ"
 	done
 
 Text04f8:
-	textfw "<RAMNAME>", "の", "<RAMNUM>", "手目"
+	textfw "<RAMNAME>の<RAMNUM>手目"
 	done
 
 Text04f9:
@@ -1756,7 +1756,7 @@ Text0528:
 	linefw "あいての 「アズマオウ」は"
 	linefw "いっきに 「きぜつ」じゃ"
 	linefw "「きぜつ」できれば サイドカードを"
-	linefw "ひいて ", "<RAMNAME>", "の勝ちじゃ"
+	linefw "ひいて <RAMNAME>の勝ちじゃ"
 	done
 
 Text0529:
@@ -1830,7 +1830,7 @@ Text0535:
 	done
 
 Text0536:
-	textfw "<RAMTEXT>", "デッキ"
+	textfw "<RAMTEXT>デッキ"
 	done
 
 Text0537:
@@ -1866,7 +1866,7 @@ Text053d:
 	done
 
 Text053e:
-	textfw "Dṛオーヤマの デッキしんだんじゃ"
+	textfw "Dr.オーヤマの デッキしんだんじゃ"
 	linefw "メニューを えらぶんじゃ"
 	done
 
@@ -1970,32 +1970,32 @@ Text0553:
 	done
 
 Text0554:
-	textfw "「", "<RAMTEXT>", "デッキ」"
+	textfw "「<RAMTEXT>デッキ」"
 	linefw "チェック中じゃ?"
 	done
 
 Text0555:
-	textfw "「", "<RAMTEXT>", "」"
+	textfw "「<RAMTEXT>」"
 	linefw "デッキチェック かんりょうじゃ"
 	done
 
 Text0556:
-	textfw "「", "<RAMTEXT>", "」の"
+	textfw "「<RAMTEXT>」の"
 	linefw "★しるしのカード"
 	done
 
 Text0557:
-	textfw "「", "<RAMTEXT>", "」の"
+	textfw "「<RAMTEXT>」の"
 	linefw "進化セットが そろっていないカード"
 	done
 
 Text0558:
-	textfw "「", "<RAMTEXT>", "」の"
+	textfw "「<RAMTEXT>」の"
 	linefw "色のあっていない エネルギーカード"
 	done
 
 Text0559:
-	textfw "「", "<RAMTEXT>", "」の"
+	textfw "「<RAMTEXT>」の"
 	linefw "特殊能力のあるカード"
 	done
 
@@ -2082,7 +2082,7 @@ Text0562:
 	done
 
 Text0563:
-	textfw "ポケモンは ", "[相手]", "のこうげきで"
+	textfw "ポケモンは [相手]のこうげきで"
 	linefw "「どく」や「マヒ」「ねむり」"
 	linefw "「こんらん」といった 特殊状態に"
 	linefw "なることが あるんじゃ"
@@ -2178,7 +2178,7 @@ Text056c:
 	done
 
 Text056d:
-	textfw "「雷」ポケモンは ", "[自分]", "にも"
+	textfw "「雷」ポケモンは [自分]にも"
 	linefw "ダメージを あたえてしまうワザを"
 	linefw "もったポケモンが おおいのじゃ"
 	linefw "そんなデッキには「ディフェンダー」を"
@@ -2197,7 +2197,7 @@ Text056e:
 
 Text056f:
 	textfw "「水」ポケモンは 「水」エネルギーを"
-	linefw "追加すると", "[相手]", "にあたえる"
+	linefw "追加すると[相手]にあたえる"
 	linefw "ダメージが ふえるワザをもった"
 	linefw "ポケモンが 多いんじゃ"
 	linefw "そんなデッキには 「水」エネルギー"
@@ -2285,7 +2285,7 @@ Text0577:
 Text0578:
 	textfw "かべ型デッキ"
 	linefw "「イワーク」「ラッキー」「ベロリンガ"
-	linefw "」など ", "<HP>", "が たかいポケモンたちで"
+	linefw "」など <HP>が たかいポケモンたちで"
 	linefw "バトル場をまもり ベンチで「大技」を"
 	linefw "もったポケモンを育てる ほうほうじゃ"
 	linefw "そっこう型の ぎゃくじゃぞ"
@@ -2376,23 +2376,23 @@ Text0586:
 	done
 
 Text0587:
-	textfw "「", "<RAMTEXT>", "エネルギー」の わりあいが"
+	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃな"
-	linefw "「", "<RAMTEXT>", "エネルギー」の 枚すうを"
+	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし へらしては どうかな?"
 	done
 
 Text0588:
-	textfw "「", "<RAMTEXT>", "エネルギー」の わりあいが"
+	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "すくなすぎる ようじゃな"
-	linefw "「", "<RAMTEXT>", "エネルギー」の 枚すうを"
+	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし ふやしては どうかな?"
 	done
 
 Text0589:
-	textfw "「", "<RAMTEXT>", "エネルギー」の わりあいが"
+	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃ"
-	linefw "「", "<RAMTEXT>", "エネルギー」の わりあいを"
+	linefw "「<RAMTEXT>エネルギー」の わりあいを"
 	linefw "ふやしたほうが いいようじゃぞ"
 	done
 

@@ -1,6 +1,6 @@
 GrowlDescription:
 	textfw "次の相手の番、"
-	linefw "このワザを受けた", "[相手]", "が、"
+	linefw "このワザを受けた[相手]が、"
 	linefw "このカードに与えるダメージは"
 	linefw "「-10」される。"
 	done
@@ -43,7 +43,7 @@ FireballName:
 FireballDescription:
 	textfw "コインを投げて「うら」なら、"
 	linefw "このワザは失敗する。「おもて」なら、"
-	linefw "[自分]", "についている「炎」エネルギー"
+	linefw "[自分]についている「炎」エネルギー"
 	linefw "カードを1枚トラッシュする。"
 	linefw "トラッシュできないときも、このワザの"
 	linefw "ダメージはなくなる。"
@@ -76,7 +76,7 @@ FireSpinName:
 	done
 
 FireSpinDescription:
-	textfw "[自分]", "についている「エネルギーカード"
+	textfw "[自分]についている「エネルギーカード"
 	linefw "」を2枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
 	linefw "なくなる。"
@@ -106,11 +106,11 @@ ContinuousFireballName:
 	done
 
 ContinuousFireballDescription:
-	textfw "[自分]", "についている「炎」エネルギーカ"
+	textfw "[自分]についている「炎」エネルギーカ"
 	linefw "ードの数だけコインを投げ、「おもて」"
 	linefw "の数×50のダメージ。その後、「おも"
 	linefw "て」の数ぶんの「炎」エネルギーカード"
-	linefw "を、", "[自分]", "からはがしてトラッシュする"
+	linefw "を、[自分]からはがしてトラッシュする"
 	linefw "トラッシュできないとき、このワザの"
 	linefw "ダメージはなくなる。"
 	done
@@ -144,7 +144,7 @@ FoxFireName:
 FoxFireDescription:
 	textfw "のぞむなら、ダメージを与える前に"
 	linefw "相手の控えポケモンを1匹選び、"
-	linefw "[相手]", "と入れ替えてよい。"
+	linefw "[相手]と入れ替えてよい。"
 	linefw "(ダメージは、新しい対戦ポケモンに"
 	linefw "あたえる)"
 	done
@@ -260,7 +260,7 @@ ErrandRunningDescription:
 	done
 
 DiscardOneFireEnergyAltDescription:
-	textfw "[自分]", "についている「炎」エネルギーカ"
+	textfw "[自分]についている「炎」エネルギーカ"
 	linefw "ードを1枚トラッシュする。トラッシュ"
 	linefw "できないとき、このワザのダメージは"
 	linefw "なくなる"
@@ -300,8 +300,8 @@ FlamesOfRageName:
 	done
 
 FlamesOfRageDescription:
-	textfw "[自分]", "についている「炎」エネルギーカ"
-	linefw "ードを2枚トラッシュして、", "[自分]", "に"
+	textfw "[自分]についている「炎」エネルギーカ"
+	linefw "ードを2枚トラッシュして、[自分]に"
 	linefw "のっているダメージカウンターの数"
 	linefw "×10のダメージを追加する。"
 	linefw "トラッシュできないとき、このワザの"
@@ -323,7 +323,7 @@ TakeDownName:
 	done
 
 Do20DamageToSelfDescription:
-	textfw "[自分]", "にも20ダメージ。"
+	textfw "[自分]にも20ダメージ。"
 	done
 
 ArcanineLv35Description:
@@ -332,7 +332,7 @@ ArcanineLv35Description:
 	done
 
 Do30DamageToSelfDescription:
-	textfw "[自分]", "にも30ダメージ。"
+	textfw "[自分]にも30ダメージ。"
 	done
 
 ArcanineLv45Description:
@@ -353,7 +353,7 @@ FireworksName:
 	done
 
 FireworksDescription:
-	textfw "コインを投げて「うら」なら、", "[自分]", "に"
+	textfw "コインを投げて「うら」なら、[自分]に"
 	linefw "ついている「エネルギーカード」を1枚"
 	linefw "選び、トラッシュする。"
 	done
@@ -389,7 +389,7 @@ FlameInfernoName:
 	done
 
 FlameInfernoDescription:
-	textfw "のぞむなら、", "[自分]", "についている"
+	textfw "のぞむなら、[自分]についている"
 	linefw "「炎」エネルギーカードを2枚まで"
 	linefw "トラッシュし、トラッシュした"
 	linefw "「炎」エネルギーカードの数×20の"
@@ -401,7 +401,7 @@ KickAwayName:
 	done
 
 SwitchWithBenchedMonDescription:
-	textfw "[相手]", "を控えポケモンと入れ替える。"
+	textfw "[相手]を控えポケモンと入れ替える。"
 	linefw "入れ替わるポケモンは相手が選ぶ。"
 	linefw "(相手に控えがいないとき、入れ替えは"
 	linefw "おこらない)"
@@ -450,7 +450,7 @@ FlamePillarName:
 	done
 
 FlamePillarDescription:
-	textfw "のぞむなら、", "[自分]", "についている「炎」"
+	textfw "のぞむなら、[自分]についている「炎」"
 	linefw "エネルギーカードを1枚トラッシュし、"
 	linefw "その後、相手の控えポケモンを1匹"
 	linefw "選んで「弱点・抵抗力」に関係なく、"
@@ -491,7 +491,7 @@ BurningFireName:
 	done
 
 BurningFireDescription:
-	textfw "のぞむなら、", "[自分]", "や自分の控え"
+	textfw "のぞむなら、[自分]や自分の控え"
 	linefw "ポケモンについている「炎」エネルギー"
 	linefw "カードを好きなだけトラッシュして、"
 	linefw "トラッシュした数×10のダメージを"
@@ -512,7 +512,7 @@ SmokescreenName:
 	done
 
 SmokescreenDescription:
-	textfw "次の相手の番、このワザを受けた", "[相手]"
+	textfw "次の相手の番、このワザを受けた[相手]"
 	linefw "は、ワザを使うときにコインを投げ、"
 	linefw "「うら」なら、そのワザは失敗する。"
 	done
@@ -536,7 +536,7 @@ RageName:
 	done
 
 RageDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
+	textfw "[自分]にのっているダメージカウンター"
 	linefw "の数×10のダメージを追加する。"
 	done
 
@@ -561,7 +561,7 @@ PlayingWithFireName:
 
 PlayingWithFireDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[自分]", "についている「炎」エネルギー"
+	linefw "[自分]についている「炎」エネルギー"
 	linefw "カードをトラッシュして、20ダメージ"
 	linefw "を追加する。トラッシュできないとき、"
 	linefw "このワザのダメージはなくなる。"
@@ -582,7 +582,7 @@ WildfireName:
 	done
 
 WildfireDescription:
-	textfw "[自分]", "についている「炎」エネルギー"
+	textfw "[自分]についている「炎」エネルギー"
 	linefw "カードを、好きなだけトラッシュする。"
 	linefw "その後、トラッシュしたのと同じ枚数の"
 	linefw "カードを、相手の山札の上から"
@@ -819,7 +819,7 @@ RocketTackleName:
 	done
 
 RocketTackleDescription:
-	textfw "[自分]", "にも10ダメージ。"
+	textfw "[自分]にも10ダメージ。"
 	linefw "コインを投げて「おもて」なら、"
 	linefw "次の相手の番、このカードはダメージを"
 	linefw "受けない。(ダメージ以外の効果は"
@@ -885,7 +885,7 @@ HyperBeamName:
 	done
 
 HyperBeamDescription:
-	textfw "[相手]", "についている「エネルギーカード"
+	textfw "[相手]についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	done
 
@@ -900,7 +900,7 @@ PsychicName:
 	done
 
 PsychicDescription:
-	textfw "[相手]", "についているエネルギーカード"
+	textfw "[相手]についているエネルギーカード"
 	linefw "×10のダメージを追加する。"
 	done
 
@@ -922,7 +922,7 @@ ThirdEyeName:
 	done
 
 ThirdEyeDescription:
-	textfw "[自分]", "についている「エネルギーカード"
+	textfw "[自分]についている「エネルギーカード"
 	linefw "」を1枚選び、トラッシュする。"
 	linefw "その後、自分の山札からカードを3枚"
 	linefw "引く。"
@@ -972,7 +972,7 @@ AmnesiaName:
 	done
 
 AmnesiaDescription:
-	textfw "[相手]", "のワザを1つ選ぶ。次の相手の番"
+	textfw "[相手]のワザを1つ選ぶ。次の相手の番"
 	linefw "そのポケモンは、そのワザを使えない。"
 	done
 
@@ -987,7 +987,7 @@ TwiddleName:
 
 TwiddleDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「こんらん」状態に、"
+	linefw "[相手]を「こんらん」状態に、"
 	linefw "「うら」なら「ねむり」状態にする。"
 	done
 
@@ -1068,7 +1068,7 @@ SeelName:
 
 GrowlAltDescription1:
 	textfw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "がこのカードに与えるダメージは"
+	linefw "[相手]がこのカードに与えるダメージは"
 	linefw "「-10」される。"
 	done
 
@@ -1104,10 +1104,10 @@ RestName:
 	done
 
 RestDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
-	linefw "をすべてとりのぞき、", "[自分]", "の「どく・"
+	textfw "[自分]にのっているダメージカウンター"
+	linefw "をすべてとりのぞき、[自分]の「どく・"
 	linefw "ねむり・マヒ・こんらん」状態を、"
-	linefw "すべて回復させる。その後、", "[自分]", "を"
+	linefw "すべて回復させる。その後、[自分]を"
 	linefw "「ねむり」状態にする。"
 	done
 
@@ -1173,7 +1173,7 @@ ClampName:
 
 ClampDescription:
 	textfw "コインを投げて「うら」なら、このワザ"
-	linefw "は失敗する。「おもて」なら、", "[相手]", "を"
+	linefw "は失敗する。「おもて」なら、[相手]を"
 	linefw "「マヒ」状態にする。"
 	done
 
@@ -1231,7 +1231,7 @@ FlailName:
 	done
 
 FlailDescription:
-	textfw "[自分]", "にのっているダメージカウンター"
+	textfw "[自分]にのっているダメージカウンター"
 	linefw "の数×10のダメージ。"
 	done
 
@@ -1415,8 +1415,8 @@ RecoverName:
 	done
 
 RecoverWaterDescription:
-	textfw "[自分]", "についている「水」エネルギー"
-	linefw "カードを1枚トラッシュして、", "[自分]", "に"
+	textfw "[自分]についている「水」エネルギー"
+	linefw "カードを1枚トラッシュして、[自分]に"
 	linefw "のっているダメージカウンターを、"
 	linefw "すべてとりのぞく。「水」エネルギー"
 	linefw "カードをトラッシュできないとき、"
@@ -1598,7 +1598,7 @@ SingName:
 
 MayInflictSleepDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「ねむり」状態にする。"
+	linefw "[相手]を「ねむり」状態にする。"
 	done
 
 TransportName:
@@ -1740,7 +1740,7 @@ TentacleGripName:
 	done
 
 TentacleGripDescription:
-	textfw "[自分]", "についている「水」エネルギーの"
+	textfw "[自分]についている「水」エネルギーの"
 	linefw "数ぶんコインを投げ、「おもて」の数"
 	linefw "×2枚のカードを、自分の山札から引く"
 	done
@@ -1751,7 +1751,7 @@ CorrosiveAcidName:
 
 CorrosiveAcidDescription:
 	textfw "コインを投げて「おもて」なら、"
-	linefw "[相手]", "を「マヒ」状態にする。"
+	linefw "[相手]を「マヒ」状態にする。"
 	linefw "「うら」なら、次の自分の番、"
 	linefw "このカードはこのワザを使えない。"
 	done
@@ -1878,7 +1878,7 @@ ThunderJoltName:
 	done
 
 ThunderJoltDescription:
-	textfw "コインを投げて「うら」なら、", "[自分]", "に"
+	textfw "コインを投げて「うら」なら、[自分]に"
 	linefw "も10ダメージ。"
 	done
 
@@ -1893,7 +1893,7 @@ RechargeName:
 
 RechargeDescription:
 	textfw "自分の山札から「雷」エネルギーカード"
-	linefw "を1枚選び出し、", "[自分]", "につける。"
+	linefw "を1枚選び出し、[自分]につける。"
 	linefw "その後、その山札をよく切る。"
 	done
 
@@ -1902,7 +1902,7 @@ ThunderboltName:
 	done
 
 ThunderboltDescription:
-	textfw "[自分]", "についている「エネルギーカード"
+	textfw "[自分]についている「エネルギーカード"
 	linefw "」をすべてトラッシュする。"
 	done
 
@@ -1990,7 +1990,7 @@ QuickAttackAltDescription1:
 	done
 
 ThunderboltAltDescription1:
-	textfw "[自分]", "についている「エネルギーカード"
+	textfw "[自分]についている「エネルギーカード"
 	linefw "」を、すべてトラッシュする。"
 	done
 
@@ -2004,7 +2004,7 @@ ThunderName:
 	done
 
 ThunderDescription:
-	textfw "コインを投げて「うら」なら、", "[自分]", "に"
+	textfw "コインを投げて「うら」なら、[自分]に"
 	linefw "も30ダメージ。"
 	done
 
@@ -2070,7 +2070,7 @@ ThunderWaveName:
 	done
 
 Selfdestruct40DamageDescription:
-	textfw "[自分]", "にも40ダメージ。"
+	textfw "[自分]にも40ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
@@ -2136,7 +2136,7 @@ MagnetonName:
 	done
 
 Selfdestruct80DamageDescription:
-	textfw "[自分]", "にも80ダメージ。"
+	textfw "[自分]にも80ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "20ダメージ。"
@@ -2171,12 +2171,12 @@ SonicboomName:
 	done
 
 SonicboomDescription:
-	textfw "このワザのダメージは、", "[相手]", "の「弱点"
+	textfw "このワザのダメージは、[相手]の「弱点"
 	linefw "・抵抗力」の影響を受けない。"
 	done
 
 Selfdestruct100DamageDescription:
-	textfw "[自分]", "にも100ダメージ。"
+	textfw "[自分]にも100ダメージ。"
 	linefw "おたがいの控えポケモン全員にも、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "20ダメージ。"
@@ -2187,7 +2187,7 @@ DarkMagnetonName:
 	done
 
 SonicboomAltDescription:
-	textfw "このワザのダメージは、", "[相手]", "の"
+	textfw "このワザのダメージは、[相手]の"
 	linefw "「弱点・抵抗力」の影響を受けない。"
 	done
 
@@ -2196,7 +2196,7 @@ MagneticLinesName:
 	done
 
 MagneticLinesDescription:
-	textfw "[相手]", "についている「基本エネルギー"
+	textfw "[相手]についている「基本エネルギー"
 	linefw "カード」を1枚選んではがす。その後、"
 	linefw "相手の控えポケモンを1匹選び、"
 	linefw "はがした「基本エネルギーカード」を"
@@ -2274,7 +2274,7 @@ ChainLightningName:
 	done
 
 ChainLightningDescription:
-	textfw "おたがいの控えポケモンのうち、", "[相手]"
+	textfw "おたがいの控えポケモンのうち、[相手]"
 	linefw "と同じ「色(タイプ)」のもの全員に、"
 	linefw "「弱点・抵抗力」に関係なく、それぞれ"
 	linefw "10ダメージ。"
@@ -2295,7 +2295,7 @@ EnergyBombName:
 	done
 
 EnergyBombDescription:
-	textfw "[自分]", "についている「エネルギーカード"
+	textfw "[自分]についている「エネルギーカード"
 	linefw "」をすべてはがし、自分の控えポケモン"
 	linefw "に好きなようにつける。(自分に控えが"
 	linefw "いないとき、「エネルギーカード」は"
@@ -2339,7 +2339,7 @@ ThunderpunchName:
 ThunderpunchDescription:
 	textfw "コインを投げて「おもて」なら、10ダ"
 	linefw "メージを追加する。「うら」なら、"
-	linefw "[自分]", "にも10ダメージ。"
+	linefw "[自分]にも10ダメージ。"
 	done
 
 ElectabuzzLv35Description:
@@ -2398,7 +2398,7 @@ LightningFlashName:
 
 LightningFlashDescription:
 	textfw "次の相手の番、このワザを受けた"
-	linefw "[相手]", "は、ワザを使うときにコインを"
+	linefw "[相手]は、ワザを使うときにコインを"
 	linefw "投げ、「うら」ならそのワザは失敗する"
 	done
 
@@ -2407,7 +2407,7 @@ ThunderAttackName:
 	done
 
 ThunderAttackDescription:
-	textfw "コインを投げて「おもて」なら", "[相手]", "を"
+	textfw "コインを投げて「おもて」なら[相手]を"
 	linefw "「マヒ」状態にする。「うら」なら"
 	linefw "自分に10ダメージ。"
 	done
@@ -2440,7 +2440,7 @@ ThunderCrashName:
 ThunderCrashDescription:
 	textfw "コインを投げて「おもて」なら、"
 	linefw "20ダメージを追加する。「うら」なら"
-	linefw "[自分]", "にも20ダメージ。"
+	linefw "[自分]にも20ダメージ。"
 	done
 
 ZapdosLv28Description:
@@ -2459,7 +2459,7 @@ ThunderstormDescription:
 	linefw "20ダメージ。相手の控えポケモン全員"
 	linefw "に対してコインを投げ終わったら、"
 	linefw "その間に出た「うら」の数×10ダメー"
-	linefw "ジを", "[自分]", "に与える。"
+	linefw "ジを[自分]に与える。"
 	done
 
 ZapdosLv40Description:
@@ -2469,7 +2469,7 @@ ZapdosLv40Description:
 	done
 
 ThunderboltAltDescription2:
-	textfw "[自分]", "についているエネルギーカードを"
+	textfw "[自分]についているエネルギーカードを"
 	linefw "すべてトラッシュする。"
 	done
 
@@ -2530,7 +2530,7 @@ SwiftName:
 
 SwiftDescription:
 	textfw "このワザのダメージは、"
-	linefw "[相手]", "の持っている「弱点・抵抗力・"
+	linefw "[相手]の持っている「弱点・抵抗力・"
 	linefw "特殊能力・その他の効果」の影響を"
 	linefw "受けない。"
 	done
@@ -2566,7 +2566,7 @@ RollingNeedleName:
 RollingNeedleDescription:
 	textfw "コインを3枚投げ、「おもて」の数"
 	linefw "×10のダメージを追加する。"
-	linefw "その後、", "[自分]", "にも「おもて」の数"
+	linefw "その後、[自分]にも「おもて」の数"
 	linefw "×10のダメージ。"
 	done
 

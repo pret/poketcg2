@@ -2448,7 +2448,7 @@ PrintCurDeckNumberAndName:
 .got_deck_numeral
 	ld hl, wDefaultText
 	call ConvertToNumericalDigits
-	ld [hl], "FW0_・"
+	ldfw [hl], "・"
 	inc hl
 	ld [hl], TX_END
 	ld hl, wDefaultText
@@ -3177,7 +3177,7 @@ PrintTotalNumberOfCardsInCollection:
 	call .PlaceNumericalChar
 	call .PlaceNumericalChar
 	call .PlaceNumericalChar
-	lb bc, TX_FULLWIDTH0, "FW0_枚"
+	ldfw bc, "枚"
 	ld [hl], c ; 枚
 	inc hl
 	ld [hl], b
@@ -3599,40 +3599,40 @@ PrepareBoosterPackCardList:
 	push af
 	cp PROMOTIONAL
 	jr nz, .check_team_rockets_ambition
-	lb de, $4, "FW4_P"
+	ldfw de, "P"
 	jr .got_letter
 .check_team_rockets_ambition
 	cp TEAM_ROCKETS_AMBITION
 	jr nz, .check_we_are_team_rocket
-	lb de, $4, "FW4_H"
+	ldfw de, "H"
 	jr .got_letter
 .check_we_are_team_rocket
 	cp WE_ARE_TEAM_ROCKET
 	jr nz, .check_sky_flying_pokemon
-	lb de, $4, "FW4_G"
+	ldfw de, "G"
 	jr .got_letter
 .check_sky_flying_pokemon
 	cp SKY_FLYING_POKEMON
 	jr nz, .check_psychic_battle
-	lb de, $4, "FW4_F"
+	ldfw de, "F"
 	jr .got_letter
 .check_psychic_battle
 	cp PSYCHIC_BATTLE
 	jr nz, .check_island_of_fossil
-	lb de, $4, "FW4_D"
+	ldfw de, "D"
 	jr .got_letter
 .check_island_of_fossil
 	cp ISLAND_OF_FOSSIL
 	jr nz, .check_legendary_power
-	lb de, $4, "FW4_C"
+	ldfw de, "C"
 	jr .got_letter
 .check_legendary_power
 	cp LEGENDARY_POWER
 	jr nz, .beginning_pokemon
-	lb de, $4, "FW4_B"
+	ldfw de, "B"
 	jr .got_letter
 .beginning_pokemon
-	lb de, $4, "FW4_A"
+	ldfw de, "A"
 .got_letter
 	ld hl, wBoosterPackCardListPrefixBuffer
 	ld [hl], d
@@ -3822,7 +3822,7 @@ FillBoosterPackCardList:
 	ld b, a
 	ld a, [hl]
 	ld hl, wBoosterPackCardListPrefixBuffer + $2
-	lb de, $4, "FW4_E"
+	ldfw de, "E"
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -3851,9 +3851,9 @@ FillBoosterPackCardList:
 .promo_card
 	; promo cards are numbered as xx
 	ld hl, wBoosterPackCardListPrefixBuffer + $2
-	ld [hl], "FW0_×"
+	ldfw [hl], "×"
 	inc hl
-	ld [hl], "FW0_×"
+	ldfw [hl], "×"
 	inc hl
 	ld [hl], TX_SYMBOL
 	inc hl
@@ -4995,7 +4995,7 @@ DeckDiagnosisResult:
 .asm_bad8
 	call GetCountOfCardInCurDeck
 	call ConvertToNumericalDigits
-	lb bc, TX_FULLWIDTH0, "FW0_枚"
+	ldfw bc, "枚"
 	ld [hl], c
 	inc hl
 	ld [hl], b

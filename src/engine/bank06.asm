@@ -5690,10 +5690,8 @@ ProcessTextWithUnderbar:
 	ret
 
 .underbar_chars
-	db "W" ; stray byte
-REPT $a
-	textfw "_"
-ENDR
+	db $57
+	textfw "__________"
 	done
 
 HandleNamingScreenInput:
@@ -6075,7 +6073,7 @@ SelectKeyboardItem:
 	jr z, .lower_abc
 
 	; handle diacritics
-	lb bc, TX_FULLWIDTH4, "FW4_゛"
+	ldfw bc, "゛"
 	ld a, d
 	cp b
 	jr nz, .check_handakuten
@@ -6089,7 +6087,7 @@ SelectKeyboardItem:
 	jr c, .no_carry
 	jr .apply_diacritic
 .check_handakuten
-	lb bc, TX_FULLWIDTH4, "FW4_゜"
+	ldfw bc, "゜"
 	ld a, d
 	cp b
 	jr nz, .not_diacritic
@@ -6261,35 +6259,25 @@ ENDR
 ; a set of keyboard datum
 ; \1 = absolute y coordinate
 ; \2 = absolute x coordinate
-; \3 = TX_* constant (hiragana/katakana)
-; \4 = hiragana character (must coincide with the
+; \3 = hiragana character (must coincide with the
 ;      katakana character with the same byte value)
-; \5 = TX_* constant (uppercase ABC)
-; \6 = uppercase alphabet character
-; \7 = TX_* constant (lowercase ABC)
-; \8 = lowercase alphabet character
+; \4 = uppercase alphabet character
+; \5 = lowercase alphabet character
 MACRO kbchar
 	db \1, \2
-
-REPT 3
-IF \3 == TX_KATAKANA
-	db STRCAT("FW{x:TX_KATAKANA}_", \4)
-	db \3
-ELIF \3 == TX_HIRAGANA
-	db STRCAT("FW{x:TX_HIRAGANA}_", \4)
-	db TX_FULLWIDTH0
-ELIF \3 == TX_FULLWIDTH0
-	db STRCAT("FW0_", \4)
-	db \3
-ELIF \3 == TX_FULLWIDTH4
-	db STRCAT("FW4_", \4)
-	db \3
-ELIF \3 == TX_SYMBOL
-	db SYM_\4
-	db \3
-ENDC
-SHIFT 2
-ENDR
+	PUSHC fullwidth
+	REPT 3
+		get_charset \3
+		IF charset == TX_KATAKANA
+			db \3, charset
+		ELIF charset == TX_HIRAGANA
+			db \3, 0
+		ELSE
+			dwfw \3
+		ENDC
+		SHIFT
+	ENDR
+	POPC
 ENDM
 
 ; \1 = absolute y coordinate
@@ -6307,135 +6295,135 @@ ENDM
 
 KeyboardData:
 	; col 0
-	kbchar  4,  2, TX_HIRAGANA,   "あ", TX_FULLWIDTH4, "A",  TX_FULLWIDTH4, "a"
-	kbchar  6,  2, TX_HIRAGANA,   "い", TX_FULLWIDTH4, "J",  TX_FULLWIDTH4, "j"
-	kbchar  8,  2, TX_HIRAGANA,   "う", TX_FULLWIDTH4, "S",  TX_FULLWIDTH4, "s"
-	kbchar 10,  2, TX_HIRAGANA,   "え", TX_FULLWIDTH0, "?",  TX_FULLWIDTH4, "@"
-	kbchar 12,  2, TX_HIRAGANA,   "お", TX_FULLWIDTH0, "4",  TX_FULLWIDTH4, ":"
-	kbchar 14,  2, TX_HIRAGANA,   "ゃ", TX_HIRAGANA,   "ぃ", TX_SYMBOL,     LIGHTNING
+	kbchar  4,  2, "あ", "A", "a"
+	kbchar  6,  2, "い", "J", "j"
+	kbchar  8,  2, "う", "S", "s"
+	kbchar 10,  2, "え", "?", "@"
+	kbchar 12,  2, "お", "4", ":"
+	kbchar 14,  2, "ゃ", "ぃ", "<LIGHTNING>"
 	kbitem 16,  2, KEYBOARD_TOGGLE_KATAKANA, 3, 2
 
 	; col 1
-	kbchar  4,  4, TX_HIRAGANA,   "か", TX_FULLWIDTH4, "B",  TX_FULLWIDTH4, "b"
-	kbchar  6,  4, TX_HIRAGANA,   "き", TX_FULLWIDTH4, "K",  TX_FULLWIDTH4, "k"
-	kbchar  8,  4, TX_HIRAGANA,   "く", TX_FULLWIDTH4, "T",  TX_FULLWIDTH4, "t"
-	kbchar 10,  4, TX_HIRAGANA,   "け", TX_FULLWIDTH4, "&",  TX_FULLWIDTH4, "&"
-	kbchar 12,  4, TX_HIRAGANA,   "こ", TX_FULLWIDTH0, "5",  TX_FULLWIDTH4, ";"
-	kbchar 14,  4, TX_HIRAGANA,   "ゅ", TX_HIRAGANA,   "ぅ", TX_SYMBOL,     GRASS
+	kbchar  4,  4, "か", "B", "b"
+	kbchar  6,  4, "き", "K", "k"
+	kbchar  8,  4, "く", "T", "t"
+	kbchar 10,  4, "け", "&", "&"
+	kbchar 12,  4, "こ", "5", ";"
+	kbchar 14,  4, "ゅ", "ぅ", "<GRASS>"
 	kbitem 16,  2, KEYBOARD_TOGGLE_KATAKANA, 2, 2
 
 	; col 2
-	kbchar  4,  6, TX_HIRAGANA,   "さ", TX_FULLWIDTH4, "C",  TX_FULLWIDTH4, "c"
-	kbchar  6,  6, TX_HIRAGANA,   "し", TX_FULLWIDTH4, "L",  TX_FULLWIDTH4, "l"
-	kbchar  8,  6, TX_HIRAGANA,   "す", TX_FULLWIDTH4, "U",  TX_FULLWIDTH4, "u"
-	kbchar 10,  6, TX_HIRAGANA,   "せ", TX_FULLWIDTH0, "+",  TX_FULLWIDTH0, "/"
-	kbchar 12,  6, TX_HIRAGANA,   "そ", TX_FULLWIDTH0, "6",  TX_FULLWIDTH4, "_"
-	kbchar 14,  6, TX_HIRAGANA,   "ょ", TX_HIRAGANA,   "ぇ", TX_SYMBOL,     FIRE
+	kbchar  4,  6, "さ", "C", "c"
+	kbchar  6,  6, "し", "L", "l"
+	kbchar  8,  6, "す", "U", "u"
+	kbchar 10,  6, "せ", "+", "/"
+	kbchar 12,  6, "そ", "6", "_"
+	kbchar 14,  6, "ょ", "ぇ", "<FIRE>"
 	kbitem 16,  2, KEYBOARD_TOGGLE_KATAKANA, 2, 3
 
 	; col 3
-	kbchar  4,  8, TX_HIRAGANA,   "た", TX_FULLWIDTH4, "D",  TX_FULLWIDTH4, "d"
-	kbchar  6,  8, TX_HIRAGANA,   "ち", TX_FULLWIDTH4, "M",  TX_FULLWIDTH4, "m"
-	kbchar  8,  8, TX_HIRAGANA,   "つ", TX_FULLWIDTH4, "V",  TX_FULLWIDTH4, "v"
-	kbchar 10,  8, TX_HIRAGANA,   "て", TX_FULLWIDTH0, "-",  TX_FULLWIDTH4, "*"
-	kbchar 12,  8, TX_HIRAGANA,   "と", TX_FULLWIDTH0, "7",  TX_FULLWIDTH4, "<"
-	kbchar 14,  8, TX_HIRAGANA,   "っ", TX_HIRAGANA,   "ぉ", TX_SYMBOL,     WATER
+	kbchar  4,  8, "た", "D", "d"
+	kbchar  6,  8, "ち", "M", "m"
+	kbchar  8,  8, "つ", "V", "v"
+	kbchar 10,  8, "て", "-", "*"
+	kbchar 12,  8, "と", "7", "<"
+	kbchar 14,  8, "っ", "ぉ", "<WATER>"
 	kbitem 16,  7, KEYBOARD_TOGGLE_UPPER_ABC, 2, 3
 
 	; col 4
-	kbchar  4, 10, TX_HIRAGANA,   "な", TX_FULLWIDTH4, "E",  TX_FULLWIDTH4, "e"
-	kbchar  6, 10, TX_HIRAGANA,   "に", TX_FULLWIDTH4, "N",  TX_FULLWIDTH4, "n"
-	kbchar  8, 10, TX_HIRAGANA,   "ぬ", TX_FULLWIDTH4, "W",  TX_FULLWIDTH4, "w"
-	kbchar 10, 10, TX_HIRAGANA,   "ね", TX_FULLWIDTH0, "・", TX_FULLWIDTH0, "+"
-	kbchar 12, 10, TX_HIRAGANA,   "の", TX_FULLWIDTH0, "8",  TX_FULLWIDTH4, ">"
-	kbchar 14, 10, TX_HIRAGANA,   "を", TX_KATAKANA,   "ァ", TX_SYMBOL,     PSYCHIC
+	kbchar  4, 10, "な", "E", "e"
+	kbchar  6, 10, "に", "N", "n"
+	kbchar  8, 10, "ぬ", "W", "w"
+	kbchar 10, 10, "ね", "・", "+"
+	kbchar 12, 10, "の", "8", ">"
+	kbchar 14, 10, "を", "ァ", "<PSYCHIC>"
 	kbitem 16,  7, KEYBOARD_TOGGLE_UPPER_ABC, 2, 2
 
 	; col 5
-	kbchar  4, 12, TX_HIRAGANA,   "は", TX_FULLWIDTH4, "F",  TX_FULLWIDTH4, "f"
-	kbchar  6, 12, TX_HIRAGANA,   "ひ", TX_FULLWIDTH4, "O",  TX_FULLWIDTH4, "о"
-	kbchar  8, 12, TX_HIRAGANA,   "ふ", TX_FULLWIDTH4, "X",  TX_FULLWIDTH4, "x"
-	kbchar 10, 12, TX_HIRAGANA,   "へ", TX_FULLWIDTH0, "0",  TX_FULLWIDTH0, "-"
-	kbchar 12, 12, TX_HIRAGANA,   "ほ", TX_FULLWIDTH0, "9",  TX_FULLWIDTH0, " "
-	kbchar 14, 12, TX_FULLWIDTH4, "゛", TX_KATAKANA,   "ィ", TX_SYMBOL,     FIGHTING
+	kbchar  4, 12, "は", "F", "f"
+	kbchar  6, 12, "ひ", "O", "о"
+	kbchar  8, 12, "ふ", "X", "x"
+	kbchar 10, 12, "へ", "0", "-"
+	kbchar 12, 12, "ほ", "9", " "
+	kbchar 14, 12, "゛", "ィ", "<FIGHTING>"
 	kbitem 16, 12, KEYBOARD_TOGGLE_LOWER_ABC, 2, 2
 
 	; col 6
-	kbchar  4, 14, TX_HIRAGANA,   "ま", TX_FULLWIDTH4, "G",  TX_FULLWIDTH4, "g"
-	kbchar  6, 14, TX_HIRAGANA,   "み", TX_FULLWIDTH4, "P",  TX_FULLWIDTH4, "p"
-	kbchar  8, 14, TX_HIRAGANA,   "む", TX_FULLWIDTH4, "Y",  TX_FULLWIDTH4, "y"
-	kbchar 10, 14, TX_HIRAGANA,   "め", TX_FULLWIDTH0, "1",  TX_FULLWIDTH4, "="
-	kbchar 12, 14, TX_HIRAGANA,   "も", TX_SYMBOL,     No,   TX_FULLWIDTH0, " "
-	kbchar 14, 14, TX_FULLWIDTH4, "゜", TX_KATAKANA,   "ゥ", TX_SYMBOL,     COLORLESS
+	kbchar  4, 14, "ま", "G", "g"
+	kbchar  6, 14, "み", "P", "p"
+	kbchar  8, 14, "む", "Y", "y"
+	kbchar 10, 14, "め", "1", "="
+	kbchar 12, 14, "も", "<No>", " "
+	kbchar 14, 14, "゜", "ゥ", "<COLORLESS>"
 	kbitem 16, 12, KEYBOARD_TOGGLE_LOWER_ABC, 2, 2
 
 	; col 7
-	kbchar  4, 16, TX_HIRAGANA,   "や", TX_FULLWIDTH4, "H",  TX_FULLWIDTH4, "h"
-	kbchar  6, 16, TX_HIRAGANA,   "ゆ", TX_FULLWIDTH4, "Q",  TX_FULLWIDTH4, "q"
-	kbchar  8, 16, TX_HIRAGANA,   "よ", TX_FULLWIDTH4, "Z",  TX_FULLWIDTH4, "z"
-	kbchar 10, 16, TX_HIRAGANA,   "わ", TX_FULLWIDTH0, "2",  TX_FULLWIDTH0, "・"
-	kbchar 12, 16, TX_HIRAGANA,   "ん", TX_SYMBOL,     Lv,   TX_FULLWIDTH0, " "
-	kbchar 14, 16, TX_FULLWIDTH0, "ー", TX_KATAKANA,   "ェ", TX_SYMBOL,    RAINBOW
+	kbchar  4, 16, "や", "H", "h"
+	kbchar  6, 16, "ゆ", "Q", "q"
+	kbchar  8, 16, "よ", "Z", "z"
+	kbchar 10, 16, "わ", "2", "・"
+	kbchar 12, 16, "ん", "<Lv>", " "
+	kbchar 14, 16, "ー", "ェ", "<RAINBOW>"
 	kbitem 16, 16, KEYBOARD_DONE, 2, 2
 
 	; col 8
-	kbchar  4, 18, TX_HIRAGANA,   "ら", TX_FULLWIDTH4, "I",  TX_FULLWIDTH4, "i"
-	kbchar  6, 18, TX_HIRAGANA,   "り", TX_FULLWIDTH4, "R",  TX_FULLWIDTH4, "r"
-	kbchar  8, 18, TX_HIRAGANA,   "る", TX_FULLWIDTH0, "!",  TX_FULLWIDTH0, " "
-	kbchar 10, 18, TX_HIRAGANA,   "れ", TX_FULLWIDTH0, "3",  TX_FULLWIDTH4, "ˍ"
-	kbchar 12, 18, TX_HIRAGANA,   "ろ", TX_HIRAGANA,   "ぁ", TX_FULLWIDTH0, " "
-	kbchar 14, 18, TX_FULLWIDTH0, " ",  TX_KATAKANA,   "ォ", TX_FULLWIDTH0, " "
+	kbchar  4, 18, "ら", "I", "i"
+	kbchar  6, 18, "り", "R", "r"
+	kbchar  8, 18, "る", "!", " "
+	kbchar 10, 18, "れ", "3", "ˍ"
+	kbchar 12, 18, "ろ", "ぁ", " "
+	kbchar 14, 18, " ", "ォ", " "
 	kbitem 16, 16, KEYBOARD_DONE, 3, 3
 
 	db  0,  0, $00, $00, $00, $00, $00, $00
 
 MACRO diacritic
-	db STRCAT("FW{x:TX_HIRAGANA}_", \1)
-	db \2
-	db STRCAT("FW{x:TX_HIRAGANA}_", \3)
-	db $00
+	PUSHC hiragana
+	db \1, TX_HIRAGANA
+	db \2, 0
+	POPC
 ENDM
 
 DakutenTable:
-	diacritic "か", TX_HIRAGANA, "が" ; katakana カ, ガ
-	diacritic "き", TX_HIRAGANA, "ぎ" ; katakana キ, ギ
-	diacritic "く", TX_HIRAGANA, "ぐ" ; katakana ク, グ
-	diacritic "け", TX_HIRAGANA, "げ" ; katakana ケ, ゲ
-	diacritic "こ", TX_HIRAGANA, "ご" ; katakana コ, ゴ
-	diacritic "さ", TX_HIRAGANA, "ざ" ; katakana サ, ザ
-	diacritic "し", TX_HIRAGANA, "じ" ; katakana シ, ジ
-	diacritic "す", TX_HIRAGANA, "ず" ; katakana ス, ズ
-	diacritic "せ", TX_HIRAGANA, "ぜ" ; katakana セ, ゼ
-	diacritic "そ", TX_HIRAGANA, "ぞ" ; katakana ソ, ゾ
-	diacritic "た", TX_HIRAGANA, "だ" ; katakana タ, ダ
-	diacritic "ち", TX_HIRAGANA, "ぢ" ; katakana チ, ヂ
-	diacritic "つ", TX_HIRAGANA, "づ" ; katakana ツ, ヅ
-	diacritic "て", TX_HIRAGANA, "で" ; katakana テ, デ
-	diacritic "と", TX_HIRAGANA, "ど" ; katakana ト, ド
-	diacritic "は", TX_HIRAGANA, "ば" ; katakana ハ, バ
-	diacritic "ひ", TX_HIRAGANA, "び" ; katakana ヒ, ビ
-	diacritic "ふ", TX_HIRAGANA, "ぶ" ; katakana フ, ブ
-	diacritic "へ", TX_HIRAGANA, "べ" ; katakana ヘ, ベ
-	diacritic "ほ", TX_HIRAGANA, "ぼ" ; katakana ホ, ボ
-	diacritic "ぱ", TX_HIRAGANA, "ば" ; katakana パ, バ
-	diacritic "ぴ", TX_HIRAGANA, "び" ; katakana ピ, ビ
-	diacritic "ぷ", TX_HIRAGANA, "ぶ" ; katakana プ, ブ
-	diacritic "ぺ", TX_HIRAGANA, "べ" ; katakana ペ, ベ
-	diacritic "ぽ", TX_HIRAGANA, "ぼ" ; katakana ポ, ボ
-	db $00, $00 ; end
+	diacritic "か", "が" ; katakana カ, ガ
+	diacritic "き", "ぎ" ; katakana キ, ギ
+	diacritic "く", "ぐ" ; katakana ク, グ
+	diacritic "け", "げ" ; katakana ケ, ゲ
+	diacritic "こ", "ご" ; katakana コ, ゴ
+	diacritic "さ", "ざ" ; katakana サ, ザ
+	diacritic "し", "じ" ; katakana シ, ジ
+	diacritic "す", "ず" ; katakana ス, ズ
+	diacritic "せ", "ぜ" ; katakana セ, ゼ
+	diacritic "そ", "ぞ" ; katakana ソ, ゾ
+	diacritic "た", "だ" ; katakana タ, ダ
+	diacritic "ち", "ぢ" ; katakana チ, ヂ
+	diacritic "つ", "づ" ; katakana ツ, ヅ
+	diacritic "て", "で" ; katakana テ, デ
+	diacritic "と", "ど" ; katakana ト, ド
+	diacritic "は", "ば" ; katakana ハ, バ
+	diacritic "ひ", "び" ; katakana ヒ, ビ
+	diacritic "ふ", "ぶ" ; katakana フ, ブ
+	diacritic "へ", "べ" ; katakana ヘ, ベ
+	diacritic "ほ", "ぼ" ; katakana ホ, ボ
+	diacritic "ぱ", "ば" ; katakana パ, バ
+	diacritic "ぴ", "び" ; katakana ピ, ビ
+	diacritic "ぷ", "ぶ" ; katakana プ, ブ
+	diacritic "ぺ", "べ" ; katakana ペ, ベ
+	diacritic "ぽ", "ぼ" ; katakana ポ, ボ
+	dw 0 ; end
 
 HandakutenTable:
-	diacritic "は", TX_HIRAGANA, "ぱ" ; katakana ハ, パ
-	diacritic "ひ", TX_HIRAGANA, "ぴ" ; katakana ヒ, ピ
-	diacritic "ふ", TX_HIRAGANA, "ぷ" ; katakana フ, プ
-	diacritic "へ", TX_HIRAGANA, "ぺ" ; katakana ヘ, ペ
-	diacritic "ほ", TX_HIRAGANA, "ぽ" ; katakana ホ, ポ
-	diacritic "ば", TX_HIRAGANA, "ぱ" ; katakana バ, パ
-	diacritic "び", TX_HIRAGANA, "ぴ" ; katakana ビ, ピ
-	diacritic "ぶ", TX_HIRAGANA, "ぷ" ; katakana ブ, プ
-	diacritic "べ", TX_HIRAGANA, "ぺ" ; katakana ベ, ペ
-	diacritic "ぼ", TX_HIRAGANA, "ぽ" ; katakana ボ, ポ
-	db $00, $00 ; end
+	diacritic "は", "ぱ" ; katakana ハ, パ
+	diacritic "ひ", "ぴ" ; katakana ヒ, ピ
+	diacritic "ふ", "ぷ" ; katakana フ, プ
+	diacritic "へ", "ぺ" ; katakana ヘ, ペ
+	diacritic "ほ", "ぽ" ; katakana ホ, ポ
+	diacritic "ば", "ぱ" ; katakana バ, パ
+	diacritic "び", "ぴ" ; katakana ビ, ピ
+	diacritic "ぶ", "ぷ" ; katakana ブ, プ
+	diacritic "べ", "ぺ" ; katakana ベ, ペ
+	diacritic "ぼ", "ぽ" ; katakana ボ, ポ
+	dw 0 ; end
 ; 0x1b613
 
 SECTION "Bank 6@78f1", ROMX[$78f1], BANK[$6]
