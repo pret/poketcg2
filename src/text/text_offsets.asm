@@ -761,14 +761,14 @@ TextOffsets::
 	textpointer BuiltSubbedDeckWithTheseCardsText                     ; 0x02f3
 	textpointer SubInEnergyCardsPromptText                            ; 0x02f4
 	textpointer ChooseDeckTypeText                                    ; 0x02f5
-	textpointer Text02f6                                           ; 0x02f6
-	textpointer Text02f7                                           ; 0x02f7
-	textpointer Text02f8                                           ; 0x02f8
-	textpointer Text02f9                                           ; 0x02f9
-	textpointer Text02fa                                           ; 0x02fa
-	textpointer Text02fb                                           ; 0x02fb
-	textpointer Text02fc                                           ; 0x02fc
-	textpointer Text02fd                                           ; 0x02fd
+	textpointer PrintThisCardPromptYesNoText                          ; 0x02f6
+	textpointer ChooseDeckConfigurationToPrintText                    ; 0x02f7
+	textpointer PrintThisDeckPromptText                               ; 0x02f8
+	textpointer PrintCardListPromptText                               ; 0x02f9
+	textpointer PrintMenuItemsText                                    ; 0x02fa
+	textpointer WhatToPrintPromptText                                 ; 0x02fb
+	textpointer PrinterContrastSettingsPromptText                     ; 0x02fc
+	textpointer PrinterTurningOffReminderText                         ; 0x02fd
 	textpointer Text02fe                                           ; 0x02fe
 	textpointer Text02ff                                           ; 0x02ff
 	textpointer Text0300                                           ; 0x0300

@@ -2130,26 +2130,26 @@ ChooseDeckTypeText:
 	linefw "えらんでください"
 	done
 
-Text02f6:
+PrintThisCardPromptYesNoText:
 	textfw "このカードを いんさつしますか?"
 	linefw "   はい  いいえ"
 	done
 
-Text02f7:
+ChooseDeckConfigurationToPrintText:
 	textfw "いんさつするデッキのつくりかたを"
 	linefw "えらんでください"
 	done
 
-Text02f8:
+PrintThisDeckPromptText:
 	textfw "このデッキを いんさつしますか?"
 	done
 
-Text02f9:
+PrintCardListPromptText:
 	textfw "カードいちらんを いんさつしますか?"
 	linefw "   はい  いいえ"
 	done
 
-Text02fa:
+PrintMenuItemsText:
 	textfw "ポケモンカード"
 	linefw "デッキのつくりかた"
 	linefw "カードのいちらん"
@@ -2157,16 +2157,16 @@ Text02fa:
 	linefw "プリントやめる"
 	done
 
-Text02fb:
+WhatToPrintPromptText:
 	textfw "なにを プリントアウトしますか?"
 	done
 
-Text02fc:
+PrinterContrastSettingsPromptText:
 	textfw "いんさつの こさを きめてください"
 	linefw "うすい  1 2 3 4 5  こい"
 	done
 
-Text02fd:
+PrinterTurningOffReminderText:
 	textfw "ポケットプリンターの スイッチの"
 	linefw "きりわすれに ちゅういしましょう"
 	done

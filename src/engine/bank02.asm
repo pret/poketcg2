@@ -4660,7 +4660,7 @@ PrinterMenu_CardList:
 	call EnableLCD
 	lb de, 1, 1
 	call InitTextPrinting
-	ldtx hl, Text02f9 ; PrintTheCardListText
+	ldtx hl, PrintCardListPromptText
 	call ProcessTextFromID
 	ld a, $01
 	ld hl, Data_ad05
@@ -4688,9 +4688,9 @@ PrinterMenu:
 	call DrawRegularTextBox
 	lb de, 6, 2
 	call InitTextPrinting
-	ldtx hl, Text02fa
+	ldtx hl, PrintMenuItemsText
 	call ProcessTextFromID
-	ldtx hl, Text02fb
+	ldtx hl, WhatToPrintPromptText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 .loop_input
@@ -4708,7 +4708,7 @@ PrinterMenu:
 
 .QuitPrint:
 	add sp, $2 ; exit menu
-	ldtx hl, Text02fd
+	ldtx hl, PrinterTurningOffReminderText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -4728,7 +4728,7 @@ PrinterMenu:
 	dw NULL ; function pointer if non-0
 
 .PrintQuality:
-	ldtx hl, Text02fc
+	ldtx hl, PrinterContrastSettingsPromptText
 	call DrawWideTextBox_PrintText
 	call EnableSRAM
 	ld a, [sPrinterContrastLevel]
@@ -4750,7 +4750,7 @@ PrinterMenu:
 	ld a, [wSelectedPrinterMenuItem]
 	ld hl, .MenuParameters
 	call InitializeMenuParameters
-	ldtx hl, Text02fb
+	ldtx hl, WhatToPrintPromptText
 	call DrawWideTextBox_PrintText
 	jr .loop_input
 

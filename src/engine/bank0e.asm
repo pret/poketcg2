@@ -5640,9 +5640,9 @@ _PrinterMenu_DeckConfiguration:
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
-	ldtx hl, Text02f7 ; PleaseChooseDeckConfigurationToPrintText
+	ldtx hl, ChooseDeckConfigurationToPrintText
 	call DrawWideTextBox_PrintText
-	ldtx de, Text02f7 ; PleaseChooseDeckConfigurationToPrintText
+	ldtx de, ChooseDeckConfigurationToPrintText
 	call InitDeckMachineDrawingParams
 .loop_input
 	call HandleDeckMachineSelection
@@ -5657,7 +5657,7 @@ _PrinterMenu_DeckConfiguration:
 	call CheckIfSelectedDeckMachineEntryIsEmpty
 	jr c, .loop_input
 	call DrawWideTextBox
-	ldtx hl, Text02f8 ; PrintThisDeckText
+	ldtx hl, PrintThisDeckPromptText
 	call YesOrNoMenuWithText
 	jr c, .no
 	call GetSelectedSavedDeckPtr
