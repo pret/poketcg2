@@ -1799,15 +1799,15 @@ DeckBuildingDismantlePromptText:
 	textfw "このデッキを くずしますか?"
 	done
 
-DeckBuildingRecordOnMachinePromptText:
+DeckBuildingSaveToMachinePromptText:
 	textfw "デッキきろくマシンにきろくしますか?"
 	done
 
-DeckBuildingRevertAndRecordOnMachinePromptText:
+DeckBuildingRevertAndSaveToMachinePromptText:
 	textfw "もとのデッキを きろくしますか?"
 	done
 
-DeckBuildingWarningIncompleteAndUnableToRecordText:
+DeckBuildingWarningIncompleteCannotSaveToMachineText:
 	textfw "デッキが できあがっていないので"
 	linefw "きろくできませんでした"
 	done

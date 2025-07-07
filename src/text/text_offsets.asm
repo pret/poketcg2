@@ -683,9 +683,9 @@ TextOffsets::
 	textpointer DeckBuildingSavePromptText                            ; 0x02a5
 	textpointer DeckBuildingQuitPromptText                            ; 0x02a6
 	textpointer DeckBuildingDismantlePromptText                       ; 0x02a7
-	textpointer DeckBuildingRecordOnMachinePromptText                 ; 0x02a8
-	textpointer DeckBuildingRevertAndRecordOnMachinePromptText        ; 0x02a9
-	textpointer DeckBuildingWarningIncompleteAndUnableToRecordText    ; 0x02aa
+	textpointer DeckBuildingSaveToMachinePromptText                   ; 0x02a8
+	textpointer DeckBuildingRevertAndSaveToMachinePromptText          ; 0x02a9
+	textpointer DeckBuildingWarningIncompleteCannotSaveToMachineText  ; 0x02aa
 	textpointer YourPokemonHiraganaText                               ; 0x02ab
 	textpointer YourDiscardPileHiraganaText                           ; 0x02ac
 	textpointer YourHandHiraganaText                                  ; 0x02ad
