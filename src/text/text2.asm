@@ -1972,160 +1972,160 @@ EmptyDeckNameText:
 	textfw "--------------"
 	done
 
-Text02d3:
+DeckSaveMachineText:
 	textfw "デッキきろくマシン"
 	done
 
-Text02d4:
+SaveDeckToMachineText:
 	textfw "デッキをきろく"
 	done
 
-Text02d5:
+DeleteDeckFromMachineText:
 	textfw "きろくをけす"
 	done
 
-Text02d6:
+BuildDeckText:
 	textfw "デッキをつくる"
 	done
 
-Text02d7:
+ChooseDeckToSaveToMachineText:
 	textfw "きろくするデッキを えらんでください"
 	done
 
-Text02d8:
+CannotSaveDeckToMachine60FullText: ; unused (was 60 in tcg1 but 50 in tcg2)
 	textfw "きろくできるデッキの数は 60です"
 	linefw "けしてから きろくしてください"
 	done
 
-Text02d9:
+ParticleNOText: ; unused?
 	textfw "の"
 	done
 
-Text02da:
+SavedDeckToMachineText:
 	textfw "<RAMTEXT>の"
 	linefw "つくりかたを きろくしました!"
 	done
 
-Text02db:
+NoDecksSavedToMachineText:
 	textfw "デッキが きろくされていません"
 	done
 
-Text02dc:
+ChooseDeckToDeleteFromMachineText:
 	textfw "つくりかたを けす"
 	linefw "デッキを えらんでください"
 	done
 
-Text02dd:
+ConfirmDeletePromptText:
 	textfw "ほんとうに けして よろしいですか?"
 	done
 
-Text02de:
+DeletedDeckFromMachineText:
 	textfw "<RAMTEXT>の"
 	linefw "つくりかたを けしました"
 	done
 
-Text02df:
+YouMayOnlyCarry4DecksText:
 	textfw "デッキは 4つまでしか もてません!"
 	done
 
-Text02e0:
+ChooseDeckToDismantleText:
 	textfw "くずすデッキを えらんでください"
 	done
 
-Text02e1:
+DismantledThisDeckText:
 	textfw "<RAMTEXT>を"
 	linefw "くずしました"
 	done
 
-Text02e2:
+ChooseDeckToBuildText:
 	textfw "つくりたいデッキを えらんでください"
 	done
 
-Text02e3:
+CannotBuildMustDismantleText:
 	textfw "このデッキは 手もちのデッキを"
 	linefw "くずさないと つくれません"
 	done
 
-Text02e4:
+YouDoNotOwnAllCardsNeededToBuildThisDeckText:
 	textfw "このデッキを つくるのに"
 	linefw "ひつようなカードを もっていません"
 	done
 
-Text02e5:
+BuiltDeckText:
 	textfw "<RAMTEXT>を"
 	linefw "つくりました"
 	done
 
-Text02e6:
+NeedTheseCardsToBuildThisDeckText:
 	textfw "デッキを つくるには"
 	linefw "これだけのカードが ひつようです"
 	done
 
-Text02e7:
+LackTheseCardsToBuildThisDeckText:
 	textfw "このデッキを つくるには"
 	linefw "これだけのカードが たりません"
 	done
 
-Text02e8:
+UsingTheseCardsInOtherDecksText:
 	textfw "これらのカードが"
 	linefw "ほかのデッキで つかわれています"
 	done
 
-Text02e9:
+UsingTheseCardsTooInOtherDecksText:
 	textfw "また これらのカードが"
 	linefw "ほかのデッキで つかわれています"
 	done
 
-Text02ea:
+DismantleTheseDecksPromptText:
 	textfw "これらのデッキを くずしますか?"
 	done
 
-Text02eb:
+DismantledTheseDecksText:
 	textfw "デッキを くずしました"
 	done
 
-Text02ec:
+DeleteSavedDeckPromptText:
 	textfw "このきろくが きえても いいですか?"
 	done
 
-Text02ed:
+DeckMachineReadInstructionsText:
 	textfw "せつめいをみる"
 	done
 
-Text02ee:
+MaySubInEnergyCardsToBuildThisDeckText:
 	textfw "エネルギーカードを かわりにつかって"
 	linefw "デッキを つくることができます"
 	done
 
-Text02ef:
+BuildSubbedDeckPromptText:
 	textfw "かわりのデッキを つくりますか?"
 	done
 
-Text02f0:
+CannotBuildLackingTooManyCardsText:
 	textfw "たりないカードが おおすぎるので"
 	linefw "デッキをつくることが できません"
 	done
 
-Text02f1:
+CannotBuildLackingEnergyCardsText:
 	textfw "エネルギーカードが たりないので"
 	linefw "デッキをつくることが できません"
 	done
 
-Text02f2:
+CannotBuildLackingBasicPokemonText:
 	textfw "たねポケモンが はいっていないので"
 	linefw "デッキをつくることが できません"
 	done
 
-Text02f3:
+BuiltSubbedDeckWithTheseCardsText:
 	textfw "これらのカードを つかって"
 	linefw "かわりのデッキを つくりました"
 	done
 
-Text02f4:
+SubInEnergyCardsPromptText:
 	textfw "エネルギーカードをだいようしますか?"
 	done
 
-Text02f5:
+ChooseDeckTypeText:
 	textfw "デッキの しゅるいを"
 	linefw "えらんでください"
 	done
