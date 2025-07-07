@@ -3619,7 +3619,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 	ret
 
 .power_of_darkness
-	ldtx de, Text013f
+	ldtx de, PowerOfDarknessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	call SwapTurn

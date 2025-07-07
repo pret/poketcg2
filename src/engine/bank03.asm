@@ -785,7 +785,7 @@ TextIDs_d18f:
 	tx Text09cd ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	tx Text09ce ; OWMAP_COLORLESS_ALTAR
 	tx Text09cf ; OWMAP_GR_CASTLE
-	tx Text0069
+	tx Drew7CardsText ; $0069, weird
 ; 0xd1ab
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]

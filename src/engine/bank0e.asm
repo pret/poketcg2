@@ -1799,7 +1799,7 @@ HandleAIFossilize:
 	farcall AIMakeDecision
 	ld a, -1
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldtx de, Text013d
+	ldtx de, FossilizeCheckText
 	farcall Func_68079
 	jr c, .got_heads
 	farcall Func_6809a
@@ -1947,7 +1947,7 @@ HandleAIMagnet:
 	ldh [hTempCardIndex_ff9f], a
 	ld a, OPPACTION_UNK_0C
 	farcall AIMakeDecision
-	ldtx de, Text0147
+	ldtx de, MagnetCheckText
 	farcall Func_68079
 	ldh [hAIPkmnPowerEffectParam], a
 	jr c, .heads
@@ -4802,24 +4802,24 @@ FillBoosterPackMenuItems:
 	ret
 
 .ObtainedTextIDs:
-	tx Text02c1
-	tx Text02c2
-	tx Text02c3
-	tx Text02c5
-	tx Text02c7
-	tx Text02c9
-	tx Text02cb
-	tx Text02cd
+	tx Item1BeginningPokemonText
+	tx Item2LegendaryPowerText
+	tx Item3IslandOfFossilText
+	tx Item4PsychicBattleText
+	tx Item5SkyFlyingPokemonText
+	tx Item6WeAreTeamRocketText
+	tx Item7TeamRocketsAmbitionText
+	tx Item8PromotionalCardText
 
 .NotObtainedTextIDs:
-	tx Text02c1
-	tx Text02c2
-	tx Text02c4
-	tx Text02c6
-	tx Text02c8
-	tx Text02ca
-	tx Text02cc
-	tx Text02ce
+	tx Item1BeginningPokemonText
+	tx Item2LegendaryPowerText
+	tx Item3IslandOfFossilLockedText
+	tx Item4PsychicBattleLockedText
+	tx Item5SkyFlyingPokemonLockedText
+	tx Item6WeAreTeamRocketLockedText
+	tx Item7TeamRocketsAmbitionLockedText
+	tx Item8PromotionalCardLockedText
 
 UpdateBoosterPackMenuArrows:
 	ld a, [wScrollMenuScrollOffset]
@@ -5190,7 +5190,7 @@ PrintDeckMachineEntry:
 ; invalid deck, give it the default
 ; empty deck name ("--------------")
 	call InitTextPrinting
-	ldtx hl, Text02d2 ; EmptyDeckNameText
+	ldtx hl, EmptyDeckNameText
 	call ProcessTextFromID
 	ld d, 12
 	inc e

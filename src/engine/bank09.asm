@@ -370,7 +370,7 @@ HandleWaitingLinkOpponentMenu:
 .loop_outer
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-	ldtx hl, Text005a ; WaitingHandExamineText
+	ldtx hl, WaitingHandExamineText
 	call DrawWideTextBox_PrintTextNoDelay
 	call .InitTextBoxMenu
 .loop_inner
@@ -518,7 +518,7 @@ Func_24494:
 ; hTempCardIndex_ff9f contains the card's deck index
 DisplayUsedTrainerCardDetailScreen:
 	ldh a, [hTempCardIndex_ff9f]
-	ldtx hl, Text0034 ; UsedText
+	ldtx hl, UsedText
 	bank1call DisplayCardDetailScreen
 	ret
 
@@ -533,7 +533,7 @@ PrintAttachedEnergyToPokemon:
 	call LoadCardNameToTxRam2_b
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardNameToTxRam2
-	ldtx hl, Text0061 ; AttachedEnergyToPokemonText
+	ldtx hl, AttachedEnergyToPokemonText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -546,7 +546,7 @@ PrintPokemonEvolvedIntoPokemon:
 	call LoadCardNameToTxRam2
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardNameToTxRam2_b
-	ldtx hl, Text0062 ; AttachedEnergyToPokemonText
+	ldtx hl, PokemonEvolvedIntoPokemonText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -554,7 +554,7 @@ DoAIOpponentTurn:
 	xor a
 	ld [wVBlankCounter], a
 	ld [wSkipDuelistIsThinkingDelay], a
-	ldtx hl, Text008d ; DuelistIsThinkingText
+	ldtx hl, DuelistIsThinkingText
 	call DrawWideTextBox_PrintTextNoDelay
 	call AIDoAction_Turn
 	ld a, $ff
@@ -592,7 +592,7 @@ AIMakeDecision:
 	or a
 	ret nz
 	ld [wVBlankCounter], a
-	ldtx hl, Text008d ; DuelistIsThinkingText
+	ldtx hl, DuelistIsThinkingText
 	call DrawWideTextBox_PrintTextNoDelay
 	or a
 	ret
@@ -755,19 +755,19 @@ PlayShuffleAndDrawCardsAnimation_TurnDuelist:
 	ld b, DUEL_ANIM_OPP_SHUFFLE
 	ld c, DUEL_ANIM_OPP_DRAW
 .play_anim
-	ldtx hl, Text0065 ; ShufflesTheDeckText
-	ldtx de, Text0069 ; Drew7CardsText
+	ldtx hl, ShufflesTheDeckText
+	ldtx de, Drew7CardsText
 	jr PlayShuffleAndDrawCardsAnimation
 
 PlayShuffleAndDrawCardsAnimation_BothDuelists:
 	ld b, DUEL_ANIM_BOTH_SHUFFLE
 	ld c, DUEL_ANIM_BOTH_DRAW
-	ldtx hl, Text0067 ; EachPlayerShuffleOpponentsDeckText
-	ldtx de, Text0068 ; EachPlayerDraw7CardsText
+	ldtx hl, EachPlayerShuffleOpponentsDeckText
+	ldtx de, EachPlayerDraw7CardsText
 	ld a, [wcd17]
 	or a
 	jr z, PlayShuffleAndDrawCardsAnimation
-	ldtx hl, Text0066 ; ThisIsJustPracticeDoNotShuffleText
+	ldtx hl, ThisIsJustPracticeDoNotShuffleText
 ;	fallthrough
 
 ; animate the shuffle and drawing screen
@@ -968,14 +968,14 @@ DisplayDrawNCardsScreen:
 	or a
 	jr nz, .can_draw
 	; if wNumCardsTryingToDraw set to 0 before, it's because not enough cards in deck
-	ldtx hl, Text016f ; CannotDrawCardBecauseNoCardsInDeckText
+	ldtx hl, DrawNoCardsFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	jr .done
 .can_draw
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
-	ldtx hl, Text016e ; DrawCardsFromTheDeckText
+	ldtx hl, DrawCardsFromTheDeckText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 .anim_drawing_cards_loop
@@ -1416,8 +1416,8 @@ ConvertSpecialTrainerCardToPokemon::
 .trainer_to_pkmn_data
 	db CARD_DATA_HP
 	ds CARD_DATA_ATTACK1_NAME - (CARD_DATA_HP + 1)
-	tx Text0031 ; DiscardName ; CARD_DATA_ATTACK1_NAME
-	tx Text0042 ; DiscardDescription ; CARD_DATA_ATTACK1_DESCRIPTION
+	tx DiscardActionName ; CARD_DATA_ATTACK1_NAME
+	tx DiscardActionDescription ; CARD_DATA_ATTACK1_DESCRIPTION
 	ds CARD_DATA_ATTACK1_CATEGORY - (CARD_DATA_ATTACK1_DESCRIPTION + 2)
 	db POKEMON_POWER      ; CARD_DATA_ATTACK1_CATEGORY
 	dw $4896; TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
@@ -1427,8 +1427,8 @@ ConvertSpecialTrainerCardToPokemon::
 
 .mind_shock_attack_data
 	energy 0 ; energies
-	tx Text01ce ; name
-	tx Text01cf ; description
+	tx ClefairyDollsMindShockName ; name
+	tx ClefairyDollsMindShockDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category

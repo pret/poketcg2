@@ -492,7 +492,7 @@ OpenDeckConfirmationMenu:
 SECTION "Bank 2@5215", ROMX[$5215], BANK[$2]
 
 Func_9215:
-	ldtx hl, Text0299
+	ldtx hl, ThereIsNoDeckHereText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wCurDeck]
 	ret
@@ -679,10 +679,10 @@ DrawDeckSelectionMenu:
 	ret
 
 .text_items
-	textitem 4,  2, Text0294 ; "1・"
-	textitem 4,  5, Text0295 ; "2・"
-	textitem 4,  8, Text0296 ; "3・"
-	textitem 4, 11, Text0297 ; "4・"
+	textitem 4,  2, Deck1Text ; "1・"
+	textitem 4,  5, Deck2Text ; "2・"
+	textitem 4,  8, Deck3Text ; "3・"
+	textitem 4, 11, Deck4Text ; "4・"
 	db $ff
 
 CopyDeckName:
@@ -732,7 +732,7 @@ PrintDeckName:
 
 .empty_deck
 	call InitTextPrinting
-	ldtx hl, Text028c
+	ldtx hl, NewDeckText
 	call ProcessTextFromID
 	scf
 	ret
@@ -3142,7 +3142,7 @@ PrintPlayersCardsText:
 	ld d, b
 	ld e, 0
 	call InitTextPrinting
-	ldtx hl, Text02d1
+	ldtx hl, SCardsText ; "のカード" ('s Cards)
 	call ProcessTextFromID
 	ret
 
@@ -4204,7 +4204,7 @@ CardAlbum:
 	ld a, [wCardAlbumBoosterPack]
 	cp PROMOTIONAL
 	jr nz, .check_team_rockets_ambition
-	ldtx hl, Text02cd
+	ldtx hl, Item8PromotionalCardText
 	ld e, NUM_CARDS_PROMOTIONAL
 
 	; check which Phantom cards were obtained
@@ -4230,7 +4230,7 @@ CardAlbum:
 .check_team_rockets_ambition
 	cp TEAM_ROCKETS_AMBITION
 	jr nz, .check_we_are_team_rocket
-	ldtx hl, Text02cb
+	ldtx hl, Item7TeamRocketsAmbitionText
 	ld e, NUM_CARDS_TEAM_ROCKETS_AMBITION
 	jr .got_booster_pack
 
@@ -4244,21 +4244,21 @@ CardAlbum:
 .check_sky_flying_pokemon
 	cp SKY_FLYING_POKEMON
 	jr nz, .check_psychic_battle
-	ldtx hl, Text02c7
+	ldtx hl, Item5SkyFlyingPokemonText
 	ld e, NUM_CARDS_SKY_FLYING_POKEMON
 	jr .got_booster_pack
 
 .check_psychic_battle
 	cp PSYCHIC_BATTLE
 	jr nz, .check_island_of_fossil
-	ldtx hl, Text02c5
+	ldtx hl, Item4PsychicBattleText
 	ld e, NUM_CARDS_PSYCHIC_BATTLE
 	jr .got_booster_pack
 
 .check_island_of_fossil
 	cp ISLAND_OF_FOSSIL
 	jr nz, .check_legendary_power
-	ldtx hl, Text02c3
+	ldtx hl, Item3IslandOfFossilText
 	ld e, NUM_CARDS_ISLAND_OF_FOSSIL
 	jr .got_booster_pack
 
@@ -4270,7 +4270,7 @@ CardAlbum:
 	jr .got_booster_pack
 
 .beginning_pokemon
-	ldtx hl, Text02c1
+	ldtx hl, Item1BeginningPokemonText
 	ld e, NUM_CARDS_BEGINNING_POKEMON
 .got_booster_pack
 	; prints "X/Y" where X is number of cards owned in the set
@@ -4396,10 +4396,10 @@ CardAlbum:
 	lb bc, 20, 13
 	call DrawRegularTextBox
 	lb de, 1, 0
-	ldtx hl, Text02c0 ; title
+	ldtx hl, BoosterPackTitleText ; title
 	call Func_2c4b
 	farcall FillBoosterPackMenuItems
-	ldtx hl, Text02cf
+	ldtx hl, ViewWhichCardFileText
 	call DrawWideTextBox_PrintText
 	farcall UpdateBoosterPackMenuArrows
 	ret

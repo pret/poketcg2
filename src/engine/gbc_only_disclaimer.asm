@@ -8,7 +8,7 @@ GBCOnlyDisclaimer:
 	lb de, $30, $5f
 	call SetupText
 	lb de, 3, 9
-	ldtx hl, Text00f9
+	ldtx hl, GBCOnlyString
 	call InitTextPrinting_ProcessTextFromID
 	bank1call ZeroObjectPositionsAndToggleOAMCopy
 	call EnableLCD

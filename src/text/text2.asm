@@ -1,351 +1,353 @@
-Text013e:
+PrehistoricDreamCheckText: ; $013e
 	textfw "「おもて」なら 「なにかの化石」から"
 	linefw "進化したポケモンの ダメージが+10"
 	done
 
-Text013f:
+PowerOfDarknessCheckText: ; GENGAR_LV40
 	textfw "「おもて」なら 相手のポケモン1体と"
 	linefw "ついているカードを 手札にもどす"
 	done
 
-Text0140:
+Plus10DamageToOppAndYourselfForEachHeadsText:
 	textfw "「おもて」×10ダメージついか"
 	linefw "[自分]に 「おもて」×10ダメージ"
 	done
 
-Text0141:
+TheRocketsTrapCheckText:
 	textfw "「おもて」なら 相手の手札から"
 	linefw "3枚を 相手の山札に もどす"
 	done
 
-Text0142:
+ParalyzedIfHeads10DamageToYourselfIfTailsText:
 	textfw "「おもて」なら [相手]を「マヒ」"
 	linefw "「うら」なら [自分]に10ダメージ"
 	done
 
-Text0143:
+IfHeadsReturnAllCardsAttachedToOpponentText: ; PIDGEOTTO_LV38
 	textfw "「おもて」なら [相手]についている"
 	linefw "カードを すべて 手札にもどす"
 	done
 
-Text0144:
+IfHeadsHeal1StatusOfYourActiveText:
 	textfw "「おもて」なら 自分の対戦ポケモンの"
 	linefw "「特殊状態」の 1つを かいふく!"
 	done
 
-Text0145:
+BotherCheckText: ; DARK_HAUNTER
 	textfw "「おもて」なら 相手の手札から"
 	linefw "トレーナーカードが1枚 山札にもどる"
 	done
 
-Text0146:
+PerplexCheckText:
 	textfw "「うら」なら <RAMNAME>は"
 	linefw "つぎの番のはじめに カードをひけない"
 	done
 
-Text0147:
+MagnetCheckText:
 	textfw "「おもて」なら 山札から"
 	linefw "「コイル」をえらんで ベンチにだす"
 	done
 
-Text0148:
+FossilGuidanceCheckText:
 	textfw "「おもて」なら トラッシュから"
 	linefw "「なにかの化石」を 手札に加える"
 	done
 
-Text0149:
+AttackUnsuccessfulText:
 	textfw "ワザを しっぱいした"
 	done
 
-Text014a:
+UnableToRetreatDueToAcidText:
 	textfw "「ようかいえき」の効果で"
 	linefw "にげられない"
 	done
 
-Text014b:
+UnableToRetreatDueToRockSealText:
 	textfw "「いわふうじ」の効果で"
 	linefw "にげられない"
 	done
 
-Text014c:
+UnableToRetreatDueToDrillDiveText:
 	textfw "「ドリルダイブ」の効果で"
 	linefw "にげられない"
 	done
 
-Text014d:
+UnableToRetreatDueToGuardText:
 	textfw "「とおせんぼ」の効果で"
 	linefw "にげられない"
 	done
 
-Text014e:
+UnableToUseTrainerDueToHeadacheText:
 	textfw "「ずつう」の効果で"
 	linefw "トレーナーカードは つかえない"
 	done
 
-Text014f:
+UnableToUseTrainerDueToSpookifyText:
 	textfw "「こわがらせる」の効果で"
 	linefw "トレーナーカードは つかえない"
 	done
 
-Text0150:
+UnableToAttackDueToTailWagText:
 	textfw "「しっぽをふる」の効果で"
 	linefw "ワザが つかえない"
 	done
 
-Text0151:
+UnableToAttackDueToLeerText:
 	textfw "「にらみつける」の効果で"
 	linefw "ワザが つかえない"
 	done
 
-Text0152:
+UnableToAttackDueToBoneAttackText:
 	textfw "「ホネでたたく」の効果で"
 	linefw "ワザが つかえない"
 	done
 
-Text0153:
+UnableToAttackDueToDrillDiveText:
 	textfw "「ドリルダイブ」の効果で"
 	linefw "ワザが つかえない"
 	done
 
-Text0154:
+UnableToUseAttackDueToAmnesiaText:
 	textfw "「ドわすれ」の効果で"
 	linefw "このワザは つかえない"
 	done
 
-Text0155:
+UnableToUseAttackDueToDisableText:
 	textfw "「かなしばり」の効果で"
 	linefw "このワザは つかえない"
 	done
 
-Text0156:
+KnockedOutDueToDestinyBondText:
 	textfw "「みちづれ」の効果で"
 	linefw "<RAMTEXT>は「きぜつ」した"
 	done
 
-Text0157:
+ReceivesDamageDueToStrikesBackText:
 	textfw "<RAMTEXT>は"
 	linefw "「はんげき」の効果で<RAMNUM>ダメージ!"
 	done
 
-Text0158:
+UnableToEvolveDueToPrehistoricPowerText:
 	textfw "「げんしのちから」の効果で"
 	linefw "進化できない"
 	done
 
-Text0159:
+NoDamageOrEffectDueToFlyText:
 	textfw "「そらをとぶ」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text015a:
+NoDamageOrEffectDueToBarrierText:
 	textfw "「バリアー」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text015b:
+NoDamageOrEffectDueToAgilityText:
 	textfw "「こうそくいどう」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text015c:
+NoDamageOrEffectDueToHideText:
 	textfw "「かくれる」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text015d:
+UnableToUseAttacktDueToNShieldText:
 	textfw "「ニュートラルシールド」の効果で"
 	linefw "このワザは つかえない"
 	done
 
-Text015e:
+NoDamageOrEffectDueToNShieldText:
 	textfw "「ニュートラルシールド」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text015f:
+NoDamageOrEffectDueToTransparencyText:
 	textfw "「とうめい」の効果で"
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-Text0160:
+UnableToUseTrainerDueToHayFeverText:
 	textfw "「アレルギーかふん」の効果で"
 	linefw "トレーナーカードは つかえない"
 	done
 
-Text0161:
+PoisonFluidActivatedText:
 	textfw "「どくのたいえき」の効果!!"
 	done
 
-Text0162:
+UnableToDrawCardDueToPerplexText:
 	textfw "「まどわす」の効果で"
 	linefw "カードをひくことが できない"
 	done
 
-Text0163:
+MetamorphsToText:
 	textfw "<RAMTEXT>は"
 	linefw "<RAMTEXT>に へんしんした"
 	done
 
-Text0164:
+SelectPkmnOnBenchToSwitchWithActiveText:
 	textfw "対戦ポケモンと いれかえる"
 	linefw "控えポケモンを えらんでください"
 	done
 
-Text0165:
+SelectPokemonToPlaceInTheArenaText:
 	textfw "バトル場に だす"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text0166:
+DuelistIsSelectingPokemonToPlaceInArenaText:
 	textfw "<RAMNAME>はバトル場に だす"
 	linefw "ポケモンを えらんでいます"
 	done
 
-Text0167:
+ChooseWeaknessYouWishToChangeText:
 	textfw "テクスチャー1でかえる"
 	linefw "弱点の色を えらんでください"
 	done
 
-Text0168:
+ChooseResistanceYouWishToChangeText:
 	textfw "テクスチャー2でかえる"
 	linefw "抵抗力の 色を えらんでください"
 	done
 
-Text0169:
+ChoosePokemonWishToColorChangeText:
 	textfw "へんしょくでかえる"
 	linefw "ポケモンの色を えらんでください"
 	done
 
-Text016a:
+ChangedTheWeaknessOfPokemonToColorText:
 	textfw "<RAMTEXT>の弱点を"
 	linefw "<RAMTEXT>にかえた"
 	done
 
-Text016b:
+ChangedTheResistanceOfPokemonToColorText:
 	textfw "<RAMTEXT>の抵抗力を"
 	linefw "<RAMTEXT>にかえた"
 	done
 
-Text016c:
+ChangedTheColorOfText:
 	textfw "<RAMTEXT>の色を"
 	linefw "<RAMTEXT>にかえた"
 	done
 
-Text016d:
+Draw1CardFromTheDeckText:
 	textfw "山札からカードを"
 	linefw "1枚 ひきます"
 	done
 
-Text016e:
+DrawCardsFromTheDeckText:
 	textfw "山札からカードを"
 	linefw "<RAMNUM>枚 ひきます"
 	done
 
-Text016f:
+DrawNoCardsFromTheDeckText:
+	; just "Draw no cards from the Deck."
+	; simplified from "Cannot draw a card because<LINE>there are no cards in the Deck."
 	textfw "山札から カードを引きません"
 	done
 
-Text0170:
+ChoosePkmnInTheBenchToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "えらんでください"
 	done
 
-Text0171:
+ChoosePkmnToGiveDamageText:
 	textfw "ダメージをあたえる ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text0172:
+ChooseUpTo3PkmnOnBenchToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "3体まで えらんでください"
 	done
 
-Text0173:
+Choose1BasicEnergyCardFromDeckText:
 	textfw "山札から 基本エネルギーカードを"
 	linefw "1枚 えらんでください"
 	done
 
-Text0174:
+ChoosePokemonToAttachEnergyCardText:
 	textfw "エネルギーカードをつける"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text0175:
+ChooseAndDiscard1FireEnergyCardText: ; unused?
 	textfw "「炎」エネルギーカードを"
 	linefw "1枚えらんで トラッシュしてください"
 	done
 
-Text0176:
+ChooseAndDiscard2FireEnergyCardsText:
 	textfw "「炎」エネルギーカードを"
 	linefw "2枚えらんで トラッシュしてください"
 	done
 
-Text0177:
+DiscardOppDeckAsManyFireEnergyCardsText:
 	textfw "トラッシュした「炎」エネルギーの"
 	linefw "数だけ 相手の山札をトラッシュします"
 	done
 
-Text0178:
+ChooseAndDiscard2EnergyCardsText:
 	textfw "エネルギーカードを"
 	linefw "2枚えらんで トラッシュしてください"
 	done
 
-Text0179:
+ChooseAKrabbyFromDeckText:
 	textfw "山札から"
 	linefw "クラブを えらんでください"
 	done
 
-Text017a:
+ChooseDiscardEnergyCardFromOpponentText:
 	textfw "相手の対戦ポケモンからトラッシュする"
 	linefw "エネルギーカードを えらんでください"
 	done
 
-Text017b:
+ChooseAttackOpponentWillNotBeAbleToUseText:
 	textfw "つぎの相手の番に つかえなくする"
 	linefw "ワザを えらんでください"
 	done
 
-Text017c:
+ChooseBasicFightingPokemonFromDeckText:
 	textfw "山札から 「闘」のたねポケモンを"
 	linefw "えらんでください"
 	done
 
-Text017d:
+ChooseAnOddishFromDeckText:
 	textfw "山札から"
 	linefw "ナゾノクサを えらんでください"
 	done
 
-Text017e:
+ChooseAnOddishText:
 	textfw "ナゾノクサを"
 	linefw "えらんでください"
 	done
 
-Text017f:
+ChooseAKrabbyText:
 	textfw "クラブを"
 	linefw "えらんでください"
 	done
 
-Text0180:
+ChooseBasicEnergyCardText:
 	textfw "基本エネルギーカード"
 	linefw "を えらんでください"
 	done
 
-Text0181:
+ChooseNidoranFromDeckText:
 	textfw "山札から ニドラン♀か"
 	linefw "ニドラン♂を えらんでください"
 	done
 
-Text0182:
+ChooseNidoranText:
 	textfw "ニドラン♀か"
 	linefw "ニドラン♂を えらぶ"
 	done
 
-Text0183:
+ChooseBasicFightingPokemonText:
 	textfw "「闘」のたねポケモン"
 	linefw "をえらぶ"
 	done
 
-Text0184:
+ProcedureForEnergyTransferText:
 	textfw "  エナジートランスの操作説明"
 	linefw ""
 	linefw "1ˍ「草」エネルギーの移動もとの"
@@ -359,22 +361,22 @@ Text0184:
 	linefw "4ˍBボタンで おわります"
 	done
 
-Text0185:
+ChooseABellsproutFromDeckText:
 	textfw "山札から"
 	linefw "マダツボミを えらんでください"
 	done
 
-Text0186:
+ChooseABellsproutText:
 	textfw "マダツボミを"
 	linefw "えらんでください"
 	done
 
-Text0187:
+ChoosePkmnToRemoveDamageCounterText:
 	textfw "ダメージカウンターを とりのぞく"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text0188:
+ProcedureForCurseText:
 	textfw "  のろいの操作説明"
 	linefw ""
 	linefw "1ˍダメージカウンターの移動もとの"
@@ -386,22 +388,22 @@ Text0188:
 	linefw "3ˍBボタンで キャンセルできます"
 	done
 
-Text0189:
+Choose2EnergyCardsFromDiscardPileToAttachText:
 	textfw "ポケモンにつける エネルギーカードを"
 	linefw "2枚 トラッシュからえらんでください"
 	done
 
-Text018a:
+Choose2EnergyCardsFromDiscardPileForHandText:
 	textfw "手札にいれる エネルギーカードを"
 	linefw "2枚 トラッシュからえらんでください"
 	done
 
-Text018b:
+ChooseAnEnergyCardText:
 	textfw "エネルギーカードを"
 	linefw "えらんでください"
 	done
 
-Text018c:
+ProcedureForProphecyText:
 	textfw "  みらいよちの操作説明"
 	linefw ""
 	linefw "1ˍ自分の山札か 相手の山札かを"
@@ -416,12 +418,12 @@ Text018c:
 	linefw "4ˍBボタンで キャンセルです"
 	done
 
-Text018d:
+ChooseTheOrderOfTheCardsText:
 	textfw "ならびかえる 順番に"
 	linefw "えらんでください"
 	done
 
-Text018e:
+ProcedureForDamageSwapText:
 	textfw "  ダメージスワップの操作説明"
 	linefw ""
 	linefw "1ˍダメージカウンターの移動もとの"
@@ -438,7 +440,7 @@ Text018e:
 	linefw "  移動はできない"
 	done
 
-Text018f:
+ProcedureForDevolutionBeamText:
 	textfw "  たいかビームの操作説明"
 	linefw ""
 	linefw "1ˍ自分の場のポケモンか"
@@ -451,7 +453,7 @@ Text018f:
 	linefw "3ˍBボタンで キャンセルです"
 	done
 
-Text0190:
+ProcedureForStrangeBehaviorText:
 	textfw "  へんなこうどうの操作説明"
 	linefw ""
 	linefw "1ˍヤドランに ダメージカウンターを"
@@ -466,108 +468,109 @@ Text0190:
 	linefw "  移動はできない"
 	done
 
-Text0191:
+ChooseOppAttackToBeUsedWithMetronomeText:
 	textfw "ゆびをふるでつかう"
 	linefw "[相手]のワザを えらんでください"
 	done
 
-Text0192:
+NoTargetsInDeckText:
 	textfw "<RAMTEXT>は"
 	linefw "山札に ありませんでした"
 	done
 
-Text0193:
+NoTargetsButCheckDeckPromptText:
 	textfw "山札を かくにんしますか?"
 	done
 
-Text0194:
+SelectTargetDeckText:
 	textfw "どちらかの山札を えらんでください"
 	linefw "      自分  相手"
 	done
 
-Text0195:
+SelectTargetPlayAreaText:
 	textfw "どちらかの場を えらんでください"
 	linefw "      自分  相手"
 	done
 
-Text0196:
+EffectTargetNidoranMNidoranFText:
 	textfw "ニドラン♂とニドラン♀"
 	done
 
-Text0197:
+EffectTargetOddishText:
 	textfw "ナゾノクサ"
 	done
 
-Text0198:
+EffectTargetBellsproutText:
 	textfw "マダツボミ"
 	done
 
-Text0199:
+EffectTargetKrabbyText:
 	textfw "クラブ"
 	done
 
-Text019a:
+EffectTargetFightingPokemonText:
 	textfw "「闘」ポケモン"
 	done
 
-Text019b:
+EffectTargetBasicEnergyText:
 	textfw "基本エネルギー"
 	done
 
-Text019c:
+PeekWasUsedToLookInYourHandText:
 	textfw "スパイで 手札のなかの"
 	linefw "<RAMTEXT>を みられた"
 	done
 
-Text019d:
+CardPeekWasUsedOnText:
 	textfw "スパイで みたところ"
 	done
 
-Text019e:
+PokemonAndAllAttachedCardsReturnedToHandText:
+	; colloquial "ついてる" instead of "ついている"
 	textfw "<RAMTEXT>とそれについてる"
 	linefw "カードを すべて手札にもどした"
 	done
 
-Text019f:
+DisabledNextTurnText:
 	textfw "つぎの番で"
 	linefw "<RAMTEXT>は つかえない"
 	done
 
-Text01a0:
+BasicPokemonWasPlacedOnEachBenchText:
 	textfw "おたがいの ベンチに"
 	linefw "たねポケモンが よびだされた"
 	done
 
-Text01a1:
+WasUnsuccessfulText:
 	textfw "<RAMTEXT>は"
 	linefw "「<RAMTEXT>」 しっぱい!"
 	done
 
-Text01a2:
+MetronomeWasUnsuccessfulText:
 	textfw "<RAMTEXT>は"
 	linefw "「ゆびをふる」を しっぱいした"
 	done
 
-Text01a3:
+ThereWasNoEffectFromTxRam2Text:
 	textfw "「<RAMTEXT>」の効果は なかった"
 	done
 
-Text01a4:
+TheEnergyCardFromPlayAreaWasMovedText:
 	textfw "<RAMNAME>の場の"
 	linefw "エネルギーカードが いどうした"
 	done
 
-Text01a5:
+DrewFireEnergyFromDeckText:
 	textfw "<RAMNAME>は 山札から"
 	linefw "「炎」エネルギーカードを <RAMNUM>枚ひいた"
 	done
 
-Text01a6:
+AffectedByMixUpText: ; NINETALES_LV35
 	textfw "<RAMNAME>の 手札と 山札の"
 	linefw "ポケモンカードが かきみだされた!"
 	done
 
-Text01a7:
+ProcedureForGatherFireText:
 	textfw "  ほのおをもらうの操作説明"
 	linefw ""
 	linefw "1ˍ炎エネルギーがついている"
@@ -577,199 +580,202 @@ Text01a7:
 	linefw "  えらんで Aボタン"
 	done
 
-Text01a8:
+RemoveEnergyCardPromptText:
 	textfw "エネルギーカードを はがしますか?"
 	done
 
-Text01a9:
+ReceivedDamageDueToMirrorShellText:
 	textfw "<RAMTEXT>は"
 	linefw "「こうらがえし」で<RAMNUM>ダメージ!"
 	done
 
-Text01aa:
+ChooseEvolutionCardForMagikarpFromDeckText:
 	textfw "山札から コイキングから 進化する"
 	linefw "進化カードを えらんでください"
 	done
 
-Text01ab:
+EffectTargetGyaradosText:
 	textfw "ギャラドス"
 	done
 
-Text01ac:
+ChooseAGyaradosText:
 	textfw "ギャラドスを"
 	linefw "えらんでください"
 	done
 
-Text01ad:
+ReceivedDamageDueToFinalBeamText:
 	textfw "「ファイナルビーム」の効果で"
 	linefw "<RAMNUM>ダメージ!"
 	done
 
-Text01ae:
+SwitchOutDarkAlakazamPromptText:
 	textfw "わるいフーディンを いれかえますか?"
 	done
 
-Text01af:
+ChooseAPshychicEnergyCardFromDeckText:
 	textfw "山札から 超エネルギーカードを"
 	linefw "えらんでください"
 	done
 
-Text01b0:
+EffectTargetPsychicEnergyText:
 	textfw "超エネルギー"
 	done
 
-Text01b1:
+ChooseAPsychicEnergyCardText:
 	textfw "超エネルギーカードを"
 	linefw "えらんでください"
 	done
 
-Text01b2:
+CardTrickeryWasUsedOnText:
 	textfw "「わるふざけ」で"
 	linefw "いれかえた ところ"
 	done
 
-Text01b3:
+ChooseAnEvolutionCardFromDeckText:
 	textfw "山札から 進化カードを"
 	linefw "えらんでください"
 	done
 
-Text01b4:
+EffectTargetEvolutionCardText:
 	textfw "進化カード"
 	done
 
-Text01b5:
+ChooseAnEvolutionCardText:
 	textfw "進化カードを"
 	linefw "えらんでください"
 	done
 
-Text01b6:
+ChooseAParasFromDeckText:
 	textfw "山札から パラスを"
 	linefw "えらんでください"
 	done
 
-Text01b7:
+EffectTargetParasText:
 	textfw "パラス"
 	done
 
-Text01b8:
+ChooseAParasText:
 	textfw "パラスを"
 	linefw "えらんでください"
 	done
 
-Text01b9:
+ChooseATrainerCardFromDeckText:
 	textfw "山札から トレーナーカードを"
 	linefw "えらんでください"
 	done
 
-Text01ba:
+ChooseATrainerCardText:
 	textfw "トレーナーカードを"
 	linefw "えらんでください"
 	done
 
-Text01bb:
+IfHeadsAttachUpTo3WaterEnergyFromDeckText:
 	textfw "「おもて」なら 山札から 3枚まで"
 	linefw "水エネルギーをひいて [自分]につける"
 	done
 
-Text01bc:
+ChooseWaterEnergyText:
 	textfw "「水」エネルギーを"
 	linefw "えらんでください"
 	done
 
-Text01bd:
+NoFossilsInDiscardPileText:
 	textfw "「なにかの化石」は"
 	linefw "トラッシュに ありません"
 	done
 
-Text01be:
+ChooseALightningEnergyFromDeckText:
 	textfw "山札から 「雷」エネルギーを"
 	linefw "えらんでください"
 	done
 
-Text01bf:
+EffectTargetLightningEnergyText:
 	textfw "雷エネルギー"
 	done
 
-Text01c0:
+ChooseALightningEnergyText:
 	textfw "「雷」エネルギーを"
 	linefw "えらんでください"
 	done
 
-Text01c1:
+ChooseAMagnemiteFromDeckText:
 	textfw "山札から コイルを"
 	linefw "えらんでください"
 	done
 
-Text01c2:
+EffectTargetMagnemiteText:
 	textfw "コイル"
 	done
 
-Text01c3:
+ChooseAMagnemiteText:
 	textfw "コイルを"
 	linefw "えらんでください"
 	done
 
-Text01c4:
+ChooseUpTo3PkmnCardsFromDiscardPileText:
 	textfw "トラッシュから ポケモンカードを"
 	linefw "3枚まで えらんでください"
 	done
 
-Text01c5:
+ChooseUpTo2BasicPkmnFromDeckText:
 	textfw "山札から たねポケモンを"
 	linefw "2枚まで えらんでください"
 	done
 
-Text01c6:
+EffectTargetBasicPkmnText:
 	textfw "たねポケモン"
 	done
 
-Text01c7:
+ChooseBasicPkmnText:
 	textfw "たねポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01c8:
+ChooseUpTo2BenchedPkmnToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "2体まで えらんでください"
 	done
 
-Text01c9:
+NoDamageOrEffectDueToAuroraVeilText:
 	textfw "「オーロラヴェール」の効果で"
 	linefw "ワザによるダメージと効果を うけない"
 	done
 
-Text01ca:
+ChooseUpTo5CardsToDrawText: ; COMPUTER_ERROR
 	textfw "5枚まで カードをひくことができます"
 	linefw "なん枚ひきますか?"
 	done
 
-Text01cb:
+EffectTargetCardsUnitText:
 	textfw "枚"
 	done
 
-Text01cc:
+EffectTargetGeneralUnitText: ; for Energy, Counters, etc.
 	textfw "コ"
 	done
 
-Text01cd:
+DuelistDrawCardsText:
 	textfw "<RAMNAME>は カードを"
 	linefw "<RAMNUM>枚 ひきます"
 	done
 
-Text01ce:
+ClefairyDollsMindShockName:
+	; redundant/dupe of MindShockName
 	textfw "マインドショック"
 	done
 
-Text01cf:
+ClefairyDollsMindShockDescription:
+	; redundant, slightly different punctuation
+	; than SonicboomAltDescription (for Mind Shock etc.)
 	textfw "このワザのダメージは [相手]の"
 	linefw "「弱点・抵抗力」の影響を受けない"
 	done
 
-Text01d0:
+DiscardingXCardsPromptText:
 	textfw "<RAMNUM>枚 トラッシュで いいですか?"
 	done
 
-Text01d1:
+ProcedureForBurningFireText:
 	textfw "  ファイヤーバーンの操作説明"
 	linefw ""
 	linefw "1ˍ炎エネルギーがついている"
@@ -783,760 +789,760 @@ Text01d1:
 	linefw "4ˍBボタンで おわります"
 	done
 
-Text01d2:
+ChooseHowManyFoodCountersToRemoveText:
 	textfw "「たべものカウンター」を"
 	linefw "いくつ とりのぞきますか?"
 	done
 
-Text01d3:
+Put1FoodCounterCurrentNumberText:
 	textfw "「たべものカウンター」が"
 	linefw "1つ ふえた! ごうけい <RAMNUM>コ!"
 	done
 
-Text01d4:
+ChoosePokemonWithWaterEnergyText:
 	textfw "「水」エネルギーの ついている"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01d5:
+ChoosePokemonToRemoveWaterEnergyFromText:
 	textfw "「水」エネルギーを はがす"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01d6:
+ChoosePokemonEvolvingFromFossilText:
 	textfw "「なにかの化石」から 進化した"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01d7:
+ChooseUpTo2FireEnergyPlus20DamageForEachText:
 	textfw "「炎」エネルギーを 2枚までえらんで"
 	linefw "はがした枚数×20ダメージついか"
 	done
 
-Text01d8:
+RemoveAllEnergyPromptText:
 	textfw "エネルギーを ぜんぶ はがしますか?"
 	done
 
-Text01d9:
+ChoosePokemonToReturnToHandText:
 	textfw "手札にもどす ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01da:
+ChoosePokemonToRemoveEnergyFromText:
 	textfw "エネルギーをはがす ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01db:
+ChoosePokemonToAttachEnergyToText:
 	textfw "エネルギーをつける ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01dc:
+ChooseCardToReturnToTopDeckText:
 	textfw "山札のうえにもどす カードを"
 	linefw "えらんでください"
 	done
 
-Text01dd:
+NoTrainerCardsInOppHandText:
 	textfw "相手の手札に トレーナーカードは"
 	linefw "ありませんでした"
 	done
 
-Text01de:
+DiscardedCardText:
 	textfw "<RAMTEXT>を"
 	linefw "トラッシュした"
 	done
 
-Text01df:
+SwitchedOutDueToVinePullText: ; DARK_IVYSAUR
 	textfw "「つるでひっぱる」の効果で"
 	linefw "[相手]が いれかわった"
 	done
 
-Text01e0:
+RemoveDamageCountersOneByOneText: ; unused?
 	textfw "Aボタンで ダメージカウンターが"
 	linefw "1つずつへります Bボタンでおわり"
 	done
 
-Text01e1:
+ChoosePokemonToRemoveDamageCounterFromText:
 	textfw "ダメージカウンターを とりのぞく"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01e2:
+ChooseCardToDiscardFromHandText:
 	textfw "手札から トラッシュするカードを"
 	linefw "えらんでください"
 	done
 
-Text01e3:
+ChoosePokemonAndRemoveEnergyText:
 	textfw "エネルギーをはがすポケモンをえらんで"
 	linefw "はがすエネルギーカードを えらびます"
 	done
 
-Text01e4:
+Choose2BasicEnergyCardsFromDiscardPileText:
 	textfw "トラッシュから基本エネルギーカードを"
 	linefw "2枚 えらんでください"
 	done
 
-Text01e5:
+ChoosePokemonPressAToRemoveDamageCounterText: ; unused?
 	textfw "ポケモンをえらび Aボタンで"
 	linefw "ダメージカウンターが とりのぞけます"
 	done
 
-Text01e6:
+Choose2CardsFromHandToDiscardText:
 	textfw "手札から トラッシュするカードを"
 	linefw "2枚 えらんでください"
 	done
 
-Text01e7:
+Choose2CardsFromHandToReturnToDeckText:
 	textfw "手札から 山札にもどすカードを"
 	linefw "2枚 えらんでください"
 	done
 
-Text01e8:
+ChooseCardToPlaceInHandText:
 	textfw "手札にいれるカードを"
 	linefw "えらんでください"
 	done
 
-Text01e9:
+ChoosePokemonToAttachDefenderToText:
 	textfw "ディフェンダーを つける"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01ea:
+DrawUpToXCardsOneByOneText: ; unused?
 	textfw "カードを <RAMNUM>枚までひけます"
 	linefw "Aボタンでひく Bボタンでおわる"
 	done
 
-Text01eb:
+ChoosePokemonToReturnToTheDeckText:
 	textfw "山札に もどす"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01ec:
+ChoosePokemonToPlaceInPlayText:
 	textfw "よびだす ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01ed:
+ChooseBasicPokemonToEvolveText:
 	textfw "進化させる たねポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01ee:
+ChoosePokemonToScoopUpText:
 	textfw "回収する ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01ef:
+ChooseCardFromYourHandToSwitchText:
 	textfw "手札から 交換するカードを"
 	linefw "えらんでください"
 	done
 
-Text01f0:
+ChooseCardToSwitchText:
 	textfw "交換するカードを"
 	linefw "えらんでください"
 	done
 
-Text01f1:
+ChooseBasicOrEvolutionPokemonCardFromDeckText:
 	textfw "山札から たねポケモンカードか"
 	linefw "進化カードを えらんでください"
 	done
 
-Text01f2:
+ChoosePokemonCardText:
 	textfw "ポケモンカードを"
 	linefw "えらんでください"
 	done
 
-Text01f3:
+RearrangeThe5CardsAtTopOfDeckText:
 	textfw "山札のうえから 5枚を"
 	linefw "すきに ならびかえてください"
 	done
 
-Text01f4:
+PleaseCheckTheOpponentsHandText:
 	textfw "相手の手札を"
 	linefw "かくにん してください"
 	done
 
-Text01f5:
+EffectTargetBasicOrEvolutionPokemonCardText:
 	textfw "たねポケモン 進化カード"
 	done
 
-Text01f6:
+CardWasChosenText:
 	textfw "<RAMTEXT>を"
 	linefw "えらんだ"
 	done
 
-Text01f7:
+ChooseBasicPokemonToPlaceOnBenchText:
 	textfw "ベンチにだす たねポケモンを"
 	linefw "えらんでください"
 	done
 
-Text01f8:
+ChooseEvolutionCardAndPressAButtonToDevolveText:
 	textfw "進化カードをえらび"
 	linefw "Aボタンで 1枚ずつはがします"
 	done
 
-Text01f9:
+ChoosePokemonInYourAreaThenPokemonInYourOppText:
 	textfw "自分の場のポケモンをえらび"
 	linefw "相手の場のポケモンをえらんでください"
 	done
 
-Text01fa:
+ChooseUpTo4FromDiscardPileText:
 	textfw "トラッシュから"
 	linefw "4枚まで えらんでください"
 	done
 
-Text01fb:
+ChooseAPokemonToSwitchWithActivePokemonText:
 	textfw "バトル場のポケモンと いれかえる"
 	linefw "ポケモンを えらんでください"
 	done
 
-Text01fc:
+PokemonAndAllAttachedCardsWereReturnedToDeckText:
 	textfw "<RAMTEXT>とそれについてる"
 	linefw "カードを すべて山札にもどした"
 	done
 
-Text01fd:
+PokemonWasReturnedFromArenaToHandText:
 	textfw "<RAMTEXT>を"
 	linefw "バトル場から 手札にもどした"
 	done
 
-Text01fe:
+PokemonWasReturnedFromBenchToHandText:
 	textfw "<RAMTEXT>を"
 	linefw "ベンチから 手札にもどした"
 	done
 
-Text01ff:
+PokemonWasReturnedToDeckText:
 	textfw "<RAMTEXT>を"
 	linefw "山札に もどした"
 	done
 
-Text0200:
+WasPlacedInTheHandText:
 	textfw "<RAMTEXT>を"
 	linefw "手札に いれた"
 	done
 
-Text0201:
+TheCardYouReceivedText:
 	textfw "手に いれたカード"
 	done
 
-Text0202:
+YouReceivedTheseCardsText:
 	textfw "これらのカードを"
 	linefw "手に いれた"
 	done
 
-Text0203:
+ChooseTheCardToPutBackText:
 	textfw "もどすカードを"
 	linefw "えらんでください"
 	done
 
-Text0204:
+ChooseTheCardToDiscardText:
 	textfw "すてるカードを"
 	linefw "えらんでください"
 	done
 
-Text0205:
+DiscardedCardsFromDeckText:
 	textfw "<RAMNAME>の山札を<RAMNUM>枚"
 	linefw "トラッシュした"
 	done
 
-Text0206:
+DiscardedCardFromHandText: ; unused?
 	textfw "<RAMTEXT>を"
 	linefw "手札からトラッシュした"
 	done
 
-Text0207:
+NoneCameText:
 	textfw "だれも でてこなかった"
 	done
 
-Text0208:
+CameToTheBenchText:
 	textfw "<RAMTEXT>が"
 	linefw "ベンチにでてきた"
 	done
 
-Text0209:
+DuelistHasNoCardsInHandText:
 	textfw "<RAMNAME>は"
 	linefw "手札が ありませんでした"
 	done
 
-Text020a:
+PokemonHealedDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "<RAMNUM>ダメージ かいふくした"
 	done
 
-Text020b:
+PokemonDevolvedToText:
 	textfw "<RAMTEXT>は"
 	linefw "<RAMTEXT>に たいかした"
 	done
 
-Text020c:
+ThereWasNoFireEnergyText:
 	textfw "「炎」エネルギーは なかった"
 	done
 
-Text020d:
+YouCanSelectMoreCardsQuitText:
 	textfw "あと<RAMNUM>枚えらべますが やめますか?"
 	done
 
-Text020e:
+ThereWasNoEffectText:
 	textfw "効果は なかった"
 	done
 
-Text020f:
+ThereWasNoEffectFromToxicText:
 	textfw "「どくどく」の効果は なかった"
 	done
 
-Text0210:
+ThereWasNoEffectFromPoisonText:
 	textfw "「どく」の効果は なかった"
 	done
 
-Text0211:
+ThereWasNoEffectFromSleepText:
 	textfw "「ねむり」の効果は なかった"
 	done
 
-Text0212:
+ThereWasNoEffectFromParalysisText:
 	textfw "「マヒ」の効果は なかった"
 	done
 
-Text0213:
+ThereWasNoEffectFromConfusionText:
 	textfw "「こんらん」の効果は なかった"
 	done
 
-Text0214:
+ThereWasNoEffectFromPoisonConfusionText:
 	textfw "「どく・こんらん」の効果は なかった"
 	done
 
-Text0215:
+ThereWasNoEffectFromPoisonParalysisText:
 	textfw "「どく・マヒ」の効果は なかった"
 	done
 
-Text0216:
+ThereWasNoEffectFromPoisonSleepText:
 	textfw "「どく・ねむり」の効果は なかった"
 	done
 
-Text0217:
+RearrangedDuelistsDeckText:
 	textfw "<RAMNAME>の 山札を いれかえた"
 	done
 
-Text0218:
+ChooseADarkEvolutionCardText:
 	textfw "「わるいポケモン」への 進化カードを"
 	linefw "えらんでください"
 	done
 
-Text0219:
+EffectTargetDarkPokemonText:
 	textfw "わるいポケモン"
 	done
 
-Text021a:
+ChooseADarkPokemonText:
 	textfw "「わるいポケモン」を"
 	linefw "えらんでください"
 	done
 
-Text021b:
+NoWaterEnergyText:
 	textfw "「水」エネルギーが ありません"
 	done
 
-Text021c:
+NoFightingEnergyText:
 	textfw "「闘」エネルギーが ありません"
 	done
 
-Text021d:
+ReturningTheseCardsToDeckText:
 	textfw "これらの カードを 山札にもどします"
 	done
 
-Text021e:
+CardsToReturnToDeckText:
 	textfw "山札に もどすカード"
 	done
 
-Text021f:
+ChooseAColorlessEvolutionCardText:
 	textfw "無色ポケモンの 進化カードを"
 	linefw "えらんでください"
 	done
 
-Text0220:
+EffectTargetColorlessEvolutionCardText:
 	textfw "無色の進化ポケモン"
 	done
 
-Text0221:
+ChooseAColorlessEvolutionPokemonText:
 	textfw "無色の進化ポケモンを"
 	linefw "えらんでください"
 	done
 
-Text0222:
+Choose1StatusToHealText:
 	textfw "どちらを かいふくしますか?"
 	linefw "      どく  <RAMTEXT>"
 	done
 
-Text0223:
+EffectTargetSleepText:
 	textfw "ねむり"
 	done
 
-Text0224:
+EffectTargetParalysisText:
 	textfw "マヒ"
 	done
 
-Text0225:
+EffectTargetConfusionText:
 	textfw "こんらん"
 	done
 
-Text0226:
+ChooseDeckOrDiscardPileToCheckText:
 	textfw "どちらを みますか?"
 	linefw "      山札  トラッシュ"
 	done
 
-Text0227:
+IsItOKToCheckDeckText:
 	textfw "山札を かくにんしますか?"
 	done
 
-Text0228:
+IsItOKToCheckDiscardPileText:
 	textfw "トラッシュを かくにんしますか?"
 	done
 
-Text0229:
+EffectTargetFossilText:
 	textfw "なにかの化石"
 	done
 
-Text022a:
+ChooseAFossilFromDeckText:
 	textfw "山札から なにかの化石を"
 	linefw "えらんでください"
 	done
 
-Text022b:
+ChooseAFossilText:
 	textfw "なにかの化石を"
 	linefw "えらんでください"
 	done
 
-Text022c:
+ReturnedXCardsToDeckText:
 	textfw "<RAMNUM>枚 山札にもどします"
 	done
 
-Text022d:
+ChooseBasicOrEvolutionCardText:
 	textfw "たねポケモンか"
 	linefw "進化ポケモンをえらぶ"
 	done
 
-Text022e:
+Choose2EnergyCardsFromHandToDiscardText:
 	textfw "手札から トラッシュするエネルギー"
 	linefw "カードを 2枚 えらんでください"
 	done
 
-Text022f:
+ChooseACardToReturnToDeckText:
 	textfw "山札にもどすカードを"
 	linefw "えらんでください"
 	done
 
-Text0230:
+BattleCenterText: ; unused?
 	textfw "バトルセンター"
 	done
 
-Text0231:
+PrizesNumberText:
 	textfw "サイドカード"
 	linefw "    枚"
 	done
 
-Text0232:
+ChooseTheNumberOfPrizesText:
 	textfw "サイドカードの 枚数を"
 	linefw "えらんでください"
 	done
 
-Text0233:
+PleaseWaitDecidingNumberOfPrizesText:
 	textfw "サイドカードの 枚数をきめています"
 	linefw "しばらく おまちください"
 	done
 
-Text0234:
+BeginAPrizeDuelWithText:
 	textfw "<RAMNAME>と サイドカード<RAMNUM>枚で"
 	linefw "対戦をはじめます"
 	done
 
-Text0235:
+ReceivedCardText:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0236:
+ReceivedPromotionalCardText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0237:
+ReceivedLegendaryCardText:
 	textfw "<RAMNAME>は 伝説のポケモンカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0238:
+ReceivedPromotionalFlyingPikachuText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「そらをとぶピカチュウ」を ゲット!"
 	done
 
-Text0239:
+ReceivedPromotionalSurfingPikachuText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「なみのりピカチュウ」を ゲット!"
 	done
 
-Text023a:
-	textfw "ブースターを ゲット!!"
-	linefw "カードいちらんを見たつもり"
+UnusedText023a: ; unused
+	textfw "ブースターを ゲット!!" ; Flareon? a booster pack?
+	linefw "カードいちらんを見たつもり" ; "I 'meant to' browse the card list"
 	done
 
-Text023b:
+NowPrintingPleaseWaitText:
 	textfw "プリント中です"
 	linefw "しばらく おまちください"
 	done
 
-Text023c:
+BoosterPackCardsText:
 	textfw "拡張パックのカード"
 	done
 
-Text023d:
+WouldYouLikeToTryAgainText:
 	textfw "もういちど やりなおしますか?"
 	done
 
-Text023e:
+TransmittedToText: ; unused?
 	textfw "<RAMNAME>へ そうしんしました"
 	done
 
-Text023f:
+TransmittedFromText: ; unused?
 	textfw "<RAMNAME>から じゅしんしました"
 	done
 
-Text0240:
+TransmittingCardSenderText:
 	textfw "カードを おくります"
 	linefw "ゲームボーイをちかづけて Aボタン!"
 	done
 
-Text0241:
+TransmittingCardReceiverText:
 	textfw "カードを うけとります"
 	linefw "ゲームボーイを ちかづけてください"
 	done
 
-Text0242:
+TransmittingDeckConfigurationSenderText:
 	textfw "デッキのつくりかたを おくります"
 	linefw "ゲームボーイをちかづけて Aボタン!"
 	done
 
-Text0243:
+TransmittingDeckConfigurationReceiverText:
 	textfw "デッキのつくりかたを うけとります"
 	linefw "ゲームボーイを ちかづけてください"
 	done
 
-Text0244:
+TransmittingCardUnsuccessfulSenderText:
 	textfw "カードをおくるのに しっぱいしました"
 	done
 
-Text0245:
+TransmittingCardUnsuccessfulReceiverText:
 	textfw "カードのうけとりに しっぱいしました"
 	done
 
-Text0246:
+TransmittingDeckConfigurationUnsuccessfulSenderText:
 	textfw "デッキのつくりかたを"
 	linefw "おくるのに しっぱいしました"
 	done
 
-Text0247:
+TransmittingDeckConfigurationUnsuccessfulReceiverText:
 	textfw "デッキのつくりかたの"
 	linefw "うけとりに しっぱいしました"
 	done
 
-Text0248:
+NowPrintingText:
 	textfw "<RAMTEXT>を"
 	linefw "プリント中です"
 	done
 
-Text0249:
+IfHeadsInflictSleepText:
 	textfw "「おもて」なら"
 	linefw "[相手]を「ねむり」状態"
 	done
 
-Text024a:
+UnableDueToGoopGasAttackText:
 	textfw "「まきちらせ!ベトベトガス」の効果で"
 	linefw "特殊能力は つかえない"
 	done
 
-Text024b:
+ChooseATrainerCardText:
 	textfw "トレーナーカードを"
 	linefw "えらんでください"
 	done
 
-Text024c:
+Choose3PokemonOrBasicEnergyCardsFromDiscardPileText: ; NIGHTLY_GARBAGE_RUN
 	textfw "トラッシュから ポケモンカードか"
 	linefw "基本エネルギーを3枚えらんでください"
 	linefw ""
-	linefw "012345678901234567"
+	linefw "012345678901234567" ; remnants?
 	done
 
-Text024d:
+NoRecoverableCardsInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "回収できるカードが ありません"
 	done
 
-Text024e:
+IfTails10DamageToActiveText: ; DIGGER
 	textfw "「うら」なら"
 	linefw "対戦ポケモンに 10ダメージ"
 	done
 
-Text024f:
+ChallengePromptText: ; the opponent uses CHALLENGE
 	textfw "相手の挑戦を うけますか?"
 	done
 
-Text0250:
+ChallengeAcceptedText:
 	textfw "<RAMNAME>は 挑戦をうけました"
 	done
 
-Text0251:
+ChallengeDeclinedText:
 	textfw "<RAMNAME>は 挑戦をことわりました"
 	done
 
-Text0252:
+DuelistSelectsPokemonTotalNumberText:
 	textfw "<RAMNAME>は <RAMNUM>体えらんで"
 	linefw "ぜんぶで <RAMNUM>体になった"
 	done
 
-Text0253:
+SelectingPokemonFromDeckText:
 	textfw "山札から ポケモンをえらんでいます"
 	done
 
-Text0254:
+CardPopMenuText:
 	textfw "カードポン!"
 	linefw "きろくをみる"
 	linefw "やめる"
 	done
 
-Text0255:
+CardPopMenuRareCardPopUnlockedText:
 	textfw "カードポン!"
 	linefw "レアカードポン!"
 	linefw "きろくをみる"
 	linefw "やめる"
 	done
 
-Text0256:
+CardPopEncouragementMessageText:
 	textfw "いろんなともだちと"
 	linefw "「カードポン!」してみよう!"
 	done
 
-Text0257:
+RareCardPopDescriptionText:
 	textfw "ゲームをクリアした ひとどうしだけが"
 	linefw "できる「カードポン!」です"
 	done
 
-Text0258:
+CardPopViewRecordsDescriptionText:
 	textfw "いままでにした 「カードポン!」の"
 	linefw "きろくを みることができます"
 	done
 
-Text0259:
+CardPopExitText:
 	textfw "「カードポン!」を おわります"
 	done
 
-Text025a:
+AreYouBothReadyToCardPopText:
 	textfw "ふたりとも 「カードポン!」の"
 	linefw "よういは できましたか?"
 	done
 
-Text025b:
+PopUnsuccessfulText:
 	textfw "うまく 「ポン!」できませんでした"
 	linefw "もういちど やりなおしてください"
 	done
 
-Text025c:
+CannotCardPopWithFriendPreviouslyPoppedWithText:
 	textfw "まえにポン!している ともだちとは"
 	linefw "「カードポン!」できません"
 	done
 
-Text025d:
+PositionGameBoyColorsAndPressAButtonText:
 	textfw "ゲームボーイを ちかづけて"
 	linefw "どちらかがAボタンを おしてください"
 	done
 
-Text025e:
+ReceivedThroughCardPopText:
 	textfw "<RAMTEXT>を"
 	linefw "「カードポン!」で ゲット!"
 	done
 
-Text025f:
+AreYouBothReadyToRareCardPopText:
 	textfw "ふたりとも 「レア・カードポン!」の"
 	linefw "よういは できましたか?"
 	done
 
-Text0260:
+ReceivedThroughRareCardPopText:
 	textfw "<RAMTEXT>を"
 	linefw "「レア・カードポン!」で ゲット!"
 	done
 
-Text0261:
+CannotRareCardPopWithFriendPreviouslyPoppedWithText:
 	textfw "まえにポン!している ともだちとは"
 	linefw "「レア・カードポン!」できません"
 	done
 
-Text0262:
+CardPopModeMismatchedText:
 	textfw "「カードポン!」の"
 	linefw "しゅるいが ちがいます"
 	done
 
-Text0263:
+CardPopRecordsText:
 	textfw "カードポン!のきろく"
 	done
 
-Text0264:
+CardPopRecordFriendNameText:
 	textfw "・あいて:          "
 	done
 
-Text0265:
+RareCardPopRecordFriendNameText:
 	textfw "★あいて:          "
 	done
 
-Text0266:
+CardPopRecordContentText:
 	textfw " きろくの ないよう "
 	done
 
-Text0267:
+CardPopRecordFriendCoinQuantityText:
 	textfw "コイン    /24"
 	done
 
-Text0268:
+CardPopRecordFriendCardQuantityText:
 	textfw "カード      枚"
 	done
 
-Text0269:
+CardPopRecordFriendBattleQuantityText:
 	textfw "対戦数      回"
 	done
 
-Text026a:
+CardPopRecordCardsText:
 	textfw " カード "
 	done
 
-Text026b:
+CardPopRecordYourResultText:
 	textfw "・じぶんに でたカード"
 	done
 
-Text026c:
+CardPopRecordFriendResultText:
 	textfw "・あいてに でたカード"
 	done
 
-Text026d:
+NoCardPopRecordsText:
 	textfw "カードポンのきろくが ありません"
 	done
 
-Text026e:
+CardPopFriendDeckNameText:
 	textfw "<RAMTEXT>デッキ"
 	done
 
-Text026f:
+CardPopImakuniText:
 	textfw "イマクニ?"
 	done
 
-Text0270:
+CardPopRonaldText:
 	textfw "ランド"
 	done
 
-Text0271:
+GameCenterBillsPCOverviewTitleText:
 	textfw "マサキのパソコン"
 	done
 
-Text0272:
+GameCenterBillsPCOverviewPriceText:
 	textfw "チップ20枚"
 	done
 
-Text0273:
+GameCenterBillsPCOverviewText:
 	textfw "オムナイト > オムスター<Lv>36"
 	linefw "ゴースト  > ゲンガー<Lv>40"
 	linefw "ゴーリキー > カイリキー<Lv>54"
@@ -1544,102 +1550,102 @@ Text0273:
 	linefw "ユンゲラー > フーディン<Lv>45"
 	done
 
-Text0274:
+GameCenterBillsPCDescriptionText:
 	textfw "「マサキのパソコン」と このカードで"
 	linefw "超めずらしいカードを ゲットしよう"
 	done
 
-Text0275:
+GameCenterBillsPCWouldYouPlayText:
 	textfw "マサキのパソコンで あそびますか?"
 	done
 
-Text0276:
+GameCenterBillsPCUnableDueToNoBillsPCCardsText:
 	textfw "「マサキのパソコン」カードが無いので"
 	linefw "あそぶことが できません"
 	linefw "「マサキのパソコン」カードを"
 	linefw "てにいれてから あそんでください"
 	done
 
-Text0277:
+GameCenterBillsPCYourCompatibleCardsText:
 	textfw "「マサキのパソコン」 たいおうカード"
 	done
 
-Text0278:
+GameCenterBillsPCUnableDueToNoCompatibleCardsText:
 	textfw "「マサキのパソコン」の"
 	linefw "たいおうカードが ありません"
 	linefw "ひつようなカードを てにいれてから"
 	linefw "きてください"
 	done
 
-Text0279:
+GameCenterBillsPCChooseACardToInsertText: ; unused?
 	textfw "「マサキのパソコン」と いっしょに"
 	linefw "いれるカードを えらんでください"
 	done
 
-Text027a:
+GameCenterBillsPCIsThisOKText:
 	textfw "このカードで よろしいですか?"
 	done
 
-Text027b:
+GameCenterBillsPCQuittingText:
 	textfw "マサキのパソコンを おわりますか?"
 	done
 
-Text027c:
+GameCenterBillsPCChipsPaidText:
 	textfw "それでは てすうりょうとして"
 	linefw "チップ20枚を いただきます"
 	done
 
-Text027d:
+GameCenterBillsPCCardsInsertedText:
 	textfw "マサキのパソコンに"
 	linefw "カードを いれました!"
 	done
 
-Text027e:
+GameCenterBillsPCReceivedRewardText: ; unused?
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text027f:
+GameCenterBillsPCUnableDueToPreviousRewardStoredText:
 	textfw "マサキのパソコンからの メールが"
 	linefw "メールボックスに のこっています"
 	linefw "メールをよんでカードをうけとってから"
 	linefw "きてください"
 	done
 
-Text0280:
+GameCenterBillsPCUnableDueToNotEnoughChipsText:
 	textfw "マサキのパソコンは 1かい20枚です"
 	linefw "チップが たりません!"
 	done
 
-Text0281:
+DeckText:
 	textfw "デッキ"
 	done
 
-Text0282:
+HiraganaOptionText:
 	textfw "ひらがな"
 	done
 
-Text0283:
+KatakanaOptionText:
 	textfw "カタカナ"
 	done
 
-Text0284:
+UppercaseOptionText:
 	textfw "ABC "
 	done
 
-Text0285:
+LowercaseOptionText:
 	textfw "abc "
 	done
 
-Text0286:
+EndText:
 	textfw "おわる"
 	done
 
-Text0287:
+WhatIsYourNameText:
 	textfw "あなたのなまえは?"
 	done
 
-Text0288:
+HiraganaKeyboardText:
 	textfw "あ か さ た な は ま や ら"
 	linefw "い き し ち に ひ み ゆ り"
 	linefw "う く す つ ぬ ふ む よ る"
@@ -1648,7 +1654,7 @@ Text0288:
 	linefw "ゃ ゅ ょ っ を ゛ ゜ ー  "
 	done
 
-Text0289:
+KatakanaKeyboardText:
 	textfw "ア カ サ タ ナ ハ マ ヤ ラ"
 	linefw "イ キ シ チ ニ ヒ ミ ユ リ"
 	linefw "ウ ク ス ツ ヌ フ ム ヨ ル"
@@ -1657,7 +1663,7 @@ Text0289:
 	linefw "ャ ュ ョ ッ ヲ ゛ ゜ ー  "
 	done
 
-Text028a:
+UppercaseKeyboardText:
 	textfw "A B C D E F G H I"
 	linefw "J K L M N O P Q R"
 	linefw "S T U V W X Y Z !"
@@ -1666,7 +1672,8 @@ Text028a:
 	linefw "ぃ ぅ ぇ ぉ ァ ィ ゥ ェ ォ"
 	done
 
-Text028b:
+LowercaseKeyboardText:
+	; Cyrillic lowercase "о" instead of "o"???
 	textfw "a b c d e f g h i"
 	linefw "j k l m n о p q r"
 	linefw "s t u v w x y z  "
@@ -1675,293 +1682,293 @@ Text028b:
 	linefw "<LIGHTNING> <GRASS> <FIRE> <WATER> <PSYCHIC> <FIGHTING> <COLORLESS> <RAINBOW>  "
 	done
 
-Text028c:
+NewDeckText:
 	textfw "あたらしく つくる"
 	done
 
-Text028d:
+PleaseSelectDeckText:
 	textfw "デッキを えらんでください"
 	done
 
-Text028e:
+ModifyDeckText:
 	textfw "デッキかいぞう"
 	done
 
-Text028f:
+RenameDeckText:
 	textfw "なまえをかえる"
 	done
 
-Text0290:
+ChooseAsDuelingDeckText:
 	textfw "つかうデッキ"
 	done
 
-Text0291:
+CancelDeckText:
 	textfw "やめる"
 	done
 
-Text0292:
+ParticleOText: ; unused?
 	textfw "を"
 	done
 
-Text0293:
+ChosenAsDuelingDeckText:
 	textfw "<RAMTEXT>を"
 	linefw "対戦用のデッキに しました!"
 	done
 
-Text0294:
+Deck1Text:
 	textfw "1・"
 	done
 
-Text0295:
+Deck2Text:
 	textfw "2・"
 	done
 
-Text0296:
+Deck3Text:
 	textfw "3・"
 	done
 
-Text0297:
+Deck4Text:
 	textfw "4・"
 	done
 
-Text0298:
-	textfw "5・"
+Deck5Text:
+	textfw "5・" ; unused?
 	done
 
-Text0299:
+ThereIsNoDeckHereText:
 	textfw "ここにはデッキが ありません!"
 	done
 
-Text029a:
+DeckBuildingConfirmText:
 	textfw "かくにん"
 	done
 
-Text029b:
+DeckBuildingDismantleText:
 	textfw "くずす"
 	done
 
-Text029c:
+DeckBuildingContinueModifyingText:
 	textfw "かいぞう"
 	done
 
-Text029d:
+DeckBuildingSaveText:
 	textfw "ほぞん"
 	done
 
-Text029e:
+DeckBuildingNameText:
 	textfw "なまえ"
 	done
 
-Text029f:
+DeckBuildingWarningTheOnlyDeckNotDismantleableText:
 	textfw "デッキが 1つしかありませんので"
 	linefw "このデッキは くずせません"
 	done
 
-Text02a0:
+DeckBuildingWarningNoBasicPokemonText:
 	textfw "たねポケモンが"
 	linefw "1枚も はいっていません!"
 	done
 
-Text02a1:
+DeckBuildingWarningMustIncludeBasicPokemonText:
 	textfw "デッキには たねポケモンを"
 	linefw "かならず いれなければなりません!"
 	done
 
-Text02a2:
+DeckBuildingWarningNot60CardsText:
 	textfw "デッキが 60枚になっていません!"
 	done
 
-Text02a3:
+DeckBuildingWarningMustInclude60CardsText:
 	textfw "デッキは かならず"
 	linefw "60枚で なければなりません!"
 	done
 
-Text02a4:
+DeckBuildingRevertPromptText:
 	textfw "デッキを もとにもどしますか?"
 	done
 
-Text02a5:
+DeckBuildingSavePromptText:
 	textfw "このデッキを ほぞんしますか?"
 	done
 
-Text02a6:
+DeckBuildingQuitPromptText:
 	textfw "デッキかいぞうを やめますか?"
 	done
 
-Text02a7:
+DeckBuildingDismantlePromptText:
 	textfw "このデッキを くずしますか?"
 	done
 
-Text02a8:
+DeckBuildingRecordOnMachinePromptText:
 	textfw "デッキきろくマシンにきろくしますか?"
 	done
 
-Text02a9:
+DeckBuildingRevertAndRecordOnMachinePromptText:
 	textfw "もとのデッキを きろくしますか?"
 	done
 
-Text02aa:
+DeckBuildingWarningIncompleteAndUnableToRecordText:
 	textfw "デッキが できあがっていないので"
 	linefw "きろくできませんでした"
 	done
 
-Text02ab:
+YourPokemonHiraganaText:
 	textfw "じぶんのポケモン"
 	done
 
-Text02ac:
+YourDiscardPileHiraganaText:
 	textfw "じぶんのトラッシュ"
 	done
 
-Text02ad:
+YourHandHiraganaText:
 	textfw "じぶんのてふだ"
 	done
 
-Text02ae:
+ToYourPlayAreaHiraganaText:
 	textfw "じぶんのばへ"
 	done
 
-Text02af:
+YourPrizesHiraganaText:
 	textfw "じぶんのサイド"
 	done
 
-Text02b0:
+OpponentsPokemonHiraganaText:
 	textfw "あいてのポケモン"
 	done
 
-Text02b1:
+OpponentsDiscardPileHiraganaText:
 	textfw "あいてのトラッシュ"
 	done
 
-Text02b2:
+OpponentsHandHiraganaText:
 	textfw "あいてのてふだ"
 	done
 
-Text02b3:
+OpponentsPrizesHiraganaText:
 	textfw "あいてのサイド"
 	done
 
-Text02b4:
+ToOpponentsPlayAreaHiraganaText:
 	textfw "あいてのばへ"
 	done
 
-Text02b5:
+DuelistsPlayAreaSuffixText:
 	textfw "の場"
 	done
 
-Text02b6:
+YourPlayAreaHiraganaText:
 	textfw "じぶんのば"
 	done
 
-Text02b7:
+OpponentsPlayAreaHiraganaText:
 	textfw "あいてのば"
 	done
 
-Text02b8:
+EntirePlayAreaHiraganaText:
 	textfw "ぜんたいのば"
 	done
 
-Text02b9:
+GlossaryText:
 	textfw "ようごじてん"
 	done
 
-Text02ba:
+WhichCardWouldYouLikeToSeeText:
 	textfw "どこのカードを みますか?"
 	done
 
-Text02bb:
+PleaseChooseAPrizeText:
 	textfw "サイドカードを えらんでください"
 	done
 
-Text02bc:
+HandText_2:
 	textfw "てふだ"
 	done
 
-Text02bd:
+DuelistHandText_2:
 	textfw "<RAMNAME>のてふだ"
 	done
 
-Text02be:
+DuelistDiscardPileText_2:
 	textfw "<RAMNAME>のトラッシュ"
 	done
 
-Text02bf:
+EmptyLineText:
 	textfw "                  "
 	done
 
-Text02c0:
+BoosterPackTitleText:
 	textfw "拡張パック"
 	done
 
-Text02c1:
+Item1BeginningPokemonText:
 	textfw "1・はじめてのポケモン "
 	done
 
-Text02c2:
+Item2LegendaryPowerText:
 	textfw "2・でんせつのちから  "
 	done
 
-Text02c3:
+Item3IslandOfFossilText:
 	textfw "3・化石のしま     "
 	done
 
-Text02c4:
+Item3IslandOfFossilLockedText:
 	textfw "3・----------"
 	done
 
-Text02c5:
+Item4PsychicBattleText:
 	textfw "4・超バトル      "
 	done
 
-Text02c6:
+Item4PsychicBattleLockedText:
 	textfw "4・----------"
 	done
 
-Text02c7:
+Item5SkyFlyingPokemonText:
 	textfw "5・そらとぶポケモン  "
 	done
 
-Text02c8:
+Item5SkyFlyingPokemonLockedText:
 	textfw "5・----------"
 	done
 
-Text02c9:
+Item6WeAreTeamRocketText:
 	textfw "6・われらロケット団  "
 	done
 
-Text02ca:
+Item6WeAreTeamRocketLockedText:
 	textfw "6・----------"
 	done
 
-Text02cb:
+Item7TeamRocketsAmbitionText:
 	textfw "7・ロケット団のやぼう "
 	done
 
-Text02cc:
+Item7TeamRocketsAmbitionLockedText:
 	textfw "7・----------"
 	done
 
-Text02cd:
+Item8PromotionalCardText:
 	textfw "8・プロモーションカード"
 	done
 
-Text02ce:
+Item8PromotionalCardLockedText:
 	textfw "8・----------"
 	done
 
-Text02cf:
+ViewWhichCardFileText:
 	textfw "どのカードファイルを みますか?"
 	done
 
-Text02d0:
+EmptyPromotionalCardText:
 	textfw "----------"
 	done
 
-Text02d1:
+SCardsText: ; "'s Cards"
 	textfw "のカード"
 	done
 
-Text02d2:
+EmptyDeckNameText:
 	textfw "--------------"
 	done
 

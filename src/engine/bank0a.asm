@@ -754,7 +754,7 @@ AISelectSpecialAttackParameters:
 	jp nz, .no_carry
 
 	; toss coin
-	ldtx de, Text01bb
+	ldtx de, IfHeadsAttachUpTo3WaterEnergyFromDeckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 
@@ -979,7 +979,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	ldtx de, Text012b
+	ldtx de, IfTails30DamageTo1OfYourPkmnText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	or a
@@ -1035,7 +1035,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	ldtx de, Text010d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	or a
@@ -1117,7 +1117,7 @@ AISelectSpecialAttackParameters:
 	farcall Func_209fc
 	jp nc, .no_carry
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldtx de, Text010d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	scf
@@ -1129,7 +1129,7 @@ AISelectSpecialAttackParameters:
 	call SwapTurn
 	jp c, .no_carry
 	; no Play Area Pokémon has damage
-	ldtx de, Text0105
+	ldtx de, DamageCheckIfTailsNoDamageText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	xor a ; choose Arena card
@@ -1524,7 +1524,7 @@ AISelectSpecialAttackParameters:
 	farcall GetFirstBasicEnergyAttachedToPlayAreaCard
 	ldh [hPlayAreaEffectTarget], a
 	call SwapTurn
-	ldtx de, Text010d
+	ldtx de, AttackSuccessCheckText
 	farcall TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret c
@@ -1654,7 +1654,7 @@ AISelectSpecialAttackParameters:
 	xor a ; PLAY_AREA_ARENA
 .got_focus_blast_target
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldtx de, Text012f
+	ldtx de, IfHeads20DamageTo1OfOppPkmnText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	scf

@@ -1,279 +1,283 @@
-Text0001:
+HandText: ; $0001
 	textfw "てふだ"
 	done
 
-Text0002:
+CheckText:
 	textfw "しらべる"
 	done
 
-Text0003:
+AttackText:
 	textfw "ワ ザ"
 	done
 
-Text0004:
+PokemonPowerHiraganaText:
+	; The casual term for Pokémon Power
+	; but was "PKMN Power" in tcg1-en
 	textfw "とくしゅ"
 	done
 
-Text0005:
+DoneText:
 	textfw "おわり"
 	done
 
-Text0006:
+TypeText:
 	textfw "色"
 	done
 
-Text0007:
+RetreatText:
 	textfw "にげる"
 	done
 
-Text0008:
+WeaknessText:
 	textfw "弱点"
 	done
 
-Text0009:
+ResistanceText:
 	textfw "抵抗力"
 	done
 
-Text000a:
+PokemonPowerKanjiText:
+	; The formal term for Pokémon Power
+	; but was "PKMN PWR" in tcg1-en
 	textfw "特殊能力"
 	done
 
-Text000b:
+PokemonCardString: ; unused?
 	textfw "ポケモンカード"
 	done
 
-Text000c:
+LengthText:
 	textfw "身長"
 	done
 
-Text000d:
+WeightText:
 	textfw "体重"
 	done
 
-Text000e:
+PokemonText:
 	textfw "ポケモン"
 	done
 
-Text000f:
+LengthUnitMetresText:
 	textfw "m"
 	done
 
-Text0010:
+WeightUnitKilogramsText:
 	textfw "Kg"
 	done
 
-Text0011:
+PromostarRarityText:
 	textfw " "
 	done
 
-Text0012:
+CircleRarityText:
 	textfw "●"
 	done
 
-Text0013:
+DiamondRarityText:
 	textfw "◆"
 	done
 
-Text0014:
+StarRarityText:
 	textfw "★"
 	done
 
-Text0015:
+WhitestarRarityText:
 	textfw "☆"
 	done
 
-Text0016:
+AllCardsOwnedText:
 	textfw "のもっている全カード"
 	done
 
-Text0017:
+TotalNumberOfCardsText:
 	textfw "カードのごうけい         枚"
 	done
 
-Text0018:
+TypesOfCardsText:
 	textfw "カードのしゅるい         種"
 	done
 
-Text0019:
+GrassPokemonText:
 	textfw "草ポケモン"
 	done
 
-Text001a:
+FirePokemonText:
 	textfw "炎ポケモン"
 	done
 
-Text001b:
+WaterPokemonText:
 	textfw "水ポケモン"
 	done
 
-Text001c:
+LightningPokemonText:
 	textfw "雷ポケモン"
 	done
 
-Text001d:
+FightingPokemonText:
 	textfw "闘ポケモン"
 	done
 
-Text001e:
+PsychicPokemonText:
 	textfw "超ポケモン"
 	done
 
-Text001f:
+ColorlessPokemonText:
 	textfw "無色ポケモン"
 	done
 
-Text0020:
+TrainerCardText:
 	textfw "トレーナーカード"
 	done
 
-Text0021:
+EnergyCardText:
 	textfw "エネルギーカード"
 	done
 
-Text0022:
+DeckPrinterText:
 	textfw "デッキ"
 	done
 
-Text0023:
+AttackByText: ; unused?
 	textfw "のこうげき"
 	done
 
-Text0024:
+NoPokemonOnTheBenchText:
 	textfw "控えポケモンが いません"
 	done
 
-Text0025:
+UnableDueToSleepText:
 	textfw "「ねむり」状態なので できません"
 	done
 
-Text0026:
+UnableDueToParalysisText:
 	textfw "「マヒ」状態なので できません"
 	done
 
-Text0027:
+ReceivedNDamageDueToPoisonText:
 	textfw "<RAMTEXT>は"
 	linefw "「どく」状態なので <RAMNUM>ダメージ"
 	done
 
-Text0028:
+ReceivedNDamageDueToDoublePoisonText:
 	textfw "<RAMTEXT>は"
 	linefw "「どくどく」状態なので <RAMNUM>ダメージ"
 	done
 
-Text0029:
+IsStillAsleepText:
 	textfw "<RAMTEXT>は"
 	linefw "ねむり つづけている"
 	done
 
-Text002a:
+IsCuredOfSleepText:
 	textfw "<RAMTEXT>は"
 	linefw "ねむりから さめた"
 	done
 
-Text002b:
+IsCuredOfParalysisText:
 	textfw "<RAMTEXT>は"
 	linefw "マヒが とけた"
 	done
 
-Text002c:
+BetweenTurnsText:
 	textfw "ポケモンチェックをします"
 	done
 
-Text002d:
+UnableToUseItText:
 	textfw "つかえない状態です"
 	done
 
-Text002e:
+NoEnergyCardsText:
 	textfw "エネルギーカードが ありません"
 	done
 
-Text002f:
+IsThisOKText:
 	textfw "これで いいですか?"
 	done
 
-Text0030:
+YesOrNoText:
 	textfw "はい  いいえ"
 	done
 
-Text0031:
+DiscardActionName:
 	textfw "トラッシュする"
 	done
 
-Text0032:
+IncompleteText:
 	textfw "未完成"
 	done
 
-Text0033:
+DamageString: ; unused?
 	textfw "ダメージ"
 	done
 
-Text0034:
+UsedText:
 	textfw "<RAMTEXT>を"
 	linefw "つかいます"
 	done
 
-Text0035:
+ReceivedDamageText: ; unused?
 	textfw "ダメージを うけた"
 	done
 
-Text0036:
+PokemonsAttackText:
 	textfw "<RAMTEXT>の"
 	linefw "<RAMTEXT>!"
 	done
 
-Text0037:
+ResistanceLessDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "抵抗力で <RAMNUM>ダメージを うけた"
 	done
 
-Text0038:
+WeaknessMoreDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "弱点で <RAMNUM>ダメージを うけた"
 	done
 
-Text0039:
+WeaknessResistanceMixedDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "弱点などで <RAMNUM>ダメージを うけた"
 	done
 
-Text003a:
+ResistanceNoDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "抵抗力で ダメージを うけなかった!"
 	done
 
-Text003b:
+AttackDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "<RAMNUM>ダメージを うけた"
 	done
 
-Text003c:
+NoDamageText:
 	textfw "<RAMTEXT>は"
 	linefw "ダメージを うけなかった!"
 	done
 
-Text003d:
+NoSelectableAttackText:
 	textfw "せんたくできるワザが ありません"
 	done
 
-Text003e:
+UnableToRetreatText:
 	textfw "にげられない"
 	done
 
-Text003f:
+MayOnlyAttachOneEnergyCardText:
 	textfw "エネルギーカードは"
 	linefw "じぶんの番には 1枚しか だせません"
 	done
 
-Text0040:
+UseThisPokemonPowerPromptText:
 	textfw "この特殊能力を つかいますか?"
 	done
 
-Text0041:
+PokemonPowerSelectNotRequiredText:
 	textfw "この特殊能力は"
 	linefw "えらぶ ひつようがありません"
 	done
 
-Text0042:
+DiscardActionDescription:
 	textfw "自分の番のとき このカードを"
 	linefw "トラッシュすることができる。"
 	linefw "これは「きぜつ」とカウントされない"
@@ -281,26 +285,26 @@ Text0042:
 	linefw "ではない)"
 	done
 
-Text0043:
+WillDrawNPrizesText:
 	textfw "<RAMNAME>は"
 	linefw "サイドカードを<RAMNUM>枚 ひきます"
 	done
 
-Text0044:
+DrewNPrizesText:
 	textfw "<RAMNAME>は"
 	linefw "サイドカードを<RAMNUM>枚 ひきました"
 	done
 
-Text0045:
+DuelistPlacedACardInArenaText:
 	textfw "<RAMNAME>は バトル場に"
 	linefw "<RAMTEXT>をだした"
 	done
 
-Text0046:
+UnableToSelectText:
 	textfw "せんたくできません"
 	done
 
-Text0047:
+ColorListText:
 	textfw "草"
 	linefw "炎"
 	linefw "水"
@@ -309,382 +313,383 @@ Text0047:
 	linefw "超"
 	done
 
-Text0048:
+GrassSymbolText:
 	textfw "<GRASS>"
 	done
 
-Text0049:
+FireSymbolText:
 	textfw "<FIRE>"
 	done
 
-Text004a:
+WaterSymbolText:
 	textfw "<WATER>"
 	done
 
-Text004b:
+LightningSymbolText:
 	textfw "<LIGHTNING>"
 	done
 
-Text004c:
+FightingSymbolText:
 	textfw "<FIGHTING>"
 	done
 
-Text004d:
+PsychicSymbolText:
 	textfw "<PSYCHIC>"
 	done
 
-Text004e:
+BenchText:
 	textfw "ベンチ"
 	done
 
-Text004f:
+KnockOutText:
 	textfw "きぜつ         "
 	done
 
-Text0050:
+DamageToSelfDueToConfusionText:
 	textfw "わけもわからず [自分]をこうげき!!"
 	done
 
-Text0051:
+ChooseEnergyCardToRemoveText:
+	; including but not limited to discarding
 	textfw "はがす エネルギーカードを"
 	linefw "えらんでください"
 	done
 
-Text0052:
+ChooseEnergyCardToDiscardText:
 	textfw "トラッシュする エネルギーカードを"
 	linefw "えらんでください"
 	done
 
-Text0053:
+ChooseNextActivePokemonText:
 	textfw "バトル場のポケモンが、きぜつしました"
 	linefw "だす ポケモンを えらんでください"
 	done
 
-Text0054:
+PressStartWhenReadyText:
 	textfw "じゅんびができたら どちらかが"
 	linefw "STARTボタンを おしてください"
 	done
 
-Text0055:
+YouPlayFirstText:
 	textfw "あなたは せんこうです"
 	done
 
-Text0056:
+YouPlaySecondText:
 	textfw "あなたは こうこうです"
 	done
 
-Text0057:
+TransmissionErrorTryAgainText:
 	textfw "通信エラーです"
 	linefw "はじめから やりなおしてください"
 	done
 
-Text0058:
+ChooseTheCardYouWishToExamineText:
 	textfw "しらべる カードを"
 	linefw "えらんでください"
 	done
 
-Text0059:
+TransmittingDataText:
 	textfw "つうしん中です"
 	done
 
-Text005a:
+WaitingHandExamineText:
 	textfw "たいき中です"
 	linefw "  てふだ   しらべる"
 	done
 
-Text005b:
+SelectingBenchPokemonHandExamineBackText:
 	textfw "ベンチポケモン せんたく中"
 	linefw "  てふだ   しらべる  もどる"
 	done
 
-Text005c:
+RetreatedToTheBenchText:
 	textfw "<RAMTEXT>は"
 	linefw "ベンチへ にげた"
 	done
 
-Text005d:
+RetreatWasUnsuccessfulText:
 	textfw "<RAMTEXT>は"
 	linefw "にげるのに しっぱいした"
 	done
 
-Text005e:
+WillUseThePokemonPowerText:
 	textfw "<RAMTEXT>は特殊能力"
 	linefw "<RAMTEXT>を つかいます"
 	done
 
-Text005f:
+FinishedTurnWithoutAttackingText:
 	textfw "ワザを つかわずに"
 	linefw "番を しゅうりょう した"
 	done
 
-Text0060:
+DuelistTurnText:
 	textfw "<RAMNAME>の 番です"
 	done
 
-Text0061:
+AttachedEnergyToPokemonText:
 	textfw "<RAMTEXT>を"
 	linefw "<RAMTEXT>に つけました"
 	done
 
-Text0062:
+PokemonEvolvedIntoPokemonText:
 	textfw "<RAMTEXT>は"
 	linefw "<RAMTEXT>に 進化しました"
 	done
 
-Text0063:
+PlacedOnTheBenchText:
 	textfw "<RAMTEXT>を"
 	linefw "ベンチに だしました"
 	done
 
-Text0064:
+PlacedInTheArenaText:
 	textfw "<RAMTEXT>を"
 	linefw "バトル場に だしました"
 	done
 
-Text0065:
+ShufflesTheDeckText:
 	textfw "<RAMNAME>の山札を よくきります"
 	done
 
-Text0066:
+ThisIsJustPracticeDoNotShuffleText:
 	textfw "れんしゅうなので 山札をきりません"
 	done
 
-Text0067:
+EachPlayerShuffleOpponentsDeckText:
 	textfw "おたがいの山札を よくきります"
 	done
 
-Text0068:
+EachPlayerDraw7CardsText:
 	textfw "おたがいに 7枚ずつひきます"
 	done
 
-Text0069:
+Drew7CardsText:
 	textfw "<RAMNAME>は"
 	linefw "手札を7枚ひきます"
 	done
 
-Text006a:
+DeckHasXCardsText:
 	textfw "<RAMNAME>の山札は <RAMNUM>枚です"
 	done
 
-Text006b:
+ChooseBasicPkmnToPlaceInArenaText:
 	textfw "バトル場に だす"
 	linefw "たねポケモンを えらんでください"
 	done
 
-Text006c:
+NoBasicPokemonInHandText:
 	textfw "<RAMNAME>の 手札の中には"
 	linefw "たねポケモンが ありませんでした"
 	done
 
-Text006d:
+NeitherPlayerHasBasicPkmnText:
 	textfw "おたがいに 手札の中には"
 	linefw "たねポケモンが ありませんでした"
 	done
 
-Text006e:
+ReturnCardsToDeckAndDrawAgainText:
 	textfw "山札に もどして"
 	linefw "カードをひきなおします"
 	done
 
-Text006f:
+ChooseUpToXBasicPkmnToPlaceOnBenchText:
 	textfw "ベンチに だす たねポケモンを"
 	linefw "<RAMNUM>ひきまで えらべます"
 	done
 
-Text0070:
+PleaseChooseAnActivePokemonText:
 	textfw "バトル場のポケモンを"
 	linefw "えらんでください"
 	done
 
-Text0071:
+ChooseYourBenchPokemonText:
 	textfw "ベンチのポケモンを"
 	linefw "えらんでください"
 	done
 
-Text0072:
+YouDrewText:
 	textfw "<RAMTEXT>を ひいた"
 	done
 
-Text0073:
+YouCannotSelectThisCardText:
 	textfw "このカードは えらべません"
 	done
 
-Text0074:
+PlacingThePrizesText:
 	textfw "サイドカードを セットします"
 	done
 
-Text0075:
+PleasePlacePrizesText:
 	textfw "おたがいに"
 	linefw "サイドカードを <RAMNUM>枚セットします"
 	done
 
-Text0076:
+IfHeadsDuelistPlaysFirstText:
 	textfw "「おもて」が でれば"
 	linefw "<RAMTEXT>の せんこうです"
 	done
 
-Text0077:
+CoinTossToDecideWhoPlaysFirstText:
 	textfw "コインをなげて"
 	linefw "せんこう・こうこうを きめます"
 	done
 
-Text0078:
+DecisionText:
 	textfw "はんていを おこないます"
 	done
 
-Text0079:
+DuelWasADrawText:
 	textfw "<RAMNAME>との対戦に ひきわけた"
 	done
 
-Text007a:
+WonDuelText:
 	textfw "<RAMNAME>との対戦に 勝った!"
 	done
 
-Text007b:
+LostDuelText:
 	textfw "<RAMNAME>との対戦に"
 	linefw "まけてしまった・・・"
 	done
 
-Text007c:
+StartSuddenDeathMatchText:
 	textfw "「サドン・デス」スタート!"
 	linefw "サイドカード1枚で 対戦です"
 	done
 
-Text007d:
+PrizesLeftActivePokemonCardsInDeckText:
 	textfw "サイドカード"
 	linefw "対戦ポケモン"
 	linefw "山札の数"
 	done
 
-Text007e:
+NoneText:
 	textfw "なし"
 	done
 
-Text007f:
+YesText:
 	textfw "あり"
 	done
 
-Text0080:
+CardsUnitText:
 	textfw "枚"
 	done
 
-Text0081:
+DrewFromPrizesText:
 	textfw "<RAMNAME>は サイドカードから"
 	linefw "<RAMTEXT>を ひいた"
 	done
 
-Text0082:
+TookAllThePrizesText:
 	textfw "<RAMNAME>は サイドカードを"
 	linefw "すべて とりおえた!"
 	done
 
-Text0083:
+NoPokemonInPlayAreaText:
 	textfw "<RAMNAME>の 場には"
 	linefw "ポケモンが いなくなった"
 	done
 
-Text0084:
+WasKnockedOutText:
 	textfw "<RAMTEXT>は きぜつした"
 	done
 
-Text0085:
+HavePokemonPowerText:
 	textfw "<RAMTEXT>は"
 	linefw "特殊能力を もっている"
 	done
 
-Text0086:
+HavePkmnPowerButUnableDueToToxicGasText:
 	textfw "しかし 「かがくへんかガス」の効果で"
 	linefw "特殊能力は つかえない"
 	done
 
-Text0087:
+HavePkmnPowerButUnableDueToGoopGasAttackText:
 	textfw "しかし 「まきちらせ!ベトベトガス」"
 	linefw "の効果で 特殊能力は つかえない"
 	done
 
-Text0088:
+HavePkmnPowerButUnableDueToStareText:
 	textfw "しかし 「ショックアイ」"
 	linefw "の効果で 特殊能力は つかえない"
 	done
 
-Text0089:
+PlayCheck1Text: ; grammmar for "to play"
 	textfw " つかう"
 	linefw " しらべる"
 	done
 
-Text008a:
+PlayCheck2Text: ; grammmar for "to play"
 	textfw " だす"
 	linefw " しらべる"
 	done
 
-Text008b:
+SelectCheckText:
 	textfw " えらぶ"
 	linefw " しらべる"
 	done
 
-Text008c:
+UnusedText008c: ; unused?
 	textfw "B<RAMNUM>S<RAMNUM>"
 	done
 
-Text008d:
+DuelistIsThinkingText:
 	textfw "<RAMNAME>は かんがえ中"
 	done
 
-Text008e:
+ClearOpponentNameText:
 	textfw "          "
 	done
 
-Text008f:
+SelectComputerOpponentText:
 	textfw "対戦コンピューター選択"
 	done
 
-Text0090:
+NumberOfPrizesText:
 	textfw "サイド枚数"
 	done
 
-Text0091:
+DebugRandom1Text:
 	textfw "ランダム1"
 	done
 
-Text0092:
+DebugRandom2Text:
 	textfw "ランダム2"
 	done
 
-Text0093:
+DebugRandom3Text:
 	textfw "ランダム3"
 	done
 
-Text0094:
+DebugRandom4Text:
 	textfw "ランダム4"
 	done
 
-Text0095:
+DebugTrainingComputerOpponentText:
 	textfw "教育用COM"
 	done
 
-Text0096:
+Player1Text:
 	textfw "プレイヤー1"
 	done
 
-Text0097:
+Player2Text:
 	text "Player2"
 	done
 
-Text0098:
+DebugDirectionLeftToRightText:
 	textfw "左から右"
 	done
 
-Text0099:
+DebugDirectionRightToLeftText:
 	textfw "右から左"
 	done
 
-Text009a:
+DebugChangeExecuteEndText:
 	textfw "START:入替え"
 	linefw "    A:実行"
 	linefw "    B:終了"
 	done
 
-Text009b:
+DebugDuelMenu1Text:
 	textfw "そのた"
 	linefw "どく"
 	linefw "ねむり"
@@ -705,7 +710,7 @@ Text009b:
 	linefw "カード入替え"
 	done
 
-Text009c:
+DebugDuelMenu2Text:
 	textfw "ゲーム勝ち"
 	linefw "ゲーム負け"
 	linefw "ゲーム引き分け"
@@ -718,35 +723,35 @@ Text009c:
 	linefw "ファイルをロードする"
 	done
 
-Text009d:
+DebugSaveFileText:
 	textfw "ファイルセーブ"
 	done
 
-Text009e:
+DebugLoadFileLastSavedFileText:
 	textfw "ファイルロード"
 	linefw " 0 最後にセーブされたファイル"
 	done
 
-Text009f:
+DebugPauseModeOnText:
 	textfw "ポーズモードがONになりました"
 	linefw "SELECTでポーズがかかります"
 	done
 
-Text00a0:
+DebugPauseModeOffText:
 	textfw "ポーズモードがOFFになりました"
 	done
 
-Text00a1:
+DebugComputerModeOnText:
 	textfw "コンピューターモードが"
 	linefw "OFFになりました"
 	done
 
-Text00a2:
+DebugComputerModeOffText:
 	textfw "コンピューターモードが"
 	linefw "ONになりました"
 	done
 
-Text00a3:
+DebugCardCategoryListText:
 	textfw "<GRASS>ポケモン"
 	linefw "<FIRE>ポケモン"
 	linefw "<WATER>ポケモン"
@@ -758,7 +763,7 @@ Text00a3:
 	linefw "エネルギーカード"
 	done
 
-Text00a4:
+DebugBoosterPackListText:
 	textfw "はじめてのポケモン"
 	linefw "でんせつのちから"
 	linefw "化石のしま"
@@ -775,7 +780,7 @@ Text00a4:
 	linefw "DDIパック"
 	done
 
-Text00a5:
+DebugSpecialDuelRuleListText:
 	textfw "クリア"
 	linefw "草ポケモンは特殊にならない"
 	linefw "雷ポケモンは攻擊力+10"
@@ -789,721 +794,731 @@ Text00a5:
 	linefw "トラッシュカード使えない"
 	done
 
-Text00a6:
+DebugCardListText:
 	textfw "カードリスト"
 	done
 
-Text00a7:
+DebugTestCoinFlipText:
 	textfw "コイン投げをテストします"
 	done
 
-Text00a8:
+DebugEndWithoutPrizesText:
 	textfw "サイドカードなし 終わりにする?"
 	done
 
-Text00a9:
+ResetBackUpRamText:
 	textfw "バックアップRAMを初期化する?"
 	done
 
-Text00aa:
+DebugIncidentAbortPleaseSubmitRomText:
 	textfw "!!!! ABORT !!!!"
 	linefw "重大な問題が発生しました"
 	linefw "プログラムを停止します"
 	linefw "カートリッジを提出してください"
 	done
 
-Text00ab:
+NoCardsInHandText:
 	textfw "手札が ありません"
 	done
 
-Text00ac:
+TheDiscardPileHasNoCardsText:
+	; Variant of NoCardsInDiscardPileText with different whitespace placement
+	; but was distinct in tcg1-en: "The Discard Pile has no cards."
 	textfw "トラッシュにカードが ありません"
 	done
 
-Text00ad:
+DuelistDiscardPileText:
 	textfw "<RAMNAME>のトラッシュ"
 	done
 
-Text00ae:
+DuelistHandText:
 	textfw "<RAMNAME>のてふだ"
 	done
 
-Text00af:
+DuelistPlayAreaText:
 	textfw "<RAMNAME>の場"
 	done
 
-Text00b0:
+DuelistDeckText:
 	textfw "<RAMNAME>の山札"
 	done
 
-Text00b1:
+DuelistPrizeCardsText:
 	textfw "<RAMNAME>のサイドカード"
 	done
 
-Text00b2:
+PleaseSelectHandText:
 	textfw "てふだを"
 	linefw "えらんでください"
 	done
 
-Text00b3:
+EnergyCardsAttachedToPokemonText:
 	textfw "ポケモンについている"
 	linefw "エネルギーカード いちらん"
 	done
 
-Text00b4:
+PleaseSelectCardText:
 	textfw "カードを"
 	linefw "えらんでください"
 	done
 
-Text00b5:
+NoPokemonWithDamageCountersText:
 	textfw "ダメージカウンターの のっている"
 	linefw "ポケモンが いません"
 	done
 
-Text00b6:
+NoDamageCountersText:
 	textfw "ダメージカウンターが のっていません"
 	done
 
-Text00b7:
+NoEnergyAttachedToPokemonInOppPlayAreaText:
+	; "Energy" compared to
+	; "Energy Cards" in NoEnergyCardsAttachedToPokemonInOppPlayAreaText
 	textfw "相手の場の ポケモンに"
 	linefw "エネルギーが ついていません"
 	done
 
-Text00b8:
+NoEnergyCardsInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "エネルギーカードが ありません"
 	done
 
-Text00b9:
+NoBasicEnergyCardsInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "基本エネルギーカードが ありません"
 	done
 
-Text00ba:
+NoCardsLeftInTheDeckText:
 	textfw "山札に カードがありません"
 	done
 
-Text00bb:
+NoSpaceOnTheBenchText:
 	textfw "ベンチに あきがありません"
 	done
 
-Text00bc:
+NoPokemonCapableOfEvolvingText:
 	textfw "進化できる ポケモンがいません"
 	done
 
-Text00bd:
+CantEvolvePokemonInSameTurnItsPlacedText:
 	textfw "だした おなじ番には 進化できません"
 	done
 
-Text00be:
+NotAffectedByStatusText:
 	textfw "「どく・ねむり・マヒ・こんらん」の"
 	linefw "特殊状態に なっていません"
 	done
 
-Text00bf:
+NotEnoughCardsInHandText:
 	textfw "手札が たりません"
 	done
 
-Text00c0:
+EffectNoPokemonOnTheBenchText:
 	textfw "控えポケモンが いません"
 	done
 
-Text00c1:
+NoBasicPokemonInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "たねポケモンが ありません"
 	done
 
-Text00c2:
+NoPokemonInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "ポケモンが ありません"
 	done
 
-Text00c3:
+ConditionsForEvolvingToStage2NotFulfilledText:
 	textfw "2進化ポケモンに 進化させる"
 	linefw "じょうけんが そろっていません"
 	done
 
-Text00c4:
+NoCardsInHandExchangeableText:
 	textfw "手札に 交換できるカードがありません"
 	done
 
-Text00c5:
+NoCardsInDiscardPileText:
+	; Variant of TheDiscardPileHasNoCardsText with different whitespace placement
+	; but was distinct in tcg1-en: "There are no cards in the<LINE>Discard Pile."
 	textfw "トラッシュに カードがありません"
 	done
 
-Text00c6:
+NoEvolvedPokemonText:
 	textfw "進化ポケモンが 場にいません"
 	done
 
-Text00c7:
+NoEnergyCardsAttachedToPokemonInYourPlayAreaText:
 	textfw "自分の場の ポケモンに"
 	linefw "エネルギーカードに ついていません"
 	done
 
-Text00c8:
+NoEnergyCardsAttachedToPokemonInOppPlayAreaText:
 	textfw "相手の場の ポケモンに"
 	linefw "エネルギーカードが ついていません"
 	done
 
-Text00c9:
+EnergyRequiredToRetreatText:
 	textfw "にげるためには"
 	linefw "エネルギーが <RAMNUM>コひつようです"
 	done
 
-Text00ca:
+NotEnoughEnergyCardsText:
 	textfw "エネルギーカードが たりません"
 	done
 
-Text00cb:
+NotEnoughFireEnergyText:
 	textfw "「炎」エネルギーが たりません"
 	done
 
-Text00cc:
+NotEnoughPsychicEnergyText:
 	textfw "「超」エネルギーが たりません"
 	done
 
-Text00cd:
+NotEnoughWaterEnergyText:
 	textfw "「水」エネルギーが たりません"
 	done
 
-Text00ce:
+NoTrainerCardsInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "トレーナーカードが ありません"
 	done
 
-Text00cf:
+NoAttacksMayBeChosenText:
 	textfw "せんたくできるワザが ありません"
 	done
 
-Text00d0:
+YouDidNotReceiveAnAttackToMirrorMoveText:
 	textfw "相手の番に オウムがえしできる"
 	linefw "ワザを うけていません"
 	done
 
-Text00d1:
+CannotBeUsedTwiceText:
 	textfw "すでに つかっているので"
 	linefw "つかえません"
 	done
 
-Text00d2:
+NoWeaknessText:
 	textfw "「弱点」が ありません"
 	done
 
-Text00d3:
+NoResistanceText:
 	textfw "「抵抗力」が ありません"
 	done
 
-Text00d4:
+CannotChangeWeaknessDueToNoWeaknessText:
 	textfw "[相手]に「弱点」が ないので"
 	linefw "「弱点」の へんこうはできません"
 	done
 
-Text00d5:
+OnlyOncePerTurnText:
 	textfw "自分の番に いちど だけです"
 	done
 
-Text00d6:
+CannotUseDueToStatusText:
 	textfw "「ねむり・マヒ・こんらん」の"
 	linefw "特殊状態のため つかえません"
 	done
 
-Text00d7:
+CannotBeUsedInTurnWhichWasPlayedText:
 	textfw "場にだした番には つかえません"
 	done
 
-Text00d8:
+NoEnergyCardsAttachedText:
 	textfw "エネルギーカードが ついていません"
 	done
 
-Text00d9:
+NoGrassEnergyText:
 	textfw "「草」エネルギーが ありません"
 	done
 
-Text00da:
+CannotUseSinceTheresOnly1PkmnText:
 	textfw "1体しかいないので つかえません"
 	done
 
-Text00db:
+CannotUseBecauseItWillBeKnockedOutText:
 	textfw "「きぜつ」してしまうので"
 	linefw "つかえません"
 	done
 
-Text00dc:
+CanOnlyBeUsedOnTheBenchText:
 	textfw "ベンチでしか つかえません"
 	done
 
-Text00dd:
+NoBenchedPokemonOnBenchText: ; grammatically redundant
 	textfw "ベンチに 控えポケモンがいません"
 	done
 
-Text00de:
+OpponentIsNotAsleepText:
 	textfw "[相手]が"
 	linefw "「ねむり」状態に なってません"
 	done
 
-Text00df:
+UnableDueToToxicGasText:
 	textfw "「かがくへんかガス」の効果で"
 	linefw "つかえない"
 	done
 
-Text00e0:
+UnableDueToStareText:
 	textfw "「ショックアイ」の効果で"
 	linefw "つかえない"
 	done
 
-Text00e1:
+NoBasicEnergyCardsAttachedToOpponentText:
 	textfw "[相手]に 基本エネルギーカードが"
 	linefw "ついていません"
 	done
 
-Text00e2:
+NoSpecialEnergyCardsInDiscardPileText:
 	textfw "トラッシュに"
 	linefw "特殊エネルギーカードが ありません"
 	done
 
-Text00e3:
+NoBasicEnergyAttachedToPokemonInOppPlayAreaText:
 	textfw "相手の場の ポケモンに"
 	linefw "基本エネルギーが ついていません"
 	done
 
-Text00e4:
+NoBasicEnergyAttachedToPokemonInYourPlayAreaText:
 	textfw "自分の場の ポケモンに"
 	linefw "基本エネルギーが ついていません"
 	done
 
-Text00e5:
+CannotUseThisTurnText:
 	textfw "この番では つかえません"
 	done
 
-Text00e6:
+CannotUseDueToNotAsleepText:
 	textfw "「ねむり」状態ではないため"
 	linefw "つかえません"
 	done
 
-Text00e7:
+NoCardsInOpponentsHandText:
 	textfw "相手に 手札がありません"
 	done
 
-Text00e8:
+NoEvolutionCardsInDiscardPileText:
 	textfw "トラッシュに 進化カードが"
 	linefw "ありません"
 	done
 
-Text00e9:
+NoPokemonEvolvingFromFossilText:
 	textfw "「なにかの化石」から 進化した"
 	linefw "ポケモンがいません"
 	done
 
-Text00ea:
+CannotUseSinceItAlreadyHas2FoodCountersText:
 	textfw "「たべものカウンター」が"
 	linefw "2コのっているので つかえません"
 	done
 
-Text00eb:
+CannotEvolveText:
 	textfw "進化できません"
 	done
 
-Text00ec:
+CannotUseText:
 	textfw "つかえません"
 	done
 
-Text00ed:
+NotEnoughEnergyCardsInHandText:
 	textfw "手札のエネルギーカードが たりません"
 	done
 
-Text00ee:
+NoWaterEnergyInOppPlayAreaText:
 	textfw "相手の場に 水エネルギーがありません"
 	done
 
-Text00ef:
+CannotUseThisAttackText:
 	textfw "このワザは つかえません"
 	done
 
-Text00f0:
+TransmissionErrorSimpleText:
 	textfw "通信エラーが はっせいしました"
 	done
 
-Text00f1:
+BackUpIsBrokenText:
 	textfw "バックアップが こわれてます"
 	done
 
-Text00f2:
+PrinterIsNotConnectedText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターが つながってません"
 	done
 
-Text00f3:
+BatteriesHaveLostTheirChargeText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの電池が のこりわずかです"
 	done
 
-Text00f4:
+PrinterPaperIsJammedText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの紙が つまっています"
 	done
 
-Text00f5:
+PrinterErrorText:
+	; doesn't say "check cable or printer switch"
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターのエラーです"
 	done
 
-Text00f6:
+PrinterPacketErrorText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターのパケットエラーです"
 	done
 
-Text00f7:
+PrintingWasInterruptedText:
 	textfw "プリントが ちゅうだん されました"
 	done
 
-Text00f8:
+CardPopCannotBePlayedWithTheGameBoyText: ; unused?
+	; left over from tcg1-jp, whose cartridge's built-in infrared allowed GB
+	; "Play with GB or GBC, can't with SGB"
+	; doesn't make sense at all for the GBC-only tcg2
 	textfw "スーパーゲームボーイでは"
 	linefw "「カードポン!」は あそべません"
 	linefw "ゲームボーイ ゲームボーイカラーで"
 	linefw "あそんでください"
 	done
 
-Text00f9:
+GBCOnlyString:
 	textfw "  このカートリッジは"
 	linefw "ゲームボーイカラーせんようです"
 	linefw "  ゲームボーイカラーで"
 	linefw "  しようしてください"
 	done
 
-Text00fa:
+SandAttackCheckText:
 	textfw "「すなかけ」判定"
 	linefw "「うら」ならワザは しっぱい"
 	done
 
-Text00fb:
+SmokescreenCheckText:
 	textfw "「えんまく」判定"
 	linefw "「うら」ならワザは しっぱい"
 	done
 
-Text00fc:
+LightningFlashCheckText:
 	textfw "「サンダーフラッシュ」判定"
 	linefw "「うら」ならワザは しっぱい"
 	done
 
-Text00fd:
+ParalysisInflictionCheckText:
 	textfw "「マヒ」判定!"
 	linefw "「おもて」なら[相手]を「マヒ」"
 	done
 
-Text00fe:
+SleepInflictionCheckText:
 	textfw "「ねむり」判定!"
 	linefw "「おもて」なら[相手]を「ねむり」"
 	done
 
-Text00ff:
+PoisonInflictionCheckText:
 	textfw "「どく」判定!"
 	linefw "「おもて」なら[相手]を「どく」"
 	done
 
-Text0100:
+PoisonedIfHeadsParalyzedIfTailsText:
 	textfw "「おもて」なら[相手]を「どく」"
 	linefw "「うら」なら[相手]を「マヒ」"
 	done
 
-Text0101:
+IfHeadsPlus20AndParalysisText:
 	textfw "「おもて」なら20ダメージついかと"
 	linefw "[相手]を「マヒ」"
 	done
 
-Text0102:
+ConfusionInflictionCheckText:
 	textfw "「こんらん」判定!"
 	linefw "「おもて」なら[相手]を「こんらん」"
 	done
 
-Text0103:
+VenomPowderCheckText:
 	textfw "「りんぷん」判定! 「おもて」なら"
 	linefw "[相手]を「どく」と「こんらん」"
 	done
 
-Text0104:
+IfTailsYourPokemonBecomesConfusedText:
 	textfw "「うら」なら"
 	linefw "[自分]は「こんらん」"
 	done
 
-Text0105:
+DamageCheckIfTailsNoDamageText:
 	textfw "ダメージ判定!"
 	linefw "「うら」なら ダメージなし!!"
 	done
 
-Text0106:
+IfHeadsDraw1CardFromDeckText:
 	textfw "「おもて」なら"
 	linefw "山札から1枚カードをひく!"
 	done
 
-Text0107:
+FlipUntilTails10DamageTimesHeadsText:
 	textfw "「うら」が でるまで ふる"
 	linefw "「おもて」×10ダメージ!!"
 	done
 
-Text0108:
+IfHeadPlus10IfTails10ToYourselfText:
 	textfw "「おもて」なら +10ダメージ!"
 	linefw "「うら」なら[自分]に 10ダメージ!"
 	done
 
-Text0109:
+DamageToOppBenchIfHeadsDamageToYoursIfTailsText:
 	textfw "「おもて」なら[相手]の 「うら」なら"
 	linefw "自分の控え全員に 10ダメージ!"
 	done
 
-Text010a:
+IfHeadsChangeOpponentsActivePokemonText:
 	textfw "「おもて」なら"
 	linefw "相手の対戦ポケモンをいれかえる"
 	done
 
-Text010b:
+IfHeadsHealIsSuccessfulText:
 	textfw "「おもて」なら"
 	linefw "「ヒーリング」成功!!"
 	done
 
-Text010c:
+IfTailsDamageToYourselfTooText:
 	textfw "「うら」なら"
 	linefw "[自分]にも <RAMNUM>ダメージ!"
 	done
 
-Text010d:
+AttackSuccessCheckText:
 	textfw "ワザの成功判定!"
 	linefw "「おもて」なら ワザ成功!!"
 	done
 
-Text010e:
+TrainerCardSuccessCheckText:
 	textfw "トレーナーカードの成功判定!"
 	linefw "「おもて」なら成功!"
 	done
 
-Text010f:
+GamblerQuantityCheckText:
 	textfw "枚数判定!"
 	linefw "「おもて」8枚!「うら」1枚!"
 	done
 
-Text0110:
+IfHeadsNoDamageNextTurnText:
 	textfw "「おもて」なら つぎの相手の番に"
 	linefw "ダメージを うけなくなる!"
 	done
 
-Text0111:
+DamageCheckSimpleText: ; unused?
 	textfw "ダメージ判定"
 	done
 
-Text0112:
+DamageCheckIfHeadsPlusDamageText:
 	textfw "ダメージ判定!"
 	linefw "「おもて」なら+<RAMNUM>ダメージ!!"
 	done
 
-Text0113:
+DamageCheckXDamageTimesHeadsText:
 	textfw "ダメージ判定!"
 	linefw "「おもて」×<RAMNUM>ダメージ!!"
 	done
 
-Text0114:
+DamageCheckPlusXDamageForEachHeadsText:
 	textfw "ダメージ判定!"
 	linefw "「おもて」×<RAMNUM>ダメージ追加!!"
 	done
 
-Text0115:
+AcidCheckText:
 	textfw "「ようかいえき」判定"
 	linefw "「おもて」ならつぎの番ににげられない"
 	done
 
-Text0116:
+TransparencyCheckText:
 	textfw "「とうめい」判定"
 	linefw "「おもて」なら ワザをうけない"
 	done
 
-Text0117:
+ConfusionCheckDamageText:
 	textfw "「こんらん」チェックをします"
 	linefw "「うら」なら [自分]にダメージ"
 	done
 
-Text0118:
+ConfusionCheckRetreatText:
 	textfw "「こんらん」判定!"
 	linefw "「うら」なら にげられない"
 	done
 
-Text0119:
+PokemonsSleepCheckText:
 	textfw "<RAMTEXT>の"
 	linefw "「ねむり」のけいぞく チェック!"
 	done
 
-Text011a:
+PoisonedIfHeadsConfusedIfTailsText:
 	textfw "「おもて」なら[相手]を「どく」状態"
 	linefw "「うら」なら「こんらん」状態"
 	done
 
-Text011b:
+IfHeadsDoNotReceiveDamageOrEffectText:
 	textfw "「おもて」なら つぎの相手の番に"
 	linefw "ワザのダメージと効果を うけない!"
 	done
 
-Text011c:
+IfHeadsOpponentCannotAttackText:
 	textfw "「おもて」なら つぎの相手の番に"
 	linefw "[相手]は ワザをつかえない!"
 	done
 
-Text011d:
+FinalBeamSuccessCheckText:
 	textfw "「おもて」なら"
 	linefw "「ファイナルビーム」成功!"
 	done
 
-Text011e:
+ConfuseOppIfHeadsConfuseYourselfIfTailsText:
 	textfw "「おもて」なら[相手]を「うら」なら"
 	linefw "[自分]を「こんらん」状態"
 	done
 
-Text011f:
+LongDistanceHypnosisCheckText:
 	textfw "「おもて」なら[相手]を「うら」なら"
 	linefw "[自分]を「ねむり」状態"
 	done
 
-Text0120:
+DamageCheckXDamageTimesTailsText:
 	textfw "ダメージ判定!"
 	linefw "「うら」×<RAMNUM>ダメージ!!"
 	done
 
-Text0121:
+DamageCheckIfTailsPlusDamageText:
 	textfw "ダメージ判定!"
 	linefw "「うら」なら+<RAMNUM>ダメージ!!"
 	done
 
-Text0122:
+SinkholeCheckText:
 	textfw "おとしあな判定!"
 	linefw "「うら」なら 20ダメージ!!"
 	done
 
-Text0123:
+ConfusedIfHeadsSleepIfTailsText:
 	textfw "「おもて」なら [相手]を「こんらん」"
 	linefw "「うら」なら 「ねむり」状態"
 	done
 
-Text0124:
+ParalyzedIfHeadsPoisonedIfTailsText:
 	textfw "「おもて」なら [相手]を 「マヒ」"
 	linefw "「うら」なら 「どく」状態"
 	done
 
-Text0125:
+AsleepIfHeadsConfusedIfTailsText:
 	textfw "「おもて」なら [相手]を「ねむり」"
 	linefw "「うら」なら 「こんらん」状態"
 	done
 
-Text0126:
+IfTails40DamageToYourselfTooText:
 	textfw "「うら」なら"
 	linefw "[自分]にも 40ダメージ!!"
 	done
 
-Text0127:
+FlipUntilTails20DamageTimesHeadsText:
 	textfw "「うら」が でるまで ふる"
 	linefw "「おもて」×20ダメージ!!"
 	done
 
-Text0128:
+IfHeadsDiscard1EnergyCardText:
 	textfw "「おもて」なら エネルギーカードを"
 	linefw "1枚トラッシュ!"
 	done
 
-Text0129:
+IfHeadsOpponentCannotRetreatText:
 	textfw "「おもて」なら"
 	linefw "[相手]は つぎの番に にげられない"
 	done
 
-Text012a:
+IfHeads10DamageToBenchText:
 	textfw "「おもて」なら"
 	linefw "ベンチのポケモンに 10ダメージ!"
 	done
 
-Text012b:
+IfTails30DamageTo1OfYourPkmnText:
 	textfw "「うら」なら 自分の場の"
 	linefw "ポケモンに 30ダメージ!"
 	done
 
-Text012c:
+Plus20DamageIfHeads20DamageToYourselfIfTailsText:
 	textfw "「おもて」なら 20ダメージついか"
 	linefw "「うら」なら [自分]に20ダメージ"
 	done
 
-Text012d:
+IfTailsNoDamageToOppAnd20ToYourselfText:
 	textfw "「うら」なら ダメージ無しと"
 	linefw "[自分]に20ダメージ"
 	done
 
-Text012e:
+BlinkCheckText:
 	textfw "「ブリンク」判定"
 	linefw "「おもて」なら ダメージをうけない"
 	done
 
-Text012f:
+IfHeads20DamageTo1OfOppPkmnText:
 	textfw "「おもて」なら あいての場の"
 	linefw "ポケモンに 20ダメージ!"
 	done
 
-Text0130:
+IfHeadsDoNotReceiveDamageText:
 	textfw "「おもて」なら つぎの相手の番に"
 	linefw "ワザのダメージを うけない!"
 	done
 
-Text0131:
+IfHeadsDiscard1EnergyCardFromOpponentText:
 	textfw "「おもて」なら [相手]の"
 	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
-Text0132:
+IfTailsDiscard1EnergyCardFromYourselfText:
 	textfw "「うら」なら [自分]の"
 	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
-Text0133:
+30DamageToOppIfHeads10DamageToBenchIfTailsText:
 	textfw "「おもて」なら [相手]に30ダメージ"
 	linefw "「うら」なら ベンチに10ダメージ"
 	done
 
-Text0134:
+FailIfEitherOf2CoinsIsTailsText:
 	textfw "コインを 2枚なげて 1枚でも"
 	linefw "「うら」なら このワザは しっぱい!"
 	done
 
-Text0135:
+KickingAndStampingCheckText:
 	textfw "「おもて」なら 10ダメージついか"
 	linefw "「うら」なら [相手]をいれかえる"
 	done
 
-Text0136:
+DrawCardForEachHeadsText:
 	textfw "「おもて」の数だけ カードをひく"
 	done
 
-Text0137:
+ClearProfitCheckText:
 	textfw "「うら」がでるまで コインをなげて"
 	linefw "「おもて」の数だけ カードをひく"
 	done
 
-Text0138:
+FocusedOneShotCheckText:
 	textfw "「おもて」なら つぎの番「どつく」が"
 	linefw "2倍ダメージ 「うら」ならつかえない"
 	done
 
-Text0139:
+ParalyzedIfHeadsUnableToAttackNextTurnIfTailsText:
 	textfw "「おもて」なら [相手]を「マヒ」"
 	linefw "「うら」なら つぎの番つかえない"
 	done
 
-Text013a:
+10DamageForEachHeadsToBenchInAnyWayYouLikeText:
 	textfw "「おもて」の数 ×10ダメージを"
 	linefw "自由に控えポケモンに わりふる"
 	done
 
-Text013b:
+PoisonMistCheckText:
 	textfw "「おもて」なら つぎの自分の番の"
 	linefw "はじめまで 毒ダメージが20になる"
 	done
 
-Text013c:
+DryUpCheckText:
 	textfw "「おもて」の数だけ"
 	linefw "「水」エネルギーを はがす"
 	done
 
-Text013d:
+FossilizeCheckText: $013d
 	textfw "「おもて」なら 「なにかの化石」から"
 	linefw "進化した進化カードを 手札にもどせる"
 	linefw ""
