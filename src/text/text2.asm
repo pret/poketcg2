@@ -2171,11 +2171,11 @@ PrinterTurningOffReminderText:
 	linefw "きりわすれに ちゅういしましょう"
 	done
 
-Text02fe:
+ProcedureForSendingCardsToPlayerTitleText:
 	textfw "あげるカードの えらびかた"
 	done
 
-Text02ff:
+ProcedureForSendingCardsToPlayerText:
 	textfw "1ˍデッキをつくるように あげたい"
 	linefw "  カードをえらび 左右でふやします"
 	linefw ""
@@ -2186,46 +2186,47 @@ Text02ff:
 	linefw "  じゅんびが かんりょうです"
 	done
 
-Text0300:
+ReadProcedureForSendingCardsToPlayerText:
 	textfw "あげるカードの えらびかたを"
 	linefw "かくにんしてください"
 	done
 
-Text0301:
+SendText:
+	; used both for sending cards to another player and to in-game machines
 	textfw "おくる"
 	done
 
-Text0302:
+CardReceivedText:
 	textfw "もらったカード"
 	done
 
-Text0303:
+CardToSendToPlayerText:
 	textfw "あげるカード"
 	done
 
-Text0304:
+SendTheseCardsToPlayerPromptText:
 	textfw "これらのカードを あげますか?"
 	done
 
-Text0305:
+ReceivedTheseCardsFromText:
 	textfw "これらのカードを"
 	linefw "<RAMTEXT>さんから もらいました!"
 	done
 
-Text0306:
+ChooseDeckConfigurationToSendText:
 	textfw "わたしたい デッキのつくりかたを"
 	linefw "えらんでください"
 	done
 
-Text0307:
+ChooseWhereToSaveText:
 	textfw "ほぞんばしょを えらんでください"
 	done
 
-Text0308:
+ReceiveRecordsText:
 	textfw "きろくをうけとる"
 	done
 
-Text0309:
+ReceivedDeckConfigurationFromText:
 	textfw "デッキのつくりかたを"
 	linefw "<RAMTEXT>さんから もらいました!"
 	done

@@ -769,18 +769,18 @@ TextOffsets::
 	textpointer WhatToPrintPromptText                                 ; 0x02fb
 	textpointer PrinterContrastSettingsPromptText                     ; 0x02fc
 	textpointer PrinterTurningOffReminderText                         ; 0x02fd
-	textpointer Text02fe                                           ; 0x02fe
-	textpointer Text02ff                                           ; 0x02ff
-	textpointer Text0300                                           ; 0x0300
-	textpointer Text0301                                           ; 0x0301
-	textpointer Text0302                                           ; 0x0302
-	textpointer Text0303                                           ; 0x0303
-	textpointer Text0304                                           ; 0x0304
-	textpointer Text0305                                           ; 0x0305
-	textpointer Text0306                                           ; 0x0306
-	textpointer Text0307                                           ; 0x0307
-	textpointer Text0308                                           ; 0x0308
-	textpointer Text0309                                           ; 0x0309
+	textpointer ProcedureForSendingCardsToPlayerTitleText             ; 0x02fe
+	textpointer ProcedureForSendingCardsToPlayerText                  ; 0x02ff
+	textpointer ReadProcedureForSendingCardsToPlayerText              ; 0x0300
+	textpointer SendText                                              ; 0x0301
+	textpointer CardReceivedText                                      ; 0x0302
+	textpointer CardToSendToPlayerText                                ; 0x0303
+	textpointer SendTheseCardsToPlayerPromptText                      ; 0x0304
+	textpointer ReceivedTheseCardsFromText                            ; 0x0305
+	textpointer ChooseDeckConfigurationToSendText                     ; 0x0306
+	textpointer ChooseWhereToSaveText                                 ; 0x0307
+	textpointer ReceiveRecordsText                                    ; 0x0308
+	textpointer ReceivedDeckConfigurationFromText                     ; 0x0309
 	textpointer Text030a                                           ; 0x030a
 	textpointer Text030b                                           ; 0x030b
 	textpointer Text030c                                           ; 0x030c
