@@ -2231,115 +2231,115 @@ ReceivedDeckConfigurationFromText:
 	linefw "<RAMTEXT>さんから もらいました!"
 	done
 
-Text030a:
+AutoDeckMachine1Text:
 	textfw "オートデッキマシン1"
 	done
 
-Text030b:
+BasicDeckMachineText:
 	textfw "きほんデッキ"
 	done
 
-Text030c:
+GivenDeckMachineText:
 	textfw "もらったデッキ"
 	done
 
-Text030d:
+FightingDeckMachineText:
 	textfw "闘ポケモンのデッキ"
 	done
 
-Text030e:
+GrassDeckMachineText:
 	textfw "草ポケモンのデッキ"
 	done
 
-Text030f:
+WaterDeckMachineText:
 	textfw "水ポケモンのデッキ"
 	done
 
-Text0310:
+FireDeckMachineText:
 	textfw "炎ポケモンのデッキ"
 	done
 
-Text0311:
+LightningDeckMachineText:
 	textfw "雷ポケモンのデッキ"
 	done
 
-Text0312:
+PsychicDeckMachineText:
 	textfw "超ポケモンのデッキ"
 	done
 
-Text0313:
+SpecialDeckMachineText:
 	textfw "スペシャルデッキ"
 	done
 
-Text0314:
+LegendaryDeckMachineText:
 	textfw "伝説のデッキ"
 	done
 
-Text0315:
+BasicDeckMachineTextPadded:
 	textfw "きほんデッキ   "
 	done
 
-Text0316:
+GivenDeckMachineTextPadded:
 	textfw "もらったデッキ  "
 	done
 
-Text0317:
+SpecialDeckMachineTextPadded:
 	textfw "スペシャルデッキ "
 	done
 
-Text0318:
+LegendaryDeckMachineTextPadded:
 	textfw "伝説のデッキ   "
 	done
 
-Text0319:
+AutoDeckMachine2Text:
 	textfw "オートデッキマシン2"
 	done
 
-Text031a:
+DarkGrassDeckMachineText:
 	textfw "わるい草ポケモンデッキ"
 	done
 
-Text031b:
+DarkLightningDeckMachineText:
 	textfw "わるい雷ポケモンデッキ"
 	done
 
-Text031c:
+DarkWaterDeckMachineText:
 	textfw "わるい水ポケモンデッキ"
 	done
 
-Text031d:
+DarkFireDeckMachineText:
 	textfw "わるい炎ポケモンデッキ"
 	done
 
-Text031e:
+DarkFightingDeckMachineText:
 	textfw "わるい闘ポケモンデッキ"
 	done
 
-Text031f:
+DarkPsychicDeckMachineText:
 	textfw "わるい超ポケモンデッキ"
 	done
 
-Text0320:
+ColorlessDeckMachineText:
 	textfw "無色ポケモンデッキ"
 	done
 
-Text0321:
+DarkSpecialDeckMachineText:
 	textfw "わるいスペシャルデッキ"
 	done
 
-Text0322:
+RareCardDeckMachineText:
 	textfw "めずらしいカードデッキ"
 	done
 
-Text0323:
+MysteriousCardDeckMachineText:
 	textfw "なぞのカードデッキ"
 	done
 
-Text0324:
+ColorlessDeckMachineTextPadded:
 	textfw "無色ポケモンデッキ  "
 	done
 
-Text0325:
+MysteriousCardDeckMachineTextPadded:
 	textfw "なぞのカードデッキ  "
 	done
 

@@ -781,34 +781,34 @@ TextOffsets::
 	textpointer ChooseWhereToSaveText                                 ; 0x0307
 	textpointer ReceiveRecordsText                                    ; 0x0308
 	textpointer ReceivedDeckConfigurationFromText                     ; 0x0309
-	textpointer Text030a                                           ; 0x030a
-	textpointer Text030b                                           ; 0x030b
-	textpointer Text030c                                           ; 0x030c
-	textpointer Text030d                                           ; 0x030d
-	textpointer Text030e                                           ; 0x030e
-	textpointer Text030f                                           ; 0x030f
-	textpointer Text0310                                           ; 0x0310
-	textpointer Text0311                                           ; 0x0311
-	textpointer Text0312                                           ; 0x0312
-	textpointer Text0313                                           ; 0x0313
-	textpointer Text0314                                           ; 0x0314
-	textpointer Text0315                                           ; 0x0315
-	textpointer Text0316                                           ; 0x0316
-	textpointer Text0317                                           ; 0x0317
-	textpointer Text0318                                           ; 0x0318
-	textpointer Text0319                                           ; 0x0319
-	textpointer Text031a                                           ; 0x031a
-	textpointer Text031b                                           ; 0x031b
-	textpointer Text031c                                           ; 0x031c
-	textpointer Text031d                                           ; 0x031d
-	textpointer Text031e                                           ; 0x031e
-	textpointer Text031f                                           ; 0x031f
-	textpointer Text0320                                           ; 0x0320
-	textpointer Text0321                                           ; 0x0321
-	textpointer Text0322                                           ; 0x0322
-	textpointer Text0323                                           ; 0x0323
-	textpointer Text0324                                           ; 0x0324
-	textpointer Text0325                                           ; 0x0325
+	textpointer AutoDeckMachine1Text                                  ; 0x030a
+	textpointer BasicDeckMachineText                                  ; 0x030b
+	textpointer GivenDeckMachineText                                  ; 0x030c
+	textpointer FightingDeckMachineText                               ; 0x030d
+	textpointer GrassDeckMachineText                                  ; 0x030e
+	textpointer WaterDeckMachineText                                  ; 0x030f
+	textpointer FireDeckMachineText                                   ; 0x0310
+	textpointer LightningDeckMachineText                              ; 0x0311
+	textpointer PsychicDeckMachineText                                ; 0x0312
+	textpointer SpecialDeckMachineText                                ; 0x0313
+	textpointer LegendaryDeckMachineText                              ; 0x0314
+	textpointer BasicDeckMachineTextPadded                            ; 0x0315
+	textpointer GivenDeckMachineTextPadded                            ; 0x0316
+	textpointer SpecialDeckMachineTextPadded                          ; 0x0317
+	textpointer LegendaryDeckMachineTextPadded                        ; 0x0318
+	textpointer AutoDeckMachine2Text                                  ; 0x0319
+	textpointer DarkGrassDeckMachineText                              ; 0x031a
+	textpointer DarkLightningDeckMachineText                          ; 0x031b
+	textpointer DarkWaterDeckMachineText                              ; 0x031c
+	textpointer DarkFireDeckMachineText                               ; 0x031d
+	textpointer DarkFightingDeckMachineText                           ; 0x031e
+	textpointer DarkPsychicDeckMachineText                            ; 0x031f
+	textpointer ColorlessDeckMachineText                              ; 0x0320
+	textpointer DarkSpecialDeckMachineText                            ; 0x0321
+	textpointer RareCardDeckMachineText                               ; 0x0322
+	textpointer MysteriousCardDeckMachineText                         ; 0x0323
+	textpointer ColorlessDeckMachineTextPadded                        ; 0x0324
+	textpointer MysteriousCardDeckMachineTextPadded                   ; 0x0325
 	textpointer Text0326                                           ; 0x0326
 	textpointer Text0327                                           ; 0x0327
 	textpointer Text0328                                           ; 0x0328
