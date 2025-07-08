@@ -2703,362 +2703,363 @@ MachineGreatDragonDeckDescriptionText:
 	linefw "きょうりょくポケモンで トドメだ!"
 	done
 
-Text0376:
+MachineInsectCollectionDeckText:
 	textfw "こんちゅうさいしゅう"
 	done
 
-Text0377:
+MachineCaveExplorationDeckText:
 	textfw "どうくつたんけん"
 	done
 
-Text0378:
+MachineOminousMeadowDeckText:
 	textfw "あやしいはなばたけ"
 	done
 
-Text0379:
+MachineAtrociousWeezingDeckText:
 	textfw "きょうあくマタドガス"
 	done
 
-Text037a:
+MachineTheBenchIsAlsoASurpriseDeckText:
 	textfw "ベンチもビックリ"
 	done
 
-Text037b:
+MachineEnergyConservationDeckText:
 	textfw "しょうエネルギー"
 	done
 
-Text037c:
+MachineSonicboomDeckText:
 	textfw "ソニックブーム"
 	done
 
-Text037d:
+MachineRageOfTheHeavensDeckText:
 	textfw "てんくうのいかり"
 	done
 
-Text037e:
+MachineDarkWaterDeckText:
 	textfw "ダークウォーター"
 	done
 
-Text037f:
+MachineQuickFreezeDeckText:
 	textfw "きゅうそくれいとう"
 	done
 
-Text0380:
+MachineWhirlpoolShowerDeckText:
 	textfw "うずしおのシャワー"
 	done
 
-Text0381:
+MachineWaterGangDeckText:
 	textfw "みずのギャングだん"
 	done
 
-Text0382:
+MachineFireballDeckText:
 	textfw "ファイヤーボール"
 	done
 
-Text0383:
+MachineCompleteCombustionDeckText:
 	textfw "かんぜんねんしょう"
 	done
 
-Text0384:
+MachineOminousSpiritFlamesDeckText:
 	textfw "あやしいヒトダマ"
 	done
 
-Text0385:
+MachineEternalFireDeckText:
 	textfw "えいえんのファイヤー"
 	done
 
-Text0386:
+MachineBewareTheTrapDeckText:
 	textfw "ワナにごちゅうい!"
 	done
 
-Text0387:
+MachineOgresKickDeckText:
 	textfw "キックのオニ"
 	done
 
-Text0388:
+MachineRockBlastDeckText:
 	textfw "ロックブラスト!"
 	done
 
-Text0389:
+MachineHeavyWorkDeckText:
+	; the same as Full Strength Deck but renamed for Machine
 	textfw "ちからわざ"
 	done
 
-Text038a:
+MachineSlowbrosFishingDeckText:
 	textfw "ヤドランともづり"
 	done
 
-Text038b:
+MachineDirectHitDeckText:
 	textfw "ちょくげき"
 	done
 
-Text038c:
+MachineBadDreamDeckText:
 	textfw "バッドドリーム"
 	done
 
-Text038d:
+MachineBenchPanicDeckText:
 	textfw "ベンチはパニック!"
 	done
 
-Text038e:
+MachineSnorlaxGuardDeckText:
 	textfw "カビゴンとおせんぼ"
 	done
 
-Text038f:
+MachineEyeOfTheStormDeckText:
 	textfw "たいふうのめ"
 	done
 
-Text0390:
+MachineSuddenGrowthDeckText:
 	textfw "きゅうせいちょう"
 	done
 
-Text0391:
+MachineKingDragoniteDeckText:
 	textfw "おうじゃカイリュー"
 	done
 
-Text0392:
+MachineDarkCharizardDeckText:
 	textfw "わるいリザードン!"
 	done
 
-Text0393:
+MachineDarkBlastoiseDeckText:
 	textfw "わるいカメックス!"
 	done
 
-Text0394:
+MachineDarkVenusaurDeckText:
 	textfw "わるいフシギバナ!"
 	done
 
-Text0395:
+MachineDarkDragoniteDeckText:
 	textfw "わるいカイリュー!"
 	done
 
-Text0396:
+MachinePerfectHealthDeckText:
 	textfw "けんこうゆうりょう"
 	done
 
-Text0397:
+MachineSuperSoakerDeckText:
 	textfw "スーパーみずでっぽう"
 	done
 
-Text0398:
+MachineHellsDemonDeckText:
 	textfw "ちていのあくま"
 	done
 
-Text0399:
+MachinePremiumThunderDeckText:
 	textfw "プレミアムサンダー"
 	done
 
-Text039a:
+MachineMysteriousMewtwoDeckText:
 	textfw "なぞのミュウツー"
 	done
 
-Text039b:
+MachineHeavenlyLugiaDeckText:
 	textfw "てんくうのルギア"
 	done
 
-Text039c:
+MachineBrutalTrainersDeckText:
 	textfw "きょうあくトレーナー"
 	done
 
-Text039d:
+MachineDreadfulParalysisDeckText:
 	textfw "きょうふのかなしばり"
 	done
 
-Text039e:
+MachineInsectCollectionDeckDescriptionText:
 	textfw "こんちゅうの ポケモンが いっぱい!"
 	linefw "トランセルで 炎にも つよいぞ!"
 	done
 
-Text039f:
+MachineCaveExplorationDeckDescriptionText:
 	textfw "くらいどうくつに ひそむポケモンたち"
 	linefw "どくのこうげきで えものをとらえろ!"
 	done
 
-Text03a0:
+MachineOminousMeadowDeckDescriptionText:
 	textfw "くさいかふんで あたまがクラクラ"
 	linefw "でも カビゴンだけは ゲンキだぞ?"
 	done
 
-Text03a1:
+MachineAtrociousWeezingDeckDescriptionText:
 	textfw "わるいマタドガスが だいばくはつ!"
 	linefw "どくこうげきも きょうりょくだ"
 	done
 
-Text03a2:
+MachineTheBenchIsAlsoASurpriseDeckDescriptionText:
 	textfw "あいての ベンチも こうげきだ!"
 	linefw "みんな まとめて やっつけよう"
 	done
 
-Text03a3:
+MachineEnergyConservationDeckDescriptionText:
 	textfw "エネルギーは とってもだいじ"
 	linefw "「エネルギー回収」で てにいれよう"
 	done
 
-Text03a4:
+MachineSonicboomDeckDescriptionText:
 	textfw "ソニックブームは 抵抗力を うけない"
 	linefw "これで 岩ポケモンも だいじょうぶ"
 	done
 
-Text03a5:
+MachineRageOfTheHeavensDeckDescriptionText:
 	textfw "おおぞらの ポケモンが せいぞろい"
 	linefw "サンダーで いっきに けっちゃくだ"
 	done
 
-Text03a6:
+MachineDarkWaterDeckDescriptionText:
 	textfw "超ポケモンと 水ポケモンの"
 	linefw "わるくて あやしい デッキだ"
 	done
 
-Text03a7:
+MachineQuickFreezeDeckDescriptionText:
 	textfw "きょうりょくな 「れいとうビーム」で"
 	linefw "あいての うごきを ふうじこめるぞ"
 	done
 
-Text03a8:
+MachineWhirlpoolShowerDeckDescriptionText:
 	textfw "ワザと トレーナーカードで"
 	linefw "あいての エネルギーを はがせ!"
 	done
 
-Text03a9:
+MachineWaterGangDeckDescriptionText:
 	textfw "わるい 水ポケモンが せいぞろい"
 	linefw "すばやく 進化して こうげきだ!"
 	done
 
-Text03aa:
+MachineFireballDeckDescriptionText:
 	textfw "「れんぞくファイヤーボール」が"
 	linefw "すべてを やきつくしてしまう デッキ"
 	done
 
-Text03ab:
+MachineCompleteCombustionDeckDescriptionText:
 	textfw "トラッシュされた エネルギーカードを"
 	linefw "ひろって つけて かんぜんねんしょう"
 	done
 
-Text03ac:
+MachineOminousSpiritFlamesDeckDescriptionText:
 	textfw "あやしい ほのおで まどわすデッキ"
 	linefw "あいての場を かきまわしてやろう"
 	done
 
-Text03ad:
+MachineEternalFireDeckDescriptionText:
 	textfw "とにかく アツイ スペシャルデッキ"
 	linefw "ファイヤーの いちげきで きまりだ!"
 	done
 
-Text03ae:
+MachineBewareTheTrapDeckDescriptionText:
 	textfw "バトル場が ワナで いっぱいになるぞ"
 	linefw "あいては うかつに うごけないデッキ"
 	done
 
-Text03af:
+MachineOgresKickDeckDescriptionText:
 	textfw "キックの スペシャリストデッキ!"
 	linefw "みんな けりワザが きょうれつだ!"
 	done
 
-Text03b0:
+MachineRockBlastDeckDescriptionText:
 	textfw "「ロックブラスト」が きょうりょくだ"
 	linefw "みんなまとめて かかってこい!"
 	done
 
-Text03b1:
+MachineHeavyWorkDeckDescriptionText:
 	textfw "かいりきじまんの ポケモンたち"
 	linefw "あいての ポケモンを うごかせ!"
 	done
 
-Text03b2:
+MachineSlowbrosFishingDeckDescriptionText:
 	textfw "ヤドランの 「つりあげる」で"
 	linefw "プクリンの ワザが パワーアップ!"
 	done
 
-Text03b3:
+MachineDirectHitDeckDescriptionText:
 	textfw "「弱点・抵抗力」は しんぱいないぞ!"
 	linefw "これで 無色ポケモンも てきじゃない"
 	done
 
-Text03b4:
+MachineBadDreamDeckDescriptionText:
 	textfw "「えんかくさいみん」と「ゆめくい」の"
 	linefw "コンビネーションが さえるデッキ"
 	done
 
-Text03b5:
+MachineBenchPanicDeckDescriptionText:
 	textfw "わるいゲンガーの 「もてあそぶ」で"
 	linefw "あいての ベンチを かくらんしよう!"
 	done
 
-Text03b6:
+MachineSnorlaxGuardDeckDescriptionText:
 	textfw "カビゴンが とおせんぼする デッキ"
 	linefw "エネルギーも はがして ねむらせろ!"
 	done
 
-Text03b7:
+MachineEyeOfTheStormDeckDescriptionText:
 	textfw "とりポケモンが あつまった デッキ"
 	linefw "どんどん いれかえて たたかおう"
 	done
 
-Text03b8:
+MachineSuddenGrowthDeckDescriptionText:
 	textfw "ポケモンを すばやく そだてよう"
 	linefw "きょうりょくな ワザで アタック!"
 	done
 
-Text03b9:
+MachineKingDragoniteDeckDescriptionText:
 	textfw "きょだいな カイリューが おおあばれ"
 	linefw "どんな ポケモンも けちらすぞ!"
 	done
 
-Text03ba:
+MachineDarkCharizardDeckDescriptionText:
 	textfw "れんぞくファイヤーボールが つよい!"
 	linefw "わるいリザードンを つかいこなせ!"
 	done
 
-Text03bb:
+MachineDarkBlastoiseDeckDescriptionText:
 	textfw "わるいカメックスが たのもしいデッキ"
 	linefw "雷ポケモンには プテラで はんげき"
 	done
 
-Text03bc:
+MachineDarkVenusaurDeckDescriptionText:
 	textfw "わるいフシギバナの どくこうげきを"
 	linefw "「ポイズンミスト」で パワーアップ!"
 	done
 
-Text03bd:
+MachineDarkDragoniteDeckDescriptionText:
 	textfw "わるいカイリューが てしたをよぶと"
 	linefw "「ともだちのわ」が つよくなる!"
 	done
 
-Text03be:
+MachinePerfectHealthDeckDescriptionText:
 	textfw "めずらしい フシギバナの ちからが"
 	linefw "なかまたちを まもってくれる"
 	done
 
-Text03bf:
+MachineSuperSoakerDeckDescriptionText:
 	textfw "「みずでっぽう」を うちまくれ!"
 	linefw "かわいい マリルも いっしょだよ"
 	done
 
-Text03c0:
+MachineHellsDemonDeckDescriptionText:
 	textfw "めずらしい ダグトリオの デッキ"
 	linefw "アースウェイブで ベンチに ダメージ"
 	done
 
-Text03c1:
+MachinePremiumThunderDeckDescriptionText:
 	textfw "めずらしい カードばかりの デッキ"
 	linefw "がんばって あつめてみよう!"
 	done
 
-Text03c2:
+MachineMysteriousMewtwoDeckDescriptionText:
 	textfw "「GR団のミュウツー」とは・・・?"
 	linefw "そのしょうたいが いま あかされる!"
 	done
 
-Text03c3:
+MachineHeavenlyLugiaDeckDescriptionText:
 	textfw "しんぴに つつまれた ポケモン"
 	linefw "ルギアが とうとう たんじょうだ!"
 	done
 
-Text03c4:
+MachineBrutalTrainersDeckDescriptionText:
 	textfw "ずらりとそろった トレーナーカード"
 	linefw "あいては とっても やりにくいぞ!"
 	done
 
-Text03c5:
+MachineDreadfulParalysisDeckDescriptionText:
 	textfw "あいてが なにも できなくなる"
 	linefw "きょうふの デッキが これだ!"
 	done
