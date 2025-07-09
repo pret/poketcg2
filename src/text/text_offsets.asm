@@ -969,29 +969,29 @@ TextOffsets::
 	textpointer MachineHeavenlyLugiaDeckDescriptionText               ; 0x03c3
 	textpointer MachineBrutalTrainersDeckDescriptionText              ; 0x03c4
 	textpointer MachineDreadfulParalysisDeckDescriptionText           ; 0x03c5
-	textpointer Text03c6                                           ; 0x03c6
-	textpointer Text03c7                                           ; 0x03c7
-	textpointer Text03c8                                           ; 0x03c8
-	textpointer Text03c9                                           ; 0x03c9
-	textpointer Text03ca                                           ; 0x03ca
-	textpointer Text03cb                                           ; 0x03cb
-	textpointer Text03cc                                           ; 0x03cc
-	textpointer Text03cd                                           ; 0x03cd
-	textpointer Text03ce                                           ; 0x03ce
-	textpointer Text03cf                                           ; 0x03cf
-	textpointer Text03d0                                           ; 0x03d0
-	textpointer Text03d1                                           ; 0x03d1
-	textpointer Text03d2                                           ; 0x03d2
-	textpointer Text03d3                                           ; 0x03d3
-	textpointer Text03d4                                           ; 0x03d4
-	textpointer Text03d5                                           ; 0x03d5
-	textpointer Text03d6                                           ; 0x03d6
-	textpointer Text03d7                                           ; 0x03d7
-	textpointer Text03d8                                           ; 0x03d8
-	textpointer Text03d9                                           ; 0x03d9
-	textpointer Text03da                                           ; 0x03da
-	textpointer Text03db                                           ; 0x03db
-	textpointer Text03dc                                           ; 0x03dc
+	textpointer GlossaryTitleText                                     ; 0x03c6
+	textpointer GlossaryGameBasicsText                                ; 0x03c7
+	textpointer GlossaryCardTypesAndKeywordsText                      ; 0x03c8
+	textpointer GlossaryStatusesAndDecisionText                       ; 0x03c9
+	textpointer GlossarySpecialRulesText                              ; 0x03ca
+	textpointer GlossaryExitText                                      ; 0x03cb
+	textpointer GlossaryGameBasicsMenuText                            ; 0x03cc
+	textpointer GlossaryCardTypesAndKeywordsMenuText                  ; 0x03cd
+	textpointer GlossaryStatusesAndDecisionMenuText                   ; 0x03ce
+	textpointer GlossarySpecialRulesMenuText                          ; 0x03cf
+	textpointer ChooseWordAndPressAButtonText                         ; 0x03d0
+	textpointer GlossaryGameBasicsTitleText                           ; 0x03d1
+	textpointer GlossaryCardTypesAndKeywordsTitleText                 ; 0x03d2
+	textpointer GlossaryStatusesAndDecisionTitleText                  ; 0x03d3
+	textpointer GlossarySpecialRulesTitleText                         ; 0x03d4
+	textpointer GlossaryDeckTitleText                                 ; 0x03d5
+	textpointer GlossaryDeckPileTitleText                             ; 0x03d6
+	textpointer GlossaryDiscardPileTitleText                          ; 0x03d7
+	textpointer GlossaryHandTitleText                                 ; 0x03d8
+	textpointer GlossaryArenaTitleText                                ; 0x03d9
+	textpointer GlossaryBenchTitleText                                ; 0x03da
+	textpointer GlossaryActivePokemonTitleText                        ; 0x03db
+	textpointer GlossaryBenchedPokemonTitleText                       ; 0x03dc
 	textpointer Text03dd                                           ; 0x03dd
 	textpointer Text03de                                           ; 0x03de
 	textpointer Text03df                                           ; 0x03df

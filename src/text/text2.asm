@@ -3064,31 +3064,31 @@ MachineDreadfulParalysisDeckDescriptionText:
 	linefw "きょうふの デッキが これだ!"
 	done
 
-Text03c6:
+GlossaryTitleText:
 	textfw "●ポケモンカード ようごじてん●"
 	done
 
-Text03c7:
+GlossaryGameBasicsText:
 	textfw "ポケモンカードのきほんようご"
 	done
 
-Text03c8:
+GlossaryCardTypesAndKeywordsText:
 	textfw "カードのしゅるいと せつめい"
 	done
 
-Text03c9:
+GlossaryStatusesAndDecisionText:
 	textfw "特殊状態と 勝ちまけの決定"
 	done
 
-Text03ca:
+GlossarySpecialRulesText:
 	textfw "特別ルール対戦"
 	done
 
-Text03cb:
+GlossaryExitText:
 	textfw "ようごじてんを ぬける"
 	done
 
-Text03cc:
+GlossaryGameBasicsMenuText:
 	textfw "デッキ       ベンチ"
 	linefw "山札        対戦ポケモン"
 	linefw "トラッシュ     ひかえポケモン"
@@ -3096,7 +3096,7 @@ Text03cc:
 	linefw "バトル場      ダメージカウンター"
 	done
 
-Text03cd:
+GlossaryCardTypesAndKeywordsMenuText:
 	textfw "エネルギーカード  ワザ"
 	linefw "トレーナーカード  特殊能力"
 	linefw "たねポケモン    弱点"
@@ -3104,14 +3104,14 @@ Text03cd:
 	linefw "わるい進化カード  にげる"
 	done
 
-Text03ce:
+GlossaryStatusesAndDecisionMenuText:
 	textfw "「どく」状態    勝ちまけの決定1"
 	linefw "「マヒ」状態    勝ちまけの決定2"
 	linefw "「ねむり」状態   勝ちまけの決定3"
 	linefw "「こんらん」状態  サドン・デス"
 	done
 
-Text03cf:
+GlossarySpecialRulesMenuText:
 	textfw "みどりのちから   だいちのちから"
 	linefw "雷パワーアップ   抵抗力ていか"
 	linefw "ほのおのよろい   エネルギーR"
@@ -3119,55 +3119,55 @@ Text03cf:
 	linefw "にげみずの場    トラッシュBH"
 	done
 
-Text03d0:
+ChooseWordAndPressAButtonText:
 	textfw "しりたい こうもくを えらんで"
 	linefw "Aボタンを おしてください"
 	done
 
-Text03d1:
+GlossaryGameBasicsTitleText:
 	textfw "「ポケモンカードのきほんようご」"
 	done
 
-Text03d2:
+GlossaryCardTypesAndKeywordsTitleText:
 	textfw "「カードのしゅるいと せつめい」"
 	done
 
-Text03d3:
+GlossaryStatusesAndDecisionTitleText:
 	textfw "「特殊状態と 勝ちまけの決定」"
 	done
 
-Text03d4:
+GlossarySpecialRulesTitleText:
 	textfw "「特別ルール対戦」"
 	done
 
-Text03d5:
+GlossaryDeckTitleText:
 	textfw "「デッキ」について"
 	done
 
-Text03d6:
+GlossaryDeckPileTitleText:
 	textfw "「山札」について"
 	done
 
-Text03d7:
+GlossaryDiscardPileTitleText:
 	textfw "「トラッシュ」について"
 	done
 
-Text03d8:
+GlossaryHandTitleText:
 	textfw "「手札」について"
 	done
 
-Text03d9:
+GlossaryArenaTitleText:
 	textfw "「バトル場」について"
 	done
 
-Text03da:
+GlossaryBenchTitleText:
 	textfw "「ベンチ」について"
 	done
 
-Text03db:
+GlossaryActivePokemonTitleText:
 	textfw "「対戦ポケモン」について"
 	done
 
-Text03dc:
+GlossaryBenchedPokemonTitleText:
 	textfw "「ひかえポケモン」について"
 	done
