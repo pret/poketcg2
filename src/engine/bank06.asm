@@ -3408,7 +3408,7 @@ HandleCardPopCommunications:
 	ret
 
 .asm_19e7f
-	ldtx hl, PopUnsuccessfulText
+	ldtx hl, CardPopUnsuccessfulTryAgainText
 .set_carry
 	scf
 	ret
@@ -4207,11 +4207,11 @@ HandlePrinterError:
 	ld a, $04
 	jr ShowPrinterConnectionErrorScene
 .jammed_printer
-	ldtx hl, PrinterPaperIsJammedText
+	ldtx hl, PrinterPaperJamErrorText
 	ld a, $04
 	jr ShowPrinterConnectionErrorScene
 .batteries_lost_charge
-	ldtx hl, BatteriesHaveLostTheirChargeText
+	ldtx hl, PrinterLowBatteryErrorText
 	ld a, $01
 	jr ShowPrinterConnectionErrorScene
 .interrupted
@@ -4221,7 +4221,7 @@ HandlePrinterError:
 	ret
 
 ShowPrinterIsNotConnected:
-	ldtx hl, PrinterIsNotConnectedText
+	ldtx hl, PrinterNotConnectedErrorText
 	ld a, $02
 ;	fallthrough
 

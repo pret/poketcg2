@@ -245,9 +245,9 @@ TextOffsets::
 	textpointer CannotUseThisAttackText                               ; 0x00ef
 	textpointer TransmissionErrorSimpleText                           ; 0x00f0
 	textpointer BackUpIsBrokenText                                    ; 0x00f1
-	textpointer PrinterIsNotConnectedText                             ; 0x00f2
-	textpointer BatteriesHaveLostTheirChargeText                      ; 0x00f3
-	textpointer PrinterPaperIsJammedText                              ; 0x00f4
+	textpointer PrinterNotConnectedErrorText                          ; 0x00f2
+	textpointer PrinterLowBatteryErrorText                            ; 0x00f3
+	textpointer PrinterPaperJamErrorText                              ; 0x00f4
 	textpointer PrinterErrorText                                      ; 0x00f5
 	textpointer PrinterPacketErrorText                                ; 0x00f6
 	textpointer PrintingWasInterruptedText                            ; 0x00f7
@@ -606,7 +606,7 @@ TextOffsets::
 	textpointer CardPopViewRecordsDescriptionText                     ; 0x0258
 	textpointer CardPopExitText                                       ; 0x0259
 	textpointer AreYouBothReadyToCardPopText                          ; 0x025a
-	textpointer PopUnsuccessfulText                                   ; 0x025b
+	textpointer CardPopUnsuccessfulTryAgainText                       ; 0x025b
 	textpointer CannotCardPopWithFriendPreviouslyPoppedWithText       ; 0x025c
 	textpointer PositionGameBoyColorsAndPressAButtonText              ; 0x025d
 	textpointer ReceivedThroughCardPopText                            ; 0x025e

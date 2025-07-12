@@ -1438,7 +1438,7 @@ AreYouBothReadyToCardPopText:
 	linefw "よういは できましたか?"
 	done
 
-PopUnsuccessfulText:
+CardPopUnsuccessfulTryAgainText:
 	textfw "うまく 「ポン!」できませんでした"
 	linefw "もういちど やりなおしてください"
 	done

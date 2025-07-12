@@ -1138,17 +1138,17 @@ BackUpIsBrokenText:
 	textfw "バックアップが こわれてます"
 	done
 
-PrinterIsNotConnectedText:
+PrinterNotConnectedErrorText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターが つながってません"
 	done
 
-BatteriesHaveLostTheirChargeText:
+PrinterLowBatteryErrorText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの電池が のこりわずかです"
 	done
 
-PrinterPaperIsJammedText:
+PrinterPaperJamErrorText:
 	textfw "エラー <No>0<RAMNUM>"
 	linefw "プリンターの紙が つまっています"
 	done
