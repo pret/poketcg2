@@ -740,7 +740,7 @@ TextOffsets::
 	textpointer DeletedDeckFromMachineText                            ; 0x02de
 	textpointer YouMayOnlyCarry4DecksText                             ; 0x02df
 	textpointer ChooseDeckToDismantleText                             ; 0x02e0
-	textpointer DismantledTheseDecksText                              ; 0x02e1
+	textpointer DismantledThisDeckText                                ; 0x02e1
 	textpointer ChooseDeckToBuildText                                 ; 0x02e2
 	textpointer CannotBuildMustDismantleText                          ; 0x02e3
 	textpointer YouDoNotOwnAllCardsNeededToBuildThisDeckText          ; 0x02e4
@@ -750,7 +750,7 @@ TextOffsets::
 	textpointer UsingTheseCardsInOtherDecksText                       ; 0x02e8
 	textpointer UsingTheseCardsTooInOtherDecksText                    ; 0x02e9
 	textpointer DismantleTheseDecksPromptText                         ; 0x02ea
-	textpointer DismantledThisDeckText                                ; 0x02eb
+	textpointer DismantledTheseDecksText                              ; 0x02eb
 	textpointer DeleteSavedDeckPromptText                             ; 0x02ec
 	textpointer DeckMachineReadInstructionsText                       ; 0x02ed
 	textpointer MaySubInEnergyCardsToBuildThisDeckText                ; 0x02ee
