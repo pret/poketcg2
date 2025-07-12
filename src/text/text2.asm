@@ -1358,7 +1358,7 @@ UnableDueToGoopGasAttackText:
 	linefw "特殊能力は つかえない"
 	done
 
-ChooseATrainerCardText:
+ChooseATrainerCardText_2:
 	textfw "トレーナーカードを"
 	linefw "えらんでください"
 	done

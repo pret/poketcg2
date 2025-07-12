@@ -590,7 +590,7 @@ TextOffsets::
 	textpointer NowPrintingText                                       ; 0x0248
 	textpointer IfHeadsInflictSleepText                               ; 0x0249
 	textpointer UnableDueToGoopGasAttackText                          ; 0x024a
-	textpointer ChooseATrainerCardText                                ; 0x024b
+	textpointer ChooseATrainerCardText_2                              ; 0x024b
 	textpointer NightlyGarbageRunPromptText                           ; 0x024c
 	textpointer NoRecoverableCardsInDiscardPileText                   ; 0x024d
 	textpointer DiggerCheckText                                       ; 0x024e
