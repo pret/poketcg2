@@ -612,17 +612,17 @@ HavePkmnPowerButUnableDueToStareText:
 	linefw "の効果で 特殊能力は つかえない"
 	done
 
-PlayCheck1Text: ; grammmar for "to play"
+MenuUseCheckText:
 	textfw " つかう"
 	linefw " しらべる"
 	done
 
-PlayCheck2Text: ; grammmar for "to play"
+MenuPutOutCheckText:
 	textfw " だす"
 	linefw " しらべる"
 	done
 
-SelectCheckText:
+MenuSelectCheckText:
 	textfw " えらぶ"
 	linefw " しらべる"
 	done

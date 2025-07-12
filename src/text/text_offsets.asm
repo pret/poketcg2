@@ -140,9 +140,9 @@ TextOffsets::
 	textpointer HavePkmnPowerButUnableDueToToxicGasText               ; 0x0086
 	textpointer HavePkmnPowerButUnableDueToGoopGasAttackText          ; 0x0087
 	textpointer HavePkmnPowerButUnableDueToStareText                  ; 0x0088
-	textpointer PlayCheck1Text                                        ; 0x0089
-	textpointer PlayCheck2Text                                        ; 0x008a
-	textpointer SelectCheckText                                       ; 0x008b
+	textpointer MenuUseCheckText                                      ; 0x0089
+	textpointer MenuPutOutCheckText                                   ; 0x008a
+	textpointer MenuSelectCheckText                                   ; 0x008b
 	textpointer UnusedText008c                                        ; 0x008c
 	textpointer DuelistIsThinkingText                                 ; 0x008d
 	textpointer ClearOpponentNameText                                 ; 0x008e

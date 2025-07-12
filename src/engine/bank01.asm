@@ -2791,7 +2791,7 @@ CardListItemSelectionMenu:
 	ld a, [wCardListItemSelectionMenuType]
 	or a
 	ret z
-	ldtx hl, SelectCheckText
+	ldtx hl, MenuSelectCheckText
 	ld a, [wCardListItemSelectionMenuType]
 	cp PLAY_CHECK
 	jr nz, .got_text
@@ -2799,13 +2799,11 @@ CardListItemSelectionMenu:
 	call LoadCardDataToBuffer1_FromDeckIndex
 ; handle verbs
 ; redundant in English, where both are just "PLAY"
-; originally "だす" (to put out)
-	ldtx hl, PlayCheck2Text
+	ldtx hl, MenuPutOutCheckText
 	ld a, [wLoadedCard1Type]
 	cp TYPE_TRAINER
 	jr nz, .got_text
-; originally "つかう" (to use)
-	ldtx hl, PlayCheck1Text
+	ldtx hl, MenuUseCheckText
 .got_text
 	call DrawNarrowTextBox_PrintTextNoDelay
 	ld hl, ItemSelectionMenuParameters
