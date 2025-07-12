@@ -215,7 +215,7 @@ TextOffsets::
 	textpointer CannotBeUsedTwiceText                                 ; 0x00d1
 	textpointer NoWeaknessText                                        ; 0x00d2
 	textpointer NoResistanceText                                      ; 0x00d3
-	textpointer CannotChangeWeaknessDueToNoWeaknessTextText           ; 0x00d4
+	textpointer CannotChangeWeaknessDueToNoWeaknessText               ; 0x00d4
 	textpointer OnlyOncePerTurnText                                   ; 0x00d5
 	textpointer CannotUseDueToStatusText                              ; 0x00d6
 	textpointer CannotBeUsedInTurnWhichWasPlayedText                  ; 0x00d7
