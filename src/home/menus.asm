@@ -1048,7 +1048,7 @@ HandleYesOrNoMenu::
 ; prints "YES NO" at de
 PrintYesOrNoItems::
 	call AdjustCoordinatesForBGScroll
-	ld hl, YesOrNoText
+	ldtx hl, YesOrNoText
 	call InitTextPrinting_ProcessTextFromID
 	ret
 
