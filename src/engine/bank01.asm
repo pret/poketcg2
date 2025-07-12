@@ -1455,7 +1455,7 @@ PrintDuelResultStats:
 	sub [hl]
 .print_x_cards
 	call WriteTwoDigitNumberInTxSymbolFormat
-	ldtx hl, CardsUnitText ; "枚"
+	ldtx hl, CardsUnitText
 	call InitTextPrinting_ProcessTextFromID
 	ret
 
@@ -3780,7 +3780,7 @@ DisplayCardPage_PokemonDescription:
 	ld h, $00
 	call PrintNumberAsMeasurement
 	call InitTextPrinting
-	ldtx hl, LengthUnitMetresText ; "m"
+	ldtx hl, LengthUnitMetresText
 	call ProcessTextFromID
 	; print the weight at 3, 12
 	lb bc, 3, 12
@@ -3789,7 +3789,7 @@ DisplayCardPage_PokemonDescription:
 	ld h, [hl]
 	ld l, a
 	call PrintNumberAsMeasurement
-	ldtx hl, WeightUnitKilogramsText ; "kg"
+	ldtx hl, WeightUnitKilogramsText
 	call InitTextPrinting_ProcessTextFromID
 	call SetNoLineSeparation
 	ld a, 19
