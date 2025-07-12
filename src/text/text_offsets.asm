@@ -164,8 +164,8 @@ TextOffsets::
 	textpointer DebugLoadFileLastSavedFileText                        ; 0x009e
 	textpointer DebugPauseModeOnText                                  ; 0x009f
 	textpointer DebugPauseModeOffText                                 ; 0x00a0
-	textpointer DebugComputerModeOnText                               ; 0x00a1
-	textpointer DebugComputerModeOffText                              ; 0x00a2
+	textpointer DebugComputerModeOffText                              ; 0x00a1
+	textpointer DebugComputerModeOnText                               ; 0x00a2
 	textpointer DebugCardCategoryListText                             ; 0x00a3
 	textpointer DebugBoosterPackListText                              ; 0x00a4
 	textpointer DebugSpecialDuelRuleListText                          ; 0x00a5

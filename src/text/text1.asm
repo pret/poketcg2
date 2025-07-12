@@ -741,12 +741,12 @@ DebugPauseModeOffText:
 	textfw "ポーズモードがOFFになりました"
 	done
 
-DebugComputerModeOnText:
+DebugComputerModeOffText:
 	textfw "コンピューターモードが"
 	linefw "OFFになりました"
 	done
 
-DebugComputerModeOffText:
+DebugComputerModeOnText:
 	textfw "コンピューターモードが"
 	linefw "ONになりました"
 	done
