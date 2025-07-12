@@ -310,14 +310,14 @@ TextOffsets::
 	textpointer IfHeadsDoNotReceiveDamageText                         ; 0x0130
 	textpointer IfHeadsDiscard1EnergyCardFromOpponentText             ; 0x0131
 	textpointer IfTailsDiscard1EnergyCardFromYourselfText             ; 0x0132
-	textpointer 30DamageToOppIfHeads10DamageToBenchIfTailsText        ; 0x0133
+	textpointer IfHeads30DamageToOppIfTails10DamageToBenchText        ; 0x0133
 	textpointer FailIfEitherOf2CoinsIsTailsText                       ; 0x0134
 	textpointer KickingAndStampingCheckText                           ; 0x0135
 	textpointer DrawCardForEachHeadsText                              ; 0x0136
 	textpointer ClearProfitCheckText                                  ; 0x0137
 	textpointer FocusedOneShotCheckText                               ; 0x0138
 	textpointer ParalyzedIfHeadsUnableToAttackNextTurnIfTailsText     ; 0x0139
-	textpointer 10DamageForEachHeadsToBenchInAnyWayYouLikeText        ; 0x013a
+	textpointer ForEachHeads10DamageToBenchInAnyWayYouLikeText        ; 0x013a
 	textpointer PoisonMistCheckText                                   ; 0x013b
 	textpointer DryUpCheckText                                        ; 0x013c
 	textpointer FossilizeCheckText                                    ; 0x013d

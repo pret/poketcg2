@@ -1469,7 +1469,7 @@ IfTailsDiscard1EnergyCardFromYourselfText:
 	linefw "エネルギーカードを 1枚トラッシュ!"
 	done
 
-30DamageToOppIfHeads10DamageToBenchIfTailsText:
+IfHeads30DamageToOppIfTails10DamageToBenchText:
 	textfw "「おもて」なら [相手]に30ダメージ"
 	linefw "「うら」なら ベンチに10ダメージ"
 	done
@@ -1503,7 +1503,7 @@ ParalyzedIfHeadsUnableToAttackNextTurnIfTailsText:
 	linefw "「うら」なら つぎの番つかえない"
 	done
 
-10DamageForEachHeadsToBenchInAnyWayYouLikeText:
+ForEachHeads10DamageToBenchInAnyWayYouLikeText:
 	textfw "「おもて」の数 ×10ダメージを"
 	linefw "自由に控えポケモンに わりふる"
 	done
