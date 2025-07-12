@@ -1,4 +1,4 @@
-HandText: ; $0001
+HandText:
 	textfw "てふだ"
 	done
 
@@ -42,7 +42,7 @@ PokemonPowerKanjiText:
 	textfw "特殊能力"
 	done
 
-PokemonCardString: ; unused?
+PokemonCardString:
 	textfw "ポケモンカード"
 	done
 
@@ -138,7 +138,7 @@ DeckPrinterText:
 	textfw "デッキ"
 	done
 
-AttackByText: ; unused?
+AttackByText:
 	textfw "のこうげき"
 	done
 
@@ -207,7 +207,7 @@ IncompleteText:
 	textfw "未完成"
 	done
 
-DamageString: ; unused?
+DamageString:
 	textfw "ダメージ"
 	done
 
@@ -216,7 +216,7 @@ UsedText:
 	linefw "つかいます"
 	done
 
-ReceivedDamageText: ; unused?
+ReceivedDamageText:
 	textfw "ダメージを うけた"
 	done
 
@@ -1270,7 +1270,7 @@ IfHeadsChangeOpponentsActivePokemonText:
 	linefw "相手の対戦ポケモンをいれかえる"
 	done
 
-IfHeadsHealIsSuccessfulText:
+HealCheckText:
 	textfw "「おもて」なら"
 	linefw "「ヒーリング」成功!!"
 	done
@@ -1300,7 +1300,7 @@ IfHeadsNoDamageNextTurnText:
 	linefw "ダメージを うけなくなる!"
 	done
 
-DamageCheckSimpleText: ; unused?
+DamageCheckSimpleText:
 	textfw "ダメージ判定"
 	done
 
@@ -1518,7 +1518,7 @@ DryUpCheckText:
 	linefw "「水」エネルギーを はがす"
 	done
 
-FossilizeCheckText: $013d
+FossilizeCheckText:
 	textfw "「おもて」なら 「なにかの化石」から"
 	linefw "進化した進化カードを 手札にもどせる"
 	linefw ""

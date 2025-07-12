@@ -1,9 +1,9 @@
-PrehistoricDreamCheckText: ; $013e
+PrehistoricDreamCheckText:
 	textfw "「おもて」なら 「なにかの化石」から"
 	linefw "進化したポケモンの ダメージが+10"
 	done
 
-PowerOfDarknessCheckText: ; GENGAR_LV40
+PowerOfDarknessCheckText:
 	textfw "「おもて」なら 相手のポケモン1体と"
 	linefw "ついているカードを 手札にもどす"
 	done
@@ -18,12 +18,12 @@ TheRocketsTrapCheckText:
 	linefw "3枚を 相手の山札に もどす"
 	done
 
-ParalyzedIfHeads10DamageToYourselfIfTailsText:
+ThunderAttackCheckText:
 	textfw "「おもて」なら [相手]を「マヒ」"
 	linefw "「うら」なら [自分]に10ダメージ"
 	done
 
-IfHeadsReturnAllCardsAttachedToOpponentText: ; PIDGEOTTO_LV38
+TwisterCheckText:
 	textfw "「おもて」なら [相手]についている"
 	linefw "カードを すべて 手札にもどす"
 	done
@@ -33,7 +33,7 @@ IfHeadsHeal1StatusOfYourActiveText:
 	linefw "「特殊状態」の 1つを かいふく!"
 	done
 
-BotherCheckText: ; DARK_HAUNTER
+BotherCheckText:
 	textfw "「おもて」なら 相手の手札から"
 	linefw "トレーナーカードが1枚 山札にもどる"
 	done
@@ -243,7 +243,7 @@ DrawCardsFromTheDeckText:
 
 DrawNoCardsFromTheDeckText:
 	; just "Draw no cards from the Deck."
-	; simplified from "Cannot draw a card because<LINE>there are no cards in the Deck."
+	; simplified from "Cannot draw a card because<LINE>there are no cards in the Deck." in tcg1-en
 	textfw "山札から カードを引きません"
 	done
 
@@ -272,7 +272,7 @@ ChoosePokemonToAttachEnergyCardText:
 	linefw "ポケモンを えらんでください"
 	done
 
-ChooseAndDiscard1FireEnergyCardText: ; unused?
+ChooseAndDiscard1FireEnergyCardText:
 	textfw "「炎」エネルギーカードを"
 	linefw "1枚えらんで トラッシュしてください"
 	done
@@ -565,7 +565,7 @@ DrewFireEnergyFromDeckText:
 	linefw "「炎」エネルギーカードを <RAMNUM>枚ひいた"
 	done
 
-AffectedByMixUpText: ; NINETALES_LV35
+AffectedByMixUpText:
 	textfw "<RAMNAME>の 手札と 山札の"
 	linefw "ポケモンカードが かきみだされた!"
 	done
@@ -741,7 +741,7 @@ NoDamageOrEffectDueToAuroraVeilText:
 	linefw "ワザによるダメージと効果を うけない"
 	done
 
-ChooseUpTo5CardsToDrawText: ; COMPUTER_ERROR
+ComputerErrorPromptText:
 	textfw "5枚まで カードをひくことができます"
 	linefw "なん枚ひきますか?"
 	done
@@ -853,12 +853,12 @@ DiscardedCardText:
 	linefw "トラッシュした"
 	done
 
-SwitchedOutDueToVinePullText: ; DARK_IVYSAUR
+SwitchedOutDueToVinePullText:
 	textfw "「つるでひっぱる」の効果で"
 	linefw "[相手]が いれかわった"
 	done
 
-RemoveDamageCountersOneByOneText: ; unused?
+RemoveDamageCountersOneByOneText:
 	textfw "Aボタンで ダメージカウンターが"
 	linefw "1つずつへります Bボタンでおわり"
 	done
@@ -883,7 +883,7 @@ Choose2BasicEnergyCardsFromDiscardPileText:
 	linefw "2枚 えらんでください"
 	done
 
-ChoosePokemonPressAToRemoveDamageCounterText: ; unused?
+ChoosePokemonPressAToRemoveDamageCounterText:
 	textfw "ポケモンをえらび Aボタンで"
 	linefw "ダメージカウンターが とりのぞけます"
 	done
@@ -908,7 +908,7 @@ ChoosePokemonToAttachDefenderToText:
 	linefw "ポケモンを えらんでください"
 	done
 
-DrawUpToXCardsOneByOneText: ; unused?
+DrawUpToXCardsOneByOneText:
 	textfw "カードを <RAMNUM>枚までひけます"
 	linefw "Aボタンでひく Bボタンでおわる"
 	done
@@ -1046,7 +1046,7 @@ DiscardedCardsFromDeckText:
 	linefw "トラッシュした"
 	done
 
-DiscardedCardFromHandText: ; unused?
+DiscardedCardFromHandText:
 	textfw "<RAMTEXT>を"
 	linefw "手札からトラッシュした"
 	done
@@ -1230,7 +1230,7 @@ ChooseACardToReturnToDeckText:
 	linefw "えらんでください"
 	done
 
-BattleCenterText: ; unused?
+BattleCenterText: ; unused
 	textfw "バトルセンター"
 	done
 
@@ -1297,11 +1297,11 @@ WouldYouLikeToTryAgainText:
 	textfw "もういちど やりなおしますか?"
 	done
 
-TransmittedToText: ; unused?
+TransmittedToText:
 	textfw "<RAMNAME>へ そうしんしました"
 	done
 
-TransmittedFromText: ; unused?
+TransmittedFromText:
 	textfw "<RAMNAME>から じゅしんしました"
 	done
 
@@ -1363,7 +1363,7 @@ ChooseATrainerCardText:
 	linefw "えらんでください"
 	done
 
-Choose3PokemonOrBasicEnergyCardsFromDiscardPileText: ; NIGHTLY_GARBAGE_RUN
+NightlyGarbageRunPromptText:
 	textfw "トラッシュから ポケモンカードか"
 	linefw "基本エネルギーを3枚えらんでください"
 	linefw ""
@@ -1375,12 +1375,12 @@ NoRecoverableCardsInDiscardPileText:
 	linefw "回収できるカードが ありません"
 	done
 
-IfTails10DamageToActiveText: ; DIGGER
+DiggerCheckText:
 	textfw "「うら」なら"
 	linefw "対戦ポケモンに 10ダメージ"
 	done
 
-ChallengePromptText: ; the opponent uses CHALLENGE
+ChallengePromptText: ; the opponent plays CHALLENGE
 	textfw "相手の挑戦を うけますか?"
 	done
 
@@ -1731,8 +1731,8 @@ Deck4Text:
 	textfw "4・"
 	done
 
-Deck5Text:
-	textfw "5・" ; unused?
+Deck5Text: ; unused?
+	textfw "5・"
 	done
 
 ThereIsNoDeckHereText:

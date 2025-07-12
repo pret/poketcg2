@@ -270,7 +270,7 @@ TextOffsets::
 	textpointer IfHeadPlus10IfTails10ToYourselfText                   ; 0x0108
 	textpointer DamageToOppBenchIfHeadsDamageToYoursIfTailsText       ; 0x0109
 	textpointer IfHeadsChangeOpponentsActivePokemonText               ; 0x010a
-	textpointer IfHeadsHealIsSuccessfulText                           ; 0x010b
+	textpointer HealCheckText                                         ; 0x010b
 	textpointer IfTailsDamageToYourselfTooText                        ; 0x010c
 	textpointer AttackSuccessCheckText                                ; 0x010d
 	textpointer TrainerCardSuccessCheckText                           ; 0x010e
@@ -325,8 +325,8 @@ TextOffsets::
 	textpointer PowerOfDarknessCheckText                              ; 0x013f
 	textpointer Plus10DamageToOppAndYourselfForEachHeadsText          ; 0x0140
 	textpointer TheRocketsTrapCheckText                               ; 0x0141
-	textpointer ParalyzedIfHeads10DamageToYourselfIfTailsText         ; 0x0142
-	textpointer IfHeadsReturnAllCardsAttachedToOpponentText           ; 0x0143
+	textpointer ThunderAttackCheckText                                ; 0x0142
+	textpointer TwisterCheckText                                      ; 0x0143
 	textpointer IfHeadsHeal1StatusOfYourActiveText                    ; 0x0144
 	textpointer BotherCheckText                                       ; 0x0145
 	textpointer PerplexCheckText                                      ; 0x0146
@@ -461,7 +461,7 @@ TextOffsets::
 	textpointer ChooseBasicPkmnText                                   ; 0x01c7
 	textpointer ChooseUpTo2BenchedPkmnToGiveDamageText                ; 0x01c8
 	textpointer NoDamageOrEffectDueToAuroraVeilText                   ; 0x01c9
-	textpointer ChooseUpTo5CardsToDrawText                            ; 0x01ca
+	textpointer ComputerErrorPromptText                               ; 0x01ca
 	textpointer EffectTargetCardsUnitText                             ; 0x01cb
 	textpointer EffectTargetGeneralUnitText                           ; 0x01cc
 	textpointer DuelistDrawCardsText                                  ; 0x01cd
@@ -591,9 +591,9 @@ TextOffsets::
 	textpointer IfHeadsInflictSleepText                               ; 0x0249
 	textpointer UnableDueToGoopGasAttackText                          ; 0x024a
 	textpointer ChooseATrainerCardText                                ; 0x024b
-	textpointer Choose3PokemonOrBasicEnergyCardsFromDiscardPileText   ; 0x024c
+	textpointer NightlyGarbageRunPromptText                           ; 0x024c
 	textpointer NoRecoverableCardsInDiscardPileText                   ; 0x024d
-	textpointer IfTails10DamageToActiveText                           ; 0x024e
+	textpointer DiggerCheckText                                       ; 0x024e
 	textpointer ChallengePromptText                                   ; 0x024f
 	textpointer ChallengeAcceptedText                                 ; 0x0250
 	textpointer ChallengeDeclinedText                                 ; 0x0251
@@ -705,7 +705,7 @@ TextOffsets::
 	textpointer PleaseChooseAPrizeText                                ; 0x02bb
 	textpointer HandText_2                                            ; 0x02bc
 	textpointer DuelistHandText_2                                     ; 0x02bd
-	textpointer DuelistDiscardPileText                                ; 0x02be
+	textpointer DuelistDiscardPileText_2                              ; 0x02be
 	textpointer EmptyLineText                                         ; 0x02bf
 	textpointer BoosterPackTitleText                                  ; 0x02c0
 	textpointer Item1BeginningPokemonText                             ; 0x02c1
