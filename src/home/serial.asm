@@ -498,7 +498,7 @@ DuelTransmissionError::
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
-	ld hl, $0057 ; TransmissionErrorTryAgainText
+	ld hl, TransmissionErrorTryAgainText
 	call DrawWideTextBox_WaitForInput
 	ld a, -1
 	ld [wDuelResult], a
