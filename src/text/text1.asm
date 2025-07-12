@@ -627,7 +627,7 @@ MenuSelectCheckText:
 	linefw " しらべる"
 	done
 
-UnusedText008c: ; unused?
+UnusedText008c: ; unused
 	textfw "B<RAMNUM>S<RAMNUM>"
 	done
 
@@ -1168,7 +1168,7 @@ PrintingWasInterruptedText:
 	textfw "プリントが ちゅうだん されました"
 	done
 
-CardPopCannotBePlayedWithTheGameBoyText: ; unused?
+CardPopCannotBePlayedWithTheGameBoyText: ; unused
 	; left over from tcg1-jp, whose cartridge's built-in infrared allowed GB
 	; "Play with GB or GBC, can't with SGB"
 	; doesn't make sense at all for the GBC-only tcg2

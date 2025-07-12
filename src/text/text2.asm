@@ -1367,7 +1367,7 @@ NightlyGarbageRunPromptText:
 	textfw "トラッシュから ポケモンカードか"
 	linefw "基本エネルギーを3枚えらんでください"
 	linefw ""
-	linefw "012345678901234567" ; remnants?
+	linefw "012345678901234567" ; weird, remnants?
 	done
 
 NoRecoverableCardsInDiscardPileText:
@@ -1673,7 +1673,6 @@ UppercaseKeyboardText:
 	done
 
 LowercaseKeyboardText:
-	; Cyrillic lowercase "о" instead of "o"???
 	textfw "a b c d e f g h i"
 	linefw "j k l m n о p q r"
 	linefw "s t u v w x y z  "
