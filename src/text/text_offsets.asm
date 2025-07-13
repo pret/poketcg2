@@ -352,7 +352,7 @@ TextOffsets::
 	textpointer NoDamageOrEffectDueToBarrierText                      ; 0x015a
 	textpointer NoDamageOrEffectDueToAgilityText                      ; 0x015b
 	textpointer NoDamageOrEffectDueToHideText                         ; 0x015c
-	textpointer UnableToUseAttacktDueToNShieldText                    ; 0x015d
+	textpointer UnableToUseAttackDueToNShieldText                     ; 0x015d
 	textpointer NoDamageOrEffectDueToNShieldText                      ; 0x015e
 	textpointer NoDamageOrEffectDueToTransparencyText                 ; 0x015f
 	textpointer UnableToUseTrainerDueToHayFeverText                   ; 0x0160
@@ -434,7 +434,7 @@ TextOffsets::
 	textpointer ChooseAGyaradosText                                   ; 0x01ac
 	textpointer ReceivedDamageDueToFinalBeamText                      ; 0x01ad
 	textpointer SwitchOutDarkAlakazamPromptText                       ; 0x01ae
-	textpointer ChooseAPshychicEnergyCardFromDeckText                 ; 0x01af
+	textpointer ChooseAPsychicEnergyCardFromDeckText                  ; 0x01af
 	textpointer EffectTargetPsychicEnergyText                         ; 0x01b0
 	textpointer ChooseAPsychicEnergyCardText                          ; 0x01b1
 	textpointer CardTrickeryWasUsedOnText                             ; 0x01b2

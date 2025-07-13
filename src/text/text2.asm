@@ -152,7 +152,7 @@ NoDamageOrEffectDueToHideText:
 	linefw "ワザによるダメージと効果をうけない"
 	done
 
-UnableToUseAttacktDueToNShieldText:
+UnableToUseAttackDueToNShieldText:
 	textfw "「ニュートラルシールド」の効果で"
 	linefw "このワザは つかえない"
 	done
@@ -612,7 +612,7 @@ SwitchOutDarkAlakazamPromptText:
 	textfw "わるいフーディンを いれかえますか?"
 	done
 
-ChooseAPshychicEnergyCardFromDeckText:
+ChooseAPsychicEnergyCardFromDeckText:
 	textfw "山札から 超エネルギーカードを"
 	linefw "えらんでください"
 	done
