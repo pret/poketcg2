@@ -492,13 +492,13 @@ Func_0f05:
 	ret
 
 ; load the number at wSerialFlags (error code?) to TxRam3, print
-; TransmissionErrorText, exit the duel, and reset serial registers.
+; TransmissionErrorTryAgainText, exit the duel, and reset serial registers.
 DuelTransmissionError::
 	ld a, [wSerialFlags]
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
-	ld hl, $0057 ; TransmissionErrorText
+	ldtx hl, TransmissionErrorTryAgainText
 	call DrawWideTextBox_WaitForInput
 	ld a, -1
 	ld [wDuelResult], a

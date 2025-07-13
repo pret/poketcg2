@@ -23,7 +23,7 @@ Glossary:
 	farcall LoadMenuCursorTile
 	ld hl, .MainMenuItems
 	call PlaceTextItems
-	ldtx hl, Text03d0
+	ldtx hl, ChooseWordAndPressAButtonText
 	call DrawWideTextBox_PrintText
 .loop_input
 	call DoFrame
@@ -150,12 +150,12 @@ Glossary:
 	dw NULL ; function pointer if non-0
 
 .MainMenuItems:
-	textitem 2,  1, Text03c6
-	textitem 3,  3, Text03c7
-	textitem 3,  5, Text03c8
-	textitem 3,  7, Text03c9
-	textitem 3,  9, Text03ca
-	textitem 3, 11, Text03cb
+	textitem 2,  1, GlossaryTitleText
+	textitem 3,  3, GlossaryGameBasicsText
+	textitem 3,  5, GlossaryCardTypesAndKeywordsText
+	textitem 3,  7, GlossaryStatusesAndDecisionText
+	textitem 3,  9, GlossarySpecialRulesText
+	textitem 3, 11, GlossaryExitText
 	db $ff
 
 ; shows which topics are inside this Glossary menu
@@ -168,29 +168,29 @@ Glossary:
 	or a
 	jr nz, .asm_187df
 ; GLOSSARY_GAME_BASICS
-	ldtx hl, Text03c7
-	ldtx de, Text03cc
+	ldtx hl, GlossaryGameBasicsText
+	ldtx de, GlossaryGameBasicsMenuText
 	jr .got_title_and_topics
 .asm_187df
 	cp GLOSSARY_CARD_TYPE_EXPLANATIONS
 	jr nz, .asm_187eb
 ; GLOSSARY_CARD_TYPE_EXPLANATIONS
-	ldtx hl, Text03c8
-	ldtx de, Text03cd
+	ldtx hl, GlossaryCardTypesAndKeywordsText
+	ldtx de, GlossaryCardTypesAndKeywordsMenuText
 	jr .got_title_and_topics
 .asm_187eb
 	cp GLOSSARY_STATUS_WINNING_LOSING
 	jr nz, .asm_187f7
 ; GLOSSARY_STATUS_WINNING_LOSING
-	ldtx hl, Text03c9
-	ldtx de, Text03ce
+	ldtx hl, GlossaryStatusesAndDecisionText
+	ldtx de, GlossaryStatusesAndDecisionMenuText
 	jr .got_title_and_topics
 .asm_187f7
 ; GLOSSARY_SPECIAL_DUEL_RULES
 	lb de, 6, 1
 	call InitTextPrinting
-	ldtx hl, Text03ca
-	ldtx de, Text03cf
+	ldtx hl, GlossarySpecialRulesText
+	ldtx de, GlossarySpecialRulesMenuText
 	push de
 	jr .skip_init_text
 
@@ -208,7 +208,7 @@ Glossary:
 	call InitTextPrinting
 	pop hl
 	call ProcessTextFromID
-	ldtx hl, Text03d0
+	ldtx hl, ChooseWordAndPressAButtonText
 	call DrawWideTextBox_PrintText
 	ret
 
@@ -232,7 +232,7 @@ Glossary:
 ; GLOSSARY_GAME_BASICS
 	ld hl, .ExplanationTextData_GameBasics
 	push hl
-	ldtx hl, Text03d1
+	ldtx hl, GlossaryGameBasicsTitleText
 	push hl
 	lb de, 2, 0
 	jr .got_explanation_data
@@ -243,7 +243,7 @@ Glossary:
 ; GLOSSARY_CARD_TYPE_EXPLANATIONS
 	ld hl, .ExplanationTextData_CardTypes
 	push hl
-	ldtx hl, Text03d2
+	ldtx hl, GlossaryCardTypesAndKeywordsTitleText
 	push hl
 	lb de, 2, 0
 	jr .got_explanation_data
@@ -254,7 +254,7 @@ Glossary:
 ; GLOSSARY_STATUS_WINNING_LOSING
 	ld hl, .ExplanationTextData_StatusWinningLosing
 	push hl
-	ldtx hl, Text03d3
+	ldtx hl, GlossaryStatusesAndDecisionTitleText
 	push hl
 	lb de, 2, 0
 	jr .got_explanation_data
@@ -263,7 +263,7 @@ Glossary:
 ; GLOSSARY_SPECIAL_DUEL_RULES
 	ld hl, .ExplanationTextData_SpecialDuelRules
 	push hl
-	ldtx hl, Text03d4
+	ldtx hl, GlossarySpecialRulesTitleText
 	push hl
 	lb de, 5, 0
 .got_explanation_data
@@ -322,14 +322,14 @@ MACRO explanation
 ENDM
 
 .ExplanationTextData_GameBasics:
-	explanation 5, Text03d5, Text03fb
-	explanation 6, Text03d6, Text03fc
-	explanation 4, Text03d7, Text03fd
-	explanation 6, Text03d8, Text03fe
-	explanation 5, Text03d9, Text03ff
-	explanation 5, Text03da, Text0400
-	explanation 4, Text03db, Text0401
-	explanation 3, Text03dc, Text0402
+	explanation 5, GlossaryDeckTitleText, Text03fb
+	explanation 6, GlossaryDeckPileTitleText, Text03fc
+	explanation 4, GlossaryDiscardPileTitleText, Text03fd
+	explanation 6, GlossaryHandTitleText, Text03fe
+	explanation 5, GlossaryArenaTitleText, Text03ff
+	explanation 5, GlossaryBenchTitleText, Text0400
+	explanation 4, GlossaryActivePokemonTitleText, Text0401
+	explanation 3, GlossaryBenchedPokemonTitleText, Text0402
 	explanation 4, Text03dd, Text0403
 	explanation 2, Text03de, Text0404
 

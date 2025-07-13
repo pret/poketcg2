@@ -398,26 +398,26 @@ GetDamageText:
 	jr z, .no_damage
 	call LoadTxRam3
 	ld a, [wDamageAnimEffectiveness]
-	ldtx hl, Text003b ; AttackDamageText
+	ldtx hl, AttackDamageText
 	and (1 << RESISTANCE) | (1 << WEAKNESS)
 	ret z ; not weak or resistant
-	ldtx hl, Text0039 ; WeaknessMoreDamage2Text
+	ldtx hl, WeaknessResistanceMixedDamageText
 	cp (1 << RESISTANCE) | (1 << WEAKNESS)
 	ret z ; weak and resistant
 	and (1 << WEAKNESS)
-	ldtx hl, Text0038 ; WeaknessMoreDamageText
+	ldtx hl, WeaknessMoreDamageText
 	ret nz ; weak
-	ldtx hl, Text0037 ; ResistanceLessDamageText
+	ldtx hl, ResistanceLessDamageText
 	ret ; resistant
 
 .no_damage
 	bank1call CheckNoDamageOrEffect
 	ret c
-	ldtx hl, Text003c ; NoDamageText
+	ldtx hl, NoDamageText
 	ld a, [wDamageAnimEffectiveness]
 	and (1 << RESISTANCE)
 	ret z ; not resistant
-	ldtx hl, Text003a ; ResistanceNoDamageText
+	ldtx hl, ResistanceNoDamageText
 	ret ; resistant
 
 UpdateMainSceneHUD::
@@ -3062,7 +3062,7 @@ _CardPopMenu:
 	lb de,  8, 0
 	lb bc, 12, 8
 	call DrawRegularTextBox
-	ldtx hl, Text0254
+	ldtx hl, CardPopMenuText
 	lb de, 10, 2
 	call InitTextPrinting_ProcessTextFromID
 	ld hl, CardPopMenuParams
@@ -3098,7 +3098,7 @@ _CardPopMenu:
 	lb de,  8,  0
 	lb bc, 12, 10
 	call DrawRegularTextBox
-	ldtx hl, Text0255
+	ldtx hl, CardPopMenuRareCardPopUnlockedText
 	lb de, 10, 2
 	call InitTextPrinting_ProcessTextFromID
 	ld hl, CardPopMenuParams
@@ -3159,15 +3159,15 @@ DrawCardPopMenuBox:
 	ret
 
 .text_ids_without_rare_card_pop
-	tx Text0256 ; Card Pop!
-	tx Text0258 ; View Records
-	tx Text0259 ; Exit
+	tx CardPopEncouragementMessageText
+	tx CardPopViewRecordsDescriptionText
+	tx CardPopExitText
 
 .text_ids_with_rare_card_pop
-	tx Text0256 ; Card Pop!
-	tx Text0257 ; Rare Card Pop!
-	tx Text0258 ; View Records
-	tx Text0259 ; Exit
+	tx CardPopEncouragementMessageText
+	tx RareCardPopDescriptionText
+	tx CardPopViewRecordsDescriptionText
+	tx CardPopExitText
 
 CardPopMenuParams:
 	db 9 ; x pos
@@ -3204,7 +3204,7 @@ DoCardPop:
 	ld a, SCENE_CARD_POP
 	lb bc, 0, 0
 	call EmptyScreenAndLoadScene
-	ldtx hl, Text025a
+	ldtx hl, AreYouBothReadyToCardPopText
 	call PrintScrollableText_NoTextBoxLabel
 
 	call RestoreVBlankFunction
@@ -3213,7 +3213,7 @@ DoCardPop:
 	call LoadCardPopSceneAndHandleCommunications
 	ld a, SCENE_CARD_POP_ERROR
 	jr c, ShowCardPopError
-	ldtx hl, Text025e
+	ldtx hl, ReceivedThroughCardPopText
 ;	fallthrough
 
 ; hl = text ID
@@ -3248,7 +3248,7 @@ DoRareCardPop:
 	ld a, SCENE_RARE_CARD_POP
 	lb bc, 0, 0
 	call EmptyScreenAndLoadScene
-	ldtx hl, Text025f
+	ldtx hl, AreYouBothReadyToRareCardPopText
 	call PrintScrollableText_NoTextBoxLabel
 	call RestoreVBlankFunction
 	call PauseSong
@@ -3256,7 +3256,7 @@ DoRareCardPop:
 	call LoadCardPopSceneAndHandleCommunications
 	ld a, SCENE_RARE_CARD_POP_ERROR
 	jr c, ShowCardPopError
-	ldtx hl, Text0260
+	ldtx hl, ReceivedThroughRareCardPopText
 	jr Func_19d24
 
 ; a = scene ID
@@ -3266,7 +3266,7 @@ LoadCardPopSceneAndHandleCommunications:
 	pop af
 	lb bc, 0, 0
 	call EmptyScreenAndLoadScene
-	ldtx hl, Text025d
+	ldtx hl, PositionGameBoyColorsAndPressAButtonText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	call HandleCardPopCommunications
@@ -3392,23 +3392,23 @@ HandleCardPopCommunications:
 	or a
 	jr z, .success
 	; not $00, means the name was found in the list
-	ldtx hl, Text025c ; CannotCardPopWithFriendPreviouslyPoppedWithText
+	ldtx hl, CannotCardPopWithFriendPreviouslyPoppedWithText
 	ld a, [wCardPopType]
 	cp $01
 	jr z, .set_carry
-	ldtx hl, Text0261
+	ldtx hl, CannotRareCardPopWithFriendPreviouslyPoppedWithText
 	jr .set_carry
 
 .fail
 	ld a, [wIRCommunicationErrorCode]
 	cp $01
 	jr nz, .asm_19e7f
-	ldtx hl, Text0262 ; ThePopWasntSuccessfulText
+	ldtx hl, CardPopModeMismatchedText ; Card Pop from one side and Rare Card Pop from the other
 	scf
 	ret
 
 .asm_19e7f
-	ldtx hl, Text025b
+	ldtx hl, CardPopUnsuccessfulTryAgainText
 .set_carry
 	scf
 	ret
@@ -3728,7 +3728,7 @@ ViewCardPopRecords:
 	ret nz
 
 	; no Card Pop! records
-	ldtx hl, Text026d
+	ldtx hl, NoCardPopRecordsText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -3788,7 +3788,7 @@ ViewCardPopRecords:
 	ld a, [wCardPopRecordType]
 	cp IRPARAM_RARE_CARD_POP
 	jr nz, .rare_card_pop_1
-	ldtx hl, Text0014
+	ldtx hl, StarRarityText
 	lb de, 15, 2
 	call InitTextPrinting_ProcessTextFromID
 .rare_card_pop_1
@@ -3884,13 +3884,13 @@ ViewCardPopRecords:
 	ret
 
 .text_items
-	textitem 1,  0, Text0266
-	textitem 8,  4, Text0267
-	textitem 8,  6, Text0268
-	textitem 8,  8, Text0269
-	textitem 1, 10, Text026a
-	textitem 1, 12, Text026b
-	textitem 1, 15, Text026c
+	textitem 1,  0, CardPopRecordContentText
+	textitem 8,  4, CardPopRecordFriendCoinQuantityText
+	textitem 8,  6, CardPopRecordFriendCardQuantityText
+	textitem 8,  8, CardPopRecordFriendBattleQuantityText
+	textitem 1, 10, CardPopRecordCardsText
+	textitem 1, 12, CardPopRecordYourResultText
+	textitem 1, 15, CardPopRecordFriendResultText
 	db $ff ; end
 
 .DuelistIDs
@@ -4079,7 +4079,7 @@ ViewCardPopRecords:
 
 .PrintRecordEntries:
 	lb de, 1, 1
-	ldtx hl, Text0263
+	ldtx hl, CardPopRecordsText
 	call InitTextPrinting_ProcessTextFromID
 	ld a, $04
 	ld [wce2a], a
@@ -4116,11 +4116,11 @@ ViewCardPopRecords:
 	ld a, [wce2a]
 	ld e, a
 	ld d, 2
-	ldtx hl, Text0264
+	ldtx hl, CardPopRecordFriendNameText
 	ld a, [wCardPopRecordType]
 	cp IRPARAM_RARE_CARD_POP
 	jr nz, .rare_card_pop_2
-	ldtx hl, Text0265
+	ldtx hl, RareCardPopRecordFriendNameText
 .rare_card_pop_2
 	push de
 	call InitTextPrinting_ProcessTextFromID
@@ -4199,29 +4199,29 @@ HandlePrinterError:
 	bit PRINTER_ERROR_PAPER_JAMMED, a
 	jr nz, .jammed_printer
 
-	ldtx hl, Text00f6 ; PrinterPacketErrorText
+	ldtx hl, PrinterPacketErrorText
 	ld a, $04
 	jr ShowPrinterConnectionErrorScene
 .cable_or_printer_switch
-	ldtx hl, Text00f5 ; CheckCableOrPrinterSwitchText
+	ldtx hl, PrinterErrorText
 	ld a, $04
 	jr ShowPrinterConnectionErrorScene
 .jammed_printer
-	ldtx hl, Text00f4 ; PrinterPaperIsJammedText
+	ldtx hl, PrinterPaperJamErrorText
 	ld a, $04
 	jr ShowPrinterConnectionErrorScene
 .batteries_lost_charge
-	ldtx hl, Text00f3 ; BatteriesHaveLostTheirChargeText
+	ldtx hl, PrinterLowBatteryErrorText
 	ld a, $01
 	jr ShowPrinterConnectionErrorScene
 .interrupted
-	ldtx hl, Text00f7 ; PrintingWasInterruptedText
+	ldtx hl, PrintingWasInterruptedText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
 
 ShowPrinterIsNotConnected:
-	ldtx hl, Text00f2 ; PrinterIsNotConnectedText
+	ldtx hl, PrinterNotConnectedErrorText
 	ld a, $02
 ;	fallthrough
 
@@ -4257,7 +4257,7 @@ RequestToPrintCard:
 	ld [hl], TX_END
 	ld hl, $0
 	call LoadTxRam2
-	ldtx hl, Text0248
+	ldtx hl, NowPrintingText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	call PrepareForPrinterCommunications
@@ -4421,9 +4421,9 @@ DrawBottomCardInfoInSRAMGfxBuffer0:
 	ret
 
 RetreatWeakResistData:
-	textitem 1, 70, Text0007
-	textitem 1, 71, Text0008
-	textitem 1, 72, Text0009
+	textitem 1, 70, RetreatText
+	textitem 1, 71, WeaknessText
+	textitem 1, 72, ResistanceText
 	db $ff
 
 Func_1a011:
@@ -4697,7 +4697,7 @@ PrintDeckConfiguration:
 	call InitTextPrinting
 	ld hl, wDuelTempList ; print deck name
 	call ProcessText
-	ldtx hl, Text0022 ; DeckPrinterText
+	ldtx hl, DeckPrinterText
 	call ProcessTextFromID
 
 	ld a, 5
@@ -4872,7 +4872,7 @@ PrintCardList:
 	call InitTextPrinting
 	ld hl, wDefaultText
 	call ProcessText
-	ldtx hl, Text0016 ; AllCardsOwnedText
+	ldtx hl, AllCardsOwnedText
 	call ProcessTextFromID
 	ld a, [wPrintOnlyStarRarity]
 	or a
@@ -4991,7 +4991,7 @@ PrintCardList:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ldtx hl, Text0017 ; TotalNumberOfCardsText
+	ldtx hl, TotalNumberOfCardsText
 	call .PrintTextWithNumber
 	jr c, .printer_error
 	ld a, [wPrintOnlyStarRarity]
@@ -5001,7 +5001,7 @@ PrintCardList:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ldtx hl, Text0018 ; TypesOfCardsText
+	ldtx hl, TypesOfCardsText
 	call .PrintTextWithNumber
 	jr c, .printer_error
 
@@ -5093,46 +5093,46 @@ PrintCardList:
 .IconTextList
 	; Fire
 	db $e0 ; icon tile
-	tx Text001a ; FirePokemonText
+	tx FirePokemonText
 
 	; Grass
 	db $e4 ; icon tile
-	tx Text0019 ; GrassPokemonText
+	tx GrassPokemonText
 
 	; Lightning
 	db $e8 ; icon tile
-	tx Text001c ; LightningPokemonText
+	tx LightningPokemonText
 
 	; Water
 	db $ec ; icon tile
-	tx Text001b ; WaterPokemonText
+	tx WaterPokemonText
 
 	; Fighting
 	db $f0 ; icon tile
-	tx Text001d ;FightingPokemonText
+	tx FightingPokemonText
 
 	; Psychic
 	db $f4 ; icon tile
-	tx Text001e ; PsychicPokemonText
+	tx PsychicPokemonText
 
 	; Colorless
 	db $f8 ; icon tile
-	tx Text001f ; ColorlessPokemonText
+	tx ColorlessPokemonText
 
 	; Energy
 	db $fc ; icon tile
-	tx Text0021 ; EnergyCardText
+	tx EnergyCardText
 
 	; Trainer
 	db $dc ; icon tile
-	tx Text0020 ; TrainerCardText
+	tx TrainerCardText
 
 ShowPrinterTransmitting:
 	call SetSpriteAnimationsAsVBlankFunction
 	ld a, SCENE_GAMEBOY_PRINTER_TRANSMITTING
 	lb bc, 0, 0
 	call EmptyScreenAndLoadScene
-	ldtx hl, Text023b ; NowPrintingPleaseWaitText
+	ldtx hl, NowPrintingPleaseWaitText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	ret
@@ -5382,7 +5382,7 @@ HandCardsGfx:
 	INCBIN "gfx/hand_cards.2bpp"
 
 WhatIsYourNameData:
-	textitem 1, 1, Text0287
+	textitem 1, 1, WhatIsYourNameText
 	db $ff ; end
 ; 0x1ae65
 
@@ -5602,7 +5602,7 @@ UpdateNamingScreenUI:
 ; NAME_MODE_HIRAGANA
 	ld hl, .text_items2
 	call PlaceTextItems
-	ldtx hl, Text0288
+	ldtx hl, HiraganaKeyboardText
 	jr .asm_1b00a
 .asm_1afe5
 	dec a
@@ -5610,7 +5610,7 @@ UpdateNamingScreenUI:
 ; NAME_MODE_KATAKANA
 	ld hl, .text_items3
 	call PlaceTextItems
-	ldtx hl, Text0289
+	ldtx hl, KatakanaKeyboardText
 	jr .asm_1b00a
 .asm_1aff3
 	dec a
@@ -5618,13 +5618,13 @@ UpdateNamingScreenUI:
 ; NAME_MODE_UPPER_ABC
 	ld hl, .text_items4
 	call PlaceTextItems
-	ldtx hl, Text028a
+	ldtx hl, UppercaseKeyboardText
 	jr .asm_1b00a
 .asm_1b001
 ; NAME_MODE_LOWER_ABC
 	ld hl, .text_items5
 	call PlaceTextItems
-	ldtx hl, Text028b
+	ldtx hl, LowercaseKeyboardText
 .asm_1b00a
 	lb de, 2, 4
 	call InitTextPrinting
@@ -5633,31 +5633,31 @@ UpdateNamingScreenUI:
 	ret
 
 .text_items1:
-	textitem 16, 16, Text0286
+	textitem 16, 16, EndText
 	db $ff ; end
 
 .text_items2:
-	textitem  2, 16, Text0283
-	textitem  7, 16, Text0284
-	textitem 12, 16, Text0285
+	textitem  2, 16, KatakanaOptionText
+	textitem  7, 16, UppercaseOptionText
+	textitem 12, 16, LowercaseOptionText
 	db $ff ; end
 
 .text_items3:
-	textitem  2, 16, Text0282
-	textitem  7, 16, Text0284
-	textitem 12, 16, Text0285
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, UppercaseOptionText
+	textitem 12, 16, LowercaseOptionText
 	db $ff ; end
 
 .text_items4:
-	textitem  2, 16, Text0282
-	textitem  7, 16, Text0283
-	textitem 12, 16, Text0285
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, KatakanaOptionText
+	textitem 12, 16, LowercaseOptionText
 	db $ff ; end
 
 .text_items5:
-	textitem  2, 16, Text0282
-	textitem  7, 16, Text0283
-	textitem 12, 16, Text0284
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, KatakanaOptionText
+	textitem 12, 16, UppercaseOptionText
 	db $ff ; end
 
 DrawTextboxForKeyboard:

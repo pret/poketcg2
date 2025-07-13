@@ -3,7 +3,7 @@ SECTION "Bank 1@4074", ROMX[$4074], BANK[$1]
 StartDuelFromSRAM:
 	call SetupDuel
 	farcall Func_24048
-	ldtx hl, Text00f1
+	ldtx hl, BackUpIsBrokenText
 	jr c, .corrupted
 	ld hl, sp+$00
 	ld a, l
@@ -127,7 +127,7 @@ MainDuelLoop:
 	call EmptyScreen
 	ld a, BOXMSG_DECISION
 	call DrawDuelBoxMessage
-	ldtx hl, Text0078 ; DecisionText
+	ldtx hl, DecisionText
 	call DrawWideTextBox_WaitForInput
 	call EmptyScreen
 	call ResetAnimationQueue
@@ -139,7 +139,7 @@ MainDuelLoop:
 	jr z, .asm_41b3
 	ld b, DUEL_ANIM_DUEL_DRAW
 	ld c, MUSIC_MATCHDRAW
-	ldtx hl, Text0079
+	ldtx hl, DuelWasADrawText
 	ld a, $2
 	jr .set_duel_result
 .turn_player_won
@@ -165,7 +165,7 @@ MainDuelLoop:
 .not_link_duel
 	ld b, DUEL_ANIM_DUEL_WIN
 	ld c, MUSIC_MATCHVICTORY
-	ldtx hl, Text007a
+	ldtx hl, WonDuelText
 	xor a
 	jr .set_duel_result
 .asm_41b3
@@ -175,7 +175,7 @@ MainDuelLoop:
 .asm_41b9
 	ld b, DUEL_ANIM_DUEL_LOSS
 	ld c, MUSIC_MATCHLOSS
-	ldtx hl, Text007b
+	ldtx hl, LostDuelText
 	ld a, $1
 .set_duel_result
 	ld [wDuelResult], a
@@ -233,7 +233,7 @@ MainDuelLoop:
 	call FinishQueuedAnimations
 	ld a, [wDuelTheme]
 	call PlaySong
-	ldtx hl, Text007c ; StartSuddenDeathMatchText
+	ldtx hl, StartSuddenDeathMatchText
 	call DrawWideTextBox_WaitForInput
 	ld a, 1
 	ld [wDuelInitialPrizes], a
@@ -482,7 +482,7 @@ SECTION "Bank 1@43e2", ROMX[$43e2], BANK[$1]
 OpenTurnHolderHandScreen_Simple:
 	call CreateHandCardList
 	jr nc, .got_cards_in_hand
-	ldtx hl, Text00ab ; NoCardsInHandText
+	ldtx hl, NoCardsInHandText
 	jp DrawWideTextBox_WaitForInput
 .got_cards_in_hand
 	call InitAndDrawCardListScreenLayout
@@ -549,7 +549,7 @@ DuelMenu_Retreat:
 	jr c, .unable_to_retreat
 	call DisplayRetreatScreen
 	jr c, .done
-	ldtx hl, Text0164 ; SelectPkmnOnBenchToSwitchWithActiveText
+	ldtx hl, SelectPkmnOnBenchToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	jr c, .done
@@ -563,7 +563,7 @@ DuelMenu_Retreat:
 	call DrawDuelMainScene
 
 .unable_due_to_confusion
-	ldtx hl, Text003e ; UnableToRetreatText
+	ldtx hl, UnableToRetreatText
 	call DrawWideTextBox_WaitForInput
 	jp PrintDuelMenuAndHandleInput
 
@@ -579,7 +579,7 @@ DuelMenu_Retreat:
 	call DisplayRetreatScreen
 	jr c, .done
 	call DiscardRetreatCostCards
-	ldtx hl, Text0164 ; SelectPkmnOnBenchToSwitchWithActiveText
+	ldtx hl, SelectPkmnOnBenchToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	ld [wBenchSelectedPokemon], a
@@ -605,7 +605,7 @@ DuelMenu_Hand:
 	get_turn_duelist_var
 	or a
 	jr nz, OpenPlayerHandScreen
-	ldtx hl, Text00ab ; NoCardsInHandText
+	ldtx hl, NoCardsInHandText
 	call DrawWideTextBox_WaitForInput
 	jp PrintDuelMenuAndHandleInput
 
@@ -614,7 +614,7 @@ DuelMenu_Hand:
 OpenPlayerHandScreen:
 	call CreateHandCardList
 	call InitAndDrawCardListScreenLayout
-	ldtx hl, Text00b2 ; PleaseSelectHandText
+	ldtx hl, PleaseSelectHandText
 	call SetCardListInfoBoxText
 	ld a, PLAY_CHECK
 	ld [wCardListItemSelectionMenuType], a
@@ -686,12 +686,12 @@ PlayEnergyCard:
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	jr z, .play_energy_set_played
-	ldtx hl, Text003f ; MayOnlyAttachOneEnergyCardText
+	ldtx hl, MayOnlyAttachOneEnergyCardText
 	call DrawWideTextBox_WaitForInput
 	jp OpenPlayerHandScreen
 
 .already_played_energy
-	ldtx hl, Text003f ; MayOnlyAttachOneEnergyCardText
+	ldtx hl, MayOnlyAttachOneEnergyCardText
 	call DrawWideTextBox_WaitForInput
 ;	fallthrough
 
@@ -732,14 +732,14 @@ PlayPokemonCard:
 	ld [hl], $00
 	ld hl, $0000
 	call LoadTxRam2
-	ldtx hl, Text0063 ; PlacedOnTheBenchText
+	ldtx hl, PlacedOnTheBenchText
 	call DrawWideTextBox_WaitForInput
 	call ProcessPlayedPokemonCard
 	or a
 	ret
 
 .no_space
-	ldtx hl, Text00bb ; NoSpaceOnTheBenchText
+	ldtx hl, NoSpaceOnTheBenchText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -767,12 +767,12 @@ PlayPokemonCard:
 	push de
 	call CheckIfCanEvolveInto
 	pop de
-	ldtx hl, Text00bd ; CantEvolvePokemonInSameTurnItsPlacedText
+	ldtx hl, CantEvolvePokemonInSameTurnItsPlacedText
 	jr nz, .cant_same_turn
 	inc e
 	dec c
 	jr nz, .find_cant_evolve_reason_loop
-	ldtx hl, Text00bc ; NoPokemonCapableOfEvolvingText
+	ldtx hl, NoPokemonCapableOfEvolvingText
 .cant_same_turn
 	; don't bother opening the selection screen if there are no pokemon capable of evolving
 	call DrawWideTextBox_WaitForInput
@@ -865,10 +865,10 @@ CheckAbleToRetreat:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ldtx hl, Text00c9 ; EnergyCardsRequiredToRetreatText
+	ldtx hl, EnergyRequiredToRetreatText
 	jr .done
 .unable_to_retreat
-	ldtx hl, Text003e ; UnableToRetreatText
+	ldtx hl, UnableToRetreatText
 .done
 	scf
 	ret
@@ -954,7 +954,7 @@ DisplayRetreatScreen:
 	ret
 
 DisplayEnergyDiscardMenu:
-	ldtx de, Text0052 ; ChooseEnergyCardToDiscardText
+	ldtx de, ChooseEnergyCardToDiscardText
 ;	fallthrough
 
 ; display the screen that shows the player the energy attached
@@ -1076,7 +1076,7 @@ DuelMenu_Attack:
 	call PrintAndLoadAttacksToDuelTempList
 	or a
 	jr nz, .init_menu
-	ldtx hl, Text003d ; NoSelectableAttackText
+	ldtx hl, NoSelectableAttackText
 	call DrawWideTextBox_WaitForInput
 	jp PrintDuelMenuAndHandleInput
 
@@ -1107,7 +1107,7 @@ DuelMenu_Attack:
 	ld [wSelectedDuelSubMenuItem], a
 	call CheckIfEnoughEnergiesToAttack
 	jr nc, .enough_energy
-	ldtx hl, Text00ca ; NotEnoughEnergyCardsText
+	ldtx hl, NotEnoughEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	jr .try_open_attack_menu
 
@@ -1423,7 +1423,7 @@ PrintDuelResultStats:
 ; WriteTwoDigitNumberInTxSymbolFormat, and d,e for InitTextPrinting_ProcessTextFromID.
 .PrintDuelistResultStats:
 	call SetNoLineSeparation
-	ldtx hl, Text007d ; PrizesLeftActivePokemonCardsInDeckText
+	ldtx hl, PrizesLeftActivePokemonCardsInDeckText
 	call InitTextPrinting_ProcessTextFromID
 	call SetOneLineSeparation
 	ld c, e
@@ -1439,10 +1439,10 @@ PrintDuelResultStats:
 	inc c
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	ldtx hl, Text007f ; YesText
+	ldtx hl, YesText
 	or a
 	jr nz, .pkmn_in_play_area
-	ldtx hl, Text007e ; NoneText
+	ldtx hl, NoneText
 .pkmn_in_play_area
 	dec d
 	call InitTextPrinting_ProcessTextFromID
@@ -1455,13 +1455,13 @@ PrintDuelResultStats:
 	sub [hl]
 .print_x_cards
 	call WriteTwoDigitNumberInTxSymbolFormat
-	ldtx hl, Text0080 ; CardsText
+	ldtx hl, CardsUnitText
 	call InitTextPrinting_ProcessTextFromID
 	ret
 
 ; display the animation of the player drawing the card at hTempCardIndex_ff98
 DisplayPlayerDrawCardScreen:
-	ldtx hl, Text0072 ; YouDrewText
+	ldtx hl, YouDrewText
 	ldh a, [hTempCardIndex_ff98]
 ;	fallthrough
 
@@ -1527,7 +1527,7 @@ HandleDuelSetup:
 	jr .hand_cards_ok
 
 .neither_drew_basic_pkmn
-	ldtx hl, Text006d ; NeitherPlayerHasBasicPkmnText
+	ldtx hl, NeitherPlayerHasBasicPkmnText
 	call DrawWideTextBox_WaitForInput
 	call DisplayNoBasicPokemonInHandScreen
 	call InitializeDuelVariables
@@ -1549,7 +1549,7 @@ HandleDuelSetup:
 	call SwapTurn
 	jp c, .error
 	call DrawPlayAreaToPlacePrizeCards
-	ldtx hl, Text0074 ; PlacingThePrizesText
+	ldtx hl, PlacingThePrizesText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 
@@ -1557,7 +1557,7 @@ HandleDuelSetup:
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
-	ldtx hl, Text0075 ; PleasePlacePrizesText
+	ldtx hl, PleasePlacePrizesText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	farcall PlacePrizes
@@ -1572,7 +1572,7 @@ HandleDuelSetup:
 	call EmptyScreen
 	ld a, BOXMSG_COIN_TOSS
 	call DrawDuelBoxMessage
-	ldtx hl, Text0077 ; CoinTossToDecideWhoPlaysFirstText
+	ldtx hl, CoinTossToDecideWhoPlaysFirstText
 	call DrawWideTextBox_WaitForInput
 	ldh a, [hWhoseTurn]
 	cp PLAYER_TURN
@@ -1583,12 +1583,12 @@ HandleDuelSetup:
 	call CopyPlayerName
 	ld hl, $0000
 	call LoadTxRam2
-	ldtx hl, Text0055 ; YouPlayFirstText
-	ldtx de, Text0076 ; IfHeadsDuelistPlaysFirstText
+	ldtx hl, YouPlayFirstText
+	ldtx de, IfHeadsDuelistPlaysFirstText
 	call TossCoin
 	jr c, .play_first
 	call SwapTurn
-	ldtx hl, Text0056 ; YouPlaySecondText
+	ldtx hl, YouPlaySecondText
 .play_first
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
@@ -1601,12 +1601,12 @@ HandleDuelSetup:
 	call CopyOpponentName
 	ld hl, $0000
 	call LoadTxRam2
-	ldtx hl, Text0056 ; YouPlaySecondText
-	ldtx de, Text0076 ; IfHeadsDuelistPlaysFirstText
+	ldtx hl, YouPlaySecondText
+	ldtx de, IfHeadsDuelistPlaysFirstText
 	call TossCoin
 	jr c, .play_second
 	call SwapTurn
-	ldtx hl, Text0055 ; YouPlayFirstText
+	ldtx hl, YouPlayFirstText
 .play_second
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
@@ -1643,7 +1643,7 @@ ChooseInitialArenaAndBenchPokemon:
 
 ; link opponent's turn
 .exchange_duelvars
-	ldtx hl, Text0059 ; TransmittingDataText
+	ldtx hl, TransmittingDataText
 	call DrawWideTextBox_PrintText
 	call ExchangeRNG
 	ld hl, wPlayerDuelVariables
@@ -1668,13 +1668,13 @@ ChooseInitialArenaAndBenchPokemon:
 	call EmptyScreen
 	ld a, BOXMSG_ARENA_POKEMON
 	call DrawDuelBoxMessage
-	ldtx hl, Text006b ; ChooseBasicPkmnToPlaceInArenaText
+	ldtx hl, ChooseBasicPkmnToPlaceInArenaText
 	call DrawWideTextBox_WaitForInput
 	ld a, PRACTICEDUEL_DRAW_SEVEN_CARDS
 	call DoPracticeDuelAction
 .choose_arena_loop
 	xor a
-	ldtx hl, Text0070 ; PleaseChooseAnActivePokemonText
+	ldtx hl, PleaseChooseAnActivePokemonText
 	call DisplayPlaceInitialPokemonCardsScreen
 	jr c, .choose_arena_loop
 	ldh a, [hTempCardIndex_ff98]
@@ -1685,7 +1685,7 @@ ChooseInitialArenaAndBenchPokemon:
 	ldh a, [hTempCardIndex_ff98]
 	call PutHandPokemonCardInPlayArea
 	ldh a, [hTempCardIndex_ff98]
-	ldtx hl, Text0064 ; PlacedInTheArenaText
+	ldtx hl, PlacedInTheArenaText
 	call DisplayCardDetailScreen
 	jr .choose_bench
 
@@ -1700,13 +1700,13 @@ ChooseInitialArenaAndBenchPokemon:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ldtx hl, Text006f ; ChooseUpTo5BasicPkmnToPlaceOnBenchText
+	ldtx hl, ChooseUpToXBasicPkmnToPlaceOnBenchText
 	call PrintScrollableText_NoTextBoxLabel
 	ld a, PRACTICEDUEL_PUT_NIDORANM_IN_BENCH
 	call DoPracticeDuelAction
 .bench_loop
 	ld a, TRUE
-	ldtx hl, Text0071 ; ChooseYourBenchPokemonText
+	ldtx hl, ChooseYourBenchPokemonText
 	call DisplayPlaceInitialPokemonCardsScreen
 	jr c, .bench_done
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -1717,14 +1717,14 @@ ChooseInitialArenaAndBenchPokemon:
 	ldh a, [hTempCardIndex_ff98]
 	call PutHandPokemonCardInPlayArea
 	ldh a, [hTempCardIndex_ff98]
-	ldtx hl, Text0063 ; PlacedOnTheBenchText
+	ldtx hl, PlacedOnTheBenchText
 	call DisplayCardDetailScreen
 	ld a, PRACTICEDUEL_DONE_PUTTING_ON_BENCH
 	call DoPracticeDuelAction
 	jr .bench_loop
 
 .no_space
-	ldtx hl, Text00bb ; NoSpaceOnTheBenchText
+	ldtx hl, NoSpaceOnTheBenchText
 	call DrawWideTextBox_WaitForInput
 	jr .bench_loop
 
@@ -1809,14 +1809,14 @@ IsLoadedCard1BasicPokemon:
 	ret ; nz
 
 DisplayNoBasicPokemonInHandScreenAndText:
-	ldtx hl, Text006c ; ThereAreNoBasicPokemonInHand
+	ldtx hl, NoBasicPokemonInHandText
 	call DrawWideTextBox_WaitForInput
 	call DisplayNoBasicPokemonInHandScreen
 ;	fallthrough
 
 ; prints ReturnCardsToDeckAndDrawAgainText in a textbox and calls ExchangeRNG
 PrintReturnCardsToDeckDrawAgain:
-	ldtx hl, Text006e ; ReturnCardsToDeckAndDrawAgainText
+	ldtx hl, ReturnCardsToDeckAndDrawAgainText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	ret
@@ -1835,7 +1835,7 @@ DisplayNoBasicPokemonInHandScreen:
 	ld hl, NoBasicPokemonCardListParameters
 	lb de, 0, 0
 	call PrintCardListItems
-	ldtx hl, Text00ae ; DuelistHandText
+	ldtx hl, DuelistHandText
 	lb de, 1, 1
 	call PrintTextNoDelay_Init
 	call EnableLCD
@@ -1865,7 +1865,7 @@ DisplayPracticeDuelPlayerHandScreen:
 	ld hl, CardListParameters ; other list params
 	lb de, 0, 0 ; initial page scroll offset, initial item (in the visible page)
 	call PrintCardListItems
-	ldtx hl, Text00ae ; DuelistHandText
+	ldtx hl, DuelistHandText
 	lb de, 1, 1
 	call PrintTextNoDelay_Init
 	call EnableLCD
@@ -2479,7 +2479,7 @@ DisplayDuelistTurnScreen:
 .got_turn
 	ld a, c
 	call DrawDuelBoxMessage
-	ldtx hl, Text0060 ; DuelistTurnText
+	ldtx hl, DuelistTurnText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	ret
@@ -2489,12 +2489,12 @@ SECTION "Bank 1@517e", ROMX[$517e], BANK[$1]
 
 DuelMenuData:
 	; x, y, text id
-	textitem  3, 14, Text0001 ; HandText
-	textitem  9, 14, Text0002 ; CheckText
-	textitem 15, 14, Text0007 ; RetreatText
-	textitem  3, 16, Text0003 ; AttackText
-	textitem  9, 16, Text0004 ; PKMNPowerText
-	textitem 15, 16, Text0005 ; DoneText
+	textitem  3, 14, HandText
+	textitem  9, 14, CheckText
+	textitem 15, 14, RetreatText
+	textitem  3, 16, AttackText
+	textitem  9, 16, PokemonPowerHiraganaText
+	textitem 15, 16, DoneText
 	db $ff
 
 ; display the screen that prompts the player to choose a Pokemon card to
@@ -2530,7 +2530,7 @@ DisplayPlaceInitialPokemonCardsScreen:
 	call IsLoadedCard1BasicPokemon
 	jr nc, .done
 	; invalid card selected, tell the player and go back
-	ldtx hl, Text0073 ; YouCannotSelectThisCardText
+	ldtx hl, YouCannotSelectThisCardText
 	call DrawWideTextBox_WaitForInput
 	call DrawCardListScreenLayout
 	jr .display_card_list
@@ -2553,8 +2553,8 @@ OpenDiscardPileScreen:
 	call CreateDiscardPileCardList
 	jr c, .discard_pile_empty
 	call InitAndDrawCardListScreenLayout
-	ldtx hl, Text0058
-	ldtx de, Text00ad
+	ldtx hl, ChooseTheCardYouWishToExamineText
+	ldtx de, DuelistDiscardPileText
 	call SetCardListHeaderAndInfoText
 	ld a, START + A_BUTTON
 	ld [wNoItemSelectionMenuKeys], a
@@ -2566,7 +2566,7 @@ OpenDiscardPileScreen:
 	; in the Discard Pile, or that Black Hole is active
 	; in which case the "No cards in Discard Pile" text
 	; will always show here regardless
-	ldtx hl, Text00ac ; TheDiscardPileHasNoCardsText
+	ldtx hl, TheDiscardPileHasNoCardsText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -2609,13 +2609,13 @@ InitAndDrawCardListScreenLayout:
 	ld a, START
 	ld [wNoItemSelectionMenuKeys], a
 	ld hl, wCardListInfoBoxText
-	ldtx [hl], Text00b2, & $ff
+	ldtx [hl], PleaseSelectHandText, & $ff
 	inc hl
-	ldtx [hl], Text00b2, >> 8
+	ldtx [hl], PleaseSelectHandText, >> 8
 	inc hl ; wCardListHeaderText
-	ldtx [hl], Text00ae, & $ff
+	ldtx [hl], DuelistHandText, & $ff
 	inc hl
-	ldtx [hl], Text00ae, >> 8
+	ldtx [hl], DuelistHandText, >> 8
 ; fallthrough
 
 ; same as InitAndDrawCardListScreenLayout, except that variables like wSelectedDuelSubMenuItem,
@@ -2791,17 +2791,19 @@ CardListItemSelectionMenu:
 	ld a, [wCardListItemSelectionMenuType]
 	or a
 	ret z
-	ldtx hl, Text008b ; SelectCheckText
+	ldtx hl, MenuSelectCheckText
 	ld a, [wCardListItemSelectionMenuType]
 	cp PLAY_CHECK
 	jr nz, .got_text
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ldtx hl, Text008a ; PlayCheck2Text
+; handle verbs
+; redundant in English, where both are just "PLAY"
+	ldtx hl, MenuPutOutCheckText
 	ld a, [wLoadedCard1Type]
 	cp TYPE_TRAINER
 	jr nz, .got_text
-	ldtx hl, Text0089 ; PlayCheck1Text
+	ldtx hl, MenuUseCheckText
 .got_text
 	call DrawNarrowTextBox_PrintTextNoDelay
 	ld hl, ItemSelectionMenuParameters
@@ -2991,7 +2993,7 @@ TurnDuelistTakePrizes:
 	jr nz, .opponent
 
 ; player
-	ldtx hl, Text0043 ; WillDrawNPrizesText
+	ldtx hl, WillDrawNPrizesText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wNumberPrizeCardsToTake]
 	call SelectPrizeCards
@@ -3012,7 +3014,7 @@ TurnDuelistTakePrizes:
 
 .opponent
 	call .Func_588a
-	ldtx hl, Text0043 ; WillDrawNPrizesText
+	ldtx hl, WillDrawNPrizesText
 	call DrawWideTextBox_PrintText
 	call CountPrizes
 	ld [wTempNumRemainingPrizeCards], a
@@ -3049,7 +3051,7 @@ TurnDuelistTakePrizes:
 	call LoadTxRam3
 .asm_587e
 	farcall Func_82b6
-	ldtx hl, Text0044 ; DrewNPrizesText
+	ldtx hl, DrewNPrizesText
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
 
@@ -3060,7 +3062,7 @@ TurnDuelistTakePrizes:
 	ret z
 	ld a, e
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ldtx hl, Text0081
+	ldtx hl, DrewFromPrizesText
 	farcall _DisplayCardDetailScreen
 	call OpenCardPage_FromHand
 	call .Func_588a ; can be fallthrough
@@ -3606,7 +3608,7 @@ PrintAttackOrPkmnPowerInformation:
 .print_pokemon_power
 	; print "PKMN PWR" at 2,e
 	ld d, 2
-	ldtx hl, Text000a
+	ldtx hl, PokemonPowerKanjiText
 	call InitTextPrinting_ProcessTextFromID
 	pop bc
 	ret
@@ -3684,9 +3686,9 @@ DrawCardPageBoxAndCardGfx:
 	ret
 
 CardPageRetreatWRTextData:
-	textitem 1, 14, Text0007
-	textitem 1, 15, Text0008
-	textitem 1, 16, Text0009
+	textitem 1, 14, RetreatText
+	textitem 1, 15, WeaknessText
+	textitem 1, 16, ResistanceText
 	db $ff
 
 CardPageLvHPNoTextTileData:
@@ -3769,7 +3771,7 @@ DisplayCardPage_PokemonDescription:
 	call InitTextPrinting_ProcessTextFromPointerToID
 	ld a, TX_KATAKANA
 	call ProcessSpecialTextCharacter
-	ldtx hl, Text000e
+	ldtx hl, PokemonText
 	call ProcessTextFromID
 	; print the length at 3, 11
 	lb bc, 3, 11
@@ -3778,7 +3780,7 @@ DisplayCardPage_PokemonDescription:
 	ld h, $00
 	call PrintNumberAsMeasurement
 	call InitTextPrinting
-	ldtx hl, Text000f ; "m"
+	ldtx hl, LengthUnitMetresText
 	call ProcessTextFromID
 	; print the weight at 3, 12
 	lb bc, 3, 12
@@ -3787,7 +3789,7 @@ DisplayCardPage_PokemonDescription:
 	ld h, [hl]
 	ld l, a
 	call PrintNumberAsMeasurement
-	ldtx hl, Text0010 ; "kg"
+	ldtx hl, WeightUnitKilogramsText
 	call InitTextPrinting_ProcessTextFromID
 	call SetNoLineSeparation
 	ld a, 19
@@ -3829,8 +3831,8 @@ DrawCardPageSet2AndRarityIcons:
 	ret
 
 CardPageLengthWeightTextData:
-	textitem 1, 11, Text000c
-	textitem 1, 12, Text000d
+	textitem 1, 11, LengthText
+	textitem 1, 12, WeightText
 	db $ff
 
 CardPageLvHPTextTileData:
@@ -3839,11 +3841,11 @@ CardPageLvHPTextTileData:
 	db $ff
 
 CardRarityTextIDs:
-	tx Text0011 ; PROMOSTAR (unused)
-	tx Text0012 ; CIRCLE
-	tx Text0013 ; DIAMOND
-	tx Text0014 ; STAR
-	tx Text0015 ; RARITY_3
+	tx PromostarRarityText ; PROMOSTAR (unused)
+	tx CircleRarityText    ; CIRCLE
+	tx DiamondRarityText   ; DIAMOND
+	tx StarRarityText      ; STAR
+	tx WhitestarRarityText ; WHITESTAR
 
 DisplayCardPage_TrainerPage1:
 	xor a ; HEADER_TRAINER
@@ -4181,7 +4183,7 @@ SelectingBenchPokemonMenu:
 	call CreateArenaOrBenchEnergyCardList
 	jr c, .no_energy_cards
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	ldtx de, Text00b3
+	ldtx de, EnergyCardsAttachedToPokemonText
 	call DisplayAttachedEnergyMenu
 	ld a, $01
 	ld [wcbeb], a
@@ -4199,7 +4201,7 @@ SelectingBenchPokemonMenu:
 	ld [wCurrentDuelMenuItem], a
 .duel_main_scene
 	call DrawDuelMainScene
-	ldtx hl, Text005b ; SelectingBenchPokemonHandExamineBackText
+	ldtx hl, SelectingBenchPokemonHandExamineBackText
 	call DrawWideTextBox_PrintTextNoDelay
 	call .InitMenu
 .loop_input
@@ -4494,7 +4496,7 @@ PrintPlayAreaCardInformation:
 	inc a
 	ld e, a
 	ld d, 7
-	ldtx hl, Text004f
+	ldtx hl, KnockOutText
 	call InitTextPrinting_ProcessTextFromID
 	ret
 
@@ -4815,12 +4817,12 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	jr nc, .asm_648c
-	ldtx hl, Text0041 ; PokemonPowerSelectNotRequiredText
+	ldtx hl, PokemonPowerSelectNotRequiredText
 	farcall DisplayUsePokemonPowerScreen
 	call WaitForWideTextBoxInput
 	jp .asm_6435
 .asm_648c
-	ldtx hl, Text0040 ; UseThisPokemonPowerText
+	ldtx hl, UseThisPokemonPowerPromptText
 	farcall DisplayUsePokemonPowerScreen
 	call YesOrNoMenu
 	jp c, .asm_6435
@@ -4954,7 +4956,7 @@ AttemptRetreat:
 	and CNF_SLP_PRZ
 	cp CONFUSED
 	jr nz, .success
-	ldtx de, Text0118 ; ConfusionCheckRetreatText
+	ldtx de, ConfusionCheckRetreatText
 	call TossCoin
 	jr c, .success
 	ld a, 1
@@ -5273,7 +5275,7 @@ ProcessPlayedPokemonCard:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ldtx hl, Text0085 ; HavePokemonPowerText
+	ldtx hl, HavePokemonPowerText
 	farcall DisplayUsePokemonPowerScreen
 	call WaitForWideTextBoxInput
 	ld hl, wLoadedCard1ID
@@ -5282,10 +5284,10 @@ ProcessPlayedPokemonCard:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	call CheckIsIncapableOfUsingPkmnPower
 	jr nc, .use_pokemon_power
-	ldtx hl, Text0086 ; UnableToUsePkmnPowerDueToGoopGasAttack
+	ldtx hl, HavePkmnPowerButUnableDueToToxicGasText
 	dec a
 	jr nz, .asm_622b
-	ldtx hl, Text0087 ; UnableToUsePkmnPowerDueToToxicGasText
+	ldtx hl, HavePkmnPowerButUnableDueToGoopGasAttackText
 .asm_622b
 	call DrawWideTextBox_WaitForInput
 
@@ -5319,7 +5321,7 @@ ProcessPlayedPokemonCard:
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
-	ldtx hl, Text005e ; WillUseThePokemonPowerText
+	ldtx hl, WillUseThePokemonPowerText
 	call DrawWideTextBox_WaitForInput
 	ld a, $01
 	ld [wcd18], a
@@ -5357,7 +5359,7 @@ HandleBetweenTurnsEvents:
 	call EmptyScreen
 	ld a, BOXMSG_BETWEEN_TURNS
 	call DrawDuelBoxMessage
-	ldtx hl, Text002c ; BetweenTurnsText
+	ldtx hl, BetweenTurnsText
 	call DrawWideTextBox_WaitForInput
 
 	ld a, DUELVARS_ARENA_CARD
@@ -5384,7 +5386,7 @@ HandleBetweenTurnsEvents:
 	and [hl]
 	ld [hl], a
 	call RedrawTurnDuelistsMainSceneOrDuelHUD
-	ldtx hl, Text002b ; IsCuredOfParalysisText
+	ldtx hl, IsCuredOfParalysisText
 	call PrintCardNameFromCardIDInTextBox
 	ld a, DUEL_ANIM_HEAL
 	call PlayBetweenTurnsAnimation
@@ -5558,10 +5560,10 @@ HandleSleepCheck:
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ldtx de, Text0119 ; PokemonsSleepCheckText
+	ldtx de, PokemonsSleepCheckText
 	call TossCoin
 	ld a, DUEL_ANIM_SLEEP
-	ldtx hl, Text0029 ; IsStillAsleepText
+	ldtx hl, IsStillAsleepText
 	jr nc, .tails
 
 ; coin toss was heads, cure sleep status
@@ -5571,7 +5573,7 @@ HandleSleepCheck:
 	and [hl]
 	ld [hl], a
 	ld a, DUEL_ANIM_HEAL
-	ldtx hl, Text002a ; IsCuredOfSleepText
+	ldtx hl, IsCuredOfSleepText
 
 .tails
 	push af
@@ -5594,10 +5596,10 @@ HandlePoisonDamage:
 	push hl
 	bit DOUBLE_POISONED_F, [hl]
 	ld a, DBLPSN_DAMAGE
-	ldtx hl, Text0028 ; Received20DamageDueToPoisonText
+	ldtx hl, ReceivedNDamageDueToDoublePoisonText
 	jr nz, .got_damage
 	call GetPoisonDamage
-	ldtx hl, Text0027 ; Received10DamageDueToPoisonText
+	ldtx hl, ReceivedNDamageDueToPoisonText
 
 .got_damage
 	push af
@@ -5809,7 +5811,7 @@ ReplaceKnockedOutPokemon:
 
 ; if we made it here, the duelist can't replace the knocked out Pokemon
 	call DrawDuelMainScene
-	ldtx hl, Text0083 ; ThereAreNoPokemonInPlayAreaText
+	ldtx hl, NoPokemonInPlayAreaText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	scf
@@ -5823,7 +5825,7 @@ ReplaceKnockedOutPokemon:
 
 ; prompt the player to replace the knocked out Pokemon with one from bench
 	call DrawDuelMainScene
-	ldtx hl, Text0165 ; SelectPokemonToPlaceInTheArenaText
+	ldtx hl, SelectPokemonToPlaceInTheArenaText
 	call DrawWideTextBox_WaitForInput
 	ld a, $01
 	ld [wPlayAreaSelectAction], a
@@ -5846,7 +5848,7 @@ ReplaceKnockedOutPokemon:
 	call SwapPlayAreaPokemon
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ldtx hl, Text0045 ; DuelistPlacedACardText
+	ldtx hl, DuelistPlacedACardInArenaText
 	call DisplayCardDetailScreen
 	call ExchangeRNG
 	or a
@@ -5864,7 +5866,7 @@ ReplaceKnockedOutPokemon:
 ; wait for link opponent to replace the knocked out Pokemon with one from bench
 .link_opponent
 	call DrawDuelMainScene
-	ldtx hl, Text0166 ; DuelistIsSelectingPokemonToPlaceInArenaText
+	ldtx hl, DuelistIsSelectingPokemonToPlaceInArenaText
 	call DrawWideTextBox_PrintText
 	call SerialRecv8Bytes
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -5880,7 +5882,7 @@ Func_6fa5:
 	ret nc
 	call SwapTurn
 	call DrawDuelMainScene
-	ldtx hl, Text0082 ; TookAllThePrizesText
+	ldtx hl, TookAllThePrizesText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	call SwapTurn
@@ -6440,7 +6442,7 @@ IsBlackHoleRuleActive:
 .black_hole_rule
 	ld a, $ff
 	ld [wDuelTempList], a
-	ldtx hl, Text00c5 ; this text ID is always discarded
+	ldtx hl, NoCardsInDiscardPileText ; this text ID is always discarded
 	xor a
 	scf
 	ret
@@ -7356,7 +7358,7 @@ Func_6f49:
 	jr z, .no_carry
 	ld a, $05
 	ld [wNoDamageOrEffect], a
-	ldtx hl, Text015e
+	ldtx hl, NoDamageOrEffectDueToNShieldText
 .asm_6fbb
 	call DrawWideTextBox_WaitForInput
 	pop de
@@ -7383,20 +7385,20 @@ HandleNoDamageOrEffectSubstatus::
 
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
 	ld e, NO_DAMAGE_OR_EFFECT_HIDE
-	ldtx hl, Text015c ; NoDamageOrEffectDueToHideText
+	ldtx hl, NoDamageOrEffectDueToHideText
 	get_turn_duelist_var
 	cp SUBSTATUS1_HIDE
 	jr z, .no_damage_or_effect
 	ld e, NO_DAMAGE_OR_EFFECT_FLY
-	ldtx hl, Text0159 ; NoDamageOrEffectDueToFlyText
+	ldtx hl, NoDamageOrEffectDueToFlyText
 	cp SUBSTATUS1_FLY
 	jr z, .no_damage_or_effect
 	ld e, NO_DAMAGE_OR_EFFECT_BARRIER
-	ldtx hl, Text015a ; NoDamageOrEffectDueToBarrierText
+	ldtx hl, NoDamageOrEffectDueToBarrierText
 	cp SUBSTATUS1_BARRIER
 	jr z, .no_damage_or_effect
 	ld e, NO_DAMAGE_OR_EFFECT_AGILITY
-	ldtx hl, Text015b ; NoDamageOrEffectDueToAgilityText
+	ldtx hl, NoDamageOrEffectDueToAgilityText
 	cp SUBSTATUS1_AGILITY
 	jr z, .no_damage_or_effect
 
@@ -7433,7 +7435,7 @@ HandleNoDamageOrEffectSubstatus::
 	or a
 	ret z ; is basic card
 	ld e, NO_DAMAGE_OR_EFFECT_NSHIELD
-	ldtx hl, Text015e ; NoDamageOrEffectDueToNShieldText
+	ldtx hl, NoDamageOrEffectDueToNShieldText
 	jr .no_damage_or_effect
 ; 0x7038
 
@@ -7450,7 +7452,7 @@ CheckHaunterTransparency:
 	set PLAY_AREA_FLAG_UNK_2_F, [hl]
 	res PLAY_AREA_FLAG_UNK_1_F, [hl]
 	push hl
-	ldtx de, Text0116
+	ldtx de, TransparencyCheckText
 	call TossCoin
 	pop hl
 	ret nc
@@ -7458,7 +7460,7 @@ CheckHaunterTransparency:
 .asm_7074
 	ld a, $04
 	ld [wNoDamageOrEffect], a
-	ldtx hl, Text015f
+	ldtx hl, NoDamageOrEffectDueToTransparencyText
 	scf
 	ret
 .asm_707e
@@ -7496,13 +7498,13 @@ CheckNoDamageOrEffect::
 	ret
 
 NoDamageOrEffectTextIDTable::
-	tx Text015b ; NoDamageOrEffectDueToAgilityText      ; NO_DAMAGE_OR_EFFECT_AGILITY
-	tx Text015a ; NoDamageOrEffectDueToBarrierText      ; NO_DAMAGE_OR_EFFECT_BARRIER
-	tx Text0159 ; NoDamageOrEffectDueToFlyText          ; NO_DAMAGE_OR_EFFECT_FLY
-	tx Text015f ; NoDamageOrEffectDueToTransparencyText ; NO_DAMAGE_OR_EFFECT_TRANSPARENCY
-	tx Text015e ; NoDamageOrEffectDueToNShieldText      ; NO_DAMAGE_OR_EFFECT_NSHIELD
-	tx Text015c ; NoDamageOrEffectDueToHideText         ; NO_DAMAGE_OR_EFFECT_HIDE
-	tx Text01c9 ; NoDamageOrEffectDueToAuroraVeilText   ; NO_DAMAGE_OR_EFFECT_AURORA_VEIL
+	tx NoDamageOrEffectDueToAgilityText ; NO_DAMAGE_OR_EFFECT_AGILITY
+	tx NoDamageOrEffectDueToBarrierText ; NO_DAMAGE_OR_EFFECT_BARRIER
+	tx NoDamageOrEffectDueToFlyText ; NO_DAMAGE_OR_EFFECT_FLY
+	tx NoDamageOrEffectDueToTransparencyText ; NO_DAMAGE_OR_EFFECT_TRANSPARENCY
+	tx NoDamageOrEffectDueToNShieldText ; NO_DAMAGE_OR_EFFECT_NSHIELD
+	tx NoDamageOrEffectDueToHideText ; NO_DAMAGE_OR_EFFECT_HIDE
+	tx NoDamageOrEffectDueToAuroraVeilText ; NO_DAMAGE_OR_EFFECT_AURORA_VEIL
 
 CheckIsIncapableOfUsingPkmnPower_ArenaCard:
 	xor a ; PLAY_AREA_ARENA
@@ -7520,7 +7522,7 @@ CheckIsIncapableOfUsingPkmnPower:
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and CNF_SLP_PRZ
-	ldtx hl, Text00d6
+	ldtx hl, CannotUseDueToStatusText
 	scf
 	ret nz
 .skip_arena_card_condition
@@ -7532,7 +7534,7 @@ CheckIsIncapableOfUsingPkmnPower:
 	and AFFECTED_BY_STARE
 	jr z, .can_use
 	; can't use due to Dark Arbok's Stare attack
-	ldtx hl, Text00e0
+	ldtx hl, UnableDueToStareText
 	ld a, $2
 	scf
 	ret
@@ -7766,7 +7768,7 @@ CheckIfCannotDrawDueToPerplex:
 	or a
 	ret
 .perplex_active
-	ldtx hl, Text0162
+	ldtx hl, UnableToDrawCardDueToPerplexText
 	scf
 	ret
 
@@ -7783,11 +7785,11 @@ CheckGoopGasAttackAndToxicGasActive:
 	call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	pop de
 	ld a, $00
-	ldtx hl, Text00df
+	ldtx hl, UnableDueToToxicGasText
 	ret
 .goop_gas_attack_active
 	ld a, $01
-	ldtx hl, Text024a
+	ldtx hl, UnableDueToGoopGasAttackText
 	scf
 	ret
 
@@ -7871,7 +7873,7 @@ HandleDestinyBondSubstatus:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ldtx hl, Text0156 ; KnockedOutDueToDestinyBondText
+	ldtx hl, KnockedOutDueToDestinyBondText
 .draw_text_box_and_exit
 	call DrawWideTextBox_WaitForInput
 	ret
@@ -7960,7 +7962,7 @@ HandleFinalBeam:
 	ld [wDuelDisplayedScreen], a
 
 	; flip a coin to determine if successful
-	ldtx de, Text011d
+	ldtx de, FinalBeamSuccessCheckText
 	call TossCoin
 	call SwapTurn
 	ret nc ; not successful
@@ -7989,7 +7991,7 @@ HandleFinalBeam:
 	jr z, .non_negative
 	ld hl, 0 ; at least 0 damage
 .non_negative
-	ldtx de, Text01ad
+	ldtx de, ReceivedDamageDueToFinalBeamText
 	call Func_7518
 	call nc, WaitForWideTextBoxInput
 	ret
@@ -8170,13 +8172,13 @@ CheckUnableToRetreatDueToEffect:
 	ld de, SNORLAX_LV35
 	call CheckArenaCardIDAndHasActivePkmnPower
 	call SwapTurn
-	ldtx hl, Text014d
+	ldtx hl, UnableToRetreatDueToGuardText
 	jr c, .set_carry ; can just be ret c
 
 .no_pkmn_powers
 	; can't retreat if used Drill Dive last turn
 	call CheckIfArenaCardUsedDrillDiveLastTurn
-	ldtx hl, Text014c
+	ldtx hl, UnableToRetreatDueToDrillDiveText
 	ret c
 
 	; can't retreat if affected by Acid or Rock Seal
@@ -8184,10 +8186,10 @@ CheckUnableToRetreatDueToEffect:
 	get_turn_duelist_var
 	or a
 	jr z, .can_retreat
-	ldtx hl, Text014a
+	ldtx hl, UnableToRetreatDueToAcidText
 	cp SUBSTATUS2_ACID
 	jr z, .set_carry
-	ldtx hl, Text014b
+	ldtx hl, UnableToRetreatDueToRockSealText
 	cp SUBSTATUS2_ROCK_SEAL
 	jr z, .set_carry
 .can_retreat
@@ -8251,7 +8253,7 @@ HandleRetreatPkmnPowers:
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	call SwapTurn
-	ldtx hl, Text01df
+	ldtx hl, SwitchedOutDueToVinePullText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ld [wDuelDisplayedScreen], a
@@ -8288,7 +8290,7 @@ HandleRetreatPkmnPowers:
 	ret
 
 .DealSinkholeDamage:
-	ldtx de, Text0122
+	ldtx de, SinkholeCheckText
 	call TossCoin
 	ret c ; exit if heads
 	xor a
@@ -8314,10 +8316,10 @@ SECTION "Bank 1@7765", ROMX[$7765], BANK[$1]
 CheckCantUseTrainerDueToEffect:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
-	ldtx de, Text014e ; UnableToUseTrainerDueToHeadacheText
+	ldtx de, UnableToUseTrainerDueToHeadacheText
 	bit SUBSTATUS3_HEADACHE_F, [hl]
 	jr nz, .cannot_use
-	ldtx de, Text014f
+	ldtx de, UnableToUseTrainerDueToSpookifyText
 	bit SUBSTATUS3_SPOOKIFY_F, [hl]
 	jr nz, .cannot_use
 	call CheckGoopGasAttackAndToxicGasActive
@@ -8325,7 +8327,7 @@ CheckCantUseTrainerDueToEffect:
 	; check Dark Vileplume's Hay Fever
 	ld de, DARK_VILEPLUME
 	call CountPokemonWithActivePkmnPowerInBothPlayAreas
-	ldtx hl, Text0160
+	ldtx hl, UnableToUseTrainerDueToHayFeverText
 	ret c
 .skip_hay_fever_check
 	or a
@@ -8345,10 +8347,10 @@ HandleAmnesiaSubstatus:
 	jr nz, .check_disable
 	ret
 .check_disable
-	ldtx de, Text0155
+	ldtx de, UnableToUseAttackDueToDisableText
 	cp SUBSTATUS2_DISABLE
 	jr z, .affected_by_disable_or_amnesia
-	ldtx de, Text0154 ; UnableToUseAttackDueToAmnesiaText
+	ldtx de, UnableToUseAttackDueToAmnesiaText
 	cp SUBSTATUS2_AMNESIA
 	jr z, .affected_by_disable_or_amnesia
 .not_the_disabled_atk
@@ -8371,7 +8373,7 @@ IsPrehistoricPowerActive:
 	call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	ret nc
 	call CheckGoopGasAttackAndToxicGasActive
-	ldtx hl, Text0158 ; UnableToEvolveDueToPrehistoricPowerText
+	ldtx hl, UnableToEvolveDueToPrehistoricPowerText
 	ccf
 	ret
 
@@ -8414,19 +8416,19 @@ CheckIfArenaCardIsUnableToAttack:
 	or a
 	jr z, .skip_check_substatus2
 
-	ldtx hl, Text0150
+	ldtx hl, UnableToAttackDueToTailWagText
 	cp SUBSTATUS2_TAIL_WAG
 	jr z, .set_carry
-	ldtx hl, Text0151
+	ldtx hl, UnableToAttackDueToLeerText
 	cp SUBSTATUS2_LEER
 	jr z, .set_carry
-	ldtx hl, Text0152
+	ldtx hl, UnableToAttackDueToBoneAttackText
 	cp SUBSTATUS2_BONE_ATTACK
 	jr z, .set_carry
 
 .skip_check_substatus2
 	call CheckIfArenaCardUsedDrillDiveLastTurn
-	ldtx hl, Text0153
+	ldtx hl, UnableToAttackDueToDrillDiveText
 	ret c ; cannot attack due to Drill Dive
 
 	ld a, DUELVARS_ARENA_CARD
@@ -8449,7 +8451,7 @@ CheckIfArenaCardIsUnableToAttack:
 	ret
 .set_carry
 	; bug, missing load text ID into hl
-	; ldtx hl, Text0026
+	; ldtx hl, UnableDueToParalysisText
 	scf
 	ret
 
@@ -8466,10 +8468,10 @@ CheckIfArenaCardIsParalyzedOrAsleep:
 	or a
 	ret
 .paralyzed
-	ldtx hl, Text0026
+	ldtx hl, UnableDueToParalysisText
 	jr .has_status_condition
 .asleep
-	ldtx hl, Text0025
+	ldtx hl, UnableDueToSleepText
 .has_status_condition
 	scf
 	ret
@@ -8718,7 +8720,7 @@ CheckArticunoAuroraVeil:
 	jr c, .no_carry
 	ld a, $07
 	ld [wNoDamageOrEffect], a
-	ldtx hl, Text01c9
+	ldtx hl, NoDamageOrEffectDueToAuroraVeilText
 	scf
 	ret
 .no_carry

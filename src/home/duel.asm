@@ -1469,7 +1469,7 @@ HandleConfusionDamageToSelf:
 	pop hl
 	push hl
 	call LoadTxRam3
-	ld hl, $50 ; DamageToSelfDueToConfusionText
+	ldtx hl, DamageToSelfDueToConfusionText
 	call DrawWideTextBox_PrintText
 	ld a, ATK_ANIM_CONFUSION_HIT
 	ld [wLoadedAttackAnimation], a
@@ -1916,7 +1916,7 @@ PrintKnockedOut:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ld hl, $84 ; WasKnockedOutText
+	ldtx hl, WasKnockedOutText
 	call DrawWideTextBox_PrintText
 	ld a, 40
 .wait_frames
@@ -2060,7 +2060,7 @@ Func_19e1::
 	cp $1
 	jr z, .no_effect_from_status
 	call Func_19fd
-	ld hl, $1a1 ; WasUnsuccessfulText
+	ldtx hl, WasUnsuccessfulText
 	call DrawWideTextBox_PrintText
 	scf
 	ret
@@ -2215,5 +2215,5 @@ CopyOpponentName::
 	jr z, .print_player2
 	jr CopyPlayerName.loop
 .print_player2
-	ld hl, $0097 ; Player2Text
+	ldtx hl, Player2Text
 	jp CopyText
