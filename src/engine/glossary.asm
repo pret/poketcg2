@@ -322,47 +322,47 @@ MACRO explanation
 ENDM
 
 .ExplanationTextData_GameBasics:
-	explanation 5, GlossaryDeckTitleText, Text03fb
-	explanation 6, GlossaryDeckPileTitleText, Text03fc
-	explanation 4, GlossaryDiscardPileTitleText, Text03fd
-	explanation 6, GlossaryHandTitleText, Text03fe
-	explanation 5, GlossaryArenaTitleText, Text03ff
-	explanation 5, GlossaryBenchTitleText, Text0400
-	explanation 4, GlossaryActivePokemonTitleText, Text0401
-	explanation 3, GlossaryBenchedPokemonTitleText, Text0402
-	explanation 4, Text03dd, Text0403
-	explanation 2, Text03de, Text0404
+	explanation 5, GlossaryDeckTitleText, GlossaryDeckDescriptionText
+	explanation 6, GlossaryDeckPileTitleText, GlossaryDeckPileDescriptionText
+	explanation 4, GlossaryDiscardPileTitleText, GlossaryDiscardPileDescriptionText
+	explanation 6, GlossaryHandTitleText, GlossaryHandDescriptionText
+	explanation 5, GlossaryArenaTitleText, GlossaryArenaDescriptionText
+	explanation 5, GlossaryBenchTitleText, GlossaryBenchDescriptionText
+	explanation 4, GlossaryActivePokemonTitleText, GlossaryActivePokemonDescriptionText
+	explanation 3, GlossaryBenchedPokemonTitleText, GlossaryBenchedPokemonDescriptionText
+	explanation 4, GlossaryPrizesTitleText, GlossaryPrizesDescriptionText
+	explanation 2, GlossaryDamageCountersTitleText, GlossaryDamageCountersDescriptionText
 
 .ExplanationTextData_CardTypes:
-	explanation 3, Text03df, Text0405
-	explanation 3, Text03e0, Text0406
-	explanation 4, Text03e1, Text0407
-	explanation 4, Text03e2, Text0408
-	explanation 3, Text03e3, Text0409
-	explanation 6, Text03e4, Text040a
-	explanation 5, Text03e5, Text040b
-	explanation 6, Text03e6, Text040c
-	explanation 5, Text03e7, Text040d
-	explanation 5, Text03e8, Text040e
+	explanation 3, GlossaryEnergyCardsTitleText, GlossaryEnergyCardsDescriptionText
+	explanation 3, GlossaryTrainerCardsTitleText, GlossaryTrainerCardsDescriptionText
+	explanation 4, GlossaryBasicPokemonTitleText, GlossaryBasicPokemonText
+	explanation 4, GlossaryEvolutionCardsTitleText, GlossaryEvolutionCardsDescriptionText
+	explanation 3, GlossaryDarkEvolutionCardsTitleText, GlossaryDarkEvolutionCardsDescriptionText
+	explanation 6, GlossaryAttackTitleText, GlossaryAttackDescriptionText
+	explanation 5, GlossaryPokemonPowerTitleText, GlossaryPokemonPowerDescriptionText
+	explanation 6, GlossaryWeaknessTitleText, GlossaryWeaknessDescriptionText
+	explanation 5, GlossaryResistanceTitleText, GlossaryResistanceDescriptionText
+	explanation 5, GlossaryRetreatTitleText, GlossaryRetreatDescriptionText
 
 .ExplanationTextData_StatusWinningLosing:
-	explanation 5, Text03e9, Text040f
-	explanation 5, Text03ea, Text0410
-	explanation 4, Text03eb, Text0411
-	explanation 4, Text03ec, Text0412
-	explanation 3, Text03ed, Text0413
-	explanation 3, Text03ee, Text0414
-	explanation 3, Text03ef, Text0415
-	explanation 4, Text03f0, Text0416
+	explanation 5, GlossaryPoisonedTitleText, GlossaryPoisonedDescriptionText
+	explanation 5, GlossaryParalyzedTitleText, GlossaryParalyzedDescriptionText
+	explanation 4, GlossaryAsleepTitleText, GlossaryAsleepDescriptionText
+	explanation 4, GlossaryConfusedTitleText, GlossaryConfusedDescriptionText
+	explanation 3, GlossaryDecision1TakenAllPrizesTitleText, GlossaryDecision1TakenAllPrizesDescriptionText
+	explanation 3, GlossaryDecision2DeckedOutTitleText, GlossaryDecision2DeckedOutDescriptionText
+	explanation 3, GlossaryDecision3RunOutOfPokemonTitleText, GlossaryDecision3RunOutOfPokemonDescriptionText
+	explanation 4, GlossarySuddenDeathTitleText, GlossarySuddenDeathDescriptionText
 
 .ExplanationTextData_SpecialDuelRules:
-	explanation 3, Text03f1, Text0417
-	explanation 3, Text03f2, Text0418
-	explanation 3, Text03f3, Text0419
-	explanation 4, Text03f4, Text041a
-	explanation 4, Text03f5, Text041b
-	explanation 3, Text03f6, Text041c
-	explanation 4, Text03f7, Text041d
-	explanation 4, Text03f8, Text041e
-	explanation 4, Text03f9, Text041f
-	explanation 3, Text03fa, Text0420
+	explanation 3, GlossaryChlorophyllTitleText, GlossaryChlorophyllDescriptionText
+	explanation 3, GlossaryThunderChargeTitleText, GlossaryThunderChargeDescriptionText
+	explanation 3, GlossaryFlameArmorTitleText, GlossaryFlameArmorDescriptionText
+	explanation 4, GlossarySmallBenchTitleText, GlossarySmallBenchDescriptionText
+	explanation 4, GlossaryRunningWaterTitleText, GlossaryRunningWaterDescriptionText
+	explanation 3, GlossaryEarthPowerTitleText, GlossaryEarthPowerDescriptionText
+	explanation 4, GlossaryLowResistanceTitleText, GlossaryLowResistanceDescriptionText
+	explanation 4, GlossaryEnergyReturnTitleText, GlossaryEnergyReturnDescriptionText
+	explanation 4, GlossaryToughEscapeTitleText, GlossaryToughEscapeDescriptionText
+	explanation 3, GlossaryBlackHoleTitleText, GlossaryBlackHoleDescriptionText

@@ -1,124 +1,124 @@
-Text03dd:
+GlossaryPrizesTitleText:
 	textfw "「サイドカード」について"
 	done
 
-Text03de:
+GlossaryDamageCountersTitleText:
 	textfw "「ダメージカウンター」について"
 	done
 
-Text03df:
+GlossaryEnergyCardsTitleText:
 	textfw "「エネルギーカード」について"
 	done
 
-Text03e0:
+GlossaryTrainerCardsTitleText:
 	textfw "「トレーナーカード」について"
 	done
 
-Text03e1:
+GlossaryBasicPokemonTitleText:
 	textfw "「たねポケモン」について"
 	done
 
-Text03e2:
+GlossaryEvolutionCardsTitleText:
 	textfw "「進化カード」について"
 	done
 
-Text03e3:
+GlossaryDarkEvolutionCardsTitleText:
 	textfw "「わるい進化カード」について"
 	done
 
-Text03e4:
+GlossaryAttackTitleText:
 	textfw "「ワザ」について"
 	done
 
-Text03e5:
+GlossaryPokemonPowerTitleText:
 	textfw "「特殊能力」について"
 	done
 
-Text03e6:
+GlossaryWeaknessTitleText:
 	textfw "「弱点」について"
 	done
 
-Text03e7:
+GlossaryResistanceTitleText:
 	textfw "「抵抗力」について"
 	done
 
-Text03e8:
+GlossaryRetreatTitleText:
 	textfw "「にげる」について"
 	done
 
-Text03e9:
+GlossaryPoisonedTitleText:
 	textfw "「どく状態」について"
 	done
 
-Text03ea:
+GlossaryParalyzedTitleText:
 	textfw "「マヒ状態」について"
 	done
 
-Text03eb:
+GlossaryAsleepTitleText:
 	textfw "「ねむり状態」について"
 	done
 
-Text03ec:
+GlossaryConfusedTitleText:
 	textfw "「こんらん状態」について"
 	done
 
-Text03ed:
+GlossaryDecision1TakenAllPrizesTitleText:
 	textfw "「勝ちまけの決定1」について"
 	done
 
-Text03ee:
+GlossaryDecision2DeckedOutTitleText:
 	textfw "「勝ちまけの決定2」について"
 	done
 
-Text03ef:
+GlossaryDecision3RunOutOfPokemonTitleText:
 	textfw "「勝ちまけの決定3」について"
 	done
 
-Text03f0:
+GlossarySuddenDeathTitleText:
 	textfw "「サドン・デス」について"
 	done
 
-Text03f1:
+GlossaryChlorophyllTitleText:
 	textfw "「みどりのちから」について"
 	done
 
-Text03f2:
+GlossaryThunderChargeTitleText:
 	textfw "「雷パワーアップ」について"
 	done
 
-Text03f3:
+GlossaryFlameArmorTitleText:
 	textfw "「ほのおのよろい」について"
 	done
 
-Text03f4:
+GlossarySmallBenchTitleText:
 	textfw "「せまいベンチ」について"
 	done
 
-Text03f5:
+GlossaryRunningWaterTitleText:
 	textfw "「にげみずの場」について"
 	done
 
-Text03f6:
+GlossaryEarthPowerTitleText:
 	textfw "「だいちのちから」について"
 	done
 
-Text03f7:
+GlossaryLowResistanceTitleText:
 	textfw "「抵抗力ていか」について"
 	done
 
-Text03f8:
+GlossaryEnergyReturnTitleText:
 	textfw "「エネルギーR」について"
 	done
 
-Text03f9:
+GlossaryToughEscapeTitleText:
 	textfw "「にげにくい場」について"
 	done
 
-Text03fa:
+GlossaryBlackHoleTitleText:
 	textfw "「トラッシュBH」について"
 	done
 
-Text03fb:
+GlossaryDeckDescriptionText:
 	textfw "ポケモンカードで対戦につかうカード"
 	linefw "のたばを「デッキ」といいます。"
 	linefw "「デッキ」は かならず 60枚で"
@@ -131,7 +131,7 @@ Text03fb:
 	linefw "す。"
 	done
 
-Text03fc:
+GlossaryDeckPileDescriptionText:
 	textfw "これから ひくカードのたばを「山札"
 	linefw "(やまふだ)」と いいます。"
 	linefw "じぶんの番の はじめには「じぶんの山"
@@ -141,7 +141,7 @@ Text03fc:
 	linefw "なります。"
 	done
 
-Text03fd:
+GlossaryDiscardPileDescriptionText:
 	textfw "つかいおわったカードを おくところを"
 	linefw "「トラッシュ」と いいます。"
 	linefw "「トラッシュ」にカードを おくことを"
@@ -152,7 +152,7 @@ Text03fd:
 	linefw "ラッシュ」も しらべることができます"
 	done
 
-Text03fe:
+GlossaryHandDescriptionText:
 	textfw "かくプレイヤーが 手にもっているカー"
 	linefw "ドを 「手札(てふだ)」と いいます"
 	linefw "「手札」の枚数には せいげんがありま"
@@ -160,7 +160,7 @@ Text03fe:
 	linefw "が できます。"
 	done
 
-Text03ff:
+GlossaryArenaDescriptionText:
 	textfw "いま たたかっているポケモンが おか"
 	linefw "れているところを 「バトル場」といい"
 	linefw "ます。"
@@ -171,7 +171,7 @@ Text03ff:
 	linefw "すすめます。"
 	done
 
-Text0400:
+GlossaryBenchDescriptionText:
 	textfw "バトル場にいるポケモンと こうたい"
 	linefw "するために ひかえているポケモンが"
 	linefw "いるところを 「ベンチ」といいます。"
@@ -180,7 +180,7 @@ Text0400:
 	linefw "だしておくことが できます。"
 	done
 
-Text0401:
+GlossaryActivePokemonDescriptionText:
 	textfw "バトル場にいるポケモンを 「対戦ポケ"
 	linefw "モン」と いいます。"
 	linefw "この「対戦ポケモン」のワザをつかって"
@@ -188,7 +188,7 @@ Text0401:
 	linefw "たおすことに なります。"
 	done
 
-Text0402:
+GlossaryBenchedPokemonDescriptionText:
 	textfw "バトル場のポケモンと こうたいするた"
 	linefw "めに ベンチにいるポケモンを 「ひか"
 	linefw "えポケモン」と いいます。"
@@ -201,7 +201,7 @@ Text0402:
 	linefw "なります。"
 	done
 
-Text0403:
+GlossaryPrizesDescriptionText:
 	textfw "あいてのポケモンを たおした数を"
 	linefw "かぞえるためのカードを「サイドカード"
 	linefw "」と いいます。"
@@ -215,7 +215,7 @@ Text0403:
 	linefw "ケモンをたおせば いいゲームなのです"
 	done
 
-Text0404:
+GlossaryDamageCountersDescriptionText:
 	textfw "「ダメージカウンター」は そのポケモ"
 	linefw "ンが うけているダメージを あらわし"
 	linefw "ています。"
@@ -229,7 +229,7 @@ Text0404:
 	linefw "「きぜつ」してしまいます。"
 	done
 
-Text0405:
+GlossaryEnergyCardsDescriptionText:
 	textfw "「エネルギーカード」は エネルギーを"
 	linefw "あらわすカードです。"
 	linefw "エネルギーのしゅるいは ぜんぶで"
@@ -243,7 +243,7 @@ Text0405:
 	linefw "できません。"
 	done
 
-Text0406:
+GlossaryTrainerCardsDescriptionText:
 	textfw "「トレーナーカード」は おたすけカー"
 	linefw "ドです。"
 	linefw "「トレーナーカード」の こうかは"
@@ -255,7 +255,7 @@ Text0406:
 	linefw "ます。"
 	done
 
-Text0407:
+GlossaryBasicPokemonText:
 	textfw "ポケモンのカードのなかで 進化のもと"
 	linefw "になるポケモンを 「たねポケモン」と"
 	linefw "いいます。"
@@ -267,7 +267,7 @@ Text0407:
 	linefw "ポケモン」だけです。"
 	done
 
-Text0408:
+GlossaryEvolutionCardsDescriptionText:
 	textfw "ポケモンのカードのなかで 「たねポケ"
 	linefw "モン」から進化した ポケモンをあらわ"
 	linefw "すカードを 「進化(しんか)カード」"
@@ -282,7 +282,7 @@ Text0408:
 	linefw "ードを だすことができません。"
 	done
 
-Text0409:
+GlossaryDarkEvolutionCardsDescriptionText:
 	textfw "「進化カード」のなかには 「わるい進"
 	linefw "化カード」が あります。"
 	linefw "「わるいリザード」「わるいリザードン"
@@ -297,7 +297,7 @@ Text0409:
 	linefw "2進化で わるい進化はできません。"
 	done
 
-Text040a:
+GlossaryAttackDescriptionText:
 	textfw "ポケモンは 「ワザ」をつかうことで"
 	linefw "あいてのポケモンを こうげきすること"
 	linefw "が できます。"
@@ -309,7 +309,7 @@ Text040a:
 	linefw "バトル場にいる 対戦ポケモンだけです"
 	done
 
-Text040b:
+GlossaryPokemonPowerDescriptionText:
 	textfw "「特殊能力(とくしゅのうりょく)」は"
 	linefw "ワザとちがい ベンチにいるポケモンも"
 	linefw "つかうことが できます。"
@@ -324,7 +324,7 @@ Text040b:
 	linefw "せつめいを よく よんでおこう!"
 	done
 
-Text040c:
+GlossaryWeaknessDescriptionText:
 	textfw "ポケモンのなかには 「弱点(じゃくて"
 	linefw "ん)」をもっている ポケモンが いま"
 	linefw "す。「弱点」のあるポケモンは 「弱点"
@@ -332,7 +332,7 @@ Text040c:
 	linefw "うけるダメージが 2ばいに なります"
 	done
 
-Text040d:
+GlossaryResistanceDescriptionText:
 	textfw "ポケモンのなかには 「抵抗力(ていこ"
 	linefw "うりょく)」をもっている ポケモンが"
 	linefw "います。「抵抗力」を もっているポケ"
@@ -341,7 +341,7 @@ Text040d:
 	linefw "「-30」します。"
 	done
 
-Text040e:
+GlossaryRetreatDescriptionText:
 	textfw "バトル場にいる 対戦ポケモンを ベン"
 	linefw "チに 「にがす」ことによって バトル"
 	linefw "場と ベンチのポケモンを いれかえる"
@@ -354,7 +354,7 @@ Text040e:
 	linefw "トラッシュしてください。"
 	done
 
-Text040f:
+GlossaryPoisonedDescriptionText:
 	textfw "ポケモンが 「どく」状態に なると"
 	linefw "「どく」状態のポケモンは ポケモンチ"
 	linefw "ェックのたびに 「10」ダメージを"
@@ -368,7 +368,7 @@ Text040f:
 	linefw "できます。"
 	done
 
-Text0410:
+GlossaryParalyzedDescriptionText:
 	textfw "ポケモンが 「マヒ」状態になると"
 	linefw "そのポケモンは なにもできなくなる。"
 	linefw "「にげる」ことも できないし"
@@ -382,7 +382,7 @@ Text0410:
 	linefw "チへ いどうさせても かいふくします"
 	done
 
-Text0411:
+GlossaryAsleepDescriptionText:
 	textfw "ポケモンが 「ねむり」状態になると"
 	linefw "そのポケモンは なにもできなくなる"
 	linefw "「にげる」も「ワザ」も「とくしゅ」も"
@@ -396,7 +396,7 @@ Text0411:
 	linefw "ことができます。"
 	done
 
-Text0412:
+GlossaryConfusedDescriptionText:
 	textfw "ポケモンが 「こんらん」状態になると"
 	linefw "そのポケモンが ワザをつかうときには"
 	linefw "コイントスを おこなう。"
@@ -411,7 +411,7 @@ Text0412:
 	linefw "ほうほうで 「こんらん」は なおせる"
 	done
 
-Text0413:
+GlossaryDecision1TakenAllPrizesDescriptionText:
 	textfw "ポケモンのHPが なくなると"
 	linefw "そのポケモンは 「きぜつ」となります"
 	linefw "あいてのポケモンが 「きぜつ」すると"
@@ -426,7 +426,7 @@ Text0413:
 	linefw "しょうりしたことに なります。"
 	done
 
-Text0414:
+GlossaryDecision2DeckedOutDescriptionText:
 	textfw "じぶんの番の はじめに 山札から"
 	linefw "カードを ひくときに 山札にカードが"
 	linefw "1枚もなくて カードを ひくことが"
@@ -438,7 +438,7 @@ Text0414:
 	linefw "きを つけましょう。"
 	done
 
-Text0415:
+GlossaryDecision3RunOutOfPokemonDescriptionText:
 	textfw "バトル場の ポケモンが 「きぜつ」"
 	linefw "したとき つぎに バトル場に だせる"
 	linefw "ひかえのポケモンが ベンチにいないと"
@@ -447,7 +447,7 @@ Text0415:
 	linefw "だしておくように こころがけましょう"
 	done
 
-Text0416:
+GlossarySuddenDeathDescriptionText:
 	textfw "じぶんと あいてが サイドカードを"
 	linefw "どうじに すべて とってしまったり"
 	linefw "どちらも バトル場に ポケモンを"
@@ -460,7 +460,7 @@ Text0416:
 	linefw "「サドン・デス」を くりかえします。"
 	done
 
-Text0417:
+GlossaryChlorophyllDescriptionText:
 	textfw "特別ルール1"
 	linefw "「みどりのちから」"
 	linefw ""
@@ -472,7 +472,7 @@ Text0417:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0418:
+GlossaryThunderChargeDescriptionText:
 	textfw "特別ルール2"
 	linefw "「雷パワーアップ」"
 	linefw ""
@@ -484,7 +484,7 @@ Text0418:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0419:
+GlossaryFlameArmorDescriptionText:
 	textfw "特別ルール3"
 	linefw "「ほのおのよろい」"
 	linefw ""
@@ -497,7 +497,7 @@ Text0419:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041a:
+GlossarySmallBenchDescriptionText:
 	textfw "特別ルール4"
 	linefw "「せまいベンチ」"
 	linefw ""
@@ -510,7 +510,7 @@ Text041a:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041b:
+GlossaryRunningWaterDescriptionText:
 	textfw "特別ルール5"
 	linefw "「にげみずの場」"
 	linefw ""
@@ -523,7 +523,7 @@ Text041b:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041c:
+GlossaryEarthPowerDescriptionText:
 	textfw "特別ルール6"
 	linefw "「だいちのちから」"
 	linefw ""
@@ -535,7 +535,7 @@ Text041c:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041d:
+GlossaryLowResistanceDescriptionText:
 	textfw "特別ルール7"
 	linefw "「抵抗力ていか」"
 	linefw ""
@@ -547,7 +547,7 @@ Text041d:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041e:
+GlossaryEnergyReturnDescriptionText:
 	textfw "特別ルール8"
 	linefw "「エネルギーリターン(R)」"
 	linefw ""
@@ -561,7 +561,7 @@ Text041e:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041f:
+GlossaryToughEscapeDescriptionText:
 	textfw "特別ルール9"
 	linefw "「にげにくい場」"
 	linefw ""
@@ -574,7 +574,7 @@ Text041f:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0420:
+GlossaryBlackHoleDescriptionText:
 	textfw "特別ルール10"
 	linefw "「トラッシュブラックホール(BH)」"
 	linefw ""
