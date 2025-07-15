@@ -587,7 +587,7 @@ GlossaryBlackHoleDescriptionText:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0421:
+DebugDeckMenuText:
 	textfw "デッキかいぞう"
 	linefw "カードいちらん(全しさん)"
 	linefw "アルバムいちらん"
@@ -598,23 +598,23 @@ Text0421:
 	linefw "デッキしんだん"
 	done
 
-Text0422:
+DebugAutoDeckMachineMenuText:
 	textfw "オートデッキマシン1"
 	linefw "オートデッキマシン2"
 	done
 
-Text0423:
+DebugTransmittingMenuText:
 	textfw "カードあげる"
 	linefw "カードもらう"
 	linefw "デッキあげる"
 	linefw "デッキもらう"
 	done
 
-Text0424:
+DebugLectureDuelText:
 	textfw "レクチャー対戦"
 	done
 
-Text0425:
+FirstStrikeDeckText: ; left over from tcg1
 	textfw "せんせいこうげきデッキ"
 	done
 

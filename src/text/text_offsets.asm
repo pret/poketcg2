@@ -1060,11 +1060,11 @@ TextOffsets::
 	textpointer GlossaryEnergyReturnDescriptionText                   ; 0x041e
 	textpointer GlossaryToughEscapeDescriptionText                    ; 0x041f
 	textpointer GlossaryBlackHoleDescriptionText                      ; 0x0420
-	textpointer Text0421                                           ; 0x0421
-	textpointer Text0422                                           ; 0x0422
-	textpointer Text0423                                           ; 0x0423
-	textpointer Text0424                                           ; 0x0424
-	textpointer Text0425                                           ; 0x0425
+	textpointer DebugDeckMenuText                                     ; 0x0421
+	textpointer DebugAutoDeckMachineMenuText                          ; 0x0422
+	textpointer DebugTransmittingMenuText                             ; 0x0423
+	textpointer DebugLectureDuelText                                  ; 0x0424
+	textpointer FirstStrikeDeckText                                   ; 0x0425
 	textpointer Text0426                                           ; 0x0426
 	textpointer Text0427                                           ; 0x0427
 	textpointer Text0428                                           ; 0x0428
