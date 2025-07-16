@@ -618,839 +618,839 @@ FirstStrikeDeckText: ; left over from tcg1
 	textfw "せんせいこうげきデッキ"
 	done
 
-Text0426:
+ThunderboltDeckName:
 	textfw "10まんボルト"
 	done
 
-Text0427:
+DuelistGR1Name:
 	textfw "GR1号"
 	done
 
-Text0428:
+DuelistGR2Name:
 	textfw "GR2号"
 	done
 
-Text0429:
+DuelistGR3Name:
 	textfw "GR3号"
 	done
 
-Text042a:
+DuelistGR4Name:
 	textfw "GR4号"
 	done
 
-Text042b:
+DuelistGRXName:
 	textfw "GRX"
 	done
 
-Text042c:
+MaxEnergyDeckName:
 	textfw "MAXエナジー"
 	done
 
-Text042d:
+DuelistMrIshiharaName:
 	textfw "Mr.イシハラ"
 	done
 
-Text042e:
+DemonicForestDeckName:
 	textfw "あくまのもり"
 	done
 
-Text042f:
+GatheringNidoranDeckName:
 	textfw "あつまれニドラン"
 	done
 
-Text0430:
+RunningWildDeckName:
 	textfw "あばれんぼう"
 	done
 
-Text0431:
+RainDanceConfusionDeckName:
 	textfw "あまごいこんらん"
 	done
 
-Text0432:
+DuelistAaronName:
 	textfw "あらいモン"
 	done
 
-Text0433:
+AaronsStep1DeckName:
 	textfw "あらいモンステップ1"
 	done
 
-Text0434:
+AaronsStep2DeckName:
 	textfw "あらいモンステップ2"
 	done
 
-Text0435:
+AaronsStep3DeckName:
 	textfw "あらいモンステップ3"
 	done
 
-Text0436:
+PowerOfDarknessDeckName:
 	textfw "あんこくのパワー"
 	done
 
-Text0437:
+ChokeDeckName:
 	textfw "いきのねとめろ!"
 	done
 
-Text0438:
+ThreeYearsOnRockDeckName:
 	textfw "いわのうえにも3ねん"
 	done
 
-Text0439:
+WhirlpoolShowerDeckName:
 	textfw "うずしおのシャワー"
 	done
 
-Text043a:
+TestYourLuckDeckName:
 	textfw "うんだめし"
 	done
 
-Text043b:
+TorrentialFloodDeckName:
 	textfw "おおあめこうずい"
 	done
 
-Text043c:
+GlitteringScalesDeckName:
 	textfw "かがやくりんぷん"
 	done
 
-Text043d:
+SpiritedAwayDeckName:
 	textfw "かみかくし"
 	done
 
-Text043e:
+RiversideWalkDeckName:
 	textfw "かわらのおさんぽ"
 	done
 
-Text043f:
+CompleteCombustionDeckName:
 	textfw "かんぜんねんしょう"
 	done
 
-Text0440:
+YouCanDoItMachopDeckName:
 	textfw "がんばれ!ワンリキー"
 	done
 
-Text0441:
+DangerousBenchDeckName:
 	textfw "きけんなベンチ"
 	done
 
-Text0442:
+StrangeDeckName:
 	textfw "きみょうな"
 	done
 
-Text0443:
+SuddenGrowthDeckName:
 	textfw "きゅうせいちょう"
 	done
 
-Text0444:
+PowerfulPokemonDeckName:
 	textfw "きょうりょくポケモン"
 	done
 
-Text0445:
+MadPetalsDeckName:
 	textfw "くるえるはなびら"
 	done
 
-Text0446:
+ProtohistoricDeckName:
 	textfw "げんしじだい"
 	done
 
-Text0447:
+InsectCollectionDeckName:
 	textfw "こんちゅうさいしゅう"
 	done
 
-Text0448:
+StarterDeckName:
 	textfw "さいしょの"
 	done
 
-Text0449:
+VengifulAntiGR3DeckName:
 	textfw "しかえしGR3ごう"
 	done
 
-Text044a:
+NaturalScienceDeckName:
 	textfw "しぜんかがく"
 	done
 
-Text044b:
+BenchTrapDeckName:
 	textfw "じごくのベンチ"
 	done
 
-Text044c:
+EyeOfTheStormDeckName:
 	textfw "たいふうのめ"
 	done
 
-Text044d:
+SweatAntiGR1DeckName:
 	textfw "たおせ!GR1ごう"
 	done
 
-Text044e:
+SmashDeckName:
 	textfw "たたきつぶせ!"
 	done
 
-Text044f:
+GreatEarthquakeDeckName:
 	textfw "だいじしん"
 	done
 
-Text0450:
+GreatDragonDeckName:
 	textfw "だいドラゴン"
 	done
 
-Text0451:
+FullStrengthDeckName:
 	textfw "ちからまかせ"
 	done
 
-Text0452:
+SuperDestructivePowerDeckName:
 	textfw "ちょうはかいりょく"
 	done
 
-Text0453:
+PsychicEliteDeckName:
 	textfw "ちょうエリート"
 	done
 
-Text0454:
+DirectHitDeckName:
 	textfw "ちょくげき"
 	done
 
-Text0455:
+ThrowOutDeckName:
 	textfw "つまみだせ!"
 	done
 
-Text0456:
+ThisIsThePowerOfElectricityDeckName:
 	textfw "でんきのチカラだ"
 	done
 
-Text0457:
+QuickAttackDeckName:
 	textfw "でんこうせっか"
 	done
 
-Text0458:
+LegendaryFossilDeckName:
 	textfw "でんせつのかせき"
 	done
 
-Text0459:
+ElectricCurrentShockDeckName:
 	textfw "でんりゅうひばな"
 	done
 
-Text045a:
+VeryRareCardDeckName:
 	textfw "とってもレアカード"
 	done
 
-Text045b:
+PoisonousSwampDeckName:
 	textfw "どくのぬまち"
 	done
 
-Text045c:
+PoisonGoopGasDeckName:
 	textfw "どくのベトベトガス"
 	done
 
-Text045d:
+PoisonVespidsDeckName:
 	textfw "どくばち"
 	done
 
-Text045e:
+BeachDeckName:
 	textfw "なみうちぎわの"
 	done
 
-Text045f:
+PuppetMasterDeckName:
 	textfw "にんぎょうつかい"
 	done
 
-Text0460:
+SurvivingWaterDeckName:
 	textfw "のこされたみずの"
 	done
 
-Text0461:
+SurvivingGreenDeckName:
 	textfw "のこされたみどりの"
 	done
 
-Text0462:
+ImmortalPokemonDeckName:
 	textfw "ふじみのポケモン"
 	done
 
-Text0463:
+ImmortalFlameDeckName:
 	textfw "ふめつのほのお"
 	done
 
-Text0464:
+WeirdDeckName:
 	textfw "へんな"
 	done
 
-Text0465:
+FlameFestvalDeckName:
 	textfw "ほのおのおまつり"
 	done
 
-Text0466:
+GiveInAntiGR2DeckName:
 	textfw "まけろ!GR2ごう"
 	done
 
-Text0467:
+SplashingAboutDeckName:
 	textfw "みずあそび"
 	done
 
-Text0468:
+GazeUponThePowerOfFireDeckName:
 	textfw "みよ!ほのおのパワー"
 	done
 
-Text0469:
+EverybodysFriendDeckName:
 	textfw "みんなともだち"
 	done
 
-Text046a:
+SkilledWarriorDeckName:
 	textfw "むしゃしゅぎょう"
 	done
 
-Text046b:
+ColorlessEnergyDeckName:
 	textfw "むしょくエネルギー"
 	done
 
-Text046c:
+BlazingFlameDeckName:
 	textfw "もえさかるほのお"
 	done
 
-Text046d:
+IncinerateDeckName:
 	textfw "やきつくせ!"
 	done
 
-Text046e:
+GhostDeckName:
 	textfw "ゆうれい"
 	done
 
-Text046f:
+GoArcanineDeckName:
 	textfw "ゆけ!ウィンディ"
 	done
 
-Text0470:
+UnforgivingAntiGR4DeckName:
 	textfw "ゆるさんGR4ごう"
 	done
 
-Text0471:
+HandedOverGRDeckName:
 	textfw "わたされたGR"
 	done
 
-Text0472:
+BadGuysDeckName:
 	textfw "わるいやつら"
 	done
 
-Text0473:
+DuelistAiraName:
 	textfw "アイラ"
 	done
 
-Text0474:
+DuelistKenName:
 	textfw "アカバネ"
 	done
 
-Text0475:
+DuelistBrittanyiName:
 	textfw "アヤコ"
 	done
 
-Text0476:
+DuelistAnnaName:
 	textfw "アンナ"
 	done
 
-Text0477:
+EeveeShowdownDeckName:
 	textfw "イーブイたいけつ"
 	done
 
-Text0478:
+DuelistIshiiName:
 	textfw "イシイ"
 	done
 
-Text0479:
+DuelistIchikawaName:
 	textfw "イチカワ"
 	done
 
-Text047a:
+DuelistImakuniName:
 	textfw "イマクニ?"
 	done
 
-Text047b:
+WaterStreamDeckName:
 	textfw "ウォーターストリーム"
 	done
 
-Text047c:
+WaterLegendDeckName:
 	textfw "ウォーターレジェンド"
 	done
 
-Text047d:
+DuelistAmyName:
 	textfw "ウッチー"
 	done
 
-Text047e:
+UltraRemovalDeckName:
 	textfw "ウルトラリムーブ"
 	done
 
-Text047f:
+DuelistEijiName:
 	textfw "エイジ"
 	done
 
-Text0480:
+EnergyRemovalDeckName:
 	textfw "エネルギー・リムーブ"
 	done
 
-Text0481:
+OverflowtDeckName:
 	textfw "オーバーフロー"
 	done
 
-Text0482:
+DuelistJackName:
 	textfw "カネコウジ"
 	done
 
-Text0483:
+DuelistKanokoName:
 	textfw "カノコ"
 	done
 
-Text0484:
+SnorlaxGuardDeckName:
 	textfw "カビゴンとおせんぼ"
 	done
 
-Text0485:
+DuelistKamiyaName:
 	textfw "カミヤ"
 	done
 
-Text0486:
+DuelistKanzakiName:
 	textfw "カンザキ"
 	done
 
-Text0487:
+DuelistCatherineName:
 	textfw "キャサリン"
 	done
 
-Text0488:
+DuelistQueenName:
 	textfw "クィーン"
 	done
 
-Text0489:
+DuelistNikkiName:
 	textfw "クニミ"
 	done
 
-Text048a:
+DuelistRickName:
 	textfw "クルシマ"
 	done
 
-Text048b:
+GrandFireDeckName:
 	textfw "グランドファイヤー"
 	done
 
-Text048c:
+DuelistGraceName:
 	textfw "グレース"
 	done
 
-Text048d:
+GreatRocket1DeckName:
 	textfw "グレートロケット1"
 	done
 
-Text048e:
+GreatRocket2DeckName:
 	textfw "グレートロケット2"
 	done
 
-Text048f:
+GreatRocket3DeckName:
 	textfw "グレートロケット3"
 	done
 
-Text0490:
+GreatRocket4DeckName:
 	textfw "グレートロケット4"
 	done
 
-Text0491:
+DuelistDanielName:
 	textfw "ケイタ"
 	done
 
-Text0492:
+DuelistKevinName:
 	textfw "ケビン"
 	done
 
-Text0493:
+DuelistGeneName:
 	textfw "ゲンゾウ"
 	done
 
-Text0494:
+DuelistGodaName:
 	textfw "ゴウダ"
 	done
 
-Text0495:
+PsychicBattleDeckName:
 	textfw "サイキックバトル"
 	done
 
-Text0496:
+PsychicDeckName:
 	textfw "サイコキネシス"
 	done
 
-Text0497:
+DuelistSamejimaName:
 	textfw "サメジマ"
 	done
 
-Text0498:
+AwesomeFossilDeckName:
 	textfw "シブイかせき"
 	done
 
-Text0499:
+DuelistShokoName:
 	textfw "ショウコ"
 	done
 
-Text049a:
+DuelistJoshuaName:
 	textfw "シンタロー"
 	done
 
-Text049b:
+DuelistJesName:
 	textfw "ジェス"
 	done
 
-Text049c:
+DuelistAndrewName:
 	textfw "ジョータ"
 	done
 
-Text049d:
+SkySparkDeckName:
 	textfw "スカイスパーク"
 	done
 
-Text049e:
+DuelistSteveName:
 	textfw "スティーブ"
 	done
 
-Text049f:
+DuelistSentaName:
 	textfw "センタ"
 	done
 
-Text04a0:
+DuelistNicholasName:
 	textfw "ソウスケ"
 	done
 
-Text04a1:
+DuelistJosephName:
 	textfw "ソウタ"
 	done
 
-Text04a2:
+DuelistJohnName:
 	textfw "タカシ"
 	done
 
-Text04a3:
+DuelistIsaacName:
 	textfw "タカハシ"
 	done
 
-Text04a4:
+DuelistTapName:
 	textfw "タップ"
 	done
 
-Text04a5:
+DuelistChrisName:
 	textfw "タツロー"
 	done
 
-Text04a6:
+DarkScienceDeckName:
 	textfw "ダークサイエンス"
 	done
 
-Text04a7:
+DamageChaosDeckName:
 	textfw "ダメージだいこんらん"
 	done
 
-Text04a8:
+TextureTuner7DeckName:
 	textfw "テクスチャー7へんげ"
 	done
 
-Text04a9:
+DuelistDeeName:
 	textfw "ディー"
 	done
 
-Text04aa:
+DuelistBrandonName:
 	textfw "トシヒコ"
 	done
 
-Text04ab:
+DuelistToshironName:
 	textfw "トシロン"
 	done
 
-Text04ac:
+DuelistTobichanName:
 	textfw "トビちゃん"
 	done
 
-Text04ad:
+TripleZapdosDeckName:
 	textfw "トリプルサンダー"
 	done
 
-Text04ae:
+TrainerImprisonDeckName:
 	textfw "トレーナーふういん"
 	done
 
-Text04af:
+YourPracticeDeck1Name:
 	textfw "トレーニング1"
 	done
 
-Text04b0:
+YourPracticeDeck2Name:
 	textfw "トレーニング2"
 	done
 
-Text04b1:
+YourPracticeDeck3Name:
 	textfw "トレーニング3"
 	done
 
-Text04b2:
+RagingBillowOfFistsDeckName:
 	textfw "ドトウのてっけん"
 	done
 
-Text04b3:
+SteadyIncreaseDeckName:
 	textfw "ドンドンぞうしょく"
 	done
 
-Text04b4:
+DuelistKnightName:
 	textfw "ナイト"
 	done
 
-Text04b5:
+DuelistJessicaName:
 	textfw "ナツキ"
 	done
 
-Text04b6:
+DuelistNishijimaName:
 	textfw "ニシジマ"
 	done
 
-Text04b7:
+NewMachokeDeckName:
 	textfw "ニューゴーリキー"
 	done
 
-Text04b8:
+DuelistRyanName:
 	textfw "ノリオ"
 	done
 
-Text04b9:
+DuelistKristinName:
 	textfw "ハルナ"
 	done
 
-Text04ba:
+BadDreamDeckName:
 	textfw "バッドドリーム"
 	done
 
-Text04bb:
+LoveToBattleDeckName:
 	textfw "バトルだいすき"
 	done
 
-Text04bc:
+DuelistHideroName:
 	textfw "ヒデロウ"
 	done
 
-Text04bd:
+DuelistRobertName:
 	textfw "ヒロ"
 	done
 
-Text04be:
+DuelistCourtneyName:
 	textfw "ヒロコ"
 	done
 
-Text04bf:
+DuelistBishopName:
 	textfw "ビショップ"
 	done
 
-Text04c0:
+BigThunderDeckName:
 	textfw "ビッグサンダー"
 	done
 
-Text04c1:
+ElectricSelfDestructDeckName:
 	textfw "ビリビリじばく"
 	done
 
-Text04c2:
+DuelistBiruritchiName:
 	textfw "ビルリッチ"
 	done
 
-Text04c3:
+DuelistPierrotName:
 	textfw "ピエロ"
 	done
 
-Text04c4:
+ILovePikachuDeckName:
 	textfw "ピカチュウだいすき"
 	done
 
-Text04c5:
+ChainLightningByPikachuDeckName:
 	textfw "ピカチュウでビリビリ"
 	done
 
-Text04c6:
+FireballDeckName:
 	textfw "ファイヤーボール"
 	done
 
-Text04c7:
+BenchCallDeckName:
 	textfw "ベンチよびだし"
 	done
 
-Text04c8:
+DuelistPawnName:
 	textfw "ポーン"
 	done
 
-Text04c9:
+PoisonStormDeckName:
 	textfw "ポイズンストーム"
 	done
 
-Text04ca:
+PoisonMistDeckName:
 	textfw "ポイズンミスト"
 	done
 
-Text04cb:
+PokemonsPowerDeckName:
 	textfw "ポケモンパワー"
 	done
 
-Text04cc:
+DuelistErikName:
 	textfw "マサシ"
 	done
 
-Text04cd:
+DuelistJonathanName:
 	textfw "マサトシ"
 	done
 
-Text04ce:
+DuelistMichaelName:
 	textfw "マサヒロ"
 	done
 
-Text04cf:
+DuelistMagicianName:
 	textfw "マジシャン"
 	done
 
-Text04d0:
+DuelistMasqueradeName:
 	textfw "マスカレード"
 	done
 
-Text04d1:
+ParalyzedParalyzedDeckName:
 	textfw "マヒ!マヒ!"
 	done
 
-Text04d2:
+DuelistMamiName:
 	textfw "マミ"
 	done
 
-Text04d3:
+DuelistSaraName:
 	textfw "マリ"
 	done
 
-Text04d4:
+DuelistMurrayName:
 	textfw "ミウラ"
 	done
 
-Text04d5:
+DuelistSamName:
 	textfw "ミカサ"
 	done
 
-Text04d6:
+SamsPracticeDeckName:
 	textfw "ミカサのレクチャー"
 	done
 
-Text04d7:
+DuelistHeatherName:
 	textfw "ミサオ"
 	done
 
-Text04d8:
+DuelistMidoriName:
 	textfw "ミドリ"
 	done
 
-Text04d9:
+DuelistMiyajimaName:
 	textfw "ミヤジマ"
 	done
 
-Text04da:
+DuelistMiyukiName:
 	textfw "ミユキ"
 	done
 
-Text04db:
+DuelistMiwaName:
 	textfw "ミワ"
 	done
 
-Text04dc:
+DuelistAmandaName:
 	textfw "メグミ"
 	done
 
-Text04dd:
+DuelistMorinoName:
 	textfw "モリノ"
 	done
 
-Text04de:
+DuelistMatthewName:
 	textfw "ヤストモ"
 	done
 
-Text04df:
+DuelistDavidName:
 	textfw "ヤスユキ"
 	done
 
-Text04e0:
+DuelistMitchName:
 	textfw "ヤマグチ"
 	done
 
-Text04e1:
+DuelistYuiName:
 	textfw "ユイ"
 	done
 
-Text04e2:
+DuelistYuukiName:
 	textfw "ユウキ"
 	done
 
-Text04e3:
+DuelistYuutaName:
 	textfw "ユウタ"
 	done
 
-Text04e4:
+DuelistJenniferName:
 	textfw "ユカ"
 	done
 
-Text04e5:
+DuelistYosukeName:
 	textfw "ヨウスケ"
 	done
 
-Text04e6:
+DuelistRonaldName:
 	textfw "ランド"
 	done
 
-Text04e7:
+RonaldsGRXDeckName:
 	textfw "ランドのGRX"
 	done
 
-Text04e8:
+RonaldsUncoolDeckName:
 	textfw "ランドのイケてない"
 	done
 
-Text04e9:
+RonaldsUltraDeckName:
 	textfw "ランドのウルトラ"
 	done
 
-Text04ea:
+RonaldsSuperDeckName:
 	textfw "ランドのスーパー"
 	done
 
-Text04eb:
+RonaldsPowerDeckName:
 	textfw "ランドのパワー"
 	done
 
-Text04ec:
+DuelistStephanieName:
 	textfw "リエ"
 	done
 
-Text04ed:
+DuelistRodName:
 	textfw "リュウドー"
 	done
 
-Text04ee:
+DuelistRyokoName:
 	textfw "リョウコ"
 	done
 
-Text04ef:
+DuelistRookName:
 	textfw "ルーク"
 	done
 
-Text04f0:
+DuelistRuiName:
 	textfw "ルイ"
 	done
 
-Text04f1:
+PracticeDeckName:
 	textfw "レクチャー"
 	done
 
-Text04f2:
+DuelistRennaName:
 	textfw "レンナ"
 	done
 
-Text04f3:
+RollingStoneDeckName:
 	textfw "ローリングストーン"
 	done
 
-Text04f4:
+RockBlastDeckName:
 	textfw "ロックブラスト!"
 	done
 
-Text04f5:
+DuelistAdamName:
 	textfw "ワタルン"
 	done
 
-Text04f6:
+DuelistMainCharacterName:
 	textfw "主人公"
 	done
 
