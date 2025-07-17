@@ -2178,21 +2178,21 @@ PracticeDuelActionTable:
 PracticeDuel_DrawSevenCards:
 	call DisplayPracticeDuelPlayerHandScreen
 	call EnableLCD
-	ldtx hl, Text04fa ; DrawSevenCardsPracticeDuelText
+	ldtx hl, PracticeDuelMasonSetupsActivePokemonText
 	jp PrintPracticeDuelDrMasonInstructions
 
 PracticeDuel_PlayDiglett:
 	ld hl, wLoadedCard1ID
 	cphl DIGLETT_LV8
 	ret z
-	ldtx hl, Text04fb ; ChooseDiglettPracticeDuelText
+	ldtx hl, PracticeDuelMasonSetupsActivePokemonIncorrectText
 	scf
 	jp PrintPracticeDuelDrMasonInstructions
 
 PracticeDuel_PutPidgeyInBench:
 	call DisplayPracticeDuelPlayerHandScreen
 	call EnableLCD
-	ldtx hl, Text04fc ; PutPokemonOnBenchPracticeDuelText
+	ldtx hl, PracticeDuelMasonSetupsBenchedPokemonText
 	jp PrintPracticeDuelDrMasonInstructions
 
 PracticeDuel_VerifyInitialPlay:
@@ -2200,7 +2200,7 @@ PracticeDuel_VerifyInitialPlay:
 	get_turn_duelist_var
 	cp 2
 	ret z
-	ldtx hl, Text04fd ; ChoosePidgeyPracticeDuelText
+	ldtx hl, PracticeDuelMasonSetupsBenchedPokemonIncorrectText
 	scf
 	jp PrintPracticeDuelDrMasonInstructions
 
@@ -2209,7 +2209,7 @@ PracticeDuel_DonePuttingOnBench:
 	call EnableLCD
 	ld a, $ff
 	ld [wPracticeDuelTurn], a
-	ldtx hl, Text04fe ; PressBToFinishPracticeDuelText
+	ldtx hl, PracticeDuelMasonSetupsFinishPressBText
 	jp PrintPracticeDuelDrMasonInstructions
 
 PracticeDuel_PrintTurnInstructions:
@@ -2224,7 +2224,7 @@ PracticeDuel_PrintTurnInstructions:
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	lb de, 1, 0
-	ldtx hl, Text04f8
+	ldtx hl, PracticeDuelHeaderPlayersTurnNumberText
 	call Func_2c4b
 	call EnableLCD
 	ld a, [wDuelTurns]
@@ -2238,8 +2238,8 @@ PracticeDuel_PrintTurnInstructions:
 	; if we're here, the player followed the current turn actions wrong and has to
 	; repeat them. ask the player whether to show detailed instructions again, in
 	; order to call PrintPracticeDuelInstructionsForCurrentTurn with a = 0 or a = 1.
-	ldtx de, Text04f7 ; DrMasonText
-	ldtx hl, Text0507 ; NeedPracticeAgainPracticeDuelText
+	ldtx de, DrMasonText
+	ldtx hl, PracticeDuelMasonExplainAgainPromptText
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 	call YesOrNoMenu
 	jp PrintPracticeDuelInstructionsForCurrentTurn
@@ -2254,7 +2254,7 @@ PracticeDuel_VerifyPlayerTurnActions:
 ;	fallthrough
 
 PracticeDuel_RepeatInstructions:
-	ldtx hl, Text0506 ; FollowMyGuidancePracticeDuelText
+	ldtx hl, PracticeDuelMasonIncorrectRetryText
 	call PrintPracticeDuelDrMasonInstructions
 	; restart the turn from the saved data of the previous turn
 	ld a, $02
@@ -2281,7 +2281,7 @@ PracticeDuel_PlayNidoranMFromBench:
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	lb de, 1, 0
-	ldtx hl, Text04f9
+	ldtx hl, PracticeDuelHeaderKnockedOutReplaceText
 	call Func_2c4b
 	call EnableLCD
 	ld hl, PracticeDuelText_SamTurn4
@@ -2296,14 +2296,14 @@ PracticeDuel_ReplaceKnockedOutPokemon:
 	ret z
 	; if player selected other Pokemon instead
 	call HasAlivePokemonInBench
-	ldtx hl, Text051c
+	ldtx hl, PracticeDuelKnockedOutMasonIncorrectText
 	scf
 ;	fallthrough
 
 ; print a text box with given the text id at hl, labeled as 'Dr. Mason'
 PrintPracticeDuelDrMasonInstructions:
 	push af
-	ldtx de, Text04f7 ; DrMasonText
+	ldtx de, DrMasonText
 	call PrintScrollableText_WithTextBoxLabel
 	pop af
 	ret
@@ -2365,7 +2365,7 @@ PrintPracticeDuelInstructions:
 
 ; print the generic Dr. Mason's text that completes all his practice duel instructions
 PrintPracticeDuelLetsPlayTheGame:
-	ldtx hl, Text0505 ; LetsPlayTheGamePracticeDuelText
+	ldtx hl, PracticeDuelMasonProceedAsTaughtText
 	call PrintPracticeDuelDrMasonInstructions
 	ret
 

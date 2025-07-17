@@ -1454,19 +1454,19 @@ DuelistMainCharacterName:
 	textfw "主人公"
 	done
 
-Text04f7:
+DrMasonText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text04f8:
+PracticeDuelHeaderPlayersTurnNumberText:
 	textfw "<RAMNAME>の<RAMNUM>手目"
 	done
 
-Text04f9:
+PracticeDuelHeaderKnockedOutReplaceText:
 	textfw "「きぜつ」によるいれかえ"
 	done
 
-Text04fa:
+PracticeDuelMasonSetupsActivePokemonText:
 	textfw "手札を 7枚ひいたら"
 	linefw "対戦のじゅんびじゃ"
 	linefw "バトル場にセットする ポケモンを"
@@ -1477,12 +1477,12 @@ Text04fa:
 	linefw "ここは 「ディグダ」を セットじゃ"
 	done
 
-Text04fb:
+PracticeDuelMasonSetupsActivePokemonIncorrectText:
 	textfw "とりあえず こんかいは"
 	linefw "「ディグダ」を えらぶのじゃ"
 	done
 
-Text04fc:
+PracticeDuelMasonSetupsBenchedPokemonText:
 	textfw "さて つぎは ベンチに"
 	linefw "ポケモンを セットするんじゃ"
 	linefw "ベンチのポケモンは バトル場の"
@@ -1493,106 +1493,106 @@ Text04fc:
 	linefw "ベンチに セットするんじゃ"
 	done
 
-Text04fd:
+PracticeDuelMasonSetupsBenchedPokemonIncorrectText:
 	textfw "とりあえず こんかいは"
 	linefw "「ポッポ」を セットするんじゃ"
 	done
 
-Text04fe:
+PracticeDuelMasonSetupsFinishPressBText:
 	textfw "だすポケモンが いないときは"
 	linefw "Bボタンをおして おわりじゃ"
 	done
 
-Text04ff:
+PracticeDuelTurn1Instr1Text:
 	textfw "1ˍメニューの「てふだ」を せんたく"
 	linefw "  「闘エネルギー」を えらぶ"
 	done
 
-Text0500:
+PracticeDuelTurn1Instr2Text:
 	textfw "2ˍ「闘エネルギー」を バトル場の"
 	linefw "  「ディグダ」に つける"
 	done
 
-Text0501:
+PracticeDuelTurn1Instr3Text:
 	textfw "3ˍメニューの「ワザ」を えらんで"
 	linefw "  「あなをほる」で えらぶ"
 	done
 
-Text0502:
+PracticeDuelTurn1Mason1Text:
 	textfw "ポケモンのワザを つかうには"
 	linefw "エネルギーが ひつようなんじゃ"
 	linefw "メニューの「てふだ」を せんたく"
 	linefw "「闘エネルギー」を えらぶんじゃ"
 	done
 
-Text0503:
+PracticeDuelTurn1Mason2Text:
 	textfw "つぎに バトル場の「ディグダ」を"
 	linefw "えらんで Aボタン"
 	linefw "これで 「ディグダ」に"
 	linefw "「闘エネルギー」を つけられるんじゃ"
 	done
 
-Text0504:
+PracticeDuelTurn1Mason3Text:
 	textfw "そうして さいごに"
 	linefw "「ワザ」をつかって こうげきじゃ"
 	linefw "メニューの「ワザ」を せんたく"
 	linefw "「あなをほる」で こうげきじゃ"
 	done
 
-Text0505:
+PracticeDuelMasonProceedAsTaughtText:
 	textfw "さあ"
 	linefw "このとおりに やってみるんじゃ"
 	done
 
-Text0506:
+PracticeDuelMasonIncorrectRetryText:
 	textfw "これは 「れんしゅう」じゃから"
 	linefw "いわれたとおりに そうさするんじゃ"
 	linefw "もう いちど"
 	linefw "やりなおしじゃ"
 	done
 
-Text0507:
+PracticeDuelMasonExplainAgainPromptText:
 	textfw "もういちど せつめいしようか?"
 	done
 
-Text0508:
+PracticeDuelTurn2Instr1Text:
 	textfw "1ˍ「闘エネルギー」を"
 	linefw "  「ディグダ」に つける"
 	done
 
-Text0509:
+PracticeDuelTurn2Instr2Text:
 	textfw "2ˍ「ディグダ」の 2つめの「ワザ」"
 	linefw "  「どろかけ」で こうげきする"
 	done
 
-Text050a:
+PracticeDuelTurn2Mason1Text:
 	textfw "「ディグダ」の 2つめの「ワザ」で"
 	linefw "こうげきするための じゅんびじゃ"
 	linefw "さらに 「ディグダ」に"
 	linefw "「闘エネルギー」を つけよう"
 	done
 
-Text050b:
+PracticeDuelTurn2Mason2Text:
 	textfw "さあ 「ディグダ」のワザ"
 	linefw "「どろかけ」で こうげきじゃ"
 	done
 
-Text050c:
+PracticeDuelTurn3Instr1Text:
 	textfw "1ˍ「ダグトリオ」を えらんで"
 	linefw "  「ディグダ」につけて 進化"
 	done
 
-Text050d:
+PracticeDuelTurn3Instr2Text:
 	textfw "2ˍ「闘エネルギー」を 進化した"
 	linefw "  「ダグトリオ」に つける"
 	done
 
-Text050e:
+PracticeDuelTurn3Instr3Text:
 	textfw "3ˍ「ダグトリオ」のワザを つかって"
 	linefw "  「きりさく」で こうげき"
 	done
 
-Text050f:
+PracticeDuelTurn3Mason1Text:
 	textfw "このままだと 「ディグダ」が"
 	linefw "やられてしまうので 進化してみよう"
 	linefw "手札にある 「ダグトリオ」を"
@@ -1601,14 +1601,14 @@ Text050f:
 	linefw "HPも 30から70にUPじゃ"
 	done
 
-Text0510:
+PracticeDuelTurn3Mason2Text:
 	textfw "「ダグトリオ」の「きりさく」を"
 	linefw "つかうには エネルギーが たりない"
 	linefw "「ダグトリオ」に さらに"
 	linefw "「闘エネルギー」を つけよう"
 	done
 
-Text0511:
+PracticeDuelTurn3Mason3Text:
 	textfw "これで 「ダグトリオ」のワザ"
 	linefw "「きりさく」を つかえるぞ"
 	linefw "「ダグトリオ」の 「きりさく」で"
@@ -1617,48 +1617,48 @@ Text0511:
 	linefw "サイドカードを 1枚ひくんじゃ"
 	done
 
-Text0512:
+PracticeDuelTurn4Instr1Text:
 	textfw "1ˍ「ニドラン♂」を 手札から"
 	linefw "  えらんで ベンチに だす"
 	done
 
-Text0513:
+PracticeDuelTurn4Instr2Text:
 	textfw "2ˍ「草エネルギー」を ベンチの"
 	linefw "  「ニドラン♂」に つける"
 	done
 
-Text0514:
+PracticeDuelTurn4Instr3Text:
 	textfw "3ˍ「ダグトリオ」のワザを つかって"
 	linefw "  「きりさく」で こうげき"
 	done
 
-Text0515:
+PracticeDuelTurn4Mason1Text:
 	textfw "じぶんの場に ポケモンが 1ぴきも"
 	linefw "いなくなると まけになるんじゃ"
 	linefw "ベンチに いまひいた たねポケモンの"
 	linefw "「ニドラン♂」を だしておこう"
 	done
 
-Text0516:
+PracticeDuelTurn4Mason2Text:
 	textfw "「ニドラン♂」に 「草エネルギー」を"
 	linefw "つけて ワザの じゅんびじゃ"
 	done
 
-Text0517:
+PracticeDuelTurn4Mason3Text:
 	textfw "そして 「ダグトリオ」は"
 	linefw "「きりさく」で こうげきじゃ"
 	done
 
-Text0518:
+PracticeDuelKnockedOutInstr1Text:
 	textfw "1ˍ「ダグトリオ」が きぜつしたので"
 	linefw "  ベンチの 「ニドラン♂」を"
 	linefw "  えらんで Aボタンで だす"
 	done
 
-Text0519:
+PracticeDuelKnockedOutInstr2Text:
 	done
 
-Text051a:
+PracticeDuelKnockedOutMason1Text:
 	textfw "「きぜつ」した ポケモンのかわりに"
 	linefw "ベンチのポケモンを だすのじゃ"
 	linefw "だせるポケモンは ベンチにいる"
@@ -1667,41 +1667,41 @@ Text051a:
 	linefw "バトル場に だしておくのじゃ"
 	done
 
-Text051b:
+PracticeDuelKnockedOutMason2Text:
 	textfw "このとき SELECTボタンで"
 	linefw "さまざまなじょうほうを かくにんじゃ"
 	linefw "手札や 場のじょうたいを"
 	linefw "かくにんするのは たいせつじゃ"
 	done
 
-Text051c:
+PracticeDuelKnockedOutMasonIncorrectText:
 	textfw "ここは"
 	linefw "「ニドラン♂」を えらぶんじゃ"
 	done
 
-Text051d:
+PracticeDuelTurn5Instr1Text:
 	textfw "1ˍ「ワンリキー」を 手札から"
 	linefw "  えらんで ベンチに だす"
 	done
 
-Text051e:
+PracticeDuelTurn5Instr2Text:
 	textfw "2ˍ「草エネルギー」を バトル場の"
 	linefw "  「ニドラン♂」に つける"
 	done
 
-Text051f:
+PracticeDuelTurn5Instr3Text:
 	textfw "3ˍ「ニドラン♂」のワザ"
 	linefw "  「つのでつつく」で こうげき"
 	done
 
-Text0520:
+PracticeDuelTurn5Mason1Text:
 	textfw "まずは ベンチのポケモンの"
 	linefw "ほじゅうじゃな"
 	linefw "いまひいた 「ワンリキー」を"
 	linefw "ベンチに だしておこう"
 	done
 
-Text0521:
+PracticeDuelTurn5Mason2Text:
 	textfw "「ニドラン♂」は 「ニドリーノ」に"
 	linefw "進化することが できるのじゃ"
 	linefw "「ニドリーノ」に 進化させたときの"
@@ -1710,43 +1710,43 @@ Text0521:
 	linefw "「ニドラン♂」に つけておくのじゃ"
 	done
 
-Text0522:
+PracticeDuelTurn5Mason3Text:
 	textfw "こうげきは 「ニドラン♂」のワザ"
 	linefw "「つのでつつく」じゃ"
 	linefw "このワザは コインをなげて"
 	linefw "「おもて」なら せいこうじゃ"
 	done
 
-Text0523:
+PracticeDuelTurn6Instr1Text:
 	textfw "1ˍ「ニドリーノ」を えらんで"
 	linefw "  「ニドラン♂」につけて 進化"
 	done
 
-Text0524:
+PracticeDuelTurn6Instr2Text:
 	textfw "2ˍ「草エネルギー」を"
 	linefw "  「ニドリーノ」に つける"
 	done
 
-Text0525:
+PracticeDuelTurn6Instr3Text:
 	textfw "3ˍ「ニドリーノ」のワザ"
 	linefw "  「にどげり」で こうげき"
 	done
 
-Text0526:
+PracticeDuelTurn6Mason1Text:
 	textfw "よおし 「ニドラン♂」を"
 	linefw "「ニドリーノ」へ 進化させるのじゃ"
 	linefw "手札から 「ニドリーノ」をえらんで"
 	linefw "「ニドラン♂」へ つけるのじゃ"
 	done
 
-Text0527:
+PracticeDuelTurn6Mason2Text:
 	textfw "進化させた 「ニドリーノ」の"
 	linefw "ワザ「にどげり」の じゅんびじゃ"
 	linefw "手札の 「草エネルギー」を"
 	linefw "「ニドリーノ」に つけるのじゃ"
 	done
 
-Text0528:
+PracticeDuelTurn6Mason3Text:
 	textfw "さあ 「ニドリーノ」のワザ"
 	linefw "「にどげり」で こうげきじゃ!"
 	linefw "「にどげり」は コインをなげて"

@@ -1665,7 +1665,7 @@ HandleDeckDiagnosisMenu:
 	push hl
 	lb de, 0, 12
 	lb bc, 20, 6
-	ldtx hl, Text04f7
+	ldtx hl, DrMasonText
 	call DrawLabeledTextBox
 	pop hl
 	lb de, 1, 14
@@ -1964,7 +1964,7 @@ CheckDeck:
 	ldh [hWhoseTurn], a
 	call .DoChecks
 
-	ldtx de, Text04f7
+	ldtx de, DrMasonText
 	ldtx hl, Text055a
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 	call YesOrNoMenu
@@ -2031,7 +2031,7 @@ CheckDeck:
 ; with Dr. Mason as the box header
 ; hl = text ID
 .PrintDrMasonText:
-	ldtx de, Text04f7 ; "Dr. Mason"
+	ldtx de, DrMasonText
 	call PrintScrollableText_WithTextBoxLabel
 	ld hl, wcd4e
 	inc [hl]
@@ -2103,7 +2103,7 @@ CheckDeck:
 	ldtx hl, Text0536
 	call PrintTextNoDelay_Init
 	call EnableLCD
-	ldtx de, Text04f7
+	ldtx de, DrMasonText
 	ldtx hl, Text0554
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 
@@ -2177,7 +2177,7 @@ CheckDeck:
 	dec e
 	jr nz, .loop_counts
 	call EnableLCD
-	ldtx de, Text04f7
+	ldtx de, DrMasonText
 	ldtx hl, Text0555
 	call PrintScrollableText_WithTextBoxLabel
 	ret
