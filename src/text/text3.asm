@@ -2419,14 +2419,14 @@ DeckDiagnosisEnergyUnbalancedText:
 	linefw "よくないようじゃのう・・・"
 	done
 
-Text058d:
+DebugDummyText:
 	textfw "ダミー"
 	done
 
-Text058e:
+DebugKondoDebugText:
 	textfw "近ドウデバッグ"
 	done
 
-Text058f:
+DebugMapDisplayTestText:
 	textfw "地図の表示テスト"
 	done

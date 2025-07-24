@@ -1427,9 +1427,9 @@ TextOffsets::
 	textpointer DeckDiagnosisOKText                                   ; 0x058a
 	textpointer DeckDiagnosisOKButNoTrainerText                       ; 0x058b
 	textpointer DeckDiagnosisEnergyUnbalancedText                     ; 0x058c
-	textpointer Text058d                                           ; 0x058d
-	textpointer Text058e                                           ; 0x058e
-	textpointer Text058f                                           ; 0x058f
+	textpointer DebugDummyText                                        ; 0x058d
+	textpointer DebugKondoDebugText                                   ; 0x058e
+	textpointer DebugMapDisplayTestText                               ; 0x058f
 	textpointer Text0590                                           ; 0x0590
 	textpointer Text0591                                           ; 0x0591
 	textpointer Text0592                                           ; 0x0592
