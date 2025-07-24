@@ -1759,43 +1759,43 @@ PracticeDuelTurn6Mason3Text:
 	linefw "ひいて <RAMNAME>の勝ちじゃ"
 	done
 
-Text0529:
+DeckDiagnosisStep1Text:
 	textfw "ステップ1"
 	done
 
-Text052a:
+DeckDiagnosisStep2Text:
 	textfw "ステップ2"
 	done
 
-Text052b:
+DeckDiagnosisStep3Text:
 	textfw "ステップ3"
 	done
 
-Text052c:
+DeckDiagnosisStep4Text:
 	textfw "ステップ4"
 	done
 
-Text052d:
+DeckDiagnosisAdvice1Text:
 	textfw "アドバイス1"
 	done
 
-Text052e:
+DeckDiagnosisAdvice2Text:
 	textfw "アドバイス2"
 	done
 
-Text052f:
+DeckDiagnosisAdvice3Text:
 	textfw "アドバイス3"
 	done
 
-Text0530:
+DeckDiagnosisAdvice4Text:
 	textfw "アドバイス4"
 	done
 
-Text0531:
+DeckDiagnosisExitText:
 	textfw "やめる"
 	done
 
-Text0532:
+DeckDiagnosisStep1MenuText:
 	textfw "ステップ 1"
 	linefw "デッキチェック"
 	linefw "アドバイス1"
@@ -1804,7 +1804,7 @@ Text0532:
 	linefw "もどる"
 	done
 
-Text0533:
+DeckDiagnosisStep2MenuText:
 	textfw "ステップ 2"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1812,7 +1812,7 @@ Text0533:
 	linefw "もどる"
 	done
 
-Text0534:
+DeckDiagnosisStep3MenuText:
 	textfw "ステップ 3"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1820,7 +1820,7 @@ Text0534:
 	linefw "もどる"
 	done
 
-Text0535:
+DeckDiagnosisStep4MenuText:
 	textfw "ステップ 4"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1829,11 +1829,11 @@ Text0535:
 	linefw "もどる"
 	done
 
-Text0536:
+DeckDiagnosisTargetNameText:
 	textfw "<RAMTEXT>デッキ"
 	done
 
-Text0537:
+DeckDiagnosisBreakdownText:
 	textfw "エネルギーカード       枚"
 	linefw "たねポケモンカード      枚"
 	linefw "1進化カード         枚"
@@ -1841,169 +1841,169 @@ Text0537:
 	linefw "トレーナーカード       枚"
 	done
 
-Text0538:
+DeckDiagnosisGrassText:
 	textfw "草"
 	done
 
-Text0539:
+DeckDiagnosisWaterText:
 	textfw "水"
 	done
 
-Text053a:
+DeckDiagnosisLightningText:
 	textfw "雷"
 	done
 
-Text053b:
+DeckDiagnosisFireText:
 	textfw "炎"
 	done
 
-Text053c:
+DeckDiagnosisFightingText:
 	textfw "闘"
 	done
 
-Text053d:
+DeckDiagnosisPsychicText:
 	textfw "超"
 	done
 
-Text053e:
+DeckDiagnosisDialogInitialText:
 	textfw "Dr.オーヤマの デッキしんだんじゃ"
 	linefw "メニューを えらぶんじゃ"
 	done
 
-Text053f:
+DeckDiagnosisDialogStep1Text:
 	textfw "「デッキ」の つくりかたの"
 	linefw "きほんてきな アドバイスじゃ"
 	done
 
-Text0540:
+DeckDiagnosisDialogStep2Text:
 	textfw "すこし なれてきたひとのための"
 	linefw "アドバイスじゃ"
 	done
 
-Text0541:
+DeckDiagnosisDialogStep3Text:
 	textfw "さらに ステップアップしたい"
 	linefw "ひとへの アドバイスじゃ"
 	done
 
-Text0542:
+DeckDiagnosisDialogStep4Text:
 	textfw "もっと つよくなりたいひとへの"
 	linefw "アドバイスじゃ"
 	done
 
-Text0543:
+DeckDiagnosisDialogExitText:
 	textfw "デッキしんだんを やめるぞ"
 	done
 
-Text0544:
+DeckDiagnosisDialogCheckDeckText:
 	textfw "「デッキ」のなかを みてやろう"
 	done
 
-Text0545:
+DeckDiagnosisDialogStep1Advice1Text:
 	textfw "「たねポケモン」は"
 	linefw "ポケモンカードの きほんじゃぞ!"
 	done
 
-Text0546:
+DeckDiagnosisDialogStep1Advice2Text:
 	textfw "「エネルギーカード」は"
 	linefw "わすれずに いれるんじゃ!"
 	done
 
-Text0547:
+DeckDiagnosisDialogStep1Advice3Text:
 	textfw "「進化カード」は バランスを"
 	linefw "かんがえて いれるんじゃ!"
 	done
 
-Text0548:
+DeckDiagnosisDialogBackText:
 	textfw "メインメニューに もどるぞ"
 	done
 
-Text0549:
+DeckDiagnosisDialogStep2Advice1Text:
 	textfw "まずは"
 	linefw "「マサキ」と「オーキドはかせ」じゃ"
 	done
 
-Text054a:
+DeckDiagnosisDialogStep2Advice2Text:
 	textfw "つぎは 「きずぐすり」と"
 	linefw "「ポケモンいれかえ」じゃ"
 	done
 
-Text054b:
+DeckDiagnosisDialogStep2Advice3Text:
 	textfw "「どく・マヒ・ねむり・こんらん」と"
 	linefw "「なんでもなおし」じゃ!"
 	done
 
-Text054c:
+DeckDiagnosisDialogStep3Advice1Text:
 	textfw "まずは 2色のデッキじゃ!"
 	done
 
-Text054d:
+DeckDiagnosisDialogStep3Advice2Text:
 	textfw "つぎは 3色のデッキじゃな!"
 	done
 
-Text054e:
+DeckDiagnosisDialogStep3Advice3Text:
 	textfw "なにが わるいかを"
 	linefw "かんがえてみよう"
 	done
 
-Text054f:
+DeckDiagnosisDialogStep4Advice1Text:
 	textfw "それぞれの色の とくちょうを"
 	linefw "せつめいしてやろう"
 	done
 
-Text0550:
+DeckDiagnosisDialogStep4Advice2Text:
 	textfw "無色のポケモンを"
 	linefw "うまくいれて つくるのじゃ!"
 	done
 
-Text0551:
+DeckDiagnosisDialogStep4Advice3Text:
 	textfw "「オーキドはかせ」の つかいかたじゃ"
 	done
 
-Text0552:
+DeckDiagnosisDialogStep4Advice4Text:
 	textfw "「そっこう型」と「かべ型」の"
 	linefw "デッキの たたかいかたじゃ"
 	done
 
-Text0553:
+DeckDiagnosisChooseDeckToCheckText:
 	textfw "どのデッキを"
 	linefw "チェックしてほしいんじゃ?"
 	done
 
-Text0554:
+DeckDiagnosisCheckingDeckText:
 	textfw "「<RAMTEXT>デッキ」"
 	linefw "チェック中じゃ?"
 	done
 
-Text0555:
+DeckDiagnosisCheckedDeckText:
 	textfw "「<RAMTEXT>」"
 	linefw "デッキチェック かんりょうじゃ"
 	done
 
-Text0556:
+DeckDiagnosisResultRareCardsHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "★しるしのカード"
 	done
 
-Text0557:
+DeckDiagnosisResultEvolutionMismatchedHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "進化セットが そろっていないカード"
 	done
 
-Text0558:
+DeckDiagnosisResultEnergyMismatchedHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "色のあっていない エネルギーカード"
 	done
 
-Text0559:
+DeckDiagnosisResultPokemonPowerCardsHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "特殊能力のあるカード"
 	done
 
-Text055a:
+DeckDiagnosisCheckAnotherDeckPromptText:
 	textfw "ほかのデッキも チェックするのか?"
 	done
 
-Text055b:
+DeckDiagnosisStep1Advice1Description1Text:
 	textfw "「たねポケモン」カードは"
 	linefw "ポケモンカードの すべてのきほんじゃ"
 	linefw "対戦のはじめや 「場」に ちょくせつ"
@@ -2013,14 +2013,14 @@ Text055b:
 	linefw "「進化カード」も だせんぞ!"
 	done
 
-Text055c:
+DeckDiagnosisStep1Advice1Description2Text:
 	textfw "そうじゃなぁ"
 	linefw "デッキには 12枚いじょうの"
 	linefw "「たねポケモンカード」は"
 	linefw "いれておきたいもんじゃのう!"
 	done
 
-Text055d:
+DeckDiagnosisStep1Advice2Description1Text:
 	textfw "「エネルギーカード」は"
 	linefw "わすれずに いれるんじゃ!"
 	linefw "エネルギーがなければ ポケモンは"
@@ -2031,7 +2031,7 @@ Text055d:
 	linefw "ひつようじゃ"
 	done
 
-Text055e:
+DeckDiagnosisStep1Advice2Description2Text:
 	textfw "エネルギーの色も たいせつじゃ"
 	linefw "ポケモンの色と エネルギーの色は"
 	linefw "あわせるようにするのじゃ"
@@ -2041,7 +2041,7 @@ Text055e:
 	linefw "いれておくと いいじゃろう"
 	done
 
-Text055f:
+DeckDiagnosisStep1Advice3Description1Text:
 	textfw "ポケモンのカードには"
 	linefw "「たねポケモン・1進化・2進化」の"
 	linefw "3しゅるいが ある"
@@ -2052,7 +2052,7 @@ Text055f:
 	linefw "「場」にいないと だせないんじゃ"
 	done
 
-Text0560:
+DeckDiagnosisStep1Advice3Description2Text:
 	textfw "デッキには 「たねポケモン」を"
 	linefw "1ばんおおく 「1進化」「2進化」の"
 	linefw "じゅんに 枚すうを へらしておくのが"
@@ -2061,7 +2061,7 @@ Text0560:
 	linefw "「2進化」2枚と いったかんじじゃな"
 	done
 
-Text0561:
+DeckDiagnosisStep2Advice1DescriptionText:
 	textfw "「マサキ」と「オーキドはかせ」は"
 	linefw "だいぎゃくてんを ねらうときに"
 	linefw "いいカードだぞ!"
@@ -2070,7 +2070,7 @@ Text0561:
 	linefw "「マサキ」も2枚ぐらい いれてみよう"
 	done
 
-Text0562:
+DeckDiagnosisStep2Advice2DescriptionText:
 	textfw "つぎに だいじなのは「きずぐすり」と"
 	linefw "「ポケモンいれかえ」じゃ"
 	linefw "「きずぐすり」と「ポケモンいれかえ」"
@@ -2081,7 +2081,7 @@ Text0562:
 	linefw "いれてみよう"
 	done
 
-Text0563:
+DeckDiagnosisStep2Advice3DescriptionText:
 	textfw "ポケモンは [相手]のこうげきで"
 	linefw "「どく」や「マヒ」「ねむり」"
 	linefw "「こんらん」といった 特殊状態に"
@@ -2092,7 +2092,7 @@ Text0563:
 	linefw "いいぞ"
 	done
 
-Text0564:
+DeckDiagnosisStep3Advice1Description1Text:
 	textfw "まずは 「2色」+無色のデッキを"
 	linefw "つくってみるのじゃ。"
 	linefw "「2色」+無色は わかりやすく"
@@ -2103,7 +2103,7 @@ Text0564:
 	linefw "弱点をおぎなうように かんがえよう"
 	done
 
-Text0565:
+DeckDiagnosisStep3Advice1Description2Text:
 	textfw "たとえばじゃ"
 	linefw "「雷ポケモン中心のデッキ」なら"
 	linefw "「雷ポケモン」は"
@@ -2113,7 +2113,7 @@ Text0565:
 	linefw "いれるのじゃな"
 	done
 
-Text0566:
+DeckDiagnosisStep3Advice1Description3Text:
 	textfw "また 「炎ポケモン中心のデッキ」なら"
 	linefw "「炎ポケモンは 「水ポケモン」に"
 	linefw "よわいので 「水」につよい"
@@ -2123,13 +2123,13 @@ Text0566:
 	linefw "すこしいれてカバーしよう"
 	done
 
-Text0567:
+DeckDiagnosisStep3Advice1Description4Text:
 	textfw "つまり"
 	linefw "「炎+雷+無色(飛行タイプ)」という"
 	linefw "デッキじゃな"
 	done
 
-Text0568:
+DeckDiagnosisStep3Advice2Description1Text:
 	textfw "3色デッキは くふうしだいで"
 	linefw "おもしろいデッキに なるぞ!"
 	linefw "3色デッキなどの「多色デッキ(2色"
@@ -2138,14 +2138,14 @@ Text0568:
 	linefw "2~4枚 いれるといいのじゃ"
 	done
 
-Text0569:
+DeckDiagnosisStep3Advice2Description2Text:
 	textfw "たとえばじゃ"
 	linefw "「炎+雷+草」なんかいがいと いいぞ"
 	linefw "しんごうきのようじゃがな・・・"
 	linefw "はははっ"
 	done
 
-Text056a:
+DeckDiagnosisStep3Advice3Description1Text:
 	textfw "とにかく まけることを きにせず"
 	linefw "なん回も対戦して なにが わるいのか"
 	linefw "かんがえるようにしよう"
@@ -2156,7 +2156,7 @@ Text056a:
 	linefw "ふやせばいい"
 	done
 
-Text056b:
+DeckDiagnosisStep3Advice3Description2Text:
 	textfw "全体でのバランスが 1番 たいせつ"
 	linefw "なので きを つけるのじゃ"
 	linefw "デッキのなかの 色かずを へらしたり"
@@ -2167,7 +2167,7 @@ Text056b:
 	linefw "対戦をたのしむことが だいじじゃな"
 	done
 
-Text056c:
+DeckDiagnosisStep4Advice1Description1Text:
 	textfw "「それぞれの色の特徵」"
 	linefw ""
 	linefw "「炎」ポケモンは 「炎」をトラッシュ"
@@ -2177,7 +2177,7 @@ Text056c:
 	linefw "2枚ぐらい いれるのじゃ"
 	done
 
-Text056d:
+DeckDiagnosisStep4Advice1Description2Text:
 	textfw "「雷」ポケモンは [自分]にも"
 	linefw "ダメージを あたえてしまうワザを"
 	linefw "もったポケモンが おおいのじゃ"
@@ -2185,7 +2185,7 @@ Text056d:
 	linefw "2枚ぐらい いれるといいじゃろう"
 	done
 
-Text056e:
+DeckDiagnosisStep4Advice1Description3Text:
 	textfw "「草」ポケモンは2進化するポケモンが"
 	linefw "おおいのじゃ"
 	linefw "だから そんなデッキには ポケモンの"
@@ -2195,7 +2195,7 @@ Text056e:
 	linefw "よいぞ"
 	done
 
-Text056f:
+DeckDiagnosisStep4Advice1Description4Text:
 	textfw "「水」ポケモンは 「水」エネルギーを"
 	linefw "追加すると[相手]にあたえる"
 	linefw "ダメージが ふえるワザをもった"
@@ -2204,7 +2204,7 @@ Text056f:
 	linefw "カードを 多めにいれるといいんじゃよ"
 	done
 
-Text0570:
+DeckDiagnosisStep4Advice1Description5Text:
 	textfw "「闘」ポケモンは 「にげる」のに"
 	linefw "エネルギーのかずが 多いポケモンが"
 	linefw "けっこう いるんじゃ"
@@ -2213,7 +2213,7 @@ Text0570:
 	linefw "2~4枚 いれてみよう。"
 	done
 
-Text0571:
+DeckDiagnosisStep4Advice1Description6Text:
 	textfw "「超」ポケモンは 「抵抗力」で"
 	linefw "ダメージを ふせがれるときがあるので"
 	linefw "そんなデッキには 「突風」を"
@@ -2224,7 +2224,7 @@ Text0571:
 	linefw "いれたいところじゃな。"
 	done
 
-Text0572:
+DeckDiagnosisStep4Advice2Description1Text:
 	textfw "「無色ポケモン」は どの色のエネルギ"
 	linefw "ーでもワザが つかえるから"
 	linefw "どのデッキに いれてもつかいやすい"
@@ -2233,7 +2233,7 @@ Text0572:
 	linefw "抵抗力が ちがうのも おぼえておこう"
 	done
 
-Text0573:
+DeckDiagnosisStep4Advice2Description2Text:
 	textfw "「無色ポケモン」を 多くいれたデッキ"
 	linefw "には 「無色2個エネルギー」を"
 	linefw "2~4枚入れるのじゃ。"
@@ -2243,7 +2243,7 @@ Text0573:
 	linefw "やすくなるぞ"
 	done
 
-Text0574:
+DeckDiagnosisStep4Advice2Description3Text:
 	textfw "たとえば 「けとばすのポニータ」とか"
 	linefw "「こうらアタックのゼニガメ」とか"
 	linefw "「きりさくのストライク」とか"
@@ -2251,7 +2251,7 @@ Text0574:
 	linefw "そうじゃな"
 	done
 
-Text0575:
+DeckDiagnosisStep4Advice3Description1Text:
 	textfw "「オーキドはかせ」は おもいきって"
 	linefw "つかうのじゃ"
 	linefw " 手札を せんぶすててしまうのは"
@@ -2262,7 +2262,7 @@ Text0575:
 	linefw "手札をすてて 7枚ひくのじゃ!"
 	done
 
-Text0576:
+DeckDiagnosisStep4Advice3Description2Text:
 	textfw "こうすることで デッキのうごきが"
 	linefw "ぜんぜん かわってくるはずじゃよ"
 	linefw "おもいきったプレイが ぎゃくてんへの"
@@ -2271,7 +2271,7 @@ Text0576:
 	linefw "いれておきたいものじゃな"
 	done
 
-Text0577:
+DeckDiagnosisStep4Advice4Description1Text:
 	textfw "そっこう型デッキ"
 	linefw "「ヒトデマン」「ワンリキー」「ビリリ"
 	linefw "ダマ」など 「色エネルギーひとつで"
@@ -2282,7 +2282,7 @@ Text0577:
 	linefw "いれとかないとダメじゃぞ"
 	done
 
-Text0578:
+DeckDiagnosisStep4Advice4Description2Text:
 	textfw "かべ型デッキ"
 	linefw "「イワーク」「ラッキー」「ベロリンガ"
 	linefw "」など <HP>が たかいポケモンたちで"
@@ -2291,119 +2291,119 @@ Text0578:
 	linefw "そっこう型の ぎゃくじゃぞ"
 	done
 
-Text0579:
+DeckDiagnosisTooFewBasicPokemonText:
 	textfw "うーむ"
 	linefw "「たねポケモン」が すくないようじゃ"
 	linefw "もうすこし"
 	linefw "「たねポケモン」を いれてみよう"
 	done
 
-Text057a:
+DeckDiagnosisTooManyColorsText:
 	textfw "デッキのなかの色は 「2色+無色」や"
 	linefw "「3色+無色」に してみよう"
 	done
 
-Text057b:
+DeckDiagnosisTooFewPokemonText:
 	textfw "ポケモンのカードが"
 	linefw "すこし すくないようじゃな"
 	linefw "もうすこし ポケモンのカードを"
 	linefw "いれたほうが いいじゃろう"
 	done
 
-Text057c:
+DeckDiagnosisTooManyPokemonText:
 	textfw "ポケモンのカードが"
 	linefw "すこし おおいようじゃな"
 	linefw "もうすこし ポケモンのカードを"
 	linefw "へらしたほうが いいじゃろう"
 	done
 
-Text057d:
+DeckDiagnosisTooFewEnergyText:
 	textfw "エネルギーカードが"
 	linefw "すくない ようじゃな!"
 	linefw "もうすこし エネルギーカードを"
 	linefw "いれたほうが いいじゃろう"
 	done
 
-Text057e:
+DeckDiagnosisTooManyEnergyText:
 	textfw "エネルギーカードが"
 	linefw "おおい ようじゃな!"
 	linefw "もうすこし エネルギーカードを"
 	linefw "へらしたほうが いいじゃろう"
 	done
 
-Text057f:
+DeckDiagnosisNoEnergyText:
 	textfw "ばかもの! エネルギーカードが"
 	linefw "1枚もはいって おらんじゃないか!"
 	linefw "エネルギーカードが なければ"
 	linefw "なにも できんぞ!!"
 	done
 
-Text0580:
+DeckDiagnosisEvolutionMismatchedText:
 	textfw "進化まえのポケモンが はいっていない"
 	linefw "ポケモンカードが あるぞ"
 	done
 
-Text0581:
+DeckDiagnosisEvolutionMismatchedListText:
 	textfw "進化まえのポケモンがいない"
 	linefw "ポケモンカードは これじゃ"
 	done
 
-Text0582:
+DeckDiagnosisEvolutionUnbalancedText:
 	textfw "「たね」「1進化」「2進化」の"
 	linefw "バランスが よくないものが あるのぅ"
 	done
 
-Text0583:
+DeckDiagnosisEvolutionUnbalancedListText:
 	textfw "進化のバランスが わるい"
 	linefw "くみあわせのカードは これじゃ"
 	done
 
-Text0584:
+DeckDiagnosisPokemonEnergyMismatchedText:
 	textfw "デッキのなかの ポケモンと"
 	linefw "エネルギーカードの色は そろえよう"
 	done
 
-Text0585:
+DeckDiagnosisPokemonEnergyMismatchedListText:
 	textfw "ポケモンの色とあっていない"
 	linefw "エネルギーカードは これじゃ"
 	done
 
-Text0586:
+DeckDiagnosisPokemonEnergyUnbalancedText:
 	textfw "ポケモンに くらべて"
 	linefw "エネルギーのかずが すくないようじゃ"
 	linefw "ポケモンが うまくワザをだせるように"
 	linefw "エネルギーカードを ふやすのじゃ!"
 	done
 
-Text0587:
+DeckDiagnosisTooManyEnergyThisColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃな"
 	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし へらしては どうかな?"
 	done
 
-Text0588:
+DeckDiagnosisTooFewEnergyThisColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "すくなすぎる ようじゃな"
 	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし ふやしては どうかな?"
 	done
 
-Text0589:
+DeckDiagnosisTooManyEnergyThisColorAddThatColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃ"
 	linefw "「<RAMTEXT>エネルギー」の わりあいを"
 	linefw "ふやしたほうが いいようじゃぞ"
 	done
 
-Text058a:
+DeckDiagnosisOKText:
 	textfw "きほんてきな デッキとしては"
 	linefw "これで OKじゃな"
 	linefw "これで 1ど 対戦してみなさい"
 	linefw "やってみることが いちばんじゃ"
 	done
 
-Text058b:
+DeckDiagnosisOKButNoTrainerText:
 	textfw "きほんてきな デッキとしては"
 	linefw "これで OKじゃな"
 	linefw "これで 1ど 対戦してみなさい"
@@ -2414,7 +2414,7 @@ Text058b:
 	linefw "1ど つかってみると いいぞ"
 	done
 
-Text058c:
+DeckDiagnosisEnergyUnbalancedText:
 	textfw "う~む エネルギーのバランスが"
 	linefw "よくないようじゃのう・・・"
 	done

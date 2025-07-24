@@ -1454,7 +1454,7 @@ DeckDiagnosis:
 	call EnableLCD
 
 	; initial text
-	ldtx hl, Text053e
+	ldtx hl, DeckDiagnosisDialogInitialText
 	call CheckDeck.PrintDrMasonText
 
 	xor a
@@ -1495,54 +1495,54 @@ DeckDiagnosisTextTables:
 .steps_menu
 	db $00
 	dw NULL
-	tx Text053f
+	tx DeckDiagnosisDialogStep1Text
 
-	tx Text0540 ; Step 1
-	tx Text0541 ; Step 2
-	tx Text0542 ; Step 3
-	tx Text0543 ; Step 4
+	tx DeckDiagnosisDialogStep2Text
+	tx DeckDiagnosisDialogStep3Text
+	tx DeckDiagnosisDialogStep4Text
+	tx DeckDiagnosisDialogExitText
 
 .step_1
 	db 5 ; number of items
-	tx Text0532 ; text ID with all items
+	tx DeckDiagnosisStep1MenuText ; text ID with all items
 
 	; menu items
-	tx Text0544 ; Check Deck
-	tx Text0545 ; Advice 1
-	tx Text0546 ; Advice 2
-	tx Text0547 ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogCheckDeckText
+	tx DeckDiagnosisDialogStep1Advice1Text
+	tx DeckDiagnosisDialogStep1Advice2Text
+	tx DeckDiagnosisDialogStep1Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_2
 	db 4 ; number of items
-	tx Text0533 ; text ID with all items
+	tx DeckDiagnosisStep2MenuText ; text ID with all items
 
 	; menu items
-	tx Text0549 ; Advice 1
-	tx Text054a ; Advice 2
-	tx Text054b ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep2Advice1Text
+	tx DeckDiagnosisDialogStep2Advice2Text
+	tx DeckDiagnosisDialogStep2Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_3
 	db 4 ; number of items
-	tx Text0534 ; text ID with all items
+	tx DeckDiagnosisStep3MenuText ; text ID with all items
 
 	; menu items
-	tx Text054c ; Advice 1
-	tx Text054d ; Advice 2
-	tx Text054e ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep3Advice1Text
+	tx DeckDiagnosisDialogStep3Advice2Text
+	tx DeckDiagnosisDialogStep3Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_4
 	db 5 ; number of items
-	tx Text0535 ; text ID with all items
+	tx DeckDiagnosisStep4MenuText ; text ID with all items
 
 	; menu items
-	tx Text054f ; Advice 1
-	tx Text0550 ; Advice 2
-	tx Text0551 ; Advice 3
-	tx Text0552 ; Advice 4
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep4Advice1Text
+	tx DeckDiagnosisDialogStep4Advice2Text
+	tx DeckDiagnosisDialogStep4Advice3Text
+	tx DeckDiagnosisDialogStep4Advice4Text
+	tx DeckDiagnosisDialogBackText
 
 ; prints menu for the current Deck Diagnosis step
 ; depending on a:
@@ -1644,7 +1644,7 @@ HandleDeckDiagnosisMenu:
 	cp [hl]
 	jr nc, .load_text_id
 	; cursor is on cancel (last item)
-	ldtx hl, Text0543
+	ldtx hl, DeckDiagnosisDialogExitText
 	jr .print_text
 .load_text_id
 	; loads text ID from wDeckDiagnosisTextIDsPtr
@@ -1700,17 +1700,17 @@ PrintDeckDiagnosisSteps:
 	dec c
 	jr nz, .loop
 
-	ldtx hl, Text0531
+	ldtx hl, DeckDiagnosisExitText
 	call InitTextPrinting_ProcessTextFromID
 	ld a, [wNumDeckDiagnosisSteps]
 	add 2
 	ret
 
 .text_ids
-	tx Text0529 ; Step 1
-	tx Text052a ; Step 2
-	tx Text052b ; Step 3
-	tx Text052c ; Step 4
+	tx DeckDiagnosisStep1Text
+	tx DeckDiagnosisStep2Text
+	tx DeckDiagnosisStep3Text
+	tx DeckDiagnosisStep4Text
 
 ; loads Deck Diagnosis scene together
 ; with Dr. Mason's portrait
@@ -1821,10 +1821,10 @@ Func_2517f:
 	ret
 
 .StepTextIDs:
-	tx Text0529 ; Step 1
-	tx Text052a ; Step 2
-	tx Text052b ; Step 3
-	tx Text052c ; Step 4
+	tx DeckDiagnosisStep1Text
+	tx DeckDiagnosisStep2Text
+	tx DeckDiagnosisStep3Text
+	tx DeckDiagnosisStep4Text
 
 MACRO advice
 	dw \1
@@ -1834,100 +1834,100 @@ ENDM
 .AdviceTexts:
 	; Step 1
 	dw NULL, NULL                   ; Check Deck
-	advice .step1_advice1, Text052d ; Advice 1
-	advice .step1_advice2, Text052e ; Advice 2
-	advice .step1_advice3, Text052f ; Advice 3
+	advice .step1_advice1, DeckDiagnosisAdvice1Text
+	advice .step1_advice2, DeckDiagnosisAdvice2Text
+	advice .step1_advice3, DeckDiagnosisAdvice3Text
 
 	; Step 2
-	advice .step2_advice1, Text052d ; Advice 1
-	advice .step2_advice2, Text052e ; Advice 2
-	advice .step2_advice3, Text052f ; Advice 3
+	advice .step2_advice1, DeckDiagnosisAdvice1Text
+	advice .step2_advice2, DeckDiagnosisAdvice2Text
+	advice .step2_advice3, DeckDiagnosisAdvice3Text
 	dw NULL, NULL
 
 	; Step 3
-	advice .step3_advice1, Text052d ; Advice 1
-	advice .step3_advice2, Text052e ; Advice 2
-	advice .step3_advice3, Text052f ; Advice 3
+	advice .step3_advice1, DeckDiagnosisAdvice1Text
+	advice .step3_advice2, DeckDiagnosisAdvice2Text
+	advice .step3_advice3, DeckDiagnosisAdvice3Text
 	dw NULL, NULL
 
 	; Step 4
-	advice .step4_advice1, Text052d ; Advice 1
-	advice .step4_advice2, Text052e ; Advice 2
-	advice .step4_advice3, Text052f ; Advice 3
-	advice .step4_advice4, Text0530 ; Advice 4
+	advice .step4_advice1, DeckDiagnosisAdvice1Text
+	advice .step4_advice2, DeckDiagnosisAdvice2Text
+	advice .step4_advice3, DeckDiagnosisAdvice3Text
+	advice .step4_advice4, DeckDiagnosisAdvice4Text
 
 .step1_advice1
-	tx Text055b
-	tx Text055c
+	tx DeckDiagnosisStep1Advice1Description1Text
+	tx DeckDiagnosisStep1Advice1Description2Text
 	dw NULL
 
 .step1_advice2
-	tx Text055d
-	tx Text055e
+	tx DeckDiagnosisStep1Advice2Description1Text
+	tx DeckDiagnosisStep1Advice2Description2Text
 	dw NULL
 
 .step1_advice3
-	tx Text055f
-	tx Text0560
+	tx DeckDiagnosisStep1Advice3Description1Text
+	tx DeckDiagnosisStep1Advice3Description2Text
 	dw NULL
 
 .step2_advice1
-	tx Text0561
+	tx DeckDiagnosisStep2Advice1DescriptionText
 	dw NULL
 
 .step2_advice2
-	tx Text0562
+	tx DeckDiagnosisStep2Advice2DescriptionText
 	dw NULL
 
 .step2_advice3
-	tx Text0563
+	tx DeckDiagnosisStep2Advice3DescriptionText
 	dw NULL
 
 .step3_advice1
-	tx Text0564
-	tx Text0565
-	tx Text0566
-	tx Text0567
+	tx DeckDiagnosisStep3Advice1Description1Text
+	tx DeckDiagnosisStep3Advice1Description2Text
+	tx DeckDiagnosisStep3Advice1Description3Text
+	tx DeckDiagnosisStep3Advice1Description4Text
 	dw NULL
 
 .step3_advice2
-	tx Text0568
-	tx Text0569
+	tx DeckDiagnosisStep3Advice2Description1Text
+	tx DeckDiagnosisStep3Advice2Description2Text
 	dw NULL
 
 .step3_advice3
-	tx Text056a
-	tx Text056b
+	tx DeckDiagnosisStep3Advice3Description1Text
+	tx DeckDiagnosisStep3Advice3Description2Text
 	dw NULL
 
 .step4_advice1
-	tx Text056c
-	tx Text056d
-	tx Text056e
-	tx Text056f
-	tx Text0570
-	tx Text0571
+	tx DeckDiagnosisStep4Advice1Description1Text
+	tx DeckDiagnosisStep4Advice1Description2Text
+	tx DeckDiagnosisStep4Advice1Description3Text
+	tx DeckDiagnosisStep4Advice1Description4Text
+	tx DeckDiagnosisStep4Advice1Description5Text
+	tx DeckDiagnosisStep4Advice1Description6Text
 	dw NULL
 
 .step4_advice2
-	tx Text0572
-	tx Text0573
-	tx Text0574
+	tx DeckDiagnosisStep4Advice2Description1Text
+	tx DeckDiagnosisStep4Advice2Description2Text
+	tx DeckDiagnosisStep4Advice2Description3Text
 	dw NULL
 
 .step4_advice3
-	tx Text0575
-	tx Text0576
+	tx DeckDiagnosisStep4Advice3Description1Text
+	tx DeckDiagnosisStep4Advice3Description2Text
 	dw NULL
 
 .step4_advice4
-	tx Text0577
-	tx Text0578
+	tx DeckDiagnosisStep4Advice4Description1Text
+	tx DeckDiagnosisStep4Advice4Description2Text
 	dw NULL
 
 CheckDeck:
 .start
-	ldtx de, Text0553
+	ldtx de, DeckDiagnosisChooseDeckToCheckText
 	farcall Func_2bc4f
 	ret c
 	ld l, a
@@ -1965,7 +1965,7 @@ CheckDeck:
 	call .DoChecks
 
 	ldtx de, DrMasonText
-	ldtx hl, Text055a
+	ldtx hl, DeckDiagnosisCheckAnotherDeckPromptText
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 	call YesOrNoMenu
 	jr nc, .start
@@ -1973,14 +1973,14 @@ CheckDeck:
 
 .DoChecks:
 	; check has enough Basic cards
-	ldtx hl, Text0579
+	ldtx hl, DeckDiagnosisTooFewBasicPokemonText
 	ld a, [wDeckCheckBasicCount]
 	cp 12
 	jp c, .PrintDrMasonText ; < 12 Basic cards
 
 	; check color diversity
 	call .CountTypesOfPkmnCards
-	ldtx hl, Text057a
+	ldtx hl, DeckDiagnosisTooManyColorsText
 	cp 4
 	jp nc, .PrintDrMasonText ; >= 4 different types
 
@@ -1989,32 +1989,32 @@ CheckDeck:
 
 	call .CheckIfEvolutionCardsHaveTheirPreEvos
 	jr nc, .check_mismatched_evos
-	ldtx hl, Text0580
-	ldtx de, Text0581
+	ldtx hl, DeckDiagnosisEvolutionMismatchedText
+	ldtx de, DeckDiagnosisEvolutionMismatchedListText
 	jp .asm_25352
 
 .check_mismatched_evos
 	call .LookForBasicCardsWithMismatchedEvolutionCounts
 	jr nc, .check_mismatched_energy
-	ldtx hl, Text0582
-	ldtx de, Text0583
+	ldtx hl, DeckDiagnosisEvolutionUnbalancedText
+	ldtx de, DeckDiagnosisEvolutionUnbalancedListText
 	jp .asm_25352
 
 .check_mismatched_energy
 	call .CheckIfAllEnergyCardsMatchPkmnColors
 	jr c, .check_amount_energy_cards
-	ldtx hl, Text0584
-	ldtx de, Text0585
+	ldtx hl, DeckDiagnosisPokemonEnergyMismatchedText
+	ldtx de, DeckDiagnosisPokemonEnergyMismatchedListText
 	jp .asm_25352
 
 .check_amount_energy_cards
 	call .CheckEnergyAmountVsPkmnCards
 	ret c
-	ldtx hl, Text058a
+	ldtx hl, DeckDiagnosisOKText
 	ld a, [wDeckCheckTrainerCount]
 	or a
 	jr nz, .asm_2534d
-	ldtx hl, Text058b
+	ldtx hl, DeckDiagnosisOKButNoTrainerText
 .asm_2534d
 	call .PrintDrMasonText
 	or a
@@ -2063,10 +2063,10 @@ CheckDeck:
 	add [hl]
 	inc hl
 	add [hl]
-	ldtx hl, Text057c
+	ldtx hl, DeckDiagnosisTooManyPokemonText
 	cp 31
 	jr nc, .asm_25390
-	ldtx hl, Text057b
+	ldtx hl, DeckDiagnosisTooFewPokemonText
 	cp 18
 	jr nc, .asm_25393
 .asm_25390
@@ -2074,13 +2074,13 @@ CheckDeck:
 
 .asm_25393
 	ld a, [wDeckCheckEnergyCount]
-	ldtx hl, Text057f
+	ldtx hl, DeckDiagnosisNoEnergyText
 	or a
 	jr z, .asm_253aa
-	ldtx hl, Text057d
+	ldtx hl, DeckDiagnosisTooFewEnergyText
 	cp 20
 	jr c, .asm_253aa
-	ldtx hl, Text057e
+	ldtx hl, DeckDiagnosisTooManyEnergyText
 	cp 31
 	jr c, .asm_253ad
 .asm_253aa
@@ -2100,11 +2100,11 @@ CheckDeck:
 	lb bc, 20, 3
 	call DrawRegularTextBox
 	lb de, 3, 1
-	ldtx hl, Text0536
+	ldtx hl, DeckDiagnosisTargetNameText
 	call PrintTextNoDelay_Init
 	call EnableLCD
 	ldtx de, DrMasonText
-	ldtx hl, Text0554
+	ldtx hl, DeckDiagnosisCheckingDeckText
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 
 	; delays for $80 frames,
@@ -2148,10 +2148,10 @@ CheckDeck:
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	lb de, 2, 0
-	ldtx hl, Text0536
+	ldtx hl, DeckDiagnosisTargetNameText
 	call Func_2c4b
 	lb de, 2, 2
-	ldtx hl, Text0537
+	ldtx hl, DeckDiagnosisBreakdownText
 	call PrintTextNoDelay_Init
 
 	ld hl, wcd2b
@@ -2178,7 +2178,7 @@ CheckDeck:
 	jr nz, .loop_counts
 	call EnableLCD
 	ldtx de, DrMasonText
-	ldtx hl, Text0555
+	ldtx hl, DeckDiagnosisCheckedDeckText
 	call PrintScrollableText_WithTextBoxLabel
 	ret
 
@@ -2670,7 +2670,7 @@ CheckDeck:
 	jr z, .asm_256f4
 	jr c, .asm_256f4
 	; total Pkmn cards > wcd4b + total energy
-	ldtx hl, Text0586
+	ldtx hl, DeckDiagnosisPokemonEnergyUnbalancedText
 	call .PrintDrMasonText
 
 .asm_256f4
@@ -2687,11 +2687,11 @@ CheckDeck:
 	bit 7, a
 	jr nz, .negative
 	; surplus of energy cards
-	ldtx hl, Text0587
+	ldtx hl, DeckDiagnosisTooManyEnergyThisColorText
 	jr .get_energy_name
 .negative
 	; not enough energy cards
-	ldtx hl, Text0588
+	ldtx hl, DeckDiagnosisTooFewEnergyThisColorText
 
 .get_energy_name
 	push hl
@@ -2715,7 +2715,7 @@ CheckDeck:
 	ld a, [wcd4e]
 	or a
 	jr nz, .asm_25733
-	ldtx hl, Text058c
+	ldtx hl, DeckDiagnosisEnergyUnbalancedText
 	call .PrintDrMasonText
 .asm_25733
 	pop hl
@@ -2733,12 +2733,12 @@ CheckDeck:
 	ret
 
 .TypeTextIDs:
-	tx Text053b ; FIRE
-	tx Text0538 ; GRASS
-	tx Text053a ; LIGHTNING
-	tx Text0539 ; WATER
-	tx Text053c ; FIGHTING
-	tx Text053d ; PSYCHIC
+	tx DeckDiagnosisFireText
+	tx DeckDiagnosisGrassText
+	tx DeckDiagnosisLightningText
+	tx DeckDiagnosisWaterText
+	tx DeckDiagnosisFightingText
+	tx DeckDiagnosisPsychicText
 
 .CalculateEnergySurplus:
 	; divide colorless card counts
