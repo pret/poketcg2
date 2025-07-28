@@ -1541,39 +1541,39 @@ TextOffsets::
 	textpointer GiftCenterPressStartWhenReadyText                     ; 0x05fc
 	textpointer GiftCenterTransmissionErrorTryAgainText               ; 0x05fd
 	textpointer DebugBackgroundCoinDisplayText                        ; 0x05fe
-	textpointer Text05ff                                           ; 0x05ff
-	textpointer Text0600                                           ; 0x0600
-	textpointer Text0601                                           ; 0x0601
-	textpointer Text0602                                           ; 0x0602
-	textpointer Text0603                                           ; 0x0603
-	textpointer Text0604                                           ; 0x0604
-	textpointer Text0605                                           ; 0x0605
-	textpointer Text0606                                           ; 0x0606
-	textpointer Text0607                                           ; 0x0607
-	textpointer Text0608                                           ; 0x0608
-	textpointer Text0609                                           ; 0x0609
-	textpointer Text060a                                           ; 0x060a
-	textpointer Text060b                                           ; 0x060b
-	textpointer Text060c                                           ; 0x060c
-	textpointer Text060d                                           ; 0x060d
-	textpointer Text060e                                           ; 0x060e
-	textpointer Text060f                                           ; 0x060f
-	textpointer Text0610                                           ; 0x0610
-	textpointer Text0611                                           ; 0x0611
-	textpointer Text0612                                           ; 0x0612
-	textpointer Text0613                                           ; 0x0613
-	textpointer Text0614                                           ; 0x0614
-	textpointer Text0615                                           ; 0x0615
-	textpointer Text0616                                           ; 0x0616
-	textpointer Text0617                                           ; 0x0617
-	textpointer Text0618                                           ; 0x0618
-	textpointer Text0619                                           ; 0x0619
-	textpointer Text061a                                           ; 0x061a
-	textpointer Text061b                                           ; 0x061b
-	textpointer Text061c                                           ; 0x061c
-	textpointer Text061d                                           ; 0x061d
-	textpointer Text061e                                           ; 0x061e
-	textpointer Text061f                                           ; 0x061f
+	textpointer Text05ff                                              ; 0x05ff
+	textpointer PlayerCoinSelectText                                  ; 0x0600
+	textpointer ChanseyCoinText                                       ; 0x0601
+	textpointer GrassCoinText                                         ; 0x0602
+	textpointer FireCoinText                                          ; 0x0603
+	textpointer WaterCoinText                                         ; 0x0604
+	textpointer LightningCoinText                                     ; 0x0605
+	textpointer PsychicCoinText                                       ; 0x0606
+	textpointer RockCoinText                                          ; 0x0607
+	textpointer GRCoinText                                            ; 0x0608
+	textpointer GRGrassCoinText                                       ; 0x0609
+	textpointer GRLightningCoinText                                   ; 0x060a
+	textpointer GRFireCoinText                                        ; 0x060b
+	textpointer GRWaterCoinText                                       ; 0x060c
+	textpointer GRFightingCoinText                                    ; 0x060d
+	textpointer GRPsychicCoinText                                     ; 0x060e
+	textpointer GRColorlessCoinText                                   ; 0x060f
+	textpointer GRKingCoinText                                        ; 0x0610
+	textpointer PonytaCoinText                                        ; 0x0611
+	textpointer HorseaCoinText                                        ; 0x0612
+	textpointer ArbokCoinText                                         ; 0x0613
+	textpointer JigglypuffCoinText                                    ; 0x0614
+	textpointer DugtrioCoinText                                       ; 0x0615
+	textpointer GengarCoinText                                        ; 0x0616
+	textpointer RaichuCoinText                                        ; 0x0617
+	textpointer LugiaCoinText                                         ; 0x0618
+	textpointer GRCoinPiece1Text                                      ; 0x0619
+	textpointer GRCoinPiece2Text                                      ; 0x061a
+	textpointer GRCoinPiece3Text                                      ; 0x061b
+	textpointer GRCoinPiece4Text                                      ; 0x061c
+	textpointer EventCoinPage1Text                                    ; 0x061d
+	textpointer EventCoinPage2Text                                    ; 0x061e
+	textpointer EventCoinPage3Text                                    ; 0x061f
 	textpointer DebugEffectViewerText                                 ; 0x0620
 	textpointer DebugEffectViewerLeftToRightText                      ; 0x0621
 	textpointer DebugEffectViewerRightToLeftText                      ; 0x0622
@@ -1586,8 +1586,8 @@ TextOffsets::
 	textpointer DebugEffectViewerStopStateText                        ; 0x0629
 	textpointer DebugMikamiProgText                                   ; 0x062a
 	textpointer DebugPowerOnText                                      ; 0x062b
-	textpointer Text062c                                           ; 0x062c
-	textpointer Text062d                                           ; 0x062d
+	textpointer ObtainedCoinText                                      ; 0x062c
+	textpointer ObtainedCoinTotalNumberText                           ; 0x062d
 	textpointer Text062e                                           ; 0x062e
 	textpointer Text062f                                           ; 0x062f
 	textpointer Text0630                                           ; 0x0630

@@ -465,131 +465,131 @@ Text05ff:
 	textfw " "
 	done
 
-Text0600:
+PlayerCoinSelectText:
 	textfw "つかうコインを えらんでください"
 	done
 
-Text0601:
+ChanseyCoinText:
 	textfw "ラッキーコイン"
 	done
 
-Text0602:
+GrassCoinText:
 	textfw "グリーンコイン"
 	done
 
-Text0603:
+FireCoinText:
 	textfw "ファイアコイン"
 	done
 
-Text0604:
+WaterCoinText:
 	textfw "アクアコイン"
 	done
 
-Text0605:
+LightningCoinText:
 	textfw "エレキコイン"
 	done
 
-Text0606:
+PsychicCoinText:
 	textfw "エスパーコイン"
 	done
 
-Text0607:
+RockCoinText:
 	textfw "ストーンコイン"
 	done
 
-Text0608:
+GRCoinText:
 	textfw "GRコイン"
 	done
 
-Text0609:
+GRGrassCoinText:
 	textfw "草のGR団コイン"
 	done
 
-Text060a:
+GRLightningCoinText:
 	textfw "雷のGR団コイン"
 	done
 
-Text060b:
+GRFireCoinText:
 	textfw "炎のGR団コイン"
 	done
 
-Text060c:
+GRWaterCoinText:
 	textfw "水のGR団コイン"
 	done
 
-Text060d:
+GRFightingCoinText:
 	textfw "闘のGR団コイン"
 	done
 
-Text060e:
+GRPsychicCoinText:
 	textfw "超のGR団コイン"
 	done
 
-Text060f:
+GRColorlessCoinText:
 	textfw "無のGR団コイン"
 	done
 
-Text0610:
+GRKingCoinText:
 	textfw "GR団キングコイン"
 	done
 
-Text0611:
+PonytaCoinText:
 	textfw "ポニータコイン"
 	done
 
-Text0612:
+HorseaCoinText:
 	textfw "タッツーコイン"
 	done
 
-Text0613:
+ArbokCoinText:
 	textfw "アーボックコイン"
 	done
 
-Text0614:
+JigglypuffCoinText:
 	textfw "プリンコイン"
 	done
 
-Text0615:
+DugtrioCoinText:
 	textfw "ダグトリオコイン"
 	done
 
-Text0616:
+GengarCoinText:
 	textfw "ゲンガーコイン"
 	done
 
-Text0617:
+RaichuCoinText:
 	textfw "ライチュウコイン"
 	done
 
-Text0618:
+LugiaCoinText:
 	textfw "ルギアコイン"
 	done
 
-Text0619:
+GRCoinPiece1Text:
 	textfw "GRコインのカケラ1"
 	done
 
-Text061a:
+GRCoinPiece2Text:
 	textfw "GRコインのカケラ2"
 	done
 
-Text061b:
+GRCoinPiece3Text:
 	textfw "GRコインのカケラ3"
 	done
 
-Text061c:
+GRCoinPiece4Text:
 	textfw "GRコインのカケラ4"
 	done
 
-Text061d:
+EventCoinPage1Text:
 	textfw "イベントコイン1"
 	done
 
-Text061e:
+EventCoinPage2Text:
 	textfw "イベントコイン2"
 	done
 
-Text061f:
+EventCoinPage3Text:
 	textfw "イベントコイン3"
 	done
 
@@ -641,12 +641,12 @@ DebugPowerOnText:
 	textfw "パワーオン"
 	done
 
-Text062c:
+ObtainedCoinText:
 	textfw "「<RAMTEXT>」を"
 	linefw "ゲットしました!"
 	done
 
-Text062d:
+ObtainedCoinTotalNumberText:
 	textfw "ごうけい<RAMNUM>枚めの コインです!"
 	done
 
