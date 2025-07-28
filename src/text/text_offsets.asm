@@ -1600,7 +1600,7 @@ TextOffsets::
 	textpointer Text0637                                           ; 0x0637
 	textpointer Text0638                                           ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
-	textpointer Text063a                                           ; 0x063a
+	textpointer DuelHiraganaText                                      ; 0x063a
 	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b
 	textpointer SpecialRuleChlorophyllDescriptionText                 ; 0x063c
 	textpointer SpecialRuleThunderChargeTitleText                     ; 0x063d
@@ -1621,48 +1621,48 @@ TextOffsets::
 	textpointer SpecialRuleToughEscapeDescriptionText                 ; 0x064c
 	textpointer SpecialRuleBlackHoleTitleText                         ; 0x064d
 	textpointer SpecialRuleBlackHoleDescriptionText                   ; 0x064e
-	textpointer Text064f                                           ; 0x064f
-	textpointer Text0650                                           ; 0x0650
-	textpointer Text0651                                           ; 0x0651
-	textpointer Text0652                                           ; 0x0652
-	textpointer Text0653                                           ; 0x0653
-	textpointer Text0654                                           ; 0x0654
-	textpointer Text0655                                           ; 0x0655
-	textpointer Text0656                                           ; 0x0656
-	textpointer Text0657                                           ; 0x0657
-	textpointer Text0658                                           ; 0x0658
-	textpointer Text0659                                           ; 0x0659
-	textpointer Text065a                                           ; 0x065a
-	textpointer Text065b                                           ; 0x065b
-	textpointer Text065c                                           ; 0x065c
-	textpointer Text065d                                           ; 0x065d
-	textpointer Text065e                                           ; 0x065e
-	textpointer Text065f                                           ; 0x065f
-	textpointer Text0660                                           ; 0x0660
-	textpointer Text0661                                           ; 0x0661
-	textpointer Text0662                                           ; 0x0662
-	textpointer Text0663                                           ; 0x0663
-	textpointer Text0664                                           ; 0x0664
-	textpointer Text0665                                           ; 0x0665
-	textpointer Text0666                                           ; 0x0666
-	textpointer Text0667                                           ; 0x0667
-	textpointer Text0668                                           ; 0x0668
-	textpointer Text0669                                           ; 0x0669
-	textpointer Text066a                                           ; 0x066a
-	textpointer Text066b                                           ; 0x066b
-	textpointer Text066c                                           ; 0x066c
-	textpointer Text066d                                           ; 0x066d
-	textpointer Text066e                                           ; 0x066e
-	textpointer Text066f                                           ; 0x066f
-	textpointer Text0670                                           ; 0x0670
-	textpointer Text0671                                           ; 0x0671
-	textpointer Text0672                                           ; 0x0672
-	textpointer Text0673                                           ; 0x0673
-	textpointer Text0674                                           ; 0x0674
-	textpointer Text0675                                           ; 0x0675
-	textpointer Text0676                                           ; 0x0676
-	textpointer Text0677                                           ; 0x0677
-	textpointer Text0678                                           ; 0x0678
+	textpointer MainCharacterText                                     ; 0x064f
+	textpointer TechText                                              ; 0x0650
+	textpointer DuelistIntroLightningClubMemberText                   ; 0x0651
+	textpointer DuelistIntroPsychicClubMemberText                     ; 0x0652
+	textpointer DuelistIntroRockClubMemberText                        ; 0x0653
+	textpointer DuelistIntroFightingClubMemberText                    ; 0x0654
+	textpointer DuelistIntroGrassClubMemberText                       ; 0x0655
+	textpointer DuelistIntroScienceClubMemberText                     ; 0x0656
+	textpointer DuelistIntroWaterClubMemberText                       ; 0x0657
+	textpointer DuelistIntroFireClubMemberText                        ; 0x0658
+	textpointer DuelistIntroLightingClubMasterText                    ; 0x0659
+	textpointer DuelistIntroPsychicClubMasterText                     ; 0x065a
+	textpointer DuelistIntroRockClubMasterText                        ; 0x065b
+	textpointer DuelistIntroFightingClubMasterText                    ; 0x065c
+	textpointer DuelistIntroGrassClubMasterText                       ; 0x065d
+	textpointer DuelistIntroScienceClubMasterText                     ; 0x065e
+	textpointer DuelistIntroWaterClubMasterText                       ; 0x065f
+	textpointer DuelistIntroFireClubMasterText                        ; 0x0660
+	textpointer DuelistIntroGrandMasterText                           ; 0x0661
+	textpointer DuelistIntroTechText                                  ; 0x0662
+	textpointer DuelistIntroStrangeLifeFormText                       ; 0x0663
+	textpointer DuelistIntroCollectorText                             ; 0x0664
+	textpointer DuelistIntroRivalText                                 ; 0x0665
+	textpointer DuelistIntroEnigmaticMaskText                         ; 0x0666
+	textpointer DuelistIntroGRGrassFortMemberText                     ; 0x0667
+	textpointer DuelistIntroGRLightningFortMemberText                 ; 0x0668
+	textpointer DuelistIntroGRFireFortMemberText                      ; 0x0669
+	textpointer DuelistIntroGRWaterFortMemberText                     ; 0x066a
+	textpointer DuelistIntroGRFightingFortMemberText                  ; 0x066b
+	textpointer DuelistIntroGRPsychicFortMemberText                   ; 0x066c
+	textpointer DuelistIntroGRGrassFortLeaderText                     ; 0x066d
+	textpointer DuelistIntroGRLightningFortLeaderText                 ; 0x066e
+	textpointer DuelistIntroGRFireFortLeaderText                      ; 0x066f
+	textpointer DuelistIntroGRWaterFortLeaderText                     ; 0x0670
+	textpointer DuelistIntroGRFightingFortLeaderText                  ; 0x0671
+	textpointer DuelistIntroGRPsychicFortLeaderText                   ; 0x0672
+	textpointer DuelistIntroColorlessAltarGuardianText                ; 0x0673
+	textpointer DuelistIntroGRBigBossText                             ; 0x0674
+	textpointer DuelistIntroGRKingText                                ; 0x0675
+	textpointer DuelistIntroUntitledText                              ; 0x0676
+	textpointer DuelistIntroDungeonMasterText                         ; 0x0677
+	textpointer DuelistIntroGhostMasterText                           ; 0x0678
 	textpointer Text0679                                           ; 0x0679
 	textpointer Text067a                                           ; 0x067a
 	textpointer Text067b                                           ; 0x067b

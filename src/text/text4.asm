@@ -708,7 +708,7 @@ GameCenterPrizeExchangeText:
 	textfw "けいひんカウンター"
 	done
 
-Text063a:
+DuelHiraganaText:
 	textfw "たいせん"
 	done
 
@@ -819,210 +819,210 @@ SpecialRuleBlackHoleDescriptionText:
 	linefw " ない状態になっている)"
 	done
 
-Text064f:
+MainCharacterText:
 	textfw "主人公"
 	done
 
-Text0650:
+TechText:
 	textfw "研究員"
 	done
 
-Text0651:
+DuelistIntroLightningClubMemberText:
 	textfw "エレキクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0652:
+DuelistIntroPsychicClubMemberText:
 	textfw "エスパークラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0653:
+DuelistIntroRockClubMemberText:
 	textfw "ストーンクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0654:
+DuelistIntroFightingClubMemberText:
 	textfw "バトルクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0655:
+DuelistIntroGrassClubMemberText:
 	textfw "グリーンクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0656:
+DuelistIntroScienceClubMemberText:
 	textfw "サイエンスクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0657:
+DuelistIntroWaterClubMemberText:
 	textfw "アクアクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0658:
+DuelistIntroFireClubMemberText:
 	textfw "ファイアクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0659:
+DuelistIntroLightingClubMasterText:
 	textfw "エレキクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065a:
+DuelistIntroPsychicClubMasterText:
 	textfw "エスパークラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065b:
+DuelistIntroRockClubMasterText:
 	textfw "ストーンクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065c:
+DuelistIntroFightingClubMasterText:
 	textfw "バトルクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065d:
+DuelistIntroGrassClubMasterText:
 	textfw "グリーンクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065e:
+DuelistIntroScienceClubMasterText:
 	textfw "サイエンスクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065f:
+DuelistIntroWaterClubMasterText:
 	textfw "アクアクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0660:
+DuelistIntroFireClubMasterText:
 	textfw "ファイアクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0661:
+DuelistIntroGrandMasterText:
 	textfw "グランドマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0662:
+DuelistIntroTechText:
 	textfw "研究員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0663:
+DuelistIntroStrangeLifeFormText:
 	textfw "ふしぎないきもの <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0664:
+DuelistIntroCollectorText:
 	textfw "コレクター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0665:
+DuelistIntroRivalText:
 	textfw "ライバル <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0666:
+DuelistIntroEnigmaticMaskText:
 	textfw "ナゾのかめん <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0667:
+DuelistIntroGRGrassFortMemberText:
 	textfw "草のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0668:
+DuelistIntroGRLightningFortMemberText:
 	textfw "雷のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0669:
+DuelistIntroGRFireFortMemberText:
 	textfw "炎のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066a:
+DuelistIntroGRWaterFortMemberText:
 	textfw "水のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066b:
+DuelistIntroGRFightingFortMemberText:
 	textfw "闘のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066c:
+DuelistIntroGRPsychicFortMemberText:
 	textfw "超のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066d:
+DuelistIntroGRGrassFortLeaderText:
 	textfw "草のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066e:
+DuelistIntroGRLightningFortLeaderText:
 	textfw "雷のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066f:
+DuelistIntroGRFireFortLeaderText:
 	textfw "炎のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0670:
+DuelistIntroGRWaterFortLeaderText:
 	textfw "水のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0671:
+DuelistIntroGRFightingFortLeaderText:
 	textfw "闘のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0672:
+DuelistIntroGRPsychicFortLeaderText:
 	textfw "超のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0673:
+DuelistIntroColorlessAltarGuardianText:
 	textfw "無のばんにん <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0674:
+DuelistIntroGRBigBossText:
 	textfw "GR団 大かんぶ <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0675:
+DuelistIntroGRKingText:
 	textfw "GR団 キング <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0676:
+DuelistIntroUntitledText:
 	textfw "<RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0677:
+DuelistIntroDungeonMasterText:
 	textfw "ダンジョンマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0678:
+DuelistIntroGhostMasterText:
 	textfw "ゴーストカードマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
