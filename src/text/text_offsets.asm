@@ -1892,10 +1892,10 @@ TextOffsets::
 	textpointer Text075b                                           ; 0x075b
 	textpointer Text075c                                           ; 0x075c
 	textpointer Text075d                                           ; 0x075d
-	textpointer Text075e                                           ; 0x075e
-	textpointer Text075f                                           ; 0x075f
-	textpointer Text0760                                           ; 0x0760
-	textpointer Text0761                                           ; 0x0761
+	textpointer MainMenuNewGameInsteadOfContinueWarning1Text          ; 0x075e
+	textpointer MainMenuNewGameInsteadOfContinueWarning2Text          ; 0x075f
+	textpointer MainMenuNewGameInsteadOfContinueConfirmPromptText     ; 0x0760
+	textpointer MainMenuNewGameInsteadOfContinueDeletedText           ; 0x0761
 	textpointer PrologueScene1Line1Text                               ; 0x0762
 	textpointer PrologueScene1Line2Text                               ; 0x0763
 	textpointer PrologueScene1Line3Text                               ; 0x0764

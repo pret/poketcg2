@@ -1967,12 +1967,12 @@ AskToOverwriteSaveData:
 	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
-	ldtx hl, Text0760
+	ldtx hl, MainMenuNewGameInsteadOfContinueConfirmPromptText
 	ld a, $1 ; "no" selected by default
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .fade_out
 	farcall Func_e97a
-	ldtx hl, Text0761
+	ldtx hl, MainMenuNewGameInsteadOfContinueDeletedText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 .fade_out
 	call StartFadeToWhite
@@ -1984,8 +1984,8 @@ AskToOverwriteSaveData:
 	ret
 
 .TextIDs:
-	tx Text075e
-	tx Text075f
+	tx MainMenuNewGameInsteadOfContinueWarning1Text
+	tx MainMenuNewGameInsteadOfContinueWarning2Text
 	dw $ffff
 
 ; return carry if "no" selected

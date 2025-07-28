@@ -2365,20 +2365,20 @@ Text075d:
 	linefw "おたのしみに!"
 	done
 
-Text075e:
+MainMenuNewGameInsteadOfContinueWarning1Text:
 	textfw "すでに セーブデータがあります"
 	done
 
-Text075f:
+MainMenuNewGameInsteadOfContinueWarning2Text:
 	textfw "このまま はじめると"
 	linefw "すべてのカードを うしないます"
 	done
 
-Text0760:
+MainMenuNewGameInsteadOfContinueConfirmPromptText:
 	textfw "それでも よろしいですか?"
 	done
 
-Text0761:
+MainMenuNewGameInsteadOfContinueDeletedText:
 	textfw "すべてのデータをさくじょしました"
 	done
 
