@@ -650,7 +650,7 @@ ObtainedCoinTotalNumberText:
 	textfw "ごうけい<RAMNUM>枚めの コインです!"
 	done
 
-Text062e:
+DebugSlotMachineText:
 	textfw "スロットマシン"
 	done
 
@@ -708,7 +708,7 @@ GameCenterPrizeExchangeText:
 	textfw "けいひんカウンター"
 	done
 
-DuelHiraganaText:
+DebugDuelText:
 	textfw "たいせん"
 	done
 
@@ -1157,15 +1157,15 @@ Text0697:
 	linefw "はずれてしまいました"
 	done
 
-Text0698:
+DebugAdjustChipsText:
 	textfw "しょじきんへんこう"
 	done
 
-Text0699:
+DebugImageListText:
 	textfw "イメージ一覽"
 	done
 
-Text069a:
+DebugUnregisteredText:
 	textfw "未登錄"
 	done
 
@@ -2195,7 +2195,7 @@ Text0738:
 	textfw "○"
 	done
 
-Text0739:
+DebugSendMailText:
 	textfw "メール送信"
 	done
 
@@ -2292,7 +2292,7 @@ DebugPlayerGenderSelectionScreenText:
 	textfw "性別選択画面"
 	done
 
-Text0751:
+DebugStartMenuText:
 	textfw "スタートメニュー"
 	done
 
@@ -2663,7 +2663,7 @@ Text07a1:
 	textfw "チップ<RAMNUM>枚"
 	done
 
-Text07a2:
+IncompleteText_2:
 	textfw "未完成"
 	done
 
@@ -2691,7 +2691,7 @@ Text07a7:
 	textfw "<RAMNUM>"
 	done
 
-CreditsTitleText:
+DebugCreditsText:
 	textfw "スタッフロール"
 	done
 
@@ -3026,15 +3026,15 @@ CreditsToBeContinuedText:
 	textfw "TO BE CONTINUED"
 	done
 
-Text07f2:
+DebugNameEntryText:
 	textfw "なまえにゅうりょく"
 	done
 
-Text07f3:
+PleasePressAText:
 	textfw "Aボタンを押してください"
 	done
 
-Text07f4:
+AttendantText:
 	textfw "かかりいん"
 	done
 

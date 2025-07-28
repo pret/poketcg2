@@ -1588,7 +1588,7 @@ TextOffsets::
 	textpointer DebugPowerOnText                                      ; 0x062b
 	textpointer ObtainedCoinText                                      ; 0x062c
 	textpointer ObtainedCoinTotalNumberText                           ; 0x062d
-	textpointer Text062e                                           ; 0x062e
+	textpointer DebugSlotMachineText                                  ; 0x062e
 	textpointer Text062f                                           ; 0x062f
 	textpointer Text0630                                           ; 0x0630
 	textpointer Text0631                                           ; 0x0631
@@ -1600,7 +1600,7 @@ TextOffsets::
 	textpointer Text0637                                           ; 0x0637
 	textpointer Text0638                                           ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
-	textpointer DuelHiraganaText                                      ; 0x063a
+	textpointer DebugDuelText                                         ; 0x063a
 	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b
 	textpointer SpecialRuleChlorophyllDescriptionText                 ; 0x063c
 	textpointer SpecialRuleThunderChargeTitleText                     ; 0x063d
@@ -1694,9 +1694,9 @@ TextOffsets::
 	textpointer Text0695                                           ; 0x0695
 	textpointer Text0696                                           ; 0x0696
 	textpointer Text0697                                           ; 0x0697
-	textpointer Text0698                                           ; 0x0698
-	textpointer Text0699                                           ; 0x0699
-	textpointer Text069a                                           ; 0x069a
+	textpointer DebugAdjustChipsText                                  ; 0x0698
+	textpointer DebugImageListText                                    ; 0x0699
+	textpointer DebugUnregisteredText                                 ; 0x069a
 	textpointer Text069b                                           ; 0x069b
 	textpointer Text069c                                           ; 0x069c
 	textpointer Text069d                                           ; 0x069d
@@ -1855,7 +1855,7 @@ TextOffsets::
 	textpointer Text0736                                           ; 0x0736
 	textpointer Text0737                                           ; 0x0737
 	textpointer Text0738                                           ; 0x0738
-	textpointer Text0739                                           ; 0x0739
+	textpointer DebugSendMailText                                     ; 0x0739
 	textpointer Text073a                                           ; 0x073a
 	textpointer Text073b                                           ; 0x073b
 	textpointer Text073c                                           ; 0x073c
@@ -1879,7 +1879,7 @@ TextOffsets::
 	textpointer Text074e                                           ; 0x074e
 	textpointer DebugTitleScreenTentativeText                         ; 0x074f
 	textpointer DebugPlayerGenderSelectionScreenText                  ; 0x0750
-	textpointer Text0751                                           ; 0x0751
+	textpointer DebugStartMenuText                                    ; 0x0751
 	textpointer Text0752                                           ; 0x0752
 	textpointer Text0753                                           ; 0x0753
 	textpointer Text0754                                           ; 0x0754
@@ -1960,13 +1960,13 @@ TextOffsets::
 	textpointer Text079f                                           ; 0x079f
 	textpointer Text07a0                                           ; 0x07a0
 	textpointer Text07a1                                           ; 0x07a1
-	textpointer Text07a2                                           ; 0x07a2
+	textpointer IncompleteText_2                                      ; 0x07a2
 	textpointer Text07a3                                           ; 0x07a3
 	textpointer Text07a4                                           ; 0x07a4
 	textpointer Text07a5                                           ; 0x07a5
 	textpointer Text07a6                                           ; 0x07a6
 	textpointer Text07a7                                           ; 0x07a7
-	textpointer CreditsTitleText                                      ; 0x07a8
+	textpointer DebugCreditsText                                      ; 0x07a8
 	textpointer CreditsStaffText                                      ; 0x07a9
 	textpointer CreditsProducersText                                  ; 0x07aa
 	textpointer CreditsProducersListText                              ; 0x07ab
@@ -2040,9 +2040,9 @@ TextOffsets::
 	textpointer CreditsGameProductionText                             ; 0x07ef
 	textpointer CreditsGameProductionListText                         ; 0x07f0
 	textpointer CreditsToBeContinuedText                              ; 0x07f1
-	textpointer Text07f2                                           ; 0x07f2
-	textpointer Text07f3                                           ; 0x07f3
-	textpointer Text07f4                                           ; 0x07f4
+	textpointer DebugNameEntryText                                    ; 0x07f2
+	textpointer PleasePressAText                                      ; 0x07f3
+	textpointer AttendantText                                         ; 0x07f4
 	textpointer DebugClearMailText                                    ; 0x07f5
 	textpointer ObtainedGRCoinPieceTotalNumberText                    ; 0x07f6
 	textpointer Text07f7                                           ; 0x07f7
