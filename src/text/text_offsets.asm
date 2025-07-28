@@ -1430,86 +1430,86 @@ TextOffsets::
 	textpointer DebugDummyText                                        ; 0x058d
 	textpointer DebugKondoDebugText                                   ; 0x058e
 	textpointer DebugMapDisplayTestText                               ; 0x058f
-	textpointer Text0590                                           ; 0x0590
-	textpointer Text0591                                           ; 0x0591
-	textpointer Text0592                                           ; 0x0592
-	textpointer Text0593                                           ; 0x0593
-	textpointer Text0594                                           ; 0x0594
-	textpointer Text0595                                           ; 0x0595
-	textpointer Text0596                                           ; 0x0596
-	textpointer Text0597                                           ; 0x0597
-	textpointer Text0598                                           ; 0x0598
-	textpointer Text0599                                           ; 0x0599
-	textpointer Text059a                                           ; 0x059a
-	textpointer Text059b                                           ; 0x059b
-	textpointer Text059c                                           ; 0x059c
-	textpointer Text059d                                           ; 0x059d
-	textpointer Text059e                                           ; 0x059e
-	textpointer Text059f                                           ; 0x059f
-	textpointer Text05a0                                           ; 0x05a0
-	textpointer Text05a1                                           ; 0x05a1
-	textpointer Text05a2                                           ; 0x05a2
-	textpointer Text05a3                                           ; 0x05a3
-	textpointer Text05a4                                           ; 0x05a4
-	textpointer Text05a5                                           ; 0x05a5
-	textpointer Text05a6                                           ; 0x05a6
-	textpointer Text05a7                                           ; 0x05a7
-	textpointer Text05a8                                           ; 0x05a8
-	textpointer Text05a9                                           ; 0x05a9
-	textpointer Text05aa                                           ; 0x05aa
-	textpointer Text05ab                                           ; 0x05ab
-	textpointer Text05ac                                           ; 0x05ac
-	textpointer Text05ad                                           ; 0x05ad
-	textpointer Text05ae                                           ; 0x05ae
-	textpointer Text05af                                           ; 0x05af
-	textpointer Text05b0                                           ; 0x05b0
-	textpointer Text05b1                                           ; 0x05b1
-	textpointer Text05b2                                           ; 0x05b2
-	textpointer Text05b3                                           ; 0x05b3
-	textpointer Text05b4                                           ; 0x05b4
-	textpointer Text05b5                                           ; 0x05b5
-	textpointer Text05b6                                           ; 0x05b6
-	textpointer Text05b7                                           ; 0x05b7
-	textpointer Text05b8                                           ; 0x05b8
-	textpointer Text05b9                                           ; 0x05b9
-	textpointer Text05ba                                           ; 0x05ba
-	textpointer Text05bb                                           ; 0x05bb
-	textpointer Text05bc                                           ; 0x05bc
-	textpointer Text05bd                                           ; 0x05bd
-	textpointer Text05be                                           ; 0x05be
-	textpointer Text05bf                                           ; 0x05bf
-	textpointer Text05c0                                           ; 0x05c0
-	textpointer Text05c1                                           ; 0x05c1
-	textpointer Text05c2                                           ; 0x05c2
-	textpointer Text05c3                                           ; 0x05c3
-	textpointer Text05c4                                           ; 0x05c4
-	textpointer Text05c5                                           ; 0x05c5
-	textpointer Text05c6                                           ; 0x05c6
-	textpointer Text05c7                                           ; 0x05c7
-	textpointer Text05c8                                           ; 0x05c8
-	textpointer Text05c9                                           ; 0x05c9
-	textpointer Text05ca                                           ; 0x05ca
-	textpointer Text05cb                                           ; 0x05cb
-	textpointer Text05cc                                           ; 0x05cc
-	textpointer Text05cd                                           ; 0x05cd
-	textpointer Text05ce                                           ; 0x05ce
-	textpointer Text05cf                                           ; 0x05cf
-	textpointer Text05d0                                           ; 0x05d0
-	textpointer Text05d1                                           ; 0x05d1
-	textpointer Text05d2                                           ; 0x05d2
-	textpointer Text05d3                                           ; 0x05d3
-	textpointer Text05d4                                           ; 0x05d4
-	textpointer Text05d5                                           ; 0x05d5
-	textpointer Text05d6                                           ; 0x05d6
-	textpointer Text05d7                                           ; 0x05d7
-	textpointer Text05d8                                           ; 0x05d8
-	textpointer Text05d9                                           ; 0x05d9
-	textpointer Text05da                                           ; 0x05da
-	textpointer Text05db                                           ; 0x05db
-	textpointer Text05dc                                           ; 0x05dc
-	textpointer Text05dd                                           ; 0x05dd
-	textpointer Text05de                                           ; 0x05de
-	textpointer Text05df                                           ; 0x05df
+	textpointer DebugCharacterDisplayTestText                         ; 0x0590
+	textpointer DebugYoshidaTestText                                  ; 0x0591
+	textpointer DebugGameMainText                                     ; 0x0592
+	textpointer DebugReserveText                                      ; 0x0593
+	textpointer DebugReturnToMainText                                 ; 0x0594
+	textpointer PauseMenuStatusText                                   ; 0x0595
+	textpointer PauseMenuDiaryText                                    ; 0x0596
+	textpointer PauseMenuDeckText                                     ; 0x0597
+	textpointer PauseMenuMinicomText                                  ; 0x0598
+	textpointer PauseMenuCoinText                                     ; 0x0599
+	textpointer PauseMenuConfigText                                   ; 0x059a
+	textpointer PauseMenuExitText                                     ; 0x059b
+	textpointer ConfigTitleText                                       ; 0x059c
+	textpointer ConfigMessageSpeedText                                ; 0x059d
+	textpointer ConfigDuelAnimationText                               ; 0x059e
+	textpointer ConfigCoinAnimationText                               ; 0x059f
+	textpointer ConfigExitText                                        ; 0x05a0
+	textpointer ConfigMessageSpeedSlowLabelText                       ; 0x05a1
+	textpointer ConfigMessageSpeedFastLabelText                       ; 0x05a2
+	textpointer CardCountSeparatorText                                ; 0x05a3
+	textpointer ConfigMessageSpeed1Text                               ; 0x05a4
+	textpointer ConfigMessageSpeed2Text                               ; 0x05a5
+	textpointer ConfigMessageSpeed3Text                               ; 0x05a6
+	textpointer ConfigMessageSpeed4Text                               ; 0x05a7
+	textpointer ConfigMessageSpeed5Text                               ; 0x05a8
+	textpointer ConfigAnimationShowAllText                            ; 0x05a9
+	textpointer ConfigAnimationSkipSomeText                           ; 0x05aa
+	textpointer ConfigAnimationNoneText                               ; 0x05ab
+	textpointer PlayerDiaryTitleText                                  ; 0x05ac
+	textpointer PlayerDiaryNameText                                   ; 0x05ad
+	textpointer PlayerStatusEventCoinTitleText                        ; 0x05ae
+	textpointer PlayerDiaryEventCoinText                              ; 0x05af
+	textpointer PlayerDiaryAlbumText                                  ; 0x05b0
+	textpointer PlayerDiaryPlayTimeText                               ; 0x05b1
+	textpointer PlayerDiaryPromptText                                 ; 0x05b2
+	textpointer PlayerDiaryPromptYesText                              ; 0x05b3
+	textpointer PlayerDiaryPromptNoText                               ; 0x05b4
+	textpointer PlayerStatusCurrentCoinText                           ; 0x05b5
+	textpointer PlayerStatusGRCoinText                                ; 0x05b6
+	textpointer PCMenuCardAlbumText                                   ; 0x05b7
+	textpointer PCMenuReadMailText                                    ; 0x05b8
+	textpointer PCMenuGlossaryText                                    ; 0x05b9
+	textpointer PCMenuPrintText                                       ; 0x05ba
+	textpointer TurnedOnPCText                                        ; 0x05bb
+	textpointer TurnedOffPCText                                       ; 0x05bc
+	textpointer PCMenuShutDowntText                                   ; 0x05bd
+	textpointer RAMNAMEText                                           ; 0x05be
+	textpointer DebugMenuDebugText                                    ; 0x05bf
+	textpointer DebugGotCardsText                                     ; 0x05c0
+	textpointer DebugBackgroundFontStateText                          ; 0x05c1
+	textpointer DebugForceDuelWinPromptText                           ; 0x05c2
+	textpointer DebugVCounterLabelText                                ; 0x05c3
+	textpointer DebugVHookCountLabelText                              ; 0x05c4
+	textpointer DebugBackgroundFaceDisplayText                        ; 0x05c5
+	textpointer DebugSystemStateText                                  ; 0x05c6
+	textpointer DebugCurrentObjectCharacterNumberLabelText            ; 0x05c7
+	textpointer DebugCurrentMapNumberLabelText                        ; 0x05c8
+	textpointer DebugCurrentMapChipsetNumberLabelText                 ; 0x05c9
+	textpointer PlayerDiaryCardsUnitText                              ; 0x05ca
+	textpointer ChipsText                                             ; 0x05cb
+	textpointer PCMenuDeckDiagnosisText                               ; 0x05cc
+	textpointer TCG2TitleText                                         ; 0x05cd
+	textpointer MainMenuNewGameText                                   ; 0x05ce
+	textpointer MainMenuContinueFromDiaryText                         ; 0x05cf
+	textpointer MainMenuCardPopText                                   ; 0x05d0
+	textpointer MainMenuContinueDuelText                              ; 0x05d1
+	textpointer MainMenuNewGameMessageText                            ; 0x05d2
+	textpointer MainMenuCardPopMessageText                            ; 0x05d3
+	textpointer MainMenuContinueDuelMessageText                       ; 0x05d4
+	textpointer PlayerGenderMaleText                                  ; 0x05d5
+	textpointer PlayerGenderFemaleText                                ; 0x05d6
+	textpointer ChoosePlayerGenderText                                ; 0x05d7
+	textpointer ConfirmPlayerGenderMaleText                           ; 0x05d8
+	textpointer ConfirmPlayerGenderFemaleText                         ; 0x05d9
+	textpointer DebugTornamentTableText                               ; 0x05da
+	textpointer DebugLabText                                          ; 0x05db
+	textpointer DebugObjectCharacterDisplayText                       ; 0x05dc
+	textpointer IsThisOKText_2                                        ; 0x05dd
+	textpointer PlayerGenderText                                      ; 0x05de
+	textpointer CardsUnitHiraganaText                                 ; 0x05df
 	textpointer Text05e0                                           ; 0x05e0
 	textpointer Text05e1                                           ; 0x05e1
 	textpointer Text05e2                                           ; 0x05e2
@@ -1540,7 +1540,7 @@ TextOffsets::
 	textpointer Text05fb                                           ; 0x05fb
 	textpointer Text05fc                                           ; 0x05fc
 	textpointer Text05fd                                           ; 0x05fd
-	textpointer Text05fe                                           ; 0x05fe
+	textpointer DebugBackgroundCoinDisplayText                        ; 0x05fe
 	textpointer Text05ff                                           ; 0x05ff
 	textpointer Text0600                                           ; 0x0600
 	textpointer Text0601                                           ; 0x0601
@@ -1574,26 +1574,26 @@ TextOffsets::
 	textpointer Text061d                                           ; 0x061d
 	textpointer Text061e                                           ; 0x061e
 	textpointer Text061f                                           ; 0x061f
-	textpointer Text0620                                           ; 0x0620
-	textpointer Text0621                                           ; 0x0621
-	textpointer Text0622                                           ; 0x0622
-	textpointer Text0623                                           ; 0x0623
-	textpointer Text0624                                           ; 0x0624
-	textpointer Text0625                                           ; 0x0625
-	textpointer Text0626                                           ; 0x0626
-	textpointer Text0627                                           ; 0x0627
-	textpointer Text0628                                           ; 0x0628
-	textpointer Text0629                                           ; 0x0629
-	textpointer Text062a                                           ; 0x062a
-	textpointer Text062b                                           ; 0x062b
+	textpointer DebugEffectViewerText                                 ; 0x0620
+	textpointer DebugEffectViewerLeftToRightText                      ; 0x0621
+	textpointer DebugEffectViewerRightToLeftText                      ; 0x0622
+	textpointer LinkDuelText                                          ; 0x0623
+	textpointer DebugEffectViewerStartButtonSwapText                  ; 0x0624
+	textpointer DebugEffectViewerAButtonPlayText                      ; 0x0625
+	textpointer DebugEffectViewerBButtonStopText                      ; 0x0626
+	textpointer DebugEffectViewerAnimationNumberText                  ; 0x0627
+	textpointer DebugEffectViewerPlayingStateText                     ; 0x0628
+	textpointer DebugEffectViewerStopStateText                        ; 0x0629
+	textpointer DebugMikamiProgText                                   ; 0x062a
+	textpointer DebugPowerOnText                                      ; 0x062b
 	textpointer Text062c                                           ; 0x062c
 	textpointer Text062d                                           ; 0x062d
 	textpointer Text062e                                           ; 0x062e
 	textpointer Text062f                                           ; 0x062f
 	textpointer Text0630                                           ; 0x0630
 	textpointer Text0631                                           ; 0x0631
-	textpointer Text0632                                           ; 0x0632
-	textpointer Text0633                                           ; 0x0633
+	textpointer PlayerDiarySavedText                                  ; 0x0632
+	textpointer PlayerDiaryCancelledText                              ; 0x0633
 	textpointer Text0634                                           ; 0x0634
 	textpointer Text0635                                           ; 0x0635
 	textpointer Text0636                                           ; 0x0636
@@ -1877,8 +1877,8 @@ TextOffsets::
 	textpointer Text074c                                           ; 0x074c
 	textpointer Text074d                                           ; 0x074d
 	textpointer Text074e                                           ; 0x074e
-	textpointer Text074f                                           ; 0x074f
-	textpointer Text0750                                           ; 0x0750
+	textpointer DebugTitleScreenTentativeText                         ; 0x074f
+	textpointer DebugPlayerGenderSelectionScreenText                  ; 0x0750
 	textpointer Text0751                                           ; 0x0751
 	textpointer Text0752                                           ; 0x0752
 	textpointer Text0753                                           ; 0x0753
@@ -1910,12 +1910,12 @@ TextOffsets::
 	textpointer Text076d                                           ; 0x076d
 	textpointer Text076e                                           ; 0x076e
 	textpointer Text076f                                           ; 0x076f
-	textpointer Text0770                                           ; 0x0770
-	textpointer Text0771                                           ; 0x0771
-	textpointer Text0772                                           ; 0x0772
-	textpointer Text0773                                           ; 0x0773
-	textpointer Text0774                                           ; 0x0774
-	textpointer Text0775                                           ; 0x0775
+	textpointer ConfigTitleText_2                                     ; 0x0770
+	textpointer ConfigFrameColorText                                  ; 0x0771
+	textpointer ConfigFrameColorRedText                               ; 0x0772
+	textpointer ConfigFrameColorBlueText                              ; 0x0773
+	textpointer ConfigFrameColorGreenText                             ; 0x0774
+	textpointer ConfigFrameColorBlackText                             ; 0x0775
 	textpointer Text0776                                           ; 0x0776
 	textpointer Text0777                                           ; 0x0777
 	textpointer Text0778                                           ; 0x0778
@@ -1934,11 +1934,11 @@ TextOffsets::
 	textpointer Text0785                                           ; 0x0785
 	textpointer Text0786                                           ; 0x0786
 	textpointer Text0787                                           ; 0x0787
-	textpointer Text0788                                           ; 0x0788
-	textpointer Text0789                                           ; 0x0789
-	textpointer Text078a                                           ; 0x078a
-	textpointer Text078b                                           ; 0x078b
-	textpointer Text078c                                           ; 0x078c
+	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning1Text    ; 0x0788
+	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning2Text    ; 0x0789
+	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning3Text    ; 0x078a
+	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning4Text    ; 0x078b
+	textpointer MainMenuContinueFromDiaryInsteadOfDuelConfirmText     ; 0x078c
 	textpointer Text078d                                           ; 0x078d
 	textpointer Text078e                                           ; 0x078e
 	textpointer Text078f                                           ; 0x078f
@@ -2043,7 +2043,7 @@ TextOffsets::
 	textpointer Text07f2                                           ; 0x07f2
 	textpointer Text07f3                                           ; 0x07f3
 	textpointer Text07f4                                           ; 0x07f4
-	textpointer Text07f5                                           ; 0x07f5
+	textpointer DebugClearMailText                                    ; 0x07f5
 	textpointer Text07f6                                           ; 0x07f6
 	textpointer Text07f7                                           ; 0x07f7
 	textpointer Text07f8                                           ; 0x07f8
@@ -2053,23 +2053,23 @@ TextOffsets::
 	textpointer Text07fc                                           ; 0x07fc
 	textpointer Text07fd                                           ; 0x07fd
 	textpointer Text07fe                                           ; 0x07fe
-	textpointer Text07ff                                           ; 0x07ff
-	textpointer Text0800                                           ; 0x0800
-	textpointer Text0801                                           ; 0x0801
-	textpointer Text0802                                           ; 0x0802
-	textpointer Text0803                                           ; 0x0803
-	textpointer Text0804                                           ; 0x0804
-	textpointer Text0805                                           ; 0x0805
-	textpointer Text0806                                           ; 0x0806
-	textpointer Text0807                                           ; 0x0807
-	textpointer Text0808                                           ; 0x0808
-	textpointer Text0809                                           ; 0x0809
-	textpointer Text080a                                           ; 0x080a
-	textpointer Text080b                                           ; 0x080b
-	textpointer Text080c                                           ; 0x080c
-	textpointer Text080d                                           ; 0x080d
-	textpointer Text080e                                           ; 0x080e
-	textpointer Text080f                                           ; 0x080f
+	textpointer DebugDummyLinesText                                   ; 0x07ff
+	textpointer DebugYoshidaDebugMenuText                             ; 0x0800
+	textpointer DebugScenarioDebugMenuText                            ; 0x0801
+	textpointer DebugModifyEventsText                                 ; 0x0802
+	textpointer DebugModifyFlagsText                                  ; 0x0803
+	textpointer DebugModifyCountersText                               ; 0x0804
+	textpointer DebugModifyCardCountText                              ; 0x0805
+	textpointer DebugReturnToGameText                                 ; 0x0806
+	textpointer DebugModifyFlagsNumberLabelText                       ; 0x0807
+	textpointer DebugModifyFlagsOnText                                ; 0x0808
+	textpointer DebugModifyFlagsOffText                               ; 0x0809
+	textpointer DebugModifyCountersNumberLabelText                    ; 0x080a
+	textpointer DebugModifyCountersValuesText                         ; 0x080b
+	textpointer DebugModifyCardCountNumberLabelText                   ; 0x080c
+	textpointer DebugModifyCardCountCardNameText                      ; 0x080d
+	textpointer DebugModifyCardCountValuesText                        ; 0x080e
+	textpointer DebugBeatTheGameText                                  ; 0x080f
 	textpointer Text0810                                           ; 0x0810
 	textpointer Text0811                                           ; 0x0811
 	textpointer Text0812                                           ; 0x0812

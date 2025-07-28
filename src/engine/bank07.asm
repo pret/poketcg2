@@ -1671,7 +1671,7 @@ ShowStartMenu:
 	add d
 	ld d, a
 	ld e, 8
-	ldtx hl, Text05be
+	ldtx hl, RAMNAMEText
 	call Func_35bf
 
 .skip_portrait_and_name
@@ -1728,7 +1728,7 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05ce
+	textitem 2, 2, MainMenuNewGameText
 	db $ff ; end
 
 .Config1Params
@@ -1745,8 +1745,8 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05cf
-	textitem 2, 4, Text05ce
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
 	db $ff ; end
 
 .Config2Params
@@ -1763,9 +1763,9 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05d0
-	textitem 2, 4, Text05cf
-	textitem 2, 6, Text05ce
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
 	db $ff ; end
 
 .Config3Params
@@ -1782,10 +1782,10 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05d0
-	textitem 2, 4, Text05cf
-	textitem 2, 6, Text05ce
-	textitem 2, 8, Text05d1
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
+	textitem 2, 8, MainMenuContinueDuelText
 	db $ff ; end
 
 .Config4Params
@@ -1802,9 +1802,9 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05cf
-	textitem 2, 4, Text05ce
-	textitem 2, 6, Text05d1
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
+	textitem 2, 6, MainMenuContinueDuelText
 	db $ff ; end
 
 _StartMenuBoxUpdate::
@@ -1885,7 +1885,7 @@ _StartMenuBoxUpdate::
 
 .NewGame:
 	lb de, 1, 12
-	ldtx hl, Text05d2
+	ldtx hl, MainMenuNewGameMessageText
 	call Func_35af
 	ret
 
@@ -1915,21 +1915,21 @@ _StartMenuBoxUpdate::
 	ret
 
 .TextItems:
-	textitem  3, 12, Text05af
-	textitem 15, 12, Text05ca
-	textitem  3, 14, Text05b0
-	textitem  3, 16, Text05b1
+	textitem  3, 12, PlayerDiaryEventCoinText
+	textitem 15, 12, PlayerDiaryCardsUnitText
+	textitem  3, 14, PlayerDiaryAlbumText
+	textitem  3, 16, PlayerDiaryPlayTimeText
 	db $ff
 
 .CardPop:
 	lb de, 1, 12
-	ldtx hl, Text05d3
+	ldtx hl, MainMenuCardPopMessageText
 	call Func_35af
 	ret
 
 .ContinueDuel:
 	lb de, 1, 12
-	ldtx hl, Text05d4
+	ldtx hl, MainMenuContinueDuelMessageText
 	call Func_35af
 	ret
 
@@ -2003,7 +2003,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
-	ldtx hl, Text078c
+	ldtx hl, MainMenuContinueFromDiaryInsteadOfDuelConfirmText
 	ld a, $1 ; "no" selected by default
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .fade_out ; unnecessary jump
@@ -2017,10 +2017,10 @@ AskToContinueFromDiaryInsteadOfDuel:
 	ret
 
 .TextIDs:
-	tx Text0788
-	tx Text0789
-	tx Text078a
-	tx Text078b
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning1Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning2Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning3Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning4Text
 	tx $ffff
 
 ConfirmPlayerNameAndGender:
@@ -2053,27 +2053,27 @@ ConfirmPlayerNameAndGender:
 	lb bc, 12, 3
 	call DrawPlayerPortrait
 	; print name
-	ldtx hl, Text05be
+	ldtx hl, RAMNAMEText
 	lb de, 5, 4
 	call Func_35bf
 	; print gender
 	farcall GetPlayerGender
 	and a
-	ldtx hl, Text05d5
+	ldtx hl, PlayerGenderMaleText
 	jr z, .got_gender_text
-	ldtx hl, Text05d6
+	ldtx hl, PlayerGenderFemaleText
 .got_gender_text
 	lb de, 5, 8
 	call Func_35af
 	ret
 
 .TextItems:
-	textitem 2, 2, Text05ad
-	textitem 2, 6, Text05de
+	textitem 2, 2, PlayerDiaryNameText
+	textitem 2, 6, PlayerGenderText
 	db $ff
 
 .ShowYesOrNoMenu:
-	ldtx hl, Text05dd
+	ldtx hl, IsThisOKText_2
 	ld a, $1
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret

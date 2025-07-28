@@ -1,327 +1,327 @@
-Text0590:
+DebugCharacterDisplayTestText:
 	textfw "人物の表示テスト"
 	done
 
-Text0591:
+DebugYoshidaTestText:
 	textfw "よしだくんテスト"
 	done
 
-Text0592:
+DebugGameMainText:
 	textfw "ゲームメイン"
 	done
 
-Text0593:
+DebugReserveText:
 	textfw "よやく"
 	done
 
-Text0594:
+DebugReturnToMainText:
 	textfw "メインへもどる"
 	done
 
-Text0595:
+PauseMenuStatusText:
 	textfw "ステータス"
 	done
 
-Text0596:
+PauseMenuDiaryText:
 	textfw "にっき"
 	done
 
-Text0597:
+PauseMenuDeckText:
 	textfw "デッキ"
 	done
 
-Text0598:
+PauseMenuMinicomText:
 	textfw "ミニコン"
 	done
 
-Text0599:
+PauseMenuCoinText:
 	textfw "コイン"
 	done
 
-Text059a:
+PauseMenuConfigText:
 	textfw "せってい"
 	done
 
-Text059b:
+PauseMenuExitText:
 	textfw "とじる"
 	done
 
-Text059c:
+ConfigTitleText:
 	textfw "せっていのへんこう"
 	done
 
-Text059d:
+ConfigMessageSpeedText:
 	textfw " メッセージの はやさ "
 	done
 
-Text059e:
+ConfigDuelAnimationText:
 	textfw " 対戦 アニメーション "
 	done
 
-Text059f:
+ConfigCoinAnimationText:
 	textfw " コイントス アニメーション "
 	done
 
-Text05a0:
+ConfigExitText:
 	textfw "せっていを おわる"
 	done
 
-Text05a1:
+ConfigMessageSpeedSlowLabelText:
 	textfw "おそい"
 	done
 
-Text05a2:
+ConfigMessageSpeedFastLabelText:
 	textfw "はやい"
 	done
 
-Text05a3:
+CardCountSeparatorText:
 	textfw "/"
 	done
 
-Text05a4:
+ConfigMessageSpeed1Text:
 	textfw "1"
 	done
 
-Text05a5:
+ConfigMessageSpeed2Text:
 	textfw "2"
 	done
 
-Text05a6:
+ConfigMessageSpeed3Text:
 	textfw "3"
 	done
 
-Text05a7:
+ConfigMessageSpeed4Text:
 	textfw "4"
 	done
 
-Text05a8:
+ConfigMessageSpeed5Text:
 	textfw "5"
 	done
 
-Text05a9:
+ConfigAnimationShowAllText:
 	textfw "じっくり"
 	done
 
-Text05aa:
+ConfigAnimationSkipSomeText:
 	textfw "スキップあり"
 	done
 
-Text05ab:
+ConfigAnimationNoneText:
 	textfw "みない"
 	done
 
-Text05ac:
+PlayerDiaryTitleText:
 	textfw "<RAMNAME>のにっき"
 	done
 
-Text05ad:
+PlayerDiaryNameText:
 	textfw "なまえ"
 	done
 
-Text05ae:
+PlayerStatusEventCoinTitleText:
 	textfw " イベントコイン "
 	done
 
-Text05af:
+PlayerDiaryEventCoinText:
 	textfw "イベントコイン"
 	done
 
-Text05b0:
+PlayerDiaryAlbumText:
 	textfw "アルバム"
 	done
 
-Text05b1:
+PlayerDiaryPlayTimeText:
 	textfw "プレイじかん"
 	done
 
-Text05b2:
+PlayerDiaryPromptText:
 	textfw "にっきを つけますか?"
 	done
 
-Text05b3:
+PlayerDiaryPromptYesText:
 	textfw "はい"
 	done
 
-Text05b4:
+PlayerDiaryPromptNoText:
 	textfw "いいえ"
 	done
 
-Text05b5:
+PlayerStatusCurrentCoinText:
 	textfw "いま つかっているコイン"
 	done
 
-Text05b6:
+PlayerStatusGRCoinText:
 	textfw "GR団のコイン"
 	done
 
-Text05b7:
+PCMenuCardAlbumText:
 	textfw "カードアルバム"
 	done
 
-Text05b8:
+PCMenuReadMailText: ; left over from tcg1
 	textfw "メールをよむ"
 	done
 
-Text05b9:
+PCMenuGlossaryText:
 	textfw "ようごじてん"
 	done
 
-Text05ba:
+PCMenuPrintText:
 	textfw "プリントアウト"
 	done
 
-Text05bb:
+TurnedOnPCText:
 	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを いれた!"
 	done
 
-Text05bc:
+TurnedOffPCText:
 	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを きった!"
 	done
 
-Text05bd:
+PCMenuShutDowntText:
 	textfw "スイッチをきる"
 	done
 
-Text05be:
+RAMNAMEText: ; mainly used to print the player's name?
 	textfw "<RAMNAME>"
 	done
 
-Text05bf:
+DebugMenuDebugText:
 	textfw "デバッグ"
 	done
 
-Text05c0:
+DebugGotCardsText:
 	textfw "カードをゲットしたぜ!"
 	done
 
-Text05c1:
+DebugBackgroundFontStateText:
 	textfw "BGフォントの状態"
 	done
 
-Text05c2:
+DebugForceDuelWinPromptText:
 	textfw "バトルに勝利しますか?"
 	done
 
-Text05c3:
+DebugVCounterLabelText:
 	textfw "Vカウンタ:"
 	done
 
-Text05c4:
+DebugVHookCountLabelText:
 	textfw "Vフック数:"
 	done
 
-Text05c5:
+DebugBackgroundFaceDisplayText:
 	textfw "BGフェイスの表示"
 	done
 
-Text05c6:
+DebugSystemStateText:
 	textfw "システムの状態"
 	done
 
-Text05c7:
+DebugCurrentObjectCharacterNumberLabelText:
 	textfw "使用中OBJキャラクタ数:"
 	done
 
-Text05c8:
+DebugCurrentMapNumberLabelText:
 	textfw "使用中のマップ番号:"
 	done
 
-Text05c9:
+DebugCurrentMapChipsetNumberLabelText:
 	textfw "使用中のマップチップ数:"
 	done
 
-Text05ca:
+PlayerDiaryCardsUnitText:
 	textfw "枚"
 	done
 
-Text05cb:
+ChipsText:
 	textfw "チップ"
 	done
 
-Text05cc:
+PCMenuDeckDiagnosisText:
 	textfw "デッキしんだん"
 	done
 
-Text05cd:
+TCG2TitleText:
 	textfw "ポケモンカードGB2"
 	done
 
-Text05ce:
+MainMenuNewGameText:
 	textfw "さいしょから"
 	done
 
-Text05cf:
+MainMenuContinueFromDiaryText:
 	textfw "つづきを あそぶ"
 	done
 
-Text05d0:
+MainMenuCardPopText:
 	textfw "カードポン!"
 	done
 
-Text05d1:
+MainMenuContinueDuelText:
 	textfw "対戦から あそぶ"
 	done
 
-Text05d2:
+MainMenuNewGameMessageText:
 	textfw "ゲームを はじめからスタートします"
 	done
 
-Text05d3:
+MainMenuCardPopMessageText:
 	textfw "ともだちと「カードポン!」すると"
 	linefw "あたらしい カードが うまれます"
 	linefw "ふたりとも とくするぞ"
 	done
 
-Text05d4:
+MainMenuContinueDuelMessageText:
 	textfw "対戦のとちゅうで 電源がきれました"
 	linefw "対戦とちゅうの電源がきれたところから"
 	linefw "ゲームをはじめられます"
 	done
 
-Text05d5:
+PlayerGenderMaleText:
 	textfw "おとこのこ"
 	done
 
-Text05d6:
+PlayerGenderFemaleText:
 	textfw "おんなのこ"
 	done
 
-Text05d7:
+ChoosePlayerGenderText:
 	textfw "あなたの せいべつを"
 	linefw "えらんでください"
 	done
 
-Text05d8:
+ConfirmPlayerGenderMaleText:
 	textfw "「おとこのこ」で いいですか?"
 	done
 
-Text05d9:
+ConfirmPlayerGenderFemaleText:
 	textfw "「おんなのこ」で いいですか?"
 	done
 
-Text05da:
+DebugTornamentTableText:
 	textfw "トーナメント表"
 	done
 
-Text05db:
+DebugLabText:
 	textfw "じっけんしつ"
 	done
 
-Text05dc:
+DebugObjectCharacterDisplayText:
 	textfw "OBJ人物の表示"
 	done
 
-Text05dd:
+IsThisOKText_2:
 	textfw "これで よろしいですか?"
 	done
 
-Text05de:
+PlayerGenderText:
 	textfw "せいべつ"
 	done
 
-Text05df:
+CardsUnitHiraganaText:
 	textfw "まい"
 	done
 
@@ -457,7 +457,7 @@ Text05fd:
 	linefw "はじめから やりなおしてください"
 	done
 
-Text05fe:
+DebugBackgroundCoinDisplayText:
 	textfw "BGコインの表示"
 	done
 
@@ -593,51 +593,51 @@ Text061f:
 	textfw "イベントコイン3"
 	done
 
-Text0620:
+DebugEffectViewerText:
 	textfw "エフェクトの再生"
 	done
 
-Text0621:
+DebugEffectViewerLeftToRightText:
 	textfw "左から右へ"
 	done
 
-Text0622:
+DebugEffectViewerRightToLeftText:
 	textfw "右から左へ"
 	done
 
-Text0623:
+LinkDuelText:
 	textfw "通信対戦"
 	done
 
-Text0624:
+DebugEffectViewerStartButtonSwapText:
 	textfw "START:入替"
 	done
 
-Text0625:
+DebugEffectViewerAButtonPlayText:
 	textfw "A:実行"
 	done
 
-Text0626:
+DebugEffectViewerBButtonStopText:
 	textfw "B:中止"
 	done
 
-Text0627:
+DebugEffectViewerAnimationNumberText:
 	textfw "A000"
 	done
 
-Text0628:
+DebugEffectViewerPlayingStateText:
 	textfw "<実行中>"
 	done
 
-Text0629:
+DebugEffectViewerStopStateText:
 	textfw "<テイ止>"
 	done
 
-Text062a:
+DebugMikamiProgText:
 	textfw "MIKAMI PROG"
 	done
 
-Text062b:
+DebugPowerOnText:
 	textfw "パワーオン"
 	done
 
@@ -669,12 +669,12 @@ Text0631:
 	linefw "ボーナスゲームへ とつにゅうします!"
 	done
 
-Text0632:
+PlayerDiarySavedText:
 	textfw "<RAMNAME>は"
 	linefw "にっきを つけました"
 	done
 
-Text0633:
+PlayerDiaryCancelledText:
 	textfw "<RAMNAME>は"
 	linefw "にっきをつけるのを やめました"
 	done
@@ -2284,11 +2284,11 @@ Text074e:
 	textfw "この2枚で よろしいですか?"
 	done
 
-Text074f:
+DebugTitleScreenTentativeText:
 	textfw "タイトル画面(仮)"
 	done
 
-Text0750:
+DebugPlayerGenderSelectionScreenText:
 	textfw "性別選択画面"
 	done
 
@@ -2451,27 +2451,27 @@ Text076f:
 	textfw "イントロダクション"
 	done
 
-Text0770:
+ConfigTitleText_2:
 	textfw "せっていへんこう"
 	done
 
-Text0771:
+ConfigFrameColorText:
 	textfw " ウィンドウカラー "
 	done
 
-Text0772:
+ConfigFrameColorRedText:
 	textfw "あか"
 	done
 
-Text0773:
+ConfigFrameColorBlueText:
 	textfw "あお"
 	done
 
-Text0774:
+ConfigFrameColorGreenText:
 	textfw "みどり"
 	done
 
-Text0775:
+ConfigFrameColorBlackText:
 	textfw "くろ"
 	done
 
@@ -2554,27 +2554,27 @@ Text0787:
 	linefw "チップを たくさん あつめよう!"
 	done
 
-Text0788:
+MainMenuContinueFromDiaryInsteadOfDuelWarning1Text:
 	textfw "対戦中に 電源が きれたときの"
 	linefw "データが あります"
 	done
 
-Text0789:
+MainMenuContinueFromDiaryInsteadOfDuelWarning2Text:
 	textfw "「対戦から あそぶ」を えらぶと"
 	linefw "電源がきれた 対戦から はじまります"
 	done
 
-Text078a:
+MainMenuContinueFromDiaryInsteadOfDuelWarning3Text:
 	textfw "このまま はじめると メニューの"
 	linefw "「対戦から あそぶ」が なくなり"
 	done
 
-Text078b:
+MainMenuContinueFromDiaryInsteadOfDuelWarning4Text:
 	textfw "ゲームは さいごに「にっき」を"
 	linefw "つけた ところから はじまります"
 	done
 
-Text078c:
+MainMenuContinueFromDiaryInsteadOfDuelConfirmText:
 	textfw "「つづきを あそぶ」で はじめます?"
 	done
 
@@ -3038,7 +3038,7 @@ Text07f4:
 	textfw "かかりいん"
 	done
 
-Text07f5:
+DebugClearMailText:
 	textfw "メールクリア"
 	done
 
@@ -3085,72 +3085,72 @@ Text07fe:
 	linefw "おたのしみに!"
 	done
 
-Text07ff:
+DebugDummyLinesText:
 	textfw "ダミー行だよ"
 	linefw ""
 	linefw ""
 	done
 
-Text0800:
+DebugYoshidaDebugMenuText:
 	textfw "YOSHIDA DEBUG MENU"
 	done
 
-Text0801:
+DebugScenarioDebugMenuText:
 	textfw "  シナリオ デバッグ メニュー"
 	done
 
-Text0802:
+DebugModifyEventsText:
 	textfw "イベントを操作する"
 	done
 
-Text0803:
+DebugModifyFlagsText:
 	textfw "フラグを操作する"
 	done
 
-Text0804:
+DebugModifyCountersText:
 	textfw "カウンタを操作する"
 	done
 
-Text0805:
+DebugModifyCardCountText:
 	textfw "カード枚数を操作する"
 	done
 
-Text0806:
+DebugReturnToGameText:
 	textfw "ゲームにもどる"
 	done
 
-Text0807:
+DebugModifyFlagsNumberLabelText:
 	textfw "フラグ Nоˍ"
 	done
 
-Text0808:
+DebugModifyFlagsOnText:
 	textfw " ON"
 	done
 
-Text0809:
+DebugModifyFlagsOffText:
 	textfw "OFF"
 	done
 
-Text080a:
+DebugModifyCountersNumberLabelText:
 	textfw "カウンタ Nоˍ"
 	done
 
-Text080b:
+DebugModifyCountersValuesText:
 	textfw "                    "
 	done
 
-Text080c:
+DebugModifyCardCountNumberLabelText:
 	textfw "カードNоˍ<RAMNUM>"
 	done
 
-Text080d:
+DebugModifyCardCountCardNameText:
 	textfw "【<RAMTEXT>】"
 	done
 
-Text080e:
+DebugModifyCardCountValuesText:
 	textfw "F    D    T"
 	done
 
-Text080f:
+DebugBeatTheGameText:
 	textfw "ゲームクリア直後にする"
 	done
