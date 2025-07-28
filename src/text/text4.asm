@@ -712,84 +712,84 @@ Text063a:
 	textfw "たいせん"
 	done
 
-Text063b:
+SpecialRuleChlorophyllTitleText:
 	textfw "   みどりのちから    "
 	done
 
-Text063c:
+SpecialRuleChlorophyllDescriptionText:
 	textfw "この対戦では 「草ポケモン」は"
 	linefw "「どく・マヒ・こんらん・ねむり」の"
 	linefw "状態に ならない"
 	done
 
-Text063d:
+SpecialRuleThunderChargeTitleText:
 	textfw "   雷パワーアップ    "
 	done
 
-Text063e:
+SpecialRuleThunderChargeDescriptionText:
 	textfw "この対戦では 「雷ポケモン」が"
 	linefw "ワザによって あいての対戦ポケモンに"
 	linefw "あたえるダメージが 「+10」される"
 	done
 
-Text063f:
+SpecialRuleFlameArmorTitleText:
 	textfw "   ほのおのよろい    "
 	done
 
-Text0640:
+SpecialRuleFlameArmorDescriptionText:
 	textfw "この対戦では 「炎ポケモン」は"
 	linefw "「水ポケモン」からの ワザによる"
 	linefw "ダメージにたいして 弱点の"
 	linefw "えいきょうをうけない"
 	done
 
-Text0641:
+SpecialRuleSmallBenchTitleText:
 	textfw "    せまいベンチ    "
 	done
 
-Text0642:
+SpecialRuleSmallBenchDescriptionText:
 	textfw "この対戦では おたがいのベンチ数が"
 	linefw "「3」になる"
 	linefw "(「ひかえポケモン」のおける数が"
 	linefw " 「3」匹になる)"
 	done
 
-Text0643:
+SpecialRuleRunningWaterTitleText:
 	textfw "    にげみずの場    "
 	done
 
-Text0644:
+SpecialRuleRunningWaterDescriptionText:
 	textfw "この対戦では"
 	linefw "「水ポケモン」が 「にげる」ときに"
 	linefw "ひつような エネルギーの数が"
 	linefw "「-1」される"
 	done
 
-Text0645:
+SpecialRuleEarthPowerTitleText:
 	textfw "   だいちのちから    "
 	done
 
-Text0646:
+SpecialRuleEarthPowerDescriptionText:
 	textfw "この対戦では 「闘ポケモン」が"
 	linefw "あたえるダメージは 抵抗力の"
 	linefw "えいきょうをうけず そのままあたえる"
 	done
 
-Text0647:
+SpecialRuleLowResistanceTitleText:
 	textfw "    抵抗力ていか    "
 	done
 
-Text0648:
+SpecialRuleLowResistanceDescriptionText:
 	textfw "この対戦では 抵抗力のえいきょうを"
 	linefw "「-30」から「-10」に"
 	linefw "へんこうする"
 	done
 
-Text0649:
+SpecialRuleEnergyReturnTitleText:
 	textfw "  エネルギーリターン   "
 	done
 
-Text064a:
+SpecialRuleEnergyReturnDescriptionText:
 	textfw "この対戦では 場にいるポケモンが"
 	linefw "トラッシュされるとき そのポケモンに"
 	linefw "ついている「基本エネルギーカード」は"
@@ -797,22 +797,22 @@ Text064a:
 	linefw "もどる"
 	done
 
-Text064b:
+SpecialRuleToughEscapeTitleText:
 	textfw "    にげにくい場    "
 	done
 
-Text064c:
+SpecialRuleToughEscapeDescriptionText:
 	textfw "この対戦では 「対戦ポケモン」が"
 	linefw "バトル場から 「にげる」ときに"
 	linefw "トラッシュする エネルギーの数が"
 	linefw "「+1」される"
 	done
 
-Text064d:
+SpecialRuleBlackHoleTitleText:
 	textfw " トラッシュブラックホール "
 	done
 
-Text064e:
+SpecialRuleBlackHoleDescriptionText:
 	textfw "この対戦では トラッシュしたカードは"
 	linefw "この対戦中は つかえなくなる。"
 	linefw "(トラッシュには つねに カードが"

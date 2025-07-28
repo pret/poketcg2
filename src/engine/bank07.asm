@@ -3570,18 +3570,18 @@ ShowSpecialRuleDescription:
 	ret
 
 .TitleAndDescriptionTextIDs:
-	;  title,    description
-	dw NULL,     NULL     ; NO_SPECIAL_RULE
-	tx Text063b, Text063c ; CHLOROPHYLL
-	tx Text063d, Text063e ; THUNDER_CHARGE
-	tx Text063f, Text0640 ; FLAME_ARMOR
-	tx Text0641, Text0642 ; SMALL_BENCH
-	tx Text0643, Text0644 ; RUNNING_WATER
-	tx Text0645, Text0646 ; EARTH_POWER
-	tx Text0647, Text0648 ; LOW_RESISTANCE
-	tx Text0649, Text064a ; ENERGY_RETURN
-	tx Text064b, Text064c ; TOUGH_ESCAPE
-	tx Text064d, Text064e ; BLACK_HOLE
+	;  title, description
+	dw NULL,  NULL ; NO_SPECIAL_RULE
+	tx SpecialRuleChlorophyllTitleText,   SpecialRuleChlorophyllDescriptionText
+	tx SpecialRuleThunderChargeTitleText, SpecialRuleThunderChargeDescriptionText
+	tx SpecialRuleFlameArmorTitleText,    SpecialRuleFlameArmorDescriptionText
+	tx SpecialRuleSmallBenchTitleText,    SpecialRuleSmallBenchDescriptionText
+	tx SpecialRuleRunningWaterTitleText,  SpecialRuleRunningWaterDescriptionText
+	tx SpecialRuleEarthPowerTitleText,    SpecialRuleEarthPowerDescriptionText
+	tx SpecialRuleLowResistanceTitleText, SpecialRuleLowResistanceDescriptionText
+	tx SpecialRuleEnergyReturnTitleText,  SpecialRuleEnergyReturnDescriptionText
+	tx SpecialRuleToughEscapeTitleText,   SpecialRuleToughEscapeDescriptionText
+	tx SpecialRuleBlackHoleTitleText,     SpecialRuleBlackHoleDescriptionText
 ; 0x1e73a
 
 SECTION "Bank 7@673a", ROMX[$673a], BANK[$7]

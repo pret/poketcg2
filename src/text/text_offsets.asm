@@ -1601,26 +1601,26 @@ TextOffsets::
 	textpointer Text0638                                           ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer Text063a                                           ; 0x063a
-	textpointer Text063b                                           ; 0x063b
-	textpointer Text063c                                           ; 0x063c
-	textpointer Text063d                                           ; 0x063d
-	textpointer Text063e                                           ; 0x063e
-	textpointer Text063f                                           ; 0x063f
-	textpointer Text0640                                           ; 0x0640
-	textpointer Text0641                                           ; 0x0641
-	textpointer Text0642                                           ; 0x0642
-	textpointer Text0643                                           ; 0x0643
-	textpointer Text0644                                           ; 0x0644
-	textpointer Text0645                                           ; 0x0645
-	textpointer Text0646                                           ; 0x0646
-	textpointer Text0647                                           ; 0x0647
-	textpointer Text0648                                           ; 0x0648
-	textpointer Text0649                                           ; 0x0649
-	textpointer Text064a                                           ; 0x064a
-	textpointer Text064b                                           ; 0x064b
-	textpointer Text064c                                           ; 0x064c
-	textpointer Text064d                                           ; 0x064d
-	textpointer Text064e                                           ; 0x064e
+	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b
+	textpointer SpecialRuleChlorophyllDescriptionText                 ; 0x063c
+	textpointer SpecialRuleThunderChargeTitleText                     ; 0x063d
+	textpointer SpecialRuleThunderChargeDescriptionText               ; 0x063e
+	textpointer SpecialRuleFlameArmorTitleText                        ; 0x063f
+	textpointer SpecialRuleFlameArmorDescriptionText                  ; 0x0640
+	textpointer SpecialRuleSmallBenchTitleText                        ; 0x0641
+	textpointer SpecialRuleSmallBenchDescriptionText                  ; 0x0642
+	textpointer SpecialRuleRunningWaterTitleText                      ; 0x0643
+	textpointer SpecialRuleRunningWaterDescriptionText                ; 0x0644
+	textpointer SpecialRuleEarthPowerTitleText                        ; 0x0645
+	textpointer SpecialRuleEarthPowerDescriptionText                  ; 0x0646
+	textpointer SpecialRuleLowResistanceTitleText                     ; 0x0647
+	textpointer SpecialRuleLowResistanceDescriptionText               ; 0x0648
+	textpointer SpecialRuleEnergyReturnTitleText                      ; 0x0649
+	textpointer SpecialRuleEnergyReturnDescriptionText                ; 0x064a
+	textpointer SpecialRuleToughEscapeTitleText                       ; 0x064b
+	textpointer SpecialRuleToughEscapeDescriptionText                 ; 0x064c
+	textpointer SpecialRuleBlackHoleTitleText                         ; 0x064d
+	textpointer SpecialRuleBlackHoleDescriptionText                   ; 0x064e
 	textpointer Text064f                                           ; 0x064f
 	textpointer Text0650                                           ; 0x0650
 	textpointer Text0651                                           ; 0x0651
