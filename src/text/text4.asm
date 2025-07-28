@@ -2691,338 +2691,338 @@ Text07a7:
 	textfw "<RAMNUM>"
 	done
 
-Text07a8:
+CreditsTitleText:
 	textfw "スタッフロール"
 	done
 
-Text07a9:
+CreditsStaffText:
 	textfw "S T A F F"
 	done
 
-Text07aa:
+CreditsProducersText:
 	textfw "プロデューサー"
 	done
 
-Text07ab:
+CreditsProducersListText:
 	textfw "いしはら つねかず"
 	linefw "なかもと しんいち"
 	linefw "はらだ たかひろ"
 	done
 
-Text07ac:
+CreditsDirectorText:
 	textfw "ディレクター"
 	done
 
-Text07ad:
+CreditsDirectorListText:
 	textfw "あらい こうじ"
 	done
 
-Text07ae:
+CreditsStoryText:
 	textfw "おはなし"
 	done
 
-Text07af:
+CreditsStoryListText:
 	textfw "ふじた てるゆき"
 	done
 
-Text07b0:
+CreditsPlannerText:
 	textfw "プランナー"
 	done
 
-Text07b1:
+CreditsPlannerListText:
 	textfw "きたむら よしまさ"
 	done
 
-Text07b2:
+CreditsProgrammersText:
 	textfw "プログラム"
 	done
 
-Text07b3:
+CreditsProgrammersList1Text:
 	textfw "とびた まさひろ"
 	done
 
-Text07b4:
+CreditsProgrammersList2Text:
 	textfw "つもり まさき"
 	linefw "こんどう けい"
 	linefw "よしだ まこと"
 	done
 
-Text07b5:
+CreditsProgrammersList3Text:
 	textfw "みかみ さとし"
 	done
 
-Text07b6:
+CreditsGBGraphicDesignersText:
 	textfw "GBグラフィックデザイン"
 	done
 
-Text07b7:
+CreditsGBGraphicDesignersList1Text:
 	textfw "いちざわ やすひろ"
 	done
 
-Text07b8:
+CreditsGBGraphicDesignersList2Text:
 	textfw "やまもと つぐゆき"
 	linefw "まつだ まり"
 	done
 
-Text07b9:
+CreditsGBGraphicDesignersList3Text:
 	textfw "やまぐち もと"
 	linefw "こうさか かずし"
 	linefw "さとう しげる"
 	linefw "にしき ちあき"
 	done
 
-Text07ba:
+CreditsGBGraphicDesignersList4Text:
 	textfw "そうま ひでき"
 	done
 
-Text07bb:
+CreditsSoundDirectorText:
 	textfw "サウンドディレクション"
 	done
 
-Text07bc:
+CreditsSoundDirectorListText:
 	textfw "たきもと としあき"
 	done
 
-Text07bd:
+CreditsMusicText:
 	textfw "ミュージック"
 	done
 
-Text07be:
+CreditsMusicListText:
 	textfw "しまくら いちろう"
 	done
 
-Text07bf:
+CreditsMusicProgrammerText:
 	textfw "ミュージックプログラム"
 	done
 
-Text07c0:
+CreditsMusicProgrammerListText:
 	textfw "ほし けいた"
 	done
 
-Text07c1:
+CreditsSoundEffectsText:
 	textfw "サウンドエフェクト"
 	done
 
-Text07c2:
+CreditsSoundEffectsListText:
 	textfw "しまくら いちろう"
 	linefw "あいはら まさと"
 	done
 
-Text07c3:
+CreditsSoundSupportText:
 	textfw "サウンドサポート"
 	done
 
-Text07c4:
+CreditsSoundSupportListText:
 	textfw "たかはし かつのり"
 	linefw "おか ひでき"
 	done
 
-Text07c5:
+CreditsCardGameProductionText:
 	textfw "カードゲームせいさく"
 	done
 
-Text07c6:
+CreditsCardGameProductionList1Text:
 	textfw "あかばね たくみ"
 	done
 
-Text07c7:
+CreditsCardGameProductionList2Text:
 	textfw "おおやま こういち"
 	done
 
-Text07c8:
+CreditsCardGameProductionList3Text:
 	textfw "みうら あきひこ"
 	done
 
-Text07c9:
+CreditsCardIllustratorsText:
 	textfw "カード・イラストレーター"
 	done
 
-Text07ca:
+CreditsCardIllustratorsList1Text:
 	textfw "すぎもり けん"
 	linefw "よしだ ひろのぶ"
 	linefw "にしだ あつこ"
 	linefw "ありた みつひろ"
 	done
 
-Text07cb:
+CreditsCardIllustratorsList2Text:
 	textfw "きねぶち けいじ"
 	linefw "ひめの かげまる"
 	linefw "たなか みき"
 	linefw "きづき すみよし"
 	done
 
-Text07cc:
+CreditsCardIllustratorsList3Text:
 	textfw "よしだ しんいち"
 	linefw "きむら なおよ"
 	linefw "くすべ あや"
 	linefw "こみや ともかず"
 	done
 
-Text07cd:
+CreditsCardIllustratorsList4Text:
 	textfw "こいけ ひかる"
 	linefw "はぶ のぶゆき"
 	linefw "ばば ゆきこ"
 	linefw "やました まさこ"
 	done
 
-Text07ce:
+CreditsCardIllustratorsList5Text:
 	textfw "くりはら あい"
 	linefw "まつだ かすみ"
 	linefw "たかはし けいた"
 	linefw "かわむら ゆうき"
 	done
 
-Text07cf:
+CreditsCardIllustratorsList6Text:
 	textfw "にしはら かずひこ"
 	linefw "あおき としなお"
 	linefw "いとう べにまる"
 	linefw "すぎやま ひろみち"
 	done
 
-Text07d0:
+CreditsGuestAppearancesText:
 	textfw "しゅつえん きょうりょく"
 	done
 
-Text07d1:
+CreditsGuestAppearancesListText:
 	textfw "イマクニ?"
 	linefw "かわむら くにみ"
 	linefw "やまぐち りゅうたろう"
 	linefw "くるしま ゆうすけ"
 	done
 
-Text07d2:
+CreditsMasteringText:
 	textfw "マスタリング"
 	done
 
-Text07d3:
+CreditsMasteringListText:
 	textfw "こまつ てつや"
 	done
 
-Text07d4:
+CreditsManualProductionText:
 	textfw "マニュアルせいさく"
 	done
 
-Text07d5:
+CreditsManualProductionListText:
 	textfw "みたに はるき"
 	linefw "せざき ひでのり"
 	done
 
-Text07d6:
+CreditsManualIllustrationsText:
 	textfw "マニュアルイラスト"
 	done
 
-Text07d7:
+CreditsManualIllustrationsListText:
 	textfw "ひめの かげまる"
 	done
 
-Text07d8:
+CreditsPackageArtworkText:
 	textfw "パッケージアートワーク"
 	done
 
-Text07d9:
+CreditsPackageArtworkListText:
 	textfw "かざま ひでき"
 	done
 
-Text07da:
+CreditsOriginalPokemonCreatorText:
 	textfw "ポケットモンスターげんさく"
 	done
 
-Text07db:
+CreditsOriginalPokemonCreatorListText:
 	textfw "たじり さとし"
 	done
 
-Text07dc:
+CreditsProductionAssistanceText:
 	textfw "せいさくきょうりょく"
 	done
 
-Text07dd:
+CreditsProductionAssistanceListText:
 	textfw "はたの しんじ"
 	linefw "やまと さとし"
 	done
 
-Text07de:
+CreditsAssistanceText:
 	textfw "きょうりょく"
 	done
 
-Text07df:
+CreditsAssistanceList1Text:
 	textfw "たかはし のぶちか"
 	linefw "にしだ だいさく"
 	linefw "つくだ よしはる"
 	done
 
-Text07e0:
+CreditsAssistanceList2Text:
 	textfw "ほさか さとし"
 	linefw "とみた ゆきこ"
 	done
 
-Text07e1:
+CreditsAssistanceList3Text:
 	textfw "おおさわ とおる"
 	linefw "こがねざわ のぶと"
 	done
 
-Text07e2:
+CreditsAssistanceList4Text:
 	textfw "みかみ ひろゆき"
 	linefw "かつき くんじ"
 	done
 
-Text07e3:
+CreditsAssistanceList5Text:
 	textfw "やすだ けいご"
 	linefw "りっち うぃるそん"
 	done
 
-Text07e4:
+CreditsAssistanceList5ContText:
 	textfw "     くにひこ"
 	done
 
-Text07e5:
+CreditsAssistanceList6Text:
 	textfw "クリーチャーズ "
 	done
 
-Text07e6:
+CreditsAssistanceList7Text:
 	textfw "カードゲーム   "
 	done
 
-Text07e7:
+CreditsAssistanceList7ContText:
 	textfw "   せいさくしつ"
 	done
 
-Text07e8:
+CreditsAssistanceList8Text:
 	textfw "テストプレイヤーズ"
 	done
 
-Text07e9:
+CreditsProjectManagerText:
 	textfw "プロジェクトマネージャー"
 	done
 
-Text07ea:
+CreditsProjectManagerListText:
 	textfw "かきせこ やすたか"
 	done
 
-Text07eb:
+CreditsSupervisorText:
 	textfw "スーパーバイザー"
 	done
 
-Text07ec:
+CreditsSupervisorListText:
 	textfw "くどう ひろし"
 	done
 
-Text07ed:
+CreditsExecutiveProducerText:
 	textfw "エグゼクティブプロデューサー"
 	done
 
-Text07ee:
+CreditsExecutiveProducerListText:
 	textfw "やまうち ひろし"
 	done
 
-Text07ef:
+CreditsGameProductionText:
 	textfw "ゲームせいさく"
 	done
 
-Text07f0:
+CreditsGameProductionListText:
 	textfw "ハ ド ソ ン"
 	done
 
-Text07f1:
+CreditsToBeContinuedText:
 	textfw "TO BE CONTINUED"
 	done
 
