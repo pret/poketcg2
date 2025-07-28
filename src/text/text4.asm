@@ -1047,81 +1047,81 @@ Text067d:
 	textfw " <RAMNAME>のチップ "
 	done
 
-Text067e:
+BoosterPackBeginningPokemonText:
 	textfw "はじめてのポケモン"
 	done
 
-Text067f:
+BoosterPackLegendaryPowerText:
 	textfw "でんせつのちから"
 	done
 
-Text0680:
+BoosterPackIslandOfFossilText:
 	textfw "化石のしま"
 	done
 
-Text0681:
+BoosterPackPsychicBattleText:
 	textfw "超バトル"
 	done
 
-Text0682:
+BoosterPackFlyingPokemonText:
 	textfw "そらとぶポケモン"
 	done
 
-Text0683:
+BoosterPackWeAreTeamRocketText:
 	textfw "われらロケット団"
 	done
 
-Text0684:
+BoosterPackTeamRocketsAmbitionText:
 	textfw "ロケット団のやぼう"
 	done
 
-Text0685:
+EnergyPackText:
 	textfw "エネルギー"
 	done
 
-Text0686:
+PresentPackText:
 	textfw "プレゼントパック"
 	done
 
-Text0687:
+ObtainedBoosterPackText:
 	textfw "<RAMNAME>は <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0688:
+ObtainedSecondBoosterPackText:
 	textfw "さらに <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0689:
+BoosterPack1Text:
 	textfw "第1彈"
 	done
 
-Text068a:
+BoosterPack2Text:
 	textfw "第2彈"
 	done
 
-Text068b:
+BoosterPack3Text:
 	textfw "第3彈"
 	done
 
-Text068c:
+BoosterPack4Text:
 	textfw "第4彈"
 	done
 
-Text068d:
+BoosterPack5Text:
 	textfw "第5彈"
 	done
 
-Text068e:
+BoosterPack6Text:
 	textfw "第6彈"
 	done
 
-Text068f:
+BoosterPack7Text:
 	textfw "第7彈"
 	done
 
-Text0690:
+GetPackText:
 	textfw "パック入手"
 	done
 

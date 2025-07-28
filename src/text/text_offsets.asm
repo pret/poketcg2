@@ -1668,25 +1668,25 @@ TextOffsets::
 	textpointer Text067b                                           ; 0x067b
 	textpointer Text067c                                           ; 0x067c
 	textpointer Text067d                                           ; 0x067d
-	textpointer Text067e                                           ; 0x067e
-	textpointer Text067f                                           ; 0x067f
-	textpointer Text0680                                           ; 0x0680
-	textpointer Text0681                                           ; 0x0681
-	textpointer Text0682                                           ; 0x0682
-	textpointer Text0683                                           ; 0x0683
-	textpointer Text0684                                           ; 0x0684
-	textpointer Text0685                                           ; 0x0685
-	textpointer Text0686                                           ; 0x0686
-	textpointer Text0687                                           ; 0x0687
-	textpointer Text0688                                           ; 0x0688
-	textpointer Text0689                                           ; 0x0689
-	textpointer Text068a                                           ; 0x068a
-	textpointer Text068b                                           ; 0x068b
-	textpointer Text068c                                           ; 0x068c
-	textpointer Text068d                                           ; 0x068d
-	textpointer Text068e                                           ; 0x068e
-	textpointer Text068f                                           ; 0x068f
-	textpointer Text0690                                           ; 0x0690
+	textpointer BoosterPackBeginningPokemonText                       ; 0x067e
+	textpointer BoosterPackLegendaryPowerText                         ; 0x067f
+	textpointer BoosterPackIslandOfFossilText                         ; 0x0680
+	textpointer BoosterPackPsychicBattleText                          ; 0x0681
+	textpointer BoosterPackFlyingPokemonText                          ; 0x0682
+	textpointer BoosterPackWeAreTeamRocketText                        ; 0x0683
+	textpointer BoosterPackTeamRocketsAmbitionText                    ; 0x0684
+	textpointer EnergyPackText                                        ; 0x0685
+	textpointer PresentPackText                                       ; 0x0686
+	textpointer ObtainedBoosterPackText                               ; 0x0687
+	textpointer ObtainedSecondBoosterPackText                         ; 0x0688
+	textpointer BoosterPack1Text                                      ; 0x0689
+	textpointer BoosterPack2Text                                      ; 0x068a
+	textpointer BoosterPack3Text                                      ; 0x068b
+	textpointer BoosterPack4Text                                      ; 0x068c
+	textpointer BoosterPack5Text                                      ; 0x068d
+	textpointer BoosterPack6Text                                      ; 0x068e
+	textpointer BoosterPack7Text                                      ; 0x068f
+	textpointer GetPackText                                           ; 0x0690
 	textpointer Text0691                                           ; 0x0691
 	textpointer Text0692                                           ; 0x0692
 	textpointer Text0693                                           ; 0x0693
