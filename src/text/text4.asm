@@ -461,7 +461,7 @@ DebugBackgroundCoinDisplayText:
 	textfw "BGコインの表示"
 	done
 
-Text05ff:
+SingleSpaceText: ; Coin-related?
 	textfw " "
 	done
 
@@ -3042,7 +3042,7 @@ DebugClearMailText:
 	textfw "メールクリア"
 	done
 
-Text07f6:
+ObtainedGRCoinPieceTotalNumberText:
 	textfw "<RAMNUM>枚めのGRコインのカケラです!"
 	done
 

@@ -1541,7 +1541,7 @@ TextOffsets::
 	textpointer GiftCenterPressStartWhenReadyText                     ; 0x05fc
 	textpointer GiftCenterTransmissionErrorTryAgainText               ; 0x05fd
 	textpointer DebugBackgroundCoinDisplayText                        ; 0x05fe
-	textpointer Text05ff                                              ; 0x05ff
+	textpointer SingleSpaceText                                       ; 0x05ff
 	textpointer PlayerCoinSelectText                                  ; 0x0600
 	textpointer ChanseyCoinText                                       ; 0x0601
 	textpointer GrassCoinText                                         ; 0x0602
@@ -2044,7 +2044,7 @@ TextOffsets::
 	textpointer Text07f3                                           ; 0x07f3
 	textpointer Text07f4                                           ; 0x07f4
 	textpointer DebugClearMailText                                    ; 0x07f5
-	textpointer Text07f6                                           ; 0x07f6
+	textpointer ObtainedGRCoinPieceTotalNumberText                    ; 0x07f6
 	textpointer Text07f7                                           ; 0x07f7
 	textpointer Text07f8                                           ; 0x07f8
 	textpointer Text07f9                                           ; 0x07f9
