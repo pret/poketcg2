@@ -1510,36 +1510,36 @@ TextOffsets::
 	textpointer IsThisOKText_2                                        ; 0x05dd
 	textpointer PlayerGenderText                                      ; 0x05de
 	textpointer CardsUnitHiraganaText                                 ; 0x05df
-	textpointer Text05e0                                           ; 0x05e0
-	textpointer Text05e1                                           ; 0x05e1
-	textpointer Text05e2                                           ; 0x05e2
-	textpointer Text05e3                                           ; 0x05e3
-	textpointer Text05e4                                           ; 0x05e4
-	textpointer Text05e5                                           ; 0x05e5
-	textpointer Text05e6                                           ; 0x05e6
-	textpointer Text05e7                                           ; 0x05e7
-	textpointer Text05e8                                           ; 0x05e8
-	textpointer Text05e9                                           ; 0x05e9
-	textpointer Text05ea                                           ; 0x05ea
-	textpointer Text05eb                                           ; 0x05eb
-	textpointer Text05ec                                           ; 0x05ec
-	textpointer Text05ed                                           ; 0x05ed
-	textpointer Text05ee                                           ; 0x05ee
-	textpointer Text05ef                                           ; 0x05ef
-	textpointer Text05f0                                           ; 0x05f0
-	textpointer Text05f1                                           ; 0x05f1
-	textpointer Text05f2                                           ; 0x05f2
-	textpointer Text05f3                                           ; 0x05f3
-	textpointer Text05f4                                           ; 0x05f4
-	textpointer Text05f5                                           ; 0x05f5
-	textpointer Text05f6                                           ; 0x05f6
-	textpointer Text05f7                                           ; 0x05f7
-	textpointer Text05f8                                           ; 0x05f8
-	textpointer Text05f9                                           ; 0x05f9
-	textpointer Text05fa                                           ; 0x05fa
-	textpointer Text05fb                                           ; 0x05fb
-	textpointer Text05fc                                           ; 0x05fc
-	textpointer Text05fd                                           ; 0x05fd
+	textpointer GameCenterClerkText                                   ; 0x05e0
+	textpointer GameCenterPrizeExchangeWelcomeText                    ; 0x05e1
+	textpointer GameCenterPrizeExchangePromptText                     ; 0x05e2
+	textpointer GameCenterPrizeExchangeChoosePrizeText                ; 0x05e3
+	textpointer GameCenterNotEnoughChipsText                          ; 0x05e4
+	textpointer GameCenterPrizeExchangeConfirmText                    ; 0x05e5
+	textpointer GameCenterPrizeExchangeQuitConfirmText                ; 0x05e6
+	textpointer GameCenterPrizeExchangeComeAgainText                  ; 0x05e7
+	textpointer GameCenterPrizeVenusaurText                           ; 0x05e8
+	textpointer GameCenterPrizeMewText                                ; 0x05e9
+	textpointer GameCenterPrizeBillsPCText                            ; 0x05ea
+	textpointer GameCenterPrizeJigglypuffCoinText                     ; 0x05eb
+	textpointer GameCenterPrize1PresentPackText                       ; 0x05ec
+	textpointer GameCenterPrize3PresentPacksText                      ; 0x05ed
+	textpointer BattleCenterWelcomeTextOld                            ; 0x05ee
+	textpointer BattleCenterBeginPromptTextOld                        ; 0x05ef
+	textpointer BattleCenterThankYoutTextOld                          ; 0x05f0
+	textpointer GiftCenterWelcomeText                                 ; 0x05f1
+	textpointer GiftCenterServicePromoptText                          ; 0x05f2
+	textpointer GiftCenterServiceAcknowledgementText                  ; 0x05f3
+	textpointer GiftCenterServiceSaveRequestText                      ; 0x05f4
+	textpointer GiftCenterServiceUnavailableSaveRequiredText          ; 0x05f5
+	textpointer GiftCenterComeAgainText                               ; 0x05f6
+	textpointer GiftCenterSendCardsText                               ; 0x05f7
+	textpointer GiftCenterReceiveCardsText                            ; 0x05f8
+	textpointer GiftCenterSendDeckConfigurationText                   ; 0x05f9
+	textpointer GiftCenterReceiveDeckConfigurationText                ; 0x05fa
+	textpointer GiftCenterQuitText                                    ; 0x05fb
+	textpointer GiftCenterPressStartWhenReadyText                     ; 0x05fc
+	textpointer GiftCenterTransmissionErrorTryAgainText               ; 0x05fd
 	textpointer DebugBackgroundCoinDisplayText                        ; 0x05fe
 	textpointer Text05ff                                           ; 0x05ff
 	textpointer Text0600                                           ; 0x0600
@@ -1599,7 +1599,7 @@ TextOffsets::
 	textpointer Text0636                                           ; 0x0636
 	textpointer Text0637                                           ; 0x0637
 	textpointer Text0638                                           ; 0x0638
-	textpointer Text0639                                           ; 0x0639
+	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer Text063a                                           ; 0x063a
 	textpointer Text063b                                           ; 0x063b
 	textpointer Text063c                                           ; 0x063c

@@ -325,134 +325,134 @@ CardsUnitHiraganaText:
 	textfw "まい"
 	done
 
-Text05e0:
+GameCenterClerkText:
 	textfw "うけつけ"
 	done
 
-Text05e1:
+GameCenterPrizeExchangeWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "けいひんカウンターへ ようこそ!"
 	done
 
-Text05e2:
+GameCenterPrizeExchangePromptText:
 	textfw "チップをけいひんに かえますか?"
 	done
 
-Text05e3:
+GameCenterPrizeExchangeChoosePrizeText:
 	textfw "けいひんを えらんでください"
 	done
 
-Text05e4:
+GameCenterNotEnoughChipsText:
 	textfw "チップが たりません"
 	done
 
-Text05e5:
+GameCenterPrizeExchangeConfirmText:
 	textfw "このけいひんで よろしいですか?"
 	done
 
-Text05e6:
+GameCenterPrizeExchangeQuitConfirmText:
 	textfw "けいひんのこうかんを おわりますか?"
 	done
 
-Text05e7:
+GameCenterPrizeExchangeComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text05e8:
+GameCenterPrizeVenusaurText:
 	textfw "フシギバナ<Lv>64"
 	done
 
-Text05e9:
+GameCenterPrizeMewText:
 	textfw "ミュウ<Lv>15"
 	done
 
-Text05ea:
+GameCenterPrizeBillsPCText:
 	textfw "マサキのパソコン"
 	done
 
-Text05eb:
+GameCenterPrizeJigglypuffCoinText:
 	textfw "プリンコイン"
 	done
 
-Text05ec:
+GameCenterPrize1PresentPackText:
 	textfw "プレゼントパック×1"
 	done
 
-Text05ed:
+GameCenterPrize3PresentPacksText:
 	textfw "プレゼントパック×3"
 	done
 
-Text05ee:
+BattleCenterWelcomeTextOld: ; left over from tcg1, cf. 0x12e4--
 	textfw "いらっしゃいませ"
 	linefw "バトルセンターへ ようこそ!"
 	done
 
-Text05ef:
+BattleCenterBeginPromptTextOld: ; the same
 	textfw "ともだちとの対戦を はじめますか?"
 	done
 
-Text05f0:
+BattleCenterThankYoutTextOld: ; probably the same
 	textfw "バトルセンターの ごりよう"
 	linefw "ありがとうございました"
 	done
 
-Text05f1:
+GiftCenterWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "ギフトセンターへ ようこそ!"
 	done
 
-Text05f2:
+GiftCenterServicePromoptText:
 	textfw "どのような"
 	linefw "ごようけんでしょうか?"
 	done
 
-Text05f3:
+GiftCenterServiceAcknowledgementText:
 	textfw "わかりました"
 	linefw "「<RAMTEXT>」ですね"
 	done
 
-Text05f4:
+GiftCenterServiceSaveRequestText:
 	textfw "それでは ごりようの まえに"
 	linefw "「にっき」を つけてください"
 	done
 
-Text05f5:
+GiftCenterServiceUnavailableSaveRequiredText:
 	textfw "「にっき」をつけて いただかなければ"
 	linefw "ごりように なれません"
 	done
 
-Text05f6:
+GiftCenterComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text05f7:
+GiftCenterSendCardsText:
 	textfw "カードをあげる"
 	done
 
-Text05f8:
+GiftCenterReceiveCardsText:
 	textfw "カードをもらう"
 	done
 
-Text05f9:
+GiftCenterSendDeckConfigurationText:
 	textfw "デッキのつくりかたをわたす"
 	done
 
-Text05fa:
+GiftCenterReceiveDeckConfigurationText:
 	textfw "デッキのつくりかたをもらう"
 	done
 
-Text05fb:
+GiftCenterQuitText:
 	textfw "やめる"
 	done
 
-Text05fc:
+GiftCenterPressStartWhenReadyText:
 	textfw "じゅんびができたら どちらかが"
 	linefw "STARTボタンを おしてください"
 	done
 
-Text05fd:
+GiftCenterTransmissionErrorTryAgainText:
 	textfw "通信エラーです"
 	linefw "はじめから やりなおしてください"
 	done
@@ -704,7 +704,7 @@ Text0638:
 	textfw "もういちど あそびますか?"
 	done
 
-Text0639:
+GameCenterPrizeExchangeText:
 	textfw "けいひんカウンター"
 	done
 
