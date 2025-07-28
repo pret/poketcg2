@@ -4640,25 +4640,25 @@ ShowProloguePortraitAndText:
 	dw .text_list3
 
 .text_list1
-	tx Text0762
-	tx Text0763
-	tx Text0764
-	tx Text0765
-	tx Text0766
-	tx Text0767
-	tx Text0768
+	tx PrologueScene1Line1Text
+	tx PrologueScene1Line2Text
+	tx PrologueScene1Line3Text
+	tx PrologueScene1Line4Text
+	tx PrologueScene1Line5Text
+	tx PrologueScene1Line6Text
+	tx PrologueScene1Line7Text
 	dw $ffff
 
 .text_list2
-	tx Text0769
-	tx Text076a
-	tx Text076b
+	tx PrologueScene2Line1Text
+	tx PrologueScene2Line2Text
+	tx PrologueScene2Line3Text
 	dw $ffff
 
 .text_list3
-	tx Text076c
-	tx Text076d
-	tx Text076e
+	tx PrologueScene3Line1Text
+	tx PrologueScene3Line2Text
+	tx PrologueScene3Line3Text
 	dw $ffff
 ; 0x13c22
 

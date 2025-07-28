@@ -1896,20 +1896,20 @@ TextOffsets::
 	textpointer Text075f                                           ; 0x075f
 	textpointer Text0760                                           ; 0x0760
 	textpointer Text0761                                           ; 0x0761
-	textpointer Text0762                                           ; 0x0762
-	textpointer Text0763                                           ; 0x0763
-	textpointer Text0764                                           ; 0x0764
-	textpointer Text0765                                           ; 0x0765
-	textpointer Text0766                                           ; 0x0766
-	textpointer Text0767                                           ; 0x0767
-	textpointer Text0768                                           ; 0x0768
-	textpointer Text0769                                           ; 0x0769
-	textpointer Text076a                                           ; 0x076a
-	textpointer Text076b                                           ; 0x076b
-	textpointer Text076c                                           ; 0x076c
-	textpointer Text076d                                           ; 0x076d
-	textpointer Text076e                                           ; 0x076e
-	textpointer Text076f                                           ; 0x076f
+	textpointer PrologueScene1Line1Text                               ; 0x0762
+	textpointer PrologueScene1Line2Text                               ; 0x0763
+	textpointer PrologueScene1Line3Text                               ; 0x0764
+	textpointer PrologueScene1Line4Text                               ; 0x0765
+	textpointer PrologueScene1Line5Text                               ; 0x0766
+	textpointer PrologueScene1Line6Text                               ; 0x0767
+	textpointer PrologueScene1Line7Text                               ; 0x0768
+	textpointer PrologueScene2Line1Text                               ; 0x0769
+	textpointer PrologueScene2Line2Text                               ; 0x076a
+	textpointer PrologueScene2Line3Text                               ; 0x076b
+	textpointer PrologueScene3Line1Text                               ; 0x076c
+	textpointer PrologueScene3Line2Text                               ; 0x076d
+	textpointer PrologueScene3Line3Text                               ; 0x076e
+	textpointer IntroductionText                                      ; 0x076f
 	textpointer ConfigTitleText_2                                     ; 0x0770
 	textpointer ConfigFrameColorText                                  ; 0x0771
 	textpointer ConfigFrameColorRedText                               ; 0x0772

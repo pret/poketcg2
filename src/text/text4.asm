@@ -2382,72 +2382,72 @@ Text0761:
 	textfw "すべてのデータをさくじょしました"
 	done
 
-Text0762:
+PrologueScene1Line1Text:
 	textfw "<RAMNAME>は ポケモンカードを"
 	linefw "あつめるのが だいすきです"
 	done
 
-Text0763:
+PrologueScene1Line2Text:
 	textfw "<RAMNAME>は このしまにつたわる"
 	linefw "伝説のポケモンカードを ゲットのため"
 	done
 
-Text0764:
+PrologueScene1Line3Text:
 	textfw "8にんの クラブマスターと"
 	linefw "伝説のポケモンカードを まもる"
 	done
 
-Text0765:
+PrologueScene1Line4Text:
 	textfw "4にんの グランドマスターに"
 	linefw "ちょうせんしたのでした・・・"
 	done
 
-Text0766:
+PrologueScene1Line5Text:
 	textfw "そして ついには!"
 	linefw "グランドマスターを たおして"
 	done
 
-Text0767:
+PrologueScene1Line6Text:
 	textfw "4枚の 伝説のポケモンカードを"
 	linefw "そのてに ゲットしたのです"
 	done
 
-Text0768:
+PrologueScene1Line7Text:
 	textfw "そんな ある日・・・"
 	linefw "じけんは おこりました!"
 	done
 
-Text0769:
+PrologueScene2Line1Text:
 	textfw "とつぜん"
 	linefw "なぞのぐん団が おそってきたのです!"
 	done
 
-Text076a:
+PrologueScene2Line2Text:
 	textfw "その名を 「GR団」!"
 	linefw "「グレートロケット団」と いいました"
 	done
 
-Text076b:
+PrologueScene2Line3Text:
 	textfw "「GR団」は クラブを こうげき!"
 	linefw "カードを うばっていったのです!"
 	done
 
-Text076c:
+PrologueScene3Line1Text:
 	textfw "もっていたカードを GR団に"
 	linefw "うばわれた <RAMNAME>は"
 	done
 
-Text076d:
+PrologueScene3Line2Text:
 	textfw "このことを しらせるため"
 	linefw "ポケモンカードの 研究者である"
 	done
 
-Text076e:
+PrologueScene3Line3Text:
 	textfw "Dr.オーヤマのいる 研究所へ"
 	linefw "むかったのでした・・・"
 	done
 
-Text076f:
+IntroductionText:
 	textfw "イントロダクション"
 	done
 
