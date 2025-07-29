@@ -2360,7 +2360,7 @@ GameCenterBlackBoxDoneText:
 	linefw "カードを おくりました!"
 	done
 
-GameCenterBlackBoxDoneTextCont:
+GameCenterToBeMailedText:
 	textfw "けっかはメールボックスに とどきます"
 	linefw "おたのしみに!"
 	done
@@ -3075,12 +3075,12 @@ Text07fc:
 	linefw "拡張パックのなかを みた!!"
 	done
 
-Text07fd:
+NoCardsSelectedTryAgainText:
 	textfw "カードのまいすうが 0枚です"
 	linefw "もういちど えらびなおしてください"
 	done
 
-Text07fe:
+GameCenterToBeMailedText_2:
 	textfw "けっかはメールボックスに とどきます"
 	linefw "おたのしみに!"
 	done

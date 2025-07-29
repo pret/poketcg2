@@ -1891,7 +1891,7 @@ TextOffsets::
 	textpointer GameCenterBlackBoxProcedureText                       ; 0x075a
 	textpointer GameCenterBlackBoxProcedureDialogText                 ; 0x075b
 	textpointer GameCenterBlackBoxDoneText                            ; 0x075c
-	textpointer GameCenterBlackBoxDoneTextCont                        ; 0x075d
+	textpointer GameCenterToBeMailedText                              ; 0x075d
 	textpointer MainMenuNewGameInsteadOfContinueWarning1Text          ; 0x075e
 	textpointer MainMenuNewGameInsteadOfContinueWarning2Text          ; 0x075f
 	textpointer MainMenuNewGameInsteadOfContinueConfirmPromptText     ; 0x0760
@@ -2051,8 +2051,8 @@ TextOffsets::
 	textpointer Text07fa                                           ; 0x07fa
 	textpointer Text07fb                                           ; 0x07fb
 	textpointer Text07fc                                           ; 0x07fc
-	textpointer Text07fd                                           ; 0x07fd
-	textpointer Text07fe                                           ; 0x07fe
+	textpointer NoCardsSelectedTryAgainText                           ; 0x07fd
+	textpointer GameCenterToBeMailedText_2                            ; 0x07fe
 	textpointer DebugDummyLinesText                                   ; 0x07ff
 	textpointer DebugYoshidaDebugMenuText                             ; 0x0800
 	textpointer DebugScenarioDebugMenuText                            ; 0x0801
