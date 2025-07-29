@@ -1939,33 +1939,33 @@ TextOffsets::
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning3Text    ; 0x078a
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning4Text    ; 0x078b
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelConfirmText     ; 0x078c
-	textpointer Text078d                                           ; 0x078d
-	textpointer Text078e                                           ; 0x078e
-	textpointer Text078f                                           ; 0x078f
-	textpointer Text0790                                           ; 0x0790
-	textpointer Text0791                                           ; 0x0791
-	textpointer Text0792                                           ; 0x0792
-	textpointer Text0793                                           ; 0x0793
-	textpointer Text0794                                           ; 0x0794
-	textpointer Text0795                                           ; 0x0795
-	textpointer Text0796                                           ; 0x0796
-	textpointer Text0797                                           ; 0x0797
-	textpointer Text0798                                           ; 0x0798
-	textpointer Text0799                                           ; 0x0799
-	textpointer Text079a                                           ; 0x079a
-	textpointer Text079b                                           ; 0x079b
-	textpointer Text079c                                           ; 0x079c
-	textpointer Text079d                                           ; 0x079d
-	textpointer Text079e                                           ; 0x079e
-	textpointer Text079f                                           ; 0x079f
+	textpointer ChallengeMachineText                                  ; 0x078d
+	textpointer GRChallengeMachineText                                ; 0x078e
+	textpointer ChallengeMachineScoreTitleText                        ; 0x078f
+	textpointer ChallengeMachineSetsWonText                           ; 0x0790
+	textpointer ChallengeMachineCurrentWinStreakText                  ; 0x0791
+	textpointer ChallengeMachineWinStreakRecordText                   ; 0x0792
+	textpointer AttemtpsUnitText                                      ; 0x0793
+	textpointer WinsUnitText                                          ; 0x0794
+	textpointer ChallengeMachineStartPromptText                       ; 0x0795
+	textpointer ChallengeMachineOpponentGrassClubMemberText           ; 0x0796
+	textpointer ChallengeMachineOpponentWaterClubMemberText           ; 0x0797
+	textpointer ChallengeMachineOpponentFireClubMemberText            ; 0x0798
+	textpointer ChallengeMachineOpponentPsychicClubMemberText         ; 0x0799
+	textpointer ChallengeMachineOpponentLightningClubMemberText       ; 0x079a
+	textpointer ChallengeMachineOpponentFightingClubMemberText        ; 0x079b
+	textpointer ChallengeMachineOpponentListDialogText                ; 0x079c
+	textpointer ChallengeMachineOpponent1DialogText                   ; 0x079d
+	textpointer ChallengeMachineDuelPromptText                        ; 0x079e
+	textpointer ChallengeMachineOpponentGrandMasterText               ; 0x079f
 	textpointer Text07a0                                           ; 0x07a0
 	textpointer Text07a1                                           ; 0x07a1
 	textpointer IncompleteText_2                                      ; 0x07a2
-	textpointer Text07a3                                           ; 0x07a3
-	textpointer Text07a4                                           ; 0x07a4
-	textpointer Text07a5                                           ; 0x07a5
-	textpointer Text07a6                                           ; 0x07a6
-	textpointer Text07a7                                           ; 0x07a7
+	textpointer ChallengeMachineOpponentXDialogText                   ; 0x07a3
+	textpointer ChallengeMachineWinDialogText                         ; 0x07a4
+	textpointer ChallengeMachineLossDialogText                        ; 0x07a5
+	textpointer ChallengeMachineLossDialogWinStreakText               ; 0x07a6
+	textpointer RAMNUMText                                            ; 0x07a7
 	textpointer DebugCreditsText                                      ; 0x07a8
 	textpointer CreditsStaffText                                      ; 0x07a9
 	textpointer CreditsProducersText                                  ; 0x07aa

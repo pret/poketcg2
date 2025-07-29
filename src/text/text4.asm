@@ -2578,80 +2578,80 @@ MainMenuContinueFromDiaryInsteadOfDuelConfirmText:
 	textfw "「つづきを あそぶ」で はじめます?"
 	done
 
-Text078d:
+ChallengeMachineText:
 	textfw "チャレンジマシン"
 	done
 
-Text078e:
+GRChallengeMachineText:
 	textfw "GR団チャレンジマシン"
 	done
 
-Text078f:
+ChallengeMachineScoreTitleText:
 	textfw "<RAMNAME>のスコア"
 	done
 
-Text0790:
+ChallengeMachineSetsWonText:
 	textfw "5人ぬきクリア数"
 	done
 
-Text0791:
+ChallengeMachineCurrentWinStreakText:
 	textfw "いまの れんしょう数"
 	done
 
-Text0792:
+ChallengeMachineWinStreakRecordText:
 	textfw "れんしょう きろく"
 	done
 
-Text0793:
+AttemtpsUnitText:
 	textfw "回"
 	done
 
-Text0794:
+WinsUnitText:
 	textfw "勝"
 	done
 
-Text0795:
+ChallengeMachineStartPromptText:
 	textfw "チャレンジマシンで あそびますか?"
 	done
 
-Text0796:
+ChallengeMachineOpponentGrassClubMemberText:
 	textfw "クラブメンバー<GRASS>"
 	done
 
-Text0797:
+ChallengeMachineOpponentWaterClubMemberText:
 	textfw "クラブメンバー<WATER>"
 	done
 
-Text0798:
+ChallengeMachineOpponentFireClubMemberText:
 	textfw "クラブメンバー<FIRE>"
 	done
 
-Text0799:
+ChallengeMachineOpponentPsychicClubMemberText:
 	textfw "クラブメンバー<PSYCHIC>"
 	done
 
-Text079a:
+ChallengeMachineOpponentLightningClubMemberText:
 	textfw "クラブメンバー<LIGHTNING>"
 	done
 
-Text079b:
+ChallengeMachineOpponentFightingClubMemberText:
 	textfw "クラブメンバー<FIGHTING>"
 	done
 
-Text079c:
+ChallengeMachineOpponentListDialogText:
 	textfw "こんかいの ゲームの対戦メンバーです"
 	done
 
-Text079d:
+ChallengeMachineOpponent1DialogText:
 	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
 	linefw "1人目は 「<RAMTEXT>」です"
 	done
 
-Text079e:
+ChallengeMachineDuelPromptText:
 	textfw "対戦を はじめますか?"
 	done
 
-Text079f:
+ChallengeMachineOpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
@@ -2667,27 +2667,27 @@ IncompleteText_2:
 	textfw "未完成"
 	done
 
-Text07a3:
+ChallengeMachineOpponentXDialogText:
 	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
 	linefw "<RAMNUM>人目は 「<RAMTEXT>」です"
 	done
 
-Text07a4:
+ChallengeMachineWinDialogText:
 	textfw "<RAMNUM>人目"
 	linefw "「<RAMTEXT>」に 勝ちました!"
 	done
 
-Text07a5:
+ChallengeMachineLossDialogText:
 	textfw "<RAMNUM>人目"
 	linefw "「<RAMTEXT>」に まけました!"
 	done
 
-Text07a6:
+ChallengeMachineLossDialogWinStreakText:
 	textfw "<RAMNAME>の れんしょうきろくは"
 	linefw "<RAMNUM>で とまりました"
 	done
 
-Text07a7:
+RAMNUMText:
 	textfw "<RAMNUM>"
 	done
 
