@@ -1594,11 +1594,11 @@ TextOffsets::
 	textpointer GameCenterSlotMachineDescriptionText                  ; 0x0631
 	textpointer PlayerDiarySavedText                                  ; 0x0632
 	textpointer PlayerDiaryCancelledText                              ; 0x0633
-	textpointer Text0634                                           ; 0x0634
-	textpointer Text0635                                           ; 0x0635
-	textpointer Text0636                                           ; 0x0636
-	textpointer Text0637                                           ; 0x0637
-	textpointer Text0638                                           ; 0x0638
+	textpointer GameCenterCoinFlipTitleText                           ; 0x0634
+	textpointer GameCenterCoinFlipDescriptionText                     ; 0x0635
+	textpointer GameCenterCoinFlipCheersText                          ; 0x0636
+	textpointer GameCenterCoinFlipPlayMessageText                     ; 0x0637
+	textpointer GameCenterCoinFlipRetryPromptText                     ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer DebugDuelText                                         ; 0x063a
 	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b

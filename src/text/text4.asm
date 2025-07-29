@@ -679,28 +679,28 @@ PlayerDiaryCancelledText:
 	linefw "にっきをつけるのを やめました"
 	done
 
-Text0634:
+GameCenterCoinFlipTitleText:
 	textfw " れんぞくコイントス "
 	done
 
-Text0635:
+GameCenterCoinFlipDescriptionText:
 	textfw "おもてが れんぞく なんかいでるか"
 	linefw "コイントスに チャレンジしよう!"
 	linefw "10かいれんぞく せいこうすれば"
 	linefw "ごうかなけいひんゲット!"
 	done
 
-Text0636:
+GameCenterCoinFlipCheersText:
 	textfw "れんぞく10かいを めざして"
 	linefw "がんばってください!"
 	done
 
-Text0637:
+GameCenterCoinFlipPlayMessageText:
 	textfw "10かいれんぞくせいこうで"
 	linefw "ごうかしょうひんゲット!"
 	done
 
-Text0638:
+GameCenterCoinFlipRetryPromptText:
 	textfw "もういちど あそびますか?"
 	done
 
