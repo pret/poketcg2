@@ -264,17 +264,17 @@ MainMenuContinueDuelText:
 	textfw "対戦から あそぶ"
 	done
 
-MainMenuNewGameMessageText:
+MainMenuNewGameDialogText:
 	textfw "ゲームを はじめからスタートします"
 	done
 
-MainMenuCardPopMessageText:
+MainMenuCardPopDialogText:
 	textfw "ともだちと「カードポン!」すると"
 	linefw "あたらしい カードが うまれます"
 	linefw "ふたりとも とくするぞ"
 	done
 
-MainMenuContinueDuelMessageText:
+MainMenuContinueDuelDialogText:
 	textfw "対戦のとちゅうで 電源がきれました"
 	linefw "対戦とちゅうの電源がきれたところから"
 	linefw "ゲームをはじめられます"
@@ -695,7 +695,7 @@ GameCenterCoinFlipCheersText:
 	linefw "がんばってください!"
 	done
 
-GameCenterCoinFlipPlayMessageText:
+GameCenterCoinFlipDialogText:
 	textfw "10かいれんぞくせいこうで"
 	linefw "ごうかしょうひんゲット!"
 	done
@@ -1133,7 +1133,7 @@ GameCenter5ChipsPerPlayText:
 	textfw "チップ5枚"
 	done
 
-GameCenterSlotMachinePlayMessageText:
+GameCenterSlotMachineDialogText:
 	textfw "十字ボタンの下で ゲームスタート"
 	linefw "Bボタンで おわります"
 	done

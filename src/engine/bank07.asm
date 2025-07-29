@@ -1885,7 +1885,7 @@ _StartMenuBoxUpdate::
 
 .NewGame:
 	lb de, 1, 12
-	ldtx hl, MainMenuNewGameMessageText
+	ldtx hl, MainMenuNewGameDialogText
 	call Func_35af
 	ret
 
@@ -1923,13 +1923,13 @@ _StartMenuBoxUpdate::
 
 .CardPop:
 	lb de, 1, 12
-	ldtx hl, MainMenuCardPopMessageText
+	ldtx hl, MainMenuCardPopDialogText
 	call Func_35af
 	ret
 
 .ContinueDuel:
 	lb de, 1, 12
-	ldtx hl, MainMenuContinueDuelMessageText
+	ldtx hl, MainMenuContinueDuelDialogText
 	call Func_35af
 	ret
 

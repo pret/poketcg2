@@ -1496,9 +1496,9 @@ TextOffsets::
 	textpointer MainMenuContinueFromDiaryText                         ; 0x05cf
 	textpointer MainMenuCardPopText                                   ; 0x05d0
 	textpointer MainMenuContinueDuelText                              ; 0x05d1
-	textpointer MainMenuNewGameMessageText                            ; 0x05d2
-	textpointer MainMenuCardPopMessageText                            ; 0x05d3
-	textpointer MainMenuContinueDuelMessageText                       ; 0x05d4
+	textpointer MainMenuNewGameDialogText                             ; 0x05d2
+	textpointer MainMenuCardPopDialogText                             ; 0x05d3
+	textpointer MainMenuContinueDuelDialogText                        ; 0x05d4
 	textpointer PlayerGenderMaleText                                  ; 0x05d5
 	textpointer PlayerGenderFemaleText                                ; 0x05d6
 	textpointer ChoosePlayerGenderText                                ; 0x05d7
@@ -1597,7 +1597,7 @@ TextOffsets::
 	textpointer GameCenterCoinFlipTitleText                           ; 0x0634
 	textpointer GameCenterCoinFlipDescriptionText                     ; 0x0635
 	textpointer GameCenterCoinFlipCheersText                          ; 0x0636
-	textpointer GameCenterCoinFlipPlayMessageText                     ; 0x0637
+	textpointer GameCenterCoinFlipDialogText                          ; 0x0637
 	textpointer GameCenterCoinFlipRetryPromptText                     ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer DebugDuelText                                         ; 0x063a
@@ -1689,7 +1689,7 @@ TextOffsets::
 	textpointer GetPackText                                           ; 0x0690
 	textpointer GameCenter1ChipPerPlayText                            ; 0x0691
 	textpointer GameCenter5ChipsPerPlayText                           ; 0x0692
-	textpointer GameCenterSlotMachinePlayMessageText                  ; 0x0693
+	textpointer GameCenterSlotMachineDialogText                       ; 0x0693
 	textpointer GameCenterSlotMachineBonusPlayText                    ; 0x0694
 	textpointer GameCenterSlotMachineBonusPlayHitMoneySacksText       ; 0x0695
 	textpointer GameCenterSlotMachineHitEditionSymbolsText            ; 0x0696
