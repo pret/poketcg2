@@ -1027,19 +1027,19 @@ DuelistIntroGhostMasterText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0679:
+MinicomDeckSaveMachineText:
 	textfw "デッキきろくマシンにせつぞく"
 	done
 
-Text067a:
+MinicomMailBoxText:
 	textfw "メールボックスをみる"
 	done
 
-Text067b:
+MinicomCardAlbumText:
 	textfw "カードいちらんをみる"
 	done
 
-Text067c:
+MinicomDialogText:
 	textfw "メニューを えらんでください"
 	done
 

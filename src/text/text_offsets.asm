@@ -1663,10 +1663,10 @@ TextOffsets::
 	textpointer DuelistIntroUntitledText                              ; 0x0676
 	textpointer DuelistIntroDungeonMasterText                         ; 0x0677
 	textpointer DuelistIntroGhostMasterText                           ; 0x0678
-	textpointer Text0679                                           ; 0x0679
-	textpointer Text067a                                           ; 0x067a
-	textpointer Text067b                                           ; 0x067b
-	textpointer Text067c                                           ; 0x067c
+	textpointer MinicomDeckSaveMachineText                            ; 0x0679
+	textpointer MinicomMailBoxText                                    ; 0x067a
+	textpointer MinicomCardAlbumText                                  ; 0x067b
+	textpointer MinicomDialogText                                     ; 0x067c
 	textpointer PlayersChipsText                                      ; 0x067d
 	textpointer BoosterPackBeginningPokemonText                       ; 0x067e
 	textpointer BoosterPackLegendaryPowerText                         ; 0x067f
