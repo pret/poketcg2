@@ -1942,7 +1942,7 @@ TextOffsets::
 	textpointer ChallengeMachineText                                  ; 0x078d
 	textpointer GRChallengeMachineText                                ; 0x078e
 	textpointer ChallengeMachineScoreTitleText                        ; 0x078f
-	textpointer ChallengeMachineSetsWonText                           ; 0x0790
+	textpointer ChallengeMachineSetsWonRecordText                     ; 0x0790
 	textpointer ChallengeMachineCurrentWinStreakText                  ; 0x0791
 	textpointer ChallengeMachineWinStreakRecordText                   ; 0x0792
 	textpointer AttemtpsUnitText                                      ; 0x0793
@@ -2045,11 +2045,11 @@ TextOffsets::
 	textpointer AttendantText                                         ; 0x07f4
 	textpointer DebugClearMailText                                    ; 0x07f5
 	textpointer ObtainedGRCoinPieceTotalNumberText                    ; 0x07f6
-	textpointer Text07f7                                           ; 0x07f7
-	textpointer Text07f8                                           ; 0x07f8
-	textpointer Text07f9                                           ; 0x07f9
-	textpointer Text07fa                                           ; 0x07fa
-	textpointer Text07fb                                           ; 0x07fb
+	textpointer ChallengeMachineQuitWinStreakWarningText              ; 0x07f7
+	textpointer ChallengeMachineQuitPromptText                        ; 0x07f8
+	textpointer ChallengeMachineWonASetText                           ; 0x07f9
+	textpointer ChallengeMachineSetsWonText                           ; 0x07fa
+	textpointer ChallengeMachineComeAgainText                         ; 0x07fb
 	textpointer Text07fc                                           ; 0x07fc
 	textpointer NoCardsSelectedTryAgainText                           ; 0x07fd
 	textpointer GameCenterToBeMailedText_2                            ; 0x07fe

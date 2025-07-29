@@ -2590,7 +2590,7 @@ ChallengeMachineScoreTitleText:
 	textfw "<RAMNAME>のスコア"
 	done
 
-ChallengeMachineSetsWonText:
+ChallengeMachineSetsWonRecordText:
 	textfw "5人ぬきクリア数"
 	done
 
@@ -3046,26 +3046,26 @@ ObtainedGRCoinPieceTotalNumberText:
 	textfw "<RAMNUM>枚めのGRコインのカケラです!"
 	done
 
-Text07f7:
+ChallengeMachineQuitWinStreakWarningText:
 	textfw "対戦をやめると れんしょうきろくが"
 	linefw "とまることに なります"
 	done
 
-Text07f8:
+ChallengeMachineQuitPromptText:
 	textfw "それでも 対戦をやめますか?"
 	done
 
-Text07f9:
+ChallengeMachineWonASetText:
 	textfw "おめでとうございます"
 	linefw "5人勝ちぬき せいこうです!"
 	done
 
-Text07fa:
+ChallengeMachineSetsWonText:
 	textfw "<RAMNAME> 5人勝ちぬき せいこう"
 	linefw "<RAMNUM>回目!!"
 	done
 
-Text07fb:
+ChallengeMachineComeAgainText:
 	textfw "それでは つぎの"
 	linefw "チャレンジを おまちしております"
 	done
