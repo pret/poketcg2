@@ -654,15 +654,15 @@ DebugSlotMachineText:
 	textfw "スロットマシン"
 	done
 
-Text062f:
+SlotMachineTitleText:
 	textfw " スロットマシン "
 	done
 
-Text0630:
+SlotMachineStartPromptText:
 	textfw "スロットマシンで あそびますか?"
 	done
 
-Text0631:
+SlotMachineDescriptionText:
 	textfw "かいてんする 3つのドラムをとめて"
 	linefw "おなじマークがそろうとチップゲット!"
 	linefw "レインボーエネルギーマークがそろうと"
@@ -1125,34 +1125,34 @@ GetPackText:
 	textfw "パック入手"
 	done
 
-Text0691:
+SlotMachine1ChipPerPlayText:
 	textfw "チップ1枚"
 	done
 
-Text0692:
+SlotMachine5ChipsPerPlayText:
 	textfw "チップ5枚"
 	done
 
-Text0693:
+SlotMachinePlayMessageText:
 	textfw "十字ボタンの下で ゲームスタート"
 	linefw "Bボタンで おわります"
 	done
 
-Text0694:
+SlotMachineBonusPlayText:
 	textfw "ボーナスゲーム スタート!!"
 	linefw "10かいまでチャレンジできます!"
 	done
 
-Text0695:
+SlotMachineBonusPlayHitMoneySacksText:
 	textfw "ボーナスチップマークが そろいました"
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
-Text0696:
+SlotMachineHitEditionSymbolsText: ; unused
 	textfw "エディションマークが そろいました"
 	done
 
-Text0697:
+SlotMachineMissedText:
 	textfw "ざんねん!"
 	linefw "はずれてしまいました"
 	done

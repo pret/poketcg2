@@ -1589,9 +1589,9 @@ TextOffsets::
 	textpointer ObtainedCoinText                                      ; 0x062c
 	textpointer ObtainedCoinTotalNumberText                           ; 0x062d
 	textpointer DebugSlotMachineText                                  ; 0x062e
-	textpointer Text062f                                           ; 0x062f
-	textpointer Text0630                                           ; 0x0630
-	textpointer Text0631                                           ; 0x0631
+	textpointer SlotMachineTitleText                                  ; 0x062f
+	textpointer SlotMachineStartPromptText                            ; 0x0630
+	textpointer SlotMachineDescriptionText                            ; 0x0631
 	textpointer PlayerDiarySavedText                                  ; 0x0632
 	textpointer PlayerDiaryCancelledText                              ; 0x0633
 	textpointer Text0634                                           ; 0x0634
@@ -1687,13 +1687,13 @@ TextOffsets::
 	textpointer BoosterPack6Text                                      ; 0x068e
 	textpointer BoosterPack7Text                                      ; 0x068f
 	textpointer GetPackText                                           ; 0x0690
-	textpointer Text0691                                           ; 0x0691
-	textpointer Text0692                                           ; 0x0692
-	textpointer Text0693                                           ; 0x0693
-	textpointer Text0694                                           ; 0x0694
-	textpointer Text0695                                           ; 0x0695
-	textpointer Text0696                                           ; 0x0696
-	textpointer Text0697                                           ; 0x0697
+	textpointer SlotMachine1ChipPerPlayText                           ; 0x0691
+	textpointer SlotMachine5ChipsPerPlayText                          ; 0x0692
+	textpointer SlotMachinePlayMessageText                            ; 0x0693
+	textpointer SlotMachineBonusPlayText                              ; 0x0694
+	textpointer SlotMachineBonusPlayHitMoneySacksText                 ; 0x0695
+	textpointer SlotMachineHitEditionSymbolsText                      ; 0x0696
+	textpointer SlotMachineMissedText                                 ; 0x0697
 	textpointer DebugAdjustChipsText                                  ; 0x0698
 	textpointer DebugImageListText                                    ; 0x0699
 	textpointer DebugUnregisteredText                                 ; 0x069a
