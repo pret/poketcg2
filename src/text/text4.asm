@@ -1043,7 +1043,7 @@ Text067c:
 	textfw "メニューを えらんでください"
 	done
 
-Text067d:
+PlayersChipsText:
 	textfw " <RAMNAME>のチップ "
 	done
 
@@ -2500,43 +2500,43 @@ RAMTEXTPadded:
 	textfw " <RAMTEXT> "
 	done
 
-Text077c:
+GameCenterCardDungeonBet10Text:
 	textfw " 10枚"
 	done
 
-Text077d:
+GameCenterCardDungeonBet20Text:
 	textfw " 20枚"
 	done
 
-Text077e:
+GameCenterCardDungeonBet30Text:
 	textfw " 30枚"
 	done
 
-Text077f:
+GameCenterCardDungeonBet50Text:
 	textfw " 50枚"
 	done
 
-Text0780:
+GameCenterCardDungeonBet100Text:
 	textfw "100枚"
 	done
 
-Text0781:
+GameCenterCardDungeonBetCancelText:
 	textfw " やめる"
 	done
 
-Text0782:
+GameCenter10ChipsPerPlayText:
 	textfw "チップ10枚"
 	done
 
-Text0783:
+GameCenter20ChipsPerPlayText:
 	textfw "チップ20枚"
 	done
 
-Text0784:
+GameCenterCardDungeonTitleText:
 	textfw " カードダンジョン "
 	done
 
-Text0785:
+GameCenterCardDungeonDescriptionText:
 	textfw "チップを かけて 対戦しよう!"
 	linefw "かけるチップの まいすうをえらんで"
 	linefw "勝つと かけたチップが ばいになる!"
@@ -2544,12 +2544,12 @@ Text0785:
 	linefw "ゲームオーバーだ!"
 	done
 
-Text0786:
+GameCenterCardDungeonUnableNotEnoughChipsText:
 	textfw "チップが10枚いじょう ひつようです"
 	linefw "チップをあつめてください"
 	done
 
-Text0787:
+GameCenterCardDungeonDialogText:
 	textfw "どんどん たたかって"
 	linefw "チップを たくさん あつめよう!"
 	done

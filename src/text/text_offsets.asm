@@ -1667,7 +1667,7 @@ TextOffsets::
 	textpointer Text067a                                           ; 0x067a
 	textpointer Text067b                                           ; 0x067b
 	textpointer Text067c                                           ; 0x067c
-	textpointer Text067d                                           ; 0x067d
+	textpointer PlayersChipsText                                      ; 0x067d
 	textpointer BoosterPackBeginningPokemonText                       ; 0x067e
 	textpointer BoosterPackLegendaryPowerText                         ; 0x067f
 	textpointer BoosterPackIslandOfFossilText                         ; 0x0680
@@ -1922,18 +1922,18 @@ TextOffsets::
 	textpointer GameCenterBlackBoxChipsPaidText                       ; 0x0779
 	textpointer NumberSlashNumberText                                 ; 0x077a
 	textpointer RAMTEXTPadded                                         ; 0x077b
-	textpointer Text077c                                           ; 0x077c
-	textpointer Text077d                                           ; 0x077d
-	textpointer Text077e                                           ; 0x077e
-	textpointer Text077f                                           ; 0x077f
-	textpointer Text0780                                           ; 0x0780
-	textpointer Text0781                                           ; 0x0781
-	textpointer Text0782                                           ; 0x0782
-	textpointer Text0783                                           ; 0x0783
-	textpointer Text0784                                           ; 0x0784
-	textpointer Text0785                                           ; 0x0785
-	textpointer Text0786                                           ; 0x0786
-	textpointer Text0787                                           ; 0x0787
+	textpointer GameCenterCardDungeonBet10Text                        ; 0x077c
+	textpointer GameCenterCardDungeonBet20Text                        ; 0x077d
+	textpointer GameCenterCardDungeonBet30Text                        ; 0x077e
+	textpointer GameCenterCardDungeonBet50Text                        ; 0x077f
+	textpointer GameCenterCardDungeonBet100Text                       ; 0x0780
+	textpointer GameCenterCardDungeonBetCancelText                    ; 0x0781
+	textpointer GameCenter10ChipsPerPlayText                          ; 0x0782
+	textpointer GameCenter20ChipsPerPlayText                          ; 0x0783
+	textpointer GameCenterCardDungeonTitleText                        ; 0x0784
+	textpointer GameCenterCardDungeonDescriptionText                  ; 0x0785
+	textpointer GameCenterCardDungeonUnableNotEnoughChipsText         ; 0x0786
+	textpointer GameCenterCardDungeonDialogText                       ; 0x0787
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning1Text    ; 0x0788
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning2Text    ; 0x0789
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning3Text    ; 0x078a
