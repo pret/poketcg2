@@ -1177,7 +1177,7 @@ GrandMasterCupBracketChampionshipText:
 	textfw "!優勝!"
 	done
 
-Text069d:
+ConfirmedCardsText:
 	textfw "<RAMNAME>は "
 	linefw "カードを かくにんした!!"
 	done
@@ -2203,7 +2203,7 @@ Text073a:
 	textfw "メールはありません"
 	done
 
-Text073b:
+SingleColonText: ; for time display
 	textfw ":"
 	done
 
@@ -2655,11 +2655,11 @@ ChallengeMachineOpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
-Text07a0:
+GameCenterBillsPCText_2:
 	textfw "マサキのパソコン"
 	done
 
-Text07a1:
+GameCenterXChipsPerPlayText:
 	textfw "チップ<RAMNUM>枚"
 	done
 
@@ -3070,7 +3070,7 @@ ChallengeMachineComeAgainText:
 	linefw "チャレンジを おまちしております"
 	done
 
-Text07fc:
+OpenedBoosterPackText:
 	textfw "<RAMNAME>は"
 	linefw "拡張パックのなかを みた!!"
 	done

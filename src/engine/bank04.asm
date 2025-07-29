@@ -4238,7 +4238,7 @@ PrintPlayTime:
 	inc d
 	inc d
 	inc d
-	ldtx hl, Text073b
+	ldtx hl, SingleColonText
 	call Func_35af
 	inc d
 	ld a, [wDisplayMinutes]

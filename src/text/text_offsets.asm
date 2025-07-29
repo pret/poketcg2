@@ -1699,7 +1699,7 @@ TextOffsets::
 	textpointer DebugUnregisteredText                                 ; 0x069a
 	textpointer GrandMasterCupBracketTitleText                        ; 0x069b
 	textpointer GrandMasterCupBracketChampionshipText                 ; 0x069c
-	textpointer Text069d                                           ; 0x069d
+	textpointer ConfirmedCardsText                                    ; 0x069d
 	textpointer Text069e                                           ; 0x069e
 	textpointer Text069f                                           ; 0x069f
 	textpointer Text06a0                                           ; 0x06a0
@@ -1857,7 +1857,7 @@ TextOffsets::
 	textpointer Text0738                                           ; 0x0738
 	textpointer DebugSendMailText                                     ; 0x0739
 	textpointer Text073a                                           ; 0x073a
-	textpointer Text073b                                           ; 0x073b
+	textpointer SingleColonText                                       ; 0x073b
 	textpointer SamRulesEnergyText                                    ; 0x073c
 	textpointer SamRulesAttackText                                    ; 0x073d
 	textpointer SamRulesSwitchText                                    ; 0x073e
@@ -1958,8 +1958,8 @@ TextOffsets::
 	textpointer ChallengeMachineOpponent1DialogText                   ; 0x079d
 	textpointer ChallengeMachineDuelPromptText                        ; 0x079e
 	textpointer ChallengeMachineOpponentGrandMasterText               ; 0x079f
-	textpointer Text07a0                                           ; 0x07a0
-	textpointer Text07a1                                           ; 0x07a1
+	textpointer GameCenterBillsPCText_2                               ; 0x07a0
+	textpointer GameCenterXChipsPerPlayText                           ; 0x07a1
 	textpointer IncompleteText_2                                      ; 0x07a2
 	textpointer ChallengeMachineOpponentXDialogText                   ; 0x07a3
 	textpointer ChallengeMachineWinDialogText                         ; 0x07a4
@@ -2050,7 +2050,7 @@ TextOffsets::
 	textpointer ChallengeMachineWonASetText                           ; 0x07f9
 	textpointer ChallengeMachineSetsWonText                           ; 0x07fa
 	textpointer ChallengeMachineComeAgainText                         ; 0x07fb
-	textpointer Text07fc                                           ; 0x07fc
+	textpointer OpenedBoosterPackText                                 ; 0x07fc
 	textpointer NoCardsSelectedTryAgainText                           ; 0x07fd
 	textpointer GameCenterToBeMailedText_2                            ; 0x07fe
 	textpointer DebugDummyLinesText                                   ; 0x07ff
