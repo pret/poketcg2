@@ -1697,8 +1697,8 @@ TextOffsets::
 	textpointer DebugAdjustChipsText                                  ; 0x0698
 	textpointer DebugImageListText                                    ; 0x0699
 	textpointer DebugUnregisteredText                                 ; 0x069a
-	textpointer Text069b                                           ; 0x069b
-	textpointer Text069c                                           ; 0x069c
+	textpointer GrandMasterCupBracketTitleText                        ; 0x069b
+	textpointer GrandMasterCupBracketChampionshipText                 ; 0x069c
 	textpointer Text069d                                           ; 0x069d
 	textpointer Text069e                                           ; 0x069e
 	textpointer Text069f                                           ; 0x069f
@@ -1858,25 +1858,25 @@ TextOffsets::
 	textpointer DebugSendMailText                                     ; 0x0739
 	textpointer Text073a                                           ; 0x073a
 	textpointer Text073b                                           ; 0x073b
-	textpointer Text073c                                           ; 0x073c
-	textpointer Text073d                                           ; 0x073d
-	textpointer Text073e                                           ; 0x073e
-	textpointer Text073f                                           ; 0x073f
-	textpointer Text0740                                           ; 0x0740
-	textpointer Text0741                                           ; 0x0741
-	textpointer Text0742                                           ; 0x0742
-	textpointer Text0743                                           ; 0x0743
-	textpointer Text0744                                           ; 0x0744
-	textpointer Text0745                                           ; 0x0745
-	textpointer Text0746                                           ; 0x0746
-	textpointer Text0747                                           ; 0x0747
-	textpointer Text0748                                           ; 0x0748
-	textpointer Text0749                                           ; 0x0749
-	textpointer Text074a                                           ; 0x074a
-	textpointer Text074b                                           ; 0x074b
-	textpointer Text074c                                           ; 0x074c
-	textpointer Text074d                                           ; 0x074d
-	textpointer Text074e                                           ; 0x074e
+	textpointer SamRulesEnergyText                                    ; 0x073c
+	textpointer SamRulesAttackText                                    ; 0x073d
+	textpointer SamRulesSwitchText                                    ; 0x073e
+	textpointer SamRulesEvolutionText                                 ; 0x073f
+	textpointer SamRulesPokemonPowerText                              ; 0x0740
+	textpointer SamRulesEndOfTurnText                                 ; 0x0741
+	textpointer SamRulesDecisionText                                  ; 0x0742
+	textpointer SamRulesQuitText                                      ; 0x0743
+	textpointer SamPracticeDuelText                                   ; 0x0744
+	textpointer SamRegularDuelText                                    ; 0x0745
+	textpointer SamRulesText                                          ; 0x0746
+	textpointer SamQuitText                                           ; 0x0747
+	textpointer AaronStep1Text                                        ; 0x0748
+	textpointer AaronStep2Text                                        ; 0x0749
+	textpointer AaronStep3Text                                        ; 0x074a
+	textpointer AaronStep4Text                                        ; 0x074b
+	textpointer GrandMasterCupPrizesTitleText                         ; 0x074c
+	textpointer GrandMasterCupPrizesDialogText                        ; 0x074d
+	textpointer GrandMasterCupPrizesConfirmPromptText                 ; 0x074e
 	textpointer DebugTitleScreenTentativeText                         ; 0x074f
 	textpointer DebugPlayerGenderSelectionScreenText                  ; 0x0750
 	textpointer DebugStartMenuText                                    ; 0x0751

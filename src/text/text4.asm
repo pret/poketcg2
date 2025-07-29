@@ -1169,11 +1169,11 @@ DebugUnregisteredText:
 	textfw "未登錄"
 	done
 
-Text069b:
+GrandMasterCupBracketTitleText:
 	textfw "<グランドマスター杯トーナメント表>"
 	done
 
-Text069c:
+GrandMasterCupBracketChampionshipText:
 	textfw "!優勝!"
 	done
 
@@ -2207,80 +2207,80 @@ Text073b:
 	textfw ":"
 	done
 
-Text073c:
+SamRulesEnergyText:
 	textfw "エネルギーについて"
 	done
 
-Text073d:
+SamRulesAttackText:
 	textfw "ワザを つかう"
 	done
 
-Text073e:
+SamRulesSwitchText:
 	textfw "ポケモンを いれかえる"
 	done
 
-Text073f:
+SamRulesEvolutionText:
 	textfw "ポケモンを 進化させる"
 	done
 
-Text0740:
+SamRulesPokemonPowerText:
 	textfw "特殊能力を つかう"
 	done
 
-Text0741:
+SamRulesEndOfTurnText:
 	textfw "じぶんの番を おわる"
 	done
 
-Text0742:
+SamRulesDecisionText:
 	textfw "対戦の勝ち まけ"
 	done
 
-Text0743:
+SamRulesQuitText:
 	textfw "きくことは ない"
 	done
 
-Text0744:
+SamPracticeDuelText:
 	textfw "れんしゅう対戦"
 	done
 
-Text0745:
+SamRegularDuelText:
 	textfw "ふつうに対戦"
 	done
 
-Text0746:
+SamRulesText:
 	textfw "ルールせつめい"
 	done
 
-Text0747:
+SamQuitText:
 	textfw "なんでもない"
 	done
 
-Text0748:
+AaronStep1Text:
 	textfw "ステップ1"
 	done
 
-Text0749:
+AaronStep2Text:
 	textfw "ステップ2"
 	done
 
-Text074a:
+AaronStep3Text:
 	textfw "ステップ3"
 	done
 
-Text074b:
+AaronStep4Text:
 	textfw "ステップ4"
 	done
 
-Text074c:
+GrandMasterCupPrizesTitleText:
 	textfw "グランドマスター杯 商品"
 	done
 
-Text074d:
+GrandMasterCupPrizesDialogText:
 	textfw "グランドマスター杯の商品です"
 	linefw "すきなカードを 2枚えらんでください"
 	done
 
-Text074e:
+GrandMasterCupPrizesConfirmPromptText:
 	textfw "この2枚で よろしいですか?"
 	done
 
