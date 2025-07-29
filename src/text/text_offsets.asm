@@ -1687,8 +1687,8 @@ TextOffsets::
 	textpointer BoosterPack6Text                                      ; 0x068e
 	textpointer BoosterPack7Text                                      ; 0x068f
 	textpointer GetPackText                                           ; 0x0690
-	textpointer GameCenterSlotMachine1ChipPerPlayText                 ; 0x0691
-	textpointer GameCenterSlotMachine5ChipsPerPlayText                ; 0x0692
+	textpointer GameCenter1ChipPerPlayText                            ; 0x0691
+	textpointer GameCenter5ChipsPerPlayText                           ; 0x0692
 	textpointer GameCenterSlotMachinePlayMessageText                  ; 0x0693
 	textpointer GameCenterSlotMachineBonusPlayText                    ; 0x0694
 	textpointer GameCenterSlotMachineBonusPlayHitMoneySacksText       ; 0x0695
@@ -1880,18 +1880,18 @@ TextOffsets::
 	textpointer DebugTitleScreenTentativeText                         ; 0x074f
 	textpointer DebugPlayerGenderSelectionScreenText                  ; 0x0750
 	textpointer DebugStartMenuText                                    ; 0x0751
-	textpointer Text0752                                           ; 0x0752
-	textpointer Text0753                                           ; 0x0753
-	textpointer Text0754                                           ; 0x0754
-	textpointer Text0755                                           ; 0x0755
-	textpointer Text0756                                           ; 0x0756
-	textpointer Text0757                                           ; 0x0757
-	textpointer Text0758                                           ; 0x0758
-	textpointer Text0759                                           ; 0x0759
-	textpointer Text075a                                           ; 0x075a
-	textpointer Text075b                                           ; 0x075b
-	textpointer Text075c                                           ; 0x075c
-	textpointer Text075d                                           ; 0x075d
+	textpointer GameCenterBlackBoxTitleText                           ; 0x0752
+	textpointer GameCenterBlackBoxDescriptionText                     ; 0x0753
+	textpointer GameCenterBlackBoxStartPromptText                     ; 0x0754
+	textpointer GameCenterBlackBoxSaveRequestText                     ; 0x0755
+	textpointer GameCenterBlackBoxUnableNotEnoughChipsText            ; 0x0756
+	textpointer GameCenterBlackBoxUnableLastOutputRemainingText       ; 0x0757
+	textpointer GameCenterBlackBoxUnableLastOutputRemainingTextCont   ; 0x0758
+	textpointer GameCenterBlackBoxUnableSaveRequiredText              ; 0x0759
+	textpointer GameCenterBlackBoxProcedureText                       ; 0x075a
+	textpointer GameCenterBlackBoxProcedureDialogText                 ; 0x075b
+	textpointer GameCenterBlackBoxDoneText                            ; 0x075c
+	textpointer GameCenterBlackBoxDoneTextCont                        ; 0x075d
 	textpointer MainMenuNewGameInsteadOfContinueWarning1Text          ; 0x075e
 	textpointer MainMenuNewGameInsteadOfContinueWarning2Text          ; 0x075f
 	textpointer MainMenuNewGameInsteadOfContinueConfirmPromptText     ; 0x0760
@@ -1916,12 +1916,12 @@ TextOffsets::
 	textpointer ConfigFrameColorBlueText                              ; 0x0773
 	textpointer ConfigFrameColorGreenText                             ; 0x0774
 	textpointer ConfigFrameColorBlackText                             ; 0x0775
-	textpointer Text0776                                           ; 0x0776
-	textpointer Text0777                                           ; 0x0777
-	textpointer Text0778                                           ; 0x0778
-	textpointer Text0779                                           ; 0x0779
-	textpointer Text077a                                           ; 0x077a
-	textpointer Text077b                                           ; 0x077b
+	textpointer GameCenterBlackBoxSendingHeaderText                   ; 0x0776
+	textpointer GameCenterBlackBoxConfirmPromptText                   ; 0x0777
+	textpointer GameCenterBlackBoxCancelPromptText                    ; 0x0778
+	textpointer GameCenterBlackBoxChipsPaidText                       ; 0x0779
+	textpointer NumberSlashNumberText                                 ; 0x077a
+	textpointer RAMTEXTPadded                                         ; 0x077b
 	textpointer Text077c                                           ; 0x077c
 	textpointer Text077d                                           ; 0x077d
 	textpointer Text077e                                           ; 0x077e

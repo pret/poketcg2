@@ -1125,11 +1125,11 @@ GetPackText:
 	textfw "パック入手"
 	done
 
-GameCenterSlotMachine1ChipPerPlayText:
+GameCenter1ChipPerPlayText:
 	textfw "チップ1枚"
 	done
 
-GameCenterSlotMachine5ChipsPerPlayText:
+GameCenter5ChipsPerPlayText:
 	textfw "チップ5枚"
 	done
 
@@ -2296,11 +2296,11 @@ DebugStartMenuText:
 	textfw "スタートメニュー"
 	done
 
-Text0752:
+GameCenterBlackBoxTitleText:
 	textfw " ブラックボックス "
 	done
 
-Text0753:
+GameCenterBlackBoxDescriptionText:
 	textfw "1から5枚の カードをいれると"
 	linefw "あたらしいカードが もらえます"
 	linefw "くみあわせかたで もらえるカードが"
@@ -2308,36 +2308,36 @@ Text0753:
 	linefw "ためしてみましょう!"
 	done
 
-Text0754:
+GameCenterBlackBoxStartPromptText:
 	textfw "ブラックボックスで あそびますか?"
 	done
 
-Text0755:
+GameCenterBlackBoxSaveRequestText:
 	textfw "それでは あそぶまえに"
 	linefw "「にっき」を つけてください"
 	done
 
-Text0756:
+GameCenterBlackBoxUnableNotEnoughChipsText:
 	textfw "ブラックボックスは 1かい5枚です"
 	linefw "チップが たりません!"
 	done
 
-Text0757:
+GameCenterBlackBoxUnableLastOutputRemainingText:
 	textfw "ブラックボックスからの メールが"
 	linefw "メールボックスに のこっています"
 	done
 
-Text0758:
+GameCenterBlackBoxUnableLastOutputRemainingTextCont:
 	textfw "メールをよんでカードをうけとってから"
 	linefw "きてください"
 	done
 
-Text0759:
+GameCenterBlackBoxUnableSaveRequiredText:
 	textfw "「にっき」を つけなければ"
 	linefw "あそぶことが できません"
 	done
 
-Text075a:
+GameCenterBlackBoxProcedureText:
 	textfw "   おくるカードの えらびかた"
 	linefw " "
 	linefw "1ˍデッキをつくるように おくりたい"
@@ -2350,17 +2350,17 @@ Text075a:
 	linefw "  じゅんびが かんりょうです"
 	done
 
-Text075b:
+GameCenterBlackBoxProcedureDialogText:
 	textfw "ブラックボックスへ おくるカードの"
 	linefw "えらびかたです"
 	done
 
-Text075c:
+GameCenterBlackBoxDoneText:
 	textfw "ブラックボックスへ"
 	linefw "カードを おくりました!"
 	done
 
-Text075d:
+GameCenterBlackBoxDoneTextCont:
 	textfw "けっかはメールボックスに とどきます"
 	linefw "おたのしみに!"
 	done
@@ -2475,28 +2475,28 @@ ConfigFrameColorBlackText:
 	textfw "くろ"
 	done
 
-Text0776:
+GameCenterBlackBoxSendingHeaderText:
 	textfw "おくるカード"
 	done
 
-Text0777:
+GameCenterBlackBoxConfirmPromptText:
 	textfw "これらのカードをおくりますか?"
 	done
 
-Text0778:
+GameCenterBlackBoxCancelPromptText:
 	textfw "ブラックボックスを やめますか?"
 	done
 
-Text0779:
+GameCenterBlackBoxChipsPaidText:
 	textfw "それでは てすうりょうとして"
 	linefw "チップ5枚を いただきます"
 	done
 
-Text077a:
+NumberSlashNumberText:
 	textfw "<RAMNUM>/<RAMNUM>"
 	done
 
-Text077b:
+RAMTEXTPadded:
 	textfw " <RAMTEXT> "
 	done
 

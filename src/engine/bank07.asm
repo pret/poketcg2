@@ -1892,7 +1892,7 @@ _StartMenuBoxUpdate::
 .ContinueFromDiary:
 	farcall Func_c53e
 	call LoadTxRam2
-	ldtx hl, Text077b
+	ldtx hl, RAMTEXTPadded
 	lb de, 1, 10
 	call Func_2c4b
 	ld hl, .TextItems
