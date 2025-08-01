@@ -1182,23 +1182,23 @@ ConfirmedCardsText:
 	linefw "カードを かくにんした!!"
 	done
 
-Text069e:
+MailBoxEmptySenderText:
 	textfw "------"
 	done
 
-Text069f:
+MailBoxEmptySubjectText:
 	textfw "------------"
 	done
 
-Text06a0:
+MailBlackBoxOutputSenderText:
 	textfw "ゲームセンター"
 	done
 
-Text06a1:
+MailBlackBoxOutputSubjectText:
 	textfw "ブラックボックス"
 	done
 
-Text06a2:
+MailBlackBoxOutputBody1Text:
 	textfw "「ブラックボックス」センターです"
 	linefw "「ブラックボックス」を ごりよう"
 	linefw "いただき ありがとうございます"
@@ -1207,7 +1207,7 @@ Text06a2:
 	linefw "どうぞ おうけとりください"
 	done
 
-Text06a3:
+MailBlackBoxOutputBody2Text:
 	textfw "どうですか いいカードが"
 	linefw "にゅうしゅ できましたか?"
 	linefw "またの 「ブラックボックス」の"
@@ -1216,15 +1216,15 @@ Text06a3:
 	linefw "  GR団ゲームセンター(^-^)/"
 	done
 
-Text06a4:
+MailBillsPCOutputSenderText:
 	textfw "ゲームセンター"
 	done
 
-Text06a5:
+MailBillsPCOutputSubjectText:
 	textfw "マサキのパソコン"
 	done
 
-Text06a6:
+MailBillsPCOutputBody1Text:
 	textfw "「マサキのパソコン」センターです"
 	linefw "「マサキのパソコン」を ごりよう"
 	linefw "いただき ありがとうございます"
@@ -1233,7 +1233,7 @@ Text06a6:
 	linefw "どうぞ ごかくにんください"
 	done
 
-Text06a7:
+MailBillsPCOutputBody2Text:
 	textfw "すばらしいカードが"
 	linefw "にゅうしゅ できましたか?"
 	linefw "またの 「マサキのパソコン」の"
@@ -1242,15 +1242,15 @@ Text06a7:
 	linefw "  GR団ゲームセンター(^-^)/"
 	done
 
-Text06a8:
+MailMailBoxIntroSenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06a9:
+MailMailBoxIntroSubjectText:
 	textfw "ミニコンとメール"
 	done
 
-Text06aa:
+MailMailBoxIntroBody1Text:
 	textfw "<RAMNAME>!"
 	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ちゃんと このメールを"
@@ -1259,7 +1259,7 @@ Text06aa:
 	linefw "メールで このようにとどくのじゃ"
 	done
 
-Text06ab:
+MailMailBoxIntroBody2Text:
 	textfw "こまめに 「ミニコン」をひらいて"
 	linefw "あたらしいメールが とどいているかを"
 	linefw "チェックするんじゃぞ"
@@ -1268,7 +1268,7 @@ Text06ab:
 	linefw "さくじょして あきをつくるんじゃよ"
 	done
 
-Text06ac:
+MailMailBoxIntroBody3Text:
 	textfw "ミニコンを メールで いっぱいに"
 	linefw "しておくと あたらしいメールが"
 	linefw "うけとれないことが あるからのう"
@@ -1277,22 +1277,22 @@ Text06ac:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06ad:
+MailMailBoxIntroBody4Text:
 	textfw "ついしん"
 	linefw ""
 	linefw "これは わしからの せんべつじゃ"
 	linefw "これからの対戦に やくだててくれ"
 	done
 
-Text06ae:
+MailDeckDiagnosis1SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06af:
+MailDeckDiagnosis1SubjectText:
 	textfw "「デッキしんだん」"
 	done
 
-Text06b0:
+MailDeckDiagnosis1Body1Text:
 	textfw "<RAMNAME>!"
 	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "しんはつめいの おしらせじゃ"
@@ -1301,7 +1301,7 @@ Text06b0:
 	linefw "「デッキしんだんシステム」じゃ"
 	done
 
-Text06b1:
+MailDeckDiagnosis1Body2Text:
 	textfw "とりあえず しょしんしゃのための"
 	linefw "「ステップ1」が かんせいしておる"
 	linefw "「デッキチェック」は"
@@ -1310,7 +1310,7 @@ Text06b1:
 	linefw "どうじゃ すごいじゃろ!"
 	done
 
-Text06b2:
+MailDeckDiagnosis1Body3Text:
 	textfw "「パソコン」から アクセスするんじゃ"
 	linefw "あくまでも きほんてきなアドバイスと"
 	linefw "デッキチェックじゃがな・・・"
@@ -1319,21 +1319,21 @@ Text06b2:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06b3:
+MailDeckDiagnosis1Body4Text:
 	textfw "ついしん"
 	linefw "「ステップ2」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06b4:
+MailDeckDiagnosis2SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06b5:
+MailDeckDiagnosis2SubjectText:
 	textfw "「デッキしんだん」2"
 	done
 
-Text06b6:
+MailDeckDiagnosis2Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1342,7 +1342,7 @@ Text06b6:
 	linefw "かんせいじゃ"
 	done
 
-Text06b7:
+MailDeckDiagnosis2Body2Text:
 	textfw "デッキを つくるうえでの"
 	linefw "ちょっとした アドバイスじゃ"
 	linefw "やくにたつ トレーナーカードや"
@@ -1351,7 +1351,7 @@ Text06b7:
 	linefw "アドバイスが まんさいじゃ!"
 	done
 
-Text06b8:
+MailDeckDiagnosis2Body3Text:
 	textfw "れいに よって"
 	linefw "「パソコン」から アクセスできるぞ"
 	linefw "どんなもんか ためしてみてくれ"
@@ -1360,21 +1360,21 @@ Text06b8:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06b9:
+MailDeckDiagnosis2Body4Text:
 	textfw "ついしん"
 	linefw "「ステップ3」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06ba:
+MailDeckDiagnosis3SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06bb:
+MailDeckDiagnosis3SubjectText:
 	textfw "「デッキしんだん」3"
 	done
 
-Text06bc:
+MailDeckDiagnosis3Body1Text:
 	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1383,7 +1383,7 @@ Text06bc:
 	linefw "アドバイスが メインじゃ!"
 	done
 
-Text06bd:
+MailDeckDiagnosis3Body2Text:
 	textfw "デッキを つくるうえでの"
 	linefw "きほんてきな アドバイスは"
 	linefw "これで おわりじゃな・・・"
@@ -1392,21 +1392,21 @@ Text06bd:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06be:
+MailDeckDiagnosis3Body3Text:
 	textfw "ついしん"
 	linefw "「ステップ4」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06bf:
+MailDeckDiagnosis4SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c0:
+MailDeckDiagnosis4SubjectText:
 	textfw "「デッキしんだん」4"
 	done
 
-Text06c1:
+MailDeckDiagnosis4Body1Text:
 	textfw "<RAMNAME> Dr.オーヤマじゃ"
 	linefw "また 「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1415,7 +1415,7 @@ Text06c1:
 	linefw "ちゅうしんに なっているぞ"
 	done
 
-Text06c2:
+MailDeckDiagnosis4Body2Text:
 	textfw "対戦を 勝ちすすめないときには"
 	linefw "デッキに もんだいが あるのじゃ"
 	linefw "そんなときは デッキを キチンと"
@@ -1424,15 +1424,15 @@ Text06c2:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06c3:
+MailAutoDeckMachine1SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c4:
+MailAutoDeckMachine1SubjectText:
 	textfw "オートデッキマシン1"
 	done
 
-Text06c5:
+MailAutoDeckMachine1Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "デッキをつくるのが たいへんなら"
 	linefw "オートデッキマシンを つかうと"
@@ -1441,7 +1441,7 @@ Text06c5:
 	linefw "すぐ つくってくれるぞ!"
 	done
 
-Text06c6:
+MailAutoDeckMachine1Body2Text:
 	textfw "このオートデッキマシンも"
 	linefw "だんだん バージョンアップさせる"
 	linefw "よていじゃ!"
@@ -1450,22 +1450,22 @@ Text06c6:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06c7:
+MailAutoDeckMachine1Body3Text:
 	textfw "ついしん"
 	linefw "これで つくれるデッキが"
 	linefw "ふえるとも おもえんが"
 	linefw "とりあえず プレゼントじゃ!"
 	done
 
-Text06c8:
+MailAutoDeckMachine2SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c9:
+MailAutoDeckMachine2SubjectText:
 	textfw "オートデッキマシン2"
 	done
 
-Text06ca:
+MailAutoDeckMachine2Body1Text:
 	textfw "Dr.オーヤマじゃ"
 	linefw "<RAMNAME>! オートデッキマシンに"
 	linefw "だいぶ デッキが あつまっておるぞ"
@@ -1474,7 +1474,7 @@ Text06ca:
 	linefw "みては どうじゃ?"
 	done
 
-Text06cb:
+MailAutoDeckMachine2Body2Text:
 	textfw "これからも オートデッキマシンは"
 	linefw "バージョンアップする つもりじゃ"
 	linefw "どんどん つかって 対戦に"
@@ -1483,21 +1483,21 @@ Text06cb:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06cc:
+MailAutoDeckMachine2Body3Text:
 	textfw "ついしん"
 	linefw "とりあえず プレゼントじゃ!"
 	linefw "うけとって くれ"
 	done
 
-Text06cd:
+MailAutoDeckMachine3SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06ce:
+MailAutoDeckMachine3SubjectText:
 	textfw "オートデッキマシン3"
 	done
 
-Text06cf:
+MailAutoDeckMachine3Body1Text:
 	textfw "おお <RAMNAME>! げんきかな"
 	linefw "オートデッキマシン2号が"
 	linefw "かんせいしたんじゃ!!"
@@ -1506,7 +1506,7 @@ Text06cf:
 	linefw "どうじゃ スゴイじゃろ!"
 	done
 
-Text06d0:
+MailAutoDeckMachine3Body2Text:
 	textfw "GR団のデッキを 研究するには"
 	linefw "もってこいの マシンじゃぞ"
 	linefw "たまには 研究所へもどってきて"
@@ -1515,21 +1515,21 @@ Text06d0:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06d1:
+MailAutoDeckMachine3Body3Text:
 	textfw "ついしん"
 	linefw "また プレゼントじゃ"
 	linefw "こんどは 第3彈じゃ!!"
 	done
 
-Text06d2:
+MailAutoDeckMachine4SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06d3:
+MailAutoDeckMachine4SubjectText:
 	textfw "オートデッキマシン4"
 	done
 
-Text06d4:
+MailAutoDeckMachine4Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "GR団との対戦は どうじゃ?"
 	linefw "オートデッキマシン2号には"
@@ -1538,7 +1538,7 @@ Text06d4:
 	linefw "いちど 研究所へ もどってはどうかな"
 	done
 
-Text06d5:
+MailAutoDeckMachine4Body2Text:
 	textfw "おまえのおかげで カードも"
 	linefw "とりもどしたし たまには"
 	linefw "こちらのしまの れんちゅうとも"
@@ -1547,21 +1547,21 @@ Text06d5:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06d6:
+MailAutoDeckMachine4Body3Text:
 	textfw "ついしん"
 	linefw "これが おまえが とりもどした"
 	linefw "さいしんの拡張パックじゃ!"
 	done
 
-Text06d7:
+MailAutoDeckMachine5SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06d8:
+MailAutoDeckMachine5SubjectText:
 	textfw "オートデッキマシン5"
 	done
 
-Text06d9:
+MailAutoDeckMachine5Body1Text:
 	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ついに GR団のキング ビルリッチを"
 	linefw "かいしんさせた そうじゃな"
@@ -1570,7 +1570,7 @@ Text06d9:
 	linefw "<RAMNAME>"
 	done
 
-Text06da:
+MailAutoDeckMachine5Body2Text:
 	textfw "オートデッキマシンのデッキを"
 	linefw "すべて つくってみたかな?"
 	linefw "いろんなデッキで 戦ってみてこそ"
@@ -1579,7 +1579,7 @@ Text06da:
 	linefw "コンプリートを めざすのじゃ"
 	done
 
-Text06db:
+MailAutoDeckMachine5Body3Text:
 	textfw "オートデッキマシン1号も 2号も"
 	linefw "まだまだ デッキは ふえるぞ!"
 	linefw ""
@@ -1587,15 +1587,15 @@ Text06db:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06dc:
+MailChallengeMachineSenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06dd:
+MailChallengeMachineSubjectText:
 	textfw "チャレンジマシーン!"
 	done
 
-Text06de:
+MailChallengeMachineBody1Text:
 	textfw "わしじゃ! Dr.オーヤマじゃ"
 	linefw "チャレンジマシーンは"
 	linefw "たのしんで もらえておるかな?"
@@ -1604,7 +1604,7 @@ Text06de:
 	linefw "れんしょうきろくを のばすんじゃ!!"
 	done
 
-Text06df:
+MailChallengeMachineBody2Text:
 	textfw "50れんしょうしたら わしがステキな"
 	linefw "コインを <RAMNAME>に やろう"
 	linefw "「ダグトリオ」のコインじゃ!!"
@@ -1613,15 +1613,15 @@ Text06df:
 	linefw "   所長 Dr.オーヤマ (^◇^)"
 	done
 
-Text06e0:
+MailGRChallengeMachineSenderText:
 	textfw "ビルリッチ"
 	done
 
-Text06e1:
+MailGRChallengeMachineSubjectText:
 	textfw "GR団チャレンジマシン"
 	done
 
-Text06e2:
+MailGRChallengeMachineBody1Text:
 	textfw "げんきで ポケモンカードを"
 	linefw "あそんでいるかな <RAMNAME>くん"
 	linefw "すてきな おしらせだ"
@@ -1630,7 +1630,7 @@ Text06e2:
 	linefw "セットした!"
 	done
 
-Text06e3:
+MailGRChallengeMachineBody2Text:
 	textfw "マシンは Dr.オーヤマに"
 	linefw "つくって もらったものだが"
 	linefw "けっこう たのしいものだ"
@@ -1639,7 +1639,7 @@ Text06e3:
 	linefw "コインを プレゼント!!"
 	done
 
-Text06e4:
+MailGRChallengeMachineBody3Text:
 	textfw "「ゲンガー」のコインだ!"
 	linefw "がんばって ぜひ ゲットしてくれ"
 	linefw ""
@@ -1647,15 +1647,15 @@ Text06e4:
 	linefw "        ビルリッチ(ˉ^ˉ)"
 	done
 
-Text06e5:
+MailGrandMasterCupSenderText:
 	textfw "リュウドー"
 	done
 
-Text06e6:
+MailGrandMasterCupSubjectText:
 	textfw "グランドマスター杯"
 	done
 
-Text06e7:
+MailGrandMasterCupBody1Text:
 	textfw "<RAMNAME>くん!"
 	linefw "グランドマスターのリュウドーだ"
 	linefw "われら グランドマスターは"
@@ -1664,7 +1664,7 @@ Text06e7:
 	linefw "そのなも 「グランドマスター杯」!"
 	done
 
-Text06e8:
+MailGrandMasterCupBody2Text:
 	textfw "きみにも さんかしてほしいんだ"
 	linefw "まもなく 「グランドマスター杯」の"
 	linefw "じゅんびが できるから たまに"
@@ -1673,15 +1673,15 @@ Text06e8:
 	linefw "        リュウドー(^о^)"
 	done
 
-Text06e9:
+MailRonaldsScoutGR1SenderText:
 	textfw "ランド"
 	done
 
-Text06ea:
+MailRonaldsScoutGR1SubjectText:
 	textfw "GR1号のデッキ"
 	done
 
-Text06eb:
+MailRonaldsScoutGR1Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "いいか こうやって メールで"
 	linefw "GR団のやつらの じょうほうを"
@@ -1690,7 +1690,7 @@ Text06eb:
 	linefw "でないと じょうほうが クサるぜ!"
 	done
 
-Text06ec:
+MailRonaldsScoutGR1Body2Text:
 	textfw "GR1号のデッキの じょうほうだ!"
 	linefw "やつのデッキは 水と雷のデッキだ!"
 	linefw "コイルの「ちょくれつじりょく」に"
@@ -1699,15 +1699,15 @@ Text06ec:
 	linefw "          ランド(●_●)"
 	done
 
-Text06ed:
+MailRonaldsScoutGR2SenderText:
 	textfw "ランド"
 	done
 
-Text06ee:
+MailRonaldsScoutGR2SubjectText:
 	textfw "GR2号のデッキ"
 	done
 
-Text06ef:
+MailRonaldsScoutGR2Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと オレのじょうほうを"
 	linefw "やくだててるだろうな えっ!"
@@ -1716,7 +1716,7 @@ Text06ef:
 	linefw "いいな <RAMNAME>!"
 	done
 
-Text06f0:
+MailRonaldsScoutGR2Body2Text:
 	textfw "GR2号のデッキの じょうほうだ"
 	linefw "やつのデッキは 草と闘のデッキだ!"
 	linefw "とくに 「わるいアーボック」には"
@@ -1725,15 +1725,15 @@ Text06f0:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f1:
+MailRonaldsScoutGR3SenderText:
 	textfw "ランド"
 	done
 
-Text06f2:
+MailRonaldsScoutGR3SubjectText:
 	textfw "GR3号のデッキ"
 	done
 
-Text06f3:
+MailRonaldsScoutGR3Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと メールをよんでるか?"
 	linefw "GR団のじょうほうを てに いれたぜ"
@@ -1742,7 +1742,7 @@ Text06f3:
 	linefw "ムダにするなよ!"
 	done
 
-Text06f4:
+MailRonaldsScoutGR3Body2Text:
 	textfw "GR3号のデッキの じょうほうだ"
 	linefw "やつのデッキは 草と炎のデッキだぜ!"
 	linefw "「タマタマ」を「ナッシー」にさせるな"
@@ -1751,15 +1751,15 @@ Text06f4:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f5:
+MailRonaldsScoutGR4SenderText:
 	textfw "ランド"
 	done
 
-Text06f6:
+MailRonaldsScoutGR4SubjectText:
 	textfw "GR4号のデッキ"
 	done
 
-Text06f7:
+MailRonaldsScoutGR4Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "メールを チェックしてるか?"
 	linefw "GR4号のデッキの じょうほうだ"
@@ -1768,7 +1768,7 @@ Text06f7:
 	linefw "チョーきょうりょくだぜ!"
 	done
 
-Text06f8:
+MailRonaldsScoutGR4Body2Text:
 	textfw "いいか なんとか エスパークラブの"
 	linefw "ミウラを しょうきに もどして"
 	linefw "アドバイスを もらうんだ いいな"
@@ -1776,15 +1776,15 @@ Text06f8:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f9:
+MailRonaldsScoutMorinoSenderText:
 	textfw "ランド"
 	done
 
-Text06fa:
+MailRonaldsScoutMorinoSubjectText:
 	textfw "モリノのデッキ"
 	done
 
-Text06fb:
+MailRonaldsScoutMorinoBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "草のGR団リーダー モリノの"
 	linefw "じょうほうを てにいれたぜ!"
@@ -1793,7 +1793,7 @@ Text06fb:
 	linefw "こんらん」に ならないんだ!"
 	done
 
-Text06fc:
+MailRonaldsScoutMorinoBody2Text:
 	textfw "モリノは それを りようした"
 	linefw "デッキを つかっているんだ!"
 	linefw "やつのデッキの 草のデッキ!"
@@ -1802,7 +1802,7 @@ Text06fc:
 	linefw "メインのデッキだ!"
 	done
 
-Text06fd:
+MailRonaldsScoutMorinoBody3Text:
 	textfw "それらポケモンのワザで [自分]も"
 	linefw "「こんらん」する ワザをつかって"
 	linefw "こうげきしてくるぞ! ふつうなら"
@@ -1811,7 +1811,7 @@ Text06fd:
 	linefw "草ポケモンは 「こんらん」しない!"
 	done
 
-Text06fe:
+MailRonaldsScoutMorinoBody4Text:
 	textfw "こいつは シャレに ならないぜ!"
 	linefw "なんとかして 「クサイハナ」や"
 	linefw "「ラフレシア」に 進化するまえに"
@@ -1820,15 +1820,15 @@ Text06fe:
 	linefw "          ランド(●_●)"
 	done
 
-Text06ff:
+MailRonaldsScoutCatherineSenderText:
 	textfw "ランド"
 	done
 
-Text0700:
+MailRonaldsScoutCatherineSubjectText:
 	textfw "キャサリンのデッキ"
 	done
 
-Text0701:
+MailRonaldsScoutCatherineBody1Text:
 	textfw "<RAMNAME>! げんきか!"
 	linefw "こんかいは 雷のGR団リーダー"
 	linefw "キャサリンの じょうほうだぜ!"
@@ -1837,7 +1837,7 @@ Text0701:
 	linefw "あたえるダメージが +10UPだ!"
 	done
 
-Text0702:
+MailRonaldsScoutCatherineBody2Text:
 	textfw "10ダメージのワザが 雷ポケモンのみ"
 	linefw "20ダメージになるって わけだ!"
 	linefw "キャサリンのデッキは 「ピカチュウ」"
@@ -1846,7 +1846,7 @@ Text0702:
 	linefw "いっぱいだ!!"
 	done
 
-Text0703:
+MailRonaldsScoutCatherineBody3Text:
 	textfw "雷ポケモンのデッキで たたかって"
 	linefw "チカラで うち勝つか?"
 	linefw "べつのデッキで うまく かわして"
@@ -1855,15 +1855,15 @@ Text0703:
 	linefw "          ランド(●_●)"
 	done
 
-Text0704:
+MailRonaldsScoutHideroSenderText:
 	textfw "ランド"
 	done
 
-Text0705:
+MailRonaldsScoutHideroSubjectText:
 	textfw "ヒデロウのデッキ"
 	done
 
-Text0706:
+MailRonaldsScoutHideroBody1Text:
 	textfw "<RAMNAME>! オレだ! ランドだ!"
 	linefw "炎のGR団リーダー ヒデロウの"
 	linefw "じょうほうを ゲットだぜ!"
@@ -1872,7 +1872,7 @@ Text0706:
 	linefw "弱点には ならないぜ!"
 	done
 
-Text0707:
+MailRonaldsScoutHideroBody2Text:
 	textfw "つまり 炎ポケモンを 弱点をついて"
 	linefw "たおそうとしても ムダってことだ!"
 	linefw "しかも ヒデロウのデッキは"
@@ -1881,7 +1881,7 @@ Text0707:
 	linefw "つうよう しないぜ!!"
 	done
 
-Text0708:
+MailRonaldsScoutHideroBody3Text:
 	textfw "せいせいどうどう しょうぶするしか"
 	linefw "ほうほうは ないぜ!"
 	linefw "どんなデッキで たたかうかは"
@@ -1890,15 +1890,15 @@ Text0708:
 	linefw "          ランド(●_●)"
 	done
 
-Text0709:
+MailRonaldsScoutKanokoSenderText:
 	textfw "ランド"
 	done
 
-Text070a:
+MailRonaldsScoutKanokoSubjectText:
 	textfw "カノコのデッキ"
 	done
 
-Text070b:
+MailRonaldsScoutKanokoBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "水のGR団リーダー カノコの"
 	linefw "じょうほうを おしえてやるぜ!"
@@ -1907,7 +1907,7 @@ Text070b:
 	linefw "エネルギーのかずが 「-1」されるぜ"
 	done
 
-Text070c:
+MailRonaldsScoutKanokoBody2Text:
 	textfw "水ポケモンは カノコのとこじゃ"
 	linefw "「水をえた さかな」で 水ポケモンは"
 	linefw "にげやすい カノコは やばくなった"
@@ -1916,7 +1916,7 @@ Text070c:
 	linefw "ポケモンは にげちまうんだからよ"
 	done
 
-Text070d:
+MailRonaldsScoutKanokoBody3Text:
 	textfw "にがさない ほうほうを かんがえるか"
 	linefw "にげられるまえに だいダメージで"
 	linefw "「きぜつ」させるか・・・"
@@ -1925,15 +1925,15 @@ Text070d:
 	linefw "          ランド(●_●)"
 	done
 
-Text070e:
+MailRonaldsScoutKamiyaSenderText:
 	textfw "ランド"
 	done
 
-Text070f:
+MailRonaldsScoutKamiyaSubjectText:
 	textfw "カミヤのデッキ"
 	done
 
-Text0710:
+MailRonaldsScoutKamiyaBody1Text:
 	textfw "いいちょうしだな <RAMNAME>!"
 	linefw "わすれんなよ!"
 	linefw "オレが こうやって メールで"
@@ -1942,7 +1942,7 @@ Text0710:
 	linefw "じょうほうだぜ!!"
 	done
 
-Text0711:
+MailRonaldsScoutKamiyaBody2Text:
 	textfw "カミヤのところは 闘パワーだぜ!"
 	linefw "カミヤとの 対戦では 闘ポケモンの"
 	linefw "ダメージは 抵抗力で「-30」して"
@@ -1951,7 +1951,7 @@ Text0711:
 	linefw "まともに くらうってことだな!"
 	done
 
-Text0712:
+MailRonaldsScoutKamiyaBody3Text:
 	textfw "抵抗力は つかえなくても"
 	linefw "闘ポケモンの 弱点をついたデッキで"
 	linefw "こうげきするなら OKだぜ!"
@@ -1960,15 +1960,15 @@ Text0712:
 	linefw "          ランド(●_●)"
 	done
 
-Text0713:
+MailRonaldsScoutMamiSenderText:
 	textfw "ランド"
 	done
 
-Text0714:
+MailRonaldsScoutMamiSubjectText:
 	textfw "マミのデッキ"
 	done
 
-Text0715:
+MailRonaldsScoutMamiBody1Text:
 	textfw "<RAMNAME>! ランドだぜ!"
 	linefw "超のGR団リーダー マミの"
 	linefw "じょうほうを ゲットしたぜ!"
@@ -1976,7 +1976,7 @@ Text0715:
 	linefw "しかも へんなルールで対戦するんだ"
 	done
 
-Text0716:
+MailRonaldsScoutMamiBody2Text:
 	textfw "へんなルールってのが"
 	linefw "「ポケモンが トラッシュされるとき"
 	linefw " ポケモンについている エネルギーで"
@@ -1985,7 +1985,7 @@ Text0716:
 	linefw "エネルギーぶそくには ならねぇけどな"
 	done
 
-Text0717:
+MailRonaldsScoutMamiBody3Text:
 	textfw "でも あのバアさんは おまえに"
 	linefw "このルールを りようさせないつもりだ"
 	linefw "「エネルギー・リムーブ」や"
@@ -1994,7 +1994,7 @@ Text0717:
 	linefw "つっこんで やがったぜ!"
 	done
 
-Text0718:
+MailRonaldsScoutMamiBody4Text:
 	textfw "ポケモンが トラッシュされるまえに"
 	linefw "エネルギーだけを トラッシュするって"
 	linefw "さくせんらしい・・・"
@@ -2003,7 +2003,7 @@ Text0718:
 	linefw "あのバアさんは ただもんじゃねぇ"
 	done
 
-Text0719:
+MailRonaldsScoutMamiBody5Text:
 	textfw "こっちも エネルギー・リムーブを"
 	linefw "つっこんで たたかうか"
 	linefw "超デッキの たいこうデッキで たえて"
@@ -2012,15 +2012,15 @@ Text0719:
 	linefw "          ランド(●_●)"
 	done
 
-Text071a:
+MailRonaldsScoutColoressAltarSenderText:
 	textfw "ランド"
 	done
 
-Text071b:
+MailRonaldsScoutColoressAltarSubjectText:
 	textfw "無のさいだんじょうほう"
 	done
 
-Text071c:
+MailRonaldsScoutColoressAltarBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "無のさいだんの じょうほうだ!"
 	linefw "無のばんにんの 「ニシジマ」"
@@ -2029,7 +2029,7 @@ Text071c:
 	linefw "4枚 デッキにいれろと いってくる"
 	done
 
-Text071d:
+MailRonaldsScoutColoressAltarBody2Text:
 	textfw "しかも 1ど 対戦すると"
 	linefw "いれろって カードをかえてくるんだ!"
 	linefw "こいつが やっかいなんだが・・・"
@@ -2038,7 +2038,7 @@ Text071d:
 	linefw "でもな・・・"
 	done
 
-Text071e:
+MailRonaldsScoutColoressAltarBody3Text:
 	textfw "1ど 対戦するには"
 	linefw "していされたカードが 4枚いるからな"
 	linefw "そのカードが どの拡張パックに"
@@ -2047,7 +2047,7 @@ Text071e:
 	linefw "対戦しなくちゃ ならないけどな・・・"
 	done
 
-Text071f:
+MailRonaldsScoutColoressAltarBody4Text:
 	textfw "まあ たまには オレたちのしまへ"
 	linefw "もどって みんなと対戦するのも"
 	linefw "いいかもな ここまできて"
@@ -2056,15 +2056,15 @@ Text071f:
 	linefw "          ランド(●_●)"
 	done
 
-Text0720:
+MailRonaldsScoutBiruritchiSenderText:
 	textfw "ランド"
 	done
 
-Text0721:
+MailRonaldsScoutBiruritchiSubjectText:
 	textfw "ビルリッチのデッキ"
 	done
 
-Text0722:
+MailRonaldsScoutBiruritchiBody1Text:
 	textfw "<RAMNAME>・・・"
 	linefw "ついに GR団との たたかいも"
 	linefw "おおづめって かんじだな・・・"
@@ -2073,7 +2073,7 @@ Text0722:
 	linefw "たのむぞ <RAMNAME>!"
 	done
 
-Text0723:
+MailRonaldsScoutBiruritchiBody2Text:
 	textfw "GR団に! キングのビルリッチに!"
 	linefw "オレたちの カードへのおもいを"
 	linefw "ちからのかぎり ぶつけてくれ!!"
@@ -2082,7 +2082,7 @@ Text0723:
 	linefw "おまえに おしえるよ"
 	done
 
-Text0724:
+MailRonaldsScoutBiruritchiBody3Text:
 	textfw "オレは GR団のかんぶに"
 	linefw "コテンパンに やられちまって・・・"
 	linefw "GR団キング ビルリッチのことは"
@@ -2091,7 +2091,7 @@ Text0724:
 	linefw "いるらしいんだ!"
 	done
 
-Text0725:
+MailRonaldsScoutBiruritchiBody4Text:
 	textfw "しかも ビルリッチとの対戦は"
 	linefw "「さきに 2かい勝ったほうが勝ち」"
 	linefw "という ながい たたかいだ"
@@ -2100,7 +2100,7 @@ Text0725:
 	linefw "4つのデッキを つかいこなしてくる"
 	done
 
-Text0726:
+MailRonaldsScoutBiruritchiBody5Text:
 	textfw "だから"
 	linefw "おまえも 対戦デッキを"
 	linefw "たくさん よういしていけ!"
@@ -2109,15 +2109,15 @@ Text0726:
 	linefw "          ランド(●_●)"
 	done
 
-Text0727:
+MailLinkDuelSenderText:
 	textfw "バトルセンター"
 	done
 
-Text0728:
+MailLinkDuelSubjectText:
 	textfw "つうしん対戦をしよう!"
 	done
 
-Text0729:
+MailLinkDuelBody1Text:
 	textfw "バトルセンターからの おしらせです"
 	linefw "つうしんケーブルを つかって"
 	linefw "どんどん 対戦しましょう"
@@ -2126,7 +2126,7 @@ Text0729:
 	linefw "拡張パックを 1つ プレゼント!"
 	done
 
-Text072a:
+MailLinkDuelBody2Text:
 	textfw "つうしん対戦で 50勝したら"
 	linefw "バトルセンター とくせいのコインを"
 	linefw "プレゼントします"
@@ -2135,63 +2135,63 @@ Text072a:
 	linefw "    バトルセンター m(__)m"
 	done
 
-Text072b:
+MailBoxTitleText:
 	textfw " メールボックス "
 	done
 
-Text072c:
+MailBoxFullWarningText:
 	textfw "メールボックスが いっぱいで"
 	linefw "あたらしいメールを よみこめません"
 	linefw "あたらしいメールを よむばあいは"
 	linefw "ひつようないメールを けしてください"
 	done
 
-Text072d:
+MailBoxNoNewMailsText:
 	textfw "あたらしいメールは"
 	linefw "とどいていません"
 	done
 
-Text072e:
+MailBoxNewMailText:
 	textfw "あたらしいメールが とどいています!"
 	done
 
-Text072f:
+MailBoxChooseMailText:
 	textfw "メールをえらんでください"
 	done
 
-Text0730:
+MailBoxSenderText:
 	textfw "だれから:"
 	done
 
-Text0731:
+MailBoxSubjectText:
 	textfw "タイトル:"
 	done
 
-Text0732:
+MailBoxActionPromptText:
 	textfw "どうしますか?"
 	done
 
-Text0733:
+MailBoxActionReadText:
 	textfw "よむ"
 	done
 
-Text0734:
+MailBoxActionDeleteText:
 	textfw "けす"
 	done
 
-Text0735:
+MailBoxActionDeleteConfirmText:
 	textfw "ほんとうに けしてよろしいですか?"
 	done
 
-Text0736:
+MailBoxActionDeleteUnreadConfirmText:
 	textfw "よまれていませんが よろしいですか?"
 	done
 
-Text0737:
+MailBoxDeletedText:
 	textfw "メールを けしました"
 	done
 
-Text0738:
+MailBoxUnreadSymbolText:
 	textfw "○"
 	done
 
@@ -2199,7 +2199,7 @@ DebugSendMailText:
 	textfw "メール送信"
 	done
 
-Text073a:
+MailBoxEmptyText:
 	textfw "メールはありません"
 	done
 
