@@ -180,7 +180,7 @@ TurnedOffPCText:
 	linefw "パソコンのスイッチを きった!"
 	done
 
-PCMenuShutDowntText:
+PCMenuShutdownText:
 	textfw "スイッチをきる"
 	done
 
@@ -392,7 +392,7 @@ BattleCenterBeginPromptTextOld: ; the same
 	textfw "ともだちとの対戦を はじめますか?"
 	done
 
-BattleCenterThankYoutTextOld: ; probably the same
+BattleCenterThankYouTextOld: ; probably the same
 	textfw "バトルセンターの ごりよう"
 	linefw "ありがとうございました"
 	done
@@ -402,7 +402,7 @@ GiftCenterWelcomeText:
 	linefw "ギフトセンターへ ようこそ!"
 	done
 
-GiftCenterServicePromoptText:
+GiftCenterServicePromptText:
 	textfw "どのような"
 	linefw "ごようけんでしょうか?"
 	done
@@ -2602,7 +2602,7 @@ ChallengeMachineWinStreakRecordText:
 	textfw "れんしょう きろく"
 	done
 
-AttemtpsUnitText:
+AttemptsUnitText:
 	textfw "回"
 	done
 

@@ -3063,7 +3063,7 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db VENGEFUL_ANTI_GR3_DECK_ID - 1
-	tx VengifulAntiGR3DeckName ; deck name
+	tx VengefulAntiGR3DeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
@@ -3217,7 +3217,7 @@ DeckIDData:
 	db COIN_PIKACHU ; coin
 
 	db OVERFLOW_DECK_ID
-	tx OverflowtDeckName ; deck name
+	tx OverflowDeckName ; deck name
 	tx DuelistNicholasName ; opponent name
 	db NPC_NICHOLAS ; NPC ID
 	db PRIZES_4 ; number of prize cards
@@ -3427,7 +3427,7 @@ DeckIDData:
 
 	db REMAINING_GREEN_DECK_ID
 	tx SurvivingGreenDeckName ; deck name
-	tx DuelistBrittanyiName ; opponent name
+	tx DuelistBrittanyName ; opponent name
 	db NPC_BRITTANY ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3438,7 +3438,7 @@ DeckIDData:
 
 	db POISON_CURSE_DECK_ID
 	tx PoisonVespidsDeckName ; deck name
-	tx DuelistBrittanyiName ; opponent name
+	tx DuelistBrittanyName ; opponent name
 	db NPC_BRITTANY ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3580,7 +3580,7 @@ DeckIDData:
 	db COIN_CHARMANDER ; coin
 
 	db FLAME_FESTIVAL_DECK_ID
-	tx FlameFestvalDeckName ; deck name
+	tx FlameFestivalDeckName ; deck name
 	tx DuelistJohnName ; opponent name
 	db NPC_JOHN ; NPC ID
 	db PRIZES_4 ; number of prize cards
@@ -3713,7 +3713,7 @@ DeckIDData:
 
 	db DEMONIC_FOREST_DECK_ID
 	tx DemonicForestDeckName ; deck name
-	tx DuelistYuutaName ; opponent name
+	tx DuelistYutaName ; opponent name
 	db NPC_YUUTA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3801,7 +3801,7 @@ DeckIDData:
 
 	db FIREBALL_DECK_ID
 	tx FireballDeckName ; deck name
-	tx DuelistYuukiName ; opponent name
+	tx DuelistYukiName ; opponent name
 	db NPC_YUKI ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules

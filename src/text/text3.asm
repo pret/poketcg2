@@ -758,7 +758,7 @@ StarterDeckName:
 	textfw "さいしょの"
 	done
 
-VengifulAntiGR3DeckName:
+VengefulAntiGR3DeckName:
 	textfw "しかえしGR3ごう"
 	done
 
@@ -870,7 +870,7 @@ WeirdDeckName:
 	textfw "へんな"
 	done
 
-FlameFestvalDeckName:
+FlameFestivalDeckName:
 	textfw "ほのおのおまつり"
 	done
 
@@ -934,7 +934,7 @@ DuelistKenName:
 	textfw "アカバネ"
 	done
 
-DuelistBrittanyiName:
+DuelistBrittanyName:
 	textfw "アヤコ"
 	done
 
@@ -982,7 +982,7 @@ EnergyRemovalDeckName:
 	textfw "エネルギー・リムーブ"
 	done
 
-OverflowtDeckName:
+OverflowDeckName:
 	textfw "オーバーフロー"
 	done
 
@@ -1370,11 +1370,11 @@ DuelistYuiName:
 	textfw "ユイ"
 	done
 
-DuelistYuukiName:
+DuelistYukiName:
 	textfw "ユウキ"
 	done
 
-DuelistYuutaName:
+DuelistYutaName:
 	textfw "ユウタ"
 	done
 

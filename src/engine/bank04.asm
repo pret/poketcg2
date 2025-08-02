@@ -2406,7 +2406,7 @@ Func_110c6:
 	textitem 2,  4, PCMenuDeckDiagnosisText
 	textitem 2,  6, PCMenuGlossaryText
 	textitem 2,  8, PCMenuPrintText
-	textitem 2, 10, PCMenuShutDowntText
+	textitem 2, 10, PCMenuShutdownText
 	db $ff
 
 .HandleInput:

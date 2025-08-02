@@ -1103,7 +1103,7 @@ TextOffsets::
 	textpointer ProtohistoricDeckName                                 ; 0x0446
 	textpointer InsectCollectionDeckName                              ; 0x0447
 	textpointer StarterDeckName                                       ; 0x0448
-	textpointer VengifulAntiGR3DeckName                               ; 0x0449
+	textpointer VengefulAntiGR3DeckName                               ; 0x0449
 	textpointer NaturalScienceDeckName                                ; 0x044a
 	textpointer BenchTrapDeckName                                     ; 0x044b
 	textpointer EyeOfTheStormDeckName                                 ; 0x044c
@@ -1131,7 +1131,7 @@ TextOffsets::
 	textpointer ImmortalPokemonDeckName                               ; 0x0462
 	textpointer ImmortalFlameDeckName                                 ; 0x0463
 	textpointer WeirdDeckName                                         ; 0x0464
-	textpointer FlameFestvalDeckName                                  ; 0x0465
+	textpointer FlameFestivalDeckName                                 ; 0x0465
 	textpointer GiveInAntiGR2DeckName                                 ; 0x0466
 	textpointer SplashingAboutDeckName                                ; 0x0467
 	textpointer GazeUponThePowerOfFireDeckName                        ; 0x0468
@@ -1147,7 +1147,7 @@ TextOffsets::
 	textpointer BadGuysDeckName                                       ; 0x0472
 	textpointer DuelistAiraName                                       ; 0x0473
 	textpointer DuelistKenName                                        ; 0x0474
-	textpointer DuelistBrittanyiName                                  ; 0x0475
+	textpointer DuelistBrittanyName                                   ; 0x0475
 	textpointer DuelistAnnaName                                       ; 0x0476
 	textpointer EeveeShowdownDeckName                                 ; 0x0477
 	textpointer DuelistIshiiName                                      ; 0x0478
@@ -1159,7 +1159,7 @@ TextOffsets::
 	textpointer UltraRemovalDeckName                                  ; 0x047e
 	textpointer DuelistEijiName                                       ; 0x047f
 	textpointer EnergyRemovalDeckName                                 ; 0x0480
-	textpointer OverflowtDeckName                                     ; 0x0481
+	textpointer OverflowDeckName                                      ; 0x0481
 	textpointer DuelistJackName                                       ; 0x0482
 	textpointer DuelistKanokoName                                     ; 0x0483
 	textpointer SnorlaxGuardDeckName                                  ; 0x0484
@@ -1256,8 +1256,8 @@ TextOffsets::
 	textpointer DuelistDavidName                                      ; 0x04df
 	textpointer DuelistMitchName                                      ; 0x04e0
 	textpointer DuelistYuiName                                        ; 0x04e1
-	textpointer DuelistYuukiName                                      ; 0x04e2
-	textpointer DuelistYuutaName                                      ; 0x04e3
+	textpointer DuelistYukiName                                       ; 0x04e2
+	textpointer DuelistYutaName                                       ; 0x04e3
 	textpointer DuelistJenniferName                                   ; 0x04e4
 	textpointer DuelistYosukeName                                     ; 0x04e5
 	textpointer DuelistRonaldName                                     ; 0x04e6
@@ -1475,7 +1475,7 @@ TextOffsets::
 	textpointer PCMenuPrintText                                       ; 0x05ba
 	textpointer TurnedOnPCText                                        ; 0x05bb
 	textpointer TurnedOffPCText                                       ; 0x05bc
-	textpointer PCMenuShutDowntText                                   ; 0x05bd
+	textpointer PCMenuShutdownText                                    ; 0x05bd
 	textpointer RAMNAMEText                                           ; 0x05be
 	textpointer DebugMenuDebugText                                    ; 0x05bf
 	textpointer DebugGotCardsText                                     ; 0x05c0
@@ -1526,9 +1526,9 @@ TextOffsets::
 	textpointer GameCenterPrize3PresentPacksText                      ; 0x05ed
 	textpointer BattleCenterWelcomeTextOld                            ; 0x05ee
 	textpointer BattleCenterBeginPromptTextOld                        ; 0x05ef
-	textpointer BattleCenterThankYoutTextOld                          ; 0x05f0
+	textpointer BattleCenterThankYouTextOld                           ; 0x05f0
 	textpointer GiftCenterWelcomeText                                 ; 0x05f1
-	textpointer GiftCenterServicePromoptText                          ; 0x05f2
+	textpointer GiftCenterServicePromptText                           ; 0x05f2
 	textpointer GiftCenterServiceAcknowledgementText                  ; 0x05f3
 	textpointer GiftCenterServiceSaveRequestText                      ; 0x05f4
 	textpointer GiftCenterServiceUnavailableSaveRequiredText          ; 0x05f5
@@ -1945,7 +1945,7 @@ TextOffsets::
 	textpointer ChallengeMachineSetsWonRecordText                     ; 0x0790
 	textpointer ChallengeMachineCurrentWinStreakText                  ; 0x0791
 	textpointer ChallengeMachineWinStreakRecordText                   ; 0x0792
-	textpointer AttemtpsUnitText                                      ; 0x0793
+	textpointer AttemptsUnitText                                      ; 0x0793
 	textpointer WinsUnitText                                          ; 0x0794
 	textpointer ChallengeMachineStartPromptText                       ; 0x0795
 	textpointer ChallengeMachineOpponentGrassClubMemberText           ; 0x0796
