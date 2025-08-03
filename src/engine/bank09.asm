@@ -3714,7 +3714,7 @@ DeckIDData:
 	db DEMONIC_FOREST_DECK_ID
 	tx DemonicForestDeckName ; deck name
 	tx DuelistYutaName ; opponent name
-	db NPC_YUUTA ; NPC ID
+	db NPC_YUTA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?

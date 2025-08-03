@@ -60,7 +60,7 @@ Tilesets:
 	gfx_ptr GrassFortEntranceTileset          ; $03a
 	gfx_ptr GrassFortLobbyTileset             ; $03b
 	gfx_ptr GrassFortMidoriTileset            ; $03c
-	gfx_ptr GrassFortYuutaTileset             ; $03d
+	gfx_ptr GrassFortYutaTileset              ; $03d
 	gfx_ptr GrassFortMiyukiTileset            ; $03e
 	gfx_ptr GrassFortMorinoTileset            ; $03f
 	gfx_ptr LightningFortEntranceTileset      ; $040
@@ -188,7 +188,7 @@ Tilesets:
 	gfx_ptr GR3PortraitGfx                    ; $0ba
 	gfx_ptr GR4PortraitGfx                    ; $0bb
 	gfx_ptr MidoriPortraitGfx                 ; $0bc
-	gfx_ptr YuutaPortraitGfx                  ; $0bd
+	gfx_ptr YutaPortraitGfx                   ; $0bd
 	gfx_ptr MiyukiPortraitGfx                 ; $0be
 	gfx_ptr MorinoPortraitGfx                 ; $0bf
 	gfx_ptr RennaPortraitGfx                  ; $0c0

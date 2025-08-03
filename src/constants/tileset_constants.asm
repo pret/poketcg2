@@ -60,7 +60,7 @@
 	const TILESET_GRASS_FORT_ENTRANCE         ; $03a
 	const TILESET_GRASS_FORT_LOBBY            ; $03b
 	const TILESET_GRASS_FORT_MIDORI           ; $03c
-	const TILESET_GRASS_FORT_YUUTA            ; $03d
+	const TILESET_GRASS_FORT_YUTA             ; $03d
 	const TILESET_GRASS_FORT_MIYUKI           ; $03e
 	const TILESET_GRASS_FORT_MORINO           ; $03f
 	const TILESET_LIGHTNING_FORT_ENTRANCE     ; $040
@@ -188,7 +188,7 @@
 	const TILESET_GR_3_PORTRAIT               ; $0ba
 	const TILESET_GR_4_PORTRAIT               ; $0bb
 	const TILESET_MIDORI_PORTRAIT             ; $0bc
-	const TILESET_YUUTA_PORTRAIT              ; $0bd
+	const TILESET_YUTA_PORTRAIT               ; $0bd
 	const TILESET_MIYUKI_PORTRAIT             ; $0be
 	const TILESET_MORINO_PORTRAIT             ; $0bf
 	const TILESET_RENNA_PORTRAIT              ; $0c0

@@ -63,7 +63,7 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GRASS_FORT_ENTRANCE         ; $39
 	const MAP_GRASS_FORT_LOBBY            ; $3a
 	const MAP_GRASS_FORT_MIDORI           ; $3b
-	const MAP_GRASS_FORT_YUUTA            ; $3c
+	const MAP_GRASS_FORT_YUTA             ; $3c
 	const MAP_GRASS_FORT_MIYUKI           ; $3d
 	const MAP_GRASS_FORT_MORINO           ; $3e
 	const MAP_LIGHTNING_FORT_ENTRANCE     ; $3f

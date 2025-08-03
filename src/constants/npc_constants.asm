@@ -63,7 +63,7 @@
 	const NPC_GR_3          ; $3d
 	const NPC_GR_4          ; $3e
 	const NPC_MIDORI        ; $3f
-	const NPC_YUUTA         ; $40
+	const NPC_YUTA          ; $40
 	const NPC_MIYUKI        ; $41
 	const NPC_MORINO        ; $42
 	const NPC_RENNA         ; $43

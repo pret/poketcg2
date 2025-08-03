@@ -61,7 +61,7 @@
 	const PORTRAIT_GR_3          ; $3b
 	const PORTRAIT_GR_4          ; $3c
 	const PORTRAIT_MIDORI        ; $3d
-	const PORTRAIT_YUUTA         ; $3e
+	const PORTRAIT_YUTA          ; $3e
 	const PORTRAIT_MIYUKI        ; $3f
 	const PORTRAIT_MORINO        ; $40
 	const PORTRAIT_RENNA         ; $41

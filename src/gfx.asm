@@ -491,9 +491,9 @@ GrassFortMidoriTileset::
 	dw 140 ; length
 	INCBIN "gfx/tilesets/grass_fort_midori.2bpp"
 
-GrassFortYuutaTileset::
+GrassFortYutaTileset::
 	dw 90 ; length
-	INCBIN "gfx/tilesets/grass_fort_yuuta.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_yuta.2bpp"
 
 GrassFortMorinoTileset::
 	dw 102 ; length
@@ -1173,9 +1173,9 @@ MidoriPortraitGfx::
 	dw 108 ; length
 	INCBIN "gfx/duelists/midori.2bpp"
 
-YuutaPortraitGfx::
+YutaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/yuuta.2bpp"
+	INCBIN "gfx/duelists/yuta.2bpp"
 
 OWRickGfx::
 	dw 20 ; length

@@ -250,7 +250,7 @@ GetDuelistPortrait::
 	db PORTRAIT_GR_3          ; NPC_GR_3
 	db PORTRAIT_GR_4          ; NPC_GR_4
 	db PORTRAIT_MIDORI        ; NPC_MIDORI
-	db PORTRAIT_YUUTA         ; NPC_YUUTA
+	db PORTRAIT_YUTA          ; NPC_YUTA
 	db PORTRAIT_MIYUKI        ; NPC_MIYUKI
 	db PORTRAIT_MORINO        ; NPC_MORINO
 	db PORTRAIT_RENNA         ; NPC_RENNA
