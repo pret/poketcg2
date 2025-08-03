@@ -13,41 +13,41 @@ MACRO practicetext
 ENDM
 
 PracticeDuelText_Turn1:
-	practicetext 2, Text0502, Text04ff
-	practicetext 5, Text0503, Text0500
-	practicetext 8, Text0504, Text0501
+	practicetext 2, PracticeDuelTurn1Mason1Text, PracticeDuelTurn1Instr1Text
+	practicetext 5, PracticeDuelTurn1Mason2Text, PracticeDuelTurn1Instr2Text
+	practicetext 8, PracticeDuelTurn1Mason3Text, PracticeDuelTurn1Instr3Text
 	db $00
 
 PracticeDuelText_Turn2:
-	practicetext 2, Text050a, Text0508
-	practicetext 5, Text050b, Text0509
+	practicetext 2, PracticeDuelTurn2Mason1Text, PracticeDuelTurn2Instr1Text
+	practicetext 5, PracticeDuelTurn2Mason2Text, PracticeDuelTurn2Instr2Text
 	db $00
 
 PracticeDuelText_Turn3:
-	practicetext 2, Text050f, Text050c
-	practicetext 5, Text0510, Text050d
-	practicetext 8, Text0511, Text050e
+	practicetext 2, PracticeDuelTurn3Mason1Text, PracticeDuelTurn3Instr1Text
+	practicetext 5, PracticeDuelTurn3Mason2Text, PracticeDuelTurn3Instr2Text
+	practicetext 8, PracticeDuelTurn3Mason3Text, PracticeDuelTurn3Instr3Text
 	db $00
 
 PracticeDuelText_Turn4:
-	practicetext 2, Text0515, Text0512
-	practicetext 5, Text0516, Text0513
-	practicetext 8, Text0517, Text0514
+	practicetext 2, PracticeDuelTurn4Mason1Text, PracticeDuelTurn4Instr1Text
+	practicetext 5, PracticeDuelTurn4Mason2Text, PracticeDuelTurn4Instr2Text
+	practicetext 8, PracticeDuelTurn4Mason3Text, PracticeDuelTurn4Instr3Text
 	db $00
 
 PracticeDuelText_Turn5:
-	practicetext 2, Text0520, Text051d
-	practicetext 5, Text0521, Text051e
-	practicetext 8, Text0522, Text051f
+	practicetext 2, PracticeDuelTurn5Mason1Text, PracticeDuelTurn5Instr1Text
+	practicetext 5, PracticeDuelTurn5Mason2Text, PracticeDuelTurn5Instr2Text
+	practicetext 8, PracticeDuelTurn5Mason3Text, PracticeDuelTurn5Instr3Text
 	db $00
 
 PracticeDuelText_Turn6:
-	practicetext 2, Text0526, Text0523
-	practicetext 5, Text0527, Text0524
-	practicetext 8, Text0528, Text0525
+	practicetext 2, PracticeDuelTurn6Mason1Text, PracticeDuelTurn6Instr1Text
+	practicetext 5, PracticeDuelTurn6Mason2Text, PracticeDuelTurn6Instr2Text
+	practicetext 8, PracticeDuelTurn6Mason3Text, PracticeDuelTurn6Instr3Text
 	db $00
 
 PracticeDuelText_SamTurn4:
-	practicetext 2, Text051a, Text0518
-	practicetext 6, Text051b, Text0519
+	practicetext 2, PracticeDuelKnockedOutMason1Text, PracticeDuelKnockedOutInstr1Text
+	practicetext 6, PracticeDuelKnockedOutMason2Text, PracticeDuelKnockedOutInstr2Text
 	db $00

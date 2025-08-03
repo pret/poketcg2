@@ -370,7 +370,7 @@ HandleWaitingLinkOpponentMenu:
 .loop_outer
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-	ldtx hl, WaitingHandExamineText
+	ldtx hl, OpponentsTurnWaitingMenuHandCheckText
 	call DrawWideTextBox_PrintTextNoDelay
 	call .InitTextBoxMenu
 .loop_inner
@@ -767,7 +767,7 @@ PlayShuffleAndDrawCardsAnimation_BothDuelists:
 	ld a, [wcd17]
 	or a
 	jr z, PlayShuffleAndDrawCardsAnimation
-	ldtx hl, ThisIsJustPracticeDoNotShuffleText
+	ldtx hl, PracticeDuelNoShufflesText
 ;	fallthrough
 
 ; animate the shuffle and drawing screen
@@ -1454,7 +1454,7 @@ DeckDiagnosis:
 	call EnableLCD
 
 	; initial text
-	ldtx hl, Text053e
+	ldtx hl, DeckDiagnosisDialogInitialText
 	call CheckDeck.PrintDrMasonText
 
 	xor a
@@ -1495,54 +1495,54 @@ DeckDiagnosisTextTables:
 .steps_menu
 	db $00
 	dw NULL
-	tx Text053f
+	tx DeckDiagnosisDialogStep1Text
 
-	tx Text0540 ; Step 1
-	tx Text0541 ; Step 2
-	tx Text0542 ; Step 3
-	tx Text0543 ; Step 4
+	tx DeckDiagnosisDialogStep2Text
+	tx DeckDiagnosisDialogStep3Text
+	tx DeckDiagnosisDialogStep4Text
+	tx DeckDiagnosisDialogExitText
 
 .step_1
 	db 5 ; number of items
-	tx Text0532 ; text ID with all items
+	tx DeckDiagnosisStep1MenuText ; text ID with all items
 
 	; menu items
-	tx Text0544 ; Check Deck
-	tx Text0545 ; Advice 1
-	tx Text0546 ; Advice 2
-	tx Text0547 ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogCheckDeckText
+	tx DeckDiagnosisDialogStep1Advice1Text
+	tx DeckDiagnosisDialogStep1Advice2Text
+	tx DeckDiagnosisDialogStep1Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_2
 	db 4 ; number of items
-	tx Text0533 ; text ID with all items
+	tx DeckDiagnosisStep2MenuText ; text ID with all items
 
 	; menu items
-	tx Text0549 ; Advice 1
-	tx Text054a ; Advice 2
-	tx Text054b ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep2Advice1Text
+	tx DeckDiagnosisDialogStep2Advice2Text
+	tx DeckDiagnosisDialogStep2Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_3
 	db 4 ; number of items
-	tx Text0534 ; text ID with all items
+	tx DeckDiagnosisStep3MenuText ; text ID with all items
 
 	; menu items
-	tx Text054c ; Advice 1
-	tx Text054d ; Advice 2
-	tx Text054e ; Advice 3
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep3Advice1Text
+	tx DeckDiagnosisDialogStep3Advice2Text
+	tx DeckDiagnosisDialogStep3Advice3Text
+	tx DeckDiagnosisDialogBackText
 
 .step_4
 	db 5 ; number of items
-	tx Text0535 ; text ID with all items
+	tx DeckDiagnosisStep4MenuText ; text ID with all items
 
 	; menu items
-	tx Text054f ; Advice 1
-	tx Text0550 ; Advice 2
-	tx Text0551 ; Advice 3
-	tx Text0552 ; Advice 4
-	tx Text0548 ; Back
+	tx DeckDiagnosisDialogStep4Advice1Text
+	tx DeckDiagnosisDialogStep4Advice2Text
+	tx DeckDiagnosisDialogStep4Advice3Text
+	tx DeckDiagnosisDialogStep4Advice4Text
+	tx DeckDiagnosisDialogBackText
 
 ; prints menu for the current Deck Diagnosis step
 ; depending on a:
@@ -1644,7 +1644,7 @@ HandleDeckDiagnosisMenu:
 	cp [hl]
 	jr nc, .load_text_id
 	; cursor is on cancel (last item)
-	ldtx hl, Text0543
+	ldtx hl, DeckDiagnosisDialogExitText
 	jr .print_text
 .load_text_id
 	; loads text ID from wDeckDiagnosisTextIDsPtr
@@ -1665,7 +1665,7 @@ HandleDeckDiagnosisMenu:
 	push hl
 	lb de, 0, 12
 	lb bc, 20, 6
-	ldtx hl, Text04f7
+	ldtx hl, DrMasonText
 	call DrawLabeledTextBox
 	pop hl
 	lb de, 1, 14
@@ -1700,17 +1700,17 @@ PrintDeckDiagnosisSteps:
 	dec c
 	jr nz, .loop
 
-	ldtx hl, Text0531
+	ldtx hl, DeckDiagnosisExitText
 	call InitTextPrinting_ProcessTextFromID
 	ld a, [wNumDeckDiagnosisSteps]
 	add 2
 	ret
 
 .text_ids
-	tx Text0529 ; Step 1
-	tx Text052a ; Step 2
-	tx Text052b ; Step 3
-	tx Text052c ; Step 4
+	tx DeckDiagnosisStep1Text
+	tx DeckDiagnosisStep2Text
+	tx DeckDiagnosisStep3Text
+	tx DeckDiagnosisStep4Text
 
 ; loads Deck Diagnosis scene together
 ; with Dr. Mason's portrait
@@ -1821,10 +1821,10 @@ Func_2517f:
 	ret
 
 .StepTextIDs:
-	tx Text0529 ; Step 1
-	tx Text052a ; Step 2
-	tx Text052b ; Step 3
-	tx Text052c ; Step 4
+	tx DeckDiagnosisStep1Text
+	tx DeckDiagnosisStep2Text
+	tx DeckDiagnosisStep3Text
+	tx DeckDiagnosisStep4Text
 
 MACRO advice
 	dw \1
@@ -1834,100 +1834,100 @@ ENDM
 .AdviceTexts:
 	; Step 1
 	dw NULL, NULL                   ; Check Deck
-	advice .step1_advice1, Text052d ; Advice 1
-	advice .step1_advice2, Text052e ; Advice 2
-	advice .step1_advice3, Text052f ; Advice 3
+	advice .step1_advice1, DeckDiagnosisAdvice1Text
+	advice .step1_advice2, DeckDiagnosisAdvice2Text
+	advice .step1_advice3, DeckDiagnosisAdvice3Text
 
 	; Step 2
-	advice .step2_advice1, Text052d ; Advice 1
-	advice .step2_advice2, Text052e ; Advice 2
-	advice .step2_advice3, Text052f ; Advice 3
+	advice .step2_advice1, DeckDiagnosisAdvice1Text
+	advice .step2_advice2, DeckDiagnosisAdvice2Text
+	advice .step2_advice3, DeckDiagnosisAdvice3Text
 	dw NULL, NULL
 
 	; Step 3
-	advice .step3_advice1, Text052d ; Advice 1
-	advice .step3_advice2, Text052e ; Advice 2
-	advice .step3_advice3, Text052f ; Advice 3
+	advice .step3_advice1, DeckDiagnosisAdvice1Text
+	advice .step3_advice2, DeckDiagnosisAdvice2Text
+	advice .step3_advice3, DeckDiagnosisAdvice3Text
 	dw NULL, NULL
 
 	; Step 4
-	advice .step4_advice1, Text052d ; Advice 1
-	advice .step4_advice2, Text052e ; Advice 2
-	advice .step4_advice3, Text052f ; Advice 3
-	advice .step4_advice4, Text0530 ; Advice 4
+	advice .step4_advice1, DeckDiagnosisAdvice1Text
+	advice .step4_advice2, DeckDiagnosisAdvice2Text
+	advice .step4_advice3, DeckDiagnosisAdvice3Text
+	advice .step4_advice4, DeckDiagnosisAdvice4Text
 
 .step1_advice1
-	tx Text055b
-	tx Text055c
+	tx DeckDiagnosisStep1Advice1Description1Text
+	tx DeckDiagnosisStep1Advice1Description2Text
 	dw NULL
 
 .step1_advice2
-	tx Text055d
-	tx Text055e
+	tx DeckDiagnosisStep1Advice2Description1Text
+	tx DeckDiagnosisStep1Advice2Description2Text
 	dw NULL
 
 .step1_advice3
-	tx Text055f
-	tx Text0560
+	tx DeckDiagnosisStep1Advice3Description1Text
+	tx DeckDiagnosisStep1Advice3Description2Text
 	dw NULL
 
 .step2_advice1
-	tx Text0561
+	tx DeckDiagnosisStep2Advice1DescriptionText
 	dw NULL
 
 .step2_advice2
-	tx Text0562
+	tx DeckDiagnosisStep2Advice2DescriptionText
 	dw NULL
 
 .step2_advice3
-	tx Text0563
+	tx DeckDiagnosisStep2Advice3DescriptionText
 	dw NULL
 
 .step3_advice1
-	tx Text0564
-	tx Text0565
-	tx Text0566
-	tx Text0567
+	tx DeckDiagnosisStep3Advice1Description1Text
+	tx DeckDiagnosisStep3Advice1Description2Text
+	tx DeckDiagnosisStep3Advice1Description3Text
+	tx DeckDiagnosisStep3Advice1Description4Text
 	dw NULL
 
 .step3_advice2
-	tx Text0568
-	tx Text0569
+	tx DeckDiagnosisStep3Advice2Description1Text
+	tx DeckDiagnosisStep3Advice2Description2Text
 	dw NULL
 
 .step3_advice3
-	tx Text056a
-	tx Text056b
+	tx DeckDiagnosisStep3Advice3Description1Text
+	tx DeckDiagnosisStep3Advice3Description2Text
 	dw NULL
 
 .step4_advice1
-	tx Text056c
-	tx Text056d
-	tx Text056e
-	tx Text056f
-	tx Text0570
-	tx Text0571
+	tx DeckDiagnosisStep4Advice1Description1Text
+	tx DeckDiagnosisStep4Advice1Description2Text
+	tx DeckDiagnosisStep4Advice1Description3Text
+	tx DeckDiagnosisStep4Advice1Description4Text
+	tx DeckDiagnosisStep4Advice1Description5Text
+	tx DeckDiagnosisStep4Advice1Description6Text
 	dw NULL
 
 .step4_advice2
-	tx Text0572
-	tx Text0573
-	tx Text0574
+	tx DeckDiagnosisStep4Advice2Description1Text
+	tx DeckDiagnosisStep4Advice2Description2Text
+	tx DeckDiagnosisStep4Advice2Description3Text
 	dw NULL
 
 .step4_advice3
-	tx Text0575
-	tx Text0576
+	tx DeckDiagnosisStep4Advice3Description1Text
+	tx DeckDiagnosisStep4Advice3Description2Text
 	dw NULL
 
 .step4_advice4
-	tx Text0577
-	tx Text0578
+	tx DeckDiagnosisStep4Advice4Description1Text
+	tx DeckDiagnosisStep4Advice4Description2Text
 	dw NULL
 
 CheckDeck:
 .start
-	ldtx de, Text0553
+	ldtx de, DeckDiagnosisChooseDeckToCheckText
 	farcall Func_2bc4f
 	ret c
 	ld l, a
@@ -1964,8 +1964,8 @@ CheckDeck:
 	ldh [hWhoseTurn], a
 	call .DoChecks
 
-	ldtx de, Text04f7
-	ldtx hl, Text055a
+	ldtx de, DrMasonText
+	ldtx hl, DeckDiagnosisCheckAnotherDeckPromptText
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 	call YesOrNoMenu
 	jr nc, .start
@@ -1973,14 +1973,14 @@ CheckDeck:
 
 .DoChecks:
 	; check has enough Basic cards
-	ldtx hl, Text0579
+	ldtx hl, DeckDiagnosisTooFewBasicPokemonText
 	ld a, [wDeckCheckBasicCount]
 	cp 12
 	jp c, .PrintDrMasonText ; < 12 Basic cards
 
 	; check color diversity
 	call .CountTypesOfPkmnCards
-	ldtx hl, Text057a
+	ldtx hl, DeckDiagnosisTooManyColorsText
 	cp 4
 	jp nc, .PrintDrMasonText ; >= 4 different types
 
@@ -1989,32 +1989,32 @@ CheckDeck:
 
 	call .CheckIfEvolutionCardsHaveTheirPreEvos
 	jr nc, .check_mismatched_evos
-	ldtx hl, Text0580
-	ldtx de, Text0581
+	ldtx hl, DeckDiagnosisEvolutionMismatchedText
+	ldtx de, DeckDiagnosisEvolutionMismatchedListText
 	jp .asm_25352
 
 .check_mismatched_evos
 	call .LookForBasicCardsWithMismatchedEvolutionCounts
 	jr nc, .check_mismatched_energy
-	ldtx hl, Text0582
-	ldtx de, Text0583
+	ldtx hl, DeckDiagnosisEvolutionUnbalancedText
+	ldtx de, DeckDiagnosisEvolutionUnbalancedListText
 	jp .asm_25352
 
 .check_mismatched_energy
 	call .CheckIfAllEnergyCardsMatchPkmnColors
 	jr c, .check_amount_energy_cards
-	ldtx hl, Text0584
-	ldtx de, Text0585
+	ldtx hl, DeckDiagnosisPokemonEnergyMismatchedText
+	ldtx de, DeckDiagnosisPokemonEnergyMismatchedListText
 	jp .asm_25352
 
 .check_amount_energy_cards
 	call .CheckEnergyAmountVsPkmnCards
 	ret c
-	ldtx hl, Text058a
+	ldtx hl, DeckDiagnosisOKText
 	ld a, [wDeckCheckTrainerCount]
 	or a
 	jr nz, .asm_2534d
-	ldtx hl, Text058b
+	ldtx hl, DeckDiagnosisOKButNoTrainerText
 .asm_2534d
 	call .PrintDrMasonText
 	or a
@@ -2031,7 +2031,7 @@ CheckDeck:
 ; with Dr. Mason as the box header
 ; hl = text ID
 .PrintDrMasonText:
-	ldtx de, Text04f7 ; "Dr. Mason"
+	ldtx de, DrMasonText
 	call PrintScrollableText_WithTextBoxLabel
 	ld hl, wcd4e
 	inc [hl]
@@ -2063,10 +2063,10 @@ CheckDeck:
 	add [hl]
 	inc hl
 	add [hl]
-	ldtx hl, Text057c
+	ldtx hl, DeckDiagnosisTooManyPokemonText
 	cp 31
 	jr nc, .asm_25390
-	ldtx hl, Text057b
+	ldtx hl, DeckDiagnosisTooFewPokemonText
 	cp 18
 	jr nc, .asm_25393
 .asm_25390
@@ -2074,13 +2074,13 @@ CheckDeck:
 
 .asm_25393
 	ld a, [wDeckCheckEnergyCount]
-	ldtx hl, Text057f
+	ldtx hl, DeckDiagnosisNoEnergyText
 	or a
 	jr z, .asm_253aa
-	ldtx hl, Text057d
+	ldtx hl, DeckDiagnosisTooFewEnergyText
 	cp 20
 	jr c, .asm_253aa
-	ldtx hl, Text057e
+	ldtx hl, DeckDiagnosisTooManyEnergyText
 	cp 31
 	jr c, .asm_253ad
 .asm_253aa
@@ -2100,11 +2100,11 @@ CheckDeck:
 	lb bc, 20, 3
 	call DrawRegularTextBox
 	lb de, 3, 1
-	ldtx hl, Text0536
+	ldtx hl, DeckDiagnosisTargetNameText
 	call PrintTextNoDelay_Init
 	call EnableLCD
-	ldtx de, Text04f7
-	ldtx hl, Text0554
+	ldtx de, DrMasonText
+	ldtx hl, DeckDiagnosisCheckingDeckText
 	call PrintScrollableText_WithTextBoxLabel_NoWait
 
 	; delays for $80 frames,
@@ -2148,10 +2148,10 @@ CheckDeck:
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	lb de, 2, 0
-	ldtx hl, Text0536
+	ldtx hl, DeckDiagnosisTargetNameText
 	call Func_2c4b
 	lb de, 2, 2
-	ldtx hl, Text0537
+	ldtx hl, DeckDiagnosisBreakdownText
 	call PrintTextNoDelay_Init
 
 	ld hl, wcd2b
@@ -2177,8 +2177,8 @@ CheckDeck:
 	dec e
 	jr nz, .loop_counts
 	call EnableLCD
-	ldtx de, Text04f7
-	ldtx hl, Text0555
+	ldtx de, DrMasonText
+	ldtx hl, DeckDiagnosisCheckedDeckText
 	call PrintScrollableText_WithTextBoxLabel
 	ret
 
@@ -2670,7 +2670,7 @@ CheckDeck:
 	jr z, .asm_256f4
 	jr c, .asm_256f4
 	; total Pkmn cards > wcd4b + total energy
-	ldtx hl, Text0586
+	ldtx hl, DeckDiagnosisPokemonEnergyUnbalancedText
 	call .PrintDrMasonText
 
 .asm_256f4
@@ -2687,11 +2687,11 @@ CheckDeck:
 	bit 7, a
 	jr nz, .negative
 	; surplus of energy cards
-	ldtx hl, Text0587
+	ldtx hl, DeckDiagnosisTooManyEnergyThisColorText
 	jr .get_energy_name
 .negative
 	; not enough energy cards
-	ldtx hl, Text0588
+	ldtx hl, DeckDiagnosisTooFewEnergyThisColorText
 
 .get_energy_name
 	push hl
@@ -2715,7 +2715,7 @@ CheckDeck:
 	ld a, [wcd4e]
 	or a
 	jr nz, .asm_25733
-	ldtx hl, Text058c
+	ldtx hl, DeckDiagnosisEnergyUnbalancedText
 	call .PrintDrMasonText
 .asm_25733
 	pop hl
@@ -2733,12 +2733,12 @@ CheckDeck:
 	ret
 
 .TypeTextIDs:
-	tx Text053b ; FIRE
-	tx Text0538 ; GRASS
-	tx Text053a ; LIGHTNING
-	tx Text0539 ; WATER
-	tx Text053c ; FIGHTING
-	tx Text053d ; PSYCHIC
+	tx DeckDiagnosisFireText
+	tx DeckDiagnosisGrassText
+	tx DeckDiagnosisLightningText
+	tx DeckDiagnosisWaterText
+	tx DeckDiagnosisFightingText
+	tx DeckDiagnosisPsychicText
 
 .CalculateEnergySurplus:
 	; divide colorless card counts
@@ -3019,8 +3019,8 @@ LoadDeckIDData:
 
 DeckIDData:
 	db SAMS_PRACTICE_DECK_ID
-	tx Text04d6 ; deck name
-	tx Text04d5 ; opponent name
+	tx SamsPracticeDeckName ; deck name
+	tx DuelistSamName ; opponent name
 	db NPC_SAM ; NPC ID
 	db PRIZES_2 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3030,8 +3030,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db STARTER_DECK_ID - 1
-	tx Text0448 ; deck name
-	tx Text04f6 ; opponent name
+	tx StarterDeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3041,8 +3041,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db SWEAT_ANTI_GR1_DECK_ID - 1
-	tx Text044d ; deck name
-	tx Text04f6 ; opponent name
+	tx SweatAntiGR1DeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3052,8 +3052,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db GIVE_IN_ANTI_GR2_DECK_ID - 1
-	tx Text0466 ; deck name
-	tx Text04f6 ; opponent name
+	tx GiveInAntiGR2DeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3063,8 +3063,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db VENGEFUL_ANTI_GR3_DECK_ID - 1
-	tx Text0449 ; deck name
-	tx Text04f6 ; opponent name
+	tx VengefulAntiGR3DeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3074,8 +3074,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db UNFORGIVING_ANTI_GR4_DECK_ID - 1
-	tx Text0470 ; deck name
-	tx Text04f6 ; opponent name
+	tx UnforgivingAntiGR4DeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3085,8 +3085,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db UNUSED_SAMS_PRACTICE_DECK_ID - 1
-	tx Text04f1 ; deck name
-	tx Text04f6 ; opponent name
+	tx PracticeDeckName ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3096,8 +3096,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db UNUSED_SAMS_PRACTICE_DECK_ID
-	tx Text04d6 ; deck name
-	tx Text04d5 ; opponent name
+	tx SamsPracticeDeckName ; deck name
+	tx DuelistSamName ; opponent name
 	db NPC_SAM ; NPC ID
 	db PRIZES_2 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3107,8 +3107,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK1_ID
-	tx Text04af ; deck name
-	tx Text04f6 ; opponent name
+	tx YourPracticeDeck1Name ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3118,8 +3118,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP1_DECK_ID
-	tx Text0433 ; deck name
-	tx Text0432 ; opponent name
+	tx AaronsStep1DeckName ; deck name
+	tx DuelistAaronName ; opponent name
 	db NPC_AARON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3129,8 +3129,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK2_ID
-	tx Text04b0 ; deck name
-	tx Text04f6 ; opponent name
+	tx YourPracticeDeck2Name ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3140,8 +3140,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP2_DECK_ID
-	tx Text0434 ; deck name
-	tx Text0432 ; opponent name
+	tx AaronsStep2DeckName ; deck name
+	tx DuelistAaronName ; opponent name
 	db NPC_AARON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3151,8 +3151,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARON_PRACTICE_DECK3_ID
-	tx Text04b1 ; deck name
-	tx Text04f6 ; opponent name
+	tx YourPracticeDeck3Name ; deck name
+	tx DuelistMainCharacterName ; opponent name
 	db NPC_MARK ; NPC ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3162,8 +3162,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AARONS_STEP3_DECK_ID
-	tx Text0435 ; deck name
-	tx Text0432 ; opponent name
+	tx AaronsStep3DeckName ; deck name
+	tx DuelistAaronName ; opponent name
 	db NPC_AARON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3173,8 +3173,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db BRICK_WALK_DECK_ID
-	tx Text043e ; deck name
-	tx Text0432 ; opponent name
+	tx RiversideWalkDeckName ; deck name
+	tx DuelistAaronName ; opponent name
 	db NPC_AARON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3184,8 +3184,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db BENCH_TRAP_DECK_ID
-	tx Text044b ; deck name
-	tx Text0432 ; opponent name
+	tx BenchTrapDeckName ; deck name
+	tx DuelistAaronName ; opponent name
 	db NPC_AARON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3195,8 +3195,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db SKY_SPARK_DECK_ID
-	tx Text049d ; deck name
-	tx Text04a3 ; opponent name
+	tx SkySparkDeckName ; deck name
+	tx DuelistIsaacName ; opponent name
 	db NPC_ISAAC ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3206,8 +3206,8 @@ DeckIDData:
 	db COIN_PIKACHU ; coin
 
 	db ELECTRIC_SELFDESTRUCT_DECK_ID
-	tx Text04c1 ; deck name
-	tx Text04a3 ; opponent name
+	tx ElectricSelfDestructDeckName ; deck name
+	tx DuelistIsaacName ; opponent name
 	db NPC_ISAAC ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3217,8 +3217,8 @@ DeckIDData:
 	db COIN_PIKACHU ; coin
 
 	db OVERFLOW_DECK_ID
-	tx Text0481 ; deck name
-	tx Text04a0 ; opponent name
+	tx OverflowDeckName ; deck name
+	tx DuelistNicholasName ; opponent name
 	db NPC_NICHOLAS ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3228,8 +3228,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db TRIPLE_ZAPDOS_DECK_ID
-	tx Text04ad ; deck name
-	tx Text04a0 ; opponent name
+	tx TripleZapdosDeckName ; deck name
+	tx DuelistNicholasName ; opponent name
 	db NPC_NICHOLAS ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3239,8 +3239,8 @@ DeckIDData:
 	db COIN_PIKACHU ; coin
 
 	db I_LOVE_PIKACHU_DECK_ID
-	tx Text04c4 ; deck name
-	tx Text04e4 ; opponent name
+	tx ILovePikachuDeckName ; deck name
+	tx DuelistJenniferName ; opponent name
 	db NPC_JENNIFER ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3250,8 +3250,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db TEN_THOUSAND_VOLTS_DECK_ID
-	tx Text0426 ; deck name
-	tx Text04aa ; opponent name
+	tx ThunderboltDeckName ; deck name
+	tx DuelistBrandonName ; opponent name
 	db NPC_BRANDON ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3261,8 +3261,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db HAND_OVER_GR_DECK_ID
-	tx Text0471 ; deck name
-	tx Text04d4 ; opponent name
+	tx HandedOverGRDeckName ; deck name
+	tx DuelistMurrayName ; opponent name
 	db NPC_MURRAY ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3272,8 +3272,8 @@ DeckIDData:
 	db COIN_ALAKAZAM ; coin
 
 	db PSYCHIC_ELITE_DECK_ID
-	tx Text0453 ; deck name
-	tx Text04d4 ; opponent name
+	tx PsychicEliteDeckName ; deck name
+	tx DuelistMurrayName ; opponent name
 	db NPC_MURRAY ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3283,8 +3283,8 @@ DeckIDData:
 	db COIN_ALAKAZAM ; coin
 
 	db PSYCHOKINESIS_DECK_ID
-	tx Text0496 ; deck name
-	tx Text04ec ; opponent name
+	tx PsychicDeckName ; deck name
+	tx DuelistStephanieName ; opponent name
 	db NPC_STEPHANIE ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3294,8 +3294,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db PHANTOM_DECK_ID
-	tx Text046e ; deck name
-	tx Text04bd ; opponent name
+	tx GhostDeckName ; deck name
+	tx DuelistRobertName ; opponent name
 	db NPC_ROBERT ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3305,8 +3305,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db PUPPET_MASTER_DECK_ID
-	tx Text045f ; deck name
-	tx Text0491 ; opponent name
+	tx PuppetMasterDeckName ; deck name
+	tx DuelistDanielName ; opponent name
 	db NPC_DANIEL ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3316,8 +3316,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db EVEN3_YEARS_ON_A_ROCK_DECK_ID
-	tx Text0438 ; deck name
-	tx Text0493 ; opponent name
+	tx ThreeYearsOnRockDeckName ; deck name
+	tx DuelistGeneName ; opponent name
 	db NPC_GENE ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3327,8 +3327,8 @@ DeckIDData:
 	db COIN_KABUTO ; coin
 
 	db ROLLING_STONE_DECK_ID
-	tx Text04f3 ; deck name
-	tx Text04de ; opponent name
+	tx RollingStoneDeckName ; deck name
+	tx DuelistMatthewName ; opponent name
 	db NPC_MATTHEW ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3338,8 +3338,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db GREAT_EARTHQUAKE_DECK_ID
-	tx Text044f ; deck name
-	tx Text04b8 ; opponent name
+	tx GreatEarthquakeDeckName ; deck name
+	tx DuelistRyanName ; opponent name
 	db NPC_RYAN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3349,8 +3349,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db AWESOME_FOSSIL_DECK_ID
-	tx Text0498 ; deck name
-	tx Text049c ; opponent name
+	tx AwesomeFossilDeckName ; deck name
+	tx DuelistAndrewName ; opponent name
 	db NPC_ANDREW ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3360,8 +3360,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db RAGING_BILLOW_OF_FISTS_DECK_ID
-	tx Text04b2 ; deck name
-	tx Text04e0 ; opponent name
+	tx RagingBillowOfFistsDeckName ; deck name
+	tx DuelistMitchName ; opponent name
 	db NPC_MITCH ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3371,8 +3371,8 @@ DeckIDData:
 	db COIN_MACHAMP ; coin
 
 	db YOU_CAN_DO_IT_MACHOP_DECK_ID
-	tx Text0440 ; deck name
-	tx Text04ce ; opponent name
+	tx YouCanDoItMachopDeckName ; deck name
+	tx DuelistMichaelName ; opponent name
 	db NPC_MICHAEL ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3382,8 +3382,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db NEW_MACHOKE_DECK_ID
-	tx Text04b7 ; deck name
-	tx Text04ce ; opponent name
+	tx NewMachokeDeckName ; deck name
+	tx DuelistMichaelName ; opponent name
 	db NPC_MICHAEL ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3393,8 +3393,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db SKILLED_WARRIOR_DECK_ID
-	tx Text046a ; deck name
-	tx Text04a5 ; opponent name
+	tx SkilledWarriorDeckName ; deck name
+	tx DuelistChrisName ; opponent name
 	db NPC_CHRIS ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3404,8 +3404,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db I_LOVE_TO_FIGHT_DECK_ID
-	tx Text04bb ; deck name
-	tx Text04b5 ; opponent name
+	tx LoveToBattleDeckName ; deck name
+	tx DuelistJessicaName ; opponent name
 	db NPC_JESSICA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3415,8 +3415,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db MAX_ENERGY_DECK_ID
-	tx Text042c ; deck name
-	tx Text0489 ; opponent name
+	tx MaxEnergyDeckName ; deck name
+	tx DuelistNikkiName ; opponent name
 	db NPC_NIKKI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3426,8 +3426,8 @@ DeckIDData:
 	db COIN_ODDISH ; coin
 
 	db REMAINING_GREEN_DECK_ID
-	tx Text0461 ; deck name
-	tx Text0475 ; opponent name
+	tx SurvivingGreenDeckName ; deck name
+	tx DuelistBrittanyName ; opponent name
 	db NPC_BRITTANY ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3437,8 +3437,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db POISON_CURSE_DECK_ID
-	tx Text045d ; deck name
-	tx Text0475 ; opponent name
+	tx PoisonVespidsDeckName ; deck name
+	tx DuelistBrittanyName ; opponent name
 	db NPC_BRITTANY ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3448,8 +3448,8 @@ DeckIDData:
 	db COIN_ODDISH ; coin
 
 	db GLITTERING_SCALES_DECK_ID
-	tx Text043c ; deck name
-	tx Text04b9 ; opponent name
+	tx GlitteringScalesDeckName ; deck name
+	tx DuelistKristinName ; opponent name
 	db NPC_KRISTIN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3459,8 +3459,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db STEADY_INCREASE_DECK_ID
-	tx Text04b3 ; deck name
-	tx Text04d7 ; opponent name
+	tx SteadyIncreaseDeckName ; deck name
+	tx DuelistHeatherName ; opponent name
 	db NPC_HEATHER ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3470,8 +3470,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db DARK_SCIENCE_DECK_ID
-	tx Text04a6 ; deck name
-	tx Text048a ; opponent name
+	tx DarkScienceDeckName ; deck name
+	tx DuelistRickName ; opponent name
 	db NPC_RICK ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3481,8 +3481,8 @@ DeckIDData:
 	db COIN_MAGNEMITE ; coin
 
 	db NATURAL_SCIENCE_DECK_ID
-	tx Text044a ; deck name
-	tx Text04df ; opponent name
+	tx NaturalScienceDeckName ; deck name
+	tx DuelistDavidName ; opponent name
 	db NPC_DAVID ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3492,8 +3492,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db POISONOUS_SWAMP_DECK_ID
-	tx Text045b ; deck name
-	tx Text04a1 ; opponent name
+	tx PoisonousSwampDeckName ; deck name
+	tx DuelistJosephName ; opponent name
 	db NPC_JOSEPH ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3503,8 +3503,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db GATHERING_NIDORAN_DECK_ID
-	tx Text042f ; deck name
-	tx Text04cc ; opponent name
+	tx GatheringNidoranDeckName ; deck name
+	tx DuelistErikName ; opponent name
 	db NPC_ERIK ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3514,8 +3514,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db RAIN_DANCE_CONFUSION_DECK_ID
-	tx Text0431 ; deck name
-	tx Text047d ; opponent name
+	tx RainDanceConfusionDeckName ; deck name
+	tx DuelistAmyName ; opponent name
 	db NPC_AMY ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3525,8 +3525,8 @@ DeckIDData:
 	db COIN_STARMIE ; coin
 
 	db CONSERVING_WATER_DECK_ID
-	tx Text0460 ; deck name
-	tx Text049a ; opponent name
+	tx SurvivingWaterDeckName ; deck name
+	tx DuelistJoshuaName ; opponent name
 	db NPC_JOSHUA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3536,8 +3536,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db ENERGY_REMOVAL_DECK_ID
-	tx Text0480 ; deck name
-	tx Text049a ; opponent name
+	tx EnergyRemovalDeckName ; deck name
+	tx DuelistJoshuaName ; opponent name
 	db NPC_JOSHUA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3547,8 +3547,8 @@ DeckIDData:
 	db COIN_STARMIE ; coin
 
 	db SPLASHING_ABOUT_DECK_ID
-	tx Text0467 ; deck name
-	tx Text04d3 ; opponent name
+	tx SplashingAboutDeckName ; deck name
+	tx DuelistSaraName ; opponent name
 	db NPC_SARA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3558,8 +3558,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db BEACH_DECK_ID
-	tx Text045e ; deck name
-	tx Text04dc ; opponent name
+	tx BeachDeckName ; deck name
+	tx DuelistAmandaName ; opponent name
 	db NPC_AMANDA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3569,8 +3569,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db GO_ARCANINE_DECK_ID
-	tx Text046f ; deck name
-	tx Text0474 ; opponent name
+	tx GoArcanineDeckName ; deck name
+	tx DuelistKenName ; opponent name
 	db NPC_KEN ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3580,8 +3580,8 @@ DeckIDData:
 	db COIN_CHARMANDER ; coin
 
 	db FLAME_FESTIVAL_DECK_ID
-	tx Text0465 ; deck name
-	tx Text04a2 ; opponent name
+	tx FlameFestivalDeckName ; deck name
+	tx DuelistJohnName ; opponent name
 	db NPC_JOHN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3591,8 +3591,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db IMMORTAL_FLAME_DECK_ID
-	tx Text0463 ; deck name
-	tx Text04cd ; opponent name
+	tx ImmortalFlameDeckName ; deck name
+	tx DuelistJonathanName ; opponent name
 	db NPC_JONATHAN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3602,8 +3602,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db ELECTRIC_CURRENT_SHOCK_DECK_ID
-	tx Text0459 ; deck name
-	tx Text04f5 ; opponent name
+	tx ElectricCurrentShockDeckName ; deck name
+	tx DuelistAdamName ; opponent name
 	db NPC_ADAM ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3613,8 +3613,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db GREAT_ROCKET4_DECK_ID
-	tx Text0490 ; deck name
-	tx Text042a ; opponent name
+	tx GreatRocket4DeckName ; deck name
+	tx DuelistGR4Name ; opponent name
 	db NPC_GR_4 ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3624,8 +3624,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db GREAT_ROCKET1_DECK_ID
-	tx Text048d ; deck name
-	tx Text0427 ; opponent name
+	tx GreatRocket1DeckName ; deck name
+	tx DuelistGR1Name ; opponent name
 	db NPC_GR_1 ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3635,8 +3635,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db GREAT_ROCKET2_DECK_ID
-	tx Text048e ; deck name
-	tx Text0428 ; opponent name
+	tx GreatRocket2DeckName ; deck name
+	tx DuelistGR2Name ; opponent name
 	db NPC_GR_2 ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3646,8 +3646,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db GREAT_ROCKET3_DECK_ID
-	tx Text048f ; deck name
-	tx Text0429 ; opponent name
+	tx GreatRocket3DeckName ; deck name
+	tx DuelistGR3Name ; opponent name
 	db NPC_GR_3 ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3657,8 +3657,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db GRAND_FIRE_DECK_ID
-	tx Text048b ; deck name
-	tx Text04be ; opponent name
+	tx GrandFireDeckName ; deck name
+	tx DuelistCourtneyName ; opponent name
 	db NPC_COURTNEY ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3668,8 +3668,8 @@ DeckIDData:
 	db COIN_CHARMANDER ; coin
 
 	db LEGENDARY_FOSSIL_DECK_ID
-	tx Text0458 ; deck name
-	tx Text049e ; opponent name
+	tx LegendaryFossilDeckName ; deck name
+	tx DuelistSteveName ; opponent name
 	db NPC_STEVE ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3679,8 +3679,8 @@ DeckIDData:
 	db COIN_PIKACHU ; coin
 
 	db WATER_LEGEND_DECK_ID
-	tx Text047c ; deck name
-	tx Text0482 ; opponent name
+	tx WaterLegendDeckName ; deck name
+	tx DuelistJackName ; opponent name
 	db NPC_JACK ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3690,8 +3690,8 @@ DeckIDData:
 	db COIN_STARMIE ; coin
 
 	db GREAT_DRAGON_DECK_ID
-	tx Text0450 ; deck name
-	tx Text04ed ; opponent name
+	tx GreatDragonDeckName ; deck name
+	tx DuelistRodName ; opponent name
 	db NPC_ROD ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3701,8 +3701,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db BUG_COLLECTING_DECK_ID
-	tx Text0447 ; deck name
-	tx Text04d8 ; opponent name
+	tx InsectCollectionDeckName ; deck name
+	tx DuelistMidoriName ; opponent name
 	db NPC_MIDORI ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3712,9 +3712,9 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db DEMONIC_FOREST_DECK_ID
-	tx Text042e ; deck name
-	tx Text04e3 ; opponent name
-	db NPC_YUUTA ; NPC ID
+	tx DemonicForestDeckName ; deck name
+	tx DuelistYutaName ; opponent name
+	db NPC_YUTA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3723,8 +3723,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db STICKY_POISON_GAS_DECK_ID
-	tx Text045c ; deck name
-	tx Text04da ; opponent name
+	tx PoisonGoopGasDeckName ; deck name
+	tx DuelistMiyukiName ; opponent name
 	db NPC_MIYUKI ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3734,8 +3734,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db MAD_PETALS_DECK_ID
-	tx Text0445 ; deck name
-	tx Text04dd ; opponent name
+	tx MadPetalsDeckName ; deck name
+	tx DuelistMorinoName ; opponent name
 	db NPC_MORINO ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $01 ; special duel rules
@@ -3745,8 +3745,8 @@ DeckIDData:
 	db COIN_MAGNEMITE ; coin
 
 	db DANGEROUS_BENCH_DECK_ID
-	tx Text0441 ; deck name
-	tx Text04a4 ; opponent name
+	tx DangerousBenchDeckName ; deck name
+	tx DuelistTapName ; opponent name
 	db NPC_TAP ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3756,8 +3756,8 @@ DeckIDData:
 	db COIN_CHANSEY ; coin
 
 	db CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
-	tx Text04c5 ; deck name
-	tx Text04f2 ; opponent name
+	tx ChainLightningByPikachuDeckName ; deck name
+	tx DuelistRennaName ; opponent name
 	db NPC_RENNA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3767,8 +3767,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
-	tx Text0456 ; deck name
-	tx Text0479 ; opponent name
+	tx ThisIsThePowerOfElectricityDeckName ; deck name
+	tx DuelistIchikawaName ; opponent name
 	db NPC_ICHIKAWA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3778,8 +3778,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db QUICK_ATTACK_DECK_ID
-	tx Text0457 ; deck name
-	tx Text0487 ; opponent name
+	tx QuickAttackDeckName ; deck name
+	tx DuelistCatherineName ; opponent name
 	db NPC_CATHERINE ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $02 ; special duel rules
@@ -3789,8 +3789,8 @@ DeckIDData:
 	db COIN_GOLBAT ; coin
 
 	db COMPLETE_COMBUSTION_DECK_ID
-	tx Text043f ; deck name
-	tx Text049b ; opponent name
+	tx CompleteCombustionDeckName ; deck name
+	tx DuelistJesName ; opponent name
 	db NPC_JES ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3800,8 +3800,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db FIREBALL_DECK_ID
-	tx Text04c6 ; deck name
-	tx Text04e2 ; opponent name
+	tx FireballDeckName ; deck name
+	tx DuelistYukiName ; opponent name
 	db NPC_YUKI ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3811,8 +3811,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db EEVEE_SHOWDOWN_DECK_ID
-	tx Text0477 ; deck name
-	tx Text0499 ; opponent name
+	tx EeveeShowdownDeckName ; deck name
+	tx DuelistShokoName ; opponent name
 	db NPC_SHOKO ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3822,8 +3822,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
-	tx Text0468 ; deck name
-	tx Text04bc ; opponent name
+	tx GazeUponThePowerOfFireDeckName ; deck name
+	tx DuelistHideroName ; opponent name
 	db NPC_HIDERO ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $03 ; special duel rules
@@ -3833,8 +3833,8 @@ DeckIDData:
 	db COIN_MAGMAR ; coin
 
 	db WHIRLPOOL_SHOWER_DECK_ID
-	tx Text0439 ; deck name
-	tx Text04d9 ; opponent name
+	tx WhirlpoolShowerDeckName ; deck name
+	tx DuelistMiyajimaName ; opponent name
 	db NPC_MIYAJIMA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3844,8 +3844,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db PARALYZED_PARALYZED_DECK_ID
-	tx Text04d1 ; deck name
-	tx Text049f ; opponent name
+	tx ParalyzedParalyzedDeckName ; deck name
+	tx DuelistSentaName ; opponent name
 	db NPC_SENTA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3855,8 +3855,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db BENCH_CALL_DECK_ID
-	tx Text04c7 ; deck name
-	tx Text0473 ; opponent name
+	tx BenchCallDeckName ; deck name
+	tx DuelistAiraName ; opponent name
 	db NPC_AIRA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db $04 ; special duel rules
@@ -3866,8 +3866,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db WATER_STREAM_DECK_ID
-	tx Text047b ; deck name
-	tx Text0483 ; opponent name
+	tx WaterStreamDeckName ; deck name
+	tx DuelistKanokoName ; opponent name
 	db NPC_KANOKO ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $05 ; special duel rules
@@ -3877,8 +3877,8 @@ DeckIDData:
 	db COIN_PSYDUCK ; coin
 
 	db ROCK_BLAST_DECK_ID
-	tx Text04f4 ; deck name
-	tx Text0494 ; opponent name
+	tx RockBlastDeckName ; deck name
+	tx DuelistGodaName ; opponent name
 	db NPC_GODA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3888,8 +3888,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db FULL_STRENGTH_DECK_ID
-	tx Text0451 ; deck name
-	tx Text048c ; opponent name
+	tx FullStrengthDeckName ; deck name
+	tx DuelistGraceName ; opponent name
 	db NPC_GRACE ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3899,8 +3899,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db RUNNING_WILD_DECK_ID
-	tx Text0430 ; deck name
-	tx Text0485 ; opponent name
+	tx RunningWildDeckName ; deck name
+	tx DuelistKamiyaName ; opponent name
 	db NPC_KAMIYA ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $06 ; special duel rules
@@ -3910,8 +3910,8 @@ DeckIDData:
 	db COIN_MACHAMP ; coin
 
 	db DIRECT_HIT_DECK_ID
-	tx Text0454 ; deck name
-	tx Text04db ; opponent name
+	tx DirectHitDeckName ; deck name
+	tx DuelistMiwaName ; opponent name
 	db NPC_MIWA ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3921,8 +3921,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db SUPERDESTRUCTIVE_POWER_DECK_ID
-	tx Text0452 ; deck name
-	tx Text0492 ; opponent name
+	tx SuperDestructivePowerDeckName ; deck name
+	tx DuelistKevinName ; opponent name
 	db NPC_KEVIN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db $07 ; special duel rules
@@ -3932,8 +3932,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db BAD_DREAM_DECK_ID
-	tx Text04ba ; deck name
-	tx Text04e5 ; opponent name
+	tx BadDreamDeckName ; deck name
+	tx DuelistYosukeName ; opponent name
 	db NPC_YOSUKE ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3943,8 +3943,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db POKEMON_POWER_DECK_ID
-	tx Text04cb ; deck name
-	tx Text04ee ; opponent name
+	tx PokemonsPowerDeckName ; deck name
+	tx DuelistRyokoName ; opponent name
 	db NPC_RYOKO ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3954,8 +3954,8 @@ DeckIDData:
 	db COIN_GR ; coin
 
 	db SPIRITED_AWAY_DECK_ID
-	tx Text043d ; deck name
-	tx Text04d2 ; opponent name
+	tx SpiritedAwayDeckName ; deck name
+	tx DuelistMamiName ; opponent name
 	db NPC_MAMI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $08 ; special duel rules
@@ -3965,8 +3965,8 @@ DeckIDData:
 	db COIN_MEW ; coin
 
 	db SNORLAX_GUARD_DECK_ID
-	tx Text0484 ; deck name
-	tx Text04b6 ; opponent name
+	tx SnorlaxGuardDeckName ; deck name
+	tx DuelistNishijimaName ; opponent name
 	db NPC_NISHIJIMA ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3976,8 +3976,8 @@ DeckIDData:
 	db COIN_SNORLAX ; coin
 
 	db EYE_OF_THE_STORM_DECK_ID
-	tx Text044c ; deck name
-	tx Text0478 ; opponent name
+	tx EyeOfTheStormDeckName ; deck name
+	tx DuelistIshiiName ; opponent name
 	db NPC_ISHII ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3987,8 +3987,8 @@ DeckIDData:
 	db COIN_SNORLAX ; coin
 
 	db SUDDEN_GROWTH_DECK_ID
-	tx Text0443 ; deck name
-	tx Text0497 ; opponent name
+	tx SuddenGrowthDeckName ; deck name
+	tx DuelistSamejimaName ; opponent name
 	db NPC_SAMEJIMA ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -3998,8 +3998,8 @@ DeckIDData:
 	db COIN_SNORLAX ; coin
 
 	db VERY_RARE_CARD_DECK_ID
-	tx Text045a ; deck name
-	tx Text042d ; opponent name
+	tx VeryRareCardDeckName ; deck name
+	tx DuelistMrIshiharaName ; opponent name
 	db NPC_ISHIHARA ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4009,8 +4009,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db BAD_GUYS_DECK_ID
-	tx Text0472 ; deck name
-	tx Text0486 ; opponent name
+	tx BadGuysDeckName ; deck name
+	tx DuelistKanzakiName ; opponent name
 	db NPC_KANZAKI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4020,8 +4020,8 @@ DeckIDData:
 	db COIN_HORSEA ; coin
 
 	db POISON_MIST_DECK_ID
-	tx Text04ca ; deck name
-	tx Text04f0 ; opponent name
+	tx PoisonMistDeckName ; deck name
+	tx DuelistRuiName ; opponent name
 	db NPC_RUI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $09 ; special duel rules
@@ -4031,8 +4031,8 @@ DeckIDData:
 	db COIN_ARBOK ; coin
 
 	db ULTRA_REMOVAL_DECK_ID
-	tx Text047e ; deck name
-	tx Text04f0 ; opponent name
+	tx UltraRemovalDeckName ; deck name
+	tx DuelistRuiName ; opponent name
 	db NPC_RUI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $0a ; special duel rules
@@ -4042,8 +4042,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db PSYCHIC_BATTLE_DECK_ID
-	tx Text0495 ; deck name
-	tx Text04f0 ; opponent name
+	tx PsychicBattleDeckName ; deck name
+	tx DuelistRuiName ; opponent name
 	db NPC_RUI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db $07 ; special duel rules
@@ -4053,8 +4053,8 @@ DeckIDData:
 	db COIN_GENGAR ; coin
 
 	db STOP_LIFE_DECK_ID
-	tx Text0437 ; deck name
-	tx Text04c2 ; opponent name
+	tx ChokeDeckName ; deck name
+	tx DuelistBiruritchiName ; opponent name
 	db NPC_BIRURITCHI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4064,8 +4064,8 @@ DeckIDData:
 	db COIN_TOGEPI ; coin
 
 	db SCORCHER_DECK_ID
-	tx Text046d ; deck name
-	tx Text04c2 ; opponent name
+	tx IncinerateDeckName ; deck name
+	tx DuelistBiruritchiName ; opponent name
 	db NPC_BIRURITCHI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4075,8 +4075,8 @@ DeckIDData:
 	db COIN_TOGEPI ; coin
 
 	db TSUNAMI_STARTER_DECK_ID
-	tx Text044e ; deck name
-	tx Text04c2 ; opponent name
+	tx SmashDeckName ; deck name
+	tx DuelistBiruritchiName ; opponent name
 	db NPC_BIRURITCHI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4086,8 +4086,8 @@ DeckIDData:
 	db COIN_TOGEPI ; coin
 
 	db SMASH_TO_MINCEMEAT_DECK_ID
-	tx Text0455 ; deck name
-	tx Text04c2 ; opponent name
+	tx ThrowOutDeckName ; deck name
+	tx DuelistBiruritchiName ; opponent name
 	db NPC_BIRURITCHI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4097,8 +4097,8 @@ DeckIDData:
 	db COIN_TOGEPI ; coin
 
 	db TEST_YOUR_LUCK_DECK_ID
-	tx Text043a ; deck name
-	tx Text04c8 ; opponent name
+	tx TestYourLuckDeckName ; deck name
+	tx DuelistPawnName ; opponent name
 	db NPC_PAWN ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4108,8 +4108,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db PROTOHISTORIC_DECK_ID
-	tx Text0446 ; deck name
-	tx Text04b4 ; opponent name
+	tx ProtohistoricDeckName ; deck name
+	tx DuelistKnightName ; opponent name
 	db NPC_KNIGHT ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4119,8 +4119,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db TEXTURE_TUNER7_DECK_ID
-	tx Text04a8 ; deck name
-	tx Text04bf ; opponent name
+	tx TextureTuner7DeckName ; deck name
+	tx DuelistBishopName ; opponent name
 	db NPC_BISHOP ; NPC ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4130,8 +4130,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db COLORLESS_ENERGY_DECK_ID
-	tx Text046b ; deck name
-	tx Text04ef ; opponent name
+	tx ColorlessEnergyDeckName ; deck name
+	tx DuelistRookName ; opponent name
 	db NPC_ROOK ; NPC ID
 	db PRIZES_5 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4141,8 +4141,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db POWERFUL_POKEMON_DECK_ID
-	tx Text0444 ; deck name
-	tx Text0488 ; opponent name
+	tx PowerfulPokemonDeckName ; deck name
+	tx DuelistQueenName ; opponent name
 	db NPC_QUEEN ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4152,8 +4152,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db WEIRD_DECK_ID
-	tx Text0464 ; deck name
-	tx Text047a ; opponent name
+	tx WeirdDeckName ; deck name
+	tx DuelistImakuniName ; opponent name
 	db NPC_IMAKUNI_BLACK ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4163,8 +4163,8 @@ DeckIDData:
 	db COIN_PSYDUCK ; coin
 
 	db STRANGE_DECK_ID
-	tx Text0442 ; deck name
-	tx Text047a ; opponent name
+	tx StrangeDeckName ; deck name
+	tx DuelistImakuniName ; opponent name
 	db NPC_IMAKUNI_RED ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4174,8 +4174,8 @@ DeckIDData:
 	db COIN_JIGGLYPUFF ; coin
 
 	db RONALDS_UNCOOL_DECK_ID
-	tx Text04e8 ; deck name
-	tx Text04e6 ; opponent name
+	tx RonaldsUncoolDeckName ; deck name
+	tx DuelistRonaldName ; opponent name
 	db NPC_RONALD ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4185,8 +4185,8 @@ DeckIDData:
 	db COIN_RAICHU ; coin
 
 	db RONALDS_GRX_DECK_ID
-	tx Text04e7 ; deck name
-	tx Text042b ; opponent name
+	tx RonaldsGRXDeckName ; deck name
+	tx DuelistGRXName ; opponent name
 	db NPC_GR_X ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4196,8 +4196,8 @@ DeckIDData:
 	db COIN_RAICHU ; coin
 
 	db RONALDS_POWER_DECK_ID
-	tx Text04eb ; deck name
-	tx Text04e6 ; opponent name
+	tx RonaldsPowerDeckName ; deck name
+	tx DuelistRonaldName ; opponent name
 	db NPC_RONALD ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4207,8 +4207,8 @@ DeckIDData:
 	db COIN_RAICHU ; coin
 
 	db RONALDS_PSYCHIC_DECK_ID
-	tx Text04ea ; deck name
-	tx Text04e6 ; opponent name
+	tx RonaldsSuperDeckName ; deck name
+	tx DuelistRonaldName ; opponent name
 	db NPC_RONALD ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4218,8 +4218,8 @@ DeckIDData:
 	db COIN_RAICHU ; coin
 
 	db RONALDS_ULTRA_DECK_ID
-	tx Text04e9 ; deck name
-	tx Text04e6 ; opponent name
+	tx RonaldsUltraDeckName ; deck name
+	tx DuelistRonaldName ; opponent name
 	db NPC_RONALD ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4229,8 +4229,8 @@ DeckIDData:
 	db COIN_RAICHU ; coin
 
 	db EVERYBODYS_FRIEND_DECK_ID
-	tx Text0469 ; deck name
-	tx Text047f ; opponent name
+	tx EverybodysFriendDeckName ; deck name
+	tx DuelistEijiName ; opponent name
 	db NPC_EIJI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4240,8 +4240,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db IMMORTAL_POKEMON_DECK_ID
-	tx Text0462 ; deck name
-	tx Text04cf ; opponent name
+	tx ImmortalPokemonDeckName ; deck name
+	tx DuelistMagicianName ; opponent name
 	db NPC_MAGICIAN ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4251,8 +4251,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db TORRENTIAL_FLOOD_DECK_ID
-	tx Text043b ; deck name
-	tx Text04e1 ; opponent name
+	tx TorrentialFloodDeckName ; deck name
+	tx DuelistYuiName ; opponent name
 	db NPC_YUI ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4262,8 +4262,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db TRAINER_IMPRISON_DECK_ID
-	tx Text04ae ; deck name
-	tx Text04ab ; opponent name
+	tx TrainerImprisonDeckName ; deck name
+	tx DuelistToshironName ; opponent name
 	db NPC_TOSHIRON ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4273,8 +4273,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db BLAZING_FLAME_DECK_ID
-	tx Text046c ; deck name
-	tx Text04c3 ; opponent name
+	tx BlazingFlameDeckName ; deck name
+	tx DuelistPierrotName ; opponent name
 	db NPC_PIERROT ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4284,8 +4284,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db DAMAGE_CHAOS_DECK_ID
-	tx Text04a7 ; deck name
-	tx Text0476 ; opponent name
+	tx DamageChaosDeckName ; deck name
+	tx DuelistAnnaName ; opponent name
 	db NPC_ANNA ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4295,8 +4295,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db BIG_THUNDER_DECK_ID
-	tx Text04c0 ; deck name
-	tx Text04a9 ; opponent name
+	tx BigThunderDeckName ; deck name
+	tx DuelistDeeName ; opponent name
 	db NPC_DEE ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4306,8 +4306,8 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db POWER_OF_DARKNESS_DECK_ID
-	tx Text0436 ; deck name
-	tx Text04d0 ; opponent name
+	tx PowerOfDarknessDeckName ; deck name
+	tx DuelistMasqueradeName ; opponent name
 	db NPC_MASQUERADE ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
@@ -4317,9 +4317,9 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db POISON_STORM_DECK_ID
-	tx Text04c9 ; deck name
-	tx Text04ac ; opponent name
-	db NPC_TOBI_CHAN ; NPC ID
+	tx PoisonStormDeckName ; deck name
+	tx DuelistTobichanName ; opponent name
+	db NPC_TOBICHAN ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?

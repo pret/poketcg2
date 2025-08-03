@@ -250,7 +250,7 @@ GetDuelistPortrait::
 	db PORTRAIT_GR_3          ; NPC_GR_3
 	db PORTRAIT_GR_4          ; NPC_GR_4
 	db PORTRAIT_MIDORI        ; NPC_MIDORI
-	db PORTRAIT_YUUTA         ; NPC_YUUTA
+	db PORTRAIT_YUTA          ; NPC_YUTA
 	db PORTRAIT_MIYUKI        ; NPC_MIYUKI
 	db PORTRAIT_MORINO        ; NPC_MORINO
 	db PORTRAIT_RENNA         ; NPC_RENNA
@@ -280,7 +280,7 @@ GetDuelistPortrait::
 	db PORTRAIT_RUI           ; NPC_RUI
 	db PORTRAIT_BIRURITCHI    ; NPC_BIRURITCHI
 	db PORTRAIT_GR_X          ; NPC_GR_X
-	db PORTRAIT_TOBI_CHAN     ; NPC_TOBI_CHAN
+	db PORTRAIT_TOBICHAN      ; NPC_TOBICHAN
 	db PORTRAIT_DR_MASON      ; NPC_DR_MASON
 ; 0x1c116
 
@@ -1671,7 +1671,7 @@ ShowStartMenu:
 	add d
 	ld d, a
 	ld e, 8
-	ldtx hl, Text05be
+	ldtx hl, TxRam1Text
 	call Func_35bf
 
 .skip_portrait_and_name
@@ -1728,7 +1728,7 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05ce
+	textitem 2, 2, MainMenuNewGameText
 	db $ff ; end
 
 .Config1Params
@@ -1745,8 +1745,8 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05cf
-	textitem 2, 4, Text05ce
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
 	db $ff ; end
 
 .Config2Params
@@ -1763,9 +1763,9 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05d0
-	textitem 2, 4, Text05cf
-	textitem 2, 6, Text05ce
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
 	db $ff ; end
 
 .Config3Params
@@ -1782,10 +1782,10 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05d0
-	textitem 2, 4, Text05cf
-	textitem 2, 6, Text05ce
-	textitem 2, 8, Text05d1
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
+	textitem 2, 8, MainMenuContinueDuelText
 	db $ff ; end
 
 .Config4Params
@@ -1802,9 +1802,9 @@ ShowStartMenu:
 	dw StartMenuBoxUpdate ; update function
 	dw NULL ; label text ID
 
-	textitem 2, 2, Text05cf
-	textitem 2, 4, Text05ce
-	textitem 2, 6, Text05d1
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
+	textitem 2, 6, MainMenuContinueDuelText
 	db $ff ; end
 
 _StartMenuBoxUpdate::
@@ -1885,14 +1885,14 @@ _StartMenuBoxUpdate::
 
 .NewGame:
 	lb de, 1, 12
-	ldtx hl, Text05d2
+	ldtx hl, MainMenuNewGameDialogText
 	call Func_35af
 	ret
 
 .ContinueFromDiary:
 	farcall Func_c53e
 	call LoadTxRam2
-	ldtx hl, Text077b
+	ldtx hl, TxRam2TextPadded
 	lb de, 1, 10
 	call Func_2c4b
 	ld hl, .TextItems
@@ -1915,21 +1915,21 @@ _StartMenuBoxUpdate::
 	ret
 
 .TextItems:
-	textitem  3, 12, Text05af
-	textitem 15, 12, Text05ca
-	textitem  3, 14, Text05b0
-	textitem  3, 16, Text05b1
+	textitem  3, 12, PlayerDiaryEventCoinText
+	textitem 15, 12, PlayerDiaryCardsUnitText
+	textitem  3, 14, PlayerDiaryAlbumText
+	textitem  3, 16, PlayerDiaryPlayTimeText
 	db $ff
 
 .CardPop:
 	lb de, 1, 12
-	ldtx hl, Text05d3
+	ldtx hl, MainMenuCardPopDialogText
 	call Func_35af
 	ret
 
 .ContinueDuel:
 	lb de, 1, 12
-	ldtx hl, Text05d4
+	ldtx hl, MainMenuContinueDuelDialogText
 	call Func_35af
 	ret
 
@@ -1967,12 +1967,12 @@ AskToOverwriteSaveData:
 	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
-	ldtx hl, Text0760
+	ldtx hl, MainMenuNewGameInsteadOfContinueConfirmPromptText
 	ld a, $1 ; "no" selected by default
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .fade_out
 	farcall Func_e97a
-	ldtx hl, Text0761
+	ldtx hl, MainMenuNewGameInsteadOfContinueDeletedText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 .fade_out
 	call StartFadeToWhite
@@ -1984,8 +1984,8 @@ AskToOverwriteSaveData:
 	ret
 
 .TextIDs:
-	tx Text075e
-	tx Text075f
+	tx MainMenuNewGameInsteadOfContinueWarning1Text
+	tx MainMenuNewGameInsteadOfContinueWarning2Text
 	dw $ffff
 
 ; return carry if "no" selected
@@ -2003,7 +2003,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	call WaitPalFading_Bank07
 	ld hl, .TextIDs
 	call PrintScrollableTextFromList
-	ldtx hl, Text078c
+	ldtx hl, MainMenuContinueFromDiaryInsteadOfDuelConfirmText
 	ld a, $1 ; "no" selected by default
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .fade_out ; unnecessary jump
@@ -2017,10 +2017,10 @@ AskToContinueFromDiaryInsteadOfDuel:
 	ret
 
 .TextIDs:
-	tx Text0788
-	tx Text0789
-	tx Text078a
-	tx Text078b
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning1Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning2Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning3Text
+	tx MainMenuContinueFromDiaryInsteadOfDuelWarning4Text
 	tx $ffff
 
 ConfirmPlayerNameAndGender:
@@ -2053,27 +2053,27 @@ ConfirmPlayerNameAndGender:
 	lb bc, 12, 3
 	call DrawPlayerPortrait
 	; print name
-	ldtx hl, Text05be
+	ldtx hl, TxRam1Text
 	lb de, 5, 4
 	call Func_35bf
 	; print gender
 	farcall GetPlayerGender
 	and a
-	ldtx hl, Text05d5
+	ldtx hl, PlayerGenderMaleText
 	jr z, .got_gender_text
-	ldtx hl, Text05d6
+	ldtx hl, PlayerGenderFemaleText
 .got_gender_text
 	lb de, 5, 8
 	call Func_35af
 	ret
 
 .TextItems:
-	textitem 2, 2, Text05ad
-	textitem 2, 6, Text05de
+	textitem 2, 2, PlayerDiaryNameText
+	textitem 2, 6, PlayerGenderText
 	db $ff
 
 .ShowYesOrNoMenu:
-	ldtx hl, Text05dd
+	ldtx hl, IsThisOKText_2
 	ld a, $1
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret
@@ -3473,46 +3473,46 @@ Func_1e60c:
 	ret
 
 .DuelistIntroTextIDs
-	tx Text0651
-	tx Text0652
-	tx Text0653
-	tx Text0654
-	tx Text0655
-	tx Text0656
-	tx Text0657
-	tx Text0658
-	tx Text0659
-	tx Text065a
-	tx Text065b
-	tx Text065c
-	tx Text065d
-	tx Text065e
-	tx Text065f
-	tx Text0660
-	tx Text0661
-	tx Text0662
-	tx Text0663
-	tx Text0664
-	tx Text0665
-	tx Text0666
-	tx Text0667
-	tx Text0668
-	tx Text0669
-	tx Text066a
-	tx Text066b
-	tx Text066c
-	tx Text066d
-	tx Text066e
-	tx Text066f
-	tx Text0670
-	tx Text0671
-	tx Text0672
-	tx Text0673
-	tx Text0674
-	tx Text0675
-	tx Text0676
-	tx Text0677
-	tx Text0678
+	tx DuelistIntroLightningClubMemberText
+	tx DuelistIntroPsychicClubMemberText
+	tx DuelistIntroRockClubMemberText
+	tx DuelistIntroFightingClubMemberText
+	tx DuelistIntroGrassClubMemberText
+	tx DuelistIntroScienceClubMemberText
+	tx DuelistIntroWaterClubMemberText
+	tx DuelistIntroFireClubMemberText
+	tx DuelistIntroLightingClubMasterText
+	tx DuelistIntroPsychicClubMasterText
+	tx DuelistIntroRockClubMasterText
+	tx DuelistIntroFightingClubMasterText
+	tx DuelistIntroGrassClubMasterText
+	tx DuelistIntroScienceClubMasterText
+	tx DuelistIntroWaterClubMasterText
+	tx DuelistIntroFireClubMasterText
+	tx DuelistIntroGrandMasterText
+	tx DuelistIntroTechText
+	tx DuelistIntroStrangeLifeFormText
+	tx DuelistIntroCollectorText
+	tx DuelistIntroRivalText
+	tx DuelistIntroEnigmaticMaskText
+	tx DuelistIntroGRGrassFortMemberText
+	tx DuelistIntroGRLightningFortMemberText
+	tx DuelistIntroGRFireFortMemberText
+	tx DuelistIntroGRWaterFortMemberText
+	tx DuelistIntroGRFightingFortMemberText
+	tx DuelistIntroGRPsychicFortMemberText
+	tx DuelistIntroGRGrassFortLeaderText
+	tx DuelistIntroGRLightningFortLeaderText
+	tx DuelistIntroGRFireFortLeaderText
+	tx DuelistIntroGRWaterFortLeaderText
+	tx DuelistIntroGRFightingFortLeaderText
+	tx DuelistIntroGRPsychicFortLeaderText
+	tx DuelistIntroColorlessAltarGuardianText
+	tx DuelistIntroGRBigBossText
+	tx DuelistIntroGRKingText
+	tx DuelistIntroUntitledText
+	tx DuelistIntroDungeonMasterText
+	tx DuelistIntroGhostMasterText
 
 ShowSpecialRuleDescription:
 	push af
@@ -3570,18 +3570,18 @@ ShowSpecialRuleDescription:
 	ret
 
 .TitleAndDescriptionTextIDs:
-	;  title,    description
-	dw NULL,     NULL     ; NO_SPECIAL_RULE
-	tx Text063b, Text063c ; CHLOROPHYLL
-	tx Text063d, Text063e ; THUNDER_CHARGE
-	tx Text063f, Text0640 ; FLAME_ARMOR
-	tx Text0641, Text0642 ; SMALL_BENCH
-	tx Text0643, Text0644 ; RUNNING_WATER
-	tx Text0645, Text0646 ; EARTH_POWER
-	tx Text0647, Text0648 ; LOW_RESISTANCE
-	tx Text0649, Text064a ; ENERGY_RETURN
-	tx Text064b, Text064c ; TOUGH_ESCAPE
-	tx Text064d, Text064e ; BLACK_HOLE
+	;  title, description
+	dw NULL,  NULL ; NO_SPECIAL_RULE
+	tx SpecialRuleChlorophyllTitleText,   SpecialRuleChlorophyllDescriptionText
+	tx SpecialRuleThunderChargeTitleText, SpecialRuleThunderChargeDescriptionText
+	tx SpecialRuleFlameArmorTitleText,    SpecialRuleFlameArmorDescriptionText
+	tx SpecialRuleSmallBenchTitleText,    SpecialRuleSmallBenchDescriptionText
+	tx SpecialRuleRunningWaterTitleText,  SpecialRuleRunningWaterDescriptionText
+	tx SpecialRuleEarthPowerTitleText,    SpecialRuleEarthPowerDescriptionText
+	tx SpecialRuleLowResistanceTitleText, SpecialRuleLowResistanceDescriptionText
+	tx SpecialRuleEnergyReturnTitleText,  SpecialRuleEnergyReturnDescriptionText
+	tx SpecialRuleToughEscapeTitleText,   SpecialRuleToughEscapeDescriptionText
+	tx SpecialRuleBlackHoleTitleText,     SpecialRuleBlackHoleDescriptionText
 ; 0x1e73a
 
 SECTION "Bank 7@673a", ROMX[$673a], BANK[$7]

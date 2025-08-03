@@ -23,8 +23,8 @@ Credits:
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
 	credits_show_portrait NPC_ISHIHARA, 2, 6, EMOTION_HAPPY
-	credits_print_header  7, 2, 2, Text07aa
-	credits_print_text 10,  6, Text07ab
+	credits_print_header  7, 2, 2, CreditsProducersText
+	credits_print_text 10,  6, CreditsProducersListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -37,8 +37,8 @@ Credits:
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
 	credits_show_portrait NPC_AARON, 2, 6, EMOTION_HAPPY
-	credits_print_header  7, 2, 2, Text07ac
-	credits_print_text 10,  8, Text07ad
+	credits_print_header  7, 2, 2, CreditsDirectorText
+	credits_print_text 10,  8, CreditsDirectorListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -51,8 +51,8 @@ Credits:
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
 	credits_show_portrait NPC_KAMIYA, 2, 6, EMOTION_HAPPY
-	credits_print_header  4, 2, 2, Text07ae
-	credits_print_text 10,  8, Text07af
+	credits_print_header  4, 2, 2, CreditsStoryText
+	credits_print_text 10,  8, CreditsStoryListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -65,8 +65,8 @@ Credits:
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
 	credits_show_portrait NPC_TAP, 2, 6, EMOTION_HAPPY
-	credits_print_header  5, 2, 2, Text07b0
-	credits_print_text 10,  8, Text07b1
+	credits_print_header  5, 2, 2, CreditsPlannerText
+	credits_print_text 10,  8, CreditsPlannerListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -75,11 +75,11 @@ Credits:
 	credits_wait 20
 
 	credits_draw_box  0,  0, 20, 18
-	credits_show_portrait NPC_TOBI_CHAN, 2, 6, EMOTION_NORMAL
+	credits_show_portrait NPC_TOBICHAN, 2, 6, EMOTION_NORMAL
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  5, 2, 2, Text07b2
-	credits_print_text 10,  8, Text07b3
+	credits_print_header  5, 2, 2, CreditsProgrammersText
+	credits_print_text 10,  8, CreditsProgrammersList1Text
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -91,7 +91,7 @@ Credits:
 	credits_show_card 1, 6, PIKACHU_LV13
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 11,  6, Text07b4
+	credits_print_text 11,  6, CreditsProgrammersList2Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -99,7 +99,7 @@ Credits:
 	credits_wait 30
 	credits_wait 20
 	credits_draw_box 10,  6, 10,  6
-	credits_print_text 11,  8, Text07b5
+	credits_print_text 11,  8, CreditsProgrammersList3Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -111,8 +111,8 @@ Credits:
 	credits_show_card 1, 6, TOGEPI
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 12, 2, 2, Text07b6
-	credits_print_text 10,  8, Text07b7
+	credits_print_header 12, 2, 2, CreditsGBGraphicDesignersText
+	credits_print_text 10,  8, CreditsGBGraphicDesignersList1Text
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -120,7 +120,7 @@ Credits:
 	credits_wait 30
 	credits_wait 20
 	credits_draw_box 10,  6, 10,  6
-	credits_print_text 10,  7, Text07b8
+	credits_print_text 10,  7, CreditsGBGraphicDesignersList2Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -133,7 +133,7 @@ Credits:
 	credits_show_card 1, 6, MARILL
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07b9
+	credits_print_text 10,  6, CreditsGBGraphicDesignersList3Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -141,7 +141,7 @@ Credits:
 	credits_wait 30
 	credits_wait 20
 	credits_draw_box 10,  6, 10,  8
-	credits_print_text 11,  8, Text07ba
+	credits_print_text 11,  8, CreditsGBGraphicDesignersList4Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -153,8 +153,8 @@ Credits:
 	credits_show_card 1, 6, JIGGLYPUFF_LV13
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 11, 2, 2, Text07bb
-	credits_print_text 10,  8, Text07bc
+	credits_print_header 11, 2, 2, CreditsSoundDirectorText
+	credits_print_text 10,  8, CreditsSoundDirectorListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -166,8 +166,8 @@ Credits:
 	credits_show_card 1, 6, WIGGLYTUFF_LV40
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  6, 2, 2, Text07bd
-	credits_print_text 10,  8, Text07be
+	credits_print_header  6, 2, 2, CreditsMusicText
+	credits_print_text 10,  8, CreditsMusicListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -179,8 +179,8 @@ Credits:
 	credits_show_card 1, 6, LAPRAS_LV24
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 11, 2, 2, Text07bf
-	credits_print_text 12,  8, Text07c0
+	credits_print_header 11, 2, 2, CreditsMusicProgrammerText
+	credits_print_text 12,  8, CreditsMusicProgrammerListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -192,8 +192,8 @@ Credits:
 	credits_show_card 1, 6, DARK_MAROWAK
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  9, 2, 2, Text07c1
-	credits_print_text 10,  7, Text07c2
+	credits_print_header  9, 2, 2, CreditsSoundEffectsText
+	credits_print_text 10,  7, CreditsSoundEffectsListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -205,8 +205,8 @@ Credits:
 	credits_show_card 1, 6, ZUBAT_LV10
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  8, 2, 2, Text07c3
-	credits_print_text 10,  7, Text07c4
+	credits_print_header  8, 2, 2, CreditsSoundSupportText
+	credits_print_text 10,  7, CreditsSoundSupportListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -218,8 +218,8 @@ Credits:
 	credits_show_portrait NPC_KEN, 2, 6, EMOTION_NORMAL
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 10, 2, 2, Text07c5
-	credits_print_text 10,  8, Text07c6
+	credits_print_header 10, 2, 2, CreditsCardGameProductionText
+	credits_print_text 10,  8, CreditsCardGameProductionList1Text
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -232,7 +232,7 @@ Credits:
 	credits_show_portrait NPC_DR_MASON, 2, 6, EMOTION_HAPPY
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  8, Text07c7
+	credits_print_text 10,  8, CreditsCardGameProductionList2Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -245,7 +245,7 @@ Credits:
 	credits_show_portrait NPC_MURRAY, 2, 6, EMOTION_NORMAL
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  8, Text07c8
+	credits_print_text 10,  8, CreditsCardGameProductionList3Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -257,8 +257,8 @@ Credits:
 	credits_show_card 1, 6, EEVEE_LV9
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 12, 2, 2, Text07c9
-	credits_print_text 10,  6, Text07ca
+	credits_print_header 12, 2, 2, CreditsCardIllustratorsText
+	credits_print_text 10,  6, CreditsCardIllustratorsList1Text
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -271,7 +271,7 @@ Credits:
 	credits_show_card 1, 6, MEOWTH_LV17
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07cb
+	credits_print_text 10,  6, CreditsCardIllustratorsList2Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -284,7 +284,7 @@ Credits:
 	credits_show_card 1, 6, DARK_PERSIAN_LV28
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07cc
+	credits_print_text 10,  6, CreditsCardIllustratorsList3Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -297,7 +297,7 @@ Credits:
 	credits_show_card 1, 6, OMASTAR_LV36
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07cd
+	credits_print_text 10,  6, CreditsCardIllustratorsList4Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -310,7 +310,7 @@ Credits:
 	credits_show_card 1, 6, DARK_GENGAR
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07ce
+	credits_print_text 10,  6, CreditsCardIllustratorsList5Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -323,7 +323,7 @@ Credits:
 	credits_show_card 1, 6, DRAGONITE_LV43
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  6, Text07cf
+	credits_print_text 10,  6, CreditsCardIllustratorsList6Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 150
@@ -335,8 +335,8 @@ Credits:
 	credits_show_portrait NPC_IMAKUNI_RED, 2, 6, EMOTION_SAD
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 12, 2, 2, Text07d0
-	credits_print_text  9,  6, Text07d1
+	credits_print_header 12, 2, 2, CreditsGuestAppearancesText
+	credits_print_text  9,  6, CreditsGuestAppearancesListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -348,8 +348,8 @@ Credits:
 	credits_show_card 1, 6, DARK_RAICHU
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  6, 2, 2, Text07d2
-	credits_print_text 11,  8, Text07d3
+	credits_print_header  6, 2, 2, CreditsMasteringText
+	credits_print_text 11,  8, CreditsMasteringListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -361,8 +361,8 @@ Credits:
 	credits_show_card 1, 6, HERE_COMES_TEAM_ROCKET
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  9, 2, 2, Text07d4
-	credits_print_text 10,  7, Text07d5
+	credits_print_header  9, 2, 2, CreditsManualProductionText
+	credits_print_text 10,  7, CreditsManualProductionListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -374,8 +374,8 @@ Credits:
 	credits_show_set CREDITS_BASE_SET, 1, 4
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  9, 2, 2, Text07d6
-	credits_print_text 10,  9, Text07d7
+	credits_print_header  9, 2, 2, CreditsManualIllustrationsText
+	credits_print_text 10,  9, CreditsManualIllustrationsListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -387,8 +387,8 @@ Credits:
 	credits_show_set CREDITS_JUNGLE, 1, 4
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 11, 2, 2, Text07d8
-	credits_print_text 10,  9, Text07d9
+	credits_print_header 11, 2, 2, CreditsPackageArtworkText
+	credits_print_text 10,  9, CreditsPackageArtworkListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -400,8 +400,8 @@ Credits:
 	credits_show_set CREDITS_FOSSIL, 1, 4
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 13, 2, 2, Text07da
-	credits_print_text 11,  9, Text07db
+	credits_print_header 13, 2, 2, CreditsOriginalPokemonCreatorText
+	credits_print_text 11,  9, CreditsOriginalPokemonCreatorListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -413,8 +413,8 @@ Credits:
 	credits_show_set CREDITS_TEAM_ROCKET, 1, 4
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 10, 2, 2, Text07dc
-	credits_print_text 11,  7, Text07dd
+	credits_print_header 10, 2, 2, CreditsProductionAssistanceText
+	credits_print_text 11,  7, CreditsProductionAssistanceListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -426,8 +426,8 @@ Credits:
 	credits_show_card 1, 6, DARK_MAGNETON
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  6, 2, 2, Text07de
-	credits_print_text 10,  6, Text07df
+	credits_print_header  6, 2, 2, CreditsAssistanceText
+	credits_print_text 10,  6, CreditsAssistanceList1Text
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -440,7 +440,7 @@ Credits:
 	credits_show_card 1, 6, DODRIO_LV25
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 11,  7, Text07e0
+	credits_print_text 11,  7, CreditsAssistanceList2Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -453,7 +453,7 @@ Credits:
 	credits_show_card 1, 6, DARK_WEEZING
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  7, Text07e1
+	credits_print_text 10,  7, CreditsAssistanceList3Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -466,7 +466,7 @@ Credits:
 	credits_show_card 1, 6, DUGTRIO_LV40
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  7, Text07e2
+	credits_print_text 10,  7, CreditsAssistanceList4Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -479,8 +479,8 @@ Credits:
 	credits_show_card 1, 6, KANGASKHAN_LV38
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  7, Text07e3
-	credits_print_text 10, 10, Text07e4
+	credits_print_text 10,  7, CreditsAssistanceList5Text
+	credits_print_text 10, 10, CreditsAssistanceList5ContText
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -493,10 +493,10 @@ Credits:
 	credits_show_card 1, 6, THE_ROCKETS_TRAP
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_text 10,  7, Text07e5
-	credits_print_text 10,  8, Text07e6
-	credits_print_text 10,  9, Text07e7
-	credits_print_text 10, 10, Text07e8
+	credits_print_text 10,  7, CreditsAssistanceList6Text
+	credits_print_text 10,  8, CreditsAssistanceList7Text
+	credits_print_text 10,  9, CreditsAssistanceList7ContText
+	credits_print_text 10, 10, CreditsAssistanceList8Text
 	credits_fade_in CREDITS_FADE_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -508,8 +508,8 @@ Credits:
 	credits_show_card 1, 6, DARK_CLEFABLE
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 12, 2, 2, Text07e9
-	credits_print_text 10,  8, Text07ea
+	credits_print_header 12, 2, 2, CreditsProjectManagerText
+	credits_print_text 10,  8, CreditsProjectManagerListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -521,8 +521,8 @@ Credits:
 	credits_show_card 1, 6, VENUSAUR_LV64
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  8, 2, 2, Text07eb
-	credits_print_text 11,  8, Text07ec
+	credits_print_header  8, 2, 2, CreditsSupervisorText
+	credits_print_text 11,  8, CreditsSupervisorListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -534,8 +534,8 @@ Credits:
 	credits_show_card 1, 6, LUGIA
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header 14, 2, 2, Text07ed
-	credits_print_text 10,  8, Text07ee
+	credits_print_header 14, 2, 2, CreditsExecutiveProducerText
+	credits_print_text 10,  8, CreditsExecutiveProducerListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -547,8 +547,8 @@ Credits:
 	credits_show_card 1, 6, MEW_LV15
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
-	credits_print_header  7, 2, 2, Text07ef
-	credits_print_text 11,  8, Text07f0
+	credits_print_header  7, 2, 2, CreditsGameProductionText
+	credits_print_text 11,  8, CreditsGameProductionListText
 	credits_fade_in CREDITS_FADE_HEADER_TEXT, $05
 	credits_wait 30
 	credits_wait 140
@@ -594,7 +594,7 @@ Credits:
 	credits_wait 4
 	credits_wait 30
 	credits_show_tile $03, $10, $0f, $00
-	credits_print_text  4, 16, Text07f1
+	credits_print_text  4, 16, CreditsToBeContinuedText
 	credits_wait 120
 	credits_wait_input A_BUTTON | START
 	credits_stop_music

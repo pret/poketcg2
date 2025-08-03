@@ -2335,7 +2335,7 @@ Func_110c6:
 	push de
 	push hl
 	call Func_11002
-	ldtx hl, Text05bb
+	ldtx hl, TurnedOnPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ld e, $01
 .asm_110d5
@@ -2361,7 +2361,7 @@ Func_110c6:
 	jr nz, .asm_110fc
 	call Func_11002
 .asm_110fc
-	ldtx hl, Text05bc
+	ldtx hl, TurnedOffPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	call Func_1101d
 	pop hl
@@ -2402,11 +2402,11 @@ Func_110c6:
 	dw NULL ; update function
 	dw NULL ; label text ID
 
-	textitem 2,  2, Text05b7
-	textitem 2,  4, Text05cc
-	textitem 2,  6, Text05b9
-	textitem 2,  8, Text05ba
-	textitem 2, 10, Text05bd
+	textitem 2,  2, PCMenuCardAlbumText
+	textitem 2,  4, PCMenuDeckDiagnosisText
+	textitem 2,  6, PCMenuGlossaryText
+	textitem 2,  8, PCMenuPrintText
+	textitem 2, 10, PCMenuShutdownText
 	db $ff
 
 .HandleInput:
@@ -4238,7 +4238,7 @@ PrintPlayTime:
 	inc d
 	inc d
 	inc d
-	ldtx hl, Text073b
+	ldtx hl, SingleColonText
 	call Func_35af
 	inc d
 	ld a, [wDisplayMinutes]
@@ -4280,7 +4280,7 @@ PrintCardAlbumProgress:
 	inc d
 	inc d
 	inc d
-	ldtx hl, Text05a3
+	ldtx hl, CardCountSeparatorText
 	call Func_35af
 	inc d
 	ld hl, wTotalNumCardsToCollect
@@ -4640,25 +4640,25 @@ ShowProloguePortraitAndText:
 	dw .text_list3
 
 .text_list1
-	tx Text0762
-	tx Text0763
-	tx Text0764
-	tx Text0765
-	tx Text0766
-	tx Text0767
-	tx Text0768
+	tx PrologueScene1Line1Text
+	tx PrologueScene1Line2Text
+	tx PrologueScene1Line3Text
+	tx PrologueScene1Line4Text
+	tx PrologueScene1Line5Text
+	tx PrologueScene1Line6Text
+	tx PrologueScene1Line7Text
 	dw $ffff
 
 .text_list2
-	tx Text0769
-	tx Text076a
-	tx Text076b
+	tx PrologueScene2Line1Text
+	tx PrologueScene2Line2Text
+	tx PrologueScene2Line3Text
 	dw $ffff
 
 .text_list3
-	tx Text076c
-	tx Text076d
-	tx Text076e
+	tx PrologueScene3Line1Text
+	tx PrologueScene3Line2Text
+	tx PrologueScene3Line3Text
 	dw $ffff
 ; 0x13c22
 
@@ -4889,22 +4889,22 @@ PlayerGenderSelection:
 	dw NULL ; update function
 	dw NULL ; label text ID
 
-	textitem  1, 0, Text05d5
-	textitem 11, 0, Text05d6
+	textitem  1, 0, PlayerGenderMaleText
+	textitem 11, 0, PlayerGenderFemaleText
 	db $ff
 
 .HandleSelection:
 .loop
-	ldtx hl, Text05d7
+	ldtx hl, ChoosePlayerGenderText
 	call Func_1107c
 	ld a, [wde64]
 	farcall HandleMenuBox
 	ld [wde64], a
 	inc a
-	ldtx hl, Text05d8
+	ldtx hl, ConfirmPlayerGenderMaleText
 	dec a
 	jr z, .got_selection
-	ldtx hl, Text05d9
+	ldtx hl, ConfirmPlayerGenderFemaleText
 .got_selection
 	ld a, $1
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu

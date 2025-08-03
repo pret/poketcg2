@@ -1,795 +1,797 @@
-Text0590:
+DebugCharacterDisplayTestText:
 	textfw "人物の表示テスト"
 	done
 
-Text0591:
+DebugYoshidaTestText:
 	textfw "よしだくんテスト"
 	done
 
-Text0592:
+DebugGameMainText:
 	textfw "ゲームメイン"
 	done
 
-Text0593:
+DebugReserveText:
 	textfw "よやく"
 	done
 
-Text0594:
+DebugReturnToMainText:
 	textfw "メインへもどる"
 	done
 
-Text0595:
+PauseMenuStatusText:
 	textfw "ステータス"
 	done
 
-Text0596:
+PauseMenuDiaryText:
 	textfw "にっき"
 	done
 
-Text0597:
+PauseMenuDeckText:
 	textfw "デッキ"
 	done
 
-Text0598:
+PauseMenuMinicomText:
 	textfw "ミニコン"
 	done
 
-Text0599:
+PauseMenuCoinText:
 	textfw "コイン"
 	done
 
-Text059a:
+PauseMenuConfigText:
 	textfw "せってい"
 	done
 
-Text059b:
+PauseMenuExitText:
 	textfw "とじる"
 	done
 
-Text059c:
+ConfigTitleText:
 	textfw "せっていのへんこう"
 	done
 
-Text059d:
+ConfigMessageSpeedText:
 	textfw " メッセージの はやさ "
 	done
 
-Text059e:
+ConfigDuelAnimationText:
 	textfw " 対戦 アニメーション "
 	done
 
-Text059f:
+ConfigCoinAnimationText:
 	textfw " コイントス アニメーション "
 	done
 
-Text05a0:
+ConfigExitText:
 	textfw "せっていを おわる"
 	done
 
-Text05a1:
+ConfigMessageSpeedSlowLabelText:
 	textfw "おそい"
 	done
 
-Text05a2:
+ConfigMessageSpeedFastLabelText:
 	textfw "はやい"
 	done
 
-Text05a3:
+CardCountSeparatorText:
 	textfw "/"
 	done
 
-Text05a4:
+ConfigMessageSpeed1Text:
 	textfw "1"
 	done
 
-Text05a5:
+ConfigMessageSpeed2Text:
 	textfw "2"
 	done
 
-Text05a6:
+ConfigMessageSpeed3Text:
 	textfw "3"
 	done
 
-Text05a7:
+ConfigMessageSpeed4Text:
 	textfw "4"
 	done
 
-Text05a8:
+ConfigMessageSpeed5Text:
 	textfw "5"
 	done
 
-Text05a9:
+ConfigAnimationShowAllText:
 	textfw "じっくり"
 	done
 
-Text05aa:
+ConfigAnimationSkipSomeText:
 	textfw "スキップあり"
 	done
 
-Text05ab:
+ConfigAnimationNoneText:
 	textfw "みない"
 	done
 
-Text05ac:
+PlayerDiaryTitleText:
 	textfw "<RAMNAME>のにっき"
 	done
 
-Text05ad:
+PlayerDiaryNameText:
 	textfw "なまえ"
 	done
 
-Text05ae:
+PlayerStatusEventCoinTitleText:
 	textfw " イベントコイン "
 	done
 
-Text05af:
+PlayerDiaryEventCoinText:
 	textfw "イベントコイン"
 	done
 
-Text05b0:
+PlayerDiaryAlbumText:
 	textfw "アルバム"
 	done
 
-Text05b1:
+PlayerDiaryPlayTimeText:
 	textfw "プレイじかん"
 	done
 
-Text05b2:
+PlayerDiaryPromptText:
 	textfw "にっきを つけますか?"
 	done
 
-Text05b3:
+PlayerDiaryPromptYesText:
 	textfw "はい"
 	done
 
-Text05b4:
+PlayerDiaryPromptNoText:
 	textfw "いいえ"
 	done
 
-Text05b5:
+PlayerStatusCurrentCoinText:
 	textfw "いま つかっているコイン"
 	done
 
-Text05b6:
+PlayerStatusGRCoinText:
 	textfw "GR団のコイン"
 	done
 
-Text05b7:
+PCMenuCardAlbumText:
 	textfw "カードアルバム"
 	done
 
-Text05b8:
+PCMenuReadMailText: ; left over from tcg1
 	textfw "メールをよむ"
 	done
 
-Text05b9:
+PCMenuGlossaryText:
 	textfw "ようごじてん"
 	done
 
-Text05ba:
+PCMenuPrintText:
 	textfw "プリントアウト"
 	done
 
-Text05bb:
+TurnedOnPCText:
 	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを いれた!"
 	done
 
-Text05bc:
+TurnedOffPCText:
 	textfw "<RAMNAME>は"
 	linefw "パソコンのスイッチを きった!"
 	done
 
-Text05bd:
+PCMenuShutdownText:
 	textfw "スイッチをきる"
 	done
 
-Text05be:
+TxRam1Text: ; mainly used to print the player's name
 	textfw "<RAMNAME>"
 	done
 
-Text05bf:
+DebugMenuDebugText:
 	textfw "デバッグ"
 	done
 
-Text05c0:
+DebugGotCardsText:
 	textfw "カードをゲットしたぜ!"
 	done
 
-Text05c1:
+DebugBackgroundFontStateText:
 	textfw "BGフォントの状態"
 	done
 
-Text05c2:
+DebugForceDuelWinPromptText:
 	textfw "バトルに勝利しますか?"
 	done
 
-Text05c3:
+DebugVCounterLabelText:
 	textfw "Vカウンタ:"
 	done
 
-Text05c4:
+DebugVHookCountLabelText:
 	textfw "Vフック数:"
 	done
 
-Text05c5:
+DebugBackgroundFaceDisplayText:
 	textfw "BGフェイスの表示"
 	done
 
-Text05c6:
+DebugSystemStateText:
 	textfw "システムの状態"
 	done
 
-Text05c7:
+DebugCurrentObjectCharacterNumberLabelText:
 	textfw "使用中OBJキャラクタ数:"
 	done
 
-Text05c8:
+DebugCurrentMapNumberLabelText:
 	textfw "使用中のマップ番号:"
 	done
 
-Text05c9:
+DebugCurrentMapChipsetCountLabelText:
 	textfw "使用中のマップチップ数:"
 	done
 
-Text05ca:
+PlayerDiaryCardsUnitText:
 	textfw "枚"
 	done
 
-Text05cb:
+ChipsText:
 	textfw "チップ"
 	done
 
-Text05cc:
+PCMenuDeckDiagnosisText:
 	textfw "デッキしんだん"
 	done
 
-Text05cd:
+TCG2TitleText:
 	textfw "ポケモンカードGB2"
 	done
 
-Text05ce:
+MainMenuNewGameText:
 	textfw "さいしょから"
 	done
 
-Text05cf:
+MainMenuContinueFromDiaryText:
 	textfw "つづきを あそぶ"
 	done
 
-Text05d0:
+MainMenuCardPopText:
 	textfw "カードポン!"
 	done
 
-Text05d1:
+MainMenuContinueDuelText:
 	textfw "対戦から あそぶ"
 	done
 
-Text05d2:
+MainMenuNewGameDialogText:
 	textfw "ゲームを はじめからスタートします"
 	done
 
-Text05d3:
+MainMenuCardPopDialogText:
 	textfw "ともだちと「カードポン!」すると"
 	linefw "あたらしい カードが うまれます"
 	linefw "ふたりとも とくするぞ"
 	done
 
-Text05d4:
+MainMenuContinueDuelDialogText:
 	textfw "対戦のとちゅうで 電源がきれました"
 	linefw "対戦とちゅうの電源がきれたところから"
 	linefw "ゲームをはじめられます"
 	done
 
-Text05d5:
+PlayerGenderMaleText:
 	textfw "おとこのこ"
 	done
 
-Text05d6:
+PlayerGenderFemaleText:
 	textfw "おんなのこ"
 	done
 
-Text05d7:
+ChoosePlayerGenderText:
 	textfw "あなたの せいべつを"
 	linefw "えらんでください"
 	done
 
-Text05d8:
+ConfirmPlayerGenderMaleText:
 	textfw "「おとこのこ」で いいですか?"
 	done
 
-Text05d9:
+ConfirmPlayerGenderFemaleText:
 	textfw "「おんなのこ」で いいですか?"
 	done
 
-Text05da:
+DebugTornamentTableText:
 	textfw "トーナメント表"
 	done
 
-Text05db:
+DebugLabText:
 	textfw "じっけんしつ"
 	done
 
-Text05dc:
+DebugObjectCharacterDisplayText:
 	textfw "OBJ人物の表示"
 	done
 
-Text05dd:
+IsThisOKText_2:
 	textfw "これで よろしいですか?"
 	done
 
-Text05de:
+PlayerGenderText:
 	textfw "せいべつ"
 	done
 
-Text05df:
+CardsUnitHiraganaText:
 	textfw "まい"
 	done
 
-Text05e0:
+ReceptionistText:
 	textfw "うけつけ"
 	done
 
-Text05e1:
+GameCenterPrizeExchangeWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "けいひんカウンターへ ようこそ!"
 	done
 
-Text05e2:
+GameCenterPrizeExchangePromptText:
 	textfw "チップをけいひんに かえますか?"
 	done
 
-Text05e3:
+GameCenterPrizeExchangeChoosePrizeText:
 	textfw "けいひんを えらんでください"
 	done
 
-Text05e4:
+GameCenterNotEnoughChipsText:
 	textfw "チップが たりません"
 	done
 
-Text05e5:
+GameCenterPrizeExchangeConfirmText:
 	textfw "このけいひんで よろしいですか?"
 	done
 
-Text05e6:
+GameCenterPrizeExchangeQuitConfirmText:
 	textfw "けいひんのこうかんを おわりますか?"
 	done
 
-Text05e7:
+GameCenterPrizeExchangeComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text05e8:
+GameCenterPrizeVenusaurText:
 	textfw "フシギバナ<Lv>64"
 	done
 
-Text05e9:
+GameCenterPrizeMewText:
 	textfw "ミュウ<Lv>15"
 	done
 
-Text05ea:
+GameCenterPrizeBillsPCText:
 	textfw "マサキのパソコン"
 	done
 
-Text05eb:
+GameCenterPrizeJigglypuffCoinText:
 	textfw "プリンコイン"
 	done
 
-Text05ec:
+GameCenterPrize1PresentPackText:
 	textfw "プレゼントパック×1"
 	done
 
-Text05ed:
+GameCenterPrize3PresentPacksText:
 	textfw "プレゼントパック×3"
 	done
 
-Text05ee:
+BattleCenterWelcomeTextOld: ; left over from tcg1, cf. 0x12e4--
 	textfw "いらっしゃいませ"
 	linefw "バトルセンターへ ようこそ!"
 	done
 
-Text05ef:
+BattleCenterBeginPromptTextOld: ; the same
 	textfw "ともだちとの対戦を はじめますか?"
 	done
 
-Text05f0:
+BattleCenterThankYouTextOld: ; probably the same
 	textfw "バトルセンターの ごりよう"
 	linefw "ありがとうございました"
 	done
 
-Text05f1:
+GiftCenterWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "ギフトセンターへ ようこそ!"
 	done
 
-Text05f2:
+GiftCenterServicePromptText:
 	textfw "どのような"
 	linefw "ごようけんでしょうか?"
 	done
 
-Text05f3:
+GiftCenterServiceAcknowledgementText:
 	textfw "わかりました"
 	linefw "「<RAMTEXT>」ですね"
 	done
 
-Text05f4:
+GiftCenterServiceSaveRequestText:
 	textfw "それでは ごりようの まえに"
 	linefw "「にっき」を つけてください"
 	done
 
-Text05f5:
+GiftCenterServiceUnavailableSaveRequiredText:
 	textfw "「にっき」をつけて いただかなければ"
 	linefw "ごりように なれません"
 	done
 
-Text05f6:
+GiftCenterComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text05f7:
+GiftCenterSendCardsText:
 	textfw "カードをあげる"
 	done
 
-Text05f8:
+GiftCenterReceiveCardsText:
 	textfw "カードをもらう"
 	done
 
-Text05f9:
+GiftCenterSendDeckConfigurationText:
 	textfw "デッキのつくりかたをわたす"
 	done
 
-Text05fa:
+GiftCenterReceiveDeckConfigurationText:
 	textfw "デッキのつくりかたをもらう"
 	done
 
-Text05fb:
+GiftCenterQuitText:
 	textfw "やめる"
 	done
 
-Text05fc:
+GiftCenterPressStartWhenReadyText:
+	; dupe of PressStartWhenReadyText
 	textfw "じゅんびができたら どちらかが"
 	linefw "STARTボタンを おしてください"
 	done
 
-Text05fd:
+GiftCenterTransmissionErrorTryAgainText:
+	; dupe of TransmissionErrorTryAgainText
 	textfw "通信エラーです"
 	linefw "はじめから やりなおしてください"
 	done
 
-Text05fe:
+DebugBackgroundCoinDisplayText:
 	textfw "BGコインの表示"
 	done
 
-Text05ff:
+SingleSpaceText: ; Coin-related?
 	textfw " "
 	done
 
-Text0600:
+PlayerCoinSelectText:
 	textfw "つかうコインを えらんでください"
 	done
 
-Text0601:
+ChanseyCoinText:
 	textfw "ラッキーコイン"
 	done
 
-Text0602:
+GrassCoinText:
 	textfw "グリーンコイン"
 	done
 
-Text0603:
+FireCoinText:
 	textfw "ファイアコイン"
 	done
 
-Text0604:
+WaterCoinText:
 	textfw "アクアコイン"
 	done
 
-Text0605:
+LightningCoinText:
 	textfw "エレキコイン"
 	done
 
-Text0606:
+PsychicCoinText:
 	textfw "エスパーコイン"
 	done
 
-Text0607:
+RockCoinText:
 	textfw "ストーンコイン"
 	done
 
-Text0608:
+GRCoinText:
 	textfw "GRコイン"
 	done
 
-Text0609:
+GRGrassCoinText:
 	textfw "草のGR団コイン"
 	done
 
-Text060a:
+GRLightningCoinText:
 	textfw "雷のGR団コイン"
 	done
 
-Text060b:
+GRFireCoinText:
 	textfw "炎のGR団コイン"
 	done
 
-Text060c:
+GRWaterCoinText:
 	textfw "水のGR団コイン"
 	done
 
-Text060d:
+GRFightingCoinText:
 	textfw "闘のGR団コイン"
 	done
 
-Text060e:
+GRPsychicCoinText:
 	textfw "超のGR団コイン"
 	done
 
-Text060f:
+GRColorlessCoinText:
 	textfw "無のGR団コイン"
 	done
 
-Text0610:
+GRKingCoinText:
 	textfw "GR団キングコイン"
 	done
 
-Text0611:
+PonytaCoinText:
 	textfw "ポニータコイン"
 	done
 
-Text0612:
+HorseaCoinText:
 	textfw "タッツーコイン"
 	done
 
-Text0613:
+ArbokCoinText:
 	textfw "アーボックコイン"
 	done
 
-Text0614:
+JigglypuffCoinText:
 	textfw "プリンコイン"
 	done
 
-Text0615:
+DugtrioCoinText:
 	textfw "ダグトリオコイン"
 	done
 
-Text0616:
+GengarCoinText:
 	textfw "ゲンガーコイン"
 	done
 
-Text0617:
+RaichuCoinText:
 	textfw "ライチュウコイン"
 	done
 
-Text0618:
+LugiaCoinText:
 	textfw "ルギアコイン"
 	done
 
-Text0619:
+GRCoinPiece1Text:
 	textfw "GRコインのカケラ1"
 	done
 
-Text061a:
+GRCoinPiece2Text:
 	textfw "GRコインのカケラ2"
 	done
 
-Text061b:
+GRCoinPiece3Text:
 	textfw "GRコインのカケラ3"
 	done
 
-Text061c:
+GRCoinPiece4Text:
 	textfw "GRコインのカケラ4"
 	done
 
-Text061d:
+EventCoinPage1Text:
 	textfw "イベントコイン1"
 	done
 
-Text061e:
+EventCoinPage2Text:
 	textfw "イベントコイン2"
 	done
 
-Text061f:
+EventCoinPage3Text:
 	textfw "イベントコイン3"
 	done
 
-Text0620:
+DebugEffectViewerText:
 	textfw "エフェクトの再生"
 	done
 
-Text0621:
+DebugEffectViewerLeftToRightText:
 	textfw "左から右へ"
 	done
 
-Text0622:
+DebugEffectViewerRightToLeftText:
 	textfw "右から左へ"
 	done
 
-Text0623:
+LinkDuelText:
 	textfw "通信対戦"
 	done
 
-Text0624:
+DebugEffectViewerStartButtonSwapText:
 	textfw "START:入替"
 	done
 
-Text0625:
+DebugEffectViewerAButtonPlayText:
 	textfw "A:実行"
 	done
 
-Text0626:
+DebugEffectViewerBButtonStopText:
 	textfw "B:中止"
 	done
 
-Text0627:
+DebugEffectViewerAnimationNumberText:
 	textfw "A000"
 	done
 
-Text0628:
+DebugEffectViewerPlayingStateText:
 	textfw "<実行中>"
 	done
 
-Text0629:
+DebugEffectViewerStopStateText:
 	textfw "<テイ止>"
 	done
 
-Text062a:
+DebugMikamiProgText:
 	textfw "MIKAMI PROG"
 	done
 
-Text062b:
+DebugPowerOnText:
 	textfw "パワーオン"
 	done
 
-Text062c:
+ObtainedCoinText:
 	textfw "「<RAMTEXT>」を"
 	linefw "ゲットしました!"
 	done
 
-Text062d:
+ObtainedCoinTotalNumberText:
 	textfw "ごうけい<RAMNUM>枚めの コインです!"
 	done
 
-Text062e:
+DebugSlotMachineText:
 	textfw "スロットマシン"
 	done
 
-Text062f:
+GameCenterSlotMachineTitleText:
 	textfw " スロットマシン "
 	done
 
-Text0630:
+GameCenterSlotMachineStartPromptText:
 	textfw "スロットマシンで あそびますか?"
 	done
 
-Text0631:
+GameCenterSlotMachineDescriptionText:
 	textfw "かいてんする 3つのドラムをとめて"
 	linefw "おなじマークがそろうとチップゲット!"
 	linefw "レインボーエネルギーマークがそろうと"
 	linefw "ボーナスゲームへ とつにゅうします!"
 	done
 
-Text0632:
+PlayerDiarySavedText:
 	textfw "<RAMNAME>は"
 	linefw "にっきを つけました"
 	done
 
-Text0633:
+PlayerDiaryCancelledText:
 	textfw "<RAMNAME>は"
 	linefw "にっきをつけるのを やめました"
 	done
 
-Text0634:
+GameCenterCoinFlipTitleText:
 	textfw " れんぞくコイントス "
 	done
 
-Text0635:
+GameCenterCoinFlipDescriptionText:
 	textfw "おもてが れんぞく なんかいでるか"
 	linefw "コイントスに チャレンジしよう!"
 	linefw "10かいれんぞく せいこうすれば"
 	linefw "ごうかなけいひんゲット!"
 	done
 
-Text0636:
+GameCenterCoinFlipCheersText:
 	textfw "れんぞく10かいを めざして"
 	linefw "がんばってください!"
 	done
 
-Text0637:
+GameCenterCoinFlipDialogText:
 	textfw "10かいれんぞくせいこうで"
 	linefw "ごうかしょうひんゲット!"
 	done
 
-Text0638:
+GameCenterCoinFlipRetryPromptText:
 	textfw "もういちど あそびますか?"
 	done
 
-Text0639:
+GameCenterPrizeExchangeText:
 	textfw "けいひんカウンター"
 	done
 
-Text063a:
+DebugDuelText:
 	textfw "たいせん"
 	done
 
-Text063b:
+SpecialRuleChlorophyllTitleText:
 	textfw "   みどりのちから    "
 	done
 
-Text063c:
+SpecialRuleChlorophyllDescriptionText:
 	textfw "この対戦では 「草ポケモン」は"
 	linefw "「どく・マヒ・こんらん・ねむり」の"
 	linefw "状態に ならない"
 	done
 
-Text063d:
+SpecialRuleThunderChargeTitleText:
 	textfw "   雷パワーアップ    "
 	done
 
-Text063e:
+SpecialRuleThunderChargeDescriptionText:
 	textfw "この対戦では 「雷ポケモン」が"
 	linefw "ワザによって あいての対戦ポケモンに"
 	linefw "あたえるダメージが 「+10」される"
 	done
 
-Text063f:
+SpecialRuleFlameArmorTitleText:
 	textfw "   ほのおのよろい    "
 	done
 
-Text0640:
+SpecialRuleFlameArmorDescriptionText:
 	textfw "この対戦では 「炎ポケモン」は"
 	linefw "「水ポケモン」からの ワザによる"
 	linefw "ダメージにたいして 弱点の"
 	linefw "えいきょうをうけない"
 	done
 
-Text0641:
+SpecialRuleSmallBenchTitleText:
 	textfw "    せまいベンチ    "
 	done
 
-Text0642:
+SpecialRuleSmallBenchDescriptionText:
 	textfw "この対戦では おたがいのベンチ数が"
 	linefw "「3」になる"
 	linefw "(「ひかえポケモン」のおける数が"
 	linefw " 「3」匹になる)"
 	done
 
-Text0643:
+SpecialRuleRunningWaterTitleText:
 	textfw "    にげみずの場    "
 	done
 
-Text0644:
+SpecialRuleRunningWaterDescriptionText:
 	textfw "この対戦では"
 	linefw "「水ポケモン」が 「にげる」ときに"
 	linefw "ひつような エネルギーの数が"
 	linefw "「-1」される"
 	done
 
-Text0645:
+SpecialRuleEarthPowerTitleText:
 	textfw "   だいちのちから    "
 	done
 
-Text0646:
+SpecialRuleEarthPowerDescriptionText:
 	textfw "この対戦では 「闘ポケモン」が"
 	linefw "あたえるダメージは 抵抗力の"
 	linefw "えいきょうをうけず そのままあたえる"
 	done
 
-Text0647:
+SpecialRuleLowResistanceTitleText:
 	textfw "    抵抗力ていか    "
 	done
 
-Text0648:
+SpecialRuleLowResistanceDescriptionText:
 	textfw "この対戦では 抵抗力のえいきょうを"
 	linefw "「-30」から「-10」に"
 	linefw "へんこうする"
 	done
 
-Text0649:
+SpecialRuleEnergyReturnTitleText:
 	textfw "  エネルギーリターン   "
 	done
 
-Text064a:
+SpecialRuleEnergyReturnDescriptionText:
 	textfw "この対戦では 場にいるポケモンが"
 	linefw "トラッシュされるとき そのポケモンに"
 	linefw "ついている「基本エネルギーカード」は"
@@ -797,408 +799,408 @@ Text064a:
 	linefw "もどる"
 	done
 
-Text064b:
+SpecialRuleToughEscapeTitleText:
 	textfw "    にげにくい場    "
 	done
 
-Text064c:
+SpecialRuleToughEscapeDescriptionText:
 	textfw "この対戦では 「対戦ポケモン」が"
 	linefw "バトル場から 「にげる」ときに"
 	linefw "トラッシュする エネルギーの数が"
 	linefw "「+1」される"
 	done
 
-Text064d:
+SpecialRuleBlackHoleTitleText:
 	textfw " トラッシュブラックホール "
 	done
 
-Text064e:
+SpecialRuleBlackHoleDescriptionText:
 	textfw "この対戦では トラッシュしたカードは"
 	linefw "この対戦中は つかえなくなる。"
 	linefw "(トラッシュには つねに カードが"
 	linefw " ない状態になっている)"
 	done
 
-Text064f:
+MainCharacterText:
 	textfw "主人公"
 	done
 
-Text0650:
+TechText:
 	textfw "研究員"
 	done
 
-Text0651:
+DuelistIntroLightningClubMemberText:
 	textfw "エレキクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0652:
+DuelistIntroPsychicClubMemberText:
 	textfw "エスパークラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0653:
+DuelistIntroRockClubMemberText:
 	textfw "ストーンクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0654:
+DuelistIntroFightingClubMemberText:
 	textfw "バトルクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0655:
+DuelistIntroGrassClubMemberText:
 	textfw "グリーンクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0656:
+DuelistIntroScienceClubMemberText:
 	textfw "サイエンスクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0657:
+DuelistIntroWaterClubMemberText:
 	textfw "アクアクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0658:
+DuelistIntroFireClubMemberText:
 	textfw "ファイアクラブメンバー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0659:
+DuelistIntroLightingClubMasterText:
 	textfw "エレキクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065a:
+DuelistIntroPsychicClubMasterText:
 	textfw "エスパークラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065b:
+DuelistIntroRockClubMasterText:
 	textfw "ストーンクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065c:
+DuelistIntroFightingClubMasterText:
 	textfw "バトルクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065d:
+DuelistIntroGrassClubMasterText:
 	textfw "グリーンクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065e:
+DuelistIntroScienceClubMasterText:
 	textfw "サイエンスクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text065f:
+DuelistIntroWaterClubMasterText:
 	textfw "アクアクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0660:
+DuelistIntroFireClubMasterText:
 	textfw "ファイアクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0661:
+DuelistIntroGrandMasterText:
 	textfw "グランドマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0662:
+DuelistIntroTechText:
 	textfw "研究員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0663:
+DuelistIntroStrangeLifeFormText:
 	textfw "ふしぎないきもの <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0664:
+DuelistIntroCollectorText:
 	textfw "コレクター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0665:
+DuelistIntroRivalText:
 	textfw "ライバル <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0666:
+DuelistIntroEnigmaticMaskText:
 	textfw "ナゾのかめん <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0667:
+DuelistIntroGRGrassFortMemberText:
 	textfw "草のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0668:
+DuelistIntroGRLightningFortMemberText:
 	textfw "雷のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0669:
+DuelistIntroGRFireFortMemberText:
 	textfw "炎のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066a:
+DuelistIntroGRWaterFortMemberText:
 	textfw "水のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066b:
+DuelistIntroGRFightingFortMemberText:
 	textfw "闘のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066c:
+DuelistIntroGRPsychicFortMemberText:
 	textfw "超のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066d:
+DuelistIntroGRGrassFortLeaderText:
 	textfw "草のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066e:
+DuelistIntroGRLightningFortLeaderText:
 	textfw "雷のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text066f:
+DuelistIntroGRFireFortLeaderText:
 	textfw "炎のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0670:
+DuelistIntroGRWaterFortLeaderText:
 	textfw "水のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0671:
+DuelistIntroGRFightingFortLeaderText:
 	textfw "闘のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0672:
+DuelistIntroGRPsychicFortLeaderText:
 	textfw "超のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0673:
+DuelistIntroColorlessAltarGuardianText:
 	textfw "無のばんにん <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0674:
+DuelistIntroGRBigBossText:
 	textfw "GR団 大かんぶ <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0675:
+DuelistIntroGRKingText:
 	textfw "GR団 キング <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0676:
+DuelistIntroUntitledText:
 	textfw "<RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0677:
+DuelistIntroDungeonMasterText:
 	textfw "ダンジョンマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0678:
+DuelistIntroGhostMasterText:
 	textfw "ゴーストカードマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-Text0679:
+MinicomDeckSaveMachineText:
 	textfw "デッキきろくマシンにせつぞく"
 	done
 
-Text067a:
+MinicomMailBoxText:
 	textfw "メールボックスをみる"
 	done
 
-Text067b:
+MinicomCardAlbumText:
 	textfw "カードいちらんをみる"
 	done
 
-Text067c:
+MinicomDialogText:
 	textfw "メニューを えらんでください"
 	done
 
-Text067d:
+PlayersChipsText:
 	textfw " <RAMNAME>のチップ "
 	done
 
-Text067e:
+BoosterPackBeginningPokemonText:
 	textfw "はじめてのポケモン"
 	done
 
-Text067f:
+BoosterPackLegendaryPowerText:
 	textfw "でんせつのちから"
 	done
 
-Text0680:
+BoosterPackIslandOfFossilText:
 	textfw "化石のしま"
 	done
 
-Text0681:
+BoosterPackPsychicBattleText:
 	textfw "超バトル"
 	done
 
-Text0682:
+BoosterPackFlyingPokemonText:
 	textfw "そらとぶポケモン"
 	done
 
-Text0683:
+BoosterPackWeAreTeamRocketText:
 	textfw "われらロケット団"
 	done
 
-Text0684:
+BoosterPackTeamRocketsAmbitionText:
 	textfw "ロケット団のやぼう"
 	done
 
-Text0685:
+EnergyPackText:
 	textfw "エネルギー"
 	done
 
-Text0686:
+PresentPackText:
 	textfw "プレゼントパック"
 	done
 
-Text0687:
+ObtainedBoosterPackText:
 	textfw "<RAMNAME>は <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0688:
+ObtainedSecondBoosterPackText:
 	textfw "さらに <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0689:
+BoosterPack1Text:
 	textfw "第1彈"
 	done
 
-Text068a:
+BoosterPack2Text:
 	textfw "第2彈"
 	done
 
-Text068b:
+BoosterPack3Text:
 	textfw "第3彈"
 	done
 
-Text068c:
+BoosterPack4Text:
 	textfw "第4彈"
 	done
 
-Text068d:
+BoosterPack5Text:
 	textfw "第5彈"
 	done
 
-Text068e:
+BoosterPack6Text:
 	textfw "第6彈"
 	done
 
-Text068f:
+BoosterPack7Text:
 	textfw "第7彈"
 	done
 
-Text0690:
+GetPackText:
 	textfw "パック入手"
 	done
 
-Text0691:
+GameCenter1ChipPerPlayText:
 	textfw "チップ1枚"
 	done
 
-Text0692:
+GameCenter5ChipsPerPlayText:
 	textfw "チップ5枚"
 	done
 
-Text0693:
+GameCenterSlotMachineDialogText:
 	textfw "十字ボタンの下で ゲームスタート"
 	linefw "Bボタンで おわります"
 	done
 
-Text0694:
+GameCenterSlotMachineBonusPlayText:
 	textfw "ボーナスゲーム スタート!!"
 	linefw "10かいまでチャレンジできます!"
 	done
 
-Text0695:
+GameCenterSlotMachineBonusPlayHitMoneySacksText:
 	textfw "ボーナスチップマークが そろいました"
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
-Text0696:
+GameCenterSlotMachineHitEditionSymbolsText: ; unused
 	textfw "エディションマークが そろいました"
 	done
 
-Text0697:
+GameCenterSlotMachineMissedText:
 	textfw "ざんねん!"
 	linefw "はずれてしまいました"
 	done
 
-Text0698:
+DebugAdjustChipsText:
 	textfw "しょじきんへんこう"
 	done
 
-Text0699:
+DebugImageListText:
 	textfw "イメージ一覽"
 	done
 
-Text069a:
+DebugUnregisteredText:
 	textfw "未登錄"
 	done
 
-Text069b:
+GrandMasterCupBracketTitleText:
 	textfw "<グランドマスター杯トーナメント表>"
 	done
 
-Text069c:
+GrandMasterCupBracketChampionshipText:
 	textfw "!優勝!"
 	done
 
-Text069d:
+ConfirmedCardsText:
 	textfw "<RAMNAME>は "
 	linefw "カードを かくにんした!!"
 	done
 
-Text069e:
+MailBoxEmptySenderText:
 	textfw "------"
 	done
 
-Text069f:
+MailBoxEmptySubjectText:
 	textfw "------------"
 	done
 
-Text06a0:
+MailBlackBoxOutputSenderText:
 	textfw "ゲームセンター"
 	done
 
-Text06a1:
+MailBlackBoxOutputSubjectText:
 	textfw "ブラックボックス"
 	done
 
-Text06a2:
+MailBlackBoxOutputBody1Text:
 	textfw "「ブラックボックス」センターです"
 	linefw "「ブラックボックス」を ごりよう"
 	linefw "いただき ありがとうございます"
@@ -1207,7 +1209,7 @@ Text06a2:
 	linefw "どうぞ おうけとりください"
 	done
 
-Text06a3:
+MailBlackBoxOutputBody2Text:
 	textfw "どうですか いいカードが"
 	linefw "にゅうしゅ できましたか?"
 	linefw "またの 「ブラックボックス」の"
@@ -1216,15 +1218,15 @@ Text06a3:
 	linefw "  GR団ゲームセンター(^-^)/"
 	done
 
-Text06a4:
+MailBillsPCOutputSenderText:
 	textfw "ゲームセンター"
 	done
 
-Text06a5:
+MailBillsPCOutputSubjectText:
 	textfw "マサキのパソコン"
 	done
 
-Text06a6:
+MailBillsPCOutputBody1Text:
 	textfw "「マサキのパソコン」センターです"
 	linefw "「マサキのパソコン」を ごりよう"
 	linefw "いただき ありがとうございます"
@@ -1233,7 +1235,7 @@ Text06a6:
 	linefw "どうぞ ごかくにんください"
 	done
 
-Text06a7:
+MailBillsPCOutputBody2Text:
 	textfw "すばらしいカードが"
 	linefw "にゅうしゅ できましたか?"
 	linefw "またの 「マサキのパソコン」の"
@@ -1242,15 +1244,15 @@ Text06a7:
 	linefw "  GR団ゲームセンター(^-^)/"
 	done
 
-Text06a8:
+MailMailBoxIntroSenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06a9:
+MailMailBoxIntroSubjectText:
 	textfw "ミニコンとメール"
 	done
 
-Text06aa:
+MailMailBoxIntroBody1Text:
 	textfw "<RAMNAME>!"
 	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ちゃんと このメールを"
@@ -1259,7 +1261,7 @@ Text06aa:
 	linefw "メールで このようにとどくのじゃ"
 	done
 
-Text06ab:
+MailMailBoxIntroBody2Text:
 	textfw "こまめに 「ミニコン」をひらいて"
 	linefw "あたらしいメールが とどいているかを"
 	linefw "チェックするんじゃぞ"
@@ -1268,7 +1270,7 @@ Text06ab:
 	linefw "さくじょして あきをつくるんじゃよ"
 	done
 
-Text06ac:
+MailMailBoxIntroBody3Text:
 	textfw "ミニコンを メールで いっぱいに"
 	linefw "しておくと あたらしいメールが"
 	linefw "うけとれないことが あるからのう"
@@ -1277,22 +1279,22 @@ Text06ac:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06ad:
+MailMailBoxIntroBody4Text:
 	textfw "ついしん"
 	linefw ""
 	linefw "これは わしからの せんべつじゃ"
 	linefw "これからの対戦に やくだててくれ"
 	done
 
-Text06ae:
+MailDeckDiagnosis1SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06af:
+MailDeckDiagnosis1SubjectText:
 	textfw "「デッキしんだん」"
 	done
 
-Text06b0:
+MailDeckDiagnosis1Body1Text:
 	textfw "<RAMNAME>!"
 	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "しんはつめいの おしらせじゃ"
@@ -1301,7 +1303,7 @@ Text06b0:
 	linefw "「デッキしんだんシステム」じゃ"
 	done
 
-Text06b1:
+MailDeckDiagnosis1Body2Text:
 	textfw "とりあえず しょしんしゃのための"
 	linefw "「ステップ1」が かんせいしておる"
 	linefw "「デッキチェック」は"
@@ -1310,7 +1312,7 @@ Text06b1:
 	linefw "どうじゃ すごいじゃろ!"
 	done
 
-Text06b2:
+MailDeckDiagnosis1Body3Text:
 	textfw "「パソコン」から アクセスするんじゃ"
 	linefw "あくまでも きほんてきなアドバイスと"
 	linefw "デッキチェックじゃがな・・・"
@@ -1319,21 +1321,21 @@ Text06b2:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06b3:
+MailDeckDiagnosis1Body4Text:
 	textfw "ついしん"
 	linefw "「ステップ2」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06b4:
+MailDeckDiagnosis2SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06b5:
+MailDeckDiagnosis2SubjectText:
 	textfw "「デッキしんだん」2"
 	done
 
-Text06b6:
+MailDeckDiagnosis2Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1342,7 +1344,7 @@ Text06b6:
 	linefw "かんせいじゃ"
 	done
 
-Text06b7:
+MailDeckDiagnosis2Body2Text:
 	textfw "デッキを つくるうえでの"
 	linefw "ちょっとした アドバイスじゃ"
 	linefw "やくにたつ トレーナーカードや"
@@ -1351,7 +1353,7 @@ Text06b7:
 	linefw "アドバイスが まんさいじゃ!"
 	done
 
-Text06b8:
+MailDeckDiagnosis2Body3Text:
 	textfw "れいに よって"
 	linefw "「パソコン」から アクセスできるぞ"
 	linefw "どんなもんか ためしてみてくれ"
@@ -1360,21 +1362,21 @@ Text06b8:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06b9:
+MailDeckDiagnosis2Body4Text:
 	textfw "ついしん"
 	linefw "「ステップ3」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06ba:
+MailDeckDiagnosis3SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06bb:
+MailDeckDiagnosis3SubjectText:
 	textfw "「デッキしんだん」3"
 	done
 
-Text06bc:
+MailDeckDiagnosis3Body1Text:
 	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1383,7 +1385,7 @@ Text06bc:
 	linefw "アドバイスが メインじゃ!"
 	done
 
-Text06bd:
+MailDeckDiagnosis3Body2Text:
 	textfw "デッキを つくるうえでの"
 	linefw "きほんてきな アドバイスは"
 	linefw "これで おわりじゃな・・・"
@@ -1392,21 +1394,21 @@ Text06bd:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06be:
+MailDeckDiagnosis3Body3Text:
 	textfw "ついしん"
 	linefw "「ステップ4」が かんせいしたら"
 	linefw "また れんらくするからな・・・"
 	done
 
-Text06bf:
+MailDeckDiagnosis4SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c0:
+MailDeckDiagnosis4SubjectText:
 	textfw "「デッキしんだん」4"
 	done
 
-Text06c1:
+MailDeckDiagnosis4Body1Text:
 	textfw "<RAMNAME> Dr.オーヤマじゃ"
 	linefw "また 「デッキしんだんシステム」の"
 	linefw "バージョンアップの おしらせじゃ"
@@ -1415,7 +1417,7 @@ Text06c1:
 	linefw "ちゅうしんに なっているぞ"
 	done
 
-Text06c2:
+MailDeckDiagnosis4Body2Text:
 	textfw "対戦を 勝ちすすめないときには"
 	linefw "デッキに もんだいが あるのじゃ"
 	linefw "そんなときは デッキを キチンと"
@@ -1424,15 +1426,15 @@ Text06c2:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06c3:
+MailAutoDeckMachine1SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c4:
+MailAutoDeckMachine1SubjectText:
 	textfw "オートデッキマシン1"
 	done
 
-Text06c5:
+MailAutoDeckMachine1Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "デッキをつくるのが たいへんなら"
 	linefw "オートデッキマシンを つかうと"
@@ -1441,7 +1443,7 @@ Text06c5:
 	linefw "すぐ つくってくれるぞ!"
 	done
 
-Text06c6:
+MailAutoDeckMachine1Body2Text:
 	textfw "このオートデッキマシンも"
 	linefw "だんだん バージョンアップさせる"
 	linefw "よていじゃ!"
@@ -1450,22 +1452,22 @@ Text06c6:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06c7:
+MailAutoDeckMachine1Body3Text:
 	textfw "ついしん"
 	linefw "これで つくれるデッキが"
 	linefw "ふえるとも おもえんが"
 	linefw "とりあえず プレゼントじゃ!"
 	done
 
-Text06c8:
+MailAutoDeckMachine2SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06c9:
+MailAutoDeckMachine2SubjectText:
 	textfw "オートデッキマシン2"
 	done
 
-Text06ca:
+MailAutoDeckMachine2Body1Text:
 	textfw "Dr.オーヤマじゃ"
 	linefw "<RAMNAME>! オートデッキマシンに"
 	linefw "だいぶ デッキが あつまっておるぞ"
@@ -1474,7 +1476,7 @@ Text06ca:
 	linefw "みては どうじゃ?"
 	done
 
-Text06cb:
+MailAutoDeckMachine2Body2Text:
 	textfw "これからも オートデッキマシンは"
 	linefw "バージョンアップする つもりじゃ"
 	linefw "どんどん つかって 対戦に"
@@ -1483,21 +1485,21 @@ Text06cb:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06cc:
+MailAutoDeckMachine2Body3Text:
 	textfw "ついしん"
 	linefw "とりあえず プレゼントじゃ!"
 	linefw "うけとって くれ"
 	done
 
-Text06cd:
+MailAutoDeckMachine3SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06ce:
+MailAutoDeckMachine3SubjectText:
 	textfw "オートデッキマシン3"
 	done
 
-Text06cf:
+MailAutoDeckMachine3Body1Text:
 	textfw "おお <RAMNAME>! げんきかな"
 	linefw "オートデッキマシン2号が"
 	linefw "かんせいしたんじゃ!!"
@@ -1506,7 +1508,7 @@ Text06cf:
 	linefw "どうじゃ スゴイじゃろ!"
 	done
 
-Text06d0:
+MailAutoDeckMachine3Body2Text:
 	textfw "GR団のデッキを 研究するには"
 	linefw "もってこいの マシンじゃぞ"
 	linefw "たまには 研究所へもどってきて"
@@ -1515,21 +1517,21 @@ Text06d0:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06d1:
+MailAutoDeckMachine3Body3Text:
 	textfw "ついしん"
 	linefw "また プレゼントじゃ"
 	linefw "こんどは 第3彈じゃ!!"
 	done
 
-Text06d2:
+MailAutoDeckMachine4SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06d3:
+MailAutoDeckMachine4SubjectText:
 	textfw "オートデッキマシン4"
 	done
 
-Text06d4:
+MailAutoDeckMachine4Body1Text:
 	textfw "<RAMNAME>! Dr.オーヤマじゃ"
 	linefw "GR団との対戦は どうじゃ?"
 	linefw "オートデッキマシン2号には"
@@ -1538,7 +1540,7 @@ Text06d4:
 	linefw "いちど 研究所へ もどってはどうかな"
 	done
 
-Text06d5:
+MailAutoDeckMachine4Body2Text:
 	textfw "おまえのおかげで カードも"
 	linefw "とりもどしたし たまには"
 	linefw "こちらのしまの れんちゅうとも"
@@ -1547,21 +1549,21 @@ Text06d5:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06d6:
+MailAutoDeckMachine4Body3Text:
 	textfw "ついしん"
 	linefw "これが おまえが とりもどした"
 	linefw "さいしんの拡張パックじゃ!"
 	done
 
-Text06d7:
+MailAutoDeckMachine5SenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06d8:
+MailAutoDeckMachine5SubjectText:
 	textfw "オートデッキマシン5"
 	done
 
-Text06d9:
+MailAutoDeckMachine5Body1Text:
 	textfw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ついに GR団のキング ビルリッチを"
 	linefw "かいしんさせた そうじゃな"
@@ -1570,7 +1572,7 @@ Text06d9:
 	linefw "<RAMNAME>"
 	done
 
-Text06da:
+MailAutoDeckMachine5Body2Text:
 	textfw "オートデッキマシンのデッキを"
 	linefw "すべて つくってみたかな?"
 	linefw "いろんなデッキで 戦ってみてこそ"
@@ -1579,7 +1581,7 @@ Text06da:
 	linefw "コンプリートを めざすのじゃ"
 	done
 
-Text06db:
+MailAutoDeckMachine5Body3Text:
 	textfw "オートデッキマシン1号も 2号も"
 	linefw "まだまだ デッキは ふえるぞ!"
 	linefw ""
@@ -1587,15 +1589,15 @@ Text06db:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-Text06dc:
+MailChallengeMachineSenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text06dd:
+MailChallengeMachineSubjectText:
 	textfw "チャレンジマシーン!"
 	done
 
-Text06de:
+MailChallengeMachineBody1Text:
 	textfw "わしじゃ! Dr.オーヤマじゃ"
 	linefw "チャレンジマシーンは"
 	linefw "たのしんで もらえておるかな?"
@@ -1604,7 +1606,7 @@ Text06de:
 	linefw "れんしょうきろくを のばすんじゃ!!"
 	done
 
-Text06df:
+MailChallengeMachineBody2Text:
 	textfw "50れんしょうしたら わしがステキな"
 	linefw "コインを <RAMNAME>に やろう"
 	linefw "「ダグトリオ」のコインじゃ!!"
@@ -1613,15 +1615,15 @@ Text06df:
 	linefw "   所長 Dr.オーヤマ (^◇^)"
 	done
 
-Text06e0:
+MailGRChallengeMachineSenderText:
 	textfw "ビルリッチ"
 	done
 
-Text06e1:
+MailGRChallengeMachineSubjectText:
 	textfw "GR団チャレンジマシン"
 	done
 
-Text06e2:
+MailGRChallengeMachineBody1Text:
 	textfw "げんきで ポケモンカードを"
 	linefw "あそんでいるかな <RAMNAME>くん"
 	linefw "すてきな おしらせだ"
@@ -1630,7 +1632,7 @@ Text06e2:
 	linefw "セットした!"
 	done
 
-Text06e3:
+MailGRChallengeMachineBody2Text:
 	textfw "マシンは Dr.オーヤマに"
 	linefw "つくって もらったものだが"
 	linefw "けっこう たのしいものだ"
@@ -1639,7 +1641,7 @@ Text06e3:
 	linefw "コインを プレゼント!!"
 	done
 
-Text06e4:
+MailGRChallengeMachineBody3Text:
 	textfw "「ゲンガー」のコインだ!"
 	linefw "がんばって ぜひ ゲットしてくれ"
 	linefw ""
@@ -1647,15 +1649,15 @@ Text06e4:
 	linefw "        ビルリッチ(ˉ^ˉ)"
 	done
 
-Text06e5:
+MailGrandMasterCupSenderText:
 	textfw "リュウドー"
 	done
 
-Text06e6:
+MailGrandMasterCupSubjectText:
 	textfw "グランドマスター杯"
 	done
 
-Text06e7:
+MailGrandMasterCupBody1Text:
 	textfw "<RAMNAME>くん!"
 	linefw "グランドマスターのリュウドーだ"
 	linefw "われら グランドマスターは"
@@ -1664,7 +1666,7 @@ Text06e7:
 	linefw "そのなも 「グランドマスター杯」!"
 	done
 
-Text06e8:
+MailGrandMasterCupBody2Text:
 	textfw "きみにも さんかしてほしいんだ"
 	linefw "まもなく 「グランドマスター杯」の"
 	linefw "じゅんびが できるから たまに"
@@ -1673,15 +1675,15 @@ Text06e8:
 	linefw "        リュウドー(^о^)"
 	done
 
-Text06e9:
+MailRonaldsScoutGR1SenderText:
 	textfw "ランド"
 	done
 
-Text06ea:
+MailRonaldsScoutGR1SubjectText:
 	textfw "GR1号のデッキ"
 	done
 
-Text06eb:
+MailRonaldsScoutGR1Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "いいか こうやって メールで"
 	linefw "GR団のやつらの じょうほうを"
@@ -1690,7 +1692,7 @@ Text06eb:
 	linefw "でないと じょうほうが クサるぜ!"
 	done
 
-Text06ec:
+MailRonaldsScoutGR1Body2Text:
 	textfw "GR1号のデッキの じょうほうだ!"
 	linefw "やつのデッキは 水と雷のデッキだ!"
 	linefw "コイルの「ちょくれつじりょく」に"
@@ -1699,15 +1701,15 @@ Text06ec:
 	linefw "          ランド(●_●)"
 	done
 
-Text06ed:
+MailRonaldsScoutGR2SenderText:
 	textfw "ランド"
 	done
 
-Text06ee:
+MailRonaldsScoutGR2SubjectText:
 	textfw "GR2号のデッキ"
 	done
 
-Text06ef:
+MailRonaldsScoutGR2Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと オレのじょうほうを"
 	linefw "やくだててるだろうな えっ!"
@@ -1716,7 +1718,7 @@ Text06ef:
 	linefw "いいな <RAMNAME>!"
 	done
 
-Text06f0:
+MailRonaldsScoutGR2Body2Text:
 	textfw "GR2号のデッキの じょうほうだ"
 	linefw "やつのデッキは 草と闘のデッキだ!"
 	linefw "とくに 「わるいアーボック」には"
@@ -1725,15 +1727,15 @@ Text06f0:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f1:
+MailRonaldsScoutGR3SenderText:
 	textfw "ランド"
 	done
 
-Text06f2:
+MailRonaldsScoutGR3SubjectText:
 	textfw "GR3号のデッキ"
 	done
 
-Text06f3:
+MailRonaldsScoutGR3Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "ちゃんと メールをよんでるか?"
 	linefw "GR団のじょうほうを てに いれたぜ"
@@ -1742,7 +1744,7 @@ Text06f3:
 	linefw "ムダにするなよ!"
 	done
 
-Text06f4:
+MailRonaldsScoutGR3Body2Text:
 	textfw "GR3号のデッキの じょうほうだ"
 	linefw "やつのデッキは 草と炎のデッキだぜ!"
 	linefw "「タマタマ」を「ナッシー」にさせるな"
@@ -1751,15 +1753,15 @@ Text06f4:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f5:
+MailRonaldsScoutGR4SenderText:
 	textfw "ランド"
 	done
 
-Text06f6:
+MailRonaldsScoutGR4SubjectText:
 	textfw "GR4号のデッキ"
 	done
 
-Text06f7:
+MailRonaldsScoutGR4Body1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "メールを チェックしてるか?"
 	linefw "GR4号のデッキの じょうほうだ"
@@ -1768,7 +1770,7 @@ Text06f7:
 	linefw "チョーきょうりょくだぜ!"
 	done
 
-Text06f8:
+MailRonaldsScoutGR4Body2Text:
 	textfw "いいか なんとか エスパークラブの"
 	linefw "ミウラを しょうきに もどして"
 	linefw "アドバイスを もらうんだ いいな"
@@ -1776,15 +1778,15 @@ Text06f8:
 	linefw "          ランド(●_●)"
 	done
 
-Text06f9:
+MailRonaldsScoutMorinoSenderText:
 	textfw "ランド"
 	done
 
-Text06fa:
+MailRonaldsScoutMorinoSubjectText:
 	textfw "モリノのデッキ"
 	done
 
-Text06fb:
+MailRonaldsScoutMorinoBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "草のGR団リーダー モリノの"
 	linefw "じょうほうを てにいれたぜ!"
@@ -1793,7 +1795,7 @@ Text06fb:
 	linefw "こんらん」に ならないんだ!"
 	done
 
-Text06fc:
+MailRonaldsScoutMorinoBody2Text:
 	textfw "モリノは それを りようした"
 	linefw "デッキを つかっているんだ!"
 	linefw "やつのデッキの 草のデッキ!"
@@ -1802,7 +1804,7 @@ Text06fc:
 	linefw "メインのデッキだ!"
 	done
 
-Text06fd:
+MailRonaldsScoutMorinoBody3Text:
 	textfw "それらポケモンのワザで [自分]も"
 	linefw "「こんらん」する ワザをつかって"
 	linefw "こうげきしてくるぞ! ふつうなら"
@@ -1811,7 +1813,7 @@ Text06fd:
 	linefw "草ポケモンは 「こんらん」しない!"
 	done
 
-Text06fe:
+MailRonaldsScoutMorinoBody4Text:
 	textfw "こいつは シャレに ならないぜ!"
 	linefw "なんとかして 「クサイハナ」や"
 	linefw "「ラフレシア」に 進化するまえに"
@@ -1820,15 +1822,15 @@ Text06fe:
 	linefw "          ランド(●_●)"
 	done
 
-Text06ff:
+MailRonaldsScoutCatherineSenderText:
 	textfw "ランド"
 	done
 
-Text0700:
+MailRonaldsScoutCatherineSubjectText:
 	textfw "キャサリンのデッキ"
 	done
 
-Text0701:
+MailRonaldsScoutCatherineBody1Text:
 	textfw "<RAMNAME>! げんきか!"
 	linefw "こんかいは 雷のGR団リーダー"
 	linefw "キャサリンの じょうほうだぜ!"
@@ -1837,7 +1839,7 @@ Text0701:
 	linefw "あたえるダメージが +10UPだ!"
 	done
 
-Text0702:
+MailRonaldsScoutCatherineBody2Text:
 	textfw "10ダメージのワザが 雷ポケモンのみ"
 	linefw "20ダメージになるって わけだ!"
 	linefw "キャサリンのデッキは 「ピカチュウ」"
@@ -1846,7 +1848,7 @@ Text0702:
 	linefw "いっぱいだ!!"
 	done
 
-Text0703:
+MailRonaldsScoutCatherineBody3Text:
 	textfw "雷ポケモンのデッキで たたかって"
 	linefw "チカラで うち勝つか?"
 	linefw "べつのデッキで うまく かわして"
@@ -1855,15 +1857,15 @@ Text0703:
 	linefw "          ランド(●_●)"
 	done
 
-Text0704:
+MailRonaldsScoutHideroSenderText:
 	textfw "ランド"
 	done
 
-Text0705:
+MailRonaldsScoutHideroSubjectText:
 	textfw "ヒデロウのデッキ"
 	done
 
-Text0706:
+MailRonaldsScoutHideroBody1Text:
 	textfw "<RAMNAME>! オレだ! ランドだ!"
 	linefw "炎のGR団リーダー ヒデロウの"
 	linefw "じょうほうを ゲットだぜ!"
@@ -1872,7 +1874,7 @@ Text0706:
 	linefw "弱点には ならないぜ!"
 	done
 
-Text0707:
+MailRonaldsScoutHideroBody2Text:
 	textfw "つまり 炎ポケモンを 弱点をついて"
 	linefw "たおそうとしても ムダってことだ!"
 	linefw "しかも ヒデロウのデッキは"
@@ -1881,7 +1883,7 @@ Text0707:
 	linefw "つうよう しないぜ!!"
 	done
 
-Text0708:
+MailRonaldsScoutHideroBody3Text:
 	textfw "せいせいどうどう しょうぶするしか"
 	linefw "ほうほうは ないぜ!"
 	linefw "どんなデッキで たたかうかは"
@@ -1890,15 +1892,15 @@ Text0708:
 	linefw "          ランド(●_●)"
 	done
 
-Text0709:
+MailRonaldsScoutKanokoSenderText:
 	textfw "ランド"
 	done
 
-Text070a:
+MailRonaldsScoutKanokoSubjectText:
 	textfw "カノコのデッキ"
 	done
 
-Text070b:
+MailRonaldsScoutKanokoBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "水のGR団リーダー カノコの"
 	linefw "じょうほうを おしえてやるぜ!"
@@ -1907,7 +1909,7 @@ Text070b:
 	linefw "エネルギーのかずが 「-1」されるぜ"
 	done
 
-Text070c:
+MailRonaldsScoutKanokoBody2Text:
 	textfw "水ポケモンは カノコのとこじゃ"
 	linefw "「水をえた さかな」で 水ポケモンは"
 	linefw "にげやすい カノコは やばくなった"
@@ -1916,7 +1918,7 @@ Text070c:
 	linefw "ポケモンは にげちまうんだからよ"
 	done
 
-Text070d:
+MailRonaldsScoutKanokoBody3Text:
 	textfw "にがさない ほうほうを かんがえるか"
 	linefw "にげられるまえに だいダメージで"
 	linefw "「きぜつ」させるか・・・"
@@ -1925,15 +1927,15 @@ Text070d:
 	linefw "          ランド(●_●)"
 	done
 
-Text070e:
+MailRonaldsScoutKamiyaSenderText:
 	textfw "ランド"
 	done
 
-Text070f:
+MailRonaldsScoutKamiyaSubjectText:
 	textfw "カミヤのデッキ"
 	done
 
-Text0710:
+MailRonaldsScoutKamiyaBody1Text:
 	textfw "いいちょうしだな <RAMNAME>!"
 	linefw "わすれんなよ!"
 	linefw "オレが こうやって メールで"
@@ -1942,7 +1944,7 @@ Text0710:
 	linefw "じょうほうだぜ!!"
 	done
 
-Text0711:
+MailRonaldsScoutKamiyaBody2Text:
 	textfw "カミヤのところは 闘パワーだぜ!"
 	linefw "カミヤとの 対戦では 闘ポケモンの"
 	linefw "ダメージは 抵抗力で「-30」して"
@@ -1951,7 +1953,7 @@ Text0711:
 	linefw "まともに くらうってことだな!"
 	done
 
-Text0712:
+MailRonaldsScoutKamiyaBody3Text:
 	textfw "抵抗力は つかえなくても"
 	linefw "闘ポケモンの 弱点をついたデッキで"
 	linefw "こうげきするなら OKだぜ!"
@@ -1960,15 +1962,15 @@ Text0712:
 	linefw "          ランド(●_●)"
 	done
 
-Text0713:
+MailRonaldsScoutMamiSenderText:
 	textfw "ランド"
 	done
 
-Text0714:
+MailRonaldsScoutMamiSubjectText:
 	textfw "マミのデッキ"
 	done
 
-Text0715:
+MailRonaldsScoutMamiBody1Text:
 	textfw "<RAMNAME>! ランドだぜ!"
 	linefw "超のGR団リーダー マミの"
 	linefw "じょうほうを ゲットしたぜ!"
@@ -1976,7 +1978,7 @@ Text0715:
 	linefw "しかも へんなルールで対戦するんだ"
 	done
 
-Text0716:
+MailRonaldsScoutMamiBody2Text:
 	textfw "へんなルールってのが"
 	linefw "「ポケモンが トラッシュされるとき"
 	linefw " ポケモンについている エネルギーで"
@@ -1985,7 +1987,7 @@ Text0716:
 	linefw "エネルギーぶそくには ならねぇけどな"
 	done
 
-Text0717:
+MailRonaldsScoutMamiBody3Text:
 	textfw "でも あのバアさんは おまえに"
 	linefw "このルールを りようさせないつもりだ"
 	linefw "「エネルギー・リムーブ」や"
@@ -1994,7 +1996,7 @@ Text0717:
 	linefw "つっこんで やがったぜ!"
 	done
 
-Text0718:
+MailRonaldsScoutMamiBody4Text:
 	textfw "ポケモンが トラッシュされるまえに"
 	linefw "エネルギーだけを トラッシュするって"
 	linefw "さくせんらしい・・・"
@@ -2003,7 +2005,7 @@ Text0718:
 	linefw "あのバアさんは ただもんじゃねぇ"
 	done
 
-Text0719:
+MailRonaldsScoutMamiBody5Text:
 	textfw "こっちも エネルギー・リムーブを"
 	linefw "つっこんで たたかうか"
 	linefw "超デッキの たいこうデッキで たえて"
@@ -2012,15 +2014,15 @@ Text0719:
 	linefw "          ランド(●_●)"
 	done
 
-Text071a:
+MailRonaldsScoutColorlessAltarSenderText:
 	textfw "ランド"
 	done
 
-Text071b:
+MailRonaldsScoutColorlessAltarSubjectText:
 	textfw "無のさいだんじょうほう"
 	done
 
-Text071c:
+MailRonaldsScoutColorlessAltarBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "無のさいだんの じょうほうだ!"
 	linefw "無のばんにんの 「ニシジマ」"
@@ -2029,7 +2031,7 @@ Text071c:
 	linefw "4枚 デッキにいれろと いってくる"
 	done
 
-Text071d:
+MailRonaldsScoutColorlessAltarBody2Text:
 	textfw "しかも 1ど 対戦すると"
 	linefw "いれろって カードをかえてくるんだ!"
 	linefw "こいつが やっかいなんだが・・・"
@@ -2038,7 +2040,7 @@ Text071d:
 	linefw "でもな・・・"
 	done
 
-Text071e:
+MailRonaldsScoutColorlessAltarBody3Text:
 	textfw "1ど 対戦するには"
 	linefw "していされたカードが 4枚いるからな"
 	linefw "そのカードが どの拡張パックに"
@@ -2047,7 +2049,7 @@ Text071e:
 	linefw "対戦しなくちゃ ならないけどな・・・"
 	done
 
-Text071f:
+MailRonaldsScoutColorlessAltarBody4Text:
 	textfw "まあ たまには オレたちのしまへ"
 	linefw "もどって みんなと対戦するのも"
 	linefw "いいかもな ここまできて"
@@ -2056,15 +2058,15 @@ Text071f:
 	linefw "          ランド(●_●)"
 	done
 
-Text0720:
+MailRonaldsScoutBiruritchiSenderText:
 	textfw "ランド"
 	done
 
-Text0721:
+MailRonaldsScoutBiruritchiSubjectText:
 	textfw "ビルリッチのデッキ"
 	done
 
-Text0722:
+MailRonaldsScoutBiruritchiBody1Text:
 	textfw "<RAMNAME>・・・"
 	linefw "ついに GR団との たたかいも"
 	linefw "おおづめって かんじだな・・・"
@@ -2073,7 +2075,7 @@ Text0722:
 	linefw "たのむぞ <RAMNAME>!"
 	done
 
-Text0723:
+MailRonaldsScoutBiruritchiBody2Text:
 	textfw "GR団に! キングのビルリッチに!"
 	linefw "オレたちの カードへのおもいを"
 	linefw "ちからのかぎり ぶつけてくれ!!"
@@ -2082,7 +2084,7 @@ Text0723:
 	linefw "おまえに おしえるよ"
 	done
 
-Text0724:
+MailRonaldsScoutBiruritchiBody3Text:
 	textfw "オレは GR団のかんぶに"
 	linefw "コテンパンに やられちまって・・・"
 	linefw "GR団キング ビルリッチのことは"
@@ -2091,7 +2093,7 @@ Text0724:
 	linefw "いるらしいんだ!"
 	done
 
-Text0725:
+MailRonaldsScoutBiruritchiBody4Text:
 	textfw "しかも ビルリッチとの対戦は"
 	linefw "「さきに 2かい勝ったほうが勝ち」"
 	linefw "という ながい たたかいだ"
@@ -2100,7 +2102,7 @@ Text0725:
 	linefw "4つのデッキを つかいこなしてくる"
 	done
 
-Text0726:
+MailRonaldsScoutBiruritchiBody5Text:
 	textfw "だから"
 	linefw "おまえも 対戦デッキを"
 	linefw "たくさん よういしていけ!"
@@ -2109,15 +2111,15 @@ Text0726:
 	linefw "          ランド(●_●)"
 	done
 
-Text0727:
+MailLinkDuelSenderText:
 	textfw "バトルセンター"
 	done
 
-Text0728:
+MailLinkDuelSubjectText:
 	textfw "つうしん対戦をしよう!"
 	done
 
-Text0729:
+MailLinkDuelBody1Text:
 	textfw "バトルセンターからの おしらせです"
 	linefw "つうしんケーブルを つかって"
 	linefw "どんどん 対戦しましょう"
@@ -2126,7 +2128,7 @@ Text0729:
 	linefw "拡張パックを 1つ プレゼント!"
 	done
 
-Text072a:
+MailLinkDuelBody2Text:
 	textfw "つうしん対戦で 50勝したら"
 	linefw "バトルセンター とくせいのコインを"
 	linefw "プレゼントします"
@@ -2135,172 +2137,172 @@ Text072a:
 	linefw "    バトルセンター m(__)m"
 	done
 
-Text072b:
+MailBoxTitleText:
 	textfw " メールボックス "
 	done
 
-Text072c:
+MailBoxFullWarningText:
 	textfw "メールボックスが いっぱいで"
 	linefw "あたらしいメールを よみこめません"
 	linefw "あたらしいメールを よむばあいは"
 	linefw "ひつようないメールを けしてください"
 	done
 
-Text072d:
+MailBoxNoNewMailsText:
 	textfw "あたらしいメールは"
 	linefw "とどいていません"
 	done
 
-Text072e:
+MailBoxNewMailText:
 	textfw "あたらしいメールが とどいています!"
 	done
 
-Text072f:
+MailBoxChooseMailText:
 	textfw "メールをえらんでください"
 	done
 
-Text0730:
+MailBoxSenderText:
 	textfw "だれから:"
 	done
 
-Text0731:
+MailBoxSubjectText:
 	textfw "タイトル:"
 	done
 
-Text0732:
+MailBoxActionPromptText:
 	textfw "どうしますか?"
 	done
 
-Text0733:
+MailBoxActionReadText:
 	textfw "よむ"
 	done
 
-Text0734:
+MailBoxActionDeleteText:
 	textfw "けす"
 	done
 
-Text0735:
+MailBoxActionDeleteConfirmText:
 	textfw "ほんとうに けしてよろしいですか?"
 	done
 
-Text0736:
+MailBoxActionDeleteUnreadConfirmText:
 	textfw "よまれていませんが よろしいですか?"
 	done
 
-Text0737:
+MailBoxDeletedText:
 	textfw "メールを けしました"
 	done
 
-Text0738:
+MailBoxUnreadSymbolText:
 	textfw "○"
 	done
 
-Text0739:
+DebugSendMailText:
 	textfw "メール送信"
 	done
 
-Text073a:
+MailBoxEmptyText:
 	textfw "メールはありません"
 	done
 
-Text073b:
+SingleColonText: ; for time display
 	textfw ":"
 	done
 
-Text073c:
+SamRulesEnergyText:
 	textfw "エネルギーについて"
 	done
 
-Text073d:
+SamRulesAttackText:
 	textfw "ワザを つかう"
 	done
 
-Text073e:
+SamRulesSwitchText:
 	textfw "ポケモンを いれかえる"
 	done
 
-Text073f:
+SamRulesEvolutionText:
 	textfw "ポケモンを 進化させる"
 	done
 
-Text0740:
+SamRulesPokemonPowerText:
 	textfw "特殊能力を つかう"
 	done
 
-Text0741:
+SamRulesEndOfTurnText:
 	textfw "じぶんの番を おわる"
 	done
 
-Text0742:
+SamRulesDecisionText:
 	textfw "対戦の勝ち まけ"
 	done
 
-Text0743:
+SamRulesQuitText:
 	textfw "きくことは ない"
 	done
 
-Text0744:
+SamPracticeDuelText:
 	textfw "れんしゅう対戦"
 	done
 
-Text0745:
+SamRegularDuelText:
 	textfw "ふつうに対戦"
 	done
 
-Text0746:
+SamRulesText:
 	textfw "ルールせつめい"
 	done
 
-Text0747:
+SamQuitText:
 	textfw "なんでもない"
 	done
 
-Text0748:
+AaronStep1Text:
 	textfw "ステップ1"
 	done
 
-Text0749:
+AaronStep2Text:
 	textfw "ステップ2"
 	done
 
-Text074a:
+AaronStep3Text:
 	textfw "ステップ3"
 	done
 
-Text074b:
+AaronStep4Text:
 	textfw "ステップ4"
 	done
 
-Text074c:
+GrandMasterCupPrizesTitleText:
 	textfw "グランドマスター杯 商品"
 	done
 
-Text074d:
+GrandMasterCupPrizesDialogText:
 	textfw "グランドマスター杯の商品です"
 	linefw "すきなカードを 2枚えらんでください"
 	done
 
-Text074e:
+GrandMasterCupPrizesConfirmPromptText:
 	textfw "この2枚で よろしいですか?"
 	done
 
-Text074f:
+DebugTitleScreenTentativeText:
 	textfw "タイトル画面(仮)"
 	done
 
-Text0750:
+DebugPlayerGenderSelectionScreenText:
 	textfw "性別選択画面"
 	done
 
-Text0751:
+DebugStartMenuText:
 	textfw "スタートメニュー"
 	done
 
-Text0752:
+GameCenterBlackBoxTitleText:
 	textfw " ブラックボックス "
 	done
 
-Text0753:
+GameCenterBlackBoxDescriptionText:
 	textfw "1から5枚の カードをいれると"
 	linefw "あたらしいカードが もらえます"
 	linefw "くみあわせかたで もらえるカードが"
@@ -2308,36 +2310,36 @@ Text0753:
 	linefw "ためしてみましょう!"
 	done
 
-Text0754:
+GameCenterBlackBoxStartPromptText:
 	textfw "ブラックボックスで あそびますか?"
 	done
 
-Text0755:
+GameCenterBlackBoxSaveRequestText:
 	textfw "それでは あそぶまえに"
 	linefw "「にっき」を つけてください"
 	done
 
-Text0756:
+GameCenterBlackBoxUnableNotEnoughChipsText:
 	textfw "ブラックボックスは 1かい5枚です"
 	linefw "チップが たりません!"
 	done
 
-Text0757:
+GameCenterBlackBoxUnableLastOutputRemainingText:
 	textfw "ブラックボックスからの メールが"
 	linefw "メールボックスに のこっています"
 	done
 
-Text0758:
+GameCenterBlackBoxUnableLastOutputRemainingTextCont:
 	textfw "メールをよんでカードをうけとってから"
 	linefw "きてください"
 	done
 
-Text0759:
+GameCenterBlackBoxUnableSaveRequiredText:
 	textfw "「にっき」を つけなければ"
 	linefw "あそぶことが できません"
 	done
 
-Text075a:
+GameCenterBlackBoxProcedureText:
 	textfw "   おくるカードの えらびかた"
 	linefw " "
 	linefw "1ˍデッキをつくるように おくりたい"
@@ -2350,193 +2352,193 @@ Text075a:
 	linefw "  じゅんびが かんりょうです"
 	done
 
-Text075b:
+GameCenterBlackBoxProcedureDialogText:
 	textfw "ブラックボックスへ おくるカードの"
 	linefw "えらびかたです"
 	done
 
-Text075c:
+GameCenterBlackBoxDoneText:
 	textfw "ブラックボックスへ"
 	linefw "カードを おくりました!"
 	done
 
-Text075d:
+GameCenterToBeMailedText:
 	textfw "けっかはメールボックスに とどきます"
 	linefw "おたのしみに!"
 	done
 
-Text075e:
+MainMenuNewGameInsteadOfContinueWarning1Text:
 	textfw "すでに セーブデータがあります"
 	done
 
-Text075f:
+MainMenuNewGameInsteadOfContinueWarning2Text:
 	textfw "このまま はじめると"
 	linefw "すべてのカードを うしないます"
 	done
 
-Text0760:
+MainMenuNewGameInsteadOfContinueConfirmPromptText:
 	textfw "それでも よろしいですか?"
 	done
 
-Text0761:
+MainMenuNewGameInsteadOfContinueDeletedText:
 	textfw "すべてのデータをさくじょしました"
 	done
 
-Text0762:
+PrologueScene1Line1Text:
 	textfw "<RAMNAME>は ポケモンカードを"
 	linefw "あつめるのが だいすきです"
 	done
 
-Text0763:
+PrologueScene1Line2Text:
 	textfw "<RAMNAME>は このしまにつたわる"
 	linefw "伝説のポケモンカードを ゲットのため"
 	done
 
-Text0764:
+PrologueScene1Line3Text:
 	textfw "8にんの クラブマスターと"
 	linefw "伝説のポケモンカードを まもる"
 	done
 
-Text0765:
+PrologueScene1Line4Text:
 	textfw "4にんの グランドマスターに"
 	linefw "ちょうせんしたのでした・・・"
 	done
 
-Text0766:
+PrologueScene1Line5Text:
 	textfw "そして ついには!"
 	linefw "グランドマスターを たおして"
 	done
 
-Text0767:
+PrologueScene1Line6Text:
 	textfw "4枚の 伝説のポケモンカードを"
 	linefw "そのてに ゲットしたのです"
 	done
 
-Text0768:
+PrologueScene1Line7Text:
 	textfw "そんな ある日・・・"
 	linefw "じけんは おこりました!"
 	done
 
-Text0769:
+PrologueScene2Line1Text:
 	textfw "とつぜん"
 	linefw "なぞのぐん団が おそってきたのです!"
 	done
 
-Text076a:
+PrologueScene2Line2Text:
 	textfw "その名を 「GR団」!"
 	linefw "「グレートロケット団」と いいました"
 	done
 
-Text076b:
+PrologueScene2Line3Text:
 	textfw "「GR団」は クラブを こうげき!"
 	linefw "カードを うばっていったのです!"
 	done
 
-Text076c:
+PrologueScene3Line1Text:
 	textfw "もっていたカードを GR団に"
 	linefw "うばわれた <RAMNAME>は"
 	done
 
-Text076d:
+PrologueScene3Line2Text:
 	textfw "このことを しらせるため"
 	linefw "ポケモンカードの 研究者である"
 	done
 
-Text076e:
+PrologueScene3Line3Text:
 	textfw "Dr.オーヤマのいる 研究所へ"
 	linefw "むかったのでした・・・"
 	done
 
-Text076f:
+IntroductionText:
 	textfw "イントロダクション"
 	done
 
-Text0770:
+ConfigTitleText_2:
 	textfw "せっていへんこう"
 	done
 
-Text0771:
+ConfigFrameColorText:
 	textfw " ウィンドウカラー "
 	done
 
-Text0772:
+ConfigFrameColorRedText:
 	textfw "あか"
 	done
 
-Text0773:
+ConfigFrameColorBlueText:
 	textfw "あお"
 	done
 
-Text0774:
+ConfigFrameColorGreenText:
 	textfw "みどり"
 	done
 
-Text0775:
+ConfigFrameColorBlackText:
 	textfw "くろ"
 	done
 
-Text0776:
+GameCenterBlackBoxSendingHeaderText:
 	textfw "おくるカード"
 	done
 
-Text0777:
+GameCenterBlackBoxConfirmPromptText:
 	textfw "これらのカードをおくりますか?"
 	done
 
-Text0778:
+GameCenterBlackBoxCancelPromptText:
 	textfw "ブラックボックスを やめますか?"
 	done
 
-Text0779:
+GameCenterBlackBoxChipsPaidText:
 	textfw "それでは てすうりょうとして"
 	linefw "チップ5枚を いただきます"
 	done
 
-Text077a:
+NumberSlashNumberText:
 	textfw "<RAMNUM>/<RAMNUM>"
 	done
 
-Text077b:
+TxRam2TextPadded:
 	textfw " <RAMTEXT> "
 	done
 
-Text077c:
+GameCenterCardDungeonBet10Text:
 	textfw " 10枚"
 	done
 
-Text077d:
+GameCenterCardDungeonBet20Text:
 	textfw " 20枚"
 	done
 
-Text077e:
+GameCenterCardDungeonBet30Text:
 	textfw " 30枚"
 	done
 
-Text077f:
+GameCenterCardDungeonBet50Text:
 	textfw " 50枚"
 	done
 
-Text0780:
+GameCenterCardDungeonBet100Text:
 	textfw "100枚"
 	done
 
-Text0781:
+GameCenterCardDungeonBetCancelText:
 	textfw " やめる"
 	done
 
-Text0782:
+GameCenter10ChipsPerPlayText:
 	textfw "チップ10枚"
 	done
 
-Text0783:
+GameCenter20ChipsPerPlayText:
 	textfw "チップ20枚"
 	done
 
-Text0784:
+GameCenterCardDungeonTitleText:
 	textfw " カードダンジョン "
 	done
 
-Text0785:
+GameCenterCardDungeonDescriptionText:
 	textfw "チップを かけて 対戦しよう!"
 	linefw "かけるチップの まいすうをえらんで"
 	linefw "勝つと かけたチップが ばいになる!"
@@ -2544,613 +2546,614 @@ Text0785:
 	linefw "ゲームオーバーだ!"
 	done
 
-Text0786:
+GameCenterCardDungeonUnableNotEnoughChipsText:
 	textfw "チップが10枚いじょう ひつようです"
 	linefw "チップをあつめてください"
 	done
 
-Text0787:
+GameCenterCardDungeonDialogText:
 	textfw "どんどん たたかって"
 	linefw "チップを たくさん あつめよう!"
 	done
 
-Text0788:
+MainMenuContinueFromDiaryInsteadOfDuelWarning1Text:
 	textfw "対戦中に 電源が きれたときの"
 	linefw "データが あります"
 	done
 
-Text0789:
+MainMenuContinueFromDiaryInsteadOfDuelWarning2Text:
 	textfw "「対戦から あそぶ」を えらぶと"
 	linefw "電源がきれた 対戦から はじまります"
 	done
 
-Text078a:
+MainMenuContinueFromDiaryInsteadOfDuelWarning3Text:
 	textfw "このまま はじめると メニューの"
 	linefw "「対戦から あそぶ」が なくなり"
 	done
 
-Text078b:
+MainMenuContinueFromDiaryInsteadOfDuelWarning4Text:
 	textfw "ゲームは さいごに「にっき」を"
 	linefw "つけた ところから はじまります"
 	done
 
-Text078c:
+MainMenuContinueFromDiaryInsteadOfDuelConfirmText:
 	textfw "「つづきを あそぶ」で はじめます?"
 	done
 
-Text078d:
+ChallengeMachineText:
 	textfw "チャレンジマシン"
 	done
 
-Text078e:
+GRChallengeMachineText:
 	textfw "GR団チャレンジマシン"
 	done
 
-Text078f:
+ChallengeMachineScoreTitleText:
 	textfw "<RAMNAME>のスコア"
 	done
 
-Text0790:
+ChallengeMachineSetsWonRecordText:
 	textfw "5人ぬきクリア数"
 	done
 
-Text0791:
+ChallengeMachineCurrentWinStreakText:
 	textfw "いまの れんしょう数"
 	done
 
-Text0792:
+ChallengeMachineWinStreakRecordText:
 	textfw "れんしょう きろく"
 	done
 
-Text0793:
+AttemptsUnitText:
 	textfw "回"
 	done
 
-Text0794:
+WinsUnitText:
 	textfw "勝"
 	done
 
-Text0795:
+ChallengeMachineStartPromptText:
 	textfw "チャレンジマシンで あそびますか?"
 	done
 
-Text0796:
+OpponentGrassClubMemberSimpleText:
+	; The machine actually uses 0x0a6b--
 	textfw "クラブメンバー<GRASS>"
 	done
 
-Text0797:
+OpponentWaterClubMemberSimpleText:
 	textfw "クラブメンバー<WATER>"
 	done
 
-Text0798:
+OpponentFireClubMemberSimpleText:
 	textfw "クラブメンバー<FIRE>"
 	done
 
-Text0799:
+OpponentPsychicClubMemberSimpleText:
 	textfw "クラブメンバー<PSYCHIC>"
 	done
 
-Text079a:
+OpponentLightningClubMemberSimpleText:
 	textfw "クラブメンバー<LIGHTNING>"
 	done
 
-Text079b:
+OpponentFightingClubMemberSimpleText:
 	textfw "クラブメンバー<FIGHTING>"
 	done
 
-Text079c:
+ChallengeMachineOpponentListDialogText:
 	textfw "こんかいの ゲームの対戦メンバーです"
 	done
 
-Text079d:
+ChallengeMachineOpponent1DialogText:
 	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
 	linefw "1人目は 「<RAMTEXT>」です"
 	done
 
-Text079e:
+ChallengeMachineDuelPromptText:
 	textfw "対戦を はじめますか?"
 	done
 
-Text079f:
+ChallengeMachineOpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
-Text07a0:
+GameCenterBillsPCTitleText_2:
 	textfw "マサキのパソコン"
 	done
 
-Text07a1:
+GameCenterXChipsPerPlayText:
 	textfw "チップ<RAMNUM>枚"
 	done
 
-Text07a2:
+IncompleteText_2:
 	textfw "未完成"
 	done
 
-Text07a3:
+ChallengeMachineOpponentXDialogText:
 	textfw "<RAMNAME>は <RAMNUM>れんしょう中!"
 	linefw "<RAMNUM>人目は 「<RAMTEXT>」です"
 	done
 
-Text07a4:
+ChallengeMachineWinDialogText:
 	textfw "<RAMNUM>人目"
 	linefw "「<RAMTEXT>」に 勝ちました!"
 	done
 
-Text07a5:
+ChallengeMachineLossDialogText:
 	textfw "<RAMNUM>人目"
 	linefw "「<RAMTEXT>」に まけました!"
 	done
 
-Text07a6:
+ChallengeMachineLossDialogWinStreakText:
 	textfw "<RAMNAME>の れんしょうきろくは"
 	linefw "<RAMNUM>で とまりました"
 	done
 
-Text07a7:
+TxRam3Text:
 	textfw "<RAMNUM>"
 	done
 
-Text07a8:
+DebugCreditsText:
 	textfw "スタッフロール"
 	done
 
-Text07a9:
+CreditsStaffText:
 	textfw "S T A F F"
 	done
 
-Text07aa:
+CreditsProducersText:
 	textfw "プロデューサー"
 	done
 
-Text07ab:
+CreditsProducersListText:
 	textfw "いしはら つねかず"
 	linefw "なかもと しんいち"
 	linefw "はらだ たかひろ"
 	done
 
-Text07ac:
+CreditsDirectorText:
 	textfw "ディレクター"
 	done
 
-Text07ad:
+CreditsDirectorListText:
 	textfw "あらい こうじ"
 	done
 
-Text07ae:
+CreditsStoryText:
 	textfw "おはなし"
 	done
 
-Text07af:
+CreditsStoryListText:
 	textfw "ふじた てるゆき"
 	done
 
-Text07b0:
+CreditsPlannerText:
 	textfw "プランナー"
 	done
 
-Text07b1:
+CreditsPlannerListText:
 	textfw "きたむら よしまさ"
 	done
 
-Text07b2:
+CreditsProgrammersText:
 	textfw "プログラム"
 	done
 
-Text07b3:
+CreditsProgrammersList1Text:
 	textfw "とびた まさひろ"
 	done
 
-Text07b4:
+CreditsProgrammersList2Text:
 	textfw "つもり まさき"
 	linefw "こんどう けい"
 	linefw "よしだ まこと"
 	done
 
-Text07b5:
+CreditsProgrammersList3Text:
 	textfw "みかみ さとし"
 	done
 
-Text07b6:
+CreditsGBGraphicDesignersText:
 	textfw "GBグラフィックデザイン"
 	done
 
-Text07b7:
+CreditsGBGraphicDesignersList1Text:
 	textfw "いちざわ やすひろ"
 	done
 
-Text07b8:
+CreditsGBGraphicDesignersList2Text:
 	textfw "やまもと つぐゆき"
 	linefw "まつだ まり"
 	done
 
-Text07b9:
+CreditsGBGraphicDesignersList3Text:
 	textfw "やまぐち もと"
 	linefw "こうさか かずし"
 	linefw "さとう しげる"
 	linefw "にしき ちあき"
 	done
 
-Text07ba:
+CreditsGBGraphicDesignersList4Text:
 	textfw "そうま ひでき"
 	done
 
-Text07bb:
+CreditsSoundDirectorText:
 	textfw "サウンドディレクション"
 	done
 
-Text07bc:
+CreditsSoundDirectorListText:
 	textfw "たきもと としあき"
 	done
 
-Text07bd:
+CreditsMusicText:
 	textfw "ミュージック"
 	done
 
-Text07be:
+CreditsMusicListText:
 	textfw "しまくら いちろう"
 	done
 
-Text07bf:
+CreditsMusicProgrammerText:
 	textfw "ミュージックプログラム"
 	done
 
-Text07c0:
+CreditsMusicProgrammerListText:
 	textfw "ほし けいた"
 	done
 
-Text07c1:
+CreditsSoundEffectsText:
 	textfw "サウンドエフェクト"
 	done
 
-Text07c2:
+CreditsSoundEffectsListText:
 	textfw "しまくら いちろう"
 	linefw "あいはら まさと"
 	done
 
-Text07c3:
+CreditsSoundSupportText:
 	textfw "サウンドサポート"
 	done
 
-Text07c4:
+CreditsSoundSupportListText:
 	textfw "たかはし かつのり"
 	linefw "おか ひでき"
 	done
 
-Text07c5:
+CreditsCardGameProductionText:
 	textfw "カードゲームせいさく"
 	done
 
-Text07c6:
+CreditsCardGameProductionList1Text:
 	textfw "あかばね たくみ"
 	done
 
-Text07c7:
+CreditsCardGameProductionList2Text:
 	textfw "おおやま こういち"
 	done
 
-Text07c8:
+CreditsCardGameProductionList3Text:
 	textfw "みうら あきひこ"
 	done
 
-Text07c9:
+CreditsCardIllustratorsText:
 	textfw "カード・イラストレーター"
 	done
 
-Text07ca:
+CreditsCardIllustratorsList1Text:
 	textfw "すぎもり けん"
 	linefw "よしだ ひろのぶ"
 	linefw "にしだ あつこ"
 	linefw "ありた みつひろ"
 	done
 
-Text07cb:
+CreditsCardIllustratorsList2Text:
 	textfw "きねぶち けいじ"
 	linefw "ひめの かげまる"
 	linefw "たなか みき"
 	linefw "きづき すみよし"
 	done
 
-Text07cc:
+CreditsCardIllustratorsList3Text:
 	textfw "よしだ しんいち"
 	linefw "きむら なおよ"
 	linefw "くすべ あや"
 	linefw "こみや ともかず"
 	done
 
-Text07cd:
+CreditsCardIllustratorsList4Text:
 	textfw "こいけ ひかる"
 	linefw "はぶ のぶゆき"
 	linefw "ばば ゆきこ"
 	linefw "やました まさこ"
 	done
 
-Text07ce:
+CreditsCardIllustratorsList5Text:
 	textfw "くりはら あい"
 	linefw "まつだ かすみ"
 	linefw "たかはし けいた"
 	linefw "かわむら ゆうき"
 	done
 
-Text07cf:
+CreditsCardIllustratorsList6Text:
 	textfw "にしはら かずひこ"
 	linefw "あおき としなお"
 	linefw "いとう べにまる"
 	linefw "すぎやま ひろみち"
 	done
 
-Text07d0:
+CreditsGuestAppearancesText:
 	textfw "しゅつえん きょうりょく"
 	done
 
-Text07d1:
+CreditsGuestAppearancesListText:
 	textfw "イマクニ?"
 	linefw "かわむら くにみ"
 	linefw "やまぐち りゅうたろう"
 	linefw "くるしま ゆうすけ"
 	done
 
-Text07d2:
+CreditsMasteringText:
 	textfw "マスタリング"
 	done
 
-Text07d3:
+CreditsMasteringListText:
 	textfw "こまつ てつや"
 	done
 
-Text07d4:
+CreditsManualProductionText:
 	textfw "マニュアルせいさく"
 	done
 
-Text07d5:
+CreditsManualProductionListText:
 	textfw "みたに はるき"
 	linefw "せざき ひでのり"
 	done
 
-Text07d6:
+CreditsManualIllustrationsText:
 	textfw "マニュアルイラスト"
 	done
 
-Text07d7:
+CreditsManualIllustrationsListText:
 	textfw "ひめの かげまる"
 	done
 
-Text07d8:
+CreditsPackageArtworkText:
 	textfw "パッケージアートワーク"
 	done
 
-Text07d9:
+CreditsPackageArtworkListText:
 	textfw "かざま ひでき"
 	done
 
-Text07da:
+CreditsOriginalPokemonCreatorText:
 	textfw "ポケットモンスターげんさく"
 	done
 
-Text07db:
+CreditsOriginalPokemonCreatorListText:
 	textfw "たじり さとし"
 	done
 
-Text07dc:
+CreditsProductionAssistanceText:
 	textfw "せいさくきょうりょく"
 	done
 
-Text07dd:
+CreditsProductionAssistanceListText:
 	textfw "はたの しんじ"
 	linefw "やまと さとし"
 	done
 
-Text07de:
+CreditsAssistanceText:
 	textfw "きょうりょく"
 	done
 
-Text07df:
+CreditsAssistanceList1Text:
 	textfw "たかはし のぶちか"
 	linefw "にしだ だいさく"
 	linefw "つくだ よしはる"
 	done
 
-Text07e0:
+CreditsAssistanceList2Text:
 	textfw "ほさか さとし"
 	linefw "とみた ゆきこ"
 	done
 
-Text07e1:
+CreditsAssistanceList3Text:
 	textfw "おおさわ とおる"
 	linefw "こがねざわ のぶと"
 	done
 
-Text07e2:
+CreditsAssistanceList4Text:
 	textfw "みかみ ひろゆき"
 	linefw "かつき くんじ"
 	done
 
-Text07e3:
+CreditsAssistanceList5Text:
 	textfw "やすだ けいご"
 	linefw "りっち うぃるそん"
 	done
 
-Text07e4:
+CreditsAssistanceList5ContText:
 	textfw "     くにひこ"
 	done
 
-Text07e5:
+CreditsAssistanceList6Text:
 	textfw "クリーチャーズ "
 	done
 
-Text07e6:
+CreditsAssistanceList7Text:
 	textfw "カードゲーム   "
 	done
 
-Text07e7:
+CreditsAssistanceList7ContText:
 	textfw "   せいさくしつ"
 	done
 
-Text07e8:
+CreditsAssistanceList8Text:
 	textfw "テストプレイヤーズ"
 	done
 
-Text07e9:
+CreditsProjectManagerText:
 	textfw "プロジェクトマネージャー"
 	done
 
-Text07ea:
+CreditsProjectManagerListText:
 	textfw "かきせこ やすたか"
 	done
 
-Text07eb:
+CreditsSupervisorText:
 	textfw "スーパーバイザー"
 	done
 
-Text07ec:
+CreditsSupervisorListText:
 	textfw "くどう ひろし"
 	done
 
-Text07ed:
+CreditsExecutiveProducerText:
 	textfw "エグゼクティブプロデューサー"
 	done
 
-Text07ee:
+CreditsExecutiveProducerListText:
 	textfw "やまうち ひろし"
 	done
 
-Text07ef:
+CreditsGameProductionText:
 	textfw "ゲームせいさく"
 	done
 
-Text07f0:
+CreditsGameProductionListText:
 	textfw "ハ ド ソ ン"
 	done
 
-Text07f1:
+CreditsToBeContinuedText:
 	textfw "TO BE CONTINUED"
 	done
 
-Text07f2:
+DebugNameEntryText:
 	textfw "なまえにゅうりょく"
 	done
 
-Text07f3:
+PleasePressAText:
 	textfw "Aボタンを押してください"
 	done
 
-Text07f4:
+AttendantText:
 	textfw "かかりいん"
 	done
 
-Text07f5:
+DebugClearMailText:
 	textfw "メールクリア"
 	done
 
-Text07f6:
+ObtainedGRCoinPieceTotalNumberText:
 	textfw "<RAMNUM>枚めのGRコインのカケラです!"
 	done
 
-Text07f7:
+ChallengeMachineQuitWinStreakWarningText:
 	textfw "対戦をやめると れんしょうきろくが"
 	linefw "とまることに なります"
 	done
 
-Text07f8:
+ChallengeMachineQuitPromptText:
 	textfw "それでも 対戦をやめますか?"
 	done
 
-Text07f9:
+ChallengeMachineWonASetText:
 	textfw "おめでとうございます"
 	linefw "5人勝ちぬき せいこうです!"
 	done
 
-Text07fa:
+ChallengeMachineSetsWonText:
 	textfw "<RAMNAME> 5人勝ちぬき せいこう"
 	linefw "<RAMNUM>回目!!"
 	done
 
-Text07fb:
+ChallengeMachineComeAgainText:
 	textfw "それでは つぎの"
 	linefw "チャレンジを おまちしております"
 	done
 
-Text07fc:
+OpenedBoosterPackText:
 	textfw "<RAMNAME>は"
 	linefw "拡張パックのなかを みた!!"
 	done
 
-Text07fd:
+NoCardsSelectedTryAgainText:
 	textfw "カードのまいすうが 0枚です"
 	linefw "もういちど えらびなおしてください"
 	done
 
-Text07fe:
+GameCenterToBeMailedText_2:
 	textfw "けっかはメールボックスに とどきます"
 	linefw "おたのしみに!"
 	done
 
-Text07ff:
+DebugDummyLinesText:
 	textfw "ダミー行だよ"
 	linefw ""
 	linefw ""
 	done
 
-Text0800:
+DebugYoshidaDebugMenuText:
 	textfw "YOSHIDA DEBUG MENU"
 	done
 
-Text0801:
+DebugScenarioDebugMenuText:
 	textfw "  シナリオ デバッグ メニュー"
 	done
 
-Text0802:
+DebugModifyEventsText:
 	textfw "イベントを操作する"
 	done
 
-Text0803:
+DebugModifyFlagsText:
 	textfw "フラグを操作する"
 	done
 
-Text0804:
+DebugModifyCountersText:
 	textfw "カウンタを操作する"
 	done
 
-Text0805:
+DebugModifyCardCountText:
 	textfw "カード枚数を操作する"
 	done
 
-Text0806:
+DebugReturnToGameText:
 	textfw "ゲームにもどる"
 	done
 
-Text0807:
+DebugModifyFlagsNumberLabelText:
 	textfw "フラグ Nоˍ"
 	done
 
-Text0808:
+DebugModifyFlagsOnText:
 	textfw " ON"
 	done
 
-Text0809:
+DebugModifyFlagsOffText:
 	textfw "OFF"
 	done
 
-Text080a:
+DebugModifyCountersNumberLabelText:
 	textfw "カウンタ Nоˍ"
 	done
 
-Text080b:
+DebugModifyCountersValuesText:
 	textfw "                    "
 	done
 
-Text080c:
+DebugModifyCardCountNumberLabelText:
 	textfw "カードNоˍ<RAMNUM>"
 	done
 
-Text080d:
+DebugModifyCardCountCardNameText:
 	textfw "【<RAMTEXT>】"
 	done
 
-Text080e:
+DebugModifyCardCountValuesText:
 	textfw "F    D    T"
 	done
 
-Text080f:
+DebugBeatTheGameText:
 	textfw "ゲームクリア直後にする"
 	done

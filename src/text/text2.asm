@@ -122,7 +122,7 @@ KnockedOutDueToDestinyBondText:
 	linefw "<RAMTEXT>は「きぜつ」した"
 	done
 
-ReceivesDamageDueToStrikesBackText:
+ReceivedDamageDueToStrikesBackText:
 	textfw "<RAMTEXT>は"
 	linefw "「はんげき」の効果で<RAMNUM>ダメージ!"
 	done
@@ -186,7 +186,7 @@ MetamorphsToText:
 	linefw "<RAMTEXT>に へんしんした"
 	done
 
-SelectPkmnOnBenchToSwitchWithActiveText:
+SelectBenchedPokemonToSwitchWithActiveText:
 	textfw "対戦ポケモンと いれかえる"
 	linefw "控えポケモンを えらんでください"
 	done
@@ -201,17 +201,17 @@ DuelistIsSelectingPokemonToPlaceInArenaText:
 	linefw "ポケモンを えらんでいます"
 	done
 
-ChooseWeaknessYouWishToChangeText:
+ChooseWeaknessToConversion1Text:
 	textfw "テクスチャー1でかえる"
 	linefw "弱点の色を えらんでください"
 	done
 
-ChooseResistanceYouWishToChangeText:
+ChooseResistanceToConversion2Text:
 	textfw "テクスチャー2でかえる"
 	linefw "抵抗力の 色を えらんでください"
 	done
 
-ChoosePokemonWishToColorChangeText:
+ChoosePokemonToColorChangeText:
 	textfw "へんしょくでかえる"
 	linefw "ポケモンの色を えらんでください"
 	done
@@ -226,7 +226,7 @@ ChangedTheResistanceOfPokemonToColorText:
 	linefw "<RAMTEXT>にかえた"
 	done
 
-ChangedTheColorOfText:
+ChangedTheColorOfPokemonToColorText:
 	textfw "<RAMTEXT>の色を"
 	linefw "<RAMTEXT>にかえた"
 	done
@@ -247,17 +247,17 @@ DrawNoCardsFromTheDeckText:
 	textfw "山札から カードを引きません"
 	done
 
-ChoosePkmnInTheBenchToGiveDamageText:
+ChooseBenchedPokemonToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "えらんでください"
 	done
 
-ChoosePkmnToGiveDamageText:
+ChoosePokemonToGiveDamageText:
 	textfw "ダメージをあたえる ポケモンを"
 	linefw "えらんでください"
 	done
 
-ChooseUpTo3PkmnOnBenchToGiveDamageText:
+ChooseUpTo3BenchedPokemonToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "3体まで えらんでください"
 	done
@@ -297,12 +297,12 @@ ChooseAKrabbyFromDeckText:
 	linefw "クラブを えらんでください"
 	done
 
-ChooseDiscardEnergyCardFromOpponentText:
+ChooseEnergyCardFromOppActiveToDiscardText:
 	textfw "相手の対戦ポケモンからトラッシュする"
 	linefw "エネルギーカードを えらんでください"
 	done
 
-ChooseAttackOpponentWillNotBeAbleToUseText:
+ChooseAttackToDisableNextOppTurnText:
 	textfw "つぎの相手の番に つかえなくする"
 	linefw "ワザを えらんでください"
 	done
@@ -371,7 +371,7 @@ ChooseABellsproutText:
 	linefw "えらんでください"
 	done
 
-ChoosePkmnToRemoveDamageCounterText:
+ChoosePokemonToRemoveDamageCounterFromText:
 	textfw "ダメージカウンターを とりのぞく"
 	linefw "ポケモンを えらんでください"
 	done
@@ -468,7 +468,7 @@ ProcedureForStrangeBehaviorText:
 	linefw "  移動はできない"
 	done
 
-ChooseOppAttackToBeUsedWithMetronomeText:
+ChooseOppAttackForMetronomeText:
 	textfw "ゆびをふるでつかう"
 	linefw "[相手]のワザを えらんでください"
 	done
@@ -482,12 +482,12 @@ NoTargetsButCheckDeckPromptText:
 	textfw "山札を かくにんしますか?"
 	done
 
-SelectTargetDeckText:
+SelectTargetDeckYoursOppsText:
 	textfw "どちらかの山札を えらんでください"
 	linefw "      自分  相手"
 	done
 
-SelectTargetPlayAreaText:
+SelectTargetPlayAreaYoursOppsText:
 	textfw "どちらかの場を えらんでください"
 	linefw "      自分  相手"
 	done
@@ -712,26 +712,26 @@ ChooseAMagnemiteText:
 	linefw "えらんでください"
 	done
 
-ChooseUpTo3PkmnCardsFromDiscardPileText:
+ChooseUpTo3PokemonCardsFromDiscardPileText:
 	textfw "トラッシュから ポケモンカードを"
 	linefw "3枚まで えらんでください"
 	done
 
-ChooseUpTo2BasicPkmnFromDeckText:
+ChooseUpTo2BasicPokemonFromDeckText:
 	textfw "山札から たねポケモンを"
 	linefw "2枚まで えらんでください"
 	done
 
-EffectTargetBasicPkmnText:
+EffectTargetBasicPokemonText:
 	textfw "たねポケモン"
 	done
 
-ChooseBasicPkmnText:
+ChooseBasicPokemonText:
 	textfw "たねポケモンを"
 	linefw "えらんでください"
 	done
 
-ChooseUpTo2BenchedPkmnToGiveDamageText:
+ChooseUpTo2BenchedPokemonToGiveDamageText:
 	textfw "ダメージをあたえる 控えポケモンを"
 	linefw "2体まで えらんでください"
 	done
@@ -863,12 +863,12 @@ RemoveDamageCountersOneByOneText:
 	linefw "1つずつへります Bボタンでおわり"
 	done
 
-ChoosePokemonToRemoveDamageCounterFromText:
+ChoosePokemonToRemoveDamageCounterFromText_2:
 	textfw "ダメージカウンターを とりのぞく"
 	linefw "ポケモンを えらんでください"
 	done
 
-ChooseCardToDiscardFromHandText:
+ChooseCardFromHandToDiscardText:
 	textfw "手札から トラッシュするカードを"
 	linefw "えらんでください"
 	done
@@ -933,12 +933,12 @@ ChoosePokemonToScoopUpText:
 	linefw "えらんでください"
 	done
 
-ChooseCardFromYourHandToSwitchText:
+ChooseCardFromYourHandToExchangeText:
 	textfw "手札から 交換するカードを"
 	linefw "えらんでください"
 	done
 
-ChooseCardToSwitchText:
+ChooseCardToExchangeText:
 	textfw "交換するカードを"
 	linefw "えらんでください"
 	done
@@ -982,7 +982,7 @@ ChooseEvolutionCardAndPressAButtonToDevolveText:
 	linefw "Aボタンで 1枚ずつはがします"
 	done
 
-ChoosePokemonInYourAreaThenPokemonInYourOppText:
+ChoosePokemonInYourAreaThenInOppAreaText:
 	textfw "自分の場のポケモンをえらび"
 	linefw "相手の場のポケモンをえらんでください"
 	done
@@ -992,7 +992,7 @@ ChooseUpTo4FromDiscardPileText:
 	linefw "4枚まで えらんでください"
 	done
 
-ChooseAPokemonToSwitchWithActivePokemonText:
+ChoosePokemonToSwitchWithActiveText:
 	textfw "バトル場のポケモンと いれかえる"
 	linefw "ポケモンを えらんでください"
 	done
@@ -1079,7 +1079,7 @@ ThereWasNoFireEnergyText:
 	textfw "「炎」エネルギーは なかった"
 	done
 
-YouCanSelectMoreCardsQuitText:
+MaySelectMoreCardsButQuitPromptText:
 	textfw "あと<RAMNUM>枚えらべますが やめますか?"
 	done
 
@@ -1189,11 +1189,11 @@ ChooseDeckOrDiscardPileToCheckText:
 	linefw "      山札  トラッシュ"
 	done
 
-IsItOKToCheckDeckText:
+CheckDeckPilePromptText:
 	textfw "山札を かくにんしますか?"
 	done
 
-IsItOKToCheckDiscardPileText:
+CheckDiscardPilePromptText:
 	textfw "トラッシュを かくにんしますか?"
 	done
 
@@ -1230,7 +1230,7 @@ ChooseACardToReturnToDeckText:
 	linefw "えらんでください"
 	done
 
-BattleCenterText: ; unused
+BattleCenterText:
 	textfw "バトルセンター"
 	done
 
@@ -1249,7 +1249,7 @@ PleaseWaitDecidingNumberOfPrizesText:
 	linefw "しばらく おまちください"
 	done
 
-BeginAPrizeDuelWithText:
+BeginDuelOfXPrizesWithOpponentText:
 	textfw "<RAMNAME>と サイドカード<RAMNUM>枚で"
 	linefw "対戦をはじめます"
 	done
@@ -1293,7 +1293,7 @@ BoosterPackCardsText:
 	textfw "拡張パックのカード"
 	done
 
-WouldYouLikeToTryAgainText:
+TryAgainPromptText:
 	textfw "もういちど やりなおしますか?"
 	done
 
@@ -1534,15 +1534,16 @@ CardPopRonaldText:
 	textfw "ランド"
 	done
 
-GameCenterBillsPCOverviewTitleText:
+GameCenterBillsPCTitleText:
 	textfw "マサキのパソコン"
 	done
 
-GameCenterBillsPCOverviewPriceText:
+GameCenterBillsPC20ChipsPerPlayText:
+	; dupe of GameCenter20ChipsPerPlayText
 	textfw "チップ20枚"
 	done
 
-GameCenterBillsPCOverviewText:
+GameCenterBillsPCDescriptionText:
 	textfw "オムナイト > オムスター<Lv>36"
 	linefw "ゴースト  > ゲンガー<Lv>40"
 	linefw "ゴーリキー > カイリキー<Lv>54"
@@ -1550,16 +1551,16 @@ GameCenterBillsPCOverviewText:
 	linefw "ユンゲラー > フーディン<Lv>45"
 	done
 
-GameCenterBillsPCDescriptionText:
+GameCenterBillsPCDescriptionDialogText:
 	textfw "「マサキのパソコン」と このカードで"
 	linefw "超めずらしいカードを ゲットしよう"
 	done
 
-GameCenterBillsPCWouldYouPlayText:
+GameCenterBillsPCStartPromptText:
 	textfw "マサキのパソコンで あそびますか?"
 	done
 
-GameCenterBillsPCUnableDueToNoBillsPCCardsText:
+GameCenterBillsPCUnableNoBillsPCCardsText:
 	textfw "「マサキのパソコン」カードが無いので"
 	linefw "あそぶことが できません"
 	linefw "「マサキのパソコン」カードを"
@@ -1570,7 +1571,7 @@ GameCenterBillsPCYourCompatibleCardsText:
 	textfw "「マサキのパソコン」 たいおうカード"
 	done
 
-GameCenterBillsPCUnableDueToNoCompatibleCardsText:
+GameCenterBillsPCUnableNoCompatibleCardsText:
 	textfw "「マサキのパソコン」の"
 	linefw "たいおうカードが ありません"
 	linefw "ひつようなカードを てにいれてから"
@@ -1582,11 +1583,11 @@ GameCenterBillsPCChooseACardToInsertText: ; unused?
 	linefw "いれるカードを えらんでください"
 	done
 
-GameCenterBillsPCIsThisOKText:
+GameCenterBillsPCConfirmPromptText:
 	textfw "このカードで よろしいですか?"
 	done
 
-GameCenterBillsPCQuittingText:
+GameCenterBillsPCCancelPromptText:
 	textfw "マサキのパソコンを おわりますか?"
 	done
 
@@ -1605,14 +1606,14 @@ GameCenterBillsPCReceivedRewardText: ; unused?
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-GameCenterBillsPCUnableDueToPreviousRewardStoredText:
+GameCenterBillsPCUnableLastOutputRemainingText:
 	textfw "マサキのパソコンからの メールが"
 	linefw "メールボックスに のこっています"
 	linefw "メールをよんでカードをうけとってから"
 	linefw "きてください"
 	done
 
-GameCenterBillsPCUnableDueToNotEnoughChipsText:
+GameCenterBillsPCUnableNotEnoughChipsText:
 	textfw "マサキのパソコンは 1かい20枚です"
 	linefw "チップが たりません!"
 	done
@@ -1963,7 +1964,7 @@ EmptyPromotionalCardText:
 	textfw "----------"
 	done
 
-SCardsText: ; "'s Cards"
+OnesCardsText: ; "'s Cards"
 	textfw "のカード"
 	done
 
@@ -2522,22 +2523,22 @@ MachineEsperGreenDeckDescriptionText:
 	linefw "つくったデッキ"
 	done
 
-MachineSweatAntiGr1DeckDescriptionText:
+MachineSweatAntiGR1DeckDescriptionText:
 	textfw "ストーンクラブの ゲンゾウが くれた"
 	linefw "草と 岩ポケモンの デッキ"
 	done
 
-MachineGiveInAntiGr2DeckDescriptionText:
+MachineGiveInAntiGR2DeckDescriptionText:
 	textfw "グリーンクラブの クニミが くれた"
 	linefw "草と 水ポケモンの デッキ"
 	done
 
-MachineVengefulAntiGr3DeckDescriptionText:
+MachineVengefulAntiGR3DeckDescriptionText:
 	textfw "アクアクラブの ウッチーが くれた"
 	linefw "炎と 水ポケモンの デッキ"
 	done
 
-MachineUnforgivingAntiGr4DeckDescriptionText:
+MachineUnforgivingAntiGR4DeckDescriptionText:
 	textfw "エスパークラブの ミウラが くれた"
 	linefw "雷と 超ポケモンの デッキ"
 	done
@@ -2627,7 +2628,7 @@ MachineZapdosPowerPlantDeckDescriptionText:
 	linefw "サンダーで いっきに けっちゃくだ!"
 	done
 
-MachineElectricShocksDeckDescriptionText:
+MachineElectricShockDeckDescriptionText:
 	textfw "でんきの ちからで 「マヒ」させる!"
 	linefw "あいては シビレて なにもできない"
 	done

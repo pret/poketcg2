@@ -60,7 +60,7 @@
 	const TILESET_GRASS_FORT_ENTRANCE         ; $03a
 	const TILESET_GRASS_FORT_LOBBY            ; $03b
 	const TILESET_GRASS_FORT_MIDORI           ; $03c
-	const TILESET_GRASS_FORT_YUUTA            ; $03d
+	const TILESET_GRASS_FORT_YUTA             ; $03d
 	const TILESET_GRASS_FORT_MIYUKI           ; $03e
 	const TILESET_GRASS_FORT_MORINO           ; $03f
 	const TILESET_LIGHTNING_FORT_ENTRANCE     ; $040
@@ -188,7 +188,7 @@
 	const TILESET_GR_3_PORTRAIT               ; $0ba
 	const TILESET_GR_4_PORTRAIT               ; $0bb
 	const TILESET_MIDORI_PORTRAIT             ; $0bc
-	const TILESET_YUUTA_PORTRAIT              ; $0bd
+	const TILESET_YUTA_PORTRAIT               ; $0bd
 	const TILESET_MIYUKI_PORTRAIT             ; $0be
 	const TILESET_MORINO_PORTRAIT             ; $0bf
 	const TILESET_RENNA_PORTRAIT              ; $0c0
@@ -218,7 +218,7 @@
 	const TILESET_RUI_PORTRAIT                ; $0d8
 	const TILESET_BIRURITCHI_PORTRAIT         ; $0d9
 	const TILESET_GR_X_PORTRAIT               ; $0da
-	const TILESET_TOBI_CHAN_PORTRAIT          ; $0db
+	const TILESET_TOBICHAN_PORTRAIT           ; $0db
 	const TILESET_DR_MASON_PORTRAIT           ; $0dc
 	const TILESET_MARK                        ; $0dd
 	const TILESET_MINT                        ; $0de
@@ -285,7 +285,7 @@
 	const TILESET_RUI                         ; $11b
 	const TILESET_BIRURITCHI                  ; $11c
 	const TILESET_GR_X                        ; $11d
-	const TILESET_TOBI_CHAN                   ; $11e
+	const TILESET_TOBICHAN                    ; $11e
 	const TILESET_YOUNGSTER                   ; $11f
 	const TILESET_LAD                         ; $120
 	const TILESET_SPECS                       ; $121

@@ -60,7 +60,7 @@ Tilesets:
 	gfx_ptr GrassFortEntranceTileset          ; $03a
 	gfx_ptr GrassFortLobbyTileset             ; $03b
 	gfx_ptr GrassFortMidoriTileset            ; $03c
-	gfx_ptr GrassFortYuutaTileset             ; $03d
+	gfx_ptr GrassFortYutaTileset              ; $03d
 	gfx_ptr GrassFortMiyukiTileset            ; $03e
 	gfx_ptr GrassFortMorinoTileset            ; $03f
 	gfx_ptr LightningFortEntranceTileset      ; $040
@@ -188,7 +188,7 @@ Tilesets:
 	gfx_ptr GR3PortraitGfx                    ; $0ba
 	gfx_ptr GR4PortraitGfx                    ; $0bb
 	gfx_ptr MidoriPortraitGfx                 ; $0bc
-	gfx_ptr YuutaPortraitGfx                  ; $0bd
+	gfx_ptr YutaPortraitGfx                   ; $0bd
 	gfx_ptr MiyukiPortraitGfx                 ; $0be
 	gfx_ptr MorinoPortraitGfx                 ; $0bf
 	gfx_ptr RennaPortraitGfx                  ; $0c0
@@ -218,7 +218,7 @@ Tilesets:
 	gfx_ptr RuiPortraitGfx                    ; $0d8
 	gfx_ptr BiruritchiPortraitGfx             ; $0d9
 	gfx_ptr GRXPortraitGfx                    ; $0da
-	gfx_ptr TobiChanPortraitGfx               ; $0db
+	gfx_ptr TobichanPortraitGfx               ; $0db
 	gfx_ptr DrMasonPortraitGfx                ; $0dc
 	gfx_ptr OWMarkGfx                         ; $0dd
 	gfx_ptr OWMintGfx                         ; $0de
@@ -285,7 +285,7 @@ Tilesets:
 	gfx_ptr OWRuiGfx                          ; $11b
 	gfx_ptr OWBiruritchiGfx                   ; $11c
 	gfx_ptr OWGRXGfx                          ; $11d
-	gfx_ptr OWTobiChanGfx                     ; $11e
+	gfx_ptr OWTobichanGfx                     ; $11e
 	gfx_ptr OWYoungsterGfx                    ; $11f
 	gfx_ptr OWLadGfx                          ; $120
 	gfx_ptr OWSpecsGfx                        ; $121

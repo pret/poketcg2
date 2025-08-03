@@ -1,124 +1,124 @@
-Text03dd:
+GlossaryPrizesTitleText:
 	textfw "「サイドカード」について"
 	done
 
-Text03de:
+GlossaryDamageCountersTitleText:
 	textfw "「ダメージカウンター」について"
 	done
 
-Text03df:
+GlossaryEnergyCardsTitleText:
 	textfw "「エネルギーカード」について"
 	done
 
-Text03e0:
+GlossaryTrainerCardsTitleText:
 	textfw "「トレーナーカード」について"
 	done
 
-Text03e1:
+GlossaryBasicPokemonTitleText:
 	textfw "「たねポケモン」について"
 	done
 
-Text03e2:
+GlossaryEvolutionCardsTitleText:
 	textfw "「進化カード」について"
 	done
 
-Text03e3:
+GlossaryDarkEvolutionCardsTitleText:
 	textfw "「わるい進化カード」について"
 	done
 
-Text03e4:
+GlossaryAttackTitleText:
 	textfw "「ワザ」について"
 	done
 
-Text03e5:
+GlossaryPokemonPowerTitleText:
 	textfw "「特殊能力」について"
 	done
 
-Text03e6:
+GlossaryWeaknessTitleText:
 	textfw "「弱点」について"
 	done
 
-Text03e7:
+GlossaryResistanceTitleText:
 	textfw "「抵抗力」について"
 	done
 
-Text03e8:
+GlossaryRetreatTitleText:
 	textfw "「にげる」について"
 	done
 
-Text03e9:
+GlossaryPoisonedTitleText:
 	textfw "「どく状態」について"
 	done
 
-Text03ea:
+GlossaryParalyzedTitleText:
 	textfw "「マヒ状態」について"
 	done
 
-Text03eb:
+GlossaryAsleepTitleText:
 	textfw "「ねむり状態」について"
 	done
 
-Text03ec:
+GlossaryConfusedTitleText:
 	textfw "「こんらん状態」について"
 	done
 
-Text03ed:
+GlossaryDecision1TakenAllPrizesTitleText:
 	textfw "「勝ちまけの決定1」について"
 	done
 
-Text03ee:
+GlossaryDecision2DeckedOutTitleText:
 	textfw "「勝ちまけの決定2」について"
 	done
 
-Text03ef:
+GlossaryDecision3RunOutOfPokemonTitleText:
 	textfw "「勝ちまけの決定3」について"
 	done
 
-Text03f0:
+GlossarySuddenDeathTitleText:
 	textfw "「サドン・デス」について"
 	done
 
-Text03f1:
+GlossaryChlorophyllTitleText:
 	textfw "「みどりのちから」について"
 	done
 
-Text03f2:
+GlossaryThunderChargeTitleText:
 	textfw "「雷パワーアップ」について"
 	done
 
-Text03f3:
+GlossaryFlameArmorTitleText:
 	textfw "「ほのおのよろい」について"
 	done
 
-Text03f4:
+GlossarySmallBenchTitleText:
 	textfw "「せまいベンチ」について"
 	done
 
-Text03f5:
+GlossaryRunningWaterTitleText:
 	textfw "「にげみずの場」について"
 	done
 
-Text03f6:
+GlossaryEarthPowerTitleText:
 	textfw "「だいちのちから」について"
 	done
 
-Text03f7:
+GlossaryLowResistanceTitleText:
 	textfw "「抵抗力ていか」について"
 	done
 
-Text03f8:
+GlossaryEnergyReturnTitleText:
 	textfw "「エネルギーR」について"
 	done
 
-Text03f9:
+GlossaryToughEscapeTitleText:
 	textfw "「にげにくい場」について"
 	done
 
-Text03fa:
+GlossaryBlackHoleTitleText:
 	textfw "「トラッシュBH」について"
 	done
 
-Text03fb:
+GlossaryDeckDescriptionText:
 	textfw "ポケモンカードで対戦につかうカード"
 	linefw "のたばを「デッキ」といいます。"
 	linefw "「デッキ」は かならず 60枚で"
@@ -131,7 +131,7 @@ Text03fb:
 	linefw "す。"
 	done
 
-Text03fc:
+GlossaryDeckPileDescriptionText:
 	textfw "これから ひくカードのたばを「山札"
 	linefw "(やまふだ)」と いいます。"
 	linefw "じぶんの番の はじめには「じぶんの山"
@@ -141,7 +141,7 @@ Text03fc:
 	linefw "なります。"
 	done
 
-Text03fd:
+GlossaryDiscardPileDescriptionText:
 	textfw "つかいおわったカードを おくところを"
 	linefw "「トラッシュ」と いいます。"
 	linefw "「トラッシュ」にカードを おくことを"
@@ -152,7 +152,7 @@ Text03fd:
 	linefw "ラッシュ」も しらべることができます"
 	done
 
-Text03fe:
+GlossaryHandDescriptionText:
 	textfw "かくプレイヤーが 手にもっているカー"
 	linefw "ドを 「手札(てふだ)」と いいます"
 	linefw "「手札」の枚数には せいげんがありま"
@@ -160,7 +160,7 @@ Text03fe:
 	linefw "が できます。"
 	done
 
-Text03ff:
+GlossaryArenaDescriptionText:
 	textfw "いま たたかっているポケモンが おか"
 	linefw "れているところを 「バトル場」といい"
 	linefw "ます。"
@@ -171,7 +171,7 @@ Text03ff:
 	linefw "すすめます。"
 	done
 
-Text0400:
+GlossaryBenchDescriptionText:
 	textfw "バトル場にいるポケモンと こうたい"
 	linefw "するために ひかえているポケモンが"
 	linefw "いるところを 「ベンチ」といいます。"
@@ -180,7 +180,7 @@ Text0400:
 	linefw "だしておくことが できます。"
 	done
 
-Text0401:
+GlossaryActivePokemonDescriptionText:
 	textfw "バトル場にいるポケモンを 「対戦ポケ"
 	linefw "モン」と いいます。"
 	linefw "この「対戦ポケモン」のワザをつかって"
@@ -188,7 +188,7 @@ Text0401:
 	linefw "たおすことに なります。"
 	done
 
-Text0402:
+GlossaryBenchedPokemonDescriptionText:
 	textfw "バトル場のポケモンと こうたいするた"
 	linefw "めに ベンチにいるポケモンを 「ひか"
 	linefw "えポケモン」と いいます。"
@@ -201,7 +201,7 @@ Text0402:
 	linefw "なります。"
 	done
 
-Text0403:
+GlossaryPrizesDescriptionText:
 	textfw "あいてのポケモンを たおした数を"
 	linefw "かぞえるためのカードを「サイドカード"
 	linefw "」と いいます。"
@@ -215,7 +215,7 @@ Text0403:
 	linefw "ケモンをたおせば いいゲームなのです"
 	done
 
-Text0404:
+GlossaryDamageCountersDescriptionText:
 	textfw "「ダメージカウンター」は そのポケモ"
 	linefw "ンが うけているダメージを あらわし"
 	linefw "ています。"
@@ -229,7 +229,7 @@ Text0404:
 	linefw "「きぜつ」してしまいます。"
 	done
 
-Text0405:
+GlossaryEnergyCardsDescriptionText:
 	textfw "「エネルギーカード」は エネルギーを"
 	linefw "あらわすカードです。"
 	linefw "エネルギーのしゅるいは ぜんぶで"
@@ -243,7 +243,7 @@ Text0405:
 	linefw "できません。"
 	done
 
-Text0406:
+GlossaryTrainerCardsDescriptionText:
 	textfw "「トレーナーカード」は おたすけカー"
 	linefw "ドです。"
 	linefw "「トレーナーカード」の こうかは"
@@ -255,7 +255,7 @@ Text0406:
 	linefw "ます。"
 	done
 
-Text0407:
+GlossaryBasicPokemonText:
 	textfw "ポケモンのカードのなかで 進化のもと"
 	linefw "になるポケモンを 「たねポケモン」と"
 	linefw "いいます。"
@@ -267,7 +267,7 @@ Text0407:
 	linefw "ポケモン」だけです。"
 	done
 
-Text0408:
+GlossaryEvolutionCardsDescriptionText:
 	textfw "ポケモンのカードのなかで 「たねポケ"
 	linefw "モン」から進化した ポケモンをあらわ"
 	linefw "すカードを 「進化(しんか)カード」"
@@ -282,7 +282,7 @@ Text0408:
 	linefw "ードを だすことができません。"
 	done
 
-Text0409:
+GlossaryDarkEvolutionCardsDescriptionText:
 	textfw "「進化カード」のなかには 「わるい進"
 	linefw "化カード」が あります。"
 	linefw "「わるいリザード」「わるいリザードン"
@@ -297,7 +297,7 @@ Text0409:
 	linefw "2進化で わるい進化はできません。"
 	done
 
-Text040a:
+GlossaryAttackDescriptionText:
 	textfw "ポケモンは 「ワザ」をつかうことで"
 	linefw "あいてのポケモンを こうげきすること"
 	linefw "が できます。"
@@ -309,7 +309,7 @@ Text040a:
 	linefw "バトル場にいる 対戦ポケモンだけです"
 	done
 
-Text040b:
+GlossaryPokemonPowerDescriptionText:
 	textfw "「特殊能力(とくしゅのうりょく)」は"
 	linefw "ワザとちがい ベンチにいるポケモンも"
 	linefw "つかうことが できます。"
@@ -324,7 +324,7 @@ Text040b:
 	linefw "せつめいを よく よんでおこう!"
 	done
 
-Text040c:
+GlossaryWeaknessDescriptionText:
 	textfw "ポケモンのなかには 「弱点(じゃくて"
 	linefw "ん)」をもっている ポケモンが いま"
 	linefw "す。「弱点」のあるポケモンは 「弱点"
@@ -332,7 +332,7 @@ Text040c:
 	linefw "うけるダメージが 2ばいに なります"
 	done
 
-Text040d:
+GlossaryResistanceDescriptionText:
 	textfw "ポケモンのなかには 「抵抗力(ていこ"
 	linefw "うりょく)」をもっている ポケモンが"
 	linefw "います。「抵抗力」を もっているポケ"
@@ -341,7 +341,7 @@ Text040d:
 	linefw "「-30」します。"
 	done
 
-Text040e:
+GlossaryRetreatDescriptionText:
 	textfw "バトル場にいる 対戦ポケモンを ベン"
 	linefw "チに 「にがす」ことによって バトル"
 	linefw "場と ベンチのポケモンを いれかえる"
@@ -354,7 +354,7 @@ Text040e:
 	linefw "トラッシュしてください。"
 	done
 
-Text040f:
+GlossaryPoisonedDescriptionText:
 	textfw "ポケモンが 「どく」状態に なると"
 	linefw "「どく」状態のポケモンは ポケモンチ"
 	linefw "ェックのたびに 「10」ダメージを"
@@ -368,7 +368,7 @@ Text040f:
 	linefw "できます。"
 	done
 
-Text0410:
+GlossaryParalyzedDescriptionText:
 	textfw "ポケモンが 「マヒ」状態になると"
 	linefw "そのポケモンは なにもできなくなる。"
 	linefw "「にげる」ことも できないし"
@@ -382,7 +382,7 @@ Text0410:
 	linefw "チへ いどうさせても かいふくします"
 	done
 
-Text0411:
+GlossaryAsleepDescriptionText:
 	textfw "ポケモンが 「ねむり」状態になると"
 	linefw "そのポケモンは なにもできなくなる"
 	linefw "「にげる」も「ワザ」も「とくしゅ」も"
@@ -396,7 +396,7 @@ Text0411:
 	linefw "ことができます。"
 	done
 
-Text0412:
+GlossaryConfusedDescriptionText:
 	textfw "ポケモンが 「こんらん」状態になると"
 	linefw "そのポケモンが ワザをつかうときには"
 	linefw "コイントスを おこなう。"
@@ -411,7 +411,7 @@ Text0412:
 	linefw "ほうほうで 「こんらん」は なおせる"
 	done
 
-Text0413:
+GlossaryDecision1TakenAllPrizesDescriptionText:
 	textfw "ポケモンのHPが なくなると"
 	linefw "そのポケモンは 「きぜつ」となります"
 	linefw "あいてのポケモンが 「きぜつ」すると"
@@ -426,7 +426,7 @@ Text0413:
 	linefw "しょうりしたことに なります。"
 	done
 
-Text0414:
+GlossaryDecision2DeckedOutDescriptionText:
 	textfw "じぶんの番の はじめに 山札から"
 	linefw "カードを ひくときに 山札にカードが"
 	linefw "1枚もなくて カードを ひくことが"
@@ -438,7 +438,7 @@ Text0414:
 	linefw "きを つけましょう。"
 	done
 
-Text0415:
+GlossaryDecision3RunOutOfPokemonDescriptionText:
 	textfw "バトル場の ポケモンが 「きぜつ」"
 	linefw "したとき つぎに バトル場に だせる"
 	linefw "ひかえのポケモンが ベンチにいないと"
@@ -447,7 +447,7 @@ Text0415:
 	linefw "だしておくように こころがけましょう"
 	done
 
-Text0416:
+GlossarySuddenDeathDescriptionText:
 	textfw "じぶんと あいてが サイドカードを"
 	linefw "どうじに すべて とってしまったり"
 	linefw "どちらも バトル場に ポケモンを"
@@ -460,7 +460,7 @@ Text0416:
 	linefw "「サドン・デス」を くりかえします。"
 	done
 
-Text0417:
+GlossaryChlorophyllDescriptionText:
 	textfw "特別ルール1"
 	linefw "「みどりのちから」"
 	linefw ""
@@ -472,7 +472,7 @@ Text0417:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0418:
+GlossaryThunderChargeDescriptionText:
 	textfw "特別ルール2"
 	linefw "「雷パワーアップ」"
 	linefw ""
@@ -484,7 +484,7 @@ Text0418:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0419:
+GlossaryFlameArmorDescriptionText:
 	textfw "特別ルール3"
 	linefw "「ほのおのよろい」"
 	linefw ""
@@ -497,7 +497,7 @@ Text0419:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041a:
+GlossarySmallBenchDescriptionText:
 	textfw "特別ルール4"
 	linefw "「せまいベンチ」"
 	linefw ""
@@ -510,7 +510,7 @@ Text041a:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041b:
+GlossaryRunningWaterDescriptionText:
 	textfw "特別ルール5"
 	linefw "「にげみずの場」"
 	linefw ""
@@ -523,7 +523,7 @@ Text041b:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041c:
+GlossaryEarthPowerDescriptionText:
 	textfw "特別ルール6"
 	linefw "「だいちのちから」"
 	linefw ""
@@ -535,7 +535,7 @@ Text041c:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041d:
+GlossaryLowResistanceDescriptionText:
 	textfw "特別ルール7"
 	linefw "「抵抗力ていか」"
 	linefw ""
@@ -547,7 +547,7 @@ Text041d:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041e:
+GlossaryEnergyReturnDescriptionText:
 	textfw "特別ルール8"
 	linefw "「エネルギーリターン(R)」"
 	linefw ""
@@ -561,7 +561,7 @@ Text041e:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text041f:
+GlossaryToughEscapeDescriptionText:
 	textfw "特別ルール9"
 	linefw "「にげにくい場」"
 	linefw ""
@@ -574,7 +574,7 @@ Text041f:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0420:
+GlossaryBlackHoleDescriptionText:
 	textfw "特別ルール10"
 	linefw "「トラッシュブラックホール(BH)」"
 	linefw ""
@@ -587,7 +587,7 @@ Text0420:
 	linefw " 「特別ルール」で 対戦となります"
 	done
 
-Text0421:
+DebugDeckMenuText:
 	textfw "デッキかいぞう"
 	linefw "カードいちらん(全しさん)"
 	linefw "アルバムいちらん"
@@ -598,875 +598,875 @@ Text0421:
 	linefw "デッキしんだん"
 	done
 
-Text0422:
+DebugAutoDeckMachineMenuText:
 	textfw "オートデッキマシン1"
 	linefw "オートデッキマシン2"
 	done
 
-Text0423:
+DebugTransmittingMenuText:
 	textfw "カードあげる"
 	linefw "カードもらう"
 	linefw "デッキあげる"
 	linefw "デッキもらう"
 	done
 
-Text0424:
+DebugLectureDuelText:
 	textfw "レクチャー対戦"
 	done
 
-Text0425:
+FirstStrikeDeckText: ; left over from tcg1
 	textfw "せんせいこうげきデッキ"
 	done
 
-Text0426:
+ThunderboltDeckName:
 	textfw "10まんボルト"
 	done
 
-Text0427:
+DuelistGR1Name:
 	textfw "GR1号"
 	done
 
-Text0428:
+DuelistGR2Name:
 	textfw "GR2号"
 	done
 
-Text0429:
+DuelistGR3Name:
 	textfw "GR3号"
 	done
 
-Text042a:
+DuelistGR4Name:
 	textfw "GR4号"
 	done
 
-Text042b:
+DuelistGRXName:
 	textfw "GRX"
 	done
 
-Text042c:
+MaxEnergyDeckName:
 	textfw "MAXエナジー"
 	done
 
-Text042d:
+DuelistMrIshiharaName:
 	textfw "Mr.イシハラ"
 	done
 
-Text042e:
+DemonicForestDeckName:
 	textfw "あくまのもり"
 	done
 
-Text042f:
+GatheringNidoranDeckName:
 	textfw "あつまれニドラン"
 	done
 
-Text0430:
+RunningWildDeckName:
 	textfw "あばれんぼう"
 	done
 
-Text0431:
+RainDanceConfusionDeckName:
 	textfw "あまごいこんらん"
 	done
 
-Text0432:
+DuelistAaronName:
 	textfw "あらいモン"
 	done
 
-Text0433:
+AaronsStep1DeckName:
 	textfw "あらいモンステップ1"
 	done
 
-Text0434:
+AaronsStep2DeckName:
 	textfw "あらいモンステップ2"
 	done
 
-Text0435:
+AaronsStep3DeckName:
 	textfw "あらいモンステップ3"
 	done
 
-Text0436:
+PowerOfDarknessDeckName:
 	textfw "あんこくのパワー"
 	done
 
-Text0437:
+ChokeDeckName:
 	textfw "いきのねとめろ!"
 	done
 
-Text0438:
+ThreeYearsOnRockDeckName:
 	textfw "いわのうえにも3ねん"
 	done
 
-Text0439:
+WhirlpoolShowerDeckName:
 	textfw "うずしおのシャワー"
 	done
 
-Text043a:
+TestYourLuckDeckName:
 	textfw "うんだめし"
 	done
 
-Text043b:
+TorrentialFloodDeckName:
 	textfw "おおあめこうずい"
 	done
 
-Text043c:
+GlitteringScalesDeckName:
 	textfw "かがやくりんぷん"
 	done
 
-Text043d:
+SpiritedAwayDeckName:
 	textfw "かみかくし"
 	done
 
-Text043e:
+RiversideWalkDeckName:
 	textfw "かわらのおさんぽ"
 	done
 
-Text043f:
+CompleteCombustionDeckName:
 	textfw "かんぜんねんしょう"
 	done
 
-Text0440:
+YouCanDoItMachopDeckName:
 	textfw "がんばれ!ワンリキー"
 	done
 
-Text0441:
+DangerousBenchDeckName:
 	textfw "きけんなベンチ"
 	done
 
-Text0442:
+StrangeDeckName:
 	textfw "きみょうな"
 	done
 
-Text0443:
+SuddenGrowthDeckName:
 	textfw "きゅうせいちょう"
 	done
 
-Text0444:
+PowerfulPokemonDeckName:
 	textfw "きょうりょくポケモン"
 	done
 
-Text0445:
+MadPetalsDeckName:
 	textfw "くるえるはなびら"
 	done
 
-Text0446:
+ProtohistoricDeckName:
 	textfw "げんしじだい"
 	done
 
-Text0447:
+InsectCollectionDeckName:
 	textfw "こんちゅうさいしゅう"
 	done
 
-Text0448:
+StarterDeckName:
 	textfw "さいしょの"
 	done
 
-Text0449:
+VengefulAntiGR3DeckName:
 	textfw "しかえしGR3ごう"
 	done
 
-Text044a:
+NaturalScienceDeckName:
 	textfw "しぜんかがく"
 	done
 
-Text044b:
+BenchTrapDeckName:
 	textfw "じごくのベンチ"
 	done
 
-Text044c:
+EyeOfTheStormDeckName:
 	textfw "たいふうのめ"
 	done
 
-Text044d:
+SweatAntiGR1DeckName:
 	textfw "たおせ!GR1ごう"
 	done
 
-Text044e:
+SmashDeckName:
 	textfw "たたきつぶせ!"
 	done
 
-Text044f:
+GreatEarthquakeDeckName:
 	textfw "だいじしん"
 	done
 
-Text0450:
+GreatDragonDeckName:
 	textfw "だいドラゴン"
 	done
 
-Text0451:
+FullStrengthDeckName:
 	textfw "ちからまかせ"
 	done
 
-Text0452:
+SuperDestructivePowerDeckName:
 	textfw "ちょうはかいりょく"
 	done
 
-Text0453:
+PsychicEliteDeckName:
 	textfw "ちょうエリート"
 	done
 
-Text0454:
+DirectHitDeckName:
 	textfw "ちょくげき"
 	done
 
-Text0455:
+ThrowOutDeckName:
 	textfw "つまみだせ!"
 	done
 
-Text0456:
+ThisIsThePowerOfElectricityDeckName:
 	textfw "でんきのチカラだ"
 	done
 
-Text0457:
+QuickAttackDeckName:
 	textfw "でんこうせっか"
 	done
 
-Text0458:
+LegendaryFossilDeckName:
 	textfw "でんせつのかせき"
 	done
 
-Text0459:
+ElectricCurrentShockDeckName:
 	textfw "でんりゅうひばな"
 	done
 
-Text045a:
+VeryRareCardDeckName:
 	textfw "とってもレアカード"
 	done
 
-Text045b:
+PoisonousSwampDeckName:
 	textfw "どくのぬまち"
 	done
 
-Text045c:
+PoisonGoopGasDeckName:
 	textfw "どくのベトベトガス"
 	done
 
-Text045d:
+PoisonVespidsDeckName:
 	textfw "どくばち"
 	done
 
-Text045e:
+BeachDeckName:
 	textfw "なみうちぎわの"
 	done
 
-Text045f:
+PuppetMasterDeckName:
 	textfw "にんぎょうつかい"
 	done
 
-Text0460:
+SurvivingWaterDeckName:
 	textfw "のこされたみずの"
 	done
 
-Text0461:
+SurvivingGreenDeckName:
 	textfw "のこされたみどりの"
 	done
 
-Text0462:
+ImmortalPokemonDeckName:
 	textfw "ふじみのポケモン"
 	done
 
-Text0463:
+ImmortalFlameDeckName:
 	textfw "ふめつのほのお"
 	done
 
-Text0464:
+WeirdDeckName:
 	textfw "へんな"
 	done
 
-Text0465:
+FlameFestivalDeckName:
 	textfw "ほのおのおまつり"
 	done
 
-Text0466:
+GiveInAntiGR2DeckName:
 	textfw "まけろ!GR2ごう"
 	done
 
-Text0467:
+SplashingAboutDeckName:
 	textfw "みずあそび"
 	done
 
-Text0468:
+GazeUponThePowerOfFireDeckName:
 	textfw "みよ!ほのおのパワー"
 	done
 
-Text0469:
+EverybodysFriendDeckName:
 	textfw "みんなともだち"
 	done
 
-Text046a:
+SkilledWarriorDeckName:
 	textfw "むしゃしゅぎょう"
 	done
 
-Text046b:
+ColorlessEnergyDeckName:
 	textfw "むしょくエネルギー"
 	done
 
-Text046c:
+BlazingFlameDeckName:
 	textfw "もえさかるほのお"
 	done
 
-Text046d:
+IncinerateDeckName:
 	textfw "やきつくせ!"
 	done
 
-Text046e:
+GhostDeckName:
 	textfw "ゆうれい"
 	done
 
-Text046f:
+GoArcanineDeckName:
 	textfw "ゆけ!ウィンディ"
 	done
 
-Text0470:
+UnforgivingAntiGR4DeckName:
 	textfw "ゆるさんGR4ごう"
 	done
 
-Text0471:
+HandedOverGRDeckName:
 	textfw "わたされたGR"
 	done
 
-Text0472:
+BadGuysDeckName:
 	textfw "わるいやつら"
 	done
 
-Text0473:
+DuelistAiraName:
 	textfw "アイラ"
 	done
 
-Text0474:
+DuelistKenName:
 	textfw "アカバネ"
 	done
 
-Text0475:
+DuelistBrittanyName:
 	textfw "アヤコ"
 	done
 
-Text0476:
+DuelistAnnaName:
 	textfw "アンナ"
 	done
 
-Text0477:
+EeveeShowdownDeckName:
 	textfw "イーブイたいけつ"
 	done
 
-Text0478:
+DuelistIshiiName:
 	textfw "イシイ"
 	done
 
-Text0479:
+DuelistIchikawaName:
 	textfw "イチカワ"
 	done
 
-Text047a:
+DuelistImakuniName:
 	textfw "イマクニ?"
 	done
 
-Text047b:
+WaterStreamDeckName:
 	textfw "ウォーターストリーム"
 	done
 
-Text047c:
+WaterLegendDeckName:
 	textfw "ウォーターレジェンド"
 	done
 
-Text047d:
+DuelistAmyName:
 	textfw "ウッチー"
 	done
 
-Text047e:
+UltraRemovalDeckName:
 	textfw "ウルトラリムーブ"
 	done
 
-Text047f:
+DuelistEijiName:
 	textfw "エイジ"
 	done
 
-Text0480:
+EnergyRemovalDeckName:
 	textfw "エネルギー・リムーブ"
 	done
 
-Text0481:
+OverflowDeckName:
 	textfw "オーバーフロー"
 	done
 
-Text0482:
+DuelistJackName:
 	textfw "カネコウジ"
 	done
 
-Text0483:
+DuelistKanokoName:
 	textfw "カノコ"
 	done
 
-Text0484:
+SnorlaxGuardDeckName:
 	textfw "カビゴンとおせんぼ"
 	done
 
-Text0485:
+DuelistKamiyaName:
 	textfw "カミヤ"
 	done
 
-Text0486:
+DuelistKanzakiName:
 	textfw "カンザキ"
 	done
 
-Text0487:
+DuelistCatherineName:
 	textfw "キャサリン"
 	done
 
-Text0488:
+DuelistQueenName:
 	textfw "クィーン"
 	done
 
-Text0489:
+DuelistNikkiName:
 	textfw "クニミ"
 	done
 
-Text048a:
+DuelistRickName:
 	textfw "クルシマ"
 	done
 
-Text048b:
+GrandFireDeckName:
 	textfw "グランドファイヤー"
 	done
 
-Text048c:
+DuelistGraceName:
 	textfw "グレース"
 	done
 
-Text048d:
+GreatRocket1DeckName:
 	textfw "グレートロケット1"
 	done
 
-Text048e:
+GreatRocket2DeckName:
 	textfw "グレートロケット2"
 	done
 
-Text048f:
+GreatRocket3DeckName:
 	textfw "グレートロケット3"
 	done
 
-Text0490:
+GreatRocket4DeckName:
 	textfw "グレートロケット4"
 	done
 
-Text0491:
+DuelistDanielName:
 	textfw "ケイタ"
 	done
 
-Text0492:
+DuelistKevinName:
 	textfw "ケビン"
 	done
 
-Text0493:
+DuelistGeneName:
 	textfw "ゲンゾウ"
 	done
 
-Text0494:
+DuelistGodaName:
 	textfw "ゴウダ"
 	done
 
-Text0495:
+PsychicBattleDeckName:
 	textfw "サイキックバトル"
 	done
 
-Text0496:
+PsychicDeckName:
 	textfw "サイコキネシス"
 	done
 
-Text0497:
+DuelistSamejimaName:
 	textfw "サメジマ"
 	done
 
-Text0498:
+AwesomeFossilDeckName:
 	textfw "シブイかせき"
 	done
 
-Text0499:
+DuelistShokoName:
 	textfw "ショウコ"
 	done
 
-Text049a:
+DuelistJoshuaName:
 	textfw "シンタロー"
 	done
 
-Text049b:
+DuelistJesName:
 	textfw "ジェス"
 	done
 
-Text049c:
+DuelistAndrewName:
 	textfw "ジョータ"
 	done
 
-Text049d:
+SkySparkDeckName:
 	textfw "スカイスパーク"
 	done
 
-Text049e:
+DuelistSteveName:
 	textfw "スティーブ"
 	done
 
-Text049f:
+DuelistSentaName:
 	textfw "センタ"
 	done
 
-Text04a0:
+DuelistNicholasName:
 	textfw "ソウスケ"
 	done
 
-Text04a1:
+DuelistJosephName:
 	textfw "ソウタ"
 	done
 
-Text04a2:
+DuelistJohnName:
 	textfw "タカシ"
 	done
 
-Text04a3:
+DuelistIsaacName:
 	textfw "タカハシ"
 	done
 
-Text04a4:
+DuelistTapName:
 	textfw "タップ"
 	done
 
-Text04a5:
+DuelistChrisName:
 	textfw "タツロー"
 	done
 
-Text04a6:
+DarkScienceDeckName:
 	textfw "ダークサイエンス"
 	done
 
-Text04a7:
+DamageChaosDeckName:
 	textfw "ダメージだいこんらん"
 	done
 
-Text04a8:
+TextureTuner7DeckName:
 	textfw "テクスチャー7へんげ"
 	done
 
-Text04a9:
+DuelistDeeName:
 	textfw "ディー"
 	done
 
-Text04aa:
+DuelistBrandonName:
 	textfw "トシヒコ"
 	done
 
-Text04ab:
+DuelistToshironName:
 	textfw "トシロン"
 	done
 
-Text04ac:
+DuelistTobichanName:
 	textfw "トビちゃん"
 	done
 
-Text04ad:
+TripleZapdosDeckName:
 	textfw "トリプルサンダー"
 	done
 
-Text04ae:
+TrainerImprisonDeckName:
 	textfw "トレーナーふういん"
 	done
 
-Text04af:
+YourPracticeDeck1Name:
 	textfw "トレーニング1"
 	done
 
-Text04b0:
+YourPracticeDeck2Name:
 	textfw "トレーニング2"
 	done
 
-Text04b1:
+YourPracticeDeck3Name:
 	textfw "トレーニング3"
 	done
 
-Text04b2:
+RagingBillowOfFistsDeckName:
 	textfw "ドトウのてっけん"
 	done
 
-Text04b3:
+SteadyIncreaseDeckName:
 	textfw "ドンドンぞうしょく"
 	done
 
-Text04b4:
+DuelistKnightName:
 	textfw "ナイト"
 	done
 
-Text04b5:
+DuelistJessicaName:
 	textfw "ナツキ"
 	done
 
-Text04b6:
+DuelistNishijimaName:
 	textfw "ニシジマ"
 	done
 
-Text04b7:
+NewMachokeDeckName:
 	textfw "ニューゴーリキー"
 	done
 
-Text04b8:
+DuelistRyanName:
 	textfw "ノリオ"
 	done
 
-Text04b9:
+DuelistKristinName:
 	textfw "ハルナ"
 	done
 
-Text04ba:
+BadDreamDeckName:
 	textfw "バッドドリーム"
 	done
 
-Text04bb:
+LoveToBattleDeckName:
 	textfw "バトルだいすき"
 	done
 
-Text04bc:
+DuelistHideroName:
 	textfw "ヒデロウ"
 	done
 
-Text04bd:
+DuelistRobertName:
 	textfw "ヒロ"
 	done
 
-Text04be:
+DuelistCourtneyName:
 	textfw "ヒロコ"
 	done
 
-Text04bf:
+DuelistBishopName:
 	textfw "ビショップ"
 	done
 
-Text04c0:
+BigThunderDeckName:
 	textfw "ビッグサンダー"
 	done
 
-Text04c1:
+ElectricSelfDestructDeckName:
 	textfw "ビリビリじばく"
 	done
 
-Text04c2:
+DuelistBiruritchiName:
 	textfw "ビルリッチ"
 	done
 
-Text04c3:
+DuelistPierrotName:
 	textfw "ピエロ"
 	done
 
-Text04c4:
+ILovePikachuDeckName:
 	textfw "ピカチュウだいすき"
 	done
 
-Text04c5:
+ChainLightningByPikachuDeckName:
 	textfw "ピカチュウでビリビリ"
 	done
 
-Text04c6:
+FireballDeckName:
 	textfw "ファイヤーボール"
 	done
 
-Text04c7:
+BenchCallDeckName:
 	textfw "ベンチよびだし"
 	done
 
-Text04c8:
+DuelistPawnName:
 	textfw "ポーン"
 	done
 
-Text04c9:
+PoisonStormDeckName:
 	textfw "ポイズンストーム"
 	done
 
-Text04ca:
+PoisonMistDeckName:
 	textfw "ポイズンミスト"
 	done
 
-Text04cb:
+PokemonsPowerDeckName:
 	textfw "ポケモンパワー"
 	done
 
-Text04cc:
+DuelistErikName:
 	textfw "マサシ"
 	done
 
-Text04cd:
+DuelistJonathanName:
 	textfw "マサトシ"
 	done
 
-Text04ce:
+DuelistMichaelName:
 	textfw "マサヒロ"
 	done
 
-Text04cf:
+DuelistMagicianName:
 	textfw "マジシャン"
 	done
 
-Text04d0:
+DuelistMasqueradeName:
 	textfw "マスカレード"
 	done
 
-Text04d1:
+ParalyzedParalyzedDeckName:
 	textfw "マヒ!マヒ!"
 	done
 
-Text04d2:
+DuelistMamiName:
 	textfw "マミ"
 	done
 
-Text04d3:
+DuelistSaraName:
 	textfw "マリ"
 	done
 
-Text04d4:
+DuelistMurrayName:
 	textfw "ミウラ"
 	done
 
-Text04d5:
+DuelistSamName:
 	textfw "ミカサ"
 	done
 
-Text04d6:
+SamsPracticeDeckName:
 	textfw "ミカサのレクチャー"
 	done
 
-Text04d7:
+DuelistHeatherName:
 	textfw "ミサオ"
 	done
 
-Text04d8:
+DuelistMidoriName:
 	textfw "ミドリ"
 	done
 
-Text04d9:
+DuelistMiyajimaName:
 	textfw "ミヤジマ"
 	done
 
-Text04da:
+DuelistMiyukiName:
 	textfw "ミユキ"
 	done
 
-Text04db:
+DuelistMiwaName:
 	textfw "ミワ"
 	done
 
-Text04dc:
+DuelistAmandaName:
 	textfw "メグミ"
 	done
 
-Text04dd:
+DuelistMorinoName:
 	textfw "モリノ"
 	done
 
-Text04de:
+DuelistMatthewName:
 	textfw "ヤストモ"
 	done
 
-Text04df:
+DuelistDavidName:
 	textfw "ヤスユキ"
 	done
 
-Text04e0:
+DuelistMitchName:
 	textfw "ヤマグチ"
 	done
 
-Text04e1:
+DuelistYuiName:
 	textfw "ユイ"
 	done
 
-Text04e2:
+DuelistYukiName:
 	textfw "ユウキ"
 	done
 
-Text04e3:
+DuelistYutaName:
 	textfw "ユウタ"
 	done
 
-Text04e4:
+DuelistJenniferName:
 	textfw "ユカ"
 	done
 
-Text04e5:
+DuelistYosukeName:
 	textfw "ヨウスケ"
 	done
 
-Text04e6:
+DuelistRonaldName:
 	textfw "ランド"
 	done
 
-Text04e7:
+RonaldsGRXDeckName:
 	textfw "ランドのGRX"
 	done
 
-Text04e8:
+RonaldsUncoolDeckName:
 	textfw "ランドのイケてない"
 	done
 
-Text04e9:
+RonaldsUltraDeckName:
 	textfw "ランドのウルトラ"
 	done
 
-Text04ea:
+RonaldsSuperDeckName:
 	textfw "ランドのスーパー"
 	done
 
-Text04eb:
+RonaldsPowerDeckName:
 	textfw "ランドのパワー"
 	done
 
-Text04ec:
+DuelistStephanieName:
 	textfw "リエ"
 	done
 
-Text04ed:
+DuelistRodName:
 	textfw "リュウドー"
 	done
 
-Text04ee:
+DuelistRyokoName:
 	textfw "リョウコ"
 	done
 
-Text04ef:
+DuelistRookName:
 	textfw "ルーク"
 	done
 
-Text04f0:
+DuelistRuiName:
 	textfw "ルイ"
 	done
 
-Text04f1:
+PracticeDeckName:
 	textfw "レクチャー"
 	done
 
-Text04f2:
+DuelistRennaName:
 	textfw "レンナ"
 	done
 
-Text04f3:
+RollingStoneDeckName:
 	textfw "ローリングストーン"
 	done
 
-Text04f4:
+RockBlastDeckName:
 	textfw "ロックブラスト!"
 	done
 
-Text04f5:
+DuelistAdamName:
 	textfw "ワタルン"
 	done
 
-Text04f6:
+DuelistMainCharacterName:
 	textfw "主人公"
 	done
 
-Text04f7:
+DrMasonText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text04f8:
+PracticeDuelHeaderPlayersTurnNumberText:
 	textfw "<RAMNAME>の<RAMNUM>手目"
 	done
 
-Text04f9:
+PracticeDuelHeaderKnockedOutReplaceText:
 	textfw "「きぜつ」によるいれかえ"
 	done
 
-Text04fa:
+PracticeDuelMasonSetupsActivePokemonText:
 	textfw "手札を 7枚ひいたら"
 	linefw "対戦のじゅんびじゃ"
 	linefw "バトル場にセットする ポケモンを"
@@ -1477,12 +1477,12 @@ Text04fa:
 	linefw "ここは 「ディグダ」を セットじゃ"
 	done
 
-Text04fb:
+PracticeDuelMasonSetupsActivePokemonIncorrectText:
 	textfw "とりあえず こんかいは"
 	linefw "「ディグダ」を えらぶのじゃ"
 	done
 
-Text04fc:
+PracticeDuelMasonSetupsBenchedPokemonText:
 	textfw "さて つぎは ベンチに"
 	linefw "ポケモンを セットするんじゃ"
 	linefw "ベンチのポケモンは バトル場の"
@@ -1493,106 +1493,106 @@ Text04fc:
 	linefw "ベンチに セットするんじゃ"
 	done
 
-Text04fd:
+PracticeDuelMasonSetupsBenchedPokemonIncorrectText:
 	textfw "とりあえず こんかいは"
 	linefw "「ポッポ」を セットするんじゃ"
 	done
 
-Text04fe:
+PracticeDuelMasonSetupsFinishPressBText:
 	textfw "だすポケモンが いないときは"
 	linefw "Bボタンをおして おわりじゃ"
 	done
 
-Text04ff:
+PracticeDuelTurn1Instr1Text:
 	textfw "1ˍメニューの「てふだ」を せんたく"
 	linefw "  「闘エネルギー」を えらぶ"
 	done
 
-Text0500:
+PracticeDuelTurn1Instr2Text:
 	textfw "2ˍ「闘エネルギー」を バトル場の"
 	linefw "  「ディグダ」に つける"
 	done
 
-Text0501:
+PracticeDuelTurn1Instr3Text:
 	textfw "3ˍメニューの「ワザ」を えらんで"
 	linefw "  「あなをほる」で えらぶ"
 	done
 
-Text0502:
+PracticeDuelTurn1Mason1Text:
 	textfw "ポケモンのワザを つかうには"
 	linefw "エネルギーが ひつようなんじゃ"
 	linefw "メニューの「てふだ」を せんたく"
 	linefw "「闘エネルギー」を えらぶんじゃ"
 	done
 
-Text0503:
+PracticeDuelTurn1Mason2Text:
 	textfw "つぎに バトル場の「ディグダ」を"
 	linefw "えらんで Aボタン"
 	linefw "これで 「ディグダ」に"
 	linefw "「闘エネルギー」を つけられるんじゃ"
 	done
 
-Text0504:
+PracticeDuelTurn1Mason3Text:
 	textfw "そうして さいごに"
 	linefw "「ワザ」をつかって こうげきじゃ"
 	linefw "メニューの「ワザ」を せんたく"
 	linefw "「あなをほる」で こうげきじゃ"
 	done
 
-Text0505:
+PracticeDuelMasonProceedAsTaughtText:
 	textfw "さあ"
 	linefw "このとおりに やってみるんじゃ"
 	done
 
-Text0506:
+PracticeDuelMasonIncorrectRetryText:
 	textfw "これは 「れんしゅう」じゃから"
 	linefw "いわれたとおりに そうさするんじゃ"
 	linefw "もう いちど"
 	linefw "やりなおしじゃ"
 	done
 
-Text0507:
+PracticeDuelMasonExplainAgainPromptText:
 	textfw "もういちど せつめいしようか?"
 	done
 
-Text0508:
+PracticeDuelTurn2Instr1Text:
 	textfw "1ˍ「闘エネルギー」を"
 	linefw "  「ディグダ」に つける"
 	done
 
-Text0509:
+PracticeDuelTurn2Instr2Text:
 	textfw "2ˍ「ディグダ」の 2つめの「ワザ」"
 	linefw "  「どろかけ」で こうげきする"
 	done
 
-Text050a:
+PracticeDuelTurn2Mason1Text:
 	textfw "「ディグダ」の 2つめの「ワザ」で"
 	linefw "こうげきするための じゅんびじゃ"
 	linefw "さらに 「ディグダ」に"
 	linefw "「闘エネルギー」を つけよう"
 	done
 
-Text050b:
+PracticeDuelTurn2Mason2Text:
 	textfw "さあ 「ディグダ」のワザ"
 	linefw "「どろかけ」で こうげきじゃ"
 	done
 
-Text050c:
+PracticeDuelTurn3Instr1Text:
 	textfw "1ˍ「ダグトリオ」を えらんで"
 	linefw "  「ディグダ」につけて 進化"
 	done
 
-Text050d:
+PracticeDuelTurn3Instr2Text:
 	textfw "2ˍ「闘エネルギー」を 進化した"
 	linefw "  「ダグトリオ」に つける"
 	done
 
-Text050e:
+PracticeDuelTurn3Instr3Text:
 	textfw "3ˍ「ダグトリオ」のワザを つかって"
 	linefw "  「きりさく」で こうげき"
 	done
 
-Text050f:
+PracticeDuelTurn3Mason1Text:
 	textfw "このままだと 「ディグダ」が"
 	linefw "やられてしまうので 進化してみよう"
 	linefw "手札にある 「ダグトリオ」を"
@@ -1601,14 +1601,14 @@ Text050f:
 	linefw "HPも 30から70にUPじゃ"
 	done
 
-Text0510:
+PracticeDuelTurn3Mason2Text:
 	textfw "「ダグトリオ」の「きりさく」を"
 	linefw "つかうには エネルギーが たりない"
 	linefw "「ダグトリオ」に さらに"
 	linefw "「闘エネルギー」を つけよう"
 	done
 
-Text0511:
+PracticeDuelTurn3Mason3Text:
 	textfw "これで 「ダグトリオ」のワザ"
 	linefw "「きりさく」を つかえるぞ"
 	linefw "「ダグトリオ」の 「きりさく」で"
@@ -1617,48 +1617,48 @@ Text0511:
 	linefw "サイドカードを 1枚ひくんじゃ"
 	done
 
-Text0512:
+PracticeDuelTurn4Instr1Text:
 	textfw "1ˍ「ニドラン♂」を 手札から"
 	linefw "  えらんで ベンチに だす"
 	done
 
-Text0513:
+PracticeDuelTurn4Instr2Text:
 	textfw "2ˍ「草エネルギー」を ベンチの"
 	linefw "  「ニドラン♂」に つける"
 	done
 
-Text0514:
+PracticeDuelTurn4Instr3Text:
 	textfw "3ˍ「ダグトリオ」のワザを つかって"
 	linefw "  「きりさく」で こうげき"
 	done
 
-Text0515:
+PracticeDuelTurn4Mason1Text:
 	textfw "じぶんの場に ポケモンが 1ぴきも"
 	linefw "いなくなると まけになるんじゃ"
 	linefw "ベンチに いまひいた たねポケモンの"
 	linefw "「ニドラン♂」を だしておこう"
 	done
 
-Text0516:
+PracticeDuelTurn4Mason2Text:
 	textfw "「ニドラン♂」に 「草エネルギー」を"
 	linefw "つけて ワザの じゅんびじゃ"
 	done
 
-Text0517:
+PracticeDuelTurn4Mason3Text:
 	textfw "そして 「ダグトリオ」は"
 	linefw "「きりさく」で こうげきじゃ"
 	done
 
-Text0518:
+PracticeDuelKnockedOutInstr1Text:
 	textfw "1ˍ「ダグトリオ」が きぜつしたので"
 	linefw "  ベンチの 「ニドラン♂」を"
 	linefw "  えらんで Aボタンで だす"
 	done
 
-Text0519:
+PracticeDuelKnockedOutInstr2Text:
 	done
 
-Text051a:
+PracticeDuelKnockedOutMason1Text:
 	textfw "「きぜつ」した ポケモンのかわりに"
 	linefw "ベンチのポケモンを だすのじゃ"
 	linefw "だせるポケモンは ベンチにいる"
@@ -1667,41 +1667,41 @@ Text051a:
 	linefw "バトル場に だしておくのじゃ"
 	done
 
-Text051b:
+PracticeDuelKnockedOutMason2Text:
 	textfw "このとき SELECTボタンで"
 	linefw "さまざまなじょうほうを かくにんじゃ"
 	linefw "手札や 場のじょうたいを"
 	linefw "かくにんするのは たいせつじゃ"
 	done
 
-Text051c:
+PracticeDuelKnockedOutMasonIncorrectText:
 	textfw "ここは"
 	linefw "「ニドラン♂」を えらぶんじゃ"
 	done
 
-Text051d:
+PracticeDuelTurn5Instr1Text:
 	textfw "1ˍ「ワンリキー」を 手札から"
 	linefw "  えらんで ベンチに だす"
 	done
 
-Text051e:
+PracticeDuelTurn5Instr2Text:
 	textfw "2ˍ「草エネルギー」を バトル場の"
 	linefw "  「ニドラン♂」に つける"
 	done
 
-Text051f:
+PracticeDuelTurn5Instr3Text:
 	textfw "3ˍ「ニドラン♂」のワザ"
 	linefw "  「つのでつつく」で こうげき"
 	done
 
-Text0520:
+PracticeDuelTurn5Mason1Text:
 	textfw "まずは ベンチのポケモンの"
 	linefw "ほじゅうじゃな"
 	linefw "いまひいた 「ワンリキー」を"
 	linefw "ベンチに だしておこう"
 	done
 
-Text0521:
+PracticeDuelTurn5Mason2Text:
 	textfw "「ニドラン♂」は 「ニドリーノ」に"
 	linefw "進化することが できるのじゃ"
 	linefw "「ニドリーノ」に 進化させたときの"
@@ -1710,43 +1710,43 @@ Text0521:
 	linefw "「ニドラン♂」に つけておくのじゃ"
 	done
 
-Text0522:
+PracticeDuelTurn5Mason3Text:
 	textfw "こうげきは 「ニドラン♂」のワザ"
 	linefw "「つのでつつく」じゃ"
 	linefw "このワザは コインをなげて"
 	linefw "「おもて」なら せいこうじゃ"
 	done
 
-Text0523:
+PracticeDuelTurn6Instr1Text:
 	textfw "1ˍ「ニドリーノ」を えらんで"
 	linefw "  「ニドラン♂」につけて 進化"
 	done
 
-Text0524:
+PracticeDuelTurn6Instr2Text:
 	textfw "2ˍ「草エネルギー」を"
 	linefw "  「ニドリーノ」に つける"
 	done
 
-Text0525:
+PracticeDuelTurn6Instr3Text:
 	textfw "3ˍ「ニドリーノ」のワザ"
 	linefw "  「にどげり」で こうげき"
 	done
 
-Text0526:
+PracticeDuelTurn6Mason1Text:
 	textfw "よおし 「ニドラン♂」を"
 	linefw "「ニドリーノ」へ 進化させるのじゃ"
 	linefw "手札から 「ニドリーノ」をえらんで"
 	linefw "「ニドラン♂」へ つけるのじゃ"
 	done
 
-Text0527:
+PracticeDuelTurn6Mason2Text:
 	textfw "進化させた 「ニドリーノ」の"
 	linefw "ワザ「にどげり」の じゅんびじゃ"
 	linefw "手札の 「草エネルギー」を"
 	linefw "「ニドリーノ」に つけるのじゃ"
 	done
 
-Text0528:
+PracticeDuelTurn6Mason3Text:
 	textfw "さあ 「ニドリーノ」のワザ"
 	linefw "「にどげり」で こうげきじゃ!"
 	linefw "「にどげり」は コインをなげて"
@@ -1759,43 +1759,43 @@ Text0528:
 	linefw "ひいて <RAMNAME>の勝ちじゃ"
 	done
 
-Text0529:
+DeckDiagnosisStep1Text:
 	textfw "ステップ1"
 	done
 
-Text052a:
+DeckDiagnosisStep2Text:
 	textfw "ステップ2"
 	done
 
-Text052b:
+DeckDiagnosisStep3Text:
 	textfw "ステップ3"
 	done
 
-Text052c:
+DeckDiagnosisStep4Text:
 	textfw "ステップ4"
 	done
 
-Text052d:
+DeckDiagnosisAdvice1Text:
 	textfw "アドバイス1"
 	done
 
-Text052e:
+DeckDiagnosisAdvice2Text:
 	textfw "アドバイス2"
 	done
 
-Text052f:
+DeckDiagnosisAdvice3Text:
 	textfw "アドバイス3"
 	done
 
-Text0530:
+DeckDiagnosisAdvice4Text:
 	textfw "アドバイス4"
 	done
 
-Text0531:
+DeckDiagnosisExitText:
 	textfw "やめる"
 	done
 
-Text0532:
+DeckDiagnosisStep1MenuText:
 	textfw "ステップ 1"
 	linefw "デッキチェック"
 	linefw "アドバイス1"
@@ -1804,7 +1804,7 @@ Text0532:
 	linefw "もどる"
 	done
 
-Text0533:
+DeckDiagnosisStep2MenuText:
 	textfw "ステップ 2"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1812,7 +1812,7 @@ Text0533:
 	linefw "もどる"
 	done
 
-Text0534:
+DeckDiagnosisStep3MenuText:
 	textfw "ステップ 3"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1820,7 +1820,7 @@ Text0534:
 	linefw "もどる"
 	done
 
-Text0535:
+DeckDiagnosisStep4MenuText:
 	textfw "ステップ 4"
 	linefw "アドバイス1"
 	linefw "アドバイス2"
@@ -1829,11 +1829,11 @@ Text0535:
 	linefw "もどる"
 	done
 
-Text0536:
+DeckDiagnosisTargetNameText:
 	textfw "<RAMTEXT>デッキ"
 	done
 
-Text0537:
+DeckDiagnosisBreakdownText:
 	textfw "エネルギーカード       枚"
 	linefw "たねポケモンカード      枚"
 	linefw "1進化カード         枚"
@@ -1841,169 +1841,169 @@ Text0537:
 	linefw "トレーナーカード       枚"
 	done
 
-Text0538:
+DeckDiagnosisGrassText:
 	textfw "草"
 	done
 
-Text0539:
+DeckDiagnosisWaterText:
 	textfw "水"
 	done
 
-Text053a:
+DeckDiagnosisLightningText:
 	textfw "雷"
 	done
 
-Text053b:
+DeckDiagnosisFireText:
 	textfw "炎"
 	done
 
-Text053c:
+DeckDiagnosisFightingText:
 	textfw "闘"
 	done
 
-Text053d:
+DeckDiagnosisPsychicText:
 	textfw "超"
 	done
 
-Text053e:
+DeckDiagnosisDialogInitialText:
 	textfw "Dr.オーヤマの デッキしんだんじゃ"
 	linefw "メニューを えらぶんじゃ"
 	done
 
-Text053f:
+DeckDiagnosisDialogStep1Text:
 	textfw "「デッキ」の つくりかたの"
 	linefw "きほんてきな アドバイスじゃ"
 	done
 
-Text0540:
+DeckDiagnosisDialogStep2Text:
 	textfw "すこし なれてきたひとのための"
 	linefw "アドバイスじゃ"
 	done
 
-Text0541:
+DeckDiagnosisDialogStep3Text:
 	textfw "さらに ステップアップしたい"
 	linefw "ひとへの アドバイスじゃ"
 	done
 
-Text0542:
+DeckDiagnosisDialogStep4Text:
 	textfw "もっと つよくなりたいひとへの"
 	linefw "アドバイスじゃ"
 	done
 
-Text0543:
+DeckDiagnosisDialogExitText:
 	textfw "デッキしんだんを やめるぞ"
 	done
 
-Text0544:
+DeckDiagnosisDialogCheckDeckText:
 	textfw "「デッキ」のなかを みてやろう"
 	done
 
-Text0545:
+DeckDiagnosisDialogStep1Advice1Text:
 	textfw "「たねポケモン」は"
 	linefw "ポケモンカードの きほんじゃぞ!"
 	done
 
-Text0546:
+DeckDiagnosisDialogStep1Advice2Text:
 	textfw "「エネルギーカード」は"
 	linefw "わすれずに いれるんじゃ!"
 	done
 
-Text0547:
+DeckDiagnosisDialogStep1Advice3Text:
 	textfw "「進化カード」は バランスを"
 	linefw "かんがえて いれるんじゃ!"
 	done
 
-Text0548:
+DeckDiagnosisDialogBackText:
 	textfw "メインメニューに もどるぞ"
 	done
 
-Text0549:
+DeckDiagnosisDialogStep2Advice1Text:
 	textfw "まずは"
 	linefw "「マサキ」と「オーキドはかせ」じゃ"
 	done
 
-Text054a:
+DeckDiagnosisDialogStep2Advice2Text:
 	textfw "つぎは 「きずぐすり」と"
 	linefw "「ポケモンいれかえ」じゃ"
 	done
 
-Text054b:
+DeckDiagnosisDialogStep2Advice3Text:
 	textfw "「どく・マヒ・ねむり・こんらん」と"
 	linefw "「なんでもなおし」じゃ!"
 	done
 
-Text054c:
+DeckDiagnosisDialogStep3Advice1Text:
 	textfw "まずは 2色のデッキじゃ!"
 	done
 
-Text054d:
+DeckDiagnosisDialogStep3Advice2Text:
 	textfw "つぎは 3色のデッキじゃな!"
 	done
 
-Text054e:
+DeckDiagnosisDialogStep3Advice3Text:
 	textfw "なにが わるいかを"
 	linefw "かんがえてみよう"
 	done
 
-Text054f:
+DeckDiagnosisDialogStep4Advice1Text:
 	textfw "それぞれの色の とくちょうを"
 	linefw "せつめいしてやろう"
 	done
 
-Text0550:
+DeckDiagnosisDialogStep4Advice2Text:
 	textfw "無色のポケモンを"
 	linefw "うまくいれて つくるのじゃ!"
 	done
 
-Text0551:
+DeckDiagnosisDialogStep4Advice3Text:
 	textfw "「オーキドはかせ」の つかいかたじゃ"
 	done
 
-Text0552:
+DeckDiagnosisDialogStep4Advice4Text:
 	textfw "「そっこう型」と「かべ型」の"
 	linefw "デッキの たたかいかたじゃ"
 	done
 
-Text0553:
+DeckDiagnosisChooseDeckToCheckText:
 	textfw "どのデッキを"
 	linefw "チェックしてほしいんじゃ?"
 	done
 
-Text0554:
+DeckDiagnosisCheckingDeckText:
 	textfw "「<RAMTEXT>デッキ」"
 	linefw "チェック中じゃ?"
 	done
 
-Text0555:
+DeckDiagnosisCheckedDeckText:
 	textfw "「<RAMTEXT>」"
 	linefw "デッキチェック かんりょうじゃ"
 	done
 
-Text0556:
+DeckDiagnosisResultRareCardsHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "★しるしのカード"
 	done
 
-Text0557:
+DeckDiagnosisResultEvolutionMismatchedHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "進化セットが そろっていないカード"
 	done
 
-Text0558:
+DeckDiagnosisResultEnergyMismatchedHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "色のあっていない エネルギーカード"
 	done
 
-Text0559:
+DeckDiagnosisResultPokemonPowerCardsHeaderText:
 	textfw "「<RAMTEXT>」の"
 	linefw "特殊能力のあるカード"
 	done
 
-Text055a:
+DeckDiagnosisCheckAnotherDeckPromptText:
 	textfw "ほかのデッキも チェックするのか?"
 	done
 
-Text055b:
+DeckDiagnosisStep1Advice1Description1Text:
 	textfw "「たねポケモン」カードは"
 	linefw "ポケモンカードの すべてのきほんじゃ"
 	linefw "対戦のはじめや 「場」に ちょくせつ"
@@ -2013,14 +2013,14 @@ Text055b:
 	linefw "「進化カード」も だせんぞ!"
 	done
 
-Text055c:
+DeckDiagnosisStep1Advice1Description2Text:
 	textfw "そうじゃなぁ"
 	linefw "デッキには 12枚いじょうの"
 	linefw "「たねポケモンカード」は"
 	linefw "いれておきたいもんじゃのう!"
 	done
 
-Text055d:
+DeckDiagnosisStep1Advice2Description1Text:
 	textfw "「エネルギーカード」は"
 	linefw "わすれずに いれるんじゃ!"
 	linefw "エネルギーがなければ ポケモンは"
@@ -2031,7 +2031,7 @@ Text055d:
 	linefw "ひつようじゃ"
 	done
 
-Text055e:
+DeckDiagnosisStep1Advice2Description2Text:
 	textfw "エネルギーの色も たいせつじゃ"
 	linefw "ポケモンの色と エネルギーの色は"
 	linefw "あわせるようにするのじゃ"
@@ -2041,7 +2041,7 @@ Text055e:
 	linefw "いれておくと いいじゃろう"
 	done
 
-Text055f:
+DeckDiagnosisStep1Advice3Description1Text:
 	textfw "ポケモンのカードには"
 	linefw "「たねポケモン・1進化・2進化」の"
 	linefw "3しゅるいが ある"
@@ -2052,7 +2052,7 @@ Text055f:
 	linefw "「場」にいないと だせないんじゃ"
 	done
 
-Text0560:
+DeckDiagnosisStep1Advice3Description2Text:
 	textfw "デッキには 「たねポケモン」を"
 	linefw "1ばんおおく 「1進化」「2進化」の"
 	linefw "じゅんに 枚すうを へらしておくのが"
@@ -2061,7 +2061,7 @@ Text0560:
 	linefw "「2進化」2枚と いったかんじじゃな"
 	done
 
-Text0561:
+DeckDiagnosisStep2Advice1DescriptionText:
 	textfw "「マサキ」と「オーキドはかせ」は"
 	linefw "だいぎゃくてんを ねらうときに"
 	linefw "いいカードだぞ!"
@@ -2070,7 +2070,7 @@ Text0561:
 	linefw "「マサキ」も2枚ぐらい いれてみよう"
 	done
 
-Text0562:
+DeckDiagnosisStep2Advice2DescriptionText:
 	textfw "つぎに だいじなのは「きずぐすり」と"
 	linefw "「ポケモンいれかえ」じゃ"
 	linefw "「きずぐすり」と「ポケモンいれかえ」"
@@ -2081,7 +2081,7 @@ Text0562:
 	linefw "いれてみよう"
 	done
 
-Text0563:
+DeckDiagnosisStep2Advice3DescriptionText:
 	textfw "ポケモンは [相手]のこうげきで"
 	linefw "「どく」や「マヒ」「ねむり」"
 	linefw "「こんらん」といった 特殊状態に"
@@ -2092,7 +2092,7 @@ Text0563:
 	linefw "いいぞ"
 	done
 
-Text0564:
+DeckDiagnosisStep3Advice1Description1Text:
 	textfw "まずは 「2色」+無色のデッキを"
 	linefw "つくってみるのじゃ。"
 	linefw "「2色」+無色は わかりやすく"
@@ -2103,7 +2103,7 @@ Text0564:
 	linefw "弱点をおぎなうように かんがえよう"
 	done
 
-Text0565:
+DeckDiagnosisStep3Advice1Description2Text:
 	textfw "たとえばじゃ"
 	linefw "「雷ポケモン中心のデッキ」なら"
 	linefw "「雷ポケモン」は"
@@ -2113,7 +2113,7 @@ Text0565:
 	linefw "いれるのじゃな"
 	done
 
-Text0566:
+DeckDiagnosisStep3Advice1Description3Text:
 	textfw "また 「炎ポケモン中心のデッキ」なら"
 	linefw "「炎ポケモンは 「水ポケモン」に"
 	linefw "よわいので 「水」につよい"
@@ -2123,13 +2123,13 @@ Text0566:
 	linefw "すこしいれてカバーしよう"
 	done
 
-Text0567:
+DeckDiagnosisStep3Advice1Description4Text:
 	textfw "つまり"
 	linefw "「炎+雷+無色(飛行タイプ)」という"
 	linefw "デッキじゃな"
 	done
 
-Text0568:
+DeckDiagnosisStep3Advice2Description1Text:
 	textfw "3色デッキは くふうしだいで"
 	linefw "おもしろいデッキに なるぞ!"
 	linefw "3色デッキなどの「多色デッキ(2色"
@@ -2138,14 +2138,14 @@ Text0568:
 	linefw "2~4枚 いれるといいのじゃ"
 	done
 
-Text0569:
+DeckDiagnosisStep3Advice2Description2Text:
 	textfw "たとえばじゃ"
 	linefw "「炎+雷+草」なんかいがいと いいぞ"
 	linefw "しんごうきのようじゃがな・・・"
 	linefw "はははっ"
 	done
 
-Text056a:
+DeckDiagnosisStep3Advice3Description1Text:
 	textfw "とにかく まけることを きにせず"
 	linefw "なん回も対戦して なにが わるいのか"
 	linefw "かんがえるようにしよう"
@@ -2156,7 +2156,7 @@ Text056a:
 	linefw "ふやせばいい"
 	done
 
-Text056b:
+DeckDiagnosisStep3Advice3Description2Text:
 	textfw "全体でのバランスが 1番 たいせつ"
 	linefw "なので きを つけるのじゃ"
 	linefw "デッキのなかの 色かずを へらしたり"
@@ -2167,7 +2167,7 @@ Text056b:
 	linefw "対戦をたのしむことが だいじじゃな"
 	done
 
-Text056c:
+DeckDiagnosisStep4Advice1Description1Text:
 	textfw "「それぞれの色の特徵」"
 	linefw ""
 	linefw "「炎」ポケモンは 「炎」をトラッシュ"
@@ -2177,7 +2177,7 @@ Text056c:
 	linefw "2枚ぐらい いれるのじゃ"
 	done
 
-Text056d:
+DeckDiagnosisStep4Advice1Description2Text:
 	textfw "「雷」ポケモンは [自分]にも"
 	linefw "ダメージを あたえてしまうワザを"
 	linefw "もったポケモンが おおいのじゃ"
@@ -2185,7 +2185,7 @@ Text056d:
 	linefw "2枚ぐらい いれるといいじゃろう"
 	done
 
-Text056e:
+DeckDiagnosisStep4Advice1Description3Text:
 	textfw "「草」ポケモンは2進化するポケモンが"
 	linefw "おおいのじゃ"
 	linefw "だから そんなデッキには ポケモンの"
@@ -2195,7 +2195,7 @@ Text056e:
 	linefw "よいぞ"
 	done
 
-Text056f:
+DeckDiagnosisStep4Advice1Description4Text:
 	textfw "「水」ポケモンは 「水」エネルギーを"
 	linefw "追加すると[相手]にあたえる"
 	linefw "ダメージが ふえるワザをもった"
@@ -2204,7 +2204,7 @@ Text056f:
 	linefw "カードを 多めにいれるといいんじゃよ"
 	done
 
-Text0570:
+DeckDiagnosisStep4Advice1Description5Text:
 	textfw "「闘」ポケモンは 「にげる」のに"
 	linefw "エネルギーのかずが 多いポケモンが"
 	linefw "けっこう いるんじゃ"
@@ -2213,7 +2213,7 @@ Text0570:
 	linefw "2~4枚 いれてみよう。"
 	done
 
-Text0571:
+DeckDiagnosisStep4Advice1Description6Text:
 	textfw "「超」ポケモンは 「抵抗力」で"
 	linefw "ダメージを ふせがれるときがあるので"
 	linefw "そんなデッキには 「突風」を"
@@ -2224,7 +2224,7 @@ Text0571:
 	linefw "いれたいところじゃな。"
 	done
 
-Text0572:
+DeckDiagnosisStep4Advice2Description1Text:
 	textfw "「無色ポケモン」は どの色のエネルギ"
 	linefw "ーでもワザが つかえるから"
 	linefw "どのデッキに いれてもつかいやすい"
@@ -2233,7 +2233,7 @@ Text0572:
 	linefw "抵抗力が ちがうのも おぼえておこう"
 	done
 
-Text0573:
+DeckDiagnosisStep4Advice2Description2Text:
 	textfw "「無色ポケモン」を 多くいれたデッキ"
 	linefw "には 「無色2個エネルギー」を"
 	linefw "2~4枚入れるのじゃ。"
@@ -2243,7 +2243,7 @@ Text0573:
 	linefw "やすくなるぞ"
 	done
 
-Text0574:
+DeckDiagnosisStep4Advice2Description3Text:
 	textfw "たとえば 「けとばすのポニータ」とか"
 	linefw "「こうらアタックのゼニガメ」とか"
 	linefw "「きりさくのストライク」とか"
@@ -2251,7 +2251,7 @@ Text0574:
 	linefw "そうじゃな"
 	done
 
-Text0575:
+DeckDiagnosisStep4Advice3Description1Text:
 	textfw "「オーキドはかせ」は おもいきって"
 	linefw "つかうのじゃ"
 	linefw " 手札を せんぶすててしまうのは"
@@ -2262,7 +2262,7 @@ Text0575:
 	linefw "手札をすてて 7枚ひくのじゃ!"
 	done
 
-Text0576:
+DeckDiagnosisStep4Advice3Description2Text:
 	textfw "こうすることで デッキのうごきが"
 	linefw "ぜんぜん かわってくるはずじゃよ"
 	linefw "おもいきったプレイが ぎゃくてんへの"
@@ -2271,7 +2271,7 @@ Text0576:
 	linefw "いれておきたいものじゃな"
 	done
 
-Text0577:
+DeckDiagnosisStep4Advice4Description1Text:
 	textfw "そっこう型デッキ"
 	linefw "「ヒトデマン」「ワンリキー」「ビリリ"
 	linefw "ダマ」など 「色エネルギーひとつで"
@@ -2282,7 +2282,7 @@ Text0577:
 	linefw "いれとかないとダメじゃぞ"
 	done
 
-Text0578:
+DeckDiagnosisStep4Advice4Description2Text:
 	textfw "かべ型デッキ"
 	linefw "「イワーク」「ラッキー」「ベロリンガ"
 	linefw "」など <HP>が たかいポケモンたちで"
@@ -2291,119 +2291,119 @@ Text0578:
 	linefw "そっこう型の ぎゃくじゃぞ"
 	done
 
-Text0579:
+DeckDiagnosisTooFewBasicPokemonText:
 	textfw "うーむ"
 	linefw "「たねポケモン」が すくないようじゃ"
 	linefw "もうすこし"
 	linefw "「たねポケモン」を いれてみよう"
 	done
 
-Text057a:
+DeckDiagnosisTooManyColorsText:
 	textfw "デッキのなかの色は 「2色+無色」や"
 	linefw "「3色+無色」に してみよう"
 	done
 
-Text057b:
+DeckDiagnosisTooFewPokemonText:
 	textfw "ポケモンのカードが"
 	linefw "すこし すくないようじゃな"
 	linefw "もうすこし ポケモンのカードを"
 	linefw "いれたほうが いいじゃろう"
 	done
 
-Text057c:
+DeckDiagnosisTooManyPokemonText:
 	textfw "ポケモンのカードが"
 	linefw "すこし おおいようじゃな"
 	linefw "もうすこし ポケモンのカードを"
 	linefw "へらしたほうが いいじゃろう"
 	done
 
-Text057d:
+DeckDiagnosisTooFewEnergyText:
 	textfw "エネルギーカードが"
 	linefw "すくない ようじゃな!"
 	linefw "もうすこし エネルギーカードを"
 	linefw "いれたほうが いいじゃろう"
 	done
 
-Text057e:
+DeckDiagnosisTooManyEnergyText:
 	textfw "エネルギーカードが"
 	linefw "おおい ようじゃな!"
 	linefw "もうすこし エネルギーカードを"
 	linefw "へらしたほうが いいじゃろう"
 	done
 
-Text057f:
+DeckDiagnosisNoEnergyText:
 	textfw "ばかもの! エネルギーカードが"
 	linefw "1枚もはいって おらんじゃないか!"
 	linefw "エネルギーカードが なければ"
 	linefw "なにも できんぞ!!"
 	done
 
-Text0580:
+DeckDiagnosisEvolutionMismatchedText:
 	textfw "進化まえのポケモンが はいっていない"
 	linefw "ポケモンカードが あるぞ"
 	done
 
-Text0581:
+DeckDiagnosisEvolutionMismatchedListText:
 	textfw "進化まえのポケモンがいない"
 	linefw "ポケモンカードは これじゃ"
 	done
 
-Text0582:
+DeckDiagnosisEvolutionUnbalancedText:
 	textfw "「たね」「1進化」「2進化」の"
 	linefw "バランスが よくないものが あるのぅ"
 	done
 
-Text0583:
+DeckDiagnosisEvolutionUnbalancedListText:
 	textfw "進化のバランスが わるい"
 	linefw "くみあわせのカードは これじゃ"
 	done
 
-Text0584:
+DeckDiagnosisPokemonEnergyMismatchedText:
 	textfw "デッキのなかの ポケモンと"
 	linefw "エネルギーカードの色は そろえよう"
 	done
 
-Text0585:
+DeckDiagnosisPokemonEnergyMismatchedListText:
 	textfw "ポケモンの色とあっていない"
 	linefw "エネルギーカードは これじゃ"
 	done
 
-Text0586:
+DeckDiagnosisPokemonEnergyUnbalancedText:
 	textfw "ポケモンに くらべて"
 	linefw "エネルギーのかずが すくないようじゃ"
 	linefw "ポケモンが うまくワザをだせるように"
 	linefw "エネルギーカードを ふやすのじゃ!"
 	done
 
-Text0587:
+DeckDiagnosisTooManyEnergyThisColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃな"
 	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし へらしては どうかな?"
 	done
 
-Text0588:
+DeckDiagnosisTooFewEnergyThisColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "すくなすぎる ようじゃな"
 	linefw "「<RAMTEXT>エネルギー」の 枚すうを"
 	linefw "すこし ふやしては どうかな?"
 	done
 
-Text0589:
+DeckDiagnosisTooManyEnergyThisColorAddThatColorText:
 	textfw "「<RAMTEXT>エネルギー」の わりあいが"
 	linefw "おおすぎる ようじゃ"
 	linefw "「<RAMTEXT>エネルギー」の わりあいを"
 	linefw "ふやしたほうが いいようじゃぞ"
 	done
 
-Text058a:
+DeckDiagnosisOKText:
 	textfw "きほんてきな デッキとしては"
 	linefw "これで OKじゃな"
 	linefw "これで 1ど 対戦してみなさい"
 	linefw "やってみることが いちばんじゃ"
 	done
 
-Text058b:
+DeckDiagnosisOKButNoTrainerText:
 	textfw "きほんてきな デッキとしては"
 	linefw "これで OKじゃな"
 	linefw "これで 1ど 対戦してみなさい"
@@ -2414,19 +2414,19 @@ Text058b:
 	linefw "1ど つかってみると いいぞ"
 	done
 
-Text058c:
+DeckDiagnosisEnergyUnbalancedText:
 	textfw "う~む エネルギーのバランスが"
 	linefw "よくないようじゃのう・・・"
 	done
 
-Text058d:
+DebugDummyText:
 	textfw "ダミー"
 	done
 
-Text058e:
+DebugKondoDebugText:
 	textfw "近ドウデバッグ"
 	done
 
-Text058f:
+DebugMapDisplayTestText:
 	textfw "地図の表示テスト"
 	done

@@ -31,7 +31,7 @@ GameLoop::
 .ask_erase_backup_ram
 	call SetupResetBackUpRAMScreen
 	call EmptyScreen
-	ldtx hl, ResetBackUpRamText
+	ldtx hl, ResetBackUpRamPromptText
 	call YesOrNoMenuWithText
 	jr c, .reset_game
 ; erase sram

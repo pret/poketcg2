@@ -229,7 +229,7 @@ HandleMandatorySwitchSelection:
 	ret
 
 .player
-	ldtx hl, SelectPkmnOnBenchToSwitchWithActiveText
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	bank1call HasAlivePokemonInBench

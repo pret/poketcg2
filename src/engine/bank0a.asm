@@ -979,7 +979,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	ldtx de, IfTails30DamageTo1OfYourPkmnText
+	ldtx de, IfTails30DamageTo1OfYourPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	or a
@@ -1654,7 +1654,7 @@ AISelectSpecialAttackParameters:
 	xor a ; PLAY_AREA_ARENA
 .got_focus_blast_target
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldtx de, IfHeads20DamageTo1OfOppPkmnText
+	ldtx de, IfHeads20DamageTo1OfOppPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	scf

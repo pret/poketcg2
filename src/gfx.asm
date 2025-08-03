@@ -491,9 +491,9 @@ GrassFortMidoriTileset::
 	dw 140 ; length
 	INCBIN "gfx/tilesets/grass_fort_midori.2bpp"
 
-GrassFortYuutaTileset::
+GrassFortYutaTileset::
 	dw 90 ; length
-	INCBIN "gfx/tilesets/grass_fort_yuuta.2bpp"
+	INCBIN "gfx/tilesets/grass_fort_yuta.2bpp"
 
 GrassFortMorinoTileset::
 	dw 102 ; length
@@ -1173,9 +1173,9 @@ MidoriPortraitGfx::
 	dw 108 ; length
 	INCBIN "gfx/duelists/midori.2bpp"
 
-YuutaPortraitGfx::
+YutaPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/yuuta.2bpp"
+	INCBIN "gfx/duelists/yuta.2bpp"
 
 OWRickGfx::
 	dw 20 ; length
@@ -1384,9 +1384,9 @@ GRXPortraitGfx::
 	dw 108 ; length
 	INCBIN "gfx/duelists/gr_x.2bpp"
 
-TobiChanPortraitGfx::
+TobichanPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tobi_chan.2bpp"
+	INCBIN "gfx/duelists/tobichan.2bpp"
 
 DrMasonPortraitGfx::
 	dw 108 ; length
@@ -1578,9 +1578,9 @@ OWGRXGfx::
 	dw 20 ; length
 	INCBIN "gfx/overworld_sprites/gr_x.2bpp"
 
-OWTobiChanGfx::
+OWTobichanGfx::
 	dw 23 ; length
-	INCBIN "gfx/overworld_sprites/tobi_chan.2bpp"
+	INCBIN "gfx/overworld_sprites/tobichan.2bpp"
 
 OWYoungsterGfx::
 	dw 20 ; length
