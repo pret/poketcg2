@@ -1504,7 +1504,7 @@ TextOffsets::
 	textpointer ChoosePlayerGenderText                                ; 0x05d7
 	textpointer ConfirmPlayerGenderMaleText                           ; 0x05d8
 	textpointer ConfirmPlayerGenderFemaleText                         ; 0x05d9
-	textpointer DebugTornamentTableText                               ; 0x05da
+	textpointer DebugTournamentTableText                              ; 0x05da
 	textpointer DebugLabText                                          ; 0x05db
 	textpointer DebugObjectCharacterDisplayText                       ; 0x05dc
 	textpointer IsThisOKText_2                                        ; 0x05dd

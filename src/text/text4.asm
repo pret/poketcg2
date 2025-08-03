@@ -301,7 +301,7 @@ ConfirmPlayerGenderFemaleText:
 	textfw "「おんなのこ」で いいですか?"
 	done
 
-DebugTornamentTableText:
+DebugTournamentTableText:
 	textfw "トーナメント表"
 	done
 
