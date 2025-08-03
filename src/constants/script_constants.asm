@@ -249,7 +249,7 @@
 	const EVENT_DB                                        ; $db
 ; Ghost Master flags
 	const EVENT_GHOST_MASTER_STATUES_STATE                ; $dc
-	const EVENT_BATTLED_TOBI_CHAN                         ; $dd
+	const EVENT_BATTLED_TOBICHAN                          ; $dd
 	const EVENT_BATTLED_EIJI                              ; $de
 	const EVENT_BATTLED_MAGICIAN                          ; $df
 	const EVENT_BATTLED_TOSHIRON                          ; $e0

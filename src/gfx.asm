@@ -1384,9 +1384,9 @@ GRXPortraitGfx::
 	dw 108 ; length
 	INCBIN "gfx/duelists/gr_x.2bpp"
 
-TobiChanPortraitGfx::
+TobichanPortraitGfx::
 	dw 108 ; length
-	INCBIN "gfx/duelists/tobi_chan.2bpp"
+	INCBIN "gfx/duelists/tobichan.2bpp"
 
 DrMasonPortraitGfx::
 	dw 108 ; length
@@ -1578,9 +1578,9 @@ OWGRXGfx::
 	dw 20 ; length
 	INCBIN "gfx/overworld_sprites/gr_x.2bpp"
 
-OWTobiChanGfx::
+OWTobichanGfx::
 	dw 23 ; length
-	INCBIN "gfx/overworld_sprites/tobi_chan.2bpp"
+	INCBIN "gfx/overworld_sprites/tobichan.2bpp"
 
 OWYoungsterGfx::
 	dw 20 ; length

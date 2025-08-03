@@ -218,7 +218,7 @@ Tilesets:
 	gfx_ptr RuiPortraitGfx                    ; $0d8
 	gfx_ptr BiruritchiPortraitGfx             ; $0d9
 	gfx_ptr GRXPortraitGfx                    ; $0da
-	gfx_ptr TobiChanPortraitGfx               ; $0db
+	gfx_ptr TobichanPortraitGfx               ; $0db
 	gfx_ptr DrMasonPortraitGfx                ; $0dc
 	gfx_ptr OWMarkGfx                         ; $0dd
 	gfx_ptr OWMintGfx                         ; $0de
@@ -285,7 +285,7 @@ Tilesets:
 	gfx_ptr OWRuiGfx                          ; $11b
 	gfx_ptr OWBiruritchiGfx                   ; $11c
 	gfx_ptr OWGRXGfx                          ; $11d
-	gfx_ptr OWTobiChanGfx                     ; $11e
+	gfx_ptr OWTobichanGfx                     ; $11e
 	gfx_ptr OWYoungsterGfx                    ; $11f
 	gfx_ptr OWLadGfx                          ; $120
 	gfx_ptr OWSpecsGfx                        ; $121

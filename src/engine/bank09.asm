@@ -4319,7 +4319,7 @@ DeckIDData:
 	db POISON_STORM_DECK_ID
 	tx PoisonStormDeckName ; deck name
 	tx DuelistTobichanName ; opponent name
-	db NPC_TOBI_CHAN ; NPC ID
+	db NPC_TOBICHAN ; NPC ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?

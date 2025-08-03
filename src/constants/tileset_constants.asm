@@ -218,7 +218,7 @@
 	const TILESET_RUI_PORTRAIT                ; $0d8
 	const TILESET_BIRURITCHI_PORTRAIT         ; $0d9
 	const TILESET_GR_X_PORTRAIT               ; $0da
-	const TILESET_TOBI_CHAN_PORTRAIT          ; $0db
+	const TILESET_TOBICHAN_PORTRAIT           ; $0db
 	const TILESET_DR_MASON_PORTRAIT           ; $0dc
 	const TILESET_MARK                        ; $0dd
 	const TILESET_MINT                        ; $0de
@@ -285,7 +285,7 @@
 	const TILESET_RUI                         ; $11b
 	const TILESET_BIRURITCHI                  ; $11c
 	const TILESET_GR_X                        ; $11d
-	const TILESET_TOBI_CHAN                   ; $11e
+	const TILESET_TOBICHAN                    ; $11e
 	const TILESET_YOUNGSTER                   ; $11f
 	const TILESET_LAD                         ; $120
 	const TILESET_SPECS                       ; $121

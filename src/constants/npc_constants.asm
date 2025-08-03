@@ -93,6 +93,6 @@
 	const NPC_RUI           ; $5b
 	const NPC_BIRURITCHI    ; $5c
 	const NPC_GR_X          ; $5d
-	const NPC_TOBI_CHAN     ; $5e
+	const NPC_TOBICHAN      ; $5e
 	const NPC_DR_MASON      ; $5f
 DEF NUM_NPC_IDS EQU const_value

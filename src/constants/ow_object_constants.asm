@@ -85,7 +85,7 @@
 	const OW_KANZAKI               ; $53
 	const OW_RUI                   ; $54
 	const OW_BIRURITCHI            ; $55
-	const OW_TOBI_CHAN             ; $56
+	const OW_TOBICHAN              ; $56
 	const OW_EIJI                  ; $57
 	const OW_MAGICIAN              ; $58
 	const OW_TOSHIRON              ; $59
@@ -301,7 +301,7 @@
 	const OWSPRITE_RUI                   ; $3e
 	const OWSPRITE_BIRURITCHI            ; $3f
 	const OWSPRITE_GR_X                  ; $40
-	const OWSPRITE_TOBI_CHAN             ; $41
+	const OWSPRITE_TOBICHAN              ; $41
 	const OWSPRITE_YOUNGSTER             ; $42
 	const OWSPRITE_LAD                   ; $43
 	const OWSPRITE_SPECS                 ; $44

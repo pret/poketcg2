@@ -75,7 +75,7 @@ Credits:
 	credits_wait 20
 
 	credits_draw_box  0,  0, 20, 18
-	credits_show_portrait NPC_TOBI_CHAN, 2, 6, EMOTION_NORMAL
+	credits_show_portrait NPC_TOBICHAN, 2, 6, EMOTION_NORMAL
 	credits_fade_in CREDITS_FADE_BACKGROUND, $0a
 	credits_wait 60
 	credits_print_header  5, 2, 2, CreditsProgrammersText
