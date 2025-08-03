@@ -4991,7 +4991,7 @@ PrintCardList:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ldtx hl, TotalNumberOfCardsText
+	ldtx hl, TotalCardsCountText
 	call .PrintTextWithNumber
 	jr c, .printer_error
 	ld a, [wPrintOnlyStarRarity]
@@ -5001,7 +5001,7 @@ PrintCardList:
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ldtx hl, TypesOfCardsText
+	ldtx hl, TotalUniqueCardsCountText
 	call .PrintTextWithNumber
 	jr c, .printer_error
 

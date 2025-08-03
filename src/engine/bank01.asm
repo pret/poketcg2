@@ -549,7 +549,7 @@ DuelMenu_Retreat:
 	jr c, .unable_to_retreat
 	call DisplayRetreatScreen
 	jr c, .done
-	ldtx hl, SelectPkmnOnBenchToSwitchWithActiveText
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	jr c, .done
@@ -579,7 +579,7 @@ DuelMenu_Retreat:
 	call DisplayRetreatScreen
 	jr c, .done
 	call DiscardRetreatCostCards
-	ldtx hl, SelectPkmnOnBenchToSwitchWithActiveText
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call OpenPlayAreaScreenForSelection
 	ld [wBenchSelectedPokemon], a
@@ -686,12 +686,12 @@ PlayEnergyCard:
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	jr z, .play_energy_set_played
-	ldtx hl, MayOnlyAttachOneEnergyCardText
+	ldtx hl, Only1EnergyCardPerTurnText
 	call DrawWideTextBox_WaitForInput
 	jp OpenPlayerHandScreen
 
 .already_played_energy
-	ldtx hl, MayOnlyAttachOneEnergyCardText
+	ldtx hl, Only1EnergyCardPerTurnText
 	call DrawWideTextBox_WaitForInput
 ;	fallthrough
 
@@ -732,7 +732,7 @@ PlayPokemonCard:
 	ld [hl], $00
 	ld hl, $0000
 	call LoadTxRam2
-	ldtx hl, PlacedOnTheBenchText
+	ldtx hl, PlacedOnBenchText
 	call DrawWideTextBox_WaitForInput
 	call ProcessPlayedPokemonCard
 	or a
@@ -1076,7 +1076,7 @@ DuelMenu_Attack:
 	call PrintAndLoadAttacksToDuelTempList
 	or a
 	jr nz, .init_menu
-	ldtx hl, NoSelectableAttackText
+	ldtx hl, NoSelectableAttacksText
 	call DrawWideTextBox_WaitForInput
 	jp PrintDuelMenuAndHandleInput
 
@@ -1527,7 +1527,7 @@ HandleDuelSetup:
 	jr .hand_cards_ok
 
 .neither_drew_basic_pkmn
-	ldtx hl, NeitherPlayerHasBasicPkmnText
+	ldtx hl, NeitherPlayerHasBasicPokemonText
 	call DrawWideTextBox_WaitForInput
 	call DisplayNoBasicPokemonInHandScreen
 	call InitializeDuelVariables
@@ -1557,7 +1557,7 @@ HandleDuelSetup:
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
-	ldtx hl, PleasePlacePrizesText
+	ldtx hl, EachPlayerPlacePrizesText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	farcall PlacePrizes
@@ -1668,13 +1668,13 @@ ChooseInitialArenaAndBenchPokemon:
 	call EmptyScreen
 	ld a, BOXMSG_ARENA_POKEMON
 	call DrawDuelBoxMessage
-	ldtx hl, ChooseBasicPkmnToPlaceInArenaText
+	ldtx hl, ChooseBasicPokemonToPlaceInArenaText
 	call DrawWideTextBox_WaitForInput
 	ld a, PRACTICEDUEL_DRAW_SEVEN_CARDS
 	call DoPracticeDuelAction
 .choose_arena_loop
 	xor a
-	ldtx hl, PleaseChooseAnActivePokemonText
+	ldtx hl, ChooseActivePokemonText
 	call DisplayPlaceInitialPokemonCardsScreen
 	jr c, .choose_arena_loop
 	ldh a, [hTempCardIndex_ff98]
@@ -1685,7 +1685,7 @@ ChooseInitialArenaAndBenchPokemon:
 	ldh a, [hTempCardIndex_ff98]
 	call PutHandPokemonCardInPlayArea
 	ldh a, [hTempCardIndex_ff98]
-	ldtx hl, PlacedInTheArenaText
+	ldtx hl, PlacedInArenaText
 	call DisplayCardDetailScreen
 	jr .choose_bench
 
@@ -1700,13 +1700,13 @@ ChooseInitialArenaAndBenchPokemon:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ldtx hl, ChooseUpToXBasicPkmnToPlaceOnBenchText
+	ldtx hl, ChooseUpToXBasicPokemonToPlaceOnBenchText
 	call PrintScrollableText_NoTextBoxLabel
 	ld a, PRACTICEDUEL_PUT_NIDORANM_IN_BENCH
 	call DoPracticeDuelAction
 .bench_loop
 	ld a, TRUE
-	ldtx hl, ChooseYourBenchPokemonText
+	ldtx hl, ChooseBenchedPokemonText
 	call DisplayPlaceInitialPokemonCardsScreen
 	jr c, .bench_done
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -1717,7 +1717,7 @@ ChooseInitialArenaAndBenchPokemon:
 	ldh a, [hTempCardIndex_ff98]
 	call PutHandPokemonCardInPlayArea
 	ldh a, [hTempCardIndex_ff98]
-	ldtx hl, PlacedOnTheBenchText
+	ldtx hl, PlacedOnBenchText
 	call DisplayCardDetailScreen
 	ld a, PRACTICEDUEL_DONE_PUTTING_ON_BENCH
 	call DoPracticeDuelAction
@@ -2468,7 +2468,7 @@ ReturnWrongAction:
 	ret
 
 ; display BOXMSG_PLAYERS_TURN or BOXMSG_OPPONENTS_TURN and print
-; DuelistTurnText in a textbox. also call ExchangeRNG.
+; DuelistsTurnText in a textbox. also call ExchangeRNG.
 DisplayDuelistTurnScreen:
 	call EmptyScreen
 	ld c, BOXMSG_PLAYERS_TURN
@@ -2479,7 +2479,7 @@ DisplayDuelistTurnScreen:
 .got_turn
 	ld a, c
 	call DrawDuelBoxMessage
-	ldtx hl, DuelistTurnText
+	ldtx hl, DuelistsTurnText
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	ret
@@ -2553,7 +2553,7 @@ OpenDiscardPileScreen:
 	call CreateDiscardPileCardList
 	jr c, .discard_pile_empty
 	call InitAndDrawCardListScreenLayout
-	ldtx hl, ChooseTheCardYouWishToExamineText
+	ldtx hl, ChooseCardToCheckText
 	ldtx de, DuelistDiscardPileText
 	call SetCardListHeaderAndInfoText
 	ld a, START + A_BUTTON
@@ -2993,7 +2993,7 @@ TurnDuelistTakePrizes:
 	jr nz, .opponent
 
 ; player
-	ldtx hl, WillDrawNPrizesText
+	ldtx hl, WillDrawXPrizesText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wNumberPrizeCardsToTake]
 	call SelectPrizeCards
@@ -3014,7 +3014,7 @@ TurnDuelistTakePrizes:
 
 .opponent
 	call .Func_588a
-	ldtx hl, WillDrawNPrizesText
+	ldtx hl, WillDrawXPrizesText
 	call DrawWideTextBox_PrintText
 	call CountPrizes
 	ld [wTempNumRemainingPrizeCards], a
@@ -3051,7 +3051,7 @@ TurnDuelistTakePrizes:
 	call LoadTxRam3
 .asm_587e
 	farcall Func_82b6
-	ldtx hl, DrewNPrizesText
+	ldtx hl, DrewXPrizesText
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
 
@@ -4201,7 +4201,7 @@ SelectingBenchPokemonMenu:
 	ld [wCurrentDuelMenuItem], a
 .duel_main_scene
 	call DrawDuelMainScene
-	ldtx hl, SelectingBenchPokemonHandExamineBackText
+	ldtx hl, SelectingBenchPokemonSubmenuHandCheckBackText
 	call DrawWideTextBox_PrintTextNoDelay
 	call .InitMenu
 .loop_input
@@ -5284,10 +5284,10 @@ ProcessPlayedPokemonCard:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	call CheckIsIncapableOfUsingPkmnPower
 	jr nc, .use_pokemon_power
-	ldtx hl, HavePkmnPowerButUnableDueToToxicGasText
+	ldtx hl, HavePokemonPowerButUnableDueToToxicGasText
 	dec a
 	jr nz, .asm_622b
-	ldtx hl, HavePkmnPowerButUnableDueToGoopGasAttackText
+	ldtx hl, HavePokemonPowerButUnableDueToGoopGasAttackText
 .asm_622b
 	call DrawWideTextBox_WaitForInput
 
@@ -5321,7 +5321,7 @@ ProcessPlayedPokemonCard:
 	ld [hli], a
 	ld a, [de]
 	ld [hl], a
-	ldtx hl, WillUseThePokemonPowerText
+	ldtx hl, UsePokemonPowerText
 	call DrawWideTextBox_WaitForInput
 	ld a, $01
 	ld [wcd18], a
@@ -5596,10 +5596,10 @@ HandlePoisonDamage:
 	push hl
 	bit DOUBLE_POISONED_F, [hl]
 	ld a, DBLPSN_DAMAGE
-	ldtx hl, ReceivedNDamageDueToDoublePoisonText
+	ldtx hl, ReceivedXDamageDueToToxicText
 	jr nz, .got_damage
 	call GetPoisonDamage
-	ldtx hl, ReceivedNDamageDueToPoisonText
+	ldtx hl, ReceivedXDamageDueToPoisonText
 
 .got_damage
 	push af

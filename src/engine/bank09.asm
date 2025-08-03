@@ -370,7 +370,7 @@ HandleWaitingLinkOpponentMenu:
 .loop_outer
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-	ldtx hl, WaitingHandExamineText
+	ldtx hl, OpponentsTurnWaitingMenuHandCheckText
 	call DrawWideTextBox_PrintTextNoDelay
 	call .InitTextBoxMenu
 .loop_inner
@@ -767,7 +767,7 @@ PlayShuffleAndDrawCardsAnimation_BothDuelists:
 	ld a, [wcd17]
 	or a
 	jr z, PlayShuffleAndDrawCardsAnimation
-	ldtx hl, ThisIsJustPracticeDoNotShuffleText
+	ldtx hl, PracticeDuelNoShufflesText
 ;	fallthrough
 
 ; animate the shuffle and drawing screen

@@ -3142,7 +3142,7 @@ PrintPlayersCardsText:
 	ld d, b
 	ld e, 0
 	call InitTextPrinting
-	ldtx hl, SCardsText ; "のカード" ('s Cards)
+	ldtx hl, OnesCardsText ; "'s Cards"
 	call ProcessTextFromID
 	ret
 

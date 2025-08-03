@@ -184,7 +184,7 @@ PCMenuShutdownText:
 	textfw "スイッチをきる"
 	done
 
-RAMNAMEText: ; mainly used to print the player's name?
+TxRam1Text: ; mainly used to print the player's name
 	textfw "<RAMNAME>"
 	done
 
@@ -228,7 +228,7 @@ DebugCurrentMapNumberLabelText:
 	textfw "使用中のマップ番号:"
 	done
 
-DebugCurrentMapChipsetNumberLabelText:
+DebugCurrentMapChipsetCountLabelText:
 	textfw "使用中のマップチップ数:"
 	done
 
@@ -325,7 +325,7 @@ CardsUnitHiraganaText:
 	textfw "まい"
 	done
 
-GameCenterClerkText:
+ReceptionistText:
 	textfw "うけつけ"
 	done
 
@@ -448,11 +448,13 @@ GiftCenterQuitText:
 	done
 
 GiftCenterPressStartWhenReadyText:
+	; dupe of PressStartWhenReadyText
 	textfw "じゅんびができたら どちらかが"
 	linefw "STARTボタンを おしてください"
 	done
 
 GiftCenterTransmissionErrorTryAgainText:
+	; dupe of TransmissionErrorTryAgainText
 	textfw "通信エラーです"
 	linefw "はじめから やりなおしてください"
 	done
@@ -2012,15 +2014,15 @@ MailRonaldsScoutMamiBody5Text:
 	linefw "          ランド(●_●)"
 	done
 
-MailRonaldsScoutColoressAltarSenderText:
+MailRonaldsScoutColorlessAltarSenderText:
 	textfw "ランド"
 	done
 
-MailRonaldsScoutColoressAltarSubjectText:
+MailRonaldsScoutColorlessAltarSubjectText:
 	textfw "無のさいだんじょうほう"
 	done
 
-MailRonaldsScoutColoressAltarBody1Text:
+MailRonaldsScoutColorlessAltarBody1Text:
 	textfw "よう <RAMNAME>!"
 	linefw "無のさいだんの じょうほうだ!"
 	linefw "無のばんにんの 「ニシジマ」"
@@ -2029,7 +2031,7 @@ MailRonaldsScoutColoressAltarBody1Text:
 	linefw "4枚 デッキにいれろと いってくる"
 	done
 
-MailRonaldsScoutColoressAltarBody2Text:
+MailRonaldsScoutColorlessAltarBody2Text:
 	textfw "しかも 1ど 対戦すると"
 	linefw "いれろって カードをかえてくるんだ!"
 	linefw "こいつが やっかいなんだが・・・"
@@ -2038,7 +2040,7 @@ MailRonaldsScoutColoressAltarBody2Text:
 	linefw "でもな・・・"
 	done
 
-MailRonaldsScoutColoressAltarBody3Text:
+MailRonaldsScoutColorlessAltarBody3Text:
 	textfw "1ど 対戦するには"
 	linefw "していされたカードが 4枚いるからな"
 	linefw "そのカードが どの拡張パックに"
@@ -2047,7 +2049,7 @@ MailRonaldsScoutColoressAltarBody3Text:
 	linefw "対戦しなくちゃ ならないけどな・・・"
 	done
 
-MailRonaldsScoutColoressAltarBody4Text:
+MailRonaldsScoutColorlessAltarBody4Text:
 	textfw "まあ たまには オレたちのしまへ"
 	linefw "もどって みんなと対戦するのも"
 	linefw "いいかもな ここまできて"
@@ -2496,7 +2498,7 @@ NumberSlashNumberText:
 	textfw "<RAMNUM>/<RAMNUM>"
 	done
 
-RAMTEXTPadded:
+TxRam2TextPadded:
 	textfw " <RAMTEXT> "
 	done
 
@@ -2614,27 +2616,28 @@ ChallengeMachineStartPromptText:
 	textfw "チャレンジマシンで あそびますか?"
 	done
 
-ChallengeMachineOpponentGrassClubMemberText:
+OpponentGrassClubMemberSimpleText:
+	; The machine actually uses 0x0a6b--
 	textfw "クラブメンバー<GRASS>"
 	done
 
-ChallengeMachineOpponentWaterClubMemberText:
+OpponentWaterClubMemberSimpleText:
 	textfw "クラブメンバー<WATER>"
 	done
 
-ChallengeMachineOpponentFireClubMemberText:
+OpponentFireClubMemberSimpleText:
 	textfw "クラブメンバー<FIRE>"
 	done
 
-ChallengeMachineOpponentPsychicClubMemberText:
+OpponentPsychicClubMemberSimpleText:
 	textfw "クラブメンバー<PSYCHIC>"
 	done
 
-ChallengeMachineOpponentLightningClubMemberText:
+OpponentLightningClubMemberSimpleText:
 	textfw "クラブメンバー<LIGHTNING>"
 	done
 
-ChallengeMachineOpponentFightingClubMemberText:
+OpponentFightingClubMemberSimpleText:
 	textfw "クラブメンバー<FIGHTING>"
 	done
 
@@ -2655,7 +2658,7 @@ ChallengeMachineOpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
-GameCenterBillsPCText_2:
+GameCenterBillsPCTitleText_2:
 	textfw "マサキのパソコン"
 	done
 
@@ -2687,7 +2690,7 @@ ChallengeMachineLossDialogWinStreakText:
 	linefw "<RAMNUM>で とまりました"
 	done
 
-RAMNUMText:
+TxRam3Text:
 	textfw "<RAMNUM>"
 	done
 

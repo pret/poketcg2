@@ -1671,7 +1671,7 @@ ShowStartMenu:
 	add d
 	ld d, a
 	ld e, 8
-	ldtx hl, RAMNAMEText
+	ldtx hl, TxRam1Text
 	call Func_35bf
 
 .skip_portrait_and_name
@@ -1892,7 +1892,7 @@ _StartMenuBoxUpdate::
 .ContinueFromDiary:
 	farcall Func_c53e
 	call LoadTxRam2
-	ldtx hl, RAMTEXTPadded
+	ldtx hl, TxRam2TextPadded
 	lb de, 1, 10
 	call Func_2c4b
 	ld hl, .TextItems
@@ -2053,7 +2053,7 @@ ConfirmPlayerNameAndGender:
 	lb bc, 12, 3
 	call DrawPlayerPortrait
 	; print name
-	ldtx hl, RAMNAMEText
+	ldtx hl, TxRam1Text
 	lb de, 5, 4
 	call Func_35bf
 	; print gender
