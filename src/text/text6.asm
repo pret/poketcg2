@@ -1714,234 +1714,234 @@ OpponentRivalText:
 	textfw "ライバル"
 	done
 
-Text0a8e:
+PromotionalGRMewtwoLv35Text:
 	textfw "GR団のミュウツー<Lv>35"
 	done
 
-Text0a8f:
+PromotionalGRMewtwoText:
 	textfw "GR団のミュウツー"
 	done
 
-Text0a90:
+PromotionalImakuniText:
 	textfw "イマクニ?"
 	done
 
-Text0a91:
+PromotionalArcanineLv34Text:
 	textfw "ウィンディ<Lv>34"
 	done
 
-Text0a92:
+PromotionalElectabuzzLv20Text:
 	textfw "エレブー<Lv>20"
 	done
 
-Text0a93:
+PromotionalDragoniteLv41Text:
 	textfw "カイリュー<Lv>41"
 	done
 
-Text0a94:
+PromotionalDragoniteLv43Text:
 	textfw "カイリュー<Lv>43"
 	done
 
-Text0a95:
+PromotionalDragoniteLv45Text:
 	textfw "カイリュー<Lv>45"
 	done
 
-Text0a96:
+PromotionalCoolPorygonLv15Text:
 	textfw "かっこいいポリゴン<Lv>15"
 	done
 
-Text0a97:
+PromotionalCoolPorygonText:
 	textfw "かっこいいポリゴン"
 	done
 
-Text0a98:
+PromotionalBlastoiseLv52Text:
 	textfw "カメックス<Lv>52"
 	done
 
-Text0a99:
+PromotionalFarfetchdLv20Text:
 	textfw "カモネギ<Lv>20"
 	done
 
-Text0a9a:
+PromotionalKangaskhanLv38Text:
 	textfw "ガルーラ<Lv>38"
 	done
 
-Text0a9b:
+NotPromotionalPotionEnergyText:
 	textfw "きずぐすり配合E"
 	done
 
-Text0a9c:
+PromotionalHungrySnorlaxLv50Text:
 	textfw "くいしんぼカビゴン<Lv>50"
 	done
 
-Text0a9d:
+PromotionalHungrySnorlaxText:
 	textfw "くいしんぼカビゴン"
 	done
 
-Text0a9e:
+PromotionalMagikarpLv10Text:
 	textfw "コイキング<Lv>10"
 	done
 
-Text0a9f:
+PromotionalZapdosLv68Text:
 	textfw "サンダー<Lv>68"
 	done
 
-Text0aa0:
+PromotionalFlyingPikachuLv12Text:
 	textfw "そらをとぶピカチュウ<Lv>12"
 	done
 
-Text0aa1:
+PromotionalFlyingPikachuText:
 	textfw "そらをとぶピカチュウ"
 	done
 
-Text0aa2:
+PromotionalDugtrioLv40Text:
 	textfw "ダグトリオ<Lv>40"
 	done
 
-Text0aa3:
+PromotionalDiglettLv16Text:
 	textfw "ディグダ<Lv>16"
 	done
 
-Text0aa4:
+PromotionalTogepiLv8Text:
 	textfw "トゲピー<Lv>8"
 	done
 
-Text0aa5:
+PromotionalSurfingPikachuLv13Text:
 	textfw "なみのりピカチュウ<Lv>13"
 	done
 
-Text0aa6:
+PromotionalSurfingPikachuText:
 	textfw "なみのりピカチュウ"
 	done
 
-Text0aa7:
+PromotionalMeowthLv14Text:
 	textfw "ニャース<Lv>14"
 	done
 
-Text0aa8:
+PromotionalComputerErrorText:
 	textfw "パソコン大暴走!"
 	done
 
-Text0aa9:
+PromotionalPikachuLv13Text:
 	textfw "ピカチュウ<Lv>13"
 	done
 
-Text0aaa:
+PromotionalPikachuLv16Text:
 	textfw "ピカチュウ<Lv>16"
 	done
 
-Text0aab:
+PromotionalMoltresLv40Text:
 	textfw "ファイヤー<Lv>40"
 	done
 
-Text0aac:
+PromotionalVenusaurLv67Text:
 	textfw "フシギバナ<Lv>67"
 	done
 
-Text0aad:
+PromotionalArticunoLv37Text:
 	textfw "フリーザー<Lv>37"
 	done
 
-Text0aae:
+PromotionalJigglypuffLv12Text:
 	textfw "プリン<Lv>12"
 	done
 
-Text0aaf:
+PromotionalBillsComputerText:
 	textfw "マサキのパソコン"
 	done
 
-Text0ab0:
+PromotionalMarillLv17Text:
 	textfw "マリル<Lv>17"
 	done
 
-Text0ab1:
+PromotionalMankeyLv7Text:
 	textfw "マンキー<Lv>7"
 	done
 
-Text0ab2:
+PromotionalMewLv8Text:
 	textfw "ミュウ<Lv>8"
 	done
 
-Text0ab3:
+PromotionalMewtwoLv30Text:
 	textfw "ミュウツー<Lv>30"
 	done
 
-Text0ab4:
+PromotionalMewtwoLv60Text:
 	textfw "ミュウツー<Lv>60"
 	done
 
-Text0ab5:
+PromotionalSlowpokeLv9Text:
 	textfw "ヤドン<Lv>9"
 	done
 
-Text0ab6:
+PromotionalCharizardLv76Text:
 	textfw "リザードン<Lv>76"
 	done
 
-Text0ab7:
+PromotionalDarkPersianLv28Text:
 	textfw "わるいペルシアン<Lv>28"
 	done
 
-Text0ab8:
+PromotionalSuperEnergyRetrievalText:
 	textfw "超エネルギー回収"
 	done
 
-Text0ab9:
+ReceivedPromotionalCardText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0aba:
+ReceivedPromotionalCardText_3:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「<RAMTEXT>」を ゲット"
 	done
 
-Text0abb:
+ReceivedLegendaryCardText_2:
 	textfw "<RAMNAME>は 伝説のカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0abc:
+ReceivedCardText_2:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0abd:
+ReceivedCardText_3:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット"
 	done
 
-Text0abe:
+ReceivedCardText_4:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」 ゲット"
 	done
 
-Text0abf:
+ReceivedPromotionalGRMewtwoText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「GR団のミュウツー」を ゲット!"
 	done
 
-Text0ac0:
+ReceivedPromotionalCoolPorygonText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「かっこいいポリゴン」を ゲット!"
 	done
 
-Text0ac1:
+ReceivedPromotionalHungrySnorlaxText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「くいしんぼカビゴン」を ゲット!"
 	done
 
-Text0ac2:
+ReceivedPromotionalFlyingPikachuText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「そらをとぶピカチュウ」を ゲット!"
 	done
 
-Text0ac3:
+ReceivedPromotionalSurfingPikachuText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「なみのりピカチュウ」を ゲット!"
 	done
 
-Text0ac4:
+ReceivedNotPromotionalPotionEnergyText:
 	textfw "<RAMNAME>は"
 	linefw "「きずぐすり配合E」を ゲット!"
 	done
