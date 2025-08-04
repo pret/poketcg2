@@ -942,7 +942,7 @@ MapGRFightingFortText:
 	textfw "闘のGR団のトリデ"
 	done
 
-MapGRPsychicFortText:
+MapGRPsychicStrongholdText:
 	textfw "超のGR団のようさい"
 	done
 
@@ -1682,11 +1682,11 @@ OpponentGRFightingFortMemberText:
 	textfw "闘のGR団員"
 	done
 
-OpponentGRPsychicFortLeaderText:
+OpponentGRPsychicStrongholdLeaderText:
 	textfw "超のGR団リーダー"
 	done
 
-OpponentGRPsychicFortMemberText:
+OpponentGRPsychicStrongholdMemberText:
 	textfw "超のGR団員"
 	done
 

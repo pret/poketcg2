@@ -782,7 +782,7 @@ TextIDs_d18f:
 	tx MapGRFireFortText       ; OWMAP_GR_FIRE_FORT
 	tx MapGRWaterFortText      ; OWMAP_GR_WATER_FORT
 	tx MapGRFightingFortText   ; OWMAP_GR_FIGHTING_FORT
-	tx MapGRPsychicFortText    ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	tx MapGRPsychicStrongholdText  ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText         ; OWMAP_GR_CASTLE
 	tx Drew7CardsText          ; $0069, weird

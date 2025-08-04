@@ -3500,13 +3500,13 @@ Func_1e60c:
 	tx DuelistIntroGRFireFortMemberText
 	tx DuelistIntroGRWaterFortMemberText
 	tx DuelistIntroGRFightingFortMemberText
-	tx DuelistIntroGRPsychicFortMemberText
+	tx DuelistIntroGRPsychicStrongholdMemberText
 	tx DuelistIntroGRGrassFortLeaderText
 	tx DuelistIntroGRLightningFortLeaderText
 	tx DuelistIntroGRFireFortLeaderText
 	tx DuelistIntroGRWaterFortLeaderText
 	tx DuelistIntroGRFightingFortLeaderText
-	tx DuelistIntroGRPsychicFortLeaderText
+	tx DuelistIntroGRPsychicStrongholdLeaderText
 	tx DuelistIntroColorlessAltarGuardianText
 	tx DuelistIntroGRBigBossText
 	tx DuelistIntroGRKingText

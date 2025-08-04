@@ -633,7 +633,7 @@ TextOffsets::
 	textpointer GameCenterBillsPCDescriptionText                      ; 0x0273
 	textpointer GameCenterBillsPCDescriptionDialogText                ; 0x0274
 	textpointer GameCenterBillsPCStartPromptText                      ; 0x0275
-	textpointer GameCenterBillsPCUnableNoBillsPCCardsText             ; 0x0276
+	textpointer GameCenterBillsPCUnableNoBillsComputerText            ; 0x0276
 	textpointer GameCenterBillsPCYourCompatibleCardsText              ; 0x0277
 	textpointer GameCenterBillsPCUnableNoCompatibleCardsText          ; 0x0278
 	textpointer GameCenterBillsPCChooseACardToInsertText              ; 0x0279
@@ -1520,7 +1520,7 @@ TextOffsets::
 	textpointer GameCenterPrizeExchangeComeAgainText                  ; 0x05e7
 	textpointer GameCenterPrizeVenusaurText                           ; 0x05e8
 	textpointer GameCenterPrizeMewText                                ; 0x05e9
-	textpointer GameCenterPrizeBillsPCText                            ; 0x05ea
+	textpointer GameCenterPrizeBillsComputerText                      ; 0x05ea
 	textpointer GameCenterPrizeJigglypuffCoinText                     ; 0x05eb
 	textpointer GameCenterPrize1PresentPackText                       ; 0x05ec
 	textpointer GameCenterPrize3PresentPacksText                      ; 0x05ed
@@ -1650,13 +1650,13 @@ TextOffsets::
 	textpointer DuelistIntroGRFireFortMemberText                      ; 0x0669
 	textpointer DuelistIntroGRWaterFortMemberText                     ; 0x066a
 	textpointer DuelistIntroGRFightingFortMemberText                  ; 0x066b
-	textpointer DuelistIntroGRPsychicFortMemberText                   ; 0x066c
+	textpointer DuelistIntroGRPsychicStrongholdMemberText             ; 0x066c
 	textpointer DuelistIntroGRGrassFortLeaderText                     ; 0x066d
 	textpointer DuelistIntroGRLightningFortLeaderText                 ; 0x066e
 	textpointer DuelistIntroGRFireFortLeaderText                      ; 0x066f
 	textpointer DuelistIntroGRWaterFortLeaderText                     ; 0x0670
 	textpointer DuelistIntroGRFightingFortLeaderText                  ; 0x0671
-	textpointer DuelistIntroGRPsychicFortLeaderText                   ; 0x0672
+	textpointer DuelistIntroGRPsychicStrongholdLeaderText             ; 0x0672
 	textpointer DuelistIntroColorlessAltarGuardianText                ; 0x0673
 	textpointer DuelistIntroGRBigBossText                             ; 0x0674
 	textpointer DuelistIntroGRKingText                                ; 0x0675
@@ -2515,7 +2515,7 @@ TextOffsets::
 	textpointer MapGRFireFortText                                     ; 0x09ca
 	textpointer MapGRWaterFortText                                    ; 0x09cb
 	textpointer MapGRFightingFortText                                 ; 0x09cc
-	textpointer MapGRPsychicFortText                                  ; 0x09cd
+	textpointer MapGRPsychicStrongholdText                            ; 0x09cd
 	textpointer MapGRColorlessAltarText                               ; 0x09ce
 	textpointer MapGRCastleText                                       ; 0x09cf
 	textpointer DialogDrMasonText                                     ; 0x09d0
@@ -2701,8 +2701,8 @@ TextOffsets::
 	textpointer OpponentGRWaterFortMemberText                         ; 0x0a83
 	textpointer OpponentGRFightingFortLeaderText                      ; 0x0a84
 	textpointer OpponentGRFightingFortMemberText                      ; 0x0a85
-	textpointer OpponentGRPsychicFortLeaderText                       ; 0x0a86
-	textpointer OpponentGRPsychicFortMemberText                       ; 0x0a87
+	textpointer OpponentGRPsychicStrongholdLeaderText                 ; 0x0a86
+	textpointer OpponentGRPsychicStrongholdMemberText                 ; 0x0a87
 	textpointer OpponentColorlessAltarGuardianText                    ; 0x0a88
 	textpointer OpponentGRBigBossText                                 ; 0x0a89
 	textpointer OpponentGRKingText                                    ; 0x0a8a

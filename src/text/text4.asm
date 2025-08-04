@@ -367,7 +367,7 @@ GameCenterPrizeMewText:
 	textfw "ミュウ<Lv>15"
 	done
 
-GameCenterPrizeBillsPCText:
+GameCenterPrizeBillsComputerText:
 	textfw "マサキのパソコン"
 	done
 
@@ -964,7 +964,7 @@ DuelistIntroGRFightingFortMemberText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroGRPsychicFortMemberText:
+DuelistIntroGRPsychicStrongholdMemberText:
 	textfw "超のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
@@ -994,7 +994,7 @@ DuelistIntroGRFightingFortLeaderText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroGRPsychicFortLeaderText:
+DuelistIntroGRPsychicStrongholdLeaderText:
 	textfw "超のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
