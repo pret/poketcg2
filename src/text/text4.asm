@@ -2616,7 +2616,7 @@ ChallengeMachineStartPromptText:
 	textfw "チャレンジマシンで あそびますか?"
 	done
 
-OpponentGrassClubMemberSimpleText:
+OpponentGrassScienceClubMemberSimpleText:
 	; The machine actually uses 0x0a6b--
 	textfw "クラブメンバー<GRASS>"
 	done
@@ -2637,7 +2637,7 @@ OpponentLightningClubMemberSimpleText:
 	textfw "クラブメンバー<LIGHTNING>"
 	done
 
-OpponentFightingClubMemberSimpleText:
+OpponentRockFightingClubMemberSimpleText:
 	textfw "クラブメンバー<FIGHTING>"
 	done
 

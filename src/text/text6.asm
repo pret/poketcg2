@@ -1574,143 +1574,143 @@ WaterClubShortText:
 	textfw "アクア"
 	done
 
-Text0a6b:
+OpponentGrassClubMasterBracketedText:
 	textfw "クラブマスター【<GRASS>】"
 	done
 
-Text0a6c:
+OpponentGrassClubMemberBracketedText:
 	textfw "クラブメンバー【<GRASS>】"
 	done
 
-Text0a6d:
+OpponentWaterClubMasterBracketedText:
 	textfw "クラブマスター【<WATER>】"
 	done
 
-Text0a6e:
+OpponentWaterClubMemberBracketedText:
 	textfw "クラブメンバー【<WATER>】"
 	done
 
-Text0a6f:
+OpponentLightningClubMasterBracketedText:
 	textfw "クラブマスター【<LIGHTNING>】"
 	done
 
-Text0a70:
+OpponentLightningClubMemberBracketedText:
 	textfw "クラブメンバー【<LIGHTNING>】"
 	done
 
-Text0a71:
+OpponentRockClubMasterBracketedText:
 	textfw "クラブマスター【<FIGHTING>】"
 	done
 
-Text0a72:
+OpponentRockClubMemberBracketedText:
 	textfw "クラブメンバー【<FIGHTING>】"
 	done
 
-Text0a73:
+OpponentFightingClubMasterBracketedText:
 	textfw "クラブマスター【<FIGHTING>】"
 	done
 
-Text0a74:
+OpponentFightingClubMemberBracketedText:
 	textfw "クラブメンバー【<FIGHTING>】"
 	done
 
-Text0a75:
+OpponentScienceClubMasterBracketedText:
 	textfw "クラブマスター【<GRASS>】"
 	done
 
-Text0a76:
+OpponentScienceClubMemberBracketedText:
 	textfw "クラブメンバー【<GRASS>】"
 	done
 
-Text0a77:
+OpponentPsychicClubMasterBracketedText:
 	textfw "クラブマスター【<PSYCHIC>】"
 	done
 
-Text0a78:
+OpponentPsychicClubMemberBracketedText:
 	textfw "クラブメンバー【<PSYCHIC>】"
 	done
 
-Text0a79:
+OpponentFireClubMasterBracketedText:
 	textfw "クラブマスター【<FIRE>】"
 	done
 
-Text0a7a:
+OpponentFireClubMemberBracketedText:
 	textfw "クラブメンバー【<FIRE>】"
 	done
 
-Text0a7b:
+OpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
-Text0a7c:
+OpponentGRGrassFortLeaderText:
 	textfw "草のGR団リーダー"
 	done
 
-Text0a7d:
+OpponentGRGrassFortMemberText:
 	textfw "草のGR団員"
 	done
 
-Text0a7e:
+OpponentGRLightningFortLeaderText:
 	textfw "雷のGR団リーダー"
 	done
 
-Text0a7f:
+OpponentGRLightningFortMemberText:
 	textfw "雷のGR団員"
 	done
 
-Text0a80:
+OpponentGRFireFortLeaderText:
 	textfw "炎のGR団リーダー"
 	done
 
-Text0a81:
+OpponentGRFireFortMemberText:
 	textfw "炎のGR団員"
 	done
 
-Text0a82:
+OpponentGRWaterFortLeaderText:
 	textfw "水のGR団リーダー"
 	done
 
-Text0a83:
+OpponentGRWaterFortMemberText:
 	textfw "水のGR団員"
 	done
 
-Text0a84:
+OpponentGRFightingFortLeaderText:
 	textfw "闘のGR団リーダー"
 	done
 
-Text0a85:
+OpponentGRFightingFortMemberText:
 	textfw "闘のGR団員"
 	done
 
-Text0a86:
+OpponentGRPsychicFortLeaderText:
 	textfw "超のGR団リーダー"
 	done
 
-Text0a87:
+OpponentGRPsychicFortMemberText:
 	textfw "超のGR団員"
 	done
 
-Text0a88:
+OpponentColorlessAltarGuardianText:
 	textfw "無のばんにん"
 	done
 
-Text0a89:
+OpponentGRBigBossText:
 	textfw "GR団大かんぶ"
 	done
 
-Text0a8a:
+OpponentGRKingText:
 	textfw "GR団キング"
 	done
 
-Text0a8b:
+OpponentStrangeLifeFormText:
 	textfw "ふしぎないきもの"
 	done
 
-Text0a8c:
+OpponentEnigmaticMaskText:
 	textfw "ナゾのかめん"
 	done
 
-Text0a8d:
+OpponentRivalText:
 	textfw "ライバル"
 	done
 

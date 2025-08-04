@@ -1948,12 +1948,12 @@ TextOffsets::
 	textpointer AttemptsUnitText                                      ; 0x0793
 	textpointer WinsUnitText                                          ; 0x0794
 	textpointer ChallengeMachineStartPromptText                       ; 0x0795
-	textpointer OpponentGrassClubMemberSimpleText                     ; 0x0796
+	textpointer OpponentGrassScienceClubMemberSimpleText              ; 0x0796
 	textpointer OpponentWaterClubMemberSimpleText                     ; 0x0797
 	textpointer OpponentFireClubMemberSimpleText                      ; 0x0798
 	textpointer OpponentPsychicClubMemberSimpleText                   ; 0x0799
 	textpointer OpponentLightningClubMemberSimpleText                 ; 0x079a
-	textpointer OpponentFightingClubMemberSimpleText                  ; 0x079b
+	textpointer OpponentRockFightingClubMemberSimpleText              ; 0x079b
 	textpointer ChallengeMachineOpponentListDialogText                ; 0x079c
 	textpointer ChallengeMachineOpponent1DialogText                   ; 0x079d
 	textpointer ChallengeMachineDuelPromptText                        ; 0x079e
@@ -2673,41 +2673,42 @@ TextOffsets::
 	textpointer PsychicClubShortText                                  ; 0x0a68
 	textpointer FireClubShortText                                     ; 0x0a69
 	textpointer WaterClubShortText                                    ; 0x0a6a
-	textpointer Text0a6b                                           ; 0x0a6b
-	textpointer Text0a6c                                           ; 0x0a6c
-	textpointer Text0a6d                                           ; 0x0a6d
-	textpointer Text0a6e                                           ; 0x0a6e
-	textpointer Text0a6f                                           ; 0x0a6f
-	textpointer Text0a70                                           ; 0x0a70
-	textpointer Text0a71                                           ; 0x0a71
-	textpointer Text0a72                                           ; 0x0a72
-	textpointer Text0a73                                           ; 0x0a73
-	textpointer Text0a74                                           ; 0x0a74
-	textpointer Text0a75                                           ; 0x0a75
-	textpointer Text0a76                                           ; 0x0a76
-	textpointer Text0a77                                           ; 0x0a77
-	textpointer Text0a78                                           ; 0x0a78
-	textpointer Text0a79                                           ; 0x0a79
-	textpointer Text0a7a                                           ; 0x0a7a
-	textpointer Text0a7b                                           ; 0x0a7b
-	textpointer Text0a7c                                           ; 0x0a7c
-	textpointer Text0a7d                                           ; 0x0a7d
-	textpointer Text0a7e                                           ; 0x0a7e
-	textpointer Text0a7f                                           ; 0x0a7f
-	textpointer Text0a80                                           ; 0x0a80
-	textpointer Text0a81                                           ; 0x0a81
-	textpointer Text0a82                                           ; 0x0a82
-	textpointer Text0a83                                           ; 0x0a83
-	textpointer Text0a84                                           ; 0x0a84
-	textpointer Text0a85                                           ; 0x0a85
-	textpointer Text0a86                                           ; 0x0a86
-	textpointer Text0a87                                           ; 0x0a87
-	textpointer Text0a88                                           ; 0x0a88
-	textpointer Text0a89                                           ; 0x0a89
-	textpointer Text0a8a                                           ; 0x0a8a
-	textpointer Text0a8b                                           ; 0x0a8b
-	textpointer Text0a8c                                           ; 0x0a8c
-	textpointer Text0a8d                                           ; 0x0a8d
+	; Grass/Science and Rock/Fighting are educated guesses, could be wrong
+	textpointer OpponentGrassClubMasterBracketedText                  ; 0x0a6b
+	textpointer OpponentGrassClubMemberBracketedText                  ; 0x0a6c
+	textpointer OpponentWaterClubMasterBracketedText                  ; 0x0a6d
+	textpointer OpponentWaterClubMemberBracketedText                  ; 0x0a6e
+	textpointer OpponentLightningClubMasterBracketedText              ; 0x0a6f
+	textpointer OpponentLightningClubMemberBracketedText              ; 0x0a70
+	textpointer OpponentRockClubMasterBracketedText                   ; 0x0a71
+	textpointer OpponentRockClubMemberBracketedText                   ; 0x0a72
+	textpointer OpponentFightingClubMasterBracketedText               ; 0x0a73
+	textpointer OpponentFightingClubMemberBracketedText               ; 0x0a74
+	textpointer OpponentScienceClubMasterBracketedText                ; 0x0a75
+	textpointer OpponentScienceClubMemberBracketedText                ; 0x0a76
+	textpointer OpponentPsychicClubMasterBracketedText                ; 0x0a77
+	textpointer OpponentPsychicClubMemberBracketedText                ; 0x0a78
+	textpointer OpponentFireClubMasterBracketedText                   ; 0x0a79
+	textpointer OpponentFireClubMemberBracketedText                   ; 0x0a7a
+	textpointer OpponentGrandMasterText                               ; 0x0a7b
+	textpointer OpponentGRGrassFortLeaderText                         ; 0x0a7c
+	textpointer OpponentGRGrassFortMemberText                         ; 0x0a7d
+	textpointer OpponentGRLightningFortLeaderText                     ; 0x0a7e
+	textpointer OpponentGRLightningFortMemberText                     ; 0x0a7f
+	textpointer OpponentGRFireFortLeaderText                          ; 0x0a80
+	textpointer OpponentGRFireFortMemberText                          ; 0x0a81
+	textpointer OpponentGRWaterFortLeaderText                         ; 0x0a82
+	textpointer OpponentGRWaterFortMemberText                         ; 0x0a83
+	textpointer OpponentGRFightingFortLeaderText                      ; 0x0a84
+	textpointer OpponentGRFightingFortMemberText                      ; 0x0a85
+	textpointer OpponentGRPsychicFortLeaderText                       ; 0x0a86
+	textpointer OpponentGRPsychicFortMemberText                       ; 0x0a87
+	textpointer OpponentColorlessAltarGuardianText                    ; 0x0a88
+	textpointer OpponentGRBigBossText                                 ; 0x0a89
+	textpointer OpponentGRKingText                                    ; 0x0a8a
+	textpointer OpponentStrangeLifeFormText                           ; 0x0a8b
+	textpointer OpponentEnigmaticMaskText                             ; 0x0a8c
+	textpointer OpponentRivalText                                     ; 0x0a8d
 	textpointer Text0a8e                                           ; 0x0a8e
 	textpointer Text0a8f                                           ; 0x0a8f
 	textpointer Text0a90                                           ; 0x0a90
