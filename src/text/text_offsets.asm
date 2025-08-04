@@ -1664,7 +1664,7 @@ TextOffsets::
 	textpointer DuelistIntroDungeonMasterText                         ; 0x0677
 	textpointer DuelistIntroGhostMasterText                           ; 0x0678
 	textpointer MinicomDeckSaveMachineText                            ; 0x0679
-	textpointer MinicomMailBoxText                                    ; 0x067a
+	textpointer MinicomMailboxText                                    ; 0x067a
 	textpointer MinicomCardAlbumText                                  ; 0x067b
 	textpointer MinicomDialogText                                     ; 0x067c
 	textpointer PlayersChipsText                                      ; 0x067d
@@ -1700,8 +1700,8 @@ TextOffsets::
 	textpointer GrandMasterCupBracketTitleText                        ; 0x069b
 	textpointer GrandMasterCupBracketChampionshipText                 ; 0x069c
 	textpointer ConfirmedCardsText                                    ; 0x069d
-	textpointer MailBoxEmptySenderText                                ; 0x069e
-	textpointer MailBoxEmptySubjectText                               ; 0x069f
+	textpointer MailboxEmptySenderText                                ; 0x069e
+	textpointer MailboxEmptySubjectText                               ; 0x069f
 	textpointer MailBlackBoxOutputSenderText                          ; 0x06a0
 	textpointer MailBlackBoxOutputSubjectText                         ; 0x06a1
 	textpointer MailBlackBoxOutputBody1Text                           ; 0x06a2
@@ -1710,12 +1710,12 @@ TextOffsets::
 	textpointer MailBillsPCOutputSubjectText                          ; 0x06a5
 	textpointer MailBillsPCOutputBody1Text                            ; 0x06a6
 	textpointer MailBillsPCOutputBody2Text                            ; 0x06a7
-	textpointer MailMailBoxIntroSenderText                            ; 0x06a8
-	textpointer MailMailBoxIntroSubjectText                           ; 0x06a9
-	textpointer MailMailBoxIntroBody1Text                             ; 0x06aa
-	textpointer MailMailBoxIntroBody2Text                             ; 0x06ab
-	textpointer MailMailBoxIntroBody3Text                             ; 0x06ac
-	textpointer MailMailBoxIntroBody4Text                             ; 0x06ad
+	textpointer MailMailboxIntroSenderText                            ; 0x06a8
+	textpointer MailMailboxIntroSubjectText                           ; 0x06a9
+	textpointer MailMailboxIntroBody1Text                             ; 0x06aa
+	textpointer MailMailboxIntroBody2Text                             ; 0x06ab
+	textpointer MailMailboxIntroBody3Text                             ; 0x06ac
+	textpointer MailMailboxIntroBody4Text                             ; 0x06ad
 	textpointer MailDeckDiagnosis1SenderText                          ; 0x06ae
 	textpointer MailDeckDiagnosis1SubjectText                         ; 0x06af
 	textpointer MailDeckDiagnosis1Body1Text                           ; 0x06b0
@@ -1841,22 +1841,22 @@ TextOffsets::
 	textpointer MailLinkDuelSubjectText                               ; 0x0728
 	textpointer MailLinkDuelBody1Text                                 ; 0x0729
 	textpointer MailLinkDuelBody2Text                                 ; 0x072a
-	textpointer MailBoxTitleText                                      ; 0x072b
-	textpointer MailBoxFullWarningText                                ; 0x072c
-	textpointer MailBoxNoNewMailsText                                 ; 0x072d
-	textpointer MailBoxNewMailText                                    ; 0x072e
-	textpointer MailBoxChooseMailText                                 ; 0x072f
-	textpointer MailBoxSenderText                                     ; 0x0730
-	textpointer MailBoxSubjectText                                    ; 0x0731
-	textpointer MailBoxActionPromptText                               ; 0x0732
-	textpointer MailBoxActionReadText                                 ; 0x0733
-	textpointer MailBoxActionDeleteText                               ; 0x0734
-	textpointer MailBoxActionDeleteConfirmText                        ; 0x0735
-	textpointer MailBoxActionDeleteUnreadConfirmText                  ; 0x0736
-	textpointer MailBoxDeletedText                                    ; 0x0737
-	textpointer MailBoxUnreadSymbolText                               ; 0x0738
+	textpointer MailboxTitleText                                      ; 0x072b
+	textpointer MailboxFullWarningText                                ; 0x072c
+	textpointer MailboxNoNewMailText                                  ; 0x072d
+	textpointer MailboxNewMailText                                    ; 0x072e
+	textpointer MailboxChooseMailText                                 ; 0x072f
+	textpointer MailboxSenderText                                     ; 0x0730
+	textpointer MailboxSubjectText                                    ; 0x0731
+	textpointer MailboxActionPromptText                               ; 0x0732
+	textpointer MailboxActionReadText                                 ; 0x0733
+	textpointer MailboxActionDeleteText                               ; 0x0734
+	textpointer MailboxActionDeleteConfirmText                        ; 0x0735
+	textpointer MailboxActionDeleteUnreadConfirmText                  ; 0x0736
+	textpointer MailboxDeletedText                                    ; 0x0737
+	textpointer MailboxUnreadSymbolText                               ; 0x0738
 	textpointer DebugSendMailText                                     ; 0x0739
-	textpointer MailBoxEmptyText                                      ; 0x073a
+	textpointer MailboxEmptyText                                      ; 0x073a
 	textpointer SingleColonText                                       ; 0x073b
 	textpointer SamRulesEnergyText                                    ; 0x073c
 	textpointer SamRulesAttackText                                    ; 0x073d
