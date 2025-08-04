@@ -954,623 +954,623 @@ MapGRCastleText:
 	textfw "GR団のキャッスル"
 	done
 
-Text09d0:
+DialogDrMasonText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text09d1:
+DialogSamText:
 	textfw "ミカサ"
 	done
 
-Text09d2:
+DialogAaronText:
 	textfw "あらいモン"
 	done
 
-Text09d3:
+DialogMrIshiharaText:
 	textfw "Mr.イシハラ"
 	done
 
-Text09d4:
+DialogGeneText:
 	textfw "ゲンゾウ"
 	done
 
-Text09d5:
+DialogMatthewText:
 	textfw "ヤストモ"
 	done
 
-Text09d6:
+DialogRyanText:
 	textfw "ノリオ"
 	done
 
-Text09d7:
+DialogAndrewText:
 	textfw "ジョータ"
 	done
 
-Text09d8:
+DialogMitchText:
 	textfw "ヤマグチ"
 	done
 
-Text09d9:
+DialogMichaelText:
 	textfw "マサヒロ"
 	done
 
-Text09da:
+DialogChrisText:
 	textfw "タツロー"
 	done
 
-Text09db:
+DialogJessicaText:
 	textfw "ナツキ"
 	done
 
-Text09dc:
+DialogNikkiText:
 	textfw "クニミ"
 	done
 
-Text09dd:
+DialogBrittanyText:
 	textfw "アヤコ"
 	done
 
-Text09de:
+DialogKristinText:
 	textfw "ハルナ"
 	done
 
-Text09df:
+DialogHeatherText:
 	textfw "ミサオ"
 	done
 
-Text09e0:
+DialogRickText:
 	textfw "クルシマ"
 	done
 
-Text09e1:
+DialogDavidText:
 	textfw "ヤスユキ"
 	done
 
-Text09e2:
+DialogJosephText:
 	textfw "ソウタ"
 	done
 
-Text09e3:
+DialogErikText:
 	textfw "マサシ"
 	done
 
-Text09e4:
+DialogAmyText:
 	textfw "ウッチー"
 	done
 
-Text09e5:
+DialogJoshuaText:
 	textfw "シンタロー"
 	done
 
-Text09e6:
+DialogSaraText:
 	textfw "マリ"
 	done
 
-Text09e7:
+DialogAmandaText:
 	textfw "メグミ"
 	done
 
-Text09e8:
+DialogIsaacText:
 	textfw "タカハシ"
 	done
 
-Text09e9:
+DialogJenniferText:
 	textfw "ユカ"
 	done
 
-Text09ea:
+DialogNicholasText:
 	textfw "ソウスケ"
 	done
 
-Text09eb:
+DialogBrandonText:
 	textfw "トシヒコ"
 	done
 
-Text09ec:
+DialogKenText:
 	textfw "アカバネ"
 	done
 
-Text09ed:
+DialogJohnText:
 	textfw "タカシ"
 	done
 
-Text09ee:
+DialogAdamText:
 	textfw "ワタルン"
 	done
 
-Text09ef:
+DialogJonathanText:
 	textfw "マサトシ"
 	done
 
-Text09f0:
+DialogMurrayText:
 	textfw "ミウラ"
 	done
 
-Text09f1:
+DialogRobertText:
 	textfw "ヒロ"
 	done
 
-Text09f2:
+DialogDanielText:
 	textfw "ケイタ"
 	done
 
-Text09f3:
+DialogStephanieText:
 	textfw "リエ"
 	done
 
-Text09f4:
+DialogSteveText:
 	textfw "スティーブ"
 	done
 
-Text09f5:
+DialogCourtneyText:
 	textfw "ヒロコ"
 	done
 
-Text09f6:
+DialogJackText:
 	textfw "カネコウジ"
 	done
 
-Text09f7:
+DialogRodText:
 	textfw "リュウドー"
 	done
 
-Text09f8:
+DialogPlateOfLegendsText:
 	textfw "伝説のプレート"
 	done
 
-Text09f9:
+DialogFatGuyText:
 	textfw "ふとった男"
 	done
 
-Text09fa:
+DialogChipperText:
 	textfw "チッパー"
 	done
 
-Text09fb:
+DialogCheckerText:
 	textfw "チェックマン"
 	done
 
-Text09fc:
+DialogPawnText:
 	textfw "ポーン"
 	done
 
-Text09fd:
+DialogKnightText:
 	textfw "ナイト"
 	done
 
-Text09fe:
+DialogBishopText:
 	textfw "ビショップ"
 	done
 
-Text09ff:
+DialogRookText:
 	textfw "ルーク"
 	done
 
-Text0a00:
+DialogQueenText:
 	textfw "クィーン"
 	done
 
-Text0a01:
+DialogTobichanText:
 	textfw "とびちゃん"
 	done
 
-Text0a02:
+DialogEijiText:
 	textfw "エイジ"
 	done
 
-Text0a03:
+DialogMagicianText:
 	textfw "マジシャン"
 	done
 
-Text0a04:
+DialogToshironText:
 	textfw "トシロン"
 	done
 
-Text0a05:
+DialogPierroText:
 	textfw "ピエロ"
 	done
 
-Text0a06:
+DialogDeeText:
 	textfw "ディー"
 	done
 
-Text0a07:
+DialogAnnaText:
 	textfw "アンナ"
 	done
 
-Text0a08:
+DialogMasqueradeText:
 	textfw "マスカレード"
 	done
 
-Text0a09:
+DialogYuiText:
 	textfw "ユイ"
 	done
 
-Text0a0a:
+DialogMidoriText:
 	textfw "ミドリ"
 	done
 
-Text0a0b:
+DialogYutaText:
 	textfw "ユウタ"
 	done
 
-Text0a0c:
+DialogMiyukiText:
 	textfw "ミユキ"
 	done
 
-Text0a0d:
+DialogMorinoText:
 	textfw "モリノ"
 	done
 
-Text0a0e:
+DialogRennaText:
 	textfw "レンナ"
 	done
 
-Text0a0f:
+DialogIchikawaText:
 	textfw "イチカワ"
 	done
 
-Text0a10:
+DialogCatherineText:
 	textfw "キャサリン"
 	done
 
-Text0a11:
+DialogTapText:
 	textfw "タップ"
 	done
 
-Text0a12:
+DialogJesText:
 	textfw "ジェス"
 	done
 
-Text0a13:
+DialogYukiText:
 	textfw "ユウキ"
 	done
 
-Text0a14:
+DialogShokoText:
 	textfw "ショウコ"
 	done
 
-Text0a15:
+DialogHideroText:
 	textfw "ヒデロウ"
 	done
 
-Text0a16:
+DialogMiyajimaText:
 	textfw "ミヤジマ"
 	done
 
-Text0a17:
+DialogSentaText:
 	textfw "センタ"
 	done
 
-Text0a18:
+DialogAiraText:
 	textfw "アイラ"
 	done
 
-Text0a19:
+DialogKanokoText:
 	textfw "カノコ"
 	done
 
-Text0a1a:
+DialogKamiyaText:
 	textfw "カミヤ"
 	done
 
-Text0a1b:
+DialogGotaText:
 	textfw "ゴウダ"
 	done
 
-Text0a1c:
+DialogGraceText:
 	textfw "グレース"
 	done
 
-Text0a1d:
+DialogMiwaText:
 	textfw "ミワ"
 	done
 
-Text0a1e:
+DialogKevinText:
 	textfw "ケビン"
 	done
 
-Text0a1f:
+DialogYosukeText:
 	textfw "ヨウスケ"
 	done
 
-Text0a20:
+DialogRyokoText:
 	textfw "リョウコ"
 	done
 
-Text0a21:
+DialogMamiText:
 	textfw "マミ"
 	done
 
-Text0a22:
+DialogNishijimaText:
 	textfw "ニシジマ"
 	done
 
-Text0a23:
+DialogSamejimaText:
 	textfw "サメジマ"
 	done
 
-Text0a24:
+DialogIshiiText:
 	textfw "イシイ"
 	done
 
-Text0a25:
+DialogKanzakiText:
 	textfw "カンザキ"
 	done
 
-Text0a26:
+DialogRuiText:
 	textfw "ルイ"
 	done
 
-Text0a27:
+DialogBiruritchiText:
 	textfw "ビルリッチ"
 	done
 
-Text0a28:
+DialogGR1Text:
 	textfw "GR1号"
 	done
 
-Text0a29:
+DialogGR2Text:
 	textfw "GR2号"
 	done
 
-Text0a2a:
+DialogGR3Text:
 	textfw "GR3号"
 	done
 
-Text0a2b:
+DialogGR4Text:
 	textfw "GR4号"
 	done
 
-Text0a2c:
+DialogGR5Text: ; unused
 	textfw "GR5号"
 	done
 
-Text0a2d:
+DialogRonaldText:
 	textfw "ランド"
 	done
 
-Text0a2e:
+DialogGRXText:
 	textfw "GRX"
 	done
 
-Text0a2f:
+DialogImakuniText:
 	textfw "イマクニ?"
 	done
 
-Text0a30:
+DialogMaleKidText:
 	textfw "おとこのこ"
 	done
 
-Text0a31:
+DialogBoyText:
 	textfw "しょうねん"
 	done
 
-Text0a32:
+DialogYoungManText:
 	textfw "おにいさん"
 	done
 
-Text0a33:
+DialogYoungGuyText:
 	textfw "おにーさん"
 	done
 
-Text0a34:
+DialogDudeText:
 	textfw "おニイさん"
 	done
 
-Text0a35:
+DialogBroText:
 	textfw "おにいちゃん"
 	done
 
-Text0a36:
+DialogFemaleKidText:
 	textfw "おんなのこ"
 	done
 
-Text0a37:
+DialogYoungWomanText:
 	textfw "おねいさん"
 	done
 
-Text0a38:
+DialogGalText:
 	textfw "おねーさん"
 	done
 
-Text0a39:
+DialogSisText:
 	textfw "おねぇちゃん"
 	done
 
-Text0a3a:
+DialogUncleText:
 	textfw "おじさん"
 	done
 
-Text0a3b:
+DialogOldManText:
 	textfw "おじいさん"
 	done
 
-Text0a3c:
+DialogGrampsText:
 	textfw "おじぃさん"
 	done
 
-Text0a3d:
+DialogElderGuyText:
 	textfw "おじーさん"
 	done
 
-Text0a3e:
+DialogAuntieText:
 	textfw "おばさん"
 	done
 
-Text0a3f:
+DialogGrannyText:
 	textfw "おばーさん"
 	done
 
-Text0a40:
+DialogLadyText:
 	textfw "おじょーさま"
 	done
 
-Text0a41:
+DialogGRLadText:
 	textfw "GRにいさん"
 	done
 
-Text0a42:
+DialogGRLassText:
 	textfw "GRねーさん"
 	done
 
-Text0a43:
+DialogGRGrampsText:
 	textfw "GRじいさん"
 	done
 
-Text0a44:
+DialogGRAuntieText:
 	textfw "GRおばさん"
 	done
 
-Text0a45:
+DialogGRKidText:
 	textfw "GR団のこ"
 	done
 
-Text0a46:
+DialogGRMateText:
 	textfw "GR団のひと"
 	done
 
-Text0a47:
+DialogGRGruntText:
 	textfw "GR団員"
 	done
 
-Text0a48:
+DialogLightningAuntieText:
 	textfw "雷おばさん"
 	done
 
-Text0a49:
+DialogGRammpyText:
 	textfw "おGさん"
 	done
 
-Text0a4a:
+DialogTechText:
 	textfw "研究員"
 	done
 
-Text0a4b:
+DialogLonghairedKidText:
 	textfw "ロングのこ"
 	done
 
-Text0a4c:
+DialogCapKidText:
 	textfw "ぼうしのこ"
 	done
 
-Text0a4d:
+DialogSwimsuitKidText:
 	textfw "みずぎのこ"
 	done
 
-Text0a4e:
+DialogCommonKidText:
 	textfw "ふつうのこ"
 	done
 
-Text0a4f:
+DialogGlassesKidText:
 	textfw "メガネのこ"
 	done
 
-Text0a50:
+DialogGlassesBoyText:
 	textfw "メガネくん"
 	done
 
-Text0a51:
+DialogGlassesGirlText:
 	textfw "めがねっこ"
 	done
 
-Text0a52:
+DialogPunkKidText:
 	textfw "パンクのこ"
 	done
 
-Text0a53:
+DialogChubbyKidText:
 	textfw "ふとったこ"
 	done
 
-Text0a54:
+DialogCapManText:
 	textfw "ぼうしの男"
 	done
 
-Text0a55:
+DialogBlackBeltText:
 	textfw "かくとうか"
 	done
 
-Text0a56:
+DialogPunkDudeText:
 	textfw "パンクの男"
 	done
 
-Text0a57:
+DialogPunkGalText:
 	textfw "パンクス"
 	done
 
-Text0a58:
+DialogAttendantText:
 	textfw "かかりいん"
 	done
 
-Text0a59:
+DialogClerkText:
 	textfw "しょくいん"
 	done
 
-Text0a5a:
+DialogReceptionistText:
 	textfw "うけつけ"
 	done
 
-Text0a5b:
+DialogEmceeText:
 	textfw "しかい"
 	done
 
-Text0a5c:
+FireKanjiText:
 	textfw "炎"
 	done
 
-Text0a5d:
+WaterKanjiText:
 	textfw "水"
 	done
 
-Text0a5e:
+LightningKanjiText:
 	textfw "雷"
 	done
 
-Text0a5f:
+FightingKanjiText:
 	textfw "闘"
 	done
 
-Text0a60:
+PsychicKanjiText:
 	textfw "超"
 	done
 
-Text0a61:
+GrassKanjiText:
 	textfw "草"
 	done
 
-Text0a62:
+ColorlessKanjiText:
 	textfw "無"
 	done
 
-Text0a63:
+RockClubShortText:
 	textfw "ストーン"
 	done
 
-Text0a64:
+LightningClubShortText:
 	textfw "エレキ"
 	done
 
-Text0a65:
+GrassClubShortText:
 	textfw "グリーン"
 	done
 
-Text0a66:
+ScienceClubShortText:
 	textfw "サイエンス"
 	done
 
-Text0a67:
+FightingClubShortText:
 	textfw "バトル"
 	done
 
-Text0a68:
+PsychicClubShortText:
 	textfw "エスパー"
 	done
 
-Text0a69:
+FireClubShortText:
 	textfw "ファイア"
 	done
 
-Text0a6a:
+WaterClubShortText:
 	textfw "アクア"
 	done
 
