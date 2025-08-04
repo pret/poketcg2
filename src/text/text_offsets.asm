@@ -2070,16 +2070,16 @@ TextOffsets::
 	textpointer DebugModifyCardCountCardNameText                      ; 0x080d
 	textpointer DebugModifyCardCountValuesText                        ; 0x080e
 	textpointer DebugBeatTheGameText                                  ; 0x080f
-	textpointer Text0810                                           ; 0x0810
-	textpointer Text0811                                           ; 0x0811
-	textpointer Text0812                                           ; 0x0812
-	textpointer Text0813                                           ; 0x0813
-	textpointer Text0814                                           ; 0x0814
-	textpointer Text0815                                           ; 0x0815
-	textpointer Text0816                                           ; 0x0816
-	textpointer Text0817                                           ; 0x0817
-	textpointer Text0818                                           ; 0x0818
-	textpointer Text0819                                           ; 0x0819
+	textpointer DebugSwapPlayerGenderText                             ; 0x0810
+	textpointer DebugGoToTCGIslandText                                ; 0x0811
+	textpointer DebugGoToGRIslandText                                 ; 0x0812
+	textpointer DebugGetAllCoinsText                                  ; 0x0813
+	textpointer DebugDeliverAllMailText                               ; 0x0814
+	textpointer DebugResetChallengeMachineDataText                    ; 0x0815
+	textpointer DebugUnlockSealedFortText                             ; 0x0816
+	textpointer DebugHoldGrandMasterCupText                           ; 0x0817
+	textpointer DebugGet10CardsEachText                               ; 0x0818
+	textpointer DebugGet10EnergyCardsEachText                         ; 0x0819
 	textpointer Text081a                                           ; 0x081a
 	textpointer Text081b                                           ; 0x081b
 	textpointer Text081c                                           ; 0x081c

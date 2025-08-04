@@ -1,40 +1,40 @@
-Text0810:
+DebugSwapPlayerGenderText:
 	textfw "プレイヤーの性別を入れ替える"
 	done
 
-Text0811:
+DebugGoToTCGIslandText:
 	textfw "はじまりの島に行く"
 	done
 
-Text0812:
+DebugGoToGRIslandText:
 	textfw "GR団の島に行く"
 	done
 
-Text0813:
+DebugGetAllCoinsText:
 	textfw "すべてのコインをゲットする"
 	done
 
-Text0814:
+DebugDeliverAllMailText:
 	textfw "すべてのメールを配信する"
 	done
 
-Text0815:
+DebugResetChallengeMachineDataText:
 	textfw "チャレンジマシンのデータを壊す"
 	done
 
-Text0816:
+DebugUnlockSealedFortText:
 	textfw "ふういんのトリデOPEN"
 	done
 
-Text0817:
+DebugHoldGrandMasterCupText:
 	textfw "GM杯開催(クリアデータのみ)"
 	done
 
-Text0818:
+DebugGet10CardsEachText:
 	textfw "すべてのカードを10枚ふやす"
 	done
 
-Text0819:
+DebugGet10EnergyCardsEachText:
 	textfw "エネルギーカードを10枚ふやす"
 	done
 
