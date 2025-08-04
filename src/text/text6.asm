@@ -2154,11 +2154,11 @@ Text0af8:
 	textfw "           "
 	done
 
-Text0af9:
+ErrorInvalidDataText:
 	textfw "*** エラー(不正データ) ***"
 	done
 
-Text0afa:
+SavedDataText:
 	textfw "データを セーブしました"
 	done
 

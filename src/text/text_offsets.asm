@@ -2816,8 +2816,8 @@ TextOffsets::
 	textpointer Text0af6                                           ; 0x0af6
 	textpointer Text0af7                                           ; 0x0af7
 	textpointer Text0af8                                           ; 0x0af8
-	textpointer Text0af9                                           ; 0x0af9
-	textpointer Text0afa                                           ; 0x0afa
+	textpointer ErrorInvalidDataText                                  ; 0x0af9
+	textpointer SavedDataText                                         ; 0x0afa
 	textpointer Text0afb                                           ; 0x0afb
 	textpointer Text0afc                                           ; 0x0afc
 	textpointer Text0afd                                           ; 0x0afd
