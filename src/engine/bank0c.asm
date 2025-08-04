@@ -382,19 +382,19 @@ PrintGRIslandLocationName:
 	ret
 
 .data
-	textitem 33, 4, Text09c3 ; OWMAP_GR_AIRPORT
-	textitem 33, 2, Text09c4 ; OWMAP_ISHIHARAS_VILLA
-	textitem 33, 3, Text09c5 ; OWMAP_GAME_CENTER
-	textitem 33, 2, Text09c6 ; OWMAP_SEALED_FORT
-	textitem 33, 2, Text09c7 ; OWMAP_GR_CHALLENGE_HALL
-	textitem 33, 2, Text09c8 ; OWMAP_GR_GRASS_FORT
-	textitem 33, 2, Text09c9 ; OWMAP_GR_LIGHTNING_FORT
-	textitem 33, 2, Text09ca ; OWMAP_GR_FIRE_FORT
-	textitem 33, 2, Text09cb ; OWMAP_GR_WATER_FORT
-	textitem 33, 2, Text09cc ; OWMAP_GR_FIGHTING_FORT
-	textitem 33, 1, Text09cd ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	textitem 33, 3, Text09ce ; OWMAP_COLORLESS_ALTAR
-	textitem 33, 2, Text09cf ; OWMAP_GR_CASTLE
+	textitem 33, 4, MapGRAirportText ; OWMAP_GR_AIRPORT
+	textitem 33, 2, MapIshiharasVillaText ; OWMAP_ISHIHARAS_VILLA
+	textitem 33, 3, MapGameCenterText ; OWMAP_GAME_CENTER
+	textitem 33, 2, MapSealedFortText ; OWMAP_SEALED_FORT
+	textitem 33, 2, MapGRChallengeHallText ; OWMAP_GR_CHALLENGE_HALL
+	textitem 33, 2, MapGRGrassFortText ; OWMAP_GR_GRASS_FORT
+	textitem 33, 2, MapGRLightningFortText ; OWMAP_GR_LIGHTNING_FORT
+	textitem 33, 2, MapGRFireFortText ; OWMAP_GR_FIRE_FORT
+	textitem 33, 2, MapGRWaterFortText ; OWMAP_GR_WATER_FORT
+	textitem 33, 2, MapGRFightingFortText ; OWMAP_GR_FIGHTING_FORT
+	textitem 33, 1, MapGRPsychicFortText ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	textitem 33, 3, MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
+	textitem 33, 2, MapGRCastleText ; OWMAP_GR_CASTLE
 
 Func_3030a:
 	sla a ; *2

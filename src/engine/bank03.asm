@@ -755,37 +755,37 @@ Data_c651::
 SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
 
 TextIDs_d171:
-	tx Text09b6 ; OWMAP_MASON_LABORATORY
-	tx Text09b7 ; OWMAP_ISHIHARAS_HOUSE
-	tx Text09b8 ; OWMAP_LIGHTNING_CLUB
-	tx Text09b9 ; OWMAP_PSYCHIC_CLUB
-	tx Text09ba ; OWMAP_ROCK_CLUB
-	tx Text09bb ; OWMAP_FIGHTING_CLUB
-	tx Text09bc ; OWMAP_GRASS_CLUB
-	tx Text09bd ; OWMAP_SCIENCE_CLUB
-	tx Text09be ; OWMAP_WATER_CLUB
-	tx Text09bf ; OWMAP_FIRE_CLUB
-	tx Text09c0 ; OWMAP_TCG_AIRPORT
-	tx Text09c1 ; OWMAP_TCG_CHALLENGE_HALL
-	tx Text09c2 ; OWMAP_POKEMON_DOME
+	tx MapMasonLabText         ; OWMAP_MASON_LABORATORY
+	tx MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
+	tx MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
+	tx MapPsychicClubText      ; OWMAP_PSYCHIC_CLUB
+	tx MapRockClubText         ; OWMAP_ROCK_CLUB
+	tx MapFightingClubText     ; OWMAP_FIGHTING_CLUB
+	tx MapGrassClubText        ; OWMAP_GRASS_CLUB
+	tx MapScienceClubText      ; OWMAP_SCIENCE_CLUB
+	tx MapWaterClubText        ; OWMAP_WATER_CLUB
+	tx MapFireClubText         ; OWMAP_FIRE_CLUB
+	tx MapTCGAirportText       ; OWMAP_TCG_AIRPORT
+	tx MapTCGChallengeHallText ; OWMAP_TCG_CHALLENGE_HALL
+	tx MapPokemonDomeText      ; OWMAP_POKEMON_DOME
 	dw NULL
-	tx Text09b5
+	tx MapOpeningText
 
 TextIDs_d18f:
-	tx Text09c3 ; OWMAP_GR_AIRPORT
-	tx Text09c4 ; OWMAP_ISHIHARAS_VILLA
-	tx Text09c5 ; OWMAP_GAME_CENTER
-	tx Text09c6 ; OWMAP_SEALED_FORT
-	tx Text09c7 ; OWMAP_GR_CHALLENGE_HALL
-	tx Text09c8 ; OWMAP_GR_GRASS_FORT
-	tx Text09c9 ; OWMAP_GR_LIGHTNING_FORT
-	tx Text09ca ; OWMAP_GR_FIRE_FORT
-	tx Text09cb ; OWMAP_GR_WATER_FORT
-	tx Text09cc ; OWMAP_GR_FIGHTING_FORT
-	tx Text09cd ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	tx Text09ce ; OWMAP_COLORLESS_ALTAR
-	tx Text09cf ; OWMAP_GR_CASTLE
-	tx Drew7CardsText ; $0069, weird
+	tx MapGRAirportText        ; OWMAP_GR_AIRPORT
+	tx MapIshiharasVillaText   ; OWMAP_ISHIHARAS_VILLA
+	tx MapGameCenterText       ; OWMAP_GAME_CENTER
+	tx MapSealedFortText       ; OWMAP_SEALED_FORT
+	tx MapGRChallengeHallText  ; OWMAP_GR_CHALLENGE_HALL
+	tx MapGRGrassFortText      ; OWMAP_GR_GRASS_FORT
+	tx MapGRLightningFortText  ; OWMAP_GR_LIGHTNING_FORT
+	tx MapGRFireFortText       ; OWMAP_GR_FIRE_FORT
+	tx MapGRWaterFortText      ; OWMAP_GR_WATER_FORT
+	tx MapGRFightingFortText   ; OWMAP_GR_FIGHTING_FORT
+	tx MapGRPsychicFortText    ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
+	tx MapGRCastleText         ; OWMAP_GR_CASTLE
+	tx Drew7CardsText          ; $0069, weird
 ; 0xd1ab
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]

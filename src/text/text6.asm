@@ -846,111 +846,111 @@ Text09b4:
 	linefw "でも すてきでしょ?"
 	done
 
-Text09b5:
+MapOpeningText:
 	textfw "オープニング"
 	done
 
-Text09b6:
+MapMasonLabText:
 	textfw "オーヤマ研究所"
 	done
 
-Text09b7:
+MapIshiharasHouseText:
 	textfw "Mr.イシハラの家"
 	done
 
-Text09b8:
+MapLightningClubText:
 	textfw "エレキクラブ"
 	done
 
-Text09b9:
+MapPsychicClubText:
 	textfw "エスパークラブ"
 	done
 
-Text09ba:
+MapRockClubText:
 	textfw "ストーンクラブ"
 	done
 
-Text09bb:
+MapFightingClubText:
 	textfw "バトルクラブ"
 	done
 
-Text09bc:
+MapGrassClubText:
 	textfw "グリーンクラブ"
 	done
 
-Text09bd:
+MapScienceClubText:
 	textfw "サイエンスクラブ"
 	done
 
-Text09be:
+MapWaterClubText:
 	textfw "アクアクラブ"
 	done
 
-Text09bf:
+MapFireClubText:
 	textfw "ファイアクラブ"
 	done
 
-Text09c0:
+MapTCGAirportText:
 	textfw "エアポート"
 	done
 
-Text09c1:
+MapTCGChallengeHallText:
 	textfw "チャレンジホール"
 	done
 
-Text09c2:
+MapPokemonDomeText:
 	textfw "ポケモンドーム"
 	done
 
-Text09c3:
+MapGRAirportText:
 	textfw "エアポート"
 	done
 
-Text09c4:
+MapIshiharasVillaText:
 	textfw "Mr.イシハラの別莊"
 	done
 
-Text09c5:
+MapGameCenterText:
 	textfw "ゲームセンター"
 	done
 
-Text09c6:
+MapSealedFortText:
 	textfw "ふういんのトリデ"
 	done
 
-Text09c7:
+MapGRChallengeHallText:
 	textfw "チャレンジホール"
 	done
 
-Text09c8:
+MapGRGrassFortText:
 	textfw "草のGR団のトリデ"
 	done
 
-Text09c9:
+MapGRLightningFortText:
 	textfw "雷のGR団のトリデ"
 	done
 
-Text09ca:
+MapGRFireFortText:
 	textfw "炎のGR団のトリデ"
 	done
 
-Text09cb:
+MapGRWaterFortText:
 	textfw "水のGR団のトリデ"
 	done
 
-Text09cc:
+MapGRFightingFortText:
 	textfw "闘のGR団のトリデ"
 	done
 
-Text09cd:
+MapGRPsychicFortText:
 	textfw "超のGR団のようさい"
 	done
 
-Text09ce:
+MapGRColorlessAltarText:
 	textfw "無のさいだん"
 	done
 
-Text09cf:
+MapGRCastleText:
 	textfw "GR団のキャッスル"
 	done
 

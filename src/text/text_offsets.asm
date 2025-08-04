@@ -2491,33 +2491,33 @@ TextOffsets::
 	textpointer Text09b2                                           ; 0x09b2
 	textpointer Text09b3                                           ; 0x09b3
 	textpointer Text09b4                                           ; 0x09b4
-	textpointer Text09b5                                           ; 0x09b5
-	textpointer Text09b6                                           ; 0x09b6
-	textpointer Text09b7                                           ; 0x09b7
-	textpointer Text09b8                                           ; 0x09b8
-	textpointer Text09b9                                           ; 0x09b9
-	textpointer Text09ba                                           ; 0x09ba
-	textpointer Text09bb                                           ; 0x09bb
-	textpointer Text09bc                                           ; 0x09bc
-	textpointer Text09bd                                           ; 0x09bd
-	textpointer Text09be                                           ; 0x09be
-	textpointer Text09bf                                           ; 0x09bf
-	textpointer Text09c0                                           ; 0x09c0
-	textpointer Text09c1                                           ; 0x09c1
-	textpointer Text09c2                                           ; 0x09c2
-	textpointer Text09c3                                           ; 0x09c3
-	textpointer Text09c4                                           ; 0x09c4
-	textpointer Text09c5                                           ; 0x09c5
-	textpointer Text09c6                                           ; 0x09c6
-	textpointer Text09c7                                           ; 0x09c7
-	textpointer Text09c8                                           ; 0x09c8
-	textpointer Text09c9                                           ; 0x09c9
-	textpointer Text09ca                                           ; 0x09ca
-	textpointer Text09cb                                           ; 0x09cb
-	textpointer Text09cc                                           ; 0x09cc
-	textpointer Text09cd                                           ; 0x09cd
-	textpointer Text09ce                                           ; 0x09ce
-	textpointer Text09cf                                           ; 0x09cf
+	textpointer MapOpeningText                                        ; 0x09b5
+	textpointer MapMasonLabText                                       ; 0x09b6
+	textpointer MapIshiharasHouseText                                 ; 0x09b7
+	textpointer MapLightningClubText                                  ; 0x09b8
+	textpointer MapPsychicClubText                                    ; 0x09b9
+	textpointer MapRockClubText                                       ; 0x09ba
+	textpointer MapFightingClubText                                   ; 0x09bb
+	textpointer MapGrassClubText                                      ; 0x09bc
+	textpointer MapScienceClubText                                    ; 0x09bd
+	textpointer MapWaterClubText                                      ; 0x09be
+	textpointer MapFireClubText                                       ; 0x09bf
+	textpointer MapTCGAirportText                                     ; 0x09c0
+	textpointer MapTCGChallengeHallText                               ; 0x09c1
+	textpointer MapPokemonDomeText                                    ; 0x09c2
+	textpointer MapGRAirportText                                      ; 0x09c3
+	textpointer MapIshiharasVillaText                                 ; 0x09c4
+	textpointer MapGameCenterText                                     ; 0x09c5
+	textpointer MapSealedFortText                                     ; 0x09c6
+	textpointer MapGRChallengeHallText                                ; 0x09c7
+	textpointer MapGRGrassFortText                                    ; 0x09c8
+	textpointer MapGRLightningFortText                                ; 0x09c9
+	textpointer MapGRFireFortText                                     ; 0x09ca
+	textpointer MapGRWaterFortText                                    ; 0x09cb
+	textpointer MapGRFightingFortText                                 ; 0x09cc
+	textpointer MapGRPsychicFortText                                  ; 0x09cd
+	textpointer MapGRColorlessAltarText                               ; 0x09ce
+	textpointer MapGRCastleText                                       ; 0x09cf
 	textpointer Text09d0                                           ; 0x09d0
 	textpointer Text09d1                                           ; 0x09d1
 	textpointer Text09d2                                           ; 0x09d2
