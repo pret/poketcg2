@@ -1946,207 +1946,207 @@ ReceivedNotPromotionalPotionEnergyText:
 	linefw "「きずぐすり配合E」を ゲット!"
 	done
 
-Text0ac5:
+CombosBookName:
 	textfw "「コンボ」"
 	done
 
-Text0ac6:
+EnergyTransBookName:
 	textfw "「エナジートランス」"
 	done
 
-Text0ac7:
+ToxicGasBookName:
 	textfw "「かがくへんかガス」"
 	done
 
-Text0ac8:
+RainDanceBookName:
 	textfw "「あまごい」"
 	done
 
-Text0ac9:
+SelfdestructBookName:
 	textfw "「じばく」"
 	done
 
-Text0aca:
+DamageSwapBookName:
 	textfw "「ダメージスワップ」"
 	done
 
-Text0acb:
+RemoveEnergiesBookName:
 	textfw "「エネルギーをはがせ」"
 	done
 
-Text0acc:
+PrehistoricPowerBookName:
 	textfw "「げんしのちから」"
 	done
 
-Text0acd:
+WeaknessResistanceBookName:
 	textfw "「弱点」と「抵抗力」"
 	done
 
-Text0ace:
+TeamGRBookName:
 	textfw "「GR団」について"
 	done
 
-Text0acf:
+GameCenterBookName:
 	textfw "ゲームセンター"
 	done
 
-Text0ad0:
+SamePokemonBookName:
 	textfw "おなじポケモン"
 	done
 
-Text0ad1:
+PhantomCardsBookName:
 	textfw "まぼろしのカード"
 	done
 
-Text0ad2:
+DarkPokemonBookName:
 	textfw "わるいポケモンカード"
 	done
 
-Text0ad3:
+AugmentBasicPokemonBookName:
 	textfw "たねポケモンをふやす"
 	done
 
-Text0ad4:
+GRKingCardsBookName:
 	textfw "キングのカード"
 	done
 
-Text0ad5:
+SpecialEnergyBookName:
 	textfw "特殊エネルギー"
 	done
 
-Text0ad6:
+GetCoinsBookName:
 	textfw "コインゲット"
 	done
 
-Text0ad7:
+RockGroundPokemonBookName:
 	textfw "岩・地面ポケモン"
 	done
 
-Text0ad8:
+FightingPokemonSurefireMethodBookName:
 	textfw "闘ポケモンの必勝法"
 	done
 
-Text0ad9:
+FightingPokemonFormidableOpponentsBookName:
 	textfw "にがてなポケモン"
 	done
 
-Text0ada:
+FightingPokemonBookName:
 	textfw "かくとうポケモン"
 	done
 
-Text0adb:
+FightingPokemonCombosBookName:
 	textfw "かくとうポケモンとコンボ"
 	done
 
-Text0adc:
+FightingPokemonDeckBuildingBookName:
 	textfw "かくとうポケモンのデッキ"
 	done
 
-Text0add:
+PlantlikePokemonBookName:
 	textfw "しょくぶつポケモン"
 	done
 
-Text0ade:
+GrassPokemonBreederBookName:
 	textfw "草ポケモンと育て屋さん"
 	done
 
-Text0adf:
+GrassPokemonDeckBuildingBookName:
 	textfw "草ポケモンのデッキ"
 	done
 
-Text0ae0:
+SciencePokemonBookName:
 	textfw "かがくポケモン"
 	done
 
-Text0ae1:
+SciencePokemonSurefireMethodBookName:
 	textfw "かがくポケモン必勝法"
 	done
 
-Text0ae2:
+SciencePokemonDeckBuildingBookName:
 	textfw "かがくポケモンのデッキ"
 	done
 
-Text0ae3:
+WaterPokemonBookName:
 	textfw "水ポケモン"
 	done
 
-Text0ae4:
+WaterPokemonAttacksBookName:
 	textfw "水ポケモンのワザ"
 	done
 
-Text0ae5:
+PsyduckGolduckBookName:
 	textfw "「コダック」「ゴルダック」"
 	done
 
-Text0ae6:
+FirePokemonBookName:
 	textfw "炎ポケモンについて"
 	done
 
-Text0ae7:
+FirePokemonAttacksBookName:
 	textfw "炎ポケモンのワザ"
 	done
 
-Text0ae8:
+FirePokemonDeckBuildingBookName:
 	textfw "炎ポケモンのデッキ"
 	done
 
-Text0ae9:
+LightningPokemonBookName:
 	textfw "雷ポケモン"
 	done
 
-Text0aea:
+LightningPokemonDeckBuildingBookName:
 	textfw "雷ポケモンのデッキ"
 	done
 
-Text0aeb:
+BirdPokemonBookName:
 	textfw "とりポケモン"
 	done
 
-Text0aec:
+PsychicPokemonBookName:
 	textfw "超ポケモン"
 	done
 
-Text0aed:
+PsychicPokemonPokemonPowerBookName:
 	textfw "超ポケモンと特殊能力"
 	done
 
-Text0aee:
+UsefulButtonsBookName:
 	textfw "べんりなボタン"
 	done
 
-Text0aef:
+ColorlessPokemonBookName:
 	textfw "無色のポケモン"
 	done
 
-Text0af0:
+CardPopBookName:
 	textfw "カードポン!"
 	done
 
-Text0af1:
+EnergyCardColorsBookName:
 	textfw "エネルギーカードの色"
 	done
 
-Text0af2:
+LegendaryPokemonCardsVol1BookName:
 	textfw "伝説のポケモンカード・1"
 	done
 
-Text0af3:
+LegendaryPokemonCardsVol2BookName:
 	textfw "伝説のポケモンカード・2"
 	done
 
-Text0af4:
+LegendaryPokemonCardsVol3BookName:
 	textfw "伝説のポケモンカード・3"
 	done
 
-Text0af5:
+LegendaryPokemonCardsVol4BookName:
 	textfw "伝説のポケモンカード・4"
 	done
 
-Text0af6:
+GrandMastersBookName:
 	textfw "グランドマスター"
 	done
 
-Text0af7:
+CoinsBookName:
 	textfw "コインについて"
 	done
 
