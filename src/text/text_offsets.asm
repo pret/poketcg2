@@ -4846,15 +4846,15 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text12e1                                           ; 0x12e1
 	textpointer Text12e2                                           ; 0x12e2
 	textpointer Text12e3                                           ; 0x12e3
-	textpointer Text12e4                                           ; 0x12e4
-	textpointer Text12e5                                           ; 0x12e5
-	textpointer Text12e6                                           ; 0x12e6
-	textpointer Text12e7                                           ; 0x12e7
-	textpointer Text12e8                                           ; 0x12e8
-	textpointer Text12e9                                           ; 0x12e9
-	textpointer Text12ea                                           ; 0x12ea
-	textpointer Text12eb                                           ; 0x12eb
-	textpointer Text12ec                                           ; 0x12ec
+	textpointer BattleCenterWelcomeText                               ; 0x12e4
+	textpointer BattleCenterBeginPromptText                           ; 0x12e5
+	textpointer BattleCenterThankYouText                              ; 0x12e6
+	textpointer BattleCenterComeAgainText                             ; 0x12e7
+	textpointer BattleCenterWinRewardsText                            ; 0x12e8
+	textpointer BattleCenterLoseRewardsText                           ; 0x12e9
+	textpointer BattleCenter50WinsRewardsText                         ; 0x12ea
+	textpointer BattleCenterAppreciateContinuedSupportText            ; 0x12eb
+	textpointer BattleCenter100WinsRewardsText                        ; 0x12ec
 	textpointer GrassEnergyName                                    ; 0x12ed
 	textpointer GrassEnergyDescription                             ; 0x12ee
 	textpointer FireEnergyName                                     ; 0x12ef

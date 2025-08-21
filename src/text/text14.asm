@@ -445,54 +445,54 @@ Text12e3:
 	linefw "じゃあな! オレは たびにでるぜ"
 	done
 
-Text12e4:
+BattleCenterWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "バトルセンターへ ようこそ!!"
 	linefw "通信対戦で 拡張パックを ゲット!"
 	linefw "勝てば3パック まけると1パックです"
 	done
 
-Text12e5:
+BattleCenterBeginPromptText:
 	textfw "おともだちとの対戦を はじめますか?"
 	done
 
-Text12e6:
+BattleCenterThankYouText:
 	textfw "バトルセンターの ごりよう"
 	linefw "ありがとうございました"
 	done
 
-Text12e7:
+BattleCenterComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text12e8:
+BattleCenterWinRewardsText:
 	textfw "おめでとうございます!"
 	linefw "みごと対戦に 勝ちましたね"
 	linefw "勝った <RAMNAME>さんには"
 	linefw "拡張パックを 3つプレゼント!"
 	done
 
-Text12e9:
+BattleCenterLoseRewardsText:
 	textfw "ざんねんでしたね・・・"
 	linefw " "
 	linefw "<RAMNAME>さんには"
 	linefw "拡張パックを 1つプレゼントします!"
 	done
 
-Text12ea:
+BattleCenter50WinsRewardsText:
 	textfw "おめでとうございます"
 	linefw "通信対戦 50勝めです!"
 	linefw "<RAMNAME>さんには"
 	linefw "きねんのコインを さしあげます!"
 	done
 
-Text12eb:
+BattleCenterAppreciateContinuedSupportText:
 	textfw "これからも バトルセンターを"
 	linefw "よろしく おねがいします"
 	done
 
-Text12ec:
+BattleCenter100WinsRewardsText:
 	textfw "おめでとうございます"
 	linefw "なんと 通信対戦 100勝めです!"
 	linefw "<RAMNAME>さんには"
