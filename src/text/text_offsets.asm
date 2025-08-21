@@ -2560,8 +2560,8 @@ TextOffsets::
 	textpointer DialogRodText                                         ; 0x09f7
 	textpointer DialogPlateOfLegendsText                              ; 0x09f8
 	textpointer DialogFatGuyText                                      ; 0x09f9
-	textpointer DialogChipperText                                     ; 0x09fa
-	textpointer DialogCheckerText                                     ; 0x09fb
+	textpointer DialogChipAttendantText                               ; 0x09fa
+	textpointer DialogChipSecurityText                                ; 0x09fb
 	textpointer DialogPawnText                                        ; 0x09fc
 	textpointer DialogKnightText                                      ; 0x09fd
 	textpointer DialogBishopText                                      ; 0x09fe
@@ -3453,23 +3453,23 @@ TextOffsets::
 	textpointer Text0d73                                           ; 0x0d73
 	textpointer Text0d74                                           ; 0x0d74
 	textpointer Text0d75                                           ; 0x0d75
-	textpointer Text0d76                                           ; 0x0d76
-	textpointer Text0d77                                           ; 0x0d77
-	textpointer Text0d78                                           ; 0x0d78
-	textpointer Text0d79                                           ; 0x0d79
-	textpointer Text0d7a                                           ; 0x0d7a
-	textpointer Text0d7b                                           ; 0x0d7b
-	textpointer Text0d7c                                           ; 0x0d7c
-	textpointer Text0d7d                                           ; 0x0d7d
-	textpointer Text0d7e                                           ; 0x0d7e
-	textpointer Text0d7f                                           ; 0x0d7f
-	textpointer Text0d80                                           ; 0x0d80
-	textpointer Text0d81                                           ; 0x0d81
-	textpointer Text0d82                                           ; 0x0d82
-	textpointer Text0d83                                           ; 0x0d83
-	textpointer Text0d84                                           ; 0x0d84
-	textpointer Text0d85                                           ; 0x0d85
-	textpointer Text0d86                                           ; 0x0d86
+	textpointer GameCenterChipCounterWelcomeText                      ; 0x0d76
+	textpointer GameCenterChipCounterDepositInfoText                  ; 0x0d77
+	textpointer GameCenterChipCounterDepositReturnPromptText          ; 0x0d78
+	textpointer GameCenterChipCounterDepositReturnedText              ; 0x0d79
+	textpointer GameCenterChipCounterDepositReminderText              ; 0x0d7a
+	textpointer GameCenterChipCounterComeAgainText                    ; 0x0d7b
+	textpointer GameCenterChipCounterDepositPromptText                ; 0x0d7c
+	textpointer GameCenterChipCounterDepositedText                    ; 0x0d7d
+	textpointer GameCenterChipAttendantFirstServiceText               ; 0x0d7e
+	textpointer Received10ChipsText                                   ; 0x0d7f
+	textpointer GameCenterChipAttendantNoticeText                     ; 0x0d80
+	textpointer GameCenterChipAttendantRefillText                     ; 0x0d81
+	textpointer GameCenterChipAttendantWelcomeRefillText              ; 0x0d82
+	textpointer GameCenterChipAttendantEnjoyText                      ; 0x0d83
+	textpointer GameCenterChipAttendantRefillReminderText             ; 0x0d84
+	textpointer GameCenterChipSecurityReminderText                    ; 0x0d85
+	textpointer GameCenterChipSecurityWarningText                     ; 0x0d86
 	textpointer Text0d87                                           ; 0x0d87
 	textpointer Text0d88                                           ; 0x0d88
 	textpointer Text0d89                                           ; 0x0d89

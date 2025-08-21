@@ -1425,47 +1425,47 @@ Text0d75:
 	linefw "はなしかけて ちょうだいよ!"
 	done
 
-Text0d76:
+GameCenterChipCounterWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "チップカウンターへ ようこそ!"
 	linefw "ここでは チップを あずけたり"
 	linefw "あずけたチップを うけとれます"
 	done
 
-Text0d77:
+GameCenterChipCounterDepositInfoText:
 	textfw "チップは <RAMNUM>枚"
 	linefw "あずかっています"
 	done
 
-Text0d78:
+GameCenterChipCounterDepositReturnPromptText:
 	textfw "チップを おわたししますか?"
 	done
 
-Text0d79:
+GameCenterChipCounterDepositReturnedText:
 	textfw "それでは チップ <RAMNUM>枚"
 	linefw "おうけとりください"
 	done
 
-Text0d7a:
+GameCenterChipCounterDepositReminderText:
 	textfw "ゲームセンターを でるときには"
 	linefw "チップを あずけに きてください"
 	done
 
-Text0d7b:
+GameCenterChipCounterComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-Text0d7c:
+GameCenterChipCounterDepositPromptText:
 	textfw "チップを あずけますか?"
 	done
 
-Text0d7d:
+GameCenterChipCounterDepositedText:
 	textfw "たしかに <RAMNUM>枚"
 	linefw "おあずかりしました"
 	done
 
-Text0d7e:
+GameCenterChipAttendantFirstServiceText:
 	textfw "いらっしゃいませ!"
 	linefw "ゲームセンターに ようこそ!"
 	linefw "あなたは チップを おもちでは"
@@ -1474,26 +1474,26 @@ Text0d7e:
 	linefw "さしあげましょう"
 	done
 
-Text0d7f:
+Received10ChipsText:
 	textfw "<RAMNAME>は ゲームセンターの"
 	linefw "チップを 10枚 もらった!"
 	done
 
-Text0d80:
+GameCenterChipAttendantNoticeText:
 	textfw "では ゲームセンターで"
 	linefw "おたのしみください"
 	linefw "そうそう チップは そとに"
 	linefw "もちだせないので ごちゅういを"
 	done
 
-Text0d81:
+GameCenterChipAttendantRefillText:
 	textfw "あれ? チップを もってないんですね"
 	linefw "うーん あなただけに サービスです"
 	linefw "チップを 10枚"
 	linefw "さしあげましょう!!"
 	done
 
-Text0d82:
+GameCenterChipAttendantWelcomeRefillText:
 	textfw "こんにちは"
 	linefw "ゲームセンターへ ようこそ!"
 	linefw "おや"
@@ -1502,26 +1502,26 @@ Text0d82:
 	linefw "10枚さしあげましょう"
 	done
 
-Text0d83:
+GameCenterChipAttendantEnjoyText:
 	textfw "では ゲームセンターで"
 	linefw "おたのしみください"
 	done
 
-Text0d84:
+GameCenterChipAttendantRefillReminderText:
 	textfw "チップが なくなったら"
 	linefw "また きてください"
 	linefw "10枚だけですが チップを"
 	linefw "さしあげますよ"
 	done
 
-Text0d85:
+GameCenterChipSecurityReminderText:
 	textfw "チップは ゲームセンターから"
 	linefw "もちだせません"
 	linefw "かならず ひだりの カウンターで"
 	linefw "あずけてください"
 	done
 
-Text0d86:
+GameCenterChipSecurityWarningText:
 	textfw "しつれい おまちいただけますか?"
 	linefw "あなたさまは チップを おもちですね"
 	linefw "もうしわけありませんが チップは"

@@ -1122,11 +1122,11 @@ DialogFatGuyText:
 	textfw "ふとった男"
 	done
 
-DialogChipperText:
+DialogChipAttendantText:
 	textfw "チッパー"
 	done
 
-DialogCheckerText:
+DialogChipSecurityText:
 	textfw "チェックマン"
 	done
 
