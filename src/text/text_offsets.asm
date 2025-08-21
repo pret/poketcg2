@@ -2374,7 +2374,7 @@ TextOffsets::
 	textpointer Text093d                                           ; 0x093d
 	textpointer Text093e                                           ; 0x093e
 	textpointer Text093f                                           ; 0x093f
-	textpointer Text0940                                           ; 0x0940
+	textpointer ChangeDeckPromptText                                  ; 0x0940
 	textpointer Text0941                                           ; 0x0941
 	textpointer Text0942                                           ; 0x0942
 	textpointer Text0943                                           ; 0x0943
@@ -2823,8 +2823,8 @@ TextOffsets::
 	textpointer Text0afd                                           ; 0x0afd
 	textpointer Text0afe                                           ; 0x0afe
 	textpointer Text0aff                                           ; 0x0aff
-	textpointer Text0b00                                           ; 0x0b00
-	textpointer Text0b01                                           ; 0x0b01
+	textpointer TradeCardsPromptText                                  ; 0x0b00
+	textpointer DuelPrepPromptText                                    ; 0x0b01
 	textpointer Text0b02                                           ; 0x0b02
 	textpointer Text0b03                                           ; 0x0b03
 	textpointer Text0b04                                           ; 0x0b04

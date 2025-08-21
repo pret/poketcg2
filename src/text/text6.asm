@@ -9,7 +9,7 @@ Text093f:
 	linefw "きさまは どうするのだ?"
 	done
 
-Text0940:
+ChangeDeckPromptText:
 	textfw "デッキを こうかんしますか?"
 	done
 
@@ -2185,11 +2185,11 @@ Text0aff:
 	linefw "ビルリッチさまのどうぞう"
 	done
 
-Text0b00:
+TradeCardsPromptText:
 	textfw "カードを こうかんしますか?"
 	done
 
-Text0b01:
+DuelPrepPromptText:
 	textfw "対戦のじゅんびを しますか?"
 	done
 
