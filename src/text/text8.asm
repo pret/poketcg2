@@ -1002,7 +1002,7 @@ Text0d3d:
 	linefw "対戦するぞえ"
 	done
 
-Text0d3e:
+GameCenterCoinFlipClerkNoPrizesTryAgainText:
 	textfw "ざんねんでしたー!!"
 	linefw " "
 	linefw "3回いじょう 「おもて」がでないと"
@@ -1010,54 +1010,54 @@ Text0d3e:
 	linefw "また ちょうせんしてください!"
 	done
 
-Text0d3f:
+GameCenterCoinFlipClerk3HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 3回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 20枚でーす!"
 	done
 
-Text0d40:
+GameCenterCoinFlipClerkTryAgainText:
 	textfw "また"
 	linefw "ちょうせんしてください!"
 	done
 
-Text0d41:
+GameCenterCoinFlipClerk4HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 4回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 40枚でーす!"
 	done
 
-Text0d42:
+GameCenterCoinFlipClerk5HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 5回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 100枚でーす!"
 	done
 
-Text0d43:
+GameCenterCoinFlipClerk6HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 6回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 200枚でーす!"
 	done
 
-Text0d44:
+GameCenterCoinFlipClerk7HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 7回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 500枚でーす!"
 	done
 
-Text0d45:
+GameCenterCoinFlipClerk8HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 8回でしたぁー"
 	linefw "8回なんて すごいですねー!"
 	linefw "けいひんは チップ1000枚でーす!"
 	done
 
-Text0d46:
+GameCenterCoinFlipClerk9HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 9回でしたぁー"
 	linefw "おしかったですね"
@@ -1066,12 +1066,12 @@ Text0d46:
 	linefw "チップ 3000枚でーす!"
 	done
 
-Text0d47:
+GameCenterCoinFlipClerkAlmostCompleteTryAgainText:
 	textfw "10回も ユメじゃないですよ!"
 	linefw "また ちょうせんしてください!"
 	done
 
-Text0d48:
+GameCenterCoinFlipClerk10HeadsPrizeText:
 	textfw "おめでとうございまーす!"
 	linefw " "
 	linefw "「れんぞくコイントス」"
@@ -1080,21 +1080,21 @@ Text0d48:
 	linefw "おうけとりくださーい!!"
 	done
 
-Text0d49:
+GameCenterCoinFlipClerk10HeadsCongratsText:
 	textfw "ほんとーに おめでとーございます!"
 	done
 
-Text0d4a:
+TurnedOnBlackBoxText:
 	textfw "「ブラックボックス」の"
 	linefw "スイッチを いれました"
 	done
 
-Text0d4b:
+TurnedOnBillsPCText:
 	textfw "「マサキのパソコン」の"
 	linefw "スイッチを いれました"
 	done
 
-Text0d4c:
+GameCenterBlackBoxClerkWelcomeText:
 	textfw "ようこそいらっしゃいました"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1103,11 +1103,11 @@ Text0d4c:
 	linefw "ごせつめいいたしますよ"
 	done
 
-Text0d4d:
+GameCenterBlackBoxClerkGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-Text0d4e:
+GameCenterBlackBoxClerkGuideText:
 	textfw "「ブラックボックス」は"
 	linefw "チップ5枚で あそべます"
 	linefw "ポケモンカードを 1枚から5枚"
@@ -1128,7 +1128,7 @@ Text0d4e:
 	linefw "おたのしみください"
 	done
 
-Text0d4f:
+GameCenterBlackBoxClerkNoGuideText:
 	textfw "せつめいを きかれないのですね"
 	linefw "それも よいでしょう"
 	linefw "マシンの てじゅんどおりにすれば"
@@ -1141,7 +1141,7 @@ Text0d4f:
 	linefw "カードが とどきませんからね"
 	done
 
-Text0d50:
+GameCenterBillsPCClerkWelcomeText:
 	textfw "こんにちは!"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1150,11 +1150,11 @@ Text0d50:
 	linefw "せつめいをするっす"
 	done
 
-Text0d51:
+GameCenterBillsPCClerkGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-Text0d52:
+GameCenterBillsPCClerkGuideText:
 	textfw "では せつめいをするっす"
 	linefw " "
 	linefw "「マサキのパソコン」は"
@@ -1171,14 +1171,14 @@ Text0d52:
 	linefw "これで おわりっす"
 	done
 
-Text0d53:
+GameCenterBillsPCClerkNoGuideText:
 	textfw "そうっすか? まあ マシンの"
 	linefw "いうとおりにすれば もんだいないっす"
 	linefw "ためしに いきなり あそんでみるのも"
 	linefw "いいかも しれないっす"
 	done
 
-Text0d54:
+GameCenterCoinFlipClerkWelcomeText:
 	textfw "こんにちは!"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1193,23 +1193,23 @@ Text0d54:
 	linefw "あそんでみます?"
 	done
 
-Text0d55:
+GameCenterCoinFlipStartPromptText:
 	textfw "れんぞくコイントスで あそびますか?"
 	done
 
-Text0d56:
+GameCenterCoinFlipClerkStartText:
 	textfw "それでは 「れんぞくコイントス」の"
 	linefw "はじまりでーす!!"
 	done
 
-Text0d57:
+GameCenterCoinFlipClerkNotEnoughChipsText:
 	textfw "もうしわけありませんが"
 	linefw "チップを おもちでは ないようですね"
 	linefw "「れんぞくコイントス」を あそぶには"
 	linefw "チップが 1枚ひつようです"
 	done
 
-Text0d58:
+GameCenterCoinFlipClerkComeAgainText:
 	textfw "それでは またいらしてくださーい!"
 	done
 
@@ -1239,7 +1239,7 @@ Text0d5c:
 	linefw "つぎのゲームを してみようかな?"
 	done
 
-Text0d5d:
+GameCenterSlotMachine1ClerkWelcomeText:
 	textfw "いらっしゃいましー"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1250,11 +1250,11 @@ Text0d5d:
 	linefw "せつめいするよん"
 	done
 
-Text0d5e:
+GameCenterSlotMachine1ClerkGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-Text0d5f:
+GameCenterSlotMachine1ClerkGuideText:
 	textfw "せつめいと いっても"
 	linefw "むずかしいことは ないよ"
 	linefw "スロットマシンで 3つのマークが"
@@ -1266,12 +1266,12 @@ Text0d5f:
 	linefw "さあ おためしあれ!"
 	done
 
-Text0d60:
+GameCenterSlotMachine1ClerkNoGuideText:
 	textfw "まあ チップも 1枚だし"
 	linefw "ためすと いいよ"
 	done
 
-Text0d61:
+GameCenterSlotMachine5ClerkWelcomeText:
 	textfw "はい! こんにちは"
 	linefw "「スロットマシン」ですか?"
 	linefw "あっちと ちがって こっちは"
@@ -1280,11 +1280,11 @@ Text0d61:
 	linefw "きくきある?"
 	done
 
-Text0d62:
+GameCenterSlotMachine5ClerkGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-Text0d63:
+GameCenterSlotMachine5ClerkGuideText:
 	textfw "どっちの 「スロットマシン」も"
 	linefw "することは いっしょなんだ"
 	linefw "チップをつかって"
@@ -1299,57 +1299,57 @@ Text0d63:
 	linefw "ぜひ やってみてね!"
 	done
 
-Text0d64:
+GameCenterSlotMachine5ClerkNoGuideText:
 	textfw "「ひゃくぶんは いっけんに しかず」"
 	linefw "あそんで ためすのが イチバン!"
 	done
 
-Text0d65:
+GameCenterCardDungeonClerkWelcomeText:
 	textfw "ようこそ!"
 	linefw "カードダンジョンへ!!"
 	linefw "あそぶには チップが 10枚"
 	linefw "ひつようですけど あそびますか?"
 	done
 
-Text0d66:
+GameCenterCardDungeonStartPromptText:
 	textfw "カードダンジョンで あそびますか?"
 	done
 
-Text0d67:
+GameCenterCardDungeonClerkNotEnoughChipsText:
 	textfw "もうしわけありません"
 	linefw "チップが たりません"
 	linefw "チップを 10枚"
 	linefw "もって きてください"
 	done
 
-Text0d68:
+GameCenterCardDungeonClerkReadDescriptionText:
 	textfw "では まず このせつめいぶんを"
 	linefw "よんでください"
 	done
 
-Text0d69:
+GameCenterCardDungeonClerkEnterText:
 	textfw "それでは ダンジョンに"
 	linefw "おはいりください"
 	done
 
-Text0d6a:
+GameCenterCardDungeonClerkComeAgainText:
 	textfw "カードダンジョンで"
 	linefw "あそびたくなったら いつでもどうぞ!"
 	done
 
-Text0d6b:
+GameCenterCardDungeonClerkPlayerWonComeAgainText:
 	textfw "クィーンさまに 勝ったそうですね"
 	linefw "おめでとうございます!"
 	linefw "なんどでも あそべますから"
 	linefw "また あそびにきてください"
 	done
 
-Text0d6c:
+GameCenterCardDungeonClerkPlayerLostTryAgainText:
 	textfw "おつかれさまでした"
 	linefw "また あそびに きてください"
 	done
 
-Text0d6d:
+GameCenterCardDungeonClerkPlayerQuitTryAgainText:
 	textfw "あれ 対戦を やめたんですか?"
 	linefw "よかったら また あそんでください"
 	done

@@ -3397,54 +3397,54 @@ TextOffsets::
 	textpointer Text0d3b                                           ; 0x0d3b
 	textpointer Text0d3c                                           ; 0x0d3c
 	textpointer Text0d3d                                           ; 0x0d3d
-	textpointer Text0d3e                                           ; 0x0d3e
-	textpointer Text0d3f                                           ; 0x0d3f
-	textpointer Text0d40                                           ; 0x0d40
-	textpointer Text0d41                                           ; 0x0d41
-	textpointer Text0d42                                           ; 0x0d42
-	textpointer Text0d43                                           ; 0x0d43
-	textpointer Text0d44                                           ; 0x0d44
-	textpointer Text0d45                                           ; 0x0d45
-	textpointer Text0d46                                           ; 0x0d46
-	textpointer Text0d47                                           ; 0x0d47
-	textpointer Text0d48                                           ; 0x0d48
-	textpointer Text0d49                                           ; 0x0d49
-	textpointer Text0d4a                                           ; 0x0d4a
-	textpointer Text0d4b                                           ; 0x0d4b
-	textpointer Text0d4c                                           ; 0x0d4c
-	textpointer Text0d4d                                           ; 0x0d4d
-	textpointer Text0d4e                                           ; 0x0d4e
-	textpointer Text0d4f                                           ; 0x0d4f
-	textpointer Text0d50                                           ; 0x0d50
-	textpointer Text0d51                                           ; 0x0d51
-	textpointer Text0d52                                           ; 0x0d52
-	textpointer Text0d53                                           ; 0x0d53
-	textpointer Text0d54                                           ; 0x0d54
-	textpointer Text0d55                                           ; 0x0d55
-	textpointer Text0d56                                           ; 0x0d56
-	textpointer Text0d57                                           ; 0x0d57
-	textpointer Text0d58                                           ; 0x0d58
+	textpointer GameCenterCoinFlipClerkNoPrizesTryAgainText           ; 0x0d3e
+	textpointer GameCenterCoinFlipClerk3HeadsPrizeText                ; 0x0d3f
+	textpointer GameCenterCoinFlipClerkTryAgainText                   ; 0x0d40
+	textpointer GameCenterCoinFlipClerk4HeadsPrizeText                ; 0x0d41
+	textpointer GameCenterCoinFlipClerk5HeadsPrizeText                ; 0x0d42
+	textpointer GameCenterCoinFlipClerk6HeadsPrizeText                ; 0x0d43
+	textpointer GameCenterCoinFlipClerk7HeadsPrizeText                ; 0x0d44
+	textpointer GameCenterCoinFlipClerk8HeadsPrizeText                ; 0x0d45
+	textpointer GameCenterCoinFlipClerk9HeadsPrizeText                ; 0x0d46
+	textpointer GameCenterCoinFlipClerkAlmostCompleteTryAgainText     ; 0x0d47
+	textpointer GameCenterCoinFlipClerk10HeadsPrizeText               ; 0x0d48
+	textpointer GameCenterCoinFlipClerk10HeadsCongratsText            ; 0x0d49
+	textpointer TurnedOnBlackBoxText                                  ; 0x0d4a
+	textpointer TurnedOnBillsPCText                                   ; 0x0d4b
+	textpointer GameCenterBlackBoxClerkWelcomeText                    ; 0x0d4c
+	textpointer GameCenterBlackBoxClerkGuidePromptText                ; 0x0d4d
+	textpointer GameCenterBlackBoxClerkGuideText                      ; 0x0d4e
+	textpointer GameCenterBlackBoxClerkNoGuideText                    ; 0x0d4f
+	textpointer GameCenterBillsPCClerkWelcomeText                     ; 0x0d50
+	textpointer GameCenterBillsPCClerkGuidePromptText                 ; 0x0d51
+	textpointer GameCenterBillsPCClerkGuideText                       ; 0x0d52
+	textpointer GameCenterBillsPCClerkNoGuideText                     ; 0x0d53
+	textpointer GameCenterCoinFlipClerkWelcomeText                    ; 0x0d54
+	textpointer GameCenterCoinFlipStartPromptText                     ; 0x0d55
+	textpointer GameCenterCoinFlipClerkStartText                      ; 0x0d56
+	textpointer GameCenterCoinFlipClerkNotEnoughChipsText             ; 0x0d57
+	textpointer GameCenterCoinFlipClerkComeAgainText                  ; 0x0d58
 	textpointer Text0d59                                           ; 0x0d59
 	textpointer Text0d5a                                           ; 0x0d5a
 	textpointer Text0d5b                                           ; 0x0d5b
 	textpointer Text0d5c                                           ; 0x0d5c
-	textpointer Text0d5d                                           ; 0x0d5d
-	textpointer Text0d5e                                           ; 0x0d5e
-	textpointer Text0d5f                                           ; 0x0d5f
-	textpointer Text0d60                                           ; 0x0d60
-	textpointer Text0d61                                           ; 0x0d61
-	textpointer Text0d62                                           ; 0x0d62
-	textpointer Text0d63                                           ; 0x0d63
-	textpointer Text0d64                                           ; 0x0d64
-	textpointer Text0d65                                           ; 0x0d65
-	textpointer Text0d66                                           ; 0x0d66
-	textpointer Text0d67                                           ; 0x0d67
-	textpointer Text0d68                                           ; 0x0d68
-	textpointer Text0d69                                           ; 0x0d69
-	textpointer Text0d6a                                           ; 0x0d6a
-	textpointer Text0d6b                                           ; 0x0d6b
-	textpointer Text0d6c                                           ; 0x0d6c
-	textpointer Text0d6d                                           ; 0x0d6d
+	textpointer GameCenterSlotMachine1ClerkWelcomeText                ; 0x0d5d
+	textpointer GameCenterSlotMachine1ClerkGuidePromptText            ; 0x0d5e
+	textpointer GameCenterSlotMachine1ClerkGuideText                  ; 0x0d5f
+	textpointer GameCenterSlotMachine1ClerkNoGuideText                ; 0x0d60
+	textpointer GameCenterSlotMachine5ClerkWelcomeText                ; 0x0d61
+	textpointer GameCenterSlotMachine5ClerkGuidePromptText            ; 0x0d62
+	textpointer GameCenterSlotMachine5ClerkGuideText                  ; 0x0d63
+	textpointer GameCenterSlotMachine5ClerkNoGuideText                ; 0x0d64
+	textpointer GameCenterCardDungeonClerkWelcomeText                 ; 0x0d65
+	textpointer GameCenterCardDungeonStartPromptText                  ; 0x0d66
+	textpointer GameCenterCardDungeonClerkNotEnoughChipsText          ; 0x0d67
+	textpointer GameCenterCardDungeonClerkReadDescriptionText         ; 0x0d68
+	textpointer GameCenterCardDungeonClerkEnterText                   ; 0x0d69
+	textpointer GameCenterCardDungeonClerkComeAgainText               ; 0x0d6a
+	textpointer GameCenterCardDungeonClerkPlayerWonComeAgainText      ; 0x0d6b
+	textpointer GameCenterCardDungeonClerkPlayerLostTryAgainText      ; 0x0d6c
+	textpointer GameCenterCardDungeonClerkPlayerQuitTryAgainText      ; 0x0d6d
 	textpointer Text0d6e                                           ; 0x0d6e
 	textpointer Text0d6f                                           ; 0x0d6f
 	textpointer Text0d70                                           ; 0x0d70
