@@ -2815,14 +2815,14 @@ TextOffsets::
 	textpointer LegendaryPokemonCardsVol4BookName                     ; 0x0af5
 	textpointer GrandMastersBookName                                  ; 0x0af6
 	textpointer CoinsBookName                                         ; 0x0af7
-	textpointer Text0af8                                           ; 0x0af8
+	textpointer EmptyLocationNameText                                 ; 0x0af8
 	textpointer ErrorInvalidDataText                                  ; 0x0af9
 	textpointer SavedDataText                                         ; 0x0afa
-	textpointer Text0afb                                           ; 0x0afb
+	textpointer DoorsAreShutText                                      ; 0x0afb
 	textpointer ReceivedXChipsText                                    ; 0x0afc
-	textpointer Text0afd                                           ; 0x0afd
-	textpointer Text0afe                                           ; 0x0afe
-	textpointer Text0aff                                           ; 0x0aff
+	textpointer OpenedTreasureBoxText                                 ; 0x0afd
+	textpointer TreasureBoxWasEmptyText                               ; 0x0afe
+	textpointer BiruritchiStatueCaptionText                           ; 0x0aff
 	textpointer TradeCardsPromptText                                  ; 0x0b00
 	textpointer DuelPrepPromptText                                    ; 0x0b01
 	textpointer GameCenterCardDungeonBetPromptText                    ; 0x0b02

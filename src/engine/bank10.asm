@@ -316,7 +316,7 @@ HandleTCGIslandDirectionalInput:
 
 PrintTCGIslandLocationName:
 	lb de, 1, 1
-	ldtx hl, Text0af8
+	ldtx hl, EmptyLocationNameText
 	call Func_35af
 
 	ld a, [wCurOWLocation]

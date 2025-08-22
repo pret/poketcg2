@@ -2150,7 +2150,7 @@ CoinsBookName:
 	textfw "コインについて"
 	done
 
-Text0af8:
+EmptyLocationNameText:
 	textfw "           "
 	done
 
@@ -2162,7 +2162,7 @@ SavedDataText:
 	textfw "データを セーブしました"
 	done
 
-Text0afb:
+DoorsAreShutText:
 	textfw "トビラは かたく とざされている"
 	done
 
@@ -2171,16 +2171,16 @@ ReceivedXChipsText:
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
-Text0afd:
+OpenedTreasureBoxText:
 	textfw "<RAMNAME>は"
 	linefw "たからばこを あけた!"
 	done
 
-Text0afe:
+TreasureBoxWasEmptyText:
 	textfw "たからばこは カラッポだった"
 	done
 
-Text0aff:
+BiruritchiStatueCaptionText:
 	textfw "いだいなるGR団のキング"
 	linefw "ビルリッチさまのどうぞう"
 	done

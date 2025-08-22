@@ -360,7 +360,7 @@ Func_30242:
 
 PrintGRIslandLocationName:
 	lb de, 1, 33
-	ldtx hl, Text0af8
+	ldtx hl, EmptyLocationNameText
 	call Func_35df
 	ld a, [wCurOWLocation]
 	sla a
