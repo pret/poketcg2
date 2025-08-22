@@ -9,7 +9,7 @@ Text093f:
 	linefw "きさまは どうするのだ?"
 	done
 
-Text0940:
+ChangeDeckPromptText:
 	textfw "デッキを こうかんしますか?"
 	done
 
@@ -846,1354 +846,1354 @@ Text09b4:
 	linefw "でも すてきでしょ?"
 	done
 
-Text09b5:
+MapOpeningText:
 	textfw "オープニング"
 	done
 
-Text09b6:
+MapMasonLabText:
 	textfw "オーヤマ研究所"
 	done
 
-Text09b7:
+MapIshiharasHouseText:
 	textfw "Mr.イシハラの家"
 	done
 
-Text09b8:
+MapLightningClubText:
 	textfw "エレキクラブ"
 	done
 
-Text09b9:
+MapPsychicClubText:
 	textfw "エスパークラブ"
 	done
 
-Text09ba:
+MapRockClubText:
 	textfw "ストーンクラブ"
 	done
 
-Text09bb:
+MapFightingClubText:
 	textfw "バトルクラブ"
 	done
 
-Text09bc:
+MapGrassClubText:
 	textfw "グリーンクラブ"
 	done
 
-Text09bd:
+MapScienceClubText:
 	textfw "サイエンスクラブ"
 	done
 
-Text09be:
+MapWaterClubText:
 	textfw "アクアクラブ"
 	done
 
-Text09bf:
+MapFireClubText:
 	textfw "ファイアクラブ"
 	done
 
-Text09c0:
+MapTCGAirportText:
 	textfw "エアポート"
 	done
 
-Text09c1:
+MapTCGChallengeHallText:
 	textfw "チャレンジホール"
 	done
 
-Text09c2:
+MapPokemonDomeText:
 	textfw "ポケモンドーム"
 	done
 
-Text09c3:
+MapGRAirportText:
 	textfw "エアポート"
 	done
 
-Text09c4:
+MapIshiharasVillaText:
 	textfw "Mr.イシハラの別莊"
 	done
 
-Text09c5:
+MapGameCenterText:
 	textfw "ゲームセンター"
 	done
 
-Text09c6:
+MapSealedFortText:
 	textfw "ふういんのトリデ"
 	done
 
-Text09c7:
+MapGRChallengeHallText:
 	textfw "チャレンジホール"
 	done
 
-Text09c8:
+MapGRGrassFortText:
 	textfw "草のGR団のトリデ"
 	done
 
-Text09c9:
+MapGRLightningFortText:
 	textfw "雷のGR団のトリデ"
 	done
 
-Text09ca:
+MapGRFireFortText:
 	textfw "炎のGR団のトリデ"
 	done
 
-Text09cb:
+MapGRWaterFortText:
 	textfw "水のGR団のトリデ"
 	done
 
-Text09cc:
+MapGRFightingFortText:
 	textfw "闘のGR団のトリデ"
 	done
 
-Text09cd:
+MapGRPsychicStrongholdText:
 	textfw "超のGR団のようさい"
 	done
 
-Text09ce:
+MapGRColorlessAltarText:
 	textfw "無のさいだん"
 	done
 
-Text09cf:
+MapGRCastleText:
 	textfw "GR団のキャッスル"
 	done
 
-Text09d0:
+DialogDrMasonText:
 	textfw "Dr.オーヤマ"
 	done
 
-Text09d1:
+DialogSamText:
 	textfw "ミカサ"
 	done
 
-Text09d2:
+DialogAaronText:
 	textfw "あらいモン"
 	done
 
-Text09d3:
+DialogMrIshiharaText:
 	textfw "Mr.イシハラ"
 	done
 
-Text09d4:
+DialogGeneText:
 	textfw "ゲンゾウ"
 	done
 
-Text09d5:
+DialogMatthewText:
 	textfw "ヤストモ"
 	done
 
-Text09d6:
+DialogRyanText:
 	textfw "ノリオ"
 	done
 
-Text09d7:
+DialogAndrewText:
 	textfw "ジョータ"
 	done
 
-Text09d8:
+DialogMitchText:
 	textfw "ヤマグチ"
 	done
 
-Text09d9:
+DialogMichaelText:
 	textfw "マサヒロ"
 	done
 
-Text09da:
+DialogChrisText:
 	textfw "タツロー"
 	done
 
-Text09db:
+DialogJessicaText:
 	textfw "ナツキ"
 	done
 
-Text09dc:
+DialogNikkiText:
 	textfw "クニミ"
 	done
 
-Text09dd:
+DialogBrittanyText:
 	textfw "アヤコ"
 	done
 
-Text09de:
+DialogKristinText:
 	textfw "ハルナ"
 	done
 
-Text09df:
+DialogHeatherText:
 	textfw "ミサオ"
 	done
 
-Text09e0:
+DialogRickText:
 	textfw "クルシマ"
 	done
 
-Text09e1:
+DialogDavidText:
 	textfw "ヤスユキ"
 	done
 
-Text09e2:
+DialogJosephText:
 	textfw "ソウタ"
 	done
 
-Text09e3:
+DialogErikText:
 	textfw "マサシ"
 	done
 
-Text09e4:
+DialogAmyText:
 	textfw "ウッチー"
 	done
 
-Text09e5:
+DialogJoshuaText:
 	textfw "シンタロー"
 	done
 
-Text09e6:
+DialogSaraText:
 	textfw "マリ"
 	done
 
-Text09e7:
+DialogAmandaText:
 	textfw "メグミ"
 	done
 
-Text09e8:
+DialogIsaacText:
 	textfw "タカハシ"
 	done
 
-Text09e9:
+DialogJenniferText:
 	textfw "ユカ"
 	done
 
-Text09ea:
+DialogNicholasText:
 	textfw "ソウスケ"
 	done
 
-Text09eb:
+DialogBrandonText:
 	textfw "トシヒコ"
 	done
 
-Text09ec:
+DialogKenText:
 	textfw "アカバネ"
 	done
 
-Text09ed:
+DialogJohnText:
 	textfw "タカシ"
 	done
 
-Text09ee:
+DialogAdamText:
 	textfw "ワタルン"
 	done
 
-Text09ef:
+DialogJonathanText:
 	textfw "マサトシ"
 	done
 
-Text09f0:
+DialogMurrayText:
 	textfw "ミウラ"
 	done
 
-Text09f1:
+DialogRobertText:
 	textfw "ヒロ"
 	done
 
-Text09f2:
+DialogDanielText:
 	textfw "ケイタ"
 	done
 
-Text09f3:
+DialogStephanieText:
 	textfw "リエ"
 	done
 
-Text09f4:
+DialogSteveText:
 	textfw "スティーブ"
 	done
 
-Text09f5:
+DialogCourtneyText:
 	textfw "ヒロコ"
 	done
 
-Text09f6:
+DialogJackText:
 	textfw "カネコウジ"
 	done
 
-Text09f7:
+DialogRodText:
 	textfw "リュウドー"
 	done
 
-Text09f8:
+DialogPlateOfLegendsText:
 	textfw "伝説のプレート"
 	done
 
-Text09f9:
+DialogFatGuyText:
 	textfw "ふとった男"
 	done
 
-Text09fa:
+DialogChipAttendantText:
 	textfw "チッパー"
 	done
 
-Text09fb:
+DialogChipSecurityText:
 	textfw "チェックマン"
 	done
 
-Text09fc:
+DialogPawnText:
 	textfw "ポーン"
 	done
 
-Text09fd:
+DialogKnightText:
 	textfw "ナイト"
 	done
 
-Text09fe:
+DialogBishopText:
 	textfw "ビショップ"
 	done
 
-Text09ff:
+DialogRookText:
 	textfw "ルーク"
 	done
 
-Text0a00:
+DialogQueenText:
 	textfw "クィーン"
 	done
 
-Text0a01:
+DialogTobichanText:
 	textfw "とびちゃん"
 	done
 
-Text0a02:
+DialogEijiText:
 	textfw "エイジ"
 	done
 
-Text0a03:
+DialogMagicianText:
 	textfw "マジシャン"
 	done
 
-Text0a04:
+DialogToshironText:
 	textfw "トシロン"
 	done
 
-Text0a05:
+DialogPierroText:
 	textfw "ピエロ"
 	done
 
-Text0a06:
+DialogDeeText:
 	textfw "ディー"
 	done
 
-Text0a07:
+DialogAnnaText:
 	textfw "アンナ"
 	done
 
-Text0a08:
+DialogMasqueradeText:
 	textfw "マスカレード"
 	done
 
-Text0a09:
+DialogYuiText:
 	textfw "ユイ"
 	done
 
-Text0a0a:
+DialogMidoriText:
 	textfw "ミドリ"
 	done
 
-Text0a0b:
+DialogYutaText:
 	textfw "ユウタ"
 	done
 
-Text0a0c:
+DialogMiyukiText:
 	textfw "ミユキ"
 	done
 
-Text0a0d:
+DialogMorinoText:
 	textfw "モリノ"
 	done
 
-Text0a0e:
+DialogRennaText:
 	textfw "レンナ"
 	done
 
-Text0a0f:
+DialogIchikawaText:
 	textfw "イチカワ"
 	done
 
-Text0a10:
+DialogCatherineText:
 	textfw "キャサリン"
 	done
 
-Text0a11:
+DialogTapText:
 	textfw "タップ"
 	done
 
-Text0a12:
+DialogJesText:
 	textfw "ジェス"
 	done
 
-Text0a13:
+DialogYukiText:
 	textfw "ユウキ"
 	done
 
-Text0a14:
+DialogShokoText:
 	textfw "ショウコ"
 	done
 
-Text0a15:
+DialogHideroText:
 	textfw "ヒデロウ"
 	done
 
-Text0a16:
+DialogMiyajimaText:
 	textfw "ミヤジマ"
 	done
 
-Text0a17:
+DialogSentaText:
 	textfw "センタ"
 	done
 
-Text0a18:
+DialogAiraText:
 	textfw "アイラ"
 	done
 
-Text0a19:
+DialogKanokoText:
 	textfw "カノコ"
 	done
 
-Text0a1a:
+DialogKamiyaText:
 	textfw "カミヤ"
 	done
 
-Text0a1b:
+DialogGotaText:
 	textfw "ゴウダ"
 	done
 
-Text0a1c:
+DialogGraceText:
 	textfw "グレース"
 	done
 
-Text0a1d:
+DialogMiwaText:
 	textfw "ミワ"
 	done
 
-Text0a1e:
+DialogKevinText:
 	textfw "ケビン"
 	done
 
-Text0a1f:
+DialogYosukeText:
 	textfw "ヨウスケ"
 	done
 
-Text0a20:
+DialogRyokoText:
 	textfw "リョウコ"
 	done
 
-Text0a21:
+DialogMamiText:
 	textfw "マミ"
 	done
 
-Text0a22:
+DialogNishijimaText:
 	textfw "ニシジマ"
 	done
 
-Text0a23:
+DialogSamejimaText:
 	textfw "サメジマ"
 	done
 
-Text0a24:
+DialogIshiiText:
 	textfw "イシイ"
 	done
 
-Text0a25:
+DialogKanzakiText:
 	textfw "カンザキ"
 	done
 
-Text0a26:
+DialogRuiText:
 	textfw "ルイ"
 	done
 
-Text0a27:
+DialogBiruritchiText:
 	textfw "ビルリッチ"
 	done
 
-Text0a28:
+DialogGR1Text:
 	textfw "GR1号"
 	done
 
-Text0a29:
+DialogGR2Text:
 	textfw "GR2号"
 	done
 
-Text0a2a:
+DialogGR3Text:
 	textfw "GR3号"
 	done
 
-Text0a2b:
+DialogGR4Text:
 	textfw "GR4号"
 	done
 
-Text0a2c:
+DialogGR5Text: ; unused
 	textfw "GR5号"
 	done
 
-Text0a2d:
+DialogRonaldText:
 	textfw "ランド"
 	done
 
-Text0a2e:
+DialogGRXText:
 	textfw "GRX"
 	done
 
-Text0a2f:
+DialogImakuniText:
 	textfw "イマクニ?"
 	done
 
-Text0a30:
+DialogMaleKidText:
 	textfw "おとこのこ"
 	done
 
-Text0a31:
+DialogBoyText:
 	textfw "しょうねん"
 	done
 
-Text0a32:
+DialogYoungManText:
 	textfw "おにいさん"
 	done
 
-Text0a33:
+DialogYoungGuyText:
 	textfw "おにーさん"
 	done
 
-Text0a34:
+DialogDudeText:
 	textfw "おニイさん"
 	done
 
-Text0a35:
+DialogBroText:
 	textfw "おにいちゃん"
 	done
 
-Text0a36:
+DialogFemaleKidText:
 	textfw "おんなのこ"
 	done
 
-Text0a37:
+DialogYoungWomanText:
 	textfw "おねいさん"
 	done
 
-Text0a38:
+DialogGalText:
 	textfw "おねーさん"
 	done
 
-Text0a39:
+DialogSisText:
 	textfw "おねぇちゃん"
 	done
 
-Text0a3a:
+DialogUncleText:
 	textfw "おじさん"
 	done
 
-Text0a3b:
+DialogOldManText:
 	textfw "おじいさん"
 	done
 
-Text0a3c:
+DialogGrampsText:
 	textfw "おじぃさん"
 	done
 
-Text0a3d:
+DialogElderGuyText:
 	textfw "おじーさん"
 	done
 
-Text0a3e:
+DialogAuntieText:
 	textfw "おばさん"
 	done
 
-Text0a3f:
+DialogGrannyText:
 	textfw "おばーさん"
 	done
 
-Text0a40:
+DialogLadyText:
 	textfw "おじょーさま"
 	done
 
-Text0a41:
+DialogGRLadText:
 	textfw "GRにいさん"
 	done
 
-Text0a42:
+DialogGRLassText:
 	textfw "GRねーさん"
 	done
 
-Text0a43:
+DialogGRGrampsText:
 	textfw "GRじいさん"
 	done
 
-Text0a44:
+DialogGRAuntieText:
 	textfw "GRおばさん"
 	done
 
-Text0a45:
+DialogGRKidText:
 	textfw "GR団のこ"
 	done
 
-Text0a46:
+DialogGRMateText:
 	textfw "GR団のひと"
 	done
 
-Text0a47:
+DialogGRGruntText:
 	textfw "GR団員"
 	done
 
-Text0a48:
+DialogLightningAuntieText:
 	textfw "雷おばさん"
 	done
 
-Text0a49:
+DialogGRammpyText:
 	textfw "おGさん"
 	done
 
-Text0a4a:
+DialogTechText:
 	textfw "研究員"
 	done
 
-Text0a4b:
+DialogLonghairedKidText:
 	textfw "ロングのこ"
 	done
 
-Text0a4c:
+DialogCapKidText:
 	textfw "ぼうしのこ"
 	done
 
-Text0a4d:
+DialogSwimsuitKidText:
 	textfw "みずぎのこ"
 	done
 
-Text0a4e:
+DialogCommonKidText:
 	textfw "ふつうのこ"
 	done
 
-Text0a4f:
+DialogGlassesKidText:
 	textfw "メガネのこ"
 	done
 
-Text0a50:
+DialogGlassesBoyText:
 	textfw "メガネくん"
 	done
 
-Text0a51:
+DialogGlassesGirlText:
 	textfw "めがねっこ"
 	done
 
-Text0a52:
+DialogPunkKidText:
 	textfw "パンクのこ"
 	done
 
-Text0a53:
+DialogChubbyKidText:
 	textfw "ふとったこ"
 	done
 
-Text0a54:
+DialogCapManText:
 	textfw "ぼうしの男"
 	done
 
-Text0a55:
+DialogBlackBeltText:
 	textfw "かくとうか"
 	done
 
-Text0a56:
+DialogPunkDudeText:
 	textfw "パンクの男"
 	done
 
-Text0a57:
+DialogPunkGalText:
 	textfw "パンクス"
 	done
 
-Text0a58:
+DialogAttendantText:
 	textfw "かかりいん"
 	done
 
-Text0a59:
+DialogClerkText:
 	textfw "しょくいん"
 	done
 
-Text0a5a:
+DialogReceptionistText:
 	textfw "うけつけ"
 	done
 
-Text0a5b:
+DialogEmceeText:
 	textfw "しかい"
 	done
 
-Text0a5c:
+FireKanjiText:
 	textfw "炎"
 	done
 
-Text0a5d:
+WaterKanjiText:
 	textfw "水"
 	done
 
-Text0a5e:
+LightningKanjiText:
 	textfw "雷"
 	done
 
-Text0a5f:
+FightingKanjiText:
 	textfw "闘"
 	done
 
-Text0a60:
+PsychicKanjiText:
 	textfw "超"
 	done
 
-Text0a61:
+GrassKanjiText:
 	textfw "草"
 	done
 
-Text0a62:
+ColorlessKanjiText:
 	textfw "無"
 	done
 
-Text0a63:
+RockClubShortText:
 	textfw "ストーン"
 	done
 
-Text0a64:
+LightningClubShortText:
 	textfw "エレキ"
 	done
 
-Text0a65:
+GrassClubShortText:
 	textfw "グリーン"
 	done
 
-Text0a66:
+ScienceClubShortText:
 	textfw "サイエンス"
 	done
 
-Text0a67:
+FightingClubShortText:
 	textfw "バトル"
 	done
 
-Text0a68:
+PsychicClubShortText:
 	textfw "エスパー"
 	done
 
-Text0a69:
+FireClubShortText:
 	textfw "ファイア"
 	done
 
-Text0a6a:
+WaterClubShortText:
 	textfw "アクア"
 	done
 
-Text0a6b:
+OpponentGrassClubMasterBracketedText:
 	textfw "クラブマスター【<GRASS>】"
 	done
 
-Text0a6c:
+OpponentGrassClubMemberBracketedText:
 	textfw "クラブメンバー【<GRASS>】"
 	done
 
-Text0a6d:
+OpponentWaterClubMasterBracketedText:
 	textfw "クラブマスター【<WATER>】"
 	done
 
-Text0a6e:
+OpponentWaterClubMemberBracketedText:
 	textfw "クラブメンバー【<WATER>】"
 	done
 
-Text0a6f:
+OpponentLightningClubMasterBracketedText:
 	textfw "クラブマスター【<LIGHTNING>】"
 	done
 
-Text0a70:
+OpponentLightningClubMemberBracketedText:
 	textfw "クラブメンバー【<LIGHTNING>】"
 	done
 
-Text0a71:
+OpponentRockClubMasterBracketedText:
 	textfw "クラブマスター【<FIGHTING>】"
 	done
 
-Text0a72:
+OpponentRockClubMemberBracketedText:
 	textfw "クラブメンバー【<FIGHTING>】"
 	done
 
-Text0a73:
+OpponentFightingClubMasterBracketedText:
 	textfw "クラブマスター【<FIGHTING>】"
 	done
 
-Text0a74:
+OpponentFightingClubMemberBracketedText:
 	textfw "クラブメンバー【<FIGHTING>】"
 	done
 
-Text0a75:
+OpponentScienceClubMasterBracketedText:
 	textfw "クラブマスター【<GRASS>】"
 	done
 
-Text0a76:
+OpponentScienceClubMemberBracketedText:
 	textfw "クラブメンバー【<GRASS>】"
 	done
 
-Text0a77:
+OpponentPsychicClubMasterBracketedText:
 	textfw "クラブマスター【<PSYCHIC>】"
 	done
 
-Text0a78:
+OpponentPsychicClubMemberBracketedText:
 	textfw "クラブメンバー【<PSYCHIC>】"
 	done
 
-Text0a79:
+OpponentFireClubMasterBracketedText:
 	textfw "クラブマスター【<FIRE>】"
 	done
 
-Text0a7a:
+OpponentFireClubMemberBracketedText:
 	textfw "クラブメンバー【<FIRE>】"
 	done
 
-Text0a7b:
+OpponentGrandMasterText:
 	textfw "グランドマスター"
 	done
 
-Text0a7c:
+OpponentGRGrassFortLeaderText:
 	textfw "草のGR団リーダー"
 	done
 
-Text0a7d:
+OpponentGRGrassFortMemberText:
 	textfw "草のGR団員"
 	done
 
-Text0a7e:
+OpponentGRLightningFortLeaderText:
 	textfw "雷のGR団リーダー"
 	done
 
-Text0a7f:
+OpponentGRLightningFortMemberText:
 	textfw "雷のGR団員"
 	done
 
-Text0a80:
+OpponentGRFireFortLeaderText:
 	textfw "炎のGR団リーダー"
 	done
 
-Text0a81:
+OpponentGRFireFortMemberText:
 	textfw "炎のGR団員"
 	done
 
-Text0a82:
+OpponentGRWaterFortLeaderText:
 	textfw "水のGR団リーダー"
 	done
 
-Text0a83:
+OpponentGRWaterFortMemberText:
 	textfw "水のGR団員"
 	done
 
-Text0a84:
+OpponentGRFightingFortLeaderText:
 	textfw "闘のGR団リーダー"
 	done
 
-Text0a85:
+OpponentGRFightingFortMemberText:
 	textfw "闘のGR団員"
 	done
 
-Text0a86:
+OpponentGRPsychicStrongholdLeaderText:
 	textfw "超のGR団リーダー"
 	done
 
-Text0a87:
+OpponentGRPsychicStrongholdMemberText:
 	textfw "超のGR団員"
 	done
 
-Text0a88:
+OpponentColorlessAltarGuardianText:
 	textfw "無のばんにん"
 	done
 
-Text0a89:
+OpponentGRBigBossText:
 	textfw "GR団大かんぶ"
 	done
 
-Text0a8a:
+OpponentGRKingText:
 	textfw "GR団キング"
 	done
 
-Text0a8b:
+OpponentStrangeLifeFormText:
 	textfw "ふしぎないきもの"
 	done
 
-Text0a8c:
+OpponentEnigmaticMaskText:
 	textfw "ナゾのかめん"
 	done
 
-Text0a8d:
+OpponentRivalText:
 	textfw "ライバル"
 	done
 
-Text0a8e:
+PromotionalGRMewtwoLv35Text:
 	textfw "GR団のミュウツー<Lv>35"
 	done
 
-Text0a8f:
+PromotionalGRMewtwoText:
 	textfw "GR団のミュウツー"
 	done
 
-Text0a90:
+PromotionalImakuniText:
 	textfw "イマクニ?"
 	done
 
-Text0a91:
+PromotionalArcanineLv34Text:
 	textfw "ウィンディ<Lv>34"
 	done
 
-Text0a92:
+PromotionalElectabuzzLv20Text:
 	textfw "エレブー<Lv>20"
 	done
 
-Text0a93:
+PromotionalDragoniteLv41Text:
 	textfw "カイリュー<Lv>41"
 	done
 
-Text0a94:
+PromotionalDragoniteLv43Text:
 	textfw "カイリュー<Lv>43"
 	done
 
-Text0a95:
+PromotionalDragoniteLv45Text:
 	textfw "カイリュー<Lv>45"
 	done
 
-Text0a96:
+PromotionalCoolPorygonLv15Text:
 	textfw "かっこいいポリゴン<Lv>15"
 	done
 
-Text0a97:
+PromotionalCoolPorygonText:
 	textfw "かっこいいポリゴン"
 	done
 
-Text0a98:
+PromotionalBlastoiseLv52Text:
 	textfw "カメックス<Lv>52"
 	done
 
-Text0a99:
+PromotionalFarfetchdLv20Text:
 	textfw "カモネギ<Lv>20"
 	done
 
-Text0a9a:
+PromotionalKangaskhanLv38Text:
 	textfw "ガルーラ<Lv>38"
 	done
 
-Text0a9b:
+NotPromotionalPotionEnergyText:
 	textfw "きずぐすり配合E"
 	done
 
-Text0a9c:
+PromotionalHungrySnorlaxLv50Text:
 	textfw "くいしんぼカビゴン<Lv>50"
 	done
 
-Text0a9d:
+PromotionalHungrySnorlaxText:
 	textfw "くいしんぼカビゴン"
 	done
 
-Text0a9e:
+PromotionalMagikarpLv10Text:
 	textfw "コイキング<Lv>10"
 	done
 
-Text0a9f:
+PromotionalZapdosLv68Text:
 	textfw "サンダー<Lv>68"
 	done
 
-Text0aa0:
+PromotionalFlyingPikachuLv12Text:
 	textfw "そらをとぶピカチュウ<Lv>12"
 	done
 
-Text0aa1:
+PromotionalFlyingPikachuText:
 	textfw "そらをとぶピカチュウ"
 	done
 
-Text0aa2:
+PromotionalDugtrioLv40Text:
 	textfw "ダグトリオ<Lv>40"
 	done
 
-Text0aa3:
+PromotionalDiglettLv16Text:
 	textfw "ディグダ<Lv>16"
 	done
 
-Text0aa4:
+PromotionalTogepiLv8Text:
 	textfw "トゲピー<Lv>8"
 	done
 
-Text0aa5:
+PromotionalSurfingPikachuLv13Text:
 	textfw "なみのりピカチュウ<Lv>13"
 	done
 
-Text0aa6:
+PromotionalSurfingPikachuText:
 	textfw "なみのりピカチュウ"
 	done
 
-Text0aa7:
+PromotionalMeowthLv14Text:
 	textfw "ニャース<Lv>14"
 	done
 
-Text0aa8:
+PromotionalComputerErrorText:
 	textfw "パソコン大暴走!"
 	done
 
-Text0aa9:
+PromotionalPikachuLv13Text:
 	textfw "ピカチュウ<Lv>13"
 	done
 
-Text0aaa:
+PromotionalPikachuLv16Text:
 	textfw "ピカチュウ<Lv>16"
 	done
 
-Text0aab:
+PromotionalMoltresLv40Text:
 	textfw "ファイヤー<Lv>40"
 	done
 
-Text0aac:
+PromotionalVenusaurLv67Text:
 	textfw "フシギバナ<Lv>67"
 	done
 
-Text0aad:
+PromotionalArticunoLv37Text:
 	textfw "フリーザー<Lv>37"
 	done
 
-Text0aae:
+PromotionalJigglypuffLv12Text:
 	textfw "プリン<Lv>12"
 	done
 
-Text0aaf:
+PromotionalBillsComputerText:
 	textfw "マサキのパソコン"
 	done
 
-Text0ab0:
+PromotionalMarillLv17Text:
 	textfw "マリル<Lv>17"
 	done
 
-Text0ab1:
+PromotionalMankeyLv7Text:
 	textfw "マンキー<Lv>7"
 	done
 
-Text0ab2:
+PromotionalMewLv8Text:
 	textfw "ミュウ<Lv>8"
 	done
 
-Text0ab3:
+PromotionalMewtwoLv30Text:
 	textfw "ミュウツー<Lv>30"
 	done
 
-Text0ab4:
+PromotionalMewtwoLv60Text:
 	textfw "ミュウツー<Lv>60"
 	done
 
-Text0ab5:
+PromotionalSlowpokeLv9Text:
 	textfw "ヤドン<Lv>9"
 	done
 
-Text0ab6:
+PromotionalCharizardLv76Text:
 	textfw "リザードン<Lv>76"
 	done
 
-Text0ab7:
+PromotionalDarkPersianLv28Text:
 	textfw "わるいペルシアン<Lv>28"
 	done
 
-Text0ab8:
+PromotionalSuperEnergyRetrievalText:
 	textfw "超エネルギー回収"
 	done
 
-Text0ab9:
+ReceivedPromotionalCardText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0aba:
+ReceivedPromotionalCardText_3:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「<RAMTEXT>」を ゲット"
 	done
 
-Text0abb:
+ReceivedLegendaryCardText_2:
 	textfw "<RAMNAME>は 伝説のカード"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0abc:
+ReceivedCardText_2:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-Text0abd:
+ReceivedCardText_3:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」を ゲット"
 	done
 
-Text0abe:
+ReceivedCardText_4:
 	textfw "<RAMNAME>は"
 	linefw "「<RAMTEXT>」 ゲット"
 	done
 
-Text0abf:
+ReceivedPromotionalGRMewtwoText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「GR団のミュウツー」を ゲット!"
 	done
 
-Text0ac0:
+ReceivedPromotionalCoolPorygonText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「かっこいいポリゴン」を ゲット!"
 	done
 
-Text0ac1:
+ReceivedPromotionalHungrySnorlaxText:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「くいしんぼカビゴン」を ゲット!"
 	done
 
-Text0ac2:
+ReceivedPromotionalFlyingPikachuText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「そらをとぶピカチュウ」を ゲット!"
 	done
 
-Text0ac3:
+ReceivedPromotionalSurfingPikachuText_2:
 	textfw "<RAMNAME>は プロモーションカード"
 	linefw "「なみのりピカチュウ」を ゲット!"
 	done
 
-Text0ac4:
+ReceivedNotPromotionalPotionEnergyText:
 	textfw "<RAMNAME>は"
 	linefw "「きずぐすり配合E」を ゲット!"
 	done
 
-Text0ac5:
+CombosBookName:
 	textfw "「コンボ」"
 	done
 
-Text0ac6:
+EnergyTransBookName:
 	textfw "「エナジートランス」"
 	done
 
-Text0ac7:
+ToxicGasBookName:
 	textfw "「かがくへんかガス」"
 	done
 
-Text0ac8:
+RainDanceBookName:
 	textfw "「あまごい」"
 	done
 
-Text0ac9:
+SelfdestructBookName:
 	textfw "「じばく」"
 	done
 
-Text0aca:
+DamageSwapBookName:
 	textfw "「ダメージスワップ」"
 	done
 
-Text0acb:
+RemoveEnergiesBookName:
 	textfw "「エネルギーをはがせ」"
 	done
 
-Text0acc:
+PrehistoricPowerBookName:
 	textfw "「げんしのちから」"
 	done
 
-Text0acd:
+WeaknessResistanceBookName:
 	textfw "「弱点」と「抵抗力」"
 	done
 
-Text0ace:
+TeamGRBookName:
 	textfw "「GR団」について"
 	done
 
-Text0acf:
+GameCenterBookName:
 	textfw "ゲームセンター"
 	done
 
-Text0ad0:
+SamePokemonBookName:
 	textfw "おなじポケモン"
 	done
 
-Text0ad1:
+PhantomCardsBookName:
 	textfw "まぼろしのカード"
 	done
 
-Text0ad2:
+DarkPokemonBookName:
 	textfw "わるいポケモンカード"
 	done
 
-Text0ad3:
+AugmentBasicPokemonBookName:
 	textfw "たねポケモンをふやす"
 	done
 
-Text0ad4:
+GRKingCardsBookName:
 	textfw "キングのカード"
 	done
 
-Text0ad5:
+SpecialEnergyBookName:
 	textfw "特殊エネルギー"
 	done
 
-Text0ad6:
+GetCoinsBookName:
 	textfw "コインゲット"
 	done
 
-Text0ad7:
+RockGroundPokemonBookName:
 	textfw "岩・地面ポケモン"
 	done
 
-Text0ad8:
+FightingPokemonSurefireMethodBookName:
 	textfw "闘ポケモンの必勝法"
 	done
 
-Text0ad9:
+FightingPokemonFormidableOpponentsBookName:
 	textfw "にがてなポケモン"
 	done
 
-Text0ada:
+FightingPokemonBookName:
 	textfw "かくとうポケモン"
 	done
 
-Text0adb:
+FightingPokemonCombosBookName:
 	textfw "かくとうポケモンとコンボ"
 	done
 
-Text0adc:
+FightingPokemonDeckBuildingBookName:
 	textfw "かくとうポケモンのデッキ"
 	done
 
-Text0add:
+PlantlikePokemonBookName:
 	textfw "しょくぶつポケモン"
 	done
 
-Text0ade:
+GrassPokemonBreederBookName:
 	textfw "草ポケモンと育て屋さん"
 	done
 
-Text0adf:
+GrassPokemonDeckBuildingBookName:
 	textfw "草ポケモンのデッキ"
 	done
 
-Text0ae0:
+SciencePokemonBookName:
 	textfw "かがくポケモン"
 	done
 
-Text0ae1:
+SciencePokemonSurefireMethodBookName:
 	textfw "かがくポケモン必勝法"
 	done
 
-Text0ae2:
+SciencePokemonDeckBuildingBookName:
 	textfw "かがくポケモンのデッキ"
 	done
 
-Text0ae3:
+WaterPokemonBookName:
 	textfw "水ポケモン"
 	done
 
-Text0ae4:
+WaterPokemonAttacksBookName:
 	textfw "水ポケモンのワザ"
 	done
 
-Text0ae5:
+PsyduckGolduckBookName:
 	textfw "「コダック」「ゴルダック」"
 	done
 
-Text0ae6:
+FirePokemonBookName:
 	textfw "炎ポケモンについて"
 	done
 
-Text0ae7:
+FirePokemonAttacksBookName:
 	textfw "炎ポケモンのワザ"
 	done
 
-Text0ae8:
+FirePokemonDeckBuildingBookName:
 	textfw "炎ポケモンのデッキ"
 	done
 
-Text0ae9:
+LightningPokemonBookName:
 	textfw "雷ポケモン"
 	done
 
-Text0aea:
+LightningPokemonDeckBuildingBookName:
 	textfw "雷ポケモンのデッキ"
 	done
 
-Text0aeb:
+BirdPokemonBookName:
 	textfw "とりポケモン"
 	done
 
-Text0aec:
+PsychicPokemonBookName:
 	textfw "超ポケモン"
 	done
 
-Text0aed:
+PsychicPokemonPokemonPowerBookName:
 	textfw "超ポケモンと特殊能力"
 	done
 
-Text0aee:
+UsefulButtonsBookName:
 	textfw "べんりなボタン"
 	done
 
-Text0aef:
+ColorlessPokemonBookName:
 	textfw "無色のポケモン"
 	done
 
-Text0af0:
+CardPopBookName:
 	textfw "カードポン!"
 	done
 
-Text0af1:
+EnergyCardColorsBookName:
 	textfw "エネルギーカードの色"
 	done
 
-Text0af2:
+LegendaryPokemonCardsVol1BookName:
 	textfw "伝説のポケモンカード・1"
 	done
 
-Text0af3:
+LegendaryPokemonCardsVol2BookName:
 	textfw "伝説のポケモンカード・2"
 	done
 
-Text0af4:
+LegendaryPokemonCardsVol3BookName:
 	textfw "伝説のポケモンカード・3"
 	done
 
-Text0af5:
+LegendaryPokemonCardsVol4BookName:
 	textfw "伝説のポケモンカード・4"
 	done
 
-Text0af6:
+GrandMastersBookName:
 	textfw "グランドマスター"
 	done
 
-Text0af7:
+CoinsBookName:
 	textfw "コインについて"
 	done
 
-Text0af8:
+EmptyLocationNameText:
 	textfw "           "
 	done
 
-Text0af9:
+ErrorInvalidDataText:
 	textfw "*** エラー(不正データ) ***"
 	done
 
-Text0afa:
+SavedDataText:
 	textfw "データを セーブしました"
 	done
 
-Text0afb:
+DoorsAreShutText:
 	textfw "トビラは かたく とざされている"
 	done
 
-Text0afc:
+ReceivedXChipsText:
 	textfw "<RAMNAME>は"
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
-Text0afd:
+OpenedTreasureBoxText:
 	textfw "<RAMNAME>は"
 	linefw "たからばこを あけた!"
 	done
 
-Text0afe:
+TreasureBoxWasEmptyText:
 	textfw "たからばこは カラッポだった"
 	done
 
-Text0aff:
+BiruritchiStatueCaptionText:
 	textfw "いだいなるGR団のキング"
 	linefw "ビルリッチさまのどうぞう"
 	done
 
-Text0b00:
+TradeCardsPromptText:
 	textfw "カードを こうかんしますか?"
 	done
 
-Text0b01:
+DuelPrepPromptText:
 	textfw "対戦のじゅんびを しますか?"
 	done
 
-Text0b02:
+GameCenterCardDungeonBetPromptText:
 	textfw "チップなん枚で たたかいますか?"
 	done
 
