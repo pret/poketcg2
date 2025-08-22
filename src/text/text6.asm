@@ -2166,7 +2166,7 @@ Text0afb:
 	textfw "トビラは かたく とざされている"
 	done
 
-Text0afc:
+ReceivedXChipsText:
 	textfw "<RAMNAME>は"
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
@@ -2193,7 +2193,7 @@ DuelPrepPromptText:
 	textfw "対戦のじゅんびを しますか?"
 	done
 
-Text0b02:
+GameCenterCardDungeonBetPromptText:
 	textfw "チップなん枚で たたかいますか?"
 	done
 

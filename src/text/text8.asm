@@ -493,7 +493,7 @@ Text0ce6:
 	textfw "じゃあ ショウコさんに あってね!"
 	done
 
-Text0ce7:
+PawnWantsToDuelInitialText:
 	textfw "ボクは ポーン"
 	linefw "ダンジョンさいしょの対戦あいてさっ!"
 	linefw "ボクと対戦して 勝てば"
@@ -506,53 +506,53 @@ Text0ce7:
 	linefw "対戦する?"
 	done
 
-Text0ce8:
+PawnWantsToDuelRepeatText:
 	textfw "ボクと対戦して 勝てば"
 	linefw "さきに すすむことができるよ"
 	linefw "でも 対戦には チップが10枚"
 	linefw "ひつようなんだ それでも対戦する?"
 	done
 
-Text0ce9:
+PawnDuelPromptText:
 	textfw "ポーンと 対戦しますか?"
 	done
 
-Text0cea:
+PawnDuelStartText:
 	textfw "ボクとの 対戦は"
 	linefw "サイドカード 4枚さっ!"
 	linefw "それじゃ 対戦しよう!"
 	done
 
-Text0ceb:
+PawnDeclinedDuelText:
 	textfw "対戦しないの?"
 	linefw "ほんとうに いいんだね?"
 	done
 
-Text0cec:
+PawnQuitDuelPromptText:
 	textfw "ポーンとの 対戦をやめますか?"
 	done
 
-Text0ced:
+PawnResumeDuelText:
 	textfw "それなら ボクと"
 	linefw "チップをかけて 対戦するんだね?"
 	done
 
-Text0cee:
+PawnPlayerQuitText:
 	textfw "では では ダンジョンから"
 	linefw "おひきとりくださーい"
 	done
 
-Text0cef:
+PawnProceedRepeatText:
 	textfw "はーい どうぞ!"
 	linefw "さきに すすんで いいよっ!"
 	done
 
-Text0cf0:
+PawnPlayerWon1Text:
 	textfw "おーみーごーとー"
 	linefw "じゃあ チップを かえすね!"
 	done
 
-Text0cf1:
+PawnPlayerWon2Text:
 	textfw "ボクに 勝ったから"
 	linefw "さきに すすめるよっ!"
 	linefw "べつに ダンジョンから でてもいいし"
@@ -560,42 +560,44 @@ Text0cf1:
 	linefw "どうする?"
 	done
 
-Text0cf2:
+PawnPlayerLostText:
 	textfw "キミの まけだね"
 	linefw " "
 	linefw "まけたひとは"
 	linefw "ダンジョンから でてもらうよっ!"
 	done
 
-Text0cf3:
+PawnProceedWithCardDungeonPromptText:
+	; each Card Dungeon opponent has the same ProceedWithCardDungeonPromptText
 	textfw "ダンジョンを さきに すすみますか?"
 	done
 
-Text0cf4:
+PawnProceedInitial1Text:
 	textfw "じゃあ おくのトビラを"
 	linefw "あけてあげるね!"
 	done
 
-Text0cf5:
+PawnProceedInitial2Text:
 	textfw "はーい どうぞ!"
 	linefw "さきに すすんでいいよっ!"
 	done
 
-Text0cf6:
+PawnDeclinedProceedingText:
 	textfw "さきに すすまないなら"
 	linefw "ダンジョンから でてもらうよっ!"
 	linefw "それでも いいのかな?"
 	done
 
-Text0cf7:
+PawnWithdrawFromCardDungeonPromptText:
+	; each Card Dungeon opponent has the same WithdrawFromCardDungeonPromptText
 	textfw "ダンジョンから でますか?"
 	done
 
-Text0cf8:
+PawnPlayerWithdrewText:
 	textfw "じゃあ さようならだねっ!"
 	done
 
-Text0cf9:
+KnightWantsToDuelInitialText:
 	textfw "それがしは ここをまもる"
 	linefw "ナイトで ござるよ"
 	linefw "それがしと 対戦をして"
@@ -608,7 +610,7 @@ Text0cf9:
 	linefw "それがしと 対戦するでござるか?"
 	done
 
-Text0cfa:
+KnightWantsToDuelRepeatText:
 	textfw "さきに すすむには それがしと"
 	linefw "対戦して 勝たねば ならんでござる"
 	linefw "対戦するならば チップを"
@@ -619,11 +621,11 @@ Text0cfa:
 	linefw "それがしと 対戦するでござるか?"
 	done
 
-Text0cfb:
+KnightDuelPromptText:
 	textfw "ナイトと 対戦しますか?"
 	done
 
-Text0cfc:
+KnightDuelStartText:
 	textfw "わかった <RAMNUM>枚で"
 	linefw "対戦するでござるな"
 	linefw "それがしとの 対戦は サイドカード"
@@ -632,7 +634,7 @@ Text0cfc:
 	linefw "いざ 対戦でござる!"
 	done
 
-Text0cfd:
+KnightDeclinedDuelText:
 	textfw "なんと! 対戦なさらないと"
 	linefw "いわれるでござるか?"
 	linefw "対戦しなければ ダンジョンから"
@@ -641,71 +643,71 @@ Text0cfd:
 	linefw "さいしょから やりなおしでござる"
 	done
 
-Text0cfe:
+KnightQuitDuelPromptText:
 	textfw "ナイトとの 対戦をやめますか?"
 	done
 
-Text0cff:
+KnightResumeDuelText:
 	textfw "では"
 	linefw "対戦するでござるか?"
 	done
 
-Text0d00:
+KnightPlayerQuitText:
 	textfw "では さらばでござる"
 	done
 
-Text0d01:
+KnightProceedRepeatText:
 	textfw "つぎの対戦あいては"
 	linefw "ビショップどのでござる"
 	linefw "ビショップどのは"
 	linefw "おつよいので がんばるでござる"
 	done
 
-Text0d02:
+KnightPlayerWon1Text:
 	textfw "おめでとうでござる!"
 	linefw "チップを おわたしするでござる"
 	done
 
-Text0d03:
+KnightPlayerWon2Text:
 	textfw "さきに すすむでござる"
 	linefw "それとも やめるでござるか?"
 	done
 
-Text0d04:
+KnightPlayerLostText:
 	textfw "そなたの まけでござる"
 	linefw "ダンジョンから でてもらうでござる"
 	done
 
-Text0d05:
+KnightProceedWithCardDungeonPromptText:
 	textfw "ダンジョンを さきに すすみますか?"
 	done
 
-Text0d06:
+KnightProceedInitial1Text:
 	textfw "それでは"
 	linefw "トビラを あけるでござる"
 	done
 
-Text0d07:
+KnightProceedInitial2Text:
 	textfw "ささ"
 	linefw "おくのヘヤに すすむでござる"
 	done
 
-Text0d08:
+KnightDeclinedProceedingText:
 	textfw "さきに すすまないのならば"
 	linefw "ダンジョンから でてしまうでござる"
 	linefw "それでも よいでござるか?"
 	done
 
-Text0d09:
+KnightWithdrawFromCardDungeonPromptText:
 	textfw "ダンジョンから でますか?"
 	done
 
-Text0d0a:
+KnightPlayerWithdrewText:
 	textfw "対戦しないのならば"
 	linefw "ダンジョンから でてもらうでござる"
 	done
 
-Text0d0b:
+BishopWantsToDuelInitialText:
 	textfw "ワシは ビショップさまじゃ!"
 	linefw "カンタンには さきに いかさんぞ!"
 	linefw "ワシと 対戦したいなら チップを"
@@ -718,93 +720,93 @@ Text0d0b:
 	linefw "対戦するかい?"
 	done
 
-Text0d0c:
+BishopWantsToDuelRepeatText:
 	textfw "チップを ふやしたいなら"
 	linefw "対戦すべきじゃ"
 	linefw "対戦するなら もちろん チップは"
 	linefw "はらってもらうぞ"
 	done
 
-Text0d0d:
+BishopDuelPromptText:
 	textfw "ビショップと 対戦しますか?"
 	done
 
-Text0d0e:
+BishopNotEnoughChipsText:
 	textfw "チップが たりんようじゃな"
 	linefw "チップを ふやしてからくるんじゃな"
 	done
 
-Text0d0f:
+BishopDuelStartText:
 	textfw "<RAMNUM>枚じゃな?"
 	linefw "よーし 対戦かいしじゃ!"
 	linefw "サイドカードは 4枚じゃ!"
 	done
 
-Text0d10:
+BishopDeclinedDuelText:
 	textfw "対戦せんのか?"
 	linefw "チップを ふやさなくていいんじゃな?"
 	done
 
-Text0d11:
+BishopQuitDuelPromptText:
 	textfw "ビショップとの 対戦をやめますか?"
 	done
 
-Text0d12:
+BishopResumeDuelText:
 	textfw "対戦したくなったんじゃな?"
 	done
 
-Text0d13:
+BishopPlayerQuitText:
 	textfw "それなら ダンジョンから"
 	linefw "でてもらおうかの"
 	done
 
-Text0d14:
+BishopProceedRepeatText:
 	textfw "つぎの対戦は ダンジョンに"
 	linefw "はいりなおしたときじゃ"
 	done
 
-Text0d15:
+BishopPlayerWon1Text:
 	textfw "おまえの 勝ちじゃ!"
 	linefw "ヤクソクじゃ チップを わたすぞ"
 	done
 
-Text0d16:
+BishopPlayerWon2Text:
 	textfw "ワシに 勝ったんじゃ"
 	linefw "トビラを あけるが どうする?"
 	done
 
-Text0d17:
+BishopPlayerLostText:
 	textfw "おまえのまけじゃ!"
 	linefw "ダンジョンから でてもらうぞ!"
 	done
 
-Text0d18:
+BishopProceedWithCardDungeonPromptText:
 	textfw "ダンジョンを さきに すすみますか?"
 	done
 
-Text0d19:
+BishopProceedInitial1Text:
 	textfw "よーし トビラを あけるぞ!"
 	done
 
-Text0d1a:
+BishopProceedInitial2Text:
 	textfw "さあ さきに すすむんじゃ!"
 	done
 
-Text0d1b:
+BishopDeclinedProceedingText:
 	textfw "では ダンジョンから"
 	linefw "でていってもらおう"
 	done
 
-Text0d1c:
+BishopWithdrawFromCardDungeonPromptText:
 	textfw "ダンジョンから でますか?"
 	done
 
-Text0d1d:
+BishopPlayerWithdrewText:
 	textfw "それなら ダンジョンから"
 	linefw "でてもらおうかの!"
 	done
 
-Text0d1e:
+RookWantsToDuelInitialText:
 	textfw "オレは ルークだ"
 	linefw "よく ここまできたな"
 	linefw "おくに いらっしゃる クィーンさまに"
@@ -815,7 +817,7 @@ Text0d1e:
 	linefw "オレと 対戦するのか?"
 	done
 
-Text0d1f:
+RookWantsToDuelRepeatText:
 	textfw "クィーンさまに おあいしたくば"
 	linefw "オレと たたかうのだ"
 	linefw "対戦するなら チップを"
@@ -824,90 +826,90 @@ Text0d1f:
 	linefw "オレと 対戦するのか?"
 	done
 
-Text0d20:
+RookDuelPromptText:
 	textfw "ルークと 対戦しますか?"
 	done
 
-Text0d21:
+RookNotEnoughChipsText:
 	textfw "あっはははは・・・からかうなよ"
 	linefw "こまったもんだ"
 	linefw "チップが たりないぞ"
 	done
 
-Text0d22:
+RookDuelStartText:
 	textfw "<RAMNUM>枚だな"
 	linefw "対戦を うけてたつぞ"
 	linefw "オレは サイドカード"
 	linefw "5枚で たたかうぞ"
 	done
 
-Text0d23:
+RookDeclinedDuelText:
 	textfw "ほんとうに 対戦しないんだな?"
 	done
 
-Text0d24:
+RookQuitDuelPromptText:
 	textfw "ルークとの 対戦をやめますか?"
 	done
 
-Text0d25:
+RookResumeDuelText:
 	textfw "ほんとうに 対戦するのだな?"
 	done
 
-Text0d26:
+RookPlayerQuitText:
 	textfw "では ダンジョンから"
 	linefw "でてもらおう!"
 	done
 
-Text0d27:
+RookProceedRepeatText:
 	textfw "クィーンさまに 勝てれば"
 	linefw "このダンジョンに テキなしだ"
 	done
 
-Text0d28:
+RookPlayerWon1Text:
 	textfw "いさぎよく みとめよう"
 	linefw "オレのまけだ・・・"
 	done
 
-Text0d29:
+RookPlayerWon2Text:
 	textfw "どうするのだ?"
 	linefw "クィーンさまと たたかうのか?"
 	done
 
-Text0d2a:
+RookPlayerLostText:
 	textfw "オレの勝ちだ"
 	linefw " "
 	linefw "まけたのだから ダンジョンから"
 	linefw "でていって もらうぞ"
 	done
 
-Text0d2b:
+RookProceedWithCardDungeonPromptText:
 	textfw "ダンジョンを さきに すすみますか?"
 	done
 
-Text0d2c:
+RookProceedInitial1Text:
 	textfw "かくごは できてるようだから"
 	linefw "トビラを ひらくぞ!"
 	done
 
-Text0d2d:
+RookProceedInitial2Text:
 	textfw "このさきに クィーンさまが いる"
 	linefw "こころして いけ!"
 	done
 
-Text0d2e:
+RookDeclinedProceedingText:
 	textfw "それならば ダンジョンから"
 	linefw "でるしかないが いいのだな"
 	done
 
-Text0d2f:
+RookWithdrawFromCardDungeonPromptText:
 	textfw "ダンジョンから でますか?"
 	done
 
-Text0d30:
+RookPlayerWithdrewText:
 	textfw "それならば ここよりさるが いい"
 	done
 
-Text0d31:
+QueenWantsToDuelInitialText:
 	textfw "おお!"
 	linefw "チャレンジャーじゃな"
 	linefw "なかなか ワラワのところまで"
@@ -926,56 +928,56 @@ Text0d31:
 	linefw "おおいが 対戦せんかえ?"
 	done
 
-Text0d32:
+QueenWantsToDuelRepeatText:
 	textfw "ワラワの対戦は チップを"
 	linefw "50枚か 100枚じゃよ"
 	linefw "すこし チップの枚すうが"
 	linefw "おおいが 対戦せんかえ?"
 	done
 
-Text0d33:
+QueenDuelPromptText:
 	textfw "クィーンと 対戦しますか?"
 	done
 
-Text0d34:
+QueenNotEnoughChipsText:
 	textfw "それでは"
 	linefw "チップが たりんぞえ"
 	done
 
-Text0d35:
+QueenDuelStart1Text:
 	textfw "対戦を うけるのじゃな!"
 	linefw "よい こころがけじゃ"
 	linefw "それでは そちらのイスに"
 	linefw "かけるが よかろう"
 	done
 
-Text0d36:
+QueenDuelStart2Text:
 	textfw "サイドカードは 6枚じゃ"
 	linefw "さあ たたかうぞえ!!"
 	done
 
-Text0d37:
+QueenDeclinedDuelText:
 	textfw "ワラワとの 対戦をやめて"
 	linefw "ダンジョンから でるのかえ?"
 	done
 
-Text0d38:
+QueenQuitDuelPromptText:
 	textfw "クィーンとの 対戦をやめますか?"
 	done
 
-Text0d39:
+QueenResumeDuelText:
 	textfw "ワラワとの"
 	linefw "対戦を のぞむのかえ?"
 	done
 
-Text0d3a:
+QueenPlayerQuitText:
 	textfw "そうかえ"
 	linefw "しかたあるまいのぉ"
 	linefw "では このダンジョンから"
 	linefw "たちさるが よい"
 	done
 
-Text0d3b:
+QueenPlayerWon1Text:
 	textfw "ワラワの まけじゃ"
 	linefw "みごとな たたかいぶりじゃ"
 	linefw "さすが ワラワのところまで"
@@ -984,14 +986,14 @@ Text0d3b:
 	linefw "チップを うけとるのじゃ"
 	done
 
-Text0d3c:
+QueenPlayerWon2Text:
 	textfw "これで そなたと おわかれとは"
 	linefw "さみしい かぎりじゃ"
 	linefw "また きてくれることを"
 	linefw "ワラワは ねがっておるぞえ"
 	done
 
-Text0d3d:
+QueenPlayerLostText:
 	textfw "ワラワの 勝ちじゃからな"
 	linefw "チップは かえさんぞえ"
 	linefw "いまいちど ワラワと たたかいたくば"
