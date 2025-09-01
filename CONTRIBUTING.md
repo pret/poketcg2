@@ -27,10 +27,10 @@ For disassembling code, use the tools/tcg2disasm.py python script. Make sure to 
 Typical usage of the script in order to disassemble, for example, offset `0x7927` is running the following in the root directory of the disassembly:
 
 ```
-python2.7 tools/tcg2disasm.py -r baserom.gbc -s poketcg2.sym -q 7927
+python tools/tcg2disasm.py -r baserom.gbc -s poketcg2.sym -q 7927
 ```
 
-Keep in mind that you should have a clean ROM of the game with the name `baserom.gbc` in the root directory. The script will output a file called `disasm_output.asm`, which, if everything went well, will look like the following:
+Keep in mind that you should have a clean ROM of the game with the name `baserom.gbc` in the root directory, and that you have to have Python 3 installed. The script will output a file called `disasm_output.asm`, which, if everything went well, will look like the following:
 
 ```
 Func_7927:
