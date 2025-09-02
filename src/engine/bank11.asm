@@ -469,6 +469,136 @@ _ChooseTitleScreenCards:
 	dw HERE_COMES_TEAM_ROCKET
 	dw $0000
 
+MACRO blackbox_promo
+	dw \1 ; recipe
+	db \2 ; post-game flag
+	dw \3 ; output
+ENDM
+
+BlackboxPromoCards:
+	blackbox_promo .dugtrio_lv40, 0, DUGTRIO_LV40
+	blackbox_promo .mankey_alt_lv7, 1, MANKEY_ALT_LV7
+	blackbox_promo .diglett_lv16, 1, DIGLETT_LV16
+	blackbox_promo .moltres_lv40, 0, MOLTRES_LV40
+	blackbox_promo .arcanine_lv34, 1, ARCANINE_LV34
+	blackbox_promo .charizard_lv76, 0, CHARIZARD_LV76 ; bug, should be CHARIZARD_ALT_LV76
+	blackbox_promo .pikachu_lv13, 1, PIKACHU_LV13
+	blackbox_promo .pikachu_lv16, 0, PIKACHU_LV16
+	blackbox_promo .zapdos_lv68, 0, ZAPDOS_LV68
+	blackbox_promo .pikachu_alt_lv16, 0, PIKACHU_ALT_LV16
+	blackbox_promo .electabuzz_lv20, 1, ELECTABUZZ_LV20
+	blackbox_promo .articuno_lv37, 0, ARTICUNO_LV37
+	blackbox_promo .magikarp_lv10, 1, MAGIKARP_LV10
+	blackbox_promo .blastoise_alt_lv52, 0, BLASTOISE_ALT_LV52
+	blackbox_promo .venusaur_alt_lv67, 0, VENUSAUR_ALT_LV67
+	blackbox_promo .grs_mewtwo, 1, GRS_MEWTWO
+	blackbox_promo .mewtwo_alt_lv60, 0, MEWTWO_ALT_LV60
+	blackbox_promo .mewtwo_lv60, 0, MEWTWO_LV60
+	blackbox_promo .mewtwo_lv30, 1, MEWTWO_LV30
+	blackbox_promo .slowpoke_lv9, 1, SLOWPOKE_LV9
+	blackbox_promo .super_energy_retrieval, 1, SUPER_ENERGY_RETRIEVAL
+	blackbox_promo .dark_persian_alt_lv28, 1, DARK_PERSIAN_ALT_LV28
+	blackbox_promo .jigglypuff_lv12, 0, JIGGLYPUFF_LV12
+	blackbox_promo .kangaskhan_lv38, 0, KANGASKHAN_LV38
+	blackbox_promo .farfetchd_alt_lv20, 1, FARFETCHD_ALT_LV20
+	blackbox_promo .dragonite_lv41, 0, DRAGONITE_LV41
+	blackbox_promo .dragonite_lv45, 1, DRAGONITE_LV45
+	blackbox_promo .meowth_lv14, 0, MEOWTH_LV14
+	blackbox_promo .hungry_snorlax, 1, HUNGRY_SNORLAX
+	blackbox_promo .cool_porygon, 1, COOL_PORYGON
+	dw 0 ; end
+
+.dugtrio_lv40:
+	dw DUGTRIO_LV36, HITMONLEE_LV30, HITMONCHAN_LV23
+	dw 0
+.mankey_alt_lv7:
+	dw HITMONLEE_LV30, HITMONCHAN_LV23
+	dw 0
+.diglett_lv16:
+	dw DUGTRIO_LV36, DARK_DUGTRIO
+	dw 0
+.moltres_lv40:
+	dw NINETALES_LV32, DARK_NINETALES, MOLTRES_LV35
+	dw 0
+.arcanine_lv34:
+	dw NINETALES_LV32, ARCANINE_LV45
+	dw 0
+.charizard_lv76:
+	dw DARK_CHARIZARD, DARK_NINETALES
+	dw 0
+.pikachu_lv13:
+	dw RAICHU_LV40, RAICHU_LV45, RAICHU_LV32, DARK_RAICHU
+	dw 0
+.pikachu_lv16:
+	dw RAICHU_LV40, RAICHU_LV45, RAICHU_LV32
+	dw 0
+.zapdos_lv68:
+	dw RAICHU_LV40, DARK_RAICHU, ZAPDOS_LV64
+	dw 0
+.pikachu_alt_lv16:
+	dw ELECTRODE_LV35, ELECTRODE_LV42, MAGNETON_LV28, MAGNETON_LV35
+	dw 0
+.electabuzz_lv20:
+	dw ELECTABUZZ_LV35, MAGNETON_LV30, MAGNETON_LV28, MAGNETON_LV35
+	dw 0
+.articuno_lv37:
+	dw POLIWRATH_LV40, KINGLER_LV33, ARTICUNO_LV35
+	dw 0
+.magikarp_lv10:
+	dw GYARADOS, DARK_GYARADOS
+	dw 0
+.blastoise_alt_lv52:
+	dw DARK_BLASTOISE, DARK_GYARADOS
+	dw 0
+.venusaur_alt_lv67:
+	dw DARK_VILEPLUME, DARK_VENUSAUR
+	dw 0
+.grs_mewtwo:
+	dw MEW_LV23, MEWTWO_LV53, MEWTWO_LV67
+	dw 0
+.mewtwo_alt_lv60:
+	dw MEW_LV23, MEWTWO_LV67
+	dw 0
+.mewtwo_lv60:
+	dw MEW_LV23, MEWTWO_LV53
+	dw 0
+.mewtwo_lv30:
+	dw MEWTWO_LV53, MEWTWO_LV67
+	dw 0
+.slowpoke_lv9:
+	dw ALAKAZAM_LV42, GENGAR_LV38, MR_MIME_LV28
+	dw 0
+.super_energy_retrieval:
+	dw POLIWRATH_LV40, DRAGONAIR
+	dw 0
+.dark_persian_alt_lv28:
+	dw CHANSEY_LV55, CLEFABLE, WIGGLYTUFF_LV36
+	dw 0
+.jigglypuff_lv12:
+	dw CHANSEY_LV55, CLEFAIRY_LV14
+	dw 0
+.kangaskhan_lv38:
+	dw KANGASKHAN_LV40, DRAGONAIR
+	dw 0
+.farfetchd_alt_lv20:
+	dw PIDGEOT_LV38, CLEFAIRY_LV14, DITTO
+	dw 0
+.dragonite_lv41:
+	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONAIR
+	dw 0
+.dragonite_lv45:
+	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONITE_LV41
+	dw 0
+.meowth_lv14:
+	dw DITTO, SNORLAX_LV20
+	dw 0
+.hungry_snorlax:
+	dw SNORLAX_LV20, SNORLAX_LV35
+	dw 0
+.cool_porygon:
+	dw DITTO, CLEFABLE
+	dw 0
+
 SECTION "Bank 11@4928", ROMX[$4928], BANK[$11]
 
 ; a = MUSIC_*
