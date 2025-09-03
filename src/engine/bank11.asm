@@ -508,94 +508,94 @@ BlackboxPromoCards:
 	blackbox_promo .cool_porygon, 1, COOL_PORYGON
 	dw 0 ; end
 
-.dugtrio_lv40:
+.dugtrio_lv40
 	dw DUGTRIO_LV36, HITMONLEE_LV30, HITMONCHAN_LV23
 	dw 0
-.mankey_alt_lv7:
+.mankey_alt_lv7
 	dw HITMONLEE_LV30, HITMONCHAN_LV23
 	dw 0
-.diglett_lv16:
+.diglett_lv16
 	dw DUGTRIO_LV36, DARK_DUGTRIO
 	dw 0
-.moltres_lv40:
+.moltres_lv40
 	dw NINETALES_LV32, DARK_NINETALES, MOLTRES_LV35
 	dw 0
-.arcanine_lv34:
+.arcanine_lv34
 	dw NINETALES_LV32, ARCANINE_LV45
 	dw 0
-.nonpromo_charizard_lv76:
+.nonpromo_charizard_lv76
 	dw DARK_CHARIZARD, DARK_NINETALES
 	dw 0
-.pikachu_lv13:
+.pikachu_lv13
 	dw RAICHU_LV40, RAICHU_LV45, RAICHU_LV32, DARK_RAICHU
 	dw 0
-.pikachu_lv16:
+.pikachu_lv16
 	dw RAICHU_LV40, RAICHU_LV45, RAICHU_LV32
 	dw 0
-.zapdos_lv68:
+.zapdos_lv68
 	dw RAICHU_LV40, DARK_RAICHU, ZAPDOS_LV64
 	dw 0
-.pikachu_alt_lv16:
+.pikachu_alt_lv16
 	dw ELECTRODE_LV35, ELECTRODE_LV42, MAGNETON_LV28, MAGNETON_LV35
 	dw 0
-.electabuzz_lv20:
+.electabuzz_lv20
 	dw ELECTABUZZ_LV35, MAGNETON_LV30, MAGNETON_LV28, MAGNETON_LV35
 	dw 0
-.articuno_lv37:
+.articuno_lv37
 	dw POLIWRATH_LV40, KINGLER_LV33, ARTICUNO_LV35
 	dw 0
-.magikarp_lv10:
+.magikarp_lv10
 	dw GYARADOS, DARK_GYARADOS
 	dw 0
-.blastoise_alt_lv52:
+.blastoise_alt_lv52
 	dw DARK_BLASTOISE, DARK_GYARADOS
 	dw 0
-.venusaur_alt_lv67:
+.venusaur_alt_lv67
 	dw DARK_VILEPLUME, DARK_VENUSAUR
 	dw 0
-.grs_mewtwo:
+.grs_mewtwo
 	dw MEW_LV23, MEWTWO_LV53, MEWTWO_LV67
 	dw 0
-.mewtwo_alt_lv60:
+.mewtwo_alt_lv60
 	dw MEW_LV23, MEWTWO_LV67
 	dw 0
-.mewtwo_lv60:
+.mewtwo_lv60
 	dw MEW_LV23, MEWTWO_LV53
 	dw 0
-.mewtwo_lv30:
+.mewtwo_lv30
 	dw MEWTWO_LV53, MEWTWO_LV67
 	dw 0
-.slowpoke_lv9:
+.slowpoke_lv9
 	dw ALAKAZAM_LV42, GENGAR_LV38, MR_MIME_LV28
 	dw 0
-.super_energy_retrieval:
+.super_energy_retrieval
 	dw POLIWRATH_LV40, DRAGONAIR
 	dw 0
-.dark_persian_alt_lv28:
+.dark_persian_alt_lv28
 	dw CHANSEY_LV55, CLEFABLE, WIGGLYTUFF_LV36
 	dw 0
-.jigglypuff_lv12:
+.jigglypuff_lv12
 	dw CHANSEY_LV55, CLEFAIRY_LV14
 	dw 0
-.kangaskhan_lv38:
+.kangaskhan_lv38
 	dw KANGASKHAN_LV40, DRAGONAIR
 	dw 0
-.farfetchd_alt_lv20:
+.farfetchd_alt_lv20
 	dw PIDGEOT_LV38, CLEFAIRY_LV14, DITTO
 	dw 0
-.dragonite_lv41:
+.dragonite_lv41
 	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONAIR
 	dw 0
-.nonpromo_dragonite_lv45:
+.nonpromo_dragonite_lv45
 	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONITE_LV41
 	dw 0
-.meowth_lv14:
+.meowth_lv14
 	dw DITTO, SNORLAX_LV20
 	dw 0
-.hungry_snorlax:
+.hungry_snorlax
 	dw SNORLAX_LV20, SNORLAX_LV35
 	dw 0
-.cool_porygon:
+.cool_porygon
 	dw DITTO, CLEFABLE
 	dw 0
 
