@@ -502,7 +502,7 @@ BlackboxPromoCards:
 	blackbox_promo .kangaskhan_lv38, 0, KANGASKHAN_LV38
 	blackbox_promo .farfetchd_alt_lv20, 1, FARFETCHD_ALT_LV20
 	blackbox_promo .dragonite_lv41, 0, DRAGONITE_LV41
-	blackbox_promo .nonpromo_dragonite_lv45, 1, DRAGONITE_LV45 ; bug, should be DRAGONITE_LV43
+	blackbox_promo .nonpromo_dragonite_lv45, 1, DRAGONITE_LV45 ; bug, should be DRAGONITE_LV43, though listed in .OtherPromoCards instead
 	blackbox_promo .meowth_lv14, 0, MEOWTH_LV14
 	blackbox_promo .hungry_snorlax, 1, HUNGRY_SNORLAX
 	blackbox_promo .cool_porygon, 1, COOL_PORYGON
@@ -597,6 +597,29 @@ BlackboxPromoCards:
 	dw 0
 .cool_porygon
 	dw DITTO, CLEFABLE
+	dw 0
+
+.OtherPromoCards:
+	dw VENUSAUR_LV64
+	dw MARILL
+	dw OMASTAR_LV36
+	dw GOLEM_LV37
+	dw MACHAMP_LV54
+	dw ALAKAZAM_LV45
+	dw GENGAR_LV40
+	dw MEWTWO_LV30 ; weird, also in BlackboxPromoCards
+	dw MEW_LV15
+	dw MEW_LV8
+	dw SURFING_PIKACHU_LV13
+	dw SURFING_PIKACHU_ALT_LV13
+	dw FLYING_PIKACHU_LV12
+	dw FLYING_PIKACHU_ALT_LV12
+	dw DRAGONITE_LV43 ; weird if BlackboxPromoCards weren't bugged
+	dw TOGEPI
+	dw LUGIA
+	dw HERE_COMES_TEAM_ROCKET
+	dw IMAKUNI_CARD
+	dw COMPUTER_ERROR
 	dw 0
 
 SECTION "Bank 11@4928", ROMX[$4928], BANK[$11]
