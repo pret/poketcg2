@@ -481,7 +481,7 @@ BlackboxPromoCards:
 	blackbox_promo .diglett_lv16, 1, DIGLETT_LV16
 	blackbox_promo .moltres_lv40, 0, MOLTRES_LV40
 	blackbox_promo .arcanine_lv34, 1, ARCANINE_LV34
-	blackbox_promo .charizard_lv76, 0, CHARIZARD_LV76 ; bug, should be CHARIZARD_ALT_LV76
+	blackbox_promo .nonpromo_charizard_lv76, 0, CHARIZARD_LV76 ; bug, should be CHARIZARD_ALT_LV76
 	blackbox_promo .pikachu_lv13, 1, PIKACHU_LV13
 	blackbox_promo .pikachu_lv16, 0, PIKACHU_LV16
 	blackbox_promo .zapdos_lv68, 0, ZAPDOS_LV68
@@ -502,7 +502,7 @@ BlackboxPromoCards:
 	blackbox_promo .kangaskhan_lv38, 0, KANGASKHAN_LV38
 	blackbox_promo .farfetchd_alt_lv20, 1, FARFETCHD_ALT_LV20
 	blackbox_promo .dragonite_lv41, 0, DRAGONITE_LV41
-	blackbox_promo .dragonite_lv45, 1, DRAGONITE_LV45
+	blackbox_promo .nonpromo_dragonite_lv45, 1, DRAGONITE_LV45 ; bug, should be DRAGONITE_LV43
 	blackbox_promo .meowth_lv14, 0, MEOWTH_LV14
 	blackbox_promo .hungry_snorlax, 1, HUNGRY_SNORLAX
 	blackbox_promo .cool_porygon, 1, COOL_PORYGON
@@ -523,7 +523,7 @@ BlackboxPromoCards:
 .arcanine_lv34:
 	dw NINETALES_LV32, ARCANINE_LV45
 	dw 0
-.charizard_lv76:
+.nonpromo_charizard_lv76:
 	dw DARK_CHARIZARD, DARK_NINETALES
 	dw 0
 .pikachu_lv13:
@@ -586,7 +586,7 @@ BlackboxPromoCards:
 .dragonite_lv41:
 	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONAIR
 	dw 0
-.dragonite_lv45:
+.nonpromo_dragonite_lv45:
 	dw DRAGONITE_LV45, DARK_DRAGONITE, DRAGONITE_LV41
 	dw 0
 .meowth_lv14:
