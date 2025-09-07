@@ -908,32 +908,32 @@ def load_symbols(path):
 		label = symbol['label']
 
 		if 0x0000 <= address < 0x8000:
-			if not sym.has_key(bank):
+			if bank not in sym:
 				sym[bank] = {}
 
 			sym[bank][address] = label
 			reverse_sym[label] = get_global_address(address, bank)
 
 		elif 0x8000 <= address < 0xa000:
-			if not vram_sym.has_key(bank):
+			if bank not in vram_sym:
 				vram_sym[bank] = {}
 
 			vram_sym[bank][address] = label
 
 		elif 0xa000 <= address < 0xc000:
-			if not sram_sym.has_key(bank):
+			if bank not in sram_sym:
 				sram_sym[bank] = {}
 
 			sram_sym[bank][address] = label
 
 		elif 0xc000 <= address < 0xe000:
-			if not wram_sym.has_key(bank):
+			if bank not in wram_sym:
 				wram_sym[bank] = {}
 
 			wram_sym[bank][address] = label
 
 		elif 0xff80 <= address < 0xfffe:
-			if not hram_sym.has_key(bank):
+			if bank not in hram_sym:
 				hram_sym[bank] = {}
 
 			hram_sym[bank][address] = label
@@ -1094,7 +1094,7 @@ class Disassembler(object):
 
 		debug = False
 
-		bank_id = start_offset / 0x4000
+		bank_id = start_offset // 0x4000
 
 		stop_offset_undefined = False
 
@@ -1105,7 +1105,7 @@ class Disassembler(object):
 			stop_offset = (bank_id + 1) * 0x4000 - 1
 
 		if debug:
-			print "bank id is: " + str(bank_id)
+			print(f"bank id is: {bank_id}")
 
 		rom = self.rom
 
@@ -1476,7 +1476,7 @@ if __name__ == "__main__":
 
 	# suppress output if quiet flag is set
 	if not args.quiet:
-		print output
+		print(output)
 
 	# only write to the output file if the no write flag is unset
 	if not args.no_write:
