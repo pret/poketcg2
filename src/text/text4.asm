@@ -367,7 +367,7 @@ GameCenterPrizeMewText:
 	textfw "ミュウ<Lv>15"
 	done
 
-GameCenterPrizeBillsPCText:
+GameCenterPrizeBillsComputerText:
 	textfw "マサキのパソコン"
 	done
 
@@ -964,7 +964,7 @@ DuelistIntroGRFightingFortMemberText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroGRPsychicFortMemberText:
+DuelistIntroGRPsychicStrongholdMemberText:
 	textfw "超のGR団員 <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
@@ -994,7 +994,7 @@ DuelistIntroGRFightingFortLeaderText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroGRPsychicFortLeaderText:
+DuelistIntroGRPsychicStrongholdLeaderText:
 	textfw "超のGR団リーダー <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
@@ -1033,7 +1033,7 @@ MinicomDeckSaveMachineText:
 	textfw "デッキきろくマシンにせつぞく"
 	done
 
-MinicomMailBoxText:
+MinicomMailboxText:
 	textfw "メールボックスをみる"
 	done
 
@@ -1184,11 +1184,11 @@ ConfirmedCardsText:
 	linefw "カードを かくにんした!!"
 	done
 
-MailBoxEmptySenderText:
+MailboxEmptySenderText:
 	textfw "------"
 	done
 
-MailBoxEmptySubjectText:
+MailboxEmptySubjectText:
 	textfw "------------"
 	done
 
@@ -1244,15 +1244,15 @@ MailBillsPCOutputBody2Text:
 	linefw "  GR団ゲームセンター(^-^)/"
 	done
 
-MailMailBoxIntroSenderText:
+MailMailboxIntroSenderText:
 	textfw "Dr.オーヤマ"
 	done
 
-MailMailBoxIntroSubjectText:
+MailMailboxIntroSubjectText:
 	textfw "ミニコンとメール"
 	done
 
-MailMailBoxIntroBody1Text:
+MailMailboxIntroBody1Text:
 	textfw "<RAMNAME>!"
 	linefw "わしじゃ Dr.オーヤマじゃ"
 	linefw "ちゃんと このメールを"
@@ -1261,7 +1261,7 @@ MailMailBoxIntroBody1Text:
 	linefw "メールで このようにとどくのじゃ"
 	done
 
-MailMailBoxIntroBody2Text:
+MailMailboxIntroBody2Text:
 	textfw "こまめに 「ミニコン」をひらいて"
 	linefw "あたらしいメールが とどいているかを"
 	linefw "チェックするんじゃぞ"
@@ -1270,7 +1270,7 @@ MailMailBoxIntroBody2Text:
 	linefw "さくじょして あきをつくるんじゃよ"
 	done
 
-MailMailBoxIntroBody3Text:
+MailMailboxIntroBody3Text:
 	textfw "ミニコンを メールで いっぱいに"
 	linefw "しておくと あたらしいメールが"
 	linefw "うけとれないことが あるからのう"
@@ -1279,7 +1279,7 @@ MailMailBoxIntroBody3Text:
 	linefw "   所長 Dr.オーヤマ (^о^)"
 	done
 
-MailMailBoxIntroBody4Text:
+MailMailboxIntroBody4Text:
 	textfw "ついしん"
 	linefw ""
 	linefw "これは わしからの せんべつじゃ"
@@ -2137,63 +2137,63 @@ MailLinkDuelBody2Text:
 	linefw "    バトルセンター m(__)m"
 	done
 
-MailBoxTitleText:
+MailboxTitleText:
 	textfw " メールボックス "
 	done
 
-MailBoxFullWarningText:
+MailboxFullWarningText:
 	textfw "メールボックスが いっぱいで"
 	linefw "あたらしいメールを よみこめません"
 	linefw "あたらしいメールを よむばあいは"
 	linefw "ひつようないメールを けしてください"
 	done
 
-MailBoxNoNewMailsText:
+MailboxNoNewMailText:
 	textfw "あたらしいメールは"
 	linefw "とどいていません"
 	done
 
-MailBoxNewMailText:
+MailboxNewMailText:
 	textfw "あたらしいメールが とどいています!"
 	done
 
-MailBoxChooseMailText:
+MailboxChooseMailText:
 	textfw "メールをえらんでください"
 	done
 
-MailBoxSenderText:
+MailboxSenderText:
 	textfw "だれから:"
 	done
 
-MailBoxSubjectText:
+MailboxSubjectText:
 	textfw "タイトル:"
 	done
 
-MailBoxActionPromptText:
+MailboxActionPromptText:
 	textfw "どうしますか?"
 	done
 
-MailBoxActionReadText:
+MailboxActionReadText:
 	textfw "よむ"
 	done
 
-MailBoxActionDeleteText:
+MailboxActionDeleteText:
 	textfw "けす"
 	done
 
-MailBoxActionDeleteConfirmText:
+MailboxActionDeleteConfirmText:
 	textfw "ほんとうに けしてよろしいですか?"
 	done
 
-MailBoxActionDeleteUnreadConfirmText:
+MailboxActionDeleteUnreadConfirmText:
 	textfw "よまれていませんが よろしいですか?"
 	done
 
-MailBoxDeletedText:
+MailboxDeletedText:
 	textfw "メールを けしました"
 	done
 
-MailBoxUnreadSymbolText:
+MailboxUnreadSymbolText:
 	textfw "○"
 	done
 
@@ -2201,7 +2201,7 @@ DebugSendMailText:
 	textfw "メール送信"
 	done
 
-MailBoxEmptyText:
+MailboxEmptyText:
 	textfw "メールはありません"
 	done
 
@@ -2616,7 +2616,7 @@ ChallengeMachineStartPromptText:
 	textfw "チャレンジマシンで あそびますか?"
 	done
 
-OpponentGrassClubMemberSimpleText:
+OpponentGrassScienceClubMemberSimpleText:
 	; The machine actually uses 0x0a6b--
 	textfw "クラブメンバー<GRASS>"
 	done
@@ -2637,7 +2637,7 @@ OpponentLightningClubMemberSimpleText:
 	textfw "クラブメンバー<LIGHTNING>"
 	done
 
-OpponentFightingClubMemberSimpleText:
+OpponentRockFightingClubMemberSimpleText:
 	textfw "クラブメンバー<FIGHTING>"
 	done
 

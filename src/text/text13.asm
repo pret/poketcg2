@@ -1266,7 +1266,7 @@ Text128f:
 	linefw "<RAMNAME>"
 	done
 
-Text1290:
+CombosBookText:
 	textfw "2つのカードを くみあわせてつかうと"
 	linefw "きょうりょくな 「コンボ」になる!"
 	linefw "特殊能力や トレーナーカードは"
@@ -1275,7 +1275,7 @@ Text1290:
 	linefw "くみあわせを さがしだそう"
 	done
 
-Text1291:
+EnergyTransBookText:
 	textfw "ナッシーを バトル場にだしたけど"
 	linefw "エネルギーが ない?"
 	linefw "そんなときは フシギバナの"
@@ -1286,7 +1286,7 @@ Text1291:
 	linefw "あいてに MAXで160ダメージだ!"
 	done
 
-Text1292:
+ToxicGasBookText:
 	textfw "ベトベトンの 「かがくへんかガス」は"
 	linefw "とっても きょうりょく!"
 	linefw "ポケモンの 特殊能力を"
@@ -1295,7 +1295,7 @@ Text1292:
 	linefw "つかえなくなるから きをつけよう"
 	done
 
-Text1293:
+RainDanceBookText:
 	textfw "カメックスの 「あまごい」は"
 	linefw "水ポケモンには とても ゆうこうだ!"
 	linefw "じぶんの番に 水エネルギーを"
@@ -1308,7 +1308,7 @@ Text1293:
 	linefw "カードをひいて 水エネルギーゲットだ"
 	done
 
-Text1294:
+SelfdestructBookText:
 	textfw "「じばく」するときには"
 	linefw "ディフェンダーを つけるとイイ!"
 	linefw "こうすれば 「じばく」しても"
@@ -1317,7 +1317,7 @@ Text1294:
 	linefw "ベンチのポケモンだけに 大ダメージ!"
 	done
 
-Text1295:
+DamageSwapBookText:
 	textfw "フーディンの ダメージスワップで"
 	linefw "ダメージカウンターが うごかせる"
 	linefw "「きぜつ」しそうな ポケモンの"
@@ -1332,7 +1332,7 @@ Text1295:
 	linefw "ダメージカウンターだけが なくなる"
 	done
 
-Text1296:
+RemoveEnergiesBookText:
 	textfw "「超エネルギーリムーブ」や"
 	linefw "「エネルギー・リムーブ」を つかって"
 	linefw "あいてのポケモンの エネルギーを"
@@ -1345,7 +1345,7 @@ Text1296:
 	linefw "あいてのエネルギーを はがせるぞ!"
 	done
 
-Text1297:
+PrehistoricPowerBookText:
 	textfw "プテラの 「げんしのちから」で"
 	linefw "あいての進化を ふうじこめよう"
 	linefw "じぶんのポケモンも 進化できない?"
@@ -1360,7 +1360,7 @@ Text1297:
 	linefw "あいてのポケモンは 進化できないぞ!"
 	done
 
-Text1298:
+WeaknessResistanceBookText:
 	textfw "あいての弱点の色で こうげきすると"
 	linefw "ダメージは 2ばいになる"
 	linefw "水ポケモンの こうげきなら"
@@ -1373,7 +1373,7 @@ Text1298:
 	linefw "きを つけよう!"
 	done
 
-Text1299:
+TeamGRBookText:
 	textfw "GR団の ほんとうのなまえは"
 	linefw "「グレートロケット団」だ!"
 	linefw "GR団は カードは つかうことに"
@@ -1386,7 +1386,7 @@ Text1299:
 	linefw "あいしていることに かわりはないのだ"
 	done
 
-Text129a:
+GameCenterBookText:
 	textfw "GR団のしまには ゲームセンターと"
 	linefw "よばれるところがある"
 	linefw "ゲームセンターで チップを"
@@ -1395,7 +1395,7 @@ Text129a:
 	linefw "ゲットできない カードも あるらしい"
 	done
 
-Text129b:
+SamePokemonBookText:
 	textfw "おなじポケモンでも レベルがちがう"
 	linefw "ポケモンカードが たくさんある"
 	linefw "ポケモンのレベルが ちがうと"
@@ -1408,7 +1408,7 @@ Text129b:
 	linefw "どれをいれるかを よく かんがえよう"
 	done
 
-Text129c:
+RockGroundPokemonBookText:
 	textfw "岩・地面ポケモンカードの"
 	linefw "とくちょう"
 	linefw "雷ポケモンカードに つよく"
@@ -1417,7 +1417,7 @@ Text129c:
 	linefw "闘エネルギーカードが ひつよう"
 	done
 
-Text129d:
+FightingPokemonSurefireMethodBookText:
 	textfw "闘ポケモンカードは"
 	linefw "2進化ポケモンが にがて"
 	linefw "2進化ポケモンには 闘ポケモンに"
@@ -1426,7 +1426,7 @@ Text129d:
 	linefw "はやめに たおすのが 勝つコツだ!"
 	done
 
-Text129e:
+FightingPokemonFormidableOpponentsBookText:
 	textfw "闘ポケモンは 無色のとりポケモンが"
 	linefw "とても にがてだ"
 	linefw "とりポケモンは 闘ポケモンに"
@@ -1435,7 +1435,7 @@ Text129e:
 	linefw "雷ポケモンを いれておくと いいぞ"
 	done
 
-Text129f:
+FightingPokemonBookText:
 	textfw "かくとうポケモンカードの"
 	linefw "とくちょう"
 	linefw "雷ポケモンカードに つよく"
@@ -1444,7 +1444,7 @@ Text129f:
 	linefw "闘エネルギーカードが ひつよう"
 	done
 
-Text12a0:
+FightingPokemonCombosBookText:
 	textfw "かくとうポケモンは"
 	linefw "「コンボ」を つくりにくい"
 	linefw "かくとうポケモンには"
@@ -1453,7 +1453,7 @@ Text12a0:
 	linefw "「コンボ」がなくても だいじょうぶ"
 	done
 
-Text12a1:
+FightingPokemonDeckBuildingBookText:
 	textfw "かくとうポケモンは"
 	linefw "超ポケモンに 「弱点」をもっている"
 	linefw "デッキに超ポケモンに「抵抗力」のある"
@@ -1462,7 +1462,7 @@ Text12a1:
 	linefw "などの 無色ポケモンが いいぞ"
 	done
 
-Text12a2:
+PlantlikePokemonBookText:
 	textfw "しょくぶつポケモンカードの"
 	linefw "とくちょう"
 	linefw "岩や地面のポケモンカードに つよく"
@@ -1473,7 +1473,7 @@ Text12a2:
 	linefw "草エネルギーカードが ひつよう"
 	done
 
-Text12a3:
+GrassPokemonBreederBookText:
 	textfw "草ポケモンには 2進化する"
 	linefw "ポケモンが おおい"
 	linefw "「ポケモン育て屋さん」を"
@@ -1484,7 +1484,7 @@ Text12a3:
 	linefw "あいてのポケモンを げきはしよう"
 	done
 
-Text12a4:
+GrassPokemonDeckBuildingBookText:
 	textfw "草ポケモンは"
 	linefw "炎ポケモンに 「弱点」をもっている"
 	linefw "デッキに 炎ポケモンの「弱点」の"
@@ -1493,7 +1493,7 @@ Text12a4:
 	linefw "でてきたら 水ポケモンで こうげきだ"
 	done
 
-Text12a5:
+SciencePokemonBookText:
 	textfw "かがくポケモンカードの"
 	linefw "とくちょう"
 	linefw "岩や地面のポケモンカードに つよく"
@@ -1504,7 +1504,7 @@ Text12a5:
 	linefw "草エネルギーカードが ひつよう"
 	done
 
-Text12a6:
+SciencePokemonSurefireMethodBookText:
 	textfw "かがくポケモンは 「どく」「ねむり」"
 	linefw "「こんらん」の こうげきが おおい"
 	linefw "だから 特殊能力から かいふくできる"
@@ -1513,7 +1513,7 @@ Text12a6:
 	linefw "されても あんしんだ!"
 	done
 
-Text12a7:
+SciencePokemonDeckBuildingBookText:
 	textfw "かがくポケモンは"
 	linefw "超ポケモンに 「弱点」をもっている"
 	linefw "デッキに超ポケモンに「抵抗力」のある"
@@ -1522,7 +1522,7 @@ Text12a7:
 	linefw "「カビゴン」なんかも いいぞ"
 	done
 
-Text12a8:
+WaterPokemonBookText:
 	textfw "水ポケモンカードの"
 	linefw "とくちょう"
 	linefw "炎ポケモンカードに つよく"
@@ -1533,7 +1533,7 @@ Text12a8:
 	linefw "水エネルギーカードが ひつよう"
 	done
 
-Text12a9:
+WaterPokemonAttacksBookText:
 	textfw "「みずでっぽう」「ハイドロポンプ」は"
 	linefw "こうげきりょくが かわる「ワザ」"
 	linefw "水エネルギーカードを つけるほど"
@@ -1542,7 +1542,7 @@ Text12a9:
 	linefw "水エネルギー 2つぶんまでだ"
 	done
 
-Text12aa:
+PsyduckGolduckBookText:
 	textfw "コダックや ゴルダックは"
 	linefw "超エネルギーの ワザをもっている"
 	linefw "デッキを つくるときは"
@@ -1551,7 +1551,7 @@ Text12aa:
 	linefw "「ゴルダック」を いれてもいいぞ"
 	done
 
-Text12ab:
+FirePokemonBookText:
 	textfw "炎ポケモンカードの"
 	linefw "とくちょう"
 	linefw "草ポケモンカードに つよく"
@@ -1560,7 +1560,7 @@ Text12ab:
 	linefw "炎によわくないカードも ある!"
 	done
 
-Text12ac:
+FirePokemonAttacksBookText:
 	textfw "炎ポケモンカードの 「ワザ」は"
 	linefw "炎エネルギーを はがすものが おおい"
 	linefw "炎ポケモンカード中心の デッキには"
@@ -1569,7 +1569,7 @@ Text12ac:
 	linefw "いれておく ほうほうもあるぞ"
 	done
 
-Text12ad:
+FirePokemonDeckBuildingBookText:
 	textfw "炎ポケモンは"
 	linefw "水ポケモンに 「弱点」をもっている"
 	linefw "デッキに 水ポケモンの「弱点」の"
@@ -1578,7 +1578,7 @@ Text12ad:
 	linefw "でてきたら 雷ポケモンで こうげきだ"
 	done
 
-Text12ae:
+LightningPokemonBookText:
 	textfw "雷ポケモンカードの"
 	linefw "とくちょう"
 	linefw "水ポケモンカードに つよく"
@@ -1587,7 +1587,7 @@ Text12ae:
 	linefw "雷エネルギーカードが ひつよう"
 	done
 
-Text12af:
+LightningPokemonDeckBuildingBookText:
 	textfw "雷ポケモンは"
 	linefw "闘ポケモンに 「弱点」をもっている"
 	linefw "デッキに 闘ポケモンに「抵抗力」ある"
@@ -1598,7 +1598,7 @@ Text12af:
 	linefw "それらの ポケモンで おうせんしよう"
 	done
 
-Text12b0:
+BirdPokemonBookText:
 	textfw "無色の"
 	linefw "とりポケモンカード"
 	linefw "闘ポケモンカードに 「抵抗力」があり"
@@ -1609,7 +1609,7 @@ Text12b0:
 	linefw "にげやすいのも とくちょう"
 	done
 
-Text12b1:
+PsychicPokemonBookText:
 	textfw "超ポケモンカードの"
 	linefw "とくちょう"
 	linefw "超ポケモンは 「弱点」となるカードも"
@@ -1620,7 +1620,7 @@ Text12b1:
 	linefw "超エネルギーカードが ひつよう"
 	done
 
-Text12b2:
+PsychicPokemonPokemonPowerBookText:
 	textfw "超ポケモンカードには 特殊能力を"
 	linefw "もっているものが おおい"
 	linefw "「ダメージスワップ」「なぞのかべ」"

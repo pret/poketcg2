@@ -316,7 +316,7 @@ HandleTCGIslandDirectionalInput:
 
 PrintTCGIslandLocationName:
 	lb de, 1, 1
-	ldtx hl, Text0af8
+	ldtx hl, EmptyLocationNameText
 	call Func_35af
 
 	ld a, [wCurOWLocation]
@@ -339,19 +339,19 @@ PrintTCGIslandLocationName:
 	ret
 
 .LocationTitleTextItems:
-	textitem 1, 3, Text09b6 ; OWMAP_MASON_LABORATORY
-	textitem 1, 2, Text09b7 ; OWMAP_ISHIHARAS_HOUSE
-	textitem 1, 3, Text09b8 ; OWMAP_LIGHTNING_CLUB
-	textitem 1, 3, Text09b9 ; OWMAP_PSYCHIC_CLUB
-	textitem 1, 3, Text09ba ; OWMAP_ROCK_CLUB
-	textitem 1, 3, Text09bb ; OWMAP_FIGHTING_CLUB
-	textitem 1, 3, Text09bc ; OWMAP_GRASS_CLUB
-	textitem 1, 2, Text09bd ; OWMAP_SCIENCE_CLUB
-	textitem 1, 3, Text09be ; OWMAP_WATER_CLUB
-	textitem 1, 3, Text09bf ; OWMAP_FIRE_CLUB
-	textitem 1, 4, Text09c0 ; OWMAP_TCG_AIRPORT
-	textitem 1, 2, Text09c1 ; OWMAP_TCG_CHALLENGE_HALL
-	textitem 1, 3, Text09c2 ; OWMAP_POKEMON_DOME
+	textitem 1, 3, MapMasonLabText         ; OWMAP_MASON_LABORATORY
+	textitem 1, 2, MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
+	textitem 1, 3, MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
+	textitem 1, 3, MapPsychicClubText      ; OWMAP_PSYCHIC_CLUB
+	textitem 1, 3, MapRockClubText         ; OWMAP_ROCK_CLUB
+	textitem 1, 3, MapFightingClubText     ; OWMAP_FIGHTING_CLUB
+	textitem 1, 3, MapGrassClubText        ; OWMAP_GRASS_CLUB
+	textitem 1, 2, MapScienceClubText      ; OWMAP_SCIENCE_CLUB
+	textitem 1, 3, MapWaterClubText        ; OWMAP_WATER_CLUB
+	textitem 1, 3, MapFireClubText         ; OWMAP_FIRE_CLUB
+	textitem 1, 4, MapTCGAirportText       ; OWMAP_TCG_AIRPORT
+	textitem 1, 2, MapTCGChallengeHallText ; OWMAP_TCG_CHALLENGE_HALL
+	textitem 1, 3, MapPokemonDomeText      ; OWMAP_POKEMON_DOME
 
 Func_40682:
 	ld a, [wCurOWLocation]
