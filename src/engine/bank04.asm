@@ -1671,7 +1671,7 @@ Func_10d5c:
 	ret
 ; 0x10d77
 SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
-Func_10da3:
+ClearOWObjectWrapper:
 	call ClearOWObject
 	ret
 ; 0x10da7
