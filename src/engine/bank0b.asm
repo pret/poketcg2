@@ -375,8 +375,8 @@ Func_2ca22:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2ca3c
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -569,8 +569,8 @@ Func_2cbf5:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2cc0f
-	ld a, $05
-	farcall Func_10da3
+	ld a, OW_IMAKUNI_BLACK
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -716,8 +716,8 @@ Func_2d399:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d3b3
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -814,8 +814,8 @@ Func_2d4c4:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d4de
-	ld a, $05
-	farcall Func_10da3
+	ld a, OW_IMAKUNI_BLACK
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -991,8 +991,8 @@ Func_2d9d8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d9f2
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -1255,13 +1255,12 @@ Func_2e10f:
 ; 0x2e115
 
 SECTION "Bank b@6115", ROMX[$6115], BANK[$b]
-
 Func_2e115:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e12f
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -1466,8 +1465,8 @@ Func_2e582:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e59c
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -1604,8 +1603,8 @@ Func_2e752:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e76c
-	ld a, $05
-	farcall Func_10da3
+	ld a, OW_IMAKUNI_BLACK
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -1784,8 +1783,8 @@ Func_2ed8c:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eda6
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -1892,8 +1891,8 @@ Func_2eece:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eee8
-	ld a, $05
-	farcall Func_10da3
+	ld a, OW_IMAKUNI_BLACK
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -2101,8 +2100,8 @@ Func_2f5ae:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f5c8
-	ld a, $03
-	farcall Func_10da3
+	ld a, OW_RONALD
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -2218,8 +2217,8 @@ Func_2f6ed:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f707
-	ld a, $05
-	farcall Func_10da3
+	ld a, OW_IMAKUNI_BLACK
+	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
@@ -2356,6 +2355,8 @@ Data_2fe4a:
 	db $ff
 
 Func_2fe54:
+; this function is related to the overhead island map, but
+; apparently loads OW Objects for Mint and Ronald? Seems wrong
 	farcall InitOWObjects
 	ld a, [wd584]
 	cp $00
