@@ -318,7 +318,7 @@ Func_2c9c8:
 	scf
 	ret
 .asm_2c9cf
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -532,7 +532,7 @@ Func_2cbba:
 	scf
 	ret
 .asm_2cbc6
-	ld a, $10
+	ld a, MUSIC_IMAKUNI
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -685,7 +685,7 @@ Func_2d366:
 	scf
 	ret
 .asm_2d36d
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -777,7 +777,7 @@ Func_2d489:
 	scf
 	ret
 .asm_2d495
-	ld a, $10
+	ld a, MUSIC_IMAKUNI
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -944,7 +944,7 @@ Func_2d98f:
 	scf
 	ret
 .asm_2d996
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1211,7 +1211,7 @@ Func_2e0cc:
 	scf
 	ret
 .asm_2e0d3
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1407,7 +1407,7 @@ Func_2e528:
 	scf
 	ret
 .asm_2e52f
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1563,7 +1563,7 @@ Func_2e709:
 	scf
 	ret
 .asm_2e715
-	ld a, $10
+	ld a, MUSIC_IMAKUNI
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1725,7 +1725,7 @@ Func_2ed27:
 	scf
 	ret
 .asm_2ed2e
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1851,7 +1851,7 @@ Func_2ee85:
 	scf
 	ret
 .asm_2ee91
-	ld a, $10
+	ld a, MUSIC_IMAKUNI
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2050,7 +2050,7 @@ Func_2f55e:
 	scf
 	ret
 .asm_2f565
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2181,7 +2181,7 @@ Func_2f6b2:
 	scf
 	ret
 .asm_2f6be
-	ld a, $10
+	ld a, MUSIC_IMAKUNI
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
