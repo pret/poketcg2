@@ -785,10 +785,133 @@ TextIDs_d18f:
 	tx MapGRPsychicStrongholdText  ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText         ; OWMAP_GR_CASTLE
-	tx Drew7CardsText          ; $0069, weird
-; 0xd1ab
 
-SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
+NonSpecialPromo_d1a9:
+	; 34 promo cards
+	; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
+	dw ARCANINE_LV34
+	dw PIKACHU_LV16
+	dw PIKACHU_ALT_LV16
+	dw SURFING_PIKACHU_LV13
+	dw SURFING_PIKACHU_ALT_LV13
+	dw ELECTABUZZ_LV20
+	dw SLOWPOKE_LV9
+	dw MEWTWO_ALT_LV60
+	dw MEWTWO_LV60
+	dw MEW_LV8
+	dw JIGGLYPUFF_LV12
+	dw FLYING_PIKACHU_LV12
+	dw IMAKUNI_CARD
+	dw SUPER_ENERGY_RETRIEVAL
+	dw MEWTWO_LV30
+	dw PIKACHU_LV13
+	dw FLYING_PIKACHU_ALT_LV12
+	dw DARK_PERSIAN_ALT_LV28
+	dw MEOWTH_LV14
+	dw COMPUTER_ERROR
+	dw COOL_PORYGON
+	dw HUNGRY_SNORLAX
+	dw VENUSAUR_ALT_LV67
+	dw CHARIZARD_ALT_LV76
+	dw BLASTOISE_ALT_LV52
+	dw FARFETCHD_ALT_LV20
+	dw KANGASKHAN_LV38
+	dw DIGLETT_LV16
+	dw DUGTRIO_LV40
+	dw DRAGONITE_LV43
+	dw MAGIKARP_LV10
+	dw TOGEPI
+	dw MARILL
+	dw MANKEY_ALT_LV7
+
+Data_d1ed:
+	dw $0712
+	dw $0713
+	dw $0714
+	dw $0715
+	dw $0718
+	dw $0719
+	dw $071a
+	dw $071c
+	dw $071d
+	dw $071e
+	dw $0720
+	dw $0721
+	dw $0722
+	dw $0723
+	dw $0725
+	dw $0726
+	dw $0727
+	dw $0728
+	dw $072a
+	dw $072b
+	dw $072c
+	dw $072e
+	dw $072f
+	dw $0730
+	dw $0731
+	dw $0733
+	dw $0734
+	dw $0735
+	dw $0811
+	dw $0817
+	dw $081b
+	dw $081f
+	dw $0824
+	dw $0829
+	dw $082d
+	dw $0832
+	dw $0837
+	dw $0838
+	dw $0839
+	dw $0836
+	dw $100e
+	dw $100f
+	dw $103a
+	dw $103b
+	dw $103c
+	dw $103d
+	dw $1067
+	dw $1069
+	dw $106a
+Data_d24f:
+	dw $073e
+	dw $073f
+	dw $0740
+	dw $0743
+	dw $0744
+	dw $0746
+	dw $0747
+	dw $0748
+	dw $074a
+	dw $074b
+	dw $074c
+	dw $074e
+	dw $074f
+	dw $0751
+	dw $0752
+	dw $0753
+	dw $0754
+	dw $0841
+	dw $0845
+	dw $0849
+	dw $084d
+	dw $0850
+	dw $0855
+	dw $0856
+	dw $0857
+	dw $0858
+	dw $105a
+	dw $105b
+	dw $105c
+	dw $105d
+	dw $105e
+	dw $105f
+	dw $1060
+	dw $1061
+	dw $1068
+	dw $106b
+	dw $106c
 
 Func_d299::
 	push af
