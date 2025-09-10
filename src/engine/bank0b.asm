@@ -86,7 +86,7 @@ Func_2c101:
 	or a
 	jr z, .asm_2c12c
 	ld c, a
-	ld a, $00
+	ld a, VAR_00
 	farcall SetVarValue
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
@@ -98,7 +98,7 @@ Func_2c101:
 Func_2c12f:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ccf
@@ -107,7 +107,7 @@ Func_2c12f:
 Func_2c13e:
 	ld a, EVENT_F5
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
@@ -117,7 +117,7 @@ Func_2c13e:
 	call nz, Func_2c16b
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ret
@@ -136,7 +136,7 @@ Func_2c16b:
 SECTION "Bank b@41b8", ROMX[$41b8], BANK[$b]
 
 Func_2c1b8:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $05
 	jr c, .asm_2c1d8
@@ -462,7 +462,7 @@ Func_2cabb:
 	ret
 
 Func_2cac8:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2cadc
@@ -525,7 +525,7 @@ Func_2cba8:
 	ret
 
 Func_2cbba:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $03
 	jr z, .asm_2cbc6
@@ -727,7 +727,7 @@ Func_2d399:
 	ret
 
 Func_2d3b5:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2d3c1
@@ -770,7 +770,7 @@ Func_2d472:
 	ret
 
 Func_2d489:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $04
 	jr z, .asm_2d495
@@ -1002,7 +1002,7 @@ Func_2d9d8:
 	ret
 
 Func_2d9f4:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2da08
@@ -1271,7 +1271,7 @@ Func_2e115:
 	ret
 
 Func_2e131:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e145
@@ -1477,7 +1477,7 @@ Func_2e582:
 	ret
 
 Func_2e59e:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e5b2
@@ -1556,7 +1556,7 @@ Func_2e6f7:
 	ret
 
 Func_2e709:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $07
 	jr z, .asm_2e715
@@ -1795,7 +1795,7 @@ Func_2ed8c:
 	ret
 
 Func_2eda8:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2edbc
@@ -1844,7 +1844,7 @@ Func_2ee73:
 	ret
 
 Func_2ee85:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $08
 	jr z, .asm_2ee91
@@ -2112,7 +2112,7 @@ Func_2f5ae:
 	ret
 
 Func_2f5ca:
-	ld a, $04
+	ld a, VAR_04
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2f5de
@@ -2174,7 +2174,7 @@ Func_2f6a0:
 	ret
 
 Func_2f6b2:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $09
 	jr z, .asm_2f6be
