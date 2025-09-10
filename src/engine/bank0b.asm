@@ -68,14 +68,14 @@ Func_2c0f1:
 Func_2c101:
 	xor a
 	push af
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_2c10f
 	pop af
 	or $01
 	push af
 .asm_2c10f
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_2c11b
 	pop af
@@ -88,7 +88,7 @@ Func_2c101:
 	ld c, a
 	ld a, $00
 	farcall SetVarValue
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 .asm_2c12c
 	scf
@@ -96,7 +96,7 @@ Func_2c101:
 	ret
 
 Func_2c12f:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $00
 	farcall ZeroOutVarValue
@@ -105,7 +105,7 @@ Func_2c12f:
 	ret
 
 Func_2c13e:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall ZeroOutEventValue
 	ld a, $00
 	farcall GetVarValue
@@ -115,7 +115,7 @@ Func_2c13e:
 	pop af
 	bit 1, a
 	call nz, Func_2c16b
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $00
 	farcall ZeroOutVarValue
@@ -123,12 +123,12 @@ Func_2c13e:
 	ret
 
 Func_2c164:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall MaxOutEventValue
 	ret
 
 Func_2c16b:
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 ; 0x2c172
@@ -141,12 +141,12 @@ Func_2c1b8:
 	cp $05
 	jr c, .asm_2c1d8
 	jr nz, .asm_2c1ce
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr nz, .asm_2c1d8
 	jr .asm_2c1d6
 .asm_2c1ce
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr nz, .asm_2c1d8
 .asm_2c1d6
@@ -185,7 +185,7 @@ Func_2c4db:
 	ld [wd58e], a
 	jr .asm_2c4f7
 .asm_2c4ea
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c4f7
 	ld a, $09
@@ -212,7 +212,7 @@ Func_2c50a:
 	ld a, EVENT_MET_GR4_LIGHTNING_CLUB
 	farcall GetEventValue
 	jr z, .asm_2c524
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c54f
 	ld a, EVENT_GOT_PIKACHU_COIN
@@ -303,7 +303,7 @@ Func_2c9ac:
 	ret
 
 Func_2c9b8:
-	ld a, $0f
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2c9c5
 	ld a, $14
@@ -372,12 +372,12 @@ Func_2ca1c:
 	ret
 
 Func_2ca22:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2ca3c
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -566,12 +566,12 @@ Func_2cbef:
 	ret
 
 Func_2cbf5:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2cc0f
 	ld a, $05
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -669,7 +669,7 @@ Data_2d346:
 	db $ff
 
 Func_2d356:
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d363
 	ld a, $14
@@ -713,12 +713,12 @@ Func_2d37d:
 	ret
 
 Func_2d399:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d3b3
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -756,7 +756,7 @@ Data_2d45c:
 	db $ff
 
 Func_2d472:
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d486
 	ld a, $14
@@ -811,12 +811,12 @@ Func_2d4be:
 	ret
 
 Func_2d4c4:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d4de
 	ld a, $05
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -844,7 +844,7 @@ Data_2d640:
 	db $ff
 
 Func_2d653:
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d660
 	ld a, $14
@@ -867,7 +867,7 @@ Func_2d66a:
 	ret
 
 Func_2d673:
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d6a4
 	ld a, $0a
@@ -928,7 +928,7 @@ Data_2d96c:
 	db $ff
 
 Func_2d97f:
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2d98c
 	ld a, $14
@@ -988,12 +988,12 @@ Func_2d9d2:
 
 SECTION "Bank b@59d8", ROMX[$59d8], BANK[$b]
 Func_2d9d8:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d9f2
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1050,7 +1050,7 @@ Data_d2abe:
 	dbw $01, Func_2dace
 	db $ff
 Func_2dace:
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dadb
 	ld a, $14
@@ -1109,7 +1109,7 @@ Data_2dceb:
 	db $ff
 
 Func_2dcfe:
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dd0b
 	ld a, $14
@@ -1125,10 +1125,10 @@ Func_2dd0e:
 	ret
 
 Func_2dd15:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2dd2f
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr z, .asm_2dd2f
 	ld bc, $1a
@@ -1195,7 +1195,7 @@ Data_2e0a9:
 	db $ff
 
 Func_2e0bc:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e0c9
 	ld a, $14
@@ -1257,12 +1257,12 @@ Func_2e10f:
 SECTION "Bank b@6115", ROMX[$6115], BANK[$b]
 
 Func_2e115:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e12f
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1321,7 +1321,7 @@ Data_2e1af:
 	db $ff
 
 Func_2e1c2:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e1cf
 	ld a, $14
@@ -1337,10 +1337,10 @@ Func_2e1d2:
 	ret
 
 Func_2e1d9:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e1f3
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e1f3
 	ld bc, $1e
@@ -1391,7 +1391,7 @@ Data_2e4ff:
 	db $ff
 
 Func_2e518:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e525
 	ld a, $14
@@ -1463,12 +1463,12 @@ Func_2e57c:
 	ret
 
 Func_2e582:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e59c
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1514,10 +1514,10 @@ Func_2e59e:
 SECTION "Bank b@662a", ROMX[$662a], BANK[$b]
 
 Func_2e62a:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e63c
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e63c
 	scf
@@ -1544,7 +1544,7 @@ Data_2e6e1:
 	db $ff
 
 Func_2e6f7:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e706
 	ld a, $14
@@ -1601,12 +1601,12 @@ Func_2e73e:
 
 SECTION "Bank b@6752", ROMX[$6752], BANK[$b]
 Func_2e752:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e76c
 	ld a, $05
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1632,7 +1632,7 @@ Data_2e932:
 	db $ff
 
 Func_2e945:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e952
 	ld a, $14
@@ -1647,10 +1647,10 @@ Func_2e955:
 	ret
 
 Func_2e95c:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e994
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e994
 	ld bc, $22
@@ -1708,7 +1708,7 @@ Data_2ed04:
 	db $ff
 
 Func_2ed17:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ed24
 	ld a, $14
@@ -1751,7 +1751,7 @@ Func_2ed3e:
 	ld hl, $40a4
 	jr .asm_2ed61
 .asm_2ed58
-	ld a, $ee
+	ld a, EVENT_EE
 	farcall ZeroOutEventValue
 	ld hl, $451d
 .asm_2ed61
@@ -1768,25 +1768,25 @@ Func_2ed3e:
 	ret
 
 Func_2ed75:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_2ed8a
 	ld a, [wd585]
 	cp $00
 	jr nz, .asm_2ed8a
-	ld a, $33
+	ld a, EVENT_TALKED_TO_SARA
 	farcall ZeroOutEventValue
 .asm_2ed8a
 	scf
 	ret
 
 Func_2ed8c:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eda6
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1799,7 +1799,7 @@ Func_2eda8:
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2edbc
-	ld a, $ee
+	ld a, EVENT_EE
 	farcall GetEventValue
 	jr nz, .asm_2edc0
 	scf
@@ -1832,7 +1832,7 @@ Data_2ee5d:
 	db $ff
 
 Func_2ee73:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ee82
 	ld a, $14
@@ -1889,12 +1889,12 @@ Func_2eeba:
 
 SECTION "Bank b@6ece", ROMX[$6ece], BANK[$b]
 Func_2eece:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eee8
 	ld a, $05
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -1921,7 +1921,7 @@ Data_2f072:
 	db $ff
 
 Func_2f085:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f092
 	ld a, $14
@@ -1944,7 +1944,7 @@ Func_2f09c:
 	ret
 
 Func_2f0a5:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f0c3
 	xor a
@@ -1967,7 +1967,7 @@ Func_2f0a5:
 	ld bc, $2a
 	ld de, $204
 	farcall Func_12c0ce
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f0e1
 	ld bc, $29
@@ -2034,7 +2034,7 @@ Data_2f53b:
 	db $ff
 
 Func_2f54e:
-	ld a, $0e
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f55b
 	ld a, $14
@@ -2098,12 +2098,12 @@ Func_2f5a8:
 	ret
 
 Func_2f5ae:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f5c8
 	ld a, $03
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -2162,7 +2162,7 @@ Data_2f68a:
 	db $ff
 
 Func_2f6a0:
-	ld a, $0e
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f6af
 	ld a, $14
@@ -2215,12 +2215,12 @@ Func_2f6e7:
 	ret
 
 Func_2f6ed:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f707
 	ld a, $05
 	farcall Func_10da3
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wd58e]
 	ld [wCurMusic], a
@@ -2246,7 +2246,7 @@ Data_2f83b:
 	db $ff
 
 Func_2f84e:
-	ld a, $0e
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f85b
 	ld a, $14
@@ -2308,7 +2308,7 @@ Data_2fd66:
 	db $ff
 
 Func_2fd73:
-	ld a, $0b
+	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_2fd80
 	ld a, $14
