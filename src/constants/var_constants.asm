@@ -3,7 +3,7 @@
 	const VAR_01 ; $01
 	const VAR_02 ; $02
 	const VAR_03 ; $03
-	const VAR_04 ; $04
+	const VAR_TIMES_RONALD_MET ; $04
 	const VAR_05 ; $05
 	const VAR_06 ; $06
 	const VAR_07 ; $07
