@@ -188,8 +188,8 @@ Func_2c4db:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c4f7
-	ld a, $09
-	ld [wd58a], a
+	ld a, MAP_LIGHTNING_CLUB_2
+	ld [wCurMap], a
 .asm_2c4f7
 	scf
 	ccf

@@ -904,7 +904,7 @@ Func_d299::
 	ld a, $01
 	farcall Func_10413
 	ld b, $00
-	ld a, [wd58a]
+	ld a, [wCurMap]
 	ld c, a
 	farcall LoadOWMap
 	ld a, [wd58f]
@@ -1071,7 +1071,7 @@ Func_d421::
 	ld h, [hl]  ;
 	ld l, a
 	ld a, c
-	ld de, wd58a
+	ld de, wCurMap
 	ld bc, $5
 	call CopyFarHLToDE
 	ld a, [wd586]

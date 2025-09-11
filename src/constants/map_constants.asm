@@ -12,7 +12,7 @@ DEF GR_ISLAND  EQU $1
 	const MAP_LIGHTNING_CLUB_ENTRANCE     ; $06
 	const MAP_LIGHTNING_CLUB_LOBBY        ; $07
 	const MAP_LIGHTNING_CLUB_1            ; $08
-	const MAP_LIGHTNING_CLUB_2            ; $09
+	const MAP_LIGHTNING_CLUB_2            ; $09 - main club room after defeating GR
 	const MAP_PSYCHIC_CLUB_ENTRANCE       ; $0a
 	const MAP_PSYCHIC_CLUB_LOBBY          ; $0b
 	const MAP_PSYCHIC_CLUB                ; $0c
