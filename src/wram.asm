@@ -2223,7 +2223,8 @@ wPlayerOWLocation:: ; d588
 wCurIsland:: ; d589
 	ds $1
 
-wd58a:: ; d58a
+; MAP_* constant
+wCurMap:: ; d58a
 	ds $1
 
 wd58b:: ; d58b
