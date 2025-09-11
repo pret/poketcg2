@@ -752,7 +752,416 @@ Data_c651::
 	dbw $0d, $75df ; $72
 	dbw $10, $6ed5 ; $73
 
-SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
+NPCsTable:
+	dw .sam, .aaron
+	dw .nikki, .brittany, .kristin, .heather
+	dw .amy, .joshua, .sara, .amanda
+	dw .gene, .matthew, .ryan, .andrew
+	dw .mitch, .michael, .chris, .jessica
+	dw .rick, .david, .joseph, .erik
+	dw .ken, .john, .adam, .jonathan
+	dw .isaac, .jennifer, .nicholas, .brandon
+	dw .murray, .robert, .daniel, .stephanie
+	dw .rod, .jack, .steve, .courtney
+	dw .morino, .miyuki, .yuta, .midori
+	dw .catherine, .ichikawa, .renna
+	dw .hidero, .shoko, .yuki, .jes
+	dw .kanoko, .aira, .senta, .miyajima
+	dw .kamiya, .grace, .gota
+	dw .mami, .ryoko, .yosuke, .kevin, .miwa
+	dw .samejima, .ishii, .nishijima
+	dw .biruritchi, .rui, .kanzaki
+	dw .ronald
+	dw .imakuni_black, .imakuni_red
+	dw .ishihara
+	dw .tap
+	dw .queen, .rook, .bishop, .knight, .pawn
+	dw .tobichan, .eiji, .magician, .yui, .toshiron, .pierrot, .anna, .dee, .masquerade
+	dw .gr1, .gr2, .gr3, .gr4
+	dw NULL
+
+MACRO npcdata
+	db \1 ; ow_object_constants
+	tx \2 ; dialog-box name
+	tx \3 ; home base (abbreviated)
+	tx \4 ; title (abbreviated)
+	db \5, \6, \7, \8, \9 ; deck IDs
+ENDM
+
+.sam
+  npcdata OW_TECH_1, DialogSamText, 0, 0, UNUSED_SAMS_PRACTICE_DECK_ID, $ff, $ff, $ff, $ff
+.aaron
+  npcdata OW_TECH_2, DialogAaronText, 0, DialogTechText, AARONS_STEP1_DECK_ID, AARONS_STEP2_DECK_ID, AARONS_STEP3_DECK_ID, BRICK_WALK_DECK_ID, BENCH_TRAP_DECK_ID
+.nikki
+  npcdata OW_NIKKI, DialogNikkiText, GrassClubShortText, OpponentGrassClubMasterBracketedText, MAX_ENERGY_DECK_ID, $ff, $ff, $ff, $ff
+.brittany
+  npcdata OW_GIRL_1, DialogBrittanyText, GrassClubShortText, OpponentGrassClubMemberBracketedText, REMAINING_GREEN_DECK_ID, POISON_CURSE_DECK_ID, $ff, $ff, $ff
+.kristin
+  npcdata OW_LASS2_1, DialogKristinText, GrassClubShortText, OpponentGrassClubMemberBracketedText, GLITTERING_SCALES_DECK_ID, $ff, $ff, $ff, $ff
+.heather
+  npcdata OW_LASS1_1, DialogHeatherText, GrassClubShortText, OpponentGrassClubMemberBracketedText, STEADY_INCREASE_DECK_ID, $ff, $ff, $ff, $ff
+.amy
+  npcdata OW_AMY_LOUNGE, DialogAmyText, WaterClubShortText, OpponentWaterClubMasterBracketedText, RAIN_DANCE_CONFUSION_DECK_ID, $ff, $ff, $ff, $ff
+.joshua
+  npcdata OW_JOSHUA_1, DialogJoshuaText, WaterClubShortText, OpponentWaterClubMemberBracketedText, CONSERVING_WATER_DECK_ID, ENERGY_REMOVAL_DECK_ID, $ff, $ff, $ff
+.sara
+  npcdata OW_SARA, DialogSaraText, WaterClubShortText, OpponentWaterClubMemberBracketedText, SPLASHING_ABOUT_DECK_ID, $ff, $ff, $ff, $ff
+.amanda
+  npcdata OW_AMANDA, DialogAmandaText, WaterClubShortText, OpponentWaterClubMemberBracketedText, BEACH_DECK_ID, $ff, $ff, $ff, $ff
+.gene
+  npcdata OW_GENE, DialogGeneText, RockClubShortText, OpponentRockClubMasterBracketedText, EVEN3_YEARS_ON_A_ROCK_DECK_ID, $ff, $ff, $ff, $ff
+.matthew
+  npcdata OW_MANIA_1, DialogMatthewText, RockClubShortText, OpponentRockClubMemberBracketedText, ROLLING_STONE_DECK_ID, $ff, $ff, $ff, $ff
+.ryan
+  npcdata OW_YOUNGSTER_1, DialogRyanText, RockClubShortText, OpponentRockClubMemberBracketedText, GREAT_EARTHQUAKE_DECK_ID, $ff, $ff, $ff, $ff
+.andrew
+  npcdata OW_MAN_1, DialogAndrewText, RockClubShortText, OpponentRockClubMemberBracketedText, AWESOME_FOSSIL_DECK_ID, $ff, $ff, $ff, $ff
+.mitch
+  npcdata OW_MITCH, DialogMitchText, FightingClubShortText, OpponentFightingClubMasterBracketedText, RAGING_BILLOW_OF_FISTS_DECK_ID, $ff, $ff, $ff, $ff
+.michael
+  npcdata OW_MANIA_2, DialogMichaelText, FightingClubShortText, OpponentFightingClubMemberBracketedText, YOU_CAN_DO_IT_MACHOP_DECK_ID, NEW_MACHOKE_DECK_ID, $ff, $ff, $ff
+.chris
+  npcdata OW_MANIA_3, DialogChrisText, FightingClubShortText, OpponentFightingClubMemberBracketedText, SKILLED_WARRIOR_DECK_ID, $ff, $ff, $ff, $ff
+.jessica
+  npcdata OW_LASS3_1, DialogJessicaText, FightingClubShortText, OpponentFightingClubMemberBracketedText, I_LOVE_TO_FIGHT_DECK_ID, $ff, $ff, $ff, $ff
+.rick
+  npcdata OW_RICK, DialogRickText, ScienceClubShortText, OpponentScienceClubMasterBracketedText, DARK_SCIENCE_DECK_ID, $ff, $ff, $ff, $ff
+.david
+  npcdata OW_TECH_3, DialogDavidText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, NATURAL_SCIENCE_DECK_ID, $ff, $ff, $ff, $ff
+.joseph
+  npcdata OW_TECH_4, DialogJosephText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, POISONOUS_SWAMP_DECK_ID, $ff, $ff, $ff, $ff
+.erik
+  npcdata OW_TECH_5, DialogErikText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, GATHERING_NIDORAN_DECK_ID, $ff, $ff, $ff, $ff
+.ken
+  npcdata OW_KEN, DialogKenText, FireClubShortText, OpponentFireClubMasterBracketedText, GO_ARCANINE_DECK_ID, $ff, $ff, $ff, $ff
+.john
+  npcdata OW_LAD_1, DialogJohnText, FireClubShortText, OpponentFireClubMemberBracketedText, FLAME_FESTIVAL_DECK_ID, $ff, $ff, $ff, $ff
+.adam
+  npcdata OW_SPECS_1, DialogAdamText, FireClubShortText, OpponentFireClubMemberBracketedText, ELECTRIC_CURRENT_SHOCK_DECK_ID, $ff, $ff, $ff, $ff
+.jonathan
+  npcdata OW_YOUNGSTER_2, DialogJonathanText, FireClubShortText, OpponentFireClubMemberBracketedText, IMMORTAL_FLAME_DECK_ID, $ff, $ff, $ff, $ff
+.isaac
+  npcdata OW_ISAAC, DialogIsaacText, LightningClubShortText, OpponentLightningClubMasterBracketedText, SKY_SPARK_DECK_ID, ELECTRIC_SELFDESTRUCT_DECK_ID, $ff, $ff, $ff
+.jennifer
+  npcdata OW_GIRL_2, DialogJenniferText, LightningClubShortText, OpponentLightningClubMemberBracketedText, I_LOVE_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
+.nicholas
+  npcdata OW_HOOD_1, DialogNicholasText, LightningClubShortText, OpponentLightningClubMemberBracketedText, OVERFLOW_DECK_ID, TRIPLE_ZAPDOS_DECK_ID, $ff, $ff, $ff
+.brandon
+  npcdata OW_HOOD_2, DialogBrandonText, LightningClubShortText, OpponentLightningClubMemberBracketedText, TEN_THOUSAND_VOLTS_DECK_ID, $ff, $ff, $ff, $ff
+.murray
+  npcdata OW_MURRAY, DialogMurrayText, PsychicClubShortText, OpponentPsychicClubMasterBracketedText, HAND_OVER_GR_DECK_ID, PSYCHIC_ELITE_DECK_ID, $ff, $ff, $ff
+.robert
+  npcdata OW_YOUNGSTER_3, DialogRobertText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PHANTOM_DECK_ID, $ff, $ff, $ff, $ff
+.daniel
+  npcdata OW_LAD2, DialogDanielText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PUPPET_MASTER_DECK_ID, $ff, $ff, $ff, $ff
+.stephanie
+  npcdata OW_GIRL3, DialogStephanieText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PSYCHOKINESIS_DECK_ID, $ff, $ff, $ff, $ff
+.rod
+  npcdata OW_ROD, DialogRodText, 0, OpponentGrandMasterText, GREAT_DRAGON_DECK_ID, $ff, $ff, $ff, $ff
+.jack
+  npcdata OW_JACK, DialogJackText, 0, OpponentGrandMasterText, WATER_LEGEND_DECK_ID, $ff, $ff, $ff, $ff
+.steve
+  npcdata OW_STEVE, DialogSteveText, 0, OpponentGrandMasterText, LEGENDARY_FOSSIL_DECK_ID, $ff, $ff, $ff, $ff
+.courtney
+  npcdata OW_COURTNEY, DialogCourtneyText, 0, OpponentGrandMasterText, GRAND_FIRE_DECK_ID, $ff, $ff, $ff, $ff
+.morino
+  npcdata OW_MORINO_2, DialogMorinoText, GrassKanjiText, OpponentGRGrassFortLeaderText, MAD_PETALS_DECK_ID, $ff, $ff, $ff, $ff
+.miyuki
+  npcdata OW_MIDORI_2, DialogMiyukiText, GrassKanjiText, OpponentGRGrassFortMemberText, STICKY_POISON_GAS_DECK_ID, $ff, $ff, $ff, $ff
+.yuta
+  npcdata OW_MORINO_1, DialogYutaText, GrassKanjiText, OpponentGRGrassFortMemberText, DEMONIC_FOREST_DECK_ID, $ff, $ff, $ff, $ff
+.midori
+  npcdata OW_MIDORI_1, DialogMidoriText, GrassKanjiText, OpponentGRGrassFortMemberText, BUG_COLLECTING_DECK_ID, $ff, $ff, $ff, $ff
+.catherine
+  npcdata OW_CATHERINE, DialogCatherineText, LightningKanjiText, OpponentGRLightningFortLeaderText, QUICK_ATTACK_DECK_ID, $ff, $ff, $ff, $ff
+.ichikawa
+  npcdata OW_ICHIKAWA, DialogIchikawaText, LightningKanjiText, OpponentGRLightningFortMemberText, THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, $ff, $ff, $ff, $ff
+.renna
+  npcdata OW_RENNA, DialogRennaText, LightningKanjiText, OpponentGRLightningFortMemberText, CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
+.hidero
+  npcdata OW_HIDERO, DialogHideroText, FireKanjiText, OpponentGRFireFortLeaderText, GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, $ff, $ff, $ff, $ff
+.shoko
+  npcdata OW_SHOKO, DialogShokoText, FireKanjiText, OpponentGRFireFortMemberText, EEVEE_SHOWDOWN_DECK_ID, $ff, $ff, $ff, $ff
+.yuki
+  npcdata OW_YUKI, DialogYukiText, FireKanjiText, OpponentGRFireFortMemberText, FIREBALL_DECK_ID, $ff, $ff, $ff, $ff
+.jes
+  npcdata OW_JES, DialogJesText, FireKanjiText, OpponentGRFireFortMemberText, COMPLETE_COMBUSTION_DECK_ID, $ff, $ff, $ff, $ff
+.kanoko
+  npcdata OW_KANOKO, DialogKanokoText, WaterKanjiText, OpponentGRWaterFortLeaderText, WATER_STREAM_DECK_ID, $ff, $ff, $ff, $ff
+.aira
+  npcdata OW_AIRA, DialogAiraText, WaterKanjiText, OpponentGRWaterFortMemberText, BENCH_CALL_DECK_ID, $ff, $ff, $ff, $ff
+.senta
+  npcdata OW_JOSHUA_2, DialogSentaText, WaterKanjiText, OpponentGRWaterFortMemberText, PARALYZED_PARALYZED_DECK_ID, $ff, $ff, $ff, $ff
+.miyajima
+  npcdata OW_MIYAJIMA_2, DialogMiyajimaText, WaterKanjiText, OpponentGRWaterFortMemberText, WHIRLPOOL_SHOWER_DECK_ID, $ff, $ff, $ff, $ff
+.kamiya
+  npcdata OW_KAMIYA, DialogKamiyaText, FightingKanjiText, OpponentGRFightingFortLeaderText, RUNNING_WILD_DECK_ID, $ff, $ff, $ff, $ff
+.grace
+  npcdata OW_GRACE, DialogGraceText, FightingKanjiText, OpponentGRFightingFortMemberText, FULL_STRENGTH_DECK_ID, $ff, $ff, $ff, $ff
+.gota
+  npcdata OW_GODA, DialogGotaText, FightingKanjiText, OpponentGRFightingFortMemberText, ROCK_BLAST_DECK_ID, $ff, $ff, $ff, $ff
+.mami
+  npcdata OW_MAMI, DialogMamiText, PsychicKanjiText, OpponentGRPsychicStrongholdLeaderText, SPIRITED_AWAY_DECK_ID, $ff, $ff, $ff, $ff
+.ryoko
+  npcdata OW_RYOKO, DialogRyokoText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, POKEMON_POWER_DECK_ID, $ff, $ff, $ff, $ff
+.yosuke
+  npcdata OW_YOSUKE, DialogYosukeText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, BAD_DREAM_DECK_ID, $ff, $ff, $ff, $ff
+.kevin
+  npcdata OW_KEVIN, DialogKevinText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, SUPERDESTRUCTIVE_POWER_DECK_ID, $ff, $ff, $ff, $ff
+.miwa
+  npcdata OW_MIWA, DialogMiwaText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, DIRECT_HIT_DECK_ID, $ff, $ff, $ff, $ff
+.samejima
+  npcdata OW_SAMEJIMA, DialogSamejimaText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, SUDDEN_GROWTH_DECK_ID, $ff, $ff, $ff, $ff
+.ishii
+  npcdata OW_ISHII, DialogIshiiText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, EYE_OF_THE_STORM_DECK_ID, $ff, $ff, $ff, $ff
+.nishijima
+  npcdata OW_NISHIJIMA, DialogNishijimaText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, SNORLAX_GUARD_DECK_ID, $ff, $ff, $ff, $ff
+.biruritchi
+  npcdata OW_BIRURITCHI, DialogBiruritchiText, 0, OpponentGRKingText, STOP_LIFE_DECK_ID, SCORCHER_DECK_ID, TSUNAMI_STARTER_DECK_ID, SMASH_TO_MINCEMEAT_DECK_ID, $ff
+.rui
+  npcdata OW_RUI, DialogRuiText, 0, OpponentGRBigBossText, POISON_MIST_DECK_ID, ULTRA_REMOVAL_DECK_ID, PSYCHIC_BATTLE_DECK_ID, $ff, $ff
+.kanzaki
+  npcdata OW_KANZAKI, DialogKanzakiText, 0, OpponentGRBigBossText, BAD_GUYS_DECK_ID, $ff, $ff, $ff, $ff
+.ronald
+  npcdata OW_RONALD, DialogRonaldText, 0, OpponentRivalText, RONALDS_UNCOOL_DECK_ID, RONALDS_GRX_DECK_ID, RONALDS_POWER_DECK_ID, RONALDS_PSYCHIC_DECK_ID, RONALDS_ULTRA_DECK_ID
+.imakuni_black
+  npcdata OW_IMAKUNI_BLACK, DialogImakuniText, 0, OpponentStrangeLifeFormText, WEIRD_DECK_ID, $ff, $ff, $ff, $ff
+.imakuni_red
+  npcdata OW_IMAKUNI_RED, DialogImakuniText, 0, OpponentStrangeLifeFormText, STRANGE_DECK_ID, $ff, $ff, $ff, $ff
+.ishihara
+  npcdata OW_ISHIHARA, DialogMrIshiharaText, 0, 0, VERY_RARE_CARD_DECK_ID, $ff, $ff, $ff, $ff
+.tap
+  npcdata OW_CHAP_4, DialogTapText, 0, 0, DANGEROUS_BENCH_DECK_ID, $ff, $ff, $ff, $ff
+.queen
+  npcdata OW_QUEEN, DialogQueenText, 0, 0, POWERFUL_POKEMON_DECK_ID, $ff, $ff, $ff, $ff
+.rook
+  npcdata OW_ROOK, DialogRookText, 0, 0, COLORLESS_ENERGY_DECK_ID, $ff, $ff, $ff, $ff
+.bishop
+  npcdata OW_BISHOP, DialogBishopText, 0, 0, TEXTURE_TUNER7_DECK_ID, $ff, $ff, $ff, $ff
+.knight
+  npcdata OW_KNIGHT, DialogKnightText, 0, 0, PROTOHISTORIC_DECK_ID, $ff, $ff, $ff, $ff
+.pawn
+  npcdata OW_PAWN, DialogPawnText, 0, 0, TEST_YOUR_LUCK_DECK_ID, $ff, $ff, $ff, $ff
+.tobichan
+  npcdata OW_TOBICHAN, DialogTobichanText, 0, 0, POISON_STORM_DECK_ID, $ff, $ff, $ff, $ff
+.eiji
+  npcdata OW_EIJI, DialogEijiText, 0, 0, EVERYBODYS_FRIEND_DECK_ID, $ff, $ff, $ff, $ff
+.magician
+  npcdata OW_MAGICIAN, DialogMagicianText, 0, 0, IMMORTAL_POKEMON_DECK_ID, $ff, $ff, $ff, $ff
+.yui
+  npcdata OW_LASS2_6, DialogYuiText, 0, 0, TORRENTIAL_FLOOD_DECK_ID, $ff, $ff, $ff, $ff
+.toshiron
+  npcdata OW_TOSHIRON, DialogToshironText, 0, 0, TRAINER_IMPRISON_DECK_ID, $ff, $ff, $ff, $ff
+.pierrot
+  npcdata OW_PIERROT, DialogPierroText, 0, 0, BLAZING_FLAME_DECK_ID, $ff, $ff, $ff, $ff
+.anna
+  npcdata OW_ANNA, DialogAnnaText, 0, 0, DAMAGE_CHAOS_DECK_ID, $ff, $ff, $ff, $ff
+.dee
+  npcdata OW_DEE, DialogDeeText, 0, 0, BIG_THUNDER_DECK_ID, $ff, $ff, $ff, $ff
+.masquerade
+  npcdata OW_MASQUERADE, DialogMasqueradeText, 0, 0, POWER_OF_DARKNESS_DECK_ID, $ff, $ff, $ff, $ff
+.gr1
+  npcdata OW_GR_1, DialogGR1Text, 0, OpponentEnigmaticMaskText, GREAT_ROCKET1_DECK_ID, $ff, $ff, $ff, $ff
+.gr2
+  npcdata OW_GR_2, DialogGR2Text, 0, OpponentEnigmaticMaskText, GREAT_ROCKET2_DECK_ID, $ff, $ff, $ff, $ff
+.gr3
+  npcdata OW_GR_3, DialogGR3Text, 0, OpponentEnigmaticMaskText, GREAT_ROCKET3_DECK_ID, $ff, $ff, $ff, $ff
+.gr4
+  npcdata OW_GR_4, DialogGR4Text, 0, OpponentEnigmaticMaskText, GREAT_ROCKET4_DECK_ID, $ff, $ff, $ff, $ff
+
+Data_cc9b:
+	db $00, $08, $ff
+	db $00, $08, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $09, $ff
+	db $00, $02, $00, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $00, $ff
+	db $00, $02, $02, $ff
+	db $00, $01, $00, $ff
+	db $00, $03, $ff
+	db $00, $02, $02, $ff
+	db $00, $00, $00, $ff
+	db $00, $03, $00, $ff
+	db $00, $01, $ff
+	db $00, $02, $ff
+	db $00, $02, $02, $ff
+	db $00, $04, $02, $ff
+	db $00, $00, $00, $ff
+	db $00, $01, $01, $ff
+	db $00, $02, $ff
+	db $00, $03, $03, $ff
+	db $00, $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $01, $01, $ff
+	db $00, $03, $02, $ff
+	db $00, $03, $02, $ff
+	db $00, $04, $03, $ff
+	db $00, $03, $03, $ff
+	db $00, $00, $ff
+	db $00, $01, $01, $ff
+	db $00, $00, $00, $ff
+	db $00, $03, $03, $ff
+	db $00, $02, $ff
+	db $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $02, $01, $ff
+	db $00, $00, $00, $ff
+	db $00, $06, $05, $ff
+	db $00, $03, $ff
+	db $00, $04, $ff
+	db $00, $00, $ff
+	db $00, $04, $00, $ff
+	db $00, $05, $00, $ff
+	db $00, $05, $01, $ff
+	db $00, $05, $02, $ff
+	db $00, $06, $02, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $05, $ff
+	db $00, $01, $00, $ff
+	db $00, $02, $ff
+	db $00, $05, $ff
+	db $00, $06, $05, $ff
+	db $00, $06, $05, $ff
+	db $00, $02, $ff
+	db $00, $03, $ff
+	db $00, $06, $ff
+	db $00, $05, $05, $ff
+	db $00, $06, $03, $ff
+	db $00, $06, $04, $ff
+	db $00, $06, $05, $ff
+	db $00, $06, $00, $ff
+	db $00, $06, $01, $ff
+	db $00, $05, $01, $ff
+	db $00, $05, $02, $ff
+	db $00, $06, $06, $ff
+	db $00, $01, $01, $ff
+	db $00, $02, $02, $ff
+	db $00, $03, $03, $ff
+	db $00, $05, $03, $ff
+	db $00, $06, $04, $ff
+	db $00, $06, $06, $ff
+	db $00, $09, $ff
+	db $00, $03, $02, $00, $ff
+	db $00, $03, $02, $ff
+	db $00, $03, $02, $01, $ff
+	db $00, $06, $05, $ff
+	db $01, $02, $00, $01, $02, $03, $04, $05, $06, $ff
+	db $02, $02, $00, $01, $02, $ff
+	db $02, $04, $00, $01, $02, $ff
+	db $02, $04, $00, $01, $02, $03, $ff
+	db $02, $04, $00, $01, $02, $03, $04, $ff
+	db $02, $02, $02, $05, $06, $ff
+	db $02, $04, $01, $02, $05, $06, $ff
+	db $02, $04, $02, $03, $04, $05, $06, $ff
+	db $02, $04, $00, $01, $02, $03, $04, $05, $06, $ff
+	db $00, $0a, $0a, $0a, $ff
+	db $00, $0b, $0a, $0a, $ff
+	db $00, $0c, $0b, $0a, $ff
+	db $00, $0a, $ff
+	db $00, $0b, $ff
+	db $00, $0c, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $02, $ff
+	db $00, $05, $ff
+	db $00, $06, $ff
+	db $00, $09, $ff
+
+MACRO receivecard
+	dw \1 ; card ID
+	tx \2 ; long name
+	tx \3 ; short name (often the same)
+	tx \4 ; received text
+	db \5 ; alt flag (Legendaries only)
+	tx \6 ; alt received text
+ENDM
+
+ReceiveCardTable:
+	receivecard GRS_MEWTWO, PromotionalGRMewtwoLv35Text, PromotionalGRMewtwoText, ReceivedPromotionalGRMewtwoText, 0, 0
+	receivecard ARCANINE_LV34, PromotionalArcanineLv34Text, PromotionalArcanineLv34Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard ELECTABUZZ_LV20, PromotionalElectabuzzLv20Text, PromotionalElectabuzzLv20Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard DRAGONITE_LV41, PromotionalDragoniteLv41Text, PromotionalDragoniteLv41Text, ReceivedLegendaryCardText_2, 1, ReceivedPromotionalCardText_2
+	receivecard DRAGONITE_LV43, PromotionalDragoniteLv43Text, PromotionalDragoniteLv43Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard COOL_PORYGON, PromotionalCoolPorygonLv15Text, PromotionalCoolPorygonText, ReceivedPromotionalCoolPorygonText, 0, 0
+	receivecard BLASTOISE_ALT_LV52, PromotionalBlastoiseLv52Text, PromotionalBlastoiseLv52Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard FARFETCHD_ALT_LV20, PromotionalFarfetchdLv20Text, PromotionalFarfetchdLv20Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard KANGASKHAN_LV38, PromotionalKangaskhanLv38Text, PromotionalKangaskhanLv38Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard POTION_ENERGY, 0, NotPromotionalPotionEnergyText, ReceivedNotPromotionalPotionEnergyText, 0, 0
+	receivecard HUNGRY_SNORLAX, PromotionalHungrySnorlaxLv50Text, PromotionalHungrySnorlaxText, ReceivedPromotionalHungrySnorlaxText, 0, 0
+	receivecard MAGIKARP_LV10, PromotionalMagikarpLv10Text, PromotionalMagikarpLv10Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard ZAPDOS_LV68, PromotionalZapdosLv68Text, PromotionalZapdosLv68Text, ReceivedLegendaryCardText_2, 1, ReceivedPromotionalCardText_2
+	receivecard FLYING_PIKACHU_LV12, PromotionalFlyingPikachuLv12Text, PromotionalFlyingPikachuText, ReceivedPromotionalFlyingPikachuText_2, 0, 0
+	receivecard FLYING_PIKACHU_ALT_LV12, PromotionalFlyingPikachuLv12Text, PromotionalFlyingPikachuText, ReceivedPromotionalFlyingPikachuText_2, 0, 0
+	receivecard DUGTRIO_LV40, PromotionalDugtrioLv40Text, PromotionalDugtrioLv40Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard SUPER_ENERGY_RETRIEVAL, PromotionalSuperEnergyRetrievalText, PromotionalSuperEnergyRetrievalText, ReceivedPromotionalCardText_2, 0, 0
+	receivecard DIGLETT_LV16, PromotionalDiglettLv16Text, PromotionalDiglettLv16Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard TOGEPI, PromotionalTogepiLv8Text, PromotionalTogepiLv8Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard SURFING_PIKACHU_LV13, PromotionalSurfingPikachuLv13Text, PromotionalSurfingPikachuText, ReceivedPromotionalSurfingPikachuText_2, 0, 0
+	receivecard SURFING_PIKACHU_ALT_LV13, PromotionalSurfingPikachuLv13Text, PromotionalSurfingPikachuText, ReceivedPromotionalSurfingPikachuText_2, 0, 0
+	receivecard MEOWTH_LV14, PromotionalMeowthLv14Text, PromotionalMeowthLv14Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard COMPUTER_ERROR, PromotionalComputerErrorText, PromotionalComputerErrorText, ReceivedPromotionalCardText_2, 0, 0
+	receivecard PIKACHU_LV13, PromotionalPikachuLv13Text, PromotionalPikachuLv13Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard PIKACHU_LV16, PromotionalPikachuLv16Text, PromotionalPikachuLv16Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard PIKACHU_ALT_LV16, PromotionalPikachuLv16Text, PromotionalPikachuLv16Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MOLTRES_LV40, PromotionalMoltresLv40Text, PromotionalMoltresLv40Text, ReceivedLegendaryCardText_2, 1, ReceivedPromotionalCardText_2
+	receivecard VENUSAUR_ALT_LV67, PromotionalVenusaurLv67Text, PromotionalVenusaurLv67Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard ARTICUNO_LV37, PromotionalArticunoLv37Text, PromotionalArticunoLv37Text, ReceivedLegendaryCardText_2, 1, ReceivedPromotionalCardText_2
+	receivecard JIGGLYPUFF_LV12, PromotionalJigglypuffLv12Text, PromotionalJigglypuffLv12Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard GOOP_GAS_ATTACK, 0, 0, ReceivedCardText_4, 0, 0
+	receivecard BILLS_COMPUTER, PromotionalBillsComputerText, PromotionalBillsComputerText, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MARILL, PromotionalMarillLv17Text, PromotionalMarillLv17Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MANKEY_ALT_LV7, PromotionalMankeyLv7Text, PromotionalMankeyLv7Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MEW_LV8, PromotionalMewLv8Text, PromotionalMewLv8Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MEWTWO_LV30, PromotionalMewtwoLv30Text, PromotionalMewtwoLv30Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MEWTWO_ALT_LV60, PromotionalMewtwoLv60Text, PromotionalMewtwoLv60Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard MEWTWO_LV60, PromotionalMewtwoLv60Text, PromotionalMewtwoLv60Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard SLOWPOKE_LV9, PromotionalSlowpokeLv9Text, PromotionalSlowpokeLv9Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard CHARIZARD_ALT_LV76, PromotionalCharizardLv76Text, PromotionalCharizardLv76Text, ReceivedPromotionalCardText_2, 0, 0
+	receivecard ROCKETS_SNEAK_ATTACK, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_ARBOK, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_PRIMEAPE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_FEAROW, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_MACHAMP, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_DRAGONITE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_BLASTOISE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_NINETALES, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_GYARADOS, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_RAPIDASH, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_GLOOM, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_MACHOKE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_GOLDUCK, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_GOLBAT, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_JOLTEON, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_VAPOREON, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_STARMIE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_HYPNO, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_DUGTRIO, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_DRAGONAIR, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_FLAREON, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_ALAKAZAM, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_IVYSAUR, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_VENUSAUR, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_MUK, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_PERSIAN_LV28, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_PERSIAN_ALT_LV28, PromotionalDarkPersianLv28Text, PromotionalDarkPersianLv28Text, ReceivedPromotionalCardText_3, 0, 0
+	receivecard DARK_WEEZING, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_ELECTRODE, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_KADABRA, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_RAICHU, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_VILEPLUME, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_CHARIZARD, 0, 0, ReceivedCardText_3, 0, 0
+	receivecard DARK_MAGNETON, 0, 0, ReceivedCardText_3, 0, 0
+	dw $ffff
 
 TextIDs_d171:
 	tx MapMasonLabText         ; OWMAP_MASON_LABORATORY
