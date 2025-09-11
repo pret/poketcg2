@@ -202,3 +202,12 @@ Prologue::
 	jr c, .loop_wait_2
 	ret
 ; 0x3c1b9
+
+SECTION "Bank f@43ca", ROMX[$43ca], BANK[$f]
+
+; TODO
+; something is weird about the way this function disassembles using
+; the python script. it tries to call Func_212, which I don't believe
+; is correct
+Func_3c3ca:
+	

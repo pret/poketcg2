@@ -52,8 +52,12 @@ ROMX $09
 	"Bank 9"
 ROMX $0a
 	"Bank a"
+ROMX $0b
+	"Bank b"
 ROMX $0c
 	"Bank c"
+ROMX $0d
+	"Bank d"
 ROMX $0e
 	"Bank e"
 ROMX $0f
