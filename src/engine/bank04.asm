@@ -1650,6 +1650,33 @@ Func_10cfe:
 	ret
 ; 0x10cff
 
+SECTION "Bank 4@4d5c", ROMX[$4d5c], BANK[$4]
+Func_10d5c:
+	push af
+	ld a, d
+	sla a
+	sla a
+	sla a
+	sla a
+	add $08
+	ld d, a
+	ld a, e
+	sla a
+	sla a
+	sla a
+	sla a
+	add $10
+	ld e, a
+	pop af
+	ret
+; 0x10d77
+SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
+Func_10da3:
+	call ClearOWObject
+	ret
+; 0x10da7
+
+
 SECTION "Bank 4@4d17", ROMX[$4d17], BANK[$4]
 
 Func_10d17:
@@ -1742,9 +1769,20 @@ Func_10da7::
 	pop hl
 	pop af
 	ret
-; 0x10db8
 
-SECTION "Bank 4@4dcb", ROMX[$4dcb], BANK[$4]
+Func_10db8:
+	push af
+	push de
+	push hl
+	call GetOWObjectWithID
+	call Func_10d54
+	call Func_10d5c
+	call SetSpriteAnimPosition
+	pop hl
+	pop de
+	pop af
+	ret
+; 0x10dcb
 
 Func_10dcb::
 	call Func_112b2

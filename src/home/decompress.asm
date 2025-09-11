@@ -138,7 +138,7 @@ DecompressData:
 	inc bc
 	ld [hli], a ; wDecompRepeatLengths
 	swap a
-.get_sequence_len
+.get_sequence_len::
 	and $f
 	inc a ; number of times to repeat
 	ld [hli], a ; wDecompNumBytesToRepeat
