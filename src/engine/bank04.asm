@@ -1708,11 +1708,11 @@ Func_10d40::
 
 SECTION "Bank 4@4d50", ROMX[$4d50], BANK[$4]
 
-Func_10d50:
+GetOWObjectWithIDWrapper:
 	call GetOWObjectWithID
 	ret
 
-Func_10d54:
+GetOWObjectSpriteAnimWrapper:
 	call GetOWObjectSpriteAnim
 	ret
 
@@ -1763,7 +1763,7 @@ Func_10da7::
 	push af
 	push hl
 	call GetOWObjectWithID
-	call Func_10d54
+	call GetOWObjectSpriteAnimWrapper
 	call GetSpriteAnimPosition
 	call Func_10b81
 	pop hl
@@ -1775,7 +1775,7 @@ Func_10db8:
 	push de
 	push hl
 	call GetOWObjectWithID
-	call Func_10d54
+	call GetOWObjectSpriteAnimWrapper
 	call Func_10d5c
 	call SetSpriteAnimPosition
 	pop hl
@@ -1788,7 +1788,9 @@ Func_10dcb::
 	call Func_112b2
 	ret
 
-Func_10dcf::
+; a = OW_* constant (ow_object)
+; b = direction
+SetOWObjectDirectionWrapper::
 	call SetOWObjectDirection
 	ret
 
@@ -1889,7 +1891,7 @@ Func_10e3c::
 	xor a
 	ld [wd98a], a
 	ld a, [wd989]
-	call Func_10d50
+	call GetOWObjectWithIDWrapper
 	bit 5, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .asm_10e8f
 	call Func_10da7
@@ -2022,7 +2024,7 @@ Func_10ed3:
 
 Func_10eff::
 	push hl
-	call Func_10d50
+	call GetOWObjectWithIDWrapper
 	set 5, [hl] ; OWOBJSTRUCT_FLAGS
 	pop hl
 	ret
@@ -2705,6 +2707,7 @@ Func_112b2:
 	pop af
 	ret
 
+; a = OW_* constant (ow_object)
 ; b = direction
 SetOWObjectDirection:
 	push af

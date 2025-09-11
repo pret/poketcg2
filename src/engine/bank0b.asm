@@ -46,11 +46,11 @@ Func_2c0d1:
 	push af
 	farcall GetEventValue
 	jr z, .asm_2c0ef
-	ld a, $04
-	ld de, $102
+	ld a, OW_ISHIHARA
+	ld de, $102 ; xy coordinate
 	farcall Func_10db8
-	ld b, $00
-	farcall Func_10dcf
+	ld b, NORTH
+	farcall SetOWObjectDirectionWrapper
 .asm_2c0ef
 	scf
 	ret
@@ -398,8 +398,8 @@ Func_2ca46:
 	bit 6, a
 	jr z, .asm_2ca9f
 	ld a, [wPlayerOWObject]
-	ld b, $00
-	farcall Func_10dcf
+	ld b, NORTH
+	farcall SetOWObjectDirectionWrapper
 	farcall Func_10da7
 	ld a, $02
 	cp e
@@ -2355,21 +2355,19 @@ Data_2fe4a:
 	db $ff
 
 Func_2fe54:
-; this function is related to the overhead island map, but
-; apparently loads OW Objects for Mint and Ronald? Seems wrong
 	farcall InitOWObjects
 	ld a, [wd584]
 	cp $00
 	jr nz, .asm_2fe6c
-	ld a, $d1
-	ld de, $1080
-	ld b, $01
+	ld a, OW_GR_BLIMP
+	ld de, $1080 ; OW coordinates
+	ld b, EAST
 	farcall LoadOWObject
 	jr .asm_2fe77
 .asm_2fe6c
-	ld a, $d1
-	ld de, $9010
-	ld b, $03
+	ld a, OW_GR_BLIMP
+	ld de, $9010 ; OW coordinates
+	ld b, WEST
 	farcall LoadOWObject
 .asm_2fe77
 	ld a, $0a
