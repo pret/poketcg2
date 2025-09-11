@@ -2232,7 +2232,10 @@ wd58b:: ; d58b
 wd58c:: ; d58c
 	ds $2
 
-wd58e:: ; d58e
+; MUSIC_* constant
+; See also: wCurMusic
+; notably passed to PlayAfterCurrentSong in bank03: Func_c175
+wNextMusic:: ; d58e
 	ds $1
 
 wd58f:: ; d58f
@@ -2367,6 +2370,8 @@ wd672:: ; d672
 wd673:: ; d673
 	ds $1
 
+; MUSIC_* constant
+; See also: wNextMusic
 wCurMusic:: ; d674
 	ds $1
 

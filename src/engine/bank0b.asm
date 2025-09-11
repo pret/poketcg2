@@ -19,8 +19,8 @@ Data_2c09b:
 Func_2c0b4:
 	call Func_2c1b8
 	jr nc, .asm_2c0be
-	ld a, $09
-	ld [wd58e], a
+	ld a, MUSIC_OVERWORLD
+	ld [wNextMusic], a
 .asm_2c0be
 	scf
 	ccf
@@ -181,8 +181,8 @@ Func_2c4db:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_2c4ea
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2c4f7
 .asm_2c4ea
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -306,8 +306,8 @@ Func_2c9b8:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2c9c5
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2c9c5
 	scf
 	ccf
@@ -379,7 +379,7 @@ Func_2ca22:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2ca3c
 	scf
@@ -516,8 +516,8 @@ Func_2cba8:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cbb7
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2cbb7
 .asm_2cbb7
 	scf
@@ -573,7 +573,7 @@ Func_2cbf5:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2cc0f
 	scf
@@ -600,8 +600,8 @@ Func_2cd82:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cd8f
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2cd8f
 	scf
 	ccf
@@ -672,8 +672,8 @@ Func_2d356:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d363
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2d363
 	scf
 	ccf
@@ -720,7 +720,7 @@ Func_2d399:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2d3b3
 	scf
@@ -759,11 +759,11 @@ Func_2d472:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d486
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2d486
-	ld a, $10
-	ld [wd58e], a
+	ld a, MUSIC_IMAKUNI
+	ld [wNextMusic], a
 .asm_2d486
 	scf
 	ccf
@@ -818,7 +818,7 @@ Func_2d4c4:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2d4de
 	scf
@@ -847,8 +847,8 @@ Func_2d653:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d660
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2d660
 	scf
 	ccf
@@ -931,8 +931,8 @@ Func_2d97f:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2d98c
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2d98c
 	scf
 	ccf
@@ -995,7 +995,7 @@ Func_2d9d8:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2d9f2
 	scf
@@ -1053,8 +1053,8 @@ Func_2dace:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dadb
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2dadb
 	scf
 	ccf
@@ -1112,8 +1112,8 @@ Func_2dcfe:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dd0b
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2dd0b
 	scf
 	ccf
@@ -1198,8 +1198,8 @@ Func_2e0bc:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e0c9
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2e0c9
 	scf
 	ccf
@@ -1263,7 +1263,7 @@ Func_2e115:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2e12f
 	scf
@@ -1323,8 +1323,8 @@ Func_2e1c2:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e1cf
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2e1cf
 	scf
 	ccf
@@ -1393,8 +1393,8 @@ Func_2e518:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e525
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2e525
 	scf
 	ccf
@@ -1469,7 +1469,7 @@ Func_2e582:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2e59c
 	scf
@@ -1546,8 +1546,8 @@ Func_2e6f7:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e706
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2e706
 .asm_2e706
 	scf
@@ -1607,7 +1607,7 @@ Func_2e752:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2e76c
 	scf
@@ -1634,8 +1634,8 @@ Func_2e945:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e952
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2e952
 	scf
 	ccf
@@ -1710,8 +1710,8 @@ Func_2ed17:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ed24
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2ed24
 	scf
 	ccf
@@ -1787,7 +1787,7 @@ Func_2ed8c:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2eda6
 	scf
@@ -1834,8 +1834,8 @@ Func_2ee73:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ee82
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2ee82
 .asm_2ee82
 	scf
@@ -1895,7 +1895,7 @@ Func_2eece:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2eee8
 	scf
@@ -1923,8 +1923,8 @@ Func_2f085:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f092
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2f092
 	scf
 	ccf
@@ -2036,8 +2036,8 @@ Func_2f54e:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f55b
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2f55b
 	scf
 	ccf
@@ -2104,7 +2104,7 @@ Func_2f5ae:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2f5c8
 	scf
@@ -2164,8 +2164,8 @@ Func_2f6a0:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f6af
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 	jr .asm_2f6af
 .asm_2f6af
 	scf
@@ -2221,7 +2221,7 @@ Func_2f6ed:
 	farcall ClearOWObjectWrapper
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	ld [wCurMusic], a
 .asm_2f707
 	scf
@@ -2248,8 +2248,8 @@ Func_2f84e:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f85b
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2f85b
 	scf
 	ccf
@@ -2310,8 +2310,8 @@ Func_2fd73:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_2fd80
-	ld a, $14
-	ld [wd58e], a
+	ld a, MUSIC_HERECOMESGR
+	ld [wNextMusic], a
 .asm_2fd80
 	scf
 	ccf

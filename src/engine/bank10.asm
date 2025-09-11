@@ -23,8 +23,8 @@ Func_40474:
 	ret
 
 .asm_40482
-	ld a, $1e
-	ld [wd58e], a
+	ld a, MUSIC_GRBLIMP
+	ld [wNextMusic], a
 	scf
 	ccf
 	ret
