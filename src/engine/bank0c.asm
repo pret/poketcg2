@@ -22,8 +22,8 @@ Func_30092:
 	ccf
 	ret
 .asm_300a0
-	ld a, $1e
-	ld [wd58e], a
+	ld a, MUSIC_GRBLIMP
+	ld [wNextMusic], a
 	scf
 	ccf
 	ret

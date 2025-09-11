@@ -196,7 +196,7 @@ Func_c16f:
 ; 0xc175
 
 Func_c175:
-	ld a, [wd58e]
+	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
 ; 0xc17d
