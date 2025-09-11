@@ -479,7 +479,7 @@ Func_2cac8:
 	ccf
 	ret
 .asm_2cae0
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2cada
 	ld a, $01
@@ -487,7 +487,7 @@ Func_2cac8:
 	ccf
 	ret
 .asm_2caed
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2cada
 	ld a, $02
@@ -1019,7 +1019,7 @@ Func_2d9f4:
 	ccf
 	ret
 .asm_2da0c
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2da06
 	ld a, $01
@@ -1027,7 +1027,7 @@ Func_2d9f4:
 	ccf
 	ret
 .asm_2da19
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2da06
 	ld a, $02
@@ -1287,7 +1287,7 @@ Func_2e131:
 	ccf
 	ret
 .asm_2e149
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2e143
 	ld a, $01
@@ -1295,7 +1295,7 @@ Func_2e131:
 	ccf
 	ret
 .asm_2e156
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2e143
 	ld a, $02
@@ -1493,7 +1493,7 @@ Func_2e59e:
 	ccf
 	ret
 .asm_2e5b6
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2e5b0
 	ld a, $01
@@ -1501,7 +1501,7 @@ Func_2e59e:
 	ccf
 	ret
 .asm_2e5c3
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2e5b0
 	ld a, $02
@@ -2128,7 +2128,7 @@ Func_2f5ca:
 	ccf
 	ret
 .asm_2f5e2
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2f5dc
 	ld a, $01
@@ -2136,7 +2136,7 @@ Func_2f5ca:
 	ccf
 	ret
 .asm_2f5ef
-	farcall Func_c50b
+	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2f5dc
 	ld a, $02
