@@ -2571,7 +2571,7 @@ TextOffsets::
 	textpointer DialogEijiText                                        ; 0x0a02
 	textpointer DialogMagicianText                                    ; 0x0a03
 	textpointer DialogToshironText                                    ; 0x0a04
-	textpointer DialogPierroText                                      ; 0x0a05
+	textpointer DialogPierrotText                                     ; 0x0a05
 	textpointer DialogDeeText                                         ; 0x0a06
 	textpointer DialogAnnaText                                        ; 0x0a07
 	textpointer DialogMasqueradeText                                  ; 0x0a08
@@ -2658,13 +2658,13 @@ TextOffsets::
 	textpointer DialogClerkText                                       ; 0x0a59
 	textpointer DialogReceptionistText                                ; 0x0a5a
 	textpointer DialogEmceeText                                       ; 0x0a5b
-	textpointer FireKanjiText                                         ; 0x0a5c
-	textpointer WaterKanjiText                                        ; 0x0a5d
-	textpointer LightningKanjiText                                    ; 0x0a5e
-	textpointer FightingKanjiText                                     ; 0x0a5f
-	textpointer PsychicKanjiText                                      ; 0x0a60
-	textpointer GrassKanjiText                                        ; 0x0a61
-	textpointer ColorlessKanjiText                                    ; 0x0a62
+	textpointer GRFireFortShortText                                   ; 0x0a5c
+	textpointer GRWaterFortShortText                                  ; 0x0a5d
+	textpointer GRLightningFortShortText                              ; 0x0a5e
+	textpointer GRFightingFortShortText                               ; 0x0a5f
+	textpointer GRPsychicStrongholdShortText                          ; 0x0a60
+	textpointer GRGrassFortShortText                                  ; 0x0a61
+	textpointer ColorlessAltarShortText                               ; 0x0a62
 	textpointer RockClubShortText                                     ; 0x0a63
 	textpointer LightningClubShortText                                ; 0x0a64
 	textpointer GrassClubShortText                                    ; 0x0a65
@@ -2673,7 +2673,6 @@ TextOffsets::
 	textpointer PsychicClubShortText                                  ; 0x0a68
 	textpointer FireClubShortText                                     ; 0x0a69
 	textpointer WaterClubShortText                                    ; 0x0a6a
-	; Grass/Science and Rock/Fighting are educated guesses, could be wrong
 	textpointer OpponentGrassClubMasterBracketedText                  ; 0x0a6b
 	textpointer OpponentGrassClubMemberBracketedText                  ; 0x0a6c
 	textpointer OpponentWaterClubMasterBracketedText                  ; 0x0a6d

@@ -789,21 +789,21 @@ MACRO npcdata
 ENDM
 
 .sam
-  npcdata OW_TECH_1, DialogSamText, 0, 0, UNUSED_SAMS_PRACTICE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_SAM, DialogSamText, 0, 0, UNUSED_SAMS_PRACTICE_DECK_ID, $ff, $ff, $ff, $ff
 .aaron
-  npcdata OW_TECH_2, DialogAaronText, 0, DialogTechText, AARONS_STEP1_DECK_ID, AARONS_STEP2_DECK_ID, AARONS_STEP3_DECK_ID, BRICK_WALK_DECK_ID, BENCH_TRAP_DECK_ID
+  npcdata OW_AARON, DialogAaronText, 0, DialogTechText, AARONS_STEP1_DECK_ID, AARONS_STEP2_DECK_ID, AARONS_STEP3_DECK_ID, BRICK_WALK_DECK_ID, BENCH_TRAP_DECK_ID
 .nikki
   npcdata OW_NIKKI, DialogNikkiText, GrassClubShortText, OpponentGrassClubMasterBracketedText, MAX_ENERGY_DECK_ID, $ff, $ff, $ff, $ff
 .brittany
-  npcdata OW_GIRL_1, DialogBrittanyText, GrassClubShortText, OpponentGrassClubMemberBracketedText, REMAINING_GREEN_DECK_ID, POISON_CURSE_DECK_ID, $ff, $ff, $ff
+  npcdata OW_BRITTANY, DialogBrittanyText, GrassClubShortText, OpponentGrassClubMemberBracketedText, REMAINING_GREEN_DECK_ID, POISON_CURSE_DECK_ID, $ff, $ff, $ff
 .kristin
-  npcdata OW_LASS2_1, DialogKristinText, GrassClubShortText, OpponentGrassClubMemberBracketedText, GLITTERING_SCALES_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_KRISTIN, DialogKristinText, GrassClubShortText, OpponentGrassClubMemberBracketedText, GLITTERING_SCALES_DECK_ID, $ff, $ff, $ff, $ff
 .heather
-  npcdata OW_LASS1_1, DialogHeatherText, GrassClubShortText, OpponentGrassClubMemberBracketedText, STEADY_INCREASE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_HEATHER, DialogHeatherText, GrassClubShortText, OpponentGrassClubMemberBracketedText, STEADY_INCREASE_DECK_ID, $ff, $ff, $ff, $ff
 .amy
   npcdata OW_AMY_LOUNGE, DialogAmyText, WaterClubShortText, OpponentWaterClubMasterBracketedText, RAIN_DANCE_CONFUSION_DECK_ID, $ff, $ff, $ff, $ff
 .joshua
-  npcdata OW_JOSHUA_1, DialogJoshuaText, WaterClubShortText, OpponentWaterClubMemberBracketedText, CONSERVING_WATER_DECK_ID, ENERGY_REMOVAL_DECK_ID, $ff, $ff, $ff
+  npcdata OW_JOSHUA, DialogJoshuaText, WaterClubShortText, OpponentWaterClubMemberBracketedText, CONSERVING_WATER_DECK_ID, ENERGY_REMOVAL_DECK_ID, $ff, $ff, $ff
 .sara
   npcdata OW_SARA, DialogSaraText, WaterClubShortText, OpponentWaterClubMemberBracketedText, SPLASHING_ABOUT_DECK_ID, $ff, $ff, $ff, $ff
 .amanda
@@ -811,51 +811,51 @@ ENDM
 .gene
   npcdata OW_GENE, DialogGeneText, RockClubShortText, OpponentRockClubMasterBracketedText, EVEN3_YEARS_ON_A_ROCK_DECK_ID, $ff, $ff, $ff, $ff
 .matthew
-  npcdata OW_MANIA_1, DialogMatthewText, RockClubShortText, OpponentRockClubMemberBracketedText, ROLLING_STONE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MATTHEW, DialogMatthewText, RockClubShortText, OpponentRockClubMemberBracketedText, ROLLING_STONE_DECK_ID, $ff, $ff, $ff, $ff
 .ryan
-  npcdata OW_YOUNGSTER_1, DialogRyanText, RockClubShortText, OpponentRockClubMemberBracketedText, GREAT_EARTHQUAKE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_RYAN, DialogRyanText, RockClubShortText, OpponentRockClubMemberBracketedText, GREAT_EARTHQUAKE_DECK_ID, $ff, $ff, $ff, $ff
 .andrew
-  npcdata OW_MAN_1, DialogAndrewText, RockClubShortText, OpponentRockClubMemberBracketedText, AWESOME_FOSSIL_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ANDREW, DialogAndrewText, RockClubShortText, OpponentRockClubMemberBracketedText, AWESOME_FOSSIL_DECK_ID, $ff, $ff, $ff, $ff
 .mitch
   npcdata OW_MITCH, DialogMitchText, FightingClubShortText, OpponentFightingClubMasterBracketedText, RAGING_BILLOW_OF_FISTS_DECK_ID, $ff, $ff, $ff, $ff
 .michael
-  npcdata OW_MANIA_2, DialogMichaelText, FightingClubShortText, OpponentFightingClubMemberBracketedText, YOU_CAN_DO_IT_MACHOP_DECK_ID, NEW_MACHOKE_DECK_ID, $ff, $ff, $ff
+  npcdata OW_MICHAEL, DialogMichaelText, FightingClubShortText, OpponentFightingClubMemberBracketedText, YOU_CAN_DO_IT_MACHOP_DECK_ID, NEW_MACHOKE_DECK_ID, $ff, $ff, $ff
 .chris
-  npcdata OW_MANIA_3, DialogChrisText, FightingClubShortText, OpponentFightingClubMemberBracketedText, SKILLED_WARRIOR_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_CHRIS, DialogChrisText, FightingClubShortText, OpponentFightingClubMemberBracketedText, SKILLED_WARRIOR_DECK_ID, $ff, $ff, $ff, $ff
 .jessica
-  npcdata OW_LASS3_1, DialogJessicaText, FightingClubShortText, OpponentFightingClubMemberBracketedText, I_LOVE_TO_FIGHT_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JESSICA, DialogJessicaText, FightingClubShortText, OpponentFightingClubMemberBracketedText, I_LOVE_TO_FIGHT_DECK_ID, $ff, $ff, $ff, $ff
 .rick
   npcdata OW_RICK, DialogRickText, ScienceClubShortText, OpponentScienceClubMasterBracketedText, DARK_SCIENCE_DECK_ID, $ff, $ff, $ff, $ff
 .david
-  npcdata OW_TECH_3, DialogDavidText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, NATURAL_SCIENCE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_DAVID, DialogDavidText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, NATURAL_SCIENCE_DECK_ID, $ff, $ff, $ff, $ff
 .joseph
-  npcdata OW_TECH_4, DialogJosephText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, POISONOUS_SWAMP_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JOSEPH, DialogJosephText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, POISONOUS_SWAMP_DECK_ID, $ff, $ff, $ff, $ff
 .erik
-  npcdata OW_TECH_5, DialogErikText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, GATHERING_NIDORAN_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ERIK, DialogErikText, ScienceClubShortText, OpponentScienceClubMemberBracketedText, GATHERING_NIDORAN_DECK_ID, $ff, $ff, $ff, $ff
 .ken
   npcdata OW_KEN, DialogKenText, FireClubShortText, OpponentFireClubMasterBracketedText, GO_ARCANINE_DECK_ID, $ff, $ff, $ff, $ff
 .john
-  npcdata OW_LAD_1, DialogJohnText, FireClubShortText, OpponentFireClubMemberBracketedText, FLAME_FESTIVAL_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JOHN, DialogJohnText, FireClubShortText, OpponentFireClubMemberBracketedText, FLAME_FESTIVAL_DECK_ID, $ff, $ff, $ff, $ff
 .adam
-  npcdata OW_SPECS_1, DialogAdamText, FireClubShortText, OpponentFireClubMemberBracketedText, ELECTRIC_CURRENT_SHOCK_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ADAM, DialogAdamText, FireClubShortText, OpponentFireClubMemberBracketedText, ELECTRIC_CURRENT_SHOCK_DECK_ID, $ff, $ff, $ff, $ff
 .jonathan
-  npcdata OW_YOUNGSTER_2, DialogJonathanText, FireClubShortText, OpponentFireClubMemberBracketedText, IMMORTAL_FLAME_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JONATHAN, DialogJonathanText, FireClubShortText, OpponentFireClubMemberBracketedText, IMMORTAL_FLAME_DECK_ID, $ff, $ff, $ff, $ff
 .isaac
   npcdata OW_ISAAC, DialogIsaacText, LightningClubShortText, OpponentLightningClubMasterBracketedText, SKY_SPARK_DECK_ID, ELECTRIC_SELFDESTRUCT_DECK_ID, $ff, $ff, $ff
 .jennifer
-  npcdata OW_GIRL_2, DialogJenniferText, LightningClubShortText, OpponentLightningClubMemberBracketedText, I_LOVE_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JENNIFER, DialogJenniferText, LightningClubShortText, OpponentLightningClubMemberBracketedText, I_LOVE_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
 .nicholas
-  npcdata OW_HOOD_1, DialogNicholasText, LightningClubShortText, OpponentLightningClubMemberBracketedText, OVERFLOW_DECK_ID, TRIPLE_ZAPDOS_DECK_ID, $ff, $ff, $ff
+  npcdata OW_NICHOLAS, DialogNicholasText, LightningClubShortText, OpponentLightningClubMemberBracketedText, OVERFLOW_DECK_ID, TRIPLE_ZAPDOS_DECK_ID, $ff, $ff, $ff
 .brandon
-  npcdata OW_HOOD_2, DialogBrandonText, LightningClubShortText, OpponentLightningClubMemberBracketedText, TEN_THOUSAND_VOLTS_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_BRANDON, DialogBrandonText, LightningClubShortText, OpponentLightningClubMemberBracketedText, TEN_THOUSAND_VOLTS_DECK_ID, $ff, $ff, $ff, $ff
 .murray
   npcdata OW_MURRAY, DialogMurrayText, PsychicClubShortText, OpponentPsychicClubMasterBracketedText, HAND_OVER_GR_DECK_ID, PSYCHIC_ELITE_DECK_ID, $ff, $ff, $ff
 .robert
-  npcdata OW_YOUNGSTER_3, DialogRobertText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PHANTOM_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ROBERT, DialogRobertText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PHANTOM_DECK_ID, $ff, $ff, $ff, $ff
 .daniel
-  npcdata OW_LAD2, DialogDanielText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PUPPET_MASTER_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_DANIEL, DialogDanielText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PUPPET_MASTER_DECK_ID, $ff, $ff, $ff, $ff
 .stephanie
-  npcdata OW_GIRL3, DialogStephanieText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PSYCHOKINESIS_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_STEPHANIE, DialogStephanieText, PsychicClubShortText, OpponentPsychicClubMemberBracketedText, PSYCHOKINESIS_DECK_ID, $ff, $ff, $ff, $ff
 .rod
   npcdata OW_ROD, DialogRodText, 0, OpponentGrandMasterText, GREAT_DRAGON_DECK_ID, $ff, $ff, $ff, $ff
 .jack
@@ -865,57 +865,57 @@ ENDM
 .courtney
   npcdata OW_COURTNEY, DialogCourtneyText, 0, OpponentGrandMasterText, GRAND_FIRE_DECK_ID, $ff, $ff, $ff, $ff
 .morino
-  npcdata OW_MORINO_2, DialogMorinoText, GrassKanjiText, OpponentGRGrassFortLeaderText, MAD_PETALS_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MORINO, DialogMorinoText, GRGrassFortShortText, OpponentGRGrassFortLeaderText, MAD_PETALS_DECK_ID, $ff, $ff, $ff, $ff
 .miyuki
-  npcdata OW_MIDORI_2, DialogMiyukiText, GrassKanjiText, OpponentGRGrassFortMemberText, STICKY_POISON_GAS_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MIYUKI, DialogMiyukiText, GRGrassFortShortText, OpponentGRGrassFortMemberText, STICKY_POISON_GAS_DECK_ID, $ff, $ff, $ff, $ff
 .yuta
-  npcdata OW_MORINO_1, DialogYutaText, GrassKanjiText, OpponentGRGrassFortMemberText, DEMONIC_FOREST_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_YUTA, DialogYutaText, GRGrassFortShortText, OpponentGRGrassFortMemberText, DEMONIC_FOREST_DECK_ID, $ff, $ff, $ff, $ff
 .midori
-  npcdata OW_MIDORI_1, DialogMidoriText, GrassKanjiText, OpponentGRGrassFortMemberText, BUG_COLLECTING_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MIDORI, DialogMidoriText, GRGrassFortShortText, OpponentGRGrassFortMemberText, BUG_COLLECTING_DECK_ID, $ff, $ff, $ff, $ff
 .catherine
-  npcdata OW_CATHERINE, DialogCatherineText, LightningKanjiText, OpponentGRLightningFortLeaderText, QUICK_ATTACK_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_CATHERINE, DialogCatherineText, GRLightningFortShortText, OpponentGRLightningFortLeaderText, QUICK_ATTACK_DECK_ID, $ff, $ff, $ff, $ff
 .ichikawa
-  npcdata OW_ICHIKAWA, DialogIchikawaText, LightningKanjiText, OpponentGRLightningFortMemberText, THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ICHIKAWA, DialogIchikawaText, GRLightningFortShortText, OpponentGRLightningFortMemberText, THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, $ff, $ff, $ff, $ff
 .renna
-  npcdata OW_RENNA, DialogRennaText, LightningKanjiText, OpponentGRLightningFortMemberText, CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_RENNA, DialogRennaText, GRLightningFortShortText, OpponentGRLightningFortMemberText, CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, $ff, $ff, $ff, $ff
 .hidero
-  npcdata OW_HIDERO, DialogHideroText, FireKanjiText, OpponentGRFireFortLeaderText, GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_HIDERO, DialogHideroText, GRFireFortShortText, OpponentGRFireFortLeaderText, GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, $ff, $ff, $ff, $ff
 .shoko
-  npcdata OW_SHOKO, DialogShokoText, FireKanjiText, OpponentGRFireFortMemberText, EEVEE_SHOWDOWN_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_SHOKO, DialogShokoText, GRFireFortShortText, OpponentGRFireFortMemberText, EEVEE_SHOWDOWN_DECK_ID, $ff, $ff, $ff, $ff
 .yuki
-  npcdata OW_YUKI, DialogYukiText, FireKanjiText, OpponentGRFireFortMemberText, FIREBALL_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_YUKI, DialogYukiText, GRFireFortShortText, OpponentGRFireFortMemberText, FIREBALL_DECK_ID, $ff, $ff, $ff, $ff
 .jes
-  npcdata OW_JES, DialogJesText, FireKanjiText, OpponentGRFireFortMemberText, COMPLETE_COMBUSTION_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_JES, DialogJesText, GRFireFortShortText, OpponentGRFireFortMemberText, COMPLETE_COMBUSTION_DECK_ID, $ff, $ff, $ff, $ff
 .kanoko
-  npcdata OW_KANOKO, DialogKanokoText, WaterKanjiText, OpponentGRWaterFortLeaderText, WATER_STREAM_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_KANOKO, DialogKanokoText, GRWaterFortShortText, OpponentGRWaterFortLeaderText, WATER_STREAM_DECK_ID, $ff, $ff, $ff, $ff
 .aira
-  npcdata OW_AIRA, DialogAiraText, WaterKanjiText, OpponentGRWaterFortMemberText, BENCH_CALL_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_AIRA, DialogAiraText, GRWaterFortShortText, OpponentGRWaterFortMemberText, BENCH_CALL_DECK_ID, $ff, $ff, $ff, $ff
 .senta
-  npcdata OW_JOSHUA_2, DialogSentaText, WaterKanjiText, OpponentGRWaterFortMemberText, PARALYZED_PARALYZED_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_SENTA, DialogSentaText, GRWaterFortShortText, OpponentGRWaterFortMemberText, PARALYZED_PARALYZED_DECK_ID, $ff, $ff, $ff, $ff
 .miyajima
-  npcdata OW_MIYAJIMA_2, DialogMiyajimaText, WaterKanjiText, OpponentGRWaterFortMemberText, WHIRLPOOL_SHOWER_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MIYAJIMA, DialogMiyajimaText, GRWaterFortShortText, OpponentGRWaterFortMemberText, WHIRLPOOL_SHOWER_DECK_ID, $ff, $ff, $ff, $ff
 .kamiya
-  npcdata OW_KAMIYA, DialogKamiyaText, FightingKanjiText, OpponentGRFightingFortLeaderText, RUNNING_WILD_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_KAMIYA, DialogKamiyaText, GRFightingFortShortText, OpponentGRFightingFortLeaderText, RUNNING_WILD_DECK_ID, $ff, $ff, $ff, $ff
 .grace
-  npcdata OW_GRACE, DialogGraceText, FightingKanjiText, OpponentGRFightingFortMemberText, FULL_STRENGTH_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_GRACE, DialogGraceText, GRFightingFortShortText, OpponentGRFightingFortMemberText, FULL_STRENGTH_DECK_ID, $ff, $ff, $ff, $ff
 .gota
-  npcdata OW_GODA, DialogGotaText, FightingKanjiText, OpponentGRFightingFortMemberText, ROCK_BLAST_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_GODA, DialogGotaText, GRFightingFortShortText, OpponentGRFightingFortMemberText, ROCK_BLAST_DECK_ID, $ff, $ff, $ff, $ff
 .mami
-  npcdata OW_MAMI, DialogMamiText, PsychicKanjiText, OpponentGRPsychicStrongholdLeaderText, SPIRITED_AWAY_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MAMI, DialogMamiText, GRPsychicStrongholdShortText, OpponentGRPsychicStrongholdLeaderText, SPIRITED_AWAY_DECK_ID, $ff, $ff, $ff, $ff
 .ryoko
-  npcdata OW_RYOKO, DialogRyokoText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, POKEMON_POWER_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_RYOKO, DialogRyokoText, GRPsychicStrongholdShortText, OpponentGRPsychicStrongholdMemberText, POKEMON_POWER_DECK_ID, $ff, $ff, $ff, $ff
 .yosuke
-  npcdata OW_YOSUKE, DialogYosukeText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, BAD_DREAM_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_YOSUKE, DialogYosukeText, GRPsychicStrongholdShortText, OpponentGRPsychicStrongholdMemberText, BAD_DREAM_DECK_ID, $ff, $ff, $ff, $ff
 .kevin
-  npcdata OW_KEVIN, DialogKevinText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, SUPERDESTRUCTIVE_POWER_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_KEVIN, DialogKevinText, GRPsychicStrongholdShortText, OpponentGRPsychicStrongholdMemberText, SUPERDESTRUCTIVE_POWER_DECK_ID, $ff, $ff, $ff, $ff
 .miwa
-  npcdata OW_MIWA, DialogMiwaText, PsychicKanjiText, OpponentGRPsychicStrongholdMemberText, DIRECT_HIT_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_MIWA, DialogMiwaText, GRPsychicStrongholdShortText, OpponentGRPsychicStrongholdMemberText, DIRECT_HIT_DECK_ID, $ff, $ff, $ff, $ff
 .samejima
-  npcdata OW_SAMEJIMA, DialogSamejimaText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, SUDDEN_GROWTH_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_SAMEJIMA, DialogSamejimaText, ColorlessAltarShortText, OpponentColorlessAltarGuardianText, SUDDEN_GROWTH_DECK_ID, $ff, $ff, $ff, $ff
 .ishii
-  npcdata OW_ISHII, DialogIshiiText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, EYE_OF_THE_STORM_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_ISHII, DialogIshiiText, ColorlessAltarShortText, OpponentColorlessAltarGuardianText, EYE_OF_THE_STORM_DECK_ID, $ff, $ff, $ff, $ff
 .nishijima
-  npcdata OW_NISHIJIMA, DialogNishijimaText, ColorlessKanjiText, OpponentColorlessAltarGuardianText, SNORLAX_GUARD_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_NISHIJIMA, DialogNishijimaText, ColorlessAltarShortText, OpponentColorlessAltarGuardianText, SNORLAX_GUARD_DECK_ID, $ff, $ff, $ff, $ff
 .biruritchi
   npcdata OW_BIRURITCHI, DialogBiruritchiText, 0, OpponentGRKingText, STOP_LIFE_DECK_ID, SCORCHER_DECK_ID, TSUNAMI_STARTER_DECK_ID, SMASH_TO_MINCEMEAT_DECK_ID, $ff
 .rui
@@ -931,7 +931,7 @@ ENDM
 .ishihara
   npcdata OW_ISHIHARA, DialogMrIshiharaText, 0, 0, VERY_RARE_CARD_DECK_ID, $ff, $ff, $ff, $ff
 .tap
-  npcdata OW_CHAP_4, DialogTapText, 0, 0, DANGEROUS_BENCH_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_TAP, DialogTapText, 0, 0, DANGEROUS_BENCH_DECK_ID, $ff, $ff, $ff, $ff
 .queen
   npcdata OW_QUEEN, DialogQueenText, 0, 0, POWERFUL_POKEMON_DECK_ID, $ff, $ff, $ff, $ff
 .rook
@@ -949,11 +949,11 @@ ENDM
 .magician
   npcdata OW_MAGICIAN, DialogMagicianText, 0, 0, IMMORTAL_POKEMON_DECK_ID, $ff, $ff, $ff, $ff
 .yui
-  npcdata OW_LASS2_6, DialogYuiText, 0, 0, TORRENTIAL_FLOOD_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_YUI, DialogYuiText, 0, 0, TORRENTIAL_FLOOD_DECK_ID, $ff, $ff, $ff, $ff
 .toshiron
   npcdata OW_TOSHIRON, DialogToshironText, 0, 0, TRAINER_IMPRISON_DECK_ID, $ff, $ff, $ff, $ff
 .pierrot
-  npcdata OW_PIERROT, DialogPierroText, 0, 0, BLAZING_FLAME_DECK_ID, $ff, $ff, $ff, $ff
+  npcdata OW_PIERROT, DialogPierrotText, 0, 0, BLAZING_FLAME_DECK_ID, $ff, $ff, $ff, $ff
 .anna
   npcdata OW_ANNA, DialogAnnaText, 0, 0, DAMAGE_CHAOS_DECK_ID, $ff, $ff, $ff, $ff
 .dee
