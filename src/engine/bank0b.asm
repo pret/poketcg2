@@ -1131,8 +1131,8 @@ Func_2dd15:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr z, .asm_2dd2f
-	ld bc, $1a
-	ld de, $500
+	ld bc, TILEMAP_01A
+	ld de, $500 ; OW coordinates
 	farcall Func_12c0ce
 .asm_2dd2f
 	scf
@@ -1342,8 +1342,8 @@ Func_2e1d9:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e1f3
-	ld bc, $1e
-	ld de, $50b
+	ld bc, TILEMAP_01E
+	ld de, $50b ; OW coordinates
 	farcall Func_12c0ce
 .asm_2e1f3
 	scf
@@ -1652,17 +1652,17 @@ Func_2e95c:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e994
-	ld bc, $22
-	ld de, $401
+	ld bc, TILEMAP_022
+	ld de, $401 ; OW coordinates
 	farcall Func_12c0ce
-	ld bc, $23
-	ld de, $901
+	ld bc, TILEMAP_023
+	ld de, $901 ; OW coordinates
 	farcall Func_12c0ce
-	ld bc, $24
-	ld de, SetBGP
+	ld bc, TILEMAP_024
+	ld de, $406 ; OW coordinates
 	farcall Func_12c0ce
-	ld bc, $25
-	ld de, $50c
+	ld bc, TILEMAP_025
+	ld de, $50c ; OW coordinates
 	farcall Func_12c0ce
 .asm_2e994
 	scf
@@ -1963,14 +1963,14 @@ Func_2f0a5:
 	nop
 	jr .asm_2f0f5
 .asm_2f0c3
-	ld bc, $2a
-	ld de, $204
+	ld bc, TILEMAP_02A
+	ld de, $204 ; OW coordinates
 	farcall Func_12c0ce
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f0e1
-	ld bc, $29
-	ld de, $50c
+	ld bc, TILEMAP_029
+	ld de, $50c ; OW coordinates
 	farcall Func_12c0ce
 	jr .asm_2f0f5
 .asm_2f0e1
