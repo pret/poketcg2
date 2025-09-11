@@ -313,7 +313,7 @@ Func_2c9b8:
 	ccf
 	ret
 Func_2c9c8:
-	call Func_2cac8
+	call PsychicClubEntranceShouldRonaldAppear
 	jr nc, .asm_2c9cf
 	scf
 	ret
@@ -336,7 +336,7 @@ Func_2c9df:
 	ret
 
 Func_2c9e8:
-	call Func_2cac8
+	call PsychicClubEntranceShouldRonaldAppear
 	jr c, .asm_2ca12
 	cp $01
 	jr z, .asm_2c9f8
@@ -461,24 +461,26 @@ Func_2cabb:
 	ccf
 	ret
 
-Func_2cac8:
-	ld a, VAR_04
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use 
+PsychicClubEntranceShouldRonaldAppear:
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
-	jr c, .asm_2cadc
+	jr c, .second_meeting
 	cp $03
-	jr c, .asm_2cae0
+	jr c, .third_meeting
 	cp $04
-	jr c, .asm_2caed
+	jr c, .fourth_meeting
 .asm_2cada
 	scf
 	ret
-.asm_2cadc
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
 	ret
-.asm_2cae0
+.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
 	farcall CountGRCoinPieces
 	cp $02
 	jr nz, .asm_2cada
@@ -486,7 +488,7 @@ Func_2cac8:
 	scf
 	ccf
 	ret
-.asm_2caed
+.fourth_meeting ; after 4 GR pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPieces
 	cp $04
 	jr nz, .asm_2cada
@@ -727,7 +729,7 @@ Func_2d399:
 	ret
 
 Func_2d3b5:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2d3c1
@@ -1002,7 +1004,7 @@ Func_2d9d8:
 	ret
 
 Func_2d9f4:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2da08
@@ -1270,7 +1272,7 @@ Func_2e115:
 	ret
 
 Func_2e131:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e145
@@ -1476,7 +1478,7 @@ Func_2e582:
 	ret
 
 Func_2e59e:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e5b2
@@ -1794,7 +1796,7 @@ Func_2ed8c:
 	ret
 
 Func_2eda8:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2edbc
@@ -2111,7 +2113,7 @@ Func_2f5ae:
 	ret
 
 Func_2f5ca:
-	ld a, VAR_04
+	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2f5de
