@@ -727,22 +727,23 @@ LoadNPCDuelistDeck:
 	pop bc
 	ret
 
-Func_c50b:
+; return - a : number of coin pieces obtained
+CountGRCoinPieces:
 	push bc
-	ld b, $0c
-	ld c, $00
-.asm_c510
+	ld b, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT ; $0c
+	ld c, $00 ; counter for how many pieces obtained
+.loop ; loop 4 times, from $0c to $0f
 	ld a, b
 	call GetEventValue
 	jr z, .asm_c517
-	inc c
+	inc c ; obtained this piece
 .asm_c517
 	ld a, b
-	cp $0f
-	jr z, .asm_c51f
+	cp EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT ; $0f
+	jr z, .done
 	inc b
-	jr .asm_c510
-.asm_c51f
+	jr .loop
+.done
 	ld a, c
 	pop bc
 	ret
