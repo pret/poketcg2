@@ -1233,94 +1233,95 @@ NonSpecialPromo_d1a9:
 	dw MARILL
 	dw MANKEY_ALT_LV7
 
+; two tables from $0e to $6c (without $10, $16, $42, $59, and $62--$66) in ascending order
 Data_d1ed:
-	dw $0712
-	dw $0713
-	dw $0714
-	dw $0715
-	dw $0718
-	dw $0719
-	dw $071a
-	dw $071c
-	dw $071d
-	dw $071e
-	dw $0720
-	dw $0721
-	dw $0722
-	dw $0723
-	dw $0725
-	dw $0726
-	dw $0727
-	dw $0728
-	dw $072a
-	dw $072b
-	dw $072c
-	dw $072e
-	dw $072f
-	dw $0730
-	dw $0731
-	dw $0733
-	dw $0734
-	dw $0735
-	dw $0811
-	dw $0817
-	dw $081b
-	dw $081f
-	dw $0824
-	dw $0829
-	dw $082d
-	dw $0832
-	dw $0837
-	dw $0838
-	dw $0839
-	dw $0836
-	dw $100e
-	dw $100f
-	dw $103a
-	dw $103b
-	dw $103c
-	dw $103d
-	dw $1067
-	dw $1069
-	dw $106a
+	db $12, $07
+	db $13, $07
+	db $14, $07
+	db $15, $07
+	db $18, $07
+	db $19, $07
+	db $1a, $07
+	db $1c, $07
+	db $1d, $07
+	db $1e, $07
+	db $20, $07
+	db $21, $07
+	db $22, $07
+	db $23, $07
+	db $25, $07
+	db $26, $07
+	db $27, $07
+	db $28, $07
+	db $2a, $07
+	db $2b, $07
+	db $2c, $07
+	db $2e, $07
+	db $2f, $07
+	db $30, $07
+	db $31, $07
+	db $33, $07
+	db $34, $07
+	db $35, $07
+	db $11, $08
+	db $17, $08
+	db $1b, $08
+	db $1f, $08
+	db $24, $08
+	db $29, $08
+	db $2d, $08
+	db $32, $08
+	db $37, $08
+	db $38, $08
+	db $39, $08
+	db $36, $08
+	db $0e, $10
+	db $0f, $10
+	db $3a, $10
+	db $3b, $10
+	db $3c, $10
+	db $3d, $10
+	db $67, $10
+	db $69, $10
+	db $6a, $10
 Data_d24f:
-	dw $073e
-	dw $073f
-	dw $0740
-	dw $0743
-	dw $0744
-	dw $0746
-	dw $0747
-	dw $0748
-	dw $074a
-	dw $074b
-	dw $074c
-	dw $074e
-	dw $074f
-	dw $0751
-	dw $0752
-	dw $0753
-	dw $0754
-	dw $0841
-	dw $0845
-	dw $0849
-	dw $084d
-	dw $0850
-	dw $0855
-	dw $0856
-	dw $0857
-	dw $0858
-	dw $105a
-	dw $105b
-	dw $105c
-	dw $105d
-	dw $105e
-	dw $105f
-	dw $1060
-	dw $1061
-	dw $1068
-	dw $106b
-	dw $106c
+	db $3e, $07
+	db $3f, $07
+	db $40, $07
+	db $43, $07
+	db $44, $07
+	db $46, $07
+	db $47, $07
+	db $48, $07
+	db $4a, $07
+	db $4b, $07
+	db $4c, $07
+	db $4e, $07
+	db $4f, $07
+	db $51, $07
+	db $52, $07
+	db $53, $07
+	db $54, $07
+	db $41, $08
+	db $45, $08
+	db $49, $08
+	db $4d, $08
+	db $50, $08
+	db $55, $08
+	db $56, $08
+	db $57, $08
+	db $58, $08
+	db $5a, $10
+	db $5b, $10
+	db $5c, $10
+	db $5d, $10
+	db $5e, $10
+	db $5f, $10
+	db $60, $10
+	db $61, $10
+	db $68, $10
+	db $6b, $10
+	db $6c, $10
 
 Func_d299::
 	push af
