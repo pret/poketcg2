@@ -752,7 +752,15 @@ Data_c651::
 	dbw $0d, $75df ; $72
 	dbw $10, $6ed5 ; $73
 
-NPCsTable:
+MACRO npcdata
+	db \1 ; ow_object_constants
+	tx \2 ; dialog-box name
+	tx \3 ; home base (abbreviated)
+	tx \4 ; title (abbreviated)
+	db \5, \6, \7, \8, \9 ; deck IDs
+ENDM
+
+NPCsPointers:
 	dw .sam, .aaron
 	dw .nikki, .brittany, .kristin, .heather
 	dw .amy, .joshua, .sara, .amanda
@@ -779,14 +787,6 @@ NPCsTable:
 	dw .tobichan, .eiji, .magician, .yui, .toshiron, .pierrot, .anna, .dee, .masquerade
 	dw .gr1, .gr2, .gr3, .gr4
 	dw NULL
-
-MACRO npcdata
-	db \1 ; ow_object_constants
-	tx \2 ; dialog-box name
-	tx \3 ; home base (abbreviated)
-	tx \4 ; title (abbreviated)
-	db \5, \6, \7, \8, \9 ; deck IDs
-ENDM
 
 .sam
   npcdata OW_SAM, DialogSamText, 0, 0, UNUSED_SAMS_PRACTICE_DECK_ID, $ff, $ff, $ff, $ff
