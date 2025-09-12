@@ -2007,15 +2007,12 @@ Func_2f0f7:
 	ret
 
 Func_2f107:
-	ld hl, Func_2f112
+	ld hl, $7112
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-
-Func_2f112:
-; TODO: this function doesn't want to disasm cleanly, but is
-; required in Func_2f107
+; 0x2f112
 
 SECTION "Bank b@74ff", ROMX[$74ff], BANK[$b]
 
