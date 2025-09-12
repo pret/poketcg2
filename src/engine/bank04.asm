@@ -1681,20 +1681,36 @@ Func_10d40::
 
 SECTION "Bank 4@4d50", ROMX[$4d50], BANK[$4]
 
-Func_10d50:
+GetOWObjectWithIDWrapper:
 	call GetOWObjectWithID
 	ret
 
-Func_10d54:
+GetOWObjectSpriteAnimWrapper:
 	call GetOWObjectSpriteAnim
 	ret
 
 GetOWObjectSpriteAnimFlags::
 	call _GetOWObjectSpriteAnimFlags
 	ret
-; 0x10d5c
 
-SECTION "Bank 4@4d77", ROMX[$4d77], BANK[$4]
+Func_10d5c:
+	push af
+	ld a, d
+	sla a
+	sla a
+	sla a
+	sla a
+	add $08
+	ld d, a
+	ld a, e
+	sla a
+	sla a
+	sla a
+	sla a
+	add $10
+	ld e, a
+	pop af
+	ret
 
 ; a = OW_* constant
 LoadOWObjectInMap::
@@ -1730,27 +1746,43 @@ LoadOWObjectInMap::
 	ret
 ; 0x10da3
 
-SECTION "Bank 4@4da7", ROMX[$4da7], BANK[$4]
+SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
+ClearOWObjectWrapper:
+	call ClearOWObject
+	ret
 
 Func_10da7::
 	push af
 	push hl
 	call GetOWObjectWithID
-	call Func_10d54
+	call GetOWObjectSpriteAnimWrapper
 	call GetSpriteAnimPosition
 	call Func_10b81
 	pop hl
 	pop af
 	ret
-; 0x10db8
 
-SECTION "Bank 4@4dcb", ROMX[$4dcb], BANK[$4]
+Func_10db8:
+	push af
+	push de
+	push hl
+	call GetOWObjectWithID
+	call GetOWObjectSpriteAnimWrapper
+	call Func_10d5c
+	call SetSpriteAnimPosition
+	pop hl
+	pop de
+	pop af
+	ret
+; 0x10dcb
 
 Func_10dcb::
 	call Func_112b2
 	ret
 
-Func_10dcf::
+; a = OW_* constant (ow_object)
+; b = direction
+SetOWObjectDirectionWrapper::
 	call SetOWObjectDirection
 	ret
 
@@ -1851,7 +1883,7 @@ Func_10e3c::
 	xor a
 	ld [wd98a], a
 	ld a, [wd989]
-	call Func_10d50
+	call GetOWObjectWithIDWrapper
 	bit 5, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .asm_10e8f
 	call Func_10da7
@@ -1984,7 +2016,7 @@ Func_10ed3:
 
 Func_10eff::
 	push hl
-	call Func_10d50
+	call GetOWObjectWithIDWrapper
 	set 5, [hl] ; OWOBJSTRUCT_FLAGS
 	pop hl
 	ret
@@ -2656,6 +2688,7 @@ Func_112b2:
 	pop af
 	ret
 
+; a = OW_* constant (ow_object)
 ; b = direction
 SetOWObjectDirection:
 	push af
