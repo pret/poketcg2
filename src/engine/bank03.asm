@@ -593,6 +593,84 @@ Func_c477:
 .asm_c4b4
 	ret
 
+FetchNPCDuelist:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld de, NPCDuelistPointers
+.fetch
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .null
+	ld a, [hl]
+	cp c
+	jr nz, .fetch
+	ld de, wCurrentNPCDuelistData
+	ld bc, $c
+	call CopyDataHLtoDE_SaveRegisters
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+.null
+	debug_nop
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+FetchNPCDuelistDeck:
+	push bc
+	push de
+	push hl
+	ld b, a
+	ld de, NPCDuelistPointers
+.fetch_offset
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .null
+	ld c, 5 ; max deck count
+	push hl
+	ld a, 7 ; offset
+	add l
+	ld l, a
+	jr nc, .fetch_deck
+	inc h
+.fetch_deck
+	ld a, [hli]
+	cp b
+	jr z, .got_deck
+	dec c
+	jr nz, .fetch_deck
+	pop hl
+	jr .fetch_offset
+.null
+	debug_nop
+	jr .done
+.got_deck
+	pop hl
+	ld a, [hl]
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0xc50b
+
 SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
 
 Func_c522:
