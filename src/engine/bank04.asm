@@ -1650,33 +1650,6 @@ Func_10cfe:
 	ret
 ; 0x10cff
 
-SECTION "Bank 4@4d5c", ROMX[$4d5c], BANK[$4]
-Func_10d5c:
-	push af
-	ld a, d
-	sla a
-	sla a
-	sla a
-	sla a
-	add $08
-	ld d, a
-	ld a, e
-	sla a
-	sla a
-	sla a
-	sla a
-	add $10
-	ld e, a
-	pop af
-	ret
-; 0x10d77
-SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
-ClearOWObjectWrapper:
-	call ClearOWObject
-	ret
-; 0x10da7
-
-
 SECTION "Bank 4@4d17", ROMX[$4d17], BANK[$4]
 
 Func_10d17:
@@ -1719,9 +1692,25 @@ GetOWObjectSpriteAnimWrapper:
 GetOWObjectSpriteAnimFlags::
 	call _GetOWObjectSpriteAnimFlags
 	ret
-; 0x10d5c
 
-SECTION "Bank 4@4d77", ROMX[$4d77], BANK[$4]
+Func_10d5c:
+	push af
+	ld a, d
+	sla a
+	sla a
+	sla a
+	sla a
+	add $08
+	ld d, a
+	ld a, e
+	sla a
+	sla a
+	sla a
+	sla a
+	add $10
+	ld e, a
+	pop af
+	ret
 
 ; a = OW_* constant
 LoadOWObjectInMap::
@@ -1757,7 +1746,10 @@ LoadOWObjectInMap::
 	ret
 ; 0x10da3
 
-SECTION "Bank 4@4da7", ROMX[$4da7], BANK[$4]
+SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
+ClearOWObjectWrapper:
+	call ClearOWObject
+	ret
 
 Func_10da7::
 	push af
