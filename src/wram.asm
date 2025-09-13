@@ -2167,6 +2167,7 @@ wd552:: ; d552
 wd554:: ; d554
 	ds $1
 
+wCurrentNPCDuelistData:: ; d555
 	ds $c
 
 wd561:: ; d561

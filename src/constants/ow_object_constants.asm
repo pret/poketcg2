@@ -5,42 +5,42 @@
 	const OW_RONALD                ; $03
 	const OW_ISHIHARA              ; $04
 	const OW_IMAKUNI_BLACK         ; $05
-	const OW_TECH_1                ; $06
-	const OW_TECH_2                ; $07
+	const OW_SAM                   ; $06
+	const OW_AARON                 ; $07
 	const OW_PAPPY_1               ; $08
 	const OW_GENE                  ; $09
-	const OW_MANIA_1               ; $0a
-	const OW_YOUNGSTER_1           ; $0b
-	const OW_MAN_1                 ; $0c
+	const OW_MATTHEW               ; $0a
+	const OW_RYAN                  ; $0b
+	const OW_ANDREW                ; $0c
 	const OW_MITCH                 ; $0d
-	const OW_MANIA_2               ; $0e
-	const OW_MANIA_3               ; $0f
-	const OW_LASS3_1               ; $10
+	const OW_MICHAEL               ; $0e
+	const OW_CHRIS                 ; $0f
+	const OW_JESSICA               ; $10
 	const OW_NIKKI                 ; $11
-	const OW_GIRL_1                ; $12
-	const OW_LASS2_1               ; $13
-	const OW_LASS1_1               ; $14
+	const OW_BRITTANY              ; $12
+	const OW_KRISTIN               ; $13
+	const OW_HEATHER               ; $14
 	const OW_RICK                  ; $15
-	const OW_TECH_3                ; $16
-	const OW_TECH_4                ; $17
-	const OW_TECH_5                ; $18
+	const OW_DAVID                 ; $16
+	const OW_JOSEPH                ; $17
+	const OW_ERIK                  ; $18
 	const OW_AMY                   ; $19
 	const OW_AMY_LOUNGE            ; $1a
-	const OW_JOSHUA_1              ; $1b
+	const OW_JOSHUA                ; $1b
 	const OW_SARA                  ; $1c
 	const OW_AMANDA                ; $1d
 	const OW_KEN                   ; $1e
-	const OW_LAD_1                 ; $1f
-	const OW_SPECS_1               ; $20
-	const OW_YOUNGSTER_2           ; $21
+	const OW_JOHN                  ; $1f
+	const OW_ADAM                  ; $20
+	const OW_JONATHAN              ; $21
 	const OW_ISAAC                 ; $22
-	const OW_GIRL_2                ; $23
-	const OW_HOOD_1                ; $24
-	const OW_HOOD_2                ; $25
+	const OW_JENNIFER              ; $23
+	const OW_NICHOLAS              ; $24
+	const OW_BRANDON               ; $25
 	const OW_MURRAY                ; $26
-	const OW_YOUNGSTER_3           ; $27
-	const OW_LAD2                  ; $28
-	const OW_GIRL3                 ; $29
+	const OW_ROBERT                ; $27
+	const OW_DANIEL                ; $28
+	const OW_STEPHANIE             ; $29
 	const OW_COURTNEY              ; $2a
 	const OW_STEVE                 ; $2b
 	const OW_JACK                  ; $2c
@@ -51,23 +51,23 @@
 	const OW_GR_4                  ; $31
 	const OW_GR_5                  ; $32
 	const OW_GR_LAD_1              ; $33
-	const OW_MIDORI_1              ; $34
-	const OW_MORINO_1              ; $35
-	const OW_MIDORI_2              ; $36
-	const OW_MORINO_2              ; $37
+	const OW_MIDORI                ; $34
+	const OW_YUTA                  ; $35
+	const OW_MIYUKI                ; $36
+	const OW_MORINO                ; $37
 	const OW_GR_LASS_1             ; $38
 	const OW_RENNA                 ; $39
 	const OW_ICHIKAWA              ; $3a
 	const OW_CATHERINE             ; $3b
 	const OW_GR_GRANNY_1           ; $3c
-	const OW_MIYAJIMA_1            ; $3d
+	const OW_MIYAJIMA_ALT          ; $3d
 	const OW_JES                   ; $3e
 	const OW_YUKI                  ; $3f
 	const OW_SHOKO                 ; $40
 	const OW_HIDERO                ; $41
 	const OW_SPECS_2               ; $42
-	const OW_MIYAJIMA_2            ; $43
-	const OW_JOSHUA_2              ; $44
+	const OW_MIYAJIMA              ; $43
+	const OW_SENTA                 ; $44
 	const OW_AIRA                  ; $45
 	const OW_KANOKO                ; $46
 	const OW_GODA                  ; $47
@@ -157,7 +157,7 @@
 	const OW_GR_CLERK_8            ; $9b
 	const OW_GR_WOMAN_1            ; $9c
 	const OW_BUTCH_1               ; $9d
-	const OW_CHAP_4                ; $9e
+	const OW_TAP                   ; $9e
 	const OW_GR_CLERK_9            ; $9f
 	const OW_YOUNGSTER_4           ; $a0
 	const OW_GR_CLERK_10           ; $a1
@@ -175,7 +175,7 @@
 	const OW_CAPTURED_SARA         ; $ad
 	const OW_CAPTURED_AMANDA       ; $ae
 	const OW_WARP_SPARKLES         ; $af
-	const OW_LASS2_6               ; $b0
+	const OW_YUI                   ; $b0
 	const OW_IMAKUNI_RED           ; $b1
 	const OW_BUTCH_2               ; $b2
 	const OW_TECH_9                ; $b3

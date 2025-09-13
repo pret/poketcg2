@@ -76,42 +76,42 @@ Data_13005b::
 	dw OWSPRITE_RONALD                ; OW_RONALD
 	dw OWSPRITE_ISHIHARA              ; OW_ISHIHARA
 	dw OWSPRITE_IMAKUNI_BLACK         ; OW_IMAKUNI_BLACK
-	dw OWSPRITE_TECH                  ; OW_TECH_1
-	dw OWSPRITE_TECH                  ; OW_TECH_2
+	dw OWSPRITE_TECH                  ; OW_SAM
+	dw OWSPRITE_TECH                  ; OW_AARON
 	dw OWSPRITE_PAPPY                 ; OW_PAPPY_1
 	dw OWSPRITE_GENE                  ; OW_GENE
-	dw OWSPRITE_MANIA                 ; OW_MANIA_1
-	dw OWSPRITE_YOUNGSTER             ; OW_YOUNGSTER_1
-	dw OWSPRITE_MAN                   ; OW_MAN_1
+	dw OWSPRITE_MANIA                 ; OW_MATTHEW
+	dw OWSPRITE_YOUNGSTER             ; OW_RYAN
+	dw OWSPRITE_MAN                   ; OW_ANDREW
 	dw OWSPRITE_MITCH                 ; OW_MITCH
-	dw OWSPRITE_MANIA                 ; OW_MANIA_2
-	dw OWSPRITE_MANIA                 ; OW_MANIA_3
-	dw OWSPRITE_LASS3                 ; OW_LASS3_1
+	dw OWSPRITE_MANIA                 ; OW_MICHAEL
+	dw OWSPRITE_MANIA                 ; OW_CHRIS
+	dw OWSPRITE_LASS3                 ; OW_JESSICA
 	dw OWSPRITE_NIKKI                 ; OW_NIKKI
-	dw OWSPRITE_GIRL                  ; OW_GIRL1
-	dw OWSPRITE_LASS2                 ; OW_LASS2_1
-	dw OWSPRITE_LASS1                 ; OW_LASS3_1
+	dw OWSPRITE_GIRL                  ; OW_BRITTANY
+	dw OWSPRITE_LASS2                 ; OW_KRISTIN
+	dw OWSPRITE_LASS1                 ; OW_HEATHER
 	dw OWSPRITE_RICK                  ; OW_RICK
-	dw OWSPRITE_TECH                  ; OW_TECH_3
-	dw OWSPRITE_TECH                  ; OW_TECH_4
-	dw OWSPRITE_TECH                  ; OW_TECH_5
+	dw OWSPRITE_TECH                  ; OW_DAVID
+	dw OWSPRITE_TECH                  ; OW_JOSEPH
+	dw OWSPRITE_TECH                  ; OW_ERIK
 	dw OWSPRITE_AMY                   ; OW_AMY
 	dw OWSPRITE_AMY_LOUNGE            ; OW_AMY_LOUNGE
-	dw OWSPRITE_JOSHUA                ; OW_JOSHUA_1
+	dw OWSPRITE_JOSHUA                ; OW_JOSHUA
 	dw OWSPRITE_SARA                  ; OW_SARA
 	dw OWSPRITE_AMANDA                ; OW_AMANDA
 	dw OWSPRITE_KEN                   ; OW_KEN
-	dw OWSPRITE_LAD                   ; OW_LAD_1
-	dw OWSPRITE_SPECS                 ; OW_SPECS_1
-	dw OWSPRITE_YOUNGSTER             ; OW_YOUNGSTER_2
+	dw OWSPRITE_LAD                   ; OW_JOHN
+	dw OWSPRITE_SPECS                 ; OW_ADAM
+	dw OWSPRITE_YOUNGSTER             ; OW_JONATHAN
 	dw OWSPRITE_ISAAC                 ; OW_ISAAC
-	dw OWSPRITE_GIRL                  ; OW_GIRL_2
-	dw OWSPRITE_HOOD                  ; OW_HOOD_1
-	dw OWSPRITE_HOOD                  ; OW_HOOD_2
+	dw OWSPRITE_GIRL                  ; OW_JENNIFER
+	dw OWSPRITE_HOOD                  ; OW_NICHOLAS
+	dw OWSPRITE_HOOD                  ; OW_BRANDON
 	dw OWSPRITE_MURRAY                ; OW_MURRAY
-	dw OWSPRITE_YOUNGSTER             ; OW_YOUNGSTER_3
-	dw OWSPRITE_LAD                   ; OW_LAD_2
-	dw OWSPRITE_GIRL                  ; OW_GIRL_3
+	dw OWSPRITE_YOUNGSTER             ; OW_ROBERT
+	dw OWSPRITE_LAD                   ; OW_DANIEL
+	dw OWSPRITE_GIRL                  ; OW_STEPHANIE
 	dw OWSPRITE_COURTNEY              ; OW_COURTNEY
 	dw OWSPRITE_STEVE                 ; OW_STEVE
 	dw OWSPRITE_JACK                  ; OW_JACK
@@ -122,23 +122,23 @@ Data_13005b::
 	dw OWSPRITE_GR_4                  ; OW_GR_4
 	dw OWSPRITE_GR_5                  ; OW_GR_5
 	dw OWSPRITE_GR_LAD                ; OW_GR_LAD_1
-	dw OWSPRITE_MIDORI                ; OW_MIDORI_1
-	dw OWSPRITE_MORINO                ; OW_MORINO_1
-	dw OWSPRITE_MIDORI                ; OW_MIDORI_2
-	dw OWSPRITE_MORINO                ; OW_MORINO_2
+	dw OWSPRITE_MIDORI                ; OW_MIDORI
+	dw OWSPRITE_MORINO                ; OW_YUTA
+	dw OWSPRITE_MIDORI                ; OW_MIYUKI
+	dw OWSPRITE_MORINO                ; OW_MORINO
 	dw OWSPRITE_GR_LASS               ; OW_GR_LASS_1
 	dw OWSPRITE_RENNA                 ; OW_RENNA
 	dw OWSPRITE_ICHIKAWA              ; OW_ICHIKAWA
 	dw OWSPRITE_CATHERINE             ; OW_CATHERINE
 	dw OWSPRITE_GR_GRANNY             ; OW_GR_GRANNY_1
-	dw OWSPRITE_MIYAJIMA              ; OW_MIYAJIMA_1
+	dw OWSPRITE_MIYAJIMA              ; OW_MIYAJIMA_ALT
 	dw OWSPRITE_JES                   ; OW_JES
 	dw OWSPRITE_YUKI                  ; OW_YUKI
 	dw OWSPRITE_SHOKO                 ; OW_SHOKO
 	dw OWSPRITE_HIDERO                ; OW_HIDERO
 	dw OWSPRITE_SPECS                 ; OW_SPECS_2
-	dw OWSPRITE_MIYAJIMA              ; OW_MIYAJIMA_2
-	dw OWSPRITE_JOSHUA                ; OW_JOSHUA_2
+	dw OWSPRITE_MIYAJIMA              ; OW_MIYAJIMA
+	dw OWSPRITE_JOSHUA                ; OW_SENTA
 	dw OWSPRITE_AIRA                  ; OW_AIRA
 	dw OWSPRITE_KANOKO                ; OW_KANOKO
 	dw OWSPRITE_GODA                  ; OW_GODA
@@ -228,7 +228,7 @@ Data_13005b::
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_8
 	dw OWSPRITE_GR_WOMAN              ; OW_GR_WOMAN_1
 	dw OWSPRITE_BUTCH                 ; OW_BUTCH_1
-	dw OWSPRITE_CHAP                  ; OW_CHAP_4
+	dw OWSPRITE_CHAP                  ; OW_TAP
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_9
 	dw OWSPRITE_YOUNGSTER             ; OW_YOUNGSTER_4
 	dw OWSPRITE_GR_CLERK              ; OW_GR_CLERK_10
@@ -246,7 +246,7 @@ Data_13005b::
 	dw OWSPRITE_CAPTURED_SARA         ; OW_CAPTURED_SARA
 	dw OWSPRITE_CAPTURED_AMANDA       ; OW_CAPTURED_AMANDA
 	dw OWSPRITE_WARP_SPARKLES         ; OW_WARP_SPARKLES
-	dw OWSPRITE_LASS2                 ; OW_LASS2_6
+	dw OWSPRITE_LASS2                 ; OW_YUI
 	dw OWSPRITE_IMAKUNI_RED           ; OW_IMAKUNI_RED
 	dw OWSPRITE_BUTCH                 ; OW_BUTCH_2
 	dw OWSPRITE_TECH                  ; OW_TECH_9

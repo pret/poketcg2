@@ -593,6 +593,84 @@ Func_c477:
 .asm_c4b4
 	ret
 
+FetchNPCDuelist:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld de, NPCDuelistPointers
+.fetch
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .null
+	ld a, [hl]
+	cp c
+	jr nz, .fetch
+	ld de, wCurrentNPCDuelistData
+	ld bc, $c
+	call CopyDataHLtoDE_SaveRegisters
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+.null
+	debug_nop
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+FetchNPCDuelistDeck:
+	push bc
+	push de
+	push hl
+	ld b, a
+	ld de, NPCDuelistPointers
+.fetch_offset
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .null
+	ld c, 5 ; max deck count
+	push hl
+	ld a, 7 ; offset
+	add l
+	ld l, a
+	jr nc, .fetch_deck
+	inc h
+.fetch_deck
+	ld a, [hli]
+	cp b
+	jr z, .got_deck
+	dec c
+	jr nz, .fetch_deck
+	pop hl
+	jr .fetch_offset
+.null
+	debug_nop
+	jr .done
+.got_deck
+	pop hl
+	ld a, [hl]
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0xc50b
+
 SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
 
 Func_c522:
@@ -752,7 +830,117 @@ Data_c651::
 	dbw $0d, $75df ; $72
 	dbw $10, $6ed5 ; $73
 
-SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
+INCLUDE "data/npc_duelists.asm"
+
+Data_cc9b:
+	db $00, $08, $ff
+	db $00, $08, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $09, $ff
+	db $00, $02, $00, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $00, $ff
+	db $00, $02, $02, $ff
+	db $00, $01, $00, $ff
+	db $00, $03, $ff
+	db $00, $02, $02, $ff
+	db $00, $00, $00, $ff
+	db $00, $03, $00, $ff
+	db $00, $01, $ff
+	db $00, $02, $ff
+	db $00, $02, $02, $ff
+	db $00, $04, $02, $ff
+	db $00, $00, $00, $ff
+	db $00, $01, $01, $ff
+	db $00, $02, $ff
+	db $00, $03, $03, $ff
+	db $00, $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $01, $01, $ff
+	db $00, $03, $02, $ff
+	db $00, $03, $02, $ff
+	db $00, $04, $03, $ff
+	db $00, $03, $03, $ff
+	db $00, $00, $ff
+	db $00, $01, $01, $ff
+	db $00, $00, $00, $ff
+	db $00, $03, $03, $ff
+	db $00, $02, $ff
+	db $00, $00, $ff
+	db $00, $04, $04, $ff
+	db $00, $02, $01, $ff
+	db $00, $00, $00, $ff
+	db $00, $06, $05, $ff
+	db $00, $03, $ff
+	db $00, $04, $ff
+	db $00, $00, $ff
+	db $00, $04, $00, $ff
+	db $00, $05, $00, $ff
+	db $00, $05, $01, $ff
+	db $00, $05, $02, $ff
+	db $00, $06, $02, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $ff
+	db $00, $05, $05, $ff
+	db $00, $01, $00, $ff
+	db $00, $02, $ff
+	db $00, $05, $ff
+	db $00, $06, $05, $ff
+	db $00, $06, $05, $ff
+	db $00, $02, $ff
+	db $00, $03, $ff
+	db $00, $06, $ff
+	db $00, $05, $05, $ff
+	db $00, $06, $03, $ff
+	db $00, $06, $04, $ff
+	db $00, $06, $05, $ff
+	db $00, $06, $00, $ff
+	db $00, $06, $01, $ff
+	db $00, $05, $01, $ff
+	db $00, $05, $02, $ff
+	db $00, $06, $06, $ff
+	db $00, $01, $01, $ff
+	db $00, $02, $02, $ff
+	db $00, $03, $03, $ff
+	db $00, $05, $03, $ff
+	db $00, $06, $04, $ff
+	db $00, $06, $06, $ff
+	db $00, $09, $ff
+	db $00, $03, $02, $00, $ff
+	db $00, $03, $02, $ff
+	db $00, $03, $02, $01, $ff
+	db $00, $06, $05, $ff
+	db $01, $02, $00, $01, $02, $03, $04, $05, $06, $ff
+	db $02, $02, $00, $01, $02, $ff
+	db $02, $04, $00, $01, $02, $ff
+	db $02, $04, $00, $01, $02, $03, $ff
+	db $02, $04, $00, $01, $02, $03, $04, $ff
+	db $02, $02, $02, $05, $06, $ff
+	db $02, $04, $01, $02, $05, $06, $ff
+	db $02, $04, $02, $03, $04, $05, $06, $ff
+	db $02, $04, $00, $01, $02, $03, $04, $05, $06, $ff
+	db $00, $0a, $0a, $0a, $ff
+	db $00, $0b, $0a, $0a, $ff
+	db $00, $0c, $0b, $0a, $ff
+	db $00, $0a, $ff
+	db $00, $0b, $ff
+	db $00, $0c, $ff
+	db $00, $00, $ff
+	db $00, $01, $ff
+	db $00, $02, $ff
+	db $00, $05, $ff
+	db $00, $06, $ff
+	db $00, $09, $ff
+
+INCLUDE "data/card_receive_texts.asm"
 
 TextIDs_d171:
 	tx MapMasonLabText         ; OWMAP_MASON_LABORATORY
@@ -785,10 +973,134 @@ TextIDs_d18f:
 	tx MapGRPsychicStrongholdText  ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText         ; OWMAP_GR_CASTLE
-	tx Drew7CardsText          ; $0069, weird
-; 0xd1ab
 
-SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
+NonSpecialPromo_d1a9:
+	; 34 promo cards
+	; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
+	dw ARCANINE_LV34
+	dw PIKACHU_LV16
+	dw PIKACHU_ALT_LV16
+	dw SURFING_PIKACHU_LV13
+	dw SURFING_PIKACHU_ALT_LV13
+	dw ELECTABUZZ_LV20
+	dw SLOWPOKE_LV9
+	dw MEWTWO_ALT_LV60
+	dw MEWTWO_LV60
+	dw MEW_LV8
+	dw JIGGLYPUFF_LV12
+	dw FLYING_PIKACHU_LV12
+	dw IMAKUNI_CARD
+	dw SUPER_ENERGY_RETRIEVAL
+	dw MEWTWO_LV30
+	dw PIKACHU_LV13
+	dw FLYING_PIKACHU_ALT_LV12
+	dw DARK_PERSIAN_ALT_LV28
+	dw MEOWTH_LV14
+	dw COMPUTER_ERROR
+	dw COOL_PORYGON
+	dw HUNGRY_SNORLAX
+	dw VENUSAUR_ALT_LV67
+	dw CHARIZARD_ALT_LV76
+	dw BLASTOISE_ALT_LV52
+	dw FARFETCHD_ALT_LV20
+	dw KANGASKHAN_LV38
+	dw DIGLETT_LV16
+	dw DUGTRIO_LV40
+	dw DRAGONITE_LV43
+	dw MAGIKARP_LV10
+	dw TOGEPI
+	dw MARILL
+	dw MANKEY_ALT_LV7
+
+; two tables from $0e to $6c (without $10, $16, $42, $59, and $62--$66) in ascending order
+Data_d1ed:
+	db $12, $07
+	db $13, $07
+	db $14, $07
+	db $15, $07
+	db $18, $07
+	db $19, $07
+	db $1a, $07
+	db $1c, $07
+	db $1d, $07
+	db $1e, $07
+	db $20, $07
+	db $21, $07
+	db $22, $07
+	db $23, $07
+	db $25, $07
+	db $26, $07
+	db $27, $07
+	db $28, $07
+	db $2a, $07
+	db $2b, $07
+	db $2c, $07
+	db $2e, $07
+	db $2f, $07
+	db $30, $07
+	db $31, $07
+	db $33, $07
+	db $34, $07
+	db $35, $07
+	db $11, $08
+	db $17, $08
+	db $1b, $08
+	db $1f, $08
+	db $24, $08
+	db $29, $08
+	db $2d, $08
+	db $32, $08
+	db $37, $08
+	db $38, $08
+	db $39, $08
+	db $36, $08
+	db $0e, $10
+	db $0f, $10
+	db $3a, $10
+	db $3b, $10
+	db $3c, $10
+	db $3d, $10
+	db $67, $10
+	db $69, $10
+	db $6a, $10
+Data_d24f:
+	db $3e, $07
+	db $3f, $07
+	db $40, $07
+	db $43, $07
+	db $44, $07
+	db $46, $07
+	db $47, $07
+	db $48, $07
+	db $4a, $07
+	db $4b, $07
+	db $4c, $07
+	db $4e, $07
+	db $4f, $07
+	db $51, $07
+	db $52, $07
+	db $53, $07
+	db $54, $07
+	db $41, $08
+	db $45, $08
+	db $49, $08
+	db $4d, $08
+	db $50, $08
+	db $55, $08
+	db $56, $08
+	db $57, $08
+	db $58, $08
+	db $5a, $10
+	db $5b, $10
+	db $5c, $10
+	db $5d, $10
+	db $5e, $10
+	db $5f, $10
+	db $60, $10
+	db $61, $10
+	db $68, $10
+	db $6b, $10
+	db $6c, $10
 
 Func_d299::
 	push af

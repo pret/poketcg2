@@ -476,36 +476,36 @@ MACRO blackbox_promo
 ENDM
 
 BlackboxPromoCards:
-	blackbox_promo .dugtrio_lv40, 0, DUGTRIO_LV40
-	blackbox_promo .mankey_alt_lv7, 1, MANKEY_ALT_LV7
-	blackbox_promo .diglett_lv16, 1, DIGLETT_LV16
-	blackbox_promo .moltres_lv40, 0, MOLTRES_LV40
-	blackbox_promo .arcanine_lv34, 1, ARCANINE_LV34
-	blackbox_promo .nonpromo_charizard_lv76, 0, CHARIZARD_LV76 ; bug, should be CHARIZARD_ALT_LV76
-	blackbox_promo .pikachu_lv13, 1, PIKACHU_LV13
-	blackbox_promo .pikachu_lv16, 0, PIKACHU_LV16
-	blackbox_promo .zapdos_lv68, 0, ZAPDOS_LV68
-	blackbox_promo .pikachu_alt_lv16, 0, PIKACHU_ALT_LV16
-	blackbox_promo .electabuzz_lv20, 1, ELECTABUZZ_LV20
-	blackbox_promo .articuno_lv37, 0, ARTICUNO_LV37
-	blackbox_promo .magikarp_lv10, 1, MAGIKARP_LV10
-	blackbox_promo .blastoise_alt_lv52, 0, BLASTOISE_ALT_LV52
-	blackbox_promo .venusaur_alt_lv67, 0, VENUSAUR_ALT_LV67
-	blackbox_promo .grs_mewtwo, 1, GRS_MEWTWO
-	blackbox_promo .mewtwo_alt_lv60, 0, MEWTWO_ALT_LV60
-	blackbox_promo .mewtwo_lv60, 0, MEWTWO_LV60
-	blackbox_promo .mewtwo_lv30, 1, MEWTWO_LV30
-	blackbox_promo .slowpoke_lv9, 1, SLOWPOKE_LV9
-	blackbox_promo .super_energy_retrieval, 1, SUPER_ENERGY_RETRIEVAL
-	blackbox_promo .dark_persian_alt_lv28, 1, DARK_PERSIAN_ALT_LV28
-	blackbox_promo .jigglypuff_lv12, 0, JIGGLYPUFF_LV12
-	blackbox_promo .kangaskhan_lv38, 0, KANGASKHAN_LV38
-	blackbox_promo .farfetchd_alt_lv20, 1, FARFETCHD_ALT_LV20
-	blackbox_promo .dragonite_lv41, 0, DRAGONITE_LV41
-	blackbox_promo .nonpromo_dragonite_lv45, 1, DRAGONITE_LV45 ; bug, should be DRAGONITE_LV43, though listed in .OtherPromoCards instead
-	blackbox_promo .meowth_lv14, 0, MEOWTH_LV14
-	blackbox_promo .hungry_snorlax, 1, HUNGRY_SNORLAX
-	blackbox_promo .cool_porygon, 1, COOL_PORYGON
+	blackbox_promo .dugtrio_lv40, FALSE, DUGTRIO_LV40
+	blackbox_promo .mankey_alt_lv7, TRUE, MANKEY_ALT_LV7
+	blackbox_promo .diglett_lv16, TRUE, DIGLETT_LV16
+	blackbox_promo .moltres_lv40, FALSE, MOLTRES_LV40
+	blackbox_promo .arcanine_lv34, TRUE, ARCANINE_LV34
+	blackbox_promo .nonpromo_charizard_lv76, FALSE, CHARIZARD_LV76 ; bug, should be CHARIZARD_ALT_LV76
+	blackbox_promo .pikachu_lv13, TRUE, PIKACHU_LV13
+	blackbox_promo .pikachu_lv16, FALSE, PIKACHU_LV16
+	blackbox_promo .zapdos_lv68, FALSE, ZAPDOS_LV68
+	blackbox_promo .pikachu_alt_lv16, FALSE, PIKACHU_ALT_LV16
+	blackbox_promo .electabuzz_lv20, TRUE, ELECTABUZZ_LV20
+	blackbox_promo .articuno_lv37, FALSE, ARTICUNO_LV37
+	blackbox_promo .magikarp_lv10, TRUE, MAGIKARP_LV10
+	blackbox_promo .blastoise_alt_lv52, FALSE, BLASTOISE_ALT_LV52
+	blackbox_promo .venusaur_alt_lv67, FALSE, VENUSAUR_ALT_LV67
+	blackbox_promo .grs_mewtwo, TRUE, GRS_MEWTWO
+	blackbox_promo .mewtwo_alt_lv60, FALSE, MEWTWO_ALT_LV60
+	blackbox_promo .mewtwo_lv60, FALSE, MEWTWO_LV60
+	blackbox_promo .mewtwo_lv30, TRUE, MEWTWO_LV30
+	blackbox_promo .slowpoke_lv9, TRUE, SLOWPOKE_LV9
+	blackbox_promo .super_energy_retrieval, TRUE, SUPER_ENERGY_RETRIEVAL
+	blackbox_promo .dark_persian_alt_lv28, TRUE, DARK_PERSIAN_ALT_LV28
+	blackbox_promo .jigglypuff_lv12, FALSE, JIGGLYPUFF_LV12
+	blackbox_promo .kangaskhan_lv38, FALSE, KANGASKHAN_LV38
+	blackbox_promo .farfetchd_alt_lv20, TRUE, FARFETCHD_ALT_LV20
+	blackbox_promo .dragonite_lv41, FALSE, DRAGONITE_LV41
+	blackbox_promo .nonpromo_dragonite_lv45, TRUE, DRAGONITE_LV45 ; bug, should be DRAGONITE_LV43, though listed in .OtherPromoCards instead
+	blackbox_promo .meowth_lv14, FALSE, MEOWTH_LV14
+	blackbox_promo .hungry_snorlax, TRUE, HUNGRY_SNORLAX
+	blackbox_promo .cool_porygon, TRUE, COOL_PORYGON
 	dw 0 ; end
 
 .dugtrio_lv40
