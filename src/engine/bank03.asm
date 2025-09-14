@@ -919,9 +919,17 @@ GetReceivedCardText:
 	pop bc
 	pop af
 	ret
-; 0xc63e
 
-SECTION "Bank 3@4651", ROMX[$4651], BANK[$3]
+Func_c63e:
+	call GetReceivedCardText
+	farcall Func_1d53a
+	ret
+
+Func_c646:
+	call AddCardToCollection
+	call GetReceivedCardText
+	farcall Func_1d53a
+	ret
 
 ; bank and offset table of data for Func_d421 and Func_33b7
 Data_c651::
