@@ -1,9 +1,9 @@
 ; bytes 1, 2: card ID
 ; bytes 3, 4: card name (long)
 ; bytes 5, 6: card name (short, but mostly the same as long)
-; bytes 7, 8: receiving text
+; bytes 7, 8: received text
 ; byte 9: alt flag (for Legendaries)
-; bytes 10, 11: alt receiving text
+; bytes 10, 11: alt received text
 ReceiveCardTextPointers:
 .grs_mewtwo_header
 	dw GRS_MEWTWO

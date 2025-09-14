@@ -707,7 +707,219 @@ Func_c53e:
 	pop bc
 	pop af
 	ret
-; 0xc54d
+
+GetReceivingCardLongName:
+; de == receiving card?
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.fetch_loop
+; bc = card ID
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok ; redundant
+	ld a, c
+	cp $ff
+.ok
+; fallback if bc == $ffff terminator
+; check de against bc
+	jr z, .fallback
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+; proceed if de == bc, loop otherwise
+; table_width == 11, already read 2
+	jr z, .fetch_name
+	ld a, 11 - 2
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .fetch_loop
+.fallback
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], 0
+	ld bc, 0
+	jr .got_name
+.fetch_name
+; bc = long card name, fallback if 0
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .fallback
+	; fallthrough
+.got_name
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+
+GetReceivingCardShortName:
+; the first half is a dupe of the above one
+; de == receiving card?
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.fetch_loop
+; bc = card ID
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok ; redundant
+	ld a, c
+	cp $ff
+.ok
+; fallback if bc == $ffff terminator
+; check de against bc
+	jr z, .fallback
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+; proceed if de == bc, loop otherwise
+; table_width == 11, already read 2
+	jr z, .fetch_short_name
+	ld a, 11 - 2
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .fetch_loop
+.fallback
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], 0
+	ld bc, 0
+	jr .got_short_name
+.fetch_short_name
+; bc = short card name, fallback if 0
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .fallback
+	; fallthrough
+.got_short_name
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+
+GetReceivedCardText:
+; the first half is a dupe of the above two
+; de == receiving card?
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.fetch_loop
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok
+	ld a, c
+	cp $ff
+.ok
+; fallback if bc == $ffff terminator
+; check de against bc
+	jr z, .fallback
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+; proceed if de == bc, loop otherwise
+; table_width == 11, already read 2
+	jr z, .fetch_received_text
+	ld a, 11 - 2
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .fetch_loop
+.fallback
+	push hl
+	call GetReceivingCardShortName
+	call LoadTxRam2
+	pop hl
+	call LoadCardDataToBuffer1_FromCardID
+	ldtx bc, ReceivedPromotionalCardText_2
+	ld a, [wLoadedCard1Set]
+	cp 7
+	jr z, .got_text
+	ldtx bc, ReceivedCardText_2
+	jr .got_text
+.fetch_received_text
+; bc = received text
+	REPT 4
+		inc hl
+	ENDR
+	push hl
+	call GetReceivingCardShortName
+	call LoadTxRam2
+	pop hl
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	; check alt flag
+	ld a, [hli]
+	or a
+	jr z, .got_text
+	call GetEventValue
+	jr z, .got_text
+	; fetch alt text
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	; fallthrough
+.got_text
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xc63e
 
 SECTION "Bank 3@4651", ROMX[$4651], BANK[$3]
 
