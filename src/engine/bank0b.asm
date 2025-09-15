@@ -1,20 +1,20 @@
 SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
 Data_2c000:
-    db MAP_ISHIHARAS_HOUSE
-    dba Data_2c09b
-    db $23
+	db MAP_ISHIHARAS_HOUSE
+	dba Data_2c09b
+	db $23
 
 SECTION "Bank b@409b", ROMX[$409b], BANK[$b]
 Data_2c09b:
-    dbw $06, Func_2c0c1
-    dbw $08, Func_2c0f1
-    dbw $07, Func_2c0c8
-    dbw $02, Func_2c0d1
-    dbw $0c, Func_2c101
-    dbw $0d, Func_2c12f
-    dbw $0b, Func_2c13e
-    dbw $01, Func_2c0b4
-    db $ff
+	dbw $06, Func_2c0c1
+	dbw $08, Func_2c0f1
+	dbw $07, Func_2c0c8
+	dbw $02, Func_2c0d1
+	dbw $0c, Func_2c101
+	dbw $0d, Func_2c12f
+	dbw $0b, Func_2c13e
+	dbw $01, Func_2c0b4
+	db $ff
 
 Func_2c0b4:
 	call Func_2c1b8
@@ -160,22 +160,22 @@ Func_2c1b8:
 
 SECTION "Bank b@4479", ROMX[$4479], BANK[$b]
 Data_2c479:
-    db MAP_LIGHTNING_CLUB_1
-    dba Data_2c4c5
-    db $0c
+	db MAP_LIGHTNING_CLUB_1
+	dba Data_2c4c5
+	db $0c
 
 
 SECTION "Bank b@44c5", ROMX[$44c5], BANK[$b]
 
 Data_2c4c5:
-    dbw $06, Func_2c4fa
-    dbw $08, Func_2c560
-    dbw $09, Func_2c568
-    dbw $07, Func_2c501
-    dbw $01, Func_2c4db
-    dbw $02, Func_2c50a
-    dbw $01, Func_2c4db
-    db $ff
+	dbw $06, Func_2c4fa
+	dbw $08, Func_2c560
+	dbw $09, Func_2c568
+	dbw $07, Func_2c501
+	dbw $01, Func_2c4db
+	dbw $02, Func_2c50a
+	dbw $01, Func_2c4db
+	db $ff
 
 Func_2c4db:
 	ld a, EVENT_GOT_PIKACHU_COIN
@@ -199,7 +199,7 @@ Func_2c4fa:
 	ld hl, $447e
 	call Func_324d
 	ret
-    
+
 Func_2c501:
 	ld hl, $4491
 	call Func_3205
@@ -276,23 +276,23 @@ Func_2c568:
 SECTION "Bank b@4936", ROMX[$4936], BANK[$b]
 
 Data_2c936:
-    db MAP_PSYCHIC_CLUB_ENTRANCE
-    dba Data_2c990
-    db $09
+	db MAP_PSYCHIC_CLUB_ENTRANCE
+	dba Data_2c990
+	db $09
 
 
 SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
 Data_2c990:
-    dbw $00, Func_2c9ac
-    dbw $06, Func_2c9d8
-    dbw $08, Func_2ca14
-    dbw $09, Func_2ca1c
-    dbw $07, Func_2c9df
-    dbw $02, Func_2c9e8
-    dbw $0b, Func_2ca22
-    dbw $01, Func_2c9b8
-    dbw $10, Func_2c9c8
-    db $ff
+	dbw $00, Func_2c9ac
+	dbw $06, Func_2c9d8
+	dbw $08, Func_2ca14
+	dbw $09, Func_2ca1c
+	dbw $07, Func_2c9df
+	dbw $02, Func_2c9e8
+	dbw $0b, Func_2ca22
+	dbw $01, Func_2c9b8
+	dbw $10, Func_2c9c8
+	db $ff
 
 Func_2c9ac:
 	call Func_3332
@@ -312,6 +312,7 @@ Func_2c9b8:
 	scf
 	ccf
 	ret
+
 Func_2c9c8:
 	call PsychicClubEntranceShouldRonaldAppear
 	jr nc, .asm_2c9cf
@@ -328,6 +329,7 @@ Func_2c9d8:
 	ld hl, $493b
 	call Func_324d
 	ret
+
 Func_2c9df:
 	ld hl, $4984
 	call Func_3205
@@ -366,6 +368,7 @@ Func_2ca14:
 	call Func_328c
 	scf
 	ret
+	
 Func_2ca1c:
 	farcall Func_341c4
 	scf
@@ -462,7 +465,7 @@ Func_2cabb:
 	ret
 
 ; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use 
+; return a = which meeting script to use
 PsychicClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_RONALD_MET
 	farcall GetVarValue
@@ -498,21 +501,21 @@ PsychicClubEntranceShouldRonaldAppear:
 	ret
 
 Data_2cafa:
-    db MAP_PSYCHIC_CLUB_LOBBY
-    dba Data_2cb92
-    db $09
+	db MAP_PSYCHIC_CLUB_LOBBY
+	dba Data_2cb92
+	db $09
 
 SECTION "Bank b@4b92", ROMX[$4b92], BANK[$b]
 
 Data_2cb92:
-    dbw $06, Func_2cbcf
-    dbw $08, Func_2cbdf
-    dbw $07, Func_2cbd6
-    dbw $09, Func_2cbef
-    dbw $0b, Func_2cbf5
-    dbw $01, Func_2cba8
-    dbw $10, Func_2cbba
-    db $ff
+	dbw $06, Func_2cbcf
+	dbw $08, Func_2cbdf
+	dbw $07, Func_2cbd6
+	dbw $09, Func_2cbef
+	dbw $0b, Func_2cbf5
+	dbw $01, Func_2cba8
+	dbw $10, Func_2cbba
+	db $ff
 
 Func_2cba8:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -590,13 +593,13 @@ Data_2cd23:
 SECTION "Bank b@4d6f", ROMX[$4d6f], BANK[$b]
 
 Data_2cd6f:
-    dbw $06, Func_2cd92
-    dbw $08, Func_2ce11
-    dbw $09, Func_2ce19
-    dbw $07, Func_2cd99
-    dbw $02, Func_2cda2
-    dbw $01, Func_2cd82
-    db $ff
+	dbw $06, Func_2cd92
+	dbw $08, Func_2ce11
+	dbw $09, Func_2ce19
+	dbw $07, Func_2cd99
+	dbw $02, Func_2cda2
+	dbw $01, Func_2cd82
+	db $ff
 
 Func_2cd82:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -939,7 +942,7 @@ Func_2d97f:
 	scf
 	ccf
 	ret
-	
+
 Func_2d98f:
 	call Func_2d9f4
 	jr nc, .asm_2d996
@@ -1061,7 +1064,7 @@ Func_2dace:
 	scf
 	ccf
 	ret
-	
+
 Func_2dade:
 	ld hl, $5a2b
 	call Func_324d
@@ -1642,6 +1645,7 @@ Func_2e945:
 	scf
 	ccf
 	ret
+
 Func_2e955:
 	ld hl, $68eb
 	call Func_324d
@@ -1718,7 +1722,6 @@ Func_2ed17:
 	scf
 	ccf
 	ret
-; 0x2ed27
 
 Func_2ed27:
 	call Func_2eda8

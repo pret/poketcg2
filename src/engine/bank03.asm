@@ -181,50 +181,42 @@ Func_c163:
 	ld a, $00
 	ld [wd582], a
 	ret
-; 0xc169
 
 Func_c169:
 	ld a, $0a
 	call WaitAFrames
 	ret
-; 0xc16f
 
 Func_c16f:
 	ld a, $0c
 	call PlaySFX
 	ret
-; 0xc175
 
 Func_c175:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-; 0xc17d
 
 Func_c17d:
 	ld a, $01
 	call Func_338f
 	ret
-; 0xc183
 
 Func_c183:
 	ld a, $01
 	call Func_33a3
 	ret
-; 0xc189
 
 Func_c189:
 	ld a, $00
 	ld [wd582], a
 	ret
-; 0xc18f
 
 Func_c18f:
 	farcall PlayCurrentSong
 	ld a, $00
 	ld [wd582], a
 	ret
-; 0xc199
 
 Func_c199:
 	ld a, $00
@@ -1012,7 +1004,7 @@ Data_c651::
 	dba Data_2da26 ; $11
 	dba Data_2dc9f ; $12
 	dba Data_2e06d ; $13
-	dbw $0f, $4ee6 ; 
+	dbw $0f, $4ee6 ;
 	dba Data_2e163 ; $15
 	dba Data_2e4b7 ; $16
 	dba Data_2e63f ; $17

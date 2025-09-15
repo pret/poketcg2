@@ -1774,7 +1774,6 @@ Func_10db8:
 	pop de
 	pop af
 	ret
-; 0x10dcb
 
 Func_10dcb::
 	call Func_112b2
