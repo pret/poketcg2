@@ -368,7 +368,7 @@ Func_2ca14:
 	call Func_328c
 	scf
 	ret
-	
+
 Func_2ca1c:
 	farcall Func_341c4
 	scf
@@ -484,7 +484,7 @@ PsychicClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 .third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $02
 	jr nz, .asm_2cada
 	ld a, $01
@@ -492,7 +492,7 @@ PsychicClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 .fourth_meeting ; after 4 GR pieces. Ronald tells you he got the stolen cards back
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $04
 	jr nz, .asm_2cada
 	ld a, $02
@@ -1024,7 +1024,7 @@ Func_2d9f4:
 	ccf
 	ret
 .asm_2da0c
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $02
 	jr nz, .asm_2da06
 	ld a, $01
@@ -1032,7 +1032,7 @@ Func_2d9f4:
 	ccf
 	ret
 .asm_2da19
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $04
 	jr nz, .asm_2da06
 	ld a, $02
@@ -1292,7 +1292,7 @@ Func_2e131:
 	ccf
 	ret
 .asm_2e149
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $02
 	jr nz, .asm_2e143
 	ld a, $01
@@ -1300,7 +1300,7 @@ Func_2e131:
 	ccf
 	ret
 .asm_2e156
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $04
 	jr nz, .asm_2e143
 	ld a, $02
@@ -1498,7 +1498,7 @@ Func_2e59e:
 	ccf
 	ret
 .asm_2e5b6
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $02
 	jr nz, .asm_2e5b0
 	ld a, $01
@@ -1506,7 +1506,7 @@ Func_2e59e:
 	ccf
 	ret
 .asm_2e5c3
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $04
 	jr nz, .asm_2e5b0
 	ld a, $02
@@ -2130,7 +2130,7 @@ Func_2f5ca:
 	ccf
 	ret
 .asm_2f5e2
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $02
 	jr nz, .asm_2f5dc
 	ld a, $01
@@ -2138,7 +2138,7 @@ Func_2f5ca:
 	ccf
 	ret
 .asm_2f5ef
-	farcall CountGRCoinPieces
+	farcall CountGRCoinPiecesObtained
 	cp $04
 	jr nz, .asm_2f5dc
 	ld a, $02
