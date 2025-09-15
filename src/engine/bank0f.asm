@@ -160,7 +160,7 @@ Prologue::
 	pop bc
 	; override direction
 	ld a, OW_GR_BLIMP
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 	jr c, .loop
 	ret
 

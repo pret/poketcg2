@@ -1685,8 +1685,8 @@ GetOWObjectWithIDWrapper:
 	call GetOWObjectWithID
 	ret
 
-GetOWObjectSpriteAnimWrapper:
-	call GetOWObjectSpriteAnim
+GetOWObjectSpriteAnim:
+	call _GetOWObjectSpriteAnim
 	ret
 
 GetOWObjectSpriteAnimFlags::
@@ -1747,7 +1747,7 @@ LoadOWObjectInMap::
 ; 0x10da3
 
 SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
-ClearOWObjectWrapper:
+_ClearOWObject:
 	call ClearOWObject
 	ret
 
@@ -1755,7 +1755,7 @@ Func_10da7::
 	push af
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnimWrapper
+	call GetOWObjectSpriteAnim
 	call GetSpriteAnimPosition
 	call Func_10b81
 	pop hl
@@ -1767,7 +1767,7 @@ Func_10db8:
 	push de
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnimWrapper
+	call GetOWObjectSpriteAnim
 	call Func_10d5c
 	call SetSpriteAnimPosition
 	pop hl
@@ -1781,8 +1781,8 @@ Func_10dcb::
 
 ; a = OW_* constant (ow_object)
 ; b = direction
-SetOWObjectDirectionWrapper::
-	call SetOWObjectDirection
+SetOWObjectDirection::
+	call _SetOWObjectDirection
 	ret
 
 Func_10dd3::
@@ -2602,7 +2602,7 @@ GetOWObjectWithID:
 	pop af
 	ret
 
-GetOWObjectSpriteAnim:
+_GetOWObjectSpriteAnim:
 	push af
 	inc hl
 	inc hl
@@ -2621,7 +2621,7 @@ _GetOWObjectSpriteAnimFlags:
 	srl b
 	srl b
 	srl b
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	ld a, [hl]
 	and $f0
 	or b
@@ -2657,7 +2657,7 @@ ClearOWObject:
 	xor a
 	ld [hli], a ; OWOBJSTRUCT_FLAGS
 	ld [hld], a ; OWOBJSTRUCT_ID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10b71
 	pop hl
 	pop af
@@ -2667,7 +2667,7 @@ GetOWObjectPosition:
 	push af
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call GetSpriteAnimPosition
 	call ConvertToOWObjectPosition
 	pop hl
@@ -2680,7 +2680,7 @@ SetOWObjectPosition:
 	push de
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call ConvertToSpriteAnimPosition
 	call SetSpriteAnimPosition
 	pop hl
@@ -2692,7 +2692,7 @@ Func_112b2:
 	push af
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10a5c
 	pop hl
 	pop af
@@ -2700,12 +2700,12 @@ Func_112b2:
 
 ; a = OW_* constant (ow_object)
 ; b = direction
-SetOWObjectDirection:
+_SetOWObjectDirection:
 	push af
 	push bc
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call SetSpriteAnimDirection
 	pop hl
 	pop bc
@@ -2715,7 +2715,7 @@ SetOWObjectDirection:
 SetOWObjectSpriteAnimating:
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call SetSpriteAnimAnimating
 	pop hl
 	ret
@@ -2723,7 +2723,7 @@ SetOWObjectSpriteAnimating:
 ResetOWObjectSpriteAnimating:
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call ResetSpriteAnimAnimating
 	pop hl
 	ret
@@ -2731,7 +2731,7 @@ ResetOWObjectSpriteAnimating:
 Func_112e8:
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10abc
 	pop hl
 	ret
@@ -2739,7 +2739,7 @@ Func_112e8:
 Func_112f4:
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10ab9
 	pop hl
 	ret
@@ -2748,7 +2748,7 @@ Func_11300:
 	push af
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10a83
 	pop hl
 	pop af
@@ -2760,7 +2760,7 @@ Func_1130e:
 	push de
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10a94
 	pop hl
 	pop de
@@ -2772,7 +2772,7 @@ Func_11320:
 	push af
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10aa8
 	pop hl
 	pop af
@@ -2786,7 +2786,7 @@ Func_1132e:
 	push de
 	push hl
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	bit SPRITEANIMSTRUCT_MOVE_F, [hl]
 	jr nz, .done
 	bit 7, b
@@ -2836,7 +2836,7 @@ Func_11384::
 	bit 6, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .next
 	push hl
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	bit SPRITEANIMSTRUCT_MOVE_F, [hl]
 	pop hl
 	jr nz, .next ; is moving
@@ -2984,7 +2984,7 @@ Func_11424:
 SetOWObjectAsScrollTarget:
 	ld [wScrollTargetObject], a
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call StoreScrollTargetObjectPtr
 	ret
 ; 0x1145d
@@ -2993,7 +2993,7 @@ SECTION "Bank 4@5471", ROMX[$5471], BANK[$4]
 
 Func_11471:
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call Func_10d17
 	ret
 ; 0x1147b
@@ -3002,7 +3002,7 @@ SECTION "Bank 4@5485", ROMX[$5485], BANK[$4]
 
 SetOWObjectFrameset:
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	call SetAndInitSpriteAnimFrameset
 	ret
 ; 0x1148f
@@ -3011,7 +3011,7 @@ SECTION "Bank 4@5499", ROMX[$5499], BANK[$4]
 
 SetOWObjectFrameDuration:
 	call GetOWObjectWithID
-	call GetOWObjectSpriteAnim
+	call _GetOWObjectSpriteAnim
 	ld a, c
 	call SetSpriteAnimFrameDuration
 	ret

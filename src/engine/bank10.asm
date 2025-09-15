@@ -543,7 +543,7 @@ DoGRShipMovement:
 	farcall SetOWObjectTargetPosition
 	ld a, OW_GR_BLIMP
 	pop bc
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 
 ; does movement every 4 frames
 ; can be skipped with B button

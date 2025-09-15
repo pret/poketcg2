@@ -379,7 +379,7 @@ Func_328c::
 	push af
 	call Func_3195
 	pop af
-	farcall SetOWObjectDirectionWrapper
+	farcall SetOWObjectDirection
 	pop hl
 	call Func_344c
 	ret
