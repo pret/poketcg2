@@ -1747,6 +1747,7 @@ LoadOWObjectInMap::
 ; 0x10da3
 
 SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
+
 _ClearOWObject:
 	call ClearOWObject
 	ret

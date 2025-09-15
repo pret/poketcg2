@@ -1,10 +1,12 @@
 SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
+
 Data_2c000:
 	db MAP_ISHIHARAS_HOUSE
 	dba Data_2c09b
 	db $23
 
 SECTION "Bank b@409b", ROMX[$409b], BANK[$b]
+
 Data_2c09b:
 	dbw $06, Func_2c0c1
 	dbw $08, Func_2c0f1
@@ -159,6 +161,7 @@ Func_2c1b8:
 ; 0x2c1db
 
 SECTION "Bank b@4479", ROMX[$4479], BANK[$b]
+
 Data_2c479:
 	db MAP_LIGHTNING_CLUB_1
 	dba Data_2c4c5
@@ -282,6 +285,7 @@ Data_2c936:
 
 
 SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
+
 Data_2c990:
 	dbw $00, Func_2c9ac
 	dbw $06, Func_2c9d8
@@ -585,6 +589,7 @@ Func_2cbf5:
 	ret
 
 SECTION "Bank b@4d23", ROMX[$4d23], BANK[$b]
+
 Data_2cd23:
 	db MAP_PSYCHIC_CLUB
 	dba Data_2cd6f
@@ -629,6 +634,7 @@ Func_2cda2:
 ; TODO: function hangs when running tcg2disasm.py
 
 SECTION "Bank b@4e11", ROMX[$4e11], BANK[$b]
+
 Func_2ce11:
 	ld hl, $4d5a
 	call Func_328c
@@ -923,6 +929,7 @@ Data_2d930:
 	db $09
 
 SECTION "Bank b@596c", ROMX[$596c], BANK[$b]
+
 Data_2d96c:
 	dbw $06, Func_2d99f
 	dbw $09, Func_2d9d2
@@ -992,6 +999,7 @@ Func_2d9d2:
 	ret
 
 SECTION "Bank b@59d8", ROMX[$59d8], BANK[$b]
+
 Func_2d9d8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
@@ -1174,6 +1182,7 @@ Func_2dd9c:
 ; 0x2dda2
 
 SECTION "Bank b@5ef2", ROMX[$5ef2], BANK[$b]
+
 Func_2def2:
 	dec b
 	xor c
@@ -1260,6 +1269,7 @@ Func_2e10f:
 ; 0x2e115
 
 SECTION "Bank b@6115", ROMX[$6115], BANK[$b]
+
 Func_2e115:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
@@ -1376,6 +1386,7 @@ Func_2e206:
 ; 0x2e211
 
 SECTION "Bank b@64b7", ROMX[$64b7], BANK[$b]
+
 Data_2e4b7:
 	db MAP_SCIENCE_CLUB_ENTRANCE
 	dba Data_2e4ff
@@ -1537,6 +1548,7 @@ Data_2e63f:
 	db $09
 
 SECTION "Bank b@66e1", ROMX[$66e1], BANK[$b]
+
 Data_2e6e1:
 	dbw $06, Func_2e71e
 	dbw $08, Func_2e72e
@@ -1604,6 +1616,7 @@ Func_2e73e:
 ; 0x2e749
 
 SECTION "Bank b@6752", ROMX[$6752], BANK[$b]
+
 Func_2e752:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
@@ -1620,12 +1633,14 @@ Func_2e752:
 ; 0x2e76e
 
 SECTION "Bank b@68e6", ROMX[$68e6], BANK[$b]
+
 Data_2e8e6:
 	db MAP_SCIENCE_CLUB
 	dba Data_2e932
 	db $0e
 
 SECTION "Bank b@6932", ROMX[$6932], BANK[$b]
+
 Data_2e932:
 	dbw $06, Func_2e955
 	dbw $08, Func_2e99f
@@ -1703,6 +1718,7 @@ Data_2ecc8:
 	db $09
 
 SECTION "Bank b@6d04", ROMX[$6d04], BANK[$b]
+
 Data_2ed04:
 	dbw $06, Func_2ed37
 	dbw $02, Func_2ed3e
@@ -1825,6 +1841,7 @@ Data_2edc5:
 	db $09
 
 SECTION "Bank b@6e5d", ROMX[$6e5d], BANK[$b]
+
 Data_2ee5d:
 	dbw $06, Func_2ee9a
 	dbw $08, Func_2eeaa
@@ -1892,6 +1909,7 @@ Func_2eeba:
 ; 0x2eec5
 
 SECTION "Bank b@6ece", ROMX[$6ece], BANK[$b]
+
 Func_2eece:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
@@ -1915,6 +1933,7 @@ Data_2f012:
 	db $0c
 
 SECTION "Bank b@7072", ROMX[$7072], BANK[$b]
+
 Data_2f072:
 	dbw $06, Func_2f095
 	dbw $08, Func_2f0f7
@@ -2025,6 +2044,7 @@ Data_2f4ff:
 	db $09
 
 SECTION "Bank b@753b", ROMX[$753b], BANK[$b]
+
 Data_2f53b:
 	dbw $06, Func_2f56e
 	dbw $09, Func_2f5a8
@@ -2152,6 +2172,7 @@ Data_2f5fc:
 	db $09
 
 SECTION "Bank b@768a", ROMX[$768a], BANK[$b]
+
 Data_2f68a:
 	dbw $06, Func_2f6c7
 	dbw $08, Func_2f6d7
@@ -2237,6 +2258,7 @@ Data_2f7ca:
 	db $0e
 
 SECTION "Bank b@783b", ROMX[$783b], BANK[$b]
+
 Data_2f83b:
 	dbw $06, Func_2f85e
 	dbw $08, Func_2f8c8
@@ -2274,6 +2296,7 @@ Func_2f86e:
 
 
 SECTION "Bank b@78c8", ROMX[$78c8], BANK[$b]
+
 Func_2f8c8:
 	ld hl, $7801
 	call Func_328c
@@ -2301,6 +2324,7 @@ Data_2fcd5:
 	db $09
 
 SECTION "Bank b@7d66", ROMX[$7d66], BANK[$b]
+
 Data_2fd66:
 	dbw $06, Func_2fd83
 	dbw $08, Func_2fd93
