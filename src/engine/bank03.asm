@@ -183,12 +183,12 @@ Func_c163:
 	ret
 
 Func_c169:
-	ld a, $0a
+	ld a, 10
 	call WaitAFrames
 	ret
 
 Func_c16f:
-	ld a, $0c
+	ld a, SFX_0C
 	call PlaySFX
 	ret
 
@@ -722,18 +722,18 @@ LoadNPCDuelistDeck:
 	ret
 
 ; return - a : number of coin pieces obtained
-CountGRCoinPieces:
+CountGRCoinPiecesObtained:
 	push bc
-	ld b, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT ; $0c
-	ld c, $00 ; counter for how many pieces obtained
-.loop ; loop 4 times, from $0c to $0f
+	ld b, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	ld c, 0 ; counter for how many pieces obtained
+.loop
 	ld a, b
 	call GetEventValue
-	jr z, .asm_c517
+	jr z, .not_obtained
 	inc c ; obtained this piece
-.asm_c517
+.not_obtained
 	ld a, b
-	cp EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT ; $0f
+	cp EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	jr z, .done
 	inc b
 	jr .loop
