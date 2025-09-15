@@ -304,7 +304,7 @@ bit_ops_table = [
 	"set 7, b",  "set 7, c",  "set 7, d",  "set 7, e",  "set 7, h",  "set 7, l",  "set 7, [hl]",  "set 7, a"     # $f8 - $ff
 ]
 
-unconditional_returns = [0xc9, 0xd9, 0xe7] # e7 begins a script, which is not handled by tcgdisasm
+unconditional_returns = [0xc9, 0xd9]
 absolute_jumps = [0xc3, 0xc2, 0xca, 0xd2, 0xda]
 call_commands = [0xcd, 0xc4, 0xcc, 0xd4, 0xdc, 0xdf, 0xef]
 relative_jumps = [0x18, 0x20, 0x28, 0x30, 0x38]
@@ -1380,8 +1380,8 @@ class Disassembler(object):
 			# stop processing regardless of function end if we've passed the stop offset and the hard stop (dry run) flag is set
 			if hard_stop and offset >= stop_offset:
 				break
-			# check if this is the end of the function, or we're processing data
-			elif (opcode_byte in unconditional_jumps + unconditional_returns) or is_data:
+			# check if this is the end of the function, or we're processing data (Func_33f2 begins ow scripting)
+			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (opcode_byte in call_commands and target_label == "Func_33f2") or is_data:
 				# define data if it is located at the current offset
 				if local_offset not in byte_labels.keys() and local_offset in data_tables.keys() and created_but_unused_labels_exist(data_tables) and parse_data:
 					is_data = True
