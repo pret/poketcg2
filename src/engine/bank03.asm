@@ -884,7 +884,7 @@ GetReceivedCardText:
 	call LoadCardDataToBuffer1_FromCardID
 	ldtx bc, ReceivedPromotionalCardText_2
 	ld a, [wLoadedCard1Set]
-	cp 7
+	cp PROMOTIONAL
 	jr z, .got_text
 	ldtx bc, ReceivedCardText_2
 	jr .got_text

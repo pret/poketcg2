@@ -5314,9 +5314,9 @@ Func_1ad41:
 	pop de
 	call LoadCardDataToBuffer1_FromCardID
 	call PauseSong
-	ld a, $30
+	ld a, MUSIC_MEDAL
 	call PlaySong
-	ld a, $c2
+	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
 	pop hl
 	farcall _DisplayCardDetailScreen
