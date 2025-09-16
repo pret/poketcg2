@@ -1254,7 +1254,7 @@ DialogKamiyaText:
 	textfw "カミヤ"
 	done
 
-DialogGotaText:
+DialogGodaText:
 	textfw "ゴウダ"
 	done
 

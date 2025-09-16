@@ -1,102 +1,102 @@
 NPCDuelistPointers:
-	dw SamNPCDuelistHeader          ; $00
-	dw AaronNPCDuelistHeader        ; $01
-	dw NikkiNPCDuelistHeader        ; $02
-	dw BrittanyNPCDuelistHeader     ; $03
-	dw KristinNPCDuelistHeader      ; $04
-	dw HeatherNPCDuelistHeader      ; $05
-	dw AmyNPCDuelistHeader          ; $06
-	dw JoshuaNPCDuelistHeader       ; $07
-	dw SaraNPCDuelistHeader         ; $08
-	dw AmandaNPCDuelistHeader       ; $09
-	dw GeneNPCDuelistHeader         ; $0a
-	dw MatthewNPCDuelistHeader      ; $0b
-	dw RyanNPCDuelistHeader         ; $0c
-	dw AndrewNPCDuelistHeader       ; $0d
-	dw MitchNPCDuelistHeader        ; $0e
-	dw MichaelNPCDuelistHeader      ; $0f
-	dw ChrisNPCDuelistHeader        ; $10
-	dw JessicaNPCDuelistHeader      ; $11
-	dw RickNPCDuelistHeader         ; $12
-	dw DavidNPCDuelistHeader        ; $13
-	dw JosephNPCDuelistHeader       ; $14
-	dw ErikNPCDuelistHeader         ; $15
-	dw KenNPCDuelistHeader          ; $16
-	dw JohnNPCDuelistHeader         ; $17
-	dw AdamNPCDuelistHeader         ; $18
-	dw JonathanNPCDuelistHeader     ; $19
-	dw IsaacNPCDuelistHeader        ; $1a
-	dw JenniferNPCDuelistHeader     ; $1b
-	dw NicholasNPCDuelistHeader     ; $1c
-	dw BrandonNPCDuelistHeader      ; $1d
-	dw MurrayNPCDuelistHeader       ; $1e
-	dw RobertNPCDuelistHeader       ; $1f
-	dw DanielNPCDuelistHeader       ; $20
-	dw StephanieNPCDuelistHeader    ; $21
-	dw RodNPCDuelistHeader          ; $22
-	dw JackNPCDuelistHeader         ; $23
-	dw SteveNPCDuelistHeader        ; $24
-	dw CourtneyNPCDuelistHeader     ; $25
-	dw MorinoNPCDuelistHeader       ; $26
-	dw MiyukiNPCDuelistHeader       ; $27
-	dw YutaNPCDuelistHeader         ; $28
-	dw MidoriNPCDuelistHeader       ; $29
-	dw CatherineNPCDuelistHeader    ; $2a
-	dw IchikawaNPCDuelistHeader     ; $2b
-	dw RennaNPCDuelistHeader        ; $2c
-	dw HideroNPCDuelistHeader       ; $2d
-	dw ShokoNPCDuelistHeader        ; $2e
-	dw YukiNPCDuelistHeader         ; $2f
-	dw JesNPCDuelistHeader          ; $30
-	dw KanokoNPCDuelistHeader       ; $31
-	dw AiraNPCDuelistHeader         ; $32
-	dw SentaNPCDuelistHeader        ; $33
-	dw MiyajimaNPCDuelistHeader     ; $34
-	dw KamiyaNPCDuelistHeader       ; $35
-	dw GraceNPCDuelistHeader        ; $36
-	dw GotaNPCDuelistHeader         ; $37
-	dw MamiNPCDuelistHeader         ; $38
-	dw RyokoNPCDuelistHeader        ; $39
-	dw YosukeNPCDuelistHeader       ; $3a
-	dw KevinNPCDuelistHeader        ; $3b
-	dw MiwaNPCDuelistHeader         ; $3c
-	dw SamejimaNPCDuelistHeader     ; $3d
-	dw IshiiNPCDuelistHeader        ; $3e
-	dw NishijimaNPCDuelistHeader    ; $3f
-	dw BiruritchiNPCDuelistHeader   ; $40
-	dw RuiNPCDuelistHeader          ; $41
-	dw KanzakiNPCDuelistHeader      ; $42
-	dw RonaldNPCDuelistHeader       ; $43
-	dw ImakuniBlackNPCDuelistHeader ; $44
-	dw ImakuniRedNPCDuelistHeader   ; $45
-	dw IshiharaNPCDuelistHeader     ; $46
-	dw TapNPCDuelistHeader          ; $47
-	dw QueenNPCDuelistHeader        ; $48
-	dw RookNPCDuelistHeader         ; $49
-	dw BishopNPCDuelistHeader       ; $4a
-	dw KnightNPCDuelistHeader       ; $4b
-	dw PawnNPCDuelistHeader         ; $4c
-	dw TobichanNPCDuelistHeader     ; $4d
-	dw EijiNPCDuelistHeader         ; $4e
-	dw MagicianNPCDuelistHeader     ; $4f
-	dw YuiNPCDuelistHeader          ; $50
-	dw ToshironNPCDuelistHeader     ; $51
-	dw PierrotNPCDuelistHeader      ; $52
-	dw AnnaNPCDuelistHeader         ; $53
-	dw DeeNPCDuelistHeader          ; $54
-	dw MasqueradeNPCDuelistHeader   ; $55
-	dw GR1NPCDuelistHeader          ; $56
-	dw GR2NPCDuelistHeader          ; $57
-	dw GR3NPCDuelistHeader          ; $58
-	dw GR4NPCDuelistHeader          ; $59
+	dw SamNPCDuelistHeader          ; NPC_DUELIST_SAM
+	dw AaronNPCDuelistHeader        ; NPC_DUELIST_AARON
+	dw NikkiNPCDuelistHeader        ; NPC_DUELIST_NIKKI
+	dw BrittanyNPCDuelistHeader     ; NPC_DUELIST_BRITTANY
+	dw KristinNPCDuelistHeader      ; NPC_DUELIST_KRISTIN
+	dw HeatherNPCDuelistHeader      ; NPC_DUELIST_HEATHER
+	dw AmyNPCDuelistHeader          ; NPC_DUELIST_AMY
+	dw JoshuaNPCDuelistHeader       ; NPC_DUELIST_JOSHUA
+	dw SaraNPCDuelistHeader         ; NPC_DUELIST_SARA
+	dw AmandaNPCDuelistHeader       ; NPC_DUELIST_AMANDA
+	dw GeneNPCDuelistHeader         ; NPC_DUELIST_GENE
+	dw MatthewNPCDuelistHeader      ; NPC_DUELIST_MATTHEW
+	dw RyanNPCDuelistHeader         ; NPC_DUELIST_RYAN
+	dw AndrewNPCDuelistHeader       ; NPC_DUELIST_ANDREW
+	dw MitchNPCDuelistHeader        ; NPC_DUELIST_MITCH
+	dw MichaelNPCDuelistHeader      ; NPC_DUELIST_MICHAEL
+	dw ChrisNPCDuelistHeader        ; NPC_DUELIST_CHRIS
+	dw JessicaNPCDuelistHeader      ; NPC_DUELIST_JESSICA
+	dw RickNPCDuelistHeader         ; NPC_DUELIST_RICK
+	dw DavidNPCDuelistHeader        ; NPC_DUELIST_DAVID
+	dw JosephNPCDuelistHeader       ; NPC_DUELIST_JOSEPH
+	dw ErikNPCDuelistHeader         ; NPC_DUELIST_ERIK
+	dw KenNPCDuelistHeader          ; NPC_DUELIST_KEN
+	dw JohnNPCDuelistHeader         ; NPC_DUELIST_JOHN
+	dw AdamNPCDuelistHeader         ; NPC_DUELIST_ADAM
+	dw JonathanNPCDuelistHeader     ; NPC_DUELIST_JONATHAN
+	dw IsaacNPCDuelistHeader        ; NPC_DUELIST_ISAAC
+	dw JenniferNPCDuelistHeader     ; NPC_DUELIST_JENNIFER
+	dw NicholasNPCDuelistHeader     ; NPC_DUELIST_NICHOLAS
+	dw BrandonNPCDuelistHeader      ; NPC_DUELIST_BRANDON
+	dw MurrayNPCDuelistHeader       ; NPC_DUELIST_MURRAY
+	dw RobertNPCDuelistHeader       ; NPC_DUELIST_ROBERT
+	dw DanielNPCDuelistHeader       ; NPC_DUELIST_DANIEL
+	dw StephanieNPCDuelistHeader    ; NPC_DUELIST_STEPHANIE
+	dw RodNPCDuelistHeader          ; NPC_DUELIST_ROD
+	dw JackNPCDuelistHeader         ; NPC_DUELIST_JACK
+	dw SteveNPCDuelistHeader        ; NPC_DUELIST_STEVE
+	dw CourtneyNPCDuelistHeader     ; NPC_DUELIST_COURTNEY
+	dw MorinoNPCDuelistHeader       ; NPC_DUELIST_MORINO
+	dw MiyukiNPCDuelistHeader       ; NPC_DUELIST_MIYUKI
+	dw YutaNPCDuelistHeader         ; NPC_DUELIST_YUTA
+	dw MidoriNPCDuelistHeader       ; NPC_DUELIST_MIDORI
+	dw CatherineNPCDuelistHeader    ; NPC_DUELIST_CATHERINE
+	dw IchikawaNPCDuelistHeader     ; NPC_DUELIST_ICHIKAWA
+	dw RennaNPCDuelistHeader        ; NPC_DUELIST_RENNA
+	dw HideroNPCDuelistHeader       ; NPC_DUELIST_HIDERO
+	dw ShokoNPCDuelistHeader        ; NPC_DUELIST_SHOKO
+	dw YukiNPCDuelistHeader         ; NPC_DUELIST_YUKI
+	dw JesNPCDuelistHeader          ; NPC_DUELIST_JES
+	dw KanokoNPCDuelistHeader       ; NPC_DUELIST_KANOKO
+	dw AiraNPCDuelistHeader         ; NPC_DUELIST_AIRA
+	dw SentaNPCDuelistHeader        ; NPC_DUELIST_SENTA
+	dw MiyajimaNPCDuelistHeader     ; NPC_DUELIST_MIYAJIMA
+	dw KamiyaNPCDuelistHeader       ; NPC_DUELIST_KAMIYA
+	dw GraceNPCDuelistHeader        ; NPC_DUELIST_GRACE
+	dw GodaNPCDuelistHeader         ; NPC_DUELIST_GODA
+	dw MamiNPCDuelistHeader         ; NPC_DUELIST_MAMI
+	dw RyokoNPCDuelistHeader        ; NPC_DUELIST_RYOKO
+	dw YosukeNPCDuelistHeader       ; NPC_DUELIST_YOSUKE
+	dw KevinNPCDuelistHeader        ; NPC_DUELIST_KEVIN
+	dw MiwaNPCDuelistHeader         ; NPC_DUELIST_MIWA
+	dw SamejimaNPCDuelistHeader     ; NPC_DUELIST_SAMEJIMA
+	dw IshiiNPCDuelistHeader        ; NPC_DUELIST_ISHII
+	dw NishijimaNPCDuelistHeader    ; NPC_DUELIST_NISHIJIMA
+	dw BiruritchiNPCDuelistHeader   ; NPC_DUELIST_BIRURITCHI
+	dw RuiNPCDuelistHeader          ; NPC_DUELIST_RUI
+	dw KanzakiNPCDuelistHeader      ; NPC_DUELIST_KANZAKI
+	dw RonaldNPCDuelistHeader       ; NPC_DUELIST_RONALD
+	dw ImakuniBlackNPCDuelistHeader ; NPC_DUELIST_IMAKUNI_BLACK
+	dw ImakuniRedNPCDuelistHeader   ; NPC_DUELIST_IMAKUNI_RED
+	dw IshiharaNPCDuelistHeader     ; NPC_DUELIST_ISHIHARA
+	dw TapNPCDuelistHeader          ; NPC_DUELIST_TAP
+	dw QueenNPCDuelistHeader        ; NPC_DUELIST_QUEEN
+	dw RookNPCDuelistHeader         ; NPC_DUELIST_ROOK
+	dw BishopNPCDuelistHeader       ; NPC_DUELIST_BISHOP
+	dw KnightNPCDuelistHeader       ; NPC_DUELIST_KNIGHT
+	dw PawnNPCDuelistHeader         ; NPC_DUELIST_PAWN
+	dw TobichanNPCDuelistHeader     ; NPC_DUELIST_TOBICHAN
+	dw EijiNPCDuelistHeader         ; NPC_DUELIST_EIJI
+	dw MagicianNPCDuelistHeader     ; NPC_DUELIST_MAGICIAN
+	dw YuiNPCDuelistHeader          ; NPC_DUELIST_YUI
+	dw ToshironNPCDuelistHeader     ; NPC_DUELIST_TOSHIRON
+	dw PierrotNPCDuelistHeader      ; NPC_DUELIST_PIERROT
+	dw AnnaNPCDuelistHeader         ; NPC_DUELIST_ANNA
+	dw DeeNPCDuelistHeader          ; NPC_DUELIST_DEE
+	dw MasqueradeNPCDuelistHeader   ; NPC_DUELIST_MASQUERADE
+	dw GR1NPCDuelistHeader          ; NPC_DUELIST_GR_1
+	dw GR2NPCDuelistHeader          ; NPC_DUELIST_GR_2
+	dw GR3NPCDuelistHeader          ; NPC_DUELIST_GR_3
+	dw GR4NPCDuelistHeader          ; NPC_DUELIST_GR_4
 	dw NULL
 
-; *_NPCDuelistHeader structure:
-; byte 1: overworld object
-; bytes 2, 3: dialog-box name
-; bytes 4, 5: home name (abbreviated)
-; bytes 6, 7: title (abbreviated)
-; bytes 8--12: deck IDs
+; NPC_DUELIST_STRUCT_*
+; $0    : OW_*
+; $1, $2: Dialog*Text
+; $3, $4: (short) home location text
+; $5, $6: (short) title text
+; $7--$b: *_DECK_ID
 SamNPCDuelistHeader:
 	db OW_SAM
 	tx DialogSamText
@@ -647,9 +647,9 @@ GraceNPCDuelistHeader:
 	db $ff
 	db $ff
 	db $ff
-GotaNPCDuelistHeader:
+GodaNPCDuelistHeader:
 	db OW_GODA
-	tx DialogGotaText
+	tx DialogGodaText
 	tx GRFightingFortShortText
 	tx OpponentGRFightingFortMemberText
 	db ROCK_BLAST_DECK_ID

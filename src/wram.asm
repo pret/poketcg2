@@ -2168,7 +2168,7 @@ wd554:: ; d554
 	ds $1
 
 wCurrentNPCDuelistData:: ; d555
-	ds $c
+	ds NPC_DUELIST_STRUCT_SIZE
 
 wd561:: ; d561
 	ds $1

@@ -593,14 +593,15 @@ Func_c477:
 .asm_c4b4
 	ret
 
-FetchNPCDuelist:
+; load the NPC duelist header corresponding to register a into wCurrentNPCDuelistData
+LoadNPCDuelist:
 	push af
 	push bc
 	push de
 	push hl
 	ld c, a
 	ld de, NPCDuelistPointers
-.fetch
+.loop
 	ld a, [de]
 	ld l, a
 	inc de
@@ -608,19 +609,19 @@ FetchNPCDuelist:
 	inc de
 	ld h, a
 	or l
-	jr z, .null
+	jr z, .not_found
 	ld a, [hl]
 	cp c
-	jr nz, .fetch
+	jr nz, .loop
 	ld de, wCurrentNPCDuelistData
-	ld bc, $c
+	ld bc, NPC_DUELIST_STRUCT_SIZE
 	call CopyDataHLtoDE_SaveRegisters
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-.null
+.not_found
 	debug_nop
 	pop hl
 	pop de
@@ -628,13 +629,13 @@ FetchNPCDuelist:
 	pop af
 	ret
 
-FetchNPCDuelistDeck:
+LoadNPCDuelistDeck:
 	push bc
 	push de
 	push hl
 	ld b, a
 	ld de, NPCDuelistPointers
-.fetch_offset
+.loop_duelists
 	ld a, [de]
 	ld l, a
 	inc de
@@ -642,23 +643,23 @@ FetchNPCDuelistDeck:
 	inc de
 	ld h, a
 	or l
-	jr z, .null
-	ld c, 5 ; max deck count
+	jr z, .not_found
+	ld c, MAX_NPC_DUELIST_DECKS
 	push hl
-	ld a, 7 ; offset
+	ld a, NPC_DUELIST_STRUCT_DECKS
 	add l
 	ld l, a
-	jr nc, .fetch_deck
+	jr nc, .loop_decks
 	inc h
-.fetch_deck
+.loop_decks
 	ld a, [hli]
 	cp b
 	jr z, .got_deck
 	dec c
-	jr nz, .fetch_deck
+	jr nz, .loop_decks
 	pop hl
-	jr .fetch_offset
-.null
+	jr .loop_duelists
+.not_found
 	debug_nop
 	jr .done
 .got_deck
@@ -714,7 +715,7 @@ GetReceivingCardLongName:
 	push bc
 	push de
 	ld hl, ReceiveCardTextPointers
-.fetch_loop
+.loop_cards
 ; bc = card ID
 	ld a, [hli]
 	ld c, a
@@ -738,15 +739,14 @@ GetReceivingCardLongName:
 	cp e
 .next
 ; proceed if de == bc, loop otherwise
-; table_width == 11, already read 2
-	jr z, .fetch_name
-	ld a, 11 - 2
+	jr z, .load_name
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
 	jr nc, .no_overflow
 	inc h
 .no_overflow
-	jr .fetch_loop
+	jr .loop_cards
 .fallback
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, 18
@@ -754,7 +754,7 @@ GetReceivingCardLongName:
 	ld [hl], 0
 	ld bc, 0
 	jr .got_name
-.fetch_name
+.load_name
 ; bc = long card name, fallback if 0
 	ld a, [hli]
 	ld c, a
@@ -778,7 +778,7 @@ GetReceivingCardShortName:
 	push bc
 	push de
 	ld hl, ReceiveCardTextPointers
-.fetch_loop
+.loop_cards
 ; bc = card ID
 	ld a, [hli]
 	ld c, a
@@ -802,15 +802,14 @@ GetReceivingCardShortName:
 	cp e
 .next
 ; proceed if de == bc, loop otherwise
-; table_width == 11, already read 2
-	jr z, .fetch_short_name
-	ld a, 11 - 2
+	jr z, .load_short_name
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
 	jr nc, .no_overflow
 	inc h
 .no_overflow
-	jr .fetch_loop
+	jr .loop_cards
 .fallback
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, 18
@@ -818,7 +817,7 @@ GetReceivingCardShortName:
 	ld [hl], 0
 	ld bc, 0
 	jr .got_short_name
-.fetch_short_name
+.load_short_name
 ; bc = short card name, fallback if 0
 	inc hl
 	inc hl
@@ -844,7 +843,7 @@ GetReceivedCardText:
 	push bc
 	push de
 	ld hl, ReceiveCardTextPointers
-.fetch_loop
+.loop_cards
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -852,7 +851,7 @@ GetReceivedCardText:
 	ld a, b
 	cp $ff
 	jr c, .ok
-	jr nz, .ok
+	jr nz, .ok ; redundant
 	ld a, c
 	cp $ff
 .ok
@@ -867,15 +866,14 @@ GetReceivedCardText:
 	cp e
 .next
 ; proceed if de == bc, loop otherwise
-; table_width == 11, already read 2
-	jr z, .fetch_received_text
-	ld a, 11 - 2
+	jr z, .load_received_text
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
 	jr nc, .no_overflow
 	inc h
 .no_overflow
-	jr .fetch_loop
+	jr .loop_cards
 .fallback
 	push hl
 	call GetReceivingCardShortName
@@ -888,7 +886,7 @@ GetReceivedCardText:
 	jr z, .got_text
 	ldtx bc, ReceivedCardText_2
 	jr .got_text
-.fetch_received_text
+.load_received_text
 ; bc = received text
 	REPT 4
 		inc hl
@@ -907,7 +905,7 @@ GetReceivedCardText:
 	jr z, .got_text
 	call GetEventValue
 	jr z, .got_text
-	; fetch alt text
+	; load alt text
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -1194,9 +1192,9 @@ TextIDs_d18f:
 	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText         ; OWMAP_GR_CASTLE
 
-NonSpecialPromo_d1a9:
-	; 34 promo cards
-	; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
+; 34 promo cards
+; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
+NonSpecialPromoCards:
 	dw ARCANINE_LV34
 	dw PIKACHU_LV16
 	dw PIKACHU_ALT_LV16

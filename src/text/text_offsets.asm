@@ -2593,7 +2593,7 @@ TextOffsets::
 	textpointer DialogAiraText                                        ; 0x0a18
 	textpointer DialogKanokoText                                      ; 0x0a19
 	textpointer DialogKamiyaText                                      ; 0x0a1a
-	textpointer DialogGotaText                                        ; 0x0a1b
+	textpointer DialogGodaText                                        ; 0x0a1b
 	textpointer DialogGraceText                                       ; 0x0a1c
 	textpointer DialogMiwaText                                        ; 0x0a1d
 	textpointer DialogKevinText                                       ; 0x0a1e
