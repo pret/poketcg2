@@ -3,7 +3,7 @@ SECTION "Bank c@4080", ROMX[$4080], BANK[$c]
 Data_30080:
 	db OVERWORLD_MAP_GR
 	dba Data_30085
-	db $15
+	db MUSIC_GROVERWORLD
 
 Data_30085:
 	dbw $01, Func_30092

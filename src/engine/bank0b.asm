@@ -3,7 +3,7 @@ SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
 Data_2c000:
 	db MAP_ISHIHARAS_HOUSE
 	dba Data_2c09b
-	db $23
+	db MUSIC_ISHIHARA
 
 SECTION "Bank b@409b", ROMX[$409b], BANK[$b]
 
@@ -165,7 +165,7 @@ SECTION "Bank b@4479", ROMX[$4479], BANK[$b]
 Data_2c479:
 	db MAP_LIGHTNING_CLUB_1
 	dba Data_2c4c5
-	db $0c
+	db MUSIC_CLUB_1
 
 
 SECTION "Bank b@44c5", ROMX[$44c5], BANK[$b]
@@ -281,7 +281,7 @@ SECTION "Bank b@4936", ROMX[$4936], BANK[$b]
 Data_2c936:
 	db MAP_PSYCHIC_CLUB_ENTRANCE
 	dba Data_2c990
-	db $09
+	db MUSIC_OVERWORLD
 
 
 SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
@@ -507,7 +507,7 @@ PsychicClubEntranceShouldRonaldAppear:
 Data_2cafa:
 	db MAP_PSYCHIC_CLUB_LOBBY
 	dba Data_2cb92
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@4b92", ROMX[$4b92], BANK[$b]
 
@@ -593,7 +593,7 @@ SECTION "Bank b@4d23", ROMX[$4d23], BANK[$b]
 Data_2cd23:
 	db MAP_PSYCHIC_CLUB
 	dba Data_2cd6f
-	db $0d
+	db MUSIC_CLUB_2
 
 SECTION "Bank b@4d6f", ROMX[$4d6f], BANK[$b]
 
@@ -667,7 +667,7 @@ SECTION "Bank b@530a", ROMX[$530a], BANK[$b]
 Data_2d30a:
 	db MAP_ROCK_CLUB_ENTRANCE
 	dba Data_2d346
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@5346", ROMX[$5346], BANK[$b]
 
@@ -752,7 +752,7 @@ Func_2d3b5:
 Data_2d3c4:
 	db MAP_ROCK_CLUB_LOBBY
 	dba Data_2d45c
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@545c", ROMX[$545c], BANK[$b]
 
@@ -841,7 +841,7 @@ SECTION "Bank b@55f8", ROMX[$55f8], BANK[$b]
 Data_2d5f8:
 	db MAP_ROCK_CLUB
 	dba Data_2d640
-	db $0d
+	db MUSIC_CLUB_2
 
 SECTION "Bank b@5640", ROMX[$5640], BANK[$b]
 
@@ -926,7 +926,7 @@ SECTION "Bank b@5930", ROMX[$5930], BANK[$b]
 Data_2d930:
 	db MAP_FIGHTING_CLUB_ENTRANCE
 	dba Data_2d96c
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@596c", ROMX[$596c], BANK[$b]
 
@@ -1051,7 +1051,7 @@ Func_2d9f4:
 Data_2da26:
 	db MAP_FIGHTING_CLUB_LOBBY
 	dba Data_d2abe
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@5abe", ROMX[$5abe], BANK[$b]
 
@@ -1108,7 +1108,7 @@ SECTION "Bank b@5c9f", ROMX[$5c9f], BANK[$b]
 Data_2dc9f:
 	db MAP_FIGHTING_CLUB
 	dba Data_2dceb
-	db $0e
+	db MUSIC_CLUB_3
 
 SECTION "Bank b@5ceb", ROMX[$5ceb], BANK[$b]
 
@@ -1195,7 +1195,7 @@ SECTION "Bank b@606d", ROMX[$606d], BANK[$b]
 Data_2e06d:
 	db MAP_GRASS_CLUB_ENTRANCE
 	dba Data_2e0a9
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@60a9", ROMX[$60a9], BANK[$b]
 
@@ -1321,7 +1321,7 @@ Func_2e131:
 Data_2e163:
 	db MAP_GRASS_CLUB
 	dba Data_2e1af
-	db $0c
+	db MUSIC_CLUB_1
 
 SECTION "Bank b@61af", ROMX[$61af], BANK[$b]
 
@@ -1390,7 +1390,7 @@ SECTION "Bank b@64b7", ROMX[$64b7], BANK[$b]
 Data_2e4b7:
 	db MAP_SCIENCE_CLUB_ENTRANCE
 	dba Data_2e4ff
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@64ff", ROMX[$64ff], BANK[$b]
 
@@ -1545,7 +1545,7 @@ Func_2e62a:
 Data_2e63f:
 	db MAP_SCIENCE_CLUB_LOBBY
 	dba Data_2e6e1
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@66e1", ROMX[$66e1], BANK[$b]
 
@@ -1637,7 +1637,7 @@ SECTION "Bank b@68e6", ROMX[$68e6], BANK[$b]
 Data_2e8e6:
 	db MAP_SCIENCE_CLUB
 	dba Data_2e932
-	db $0e
+	db MUSIC_CLUB_3
 
 SECTION "Bank b@6932", ROMX[$6932], BANK[$b]
 
@@ -1715,7 +1715,7 @@ SECTION "Bank b@6cc8", ROMX[$6cc8], BANK[$b]
 Data_2ecc8:
 	db MAP_WATER_CLUB_ENTRANCE
 	dba Data_2ed04
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@6d04", ROMX[$6d04], BANK[$b]
 
@@ -1838,7 +1838,7 @@ Func_2eda8:
 Data_2edc5:
 	db MAP_WATER_CLUB_LOBBY
 	dba Data_2ee5d
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@6e5d", ROMX[$6e5d], BANK[$b]
 
@@ -1930,7 +1930,7 @@ SECTION "Bank b@7012", ROMX[$7012], BANK[$b]
 Data_2f012:
 	db MAP_WATER_CLUB
 	dba Data_2f072
-	db $0c
+	db MUSIC_CLUB_1
 
 SECTION "Bank b@7072", ROMX[$7072], BANK[$b]
 
@@ -2041,7 +2041,7 @@ SECTION "Bank b@74ff", ROMX[$74ff], BANK[$b]
 Data_2f4ff:
 	db MAP_FIRE_CLUB_ENTRANCE
 	dba Data_2f53b
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@753b", ROMX[$753b], BANK[$b]
 
@@ -2169,7 +2169,7 @@ Func_2f5ca:
 Data_2f5fc:
 	db MAP_FIRE_CLUB_LOBBY
 	dba Data_2f68a
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@768a", ROMX[$768a], BANK[$b]
 
@@ -2255,7 +2255,7 @@ SECTION "Bank b@77ca", ROMX[$77ca], BANK[$b]
 Data_2f7ca:
 	db MAP_FIRE_CLUB
 	dba Data_2f83b
-	db $0e
+	db MUSIC_CLUB_3
 
 SECTION "Bank b@783b", ROMX[$783b], BANK[$b]
 
@@ -2321,7 +2321,7 @@ SECTION "Bank b@7cd5", ROMX[$7cd5], BANK[$b]
 Data_2fcd5:
 	db MAP_POKEMON_DOME_ENTRANCE
 	dba Data_2fd66
-	db $09
+	db MUSIC_OVERWORLD
 
 SECTION "Bank b@7d66", ROMX[$7d66], BANK[$b]
 
@@ -2372,7 +2372,7 @@ SECTION "Bank b@7e45", ROMX[$7e45], BANK[$b]
 Data_2fe45:
 	db MAP_OVERHEAD_ISLANDS
 	dba Data_2fe4a
-	db $1e
+	db MUSIC_GRBLIMP
 
 Data_2fe4a:
 	dbw $02, Func_2fe54
