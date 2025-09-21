@@ -1890,7 +1890,7 @@ _StartMenuBoxUpdate::
 	ret
 
 .ContinueFromDiary:
-	farcall Func_c53e
+	farcall GetCurrentLocationName
 	call LoadTxRam2
 	ldtx hl, TxRam2TextPadded
 	lb de, 1, 10

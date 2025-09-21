@@ -674,23 +674,24 @@ LoadNPCDuelistDeck:
 
 SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
 
-Func_c522:
+; return the location name in hl, using c == island and a == location
+GetLocationName:
 	push af
 	push bc
 	ld b, a
 	ld a, c
-	ld hl, TextIDs_d171 ; TCG island
+	ld hl, TCGIslandLocationNamePointers
 	cp TCG_ISLAND
-	jr z, .got_text
-	ld hl, TextIDs_d18f ; GR island
-.got_text
+	jr z, .got_island
+	ld hl, GRIslandLocationNamePointers
+.got_island
 	ld a, b
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_c538
+	jr nc, .got_location
 	inc h
-.asm_c538
+.got_location
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -698,25 +699,26 @@ Func_c522:
 	pop af
 	ret
 
-Func_c53e:
+; load the current island and location into c and a, then get the name
+GetCurrentLocationName:
 	push af
 	push bc
 	ld a, [wCurIsland]
 	ld c, a
 	ld a, [wCurOWLocation]
-	call Func_c522
+	call GetLocationName
 	pop bc
 	pop af
 	ret
 
+; using de == receiving card, return its long name in hl
+; the first half of this function and the next two are identical
 GetReceivingCardLongName:
-; de == receiving card?
 	push af
 	push bc
 	push de
 	ld hl, ReceiveCardTextPointers
 .loop_cards
-; bc = card ID
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -728,9 +730,7 @@ GetReceivingCardLongName:
 	ld a, c
 	cp $ff
 .ok
-; fallback if bc == $ffff terminator
-; check de against bc
-	jr z, .fallback
+	jr z, .not_found
 	ld a, b
 	cp d
 	jr c, .next
@@ -738,7 +738,6 @@ GetReceivingCardLongName:
 	ld a, c
 	cp e
 .next
-; proceed if de == bc, loop otherwise
 	jr z, .load_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -747,7 +746,7 @@ GetReceivingCardLongName:
 	inc h
 .no_overflow
 	jr .loop_cards
-.fallback
+.not_found
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, 18
 	call CopyCardNameAndLevel
@@ -755,13 +754,12 @@ GetReceivingCardLongName:
 	ld bc, 0
 	jr .got_name
 .load_name
-; bc = long card name, fallback if 0
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .fallback
+	jr z, .not_found
 	; fallthrough
 .got_name
 	ld l, c
@@ -771,15 +769,13 @@ GetReceivingCardLongName:
 	pop af
 	ret
 
+; using de == receiving card, return its short name in hl
 GetReceivingCardShortName:
-; the first half is a dupe of the above one
-; de == receiving card?
 	push af
 	push bc
 	push de
 	ld hl, ReceiveCardTextPointers
 .loop_cards
-; bc = card ID
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
@@ -791,9 +787,7 @@ GetReceivingCardShortName:
 	ld a, c
 	cp $ff
 .ok
-; fallback if bc == $ffff terminator
-; check de against bc
-	jr z, .fallback
+	jr z, .not_found
 	ld a, b
 	cp d
 	jr c, .next
@@ -801,7 +795,6 @@ GetReceivingCardShortName:
 	ld a, c
 	cp e
 .next
-; proceed if de == bc, loop otherwise
 	jr z, .load_short_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -810,7 +803,7 @@ GetReceivingCardShortName:
 	inc h
 .no_overflow
 	jr .loop_cards
-.fallback
+.not_found
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, 18
 	call CopyCardNameAndLevel
@@ -818,7 +811,6 @@ GetReceivingCardShortName:
 	ld bc, 0
 	jr .got_short_name
 .load_short_name
-; bc = short card name, fallback if 0
 	inc hl
 	inc hl
 	ld a, [hli]
@@ -826,7 +818,7 @@ GetReceivingCardShortName:
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .fallback
+	jr z, .not_found
 	; fallthrough
 .got_short_name
 	ld l, c
@@ -836,9 +828,8 @@ GetReceivingCardShortName:
 	pop af
 	ret
 
+; using de == receiving card, return its "received" text in hl
 GetReceivedCardText:
-; the first half is a dupe of the above two
-; de == receiving card?
 	push af
 	push bc
 	push de
@@ -855,9 +846,7 @@ GetReceivedCardText:
 	ld a, c
 	cp $ff
 .ok
-; fallback if bc == $ffff terminator
-; check de against bc
-	jr z, .fallback
+	jr z, .not_found
 	ld a, b
 	cp d
 	jr c, .next
@@ -865,7 +854,6 @@ GetReceivedCardText:
 	ld a, c
 	cp e
 .next
-; proceed if de == bc, loop otherwise
 	jr z, .load_received_text
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -874,7 +862,7 @@ GetReceivedCardText:
 	inc h
 .no_overflow
 	jr .loop_cards
-.fallback
+.not_found
 	push hl
 	call GetReceivingCardShortName
 	call LoadTxRam2
@@ -887,7 +875,6 @@ GetReceivedCardText:
 	ldtx bc, ReceivedCardText_2
 	jr .got_text
 .load_received_text
-; bc = received text
 	REPT 4
 		inc hl
 	ENDR
@@ -899,13 +886,12 @@ GetReceivedCardText:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	; check alt flag
+	; check alt flag, load alt text if TRUE
 	ld a, [hli]
 	or a
 	jr z, .got_text
 	call GetEventValue
 	jr z, .got_text
-	; load alt text
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -1055,7 +1041,7 @@ SECTION "Bank 3@4e41", ROMX[$4e41], BANK[$3]
 
 INCLUDE "data/card_receive_texts.asm"
 
-TextIDs_d171:
+TCGIslandLocationNamePointers:
 	tx MapMasonLabText         ; OWMAP_MASON_LABORATORY
 	tx MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
 	tx MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
@@ -1072,7 +1058,7 @@ TextIDs_d171:
 	dw NULL
 	tx MapOpeningText
 
-TextIDs_d18f:
+GRIslandLocationNamePointers:
 	tx MapGRAirportText        ; OWMAP_GR_AIRPORT
 	tx MapIshiharasVillaText   ; OWMAP_ISHIHARAS_VILLA
 	tx MapGameCenterText       ; OWMAP_GAME_CENTER
