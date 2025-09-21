@@ -2205,6 +2205,129 @@ GeneralVarMasks:
 	db $2c, %11111111 ; VAR_3D
 	db $33, %11111111 ; VAR_3E
 
+; clear 8 bytes from wd606
+ZeroOutBytes_wd606:
+	push af
+	push hl
+	xor a
+	ld hl, wd606
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	pop hl
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, set bit n at (wd606 + m)
+SetBit_wd606:
+	push af
+	push bc
+	push hl
+	push af
+	ld hl, wd606
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, [hl]
+	or b
+	ld [hl], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, clear bit n at (wd606 + m)
+ClearBit_wd606:
+	push af
+	push bc
+	push hl
+	push af
+	ld hl, wd606
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, b
+	cpl
+	and [hl]
+	ld [hl], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, return in the z flag whether bit n at (wd606 + m) is empty
+; z: empty, nz: set
+; then restore bc and load b from it into a
+CheckBit_wd606:
+	push bc
+	push hl
+	push af
+	push af
+	ld hl, wd606
+	srl a
+	srl a
+	srl a
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, [hl]
+	and b
+	pop bc
+	ld a, b
+	pop hl
+	pop bc
+	ret
+
 SECTION "Bank 3@5bbd", ROMX[$5bbd], BANK[$3]
 
 GetNumberOfDeckDiagnosisStepsUnlocked:

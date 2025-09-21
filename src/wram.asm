@@ -2283,7 +2283,10 @@ wEventVars:: ; d59e
 wGeneralVars:: ; d5d2
 	ds $34
 
-	ds $b
+wd606:: ; d606
+	ds $8
+
+	ds $3
 
 wd611:: ; d611
 	ds $1
