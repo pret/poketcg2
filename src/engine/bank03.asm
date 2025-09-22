@@ -2600,6 +2600,7 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	pop bc
 	ret
 
+; clear wd61a, load wd619 into a, copy 32 bytes from (dw wd61b) to wd61e
 Func_dbdb::
 	xor a
 	ld [wd61a], a
@@ -2613,29 +2614,31 @@ Func_dbdb::
 	call CopyFarHLToDE
 	ret
 
+; for the counter n in wd61a, get the table index m in w(d61e + n), jump to .PointerTable[m]
+; applying m in two steps rather than sla, even though m < 128
 Func_dbf2::
 	ld hl, wd61a
 	ld a, [hl]
 	ld hl, wd61e
 	add l
 	ld l, a
-	jr nc, .asm_dbfe
+	jr nc, .got_offset
 	inc h
-.asm_dbfe
+.got_offset
 	ld a, [hl]
 	ld d, a
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .asm_dc08
+	jr nc, .next
 	inc h
-.asm_dc08
+.next
 	ld a, d
 	add l
 	ld l, a
-	jr nc, .asm_dc0e
+	jr nc, .got_pointer
 	inc h
-.asm_dc0e
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2768,6 +2771,132 @@ Func_dbf2::
 	dw $686a
 	dw $6871
 	dw $687d
+
+; add a to (dw wd61b)
+; if (db wd61a) + a < 32, add a to wd61a too
+; else call Func_dbdb
+Func_dd0e:
+	ld c, a
+	ld hl, wd61b
+	add [hl]
+	ld [hli], a
+	jr nc, .next
+	inc [hl]
+.next
+	ld a, c
+	ld hl, wd61a
+	add [hl]
+	cp $20
+	jr nc, .fallback
+	ld [hl], a
+	ret
+.fallback
+	call Func_dbdb
+	ret
+
+HandlewD61A_Done:
+	ret
+
+Run_dd0e_Inc1:
+	ld a, 1
+	jr Func_dd0e
+
+Run_dd0e_Inc2:
+	ld a, 2
+	jr Func_dd0e
+
+Run_dd0e_Inc3:
+	ld a, 3
+	jr Func_dd0e
+
+Run_dd0e_Inc4:
+	ld a, 4
+	jr Func_dd0e
+
+Run_dd0e_Inc5:
+	ld a, 5
+	jr Func_dd0e
+
+; for the counter j = (db wd61a) + a, if j + 1 < 32, get the index w(d61e + j) in c and w(d61e + j + 1) in b, then a = (b | c)
+; else call Func_dbdb and retry
+Func_dd3b:
+.loop
+	push af
+	ld hl, wd61a
+	add [hl]
+	inc a
+	cp $20
+	jr nc, .fallback
+	pop bc
+	dec a
+	ld hl, wd61e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	or b
+	ret
+.fallback
+	call Func_dbdb
+	pop af
+	jr .loop
+
+Run_dd3b_Inc1:
+	ld a, 1
+	jr Func_dd3b
+
+Run_dd3b_Inc2:
+	ld a, 2
+	jr Func_dd3b
+
+Run_dd3b_Inc3:
+	ld a, 3
+	jr Func_dd3b
+
+; for the counter j = (db wd61a) + a, if j < 32, get the index w(d61e + j) in a and update flags accordingly
+; else call Func_dbdb and retry
+Func_dd66:
+.loop
+	push af
+	ld hl, wd61a
+	add [hl]
+	cp $20
+	jr nc, .fallback
+	pop bc
+	ld hl, wd61e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	or a
+	ret
+.fallback
+	call Func_dbdb
+	pop af
+	jr .loop
+
+Run_dd66_Inc1:
+	ld a, 1
+	jr Func_dd66
+
+Run_dd66_Inc2:
+	ld a, 2
+	jr Func_dd66
+
+Run_dd66_Inc3:
+	ld a, 3
+	jr Func_dd66
+
+Run_dd66_Inc4:
+	ld a, 4
+	jr Func_dd66
+; 0xdd91
 
 SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
 
