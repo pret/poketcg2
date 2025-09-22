@@ -2235,9 +2235,9 @@ SetBit_wd606:
 	srl a
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_byte
 	inc h
-.no_overflow
+.got_byte
 	pop af
 	and 7
 	inc a
@@ -2269,9 +2269,9 @@ ClearBit_wd606:
 	srl a
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_byte
 	inc h
-.no_overflow
+.got_byte
 	pop af
 	and 7
 	inc a
@@ -2306,9 +2306,9 @@ CheckBit_wd606:
 	srl a
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_byte
 	inc h
-.no_overflow
+.got_byte
 	pop af
 	and 7
 	inc a
@@ -2329,7 +2329,7 @@ CheckBit_wd606:
 	ret
 
 ; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckTCGIslandEvents:
+CheckTCGIslandMilestoneEvents:
 	push bc
 	push de
 	push hl
@@ -2337,9 +2337,9 @@ CheckTCGIslandEvents:
 	ld hl, .check_pointers
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2368,10 +2368,10 @@ CheckTCGIslandEvents:
 .loop_bitmask_1
 	sla d
 	pop af
-	jr z, .not_set_1
+	jr z, .next_1
 	set 0, d
 	; fallthrough
-.not_set_1
+.next_1
 	dec c
 	jr nz, .loop_bitmask_1
 	ld a, d
@@ -2430,11 +2430,11 @@ CheckTCGIslandEvents:
 	sla d
 	sla d
 	pop af
-	jr z, .not_set_2
+	jr z, .next_2
 	set 0, d
 	set 1, d
 	; fallthrough
-.not_set_2
+.next_2
 	dec c
 	jr nz, .loop_bitmask_2
 	ld a, d
@@ -2476,7 +2476,7 @@ CheckTCGIslandEvents:
   dw .check_event_db
 
 ; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckGRIslandEvents:
+CheckGRIslandMilestoneEvents:
 	push bc
 	push de
 	push hl
@@ -2484,9 +2484,9 @@ CheckGRIslandEvents:
 	ld hl, .check_pointers
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
