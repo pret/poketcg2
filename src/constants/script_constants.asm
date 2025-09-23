@@ -285,3 +285,6 @@ DEF NORTH    EQU $00
 DEF EAST     EQU $01
 DEF SOUTH    EQU $02
 DEF WEST     EQU $03
+
+; TODO: Identify wd61e to give it a proper name
+DEF MAX_wD61E_SIZE EQU $20

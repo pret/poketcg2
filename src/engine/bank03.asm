@@ -2609,7 +2609,7 @@ Func_dbdb::
 	ld h, [hl]
 	ld l, a
 	ld de, wd61e
-	ld bc, $20
+	ld bc, MAX_wD61E_SIZE
 	ld a, [wd619]
 	call CopyFarHLToDE
 	ret
@@ -2786,7 +2786,7 @@ Func_dd0e:
 	ld a, c
 	ld hl, wd61a
 	add [hl]
-	cp $20
+	cp MAX_wD61E_SIZE
 	jr nc, .fallback
 	ld [hl], a
 	ret
@@ -2825,7 +2825,7 @@ Func_dd3b:
 	ld hl, wd61a
 	add [hl]
 	inc a
-	cp $20
+	cp MAX_wD61E_SIZE
 	jr nc, .fallback
 	pop bc
 	dec a
@@ -2864,7 +2864,7 @@ Func_dd66:
 	push af
 	ld hl, wd61a
 	add [hl]
-	cp $20
+	cp MAX_wD61E_SIZE
 	jr nc, .fallback
 	pop bc
 	ld hl, wd61e

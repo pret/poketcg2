@@ -2324,9 +2324,9 @@ wd61d:: ; d61d
 	ds $1
 
 wd61e:: ; d61e
-	ds $1
+	ds MAX_wD61E_SIZE
 
-	ds $49
+	ds $2a
 
 wd668:: ; d668
 	ds $1
