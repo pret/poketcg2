@@ -4,38 +4,10 @@ Func_341c4:
 	xor a
 	call Func_33f2
 	; Event Script @ 0x341c8
-	db $01
-	db $10
-	db $f1
-	db $09
-	db $dd
-	db $41
-	db $05
-	db $6e
-	db $12
-	db $33
-	db $98
-	db $01
-	db $1b
-	db $98
-	db $01
-	db $05
-	db $6f
-	db $12
-	db $08
-	db $e0
-	db $41
-	db $05
-	db $70
-	db $12
-	db $02
-	db $2d
-	db $f0
-	db $41
-	db $2f
-	db $16
-	db $03
-	db $00
+	db $01, $10, $f1, $09, $dd, $41, $05, $6e, $12, $33
+	db $98, $01, $1b, $98, $01, $05, $6f, $12, $08, $e0
+	db $41, $05, $70, $12, $02, $2d, $f0, $41, $2f, $16
+	db $03, $00
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret

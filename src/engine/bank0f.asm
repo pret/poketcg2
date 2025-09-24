@@ -209,108 +209,17 @@ Func_3c3ca:
 	xor a
 	call Func_33f2
 	; Event Script @ 0x3c3ce
-	db $01
-	db $11
-	db $25
-	db $0f
-	db $10
-	db $f1
-	db $09
-	db $1b
-	db $44
-	db $13
-	db $22
-	db $12
-	db $22
-	db $0d
-	db $0a
-	db $0b
-	db $e3
-	db $43
-	db $11
-	db $22
-	db $0a
-	db $0d
-	db $03
-	db $0b
-	db $f8
-	db $43
-	db $09
-	db $ff
-	db $43
-	db $0d
-	db $06
-	db $09
-	db $06
-	db $44
-	db $0d
-	db $09
-	db $09
-	db $0d
-	db $44
-	db $08
-	db $14
-	db $44
-	db $50
-	db $41
-	db $44
-	db $00
-	db $08
-	db $1e
-	db $44
-	db $50
-	db $48
-	db $44
-	db $00
-	db $08
-	db $1e
-	db $44
-	db $50
-	db $52
-	db $44
-	db $00
-	db $08
-	db $1e
-	db $44
-	db $50
-	db $5c
-	db $44
-	db $00
-	db $08
-	db $1e
-	db $44
-	db $50
-	db $74
-	db $44
-	db $00
-	db $08
-	db $1e
-	db $44
-	db $05
-	db $cc
-	db $12
-	db $05
-	db $cd
-	db $12
-	db $02
-	db $36
-	db $0d
-	db $02
-	db $0a
-	db $2d
-	db $44
-	db $17
-	db $03
-	db $28
-	db $81
-	db $02
-	db $2d
-	db $92
-	db $44
-	db $2f
-	db $16
-	db $05
-	db $00
+	db $01, $11, $25, $0f, $10, $f1, $09, $1b, $44, $13
+	db $22, $12, $22, $0d, $0a, $0b, $e3, $43, $11, $22
+	db $0a, $0d, $03, $0b, $f8, $43, $09, $ff, $43, $0d
+	db $06, $09, $06, $44, $0d, $09, $09, $0d, $44, $08
+	db $14, $44, $50, $41, $44, $00, $08, $1e, $44, $50
+	db $48, $44, $00, $08, $1e, $44, $50, $52, $44, $00
+	db $08, $1e, $44, $50, $5c, $44, $00, $08, $1e, $44
+	db $50, $74, $44, $00, $08, $1e, $44, $05, $cc, $12
+	db $05, $cd, $12, $02, $36, $0d, $02, $0a, $2d, $44
+	db $17, $03, $28, $81, $02, $2d, $92, $44, $2f, $16
+	db $05, $00
 	ld a, $00
 	ld [wd582], a
 	ld a, [wNextMusic]
