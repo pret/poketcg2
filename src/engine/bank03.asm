@@ -2596,7 +2596,7 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	pop bc
 	ret
 
-; clear wd61a, load wd619 into a, copy 32 bytes from (dw wd61b) to wd61e
+; clear wd61a, then copy 32 bytes from [wd619]:[dw wd61b] to wd61e
 Func_dbdb::
 	xor a
 	ld [wd61a], a
@@ -2610,7 +2610,7 @@ Func_dbdb::
 	call CopyFarHLToDE
 	ret
 
-; for the counter n in wd61a, get the table index m in w(d61e + n), jump to .PointerTable[m]
+; for the counter n = [wd61a], get the table index m = [wd61e + n], jump to .PointerTable[m]
 ; applying m in two steps rather than sla, even though m < 128
 Func_dbf2::
 	ld hl, wd61a
@@ -2768,8 +2768,8 @@ Func_dbf2::
 	dw $6871
 	dw $687d
 
-; add a to (dw wd61b)
-; if (db wd61a) + a < 32, add a to wd61a too
+; add a to [dw wd61b]
+; if [wd61a] + a < 32, add a to [wd61a] too
 ; else call Func_dbdb
 Func_dd0e:
 	ld c, a
@@ -2813,7 +2813,8 @@ Run_dd0e_Inc5:
 	ld a, 5
 	jr Func_dd0e
 
-; for the counter j = (db wd61a) + a, if j + 1 < 32, get the index w(d61e + j) in c and w(d61e + j + 1) in b, then a = (b | c)
+; for the counter j = [wd61a] + a,
+; if j + 1 < 32, c = [wd61e + j], b = [wd61e + j + 1], then a = (b | c)
 ; else call Func_dbdb and retry
 Func_dd3b:
 .loop
@@ -2853,7 +2854,8 @@ Run_dd3b_Inc3:
 	ld a, 3
 	jr Func_dd3b
 
-; for the counter j = (db wd61a) + a, if j < 32, get the index w(d61e + j) in a and update flags accordingly
+; for the counter j = [wd61a] + a,
+; if j < 32, a = [wd61e + j] and update flags accordingly
 ; else call Func_dbdb and retry
 Func_dd66:
 .loop
