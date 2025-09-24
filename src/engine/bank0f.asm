@@ -205,9 +205,116 @@ Prologue::
 
 SECTION "Bank f@43ca", ROMX[$43ca], BANK[$f]
 
-; TODO
-; something is weird about the way this function disassembles using
-; the python script. it tries to call Func_212, which I don't believe
-; is correct
 Func_3c3ca:
+	xor a
+	call Func_33f2
+	; Event Script @ 0x3c3ce
+	db $01
+	db $11
+	db $25
+	db $0f
+	db $10
+	db $f1
+	db $09
+	db $1b
+	db $44
+	db $13
+	db $22
+	db $12
+	db $22
+	db $0d
+	db $0a
+	db $0b
+	db $e3
+	db $43
+	db $11
+	db $22
+	db $0a
+	db $0d
+	db $03
+	db $0b
+	db $f8
+	db $43
+	db $09
+	db $ff
+	db $43
+	db $0d
+	db $06
+	db $09
+	db $06
+	db $44
+	db $0d
+	db $09
+	db $09
+	db $0d
+	db $44
+	db $08
+	db $14
+	db $44
+	db $50
+	db $41
+	db $44
+	db $00
+	db $08
+	db $1e
+	db $44
+	db $50
+	db $48
+	db $44
+	db $00
+	db $08
+	db $1e
+	db $44
+	db $50
+	db $52
+	db $44
+	db $00
+	db $08
+	db $1e
+	db $44
+	db $50
+	db $5c
+	db $44
+	db $00
+	db $08
+	db $1e
+	db $44
+	db $50
+	db $74
+	db $44
+	db $00
+	db $08
+	db $1e
+	db $44
+	db $05
+	db $cc
+	db $12
+	db $05
+	db $cd
+	db $12
+	db $02
+	db $36
+	db $0d
+	db $02
+	db $0a
+	db $2d
+	db $44
+	db $17
+	db $03
+	db $28
+	db $81
+	db $02
+	db $2d
+	db $92
+	db $44
+	db $2f
+	db $16
+	db $05
+	db $00
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+; 0x3c441
 	

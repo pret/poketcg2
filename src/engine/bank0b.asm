@@ -43,9 +43,11 @@ Func_2c0c8:
 Func_2c0d1:
 	xor a
 	call Func_33f2
-	ld h, h
-	ld de, $3e00
-	push af
+	; Event Script @ 0x2c0d5
+	db $64
+	db $11
+	db $00
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_2c0ef
 	ld a, OW_ISHIHARA
@@ -210,7 +212,6 @@ Func_2c501:
 	ccf
 	ret
 
-; TODO: this funtion's disasm is a little weird. may not be correct
 Func_2c50a:
 	ld a, EVENT_MET_GR4_LIGHTNING_CLUB
 	farcall GetEventValue
@@ -234,30 +235,39 @@ Func_2c50a:
 	ld [$d594], a
 	xor a
 	call Func_33f2
-	ld [hli], a
-	ld [hli], a
-	dec b
-	add hl, bc
-	ld [bc], a
-	ld [hli], a
-	inc h
-	ld [$209], sp
-	ld [hli], a
-	ld sp, DecompressData.get_sequence_len
-	ld [bc], a
-	nop
+	; Event Script @ 0x2c53d
+	db $22
+	db $22
+	db $05
+	db $09
+	db $02
+	db $22
+	db $24
+	db $08
+	db $09
+	db $02
+	db $22
+	db $31
+	db $07
+	db $09
+	db $02
+	db $00
 	jr .asm_2c55e
 .asm_2c54f
 	xor a
 	call Func_33f2
-	ld [hli], a
-	ld [hli], a
-	dec b
-	ld b, $02
-	ld [hli], a
-	inc h
-	ld [$208], sp
-	nop
+	; Event Script @ 0x2c553
+	db $22
+	db $22
+	db $05
+	db $06
+	db $02
+	db $22
+	db $24
+	db $08
+	db $08
+	db $02
+	db $00
 .asm_2c55e
 	scf
 	ret
@@ -451,10 +461,13 @@ Func_2caa0:
 	ld [$d610], a
 	xor a
 	call Func_33f2
-	ld bc, $cb05
-	dec bc
-	ld [bc], a
-	nop
+	; Event Script @ 0x2cab4
+	db $01
+	db $05
+	db $cb
+	db $0b
+	db $02
+	db $00
 	ret
 
 Func_2cabb:
@@ -631,9 +644,82 @@ Func_2cd99:
 ; 0x2cda2
 
 Func_2cda2:
-; TODO: function hangs when running tcg2disasm.py
-
-SECTION "Bank b@4e11", ROMX[$4e11], BANK[$b]
+	ld a, EVENT_MET_GR4_PSYCHIC_CLUB
+	farcall GetEventValue
+	jr z, .asm_2cdc6
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
+	farcall GetEventValue
+	jr nz, .asm_2cdf6
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	farcall GetEventValue
+	jr z, .asm_2cdf6
+	ld bc, TILEMAP_013
+	ld de, $506 ; OW coordinates
+	farcall Func_12c0ce
+	jr .asm_2ce0f
+.asm_2cdc6
+	ld a, $0a
+	ld [wd582], a
+	ld a, $0b
+	ld [wd592], a
+	ld hl, $4e39
+	ld a, l
+	ld [wd593], a
+	ld a, h
+	ld [$d594], a
+	xor a
+	call Func_33f2
+	; Event Script @ 0x2cddf
+	db $22
+	db $26
+	db $07
+	db $06
+	db $02
+	db $22
+	db $27
+	db $05
+	db $06
+	db $02
+	db $22
+	db $28
+	db $06
+	db $06
+	db $02
+	db $22
+	db $29
+	db $08
+	db $0a
+	db $02
+	db $00
+	jr .asm_2ce0f
+.asm_2cdf6
+	xor a
+	call Func_33f2
+	; Event Script @ 0x2cdfa
+	db $22
+	db $26
+	db $06
+	db $03
+	db $02
+	db $22
+	db $27
+	db $05
+	db $06
+	db $02
+	db $22
+	db $28
+	db $06
+	db $0a
+	db $02
+	db $22
+	db $29
+	db $08
+	db $0a
+	db $02
+	db $00
+.asm_2ce0f
+	scf
+	ret
 
 Func_2ce11:
 	ld hl, $4d5a
@@ -892,17 +978,23 @@ Func_2d673:
 	ld [$d594], a
 	xor a
 	call Func_33f2
-	ld [hli], a
-	ld a, [bc]
-	dec b
-	ld bc, $2202
-	dec bc
-	ld [$201], sp
-	ld [hli], a
-	inc c
-	ld b, $01
-	ld [bc], a
-	nop
+	; Event Script @ 0x2d694
+	db $22
+	db $0a
+	db $05
+	db $01
+	db $02
+	db $22
+	db $0b
+	db $08
+	db $01
+	db $02
+	db $22
+	db $0c
+	db $06
+	db $01
+	db $02
+	db $00
 .asm_2d6a4
 	scf
 	ret
@@ -1759,9 +1851,10 @@ Func_2ed37:
 Func_2ed3e:
 	xor a
 	call Func_33f2
-	ld h, h
-	ld [de], a
-	nop
+	; Event Script @ 0x2ed42
+	db $64
+	db $12
+	db $00
 	call Func_2eda8
 	jr c, .asm_2ed73
 	or a
@@ -1972,19 +2065,23 @@ Func_2f0a5:
 	jr nz, .asm_2f0c3
 	xor a
 	call Func_33f2
-	dec d
-	xor h
-	inc b
-	ld b, $02
-	dec d
-	xor l
-	inc bc
-	ld b, $01
-	dec d
-	xor [hl]
-	dec b
-	ld b, $03
-	nop
+	; Event Script @ 0x2f0b1
+	db $15
+	db $ac
+	db $04
+	db $06
+	db $02
+	db $15
+	db $ad
+	db $03
+	db $06
+	db $01
+	db $15
+	db $ae
+	db $05
+	db $06
+	db $03
+	db $00
 	jr .asm_2f0f5
 .asm_2f0c3
 	ld bc, TILEMAP_02A
@@ -2000,20 +2097,23 @@ Func_2f0a5:
 .asm_2f0e1
 	xor a
 	call Func_33f2
-	ld [hli], a
-	add hl, de
-	add hl, bc
-	dec b
-	ld [bc], a
-	ld [hli], a
-	inc e
-	ld [$205], sp
-	ld [hli], a
-	dec e
-	ld a, [bc]
-	dec b
-	ld [bc], a
-	nop
+	; Event Script @ 0x2f0e5
+	db $22
+	db $19
+	db $09
+	db $05
+	db $02
+	db $22
+	db $1c
+	db $08
+	db $05
+	db $02
+	db $22
+	db $1d
+	db $0a
+	db $05
+	db $02
+	db $00
 .asm_2f0f5
 	scf
 	ret
@@ -2085,9 +2185,10 @@ Func_2f56e:
 Func_2f575:
 	xor a
 	call Func_33f2
-	ld h, h
-	ld [de], a
-	nop
+	; Event Script @ 0x2f579
+	db $64
+	db $12
+	db $00
 	call Func_2f5ca
 	jr c, .asm_2f5a6
 	cp $01
@@ -2292,10 +2393,71 @@ Func_2f865:
 	ret
 
 Func_2f86e:
-; TODO: this function doesn't want to disasm
-
-
-SECTION "Bank b@78c8", ROMX[$78c8], BANK[$b]
+	ld a, EVENT_GOT_CHARMANDER_COIN
+	farcall GetEventValue
+	jr nz, .asm_2f891
+	xor a
+	call Func_33f2
+	; Event Script @ 0x2f87a
+	db $22
+	db $1e
+	db $07
+	db $0a
+	db $02
+	db $22
+	db $1f
+	db $06
+	db $0a
+	db $02
+	db $22
+	db $20
+	db $05
+	db $0a
+	db $02
+	db $22
+	db $21
+	db $08
+	db $0a
+	db $02
+	db $00
+	jr .asm_2f8c6
+.asm_2f891
+	ld bc, TILEMAP_02E
+	ld de, $50b ; OW coordinates
+	farcall Func_12c0ce
+	ld bc, TILEMAP_02F
+	ld de, $507 ; OW coordinates
+	farcall Func_12c0ce
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
+	farcall GetEventValue
+	jr z, .asm_2f8c6
+	xor a
+	call Func_33f2
+	; Event Script @ 0x2f8b1
+	db $22
+	db $1e
+	db $07
+	db $0a
+	db $02
+	db $22
+	db $1f
+	db $06
+	db $0a
+	db $02
+	db $22
+	db $20
+	db $05
+	db $0a
+	db $02
+	db $22
+	db $21
+	db $08
+	db $0a
+	db $02
+	db $00
+.asm_2f8c6
+	scf
+	ret
 
 Func_2f8c8:
 	ld hl, $7801
