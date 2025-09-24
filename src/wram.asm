@@ -2284,7 +2284,7 @@ wGeneralVars:: ; d5d2
 	ds $34
 
 wd606:: ; d606
-	ds $8
+	ds wD606_STRUCT_SIZE
 
 	ds $3
 
@@ -2324,7 +2324,7 @@ wd61d:: ; d61d
 	ds $1
 
 wd61e:: ; d61e
-	ds MAX_wD61E_SIZE
+	ds wD61E_STRUCT_SIZE
 
 	ds $2a
 

@@ -286,5 +286,6 @@ DEF EAST     EQU $01
 DEF SOUTH    EQU $02
 DEF WEST     EQU $03
 
-; TODO: Identify wd61e to give it a proper name
-DEF MAX_wD61E_SIZE EQU $20
+; TODO: Identify WRAM to give them proper names
+DEF wD606_STRUCT_SIZE EQU $8
+DEF wD61E_STRUCT_SIZE EQU $20

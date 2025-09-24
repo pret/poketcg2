@@ -2211,13 +2211,9 @@ ZeroOutBytes_wd606:
 	push hl
 	xor a
 	ld hl, wd606
+REPT wD606_STRUCT_SIZE - 1
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld [hl], a
 	pop hl
 	pop af
@@ -2230,9 +2226,9 @@ SetBit_wd606:
 	push hl
 	push af
 	ld hl, wd606
+REPT 3
 	srl a
-	srl a
-	srl a
+ENDR
 	add l
 	ld l, a
 	jr nc, .got_byte
@@ -2264,9 +2260,9 @@ ClearBit_wd606:
 	push hl
 	push af
 	ld hl, wd606
+REPT 3
 	srl a
-	srl a
-	srl a
+ENDR
 	add l
 	ld l, a
 	jr nc, .got_byte
@@ -2301,9 +2297,9 @@ CheckBit_wd606:
 	push af
 	push af
 	ld hl, wd606
+REPT 3
 	srl a
-	srl a
-	srl a
+ENDR
 	add l
 	ld l, a
 	jr nc, .got_byte
@@ -2609,7 +2605,7 @@ Func_dbdb::
 	ld h, [hl]
 	ld l, a
 	ld de, wd61e
-	ld bc, MAX_wD61E_SIZE
+	ld bc, wD61E_STRUCT_SIZE
 	ld a, [wd619]
 	call CopyFarHLToDE
 	ret
@@ -2786,7 +2782,7 @@ Func_dd0e:
 	ld a, c
 	ld hl, wd61a
 	add [hl]
-	cp MAX_wD61E_SIZE
+	cp wD61E_STRUCT_SIZE
 	jr nc, .fallback
 	ld [hl], a
 	ret
@@ -2825,7 +2821,7 @@ Func_dd3b:
 	ld hl, wd61a
 	add [hl]
 	inc a
-	cp MAX_wD61E_SIZE
+	cp wD61E_STRUCT_SIZE
 	jr nc, .fallback
 	pop bc
 	dec a
@@ -2864,7 +2860,7 @@ Func_dd66:
 	push af
 	ld hl, wd61a
 	add [hl]
-	cp MAX_wD61E_SIZE
+	cp wD61E_STRUCT_SIZE
 	jr nc, .fallback
 	pop bc
 	ld hl, wd61e
@@ -3277,22 +3273,19 @@ Func_eb39:
 
 	ld hl, wde0d
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde11
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde15
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 
 	ld a, $01
 	ld [wde15 + 0], a
@@ -3323,16 +3316,14 @@ Func_eb97:
 	call Func_ec6c
 	ld hl, wde0d
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde11
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	call Func_ec38
 	ret
 
@@ -3513,10 +3504,9 @@ Func_ec94:
 	or c
 	jr nz, .asm_ecd5
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_ecbf
 .asm_ed03
 	pop af
@@ -3586,10 +3576,9 @@ Func_ed0b:
 	or c
 	jr nz, .asm_ed47
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_ed31
 .asm_ed74
 	pop af
@@ -3658,10 +3647,9 @@ Func_ed7c:
 	or c
 	jr nz, .asm_edb8
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_eda2
 .asm_ede4
 	pop af
