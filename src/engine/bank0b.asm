@@ -49,7 +49,7 @@ Func_2c0d1:
 	farcall GetEventValue
 	jr z, .asm_2c0ef
 	ld a, OW_ISHIHARA
-	ld de, $102 ; xy coordinate
+	lb de, 1, 2
 	farcall Func_10db8
 	ld b, NORTH
 	farcall SetOWObjectDirection
@@ -624,7 +624,7 @@ Func_2cda2:
 	farcall GetEventValue
 	jr z, .asm_2cdf6
 	ld bc, TILEMAP_013
-	ld de, $506 ; OW coordinates
+	lb de, 5, 6
 	farcall Func_12c0ce
 	jr .asm_2ce0f
 .asm_2cdc6
@@ -1157,7 +1157,7 @@ Func_2dd15:
 	farcall GetEventValue
 	jr z, .asm_2dd2f
 	ld bc, TILEMAP_01A
-	ld de, $500 ; OW coordinates
+	lb de, 5, 0
 	farcall Func_12c0ce
 .asm_2dd2f
 	scf
@@ -1370,7 +1370,7 @@ Func_2e1d9:
 	farcall GetEventValue
 	jr z, .asm_2e1f3
 	ld bc, TILEMAP_01E
-	ld de, $50b ; OW coordinates
+	lb de, 5, 11
 	farcall Func_12c0ce
 .asm_2e1f3
 	scf
@@ -1686,16 +1686,16 @@ Func_2e95c:
 	farcall GetEventValue
 	jr z, .asm_2e994
 	ld bc, TILEMAP_022
-	ld de, $401 ; OW coordinates
+	lb de, 4, 1
 	farcall Func_12c0ce
 	ld bc, TILEMAP_023
-	ld de, $901 ; OW coordinates
+	lb de, 9, 1
 	farcall Func_12c0ce
 	ld bc, TILEMAP_024
-	ld de, $406 ; OW coordinates
+	lb de, 4, 6
 	farcall Func_12c0ce
 	ld bc, TILEMAP_025
-	ld de, $50c ; OW coordinates
+	lb de, 5, 12
 	farcall Func_12c0ce
 .asm_2e994
 	scf
@@ -1989,13 +1989,13 @@ Func_2f0a5:
 	jr .asm_2f0f5
 .asm_2f0c3
 	ld bc, TILEMAP_02A
-	ld de, $204 ; OW coordinates
+	lb de, 2, 4
 	farcall Func_12c0ce
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f0e1
 	ld bc, TILEMAP_029
-	ld de, $50c ; OW coordinates
+	lb de, 5, 12
 	farcall Func_12c0ce
 	jr .asm_2f0f5
 .asm_2f0e1
@@ -2293,10 +2293,10 @@ Func_2f86e:
 	jr .asm_2f8c6
 .asm_2f891
 	ld bc, TILEMAP_02E
-	ld de, $50b ; OW coordinates
+	lb de, 5, 11
 	farcall Func_12c0ce
 	ld bc, TILEMAP_02F
-	ld de, $507 ; OW coordinates
+	lb de, 5, 7
 	farcall Func_12c0ce
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
@@ -2400,13 +2400,13 @@ Func_2fe54:
 	cp $00
 	jr nz, .asm_2fe6c
 	ld a, OW_GR_BLIMP
-	ld de, $1080 ; OW coordinates
+	lb de, 16, 128
 	ld b, EAST
 	farcall LoadOWObject
 	jr .asm_2fe77
 .asm_2fe6c
 	ld a, OW_GR_BLIMP
-	ld de, $9010 ; OW coordinates
+	lb de, 144, 16
 	ld b, WEST
 	farcall LoadOWObject
 .asm_2fe77
