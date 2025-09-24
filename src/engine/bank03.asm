@@ -2461,15 +2461,15 @@ CheckTCGIslandMilestoneEvents:
 
 .check_pointers:
 	dw .jump_set_carry
-  dw .check_four_tcgisland_coins
-  dw .check_gr_coin_top_left
-  dw .check_gr_coin_top_right
-  dw .check_starmie_coin
-  dw .check_gr_coin_bottom_left
-  dw .check_pikachu_coin
-  dw .check_gr_coin_bottom_right
-  dw .check_grand_master_cup_or_challenge_machine
-  dw .check_event_db
+	dw .check_four_tcgisland_coins
+	dw .check_gr_coin_top_left
+	dw .check_gr_coin_top_right
+	dw .check_starmie_coin
+	dw .check_gr_coin_bottom_left
+	dw .check_pikachu_coin
+	dw .check_gr_coin_bottom_right
+	dw .check_grand_master_cup_or_challenge_machine
+	dw .check_event_db
 
 ; jump to .check_pointers[a], set carry if the event is set, clear carry if not
 CheckGRIslandMilestoneEvents:
@@ -2564,16 +2564,16 @@ CheckGRIslandMilestoneEvents:
 	ret
 
 .check_pointers:
-  dw .check_magnemite_coin
-  dw .check_golbat_coin
-  dw .check_psyduck_coin
-  dw .check_magmar_coin
-  dw .check_machamp_coin
-  dw .check_mew_coin
-  dw .check_snorlax_coin
-  dw .check_rui_roadblock
-  dw .check_battled_ishihara
-  dw .check_challenge_machine
+	dw .check_magnemite_coin
+	dw .check_golbat_coin
+	dw .check_psyduck_coin
+	dw .check_magmar_coin
+	dw .check_machamp_coin
+	dw .check_mew_coin
+	dw .check_snorlax_coin
+	dw .check_rui_roadblock
+	dw .check_battled_ishihara
+	dw .check_challenge_machine
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc
