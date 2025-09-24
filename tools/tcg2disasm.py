@@ -1419,7 +1419,7 @@ class Disassembler(object):
 						output_lines.pop(i)
 					elif label_name in line:
 					# if the label is used in a load-based opcode, replace it with the raw hex reference
-						output_lines[i] = output_lines[i].replace(label_name, "$%x" % get_local_address(label_addr))
+						output_lines[i] = output_lines[i].replace(label_name, "$%x" % label_addr)
 
 		# convert the modified list of lines into a string
 		output = "".join(output_lines)
