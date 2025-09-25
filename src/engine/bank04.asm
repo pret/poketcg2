@@ -2237,9 +2237,20 @@ PrintScrollableText_NoTextBoxLabelVRAM0::
 	pop bc
 	pop af
 	ret
-; 0x1103c
 
-SECTION "Bank 4@504c", ROMX[$504c], BANK[$4]
+PrintScrollableText_WithTextBoxLabelVRAM0::
+	push af
+	push bc
+	push de
+	push hl
+	xor a
+	call BankswitchVRAM
+	call PrintScrollableText_WithTextBoxLabel
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 ; input:
 ;  a = $0 for "yes" default option

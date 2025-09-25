@@ -2286,7 +2286,11 @@ wGeneralVars:: ; d5d2
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 
-	ds $3
+; wd60e:: ; d60e
+	ds $1
+
+wd60f:: ; d60f
+	ds $2
 
 wd611:: ; d611
 	ds $1

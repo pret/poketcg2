@@ -2641,28 +2641,28 @@ Func_dbf2::
 	jp hl
 
 .PointerTable
-	dw $5d91
-	dw $5d9c
-	dw $5da6
-	dw $5dad
-	dw $5db9
-	dw $5dd1
-	dw $5de3
-	dw $5e01
-	dw $5e1f
-	dw $5e30
-	dw $5e3b
-	dw $5e46
-	dw $5e51
-	dw $5e5c
-	dw $5e76
-	dw $5e7f
-	dw $5e88
-	dw $5e9d
-	dw $5ea8
-	dw $5eb4
-	dw $5ec4
-	dw $5ed4
+	dw Func_dd91
+	dw Func_dd9c
+	dw Func_dda6
+	dw Func_ddad
+	dw Func_ddb9
+	dw Func_ddd1
+	dw Func_dde3
+	dw Func_de01
+	dw Func_de1f
+	dw Func_de30
+	dw Func_de3b
+	dw Func_de46
+	dw Func_de51
+	dw Func_de5c
+	dw Func_de76
+	dw Func_de7f
+	dw Func_de88
+	dw Func_de9d
+	dw Func_dea8
+	dw Func_deb4
+	dw Func_dec4
+	dw Func_ded4
 	dw $5eeb
 	dw $5ef5
 	dw $5f03
@@ -2790,7 +2790,7 @@ Func_dd0e:
 	call Func_dbdb
 	ret
 
-HandlewD61A_Done:
+Call_dbdb_Done:
 	ret
 
 Run_dd0e_Inc1:
@@ -2894,7 +2894,212 @@ Run_dd66_Inc3:
 Run_dd66_Inc4:
 	ld a, 4
 	jr Func_dd66
-; 0xdd91
+
+Func_dd91:
+	ld a, [wd618]
+	set 7, a
+	ld [wd618], a
+	jp Run_dd0e_Inc1
+
+Func_dd9c:
+	call DoFrame
+	farcall Func_11002
+	jp Run_dd0e_Inc1
+
+Func_dda6:
+	farcall Func_1101d
+	jp Run_dd0e_Inc1
+
+Func_ddad:
+	call Run_dd3b_Inc1
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	jp Run_dd0e_Inc3
+
+Func_ddb9:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .not_set
+	call Run_dd3b_Inc1
+	jr .next
+.not_set
+	call Run_dd3b_Inc3
+.next
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	jp Run_dd0e_Inc5
+
+Func_ddd1:
+	call Run_dd3b_Inc1
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	jp Run_dd0e_Inc3
+
+Func_dde3:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .not_set
+	call Run_dd3b_Inc1
+	jr .next
+.not_set
+	call Run_dd3b_Inc3
+.next
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	jp Run_dd0e_Inc5
+
+Func_de01:
+	call Run_dd3b_Inc1
+	ld l, c
+	ld h, b
+	push hl
+	call Run_dd66_Inc3
+	pop hl
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ld hl, wd618
+	or a
+	jr nz, .no
+	set 0, [hl]
+	jp Run_dd0e_Inc4
+.no
+	res 0, [hl]
+	jp Run_dd0e_Inc4
+
+Func_de1f:
+	call Run_dd3b_Inc1
+	ld a, c
+	ld [wd61b], a
+	ld a, b
+	ld [wd61b + 1], a
+	call Func_dbdb
+	jp Call_dbdb_Done
+
+Func_de30:
+	ld hl, wd618
+	bit 0, [hl]
+	jp nz, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de3b:
+	ld hl, wd618
+	bit 0, [hl]
+	jp z, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de46:
+	ld hl, wd618
+	bit 1, [hl]
+	jp nz, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de51:
+	ld hl, wd618
+	bit 1, [hl]
+	jp z, Func_de1f
+	jp Run_dd0e_Inc3
+
+; for x = [wd61e + [wd61a] + 1],
+; set bit 0 at wd618 if x = [wd616],
+; set bit 1 at wd618 if x > [wd616],
+; else reset both bits,
+; then Run_dd0e_Inc2
+Func_de5c:
+	call Run_dd66_Inc1
+	ld c, a
+	ld a, [wd616]
+	ld hl, wd618
+	res 0, [hl]
+	res 1, [hl]
+	cp c
+	jr nz, .bit0_ok
+	set 0, [hl]
+.bit0_ok
+	jr nc, .bit1_ok
+	set 1, [hl]
+.bit1_ok
+	jp Run_dd0e_Inc2
+
+Func_de76:
+	call Run_dd66_Inc1
+	call MaxOutEventValue
+	jp Run_dd0e_Inc2
+
+Func_de7f:
+	call Run_dd66_Inc1
+	call ZeroOutEventValue
+	jp Run_dd0e_Inc2
+
+Func_de88:
+	call Run_dd66_Inc1
+	call GetEventValue
+	ld hl, wd618
+	jr z, .set
+; reset
+	res 0, [hl]
+	jp Run_dd0e_Inc2
+.set
+	set 0, [hl]
+	jp Run_dd0e_Inc2
+
+Func_de9d:
+	call Run_dd3b_Inc1
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp Run_dd0e_Inc3
+
+Func_dea8:
+	call Run_dd66_Inc1
+	call GetVarValue
+	ld [wd616], a
+	jp Run_dd0e_Inc2
+
+Func_deb4:
+	call Run_dd66_Inc1
+	push af
+	call GetVarValue
+	inc a
+	ld c, a
+	pop af
+	call SetVarValue
+	jp Run_dd0e_Inc2
+
+Func_dec4:
+	call Run_dd66_Inc1
+	push af
+	call GetVarValue
+	dec a
+	ld c, a
+	pop af
+	call SetVarValue
+	jp Run_dd0e_Inc2
+
+Func_ded4:
+	call Run_dd66_Inc1
+	push af
+	call Run_dd3b_Inc2
+	ld d, c
+	ld e, b
+	push de
+	call Run_dd66_Inc4
+	ld b, a
+	pop de
+	pop af
+	farcall LoadOWObjectInMap
+	jp Run_dd0e_Inc5
+; 0xdeeb
 
 SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
 
