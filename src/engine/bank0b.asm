@@ -1184,24 +1184,6 @@ Func_2dd42:
 	ret
 ; 0x2dd4d
 
-SECTION "Bank b@5d9c", ROMX[$5d9c], BANK[$b]
-
-Func_2dd9c:
-	dec b
-	sub b
-	ld [$2], sp
-	ret
-; 0x2dda2
-
-SECTION "Bank b@5ef2", ROMX[$5ef2], BANK[$b]
-
-Func_2def2:
-	dec b
-	xor c
-	ld [$2], sp
-	ret
-; 0x2def8
-
 SECTION "Bank b@606d", ROMX[$606d], BANK[$b]
 
 Data_2e06d:
