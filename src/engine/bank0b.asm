@@ -140,7 +140,7 @@ SECTION "Bank b@41b8", ROMX[$41b8], BANK[$b]
 Func_2c1b8:
 	ld a, VAR_02
 	farcall GetVarValue
-	cp $05
+	cp 5
 	jr c, .asm_2c1d8
 	jr nz, .asm_2c1ce
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
@@ -329,7 +329,7 @@ Func_2c9df:
 Func_2c9e8:
 	call PsychicClubEntranceShouldRonaldAppear
 	jr c, .asm_2ca12
-	cp $01
+	cp 1
 	jr z, .asm_2c9f8
 	jr nc, .asm_2c9fd
 	ld hl, $4037
@@ -456,11 +456,11 @@ Func_2cabb:
 PsychicClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .second_meeting
-	cp $03
+	cp 3
 	jr c, .third_meeting
-	cp $04
+	cp 4
 	jr c, .fourth_meeting
 .asm_2cada
 	scf
@@ -472,17 +472,17 @@ PsychicClubEntranceShouldRonaldAppear:
 	ret
 .third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
 	farcall CountGRCoinPiecesObtained
-	cp $02
+	cp 2
 	jr nz, .asm_2cada
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
 .fourth_meeting ; after 4 GR pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPiecesObtained
-	cp $04
+	cp 4
 	jr nz, .asm_2cada
-	ld a, $02
+	ld a, 2
 	scf
 	ccf
 	ret
@@ -519,7 +519,7 @@ Func_2cba8:
 Func_2cbba:
 	ld a, VAR_25
 	farcall GetVarValue
-	cp $03
+	cp 3
 	jr z, .asm_2cbc6
 	scf
 	ret
@@ -760,7 +760,7 @@ Func_2d399:
 Func_2d3b5:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2d3c1
 	scf
 	ret
@@ -803,7 +803,7 @@ Func_2d472:
 Func_2d489:
 	ld a, VAR_25
 	farcall GetVarValue
-	cp $04
+	cp 4
 	jr z, .asm_2d495
 	scf
 	ret
@@ -982,7 +982,7 @@ Func_2d99f:
 Func_2d9a6:
 	call Func_2d9f4
 	jr c, .asm_2d9d0
-	cp $01
+	cp 1
 	jr z, .asm_2d9b6
 	jr nc, .asm_2d9bb
 	ld hl, $4037
@@ -1029,11 +1029,11 @@ Func_2d9d8:
 Func_2d9f4:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2da08
-	cp $03
+	cp 3
 	jr c, .asm_2da0c
-	cp $04
+	cp 4
 	jr c, .asm_2da19
 .asm_2da06
 	scf
@@ -1045,17 +1045,17 @@ Func_2d9f4:
 	ret
 .asm_2da0c
 	farcall CountGRCoinPiecesObtained
-	cp $02
+	cp 2
 	jr nz, .asm_2da06
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
 .asm_2da19
 	farcall CountGRCoinPiecesObtained
-	cp $04
+	cp 4
 	jr nz, .asm_2da06
-	ld a, $02
+	ld a, 2
 	scf
 	ccf
 	ret
@@ -1233,7 +1233,7 @@ Func_2e0dc:
 Func_2e0e3:
 	call Func_2e131
 	jr c, .asm_2e10d
-	cp $01
+	cp 1
 	jr z, .asm_2e0f3
 	jr nc, .asm_2e0f8
 	ld hl, $4037
@@ -1281,11 +1281,11 @@ Func_2e115:
 Func_2e131:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2e145
-	cp $03
+	cp 3
 	jr c, .asm_2e149
-	cp $04
+	cp 4
 	jr c, .asm_2e156
 .asm_2e143
 	scf
@@ -1297,17 +1297,17 @@ Func_2e131:
 	ret
 .asm_2e149
 	farcall CountGRCoinPiecesObtained
-	cp $02
+	cp 2
 	jr nz, .asm_2e143
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
 .asm_2e156
 	farcall CountGRCoinPiecesObtained
-	cp $04
+	cp 4
 	jr nz, .asm_2e143
-	ld a, $02
+	ld a, 2
 	scf
 	ccf
 	ret
@@ -1437,7 +1437,7 @@ Func_2e53f:
 Func_2e548:
 	call Func_2e59e
 	jr c, .asm_2e572
-	cp $01
+	cp 1
 	jr z, .asm_2e558
 	jr nc, .asm_2e55d
 	ld hl, $4037
@@ -1488,11 +1488,11 @@ Func_2e582:
 Func_2e59e:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2e5b2
-	cp $03
+	cp 3
 	jr c, .asm_2e5b6
-	cp $04
+	cp 4
 	jr c, .asm_2e5c3
 .asm_2e5b0
 	scf
@@ -1504,17 +1504,17 @@ Func_2e59e:
 	ret
 .asm_2e5b6
 	farcall CountGRCoinPiecesObtained
-	cp $02
+	cp 2
 	jr nz, .asm_2e5b0
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
 .asm_2e5c3
 	farcall CountGRCoinPiecesObtained
-	cp $04
+	cp 4
 	jr nz, .asm_2e5b0
-	ld a, $02
+	ld a, 2
 	scf
 	ccf
 	ret
@@ -1568,7 +1568,7 @@ Func_2e6f7:
 Func_2e709:
 	ld a, VAR_25
 	farcall GetVarValue
-	cp $07
+	cp 7
 	jr z, .asm_2e715
 	scf
 	ret
@@ -1785,7 +1785,7 @@ Func_2ed75:
 	farcall GetEventValue
 	jr z, .asm_2ed8a
 	ld a, [wd585]
-	cp $00
+	cp 0
 	jr nz, .asm_2ed8a
 	ld a, EVENT_TALKED_TO_SARA
 	farcall ZeroOutEventValue
@@ -1810,7 +1810,7 @@ Func_2ed8c:
 Func_2eda8:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2edbc
 	ld a, EVENT_EE
 	farcall GetEventValue
@@ -1823,7 +1823,7 @@ Func_2eda8:
 	ccf
 	ret
 .asm_2edc0
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
@@ -1860,7 +1860,7 @@ Func_2ee73:
 Func_2ee85:
 	ld a, VAR_25
 	farcall GetVarValue
-	cp $08
+	cp 8
 	jr z, .asm_2ee91
 	scf
 	ret
@@ -2061,7 +2061,7 @@ Func_2f575:
 	db $64, $12, $00
 	call Func_2f5ca
 	jr c, .asm_2f5a6
-	cp $01
+	cp 1
 	jr z, .asm_2f58c
 	jr nc, .asm_2f591
 	ld hl, $4037
@@ -2106,11 +2106,11 @@ Func_2f5ae:
 Func_2f5ca:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr c, .asm_2f5de
-	cp $03
+	cp 3
 	jr c, .asm_2f5e2
-	cp $04
+	cp 4
 	jr c, .asm_2f5ef
 .asm_2f5dc
 	scf
@@ -2122,17 +2122,17 @@ Func_2f5ca:
 	ret
 .asm_2f5e2
 	farcall CountGRCoinPiecesObtained
-	cp $02
+	cp 2
 	jr nz, .asm_2f5dc
-	ld a, $01
+	ld a, 1
 	scf
 	ccf
 	ret
 .asm_2f5ef
 	farcall CountGRCoinPiecesObtained
-	cp $04
+	cp 4
 	jr nz, .asm_2f5dc
-	ld a, $02
+	ld a, 2
 	scf
 	ccf
 	ret
@@ -2169,7 +2169,7 @@ Func_2f6a0:
 Func_2f6b2:
 	ld a, VAR_25
 	farcall GetVarValue
-	cp $09
+	cp 9
 	jr z, .asm_2f6be
 	scf
 	ret
@@ -2379,7 +2379,7 @@ Data_2fe4a:
 Func_2fe54:
 	farcall InitOWObjects
 	ld a, [wd584]
-	cp $00
+	cp 0
 	jr nz, .asm_2fe6c
 	ld a, OW_GR_BLIMP
 	lb de, 16, 128
