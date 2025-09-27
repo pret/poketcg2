@@ -1059,19 +1059,19 @@ TCGIslandLocationNamePointers:
 	tx MapOpeningText
 
 GRIslandLocationNamePointers:
-	tx MapGRAirportText        ; OWMAP_GR_AIRPORT
-	tx MapIshiharasVillaText   ; OWMAP_ISHIHARAS_VILLA
-	tx MapGameCenterText       ; OWMAP_GAME_CENTER
-	tx MapSealedFortText       ; OWMAP_SEALED_FORT
-	tx MapGRChallengeHallText  ; OWMAP_GR_CHALLENGE_HALL
-	tx MapGRGrassFortText      ; OWMAP_GR_GRASS_FORT
-	tx MapGRLightningFortText  ; OWMAP_GR_LIGHTNING_FORT
-	tx MapGRFireFortText       ; OWMAP_GR_FIRE_FORT
-	tx MapGRWaterFortText      ; OWMAP_GR_WATER_FORT
-	tx MapGRFightingFortText   ; OWMAP_GR_FIGHTING_FORT
-	tx MapGRPsychicStrongholdText  ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
-	tx MapGRCastleText         ; OWMAP_GR_CASTLE
+	tx MapGRAirportText           ; OWMAP_GR_AIRPORT
+	tx MapIshiharasVillaText      ; OWMAP_ISHIHARAS_VILLA
+	tx MapGameCenterText          ; OWMAP_GAME_CENTER
+	tx MapSealedFortText          ; OWMAP_SEALED_FORT
+	tx MapGRChallengeHallText     ; OWMAP_GR_CHALLENGE_HALL
+	tx MapGRGrassFortText         ; OWMAP_GR_GRASS_FORT
+	tx MapGRLightningFortText     ; OWMAP_GR_LIGHTNING_FORT
+	tx MapGRFireFortText          ; OWMAP_GR_FIRE_FORT
+	tx MapGRWaterFortText         ; OWMAP_GR_WATER_FORT
+	tx MapGRFightingFortText      ; OWMAP_GR_FIGHTING_FORT
+	tx MapGRPsychicStrongholdText ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	tx MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
+	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
 ; 34 promo cards
 ; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
