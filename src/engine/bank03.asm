@@ -244,7 +244,7 @@ HandleStartMenu:
 	set 2, [hl]
 	; on second meeting, Ronald card pops with you
 	; and unlocks it in the start menu
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
 	cp $02
 	jr c, .menu_config4
@@ -256,7 +256,7 @@ HandleStartMenu:
 	set 1, [hl]
 	jr .menu_config3
 .no_saved_duel
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
 	cp $02
 	jr c, .menu_config1
@@ -2213,7 +2213,7 @@ GeneralVarMasks:
 	db $01, %00000011 ; VAR_01
 	db $01, %00111100 ; VAR_02
 	db $01, %11000000 ; VAR_03
-	db $02, %00001111 ; VAR_TIMES_RONALD_MET
+	db $02, %00001111 ; VAR_TIMES_MET_RONALD
 	db $03, %00000011 ; VAR_05
 	db $03, %00001100 ; VAR_06
 	db $03, %00110000 ; VAR_07

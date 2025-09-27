@@ -454,7 +454,7 @@ Func_2cabb:
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
 PsychicClubEntranceShouldRonaldAppear:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .second_meeting
@@ -758,7 +758,7 @@ Func_2d399:
 	ret
 
 Func_2d3b5:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2d3c1
@@ -1027,7 +1027,7 @@ Func_2d9d8:
 	ret
 
 Func_2d9f4:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2da08
@@ -1279,7 +1279,7 @@ Func_2e115:
 	ret
 
 Func_2e131:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e145
@@ -1486,7 +1486,7 @@ Func_2e582:
 	ret
 
 Func_2e59e:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2e5b2
@@ -1808,7 +1808,7 @@ Func_2ed8c:
 	ret
 
 Func_2eda8:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2edbc
@@ -2104,7 +2104,7 @@ Func_2f5ae:
 	ret
 
 Func_2f5ca:
-	ld a, VAR_TIMES_RONALD_MET
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_2f5de
