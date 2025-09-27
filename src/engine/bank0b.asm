@@ -478,7 +478,7 @@ PsychicClubEntranceShouldRonaldAppear:
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GR pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPiecesObtained
 	cp 4
 	jr nz, .asm_2cada
@@ -711,7 +711,7 @@ Func_2d356:
 	ret
 
 Func_2d366:
-	call Func_2d3b5
+	call RockClubEntranceShouldRonaldAppear
 	jr nc, .asm_2d36d
 	scf
 	ret
@@ -728,7 +728,7 @@ Func_2d376:
 	ret
 
 Func_2d37d:
-	call Func_2d3b5
+	call RockClubEntranceShouldRonaldAppear
 	jr c, .asm_2d397
 	ld a, $0a
 	ld [wd582], a
@@ -757,14 +757,16 @@ Func_2d399:
 	scf
 	ret
 
-Func_2d3b5:
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+RockClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2d3c1
+	jr c, .second_meeting
 	scf
 	ret
-.asm_2d3c1
+.second_meeting ; second meeting - Ronald card pops with you
 	scf
 	ccf
 	ret
@@ -963,7 +965,7 @@ Func_2d97f:
 	ret
 
 Func_2d98f:
-	call Func_2d9f4
+	call FightningClubEntranceShouldRonaldAppear
 	jr nc, .asm_2d996
 	scf
 	ret
@@ -980,7 +982,7 @@ Func_2d99f:
 	ret
 
 Func_2d9a6:
-	call Func_2d9f4
+	call FightningClubEntranceShouldRonaldAppear
 	jr c, .asm_2d9d0
 	cp 1
 	jr z, .asm_2d9b6
@@ -1026,24 +1028,27 @@ Func_2d9d8:
 	scf
 	ret
 
-Func_2d9f4:
+
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+FightningClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2da08
+	jr c, .second_meeting
 	cp 3
-	jr c, .asm_2da0c
+	jr c, .third_meeting
 	cp 4
-	jr c, .asm_2da19
+	jr c, .fourth_meeting
 .asm_2da06
 	scf
 	ret
-.asm_2da08
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
 	ret
-.asm_2da0c
+.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
 	farcall CountGRCoinPiecesObtained
 	cp 2
 	jr nz, .asm_2da06
@@ -1051,7 +1056,7 @@ Func_2d9f4:
 	scf
 	ccf
 	ret
-.asm_2da19
+.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPiecesObtained
 	cp 4
 	jr nz, .asm_2da06
@@ -1214,7 +1219,7 @@ Func_2e0bc:
 	ret
 
 Func_2e0cc:
-	call Func_2e131
+	call GrassClubEntranceShouldRonaldAppear
 	jr nc, .asm_2e0d3
 	scf
 	ret
@@ -1231,7 +1236,7 @@ Func_2e0dc:
 	ret
 
 Func_2e0e3:
-	call Func_2e131
+	call GrassClubEntranceShouldRonaldAppear
 	jr c, .asm_2e10d
 	cp 1
 	jr z, .asm_2e0f3
@@ -1278,33 +1283,35 @@ Func_2e115:
 	scf
 	ret
 
-Func_2e131:
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+GrassClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2e145
+	jr c, .second_meeting
 	cp 3
-	jr c, .asm_2e149
+	jr c, .third_meeting
 	cp 4
-	jr c, .asm_2e156
+	jr c, .fourth_meeting
 .asm_2e143
 	scf
 	ret
-.asm_2e145
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
 	ret
-.asm_2e149
-	farcall CountGRCoinPiecesObtained
+.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+	farcall CountGRCoinPiecesObtained 
 	cp 2
 	jr nz, .asm_2e143
 	ld a, 1
 	scf
 	ccf
 	ret
-.asm_2e156
-	farcall CountGRCoinPiecesObtained
+.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+	farcall CountGRCoinPiecesObtained 
 	cp 4
 	jr nz, .asm_2e143
 	ld a, 2
@@ -1411,7 +1418,7 @@ Func_2e518:
 	ret
 
 Func_2e528:
-	call Func_2e59e
+	call ScienceClubEntranceShouldRonaldAppear
 	jr nc, .asm_2e52f
 	scf
 	ret
@@ -1435,7 +1442,7 @@ Func_2e53f:
 	ret
 
 Func_2e548:
-	call Func_2e59e
+	call ScienceClubEntranceShouldRonaldAppear
 	jr c, .asm_2e572
 	cp 1
 	jr z, .asm_2e558
@@ -1485,24 +1492,26 @@ Func_2e582:
 	scf
 	ret
 
-Func_2e59e:
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+ScienceClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2e5b2
+	jr c, .second_meeting
 	cp 3
-	jr c, .asm_2e5b6
+	jr c, .third_meeting
 	cp 4
-	jr c, .asm_2e5c3
+	jr c, .fourth_meeting
 .asm_2e5b0
 	scf
 	ret
-.asm_2e5b2
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
 	ret
-.asm_2e5b6
+.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
 	farcall CountGRCoinPiecesObtained
 	cp 2
 	jr nz, .asm_2e5b0
@@ -1510,7 +1519,7 @@ Func_2e59e:
 	scf
 	ccf
 	ret
-.asm_2e5c3
+.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPiecesObtained
 	cp 4
 	jr nz, .asm_2e5b0
@@ -1734,7 +1743,7 @@ Func_2ed17:
 	ret
 
 Func_2ed27:
-	call Func_2eda8
+	call WaterClubEntranceShouldRonaldAppear
 	jr nc, .asm_2ed2e
 	scf
 	ret
@@ -1755,7 +1764,7 @@ Func_2ed3e:
 	call Func_33f2
 	; Event Script @ 0x2ed42
 	db $64, $12, $00
-	call Func_2eda8
+	call WaterClubEntranceShouldRonaldAppear
 	jr c, .asm_2ed73
 	or a
 	jr nz, .asm_2ed58
@@ -1807,17 +1816,22 @@ Func_2ed8c:
 	scf
 	ret
 
-Func_2eda8:
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+;
+; This club is an anomaly. For other clubs, return "1" triggers the 3rd meeting,
+; but only if you have 2 GC pieces. Here it checks EVENT_EE instead of GC pieces
+WaterClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2edbc
+	jr c, .second_meeting
 	ld a, EVENT_EE
 	farcall GetEventValue
 	jr nz, .asm_2edc0
 	scf
 	ret
-.asm_2edbc
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
@@ -2038,7 +2052,7 @@ Func_2f54e:
 	ret
 
 Func_2f55e:
-	call Func_2f5ca
+	call FireClubEntranceShouldRonaldAppear
 	jr nc, .asm_2f565
 	scf
 	ret
@@ -2059,7 +2073,7 @@ Func_2f575:
 	call Func_33f2
 	; Event Script @ 0x2f579
 	db $64, $12, $00
-	call Func_2f5ca
+	call FireClubEntranceShouldRonaldAppear
 	jr c, .asm_2f5a6
 	cp 1
 	jr z, .asm_2f58c
@@ -2103,24 +2117,26 @@ Func_2f5ae:
 	scf
 	ret
 
-Func_2f5ca:
+; sets and complements carry flag if Ronald should appear.
+; return a = which meeting script to use
+FireClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
-	jr c, .asm_2f5de
+	jr c, .second_meeting
 	cp 3
-	jr c, .asm_2f5e2
+	jr c, .third_meeting
 	cp 4
-	jr c, .asm_2f5ef
+	jr c, .fourth_meeting
 .asm_2f5dc
 	scf
 	ret
-.asm_2f5de
+.second_meeting ; second meeting - Ronald card pops with you
 	xor a
 	scf
 	ccf
 	ret
-.asm_2f5e2
+.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
 	farcall CountGRCoinPiecesObtained
 	cp 2
 	jr nz, .asm_2f5dc
@@ -2128,7 +2144,7 @@ Func_2f5ca:
 	scf
 	ccf
 	ret
-.asm_2f5ef
+.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
 	farcall CountGRCoinPiecesObtained
 	cp 4
 	jr nz, .asm_2f5dc
