@@ -104,7 +104,7 @@ Prologue::
 	farcall SetOWObjectFrameset
 
 	ld a, OW_GR_BLIMP
-	farcall ClearOWObject
+	farcall _ClearOWObject
 
 	ld bc, TILEMAP_002
 	lb de, 0, 0
@@ -121,7 +121,7 @@ Prologue::
 	ld a, [wPlayerOWObject]
 	call WaitForOWObjectAnimation
 	ld a, [wPlayerOWObject]
-	farcall ClearOWObject
+	farcall _ClearOWObject
 	lb de, $44, $44
 	ld b, SOUTH
 	farcall LoadOWObject
@@ -180,7 +180,7 @@ Prologue::
 	farcall LoadOWObject
 	call WaitForOWObjectAnimation
 	ld a, OW_GR_BLIMP_BEAM
-	farcall ClearOWObject
+	farcall _ClearOWObject
 	ret
 
 .MovePlayer:

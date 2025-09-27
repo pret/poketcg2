@@ -368,7 +368,7 @@ Func_2ca22:
 	farcall GetEventValue
 	jr z, .asm_2ca3c
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -562,7 +562,7 @@ Func_2cbf5:
 	farcall GetEventValue
 	jr z, .asm_2cc0f
 	ld a, OW_IMAKUNI_BLACK
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -748,7 +748,7 @@ Func_2d399:
 	farcall GetEventValue
 	jr z, .asm_2d3b3
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -848,7 +848,7 @@ Func_2d4c4:
 	farcall GetEventValue
 	jr z, .asm_2d4de
 	ld a, OW_IMAKUNI_BLACK
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1019,7 +1019,7 @@ Func_2d9d8:
 	farcall GetEventValue
 	jr z, .asm_2d9f2
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1274,7 +1274,7 @@ Func_2e115:
 	farcall GetEventValue
 	jr z, .asm_2e12f
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1483,7 +1483,7 @@ Func_2e582:
 	farcall GetEventValue
 	jr z, .asm_2e59c
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1625,7 +1625,7 @@ Func_2e752:
 	farcall GetEventValue
 	jr z, .asm_2e76c
 	ld a, OW_IMAKUNI_BLACK
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1807,7 +1807,7 @@ Func_2ed8c:
 	farcall GetEventValue
 	jr z, .asm_2eda6
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -1922,7 +1922,7 @@ Func_2eece:
 	farcall GetEventValue
 	jr z, .asm_2eee8
 	ld a, OW_IMAKUNI_BLACK
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -2108,7 +2108,7 @@ Func_2f5ae:
 	farcall GetEventValue
 	jr z, .asm_2f5c8
 	ld a, OW_RONALD
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
@@ -2228,7 +2228,7 @@ Func_2f6ed:
 	farcall GetEventValue
 	jr z, .asm_2f707
 	ld a, OW_IMAKUNI_BLACK
-	farcall _ClearOWObject
+	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]

@@ -1748,8 +1748,8 @@ LoadOWObjectInMap::
 
 SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
 
-_ClearOWObject:
-	call ClearOWObject
+ClearOWObject:
+	call _ClearOWObject
 	ret
 
 Func_10da7::
@@ -2651,7 +2651,7 @@ LoadOWObject:
 	farcall _LoadOWObject
 	ret
 
-ClearOWObject:
+_ClearOWObject:
 	push af
 	push hl
 	call GetOWObjectWithID
