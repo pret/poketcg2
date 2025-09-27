@@ -2167,7 +2167,8 @@ wd552:: ; d552
 wd554:: ; d554
 	ds $1
 
-	ds $c
+wCurrentNPCDuelistData:: ; d555
+	ds NPC_DUELIST_STRUCT_SIZE
 
 wd561:: ; d561
 	ds $1
@@ -2282,7 +2283,14 @@ wEventVars:: ; d59e
 wGeneralVars:: ; d5d2
 	ds $34
 
-	ds $b
+wd606:: ; d606
+	ds wD606_STRUCT_SIZE
+
+; wd60e:: ; d60e
+	ds $1
+
+wd60f:: ; d60f
+	ds $2
 
 wd611:: ; d611
 	ds $1
@@ -2320,9 +2328,9 @@ wd61d:: ; d61d
 	ds $1
 
 wd61e:: ; d61e
-	ds $1
+	ds wD61E_STRUCT_SIZE
 
-	ds $49
+	ds $2a
 
 wd668:: ; d668
 	ds $1

@@ -593,25 +593,105 @@ Func_c477:
 .asm_c4b4
 	ret
 
+; load the NPC duelist header corresponding to register a into wCurrentNPCDuelistData
+LoadNPCDuelist:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld de, NPCDuelistPointers
+.loop
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .not_found
+	ld a, [hl]
+	cp c
+	jr nz, .loop
+	ld de, wCurrentNPCDuelistData
+	ld bc, NPC_DUELIST_STRUCT_SIZE
+	call CopyDataHLtoDE_SaveRegisters
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+.not_found
+	debug_nop
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+LoadNPCDuelistDeck:
+	push bc
+	push de
+	push hl
+	ld b, a
+	ld de, NPCDuelistPointers
+.loop_duelists
+	ld a, [de]
+	ld l, a
+	inc de
+	ld a, [de]
+	inc de
+	ld h, a
+	or l
+	jr z, .not_found
+	ld c, MAX_NPC_DUELIST_DECKS
+	push hl
+	ld a, NPC_DUELIST_STRUCT_DECKS
+	add l
+	ld l, a
+	jr nc, .loop_decks
+	inc h
+.loop_decks
+	ld a, [hli]
+	cp b
+	jr z, .got_deck
+	dec c
+	jr nz, .loop_decks
+	pop hl
+	jr .loop_duelists
+.not_found
+	debug_nop
+	jr .done
+.got_deck
+	pop hl
+	ld a, [hl]
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0xc50b
+
 SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
 
-Func_c522:
+; return the location name in hl, using c == island and a == location
+GetLocationName:
 	push af
 	push bc
 	ld b, a
 	ld a, c
-	ld hl, TextIDs_d171 ; TCG island
+	ld hl, TCGIslandLocationNamePointers
 	cp TCG_ISLAND
-	jr z, .got_text
-	ld hl, TextIDs_d18f ; GR island
-.got_text
+	jr z, .got_island
+	ld hl, GRIslandLocationNamePointers
+.got_island
 	ld a, b
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_c538
+	jr nc, .got_location
 	inc h
-.asm_c538
+.got_location
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -619,19 +699,221 @@ Func_c522:
 	pop af
 	ret
 
-Func_c53e:
+; load the current island and location into c and a, then get the name
+GetCurrentLocationName:
 	push af
 	push bc
 	ld a, [wCurIsland]
 	ld c, a
 	ld a, [wCurOWLocation]
-	call Func_c522
+	call GetLocationName
 	pop bc
 	pop af
 	ret
-; 0xc54d
 
-SECTION "Bank 3@4651", ROMX[$4651], BANK[$3]
+; using de == receiving card, return its long name in hl
+; the first half of this function and the next two are identical
+GetReceivingCardLongName:
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.loop_cards
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok ; redundant
+	ld a, c
+	cp $ff
+.ok
+	jr z, .not_found
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+	jr z, .load_name
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .loop_cards
+.not_found
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], 0
+	ld bc, 0
+	jr .got_name
+.load_name
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .not_found
+	; fallthrough
+.got_name
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+
+; using de == receiving card, return its short name in hl
+GetReceivingCardShortName:
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.loop_cards
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok ; redundant
+	ld a, c
+	cp $ff
+.ok
+	jr z, .not_found
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+	jr z, .load_short_name
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .loop_cards
+.not_found
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], 0
+	ld bc, 0
+	jr .got_short_name
+.load_short_name
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .not_found
+	; fallthrough
+.got_short_name
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+
+; using de == receiving card, return its "received" text in hl
+GetReceivedCardText:
+	push af
+	push bc
+	push de
+	ld hl, ReceiveCardTextPointers
+.loop_cards
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, b
+	cp $ff
+	jr c, .ok
+	jr nz, .ok ; redundant
+	ld a, c
+	cp $ff
+.ok
+	jr z, .not_found
+	ld a, b
+	cp d
+	jr c, .next
+	jr nz, .next
+	ld a, c
+	cp e
+.next
+	jr z, .load_received_text
+	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
+	add l
+	ld l, a
+	jr nc, .no_overflow
+	inc h
+.no_overflow
+	jr .loop_cards
+.not_found
+	push hl
+	call GetReceivingCardShortName
+	call LoadTxRam2
+	pop hl
+	call LoadCardDataToBuffer1_FromCardID
+	ldtx bc, ReceivedPromotionalCardText_2
+	ld a, [wLoadedCard1Set]
+	cp PROMOTIONAL
+	jr z, .got_text
+	ldtx bc, ReceivedCardText_2
+	jr .got_text
+.load_received_text
+	REPT 4
+		inc hl
+	ENDR
+	push hl
+	call GetReceivingCardShortName
+	call LoadTxRam2
+	pop hl
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	; check alt flag, load alt text if TRUE
+	ld a, [hli]
+	or a
+	jr z, .got_text
+	call GetEventValue
+	jr z, .got_text
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	; fallthrough
+.got_text
+	ld l, c
+	ld h, b
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_c63e:
+	call GetReceivedCardText
+	farcall Func_1d53a
+	ret
+
+Func_c646:
+	call AddCardToCollection
+	call GetReceivedCardText
+	farcall Func_1d53a
+	ret
 
 ; bank and offset table of data for Func_d421 and Func_33b7
 Data_c651::
@@ -752,9 +1034,14 @@ Data_c651::
 	dbw $0d, $75df ; $72
 	dbw $10, $6ed5 ; $73
 
-SECTION "Bank 3@5171", ROMX[$5171], BANK[$3]
+INCLUDE "data/npc_duelists.asm"
+; 0xcc9b
 
-TextIDs_d171:
+SECTION "Bank 3@4e41", ROMX[$4e41], BANK[$3]
+
+INCLUDE "data/card_receive_texts.asm"
+
+TCGIslandLocationNamePointers:
 	tx MapMasonLabText         ; OWMAP_MASON_LABORATORY
 	tx MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
 	tx MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
@@ -771,7 +1058,7 @@ TextIDs_d171:
 	dw NULL
 	tx MapOpeningText
 
-TextIDs_d18f:
+GRIslandLocationNamePointers:
 	tx MapGRAirportText        ; OWMAP_GR_AIRPORT
 	tx MapIshiharasVillaText   ; OWMAP_ISHIHARAS_VILLA
 	tx MapGameCenterText       ; OWMAP_GAME_CENTER
@@ -785,8 +1072,45 @@ TextIDs_d18f:
 	tx MapGRPsychicStrongholdText  ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	tx MapGRColorlessAltarText ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText         ; OWMAP_GR_CASTLE
-	tx Drew7CardsText          ; $0069, weird
-; 0xd1ab
+
+; 34 promo cards
+; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
+NonSpecialPromoCards:
+	dw ARCANINE_LV34
+	dw PIKACHU_LV16
+	dw PIKACHU_ALT_LV16
+	dw SURFING_PIKACHU_LV13
+	dw SURFING_PIKACHU_ALT_LV13
+	dw ELECTABUZZ_LV20
+	dw SLOWPOKE_LV9
+	dw MEWTWO_ALT_LV60
+	dw MEWTWO_LV60
+	dw MEW_LV8
+	dw JIGGLYPUFF_LV12
+	dw FLYING_PIKACHU_LV12
+	dw IMAKUNI_CARD
+	dw SUPER_ENERGY_RETRIEVAL
+	dw MEWTWO_LV30
+	dw PIKACHU_LV13
+	dw FLYING_PIKACHU_ALT_LV12
+	dw DARK_PERSIAN_ALT_LV28
+	dw MEOWTH_LV14
+	dw COMPUTER_ERROR
+	dw COOL_PORYGON
+	dw HUNGRY_SNORLAX
+	dw VENUSAUR_ALT_LV67
+	dw CHARIZARD_ALT_LV76
+	dw BLASTOISE_ALT_LV52
+	dw FARFETCHD_ALT_LV20
+	dw KANGASKHAN_LV38
+	dw DIGLETT_LV16
+	dw DUGTRIO_LV40
+	dw DRAGONITE_LV43
+	dw MAGIKARP_LV10
+	dw TOGEPI
+	dw MARILL
+	dw MANKEY_ALT_LV7
+; 0xd1ed
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
 
@@ -1569,9 +1893,9 @@ GetByteAfterCall:
 ; mask - which bits in the byte hold the value
 EventVarMasks:
 	db $00, %00000001 ; EVENT_PLAYER_GENDER
-	db $00, %00000010 ; EVENT_01
+	db $00, %00000010 ; EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	db $00, %00000100 ; EVENT_02
-	db $00, %00001000 ; EVENT_03
+	db $00, %00001000 ; EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	db $01, %00000001 ; EVENT_GOT_CHANSEY_COIN
 	db $01, %00000010 ; EVENT_GOT_ODDISH_COIN
 	db $01, %00000100 ; EVENT_GOT_CHARMANDER_COIN
@@ -1600,219 +1924,219 @@ EventVarMasks:
 	db $04, %00000010 ; EVENT_GOT_GENGAR_COIN
 	db $04, %00000100 ; EVENT_GOT_RAICHU_COIN
 	db $04, %00001000 ; EVENT_GOT_LUGIA_COIN
-	db $05, %00000001 ; EVENT_20
-	db $05, %00000010 ; EVENT_21
-	db $05, %00000100 ; EVENT_22
-	db $05, %00001000 ; EVENT_23
-	db $06, %00000001 ; EVENT_24
-	db $06, %00000010 ; EVENT_25
-	db $06, %00000100 ; EVENT_26
-	db $06, %00001000 ; EVENT_27
-	db $07, %00000001 ; EVENT_28
-	db $07, %00000010 ; EVENT_29
-	db $07, %00000100 ; EVENT_2A
-	db $07, %00001000 ; EVENT_2B
-	db $07, %00010000 ; EVENT_2C
-	db $08, %00000001 ; EVENT_2D
-	db $08, %00000010 ; EVENT_2E
-	db $08, %00000100 ; EVENT_2F
-	db $08, %00001000 ; EVENT_30
-	db $09, %00000001 ; EVENT_31
-	db $09, %00000010 ; EVENT_32
-	db $09, %00000100 ; EVENT_33
-	db $09, %00001000 ; EVENT_34
+	db $05, %00000001 ; EVENT_TALKED_TO_GENE
+	db $05, %00000010 ; EVENT_TALKED_TO_MATTHEW
+	db $05, %00000100 ; EVENT_TALKED_TO_RYAN
+	db $05, %00001000 ; EVENT_TALKED_TO_ANDREW
+	db $06, %00000001 ; EVENT_TALKED_TO_MITCH
+	db $06, %00000010 ; EVENT_TALKED_TO_MICHAEL
+	db $06, %00000100 ; EVENT_TALKED_TO_CHRIS
+	db $06, %00001000 ; EVENT_TALKED_TO_JESSICA
+	db $07, %00000001 ; EVENT_TALKED_TO_NIKKI
+	db $07, %00000010 ; EVENT_TALKED_TO_BRITTANY
+	db $07, %00000100 ; EVENT_TALKED_TO_KRISTIN
+	db $07, %00001000 ; EVENT_TALKED_TO_HEATHER
+	db $07, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_BRITTANY
+	db $08, %00000001 ; EVENT_TALKED_TO_RICK
+	db $08, %00000010 ; EVENT_TALKED_TO_DAVID
+	db $08, %00000100 ; EVENT_TALKED_TO_JOSEPH
+	db $08, %00001000 ; EVENT_TALKED_TO_ERIK
+	db $09, %00000001 ; EVENT_TALKED_TO_AMY
+	db $09, %00000010 ; EVENT_TALKED_TO_JOSHUA
+	db $09, %00000100 ; EVENT_TALKED_TO_SARA
+	db $09, %00001000 ; EVENT_TALKED_TO_AMANDA
 	db $09, %00010000 ; EVENT_35
 	db $09, %00100000 ; EVENT_36
-	db $0a, %00000001 ; EVENT_37
-	db $0a, %00000010 ; EVENT_38
-	db $0a, %00000100 ; EVENT_39
-	db $0a, %00001000 ; EVENT_3A
-	db $0a, %00010000 ; EVENT_3B
-	db $0b, %00000001 ; EVENT_3C
-	db $0b, %00000010 ; EVENT_3D
-	db $0b, %00000100 ; EVENT_3E
-	db $0b, %00001000 ; EVENT_3F
-	db $0c, %00000001 ; EVENT_40
-	db $0c, %00000010 ; EVENT_41
-	db $0c, %00000100 ; EVENT_42
-	db $0c, %00001000 ; EVENT_43
-	db $0c, %00100000 ; EVENT_44
-	db $0c, %01000000 ; EVENT_45
-	db $0d, %00000001 ; EVENT_46
-	db $0d, %00000010 ; EVENT_47
-	db $0d, %00000100 ; EVENT_48
-	db $0d, %00001000 ; EVENT_49
-	db $0d, %00010000 ; EVENT_4A
-	db $0d, %00100000 ; EVENT_4B
-	db $0d, %01000000 ; EVENT_4C
-	db $0d, %10000000 ; EVENT_4D
-	db $0e, %00000001 ; EVENT_4E
-	db $0e, %00000010 ; EVENT_4F
-	db $0e, %00000100 ; EVENT_50
-	db $0e, %00001000 ; EVENT_51
-	db $0e, %00010000 ; EVENT_52
-	db $0e, %00100000 ; EVENT_53
-	db $0e, %01000000 ; EVENT_54
-	db $0f, %00000001 ; EVENT_55
-	db $0f, %00000010 ; EVENT_56
-	db $0f, %00000100 ; EVENT_57
-	db $0f, %00001000 ; EVENT_58
-	db $0f, %00010000 ; EVENT_59
-	db $0f, %00100000 ; EVENT_5A
-	db $0f, %01000000 ; EVENT_5B
-	db $0f, %10000000 ; EVENT_5C
-	db $10, %00000001 ; EVENT_5D
-	db $10, %00000010 ; EVENT_5E
-	db $10, %00000100 ; EVENT_5F
-	db $10, %00001000 ; EVENT_60
-	db $10, %00010000 ; EVENT_61
-	db $10, %00100000 ; EVENT_62
-	db $10, %01000000 ; EVENT_63
-	db $10, %10000000 ; EVENT_64
-	db $11, %00000001 ; EVENT_65
-	db $11, %00000010 ; EVENT_66
-	db $11, %00000100 ; EVENT_67
-	db $11, %00001000 ; EVENT_68
-	db $11, %00010000 ; EVENT_69
-	db $11, %00100000 ; EVENT_6A
-	db $12, %00000001 ; EVENT_6B
-	db $12, %00000010 ; EVENT_6C
-	db $12, %00000100 ; EVENT_6D
-	db $12, %00001000 ; EVENT_6E
-	db $12, %00010000 ; EVENT_6F
-	db $12, %00100000 ; EVENT_70
-	db $12, %01000000 ; EVENT_71
-	db $12, %10000000 ; EVENT_72
-	db $13, %00000001 ; EVENT_73
-	db $13, %00000010 ; EVENT_74
-	db $14, %00000001 ; EVENT_75
-	db $14, %00000010 ; EVENT_76
-	db $14, %00000100 ; EVENT_77
-	db $14, %00001000 ; EVENT_78
-	db $14, %00010000 ; EVENT_79
-	db $14, %00100000 ; EVENT_7A
-	db $14, %00111000 ; EVENT_7B
-	db $14, %01000000 ; EVENT_7C
-	db $14, %10000000 ; EVENT_7D
-	db $15, %00000001 ; EVENT_7E
-	db $16, %00000001 ; EVENT_7F
-	db $16, %00000010 ; EVENT_80
-	db $16, %00000100 ; EVENT_81
-	db $16, %00001000 ; EVENT_82
-	db $16, %00010000 ; EVENT_83
-	db $17, %00000001 ; EVENT_84
-	db $18, %00000001 ; EVENT_85
-	db $18, %00000010 ; EVENT_86
-	db $18, %00000100 ; EVENT_87
-	db $18, %00001000 ; EVENT_88
-	db $18, %00010000 ; EVENT_89
-	db $18, %00100000 ; EVENT_8A
-	db $18, %01000000 ; EVENT_8B
-	db $18, %10000000 ; EVENT_8C
-	db $19, %00000001 ; EVENT_8D
-	db $19, %00000010 ; EVENT_8E
-	db $19, %00000100 ; EVENT_8F
-	db $19, %00001000 ; EVENT_90
+	db $0a, %00000001 ; EVENT_TALKED_TO_ISAAC
+	db $0a, %00000010 ; EVENT_TALKED_TO_JENNIFER
+	db $0a, %00000100 ; EVENT_TALKED_TO_NICHOLAS
+	db $0a, %00001000 ; EVENT_TALKED_TO_BRANDON
+	db $0a, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_NICHOLAS
+	db $0b, %00000001 ; EVENT_TALKED_TO_KEN
+	db $0b, %00000010 ; EVENT_TALKED_TO_JOHN
+	db $0b, %00000100 ; EVENT_TALKED_TO_ADAM
+	db $0b, %00001000 ; EVENT_TALKED_TO_JONATHAN
+	db $0c, %00000001 ; EVENT_TALKED_TO_MURRAY
+	db $0c, %00000010 ; EVENT_TALKED_TO_ROBERT
+	db $0c, %00000100 ; EVENT_TALKED_TO_DANIEL
+	db $0c, %00001000 ; EVENT_TALKED_TO_STEPHANIE
+	db $0c, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MURRAY
+	db $0c, %01000000 ; EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
+	db $0d, %00000001 ; EVENT_TALKED_TO_MIDORI
+	db $0d, %00000010 ; EVENT_TALKED_TO_YUTA
+	db $0d, %00000100 ; EVENT_TALKED_TO_MIYUKI
+	db $0d, %00001000 ; EVENT_TALKED_TO_MORINO
+	db $0d, %00010000 ; EVENT_FREED_RICK
+	db $0d, %00100000 ; EVENT_YUTAS_ROOM_DOOR_STATE
+	db $0d, %01000000 ; EVENT_MIYUKIS_ROOM_DOOR_STATE
+	db $0d, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MORINO
+	db $0e, %00000001 ; EVENT_TALKED_TO_RENNA
+	db $0e, %00000010 ; EVENT_TALKED_TO_ICHIKAWA
+	db $0e, %00000100 ; EVENT_TALKED_TO_CATHERINE
+	db $0e, %00001000 ; EVENT_TALKED_TO_TAP
+	db $0e, %00010000 ; EVENT_RENNAS_ROOM_DOOR_STATE
+	db $0e, %00100000 ; EVENT_ICHIKAWAS_ROOM_DOOR_STATE
+	db $0e, %01000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_CATHERINE
+	db $0f, %00000001 ; EVENT_TALKED_TO_JES
+	db $0f, %00000010 ; EVENT_TALKED_TO_YUKI
+	db $0f, %00000100 ; EVENT_TALKED_TO_SHOKO
+	db $0f, %00001000 ; EVENT_TALKED_TO_HIDERO
+	db $0f, %00010000 ; EVENT_JES_ROOM_DOOR_STATE
+	db $0f, %00100000 ; EVENT_YUKIS_ROOM_DOOR_STATE
+	db $0f, %01000000 ; EVENT_SHOKOS_ROOM_DOOR_STATE
+	db $0f, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_HIDERO
+	db $10, %00000001 ; EVENT_TALKED_TO_MIYAJIMA
+	db $10, %00000010 ; EVENT_TALKED_TO_SENTA
+	db $10, %00000100 ; EVENT_TALKED_TO_AIRA
+	db $10, %00001000 ; EVENT_TALKED_TO_KANOKO
+	db $10, %00010000 ; EVENT_MIYAJIMAS_ROOM_DOOR_STATE
+	db $10, %00100000 ; EVENT_SENTAS_ROOM_BRIDGE_STATE
+	db $10, %01000000 ; EVENT_AIRAS_ROOM_BRIDGE_STATE
+	db $10, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KANOKO
+	db $11, %00000001 ; EVENT_TALKED_TO_KAMIYA
+	db $11, %00000010 ; EVENT_TALKED_TO_GODA
+	db $11, %00000100 ; EVENT_TALKED_TO_GRACE
+	db $11, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KAMIYA
+	db $11, %00010000 ; EVENT_FREED_MITCH
+	db $11, %00100000 ; EVENT_GRACES_ROOM_CHEST_STATE
+	db $12, %00000001 ; EVENT_TALKED_TO_MIWA
+	db $12, %00000010 ; EVENT_TALKED_TO_KEVIN
+	db $12, %00000100 ; EVENT_TALKED_TO_YOSUKE
+	db $12, %00001000 ; EVENT_TALKED_TO_RYOKO
+	db $12, %00010000 ; EVENT_TALKED_TO_MAMI
+	db $12, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MIWA
+	db $12, %01000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KEVIN
+	db $12, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_YOSUKE
+	db $13, %00000001 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_RYOKO
+	db $13, %00000010 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MAMI
+	db $14, %00000001 ; EVENT_TALKED_TO_NISHIJIMA
+	db $14, %00000010 ; EVENT_TALKED_TO_ISHII
+	db $14, %00000100 ; EVENT_TALKED_TO_SAMEJIMA
+	db $14, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_NISHIJIMA
+	db $14, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_ISHII
+	db $14, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_SAMEJIMA
+	db $14, %00111000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_COLORLESS_ALTAR_MEMBERS
+	db $14, %01000000 ; EVENT_TALKED_TO_NISHIJIMA_2
+	db $14, %10000000 ; EVENT_TALKED_TO_ISHII_2
+	db $15, %00000001 ; EVENT_TALKED_TO_SAMEJIMA_2
+	db $16, %00000001 ; EVENT_TALKED_TO_KANZAJI
+	db $16, %00000010 ; EVENT_TALKED_TO_RUI
+	db $16, %00000100 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KANZAKI
+	db $16, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_RUI
+	db $16, %00010000 ; EVENT_MET_GR_GAL_ISHIHARAS_VILLA
+	db $17, %00000001 ; EVENT_TALKED_TO_BIRURITCHI
+	db $18, %00000001 ; EVENT_TALKED_TO_TRADE_NPC_ROCK_CLUB
+	db $18, %00000010 ; EVENT_TALKED_TO_TRADE_NPC_FIGHTING_CLUB
+	db $18, %00000100 ; EVENT_TALKED_TO_TRADE_NPC_FIRE_CLUB
+	db $18, %00001000 ; EVENT_TALKED_TO_TRADE_NPC_LIGHTNING_CLUB
+	db $18, %00010000 ; EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_CLUB
+	db $18, %00100000 ; EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
+	db $18, %01000000 ; EVENT_TALKED_TO_TRADE_NPC_GRASS_FORT
+	db $18, %10000000 ; EVENT_TALKED_TO_TRADE_NPC_LIGHTNING_FORT
+	db $19, %00000001 ; EVENT_TALKED_TO_TRADE_NPC_GR_CHALLENGE_HALL
+	db $19, %00000010 ; EVENT_TALKED_TO_TRADE_NPC_FIRE_FORT
+	db $19, %00000100 ; EVENT_TALKED_TO_TRADE_NPC_WATER_FORT
+	db $19, %00001000 ; EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_STRONGHOLD
 	db $19, %00010000 ; EVENT_91
 	db $19, %00100000 ; EVENT_92
-	db $19, %01000000 ; EVENT_93
+	db $19, %01000000 ; EVENT_TALKED_TO_SAM
 	db $19, %10000000 ; EVENT_94
-	db $1a, %00000001 ; EVENT_95
-	db $1a, %00000010 ; EVENT_96
-	db $1a, %00000100 ; EVENT_97
-	db $1b, %00000001 ; EVENT_98
-	db $1b, %00000010 ; EVENT_99
-	db $1b, %00000100 ; EVENT_9A
-	db $1b, %00001000 ; EVENT_9B
-	db $1b, %00010000 ; EVENT_9C
-	db $1b, %00100000 ; EVENT_9D
-	db $1b, %01000000 ; EVENT_9E
-	db $1b, %10000000 ; EVENT_9F
-	db $1c, %00000001 ; EVENT_A0
-	db $1c, %00000010 ; EVENT_A1
-	db $1c, %00000100 ; EVENT_A2
-	db $1d, %00000001 ; EVENT_A3
-	db $1d, %00000010 ; EVENT_A4
-	db $1d, %00000100 ; EVENT_A5
-	db $1d, %00001000 ; EVENT_A6
+	db $1a, %00000001 ; EVENT_TALKED_TO_ISHIHARA
+	db $1a, %00000010 ; EVENT_MIDORIS_ROOM_CAGE_STATETTLED_ISHIHARA
+	db $1a, %00000100 ; EVENT_TALKED_TO_ISHIHARA_POST_GAME
+	db $1b, %00000001 ; EVENT_MET_GR1_ROCK_CLUB
+	db $1b, %00000010 ; EVENT_MET_GR4_LIGHTNING_CLUB
+	db $1b, %00000100 ; EVENT_MET_GR4_PSYCHIC_CLUB
+	db $1b, %00001000 ; EVENT_MET_YUKI_FIRE_FORT
+	db $1b, %00010000 ; EVENT_MET_FIGHTING_FORT_MEMBERS
+	db $1b, %00100000 ; EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
+	db $1b, %01000000 ; EVENT_MET_MAMI_AND_ROD
+	db $1b, %10000000 ; EVENT_MET_COLORLESS_ALTAR_MEMBERS
+	db $1c, %00000001 ; EVENT_MET_BIRURITCHI_AND_ADMINS
+	db $1c, %00000010 ; EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
+	db $1c, %00000100 ; EVENT_MET_RONALD_GAME_CENTER
+	db $1d, %00000001 ; EVENT_TALKED_TO_GR1_FIGHTING_CLUB
+	db $1d, %00000010 ; EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
+	db $1d, %00000100 ; EVENT_TALKED_TO_GR3_WATER_CLUB
+	db $1d, %00001000 ; EVENT_TALKED_TO_GR4_PSYCHIC_CLUB
 	db $1d, %00010000 ; EVENT_A7
-	db $1d, %00100000 ; EVENT_A8
-	db $1d, %01000000 ; EVENT_A9
-	db $1d, %10000000 ; EVENT_AA
-	db $1e, %00000001 ; EVENT_AB
-	db $1e, %00000010 ; EVENT_AC
-	db $1e, %00000100 ; EVENT_AD
-	db $1e, %00001000 ; EVENT_AE
-	db $1e, %00010000 ; EVENT_AF
-	db $1e, %00100000 ; EVENT_B0
+	db $1d, %00100000 ; EVENT_OBTAINED_TWO_GR_COIN_PIECES
+	db $1d, %01000000 ; EVENT_TALKED_TO_GR5_POKEMON_DOME
+	db $1d, %10000000 ; EVENT_TALKED_TO_GR5_TCG_AIRPORT
+	db $1e, %00000001 ; EVENT_TRADED_CARDS_ROCK_CLUB
+	db $1e, %00000010 ; EVENT_TRADED_CARDS_FIGHTING_CLUB
+	db $1e, %00000100 ; EVENT_TRADED_CARDS_FIRE_CLUB
+	db $1e, %00001000 ; EVENT_TRADED_CARDS_LIGHTNING_CLUB
+	db $1e, %00010000 ; EVENT_TRADED_CARDS_PSYCHIC_CLUB
+	db $1e, %00100000 ; EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL
 	db $1e, %01000000 ; EVENT_B1
 	db $1e, %10000000 ; EVENT_B2
-	db $1f, %00000001 ; EVENT_B3
-	db $1f, %00000010 ; EVENT_B4
-	db $1f, %00000100 ; EVENT_B5
-	db $1f, %00001000 ; EVENT_B6
-	db $1f, %00010000 ; EVENT_B7
-	db $1f, %00100000 ; EVENT_B8
-	db $20, %00000001 ; EVENT_B9
-	db $20, %00000010 ; EVENT_BA
+	db $1f, %00000001 ; EVENT_TRADED_CARDS_GRASS_FORT
+	db $1f, %00000010 ; EVENT_TRADED_CARDS_LIGHTNING_FORT
+	db $1f, %00000100 ; EVENT_TRADED_CARDS_GR_CHALLENGE_HALL
+	db $1f, %00001000 ; EVENT_TRADED_CARDS_FIRE_FORT
+	db $1f, %00010000 ; EVENT_TRADED_CARDS_WATER_FORT
+	db $1f, %00100000 ; EVENT_TRADED_CARDS_PSYCHIC_STRONGHOLD
+	db $20, %00000001 ; EVENT_GODAS_ROOM_CAGE_STATE
+	db $20, %00000010 ; EVENT_MIDORIS_ROOM_CAGE_STATE
 	db $21, %00000001 ; EVENT_BB
 	db $21, %00000010 ; EVENT_BC
 	db $21, %00000100 ; EVENT_BD
-	db $21, %00001000 ; EVENT_BE
-	db $21, %00010000 ; EVENT_BF
-	db $21, %00100000 ; EVENT_C0
-	db $21, %01000000 ; EVENT_C1
-	db $21, %10000000 ; EVENT_C2
-	db $22, %00000001 ; EVENT_C3
-	db $22, %00000010 ; EVENT_C4
-	db $22, %00000100 ; EVENT_C5
-	db $22, %00001000 ; EVENT_C6
-	db $23, %00000001 ; EVENT_C7
-	db $23, %00000010 ; EVENT_C8
-	db $23, %00000100 ; EVENT_C9
-	db $23, %00011000 ; EVENT_CA
-	db $23, %00001000 ; EVENT_CB
-	db $23, %00010000 ; EVENT_CC
-	db $23, %00100000 ; EVENT_CD
-	db $24, %00000011 ; EVENT_CE
-	db $24, %00000001 ; EVENT_CF
-	db $24, %00000010 ; EVENT_D0
-	db $24, %00000100 ; EVENT_D1
-	db $25, %00000001 ; EVENT_D2
-	db $25, %00000010 ; EVENT_D3
-	db $25, %00000100 ; EVENT_D4
-	db $25, %00001000 ; EVENT_D5
-	db $25, %00010000 ; EVENT_D6
-	db $25, %00100000 ; EVENT_D7
-	db $25, %01000000 ; EVENT_D8
-	db $26, %00000001 ; EVENT_D9
-	db $26, %00000010 ; EVENT_DA
+	db $21, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUP
+	db $21, %00010000 ; EVENT_FREED_COURTNEY
+	db $21, %00100000 ; EVENT_FREED_STEVE
+	db $21, %01000000 ; EVENT_FREED_JACK
+	db $21, %10000000 ; EVENT_FREED_ROD
+	db $22, %00000001 ; EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
+	db $22, %00000010 ; EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
+	db $22, %00000100 ; EVENT_TALKED_TO_COIN_TOSS_BOY
+	db $22, %00001000 ; EVENT_C5
+	db $23, %00000001 ; EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
+	db $23, %00000010 ; EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
+	db $23, %00000100 ; EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
+	db $23, %00011000 ; EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
+	db $23, %00001000 ; EVENT_INSERTED_LEFT_COIN_IN_FIGHTING_FORT_DOOR
+	db $23, %00010000 ; EVENT_INSERTED_RIGHT_COIN_IN_FIGHTING_FORT_DOOR
+	db $23, %00100000 ; EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
+	db $24, %00000011 ; EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
+	db $24, %00000001 ; EVENT_INSERTED_LEFT_COIN_IN_GR_CASTLE_DOOR
+	db $24, %00000010 ; EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
+	db $24, %00000100 ; EVENT_SEALED_FORT_DOOR_STATE
+	db $25, %00000001 ; EVENT_OPENED_CHEST_GRACES_ROOM
+	db $25, %00000010 ; EVENT_OPENED_CHEST_FIGHTING_FORT_1
+	db $25, %00000100 ; EVENT_OPENED_CHEST_FIGHTING_FORT_2
+	db $25, %00001000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_3
+	db $25, %00010000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_4
+	db $25, %00100000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_5
+	db $25, %01000000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
+	db $26, %00000001 ; EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
+	db $26, %00000010 ; EVENT_BEAT_GRAND_MASTER_CUP
 	db $26, %00000100 ; EVENT_DB
-	db $27, %00000001 ; EVENT_DC
-	db $27, %00000010 ; EVENT_DD
-	db $28, %00000001 ; EVENT_DE
-	db $28, %00000010 ; EVENT_DF
-	db $28, %00000100 ; EVENT_E0
-	db $28, %00001000 ; EVENT_E1
-	db $28, %00010000 ; EVENT_E2
-	db $28, %00100000 ; EVENT_E3
-	db $28, %01000000 ; EVENT_E4
-	db $28, %10000000 ; EVENT_E5
-	db $29, %00000001 ; EVENT_E6
-	db $29, %00000010 ; EVENT_E7
-	db $29, %00000100 ; EVENT_E8
-	db $29, %00001000 ; EVENT_E9
-	db $29, %00010000 ; EVENT_EA
+	db $27, %00000001 ; EVENT_GHOST_MASTER_STATUES_STATE
+	db $27, %00000010 ; EVENT_BATTLED_TOBICHAN
+	db $28, %00000001 ; EVENT_BATTLED_EIJI
+	db $28, %00000010 ; EVENT_BATTLED_MAGICIAN
+	db $28, %00000100 ; EVENT_BATTLED_TOSHIRON
+	db $28, %00001000 ; EVENT_BATTLED_PIERROT
+	db $28, %00010000 ; EVENT_BATTLED_ANNA
+	db $28, %00100000 ; EVENT_BATTLED_DEE
+	db $28, %01000000 ; EVENT_BATTLED_MASQUERADE
+	db $28, %10000000 ; EVENT_BATTLED_YUI
+	db $29, %00000001 ; EVENT_TALKED_TO_PAWN
+	db $29, %00000010 ; EVENT_TALKED_TO_KNIGHT
+	db $29, %00000100 ; EVENT_TALKED_TO_BISHOP
+	db $29, %00001000 ; EVENT_TALKED_TO_ROOK
+	db $29, %00010000 ; EVENT_TALKED_TO_QUEEN
 	db $2a, %00000001 ; EVENT_EB
 	db $2a, %00000010 ; EVENT_EC
-	db $2b, %00000001 ; EVENT_ED
+	db $2b, %00000001 ; EVENT_SET_UNTIL_MAP_RELOAD_1
 	db $2b, %00000010 ; EVENT_EE
 	db $2b, %00000100 ; EVENT_EF
 	db $33, %00000001 ; EVENT_F0
-	db $33, %00000010 ; EVENT_F1
+	db $33, %00000010 ; EVENT_SET_UNTIL_MAP_RELOAD_2
 	db $33, %00000100 ; EVENT_F2
 	db $33, %00001000 ; EVENT_F3
-	db $33, %00010000 ; EVENT_F4
+	db $33, %00010000 ; EVENT_ISHIHARA_CARD_TRADE_STATE
 	db $33, %00100000 ; EVENT_F5
 
 ; extra events?
@@ -1881,7 +2205,375 @@ GeneralVarMasks:
 	db $2c, %11111111 ; VAR_3D
 	db $33, %11111111 ; VAR_3E
 
-SECTION "Bank 3@5bbd", ROMX[$5bbd], BANK[$3]
+; clear 8 bytes from wd606
+ZeroOutBytes_wd606:
+	push af
+	push hl
+	xor a
+	ld hl, wd606
+REPT wD606_STRUCT_SIZE - 1
+	ld [hli], a
+ENDR
+	ld [hl], a
+	pop hl
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, set bit n at (wd606 + m)
+SetBit_wd606:
+	push af
+	push bc
+	push hl
+	push af
+	ld hl, wd606
+REPT 3
+	srl a
+ENDR
+	add l
+	ld l, a
+	jr nc, .got_byte
+	inc h
+.got_byte
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, [hl]
+	or b
+	ld [hl], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, clear bit n at (wd606 + m)
+ClearBit_wd606:
+	push af
+	push bc
+	push hl
+	push af
+	ld hl, wd606
+REPT 3
+	srl a
+ENDR
+	add l
+	ld l, a
+	jr nc, .got_byte
+	inc h
+.got_byte
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, b
+	cpl
+	and [hl]
+	ld [hl], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; for the bit offset a = 8m + n, return in the z flag whether bit n at (wd606 + m) is empty
+; z: empty, nz: set
+; then restore bc and load b from it into a
+CheckBit_wd606:
+	push bc
+	push hl
+	push af
+	push af
+	ld hl, wd606
+REPT 3
+	srl a
+ENDR
+	add l
+	ld l, a
+	jr nc, .got_byte
+	inc h
+.got_byte
+	pop af
+	and 7
+	inc a
+	ld c, a
+	ld b, 1
+.loop_bitmask
+	dec c
+	jr z, .got_bit
+	sla b
+	jr .loop_bitmask
+.got_bit
+	ld a, [hl]
+	and b
+	pop bc
+	ld a, b
+	pop hl
+	pop bc
+	ret
+
+; jump to .check_pointers[a], set carry if the event is set, clear carry if not
+CheckTCGIslandMilestoneEvents:
+	push bc
+	push de
+	push hl
+	sla a
+	ld hl, .check_pointers
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+.jump_set_carry:
+	jp .set_carry
+
+.check_four_tcgisland_coins:
+	ld a, EVENT_GOT_KABUTO_COIN
+	call GetEventValue
+	push af
+	ld a, EVENT_GOT_ODDISH_COIN
+	call GetEventValue
+	push af
+	ld a, EVENT_GOT_STARMIE_COIN
+	call GetEventValue
+	push af
+	ld a, EVENT_GOT_ALAKAZAM_COIN
+	call GetEventValue
+	push af
+	ld c, 4
+	xor a
+	ld d, a
+	; fallthrough
+.loop_bitmask_1
+	sla d
+	pop af
+	jr z, .next_1
+	set 0, d
+	; fallthrough
+.next_1
+	dec c
+	jr nz, .loop_bitmask_1
+	ld a, d
+	or a
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_gr_coin_top_left:
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_gr_coin_top_right:
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_starmie_coin:
+	ld a, EVENT_GOT_STARMIE_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_gr_coin_bottom_left:
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_pikachu_coin:
+	ld a, EVENT_GOT_PIKACHU_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_gr_coin_bottom_right:
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_grand_master_cup_or_challenge_machine:
+	ld a, EVENT_BEAT_GRAND_MASTER_CUP
+	call GetEventValue
+	push af
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
+	call GetEventValue
+	push af
+	ld c, 2
+	xor a
+	ld d, a
+	; fallthrough
+.loop_bitmask_2
+	sla d
+	sla d
+	pop af
+	jr z, .next_2
+	set 0, d
+	set 1, d
+	; fallthrough
+.next_2
+	dec c
+	jr nz, .loop_bitmask_2
+	ld a, d
+	or a
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_event_db:
+	ld a, EVENT_DB
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.set_carry:
+	pop hl
+	pop de
+	pop bc
+	scf
+	ret
+
+.clear_carry:
+	pop hl
+	pop de
+	pop bc
+	scf
+	ccf
+	ret
+
+.check_pointers:
+	dw .jump_set_carry
+	dw .check_four_tcgisland_coins
+	dw .check_gr_coin_top_left
+	dw .check_gr_coin_top_right
+	dw .check_starmie_coin
+	dw .check_gr_coin_bottom_left
+	dw .check_pikachu_coin
+	dw .check_gr_coin_bottom_right
+	dw .check_grand_master_cup_or_challenge_machine
+	dw .check_event_db
+
+; jump to .check_pointers[a], set carry if the event is set, clear carry if not
+CheckGRIslandMilestoneEvents:
+	push bc
+	push de
+	push hl
+	sla a
+	ld hl, .check_pointers
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+.check_magnemite_coin:
+	ld a, EVENT_GOT_MAGNEMITE_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_golbat_coin:
+	ld a, EVENT_GOT_GOLBAT_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_psyduck_coin:
+	ld a, EVENT_GOT_PSYDUCK_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_magmar_coin:
+	ld a, EVENT_GOT_MAGMAR_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_machamp_coin:
+	ld a, EVENT_GOT_MACHAMP_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_mew_coin:
+	ld a, EVENT_GOT_MEW_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_snorlax_coin:
+	ld a, EVENT_GOT_SNORLAX_COIN
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_rui_roadblock:
+	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_battled_ishihara:
+	ld a, EVENT_BATTLED_ISHIHARA
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.check_challenge_machine:
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
+	call GetEventValue
+	jp nz, .set_carry
+	jp .clear_carry
+
+.set_carry:
+	pop hl
+	pop de
+	pop bc
+	scf
+	ret
+
+.clear_carry:
+	pop hl
+	pop de
+	pop bc
+	scf
+	ccf
+	ret
+
+.check_pointers:
+	dw .check_magnemite_coin
+	dw .check_golbat_coin
+	dw .check_psyduck_coin
+	dw .check_magmar_coin
+	dw .check_machamp_coin
+	dw .check_mew_coin
+	dw .check_snorlax_coin
+	dw .check_rui_roadblock
+	dw .check_battled_ishihara
+	dw .check_challenge_machine
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc
@@ -1904,6 +2596,7 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	pop bc
 	ret
 
+; clear wd61a, then copy 32 bytes from [wd619]:[dw wd61b] to wd61e
 Func_dbdb::
 	xor a
 	ld [wd61a], a
@@ -1912,62 +2605,64 @@ Func_dbdb::
 	ld h, [hl]
 	ld l, a
 	ld de, wd61e
-	ld bc, $20
+	ld bc, wD61E_STRUCT_SIZE
 	ld a, [wd619]
 	call CopyFarHLToDE
 	ret
 
+; for the counter n = [wd61a], get the table index m = [wd61e + n], jump to .PointerTable[m]
+; applying m in two steps rather than sla, even though m < 128
 Func_dbf2::
 	ld hl, wd61a
 	ld a, [hl]
 	ld hl, wd61e
 	add l
 	ld l, a
-	jr nc, .asm_dbfe
+	jr nc, .got_offset
 	inc h
-.asm_dbfe
+.got_offset
 	ld a, [hl]
 	ld d, a
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .asm_dc08
+	jr nc, .next
 	inc h
-.asm_dc08
+.next
 	ld a, d
 	add l
 	ld l, a
-	jr nc, .asm_dc0e
+	jr nc, .got_pointer
 	inc h
-.asm_dc0e
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
 .PointerTable
-	dw $5d91
-	dw $5d9c
-	dw $5da6
-	dw $5dad
-	dw $5db9
-	dw $5dd1
-	dw $5de3
-	dw $5e01
-	dw $5e1f
-	dw $5e30
-	dw $5e3b
-	dw $5e46
-	dw $5e51
-	dw $5e5c
-	dw $5e76
-	dw $5e7f
-	dw $5e88
-	dw $5e9d
-	dw $5ea8
-	dw $5eb4
-	dw $5ec4
-	dw $5ed4
+	dw Func_dd91
+	dw Func_dd9c
+	dw Func_dda6
+	dw Func_ddad
+	dw Func_ddb9
+	dw Func_ddd1
+	dw Func_dde3
+	dw Func_de01
+	dw Func_de1f
+	dw Func_de30
+	dw Func_de3b
+	dw Func_de46
+	dw Func_de51
+	dw Func_de5c
+	dw Func_de76
+	dw Func_de7f
+	dw Func_de88
+	dw Func_de9d
+	dw Func_dea8
+	dw Func_deb4
+	dw Func_dec4
+	dw Func_ded4
 	dw $5eeb
 	dw $5ef5
 	dw $5f03
@@ -2072,6 +2767,339 @@ Func_dbf2::
 	dw $686a
 	dw $6871
 	dw $687d
+
+; add a to [dw wd61b]
+; if [wd61a] + a < 32, add a to [wd61a] too
+; else call Func_dbdb
+Func_dd0e:
+	ld c, a
+	ld hl, wd61b
+	add [hl]
+	ld [hli], a
+	jr nc, .next
+	inc [hl]
+.next
+	ld a, c
+	ld hl, wd61a
+	add [hl]
+	cp wD61E_STRUCT_SIZE
+	jr nc, .fallback
+	ld [hl], a
+	ret
+.fallback
+	call Func_dbdb
+	ret
+
+Call_dbdb_Done:
+	ret
+
+Run_dd0e_Inc1:
+	ld a, 1
+	jr Func_dd0e
+
+Run_dd0e_Inc2:
+	ld a, 2
+	jr Func_dd0e
+
+Run_dd0e_Inc3:
+	ld a, 3
+	jr Func_dd0e
+
+Run_dd0e_Inc4:
+	ld a, 4
+	jr Func_dd0e
+
+Run_dd0e_Inc5:
+	ld a, 5
+	jr Func_dd0e
+
+; for the counter j = [wd61a] + a,
+; if j + 1 < 32, c = [wd61e + j], b = [wd61e + j + 1], then a = (b | c)
+; else call Func_dbdb and retry
+Func_dd3b:
+.loop
+	push af
+	ld hl, wd61a
+	add [hl]
+	inc a
+	cp wD61E_STRUCT_SIZE
+	jr nc, .fallback
+	pop bc
+	dec a
+	ld hl, wd61e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	or b
+	ret
+.fallback
+	call Func_dbdb
+	pop af
+	jr .loop
+
+Run_dd3b_Inc1:
+	ld a, 1
+	jr Func_dd3b
+
+Run_dd3b_Inc2:
+	ld a, 2
+	jr Func_dd3b
+
+Run_dd3b_Inc3:
+	ld a, 3
+	jr Func_dd3b
+
+; for the counter j = [wd61a] + a,
+; if j < 32, a = [wd61e + j] and update flags accordingly
+; else call Func_dbdb and retry
+Func_dd66:
+.loop
+	push af
+	ld hl, wd61a
+	add [hl]
+	cp wD61E_STRUCT_SIZE
+	jr nc, .fallback
+	pop bc
+	ld hl, wd61e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	or a
+	ret
+.fallback
+	call Func_dbdb
+	pop af
+	jr .loop
+
+Run_dd66_Inc1:
+	ld a, 1
+	jr Func_dd66
+
+Run_dd66_Inc2:
+	ld a, 2
+	jr Func_dd66
+
+Run_dd66_Inc3:
+	ld a, 3
+	jr Func_dd66
+
+Run_dd66_Inc4:
+	ld a, 4
+	jr Func_dd66
+
+Func_dd91:
+	ld a, [wd618]
+	set 7, a
+	ld [wd618], a
+	jp Run_dd0e_Inc1
+
+Func_dd9c:
+	call DoFrame
+	farcall Func_11002
+	jp Run_dd0e_Inc1
+
+Func_dda6:
+	farcall Func_1101d
+	jp Run_dd0e_Inc1
+
+Func_ddad:
+	call Run_dd3b_Inc1
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	jp Run_dd0e_Inc3
+
+Func_ddb9:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .not_set
+	call Run_dd3b_Inc1
+	jr .next
+.not_set
+	call Run_dd3b_Inc3
+.next
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	jp Run_dd0e_Inc5
+
+Func_ddd1:
+	call Run_dd3b_Inc1
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	jp Run_dd0e_Inc3
+
+Func_dde3:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .not_set
+	call Run_dd3b_Inc1
+	jr .next
+.not_set
+	call Run_dd3b_Inc3
+.next
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	jp Run_dd0e_Inc5
+
+Func_de01:
+	call Run_dd3b_Inc1
+	ld l, c
+	ld h, b
+	push hl
+	call Run_dd66_Inc3
+	pop hl
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ld hl, wd618
+	or a
+	jr nz, .no
+	set 0, [hl]
+	jp Run_dd0e_Inc4
+.no
+	res 0, [hl]
+	jp Run_dd0e_Inc4
+
+Func_de1f:
+	call Run_dd3b_Inc1
+	ld a, c
+	ld [wd61b], a
+	ld a, b
+	ld [wd61b + 1], a
+	call Func_dbdb
+	jp Call_dbdb_Done
+
+Func_de30:
+	ld hl, wd618
+	bit 0, [hl]
+	jp nz, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de3b:
+	ld hl, wd618
+	bit 0, [hl]
+	jp z, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de46:
+	ld hl, wd618
+	bit 1, [hl]
+	jp nz, Func_de1f
+	jp Run_dd0e_Inc3
+
+Func_de51:
+	ld hl, wd618
+	bit 1, [hl]
+	jp z, Func_de1f
+	jp Run_dd0e_Inc3
+
+; for x = [wd61e + [wd61a] + 1],
+; set bit 0 at wd618 if x = [wd616],
+; set bit 1 at wd618 if x > [wd616],
+; else reset both bits,
+; then Run_dd0e_Inc2
+Func_de5c:
+	call Run_dd66_Inc1
+	ld c, a
+	ld a, [wd616]
+	ld hl, wd618
+	res 0, [hl]
+	res 1, [hl]
+	cp c
+	jr nz, .bit0_ok
+	set 0, [hl]
+.bit0_ok
+	jr nc, .bit1_ok
+	set 1, [hl]
+.bit1_ok
+	jp Run_dd0e_Inc2
+
+Func_de76:
+	call Run_dd66_Inc1
+	call MaxOutEventValue
+	jp Run_dd0e_Inc2
+
+Func_de7f:
+	call Run_dd66_Inc1
+	call ZeroOutEventValue
+	jp Run_dd0e_Inc2
+
+Func_de88:
+	call Run_dd66_Inc1
+	call GetEventValue
+	ld hl, wd618
+	jr z, .set
+; reset
+	res 0, [hl]
+	jp Run_dd0e_Inc2
+.set
+	set 0, [hl]
+	jp Run_dd0e_Inc2
+
+Func_de9d:
+	call Run_dd3b_Inc1
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp Run_dd0e_Inc3
+
+Func_dea8:
+	call Run_dd66_Inc1
+	call GetVarValue
+	ld [wd616], a
+	jp Run_dd0e_Inc2
+
+Func_deb4:
+	call Run_dd66_Inc1
+	push af
+	call GetVarValue
+	inc a
+	ld c, a
+	pop af
+	call SetVarValue
+	jp Run_dd0e_Inc2
+
+Func_dec4:
+	call Run_dd66_Inc1
+	push af
+	call GetVarValue
+	dec a
+	ld c, a
+	pop af
+	call SetVarValue
+	jp Run_dd0e_Inc2
+
+Func_ded4:
+	call Run_dd66_Inc1
+	push af
+	call Run_dd3b_Inc2
+	ld d, c
+	ld e, b
+	push de
+	call Run_dd66_Inc4
+	ld b, a
+	pop de
+	pop af
+	farcall LoadOWObjectInMap
+	jp Run_dd0e_Inc5
+; 0xdeeb
 
 SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
 
@@ -2452,22 +3480,19 @@ Func_eb39:
 
 	ld hl, wde0d
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde11
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde15
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 
 	ld a, $01
 	ld [wde15 + 0], a
@@ -2498,16 +3523,14 @@ Func_eb97:
 	call Func_ec6c
 	ld hl, wde0d
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	ld hl, wde11
 	xor a
+REPT 4
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+ENDR
 	call Func_ec38
 	ret
 
@@ -2688,10 +3711,9 @@ Func_ec94:
 	or c
 	jr nz, .asm_ecd5
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_ecbf
 .asm_ed03
 	pop af
@@ -2761,10 +3783,9 @@ Func_ed0b:
 	or c
 	jr nz, .asm_ed47
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_ed31
 .asm_ed74
 	pop af
@@ -2833,10 +3854,9 @@ Func_ed7c:
 	or c
 	jr nz, .asm_edb8
 	pop hl
+REPT 4
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	jr .asm_eda2
 .asm_ede4
 	pop af

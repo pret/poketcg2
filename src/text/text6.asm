@@ -1166,7 +1166,7 @@ DialogToshironText:
 	textfw "トシロン"
 	done
 
-DialogPierroText:
+DialogPierrotText:
 	textfw "ピエロ"
 	done
 
@@ -1254,7 +1254,7 @@ DialogKamiyaText:
 	textfw "カミヤ"
 	done
 
-DialogGotaText:
+DialogGodaText:
 	textfw "ゴウダ"
 	done
 
@@ -1514,31 +1514,31 @@ DialogEmceeText:
 	textfw "しかい"
 	done
 
-FireKanjiText:
+GRFireFortShortText:
 	textfw "炎"
 	done
 
-WaterKanjiText:
+GRWaterFortShortText:
 	textfw "水"
 	done
 
-LightningKanjiText:
+GRLightningFortShortText:
 	textfw "雷"
 	done
 
-FightingKanjiText:
+GRFightingFortShortText:
 	textfw "闘"
 	done
 
-PsychicKanjiText:
+GRPsychicStrongholdShortText:
 	textfw "超"
 	done
 
-GrassKanjiText:
+GRGrassFortShortText:
 	textfw "草"
 	done
 
-ColorlessKanjiText:
+ColorlessAltarShortText:
 	textfw "無"
 	done
 

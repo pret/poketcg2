@@ -1890,7 +1890,7 @@ _StartMenuBoxUpdate::
 	ret
 
 .ContinueFromDiary:
-	farcall Func_c53e
+	farcall GetCurrentLocationName
 	call LoadTxRam2
 	ldtx hl, TxRam2TextPadded
 	lb de, 1, 10
@@ -2394,7 +2394,31 @@ Func_1d51e:
 	call SetWindowOff
 	pop af
 	ret
-; 0x1d52e
+
+Func_1d52e:
+	farcall Func_1022a
+	call Func_1d53a
+	farcall Func_10252
+	ret
+
+Func_1d53a:
+	push af
+	push bc
+	push de
+	push hl
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall SetFadePalsFrameFunc
+	call Func_3d1f
+	farcall Func_1ad41
+	call Func_3d32
+	farcall UnsetFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1d55d
 
 SECTION "Bank 7@57a1", ROMX[$57a1], BANK[$7]
 

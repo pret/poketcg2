@@ -5304,6 +5304,31 @@ CheckDataCompression:
 	jr .no_carry
 ; 0x1ab3e
 
+SECTION "Bank 6@6d41", ROMX[$6d41], BANK[$6]
+
+Func_1ad41:
+	push hl
+	push de
+	lb de, $38, $9f
+	call SetupText
+	pop de
+	call LoadCardDataToBuffer1_FromCardID
+	call PauseSong
+	ld a, MUSIC_MEDAL
+	call PlaySong
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	pop hl
+	farcall _DisplayCardDetailScreen
+.check
+	call AssertSongFinished
+	or a
+	jr nz, .check
+	call ResumeSong
+	bank1call OpenCardPage_FromHand
+	ret
+; 0x1ad6b
+
 SECTION "Bank 6@6dbd", ROMX[$6dbd], BANK[$6]
 
 Func_1adbd:
