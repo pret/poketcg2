@@ -226,4 +226,3 @@ Func_3c3ca:
 	farcall PlayAfterCurrentSong
 	ret
 ; 0x3c441
-	

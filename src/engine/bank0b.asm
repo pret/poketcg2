@@ -167,7 +167,6 @@ Data_2c479:
 	dba Data_2c4c5
 	db MUSIC_CLUB_1
 
-
 SECTION "Bank b@44c5", ROMX[$44c5], BANK[$b]
 
 Data_2c4c5:
@@ -267,7 +266,6 @@ Data_2c936:
 	db MAP_PSYCHIC_CLUB_ENTRANCE
 	dba Data_2c990
 	db MUSIC_OVERWORLD
-
 
 SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
 
@@ -611,7 +609,6 @@ Func_2cd99:
 	scf
 	ccf
 	ret
-; 0x2cda2
 
 Func_2cda2:
 	ld a, EVENT_MET_GR4_PSYCHIC_CLUB
@@ -965,7 +962,7 @@ Func_2d97f:
 	ret
 
 Func_2d98f:
-	call FightningClubEntranceShouldRonaldAppear
+	call FightingClubEntranceShouldRonaldAppear
 	jr nc, .asm_2d996
 	scf
 	ret
@@ -982,7 +979,7 @@ Func_2d99f:
 	ret
 
 Func_2d9a6:
-	call FightningClubEntranceShouldRonaldAppear
+	call FightingClubEntranceShouldRonaldAppear
 	jr c, .asm_2d9d0
 	cp 1
 	jr z, .asm_2d9b6
@@ -1028,10 +1025,9 @@ Func_2d9d8:
 	scf
 	ret
 
-
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-FightningClubEntranceShouldRonaldAppear:
+FightingClubEntranceShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -1079,6 +1075,7 @@ Data_d2abe:
 	dbw $09, Func_2dafe
 	dbw $01, Func_2dace
 	db $ff
+
 Func_2dace:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
@@ -1303,7 +1300,7 @@ GrassClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 .third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
-	farcall CountGRCoinPiecesObtained 
+	farcall CountGRCoinPiecesObtained
 	cp 2
 	jr nz, .asm_2e143
 	ld a, 1
@@ -1311,7 +1308,7 @@ GrassClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 .fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
-	farcall CountGRCoinPiecesObtained 
+	farcall CountGRCoinPiecesObtained
 	cp 4
 	jr nz, .asm_2e143
 	ld a, 2
@@ -2327,7 +2324,6 @@ Func_2f8d8:
 	ret
 ; 0x2f8e3
 
-
 SECTION "Bank b@7cd5", ROMX[$7cd5], BANK[$b]
 
 Data_2fcd5:
@@ -2377,7 +2373,6 @@ Func_2fd93:
 	scf
 	ret
 ; 0x2fda3
-
 
 SECTION "Bank b@7e45", ROMX[$7e45], BANK[$b]
 
