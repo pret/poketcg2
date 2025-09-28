@@ -841,7 +841,7 @@ def get_local_address(address):
 	"""
 	Return the local address of a rom address.
 	"""
-	bank = address / 0x4000
+	bank = address // 0x4000
 	address &= 0x3fff
 	if bank:
 		return address + 0x4000
@@ -967,7 +967,7 @@ def get_banked_ram_sym(sym, address):
 	return None
 
 def create_address_comment(offset):
-	comment_bank = offset / 0x4000
+	comment_bank = offset // 0x4000
 	if comment_bank != 0:
 		comment_bank_addr = (offset % 0x4000) + 0x4000
 	else:
