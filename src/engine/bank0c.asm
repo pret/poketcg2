@@ -3,7 +3,7 @@ SECTION "Bank c@4080", ROMX[$4080], BANK[$c]
 Data_30080:
 	db OVERWORLD_MAP_GR
 	dba Data_30085
-	db $15
+	db MUSIC_GROVERWORLD
 
 Data_30085:
 	dbw $01, Func_30092
@@ -22,8 +22,8 @@ Func_30092:
 	ccf
 	ret
 .asm_300a0
-	ld a, $1e
-	ld [wd58e], a
+	ld a, MUSIC_GRBLIMP
+	ld [wNextMusic], a
 	scf
 	ccf
 	ret

@@ -104,7 +104,7 @@ Prologue::
 	farcall SetOWObjectFrameset
 
 	ld a, OW_GR_BLIMP
-	farcall ClearOWObject
+	farcall _ClearOWObject
 
 	ld bc, TILEMAP_002
 	lb de, 0, 0
@@ -121,7 +121,7 @@ Prologue::
 	ld a, [wPlayerOWObject]
 	call WaitForOWObjectAnimation
 	ld a, [wPlayerOWObject]
-	farcall ClearOWObject
+	farcall _ClearOWObject
 	lb de, $44, $44
 	ld b, SOUTH
 	farcall LoadOWObject
@@ -160,7 +160,7 @@ Prologue::
 	pop bc
 	; override direction
 	ld a, OW_GR_BLIMP
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 	jr c, .loop
 	ret
 
@@ -180,7 +180,7 @@ Prologue::
 	farcall LoadOWObject
 	call WaitForOWObjectAnimation
 	ld a, OW_GR_BLIMP_BEAM
-	farcall ClearOWObject
+	farcall _ClearOWObject
 	ret
 
 .MovePlayer:
@@ -202,3 +202,28 @@ Prologue::
 	jr c, .loop_wait_2
 	ret
 ; 0x3c1b9
+
+SECTION "Bank f@43ca", ROMX[$43ca], BANK[$f]
+
+Func_3c3ca:
+	xor a
+	call Func_33f2
+	; Event Script @ 0x3c3ce
+	db $01, $11, $25, $0f, $10, $f1, $09, $1b, $44, $13
+	db $22, $12, $22, $0d, $0a, $0b, $e3, $43, $11, $22
+	db $0a, $0d, $03, $0b, $f8, $43, $09, $ff, $43, $0d
+	db $06, $09, $06, $44, $0d, $09, $09, $0d, $44, $08
+	db $14, $44, $50, $41, $44, $00, $08, $1e, $44, $50
+	db $48, $44, $00, $08, $1e, $44, $50, $52, $44, $00
+	db $08, $1e, $44, $50, $5c, $44, $00, $08, $1e, $44
+	db $50, $74, $44, $00, $08, $1e, $44, $05, $cc, $12
+	db $05, $cd, $12, $02, $36, $0d, $02, $0a, $2d, $44
+	db $17, $03, $28, $81, $02, $2d, $92, $44, $2f, $16
+	db $05, $00
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+; 0x3c441
+	

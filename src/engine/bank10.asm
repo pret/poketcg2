@@ -3,7 +3,7 @@ SECTION "Bank 10@4462", ROMX[$4462], BANK[$10]
 Data_40462:
 	db OVERWORLD_MAP_TCG
 	dba Data_40467
-	db $09
+	db MUSIC_OVERWORLD
 
 Data_40467:
 	dbw $01, Func_40474
@@ -23,8 +23,8 @@ Func_40474:
 	ret
 
 .asm_40482
-	ld a, $1e
-	ld [wd58e], a
+	ld a, MUSIC_GRBLIMP
+	ld [wNextMusic], a
 	scf
 	ccf
 	ret
@@ -543,7 +543,7 @@ DoGRShipMovement:
 	farcall SetOWObjectTargetPosition
 	ld a, OW_GR_BLIMP
 	pop bc
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 
 ; does movement every 4 frames
 ; can be skipped with B button

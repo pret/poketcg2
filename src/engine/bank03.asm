@@ -177,6 +177,54 @@ Func_c12e::
 Func_c162:
 	ret
 
+Func_c163:
+	ld a, $00
+	ld [wd582], a
+	ret
+
+Func_c169:
+	ld a, 10
+	call WaitAFrames
+	ret
+
+Func_c16f:
+	ld a, SFX_0C
+	call PlaySFX
+	ret
+
+Func_c175:
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+
+Func_c17d:
+	ld a, $01
+	call Func_338f
+	ret
+
+Func_c183:
+	ld a, $01
+	call Func_33a3
+	ret
+
+Func_c189:
+	ld a, $00
+	ld [wd582], a
+	ret
+
+Func_c18f:
+	farcall PlayCurrentSong
+	ld a, $00
+	ld [wd582], a
+	ret
+
+Func_c199:
+	ld a, $00
+	ld [wd582], a
+	call Func_32f6
+	ret
+; 0xc1a2
+
 SECTION "Bank 3@41c9", ROMX[$41c9], BANK[$3]
 
 HandleStartMenu:
@@ -194,7 +242,9 @@ HandleStartMenu:
 	jr c, .no_saved_duel
 	ld hl, wd554
 	set 2, [hl]
-	ld a, VAR_04
+	; on second meeting, Ronald card pops with you
+	; and unlocks it in the start menu
+	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
 	cp $02
 	jr c, .menu_config4
@@ -206,7 +256,7 @@ HandleStartMenu:
 	set 1, [hl]
 	jr .menu_config3
 .no_saved_duel
-	ld a, VAR_04
+	ld a, VAR_TIMES_MET_RONALD
 	call GetVarValue
 	cp $02
 	jr c, .menu_config1
@@ -670,9 +720,27 @@ LoadNPCDuelistDeck:
 	pop de
 	pop bc
 	ret
-; 0xc50b
 
-SECTION "Bank 3@4522", ROMX[$4522], BANK[$3]
+; return - a : number of coin pieces obtained
+CountGRCoinPiecesObtained:
+	push bc
+	ld b, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	ld c, 0 ; counter for how many pieces obtained
+.loop
+	ld a, b
+	call GetEventValue
+	jr z, .not_obtained
+	inc c ; obtained this piece
+.not_obtained
+	ld a, b
+	cp EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	jr z, .done
+	inc b
+	jr .loop
+.done
+	ld a, c
+	pop bc
+	ret
 
 ; return the location name in hl, using c == island and a == location
 GetLocationName:
@@ -922,40 +990,40 @@ Data_c651::
 	dbw $10, $4db3 ; $02
 	dbw $0f, $4603 ; $03
 	dbw $0f, $47dc ; $04
-	dbw $0b, $4000 ; $05
+	dba Data_2c000 ; $05
 	dbw $0f, $4b88 ; $06
 	dbw $0f, $4c62 ; $07
-	dbw $0b, $4479 ; $08
-	dbw $0b, $4936 ; $09
-	dbw $0b, $4afa ; $0a
-	dbw $0b, $4d23 ; $0b
-	dbw $0b, $530a ; $0c
-	dbw $0b, $53c4 ; $0d
-	dbw $0b, $55f8 ; $0e
-	dbw $0b, $5930 ; $0f
-	dbw $0b, $5a26 ; $10
-	dbw $0b, $5c9f ; $11
-	dbw $0b, $606d ; $12
-	dbw $0f, $4ee6 ; $13
-	dbw $0b, $6163 ; $14
-	dbw $0b, $64b7 ; $15
-	dbw $0b, $663f ; $16
-	dbw $0b, $68e6 ; $17
-	dbw $0b, $6cc8 ; $18
-	dbw $0b, $6dc5 ; $19
-	dbw $0b, $7012 ; $1a
-	dbw $0b, $74ff ; $1b
-	dbw $0b, $75fc ; $1c
-	dbw $0b, $77ca ; $1d
-	dbw $0d, $4575 ; $1e
-	dbw $0d, $4773 ; $1f
-	dbw $0f, $519e ; $20
-	dbw $0f, $52d7 ; $21
-	dbw $10, $5592 ; $22
-	dbw $0b, $7cd5 ; $23
-	dbw $0f, $55d1 ; $24
-	dbw $0f, $5d58 ; $25
-	dbw $0b, $7e45 ; $26
+	dba Data_2c479 ; $08
+	dba Data_2c936 ; $0a - not sure why $09 is skipped, but the data this points to is definitely $0a
+	dba Data_2cafa ; $0b
+	dba Data_2cd23 ; $0c
+	dba Data_2d30a ; $0d
+	dba Data_2d3c4 ; $0e
+	dba Data_2d5f8 ; $0f
+	dba Data_2d930 ; $10
+	dba Data_2da26 ; $11
+	dba Data_2dc9f ; $12
+	dba Data_2e06d ; $13
+	dbw $0f, $4ee6 ;
+	dba Data_2e163 ; $15
+	dba Data_2e4b7 ; $16
+	dba Data_2e63f ; $17
+	dba Data_2e8e6 ; $18
+	dba Data_2ecc8 ; $19
+	dba Data_2edc5 ; $1a
+	dba Data_2f012 ; $1b
+	dba Data_2f4ff ; $1c
+	dba Data_2f5fc ; $1d
+	dba Data_2f7ca ; $1e
+	dbw $0d, $4575 ; $
+	dbw $0d, $4773 ; $
+	dbw $0f, $519e ; $
+	dbw $0f, $52d7 ; $
+	dbw $10, $5592 ; $
+	dba Data_2fcd5 ; $24
+	dbw $0f, $55d1 ; $
+	dbw $0f, $5d58 ; $
+	dba Data_2fe45 ; $26
 	dbw $0d, $4aaf ; $27
 	dbw $10, $5be9 ; $28
 	dbw $0f, $6698 ; $29
@@ -1154,7 +1222,7 @@ Func_d299::
 	ld a, $01
 	farcall Func_10413
 	ld b, $00
-	ld a, [wd58a]
+	ld a, [wCurMap]
 	ld c, a
 	farcall LoadOWMap
 	ld a, [wd58f]
@@ -1321,7 +1389,7 @@ Func_d421::
 	ld h, [hl]  ;
 	ld l, a
 	ld a, c
-	ld de, wd58a
+	ld de, wCurMap
 	ld bc, $5
 	call CopyFarHLToDE
 	ld a, [wd586]
@@ -1383,7 +1451,7 @@ SetOWObjectTargetPosition:
 	ld b, WEST
 .got_x_dir
 	ld a, [wd595]
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 	ld a, 1
 	ld [wOWObjYVelocity], a
 	ld a, [wOWObjTargetY]
@@ -1434,7 +1502,7 @@ SetOWObjectTargetPosition:
 	ld b, NORTH
 .got_y_dir
 	ld a, [wd595]
-	farcall SetOWObjectDirection
+	farcall _SetOWObjectDirection
 	ld a, 1
 	ld [wOWObjXVelocity], a
 	ld a, [wOWObjTargetX]
@@ -2145,7 +2213,7 @@ GeneralVarMasks:
 	db $01, %00000011 ; VAR_01
 	db $01, %00111100 ; VAR_02
 	db $01, %11000000 ; VAR_03
-	db $02, %00001111 ; VAR_04
+	db $02, %00001111 ; VAR_TIMES_MET_RONALD
 	db $03, %00000011 ; VAR_05
 	db $03, %00001100 ; VAR_06
 	db $03, %00110000 ; VAR_07
