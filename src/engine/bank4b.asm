@@ -837,7 +837,106 @@ _LoadOWObject:
 	pop bc
 	pop af
 	ret
-; 0x12c49b
+
+Func_12c49b:
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	push de
+	ld a, [wd693]
+	bit 2, a
+	jr nz, .checked_flag
+	ld bc, TILESET_SMALL_COINS
+	call GetTilesetGfxPointer
+	call Func_3c10
+	ld bc, PALETTE_13B
+	call GetPaletteGfxPointer
+	call Func_3c2e
+	ld a, [wd693]
+	set 2, a
+	ld [wd693], a
+	ld a, [wd693]
+	res 0, a
+	ld [wd693], a
+	; fallthrough
+.checked_flag
+	pop de
+	pop af
+	ld c, a
+	ld b, 0
+	sla c
+	rl b
+	ld hl, .TilemapPointers
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	call GetTilemapGfxPointer
+	call Func_12c535
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.TilemapPointers:
+	dw TILEMAP_1EB
+	dw TILEMAP_201
+	dw TILEMAP_1EC
+	dw TILEMAP_1ED
+	dw TILEMAP_1EE
+	dw TILEMAP_1EF
+	dw TILEMAP_1F0
+	dw TILEMAP_1F1
+	dw TILEMAP_202
+	dw TILEMAP_203
+	dw TILEMAP_204
+	dw TILEMAP_205
+	dw TILEMAP_206
+	dw TILEMAP_207
+	dw TILEMAP_208
+	dw TILEMAP_209
+	dw TILEMAP_20A
+	dw TILEMAP_20B
+	dw TILEMAP_20C
+	dw TILEMAP_20D
+	dw TILEMAP_20E
+	dw TILEMAP_20F
+	dw TILEMAP_210
+	dw TILEMAP_211
+	dw TILEMAP_1F2
+	dw TILEMAP_1F3
+	dw TILEMAP_1F4
+	dw TILEMAP_1F5
+	dw TILEMAP_1F6
+	dw TILEMAP_1F7
+	dw TILEMAP_1F8
+	dw TILEMAP_1F9
+	dw TILEMAP_1FA
+	dw TILEMAP_1FB
+	dw TILEMAP_1FC
+	dw TILEMAP_1FD
+	dw TILEMAP_1FE
+	dw TILEMAP_1FF
+	dw TILEMAP_200
+	dw TILEMAP_201
+
+Func_12c535:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, 0
+	ld c, $80 ; Tiles1
+	call LoadTilemap
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x12c545
 
 SECTION "Bank 4B@707f", ROMX[$707f], BANK[$4b]
 

@@ -9,7 +9,6 @@ Func_10221:
 	and c
 	jr z, .loop
 	ret
-; 0x1022a
 
 Func_1022a:
 	push af
@@ -73,9 +72,46 @@ ClearSpriteAnimsAndSetInitialGraphicsConfiguration::
 	call ClearSpriteAnims
 	call SetInitialGraphicsConfiguration
 	ret
-; 0x102a4
 
-SECTION "Bank 4@42ef", ROMX[$42ef], BANK[$4]
+Func_102a4:
+	push af
+	push bc
+	push de
+	push hl
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call Func_10ea7
+	call Func_1059f
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	call Func_10d40
+	call Func_102ef
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_102c4:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_10d40
+	call Func_102ef
+	call Func_10ed3
+	call Func_105de
+	call DisableLCD
+	call Func_10b9c
+	call Func_1055e
+	call UpdateOWScroll
+	call EnableLCD
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeFromWhite
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_102ef:
 	push af
@@ -285,11 +321,11 @@ Func_103b6:
 	pop af
 	ret
 
-Func_10413:
-	ld [wd895], a
+SetOWScrollState:
+	ld [wOWScrollState], a
 	ret
 
-; updates scrolling, depending on wd895:
+; updates scrolling, depending on wOWScrollState:
 ; - if $0 then move to target position
 ;   with wd7e8 = x and wd7e9 = y
 ; - if $1 then move scroll so that
@@ -299,7 +335,7 @@ UpdateOWScroll::
 	push bc
 	push de
 	push hl
-	ld a, [wd895]
+	ld a, [wOWScrollState]
 	inc a
 	dec a
 	jr nz, .no_target_position
@@ -335,12 +371,12 @@ UpdateOWScroll::
 
 	ld a, d
 	cp $40
-	ld a, $00
+	ld a, 0
 	jr c, .got_x_scroll
 	ld a, [wd7dc]
+REPT 3
 	sla a
-	sla a
-	sla a ; *8
+ENDR
 	sub $a0
 	ld b, a
 	ld a, d
@@ -353,12 +389,12 @@ UpdateOWScroll::
 
 	ld a, e
 	cp $40
-	ld a, $00
+	ld a, 0
 	jr c, .got_y_scroll
 	ld a, [wd7dd]
+REPT 3
 	sla a
-	sla a
-	sla a ; *8
+ENDR
 	sub $90
 	ld b, a
 	ld a, e
@@ -398,9 +434,78 @@ UpdateOWScroll::
 	inc [hl]
 .done
 	ret
-; 0x104ad
 
-SECTION "Bank 4@44fe", ROMX[$44fe], BANK[$4]
+; input: d = x_1, e = y_1
+; x_2 = [wOWScrollX] * 8 if x_1 bit 7 is set, x_1 otherwise
+; y_2 = [wOWScrollY] * 8 if x_1 bit 7 is set, y_1 otherwise
+; x_n = [wd7dc] * 8 - $a0, y_n = [wd7dd] * 8 - $90
+; output:
+; [wd7e8] = min(x_2 * 8, x_n),
+; [wd7e9] = min(y_2 * 8, y_n),
+; [wOWScrollState] = 0
+Func_104ad:
+	push af
+	push bc
+	push de
+	ld a, d
+	bit 7, a
+	jr z, .got_x_base
+	ld a, [wOWScrollX]
+REPT 3
+	srl a
+ENDR
+	; fallthrough
+.got_x_base
+REPT 3
+	add a
+ENDR
+	ld c, a
+	ld a, [wd7dc]
+REPT 3
+	add a
+ENDR
+	sub $a0
+	ld b, a
+	ld a, c
+	cp b
+	jr c, .got_x
+	ld a, b
+	; fallthrough
+.got_x
+	ld [wd7e8], a
+
+	ld a, e
+	bit 7, a
+	jr z, .got_y_base
+	ld a, [wOWScrollY]
+REPT 3
+	srl a
+ENDR
+	; fallthrough
+.got_y_base
+REPT 3
+	add a
+ENDR
+	ld c, a
+	ld a, [wd7dd]
+REPT 3
+	add a
+ENDR
+	sub $90
+	ld b, a
+	ld a, c
+	cp b
+	jr c, .got_y
+	ld a, b
+	; fallthrough
+.got_y
+	ld [wd7e9], a
+	xor a
+	call SetOWScrollState
+	pop de
+	pop bc
+	pop af
+	ret
 
 StoreScrollTargetObjectPtr:
 	push af
@@ -410,22 +515,67 @@ StoreScrollTargetObjectPtr:
 	ld [wScrollTargetSpritePtr + 1], a
 	pop af
 	ret
-; 0x10509
 
-SECTION "Bank 4@4541", ROMX[$4541], BANK[$4]
+; output:
+; [wOWScrollState] = 2
+; [wOWScrollX] = d * 8
+; [wOWScrollY] = e * 8
+CalcOWScroll:
+	push af
+	ld a, 2
+	call SetOWScrollState
+	ld a, d
+REPT 3
+	add a
+ENDR
+	ld [wOWScrollX], a
+	ld a, e
+REPT 3
+	add a
+ENDR
+	ld [wOWScrollY], a
+	pop af
+	ret
 
+; output:
+; a = 0 if [wOWScrollState] = 0 AND [wOWScrollX] = [wd7e8] AND [wOWScrollY] = [wd7e9]
+; a = 1 otherwise
+CheckOWScroll:
+	push bc
+	ld c, 1
+	ld a, [wOWScrollState]
+	and a
+	jr nz, .got_result
+	ld a, [wOWScrollX]
+	ld b, a
+	ld a, [wd7e8]
+	cp b
+	jr nz, .got_result
+	ld a, [wOWScrollY]
+	ld b, a
+	ld a, [wd7e9]
+	cp b
+	jr nz, .got_result
+	ld c, 0
+	; fallthrough
+.got_result
+	ld a, c
+	pop bc
+	ret
+
+; output:
+; a = [wd6d4 + (e/2)*16 + d/2]
 Func_10541:
 	push bc
 	push de
 	push hl
 	srl d
 	srl e
-	ld b, $00
+	ld b, 0
 	ld hl, wd6d4
+REPT 4
 	sla e
-	sla e
-	sla e
-	sla e
+ENDR
 	ld c, e
 	add hl, bc
 	ld c, d
@@ -555,9 +705,30 @@ Func_105de:
 	pop bc
 	pop af
 	ret
-; 0x1061d
 
-SECTION "Bank 4@463a", ROMX[$463a], BANK[$4]
+; input: a, b, c
+; output:
+; [wd896] = c
+; [wd896 + 1] = b
+; [wd896 + 2] = [wd896 + 3] = a
+; [wd896 + 4] = 0
+SetwD896:
+	ld [wd896 + 2], a
+	ld [wd896 + 3], a
+	ld a, c
+	ld [wd896], a
+	ld a, b
+	ld [wd896 + 1], a
+	xor a
+	ld [wd896 + 4], a
+	ret
+
+Func_10630:
+	push bc
+	farcall GetPaletteGfxPointer
+	call Func_378c
+	pop bc
+	ret
 
 SetInitialGraphicsConfiguration:
 	push af
@@ -594,9 +765,9 @@ SetFontAndTextBoxFrameColor_PreserveRegisters:
 	pop bc
 	pop af
 	ret
-; 0x10672
 
-SECTION "Bank 4@4673", ROMX[$4673], BANK[$4]
+; 0x10672
+	ret
 
 Func_10673::
 	push af
@@ -614,9 +785,6 @@ Func_10673::
 	ld e, a
 	pop af
 	ret
-; 0x1068a
-
-SECTION "Bank 4@468a", ROMX[$468a], BANK[$4]
 
 SetZeroScroll:
 	push af
@@ -669,9 +837,39 @@ SafeClearBGMap:
 	pop bc
 	pop af
 	ret
-; 0x106ca
 
-SECTION "Bank 4@46f4", ROMX[$46f4], BANK[$4]
+; copy 64 bytes from hl to wBackgroundPalettesCGB, then run FlushAllPalettes with a = 7
+UpdateBackgroundPalettesCGB_Flush:
+	push af
+	push bc
+	push de
+	push hl
+	xor a
+	ld de, wBackgroundPalettesCGB
+	ld bc, $40
+	call CopyDataHLtoDE_SaveRegisters
+	ld a, 7
+	call FlushAllPalettes
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; copy 64 bytes from hl to wBackgroundPalettesCGB
+UpdateBackgroundPalettesCGB:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, wBackgroundPalettesCGB
+	ld bc, $40
+	call CopyDataHLtoDE_SaveRegisters
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 ; h = tile index
 ; l = attributes
@@ -1667,19 +1865,37 @@ Func_10d17:
 	pop bc
 	pop af
 	ret
-; 0x10d28
 
-SECTION "Bank 4@4d40", ROMX[$4d40], BANK[$4]
+Func_10d28:
+	push af
+	push hl
+	inc hl
+	ld a, [hl]
+	and 4
+	ld b, a
+	srl b
+	srl b
+	pop hl
+	pop af
+	ret
+
+Func_10d36:
+	push bc
+	farcall GetPaletteGfxPointer
+	call Func_10908
+	pop bc
+	ret
 
 Func_10d40::
 	call InitOWObjects
 	ld a, $01
 	call Func_108c9
-	call Func_10f26
+	call FillwD986
 	ret
-; 0x10d4c
 
-SECTION "Bank 4@4d50", ROMX[$4d50], BANK[$4]
+GetNextInactiveOWObjectWrapper:
+	call GetNextInactiveOWObject
+	ret
 
 GetOWObjectWithID:
 	call _GetOWObjectWithID
@@ -1744,9 +1960,6 @@ LoadOWObjectInMap::
 	pop bc
 	pop af
 	ret
-; 0x10da3
-
-SECTION "Bank 4@4da3", ROMX[$4da3], BANK[$4]
 
 ClearOWObject:
 	call _ClearOWObject
@@ -1793,9 +2006,14 @@ Func_10dd3::
 StopOWObjectAnimation::
 	call ResetOWObjectSpriteAnimating
 	ret
-; 0x10ddb
 
-SECTION "Bank 4@4de3", ROMX[$4de3], BANK[$4]
+Func_10ddb:
+	call Func_112e8
+	ret
+
+Func_10ddf:
+	call Func_112f4
+	ret
 
 StopAndGetOWObjectSpeedAndMoveDuration::
 	call Func_11300
@@ -1808,16 +2026,18 @@ MoveAndSetOWObjectSpeedAndMoveDuration::
 GetOWObjectSpeedAndMoveDuration::
 	call Func_11320
 	ret
-; 0x10def
 
-SECTION "Bank 4@4df3", ROMX[$4df3], BANK[$4]
+Func_10def:
+	call Func_11367
+	ret
 
 Func_10df3::
 	call Func_113d2
 	ret
-; 0x10df7
 
-SECTION "Bank 4@4dfb", ROMX[$4dfb], BANK[$4]
+CheckOWObjectPointerWithID:
+	call _CheckOWObjectPointerWithID
+	ret
 
 ; outputs ID of OW object that is
 ; in the grid position de
@@ -2020,24 +2240,44 @@ Func_10eff::
 	set 5, [hl] ; OWOBJSTRUCT_FLAGS
 	pop hl
 	ret
-; 0x10f07
 
-SECTION "Bank 4@4f16", ROMX[$4f16], BANK[$4]
+Func_10f07:
+	push hl
+	call GetOWObjectWithID
+	res 5, [hl]
+	pop hl
+	ret
+
+Func_10f0f:
+	call Func_10db8
+	call SetOWObjectDirection
+	ret
 
 Func_10f16:
 	call Func_11471
 	ret
-; 0x10f1a
 
-SECTION "Bank 4@4f26", ROMX[$4f26], BANK[$4]
+Func_10f1a:
+	call Func_1147b
+	ret
 
-Func_10f26:
+Func_10f1e:
+	call SetOWObjectFrameset
+	ret
+
+Func_10f22:
+	call Func_1148f
+	ret
+
+FillwD986:
 	ld a, $ff
 	ld [wd986], a
 	ret
-; 0x10f2c
 
-SECTION "Bank 4@4f32", ROMX[$4f32], BANK[$4]
+ClearwD986:
+	ld a, 0
+	ld [wd986], a
+	ret
 
 Func_10f32:
 	push af
@@ -2143,14 +2383,10 @@ Func_10f78:
 .asm_10fb6
 	pop bc
 	ret
-; 0x10fb8
-
-SECTION "Bank 4@4fb8", ROMX[$4fb8], BANK[$4]
 
 Func_10fb8:
 	call SetOWObjectFrameDuration
 	ret
-; 0x10fbc
 
 ; check if OW object ID in register a
 ; is a still object, which means it
@@ -2296,24 +2532,39 @@ DrawWideTextBox_PrintTextWithYesOrNoMenu:
 	push bc
 	push de
 	push hl
-	xor $1
+	xor 1
 	ld [wDefaultYesOrNo], a
 	call DrawWideTextBox_PrintText
 	call YesOrNoMenu
-	ld a, $00
+	ld a, 0
 	jr nc, .exit
-	ld a, $01
+	ld a, 1
 .exit
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x11064
 
-SECTION "Bank 4@507c", ROMX[$507c], BANK[$4]
+PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu:
+	push bc
+	push de
+	push hl
+	xor 1
+	ld [wDefaultYesOrNo], a
+	call PrintScrollableText_WithTextBoxLabel_NoWait
+	call YesOrNoMenu
+	ld a, 0
+	jr nc, .exit
+	ld a, 1
+	; fallthrough
+.exit
+	pop hl
+	pop de
+	pop bc
+	ret
 
 ; hl = text ID
-Func_1107c:
+PrintTextInWideTextBox:
 	push af
 	push bc
 	push de
@@ -2324,9 +2575,16 @@ Func_1107c:
 	pop bc
 	pop af
 	ret
-; 0x11088
 
-SECTION "Bank 4@5092", ROMX[$5092], BANK[$4]
+PrintScrollableText_WithTextBoxLabel_Wrapper:
+	push bc
+	push de
+	push hl
+	call PrintScrollableText_WithTextBoxLabel_NoWait
+	pop hl
+	pop de
+	pop bc
+	ret
 
 SetFadePalsFrameFunc:
 	push hl
@@ -2629,9 +2887,10 @@ _GetOWObjectSpriteAnimFlags:
 	pop hl
 	pop bc
 	ret
-; 0x1126b
 
-SECTION "Bank 4@526d", ROMX[$526d], BANK[$4]
+Func_1126b:
+	ld [hl], a
+	ret
 
 ConvertToSpriteAnimPosition:
 	push af
@@ -2819,9 +3078,32 @@ Func_1132e:
 	pop bc
 	ld a, [wda8b]
 	ret
-; 0x11367
 
-SECTION "Bank 4@5384", ROMX[$5384], BANK[$4]
+Func_11367:
+	push af
+	push bc
+	push de
+	push hl
+	ld d, h
+	ld e, l
+	call _GetOWObjectWithID
+	set 6, [hl]
+	push bc
+	ld bc, 4
+	add hl, bc
+	pop bc
+	xor a
+	ld [hli], a
+	ld [hl], b
+	inc hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 ; e = ?
 Func_11384::
@@ -2910,9 +3192,16 @@ Func_113d2:
 	pop de
 	pop bc
 	ret
-; 0x113ec
 
-SECTION "Bank 4@53f4", ROMX[$53f4], BANK[$4]
+; input: a = ID
+; output: a = HIGH(pointer) | LOW(pointer)
+_CheckOWObjectPointerWithID:
+	push hl
+	call _GetOWObjectWithID
+	ld a, h
+	or l
+	pop hl
+	ret
 
 GetOWObjectsPointer:
 	ld hl, wOWObjects
@@ -2988,27 +3277,42 @@ SetOWObjectAsScrollTarget:
 	call _GetOWObjectSpriteAnim
 	call StoreScrollTargetObjectPtr
 	ret
-; 0x1145d
 
-SECTION "Bank 4@5471", ROMX[$5471], BANK[$4]
+Func_1145d:
+	call _GetOWObjectWithID
+	call _GetOWObjectSpriteAnim
+	call CheckIsSpriteAnimAnimating
+	ret
+
+Func_11467:
+	call _GetOWObjectWithID
+	call SetOWObjectPosition
+	call _SetOWObjectDirection
+	ret
 
 Func_11471:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	call Func_10d17
 	ret
-; 0x1147b
 
-SECTION "Bank 4@5485", ROMX[$5485], BANK[$4]
+Func_1147b:
+	call _GetOWObjectWithID
+	call _GetOWObjectSpriteAnim
+	call Func_10d28
+	ret
 
 SetOWObjectFrameset:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	call SetAndInitSpriteAnimFrameset
 	ret
-; 0x1148f
 
-SECTION "Bank 4@5499", ROMX[$5499], BANK[$4]
+Func_1148f:
+	call _GetOWObjectWithID
+	call _GetOWObjectSpriteAnim
+	call SetSpriteAnimFrameset
+	ret
 
 SetOWObjectFrameDuration:
 	call _GetOWObjectWithID
@@ -3016,23 +3320,285 @@ SetOWObjectFrameDuration:
 	ld a, c
 	call SetSpriteAnimFrameDuration
 	ret
-; 0x114a4
 
-SECTION "Bank 4@557c", ROMX[$557c], BANK[$4]
+Func_114a4:
+	call _GetOWObjectWithID
+	call _GetOWObjectSpriteAnim
+	ld a, b
+	call SetSpriteAnimFrameIndex
+	ret
 
+Func_114af:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wda98]
+	and a
+	jr nz, .asm_114ef
+	lb de, 0, 0
+	lb bc, 8, 4
+	call Func_10673
+	call Func_10342
+	call Func_10abf
+	lb de, 0, 0
+	lb bc, 8, 4
+	call Func_10673
+	call DrawRegularTextBoxVRAM0
+	lb de, 1, 1
+	call Func_10673
+	ldtx hl, ChipsText
+	call Func_35af
+	lb de, 6, 2
+	call Func_10673
+	ldtx hl, PlayerDiaryCardsUnitText
+	call Func_35af
+	call Func_11622
+.asm_114ef
+	ld a, $ff
+	ld [wda98], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_114f9:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wda98]
+	and a
+	jr z, .clear
+	call Func_103b6
+	call Func_10b18
+.clear
+	xor a
+	ld [wda98], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_11512:
+	push af
+	push bc
+	push hl
+	ld a, [wda99]
+	ld l, a
+	ld a, [wda99 + 1]
+	ld h, a
+	add hl, bc
+	ld a, h
+	cp $27
+	jr c, .got_value
+	ld a, l
+	cp $0f
+	jr c, .got_value
+	ld hl, $270f
+.got_value
+	ld a, l
+	ld [wda99], a
+	ld a, h
+	ld [wda99 + 1], a
+	ld a, [wda98]
+	and a
+	jr z, .done
+	call Func_11622
+.done
+	pop hl
+	pop bc
+	pop af
+	ret
+
+Func_11540:
+	push af
+	push bc
+	push hl
+	ld a, c
+	xor $ff
+	ld l, a
+	ld a, b
+	xor $ff
+	ld h, a
+	ld bc, 1
+	add hl, bc
+	ld c, l
+	ld b, h
+	ld a, [wda99]
+	ld l, a
+	ld a, [wda99 + 1]
+	ld h, a
+	add hl, bc
+	ld a, h
+	cp $27
+	jr c, .got_value
+	ld a, l
+	cp $0f
+	jr c, .got_value
+	ld hl, 0
+.got_value
+	ld a, l
+	ld [wda99], a
+	ld a, h
+	ld [wda99 + 1], a
+	ld a, [wda98]
+	and a
+	jr z, .done
+	call Func_11622
+.done
+	pop hl
+	pop bc
+	pop af
+	ret
+
+; clear wda98 to wda9c
 Func_1157c:
 	push af
 	xor a
 	ld [wda99 + 0], a
 	ld [wda99 + 1], a
-	ld [wda99 + 2], a
-	ld [wda99 + 3], a
+	ld [wda9b + 0], a
+	ld [wda9b + 1], a
 	ld [wda98], a
 	pop af
 	ret
-; 0x1158f
 
-SECTION "Bank 4@5641", ROMX[$5641], BANK[$4]
+; load [dw da99] to bc
+GetDWwDA99:
+	push af
+	ld a, [wda99]
+	ld c, a
+	ld a, [wda99 + 1]
+	ld b, a
+	pop af
+	ret
+
+Func_1159a:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, b
+	or c
+	jr z, .done
+	ld d, b
+	ld e, c
+	ld bc, 20
+	call DivideDEByBC
+	ld a, h
+	or l
+	jr z, .next
+	ld bc, 1
+	inc h
+.display_loop_1
+	call Func_115ce
+	dec l
+	jr nz, .display_loop_1
+	dec h
+	jr nz, .display_loop_1
+; fallthrough
+.next
+	ld a, d
+	or e
+	jr z, .done
+	ld b, d
+	ld c, e
+	ld e, 20
+.display_loop_2
+	call Func_115ce
+	dec e
+	jr nz, .display_loop_2
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_115ce:
+	push af
+	ld a, SFX_7C
+	call CallPlaySFX
+	pop af
+	call Func_11512
+	ld a, 3
+	call DoAFrames_WithPreCheck
+	ret
+
+Func_115de:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, b
+	or c
+	jr z, .done
+	ld d, b
+	ld e, c
+	ld bc, 20
+	call DivideDEByBC
+	ld a, h
+	or l
+	jr z, .next
+	ld bc, 1
+	inc h
+.display_loop_1
+	call Func_11612
+	dec l
+	jr nz, .display_loop_1
+	dec h
+	jr nz, .display_loop_1
+; fallthrough
+.next
+	ld a, d
+	or e
+	jr z, .done
+	ld b, d
+	ld c, e
+	ld e, 20
+.display_loop_2
+	call Func_11612
+	dec e
+	jr nz, .display_loop_2
+.done
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_11612:
+	push af
+	ld a, SFX_7C
+	call CallPlaySFX
+	pop af
+	call Func_11540
+	ld a, 3
+	call DoAFrames_WithPreCheck
+	ret
+
+Func_11622:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wda99]
+	ld l, a
+	ld a, [wda99 + 1]
+	ld h, a
+	lb de, 2, 2
+	call Func_10673
+	ld a, 4
+	ld b, TRUE
+	farcall PrintNumber
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 IntroAndTitleScreen:
 	push af
@@ -4940,7 +5506,7 @@ PlayerGenderSelection:
 .HandleSelection:
 .loop
 	ldtx hl, ChoosePlayerGenderText
-	call Func_1107c
+	call PrintTextInWideTextBox
 	ld a, [wde64]
 	farcall HandleMenuBox
 	ld [wde64], a

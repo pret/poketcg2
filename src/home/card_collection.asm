@@ -55,7 +55,7 @@ GetAmountOfCardsOwned::
 ; return carry if the count in sCardCollection plus the count in each deck (sDeck*)
 ; of the card with id given in de is 0 (if card not owned).
 ; also return the count (total owned amount) in a.
-GetCardCountInCollectionAndDecks:
+GetCardCountInCollectionAndDecks::
 	push hl
 	push de
 	push bc
@@ -115,7 +115,7 @@ GetCardCountInCollectionAndDecks:
 
 ; return carry if the count in sCardCollection of the card with id given in de is 0.
 ; also return the count (amount owned outside of decks) in a.
-GetCardCountInCollection:
+GetCardCountInCollection::
 	push hl
 	call EnableSRAM
 	ld hl, sCardCollection
@@ -156,7 +156,7 @@ AddCardToCollection::
 	ret
 
 ; remove a card with id given in de from sCardCollection (decrement its count if non-0)
-RemoveCardFromCollection:
+RemoveCardFromCollection::
 	push hl
 	call EnableSRAM
 	ld hl, sCardCollection

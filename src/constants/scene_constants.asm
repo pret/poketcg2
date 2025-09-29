@@ -31,8 +31,8 @@
 	const SCENE_GOT_MAIL                      ; $1d
 	const SCENE_MAILBOX                       ; $1e
 	const SCENE_DECK_DIAGNOSIS                ; $1f
-	const SCENE_LINK_INTRO_1                  ; $20
-	const SCENE_LINK_INTRO_2                  ; $21
+	const SCENE_LINK_INTRO_TRANSMITTING                  ; $20
+	const SCENE_LINK_INTRO_NOT_CONNECTED                  ; $21
 	const SCENE_COIN_TOSS_RESULT_1            ; $22
 	const SCENE_COIN_TOSS_RESULT_2            ; $23
 	const SCENE_GBC_ONLY_DISCLAIMER           ; $24

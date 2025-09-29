@@ -232,6 +232,7 @@ DebugCurrentMapChipsetCountLabelText:
 	textfw "使用中のマップチップ数:"
 	done
 
+; also used for chips
 PlayerDiaryCardsUnitText:
 	textfw "枚"
 	done

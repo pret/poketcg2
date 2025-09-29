@@ -326,10 +326,10 @@ Func_c24d:
 	ld [wd586], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
-	ld [wd611], a
-	ld [wd612], a
-	ld [wd613], a
-	ld [wd614], a
+	ld [wd611 + 0], a
+	ld [wd611 + 1], a
+	ld [wd613 + 0], a
+	ld [wd613 + 1], a
 	call Func_ebc6
 	jr nc, .asm_c299
 	call Func_eb39
@@ -1220,7 +1220,7 @@ Func_d299::
 	xor a
 	farcall Func_10d40
 	ld a, $01
-	farcall Func_10413
+	farcall SetOWScrollState
 	ld b, $00
 	ld a, [wCurMap]
 	ld c, a
@@ -2087,7 +2087,7 @@ EventVarMasks:
 	db $14, %01000000 ; EVENT_TALKED_TO_NISHIJIMA_2
 	db $14, %10000000 ; EVENT_TALKED_TO_ISHII_2
 	db $15, %00000001 ; EVENT_TALKED_TO_SAMEJIMA_2
-	db $16, %00000001 ; EVENT_TALKED_TO_KANZAJI
+	db $16, %00000001 ; EVENT_TALKED_TO_KANZAKI
 	db $16, %00000010 ; EVENT_TALKED_TO_RUI
 	db $16, %00000100 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KANZAKI
 	db $16, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_RUI
@@ -2664,26 +2664,29 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	pop bc
 	ret
 
-; clear wd61a, then copy 32 bytes from [wd619]:[dw wd61b] to wd61e
-Func_dbdb::
+; clear wScriptStepBufferIndex
+; then copy 32 bytes from the script step source to wScriptStepBuffer
+ReloadScriptStepBuffer::
 	xor a
-	ld [wd61a], a
-	ld hl, wd61b
+	ld [wScriptStepBufferIndex], a
+	ld hl, wScriptStepSourcePointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wd61e
-	ld bc, wD61E_STRUCT_SIZE
-	ld a, [wd619]
+	ld de, wScriptStepBuffer
+	ld bc, wSCRIPT_STEP_BUFFER_SIZE
+	ld a, [wScriptStepSourceBank]
 	call CopyFarHLToDE
 	ret
 
-; for the counter n = [wd61a], get the table index m = [wd61e + n], jump to .PointerTable[m]
+; for n = [wScriptStepBufferIndex],
+; get the table index m = [wScriptStepBuffer + n],
+; jump to OverworldScriptTable[m]
 ; applying m in two steps rather than sla, even though m < 128
-Func_dbf2::
-	ld hl, wd61a
+RunOverworldScript::
+	ld hl, wScriptStepBufferIndex
 	ld a, [hl]
-	ld hl, wd61e
+	ld hl, wScriptStepBuffer
 	add l
 	ld l, a
 	jr nc, .got_offset
@@ -2691,7 +2694,7 @@ Func_dbf2::
 .got_offset
 	ld a, [hl]
 	ld d, a
-	ld hl, .PointerTable
+	ld hl, OverworldScriptTable
 	add l
 	ld l, a
 	jr nc, .next
@@ -2708,193 +2711,196 @@ Func_dbf2::
 	ld l, a
 	jp hl
 
-.PointerTable
-	dw Func_dd91
-	dw Func_dd9c
-	dw Func_dda6
-	dw Func_ddad
-	dw Func_ddb9
-	dw Func_ddd1
-	dw Func_dde3
-	dw Func_de01
-	dw Func_de1f
-	dw Func_de30
-	dw Func_de3b
-	dw Func_de46
-	dw Func_de51
-	dw Func_de5c
-	dw Func_de76
-	dw Func_de7f
-	dw Func_de88
-	dw Func_de9d
-	dw Func_dea8
-	dw Func_deb4
-	dw Func_dec4
-	dw Func_ded4
-	dw $5eeb
-	dw $5ef5
-	dw $5f03
-	dw $5f11
-	dw $5f1e
-	dw $5f2f
-	dw $5f45
-	dw $5f54
-	dw $5f63
-	dw $5f6d
-	dw $5f87
-	dw $5f9b
-	dw $5fb5
-	dw $5fd0
-	dw $5fdc
-	dw $5fe8
-	dw $5ff3
-	dw $6004
-	dw $601e
-	dw $604f
-	dw $6070
-	dw $608e
-	dw $60b2
-	dw $60c7
-	dw $60da
-	dw $60ed
-	dw $60f3
-	dw $60f9
-	dw $6115
-	dw $6131
-	dw $613c
-	dw $6147
-	dw $616d
-	dw $617b
-	dw $61a0
-	dw $61ae
-	dw $61be
-	dw $61ce
-	dw $61de
-	dw $6209
-	dw $6217
-	dw $6242
-	dw $624c
-	dw $6256
-	dw $636b
-	dw $637b
-	dw $638b
-	dw $6394
-	dw $63a1
-	dw $63ac
-	dw $63c3
-	dw $63cc
-	dw $63da
-	dw $63e8
-	dw $63f8
-	dw $6424
-	dw $6450
-	dw $6466
-	dw $647e
-	dw $64dd
-	dw $64fc
-	dw $6509
-	dw $6512
-	dw $6527
-	dw $6531
-	dw $65d7
-	dw $65e3
-	dw $65eb
-	dw $65f6
-	dw $6601
-	dw $660d
-	dw $6613
-	dw $664e
-	dw $6672
-	dw $667f
-	dw $6689
-	dw $6697
-	dw $66b1
-	dw $66ce
-	dw $670e
-	dw $6724
-	dw $673a
-	dw $6746
-	dw $6752
-	dw $6764
-	dw $6775
-	dw $6786
-	dw $679c
-	dw $67ab
-	dw $67d0
-	dw $67df
-	dw $67e6
-	dw $67ed
-	dw $67f7
-	dw $6801
-	dw $680f
-	dw $6816
-	dw $681d
-	dw $6847
-	dw $684e
-	dw $685b
-	dw $686a
-	dw $6871
-	dw $687d
+OverworldScriptTable:
+	dw ScriptCommand_00
+	dw ScriptCommand_01
+	dw ScriptCommand_02
+	dw ScriptCommand_03
+	dw ScriptCommand_04
+	dw ScriptCommand_05
+	dw ScriptCommand_06
+	dw ScriptCommand_07
+	dw ScriptCommand_08
+	dw ScriptCommand_09
+	dw ScriptCommand_0A
+	dw ScriptCommand_0B
+	dw ScriptCommand_0C
+	dw ScriptCommand_0D
+	dw ScriptCommand_0E
+	dw ScriptCommand_0F
+	dw ScriptCommand_10
+	dw ScriptCommand_11
+	dw ScriptCommand_12
+	dw ScriptCommand_13
+	dw ScriptCommand_14
+	dw ScriptCommand_15
+	dw ScriptCommand_16
+	dw ScriptCommand_17
+	dw ScriptCommand_18
+	dw ScriptCommand_19
+	dw ScriptCommand_1A
+	dw ScriptCommand_1B
+	dw ScriptCommand_1C
+	dw ScriptCommand_1D
+	dw ScriptCommand_1E
+	dw ScriptCommand_1F
+	dw ScriptCommand_20
+	dw ScriptCommand_21
+	dw ScriptCommand_22
+	dw ScriptCommand_23
+	dw ScriptCommand_24
+	dw ScriptCommand_25
+	dw ScriptCommand_26
+	dw ScriptCommand_27
+	dw ScriptCommand_28
+	dw ScriptCommand_29
+	dw ScriptCommand_2A
+	dw ScriptCommand_2B
+	dw ScriptCommand_2C
+	dw ScriptCommand_2D
+	dw ScriptCommand_2E
+	dw ScriptCommand_2F
+	dw ScriptCommand_30
+	dw ScriptCommand_31
+	dw ScriptCommand_32
+	dw ScriptCommand_33
+	dw ScriptCommand_34
+	dw ScriptCommand_35
+	dw ScriptCommand_36
+	dw ScriptCommand_37
+	dw ScriptCommand_38
+	dw ScriptCommand_39
+	dw ScriptCommand_3A
+	dw ScriptCommand_3B
+	dw ScriptCommand_3C
+	dw ScriptCommand_3D
+	dw ScriptCommand_3E
+	dw ScriptCommand_3F
+	dw ScriptCommand_40
+	dw ScriptCommand_41
+	dw ScriptCommand_42
+	dw ScriptCommand_43
+	dw ScriptCommand_44
+	dw ScriptCommand_45
+	dw ScriptCommand_46
+	dw ScriptCommand_47
+	dw ScriptCommand_48
+	dw ScriptCommand_49
+	dw ScriptCommand_4A
+	dw ScriptCommand_4B
+	dw ScriptCommand_4C
+	dw ScriptCommand_4D
+	dw ScriptCommand_4E
+	dw ScriptCommand_4F
+	dw ScriptCommand_50
+	dw ScriptCommand_51
+	dw ScriptCommand_52
+	dw ScriptCommand_53
+	dw ScriptCommand_54
+	dw ScriptCommand_55
+	dw ScriptCommand_56
+	dw ScriptCommand_57
+	dw ScriptCommand_58
+	dw ScriptCommand_59
+	dw ScriptCommand_5A
+	dw ScriptCommand_5B
+	dw ScriptCommand_5C
+	dw ScriptCommand_5D
+	dw ScriptCommand_5E
+	dw ScriptCommand_5F
+	dw ScriptCommand_60
+	dw ScriptCommand_61
+	dw ScriptCommand_62
+	dw ScriptCommand_63
+	dw ScriptCommand_64
+	dw ScriptCommand_65
+	dw ScriptCommand_66
+	dw ScriptCommand_67
+	dw ScriptCommand_68
+	dw ScriptCommand_69
+	dw ScriptCommand_6A
+	dw ScriptCommand_6B
+	dw ScriptCommand_6C
+	dw ScriptCommand_6D
+	dw ScriptCommand_6E
+	dw ScriptCommand_6F
+	dw ScriptCommand_70
+	dw ScriptCommand_71
+	dw ScriptCommand_72
+	dw ScriptCommand_73
+	dw ScriptCommand_74
+	dw ScriptCommand_75
+	dw ScriptCommand_76
+	dw ScriptCommand_77
+	dw ScriptCommand_78
+	dw ScriptCommand_79
+	dw ScriptCommand_7A
+	dw ScriptCommand_7B
+	dw ScriptCommand_7C
+	dw ScriptCommand_7D
 
-; add a to [dw wd61b]
-; if [wd61a] + a < 32, add a to [wd61a] too
-; else call Func_dbdb
-Func_dd0e:
+; add a to [wScriptStepSourcePointer]
+; if [wScriptStepBufferIndex] + a < 32, add a to [wScriptStepBufferIndex] too
+; else ReloadScriptStepBuffer
+AdvanceScriptStepSourcePointer:
 	ld c, a
-	ld hl, wd61b
+	ld hl, wScriptStepSourcePointer
 	add [hl]
 	ld [hli], a
 	jr nc, .next
 	inc [hl]
 .next
 	ld a, c
-	ld hl, wd61a
+	ld hl, wScriptStepBufferIndex
 	add [hl]
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_STEP_BUFFER_SIZE
 	jr nc, .fallback
 	ld [hl], a
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptStepBuffer
 	ret
 
-Call_dbdb_Done:
+ReloadScriptStepBuffer_Done:
 	ret
 
-Run_dd0e_Inc1:
+AdvanceScriptStepSourcePointerBy1:
 	ld a, 1
-	jr Func_dd0e
+	jr AdvanceScriptStepSourcePointer
 
-Run_dd0e_Inc2:
+AdvanceScriptStepSourcePointerBy2:
 	ld a, 2
-	jr Func_dd0e
+	jr AdvanceScriptStepSourcePointer
 
-Run_dd0e_Inc3:
+AdvanceScriptStepSourcePointerBy3:
 	ld a, 3
-	jr Func_dd0e
+	jr AdvanceScriptStepSourcePointer
 
-Run_dd0e_Inc4:
+AdvanceScriptStepSourcePointerBy4:
 	ld a, 4
-	jr Func_dd0e
+	jr AdvanceScriptStepSourcePointer
 
-Run_dd0e_Inc5:
+AdvanceScriptStepSourcePointerBy5:
 	ld a, 5
-	jr Func_dd0e
+	jr AdvanceScriptStepSourcePointer
 
-; for the counter j = [wd61a] + a,
-; if j + 1 < 32, c = [wd61e + j], b = [wd61e + j + 1], then a = (b | c)
-; else call Func_dbdb and retry
-Func_dd3b:
+; for j = [wScriptStepBufferIndex] + a,
+; if j + 1 < 32,
+; c = [wScriptStepBuffer + j],
+; b = [wScriptStepBuffer + j + 1],
+; a = (b | c)
+; else call ReloadScriptStepBuffer and retry
+GetScriptStepBufferPair:
 .loop
 	push af
-	ld hl, wd61a
+	ld hl, wScriptStepBufferIndex
 	add [hl]
 	inc a
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_STEP_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
 	dec a
-	ld hl, wd61e
+	ld hl, wScriptStepBuffer
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -2906,34 +2912,34 @@ Func_dd3b:
 	or b
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptStepBuffer
 	pop af
 	jr .loop
 
-Run_dd3b_Inc1:
+GetScriptStepBufferPair_IncIndexBy1:
 	ld a, 1
-	jr Func_dd3b
+	jr GetScriptStepBufferPair
 
-Run_dd3b_Inc2:
+GetScriptStepBufferPair_IncIndexBy2:
 	ld a, 2
-	jr Func_dd3b
+	jr GetScriptStepBufferPair
 
-Run_dd3b_Inc3:
+GetScriptStepBufferPair_IncIndexBy3:
 	ld a, 3
-	jr Func_dd3b
+	jr GetScriptStepBufferPair
 
-; for the counter j = [wd61a] + a,
-; if j < 32, a = [wd61e + j] and update flags accordingly
-; else call Func_dbdb and retry
-Func_dd66:
+; for j = [wScriptStepBufferIndex] + a,
+; if j < 32, a = [wScriptStepBuffer + j] and update flags accordingly
+; else call ReloadScriptStepBuffer and retry
+GetScriptStepBuffer:
 .loop
 	push af
-	ld hl, wd61a
+	ld hl, wScriptStepBufferIndex
 	add [hl]
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_STEP_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
-	ld hl, wd61e
+	ld hl, wScriptStepBuffer
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -2943,64 +2949,66 @@ Func_dd66:
 	or a
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptStepBuffer
 	pop af
 	jr .loop
 
-Run_dd66_Inc1:
+GetScriptStepBuffer_IncIndexBy1:
 	ld a, 1
-	jr Func_dd66
+	jr GetScriptStepBuffer
 
-Run_dd66_Inc2:
+GetScriptStepBuffer_IncIndexBy2:
 	ld a, 2
-	jr Func_dd66
+	jr GetScriptStepBuffer
 
-Run_dd66_Inc3:
+GetScriptStepBuffer_IncIndexBy3:
 	ld a, 3
-	jr Func_dd66
+	jr GetScriptStepBuffer
 
-Run_dd66_Inc4:
+GetScriptStepBuffer_IncIndexBy4:
 	ld a, 4
-	jr Func_dd66
+	jr GetScriptStepBuffer
 
-Func_dd91:
+ScriptCommand_00:
 	ld a, [wd618]
 	set 7, a
 	ld [wd618], a
-	jp Run_dd0e_Inc1
+	jp AdvanceScriptStepSourcePointerBy1
 
-Func_dd9c:
+ScriptCommand_01:
 	call DoFrame
 	farcall Func_11002
-	jp Run_dd0e_Inc1
+	jp AdvanceScriptStepSourcePointerBy1
 
-Func_dda6:
+ScriptCommand_02:
 	farcall Func_1101d
-	jp Run_dd0e_Inc1
+	jp AdvanceScriptStepSourcePointerBy1
 
-Func_ddad:
-	call Run_dd3b_Inc1
+ScriptCommand_03:
+	call GetScriptStepBufferPair_IncIndexBy1
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	jp Run_dd0e_Inc3
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_ddb9:
+ScriptCommand_04:
 	ld hl, wd618
 	bit 0, [hl]
-	jr z, .not_set
-	call Run_dd3b_Inc1
+	jr z, .yes
+; no
+	call GetScriptStepBufferPair_IncIndexBy1
 	jr .next
-.not_set
-	call Run_dd3b_Inc3
+.yes
+	call GetScriptStepBufferPair_IncIndexBy3
+; fallthrough
 .next
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	jp Run_dd0e_Inc5
+	jp AdvanceScriptStepSourcePointerBy5
 
-Func_ddd1:
-	call Run_dd3b_Inc1
+ScriptCommand_05:
+	call GetScriptStepBufferPair_IncIndexBy1
 	ld hl, wd60f
 	ld a, [hli]
 	ld d, [hl]
@@ -3008,16 +3016,18 @@ Func_ddd1:
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	jp Run_dd0e_Inc3
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_dde3:
+ScriptCommand_06:
 	ld hl, wd618
 	bit 0, [hl]
-	jr z, .not_set
-	call Run_dd3b_Inc1
+	jr z, .yes
+; no
+	call GetScriptStepBufferPair_IncIndexBy1
 	jr .next
-.not_set
-	call Run_dd3b_Inc3
+.yes
+	call GetScriptStepBufferPair_IncIndexBy3
+; fallthrough
 .next
 	ld hl, wd60f
 	ld a, [hli]
@@ -3026,65 +3036,74 @@ Func_dde3:
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	jp Run_dd0e_Inc5
+	jp AdvanceScriptStepSourcePointerBy5
 
-Func_de01:
-	call Run_dd3b_Inc1
+ScriptCommand_07:
+	call GetScriptStepBufferPair_IncIndexBy1
 	ld l, c
 	ld h, b
 	push hl
-	call Run_dd66_Inc3
+	call GetScriptStepBuffer_IncIndexBy3
 	pop hl
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ld hl, wd618
 	or a
 	jr nz, .no
+; yes
 	set 0, [hl]
-	jp Run_dd0e_Inc4
+	jp AdvanceScriptStepSourcePointerBy4
 .no
 	res 0, [hl]
-	jp Run_dd0e_Inc4
+	jp AdvanceScriptStepSourcePointerBy4
 
-Func_de1f:
-	call Run_dd3b_Inc1
+ScriptCommand_08:
+	call GetScriptStepBufferPair_IncIndexBy1
 	ld a, c
-	ld [wd61b], a
+	ld [wScriptStepSourcePointer], a
 	ld a, b
-	ld [wd61b + 1], a
-	call Func_dbdb
-	jp Call_dbdb_Done
+	ld [wScriptStepSourcePointer + 1], a
+	call ReloadScriptStepBuffer
+	jp ReloadScriptStepBuffer_Done
 
-Func_de30:
+ScriptCommand_09:
 	ld hl, wd618
 	bit 0, [hl]
-	jp nz, Func_de1f
-	jp Run_dd0e_Inc3
+; no
+	jp nz, ScriptCommand_08
+; yes
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_de3b:
+ScriptCommand_0A:
 	ld hl, wd618
 	bit 0, [hl]
-	jp z, Func_de1f
-	jp Run_dd0e_Inc3
+; yes
+	jp z, ScriptCommand_08
+; no
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_de46:
+ScriptCommand_0B:
 	ld hl, wd618
 	bit 1, [hl]
-	jp nz, Func_de1f
-	jp Run_dd0e_Inc3
+; invalid
+	jp nz, ScriptCommand_08
+; valid
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_de51:
+ScriptCommand_0C:
 	ld hl, wd618
 	bit 1, [hl]
-	jp z, Func_de1f
-	jp Run_dd0e_Inc3
+; valid
+	jp z, ScriptCommand_08
+; invalid
+	jp AdvanceScriptStepSourcePointerBy3
 
-; for x = [wd61e + [wd61a] + 1],
+; for x = [wScriptStepBuffer + [wScriptStepBufferIndex] + 1],
 ; set bit 0 at wd618 if x = [wd616],
 ; set bit 1 at wd618 if x > [wd616],
 ; else reset both bits,
-; then Run_dd0e_Inc2
-Func_de5c:
-	call Run_dd66_Inc1
+; then AdvanceScriptStepSourcePointerBy2
+ScriptCommand_0D:
+	call GetScriptStepBuffer_IncIndexBy1
 	ld c, a
 	ld a, [wd616]
 	ld hl, wd618
@@ -3097,79 +3116,1511 @@ Func_de5c:
 	jr nc, .bit1_ok
 	set 1, [hl]
 .bit1_ok
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_de76:
-	call Run_dd66_Inc1
+ScriptCommand_0E:
+	call GetScriptStepBuffer_IncIndexBy1
 	call MaxOutEventValue
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_de7f:
-	call Run_dd66_Inc1
+ScriptCommand_0F:
+	call GetScriptStepBuffer_IncIndexBy1
 	call ZeroOutEventValue
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_de88:
-	call Run_dd66_Inc1
+ScriptCommand_10:
+	call GetScriptStepBuffer_IncIndexBy1
 	call GetEventValue
 	ld hl, wd618
 	jr z, .set
 ; reset
 	res 0, [hl]
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 .set
 	set 0, [hl]
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_de9d:
-	call Run_dd3b_Inc1
+ScriptCommand_11:
+	call GetScriptStepBufferPair_IncIndexBy1
 	ld a, c
 	ld c, b
 	call SetVarValue
-	jp Run_dd0e_Inc3
+	jp AdvanceScriptStepSourcePointerBy3
 
-Func_dea8:
-	call Run_dd66_Inc1
+ScriptCommand_12:
+	call GetScriptStepBuffer_IncIndexBy1
 	call GetVarValue
 	ld [wd616], a
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_deb4:
-	call Run_dd66_Inc1
+; inc VAR_* constant value
+ScriptCommand_13:
+	call GetScriptStepBuffer_IncIndexBy1
 	push af
 	call GetVarValue
 	inc a
 	ld c, a
 	pop af
 	call SetVarValue
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_dec4:
-	call Run_dd66_Inc1
+; dec VAR_* constant value
+ScriptCommand_14:
+	call GetScriptStepBuffer_IncIndexBy1
 	push af
 	call GetVarValue
 	dec a
 	ld c, a
 	pop af
 	call SetVarValue
-	jp Run_dd0e_Inc2
+	jp AdvanceScriptStepSourcePointerBy2
 
-Func_ded4:
-	call Run_dd66_Inc1
+ScriptCommand_15:
+	call GetScriptStepBuffer_IncIndexBy1
 	push af
-	call Run_dd3b_Inc2
+	call GetScriptStepBufferPair_IncIndexBy2
 	ld d, c
 	ld e, b
 	push de
-	call Run_dd66_Inc4
+	call GetScriptStepBuffer_IncIndexBy4
 	ld b, a
 	pop de
 	pop af
 	farcall LoadOWObjectInMap
-	jp Run_dd0e_Inc5
-; 0xdeeb
+	jp AdvanceScriptStepSourcePointerBy5
 
-SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
+ScriptCommand_16:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall ClearOWObject
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_17:
+	call GetScriptStepBuffer_IncIndexBy1
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_18:
+	call GetScriptStepBuffer_IncIndexBy1
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_19:
+	call GetScriptStepBuffer_IncIndexBy1
+	ld c, a
+.delay_loop
+	call DoFrame
+	dec c
+	jr nz, .delay_loop
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_1A:
+	call GetScriptStepBufferPair_IncIndexBy1
+	push bc
+	call GetScriptStepBufferPair_IncIndexBy3
+	ld d, c
+	ld e, b
+	pop bc
+	farcall Func_12c0ce
+	jp AdvanceScriptStepSourcePointerBy5
+
+ScriptCommand_1B:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	farcall Func_1022a
+	call Func_c63e
+	farcall Func_10252
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_1C:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wPlayerOWObject]
+	farcall Func_10db8
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_1D:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wd60e]
+	farcall Func_10db8
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_1E:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall SetOWScrollState
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_1F:
+	call GetScriptStepBufferPair_IncIndexBy1
+	sla c
+	sla b
+	ld d, c
+	ld e, b
+	farcall Func_104ad
+.delay_loop
+	call DoFrame
+	farcall CheckOWScroll
+	or a
+	jr nz, .delay_loop
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_20:
+	call GetScriptStepBuffer_IncIndexBy1
+	ld [wd60e], a
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld a, c
+	ld [wd60f], a
+	ld a, b
+	ld [wd60f + 1], a
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_21:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wPlayerOWObject]
+	farcall Func_10db8
+	call GetScriptStepBuffer_IncIndexBy3
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_22:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld d, c
+	ld e, b
+	pop af
+	push af
+	farcall Func_10db8
+	call GetScriptStepBuffer_IncIndexBy4
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy5
+
+ScriptCommand_23:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, b
+	ld b, c
+	farcall StartPalFadeFromBlackOrWhite
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_24:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, b
+	ld b, c
+	farcall StartPalFadeToBlackOrWhite
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_25:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_26:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld d, c
+	ld e, b
+	pop af
+	farcall Func_10db8
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_27:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wd60e]
+	farcall Func_10db8
+	call GetScriptStepBuffer_IncIndexBy3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_28:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, b
+	ld b, c
+	ld c, a
+	ld a, [wPlayerOWObject]
+	farcall Func_10dd3
+	farcall Func_10f07
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	ld a, [wPlayerOWObject]
+	farcall StopOWObjectAnimation
+	farcall Func_10eff
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_29:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld a, b
+	ld b, c
+	ld c, a
+	pop af
+	push af
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	pop af
+	push af
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	pop af
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_2A:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, b
+	ld b, c
+	ld c, a
+	ld a, [wd60e]
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	ld a, [wd60e]
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_2B:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [wScriptStepSourceBank]
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall Func_10def
+	farcall Func_10f07
+	call GetScriptStepBuffer_IncIndexBy3
+	or a
+	jr z, .not_set
+	ld a, [wPlayerOWObject]
+	farcall Func_10dd3
+.not_set
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_2C:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld l, c
+	ld h, b
+	ld a, [wScriptStepSourceBank]
+	ld b, a
+	pop af
+	farcall Func_10def
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_2D:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [wScriptStepSourceBank]
+	ld b, a
+	ld a, [wd60e]
+	farcall Func_10def
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_2E:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	ld [wNPCDuelDeckID], a
+	ld a, b
+	ld [wDuelStartTheme], a
+	ld hl, wd583
+	set 1, [hl]
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_2F:
+	call Func_3340
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_30:
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_31:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	call GetCardCountInCollectionAndDecks
+	ld [wd616], a
+	jr c, .set
+; reset
+	ld hl, wd618
+	res 0, [hl]
+	jr .done
+.set
+	ld hl, wd618
+	set 0, [hl]
+.done
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_32:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	call GetCardCountInCollection
+	ld [wd616], a
+	jr c, .set
+	ld hl, wd618
+; reset
+	res 0, [hl]
+	jr .done
+.set
+	ld hl, wd618
+	set 0, [hl]
+.done
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_33:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	call AddCardToCollection
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_34:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	call RemoveCardFromCollection
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_35:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	push hl
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	push de
+	call GetScriptStepBuffer_IncIndexBy3
+	pop de
+	pop hl
+	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
+	ld hl, wd618
+	or a
+	jr nz, .reset
+; set
+	set 0, [hl]
+	jp AdvanceScriptStepSourcePointerBy4
+.reset
+	res 0, [hl]
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_36:
+	ld a, [wPlayerOWObject]
+	farcall Func_10dcb
+	ld a, b
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_37:
+	call GetScriptStepBuffer_IncIndexBy1
+	call GetVarValue
+	push af
+	call GetScriptStepBuffer_IncIndexBy2
+	ld c, a
+	pop af
+	cp c
+	push af
+	ld hl, wd618
+	jr z, .set_0
+; reset 0
+	res 0, [hl]
+	jr .bit0_done
+.set_0
+	set 0, [hl]
+.bit0_done
+	pop af
+	jr c, .set_1
+; reset 1
+	res 1, [hl]
+	jr .bit1_done
+.set_1
+	set 1, [hl]
+.bit1_done
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_38:
+	ld a, [wd60e]
+	farcall Func_10dcb
+	ld a, b
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_39:
+	ld a, [wd60e]
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_3A:
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_3B:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_3C:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, b
+	ld e, c
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	ld a, [wd60e]
+	farcall Func_10dcb
+	inc b
+	ld a, b
+	and 3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_3D:
+	ld a, [wd616]
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_3E:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, b
+	ld e, c
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	ld a, [wd60e]
+	farcall Func_10dcb
+	dec b
+	ld a, b
+	and 3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_3F:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_10ddf
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_40:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_10ddb
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_41:
+	call ResetDuelDeckRequirementStatus
+	call GetScriptStepBuffer_IncIndexBy1
+	ld hl, DuelRequirementFunctionMap
+	call Func_344c
+	jp AdvanceScriptStepSourcePointerBy2
+
+ResetDuelDeckRequirementStatus:
+	ld hl, wd618
+	res 1, [hl]
+	ret
+
+DuelDeckRequirementFailed:
+	ld hl, wd618
+	set 1, [hl]
+	ret
+
+; GR Grass
+DuelMiyukiRequirement:
+	ld a, STICKY_POISON_GAS_DECK_ID
+	jp CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Lightning
+DuelRennaRequirement:
+	ld a, CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
+	jp CheckDuelDeckRequirementWithNPCDeckID
+
+DuelIchikawaRequirement:
+	ld a, THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Fire
+DuelYukiRequirement:
+	ld a, FIREBALL_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelShokoRequirement:
+	ld a, EEVEE_SHOWDOWN_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Water
+DuelMiyajimaRequirement:
+	ld a, WHIRLPOOL_SHOWER_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelSentaRequirement:
+	ld a, PARALYZED_PARALYZED_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Fighting
+DuelGodaRequirement:
+	ld a, ROCK_BLAST_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelGraceRequirement:
+	ld a, FULL_STRENGTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Psychic
+DuelMiwaRequirement:
+	ld a, DIRECT_HIT_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelYosukeRequirement:
+	ld a, BAD_DREAM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelRyokoRequirement:
+	ld a, POKEMON_POWER_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Castle
+DuelKanzakiRequirement:
+	ld a, BAD_GUYS_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; Colorless Altar
+DuelNishijimaRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_05
+	call SetVarValue
+	ld a, SNORLAX_GUARD_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelNishijimaRequirement_Use:
+	ld a, VAR_05
+	call GetVarValue
+	ld e, a
+	ld a, SNORLAX_GUARD_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelIshiiRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_06
+	call SetVarValue
+	ld a, EYE_OF_THE_STORM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelIshiiRequirement_Use:
+	ld a, VAR_06
+	call GetVarValue
+	ld e, a
+	ld a, EYE_OF_THE_STORM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelSamejimaRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_07
+	call SetVarValue
+	ld a, SUDDEN_GROWTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelSamejimaRequirement_Use:
+	ld a, VAR_07
+	call GetVarValue
+	ld e, a
+	ld a, SUDDEN_GROWTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+CheckDuelDeckRequirementWithNPCDeckID:
+	farcall LoadDeckIDData
+	xor a
+	ld e, a
+	farcall CheckDuelDeckRequirement
+	call c, DuelDeckRequirementFailed
+	ret
+
+CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
+	push de
+	farcall LoadDeckIDData
+	pop de
+	farcall CheckDuelDeckRequirement
+	push af
+	call LoadTxRam2
+	ld a, l
+	ld [wTxRam2_b], a
+	ld a, h
+	ld [wTxRam2_b + 1], a
+	pop af
+	call c, DuelDeckRequirementFailed
+	ret
+
+DuelRequirementFunctionMap:
+	key_func $00, DuelMiyukiRequirement
+	key_func $01, DuelRennaRequirement
+	key_func $02, DuelIchikawaRequirement
+	key_func $03, DuelYukiRequirement
+	key_func $04, DuelShokoRequirement
+	key_func $05, DuelMiyajimaRequirement
+	key_func $06, DuelSentaRequirement
+	key_func $07, DuelGodaRequirement
+	key_func $08, DuelGraceRequirement
+	key_func $09, DuelMiwaRequirement
+	key_func $0a, DuelYosukeRequirement
+	key_func $0b, DuelRyokoRequirement
+	key_func $0c, DuelNishijimaRequirement_Reroll
+	key_func $0d, DuelNishijimaRequirement_Use
+	key_func $0e, DuelIshiiRequirement_Reroll
+	key_func $0f, DuelIshiiRequirement_Use
+	key_func $10, DuelSamejimaRequirement_Reroll
+	key_func $11, DuelSamejimaRequirement_Use
+	key_func $12, DuelKanzakiRequirement
+	db $ff
+
+ScriptCommand_42:
+	ld a, [wd60e]
+	farcall Func_10dcb
+	ld a, b
+	xor 2
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_43:
+	ld a, [wPlayerOWObject]
+	farcall Func_10dcb
+	ld a, b
+	xor 2
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_44:
+	call GetScriptStepBuffer_IncIndexBy1
+	call PlaySFX
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_45:
+	call GetScriptStepBuffer_IncIndexBy1
+	call PlaySFX
+	farcall WaitForSFXToFinish
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_46:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	call LoadTxRam2
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_47:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .yes
+; no
+	call GetScriptStepBufferPair_IncIndexBy1
+	jr .next
+.yes
+	call GetScriptStepBufferPair_IncIndexBy3
+.next
+	ld l, c
+	ld h, b
+	call LoadTxRam2
+	jp AdvanceScriptStepSourcePointerBy5
+
+ScriptCommand_48:
+	call GetScriptStepBuffer_IncIndexBy1
+	call WaitForOWObjectAnimation
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_49:
+	ld a, [wPlayerOWObject]
+	farcall Func_10da7
+	ld a, d
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_4A:
+	ld a, [wPlayerOWObject]
+	farcall Func_10da7
+	ld a, e
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_4B:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	ld a, [wd616]
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_4C:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld d, b
+	ld e, c
+	pop af
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+	push af
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	farcall Func_10dcb
+	inc b
+	ld a, b
+	and 3
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_4D:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	ld d, b
+	ld e, c
+	pop af
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+	push af
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	farcall Func_10dcb
+	dec b
+	ld a, b
+	and 3
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_4E:
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wd616]
+	ld [hl], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_4F:
+	ld hl, wd63e
+	ld a, [wd61d]
+	push af
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	ld [wd616], a
+	pop af
+	inc a
+	ld [wd61d], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_50:
+	call GetScriptStepBuffer_IncIndexBy3
+	ld hl, wd618
+	cp 1
+	jr z, .bit_001
+	cp 2
+	jr z, .bit_010
+	cp 3
+	jr z, .bit_011
+	cp 4
+	jr z, .bit_100
+	jr .next
+.bit_001
+	bit 0, [hl]
+	jr nz, .next
+	jr .bit_mismatched
+.bit_010
+	bit 0, [hl]
+	jr z, .next
+	jr .bit_mismatched
+.bit_011
+	bit 1, [hl]
+	jr nz, .next
+	jr .bit_mismatched
+.bit_100
+	bit 1, [hl]
+	jr z, .next
+.bit_mismatched
+	jp AdvanceScriptStepSourcePointerBy4
+.next
+	call GetScriptStepBufferPair_IncIndexBy1
+	push bc
+	call AdvanceScriptStepSourcePointerBy4
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wScriptStepSourcePointer]
+	ld [hli], a
+	ld a, [wScriptStepSourcePointer + 1]
+	ld [hl], a
+	pop bc
+	ld a, c
+	ld [wScriptStepSourcePointer], a
+	ld a, b
+	ld [wScriptStepSourcePointer + 1], a
+	call ReloadScriptStepBuffer
+	jp ReloadScriptStepBuffer_Done
+
+ScriptCommand_51:
+	ld hl, wd63e
+	ld a, [wd61d]
+	inc a
+	inc a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	dec hl
+	ld a, [hld]
+	ld [wScriptStepSourcePointer + 1], a
+	ld a, [hl]
+	ld [wScriptStepSourcePointer], a
+	call ReloadScriptStepBuffer
+	jp ReloadScriptStepBuffer_Done
+
+ScriptCommand_52:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_1db63
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_53:
+	ld a, [wd60e]
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_54:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld d, c
+	ld e, b
+	push de
+	call GetScriptStepBuffer_IncIndexBy3
+	ld b, a
+	pop de
+	ld a, [wPlayerOWObject]
+	farcall LoadOWObjectInMap
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_55:
+	ld a, [wPlayerOWObject]
+	farcall ClearOWObject
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_56:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [hli]
+	cp 0
+	jr z, .zero
+	cp 1
+	jr z, .one
+	cp 2
+	jr z, .two
+	jp AdvanceScriptStepSourcePointerBy3
+.zero
+	push hl
+	xor a
+	ld c, a
+.count_loop_c
+	ld a, [hli]
+	cp $ff
+	jr z, .counted_c
+	inc c
+	jr .count_loop_c
+.counted_c
+	pop hl
+	ld a, c
+	ld [wd667], a
+	jr .next
+.two
+	ld a, [hli]
+	call Random
+	inc a
+	ld [wd667], a
+	jr .done_wd667
+.one
+	ld a, [hli]
+	ld [wd667], a
+.done_wd667
+	ld de, wd64e
+	xor a
+	ld c, a
+.count_copy_loop
+	ld a, [hli]
+	cp $ff
+	jr z, .counted_copied
+	ld [de], a
+	inc de
+	inc c
+	jr .count_copy_loop
+.counted_copied
+	ld a, c
+	ld [wd65e], a
+	ld de, wd65f
+	ld a, [wd667]
+	ld c, a
+.consume_c_loop
+	ld a, [wd65e]
+	call Random
+	ld hl, wd64e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .consume_c_loop
+	ld a, [wd667]
+	ld c, a
+.check_value_loop
+	ld a, [wd667]
+	ld b, a
+	ld hl, wd65f
+	ld de, wd65f
+	inc de
+.check_value_small_loop
+	dec b
+	jr z, .consumed_b
+	ld a, [de]
+	cp [hl]
+	jr c, .skip_swap
+	ld a, [de]
+	push af
+	ld a, [hl]
+	ld [de], a
+	pop af
+	ld [hl], a
+.skip_swap
+	inc hl
+	inc de
+	jr .check_value_small_loop
+.consumed_b
+	dec c
+	jr nz, .check_value_loop
+	ld hl, wd65f
+.next
+	farcall Func_1022a
+	ld a, [wd667]
+	ld c, a
+	xor a
+	ld b, a
+.loop_b_c
+	ld a, [hli]
+	farcall Func_1e895
+	inc b
+	dec c
+	jr nz, .loop_b_c
+	farcall Func_10252
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_57:
+	call GetScriptStepBuffer_IncIndexBy1
+	call Random
+	ld [wd616], a
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_58:
+	ld a, $12
+	call Func_3154
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_59:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	call LoadTxRam3
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_5A:
+	ld a, [wd618]
+	set 6, a
+	ld [wd618], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_5B:
+	call PauseSong
+	call GetScriptStepBuffer_IncIndexBy1
+	call PlaySong
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_5C:
+	call ResumeSong
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_5D:
+	call GetScriptStepBuffer_IncIndexBy3
+	push af
+	call GetScriptStepBufferPair_IncIndexBy1
+	push bc
+	call AdvanceScriptStepSourcePointerBy4
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	dec a
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wScriptStepSourcePointer]
+	ld [hli], a
+	ld a, [wScriptStepSourcePointer + 1]
+	ld [hli], a
+	ld a, [wScriptStepSourceBank]
+	ld [hl], a
+	pop bc
+	ld a, c
+	ld [wScriptStepSourcePointer], a
+	ld a, b
+	ld [wScriptStepSourcePointer + 1], a
+	pop af
+	ld [wScriptStepSourceBank], a
+	call ReloadScriptStepBuffer
+	jp ReloadScriptStepBuffer_Done
+
+ScriptCommand_5E:
+	ld hl, wd63e
+	ld a, [wd61d]
+	inc a
+	inc a
+	inc a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	dec hl
+	ld a, [hld]
+	ld [wScriptStepSourceBank], a
+	ld a, [hld]
+	ld [wScriptStepSourcePointer + 1], a
+	ld a, [hl]
+	ld [wScriptStepSourcePointer], a
+	call ReloadScriptStepBuffer
+	jp ReloadScriptStepBuffer_Done
+
+ScriptCommand_5F:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_1f7f1
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_60:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall PlayAfterCurrentSong
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_61:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	ld [wTxRam2_b], a
+	ld a, b
+	ld [wTxRam2_b + 1], a
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_62:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .yes
+; no
+	call GetScriptStepBufferPair_IncIndexBy1
+	jr .next
+.yes
+	call GetScriptStepBufferPair_IncIndexBy3
+.next
+	ld a, c
+	ld [wTxRam2_b], a
+	ld a, b
+	ld [wTxRam2_b + 1], a
+	jp AdvanceScriptStepSourcePointerBy5
+
+ScriptCommand_63:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_10da7
+	push de
+	farcall Func_10dcb
+	push bc
+	farcall ClearOWObject
+	call GetScriptStepBuffer_IncIndexBy2
+	pop bc
+	pop de
+	farcall LoadOWObjectInMap
+	jp AdvanceScriptStepSourcePointerBy3
+
+; for the buffer value n,
+; - if n = 0 or n >= 29, skip
+; - else, set bit (m-1) of [dw hl] and Func_1f24e, where
+;   - hl = wd611 and m = n    if 0 < n <= 16,
+;   - hl = wd613 and m = n-16 if 16 < n < 29,
+; then AdvanceScriptStepSourcePointerBy2
+ScriptCommand_64:
+	call GetScriptStepBuffer_IncIndexBy1
+	or a
+	jr z, .done
+	cp $1d
+	jr nc, .done
+	ld hl, wd611
+	cp $10 + 1
+	jr c, .set_bitmask
+	inc hl
+	inc hl ; wd613
+	sub $10
+.set_bitmask
+	ld de, 1
+.set_bitmask_loop
+	dec a
+	jr z, .got_bitmask
+	sla e
+	rl d
+	jr .set_bitmask_loop
+.got_bitmask
+	ld a, [hli]
+	ld c, a
+	ld a, [hld]
+	ld b, a
+	ld a, c
+	and e
+	jr nz, .checked_bit
+	ld a, b
+	and d
+.checked_bit
+	jr nz, .done
+; set bit and call
+	ld a, c
+	or e
+	ld c, a
+	ld a, b
+	or d
+	ld b, a
+	ld a, c
+	ld [hli], a
+	ld [hl], b
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_1f24e
+.done
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_65:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall CheckOWObjectPointerWithID
+	ld hl, wd618
+	jr nz, .valid
+; invalid
+	set 1, [hl]
+	jp AdvanceScriptStepSourcePointerBy2
+.valid
+	res 1, [hl]
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_66:
+	call GetScriptStepBuffer_IncIndexBy1
+	farcall Func_1acbf
+	ld hl, wd618
+	jr c, .invalid
+; valid
+	res 1, [hl]
+	jp AdvanceScriptStepSourcePointerBy2
+.invalid
+	set 1, [hl]
+	jp AdvanceScriptStepSourcePointerBy2
+
+ScriptCommand_67:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	ld c, b
+	farcall Set3FromwDD75
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_68:
+.delay_loop
+	call DoFrame
+	farcall GetwDD75
+	jr nz, .delay_loop
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_69:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintScrollableText_WithTextBoxLabel_Wrapper
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_6A:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	call GetVarValue
+	add b
+	ld b, a
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_6B:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, c
+	call GetVarValue
+	sub b
+	ld b, a
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_6C:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld e, c
+	ld d, b
+	farcall Func_1022a
+	call Func_c646
+	farcall Func_10252
+	call WaitPalFading
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_6D:
+	farcall GetDWwDA99
+	ld a, c
+	ld [wd616], a
+	ld a, b
+	ld [wd617], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_6E:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld a, [wd616]
+	ld e, a
+	ld a, [wd617]
+	ld d, a
+	ld hl, wd618
+	res 0, [hl]
+	res 1, [hl]
+	ld a, d
+	cp b
+	jr c, .skip_1
+	jr nz, .skip_1
+	ld a, e
+	cp c
+.skip_1
+	jr nz, .skip_bit0
+	set 0, [hl]
+.skip_bit0
+	jr nc, .skip_bit1
+	set 1, [hl]
+.skip_bit1
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_6F:
+	farcall GetDWwDA9B
+	ld a, c
+	ld [wd616], a
+	ld a, b
+	ld [wd617], a
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_70:
+	farcall Func_114af
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_71:
+	farcall Func_114f9
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_72:
+	call GetScriptStepBufferPair_IncIndexBy1
+	farcall Func_1159a
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_73:
+	call GetScriptStepBufferPair_IncIndexBy1
+	farcall Func_115de
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_74:
+	ld a, [wd616]
+	ld l, a
+	ld a, [wd617]
+	ld h, a
+	call LoadTxRam3
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_75:
+	farcall Func_1cd4e
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_76:
+	farcall Func_1cd36
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_77:
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
+	call ZeroOutEventValue
+	ld hl, wd618
+	res 1, [hl]
+	farcall Func_1d99e
+	cp $ff
+	jr z, .set
+	or a
+	jr nz, .ok
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
+	call MaxOutEventValue
+	jr .done
+.ok
+	jr .done
+.set
+	ld hl, wd618
+	set 1, [hl]
+.done
+	farcall PlayCurrentSong
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_78:
+	farcall WaitSong
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_79:
+	call GetScriptStepBufferPair_IncIndexBy1
+	farcall Func_10d36
+	call FlushAllPalettes
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_7A:
+	call GetScriptStepBuffer_IncIndexBy1
+	push af
+	call GetScriptStepBufferPair_IncIndexBy2
+	pop af
+	farcall Func_10f1e
+	jp AdvanceScriptStepSourcePointerBy4
+
+ScriptCommand_7B:
+	farcall WaitForSFXToFinish
+	jp AdvanceScriptStepSourcePointerBy1
+
+ScriptCommand_7C:
+	call GetScriptStepBufferPair_IncIndexBy1
+	ld l, c
+	ld h, b
+	farcall PrintTextInWideTextBox
+	jp AdvanceScriptStepSourcePointerBy3
+
+ScriptCommand_7D:
+	call WaitForWideTextBoxInput
+	jp AdvanceScriptStepSourcePointerBy1
 
 ; returns carry if no save data
 Func_e883:

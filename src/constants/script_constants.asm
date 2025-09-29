@@ -143,7 +143,7 @@
 	const EVENT_TALKED_TO_ISHII_2                         ; $7d
 	const EVENT_TALKED_TO_SAMEJIMA_2                      ; $7e
 ; GR Castle flags
-	const EVENT_TALKED_TO_KANZAJI                         ; $7f
+	const EVENT_TALKED_TO_KANZAKI                         ; $7f
 	const EVENT_TALKED_TO_RUI                             ; $80
 	const EVENT_BEAT_KANZAKI                              ; $81
 	const EVENT_BEAT_RUI                                  ; $82
@@ -287,5 +287,12 @@ DEF SOUTH    EQU $02
 DEF WEST     EQU $03
 
 ; TODO: Identify WRAM to give them proper names
-DEF wD606_STRUCT_SIZE EQU $8
-DEF wD61E_STRUCT_SIZE EQU $20
+DEF wD606_STRUCT_SIZE        EQU $8
+DEF wSCRIPT_STEP_BUFFER_SIZE EQU $20
+DEF wDD37_BUFFER_SIZE        EQU $19
+
+; TODO: Check if these def's are really necessary
+	const_def $2
+	const SCRIPTED_CARD_POP_ROLAND       ; $2
+	const SCRIPTED_CARD_POP_IMAKUNI      ; $3
+	const SCRIPTED_RARE_CARD_POP_IMAKUNI ; $4

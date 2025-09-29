@@ -1,3 +1,5 @@
+; TODO: Update Func_xxxx, as most of them reflect tcg1's
+
 ; called at roughly 240Hz by TimerHandler
 SerialTimerHandler:
 	ld a, [wSerialOp]
@@ -35,7 +37,7 @@ SerialTimerHandler:
 	ld [hl], $0
 	ret
 
-Func_0cc5:
+Func_0cc5::
 	ld hl, wSerialRecvCounter
 	or a
 	jr nz, .asm_cdc
@@ -368,7 +370,7 @@ SerialExchangeBytes::
 	ret
 
 ; go into slave mode (external clock) for serial transfer?
-Func_0e8e:
+Func_0e8e::
 	call ClearSerialData
 	ld a, $21
 	ldh [rSB], a         ; send $21

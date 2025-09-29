@@ -32,7 +32,7 @@ Func_300a8:
 	xor a
 	farcall InitOWObjects
 	ld a, $02
-	farcall Func_10413
+	farcall SetOWScrollState
 	farcall ShowOWMapLocationBox
 	call Func_30343
 	ld a, [wCurOWLocation]
@@ -127,7 +127,7 @@ Func_300a8:
 	ld a, OW_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
-	farcall Func_10413
+	farcall SetOWScrollState
 	ld a, OW_GR_BLIMP
 	lb de, $40, $f0
 	farcall SetOWObjectPosition

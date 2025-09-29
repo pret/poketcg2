@@ -1617,9 +1617,68 @@ HandleMenuBox:
 GetMenuBoxFocusedItem:
 	ld a, [wMenuBoxFocusedItem]
 	ret
-; 0x1cd17
 
-SECTION "Bank 7@4d6f", ROMX[$4d6f], BANK[$7]
+SetMenuBoxFocusedItem:
+	ld [wMenuBoxFocusedItem], a
+	ret
+
+SetwDA37:
+	push af
+	ld a, 1
+	ld [wda37], a
+	pop af
+	ret
+
+SetMenuBoxNumItems:
+	ld [wMenuBoxNumItems], a
+	ret
+
+SetMenuBoxDelay:
+	ld [wMenuBoxDelay], a
+	ret
+
+GetDWwDA9B:
+	push af
+	ld a, [wda9b]
+	ld c, a
+	ld a, [wda9b + 1]
+	ld b, a
+	pop af
+	ret
+
+Func_1cd36:
+	push af
+	push bc
+	ld a, [wda9b]
+	ld c, a
+	ld a, [wda9b + 1]
+	ld b, a
+	farcall Func_1159a
+	xor a
+	ld [wda9b], a
+	ld [wda9b + 1], a
+	pop bc
+	pop af
+	ret
+
+Func_1cd4e:
+	push af
+	push bc
+	farcall GetDWwDA99
+	farcall Func_115de
+	ld a, c
+	ld [wda9b], a
+	ld a, b
+	ld [wda9b + 1], a
+	pop bc
+	pop af
+	ret
+
+Func_1cd63:
+	farcall Func_1022a
+	call ShowStartMenu
+	farcall Func_10252
+	ret
 
 ; outputs in a what option the player chose
 ShowStartMenu:
@@ -2077,9 +2136,6 @@ ConfirmPlayerNameAndGender:
 	ld a, $1
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret
-; 0x1d081
-
-SECTION "Bank 7@5081", ROMX[$5081], BANK[$7]
 
 ; a = COIN_* constant
 CheckIfCoinWasObtained:
@@ -2144,9 +2200,140 @@ CountEventCoinsObtained:
 	pop hl
 	pop bc
 	ret
-; 0x1d0c2
 
-SECTION "Bank 7@5198", ROMX[$5198], BANK[$7]
+CountGRCoinPiecesObtained_2:
+	push bc
+	ld c, 0
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	farcall GetEventValue
+	jr z, .checked_gr_coin_bottom_right
+	inc c
+.checked_gr_coin_bottom_right
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
+	farcall GetEventValue
+	jr z, .checked_gr_coin_bottom_left
+	inc c
+.checked_gr_coin_bottom_left
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
+	farcall GetEventValue
+	jr z, .checked_gr_coin_top_right
+	inc c
+.checked_gr_coin_top_right
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	farcall GetEventValue
+	jr z, .checked_gr_coin_top_left
+	inc c
+.checked_gr_coin_top_left
+	ld a, c
+	pop bc
+	ret
+
+Func_1d0ec:
+	push af
+	push bc
+	ld c, a
+	ld b, 0
+	sla c
+	rl b
+	ld hl, .Data_1d0ff
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc
+	pop af
+	ret
+
+.Data_1d0ff:
+	dw $0601
+	dw $0608
+	dw $0602
+	dw $0603
+	dw $0604
+	dw $0605
+	dw $0606
+	dw $0607
+	dw $0609
+	dw $060a
+	dw $060b
+	dw $060c
+	dw $060d
+	dw $060e
+	dw $060f
+	dw $0610
+	dw $0611
+	dw $0612
+	dw $0613
+	dw $0614
+	dw $0615
+	dw $0616
+	dw $0617
+	dw $0618
+	dw $0608
+	dw $0619
+	dw $061a
+	dw $0608
+	dw $061b
+	dw $0608
+	dw $0608
+	dw $0608
+	dw $061c
+	dw $0608
+	dw $0608
+	dw $0608
+	dw $0608
+	dw $0608
+	dw $0608
+
+Func_1d14d:
+	push bc
+	push de
+	ld b, 0
+	ld a, $f
+	farcall GetEventValue
+	sla a
+	sla a
+	sla a
+	or b
+	ld b, a
+	ld a, $e
+	farcall GetEventValue
+	sla a
+	sla a
+	or b
+	ld b, a
+	ld a, $d
+	farcall GetEventValue
+	sla a
+	or b
+	ld b, a
+	ld a, $c
+	farcall GetEventValue
+	or b
+	and $f
+	pop de
+	pop bc
+	ret
+
+Func_1d181:
+	push bc
+	ld b, a
+	cp 1
+	jr z, .asm_1d191
+	call CheckIfCoinWasObtained
+	jr nz, .next
+	ld b, $18
+	; fallthrough
+.next
+	ld a, b
+	jr .done
+.asm_1d191
+	call Func_1d14d
+	add $18
+	; fallthrough
+.done
+	pop bc
+	ret
 
 ; input:
 ; - a = coin to load
@@ -2428,6 +2615,33 @@ Func_1d7a1:
 	ret
 ; 0x1d7a6
 
+SECTION "Bank 7@599e", ROMX[$599e], BANK[$7]
+
+Func_1d99e:
+	farcall Func_1022a
+	call Func_1d9aa
+	farcall Func_10252
+	ret
+
+Func_1d9aa:
+	push bc
+	push de
+	push hl
+	farcall _SetUpAndStartLinkDuel
+	scf
+	ccf
+	ld a, [wDuelResult]
+	and a
+	jr z, .done
+; set carry if loss
+	scf
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x1d9be
+
 SECTION "Bank 7@59f9", ROMX[$59f9], BANK[$7]
 
 Func_1d9f9:
@@ -2436,16 +2650,624 @@ Func_1d9f9:
 	ret
 ; 0x1d9ff
 
-SECTION "Bank 7@5cb7", ROMX[$5cb7], BANK[$7]
+SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
+Func_1db63:
+	farcall Func_1022a
+	call Func_1db6f
+	farcall Func_10252
+	ret
+
+Func_1db6f:
+	push af
+	push bc
+	push de
+	push hl
+	ld [wdc0a], a
+	call Func_1db81
+	call Func_1dc0a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1db81:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DisableLCD
+	call Func_1dbee
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_3d0d
+	ld a, [wdc0a]
+	cp $18
+	jr c, .asm_1dba4
+	ld a, 1
+	ld [wdc0a], a
+	xor a
+	jr .asm_1dbb2
+.asm_1dba4
+	push af
+	ld a, $b
+	call CallPlaySFX
+	pop af
+	ld a, 1
+	call Func_1d443
+	ld a, $34
+.asm_1dbb2
+	ldtx hl, ObtainedCoinText
+	farcall PrintTextInWideTextBox
+	call DoAFrames_WithPreCheck
+	push af
+	ld a, $30
+	call Func_3d09
+	pop af
+	call WaitForSongToFinish
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	call Func_3d16
+	call WaitForWideTextBoxInput
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ld a, [wd693]
+	set 0, a
+	ld [wd693], a
+	ld a, [wd693]
+	res 2, a
+	ld [wd693], a
+	ld a, [wd693]
+	res 1, a
+	ld [wd693], a
+	ret
+
+Func_1dbee:
+	ld a, [wdc0a]
+	lb de, 88, 88
+	call Func_1d198
+	lb de,  0, 12
+	lb bc, 20,  6
+	call DrawRegularTextBoxVRAM0
+	ld a, [wdc0a]
+	call Func_1d0ec
+	call LoadTxRam2
+	ret
+
+Func_1dc0a:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1dc52
+	farcall SetFrameFuncAndFadeFromWhite
+	xor a
+	ld [wdc0b], a
+.delay_loop
+	call DoFrame
+	call Func_1dc2a
+	ldh a, [hKeysPressed]
+	and 3
+	jr z, .delay_loop
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1dc2a:
+	ld a, [wdc0b]
+	and $10
+	push af
+	call z, Func_1dc3c
+	pop af
+	call nz, Func_1dc47
+	ld hl, wdc0b
+	inc [hl]
+	ret
+
+Func_1dc3c:
+	ld a, [wdc0a]
+	call Func_1d181
+	farcall Func_12c49b
+	ret
+
+Func_1dc47:
+	ld hl, 0
+	lb bc, 3, 3
+	farcall FillBoxInBGMapWithZero
+	ret
+
+Func_1dc52:
+	lb de,  0, 0
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	call CountEventCoinsObtained
+	ld l, a
+	ld h, 0
+	call LoadTxRam3
+	ldtx hl, ObtainedCoinTotalNumberText
+	ld a, [wdc0a]
+	cp 1
+	jr nz, .next
+	call Func_1d14d
+	cp $f
+	jr z, .next
+	call CountGRCoinPiecesObtained_2
+	ld l, a
+	ld h, 0
+	call LoadTxRam3
+	ldtx hl, ObtainedGRCoinPieceTotalNumberText
+	; fallthrough
+.next
+	lb de, 1, 2
+	call Func_35bf
+	call Func_1dd08
+	ld a, [wdc0a]
+	call Func_1dfa5
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call Func_1dd89
+	ret
+
+Func_1dc9a:
+	farcall Func_1022a
+	call Func_1dca6
+	farcall Func_10252
+	ret
+
+Func_1dca6:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, $ff
+	ld [wdc0a], a
+	call Func_1dcbf
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_1dcb7:
 	xor a
 	ld [wdc08], a
 	ld [wdc09], a
 	ret
-; 0x1dcbf
 
-SECTION "Bank 7@5fb9", ROMX[$5fb9], BANK[$7]
+Func_1dcbf:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call Func_1dce3
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_1deac
+	push af
+	ld a, 2
+	call CallPlaySFX
+	pop af
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1dce3:
+	ld de, $0
+	ld bc, $1408
+	call DrawRegularTextBoxVRAM0
+	ld hl, $600
+	ld de, $102
+	call Func_35af
+	ld a, [wdc08]
+	call Func_1dfa5
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call Func_1dd89
+	call Func_1dd08
+	ret
+
+Func_1dd08:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+	ld hl, $5b5
+	ld de, $404
+	call Func_35af
+	ld de, SetBGP
+	ld bc, $c01
+	farcall FillBoxInBGMapWithZero
+	call Func_1d0ec
+	call Func_35af
+	ld a, [wdc08]
+	ld de, $104
+	farcall Func_12c49b
+	call Func_1dd3a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1dd3a:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+	call Func_1dfa5
+	ld c, a
+	ld a, [wdc09]
+	cp b
+	jr z, .asm_1dd4d
+	ld c, 8
+.asm_1dd4d
+	ld a, c
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, Data_1dd6a
+	add hl, bc
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld b, 7
+	ld hl, Data_1dd7c
+	ld a, 0
+	ld c, 0
+	call CreateSpriteAnim
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Data_1dd6a:
+	dw $5808
+	dw $5830
+	dw $5858
+	dw $5880
+	dw $7808
+	dw $7830
+	dw $7858
+	dw $7880
+	dw $a0a0
+
+Data_1dd7c:
+	dw $01d4
+	dw $009d
+	dw $0117
+	dw $016b
+
+Func_1dd84:
+	farcall ClearSpriteAnims
+	ret
+
+Func_1dd89:
+	push af
+	push bc
+	push hl
+	push af
+	push bc
+	ld de, $a
+	ld b, 7
+	ld hl, MenuParams_1de1c
+	call LoadMenuBoxParams
+	call DrawMenuBox
+	pop bc
+	push bc
+	ld c, b
+	ld b, 0
+	sla c
+	ld hl, Data_1de4c
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 6, 8
+	call Func_35af
+	pop bc
+	push bc
+	ld c, b
+	ld b, 0
+	sla c
+	sla c
+	ld hl, Data_1dea0
+	add hl, bc
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld bc, $8
+	call Func_383b
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld bc, $1308
+	call Func_383b
+	pop bc
+	call Func_1dd3a
+	ld c, b
+	ld b, 0
+	sla c
+	ld hl, Data_1de52
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	ld b, a
+	ld a, $08
+	sub b
+	ld b, a
+	ld c, $08
+.asm_1dde8
+	push bc
+	push hl
+	ld a, [hli]
+	call Func_1d181
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	farcall Func_12c49b
+	ld a, c
+	cp b
+	jr nz, .asm_1de01
+	ld a, d
+	ld [$dc0c], a
+	ld a, e
+	ld [$dc0d], a
+.asm_1de01
+	pop hl
+	ld bc, $3
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .asm_1dde8
+	ld a, [$dc0c]
+	ld d, a
+	ld a, [$dc0d]
+	ld e, a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+Func_1de16:
+	call Func_1d14d
+	add $18
+	ret
+
+MenuParams_1de1c:
+	db FALSE ; skip clear
+	db 20, 7 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db B_BUTTON ; held keys
+	db TRUE ; has horizontal scroll
+	db 4 ; vertical step
+	dw Func_1def1 ; update function
+	dw NULL ; label text ID
+
+	textitem  1,  1, SingleSpaceText
+	textitem  6,  1, SingleSpaceText
+	textitem 11,  1, SingleSpaceText
+	textitem 16,  1, SingleSpaceText
+	textitem  1,  5, SingleSpaceText
+	textitem  6,  5, SingleSpaceText
+	textitem 11,  5, SingleSpaceText
+	textitem 16,  5, SingleSpaceText
+	db $ff
+
+Data_1de4c:
+	dw $061d
+	dw $061e
+	dw $061f
+Data_1de52:
+	dw Data_1de58
+	dw Data_1de70
+	dw Data_1de88
+Data_1de58:
+	db $00, $01, $0a
+	db $01, $06, $0a
+	db $02, $0b, $0a
+	db $03, $10, $0a
+	db $04, $01, $0e
+	db $05, $06, $0e
+	db $06, $0b, $0e
+	db $07, $10, $0e
+Data_1de70:
+	db $08, $01, $0a
+	db $09, $06, $0a
+	db $0a, $0b, $0a
+	db $0b, $10, $0a
+	db $0c, $01, $0e
+	db $0d, $06, $0e
+	db $0e, $0b, $0e
+	db $0f, $10, $0e
+Data_1de88:
+	db $10, $01, $0a
+	db $11, $06, $0a
+	db $12, $0b, $0a
+	db $13, $10, $0a
+	db $14, $01, $0e
+	db $15, $06, $0e
+	db $16, $0b, $0e
+	db $17, $10, $0e
+Data_1dea0:
+	dw $0000
+	dw $000f
+	dw $200f
+	dw $000f
+	dw $200f
+	dw $0000
+
+Func_1deac:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+.asm_1deb3
+	call Func_1dfa5
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call HandleMenuBox
+	jr c, .asm_1dec6
+	call Func_1decb
+	jr .asm_1deb3
+.asm_1dec6
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1decb:
+	ld b, a
+	ld a, [wdc09]
+	add a
+	add a
+	add a
+	add b
+	ld b, a
+	call CheckIfCoinWasObtained
+	ld a, b
+	jr nz, .asm_1dee2
+	push af
+	ld a, $04
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1dee2
+	push af
+	ld a, $0b
+	call CallPlaySFX
+	pop af
+	ld a, b
+	ld [wdc08], a
+	call Func_1dd08
+	ret
+
+Func_1def1:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1df10
+	call GetMenuBoxFocusedItem
+	and $03
+	and a
+	call z, Func_1df60
+	call GetMenuBoxFocusedItem
+	and $03
+	cp $03
+	call z, Func_1df36
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1df10:
+	ldh a, [hKeysPressed]
+	and $04
+	ret z
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	inc a
+	cp $03
+	jr c, .asm_1df25
+	xor a
+.asm_1df25
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+
+Func_1df36:
+	ldh a, [hDPadHeld]
+	and $10
+	ret z
+	ld a, [wdc09]
+	cp $02
+	jr z, .asm_1df5c
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	inc a
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	sub $03
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+.asm_1df5c
+	call SetwDA37
+	ret
+
+Func_1df60:
+	ldh a, [hDPadHeld]
+	and $20
+	ret z
+	ld a, [wdc09]
+	and a
+	jr z, .asm_1df85
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	dec a
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	add $03
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+.asm_1df85
+	call SetwDA37
+	ret
+
+Func_1df89:
+	call Func_1dd84
+	push af
+	ld a, $08
+	ldh [hWX], a
+	ld a, $50
+	ldh [hWY], a
+	call SetWindowOn
+	pop af
+	call DoFrame
+	call Func_1dd89
+	push af
+	call SetWindowOff
+	pop af
+	ret
+
+Func_1dfa5:
+	cp $18
+	jr c, .next
+	ld a, 1
+.next
+	ld b, a
+	srl b
+	srl b
+	srl b
+	and 7
+	ret
+
+Func_1dfb5:
+	ld a, [wdc08]
+	ret
 
 Func_1dfb9::
 	push af
@@ -3485,7 +4307,7 @@ Func_1e60c:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	farcall Func_1107c
+	farcall PrintTextInWideTextBox
 
 	call WaitForSongToFinish
 	call WaitForWideTextBoxInput
@@ -3635,6 +4457,150 @@ Func_1e767:
 	ret
 ; 0x1e76c
 
+SECTION "Bank 7@6866", ROMX[$6866], BANK[$7]
+
+Func_1e866:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld b, 0
+	ld hl, .SceneTable
+	add hl, bc
+	ld a, [hl]
+	lb bc, 6, 0
+	call LoadScene
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.SceneTable:
+	db SCENE_BEGINNING_PACK
+	db SCENE_LEGENDARY_PACK
+	db SCENE_FOSSIL_PACK
+	db SCENE_PSYCHIC_PACK
+	db SCENE_FLYING_PACK
+	db SCENE_ROCKET_PACK
+	db SCENE_AMBITION_PACK
+	db SCENE_PRESENT_PACK
+	db SCENE_INTRO_BASE_SET
+	db SCENE_INTRO_JUNGLE
+	db SCENE_INTRO_FOSSIL
+	db SCENE_INTRO_TEAM_ROCKET
+
+Func_1e889:
+	farcall Func_1022a
+	call Func_1e895
+	farcall Func_10252
+	ret
+
+Func_1e895:
+	push af
+	push bc
+	push de
+	push hl
+	ld [wdd08], a
+	ld a, b
+	ld [wdd09], a
+	call Func_1e8a8
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1e8a8:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1e946
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_3d0d
+	push af
+	ld a, $2f
+	call Func_3d09
+	pop af
+	ld a, [wdd08]
+	add a
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, Data_1e90e
+	add hl, bc
+	ld a, [hli]
+	ld [wTxRam2], a
+	ld a, [hli]
+	ld [wTxRam2 + 1], a
+	ld a, [hli]
+	ld [wTxRam2_b], a
+	ld a, [hl]
+	ld [wTxRam2_b + 1], a
+	ld hl, $687
+	ld a, [wdd09]
+	and a
+	jr z, .asm_1e8e5
+	ld hl, $688
+	; fallthrough
+.asm_1e8e5
+	farcall PrintTextInWideTextBox
+	call WaitForSongToFinish
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	call Func_3d16
+	call WaitForWideTextBoxInput
+	ld hl, $7fc
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	call Func_1e96f
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Data_1e90e:
+	dw $0689, $067e
+	dw $068a, $067f
+	dw $068b, $0680
+	dw $068c, $0681
+	dw $068d, $0682
+	dw $068e, $0683
+	dw $068f, $0684
+	dw $05ff, $069a
+	dw $05ff, $0686
+	dw $05ff, $0686
+	dw $05ff, $0686
+	dw $05ff, $0686
+	dw $05ff, $0686
+	dw $05ff, $069a
+
+Func_1e946:
+	ld a, [wdd08]
+	ld c, a
+	ld b, 0
+	ld hl, .NumberTable
+	add hl, bc
+	ld a, [hl]
+	ld de, $600
+	call Func_1e866
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ret
+
+.NumberTable:
+	db 0, 1, 2, 3, 4, 5, 6, 0, 7, 7, 7, 7, 7, 0
+; 0x1e96f
+
+Func_1e96f:
+	call DoFrame
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call DoFrame
+	ld a, [wdd08]
+	farcall Func_1ad6b
+	ret
+; 0x1e984
+
 SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
 
 Func_1eca5:
@@ -3669,7 +4635,72 @@ Func_1eca5:
 	ret
 ; 0x1ece4
 
-SECTION "Bank 7@7293", ROMX[$7293], BANK[$7]
+SECTION "Bank 7@724e", ROMX[$724e], BANK[$7]
+
+; input: a
+; set carry if [wdd36] = wDD37_BUFFER_SIZE - 1
+; else:
+; - if bit 7 of a is 0, [wdd37 + [wdd36] ] = a
+; - if bit 7 of a is 1,
+;   (the first byte in wdd37[n] whose bit 7 is 0) = a
+;   and shift the rest
+; and increment [wdd36] by 1
+Func_1f24e:
+	push bc
+	push de
+	push hl
+	ld e, a
+	ld a, [wdd36]
+	cp wDD37_BUFFER_SIZE - 1
+	jr z, .set_carry
+	bit 7, e
+	call z, .not_bit7
+	call nz, .has_bit7
+	ld hl, wdd36
+	inc [hl]
+; clear carry
+	scf
+	ccf
+	jr .done
+.set_carry
+	scf
+; fallthrough
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.not_bit7:
+	push af
+	ld a, [wdd36]
+	ld c, a
+	ld b, 0
+	ld hl, wdd37
+	add hl, bc
+	ld [hl], e
+	pop af
+	ret
+
+.has_bit7:
+	push af
+	ld hl, wdd37
+	ld c, wDD37_BUFFER_SIZE - 1
+.check_byte_loop
+	bit 7, [hl]
+	jr z, .shift_loop
+	inc hl
+	dec c
+	jr nz, .check_byte_loop
+.shift_loop
+	ld b, [hl]
+	ld [hl], e
+	ld e, b
+	inc hl
+	dec c
+	jr nz, .shift_loop
+	pop af
+	ret
 
 Func_1f293:
 	push af
@@ -3867,9 +4898,67 @@ Func_1f57b::
 	db  2, -2
 	db -2,  2
 	db $80 ; end
-; 0x1f60c
 
-SECTION "Bank 7@782b", ROMX[$782b], BANK[$7]
+; input: a, c
+; [wdd75] = a, [wdd76] = 0, [wdd77] = c
+Set3FromwDD75:
+	push af
+	ld [wdd75], a
+	ld a, c
+	ld [wdd77], a
+	xor a
+	ld [wdd76], a
+	pop af
+	ret
+
+Func_1f61a:
+	push af
+	ld a, 0
+	call Set3FromwDD75
+	push af
+	ret
+
+GetwDD75:
+	ld a, [wdd75]
+	and a
+	ret
+; 0x1f627
+
+SECTION "Bank 7@77f1", ROMX[$77f1], BANK[$7]
+
+Func_1f7f1:
+	farcall Func_102a4
+	call HandleIngameCardPop
+	farcall Func_102c4
+	ret
+
+HandleIngameCardPop:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, .FunctionMap
+	call CallMappedFunction
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.FunctionMap:
+	key_func 0, IngameCardPop.Ronald
+	key_func 1, IngameCardPop.Imakuni_first
+	key_func 2, IngameCardPop.Imakuni_rare
+	db $ff
+
+; dupe of Func_1f7f1
+Func_1f81f:
+	farcall Func_102a4
+	call HandleIngameCardPop
+	farcall Func_102c4
+	ret
 
 CardPopMenu:
 	push af

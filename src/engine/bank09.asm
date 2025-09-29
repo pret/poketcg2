@@ -2850,7 +2850,95 @@ CheckDeck:
 	db $13 ; x1.2 WATER
 	db $15 ; x1.3 FIGHTING
 	db $15 ; x1.3 PSYCHIC
-; 0x257da
+
+Func_257da:
+	ld e, a
+	add a
+	add e
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, $584e ; Data_2584e
+	add hl, de
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	inc hl
+	ld de, wPlayerDeck
+	ld a, 2
+	call Func_25812
+	ld a, 1
+	call Func_25812
+	ld a, 0
+	call Func_25812
+	ld a, -1
+	call Func_25812
+	xor a
+	ld [de], a
+	inc de
+	ld [de], a
+	ld hl, wDuelTempList
+	ld c, $a
+	xor a
+.asm_2580a
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .asm_2580a
+	ld [hl], $ff
+	ret
+; 0x25812
+
+Func_25812:
+	ldh [hff96], a
+	ld a, [hli]
+	or a
+	ret z
+	dec hl
+	push bc
+	push de
+	push hl
+	ldh a, [hff96]
+	call CreateCardPopCandidateList
+	pop hl
+	pop de
+	pop bc
+	ld a, [hli]
+	push hl
+	push bc
+	ld c, a
+.asm_25827
+	push bc
+	ld hl, wDuelTempList
+.asm_2582b
+	ld a, [wcd54]
+	call Random
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld bc, wc000
+	add hl, bc
+	ld a, [hli]
+	or [hl]
+	dec hl
+	jr z, .asm_2582b
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	xor a
+	ld [hld], a
+	ld [hl], a
+	pop bc
+	dec c
+	jr nz, .asm_25827
+	pop bc
+	pop hl
+	ret
+; 0x2584e
+; Data_2584e:
 
 SECTION "Bank 9@58a2", ROMX[$58a2], BANK[$9]
 
@@ -3003,7 +3091,7 @@ LoadDeckIDData:
 	ld a, [hli]
 	ld [wOpponentNPCID], a
 	ld a, [hli]
-	ld [wcc15], a
+	ld [wNPCDuelPrizes], a
 	ld a, [hli]
 	ld [wSpecialRule], a
 	ld a, [hli]
@@ -4328,3 +4416,346 @@ DeckIDData:
 	db COIN_LUGIA ; coin
 
 	db $ff ; end
+
+CheckDuelDeckRequirement::
+	ld a, e
+	ld [wcd55], a
+	bank1call LoadPlayerDeck
+	ld a, [wcd0e]
+	ld hl, .DuelDeckRequirementPointers
+	jp JumpToFunctionInTable
+
+.DuelDeckRequirementPointers:
+	dw NULL                      ; $00
+	dw CheckMiyukiRequirement    ; $01
+	dw CheckIchikawaRequirement  ; $02
+	dw CheckYukiRequirement      ; $03
+	dw CheckMiyajimaRequirement  ; $04
+	dw CheckGraceRequirement     ; $05
+	dw CheckMiwaRequirement      ; $06
+	dw CheckRennaRequirement     ; $07
+	dw CheckShokoRequirement     ; $08
+	dw CheckSentaRequirement     ; $09
+	dw CheckYosukeRequirement    ; $0a
+	dw CheckKanzakiRequirement   ; $0b
+	dw CheckGodaRequirement      ; $0c
+	dw CheckRyokoRequirement     ; $0d
+	dw CheckNishijimaRequirement ; $0e
+	dw CheckIshiiRequirement     ; $0f
+	dw CheckSamejimaRequirement  ; $10
+
+CheckMiyukiRequirement:
+	ld b, TYPE_ENERGY_GRASS
+	jr CheckSoloEnergyRequirement
+
+CheckIchikawaRequirement:
+	ld b, TYPE_ENERGY_LIGHTNING
+	jr CheckSoloEnergyRequirement
+
+CheckYukiRequirement:
+	ld b, TYPE_ENERGY_FIRE
+	jr CheckSoloEnergyRequirement
+
+CheckMiyajimaRequirement:
+	ld b, TYPE_ENERGY_WATER
+	jr CheckSoloEnergyRequirement
+
+CheckGraceRequirement:
+	ld b, TYPE_ENERGY_FIGHTING
+	jr CheckSoloEnergyRequirement
+
+CheckMiwaRequirement:
+	ld b, TYPE_ENERGY_PSYCHIC
+	; fallthrough
+CheckSoloEnergyRequirement:
+	ld c, DECK_SIZE
+	ld hl, wPlayerDeck
+.scan_deck_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardType
+	bit 3, a
+	jr z, .non_energy
+	cp b
+	jr nz, .found_different_energy
+.non_energy
+	dec c
+	jr nz, .scan_deck_loop
+	or a
+	ret
+.found_different_energy
+	scf
+	ret
+
+CheckRennaRequirement:
+	ld hl, Whitelist_Pikachu
+	call CountListedCardsInDeck
+	cp 4 ; amount
+	ret
+
+CheckShokoRequirement:
+	ld hl, Whitelist_Eevee
+	call CountListedCardsInDeck
+	cp 4 ; amount
+	ret
+
+CheckSentaRequirement:
+	ld hl, Whitelist_Magikarp
+	call CountListedCardsInDeck
+	cp 4 ; amount
+	ret
+
+CheckYosukeRequirement:
+	ld hl, Whitelist_GastlyAndHaunter
+	call CountListedCardsInDeck
+	cp 6 ; amount
+	ret
+
+CheckKanzakiRequirement:
+	ld de, MOLTRES_LV40
+	call CountIfListedCardsInDeck
+	ret c
+	ld de, ARTICUNO_LV37
+	call CountIfListedCardsInDeck
+	ret c
+	ld de, ZAPDOS_LV68
+	call CountIfListedCardsInDeck
+	ret c
+	ld de, DRAGONITE_LV41
+	call CountIfListedCardsInDeck
+	ret
+
+CheckGodaRequirement:
+	ld hl, Blacklist_Removal
+	call CountListedCardsInDeck
+	ret
+
+CheckRyokoRequirement:
+	ld c, DECK_SIZE
+	ld hl, wPlayerDeck
+.scan_deck_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call GetCardType
+	cp TYPE_TRAINER
+	jr z, .found_trainer
+	dec c
+	jr nz, .scan_deck_loop
+	or a
+	ret
+.found_trainer
+	scf
+	ret
+
+CheckNishijimaRequirement:
+	ld e, 0 ; table offset
+	jr CheckColorlessAltarRequirement
+
+CheckIshiiRequirement:
+	ld e, 3 ; table offset
+	ld a, [wcd55]
+	or a
+	jr z, CheckDarkPokemonRequirement
+	jr CheckColorlessAltarRequirement
+
+CheckSamejimaRequirement:
+	ld e, 6 ; table offset
+	; fallthrough
+CheckColorlessAltarRequirement:
+	ld a, [wcd55]
+	add e
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, ColorlessAltarRequirementTable
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	push hl
+	call CountListedCardsInDeck
+	pop hl
+	push af
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld hl, wLoadedCard1Name
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	cp 4 ; amount
+	ret
+
+CheckDarkPokemonRequirement:
+	ld hl, wPlayerDeck
+	ld c, 0
+.scan_deck_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	jr z, .scanned
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY ; non-pokemon
+	jr nc, .scan_deck_loop
+	ld a, [wLoadedCard1Dark]
+	or a
+	jr z, .scan_deck_loop
+	inc c
+	jr .scan_deck_loop
+.scanned
+	ldtx hl, EffectTargetDarkPokemonText
+	ld a, c
+	cp 4 ; amount
+	ret
+
+Whitelist_Pikachu:
+	dw PIKACHU_LV5
+	dw PIKACHU_LV12
+	dw PIKACHU_LV13
+	dw PIKACHU_LV14
+	dw PIKACHU_LV16
+	dw PIKACHU_ALT_LV16
+	dw NULL
+Whitelist_Eevee:
+	dw EEVEE_LV5
+	dw EEVEE_LV9
+	dw EEVEE_LV12
+	dw NULL
+Whitelist_Magikarp:
+	dw MAGIKARP_LV6
+	dw MAGIKARP_LV8
+	dw MAGIKARP_LV10
+	dw NULL
+Whitelist_GastlyAndHaunter:
+	dw GASTLY_LV8
+	dw GASTLY_LV13
+	dw GASTLY_LV17
+	dw HAUNTER_LV17
+	dw HAUNTER_LV22
+	dw HAUNTER_LV25
+	dw HAUNTER_LV26
+	dw NULL
+Blacklist_Removal:
+	dw ENERGY_REMOVAL
+	dw SUPER_ENERGY_REMOVAL
+	dw NULL
+
+ColorlessAltarRequirementTable:
+	; Nishijima
+	dw Whitelist_DCE
+	dw Whitelist_Pidgey
+	dw Whitelist_Spearow
+	; Ishii
+	dw NULL ; Dark Pokémon
+	dw Whitelist_Rattata
+	dw Whitelist_Meowth
+	; Samejima
+	dw Whitelist_MysteriousFossil
+	dw Whitelist_Jigglypuff
+	dw Whitelist_Dratini
+Whitelist_DCE:
+	dw DOUBLE_COLORLESS_ENERGY
+	dw NULL
+Whitelist_Pidgey:
+	dw PIDGEY_LV8
+	dw PIDGEY_LV10
+	dw NULL
+Whitelist_Spearow:
+	dw SPEAROW_LV9
+	dw SPEAROW_LV12
+	dw SPEAROW_LV13
+	dw NULL
+Whitelist_Rattata:
+	dw RATTATA_LV9
+	dw RATTATA_LV12
+	dw RATTATA_LV15
+	dw NULL
+Whitelist_Meowth:
+	dw MEOWTH_LV10
+	dw MEOWTH_LV13
+	dw MEOWTH_LV14
+	dw MEOWTH_LV15
+	dw MEOWTH_LV17
+	dw NULL
+Whitelist_MysteriousFossil:
+	dw MYSTERIOUS_FOSSIL
+	dw NULL
+Whitelist_Jigglypuff:
+	dw JIGGLYPUFF_LV12
+	dw JIGGLYPUFF_LV13
+	dw JIGGLYPUFF_LV14
+	dw NULL
+Whitelist_Dratini:
+	dw DRATINI_LV10
+	dw DRATINI_LV12
+	dw NULL
+
+; output: a = b = total number of the target card(s)
+CountListedCardsInDeck:
+	ld b, 0
+.target_card_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, d
+	or e
+	jr z, .no_more_targets
+	push hl
+	ld hl, wPlayerDeck
+	ld c, DECK_SIZE
+.scan_deck_loop
+	ld a, [hl]
+	cp e
+	jr nz, .next_deck_card
+	inc hl
+	ld a, [hld]
+	cp d
+	jr nz, .next_deck_card
+	inc b
+.next_deck_card
+	inc hl
+	inc hl
+	dec c
+	jr nz, .scan_deck_loop
+	pop hl
+	jr .target_card_loop
+.no_more_targets
+	ld a, b
+	or a
+	ret z
+	scf
+	ret
+
+CountIfListedCardsInDeck:
+	ld hl, wPlayerDeck
+	ld c, DECK_SIZE
+.scan_deck_loop
+	ld a, [hl]
+	cp e
+	jr nz, .next_deck_card
+	inc hl
+	ld a, [hld]
+	cp d
+	jr z, .found
+.next_deck_card
+	inc hl
+	inc hl
+	dec c
+	jr nz, .scan_deck_loop
+	scf
+	ret
+.found
+	or a
+	ret
+; 0x260e7

@@ -592,16 +592,16 @@ Func_33f2::
 .asm_3405
 	res 6, [hl]
 	ldh a, [hBankROM]
-	ld [wd619], a
+	ld [wScriptStepSourceBank], a
 	; pop return address from stack
 	pop hl
 	ld a, l
-	ld [wd61b + 0], a
+	ld [wScriptStepSourcePointer + 0], a
 	ld a, h
-	ld [wd61b + 1], a
-	farcall Func_dbdb
+	ld [wScriptStepSourcePointer + 1], a
+	farcall ReloadScriptStepBuffer
 .asm_3419
-	farcall Func_dbf2
+	farcall RunOverworldScript
 	ld a, [wd618]
 	bit 7, a
 	jr nz, .asm_342a
@@ -609,9 +609,9 @@ Func_33f2::
 	jr nz, .asm_342a
 	jr .asm_3419
 .asm_342a
-	ld a, [wd619]
+	ld a, [wScriptStepSourceBank]
 	call BankswitchROM
-	ld hl, wd61b
+	ld hl, wScriptStepSourcePointer
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
@@ -836,15 +836,15 @@ SwitchWRAMBank::
 	ldh [rSVBK], a
 	ret
 
-Func_3529::
+DoAFrames_WithPreCheck::
 	push af
 	and a
-	jr z, .asm_3533
-.asm_352d
+	jr z, .done
+.loop
 	call DoFrame
 	dec a
-	jr nz, .asm_352d
-.asm_3533
+	jr nz, .loop
+.done
 	pop af
 	ret
 

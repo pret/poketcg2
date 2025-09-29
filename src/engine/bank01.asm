@@ -38,26 +38,28 @@ StartDuel_VSAIOpp:
 	call SwapTurn
 	jr StartDuel
 
+; .init is also used by link duels
+StartDuel_VS:
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
 	ld a, DUELIST_TYPE_PLAYER
 	ld [wPlayerDuelistType], a
 	ld [wOpponentDuelistType], a
-
 	ld a, COIN_LUGIA
 	ld [wOppCoin], a
-	ld a, $06
-	ld [wcc15], a
+	ld a, PRIZES_6
+	ld [wNPCDuelPrizes], a
 	xor a ; COIN_CHANSEY
 	ld [wPlayerCoin], a
-
 	ld a, NUM_NPC_IDS
 	call Random
 	ld [wOpponentNPCID], a
+; fallthrough
+.init
 	ld hl, wOpponentName
 	xor a
 	ld [hli], a
-	ld [hl], a
+	ld [hl], a ; wNPCDuelPrizes
 	ld [wOpponentDeckID], a
 	ld [wSpecialRule], a
 	ld [wIsPracticeDuel], a
@@ -72,7 +74,7 @@ StartDuel:
 	xor a
 	ld [wCurrentDuelMenuItem], a
 	call SetupDuel
-	ld a, [wcc15]
+	ld a, [wNPCDuelPrizes]
 	ld [wDuelInitialPrizes], a
 	call InitVariablesToBeginDuel
 	ld a, [wDuelTheme]
@@ -8941,4 +8943,38 @@ GetPoisonDamage:
 	ret nc
 	ld a, DBLPSN_DAMAGE
 	ret
-; 0x7b5a
+
+; seems to communicate with other device
+; for starting a duel
+; outputs in hl either wPlayerDuelVariables
+; or wOpponentDuelVariables depending on wSerialOp
+DecideLinkDuelVariables:
+	call Func_0e8e
+	ldtx hl, PressStartWhenReadyText
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+.input_loop
+	call DoFrame
+	ldh a, [hKeysPressed]
+	bit B_BUTTON_F, a
+	jr nz, .link_cancel
+	and START
+	call Func_0cc5
+	jr nc, .input_loop
+	ld hl, wPlayerDuelVariables
+	ld a, [wSerialOp]
+	cp $92
+	jr z, .link_continue
+	ld hl, wOpponentDuelVariables
+	cp $21
+	jr z, .link_continue
+.link_cancel
+	call ResetSerial
+	scf
+	ret
+.link_continue
+	or a
+	ret
+
+	ret ; stray ret
+; 0x7b8f

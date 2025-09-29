@@ -626,7 +626,7 @@ wOpponentNPCID:: ; cc12
 wOpponentName:: ; cc13
 	ds $2
 
-wcc15:: ; cc15
+wNPCDuelPrizes:: ; cc15
 	ds $1
 
 wNPCDuelDeckID:: ; cc16
@@ -966,6 +966,7 @@ wcd53:: ; cd53
 wcd54:: ; cd54
 	ds $1
 
+wcd55:: ; cd55
 	ds $1
 
 wDeckCheckCardName:: ; cd56
@@ -1206,6 +1207,7 @@ wce98:: ; ce1a
 wPrinterContrastLevel:: ; ce1b
 	ds $1
 
+wPrinterCurPrizeFrame:: ; ce1c
 	ds $1
 
 wPrinterNumberLineFeeds:: ; ce1d
@@ -2290,23 +2292,17 @@ wGeneralVars:: ; d5d2
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 
-; wd60e:: ; d60e
+wd60e:: ; d60e
 	ds $1
 
 wd60f:: ; d60f
 	ds $2
 
 wd611:: ; d611
-	ds $1
-
-wd612:: ; d612
-	ds $1
+	ds $2
 
 wd613:: ; d613
-	ds $1
-
-wd614:: ; d614
-	ds $1
+	ds $2
 
 	ds $1
 
@@ -2316,25 +2312,42 @@ wd616:: ; d616
 wd617:: ; d617
 	ds $1
 
+; bit 0: yes/no menu; 0 for yes, 1 for no
+; bit 1: validity: 0 if passes, 1 if fails
 wd618:: ; d618
 	ds $1
 
-wd619:: ; d619
+wScriptStepSourceBank:: ; d619
 	ds $1
 
-wd61a:: ; d61a
+wScriptStepBufferIndex:: ; d61a
 	ds $1
 
-wd61b:: ; d61b
+wScriptStepSourcePointer:: ; d61b
 	ds $2
 
 wd61d:: ; d61d
 	ds $1
 
-wd61e:: ; d61e
-	ds wD61E_STRUCT_SIZE
+wScriptStepBuffer:: ; d61e
+	ds wSCRIPT_STEP_BUFFER_SIZE
 
-	ds $2a
+wd63e:: ; d63e
+	ds $10
+
+wd64e:: ; d64e
+	ds $10
+
+wd65e:: ; d64e
+	ds $1
+
+wd65f:: ; d64e
+	ds $1
+
+	ds $7
+
+wd667:: ; d667
+	ds $1
 
 wd668:: ; d668
 	ds $1
@@ -2487,7 +2500,7 @@ wd853:: ; d853
 wScrollTargetSpritePtr:: ; d893
 	ds $2
 
-wd895:: ; d895
+wOWScrollState:: ; d895
 	ds $1
 
 wd896:: ; d896
@@ -2737,7 +2750,10 @@ wda98:: ; da98
 	ds $1
 
 wda99:: ; da99
-	ds $4
+	ds $2
+
+wda9b:: ; da9b
+	ds $2
 
 wIntroOrbsStates:: ; da9d
 	ds NUM_INTRO_ORBS
@@ -2827,7 +2843,13 @@ wdc08:: ; dc08
 wdc09:: ; dc09
 	ds $1
 
-	ds $5
+wdc0a:: ; dc0a
+	ds $1
+
+wdc0b:: ; dc0b
+	ds $1
+
+	ds $3
 
 ; store settings for animation enabled/disabled
 ; FALSE means enabled, TRUE means disabled
@@ -2986,7 +3008,13 @@ wdd06:: ; dd06
 wdd07:: ; dd07
 	ds $1
 
-	ds $1d
+wdd08:: ; dd08
+	ds $1
+
+wdd09:: ; dd09
+	ds $1
+
+	ds $1b
 
 wdd25:: ; dd25
 	ds $2
@@ -3015,7 +3043,7 @@ wdd36:: ; dd36
 	ds $1
 
 wdd37:: ; dd37
-	ds $19
+	ds wDD37_BUFFER_SIZE
 
 wdd50:: ; dd50
 	ds $1
