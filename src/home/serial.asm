@@ -37,7 +37,7 @@ SerialTimerHandler:
 	ld [hl], $0
 	ret
 
-Func_0cc5::
+tcg1_Func_0cc5::
 	ld hl, wSerialRecvCounter
 	or a
 	jr nz, .asm_cdc
@@ -292,7 +292,7 @@ SerialSendByte:
 	ret
 
 ; sets carry if [wSerialRecvCounter] nonzero
-Func_0e32:
+tcg1_Func_0e32:
 	ld a, [wSerialRecvCounter]
 	or a
 	ret z
@@ -370,7 +370,7 @@ SerialExchangeBytes::
 	ret
 
 ; go into slave mode (external clock) for serial transfer?
-Func_0e8e::
+tcg1_Func_0e8e::
 	call ClearSerialData
 	ld a, $21
 	ldh [rSB], a         ; send $21
@@ -454,7 +454,7 @@ SerialRecvBytes:
 	scf
 	ret
 
-Func_0ef1:
+tcg1_Func_0ef1:
 	ld de, wcb79
 	ld hl, sp+$fe
 	ld a, l
@@ -473,7 +473,7 @@ Func_0ef1:
 	or a
 	ret
 
-Func_0f05:
+tcg1_Func_0f05:
 	push hl
 	ld hl, wcb7b
 	ld a, [hli]

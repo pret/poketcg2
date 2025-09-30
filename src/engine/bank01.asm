@@ -8949,7 +8949,7 @@ GetPoisonDamage:
 ; outputs in hl either wPlayerDuelVariables
 ; or wOpponentDuelVariables depending on wSerialOp
 DecideLinkDuelVariables:
-	call Func_0e8e
+	call tcg1_Func_0e8e
 	ldtx hl, PressStartWhenReadyText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
@@ -8959,7 +8959,7 @@ DecideLinkDuelVariables:
 	bit B_BUTTON_F, a
 	jr nz, .link_cancel
 	and START
-	call Func_0cc5
+	call tcg1_Func_0cc5
 	jr nc, .input_loop
 	ld hl, wPlayerDuelVariables
 	ld a, [wSerialOp]

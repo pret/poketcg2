@@ -224,7 +224,7 @@ LinkOpponentTurnFrameFunction::
 	ld a, [wSerialFlags]
 	or a
 	jr nz, .return
-	call Func_0e32
+	call tcg1_Func_0e32
 	ret nc
 .return
 	ld a, $09
