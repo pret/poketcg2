@@ -1263,7 +1263,7 @@ DrawMenuBox:
 	call DrawRegularTextBoxVRAM0
 	jr .print_items
 .asm_1cb31
-	call Func_38ad
+	call DrawLabeledTextBoxVRAM0
 
 .print_items
 	ld a, [wMenuBoxNumItems]
@@ -2516,7 +2516,7 @@ Func_1d475:
 .Read:
 	call LoadSavedOptions
 	ld a, $01
-	farcall Func_108c9
+	farcall SetwD8A1
 	ret
 
 ShowOWMapLocationBox:
@@ -2596,7 +2596,7 @@ Func_1d53a:
 	farcall SetFrameFuncAndFadeFromWhite
 	farcall SetFadePalsFrameFunc
 	call Func_3d1f
-	farcall Func_1ad41
+	farcall _ShowReceivedCardScreen
 	call Func_3d32
 	farcall UnsetFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
@@ -3277,7 +3277,7 @@ Func_1dfb9::
 	ld a, $01 ; unused
 	farcall ClearSpriteAnims
 	xor a
-	farcall Func_108c9
+	farcall SetwD8A1
 	xor a
 	ld [wDuelAnimBufferSize], a
 	ld [wDuelAnimBufferCurPos], a
@@ -3607,7 +3607,7 @@ Func_1e171:
 	ld a, [wAnimationPalette + 1]
 	ld b, a
 	farcall GetPaletteGfxPointer
-	farcall Func_10908
+	farcall LoadGfxPalettesFrom0
 	pop hl
 
 .asm_1e1d7

@@ -2284,10 +2284,10 @@ wd59d:: ; d59d
 	ds $1
 
 wEventVars:: ; d59e
-	ds $34
+	ds EVENT_VAR_BYTES
 
 wGeneralVars:: ; d5d2
-	ds $34
+	ds GENERAL_VAR_BYTES
 
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
@@ -2317,20 +2317,20 @@ wd617:: ; d617
 wd618:: ; d618
 	ds $1
 
-wScriptStepSourceBank:: ; d619
+wScriptBank:: ; d619
 	ds $1
 
-wScriptStepBufferIndex:: ; d61a
+wScriptBufferIndex:: ; d61a
 	ds $1
 
-wScriptStepSourcePointer:: ; d61b
+wScriptPointer:: ; d61b
 	ds $2
 
 wd61d:: ; d61d
 	ds $1
 
-wScriptStepBuffer:: ; d61e
-	ds wSCRIPT_STEP_BUFFER_SIZE
+wScriptBuffer:: ; d61e
+	ds wSCRIPT_BUFFER_SIZE
 
 wd63e:: ; d63e
 	ds $10

@@ -278,6 +278,9 @@
 	const EVENT_F5                                        ; $f5
 DEF NUM_EVENT_FLAGS EQU const_value
 
+DEF EVENT_VAR_BYTES   EQU $34
+DEF GENERAL_VAR_BYTES EQU $34
+
 DEF PLAYER_MALE   EQU $0
 DEF PLAYER_FEMALE EQU $1
 
@@ -287,9 +290,9 @@ DEF SOUTH    EQU $02
 DEF WEST     EQU $03
 
 ; TODO: Identify WRAM to give them proper names
-DEF wD606_STRUCT_SIZE        EQU $8
-DEF wSCRIPT_STEP_BUFFER_SIZE EQU $20
-DEF wDD37_BUFFER_SIZE        EQU $19
+DEF wD606_STRUCT_SIZE   EQU $8
+DEF wSCRIPT_BUFFER_SIZE EQU $20
+DEF wDD37_BUFFER_SIZE   EQU $19
 
 ; TODO: Check if these def's are really necessary
 	const_def $2

@@ -3581,7 +3581,7 @@ DecideCardToReceiveFromCardPop:
 	pop bc
 
 ; de = other player's name hash
-; bc = this player's name hash
+; bc =  this player's name hash
 
 ; updates RNG values to subtraction of these two hashes
 .get_rng
@@ -4203,11 +4203,11 @@ IngameCardPop:
 .Ronald
 	ldtx hl, CardPopRonaldText
 	ld a, SCRIPTED_CARD_POP_ROLAND
-	; fallthrough
+; fallthrough
 .push_reload
 	push af
 	ld a, IRPARAM_CARD_POP
-	; fallthrough
+; fallthrough
 .got_partner_and_type
 	ld [wCardPopType], a
 	call InitSaveData.PrintName
@@ -4283,7 +4283,7 @@ IngameCardPop:
 	ld a, MUSIC_MATCHVICTORY
 	ld [wCardPopCardObtainSong], a
 	ld bc, .data2
-	; fallthrough
+; fallthrough
 .got_data
 	push bc
 	ld hl, wCardPopRecordYourCardID
@@ -4320,17 +4320,17 @@ ENDR
 	ld e, l
 	ld d, h
 	pop hl
-	; wCardPopRecordNumCards
+; wCardPopRecordNumCards
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
-	; wCardPopRecordNumCoins
+; wCardPopRecordNumCoins
 	ld [hl], 4
 	inc hl
-	; wCardPopRecordType
+; wCardPopRecordType
 	ld [hl], IRPARAM_RARE_CARD_POP
-	; fallthrough
+; fallthrough
 .display_ingame_pop
 	call SetSpriteAnimationsAsVBlankFunction
 	ld a, SCENE_CARD_POP
@@ -4374,7 +4374,8 @@ ENDR
 	dw MEW_LV23       ; $3
 	dw MACHAMP_LV67   ; $4
 	dw CHANSEY_LV55   ; $5
-; TODO: Identify these data
+
+; meant to be custom stats?
 .data1
 	db $00, $00, $39, $00, $01
 .data2
@@ -5551,7 +5552,7 @@ _SetUpAndStartLinkDuel:
 
 	call EmptyScreen
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr nz, .opponent
 
 	ld a, PLAYER_TURN
@@ -5665,6 +5666,9 @@ _SetUpAndStartLinkDuel:
 	call SerialExchangeBytes
 	ret
 
+; handles player choice of number of prize cards
+; pressing left/right makes it decrease/increase respectively
+; selection is confirmed by pressing A button
 .PickNumberOfPrizeCards:
 	ld a, PRIZES_4
 	ld [wNPCDuelPrizes], a
@@ -5676,6 +5680,9 @@ _SetUpAndStartLinkDuel:
 	ld a, [wNPCDuelPrizes]
 	add SYM_0
 	ld e, a
+
+; check frame counter so that it
+; either blinks or shows number
 	ld hl, wPrinterCurPrizeFrame
 	ld a, [hl]
 	inc [hl]
@@ -5694,7 +5701,7 @@ _SetUpAndStartLinkDuel:
 	dec a
 	cp PRIZES_2
 	jr nc, .got_prize_count
-	ld a, PRIZES_6
+	ld a, PRIZES_6  ; wrap around to 6
 	jr .got_prize_count
 .check_d_right
 	bit D_RIGHT_F, b
@@ -5722,7 +5729,7 @@ Func_1acbf:
 .check_player_deck_loop
 	ld a, [hl]
 	or a
-	jr z, .got_player_deck
+	jr z, .next
 	ld de, DECK_COMPRESSED_STRUCT_SIZE
 	add hl, de
 	dec c
@@ -5747,7 +5754,7 @@ Func_1acbf:
 	scf
 	ret
 
-.got_player_deck
+.next
 	push hl
 	bank1call CreateTempCardCollection
 	ld a, [wNPCDuelDeckID]
@@ -5799,7 +5806,8 @@ Func_1acbf:
 	or a
 	ret
 
-Func_1ad41:
+; show screen with the received card at de with the text at hl
+_ShowReceivedCardScreen:
 	push hl
 	push de
 	lb de, $38, $9f
@@ -5813,10 +5821,10 @@ Func_1ad41:
 	ldh [hWhoseTurn], a
 	pop hl
 	farcall _DisplayCardDetailScreen
-.check
+.loop
 	call AssertSongFinished
 	or a
-	jr nz, .check
+	jr nz, .loop
 	call ResumeSong
 	bank1call OpenCardPage_FromHand
 	ret

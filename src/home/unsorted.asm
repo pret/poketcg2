@@ -592,14 +592,14 @@ Func_33f2::
 .asm_3405
 	res 6, [hl]
 	ldh a, [hBankROM]
-	ld [wScriptStepSourceBank], a
+	ld [wScriptBank], a
 	; pop return address from stack
 	pop hl
 	ld a, l
-	ld [wScriptStepSourcePointer + 0], a
+	ld [wScriptPointer + 0], a
 	ld a, h
-	ld [wScriptStepSourcePointer + 1], a
-	farcall ReloadScriptStepBuffer
+	ld [wScriptPointer + 1], a
+	farcall ReloadScriptBuffer
 .asm_3419
 	farcall RunOverworldScript
 	ld a, [wd618]
@@ -609,9 +609,9 @@ Func_33f2::
 	jr nz, .asm_342a
 	jr .asm_3419
 .asm_342a
-	ld a, [wScriptStepSourceBank]
+	ld a, [wScriptBank]
 	call BankswitchROM
-	ld hl, wScriptStepSourcePointer
+	ld hl, wScriptPointer
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
@@ -1533,7 +1533,7 @@ DrawRegularTextBoxVRAM0::
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call DrawRegularTextBox
 	pop hl
@@ -1542,12 +1542,12 @@ DrawRegularTextBoxVRAM0::
 	pop af
 	ret
 
-Func_38ad::
+DrawLabeledTextBoxVRAM0::
 	push af
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call DrawLabeledTextBox
 	pop hl
@@ -1861,7 +1861,7 @@ Func_3a39::
 	push de
 	push hl
 	farcall UpdateOWScroll
-	farcall Func_108cd
+	farcall GetwD8A1
 	and a
 	jr nz, .asm_3a50
 	ld e, $01

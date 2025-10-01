@@ -1,11 +1,11 @@
-; TODO: Update Func_xxxx, as most of them reflect tcg1's
+; TODO: tcg1_Func_xxxx functions have tcg1's address
 
 ; called at roughly 240Hz by TimerHandler
 SerialTimerHandler:
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .begin_transfer
-	cp $21
+	cp SERIAL_PEER_MASTER_TCG2
 	jr z, .check_for_timeout
 	ret
 .begin_transfer
@@ -46,14 +46,14 @@ tcg1_Func_0cc5::
 	ret z
 	ld [hl], $00
 	ld a, [wSerialRecvBuf]
-	ld e, $21
-	cp $92
+	ld e, SERIAL_PEER_MASTER_TCG2
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .asm_cfa
 	xor a
 	scf
 	ret
 .asm_cdc
-	ld a, $92
+	ld a, SERIAL_OP_MASTER_TCG2
 	ldh [rSB], a
 	ld a, SC_INTERNAL
 	ldh [rSC], a
@@ -65,8 +65,8 @@ tcg1_Func_0cc5::
 	jr z, .asm_ce8
 	ld [hl], $00
 	ld a, [wSerialRecvBuf]
-	ld e, $92
-	cp $21
+	ld e, SERIAL_OP_MASTER_TCG2
+	cp SERIAL_PEER_MASTER_TCG2
 	jr z, .asm_cfa
 	xor a
 	scf
@@ -82,7 +82,7 @@ tcg1_Func_0cc5::
 	ld [wSerialRecvCounter], a
 	ld [wSerialLastReadCA], a
 	ld a, e
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr nz, .asm_d21
 	ld bc, $1000
 .asm_d1b
@@ -123,7 +123,7 @@ SerialHandler:
 	; end send/receive
 	ldh [rSB], a         ; prepare sending byte (from Func_0dc8?)
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .done          ; if [wSerialOp] != $92, use external clock
 	jr .asm_d6a          ; and prepare for next byte. either way, return
 .asm_d55
@@ -134,8 +134,8 @@ SerialHandler:
 	ld a, $ac
 	ldh [rSB], a
 	ld a, [wSerialRecvBuf]
-	cp $21               ; if [wSerialRecvBuf] != $21, use external clock
-	jr z, .done          ; and prepare for next byte. either way, return
+	cp SERIAL_PEER_MASTER_TCG2 ; if [wSerialRecvBuf] != $21, use external clock
+	jr z, .done                ; and prepare for next byte. either way, return
 .asm_d6a
 	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a         ; transfer start, use external clock
@@ -372,7 +372,7 @@ SerialExchangeBytes::
 ; go into slave mode (external clock) for serial transfer?
 tcg1_Func_0e8e::
 	call ClearSerialData
-	ld a, $21
+	ld a, SERIAL_PEER_MASTER_TCG2
 	ldh [rSB], a         ; send $21
 	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a         ; use external clock, set transfer start flag

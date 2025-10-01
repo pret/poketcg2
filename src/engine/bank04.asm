@@ -454,7 +454,7 @@ Func_104ad:
 REPT 3
 	srl a
 ENDR
-	; fallthrough
+; fallthrough
 .got_x_base
 REPT 3
 	add a
@@ -470,7 +470,7 @@ ENDR
 	cp b
 	jr c, .got_x
 	ld a, b
-	; fallthrough
+; fallthrough
 .got_x
 	ld [wd7e8], a
 
@@ -481,7 +481,7 @@ ENDR
 REPT 3
 	srl a
 ENDR
-	; fallthrough
+; fallthrough
 .got_y_base
 REPT 3
 	add a
@@ -497,7 +497,7 @@ ENDR
 	cp b
 	jr c, .got_y
 	ld a, b
-	; fallthrough
+; fallthrough
 .got_y
 	ld [wd7e9], a
 	xor a
@@ -557,7 +557,7 @@ CheckOWScroll:
 	cp b
 	jr nz, .got_result
 	ld c, 0
-	; fallthrough
+; fallthrough
 .got_result
 	ld a, c
 	pop bc
@@ -846,7 +846,7 @@ UpdateBackgroundPalettesCGB_Flush:
 	push hl
 	xor a
 	ld de, wBackgroundPalettesCGB
-	ld bc, $40
+	ld bc, NUM_BACKGROUND_PALETTES palettes
 	call CopyDataHLtoDE_SaveRegisters
 	ld a, 7
 	call FlushAllPalettes
@@ -863,7 +863,7 @@ UpdateBackgroundPalettesCGB:
 	push de
 	push hl
 	ld hl, wBackgroundPalettesCGB
-	ld bc, $40
+	ld bc, NUM_BACKGROUND_PALETTES palettes
 	call CopyDataHLtoDE_SaveRegisters
 	pop hl
 	pop de
@@ -1001,11 +1001,11 @@ ZeroObjectPositionsAndEnableOBPFading:
 
 SECTION "Bank 4@48c9", ROMX[$48c9], BANK[$4]
 
-Func_108c9:
+SetwD8A1:
 	ld [wd8a1], a
 	ret
 
-Func_108cd::
+GetwD8A1::
 	ld a, [wd8a1]
 	ret
 ; 0x108d1
@@ -1032,8 +1032,8 @@ ClearSpriteAnims:
 	pop af
 	ret
 
-Func_10908:
-	ld c, $00
+LoadGfxPalettesFrom0:
+	ld c, 0
 	call LoadGfxPalettes
 	ret
 
@@ -1879,22 +1879,22 @@ Func_10d28:
 	pop af
 	ret
 
-Func_10d36:
+GetPalettesWithID:
 	push bc
 	farcall GetPaletteGfxPointer
-	call Func_10908
+	call LoadGfxPalettesFrom0
 	pop bc
 	ret
 
 Func_10d40::
 	call InitOWObjects
 	ld a, $01
-	call Func_108c9
+	call SetwD8A1
 	call FillwD986
 	ret
 
-GetNextInactiveOWObjectWrapper:
-	call GetNextInactiveOWObject
+GetNextInactiveOWObject:
+	call _GetNextInactiveOWObject
 	ret
 
 GetOWObjectWithID:
@@ -1953,7 +1953,7 @@ LoadOWObjectInMap::
 	and $f
 	ld c, a
 	pop af
-	call Func_10fb8
+	call SetOWObjectFrameDuration
 .still_object
 	pop hl
 	pop de
@@ -2178,9 +2178,9 @@ Func_10ea7:
 	push de
 	push hl
 	ld de, $7563
-	ld hl, $da39
-	ld c, $01
-.asm_10eb5
+	ld hl, wOWObjects
+	ld c, 1
+.loop
 	ld b, [hl]
 	ld a, [wWRAMBank]
 	push af
@@ -2193,7 +2193,7 @@ Func_10ea7:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_10eb5
+	jr nz, .loop
 	ei
 	pop hl
 	pop de
@@ -2210,9 +2210,9 @@ Func_10ed3:
 	push de
 	push hl
 	ld de, $7563
-	ld hl, $da39
-	ld c, $01
-.asm_10ee1
+	ld hl, wOWObjects
+	ld c, 1
+.loop
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -2225,7 +2225,7 @@ Func_10ed3:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_10ee1
+	jr nz, .loop
 	ei
 	pop hl
 	pop de
@@ -2384,8 +2384,8 @@ Func_10f78:
 	pop bc
 	ret
 
-Func_10fb8:
-	call SetOWObjectFrameDuration
+SetOWObjectFrameDuration:
+	call _SetOWObjectFrameDuration
 	ret
 
 ; check if OW object ID in register a
@@ -2539,6 +2539,7 @@ DrawWideTextBox_PrintTextWithYesOrNoMenu:
 	ld a, 0
 	jr nc, .exit
 	ld a, 1
+; fallthrough
 .exit
 	pop hl
 	pop de
@@ -2556,7 +2557,7 @@ PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu:
 	ld a, 0
 	jr nc, .exit
 	ld a, 1
-	; fallthrough
+; fallthrough
 .exit
 	pop hl
 	pop de
@@ -2576,7 +2577,7 @@ PrintTextInWideTextBox:
 	pop af
 	ret
 
-PrintScrollableText_WithTextBoxLabel_Wrapper:
+PrintTextInLabelledScrollableTextBox:
 	push bc
 	push de
 	push hl
@@ -2801,7 +2802,7 @@ InitOWObjects:
 	xor a
 	call ClearSpriteAnims
 	xor a
-	call Func_108c9
+	call SetwD8A1
 	xor a
 	ld bc, OWOBJSTRUCT_LENGTH * MAX_NUM_OW_OBJECTS
 	ld hl, wOWObjects
@@ -2812,7 +2813,7 @@ InitOWObjects:
 	pop af
 	ret
 
-GetNextInactiveOWObject:
+_GetNextInactiveOWObject:
 	push af
 	push bc
 	push de
@@ -3314,7 +3315,7 @@ Func_1148f:
 	call SetSpriteAnimFrameset
 	ret
 
-SetOWObjectFrameDuration:
+_SetOWObjectFrameDuration:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	ld a, c
@@ -3458,9 +3459,9 @@ Func_11540:
 Func_1157c:
 	push af
 	xor a
-	ld [wda99 + 0], a
+	ld [wda99], a
 	ld [wda99 + 1], a
-	ld [wda9b + 0], a
+	ld [wda9b], a
 	ld [wda9b + 1], a
 	ld [wda98], a
 	pop af

@@ -756,7 +756,7 @@ _LoadOWObject:
 	ld [wda94 + 0], a
 	ld a, e
 	ld [wda94 + 1], a
-	farcall GetNextInactiveOWObject
+	farcall _GetNextInactiveOWObject
 	ld a, ACTIVE_OBJ
 	ld [hli], a ; OWOBJSTRUCT_FLAGS
 	ld a, [wda8c]
