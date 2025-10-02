@@ -6,8 +6,8 @@ IshiharasHouse_MapHeader:
 	db MUSIC_ISHIHARA
 
 IshiharasHouse_StepEvents:
-	map_exit 4, 12, $00, 0, 2, SOUTH
-	map_exit 5, 12, $00, 0, 2, SOUTH
+	map_exit 4, 12, OVERWORLD_MAP_TCG, 0, 2, SOUTH
+	map_exit 5, 12, OVERWORLD_MAP_TCG, 0, 2, SOUTH
 	db $ff
 
 IshiharasHouse_NPCs:
@@ -196,8 +196,8 @@ LightningClub_MapHeader:
 	db MUSIC_CLUB_1
 
 LightningClub_StepEvents:
-	map_exit 6, 15, $06, 4, 1, SOUTH
-	map_exit 7, 15, $06, 5, 1, SOUTH
+	map_exit 6, 15, MAP_LIGHTNING_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_LIGHTNING_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 LightningClub_NPCs:
@@ -322,12 +322,12 @@ PsychicClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 PsychicClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 6, 3, SOUTH
-	map_exit 5, 8, $00, 6, 3, SOUTH
-	map_exit 0, 3, $0a, 14, 6, WEST
-	map_exit 0, 4, $0a, 14, 7, WEST
-	map_exit 4, 0, $0b, 6, 12, NORTH
-	map_exit 5, 0, $0b, 7, 12, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 6, 3, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 6, 3, SOUTH
+	map_exit 0, 3, MAP_PSYCHIC_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_PSYCHIC_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_PSYCHIC_CLUB, 6, 12, NORTH
+	map_exit 5, 0, MAP_PSYCHIC_CLUB, 7, 12, NORTH
 	ow_script 4, 2, $0b, $3e, $4a
 	ow_script 5, 2, $0b, $3e, $4a
 	db $ff
@@ -562,8 +562,8 @@ PsychicClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 PsychicClubLobby_StepEvents:
-	map_exit 15, 6, $09, 1, 3, EAST
-	map_exit 15, 7, $09, 1, 4, EAST
+	map_exit 15, 6, MAP_PSYCHIC_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_PSYCHIC_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 PsychicClubLobby_NPCs:
@@ -679,8 +679,8 @@ PsychicClub_MapHeader:
 	db MUSIC_CLUB_2
 
 PsychicClub_StepEvents:
-	map_exit 6, 13, $09, 4, 1, SOUTH
-	map_exit 7, 13, $09, 5, 1, SOUTH
+	map_exit 6, 13, MAP_PSYCHIC_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 13, MAP_PSYCHIC_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 PsychicClub_NPCs:
@@ -817,12 +817,12 @@ RockClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 RockClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 1, 4, SOUTH
-	map_exit 5, 8, $00, 1, 4, SOUTH
-	map_exit 0, 3, $0d, 14, 6, WEST
-	map_exit 0, 4, $0d, 14, 7, WEST
-	map_exit 4, 0, $0e, 6, 13, NORTH
-	map_exit 5, 0, $0e, 7, 13, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 1, 4, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 1, 4, SOUTH
+	map_exit 0, 3, MAP_ROCK_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_ROCK_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_ROCK_CLUB, 6, 13, NORTH
+	map_exit 5, 0, MAP_ROCK_CLUB, 7, 13, NORTH
 	db $ff
 
 RockClubEntrance_MapScripts:
@@ -911,8 +911,8 @@ RockClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 RockClubLobby_StepEvents:
-	map_exit 15, 6, $0c, 1, 3, EAST
-	map_exit 15, 7, $0c, 1, 4, EAST
+	map_exit 15, 6, MAP_ROCK_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_ROCK_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 RockClubLobby_NPCs:
@@ -1031,8 +1031,8 @@ RockClub_MapHeader:
 	db MUSIC_CLUB_2
 
 RockClub_StepEvents:
-	map_exit 6, 14, $0c, 4, 1, SOUTH
-	map_exit 7, 14, $0c, 5, 1, SOUTH
+	map_exit 6, 14, MAP_ROCK_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 14, MAP_ROCK_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 RockClub_NPCs:
@@ -1133,12 +1133,12 @@ FightningClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 FightningClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 3, 7, SOUTH
-	map_exit 5, 8, $00, 3, 7, SOUTH
-	map_exit 0, 3, $10, 14, 6, WEST
-	map_exit 0, 4, $10, 14, 7, WEST
-	map_exit 4, 0, $11, 5, 10, NORTH
-	map_exit 5, 0, $11, 6, 10, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
+	map_exit 0, 3, MAP_FIGHTING_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_FIGHTING_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_FIGHTING_CLUB, 5, 10, NORTH
+	map_exit 5, 0, MAP_FIGHTING_CLUB, 6, 10, NORTH
 	db $ff
 
 FightningClubEntrance_MapScripts:
@@ -1267,8 +1267,8 @@ FightningClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 FightningClubLobby_StepEvents:
-	map_exit 15, 6, $0F, 1, 3, EAST
-	map_exit 15, 7, $0F, 1, 4, EAST
+	map_exit 15, 6, MAP_FIGHTING_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_FIGHTING_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 FightningClubLobby_NPCs:
@@ -1360,8 +1360,8 @@ FightingClub_MapHeader:
 	db MUSIC_CLUB_3
 
 FightingClub_StepEvents:
-	map_exit 5, 11, $0f, 4, 1, SOUTH
-	map_exit 6, 11, $0f, 5, 1, SOUTH
+	map_exit 5, 11, MAP_FIGHTING_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 6, 11, MAP_FIGHTING_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 FightingClub_NPCs:
@@ -1456,12 +1456,12 @@ GrassClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 GrassClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 8, 4, SOUTH
-	map_exit 5, 8, $00, 8, 4, SOUTH
-	map_exit 0, 3, $13, 14, 6, WEST
-	map_exit 0, 4, $13, 14, 7, WEST
-	map_exit 4, 0, $14, 6, 13, NORTH
-	map_exit 5, 0, $14, 7, 13, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 8, 4, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 8, 4, SOUTH
+	map_exit 0, 3, MAP_GRASS_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_GRASS_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_GRASS_CLUB, 6, 13, NORTH
+	map_exit 5, 0, MAP_GRASS_CLUB, 7, 13, NORTH
 	db $ff
 
 GrassClubEntrance_MapScripts:
@@ -1591,8 +1591,8 @@ GrassClub_MapHeader:
 	db MUSIC_CLUB_1
 
 GrassClub_StepEvents:
-	map_exit 6, 14, $12, 4, 1, SOUTH
-	map_exit 7, 14, $12, 5, 1, SOUTH
+	map_exit 6, 14, MAP_GRASS_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 14, MAP_GRASS_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 GrassClub_NPCs:
@@ -1687,12 +1687,12 @@ ScienceClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 ScienceClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 8, 2, SOUTH
-	map_exit 5, 8, $00, 8, 2, SOUTH
-	map_exit 0, 3, $16, 14, 6, WEST
-	map_exit 0, 4, $16, 14, 7, WEST
-	map_exit 4, 0, $17, 6, 14, NORTH
-	map_exit 5, 0, $17, 7, 14, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 8, 2, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 8, 2, SOUTH
+	map_exit 0, 3, MAP_SCIENCE_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_SCIENCE_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_SCIENCE_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_SCIENCE_CLUB, 7, 14, NORTH
 	db $ff
 
 ScienceClubEntrance_NPCs:
@@ -1859,8 +1859,8 @@ ScienceClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 ScienceClubLobby_StepEvents:
-	map_exit 15, 6, $15, 1, 3, EAST
-	map_exit 15, 7, $15, 1, 4, EAST
+	map_exit 15, 6, MAP_SCIENCE_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_SCIENCE_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 ScienceClubLobby_NPCs:
@@ -1986,8 +1986,8 @@ ScienceClub_MapHeader:
 	db MUSIC_CLUB_3
 
 ScienceClub_StepEvents:
-	map_exit 6, 15, $15, 4, 1, SOUTH
-	map_exit 7, 15, $15, 5, 1, SOUTH
+	map_exit 6, 15, MAP_SCIENCE_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_SCIENCE_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 ScienceClub_NPCs:
@@ -2091,12 +2091,12 @@ WaterClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 WaterClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 7, 6, SOUTH
-	map_exit 5, 8, $00, 7, 6, SOUTH
-	map_exit 0, 3, $19, 14, 6, WEST
-	map_exit 0, 4, $19, 14, 7, WEST
-	map_exit 4, 0, $1a, 6, 14, NORTH
-	map_exit 5, 0, $1a, 7, 14, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 7, 6, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 7, 6, SOUTH
+	map_exit 0, 3, MAP_WATER_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_WATER_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_WATER_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_WATER_CLUB, 7, 14, NORTH
 	db $ff
 
 WaterClubEntrance_MapScripts:
@@ -2225,8 +2225,8 @@ WaterClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 WaterClubLobby_StepEvents:
-	map_exit 15, 6, $18, 1, 3, EAST
-	map_exit 15, 7, $18, 1, 4, EAST
+	map_exit 15, 6, MAP_WATER_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_WATER_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 WaterClubLobby_NPCs:
@@ -2350,8 +2350,8 @@ WaterClub_MapHeader:
 	db MUSIC_CLUB_1
 
 WaterClub_StepEvents:
-	map_exit 6, 15, $18, 4, 1, SOUTH
-	map_exit 7, 15, $18, 5, 1, SOUTH
+	map_exit 6, 15, MAP_WATER_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_WATER_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 WaterClub_NPCs:
@@ -2473,12 +2473,12 @@ FireClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 FireClubEntrance_StepEvents:
-	map_exit 4, 8, $00, 7, 1, SOUTH
-	map_exit 5, 8, $00, 7, 1, SOUTH
-	map_exit 0, 3, $1c, 14, 6, WEST
-	map_exit 0, 4, $1c, 14, 7, WEST
-	map_exit 4, 0, $1d, 6, 14, NORTH
-	map_exit 5, 0, $1d, 7, 14, NORTH
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 7, 1, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 7, 1, SOUTH
+	map_exit 0, 3, MAP_FIRE_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_FIRE_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_FIRE_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_FIRE_CLUB, 7, 14, NORTH
 	db $ff
 
 FireClubEntrance_MapScripts:
@@ -2609,8 +2609,8 @@ FireClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 FireClubLobby_StepEvents:
-	map_exit 15, 6, $1b, 1, 3, EAST
-	map_exit 15, 7, $1b, 1, 4, EAST
+	map_exit 15, 6, MAP_FIRE_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_FIRE_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
 FireClubLobby_NPCs:
@@ -2724,8 +2724,8 @@ FireClub_MapHeader:
 	db MUSIC_CLUB_3
 
 FireClub_StepEvents:
-	map_exit 6, 15, $1b, 4, 1, SOUTH
-	map_exit 7, 15, $1b, 5, 1, SOUTH
+	map_exit 6, 15, MAP_FIRE_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_FIRE_CLUB_ENTRANCE, 5, 1, SOUTH
 	db $ff
 
 FireClub_NPCs:
@@ -2848,10 +2848,10 @@ PokemonDomeEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 PokemonDomeEntrance_StepEvents:
-	map_exit 7, 8, $00, 4, 4, SOUTH
-	map_exit 8, 8, $00, 4, 4, SOUTH
-	map_exit 11, 0, $24, 7, 14, NORTH
-	map_exit 12, 0, $24, 8, 14, NORTH
+	map_exit 7, 8, OVERWORLD_MAP_TCG, 4, 4, SOUTH
+	map_exit 8, 8, OVERWORLD_MAP_TCG, 4, 4, SOUTH
+	map_exit 11, 0, MAP_POKEMON_DOME, 7, 14, NORTH
+	map_exit 12, 0, MAP_POKEMON_DOME, 8, 14, NORTH
 	db $ff
 
 PokemonDomeEntrance_NPCs:
