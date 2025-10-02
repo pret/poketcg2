@@ -984,6 +984,7 @@ Func_c646:
 	ret
 
 ; bank and offset table of data for Func_d421 and Func_33b7
+; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
 Data_c651::
 	dba Data_40462 ; $00
 	dba Data_30080 ; $01
@@ -994,35 +995,35 @@ Data_c651::
 	dbw $0f, $4b88 ; $06
 	dbw $0f, $4c62 ; $07
 	dba LightningClub_MapHeader ; $08
-	dba PsychicClubEntrance_MapHeader ; $0a - not sure why $09 is skipped, but the data this points to is definitely $0a
-	dba PsychicClubLobby_MapHeader ; $0b
-	dba PsychicClub_MapHeader ; $0c
-	dba RockClubEntrance_MapHeader ; $0d
-	dba RockClubLobby_MapHeader ; $0e
-	dba RockClub_MapHeader ; $0f
-	dba FightningClubEntrance_MapHeader ; $10
-	dba FightningClubLobby_MapHeader ; $11
-	dba FightingClub_MapHeader ; $12
-	dba GrassClubEntrance_MapHeader ; $13
-	dbw $0f, $4ee6 ;
-	dba GrassClub_MapHeader ; $15
-	dba ScienceClubEntrance_MapHeader ; $16
-	dba ScienceClubLobby_MapHeader ; $17
-	dba ScienceClub_MapHeader ; $18
-	dba WaterClubEntrance_MapHeader ; $19
-	dba WaterClubLobby_MapHeader ; $1a
-	dba WaterClub_MapHeader ; $1b
-	dba FireClubEntrance_MapHeader ; $1c
-	dba FireClubLobby_MapHeader ; $1d
-	dba FireClub_MapHeader ; $1e
-	dbw $0d, $4575 ; $
-	dbw $0d, $4773 ; $
-	dbw $0f, $519e ; $
-	dbw $0f, $52d7 ; $
-	dbw $10, $5592 ; $
-	dba PokemonDomeEntrance_MapHeader ; $24
-	dbw $0f, $55d1 ; $
-	dbw $0f, $5d58 ; $
+	dba PsychicClubEntrance_MapHeader ; $09
+	dba PsychicClubLobby_MapHeader ; $0a
+	dba PsychicClub_MapHeader ; $0b
+	dba RockClubEntrance_MapHeader ; $0c
+	dba RockClubLobby_MapHeader ; $0d
+	dba RockClub_MapHeader ; $0e
+	dba FightningClubEntrance_MapHeader ; $0f
+	dba FightningClubLobby_MapHeader ; $10
+	dba FightingClub_MapHeader ; $11
+	dba GrassClubEntrance_MapHeader ; $12
+	dbw $0f, $4ee6 ; $13
+	dba GrassClub_MapHeader ; $14
+	dba ScienceClubEntrance_MapHeader ; $15
+	dba ScienceClubLobby_MapHeader ; $16
+	dba ScienceClub_MapHeader ; $17
+	dba WaterClubEntrance_MapHeader ; $18
+	dba WaterClubLobby_MapHeader ; $19
+	dba WaterClub_MapHeader ; $1a
+	dba FireClubEntrance_MapHeader ; $1b
+	dba FireClubLobby_MapHeader ; $1c
+	dba FireClub_MapHeader ; $1d
+	dbw $0d, $4575 ; $1e
+	dbw $0d, $4773 ; $1f
+	dbw $0f, $519e ; $20
+	dbw $0f, $52d7 ; $21
+	dbw $10, $5592 ; $22
+	dba PokemonDomeEntrance_MapHeader ; $23
+	dbw $0f, $55d1 ; $24
+	dbw $0f, $5d58 ; $25
 	dba OverheadIslands_MapHeader ; $26
 	dbw $0d, $4aaf ; $27
 	dbw $10, $5be9 ; $28
