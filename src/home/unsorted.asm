@@ -2236,7 +2236,7 @@ StubbedPlayDefaultSong::
 	ret
 
 Func_3c3d::
-	farcall $7, $5ef1
+	farcall Func_1def1
 	ret
 
 ResetAnimationQueue::

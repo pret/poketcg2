@@ -2228,14 +2228,15 @@ CountGRCoinPiecesObtained_2:
 	pop bc
 	ret
 
-Func_1d0ec:
+; return in hl the coin text at .CoinTable[a]
+GetCoinName:
 	push af
 	push bc
 	ld c, a
 	ld b, 0
 	sla c
 	rl b
-	ld hl, .Data_1d0ff
+	ld hl, .CoinTable
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -2244,70 +2245,72 @@ Func_1d0ec:
 	pop af
 	ret
 
-.Data_1d0ff:
-	dw $0601
-	dw $0608
-	dw $0602
-	dw $0603
-	dw $0604
-	dw $0605
-	dw $0606
-	dw $0607
-	dw $0609
-	dw $060a
-	dw $060b
-	dw $060c
-	dw $060d
-	dw $060e
-	dw $060f
-	dw $0610
-	dw $0611
-	dw $0612
-	dw $0613
-	dw $0614
-	dw $0615
-	dw $0616
-	dw $0617
-	dw $0618
-	dw $0608
-	dw $0619
-	dw $061a
-	dw $0608
-	dw $061b
-	dw $0608
-	dw $0608
-	dw $0608
-	dw $061c
-	dw $0608
-	dw $0608
-	dw $0608
-	dw $0608
-	dw $0608
-	dw $0608
+.CoinTable:
+	tx ChanseyCoinText     ; GFX_COIN_CHANSEY
+	tx GRCoinText          ; GFX_COIN_GR
+	tx GrassCoinText       ; GFX_COIN_ODDISH
+	tx FireCoinText        ; GFX_COIN_CHARMANDER
+	tx WaterCoinText       ; GFX_COIN_STARMIE
+	tx LightningCoinText   ; GFX_COIN_PIKACHU
+	tx PsychicCoinText     ; GFX_COIN_ALAKAZAM
+	tx RockCoinText        ; GFX_COIN_KABUTO
+	tx GRGrassCoinText     ; GFX_COIN_GOLBAT
+	tx GRLightningCoinText ; GFX_COIN_MAGNEMITE
+	tx GRFireCoinText      ; GFX_COIN_MAGMAR
+	tx GRWaterCoinText     ; GFX_COIN_PSYDUCK
+	tx GRFightingCoinText  ; GFX_COIN_MACHAMP
+	tx GRPsychicCoinText   ; GFX_COIN_MEW
+	tx GRColorlessCoinText ; GFX_COIN_SNORLAX
+	tx GRKingCoinText      ; GFX_COIN_TOGEPI
+	tx PonytaCoinText      ; GFX_COIN_PONYTA
+	tx HorseaCoinText      ; GFX_COIN_HORSEA
+	tx ArbokCoinText       ; GFX_COIN_ARBOK
+	tx JigglypuffCoinText  ; GFX_COIN_JIGGLYPUFF
+	tx DugtrioCoinText     ; GFX_COIN_DUGTRIO
+	tx GengarCoinText      ; GFX_COIN_GENGAR
+	tx RaichuCoinText      ; GFX_COIN_RAICHU
+	tx LugiaCoinText       ; GFX_COIN_LUGIA
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY1
+	tx GRCoinPiece1Text    ; GFX_COIN_GR_PIECE1
+	tx GRCoinPiece2Text    ; GFX_COIN_GR_PIECE2
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY2
+	tx GRCoinPiece3Text    ; GFX_COIN_GR_PIECE3
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY3
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY4
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY5
+	tx GRCoinPiece4Text    ; GFX_COIN_GR_PIECE4
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY6
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY7
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY8
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY9
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY10
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY11
+	; no GFX_COIN_GR_DUMMY12
 
-Func_1d14d:
+; set bit 0--3 of a for each piece obtained
+CheckObtainedGRCoinPieces:
 	push bc
 	push de
 	ld b, 0
-	ld a, $f
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	sla a
 	sla a
 	sla a
 	or b
 	ld b, a
-	ld a, $e
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	sla a
 	sla a
 	or b
 	ld b, a
-	ld a, $d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	sla a
 	or b
 	ld b, a
-	ld a, $c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	or b
 	and $f
@@ -2328,7 +2331,7 @@ Func_1d181:
 	ld a, b
 	jr .done
 .asm_1d191
-	call Func_1d14d
+	call CheckObtainedGRCoinPieces
 	add $18
 	; fallthrough
 .done
@@ -2344,21 +2347,19 @@ Func_1d198:
 	push de
 	push hl
 	ld c, a
-	ld b, $00
+	ld b, 0
+REPT 3 ; *8
 	sla c
 	rl b
-	sla c
-	rl b
-	sla c
-	rl b ; *8
+ENDR
 	ld hl, .SpriteAnimGfxParams
 	add hl, bc
-	ld c, $00
-	cp $28
-	jr c, .asm_1d1b7
-	ld c, $02
-.asm_1d1b7
-	ld b, $07
+	ld c, 0
+	cp NUM_GFX_MAIN_COINS
+	jr c, .got_index
+	ld c, 2
+.got_index
+	ld b, BANK(.SpriteAnimGfxParams)
 	ld a, $ff
 	call CreateSpriteAnim
 	pop hl
@@ -2368,46 +2369,46 @@ Func_1d198:
 	ret
 
 .SpriteAnimGfxParams:
-	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $00
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; $01
-	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; $02
-	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; $03
-	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; $04
-	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; $05
-	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; $06
-	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; $07
-	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; $08
-	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; $09
-	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; $0a
-	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; $0b
-	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; $0c
-	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; $0d
-	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; $0e
-	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; $0f
-	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; $10
-	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; $11
-	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; $12
-	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; $13
-	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; $14
-	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; $15
-	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; $16
-	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; $17
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $18
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; $19
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; $1a
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1b
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; $1c
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1d
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1e
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1f
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; $20
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $21
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $22
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $23
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $24
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $25
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $26
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $27
+	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_CHANSEY
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; GFX_COIN_GR
+	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; GFX_COIN_ODDISH
+	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; GFX_COIN_CHARMANDER
+	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; GFX_COIN_STARMIE
+	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; GFX_COIN_PIKACHU
+	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; GFX_COIN_ALAKAZAM
+	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; GFX_COIN_KABUTO
+	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; GFX_COIN_GOLBAT
+	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; GFX_COIN_MAGNEMITE
+	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; GFX_COIN_MAGMAR
+	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; GFX_COIN_PSYDUCK
+	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; GFX_COIN_MACHAMP
+	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; GFX_COIN_MEW
+	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; GFX_COIN_SNORLAX
+	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; GFX_COIN_TOGEPI
+	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; GFX_COIN_PONYTA
+	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; GFX_COIN_HORSEA
+	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; GFX_COIN_ARBOK
+	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; GFX_COIN_JIGGLYPUFF
+	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; GFX_COIN_DUGTRIO
+	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; GFX_COIN_GENGAR
+	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; GFX_COIN_RAICHU
+	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; GFX_COIN_LUGIA
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY1
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; GFX_COIN_GR_PIECE1
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; GFX_COIN_GR_PIECE2
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY2
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; GFX_COIN_GR_PIECE3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY5
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; GFX_COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY6
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY7
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY8
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY9
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY10
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY11
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY12
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_120, PALETTE_13B ; $28
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $29
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_121, PALETTE_13B ; $2a
@@ -2726,7 +2727,7 @@ Func_1dbee:
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
 	ld a, [wdc0a]
-	call Func_1d0ec
+	call GetCoinName
 	call LoadTxRam2
 	ret
 
@@ -2780,7 +2781,7 @@ Func_1dc52:
 	ld a, [wdc0a]
 	cp 1
 	jr nz, .next
-	call Func_1d14d
+	call CheckObtainedGRCoinPieces
 	cp $f
 	jr z, .next
 	call CountGRCoinPiecesObtained_2
@@ -2844,11 +2845,11 @@ Func_1dcbf:
 	ret
 
 Func_1dce3:
-	ld de, $0
-	ld bc, $1408
+	lb de,  0, 0
+	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
-	ld hl, $600
-	ld de, $102
+	ldtx hl, PlayerCoinSelectText
+	lb de,  1, 2
 	call Func_35af
 	ld a, [wdc08]
 	call Func_1dfa5
@@ -2866,16 +2867,16 @@ Func_1dd08:
 	push de
 	push hl
 	ld a, [wdc08]
-	ld hl, $5b5
-	ld de, $404
+	ldtx hl, PlayerStatusCurrentCoinText
+	lb de,  4, 4
 	call Func_35af
-	ld de, SetBGP
-	ld bc, $c01
+	lb de,  4, 6
+	lb bc, 12, 1
 	farcall FillBoxInBGMapWithZero
-	call Func_1d0ec
+	call GetCoinName
 	call Func_35af
 	ld a, [wdc08]
-	ld de, $104
+	lb de,  1, 4
 	farcall Func_12c49b
 	call Func_1dd3a
 	pop hl
@@ -2894,20 +2895,20 @@ Func_1dd3a:
 	ld c, a
 	ld a, [wdc09]
 	cp b
-	jr z, .asm_1dd4d
+	jr z, .got_index
 	ld c, 8
-.asm_1dd4d
+.got_index
 	ld a, c
 	add a
 	ld c, a
 	ld b, 0
-	ld hl, Data_1dd6a
+	ld hl, .CoordTable
 	add hl, bc
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld b, 7
-	ld hl, Data_1dd7c
+	ld b, BANK(.SpriteAnimGfxParams)
+	ld hl, .SpriteAnimGfxParams
 	ld a, 0
 	ld c, 0
 	call CreateSpriteAnim
@@ -2917,22 +2918,22 @@ Func_1dd3a:
 	pop af
 	ret
 
-Data_1dd6a:
-	dw $5808
-	dw $5830
-	dw $5858
-	dw $5880
-	dw $7808
-	dw $7830
-	dw $7858
-	dw $7880
-	dw $a0a0
+.CoordTable:
+	db   8,  88 ; $0
+	db  48,  88 ; $1
+	db  88,  88 ; $2
+	db 128,  88 ; $3
+	db   8, 120 ; $4
+	db  48, 120 ; $5
+	db  88, 120 ; $6
+	db 128, 120 ; $7
+	db 160, 160 ; $8
 
-Data_1dd7c:
-	dw $01d4
-	dw $009d
-	dw $0117
-	dw $016b
+.SpriteAnimGfxParams:
+	dw TILESET_WINDOW
+	dw SPRITE_ANIM_9D
+	dw FRAMESET_117
+	dw PALETTE_16B
 
 Func_1dd84:
 	farcall ClearSpriteAnims
@@ -3029,7 +3030,7 @@ Func_1dd89:
 	ret
 
 Func_1de16:
-	call Func_1d14d
+	call CheckObtainedGRCoinPieces
 	add $18
 	ret
 
@@ -3058,9 +3059,9 @@ MenuParams_1de1c:
 	db $ff
 
 Data_1de4c:
-	dw $061d
-	dw $061e
-	dw $061f
+	tx EventCoinPage1Text
+	tx EventCoinPage2Text
+	tx EventCoinPage3Text
 Data_1de52:
 	dw Data_1de58
 	dw Data_1de70
@@ -3149,7 +3150,7 @@ Func_1decb:
 	call Func_1dd08
 	ret
 
-Func_1def1:
+Func_1def1::
 	push af
 	push bc
 	push de

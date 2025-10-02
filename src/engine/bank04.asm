@@ -3358,7 +3358,8 @@ Func_114af:
 	push hl
 	ld a, [wda98]
 	and a
-	jr nz, .asm_114ef
+	jr nz, .fill
+
 	lb de, 0, 0
 	lb bc, 8, 4
 	call Func_10673
@@ -3377,7 +3378,8 @@ Func_114af:
 	ldtx hl, PlayerDiaryCardsUnitText
 	call Func_35af
 	call Func_11622
-.asm_114ef
+
+.fill
 	ld a, $ff
 	ld [wda98], a
 	pop hl
@@ -3394,8 +3396,10 @@ Func_114f9:
 	ld a, [wda98]
 	and a
 	jr z, .clear
+
 	call Func_103b6
 	call Func_10b18
+
 .clear
 	xor a
 	ld [wda98], a
@@ -3420,7 +3424,7 @@ Func_11512:
 	ld a, l
 	cp $0f
 	jr c, .got_value
-	ld hl, $270f
+	lb hl, $27, $0f
 .got_value
 	ld a, l
 	ld [wda99], a
@@ -3713,12 +3717,11 @@ SetAthSpriteAnimPosition:
 	pop bc
 	ret
 
-; returns nz if sprite anim was animating
-; before setting the flag
-SetCthSpriteAnimAnimating:
+; also return nz if already animating before setting the flag
+SetAthSpriteAnimAnimating:
 	push bc
 	ld c, a
-	call Func_12ead
+	call SetCthSpriteAnimAnimating
 	pop bc
 	ret
 
@@ -3947,7 +3950,7 @@ UpdateIntroOrbs:
 	push de
 	push hl
 	ld a, c
-	call SetCthSpriteAnimAnimating
+	call SetAthSpriteAnimAnimating
 	jr nz, .skip
 	call .UpdateState
 .skip
@@ -4982,7 +4985,8 @@ SetCthSpriteAnimStartDelay:
 	pop bc
 	ret
 
-Func_12ead:
+; also return nz if already animating before setting the flag
+SetCthSpriteAnimAnimating:
 	push hl
 	call GetCthSpriteAnim
 	call CheckIsSpriteAnimAnimating

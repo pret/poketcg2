@@ -2791,7 +2791,7 @@ Func_29e02:
 
 SECTION "Bank a@6331", ROMX[$6331], BANK[$a]
 
-Func_2a331:
+Func_2a331::
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	farcall CheckEnergyNeededForAttack

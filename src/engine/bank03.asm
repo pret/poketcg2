@@ -2665,7 +2665,7 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	ret
 
 ; clear wScriptBufferIndex
-; then copy 32 bytes from the script step source to wScriptBuffer
+; then copy 32 bytes from the script source to wScriptBuffer
 ReloadScriptBuffer::
 	xor a
 	ld [wScriptBufferIndex], a

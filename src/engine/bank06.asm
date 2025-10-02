@@ -3534,14 +3534,15 @@ LookUpNameInCardPopNameList:
 	scf
 	ret
 
-; in tcg2, a player may Card Pop! with the same partner again whenever the two duel each other
+; in tcg2, a player may Card Pop! with the same partner again
+; whenever the two duel each other
 ResetCardPopStatusWithSamePartnerOnLinkDuel:
 	call EnableSRAM
 	ld a, BANK("SRAM1")
 	call BankswitchSRAM
 	ld hl, sCardPopNameList
 	ld c, CARDPOP_NAME_LIST_MAX_ELEMS
-.get_entry_loop
+.loop_name_list
 	push hl
 	ld de, wNameBuffer
 	call LookUpNameInCardPopNameList.CompareNames
@@ -3550,7 +3551,7 @@ ResetCardPopStatusWithSamePartnerOnLinkDuel:
 	ld de, NAME_BUFFER_LENGTH
 	add hl, de
 	dec c
-	jr nz, .get_entry_loop
+	jr nz, .loop_name_list
 	jr .done
 .found_name
 	ld [hl], 0
@@ -5884,7 +5885,7 @@ DisplayBoosterContent:
 	ldtx hl, ChooseCardToCheckText
 	ldtx de, BoosterPackCardsText
 	bank1call SetCardListHeaderAndInfoText
-	ld a, 9
+	ld a, START + A_BUTTON
 	ld [wNoItemSelectionMenuKeys], a
 	bank1call DisplayCardList
 	ret
