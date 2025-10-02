@@ -1314,7 +1314,7 @@ Func_d299::
 	res 7, [hl]
 	jp .asm_d333
 
-; a = ?
+; a = map id
 ; b = direction
 ; de = coordinates
 Func_d3c4:

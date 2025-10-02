@@ -6,33 +6,33 @@ IshiharasHouse_MapHeader:
 	db MUSIC_ISHIHARA
 
 IshiharasHouse_StepEvents:
-	db 4, 12, $00, 0, 2, SOUTH, $03, $C4, $53
-	db 5, 12, $00, 0, 2, SOUTH, $03, $C4, $53
+	map_exit 4, 12, $00, 0, 2, SOUTH
+	map_exit 5, 12, $00, 0, 2, SOUTH
 	db $ff
 
 IshiharasHouse_NPCs:
-	db OW_ISHIHARA, 4, 4, SOUTH, $B8, $41
-	db OW_NIKKI, 5, 4, SOUTH, $6A, $44
+	npc OW_ISHIHARA, 4, 4, SOUTH, $B8, $41
+	npc OW_NIKKI, 5, 4, SOUTH, $6A, $44
 	db $ff
 
 IshiharasHouse_NPCInteractions:
-	db OW_ISHIHARA, $0b, $72, $41
-	db OW_NIKKI, $0b, $cb, $43
+	npc_script OW_ISHIHARA, $0b, $72, $41
+	npc_script OW_NIKKI, $0b, $cb, $43
 	db $ff
 
 IshiharasHouse_OWInteractions:
-	db 3, 2, $00, $00, $00, $00, $10, $00, $40
-	db 4, 2, $00, $00, $00, $00, $10, $16, $40
-	db 5, 2, $00, $00, $00, $00, $10, $2c, $40
-	db 6, 2, $00, $00, $00, $00, $10, $42, $40
-	db 7, 2, $00, $00, $00, $00, $10, $58, $40
-	db 8, 2, $00, $00, $00, $00, $10, $6e, $40
-	db 1, 9, $00, $00, $00, $00, $10, $84, $40
-	db 2, 9, $00, $00, $00, $00, $10, $9a, $40
-	db 3, 9, $00, $00, $00, $00, $10, $b0, $40
-	db 6, 9, $00, $00, $00, $00, $10, $c6, $40
-	db 7, 9, $00, $00, $00, $00, $10, $dc, $40
-	db 8, 9, $00, $00, $00, $00, $10, $f2, $40
+	ow_script 3, 2, $10, $00, $40
+	ow_script 4, 2, $10, $16, $40
+	ow_script 5, 2, $10, $2c, $40
+	ow_script 6, 2, $10, $42, $40
+	ow_script 7, 2, $10, $58, $40
+	ow_script 8, 2, $10, $6e, $40
+	ow_script 1, 9, $10, $84, $40
+	ow_script 2, 9, $10, $9a, $40
+	ow_script 3, 9, $10, $b0, $40
+	ow_script 6, 9, $10, $c6, $40
+	ow_script 7, 9, $10, $dc, $40
+	ow_script 8, 9, $10, $f2, $40
 	db $ff
 
 IshiharasHouse_MapScripts:
@@ -196,24 +196,24 @@ LightningClub_MapHeader:
 	db MUSIC_CLUB_1
 
 LightningClub_StepEvents:
-	db 6, 15, $06, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 15, $06, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 15, $06, 4, 1, SOUTH
+	map_exit 7, 15, $06, 5, 1, SOUTH
 	db $ff
 
 LightningClub_NPCs:
-	db OW_ISAAC, 6, 2, SOUTH, $00, $00
-	db OW_JENNIFER, 7, 9, SOUTH, $f9, $48
-	db OW_NICHOLAS, 3, 5, SOUTH, $00, $00
-	db OW_BRANDON, 11, 6, SOUTH, $f9, $48
-	db OW_GR_4, 7, 4, SOUTH, $29, $49
+	npc OW_ISAAC, 6, 2, SOUTH, $00, $00
+	npc OW_JENNIFER, 7, 9, SOUTH, $f9, $48
+	npc OW_NICHOLAS, 3, 5, SOUTH, $00, $00
+	npc OW_BRANDON, 11, 6, SOUTH, $f9, $48
+	npc OW_GR_4, 7, 4, SOUTH, $29, $49
 	db $ff
 
 LightningClub_NPCInteractions:
-	db OW_ISAAC, $0b, $45, $46
-	db OW_JENNIFER, $0b, $3b, $47
-	db OW_NICHOLAS, $0b, $9d, $47
-	db OW_BRANDON, $0b, $97, $48
-	db OW_GR_4, $0b, $0e, $49
+	npc_script OW_ISAAC, $0b, $45, $46
+	npc_script OW_JENNIFER, $0b, $3b, $47
+	npc_script OW_NICHOLAS, $0b, $9d, $47
+	npc_script OW_BRANDON, $0b, $97, $48
+	npc_script OW_GR_4, $0b, $0e, $49
 	db $ff
 
 LightningClub_MapScripts:
@@ -307,10 +307,10 @@ Func_2c568:
 	ret
 
 LightningClub_AfterDuelScripts:
-	db OW_ISAAC, $0b, $ec, $46
-	db OW_JENNIFER, $0b, $81, $47
-	db OW_NICHOLAS, $0b, $47, $48
-	db OW_BRANDON, $0b, $dd, $48
+	npc_script OW_ISAAC, $0b, $ec, $46
+	npc_script OW_JENNIFER, $0b, $81, $47
+	npc_script OW_NICHOLAS, $0b, $47, $48
+	npc_script OW_BRANDON, $0b, $dd, $48
 	db $ff
 ; 0x2c584
 
@@ -322,22 +322,22 @@ PsychicClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 PsychicClubEntrance_StepEvents:
-	db 4, 8, $00, 6, 3, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 6, 3, SOUTH, $03, $c4, $53
-	db 0, 3, $0a, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $0a, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $0b, 6, 12, NORTH, $03, $c4, $53
-	db 5, 0, $0b, 7, 12, NORTH, $03, $c4, $53
-	db 4, 2, $00, $00, $00, $00, $0b, $3e, $4a
-	db 5, 2, $00, $00, $00, $00, $0b, $3e, $4a
+	map_exit 4, 8, $00, 6, 3, SOUTH
+	map_exit 5, 8, $00, 6, 3, SOUTH
+	map_exit 0, 3, $0a, 14, 6, WEST
+	map_exit 0, 4, $0a, 14, 7, WEST
+	map_exit 4, 0, $0b, 6, 12, NORTH
+	map_exit 5, 0, $0b, 7, 12, NORTH
+	ow_script 4, 2, $0b, $3e, $4a
+	ow_script 5, 2, $0b, $3e, $4a
 	db $ff
 
 PsychicClubEntrance_NPCs:
-	db OW_STEPHANIE, 5, 1, SOUTH, $bb, $4a
+	npc OW_STEPHANIE, 5, 1, SOUTH, $bb, $4a
 	db $ff
 
 PsychicClubEntrance_NPCInteractions:
-	db OW_STEPHANIE, $0b, $a0, $4a
+	npc_script OW_STEPHANIE, $0b, $a0, $4a
 	db $ff
 
 PsychicClubEntrance_MapScripts:
@@ -562,36 +562,36 @@ PsychicClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 PsychicClubLobby_StepEvents:
-	db 15, 6, $09, 1, 3, EAST, $03, $c4, $53
-	db 15, 7, $09, 1, 4, EAST, $03, $c4, $53
+	map_exit 15, 6, $09, 1, 3, EAST
+	map_exit 15, 7, $09, 1, 4, EAST
 	db $ff
 
 PsychicClubLobby_NPCs:
-	db OW_SPECS_5, $08, $08, $01, $00, $00
-	db OW_LASS1_4, $0a, $09, $03, $00, $00
-	db OW_IMAKUNI_BLACK, $01, $0a, $03, $a8, $4c
-	db OW_LAD_6, $07, $06, $01, $00, $00
-	db OW_GR_LASS_2, $0e, $04, $02, $0e, $4d
-	db OW_CLERK_1, $02, $02, $02, $00, $00
-	db OW_CLERK_2, $04, $02, $02, $00, $00
+	npc OW_SPECS_5, $08, $08, $01, $00, $00
+	npc OW_LASS1_4, $0a, $09, $03, $00, $00
+	npc OW_IMAKUNI_BLACK, $01, $0a, $03, $a8, $4c
+	npc OW_LAD_6, $07, $06, $01, $00, $00
+	npc OW_GR_LASS_2, $0e, $04, $02, $0e, $4d
+	npc OW_CLERK_1, $02, $02, $02, $00, $00
+	npc OW_CLERK_2, $04, $02, $02, $00, $00
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
-	db OW_SPECS_5, $0b, $11, $4c
-	db OW_LASS1_4, $0b, $7d, $4c
-	db OW_IMAKUNI_BLACK, $0f, $0c, $43
-	db OW_LAD_6, $0b, $b7, $4c
-	db OW_GR_LASS_2, $0b, $e8, $4c
+	npc_script OW_SPECS_5, $0b, $11, $4c
+	npc_script OW_LASS1_4, $0b, $7d, $4c
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_LAD_6, $0b, $b7, $4c
+	npc_script OW_GR_LASS_2, $0b, $e8, $4c
 	db $ff
 
 PsychicClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0f, $b9, $41
-	db 4, 4, $00, $00, $00, $00, $0f, $d9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $d6, $42
-	db 13, 2, $00, $00, $00, $00, $10, $ec, $42
-	db 14, 2, $00, $00, $00, $00, $10, $02, $43
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $d6, $42
+	ow_script 13, 2, $10, $ec, $42
+	ow_script 14, 2, $10, $02, $43
 	db $ff
 
 PsychicClubLobby_MapScripts:
@@ -679,24 +679,24 @@ PsychicClub_MapHeader:
 	db MUSIC_CLUB_2
 
 PsychicClub_StepEvents:
-	db 6, 13, $09, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 13, $09, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 13, $09, 4, 1, SOUTH
+	map_exit 7, 13, $09, 5, 1, SOUTH
 	db $ff
 
 PsychicClub_NPCs:
-	db OW_MURRAY, 6, 3, SOUTH, $00, $00
-	db OW_ROBERT, 3, 10, WEST, $00, $00
-	db OW_DANIEL, 4, 5, NORTH, $00, $00
-	db OW_STEPHANIE, 11, 6, EAST, $00, $00
-	db OW_GR_4, 7, 3, SOUTH, $3c, $52
+	npc OW_MURRAY, 6, 3, SOUTH, $00, $00
+	npc OW_ROBERT, 3, 10, WEST, $00, $00
+	npc OW_DANIEL, 4, 5, NORTH, $00, $00
+	npc OW_STEPHANIE, 11, 6, EAST, $00, $00
+	npc OW_GR_4, 7, 3, SOUTH, $3c, $52
 	db $ff
 
 PsychicClub_NPCInteractions:
-	db OW_MURRAY, $0b, $88, $4e
-	db OW_ROBERT, $0b, $cc, $4f
-	db OW_DANIEL, $0b, $46, $50
-	db OW_STEPHANIE, $0b, $b3, $50
-	db OW_GR_4, $0b, $90, $51
+	npc_script OW_MURRAY, $0b, $88, $4e
+	npc_script OW_ROBERT, $0b, $cc, $4f
+	npc_script OW_DANIEL, $0b, $46, $50
+	npc_script OW_STEPHANIE, $0b, $b3, $50
+	npc_script OW_GR_4, $0b, $90, $51
 	db $ff
 
 PsychicClub_MapScripts:
@@ -787,11 +787,11 @@ Func_2ce19:
 	ret
 
 PsychicClub_AfterDuelScripts:
-	db OW_MURRAY, $0b, $73, $4f
-	db OW_ROBERT, $0b, $2a, $50
-	db OW_DANIEL, $0b, $97, $50
-	db OW_STEPHANIE, $0b, $42, $51
-	db OW_GR_4, $0b, $0e, $52
+	npc_script OW_MURRAY, $0b, $73, $4f
+	npc_script OW_ROBERT, $0b, $2a, $50
+	npc_script OW_DANIEL, $0b, $97, $50
+	npc_script OW_STEPHANIE, $0b, $42, $51
+	npc_script OW_GR_4, $0b, $0e, $52
 	db $ff
 ; 0x2ce39
 
@@ -817,12 +817,12 @@ RockClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 RockClubEntrance_StepEvents:
-	db 4, 8, $00, 1, 4, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 1, 4, SOUTH, $03, $c4, $53
-	db 0, 3, $0d, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $0d, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $0e, 6, 13, NORTH, $03, $c4, $53
-	db 5, 0, $0e, 7, 13, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 1, 4, SOUTH
+	map_exit 5, 8, $00, 1, 4, SOUTH
+	map_exit 0, 3, $0d, 14, 6, WEST
+	map_exit 0, 4, $0d, 14, 7, WEST
+	map_exit 4, 0, $0e, 6, 13, NORTH
+	map_exit 5, 0, $0e, 7, 13, NORTH
 	db $ff
 
 RockClubEntrance_MapScripts:
@@ -911,36 +911,36 @@ RockClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 RockClubLobby_StepEvents:
-	db 15, 6, $0c, 1, 3, EAST, $03, $c4, $53
-	db 15, 7, $0c, 1, 4, EAST, $03, $c4, $53
+	map_exit 15, 6, $0c, 1, 3, EAST
+	map_exit 15, 7, $0c, 1, 4, EAST
 	db $ff
 
 RockClubLobby_NPCs:
-	db OW_LASS2_2, 5, 6, EAST, $00, $00
-	db OW_WOMAN, 12, 10, NORTH, $00, $00
-	db OW_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
-	db OW_CHAP_1, 8, 9, WEST, $00, $00
-	db OW_LAD_3, 10, 3, SOUTH, $00, $00
-	db OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	db OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_LASS2_2, 5, 6, EAST, $00, $00
+	npc OW_WOMAN, 12, 10, NORTH, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
+	npc OW_CHAP_1, 8, 9, WEST, $00, $00
+	npc OW_LAD_3, 10, 3, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 RockClubLobby_NPCInteractions:
-	db OW_LASS2_2, $0b, $e0, $54
-	db OW_WOMAN, $0b, $46, $55
-	db OW_IMAKUNI_BLACK, $0f, $0c, $43
-	db OW_CHAP_1, $0b, $8b, $55
-	db OW_LAD_3, $0b, $c7, $55
+	npc_script OW_LASS2_2, $0b, $e0, $54
+	npc_script OW_WOMAN, $0b, $46, $55
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_CHAP_1, $0b, $8b, $55
+	npc_script OW_LAD_3, $0b, $c7, $55
 	db $ff
 
 RockClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0f, $b9, $41
-	db 4, 4, $00, $00, $00, $00, $0f, $d9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $08, $41
-	db 13, 2, $00, $00, $00, $00, $10, $1e, $41
-	db 14, 2, $00, $00, $00, $00, $10, $34, $41
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $08, $41
+	ow_script 13, 2, $10, $1e, $41
+	ow_script 14, 2, $10, $34, $41
 	db $ff
 
 RockClubLobby_MapScripts:
@@ -1031,23 +1031,23 @@ RockClub_MapHeader:
 	db MUSIC_CLUB_2
 
 RockClub_StepEvents:
-	db 6, 14, $0c, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 14, $0c, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 14, $0c, 4, 1, SOUTH
+	map_exit 7, 14, $0c, 5, 1, SOUTH
 	db $ff
 
 RockClub_NPCs:
-	db OW_GENE, 7, 2, $02, $00, $00
-	db OW_MATTHEW, 2, 3, $02, $00, $00
-	db OW_RYAN, 9, 7, $01, $00, $00
-	db OW_ANDREW, 3, 8, $01, $00, $00
-	db OW_GR_1, 7, 3, $00, $f3, $58
+	npc OW_GENE, 7, 2, $02, $00, $00
+	npc OW_MATTHEW, 2, 3, $02, $00, $00
+	npc OW_RYAN, 9, 7, $01, $00, $00
+	npc OW_ANDREW, 3, 8, $01, $00, $00
+	npc OW_GR_1, 7, 3, $00, $f3, $58
 	db $ff
 
 RockClub_NPCInteractions:
-	db OW_GENE, $0b, $54, $57
-	db OW_MATTHEW, $0b, $ea, $57
-	db OW_RYAN, $0b, $41, $58
-	db OW_ANDREW, $0b, $9c, $58
+	npc_script OW_GENE, $0b, $54, $57
+	npc_script OW_MATTHEW, $0b, $ea, $57
+	npc_script OW_RYAN, $0b, $41, $58
+	npc_script OW_ANDREW, $0b, $9c, $58
 	db $ff
 
 RockClub_MapScripts:
@@ -1118,10 +1118,10 @@ Func_2d6ae:
 	ret
 
 RockClub_AfterDuelScripts:
-	db OW_GENE, $0b, $c3, $57
-	db OW_MATTHEW, $0b, $25, $58
-	db OW_RYAN, $0b, $7e, $58
-	db OW_ANDREW, $0b, $d7, $58
+	npc_script OW_GENE, $0b, $c3, $57
+	npc_script OW_MATTHEW, $0b, $25, $58
+	npc_script OW_RYAN, $0b, $7e, $58
+	npc_script OW_ANDREW, $0b, $d7, $58
 	db $ff
 ; 0x2d6ca
 
@@ -1133,12 +1133,12 @@ FightningClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 FightningClubEntrance_StepEvents:
-	db 4, 8, $00, 3, 7, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 3, 7, SOUTH, $03, $c4, $53
-	db 0, 3, $10, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $10, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $11, 5, 10, NORTH, $03, $c4, $53
-	db 5, 0, $11, 6, 10, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 3, 7, SOUTH
+	map_exit 5, 8, $00, 3, 7, SOUTH
+	map_exit 0, 3, $10, 14, 6, WEST
+	map_exit 0, 4, $10, 14, 7, WEST
+	map_exit 4, 0, $11, 5, 10, NORTH
+	map_exit 5, 0, $11, 6, 10, NORTH
 	db $ff
 
 FightningClubEntrance_MapScripts:
@@ -1267,36 +1267,36 @@ FightningClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 FightningClubLobby_StepEvents:
-	db 15, 6, $0F, 1, 3, EAST, $03, $C4, $53
-	db 15, 7, $0F, 1, 4, EAST, $03, $C4, $53
+	map_exit 15, 6, $0F, 1, 3, EAST
+	map_exit 15, 7, $0F, 1, 4, EAST
 	db $ff
 
 FightningClubLobby_NPCs:
-	db OW_PAPPY_2, 1, 5, $02, $00, $00
-	db OW_SPECS_3, 4, 9, $01, $00, $00
-	db OW_LAD4, 7, 9, $03, $00, $00
-	db OW_GIRL_4, 6, 8, $02, $00, $00
-	db OW_CLERK_1, 2, 2, $02, $00, $00
-	db OW_CLERK_2, 4, 2, $02, $00, $00
-	db OW_MICHAEL, 11, 6, $01, $97, $5b
+	npc OW_PAPPY_2, 1, 5, $02, $00, $00
+	npc OW_SPECS_3, 4, 9, $01, $00, $00
+	npc OW_LAD4, 7, 9, $03, $00, $00
+	npc OW_GIRL_4, 6, 8, $02, $00, $00
+	npc OW_CLERK_1, 2, 2, $02, $00, $00
+	npc OW_CLERK_2, 4, 2, $02, $00, $00
+	npc OW_MICHAEL, 11, 6, $01, $97, $5b
 	db $ff
 
 FightningClubLobby_NPCInteractions:
-	db OW_PAPPY_2, $0b, $ac, $5b
-	db OW_SPECS_3, $0b, $17, $5c
-	db OW_LAD4, $0b, $48, $5c
-	db OW_GIRL_4, $0b, $79, $5c
-	db OW_MICHAEL, $0b, $0e, $5b
+	npc_script OW_PAPPY_2, $0b, $ac, $5b
+	npc_script OW_SPECS_3, $0b, $17, $5c
+	npc_script OW_LAD4, $0b, $48, $5c
+	npc_script OW_GIRL_4, $0b, $79, $5c
+	npc_script OW_MICHAEL, $0b, $0e, $5b
 	db $ff
 
 FightningClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0F, $B9, $41
-	db 4, 4, $00, $00, $00, $00, $0F, $D9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $4A, $41
-	db 13, 2, $00, $00, $00, $00, $10, $60, $41
-	db 14, 2, $00, $00, $00, $00, $10, $76, $41
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0F, $B9, $41
+	ow_script 4, 4, $0F, $D9, $42
+	ow_script 12, 2, $10, $4A, $41
+	ow_script 13, 2, $10, $60, $41
+	ow_script 14, 2, $10, $76, $41
 	db $ff
 
 FightningClubLobby_MapScripts:
@@ -1348,7 +1348,7 @@ Func_2dafe:
 	ret
 
 FightningClubLobby_AfterDuelScripts:
-	db OW_MICHAEL, $0B, $7B, $5B
+	npc_script OW_MICHAEL, $0B, $7B, $5B
 	db $ff
 ; 0x2db5b
 
@@ -1360,24 +1360,24 @@ FightingClub_MapHeader:
 	db MUSIC_CLUB_3
 
 FightingClub_StepEvents:
-	db 5, 11, $0f, 4, 1, SOUTH, $03, $c4, $53
-	db 6, 11, $0f, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 5, 11, $0f, 4, 1, SOUTH
+	map_exit 6, 11, $0f, 5, 1, SOUTH
 	db $ff
 
 FightingClub_NPCs:
-	db OW_MITCH, 5, 2, SOUTH, $e4, $5d
-	db OW_MICHAEL, 7, 7, SOUTH, $9c, $5f
-	db OW_CHRIS, 2, 5, SOUTH, $9c, $5f
-	db OW_JESSICA, 9, 4, SOUTH, $9c, $5f
-	db OW_GR_1, 6, 2, SOUTH, $23, $60
+	npc OW_MITCH, 5, 2, SOUTH, $e4, $5d
+	npc OW_MICHAEL, 7, 7, SOUTH, $9c, $5f
+	npc OW_CHRIS, 2, 5, SOUTH, $9c, $5f
+	npc OW_JESSICA, 9, 4, SOUTH, $9c, $5f
+	npc OW_GR_1, 6, 2, SOUTH, $23, $60
 	db $ff
 
 FightingClub_NPCInteractions:
-	db OW_MITCH, $0b, $62, $5d
-	db OW_MICHAEL, $0b, $f1, $5d
-	db OW_CHRIS, $0b, $ad, $5e
-	db OW_JESSICA, $0b, $3a, $5f
-	db OW_GR_1, $0b, $b1, $5f
+	npc_script OW_MITCH, $0b, $62, $5d
+	npc_script OW_MICHAEL, $0b, $f1, $5d
+	npc_script OW_CHRIS, $0b, $ad, $5e
+	npc_script OW_JESSICA, $0b, $3a, $5f
+	npc_script OW_GR_1, $0b, $b1, $5f
 	db $ff
 
 FightingClub_MapScripts:
@@ -1440,11 +1440,11 @@ Func_2dd42:
 	ret
 
 FightingClub_AfterDuelScripts:
-	db OW_MITCH, $0b, $c8, $5d
-	db OW_MICHAEL, $0b, $75, $5e
-	db OW_CHRIS, $0b, $1e, $5f
-	db OW_JESSICA, $0b, $80, $5f
-	db OW_GR_1, $0b, $08, $60
+	npc_script OW_MITCH, $0b, $c8, $5d
+	npc_script OW_MICHAEL, $0b, $75, $5e
+	npc_script OW_CHRIS, $0b, $1e, $5f
+	npc_script OW_JESSICA, $0b, $80, $5f
+	npc_script OW_GR_1, $0b, $08, $60
 	db $ff
 ; 0x2dd62
 
@@ -1456,12 +1456,12 @@ GrassClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 GrassClubEntrance_StepEvents:
-	db 4, 8, $00, 8, 4, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 8, 4, SOUTH, $03, $c4, $53
-	db 0, 3, $13, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $13, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $14, 6, 13, NORTH, $03, $c4, $53
-	db 5, 0, $14, 7, 13, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 8, 4, SOUTH
+	map_exit 5, 8, $00, 8, 4, SOUTH
+	map_exit 0, 3, $13, 14, 6, WEST
+	map_exit 0, 4, $13, 14, 7, WEST
+	map_exit 4, 0, $14, 6, 13, NORTH
+	map_exit 5, 0, $14, 7, 13, NORTH
 	db $ff
 
 GrassClubEntrance_MapScripts:
@@ -1591,24 +1591,24 @@ GrassClub_MapHeader:
 	db MUSIC_CLUB_1
 
 GrassClub_StepEvents:
-	db 6, 14, $12, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 14, $12, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 14, $12, 4, 1, SOUTH
+	map_exit 7, 14, $12, 5, 1, SOUTH
 	db $ff
 
 GrassClub_NPCs:
-	db OW_NIKKI, 6, 2, SOUTH, $f6, $63
-	db OW_BRITTANY, 10, 4, NORTH, $f6, $63
-	db OW_KRISTIN, 2, 7, EAST, $f6, $63
-	db OW_HEATHER, 7, 9, SOUTH, $f6, $63
-	db OW_GR_2, 7, 8, SOUTH, $98, $64
+	npc OW_NIKKI, 6, 2, SOUTH, $f6, $63
+	npc OW_BRITTANY, 10, 4, NORTH, $f6, $63
+	npc OW_KRISTIN, 2, 7, EAST, $f6, $63
+	npc OW_HEATHER, 7, 9, SOUTH, $f6, $63
+	npc OW_GR_2, 7, 8, SOUTH, $98, $64
 	db $ff
 
 GrassClub_NPCInteractions:
-	db OW_NIKKI, $0b, $26, $62
-	db OW_BRITTANY, $0b, $8c, $62
-	db OW_KRISTIN, $0b, $32, $63
-	db OW_HEATHER, $0b, $94, $63
-	db OW_GR_2, $0b, $0b, $64
+	npc_script OW_NIKKI, $0b, $26, $62
+	npc_script OW_BRITTANY, $0b, $8c, $62
+	npc_script OW_KRISTIN, $0b, $32, $63
+	npc_script OW_HEATHER, $0b, $94, $63
+	npc_script OW_GR_2, $0b, $0b, $64
 	db $ff
 
 GrassClub_MapScripts:
@@ -1671,11 +1671,11 @@ Func_2e206:
 	ret
 
 GrassClub_AfterDuelScripts:
-	db OW_NIKKI, $0b, $6e, $62
-	db OW_BRITTANY, $0b, $f6, $62
-	db OW_KRISTIN, $0b, $78, $63
-	db OW_HEATHER, $0b, $da, $63
-	db OW_GR_2, $0b, $49, $64
+	npc_script OW_NIKKI, $0b, $6e, $62
+	npc_script OW_BRITTANY, $0b, $f6, $62
+	npc_script OW_KRISTIN, $0b, $78, $63
+	npc_script OW_HEATHER, $0b, $da, $63
+	npc_script OW_GR_2, $0b, $49, $64
 	db $ff
 ; 0x2e226
 
@@ -1687,20 +1687,20 @@ ScienceClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 ScienceClubEntrance_StepEvents:
-	db 4, 8, $00, 8, 2, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 8, 2, SOUTH, $03, $c4, $53
-	db 0, 3, $16, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $16, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $17, 6, 14, NORTH, $03, $c4, $53
-	db 5, 0, $17, 7, 14, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 8, 2, SOUTH
+	map_exit 5, 8, $00, 8, 2, SOUTH
+	map_exit 0, 3, $16, 14, 6, WEST
+	map_exit 0, 4, $16, 14, 7, WEST
+	map_exit 4, 0, $17, 6, 14, NORTH
+	map_exit 5, 0, $17, 7, 14, NORTH
 	db $ff
 
 ScienceClubEntrance_NPCs:
-	db OW_JOSEPH, 6, 1, SOUTH, $2a, $66
+	npc OW_JOSEPH, 6, 1, SOUTH, $2a, $66
 	db $ff
 
 ScienceClubEntrance_NPCInteractions:
-	db OW_JOSEPH, $0b, $d0, $65
+	npc_script OW_JOSEPH, $0b, $d0, $65
 	db $ff
 
 ScienceClubEntrance_MapScripts:
@@ -1859,38 +1859,38 @@ ScienceClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 ScienceClubLobby_StepEvents:
-	db 15, 6, $15, 1, 3, EAST, $03, $c4, $53
-	db 15, 7, $15, 1, 4, EAST, $03, $c4, $53
+	map_exit 15, 6, $15, 1, 3, EAST
+	map_exit 15, 7, $15, 1, 4, EAST
 	db $ff
 
 ScienceClubLobby_NPCs:
-	db OW_DAVID, 9, 6, EAST, $0d, $68
-	db OW_ERIK, 4, 9, EAST, $0d, $68
-	db OW_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
-	db OW_MAN_2, 3, 9, WEST, $d1, $68
-	db OW_SPECS_4, 13, 4, SOUTH, $d1, $68
-	db OW_TECH_6, 7, 9, WEST, $d1, $68
-	db OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	db OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_DAVID, 9, 6, EAST, $0d, $68
+	npc OW_ERIK, 4, 9, EAST, $0d, $68
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
+	npc OW_MAN_2, 3, 9, WEST, $d1, $68
+	npc OW_SPECS_4, 13, 4, SOUTH, $d1, $68
+	npc OW_TECH_6, 7, 9, WEST, $d1, $68
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 ScienceClubLobby_NPCInteractions:
-	db OW_DAVID, $0b, $6e, $67
-	db OW_ERIK, $0b, $e3, $67
-	db OW_IMAKUNI_BLACK, $0f, $0c, $43
-	db OW_MAN_2, $0b, $31, $68
-	db OW_SPECS_4, $0b, $62, $68
-	db OW_TECH_6, $0b, $a0, $68
+	npc_script OW_DAVID, $0b, $6e, $67
+	npc_script OW_ERIK, $0b, $e3, $67
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_MAN_2, $0b, $31, $68
+	npc_script OW_SPECS_4, $0b, $62, $68
+	npc_script OW_TECH_6, $0b, $a0, $68
 	db $ff
 
 ScienceClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0f, $b9, $41
-	db 4, 4, $00, $00, $00, $00, $0f, $d9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $ce, $41
-	db 13, 2, $00, $00, $00, $00, $10, $e4, $41
-	db 14, 2, $00, $00, $00, $00, $10, $fa, $41
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $ce, $41
+	ow_script 13, 2, $10, $e4, $41
+	ow_script 14, 2, $10, $fa, $41
 	db $ff
 
 ScienceClubLobby_MapScripts:
@@ -1959,8 +1959,8 @@ Func_2e73e:
 	ret
 
 ScienceClubLobby_AfterDuelScripts:
-	db OW_DAVID, $0b, $c7, $67
-	db OW_IMAKUNI_BLACK, $0f, $ca, $43
+	npc_script OW_DAVID, $0b, $c7, $67
+	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
 	db $ff
 
 Func_2e752:
@@ -1986,24 +1986,24 @@ ScienceClub_MapHeader:
 	db MUSIC_CLUB_3
 
 ScienceClub_StepEvents:
-	db 6, 15, $15, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 15, $15, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 15, $15, 4, 1, SOUTH
+	map_exit 7, 15, $15, 5, 1, SOUTH
 	db $ff
 
 ScienceClub_NPCs:
-	db OW_RICK, 2, 2, NORTH, $87, $6a
-	db OW_DAVID, 10, 2, NORTH, $07, $6c
-	db OW_JOSEPH, 6, 5, WEST, $07, $6c
-	db OW_ERIK, 3, 8, EAST, $07, $6c
-	db OW_GR_2, 6, 8, SOUTH, $a9, $6c
+	npc OW_RICK, 2, 2, NORTH, $87, $6a
+	npc OW_DAVID, 10, 2, NORTH, $07, $6c
+	npc OW_JOSEPH, 6, 5, WEST, $07, $6c
+	npc OW_ERIK, 3, 8, EAST, $07, $6c
+	npc OW_GR_2, 6, 8, SOUTH, $a9, $6c
 	db $ff
 
 ScienceClub_NPCInteractions:
-	db OW_RICK, $0b, $c7, $69
-	db OW_DAVID, $0b, $94, $6a
-	db OW_JOSEPH, $0b, $ef, $6a
-	db OW_ERIK, $0b, $a5, $6b
-	db OW_GR_2, $0b, $1c, $6c
+	npc_script OW_RICK, $0b, $c7, $69
+	npc_script OW_DAVID, $0b, $94, $6a
+	npc_script OW_JOSEPH, $0b, $ef, $6a
+	npc_script OW_ERIK, $0b, $a5, $6b
+	npc_script OW_GR_2, $0b, $1c, $6c
 	db $ff
 
 ScienceClub_MapScripts:
@@ -2075,11 +2075,11 @@ Func_2e9a7:
 	ret
 
 ScienceClub_AfterDuelScripts:
-	db OW_RICK, $0b, $4b, $6a
-	db OW_DAVID, $0b, $d1, $6a
-	db OW_JOSEPH, $0b, $6d, $6b
-	db OW_ERIK, $0b, $eb, $6b
-	db OW_GR_2, $0b, $5a, $6c
+	npc_script OW_RICK, $0b, $4b, $6a
+	npc_script OW_DAVID, $0b, $d1, $6a
+	npc_script OW_JOSEPH, $0b, $6d, $6b
+	npc_script OW_ERIK, $0b, $eb, $6b
+	npc_script OW_GR_2, $0b, $5a, $6c
 	db $ff
 ; 0x2e9c7
 
@@ -2091,12 +2091,12 @@ WaterClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 WaterClubEntrance_StepEvents:
-	db 4, 8, $00, 7, 6, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 7, 6, SOUTH, $03, $c4, $53
-	db 0, 3, $19, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $19, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $1a, 6, 14, NORTH, $03, $c4, $53
-	db 5, 0, $1a, 7, 14, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 7, 6, SOUTH
+	map_exit 5, 8, $00, 7, 6, SOUTH
+	map_exit 0, 3, $19, 14, 6, WEST
+	map_exit 0, 4, $19, 14, 7, WEST
+	map_exit 4, 0, $1a, 6, 14, NORTH
+	map_exit 5, 0, $1a, 7, 14, NORTH
 	db $ff
 
 WaterClubEntrance_MapScripts:
@@ -2225,36 +2225,36 @@ WaterClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 WaterClubLobby_StepEvents:
-	db 15, 6, $18, 1, 3, EAST, $03, $c4, $53
-	db 15, 7, $18, 1, 4, EAST, $03, $c4, $53
+	map_exit 15, 6, $18, 1, 3, EAST
+	map_exit 15, 7, $18, 1, 4, EAST
 	db $ff
 
 WaterClubLobby_NPCs:
-	db OW_JOSHUA, 8, 6, WEST, $5f, $6f
-	db OW_LASS2_4, 11, 1, WEST, $00, $00
-	db OW_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
-	db OW_PAPPY_3, 12, 11, EAST, $00, $00
-	db OW_LASS1_2, 4, 9, SOUTH, $00, $00
-	db OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	db OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_JOSHUA, 8, 6, WEST, $5f, $6f
+	npc OW_LASS2_4, 11, 1, WEST, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
+	npc OW_PAPPY_3, 12, 11, EAST, $00, $00
+	npc OW_LASS1_2, 4, 9, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 WaterClubLobby_NPCInteractions:
-	db OW_JOSHUA, $0b, $ea, $6e
-	db OW_LASS2_4, $0b, $74, $6f
-	db OW_IMAKUNI_BLACK, $0f, $0c, $43
-	db OW_PAPPY_3, $0b, $ae, $6f
-	db OW_LASS1_2, $0b, $e1, $6f
+	npc_script OW_JOSHUA, $0b, $ea, $6e
+	npc_script OW_LASS2_4, $0b, $74, $6f
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_PAPPY_3, $0b, $ae, $6f
+	npc_script OW_LASS1_2, $0b, $e1, $6f
 	db $ff
 
 WaterClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0f, $b9, $41
-	db 4, 4, $00, $00, $00, $00, $0f, $d9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $10, $42
-	db 13, 2, $00, $00, $00, $00, $10, $26, $42
-	db 14, 2, $00, $00, $00, $00, $10, $3c, $42
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $10, $42
+	ow_script 13, 2, $10, $26, $42
+	ow_script 14, 2, $10, $3c, $42
 	db $ff
 
 WaterClubLobby_MapScripts:
@@ -2323,8 +2323,8 @@ Func_2eeba:
 	ret
 
 WaterClubLobby_AfterDuelScripts:
-	db OW_JOSHUA, $0b, $43, $6f
-	db OW_IMAKUNI_BLACK, $0f, $ca, $43
+	npc_script OW_JOSHUA, $0b, $43, $6f
+	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
 	db $ff
 
 Func_2eece:
@@ -2350,30 +2350,30 @@ WaterClub_MapHeader:
 	db MUSIC_CLUB_1
 
 WaterClub_StepEvents:
-	db 6, 15, $18, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 15, $18, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 15, $18, 4, 1, SOUTH
+	map_exit 7, 15, $18, 5, 1, SOUTH
 	db $ff
 
 WaterClub_NPCs:
-	db OW_AMY_LOUNGE, 11, 2, SOUTH, $6d, $73
-	db OW_JOSHUA, 10, 4, SOUTH, $6d, $73
-	db OW_SARA, 4, 9, EAST, $78, $74
-	db OW_AMANDA, 11, 10, WEST, $78, $74
-	db OW_AMY, 4, 6, SOUTH, $ed, $71
-	db OW_GR_3, 8, 6, SOUTH, $f2, $74
+	npc OW_AMY_LOUNGE, 11, 2, SOUTH, $6d, $73
+	npc OW_JOSHUA, 10, 4, SOUTH, $6d, $73
+	npc OW_SARA, 4, 9, EAST, $78, $74
+	npc OW_AMANDA, 11, 10, WEST, $78, $74
+	npc OW_AMY, 4, 6, SOUTH, $ed, $71
+	npc OW_GR_3, 8, 6, SOUTH, $f2, $74
 	db $ff
 
 WaterClub_NPCInteractions:
-	db OW_AMY_LOUNGE, $0b, $fa, $71
-	db OW_JOSHUA, $0b, $cf, $72
-	db OW_SARA, $0b, $82, $73
-	db OW_AMANDA, $0b, $f1, $73
-	db OW_AMY, $0b, $d2, $71
-	db OW_GR_3, $0b, $85, $74
+	npc_script OW_AMY_LOUNGE, $0b, $fa, $71
+	npc_script OW_JOSHUA, $0b, $cf, $72
+	npc_script OW_SARA, $0b, $82, $73
+	npc_script OW_AMANDA, $0b, $f1, $73
+	npc_script OW_AMY, $0b, $d2, $71
+	npc_script OW_GR_3, $0b, $85, $74
 	db $ff
 
 WaterClub_OWInteractions:
-	db 12, 3, $00, $00, $00, $00, $0b, $fa, $71
+	ow_script 12, 3, $0b, $fa, $71
 	db $ff
 
 WaterClub_MapScripts:
@@ -2457,11 +2457,11 @@ Func_2f107:
 	ret
 
 WaterClub_AfterDuelScripts:
-	db OW_AMY_LOUNGE, $0b, $8a, $72
-	db OW_JOSHUA, $0b, $35, $73
-	db OW_SARA, $0b, $d5, $73
-	db OW_AMANDA, $0b, $4f, $74
-	db OW_GR_3, $0b, $d9, $74
+	npc_script OW_AMY_LOUNGE, $0b, $8a, $72
+	npc_script OW_JOSHUA, $0b, $35, $73
+	npc_script OW_SARA, $0b, $d5, $73
+	npc_script OW_AMANDA, $0b, $4f, $74
+	npc_script OW_GR_3, $0b, $d9, $74
 	db $ff
 ; 0x2f127
 
@@ -2473,12 +2473,12 @@ FireClubEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 FireClubEntrance_StepEvents:
-	db 4, 8, $00, 7, 1, SOUTH, $03, $c4, $53
-	db 5, 8, $00, 7, 1, SOUTH, $03, $c4, $53
-	db 0, 3, $1c, 14, 6, WEST, $03, $c4, $53
-	db 0, 4, $1c, 14, 7, WEST, $03, $c4, $53
-	db 4, 0, $1d, 6, 14, NORTH, $03, $c4, $53
-	db 5, 0, $1d, 7, 14, NORTH, $03, $c4, $53
+	map_exit 4, 8, $00, 7, 1, SOUTH
+	map_exit 5, 8, $00, 7, 1, SOUTH
+	map_exit 0, 3, $1c, 14, 6, WEST
+	map_exit 0, 4, $1c, 14, 7, WEST
+	map_exit 4, 0, $1d, 6, 14, NORTH
+	map_exit 5, 0, $1d, 7, 14, NORTH
 	db $ff
 
 FireClubEntrance_MapScripts:
@@ -2609,34 +2609,34 @@ FireClubLobby_MapHeader:
 	db MUSIC_OVERWORLD
 
 FireClubLobby_StepEvents:
-	db 15, 6, $1b, 1, 3, EAST, $03, $c4, $53
-	db 15, 7, $1b, 1, 4, EAST, $03, $c4, $53
+	map_exit 15, 6, $1b, 1, 3, EAST
+	map_exit 15, 7, $1b, 1, 4, EAST
 	db $ff
 
 FireClubLobby_NPCs:
-	db OW_HOOD_3, 8, 4, NORTH, $00, $00
-	db OW_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
-	db OW_MANIA_4, 10, 9, NORTH, $00, $00
-	db OW_GAL_2, 5, 8, SOUTH, $00, $00
-	db OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	db OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_HOOD_3, 8, 4, NORTH, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
+	npc OW_MANIA_4, 10, 9, NORTH, $00, $00
+	npc OW_GAL_2, 5, 8, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 FireClubLobby_NPCInteractions:
-	db OW_HOOD_3, $0b, $09, $77
-	db OW_IMAKUNI_BLACK, $0f, $0c, $43
-	db OW_MANIA_4, $0b, $7e, $77
-	db OW_GAL_2, $0b, $a4, $77
+	npc_script OW_HOOD_3, $0b, $09, $77
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_MANIA_4, $0b, $7e, $77
+	npc_script OW_GAL_2, $0b, $a4, $77
 	db $ff
 
 FireClubLobby_OWInteractions:
-	db 8, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 2, $00, $00, $00, $00, $03, $11, $54
-	db 2, 4, $00, $00, $00, $00, $0f, $b9, $41
-	db 4, 4, $00, $00, $00, $00, $0f, $d9, $42
-	db 12, 2, $00, $00, $00, $00, $10, $52, $42
-	db 13, 2, $00, $00, $00, $00, $10, $68, $42
-	db 14, 2, $00, $00, $00, $00, $10, $7e, $42
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $52, $42
+	ow_script 13, 2, $10, $68, $42
+	ow_script 14, 2, $10, $7e, $42
 	db $ff
 
 FireClubLobby_MapScripts:
@@ -2724,31 +2724,31 @@ FireClub_MapHeader:
 	db MUSIC_CLUB_3
 
 FireClub_StepEvents:
-	db 6, 15, $1b, 4, 1, SOUTH, $03, $c4, $53
-	db 7, 15, $1b, 5, 1, SOUTH, $03, $c4, $53
+	map_exit 6, 15, $1b, 4, 1, SOUTH
+	map_exit 7, 15, $1b, 5, 1, SOUTH
 	db $ff
 
 FireClub_NPCs:
-	db OW_KEN, 7, 2, SOUTH, $00, $00
-	db OW_JOHN, 6, 9, SOUTH, $00, $00
-	db OW_ADAM, 5, 7, SOUTH, $00, $00
-	db OW_JONATHAN, 10, 5, SOUTH, $00, $00
-	db OW_GR_3, 7, 5, SOUTH, $29, $7c
+	npc OW_KEN, 7, 2, SOUTH, $00, $00
+	npc OW_JOHN, 6, 9, SOUTH, $00, $00
+	npc OW_ADAM, 5, 7, SOUTH, $00, $00
+	npc OW_JONATHAN, 10, 5, SOUTH, $00, $00
+	npc OW_GR_3, 7, 5, SOUTH, $29, $7c
 	db $ff
 
 FireClub_NPCInteractions:
-	db OW_KEN, $0b, $26, $79
-	db OW_JOHN, $0b, $25, $7a
-	db OW_ADAM, $0b, $a1, $7a
-	db OW_JONATHAN, $0b, $4e, $7b
-	db OW_GR_3, $0b, $d3, $7b
+	npc_script OW_KEN, $0b, $26, $79
+	npc_script OW_JOHN, $0b, $25, $7a
+	npc_script OW_ADAM, $0b, $a1, $7a
+	npc_script OW_JONATHAN, $0b, $4e, $7b
+	npc_script OW_GR_3, $0b, $d3, $7b
 	db $ff
 
 FireClub_OWInteractions:
-	db 7, 12, $00, $00, $00, $00, $0b, $ad, $7c
-	db 6, 12, $00, $00, $00, $00, $0b, $b7, $7c
-	db 5, 12, $00, $00, $00, $00, $0b, $c1, $7c
-	db 8, 12, $00, $00, $00, $00, $0b, $cb, $7c
+	ow_script 7, 12, $0b, $ad, $7c
+	ow_script 6, 12, $0b, $b7, $7c
+	ow_script 5, 12, $0b, $c1, $7c
+	ow_script 8, 12, $0b, $cb, $7c
 	db $ff
 
 FireClub_MapScripts:
@@ -2832,11 +2832,11 @@ Func_2f8d8:
 	ret
 
 FireClub_AfterDuelScripts:
-	db OW_KEN, $0b, $ed, $79
-	db OW_JOHN, $0b, $85, $7a
-	db OW_ADAM, $0b, $32, $7b
-	db OW_JONATHAN, $0b, $b7, $7b
-	db OW_GR_3, $0b, $0e, $7c
+	npc_script OW_KEN, $0b, $ed, $79
+	npc_script OW_JOHN, $0b, $85, $7a
+	npc_script OW_ADAM, $0b, $32, $7b
+	npc_script OW_JONATHAN, $0b, $b7, $7b
+	npc_script OW_GR_3, $0b, $0e, $7c
 	db $ff
 ; 0x2f8f8
 
@@ -2848,31 +2848,31 @@ PokemonDomeEntrance_MapHeader:
 	db MUSIC_OVERWORLD
 
 PokemonDomeEntrance_StepEvents:
-	db 7, 8, $00, 4, 4, SOUTH, $03, $c4, $53
-	db 8, 8, $00, 4, 4, SOUTH, $03, $c4, $53
-	db 11, 0, $24, 7, 14, NORTH, $03, $c4, $53
-	db 12, 0, $24, 8, 14, NORTH, $03, $c4, $53
+	map_exit 7, 8, $00, 4, 4, SOUTH
+	map_exit 8, 8, $00, 4, 4, SOUTH
+	map_exit 11, 0, $24, 7, 14, NORTH
+	map_exit 12, 0, $24, 8, 14, NORTH
 	db $ff
 
 PokemonDomeEntrance_NPCs:
-	db OW_BUTCH_2, 8, 3, NORTH, $1d, $7e
+	npc OW_BUTCH_2, 8, 3, NORTH, $1d, $7e
 	db $ff
 
 PokemonDomeEntrance_NPCInteractions:
-	db OW_BUTCH_2, $0b, $a3, $7d
+	npc_script OW_BUTCH_2, $0b, $a3, $7d
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:
-	db 4, 2, $00, $00, $00, $00, $03, $11, $54
-	db 5, 2, $00, $00, $00, $00, $03, $11, $54
-	db 9, 1, $00, $00, $00, $00, $0b, $2a, $7e
-	db 10, 1, $00, $00, $00, $00, $0b, $2a, $7e
-	db 1, 2, $00, $00, $00, $00, $10, $5a, $43
-	db 2, 2, $00, $00, $00, $00, $10, $70, $43
-	db 3, 2, $00, $00, $00, $00, $10, $86, $43
-	db 1, 5, $00, $00, $00, $00, $10, $9c, $43
-	db 2, 5, $00, $00, $00, $00, $10, $b2, $43
-	db 3, 5, $00, $00, $00, $00, $10, $c8, $43
+	ow_script 4, 2, $03, $11, $54
+	ow_script 5, 2, $03, $11, $54
+	ow_script 9, 1, $0b, $2a, $7e
+	ow_script 10, 1, $0b, $2a, $7e
+	ow_script 1, 2, $10, $5a, $43
+	ow_script 2, 2, $10, $70, $43
+	ow_script 3, 2, $10, $86, $43
+	ow_script 1, 5, $10, $9c, $43
+	ow_script 2, 5, $10, $b2, $43
+	ow_script 3, 5, $10, $c8, $43
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
