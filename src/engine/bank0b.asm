@@ -5,7 +5,35 @@ Data_2c000:
 	dba Data_2c09b
 	db MUSIC_ISHIHARA
 
-SECTION "Bank b@409b", ROMX[$409b], BANK[$b]
+Data_2c005:
+	db $04, $0c, $00, $00, $02, $02, $03, $C4, $53
+	db $05, $0c, $00, $00, $02, $02, $03, $C4, $53
+	db $ff
+
+Data_2c018:
+	db $04, $04, $04, $02, $B8, $41
+	db $11, $05, $04, $02, $6A, $44
+	db $ff
+
+Data_2c025:
+	db $04, $0b, $72, $41
+	db $11, $0b, $cb, $43
+	db $ff
+
+Data_2c02e:
+	db $03, $02, $00, $00, $00, $00, $10, $00, $40
+	db $04, $02, $00, $00, $00, $00, $10, $16, $40
+	db $05, $02, $00, $00, $00, $00, $10, $2c, $40
+	db $06, $02, $00, $00, $00, $00, $10, $42, $40
+	db $07, $02, $00, $00, $00, $00, $10, $58, $40
+	db $08, $02, $00, $00, $00, $00, $10, $6e, $40
+	db $01, $09, $00, $00, $00, $00, $10, $84, $40
+	db $02, $09, $00, $00, $00, $00, $10, $9a, $40
+	db $03, $09, $00, $00, $00, $00, $10, $b0, $40
+	db $06, $09, $00, $00, $00, $00, $10, $c6, $40
+	db $07, $09, $00, $00, $00, $00, $10, $dc, $40
+	db $08, $09, $00, $00, $00, $00, $10, $f2, $40
+	db $ff
 
 Data_2c09b:
 	dbw $06, Func_2c0c1
@@ -29,12 +57,12 @@ Func_2c0b4:
 	ret
 
 Func_2c0c1:
-	ld hl, $4005
+	ld hl, Data_2c005
 	call Func_324d
 	ret
 
 Func_2c0c8:
-	ld hl, $4018
+	ld hl, Data_2c018
 	call Func_3205
 	scf
 	ccf
@@ -58,10 +86,10 @@ Func_2c0d1:
 	ret
 
 Func_2c0f1:
-	ld hl, $4025
+	ld hl, Data_2c025
 	call Func_328c
 	jr nc, .asm_2c0ff
-	ld hl, $402e
+	ld hl, Data_2c02e
 	call Func_32bf
 .asm_2c0ff
 	scf
@@ -167,7 +195,26 @@ Data_2c479:
 	dba Data_2c4c5
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@44c5", ROMX[$44c5], BANK[$b]
+Data_2c47e:
+	db $06, $0f, $06, $04, $01, $02, $03, $c4, $53
+	db $07, $0f, $06, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2c491:
+	db $22, $06, $02, $02, $00, $00
+	db $23, $07, $09, $02, $f9, $48
+	db $24, $03, $05, $02, $00, $00
+	db $25, $0b, $06, $02, $f9, $48
+	db $31, $07, $04, $02, $29, $49
+	db $ff
+
+Data_2c4b0:
+	db $22, $0b, $45, $46
+	db $23, $0b, $3b, $47
+	db $24, $0b, $9d, $47
+	db $25, $0b, $97, $48
+	db $31, $0b, $0e, $49
+	db $ff
 
 Data_2c4c5:
 	dbw $06, Func_2c4fa
@@ -198,12 +245,12 @@ Func_2c4db:
 	ret
 
 Func_2c4fa:
-	ld hl, $447e
+	ld hl, Data_2c47e
 	call Func_324d
 	ret
 
 Func_2c501:
-	ld hl, $4491
+	ld hl, Data_2c491
 	call Func_3205
 	scf
 	ccf
@@ -247,18 +294,25 @@ Func_2c50a:
 	ret
 
 Func_2c560:
-	ld hl, $44b0
+	ld hl, Data_2c4b0
 	call Func_328c
 	scf
 	ret
 
 Func_2c568:
-	ld hl, $4573
+	ld hl, Data_2c573
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2c573
+
+Data_2c573:
+	db $22, $0b, $ec, $46
+	db $23, $0b, $81, $47
+	db $24, $0b, $47, $48
+	db $25, $0b, $dd, $48
+	db $ff
+; 0x2c584
 
 SECTION "Bank b@4936", ROMX[$4936], BANK[$b]
 
@@ -267,7 +321,24 @@ Data_2c936:
 	dba Data_2c990
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
+Data_2c93b:
+	db $04, $08, $00, $06, $03, $02, $03, $c4, $53
+	db $05, $08, $00, $06, $03, $02, $03, $c4, $53
+	db $00, $03, $0a, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $0a, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $0b, $06, $0c, $00, $03, $c4, $53
+	db $05, $00, $0b, $07, $0c, $00, $03, $c4, $53
+	db $04, $02, $00, $00, $00, $00, $0b, $3e, $4a
+	db $05, $02, $00, $00, $00, $00, $0b, $3e, $4a
+	db $ff
+
+Data_2c984:
+	db $29, $05, $01, $02, $bb, $4a,
+	db $ff
+
+Data_2c98b:
+	db $29, $0b, $a0, $4a
+	db $ff
 
 Data_2c990:
 	dbw $00, Func_2c9ac
@@ -313,12 +384,12 @@ Func_2c9c8:
 	ret
 
 Func_2c9d8:
-	ld hl, $493b
+	ld hl, Data_2c93b
 	call Func_324d
 	ret
 
 Func_2c9df:
-	ld hl, $4984
+	ld hl, Data_2c984
 	call Func_3205
 	scf
 	ccf
@@ -351,7 +422,7 @@ Func_2c9e8:
 	ret
 
 Func_2ca14:
-	ld hl, $498b
+	ld hl, Data_2c98b
 	call Func_328c
 	scf
 	ret
@@ -490,8 +561,38 @@ Data_2cafa:
 	dba Data_2cb92
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@4b92", ROMX[$4b92], BANK[$b]
+Data_2caff:
+	db $0f, $06, $09, $01, $03, $01, $03, $c4, $53
+	db $0f, $07, $09, $01, $04, $01, $03, $c4, $53
+	db $ff
 
+Data_2cb12:
+	db $83, $08, $08, $01, $00, $00
+	db $84, $0a, $09, $03, $00, $00
+	db $05, $01, $0a, $03, $a8, $4c
+	db $85, $07, $06, $01, $00, $00
+	db $86, $0e, $04, $02, $0e, $4d
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $ff
+
+Data_2cb3d:
+	db $83, $0b, $11, $4c
+	db $84, $0b, $7d, $4c
+	db $05, $0f, $0c, $43
+	db $85, $0b, $b7, $4c
+	db $86, $0b, $e8, $4c
+	db $ff
+
+Data_2cb52:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0f, $b9, $41
+	db $04, $04, $00, $00, $00, $00, $0f, $d9, $42
+	db $0c, $02, $00, $00, $00, $00, $10, $d6, $42
+	db $0d, $02, $00, $00, $00, $00, $10, $ec, $42
+	db $0e, $02, $00, $00, $00, $00, $10, $02, $43
+	db $ff
 Data_2cb92:
 	dbw $06, Func_2cbcf
 	dbw $08, Func_2cbdf
@@ -529,22 +630,22 @@ Func_2cbba:
 	ret
 
 Func_2cbcf:
-	ld hl, $4aff
+	ld hl, Data_2caff
 	call Func_324d
 	ret
 
 Func_2cbd6:
-	ld hl, $4b12
+	ld hl, Data_2cb12
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2cbdf:
-	ld hl, $4b3d
+	ld hl, Data_2cb3d
 	call Func_328c
 	jr nc, .asm_2cbed
-	ld hl, $4b52
+	ld hl, Data_2cb52
 	call Func_32bf
 .asm_2cbed
 	scf
@@ -576,7 +677,26 @@ Data_2cd23:
 	dba Data_2cd6f
 	db MUSIC_CLUB_2
 
-SECTION "Bank b@4d6f", ROMX[$4d6f], BANK[$b]
+Data_2cd28:
+	db $06, $0d, $09, $04, $01, $02, $03, $c4, $53
+	db $07, $0d, $09, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2cd3b:
+	db $26, $06, $03, $02, $00, $00
+	db $27, $03, $0a, $03, $00, $00
+	db $28, $04, $05, $00, $00, $00
+	db $29, $0b, $06, $01, $00, $00
+	db $31, $07, $03, $02, $3c, $52
+	db $ff
+
+Data_2cd5a:
+	db $26, $0b, $88, $4e
+	db $27, $0b, $cc, $4f
+	db $28, $0b, $46, $50
+	db $29, $0b, $b3, $50
+	db $31, $0b, $90, $51
+	db $ff
 
 Data_2cd6f:
 	dbw $06, Func_2cd92
@@ -599,12 +719,12 @@ Func_2cd82:
 	ret
 
 Func_2cd92:
-	ld hl, $4d28
+	ld hl, Data_2cd28
 	call Func_324d
 	ret
 
 Func_2cd99:
-	ld hl, $4d3b
+	ld hl, Data_2cd3b
 	call Func_3205
 	scf
 	ccf
@@ -653,17 +773,26 @@ Func_2cda2:
 	ret
 
 Func_2ce11:
-	ld hl, $4d5a
+	ld hl, Data_2cd5a
 	call Func_328c
 	scf
 	ret
 
 Func_2ce19:
-	ld hl, $4e24
+	ld hl, Data_2ce24
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
+
+Data_2ce24:
+	db $26, $0b, $73, $4f
+	db $27, $0b, $2a, $50
+	db $28, $0b, $97, $50
+	db $29, $0b, $42, $51
+	db $31, $0b, $0e, $52
+	db $ff
+; 0x2ce39
 
 SECTION "Bank b@523c", ROMX[$523c], BANK[$b]
 
@@ -686,7 +815,14 @@ Data_2d30a:
 	dba Data_2d346
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@5346", ROMX[$5346], BANK[$b]
+Data_2d30f:
+	db $04, $08, $00, $01, $04, $02, $03, $c4, $53
+	db $05, $08, $00, $01, $04, $02, $03, $c4, $53
+	db $00, $03, $0d, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $0d, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $0e, $06, $0d, $00, $03, $c4, $53
+	db $05, $00, $0e, $07, $0d, $00, $03, $c4, $53
+	db $ff
 
 Data_2d346:
 	dbw $06, Func_2d376
@@ -720,7 +856,7 @@ Func_2d366:
 	ret
 
 Func_2d376:
-	ld hl, $530f
+	ld hl, Data_2d30f
 	call Func_324d
 	ret
 
@@ -773,7 +909,38 @@ Data_2d3c4:
 	dba Data_2d45c
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@545c", ROMX[$545c], BANK[$b]
+Data_2d3c9:
+	db $0f, $06, $0c, $01, $03, $01, $03, $c4, $53
+	db $0f, $07, $0c, $01, $04, $01, $03, $c4, $53
+	db $ff
+
+Data_2d3dc:
+	db $6a, $05, $06, $01, $00, $00
+	db $6b, $0c, $0a, $00, $00, $00
+	db $05, $01, $0a, $03, $7c, $55
+	db $6c, $08, $09, $03, $00, $00
+	db $6d, $0a, $03, $02, $00, $00
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $ff
+
+Data_2d407:
+	db $6a, $0b, $e0, $54
+	db $6b, $0b, $46, $55
+	db $05, $0f, $0c, $43
+	db $6c, $0b, $8b, $55
+	db $6d, $0b, $c7, $55
+	db $ff
+
+Data_2d41c:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0f, $b9, $41
+	db $04, $04, $00, $00, $00, $00, $0f, $d9, $42
+	db $0c, $02, $00, $00, $00, $00, $10, $08, $41
+	db $0d, $02, $00, $00, $00, $00, $10, $1e, $41
+	db $0e, $02, $00, $00, $00, $00, $10, $34, $41
+	db $ff
 
 Data_2d45c:
 	dbw $06, Func_2d49e
@@ -814,22 +981,22 @@ Func_2d489:
 	ret
 
 Func_2d49e:
-	ld hl, $53c9
+	ld hl,Data_2d3c9
 	call Func_324d
 	ret
 
 Func_2d4a5:
-	ld hl, $53dc
+	ld hl, Data_2d3dc
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2d4ae:
-	ld hl, $5407
+	ld hl, Data_2d407
 	call Func_328c
 	jr nc, .asm_2d4bc
-	ld hl, $541c
+	ld hl, Data_2d41c
 	call Func_32bf
 .asm_2d4bc
 	scf
@@ -862,7 +1029,25 @@ Data_2d5f8:
 	dba Data_2d640
 	db MUSIC_CLUB_2
 
-SECTION "Bank b@5640", ROMX[$5640], BANK[$b]
+Data_2d5fd:
+	db $06, $0e, $0c, $04, $01, $02, $03, $c4, $53
+	db $07, $0e, $0c, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2d610:
+	db $09, $07, $02, $02, $00, $00
+	db $0a, $02, $03, $02, $00, $00
+	db $0b, $09, $07, $01, $00, $00
+	db $0c, $03, $08, $01, $00, $00
+	db $2e, $07, $03, $00, $f3, $58
+	db $ff
+
+Data_2d62f:
+	db $09, $0b, $54, $57
+	db $0a, $0b, $ea, $57
+	db $0b, $0b, $41, $58
+	db $0c, $0b, $9c, $58
+	db $ff
 
 Data_2d640:
 	dbw $06, Func_2d663
@@ -885,12 +1070,12 @@ Func_2d653:
 	ret
 
 Func_2d663:
-	ld hl, $55fd
+	ld hl, Data_2d5fd
 	call Func_324d
 	ret
 
 Func_2d66a:
-	ld hl, $5610
+	ld hl, Data_2d610
 	call Func_3205
 	scf
 	ccf
@@ -919,18 +1104,25 @@ Func_2d673:
 	ret
 
 Func_2d6a6:
-	ld hl, $562f
+	ld hl, Data_2d62f
 	call Func_328c
 	scf
 	ret
 
 Func_2d6ae:
-	ld hl, $56b9
+	ld hl, Data_2d6b9
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2d6b9
+
+Data_2d6b9:
+	db $09, $0b, $c3, $57
+	db $0a, $0b, $25, $58
+	db $0b, $0b, $7e, $58
+	db $0c, $0b, $d7, $58
+	db $ff
+; 0x2d6ca
 
 SECTION "Bank b@5930", ROMX[$5930], BANK[$b]
 
@@ -939,7 +1131,14 @@ Data_2d930:
 	dba Data_2d96c
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@596c", ROMX[$596c], BANK[$b]
+Data_2d935:
+	db $04, $08, $00, $03, $07, $02, $03, $c4, $53
+	db $05, $08, $00, $03, $07, $02, $03, $c4, $53
+	db $00, $03, $10, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $10, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $11, $05, $0a, $00, $03, $c4, $53
+	db $05, $00, $11, $06, $0a, $00, $03, $c4, $53
+	db $ff
 
 Data_2d96c:
 	dbw $06, Func_2d99f
@@ -974,7 +1173,7 @@ Func_2d98f:
 	ret
 
 Func_2d99f:
-	ld hl, $5935
+	ld hl, Data_2d935
 	call Func_324d
 	ret
 
@@ -1066,7 +1265,38 @@ Data_2da26:
 	dba Data_d2abe
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@5abe", ROMX[$5abe], BANK[$b]
+Data_2da2b:
+	db $0F, $06, $0F, $01, $03, $01, $03, $C4, $53
+	db $0F, $07, $0F, $01, $04, $01, $03, $C4, $53
+	db $ff
+
+Data_2da3e:
+	db $6e, $01, $05, $02, $00, $00
+	db $6f, $04, $09, $01, $00, $00
+	db $70, $07, $09, $03, $00, $00
+	db $71, $06, $08, $02, $00, $00
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $0e, $0b, $06, $01, $97, $5b
+	db $ff
+
+Data_2da69:
+	db $6e, $0b, $ac, $5b
+	db $6f, $0b, $17, $5c
+	db $70, $0b, $48, $5c
+	db $71, $0b, $79, $5c
+	db $0e, $0b, $0e, $5b
+	db $ff
+
+Data_2da7e:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0F, $B9, $41
+	db $04, $04, $00, $00, $00, $00, $0F, $D9, $42
+	db $0C, $02, $00, $00, $00, $00, $10, $4A, $41
+	db $0D, $02, $00, $00, $00, $00, $10, $60, $41
+	db $0E, $02, $00, $00, $00, $00, $10, $76, $41
+	db $ff
 
 Data_d2abe:
 	dbw $06, Func_2dade
@@ -1088,34 +1318,38 @@ Func_2dace:
 	ret
 
 Func_2dade:
-	ld hl, $5a2b
+	ld hl, Data_2da2b
 	call Func_324d
 	ret
 
 Func_2dae5:
-	ld hl, $5a3e
+	ld hl, Data_2da3e
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2daee:
-	ld hl, $5a69
+	ld hl, Data_2da69
 	call Func_328c
 	jr nc, .asm_2dafc
-	ld hl, $5a7e
+	ld hl, Data_2da7e
 	call Func_32bf
 .asm_2dafc
 	scf
 	ret
 
 Func_2dafe:
-	ld hl, $5b09
+	ld hl, Data_2db09
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2db09
+
+Data_2db09:
+	db $0e, $0B, $7B, $5B
+	db $ff
+; 0x2db5b
 
 SECTION "Bank b@5c9f", ROMX[$5c9f], BANK[$b]
 
@@ -1124,7 +1358,26 @@ Data_2dc9f:
 	dba Data_2dceb
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@5ceb", ROMX[$5ceb], BANK[$b]
+Data_2dca4:
+	db $05, $0b, $0f, $04, $01, $02, $03, $c4, $53
+	db $06, $0b, $0f, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2dcb7:
+	db $0d, $05, $02, $02, $e4, $5d
+	db $0e, $07, $07, $02, $9c, $5f
+	db $0f, $02, $05, $02, $9c, $5f
+	db $10, $09, $04, $02, $9c, $5f
+	db $2e, $06, $02, $02, $23, $60
+	db $ff
+
+Data_2dcd6:
+	db $0d, $0b, $62, $5d
+	db $0e, $0b, $f1, $5d
+	db $0f, $0b, $ad, $5e
+	db $10, $0b, $3a, $5f
+	db $2e, $0b, $b1, $5f
+	db $ff
 
 Data_2dceb:
 	dbw $06, Func_2dd0e
@@ -1147,7 +1400,7 @@ Func_2dcfe:
 	ret
 
 Func_2dd0e:
-	ld hl, $5ca4
+	ld hl, Data_2dca4
 	call Func_324d
 	ret
 
@@ -1166,25 +1419,33 @@ Func_2dd15:
 	ret
 
 Func_2dd31:
-	ld hl, $5cb7
+	ld hl, Data_2dcb7
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2dd3a:
-	ld hl, $5cd6
+	ld hl, Data_2dcd6
 	call Func_328c
 	scf
 	ret
 
 Func_2dd42:
-	ld hl, $5d4d
+	ld hl, Data_2dd4d
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2dd4d
+
+Data_2dd4d:
+	db $0d, $0b, $c8, $5d
+	db $0e, $0b, $75, $5e
+	db $0f, $0b, $1e, $5f
+	db $10, $0b, $80, $5f
+	db $2e, $0b, $08, $60
+	db $ff
+; 0x2dd62
 
 SECTION "Bank b@606d", ROMX[$606d], BANK[$b]
 
@@ -1193,7 +1454,14 @@ Data_2e06d:
 	dba Data_2e0a9
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@60a9", ROMX[$60a9], BANK[$b]
+Data_2e072:
+	db $04, $08, $00, $08, $04, $02, $03, $c4, $53
+	db $05, $08, $00, $08, $04, $02, $03, $c4, $53
+	db $00, $03, $13, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $13, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $14, $06, $0d, $00, $03, $c4, $53
+	db $05, $00, $14, $07, $0d, $00, $03, $c4, $53
+	db $ff
 
 Data_2e0a9:
 	dbw $06, Func_2e0dc
@@ -1228,7 +1496,7 @@ Func_2e0cc:
 	ret
 
 Func_2e0dc:
-	ld hl, $6072
+	ld hl, Data_2e072
 	call Func_324d
 	ret
 
@@ -1321,7 +1589,26 @@ Data_2e163:
 	dba Data_2e1af
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@61af", ROMX[$61af], BANK[$b]
+Data_2e168:
+	db $06, $0e, $12, $04, $01, $02, $03, $c4, $53
+	db $07, $0e, $12, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2e17b:
+	db $11, $06, $02, $02, $f6, $63
+	db $12, $0a, $04, $00, $f6, $63
+	db $13, $02, $07, $01, $f6, $63
+	db $14, $07, $09, $02, $f6, $63
+	db $2f, $07, $08, $02, $98, $64
+	db $ff
+
+Data_2e19a:
+	db $11, $0b, $26, $62
+	db $12, $0b, $8c, $62
+	db $13, $0b, $32, $63
+	db $14, $0b, $94, $63
+	db $2f, $0b, $0b, $64
+	db $ff
 
 Data_2e1af:
 	dbw $06, Func_2e1d2
@@ -1344,7 +1631,7 @@ Func_2e1c2:
 	ret
 
 Func_2e1d2:
-	ld hl, $6168
+	ld hl, Data_2e168
 	call Func_324d
 	ret
 
@@ -1363,25 +1650,33 @@ Func_2e1d9:
 	ret
 
 Func_2e1f5:
-	ld hl, $617b
+	ld hl, Data_2e17b
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e1fe:
-	ld hl, $619a
+	ld hl, Data_2e19a
 	call Func_328c
 	scf
 	ret
 
 Func_2e206:
-	ld hl, $6211
+	ld hl, Data_2e211
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e211
+
+Data_2e211:
+	db $11, $0b, $6e, $62
+	db $12, $0b, $f6, $62
+	db $13, $0b, $78, $63
+	db $14, $0b, $da, $63
+	db $2f, $0b, $49, $64
+	db $ff
+; 0x2e226
 
 SECTION "Bank b@64b7", ROMX[$64b7], BANK[$b]
 
@@ -1390,7 +1685,22 @@ Data_2e4b7:
 	dba Data_2e4ff
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@64ff", ROMX[$64ff], BANK[$b]
+Data_2e4bc:
+	db $04, $08, $00, $08, $02, $02, $03, $c4, $53
+	db $05, $08, $00, $08, $02, $02, $03, $c4, $53
+	db $00, $03, $16, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $16, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $17, $06, $0e, $00, $03, $c4, $53
+	db $05, $00, $17, $07, $0e, $00, $03, $c4, $53
+	db $ff
+
+Data_2e4f3:
+	db $17, $06, $01, $02, $2a, $66
+	db $ff
+
+Data_2e4fa:
+	db $17, $0b, $d0, $65
+	db $ff
 
 Data_2e4ff:
 	dbw $06, Func_2e538
@@ -1427,12 +1737,12 @@ Func_2e528:
 	ret
 
 Func_2e538:
-	ld hl, $64bc
+	ld hl, Data_2e4bc
 	call Func_324d
 	ret
 
 Func_2e53f:
-	ld hl, $64f3
+	ld hl, Data_2e4f3
 	call Func_3205
 	scf
 	ccf
@@ -1465,7 +1775,7 @@ Func_2e548:
 	ret
 
 Func_2e574:
-	ld hl, $64fa
+	ld hl, Data_2e4fa
 	call Func_328c
 	scf
 	ret
@@ -1547,7 +1857,40 @@ Data_2e63f:
 	dba Data_2e6e1
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@66e1", ROMX[$66e1], BANK[$b]
+Data_2e644:
+	db $0f, $06, $15, $01, $03, $01, $03, $c4, $53
+	db $0f, $07, $15, $01, $04, $01, $03, $c4, $53
+	db $ff
+
+Data_2e657:
+	db $16, $09, $06, $01, $0d, $68
+	db $18, $04, $09, $01, $0d, $68
+	db $05, $01, $0a, $03, $22, $68
+	db $75, $03, $09, $03, $d1, $68
+	db $77, $0d, $04, $02, $d1, $68
+	db $78, $07, $09, $03, $d1, $68
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $ff
+
+Data_2e688:
+	db $16, $0b, $6e, $67
+	db $18, $0b, $e3, $67
+	db $05, $0f, $0c, $43
+	db $75, $0b, $31, $68
+	db $77, $0b, $62, $68
+	db $78, $0b, $a0, $68
+	db $ff
+
+Data_2e6a1:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0f, $b9, $41
+	db $04, $04, $00, $00, $00, $00, $0f, $d9, $42
+	db $0c, $02, $00, $00, $00, $00, $10, $ce, $41
+	db $0d, $02, $00, $00, $00, $00, $10, $e4, $41
+	db $0e, $02, $00, $00, $00, $00, $10, $fa, $41
+	db $ff
 
 Data_2e6e1:
 	dbw $06, Func_2e71e
@@ -1586,36 +1929,38 @@ Func_2e709:
 	ret
 
 Func_2e71e:
-	ld hl, $6644
+	ld hl, Data_2e644
 	call Func_324d
 	ret
 
 Func_2e725:
-	ld hl, $6657
+	ld hl, Data_2e657
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e72e:
-	ld hl, $6688
+	ld hl, Data_2e688
 	call Func_328c
 	jr nc, .asm_2e73c
-	ld hl, $66a1
+	ld hl, Data_2e6a1
 	call Func_32bf
 .asm_2e73c
 	scf
 	ret
 
 Func_2e73e:
-	ld hl, $6749
+	ld hl, Data_2e749
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e749
 
-SECTION "Bank b@6752", ROMX[$6752], BANK[$b]
+Data_2e749:
+	db $16, $0b, $c7, $67
+	db $05, $0f, $ca, $43
+	db $ff
 
 Func_2e752:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -1639,7 +1984,26 @@ Data_2e8e6:
 	dba Data_2e932
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@6932", ROMX[$6932], BANK[$b]
+Data_2e8eb:
+	db $06, $0f, $15, $04, $01, $02, $03, $c4, $53
+	db $07, $0f, $15, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2e8fe:
+	db $15, $02, $02, $00, $87, $6a
+	db $16, $0a, $02, $00, $07, $6c
+	db $17, $06, $05, $03, $07, $6c
+	db $18, $03, $08, $01, $07, $6c
+	db $2f, $06, $08, $02, $a9, $6c
+	db $ff
+
+Data_2e91d:
+	db $15, $0b, $c7, $69
+	db $16, $0b, $94, $6a
+	db $17, $0b, $ef, $6a
+	db $18, $0b, $a5, $6b
+	db $2f, $0b, $1c, $6c
+	db $ff
 
 Data_2e932:
 	dbw $06, Func_2e955
@@ -1662,7 +2026,7 @@ Func_2e945:
 	ret
 
 Func_2e955:
-	ld hl, $68eb
+	ld hl, Data_2e8eb
 	call Func_324d
 	ret
 
@@ -1690,25 +2054,33 @@ Func_2e95c:
 	ret
 
 Func_2e996:
-	ld hl, $68fe
+	ld hl, Data_2e8fe
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e99f:
-	ld hl, $691d
+	ld hl, Data_2e91d
 	call Func_328c
 	scf
 	ret
 
 Func_2e9a7:
-	ld hl, $69b2
+	ld hl, Data_2e9b2
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e9b2
+
+Data_2e9b2:
+	db $15, $0b, $4b, $6a
+	db $16, $0b, $d1, $6a
+	db $17, $0b, $6d, $6b
+	db $18, $0b, $eb, $6b
+	db $2f, $0b, $5a, $6c
+	db $ff
+; 0x2e9c7
 
 SECTION "Bank b@6cc8", ROMX[$6cc8], BANK[$b]
 
@@ -1717,7 +2089,14 @@ Data_2ecc8:
 	dba Data_2ed04
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@6d04", ROMX[$6d04], BANK[$b]
+Data_2eccd:
+	db $04, $08, $00, $07, $06, $02, $03, $c4, $53
+	db $05, $08, $00, $07, $06, $02, $03, $c4, $53
+	db $00, $03, $19, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $19, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $1a, $06, $0e, $00, $03, $c4, $53
+	db $05, $00, $1a, $07, $0e, $00, $03, $c4, $53
+	db $ff
 
 Data_2ed04:
 	dbw $06, Func_2ed37
@@ -1752,7 +2131,7 @@ Func_2ed27:
 	ret
 
 Func_2ed37:
-	ld hl, $6ccd
+	ld hl, Data_2eccd
 	call Func_324d
 	ret
 
@@ -1844,7 +2223,38 @@ Data_2edc5:
 	dba Data_2ee5d
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@6e5d", ROMX[$6e5d], BANK[$b]
+Data_2edca:
+	db $0f, $06, $18, $01, $03, $01, $03, $c4, $53
+	db $0f, $07, $18, $01, $04, $01, $03, $c4, $53
+	db $ff
+
+Data_2eddd:
+	db $1b, $08, $06, $03, $5f, $6f
+	db $7b, $0b, $01, $03, $00, $00
+	db $05, $01, $0a, $03, $9f, $6f
+	db $79, $0c, $0b, $01, $00, $00
+	db $7a, $04, $09, $02, $00, $00
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $ff
+
+Data_2ee08:
+	db $1b, $0b, $ea, $6e
+	db $7b, $0b, $74, $6f
+	db $05, $0f, $0c, $43
+	db $79, $0b, $ae, $6f
+	db $7a, $0b, $e1, $6f
+	db $ff
+
+Data_2ee1d:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0f, $b9, $41
+	db $04, $04, $00, $00, $00, $00, $0f, $d9, $42
+	db $0c, $02, $00, $00, $00, $00, $10, $10, $42
+	db $0d, $02, $00, $00, $00, $00, $10, $26, $42
+	db $0e, $02, $00, $00, $00, $00, $10, $3c, $42
+	db $ff
 
 Data_2ee5d:
 	dbw $06, Func_2ee9a
@@ -1883,36 +2293,38 @@ Func_2ee85:
 	ret
 
 Func_2ee9a:
-	ld hl, $6dca
+	ld hl, Data_2edca
 	call Func_324d
 	ret
 
 Func_2eea1:
-	ld hl, $6ddd
+	ld hl, Data_2eddd
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2eeaa:
-	ld hl, $6e08
+	ld hl, Data_2ee08
 	call Func_328c
 	jr nc, .asm_2eeb8
-	ld hl, $6e1d
+	ld hl, Data_2ee1d
 	call Func_32bf
 .asm_2eeb8
 	scf
 	ret
 
 Func_2eeba:
-	ld hl, $6ec5
+	ld hl, Data_2eec5
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2eec5
 
-SECTION "Bank b@6ece", ROMX[$6ece], BANK[$b]
+Data_2eec5:
+	db $1b, $0b, $43, $6f
+	db $05, $0f, $ca, $43
+	db $ff
 
 Func_2eece:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -1936,7 +2348,32 @@ Data_2f012:
 	dba Data_2f072
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@7072", ROMX[$7072], BANK[$b]
+Data_2f017:
+	db $06, $0f, $18, $04, $01, $02, $03, $c4, $53
+	db $07, $0f, $18, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2f02a:
+	db $1a, $0b, $02, $02, $6d, $73
+	db $1b, $0a, $04, $02, $6d, $73
+	db $1c, $04, $09, $01, $78, $74
+	db $1d, $0b, $0a, $03, $78, $74
+	db $19, $04, $06, $02, $ed, $71
+	db $30, $08, $06, $02, $f2, $74
+	db $ff
+
+Data_2f04f:
+	db $1a, $0b, $fa, $71
+	db $1b, $0b, $cf, $72
+	db $1c, $0b, $82, $73
+	db $1d, $0b, $f1, $73
+	db $19, $0b, $d2, $71
+	db $30, $0b, $85, $74
+	db $ff
+
+Data_2f068:
+	db $0c, $03, $00, $00, $00, $00, $0b, $fa, $71
+	db $ff
 
 Data_2f072:
 	dbw $06, Func_2f095
@@ -1959,12 +2396,12 @@ Func_2f085:
 	ret
 
 Func_2f095:
-	ld hl, $7017
+	ld hl, Data_2f017
 	call Func_324d
 	ret
 
 Func_2f09c:
-	ld hl, $702a
+	ld hl, Data_2f02a
 	call Func_3205
 	scf
 	ccf
@@ -2002,22 +2439,30 @@ Func_2f0a5:
 	ret
 
 Func_2f0f7:
-	ld hl, $704f
+	ld hl, Data_2f04f
 	call Func_328c
 	jr nc, .asm_2f105
-	ld hl, $7068
+	ld hl, Data_2f068
 	call Func_32bf
 .asm_2f105
 	scf
 	ret
 
 Func_2f107:
-	ld hl, $7112
+	ld hl, Data_2f112
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2f112
+
+Data_2f112:
+	db $1a, $0b, $8a, $72
+	db $1b, $0b, $35, $73
+	db $1c, $0b, $d5, $73
+	db $1d, $0b, $4f, $74
+	db $30, $0b, $d9, $74
+	db $ff
+; 0x2f127
 
 SECTION "Bank b@74ff", ROMX[$74ff], BANK[$b]
 
@@ -2026,7 +2471,14 @@ Data_2f4ff:
 	dba Data_2f53b
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@753b", ROMX[$753b], BANK[$b]
+Data_2f504:
+	db $04, $08, $00, $07, $01, $02, $03, $c4, $53
+	db $05, $08, $00, $07, $01, $02, $03, $c4, $53
+	db $00, $03, $1c, $0e, $06, $03, $03, $c4, $53
+	db $00, $04, $1c, $0e, $07, $03, $03, $c4, $53
+	db $04, $00, $1d, $06, $0e, $00, $03, $c4, $53
+	db $05, $00, $1d, $07, $0e, $00, $03, $c4, $53
+	db $ff
 
 Data_2f53b:
 	dbw $06, Func_2f56e
@@ -2061,7 +2513,7 @@ Func_2f55e:
 	ret
 
 Func_2f56e:
-	ld hl, $7504
+	ld hl, Data_2f504
 	call Func_324d
 	ret
 
@@ -2155,7 +2607,36 @@ Data_2f5fc:
 	dba Data_2f68a
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@768a", ROMX[$768a], BANK[$b]
+Data_2f601:
+	db $0f, $06, $1b, $01, $03, $01, $03, $c4, $53
+	db $0f, $07, $1b, $01, $04, $01, $03, $c4, $53
+	db $ff
+
+Data_2f614:
+	db $7c, $08, $04, $00, $00, $00
+	db $05, $01, $0a, $03, $6f, $77
+	db $7d, $0a, $09, $00, $00, $00
+	db $7e, $05, $08, $02, $00, $00
+	db $64, $02, $02, $02, $00, $00
+	db $65, $04, $02, $02, $00, $00
+	db $ff
+
+Data_2f639:
+	db $7c, $0b, $09, $77
+	db $05, $0f, $0c, $43
+	db $7d, $0b, $7e, $77
+	db $7e, $0b, $a4, $77
+	db $ff
+
+Data_2f64a:
+	db $08, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $02, $00, $00, $00, $00, $03, $11, $54
+	db $02, $04, $00, $00, $00, $00, $0f, $b9, $41
+	db $04, $04, $00, $00, $00, $00, $0f, $d9, $42
+	db $0c, $02, $00, $00, $00, $00, $10, $52, $42
+	db $0d, $02, $00, $00, $00, $00, $10, $68, $42
+	db $0e, $02, $00, $00, $00, $00, $10, $7e, $42
+	db $ff
 
 Data_2f68a:
 	dbw $06, Func_2f6c7
@@ -2194,22 +2675,22 @@ Func_2f6b2:
 	ret
 
 Func_2f6c7:
-	ld hl, $7601
+	ld hl, Data_2f601
 	call Func_324d
 	ret
 
 Func_2f6ce:
-	ld hl, $7614
+	ld hl, Data_2f614
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2f6d7:
-	ld hl, $7639
+	ld hl, Data_2f639
 	call Func_328c
 	jr nc, .asm_2f6e5
-	ld hl, $764a
+	ld hl, Data_2f64a
 	call Func_32bf
 .asm_2f6e5
 	scf
@@ -2241,7 +2722,33 @@ Data_2f7ca:
 	dba Data_2f83b
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@783b", ROMX[$783b], BANK[$b]
+Data_2f7cf:
+	db $06, $0f, $1b, $04, $01, $02, $03, $c4, $53
+	db $07, $0f, $1b, $05, $01, $02, $03, $c4, $53
+	db $ff
+
+Data_2f7e2:
+	db $1e, $07, $02, $02, $00, $00
+	db $1f, $06, $09, $02, $00, $00
+	db $20, $05, $07, $02, $00, $00
+	db $21, $0a, $05, $02, $00, $00
+	db $30, $07, $05, $02, $29, $7c
+	db $ff
+
+Data_2f801:
+	db $1e, $0b, $26, $79
+	db $1f, $0b, $25, $7a
+	db $20, $0b, $a1, $7a
+	db $21, $0b, $4e, $7b
+	db $30, $0b, $d3, $7b
+	db $ff
+
+Data_2f816:
+	db $07, $0c, $00, $00, $00, $00, $0b, $ad, $7c
+	db $06, $0c, $00, $00, $00, $00, $0b, $b7, $7c
+	db $05, $0c, $00, $00, $00, $00, $0b, $c1, $7c
+	db $08, $0c, $00, $00, $00, $00, $0b, $cb, $7c
+	db $ff
 
 Data_2f83b:
 	dbw $06, Func_2f85e
@@ -2264,12 +2771,12 @@ Func_2f84e:
 	ret
 
 Func_2f85e:
-	ld hl, $77cf
+	ld hl, Data_2f7cf
 	call Func_324d
 	ret
 
 Func_2f865:
-	ld hl, $77e2
+	ld hl, Data_2f7e2
 	call Func_3205
 	scf
 	ccf
@@ -2307,22 +2814,30 @@ Func_2f86e:
 	ret
 
 Func_2f8c8:
-	ld hl, $7801
+	ld hl, Data_2f801
 	call Func_328c
 	jr nc, .asm_2f8d6
-	ld hl, $7816
+	ld hl, Data_2f816
 	call Func_32bf
 .asm_2f8d6
 	scf
 	ret
 
 Func_2f8d8:
-	ld hl, $78e3
+	ld hl, Data_2f8e3
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2f8e3
+
+Data_2f8e3:
+	db $1e, $0b, $ed, $79
+	db $1f, $0b, $85, $7a
+	db $20, $0b, $32, $7b
+	db $21, $0b, $b7, $7b
+	db $30, $0b, $0e, $7c
+	db $ff
+; 0x2f8f8
 
 SECTION "Bank b@7cd5", ROMX[$7cd5], BANK[$b]
 
@@ -2331,7 +2846,33 @@ Data_2fcd5:
 	dba Data_2fd66
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@7d66", ROMX[$7d66], BANK[$b]
+Data_2fcda:
+	db $07, $08, $00, $04, $04, $02, $03, $c4, $53
+	db $08, $08, $00, $04, $04, $02, $03, $c4, $53
+	db $0b, $00, $24, $07, $0e, $00, $03, $c4, $53
+	db $0c, $00, $24, $08, $0e, $00, $03, $c4, $53
+	db $ff
+
+Data_2fcff:
+	db $b2, $08, $03, $00, $1d, $7e
+	db $ff
+
+Data_2fd06:
+	db $b2, $0b, $a3, $7d
+	db $ff
+
+Data_2fd0b:
+	db $04, $02, $00, $00, $00, $00, $03, $11, $54
+	db $05, $02, $00, $00, $00, $00, $03, $11, $54
+	db $09, $01, $00, $00, $00, $00, $0b, $2a, $7e
+	db $0a, $01, $00, $00, $00, $00, $0b, $2a, $7e
+	db $01, $02, $00, $00, $00, $00, $10, $5a, $43
+	db $02, $02, $00, $00, $00, $00, $10, $70, $43
+	db $03, $02, $00, $00, $00, $00, $10, $86, $43
+	db $01, $05, $00, $00, $00, $00, $10, $9c, $43
+	db $02, $05, $00, $00, $00, $00, $10, $b2, $43
+	db $03, $05, $00, $00, $00, $00, $10, $c8, $43
+	db $ff
 
 Data_2fd66:
 	dbw $06, Func_2fd83
@@ -2352,22 +2893,22 @@ Func_2fd73:
 	ret
 
 Func_2fd83:
-	ld hl, $7cda
+	ld hl, Data_2fcda
 	call Func_324d
 	ret
 
 Func_2fd8a:
-	ld hl, $7cff
+	ld hl, Data_2fcff
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2fd93:
-	ld hl, $7d06
+	ld hl, Data_2fd06
 	call Func_328c
 	jr nc, .asm_2fda1
-	ld hl, $7d0b
+	ld hl,Data_2fd0b
 	call Func_32bf
 .asm_2fda1
 	scf
