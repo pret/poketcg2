@@ -1,7 +1,7 @@
 SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
 
 IshiharasHouse_MapHeader:
-	db MAP_ISHIHARAS_HOUSE
+	db MAP_GFX_ISHIHARAS_HOUSE
 	dba IshiharasHouse_MapScripts
 	db MUSIC_ISHIHARA
 
@@ -191,7 +191,7 @@ Func_2c1b8:
 SECTION "Bank b@4479", ROMX[$4479], BANK[$b]
 
 LightningClub_MapHeader:
-	db MAP_LIGHTNING_CLUB_1
+	db MAP_GFX_LIGHTNING_CLUB_1
 	dba LightningClub_MapScripts
 	db MUSIC_CLUB_1
 
@@ -237,8 +237,8 @@ Func_2c4db:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c4f7
-	ld a, MAP_LIGHTNING_CLUB_2
-	ld [wCurMap], a
+	ld a, MAP_GFX_LIGHTNING_CLUB_2
+	ld [wCurMapGfx], a
 .asm_2c4f7
 	scf
 	ccf
@@ -317,7 +317,7 @@ LightningClub_AfterDuelScripts:
 SECTION "Bank b@4936", ROMX[$4936], BANK[$b]
 
 PsychicClubEntrance_MapHeader:
-	db MAP_PSYCHIC_CLUB_ENTRANCE
+	db MAP_GFX_PSYCHIC_CLUB_ENTRANCE
 	dba PsychicClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -557,7 +557,7 @@ PsychicClubEntrance_ShouldRonaldAppear:
 	ret
 
 PsychicClubLobby_MapHeader:
-	db MAP_PSYCHIC_CLUB_LOBBY
+	db MAP_GFX_PSYCHIC_CLUB_LOBBY
 	dba PsychicClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -674,7 +674,7 @@ Func_2cbf5:
 SECTION "Bank b@4d23", ROMX[$4d23], BANK[$b]
 
 PsychicClub_MapHeader:
-	db MAP_PSYCHIC_CLUB
+	db MAP_GFX_PSYCHIC_CLUB
 	dba PsychicClub_MapScripts
 	db MUSIC_CLUB_2
 
@@ -812,7 +812,7 @@ Func_2d23c:
 SECTION "Bank b@530a", ROMX[$530a], BANK[$b]
 
 RockClubEntrance_MapHeader:
-	db MAP_ROCK_CLUB_ENTRANCE
+	db MAP_GFX_ROCK_CLUB_ENTRANCE
 	dba RockClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -906,7 +906,7 @@ RockClubEntrance_ShouldRonaldAppear:
 	ret
 
 RockClubLobby_MapHeader:
-	db MAP_ROCK_CLUB_LOBBY
+	db MAP_GFX_ROCK_CLUB_LOBBY
 	dba RockClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1026,7 +1026,7 @@ Func_2d4c4:
 SECTION "Bank b@55f8", ROMX[$55f8], BANK[$b]
 
 RockClub_MapHeader:
-	db MAP_ROCK_CLUB
+	db MAP_GFX_ROCK_CLUB
 	dba RockClub_MapScripts
 	db MUSIC_CLUB_2
 
@@ -1128,7 +1128,7 @@ RockClub_AfterDuelScripts:
 SECTION "Bank b@5930", ROMX[$5930], BANK[$b]
 
 FightningClubEntrance_MapHeader:
-	db MAP_FIGHTING_CLUB_ENTRANCE
+	db MAP_GFX_FIGHTING_CLUB_ENTRANCE
 	dba FightningClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1262,7 +1262,7 @@ FightingClubEntrance_ShouldRonaldAppear:
 	ret
 
 FightningClubLobby_MapHeader:
-	db MAP_FIGHTING_CLUB_LOBBY
+	db MAP_GFX_FIGHTING_CLUB_LOBBY
 	dba FightningClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1355,7 +1355,7 @@ FightningClubLobby_AfterDuelScripts:
 SECTION "Bank b@5c9f", ROMX[$5c9f], BANK[$b]
 
 FightingClub_MapHeader:
-	db MAP_FIGHTING_CLUB
+	db MAP_GFX_FIGHTING_CLUB
 	dba FightingClub_MapScripts
 	db MUSIC_CLUB_3
 
@@ -1451,7 +1451,7 @@ FightingClub_AfterDuelScripts:
 SECTION "Bank b@606d", ROMX[$606d], BANK[$b]
 
 GrassClubEntrance_MapHeader:
-	db MAP_GRASS_CLUB_ENTRANCE
+	db MAP_GFX_GRASS_CLUB_ENTRANCE
 	dba GrassClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1586,7 +1586,7 @@ GrassClubEntrance_ShouldRonaldAppear:
 	ret
 
 GrassClub_MapHeader:
-	db MAP_GRASS_CLUB
+	db MAP_GFX_GRASS_CLUB
 	dba GrassClub_MapScripts
 	db MUSIC_CLUB_1
 
@@ -1682,7 +1682,7 @@ GrassClub_AfterDuelScripts:
 SECTION "Bank b@64b7", ROMX[$64b7], BANK[$b]
 
 ScienceClubEntrance_MapHeader:
-	db MAP_SCIENCE_CLUB_ENTRANCE
+	db MAP_GFX_SCIENCE_CLUB_ENTRANCE
 	dba ScienceClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1854,7 +1854,7 @@ Func_2e62a:
 	ret
 
 ScienceClubLobby_MapHeader:
-	db MAP_SCIENCE_CLUB_LOBBY
+	db MAP_GFX_SCIENCE_CLUB_LOBBY
 	dba ScienceClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -1981,7 +1981,7 @@ Func_2e752:
 SECTION "Bank b@68e6", ROMX[$68e6], BANK[$b]
 
 ScienceClub_MapHeader:
-	db MAP_SCIENCE_CLUB
+	db MAP_GFX_SCIENCE_CLUB
 	dba ScienceClub_MapScripts
 	db MUSIC_CLUB_3
 
@@ -2086,7 +2086,7 @@ ScienceClub_AfterDuelScripts:
 SECTION "Bank b@6cc8", ROMX[$6cc8], BANK[$b]
 
 WaterClubEntrance_MapHeader:
-	db MAP_WATER_CLUB_ENTRANCE
+	db MAP_GFX_WATER_CLUB_ENTRANCE
 	dba WaterClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -2220,7 +2220,7 @@ WaterClubEntrance_ShouldRonaldAppear:
 	ret
 
 WaterClubLobby_MapHeader:
-	db MAP_WATER_CLUB_LOBBY
+	db MAP_GFX_WATER_CLUB_LOBBY
 	dba WaterClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -2345,7 +2345,7 @@ Func_2eece:
 SECTION "Bank b@7012", ROMX[$7012], BANK[$b]
 
 WaterClub_MapHeader:
-	db MAP_WATER_CLUB
+	db MAP_GFX_WATER_CLUB
 	dba WaterClub_MapScripts
 	db MUSIC_CLUB_1
 
@@ -2468,7 +2468,7 @@ WaterClub_AfterDuelScripts:
 SECTION "Bank b@74ff", ROMX[$74ff], BANK[$b]
 
 FireClubEntrance_MapHeader:
-	db MAP_FIRE_CLUB_ENTRANCE
+	db MAP_GFX_FIRE_CLUB_ENTRANCE
 	dba FireClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -2604,7 +2604,7 @@ FireClubEntrance_ShouldRonaldAppear:
 	ret
 
 FireClubLobby_MapHeader:
-	db MAP_FIRE_CLUB_LOBBY
+	db MAP_GFX_FIRE_CLUB_LOBBY
 	dba FireClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -2719,7 +2719,7 @@ Func_2f6ed:
 SECTION "Bank b@77ca", ROMX[$77ca], BANK[$b]
 
 FireClub_MapHeader:
-	db MAP_FIRE_CLUB
+	db MAP_GFX_FIRE_CLUB
 	dba FireClub_MapScripts
 	db MUSIC_CLUB_3
 
@@ -2843,7 +2843,7 @@ FireClub_AfterDuelScripts:
 SECTION "Bank b@7cd5", ROMX[$7cd5], BANK[$b]
 
 PokemonDomeEntrance_MapHeader:
-	db MAP_POKEMON_DOME_ENTRANCE
+	db MAP_GFX_POKEMON_DOME_ENTRANCE
 	dba PokemonDomeEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
@@ -2919,7 +2919,7 @@ Func_2fd93:
 SECTION "Bank b@7e45", ROMX[$7e45], BANK[$b]
 
 OverheadIslands_MapHeader:
-	db MAP_OVERHEAD_ISLANDS
+	db MAP_GFX_OVERHEAD_ISLANDS
 	dba OverheadIslands_MapScripts
 	db MUSIC_GRBLIMP
 

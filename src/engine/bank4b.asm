@@ -404,7 +404,7 @@ Func_12c1c1:
 	jr nz, .loop_rows
 	ret
 
-; bc = map ID
+; bc = MAP_GFX_* ID
 LoadOWMap:
 	ld a, c
 	ld [wOWMap + 0], a
