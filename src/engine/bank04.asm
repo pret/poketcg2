@@ -723,10 +723,10 @@ SetwD896:
 	ld [wd896 + 4], a
 	ret
 
-Func_10630:
+CopyCGBBGPalsWithID_BeginWithPal2:
 	push bc
 	farcall GetPaletteGfxPointer
-	call Func_378c
+	call CopyCGBBGPalsFromSource_BeginWithPal2
 	pop bc
 	ret
 
@@ -1266,20 +1266,21 @@ SECTION "Bank 4@4a1e", ROMX[$4a1e], BANK[$4]
 ; e = y coordinate
 SetSpriteAnimPosition::
 	push hl
+REPT SPRITEANIMSTRUCT_X_POS
 	inc hl
-	inc hl
-	inc hl
+ENDR
 	ld [hl], d ; SPRITEANIMSTRUCT_X_POS
 	inc hl
 	ld [hl], e ; SPRITEANIMSTRUCT_Y_POS
 	pop hl
 	ret
 
+; get x coordinate in d, y in e
 GetSpriteAnimPosition:
 	push hl
+REPT SPRITEANIMSTRUCT_X_POS
 	inc hl
-	inc hl
-	inc hl
+ENDR
 	ld d, [hl] ; SPRITEANIMSTRUCT_X_POS
 	inc hl
 	ld e, [hl] ; SPRITEANIMSTRUCT_Y_POS
@@ -1294,11 +1295,11 @@ SetSpriteAnimDirection:
 	push hl
 	inc hl
 	ld a, [hl] ; SPRITEANIMSTRUCT_1
-	and $03
+	and SPRITE_ANIM_STRUCT1_FLAG0 | SPRITE_ANIM_STRUCT1_FLAG1
 	cp b
 	jr z, .exit
 	ld a, [hl] ; SPRITEANIMSTRUCT_1
-	and $fc
+	and ~(SPRITE_ANIM_STRUCT1_FLAG0 | SPRITE_ANIM_STRUCT1_FLAG1)
 	or b
 	ld [hl], a
 	ld de, SPRITEANIMSTRUCT_FRAME_INDEX - SPRITEANIMSTRUCT_1
@@ -1324,12 +1325,12 @@ SetSpriteAnimDirection:
 	pop af
 	ret
 
-Func_10a5c:
+GetSpriteAnimStruct1Flag0And1:
 	push af
 	push hl
 	inc hl
 	ld a, [hl] ; SPRITEANIMSTRUCT_1
-	and $03
+	and SPRITE_ANIM_STRUCT1_FLAG0 | SPRITE_ANIM_STRUCT1_FLAG1
 	ld b, a
 	pop hl
 	pop af
@@ -1363,7 +1364,10 @@ SetSpriteAnimMotion:
 	pop af
 	ret
 
-Func_10a83:
+; clear the move flag of sprite anim at hl
+; return c = 2 if the speed flag is set, 1 if not
+; also e = move duration
+StopAndGetSpriteAnimSpeedAndMoveDuration:
 	push af
 	push hl
 	res SPRITEANIMSTRUCT_MOVE_F, [hl]
@@ -1378,7 +1382,10 @@ Func_10a83:
 	pop af
 	ret
 
-Func_10a94:
+; set the move flag of sprite anim at hl
+; set the speed flag if c = 2, unset if c = 1
+; set move duration from e
+MoveAndSetSpriteAnimSpeedAndMoveDuration:
 	push af
 	push bc
 	push hl
@@ -1396,7 +1403,7 @@ Func_10a94:
 	pop af
 	ret
 
-Func_10aa8:
+GetSpriteAnimSpeedAndMoveDuration:
 	push af
 	push hl
 	ld a, [hl]
@@ -1414,12 +1421,12 @@ Func_10ab7:
 	ld a, [hl]
 	ret
 
-Func_10ab9:
-	res SPRITEANIMSTRUCT_FLAG6_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
+ResetSpriteAnimFlag6:
+	res SPRITEANIMSTRUCT_FLAG6_F, [hl]
 	ret
 
-Func_10abc:
-	set SPRITEANIMSTRUCT_FLAG6_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
+SetSpriteAnimFlag6:
+	set SPRITEANIMSTRUCT_FLAG6_F, [hl]
 	ret
 
 Func_10abf:
@@ -1560,13 +1567,16 @@ Func_10b18:
 	pop af
 	ret
 
-Func_10b71:
+; just clear the current [hl]
+_ClearSpriteAnimFlags:
 	push af
 	xor a
 	ld [hl], a ; SPRITEANIMSTRUCT_FLAGS
 	pop af
 	ret
 
+; input: sprite anim x_pos in d, y_pos in e
+; output: d -= 8, e -= 16
 ConvertToOWObjectPosition:
 	push af
 	ld a, d
@@ -1578,25 +1588,27 @@ ConvertToOWObjectPosition:
 	pop af
 	ret
 
-Func_10b81:
+; input: sprite anim x_pos in d, y_pos in e
+; output: d = (d - 8) >> 4, e = (e - 16) >> 4
+ConvertToOWObjectTilePosition:
 	push af
 	ld a, d
 	sub $08
 	ld d, a
+REPT 4
 	srl d
-	srl d
-	srl d
-	srl d ; *16
+ENDR
 	ld a, e
 	sub $10
 	ld e, a
+REPT 4
 	srl e
-	srl e
-	srl e
-	srl e ; *16
+ENDR
 	pop af
 	ret
 
+; load all sprite tilesets and their sprite anim gfx
+; also clear wNumSpriteTilesets and wCurVRAMTile
 Func_10b9c:
 	push af
 	push bc
@@ -1610,15 +1622,14 @@ Func_10b9c:
 	ld hl, wSpriteTilesets
 .loop
 	push bc
-	ld a, [hli]
+	ld a, [hli] ;  LOW(OBJTILESTRUCT_ID)
 	ld c, a
-	ld a, [hld]
+	ld a, [hld] ; HIGH(OBJTILESTRUCT_ID)
 	ld b, a
 	farcall LoadSpriteAnimGfx
+REPT OBJTILESTRUCT_LENGTH
 	inc hl
-	inc hl
-	inc hl
-	inc hl
+ENDR
 	pop bc
 	dec c
 	jr nz, .loop
@@ -1628,32 +1639,34 @@ Func_10b9c:
 	pop af
 	ret
 
-Func_10bc4:
+GetSpriteAnimBuffer:
 	ld hl, wSpriteAnimationStructs
 	ret
 
 SetSpriteAnimAnimating:
-	set SPRITEANIMSTRUCT_ANIMATING_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
+	set SPRITEANIMSTRUCT_ANIMATING_F, [hl]
 	ret
 
 ResetSpriteAnimAnimating:
-	res SPRITEANIMSTRUCT_ANIMATING_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
+	res SPRITEANIMSTRUCT_ANIMATING_F, [hl]
 	ret
 ; 0x10bce
 
 SECTION "Bank 4@4be7", ROMX[$4be7], BANK[$4]
 
-Func_10be7:
+; push to w3d8db
+; wSpriteAnimationStructs, wCurVRAMTile, wNumSpriteTilesets, wSpriteTilesets
+PushSpriteAnimTileToBank3:
 	ei
 	di
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $d8db
+	ld de, w3d8db
 	ld hl, wSpriteAnimationStructs
-	ld c, $ca
-.asm_10bf5
+	ld c, SPRITE_ANIM_TILE_BUFFER_SIZE
+.copy_loop
 	ld b, [hl]
 	ld a, [wWRAMBank]
 	push af
@@ -1666,7 +1679,7 @@ Func_10be7:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_10bf5
+	jr nz, .copy_loop
 	pop hl
 	pop de
 	pop bc
@@ -1674,17 +1687,19 @@ Func_10be7:
 	ei
 	ret
 
-Func_10c10:
+; pull from w3d8db
+; wSpriteAnimationStructs, wCurVRAMTile, wNumSpriteTilesets, wSpriteTilesets
+PullSpriteAnimTileFromBank3:
 	ei
 	di
 	push af
 	push bc
 	push de
 	push hl
-	ld de, wSpriteAnim4TileOffset
+	ld de, w3d8db
 	ld hl, wSpriteAnimationStructs
-	ld c, $ca
-.asm_10c1e
+	ld c, SPRITE_ANIM_TILE_BUFFER_SIZE
+.copy_loop
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -1697,7 +1712,7 @@ Func_10c10:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_10c1e
+	jr nz, .copy_loop
 	pop hl
 	pop de
 	pop bc
@@ -1707,7 +1722,7 @@ Func_10c10:
 
 ; returns nz if sprite anim in hl is animating
 CheckIsSpriteAnimAnimating:
-	bit SPRITEANIMSTRUCT_ANIMATING_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
+	bit SPRITEANIMSTRUCT_ANIMATING_F, [hl]
 	ret
 ; 0x10c3c
 
@@ -1844,13 +1859,17 @@ SetSpriteAnimAnimation::
 
 SECTION "Bank 4@4cfe", ROMX[$4cfe], BANK[$4]
 
-Func_10cfe:
+Stub_10cfe:
 	ret
 ; 0x10cff
 
 SECTION "Bank 4@4d17", ROMX[$4d17], BANK[$4]
 
-Func_10d17:
+; input:
+; - b: ? (would make sense if $0/$1)
+; - hl: OW obj anim pointer
+; update its SPRITEANIMSTRUCT_1 by clearing bit 2 and then OR (b*4)
+_SetSpriteAnimStruct1Flag2:
 	push af
 	push bc
 	push hl
@@ -1858,7 +1877,7 @@ Func_10d17:
 	sla b ; *4
 	inc hl
 	ld a, [hl] ; SPRITEANIMSTRUCT_1
-	and $fb
+	and ~SPRITE_ANIM_STRUCT1_FLAG2
 	or b
 	ld [hl], a
 	pop hl
@@ -1866,15 +1885,16 @@ Func_10d17:
 	pop af
 	ret
 
-Func_10d28:
+; return, in bit 0 of b, bit 2 of SPRITEANIMSTRUCT_1 of anim pointer at hl
+_GetSpriteAnimStruct1Flag2:
 	push af
 	push hl
 	inc hl
-	ld a, [hl]
-	and 4
+	ld a, [hl] ; SPRITEANIMSTRUCT_1
+	and SPRITE_ANIM_STRUCT1_FLAG2
 	ld b, a
 	srl b
-	srl b
+	srl b ; /4
 	pop hl
 	pop af
 	ret
@@ -1888,7 +1908,7 @@ GetPalettesWithID:
 
 Func_10d40::
 	call InitOWObjects
-	ld a, $01
+	ld a, 1
 	call SetwD8A1
 	call FillwD986
 	ret
@@ -1909,20 +1929,20 @@ GetOWObjectSpriteAnimFlags::
 	call _GetOWObjectSpriteAnimFlags
 	ret
 
-Func_10d5c:
+; input: x in d, y in e
+; output: d = (d << 4) + 8, e = (e << 4) + 16
+ConvertFromTileToSpriteAnimPosition:
 	push af
 	ld a, d
+REPT 4
 	sla a
-	sla a
-	sla a
-	sla a
+ENDR
 	add $08
 	ld d, a
 	ld a, e
+REPT 4
 	sla a
-	sla a
-	sla a
-	sla a
+ENDR
 	add $10
 	ld e, a
 	pop af
@@ -1934,26 +1954,26 @@ LoadOWObjectInMap::
 	push bc
 	push de
 	push hl
+REPT 4 ; *16
 	sla d
-	sla d
-	sla d
-	sla d ; *8
+ENDR
+REPT 4 ; *16
 	sla e
-	sla e
-	sla e
-	sla e ; *8
+ENDR
 	call LoadOWObject
 	call IsStillOWObject
 	jr c, .still_object
-	; apply a random animation duration
-	; to the object so that NPCs in a map
-	; appear out of phase
+
+; apply a random animation duration
+; to the object so that NPCs in a map
+; appear out of phase
 	push af
 	call UpdateRNGSources
 	and $f
 	ld c, a
 	pop af
 	call SetOWObjectFrameDuration
+
 .still_object
 	pop hl
 	pop de
@@ -1965,32 +1985,32 @@ ClearOWObject:
 	call _ClearOWObject
 	ret
 
-Func_10da7::
+GetOWObjectTilePosition::
 	push af
 	push hl
 	call _GetOWObjectWithID
 	call GetOWObjectSpriteAnim
 	call GetSpriteAnimPosition
-	call Func_10b81
+	call ConvertToOWObjectTilePosition
 	pop hl
 	pop af
 	ret
 
-Func_10db8:
+SetOWObjectTilePosition:
 	push af
 	push de
 	push hl
 	call _GetOWObjectWithID
 	call GetOWObjectSpriteAnim
-	call Func_10d5c
+	call ConvertFromTileToSpriteAnimPosition
 	call SetSpriteAnimPosition
 	pop hl
 	pop de
 	pop af
 	ret
 
-Func_10dcb::
-	call Func_112b2
+GetOWObjectAnimStruct1Flag0And1::
+	call _GetOWObjectAnimStruct1Flag0And1
 	ret
 
 ; a = OW_* constant (ow_object)
@@ -1999,7 +2019,7 @@ SetOWObjectDirection::
 	call _SetOWObjectDirection
 	ret
 
-Func_10dd3::
+StartOWObjectAnimation::
 	call SetOWObjectSpriteAnimating
 	ret
 
@@ -2007,24 +2027,24 @@ StopOWObjectAnimation::
 	call ResetOWObjectSpriteAnimating
 	ret
 
-Func_10ddb:
-	call Func_112e8
+StartOWObjectAnimFlag6:
+	call SetOWObjectSpriteAnimFlag6
 	ret
 
-Func_10ddf:
-	call Func_112f4
+StopOWObjectAnimFlag6:
+	call ResetOWObjectSpriteAnimFlag6
 	ret
 
 StopAndGetOWObjectSpeedAndMoveDuration::
-	call Func_11300
+	call _StopAndGetOWObjectSpeedAndMoveDuration
 	ret
 
 MoveAndSetOWObjectSpeedAndMoveDuration::
-	call Func_1130e
+	call _MoveAndSetOWObjectSpeedAndMoveDuration
 	ret
 
 GetOWObjectSpeedAndMoveDuration::
-	call Func_11320
+	call _GetOWObjectSpeedAndMoveDuration
 	ret
 
 Func_10def:
@@ -2068,7 +2088,7 @@ Func_10dfb::
 	ld l, a
 	call GetSpriteAnimPosition
 	pop hl
-	call Func_10b81
+	call ConvertToOWObjectTilePosition
 	ld a, d
 	cp b
 	jr nz, .next
@@ -2106,7 +2126,7 @@ Func_10e3c::
 	call GetOWObjectWithID
 	bit 5, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .asm_10e8f
-	call Func_10da7
+	call GetOWObjectTilePosition
 	ld a, b
 	and $03
 	inc a
@@ -2177,10 +2197,10 @@ Func_10ea7:
 	push bc
 	push de
 	push hl
-	ld de, $7563
+	ld de, $7563 ; w3d563?
 	ld hl, wOWObjects
 	ld c, 1
-.loop
+.copy_loop
 	ld b, [hl]
 	ld a, [wWRAMBank]
 	push af
@@ -2193,13 +2213,13 @@ Func_10ea7:
 	inc hl
 	inc de
 	dec c
-	jr nz, .loop
+	jr nz, .copy_loop
 	ei
 	pop hl
 	pop de
 	pop bc
 	pop af
-	call Func_113f8
+	call PushOWObjectsAndAnimTileToBank3
 	ret
 
 Func_10ed3:
@@ -2209,10 +2229,10 @@ Func_10ed3:
 	push bc
 	push de
 	push hl
-	ld de, $7563
+	ld de, $7563 ; w3d563?
 	ld hl, wOWObjects
 	ld c, 1
-.loop
+.copy_loop
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -2225,48 +2245,48 @@ Func_10ed3:
 	inc hl
 	inc de
 	dec c
-	jr nz, .loop
+	jr nz, .copy_loop
 	ei
 	pop hl
 	pop de
 	pop bc
 	pop af
-	call Func_11424
+	call PullSpriteAnimTileObjFromBank3
 	ret
 
-Func_10eff::
+SetOWObjectFlag5_WithID::
 	push hl
 	call GetOWObjectWithID
-	set 5, [hl] ; OWOBJSTRUCT_FLAGS
+	set OBJ_FLAG5_F, [hl]
 	pop hl
 	ret
 
-Func_10f07:
+ResetOWObjectFlag5_WithID:
 	push hl
 	call GetOWObjectWithID
-	res 5, [hl]
+	res OBJ_FLAG5_F, [hl]
 	pop hl
 	ret
 
 Func_10f0f:
-	call Func_10db8
+	call SetOWObjectTilePosition
 	call SetOWObjectDirection
 	ret
 
-Func_10f16:
-	call Func_11471
+SetOWObjectAnimStruct1Flag2:
+	call _SetOWObjectAnimStruct1Flag2
 	ret
 
-Func_10f1a:
-	call Func_1147b
+GetOWObjectAnimStruct1Flag2:
+	call _GetOWObjectAnimStruct1Flag2
 	ret
 
-Func_10f1e:
-	call SetOWObjectFrameset
+SetAndInitOWObjectFrameset:
+	call _SetAndInitOWObjectFrameset
 	ret
 
-Func_10f22:
-	call Func_1148f
+SetOWObjectFrameset:
+	call _SetOWObjectFrameset
 	ret
 
 FillwD986:
@@ -2319,11 +2339,11 @@ Func_10f32:
 	ld [hl], a
 	inc hl
 	ld a, c
-	call Func_10dcb
+	call GetOWObjectAnimStruct1Flag0And1
 	ld [hl], b
 	inc hl
 	ld a, c
-	call Func_10da7
+	call GetOWObjectTilePosition
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -2374,13 +2394,13 @@ Func_10f78:
 	inc hl
 	call LoadOWObjectInMap
 	bit SPRITEANIMSTRUCT_ANIMATING_F, c
-	jr nz, .no_animation
+	jr nz, .done_anim
 	call StopOWObjectAnimation
-.no_animation
-	bit 1, c
-	jr z, .asm_10fb6
-	call Func_10eff
-.asm_10fb6
+.done_anim
+	bit SPRITEANIMSTRUCT_FLAG1_F, c
+	jr z, .done_flags
+	call SetOWObjectFlag5_WithID
+.done_flags
 	pop bc
 	ret
 
@@ -2791,7 +2811,6 @@ Func_111f0:
 	ld a, $04
 	ld [wPCMenuCursorPosition], a
 	ret
-; 0x111f6
 
 ; clears animations and all OW objects
 InitOWObjects:
@@ -2864,8 +2883,9 @@ _GetOWObjectWithID:
 
 _GetOWObjectSpriteAnim:
 	push af
+REPT OWOBJSTRUCT_ANIM_PTR
 	inc hl
-	inc hl
+ENDR
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2877,10 +2897,9 @@ _GetOWObjectSpriteAnimFlags:
 	push hl
 	call _GetOWObjectWithID
 	ld b, [hl]
+REPT 4
 	srl b
-	srl b
-	srl b
-	srl b
+ENDR
 	call _GetOWObjectSpriteAnim
 	ld a, [hl]
 	and $f0
@@ -2889,6 +2908,7 @@ _GetOWObjectSpriteAnimFlags:
 	pop bc
 	ret
 
+; just set [hl] to a
 Func_1126b:
 	ld [hl], a
 	ret
@@ -2919,7 +2939,7 @@ _ClearOWObject:
 	ld [hli], a ; OWOBJSTRUCT_FLAGS
 	ld [hld], a ; OWOBJSTRUCT_ID
 	call _GetOWObjectSpriteAnim
-	call Func_10b71
+	call _ClearSpriteAnimFlags
 	pop hl
 	pop af
 	ret
@@ -2949,12 +2969,12 @@ SetOWObjectPosition:
 	pop af
 	ret
 
-Func_112b2:
+_GetOWObjectAnimStruct1Flag0And1:
 	push af
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10a5c
+	call GetSpriteAnimStruct1Flag0And1
 	pop hl
 	pop af
 	ret
@@ -2989,52 +3009,52 @@ ResetOWObjectSpriteAnimating:
 	pop hl
 	ret
 
-Func_112e8:
+SetOWObjectSpriteAnimFlag6:
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10abc
+	call SetSpriteAnimFlag6
 	pop hl
 	ret
 
-Func_112f4:
+ResetOWObjectSpriteAnimFlag6:
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10ab9
+	call ResetSpriteAnimFlag6
 	pop hl
 	ret
 
-Func_11300:
+_StopAndGetOWObjectSpeedAndMoveDuration:
 	push af
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10a83
+	call StopAndGetSpriteAnimSpeedAndMoveDuration
 	pop hl
 	pop af
 	ret
 
-Func_1130e:
+_MoveAndSetOWObjectSpeedAndMoveDuration:
 	push af
 	push bc
 	push de
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10a94
+	call MoveAndSetSpriteAnimSpeedAndMoveDuration
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_11320:
+_GetOWObjectSpeedAndMoveDuration:
 	push af
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10aa8
+	call GetSpriteAnimSpeedAndMoveDuration
 	pop hl
 	pop af
 	ret
@@ -3088,18 +3108,18 @@ Func_11367:
 	ld d, h
 	ld e, l
 	call _GetOWObjectWithID
-	set 6, [hl]
+	set OBJ_FLAG6_F, [hl]
 	push bc
-	ld bc, 4
+	ld bc, OWOBJSTRUCT_4
 	add hl, bc
 	pop bc
 	xor a
-	ld [hli], a
-	ld [hl], b
+	ld [hli], a ; OWOBJSTRUCT_4
+	ld [hl], b  ; OWOBJSTRUCT_5
 	inc hl
-	ld [hl], e
+	ld [hl], e  ;  LOW(OWOBJSTRUCT_6)
 	inc hl
-	ld [hl], d
+	ld [hl], d  ; HIGH(OWOBJSTRUCT_6)
 	pop hl
 	pop de
 	pop bc
@@ -3117,7 +3137,7 @@ Func_11384::
 .loop
 	push bc
 	push hl
-	bit 6, [hl] ; OWOBJSTRUCT_FLAGS
+	bit OBJ_FLAG6_F, [hl]
 	jr z, .next
 	push hl
 	call _GetOWObjectSpriteAnim
@@ -3143,16 +3163,16 @@ Func_11384::
 .Func_113af:
 	inc hl
 	ld d, [hl] ; OWOBJSTRUCT_ID
+REPT OWOBJSTRUCT_4 - OWOBJSTRUCT_ID
 	inc hl
-	inc hl
-	inc hl
+ENDR
 	push hl
 	ld a, [hli] ; OWOBJSTRUCT_4
 	ld c, a
 	ld a, [hli] ; OWOBJSTRUCT_5
 	ld b, a
-	ld a, [hli] ; OWOBJSTRUCT_6
-	ld h, [hl]  ;
+	ld a, [hli] ;  LOW(OWOBJSTRUCT_6)
+	ld h, [hl]  ; HIGH(OWOBJSTRUCT_6)
 	ld l, a
 	call Func_3be0
 	pop hl
@@ -3167,7 +3187,7 @@ Func_11384::
 .asm_113cb
 	ld bc, OWOBJSTRUCT_FLAGS - OWOBJSTRUCT_4
 	add hl, bc
-	res 6, [hl]
+	res OBJ_FLAG6_F, [hl]
 	ret
 
 ; counts number of OW objects
@@ -3180,7 +3200,7 @@ Func_113d2:
 	ld hl, wOWObjects
 	xor a
 .loop
-	bit 6, [hl] ; OWOBJSTRUCT_FLAGS
+	bit OBJ_FLAG6_F, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .next
 	inc a
 .next
@@ -3208,17 +3228,18 @@ GetOWObjectsPointer:
 	ld hl, wOWObjects
 	ret
 
-Func_113f8:
+; push all wOWObjects to w3d9a5, then PushSpriteAnimTileToBank3
+PushOWObjectsAndAnimTileToBank3:
 	ei
 	di
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $d9a5
+	ld de, w3d9a5
 	ld hl, wOWObjects
-	ld c, MAX_NUM_OW_OBJECTS * OWOBJSTRUCT_LENGTH
-.asm_11406
+	ld c, OW_OBJECTS_BUFFER_SIZE
+.copy_loop
 	ld b, [hl]
 	ld a, [wWRAMBank]
 	push af
@@ -3231,26 +3252,27 @@ Func_113f8:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_11406
+	jr nz, .copy_loop
 	ei
-	call Func_10be7
+	call PushSpriteAnimTileToBank3
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_11424:
+; pull all wOWObjects from w3d9a5, then PullSpriteAnimTileFromBank3
+PullSpriteAnimTileObjFromBank3:
 	ei
 	di
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $d9a5
+	ld de, w3d9a5
 	ld hl, wOWObjects
-	ld c, MAX_NUM_OW_OBJECTS * OWOBJSTRUCT_LENGTH
-.asm_11432
+	ld c, OW_OBJECTS_BUFFER_SIZE
+.copy_loop
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -3263,9 +3285,9 @@ Func_11424:
 	inc hl
 	inc de
 	dec c
-	jr nz, .asm_11432
+	jr nz, .copy_loop
 	ei
-	call Func_10c10
+	call PullSpriteAnimTileFromBank3
 	pop hl
 	pop de
 	pop bc
@@ -3279,37 +3301,37 @@ SetOWObjectAsScrollTarget:
 	call StoreScrollTargetObjectPtr
 	ret
 
-Func_1145d:
+CheckIsOWObjectAnimating:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	call CheckIsSpriteAnimAnimating
 	ret
 
-Func_11467:
+SetOWObjectPositionAndDirection:
 	call _GetOWObjectWithID
 	call SetOWObjectPosition
 	call _SetOWObjectDirection
 	ret
 
-Func_11471:
+_SetOWObjectAnimStruct1Flag2:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10d17
+	call _SetSpriteAnimStruct1Flag2
 	ret
 
-Func_1147b:
+_GetOWObjectAnimStruct1Flag2:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
-	call Func_10d28
+	call _GetSpriteAnimStruct1Flag2
 	ret
 
-SetOWObjectFrameset:
+_SetAndInitOWObjectFrameset:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	call SetAndInitSpriteAnimFrameset
 	ret
 
-Func_1148f:
+_SetOWObjectFrameset:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	call SetSpriteAnimFrameset
@@ -3322,7 +3344,7 @@ _SetOWObjectFrameDuration:
 	call SetSpriteAnimFrameDuration
 	ret
 
-Func_114a4:
+_SetOWObjectFrameIndex:
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
 	ld a, b

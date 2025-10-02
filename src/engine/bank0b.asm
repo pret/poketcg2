@@ -50,7 +50,7 @@ Func_2c0d1:
 	jr z, .asm_2c0ef
 	ld a, OW_ISHIHARA
 	lb de, 1, 2
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	ld b, NORTH
 	farcall SetOWObjectDirection
 .asm_2c0ef
@@ -390,7 +390,7 @@ Func_2ca46:
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
 	farcall SetOWObjectDirection
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	ld a, $02
 	cp e
 	jr nz, .asm_2ca9f
@@ -401,7 +401,7 @@ Func_2ca46:
 	cp d
 	jr nz, .asm_2ca9f
 	ld a, $29
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	ld a, $05
 	cp d
 	jr z, .asm_2ca9f
@@ -411,7 +411,7 @@ Func_2ca46:
 	jr .asm_2ca9a
 .asm_2ca86
 	ld a, $29
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	ld a, $04
 	cp d
 	jr z, .asm_2ca9f

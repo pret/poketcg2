@@ -455,7 +455,7 @@ LoadOWMap:
 	inc hl
 	push hl
 	call GetPaletteGfxPointer
-	call Func_378c
+	call CopyCGBBGPalsFromSource_BeginWithPal2
 	pop hl
 
 	xor a

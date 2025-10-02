@@ -3534,7 +3534,8 @@ LookUpNameInCardPopNameList:
 	scf
 	ret
 
-LookUpNameInCardPopNameList_Bankswitch:
+; in tcg2, a player may Card Pop! with the same partner again whenever the two duel each other
+ResetCardPopStatusWithSamePartnerOnLinkDuel:
 	call EnableSRAM
 	ld a, BANK("SRAM1")
 	call BankswitchSRAM
@@ -3545,13 +3546,13 @@ LookUpNameInCardPopNameList_Bankswitch:
 	ld de, wNameBuffer
 	call LookUpNameInCardPopNameList.CompareNames
 	pop hl
-	jr nc, .found
+	jr nc, .found_name
 	ld de, NAME_BUFFER_LENGTH
 	add hl, de
 	dec c
 	jr nz, .get_entry_loop
 	jr .done
-.found
+.found_name
 	ld [hl], 0
 ; fallthrough
 .done
@@ -3626,19 +3627,19 @@ DecideCardToReceiveFromCardPop:
 	; >= 154
 
 	ld a, MUSIC_BOOSTER_PACK
-	ld b, CIRCLE
+	ld b, CARDPOP_CIRCLE
 	jr .got_rarity
 .diamond_rarity
 	ld a, MUSIC_BOOSTER_PACK
-	ld b, DIAMOND
+	ld b, CARDPOP_DIAMOND
 	jr .got_rarity
 .star_rarity
 	ld a, MUSIC_MATCHVICTORY
-	ld b, STAR
+	ld b, CARDPOP_STAR
 	jr .got_rarity
 .phantom
 	ld a, MUSIC_MEDAL
-	ld b, $fe
+	ld b, CARDPOP_PHANTOM
 .got_rarity
 	ld [wCardPopCardObtainSong], a
 	ld a, b
@@ -4193,7 +4194,7 @@ IngameCardPop:
 .Imakuni_first
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_CARD_POP_IMAKUNI
-	jr .push_reload
+	jr .got_partner
 .Imakuni_rare
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_RARE_CARD_POP_IMAKUNI
@@ -4204,7 +4205,7 @@ IngameCardPop:
 	ldtx hl, CardPopRonaldText
 	ld a, SCRIPTED_CARD_POP_ROLAND
 ; fallthrough
-.push_reload
+.got_partner
 	push af
 	ld a, IRPARAM_CARD_POP
 ; fallthrough
@@ -4230,6 +4231,7 @@ IngameCardPop:
 .set_filler
 	dec c
 	jr nz, .loop_filler
+
 	pop af
 	ld [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1], a
 	ld bc, NAME_BUFFER_LENGTH
@@ -4292,7 +4294,7 @@ IngameCardPop:
 	ld [hl], d
 	pop hl
 	ld de, wCardPopRecordNumBattles
-	ld bc, 5
+	ld bc, CARDPOP_RECORD_STATS_SIZE
 	call CopyDataHLtoDE
 	ld a, 1
 	ld [de], a
@@ -4375,6 +4377,7 @@ ENDR
 	dw MACHAMP_LV67   ; $4
 	dw CHANSEY_LV55   ; $5
 
+; data pointer will be pushed to bc
 ; meant to be custom stats?
 .data1
 	db $00, $00, $39, $00, $01
@@ -5600,7 +5603,7 @@ _SetUpAndStartLinkDuel:
 .prizes_decided
 	call ExchangeRNG
 	jr c, .error
-	ld a, [wNameBuffer + 13]
+	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
 	add 2
 	ld [wOpponentNPCID], a
 	ldh a, [hWhoseTurn]
@@ -5622,7 +5625,7 @@ _SetUpAndStartLinkDuel:
 	ldh [hWhoseTurn], a
 	call ExchangeRNG
 	bank1call StartDuel_VS.init
-	call LookUpNameInCardPopNameList_Bankswitch
+	call ResetCardPopStatusWithSamePartnerOnLinkDuel
 	ret
 
 .error
@@ -5829,9 +5832,12 @@ _ShowReceivedCardScreen:
 	bank1call OpenCardPage_FromHand
 	ret
 
-Func_1ad6b:
-	farcall Func_257da
-	call Func_1ad81
+; generate a booster pack identified by its group ID in a,
+; display its content,
+; and add the drawn cards to the player's collection (sCardCollection)
+GetBoosterPack:
+	farcall GenerateBoosterContent
+	call DisplayBoosterContent
 	ld hl, wPlayerDeck
 .add_loop
 	ld e, [hl]
@@ -5844,18 +5850,18 @@ Func_1ad6b:
 	call AddCardToCollection
 	jr .add_loop
 
-; clear 60 bytes from wc000, count wPlayerDeck into wDuelTemplist,
+; clear wPlayerCardLocations, count wPlayerDeck into wDuelTemplist,
 ; then display them
-Func_1ad81:
+DisplayBoosterContent:
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
 	ld h, a
-	ld l, 0
+	ld l, 0 ; wPlayerDuelVariables (wPlayerCardLocations)
 .clear_loop
 	xor a
 	ld [hli], a
 	ld a, l
-	cp $3c
+	cp DECK_SIZE
 	jr c, .clear_loop
 	ld hl, wPlayerDeck
 	ld de, wDuelTempList

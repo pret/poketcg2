@@ -309,10 +309,12 @@ wSerialCounter2:: ; cb71
 wSerialTimeoutCounter:: ; cb72
 	ds $1
 
-wcb79:: ; cb73
+; tcg1: wcb79
+wcb73:: ; cb73
 	ds $2
 
-wcb7b:: ; cb75
+; tcg1: wcb7b
+wcb75:: ; cb75
 	ds $2
 
 wSerialSendSave:: ; cb77
@@ -3209,6 +3211,12 @@ w3d415:: ; d415
 
 w3d4c6:: ; d4c6
 	ds $415
+
+w3d8db:: ; d8db
+	ds SPRITE_ANIM_TILE_BUFFER_SIZE
+
+w3d9a5:: ; d9a5
+	ds OW_OBJECTS_BUFFER_SIZE
 
 SECTION "WRAM7 Audio", WRAMX
 

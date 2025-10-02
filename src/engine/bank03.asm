@@ -64,7 +64,7 @@ StartMenu_ContinueFromDiary:
 	jr z, .asm_c0ab
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
@@ -88,7 +88,7 @@ StartMenu_ContinueFromDiary:
 .asm_c0ab
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
@@ -121,7 +121,7 @@ StartMenu_ContinueDuel:
 	call Func_eb16
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
@@ -1235,9 +1235,9 @@ Func_d299::
 	farcall LoadOWObjectInMap
 	farcall StopOWObjectAnimation
 	farcall SetOWObjectAsScrollTarget
-	farcall Func_10eff
+	farcall SetOWObjectFlag5_WithID
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	ld a, $00
 	ld [wd582], a
 	xor a
@@ -1338,10 +1338,10 @@ Func_d3c4:
 Func_d3e9::
 	ld a, [wPlayerOWObject]
 	push af
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	pop af
 	push de
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	pop de
 	ld a, b
 	rlca
@@ -3239,7 +3239,7 @@ ScriptCommand_1C:
 	ld d, c
 	ld e, b
 	ld a, [wPlayerOWObject]
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_1D:
@@ -3247,7 +3247,7 @@ ScriptCommand_1D:
 	ld d, c
 	ld e, b
 	ld a, [wd60e]
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_1E:
@@ -3284,7 +3284,7 @@ ScriptCommand_21:
 	ld d, c
 	ld e, b
 	ld a, [wPlayerOWObject]
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	call Get1ScriptArg_IncrIndexBy3
 	ld b, a
 	ld a, [wPlayerOWObject]
@@ -3299,7 +3299,7 @@ ScriptCommand_22:
 	ld e, b
 	pop af
 	push af
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	call Get1ScriptArg_IncrIndexBy4
 	ld b, a
 	pop af
@@ -3333,7 +3333,7 @@ ScriptCommand_26:
 	ld d, c
 	ld e, b
 	pop af
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_27:
@@ -3341,7 +3341,7 @@ ScriptCommand_27:
 	ld d, c
 	ld e, b
 	ld a, [wd60e]
-	farcall Func_10db8
+	farcall SetOWObjectTilePosition
 	call Get1ScriptArg_IncrIndexBy3
 	ld b, a
 	ld a, [wd60e]
@@ -3354,8 +3354,8 @@ ScriptCommand_28:
 	ld b, c
 	ld c, a
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd3
-	farcall Func_10f07
+	farcall StartOWObjectAnimation
+	farcall ResetOWObjectFlag5_WithID
 	farcall Func_10e3c
 .delay_loop
 	call DoFrame
@@ -3365,7 +3365,7 @@ ScriptCommand_28:
 	jr nz, .delay_loop
 	ld a, [wPlayerOWObject]
 	farcall StopOWObjectAnimation
-	farcall Func_10eff
+	farcall SetOWObjectFlag5_WithID
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_29:
@@ -3411,12 +3411,12 @@ ScriptCommand_2B:
 	ld b, a
 	ld a, [wPlayerOWObject]
 	farcall Func_10def
-	farcall Func_10f07
+	farcall ResetOWObjectFlag5_WithID
 	call Get1ScriptArg_IncrIndexBy3
 	or a
 	jr z, .not_set
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd3
+	farcall StartOWObjectAnimation
 .not_set
 	jp IncreaseScriptPointerBy4
 
@@ -3534,7 +3534,7 @@ ScriptCommand_35:
 
 ScriptCommand_36:
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
@@ -3568,7 +3568,7 @@ ScriptCommand_37:
 
 ScriptCommand_38:
 	ld a, [wd60e]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
@@ -3607,7 +3607,7 @@ ScriptCommand_3C:
 	dec e
 	jr nz, .delay_loop_e
 	ld a, [wd60e]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	inc b
 	ld a, b
 	and 3
@@ -3641,7 +3641,7 @@ ScriptCommand_3E:
 	dec e
 	jr nz, .delay_loop_e
 	ld a, [wd60e]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	dec b
 	ld a, b
 	and 3
@@ -3657,12 +3657,12 @@ ScriptCommand_3E:
 
 ScriptCommand_3F:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_10ddf
+	farcall StopOWObjectAnimFlag6
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_40:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_10ddb
+	farcall StartOWObjectAnimFlag6
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_41:
@@ -3840,7 +3840,7 @@ DuelRequirementFunctionMap:
 
 ScriptCommand_42:
 	ld a, [wd60e]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor 2
 	ld [wd616], a
@@ -3848,7 +3848,7 @@ ScriptCommand_42:
 
 ScriptCommand_43:
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor 2
 	ld [wd616], a
@@ -3894,14 +3894,14 @@ ScriptCommand_48:
 
 ScriptCommand_49:
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	ld a, d
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_4A:
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	ld a, e
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
@@ -3931,7 +3931,7 @@ ScriptCommand_4C:
 	call DoFrame
 	dec e
 	jr nz, .delay_loop_e
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	inc b
 	ld a, b
 	and 3
@@ -3961,7 +3961,7 @@ ScriptCommand_4D:
 	call DoFrame
 	dec e
 	jr nz, .delay_loop_e
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	dec b
 	ld a, b
 	and 3
@@ -4345,9 +4345,9 @@ ScriptCommand_62:
 
 ScriptCommand_63:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	push de
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	push bc
 	farcall ClearOWObject
 	call Get1ScriptArg_IncrIndexBy2
@@ -4601,7 +4601,7 @@ ScriptCommand_7A:
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
 	pop af
-	farcall Func_10f1e
+	farcall SetAndInitOWObjectFrameset
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_7B:

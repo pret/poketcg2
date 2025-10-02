@@ -202,7 +202,7 @@ Func_3154::
 
 Func_3195::
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor $02
 	ld b, a
@@ -319,7 +319,7 @@ Func_323f::
 
 Func_324d::
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 .asm_3254
 	ld a, [hli]
 	cp $ff
@@ -404,12 +404,12 @@ Func_32aa::
 
 Func_32bf::
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, $00
 	cp b
 	jr nz, .asm_32d6
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	call Func_324d.asm_3254
 	ret
 .asm_32d6
@@ -464,7 +464,7 @@ Func_32f6::
 	ld a, $05
 	ld [wd582], a
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd3
+	farcall StartOWObjectAnimation
 	scf
 	ccf
 	jr .exit
@@ -501,7 +501,7 @@ Func_3340::
 .asm_3361
 	ld a, [wPlayerOWObject]
 	farcall StopOWObjectAnimation
-	farcall Func_10eff
+	farcall SetOWObjectFlag5_WithID
 	ret
 
 Func_336d::
@@ -953,7 +953,7 @@ Func_35a0::
 	push bc
 	push de
 	push hl
-	ld de, $407f
+	lb de, $40, $7f
 	call SetupText
 	pop hl
 	pop de
@@ -1338,9 +1338,9 @@ LoadOWAnimatedTiles::
 	pop af
 	ret
 
-Func_378c::
-	ld c, $02
-	call Func_3861
+CopyCGBBGPalsFromSource_BeginWithPal2::
+	ld c, 2
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	ret
 
 Func_3792::
@@ -1483,7 +1483,7 @@ Func_383b::
 ; b = source bank
 ; hl = pointer to palette
 ; c = starting CGB BG pal number
-Func_3861::
+CopyCGBBGPalsFromSource_WithPalOffset::
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -1904,9 +1904,9 @@ Func_3a81::
 	farcall Func_1e088
 	ld a, [wActiveScreenAnim]
 	cp $ff
-	jr nz, .skip_update_sprites
+	jr nz, .done
 	farcall UpdateSpriteAnims
-.skip_update_sprites
+.done
 	pop hl
 	pop de
 	pop bc
@@ -2009,7 +2009,7 @@ LoadPortraitPalettes::
 	add $03
 .asm_3b0c
 	ld c, a
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop de
 	pop bc
 	pop af
@@ -2223,8 +2223,8 @@ Func_3c2e::
 	push bc
 	push de
 	push hl
-	ld c, $02
-	call Func_3861
+	ld c, 2
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop hl
 	pop de
 	pop bc
@@ -2529,7 +2529,7 @@ LoadBGPalette::
 	ld a, b ; source bank
 	call BankswitchROM
 	ld c, e
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop af
 	call BankswitchROM
 	pop hl

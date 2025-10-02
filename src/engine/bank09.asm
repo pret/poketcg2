@@ -2851,49 +2851,57 @@ CheckDeck:
 	db $15 ; x1.3 FIGHTING
 	db $15 ; x1.3 PSYCHIC
 
-Func_257da:
+; for a = offset, generate booster content with ContentTable[a]
+; using CreateCardPopCandidateList
+; and set wDuelTempList to 0--9
+GenerateBoosterContent:
 	ld e, a
 	add a
 	add e
-	add a
+	add a ; a *= 6
 	ld e, a
 	ld d, 0
-	ld hl, $584e ; Data_2584e
+	ld hl, .ContentTable
 	add hl, de
 	ld b, [hl]
 	inc hl
 	ld c, [hl]
 	inc hl
 	ld de, wPlayerDeck
-	ld a, 2
-	call Func_25812
-	ld a, 1
-	call Func_25812
-	ld a, 0
-	call Func_25812
-	ld a, -1
-	call Func_25812
+
+	ld a, CARDPOP_STAR
+	call .GenerateCard
+
+	ld a, CARDPOP_DIAMOND
+	call .GenerateCard
+
+	ld a, CARDPOP_CIRCLE
+	call .GenerateCard
+
+	ld a, CARDPOP_ENERGY
+	call .GenerateCard
+
 	xor a
 	ld [de], a
 	inc de
 	ld [de], a
 	ld hl, wDuelTempList
-	ld c, $a
+	ld c, NUM_CARDS_IN_BOOSTER
 	xor a
-.asm_2580a
+.loop_set_temp_list
 	ld [hli], a
 	inc a
 	dec c
-	jr nz, .asm_2580a
+	jr nz, .loop_set_temp_list
 	ld [hl], $ff
 	ret
-; 0x25812
 
-Func_25812:
+.GenerateCard:
 	ldh [hff96], a
 	ld a, [hli]
 	or a
 	ret z
+
 	dec hl
 	push bc
 	push de
@@ -2907,21 +2915,21 @@ Func_25812:
 	push hl
 	push bc
 	ld c, a
-.asm_25827
+.loop_generate
 	push bc
 	ld hl, wDuelTempList
-.asm_2582b
+.loop_random_get
 	ld a, [wcd54]
 	call Random
 	ld l, a
 	ld h, 0
 	add hl, hl
-	ld bc, wc000
+	ld bc, wCardPopCandidateList
 	add hl, bc
 	ld a, [hli]
 	or [hl]
 	dec hl
-	jr z, .asm_2582b
+	jr z, .loop_random_get
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -2933,14 +2941,28 @@ Func_25812:
 	ld [hl], a
 	pop bc
 	dec c
-	jr nz, .asm_25827
+	jr nz, .loop_generate
 	pop bc
 	pop hl
 	ret
-; 0x2584e
-; Data_2584e:
 
-SECTION "Bank 9@58a2", ROMX[$58a2], BANK[$9]
+; arg0 <= set range <= arg1
+; arg2--5: number of star, diamond, circle, energy
+.ContentTable:
+	db BEGINNING_POKEMON,     BEGINNING_POKEMON,     1, 3, 5,  1
+	db LEGENDARY_POWER,       LEGENDARY_POWER,       1, 3, 5,  1
+	db ISLAND_OF_FOSSIL,      ISLAND_OF_FOSSIL,      1, 3, 5,  1
+	db PSYCHIC_BATTLE,        PSYCHIC_BATTLE,        1, 3, 6,  0
+	db SKY_FLYING_POKEMON,    SKY_FLYING_POKEMON,    1, 3, 6,  0
+	db WE_ARE_TEAM_ROCKET,    WE_ARE_TEAM_ROCKET,    1, 3, 6,  0
+	db TEAM_ROCKETS_AMBITION, TEAM_ROCKETS_AMBITION, 1, 3, 6,  0
+	db BEGINNING_POKEMON,     PROMOTIONAL,          10, 0, 0,  0
+	db BEGINNING_POKEMON,     BEGINNING_POKEMON,     0, 0, 0, 10
+	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 1, 3, 6,  0
+	db BEGINNING_POKEMON,     SKY_FLYING_POKEMON,    1, 3, 6,  0
+	db PSYCHIC_BATTLE,        TEAM_ROCKETS_AMBITION, 1, 3, 6,  0
+	db WE_ARE_TEAM_ROCKET,    TEAM_ROCKETS_AMBITION, 1, 3, 6,  0
+	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 2, 3, 5,  0
 
 ; fills wCardPopCandidateList with cards that satisfy
 ; certain criteria:
@@ -2951,9 +2973,9 @@ SECTION "Bank 9@58a2", ROMX[$58a2], BANK[$9]
 ; - b <= set <= c
 ; outputs in a the number of cards in the list
 CreateCardPopCandidateList:
-	cp $ff
+	cp CARDPOP_ENERGY
 	jr z, .energy_cards
-	cp $fe
+	cp CARDPOP_PHANTOM
 	jr z, .phantom_cards
 
 	ld hl, wcd51

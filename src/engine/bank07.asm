@@ -2460,7 +2460,7 @@ Func_1d443:
 	add hl, bc
 	ld b, h
 	ld c, l
-	farcall Func_10bc4
+	farcall GetSpriteAnimBuffer
 	farcall SetAndInitSpriteAnimFrameset
 	xor a
 	farcall SetSpriteAnimFrameIndex
@@ -2553,7 +2553,7 @@ ShowOWMapLocationBox:
 	ld b, BANK(Pals_1d50d)
 	ld c, $00
 	ld hl, Pals_1d50d
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	ret
 
 Pals_1d50d:
@@ -3443,7 +3443,7 @@ Func_1e088::
 	push de
 	push hl
 	ld c, NUM_SPRITE_ANIM_STRUCTS
-	farcall Func_10bc4
+	farcall GetSpriteAnimBuffer
 .loop_sprite_anims
 	farcall Func_10ab7
 	bit 7, a
@@ -3451,7 +3451,7 @@ Func_1e088::
 	farcall CheckIsSpriteAnimAnimating
 	jr nz, .next_sprite_anim
 	; clear animation
-	farcall Func_10b71
+	farcall _ClearSpriteAnimFlags
 	ld a, [wNumActiveAnimations]
 	dec a
 	ld [wNumActiveAnimations], a
@@ -3634,7 +3634,7 @@ Func_1e171:
 	ld a, [wAnimFlags]
 	and SPRITE_ANIM_FLAG_UNSKIPPABLE
 	jr nz, .animation_enabled
-	farcall Func_10b71
+	farcall _ClearSpriteAnimFlags
 	jr .done
 
 .animation_enabled
@@ -3705,7 +3705,7 @@ PlayCoinAnimation:
 	ld a, [wCurAnimation]
 	sub DUEL_ANIM_COIN_SPIN
 	call Func_1d443
-	farcall Func_10bc4
+	farcall GetSpriteAnimBuffer
 	ret
 
 Func_1e279:
@@ -4259,7 +4259,7 @@ Func_1e5a2::
 SECTION "Bank 7@65f8", ROMX[$65f8], BANK[$7]
 
 RunDuelFromSRAM:
-	farcall Func_10cfe
+	farcall Stub_10cfe
 	farcall Func_1109f
 	farcall Func_1022a
 	bank1call StartDuelFromSRAM
@@ -4597,7 +4597,7 @@ Func_1e96f:
 	call DisableLCD
 	call DoFrame
 	ld a, [wdd08]
-	farcall Func_1ad6b
+	farcall GetBoosterPack
 	ret
 ; 0x1e984
 

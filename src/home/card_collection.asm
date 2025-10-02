@@ -224,7 +224,7 @@ LinkOpponentTurnFrameFunction::
 	ld a, [wSerialFlags]
 	or a
 	jr nz, .return
-	call tcg1_Func_0e32
+	call CheckSerialRecvCounter
 	ret nc
 .return
 	ld a, $09

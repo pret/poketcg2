@@ -5,6 +5,7 @@ StartDuelFromSRAM:
 	farcall Func_24048
 	ldtx hl, BackUpIsBrokenText
 	jr c, .corrupted
+.ok::
 	ld hl, sp+$00
 	ld a, l
 	ld [wDuelReturnAddress + 0], a
@@ -8949,7 +8950,7 @@ GetPoisonDamage:
 ; outputs in hl either wPlayerDuelVariables
 ; or wOpponentDuelVariables depending on wSerialOp
 DecideLinkDuelVariables:
-	call tcg1_Func_0e8e
+	call SerialDeclarePeerMaster
 	ldtx hl, PressStartWhenReadyText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
@@ -8959,14 +8960,14 @@ DecideLinkDuelVariables:
 	bit B_BUTTON_F, a
 	jr nz, .link_cancel
 	and START
-	call tcg1_Func_0cc5
+	call Serial_Func_0be6
 	jr nc, .input_loop
 	ld hl, wPlayerDuelVariables
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .link_continue
 	ld hl, wOpponentDuelVariables
-	cp $21
+	cp SERIAL_PEER_MASTER_TCG2
 	jr z, .link_continue
 .link_cancel
 	call ResetSerial
@@ -8976,5 +8977,6 @@ DecideLinkDuelVariables:
 	or a
 	ret
 
-	ret ; stray ret
+; stray ret
+	ret
 ; 0x7b8f
