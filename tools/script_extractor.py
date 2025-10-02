@@ -104,7 +104,7 @@ script_commands = {
 	0x4e: { "name": "script_command_4e", "params": [] }, # push var
 	0x4f: { "name": "script_command_4f", "params": [] }, # pop var
 	0x50: { "name": "script_command_50", "params": [ "script", "byte" ] }, # conditional script call
-	0x51: { "name": "script_command_51", "params": [] }, # ret
+	0x51: { "name": "script_command_51", "params": [] }, # script ret
 	0x52: { "name": "script_command_52", "params": [ "byte" ] }, # give coin
 	0x53: { "name": "script_command_53", "params": [] }, # backup active npc
 	0x54: { "name": "script_command_54", "params": [ "byte", "byte", "byte" ] }, # load player (position and direction)
@@ -116,7 +116,7 @@ script_commands = {
 	0x5a: { "name": "script_command_5a", "params": [] }, # alternate quit
 	0x5b: { "name": "script_command_5b", "params": [ "byte" ] }, # play song
 	0x5c: { "name": "script_command_5c", "params": [] }, # resume song
-	0x5d: { "name": "script_command_5d", "params": [ "script", "byte" ] }, # script callfar
+	0x5d: { "name": "script_command_5d", "params": [ "script_far" ] }, # script callfar
 	0x5e: { "name": "script_command_5e", "params": [] }, # script retfar
 	0x5f: { "name": "script_command_5f", "params": [ "byte" ] }, # cardpop
 	0x60: { "name": "script_command_60", "params": [ "byte" ] }, # play song next
@@ -153,7 +153,10 @@ script_commands = {
 
 quit_commands = [
 	0x00,
+	0x08,
+	0x51,
 	0x5a,
+	0x5e,
 ]
 
 # length in bytes of each type of parameter
@@ -176,6 +179,7 @@ param_lengths = {
 	"text":           2,
 	"script":         2,
 	"skip_word":      2,
+	"script_far":     3,
 }
 
 def get_bank(address):
@@ -239,8 +243,10 @@ def dump_movement_table(address):
 # parse a script starting at the given address
 # returns a list of all commands
 def dump_script(start_address, address=None, visited=set()):
+	global symbols
 	blobs = []
 	branches = set()
+	calls = set()
 	if address is None:
 		label = "Script_{:x}".format(start_address)
 		if start_address in symbols[get_bank(start_address)]:
@@ -316,14 +322,26 @@ def dump_script(start_address, address=None, visited=set()):
 					output += " NULL"
 				else:
 					output += " {}".format(texts[text_id])
-			elif param_type == "script":
-				param = get_pointer(address)
+			elif param_type == "script" or param_type == "script_far":
+				if param_type == "script":
+					param = get_pointer(address)
+				else:
+					bank = rom[address + 2]
+					if bank not in symbols:
+						symbols[bank] = load_symbols(args.symfile, bank)
+					param = get_pointer(address, bank)
 				if param == 0x0000:
 					label = "NULL"
 				elif param == start_address:
 					label = "Script_{:x}".format(param)
 					if param in symbols[get_bank(param)]:
 						label = symbols[get_bank(param)][param]
+				elif param_type == "script_far":
+					label = "Script_{:x}".format(param)
+					if param in symbols[get_bank(param)]:
+						label = symbols[get_bank(param)][param]
+					if args.follow_far_calls:
+						calls.add(param)
 				else:
 					label = ".ows_{:x}".format(param)
 					if param in symbols[get_bank(param)]:
@@ -344,6 +362,8 @@ def dump_script(start_address, address=None, visited=set()):
 			break
 	for branch in branches:
 		blobs += dump_script(start_address, branch, visited)
+	for call in calls:
+		blobs += dump_script(call, call, visited)
 	return blobs
 
 def fill_gap(start, end):
@@ -439,6 +459,7 @@ def load_texts(txfile):
 if __name__ == "__main__":
 	ap = argparse.ArgumentParser(description="Pokemon TCG 2 Script Extractor")
 	ap.add_argument("-b", "--allow-backward-jumps", action="store_true", help="extract scripts that are found before the starting address")
+	ap.add_argument("-c", "--follow-far-calls", action="store_true", help="extract scripts that are in another bank")
 	ap.add_argument("-f", "--fix-unreachable", action="store_true", help="fix unreachable labels that are referenced from the wrong scope")
 	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-i", "--ignore-errors", action="store_true", help="silently proceed to the next address if an error occurs")
