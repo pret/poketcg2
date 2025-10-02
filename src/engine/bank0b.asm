@@ -567,13 +567,13 @@ PsychicClubLobby_StepEvents:
 	db $ff
 
 PsychicClubLobby_NPCs:
-	npc OW_SPECS_5, $08, $08, $01, $00, $00
-	npc OW_LASS1_4, $0a, $09, $03, $00, $00
-	npc OW_IMAKUNI_BLACK, $01, $0a, $03, $a8, $4c
-	npc OW_LAD_6, $07, $06, $01, $00, $00
-	npc OW_GR_LASS_2, $0e, $04, $02, $0e, $4d
-	npc OW_CLERK_1, $02, $02, $02, $00, $00
-	npc OW_CLERK_2, $04, $02, $02, $00, $00
+	npc OW_SPECS_5, 8, 8, EAST, $00, $00
+	npc OW_LASS1_4, 10, 9, WEST, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
+	npc OW_LAD_6, 7, 6, EAST, $00, $00
+	npc OW_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
@@ -1036,11 +1036,11 @@ RockClub_StepEvents:
 	db $ff
 
 RockClub_NPCs:
-	npc OW_GENE, 7, 2, $02, $00, $00
-	npc OW_MATTHEW, 2, 3, $02, $00, $00
-	npc OW_RYAN, 9, 7, $01, $00, $00
-	npc OW_ANDREW, 3, 8, $01, $00, $00
-	npc OW_GR_1, 7, 3, $00, $f3, $58
+	npc OW_GENE, 7, 2, SOUTH, $00, $00
+	npc OW_MATTHEW, 2, 3, SOUTH, $00, $00
+	npc OW_RYAN, 9, 7, EAST, $00, $00
+	npc OW_ANDREW, 3, 8, EAST, $00, $00
+	npc OW_GR_1, 7, 3, NORTH, $f3, $58
 	db $ff
 
 RockClub_NPCInteractions:
@@ -1272,13 +1272,13 @@ FightningClubLobby_StepEvents:
 	db $ff
 
 FightningClubLobby_NPCs:
-	npc OW_PAPPY_2, 1, 5, $02, $00, $00
-	npc OW_SPECS_3, 4, 9, $01, $00, $00
-	npc OW_LAD4, 7, 9, $03, $00, $00
-	npc OW_GIRL_4, 6, 8, $02, $00, $00
-	npc OW_CLERK_1, 2, 2, $02, $00, $00
-	npc OW_CLERK_2, 4, 2, $02, $00, $00
-	npc OW_MICHAEL, 11, 6, $01, $97, $5b
+	npc OW_PAPPY_2, 1, 5, SOUTH, $00, $00
+	npc OW_SPECS_3, 4, 9, EAST, $00, $00
+	npc OW_LAD4, 7, 9, WEST, $00, $00
+	npc OW_GIRL_4, 6, 8, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_MICHAEL, 11, 6, EAST, $97, $5b
 	db $ff
 
 FightningClubLobby_NPCInteractions:
