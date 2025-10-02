@@ -1,11 +1,11 @@
 SECTION "Bank c@4080", ROMX[$4080], BANK[$c]
 
-Data_30080:
+OverworldGR_MapHeader:
 	db OVERWORLD_MAP_GFX_GR
-	dba Data_30085
+	dba OverworldGR_MapScripts
 	db MUSIC_GROVERWORLD
 
-Data_30085:
+OverworldGR_MapScripts:
 	dbw $01, Func_30092
 	dbw $02, Func_300a8
 	dbw $04, Func_3018b

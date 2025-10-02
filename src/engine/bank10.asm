@@ -1,11 +1,11 @@
 SECTION "Bank 10@4462", ROMX[$4462], BANK[$10]
 
-Data_40462:
+OverworldTCG_MapHeader:
 	db OVERWORLD_MAP_GFX_TCG
-	dba Data_40467
+	dba OverworldTCG_MapScripts
 	db MUSIC_OVERWORLD
 
-Data_40467:
+OverworldTCG_MapScripts:
 	dbw $01, Func_40474
 	dbw $02, Func_4048a
 	dbw $04, Func_4053b

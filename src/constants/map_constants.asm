@@ -4,7 +4,7 @@ DEF GR_ISLAND  EQU $1
 
 	; MAP_*
 	; used in map scripts, and other places.
-	; see also: bank03.asm:Data_c651
+	; see also: bank03.asm:MapHeaderPtrs
 	const_def
 	const OVERWORLD_MAP_TCG               ; $00
 	const OVERWORLD_MAP_GR                ; $01

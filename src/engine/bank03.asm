@@ -985,9 +985,9 @@ Func_c646:
 
 ; bank and offset table of data for Func_d421 and Func_33b7
 ; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
-Data_c651::
-	dba Data_40462 ; $00
-	dba Data_30080 ; $01
+MapHeaderPtrs::
+	dba OverworldTCG_MapHeader ; $00
+	dba OverworldGR_MapHeader ; $01
 	dbw $10, $4db3 ; $02
 	dbw $0f, $4603 ; $03
 	dbw $0f, $47dc ; $04
@@ -1382,7 +1382,7 @@ Func_d421::
 	add c ; *3
 	ld c, a
 	rl b
-	ld hl, Data_c651
+	ld hl, MapHeaderPtrs
 	add hl, bc
 	ld a, [hli]
 	ld c, a     ; bank
