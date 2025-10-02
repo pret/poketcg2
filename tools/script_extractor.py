@@ -103,7 +103,7 @@ script_commands = {
 	0x4d: { "name": "script_command_4d", "params": [ "byte", "word" ] }, # spin npc reverse
 	0x4e: { "name": "script_command_4e", "params": [] }, # push var
 	0x4f: { "name": "script_command_4f", "params": [] }, # pop var
-	0x50: { "name": "script_command_50", "params": [ "byte", "script" ] }, # conditional script call
+	0x50: { "name": "script_command_50", "params": [ "script", "byte" ] }, # conditional script call
 	0x51: { "name": "script_command_51", "params": [] }, # ret
 	0x52: { "name": "script_command_52", "params": [ "byte" ] }, # give coin
 	0x53: { "name": "script_command_53", "params": [] }, # backup active npc
@@ -116,7 +116,7 @@ script_commands = {
 	0x5a: { "name": "script_command_5a", "params": [] }, # alternate quit
 	0x5b: { "name": "script_command_5b", "params": [ "byte" ] }, # play song
 	0x5c: { "name": "script_command_5c", "params": [] }, # resume song
-	0x5d: { "name": "script_command_5d", "params": [ "byte", "script" ] }, # script callfar
+	0x5d: { "name": "script_command_5d", "params": [ "script", "byte" ] }, # script callfar
 	0x5e: { "name": "script_command_5e", "params": [] }, # script retfar
 	0x5f: { "name": "script_command_5f", "params": [ "byte" ] }, # cardpop
 	0x60: { "name": "script_command_60", "params": [ "byte" ] }, # play song next
