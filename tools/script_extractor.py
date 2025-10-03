@@ -201,7 +201,10 @@ def get_pointer(address, bank=None):
 	return (raw_pointer % 0x4000) + bank * 0x4000
 
 def make_address_comment(address):
-	return ": ; {:x} ({:x}:{:x})\n".format(address, get_bank(address), get_relative_address(address))
+	if args.address_comments:
+		return ": ; {:x} ({:x}:{:x})\n".format(address, get_bank(address), get_relative_address(address))
+	else:
+		return ":\n"
 
 def make_blob(start, output, end=None):
 	return { "start": start, "output": output, "end": end if end else start }
@@ -363,7 +366,7 @@ def dump_script(start_address, address=None, visited=set()):
 	for branch in branches:
 		blobs += dump_script(start_address, branch, visited)
 	for call in calls:
-		blobs += dump_script(call, call, visited)
+		blobs += dump_script(call, None, visited)
 	return blobs
 
 def fill_gap(start, end):
@@ -458,6 +461,7 @@ def load_texts(txfile):
 
 if __name__ == "__main__":
 	ap = argparse.ArgumentParser(description="Pokemon TCG 2 Script Extractor")
+	ap.add_argument("-a", "--address-comments", action="store_true", help="add address comments after labels")
 	ap.add_argument("-b", "--allow-backward-jumps", action="store_true", help="extract scripts that are found before the starting address")
 	ap.add_argument("-c", "--follow-far-calls", action="store_true", help="extract scripts that are in another bank")
 	ap.add_argument("-f", "--fix-unreachable", action="store_true", help="fix unreachable labels that are referenced from the wrong scope")
