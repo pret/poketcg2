@@ -982,7 +982,7 @@ Func_2d489:
 	ret
 
 Func_2d49e:
-	ld hl,RockClubLobby_StepEvents
+	ld hl, RockClubLobby_StepEvents
 	call Func_324d
 	ret
 
@@ -1127,12 +1127,12 @@ RockClub_AfterDuelScripts:
 
 SECTION "Bank b@5930", ROMX[$5930], BANK[$b]
 
-FightningClubEntrance_MapHeader:
+FightingClubEntrance_MapHeader:
 	db MAP_GFX_FIGHTING_CLUB_ENTRANCE
-	dba FightningClubEntrance_MapScripts
+	dba FightingClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-FightningClubEntrance_StepEvents:
+FightingClubEntrance_StepEvents:
 	map_exit 4, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
 	map_exit 5, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
 	map_exit 0, 3, MAP_FIGHTING_CLUB_LOBBY, 14, 6, WEST
@@ -1141,7 +1141,7 @@ FightningClubEntrance_StepEvents:
 	map_exit 5, 0, MAP_FIGHTING_CLUB, 6, 10, NORTH
 	db $ff
 
-FightningClubEntrance_MapScripts:
+FightingClubEntrance_MapScripts:
 	dbw $06, Func_2d99f
 	dbw $09, Func_2d9d2
 	dbw $02, Func_2d9a6
@@ -1174,7 +1174,7 @@ Func_2d98f:
 	ret
 
 Func_2d99f:
-	ld hl, FightningClubEntrance_StepEvents
+	ld hl, FightingClubEntrance_StepEvents
 	call Func_324d
 	ret
 
@@ -1261,17 +1261,17 @@ FightingClubEntrance_ShouldRonaldAppear:
 	ccf
 	ret
 
-FightningClubLobby_MapHeader:
+FightingClubLobby_MapHeader:
 	db MAP_GFX_FIGHTING_CLUB_LOBBY
-	dba FightningClubLobby_MapScripts
+	dba FightingClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-FightningClubLobby_StepEvents:
+FightingClubLobby_StepEvents:
 	map_exit 15, 6, MAP_FIGHTING_CLUB_ENTRANCE, 1, 3, EAST
 	map_exit 15, 7, MAP_FIGHTING_CLUB_ENTRANCE, 1, 4, EAST
 	db $ff
 
-FightningClubLobby_NPCs:
+FightingClubLobby_NPCs:
 	npc OW_PAPPY_2, 1, 5, SOUTH, $00, $00
 	npc OW_SPECS_3, 4, 9, EAST, $00, $00
 	npc OW_LAD4, 7, 9, WEST, $00, $00
@@ -1281,7 +1281,7 @@ FightningClubLobby_NPCs:
 	npc OW_MICHAEL, 11, 6, EAST, $97, $5b
 	db $ff
 
-FightningClubLobby_NPCInteractions:
+FightingClubLobby_NPCInteractions:
 	npc_script OW_PAPPY_2, $0b, $ac, $5b
 	npc_script OW_SPECS_3, $0b, $17, $5c
 	npc_script OW_LAD4, $0b, $48, $5c
@@ -1289,7 +1289,7 @@ FightningClubLobby_NPCInteractions:
 	npc_script OW_MICHAEL, $0b, $0e, $5b
 	db $ff
 
-FightningClubLobby_OWInteractions:
+FightingClubLobby_OWInteractions:
 	ow_script 8, 2, $03, $11, $54
 	ow_script 9, 2, $03, $11, $54
 	ow_script 2, 4, $0F, $B9, $41
@@ -1299,7 +1299,7 @@ FightningClubLobby_OWInteractions:
 	ow_script 14, 2, $10, $76, $41
 	db $ff
 
-FightningClubLobby_MapScripts:
+FightingClubLobby_MapScripts:
 	dbw $06, Func_2dade
 	dbw $08, Func_2daee
 	dbw $07, Func_2dae5
@@ -1319,35 +1319,35 @@ Func_2dace:
 	ret
 
 Func_2dade:
-	ld hl, FightningClubLobby_StepEvents
+	ld hl, FightingClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2dae5:
-	ld hl, FightningClubLobby_NPCs
+	ld hl, FightingClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2daee:
-	ld hl, FightningClubLobby_NPCInteractions
+	ld hl, FightingClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2dafc
-	ld hl, FightningClubLobby_OWInteractions
+	ld hl, FightingClubLobby_OWInteractions
 	call Func_32bf
 .asm_2dafc
 	scf
 	ret
 
 Func_2dafe:
-	ld hl, FightningClubLobby_AfterDuelScripts
+	ld hl, FightingClubLobby_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
 
-FightningClubLobby_AfterDuelScripts:
+FightingClubLobby_AfterDuelScripts:
 	npc_script OW_MICHAEL, $0B, $7B, $5B
 	db $ff
 ; 0x2db5b

@@ -1001,8 +1001,8 @@ MapHeaderPtrs::
 	dba RockClubEntrance_MapHeader ; $0c
 	dba RockClubLobby_MapHeader ; $0d
 	dba RockClub_MapHeader ; $0e
-	dba FightningClubEntrance_MapHeader ; $0f
-	dba FightningClubLobby_MapHeader ; $10
+	dba FightingClubEntrance_MapHeader ; $0f
+	dba FightingClubLobby_MapHeader ; $10
 	dba FightingClub_MapHeader ; $11
 	dba GrassClubEntrance_MapHeader ; $12
 	dbw $0f, $4ee6 ; $13
