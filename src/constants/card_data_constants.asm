@@ -159,6 +159,25 @@ DEF CARDPOP_ENERGY    EQU $ff
 DEF NUM_CARD_SETS EQU const_value
 	const ENERGY                ; $08
 
+DEF PRESENT_PACK EQU 7
+
+; booster pack constants
+	const_def
+	const BOOSTER_BEGINNING_POKEMON     ; $0
+	const BOOSTER_LEGENDARY_POWER       ; $1
+	const BOOSTER_ISLAND_OF_FOSSIL      ; $2
+	const BOOSTER_PSYCHIC_BATTLE        ; $3
+	const BOOSTER_SKY_FLYING_POKEMON    ; $4
+	const BOOSTER_WE_ARE_TEAM_ROCKET    ; $5
+	const BOOSTER_TEAM_ROCKETS_AMBITION ; $6
+	const BOOSTER_DEBUG_1               ; $7
+	const BOOSTER_PRESENT_PACK_1        ; $8
+	const BOOSTER_PRESENT_PACK_2        ; $9
+	const BOOSTER_PRESENT_PACK_3        ; $a
+	const BOOSTER_PRESENT_PACK_4        ; $b
+	const BOOSTER_PRESENT_PACK_5        ; $c
+	const BOOSTER_DEBUG_2               ; $d
+
 ; real card set constants
 	const_def
 	const BASE_SET        ; $00

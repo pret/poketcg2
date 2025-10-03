@@ -848,6 +848,7 @@ Func_12c49b:
 	ld a, [wd693]
 	bit 2, a
 	jr nz, .checked_flag
+
 	ld bc, TILESET_SMALL_COINS
 	call GetTilesetGfxPointer
 	call Func_3c10
@@ -860,7 +861,7 @@ Func_12c49b:
 	ld a, [wd693]
 	res 0, a
 	ld [wd693], a
-	; fallthrough
+
 .checked_flag
 	pop de
 	pop af

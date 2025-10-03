@@ -4211,7 +4211,7 @@ ScriptCommand_56:
 	ld b, a
 .loop_b_c
 	ld a, [hli]
-	farcall Func_1e895
+	farcall GiveBoosterPacks
 	inc b
 	dec c
 	jr nz, .loop_b_c

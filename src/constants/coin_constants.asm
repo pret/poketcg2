@@ -25,8 +25,18 @@
 	const COIN_RAICHU     ; $16
 	const COIN_LUGIA      ; $17
 DEF NUM_COINS EQU const_value
+	const COIN_SENTINEL   ; $18
+; checking GR Coin pieces may temporarily result in $18 + [0, 7]
 
-; gfx/text order
+; coin types, also used for pagination
+	const_def
+	const COIN_TYPE_TCG_ISLAND ; $0
+	const COIN_TYPE_GR_ISLAND  ; $1
+	const COIN_TYPE_SPECIAL    ; $2
+
+DEF NUM_COIN_TYPES EQU const_value
+
+; gfx/text order, slightly different
 	const_def
 	const GFX_COIN_CHANSEY    ; $00
 	const GFX_COIN_GR         ; $01
@@ -68,4 +78,5 @@ DEF NUM_COINS EQU const_value
 	const GFX_COIN_GR_DUMMY10 ; $25
 	const GFX_COIN_GR_DUMMY11 ; $26
 	const GFX_COIN_GR_DUMMY12 ; $27
+
 DEF NUM_GFX_MAIN_COINS EQU const_value ; $28

@@ -1086,12 +1086,12 @@ PresentPackText:
 	textfw "プレゼントパック"
 	done
 
-ObtainedBoosterPackText:
+ReceivedBoosterPackText:
 	textfw "<RAMNAME>は <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-ObtainedSecondBoosterPackText:
+ReceivedAnotherBoosterPackText:
 	textfw "さらに <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done

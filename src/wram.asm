@@ -2839,19 +2839,28 @@ wdc06:: ; dc06
 
 	ds $1
 
+; coin settings?
 wdc08:: ; dc08
 	ds $1
 
+; coin type/page?
 wdc09:: ; dc09
 	ds $1
 
+; store an incoming Coin
 wdc0a:: ; dc0a
 	ds $1
 
 wdc0b:: ; dc0b
 	ds $1
 
-	ds $3
+wdc0c:: ; dc0c
+	ds $1
+
+wdc0d:: ; dc0d
+	ds $1
+
+	ds $1
 
 ; store settings for animation enabled/disabled
 ; FALSE means enabled, TRUE means disabled
@@ -3010,10 +3019,10 @@ wdd06:: ; dd06
 wdd07:: ; dd07
 	ds $1
 
-wdd08:: ; dd08
+wCurBoosterPack:: ; dd08
 	ds $1
 
-wdd09:: ; dd09
+wAnotherBoosterPack:: ; dd09
 	ds $1
 
 	ds $1b

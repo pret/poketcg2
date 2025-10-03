@@ -2188,9 +2188,9 @@ CountEventCoinsObtained:
 .loop
 	push af
 	call CheckIfCoinWasObtained
-	jr z, .next
+	jr z, .got_coin
 	inc b
-.next
+.got_coin
 	pop af
 	inc a
 	dec c
@@ -2201,29 +2201,30 @@ CountEventCoinsObtained:
 	pop bc
 	ret
 
+; return in a the total number of pieces in possession
 CountGRCoinPiecesObtained_2:
 	push bc
 	ld c, 0
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
-	jr z, .checked_gr_coin_bottom_right
+	jr z, .checked_bottom_right
 	inc c
-.checked_gr_coin_bottom_right
+.checked_bottom_right
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
-	jr z, .checked_gr_coin_bottom_left
+	jr z, .checked_bottom_left
 	inc c
-.checked_gr_coin_bottom_left
+.checked_bottom_left
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
-	jr z, .checked_gr_coin_top_right
+	jr z, .checked_top_right
 	inc c
-.checked_gr_coin_top_right
+.checked_top_right
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
-	jr z, .checked_gr_coin_top_left
+	jr z, .checked_top_left
 	inc c
-.checked_gr_coin_top_left
+.checked_top_left
 	ld a, c
 	pop bc
 	ret
@@ -2318,30 +2319,33 @@ CheckObtainedGRCoinPieces:
 	pop bc
 	ret
 
-Func_1d181:
+; a = COIN_* constant
+; for a non-GR Coin, keep a if already obtained, return a = $18 if not
+; for GR Coin, return a = (bit 0--3 for each piece) + $18
+GetCoinPossessionStatus:
 	push bc
 	ld b, a
-	cp 1
-	jr z, .asm_1d191
+	cp COIN_GR
+	jr z, .check_gr_coin
+; another coin
 	call CheckIfCoinWasObtained
-	jr nz, .next
-	ld b, $18
-	; fallthrough
-.next
+	jr nz, .got_value
+; not yet obtained
+	ld b, COIN_SENTINEL
+.got_value
 	ld a, b
 	jr .done
-.asm_1d191
+.check_gr_coin
 	call CheckObtainedGRCoinPieces
-	add $18
-	; fallthrough
+	add COIN_SENTINEL
 .done
 	pop bc
 	ret
 
 ; input:
-; - a = coin to load
+; - a = GFX_COIN_* constant
 ; - de = coordinates
-Func_1d198:
+CreateCoinAnimation:
 	push af
 	push bc
 	push de
@@ -2356,9 +2360,9 @@ ENDR
 	add hl, bc
 	ld c, 0
 	cp NUM_GFX_MAIN_COINS
-	jr c, .got_index
+	jr c, .got_obj_slot
 	ld c, 2
-.got_index
+.got_obj_slot
 	ld b, BANK(.SpriteAnimGfxParams)
 	ld a, $ff
 	call CreateSpriteAnim
@@ -2450,7 +2454,8 @@ ENDR
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_145, PALETTE_13B ; $4e
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $4f
 
-Func_1d443:
+; use FRAMESET_($112 + a)
+SetAndInitCoinAnimation:
 	push af
 	push bc
 	push de
@@ -2620,11 +2625,11 @@ SECTION "Bank 7@599e", ROMX[$599e], BANK[$7]
 
 Func_1d99e:
 	farcall Func_1022a
-	call Func_1d9aa
+	call _PlayLinkDuelAndGetResult
 	farcall Func_10252
 	ret
 
-Func_1d9aa:
+_PlayLinkDuelAndGetResult:
 	push bc
 	push de
 	push hl
@@ -2634,7 +2639,7 @@ Func_1d9aa:
 	ld a, [wDuelResult]
 	and a
 	jr z, .done
-; set carry if loss
+; set carry if DUEL_LOSS
 	scf
 .done
 	pop hl
@@ -2680,26 +2685,28 @@ Func_1db81:
 	farcall SetFrameFuncAndFadeFromWhite
 	call Func_3d0d
 	ld a, [wdc0a]
-	cp $18
-	jr c, .asm_1dba4
-	ld a, 1
+	cp COIN_SENTINEL
+	jr c, .not_coin_gr
+	ld a, COIN_GR
 	ld [wdc0a], a
 	xor a
-	jr .asm_1dbb2
-.asm_1dba4
+	jr .got_frames
+
+.not_coin_gr
 	push af
-	ld a, $b
+	ld a, SFX_0B
 	call CallPlaySFX
 	pop af
 	ld a, 1
-	call Func_1d443
+	call SetAndInitCoinAnimation
 	ld a, $34
-.asm_1dbb2
+
+.got_frames
 	ldtx hl, ObtainedCoinText
 	farcall PrintTextInWideTextBox
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, $30
+	ld a, MUSIC_MEDAL
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -2722,7 +2729,7 @@ Func_1db81:
 Func_1dbee:
 	ld a, [wdc0a]
 	lb de, 88, 88
-	call Func_1d198
+	call CreateCoinAnimation
 	lb de,  0, 12
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
@@ -2741,7 +2748,7 @@ Func_1dc0a:
 	call DoFrame
 	call Func_1dc2a
 	ldh a, [hKeysPressed]
-	and 3
+	and A_BUTTON | B_BUTTON
 	jr z, .delay_loop
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
@@ -2750,20 +2757,20 @@ Func_1dc2a:
 	ld a, [wdc0b]
 	and $10
 	push af
-	call z, Func_1dc3c
+	call z, .asm_1dc3c
 	pop af
-	call nz, Func_1dc47
+	call nz, .asm_1dc47
 	ld hl, wdc0b
 	inc [hl]
 	ret
 
-Func_1dc3c:
+.asm_1dc3c:
 	ld a, [wdc0a]
-	call Func_1d181
+	call GetCoinPossessionStatus
 	farcall Func_12c49b
 	ret
 
-Func_1dc47:
+.asm_1dc47:
 	ld hl, 0
 	lb bc, 3, 3
 	farcall FillBoxInBGMapWithZero
@@ -2779,23 +2786,25 @@ Func_1dc52:
 	call LoadTxRam3
 	ldtx hl, ObtainedCoinTotalNumberText
 	ld a, [wdc0a]
-	cp 1
-	jr nz, .next
+	cp COIN_GR
+	jr nz, .got_coin_and_text
+
 	call CheckObtainedGRCoinPieces
 	cp $f
-	jr z, .next
+	jr z, .got_coin_and_text
+
 	call CountGRCoinPiecesObtained_2
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
 	ldtx hl, ObtainedGRCoinPieceTotalNumberText
-	; fallthrough
-.next
+
+.got_coin_and_text
 	lb de, 1, 2
 	call Func_35bf
 	call Func_1dd08
 	ld a, [wdc0a]
-	call Func_1dfa5
+	call GetCoinType
 	push af
 	ld a, b
 	ld [wdc09], a
@@ -2814,7 +2823,7 @@ Func_1dca6:
 	push bc
 	push de
 	push hl
-	ld a, $ff
+	ld a, -1
 	ld [wdc0a], a
 	call Func_1dcbf
 	pop hl
@@ -2852,7 +2861,7 @@ Func_1dce3:
 	lb de,  1, 2
 	call Func_35af
 	ld a, [wdc08]
-	call Func_1dfa5
+	call GetCoinType
 	push af
 	ld a, b
 	ld [wdc09], a
@@ -2885,13 +2894,14 @@ Func_1dd08:
 	pop af
 	ret
 
+; each coin settings page
 Func_1dd3a:
 	push af
 	push bc
 	push de
 	push hl
 	ld a, [wdc08]
-	call Func_1dfa5
+	call GetCoinType
 	ld c, a
 	ld a, [wdc09]
 	cp b
@@ -2939,15 +2949,16 @@ Func_1dd84:
 	farcall ClearSpriteAnims
 	ret
 
+; coin settings pages
 Func_1dd89:
 	push af
 	push bc
 	push hl
 	push af
 	push bc
-	ld de, $a
-	ld b, 7
-	ld hl, MenuParams_1de1c
+	lb de, 0, 10
+	ld b, BANK(_CoinPageMenuParams)
+	ld hl, _CoinPageMenuParams
 	call LoadMenuBoxParams
 	call DrawMenuBox
 	pop bc
@@ -2955,7 +2966,7 @@ Func_1dd89:
 	ld c, b
 	ld b, 0
 	sla c
-	ld hl, Data_1de4c
+	ld hl, _CoinPageTextTable
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -2968,61 +2979,61 @@ Func_1dd89:
 	ld b, 0
 	sla c
 	sla c
-	ld hl, Data_1dea0
+	ld hl, _CoinPageCoordTable
 	add hl, bc
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld bc, $8
+	lb bc, 0, 8
 	call Func_383b
 	inc hl
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld bc, $1308
+	lb bc, 19, 8
 	call Func_383b
 	pop bc
 	call Func_1dd3a
 	ld c, b
 	ld b, 0
 	sla c
-	ld hl, Data_1de52
+	ld hl, _CoinPageListTable
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	pop af
 	ld b, a
-	ld a, $08
+	ld a, 8
 	sub b
 	ld b, a
-	ld c, $08
-.asm_1dde8
+	ld c, 8
+.loop_show_coin
 	push bc
 	push hl
 	ld a, [hli]
-	call Func_1d181
+	call GetCoinPossessionStatus
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
 	farcall Func_12c49b
 	ld a, c
 	cp b
-	jr nz, .asm_1de01
+	jr nz, .next_coin
 	ld a, d
-	ld [$dc0c], a
+	ld [wdc0c], a
 	ld a, e
-	ld [$dc0d], a
-.asm_1de01
+	ld [wdc0d], a
+.next_coin
 	pop hl
-	ld bc, $3
+	ld bc, 3
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_1dde8
-	ld a, [$dc0c]
+	jr nz, .loop_show_coin
+	ld a, [wdc0c]
 	ld d, a
-	ld a, [$dc0d]
+	ld a, [wdc0d]
 	ld e, a
 	pop hl
 	pop bc
@@ -3031,10 +3042,10 @@ Func_1dd89:
 
 Func_1de16:
 	call CheckObtainedGRCoinPieces
-	add $18
+	add COIN_SENTINEL
 	ret
 
-MenuParams_1de1c:
+_CoinPageMenuParams:
 	db FALSE ; skip clear
 	db 20, 7 ; width, height
 	db SYM_CURSOR_R ; blink cursor symbol
@@ -3058,48 +3069,48 @@ MenuParams_1de1c:
 	textitem 16,  5, SingleSpaceText
 	db $ff
 
-Data_1de4c:
+_CoinPageTextTable:
 	tx EventCoinPage1Text
 	tx EventCoinPage2Text
 	tx EventCoinPage3Text
-Data_1de52:
-	dw Data_1de58
-	dw Data_1de70
-	dw Data_1de88
-Data_1de58:
-	db $00, $01, $0a
-	db $01, $06, $0a
-	db $02, $0b, $0a
-	db $03, $10, $0a
-	db $04, $01, $0e
-	db $05, $06, $0e
-	db $06, $0b, $0e
-	db $07, $10, $0e
-Data_1de70:
-	db $08, $01, $0a
-	db $09, $06, $0a
-	db $0a, $0b, $0a
-	db $0b, $10, $0a
-	db $0c, $01, $0e
-	db $0d, $06, $0e
-	db $0e, $0b, $0e
-	db $0f, $10, $0e
-Data_1de88:
-	db $10, $01, $0a
-	db $11, $06, $0a
-	db $12, $0b, $0a
-	db $13, $10, $0a
-	db $14, $01, $0e
-	db $15, $06, $0e
-	db $16, $0b, $0e
-	db $17, $10, $0e
-Data_1dea0:
-	dw $0000
-	dw $000f
-	dw $200f
-	dw $000f
-	dw $200f
-	dw $0000
+
+_CoinPageListTable:
+	dw .page1
+	dw .page2
+	dw .page3
+; coin, x, y
+.page1:
+	db COIN_CHANSEY,     1, 10
+	db COIN_GR,          6, 10
+	db COIN_ODDISH,     11, 10
+	db COIN_CHARMANDER, 16, 10
+	db COIN_STARMIE,     1, 14
+	db COIN_PIKACHU,     6, 14
+	db COIN_ALAKAZAM,   11, 14
+	db COIN_KABUTO,     16, 14
+.page2:
+	db COIN_MAGNEMITE,   1, 10
+	db COIN_GOLBAT,      6, 10
+	db COIN_MAGMAR,     11, 10
+	db COIN_PSYDUCK,    16, 10
+	db COIN_MACHAMP,     1, 14
+	db COIN_MEW,         6, 14
+	db COIN_SNORLAX,    11, 14
+	db COIN_TOGEPI,     16, 14
+.page3:
+	db COIN_PONYTA,      1, 10
+	db COIN_HORSEA,      6, 10
+	db COIN_ARBOK,      11, 10
+	db COIN_JIGGLYPUFF, 16, 10
+	db COIN_DUGTRIO,     1, 14
+	db COIN_GENGAR,      6, 14
+	db COIN_RAICHU,     11, 14
+	db COIN_LUGIA,      16, 14
+
+_CoinPageCoordTable:
+	db  0,  0, 15, 0
+	db 15, 32, 15, 0
+	db 15, 32,  0, 0
 
 Func_1deac:
 	push af
@@ -3108,7 +3119,7 @@ Func_1deac:
 	push hl
 	ld a, [wdc08]
 .asm_1deb3
-	call Func_1dfa5
+	call GetCoinType
 	push af
 	ld a, b
 	ld [wdc09], a
@@ -3124,25 +3135,26 @@ Func_1deac:
 	pop af
 	ret
 
+; COIN_* constant at [wdc09] * 8 + a
 Func_1decb:
 	ld b, a
 	ld a, [wdc09]
+REPT 3 ; *8
 	add a
-	add a
-	add a
+ENDR
 	add b
 	ld b, a
 	call CheckIfCoinWasObtained
 	ld a, b
-	jr nz, .asm_1dee2
+	jr nz, .exists
 	push af
-	ld a, $04
+	ld a, SFX_04
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1dee2
+.exists
 	push af
-	ld a, $0b
+	ld a, SFX_0B
 	call CallPlaySFX
 	pop af
 	ld a, b
@@ -3157,12 +3169,12 @@ Func_1def1::
 	push hl
 	call Func_1df10
 	call GetMenuBoxFocusedItem
-	and $03
+	and 3
 	and a
 	call z, Func_1df60
 	call GetMenuBoxFocusedItem
-	and $03
-	cp $03
+	and 3
+	cp 3
 	call z, Func_1df36
 	pop hl
 	pop de
@@ -3172,18 +3184,19 @@ Func_1def1::
 
 Func_1df10:
 	ldh a, [hKeysPressed]
-	and $04
+	and SELECT
 	ret z
+
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ld a, [wdc09]
 	inc a
-	cp $03
-	jr c, .asm_1df25
+	cp 3
+	jr c, .got_value
 	xor a
-.asm_1df25
+.got_value
 	ld [wdc09], a
 	ld b, a
 	call GetMenuBoxFocusedItem
@@ -3194,13 +3207,13 @@ Func_1df10:
 
 Func_1df36:
 	ldh a, [hDPadHeld]
-	and $10
+	and D_RIGHT
 	ret z
 	ld a, [wdc09]
-	cp $02
-	jr z, .asm_1df5c
+	cp 2
+	jr z, .done
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ld a, [wdc09]
@@ -3208,22 +3221,23 @@ Func_1df36:
 	ld [wdc09], a
 	ld b, a
 	call GetMenuBoxFocusedItem
-	sub $03
+	sub 3
 	call Func_1df89
 	call SetMenuBoxFocusedItem
-.asm_1df5c
+.done
 	call SetwDA37
 	ret
 
 Func_1df60:
 	ldh a, [hDPadHeld]
-	and $20
+	and D_LEFT
 	ret z
+
 	ld a, [wdc09]
 	and a
-	jr z, .asm_1df85
+	jr z, .done
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ld a, [wdc09]
@@ -3231,19 +3245,19 @@ Func_1df60:
 	ld [wdc09], a
 	ld b, a
 	call GetMenuBoxFocusedItem
-	add $03
+	add 3
 	call Func_1df89
 	call SetMenuBoxFocusedItem
-.asm_1df85
+.done
 	call SetwDA37
 	ret
 
 Func_1df89:
 	call Func_1dd84
 	push af
-	ld a, $08
+	ld a,  8
 	ldh [hWX], a
-	ld a, $50
+	ld a, 80
 	ldh [hWY], a
 	call SetWindowOn
 	pop af
@@ -3254,11 +3268,13 @@ Func_1df89:
 	pop af
 	ret
 
-Func_1dfa5:
-	cp $18
-	jr c, .next
-	ld a, 1
-.next
+; a = COIN_* constant
+; return its COIN_TYPE_* in a and b
+GetCoinType:
+	cp COIN_SENTINEL
+	jr c, .found_coin
+	ld a, COIN_GR
+.found_coin
 	ld b, a
 	srl b
 	srl b
@@ -3702,10 +3718,10 @@ PlayCoinAnimation:
 	ld a, [wOppCoin]
 .got_coin
 	lb de, 80, 80
-	call Func_1d198
+	call CreateCoinAnimation
 	ld a, [wCurAnimation]
 	sub DUEL_ANIM_COIN_SPIN
-	call Func_1d443
+	call SetAndInitCoinAnimation
 	farcall GetSpriteAnimBuffer
 	ret
 
@@ -4460,7 +4476,7 @@ Func_1e767:
 
 SECTION "Bank 7@6866", ROMX[$6866], BANK[$7]
 
-Func_1e866:
+LoadBoosterPackScene:
 	push af
 	push bc
 	push de
@@ -4494,40 +4510,40 @@ Func_1e866:
 
 Func_1e889:
 	farcall Func_1022a
-	call Func_1e895
+	call GiveBoosterPacks
 	farcall Func_10252
 	ret
 
-Func_1e895:
+GiveBoosterPacks:
 	push af
 	push bc
 	push de
 	push hl
-	ld [wdd08], a
+	ld [wCurBoosterPack], a
 	ld a, b
-	ld [wdd09], a
-	call Func_1e8a8
+	ld [wAnotherBoosterPack], a
+	call _GiveBoosterPack
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1e8a8:
+_GiveBoosterPack:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1e946
+	call .DrawScreen
 	farcall SetFrameFuncAndFadeFromWhite
 	call Func_3d0d
 	push af
-	ld a, $2f
+	ld a, MUSIC_BOOSTER_PACK
 	call Func_3d09
 	pop af
-	ld a, [wdd08]
+	ld a, [wCurBoosterPack]
 	add a
-	add a
+	add a ; table_width 4
 	ld c, a
 	ld b, 0
-	ld hl, Data_1e90e
+	ld hl, .TextTable
 	add hl, bc
 	ld a, [hli]
 	ld [wTxRam2], a
@@ -4537,67 +4553,80 @@ Func_1e8a8:
 	ld [wTxRam2_b], a
 	ld a, [hl]
 	ld [wTxRam2_b + 1], a
-	ld hl, $687
-	ld a, [wdd09]
+	ldtx hl, ReceivedBoosterPackText
+	ld a, [wAnotherBoosterPack]
 	and a
-	jr z, .asm_1e8e5
-	ld hl, $688
-	; fallthrough
-.asm_1e8e5
+	jr z, .loaded_text
+	ldtx hl, ReceivedAnotherBoosterPackText
+
+.loaded_text
 	farcall PrintTextInWideTextBox
 	call WaitForSongToFinish
 	ld a, $3c
 	call DoAFrames_WithPreCheck
 	call Func_3d16
 	call WaitForWideTextBoxInput
-	ld hl, $7fc
+	ldtx hl, OpenedBoosterPackText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
-	call Func_1e96f
+	call .GetPack
 	farcall SetSpriteAnimationAndFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Data_1e90e:
-	dw $0689, $067e
-	dw $068a, $067f
-	dw $068b, $0680
-	dw $068c, $0681
-	dw $068d, $0682
-	dw $068e, $0683
-	dw $068f, $0684
-	dw $05ff, $069a
-	dw $05ff, $0686
-	dw $05ff, $0686
-	dw $05ff, $0686
-	dw $05ff, $0686
-	dw $05ff, $0686
-	dw $05ff, $069a
+; pack number, title
+.TextTable:
+	tx BoosterPack1Text, BoosterPackBeginningPokemonText    ; BOOSTER_BEGINNING_POKEMON
+	tx BoosterPack2Text, BoosterPackLegendaryPowerText      ; BOOSTER_LEGENDARY_POWER
+	tx BoosterPack3Text, BoosterPackIslandOfFossilText      ; BOOSTER_ISLAND_OF_FOSSIL
+	tx BoosterPack4Text, BoosterPackPsychicBattleText       ; BOOSTER_PSYCHIC_BATTLE
+	tx BoosterPack5Text, BoosterPackFlyingPokemonText       ; BOOSTER_SKY_FLYING_POKEMON
+	tx BoosterPack6Text, BoosterPackWeAreTeamRocketText     ; BOOSTER_WE_ARE_TEAM_ROCKET
+	tx BoosterPack7Text, BoosterPackTeamRocketsAmbitionText ; BOOSTER_TEAM_ROCKETS_AMBITION
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_1
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_1
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_2
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_3
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_4
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_5
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_2
 
-Func_1e946:
-	ld a, [wdd08]
+.DrawScreen:
+	ld a, [wCurBoosterPack]
 	ld c, a
 	ld b, 0
-	ld hl, .NumberTable
+	ld hl, .PackTable
 	add hl, bc
 	ld a, [hl]
-	ld de, $600
-	call Func_1e866
-	ld de, $c
-	ld bc, $1406
+	lb de,  6,  0
+	call LoadBoosterPackScene
+	lb de,  0, 12
+	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
 	ret
 
-.NumberTable:
-	db 0, 1, 2, 3, 4, 5, 6, 0, 7, 7, 7, 7, 7, 0
-; 0x1e96f
+.PackTable:
+	db BEGINNING_POKEMON     ; BOOSTER_BEGINNING_POKEMON
+	db LEGENDARY_POWER       ; BOOSTER_LEGENDARY_POWER
+	db ISLAND_OF_FOSSIL      ; BOOSTER_ISLAND_OF_FOSSIL
+	db PSYCHIC_BATTLE        ; BOOSTER_PSYCHIC_BATTLE
+	db SKY_FLYING_POKEMON    ; BOOSTER_SKY_FLYING_POKEMON
+	db WE_ARE_TEAM_ROCKET    ; BOOSTER_WE_ARE_TEAM_ROCKET
+	db TEAM_ROCKETS_AMBITION ; BOOSTER_TEAM_ROCKETS_AMBITION
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_1
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_1
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_2
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_3
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_4
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_5
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_2
 
-Func_1e96f:
+.GetPack:
 	call DoFrame
 	farcall ClearSpriteAnims
 	call DisableLCD
 	call DoFrame
-	ld a, [wdd08]
+	ld a, [wCurBoosterPack]
 	farcall GetBoosterPack
 	ret
 ; 0x1e984
@@ -4901,7 +4930,7 @@ Func_1f57b::
 	db $80 ; end
 
 ; input: a, c
-; [wdd75] = a, [wdd76] = 0, [wdd77] = c
+; set [wdd75] = a, [wdd76] = 0, [wdd77] = c
 Set3FromwDD75:
 	push af
 	ld [wdd75], a
@@ -4912,6 +4941,7 @@ Set3FromwDD75:
 	pop af
 	ret
 
+; set [wdd75] = [wdd76] = 0, [wdd77] = c
 Func_1f61a:
 	push af
 	ld a, 0

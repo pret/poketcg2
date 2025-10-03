@@ -2851,7 +2851,7 @@ CheckDeck:
 	db $15 ; x1.3 FIGHTING
 	db $15 ; x1.3 PSYCHIC
 
-; for a = offset, generate booster content with ContentTable[a]
+; for a = offset, generate booster content defined in .ContentTable[a]
 ; using CreateCardPopCandidateList
 ; and set wDuelTempList to 0--9
 GenerateBoosterContent:
@@ -4439,6 +4439,8 @@ DeckIDData:
 
 	db $ff ; end
 
+; set [wcd55] = e
+; then check deck requirement using the opponent offset in [wcd0e]
 CheckDuelDeckRequirement::
 	ld a, e
 	ld [wcd55], a
@@ -4488,7 +4490,10 @@ CheckGraceRequirement:
 
 CheckMiwaRequirement:
 	ld b, TYPE_ENERGY_PSYCHIC
-	; fallthrough
+; fallthrough
+
+; check if the deck has energy cards of different types than b
+; return carry if so
 CheckSoloEnergyRequirement:
 	ld c, DECK_SIZE
 	ld hl, wPlayerDeck
