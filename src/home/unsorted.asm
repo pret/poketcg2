@@ -557,7 +557,7 @@ Func_33b7::
 	add c ; *3
 	ld c, a
 	rl b
-	ld hl, Data_c651
+	ld hl, MapHeaderPtrs
 	add hl, bc
 	ld a, [hli]
 	ld c, a

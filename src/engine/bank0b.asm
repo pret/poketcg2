@@ -1,13 +1,41 @@
 SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
 
-Data_2c000:
-	db MAP_ISHIHARAS_HOUSE
-	dba Data_2c09b
+IshiharasHouse_MapHeader:
+	db MAP_GFX_ISHIHARAS_HOUSE
+	dba IshiharasHouse_MapScripts
 	db MUSIC_ISHIHARA
 
-SECTION "Bank b@409b", ROMX[$409b], BANK[$b]
+IshiharasHouse_StepEvents:
+	map_exit 4, 12, OVERWORLD_MAP_TCG, 0, 2, SOUTH
+	map_exit 5, 12, OVERWORLD_MAP_TCG, 0, 2, SOUTH
+	db $ff
 
-Data_2c09b:
+IshiharasHouse_NPCs:
+	npc OW_ISHIHARA, 4, 4, SOUTH, $B8, $41
+	npc OW_NIKKI, 5, 4, SOUTH, $6A, $44
+	db $ff
+
+IshiharasHouse_NPCInteractions:
+	npc_script OW_ISHIHARA, $0b, $72, $41
+	npc_script OW_NIKKI, $0b, $cb, $43
+	db $ff
+
+IshiharasHouse_OWInteractions:
+	ow_script 3, 2, $10, $00, $40
+	ow_script 4, 2, $10, $16, $40
+	ow_script 5, 2, $10, $2c, $40
+	ow_script 6, 2, $10, $42, $40
+	ow_script 7, 2, $10, $58, $40
+	ow_script 8, 2, $10, $6e, $40
+	ow_script 1, 9, $10, $84, $40
+	ow_script 2, 9, $10, $9a, $40
+	ow_script 3, 9, $10, $b0, $40
+	ow_script 6, 9, $10, $c6, $40
+	ow_script 7, 9, $10, $dc, $40
+	ow_script 8, 9, $10, $f2, $40
+	db $ff
+
+IshiharasHouse_MapScripts:
 	dbw $06, Func_2c0c1
 	dbw $08, Func_2c0f1
 	dbw $07, Func_2c0c8
@@ -29,12 +57,12 @@ Func_2c0b4:
 	ret
 
 Func_2c0c1:
-	ld hl, $4005
+	ld hl, IshiharasHouse_StepEvents
 	call Func_324d
 	ret
 
 Func_2c0c8:
-	ld hl, $4018
+	ld hl, IshiharasHouse_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -58,10 +86,10 @@ Func_2c0d1:
 	ret
 
 Func_2c0f1:
-	ld hl, $4025
+	ld hl, IshiharasHouse_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2c0ff
-	ld hl, $402e
+	ld hl, IshiharasHouse_OWInteractions
 	call Func_32bf
 .asm_2c0ff
 	scf
@@ -162,14 +190,33 @@ Func_2c1b8:
 
 SECTION "Bank b@4479", ROMX[$4479], BANK[$b]
 
-Data_2c479:
-	db MAP_LIGHTNING_CLUB_1
-	dba Data_2c4c5
+LightningClub_MapHeader:
+	db MAP_GFX_LIGHTNING_CLUB_1
+	dba LightningClub_MapScripts
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@44c5", ROMX[$44c5], BANK[$b]
+LightningClub_StepEvents:
+	map_exit 6, 15, MAP_LIGHTNING_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_LIGHTNING_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2c4c5:
+LightningClub_NPCs:
+	npc OW_ISAAC, 6, 2, SOUTH, $00, $00
+	npc OW_JENNIFER, 7, 9, SOUTH, $f9, $48
+	npc OW_NICHOLAS, 3, 5, SOUTH, $00, $00
+	npc OW_BRANDON, 11, 6, SOUTH, $f9, $48
+	npc OW_GR_4, 7, 4, SOUTH, $29, $49
+	db $ff
+
+LightningClub_NPCInteractions:
+	npc_script OW_ISAAC, $0b, $45, $46
+	npc_script OW_JENNIFER, $0b, $3b, $47
+	npc_script OW_NICHOLAS, $0b, $9d, $47
+	npc_script OW_BRANDON, $0b, $97, $48
+	npc_script OW_GR_4, $0b, $0e, $49
+	db $ff
+
+LightningClub_MapScripts:
 	dbw $06, Func_2c4fa
 	dbw $08, Func_2c560
 	dbw $09, Func_2c568
@@ -190,20 +237,20 @@ Func_2c4db:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c4f7
-	ld a, MAP_LIGHTNING_CLUB_2
-	ld [wCurMap], a
+	ld a, MAP_GFX_LIGHTNING_CLUB_2
+	ld [wCurMapGfx], a
 .asm_2c4f7
 	scf
 	ccf
 	ret
 
 Func_2c4fa:
-	ld hl, $447e
+	ld hl, LightningClub_StepEvents
 	call Func_324d
 	ret
 
 Func_2c501:
-	ld hl, $4491
+	ld hl, LightningClub_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -247,29 +294,53 @@ Func_2c50a:
 	ret
 
 Func_2c560:
-	ld hl, $44b0
+	ld hl, LightningClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2c568:
-	ld hl, $4573
+	ld hl, LightningClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2c573
+
+LightningClub_AfterDuelScripts:
+	npc_script OW_ISAAC, $0b, $ec, $46
+	npc_script OW_JENNIFER, $0b, $81, $47
+	npc_script OW_NICHOLAS, $0b, $47, $48
+	npc_script OW_BRANDON, $0b, $dd, $48
+	db $ff
+; 0x2c584
 
 SECTION "Bank b@4936", ROMX[$4936], BANK[$b]
 
-Data_2c936:
-	db MAP_PSYCHIC_CLUB_ENTRANCE
-	dba Data_2c990
+PsychicClubEntrance_MapHeader:
+	db MAP_GFX_PSYCHIC_CLUB_ENTRANCE
+	dba PsychicClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@4990", ROMX[$4990], BANK[$b]
+PsychicClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 6, 3, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 6, 3, SOUTH
+	map_exit 0, 3, MAP_PSYCHIC_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_PSYCHIC_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_PSYCHIC_CLUB, 6, 12, NORTH
+	map_exit 5, 0, MAP_PSYCHIC_CLUB, 7, 12, NORTH
+	ow_script 4, 2, $0b, $3e, $4a
+	ow_script 5, 2, $0b, $3e, $4a
+	db $ff
 
-Data_2c990:
+PsychicClubEntrance_NPCs:
+	npc OW_STEPHANIE, 5, 1, SOUTH, $bb, $4a
+	db $ff
+
+PsychicClubEntrance_NPCInteractions:
+	npc_script OW_STEPHANIE, $0b, $a0, $4a
+	db $ff
+
+PsychicClubEntrance_MapScripts:
 	dbw $00, Func_2c9ac
 	dbw $06, Func_2c9d8
 	dbw $08, Func_2ca14
@@ -301,7 +372,7 @@ Func_2c9b8:
 	ret
 
 Func_2c9c8:
-	call PsychicClubEntranceShouldRonaldAppear
+	call PsychicClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2c9cf
 	scf
 	ret
@@ -313,19 +384,19 @@ Func_2c9c8:
 	ret
 
 Func_2c9d8:
-	ld hl, $493b
+	ld hl, PsychicClubEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2c9df:
-	ld hl, $4984
+	ld hl, PsychicClubEntrance_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2c9e8:
-	call PsychicClubEntranceShouldRonaldAppear
+	call PsychicClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2ca12
 	cp 1
 	jr z, .asm_2c9f8
@@ -351,7 +422,7 @@ Func_2c9e8:
 	ret
 
 Func_2ca14:
-	ld hl, $498b
+	ld hl, PsychicClubEntrance_NPCInteractions
 	call Func_328c
 	scf
 	ret
@@ -451,7 +522,7 @@ Func_2cabb:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-PsychicClubEntranceShouldRonaldAppear:
+PsychicClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -485,14 +556,45 @@ PsychicClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2cafa:
-	db MAP_PSYCHIC_CLUB_LOBBY
-	dba Data_2cb92
+PsychicClubLobby_MapHeader:
+	db MAP_GFX_PSYCHIC_CLUB_LOBBY
+	dba PsychicClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@4b92", ROMX[$4b92], BANK[$b]
+PsychicClubLobby_StepEvents:
+	map_exit 15, 6, MAP_PSYCHIC_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_PSYCHIC_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_2cb92:
+PsychicClubLobby_NPCs:
+	npc OW_SPECS_5, 8, 8, EAST, $00, $00
+	npc OW_LASS1_4, 10, 9, WEST, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
+	npc OW_LAD_6, 7, 6, EAST, $00, $00
+	npc OW_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	db $ff
+
+PsychicClubLobby_NPCInteractions:
+	npc_script OW_SPECS_5, $0b, $11, $4c
+	npc_script OW_LASS1_4, $0b, $7d, $4c
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_LAD_6, $0b, $b7, $4c
+	npc_script OW_GR_LASS_2, $0b, $e8, $4c
+	db $ff
+
+PsychicClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $d6, $42
+	ow_script 13, 2, $10, $ec, $42
+	ow_script 14, 2, $10, $02, $43
+	db $ff
+
+PsychicClubLobby_MapScripts:
 	dbw $06, Func_2cbcf
 	dbw $08, Func_2cbdf
 	dbw $07, Func_2cbd6
@@ -529,22 +631,22 @@ Func_2cbba:
 	ret
 
 Func_2cbcf:
-	ld hl, $4aff
+	ld hl, PsychicClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2cbd6:
-	ld hl, $4b12
+	ld hl, PsychicClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2cbdf:
-	ld hl, $4b3d
+	ld hl, PsychicClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2cbed
-	ld hl, $4b52
+	ld hl, PsychicClubLobby_OWInteractions
 	call Func_32bf
 .asm_2cbed
 	scf
@@ -571,14 +673,33 @@ Func_2cbf5:
 
 SECTION "Bank b@4d23", ROMX[$4d23], BANK[$b]
 
-Data_2cd23:
-	db MAP_PSYCHIC_CLUB
-	dba Data_2cd6f
+PsychicClub_MapHeader:
+	db MAP_GFX_PSYCHIC_CLUB
+	dba PsychicClub_MapScripts
 	db MUSIC_CLUB_2
 
-SECTION "Bank b@4d6f", ROMX[$4d6f], BANK[$b]
+PsychicClub_StepEvents:
+	map_exit 6, 13, MAP_PSYCHIC_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 13, MAP_PSYCHIC_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2cd6f:
+PsychicClub_NPCs:
+	npc OW_MURRAY, 6, 3, SOUTH, $00, $00
+	npc OW_ROBERT, 3, 10, WEST, $00, $00
+	npc OW_DANIEL, 4, 5, NORTH, $00, $00
+	npc OW_STEPHANIE, 11, 6, EAST, $00, $00
+	npc OW_GR_4, 7, 3, SOUTH, $3c, $52
+	db $ff
+
+PsychicClub_NPCInteractions:
+	npc_script OW_MURRAY, $0b, $88, $4e
+	npc_script OW_ROBERT, $0b, $cc, $4f
+	npc_script OW_DANIEL, $0b, $46, $50
+	npc_script OW_STEPHANIE, $0b, $b3, $50
+	npc_script OW_GR_4, $0b, $90, $51
+	db $ff
+
+PsychicClub_MapScripts:
 	dbw $06, Func_2cd92
 	dbw $08, Func_2ce11
 	dbw $09, Func_2ce19
@@ -599,12 +720,12 @@ Func_2cd82:
 	ret
 
 Func_2cd92:
-	ld hl, $4d28
+	ld hl, PsychicClub_StepEvents
 	call Func_324d
 	ret
 
 Func_2cd99:
-	ld hl, $4d3b
+	ld hl, PsychicClub_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -653,17 +774,26 @@ Func_2cda2:
 	ret
 
 Func_2ce11:
-	ld hl, $4d5a
+	ld hl, PsychicClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2ce19:
-	ld hl, $4e24
+	ld hl, PsychicClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
+
+PsychicClub_AfterDuelScripts:
+	npc_script OW_MURRAY, $0b, $73, $4f
+	npc_script OW_ROBERT, $0b, $2a, $50
+	npc_script OW_DANIEL, $0b, $97, $50
+	npc_script OW_STEPHANIE, $0b, $42, $51
+	npc_script OW_GR_4, $0b, $0e, $52
+	db $ff
+; 0x2ce39
 
 SECTION "Bank b@523c", ROMX[$523c], BANK[$b]
 
@@ -681,14 +811,21 @@ Func_2d23c:
 
 SECTION "Bank b@530a", ROMX[$530a], BANK[$b]
 
-Data_2d30a:
-	db MAP_ROCK_CLUB_ENTRANCE
-	dba Data_2d346
+RockClubEntrance_MapHeader:
+	db MAP_GFX_ROCK_CLUB_ENTRANCE
+	dba RockClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@5346", ROMX[$5346], BANK[$b]
+RockClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 1, 4, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 1, 4, SOUTH
+	map_exit 0, 3, MAP_ROCK_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_ROCK_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_ROCK_CLUB, 6, 13, NORTH
+	map_exit 5, 0, MAP_ROCK_CLUB, 7, 13, NORTH
+	db $ff
 
-Data_2d346:
+RockClubEntrance_MapScripts:
 	dbw $06, Func_2d376
 	dbw $02, Func_2d37d
 	dbw $0b, Func_2d399
@@ -708,7 +845,7 @@ Func_2d356:
 	ret
 
 Func_2d366:
-	call RockClubEntranceShouldRonaldAppear
+	call RockClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2d36d
 	scf
 	ret
@@ -720,12 +857,12 @@ Func_2d366:
 	ret
 
 Func_2d376:
-	ld hl, $530f
+	ld hl, RockClubEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2d37d:
-	call RockClubEntranceShouldRonaldAppear
+	call RockClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2d397
 	ld a, $0a
 	ld [wd582], a
@@ -756,7 +893,7 @@ Func_2d399:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-RockClubEntranceShouldRonaldAppear:
+RockClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -768,14 +905,45 @@ RockClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2d3c4:
-	db MAP_ROCK_CLUB_LOBBY
-	dba Data_2d45c
+RockClubLobby_MapHeader:
+	db MAP_GFX_ROCK_CLUB_LOBBY
+	dba RockClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@545c", ROMX[$545c], BANK[$b]
+RockClubLobby_StepEvents:
+	map_exit 15, 6, MAP_ROCK_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_ROCK_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_2d45c:
+RockClubLobby_NPCs:
+	npc OW_LASS2_2, 5, 6, EAST, $00, $00
+	npc OW_WOMAN, 12, 10, NORTH, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
+	npc OW_CHAP_1, 8, 9, WEST, $00, $00
+	npc OW_LAD_3, 10, 3, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	db $ff
+
+RockClubLobby_NPCInteractions:
+	npc_script OW_LASS2_2, $0b, $e0, $54
+	npc_script OW_WOMAN, $0b, $46, $55
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_CHAP_1, $0b, $8b, $55
+	npc_script OW_LAD_3, $0b, $c7, $55
+	db $ff
+
+RockClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $08, $41
+	ow_script 13, 2, $10, $1e, $41
+	ow_script 14, 2, $10, $34, $41
+	db $ff
+
+RockClubLobby_MapScripts:
 	dbw $06, Func_2d49e
 	dbw $08, Func_2d4ae
 	dbw $07, Func_2d4a5
@@ -814,22 +982,22 @@ Func_2d489:
 	ret
 
 Func_2d49e:
-	ld hl, $53c9
+	ld hl,RockClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2d4a5:
-	ld hl, $53dc
+	ld hl, RockClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2d4ae:
-	ld hl, $5407
+	ld hl, RockClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2d4bc
-	ld hl, $541c
+	ld hl, RockClubLobby_OWInteractions
 	call Func_32bf
 .asm_2d4bc
 	scf
@@ -857,14 +1025,32 @@ Func_2d4c4:
 
 SECTION "Bank b@55f8", ROMX[$55f8], BANK[$b]
 
-Data_2d5f8:
-	db MAP_ROCK_CLUB
-	dba Data_2d640
+RockClub_MapHeader:
+	db MAP_GFX_ROCK_CLUB
+	dba RockClub_MapScripts
 	db MUSIC_CLUB_2
 
-SECTION "Bank b@5640", ROMX[$5640], BANK[$b]
+RockClub_StepEvents:
+	map_exit 6, 14, MAP_ROCK_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 14, MAP_ROCK_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2d640:
+RockClub_NPCs:
+	npc OW_GENE, 7, 2, SOUTH, $00, $00
+	npc OW_MATTHEW, 2, 3, SOUTH, $00, $00
+	npc OW_RYAN, 9, 7, EAST, $00, $00
+	npc OW_ANDREW, 3, 8, EAST, $00, $00
+	npc OW_GR_1, 7, 3, NORTH, $f3, $58
+	db $ff
+
+RockClub_NPCInteractions:
+	npc_script OW_GENE, $0b, $54, $57
+	npc_script OW_MATTHEW, $0b, $ea, $57
+	npc_script OW_RYAN, $0b, $41, $58
+	npc_script OW_ANDREW, $0b, $9c, $58
+	db $ff
+
+RockClub_MapScripts:
 	dbw $06, Func_2d663
 	dbw $08, Func_2d6a6
 	dbw $07, Func_2d66a
@@ -885,12 +1071,12 @@ Func_2d653:
 	ret
 
 Func_2d663:
-	ld hl, $55fd
+	ld hl, RockClub_StepEvents
 	call Func_324d
 	ret
 
 Func_2d66a:
-	ld hl, $5610
+	ld hl, RockClub_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -919,29 +1105,43 @@ Func_2d673:
 	ret
 
 Func_2d6a6:
-	ld hl, $562f
+	ld hl, RockClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2d6ae:
-	ld hl, $56b9
+	ld hl, RockClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2d6b9
+
+RockClub_AfterDuelScripts:
+	npc_script OW_GENE, $0b, $c3, $57
+	npc_script OW_MATTHEW, $0b, $25, $58
+	npc_script OW_RYAN, $0b, $7e, $58
+	npc_script OW_ANDREW, $0b, $d7, $58
+	db $ff
+; 0x2d6ca
 
 SECTION "Bank b@5930", ROMX[$5930], BANK[$b]
 
-Data_2d930:
-	db MAP_FIGHTING_CLUB_ENTRANCE
-	dba Data_2d96c
+FightningClubEntrance_MapHeader:
+	db MAP_GFX_FIGHTING_CLUB_ENTRANCE
+	dba FightningClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@596c", ROMX[$596c], BANK[$b]
+FightningClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 3, 7, SOUTH
+	map_exit 0, 3, MAP_FIGHTING_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_FIGHTING_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_FIGHTING_CLUB, 5, 10, NORTH
+	map_exit 5, 0, MAP_FIGHTING_CLUB, 6, 10, NORTH
+	db $ff
 
-Data_2d96c:
+FightningClubEntrance_MapScripts:
 	dbw $06, Func_2d99f
 	dbw $09, Func_2d9d2
 	dbw $02, Func_2d9a6
@@ -962,7 +1162,7 @@ Func_2d97f:
 	ret
 
 Func_2d98f:
-	call FightingClubEntranceShouldRonaldAppear
+	call FightingClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2d996
 	scf
 	ret
@@ -974,12 +1174,12 @@ Func_2d98f:
 	ret
 
 Func_2d99f:
-	ld hl, $5935
+	ld hl, FightningClubEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2d9a6:
-	call FightingClubEntranceShouldRonaldAppear
+	call FightingClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2d9d0
 	cp 1
 	jr z, .asm_2d9b6
@@ -1027,7 +1227,7 @@ Func_2d9d8:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-FightingClubEntranceShouldRonaldAppear:
+FightingClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -1061,14 +1261,45 @@ FightingClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2da26:
-	db MAP_FIGHTING_CLUB_LOBBY
-	dba Data_d2abe
+FightningClubLobby_MapHeader:
+	db MAP_GFX_FIGHTING_CLUB_LOBBY
+	dba FightningClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@5abe", ROMX[$5abe], BANK[$b]
+FightningClubLobby_StepEvents:
+	map_exit 15, 6, MAP_FIGHTING_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_FIGHTING_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_d2abe:
+FightningClubLobby_NPCs:
+	npc OW_PAPPY_2, 1, 5, SOUTH, $00, $00
+	npc OW_SPECS_3, 4, 9, EAST, $00, $00
+	npc OW_LAD4, 7, 9, WEST, $00, $00
+	npc OW_GIRL_4, 6, 8, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc OW_MICHAEL, 11, 6, EAST, $97, $5b
+	db $ff
+
+FightningClubLobby_NPCInteractions:
+	npc_script OW_PAPPY_2, $0b, $ac, $5b
+	npc_script OW_SPECS_3, $0b, $17, $5c
+	npc_script OW_LAD4, $0b, $48, $5c
+	npc_script OW_GIRL_4, $0b, $79, $5c
+	npc_script OW_MICHAEL, $0b, $0e, $5b
+	db $ff
+
+FightningClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0F, $B9, $41
+	ow_script 4, 4, $0F, $D9, $42
+	ow_script 12, 2, $10, $4A, $41
+	ow_script 13, 2, $10, $60, $41
+	ow_script 14, 2, $10, $76, $41
+	db $ff
+
+FightningClubLobby_MapScripts:
 	dbw $06, Func_2dade
 	dbw $08, Func_2daee
 	dbw $07, Func_2dae5
@@ -1088,45 +1319,68 @@ Func_2dace:
 	ret
 
 Func_2dade:
-	ld hl, $5a2b
+	ld hl, FightningClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2dae5:
-	ld hl, $5a3e
+	ld hl, FightningClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2daee:
-	ld hl, $5a69
+	ld hl, FightningClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2dafc
-	ld hl, $5a7e
+	ld hl, FightningClubLobby_OWInteractions
 	call Func_32bf
 .asm_2dafc
 	scf
 	ret
 
 Func_2dafe:
-	ld hl, $5b09
+	ld hl, FightningClubLobby_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2db09
+
+FightningClubLobby_AfterDuelScripts:
+	npc_script OW_MICHAEL, $0B, $7B, $5B
+	db $ff
+; 0x2db5b
 
 SECTION "Bank b@5c9f", ROMX[$5c9f], BANK[$b]
 
-Data_2dc9f:
-	db MAP_FIGHTING_CLUB
-	dba Data_2dceb
+FightingClub_MapHeader:
+	db MAP_GFX_FIGHTING_CLUB
+	dba FightingClub_MapScripts
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@5ceb", ROMX[$5ceb], BANK[$b]
+FightingClub_StepEvents:
+	map_exit 5, 11, MAP_FIGHTING_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 6, 11, MAP_FIGHTING_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2dceb:
+FightingClub_NPCs:
+	npc OW_MITCH, 5, 2, SOUTH, $e4, $5d
+	npc OW_MICHAEL, 7, 7, SOUTH, $9c, $5f
+	npc OW_CHRIS, 2, 5, SOUTH, $9c, $5f
+	npc OW_JESSICA, 9, 4, SOUTH, $9c, $5f
+	npc OW_GR_1, 6, 2, SOUTH, $23, $60
+	db $ff
+
+FightingClub_NPCInteractions:
+	npc_script OW_MITCH, $0b, $62, $5d
+	npc_script OW_MICHAEL, $0b, $f1, $5d
+	npc_script OW_CHRIS, $0b, $ad, $5e
+	npc_script OW_JESSICA, $0b, $3a, $5f
+	npc_script OW_GR_1, $0b, $b1, $5f
+	db $ff
+
+FightingClub_MapScripts:
 	dbw $06, Func_2dd0e
 	dbw $08, Func_2dd3a
 	dbw $07, Func_2dd31
@@ -1147,7 +1401,7 @@ Func_2dcfe:
 	ret
 
 Func_2dd0e:
-	ld hl, $5ca4
+	ld hl, FightingClub_StepEvents
 	call Func_324d
 	ret
 
@@ -1166,36 +1420,51 @@ Func_2dd15:
 	ret
 
 Func_2dd31:
-	ld hl, $5cb7
+	ld hl, FightingClub_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2dd3a:
-	ld hl, $5cd6
+	ld hl, FightingClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2dd42:
-	ld hl, $5d4d
+	ld hl, FightingClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2dd4d
+
+FightingClub_AfterDuelScripts:
+	npc_script OW_MITCH, $0b, $c8, $5d
+	npc_script OW_MICHAEL, $0b, $75, $5e
+	npc_script OW_CHRIS, $0b, $1e, $5f
+	npc_script OW_JESSICA, $0b, $80, $5f
+	npc_script OW_GR_1, $0b, $08, $60
+	db $ff
+; 0x2dd62
 
 SECTION "Bank b@606d", ROMX[$606d], BANK[$b]
 
-Data_2e06d:
-	db MAP_GRASS_CLUB_ENTRANCE
-	dba Data_2e0a9
+GrassClubEntrance_MapHeader:
+	db MAP_GFX_GRASS_CLUB_ENTRANCE
+	dba GrassClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@60a9", ROMX[$60a9], BANK[$b]
+GrassClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 8, 4, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 8, 4, SOUTH
+	map_exit 0, 3, MAP_GRASS_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_GRASS_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_GRASS_CLUB, 6, 13, NORTH
+	map_exit 5, 0, MAP_GRASS_CLUB, 7, 13, NORTH
+	db $ff
 
-Data_2e0a9:
+GrassClubEntrance_MapScripts:
 	dbw $06, Func_2e0dc
 	dbw $09, Func_2e10f
 	dbw $02, Func_2e0e3
@@ -1216,7 +1485,7 @@ Func_2e0bc:
 	ret
 
 Func_2e0cc:
-	call GrassClubEntranceShouldRonaldAppear
+	call GrassClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2e0d3
 	scf
 	ret
@@ -1228,12 +1497,12 @@ Func_2e0cc:
 	ret
 
 Func_2e0dc:
-	ld hl, $6072
+	ld hl, GrassClubEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2e0e3:
-	call GrassClubEntranceShouldRonaldAppear
+	call GrassClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2e10d
 	cp 1
 	jr z, .asm_2e0f3
@@ -1282,7 +1551,7 @@ Func_2e115:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-GrassClubEntranceShouldRonaldAppear:
+GrassClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -1316,14 +1585,33 @@ GrassClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2e163:
-	db MAP_GRASS_CLUB
-	dba Data_2e1af
+GrassClub_MapHeader:
+	db MAP_GFX_GRASS_CLUB
+	dba GrassClub_MapScripts
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@61af", ROMX[$61af], BANK[$b]
+GrassClub_StepEvents:
+	map_exit 6, 14, MAP_GRASS_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 14, MAP_GRASS_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2e1af:
+GrassClub_NPCs:
+	npc OW_NIKKI, 6, 2, SOUTH, $f6, $63
+	npc OW_BRITTANY, 10, 4, NORTH, $f6, $63
+	npc OW_KRISTIN, 2, 7, EAST, $f6, $63
+	npc OW_HEATHER, 7, 9, SOUTH, $f6, $63
+	npc OW_GR_2, 7, 8, SOUTH, $98, $64
+	db $ff
+
+GrassClub_NPCInteractions:
+	npc_script OW_NIKKI, $0b, $26, $62
+	npc_script OW_BRITTANY, $0b, $8c, $62
+	npc_script OW_KRISTIN, $0b, $32, $63
+	npc_script OW_HEATHER, $0b, $94, $63
+	npc_script OW_GR_2, $0b, $0b, $64
+	db $ff
+
+GrassClub_MapScripts:
 	dbw $06, Func_2e1d2
 	dbw $08, Func_2e1fe
 	dbw $09, Func_2e206
@@ -1344,7 +1632,7 @@ Func_2e1c2:
 	ret
 
 Func_2e1d2:
-	ld hl, $6168
+	ld hl, GrassClub_StepEvents
 	call Func_324d
 	ret
 
@@ -1363,36 +1651,59 @@ Func_2e1d9:
 	ret
 
 Func_2e1f5:
-	ld hl, $617b
+	ld hl, GrassClub_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e1fe:
-	ld hl, $619a
+	ld hl, GrassClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2e206:
-	ld hl, $6211
+	ld hl, GrassClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e211
+
+GrassClub_AfterDuelScripts:
+	npc_script OW_NIKKI, $0b, $6e, $62
+	npc_script OW_BRITTANY, $0b, $f6, $62
+	npc_script OW_KRISTIN, $0b, $78, $63
+	npc_script OW_HEATHER, $0b, $da, $63
+	npc_script OW_GR_2, $0b, $49, $64
+	db $ff
+; 0x2e226
 
 SECTION "Bank b@64b7", ROMX[$64b7], BANK[$b]
 
-Data_2e4b7:
-	db MAP_SCIENCE_CLUB_ENTRANCE
-	dba Data_2e4ff
+ScienceClubEntrance_MapHeader:
+	db MAP_GFX_SCIENCE_CLUB_ENTRANCE
+	dba ScienceClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@64ff", ROMX[$64ff], BANK[$b]
+ScienceClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 8, 2, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 8, 2, SOUTH
+	map_exit 0, 3, MAP_SCIENCE_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_SCIENCE_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_SCIENCE_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_SCIENCE_CLUB, 7, 14, NORTH
+	db $ff
 
-Data_2e4ff:
+ScienceClubEntrance_NPCs:
+	npc OW_JOSEPH, 6, 1, SOUTH, $2a, $66
+	db $ff
+
+ScienceClubEntrance_NPCInteractions:
+	npc_script OW_JOSEPH, $0b, $d0, $65
+	db $ff
+
+ScienceClubEntrance_MapScripts:
 	dbw $06, Func_2e538
 	dbw $08, Func_2e574
 	dbw $09, Func_2e57c
@@ -1415,7 +1726,7 @@ Func_2e518:
 	ret
 
 Func_2e528:
-	call ScienceClubEntranceShouldRonaldAppear
+	call ScienceClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2e52f
 	scf
 	ret
@@ -1427,19 +1738,19 @@ Func_2e528:
 	ret
 
 Func_2e538:
-	ld hl, $64bc
+	ld hl, ScienceClubEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2e53f:
-	ld hl, $64f3
+	ld hl, ScienceClubEntrance_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e548:
-	call ScienceClubEntranceShouldRonaldAppear
+	call ScienceClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2e572
 	cp 1
 	jr z, .asm_2e558
@@ -1465,7 +1776,7 @@ Func_2e548:
 	ret
 
 Func_2e574:
-	ld hl, $64fa
+	ld hl, ScienceClubEntrance_NPCInteractions
 	call Func_328c
 	scf
 	ret
@@ -1491,7 +1802,7 @@ Func_2e582:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-ScienceClubEntranceShouldRonaldAppear:
+ScienceClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -1542,14 +1853,47 @@ Func_2e62a:
 	ccf
 	ret
 
-Data_2e63f:
-	db MAP_SCIENCE_CLUB_LOBBY
-	dba Data_2e6e1
+ScienceClubLobby_MapHeader:
+	db MAP_GFX_SCIENCE_CLUB_LOBBY
+	dba ScienceClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@66e1", ROMX[$66e1], BANK[$b]
+ScienceClubLobby_StepEvents:
+	map_exit 15, 6, MAP_SCIENCE_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_SCIENCE_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_2e6e1:
+ScienceClubLobby_NPCs:
+	npc OW_DAVID, 9, 6, EAST, $0d, $68
+	npc OW_ERIK, 4, 9, EAST, $0d, $68
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
+	npc OW_MAN_2, 3, 9, WEST, $d1, $68
+	npc OW_SPECS_4, 13, 4, SOUTH, $d1, $68
+	npc OW_TECH_6, 7, 9, WEST, $d1, $68
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	db $ff
+
+ScienceClubLobby_NPCInteractions:
+	npc_script OW_DAVID, $0b, $6e, $67
+	npc_script OW_ERIK, $0b, $e3, $67
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_MAN_2, $0b, $31, $68
+	npc_script OW_SPECS_4, $0b, $62, $68
+	npc_script OW_TECH_6, $0b, $a0, $68
+	db $ff
+
+ScienceClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $ce, $41
+	ow_script 13, 2, $10, $e4, $41
+	ow_script 14, 2, $10, $fa, $41
+	db $ff
+
+ScienceClubLobby_MapScripts:
 	dbw $06, Func_2e71e
 	dbw $08, Func_2e72e
 	dbw $09, Func_2e73e
@@ -1586,36 +1930,38 @@ Func_2e709:
 	ret
 
 Func_2e71e:
-	ld hl, $6644
+	ld hl, ScienceClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2e725:
-	ld hl, $6657
+	ld hl, ScienceClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e72e:
-	ld hl, $6688
+	ld hl, ScienceClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2e73c
-	ld hl, $66a1
+	ld hl, ScienceClubLobby_OWInteractions
 	call Func_32bf
 .asm_2e73c
 	scf
 	ret
 
 Func_2e73e:
-	ld hl, $6749
+	ld hl, ScienceClubLobby_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e749
 
-SECTION "Bank b@6752", ROMX[$6752], BANK[$b]
+ScienceClubLobby_AfterDuelScripts:
+	npc_script OW_DAVID, $0b, $c7, $67
+	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
+	db $ff
 
 Func_2e752:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -1634,14 +1980,33 @@ Func_2e752:
 
 SECTION "Bank b@68e6", ROMX[$68e6], BANK[$b]
 
-Data_2e8e6:
-	db MAP_SCIENCE_CLUB
-	dba Data_2e932
+ScienceClub_MapHeader:
+	db MAP_GFX_SCIENCE_CLUB
+	dba ScienceClub_MapScripts
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@6932", ROMX[$6932], BANK[$b]
+ScienceClub_StepEvents:
+	map_exit 6, 15, MAP_SCIENCE_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_SCIENCE_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2e932:
+ScienceClub_NPCs:
+	npc OW_RICK, 2, 2, NORTH, $87, $6a
+	npc OW_DAVID, 10, 2, NORTH, $07, $6c
+	npc OW_JOSEPH, 6, 5, WEST, $07, $6c
+	npc OW_ERIK, 3, 8, EAST, $07, $6c
+	npc OW_GR_2, 6, 8, SOUTH, $a9, $6c
+	db $ff
+
+ScienceClub_NPCInteractions:
+	npc_script OW_RICK, $0b, $c7, $69
+	npc_script OW_DAVID, $0b, $94, $6a
+	npc_script OW_JOSEPH, $0b, $ef, $6a
+	npc_script OW_ERIK, $0b, $a5, $6b
+	npc_script OW_GR_2, $0b, $1c, $6c
+	db $ff
+
+ScienceClub_MapScripts:
 	dbw $06, Func_2e955
 	dbw $08, Func_2e99f
 	dbw $09, Func_2e9a7
@@ -1662,7 +2027,7 @@ Func_2e945:
 	ret
 
 Func_2e955:
-	ld hl, $68eb
+	ld hl, ScienceClub_StepEvents
 	call Func_324d
 	ret
 
@@ -1690,36 +2055,51 @@ Func_2e95c:
 	ret
 
 Func_2e996:
-	ld hl, $68fe
+	ld hl, ScienceClub_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2e99f:
-	ld hl, $691d
+	ld hl, ScienceClub_NPCInteractions
 	call Func_328c
 	scf
 	ret
 
 Func_2e9a7:
-	ld hl, $69b2
+	ld hl, ScienceClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2e9b2
+
+ScienceClub_AfterDuelScripts:
+	npc_script OW_RICK, $0b, $4b, $6a
+	npc_script OW_DAVID, $0b, $d1, $6a
+	npc_script OW_JOSEPH, $0b, $6d, $6b
+	npc_script OW_ERIK, $0b, $eb, $6b
+	npc_script OW_GR_2, $0b, $5a, $6c
+	db $ff
+; 0x2e9c7
 
 SECTION "Bank b@6cc8", ROMX[$6cc8], BANK[$b]
 
-Data_2ecc8:
-	db MAP_WATER_CLUB_ENTRANCE
-	dba Data_2ed04
+WaterClubEntrance_MapHeader:
+	db MAP_GFX_WATER_CLUB_ENTRANCE
+	dba WaterClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@6d04", ROMX[$6d04], BANK[$b]
+WaterClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 7, 6, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 7, 6, SOUTH
+	map_exit 0, 3, MAP_WATER_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_WATER_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_WATER_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_WATER_CLUB, 7, 14, NORTH
+	db $ff
 
-Data_2ed04:
+WaterClubEntrance_MapScripts:
 	dbw $06, Func_2ed37
 	dbw $02, Func_2ed3e
 	dbw $04, Func_2ed75
@@ -1740,7 +2120,7 @@ Func_2ed17:
 	ret
 
 Func_2ed27:
-	call WaterClubEntranceShouldRonaldAppear
+	call WaterClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2ed2e
 	scf
 	ret
@@ -1752,7 +2132,7 @@ Func_2ed27:
 	ret
 
 Func_2ed37:
-	ld hl, $6ccd
+	ld hl, WaterClubEntrance_StepEvents
 	call Func_324d
 	ret
 
@@ -1761,7 +2141,7 @@ Func_2ed3e:
 	call Func_33f2
 	; Event Script @ 0x2ed42
 	db $64, $12, $00
-	call WaterClubEntranceShouldRonaldAppear
+	call WaterClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2ed73
 	or a
 	jr nz, .asm_2ed58
@@ -1818,7 +2198,7 @@ Func_2ed8c:
 ;
 ; This club is an anomaly. For other clubs, return "1" triggers the 3rd meeting,
 ; but only if you have 2 GC pieces. Here it checks EVENT_EE instead of GC pieces
-WaterClubEntranceShouldRonaldAppear:
+WaterClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -1839,14 +2219,45 @@ WaterClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2edc5:
-	db MAP_WATER_CLUB_LOBBY
-	dba Data_2ee5d
+WaterClubLobby_MapHeader:
+	db MAP_GFX_WATER_CLUB_LOBBY
+	dba WaterClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@6e5d", ROMX[$6e5d], BANK[$b]
+WaterClubLobby_StepEvents:
+	map_exit 15, 6, MAP_WATER_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_WATER_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_2ee5d:
+WaterClubLobby_NPCs:
+	npc OW_JOSHUA, 8, 6, WEST, $5f, $6f
+	npc OW_LASS2_4, 11, 1, WEST, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
+	npc OW_PAPPY_3, 12, 11, EAST, $00, $00
+	npc OW_LASS1_2, 4, 9, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	db $ff
+
+WaterClubLobby_NPCInteractions:
+	npc_script OW_JOSHUA, $0b, $ea, $6e
+	npc_script OW_LASS2_4, $0b, $74, $6f
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_PAPPY_3, $0b, $ae, $6f
+	npc_script OW_LASS1_2, $0b, $e1, $6f
+	db $ff
+
+WaterClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $10, $42
+	ow_script 13, 2, $10, $26, $42
+	ow_script 14, 2, $10, $3c, $42
+	db $ff
+
+WaterClubLobby_MapScripts:
 	dbw $06, Func_2ee9a
 	dbw $08, Func_2eeaa
 	dbw $09, Func_2eeba
@@ -1883,36 +2294,38 @@ Func_2ee85:
 	ret
 
 Func_2ee9a:
-	ld hl, $6dca
+	ld hl, WaterClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2eea1:
-	ld hl, $6ddd
+	ld hl, WaterClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2eeaa:
-	ld hl, $6e08
+	ld hl, WaterClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2eeb8
-	ld hl, $6e1d
+	ld hl, WaterClubLobby_OWInteractions
 	call Func_32bf
 .asm_2eeb8
 	scf
 	ret
 
 Func_2eeba:
-	ld hl, $6ec5
+	ld hl, WaterClubLobby_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2eec5
 
-SECTION "Bank b@6ece", ROMX[$6ece], BANK[$b]
+WaterClubLobby_AfterDuelScripts:
+	npc_script OW_JOSHUA, $0b, $43, $6f
+	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
+	db $ff
 
 Func_2eece:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -1931,14 +2344,39 @@ Func_2eece:
 
 SECTION "Bank b@7012", ROMX[$7012], BANK[$b]
 
-Data_2f012:
-	db MAP_WATER_CLUB
-	dba Data_2f072
+WaterClub_MapHeader:
+	db MAP_GFX_WATER_CLUB
+	dba WaterClub_MapScripts
 	db MUSIC_CLUB_1
 
-SECTION "Bank b@7072", ROMX[$7072], BANK[$b]
+WaterClub_StepEvents:
+	map_exit 6, 15, MAP_WATER_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_WATER_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2f072:
+WaterClub_NPCs:
+	npc OW_AMY_LOUNGE, 11, 2, SOUTH, $6d, $73
+	npc OW_JOSHUA, 10, 4, SOUTH, $6d, $73
+	npc OW_SARA, 4, 9, EAST, $78, $74
+	npc OW_AMANDA, 11, 10, WEST, $78, $74
+	npc OW_AMY, 4, 6, SOUTH, $ed, $71
+	npc OW_GR_3, 8, 6, SOUTH, $f2, $74
+	db $ff
+
+WaterClub_NPCInteractions:
+	npc_script OW_AMY_LOUNGE, $0b, $fa, $71
+	npc_script OW_JOSHUA, $0b, $cf, $72
+	npc_script OW_SARA, $0b, $82, $73
+	npc_script OW_AMANDA, $0b, $f1, $73
+	npc_script OW_AMY, $0b, $d2, $71
+	npc_script OW_GR_3, $0b, $85, $74
+	db $ff
+
+WaterClub_OWInteractions:
+	ow_script 12, 3, $0b, $fa, $71
+	db $ff
+
+WaterClub_MapScripts:
 	dbw $06, Func_2f095
 	dbw $08, Func_2f0f7
 	dbw $02, Func_2f0a5
@@ -1959,12 +2397,12 @@ Func_2f085:
 	ret
 
 Func_2f095:
-	ld hl, $7017
+	ld hl, WaterClub_StepEvents
 	call Func_324d
 	ret
 
 Func_2f09c:
-	ld hl, $702a
+	ld hl, WaterClub_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -2002,33 +2440,48 @@ Func_2f0a5:
 	ret
 
 Func_2f0f7:
-	ld hl, $704f
+	ld hl, WaterClub_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f105
-	ld hl, $7068
+	ld hl, WaterClub_OWInteractions
 	call Func_32bf
 .asm_2f105
 	scf
 	ret
 
 Func_2f107:
-	ld hl, $7112
+	ld hl, WaterClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2f112
+
+WaterClub_AfterDuelScripts:
+	npc_script OW_AMY_LOUNGE, $0b, $8a, $72
+	npc_script OW_JOSHUA, $0b, $35, $73
+	npc_script OW_SARA, $0b, $d5, $73
+	npc_script OW_AMANDA, $0b, $4f, $74
+	npc_script OW_GR_3, $0b, $d9, $74
+	db $ff
+; 0x2f127
 
 SECTION "Bank b@74ff", ROMX[$74ff], BANK[$b]
 
-Data_2f4ff:
-	db MAP_FIRE_CLUB_ENTRANCE
-	dba Data_2f53b
+FireClubEntrance_MapHeader:
+	db MAP_GFX_FIRE_CLUB_ENTRANCE
+	dba FireClubEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@753b", ROMX[$753b], BANK[$b]
+FireClubEntrance_StepEvents:
+	map_exit 4, 8, OVERWORLD_MAP_TCG, 7, 1, SOUTH
+	map_exit 5, 8, OVERWORLD_MAP_TCG, 7, 1, SOUTH
+	map_exit 0, 3, MAP_FIRE_CLUB_LOBBY, 14, 6, WEST
+	map_exit 0, 4, MAP_FIRE_CLUB_LOBBY, 14, 7, WEST
+	map_exit 4, 0, MAP_FIRE_CLUB, 6, 14, NORTH
+	map_exit 5, 0, MAP_FIRE_CLUB, 7, 14, NORTH
+	db $ff
 
-Data_2f53b:
+FireClubEntrance_MapScripts:
 	dbw $06, Func_2f56e
 	dbw $09, Func_2f5a8
 	dbw $02, Func_2f575
@@ -2049,7 +2502,7 @@ Func_2f54e:
 	ret
 
 Func_2f55e:
-	call FireClubEntranceShouldRonaldAppear
+	call FireClubEntrance_ShouldRonaldAppear
 	jr nc, .asm_2f565
 	scf
 	ret
@@ -2061,7 +2514,7 @@ Func_2f55e:
 	ret
 
 Func_2f56e:
-	ld hl, $7504
+	ld hl, FireClubEntrance_StepEvents
 	call Func_324d
 	ret
 
@@ -2070,7 +2523,7 @@ Func_2f575:
 	call Func_33f2
 	; Event Script @ 0x2f579
 	db $64, $12, $00
-	call FireClubEntranceShouldRonaldAppear
+	call FireClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2f5a6
 	cp 1
 	jr z, .asm_2f58c
@@ -2116,7 +2569,7 @@ Func_2f5ae:
 
 ; sets and complements carry flag if Ronald should appear.
 ; return a = which meeting script to use
-FireClubEntranceShouldRonaldAppear:
+FireClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp 2
@@ -2150,14 +2603,43 @@ FireClubEntranceShouldRonaldAppear:
 	ccf
 	ret
 
-Data_2f5fc:
-	db MAP_FIRE_CLUB_LOBBY
-	dba Data_2f68a
+FireClubLobby_MapHeader:
+	db MAP_GFX_FIRE_CLUB_LOBBY
+	dba FireClubLobby_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@768a", ROMX[$768a], BANK[$b]
+FireClubLobby_StepEvents:
+	map_exit 15, 6, MAP_FIRE_CLUB_ENTRANCE, 1, 3, EAST
+	map_exit 15, 7, MAP_FIRE_CLUB_ENTRANCE, 1, 4, EAST
+	db $ff
 
-Data_2f68a:
+FireClubLobby_NPCs:
+	npc OW_HOOD_3, 8, 4, NORTH, $00, $00
+	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
+	npc OW_MANIA_4, 10, 9, NORTH, $00, $00
+	npc OW_GAL_2, 5, 8, SOUTH, $00, $00
+	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	db $ff
+
+FireClubLobby_NPCInteractions:
+	npc_script OW_HOOD_3, $0b, $09, $77
+	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script OW_MANIA_4, $0b, $7e, $77
+	npc_script OW_GAL_2, $0b, $a4, $77
+	db $ff
+
+FireClubLobby_OWInteractions:
+	ow_script 8, 2, $03, $11, $54
+	ow_script 9, 2, $03, $11, $54
+	ow_script 2, 4, $0f, $b9, $41
+	ow_script 4, 4, $0f, $d9, $42
+	ow_script 12, 2, $10, $52, $42
+	ow_script 13, 2, $10, $68, $42
+	ow_script 14, 2, $10, $7e, $42
+	db $ff
+
+FireClubLobby_MapScripts:
 	dbw $06, Func_2f6c7
 	dbw $08, Func_2f6d7
 	dbw $07, Func_2f6ce
@@ -2194,22 +2676,22 @@ Func_2f6b2:
 	ret
 
 Func_2f6c7:
-	ld hl, $7601
+	ld hl, FireClubLobby_StepEvents
 	call Func_324d
 	ret
 
 Func_2f6ce:
-	ld hl, $7614
+	ld hl, FireClubLobby_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2f6d7:
-	ld hl, $7639
+	ld hl, FireClubLobby_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f6e5
-	ld hl, $764a
+	ld hl, FireClubLobby_OWInteractions
 	call Func_32bf
 .asm_2f6e5
 	scf
@@ -2236,14 +2718,40 @@ Func_2f6ed:
 
 SECTION "Bank b@77ca", ROMX[$77ca], BANK[$b]
 
-Data_2f7ca:
-	db MAP_FIRE_CLUB
-	dba Data_2f83b
+FireClub_MapHeader:
+	db MAP_GFX_FIRE_CLUB
+	dba FireClub_MapScripts
 	db MUSIC_CLUB_3
 
-SECTION "Bank b@783b", ROMX[$783b], BANK[$b]
+FireClub_StepEvents:
+	map_exit 6, 15, MAP_FIRE_CLUB_ENTRANCE, 4, 1, SOUTH
+	map_exit 7, 15, MAP_FIRE_CLUB_ENTRANCE, 5, 1, SOUTH
+	db $ff
 
-Data_2f83b:
+FireClub_NPCs:
+	npc OW_KEN, 7, 2, SOUTH, $00, $00
+	npc OW_JOHN, 6, 9, SOUTH, $00, $00
+	npc OW_ADAM, 5, 7, SOUTH, $00, $00
+	npc OW_JONATHAN, 10, 5, SOUTH, $00, $00
+	npc OW_GR_3, 7, 5, SOUTH, $29, $7c
+	db $ff
+
+FireClub_NPCInteractions:
+	npc_script OW_KEN, $0b, $26, $79
+	npc_script OW_JOHN, $0b, $25, $7a
+	npc_script OW_ADAM, $0b, $a1, $7a
+	npc_script OW_JONATHAN, $0b, $4e, $7b
+	npc_script OW_GR_3, $0b, $d3, $7b
+	db $ff
+
+FireClub_OWInteractions:
+	ow_script 7, 12, $0b, $ad, $7c
+	ow_script 6, 12, $0b, $b7, $7c
+	ow_script 5, 12, $0b, $c1, $7c
+	ow_script 8, 12, $0b, $cb, $7c
+	db $ff
+
+FireClub_MapScripts:
 	dbw $06, Func_2f85e
 	dbw $08, Func_2f8c8
 	dbw $09, Func_2f8d8
@@ -2264,12 +2772,12 @@ Func_2f84e:
 	ret
 
 Func_2f85e:
-	ld hl, $77cf
+	ld hl, FireClub_StepEvents
 	call Func_324d
 	ret
 
 Func_2f865:
-	ld hl, $77e2
+	ld hl, FireClub_NPCs
 	call Func_3205
 	scf
 	ccf
@@ -2307,33 +2815,67 @@ Func_2f86e:
 	ret
 
 Func_2f8c8:
-	ld hl, $7801
+	ld hl, FireClub_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2f8d6
-	ld hl, $7816
+	ld hl, FireClub_OWInteractions
 	call Func_32bf
 .asm_2f8d6
 	scf
 	ret
 
 Func_2f8d8:
-	ld hl, $78e3
+	ld hl, FireClub_AfterDuelScripts
 	ld a, [$d60e]
 	call Func_344c
 	scf
 	ret
-; 0x2f8e3
+
+FireClub_AfterDuelScripts:
+	npc_script OW_KEN, $0b, $ed, $79
+	npc_script OW_JOHN, $0b, $85, $7a
+	npc_script OW_ADAM, $0b, $32, $7b
+	npc_script OW_JONATHAN, $0b, $b7, $7b
+	npc_script OW_GR_3, $0b, $0e, $7c
+	db $ff
+; 0x2f8f8
 
 SECTION "Bank b@7cd5", ROMX[$7cd5], BANK[$b]
 
-Data_2fcd5:
-	db MAP_POKEMON_DOME_ENTRANCE
-	dba Data_2fd66
+PokemonDomeEntrance_MapHeader:
+	db MAP_GFX_POKEMON_DOME_ENTRANCE
+	dba PokemonDomeEntrance_MapScripts
 	db MUSIC_OVERWORLD
 
-SECTION "Bank b@7d66", ROMX[$7d66], BANK[$b]
+PokemonDomeEntrance_StepEvents:
+	map_exit 7, 8, OVERWORLD_MAP_TCG, 4, 4, SOUTH
+	map_exit 8, 8, OVERWORLD_MAP_TCG, 4, 4, SOUTH
+	map_exit 11, 0, MAP_POKEMON_DOME, 7, 14, NORTH
+	map_exit 12, 0, MAP_POKEMON_DOME, 8, 14, NORTH
+	db $ff
 
-Data_2fd66:
+PokemonDomeEntrance_NPCs:
+	npc OW_BUTCH_2, 8, 3, NORTH, $1d, $7e
+	db $ff
+
+PokemonDomeEntrance_NPCInteractions:
+	npc_script OW_BUTCH_2, $0b, $a3, $7d
+	db $ff
+
+PokemonDomeEntrance_OWInteractions:
+	ow_script 4, 2, $03, $11, $54
+	ow_script 5, 2, $03, $11, $54
+	ow_script 9, 1, $0b, $2a, $7e
+	ow_script 10, 1, $0b, $2a, $7e
+	ow_script 1, 2, $10, $5a, $43
+	ow_script 2, 2, $10, $70, $43
+	ow_script 3, 2, $10, $86, $43
+	ow_script 1, 5, $10, $9c, $43
+	ow_script 2, 5, $10, $b2, $43
+	ow_script 3, 5, $10, $c8, $43
+	db $ff
+
+PokemonDomeEntrance_MapScripts:
 	dbw $06, Func_2fd83
 	dbw $08, Func_2fd93
 	dbw $07, Func_2fd8a
@@ -2352,22 +2894,22 @@ Func_2fd73:
 	ret
 
 Func_2fd83:
-	ld hl, $7cda
+	ld hl, PokemonDomeEntrance_StepEvents
 	call Func_324d
 	ret
 
 Func_2fd8a:
-	ld hl, $7cff
+	ld hl, PokemonDomeEntrance_NPCs
 	call Func_3205
 	scf
 	ccf
 	ret
 
 Func_2fd93:
-	ld hl, $7d06
+	ld hl, PokemonDomeEntrance_NPCInteractions
 	call Func_328c
 	jr nc, .asm_2fda1
-	ld hl, $7d0b
+	ld hl, PokemonDomeEntrance_OWInteractions
 	call Func_32bf
 .asm_2fda1
 	scf
@@ -2376,12 +2918,12 @@ Func_2fd93:
 
 SECTION "Bank b@7e45", ROMX[$7e45], BANK[$b]
 
-Data_2fe45:
-	db MAP_OVERHEAD_ISLANDS
-	dba Data_2fe4a
+OverheadIslands_MapHeader:
+	db MAP_GFX_OVERHEAD_ISLANDS
+	dba OverheadIslands_MapScripts
 	db MUSIC_GRBLIMP
 
-Data_2fe4a:
+OverheadIslands_MapScripts:
 	dbw $02, Func_2fe54
 	dbw $04, Func_2fe94
 	dbw $0f, Func_2fe97

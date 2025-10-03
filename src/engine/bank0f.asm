@@ -16,7 +16,7 @@ Prologue::
 	; load map and fade in
 	ld a, MUSIC_HERECOMESGR
 	farcall PlayAfterCurrentSong
-	ld bc, OVERWORLD_MAP_TCG
+	ld bc, OVERWORLD_MAP_GFX_TCG
 	farcall LoadOWMap
 	ld bc, TILEMAP_001
 	lb de, 0, 0

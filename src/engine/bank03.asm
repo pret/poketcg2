@@ -984,46 +984,47 @@ Func_c646:
 	ret
 
 ; bank and offset table of data for Func_d421 and Func_33b7
-Data_c651::
-	dba Data_40462 ; $00
-	dba Data_30080 ; $01
+; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
+MapHeaderPtrs::
+	dba OverworldTCG_MapHeader ; $00
+	dba OverworldGR_MapHeader ; $01
 	dbw $10, $4db3 ; $02
 	dbw $0f, $4603 ; $03
 	dbw $0f, $47dc ; $04
-	dba Data_2c000 ; $05
+	dba IshiharasHouse_MapHeader ; $05
 	dbw $0f, $4b88 ; $06
 	dbw $0f, $4c62 ; $07
-	dba Data_2c479 ; $08
-	dba Data_2c936 ; $0a - not sure why $09 is skipped, but the data this points to is definitely $0a
-	dba Data_2cafa ; $0b
-	dba Data_2cd23 ; $0c
-	dba Data_2d30a ; $0d
-	dba Data_2d3c4 ; $0e
-	dba Data_2d5f8 ; $0f
-	dba Data_2d930 ; $10
-	dba Data_2da26 ; $11
-	dba Data_2dc9f ; $12
-	dba Data_2e06d ; $13
-	dbw $0f, $4ee6 ;
-	dba Data_2e163 ; $15
-	dba Data_2e4b7 ; $16
-	dba Data_2e63f ; $17
-	dba Data_2e8e6 ; $18
-	dba Data_2ecc8 ; $19
-	dba Data_2edc5 ; $1a
-	dba Data_2f012 ; $1b
-	dba Data_2f4ff ; $1c
-	dba Data_2f5fc ; $1d
-	dba Data_2f7ca ; $1e
-	dbw $0d, $4575 ; $
-	dbw $0d, $4773 ; $
-	dbw $0f, $519e ; $
-	dbw $0f, $52d7 ; $
-	dbw $10, $5592 ; $
-	dba Data_2fcd5 ; $24
-	dbw $0f, $55d1 ; $
-	dbw $0f, $5d58 ; $
-	dba Data_2fe45 ; $26
+	dba LightningClub_MapHeader ; $08
+	dba PsychicClubEntrance_MapHeader ; $09
+	dba PsychicClubLobby_MapHeader ; $0a
+	dba PsychicClub_MapHeader ; $0b
+	dba RockClubEntrance_MapHeader ; $0c
+	dba RockClubLobby_MapHeader ; $0d
+	dba RockClub_MapHeader ; $0e
+	dba FightningClubEntrance_MapHeader ; $0f
+	dba FightningClubLobby_MapHeader ; $10
+	dba FightingClub_MapHeader ; $11
+	dba GrassClubEntrance_MapHeader ; $12
+	dbw $0f, $4ee6 ; $13
+	dba GrassClub_MapHeader ; $14
+	dba ScienceClubEntrance_MapHeader ; $15
+	dba ScienceClubLobby_MapHeader ; $16
+	dba ScienceClub_MapHeader ; $17
+	dba WaterClubEntrance_MapHeader ; $18
+	dba WaterClubLobby_MapHeader ; $19
+	dba WaterClub_MapHeader ; $1a
+	dba FireClubEntrance_MapHeader ; $1b
+	dba FireClubLobby_MapHeader ; $1c
+	dba FireClub_MapHeader ; $1d
+	dbw $0d, $4575 ; $1e
+	dbw $0d, $4773 ; $1f
+	dbw $0f, $519e ; $20
+	dbw $0f, $52d7 ; $21
+	dbw $10, $5592 ; $22
+	dba PokemonDomeEntrance_MapHeader ; $23
+	dbw $0f, $55d1 ; $24
+	dbw $0f, $5d58 ; $25
+	dba OverheadIslands_MapHeader ; $26
 	dbw $0d, $4aaf ; $27
 	dbw $10, $5be9 ; $28
 	dbw $0f, $6698 ; $29
@@ -1222,7 +1223,7 @@ Func_d299::
 	ld a, $01
 	farcall Func_10413
 	ld b, $00
-	ld a, [wCurMap]
+	ld a, [wCurMapGfx]
 	ld c, a
 	farcall LoadOWMap
 	ld a, [wd58f]
@@ -1314,7 +1315,7 @@ Func_d299::
 	res 7, [hl]
 	jp .asm_d333
 
-; a = ?
+; a = map id
 ; b = direction
 ; de = coordinates
 Func_d3c4:
@@ -1381,7 +1382,7 @@ Func_d421::
 	add c ; *3
 	ld c, a
 	rl b
-	ld hl, Data_c651
+	ld hl, MapHeaderPtrs
 	add hl, bc
 	ld a, [hli]
 	ld c, a     ; bank
@@ -1389,7 +1390,7 @@ Func_d421::
 	ld h, [hl]  ;
 	ld l, a
 	ld a, c
-	ld de, wCurMap
+	ld de, wCurMapGfx
 	ld bc, $5
 	call CopyFarHLToDE
 	ld a, [wd586]
