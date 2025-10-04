@@ -1,11 +1,11 @@
 SECTION "Bank 10@4462", ROMX[$4462], BANK[$10]
 
-OverworldTCG_MapHeader:
+OverworldTcg_MapHeader:
 	db OVERWORLD_MAP_GFX_TCG
-	dba OverworldTCG_MapScripts
+	dba OverworldTcg_MapScripts
 	db MUSIC_OVERWORLD
 
-OverworldTCG_MapScripts:
+OverworldTcg_MapScripts:
 	dbw $01, Func_40474
 	dbw $02, Func_4048a
 	dbw $04, Func_4053b
@@ -627,3 +627,313 @@ DoGRShipMovement:
 	db $50, $78, EAST
 	db $ff, $ff ; end
 ; 0x40db3
+
+SECTION "Bank 10@4db3", ROMX[$4db3], BANK[$10]
+
+MasonLaboratoryMain_MapHeader:
+	db MAP_GFX_MASON_LABORATORY_MAIN
+	dba MasonLaboratoryMain_MapScripts
+	db MUSIC_OVERWORLD
+
+MasonLaboratoryMain_StepEvents:
+	_ow_coordinate_function 6, 14, 0, 1, 7, 2, $10, $4fff
+	_ow_coordinate_function 7, 14, 0, 1, 7, 2, $10, $4fff
+	map_exit 0, 5, MAP_MASON_LABORATORY_SIDE_2, 12, 11, WEST
+	map_exit 0, 6, MAP_MASON_LABORATORY_SIDE_2, 12, 12, WEST
+	map_exit 13, 5, MAP_MASON_LABORATORY_SIDE_1, 1, 5, EAST
+	map_exit 13, 6, MAP_MASON_LABORATORY_SIDE_1, 1, 6, EAST
+	db $ff
+
+MasonLaboratoryMain_NPCs:
+	npc OW_DR_MASON, 7, 5, SOUTH, $0
+	npc OW_SAM, 2, 7, EAST, $0
+	npc OW_TECH_9, 3, 2, SOUTH, $0
+	npc OW_TECH_10, 11, 8, SOUTH, $0
+	npc OW_TECH_11, 9, 10, WEST, $0
+	npc OW_TECH_12, 10, 4, WEST, $0
+	npc OW_RONALD, 3, 6, SOUTH, $521d
+	db $ff
+
+MasonLaboratoryMain_NPCInteractions:
+	npc_script OW_DR_MASON, $10, $5188
+	npc_script OW_SAM, $10, $5233
+	npc_script OW_TECH_9, $10, $5370
+	npc_script OW_TECH_10, $10, $5396
+	npc_script OW_TECH_11, $10, $53bc
+	npc_script OW_TECH_12, $10, $53e2
+	npc_script OW_RONALD, $10, $51f2
+	db $ff
+
+MasonLaboratoryMain_OWInteractions:
+	ow_script 1, 2, $03, $5411
+	ow_script 2, 2, $03, $5411
+	ow_script 6, 3, $10, $501d
+	ow_script 7, 3, $10, $501d
+	db $ff
+
+MasonLaboratoryMain_MapScripts:
+	dbw $06, $4e83
+	dbw $08, $4f04
+	dbw $09, $4f21
+	dbw $11, $4f14
+	dbw $07, $4e8a
+	dbw $02, $4e91
+	dbw $01, $4e72
+	db $ff
+; gap from 0x40e72 to 0x40f3d
+
+SECTION "Bank 10@4f3d", ROMX[$4f3d], BANK[$10]
+
+MasonLaboratoryMain_AfterDuelScripts:
+	npc_script OW_DR_MASON, $10, $533e
+	npc_script OW_SAM, $10, $52c0
+	db $ff
+; gap from 0x40f46 to 0x41592
+
+SECTION "Bank 10@5592", ROMX[$5592], BANK[$10]
+
+TcgChallengeHall_MapHeader:
+	db MAP_GFX_TCG_CHALLENGE_HALL
+	dba TcgChallengeHall_MapScripts
+	db MUSIC_OVERWORLD
+
+TcgChallengeHall_StepEvents:
+	map_exit 7, 15, MAP_TCG_CHALLENGE_HALL_ENTRANCE, 4, 1, SOUTH
+	map_exit 8, 15, MAP_TCG_CHALLENGE_HALL_ENTRANCE, 5, 1, SOUTH
+	db $ff
+
+TcgChallengeHall_NPCs:
+	npc OW_GAL_3, 7, 2, SOUTH, $5768
+	npc OW_LASS2_5, 10, 9, SOUTH, $5768
+	npc OW_LASS1_5, 5, 9, SOUTH, $5768
+	npc OW_MAN_3, 7, 10, SOUTH, $5751
+	db $ff
+
+TcgChallengeHall_NPCInteractions:
+	npc_script OW_LASS1_5, $10, $5662
+	npc_script OW_LASS2_5, $10, $5705
+	npc_script OW_MAN_3, $10, $5720
+	db $ff
+
+TcgChallengeHall_MapScripts:
+	dbw $06, $55f3
+	dbw $08, $5622
+	dbw $09, $562a
+	dbw $07, $55fa
+	dbw $01, $55e6
+	dbw $02, $5603
+	dbw $0b, $563b
+	db $ff
+; gap from 0x415e6 to 0x41be9
+
+SECTION "Bank 10@5be9", ROMX[$5be9], BANK[$10]
+
+GrAirport_MapHeader:
+	db MAP_GFX_GR_AIRPORT
+	dba GrAirport_MapScripts
+	db MUSIC_GROVERWORLD
+
+GrAirport_StepEvents:
+	map_exit 13, 9, MAP_GR_AIRPORT_ENTRANCE, 1, 6, EAST
+	map_exit 13, 10, MAP_GR_AIRPORT_ENTRANCE, 1, 7, EAST
+	_ow_coordinate_function 5, 8, 0, 0, 0, 3, $10, $5dac
+	ow_script 4, 9, $10, $5dac
+	ow_script 3, 9, $10, $5dac
+	_ow_coordinate_function 2, 8, 0, 0, 0, 1, $10, $5dac
+	db $ff
+
+GrAirport_NPCs:
+	npc OW_GR_5, 4, 8, SOUTH, $0
+	db $ff
+
+GrAirport_NPCInteractions:
+	npc_script OW_GR_5, $10, $5cd3
+	db $ff
+
+GrAirport_MapScripts:
+	dbw $00, $5c44
+	dbw $06, $5c50
+	dbw $08, $5ccb
+	dbw $07, $5c57
+	dbw $02, $5c60
+	dbw $0f, $5ca1
+	db $ff
+; gap from 0x41c44 to 0x41e8e
+
+SECTION "Bank 10@5e8e", ROMX[$5e8e], BANK[$10]
+
+SealedFort_MapHeader:
+	db MAP_GFX_SEALED_FORT
+	dba SealedFort_MapScripts
+	db MUSIC_FORT_4
+
+SealedFort_StepEvents:
+	map_exit 5, 12, MAP_SEALED_FORT_ENTRANCE, 4, 1, SOUTH
+	map_exit 6, 12, MAP_SEALED_FORT_ENTRANCE, 5, 1, SOUTH
+	map_exit 7, 12, MAP_SEALED_FORT_ENTRANCE, 6, 1, SOUTH
+	ow_script 6, 6, $10, $5f66
+	db $ff
+
+SealedFort_OWInteractions:
+	ow_script 6, 2, $10, $5fe1
+	ow_script 2, 2, $10, $607e
+	ow_script 3, 2, $10, $6119
+	ow_script 4, 2, $10, $61b4
+	ow_script 5, 2, $10, $624f
+	ow_script 9, 2, $10, $62ec
+	ow_script 7, 2, $10, $6387
+	ow_script 8, 2, $10, $6424
+	ow_script 10, 2, $10, $64bf
+	db $ff
+
+SealedFort_MapScripts:
+	dbw $06, $5f14
+	dbw $08, $5f1b
+	dbw $09, $5f36
+	db $ff
+; gap from 0x41f14 to 0x41f41
+
+SECTION "Bank 10@5f41", ROMX[$5f41], BANK[$10]
+
+SealedFort_AfterDuelScripts:
+	npc_script OW_TOBICHAN, $10, $6050
+	npc_script OW_EIJI, $10, $60eb
+	npc_script OW_MAGICIAN, $10, $6186
+	npc_script OW_TOSHIRON, $10, $6221
+	npc_script OW_PIERROT, $10, $62be
+	npc_script OW_ANNA, $10, $6359
+	npc_script OW_DEE, $10, $63f6
+	npc_script OW_MASQUERADE, $10, $6491
+	npc_script OW_YUI, $10, $652c
+	db $ff
+; gap from 0x41f66 to 0x425cf
+
+SECTION "Bank 10@65cf", ROMX[$65cf], BANK[$10]
+
+GrChallengeHall_MapHeader:
+	db MAP_GFX_GR_CHALLENGE_HALL
+	dba GrChallengeHall_MapScripts
+	db MUSIC_GROVERWORLD
+
+GrChallengeHall_StepEvents:
+	map_exit 7, 15, MAP_GR_CHALLENGE_HALL_ENTRANCE, 4, 1, SOUTH
+	map_exit 8, 15, MAP_GR_CHALLENGE_HALL_ENTRANCE, 5, 1, SOUTH
+	db $ff
+
+GrChallengeHall_NPCs:
+	npc OW_GAL_3, 7, 2, SOUTH, $694a
+	npc OW_LASS1_6, 4, 8, SOUTH, $694a
+	npc OW_LASS2_7, 11, 8, SOUTH, $694a
+	npc OW_GR_STAFF, 8, 6, NORTH, $699f
+	db $ff
+
+GrChallengeHall_NPCInteractions:
+	npc_script OW_LASS1_6, $10, $688d
+	npc_script OW_LASS2_7, $10, $692f
+	npc_script OW_GR_STAFF, $10, $6961
+	db $ff
+
+GrChallengeHall_OWInteractions:
+	ow_script 7, 3, $10, $671f
+	ow_script 8, 3, $10, $671f
+	db $ff
+
+GrChallengeHall_MapScripts:
+	dbw $06, $6639
+	dbw $08, $66b9
+	dbw $09, $66d6
+	dbw $11, $66c9
+	dbw $07, $6640
+	dbw $02, $666e
+	dbw $01, $6649
+	dbw $0b, $66f8
+	db $ff
+; gap from 0x42639 to 0x42e2b
+
+SECTION "Bank 10@6e2b", ROMX[$6e2b], BANK[$10]
+
+FightingFortMaze1_MapHeader:
+	db MAP_GFX_FIGHTING_FORT_MAZE_1
+	dba FightingFortMaze1_MapScripts
+	db MUSIC_FORT_3
+
+FightingFortMaze1_StepEvents:
+	map_exit 4, 8, MAP_FIGHTING_FORT, 3, 2, SOUTH
+	map_exit 5, 8, MAP_FIGHTING_FORT, 3, 2, SOUTH
+	map_exit 4, 0, MAP_FIGHTING_FORT_MAZE_6, 4, 7, NORTH
+	map_exit 5, 0, MAP_FIGHTING_FORT_MAZE_6, 5, 7, NORTH
+	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_2, 1, 3, EAST
+	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_2, 1, 4, EAST
+	db $ff
+
+FightingFortMaze1_MapScripts:
+	dbw $06, $6e6e
+	dbw $02, $6e75
+	db $ff
+; gap from 0x42e6e to 0x42e80
+
+SECTION "Bank 10@6e80", ROMX[$6e80], BANK[$10]
+
+FightingFortMaze21_MapHeader:
+	db MAP_GFX_FIGHTING_FORT_MAZE_21
+	dba FightingFortMaze21_MapScripts
+	db MUSIC_FORT_3
+
+FightingFortMaze21_StepEvents:
+	map_exit 4, 8, MAP_FIGHTING_FORT_MAZE_17, 4, 1, SOUTH
+	map_exit 5, 8, MAP_FIGHTING_FORT_MAZE_17, 5, 1, SOUTH
+	map_exit 0, 3, MAP_FIGHTING_FORT_MAZE_20, 8, 3, WEST
+	map_exit 0, 4, MAP_FIGHTING_FORT_MAZE_20, 8, 4, WEST
+	map_exit 9, 3, MAP_FIGHTING_FORT_MAZE_22, 1, 3, EAST
+	map_exit 9, 4, MAP_FIGHTING_FORT_MAZE_22, 1, 4, EAST
+	db $ff
+
+FightingFortMaze21_MapScripts:
+	dbw $06, $6ec3
+	dbw $02, $6eca
+	db $ff
+; gap from 0x42ec3 to 0x42ed5
+
+SECTION "Bank 10@6ed5", ROMX[$6ed5], BANK[$10]
+
+GrCastleBiruritchi_MapHeader:
+	db MAP_GFX_GR_CASTLE_BIRURITCHI
+	dba GrCastleBiruritchi_MapScripts
+	db MUSIC_GRCASTLE
+
+GrCastleBiruritchi_StepEvents:
+	map_exit 6, 15, MAP_GR_CASTLE, 6, 1, SOUTH
+	map_exit 7, 15, MAP_GR_CASTLE, 7, 1, SOUTH
+	map_exit 8, 15, MAP_GR_CASTLE, 8, 1, SOUTH
+	db $ff
+
+GrCastleBiruritchi_NPCs:
+	npc OW_BIRURITCHI, 7, 5, SOUTH, $0
+	db $ff
+
+GrCastleBiruritchi_NPCInteractions:
+	npc_script OW_BIRURITCHI, $10, $7136
+	db $ff
+
+GrCastleBiruritchi_OWInteractions:
+	ow_script 4, 12, $10, $71bf
+	ow_script 10, 12, $10, $71bf
+	db $ff
+
+GrCastleBiruritchi_MapScripts:
+	dbw $06, $6f2e
+	dbw $08, $6fad
+	dbw $09, $6fbd
+	dbw $07, $6f35
+	dbw $02, $6f3e
+	dbw $0b, $6fcd
+	dbw $04, $6f86
+	dbw $0f, $6fa1
+	db $ff
+; gap from 0x42f2e to 0x42fc8
+
+SECTION "Bank 10@6fc8", ROMX[$6fc8], BANK[$10]
+
+GrCastleBiruritchi_AfterDuelScripts:
+	npc_script OW_BIRURITCHI, $10, $71a6
+	db $ff
