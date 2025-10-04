@@ -1214,9 +1214,9 @@ Func_1cacf:
 	ld b, a
 	ld a, [wMenuBoxHeight]
 	ld c, a
-	farcall Func_10abf
+	farcall ResetActiveSpriteAnimFlag6WithinArea
 	call DoFrame
-	farcall Func_10342
+	farcall CopyBGMapFromVRAMToWRAM
 	pop de
 	pop bc
 	pop af
@@ -1226,8 +1226,8 @@ Func_1caf1:
 	push af
 	push bc
 	push de
-	farcall Func_103b6
-	farcall Func_10b18
+	farcall CopyBGMapFromWRAMToVRAM
+	farcall SetActiveSpriteAnimFlag6WithinArea
 	pop de
 	pop bc
 	pop af
@@ -1263,7 +1263,7 @@ DrawMenuBox:
 	call DrawRegularTextBoxVRAM0
 	jr .print_items
 .asm_1cb31
-	call Func_38ad
+	call DrawLabeledTextBoxVRAM0
 
 .print_items
 	ld a, [wMenuBoxNumItems]
@@ -1617,9 +1617,68 @@ HandleMenuBox:
 GetMenuBoxFocusedItem:
 	ld a, [wMenuBoxFocusedItem]
 	ret
-; 0x1cd17
 
-SECTION "Bank 7@4d6f", ROMX[$4d6f], BANK[$7]
+SetMenuBoxFocusedItem:
+	ld [wMenuBoxFocusedItem], a
+	ret
+
+SetwDA37:
+	push af
+	ld a, 1
+	ld [wda37], a
+	pop af
+	ret
+
+SetMenuBoxNumItems:
+	ld [wMenuBoxNumItems], a
+	ret
+
+SetMenuBoxDelay:
+	ld [wMenuBoxDelay], a
+	ret
+
+GetDWwDA9B:
+	push af
+	ld a, [wda9b]
+	ld c, a
+	ld a, [wda9b + 1]
+	ld b, a
+	pop af
+	ret
+
+Func_1cd36:
+	push af
+	push bc
+	ld a, [wda9b]
+	ld c, a
+	ld a, [wda9b + 1]
+	ld b, a
+	farcall Func_1159a
+	xor a
+	ld [wda9b], a
+	ld [wda9b + 1], a
+	pop bc
+	pop af
+	ret
+
+Func_1cd4e:
+	push af
+	push bc
+	farcall GetDWwDA99
+	farcall Func_115de
+	ld a, c
+	ld [wda9b], a
+	ld a, b
+	ld [wda9b + 1], a
+	pop bc
+	pop af
+	ret
+
+Func_1cd63:
+	farcall Func_1022a
+	call ShowStartMenu
+	farcall Func_10252
+	ret
 
 ; outputs in a what option the player chose
 ShowStartMenu:
@@ -2077,9 +2136,6 @@ ConfirmPlayerNameAndGender:
 	ld a, $1
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret
-; 0x1d081
-
-SECTION "Bank 7@5081", ROMX[$5081], BANK[$7]
 
 ; a = COIN_* constant
 CheckIfCoinWasObtained:
@@ -2132,9 +2188,9 @@ CountEventCoinsObtained:
 .loop
 	push af
 	call CheckIfCoinWasObtained
-	jr z, .next
+	jr z, .got_coin
 	inc b
-.next
+.got_coin
 	pop af
 	inc a
 	dec c
@@ -2144,34 +2200,170 @@ CountEventCoinsObtained:
 	pop hl
 	pop bc
 	ret
-; 0x1d0c2
 
-SECTION "Bank 7@5198", ROMX[$5198], BANK[$7]
+; return in a the total number of pieces in possession
+CountGRCoinPiecesObtained_2:
+	push bc
+	ld c, 0
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	farcall GetEventValue
+	jr z, .checked_bottom_right
+	inc c
+.checked_bottom_right
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
+	farcall GetEventValue
+	jr z, .checked_bottom_left
+	inc c
+.checked_bottom_left
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
+	farcall GetEventValue
+	jr z, .checked_top_right
+	inc c
+.checked_top_right
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	farcall GetEventValue
+	jr z, .checked_top_left
+	inc c
+.checked_top_left
+	ld a, c
+	pop bc
+	ret
+
+; return in hl the coin text at .CoinTable[a]
+GetCoinName:
+	push af
+	push bc
+	ld c, a
+	ld b, 0
+	sla c
+	rl b
+	ld hl, .CoinTable
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop bc
+	pop af
+	ret
+
+.CoinTable:
+	tx ChanseyCoinText     ; GFX_COIN_CHANSEY
+	tx GRCoinText          ; GFX_COIN_GR
+	tx GrassCoinText       ; GFX_COIN_ODDISH
+	tx FireCoinText        ; GFX_COIN_CHARMANDER
+	tx WaterCoinText       ; GFX_COIN_STARMIE
+	tx LightningCoinText   ; GFX_COIN_PIKACHU
+	tx PsychicCoinText     ; GFX_COIN_ALAKAZAM
+	tx RockCoinText        ; GFX_COIN_KABUTO
+	tx GRGrassCoinText     ; GFX_COIN_GOLBAT
+	tx GRLightningCoinText ; GFX_COIN_MAGNEMITE
+	tx GRFireCoinText      ; GFX_COIN_MAGMAR
+	tx GRWaterCoinText     ; GFX_COIN_PSYDUCK
+	tx GRFightingCoinText  ; GFX_COIN_MACHAMP
+	tx GRPsychicCoinText   ; GFX_COIN_MEW
+	tx GRColorlessCoinText ; GFX_COIN_SNORLAX
+	tx GRKingCoinText      ; GFX_COIN_TOGEPI
+	tx PonytaCoinText      ; GFX_COIN_PONYTA
+	tx HorseaCoinText      ; GFX_COIN_HORSEA
+	tx ArbokCoinText       ; GFX_COIN_ARBOK
+	tx JigglypuffCoinText  ; GFX_COIN_JIGGLYPUFF
+	tx DugtrioCoinText     ; GFX_COIN_DUGTRIO
+	tx GengarCoinText      ; GFX_COIN_GENGAR
+	tx RaichuCoinText      ; GFX_COIN_RAICHU
+	tx LugiaCoinText       ; GFX_COIN_LUGIA
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY1
+	tx GRCoinPiece1Text    ; GFX_COIN_GR_PIECE1
+	tx GRCoinPiece2Text    ; GFX_COIN_GR_PIECE2
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY2
+	tx GRCoinPiece3Text    ; GFX_COIN_GR_PIECE3
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY3
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY4
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY5
+	tx GRCoinPiece4Text    ; GFX_COIN_GR_PIECE4
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY6
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY7
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY8
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY9
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY10
+	tx GRCoinText          ; GFX_COIN_GR_DUMMY11
+	; no GFX_COIN_GR_DUMMY12
+
+; set bit 0--3 of a for each piece obtained
+CheckObtainedGRCoinPieces:
+	push bc
+	push de
+	ld b, 0
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
+	farcall GetEventValue
+	sla a
+	sla a
+	sla a
+	or b
+	ld b, a
+	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
+	farcall GetEventValue
+	sla a
+	sla a
+	or b
+	ld b, a
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
+	farcall GetEventValue
+	sla a
+	or b
+	ld b, a
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	farcall GetEventValue
+	or b
+	and $f
+	pop de
+	pop bc
+	ret
+
+; a = COIN_* constant
+; for a non-GR Coin, keep a if already obtained, return a = $18 if not
+; for GR Coin, return a = (bit 0--3 for each piece) + $18
+GetCoinPossessionStatus:
+	push bc
+	ld b, a
+	cp COIN_GR
+	jr z, .check_gr_coin
+; another coin
+	call CheckIfCoinWasObtained
+	jr nz, .got_value
+; not yet obtained
+	ld b, COIN_SENTINEL
+.got_value
+	ld a, b
+	jr .done
+.check_gr_coin
+	call CheckObtainedGRCoinPieces
+	add COIN_SENTINEL
+.done
+	pop bc
+	ret
 
 ; input:
-; - a = coin to load
+; - a = GFX_COIN_* constant
 ; - de = coordinates
-Func_1d198:
+CreateCoinAnimation:
 	push af
 	push bc
 	push de
 	push hl
 	ld c, a
-	ld b, $00
+	ld b, 0
+REPT 3 ; *8
 	sla c
 	rl b
-	sla c
-	rl b
-	sla c
-	rl b ; *8
+ENDR
 	ld hl, .SpriteAnimGfxParams
 	add hl, bc
-	ld c, $00
-	cp $28
-	jr c, .asm_1d1b7
-	ld c, $02
-.asm_1d1b7
-	ld b, $07
+	ld c, 0
+	cp NUM_GFX_MAIN_COINS
+	jr c, .got_obj_slot
+	ld c, 2
+.got_obj_slot
+	ld b, BANK(.SpriteAnimGfxParams)
 	ld a, $ff
 	call CreateSpriteAnim
 	pop hl
@@ -2181,46 +2373,46 @@ Func_1d198:
 	ret
 
 .SpriteAnimGfxParams:
-	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $00
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; $01
-	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; $02
-	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; $03
-	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; $04
-	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; $05
-	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; $06
-	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; $07
-	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; $08
-	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; $09
-	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; $0a
-	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; $0b
-	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; $0c
-	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; $0d
-	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; $0e
-	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; $0f
-	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; $10
-	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; $11
-	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; $12
-	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; $13
-	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; $14
-	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; $15
-	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; $16
-	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; $17
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $18
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; $19
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; $1a
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1b
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; $1c
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1d
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1e
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $1f
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; $20
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $21
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $22
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $23
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $24
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $25
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $26
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; $27
+	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_CHANSEY
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; GFX_COIN_GR
+	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; GFX_COIN_ODDISH
+	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; GFX_COIN_CHARMANDER
+	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; GFX_COIN_STARMIE
+	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; GFX_COIN_PIKACHU
+	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; GFX_COIN_ALAKAZAM
+	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; GFX_COIN_KABUTO
+	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; GFX_COIN_GOLBAT
+	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; GFX_COIN_MAGNEMITE
+	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; GFX_COIN_MAGMAR
+	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; GFX_COIN_PSYDUCK
+	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; GFX_COIN_MACHAMP
+	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; GFX_COIN_MEW
+	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; GFX_COIN_SNORLAX
+	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; GFX_COIN_TOGEPI
+	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; GFX_COIN_PONYTA
+	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; GFX_COIN_HORSEA
+	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; GFX_COIN_ARBOK
+	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; GFX_COIN_JIGGLYPUFF
+	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; GFX_COIN_DUGTRIO
+	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; GFX_COIN_GENGAR
+	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; GFX_COIN_RAICHU
+	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; GFX_COIN_LUGIA
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY1
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; GFX_COIN_GR_PIECE1
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; GFX_COIN_GR_PIECE2
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY2
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; GFX_COIN_GR_PIECE3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY5
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; GFX_COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY6
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY7
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY8
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY9
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY10
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY11
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY12
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_120, PALETTE_13B ; $28
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $29
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_121, PALETTE_13B ; $2a
@@ -2262,7 +2454,8 @@ Func_1d198:
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_145, PALETTE_13B ; $4e
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $4f
 
-Func_1d443:
+; use FRAMESET_($112 + a)
+SetAndInitCoinAnimation:
 	push af
 	push bc
 	push de
@@ -2273,7 +2466,7 @@ Func_1d443:
 	add hl, bc
 	ld b, h
 	ld c, l
-	farcall Func_10bc4
+	farcall GetSpriteAnimBuffer
 	farcall SetAndInitSpriteAnimFrameset
 	xor a
 	farcall SetSpriteAnimFrameIndex
@@ -2329,7 +2522,7 @@ Func_1d475:
 .Read:
 	call LoadSavedOptions
 	ld a, $01
-	farcall Func_108c9
+	farcall SetwD8A1
 	ret
 
 ShowOWMapLocationBox:
@@ -2366,7 +2559,7 @@ ShowOWMapLocationBox:
 	ld b, BANK(Pals_1d50d)
 	ld c, $00
 	ld hl, Pals_1d50d
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	ret
 
 Pals_1d50d:
@@ -2409,7 +2602,7 @@ Func_1d53a:
 	farcall SetFrameFuncAndFadeFromWhite
 	farcall SetFadePalsFrameFunc
 	call Func_3d1f
-	farcall Func_1ad41
+	farcall _ShowReceivedCardScreen
 	call Func_3d32
 	farcall UnsetFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
@@ -2428,6 +2621,33 @@ Func_1d7a1:
 	ret
 ; 0x1d7a6
 
+SECTION "Bank 7@599e", ROMX[$599e], BANK[$7]
+
+Func_1d99e:
+	farcall Func_1022a
+	call _PlayLinkDuelAndGetResult
+	farcall Func_10252
+	ret
+
+_PlayLinkDuelAndGetResult:
+	push bc
+	push de
+	push hl
+	farcall _SetUpAndStartLinkDuel
+	scf
+	ccf
+	ld a, [wDuelResult]
+	and a
+	jr z, .done
+; set carry if DUEL_LOSS
+	scf
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x1d9be
+
 SECTION "Bank 7@59f9", ROMX[$59f9], BANK[$7]
 
 Func_1d9f9:
@@ -2436,16 +2656,635 @@ Func_1d9f9:
 	ret
 ; 0x1d9ff
 
-SECTION "Bank 7@5cb7", ROMX[$5cb7], BANK[$7]
+SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
+Func_1db63:
+	farcall Func_1022a
+	call Func_1db6f
+	farcall Func_10252
+	ret
+
+Func_1db6f:
+	push af
+	push bc
+	push de
+	push hl
+	ld [wdc0a], a
+	call Func_1db81
+	call Func_1dc0a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1db81:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DisableLCD
+	call Func_1dbee
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_3d0d
+	ld a, [wdc0a]
+	cp COIN_SENTINEL
+	jr c, .not_coin_gr
+	ld a, COIN_GR
+	ld [wdc0a], a
+	xor a
+	jr .got_frames
+
+.not_coin_gr
+	push af
+	ld a, SFX_0B
+	call CallPlaySFX
+	pop af
+	ld a, 1
+	call SetAndInitCoinAnimation
+	ld a, $34
+
+.got_frames
+	ldtx hl, ObtainedCoinText
+	farcall PrintTextInWideTextBox
+	call DoAFrames_WithPreCheck
+	push af
+	ld a, MUSIC_MEDAL
+	call Func_3d09
+	pop af
+	call WaitForSongToFinish
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	call Func_3d16
+	call WaitForWideTextBoxInput
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ld a, [wd693]
+	set 0, a
+	ld [wd693], a
+	ld a, [wd693]
+	res 2, a
+	ld [wd693], a
+	ld a, [wd693]
+	res 1, a
+	ld [wd693], a
+	ret
+
+Func_1dbee:
+	ld a, [wdc0a]
+	lb de, 88, 88
+	call CreateCoinAnimation
+	lb de,  0, 12
+	lb bc, 20,  6
+	call DrawRegularTextBoxVRAM0
+	ld a, [wdc0a]
+	call GetCoinName
+	call LoadTxRam2
+	ret
+
+Func_1dc0a:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1dc52
+	farcall SetFrameFuncAndFadeFromWhite
+	xor a
+	ld [wdc0b], a
+.delay_loop
+	call DoFrame
+	call Func_1dc2a
+	ldh a, [hKeysPressed]
+	and A_BUTTON | B_BUTTON
+	jr z, .delay_loop
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1dc2a:
+	ld a, [wdc0b]
+	and $10
+	push af
+	call z, .asm_1dc3c
+	pop af
+	call nz, .asm_1dc47
+	ld hl, wdc0b
+	inc [hl]
+	ret
+
+.asm_1dc3c:
+	ld a, [wdc0a]
+	call GetCoinPossessionStatus
+	farcall Func_12c49b
+	ret
+
+.asm_1dc47:
+	ld hl, 0
+	lb bc, 3, 3
+	farcall FillBoxInBGMapWithZero
+	ret
+
+Func_1dc52:
+	lb de,  0, 0
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	call CountEventCoinsObtained
+	ld l, a
+	ld h, 0
+	call LoadTxRam3
+	ldtx hl, ObtainedCoinTotalNumberText
+	ld a, [wdc0a]
+	cp COIN_GR
+	jr nz, .got_coin_and_text
+
+	call CheckObtainedGRCoinPieces
+	cp $f
+	jr z, .got_coin_and_text
+
+	call CountGRCoinPiecesObtained_2
+	ld l, a
+	ld h, 0
+	call LoadTxRam3
+	ldtx hl, ObtainedGRCoinPieceTotalNumberText
+
+.got_coin_and_text
+	lb de, 1, 2
+	call Func_35bf
+	call Func_1dd08
+	ld a, [wdc0a]
+	call GetCoinType
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call Func_1dd89
+	ret
+
+Func_1dc9a:
+	farcall Func_1022a
+	call Func_1dca6
+	farcall Func_10252
+	ret
+
+Func_1dca6:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, -1
+	ld [wdc0a], a
+	call Func_1dcbf
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_1dcb7:
 	xor a
 	ld [wdc08], a
 	ld [wdc09], a
 	ret
-; 0x1dcbf
 
-SECTION "Bank 7@5fb9", ROMX[$5fb9], BANK[$7]
+Func_1dcbf:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call Func_1dce3
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_1deac
+	push af
+	ld a, 2
+	call CallPlaySFX
+	pop af
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1dce3:
+	lb de,  0, 0
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, PlayerCoinSelectText
+	lb de,  1, 2
+	call Func_35af
+	ld a, [wdc08]
+	call GetCoinType
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call Func_1dd89
+	call Func_1dd08
+	ret
+
+Func_1dd08:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+	ldtx hl, PlayerStatusCurrentCoinText
+	lb de,  4, 4
+	call Func_35af
+	lb de,  4, 6
+	lb bc, 12, 1
+	farcall FillBoxInBGMapWithZero
+	call GetCoinName
+	call Func_35af
+	ld a, [wdc08]
+	lb de,  1, 4
+	farcall Func_12c49b
+	call Func_1dd3a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; each coin settings page
+Func_1dd3a:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+	call GetCoinType
+	ld c, a
+	ld a, [wdc09]
+	cp b
+	jr z, .got_index
+	ld c, 8
+.got_index
+	ld a, c
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, .CoordTable
+	add hl, bc
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	ld b, BANK(.SpriteAnimGfxParams)
+	ld hl, .SpriteAnimGfxParams
+	ld a, 0
+	ld c, 0
+	call CreateSpriteAnim
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.CoordTable:
+	db   8,  88 ; $0
+	db  48,  88 ; $1
+	db  88,  88 ; $2
+	db 128,  88 ; $3
+	db   8, 120 ; $4
+	db  48, 120 ; $5
+	db  88, 120 ; $6
+	db 128, 120 ; $7
+	db 160, 160 ; $8
+
+.SpriteAnimGfxParams:
+	dw TILESET_WINDOW
+	dw SPRITE_ANIM_9D
+	dw FRAMESET_117
+	dw PALETTE_16B
+
+Func_1dd84:
+	farcall ClearSpriteAnims
+	ret
+
+; coin settings pages
+Func_1dd89:
+	push af
+	push bc
+	push hl
+	push af
+	push bc
+	lb de, 0, 10
+	ld b, BANK(_CoinPageMenuParams)
+	ld hl, _CoinPageMenuParams
+	call LoadMenuBoxParams
+	call DrawMenuBox
+	pop bc
+	push bc
+	ld c, b
+	ld b, 0
+	sla c
+	ld hl, _CoinPageTextTable
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 6, 8
+	call Func_35af
+	pop bc
+	push bc
+	ld c, b
+	ld b, 0
+	sla c
+	sla c
+	ld hl, _CoinPageCoordTable
+	add hl, bc
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	lb bc, 0, 8
+	call Func_383b
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	lb bc, 19, 8
+	call Func_383b
+	pop bc
+	call Func_1dd3a
+	ld c, b
+	ld b, 0
+	sla c
+	ld hl, _CoinPageListTable
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	ld b, a
+	ld a, 8
+	sub b
+	ld b, a
+	ld c, 8
+.loop_show_coin
+	push bc
+	push hl
+	ld a, [hli]
+	call GetCoinPossessionStatus
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	farcall Func_12c49b
+	ld a, c
+	cp b
+	jr nz, .next_coin
+	ld a, d
+	ld [wdc0c], a
+	ld a, e
+	ld [wdc0d], a
+.next_coin
+	pop hl
+	ld bc, 3
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .loop_show_coin
+	ld a, [wdc0c]
+	ld d, a
+	ld a, [wdc0d]
+	ld e, a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+Func_1de16:
+	call CheckObtainedGRCoinPieces
+	add COIN_SENTINEL
+	ret
+
+_CoinPageMenuParams:
+	db FALSE ; skip clear
+	db 20, 7 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db A_BUTTON ; press keys
+	db B_BUTTON ; held keys
+	db TRUE ; has horizontal scroll
+	db 4 ; vertical step
+	dw Func_1def1 ; update function
+	dw NULL ; label text ID
+
+	textitem  1,  1, SingleSpaceText
+	textitem  6,  1, SingleSpaceText
+	textitem 11,  1, SingleSpaceText
+	textitem 16,  1, SingleSpaceText
+	textitem  1,  5, SingleSpaceText
+	textitem  6,  5, SingleSpaceText
+	textitem 11,  5, SingleSpaceText
+	textitem 16,  5, SingleSpaceText
+	db $ff
+
+_CoinPageTextTable:
+	tx EventCoinPage1Text
+	tx EventCoinPage2Text
+	tx EventCoinPage3Text
+
+_CoinPageListTable:
+	dw .page1
+	dw .page2
+	dw .page3
+; coin, x, y
+.page1:
+	db COIN_CHANSEY,     1, 10
+	db COIN_GR,          6, 10
+	db COIN_ODDISH,     11, 10
+	db COIN_CHARMANDER, 16, 10
+	db COIN_STARMIE,     1, 14
+	db COIN_PIKACHU,     6, 14
+	db COIN_ALAKAZAM,   11, 14
+	db COIN_KABUTO,     16, 14
+.page2:
+	db COIN_MAGNEMITE,   1, 10
+	db COIN_GOLBAT,      6, 10
+	db COIN_MAGMAR,     11, 10
+	db COIN_PSYDUCK,    16, 10
+	db COIN_MACHAMP,     1, 14
+	db COIN_MEW,         6, 14
+	db COIN_SNORLAX,    11, 14
+	db COIN_TOGEPI,     16, 14
+.page3:
+	db COIN_PONYTA,      1, 10
+	db COIN_HORSEA,      6, 10
+	db COIN_ARBOK,      11, 10
+	db COIN_JIGGLYPUFF, 16, 10
+	db COIN_DUGTRIO,     1, 14
+	db COIN_GENGAR,      6, 14
+	db COIN_RAICHU,     11, 14
+	db COIN_LUGIA,      16, 14
+
+_CoinPageCoordTable:
+	db  0,  0, 15, 0
+	db 15, 32, 15, 0
+	db 15, 32,  0, 0
+
+Func_1deac:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [wdc08]
+.asm_1deb3
+	call GetCoinType
+	push af
+	ld a, b
+	ld [wdc09], a
+	pop af
+	call HandleMenuBox
+	jr c, .asm_1dec6
+	call Func_1decb
+	jr .asm_1deb3
+.asm_1dec6
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; COIN_* constant at [wdc09] * 8 + a
+Func_1decb:
+	ld b, a
+	ld a, [wdc09]
+REPT 3 ; *8
+	add a
+ENDR
+	add b
+	ld b, a
+	call CheckIfCoinWasObtained
+	ld a, b
+	jr nz, .exists
+	push af
+	ld a, SFX_04
+	call CallPlaySFX
+	pop af
+	ret
+.exists
+	push af
+	ld a, SFX_0B
+	call CallPlaySFX
+	pop af
+	ld a, b
+	ld [wdc08], a
+	call Func_1dd08
+	ret
+
+Func_1def1::
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1df10
+	call GetMenuBoxFocusedItem
+	and 3
+	and a
+	call z, Func_1df60
+	call GetMenuBoxFocusedItem
+	and 3
+	cp 3
+	call z, Func_1df36
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1df10:
+	ldh a, [hKeysPressed]
+	and SELECT
+	ret z
+
+	push af
+	ld a, SFX_01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	inc a
+	cp 3
+	jr c, .got_value
+	xor a
+.got_value
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+
+Func_1df36:
+	ldh a, [hDPadHeld]
+	and D_RIGHT
+	ret z
+	ld a, [wdc09]
+	cp 2
+	jr z, .done
+	push af
+	ld a, SFX_01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	inc a
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	sub 3
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+.done
+	call SetwDA37
+	ret
+
+Func_1df60:
+	ldh a, [hDPadHeld]
+	and D_LEFT
+	ret z
+
+	ld a, [wdc09]
+	and a
+	jr z, .done
+	push af
+	ld a, SFX_01
+	call CallPlaySFX
+	pop af
+	ld a, [wdc09]
+	dec a
+	ld [wdc09], a
+	ld b, a
+	call GetMenuBoxFocusedItem
+	add 3
+	call Func_1df89
+	call SetMenuBoxFocusedItem
+.done
+	call SetwDA37
+	ret
+
+Func_1df89:
+	call Func_1dd84
+	push af
+	ld a,  8
+	ldh [hWX], a
+	ld a, 80
+	ldh [hWY], a
+	call SetWindowOn
+	pop af
+	call DoFrame
+	call Func_1dd89
+	push af
+	call SetWindowOff
+	pop af
+	ret
+
+; a = COIN_* constant
+; return its COIN_TYPE_* in a and b
+GetCoinType:
+	cp COIN_SENTINEL
+	jr c, .found_coin
+	ld a, COIN_GR
+.found_coin
+	ld b, a
+	srl b
+	srl b
+	srl b
+	and 7
+	ret
+
+Func_1dfb5:
+	ld a, [wdc08]
+	ret
 
 Func_1dfb9::
 	push af
@@ -2455,7 +3294,7 @@ Func_1dfb9::
 	ld a, $01 ; unused
 	farcall ClearSpriteAnims
 	xor a
-	farcall Func_108c9
+	farcall SetwD8A1
 	xor a
 	ld [wDuelAnimBufferSize], a
 	ld [wDuelAnimBufferCurPos], a
@@ -2621,7 +3460,7 @@ Func_1e088::
 	push de
 	push hl
 	ld c, NUM_SPRITE_ANIM_STRUCTS
-	farcall Func_10bc4
+	farcall GetSpriteAnimBuffer
 .loop_sprite_anims
 	farcall Func_10ab7
 	bit 7, a
@@ -2629,7 +3468,7 @@ Func_1e088::
 	farcall CheckIsSpriteAnimAnimating
 	jr nz, .next_sprite_anim
 	; clear animation
-	farcall Func_10b71
+	farcall _ClearSpriteAnimFlags
 	ld a, [wNumActiveAnimations]
 	dec a
 	ld [wNumActiveAnimations], a
@@ -2785,7 +3624,7 @@ Func_1e171:
 	ld a, [wAnimationPalette + 1]
 	ld b, a
 	farcall GetPaletteGfxPointer
-	farcall Func_10908
+	farcall LoadGfxPalettesFrom0
 	pop hl
 
 .asm_1e1d7
@@ -2812,7 +3651,7 @@ Func_1e171:
 	ld a, [wAnimFlags]
 	and SPRITE_ANIM_FLAG_UNSKIPPABLE
 	jr nz, .animation_enabled
-	farcall Func_10b71
+	farcall _ClearSpriteAnimFlags
 	jr .done
 
 .animation_enabled
@@ -2879,11 +3718,11 @@ PlayCoinAnimation:
 	ld a, [wOppCoin]
 .got_coin
 	lb de, 80, 80
-	call Func_1d198
+	call CreateCoinAnimation
 	ld a, [wCurAnimation]
 	sub DUEL_ANIM_COIN_SPIN
-	call Func_1d443
-	farcall Func_10bc4
+	call SetAndInitCoinAnimation
+	farcall GetSpriteAnimBuffer
 	ret
 
 Func_1e279:
@@ -3437,7 +4276,7 @@ Func_1e5a2::
 SECTION "Bank 7@65f8", ROMX[$65f8], BANK[$7]
 
 RunDuelFromSRAM:
-	farcall Func_10cfe
+	farcall Stub_10cfe
 	farcall Func_1109f
 	farcall Func_1022a
 	bank1call StartDuelFromSRAM
@@ -3485,7 +4324,7 @@ Func_1e60c:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	farcall Func_1107c
+	farcall PrintTextInWideTextBox
 
 	call WaitForSongToFinish
 	call WaitForWideTextBoxInput
@@ -3635,6 +4474,164 @@ Func_1e767:
 	ret
 ; 0x1e76c
 
+SECTION "Bank 7@6866", ROMX[$6866], BANK[$7]
+
+LoadBoosterPackScene:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld b, 0
+	ld hl, .SceneTable
+	add hl, bc
+	ld a, [hl]
+	lb bc, 6, 0
+	call LoadScene
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.SceneTable:
+	db SCENE_BEGINNING_PACK
+	db SCENE_LEGENDARY_PACK
+	db SCENE_FOSSIL_PACK
+	db SCENE_PSYCHIC_PACK
+	db SCENE_FLYING_PACK
+	db SCENE_ROCKET_PACK
+	db SCENE_AMBITION_PACK
+	db SCENE_PRESENT_PACK
+	db SCENE_INTRO_BASE_SET
+	db SCENE_INTRO_JUNGLE
+	db SCENE_INTRO_FOSSIL
+	db SCENE_INTRO_TEAM_ROCKET
+
+Func_1e889:
+	farcall Func_1022a
+	call GiveBoosterPacks
+	farcall Func_10252
+	ret
+
+; a = BOOSTER_* constant, b = has-another count?
+GiveBoosterPacks:
+	push af
+	push bc
+	push de
+	push hl
+	ld [wCurBoosterPack], a
+	ld a, b
+	ld [wAnotherBoosterPack], a
+	call _GiveBoosterPack
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+_GiveBoosterPack:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call .DrawScreen
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_3d0d
+	push af
+	ld a, MUSIC_BOOSTER_PACK
+	call Func_3d09
+	pop af
+	ld a, [wCurBoosterPack]
+	add a
+	add a ; table_width 4
+	ld c, a
+	ld b, 0
+	ld hl, .TextTable
+	add hl, bc
+	ld a, [hli]
+	ld [wTxRam2], a
+	ld a, [hli]
+	ld [wTxRam2 + 1], a
+	ld a, [hli]
+	ld [wTxRam2_b], a
+	ld a, [hl]
+	ld [wTxRam2_b + 1], a
+	ldtx hl, ReceivedBoosterPackText
+	ld a, [wAnotherBoosterPack]
+	and a
+	jr z, .loaded_text
+	ldtx hl, ReceivedAnotherBoosterPackText
+
+.loaded_text
+	farcall PrintTextInWideTextBox
+	call WaitForSongToFinish
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	call Func_3d16
+	call WaitForWideTextBoxInput
+	ldtx hl, OpenedBoosterPackText
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	call .GetPack
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+; pack number, title
+.TextTable:
+	tx BoosterPack1Text, BoosterPackBeginningPokemonText    ; BOOSTER_BEGINNING_POKEMON
+	tx BoosterPack2Text, BoosterPackLegendaryPowerText      ; BOOSTER_LEGENDARY_POWER
+	tx BoosterPack3Text, BoosterPackIslandOfFossilText      ; BOOSTER_ISLAND_OF_FOSSIL
+	tx BoosterPack4Text, BoosterPackPsychicBattleText       ; BOOSTER_PSYCHIC_BATTLE
+	tx BoosterPack5Text, BoosterPackFlyingPokemonText       ; BOOSTER_SKY_FLYING_POKEMON
+	tx BoosterPack6Text, BoosterPackWeAreTeamRocketText     ; BOOSTER_WE_ARE_TEAM_ROCKET
+	tx BoosterPack7Text, BoosterPackTeamRocketsAmbitionText ; BOOSTER_TEAM_ROCKETS_AMBITION
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_1
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_1
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_2
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_3
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_4
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_5
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_2
+
+.DrawScreen:
+	ld a, [wCurBoosterPack]
+	ld c, a
+	ld b, 0
+	ld hl, .PackTable
+	add hl, bc
+	ld a, [hl]
+	lb de,  6,  0
+	call LoadBoosterPackScene
+	lb de,  0, 12
+	lb bc, 20,  6
+	call DrawRegularTextBoxVRAM0
+	ret
+
+.PackTable:
+	db BEGINNING_POKEMON     ; BOOSTER_BEGINNING_POKEMON
+	db LEGENDARY_POWER       ; BOOSTER_LEGENDARY_POWER
+	db ISLAND_OF_FOSSIL      ; BOOSTER_ISLAND_OF_FOSSIL
+	db PSYCHIC_BATTLE        ; BOOSTER_PSYCHIC_BATTLE
+	db SKY_FLYING_POKEMON    ; BOOSTER_SKY_FLYING_POKEMON
+	db WE_ARE_TEAM_ROCKET    ; BOOSTER_WE_ARE_TEAM_ROCKET
+	db TEAM_ROCKETS_AMBITION ; BOOSTER_TEAM_ROCKETS_AMBITION
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_1
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_1
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_2
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_3
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_4
+	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_5
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_2
+
+.GetPack:
+	call DoFrame
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call DoFrame
+	ld a, [wCurBoosterPack]
+	farcall GetBoosterPack
+	ret
+; 0x1e984
+
 SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
 
 Func_1eca5:
@@ -3669,7 +4666,72 @@ Func_1eca5:
 	ret
 ; 0x1ece4
 
-SECTION "Bank 7@7293", ROMX[$7293], BANK[$7]
+SECTION "Bank 7@724e", ROMX[$724e], BANK[$7]
+
+; input: a
+; set carry if [wdd36] = wDD37_BUFFER_SIZE - 1
+; else:
+; - if bit 7 of a is 0, [wdd37 + [wdd36] ] = a
+; - if bit 7 of a is 1,
+;   (the first byte in wdd37[n] whose bit 7 is 0) = a
+;   and shift the rest
+; and increment [wdd36] by 1
+Func_1f24e:
+	push bc
+	push de
+	push hl
+	ld e, a
+	ld a, [wdd36]
+	cp wDD37_BUFFER_SIZE - 1
+	jr z, .set_carry
+	bit 7, e
+	call z, .not_bit7
+	call nz, .has_bit7
+	ld hl, wdd36
+	inc [hl]
+; clear carry
+	scf
+	ccf
+	jr .done
+.set_carry
+	scf
+; fallthrough
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+.not_bit7:
+	push af
+	ld a, [wdd36]
+	ld c, a
+	ld b, 0
+	ld hl, wdd37
+	add hl, bc
+	ld [hl], e
+	pop af
+	ret
+
+.has_bit7:
+	push af
+	ld hl, wdd37
+	ld c, wDD37_BUFFER_SIZE - 1
+.check_byte_loop
+	bit 7, [hl]
+	jr z, .shift_loop
+	inc hl
+	dec c
+	jr nz, .check_byte_loop
+.shift_loop
+	ld b, [hl]
+	ld [hl], e
+	ld e, b
+	inc hl
+	dec c
+	jr nz, .shift_loop
+	pop af
+	ret
 
 Func_1f293:
 	push af
@@ -3867,9 +4929,68 @@ Func_1f57b::
 	db  2, -2
 	db -2,  2
 	db $80 ; end
-; 0x1f60c
 
-SECTION "Bank 7@782b", ROMX[$782b], BANK[$7]
+; input: a, c
+; set [wdd75] = a, [wdd76] = 0, [wdd77] = c
+Set3FromwDD75:
+	push af
+	ld [wdd75], a
+	ld a, c
+	ld [wdd77], a
+	xor a
+	ld [wdd76], a
+	pop af
+	ret
+
+; set [wdd75] = [wdd76] = 0, [wdd77] = c
+Func_1f61a:
+	push af
+	ld a, 0
+	call Set3FromwDD75
+	push af
+	ret
+
+GetwDD75:
+	ld a, [wdd75]
+	and a
+	ret
+; 0x1f627
+
+SECTION "Bank 7@77f1", ROMX[$77f1], BANK[$7]
+
+Func_1f7f1:
+	farcall Func_102a4
+	call HandleIngameCardPop
+	farcall Func_102c4
+	ret
+
+HandleIngameCardPop:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, .FunctionMap
+	call CallMappedFunction
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.FunctionMap:
+	key_func 0, IngameCardPop.Ronald
+	key_func 1, IngameCardPop.Imakuni_first
+	key_func 2, IngameCardPop.Imakuni_rare
+	db $ff
+
+; dupe of Func_1f7f1
+Func_1f81f:
+	farcall Func_102a4
+	call HandleIngameCardPop
+	farcall Func_102c4
+	ret
 
 CardPopMenu:
 	push af

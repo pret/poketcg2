@@ -37,7 +37,7 @@ SendPrinterPacket::
 	inc hl
 	ld [hl], HIGH(wPrinterPacket) ; [wSerialDataPtr] ← $ce
 
-	call Func_0e8e
+	call SerialDeclarePeerMaster
 
 	ld a, $1
 	ld [wPrinterPacketSequence], a        ; [wPrinterPacketSequence] ← 1

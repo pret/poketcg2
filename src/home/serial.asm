@@ -1,9 +1,9 @@
 ; called at roughly 240Hz by TimerHandler
 SerialTimerHandler:
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .begin_transfer
-	cp $21
+	cp SERIAL_PEER_MASTER_TCG2
 	jr z, .check_for_timeout
 	ret
 .begin_transfer
@@ -32,44 +32,49 @@ SerialTimerHandler:
 	set 7, [hl]
 	ret
 .clear_timeout_counter
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
-Func_0cc5:
+; tcg1: Func_0cc5
+Serial_Func_0be6::
 	ld hl, wSerialRecvCounter
 	or a
-	jr nz, .asm_cdc
+	jr nz, .input_nonzero
+; input a = 0
 	ld a, [hl]
 	or a
 	ret z
-	ld [hl], $00
+; wSerialRecvCounter exists
+	ld [hl], 0
 	ld a, [wSerialRecvBuf]
-	ld e, $21
-	cp $92
-	jr z, .asm_cfa
+	ld e, SERIAL_PEER_MASTER_TCG2
+	cp SERIAL_OP_MASTER_TCG2
+	jr z, .received_peer
 	xor a
 	scf
 	ret
-.asm_cdc
-	ld a, $92
+
+.input_nonzero
+	ld a, SERIAL_OP_MASTER_TCG2
 	ldh [rSB], a
 	ld a, SC_INTERNAL
 	ldh [rSC], a
 	ld a, SC_START | SC_INTERNAL
 	ldh [rSC], a
-.asm_ce8
+.zero_loop
 	ld a, [hl]
 	or a
-	jr z, .asm_ce8
-	ld [hl], $00
+	jr z, .zero_loop
+	ld [hl], 0
 	ld a, [wSerialRecvBuf]
-	ld e, $92
-	cp $21
-	jr z, .asm_cfa
+	ld e, SERIAL_OP_MASTER_TCG2
+	cp SERIAL_PEER_MASTER_TCG2
+	jr z, .received_peer
 	xor a
 	scf
 	ret
-.asm_cfa
+
+.received_peer
 	xor a
 	ld [wSerialSendBufIndex], a
 	ld [wcb80], a
@@ -80,16 +85,16 @@ Func_0cc5:
 	ld [wSerialRecvCounter], a
 	ld [wSerialLastReadCA], a
 	ld a, e
-	cp $92
-	jr nz, .asm_d21
+	cp SERIAL_OP_MASTER_TCG2
+	jr nz, .got_mode
 	ld bc, $1000
-.asm_d1b
+.countdown_loop
 	dec bc
 	ld a, c
 	or b
-	jr nz, .asm_d1b
+	jr nz, .countdown_loop
 	ld a, e
-.asm_d21
+.got_mode
 	ld [wSerialOp], a
 	scf
 	ret
@@ -121,7 +126,7 @@ SerialHandler:
 	; end send/receive
 	ldh [rSB], a         ; prepare sending byte (from Func_0dc8?)
 	ld a, [wSerialOp]
-	cp $92
+	cp SERIAL_OP_MASTER_TCG2
 	jr z, .done          ; if [wSerialOp] != $92, use external clock
 	jr .asm_d6a          ; and prepare for next byte. either way, return
 .asm_d55
@@ -132,8 +137,8 @@ SerialHandler:
 	ld a, $ac
 	ldh [rSB], a
 	ld a, [wSerialRecvBuf]
-	cp $21               ; if [wSerialRecvBuf] != $21, use external clock
-	jr z, .done          ; and prepare for next byte. either way, return
+	cp SERIAL_PEER_MASTER_TCG2 ; if [wSerialRecvBuf] != $21, use external clock
+	jr z, .done                ; and prepare for next byte. either way, return
 .asm_d6a
 	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a         ; transfer start, use external clock
@@ -290,7 +295,8 @@ SerialSendByte:
 	ret
 
 ; sets carry if [wSerialRecvCounter] nonzero
-Func_0e32:
+; tcg1: Func_0e32
+CheckSerialRecvCounter:
 	ld a, [wSerialRecvCounter]
 	or a
 	ret z
@@ -303,14 +309,15 @@ SerialRecvByte::
 	ld hl, wSerialRecvCounter
 	ld a, [hl]
 	or a
-	jr nz, .asm_e49
+	jr nz, .found_counter
+; wSerialRecvCounter = 0
 	pop hl
 	ld a, [wSerialFlags]
 	or a
 	ret nz
 	scf
 	ret
-.asm_e49
+.found_counter
 	push de
 	dec [hl]
 	ld a, [wcba3]
@@ -333,44 +340,45 @@ SerialRecvByte::
 ; exchange c bytes. send bytes at hl and store received bytes in de
 SerialExchangeBytes::
 	ld b, c
-.asm_e64
+.exchange_loop
 	ld a, b
 	sub c
-	jr c, .asm_e6c
+	jr c, .send
 	cp $1f
-	jr nc, .asm_e75
-.asm_e6c
+	jr nc, .receive
+.send
 	inc c
 	dec c
-	jr z, .asm_e75
+	jr z, .receive
 	ld a, [hli]
 	call SerialSendByte
 	dec c
-.asm_e75
+.receive
 	inc b
 	dec b
-	jr z, .asm_e81
+	jr z, .confirm
 	call SerialRecvByte
-	jr c, .asm_e81
+	jr c, .confirm
 	ld [de], a
 	inc de
 	dec b
-.asm_e81
+.confirm
 	ld a, [wSerialFlags]
 	or a
-	jr nz, .asm_e8c
+	jr nz, .flagged
 	ld a, c
 	or b
-	jr nz, .asm_e64
+	jr nz, .exchange_loop
 	ret
-.asm_e8c
+.flagged
 	scf
 	ret
 
-; go into slave mode (external clock) for serial transfer?
-Func_0e8e:
+; go into slave mode (external clock) for serial transfer
+; tcg1: Func_0e8e
+SerialDeclarePeerMaster::
 	call ClearSerialData
-	ld a, $21
+	ld a, SERIAL_PEER_MASTER_TCG2
 	ldh [rSB], a         ; send $21
 	ld a, SC_START | SC_EXTERNAL
 	ldh [rSC], a         ; use external clock, set transfer start flag
@@ -452,8 +460,9 @@ SerialRecvBytes:
 	scf
 	ret
 
-Func_0ef1:
-	ld de, wcb79
+; tcg1: Func_0ef1
+Serial_Func_0e12:
+	ld de, wcb73
 	ld hl, sp+$fe
 	ld a, l
 	ld [de], a
@@ -471,19 +480,20 @@ Func_0ef1:
 	or a
 	ret
 
-Func_0f05:
+; tcg1: Func_0f05
+Serial_Func_0e26:
 	push hl
-	ld hl, wcb7b
+	ld hl, wcb75
 	ld a, [hli]
 	or [hl]
 	pop hl
 	ret z
-	ld hl, wcb79
+	ld hl, wcb73
 	ld a, [hli]
 	ld h, a
 	ld l, a
 	ld sp, hl
-	ld hl, wcb7b
+	ld hl, wcb75
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -652,7 +662,7 @@ SerialRecv8Bytes::
 	pop af
 	ret
 
-Func_0f0e:
-	ld a, $01
+SerialStartDuel:
+	ld a, BANK(StartDuelFromSRAM.ok) ; $1
 	call BankswitchROM
-	jp $4080
+	jp StartDuelFromSRAM.ok

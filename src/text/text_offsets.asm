@@ -1677,8 +1677,8 @@ TextOffsets::
 	textpointer BoosterPackTeamRocketsAmbitionText                    ; 0x0684
 	textpointer EnergyPackText                                        ; 0x0685
 	textpointer PresentPackText                                       ; 0x0686
-	textpointer ObtainedBoosterPackText                               ; 0x0687
-	textpointer ObtainedSecondBoosterPackText                         ; 0x0688
+	textpointer ReceivedBoosterPackText                               ; 0x0687
+	textpointer ReceivedAnotherBoosterPackText                        ; 0x0688
 	textpointer BoosterPack1Text                                      ; 0x0689
 	textpointer BoosterPack2Text                                      ; 0x068a
 	textpointer BoosterPack3Text                                      ; 0x068b

@@ -648,9 +648,15 @@ PlayCurrentSong:
 	ld a, [wCurMusic]
 	call PlaySong
 	ret
-; 0x4494a
 
-SECTION "Bank 11@4954", ROMX[$4954], BANK[$11]
+; WaitForSongToFinish but without push/pop af
+WaitSong:
+.loop
+	call DoFrame
+	call AssertSongFinished
+	or a
+	jr nz, .loop
+	ret
 
 InitMusicFadeOut:
 	ld [wMusicFadeOutCounter], a
