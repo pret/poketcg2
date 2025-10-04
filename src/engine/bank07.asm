@@ -875,9 +875,6 @@ StartPalFadeToBlackOrWhite::
 	ld a, 8
 	ld [wPaletteFadeCounter], a
 	ret
-; 0x1c93c
-
-SECTION "Bank 7@493c", ROMX[$493c], BANK[$7]
 
 ; returns nz if palettes are still fading
 CheckPalFading::
@@ -2657,6 +2654,7 @@ Func_1d9f9:
 ; 0x1d9ff
 
 SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
+
 Func_1db63:
 	farcall Func_1022a
 	call Func_1db6f
@@ -2699,7 +2697,7 @@ Func_1db81:
 	pop af
 	ld a, 1
 	call SetAndInitCoinAnimation
-	ld a, $34
+	ld a, 52
 
 .got_frames
 	ldtx hl, ObtainedCoinText
@@ -2710,7 +2708,7 @@ Func_1db81:
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
-	ld a, $3c
+	ld a, 60
 	call DoAFrames_WithPreCheck
 	call Func_3d16
 	call WaitForWideTextBoxInput
@@ -2847,7 +2845,7 @@ Func_1dcbf:
 	farcall SetFrameFuncAndFadeFromWhite
 	call Func_1deac
 	push af
-	ld a, 2
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	farcall FadeToWhiteAndUnsetFrameFunc
@@ -4445,9 +4443,6 @@ ShowSpecialRuleDescription:
 	tx SpecialRuleEnergyReturnTitleText,  SpecialRuleEnergyReturnDescriptionText
 	tx SpecialRuleToughEscapeTitleText,   SpecialRuleToughEscapeDescriptionText
 	tx SpecialRuleBlackHoleTitleText,     SpecialRuleBlackHoleDescriptionText
-; 0x1e73a
-
-SECTION "Bank 7@673a", ROMX[$673a], BANK[$7]
 
 Func_1e73a:
 	push af
@@ -4563,7 +4558,7 @@ _GiveBoosterPack:
 .loaded_text
 	farcall PrintTextInWideTextBox
 	call WaitForSongToFinish
-	ld a, $3c
+	ld a, 60
 	call DoAFrames_WithPreCheck
 	call Func_3d16
 	call WaitForWideTextBoxInput

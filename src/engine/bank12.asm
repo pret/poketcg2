@@ -3519,9 +3519,6 @@ FindDifferentPokemonCardInHand:
 .none_found
 	or a
 	ret
-; 0x49fda
-
-SECTION "Bank 12@5fda", ROMX[$5fda], BANK[$12]
 
 ; return carry if Pokémon in Play Area
 ; has a specific energy card attached

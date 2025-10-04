@@ -1063,6 +1063,7 @@ GetNextInactiveSpriteAnim::
 	pop bc
 	pop af
 	ret
+; 0x1092b
 
 SECTION "Bank 4@4948", ROMX[$4948], BANK[$4]
 
@@ -1102,8 +1103,6 @@ SetNewSpriteAnimValues::
 	pop bc
 	pop af
 	ret
-
-SECTION "Bank 4@4989", ROMX[$4989], BANK[$4]
 
 Func_10989:
 	ld [wd96f], a
@@ -1264,8 +1263,6 @@ UpdateSpriteAnims::
 	pop bc
 	pop af
 	ret
-
-SECTION "Bank 4@4a1e", ROMX[$4a1e], BANK[$4]
 
 ; d = x coordinate
 ; e = y coordinate

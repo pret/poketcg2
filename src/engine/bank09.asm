@@ -522,8 +522,6 @@ DisplayUsedTrainerCardDetailScreen:
 	bank1call DisplayCardDetailScreen
 	ret
 
-SECTION "Bank 9@44b0", ROMX[$44b0], BANK[$9]
-
 ; print the AttachedEnergyToPokemonText, given the energy card to attach in hTempCardIndex_ff98,
 ; and the PLAY_AREA_* of the turn holder's Pokemon to attach the energy to in hTempPlayAreaLocation_ff9d
 PrintAttachedEnergyToPokemon:
@@ -866,6 +864,7 @@ PlayShuffleAndDrawCardsAnimation:
 	call FinishQueuedAnimations
 	pop bc
 	ret
+; 0x24958
 
 SECTION "Bank 9@49c6", ROMX[$49c6], BANK[$9]
 

@@ -4995,9 +4995,6 @@ CheckIfSelectedDeckMachineEntryIsEmpty:
 	call Func_3afb8
 	farcall CheckIfDeckHasCards
 	ret
-; 0x3af66
-
-SECTION "Bank e@6f66", ROMX[$6f66], BANK[$e]
 
 ClearScreenAndDrawDeckMachineScreen:
 	xor a

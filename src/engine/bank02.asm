@@ -355,9 +355,6 @@ GlossaryTransitionTable_8Topics:
 	cursor_transition $58, $38, $00, 4, 6, 1, 1 ; 5
 	cursor_transition $58, $48, $00, 5, 7, 2, 2 ; 6
 	cursor_transition $58, $58, $00, 6, 4, 3, 3 ; 7
-; 0x8ee9
-
-SECTION "Bank 2@4ee9", ROMX[$4ee9], BANK[$2]
 
 ; copies DECK_SIZE number of cards from de to hl in SRAM
 CopyDeckFromSRAM:
@@ -488,6 +485,7 @@ OpenDeckConfirmationMenu:
 	ld [hl], a
 	call HandleDeckConfirmationMenu
 	ret
+; 0x9014
 
 SECTION "Bank 2@5215", ROMX[$5215], BANK[$2]
 
@@ -2185,9 +2183,6 @@ RemoveCardFromDeck:
 	inc bc
 	ld [bc], a
 	ret
-; 0xa295
-
-SECTION "Bank 2@6295", ROMX[$6295], BANK[$2]
 
 UpdateConfirmationCardScreen:
 	ld hl, hffbb

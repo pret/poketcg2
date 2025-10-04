@@ -3306,6 +3306,7 @@ ZeroObjectPositionsAndToggleOAMCopy:
 	ld a, $01
 	ld [wVBlankOAMCopyToggle], a
 	ret
+; 0x5647
 
 SECTION "Bank 1@5670", ROMX[$5670], BANK[$1]
 
@@ -4164,8 +4165,6 @@ PlayAreaScreenMenuFunction:
 .start_or_a
 	scf
 	ret
-
-SECTION "Bank 1@5b46", ROMX[$5b46], BANK[$1]
 
 SelectingBenchPokemonMenu:
 	ldh a, [hKeysPressed]
@@ -5121,9 +5120,6 @@ LoadPlayerDeck:
 	call DecompressSRAMDeck
 	call DisableSRAM
 	ret
-; 0x6128
-
-SECTION "Bank 1@6128", ROMX[$6128], BANK[$1]
 
 ; returns carry if wSkipDelayAllowed is non-0 and B is being held in order to branch
 ; out of the caller's wait frames loop. probably only used for debugging.
@@ -6702,8 +6698,6 @@ GetCardInDuelTempList_OnlyDeckIndex:
 	pop hl
 	ret
 
-SECTION "Bank 1@6b05", ROMX[$6b05], BANK[$1]
-
 ; clear the non-turn holder's duelvars starting at DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX
 ; these duelvars only last a two-player turn at most.
 ClearNonTurnTemporaryDuelvars::
@@ -6859,8 +6853,6 @@ SetFontAndTextBoxFrameColor:
 	ld c, CGB_PAL_SIZE
 	call CopyFontsOrDuelGraphicsBytes
 	ret
-
-SECTION "Bank 1@6c12", ROMX[$6c12], BANK[$1]
 
 Func_6c12::
 	ld hl, $30d8
@@ -7828,8 +7820,6 @@ CheckRainDanceScenario:
 	or a
 	ret
 
-SECTION "Bank 1@7234", ROMX[$7234], BANK[$1]
-
 Func_7234:
 	call HandleDestinyBondSubstatus
 	call HandleFinalBeam
@@ -8158,6 +8148,7 @@ HandleEnergyBurn:
 	ld a, [wTotalAttachedEnergies]
 	ld [wAttachedEnergies], a
 	ret
+; 0x75e7
 
 SECTION "Bank 1@7650", ROMX[$7650], BANK[$1]
 

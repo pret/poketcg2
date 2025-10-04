@@ -296,6 +296,6 @@ DEF wDD37_BUFFER_SIZE   EQU $19
 
 ; TODO: Check if these def's are really necessary
 	const_def $2
-	const SCRIPTED_CARD_POP_ROLAND       ; $2
+	const SCRIPTED_CARD_POP_RONALD       ; $2
 	const SCRIPTED_CARD_POP_IMAKUNI      ; $3
 	const SCRIPTED_RARE_CARD_POP_IMAKUNI ; $4

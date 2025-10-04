@@ -670,6 +670,7 @@ Func_2cbf5:
 .asm_2cc0f
 	scf
 	ret
+; 0x2cc11
 
 SECTION "Bank b@4d23", ROMX[$4d23], BANK[$b]
 
@@ -1209,8 +1210,6 @@ Func_2d9d2:
 	scf
 	ret
 
-SECTION "Bank b@59d8", ROMX[$59d8], BANK[$b]
-
 Func_2d9d8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
@@ -1531,9 +1530,6 @@ Func_2e10f:
 	farcall Func_341c4
 	scf
 	ret
-; 0x2e115
-
-SECTION "Bank b@6115", ROMX[$6115], BANK[$b]
 
 Func_2e115:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -2715,6 +2711,7 @@ Func_2f6ed:
 .asm_2f707
 	scf
 	ret
+; 0x2f709
 
 SECTION "Bank b@77ca", ROMX[$77ca], BANK[$b]
 

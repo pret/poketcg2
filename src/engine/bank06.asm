@@ -2184,9 +2184,6 @@ AttackAnimation_UnusedFF:
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
 	anim_opponent  DUEL_ANIM_QUESTION_MARK
 	anim_end
-; 0x19657
-
-SECTION "Bank 6@5657", ROMX[$5657], BANK[$6]
 
 ; if carry flag is set, only delays
 ; if carry not set:
@@ -4204,7 +4201,7 @@ IngameCardPop:
 	jr .got_partner_and_type
 .Ronald
 	ldtx hl, CardPopRonaldText
-	ld a, SCRIPTED_CARD_POP_ROLAND
+	ld a, SCRIPTED_CARD_POP_RONALD
 ; fallthrough
 .got_partner
 	push af
@@ -5851,7 +5848,7 @@ GetBoosterPack:
 	call AddCardToCollection
 	jr .add_loop
 
-; clear wPlayerCardLocations, count wPlayerDeck into wDuelTemplist,
+; clear wPlayerCardLocations, count wPlayerDeck into wDuelTempList,
 ; then display them
 DisplayBoosterContent:
 	ld a, PLAYER_TURN
