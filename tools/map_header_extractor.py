@@ -111,10 +111,11 @@ def dump_npcinteractions(function_address, map_name_camelcase):
 	# the functions should always have:
 	# <ld hl, xxx_NPCInteractions>
 	# <call Func_328c>
+	# ONLY LightningFortCatherine calls <Func_32aa instead>
 	temp = function_address
 	table_start_address = None
 	while rom[temp] != 0xc9: # ret
-		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and rom[temp+4] == 0x8c and rom[temp+5] == 0x32:
+		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and (rom[temp+4] in [0x8c,0xaa]) and rom[temp+5] == 0x32:
 			table_start_address = get_pointer(temp + 1)
 			break
 		temp += 1
@@ -229,10 +230,11 @@ def dump_owinteractions(function_address, map_name_camelcase):
 	# the functions should always have:
 	# <ld hl, xxx_OWInteractions>
 	# <call Func_32bf>
+	# Only the two SealedFort maps instead have: <call Func_324d.asm_3254>
 	table_start_address = None
 	temp = function_address
 	while rom[temp] != 0xc9: # ret
-		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and rom[temp+4] == 0xbf and rom[temp+5] == 0x32:
+		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and (rom[temp+4] in [0xbf,0x54]) and rom[temp+5] == 0x32:
 			table_start_address = get_pointer(temp + 1)
 			break
 		temp += 1
