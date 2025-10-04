@@ -391,7 +391,7 @@ Func_40682:
 Func_406d1:
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_11471
+	farcall _SetOWObjectAnimStruct1Flag2
 
 	ld a, [wPlayerOWLocation]
 	sla a ; *2

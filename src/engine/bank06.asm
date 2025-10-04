@@ -2888,6 +2888,8 @@ InitSaveData:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; fallthrough
+.PrintName:
 	ld de, wDuelTempList
 	call CopyText
 	ld c, $0f
@@ -3217,7 +3219,7 @@ DoCardPop:
 ;	fallthrough
 
 ; hl = text ID
-Func_19d24:
+DisplayCardReceivedThroughPop:
 	farcall _DisplayCardDetailScreen
 	call ResumeSong
 	bank1call SetupDuel
@@ -3257,7 +3259,7 @@ DoRareCardPop:
 	ld a, SCENE_RARE_CARD_POP_ERROR
 	jr c, ShowCardPopError
 	ldtx hl, ReceivedThroughRareCardPopText
-	jr Func_19d24
+	jr DisplayCardReceivedThroughPop
 
 ; a = scene ID
 LoadCardPopSceneAndHandleCommunications:
@@ -3288,6 +3290,8 @@ LoadCardPopSceneAndHandleCommunications:
 	call AddCardToCollection
 	xor a
 	call BankswitchSRAM
+
+.add_sram0
 	ld hl, wLoadedCard1ID
 	ld e, [hl]
 	inc hl
@@ -3529,9 +3533,34 @@ LookUpNameInCardPopNameList:
 .not_same
 	scf
 	ret
-; 0x19f1f
 
-SECTION "Bank 6@5f49", ROMX[$5f49], BANK[$6]
+; in tcg2, a player may Card Pop! with the same partner again
+; whenever the two duel each other
+ResetCardPopStatusWithSamePartnerOnLinkDuel:
+	call EnableSRAM
+	ld a, BANK("SRAM1")
+	call BankswitchSRAM
+	ld hl, sCardPopNameList
+	ld c, CARDPOP_NAME_LIST_MAX_ELEMS
+.loop_name_list
+	push hl
+	ld de, wNameBuffer
+	call LookUpNameInCardPopNameList.CompareNames
+	pop hl
+	jr nc, .found_name
+	ld de, NAME_BUFFER_LENGTH
+	add hl, de
+	dec c
+	jr nz, .loop_name_list
+	jr .done
+.found_name
+	ld [hl], 0
+; fallthrough
+.done
+	xor a
+	call BankswitchSRAM
+	call DisableSRAM
+	ret
 
 ; loads in wLoadedCard1 a random card to be received
 ; this selection is done based on the rarity
@@ -3553,10 +3582,11 @@ DecideCardToReceiveFromCardPop:
 	call .CalculateNameHash
 	pop bc
 
-; de = other player's name  hash
-; bc = this player's name hash
+; de = other player's name hash
+; bc =  this player's name hash
 
 ; updates RNG values to subtraction of these two hashes
+.get_rng
 	ld hl, wRNG1
 	ld a, b
 	sub d
@@ -3598,19 +3628,19 @@ DecideCardToReceiveFromCardPop:
 	; >= 154
 
 	ld a, MUSIC_BOOSTER_PACK
-	ld b, CIRCLE
+	ld b, CARDPOP_CIRCLE
 	jr .got_rarity
 .diamond_rarity
 	ld a, MUSIC_BOOSTER_PACK
-	ld b, DIAMOND
+	ld b, CARDPOP_DIAMOND
 	jr .got_rarity
 .star_rarity
 	ld a, MUSIC_MATCHVICTORY
-	ld b, STAR
+	ld b, CARDPOP_STAR
 	jr .got_rarity
 .phantom
 	ld a, MUSIC_MEDAL
-	ld b, $fe
+	ld b, CARDPOP_PHANTOM
 .got_rarity
 	ld [wCardPopCardObtainSong], a
 	ld a, b
@@ -4160,9 +4190,200 @@ ViewCardPopRecords:
 .PrintText:
 	call InitTextPrinting
 	jp ProcessText
-; 0x1a36a
 
-SECTION "Bank 6@64b1", ROMX[$64b1], BANK[$6]
+IngameCardPop:
+.Imakuni_first
+	ldtx hl, CardPopImakuniText
+	ld a, SCRIPTED_CARD_POP_IMAKUNI
+	jr .got_partner
+.Imakuni_rare
+	ldtx hl, CardPopImakuniText
+	ld a, SCRIPTED_RARE_CARD_POP_IMAKUNI
+	push af
+	ld a, IRPARAM_RARE_CARD_POP
+	jr .got_partner_and_type
+.Ronald
+	ldtx hl, CardPopRonaldText
+	ld a, SCRIPTED_CARD_POP_ROLAND
+; fallthrough
+.got_partner
+	push af
+	ld a, IRPARAM_CARD_POP
+; fallthrough
+.got_partner_and_type
+	ld [wCardPopType], a
+	call InitSaveData.PrintName
+	ld c, NAME_BUFFER_LENGTH
+	ld hl, wDefaultText
+	ld de, wNameBuffer
+.loop_char
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	or a
+	jr nz, .loop_char
+	inc c
+	jr .set_filler
+.loop_filler
+	xor a
+	ld [de], a
+	inc de
+.set_filler
+	dec c
+	jr nz, .loop_filler
+
+	pop af
+	ld [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1], a
+	ld bc, NAME_BUFFER_LENGTH
+	ld hl, wNameBuffer
+	ld de, wCardPopRecordName
+	call CopyDataHLtoDE
+	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
+	cp SCRIPTED_CARD_POP_IMAKUNI
+	jr z, .with_Imakuni_first
+
+; with Ronald or Imakuni_rare
+; fully random output
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	ld hl, wNameBuffer
+	call DecideCardToReceiveFromCardPop.CalculateNameHash
+	push de
+	call EnableSRAM
+	ld hl, sPlayerName
+	call DecideCardToReceiveFromCardPop.CalculateNameHash
+	call DisableSRAM
+	pop bc
+	call DecideCardToReceiveFromCardPop.get_rng
+	ld hl, wCardPopRecordTheirCardID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call DecideCardToReceiveFromCardPop
+	ld bc, .data1
+	jr .got_data
+
+; guaranteed to give IMAKUNI_CARD to player
+; and choose a random card for Imakuni? from the list
+.with_Imakuni_first
+	ld a, 6
+	call Random
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, .card_list_Imakuni
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, wCardPopRecordTheirCardID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld de, IMAKUNI_CARD
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, MUSIC_MATCHVICTORY
+	ld [wCardPopCardObtainSong], a
+	ld bc, .data2
+; fallthrough
+.got_data
+	push bc
+	ld hl, wCardPopRecordYourCardID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	ld de, wCardPopRecordNumBattles
+	ld bc, CARDPOP_RECORD_STATS_SIZE
+	call CopyDataHLtoDE
+	ld a, 1
+	ld [de], a
+	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
+	cp SCRIPTED_RARE_CARD_POP_IMAKUNI
+	jr nz, .display_ingame_pop
+
+; Imakuni_rare
+; set his stats: NumBattles = yours / 2, NumCards = yours / 4, NumCoins = 4
+	ld hl, wCardPopRecordNumBattles
+	call EnableSRAM
+	ld a, [sTotalDuelCounter]
+	srl a
+	ld [hli], a
+	ld a, [sTotalDuelCounter + 1]
+	rr a
+	ld [hli], a
+	call DisableSRAM
+	push hl
+	call GetAmountOfCardsOwned
+REPT 2
+	srl h
+	rr l
+ENDR
+	ld e, l
+	ld d, h
+	pop hl
+; wCardPopRecordNumCards
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+; wCardPopRecordNumCoins
+	ld [hl], 4
+	inc hl
+; wCardPopRecordType
+	ld [hl], IRPARAM_RARE_CARD_POP
+; fallthrough
+.display_ingame_pop
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_CARD_POP
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, AreYouBothReadyToCardPopText
+	call PrintScrollableText_NoTextBoxLabel
+	call PauseSong
+	ld a, SCENE_LINK
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, PositionGameBoyColorsAndPressAButtonText
+	call DrawWideTextBox_PrintText
+.loop_input
+	call DoFrame
+	ldh a, [hKeysPressed]
+	and A_BUTTON
+	jr z, .loop_input
+; pressed A
+	call RestoreVBlankFunction
+	ld a, $32
+	ld [wOtherIRCommunicationParams + 3], a
+	call HandleCardPopCommunications.success
+	call LoadCardPopSceneAndHandleCommunications.add_sram0
+	ldtx hl, ReceivedThroughCardPopText
+	call DisplayCardReceivedThroughPop
+	ld hl, wCardPopRecordTheirCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call GetCardName
+	ld l, e
+	ld h, d
+	call LoadTxRam2
+	ret
+
+.card_list_Imakuni:
+	dw BLASTOISE_LV52 ; $0
+	dw GYARADOS       ; $1
+	dw ZAPDOS_LV40    ; $2
+	dw MEW_LV23       ; $3
+	dw MACHAMP_LV67   ; $4
+	dw CHANSEY_LV55   ; $5
+
+; data pointer will be pushed to bc
+; meant to be custom stats?
+.data1
+	db $00, $00, $39, $00, $01
+.data2
+	db $00, $00, $6c, $00, $01
 
 ; sends serial data to printer
 ; if there's an error in connection,
@@ -5302,11 +5523,295 @@ CheckDataCompression:
 	dec e
 	dec e
 	jr .no_carry
-; 0x1ab3e
 
-SECTION "Bank 6@6d41", ROMX[$6d41], BANK[$6]
+; sets up to start a link duel
+; decides which device will pick the number of prizes
+; then exchanges names and duels between the players
+; and starts the main duel routine
+_SetUpAndStartLinkDuel:
+	ld hl, sp+$00
+	ld a, l
+	ld [wDuelReturnAddress], a
+	ld a, h
+	ld [wDuelReturnAddress + 1], a
+	call SetSpriteAnimationsAsVBlankFunction
 
-Func_1ad41:
+	ld a, SCENE_LINK_INTRO_TRANSMITTING
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+
+	bank1call LoadPlayerDeck
+	bank1call DecideLinkDuelVariables
+	push af
+	call RestoreVBlankFunction
+	pop af
+	jp c, .error
+
+	ld a, DUELIST_TYPE_PLAYER
+	ld [wPlayerDuelistType], a
+	ld a, DUELIST_TYPE_LINK_OPP
+	ld [wOpponentDuelistType], a
+	ld a, DUELTYPE_LINK
+	ld [wDuelType], a
+
+	call EmptyScreen
+	ld a, [wSerialOp]
+	cp SERIAL_OP_MASTER_TCG2
+	jr nz, .opponent
+
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	call .ExchangeNamesAndDecks
+	jp c, .error
+	lb de, 6, 2
+	lb bc, 8, 6
+	call DrawRegularTextBox
+	lb de, 7, 4
+	call InitTextPrinting
+	ldtx hl, PrizesNumberText
+	call ProcessTextFromID
+	ldtx hl, ChooseTheNumberOfPrizesText
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	call .PickNumberOfPrizeCards
+	ld a, [wdc08]
+	ld b, a
+	ld a, [wNPCDuelPrizes]
+	call SerialSend8Bytes
+	jr c, .error
+	call SerialRecv8Bytes
+	jr c, .error
+	ld [wOppCoin], a
+	jr .prizes_decided
+
+.opponent
+	ld a, OPPONENT_TURN
+	ldh [hWhoseTurn], a
+	call .ExchangeNamesAndDecks
+	jr c, .error
+	ldtx hl, PleaseWaitDecidingNumberOfPrizesText
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	call SerialRecv8Bytes
+	jr c, .error
+	ld [wNPCDuelPrizes], a
+	ld a, b
+	ld [wOppCoin], a
+	ld a, [wdc08]
+	call SerialSend8Bytes
+	jr c, .error
+
+.prizes_decided
+	call ExchangeRNG
+	jr c, .error
+	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
+	add 2
+	ld [wOpponentNPCID], a
+	ldh a, [hWhoseTurn]
+	push af
+	call EmptyScreen
+	bank1call SetDefaultPalettes
+	ld a, SHUFFLE_DECK
+	ld [wDuelDisplayedScreen], a
+	farcall DrawDuelistPortraitsAndNames
+	ld a, OPPONENT_TURN
+	ldh [hWhoseTurn], a
+	ld a, [wNPCDuelPrizes]
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ldtx hl, BeginDuelOfXPrizesWithOpponentText
+	call DrawWideTextBox_WaitForInput
+	pop af
+	ldh [hWhoseTurn], a
+	call ExchangeRNG
+	bank1call StartDuel_VS.init
+	call ResetCardPopStatusWithSamePartnerOnLinkDuel
+	ret
+
+.error
+	ld a, -1
+	ld [wDuelResult], a
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_LINK_INTRO_NOT_CONNECTED
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	ldtx hl, TransmissionErrorTryAgainText
+	call DrawWideTextBox_WaitForInput
+	call RestoreVBlankFunction
+	call ResetSerial
+	ret
+
+.ExchangeNamesAndDecks
+	ld de, wDefaultText
+	push de
+	call EnableSRAM
+	ld hl, sPlayerName
+	ld c, NAME_BUFFER_LENGTH
+.copy_player_name_loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copy_player_name_loop
+	call DisableSRAM
+	pop hl
+	ld de, wNameBuffer
+	ld c, NAME_BUFFER_LENGTH
+	call SerialExchangeBytes
+	ret c
+	xor a
+	ld hl, wOpponentName
+	ld [hli], a
+	ld [hl], a
+	ld hl, wPlayerDeck
+	ld de, wOpponentDeck
+	ld c, DECK_SIZE_BYTES
+	call SerialExchangeBytes
+	ret
+
+; handles player choice of number of prize cards
+; pressing left/right makes it decrease/increase respectively
+; selection is confirmed by pressing A button
+.PickNumberOfPrizeCards:
+	ld a, PRIZES_4
+	ld [wNPCDuelPrizes], a
+	xor a
+	ld [wPrinterCurPrizeFrame], a
+.loop_input
+	call DoFrame
+	call UpdateRNGSources
+	ld a, [wNPCDuelPrizes]
+	add SYM_0
+	ld e, a
+
+; check frame counter so that it
+; either blinks or shows number
+	ld hl, wPrinterCurPrizeFrame
+	ld a, [hl]
+	inc [hl]
+	and $10
+	jr z, .no_blink
+	ld e, SYM_SPACE
+.no_blink
+	ld a, e
+	lb bc, 9, 6
+	call WriteByteToBGMap0
+	ldh a, [hDPadHeld]
+	ld b, a
+	ld a, [wNPCDuelPrizes]
+	bit D_LEFT_F, b
+	jr z, .check_d_right
+	dec a
+	cp PRIZES_2
+	jr nc, .got_prize_count
+	ld a, PRIZES_6  ; wrap around to 6
+	jr .got_prize_count
+.check_d_right
+	bit D_RIGHT_F, b
+	jr z, .check_a_button
+	inc a
+	cp PRIZES_6 + 1
+	jr c, .got_prize_count
+	ld a, PRIZES_2
+.got_prize_count
+	ld [wNPCDuelPrizes], a
+	xor a
+	ld [wPrinterCurPrizeFrame], a
+.check_a_button
+	bit A_BUTTON_F, b
+	jr z, .loop_input
+	ret
+
+Func_1acbf:
+	ld [wNPCDuelDeckID], a
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	call EnableSRAM
+	ld hl, sDeck1Name
+	ld c, NUM_DECKS
+.check_player_deck_loop
+	ld a, [hl]
+	or a
+	jr z, .next
+	ld de, DECK_COMPRESSED_STRUCT_SIZE
+	add hl, de
+	dec c
+	jr nz, .check_player_deck_loop
+
+.fallback_too_many
+	ld a, [wNPCDuelDeckID]
+	add 2 ; *_DECK_ID = *_DECK - 2
+	call LoadDeck
+	ld hl, wPlayerDeck
+.add_card_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	jr z, .done_carry
+	call AddCardToCollection
+	jr .add_card_loop
+.done_carry
+	scf
+	ret
+
+.next
+	push hl
+	bank1call CreateTempCardCollection
+	ld a, [wNPCDuelDeckID]
+	add 2 ; *_DECK_ID = *_DECK - 2
+	call LoadDeck
+	ld hl, wPlayerDeck
+.handle_temp_card_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	jr z, .temp_card_done
+	push hl
+	ld hl, wTempCardCollection
+	add hl, de
+	res 7, [hl]
+	inc [hl]
+	ld a, [hl]
+	pop hl
+	cp MAX_AMOUNT_OF_CARD + 1
+	jr c, .handle_temp_card_loop
+	pop hl
+	jr .fallback_too_many
+.temp_card_done
+	pop hl
+	ld a, [wNPCDuelDeckID]
+	add 2 ; *_DECK_ID = *_DECK - 2
+	call InitSaveData.SaveDeck
+	call EnableSRAM
+	ld hl, wPlayerDeck
+.handle_card_collection_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	jr z, .card_collection_done
+	push hl
+	ld hl, sCardCollection
+	add hl, de
+	res 7, [hl]
+	pop hl
+	jr .handle_card_collection_loop
+.card_collection_done
+	call DisableSRAM
+	or a
+	ret
+
+; show screen with the received card at de with the text at hl
+_ShowReceivedCardScreen:
 	push hl
 	push de
 	lb de, $38, $9f
@@ -5320,16 +5825,70 @@ Func_1ad41:
 	ldh [hWhoseTurn], a
 	pop hl
 	farcall _DisplayCardDetailScreen
-.check
+.loop
 	call AssertSongFinished
 	or a
-	jr nz, .check
+	jr nz, .loop
 	call ResumeSong
 	bank1call OpenCardPage_FromHand
 	ret
-; 0x1ad6b
 
-SECTION "Bank 6@6dbd", ROMX[$6dbd], BANK[$6]
+; a = BOOSTER_* constant
+; generate and display its content,
+; and add the drawn cards to the player's collection (sCardCollection)
+GetBoosterPack:
+	farcall GenerateBoosterContent
+	call DisplayBoosterContent
+	ld hl, wPlayerDeck
+.add_loop
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	ret z
+	call AddCardToCollection
+	jr .add_loop
+
+; clear wPlayerCardLocations, count wPlayerDeck into wDuelTemplist,
+; then display them
+DisplayBoosterContent:
+	ld a, PLAYER_TURN
+	ldh [hWhoseTurn], a
+	ld h, a
+	ld l, 0 ; wPlayerDuelVariables (wPlayerCardLocations)
+.clear_loop
+	xor a
+	ld [hli], a
+	ld a, l
+	cp DECK_SIZE
+	jr c, .clear_loop
+	ld hl, wPlayerDeck
+	ld de, wDuelTempList
+	ld c, 0
+.set_list_loop
+	ld a, [hli]
+	or [hl]
+	inc hl
+	jr z, .done
+	ld a, c
+	ld [de], a
+	inc de
+	inc c
+	jr .set_list_loop
+.done
+	ld a, $ff
+	ld [de], a
+	bank1call SetupDuel
+	bank1call InitAndDrawCardListScreenLayout
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, BoosterPackCardsText
+	bank1call SetCardListHeaderAndInfoText
+	ld a, START + A_BUTTON
+	ld [wNoItemSelectionMenuKeys], a
+	bank1call DisplayCardList
+	ret
 
 Func_1adbd:
 	push de

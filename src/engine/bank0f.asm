@@ -66,7 +66,7 @@ Prologue::
 	ld bc, FRAMESET_0B4
 .asm_3c090
 	ld a, [wPlayerOWObject]
-	farcall SetOWObjectFrameset
+	farcall _SetAndInitOWObjectFrameset
 	call .DoGRShipBeamAnimation
 
 	; more GR Ship movement
@@ -101,7 +101,7 @@ Prologue::
 	ld bc, FRAMESET_0B5
 .asm_3c0e1
 	ld a, [wPlayerOWObject]
-	farcall SetOWObjectFrameset
+	farcall _SetAndInitOWObjectFrameset
 
 	ld a, OW_GR_BLIMP
 	farcall _ClearOWObject
@@ -186,7 +186,7 @@ Prologue::
 .MovePlayer:
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_11471
+	farcall _SetOWObjectAnimStruct1Flag2
 	lb de, $24, $68
 	farcall SetOWObjectTargetPosition
 .loop_wait_1

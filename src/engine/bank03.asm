@@ -63,8 +63,8 @@ StartMenu_ContinueFromDiary:
 	cp $03
 	jr z, .asm_c0ab
 	ld a, [wPlayerOWObject]
-	ld b, $01
-	farcall Func_10f16
+	ld b, TRUE
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
@@ -87,8 +87,8 @@ StartMenu_ContinueFromDiary:
 
 .asm_c0ab
 	ld a, [wPlayerOWObject]
-	ld b, $01
-	farcall Func_10f16
+	ld b, TRUE
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
@@ -121,7 +121,7 @@ StartMenu_ContinueDuel:
 	call Func_eb16
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
@@ -140,14 +140,15 @@ StartMenu_CardPop:
 	ccf
 	ret
 
+; jump to .PointerTable[a]
 Func_c12e::
 	sla a
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -156,29 +157,30 @@ Func_c12e::
 .PointerTable
 	dw Func_31a1 ; $00
 	dw Func_c162 ; $01
-	dw $417d     ; $02
-	dw $4169     ; $03
-	dw $4183     ; $04
+	dw Func_c17d ; $02
+	dw Func_c169 ; $03
+	dw Func_c183 ; $04
 	dw Func_31a8 ; $05
-	dw $4199     ; $06
+	dw Func_c199 ; $06
 	dw Func_c162 ; $07
-	dw $4163     ; $08
-	dw $4189     ; $09
+	dw Func_c163 ; $08
+	dw Func_c189 ; $09
 	dw Func_3234 ; $0a
-	dw $418f     ; $0b
+	dw Func_c18f ; $0b
 	dw Func_c162 ; $0c
 	dw Func_c162 ; $0d
 	dw Func_c162 ; $0e
-	dw $416f     ; $0f
-	dw $4175     ; $10
+	dw Func_c16f ; $0f
+	dw Func_c175 ; $10
 	dw $41a2     ; $11
 	dw $41a6     ; $12
 
 Func_c162:
 	ret
 
+; clear wd582
 Func_c163:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
@@ -207,19 +209,21 @@ Func_c183:
 	call Func_33a3
 	ret
 
+; clear wd582, dupe of Func_c163
 Func_c189:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
 Func_c18f:
 	farcall PlayCurrentSong
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
+; clear wd582, then Func_32f6
 Func_c199:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	call Func_32f6
 	ret
@@ -326,10 +330,10 @@ Func_c24d:
 	ld [wd586], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
-	ld [wd611], a
-	ld [wd612], a
-	ld [wd613], a
-	ld [wd614], a
+	ld [wd611 + 0], a
+	ld [wd611 + 1], a
+	ld [wd613 + 0], a
+	ld [wd613 + 1], a
 	call Func_ebc6
 	jr nc, .asm_c299
 	call Func_eb39
@@ -810,9 +814,9 @@ GetReceivingCardLongName:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -867,9 +871,9 @@ GetReceivingCardShortName:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -926,9 +930,9 @@ GetReceivedCardText:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	push hl
@@ -943,9 +947,9 @@ GetReceivedCardText:
 	ldtx bc, ReceivedCardText_2
 	jr .got_text
 .load_received_text
-	REPT 4
-		inc hl
-	ENDR
+REPT CARD_RECEIVE_STRUCT_RECEIVED_TEXT - CARD_RECEIVE_STRUCT_TEXTS
+	inc hl
+ENDR
 	push hl
 	call GetReceivingCardShortName
 	call LoadTxRam2
@@ -1221,7 +1225,7 @@ Func_d299::
 	xor a
 	farcall Func_10d40
 	ld a, $01
-	farcall Func_10413
+	farcall SetOWScrollState
 	ld b, $00
 	ld a, [wCurMapGfx]
 	ld c, a
@@ -1236,9 +1240,9 @@ Func_d299::
 	farcall LoadOWObjectInMap
 	farcall StopOWObjectAnimation
 	farcall SetOWObjectAsScrollTarget
-	farcall Func_10eff
+	farcall SetOWObjectFlag5_WithID
 	ld b, $01
-	farcall Func_10f16
+	farcall SetOWObjectAnimStruct1Flag2
 	ld a, $00
 	ld [wd582], a
 	xor a
@@ -1339,19 +1343,19 @@ Func_d3c4:
 Func_d3e9::
 	ld a, [wPlayerOWObject]
 	push af
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	pop af
 	push de
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	pop de
 	ld a, b
 	rlca
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	add d
 	ld d, a
@@ -1748,7 +1752,7 @@ ClearEvents:
 	push bc
 	push hl
 	ld hl, wEventVars
-	ld bc, $68
+	ld bc, EVENT_VAR_BYTES + GENERAL_VAR_BYTES
 .loop
 	xor a
 	ld [hli], a
@@ -1766,13 +1770,14 @@ Func_d683:
 	ld a, EVENT_EE
 	call ZeroOutEventValue
 	ld a, VAR_3B
-	ld c, $00
+	ld c, 0
 	call SetVarValue
 	ret
 
 GetStackEventValue:
 	call GetByteAfterCall
 ;	fallthrough
+
 GetEventValue::
 	push bc
 	push hl
@@ -1802,7 +1807,7 @@ GetEventValue::
 	xor a
 	ret
 
-Func_d6b8:
+GetStackVarValue:
 	call GetByteAfterCall
 ;	fallthrough
 
@@ -1828,6 +1833,7 @@ GetVarValue:
 MaxStackEventValue:
 	call GetByteAfterCall
 ;	fallthrough
+
 MaxOutEventValue::
 	push bc
 	push hl
@@ -1841,19 +1847,21 @@ MaxOutEventValue::
 SetStackEventFalse:
 	call GetByteAfterCall
 ;	fallthrough
+
 ZeroOutEventValue::
 	push bc
 	push hl
 	call GetEventVar
-	ld c, $00
+	ld c, 0
 	call SetEventValue
 	pop hl
 	pop bc
 	ret
 
-Func_d6f0:
+SetStackVarFalse:
 	call GetByteAfterCall
 ;	fallthrough
+
 ZeroOutVarValue:
 	push bc
 	ld c, 0
@@ -1861,7 +1869,7 @@ ZeroOutVarValue:
 	pop bc
 	ret
 
-Func_d6fb:
+SetStackVarValue:
 	call GetByteAfterCall
 ;	fallthrough
 
@@ -1973,10 +1981,10 @@ EventVarMasks:
 	db $01, %00100000 ; EVENT_GOT_ALAKAZAM_COIN
 	db $01, %01000000 ; EVENT_GOT_KABUTO_COIN
 	db $02, %00001111 ; EVENT_GOT_GR_COIN
-	db $02, %00000001 ; EVENT_GOT_GR_COIN_PIECE_1
-	db $02, %00000010 ; EVENT_GOT_GR_COIN_PIECE_2
-	db $02, %00000100 ; EVENT_GOT_GR_COIN_PIECE_3
-	db $02, %00001000 ; EVENT_GOT_GR_COIN_PIECE_4
+	db $02, %00000001 ; EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
+	db $02, %00000010 ; EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
+	db $02, %00000100 ; EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
+	db $02, %00001000 ; EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	db $02, %00010000 ; EVENT_GOT_MAGNEMITE_COIN
 	db $02, %00100000 ; EVENT_GOT_GOLBAT_COIN
 	db $02, %01000000 ; EVENT_GOT_MAGMAR_COIN
@@ -2005,7 +2013,7 @@ EventVarMasks:
 	db $07, %00000010 ; EVENT_TALKED_TO_BRITTANY
 	db $07, %00000100 ; EVENT_TALKED_TO_KRISTIN
 	db $07, %00001000 ; EVENT_TALKED_TO_HEATHER
-	db $07, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_BRITTANY
+	db $07, %00010000 ; EVENT_BEAT_BRITTANY
 	db $08, %00000001 ; EVENT_TALKED_TO_RICK
 	db $08, %00000010 ; EVENT_TALKED_TO_DAVID
 	db $08, %00000100 ; EVENT_TALKED_TO_JOSEPH
@@ -2020,7 +2028,7 @@ EventVarMasks:
 	db $0a, %00000010 ; EVENT_TALKED_TO_JENNIFER
 	db $0a, %00000100 ; EVENT_TALKED_TO_NICHOLAS
 	db $0a, %00001000 ; EVENT_TALKED_TO_BRANDON
-	db $0a, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_NICHOLAS
+	db $0a, %00010000 ; EVENT_BEAT_NICHOLAS
 	db $0b, %00000001 ; EVENT_TALKED_TO_KEN
 	db $0b, %00000010 ; EVENT_TALKED_TO_JOHN
 	db $0b, %00000100 ; EVENT_TALKED_TO_ADAM
@@ -2029,7 +2037,7 @@ EventVarMasks:
 	db $0c, %00000010 ; EVENT_TALKED_TO_ROBERT
 	db $0c, %00000100 ; EVENT_TALKED_TO_DANIEL
 	db $0c, %00001000 ; EVENT_TALKED_TO_STEPHANIE
-	db $0c, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MURRAY
+	db $0c, %00100000 ; EVENT_BEAT_MURRAY
 	db $0c, %01000000 ; EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
 	db $0d, %00000001 ; EVENT_TALKED_TO_MIDORI
 	db $0d, %00000010 ; EVENT_TALKED_TO_YUTA
@@ -2038,14 +2046,14 @@ EventVarMasks:
 	db $0d, %00010000 ; EVENT_FREED_RICK
 	db $0d, %00100000 ; EVENT_YUTAS_ROOM_DOOR_STATE
 	db $0d, %01000000 ; EVENT_MIYUKIS_ROOM_DOOR_STATE
-	db $0d, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MORINO
+	db $0d, %10000000 ; EVENT_BEAT_MORINO
 	db $0e, %00000001 ; EVENT_TALKED_TO_RENNA
 	db $0e, %00000010 ; EVENT_TALKED_TO_ICHIKAWA
 	db $0e, %00000100 ; EVENT_TALKED_TO_CATHERINE
 	db $0e, %00001000 ; EVENT_TALKED_TO_TAP
 	db $0e, %00010000 ; EVENT_RENNAS_ROOM_DOOR_STATE
 	db $0e, %00100000 ; EVENT_ICHIKAWAS_ROOM_DOOR_STATE
-	db $0e, %01000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_CATHERINE
+	db $0e, %01000000 ; EVENT_BEAT_CATHERINE
 	db $0f, %00000001 ; EVENT_TALKED_TO_JES
 	db $0f, %00000010 ; EVENT_TALKED_TO_YUKI
 	db $0f, %00000100 ; EVENT_TALKED_TO_SHOKO
@@ -2053,7 +2061,7 @@ EventVarMasks:
 	db $0f, %00010000 ; EVENT_JES_ROOM_DOOR_STATE
 	db $0f, %00100000 ; EVENT_YUKIS_ROOM_DOOR_STATE
 	db $0f, %01000000 ; EVENT_SHOKOS_ROOM_DOOR_STATE
-	db $0f, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_HIDERO
+	db $0f, %10000000 ; EVENT_BEAT_HIDERO
 	db $10, %00000001 ; EVENT_TALKED_TO_MIYAJIMA
 	db $10, %00000010 ; EVENT_TALKED_TO_SENTA
 	db $10, %00000100 ; EVENT_TALKED_TO_AIRA
@@ -2061,11 +2069,11 @@ EventVarMasks:
 	db $10, %00010000 ; EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	db $10, %00100000 ; EVENT_SENTAS_ROOM_BRIDGE_STATE
 	db $10, %01000000 ; EVENT_AIRAS_ROOM_BRIDGE_STATE
-	db $10, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KANOKO
+	db $10, %10000000 ; EVENT_BEAT_KANOKO
 	db $11, %00000001 ; EVENT_TALKED_TO_KAMIYA
 	db $11, %00000010 ; EVENT_TALKED_TO_GODA
 	db $11, %00000100 ; EVENT_TALKED_TO_GRACE
-	db $11, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KAMIYA
+	db $11, %00001000 ; EVENT_BEAT_KAMIYA
 	db $11, %00010000 ; EVENT_FREED_MITCH
 	db $11, %00100000 ; EVENT_GRACES_ROOM_CHEST_STATE
 	db $12, %00000001 ; EVENT_TALKED_TO_MIWA
@@ -2073,25 +2081,25 @@ EventVarMasks:
 	db $12, %00000100 ; EVENT_TALKED_TO_YOSUKE
 	db $12, %00001000 ; EVENT_TALKED_TO_RYOKO
 	db $12, %00010000 ; EVENT_TALKED_TO_MAMI
-	db $12, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MIWA
-	db $12, %01000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KEVIN
-	db $12, %10000000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_YOSUKE
-	db $13, %00000001 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_RYOKO
-	db $13, %00000010 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_MAMI
+	db $12, %00100000 ; EVENT_BEAT_MIWA
+	db $12, %01000000 ; EVENT_BEAT_KEVIN
+	db $12, %10000000 ; EVENT_BEAT_YOSUKE
+	db $13, %00000001 ; EVENT_BEAT_RYOKO
+	db $13, %00000010 ; EVENT_BEAT_MAMI
 	db $14, %00000001 ; EVENT_TALKED_TO_NISHIJIMA
 	db $14, %00000010 ; EVENT_TALKED_TO_ISHII
 	db $14, %00000100 ; EVENT_TALKED_TO_SAMEJIMA
-	db $14, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_NISHIJIMA
-	db $14, %00010000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_ISHII
-	db $14, %00100000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_SAMEJIMA
-	db $14, %00111000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_COLORLESS_ALTAR_MEMBERS
+	db $14, %00001000 ; EVENT_BEAT_NISHIJIMA
+	db $14, %00010000 ; EVENT_BEAT_ISHII
+	db $14, %00100000 ; EVENT_BEAT_SAMEJIMA
+	db $14, %00111000 ; EVENT_BEAT_COLORLESS_ALTAR_MEMBERS
 	db $14, %01000000 ; EVENT_TALKED_TO_NISHIJIMA_2
 	db $14, %10000000 ; EVENT_TALKED_TO_ISHII_2
 	db $15, %00000001 ; EVENT_TALKED_TO_SAMEJIMA_2
-	db $16, %00000001 ; EVENT_TALKED_TO_KANZAJI
+	db $16, %00000001 ; EVENT_TALKED_TO_KANZAKI
 	db $16, %00000010 ; EVENT_TALKED_TO_RUI
-	db $16, %00000100 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_KANZAKI
-	db $16, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUPAT_RUI
+	db $16, %00000100 ; EVENT_BEAT_KANZAKI
+	db $16, %00001000 ; EVENT_BEAT_RUI
 	db $16, %00010000 ; EVENT_MET_GR_GAL_ISHIHARAS_VILLA
 	db $17, %00000001 ; EVENT_TALKED_TO_BIRURITCHI
 	db $18, %00000001 ; EVENT_TALKED_TO_TRADE_NPC_ROCK_CLUB
@@ -2111,7 +2119,7 @@ EventVarMasks:
 	db $19, %01000000 ; EVENT_TALKED_TO_SAM
 	db $19, %10000000 ; EVENT_94
 	db $1a, %00000001 ; EVENT_TALKED_TO_ISHIHARA
-	db $1a, %00000010 ; EVENT_MIDORIS_ROOM_CAGE_STATETTLED_ISHIHARA
+	db $1a, %00000010 ; EVENT_BATTLED_ISHIHARA
 	db $1a, %00000100 ; EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	db $1b, %00000001 ; EVENT_MET_GR1_ROCK_CLUB
 	db $1b, %00000010 ; EVENT_MET_GR4_LIGHTNING_CLUB
@@ -2665,26 +2673,29 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	pop bc
 	ret
 
-; clear wd61a, then copy 32 bytes from [wd619]:[dw wd61b] to wd61e
-Func_dbdb::
+; clear wScriptBufferIndex
+; then copy 32 bytes from the script source to wScriptBuffer
+ReloadScriptBuffer::
 	xor a
-	ld [wd61a], a
-	ld hl, wd61b
+	ld [wScriptBufferIndex], a
+	ld hl, wScriptPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wd61e
-	ld bc, wD61E_STRUCT_SIZE
-	ld a, [wd619]
+	ld de, wScriptBuffer
+	ld bc, wSCRIPT_BUFFER_SIZE
+	ld a, [wScriptBank]
 	call CopyFarHLToDE
 	ret
 
-; for the counter n = [wd61a], get the table index m = [wd61e + n], jump to .PointerTable[m]
+; for n = [wScriptBufferIndex],
+; get the table index m = [wScriptBuffer + n],
+; jump to OverworldScriptTable[m]
 ; applying m in two steps rather than sla, even though m < 128
-Func_dbf2::
-	ld hl, wd61a
+RunOverworldScript::
+	ld hl, wScriptBufferIndex
 	ld a, [hl]
-	ld hl, wd61e
+	ld hl, wScriptBuffer
 	add l
 	ld l, a
 	jr nc, .got_offset
@@ -2692,7 +2703,7 @@ Func_dbf2::
 .got_offset
 	ld a, [hl]
 	ld d, a
-	ld hl, .PointerTable
+	ld hl, OverworldScriptTable
 	add l
 	ld l, a
 	jr nc, .next
@@ -2709,193 +2720,194 @@ Func_dbf2::
 	ld l, a
 	jp hl
 
-.PointerTable
-	dw Func_dd91
-	dw Func_dd9c
-	dw Func_dda6
-	dw Func_ddad
-	dw Func_ddb9
-	dw Func_ddd1
-	dw Func_dde3
-	dw Func_de01
-	dw Func_de1f
-	dw Func_de30
-	dw Func_de3b
-	dw Func_de46
-	dw Func_de51
-	dw Func_de5c
-	dw Func_de76
-	dw Func_de7f
-	dw Func_de88
-	dw Func_de9d
-	dw Func_dea8
-	dw Func_deb4
-	dw Func_dec4
-	dw Func_ded4
-	dw $5eeb
-	dw $5ef5
-	dw $5f03
-	dw $5f11
-	dw $5f1e
-	dw $5f2f
-	dw $5f45
-	dw $5f54
-	dw $5f63
-	dw $5f6d
-	dw $5f87
-	dw $5f9b
-	dw $5fb5
-	dw $5fd0
-	dw $5fdc
-	dw $5fe8
-	dw $5ff3
-	dw $6004
-	dw $601e
-	dw $604f
-	dw $6070
-	dw $608e
-	dw $60b2
-	dw $60c7
-	dw $60da
-	dw $60ed
-	dw $60f3
-	dw $60f9
-	dw $6115
-	dw $6131
-	dw $613c
-	dw $6147
-	dw $616d
-	dw $617b
-	dw $61a0
-	dw $61ae
-	dw $61be
-	dw $61ce
-	dw $61de
-	dw $6209
-	dw $6217
-	dw $6242
-	dw $624c
-	dw $6256
-	dw $636b
-	dw $637b
-	dw $638b
-	dw $6394
-	dw $63a1
-	dw $63ac
-	dw $63c3
-	dw $63cc
-	dw $63da
-	dw $63e8
-	dw $63f8
-	dw $6424
-	dw $6450
-	dw $6466
-	dw $647e
-	dw $64dd
-	dw $64fc
-	dw $6509
-	dw $6512
-	dw $6527
-	dw $6531
-	dw $65d7
-	dw $65e3
-	dw $65eb
-	dw $65f6
-	dw $6601
-	dw $660d
-	dw $6613
-	dw $664e
-	dw $6672
-	dw $667f
-	dw $6689
-	dw $6697
-	dw $66b1
-	dw $66ce
-	dw $670e
-	dw $6724
-	dw $673a
-	dw $6746
-	dw $6752
-	dw $6764
-	dw $6775
-	dw $6786
-	dw $679c
-	dw $67ab
-	dw $67d0
-	dw $67df
-	dw $67e6
-	dw $67ed
-	dw $67f7
-	dw $6801
-	dw $680f
-	dw $6816
-	dw $681d
-	dw $6847
-	dw $684e
-	dw $685b
-	dw $686a
-	dw $6871
-	dw $687d
+OverworldScriptTable:
+	dw ScriptCommand_00 ; $00
+	dw ScriptCommand_01 ; $01
+	dw ScriptCommand_02 ; $02
+	dw ScriptCommand_03 ; $03
+	dw ScriptCommand_04 ; $04
+	dw ScriptCommand_05 ; $05
+	dw ScriptCommand_06 ; $06
+	dw ScriptCommand_07 ; $07
+	dw ScriptCommand_08 ; $08
+	dw ScriptCommand_09 ; $09
+	dw ScriptCommand_0A ; $0a
+	dw ScriptCommand_0B ; $0b
+	dw ScriptCommand_0C ; $0c
+	dw ScriptCommand_0D ; $0d
+	dw ScriptCommand_0E ; $0e
+	dw ScriptCommand_0F ; $0f
+	dw ScriptCommand_10 ; $10
+	dw ScriptCommand_11 ; $11
+	dw ScriptCommand_12 ; $12
+	dw ScriptCommand_13 ; $13
+	dw ScriptCommand_14 ; $14
+	dw ScriptCommand_15 ; $15
+	dw ScriptCommand_16 ; $16
+	dw ScriptCommand_17 ; $17
+	dw ScriptCommand_18 ; $18
+	dw ScriptCommand_19 ; $19
+	dw ScriptCommand_1A ; $1a
+	dw ScriptCommand_1B ; $1b
+	dw ScriptCommand_1C ; $1c
+	dw ScriptCommand_1D ; $1d
+	dw ScriptCommand_1E ; $1e
+	dw ScriptCommand_1F ; $1f
+	dw ScriptCommand_20 ; $20
+	dw ScriptCommand_21 ; $21
+	dw ScriptCommand_22 ; $22
+	dw ScriptCommand_23 ; $23
+	dw ScriptCommand_24 ; $24
+	dw ScriptCommand_25 ; $25
+	dw ScriptCommand_26 ; $26
+	dw ScriptCommand_27 ; $27
+	dw ScriptCommand_28 ; $28
+	dw ScriptCommand_29 ; $29
+	dw ScriptCommand_2A ; $2a
+	dw ScriptCommand_2B ; $2b
+	dw ScriptCommand_2C ; $2c
+	dw ScriptCommand_2D ; $2d
+	dw ScriptCommand_2E ; $2e
+	dw ScriptCommand_2F ; $2f
+	dw ScriptCommand_30 ; $30
+	dw ScriptCommand_31 ; $31
+	dw ScriptCommand_32 ; $32
+	dw ScriptCommand_33 ; $33
+	dw ScriptCommand_34 ; $34
+	dw ScriptCommand_35 ; $35
+	dw ScriptCommand_36 ; $36
+	dw ScriptCommand_37 ; $37
+	dw ScriptCommand_38 ; $38
+	dw ScriptCommand_39 ; $39
+	dw ScriptCommand_3A ; $3a
+	dw ScriptCommand_3B ; $3b
+	dw ScriptCommand_3C ; $3c
+	dw ScriptCommand_3D ; $3d
+	dw ScriptCommand_3E ; $3e
+	dw ScriptCommand_3F ; $3f
+	dw ScriptCommand_40 ; $40
+	dw ScriptCommand_41 ; $41
+	dw ScriptCommand_42 ; $42
+	dw ScriptCommand_43 ; $43
+	dw ScriptCommand_44 ; $44
+	dw ScriptCommand_45 ; $45
+	dw ScriptCommand_46 ; $46
+	dw ScriptCommand_47 ; $47
+	dw ScriptCommand_48 ; $48
+	dw ScriptCommand_49 ; $49
+	dw ScriptCommand_4A ; $4a
+	dw ScriptCommand_4B ; $4b
+	dw ScriptCommand_4C ; $4c
+	dw ScriptCommand_4D ; $4d
+	dw ScriptCommand_4E ; $4e
+	dw ScriptCommand_4F ; $4f
+	dw ScriptCommand_50 ; $50
+	dw ScriptCommand_51 ; $51
+	dw ScriptCommand_52 ; $52
+	dw ScriptCommand_53 ; $53
+	dw ScriptCommand_54 ; $54
+	dw ScriptCommand_55 ; $55
+	dw ScriptCommand_56 ; $56
+	dw ScriptCommand_57 ; $57
+	dw ScriptCommand_58 ; $58
+	dw ScriptCommand_59 ; $59
+	dw ScriptCommand_5A ; $5a
+	dw ScriptCommand_5B ; $5b
+	dw ScriptCommand_5C ; $5c
+	dw ScriptCommand_5D ; $5d
+	dw ScriptCommand_5E ; $5e
+	dw ScriptCommand_5F ; $5f
+	dw ScriptCommand_60 ; $60
+	dw ScriptCommand_61 ; $61
+	dw ScriptCommand_62 ; $62
+	dw ScriptCommand_63 ; $63
+	dw ScriptCommand_64 ; $64
+	dw ScriptCommand_65 ; $65
+	dw ScriptCommand_66 ; $66
+	dw ScriptCommand_67 ; $67
+	dw ScriptCommand_68 ; $68
+	dw ScriptCommand_69 ; $69
+	dw ScriptCommand_6A ; $6a
+	dw ScriptCommand_6B ; $6b
+	dw ScriptCommand_6C ; $6c
+	dw ScriptCommand_6D ; $6d
+	dw ScriptCommand_6E ; $6e
+	dw ScriptCommand_6F ; $6f
+	dw ScriptCommand_70 ; $70
+	dw ScriptCommand_71 ; $71
+	dw ScriptCommand_72 ; $72
+	dw ScriptCommand_73 ; $73
+	dw ScriptCommand_74 ; $74
+	dw ScriptCommand_75 ; $75
+	dw ScriptCommand_76 ; $76
+	dw ScriptCommand_77 ; $77
+	dw ScriptCommand_78 ; $78
+	dw ScriptCommand_79 ; $79
+	dw ScriptCommand_7A ; $7a
+	dw ScriptCommand_7B ; $7b
+	dw ScriptCommand_7C ; $7c
+	dw ScriptCommand_7D ; $7d
 
-; add a to [dw wd61b]
-; if [wd61a] + a < 32, add a to [wd61a] too
-; else call Func_dbdb
-Func_dd0e:
+; add a to [wScriptPointer]
+; if [wScriptBufferIndex] + a < 32, add a to [wScriptBufferIndex] too
+; else ReloadScriptBuffer
+IncreaseScriptPointer:
 	ld c, a
-	ld hl, wd61b
+	ld hl, wScriptPointer
 	add [hl]
 	ld [hli], a
 	jr nc, .next
 	inc [hl]
 .next
 	ld a, c
-	ld hl, wd61a
+	ld hl, wScriptBufferIndex
 	add [hl]
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	ld [hl], a
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptBuffer
 	ret
 
-Call_dbdb_Done:
+ReloadScriptBuffer_Done:
 	ret
 
-Run_dd0e_Inc1:
+IncreaseScriptPointerBy1:
 	ld a, 1
-	jr Func_dd0e
+	jr IncreaseScriptPointer
 
-Run_dd0e_Inc2:
+IncreaseScriptPointerBy2:
 	ld a, 2
-	jr Func_dd0e
+	jr IncreaseScriptPointer
 
-Run_dd0e_Inc3:
+IncreaseScriptPointerBy3:
 	ld a, 3
-	jr Func_dd0e
+	jr IncreaseScriptPointer
 
-Run_dd0e_Inc4:
+IncreaseScriptPointerBy4:
 	ld a, 4
-	jr Func_dd0e
+	jr IncreaseScriptPointer
 
-Run_dd0e_Inc5:
+IncreaseScriptPointerBy5:
 	ld a, 5
-	jr Func_dd0e
+	jr IncreaseScriptPointer
 
-; for the counter j = [wd61a] + a,
-; if j + 1 < 32, c = [wd61e + j], b = [wd61e + j + 1], then a = (b | c)
-; else call Func_dbdb and retry
-Func_dd3b:
+; get 2 db args or 1 dw arg:
+; for j = [wScriptBufferIndex] + a,
+; if j + 1 < 32, bc = [dw wScriptBuffer + j], a = (b | c)
+; else call ReloadScriptBuffer and retry
+Get2ScriptArgs:
 .loop
 	push af
-	ld hl, wd61a
+	ld hl, wScriptBufferIndex
 	add [hl]
 	inc a
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
 	dec a
-	ld hl, wd61e
+	ld hl, wScriptBuffer
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -2907,34 +2919,35 @@ Func_dd3b:
 	or b
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptBuffer
 	pop af
 	jr .loop
 
-Run_dd3b_Inc1:
+Get2ScriptArgs_IncrIndexBy1:
 	ld a, 1
-	jr Func_dd3b
+	jr Get2ScriptArgs
 
-Run_dd3b_Inc2:
+Get2ScriptArgs_IncrIndexBy2:
 	ld a, 2
-	jr Func_dd3b
+	jr Get2ScriptArgs
 
-Run_dd3b_Inc3:
+Get2ScriptArgs_IncrIndexBy3:
 	ld a, 3
-	jr Func_dd3b
+	jr Get2ScriptArgs
 
-; for the counter j = [wd61a] + a,
-; if j < 32, a = [wd61e + j] and update flags accordingly
-; else call Func_dbdb and retry
-Func_dd66:
+; get 1 db arg:
+; for j = [wScriptBufferIndex] + a,
+; if j < 32, a = [wScriptBuffer + j] (with flags)
+; else call ReloadScriptBuffer and retry
+Get1ScriptArg:
 .loop
 	push af
-	ld hl, wd61a
+	ld hl, wScriptBufferIndex
 	add [hl]
-	cp wD61E_STRUCT_SIZE
+	cp wSCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
-	ld hl, wd61e
+	ld hl, wScriptBuffer
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -2944,64 +2957,66 @@ Func_dd66:
 	or a
 	ret
 .fallback
-	call Func_dbdb
+	call ReloadScriptBuffer
 	pop af
 	jr .loop
 
-Run_dd66_Inc1:
+Get1ScriptArg_IncrIndexBy1:
 	ld a, 1
-	jr Func_dd66
+	jr Get1ScriptArg
 
-Run_dd66_Inc2:
+Get1ScriptArg_IncrIndexBy2:
 	ld a, 2
-	jr Func_dd66
+	jr Get1ScriptArg
 
-Run_dd66_Inc3:
+Get1ScriptArg_IncrIndexBy3:
 	ld a, 3
-	jr Func_dd66
+	jr Get1ScriptArg
 
-Run_dd66_Inc4:
+Get1ScriptArg_IncrIndexBy4:
 	ld a, 4
-	jr Func_dd66
+	jr Get1ScriptArg
 
-Func_dd91:
+ScriptCommand_00:
 	ld a, [wd618]
 	set 7, a
 	ld [wd618], a
-	jp Run_dd0e_Inc1
+	jp IncreaseScriptPointerBy1
 
-Func_dd9c:
+ScriptCommand_01:
 	call DoFrame
 	farcall Func_11002
-	jp Run_dd0e_Inc1
+	jp IncreaseScriptPointerBy1
 
-Func_dda6:
+ScriptCommand_02:
 	farcall Func_1101d
-	jp Run_dd0e_Inc1
+	jp IncreaseScriptPointerBy1
 
-Func_ddad:
-	call Run_dd3b_Inc1
+ScriptCommand_03:
+	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	jp Run_dd0e_Inc3
+	jp IncreaseScriptPointerBy3
 
-Func_ddb9:
+ScriptCommand_04:
 	ld hl, wd618
 	bit 0, [hl]
-	jr z, .not_set
-	call Run_dd3b_Inc1
+	jr z, .yes
+; no
+	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.not_set
-	call Run_dd3b_Inc3
+.yes
+	call Get2ScriptArgs_IncrIndexBy3
+; fallthrough
 .next
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	jp Run_dd0e_Inc5
+	jp IncreaseScriptPointerBy5
 
-Func_ddd1:
-	call Run_dd3b_Inc1
+ScriptCommand_05:
+	call Get2ScriptArgs_IncrIndexBy1
 	ld hl, wd60f
 	ld a, [hli]
 	ld d, [hl]
@@ -3009,16 +3024,18 @@ Func_ddd1:
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	jp Run_dd0e_Inc3
+	jp IncreaseScriptPointerBy3
 
-Func_dde3:
+ScriptCommand_06:
 	ld hl, wd618
 	bit 0, [hl]
-	jr z, .not_set
-	call Run_dd3b_Inc1
+	jr z, .yes
+; no
+	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.not_set
-	call Run_dd3b_Inc3
+.yes
+	call Get2ScriptArgs_IncrIndexBy3
+; fallthrough
 .next
 	ld hl, wd60f
 	ld a, [hli]
@@ -3027,65 +3044,74 @@ Func_dde3:
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	jp Run_dd0e_Inc5
+	jp IncreaseScriptPointerBy5
 
-Func_de01:
-	call Run_dd3b_Inc1
+ScriptCommand_07:
+	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	push hl
-	call Run_dd66_Inc3
+	call Get1ScriptArg_IncrIndexBy3
 	pop hl
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ld hl, wd618
 	or a
 	jr nz, .no
+; yes
 	set 0, [hl]
-	jp Run_dd0e_Inc4
+	jp IncreaseScriptPointerBy4
 .no
 	res 0, [hl]
-	jp Run_dd0e_Inc4
+	jp IncreaseScriptPointerBy4
 
-Func_de1f:
-	call Run_dd3b_Inc1
+ScriptCommand_08:
+	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
-	ld [wd61b], a
+	ld [wScriptPointer], a
 	ld a, b
-	ld [wd61b + 1], a
-	call Func_dbdb
-	jp Call_dbdb_Done
+	ld [wScriptPointer + 1], a
+	call ReloadScriptBuffer
+	jp ReloadScriptBuffer_Done
 
-Func_de30:
+ScriptCommand_09:
 	ld hl, wd618
 	bit 0, [hl]
-	jp nz, Func_de1f
-	jp Run_dd0e_Inc3
+; no
+	jp nz, ScriptCommand_08
+; yes
+	jp IncreaseScriptPointerBy3
 
-Func_de3b:
+ScriptCommand_0A:
 	ld hl, wd618
 	bit 0, [hl]
-	jp z, Func_de1f
-	jp Run_dd0e_Inc3
+; yes
+	jp z, ScriptCommand_08
+; no
+	jp IncreaseScriptPointerBy3
 
-Func_de46:
+ScriptCommand_0B:
 	ld hl, wd618
 	bit 1, [hl]
-	jp nz, Func_de1f
-	jp Run_dd0e_Inc3
+; invalid
+	jp nz, ScriptCommand_08
+; valid
+	jp IncreaseScriptPointerBy3
 
-Func_de51:
+ScriptCommand_0C:
 	ld hl, wd618
 	bit 1, [hl]
-	jp z, Func_de1f
-	jp Run_dd0e_Inc3
+; valid
+	jp z, ScriptCommand_08
+; invalid
+	jp IncreaseScriptPointerBy3
 
-; for x = [wd61e + [wd61a] + 1],
+; for x = [wScriptBuffer + [wScriptBufferIndex] + 1],
 ; set bit 0 at wd618 if x = [wd616],
 ; set bit 1 at wd618 if x > [wd616],
 ; else reset both bits,
-; then Run_dd0e_Inc2
-Func_de5c:
-	call Run_dd66_Inc1
+; then IncreaseScriptPointerBy2
+ScriptCommand_0D:
+	call Get1ScriptArg_IncrIndexBy1
 	ld c, a
 	ld a, [wd616]
 	ld hl, wd618
@@ -3098,79 +3124,1516 @@ Func_de5c:
 	jr nc, .bit1_ok
 	set 1, [hl]
 .bit1_ok
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_de76:
-	call Run_dd66_Inc1
+ScriptCommand_0E:
+	call Get1ScriptArg_IncrIndexBy1
 	call MaxOutEventValue
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_de7f:
-	call Run_dd66_Inc1
+ScriptCommand_0F:
+	call Get1ScriptArg_IncrIndexBy1
 	call ZeroOutEventValue
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_de88:
-	call Run_dd66_Inc1
+ScriptCommand_10:
+	call Get1ScriptArg_IncrIndexBy1
 	call GetEventValue
 	ld hl, wd618
 	jr z, .set
 ; reset
 	res 0, [hl]
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 .set
 	set 0, [hl]
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_de9d:
-	call Run_dd3b_Inc1
+ScriptCommand_11:
+	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	ld c, b
 	call SetVarValue
-	jp Run_dd0e_Inc3
+	jp IncreaseScriptPointerBy3
 
-Func_dea8:
-	call Run_dd66_Inc1
+ScriptCommand_12:
+	call Get1ScriptArg_IncrIndexBy1
 	call GetVarValue
 	ld [wd616], a
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_deb4:
-	call Run_dd66_Inc1
+; inc VAR_* constant value
+ScriptCommand_13:
+	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call GetVarValue
 	inc a
 	ld c, a
 	pop af
 	call SetVarValue
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_dec4:
-	call Run_dd66_Inc1
+; dec VAR_* constant value
+ScriptCommand_14:
+	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call GetVarValue
 	dec a
 	ld c, a
 	pop af
 	call SetVarValue
-	jp Run_dd0e_Inc2
+	jp IncreaseScriptPointerBy2
 
-Func_ded4:
-	call Run_dd66_Inc1
+ScriptCommand_15:
+	call Get1ScriptArg_IncrIndexBy1
 	push af
-	call Run_dd3b_Inc2
+	call Get2ScriptArgs_IncrIndexBy2
 	ld d, c
 	ld e, b
 	push de
-	call Run_dd66_Inc4
+	call Get1ScriptArg_IncrIndexBy4
 	ld b, a
 	pop de
 	pop af
 	farcall LoadOWObjectInMap
-	jp Run_dd0e_Inc5
-; 0xdeeb
+	jp IncreaseScriptPointerBy5
 
-SECTION "Bank 3@6883", ROMX[$6883], BANK[$3]
+ScriptCommand_16:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall ClearOWObject
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_17:
+	call Get1ScriptArg_IncrIndexBy1
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_18:
+	call Get1ScriptArg_IncrIndexBy1
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_19:
+	call Get1ScriptArg_IncrIndexBy1
+	ld c, a
+.delay_loop
+	call DoFrame
+	dec c
+	jr nz, .delay_loop
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_1A:
+	call Get2ScriptArgs_IncrIndexBy1
+	push bc
+	call Get2ScriptArgs_IncrIndexBy3
+	ld d, c
+	ld e, b
+	pop bc
+	farcall Func_12c0ce
+	jp IncreaseScriptPointerBy5
+
+ScriptCommand_1B:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	farcall Func_1022a
+	call Func_c63e
+	farcall Func_10252
+	call WaitPalFading
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_1C:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectTilePosition
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_1D:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wd60e]
+	farcall SetOWObjectTilePosition
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_1E:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall SetOWScrollState
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_1F:
+	call Get2ScriptArgs_IncrIndexBy1
+	sla c
+	sla b
+	ld d, c
+	ld e, b
+	farcall Func_104ad
+.delay_loop
+	call DoFrame
+	farcall CheckOWScroll
+	or a
+	jr nz, .delay_loop
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_20:
+	call Get1ScriptArg_IncrIndexBy1
+	ld [wd60e], a
+	call Get2ScriptArgs_IncrIndexBy2
+	ld a, c
+	ld [wd60f], a
+	ld a, b
+	ld [wd60f + 1], a
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_21:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectTilePosition
+	call Get1ScriptArg_IncrIndexBy3
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_22:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld d, c
+	ld e, b
+	pop af
+	push af
+	farcall SetOWObjectTilePosition
+	call Get1ScriptArg_IncrIndexBy4
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy5
+
+ScriptCommand_23:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, b
+	ld b, c
+	farcall StartPalFadeFromBlackOrWhite
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_24:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, b
+	ld b, c
+	farcall StartPalFadeToBlackOrWhite
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_25:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_26:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld d, c
+	ld e, b
+	pop af
+	farcall SetOWObjectTilePosition
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_27:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, c
+	ld e, b
+	ld a, [wd60e]
+	farcall SetOWObjectTilePosition
+	call Get1ScriptArg_IncrIndexBy3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_28:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, b
+	ld b, c
+	ld c, a
+	ld a, [wPlayerOWObject]
+	farcall StartOWObjectAnimation
+	farcall ResetOWObjectFlag5_WithID
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	ld a, [wPlayerOWObject]
+	farcall StopOWObjectAnimation
+	farcall SetOWObjectFlag5_WithID
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_29:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld a, b
+	ld b, c
+	ld c, a
+	pop af
+	push af
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	pop af
+	push af
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	pop af
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_2A:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, b
+	ld b, c
+	ld c, a
+	ld a, [wd60e]
+	farcall Func_10e3c
+.delay_loop
+	call DoFrame
+	ld a, [wd60e]
+	farcall GetOWObjectSpriteAnimFlags
+	bit 5, a
+	jr nz, .delay_loop
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_2B:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [wScriptBank]
+	ld b, a
+	ld a, [wPlayerOWObject]
+	farcall Func_10def
+	farcall ResetOWObjectFlag5_WithID
+	call Get1ScriptArg_IncrIndexBy3
+	or a
+	jr z, .not_set
+	ld a, [wPlayerOWObject]
+	farcall StartOWObjectAnimation
+.not_set
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_2C:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld l, c
+	ld h, b
+	ld a, [wScriptBank]
+	ld b, a
+	pop af
+	farcall Func_10def
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_2D:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [wScriptBank]
+	ld b, a
+	ld a, [wd60e]
+	farcall Func_10def
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_2E:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	ld [wNPCDuelDeckID], a
+	ld a, b
+	ld [wDuelStartTheme], a
+	ld hl, wd583
+	set 1, [hl]
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_2F:
+	call Func_3340
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_30:
+	call WaitPalFading
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_31:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	call GetCardCountInCollectionAndDecks
+	ld [wd616], a
+	jr c, .set
+; reset
+	ld hl, wd618
+	res 0, [hl]
+	jr .done
+.set
+	ld hl, wd618
+	set 0, [hl]
+.done
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_32:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	call GetCardCountInCollection
+	ld [wd616], a
+	jr c, .set
+	ld hl, wd618
+; reset
+	res 0, [hl]
+	jr .done
+.set
+	ld hl, wd618
+	set 0, [hl]
+.done
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_33:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	call AddCardToCollection
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_34:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	call RemoveCardFromCollection
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_35:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	push hl
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	push de
+	call Get1ScriptArg_IncrIndexBy3
+	pop de
+	pop hl
+	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
+	ld hl, wd618
+	or a
+	jr nz, .reset
+; set
+	set 0, [hl]
+	jp IncreaseScriptPointerBy4
+.reset
+	res 0, [hl]
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_36:
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	ld a, b
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_37:
+	call Get1ScriptArg_IncrIndexBy1
+	call GetVarValue
+	push af
+	call Get1ScriptArg_IncrIndexBy2
+	ld c, a
+	pop af
+	cp c
+	push af
+	ld hl, wd618
+	jr z, .set_0
+; reset 0
+	res 0, [hl]
+	jr .bit0_done
+.set_0
+	set 0, [hl]
+.bit0_done
+	pop af
+	jr c, .set_1
+; reset 1
+	res 1, [hl]
+	jr .bit1_done
+.set_1
+	set 1, [hl]
+.bit1_done
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_38:
+	ld a, [wd60e]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	ld a, b
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_39:
+	ld a, [wd60e]
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_3A:
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_3B:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall SetOWObjectAsScrollTarget
+	ld a, 1
+	farcall SetOWScrollState
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_3C:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, b
+	ld e, c
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	ld a, [wd60e]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	inc b
+	ld a, b
+	and 3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_3D:
+	ld a, [wd616]
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_3E:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, b
+	ld e, c
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	ld a, [wd60e]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	dec b
+	ld a, b
+	and 3
+	ld b, a
+	ld a, [wd60e]
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_3F:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall StopOWObjectAnimFlag6
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_40:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall StartOWObjectAnimFlag6
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_41:
+	call ResetDuelDeckRequirementStatus
+	call Get1ScriptArg_IncrIndexBy1
+	ld hl, DuelRequirementFunctionMap
+	call Func_344c
+	jp IncreaseScriptPointerBy2
+
+ResetDuelDeckRequirementStatus:
+	ld hl, wd618
+	res 1, [hl]
+	ret
+
+DuelDeckRequirementFailed:
+	ld hl, wd618
+	set 1, [hl]
+	ret
+
+; GR Grass
+DuelMiyukiRequirement:
+	ld a, STICKY_POISON_GAS_DECK_ID
+	jp CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Lightning
+DuelRennaRequirement:
+	ld a, CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
+	jp CheckDuelDeckRequirementWithNPCDeckID
+
+DuelIchikawaRequirement:
+	ld a, THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Fire
+DuelYukiRequirement:
+	ld a, FIREBALL_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelShokoRequirement:
+	ld a, EEVEE_SHOWDOWN_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Water
+DuelMiyajimaRequirement:
+	ld a, WHIRLPOOL_SHOWER_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelSentaRequirement:
+	ld a, PARALYZED_PARALYZED_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Fighting
+DuelGodaRequirement:
+	ld a, ROCK_BLAST_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelGraceRequirement:
+	ld a, FULL_STRENGTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Psychic
+DuelMiwaRequirement:
+	ld a, DIRECT_HIT_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelYosukeRequirement:
+	ld a, BAD_DREAM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+DuelRyokoRequirement:
+	ld a, POKEMON_POWER_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; GR Castle
+DuelKanzakiRequirement:
+	ld a, BAD_GUYS_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID
+
+; Colorless Altar
+DuelNishijimaRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_05
+	call SetVarValue
+	ld a, SNORLAX_GUARD_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelNishijimaRequirement_Use:
+	ld a, VAR_05
+	call GetVarValue
+	ld e, a
+	ld a, SNORLAX_GUARD_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelIshiiRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_06
+	call SetVarValue
+	ld a, EYE_OF_THE_STORM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelIshiiRequirement_Use:
+	ld a, VAR_06
+	call GetVarValue
+	ld e, a
+	ld a, EYE_OF_THE_STORM_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelSamejimaRequirement_Reroll:
+	ld a, 3
+	call Random
+	ld c, a
+	ld e, a
+	ld a, VAR_07
+	call SetVarValue
+	ld a, SUDDEN_GROWTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+DuelSamejimaRequirement_Use:
+	ld a, VAR_07
+	call GetVarValue
+	ld e, a
+	ld a, SUDDEN_GROWTH_DECK_ID
+	jr CheckDuelDeckRequirementWithNPCDeckID_TxRam2
+
+CheckDuelDeckRequirementWithNPCDeckID:
+	farcall LoadDeckIDData
+	xor a
+	ld e, a
+	farcall CheckDuelDeckRequirement
+	call c, DuelDeckRequirementFailed
+	ret
+
+CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
+	push de
+	farcall LoadDeckIDData
+	pop de
+	farcall CheckDuelDeckRequirement
+	push af
+	call LoadTxRam2
+	ld a, l
+	ld [wTxRam2_b], a
+	ld a, h
+	ld [wTxRam2_b + 1], a
+	pop af
+	call c, DuelDeckRequirementFailed
+	ret
+
+DuelRequirementFunctionMap:
+	key_func $00, DuelMiyukiRequirement
+	key_func $01, DuelRennaRequirement
+	key_func $02, DuelIchikawaRequirement
+	key_func $03, DuelYukiRequirement
+	key_func $04, DuelShokoRequirement
+	key_func $05, DuelMiyajimaRequirement
+	key_func $06, DuelSentaRequirement
+	key_func $07, DuelGodaRequirement
+	key_func $08, DuelGraceRequirement
+	key_func $09, DuelMiwaRequirement
+	key_func $0a, DuelYosukeRequirement
+	key_func $0b, DuelRyokoRequirement
+	key_func $0c, DuelNishijimaRequirement_Reroll
+	key_func $0d, DuelNishijimaRequirement_Use
+	key_func $0e, DuelIshiiRequirement_Reroll
+	key_func $0f, DuelIshiiRequirement_Use
+	key_func $10, DuelSamejimaRequirement_Reroll
+	key_func $11, DuelSamejimaRequirement_Use
+	key_func $12, DuelKanzakiRequirement
+	db $ff
+
+ScriptCommand_42:
+	ld a, [wd60e]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	ld a, b
+	xor SPRITE_ANIM_STRUCT1_FLAG1
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_43:
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectAnimStruct1Flag0And1
+	ld a, b
+	xor SPRITE_ANIM_STRUCT1_FLAG1
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_44:
+	call Get1ScriptArg_IncrIndexBy1
+	call PlaySFX
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_45:
+	call Get1ScriptArg_IncrIndexBy1
+	call PlaySFX
+	farcall WaitForSFXToFinish
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_46:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	call LoadTxRam2
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_47:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .yes
+; no
+	call Get2ScriptArgs_IncrIndexBy1
+	jr .next
+.yes
+	call Get2ScriptArgs_IncrIndexBy3
+.next
+	ld l, c
+	ld h, b
+	call LoadTxRam2
+	jp IncreaseScriptPointerBy5
+
+ScriptCommand_48:
+	call Get1ScriptArg_IncrIndexBy1
+	call WaitForOWObjectAnimation
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_49:
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectTilePosition
+	ld a, d
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_4A:
+	ld a, [wPlayerOWObject]
+	farcall GetOWObjectTilePosition
+	ld a, e
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_4B:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	ld a, [wd616]
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_4C:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld d, b
+	ld e, c
+	pop af
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+	push af
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	farcall GetOWObjectAnimStruct1Flag0And1
+	inc b
+	ld a, b
+	and 3
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_4D:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	ld d, b
+	ld e, c
+	pop af
+.delay_loop_d
+	ld c, 4
+.delay_loop_c
+	push de
+	push af
+.delay_loop_e
+	call DoFrame
+	dec e
+	jr nz, .delay_loop_e
+	farcall GetOWObjectAnimStruct1Flag0And1
+	dec b
+	ld a, b
+	and 3
+	ld b, a
+	pop af
+	farcall SetOWObjectDirection
+	pop de
+	dec c
+	jr nz, .delay_loop_c
+	dec d
+	jr nz, .delay_loop_d
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_4E:
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wd616]
+	ld [hl], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_4F:
+	ld hl, wd63e
+	ld a, [wd61d]
+	push af
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	ld [wd616], a
+	pop af
+	inc a
+	ld [wd61d], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_50:
+	call Get1ScriptArg_IncrIndexBy3
+	ld hl, wd618
+	cp 1
+	jr z, .bit_001
+	cp 2
+	jr z, .bit_010
+	cp 3
+	jr z, .bit_011
+	cp 4
+	jr z, .bit_100
+	jr .next
+.bit_001
+	bit 0, [hl]
+	jr nz, .next
+	jr .bit_mismatched
+.bit_010
+	bit 0, [hl]
+	jr z, .next
+	jr .bit_mismatched
+.bit_011
+	bit 1, [hl]
+	jr nz, .next
+	jr .bit_mismatched
+.bit_100
+	bit 1, [hl]
+	jr z, .next
+.bit_mismatched
+	jp IncreaseScriptPointerBy4
+.next
+	call Get2ScriptArgs_IncrIndexBy1
+	push bc
+	call IncreaseScriptPointerBy4
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wScriptPointer]
+	ld [hli], a
+	ld a, [wScriptPointer + 1]
+	ld [hl], a
+	pop bc
+	ld a, c
+	ld [wScriptPointer], a
+	ld a, b
+	ld [wScriptPointer + 1], a
+	call ReloadScriptBuffer
+	jp ReloadScriptBuffer_Done
+
+ScriptCommand_51:
+	ld hl, wd63e
+	ld a, [wd61d]
+	inc a
+	inc a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	dec hl
+	ld a, [hld]
+	ld [wScriptPointer + 1], a
+	ld a, [hl]
+	ld [wScriptPointer], a
+	call ReloadScriptBuffer
+	jp ReloadScriptBuffer_Done
+
+ScriptCommand_52:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall Func_1db63
+	call WaitPalFading
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_53:
+	ld a, [wd60e]
+	ld [wd616], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_54:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld d, c
+	ld e, b
+	push de
+	call Get1ScriptArg_IncrIndexBy3
+	ld b, a
+	pop de
+	ld a, [wPlayerOWObject]
+	farcall LoadOWObjectInMap
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_55:
+	ld a, [wPlayerOWObject]
+	farcall ClearOWObject
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_56:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	ld a, [hli]
+	cp 0
+	jr z, .zero
+	cp 1
+	jr z, .one
+	cp 2
+	jr z, .two
+	jp IncreaseScriptPointerBy3
+
+.zero
+	push hl
+	xor a
+	ld c, a
+.loop_count_length
+	ld a, [hli]
+	cp $ff
+	jr z, .counted_length
+	inc c
+	jr .loop_count_length
+.counted_length
+	pop hl
+	ld a, c
+	ld [wd667], a
+	jr .give_boosters
+
+.two
+	ld a, [hli]
+	call Random
+	inc a
+	ld [wd667], a
+	jr .copy
+.one
+	ld a, [hli]
+	ld [wd667], a
+.copy
+	ld de, wd64e
+	xor a
+	ld c, a
+.loop_copy_and_count
+	ld a, [hli]
+	cp $ff
+	jr z, .copied_and_counted
+	ld [de], a
+	inc de
+	inc c
+	jr .loop_copy_and_count
+
+.copied_and_counted
+	ld a, c
+	ld [wd65e], a
+	ld de, wd65f
+	ld a, [wd667]
+	ld c, a
+.loop_random_copy
+	ld a, [wd65e]
+	call Random
+	ld hl, wd64e
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [hl]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .loop_random_copy
+
+	ld a, [wd667]
+	ld c, a
+.sort
+	ld a, [wd667]
+	ld b, a
+	ld hl, wd65f
+	ld de, wd65f
+	inc de
+.loop_sort
+	dec b
+	jr z, .consumed_count
+	ld a, [de]
+	cp [hl]
+	jr c, .skip_swap
+	ld a, [de]
+	push af
+	ld a, [hl]
+	ld [de], a
+	pop af
+	ld [hl], a
+.skip_swap
+	inc hl
+	inc de
+	jr .loop_sort
+.consumed_count
+	dec c
+	jr nz, .sort
+
+	ld hl, wd65f
+.give_boosters
+	farcall Func_1022a
+	ld a, [wd667]
+	ld c, a
+	xor a
+	ld b, a
+.loop_boosters
+	ld a, [hli]
+	farcall GiveBoosterPacks
+	inc b
+	dec c
+	jr nz, .loop_boosters
+	farcall Func_10252
+	call WaitPalFading
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_57:
+	call Get1ScriptArg_IncrIndexBy1
+	call Random
+	ld [wd616], a
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_58:
+	ld a, $12
+	call Func_3154
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_59:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	call LoadTxRam3
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_5A:
+	ld a, [wd618]
+	set 6, a
+	ld [wd618], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_5B:
+	call PauseSong
+	call Get1ScriptArg_IncrIndexBy1
+	call PlaySong
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_5C:
+	call ResumeSong
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_5D:
+	call Get1ScriptArg_IncrIndexBy3
+	push af
+	call Get2ScriptArgs_IncrIndexBy1
+	push bc
+	call IncreaseScriptPointerBy4
+	ld hl, wd63e
+	ld a, [wd61d]
+	dec a
+	dec a
+	dec a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	ld a, [wScriptPointer]
+	ld [hli], a
+	ld a, [wScriptPointer + 1]
+	ld [hli], a
+	ld a, [wScriptBank]
+	ld [hl], a
+	pop bc
+	ld a, c
+	ld [wScriptPointer], a
+	ld a, b
+	ld [wScriptPointer + 1], a
+	pop af
+	ld [wScriptBank], a
+	call ReloadScriptBuffer
+	jp ReloadScriptBuffer_Done
+
+ScriptCommand_5E:
+	ld hl, wd63e
+	ld a, [wd61d]
+	inc a
+	inc a
+	inc a
+	ld [wd61d], a
+	add l
+	ld l, a
+	jr nc, .got_pointer
+	inc h
+.got_pointer
+	dec hl
+	ld a, [hld]
+	ld [wScriptBank], a
+	ld a, [hld]
+	ld [wScriptPointer + 1], a
+	ld a, [hl]
+	ld [wScriptPointer], a
+	call ReloadScriptBuffer
+	jp ReloadScriptBuffer_Done
+
+ScriptCommand_5F:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall Func_1f7f1
+	call WaitPalFading
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_60:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall PlayAfterCurrentSong
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_61:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	ld [wTxRam2_b], a
+	ld a, b
+	ld [wTxRam2_b + 1], a
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_62:
+	ld hl, wd618
+	bit 0, [hl]
+	jr z, .yes
+; no
+	call Get2ScriptArgs_IncrIndexBy1
+	jr .next
+.yes
+	call Get2ScriptArgs_IncrIndexBy3
+.next
+	ld a, c
+	ld [wTxRam2_b], a
+	ld a, b
+	ld [wTxRam2_b + 1], a
+	jp IncreaseScriptPointerBy5
+
+ScriptCommand_63:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall GetOWObjectTilePosition
+	push de
+	farcall GetOWObjectAnimStruct1Flag0And1
+	push bc
+	farcall ClearOWObject
+	call Get1ScriptArg_IncrIndexBy2
+	pop bc
+	pop de
+	farcall LoadOWObjectInMap
+	jp IncreaseScriptPointerBy3
+
+; for the buffer value n,
+; - if n = 0 or n >= 29, skip
+; - else, set bit (m-1) of [dw hl] and Func_1f24e, where
+;   - hl = wd611 and m = n    if 0 < n <= 16,
+;   - hl = wd613 and m = n-16 if 16 < n < 29,
+; then IncreaseScriptPointerBy2
+ScriptCommand_64:
+	call Get1ScriptArg_IncrIndexBy1
+	or a
+	jr z, .done
+	cp $1d
+	jr nc, .done
+	ld hl, wd611
+	cp $10 + 1
+	jr c, .set_bitmask
+	inc hl
+	inc hl ; wd613
+	sub $10
+.set_bitmask
+	ld de, 1
+.set_bitmask_loop
+	dec a
+	jr z, .got_bitmask
+	sla e
+	rl d
+	jr .set_bitmask_loop
+.got_bitmask
+	ld a, [hli]
+	ld c, a
+	ld a, [hld]
+	ld b, a
+	ld a, c
+	and e
+	jr nz, .checked_bit
+	ld a, b
+	and d
+.checked_bit
+	jr nz, .done
+; set bit and call
+	ld a, c
+	or e
+	ld c, a
+	ld a, b
+	or d
+	ld b, a
+	ld a, c
+	ld [hli], a
+	ld [hl], b
+	call Get1ScriptArg_IncrIndexBy1
+	farcall Func_1f24e
+.done
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_65:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall CheckOWObjectPointerWithID
+	ld hl, wd618
+	jr nz, .valid
+; invalid
+	set 1, [hl]
+	jp IncreaseScriptPointerBy2
+.valid
+	res 1, [hl]
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_66:
+	call Get1ScriptArg_IncrIndexBy1
+	farcall Func_1acbf
+	ld hl, wd618
+	jr c, .invalid
+; valid
+	res 1, [hl]
+	jp IncreaseScriptPointerBy2
+.invalid
+	set 1, [hl]
+	jp IncreaseScriptPointerBy2
+
+ScriptCommand_67:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	ld c, b
+	farcall Set3FromwDD75
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_68:
+.delay_loop
+	call DoFrame
+	farcall GetwDD75
+	jr nz, .delay_loop
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_69:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld hl, wd60f
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ld l, c
+	ld h, b
+	farcall PrintTextInLabelledScrollableTextBox
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_6A:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	call GetVarValue
+	add b
+	ld b, a
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_6B:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, c
+	call GetVarValue
+	sub b
+	ld b, a
+	ld a, c
+	ld c, b
+	call SetVarValue
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_6C:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld e, c
+	ld d, b
+	farcall Func_1022a
+	call Func_c646
+	farcall Func_10252
+	call WaitPalFading
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_6D:
+	farcall GetDWwDA99
+	ld a, c
+	ld [wd616], a
+	ld a, b
+	ld [wd617], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_6E:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld a, [wd616]
+	ld e, a
+	ld a, [wd617]
+	ld d, a
+	ld hl, wd618
+	res 0, [hl]
+	res 1, [hl]
+	ld a, d
+	cp b
+	jr c, .skip_1
+	jr nz, .skip_1
+	ld a, e
+	cp c
+.skip_1
+	jr nz, .skip_bit0
+	set 0, [hl]
+.skip_bit0
+	jr nc, .skip_bit1
+	set 1, [hl]
+.skip_bit1
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_6F:
+	farcall GetDWwDA9B
+	ld a, c
+	ld [wd616], a
+	ld a, b
+	ld [wd617], a
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_70:
+	farcall Func_114af
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_71:
+	farcall Func_114f9
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_72:
+	call Get2ScriptArgs_IncrIndexBy1
+	farcall Func_1159a
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_73:
+	call Get2ScriptArgs_IncrIndexBy1
+	farcall Func_115de
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_74:
+	ld a, [wd616]
+	ld l, a
+	ld a, [wd617]
+	ld h, a
+	call LoadTxRam3
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_75:
+	farcall Func_1cd4e
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_76:
+	farcall Func_1cd36
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_77:
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
+	call ZeroOutEventValue
+	ld hl, wd618
+	res 1, [hl]
+	farcall Func_1d99e
+	cp $ff
+	jr z, .set
+	or a
+	jr nz, .ok
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
+	call MaxOutEventValue
+	jr .done
+.ok
+	jr .done
+.set
+	ld hl, wd618
+	set 1, [hl]
+.done
+	farcall PlayCurrentSong
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_78:
+	farcall WaitSong
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_79:
+	call Get2ScriptArgs_IncrIndexBy1
+	farcall GetPalettesWithID
+	call FlushAllPalettes
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_7A:
+	call Get1ScriptArg_IncrIndexBy1
+	push af
+	call Get2ScriptArgs_IncrIndexBy2
+	pop af
+	farcall SetAndInitOWObjectFrameset
+	jp IncreaseScriptPointerBy4
+
+ScriptCommand_7B:
+	farcall WaitForSFXToFinish
+	jp IncreaseScriptPointerBy1
+
+ScriptCommand_7C:
+	call Get2ScriptArgs_IncrIndexBy1
+	ld l, c
+	ld h, b
+	farcall PrintTextInWideTextBox
+	jp IncreaseScriptPointerBy3
+
+ScriptCommand_7D:
+	call WaitForWideTextBoxInput
+	jp IncreaseScriptPointerBy1
 
 ; returns carry if no save data
 Func_e883:
@@ -3932,3 +5395,4 @@ ENDR
 	call BankswitchSRAM
 	call DisableSRAM
 	ret
+; 0xedec

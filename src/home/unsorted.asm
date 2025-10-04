@@ -202,7 +202,7 @@ Func_3154::
 
 Func_3195::
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor $02
 	ld b, a
@@ -319,7 +319,7 @@ Func_323f::
 
 Func_324d::
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 .asm_3254
 	ld a, [hli]
 	cp $ff
@@ -404,12 +404,12 @@ Func_32aa::
 
 Func_32bf::
 	ld a, [wPlayerOWObject]
-	farcall Func_10dcb
+	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, $00
 	cp b
 	jr nz, .asm_32d6
 	ld a, [wPlayerOWObject]
-	farcall Func_10da7
+	farcall GetOWObjectTilePosition
 	call Func_324d.asm_3254
 	ret
 .asm_32d6
@@ -464,7 +464,7 @@ Func_32f6::
 	ld a, $05
 	ld [wd582], a
 	ld a, [wPlayerOWObject]
-	farcall Func_10dd3
+	farcall StartOWObjectAnimation
 	scf
 	ccf
 	jr .exit
@@ -501,7 +501,7 @@ Func_3340::
 .asm_3361
 	ld a, [wPlayerOWObject]
 	farcall StopOWObjectAnimation
-	farcall Func_10eff
+	farcall SetOWObjectFlag5_WithID
 	ret
 
 Func_336d::
@@ -592,16 +592,16 @@ Func_33f2::
 .asm_3405
 	res 6, [hl]
 	ldh a, [hBankROM]
-	ld [wd619], a
+	ld [wScriptBank], a
 	; pop return address from stack
 	pop hl
 	ld a, l
-	ld [wd61b + 0], a
+	ld [wScriptPointer + 0], a
 	ld a, h
-	ld [wd61b + 1], a
-	farcall Func_dbdb
+	ld [wScriptPointer + 1], a
+	farcall ReloadScriptBuffer
 .asm_3419
-	farcall Func_dbf2
+	farcall RunOverworldScript
 	ld a, [wd618]
 	bit 7, a
 	jr nz, .asm_342a
@@ -609,9 +609,9 @@ Func_33f2::
 	jr nz, .asm_342a
 	jr .asm_3419
 .asm_342a
-	ld a, [wd619]
+	ld a, [wScriptBank]
 	call BankswitchROM
-	ld hl, wd61b
+	ld hl, wScriptPointer
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
@@ -836,15 +836,15 @@ SwitchWRAMBank::
 	ldh [rSVBK], a
 	ret
 
-Func_3529::
+DoAFrames_WithPreCheck::
 	push af
 	and a
-	jr z, .asm_3533
-.asm_352d
+	jr z, .done
+.loop
 	call DoFrame
 	dec a
-	jr nz, .asm_352d
-.asm_3533
+	jr nz, .loop
+.done
 	pop af
 	ret
 
@@ -953,7 +953,7 @@ Func_35a0::
 	push bc
 	push de
 	push hl
-	ld de, $407f
+	lb de, $40, $7f
 	call SetupText
 	pop hl
 	pop de
@@ -1338,9 +1338,9 @@ LoadOWAnimatedTiles::
 	pop af
 	ret
 
-Func_378c::
-	ld c, $02
-	call Func_3861
+CopyCGBBGPalsFromSource_BeginWithPal2::
+	ld c, 2
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	ret
 
 Func_3792::
@@ -1459,7 +1459,7 @@ Func_383b::
 	push de
 	ld d, b
 	ld e, c
-	farcall Func_10673
+	farcall AdjustDECoordByhSC
 	ld b, d
 	ld c, e
 	pop de
@@ -1483,7 +1483,7 @@ Func_383b::
 ; b = source bank
 ; hl = pointer to palette
 ; c = starting CGB BG pal number
-Func_3861::
+CopyCGBBGPalsFromSource_WithPalOffset::
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -1533,7 +1533,7 @@ DrawRegularTextBoxVRAM0::
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call DrawRegularTextBox
 	pop hl
@@ -1542,12 +1542,12 @@ DrawRegularTextBoxVRAM0::
 	pop af
 	ret
 
-Func_38ad::
+DrawLabeledTextBoxVRAM0::
 	push af
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call DrawLabeledTextBox
 	pop hl
@@ -1861,7 +1861,7 @@ Func_3a39::
 	push de
 	push hl
 	farcall UpdateOWScroll
-	farcall Func_108cd
+	farcall GetwD8A1
 	and a
 	jr nz, .asm_3a50
 	ld e, $01
@@ -1904,9 +1904,9 @@ Func_3a81::
 	farcall Func_1e088
 	ld a, [wActiveScreenAnim]
 	cp $ff
-	jr nz, .skip_update_sprites
+	jr nz, .done
 	farcall UpdateSpriteAnims
-.skip_update_sprites
+.done
 	pop hl
 	pop de
 	pop bc
@@ -2009,7 +2009,7 @@ LoadPortraitPalettes::
 	add $03
 .asm_3b0c
 	ld c, a
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop de
 	pop bc
 	pop af
@@ -2046,7 +2046,7 @@ LoadMenuBoxParams::
 	push af
 	ld a, b
 	call BankswitchROM
-	farcall Func_10673
+	farcall AdjustDECoordByhSC
 	ld a, d
 	ld [wMenuBoxX], a
 	ld a, e
@@ -2223,8 +2223,8 @@ Func_3c2e::
 	push bc
 	push de
 	push hl
-	ld c, $02
-	call Func_3861
+	ld c, 2
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop hl
 	pop de
 	pop bc
@@ -2236,7 +2236,7 @@ StubbedPlayDefaultSong::
 	ret
 
 Func_3c3d::
-	farcall $7, $5ef1
+	farcall Func_1def1
 	ret
 
 ResetAnimationQueue::
@@ -2529,7 +2529,7 @@ LoadBGPalette::
 	ld a, b ; source bank
 	call BankswitchROM
 	ld c, e
-	call Func_3861
+	call CopyCGBBGPalsFromSource_WithPalOffset
 	pop af
 	call BankswitchROM
 	pop hl

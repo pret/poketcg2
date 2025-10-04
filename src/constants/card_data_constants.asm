@@ -139,6 +139,13 @@ DEF STAR      EQU $2
 DEF WHITESTAR EQU $3
 DEF PROMOSTAR EQU $ff
 
+; rarities for Card Pop! and booster content
+DEF CARDPOP_CIRCLE    EQU CIRCLE  ; $0
+DEF CARDPOP_DIAMOND   EQU DIAMOND ; $1
+DEF CARDPOP_STAR      EQU STAR    ; $2
+DEF CARDPOP_PHANTOM   EQU $fe
+DEF CARDPOP_ENERGY    EQU $ff
+
 ; card set constants (set 1)
 	const_def
 	const BEGINNING_POKEMON     ; $00
@@ -151,6 +158,25 @@ DEF PROMOSTAR EQU $ff
 	const PROMOTIONAL           ; $07
 DEF NUM_CARD_SETS EQU const_value
 	const ENERGY                ; $08
+
+DEF PRESENT_PACK EQU 7
+
+; booster pack constants
+	const_def
+	const BOOSTER_BEGINNING_POKEMON     ; $0
+	const BOOSTER_LEGENDARY_POWER       ; $1
+	const BOOSTER_ISLAND_OF_FOSSIL      ; $2
+	const BOOSTER_PSYCHIC_BATTLE        ; $3
+	const BOOSTER_SKY_FLYING_POKEMON    ; $4
+	const BOOSTER_WE_ARE_TEAM_ROCKET    ; $5
+	const BOOSTER_TEAM_ROCKETS_AMBITION ; $6
+	const BOOSTER_DEBUG_1               ; $7
+	const BOOSTER_PRESENT_PACK_1        ; $8
+	const BOOSTER_PRESENT_PACK_2        ; $9
+	const BOOSTER_PRESENT_PACK_3        ; $a
+	const BOOSTER_PRESENT_PACK_4        ; $b
+	const BOOSTER_PRESENT_PACK_5        ; $c
+	const BOOSTER_DEBUG_2               ; $d
 
 ; real card set constants
 	const_def
@@ -165,6 +191,8 @@ DEF NUM_CARD_SETS EQU const_value
 	const_def -2
 	const GB              ; $fe
 	const PRO             ; $ff
+
+DEF NUM_CARDS_IN_BOOSTER EQU 10
 
 ; CARD_DATA_STAGE constants
 DEF BASIC  EQU $00

@@ -309,10 +309,12 @@ wSerialCounter2:: ; cb71
 wSerialTimeoutCounter:: ; cb72
 	ds $1
 
-wcb79:: ; cb73
+; tcg1: wcb79
+wcb73:: ; cb73
 	ds $2
 
-wcb7b:: ; cb75
+; tcg1: wcb7b
+wcb75:: ; cb75
 	ds $2
 
 wSerialSendSave:: ; cb77
@@ -626,7 +628,7 @@ wOpponentNPCID:: ; cc12
 wOpponentName:: ; cc13
 	ds $2
 
-wcc15:: ; cc15
+wNPCDuelPrizes:: ; cc15
 	ds $1
 
 wNPCDuelDeckID:: ; cc16
@@ -966,6 +968,7 @@ wcd53:: ; cd53
 wcd54:: ; cd54
 	ds $1
 
+wcd55:: ; cd55
 	ds $1
 
 wDeckCheckCardName:: ; cd56
@@ -1206,6 +1209,7 @@ wce98:: ; ce1a
 wPrinterContrastLevel:: ; ce1b
 	ds $1
 
+wPrinterCurPrizeFrame:: ; ce1c
 	ds $1
 
 wPrinterNumberLineFeeds:: ; ce1d
@@ -2155,6 +2159,7 @@ wd54f:: ; d54f
 wPlayerOWObject:: ; d550
 	ds $1
 
+; bank number of wd552
 wd551:: ; d551
 	ds $1
 
@@ -2282,31 +2287,25 @@ wd59d:: ; d59d
 	ds $1
 
 wEventVars:: ; d59e
-	ds $34
+	ds EVENT_VAR_BYTES
 
 wGeneralVars:: ; d5d2
-	ds $34
+	ds GENERAL_VAR_BYTES
 
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 
-; wd60e:: ; d60e
+wd60e:: ; d60e
 	ds $1
 
 wd60f:: ; d60f
 	ds $2
 
 wd611:: ; d611
-	ds $1
-
-wd612:: ; d612
-	ds $1
+	ds $2
 
 wd613:: ; d613
-	ds $1
-
-wd614:: ; d614
-	ds $1
+	ds $2
 
 	ds $1
 
@@ -2316,25 +2315,42 @@ wd616:: ; d616
 wd617:: ; d617
 	ds $1
 
+; bit 0: yes/no menu; 0 for yes, 1 for no
+; bit 1: validity: 0 if passes, 1 if fails
 wd618:: ; d618
 	ds $1
 
-wd619:: ; d619
+wScriptBank:: ; d619
 	ds $1
 
-wd61a:: ; d61a
+wScriptBufferIndex:: ; d61a
 	ds $1
 
-wd61b:: ; d61b
+wScriptPointer:: ; d61b
 	ds $2
 
 wd61d:: ; d61d
 	ds $1
 
-wd61e:: ; d61e
-	ds wD61E_STRUCT_SIZE
+wScriptBuffer:: ; d61e
+	ds wSCRIPT_BUFFER_SIZE
 
-	ds $2a
+wd63e:: ; d63e
+	ds $10
+
+wd64e:: ; d64e
+	ds $10
+
+wd65e:: ; d64e
+	ds $1
+
+wd65f:: ; d64e
+	ds $1
+
+	ds $7
+
+wd667:: ; d667
+	ds $1
 
 wd668:: ; d668
 	ds $1
@@ -2487,7 +2503,7 @@ wd853:: ; d853
 wScrollTargetSpritePtr:: ; d893
 	ds $2
 
-wd895:: ; d895
+wOWScrollState:: ; d895
 	ds $1
 
 wd896:: ; d896
@@ -2737,7 +2753,10 @@ wda98:: ; da98
 	ds $1
 
 wda99:: ; da99
-	ds $4
+	ds $2
+
+wda9b:: ; da9b
+	ds $2
 
 wIntroOrbsStates:: ; da9d
 	ds NUM_INTRO_ORBS
@@ -2821,13 +2840,28 @@ wdc06:: ; dc06
 
 	ds $1
 
+; coin settings?
 wdc08:: ; dc08
 	ds $1
 
+; coin type/page?
 wdc09:: ; dc09
 	ds $1
 
-	ds $5
+; store an incoming Coin
+wdc0a:: ; dc0a
+	ds $1
+
+wdc0b:: ; dc0b
+	ds $1
+
+wdc0c:: ; dc0c
+	ds $1
+
+wdc0d:: ; dc0d
+	ds $1
+
+	ds $1
 
 ; store settings for animation enabled/disabled
 ; FALSE means enabled, TRUE means disabled
@@ -2986,7 +3020,13 @@ wdd06:: ; dd06
 wdd07:: ; dd07
 	ds $1
 
-	ds $1d
+wCurBoosterPack:: ; dd08
+	ds $1
+
+wAnotherBoosterPack:: ; dd09
+	ds $1
+
+	ds $1b
 
 wdd25:: ; dd25
 	ds $2
@@ -3015,7 +3055,7 @@ wdd36:: ; dd36
 	ds $1
 
 wdd37:: ; dd37
-	ds $19
+	ds wDD37_BUFFER_SIZE
 
 wdd50:: ; dd50
 	ds $1
@@ -3181,6 +3221,12 @@ w3d415:: ; d415
 
 w3d4c6:: ; d4c6
 	ds $415
+
+w3d8db:: ; d8db
+	ds SPRITE_ANIM_TILE_BUFFER_SIZE
+
+w3d9a5:: ; d9a5
+	ds OW_OBJECTS_BUFFER_SIZE
 
 SECTION "WRAM7 Audio", WRAMX
 

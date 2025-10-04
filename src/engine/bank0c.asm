@@ -32,7 +32,7 @@ Func_300a8:
 	xor a
 	farcall InitOWObjects
 	ld a, $02
-	farcall Func_10413
+	farcall SetOWScrollState
 	farcall ShowOWMapLocationBox
 	call Func_30343
 	ld a, [wCurOWLocation]
@@ -127,7 +127,7 @@ Func_300a8:
 	ld a, OW_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
-	farcall Func_10413
+	farcall SetOWScrollState
 	ld a, OW_GR_BLIMP
 	lb de, $40, $f0
 	farcall SetOWObjectPosition
@@ -224,16 +224,16 @@ Func_30202:
 	jr c, .asm_30233
 
 	ld a, OW_CURSOR_GR
-	farcall Func_112e8
+	farcall SetOWObjectSpriteAnimFlag6
 	ld a, OW_GR_CROSS
-	farcall Func_112f4
+	farcall ResetOWObjectSpriteAnimFlag6
 	jr .done
 
 .asm_30233
 	ld a, OW_CURSOR_GR
-	farcall Func_112f4
+	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, OW_GR_CROSS
-	farcall Func_112e8
+	farcall SetOWObjectSpriteAnimFlag6
 	jr .done ; unnecessary jump
 
 .done
@@ -591,7 +591,7 @@ Func_303c7:
 Func_30452:
 	ld a, [wPlayerOWObject]
 	ld b, $01
-	farcall Func_11471
+	farcall _SetOWObjectAnimStruct1Flag2
 	ld a, [wPlayerOWLocation]
 	ld c, 3 ; speed
 	call Func_3035f

@@ -232,6 +232,7 @@ DebugCurrentMapChipsetCountLabelText:
 	textfw "使用中のマップチップ数:"
 	done
 
+; also used for chips
 PlayerDiaryCardsUnitText:
 	textfw "枚"
 	done
@@ -1085,12 +1086,12 @@ PresentPackText:
 	textfw "プレゼントパック"
 	done
 
-ObtainedBoosterPackText:
+ReceivedBoosterPackText:
 	textfw "<RAMNAME>は <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done
 
-ObtainedSecondBoosterPackText:
+ReceivedAnotherBoosterPackText:
 	textfw "さらに <RAMTEXT>"
 	linefw "「<RAMTEXT>」を ゲット!"
 	done

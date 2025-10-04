@@ -6964,7 +6964,7 @@ Func_16af1:
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	jr nz, .check_evolution_ko
-	farcall $a, $6331 ; LookForEnergyNeededInHand
+	farcall Func_2a331 ; LookForEnergyNeededInHand
 	jr nc, .check_evolution_ko
 	ld a, 7
 	call AIEncourage

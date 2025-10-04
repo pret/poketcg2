@@ -216,7 +216,7 @@ MACRO duel_vars
 ENDM
 
 MACRO sprite_anim_struct
-\1Unk0:: ds 1
+\1Flags:: ds 1
 \1Unk1:: ds 1
 \1Unk2:: ds 1
 \1XPos:: ds 1
@@ -228,7 +228,7 @@ MACRO sprite_anim_struct
 \1AnimID:: ds 2
 \1MoveDuration:: ds 1
 \1StartDelay:: ds 1
-\1UnkE:: ds 2
+\1OWFrameGroup:: ds 2
 ENDM
 
 MACRO obj_tile_struct
