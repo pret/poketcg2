@@ -354,6 +354,11 @@ def sort_and_filter(blobs):
 				blob["output"] += fill_gap(blob["end"], next["start"])
 			else:
 				blob["output"] += "; gap from 0x{:x} to 0x{:x}\n\n".format(blob["end"], next["start"])
+
+				# bit of a sketchy place to add SECTIONs to the output, but it works well
+				bank = get_bank(next["start"])
+				raw_addr = next["start"] - ((bank-1)*0x4000)
+				blob["output"] += 'SECTION "Bank {:x}@{:04x}", ROMX[${:04x}], BANK[${:x}]\n'.format(bank, raw_addr, raw_addr, bank)
 		filtered.append(blob)
 	if len(filtered) > 0:
 		filtered[-1]["output"] = filtered[-1]["output"].rstrip("\n")
