@@ -1459,7 +1459,7 @@ Func_383b::
 	push de
 	ld d, b
 	ld e, c
-	farcall Func_10673
+	farcall AdjustDECoordByhSC
 	ld b, d
 	ld c, e
 	pop de
@@ -2046,7 +2046,7 @@ LoadMenuBoxParams::
 	push af
 	ld a, b
 	call BankswitchROM
-	farcall Func_10673
+	farcall AdjustDECoordByhSC
 	ld a, d
 	ld [wMenuBoxX], a
 	ld a, e

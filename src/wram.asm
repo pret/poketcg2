@@ -2159,6 +2159,7 @@ wd54f:: ; d54f
 wPlayerOWObject:: ; d550
 	ds $1
 
+; bank number of wd552
 wd551:: ; d551
 	ds $1
 

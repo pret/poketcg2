@@ -163,7 +163,9 @@ Func_102ef:
 	call SwitchWRAMBank
 	ret
 
-Func_10342:
+; de: x, y, bc: width, height
+; store bg map data from VRAM0, 1 into WRAM3
+CopyBGMapFromVRAMToWRAM:
 	push af
 	push bc
 	push de
@@ -198,9 +200,9 @@ Func_10342:
 	ld c, e ; y
 	call BCCoordToBGMap0Address
 	pop bc
-	pop de
+	pop de ; WRAM3
 .loop
-	xor a ; VRAM0
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	push bc
 	push hl
@@ -253,12 +255,13 @@ Func_10342:
 	pop af
 	ret
 
-Func_103b6:
+; restore bg map data from WRAM3 into VRAM0, 1
+CopyBGMapFromWRAMToVRAM:
 	push af
 	push hl
 	ld a, [wWRAMBank]
 	push af
-	ld a, $03
+	ld a, BANK("WRAM3")
 	call SwitchWRAMBank
 	ld hl, w3d400
 	dec [hl]
@@ -271,26 +274,26 @@ Func_103b6:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [hli]
+	ld a, [hli] ; x
 	ld d, a
-	ld a, [hli]
+	ld a, [hli] ; y
 	ld e, a
-	ld a, [hli]
+	ld a, [hli] ; width
 	ld b, a
-	ld a, [hli]
+	ld a, [hli] ; height
 	ld c, a
 	push bc
 	push de
 	push hl
 	push bc
-	ld b, d
-	ld c, e
+	ld b, d ; x
+	ld c, e ; y
 	call BCCoordToBGMap0Address
 	pop bc
 	pop hl
 .loop_rows
 	push bc
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	push de
 	call SafeCopyDataHLtoDE
@@ -311,7 +314,7 @@ Func_103b6:
 	pop bc
 	dec c
 	jr nz, .loop_rows
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	pop de
 	pop bc
@@ -769,7 +772,9 @@ SetFontAndTextBoxFrameColor_PreserveRegisters:
 ; 0x10672
 	ret
 
-Func_10673::
+; input: de = coord
+; return d += [hSCX]/8, e += [hSCY]/8
+AdjustDECoordByhSC::
 	push af
 	ldh a, [hSCX]
 	srl a
@@ -1429,7 +1434,11 @@ SetSpriteAnimFlag6:
 	set SPRITEANIMSTRUCT_FLAG6_F, [hl]
 	ret
 
-Func_10abf:
+; de: x_0, y_0
+; bc: x_1, y_1
+; reset flag 6 for each active sprite anim if its x, y satisfy
+; x_0 + 1 <= x/8 < x_0 + x_1 + 1 and y_0 + 2 <= y/8 < y_0 + y_1 + 2
+ResetActiveSpriteAnimFlag6WithinArea:
 	push af
 	push bc
 	push de
@@ -1446,12 +1455,12 @@ Func_10abf:
 
 	ld hl, wSpriteAnimationStructs
 	ld a, NUM_SPRITE_ANIM_STRUCTS
-.loop_anims
+.loop_sprite_anims
 	push af
 	push hl
 	ld a, [hl] ; SPRITEANIMSTRUCT_FLAGS
 	and SPRITEANIMSTRUCT_ACTIVE
-	jr z, .next_anim
+	jr z, .next_sprite_anim
 	inc hl
 	inc hl
 	inc hl
@@ -1460,30 +1469,30 @@ Func_10abf:
 	srl a
 	srl a ; /8
 	cp d
-	jr c, .next_anim
+	jr c, .next_sprite_anim
 	ld a, [hld] ; SPRITEANIMSTRUCT_Y_POS
 	srl a
 	srl a
 	srl a ; /8
 	cp e
-	jr c, .next_anim
+	jr c, .next_sprite_anim
 	ld a, [hli] ; SPRITEANIMSTRUCT_X_POS
 	srl a
 	srl a
 	srl a ; /8
 	cp b
-	jr nc, .next_anim
+	jr nc, .next_sprite_anim
 	ld a, [hld] ; SPRITEANIMSTRUCT_Y_POS
 	srl a
 	srl a
 	srl a ; /8
 	cp c
-	jr nc, .next_anim
+	jr nc, .next_sprite_anim
 	dec hl
 	dec hl
 	dec hl
 	res SPRITEANIMSTRUCT_FLAG6_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
-.next_anim
+.next_sprite_anim
 	pop hl
 	push bc
 	ld bc, SPRITEANIMSTRUCT_LENGTH
@@ -1491,14 +1500,18 @@ Func_10abf:
 	pop bc
 	pop af
 	dec a
-	jr nz, .loop_anims
+	jr nz, .loop_sprite_anims
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_10b18:
+; de: x_0, y_0
+; bc: x_1, y_1
+; set flag 6 for each active sprite anim if its x, y satisfy
+; x_0 + 1 <= x/8 < x_0 + x_1 + 1 and y_0 + 2 <= y/8 < y_0 + y_1 + 2
+SetActiveSpriteAnimFlag6WithinArea:
 	push af
 	push bc
 	push de
@@ -2489,10 +2502,10 @@ Func_11002:
 	push hl
 	lb de,  0, 12
 	lb bc, 20,  6
-	call Func_10673
-	call Func_10abf
+	call AdjustDECoordByhSC
+	call ResetActiveSpriteAnimFlag6WithinArea
 	call DoFrame
-	call Func_10342
+	call CopyBGMapFromVRAMToWRAM
 	pop hl
 	pop de
 	pop bc
@@ -2504,8 +2517,8 @@ Func_1101d:
 	push bc
 	push de
 	push hl
-	call Func_103b6
-	call Func_10b18
+	call CopyBGMapFromWRAMToVRAM
+	call SetActiveSpriteAnimFlag6WithinArea
 	pop hl
 	pop de
 	pop bc
@@ -3362,19 +3375,19 @@ Func_114af:
 
 	lb de, 0, 0
 	lb bc, 8, 4
-	call Func_10673
-	call Func_10342
-	call Func_10abf
+	call AdjustDECoordByhSC
+	call CopyBGMapFromVRAMToWRAM
+	call ResetActiveSpriteAnimFlag6WithinArea
 	lb de, 0, 0
 	lb bc, 8, 4
-	call Func_10673
+	call AdjustDECoordByhSC
 	call DrawRegularTextBoxVRAM0
 	lb de, 1, 1
-	call Func_10673
+	call AdjustDECoordByhSC
 	ldtx hl, ChipsText
 	call Func_35af
 	lb de, 6, 2
-	call Func_10673
+	call AdjustDECoordByhSC
 	ldtx hl, PlayerDiaryCardsUnitText
 	call Func_35af
 	call Func_11622
@@ -3397,8 +3410,8 @@ Func_114f9:
 	and a
 	jr z, .clear
 
-	call Func_103b6
-	call Func_10b18
+	call CopyBGMapFromWRAMToVRAM
+	call SetActiveSpriteAnimFlag6WithinArea
 
 .clear
 	xor a
@@ -3617,7 +3630,7 @@ Func_11622:
 	ld a, [wda99 + 1]
 	ld h, a
 	lb de, 2, 2
-	call Func_10673
+	call AdjustDECoordByhSC
 	ld a, 4
 	ld b, TRUE
 	farcall PrintNumber

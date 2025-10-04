@@ -1214,9 +1214,9 @@ Func_1cacf:
 	ld b, a
 	ld a, [wMenuBoxHeight]
 	ld c, a
-	farcall Func_10abf
+	farcall ResetActiveSpriteAnimFlag6WithinArea
 	call DoFrame
-	farcall Func_10342
+	farcall CopyBGMapFromVRAMToWRAM
 	pop de
 	pop bc
 	pop af
@@ -1226,8 +1226,8 @@ Func_1caf1:
 	push af
 	push bc
 	push de
-	farcall Func_103b6
-	farcall Func_10b18
+	farcall CopyBGMapFromWRAMToVRAM
+	farcall SetActiveSpriteAnimFlag6WithinArea
 	pop de
 	pop bc
 	pop af
@@ -4514,6 +4514,7 @@ Func_1e889:
 	farcall Func_10252
 	ret
 
+; a = BOOSTER_* constant, b = has-another count?
 GiveBoosterPacks:
 	push af
 	push bc

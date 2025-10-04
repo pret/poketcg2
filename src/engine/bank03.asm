@@ -63,7 +63,7 @@ StartMenu_ContinueFromDiary:
 	cp $03
 	jr z, .asm_c0ab
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
@@ -87,7 +87,7 @@ StartMenu_ContinueFromDiary:
 
 .asm_c0ab
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
@@ -140,14 +140,15 @@ StartMenu_CardPop:
 	ccf
 	ret
 
+; jump to .PointerTable[a]
 Func_c12e::
 	sla a
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -156,29 +157,30 @@ Func_c12e::
 .PointerTable
 	dw Func_31a1 ; $00
 	dw Func_c162 ; $01
-	dw $417d     ; $02
-	dw $4169     ; $03
-	dw $4183     ; $04
+	dw Func_c17d ; $02
+	dw Func_c169 ; $03
+	dw Func_c183 ; $04
 	dw Func_31a8 ; $05
-	dw $4199     ; $06
+	dw Func_c199 ; $06
 	dw Func_c162 ; $07
-	dw $4163     ; $08
-	dw $4189     ; $09
+	dw Func_c163 ; $08
+	dw Func_c189 ; $09
 	dw Func_3234 ; $0a
-	dw $418f     ; $0b
+	dw Func_c18f ; $0b
 	dw Func_c162 ; $0c
 	dw Func_c162 ; $0d
 	dw Func_c162 ; $0e
-	dw $416f     ; $0f
-	dw $4175     ; $10
+	dw Func_c16f ; $0f
+	dw Func_c175 ; $10
 	dw $41a2     ; $11
 	dw $41a6     ; $12
 
 Func_c162:
 	ret
 
+; clear wd582
 Func_c163:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
@@ -207,19 +209,21 @@ Func_c183:
 	call Func_33a3
 	ret
 
+; clear wd582, dupe of Func_c163
 Func_c189:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
 Func_c18f:
 	farcall PlayCurrentSong
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ret
 
+; clear wd582, then Func_32f6
 Func_c199:
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	call Func_32f6
 	ret
@@ -810,9 +814,9 @@ GetReceivingCardLongName:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -867,9 +871,9 @@ GetReceivingCardShortName:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -926,9 +930,9 @@ GetReceivedCardText:
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	jr .loop_cards
 .not_found
 	push hl
@@ -943,9 +947,9 @@ GetReceivedCardText:
 	ldtx bc, ReceivedCardText_2
 	jr .got_text
 .load_received_text
-	REPT 4
-		inc hl
-	ENDR
+REPT CARD_RECEIVE_STRUCT_RECEIVED_TEXT - CARD_RECEIVE_STRUCT_TEXTS
+	inc hl
+ENDR
 	push hl
 	call GetReceivingCardShortName
 	call LoadTxRam2
@@ -1348,9 +1352,9 @@ Func_d3e9::
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	add d
 	ld d, a
@@ -1765,13 +1769,14 @@ Func_d683:
 	ld a, EVENT_EE
 	call ZeroOutEventValue
 	ld a, VAR_3B
-	ld c, $00
+	ld c, 0
 	call SetVarValue
 	ret
 
 GetStackEventValue:
 	call GetByteAfterCall
 ;	fallthrough
+
 GetEventValue::
 	push bc
 	push hl
@@ -1827,6 +1832,7 @@ GetVarValue:
 MaxStackEventValue:
 	call GetByteAfterCall
 ;	fallthrough
+
 MaxOutEventValue::
 	push bc
 	push hl
@@ -1840,11 +1846,12 @@ MaxOutEventValue::
 SetStackEventFalse:
 	call GetByteAfterCall
 ;	fallthrough
+
 ZeroOutEventValue::
 	push bc
 	push hl
 	call GetEventVar
-	ld c, $00
+	ld c, 0
 	call SetEventValue
 	pop hl
 	pop bc
@@ -1853,6 +1860,7 @@ ZeroOutEventValue::
 SetStackVarFalse:
 	call GetByteAfterCall
 ;	fallthrough
+
 ZeroOutVarValue:
 	push bc
 	ld c, 0
@@ -2884,8 +2892,9 @@ IncreaseScriptPointerBy5:
 	ld a, 5
 	jr IncreaseScriptPointer
 
+; get 2 db args or 1 dw arg:
 ; for j = [wScriptBufferIndex] + a,
-; if j + 1 < 32, bc = [dw wScriptBuffer + j] (could be 2 db args), a = (b | c)
+; if j + 1 < 32, bc = [dw wScriptBuffer + j], a = (b | c)
 ; else call ReloadScriptBuffer and retry
 Get2ScriptArgs:
 .loop
@@ -2925,6 +2934,7 @@ Get2ScriptArgs_IncrIndexBy3:
 	ld a, 3
 	jr Get2ScriptArgs
 
+; get 1 db arg:
 ; for j = [wScriptBufferIndex] + a,
 ; if j < 32, a = [wScriptBuffer + j] (with flags)
 ; else call ReloadScriptBuffer and retry
@@ -3842,7 +3852,7 @@ ScriptCommand_42:
 	ld a, [wd60e]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
-	xor 2
+	xor SPRITE_ANIM_STRUCT1_FLAG1
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
@@ -3850,7 +3860,7 @@ ScriptCommand_43:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
-	xor 2
+	xor SPRITE_ANIM_STRUCT1_FLAG1
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
@@ -4119,49 +4129,52 @@ ScriptCommand_56:
 	cp 2
 	jr z, .two
 	jp IncreaseScriptPointerBy3
+
 .zero
 	push hl
 	xor a
 	ld c, a
-.count_loop_c
+.loop_count_length
 	ld a, [hli]
 	cp $ff
-	jr z, .counted_c
+	jr z, .counted_length
 	inc c
-	jr .count_loop_c
-.counted_c
+	jr .loop_count_length
+.counted_length
 	pop hl
 	ld a, c
 	ld [wd667], a
-	jr .next
+	jr .give_boosters
+
 .two
 	ld a, [hli]
 	call Random
 	inc a
 	ld [wd667], a
-	jr .done_wd667
+	jr .copy
 .one
 	ld a, [hli]
 	ld [wd667], a
-.done_wd667
+.copy
 	ld de, wd64e
 	xor a
 	ld c, a
-.count_copy_loop
+.loop_copy_and_count
 	ld a, [hli]
 	cp $ff
-	jr z, .counted_copied
+	jr z, .copied_and_counted
 	ld [de], a
 	inc de
 	inc c
-	jr .count_copy_loop
-.counted_copied
+	jr .loop_copy_and_count
+
+.copied_and_counted
 	ld a, c
 	ld [wd65e], a
 	ld de, wd65f
 	ld a, [wd667]
 	ld c, a
-.consume_c_loop
+.loop_random_copy
 	ld a, [wd65e]
 	call Random
 	ld hl, wd64e
@@ -4174,18 +4187,19 @@ ScriptCommand_56:
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .consume_c_loop
+	jr nz, .loop_random_copy
+
 	ld a, [wd667]
 	ld c, a
-.check_value_loop
+.sort
 	ld a, [wd667]
 	ld b, a
 	ld hl, wd65f
 	ld de, wd65f
 	inc de
-.check_value_small_loop
+.loop_sort
 	dec b
-	jr z, .consumed_b
+	jr z, .consumed_count
 	ld a, [de]
 	cp [hl]
 	jr c, .skip_swap
@@ -4198,23 +4212,24 @@ ScriptCommand_56:
 .skip_swap
 	inc hl
 	inc de
-	jr .check_value_small_loop
-.consumed_b
+	jr .loop_sort
+.consumed_count
 	dec c
-	jr nz, .check_value_loop
+	jr nz, .sort
+
 	ld hl, wd65f
-.next
+.give_boosters
 	farcall Func_1022a
 	ld a, [wd667]
 	ld c, a
 	xor a
 	ld b, a
-.loop_b_c
+.loop_boosters
 	ld a, [hli]
 	farcall GiveBoosterPacks
 	inc b
 	dec c
-	jr nz, .loop_b_c
+	jr nz, .loop_boosters
 	farcall Func_10252
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
@@ -5379,3 +5394,4 @@ ENDR
 	call BankswitchSRAM
 	call DisableSRAM
 	ret
+; 0xedec

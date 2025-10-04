@@ -5833,8 +5833,8 @@ _ShowReceivedCardScreen:
 	bank1call OpenCardPage_FromHand
 	ret
 
-; generate a booster pack identified by its group ID in a,
-; display its content,
+; a = BOOSTER_* constant
+; generate and display its content,
 ; and add the drawn cards to the player's collection (sCardCollection)
 GetBoosterPack:
 	farcall GenerateBoosterContent
