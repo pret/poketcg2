@@ -986,122 +986,122 @@ Func_c646:
 ; bank and offset table of data for Func_d421 and Func_33b7
 ; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
 MapHeaderPtrs::
-	dba OverworldTCG_MapHeader ; $00
-	dba OverworldGR_MapHeader ; $01
-	dbw $10, $4db3 ; $02
-	dbw $0f, $4603 ; $03
-	dbw $0f, $47dc ; $04
-	dba IshiharasHouse_MapHeader ; $05
-	dbw $0f, $4b88 ; $06
-	dbw $0f, $4c62 ; $07
-	dba LightningClub_MapHeader ; $08
-	dba PsychicClubEntrance_MapHeader ; $09
-	dba PsychicClubLobby_MapHeader ; $0a
-	dba PsychicClub_MapHeader ; $0b
-	dba RockClubEntrance_MapHeader ; $0c
-	dba RockClubLobby_MapHeader ; $0d
-	dba RockClub_MapHeader ; $0e
-	dba FightingClubEntrance_MapHeader ; $0f
-	dba FightingClubLobby_MapHeader ; $10
-	dba FightingClub_MapHeader ; $11
-	dba GrassClubEntrance_MapHeader ; $12
-	dbw $0f, $4ee6 ; $13
-	dba GrassClub_MapHeader ; $14
-	dba ScienceClubEntrance_MapHeader ; $15
-	dba ScienceClubLobby_MapHeader ; $16
-	dba ScienceClub_MapHeader ; $17
-	dba WaterClubEntrance_MapHeader ; $18
-	dba WaterClubLobby_MapHeader ; $19
-	dba WaterClub_MapHeader ; $1a
-	dba FireClubEntrance_MapHeader ; $1b
-	dba FireClubLobby_MapHeader ; $1c
-	dba FireClub_MapHeader ; $1d
-	dbw $0d, $4575 ; $1e
-	dbw $0d, $4773 ; $1f
-	dbw $0f, $519e ; $20
-	dbw $0f, $52d7 ; $21
-	dbw $10, $5592 ; $22
-	dba PokemonDomeEntrance_MapHeader ; $23
-	dbw $0f, $55d1 ; $24
-	dbw $0f, $5d58 ; $25
-	dba OverheadIslands_MapHeader ; $26
-	dbw $0d, $4aaf ; $27
-	dbw $10, $5be9 ; $28
-	dbw $0f, $6698 ; $29
-	dbw $0f, $68e0 ; $2a
-	dbw $0f, $6cea ; $2b
-	dbw $0f, $6efa ; $2c
-	dbw $0d, $4ba8 ; $2d
-	dbw $0d, $4e4d ; $2e
-	dbw $0f, $704c ; $2f
-	dbw $0f, $71f2 ; $30
-	dbw $0d, $509f ; $31
-	dbw $0f, $73c2 ; $32
-	dbw $0c, $518a ; $33
-	dbw $0c, $5324 ; $34
-	dbw $10, $5e8e ; $35
-	dbw $0c, $53ce ; $36
-	dbw $0d, $5288 ; $37
-	dbw $10, $65cf ; $38
-	dbw $0c, $54fe ; $39
-	dbw $0c, $55d8 ; $3a
-	dbw $0c, $5785 ; $3b
-	dbw $0c, $5973 ; $3c
-	dbw $0c, $5b29 ; $3d
-	dbw $0d, $54a2 ; $3e
-	dbw $0c, $5cbf ; $3f
-	dbw $0c, $5dd2 ; $40
-	dbw $0c, $5fad ; $41
-	dbw $0c, $6148 ; $42
-	dbw $0c, $641e ; $43
-	dbw $0c, $6531 ; $44
-	dbw $0c, $6696 ; $45
-	dbw $0c, $6804 ; $46
-	dbw $0c, $696d ; $47
-	dbw $0c, $6beb ; $48
-	dbw $0c, $6e20 ; $49
-	dbw $0c, $6f5b ; $4a
-	dbw $0f, $75ab ; $4b
-	dbw $0c, $70c0 ; $4c
-	dbw $0d, $55de ; $4d
-	dbw $0d, $580f ; $4e
-	dbw $0c, $724d ; $4f
-	dbw $0c, $7357 ; $50
-	dbw $0d, $5989 ; $51
-	dbw $10, $6e2b ; $52
-	dbw $0c, $7506 ; $53
-	dbw $0c, $75da ; $54
-	dbw $0c, $762f ; $55
-	dbw $0c, $7723 ; $56
-	dbw $0c, $7766 ; $57
-	dbw $0c, $77bb ; $58
-	dbw $0c, $7822 ; $59
-	dbw $0c, $7928 ; $5a
-	dbw $0c, $797d ; $5b
-	dbw $0c, $79b2 ; $5c
-	dbw $0c, $7a19 ; $5d
-	dbw $0c, $7ab4 ; $5e
-	dbw $0c, $7b1b ; $5f
-	dbw $0c, $7ba4 ; $60
-	dbw $0d, $5c10 ; $61
-	dbw $0c, $7bf9 ; $62
-	dbw $0d, $5c9a ; $63
-	dbw $0f, $77b5 ; $64
-	dbw $0c, $7d2e ; $65
-	dbw $10, $6e80 ; $66
-	dbw $0c, $7d63 ; $67
-	dbw $0f, $7884 ; $68
-	dbw $0d, $5d36 ; $69
-	dbw $0d, $5f14 ; $6a
-	dbw $0d, $6097 ; $6b
-	dbw $0d, $6173 ; $6c
-	dbw $0d, $631f ; $6d
-	dbw $0d, $6c9b ; $6e
-	dbw $0c, $7d98 ; $6f
-	dbw $0d, $6f9a ; $70
-	dbw $0d, $7365 ; $71
-	dbw $0d, $75df ; $72
-	dbw $10, $6ed5 ; $73
+	dba OverworldTcg_MapHeader
+	dba OverworldGr_MapHeader
+	dba MasonLaboratoryMain_MapHeader
+	dba MasonLaboratorySide1_MapHeader
+	dba MasonLaboratorySide2_MapHeader
+	dba IshiharasHouse_MapHeader
+	dba LightningClubEntrance_MapHeader
+	dba LightningClubLobby_MapHeader
+	dba LightningClub_MapHeader
+	dba PsychicClubEntrance_MapHeader
+	dba PsychicClubLobby_MapHeader
+	dba PsychicClub_MapHeader
+	dba RockClubEntrance_MapHeader
+	dba RockClubLobby_MapHeader
+	dba RockClub_MapHeader
+	dba FightingClubEntrance_MapHeader
+	dba FightingClubLobby_MapHeader
+	dba FightingClub_MapHeader
+	dba GrassClubEntrance_MapHeader
+	dba GrassClubLobby_MapHeader
+	dba GrassClub_MapHeader
+	dba ScienceClubEntrance_MapHeader
+	dba ScienceClubLobby_MapHeader
+	dba ScienceClub_MapHeader
+	dba WaterClubEntrance_MapHeader
+	dba WaterClubLobby_MapHeader
+	dba WaterClub_MapHeader
+	dba FireClubEntrance_MapHeader
+	dba FireClubLobby_MapHeader
+	dba FireClub_MapHeader
+	dba TcgAirportEntrance_MapHeader
+	dba TcgAirport_MapHeader
+	dba TcgChallengeHallEntrance_MapHeader
+	dba TcgChallengeHallLobby_MapHeader
+	dba TcgChallengeHall_MapHeader
+	dba PokemonDomeEntrance_MapHeader
+	dba PokemonDome_MapHeader
+	dba PokemonDomeBack_MapHeader
+	dba OverheadIslands_MapHeader
+	dba GrAirportEntrance_MapHeader
+	dba GrAirport_MapHeader
+	dba IshiharasVilla1_MapHeader
+	dba IshiharasVilla2_MapHeader
+	dba GameCenterEntrance_MapHeader
+	dba GameCenterLobby_MapHeader
+	dba GameCenter1_MapHeader
+	dba GameCenter2_MapHeader
+	dba CardDungeonPawn_MapHeader
+	dba CardDungeonKnight_MapHeader
+	dba CardDungeonBishop_MapHeader
+	dba CardDungeonRook_MapHeader
+	dba CardDungeonQueen_MapHeader
+	dba SealedFortEntrance_MapHeader
+	dba SealedFort_MapHeader
+	dba GrChallengeHallEntrance_MapHeader
+	dba GrChallengeHallLobby_MapHeader
+	dba GrChallengeHall_MapHeader
+	dba GrassFortEntrance_MapHeader
+	dba GrassFortLobby_MapHeader
+	dba GrassFortMidori_MapHeader
+	dba GrassFortYuta_MapHeader
+	dba GrassFortMiyuki_MapHeader
+	dba GrassFortMorino_MapHeader
+	dba LightningFortEntrance_MapHeader
+	dba LightningFortLobby_MapHeader
+	dba LightningFortRenna_MapHeader
+	dba LightningFortIchikawa_MapHeader
+	dba LightningFortCatherine_MapHeader
+	dba FireFortEntrance_MapHeader
+	dba FireFortLobby_MapHeader
+	dba FireFortJes_MapHeader
+	dba FireFortYuki_MapHeader
+	dba FireFortShoko_MapHeader
+	dba FireFortHidero_MapHeader
+	dba WaterFortEntrance_MapHeader
+	dba WaterFortLobby_MapHeader
+	dba WaterFortMiyajima_MapHeader
+	dba WaterFortSenta_MapHeader
+	dba WaterFortAira_MapHeader
+	dba WaterFortKanoko_MapHeader
+	dba FightingFortEntrance_MapHeader
+	dba FightingFort_MapHeader
+	dba FightingFortMaze1_MapHeader
+	dba FightingFortMaze2_MapHeader
+	dba FightingFortMaze3_MapHeader
+	dba FightingFortMaze4_MapHeader
+	dba FightingFortMaze5_MapHeader
+	dba FightingFortMaze6_MapHeader
+	dba FightingFortMaze7_MapHeader
+	dba FightingFortMaze8_MapHeader
+	dba FightingFortMaze9_MapHeader
+	dba FightingFortMaze10_MapHeader
+	dba FightingFortMaze11_MapHeader
+	dba FightingFortMaze12_MapHeader
+	dba FightingFortMaze13_MapHeader
+	dba FightingFortMaze14_MapHeader
+	dba FightingFortMaze15_MapHeader
+	dba FightingFortMaze16_MapHeader
+	dba FightingFortMaze17_MapHeader
+	dba FightingFortMaze18_MapHeader
+	dba FightingFortMaze19_MapHeader
+	dba FightingFortMaze20_MapHeader
+	dba FightingFortMaze21_MapHeader
+	dba FightingFortMaze22_MapHeader
+	dba FightingFortBasement_MapHeader
+	dba FightingFortGoda_MapHeader
+	dba FightingFortGrace_MapHeader
+	dba PsychicStrongholdEntrance_MapHeader
+	dba PsychicStrongholdLobby_MapHeader
+	dba PsychicStronghold_MapHeader
+	dba PsychicStrongholdMami_MapHeader
+	dba ColorlessAltarEntrance_MapHeader
+	dba ColorlessAltar_MapHeader
+	dba GrCastleEntrance_MapHeader
+	dba GrCastle_MapHeader
+	dba GrCastleBiruritchi_MapHeader
 
 INCLUDE "data/npc_duelists.asm"
 ; 0xcc9b
