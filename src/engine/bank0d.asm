@@ -13,6 +13,7 @@ Func_341c4:
 	ret
 
 SECTION "Bank d@4575", ROMX[$4575], BANK[$d]
+
 TcgAirportEntrance_MapHeader:
 	db MAP_GFX_TCG_AIRPORT_ENTRANCE
 	dba TcgAirportEntrance_MapScripts
@@ -146,9 +147,14 @@ GameCenter1_NPCs:
 	npc OW_GR_GAL_3, 3, 5, EAST, $0
 	npc OW_BUTCH_3, 8, 8, EAST, $0
 	db $ff
-; gap from 0x34bf1 to 0x34c06
 
-SECTION "Bank d@4c06", ROMX[$4c06], BANK[$d]
+GameCenter1_NPCInteractions:
+	npc_script OW_MONOCLE_2, $0d, $4d49
+	npc_script OW_DEALER_BOY_1, $0d, $4d76
+	npc_script OW_DEALER_GIRL_1, $0d, $4da3
+	npc_script OW_GR_GAL_3, $0d, $4de6
+	npc_script OW_BUTCH_3, $0d, $4e18
+	db $ff
 
 GameCenter1_OWInteractions:
 	ow_script 5, 4, $0d, $4d15

@@ -452,10 +452,10 @@ cards = {
 decks = {}
 
 directions = [
-    "NORTH",
-    "EAST",
-    "SOUTH",
-    "WEST"
+	"NORTH",
+	"EAST",
+	"SOUTH",
+	"WEST",
 ]
 
 events = []
@@ -576,7 +576,7 @@ maps = [
 	"MAP_COLORLESS_ALTAR",
 	"MAP_GR_CASTLE_ENTRANCE",
 	"MAP_GR_CASTLE",
-	"MAP_GR_CASTLE_BIRURITCHI"
+	"MAP_GR_CASTLE_BIRURITCHI",
 ]
 
 mapgfx = [
@@ -697,12 +697,12 @@ mapgfx = [
 	"MAP_GFX_FIGHTING_FORT_MAZE_21",
 	"MAP_GFX_FIGHTING_FORT_MAZE_22",
 	"MAP_GFX_FIGHTING_FORT_BASEMENT",
-	"MAP_GFX_GR_CHALLENGE_HALL_2"
+	"MAP_GFX_GR_CHALLENGE_HALL_2",
 ]
 
 npcs = [
-    "OW_MARK",
-    "OW_MINT",
+	"OW_MARK",
+	"OW_MINT",
 	"OW_DR_MASON",
 	"OW_RONALD",
 	"OW_ISHIHARA",
@@ -933,7 +933,7 @@ npcs = [
 	"OW_BLUE_FORT_COIN",
 	"OW_WHITE_CASTLE_COIN",
 	"OW_PURPLE_CASTLE_COIN",
-	"OW_STRONGHOLD_PLATFORM"
+	"OW_STRONGHOLD_PLATFORM",
 ]
 
 sfxs = []
@@ -998,5 +998,5 @@ songs = [
 	"MUSIC_38",
 	"MUSIC_39",
 	"MUSIC_DITTY6",
-	"MUSIC_3B"
+	"MUSIC_3B",
 ]

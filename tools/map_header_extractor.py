@@ -5,23 +5,22 @@ from __future__ import print_function
 import argparse
 import sys
 
-from constants import cards
-from constants import decks
 from constants import directions
-from constants import events
 from constants import maps
 from constants import mapgfx
 from constants import npcs
-from constants import sfxs
 from constants import songs
-
-from script_extractor import sort_and_filter
-from script_extractor import get_bank
-from script_extractor import get_relative_address
-from script_extractor import make_blob
 
 args = None
 rom = None
+
+def get_bank(address):
+	return int(address / 0x4000)
+
+def get_relative_address(address):
+	if address < 0x4000:
+		return address
+	return (address % 0x4000) + 0x4000
 
 # get absolute pointer stored at an address in the rom
 # if bank is None, assumes the pointer refers to the same bank as the bank it is located in
@@ -38,6 +37,9 @@ def make_address_comment(address):
 		return ": ; {:x} ({:x}:{:x})\n".format(address, get_bank(address), get_relative_address(address))
 	else:
 		return ":\n"
+
+def make_blob(start, output, end=None):
+	return { "start": start, "output": output, "end": end if end else start }
 
 def dump_npcs(function_address, map_name_camelcase):
 	# the functions should always start with <ld hl, xxx_NPCs>
@@ -200,7 +202,7 @@ def dump_ow_coordinate_function(address):
 	raw_ptr = rom[address+7] + (rom[address+8])*0x100
 
 	# see map_exit macro
-	if(function_addr == 0xd3c4):
+	if function_addr == 0xd3c4:
 		output = "\tmap_exit {}, {}, {}, {}, {}, {}\n".format(
 			x_coord, y_coord, maps[a_register], d_register, e_register, directions[b_register]
 		)
@@ -368,14 +370,11 @@ def sort_and_filter(blobs):
 	return filtered
 
 if __name__ == "__main__":
-	ap = argparse.ArgumentParser(description="Pokemon TCG 2 Script Extractor")
+	ap = argparse.ArgumentParser(description="Pokemon TCG 2 Map Header Extractor")
 	ap.add_argument("-a", "--address-comments", action="store_true", help="add address comments after labels")
-	ap.add_argument("-b", "--allow-backward-jumps", action="store_true", help="extract scripts that are found before the starting address")
-	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-f", "--function-labels", action="store_true", help="use function labels (Func_xxx) instead of raw bank/addr bytes")
-	ap.add_argument("-i", "--ignore-errors", action="store_true", help="silently proceed to the next address if an error occurs")
+	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-r", "--rom", default="baserom.gbc", help="rom file to extract script from")
-	ap.add_argument("-s", "--symfile", default="poketcg2.sym", help="symfile to extract symbols from")
 
 	args = ap.parse_args()
 	rom = bytearray(open(args.rom, "rb").read())

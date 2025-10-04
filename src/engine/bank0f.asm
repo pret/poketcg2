@@ -228,6 +228,7 @@ Func_3c3ca:
 ; 0x3c441
 
 SECTION "Bank f@4603", ROMX[$4603], BANK[$f]
+
 MasonLaboratorySide1_MapHeader:
 	db MAP_GFX_MASON_LABORATORY_SIDE_1
 	dba MasonLaboratorySide1_MapScripts
@@ -641,9 +642,11 @@ IshiharasVilla1_NPCs:
 	npc OW_ISHIHARA, 6, 5, WEST, $67d6
 	npc OW_GR_GAL_4, 2, 2, NORTH, $68d3
 	db $ff
-; gap from 0x3e6cf to 0x3e6d8
 
-SECTION "Bank f@66d8", ROMX[$66d8], BANK[$f]
+IshiharasVilla1_NPCInteractions:
+	npc_script OW_ISHIHARA, $0f, $67c0
+	npc_script OW_GR_GAL_4, $0f, $68b1
+	db $ff
 
 IshiharasVilla1_OWInteractions:
 	ow_script 7, 2, $03, $5411
