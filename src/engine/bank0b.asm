@@ -279,16 +279,16 @@ Func_2c50a:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction $22, $05, $09, $02
-	set_npc_position_and_direction $24, $08, $09, $02
-	set_npc_position_and_direction $31, $07, $09, $02
+	set_npc_position_and_direction OW_ISAAC, 5, 9, SOUTH
+	set_npc_position_and_direction OW_NICHOLAS, 8, 9, SOUTH
+	set_npc_position_and_direction OW_GR_4, 7, 9, SOUTH
 	end_script
 	jr .asm_2c55e
 .asm_2c54f
 	xor a
 	start_script
-	set_npc_position_and_direction $22, $05, $06, $02
-	set_npc_position_and_direction $24, $08, $08, $02
+	set_npc_position_and_direction OW_ISAAC, 5, 6, SOUTH
+	set_npc_position_and_direction OW_NICHOLAS, 8, 8, SOUTH
 	end_script
 .asm_2c55e
 	scf
@@ -761,19 +761,19 @@ Func_2cda2:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction $26, $07, $06, $02
-	set_npc_position_and_direction $27, $05, $06, $02
-	set_npc_position_and_direction $28, $06, $06, $02
-	set_npc_position_and_direction $29, $08, $0a, $02
+	set_npc_position_and_direction OW_MURRAY, 7, 6, SOUTH
+	set_npc_position_and_direction OW_ROBERT, 5, 6, SOUTH
+	set_npc_position_and_direction OW_DANIEL, 6, 6, SOUTH
+	set_npc_position_and_direction OW_STEPHANIE, 8, 10, SOUTH
 	end_script
 	jr .asm_2ce0f
 .asm_2cdf6
 	xor a
 	start_script
-	set_npc_position_and_direction $26, $06, $03, $02
-	set_npc_position_and_direction $27, $05, $06, $02
-	set_npc_position_and_direction $28, $06, $0a, $02
-	set_npc_position_and_direction $29, $08, $0a, $02
+	set_npc_position_and_direction OW_MURRAY, 6, 3, SOUTH
+	set_npc_position_and_direction OW_ROBERT, 5, 6, SOUTH
+	set_npc_position_and_direction OW_DANIEL, 6, 10, SOUTH
+	set_npc_position_and_direction OW_STEPHANIE, 8, 10, SOUTH
 	end_script
 .asm_2ce0f
 	scf
@@ -1103,9 +1103,9 @@ Func_2d673:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction $0a, $05, $01, $02
-	set_npc_position_and_direction $0b, $08, $01, $02
-	set_npc_position_and_direction $0c, $06, $01, $02
+	set_npc_position_and_direction OW_MATTHEW, 5, 1, SOUTH
+	set_npc_position_and_direction OW_RYAN, 8, 1, SOUTH
+	set_npc_position_and_direction OW_ANDREW, 6, 1, SOUTH
 	end_script
 .asm_2d6a4
 	scf
@@ -2416,9 +2416,9 @@ Func_2f0a5:
 	jr nz, .asm_2f0c3
 	xor a
 	start_script
-	load_npc $ac, $04, $06, $02
-	load_npc $ad, $03, $06, $01
-	load_npc $ae, $05, $06, $03
+	load_npc OW_CAPTURED_AMY, 4, 6, SOUTH
+	load_npc OW_CAPTURED_SARA, 3, 6, EAST
+	load_npc OW_CAPTURED_AMANDA, 5, 6, WEST
 	end_script
 	jr .asm_2f0f5
 .asm_2f0c3
@@ -2435,9 +2435,9 @@ Func_2f0a5:
 .asm_2f0e1
 	xor a
 	start_script
-	set_npc_position_and_direction $19, $09, $05, $02
-	set_npc_position_and_direction $1c, $08, $05, $02
-	set_npc_position_and_direction $1d, $0a, $05, $02
+	set_npc_position_and_direction OW_AMY, 9, 5, SOUTH
+	set_npc_position_and_direction OW_SARA, 8, 5, SOUTH
+	set_npc_position_and_direction OW_AMANDA, 10, 5, SOUTH
 	end_script
 .asm_2f0f5
 	scf
@@ -2794,10 +2794,10 @@ Func_2f86e:
 	jr nz, .asm_2f891
 	xor a
 	start_script
-	set_npc_position_and_direction $1e, $07, $0a, $02
-	set_npc_position_and_direction $1f, $06, $0a, $02
-	set_npc_position_and_direction $20, $05, $0a, $02
-	set_npc_position_and_direction $21, $08, $0a, $02
+	set_npc_position_and_direction OW_KEN, 7, 10, SOUTH
+	set_npc_position_and_direction OW_JOHN, 6, 10, SOUTH
+	set_npc_position_and_direction OW_ADAM, 5, 10, SOUTH
+	set_npc_position_and_direction OW_JONATHAN, 8, 10, SOUTH
 	end_script
 	jr .asm_2f8c6
 .asm_2f891
@@ -2812,10 +2812,10 @@ Func_2f86e:
 	jr z, .asm_2f8c6
 	xor a
 	start_script
-	set_npc_position_and_direction $1e, $07, $0a, $02
-	set_npc_position_and_direction $1f, $06, $0a, $02
-	set_npc_position_and_direction $20, $05, $0a, $02
-	set_npc_position_and_direction $21, $08, $0a, $02
+	set_npc_position_and_direction OW_KEN, 7, 10, SOUTH
+	set_npc_position_and_direction OW_JOHN, 6, 10, SOUTH
+	set_npc_position_and_direction OW_ADAM, 5, 10, SOUTH
+	set_npc_position_and_direction OW_JONATHAN, 8, 10, SOUTH
 	end_script
 .asm_2f8c6
 	scf

@@ -209,14 +209,14 @@ Func_3c3ca:
 	xor a
 	start_script
 	script_command_01
-	set_var $25, $0f
-	check_event $f1
+	set_var VAR_25, $0f
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c41b
-	inc_var $22
-	get_var $22
+	inc_var VAR_22
+	get_var VAR_22
 	compare_loaded_var $0a
 	script_jump_if_b1nz .ows_3c3e3
-	set_var $22, $0a
+	set_var VAR_22, $0a
 .ows_3c3e3
 	compare_loaded_var $03
 	script_jump_if_b1nz .ows_3c3f8
@@ -255,12 +255,12 @@ Func_3c3ca:
 	get_player_direction
 	compare_loaded_var $02
 	script_jump_if_b0z .ows_3c42d
-	set_player_direction $03
+	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_3c42d
 	move_active_npc $4492
 	wait_for_player_animation
-	unload_npc $05
+	unload_npc OW_IMAKUNI_BLACK
 	end_script
 	ld a, $00
 	ld [wd582], a
@@ -301,7 +301,7 @@ Func_3c3ca:
 
 .ows_3c474
 	print_npc_text Text12d2
-	get_var $22
+	get_var VAR_22
 	compare_loaded_var $06
 	script_jump_if_b1nz .ows_3c486
 	compare_loaded_var $09

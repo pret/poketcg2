@@ -4,7 +4,7 @@ Func_341c4:
 	xor a
 	start_script
 	script_command_01
-	check_event $f1
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_341dd
 	print_npc_text Text126e
 	give_card SUPER_ENERGY_RETRIEVAL
@@ -18,7 +18,7 @@ Func_341c4:
 	script_command_02
 	move_active_npc $41f0
 	wait_for_player_animation
-	unload_npc $03
+	unload_npc OW_RONALD
 	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
