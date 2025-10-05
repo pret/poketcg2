@@ -209,58 +209,58 @@ Func_3c3ca:
 	xor a
 	start_script
 	script_command_01
-	script_command_11 $25, $0f
-	script_command_10 $f1
-	script_command_09 .ows_3c41b
-	script_command_13 $22
-	script_command_12 $22
-	script_command_0d $0a
-	script_command_0b .ows_3c3e3
-	script_command_11 $22, $0a
+	set_var $25, $0f
+	check_event $f1
+	script_jump_if_b0nz .ows_3c41b
+	inc_var $22
+	get_var $22
+	compare_loaded_var $0a
+	script_jump_if_b1nz .ows_3c3e3
+	set_var $22, $0a
 .ows_3c3e3
-	script_command_0d $03
-	script_command_0b .ows_3c3f8
-	script_command_09 .ows_3c3ff
-	script_command_0d $06
-	script_command_09 .ows_3c406
-	script_command_0d $09
-	script_command_09 .ows_3c40d
-	script_command_08 .ows_3c414
+	compare_loaded_var $03
+	script_jump_if_b1nz .ows_3c3f8
+	script_jump_if_b0nz .ows_3c3ff
+	compare_loaded_var $06
+	script_jump_if_b0nz .ows_3c406
+	compare_loaded_var $09
+	script_jump_if_b0nz .ows_3c40d
+	script_jump .ows_3c414
 
 .ows_3c3f8
-	script_command_50 .ows_3c441, $00
-	script_command_08 .ows_3c41e
+	script_call .ows_3c441
+	script_jump .ows_3c41e
 
 .ows_3c3ff
-	script_command_50 .ows_3c448, $00
-	script_command_08 .ows_3c41e
+	script_call .ows_3c448
+	script_jump .ows_3c41e
 
 .ows_3c406
-	script_command_50 .ows_3c452, $00
-	script_command_08 .ows_3c41e
+	script_call .ows_3c452
+	script_jump .ows_3c41e
 
 .ows_3c40d
-	script_command_50 .ows_3c45c, $00
-	script_command_08 .ows_3c41e
+	script_call .ows_3c45c
+	script_jump .ows_3c41e
 
 .ows_3c414
-	script_command_50 .ows_3c474, $00
-	script_command_08 .ows_3c41e
+	script_call .ows_3c474
+	script_jump .ows_3c41e
 
 .ows_3c41b
-	script_command_05 Text12cc
+	print_npc_text Text12cc
 .ows_3c41e
-	script_command_05 Text12cd
+	print_npc_text Text12cd
 	script_command_02
-	script_command_36
-	script_command_0d $02
-	script_command_0a .ows_3c42d
-	script_command_17 $03
-	script_command_28 $81, $02
+	get_player_direction
+	compare_loaded_var $02
+	script_jump_if_b0z .ows_3c42d
+	set_player_direction $03
+	animate_player_movement $81, $02
 .ows_3c42d
-	script_command_2d $4492
-	script_command_2f
-	script_command_16 $05
+	move_active_npc $4492
+	wait_for_player_animation
+	unload_npc $05
 	end_script
 	ld a, $00
 	ld [wd582], a
@@ -269,56 +269,56 @@ Func_3c3ca:
 	ret
 
 .ows_3c441
-	script_command_05 Text12ce
-	script_command_56 $4ddd
-	script_command_51
+	print_npc_text Text12ce
+	give_booster_packs $4ddd
+	script_ret
 
 .ows_3c448
-	script_command_05 Text12cf
-	script_command_33 FARFETCHD_ALT_LV20
-	script_command_1b FARFETCHD_ALT_LV20
-	script_command_51
+	print_npc_text Text12cf
+	give_card FARFETCHD_ALT_LV20
+	show_card_received_screen FARFETCHD_ALT_LV20
+	script_ret
 
 .ows_3c452
-	script_command_05 Text12d0
-	script_command_33 IMAKUNI_CARD
-	script_command_1b IMAKUNI_CARD
-	script_command_51
+	print_npc_text Text12d0
+	give_card IMAKUNI_CARD
+	show_card_received_screen IMAKUNI_CARD
+	script_ret
 
 .ows_3c45c
-	script_command_05 Text12d1
-	script_command_57 $02
-	script_command_0d $00
-	script_command_0a .ows_3c46d
-	script_command_33 FARFETCHD_ALT_LV20
-	script_command_1b FARFETCHD_ALT_LV20
-	script_command_51
+	print_npc_text Text12d1
+	get_random $02
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c46d
+	give_card FARFETCHD_ALT_LV20
+	show_card_received_screen FARFETCHD_ALT_LV20
+	script_ret
 
 .ows_3c46d
-	script_command_33 IMAKUNI_CARD
-	script_command_1b IMAKUNI_CARD
-	script_command_51
+	give_card IMAKUNI_CARD
+	show_card_received_screen IMAKUNI_CARD
+	script_ret
 
 .ows_3c474
-	script_command_05 Text12d2
-	script_command_12 $22
-	script_command_0d $06
-	script_command_0b .ows_3c486
-	script_command_0d $09
-	script_command_0b .ows_3c48a
-	script_command_08 .ows_3c48e
+	print_npc_text Text12d2
+	get_var $22
+	compare_loaded_var $06
+	script_jump_if_b1nz .ows_3c486
+	compare_loaded_var $09
+	script_jump_if_b1nz .ows_3c48a
+	script_jump .ows_3c48e
 
 .ows_3c486
-	script_command_56 $4de3
-	script_command_51
+	give_booster_packs $4de3
+	script_ret
 
 .ows_3c48a
-	script_command_56 $4de9
-	script_command_51
+	give_booster_packs $4de9
+	script_ret
 
 .ows_3c48e
-	script_command_56 $4df0
-	script_command_51
+	give_booster_packs $4df0
+	script_ret
 ; 0x3c492
 
 SECTION "Bank f@4603", ROMX[$4603], BANK[$f]

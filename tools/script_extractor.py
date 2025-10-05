@@ -21,134 +21,134 @@ texts = None
 
 # script command names and parameter lists
 script_commands = {
-	0xcd: { "name": "start_script",      "params": [ "skip_word" ] },
+	0xcd: { "name": "start_script",                           "params": [ "skip_word" ] },
 
-	0x00: { "name": "end_script",        "params": [] },
-	0x01: { "name": "script_command_01", "params": [] }, # reset npc's flag6 if in area (on screen?)
-	0x02: { "name": "script_command_02", "params": [] }, # set npc's flag6 if in area (on screen?)
-	0x03: { "name": "script_command_03", "params": [ "text" ] }, # print text
-	0x04: { "name": "script_command_04", "params": [ "text", "text" ] }, # print variable text
-	0x05: { "name": "script_command_05", "params": [ "text" ] }, # print npc text
-	0x06: { "name": "script_command_06", "params": [ "text", "text" ] }, # print variable npc text
-	0x07: { "name": "script_command_07", "params": [ "text", "byte" ] }, # ask question
-	0x08: { "name": "script_command_08", "params": [ "script" ] }, # script jump
-	0x09: { "name": "script_command_09", "params": [ "script" ] }, # conditional script jump
-	0x0a: { "name": "script_command_0a", "params": [ "script" ] }, # conditional script jump
-	0x0b: { "name": "script_command_0b", "params": [ "script" ] }, # conditional script jump
-	0x0c: { "name": "script_command_0c", "params": [ "script" ] }, # conditional script jump
-	0x0d: { "name": "script_command_0d", "params": [ "byte" ] }, # compare loaded var
-	0x0e: { "name": "script_command_0e", "params": [ "byte" ] }, # set event
-	0x0f: { "name": "script_command_0f", "params": [ "byte" ] }, # reset event
-	0x10: { "name": "script_command_10", "params": [ "byte" ] }, # check event
-	0x11: { "name": "script_command_11", "params": [ "byte", "byte" ] }, # set var
-	0x12: { "name": "script_command_12", "params": [ "byte" ] }, # get var
-	0x13: { "name": "script_command_13", "params": [ "byte" ] }, # inc var
-	0x14: { "name": "script_command_14", "params": [ "byte" ] }, # dec var
-	0x15: { "name": "script_command_15", "params": [ "byte", "byte", "byte", "byte" ] }, # load npc (position and direction)
-	0x16: { "name": "script_command_16", "params": [ "byte" ] }, # unload npc
-	0x17: { "name": "script_command_17", "params": [ "byte" ] }, # set player direction
-	0x18: { "name": "script_command_18", "params": [ "byte" ] }, # set active npc direction
-	0x19: { "name": "script_command_19", "params": [ "byte_decimal" ] }, # do frames
-	0x1a: { "name": "script_command_1a", "params": [ "word", "byte", "byte" ] }, # load tilemap
-	0x1b: { "name": "script_command_1b", "params": [ "card" ] }, # show card received screen
-	0x1c: { "name": "script_command_1c", "params": [ "byte", "byte" ] }, # set player position
-	0x1d: { "name": "script_command_1d", "params": [ "byte", "byte" ] }, # set active npc position
-	0x1e: { "name": "script_command_1e", "params": [ "byte" ] }, # set scroll state
-	0x1f: { "name": "script_command_1f", "params": [ "byte", "byte" ] }, # scroll to position
-	0x20: { "name": "script_command_20", "params": [ "byte", "text" ] }, # set active npc
-	0x21: { "name": "script_command_21", "params": [ "byte", "byte", "byte" ] }, # set player position and direction
-	0x22: { "name": "script_command_22", "params": [ "byte", "byte", "byte", "byte" ] }, # set npc position and direction
-	0x23: { "name": "script_command_23", "params": [ "byte", "byte" ] }, # screen fade out
-	0x24: { "name": "script_command_24", "params": [ "byte", "byte" ] }, # screen fade in
-	0x25: { "name": "script_command_25", "params": [ "byte", "byte" ] }, # set npc direction
-	0x26: { "name": "script_command_26", "params": [ "byte", "byte", "byte" ] }, # set npc position
-	0x27: { "name": "script_command_27", "params": [ "byte", "byte", "byte" ] }, # set active npc position and direction
-	0x28: { "name": "script_command_28", "params": [ "byte", "byte" ] }, # animate player movement
-	0x29: { "name": "script_command_29", "params": [ "byte", "byte", "byte" ] }, # animate npc movement
-	0x2a: { "name": "script_command_2a", "params": [ "byte", "byte" ] }, # animate active npc movement
-	0x2b: { "name": "script_command_2b", "params": [ "word", "byte" ] }, # move player
-	0x2c: { "name": "script_command_2c", "params": [ "byte", "word" ] }, # move npc
-	0x2d: { "name": "script_command_2d", "params": [ "word" ] }, # move active npc
-	0x2e: { "name": "script_command_2e", "params": [ "byte", "byte" ] }, # start duel
-	0x2f: { "name": "script_command_2f", "params": [] }, # wait for player animation
-	0x30: { "name": "script_command_30", "params": [] }, # wait for fade
-	0x31: { "name": "script_command_31", "params": [ "card" ] }, # get card count in collection and decks
-	0x32: { "name": "script_command_32", "params": [ "card" ] }, # get card count in collection
-	0x33: { "name": "script_command_33", "params": [ "card" ] }, # give card
-	0x34: { "name": "script_command_34", "params": [ "card" ] }, # take card
-	0x35: { "name": "script_command_35", "params": [ "text", "byte" ] }, # npc ask question
-	0x36: { "name": "script_command_36", "params": [] }, # get player direction
-	0x37: { "name": "script_command_37", "params": [ "byte", "byte" ] }, # compare var
-	0x38: { "name": "script_command_38", "params": [] }, # get active npc direction
-	0x39: { "name": "script_command_39", "params": [] }, # scroll to active npc
-	0x3a: { "name": "script_command_3a", "params": [] }, # scroll to player
-	0x3b: { "name": "script_command_3b", "params": [ "byte" ] }, # scroll to npc
-	0x3c: { "name": "script_command_3c", "params": [ "word" ] }, # spin active npc
-	0x3d: { "name": "script_command_3d", "params": [] }, # restore active npc direction
-	0x3e: { "name": "script_command_3e", "params": [ "word" ] }, # spin active npc reverse
-	0x3f: { "name": "script_command_3f", "params": [ "byte" ] }, # reset npc flag6
-	0x40: { "name": "script_command_40", "params": [ "byte" ] }, # set npc flag6
-	0x41: { "name": "script_command_41", "params": [ "byte" ] }, # duel requirement check
-	0x42: { "name": "script_command_42", "params": [] }, # get active npc opposite direction
-	0x43: { "name": "script_command_43", "params": [] }, # get player opposite direction
-	0x44: { "name": "script_command_44", "params": [ "byte" ] }, # play sfx
-	0x45: { "name": "script_command_45", "params": [ "byte" ] }, # play sfx and wait
-	0x46: { "name": "script_command_46", "params": [ "text" ] }, # load text ram2
-	0x47: { "name": "script_command_47", "params": [ "text", "text" ] }, # load variable text ram2
-	0x48: { "name": "script_command_48", "params": [ "byte" ] }, # wait for animation
-	0x49: { "name": "script_command_49", "params": [] }, # get player x position
-	0x4a: { "name": "script_command_4a", "params": [] }, # get player y position
-	0x4b: { "name": "script_command_4b", "params": [ "byte" ] }, # restore npc direction
-	0x4c: { "name": "script_command_4c", "params": [ "byte", "word" ] }, # spin npc
-	0x4d: { "name": "script_command_4d", "params": [ "byte", "word" ] }, # spin npc reverse
-	0x4e: { "name": "script_command_4e", "params": [] }, # push var
-	0x4f: { "name": "script_command_4f", "params": [] }, # pop var
-	0x50: { "name": "script_command_50", "params": [ "script", "byte" ] }, # conditional script call
-	0x51: { "name": "script_command_51", "params": [] }, # script ret
-	0x52: { "name": "script_command_52", "params": [ "byte" ] }, # give coin
-	0x53: { "name": "script_command_53", "params": [] }, # backup active npc
-	0x54: { "name": "script_command_54", "params": [ "byte", "byte", "byte" ] }, # load player (position and direction)
-	0x55: { "name": "script_command_55", "params": [] }, # unload player
-	0x56: { "name": "script_command_56", "params": [ "word" ] }, # give boosters
-	0x57: { "name": "script_command_57", "params": [ "byte" ] }, # get random
-	0x58: { "name": "script_command_58", "params": [] }, # ?
-	0x59: { "name": "script_command_59", "params": [ "word" ] }, # load text ram3
-	0x5a: { "name": "script_command_5a", "params": [] }, # alternate quit
-	0x5b: { "name": "script_command_5b", "params": [ "byte" ] }, # play song
-	0x5c: { "name": "script_command_5c", "params": [] }, # resume song
-	0x5d: { "name": "script_command_5d", "params": [ "script_far" ] }, # script callfar
-	0x5e: { "name": "script_command_5e", "params": [] }, # script retfar
-	0x5f: { "name": "script_command_5f", "params": [ "byte" ] }, # cardpop
-	0x60: { "name": "script_command_60", "params": [ "byte" ] }, # play song next
-	0x61: { "name": "script_command_61", "params": [ "text" ] }, # load text ram2b
-	0x62: { "name": "script_command_62", "params": [ "text", "text" ] }, # load variable text ram2b
-	0x63: { "name": "script_command_63", "params": [ "byte", "byte" ] }, # replace npc
-	0x64: { "name": "script_command_64", "params": [ "byte" ] }, # ?
-	0x65: { "name": "script_command_65", "params": [ "byte" ] }, # check npc loaded
-	0x66: { "name": "script_command_66", "params": [ "byte" ] }, # give deck
-	0x67: { "name": "script_command_67", "params": [ "byte", "byte" ] }, # ?
-	0x68: { "name": "script_command_68", "params": [] }, # wait for ?
-	0x69: { "name": "script_command_69", "params": [ "text" ] }, # print npc text instant
-	0x6a: { "name": "script_command_6a", "params": [ "byte", "byte" ] }, # var add
-	0x6b: { "name": "script_command_6b", "params": [ "byte", "byte" ] }, # var sub
-	0x6c: { "name": "script_command_6c", "params": [ "card" ] }, # receive card
-	0x6d: { "name": "script_command_6d", "params": [] }, # fetch wda99
-	0x6e: { "name": "script_command_6e", "params": [ "word" ] }, # compare word var
-	0x6f: { "name": "script_command_6f", "params": [] }, # fetch wda9b
-	0x70: { "name": "script_command_70", "params": [] }, # game center
-	0x71: { "name": "script_command_71", "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
-	0x72: { "name": "script_command_72", "params": [ "word" ] }, # ?
-	0x73: { "name": "script_command_73", "params": [ "word" ] }, # ?
-	0x74: { "name": "script_command_74", "params": [] }, # set text ram3
-	0x75: { "name": "script_command_75", "params": [] }, # ?
-	0x76: { "name": "script_command_76", "params": [] }, # ?
-	0x77: { "name": "script_command_77", "params": [] }, # link duel
-	0x78: { "name": "script_command_78", "params": [] }, # wait song
-	0x79: { "name": "script_command_79", "params": [ "word" ] }, # load palette
-	0x7a: { "name": "script_command_7a", "params": [ "byte", "word" ] }, # set sprite frameset
-	0x7b: { "name": "script_command_7b", "params": [] }, # wait sfx
-	0x7c: { "name": "script_command_7c", "params": [ "text" ] }, # print text wide textbox
-	0x7d: { "name": "script_command_7d", "params": [] }, # wait input
+	0x00: { "name": "end_script",                             "params": [] },
+	0x01: { "name": "script_command_01",                      "params": [] }, # reset npc's flag6 if in area (on screen?)
+	0x02: { "name": "script_command_02",                      "params": [] }, # set npc's flag6 if in area (on screen?)
+	0x03: { "name": "print_text",                             "params": [ "text" ] },
+	0x04: { "name": "print_variable_text",                    "params": [ "text", "text" ] },
+	0x05: { "name": "print_npc_text",                         "params": [ "text" ] },
+	0x06: { "name": "print_variable_npc_text",                "params": [ "text", "text" ] },
+	0x07: { "name": "ask_question",                           "params": [ "text", "byte" ] },
+	0x08: { "name": "script_jump",                            "params": [ "script" ] },
+	0x09: { "name": "script_jump_if_b0nz",                    "params": [ "script" ] },
+	0x0a: { "name": "script_jump_if_b0z",                     "params": [ "script" ] },
+	0x0b: { "name": "script_jump_if_b1nz",                    "params": [ "script" ] },
+	0x0c: { "name": "script_jump_if_b1z",                     "params": [ "script" ] },
+	0x0d: { "name": "compare_loaded_var",                     "params": [ "byte" ] },
+	0x0e: { "name": "set_event",                              "params": [ "byte" ] },
+	0x0f: { "name": "reset_event",                            "params": [ "byte" ] },
+	0x10: { "name": "check_event",                            "params": [ "byte" ] },
+	0x11: { "name": "set_var",                                "params": [ "byte", "byte" ] },
+	0x12: { "name": "get_var",                                "params": [ "byte" ] },
+	0x13: { "name": "inc_var",                                "params": [ "byte" ] },
+	0x14: { "name": "dec_var",                                "params": [ "byte" ] },
+	0x15: { "name": "load_npc",                               "params": [ "byte", "byte", "byte", "byte" ] },
+	0x16: { "name": "unload_npc",                             "params": [ "byte" ] },
+	0x17: { "name": "set_player_direction",                   "params": [ "byte" ] },
+	0x18: { "name": "set_active_npc_direction",               "params": [ "byte" ] },
+	0x19: { "name": "do_frames",                              "params": [ "byte_decimal" ] },
+	0x1a: { "name": "load_tilemap",                           "params": [ "word", "byte", "byte" ] },
+	0x1b: { "name": "show_card_received_screen",              "params": [ "card" ] },
+	0x1c: { "name": "set_player_position",                    "params": [ "byte", "byte" ] },
+	0x1d: { "name": "set_active_npc_position",                "params": [ "byte", "byte" ] },
+	0x1e: { "name": "set_scroll_state",                       "params": [ "byte" ] },
+	0x1f: { "name": "scroll_to_position",                     "params": [ "byte", "byte" ] },
+	0x20: { "name": "set_active_npc",                         "params": [ "byte", "text" ] },
+	0x21: { "name": "set_player_position_and_direction",      "params": [ "byte", "byte", "byte" ] },
+	0x22: { "name": "set_npc_position_and_direction",         "params": [ "byte", "byte", "byte", "byte" ] },
+	0x23: { "name": "fade_in",                                "params": [ "byte", "byte" ] },
+	0x24: { "name": "fade_out",                               "params": [ "byte", "byte" ] },
+	0x25: { "name": "set_npc_direction",                      "params": [ "byte", "byte" ] },
+	0x26: { "name": "set_npc_position",                       "params": [ "byte", "byte", "byte" ] },
+	0x27: { "name": "set_active_npc_position_and_direction",  "params": [ "byte", "byte", "byte" ] },
+	0x28: { "name": "animate_player_movement",                "params": [ "byte", "byte" ] },
+	0x29: { "name": "animate_npc_movement",                   "params": [ "byte", "byte", "byte" ] },
+	0x2a: { "name": "animate_active_npc_movement",            "params": [ "byte", "byte" ] },
+	0x2b: { "name": "move_player",                            "params": [ "word", "byte" ] },
+	0x2c: { "name": "move_npc",                               "params": [ "byte", "word" ] },
+	0x2d: { "name": "move_active_npc",                        "params": [ "word" ] },
+	0x2e: { "name": "start_duel",                             "params": [ "byte", "byte" ] },
+	0x2f: { "name": "wait_for_player_animation",              "params": [] },
+	0x30: { "name": "wait_for_fade",                          "params": [] },
+	0x31: { "name": "get_card_count_in_collection_and_decks", "params": [ "card" ] },
+	0x32: { "name": "get_card_count_in_collection",           "params": [ "card" ] },
+	0x33: { "name": "give_card",                              "params": [ "card" ] },
+	0x34: { "name": "take_card",                              "params": [ "card" ] },
+	0x35: { "name": "npc_ask_question",                       "params": [ "text", "byte" ] },
+	0x36: { "name": "get_player_direction",                   "params": [] },
+	0x37: { "name": "compare_var",                            "params": [ "byte", "byte" ] },
+	0x38: { "name": "get_active_npc_direction",               "params": [] },
+	0x39: { "name": "scroll_to_active_npc",                   "params": [] },
+	0x3a: { "name": "scroll_to_player",                       "params": [] },
+	0x3b: { "name": "scroll_to_npc",                          "params": [ "byte" ] },
+	0x3c: { "name": "spin_active_npc",                        "params": [ "word" ] },
+	0x3d: { "name": "restore_active_npc_direction",           "params": [] },
+	0x3e: { "name": "spin_active_npc_reverse",                "params": [ "word" ] },
+	0x3f: { "name": "reset_npc_flag6",                        "params": [ "byte" ] },
+	0x40: { "name": "set_npc_flag6",                          "params": [ "byte" ] },
+	0x41: { "name": "duel_requirement_check",                 "params": [ "byte" ] },
+	0x42: { "name": "get_active_npc_opposite_direction",      "params": [] },
+	0x43: { "name": "get_player_opposite_direction",          "params": [] },
+	0x44: { "name": "play_sfx",                               "params": [ "byte" ] },
+	0x45: { "name": "play_sfx_and_wait",                      "params": [ "byte" ] },
+	0x46: { "name": "set_text_ram2",                          "params": [ "text" ] },
+	0x47: { "name": "set_variable_text_ram2",                 "params": [ "text", "text" ] },
+	0x48: { "name": "wait_for_npc_animation",                 "params": [ "byte" ] },
+	0x49: { "name": "get_player_x_position",                  "params": [] },
+	0x4a: { "name": "get_player_y_position",                  "params": [] },
+	0x4b: { "name": "restore_npc_direction",                  "params": [ "byte" ] },
+	0x4c: { "name": "spin_npc",                               "params": [ "byte", "word" ] },
+	0x4d: { "name": "spin_npc_reverse",                       "params": [ "byte", "word" ] },
+	0x4e: { "name": "push_var",                               "params": [] },
+	0x4f: { "name": "pop_var",                                "params": [] },
+	0x50: { "name": "script_call",                            "params": [ "script", "condition" ] },
+	0x51: { "name": "script_ret",                             "params": [] },
+	0x52: { "name": "give_coin",                              "params": [ "byte" ] },
+	0x53: { "name": "backup_active_npc",                      "params": [] },
+	0x54: { "name": "load_player",                            "params": [ "byte", "byte", "byte" ] },
+	0x55: { "name": "unload_player",                          "params": [] },
+	0x56: { "name": "give_booster_packs",                     "params": [ "word" ] },
+	0x57: { "name": "get_random",                             "params": [ "byte" ] },
+	0x58: { "name": "script_command_58",                      "params": [] }, # ?
+	0x59: { "name": "set_text_ram3",                          "params": [ "word" ] },
+	0x5a: { "name": "quit_script",                            "params": [] },
+	0x5b: { "name": "play_song",                              "params": [ "byte" ] },
+	0x5c: { "name": "resume_song",                            "params": [] },
+	0x5d: { "name": "script_callfar",                         "params": [ "script_far" ] },
+	0x5e: { "name": "script_retfar",                          "params": [] },
+	0x5f: { "name": "card_pop",                               "params": [ "byte" ] },
+	0x60: { "name": "play_song_next",                         "params": [ "byte" ] },
+	0x61: { "name": "set_text_ram2b",                         "params": [ "text" ] },
+	0x62: { "name": "set_variable_text_ram2b",                "params": [ "text", "text" ] },
+	0x63: { "name": "replace_npc",                            "params": [ "byte", "byte" ] },
+	0x64: { "name": "script_command_64",                      "params": [ "byte" ] }, # ?
+	0x65: { "name": "check_npc_loaded",                       "params": [ "byte" ] },
+	0x66: { "name": "give_deck",                              "params": [ "byte" ] },
+	0x67: { "name": "script_command_67",                      "params": [ "byte", "byte" ] }, # ?
+	0x68: { "name": "script_command_68",                      "params": [] }, # wait for ?
+	0x69: { "name": "print_npc_text_instant",                 "params": [ "text" ] },
+	0x6a: { "name": "var_add",                                "params": [ "byte", "byte" ] },
+	0x6b: { "name": "var_sub",                                "params": [ "byte", "byte" ] },
+	0x6c: { "name": "receive_card",                           "params": [ "card" ] },
+	0x6d: { "name": "fetch_wda99",                            "params": [] },
+	0x6e: { "name": "compare_loaded_var_word",                "params": [ "word" ] },
+	0x6f: { "name": "fetch_wda9b",                            "params": [] },
+	0x70: { "name": "game_center",                            "params": [] },
+	0x71: { "name": "script_command_71",                      "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
+	0x72: { "name": "script_command_72",                      "params": [ "word" ] }, # ?
+	0x73: { "name": "script_command_73",                      "params": [ "word" ] }, # ?
+	0x74: { "name": "load_text_ram3",                         "params": [] },
+	0x75: { "name": "script_command_75",                      "params": [] }, # ?
+	0x76: { "name": "script_command_76",                      "params": [] }, # ?
+	0x77: { "name": "link_duel",                              "params": [] },
+	0x78: { "name": "wait_song",                              "params": [] },
+	0x79: { "name": "load_palette",                           "params": [ "word" ] },
+	0x7a: { "name": "set_sprite_frameset",                    "params": [ "byte", "word" ] },
+	0x7b: { "name": "wait_sfx",                               "params": [] },
+	0x7c: { "name": "print_text_wide_textbox",                "params": [ "text" ] },
+	0x7d: { "name": "wait_input",                             "params": [] },
 }
 
 quit_commands = [
@@ -163,6 +163,7 @@ quit_commands = [
 param_lengths = {
 	"byte":           1,
 	"byte_decimal":   1,
+	"condition":      1,
 	"deck":           1,
 	"direction":      1,
 	"event":          1,
@@ -283,6 +284,9 @@ def dump_script(start_address, address=None, visited=set()):
 				output += " ${:02x}".format(param)
 			elif param_type == "byte_decimal":
 				output += " {}".format(param)
+			elif param_type == "condition":
+				if param != 0:
+					output += " ${:02x}".format(param)
 			elif param_type == "deck":
 				output += " {}".format(decks[param])
 			elif param_type == "direction":
@@ -355,6 +359,8 @@ def dump_script(start_address, address=None, visited=set()):
 			address += param_length
 			if i < len(command["params"]) - 1:
 				output += ","
+		if output.endswith(","):
+			output = output[:-1]
 		output += "\n"
 		blobs.append(make_blob(command_address, output, address))
 		if command_id in quit_commands:

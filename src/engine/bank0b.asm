@@ -279,16 +279,16 @@ Func_2c50a:
 	ld [$d594], a
 	xor a
 	start_script
-	script_command_22 $22, $05, $09, $02
-	script_command_22 $24, $08, $09, $02
-	script_command_22 $31, $07, $09, $02
+	set_npc_position_and_direction $22, $05, $09, $02
+	set_npc_position_and_direction $24, $08, $09, $02
+	set_npc_position_and_direction $31, $07, $09, $02
 	end_script
 	jr .asm_2c55e
 .asm_2c54f
 	xor a
 	start_script
-	script_command_22 $22, $05, $06, $02
-	script_command_22 $24, $08, $08, $02
+	set_npc_position_and_direction $22, $05, $06, $02
+	set_npc_position_and_direction $24, $08, $08, $02
 	end_script
 .asm_2c55e
 	scf
@@ -507,7 +507,7 @@ Func_2caa0:
 	xor a
 	start_script
 	script_command_01
-	script_command_05 Text0bcb
+	print_npc_text Text0bcb
 	script_command_02
 	end_script
 	ret
@@ -761,19 +761,19 @@ Func_2cda2:
 	ld [$d594], a
 	xor a
 	start_script
-	script_command_22 $26, $07, $06, $02
-	script_command_22 $27, $05, $06, $02
-	script_command_22 $28, $06, $06, $02
-	script_command_22 $29, $08, $0a, $02
+	set_npc_position_and_direction $26, $07, $06, $02
+	set_npc_position_and_direction $27, $05, $06, $02
+	set_npc_position_and_direction $28, $06, $06, $02
+	set_npc_position_and_direction $29, $08, $0a, $02
 	end_script
 	jr .asm_2ce0f
 .asm_2cdf6
 	xor a
 	start_script
-	script_command_22 $26, $06, $03, $02
-	script_command_22 $27, $05, $06, $02
-	script_command_22 $28, $06, $0a, $02
-	script_command_22 $29, $08, $0a, $02
+	set_npc_position_and_direction $26, $06, $03, $02
+	set_npc_position_and_direction $27, $05, $06, $02
+	set_npc_position_and_direction $28, $06, $0a, $02
+	set_npc_position_and_direction $29, $08, $0a, $02
 	end_script
 .asm_2ce0f
 	scf
@@ -1103,9 +1103,9 @@ Func_2d673:
 	ld [$d594], a
 	xor a
 	start_script
-	script_command_22 $0a, $05, $01, $02
-	script_command_22 $0b, $08, $01, $02
-	script_command_22 $0c, $06, $01, $02
+	set_npc_position_and_direction $0a, $05, $01, $02
+	set_npc_position_and_direction $0b, $08, $01, $02
+	set_npc_position_and_direction $0c, $06, $01, $02
 	end_script
 .asm_2d6a4
 	scf
@@ -2416,9 +2416,9 @@ Func_2f0a5:
 	jr nz, .asm_2f0c3
 	xor a
 	start_script
-	script_command_15 $ac, $04, $06, $02
-	script_command_15 $ad, $03, $06, $01
-	script_command_15 $ae, $05, $06, $03
+	load_npc $ac, $04, $06, $02
+	load_npc $ad, $03, $06, $01
+	load_npc $ae, $05, $06, $03
 	end_script
 	jr .asm_2f0f5
 .asm_2f0c3
@@ -2435,9 +2435,9 @@ Func_2f0a5:
 .asm_2f0e1
 	xor a
 	start_script
-	script_command_22 $19, $09, $05, $02
-	script_command_22 $1c, $08, $05, $02
-	script_command_22 $1d, $0a, $05, $02
+	set_npc_position_and_direction $19, $09, $05, $02
+	set_npc_position_and_direction $1c, $08, $05, $02
+	set_npc_position_and_direction $1d, $0a, $05, $02
 	end_script
 .asm_2f0f5
 	scf
@@ -2794,10 +2794,10 @@ Func_2f86e:
 	jr nz, .asm_2f891
 	xor a
 	start_script
-	script_command_22 $1e, $07, $0a, $02
-	script_command_22 $1f, $06, $0a, $02
-	script_command_22 $20, $05, $0a, $02
-	script_command_22 $21, $08, $0a, $02
+	set_npc_position_and_direction $1e, $07, $0a, $02
+	set_npc_position_and_direction $1f, $06, $0a, $02
+	set_npc_position_and_direction $20, $05, $0a, $02
+	set_npc_position_and_direction $21, $08, $0a, $02
 	end_script
 	jr .asm_2f8c6
 .asm_2f891
@@ -2812,10 +2812,10 @@ Func_2f86e:
 	jr z, .asm_2f8c6
 	xor a
 	start_script
-	script_command_22 $1e, $07, $0a, $02
-	script_command_22 $1f, $06, $0a, $02
-	script_command_22 $20, $05, $0a, $02
-	script_command_22 $21, $08, $0a, $02
+	set_npc_position_and_direction $1e, $07, $0a, $02
+	set_npc_position_and_direction $1f, $06, $0a, $02
+	set_npc_position_and_direction $20, $05, $0a, $02
+	set_npc_position_and_direction $21, $08, $0a, $02
 	end_script
 .asm_2f8c6
 	scf

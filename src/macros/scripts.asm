@@ -150,517 +150,512 @@ MACRO script_command_02
 	run_command ScriptCommand_02
 ENDM
 
-MACRO script_command_03
+MACRO print_text
 	run_command ScriptCommand_03
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_04
+MACRO print_variable_text
 	run_command ScriptCommand_04
-	tx \1
-	tx \2
+	tx \1 ; text 1
+	tx \2 ; text 2
 ENDM
 
-MACRO script_command_05
+MACRO print_npc_text
 	run_command ScriptCommand_05
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_06
+MACRO print_variable_npc_text
 	run_command ScriptCommand_06
-	tx \1
-	tx \2
+	tx \1 ; text 1
+	tx \2 ; text 2
 ENDM
 
-MACRO script_command_07
+MACRO ask_question
 	run_command ScriptCommand_07
-	tx \1
-	db \2
+	tx \1 ; text
+	db \2 ; 0: default "yes", 1: default "no"
 ENDM
 
-MACRO script_command_08
+MACRO script_jump
 	run_command ScriptCommand_08
-	dw \1
+	dw \1 ; script
 ENDM
 
-MACRO script_command_09
+MACRO script_jump_if_b0nz
 	run_command ScriptCommand_09
-	dw \1
+	dw \1 ; script
 ENDM
 
-MACRO script_command_0a
+MACRO script_jump_if_b0z
 	run_command ScriptCommand_0A
-	dw \1
+	dw \1 ; script
 ENDM
 
-MACRO script_command_0b
+MACRO script_jump_if_b1nz
 	run_command ScriptCommand_0B
-	dw \1
+	dw \1 ; script
 ENDM
 
-MACRO script_command_0c
+MACRO script_jump_if_b1z
 	run_command ScriptCommand_0C
-	dw \1
+	dw \1 ; script
 ENDM
 
-MACRO script_command_0d
+MACRO compare_loaded_var
 	run_command ScriptCommand_0D
-	db \1
+	db \1 ; value to compare
 ENDM
 
-MACRO script_command_0e
+MACRO set_event
 	run_command ScriptCommand_0E
-	db \1
+	db \1 ; event to set
 ENDM
 
-MACRO script_command_0f
+MACRO reset_event
 	run_command ScriptCommand_0F
-	db \1
+	db \1 ; event to reset
 ENDM
 
-MACRO script_command_10
+MACRO check_event
 	run_command ScriptCommand_10
-	db \1
+	db \1 ; event to check
 ENDM
 
-MACRO script_command_11
+MACRO set_var
 	run_command ScriptCommand_11
-	db \1
-	db \2
+	db \1 ; var to set
+	db \2 ; value to set it to
 ENDM
 
-MACRO script_command_12
+MACRO get_var
 	run_command ScriptCommand_12
-	db \1
+	db \1 ; var to get
 ENDM
 
-MACRO script_command_13
+MACRO inc_var
 	run_command ScriptCommand_13
-	db \1
+	db \1 ; var to inc
 ENDM
 
-MACRO script_command_14
+MACRO dec_var
 	run_command ScriptCommand_14
-	db \1
+	db \1 ; var to dec
 ENDM
 
-MACRO script_command_15
+MACRO load_npc
 	run_command ScriptCommand_15
-	db \1
-	db \2
-	db \3
-	db \4
+	db \1     ; npc to load
+	db \2, \3 ; position
+	db \4     ; direction
 ENDM
 
-MACRO script_command_16
+MACRO unload_npc
 	run_command ScriptCommand_16
-	db \1
+	db \1 ; npc to unload
 ENDM
 
-MACRO script_command_17
+MACRO set_player_direction
 	run_command ScriptCommand_17
-	db \1
+	db \1 ; direction
 ENDM
 
-MACRO script_command_18
+MACRO set_active_npc_direction
 	run_command ScriptCommand_18
-	db \1
+	db \1 ; direction
 ENDM
 
-MACRO script_command_19
+MACRO do_frames
 	run_command ScriptCommand_19
-	db \1
+	db \1 ; number of frames
 ENDM
 
-MACRO script_command_1a
+MACRO load_tilemap
 	run_command ScriptCommand_1A
-	dw \1
-	db \2
-	db \3
+	dw \1     ; tilemap
+	db \2, \3 ; position
 ENDM
 
-MACRO script_command_1b
+MACRO show_card_received_screen
 	run_command ScriptCommand_1B
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_1c
+MACRO set_player_position
 	run_command ScriptCommand_1C
-	db \1
-	db \2
+	db \1, \2 ; position
 ENDM
 
-MACRO script_command_1d
+MACRO set_active_npc_position
 	run_command ScriptCommand_1D
-	db \1
-	db \2
+	db \1, \2 ; position
 ENDM
 
-MACRO script_command_1e
+MACRO set_scroll_state
 	run_command ScriptCommand_1E
-	db \1
+	db \1 ; scroll state
 ENDM
 
-MACRO script_command_1f
+MACRO scroll_to_position
 	run_command ScriptCommand_1F
-	db \1
-	db \2
+	db \1, \2 ; position
 ENDM
 
-MACRO script_command_20
+MACRO set_active_npc
 	run_command ScriptCommand_20
-	db \1
-	tx \2
+	db \1 ; npc
+	tx \2 ; npc name
 ENDM
 
-MACRO script_command_21
+MACRO set_player_position_and_direction
 	run_command ScriptCommand_21
-	db \1
-	db \2
-	db \3
+	db \1, \2 ; position
+	db \3     ; direction
 ENDM
 
-MACRO script_command_22
+MACRO set_npc_position_and_direction
 	run_command ScriptCommand_22
-	db \1
-	db \2
-	db \3
-	db \4
+	db \1     ; npc
+	db \2, \3 ; position
+	db \4     ; direction
 ENDM
 
-MACRO script_command_23
+MACRO fade_in
 	run_command ScriptCommand_23
-	db \1
-	db \2
+	db \1 ; VBlankCounter mask
+	db \2 ; 0: fade from white, 1: fade from black
 ENDM
 
-MACRO script_command_24
+MACRO fade_out
 	run_command ScriptCommand_24
-	db \1
-	db \2
+	db \1 ; VBlankCounter mask
+	db \2 ; 0: fade to white, 1: fade to black
 ENDM
 
-MACRO script_command_25
+MACRO set_npc_direction
 	run_command ScriptCommand_25
-	db \1
-	db \2
+	db \1 ; npc
+	db \2 ; direction
 ENDM
 
-MACRO script_command_26
+MACRO set_npc_position
 	run_command ScriptCommand_26
-	db \1
-	db \2
-	db \3
+	db \1     ; npc
+	db \2, \3 ; position
 ENDM
 
-MACRO script_command_27
+MACRO set_active_npc_position_and_direction
 	run_command ScriptCommand_27
-	db \1
-	db \2
-	db \3
+	db \1, \2 ; position
+	db \3     ; direction
 ENDM
 
-MACRO script_command_28
+MACRO animate_player_movement
 	run_command ScriptCommand_28
-	db \1
-	db \2
+	db \1 ; unknown
+	db \2 ; unknown
 ENDM
 
-MACRO script_command_29
+MACRO animate_npc_movement
 	run_command ScriptCommand_29
-	db \1
-	db \2
-	db \3
+	db \1 ; npc
+	db \2 ; unknown
+	db \3 ; unknown
 ENDM
 
-MACRO script_command_2a
+MACRO animate_active_npc_movement
 	run_command ScriptCommand_2A
-	db \1
-	db \2
+	db \1 ; unknown
+	db \2 ; unknown
 ENDM
 
-MACRO script_command_2b
+MACRO move_player
 	run_command ScriptCommand_2B
-	dw \1
-	db \2
+	dw \1 ; movement data ptr
+	db \2 ; 0: don't animate, 1: animate
 ENDM
 
-MACRO script_command_2c
+MACRO move_npc
 	run_command ScriptCommand_2C
-	db \1
-	dw \2
+	db \1 ; npc
+	dw \2 ; movement data ptr
 ENDM
 
-MACRO script_command_2d
+MACRO move_active_npc
 	run_command ScriptCommand_2D
-	dw \1
+	dw \1 ; movement data ptr
 ENDM
 
-MACRO script_command_2e
+MACRO start_duel
 	run_command ScriptCommand_2E
-	db \1
-	db \2
+	db \1 ; deck
+	db \2 ; theme
 ENDM
 
-MACRO script_command_2f
+MACRO wait_for_player_animation
 	run_command ScriptCommand_2F
 ENDM
 
-MACRO script_command_30
+MACRO wait_for_fade
 	run_command ScriptCommand_30
 ENDM
 
-MACRO script_command_31
+MACRO get_card_count_in_collection_and_decks
 	run_command ScriptCommand_31
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_32
+MACRO get_card_count_in_collection
 	run_command ScriptCommand_32
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_33
+MACRO give_card
 	run_command ScriptCommand_33
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_34
+MACRO take_card
 	run_command ScriptCommand_34
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_35
+MACRO npc_ask_question
 	run_command ScriptCommand_35
-	tx \1
-	db \2
+	tx \1 ; text
+	db \2 ; 0: default "yes", 1: default "no"
 ENDM
 
-MACRO script_command_36
+MACRO get_player_direction
 	run_command ScriptCommand_36
 ENDM
 
-MACRO script_command_37
+MACRO compare_var
 	run_command ScriptCommand_37
-	db \1
-	db \2
+	db \1 ; var
+	db \2 ; value to compare
 ENDM
 
-MACRO script_command_38
+MACRO get_active_npc_direction
 	run_command ScriptCommand_38
 ENDM
 
-MACRO script_command_39
+MACRO scroll_to_active_npc
 	run_command ScriptCommand_39
 ENDM
 
-MACRO script_command_3a
+MACRO scroll_to_player
 	run_command ScriptCommand_3A
 ENDM
 
-MACRO script_command_3b
+MACRO scroll_to_npc
 	run_command ScriptCommand_3B
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_3c
+MACRO spin_active_npc
 	run_command ScriptCommand_3C
-	dw \1
+	dw \1 ; number of frames
 ENDM
 
-MACRO script_command_3d
+MACRO restore_active_npc_direction
 	run_command ScriptCommand_3D
 ENDM
 
-MACRO script_command_3e
+MACRO spin_active_npc_reverse
 	run_command ScriptCommand_3E
-	dw \1
+	dw \1 ; number of frames
 ENDM
 
-MACRO script_command_3f
+MACRO reset_npc_flag6
 	run_command ScriptCommand_3F
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_40
+MACRO set_npc_flag6
 	run_command ScriptCommand_40
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_41
+MACRO duel_requirement_check
 	run_command ScriptCommand_41
-	db \1
+	db \1 ; duel requirement
 ENDM
 
-MACRO script_command_42
+MACRO get_active_npc_opposite_direction
 	run_command ScriptCommand_42
 ENDM
 
-MACRO script_command_43
+MACRO get_player_opposite_direction
 	run_command ScriptCommand_43
 ENDM
 
-MACRO script_command_44
+MACRO play_sfx
 	run_command ScriptCommand_44
-	db \1
+	db \1 ; sfx
 ENDM
 
-MACRO script_command_45
+MACRO play_sfx_and_wait
 	run_command ScriptCommand_45
-	db \1
+	db \1 ; sfx
 ENDM
 
-MACRO script_command_46
+MACRO set_text_ram2
 	run_command ScriptCommand_46
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_47
+MACRO set_variable_text_ram2
 	run_command ScriptCommand_47
-	tx \1
-	tx \2
+	tx \1 ; text 1
+	tx \2 ; text 2
 ENDM
 
-MACRO script_command_48
+MACRO wait_for_npc_animation
 	run_command ScriptCommand_48
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_49
+MACRO get_player_x_position
 	run_command ScriptCommand_49
 ENDM
 
-MACRO script_command_4a
+MACRO get_player_y_position
 	run_command ScriptCommand_4A
 ENDM
 
-MACRO script_command_4b
+MACRO restore_npc_direction
 	run_command ScriptCommand_4B
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_4c
+MACRO spin_npc
 	run_command ScriptCommand_4C
-	db \1
-	dw \2
+	db \1 ; npc
+	dw \2 ; number of frames
 ENDM
 
-MACRO script_command_4d
+MACRO spin_npc_reverse
 	run_command ScriptCommand_4D
-	db \1
-	dw \2
+	db \1 ; npc
+	dw \2 ; number of frames
 ENDM
 
-MACRO script_command_4e
+MACRO push_var
 	run_command ScriptCommand_4E
 ENDM
 
-MACRO script_command_4f
+MACRO pop_var
 	run_command ScriptCommand_4F
 ENDM
 
-MACRO script_command_50
+MACRO script_call
 	run_command ScriptCommand_50
-	dw \1
-	db \2
+	IF _NARG > 1
+		dw \1 ; script
+		db \2 ; condition
+	ELSE
+		dw \1 ; script
+		db 0  ; condition
+	ENDC
 ENDM
 
-MACRO script_command_51
+MACRO script_ret
 	run_command ScriptCommand_51
 ENDM
 
-MACRO script_command_52
+MACRO give_coin
 	run_command ScriptCommand_52
-	db \1
+	db \1 ; coin
 ENDM
 
-MACRO script_command_53
+MACRO backup_active_npc
 	run_command ScriptCommand_53
 ENDM
 
-MACRO script_command_54
+MACRO load_player
 	run_command ScriptCommand_54
-	db \1
-	db \2
-	db \3
+	db \1, \2 ; position
+	db \3     ; direction
 ENDM
 
-MACRO script_command_55
+MACRO unload_player
 	run_command ScriptCommand_55
 ENDM
 
-MACRO script_command_56
+MACRO give_booster_packs
 	run_command ScriptCommand_56
-	dw \1
+	dw \1 ; booster data ptr
 ENDM
 
-MACRO script_command_57
+MACRO get_random
 	run_command ScriptCommand_57
-	db \1
+	db \1 ; max (exclusive)
 ENDM
 
 MACRO script_command_58
 	run_command ScriptCommand_58
 ENDM
 
-MACRO script_command_59
+MACRO set_text_ram3
 	run_command ScriptCommand_59
-	dw \1
+	dw \1 ; value
 ENDM
 
-MACRO script_command_5a
+MACRO quit_script
 	run_command ScriptCommand_5A
 ENDM
 
-MACRO script_command_5b
+MACRO play_song
 	run_command ScriptCommand_5B
-	db \1
+	db \1 ; song
 ENDM
 
-MACRO script_command_5c
+MACRO resume_song
 	run_command ScriptCommand_5C
 ENDM
 
-MACRO script_command_5d
+MACRO script_callfar
 	run_command ScriptCommand_5D
 	IF _NARG > 1
-		dw \2
-		db \1
+		dw \2       ; script
+		db \1       ; bank
 	ELSE
-		dw \1
-		db BANK(\1)
+		dw \1       ; script
+		db BANK(\1) ; bank
 	ENDC
 ENDM
 
-MACRO script_command_5e
+MACRO script_retfar
 	run_command ScriptCommand_5E
 ENDM
 
-MACRO script_command_5f
+MACRO card_pop
 	run_command ScriptCommand_5F
-	db \1
+	db \1 ; in-game Card Pop! event
 ENDM
 
-MACRO script_command_60
+MACRO play_song_next
 	run_command ScriptCommand_60
-	db \1
+	db \1 ; song
 ENDM
 
-MACRO script_command_61
+MACRO set_text_ram2b
 	run_command ScriptCommand_61
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_62
+MACRO set_variable_text_ram2b
 	run_command ScriptCommand_62
-	tx \1
-	tx \2
+	tx \1 ; text 1
+	tx \2 ; text 2
 ENDM
 
-MACRO script_command_63
+MACRO replace_npc
 	run_command ScriptCommand_63
-	db \1
-	db \2
+	db \1 ; npc to unload
+	db \2 ; npc to load
 ENDM
 
 MACRO script_command_64
@@ -668,14 +663,14 @@ MACRO script_command_64
 	db \1
 ENDM
 
-MACRO script_command_65
+MACRO check_npc_loaded
 	run_command ScriptCommand_65
-	db \1
+	db \1 ; npc
 ENDM
 
-MACRO script_command_66
+MACRO give_deck
 	run_command ScriptCommand_66
-	db \1
+	db \1 ; deck
 ENDM
 
 MACRO script_command_67
@@ -688,42 +683,42 @@ MACRO script_command_68
 	run_command ScriptCommand_68
 ENDM
 
-MACRO script_command_69
+MACRO print_npc_text_instant
 	run_command ScriptCommand_69
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_6a
+MACRO var_add
 	run_command ScriptCommand_6A
-	db \1
-	db \2
+	db \1 ; var
+	db \2 ; value to add
 ENDM
 
-MACRO script_command_6b
+MACRO var_sub
 	run_command ScriptCommand_6B
-	db \1
-	db \1
+	db \1 ; var
+	db \2 ; value to subtract
 ENDM
 
-MACRO script_command_6c
+MACRO receive_card
 	run_command ScriptCommand_6C
-	dw \1
+	dw \1 ; card
 ENDM
 
-MACRO script_command_6d
+MACRO fetch_wda99
 	run_command ScriptCommand_6D
 ENDM
 
-MACRO script_command_6e
+MACRO compare_loaded_var_word
 	run_command ScriptCommand_6E
-	dw \1
+	dw \1 ; value to compare
 ENDM
 
-MACRO script_command_6f
+MACRO fetch_wda9b
 	run_command ScriptCommand_6F
 ENDM
 
-MACRO script_command_70
+MACRO game_center
 	run_command ScriptCommand_70
 ENDM
 
@@ -741,7 +736,7 @@ MACRO script_command_73
 	dw \1
 ENDM
 
-MACRO script_command_74
+MACRO load_text_ram3
 	run_command ScriptCommand_74
 ENDM
 
@@ -753,34 +748,34 @@ MACRO script_command_76
 	run_command ScriptCommand_76
 ENDM
 
-MACRO script_command_77
+MACRO link_duel
 	run_command ScriptCommand_77
 ENDM
 
-MACRO script_command_78
+MACRO wait_song
 	run_command ScriptCommand_78
 ENDM
 
-MACRO script_command_79
+MACRO load_palette
 	run_command ScriptCommand_79
-	dw \1
+	dw \1 ; palette
 ENDM
 
-MACRO script_command_7a
+MACRO set_sprite_frameset
 	run_command ScriptCommand_7A
-	db \1
-	dw \2
+	db \1 ; npc
+	dw \2 ; frameset
 ENDM
 
-MACRO script_command_7b
+MACRO wait_sfx
 	run_command ScriptCommand_7B
 ENDM
 
-MACRO script_command_7c
+MACRO print_text_wide_textbox
 	run_command ScriptCommand_7C
-	tx \1
+	tx \1 ; text
 ENDM
 
-MACRO script_command_7d
+MACRO wait_input
 	run_command ScriptCommand_7D
 ENDM

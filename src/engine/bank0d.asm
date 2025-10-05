@@ -4,21 +4,21 @@ Func_341c4:
 	xor a
 	start_script
 	script_command_01
-	script_command_10 $f1
-	script_command_09 .ows_341dd
-	script_command_05 Text126e
-	script_command_33 SUPER_ENERGY_RETRIEVAL
-	script_command_1b SUPER_ENERGY_RETRIEVAL
-	script_command_05 Text126f
-	script_command_08 .ows_341e0
+	check_event $f1
+	script_jump_if_b0nz .ows_341dd
+	print_npc_text Text126e
+	give_card SUPER_ENERGY_RETRIEVAL
+	show_card_received_screen SUPER_ENERGY_RETRIEVAL
+	print_npc_text Text126f
+	script_jump .ows_341e0
 
 .ows_341dd
-	script_command_05 Text1270
+	print_npc_text Text1270
 .ows_341e0
 	script_command_02
-	script_command_2d $41f0
-	script_command_2f
-	script_command_16 $03
+	move_active_npc $41f0
+	wait_for_player_animation
+	unload_npc $03
 	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
