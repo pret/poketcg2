@@ -70,9 +70,9 @@ Func_2c0c8:
 
 Func_2c0d1:
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2c0d5
-	db $64, $11, $00
+	start_script
+	script_command_64 $11
+	end_script
 	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_2c0ef
@@ -278,17 +278,18 @@ Func_2c50a:
 	ld a, h
 	ld [$d594], a
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2c53d
-	db $22, $22, $05, $09, $02, $22, $24, $08, $09, $02
-	db $22, $31, $07, $09, $02, $00
+	start_script
+	script_command_22 $22, $05, $09, $02
+	script_command_22 $24, $08, $09, $02
+	script_command_22 $31, $07, $09, $02
+	end_script
 	jr .asm_2c55e
 .asm_2c54f
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2c553
-	db $22, $22, $05, $06, $02, $22, $24, $08, $08, $02
-	db $00
+	start_script
+	script_command_22 $22, $05, $06, $02
+	script_command_22 $24, $08, $08, $02
+	end_script
 .asm_2c55e
 	scf
 	ret
@@ -504,9 +505,11 @@ Func_2caa0:
 	ld a, h
 	ld [$d610], a
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2cab4
-	db $01, $05, $cb, $0b, $02, $00
+	start_script
+	script_command_01
+	script_command_05 Text0bcb
+	script_command_02
+	end_script
 	ret
 
 Func_2cabb:
@@ -757,19 +760,21 @@ Func_2cda2:
 	ld a, h
 	ld [$d594], a
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2cddf
-	db $22, $26, $07, $06, $02, $22, $27, $05, $06, $02
-	db $22, $28, $06, $06, $02, $22, $29, $08, $0a, $02
-	db $00
+	start_script
+	script_command_22 $26, $07, $06, $02
+	script_command_22 $27, $05, $06, $02
+	script_command_22 $28, $06, $06, $02
+	script_command_22 $29, $08, $0a, $02
+	end_script
 	jr .asm_2ce0f
 .asm_2cdf6
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2cdfa
-	db $22, $26, $06, $03, $02, $22, $27, $05, $06, $02
-	db $22, $28, $06, $0a, $02, $22, $29, $08, $0a, $02
-	db $00
+	start_script
+	script_command_22 $26, $06, $03, $02
+	script_command_22 $27, $05, $06, $02
+	script_command_22 $28, $06, $0a, $02
+	script_command_22 $29, $08, $0a, $02
+	end_script
 .asm_2ce0f
 	scf
 	ret
@@ -1097,10 +1102,11 @@ Func_2d673:
 	ld a, h
 	ld [$d594], a
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2d694
-	db $22, $0a, $05, $01, $02, $22, $0b, $08, $01, $02
-	db $22, $0c, $06, $01, $02, $00
+	start_script
+	script_command_22 $0a, $05, $01, $02
+	script_command_22 $0b, $08, $01, $02
+	script_command_22 $0c, $06, $01, $02
+	end_script
 .asm_2d6a4
 	scf
 	ret
@@ -2134,9 +2140,9 @@ Func_2ed37:
 
 Func_2ed3e:
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2ed42
-	db $64, $12, $00
+	start_script
+	script_command_64 $12
+	end_script
 	call WaterClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2ed73
 	or a
@@ -2409,10 +2415,11 @@ Func_2f0a5:
 	farcall GetEventValue
 	jr nz, .asm_2f0c3
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2f0b1
-	db $15, $ac, $04, $06, $02, $15, $ad, $03, $06, $01
-	db $15, $ae, $05, $06, $03, $00
+	start_script
+	script_command_15 $ac, $04, $06, $02
+	script_command_15 $ad, $03, $06, $01
+	script_command_15 $ae, $05, $06, $03
+	end_script
 	jr .asm_2f0f5
 .asm_2f0c3
 	ld bc, TILEMAP_02A
@@ -2427,10 +2434,11 @@ Func_2f0a5:
 	jr .asm_2f0f5
 .asm_2f0e1
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2f0e5
-	db $22, $19, $09, $05, $02, $22, $1c, $08, $05, $02
-	db $22, $1d, $0a, $05, $02, $00
+	start_script
+	script_command_22 $19, $09, $05, $02
+	script_command_22 $1c, $08, $05, $02
+	script_command_22 $1d, $0a, $05, $02
+	end_script
 .asm_2f0f5
 	scf
 	ret
@@ -2516,9 +2524,9 @@ Func_2f56e:
 
 Func_2f575:
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2f579
-	db $64, $12, $00
+	start_script
+	script_command_64 $12
+	end_script
 	call FireClubEntrance_ShouldRonaldAppear
 	jr c, .asm_2f5a6
 	cp 1
@@ -2785,11 +2793,12 @@ Func_2f86e:
 	farcall GetEventValue
 	jr nz, .asm_2f891
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2f87a
-	db $22, $1e, $07, $0a, $02, $22, $1f, $06, $0a, $02
-	db $22, $20, $05, $0a, $02, $22, $21, $08, $0a, $02
-	db $00
+	start_script
+	script_command_22 $1e, $07, $0a, $02
+	script_command_22 $1f, $06, $0a, $02
+	script_command_22 $20, $05, $0a, $02
+	script_command_22 $21, $08, $0a, $02
+	end_script
 	jr .asm_2f8c6
 .asm_2f891
 	ld bc, TILEMAP_02E
@@ -2802,11 +2811,12 @@ Func_2f86e:
 	farcall GetEventValue
 	jr z, .asm_2f8c6
 	xor a
-	call Func_33f2
-	; Event Script @ 0x2f8b1
-	db $22, $1e, $07, $0a, $02, $22, $1f, $06, $0a, $02
-	db $22, $20, $05, $0a, $02, $22, $21, $08, $0a, $02
-	db $00
+	start_script
+	script_command_22 $1e, $07, $0a, $02
+	script_command_22 $1f, $06, $0a, $02
+	script_command_22 $20, $05, $0a, $02
+	script_command_22 $21, $08, $0a, $02
+	end_script
 .asm_2f8c6
 	scf
 	ret

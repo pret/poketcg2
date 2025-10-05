@@ -2,12 +2,24 @@ SECTION "Bank d@41c4", ROMX[$41c4], BANK[$d]
 
 Func_341c4:
 	xor a
-	call Func_33f2
-	; Event Script @ 0x341c8
-	db $01, $10, $f1, $09, $dd, $41, $05, $6e, $12, $33
-	db $98, $01, $1b, $98, $01, $05, $6f, $12, $08, $e0
-	db $41, $05, $70, $12, $02, $2d, $f0, $41, $2f, $16
-	db $03, $00
+	start_script
+	script_command_01
+	script_command_10 $f1
+	script_command_09 .ows_341dd
+	script_command_05 Text126e
+	script_command_33 SUPER_ENERGY_RETRIEVAL
+	script_command_1b SUPER_ENERGY_RETRIEVAL
+	script_command_05 Text126f
+	script_command_08 .ows_341e0
+
+.ows_341dd
+	script_command_05 Text1270
+.ows_341e0
+	script_command_02
+	script_command_2d $41f0
+	script_command_2f
+	script_command_16 $03
+	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret

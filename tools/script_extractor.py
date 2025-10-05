@@ -24,8 +24,8 @@ script_commands = {
 	0xcd: { "name": "start_script",      "params": [ "skip_word" ] },
 
 	0x00: { "name": "end_script",        "params": [] },
-	0x01: { "name": "script_command_01", "params": [] }, # ?
-	0x02: { "name": "script_command_02", "params": [] }, # ?
+	0x01: { "name": "script_command_01", "params": [] }, # reset npc's flag6 if in area (on screen?)
+	0x02: { "name": "script_command_02", "params": [] }, # set npc's flag6 if in area (on screen?)
 	0x03: { "name": "script_command_03", "params": [ "text" ] }, # print text
 	0x04: { "name": "script_command_04", "params": [ "text", "text" ] }, # print variable text
 	0x05: { "name": "script_command_05", "params": [ "text" ] }, # print npc text
@@ -109,7 +109,7 @@ script_commands = {
 	0x53: { "name": "script_command_53", "params": [] }, # backup active npc
 	0x54: { "name": "script_command_54", "params": [ "byte", "byte", "byte" ] }, # load player (position and direction)
 	0x55: { "name": "script_command_55", "params": [] }, # unload player
-	0x56: { "name": "script_command_56", "params": [ "word" ] }, # ?
+	0x56: { "name": "script_command_56", "params": [ "word" ] }, # give boosters
 	0x57: { "name": "script_command_57", "params": [ "byte" ] }, # get random
 	0x58: { "name": "script_command_58", "params": [] }, # ?
 	0x59: { "name": "script_command_59", "params": [ "word" ] }, # load text ram3
@@ -136,7 +136,7 @@ script_commands = {
 	0x6e: { "name": "script_command_6e", "params": [ "word" ] }, # compare word var
 	0x6f: { "name": "script_command_6f", "params": [] }, # fetch wda9b
 	0x70: { "name": "script_command_70", "params": [] }, # game center
-	0x71: { "name": "script_command_71", "params": [] }, # ?
+	0x71: { "name": "script_command_71", "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
 	0x72: { "name": "script_command_72", "params": [ "word" ] }, # ?
 	0x73: { "name": "script_command_73", "params": [ "word" ] }, # ?
 	0x74: { "name": "script_command_74", "params": [] }, # set text ram3
