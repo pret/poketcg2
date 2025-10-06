@@ -1405,7 +1405,7 @@ Func_d421::
 	ld [wd585], a
 	ret
 
-; a = OW object ID
+; a = NPC_* ID
 ; de = target position
 SetOWObjectTargetPosition:
 	ld [wd595], a

@@ -2057,6 +2057,7 @@ GetOWObjectSpeedAndMoveDuration::
 	call _GetOWObjectSpeedAndMoveDuration
 	ret
 
+; a = NPC_* ID
 Func_10def:
 	call Func_11367
 	ret
@@ -2069,7 +2070,7 @@ CheckOWObjectPointerWithID:
 	call _CheckOWObjectPointerWithID
 	ret
 
-; outputs ID of OW object that is
+; outputs NPC ID of OW object that is
 ; in the grid position de
 ; if no object, then output $ff
 Func_10dfb::
@@ -2122,6 +2123,7 @@ Func_10dfb::
 	pop bc
 	ret
 
+; a = NPC_* ID
 ; b = direction
 ; c = speed
 Func_10e3c::
@@ -2392,7 +2394,7 @@ Func_10f78:
 
 .LoadObject:
 	push bc
-	ld a, [hl] ; OW ID
+	ld a, [hl] ; NPC ID
 	inc hl
 	ld c, [hl] ; anim flags
 	inc hl
@@ -2418,7 +2420,7 @@ SetOWObjectFrameDuration:
 	call _SetOWObjectFrameDuration
 	ret
 
-; check if OW object ID in register a
+; check if NPC_* ID in register a
 ; is a still object, which means it
 ; will not animate its walking animation in place
 IsStillOWObject:
@@ -2863,7 +2865,7 @@ _GetNextInactiveOWObject:
 	ret
 
 ; returns in hl the pointer to the OW object
-; with the given ID in register a
+; with the given NPC ID in register a
 ; returns NULL if not found
 _GetOWObjectWithID:
 	push af
@@ -2934,7 +2936,7 @@ ConvertToSpriteAnimPosition:
 	pop af
 	ret
 
-; a = OW object ID
+; a = NPC_* ID
 ; b = direction
 ; de = coordinates
 LoadOWObject:
@@ -3069,7 +3071,7 @@ _GetOWObjectSpeedAndMoveDuration:
 	pop af
 	ret
 
-; a = OW object ID
+; a = NPC_* ID
 ; b = direction
 ; c = speed
 Func_1132e:
@@ -3110,6 +3112,7 @@ Func_1132e:
 	ld a, [wda8b]
 	ret
 
+; a = NPC_* ID
 Func_11367:
 	push af
 	push bc
@@ -3224,7 +3227,7 @@ Func_113d2:
 	pop bc
 	ret
 
-; input: a = ID
+; input: a = NPC ID
 ; output: a = HIGH(pointer) | LOW(pointer)
 _CheckOWObjectPointerWithID:
 	push hl

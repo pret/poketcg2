@@ -2262,6 +2262,7 @@ wd592:: ; d592
 wd593:: ; d593
 	ds $2
 
+; NPC_* ID
 wd595:: ; d595
 	ds $1
 
@@ -2298,11 +2299,11 @@ wGeneralVars:: ; d5d2
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 
-; OW_* ID of the speaker?
+; NPC_* ID of the active speaker / OW Object
 wd60e:: ; d60e
 	ds $1
 
-; text ID of the speaker?
+; text ID of the active speaker's name
 wd60f:: ; d60f
 	ds $2
 
@@ -2579,11 +2580,13 @@ wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
 wd986:: ; d986
 	ds $1
 
+; NPC_* ID or $ff
 wd987:: ; d987
 	ds $1
 
 	ds $1
 
+; NPC_* ID
 wd989:: ; d989
 	ds $1
 

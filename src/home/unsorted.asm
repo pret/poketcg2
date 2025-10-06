@@ -504,6 +504,7 @@ Func_3340::
 	farcall SetOWObjectFlag5_WithID
 	ret
 
+; a = NPC_* ID
 Func_336d::
 	push af
 .loop_wait
@@ -518,6 +519,7 @@ Func_336d::
 	pop af
 	ret
 
+; a = NPC_* ID
 WaitForOWObjectAnimation::
 	push af
 .loop
@@ -630,6 +632,7 @@ CopyFarHLToDE::
 	call BankswitchROM
 	ret
 
+; a = NPC_* ID
 Func_344c::
 	ld c, a
 .asm_344d
