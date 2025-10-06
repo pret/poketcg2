@@ -2205,6 +2205,7 @@ wIntroCardsRepeatsAllowed:: ; d57b
 wd582:: ; d582
 	ds $1
 
+; bit 1: set when NPC initiates duel
 wd583:: ; d583
 	ds $1
 
@@ -2300,11 +2301,11 @@ wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 
 ; NPC_* ID of the active speaker / OW Object
-wd60e:: ; d60e
+wScriptNPC:: ; d60e
 	ds $1
 
 ; text ID of the active speaker's name
-wd60f:: ; d60f
+wScriptNPCName:: ; d60f
 	ds $2
 
 wd611:: ; d611
@@ -2315,17 +2316,22 @@ wd613:: ; d613
 
 	ds $1
 
-wd616:: ; d616
-	ds $1
-
-wd617:: ; d617
-	ds $1
+; sometimes treated as 8-bit, sometimes treated as 16-bit
+wScriptLoadedVar:: ; d616
+	ds $2
 
 ; temporarily stores multiple script flags
-; - bit 0, yes/no menu: $0 for yes, $1 for no
-; - bit 1, validity: $0 if passes, $1 if fails
-; - bit 0--1, comparison: $0 if <, $1 if =, $2 if > (but < and > flip when used?)
-wd618:: ; d618
+; - bit 0: general purpose script logic flag, often treated like a z flag
+;     examples:
+;     - set by ask_question if player chooses "Yes"
+;     - set by compare_loaded_var if var is equal to the comparison value
+; - bit 1: second general purpose script logic flag, often treated like a c flag
+;     examples:
+;     - set by duel_requirement_check to indicate failure
+;     - set by compare_loaded_var if var is less than the comparison value
+; - bit 6: set when script is ended by quit_script
+; - bit 7: set when script is ended by end_script
+wScriptFlags:: ; d618
 	ds $1
 
 wScriptBank:: ; d619
@@ -2337,14 +2343,14 @@ wScriptBufferIndex:: ; d61a
 wScriptPointer:: ; d61b
 	ds $2
 
-wd61d:: ; d61d
+wScriptStackOffset:: ; d61d
 	ds $1
 
 wScriptBuffer:: ; d61e
-	ds wSCRIPT_BUFFER_SIZE
+	ds SCRIPT_BUFFER_SIZE
 
-wd63e:: ; d63e
-	ds $10
+wScriptStack:: ; d63e
+	ds SCRIPT_STACK_SIZE
 
 wd64e:: ; d64e
 	ds $10

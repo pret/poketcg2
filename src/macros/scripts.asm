@@ -1,5 +1,5 @@
 MACRO start_script
-	call Func_33f2
+	call StartScript
 ENDM
 
 MACRO run_command

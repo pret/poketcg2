@@ -3068,6 +3068,6 @@ vars = [
 	"VAR_3A",
 	"VAR_3B",
 	"VAR_NPC_DECK_ID",
-	"VAR_3D",
+	"VAR_DUEL_START_THEME",
 	"VAR_3E",
 ]

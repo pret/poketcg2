@@ -302,7 +302,7 @@ Func_2c560:
 
 Func_2c568:
 	ld hl, LightningClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -500,12 +500,12 @@ Func_2ca46:
 ; beating GR4 at Lightning Club unlocks Psychic Club sequence
 Func_2caa0:
 	ld a, NPC_STEPHANIE
-	ld [wd60e], a
+	ld [wScriptNPC], a
 	ldtx hl, DialogStephanieText
 	ld a, l
-	ld [wd60f], a
+	ld [wScriptNPCName], a
 	ld a, h
-	ld [wd60f + 1], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -789,7 +789,7 @@ Func_2ce11:
 
 Func_2ce19:
 	ld hl, PsychicClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -1122,7 +1122,7 @@ Func_2d6a6:
 
 Func_2d6ae:
 	ld hl, RockClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -1351,7 +1351,7 @@ Func_2daee:
 
 Func_2dafe:
 	ld hl, FightingClubLobby_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -1443,7 +1443,7 @@ Func_2dd3a:
 
 Func_2dd42:
 	ld hl, FightingClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -1672,7 +1672,7 @@ Func_2e1fe:
 
 Func_2e206:
 	ld hl, GrassClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -1961,7 +1961,7 @@ Func_2e72e:
 
 Func_2e73e:
 	ld hl, ScienceClubLobby_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -2077,7 +2077,7 @@ Func_2e99f:
 
 Func_2e9a7:
 	ld hl, ScienceClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -2322,7 +2322,7 @@ Func_2eeaa:
 
 Func_2eeba:
 	ld hl, WaterClubLobby_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -2458,7 +2458,7 @@ Func_2f0f7:
 
 Func_2f107:
 	ld hl, WaterClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret
@@ -2837,7 +2837,7 @@ Func_2f8c8:
 
 Func_2f8d8:
 	ld hl, FireClub_AfterDuelScripts
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	call Func_344c
 	scf
 	ret

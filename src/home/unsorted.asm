@@ -581,17 +581,18 @@ Func_33b7::
 	ld [wd58c + 1], a
 	ret
 
-Func_33f2::
-	ld hl, wd618
+StartScript::
+	ld hl, wScriptFlags
 	or a
-	jr nz, .asm_3405
+	jr nz, .skip_reset
+; reset script vars and stack
 	xor a
-	ld [wd616], a
-	ld [wd617], a
+	ld [wScriptLoadedVar], a
+	ld [wScriptLoadedVar + 1], a
 	ld [hl], a
-	ld a, $10
-	ld [wd61d], a
-.asm_3405
+	ld a, SCRIPT_STACK_SIZE
+	ld [wScriptStackOffset], a
+.skip_reset
 	res 6, [hl]
 	ldh a, [hBankROM]
 	ld [wScriptBank], a
@@ -602,15 +603,15 @@ Func_33f2::
 	ld a, h
 	ld [wScriptPointer + 1], a
 	farcall ReloadScriptBuffer
-.asm_3419
+.script_loop
 	farcall RunOverworldScript
-	ld a, [wd618]
+	ld a, [wScriptFlags]
 	bit 7, a
-	jr nz, .asm_342a
+	jr nz, .script_ended
 	bit 6, a
-	jr nz, .asm_342a
-	jr .asm_3419
-.asm_342a
+	jr nz, .script_ended
+	jr .script_loop
+.script_ended
 	ld a, [wScriptBank]
 	call BankswitchROM
 	ld hl, wScriptPointer

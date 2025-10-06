@@ -1380,8 +1380,8 @@ class Disassembler(object):
 			# stop processing regardless of function end if we've passed the stop offset and the hard stop (dry run) flag is set
 			if hard_stop and offset >= stop_offset:
 				break
-			# check if this is the end of the function, or we're processing data (Func_33f2 begins ow scripting)
-			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (opcode_byte in call_commands and target_label == "Func_33f2") or is_data:
+			# check if this is the end of the function, or we're processing data (StartScript begins ow scripting)
+			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (opcode_byte in call_commands and target_label == "StartScript") or is_data:
 				# define data if it is located at the current offset
 				if local_offset not in byte_labels.keys() and local_offset in data_tables.keys() and created_but_unused_labels_exist(data_tables) and parse_data:
 					is_data = True

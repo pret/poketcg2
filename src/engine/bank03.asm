@@ -106,7 +106,7 @@ StartMenu_ContinueFromDiary:
 	ld a, VAR_NPC_DECK_ID
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
-	ld a, VAR_3D
+	ld a, VAR_DUEL_START_THEME
 	call GetVarValue
 	ld [wDuelStartTheme], a
 	call Func_3087
@@ -1264,7 +1264,7 @@ Func_d299::
 	call Func_3154
 	ld a, [wd583]
 	bit 1, a
-	jr nz, .asm_d357
+	jr nz, .start_duel
 	bit 0, a
 	jr z, .asm_d333
 	ld a, $04
@@ -1272,14 +1272,14 @@ Func_d299::
 	ld a, $0f
 	call Func_3154
 	ret
-.asm_d357
+.start_duel
 	ld a, [wNPCDuelDeckID]
 	ld c, a
 	ld a, VAR_NPC_DECK_ID
 	call SetVarValue
 	ld a, [wDuelStartTheme]
 	ld c, a
-	ld a, VAR_3D
+	ld a, VAR_DUEL_START_THEME
 	call SetVarValue
 	ld a, EVENT_02
 	call MaxOutEventValue
@@ -2279,7 +2279,7 @@ GeneralVarMasks:
 	db $29, %00000111 ; VAR_3A
 	db $2a, %11111111 ; VAR_3B
 	db $2b, %11111111 ; VAR_NPC_DECK_ID
-	db $2c, %11111111 ; VAR_3D
+	db $2c, %11111111 ; VAR_DUEL_START_THEME
 	db $33, %11111111 ; VAR_3E
 
 ; clear 8 bytes from wd606
@@ -2683,7 +2683,7 @@ ReloadScriptBuffer::
 	ld h, [hl]
 	ld l, a
 	ld de, wScriptBuffer
-	ld bc, wSCRIPT_BUFFER_SIZE
+	ld bc, SCRIPT_BUFFER_SIZE
 	ld a, [wScriptBank]
 	call CopyFarHLToDE
 	ret
@@ -2862,7 +2862,7 @@ IncreaseScriptPointer:
 	ld a, c
 	ld hl, wScriptBufferIndex
 	add [hl]
-	cp wSCRIPT_BUFFER_SIZE
+	cp SCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	ld [hl], a
 	ret
@@ -2903,7 +2903,7 @@ Get2ScriptArgs:
 	ld hl, wScriptBufferIndex
 	add [hl]
 	inc a
-	cp wSCRIPT_BUFFER_SIZE
+	cp SCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
 	dec a
@@ -2944,7 +2944,7 @@ Get1ScriptArg:
 	push af
 	ld hl, wScriptBufferIndex
 	add [hl]
-	cp wSCRIPT_BUFFER_SIZE
+	cp SCRIPT_BUFFER_SIZE
 	jr nc, .fallback
 	pop bc
 	ld hl, wScriptBuffer
@@ -2978,9 +2978,9 @@ Get1ScriptArg_IncrIndexBy4:
 	jr Get1ScriptArg
 
 ScriptCommand_EndScript:
-	ld a, [wd618]
+	ld a, [wScriptFlags]
 	set 7, a
-	ld [wd618], a
+	ld [wScriptFlags], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_01:
@@ -3000,15 +3000,14 @@ ScriptCommand_PrintText:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_PrintVariableText:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-	jr z, .yes
-; no
+	jr z, .use_text_2
+; use text 1
 	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.yes
+.use_text_2
 	call Get2ScriptArgs_IncrIndexBy3
-; fallthrough
 .next
 	ld l, c
 	ld h, b
@@ -3017,7 +3016,7 @@ ScriptCommand_PrintVariableText:
 
 ScriptCommand_PrintNPCText:
 	call Get2ScriptArgs_IncrIndexBy1
-	ld hl, wd60f
+	ld hl, wScriptNPCName
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -3027,17 +3026,17 @@ ScriptCommand_PrintNPCText:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_PrintVariableNPCText:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-	jr z, .yes
-; no
+	jr z, .use_text_2
+; use text 1
 	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.yes
+.use_text_2
 	call Get2ScriptArgs_IncrIndexBy3
 ; fallthrough
 .next
-	ld hl, wd60f
+	ld hl, wScriptNPCName
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -3054,7 +3053,7 @@ ScriptCommand_AskQuestion:
 	call Get1ScriptArg_IncrIndexBy3
 	pop hl
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	ld hl, wd618
+	ld hl, wScriptFlags
 	or a
 	jr nz, .no
 ; yes
@@ -3074,23 +3073,23 @@ ScriptCommand_ScriptJump:
 	jp ReloadScriptBuffer_Done
 
 ScriptCommand_ScriptJump_b0nz:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-; no
-	jp nz, ScriptCommand_ScriptJump
 ; yes
+	jp nz, ScriptCommand_ScriptJump
+; no
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_ScriptJump_b0z:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-; yes
-	jp z, ScriptCommand_ScriptJump
 ; no
+	jp z, ScriptCommand_ScriptJump
+; yes
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_ScriptJump_b1nz:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 1, [hl]
 ; invalid
 	jp nz, ScriptCommand_ScriptJump
@@ -3098,7 +3097,7 @@ ScriptCommand_ScriptJump_b1nz:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_ScriptJump_b1z:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 1, [hl]
 ; valid
 	jp z, ScriptCommand_ScriptJump
@@ -3106,24 +3105,24 @@ ScriptCommand_ScriptJump_b1z:
 	jp IncreaseScriptPointerBy3
 
 ; for x = [wScriptBuffer + [wScriptBufferIndex] + 1],
-; set bit 0 at wd618 if x = [wd616],
-; set bit 1 at wd618 if x > [wd616],
+; set bit 0 at wScriptFlags if x = [wScriptLoadedVar],
+; set bit 1 at wScriptFlags if x > [wScriptLoadedVar],
 ; else reset both bits,
 ; then IncreaseScriptPointerBy2
 ScriptCommand_CompareLoadedVar:
 	call Get1ScriptArg_IncrIndexBy1
 	ld c, a
-	ld a, [wd616]
-	ld hl, wd618
+	ld a, [wScriptLoadedVar]
+	ld hl, wScriptFlags
 	res 0, [hl]
 	res 1, [hl]
 	cp c
-	jr nz, .bit0_ok
+	jr nz, .not_equal
 	set 0, [hl]
-.bit0_ok
-	jr nc, .bit1_ok
+.not_equal
+	jr nc, .no_carry
 	set 1, [hl]
-.bit1_ok
+.no_carry
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_SetEvent:
@@ -3139,7 +3138,7 @@ ScriptCommand_ResetEvent:
 ScriptCommand_CheckEvent:
 	call Get1ScriptArg_IncrIndexBy1
 	call GetEventValue
-	ld hl, wd618
+	ld hl, wScriptFlags
 	jr z, .set
 ; reset
 	res 0, [hl]
@@ -3158,7 +3157,7 @@ ScriptCommand_SetVar:
 ScriptCommand_GetVar:
 	call Get1ScriptArg_IncrIndexBy1
 	call GetVarValue
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy2
 
 ; inc VAR_* constant value
@@ -3212,7 +3211,7 @@ ScriptCommand_SetPlayerDirection:
 ScriptCommand_SetActiveNPCDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy2
 
@@ -3257,7 +3256,7 @@ ScriptCommand_SetActiveNPCPosition:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy3
 
@@ -3282,12 +3281,12 @@ ScriptCommand_ScrollToPosition:
 
 ScriptCommand_SetActiveNPC:
 	call Get1ScriptArg_IncrIndexBy1
-	ld [wd60e], a
+	ld [wScriptNPC], a
 	call Get2ScriptArgs_IncrIndexBy2
 	ld a, c
-	ld [wd60f], a
+	ld [wScriptNPCName], a
 	ld a, b
-	ld [wd60f + 1], a
+	ld [wScriptNPCName + 1], a
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_SetPlayerPositionAndDirection:
@@ -3351,11 +3350,11 @@ ScriptCommand_SetActiveNPCPositionAndDirection:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectTilePosition
 	call Get1ScriptArg_IncrIndexBy3
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy4
 
@@ -3404,11 +3403,11 @@ ScriptCommand_AnimateActiveNPCMovement:
 	ld a, b
 	ld b, c
 	ld c, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall Func_10e3c
 .delay_loop
 	call DoFrame
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall GetOWObjectSpriteAnimFlags
 	bit 5, a
 	jr nz, .delay_loop
@@ -3449,7 +3448,7 @@ ScriptCommand_MoveActiveNPC:
 	ld h, b
 	ld a, [wScriptBank]
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall Func_10def
 	jp IncreaseScriptPointerBy3
 
@@ -3476,14 +3475,14 @@ ScriptCommand_GetCardCountInCollectionAndDecks:
 	ld e, c
 	ld d, b
 	call GetCardCountInCollectionAndDecks
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jr c, .set
 ; reset
-	ld hl, wd618
+	ld hl, wScriptFlags
 	res 0, [hl]
 	jr .done
 .set
-	ld hl, wd618
+	ld hl, wScriptFlags
 	set 0, [hl]
 .done
 	jp IncreaseScriptPointerBy3
@@ -3493,14 +3492,14 @@ ScriptCommand_GetCardCountInCollection:
 	ld e, c
 	ld d, b
 	call GetCardCountInCollection
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jr c, .set
-	ld hl, wd618
+	ld hl, wScriptFlags
 ; reset
 	res 0, [hl]
 	jr .done
 .set
-	ld hl, wd618
+	ld hl, wScriptFlags
 	set 0, [hl]
 .done
 	jp IncreaseScriptPointerBy3
@@ -3524,7 +3523,7 @@ ScriptCommand_NPCAskQuestion:
 	ld l, c
 	ld h, b
 	push hl
-	ld hl, wd60f
+	ld hl, wScriptNPCName
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -3533,7 +3532,7 @@ ScriptCommand_NPCAskQuestion:
 	pop de
 	pop hl
 	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
-	ld hl, wd618
+	ld hl, wScriptFlags
 	or a
 	jr nz, .reset
 ; set
@@ -3547,7 +3546,7 @@ ScriptCommand_GetPlayerDirection:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_CompareVar:
@@ -3559,33 +3558,33 @@ ScriptCommand_CompareVar:
 	pop af
 	cp c
 	push af
-	ld hl, wd618
-	jr z, .set_0
-; reset 0
+	ld hl, wScriptFlags
+	jr z, .equal
+; not equal
 	res 0, [hl]
 	jr .bit0_done
-.set_0
+.equal
 	set 0, [hl]
 .bit0_done
 	pop af
-	jr c, .set_1
-; reset 1
+	jr c, .carry
+; no carry
 	res 1, [hl]
 	jr .bit1_done
-.set_1
+.carry
 	set 1, [hl]
 .bit1_done
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_GetActiveNPCDirection:
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_ScrollToActiveNPC:
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectAsScrollTarget
 	ld a, 1
 	farcall SetOWScrollState
@@ -3617,13 +3616,13 @@ ScriptCommand_SpinActiveNPC:
 	call DoFrame
 	dec e
 	jr nz, .delay_loop_e
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	inc b
 	ld a, b
 	and 3
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectDirection
 	pop de
 	dec c
@@ -3633,9 +3632,9 @@ ScriptCommand_SpinActiveNPC:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_RestoreActiveNPCDirection:
-	ld a, [wd616]
+	ld a, [wScriptLoadedVar]
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy1
 
@@ -3651,13 +3650,13 @@ ScriptCommand_SpinActiveNPCReverse:
 	call DoFrame
 	dec e
 	jr nz, .delay_loop_e
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	dec b
 	ld a, b
 	and 3
 	ld b, a
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall SetOWObjectDirection
 	pop de
 	dec c
@@ -3684,12 +3683,12 @@ ScriptCommand_DuelRequirementCheck:
 	jp IncreaseScriptPointerBy2
 
 ResetDuelDeckRequirementStatus:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	res 1, [hl]
 	ret
 
 DuelDeckRequirementFailed:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	set 1, [hl]
 	ret
 
@@ -3850,11 +3849,11 @@ DuelRequirementFunctionMap:
 	db $ff
 
 ScriptCommand_GetActiveNPCOppositeDirection:
-	ld a, [wd60e]
+	ld a, [wScriptNPC]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor SPRITE_ANIM_STRUCT1_FLAG1
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GetPlayerOppositeDirection:
@@ -3862,7 +3861,7 @@ ScriptCommand_GetPlayerOppositeDirection:
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	xor SPRITE_ANIM_STRUCT1_FLAG1
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_PlaySFX:
@@ -3884,13 +3883,13 @@ ScriptCommand_SetTextRAM2:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_SetVariableTextRAM2:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-	jr z, .yes
-; no
+	jr z, .use_text_2
+; use text 1
 	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.yes
+.use_text_2
 	call Get2ScriptArgs_IncrIndexBy3
 .next
 	ld l, c
@@ -3907,20 +3906,20 @@ ScriptCommand_GetPlayerXPosition:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, d
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GetPlayerYPosition:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, e
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_RestoreNPCDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
-	ld a, [wd616]
+	ld a, [wScriptLoadedVar]
 	ld b, a
 	pop af
 	farcall SetOWObjectDirection
@@ -3987,22 +3986,22 @@ ScriptCommand_SpinNPCReverse:
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_PushVar:
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	dec a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	add l
 	ld l, a
 	jr nc, .got_pointer
 	inc h
 .got_pointer
-	ld a, [wd616]
+	ld a, [wScriptLoadedVar]
 	ld [hl], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_PopVar:
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	push af
 	add l
 	ld l, a
@@ -4010,15 +4009,15 @@ ScriptCommand_PopVar:
 	inc h
 .got_pointer
 	ld a, [hl]
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	pop af
 	inc a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_ScriptCall:
 	call Get1ScriptArg_IncrIndexBy3
-	ld hl, wd618
+	ld hl, wScriptFlags
 	cp b0nz
 	jr z, .b0nz
 	cp b0z
@@ -4049,11 +4048,11 @@ ScriptCommand_ScriptCall:
 	call Get2ScriptArgs_IncrIndexBy1
 	push bc
 	call IncreaseScriptPointerBy4
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	dec a
 	dec a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -4072,11 +4071,11 @@ ScriptCommand_ScriptCall:
 	jp ReloadScriptBuffer_Done
 
 ScriptCommand_ScriptRet:
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	inc a
 	inc a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -4097,8 +4096,8 @@ ScriptCommand_GiveCoin:
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_BackupActiveNPC:
-	ld a, [wd60e]
-	ld [wd616], a
+	ld a, [wScriptNPC]
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_LoadPlayer:
@@ -4238,7 +4237,7 @@ ScriptCommand_GiveBoosterPacks:
 ScriptCommand_GetRandom:
 	call Get1ScriptArg_IncrIndexBy1
 	call Random
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_58:
@@ -4254,9 +4253,9 @@ ScriptCommand_SetTextRAM3:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_QuitScript:
-	ld a, [wd618]
+	ld a, [wScriptFlags]
 	set 6, a
-	ld [wd618], a
+	ld [wScriptFlags], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_PlaySong:
@@ -4275,12 +4274,12 @@ ScriptCommand_ScriptCallfar:
 	call Get2ScriptArgs_IncrIndexBy1
 	push bc
 	call IncreaseScriptPointerBy4
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	dec a
 	dec a
 	dec a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -4303,12 +4302,12 @@ ScriptCommand_ScriptCallfar:
 	jp ReloadScriptBuffer_Done
 
 ScriptCommand_ScriptRetfar:
-	ld hl, wd63e
-	ld a, [wd61d]
+	ld hl, wScriptStack
+	ld a, [wScriptStackOffset]
 	inc a
 	inc a
 	inc a
-	ld [wd61d], a
+	ld [wScriptStackOffset], a
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -4344,13 +4343,13 @@ ScriptCommand_SetTextRAM2b:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_SetVariableTextRAM2b:
-	ld hl, wd618
+	ld hl, wScriptFlags
 	bit 0, [hl]
-	jr z, .yes
-; no
+	jr z, .use_text_2
+; use text 1
 	call Get2ScriptArgs_IncrIndexBy1
 	jr .next
-.yes
+.use_text_2
 	call Get2ScriptArgs_IncrIndexBy3
 .next
 	ld a, c
@@ -4428,7 +4427,7 @@ ScriptCommand_64:
 ScriptCommand_CheckNPCLoaded:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall CheckOWObjectPointerWithID
-	ld hl, wd618
+	ld hl, wScriptFlags
 	jr nz, .valid
 ; invalid
 	set 1, [hl]
@@ -4440,7 +4439,7 @@ ScriptCommand_CheckNPCLoaded:
 ScriptCommand_GiveDeck:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall Func_1acbf
-	ld hl, wd618
+	ld hl, wScriptFlags
 	jr c, .invalid
 ; valid
 	res 1, [hl]
@@ -4465,7 +4464,7 @@ ScriptCommand_68:
 
 ScriptCommand_PrintNPCTextInstant:
 	call Get2ScriptArgs_IncrIndexBy1
-	ld hl, wd60f
+	ld hl, wScriptNPCName
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
@@ -4509,41 +4508,42 @@ ScriptCommand_ReceiveCard:
 ScriptCommand_Fetch_wda99:
 	farcall GetDWwDA99
 	ld a, c
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	ld a, b
-	ld [wd617], a
+	ld [wScriptLoadedVar + 1], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_CompareLoadedVarWord:
 	call Get2ScriptArgs_IncrIndexBy1
-	ld a, [wd616]
+	ld a, [wScriptLoadedVar]
 	ld e, a
-	ld a, [wd617]
+	ld a, [wScriptLoadedVar + 1]
 	ld d, a
-	ld hl, wd618
+	ld hl, wScriptFlags
 	res 0, [hl]
 	res 1, [hl]
 	ld a, d
 	cp b
-	jr c, .skip_1
-	jr nz, .skip_1
+	jr c, .high_byte_not_equal
+	jr nz, .high_byte_not_equal
+; high byte equal
 	ld a, e
 	cp c
-.skip_1
-	jr nz, .skip_bit0
+.high_byte_not_equal
+	jr nz, .not_equal
 	set 0, [hl]
-.skip_bit0
-	jr nc, .skip_bit1
+.not_equal
+	jr nc, .no_carry
 	set 1, [hl]
-.skip_bit1
+.no_carry
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_Fetch_wda9b:
 	farcall GetDWwDA9B
 	ld a, c
-	ld [wd616], a
+	ld [wScriptLoadedVar], a
 	ld a, b
-	ld [wd617], a
+	ld [wScriptLoadedVar + 1], a
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GameCenter:
@@ -4565,9 +4565,9 @@ ScriptCommand_73:
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_LoadTextRAM3:
-	ld a, [wd616]
+	ld a, [wScriptLoadedVar]
 	ld l, a
-	ld a, [wd617]
+	ld a, [wScriptLoadedVar + 1]
 	ld h, a
 	call LoadTxRam3
 	jp IncreaseScriptPointerBy1
@@ -4583,7 +4583,7 @@ ScriptCommand_76:
 ScriptCommand_LinkDuel:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	call ZeroOutEventValue
-	ld hl, wd618
+	ld hl, wScriptFlags
 	res 1, [hl]
 	farcall Func_1d99e
 	cp $ff
@@ -4596,7 +4596,7 @@ ScriptCommand_LinkDuel:
 .ok
 	jr .done
 .set
-	ld hl, wd618
+	ld hl, wScriptFlags
 	set 1, [hl]
 .done
 	farcall PlayCurrentSong
