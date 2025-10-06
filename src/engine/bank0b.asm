@@ -11,7 +11,7 @@ IshiharasHouse_StepEvents:
 	db $ff
 
 IshiharasHouse_NPCs:
-	npc NPC_ISHIHARA, 4, 4, SOUTH, $B8, $41
+	npc NPC_ISHIHARA, 4, 4, SOUTH, Func_2c1b8
 	npc NPC_NIKKI, 5, 4, SOUTH, $6A, $44
 	db $ff
 
@@ -201,9 +201,9 @@ LightningClub_StepEvents:
 	db $ff
 
 LightningClub_NPCs:
-	npc NPC_ISAAC, 6, 2, SOUTH, $00, $00
+	npc NPC_ISAAC, 6, 2, SOUTH, NULL
 	npc NPC_JENNIFER, 7, 9, SOUTH, $f9, $48
-	npc NPC_NICHOLAS, 3, 5, SOUTH, $00, $00
+	npc NPC_NICHOLAS, 3, 5, SOUTH, NULL
 	npc NPC_BRANDON, 11, 6, SOUTH, $f9, $48
 	npc NPC_GR_4, 7, 4, SOUTH, $29, $49
 	db $ff
@@ -276,7 +276,7 @@ Func_2c50a:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_ISAAC, 5, 9, SOUTH
@@ -302,7 +302,7 @@ Func_2c560:
 
 Func_2c568:
 	ld hl, LightningClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -329,8 +329,8 @@ PsychicClubEntrance_StepEvents:
 	map_exit 0, 4, MAP_PSYCHIC_CLUB_LOBBY, 14, 7, WEST
 	map_exit 4, 0, MAP_PSYCHIC_CLUB, 6, 12, NORTH
 	map_exit 5, 0, MAP_PSYCHIC_CLUB, 7, 12, NORTH
-	ow_script 4, 2, $0b, $3e, $4a
-	ow_script 5, 2, $0b, $3e, $4a
+	ow_script 4, 2, $0b, Func_2ca3e
+	ow_script 5, 2, $0b, Func_2ca3e
 	db $ff
 
 PsychicClubEntrance_NPCs:
@@ -374,10 +374,10 @@ Func_2c9b8:
 
 Func_2c9c8:
 	call PsychicClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2c9cf
+	jr nc, .appear
 	scf
 	ret
-.asm_2c9cf
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -398,18 +398,19 @@ Func_2c9df:
 
 Func_2c9e8:
 	call PsychicClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2ca12
-	cp 1
-	jr z, .asm_2c9f8
-	jr nc, .asm_2c9fd
+	jr c, .quit
+	cp RONALD_DUEL_GC_PIECES_2
+	jr z, .duel
+	jr nc, .gift
+; card pop
 	ld hl, $4037
-	jr .asm_2ca00
-.asm_2c9f8
+	jr .got_event
+.duel
 	ld hl, $417e
-	jr .asm_2ca00
-.asm_2c9fd
+	jr .got_event
+.gift
 	ld hl, $41f7
-.asm_2ca00
+.got_event
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -417,8 +418,8 @@ Func_2c9e8:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2ca12
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
@@ -429,7 +430,7 @@ Func_2ca14:
 	ret
 
 Func_2ca1c:
-	farcall Func_341c4
+	farcall Script_FinishedRonaldDuelGCPieces2
 	scf
 	ret
 
@@ -455,59 +456,60 @@ Func_2ca3e:
 Func_2ca46:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
-	jr nz, .asm_2ca9f
+	jr nz, .exit
 	ldh a, [hKeysHeld]
 	bit 6, a
-	jr z, .asm_2ca9f
+	jr z, .exit
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
 	farcall SetOWObjectDirection
 	farcall GetOWObjectTilePosition
 	ld a, $02
 	cp e
-	jr nz, .asm_2ca9f
+	jr nz, .exit
 	ld a, $04
 	cp d
 	jr z, .asm_2ca86
 	ld a, $05
 	cp d
-	jr nz, .asm_2ca9f
-	ld a, $29
+	jr nz, .exit
+	ld a, NPC_STEPHANIE
 	farcall GetOWObjectTilePosition
 	ld a, $05
 	cp d
-	jr z, .asm_2ca9f
-	ld a, $29
-	ld bc, $8101
+	jr z, .exit
+	ld a, NPC_STEPHANIE
+	lb bc, $81, $01
 	farcall Func_10e3c
 	jr .asm_2ca9a
 .asm_2ca86
-	ld a, $29
+	ld a, NPC_STEPHANIE
 	farcall GetOWObjectTilePosition
 	ld a, $04
 	cp d
-	jr z, .asm_2ca9f
-	ld a, $29
-	ld bc, $8301
+	jr z, .exit
+	ld a, NPC_STEPHANIE
+	lb bc, $83, $01
 	farcall Func_10e3c
 .asm_2ca9a
-	ld a, $29
+	ld a, NPC_STEPHANIE
 	call Func_336d
-.asm_2ca9f
+.exit
 	ret
 
+; beating GR4 at Lightning Club unlocks Psychic Club sequence
 Func_2caa0:
-	ld a, $29
-	ld [$d60e], a
-	ld hl, $9f3
+	ld a, NPC_STEPHANIE
+	ld [wd60e], a
+	ldtx hl, DialogStephanieText
 	ld a, l
-	ld [$d60f], a
+	ld [wd60f], a
 	ld a, h
-	ld [$d610], a
+	ld [wd60f + 1], a
 	xor a
 	start_script
 	script_command_01
-	print_npc_text Text0bcb
+	print_npc_text StephanieBeatGR4AtLightningClubFirstText
 	script_command_02
 	end_script
 	ret
@@ -523,8 +525,8 @@ Func_2cabb:
 	ccf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 PsychicClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -534,27 +536,27 @@ PsychicClubEntrance_ShouldRonaldAppear:
 	jr c, .third_meeting
 	cp 4
 	jr c, .fourth_meeting
-.asm_2cada
+.false
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+.third_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 2
-	jr nz, .asm_2cada
-	ld a, 1
+	cp GC_PIECES_2
+	jr nz, .false
+	ld a, RONALD_DUEL_GC_PIECES_2
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 4
-	jr nz, .asm_2cada
-	ld a, 2
+	cp GC_PIECES_4
+	jr nz, .false
+	ld a, RONALD_GIFT_GC_PIECES_4
 	scf
 	ccf
 	ret
@@ -570,13 +572,13 @@ PsychicClubLobby_StepEvents:
 	db $ff
 
 PsychicClubLobby_NPCs:
-	npc NPC_SPECS_5, 8, 8, EAST, $00, $00
-	npc NPC_LASS1_4, 10, 9, WEST, $00, $00
+	npc NPC_SPECS_5, 8, 8, EAST, NULL
+	npc NPC_LASS1_4, 10, 9, WEST, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
-	npc NPC_LAD_6, 7, 6, EAST, $00, $00
+	npc NPC_LAD_6, 7, 6, EAST, NULL
 	npc NPC_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
@@ -588,8 +590,8 @@ PsychicClubLobby_NPCInteractions:
 	db $ff
 
 PsychicClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $b9, $41
 	ow_script 4, 4, $0f, $d9, $42
 	ow_script 12, 2, $10, $d6, $42
@@ -656,7 +658,7 @@ Func_2cbdf:
 	ret
 
 Func_2cbef:
-	farcall Func_3c3ca
+	farcall Script_FinishedImakuniBlackDuel
 	scf
 	ret
 
@@ -688,10 +690,10 @@ PsychicClub_StepEvents:
 	db $ff
 
 PsychicClub_NPCs:
-	npc NPC_MURRAY, 6, 3, SOUTH, $00, $00
-	npc NPC_ROBERT, 3, 10, WEST, $00, $00
-	npc NPC_DANIEL, 4, 5, NORTH, $00, $00
-	npc NPC_STEPHANIE, 11, 6, EAST, $00, $00
+	npc NPC_MURRAY, 6, 3, SOUTH, NULL
+	npc NPC_ROBERT, 3, 10, WEST, NULL
+	npc NPC_DANIEL, 4, 5, NORTH, NULL
+	npc NPC_STEPHANIE, 11, 6, EAST, NULL
 	npc NPC_GR_4, 7, 3, SOUTH, $3c, $52
 	db $ff
 
@@ -758,7 +760,7 @@ Func_2cda2:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_MURRAY, 7, 6, SOUTH
@@ -787,7 +789,7 @@ Func_2ce11:
 
 Func_2ce19:
 	ld hl, PsychicClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -852,10 +854,10 @@ Func_2d356:
 
 Func_2d366:
 	call RockClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2d36d
+	jr nc, .appear
 	scf
 	ret
-.asm_2d36d
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -869,7 +871,8 @@ Func_2d376:
 
 Func_2d37d:
 	call RockClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2d397
+	jr c, .quit
+; card pop
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -878,8 +881,8 @@ Func_2d37d:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2d397
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
@@ -897,8 +900,8 @@ Func_2d399:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry otherwise
 RockClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -906,7 +909,7 @@ RockClubEntrance_ShouldRonaldAppear:
 	jr c, .second_meeting
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	scf
 	ccf
 	ret
@@ -922,13 +925,13 @@ RockClubLobby_StepEvents:
 	db $ff
 
 RockClubLobby_NPCs:
-	npc NPC_LASS2_2, 5, 6, EAST, $00, $00
-	npc NPC_WOMAN, 12, 10, NORTH, $00, $00
+	npc NPC_LASS2_2, 5, 6, EAST, NULL
+	npc NPC_WOMAN, 12, 10, NORTH, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
-	npc NPC_CHAP_1, 8, 9, WEST, $00, $00
-	npc NPC_LAD_3, 10, 3, SOUTH, $00, $00
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_CHAP_1, 8, 9, WEST, NULL
+	npc NPC_LAD_3, 10, 3, SOUTH, NULL
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 RockClubLobby_NPCInteractions:
@@ -940,8 +943,8 @@ RockClubLobby_NPCInteractions:
 	db $ff
 
 RockClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $b9, $41
 	ow_script 4, 4, $0f, $d9, $42
 	ow_script 12, 2, $10, $08, $41
@@ -1010,7 +1013,7 @@ Func_2d4ae:
 	ret
 
 Func_2d4be:
-	farcall Func_3c3ca
+	farcall Script_FinishedImakuniBlackDuel
 	scf
 	ret
 
@@ -1042,10 +1045,10 @@ RockClub_StepEvents:
 	db $ff
 
 RockClub_NPCs:
-	npc NPC_GENE, 7, 2, SOUTH, $00, $00
-	npc NPC_MATTHEW, 2, 3, SOUTH, $00, $00
-	npc NPC_RYAN, 9, 7, EAST, $00, $00
-	npc NPC_ANDREW, 3, 8, EAST, $00, $00
+	npc NPC_GENE, 7, 2, SOUTH, NULL
+	npc NPC_MATTHEW, 2, 3, SOUTH, NULL
+	npc NPC_RYAN, 9, 7, EAST, NULL
+	npc NPC_ANDREW, 3, 8, EAST, NULL
 	npc NPC_GR_1, 7, 3, NORTH, $f3, $58
 	db $ff
 
@@ -1100,7 +1103,7 @@ Func_2d673:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_MATTHEW, 5, 1, SOUTH
@@ -1119,7 +1122,7 @@ Func_2d6a6:
 
 Func_2d6ae:
 	ld hl, RockClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -1170,10 +1173,10 @@ Func_2d97f:
 
 Func_2d98f:
 	call FightingClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2d996
+	jr nc, .appear
 	scf
 	ret
-.asm_2d996
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -1187,18 +1190,19 @@ Func_2d99f:
 
 Func_2d9a6:
 	call FightingClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2d9d0
-	cp 1
-	jr z, .asm_2d9b6
-	jr nc, .asm_2d9bb
+	jr c, .quit
+	cp RONALD_DUEL_GC_PIECES_2
+	jr z, .duel
+	jr nc, .gift
+; card pop
 	ld hl, $4037
-	jr .asm_2d9be
-.asm_2d9b6
+	jr .got_event
+.duel
 	ld hl, $417e
-	jr .asm_2d9be
-.asm_2d9bb
+	jr .got_event
+.gift
 	ld hl, $41f7
-.asm_2d9be
+.got_event
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -1206,13 +1210,13 @@ Func_2d9a6:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2d9d0
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
 Func_2d9d2:
-	farcall Func_341c4
+	farcall Script_FinishedRonaldDuelGCPieces2
 	scf
 	ret
 
@@ -1230,8 +1234,8 @@ Func_2d9d8:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 FightingClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -1241,27 +1245,27 @@ FightingClubEntrance_ShouldRonaldAppear:
 	jr c, .third_meeting
 	cp 4
 	jr c, .fourth_meeting
-.asm_2da06
+.false
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+.third_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 2
-	jr nz, .asm_2da06
-	ld a, 1
+	cp GC_PIECES_2
+	jr nz, .false
+	ld a, RONALD_DUEL_GC_PIECES_2
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 4
-	jr nz, .asm_2da06
-	ld a, 2
+	cp GC_PIECES_4
+	jr nz, .false
+	ld a, RONALD_GIFT_GC_PIECES_4
 	scf
 	ccf
 	ret
@@ -1277,12 +1281,12 @@ FightingClubLobby_StepEvents:
 	db $ff
 
 FightingClubLobby_NPCs:
-	npc NPC_PAPPY_2, 1, 5, SOUTH, $00, $00
-	npc NPC_SPECS_3, 4, 9, EAST, $00, $00
-	npc NPC_LAD4, 7, 9, WEST, $00, $00
-	npc NPC_GIRL_4, 6, 8, SOUTH, $00, $00
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_PAPPY_2, 1, 5, SOUTH, NULL
+	npc NPC_SPECS_3, 4, 9, EAST, NULL
+	npc NPC_LAD4, 7, 9, WEST, NULL
+	npc NPC_GIRL_4, 6, 8, SOUTH, NULL
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	npc NPC_MICHAEL, 11, 6, EAST, $97, $5b
 	db $ff
 
@@ -1295,8 +1299,8 @@ FightingClubLobby_NPCInteractions:
 	db $ff
 
 FightingClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0F, $B9, $41
 	ow_script 4, 4, $0F, $D9, $42
 	ow_script 12, 2, $10, $4A, $41
@@ -1347,7 +1351,7 @@ Func_2daee:
 
 Func_2dafe:
 	ld hl, FightingClubLobby_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -1439,7 +1443,7 @@ Func_2dd3a:
 
 Func_2dd42:
 	ld hl, FightingClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -1491,10 +1495,10 @@ Func_2e0bc:
 
 Func_2e0cc:
 	call GrassClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2e0d3
+	jr nc, .appear
 	scf
 	ret
-.asm_2e0d3
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -1508,18 +1512,19 @@ Func_2e0dc:
 
 Func_2e0e3:
 	call GrassClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2e10d
-	cp 1
-	jr z, .asm_2e0f3
-	jr nc, .asm_2e0f8
+	jr c, .quit
+	cp RONALD_DUEL_GC_PIECES_2
+	jr z, .duel
+	jr nc, .gift
+; card pop
 	ld hl, $4037
-	jr .asm_2e0fb
-.asm_2e0f3
+	jr .got_event
+.duel
 	ld hl, $417e
-	jr .asm_2e0fb
-.asm_2e0f8
+	jr .got_event
+.gift
 	ld hl, $41f7
-.asm_2e0fb
+.got_event
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -1527,13 +1532,13 @@ Func_2e0e3:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2e10d
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
 Func_2e10f:
-	farcall Func_341c4
+	farcall Script_FinishedRonaldDuelGCPieces2
 	scf
 	ret
 
@@ -1551,8 +1556,8 @@ Func_2e115:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 GrassClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -1562,27 +1567,27 @@ GrassClubEntrance_ShouldRonaldAppear:
 	jr c, .third_meeting
 	cp 4
 	jr c, .fourth_meeting
-.asm_2e143
+.false
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+.third_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 2
-	jr nz, .asm_2e143
-	ld a, 1
+	cp GC_PIECES_2
+	jr nz, .false
+	ld a, RONALD_DUEL_GC_PIECES_2
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 4
-	jr nz, .asm_2e143
-	ld a, 2
+	cp GC_PIECES_4
+	jr nz, .false
+	ld a, RONALD_GIFT_GC_PIECES_4
 	scf
 	ccf
 	ret
@@ -1667,7 +1672,7 @@ Func_2e1fe:
 
 Func_2e206:
 	ld hl, GrassClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -1729,10 +1734,10 @@ Func_2e518:
 
 Func_2e528:
 	call ScienceClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2e52f
+	jr nc, .appear
 	scf
 	ret
-.asm_2e52f
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -1753,18 +1758,19 @@ Func_2e53f:
 
 Func_2e548:
 	call ScienceClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2e572
-	cp 1
-	jr z, .asm_2e558
-	jr nc, .asm_2e55d
+	jr c, .quit
+	cp RONALD_DUEL_GC_PIECES_2
+	jr z, .duel
+	jr nc, .gift
+; card pop
 	ld hl, $4037
-	jr .asm_2e560
-.asm_2e558
+	jr .got_event
+.duel
 	ld hl, $417e
-	jr .asm_2e560
-.asm_2e55d
+	jr .got_event
+.gift
 	ld hl, $41f7
-.asm_2e560
+.got_event
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -1772,8 +1778,8 @@ Func_2e548:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2e572
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
@@ -1784,7 +1790,7 @@ Func_2e574:
 	ret
 
 Func_2e57c:
-	farcall Func_341c4
+	farcall Script_FinishedRonaldDuelGCPieces2
 	scf
 	ret
 
@@ -1802,8 +1808,8 @@ Func_2e582:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 ScienceClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -1813,27 +1819,27 @@ ScienceClubEntrance_ShouldRonaldAppear:
 	jr c, .third_meeting
 	cp 4
 	jr c, .fourth_meeting
-.asm_2e5b0
+.false
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+.third_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 2
-	jr nz, .asm_2e5b0
-	ld a, 1
+	cp GC_PIECES_2
+	jr nz, .false
+	ld a, RONALD_DUEL_GC_PIECES_2
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 4
-	jr nz, .asm_2e5b0
-	ld a, 2
+	cp GC_PIECES_4
+	jr nz, .false
+	ld a, RONALD_GIFT_GC_PIECES_4
 	scf
 	ccf
 	ret
@@ -1872,8 +1878,8 @@ ScienceClubLobby_NPCs:
 	npc NPC_MAN_2, 3, 9, WEST, $d1, $68
 	npc NPC_SPECS_4, 13, 4, SOUTH, $d1, $68
 	npc NPC_TECH_6, 7, 9, WEST, $d1, $68
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 ScienceClubLobby_NPCInteractions:
@@ -1886,8 +1892,8 @@ ScienceClubLobby_NPCInteractions:
 	db $ff
 
 ScienceClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $b9, $41
 	ow_script 4, 4, $0f, $d9, $42
 	ow_script 12, 2, $10, $ce, $41
@@ -1955,7 +1961,7 @@ Func_2e72e:
 
 Func_2e73e:
 	ld hl, ScienceClubLobby_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -2071,7 +2077,7 @@ Func_2e99f:
 
 Func_2e9a7:
 	ld hl, ScienceClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -2123,10 +2129,10 @@ Func_2ed17:
 
 Func_2ed27:
 	call WaterClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2ed2e
+	jr nc, .appear
 	scf
 	ret
-.asm_2ed2e
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -2144,18 +2150,18 @@ Func_2ed3e:
 	script_command_64 $12
 	end_script
 	call WaterClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2ed73
+	jr c, .quit
 	or a
-	jr nz, .asm_2ed58
-	ld hl, $a2a
+	jr nz, .gift
+	ldtx hl, DialogGR3Text
 	call LoadTxRam2
 	ld hl, $40a4
-	jr .asm_2ed61
-.asm_2ed58
+	jr .got_event
+.gift
 	ld a, EVENT_EE
 	farcall ZeroOutEventValue
 	ld hl, $451d
-.asm_2ed61
+.got_event
 	ld a, $0a
 	ld [wd582], a
 	ld a, $0d
@@ -2163,8 +2169,8 @@ Func_2ed3e:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2ed73
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
@@ -2195,11 +2201,8 @@ Func_2ed8c:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
-;
-; This club is an anomaly. For other clubs, return "1" triggers the 3rd meeting,
-; but only if you have 2 GC pieces. Here it checks EVENT_EE instead of GC pieces
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 WaterClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -2207,16 +2210,16 @@ WaterClubEntrance_ShouldRonaldAppear:
 	jr c, .second_meeting
 	ld a, EVENT_EE
 	farcall GetEventValue
-	jr nz, .asm_2edc0
+	jr nz, .won_gr3
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.asm_2edc0
-	ld a, 1
+.won_gr3
+	ld a, RONALD_GIFT_WON_GR3_ONCE
 	scf
 	ccf
 	ret
@@ -2233,12 +2236,12 @@ WaterClubLobby_StepEvents:
 
 WaterClubLobby_NPCs:
 	npc NPC_JOSHUA, 8, 6, WEST, $5f, $6f
-	npc NPC_LASS2_4, 11, 1, WEST, $00, $00
+	npc NPC_LASS2_4, 11, 1, WEST, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
-	npc NPC_PAPPY_3, 12, 11, EAST, $00, $00
-	npc NPC_LASS1_2, 4, 9, SOUTH, $00, $00
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_PAPPY_3, 12, 11, EAST, NULL
+	npc NPC_LASS1_2, 4, 9, SOUTH, NULL
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 WaterClubLobby_NPCInteractions:
@@ -2250,8 +2253,8 @@ WaterClubLobby_NPCInteractions:
 	db $ff
 
 WaterClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $b9, $41
 	ow_script 4, 4, $0f, $d9, $42
 	ow_script 12, 2, $10, $10, $42
@@ -2319,7 +2322,7 @@ Func_2eeaa:
 
 Func_2eeba:
 	ld hl, WaterClubLobby_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -2455,7 +2458,7 @@ Func_2f0f7:
 
 Func_2f107:
 	ld hl, WaterClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -2507,10 +2510,10 @@ Func_2f54e:
 
 Func_2f55e:
 	call FireClubEntrance_ShouldRonaldAppear
-	jr nc, .asm_2f565
+	jr nc, .appear
 	scf
 	ret
-.asm_2f565
+.appear
 	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
@@ -2528,16 +2531,17 @@ Func_2f575:
 	script_command_64 $12
 	end_script
 	call FireClubEntrance_ShouldRonaldAppear
-	jr c, .asm_2f5a6
-	cp 1
-	jr z, .asm_2f58c
-	jr nc, .asm_2f591
+	jr c, .quit
+	cp RONALD_DUEL_GC_PIECES_2
+	jr z, .duel
+	jr nc, .gift
+; card pop
 	ld hl, $4037
 	jr .asm_2f594
-.asm_2f58c
+.duel
 	ld hl, $417e
 	jr .asm_2f594
-.asm_2f591
+.gift
 	ld hl, $41f7
 .asm_2f594
 	ld a, $0a
@@ -2547,13 +2551,13 @@ Func_2f575:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-.asm_2f5a6
+	ld [wd593 + 1], a
+.quit
 	scf
 	ret
 
 Func_2f5a8:
-	farcall Func_341c4
+	farcall Script_FinishedRonaldDuelGCPieces2
 	scf
 	ret
 
@@ -2571,8 +2575,8 @@ Func_2f5ae:
 	scf
 	ret
 
-; sets and complements carry flag if Ronald should appear.
-; return a = which meeting script to use
+; set carry if no Ronald events
+; clear carry and return RONALD_* event in a
 FireClubEntrance_ShouldRonaldAppear:
 	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
@@ -2582,27 +2586,27 @@ FireClubEntrance_ShouldRonaldAppear:
 	jr c, .third_meeting
 	cp 4
 	jr c, .fourth_meeting
-.asm_2f5dc
+.false
 	scf
 	ret
-.second_meeting ; second meeting - Ronald card pops with you
+.second_meeting
 	xor a
 	scf
 	ccf
 	ret
-.third_meeting ; after 2 GC pieces. Ronald gives you Super Energy Retrieval card
+.third_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 2
-	jr nz, .asm_2f5dc
-	ld a, 1
+	cp GC_PIECES_2
+	jr nz, .false
+	ld a, RONALD_DUEL_GC_PIECES_2
 	scf
 	ccf
 	ret
-.fourth_meeting ; after 4 GC pieces. Ronald tells you he got the stolen cards back
+.fourth_meeting
 	farcall CountGRCoinPiecesObtained
-	cp 4
-	jr nz, .asm_2f5dc
-	ld a, 2
+	cp GC_PIECES_4
+	jr nz, .false
+	ld a, RONALD_GIFT_GC_PIECES_4
 	scf
 	ccf
 	ret
@@ -2618,12 +2622,12 @@ FireClubLobby_StepEvents:
 	db $ff
 
 FireClubLobby_NPCs:
-	npc NPC_HOOD_3, 8, 4, NORTH, $00, $00
+	npc NPC_HOOD_3, 8, 4, NORTH, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
-	npc NPC_MANIA_4, 10, 9, NORTH, $00, $00
-	npc NPC_GAL_2, 5, 8, SOUTH, $00, $00
-	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_MANIA_4, 10, 9, NORTH, NULL
+	npc NPC_GAL_2, 5, 8, SOUTH, NULL
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 FireClubLobby_NPCInteractions:
@@ -2634,8 +2638,8 @@ FireClubLobby_NPCInteractions:
 	db $ff
 
 FireClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $11, $54
-	ow_script 9, 2, $03, $11, $54
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $b9, $41
 	ow_script 4, 4, $0f, $d9, $42
 	ow_script 12, 2, $10, $52, $42
@@ -2702,7 +2706,7 @@ Func_2f6d7:
 	ret
 
 Func_2f6e7:
-	farcall Func_3c3ca
+	farcall Script_FinishedImakuniBlackDuel
 	scf
 	ret
 
@@ -2734,10 +2738,10 @@ FireClub_StepEvents:
 	db $ff
 
 FireClub_NPCs:
-	npc NPC_KEN, 7, 2, SOUTH, $00, $00
-	npc NPC_JOHN, 6, 9, SOUTH, $00, $00
-	npc NPC_ADAM, 5, 7, SOUTH, $00, $00
-	npc NPC_JONATHAN, 10, 5, SOUTH, $00, $00
+	npc NPC_KEN, 7, 2, SOUTH, NULL
+	npc NPC_JOHN, 6, 9, SOUTH, NULL
+	npc NPC_ADAM, 5, 7, SOUTH, NULL
+	npc NPC_JONATHAN, 10, 5, SOUTH, NULL
 	npc NPC_GR_3, 7, 5, SOUTH, $29, $7c
 	db $ff
 
@@ -2833,7 +2837,7 @@ Func_2f8c8:
 
 Func_2f8d8:
 	ld hl, FireClub_AfterDuelScripts
-	ld a, [$d60e]
+	ld a, [wd60e]
 	call Func_344c
 	scf
 	ret
@@ -2870,8 +2874,8 @@ PokemonDomeEntrance_NPCInteractions:
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:
-	ow_script 4, 2, $03, $11, $54
-	ow_script 5, 2, $03, $11, $54
+	ow_script 4, 2, PCMenu
+	ow_script 5, 2, PCMenu
 	ow_script 9, 1, $0b, $2a, $7e
 	ow_script 10, 1, $0b, $2a, $7e
 	ow_script 1, 2, $10, $5a, $43
@@ -2960,8 +2964,8 @@ Func_2fe54:
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
-	ld a, $00
+	ld [wd593 + 1], a
+	ld a, 0
 	call Func_338f
 	scf
 	ccf

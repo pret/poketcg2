@@ -2037,12 +2037,12 @@ StopOWObjectAnimation::
 	call ResetOWObjectSpriteAnimating
 	ret
 
-StartOWObjectAnimFlag6:
-	call SetOWObjectSpriteAnimFlag6
+SetOWObjectSpriteAnimFlag6:
+	call _SetOWObjectSpriteAnimFlag6
 	ret
 
-StopOWObjectAnimFlag6:
-	call ResetOWObjectSpriteAnimFlag6
+ResetOWObjectSpriteAnimFlag6:
+	call _ResetOWObjectSpriteAnimFlag6
 	ret
 
 StopAndGetOWObjectSpeedAndMoveDuration::
@@ -2661,7 +2661,7 @@ Func_110c2::
 	call PopFrameFunction
 	ret
 
-Func_110c6:
+_PCMenu:
 	push af
 	push bc
 	push de
@@ -3019,7 +3019,7 @@ ResetOWObjectSpriteAnimating:
 	pop hl
 	ret
 
-SetOWObjectSpriteAnimFlag6:
+_SetOWObjectSpriteAnimFlag6:
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
@@ -3027,7 +3027,7 @@ SetOWObjectSpriteAnimFlag6:
 	pop hl
 	ret
 
-ResetOWObjectSpriteAnimFlag6:
+_ResetOWObjectSpriteAnimFlag6:
 	push hl
 	call _GetOWObjectWithID
 	call _GetOWObjectSpriteAnim
