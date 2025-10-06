@@ -6,13 +6,19 @@ import argparse
 import sys
 
 from constants import cards
+from constants import cardpops
+from constants import coins
+from constants import conditions
 from constants import decks
 from constants import directions
 from constants import events
+from constants import framesets
 from constants import maps
 from constants import npcs
+from constants import palettes
 from constants import sfxs
 from constants import songs
+from constants import tilemaps
 from constants import vars
 
 args = None
@@ -50,11 +56,11 @@ script_commands = {
 	0x17: { "name": "set_player_direction",                   "params": [ "direction" ] },
 	0x18: { "name": "set_active_npc_direction",               "params": [ "direction" ] },
 	0x19: { "name": "do_frames",                              "params": [ "byte_decimal" ] },
-	0x1a: { "name": "load_tilemap",                           "params": [ "word", "byte", "byte" ] },
+	0x1a: { "name": "load_tilemap",                           "params": [ "tilemap", "byte", "byte" ] },
 	0x1b: { "name": "show_card_received_screen",              "params": [ "card" ] },
 	0x1c: { "name": "set_player_position",                    "params": [ "byte_decimal", "byte_decimal" ] },
 	0x1d: { "name": "set_active_npc_position",                "params": [ "byte_decimal", "byte_decimal" ] },
-	0x1e: { "name": "set_scroll_state",                       "params": [ "byte" ] }, # todo: enum scroll states
+	0x1e: { "name": "set_scroll_state",                       "params": [ "byte" ] }, # todo: enumerate scroll states
 	0x1f: { "name": "scroll_to_position",                     "params": [ "byte", "byte" ] },
 	0x20: { "name": "set_active_npc",                         "params": [ "npc", "text" ] },
 	0x21: { "name": "set_player_position_and_direction",      "params": [ "byte_decimal", "byte_decimal", "direction" ] },
@@ -67,10 +73,10 @@ script_commands = {
 	0x28: { "name": "animate_player_movement",                "params": [ "byte", "byte" ] },
 	0x29: { "name": "animate_npc_movement",                   "params": [ "npc", "byte", "byte" ] },
 	0x2a: { "name": "animate_active_npc_movement",            "params": [ "byte", "byte" ] },
-	0x2b: { "name": "move_player",                            "params": [ "word", "byte" ] }, # todo: parse movement data
+	0x2b: { "name": "move_player",                            "params": [ "word", "bool" ] }, # todo: parse movement data
 	0x2c: { "name": "move_npc",                               "params": [ "npc", "word" ] }, # todo: parse movement data
 	0x2d: { "name": "move_active_npc",                        "params": [ "word" ] }, # todo: parse movement data
-	0x2e: { "name": "start_duel",                             "params": [ "byte", "song" ] }, # todo: enumerate decks
+	0x2e: { "name": "start_duel",                             "params": [ "deck", "song" ] },
 	0x2f: { "name": "wait_for_player_animation",              "params": [] },
 	0x30: { "name": "wait_for_fade",                          "params": [] },
 	0x31: { "name": "get_card_count_in_collection_and_decks", "params": [ "card" ] },
@@ -104,9 +110,9 @@ script_commands = {
 	0x4d: { "name": "spin_npc_reverse",                       "params": [ "npc", "word_decimal" ] },
 	0x4e: { "name": "push_var",                               "params": [] },
 	0x4f: { "name": "pop_var",                                "params": [] },
-	0x50: { "name": "script_call",                            "params": [ "script", "condition" ] }, # todo: enumerate conditions
+	0x50: { "name": "script_call",                            "params": [ "script", "condition" ] },
 	0x51: { "name": "script_ret",                             "params": [] },
-	0x52: { "name": "give_coin",                              "params": [ "byte" ] }, # todo: enumerate coins
+	0x52: { "name": "give_coin",                              "params": [ "coin" ] },
 	0x53: { "name": "backup_active_npc",                      "params": [] },
 	0x54: { "name": "load_player",                            "params": [ "byte_decimal", "byte_decimal", "direction" ] },
 	0x55: { "name": "unload_player",                          "params": [] },
@@ -119,14 +125,14 @@ script_commands = {
 	0x5c: { "name": "resume_song",                            "params": [] },
 	0x5d: { "name": "script_callfar",                         "params": [ "script_far" ] },
 	0x5e: { "name": "script_retfar",                          "params": [] },
-	0x5f: { "name": "card_pop",                               "params": [ "byte" ] }, # todo: enumerate Card Pop! events
+	0x5f: { "name": "card_pop",                               "params": [ "cardpop" ] },
 	0x60: { "name": "play_song_next",                         "params": [ "song" ] },
 	0x61: { "name": "set_text_ram2b",                         "params": [ "text" ] },
 	0x62: { "name": "set_variable_text_ram2b",                "params": [ "text", "text" ] },
 	0x63: { "name": "replace_npc",                            "params": [ "npc", "npc" ] },
 	0x64: { "name": "script_command_64",                      "params": [ "byte" ] }, # ?
 	0x65: { "name": "check_npc_loaded",                       "params": [ "npc" ] },
-	0x66: { "name": "give_deck",                              "params": [ "byte" ] }, # todo: enumerate decks
+	0x66: { "name": "give_deck",                              "params": [ "deck" ] },
 	0x67: { "name": "script_command_67",                      "params": [ "byte", "byte" ] }, # ?
 	0x68: { "name": "script_command_68",                      "params": [] }, # wait for ?
 	0x69: { "name": "print_npc_text_instant",                 "params": [ "text" ] },
@@ -145,8 +151,8 @@ script_commands = {
 	0x76: { "name": "script_command_76",                      "params": [] }, # ?
 	0x77: { "name": "link_duel",                              "params": [] },
 	0x78: { "name": "wait_song",                              "params": [] },
-	0x79: { "name": "load_palette",                           "params": [ "word" ] }, # todo: enumerate palettes
-	0x7a: { "name": "set_sprite_frameset",                    "params": [ "npc", "word" ] }, # todo: enumerate framesets
+	0x79: { "name": "load_palette",                           "params": [ "palette" ] },
+	0x7a: { "name": "set_sprite_frameset",                    "params": [ "npc", "frameset" ] },
 	0x7b: { "name": "wait_sfx",                               "params": [] },
 	0x7c: { "name": "print_text_wide_textbox",                "params": [ "text" ] },
 	0x7d: { "name": "wait_input",                             "params": [] },
@@ -165,6 +171,8 @@ param_lengths = {
 	"byte":           1,
 	"byte_decimal":   1,
 	"bool":           1,
+	"cardpop":        1,
+	"coin":           1,
 	"condition":      1,
 	"deck":           1,
 	"direction":      1,
@@ -178,6 +186,9 @@ param_lengths = {
 	"word":           2,
 	"word_decimal":   2,
 	"card":           2,
+	"frameset":       2,
+	"palette":        2,
+	"tilemap":        2,
 	"movement":       2,
 	"movement_table": 2,
 	"text":           2,
@@ -294,9 +305,10 @@ def dump_script(start_address, address=None, visited=set()):
 					output += " TRUE"
 				else:
 					raise ValueError
-			elif param_type == "condition":
-				if param != 0:
-					output += " ${:02x}".format(param)
+			elif param_type == "cardpop":
+				output += " {}".format(cardpops[param])
+			elif param_type == "coin":
+				output += " {}".format(coins[param])
 			elif param_type == "deck":
 				output += " {}".format(decks[param])
 			elif param_type == "direction":
@@ -321,6 +333,12 @@ def dump_script(start_address, address=None, visited=set()):
 				output += " {}".format(param + rom[address + 1] * 0x100)
 			elif param_type == "card":
 				output += " {}".format(cards[param + rom[address + 1] * 0x100])
+			elif param_type == "frameset":
+				output += " {}".format(framesets[param + rom[address + 1] * 0x100])
+			elif param_type == "palette":
+				output += " {}".format(palettes[param + rom[address + 1] * 0x100])
+			elif param_type == "tilemap":
+				output += " {}".format(tilemaps[param + rom[address + 1] * 0x100])
 			elif param_type == "movement":
 				param = get_pointer(address)
 				label = "NPCMovement_{:x}".format(param)
@@ -367,6 +385,10 @@ def dump_script(start_address, address=None, visited=set()):
 						label = symbols[get_bank(param)][param]
 					if param > start_address or args.allow_backward_jumps:
 						branches.add(param)
+				if command_id == 0x50:
+					condition = rom[address + 2]
+					if condition != 0:
+						output += " {},".format(conditions[condition])
 				output += " {}".format(label)
 			address += param_length
 			if i < len(command["params"]) - 1:

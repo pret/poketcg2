@@ -4975,9 +4975,9 @@ HandleIngameCardPop:
 	ret
 
 .FunctionMap:
-	key_func 0, IngameCardPop.Ronald
-	key_func 1, IngameCardPop.Imakuni_first
-	key_func 2, IngameCardPop.Imakuni_rare
+	key_func SCRIPTED_CARD_POP_RONALD,       IngameCardPop.Ronald
+	key_func SCRIPTED_CARD_POP_IMAKUNI,      IngameCardPop.Imakuni_first
+	key_func SCRIPTED_RARE_CARD_POP_IMAKUNI, IngameCardPop.Imakuni_rare
 	db $ff
 
 ; dupe of Func_1f7f1

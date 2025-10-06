@@ -4019,33 +4019,33 @@ ScriptCommand_4F:
 ScriptCommand_50:
 	call Get1ScriptArg_IncrIndexBy3
 	ld hl, wd618
-	cp 1
-	jr z, .bit_001
-	cp 2
-	jr z, .bit_010
-	cp 3
-	jr z, .bit_011
-	cp 4
-	jr z, .bit_100
-	jr .next
-.bit_001
+	cp b0nz
+	jr z, .b0nz
+	cp b0z
+	jr z, .b0z
+	cp b1nz
+	jr z, .b1nz
+	cp b1z
+	jr z, .b1z
+	jr .do_call
+.b0nz
 	bit 0, [hl]
-	jr nz, .next
-	jr .bit_mismatched
-.bit_010
+	jr nz, .do_call
+	jr .skip_call
+.b0z
 	bit 0, [hl]
-	jr z, .next
-	jr .bit_mismatched
-.bit_011
+	jr z, .do_call
+	jr .skip_call
+.b1nz
 	bit 1, [hl]
-	jr nz, .next
-	jr .bit_mismatched
-.bit_100
+	jr nz, .do_call
+	jr .skip_call
+.b1z
 	bit 1, [hl]
-	jr z, .next
-.bit_mismatched
+	jr z, .do_call
+.skip_call
 	jp IncreaseScriptPointerBy4
-.next
+.do_call
 	call Get2ScriptArgs_IncrIndexBy1
 	push bc
 	call IncreaseScriptPointerBy4

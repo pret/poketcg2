@@ -294,8 +294,8 @@ DEF wD606_STRUCT_SIZE   EQU $8
 DEF wSCRIPT_BUFFER_SIZE EQU $20
 DEF wDD37_BUFFER_SIZE   EQU $19
 
-; TODO: Check if these def's are really necessary
-	const_def $2
-	const SCRIPTED_CARD_POP_RONALD       ; $2
-	const SCRIPTED_CARD_POP_IMAKUNI      ; $3
-	const SCRIPTED_RARE_CARD_POP_IMAKUNI ; $4
+; TODO: Figure out why 2 is added in IngameCardPop
+	const_def
+	const SCRIPTED_CARD_POP_RONALD       ; $0
+	const SCRIPTED_CARD_POP_IMAKUNI      ; $1
+	const SCRIPTED_RARE_CARD_POP_IMAKUNI ; $2

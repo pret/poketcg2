@@ -550,14 +550,20 @@ MACRO pop_var
 	run_command ScriptCommand_4F
 ENDM
 
+; call conditions
+DEF b0nz EQU 1
+DEF b0z  EQU 2
+DEF b1nz EQU 3
+DEF b1z  EQU 4
+
 MACRO script_call
 	run_command ScriptCommand_50
 	IF _NARG > 1
-		dw \1 ; script
-		db \2 ; condition
+		dw \2 ; script
+		db \1 ; condition
 	ELSE
 		dw \1 ; script
-		db 0  ; condition
+		db 0  ; no condition
 	ENDC
 ENDM
 
