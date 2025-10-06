@@ -621,7 +621,7 @@ wSpecialRule:: ; cc10
 
 	ds $1
 
-wOpponentNPCID:: ; cc12
+wOpponentPicID:: ; cc12
 	ds $1
 
 ; text id of the opponent's name

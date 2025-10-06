@@ -1919,7 +1919,7 @@ DrawPlayerPortrait::
 	push bc
 	push de
 	push hl
-	farcall Func_1c0ec
+	farcall GetPlayerPortrait
 	add $00
 	ld d, b
 	ld e, c
@@ -1932,7 +1932,7 @@ DrawPlayerPortrait::
 	pop af
 	ret
 
-; a = NPC_* constant
+; a = *_PIC constant
 ; bc = coordinates
 ; e = EMOTION_* constant
 DrawNPCPortrait::
@@ -1940,7 +1940,7 @@ DrawNPCPortrait::
 	push bc
 	push de
 	push hl
-	cp NPC_MINT_LINK + 1
+	cp MINT_LINK_PIC + 1
 	jr nc, .ok
 	; Mark and Mint don't have portrait variants
 	ld e, EMOTION_NORMAL

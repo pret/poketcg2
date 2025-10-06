@@ -739,7 +739,7 @@ DrawDuelistPortraitsAndNames:
 DrawOpponentPortrait:
 	ld a, [wcd78]
 	ld e, a
-	ld a, [wOpponentNPCID]
+	ld a, [wOpponentPicID]
 	lb bc, 13, 1
 	call DrawNPCPortrait
 	ret
@@ -1720,7 +1720,7 @@ LoadDeckDiagnosisScene:
 	lb bc, 2, 6
 ;	fallthrough
 DrawDrMasonsPortrait:
-	ld a, NPC_DR_MASON
+	ld a, DR_MASON_PIC
 	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
 	call FlushAllPalettes
@@ -2122,7 +2122,7 @@ CheckDeck:
 .skip_portrait_switch
 	push de
 	call DoFrame
-	ld a, NPC_DR_MASON
+	ld a, DR_MASON_PIC
 	lb bc, 7, 4
 	call DrawNPCPortrait
 	call FlushAllPalettes
@@ -2131,7 +2131,7 @@ CheckDeck:
 	jr nz, .check_delay
 
 	; show happy portrait
-	ld a, NPC_DR_MASON
+	ld a, DR_MASON_PIC
 	ld e, EMOTION_HAPPY
 	lb bc, 7, 4
 	call DrawNPCPortrait
@@ -3111,7 +3111,7 @@ LoadDeckIDData:
 	ld a, [hli]
 	ld [wOpponentName + 1], a
 	ld a, [hli]
-	ld [wOpponentNPCID], a
+	ld [wOpponentPicID], a
 	ld a, [hli]
 	ld [wNPCDuelPrizes], a
 	ld a, [hli]
@@ -3131,7 +3131,7 @@ DeckIDData:
 	db SAMS_PRACTICE_DECK_ID
 	tx SamsPracticeDeckName ; deck name
 	tx DuelistSamName ; opponent name
-	db NPC_SAM ; NPC ID
+	db SAM_PIC ; Pic ID
 	db PRIZES_2 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3142,7 +3142,7 @@ DeckIDData:
 	db STARTER_DECK_ID - 1
 	tx StarterDeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3153,7 +3153,7 @@ DeckIDData:
 	db SWEAT_ANTI_GR1_DECK_ID - 1
 	tx SweatAntiGR1DeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3164,7 +3164,7 @@ DeckIDData:
 	db GIVE_IN_ANTI_GR2_DECK_ID - 1
 	tx GiveInAntiGR2DeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3175,7 +3175,7 @@ DeckIDData:
 	db VENGEFUL_ANTI_GR3_DECK_ID - 1
 	tx VengefulAntiGR3DeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3186,7 +3186,7 @@ DeckIDData:
 	db UNFORGIVING_ANTI_GR4_DECK_ID - 1
 	tx UnforgivingAntiGR4DeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3197,7 +3197,7 @@ DeckIDData:
 	db UNUSED_SAMS_PRACTICE_DECK_ID - 1
 	tx PracticeDeckName ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3208,7 +3208,7 @@ DeckIDData:
 	db UNUSED_SAMS_PRACTICE_DECK_ID
 	tx SamsPracticeDeckName ; deck name
 	tx DuelistSamName ; opponent name
-	db NPC_SAM ; NPC ID
+	db SAM_PIC ; Pic ID
 	db PRIZES_2 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3219,7 +3219,7 @@ DeckIDData:
 	db AARON_PRACTICE_DECK1_ID
 	tx YourPracticeDeck1Name ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3230,7 +3230,7 @@ DeckIDData:
 	db AARONS_STEP1_DECK_ID
 	tx AaronsStep1DeckName ; deck name
 	tx DuelistAaronName ; opponent name
-	db NPC_AARON ; NPC ID
+	db AARON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3241,7 +3241,7 @@ DeckIDData:
 	db AARON_PRACTICE_DECK2_ID
 	tx YourPracticeDeck2Name ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3252,7 +3252,7 @@ DeckIDData:
 	db AARONS_STEP2_DECK_ID
 	tx AaronsStep2DeckName ; deck name
 	tx DuelistAaronName ; opponent name
-	db NPC_AARON ; NPC ID
+	db AARON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3263,7 +3263,7 @@ DeckIDData:
 	db AARON_PRACTICE_DECK3_ID
 	tx YourPracticeDeck3Name ; deck name
 	tx DuelistMainCharacterName ; opponent name
-	db NPC_MARK ; NPC ID
+	db MARK_PIC ; Pic ID
 	db 0 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3274,7 +3274,7 @@ DeckIDData:
 	db AARONS_STEP3_DECK_ID
 	tx AaronsStep3DeckName ; deck name
 	tx DuelistAaronName ; opponent name
-	db NPC_AARON ; NPC ID
+	db AARON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3285,7 +3285,7 @@ DeckIDData:
 	db BRICK_WALK_DECK_ID
 	tx RiversideWalkDeckName ; deck name
 	tx DuelistAaronName ; opponent name
-	db NPC_AARON ; NPC ID
+	db AARON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3296,7 +3296,7 @@ DeckIDData:
 	db BENCH_TRAP_DECK_ID
 	tx BenchTrapDeckName ; deck name
 	tx DuelistAaronName ; opponent name
-	db NPC_AARON ; NPC ID
+	db AARON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3307,7 +3307,7 @@ DeckIDData:
 	db SKY_SPARK_DECK_ID
 	tx SkySparkDeckName ; deck name
 	tx DuelistIsaacName ; opponent name
-	db NPC_ISAAC ; NPC ID
+	db ISAAC_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3318,7 +3318,7 @@ DeckIDData:
 	db ELECTRIC_SELFDESTRUCT_DECK_ID
 	tx ElectricSelfDestructDeckName ; deck name
 	tx DuelistIsaacName ; opponent name
-	db NPC_ISAAC ; NPC ID
+	db ISAAC_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3329,7 +3329,7 @@ DeckIDData:
 	db OVERFLOW_DECK_ID
 	tx OverflowDeckName ; deck name
 	tx DuelistNicholasName ; opponent name
-	db NPC_NICHOLAS ; NPC ID
+	db NICHOLAS_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3340,7 +3340,7 @@ DeckIDData:
 	db TRIPLE_ZAPDOS_DECK_ID
 	tx TripleZapdosDeckName ; deck name
 	tx DuelistNicholasName ; opponent name
-	db NPC_NICHOLAS ; NPC ID
+	db NICHOLAS_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3351,7 +3351,7 @@ DeckIDData:
 	db I_LOVE_PIKACHU_DECK_ID
 	tx ILovePikachuDeckName ; deck name
 	tx DuelistJenniferName ; opponent name
-	db NPC_JENNIFER ; NPC ID
+	db JENNIFER_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3362,7 +3362,7 @@ DeckIDData:
 	db TEN_THOUSAND_VOLTS_DECK_ID
 	tx ThunderboltDeckName ; deck name
 	tx DuelistBrandonName ; opponent name
-	db NPC_BRANDON ; NPC ID
+	db BRANDON_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3373,7 +3373,7 @@ DeckIDData:
 	db HAND_OVER_GR_DECK_ID
 	tx HandedOverGRDeckName ; deck name
 	tx DuelistMurrayName ; opponent name
-	db NPC_MURRAY ; NPC ID
+	db MURRAY_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3384,7 +3384,7 @@ DeckIDData:
 	db PSYCHIC_ELITE_DECK_ID
 	tx PsychicEliteDeckName ; deck name
 	tx DuelistMurrayName ; opponent name
-	db NPC_MURRAY ; NPC ID
+	db MURRAY_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3395,7 +3395,7 @@ DeckIDData:
 	db PSYCHOKINESIS_DECK_ID
 	tx PsychicDeckName ; deck name
 	tx DuelistStephanieName ; opponent name
-	db NPC_STEPHANIE ; NPC ID
+	db STEPHANIE_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3406,7 +3406,7 @@ DeckIDData:
 	db PHANTOM_DECK_ID
 	tx GhostDeckName ; deck name
 	tx DuelistRobertName ; opponent name
-	db NPC_ROBERT ; NPC ID
+	db ROBERT_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3417,7 +3417,7 @@ DeckIDData:
 	db PUPPET_MASTER_DECK_ID
 	tx PuppetMasterDeckName ; deck name
 	tx DuelistDanielName ; opponent name
-	db NPC_DANIEL ; NPC ID
+	db DANIEL_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3428,7 +3428,7 @@ DeckIDData:
 	db EVEN3_YEARS_ON_A_ROCK_DECK_ID
 	tx ThreeYearsOnRockDeckName ; deck name
 	tx DuelistGeneName ; opponent name
-	db NPC_GENE ; NPC ID
+	db GENE_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3439,7 +3439,7 @@ DeckIDData:
 	db ROLLING_STONE_DECK_ID
 	tx RollingStoneDeckName ; deck name
 	tx DuelistMatthewName ; opponent name
-	db NPC_MATTHEW ; NPC ID
+	db MATTHEW_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3450,7 +3450,7 @@ DeckIDData:
 	db GREAT_EARTHQUAKE_DECK_ID
 	tx GreatEarthquakeDeckName ; deck name
 	tx DuelistRyanName ; opponent name
-	db NPC_RYAN ; NPC ID
+	db RYAN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3461,7 +3461,7 @@ DeckIDData:
 	db AWESOME_FOSSIL_DECK_ID
 	tx AwesomeFossilDeckName ; deck name
 	tx DuelistAndrewName ; opponent name
-	db NPC_ANDREW ; NPC ID
+	db ANDREW_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3472,7 +3472,7 @@ DeckIDData:
 	db RAGING_BILLOW_OF_FISTS_DECK_ID
 	tx RagingBillowOfFistsDeckName ; deck name
 	tx DuelistMitchName ; opponent name
-	db NPC_MITCH ; NPC ID
+	db MITCH_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3483,7 +3483,7 @@ DeckIDData:
 	db YOU_CAN_DO_IT_MACHOP_DECK_ID
 	tx YouCanDoItMachopDeckName ; deck name
 	tx DuelistMichaelName ; opponent name
-	db NPC_MICHAEL ; NPC ID
+	db MICHAEL_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3494,7 +3494,7 @@ DeckIDData:
 	db NEW_MACHOKE_DECK_ID
 	tx NewMachokeDeckName ; deck name
 	tx DuelistMichaelName ; opponent name
-	db NPC_MICHAEL ; NPC ID
+	db MICHAEL_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3505,7 +3505,7 @@ DeckIDData:
 	db SKILLED_WARRIOR_DECK_ID
 	tx SkilledWarriorDeckName ; deck name
 	tx DuelistChrisName ; opponent name
-	db NPC_CHRIS ; NPC ID
+	db CHRIS_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3516,7 +3516,7 @@ DeckIDData:
 	db I_LOVE_TO_FIGHT_DECK_ID
 	tx LoveToBattleDeckName ; deck name
 	tx DuelistJessicaName ; opponent name
-	db NPC_JESSICA ; NPC ID
+	db JESSICA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3527,7 +3527,7 @@ DeckIDData:
 	db MAX_ENERGY_DECK_ID
 	tx MaxEnergyDeckName ; deck name
 	tx DuelistNikkiName ; opponent name
-	db NPC_NIKKI ; NPC ID
+	db NIKKI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3538,7 +3538,7 @@ DeckIDData:
 	db REMAINING_GREEN_DECK_ID
 	tx SurvivingGreenDeckName ; deck name
 	tx DuelistBrittanyName ; opponent name
-	db NPC_BRITTANY ; NPC ID
+	db BRITTANY_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3549,7 +3549,7 @@ DeckIDData:
 	db POISON_CURSE_DECK_ID
 	tx PoisonVespidsDeckName ; deck name
 	tx DuelistBrittanyName ; opponent name
-	db NPC_BRITTANY ; NPC ID
+	db BRITTANY_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3560,7 +3560,7 @@ DeckIDData:
 	db GLITTERING_SCALES_DECK_ID
 	tx GlitteringScalesDeckName ; deck name
 	tx DuelistKristinName ; opponent name
-	db NPC_KRISTIN ; NPC ID
+	db KRISTIN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3571,7 +3571,7 @@ DeckIDData:
 	db STEADY_INCREASE_DECK_ID
 	tx SteadyIncreaseDeckName ; deck name
 	tx DuelistHeatherName ; opponent name
-	db NPC_HEATHER ; NPC ID
+	db HEATHER_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3582,7 +3582,7 @@ DeckIDData:
 	db DARK_SCIENCE_DECK_ID
 	tx DarkScienceDeckName ; deck name
 	tx DuelistRickName ; opponent name
-	db NPC_RICK ; NPC ID
+	db RICK_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3593,7 +3593,7 @@ DeckIDData:
 	db NATURAL_SCIENCE_DECK_ID
 	tx NaturalScienceDeckName ; deck name
 	tx DuelistDavidName ; opponent name
-	db NPC_DAVID ; NPC ID
+	db DAVID_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3604,7 +3604,7 @@ DeckIDData:
 	db POISONOUS_SWAMP_DECK_ID
 	tx PoisonousSwampDeckName ; deck name
 	tx DuelistJosephName ; opponent name
-	db NPC_JOSEPH ; NPC ID
+	db JOSEPH_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3615,7 +3615,7 @@ DeckIDData:
 	db GATHERING_NIDORAN_DECK_ID
 	tx GatheringNidoranDeckName ; deck name
 	tx DuelistErikName ; opponent name
-	db NPC_ERIK ; NPC ID
+	db ERIK_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3626,7 +3626,7 @@ DeckIDData:
 	db RAIN_DANCE_CONFUSION_DECK_ID
 	tx RainDanceConfusionDeckName ; deck name
 	tx DuelistAmyName ; opponent name
-	db NPC_AMY ; NPC ID
+	db AMY_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3637,7 +3637,7 @@ DeckIDData:
 	db CONSERVING_WATER_DECK_ID
 	tx SurvivingWaterDeckName ; deck name
 	tx DuelistJoshuaName ; opponent name
-	db NPC_JOSHUA ; NPC ID
+	db JOSHUA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3648,7 +3648,7 @@ DeckIDData:
 	db ENERGY_REMOVAL_DECK_ID
 	tx EnergyRemovalDeckName ; deck name
 	tx DuelistJoshuaName ; opponent name
-	db NPC_JOSHUA ; NPC ID
+	db JOSHUA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3659,7 +3659,7 @@ DeckIDData:
 	db SPLASHING_ABOUT_DECK_ID
 	tx SplashingAboutDeckName ; deck name
 	tx DuelistSaraName ; opponent name
-	db NPC_SARA ; NPC ID
+	db SARA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3670,7 +3670,7 @@ DeckIDData:
 	db BEACH_DECK_ID
 	tx BeachDeckName ; deck name
 	tx DuelistAmandaName ; opponent name
-	db NPC_AMANDA ; NPC ID
+	db AMANDA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3681,7 +3681,7 @@ DeckIDData:
 	db GO_ARCANINE_DECK_ID
 	tx GoArcanineDeckName ; deck name
 	tx DuelistKenName ; opponent name
-	db NPC_KEN ; NPC ID
+	db KEN_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3692,7 +3692,7 @@ DeckIDData:
 	db FLAME_FESTIVAL_DECK_ID
 	tx FlameFestivalDeckName ; deck name
 	tx DuelistJohnName ; opponent name
-	db NPC_JOHN ; NPC ID
+	db JOHN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3703,7 +3703,7 @@ DeckIDData:
 	db IMMORTAL_FLAME_DECK_ID
 	tx ImmortalFlameDeckName ; deck name
 	tx DuelistJonathanName ; opponent name
-	db NPC_JONATHAN ; NPC ID
+	db JONATHAN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3714,7 +3714,7 @@ DeckIDData:
 	db ELECTRIC_CURRENT_SHOCK_DECK_ID
 	tx ElectricCurrentShockDeckName ; deck name
 	tx DuelistAdamName ; opponent name
-	db NPC_ADAM ; NPC ID
+	db ADAM_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3725,7 +3725,7 @@ DeckIDData:
 	db GREAT_ROCKET4_DECK_ID
 	tx GreatRocket4DeckName ; deck name
 	tx DuelistGR4Name ; opponent name
-	db NPC_GR_4 ; NPC ID
+	db GR_4_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3736,7 +3736,7 @@ DeckIDData:
 	db GREAT_ROCKET1_DECK_ID
 	tx GreatRocket1DeckName ; deck name
 	tx DuelistGR1Name ; opponent name
-	db NPC_GR_1 ; NPC ID
+	db GR_1_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3747,7 +3747,7 @@ DeckIDData:
 	db GREAT_ROCKET2_DECK_ID
 	tx GreatRocket2DeckName ; deck name
 	tx DuelistGR2Name ; opponent name
-	db NPC_GR_2 ; NPC ID
+	db GR_2_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3758,7 +3758,7 @@ DeckIDData:
 	db GREAT_ROCKET3_DECK_ID
 	tx GreatRocket3DeckName ; deck name
 	tx DuelistGR3Name ; opponent name
-	db NPC_GR_3 ; NPC ID
+	db GR_3_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3769,7 +3769,7 @@ DeckIDData:
 	db GRAND_FIRE_DECK_ID
 	tx GrandFireDeckName ; deck name
 	tx DuelistCourtneyName ; opponent name
-	db NPC_COURTNEY ; NPC ID
+	db COURTNEY_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3780,7 +3780,7 @@ DeckIDData:
 	db LEGENDARY_FOSSIL_DECK_ID
 	tx LegendaryFossilDeckName ; deck name
 	tx DuelistSteveName ; opponent name
-	db NPC_STEVE ; NPC ID
+	db STEVE_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3791,7 +3791,7 @@ DeckIDData:
 	db WATER_LEGEND_DECK_ID
 	tx WaterLegendDeckName ; deck name
 	tx DuelistJackName ; opponent name
-	db NPC_JACK ; NPC ID
+	db JACK_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3802,7 +3802,7 @@ DeckIDData:
 	db GREAT_DRAGON_DECK_ID
 	tx GreatDragonDeckName ; deck name
 	tx DuelistRodName ; opponent name
-	db NPC_ROD ; NPC ID
+	db ROD_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3813,7 +3813,7 @@ DeckIDData:
 	db BUG_COLLECTING_DECK_ID
 	tx InsectCollectionDeckName ; deck name
 	tx DuelistMidoriName ; opponent name
-	db NPC_MIDORI ; NPC ID
+	db MIDORI_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3824,7 +3824,7 @@ DeckIDData:
 	db DEMONIC_FOREST_DECK_ID
 	tx DemonicForestDeckName ; deck name
 	tx DuelistYutaName ; opponent name
-	db NPC_YUTA ; NPC ID
+	db YUTA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3835,7 +3835,7 @@ DeckIDData:
 	db STICKY_POISON_GAS_DECK_ID
 	tx PoisonGoopGasDeckName ; deck name
 	tx DuelistMiyukiName ; opponent name
-	db NPC_MIYUKI ; NPC ID
+	db MIYUKI_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $01 ; ?
@@ -3846,7 +3846,7 @@ DeckIDData:
 	db MAD_PETALS_DECK_ID
 	tx MadPetalsDeckName ; deck name
 	tx DuelistMorinoName ; opponent name
-	db NPC_MORINO ; NPC ID
+	db MORINO_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $01 ; special duel rules
 	db $00 ; ?
@@ -3857,7 +3857,7 @@ DeckIDData:
 	db DANGEROUS_BENCH_DECK_ID
 	tx DangerousBenchDeckName ; deck name
 	tx DuelistTapName ; opponent name
-	db NPC_TAP ; NPC ID
+	db TAP_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3868,7 +3868,7 @@ DeckIDData:
 	db CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID
 	tx ChainLightningByPikachuDeckName ; deck name
 	tx DuelistRennaName ; opponent name
-	db NPC_RENNA ; NPC ID
+	db RENNA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $07 ; ?
@@ -3879,7 +3879,7 @@ DeckIDData:
 	db THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID
 	tx ThisIsThePowerOfElectricityDeckName ; deck name
 	tx DuelistIchikawaName ; opponent name
-	db NPC_ICHIKAWA ; NPC ID
+	db ICHIKAWA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $02 ; ?
@@ -3890,7 +3890,7 @@ DeckIDData:
 	db QUICK_ATTACK_DECK_ID
 	tx QuickAttackDeckName ; deck name
 	tx DuelistCatherineName ; opponent name
-	db NPC_CATHERINE ; NPC ID
+	db CATHERINE_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $02 ; special duel rules
 	db $00 ; ?
@@ -3901,7 +3901,7 @@ DeckIDData:
 	db COMPLETE_COMBUSTION_DECK_ID
 	tx CompleteCombustionDeckName ; deck name
 	tx DuelistJesName ; opponent name
-	db NPC_JES ; NPC ID
+	db JES_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -3912,7 +3912,7 @@ DeckIDData:
 	db FIREBALL_DECK_ID
 	tx FireballDeckName ; deck name
 	tx DuelistYukiName ; opponent name
-	db NPC_YUKI ; NPC ID
+	db YUKI_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $03 ; ?
@@ -3923,7 +3923,7 @@ DeckIDData:
 	db EEVEE_SHOWDOWN_DECK_ID
 	tx EeveeShowdownDeckName ; deck name
 	tx DuelistShokoName ; opponent name
-	db NPC_SHOKO ; NPC ID
+	db SHOKO_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $08 ; ?
@@ -3934,7 +3934,7 @@ DeckIDData:
 	db GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID
 	tx GazeUponThePowerOfFireDeckName ; deck name
 	tx DuelistHideroName ; opponent name
-	db NPC_HIDERO ; NPC ID
+	db HIDERO_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $03 ; special duel rules
 	db $00 ; ?
@@ -3945,7 +3945,7 @@ DeckIDData:
 	db WHIRLPOOL_SHOWER_DECK_ID
 	tx WhirlpoolShowerDeckName ; deck name
 	tx DuelistMiyajimaName ; opponent name
-	db NPC_MIYAJIMA ; NPC ID
+	db MIYAJIMA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $04 ; ?
@@ -3956,7 +3956,7 @@ DeckIDData:
 	db PARALYZED_PARALYZED_DECK_ID
 	tx ParalyzedParalyzedDeckName ; deck name
 	tx DuelistSentaName ; opponent name
-	db NPC_SENTA ; NPC ID
+	db SENTA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $09 ; ?
@@ -3967,7 +3967,7 @@ DeckIDData:
 	db BENCH_CALL_DECK_ID
 	tx BenchCallDeckName ; deck name
 	tx DuelistAiraName ; opponent name
-	db NPC_AIRA ; NPC ID
+	db AIRA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db $04 ; special duel rules
 	db $00 ; ?
@@ -3978,7 +3978,7 @@ DeckIDData:
 	db WATER_STREAM_DECK_ID
 	tx WaterStreamDeckName ; deck name
 	tx DuelistKanokoName ; opponent name
-	db NPC_KANOKO ; NPC ID
+	db KANOKO_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $05 ; special duel rules
 	db $00 ; ?
@@ -3989,7 +3989,7 @@ DeckIDData:
 	db ROCK_BLAST_DECK_ID
 	tx RockBlastDeckName ; deck name
 	tx DuelistGodaName ; opponent name
-	db NPC_GODA ; NPC ID
+	db GODA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0c ; ?
@@ -4000,7 +4000,7 @@ DeckIDData:
 	db FULL_STRENGTH_DECK_ID
 	tx FullStrengthDeckName ; deck name
 	tx DuelistGraceName ; opponent name
-	db NPC_GRACE ; NPC ID
+	db GRACE_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $05 ; ?
@@ -4011,7 +4011,7 @@ DeckIDData:
 	db RUNNING_WILD_DECK_ID
 	tx RunningWildDeckName ; deck name
 	tx DuelistKamiyaName ; opponent name
-	db NPC_KAMIYA ; NPC ID
+	db KAMIYA_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $06 ; special duel rules
 	db $00 ; ?
@@ -4022,7 +4022,7 @@ DeckIDData:
 	db DIRECT_HIT_DECK_ID
 	tx DirectHitDeckName ; deck name
 	tx DuelistMiwaName ; opponent name
-	db NPC_MIWA ; NPC ID
+	db MIWA_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $06 ; ?
@@ -4033,7 +4033,7 @@ DeckIDData:
 	db SUPERDESTRUCTIVE_POWER_DECK_ID
 	tx SuperDestructivePowerDeckName ; deck name
 	tx DuelistKevinName ; opponent name
-	db NPC_KEVIN ; NPC ID
+	db KEVIN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db $07 ; special duel rules
 	db $00 ; ?
@@ -4044,7 +4044,7 @@ DeckIDData:
 	db BAD_DREAM_DECK_ID
 	tx BadDreamDeckName ; deck name
 	tx DuelistYosukeName ; opponent name
-	db NPC_YOSUKE ; NPC ID
+	db YOSUKE_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0a ; ?
@@ -4055,7 +4055,7 @@ DeckIDData:
 	db POKEMON_POWER_DECK_ID
 	tx PokemonsPowerDeckName ; deck name
 	tx DuelistRyokoName ; opponent name
-	db NPC_RYOKO ; NPC ID
+	db RYOKO_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0d ; ?
@@ -4066,7 +4066,7 @@ DeckIDData:
 	db SPIRITED_AWAY_DECK_ID
 	tx SpiritedAwayDeckName ; deck name
 	tx DuelistMamiName ; opponent name
-	db NPC_MAMI ; NPC ID
+	db MAMI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $08 ; special duel rules
 	db $00 ; ?
@@ -4077,7 +4077,7 @@ DeckIDData:
 	db SNORLAX_GUARD_DECK_ID
 	tx SnorlaxGuardDeckName ; deck name
 	tx DuelistNishijimaName ; opponent name
-	db NPC_NISHIJIMA ; NPC ID
+	db NISHIJIMA_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0e ; ?
@@ -4088,7 +4088,7 @@ DeckIDData:
 	db EYE_OF_THE_STORM_DECK_ID
 	tx EyeOfTheStormDeckName ; deck name
 	tx DuelistIshiiName ; opponent name
-	db NPC_ISHII ; NPC ID
+	db ISHII_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0f ; ?
@@ -4099,7 +4099,7 @@ DeckIDData:
 	db SUDDEN_GROWTH_DECK_ID
 	tx SuddenGrowthDeckName ; deck name
 	tx DuelistSamejimaName ; opponent name
-	db NPC_SAMEJIMA ; NPC ID
+	db SAMEJIMA_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $10 ; ?
@@ -4110,7 +4110,7 @@ DeckIDData:
 	db VERY_RARE_CARD_DECK_ID
 	tx VeryRareCardDeckName ; deck name
 	tx DuelistMrIshiharaName ; opponent name
-	db NPC_ISHIHARA ; NPC ID
+	db ISHIHARA_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4121,7 +4121,7 @@ DeckIDData:
 	db BAD_GUYS_DECK_ID
 	tx BadGuysDeckName ; deck name
 	tx DuelistKanzakiName ; opponent name
-	db NPC_KANZAKI ; NPC ID
+	db KANZAKI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $0b ; ?
@@ -4132,7 +4132,7 @@ DeckIDData:
 	db POISON_MIST_DECK_ID
 	tx PoisonMistDeckName ; deck name
 	tx DuelistRuiName ; opponent name
-	db NPC_RUI ; NPC ID
+	db RUI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $09 ; special duel rules
 	db $00 ; ?
@@ -4143,7 +4143,7 @@ DeckIDData:
 	db ULTRA_REMOVAL_DECK_ID
 	tx UltraRemovalDeckName ; deck name
 	tx DuelistRuiName ; opponent name
-	db NPC_RUI ; NPC ID
+	db RUI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $0a ; special duel rules
 	db $00 ; ?
@@ -4154,7 +4154,7 @@ DeckIDData:
 	db PSYCHIC_BATTLE_DECK_ID
 	tx PsychicBattleDeckName ; deck name
 	tx DuelistRuiName ; opponent name
-	db NPC_RUI ; NPC ID
+	db RUI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db $07 ; special duel rules
 	db $00 ; ?
@@ -4165,7 +4165,7 @@ DeckIDData:
 	db STOP_LIFE_DECK_ID
 	tx ChokeDeckName ; deck name
 	tx DuelistBiruritchiName ; opponent name
-	db NPC_BIRURITCHI ; NPC ID
+	db BIRURITCHI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4176,7 +4176,7 @@ DeckIDData:
 	db SCORCHER_DECK_ID
 	tx IncinerateDeckName ; deck name
 	tx DuelistBiruritchiName ; opponent name
-	db NPC_BIRURITCHI ; NPC ID
+	db BIRURITCHI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4187,7 +4187,7 @@ DeckIDData:
 	db TSUNAMI_STARTER_DECK_ID
 	tx SmashDeckName ; deck name
 	tx DuelistBiruritchiName ; opponent name
-	db NPC_BIRURITCHI ; NPC ID
+	db BIRURITCHI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4198,7 +4198,7 @@ DeckIDData:
 	db SMASH_TO_MINCEMEAT_DECK_ID
 	tx ThrowOutDeckName ; deck name
 	tx DuelistBiruritchiName ; opponent name
-	db NPC_BIRURITCHI ; NPC ID
+	db BIRURITCHI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4209,7 +4209,7 @@ DeckIDData:
 	db TEST_YOUR_LUCK_DECK_ID
 	tx TestYourLuckDeckName ; deck name
 	tx DuelistPawnName ; opponent name
-	db NPC_PAWN ; NPC ID
+	db PAWN_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4220,7 +4220,7 @@ DeckIDData:
 	db PROTOHISTORIC_DECK_ID
 	tx ProtohistoricDeckName ; deck name
 	tx DuelistKnightName ; opponent name
-	db NPC_KNIGHT ; NPC ID
+	db KNIGHT_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4231,7 +4231,7 @@ DeckIDData:
 	db TEXTURE_TUNER7_DECK_ID
 	tx TextureTuner7DeckName ; deck name
 	tx DuelistBishopName ; opponent name
-	db NPC_BISHOP ; NPC ID
+	db BISHOP_PIC ; Pic ID
 	db PRIZES_4 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4242,7 +4242,7 @@ DeckIDData:
 	db COLORLESS_ENERGY_DECK_ID
 	tx ColorlessEnergyDeckName ; deck name
 	tx DuelistRookName ; opponent name
-	db NPC_ROOK ; NPC ID
+	db ROOK_PIC ; Pic ID
 	db PRIZES_5 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4253,7 +4253,7 @@ DeckIDData:
 	db POWERFUL_POKEMON_DECK_ID
 	tx PowerfulPokemonDeckName ; deck name
 	tx DuelistQueenName ; opponent name
-	db NPC_QUEEN ; NPC ID
+	db QUEEN_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4264,7 +4264,7 @@ DeckIDData:
 	db WEIRD_DECK_ID
 	tx WeirdDeckName ; deck name
 	tx DuelistImakuniName ; opponent name
-	db NPC_IMAKUNI_BLACK ; NPC ID
+	db IMAKUNI_BLACK_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4275,7 +4275,7 @@ DeckIDData:
 	db STRANGE_DECK_ID
 	tx StrangeDeckName ; deck name
 	tx DuelistImakuniName ; opponent name
-	db NPC_IMAKUNI_RED ; NPC ID
+	db IMAKUNI_RED_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4286,7 +4286,7 @@ DeckIDData:
 	db RONALDS_UNCOOL_DECK_ID
 	tx RonaldsUncoolDeckName ; deck name
 	tx DuelistRonaldName ; opponent name
-	db NPC_RONALD ; NPC ID
+	db RONALD_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4297,7 +4297,7 @@ DeckIDData:
 	db RONALDS_GRX_DECK_ID
 	tx RonaldsGRXDeckName ; deck name
 	tx DuelistGRXName ; opponent name
-	db NPC_GR_X ; NPC ID
+	db GR_X_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4308,7 +4308,7 @@ DeckIDData:
 	db RONALDS_POWER_DECK_ID
 	tx RonaldsPowerDeckName ; deck name
 	tx DuelistRonaldName ; opponent name
-	db NPC_RONALD ; NPC ID
+	db RONALD_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4319,7 +4319,7 @@ DeckIDData:
 	db RONALDS_PSYCHIC_DECK_ID
 	tx RonaldsSuperDeckName ; deck name
 	tx DuelistRonaldName ; opponent name
-	db NPC_RONALD ; NPC ID
+	db RONALD_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4330,7 +4330,7 @@ DeckIDData:
 	db RONALDS_ULTRA_DECK_ID
 	tx RonaldsUltraDeckName ; deck name
 	tx DuelistRonaldName ; opponent name
-	db NPC_RONALD ; NPC ID
+	db RONALD_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4341,7 +4341,7 @@ DeckIDData:
 	db EVERYBODYS_FRIEND_DECK_ID
 	tx EverybodysFriendDeckName ; deck name
 	tx DuelistEijiName ; opponent name
-	db NPC_EIJI ; NPC ID
+	db EIJI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4352,7 +4352,7 @@ DeckIDData:
 	db IMMORTAL_POKEMON_DECK_ID
 	tx ImmortalPokemonDeckName ; deck name
 	tx DuelistMagicianName ; opponent name
-	db NPC_MAGICIAN ; NPC ID
+	db MAGICIAN_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4363,7 +4363,7 @@ DeckIDData:
 	db TORRENTIAL_FLOOD_DECK_ID
 	tx TorrentialFloodDeckName ; deck name
 	tx DuelistYuiName ; opponent name
-	db NPC_YUI ; NPC ID
+	db YUI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4374,7 +4374,7 @@ DeckIDData:
 	db TRAINER_IMPRISON_DECK_ID
 	tx TrainerImprisonDeckName ; deck name
 	tx DuelistToshironName ; opponent name
-	db NPC_TOSHIRON ; NPC ID
+	db TOSHIRON_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4385,7 +4385,7 @@ DeckIDData:
 	db BLAZING_FLAME_DECK_ID
 	tx BlazingFlameDeckName ; deck name
 	tx DuelistPierrotName ; opponent name
-	db NPC_PIERROT ; NPC ID
+	db PIERROT_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4396,7 +4396,7 @@ DeckIDData:
 	db DAMAGE_CHAOS_DECK_ID
 	tx DamageChaosDeckName ; deck name
 	tx DuelistAnnaName ; opponent name
-	db NPC_ANNA ; NPC ID
+	db ANNA_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4407,7 +4407,7 @@ DeckIDData:
 	db BIG_THUNDER_DECK_ID
 	tx BigThunderDeckName ; deck name
 	tx DuelistDeeName ; opponent name
-	db NPC_DEE ; NPC ID
+	db DEE_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4418,7 +4418,7 @@ DeckIDData:
 	db POWER_OF_DARKNESS_DECK_ID
 	tx PowerOfDarknessDeckName ; deck name
 	tx DuelistMasqueradeName ; opponent name
-	db NPC_MASQUERADE ; NPC ID
+	db MASQUERADE_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?
@@ -4429,7 +4429,7 @@ DeckIDData:
 	db POISON_STORM_DECK_ID
 	tx PoisonStormDeckName ; deck name
 	tx DuelistTobichanName ; opponent name
-	db NPC_TOBICHAN ; NPC ID
+	db TOBICHAN_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
 	db $00 ; ?

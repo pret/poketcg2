@@ -3839,7 +3839,7 @@ ViewCardPopRecords:
 	ld a, [wCardPopRecordName + $d]
 	ld e, a
 	ld d, $00
-	ld hl, .DuelistIDs
+	ld hl, .PicIDs
 	add hl, de
 	ld a, [hl]
 	ld e, EMOTION_NORMAL
@@ -3920,12 +3920,12 @@ ViewCardPopRecords:
 	textitem 1, 15, CardPopRecordFriendResultText
 	db $ff ; end
 
-.DuelistIDs
-	db NPC_MARK
-	db NPC_MINT
-	db NPC_RONALD
-	db NPC_IMAKUNI_BLACK
-	db NPC_IMAKUNI_RED
+.PicIDs
+	db MARK_PIC
+	db MINT_PIC
+	db RONALD_PIC
+	db IMAKUNI_BLACK_PIC
+	db IMAKUNI_RED_PIC
 
 .DrawSlashAndTopLineSeparator:
 	lb bc, 17, 1
@@ -5602,8 +5602,8 @@ _SetUpAndStartLinkDuel:
 	call ExchangeRNG
 	jr c, .error
 	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
-	add 2
-	ld [wOpponentNPCID], a
+	add MARK_LINK_PIC
+	ld [wOpponentPicID], a
 	ldh a, [hWhoseTurn]
 	push af
 	call EmptyScreen

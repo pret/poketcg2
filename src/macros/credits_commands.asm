@@ -84,7 +84,7 @@ MACRO credits_show_set
 	db $00, $00
 ENDM
 
-; \1 = NPC_* constant
+; \1 = *_PIC constant
 ; \2 = x
 ; \3 = y
 ; \4 = EMOTION_* constant

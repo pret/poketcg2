@@ -52,9 +52,9 @@ StartDuel_VS:
 	ld [wNPCDuelPrizes], a
 	xor a ; COIN_CHANSEY
 	ld [wPlayerCoin], a
-	ld a, NUM_NPC_IDS
+	ld a, NUM_PICS
 	call Random
-	ld [wOpponentNPCID], a
+	ld [wOpponentPicID], a
 ; fallthrough
 .init
 	ld hl, wOpponentName

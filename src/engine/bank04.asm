@@ -5262,7 +5262,7 @@ ShowProloguePortraitAndText:
 	ret
 
 .Func_13bdf:
-	ld a, NPC_GR_1
+	ld a, GR_1_PIC
 	lb bc, 7, 3
 	ld e, EMOTION_NORMAL
 	call DrawNPCPortrait
