@@ -2791,56 +2791,61 @@ Func_29e02:
 
 SECTION "Bank a@6331", ROMX[$6331], BANK[$a]
 
-Func_2a331::
+; cf. LookForEnergyNeededForAttackInHand
+LookForEnergyNeededInHand::
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ld [wSelectedAttack], a
 	farcall CheckEnergyNeededForAttack
 	ld a, b
 	add c
 	cp 1
-	jr z, .asm_2a362
+	jr z, .one_energy
 	cp 2
-	jr nz, .asm_2a348
+	jr nz, .second_attack
 	ld a, c
 	cp 2
-	jr z, .asm_2a37a
-.asm_2a348
+	jr z, .two_colorless
+
+.second_attack
 	ld a, SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckEnergyNeededForAttack
 	ld a, b
 	add c
 	cp 1
-	jr z, .asm_2a362
+	jr z, .one_energy
 	cp 2
-	jr nz, .asm_2a360
+	jr nz, .no_carry
 	ld a, c
 	cp 2
-	jr z, .asm_2a37a
-.asm_2a360
+	jr z, .two_colorless
+
+.no_carry
 	or a
 	ret
 
-.asm_2a362
+.one_energy
 	ld a, b
 	or a
-	jr z, .asm_2a373
+	jr z, .one_colorless
 	call LookForCardIDInHandList
 	ret c
 	ld de, RAINBOW_ENERGY
 	call LookForCardIDInHandList
 	ret c
-	jr .asm_2a360
-.asm_2a373
+	jr .no_carry
+
+.one_colorless
 	bank1call CreateEnergyCardListFromHand
-	jr c, .asm_2a360
+	jr c, .no_carry
 	scf
 	ret
-.asm_2a37a
+
+.two_colorless
 	ld de, DOUBLE_COLORLESS_ENERGY
 	call LookForCardIDInHandList
 	ret c
-	jr .asm_2a360
+	jr .no_carry
 
 ; looks for energy card(s) in hand depending on
 ; what is needed for selected card's attack

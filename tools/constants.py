@@ -3041,7 +3041,7 @@ vars = [
 	"VAR_1F",
 	"VAR_20",
 	"VAR_21",
-	"VAR_22",
+	"VAR_IMAKUNI_BLACK_WIN_COUNT",
 	"VAR_23",
 	"VAR_24",
 	"VAR_25",

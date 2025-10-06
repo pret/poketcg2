@@ -205,118 +205,118 @@ Prologue::
 
 SECTION "Bank f@43ca", ROMX[$43ca], BANK[$f]
 
-Func_3c3ca:
+Script_FinishedImakuniBlackDuel:
 	xor a
 	start_script
 	script_command_01
 	set_var VAR_25, $0f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3c41b
-	inc_var VAR_22
-	get_var VAR_22
-	compare_loaded_var $0a
-	script_jump_if_b1nz .ows_3c3e3
-	set_var VAR_22, $0a
-.ows_3c3e3
-	compare_loaded_var $03
-	script_jump_if_b1nz .ows_3c3f8
-	script_jump_if_b0nz .ows_3c3ff
-	compare_loaded_var $06
-	script_jump_if_b0nz .ows_3c406
-	compare_loaded_var $09
-	script_jump_if_b0nz .ows_3c40d
-	script_jump .ows_3c414
+	script_jump_if_b0nz .player_lost
+	inc_var VAR_IMAKUNI_BLACK_WIN_COUNT
+	get_var VAR_IMAKUNI_BLACK_WIN_COUNT
+	compare_loaded_var IMAKUNI_THRESHOLD_3 + 1
+	script_jump_if_b1nz .sequences
+	set_var VAR_IMAKUNI_BLACK_WIN_COUNT, IMAKUNI_THRESHOLD_3 + 1
+.sequences
+	compare_loaded_var IMAKUNI_THRESHOLD_1
+	script_jump_if_b1nz .sequence_win
+	script_jump_if_b0nz .sequence_three_wins
+	compare_loaded_var IMAKUNI_THRESHOLD_2
+	script_jump_if_b0nz .sequence_six_wins
+	compare_loaded_var IMAKUNI_THRESHOLD_3
+	script_jump_if_b0nz .sequence_nine_wins
+	script_jump .sequence_many_wins
 
-.ows_3c3f8
-	script_call .ows_3c441
-	script_jump .ows_3c41e
+.sequence_win
+	script_call .win
+	script_jump .bye
 
-.ows_3c3ff
-	script_call .ows_3c448
-	script_jump .ows_3c41e
+.sequence_three_wins
+	script_call .three_wins
+	script_jump .bye
 
-.ows_3c406
-	script_call .ows_3c452
-	script_jump .ows_3c41e
+.sequence_six_wins
+	script_call .six_wins
+	script_jump .bye
 
-.ows_3c40d
-	script_call .ows_3c45c
-	script_jump .ows_3c41e
+.sequence_nine_wins
+	script_call .nine_wins
+	script_jump .bye
 
-.ows_3c414
-	script_call .ows_3c474
-	script_jump .ows_3c41e
+.sequence_many_wins
+	script_call .many_wins
+	script_jump .bye
 
-.ows_3c41b
-	print_npc_text Text12cc
-.ows_3c41e
-	print_npc_text Text12cd
+.player_lost
+	print_npc_text ImakuniBlackPlayerLostText
+.bye
+	print_npc_text ImakuniBlackByeText
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
-	script_jump_if_b0z .ows_3c42d
+	compare_loaded_var SOUTH
+	script_jump_if_b0z .exit
 	set_player_direction WEST
 	animate_player_movement $81, $02
-.ows_3c42d
+.exit
 	move_active_npc $4492
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, $00
+	ld a, 0
 	ld [wd582], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
 
-.ows_3c441
-	print_npc_text Text12ce
+.win
+	print_npc_text ImakuniBlackPlayerWonNormalText
 	give_booster_packs $4ddd
 	script_ret
 
-.ows_3c448
-	print_npc_text Text12cf
+.three_wins
+	print_npc_text ImakuniBlackPlayerWon3Text
 	give_card FARFETCHD_ALT_LV20
 	show_card_received_screen FARFETCHD_ALT_LV20
 	script_ret
 
-.ows_3c452
-	print_npc_text Text12d0
+.six_wins
+	print_npc_text ImakuniBlackPlayerWon6Text
 	give_card IMAKUNI_CARD
 	show_card_received_screen IMAKUNI_CARD
 	script_ret
 
-.ows_3c45c
-	print_npc_text Text12d1
-	get_random $02
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3c46d
+.nine_wins
+	print_npc_text ImakuniBlackPlayerWon9Text
+	get_random 2
+	compare_loaded_var 0
+	script_jump_if_b0z .nine_wins_prize_imakuni
+; prize farfetch'd
 	give_card FARFETCHD_ALT_LV20
 	show_card_received_screen FARFETCHD_ALT_LV20
 	script_ret
-
-.ows_3c46d
+.nine_wins_prize_imakuni
 	give_card IMAKUNI_CARD
 	show_card_received_screen IMAKUNI_CARD
 	script_ret
 
-.ows_3c474
-	print_npc_text Text12d2
-	get_var VAR_22
-	compare_loaded_var $06
-	script_jump_if_b1nz .ows_3c486
-	compare_loaded_var $09
-	script_jump_if_b1nz .ows_3c48a
-	script_jump .ows_3c48e
+.many_wins
+	print_npc_text ImakuniBlackPlayerWonManyText
+	get_var VAR_IMAKUNI_BLACK_WIN_COUNT
+	compare_loaded_var IMAKUNI_THRESHOLD_2
+	script_jump_if_b1nz .boosters_1
+	compare_loaded_var IMAKUNI_THRESHOLD_3
+	script_jump_if_b1nz .boosters_2
+	script_jump .boosters_3
 
-.ows_3c486
+.boosters_1
 	give_booster_packs $4de3
 	script_ret
 
-.ows_3c48a
+.boosters_2
 	give_booster_packs $4de9
 	script_ret
 
-.ows_3c48e
+.boosters_3
 	give_booster_packs $4df0
 	script_ret
 ; 0x3c492
@@ -334,10 +334,10 @@ MasonLaboratorySide1_StepEvents:
 	db $ff
 
 MasonLaboratorySide1_NPCs:
-	npc NPC_TECH_13, 4, 3, SOUTH, $0
-	npc NPC_TECH_14, 7, 3, SOUTH, $0
-	npc NPC_TECH_15, 3, 8, NORTH, $0
-	npc NPC_TECH_16, 7, 9, EAST, $0
+	npc NPC_TECH_13, 4, 3, SOUTH, NULL
+	npc NPC_TECH_14, 7, 3, SOUTH, NULL
+	npc NPC_TECH_15, 3, 8, NORTH, NULL
+	npc NPC_TECH_16, 7, 9, EAST, NULL
 	db $ff
 
 MasonLaboratorySide1_NPCInteractions:
@@ -377,8 +377,8 @@ MasonLaboratorySide2_StepEvents:
 	db $ff
 
 MasonLaboratorySide2_NPCs:
-	npc NPC_AARON, 11, 2, NORTH, $0
-	npc NPC_TECH_17, 10, 11, EAST, $0
+	npc NPC_AARON, 11, 2, NORTH, NULL
+	npc NPC_TECH_17, 10, 11, EAST, NULL
 	db $ff
 
 MasonLaboratorySide2_NPCInteractions:
@@ -444,13 +444,13 @@ LightningClubLobby_StepEvents:
 LightningClubLobby_NPCs:
 	npc NPC_JENNIFER, 9, 8, EAST, $4db1
 	npc NPC_BRANDON, 9, 6, EAST, $4db1
-	npc NPC_LASS3_2, 11, 2, NORTH, $0
-	npc NPC_HOOD_4, 9, 4, SOUTH, $0
+	npc NPC_LASS3_2, 11, 2, NORTH, NULL
+	npc NPC_HOOD_4, 9, 4, SOUTH, NULL
 	npc NPC_LASS1_3, 5, 6, EAST, $4e9b
 	npc NPC_GR_LASS_7, 5, 6, EAST, $4ea8
-	npc NPC_CHAP_2, 8, 9, WEST, $0
-	npc NPC_CLERK_1, 2, 2, SOUTH, $0
-	npc NPC_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_CHAP_2, 8, 9, WEST, NULL
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 LightningClubLobby_NPCInteractions:
@@ -464,8 +464,8 @@ LightningClubLobby_NPCInteractions:
 	db $ff
 
 LightningClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $5411
-	ow_script 9, 2, $03, $5411
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $41b9
 	ow_script 4, 4, $0f, $42d9
 	ow_script 12, 2, $10, $4294
@@ -500,8 +500,8 @@ GrassClubLobby_NPCs:
 	npc NPC_GRANNY, 3, 10, EAST, $5189
 	npc NPC_LASS2_3, 11, 4, SOUTH, $5189
 	npc NPC_GIRL_5, 7, 8, WEST, $5189
-	npc NPC_CLERK_1, 2, 2, SOUTH, $0
-	npc NPC_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 GrassClubLobby_NPCInteractions:
@@ -514,8 +514,8 @@ GrassClubLobby_NPCInteractions:
 	db $ff
 
 GrassClubLobby_OWInteractions:
-	ow_script 8, 2, $03, $5411
-	ow_script 9, 2, $03, $5411
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $41b9
 	ow_script 4, 4, $0f, $42d9
 	ow_script 12, 2, $10, $418c
@@ -556,7 +556,7 @@ TcgChallengeHallEntrance_StepEvents:
 	db $ff
 
 TcgChallengeHallEntrance_NPCs:
-	npc NPC_CLERK_3, 3, 1, SOUTH, $0
+	npc NPC_CLERK_3, 3, 1, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
@@ -585,14 +585,14 @@ TcgChallengeHallLobby_StepEvents:
 	db $ff
 
 TcgChallengeHallLobby_NPCs:
-	npc NPC_CHAP_3, 10, 4, SOUTH, $0
+	npc NPC_CHAP_3, 10, 4, SOUTH, NULL
 	npc NPC_GAL_3, 7, 9, EAST, $55a3
 	npc NPC_HOOD_5, 5, 6, EAST, $55a3
 	npc NPC_PAPPY_4, 4, 9, EAST, $55ba
 	npc NPC_TECH_7, 9, 10, NORTH, $55ba
 	npc NPC_GIRL_6, 13, 9, WEST, $55ba
-	npc NPC_CLERK_1, 2, 2, SOUTH, $0
-	npc NPC_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
@@ -605,8 +605,8 @@ TcgChallengeHallLobby_NPCInteractions:
 	db $ff
 
 TcgChallengeHallLobby_OWInteractions:
-	ow_script 8, 2, $03, $5411
-	ow_script 9, 2, $03, $5411
+	ow_script 8, 2, PCMenu
+	ow_script 9, 2, PCMenu
 	ow_script 2, 4, $0f, $41b9
 	ow_script 4, 4, $0f, $42d9
 	ow_script 12, 2, $10, $4318
@@ -699,10 +699,10 @@ PokemonDomeBack_StepEvents:
 	db $ff
 
 PokemonDomeBack_NPCs:
-	npc NPC_COURTNEY, 7, 13, SOUTH, $0
-	npc NPC_STEVE, 8, 12, SOUTH, $0
-	npc NPC_JACK, 8, 13, SOUTH, $0
-	npc NPC_ROD, 7, 12, SOUTH, $0
+	npc NPC_COURTNEY, 7, 13, SOUTH, NULL
+	npc NPC_STEVE, 8, 12, SOUTH, NULL
+	npc NPC_JACK, 8, 13, SOUTH, NULL
+	npc NPC_ROD, 7, 12, SOUTH, NULL
 	npc NPC_GAL_3, 7, 2, SOUTH, $668b
 	db $ff
 
@@ -743,8 +743,8 @@ IshiharasVilla1_NPCInteractions:
 	db $ff
 
 IshiharasVilla1_OWInteractions:
-	ow_script 7, 2, $03, $5411
-	ow_script 8, 2, $03, $5411
+	ow_script 7, 2, PCMenu
+	ow_script 8, 2, PCMenu
 	db $ff
 
 IshiharasVilla1_MapScripts:
@@ -823,10 +823,10 @@ GameCenterEntrance_StepEvents:
 	db $ff
 
 GameCenterEntrance_NPCs:
-	npc NPC_GR_CLERK_16, 9, 2, SOUTH, $0
-	npc NPC_GR_CLERK_17, 2, 2, SOUTH, $0
-	npc NPC_CHIP_GIRL_1, 5, 2, SOUTH, $0
-	npc NPC_MONOCLE_1, 4, 9, EAST, $0
+	npc NPC_GR_CLERK_16, 9, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_17, 2, 2, SOUTH, NULL
+	npc NPC_CHIP_GIRL_1, 5, 2, SOUTH, NULL
+	npc NPC_MONOCLE_1, 4, 9, EAST, NULL
 	db $ff
 
 GameCenterEntrance_NPCInteractions:
@@ -859,12 +859,12 @@ GameCenterLobby_StepEvents:
 	db $ff
 
 GameCenterLobby_NPCs:
-	npc NPC_TECH_8, 10, 4, WEST, $0
-	npc NPC_GR_LASS_6, 8, 9, EAST, $0
-	npc NPC_GR_PAPPY_3, 3, 7, SOUTH, $0
+	npc NPC_TECH_8, 10, 4, WEST, NULL
+	npc NPC_GR_LASS_6, 8, 9, EAST, NULL
+	npc NPC_GR_PAPPY_3, 3, 7, SOUTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $703d
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
 	db $ff
 
 GameCenterLobby_NPCInteractions:
@@ -875,8 +875,8 @@ GameCenterLobby_NPCInteractions:
 	db $ff
 
 GameCenterLobby_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 5, 4, $0f, $41d0
 	ow_script 8, 4, $0f, $42d9
 	db $ff
@@ -904,7 +904,7 @@ CardDungeonPawn_StepEvents:
 	db $ff
 
 CardDungeonPawn_NPCs:
-	npc NPC_PAWN, 4, 4, SOUTH, $0
+	npc NPC_PAWN, 4, 4, SOUTH, NULL
 	db $ff
 
 CardDungeonPawn_NPCInteractions:
@@ -938,7 +938,7 @@ CardDungeonKnight_StepEvents:
 	db $ff
 
 CardDungeonKnight_NPCs:
-	npc NPC_KNIGHT, 4, 3, SOUTH, $0
+	npc NPC_KNIGHT, 4, 3, SOUTH, NULL
 	db $ff
 
 CardDungeonKnight_NPCInteractions:
@@ -972,7 +972,7 @@ CardDungeonRook_StepEvents:
 	db $ff
 
 CardDungeonRook_NPCs:
-	npc NPC_ROOK, 5, 3, SOUTH, $0
+	npc NPC_ROOK, 5, 3, SOUTH, NULL
 	db $ff
 
 CardDungeonRook_NPCInteractions:
@@ -1008,11 +1008,11 @@ WaterFortLobby_StepEvents:
 WaterFortLobby_NPCs:
 	npc NPC_SPECS_2, 10, 10, WEST, $7718
 	npc NPC_GR_LAD_3, 10, 10, WEST, $7735
-	npc NPC_GR_GRANNY_2, 2, 7, SOUTH, $0
-	npc NPC_GR_GAL_2, 5, 9, NORTH, $0
+	npc NPC_GR_GRANNY_2, 2, 7, SOUTH, NULL
+	npc NPC_GR_GAL_2, 5, 9, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $77a6
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
 	db $ff
 
 WaterFortLobby_NPCInteractions:
@@ -1024,8 +1024,8 @@ WaterFortLobby_NPCInteractions:
 	db $ff
 
 WaterFortLobby_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 5, 4, $0f, $41d0
 	ow_script 8, 4, $0f, $42d9
 	db $ff

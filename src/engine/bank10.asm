@@ -14,9 +14,9 @@ OverworldTcg_MapScripts:
 
 Func_40474:
 	ld a, [wd584]
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40482
-	cp $1f
+	cp MAP_TCG_AIRPORT
 	jr z, .asm_40482
 	scf
 	ccf
@@ -47,9 +47,9 @@ Func_4048a:
 	call PrintTCGIslandLocationName
 
 	ld a, [wd584]
-	cp $1f
+	cp MAP_TCG_AIRPORT
 	jr z, .gr_ship_cutscene
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr z, .gr_ship_cutscene
 
 	; this is the case where player is
@@ -96,7 +96,7 @@ Func_4048a:
 	ld [wd593 + 1], a
 
 	ld a, [wd584]
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40528
 	ld a, NPC_GR_BLIMP
 	lb de, $50, $78
@@ -168,9 +168,9 @@ PlacePlayerInTCGIslandLocation:
 	ld hl, TCGIslandLocationPositions
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -183,9 +183,9 @@ UpdateTCGIslandCursorPosition:
 	ld hl, TCGIslandLocationPositions
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -216,15 +216,15 @@ HandleTCGIslandDirectionalInput:
 	ld hl, .LocationConnections
 	add l
 	ld l, a
-	jr nc, .no_overflow_1
+	jr nc, .got_pointer_1
 	inc h
-.no_overflow_1
+.got_pointer_1
 	ld a, c
 	add l
 	ld l, a
-	jr nc, .no_overflow_2
+	jr nc, .got_pointer_2
 	inc h
-.no_overflow_2
+.got_pointer_2
 	ld a, [hl]
 	cp b
 	jr z, .done
@@ -360,10 +360,10 @@ Func_40682:
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
-	ld a, [hl] ; ?
+.got_pointer
+	ld a, [hl] ; map
 	inc hl
 	ld d, [hl] ; x
 	inc hl
@@ -374,19 +374,19 @@ Func_40682:
 	ret
 
 .data
-	db $02, 6, 13, NORTH ; OWMAP_MASON_LABORATORY
-	db $05, 4, 11, NORTH ; OWMAP_ISHIHARAS_HOUSE
-	db $06, 4,  7, NORTH ; OWMAP_LIGHTNING_CLUB
-	db $09, 4,  7, NORTH ; OWMAP_PSYCHIC_CLUB
-	db $0c, 4,  7, NORTH ; OWMAP_ROCK_CLUB
-	db $0f, 4,  7, NORTH ; OWMAP_FIGHTING_CLUB
-	db $12, 4,  7, NORTH ; OWMAP_GRASS_CLUB
-	db $15, 4,  7, NORTH ; OWMAP_SCIENCE_CLUB
-	db $18, 4,  7, NORTH ; OWMAP_WATER_CLUB
-	db $1b, 4,  7, NORTH ; OWMAP_FIRE_CLUB
-	db $1e, 5, 11, NORTH ; OWMAP_TCG_AIRPORT
-	db $20, 4,  7, NORTH ; OWMAP_TCG_CHALLENGE_HALL
-	db $23, 7,  7, NORTH ; OWMAP_POKEMON_DOME
+	db MAP_MASON_LABORATORY_MAIN,       6, 13, NORTH ; OWMAP_MASON_LABORATORY
+	db MAP_ISHIHARAS_HOUSE,             4, 11, NORTH ; OWMAP_ISHIHARAS_HOUSE
+	db MAP_LIGHTNING_CLUB_ENTRANCE,     4,  7, NORTH ; OWMAP_LIGHTNING_CLUB
+	db MAP_PSYCHIC_CLUB_ENTRANCE,       4,  7, NORTH ; OWMAP_PSYCHIC_CLUB
+	db MAP_ROCK_CLUB_ENTRANCE,          4,  7, NORTH ; OWMAP_ROCK_CLUB
+	db MAP_FIGHTING_CLUB_ENTRANCE,      4,  7, NORTH ; OWMAP_FIGHTING_CLUB
+	db MAP_GRASS_CLUB_ENTRANCE,         4,  7, NORTH ; OWMAP_GRASS_CLUB
+	db MAP_SCIENCE_CLUB_ENTRANCE,       4,  7, NORTH ; OWMAP_SCIENCE_CLUB
+	db MAP_WATER_CLUB_ENTRANCE,         4,  7, NORTH ; OWMAP_WATER_CLUB
+	db MAP_FIRE_CLUB_ENTRANCE,          4,  7, NORTH ; OWMAP_FIRE_CLUB
+	db MAP_TCG_AIRPORT_ENTRANCE,        5, 11, NORTH ; OWMAP_TCG_AIRPORT
+	db MAP_TCG_CHALLENGE_HALL_ENTRANCE, 4,  7, NORTH ; OWMAP_TCG_CHALLENGE_HALL
+	db MAP_POKEMON_DOME_ENTRANCE,       7,  7, NORTH ; OWMAP_POKEMON_DOME
 
 Func_406d1:
 	ld a, [wPlayerOWObject]
@@ -398,9 +398,9 @@ Func_406d1:
 	ld hl, TCGIslandPlayerPaths
 	add l
 	ld l, a
-	jr nc, .no_overflow_1
+	jr nc, .got_pointer_1
 	inc h
-.no_overflow_1
+.got_pointer_1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -408,9 +408,9 @@ Func_406d1:
 	sla a ; *2
 	add l
 	ld l, a
-	jr nc, .no_overflow_2
+	jr nc, .got_pointer_2
 	inc h
-.no_overflow_2
+.got_pointer_2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -442,9 +442,9 @@ Func_406d1:
 	ld hl, TCGIslandLocationPositions
 	add l ; *2
 	ld l, a
-	jr nc, .no_overflow_3
+	jr nc, .got_pointer_3
 	inc h
-.no_overflow_3
+.got_pointer_3
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -506,17 +506,17 @@ INCLUDE "data/tcg_island_paths.asm"
 
 DoGRShipMovement:
 	ld a, [wd584]
-	cp $1f
+	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa
 
-	ld a, $1f
+	ld a, MAP_TCG_AIRPORT
 	lb de, 0, 0
 	ld b, NORTH
 	farcall Func_d3c4
 	ld hl, .movement_3
 	jr .start_movement
 .asm_40cfa
-	ld a, $26
+	ld a, MAP_OVERHEAD_ISLANDS
 	lb de, 0, 0
 	ld b, NORTH
 	farcall Func_d3c4
@@ -665,8 +665,8 @@ MasonLaboratoryMain_NPCInteractions:
 	db $ff
 
 MasonLaboratoryMain_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 6, 3, $10, $501d
 	ow_script 7, 3, $10, $501d
 	db $ff

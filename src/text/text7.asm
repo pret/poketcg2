@@ -575,7 +575,7 @@ Text0bca:
 	linefw "対戦するわ かくごしておきなさいよね"
 	done
 
-Text0bcb:
+StephanieBeatGR4AtLightningClubFirstText:
 	textfw "フフフ・・・ココハ トオセナイワ"
 	linefw "GR4号サマニ アワナイト"
 	linefw "ミエルワ・・・アナタガ"

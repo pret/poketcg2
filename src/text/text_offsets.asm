@@ -3025,7 +3025,7 @@ TextOffsets::
 	textpointer Text0bc8                                           ; 0x0bc8
 	textpointer Text0bc9                                           ; 0x0bc9
 	textpointer Text0bca                                           ; 0x0bca
-	textpointer Text0bcb                                           ; 0x0bcb
+	textpointer StephanieBeatGR4AtLightningClubFirstText              ; 0x0bcb
 	textpointer Text0bcc                                           ; 0x0bcc
 	textpointer Text0bcd                                           ; 0x0bcd
 	textpointer Text0bce                                           ; 0x0bce
@@ -4726,10 +4726,10 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text126a                                           ; 0x126a
 	textpointer Text126b                                           ; 0x126b
 	textpointer Text126c                                           ; 0x126c
-	textpointer Text126d                                           ; 0x126d
-	textpointer Text126e                                           ; 0x126e
-	textpointer Text126f                                           ; 0x126f
-	textpointer Text1270                                           ; 0x1270
+	textpointer RonaldGCPieces2WantsToDuelText                        ; 0x126d
+	textpointer RonaldGCPieces2PlayerWon1Text                         ; 0x126e
+	textpointer RonaldGCPieces2PlayerWon2Text                         ; 0x126f
+	textpointer RonaldGCPieces2PlayerLostText                         ; 0x1270
 	textpointer Text1271                                           ; 0x1271
 	textpointer Text1272                                           ; 0x1272
 	textpointer Text1273                                           ; 0x1273
@@ -4812,22 +4812,22 @@ SECTION "Text Offsets 2", ROMX
 	textpointer GRKingCardsBookText                                   ; 0x12c0
 	textpointer SpecialEnergyBookText                                 ; 0x12c1
 	textpointer GetCoinsBookText                                      ; 0x12c2
-	textpointer Text12c3                                           ; 0x12c3
-	textpointer Text12c4                                           ; 0x12c4
-	textpointer Text12c5                                           ; 0x12c5
-	textpointer Text12c6                                           ; 0x12c6
-	textpointer Text12c7                                           ; 0x12c7
-	textpointer Text12c8                                           ; 0x12c8
-	textpointer Text12c9                                           ; 0x12c9
-	textpointer Text12ca                                           ; 0x12ca
-	textpointer Text12cb                                           ; 0x12cb
-	textpointer Text12cc                                           ; 0x12cc
-	textpointer Text12cd                                           ; 0x12cd
-	textpointer Text12ce                                           ; 0x12ce
-	textpointer Text12cf                                           ; 0x12cf
-	textpointer Text12d0                                           ; 0x12d0
-	textpointer Text12d1                                           ; 0x12d1
-	textpointer Text12d2                                           ; 0x12d2
+	textpointer ImakuniBlackCardlessFirstCardPopText                  ; 0x12c3
+	textpointer ImakuniBlackCardlessAfterFirstCardPopSaveText         ; 0x12c4
+	textpointer ImakuniBlackCardlessAfterFirstCardPopResultText       ; 0x12c5
+	textpointer ImakuniBlackCardlessAfterFirstCardPopRepeatText       ; 0x12c6
+	textpointer ImakuniBlackWantsToDuelFirstEncounterText             ; 0x12c7
+	textpointer ImakuniBlackWantsToDuelRepeatText                     ; 0x12c8
+	textpointer ImakuniBlackDuelPromptText                            ; 0x12c9
+	textpointer ImakuniBlackDuelStartText                             ; 0x12ca
+	textpointer ImakuniBlackDeclinedDuelText                          ; 0x12cb
+	textpointer ImakuniBlackPlayerLostText                            ; 0x12cc
+	textpointer ImakuniBlackByeText                                   ; 0x12cd
+	textpointer ImakuniBlackPlayerWonNormalText                       ; 0x12ce
+	textpointer ImakuniBlackPlayerWon3Text                            ; 0x12cf
+	textpointer ImakuniBlackPlayerWon6Text                            ; 0x12d0
+	textpointer ImakuniBlackPlayerWon9Text                            ; 0x12d1
+	textpointer ImakuniBlackPlayerWonManyText                         ; 0x12d2
 	textpointer Text12d3                                           ; 0x12d3
 	textpointer Text12d4                                           ; 0x12d4
 	textpointer Text12d5                                           ; 0x12d5

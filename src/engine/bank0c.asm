@@ -117,7 +117,7 @@ Func_300a8:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	call z, .Func_30175
-	ld a, $00
+	ld a, 0
 	call Func_338f
 	scf
 	ccf
@@ -190,9 +190,9 @@ PlacePlayerInGRIslandLocation:
 	ld hl, GRIslandLocationPositions
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -206,9 +206,9 @@ Func_30202:
 	ld hl, GRIslandLocationPositions
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -224,16 +224,16 @@ Func_30202:
 	jr c, .asm_30233
 
 	ld a, NPC_CURSOR_GR
-	farcall SetOWObjectSpriteAnimFlag6
+	farcall _SetOWObjectSpriteAnimFlag6
 	ld a, NPC_GR_CROSS
-	farcall ResetOWObjectSpriteAnimFlag6
+	farcall _ResetOWObjectSpriteAnimFlag6
 	jr .done
 
 .asm_30233
 	ld a, NPC_CURSOR_GR
-	farcall ResetOWObjectSpriteAnimFlag6
+	farcall _ResetOWObjectSpriteAnimFlag6
 	ld a, NPC_GR_CROSS
-	farcall SetOWObjectSpriteAnimFlag6
+	farcall _SetOWObjectSpriteAnimFlag6
 	jr .done ; unnecessary jump
 
 .done
@@ -259,15 +259,15 @@ Func_30242:
 	ld hl, .LocationConnections
 	add l
 	ld l, a
-	jr nc, .no_overflow1
+	jr nc, .got_pointer1
 	inc h
-.no_overflow1
+.got_pointer1
 	ld a, c
 	add l
 	ld l, a
-	jr nc, .no_overflow2
+	jr nc, .got_pointer2
 	inc h
-.no_overflow2
+.got_pointer2
 	ld a, [hl]
 	cp b
 	jr z, .done
@@ -368,9 +368,9 @@ PrintGRIslandLocationName:
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -401,9 +401,9 @@ Func_3030a:
 	ld hl, .PointerTable
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -447,9 +447,9 @@ Func_30343:
 	ld hl, Data_3056a
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, [hli]
 	ld [wd680], a
 	ld a, [hli]
@@ -464,9 +464,9 @@ Func_3035f:
 	ld hl, Data_3056a
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
+.got_pointer
 	ld a, c
 	ld [wOWScrollSpeed], a
 	ld a, [hli]
@@ -531,10 +531,10 @@ Func_303c7:
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow
+	jr nc, .got_pointer
 	inc h
-.no_overflow
-	ld a, [hl] ; ?
+.got_pointer
+	ld a, [hl] ; map
 	inc hl
 	ld d, [hl] ; x
 	inc hl
@@ -545,48 +545,49 @@ Func_303c7:
 .done
 	ret
 
+; arrive at entrance if coming from south, at Kamiya's room if from north
 .fighting_fort
 	ld a, [wPlayerOWLocation]
 	cp OWMAP_ISHIHARAS_VILLA
-	jr z, .asm_30411
+	jr z, .from_north
 	cp OWMAP_GR_PSYCHIC_STRONGHOLD
-	jr z, .asm_30411
+	jr z, .from_north
 	cp OWMAP_COLORLESS_ALTAR
-	jr z, .asm_30411
+	jr z, .from_north
 	cp OWMAP_GR_CASTLE
-	jr z, .asm_30411
+	jr z, .from_north
 	cp OWMAP_GR_FIGHTING_FORT
-	jr nz, .asm_30404
+	jr nz, .from_south
 	ld a, [wd584]
-	cp $51
-	jr z, .asm_30411
-.asm_30404
-	ld a, $50 ; ?
+	cp MAP_FIGHTING_FORT
+	jr z, .from_north
+.from_south
+	ld a, MAP_FIGHTING_FORT_ENTRANCE
 	lb de, 4, 11
 	ld b, NORTH
 	farcall Func_d3c4
 	jr .done
-.asm_30411
-	ld a, $51 ; ?
+.from_north
+	ld a, MAP_FIGHTING_FORT
 	lb de, 7, 1
 	ld b, SOUTH
 	farcall Func_d3c4
 	jr .done
 
 .data
-	db $27, 5, 11, NORTH ; OWMAP_GR_AIRPORT
-	db $29, 4,  9, NORTH ; OWMAP_ISHIHARAS_VILLA
-	db $2b, 5, 14, NORTH ; OWMAP_GAME_CENTER
-	db $34, 5,  7, NORTH ; OWMAP_SEALED_FORT
-	db $36, 4,  7, NORTH ; OWMAP_GR_CHALLENGE_HALL
-	db $39, 4,  7, NORTH ; OWMAP_GR_GRASS_FORT
-	db $3f, 4, 11, NORTH ; OWMAP_GR_LIGHTNING_FORT
-	db $44, 4, 11, NORTH ; OWMAP_GR_FIRE_FORT
-	db $4a, 4, 11, NORTH ; OWMAP_GR_WATER_FORT
-	db $50, 4, 11, NORTH ; OWMAP_GR_FIGHTING_FORT
-	db $6b, 4,  7, NORTH ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	db $6f, 4, 11, NORTH ; OWMAP_COLORLESS_ALTAR
-	db $71, 5,  7, NORTH ; OWMAP_GR_CASTLE
+	db MAP_GR_AIRPORT_ENTRANCE,         5, 11, NORTH ; OWMAP_GR_AIRPORT
+	db MAP_ISHIHARAS_VILLA_1,           4,  9, NORTH ; OWMAP_ISHIHARAS_VILLA
+	db MAP_GAME_CENTER_ENTRANCE,        5, 14, NORTH ; OWMAP_GAME_CENTER
+	db MAP_SEALED_FORT_ENTRANCE,        5,  7, NORTH ; OWMAP_SEALED_FORT
+	db MAP_GR_CHALLENGE_HALL_ENTRANCE,  4,  7, NORTH ; OWMAP_GR_CHALLENGE_HALL
+	db MAP_GRASS_FORT_ENTRANCE,         4,  7, NORTH ; OWMAP_GR_GRASS_FORT
+	db MAP_LIGHTNING_FORT_ENTRANCE,     4, 11, NORTH ; OWMAP_GR_LIGHTNING_FORT
+	db MAP_FIRE_FORT_ENTRANCE,          4, 11, NORTH ; OWMAP_GR_FIRE_FORT
+	db MAP_WATER_FORT_ENTRANCE,         4, 11, NORTH ; OWMAP_GR_WATER_FORT
+	db MAP_FIGHTING_FORT_ENTRANCE,      4, 11, NORTH ; OWMAP_GR_FIGHTING_FORT
+	db MAP_PSYCHIC_STRONGHOLD_ENTRANCE, 4,  7, NORTH ; OWMAP_GR_PSYCHIC_STRONGHOLD
+	db MAP_COLORLESS_ALTAR_ENTRANCE,    4, 11, NORTH ; OWMAP_COLORLESS_ALTAR
+	db MAP_GR_CASTLE_ENTRANCE,          5,  7, NORTH ; OWMAP_GR_CASTLE
 
 Func_30452:
 	ld a, [wPlayerOWObject]
@@ -601,9 +602,9 @@ Func_30452:
 	ld hl, GRIslandMovementCommands
 	add l
 	ld l, a
-	jr nc, .no_overflow1
+	jr nc, .got_pointer1
 	inc h
-.no_overflow1
+.got_pointer1
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -611,9 +612,9 @@ Func_30452:
 	sla a ; *2
 	add l
 	ld l, a
-	jr nc, .no_overflow2
+	jr nc, .got_pointer2
 	inc h
-.no_overflow2
+.got_pointer2
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -649,9 +650,9 @@ Func_30452:
 	ld hl, GRIslandLocationPositions
 	add l
 	ld l, a
-	jr nc, .no_overflow3
+	jr nc, .got_pointer3
 	inc h
-.no_overflow3
+.got_pointer3
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -666,9 +667,9 @@ Func_30452:
 	ld hl, .data
 	add l
 	ld l, a
-	jr nc, .no_overflow4
+	jr nc, .got_pointer4
 	inc h
-.no_overflow4
+.got_pointer4
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -990,7 +991,7 @@ CardDungeonQueen_MapHeader:
 	db MUSIC_FORT_3
 
 CardDungeonQueen_NPCs:
-	npc NPC_QUEEN, 3, 4, EAST, $0
+	npc NPC_QUEEN, 3, 4, EAST, NULL
 	db $ff
 
 CardDungeonQueen_NPCInteractions:
@@ -1051,7 +1052,7 @@ GrChallengeHallEntrance_StepEvents:
 	db $ff
 
 GrChallengeHallEntrance_NPCs:
-	npc NPC_GR_CLERK_18, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_18, 3, 1, SOUTH, NULL
 	db $ff
 
 GrChallengeHallEntrance_NPCInteractions:
@@ -1084,7 +1085,7 @@ GrassFortEntrance_StepEvents:
 	db $ff
 
 GrassFortEntrance_NPCs:
-	npc NPC_GR_CLERK_7, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_7, 3, 1, SOUTH, NULL
 	db $ff
 
 GrassFortEntrance_NPCInteractions:
@@ -1114,12 +1115,12 @@ GrassFortLobby_StepEvents:
 	db $ff
 
 GrassFortLobby_NPCs:
-	npc NPC_GR_LAD_2, 3, 4, SOUTH, $0
-	npc NPC_GR_PAPPY_2, 3, 9, WEST, $0
-	npc NPC_GR_LASS_4, 7, 7, NORTH, $0
+	npc NPC_GR_LAD_2, 3, 4, SOUTH, NULL
+	npc NPC_GR_PAPPY_2, 3, 9, WEST, NULL
+	npc NPC_GR_LASS_4, 7, 7, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $5776
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
 	db $ff
 
 GrassFortLobby_NPCInteractions:
@@ -1130,8 +1131,8 @@ GrassFortLobby_NPCInteractions:
 	db $ff
 
 GrassFortLobby_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 5, 4, $0f, $41d0
 	ow_script 8, 4, $0f, $42d9
 	db $ff
@@ -1161,7 +1162,7 @@ GrassFortMidori_StepEvents:
 	db $ff
 
 GrassFortMidori_NPCs:
-	npc NPC_MIDORI, 5, 4, SOUTH, $0
+	npc NPC_MIDORI, 5, 4, SOUTH, NULL
 	npc NPC_RICK, 6, 2, SOUTH, $5864
 	db $ff
 
@@ -1204,7 +1205,7 @@ GrassFortYuta_StepEvents:
 	db $ff
 
 GrassFortYuta_NPCs:
-	npc NPC_YUTA, 4, 3, SOUTH, $0
+	npc NPC_YUTA, 4, 3, SOUTH, NULL
 	db $ff
 
 GrassFortYuta_NPCInteractions:
@@ -1247,7 +1248,7 @@ GrassFortMiyuki_StepEvents:
 	db $ff
 
 GrassFortMiyuki_NPCs:
-	npc NPC_MIYUKI, 9, 5, EAST, $0
+	npc NPC_MIYUKI, 9, 5, EAST, NULL
 	db $ff
 
 GrassFortMiyuki_NPCInteractions:
@@ -1292,7 +1293,7 @@ LightningFortEntrance_StepEvents:
 	db $ff
 
 LightningFortEntrance_NPCs:
-	npc NPC_GR_CLERK_8, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_8, 3, 2, SOUTH, NULL
 	db $ff
 
 LightningFortEntrance_NPCInteractions:
@@ -1325,12 +1326,12 @@ LightningFortLobby_StepEvents:
 	db $ff
 
 LightningFortLobby_NPCs:
-	npc NPC_GR_LASS_1, 5, 10, NORTH, $0
-	npc NPC_GR_WOMAN_1, 3, 4, WEST, $0
-	npc NPC_BUTCH_1, 10, 8, SOUTH, $0
-	npc NPC_TAP, 8, 9, WEST, $0
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_LASS_1, 5, 10, NORTH, NULL
+	npc NPC_GR_WOMAN_1, 3, 4, WEST, NULL
+	npc NPC_BUTCH_1, 10, 8, SOUTH, NULL
+	npc NPC_TAP, 8, 9, WEST, NULL
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
 	db $ff
 
 LightningFortLobby_NPCInteractions:
@@ -1341,8 +1342,8 @@ LightningFortLobby_NPCInteractions:
 	db $ff
 
 LightningFortLobby_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 5, 4, $0f, $41d0
 	ow_script 8, 4, $0f, $42d9
 	db $ff
@@ -1377,7 +1378,7 @@ LightningFortRenna_StepEvents:
 	db $ff
 
 LightningFortRenna_NPCs:
-	npc NPC_RENNA, 1, 2, NORTH, $0
+	npc NPC_RENNA, 1, 2, NORTH, NULL
 	db $ff
 
 LightningFortRenna_NPCInteractions:
@@ -1420,7 +1421,7 @@ LightningFortIchikawa_StepEvents:
 	db $ff
 
 LightningFortIchikawa_NPCs:
-	npc NPC_ICHIKAWA, 5, 5, EAST, $0
+	npc NPC_ICHIKAWA, 5, 5, EAST, NULL
 	db $ff
 
 LightningFortIchikawa_NPCInteractions:
@@ -1462,7 +1463,7 @@ LightningFortCatherine_StepEvents:
 	db $ff
 
 LightningFortCatherine_NPCs:
-	npc NPC_CATHERINE, 7, 4, NORTH, $0
+	npc NPC_CATHERINE, 7, 4, NORTH, NULL
 	db $ff
 
 LightningFortCatherine_NPCInteractions:
@@ -1501,7 +1502,7 @@ FireFortEntrance_StepEvents:
 	db $ff
 
 FireFortEntrance_NPCs:
-	npc NPC_GR_CLERK_9, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_9, 3, 1, SOUTH, NULL
 	db $ff
 
 FireFortEntrance_NPCInteractions:
@@ -1536,11 +1537,11 @@ FireFortLobby_StepEvents:
 	db $ff
 
 FireFortLobby_NPCs:
-	npc NPC_MIYAJIMA_ALT, 2, 10, SOUTH, $0
-	npc NPC_YOUNGSTER_4, 7, 6, WEST, $0
+	npc NPC_MIYAJIMA_ALT, 2, 10, SOUTH, NULL
+	npc NPC_YOUNGSTER_4, 7, 6, WEST, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $67f5
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
 	db $ff
 
 FireFortLobby_NPCInteractions:
@@ -1550,8 +1551,8 @@ FireFortLobby_NPCInteractions:
 	db $ff
 
 FireFortLobby_OWInteractions:
-	ow_script 1, 2, $03, $5411
-	ow_script 2, 2, $03, $5411
+	ow_script 1, 2, PCMenu
+	ow_script 2, 2, PCMenu
 	ow_script 5, 4, $0f, $41d0
 	ow_script 8, 4, $0f, $42d9
 	db $ff
@@ -1581,7 +1582,7 @@ FireFortJes_StepEvents:
 	db $ff
 
 FireFortJes_NPCs:
-	npc NPC_JES, 6, 2, NORTH, $0
+	npc NPC_JES, 6, 2, NORTH, NULL
 	db $ff
 
 FireFortJes_NPCInteractions:
@@ -1624,7 +1625,7 @@ FireFortYuki_StepEvents:
 	db $ff
 
 FireFortYuki_NPCs:
-	npc NPC_YUKI, 5, 3, SOUTH, $0
+	npc NPC_YUKI, 5, 3, SOUTH, NULL
 	db $ff
 
 FireFortYuki_NPCInteractions:
@@ -1667,7 +1668,7 @@ FireFortShoko_StepEvents:
 	db $ff
 
 FireFortShoko_NPCs:
-	npc NPC_SHOKO, 3, 4, EAST, $0
+	npc NPC_SHOKO, 3, 4, EAST, NULL
 	npc NPC_COURTNEY, 3, 7, SOUTH, $6d82
 	db $ff
 
@@ -1709,7 +1710,7 @@ FireFortHidero_StepEvents:
 	db $ff
 
 FireFortHidero_NPCs:
-	npc NPC_HIDERO, 6, 5, SOUTH, $0
+	npc NPC_HIDERO, 6, 5, SOUTH, NULL
 	db $ff
 
 FireFortHidero_NPCInteractions:
@@ -1748,7 +1749,7 @@ WaterFortEntrance_StepEvents:
 	db $ff
 
 WaterFortEntrance_NPCs:
-	npc NPC_GR_CLERK_10, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_10, 3, 1, SOUTH, NULL
 	db $ff
 
 WaterFortEntrance_NPCInteractions:
@@ -1785,7 +1786,7 @@ WaterFortMiyajima_StepEvents:
 	db $ff
 
 WaterFortMiyajima_NPCs:
-	npc NPC_MIYAJIMA, 4, 4, SOUTH, $0
+	npc NPC_MIYAJIMA, 4, 4, SOUTH, NULL
 	db $ff
 
 WaterFortMiyajima_NPCInteractions:
@@ -1826,7 +1827,7 @@ WaterFortKanoko_StepEvents:
 	db $ff
 
 WaterFortKanoko_NPCs:
-	npc NPC_KANOKO, 6, 4, SOUTH, $0
+	npc NPC_KANOKO, 6, 4, SOUTH, NULL
 	db $ff
 
 WaterFortKanoko_NPCInteractions:
@@ -1863,7 +1864,7 @@ FightingFortEntrance_StepEvents:
 	db $ff
 
 FightingFortEntrance_NPCs:
-	npc NPC_GR_CLERK_11, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_11, 3, 2, SOUTH, NULL
 	db $ff
 
 FightingFortEntrance_NPCInteractions:

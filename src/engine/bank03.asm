@@ -1370,11 +1370,11 @@ Func_d3e9::
 	db  0,  1
 	db -1,  0
 
-Func_d411:
+PCMenu:
 	call PauseSong
 	ld a, MUSIC_PCMAINMENU
 	call PlaySong
-	farcall Func_110c6
+	farcall _PCMenu
 	call ResumeSong
 	ret
 
@@ -2252,7 +2252,7 @@ GeneralVarMasks:
 	db $17, %00000011 ; VAR_1F
 	db $17, %00111100 ; VAR_20
 	db $18, %00000111 ; VAR_21
-	db $18, %11110000 ; VAR_22
+	db $18, %11110000 ; VAR_IMAKUNI_BLACK_WIN_COUNT
 	db $19, %00000001 ; VAR_23
 	db $19, %11110000 ; VAR_24
 	db $1a, %00001111 ; VAR_25
@@ -3668,12 +3668,12 @@ ScriptCommand_3E:
 
 ScriptCommand_3F:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall StopOWObjectAnimFlag6
+	farcall ResetOWObjectSpriteAnimFlag6
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_40:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall StartOWObjectAnimFlag6
+	farcall SetOWObjectSpriteAnimFlag6
 	jp IncreaseScriptPointerBy2
 
 ScriptCommand_41:

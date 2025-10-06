@@ -278,6 +278,27 @@
 	const EVENT_F5                                        ; $f5
 DEF NUM_EVENT_FLAGS EQU const_value
 
+	const_def 1
+	const GC_PIECES_1 ; 1
+	const GC_PIECES_2 ; 2
+	const GC_PIECES_3 ; 3
+	const GC_PIECES_4 ; 4
+
+; Ronald events
+; - card pops after you leave Mason's Lab for the first time
+; - challenges you at Fig/Grass/Sci/Fire/Psy Club after 2 GR Coin pieces, giving you Super Energy Retrieval only if you win
+; - gives you 1 LEGENDARY_POWER at Water Club after you win GR3 there for the first time
+; - gives you 2 ISLAND_OF_FOSSIL at Fig/Grass/Sci/Fire Club after 4 pieces, boasting he's got back stolen cards
+; DEF RONALD_FIRST_CARD_POP  EQU $0
+DEF RONALD_DUEL_GC_PIECES_2  EQU $1
+DEF RONALD_GIFT_WON_GR3_ONCE EQU $1
+DEF RONALD_GIFT_GC_PIECES_4  EQU $2
+
+; Imakuni? event win-count thresholds, both Black and Red
+DEF IMAKUNI_THRESHOLD_1 EQU $3
+DEF IMAKUNI_THRESHOLD_2 EQU $6
+DEF IMAKUNI_THRESHOLD_3 EQU $9
+
 DEF EVENT_VAR_BYTES   EQU $34
 DEF GENERAL_VAR_BYTES EQU $34
 

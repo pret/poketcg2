@@ -176,7 +176,7 @@ GetCoinsBookText:
 	linefw "コインを コンプリートしよう!"
 	done
 
-Text12c3:
+ImakuniBlackCardlessFirstCardPopText:
 	textfw "んっ?"
 	linefw "なんだ オマエは?"
 	linefw "えっ オレは だれだ?って"
@@ -191,12 +191,12 @@ Text12c3:
 	linefw "「カードポン!」の じゅんびしろ!"
 	done
 
-Text12c4:
+ImakuniBlackCardlessAfterFirstCardPopSaveText:
 	textfw "カード ゲットだ!"
 	linefw "オマエの データをセーブしてやる!!"
 	done
 
-Text12c5:
+ImakuniBlackCardlessAfterFirstCardPopResultText:
 	textfw "オレの カードは"
 	linefw "「<RAMTEXT>」だ!"
 	linefw "オマエのカードは・・・「イマクニ?」"
@@ -205,7 +205,7 @@ Text12c5:
 	linefw "オマエには もう ようはない!"
 	done
 
-Text12c6:
+ImakuniBlackCardlessAfterFirstCardPopRepeatText:
 	textfw "オレは スーパーミュージカルスター!"
 	linefw "イマクニ?だ!"
 	linefw "んっ なんだ?"
@@ -216,7 +216,7 @@ Text12c6:
 	linefw "じゃあなっ!"
 	done
 
-Text12c7:
+ImakuniBlackWantsToDuelFirstEncounterText:
 	textfw "んっ?"
 	linefw "なんだ オマエは?"
 	linefw "えっ オレは だれだ?って"
@@ -227,7 +227,7 @@ Text12c7:
 	linefw "カードで しょうぶが したいのか?"
 	done
 
-Text12c8:
+ImakuniBlackWantsToDuelRepeatText:
 	textfw "オレは スーパーミュージカルスター!"
 	linefw "イマクニ?だ!"
 	linefw "んっ なんだ?"
@@ -240,61 +240,61 @@ Text12c8:
 	linefw "さあ こい!"
 	done
 
-Text12c9:
+ImakuniBlackDuelPromptText:
 	textfw "イマクニ?と 対戦しますか?"
 	done
 
-Text12ca:
+ImakuniBlackDuelStartText:
 	textfw "サイドカード6枚!"
 	linefw "しんけん しょうぶだ!!"
 	done
 
-Text12cb:
+ImakuniBlackDeclinedDuelText:
 	textfw "なんだよ さびしいなぁ"
 	linefw "カードで対戦すんじゃ ないのかよ"
 	linefw "つまんねーやつだな"
 	linefw "オマエ!"
 	done
 
-Text12cc:
+ImakuniBlackPlayerLostText:
 	textfw "アララ・・・"
 	linefw "オレ かっちゃったよ!"
 	linefw "さすが オレだ!"
 	linefw "でも オマエも つよかったな!"
 	done
 
-Text12cd:
+ImakuniBlackByeText:
 	textfw "じゃあ オレは また"
 	linefw "ほうろうのたびに でるぜ じゃあな"
 	done
 
-Text12ce:
+ImakuniBlackPlayerWonNormalText:
 	textfw "なんだよ オマエ"
 	linefw "けっこう つよいんだな"
 	linefw "拡張パックを あげちゃうからさ"
 	linefw "オレが まけたこと ひとにいうなよ"
 	done
 
-Text12cf:
+ImakuniBlackPlayerWon3Text:
 	textfw "オマエ このオレに3かいも 勝ったよ"
 	linefw "うれしい? ねぇ うれしい?"
 	done
 
-Text12d0:
+ImakuniBlackPlayerWon6Text:
 	textfw "オレが 6かいも まけるなんて"
 	linefw "くやしいなあ・・・マジでさ!"
 	linefw "くやしいから オマエに"
 	linefw "これを やるぜ!"
 	done
 
-Text12d1:
+ImakuniBlackPlayerWon9Text:
 	textfw "なんでだよ オレが 9かいも"
 	linefw "オマエに まけちゃうんだよ!!"
 	linefw "オレは オレに ガッカリだぜ!"
 	linefw "くそ~っ!"
 	done
 
-Text12d2:
+ImakuniBlackPlayerWonManyText:
 	textfw "なんだよ また オマエ勝ちか・・・"
 	linefw "なかなかの ウデまえだなぁ"
 	linefw "なんだか オレ オマエに"

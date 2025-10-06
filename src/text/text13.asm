@@ -950,7 +950,7 @@ Text126c:
 	linefw "<RAMNAME>じゃねぇか!"
 	done
 
-Text126d:
+RonaldGCPieces2WantsToDuelText:
 	textfw "GR団のヤツらを"
 	linefw "ふたり やっつけたようだな"
 	linefw "さすが オレの"
@@ -963,21 +963,21 @@ Text126d:
 	linefw "勝ったら めずらしいカードをやるぜ!"
 	done
 
-Text126e:
+RonaldGCPieces2PlayerWon1Text:
 	textfw "けっ やっぱ かきあつめたカードじゃ"
 	linefw "こんなもんか・・・"
 	linefw "しかたねぇや まけたからな!"
 	linefw "このカードを やるぜ!"
 	done
 
-Text126f:
+RonaldGCPieces2PlayerWon2Text:
 	textfw "もっと カードあつめなきゃ"
 	linefw "ダメだな・・・"
 	linefw "また GR団のじょうほうを"
 	linefw "つかんだら おしえてやるぜ!"
 	done
 
-Text1270:
+RonaldGCPieces2PlayerLostText:
 	textfw "けっ このオレに まけてるようじゃ"
 	linefw "GR団には たちむかえないぜ"
 	linefw "GR団を ふたりやっつけたのは"

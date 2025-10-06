@@ -6102,7 +6102,7 @@ AIDecideBenchPokemonToSwitchTo:
 ; calculate damage of the move and raise AI score
 ; AI score += floor(Damage / 20)
 .check_energy_card
-	farcall Func_2a331
+	farcall LookForEnergyNeededInHand
 	jr nc, .check_attached_energy
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
@@ -6964,7 +6964,7 @@ Func_16af1:
 	ld a, [wAlreadyPlayedEnergy]
 	or a
 	jr nz, .check_evolution_ko
-	farcall Func_2a331 ; LookForEnergyNeededInHand
+	farcall LookForEnergyNeededInHand
 	jr nc, .check_evolution_ko
 	ld a, 7
 	call AIEncourage
