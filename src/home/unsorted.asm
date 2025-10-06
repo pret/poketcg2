@@ -109,11 +109,11 @@ NewGameAndPrologue::
 	farcall GetEventValue
 	jr nz, .female
 ; male
-	ld a, OW_MARK
+	ld a, NPC_MARK
 	ld [wPlayerOWObject], a
 	jr .got_info
 .female
-	ld a, OW_MINT
+	ld a, NPC_MINT
 	ld [wPlayerOWObject], a
 
 .got_info

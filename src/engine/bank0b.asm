@@ -11,13 +11,13 @@ IshiharasHouse_StepEvents:
 	db $ff
 
 IshiharasHouse_NPCs:
-	npc OW_ISHIHARA, 4, 4, SOUTH, $B8, $41
-	npc OW_NIKKI, 5, 4, SOUTH, $6A, $44
+	npc NPC_ISHIHARA, 4, 4, SOUTH, $B8, $41
+	npc NPC_NIKKI, 5, 4, SOUTH, $6A, $44
 	db $ff
 
 IshiharasHouse_NPCInteractions:
-	npc_script OW_ISHIHARA, $0b, $72, $41
-	npc_script OW_NIKKI, $0b, $cb, $43
+	npc_script NPC_ISHIHARA, $0b, $72, $41
+	npc_script NPC_NIKKI, $0b, $cb, $43
 	db $ff
 
 IshiharasHouse_OWInteractions:
@@ -76,7 +76,7 @@ Func_2c0d1:
 	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_2c0ef
-	ld a, OW_ISHIHARA
+	ld a, NPC_ISHIHARA
 	lb de, 1, 2
 	farcall SetOWObjectTilePosition
 	ld b, NORTH
@@ -201,19 +201,19 @@ LightningClub_StepEvents:
 	db $ff
 
 LightningClub_NPCs:
-	npc OW_ISAAC, 6, 2, SOUTH, $00, $00
-	npc OW_JENNIFER, 7, 9, SOUTH, $f9, $48
-	npc OW_NICHOLAS, 3, 5, SOUTH, $00, $00
-	npc OW_BRANDON, 11, 6, SOUTH, $f9, $48
-	npc OW_GR_4, 7, 4, SOUTH, $29, $49
+	npc NPC_ISAAC, 6, 2, SOUTH, $00, $00
+	npc NPC_JENNIFER, 7, 9, SOUTH, $f9, $48
+	npc NPC_NICHOLAS, 3, 5, SOUTH, $00, $00
+	npc NPC_BRANDON, 11, 6, SOUTH, $f9, $48
+	npc NPC_GR_4, 7, 4, SOUTH, $29, $49
 	db $ff
 
 LightningClub_NPCInteractions:
-	npc_script OW_ISAAC, $0b, $45, $46
-	npc_script OW_JENNIFER, $0b, $3b, $47
-	npc_script OW_NICHOLAS, $0b, $9d, $47
-	npc_script OW_BRANDON, $0b, $97, $48
-	npc_script OW_GR_4, $0b, $0e, $49
+	npc_script NPC_ISAAC, $0b, $45, $46
+	npc_script NPC_JENNIFER, $0b, $3b, $47
+	npc_script NPC_NICHOLAS, $0b, $9d, $47
+	npc_script NPC_BRANDON, $0b, $97, $48
+	npc_script NPC_GR_4, $0b, $0e, $49
 	db $ff
 
 LightningClub_MapScripts:
@@ -279,16 +279,16 @@ Func_2c50a:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction OW_ISAAC, 5, 9, SOUTH
-	set_npc_position_and_direction OW_NICHOLAS, 8, 9, SOUTH
-	set_npc_position_and_direction OW_GR_4, 7, 9, SOUTH
+	set_npc_position_and_direction NPC_ISAAC, 5, 9, SOUTH
+	set_npc_position_and_direction NPC_NICHOLAS, 8, 9, SOUTH
+	set_npc_position_and_direction NPC_GR_4, 7, 9, SOUTH
 	end_script
 	jr .asm_2c55e
 .asm_2c54f
 	xor a
 	start_script
-	set_npc_position_and_direction OW_ISAAC, 5, 6, SOUTH
-	set_npc_position_and_direction OW_NICHOLAS, 8, 8, SOUTH
+	set_npc_position_and_direction NPC_ISAAC, 5, 6, SOUTH
+	set_npc_position_and_direction NPC_NICHOLAS, 8, 8, SOUTH
 	end_script
 .asm_2c55e
 	scf
@@ -308,10 +308,10 @@ Func_2c568:
 	ret
 
 LightningClub_AfterDuelScripts:
-	npc_script OW_ISAAC, $0b, $ec, $46
-	npc_script OW_JENNIFER, $0b, $81, $47
-	npc_script OW_NICHOLAS, $0b, $47, $48
-	npc_script OW_BRANDON, $0b, $dd, $48
+	npc_script NPC_ISAAC, $0b, $ec, $46
+	npc_script NPC_JENNIFER, $0b, $81, $47
+	npc_script NPC_NICHOLAS, $0b, $47, $48
+	npc_script NPC_BRANDON, $0b, $dd, $48
 	db $ff
 ; 0x2c584
 
@@ -334,11 +334,11 @@ PsychicClubEntrance_StepEvents:
 	db $ff
 
 PsychicClubEntrance_NPCs:
-	npc OW_STEPHANIE, 5, 1, SOUTH, $bb, $4a
+	npc NPC_STEPHANIE, 5, 1, SOUTH, $bb, $4a
 	db $ff
 
 PsychicClubEntrance_NPCInteractions:
-	npc_script OW_STEPHANIE, $0b, $a0, $4a
+	npc_script NPC_STEPHANIE, $0b, $a0, $4a
 	db $ff
 
 PsychicClubEntrance_MapScripts:
@@ -437,7 +437,7 @@ Func_2ca22:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2ca3c
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -570,21 +570,21 @@ PsychicClubLobby_StepEvents:
 	db $ff
 
 PsychicClubLobby_NPCs:
-	npc OW_SPECS_5, 8, 8, EAST, $00, $00
-	npc OW_LASS1_4, 10, 9, WEST, $00, $00
-	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
-	npc OW_LAD_6, 7, 6, EAST, $00, $00
-	npc OW_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_SPECS_5, 8, 8, EAST, $00, $00
+	npc NPC_LASS1_4, 10, 9, WEST, $00, $00
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
+	npc NPC_LAD_6, 7, 6, EAST, $00, $00
+	npc NPC_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
-	npc_script OW_SPECS_5, $0b, $11, $4c
-	npc_script OW_LASS1_4, $0b, $7d, $4c
-	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script OW_LAD_6, $0b, $b7, $4c
-	npc_script OW_GR_LASS_2, $0b, $e8, $4c
+	npc_script NPC_SPECS_5, $0b, $11, $4c
+	npc_script NPC_LASS1_4, $0b, $7d, $4c
+	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script NPC_LAD_6, $0b, $b7, $4c
+	npc_script NPC_GR_LASS_2, $0b, $e8, $4c
 	db $ff
 
 PsychicClubLobby_OWInteractions:
@@ -664,7 +664,7 @@ Func_2cbf5:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2cc0f
-	ld a, OW_IMAKUNI_BLACK
+	ld a, NPC_IMAKUNI_BLACK
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -688,19 +688,19 @@ PsychicClub_StepEvents:
 	db $ff
 
 PsychicClub_NPCs:
-	npc OW_MURRAY, 6, 3, SOUTH, $00, $00
-	npc OW_ROBERT, 3, 10, WEST, $00, $00
-	npc OW_DANIEL, 4, 5, NORTH, $00, $00
-	npc OW_STEPHANIE, 11, 6, EAST, $00, $00
-	npc OW_GR_4, 7, 3, SOUTH, $3c, $52
+	npc NPC_MURRAY, 6, 3, SOUTH, $00, $00
+	npc NPC_ROBERT, 3, 10, WEST, $00, $00
+	npc NPC_DANIEL, 4, 5, NORTH, $00, $00
+	npc NPC_STEPHANIE, 11, 6, EAST, $00, $00
+	npc NPC_GR_4, 7, 3, SOUTH, $3c, $52
 	db $ff
 
 PsychicClub_NPCInteractions:
-	npc_script OW_MURRAY, $0b, $88, $4e
-	npc_script OW_ROBERT, $0b, $cc, $4f
-	npc_script OW_DANIEL, $0b, $46, $50
-	npc_script OW_STEPHANIE, $0b, $b3, $50
-	npc_script OW_GR_4, $0b, $90, $51
+	npc_script NPC_MURRAY, $0b, $88, $4e
+	npc_script NPC_ROBERT, $0b, $cc, $4f
+	npc_script NPC_DANIEL, $0b, $46, $50
+	npc_script NPC_STEPHANIE, $0b, $b3, $50
+	npc_script NPC_GR_4, $0b, $90, $51
 	db $ff
 
 PsychicClub_MapScripts:
@@ -761,19 +761,19 @@ Func_2cda2:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction OW_MURRAY, 7, 6, SOUTH
-	set_npc_position_and_direction OW_ROBERT, 5, 6, SOUTH
-	set_npc_position_and_direction OW_DANIEL, 6, 6, SOUTH
-	set_npc_position_and_direction OW_STEPHANIE, 8, 10, SOUTH
+	set_npc_position_and_direction NPC_MURRAY, 7, 6, SOUTH
+	set_npc_position_and_direction NPC_ROBERT, 5, 6, SOUTH
+	set_npc_position_and_direction NPC_DANIEL, 6, 6, SOUTH
+	set_npc_position_and_direction NPC_STEPHANIE, 8, 10, SOUTH
 	end_script
 	jr .asm_2ce0f
 .asm_2cdf6
 	xor a
 	start_script
-	set_npc_position_and_direction OW_MURRAY, 6, 3, SOUTH
-	set_npc_position_and_direction OW_ROBERT, 5, 6, SOUTH
-	set_npc_position_and_direction OW_DANIEL, 6, 10, SOUTH
-	set_npc_position_and_direction OW_STEPHANIE, 8, 10, SOUTH
+	set_npc_position_and_direction NPC_MURRAY, 6, 3, SOUTH
+	set_npc_position_and_direction NPC_ROBERT, 5, 6, SOUTH
+	set_npc_position_and_direction NPC_DANIEL, 6, 10, SOUTH
+	set_npc_position_and_direction NPC_STEPHANIE, 8, 10, SOUTH
 	end_script
 .asm_2ce0f
 	scf
@@ -793,11 +793,11 @@ Func_2ce19:
 	ret
 
 PsychicClub_AfterDuelScripts:
-	npc_script OW_MURRAY, $0b, $73, $4f
-	npc_script OW_ROBERT, $0b, $2a, $50
-	npc_script OW_DANIEL, $0b, $97, $50
-	npc_script OW_STEPHANIE, $0b, $42, $51
-	npc_script OW_GR_4, $0b, $0e, $52
+	npc_script NPC_MURRAY, $0b, $73, $4f
+	npc_script NPC_ROBERT, $0b, $2a, $50
+	npc_script NPC_DANIEL, $0b, $97, $50
+	npc_script NPC_STEPHANIE, $0b, $42, $51
+	npc_script NPC_GR_4, $0b, $0e, $52
 	db $ff
 ; 0x2ce39
 
@@ -887,7 +887,7 @@ Func_2d399:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d3b3
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -922,21 +922,21 @@ RockClubLobby_StepEvents:
 	db $ff
 
 RockClubLobby_NPCs:
-	npc OW_LASS2_2, 5, 6, EAST, $00, $00
-	npc OW_WOMAN, 12, 10, NORTH, $00, $00
-	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
-	npc OW_CHAP_1, 8, 9, WEST, $00, $00
-	npc OW_LAD_3, 10, 3, SOUTH, $00, $00
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_LASS2_2, 5, 6, EAST, $00, $00
+	npc NPC_WOMAN, 12, 10, NORTH, $00, $00
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
+	npc NPC_CHAP_1, 8, 9, WEST, $00, $00
+	npc NPC_LAD_3, 10, 3, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 RockClubLobby_NPCInteractions:
-	npc_script OW_LASS2_2, $0b, $e0, $54
-	npc_script OW_WOMAN, $0b, $46, $55
-	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script OW_CHAP_1, $0b, $8b, $55
-	npc_script OW_LAD_3, $0b, $c7, $55
+	npc_script NPC_LASS2_2, $0b, $e0, $54
+	npc_script NPC_WOMAN, $0b, $46, $55
+	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script NPC_CHAP_1, $0b, $8b, $55
+	npc_script NPC_LAD_3, $0b, $c7, $55
 	db $ff
 
 RockClubLobby_OWInteractions:
@@ -1018,7 +1018,7 @@ Func_2d4c4:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d4de
-	ld a, OW_IMAKUNI_BLACK
+	ld a, NPC_IMAKUNI_BLACK
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -1042,18 +1042,18 @@ RockClub_StepEvents:
 	db $ff
 
 RockClub_NPCs:
-	npc OW_GENE, 7, 2, SOUTH, $00, $00
-	npc OW_MATTHEW, 2, 3, SOUTH, $00, $00
-	npc OW_RYAN, 9, 7, EAST, $00, $00
-	npc OW_ANDREW, 3, 8, EAST, $00, $00
-	npc OW_GR_1, 7, 3, NORTH, $f3, $58
+	npc NPC_GENE, 7, 2, SOUTH, $00, $00
+	npc NPC_MATTHEW, 2, 3, SOUTH, $00, $00
+	npc NPC_RYAN, 9, 7, EAST, $00, $00
+	npc NPC_ANDREW, 3, 8, EAST, $00, $00
+	npc NPC_GR_1, 7, 3, NORTH, $f3, $58
 	db $ff
 
 RockClub_NPCInteractions:
-	npc_script OW_GENE, $0b, $54, $57
-	npc_script OW_MATTHEW, $0b, $ea, $57
-	npc_script OW_RYAN, $0b, $41, $58
-	npc_script OW_ANDREW, $0b, $9c, $58
+	npc_script NPC_GENE, $0b, $54, $57
+	npc_script NPC_MATTHEW, $0b, $ea, $57
+	npc_script NPC_RYAN, $0b, $41, $58
+	npc_script NPC_ANDREW, $0b, $9c, $58
 	db $ff
 
 RockClub_MapScripts:
@@ -1103,9 +1103,9 @@ Func_2d673:
 	ld [$d594], a
 	xor a
 	start_script
-	set_npc_position_and_direction OW_MATTHEW, 5, 1, SOUTH
-	set_npc_position_and_direction OW_RYAN, 8, 1, SOUTH
-	set_npc_position_and_direction OW_ANDREW, 6, 1, SOUTH
+	set_npc_position_and_direction NPC_MATTHEW, 5, 1, SOUTH
+	set_npc_position_and_direction NPC_RYAN, 8, 1, SOUTH
+	set_npc_position_and_direction NPC_ANDREW, 6, 1, SOUTH
 	end_script
 .asm_2d6a4
 	scf
@@ -1125,10 +1125,10 @@ Func_2d6ae:
 	ret
 
 RockClub_AfterDuelScripts:
-	npc_script OW_GENE, $0b, $c3, $57
-	npc_script OW_MATTHEW, $0b, $25, $58
-	npc_script OW_RYAN, $0b, $7e, $58
-	npc_script OW_ANDREW, $0b, $d7, $58
+	npc_script NPC_GENE, $0b, $c3, $57
+	npc_script NPC_MATTHEW, $0b, $25, $58
+	npc_script NPC_RYAN, $0b, $7e, $58
+	npc_script NPC_ANDREW, $0b, $d7, $58
 	db $ff
 ; 0x2d6ca
 
@@ -1220,7 +1220,7 @@ Func_2d9d8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2d9f2
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -1277,21 +1277,21 @@ FightingClubLobby_StepEvents:
 	db $ff
 
 FightingClubLobby_NPCs:
-	npc OW_PAPPY_2, 1, 5, SOUTH, $00, $00
-	npc OW_SPECS_3, 4, 9, EAST, $00, $00
-	npc OW_LAD4, 7, 9, WEST, $00, $00
-	npc OW_GIRL_4, 6, 8, SOUTH, $00, $00
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
-	npc OW_MICHAEL, 11, 6, EAST, $97, $5b
+	npc NPC_PAPPY_2, 1, 5, SOUTH, $00, $00
+	npc NPC_SPECS_3, 4, 9, EAST, $00, $00
+	npc NPC_LAD4, 7, 9, WEST, $00, $00
+	npc NPC_GIRL_4, 6, 8, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_MICHAEL, 11, 6, EAST, $97, $5b
 	db $ff
 
 FightingClubLobby_NPCInteractions:
-	npc_script OW_PAPPY_2, $0b, $ac, $5b
-	npc_script OW_SPECS_3, $0b, $17, $5c
-	npc_script OW_LAD4, $0b, $48, $5c
-	npc_script OW_GIRL_4, $0b, $79, $5c
-	npc_script OW_MICHAEL, $0b, $0e, $5b
+	npc_script NPC_PAPPY_2, $0b, $ac, $5b
+	npc_script NPC_SPECS_3, $0b, $17, $5c
+	npc_script NPC_LAD4, $0b, $48, $5c
+	npc_script NPC_GIRL_4, $0b, $79, $5c
+	npc_script NPC_MICHAEL, $0b, $0e, $5b
 	db $ff
 
 FightingClubLobby_OWInteractions:
@@ -1353,7 +1353,7 @@ Func_2dafe:
 	ret
 
 FightingClubLobby_AfterDuelScripts:
-	npc_script OW_MICHAEL, $0B, $7B, $5B
+	npc_script NPC_MICHAEL, $0B, $7B, $5B
 	db $ff
 ; 0x2db5b
 
@@ -1370,19 +1370,19 @@ FightingClub_StepEvents:
 	db $ff
 
 FightingClub_NPCs:
-	npc OW_MITCH, 5, 2, SOUTH, $e4, $5d
-	npc OW_MICHAEL, 7, 7, SOUTH, $9c, $5f
-	npc OW_CHRIS, 2, 5, SOUTH, $9c, $5f
-	npc OW_JESSICA, 9, 4, SOUTH, $9c, $5f
-	npc OW_GR_1, 6, 2, SOUTH, $23, $60
+	npc NPC_MITCH, 5, 2, SOUTH, $e4, $5d
+	npc NPC_MICHAEL, 7, 7, SOUTH, $9c, $5f
+	npc NPC_CHRIS, 2, 5, SOUTH, $9c, $5f
+	npc NPC_JESSICA, 9, 4, SOUTH, $9c, $5f
+	npc NPC_GR_1, 6, 2, SOUTH, $23, $60
 	db $ff
 
 FightingClub_NPCInteractions:
-	npc_script OW_MITCH, $0b, $62, $5d
-	npc_script OW_MICHAEL, $0b, $f1, $5d
-	npc_script OW_CHRIS, $0b, $ad, $5e
-	npc_script OW_JESSICA, $0b, $3a, $5f
-	npc_script OW_GR_1, $0b, $b1, $5f
+	npc_script NPC_MITCH, $0b, $62, $5d
+	npc_script NPC_MICHAEL, $0b, $f1, $5d
+	npc_script NPC_CHRIS, $0b, $ad, $5e
+	npc_script NPC_JESSICA, $0b, $3a, $5f
+	npc_script NPC_GR_1, $0b, $b1, $5f
 	db $ff
 
 FightingClub_MapScripts:
@@ -1445,11 +1445,11 @@ Func_2dd42:
 	ret
 
 FightingClub_AfterDuelScripts:
-	npc_script OW_MITCH, $0b, $c8, $5d
-	npc_script OW_MICHAEL, $0b, $75, $5e
-	npc_script OW_CHRIS, $0b, $1e, $5f
-	npc_script OW_JESSICA, $0b, $80, $5f
-	npc_script OW_GR_1, $0b, $08, $60
+	npc_script NPC_MITCH, $0b, $c8, $5d
+	npc_script NPC_MICHAEL, $0b, $75, $5e
+	npc_script NPC_CHRIS, $0b, $1e, $5f
+	npc_script NPC_JESSICA, $0b, $80, $5f
+	npc_script NPC_GR_1, $0b, $08, $60
 	db $ff
 ; 0x2dd62
 
@@ -1541,7 +1541,7 @@ Func_2e115:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e12f
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -1598,19 +1598,19 @@ GrassClub_StepEvents:
 	db $ff
 
 GrassClub_NPCs:
-	npc OW_NIKKI, 6, 2, SOUTH, $f6, $63
-	npc OW_BRITTANY, 10, 4, NORTH, $f6, $63
-	npc OW_KRISTIN, 2, 7, EAST, $f6, $63
-	npc OW_HEATHER, 7, 9, SOUTH, $f6, $63
-	npc OW_GR_2, 7, 8, SOUTH, $98, $64
+	npc NPC_NIKKI, 6, 2, SOUTH, $f6, $63
+	npc NPC_BRITTANY, 10, 4, NORTH, $f6, $63
+	npc NPC_KRISTIN, 2, 7, EAST, $f6, $63
+	npc NPC_HEATHER, 7, 9, SOUTH, $f6, $63
+	npc NPC_GR_2, 7, 8, SOUTH, $98, $64
 	db $ff
 
 GrassClub_NPCInteractions:
-	npc_script OW_NIKKI, $0b, $26, $62
-	npc_script OW_BRITTANY, $0b, $8c, $62
-	npc_script OW_KRISTIN, $0b, $32, $63
-	npc_script OW_HEATHER, $0b, $94, $63
-	npc_script OW_GR_2, $0b, $0b, $64
+	npc_script NPC_NIKKI, $0b, $26, $62
+	npc_script NPC_BRITTANY, $0b, $8c, $62
+	npc_script NPC_KRISTIN, $0b, $32, $63
+	npc_script NPC_HEATHER, $0b, $94, $63
+	npc_script NPC_GR_2, $0b, $0b, $64
 	db $ff
 
 GrassClub_MapScripts:
@@ -1673,11 +1673,11 @@ Func_2e206:
 	ret
 
 GrassClub_AfterDuelScripts:
-	npc_script OW_NIKKI, $0b, $6e, $62
-	npc_script OW_BRITTANY, $0b, $f6, $62
-	npc_script OW_KRISTIN, $0b, $78, $63
-	npc_script OW_HEATHER, $0b, $da, $63
-	npc_script OW_GR_2, $0b, $49, $64
+	npc_script NPC_NIKKI, $0b, $6e, $62
+	npc_script NPC_BRITTANY, $0b, $f6, $62
+	npc_script NPC_KRISTIN, $0b, $78, $63
+	npc_script NPC_HEATHER, $0b, $da, $63
+	npc_script NPC_GR_2, $0b, $49, $64
 	db $ff
 ; 0x2e226
 
@@ -1698,11 +1698,11 @@ ScienceClubEntrance_StepEvents:
 	db $ff
 
 ScienceClubEntrance_NPCs:
-	npc OW_JOSEPH, 6, 1, SOUTH, $2a, $66
+	npc NPC_JOSEPH, 6, 1, SOUTH, $2a, $66
 	db $ff
 
 ScienceClubEntrance_NPCInteractions:
-	npc_script OW_JOSEPH, $0b, $d0, $65
+	npc_script NPC_JOSEPH, $0b, $d0, $65
 	db $ff
 
 ScienceClubEntrance_MapScripts:
@@ -1792,7 +1792,7 @@ Func_2e582:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e59c
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -1866,23 +1866,23 @@ ScienceClubLobby_StepEvents:
 	db $ff
 
 ScienceClubLobby_NPCs:
-	npc OW_DAVID, 9, 6, EAST, $0d, $68
-	npc OW_ERIK, 4, 9, EAST, $0d, $68
-	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
-	npc OW_MAN_2, 3, 9, WEST, $d1, $68
-	npc OW_SPECS_4, 13, 4, SOUTH, $d1, $68
-	npc OW_TECH_6, 7, 9, WEST, $d1, $68
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_DAVID, 9, 6, EAST, $0d, $68
+	npc NPC_ERIK, 4, 9, EAST, $0d, $68
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
+	npc NPC_MAN_2, 3, 9, WEST, $d1, $68
+	npc NPC_SPECS_4, 13, 4, SOUTH, $d1, $68
+	npc NPC_TECH_6, 7, 9, WEST, $d1, $68
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 ScienceClubLobby_NPCInteractions:
-	npc_script OW_DAVID, $0b, $6e, $67
-	npc_script OW_ERIK, $0b, $e3, $67
-	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script OW_MAN_2, $0b, $31, $68
-	npc_script OW_SPECS_4, $0b, $62, $68
-	npc_script OW_TECH_6, $0b, $a0, $68
+	npc_script NPC_DAVID, $0b, $6e, $67
+	npc_script NPC_ERIK, $0b, $e3, $67
+	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script NPC_MAN_2, $0b, $31, $68
+	npc_script NPC_SPECS_4, $0b, $62, $68
+	npc_script NPC_TECH_6, $0b, $a0, $68
 	db $ff
 
 ScienceClubLobby_OWInteractions:
@@ -1961,15 +1961,15 @@ Func_2e73e:
 	ret
 
 ScienceClubLobby_AfterDuelScripts:
-	npc_script OW_DAVID, $0b, $c7, $67
-	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
+	npc_script NPC_DAVID, $0b, $c7, $67
+	npc_script NPC_IMAKUNI_BLACK, $0f, $ca, $43
 	db $ff
 
 Func_2e752:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2e76c
-	ld a, OW_IMAKUNI_BLACK
+	ld a, NPC_IMAKUNI_BLACK
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -1993,19 +1993,19 @@ ScienceClub_StepEvents:
 	db $ff
 
 ScienceClub_NPCs:
-	npc OW_RICK, 2, 2, NORTH, $87, $6a
-	npc OW_DAVID, 10, 2, NORTH, $07, $6c
-	npc OW_JOSEPH, 6, 5, WEST, $07, $6c
-	npc OW_ERIK, 3, 8, EAST, $07, $6c
-	npc OW_GR_2, 6, 8, SOUTH, $a9, $6c
+	npc NPC_RICK, 2, 2, NORTH, $87, $6a
+	npc NPC_DAVID, 10, 2, NORTH, $07, $6c
+	npc NPC_JOSEPH, 6, 5, WEST, $07, $6c
+	npc NPC_ERIK, 3, 8, EAST, $07, $6c
+	npc NPC_GR_2, 6, 8, SOUTH, $a9, $6c
 	db $ff
 
 ScienceClub_NPCInteractions:
-	npc_script OW_RICK, $0b, $c7, $69
-	npc_script OW_DAVID, $0b, $94, $6a
-	npc_script OW_JOSEPH, $0b, $ef, $6a
-	npc_script OW_ERIK, $0b, $a5, $6b
-	npc_script OW_GR_2, $0b, $1c, $6c
+	npc_script NPC_RICK, $0b, $c7, $69
+	npc_script NPC_DAVID, $0b, $94, $6a
+	npc_script NPC_JOSEPH, $0b, $ef, $6a
+	npc_script NPC_ERIK, $0b, $a5, $6b
+	npc_script NPC_GR_2, $0b, $1c, $6c
 	db $ff
 
 ScienceClub_MapScripts:
@@ -2077,11 +2077,11 @@ Func_2e9a7:
 	ret
 
 ScienceClub_AfterDuelScripts:
-	npc_script OW_RICK, $0b, $4b, $6a
-	npc_script OW_DAVID, $0b, $d1, $6a
-	npc_script OW_JOSEPH, $0b, $6d, $6b
-	npc_script OW_ERIK, $0b, $eb, $6b
-	npc_script OW_GR_2, $0b, $5a, $6c
+	npc_script NPC_RICK, $0b, $4b, $6a
+	npc_script NPC_DAVID, $0b, $d1, $6a
+	npc_script NPC_JOSEPH, $0b, $6d, $6b
+	npc_script NPC_ERIK, $0b, $eb, $6b
+	npc_script NPC_GR_2, $0b, $5a, $6c
 	db $ff
 ; 0x2e9c7
 
@@ -2185,7 +2185,7 @@ Func_2ed8c:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eda6
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -2232,21 +2232,21 @@ WaterClubLobby_StepEvents:
 	db $ff
 
 WaterClubLobby_NPCs:
-	npc OW_JOSHUA, 8, 6, WEST, $5f, $6f
-	npc OW_LASS2_4, 11, 1, WEST, $00, $00
-	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
-	npc OW_PAPPY_3, 12, 11, EAST, $00, $00
-	npc OW_LASS1_2, 4, 9, SOUTH, $00, $00
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_JOSHUA, 8, 6, WEST, $5f, $6f
+	npc NPC_LASS2_4, 11, 1, WEST, $00, $00
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
+	npc NPC_PAPPY_3, 12, 11, EAST, $00, $00
+	npc NPC_LASS1_2, 4, 9, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 WaterClubLobby_NPCInteractions:
-	npc_script OW_JOSHUA, $0b, $ea, $6e
-	npc_script OW_LASS2_4, $0b, $74, $6f
-	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script OW_PAPPY_3, $0b, $ae, $6f
-	npc_script OW_LASS1_2, $0b, $e1, $6f
+	npc_script NPC_JOSHUA, $0b, $ea, $6e
+	npc_script NPC_LASS2_4, $0b, $74, $6f
+	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script NPC_PAPPY_3, $0b, $ae, $6f
+	npc_script NPC_LASS1_2, $0b, $e1, $6f
 	db $ff
 
 WaterClubLobby_OWInteractions:
@@ -2325,15 +2325,15 @@ Func_2eeba:
 	ret
 
 WaterClubLobby_AfterDuelScripts:
-	npc_script OW_JOSHUA, $0b, $43, $6f
-	npc_script OW_IMAKUNI_BLACK, $0f, $ca, $43
+	npc_script NPC_JOSHUA, $0b, $43, $6f
+	npc_script NPC_IMAKUNI_BLACK, $0f, $ca, $43
 	db $ff
 
 Func_2eece:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2eee8
-	ld a, OW_IMAKUNI_BLACK
+	ld a, NPC_IMAKUNI_BLACK
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -2357,21 +2357,21 @@ WaterClub_StepEvents:
 	db $ff
 
 WaterClub_NPCs:
-	npc OW_AMY_LOUNGE, 11, 2, SOUTH, $6d, $73
-	npc OW_JOSHUA, 10, 4, SOUTH, $6d, $73
-	npc OW_SARA, 4, 9, EAST, $78, $74
-	npc OW_AMANDA, 11, 10, WEST, $78, $74
-	npc OW_AMY, 4, 6, SOUTH, $ed, $71
-	npc OW_GR_3, 8, 6, SOUTH, $f2, $74
+	npc NPC_AMY_LOUNGE, 11, 2, SOUTH, $6d, $73
+	npc NPC_JOSHUA, 10, 4, SOUTH, $6d, $73
+	npc NPC_SARA, 4, 9, EAST, $78, $74
+	npc NPC_AMANDA, 11, 10, WEST, $78, $74
+	npc NPC_AMY, 4, 6, SOUTH, $ed, $71
+	npc NPC_GR_3, 8, 6, SOUTH, $f2, $74
 	db $ff
 
 WaterClub_NPCInteractions:
-	npc_script OW_AMY_LOUNGE, $0b, $fa, $71
-	npc_script OW_JOSHUA, $0b, $cf, $72
-	npc_script OW_SARA, $0b, $82, $73
-	npc_script OW_AMANDA, $0b, $f1, $73
-	npc_script OW_AMY, $0b, $d2, $71
-	npc_script OW_GR_3, $0b, $85, $74
+	npc_script NPC_AMY_LOUNGE, $0b, $fa, $71
+	npc_script NPC_JOSHUA, $0b, $cf, $72
+	npc_script NPC_SARA, $0b, $82, $73
+	npc_script NPC_AMANDA, $0b, $f1, $73
+	npc_script NPC_AMY, $0b, $d2, $71
+	npc_script NPC_GR_3, $0b, $85, $74
 	db $ff
 
 WaterClub_OWInteractions:
@@ -2416,9 +2416,9 @@ Func_2f0a5:
 	jr nz, .asm_2f0c3
 	xor a
 	start_script
-	load_npc OW_CAPTURED_AMY, 4, 6, SOUTH
-	load_npc OW_CAPTURED_SARA, 3, 6, EAST
-	load_npc OW_CAPTURED_AMANDA, 5, 6, WEST
+	load_npc NPC_CAPTURED_AMY, 4, 6, SOUTH
+	load_npc NPC_CAPTURED_SARA, 3, 6, EAST
+	load_npc NPC_CAPTURED_AMANDA, 5, 6, WEST
 	end_script
 	jr .asm_2f0f5
 .asm_2f0c3
@@ -2435,9 +2435,9 @@ Func_2f0a5:
 .asm_2f0e1
 	xor a
 	start_script
-	set_npc_position_and_direction OW_AMY, 9, 5, SOUTH
-	set_npc_position_and_direction OW_SARA, 8, 5, SOUTH
-	set_npc_position_and_direction OW_AMANDA, 10, 5, SOUTH
+	set_npc_position_and_direction NPC_AMY, 9, 5, SOUTH
+	set_npc_position_and_direction NPC_SARA, 8, 5, SOUTH
+	set_npc_position_and_direction NPC_AMANDA, 10, 5, SOUTH
 	end_script
 .asm_2f0f5
 	scf
@@ -2461,11 +2461,11 @@ Func_2f107:
 	ret
 
 WaterClub_AfterDuelScripts:
-	npc_script OW_AMY_LOUNGE, $0b, $8a, $72
-	npc_script OW_JOSHUA, $0b, $35, $73
-	npc_script OW_SARA, $0b, $d5, $73
-	npc_script OW_AMANDA, $0b, $4f, $74
-	npc_script OW_GR_3, $0b, $d9, $74
+	npc_script NPC_AMY_LOUNGE, $0b, $8a, $72
+	npc_script NPC_JOSHUA, $0b, $35, $73
+	npc_script NPC_SARA, $0b, $d5, $73
+	npc_script NPC_AMANDA, $0b, $4f, $74
+	npc_script NPC_GR_3, $0b, $d9, $74
 	db $ff
 ; 0x2f127
 
@@ -2561,7 +2561,7 @@ Func_2f5ae:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f5c8
-	ld a, OW_RONALD
+	ld a, NPC_RONALD
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -2618,19 +2618,19 @@ FireClubLobby_StepEvents:
 	db $ff
 
 FireClubLobby_NPCs:
-	npc OW_HOOD_3, 8, 4, NORTH, $00, $00
-	npc OW_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
-	npc OW_MANIA_4, 10, 9, NORTH, $00, $00
-	npc OW_GAL_2, 5, 8, SOUTH, $00, $00
-	npc OW_CLERK_1, 2, 2, SOUTH, $00, $00
-	npc OW_CLERK_2, 4, 2, SOUTH, $00, $00
+	npc NPC_HOOD_3, 8, 4, NORTH, $00, $00
+	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
+	npc NPC_MANIA_4, 10, 9, NORTH, $00, $00
+	npc NPC_GAL_2, 5, 8, SOUTH, $00, $00
+	npc NPC_CLERK_1, 2, 2, SOUTH, $00, $00
+	npc NPC_CLERK_2, 4, 2, SOUTH, $00, $00
 	db $ff
 
 FireClubLobby_NPCInteractions:
-	npc_script OW_HOOD_3, $0b, $09, $77
-	npc_script OW_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script OW_MANIA_4, $0b, $7e, $77
-	npc_script OW_GAL_2, $0b, $a4, $77
+	npc_script NPC_HOOD_3, $0b, $09, $77
+	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
+	npc_script NPC_MANIA_4, $0b, $7e, $77
+	npc_script NPC_GAL_2, $0b, $a4, $77
 	db $ff
 
 FireClubLobby_OWInteractions:
@@ -2710,7 +2710,7 @@ Func_2f6ed:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_2f707
-	ld a, OW_IMAKUNI_BLACK
+	ld a, NPC_IMAKUNI_BLACK
 	farcall ClearOWObject
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
@@ -2734,19 +2734,19 @@ FireClub_StepEvents:
 	db $ff
 
 FireClub_NPCs:
-	npc OW_KEN, 7, 2, SOUTH, $00, $00
-	npc OW_JOHN, 6, 9, SOUTH, $00, $00
-	npc OW_ADAM, 5, 7, SOUTH, $00, $00
-	npc OW_JONATHAN, 10, 5, SOUTH, $00, $00
-	npc OW_GR_3, 7, 5, SOUTH, $29, $7c
+	npc NPC_KEN, 7, 2, SOUTH, $00, $00
+	npc NPC_JOHN, 6, 9, SOUTH, $00, $00
+	npc NPC_ADAM, 5, 7, SOUTH, $00, $00
+	npc NPC_JONATHAN, 10, 5, SOUTH, $00, $00
+	npc NPC_GR_3, 7, 5, SOUTH, $29, $7c
 	db $ff
 
 FireClub_NPCInteractions:
-	npc_script OW_KEN, $0b, $26, $79
-	npc_script OW_JOHN, $0b, $25, $7a
-	npc_script OW_ADAM, $0b, $a1, $7a
-	npc_script OW_JONATHAN, $0b, $4e, $7b
-	npc_script OW_GR_3, $0b, $d3, $7b
+	npc_script NPC_KEN, $0b, $26, $79
+	npc_script NPC_JOHN, $0b, $25, $7a
+	npc_script NPC_ADAM, $0b, $a1, $7a
+	npc_script NPC_JONATHAN, $0b, $4e, $7b
+	npc_script NPC_GR_3, $0b, $d3, $7b
 	db $ff
 
 FireClub_OWInteractions:
@@ -2794,10 +2794,10 @@ Func_2f86e:
 	jr nz, .asm_2f891
 	xor a
 	start_script
-	set_npc_position_and_direction OW_KEN, 7, 10, SOUTH
-	set_npc_position_and_direction OW_JOHN, 6, 10, SOUTH
-	set_npc_position_and_direction OW_ADAM, 5, 10, SOUTH
-	set_npc_position_and_direction OW_JONATHAN, 8, 10, SOUTH
+	set_npc_position_and_direction NPC_KEN, 7, 10, SOUTH
+	set_npc_position_and_direction NPC_JOHN, 6, 10, SOUTH
+	set_npc_position_and_direction NPC_ADAM, 5, 10, SOUTH
+	set_npc_position_and_direction NPC_JONATHAN, 8, 10, SOUTH
 	end_script
 	jr .asm_2f8c6
 .asm_2f891
@@ -2812,10 +2812,10 @@ Func_2f86e:
 	jr z, .asm_2f8c6
 	xor a
 	start_script
-	set_npc_position_and_direction OW_KEN, 7, 10, SOUTH
-	set_npc_position_and_direction OW_JOHN, 6, 10, SOUTH
-	set_npc_position_and_direction OW_ADAM, 5, 10, SOUTH
-	set_npc_position_and_direction OW_JONATHAN, 8, 10, SOUTH
+	set_npc_position_and_direction NPC_KEN, 7, 10, SOUTH
+	set_npc_position_and_direction NPC_JOHN, 6, 10, SOUTH
+	set_npc_position_and_direction NPC_ADAM, 5, 10, SOUTH
+	set_npc_position_and_direction NPC_JONATHAN, 8, 10, SOUTH
 	end_script
 .asm_2f8c6
 	scf
@@ -2839,11 +2839,11 @@ Func_2f8d8:
 	ret
 
 FireClub_AfterDuelScripts:
-	npc_script OW_KEN, $0b, $ed, $79
-	npc_script OW_JOHN, $0b, $85, $7a
-	npc_script OW_ADAM, $0b, $32, $7b
-	npc_script OW_JONATHAN, $0b, $b7, $7b
-	npc_script OW_GR_3, $0b, $0e, $7c
+	npc_script NPC_KEN, $0b, $ed, $79
+	npc_script NPC_JOHN, $0b, $85, $7a
+	npc_script NPC_ADAM, $0b, $32, $7b
+	npc_script NPC_JONATHAN, $0b, $b7, $7b
+	npc_script NPC_GR_3, $0b, $0e, $7c
 	db $ff
 ; 0x2f8f8
 
@@ -2862,11 +2862,11 @@ PokemonDomeEntrance_StepEvents:
 	db $ff
 
 PokemonDomeEntrance_NPCs:
-	npc OW_BUTCH_2, 8, 3, NORTH, $1d, $7e
+	npc NPC_BUTCH_2, 8, 3, NORTH, $1d, $7e
 	db $ff
 
 PokemonDomeEntrance_NPCInteractions:
-	npc_script OW_BUTCH_2, $0b, $a3, $7d
+	npc_script NPC_BUTCH_2, $0b, $a3, $7d
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:
@@ -2941,13 +2941,13 @@ Func_2fe54:
 	ld a, [wd584]
 	cp 0
 	jr nz, .asm_2fe6c
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, 16, 128
 	ld b, EAST
 	farcall LoadOWObject
 	jr .asm_2fe77
 .asm_2fe6c
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, 144, 16
 	ld b, WEST
 	farcall LoadOWObject

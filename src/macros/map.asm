@@ -29,7 +29,7 @@ MACRO map_exit ; 9 bytes
 	_ow_coordinate_function \1, \2, \3, \4, \5, \6, Func_d3c4
 ENDM
 
-; \1 = OW_* object id
+; \1 = NPC_* object id
 ; \2 = x coordinate
 ; \3 = y coordinate
 ; \4 = direction
@@ -46,7 +46,7 @@ MACRO npc ; 6 bytes
 	ENDC
 ENDM
 
-; \1 = OW_* object id
+; \1 = NPC_* object id
 ; \2-\4 = bank, address of NPC function
 MACRO npc_script ; 4 bytes
 	db \1

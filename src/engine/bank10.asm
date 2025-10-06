@@ -38,7 +38,7 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_VOLCANO_SMOKE_TCG
+	ld a, NPC_VOLCANO_SMOKE_TCG
 	lb de, $78, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -61,7 +61,7 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	call PlacePlayerInTCGIslandLocation
 
-	ld a, OW_CURSOR_TCG
+	ld a, NPC_CURSOR_TCG
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
@@ -98,14 +98,14 @@ Func_4048a:
 	ld a, [wd584]
 	cp $26
 	jr z, .asm_40528
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $50, $78
 	ld b, EAST
 	farcall LoadOWObject
 	scf
 	ret
 .asm_40528
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $90, $60
 	ld b, WEST
 	farcall LoadOWObject
@@ -191,7 +191,7 @@ UpdateTCGIslandCursorPosition:
 	ld a, [hl]
 	sub 12
 	ld e, a
-	ld a, OW_CURSOR_TCG
+	ld a, NPC_CURSOR_TCG
 	farcall SetOWObjectPosition
 	ret
 
@@ -539,9 +539,9 @@ DoGRShipMovement:
 	ld b, a
 	push hl
 	push bc
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectTargetPosition
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	pop bc
 	farcall _SetOWObjectDirection
 
@@ -645,23 +645,23 @@ MasonLaboratoryMain_StepEvents:
 	db $ff
 
 MasonLaboratoryMain_NPCs:
-	npc OW_DR_MASON, 7, 5, SOUTH, $0
-	npc OW_SAM, 2, 7, EAST, $0
-	npc OW_TECH_9, 3, 2, SOUTH, $0
-	npc OW_TECH_10, 11, 8, SOUTH, $0
-	npc OW_TECH_11, 9, 10, WEST, $0
-	npc OW_TECH_12, 10, 4, WEST, $0
-	npc OW_RONALD, 3, 6, SOUTH, $521d
+	npc NPC_DR_MASON, 7, 5, SOUTH, $0
+	npc NPC_SAM, 2, 7, EAST, $0
+	npc NPC_TECH_9, 3, 2, SOUTH, $0
+	npc NPC_TECH_10, 11, 8, SOUTH, $0
+	npc NPC_TECH_11, 9, 10, WEST, $0
+	npc NPC_TECH_12, 10, 4, WEST, $0
+	npc NPC_RONALD, 3, 6, SOUTH, $521d
 	db $ff
 
 MasonLaboratoryMain_NPCInteractions:
-	npc_script OW_DR_MASON, $10, $5188
-	npc_script OW_SAM, $10, $5233
-	npc_script OW_TECH_9, $10, $5370
-	npc_script OW_TECH_10, $10, $5396
-	npc_script OW_TECH_11, $10, $53bc
-	npc_script OW_TECH_12, $10, $53e2
-	npc_script OW_RONALD, $10, $51f2
+	npc_script NPC_DR_MASON, $10, $5188
+	npc_script NPC_SAM, $10, $5233
+	npc_script NPC_TECH_9, $10, $5370
+	npc_script NPC_TECH_10, $10, $5396
+	npc_script NPC_TECH_11, $10, $53bc
+	npc_script NPC_TECH_12, $10, $53e2
+	npc_script NPC_RONALD, $10, $51f2
 	db $ff
 
 MasonLaboratoryMain_OWInteractions:
@@ -685,8 +685,8 @@ MasonLaboratoryMain_MapScripts:
 SECTION "Bank 10@4f3d", ROMX[$4f3d], BANK[$10]
 
 MasonLaboratoryMain_AfterDuelScripts:
-	npc_script OW_DR_MASON, $10, $533e
-	npc_script OW_SAM, $10, $52c0
+	npc_script NPC_DR_MASON, $10, $533e
+	npc_script NPC_SAM, $10, $52c0
 	db $ff
 ; gap from 0x40f46 to 0x41592
 
@@ -703,16 +703,16 @@ TcgChallengeHall_StepEvents:
 	db $ff
 
 TcgChallengeHall_NPCs:
-	npc OW_GAL_3, 7, 2, SOUTH, $5768
-	npc OW_LASS2_5, 10, 9, SOUTH, $5768
-	npc OW_LASS1_5, 5, 9, SOUTH, $5768
-	npc OW_MAN_3, 7, 10, SOUTH, $5751
+	npc NPC_GAL_3, 7, 2, SOUTH, $5768
+	npc NPC_LASS2_5, 10, 9, SOUTH, $5768
+	npc NPC_LASS1_5, 5, 9, SOUTH, $5768
+	npc NPC_MAN_3, 7, 10, SOUTH, $5751
 	db $ff
 
 TcgChallengeHall_NPCInteractions:
-	npc_script OW_LASS1_5, $10, $5662
-	npc_script OW_LASS2_5, $10, $5705
-	npc_script OW_MAN_3, $10, $5720
+	npc_script NPC_LASS1_5, $10, $5662
+	npc_script NPC_LASS2_5, $10, $5705
+	npc_script NPC_MAN_3, $10, $5720
 	db $ff
 
 TcgChallengeHall_MapScripts:
@@ -743,11 +743,11 @@ GrAirport_StepEvents:
 	db $ff
 
 GrAirport_NPCs:
-	npc OW_GR_5, 4, 8, SOUTH, $0
+	npc NPC_GR_5, 4, 8, SOUTH, $0
 	db $ff
 
 GrAirport_NPCInteractions:
-	npc_script OW_GR_5, $10, $5cd3
+	npc_script NPC_GR_5, $10, $5cd3
 	db $ff
 
 GrAirport_MapScripts:
@@ -796,15 +796,15 @@ SealedFort_MapScripts:
 SECTION "Bank 10@5f41", ROMX[$5f41], BANK[$10]
 
 SealedFort_AfterDuelScripts:
-	npc_script OW_TOBICHAN, $10, $6050
-	npc_script OW_EIJI, $10, $60eb
-	npc_script OW_MAGICIAN, $10, $6186
-	npc_script OW_TOSHIRON, $10, $6221
-	npc_script OW_PIERROT, $10, $62be
-	npc_script OW_ANNA, $10, $6359
-	npc_script OW_DEE, $10, $63f6
-	npc_script OW_MASQUERADE, $10, $6491
-	npc_script OW_YUI, $10, $652c
+	npc_script NPC_TOBICHAN, $10, $6050
+	npc_script NPC_EIJI, $10, $60eb
+	npc_script NPC_MAGICIAN, $10, $6186
+	npc_script NPC_TOSHIRON, $10, $6221
+	npc_script NPC_PIERROT, $10, $62be
+	npc_script NPC_ANNA, $10, $6359
+	npc_script NPC_DEE, $10, $63f6
+	npc_script NPC_MASQUERADE, $10, $6491
+	npc_script NPC_YUI, $10, $652c
 	db $ff
 ; gap from 0x41f66 to 0x425cf
 
@@ -821,16 +821,16 @@ GrChallengeHall_StepEvents:
 	db $ff
 
 GrChallengeHall_NPCs:
-	npc OW_GAL_3, 7, 2, SOUTH, $694a
-	npc OW_LASS1_6, 4, 8, SOUTH, $694a
-	npc OW_LASS2_7, 11, 8, SOUTH, $694a
-	npc OW_GR_STAFF, 8, 6, NORTH, $699f
+	npc NPC_GAL_3, 7, 2, SOUTH, $694a
+	npc NPC_LASS1_6, 4, 8, SOUTH, $694a
+	npc NPC_LASS2_7, 11, 8, SOUTH, $694a
+	npc NPC_GR_STAFF, 8, 6, NORTH, $699f
 	db $ff
 
 GrChallengeHall_NPCInteractions:
-	npc_script OW_LASS1_6, $10, $688d
-	npc_script OW_LASS2_7, $10, $692f
-	npc_script OW_GR_STAFF, $10, $6961
+	npc_script NPC_LASS1_6, $10, $688d
+	npc_script NPC_LASS2_7, $10, $692f
+	npc_script NPC_GR_STAFF, $10, $6961
 	db $ff
 
 GrChallengeHall_OWInteractions:
@@ -908,11 +908,11 @@ GrCastleBiruritchi_StepEvents:
 	db $ff
 
 GrCastleBiruritchi_NPCs:
-	npc OW_BIRURITCHI, 7, 5, SOUTH, $0
+	npc NPC_BIRURITCHI, 7, 5, SOUTH, $0
 	db $ff
 
 GrCastleBiruritchi_NPCInteractions:
-	npc_script OW_BIRURITCHI, $10, $7136
+	npc_script NPC_BIRURITCHI, $10, $7136
 	db $ff
 
 GrCastleBiruritchi_OWInteractions:
@@ -935,5 +935,5 @@ GrCastleBiruritchi_MapScripts:
 SECTION "Bank 10@6fc8", ROMX[$6fc8], BANK[$10]
 
 GrCastleBiruritchi_AfterDuelScripts:
-	npc_script OW_BIRURITCHI, $10, $71a6
+	npc_script NPC_BIRURITCHI, $10, $71a6
 	db $ff

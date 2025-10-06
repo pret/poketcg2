@@ -1958,7 +1958,7 @@ ENDR
 	pop af
 	ret
 
-; a = OW_* constant
+; a = NPC_* constant
 LoadOWObjectInMap::
 	push af
 	push bc
@@ -2023,7 +2023,7 @@ GetOWObjectAnimStruct1Flag0And1::
 	call _GetOWObjectAnimStruct1Flag0And1
 	ret
 
-; a = OW_* constant (ow_object)
+; a = NPC_* constant (ow_object)
 ; b = direction
 SetOWObjectDirection::
 	call _SetOWObjectDirection
@@ -2444,52 +2444,52 @@ IsStillOWObject:
 	ret
 
 .OWObjectList
-	db OW_MARK
-	db OW_MINT
-	db OW_AMY_LOUNGE
-	db OW_CLERK_1
-	db OW_CLERK_2
-	db OW_GR_CLERK_1
-	db OW_GR_CLERK_2
-	db OW_GR_CLERK_3
-	db OW_GR_CLERK_4
-	db OW_GR_CLERK_5
-	db OW_CLERK_3
-	db OW_GR_CLERK_6
-	db OW_GR_CLERK_7
-	db OW_GR_CLERK_8
-	db OW_GR_CLERK_9
-	db OW_GR_CLERK_10
-	db OW_GR_CLERK_11
-	db OW_GR_CLERK_12
-	db OW_GR_CLERK_13
-	db OW_CAPTURED_AMY
-	db OW_CAPTURED_SARA
-	db OW_CAPTURED_AMANDA
-	db OW_WARP_SPARKLES
-	db OW_GR_CLERK_14
-	db OW_GR_CLERK_15
-	db OW_GR_CLERK_16
-	db OW_GR_CLERK_17
-	db OW_VOLCANO_SMOKE_TCG
-	db OW_VOLCANO_SMOKE_GR
-	db OW_CURSOR_TCG
-	db OW_CURSOR_GR
-	db OW_GR_CROSS
-	db OW_GR_CASTLE_FLAG
-	db OW_CHEST_CLOSED
-	db OW_CHEST_OPENED
-	db OW_GR_BLIMP_BEAM
-	db OW_GR_BLIMP
-	db OW_POD_DOORS
-	db OW_GR_CLERK_18
-	db OW_LASS1_6
-	db OW_LASS2_7
-	db OW_RED_FORT_COIN
-	db OW_BLUE_FORT_COIN
-	db OW_WHITE_CASTLE_COIN
-	db OW_PURPLE_CASTLE_COIN
-	db OW_STRONGHOLD_PLATFORM
+	db NPC_MARK
+	db NPC_MINT
+	db NPC_AMY_LOUNGE
+	db NPC_CLERK_1
+	db NPC_CLERK_2
+	db NPC_GR_CLERK_1
+	db NPC_GR_CLERK_2
+	db NPC_GR_CLERK_3
+	db NPC_GR_CLERK_4
+	db NPC_GR_CLERK_5
+	db NPC_CLERK_3
+	db NPC_GR_CLERK_6
+	db NPC_GR_CLERK_7
+	db NPC_GR_CLERK_8
+	db NPC_GR_CLERK_9
+	db NPC_GR_CLERK_10
+	db NPC_GR_CLERK_11
+	db NPC_GR_CLERK_12
+	db NPC_GR_CLERK_13
+	db NPC_CAPTURED_AMY
+	db NPC_CAPTURED_SARA
+	db NPC_CAPTURED_AMANDA
+	db NPC_WARP_SPARKLES
+	db NPC_GR_CLERK_14
+	db NPC_GR_CLERK_15
+	db NPC_GR_CLERK_16
+	db NPC_GR_CLERK_17
+	db NPC_VOLCANO_SMOKE_TCG
+	db NPC_VOLCANO_SMOKE_GR
+	db NPC_CURSOR_TCG
+	db NPC_CURSOR_GR
+	db NPC_GR_CROSS
+	db NPC_GR_CASTLE_FLAG
+	db NPC_CHEST_CLOSED
+	db NPC_CHEST_OPENED
+	db NPC_GR_BLIMP_BEAM
+	db NPC_GR_BLIMP
+	db NPC_POD_DOORS
+	db NPC_GR_CLERK_18
+	db NPC_LASS1_6
+	db NPC_LASS2_7
+	db NPC_RED_FORT_COIN
+	db NPC_BLUE_FORT_COIN
+	db NPC_WHITE_CASTLE_COIN
+	db NPC_PURPLE_CASTLE_COIN
+	db NPC_STRONGHOLD_PLATFORM
 	db $ff ; end
 
 Func_11002:
@@ -2989,7 +2989,7 @@ _GetOWObjectAnimStruct1Flag0And1:
 	pop af
 	ret
 
-; a = OW_* constant (ow_object)
+; a = NPC_* constant (ow_object)
 ; b = direction
 _SetOWObjectDirection:
 	push af

@@ -27,7 +27,7 @@ Prologue::
 	call EnableLCD
 
 	; do GR Ship movement
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $a0, $30
 	ld b, WEST
 	farcall LoadOWObject
@@ -103,7 +103,7 @@ Prologue::
 	ld a, [wPlayerOWObject]
 	farcall _SetAndInitOWObjectFrameset
 
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall _ClearOWObject
 
 	ld bc, TILEMAP_002
@@ -149,7 +149,7 @@ Prologue::
 ; de = target position
 .MoveGRShip:
 	push bc
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectTargetPosition
 	pop bc
 .loop
@@ -159,7 +159,7 @@ Prologue::
 	farcall MoveOWObjectToTargetPosition
 	pop bc
 	; override direction
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall _SetOWObjectDirection
 	jr c, .loop
 	ret
@@ -167,7 +167,7 @@ Prologue::
 .DoGRShipBeamAnimation:
 	ld a, SFX_8B
 	call PlaySFX
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall GetOWObjectPosition
 	ld a, e
 	add $10
@@ -175,11 +175,11 @@ Prologue::
 	ld a, d
 	sub $04
 	ld d, a
-	ld a, OW_GR_BLIMP_BEAM
+	ld a, NPC_GR_BLIMP_BEAM
 	ld b, SOUTH
 	farcall LoadOWObject
 	call WaitForOWObjectAnimation
-	ld a, OW_GR_BLIMP_BEAM
+	ld a, NPC_GR_BLIMP_BEAM
 	farcall _ClearOWObject
 	ret
 
@@ -260,7 +260,7 @@ Func_3c3ca:
 .ows_3c42d
 	move_active_npc $4492
 	wait_for_player_animation
-	unload_npc OW_IMAKUNI_BLACK
+	unload_npc NPC_IMAKUNI_BLACK
 	end_script
 	ld a, $00
 	ld [wd582], a
@@ -334,17 +334,17 @@ MasonLaboratorySide1_StepEvents:
 	db $ff
 
 MasonLaboratorySide1_NPCs:
-	npc OW_TECH_13, 4, 3, SOUTH, $0
-	npc OW_TECH_14, 7, 3, SOUTH, $0
-	npc OW_TECH_15, 3, 8, NORTH, $0
-	npc OW_TECH_16, 7, 9, EAST, $0
+	npc NPC_TECH_13, 4, 3, SOUTH, $0
+	npc NPC_TECH_14, 7, 3, SOUTH, $0
+	npc NPC_TECH_15, 3, 8, NORTH, $0
+	npc NPC_TECH_16, 7, 9, EAST, $0
 	db $ff
 
 MasonLaboratorySide1_NPCInteractions:
-	npc_script OW_TECH_13, $0f, $4739
-	npc_script OW_TECH_14, $0f, $475f
-	npc_script OW_TECH_15, $0f, $477a
-	npc_script OW_TECH_16, $0f, $47ab
+	npc_script NPC_TECH_13, $0f, $4739
+	npc_script NPC_TECH_14, $0f, $475f
+	npc_script NPC_TECH_15, $0f, $477a
+	npc_script NPC_TECH_16, $0f, $47ab
 	db $ff
 
 MasonLaboratorySide1_OWInteractions:
@@ -377,13 +377,13 @@ MasonLaboratorySide2_StepEvents:
 	db $ff
 
 MasonLaboratorySide2_NPCs:
-	npc OW_AARON, 11, 2, NORTH, $0
-	npc OW_TECH_17, 10, 11, EAST, $0
+	npc NPC_AARON, 11, 2, NORTH, $0
+	npc NPC_TECH_17, 10, 11, EAST, $0
 	db $ff
 
 MasonLaboratorySide2_NPCInteractions:
-	npc_script OW_AARON, $0f, $484c
-	npc_script OW_TECH_17, $0f, $4a4d
+	npc_script NPC_AARON, $0f, $484c
+	npc_script NPC_TECH_17, $0f, $4a4d
 	db $ff
 
 MasonLaboratorySide2_MapScripts:
@@ -397,10 +397,10 @@ MasonLaboratorySide2_MapScripts:
 SECTION "Bank f@483b", ROMX[$483b], BANK[$f]
 
 MasonLaboratorySide2_AfterDuelScripts:
-	npc_script OW_MINT, $0f, $4931
-	npc_script OW_DR_MASON, $0f, $497e
-	npc_script OW_RONALD, $0f, $49cb
-	npc_script OW_ISHIHARA, $0f, $4a28
+	npc_script NPC_MINT, $0f, $4931
+	npc_script NPC_DR_MASON, $0f, $497e
+	npc_script NPC_RONALD, $0f, $49cb
+	npc_script NPC_ISHIHARA, $0f, $4a28
 	db $ff
 ; gap from 0x3c84c to 0x3cb88
 
@@ -442,25 +442,25 @@ LightningClubLobby_StepEvents:
 	db $ff
 
 LightningClubLobby_NPCs:
-	npc OW_JENNIFER, 9, 8, EAST, $4db1
-	npc OW_BRANDON, 9, 6, EAST, $4db1
-	npc OW_LASS3_2, 11, 2, NORTH, $0
-	npc OW_HOOD_4, 9, 4, SOUTH, $0
-	npc OW_LASS1_3, 5, 6, EAST, $4e9b
-	npc OW_GR_LASS_7, 5, 6, EAST, $4ea8
-	npc OW_CHAP_2, 8, 9, WEST, $0
-	npc OW_CLERK_1, 2, 2, SOUTH, $0
-	npc OW_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_JENNIFER, 9, 8, EAST, $4db1
+	npc NPC_BRANDON, 9, 6, EAST, $4db1
+	npc NPC_LASS3_2, 11, 2, NORTH, $0
+	npc NPC_HOOD_4, 9, 4, SOUTH, $0
+	npc NPC_LASS1_3, 5, 6, EAST, $4e9b
+	npc NPC_GR_LASS_7, 5, 6, EAST, $4ea8
+	npc NPC_CHAP_2, 8, 9, WEST, $0
+	npc NPC_CLERK_1, 2, 2, SOUTH, $0
+	npc NPC_CLERK_2, 4, 2, SOUTH, $0
 	db $ff
 
 LightningClubLobby_NPCInteractions:
-	npc_script OW_JENNIFER, $0f, $4d4b
-	npc_script OW_BRANDON, $0f, $4d7e
-	npc_script OW_LASS3_2, $0f, $4dc6
-	npc_script OW_HOOD_4, $0f, $4e39
-	npc_script OW_LASS1_3, $0f, $4e6a
-	npc_script OW_GR_LASS_7, $0f, $4e6a
-	npc_script OW_CHAP_2, $0f, $4eb5
+	npc_script NPC_JENNIFER, $0f, $4d4b
+	npc_script NPC_BRANDON, $0f, $4d7e
+	npc_script NPC_LASS3_2, $0f, $4dc6
+	npc_script NPC_HOOD_4, $0f, $4e39
+	npc_script NPC_LASS1_3, $0f, $4e6a
+	npc_script NPC_GR_LASS_7, $0f, $4e6a
+	npc_script NPC_CHAP_2, $0f, $4eb5
 	db $ff
 
 LightningClubLobby_OWInteractions:
@@ -494,23 +494,23 @@ GrassClubLobby_StepEvents:
 	db $ff
 
 GrassClubLobby_NPCs:
-	npc OW_BRITTANY, 7, 9, WEST, $50ec
-	npc OW_KRISTIN, 6, 6, EAST, $50ec
-	npc OW_HEATHER, 10, 8, EAST, $50ec
-	npc OW_GRANNY, 3, 10, EAST, $5189
-	npc OW_LASS2_3, 11, 4, SOUTH, $5189
-	npc OW_GIRL_5, 7, 8, WEST, $5189
-	npc OW_CLERK_1, 2, 2, SOUTH, $0
-	npc OW_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_BRITTANY, 7, 9, WEST, $50ec
+	npc NPC_KRISTIN, 6, 6, EAST, $50ec
+	npc NPC_HEATHER, 10, 8, EAST, $50ec
+	npc NPC_GRANNY, 3, 10, EAST, $5189
+	npc NPC_LASS2_3, 11, 4, SOUTH, $5189
+	npc NPC_GIRL_5, 7, 8, WEST, $5189
+	npc NPC_CLERK_1, 2, 2, SOUTH, $0
+	npc NPC_CLERK_2, 4, 2, SOUTH, $0
 	db $ff
 
 GrassClubLobby_NPCInteractions:
-	npc_script OW_BRITTANY, $0f, $4fd8
-	npc_script OW_KRISTIN, $0f, $5064
-	npc_script OW_HEATHER, $0f, $50a8
-	npc_script OW_GRANNY, $0f, $5101
-	npc_script OW_LASS2_3, $0f, $5127
-	npc_script OW_GIRL_5, $0f, $5158
+	npc_script NPC_BRITTANY, $0f, $4fd8
+	npc_script NPC_KRISTIN, $0f, $5064
+	npc_script NPC_HEATHER, $0f, $50a8
+	npc_script NPC_GRANNY, $0f, $5101
+	npc_script NPC_LASS2_3, $0f, $5127
+	npc_script NPC_GIRL_5, $0f, $5158
 	db $ff
 
 GrassClubLobby_OWInteractions:
@@ -535,7 +535,7 @@ GrassClubLobby_MapScripts:
 SECTION "Bank f@4fd3", ROMX[$4fd3], BANK[$f]
 
 GrassClubLobby_AfterDuelScripts:
-	npc_script OW_BRITTANY, $0f, $502b
+	npc_script NPC_BRITTANY, $0f, $502b
 	db $ff
 ; gap from 0x3cfd8 to 0x3d19e
 
@@ -556,11 +556,11 @@ TcgChallengeHallEntrance_StepEvents:
 	db $ff
 
 TcgChallengeHallEntrance_NPCs:
-	npc OW_CLERK_3, 3, 1, SOUTH, $0
+	npc NPC_CLERK_3, 3, 1, SOUTH, $0
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
-	npc_script OW_CLERK_3, $0f, $5271
+	npc_script NPC_CLERK_3, $0f, $5271
 	db $ff
 
 TcgChallengeHallEntrance_MapScripts:
@@ -585,23 +585,23 @@ TcgChallengeHallLobby_StepEvents:
 	db $ff
 
 TcgChallengeHallLobby_NPCs:
-	npc OW_CHAP_3, 10, 4, SOUTH, $0
-	npc OW_GAL_3, 7, 9, EAST, $55a3
-	npc OW_HOOD_5, 5, 6, EAST, $55a3
-	npc OW_PAPPY_4, 4, 9, EAST, $55ba
-	npc OW_TECH_7, 9, 10, NORTH, $55ba
-	npc OW_GIRL_6, 13, 9, WEST, $55ba
-	npc OW_CLERK_1, 2, 2, SOUTH, $0
-	npc OW_CLERK_2, 4, 2, SOUTH, $0
+	npc NPC_CHAP_3, 10, 4, SOUTH, $0
+	npc NPC_GAL_3, 7, 9, EAST, $55a3
+	npc NPC_HOOD_5, 5, 6, EAST, $55a3
+	npc NPC_PAPPY_4, 4, 9, EAST, $55ba
+	npc NPC_TECH_7, 9, 10, NORTH, $55ba
+	npc NPC_GIRL_6, 13, 9, WEST, $55ba
+	npc NPC_CLERK_1, 2, 2, SOUTH, $0
+	npc NPC_CLERK_2, 4, 2, SOUTH, $0
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
-	npc_script OW_CHAP_3, $0f, $53c0
-	npc_script OW_GAL_3, $0f, $54e9
-	npc_script OW_HOOD_5, $0f, $5511
-	npc_script OW_PAPPY_4, $0f, $5539
-	npc_script OW_TECH_7, $0f, $556d
-	npc_script OW_GIRL_6, $0f, $5588
+	npc_script NPC_CHAP_3, $0f, $53c0
+	npc_script NPC_GAL_3, $0f, $54e9
+	npc_script NPC_HOOD_5, $0f, $5511
+	npc_script NPC_PAPPY_4, $0f, $5539
+	npc_script NPC_TECH_7, $0f, $556d
+	npc_script NPC_GIRL_6, $0f, $5588
 	db $ff
 
 TcgChallengeHallLobby_OWInteractions:
@@ -635,29 +635,29 @@ PokemonDome_StepEvents:
 	db $ff
 
 PokemonDome_NPCs:
-	npc OW_COURTNEY, 3, 6, EAST, $57e2
-	npc OW_STEVE, 9, 6, EAST, $5889
-	npc OW_JACK, 12, 6, WEST, $592c
-	npc OW_ROD, 6, 6, SOUTH, $59b1
-	npc OW_GR_5, 7, 8, SOUTH, $59fc
-	npc OW_LASS1_5, 7, 4, SOUTH, $5af0
-	npc OW_LASS2_5, 8, 4, SOUTH, $5af0
-	npc OW_GR_LASS_8, 4, 12, EAST, $5af0
-	npc OW_YOUNGSTER_5, 9, 8, SOUTH, $5af0
-	npc OW_SWIMMER, 2, 5, EAST, $5af0
+	npc NPC_COURTNEY, 3, 6, EAST, $57e2
+	npc NPC_STEVE, 9, 6, EAST, $5889
+	npc NPC_JACK, 12, 6, WEST, $592c
+	npc NPC_ROD, 6, 6, SOUTH, $59b1
+	npc NPC_GR_5, 7, 8, SOUTH, $59fc
+	npc NPC_LASS1_5, 7, 4, SOUTH, $5af0
+	npc NPC_LASS2_5, 8, 4, SOUTH, $5af0
+	npc NPC_GR_LASS_8, 4, 12, EAST, $5af0
+	npc NPC_YOUNGSTER_5, 9, 8, SOUTH, $5af0
+	npc NPC_SWIMMER, 2, 5, EAST, $5af0
 	db $ff
 
 PokemonDome_NPCInteractions:
-	npc_script OW_COURTNEY, $0f, $5768
-	npc_script OW_STEVE, $0f, $5805
-	npc_script OW_JACK, $0f, $58ac
-	npc_script OW_ROD, $0f, $594f
-	npc_script OW_GR_5, $0f, $59d4
-	npc_script OW_LASS1_5, $0f, $5a09
-	npc_script OW_LASS2_5, $0f, $5a09
-	npc_script OW_GR_LASS_8, $0f, $5a6c
-	npc_script OW_YOUNGSTER_5, $0f, $5a97
-	npc_script OW_SWIMMER, $0f, $5abf
+	npc_script NPC_COURTNEY, $0f, $5768
+	npc_script NPC_STEVE, $0f, $5805
+	npc_script NPC_JACK, $0f, $58ac
+	npc_script NPC_ROD, $0f, $594f
+	npc_script NPC_GR_5, $0f, $59d4
+	npc_script NPC_LASS1_5, $0f, $5a09
+	npc_script NPC_LASS2_5, $0f, $5a09
+	npc_script NPC_GR_LASS_8, $0f, $5a6c
+	npc_script NPC_YOUNGSTER_5, $0f, $5a97
+	npc_script NPC_SWIMMER, $0f, $5abf
 	db $ff
 
 PokemonDome_OWInteractions:
@@ -680,9 +680,9 @@ PokemonDome_MapScripts:
 SECTION "Bank f@575b", ROMX[$575b], BANK[$f]
 
 PokemonDome_AfterDuelScripts:
-	npc_script OW_COURTNEY, $0f, $57c6
-	npc_script OW_STEVE, $0f, $586d
-	npc_script OW_JACK, $0f, $5910
+	npc_script NPC_COURTNEY, $0f, $57c6
+	npc_script NPC_STEVE, $0f, $586d
+	npc_script NPC_JACK, $0f, $5910
 	db $ff
 ; gap from 0x3d768 to 0x3dd58
 
@@ -699,11 +699,11 @@ PokemonDomeBack_StepEvents:
 	db $ff
 
 PokemonDomeBack_NPCs:
-	npc OW_COURTNEY, 7, 13, SOUTH, $0
-	npc OW_STEVE, 8, 12, SOUTH, $0
-	npc OW_JACK, 8, 13, SOUTH, $0
-	npc OW_ROD, 7, 12, SOUTH, $0
-	npc OW_GAL_3, 7, 2, SOUTH, $668b
+	npc NPC_COURTNEY, 7, 13, SOUTH, $0
+	npc NPC_STEVE, 8, 12, SOUTH, $0
+	npc NPC_JACK, 8, 13, SOUTH, $0
+	npc NPC_ROD, 7, 12, SOUTH, $0
+	npc NPC_GAL_3, 7, 2, SOUTH, $668b
 	db $ff
 
 PokemonDomeBack_MapScripts:
@@ -733,13 +733,13 @@ IshiharasVilla1_StepEvents:
 	db $ff
 
 IshiharasVilla1_NPCs:
-	npc OW_ISHIHARA, 6, 5, WEST, $67d6
-	npc OW_GR_GAL_4, 2, 2, NORTH, $68d3
+	npc NPC_ISHIHARA, 6, 5, WEST, $67d6
+	npc NPC_GR_GAL_4, 2, 2, NORTH, $68d3
 	db $ff
 
 IshiharasVilla1_NPCInteractions:
-	npc_script OW_ISHIHARA, $0f, $67c0
-	npc_script OW_GR_GAL_4, $0f, $68b1
+	npc_script NPC_ISHIHARA, $0f, $67c0
+	npc_script NPC_GR_GAL_4, $0f, $68b1
 	db $ff
 
 IshiharasVilla1_OWInteractions:
@@ -772,13 +772,13 @@ IshiharasVilla2_StepEvents:
 	db $ff
 
 IshiharasVilla2_NPCs:
-	npc OW_ISHIHARA, 5, 4, SOUTH, $6a55
-	npc OW_GR_GAL_4, 4, 2, NORTH, $6cd5
+	npc NPC_ISHIHARA, 5, 4, SOUTH, $6a55
+	npc NPC_GR_GAL_4, 4, 2, NORTH, $6cd5
 	db $ff
 
 IshiharasVilla2_NPCInteractions:
-	npc_script OW_ISHIHARA, $0f, $6a12
-	npc_script OW_GR_GAL_4, $0f, $6c75
+	npc_script NPC_ISHIHARA, $0f, $6a12
+	npc_script NPC_GR_GAL_4, $0f, $6c75
 	db $ff
 
 IshiharasVilla2_OWInteractions:
@@ -823,15 +823,15 @@ GameCenterEntrance_StepEvents:
 	db $ff
 
 GameCenterEntrance_NPCs:
-	npc OW_GR_CLERK_16, 9, 2, SOUTH, $0
-	npc OW_GR_CLERK_17, 2, 2, SOUTH, $0
-	npc OW_CHIP_GIRL_1, 5, 2, SOUTH, $0
-	npc OW_MONOCLE_1, 4, 9, EAST, $0
+	npc NPC_GR_CLERK_16, 9, 2, SOUTH, $0
+	npc NPC_GR_CLERK_17, 2, 2, SOUTH, $0
+	npc NPC_CHIP_GIRL_1, 5, 2, SOUTH, $0
+	npc NPC_MONOCLE_1, 4, 9, EAST, $0
 	db $ff
 
 GameCenterEntrance_NPCInteractions:
-	npc_script OW_CHIP_GIRL_1, $0f, $6e11
-	npc_script OW_MONOCLE_1, $0f, $6e83
+	npc_script NPC_CHIP_GIRL_1, $0f, $6e11
+	npc_script NPC_MONOCLE_1, $0f, $6e83
 	db $ff
 
 GameCenterEntrance_OWInteractions:
@@ -859,19 +859,19 @@ GameCenterLobby_StepEvents:
 	db $ff
 
 GameCenterLobby_NPCs:
-	npc OW_TECH_8, 10, 4, WEST, $0
-	npc OW_GR_LASS_6, 8, 9, EAST, $0
-	npc OW_GR_PAPPY_3, 3, 7, SOUTH, $0
-	npc OW_IMAKUNI_RED, 12, 1, NORTH, $703d
-	npc OW_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc OW_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_TECH_8, 10, 4, WEST, $0
+	npc NPC_GR_LASS_6, 8, 9, EAST, $0
+	npc NPC_GR_PAPPY_3, 3, 7, SOUTH, $0
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $703d
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
 	db $ff
 
 GameCenterLobby_NPCInteractions:
-	npc_script OW_TECH_8, $0f, $6fd6
-	npc_script OW_GR_LASS_6, $0f, $6ff1
-	npc_script OW_GR_PAPPY_3, $0f, $7017
-	npc_script OW_IMAKUNI_RED, $0f, $44e0
+	npc_script NPC_TECH_8, $0f, $6fd6
+	npc_script NPC_GR_LASS_6, $0f, $6ff1
+	npc_script NPC_GR_PAPPY_3, $0f, $7017
+	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
 GameCenterLobby_OWInteractions:
@@ -904,11 +904,11 @@ CardDungeonPawn_StepEvents:
 	db $ff
 
 CardDungeonPawn_NPCs:
-	npc OW_PAWN, 4, 4, SOUTH, $0
+	npc NPC_PAWN, 4, 4, SOUTH, $0
 	db $ff
 
 CardDungeonPawn_NPCInteractions:
-	npc_script OW_PAWN, $0f, $70d9
+	npc_script NPC_PAWN, $0f, $70d9
 	db $ff
 
 CardDungeonPawn_OWInteractions:
@@ -938,11 +938,11 @@ CardDungeonKnight_StepEvents:
 	db $ff
 
 CardDungeonKnight_NPCs:
-	npc OW_KNIGHT, 4, 3, SOUTH, $0
+	npc NPC_KNIGHT, 4, 3, SOUTH, $0
 	db $ff
 
 CardDungeonKnight_NPCInteractions:
-	npc_script OW_KNIGHT, $0f, $727f
+	npc_script NPC_KNIGHT, $0f, $727f
 	db $ff
 
 CardDungeonKnight_OWInteractions:
@@ -972,11 +972,11 @@ CardDungeonRook_StepEvents:
 	db $ff
 
 CardDungeonRook_NPCs:
-	npc OW_ROOK, 5, 3, SOUTH, $0
+	npc NPC_ROOK, 5, 3, SOUTH, $0
 	db $ff
 
 CardDungeonRook_NPCInteractions:
-	npc_script OW_ROOK, $0f, $744f
+	npc_script NPC_ROOK, $0f, $744f
 	db $ff
 
 CardDungeonRook_OWInteractions:
@@ -1006,21 +1006,21 @@ WaterFortLobby_StepEvents:
 	db $ff
 
 WaterFortLobby_NPCs:
-	npc OW_SPECS_2, 10, 10, WEST, $7718
-	npc OW_GR_LAD_3, 10, 10, WEST, $7735
-	npc OW_GR_GRANNY_2, 2, 7, SOUTH, $0
-	npc OW_GR_GAL_2, 5, 9, NORTH, $0
-	npc OW_IMAKUNI_RED, 12, 1, NORTH, $77a6
-	npc OW_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc OW_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_SPECS_2, 10, 10, WEST, $7718
+	npc NPC_GR_LAD_3, 10, 10, WEST, $7735
+	npc NPC_GR_GRANNY_2, 2, 7, SOUTH, $0
+	npc NPC_GR_GAL_2, 5, 9, NORTH, $0
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $77a6
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
 	db $ff
 
 WaterFortLobby_NPCInteractions:
-	npc_script OW_SPECS_2, $0f, $7691
-	npc_script OW_GR_LAD_3, $0f, $7691
-	npc_script OW_GR_GRANNY_2, $0f, $7752
-	npc_script OW_GR_GAL_2, $0f, $7780
-	npc_script OW_IMAKUNI_RED, $0f, $44e0
+	npc_script NPC_SPECS_2, $0f, $7691
+	npc_script NPC_GR_LAD_3, $0f, $7691
+	npc_script NPC_GR_GRANNY_2, $0f, $7752
+	npc_script NPC_GR_GAL_2, $0f, $7780
+	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
 WaterFortLobby_OWInteractions:
@@ -1055,13 +1055,13 @@ FightingFortMaze19_StepEvents:
 	db $ff
 
 FightingFortMaze19_NPCs:
-	npc OW_CHEST_CLOSED, 5, 3, SOUTH, $7830
-	npc OW_CHEST_OPENED, 5, 3, SOUTH, $784b
+	npc NPC_CHEST_CLOSED, 5, 3, SOUTH, $7830
+	npc NPC_CHEST_OPENED, 5, 3, SOUTH, $784b
 	db $ff
 
 FightingFortMaze19_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0f, $7817
-	npc_script OW_CHEST_OPENED, $0f, $783d
+	npc_script NPC_CHEST_CLOSED, $0f, $7817
+	npc_script NPC_CHEST_OPENED, $0f, $783d
 	db $ff
 
 FightingFortMaze19_MapScripts:
@@ -1083,13 +1083,13 @@ FightingFortBasement_StepEvents:
 	db $ff
 
 FightingFortBasement_NPCs:
-	npc OW_CHEST_CLOSED, 1, 1, SOUTH, $7925
-	npc OW_CHEST_OPENED, 1, 1, SOUTH, $7951
+	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, $7925
+	npc NPC_CHEST_OPENED, 1, 1, SOUTH, $7951
 	db $ff
 
 FightingFortBasement_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0f, $790c
-	npc_script OW_CHEST_OPENED, $0f, $7932
+	npc_script NPC_CHEST_CLOSED, $0f, $790c
+	npc_script NPC_CHEST_OPENED, $0f, $7932
 	db $ff
 
 FightingFortBasement_MapScripts:

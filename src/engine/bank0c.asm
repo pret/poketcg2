@@ -38,12 +38,12 @@ Func_300a8:
 	ld a, [wCurOWLocation]
 	ld [wPlayerOWLocation], a
 
-	ld a, OW_VOLCANO_SMOKE_GR
+	ld a, NPC_VOLCANO_SMOKE_GR
 	lb de, $3c, $20
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_GR_CASTLE_FLAG
+	ld a, NPC_GR_CASTLE_FLAG
 	lb de, $b0, $00
 	ld b, NORTH
 	farcall LoadOWObject
@@ -62,12 +62,12 @@ Func_300a8:
 	ld b, SOUTH
 	farcall LoadOWObject
 
-	ld a, OW_CURSOR_GR
+	ld a, NPC_CURSOR_GR
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
-	ld a, OW_GR_CROSS
+	ld a, NPC_GR_CROSS
 	lb de, 0, 0
 	ld b, NORTH
 	farcall LoadOWObject
@@ -102,7 +102,7 @@ Func_300a8:
 	ld a, [wd584]
 	cp $26
 	jr z, .asm_30159
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $18, $b0
 	ld b, EAST
 	farcall LoadOWObject
@@ -110,7 +110,7 @@ Func_300a8:
 	ret
 
 .asm_30159
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $30, $f0
 	ld b, EAST
 	farcall LoadOWObject
@@ -124,11 +124,11 @@ Func_300a8:
 	ret
 
 .Func_30175:
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
 	farcall SetOWScrollState
-	ld a, OW_GR_BLIMP
+	ld a, NPC_GR_BLIMP
 	lb de, $40, $f0
 	farcall SetOWObjectPosition
 	ret
@@ -214,25 +214,25 @@ Func_30202:
 	ld a, [hl]
 	sub 12
 	ld e, a
-	ld a, OW_CURSOR_GR
+	ld a, NPC_CURSOR_GR
 	farcall SetOWObjectPosition
-	ld a, OW_GR_CROSS
+	ld a, NPC_GR_CROSS
 	farcall SetOWObjectPosition
 	pop af
 
 	call Func_3030a
 	jr c, .asm_30233
 
-	ld a, OW_CURSOR_GR
+	ld a, NPC_CURSOR_GR
 	farcall SetOWObjectSpriteAnimFlag6
-	ld a, OW_GR_CROSS
+	ld a, NPC_GR_CROSS
 	farcall ResetOWObjectSpriteAnimFlag6
 	jr .done
 
 .asm_30233
-	ld a, OW_CURSOR_GR
+	ld a, NPC_CURSOR_GR
 	farcall ResetOWObjectSpriteAnimFlag6
-	ld a, OW_GR_CROSS
+	ld a, NPC_GR_CROSS
 	farcall SetOWObjectSpriteAnimFlag6
 	jr .done ; unnecessary jump
 
@@ -990,11 +990,11 @@ CardDungeonQueen_MapHeader:
 	db MUSIC_FORT_3
 
 CardDungeonQueen_NPCs:
-	npc OW_QUEEN, 3, 4, EAST, $0
+	npc NPC_QUEEN, 3, 4, EAST, $0
 	db $ff
 
 CardDungeonQueen_NPCInteractions:
-	npc_script OW_QUEEN, $0c, $51d5
+	npc_script NPC_QUEEN, $0c, $51d5
 	db $ff
 
 CardDungeonQueen_MapScripts:
@@ -1051,11 +1051,11 @@ GrChallengeHallEntrance_StepEvents:
 	db $ff
 
 GrChallengeHallEntrance_NPCs:
-	npc OW_GR_CLERK_18, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_18, 3, 1, SOUTH, $0
 	db $ff
 
 GrChallengeHallEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_18, $0c, $54a1
+	npc_script NPC_GR_CLERK_18, $0c, $54a1
 	db $ff
 
 GrChallengeHallEntrance_MapScripts:
@@ -1084,11 +1084,11 @@ GrassFortEntrance_StepEvents:
 	db $ff
 
 GrassFortEntrance_NPCs:
-	npc OW_GR_CLERK_7, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_7, 3, 1, SOUTH, $0
 	db $ff
 
 GrassFortEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_7, $0c, $55ad
+	npc_script NPC_GR_CLERK_7, $0c, $55ad
 	db $ff
 
 GrassFortEntrance_MapScripts:
@@ -1114,19 +1114,19 @@ GrassFortLobby_StepEvents:
 	db $ff
 
 GrassFortLobby_NPCs:
-	npc OW_GR_LAD_2, 3, 4, SOUTH, $0
-	npc OW_GR_PAPPY_2, 3, 9, WEST, $0
-	npc OW_GR_LASS_4, 7, 7, NORTH, $0
-	npc OW_IMAKUNI_RED, 12, 1, NORTH, $5776
-	npc OW_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc OW_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_LAD_2, 3, 4, SOUTH, $0
+	npc NPC_GR_PAPPY_2, 3, 9, WEST, $0
+	npc NPC_GR_LASS_4, 7, 7, NORTH, $0
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $5776
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
 	db $ff
 
 GrassFortLobby_NPCInteractions:
-	npc_script OW_GR_LAD_2, $0c, $56b5
-	npc_script OW_GR_PAPPY_2, $0c, $571f
-	npc_script OW_GR_LASS_4, $0c, $5745
-	npc_script OW_IMAKUNI_RED, $0f, $44e0
+	npc_script NPC_GR_LAD_2, $0c, $56b5
+	npc_script NPC_GR_PAPPY_2, $0c, $571f
+	npc_script NPC_GR_LASS_4, $0c, $5745
+	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
 GrassFortLobby_OWInteractions:
@@ -1161,12 +1161,12 @@ GrassFortMidori_StepEvents:
 	db $ff
 
 GrassFortMidori_NPCs:
-	npc OW_MIDORI, 5, 4, SOUTH, $0
-	npc OW_RICK, 6, 2, SOUTH, $5864
+	npc NPC_MIDORI, 5, 4, SOUTH, $0
+	npc NPC_RICK, 6, 2, SOUTH, $5864
 	db $ff
 
 GrassFortMidori_NPCInteractions:
-	npc_script OW_MIDORI, $0c, $5871
+	npc_script NPC_MIDORI, $0c, $5871
 	db $ff
 
 GrassFortMidori_OWInteractions:
@@ -1185,7 +1185,7 @@ GrassFortMidori_MapScripts:
 SECTION "Bank c@5830", ROMX[$5830], BANK[$c]
 
 GrassFortMidori_AfterDuelScripts:
-	npc_script OW_MIDORI, $0c, $58e2
+	npc_script NPC_MIDORI, $0c, $58e2
 	db $ff
 ; gap from 0x31835 to 0x31973
 
@@ -1204,11 +1204,11 @@ GrassFortYuta_StepEvents:
 	db $ff
 
 GrassFortYuta_NPCs:
-	npc OW_YUTA, 4, 3, SOUTH, $0
+	npc NPC_YUTA, 4, 3, SOUTH, $0
 	db $ff
 
 GrassFortYuta_NPCInteractions:
-	npc_script OW_YUTA, $0c, $5a12
+	npc_script NPC_YUTA, $0c, $5a12
 	db $ff
 
 GrassFortYuta_OWInteractions:
@@ -1228,7 +1228,7 @@ GrassFortYuta_MapScripts:
 SECTION "Bank c@5a0d", ROMX[$5a0d], BANK[$c]
 
 GrassFortYuta_AfterDuelScripts:
-	npc_script OW_YUTA, $0c, $5aa7
+	npc_script NPC_YUTA, $0c, $5aa7
 	db $ff
 ; gap from 0x31a12 to 0x31b29
 
@@ -1247,11 +1247,11 @@ GrassFortMiyuki_StepEvents:
 	db $ff
 
 GrassFortMiyuki_NPCs:
-	npc OW_MIYUKI, 9, 5, EAST, $0
+	npc NPC_MIYUKI, 9, 5, EAST, $0
 	db $ff
 
 GrassFortMiyuki_NPCInteractions:
-	npc_script OW_MIYUKI, $0c, $5bc8
+	npc_script NPC_MIYUKI, $0c, $5bc8
 	db $ff
 
 GrassFortMiyuki_OWInteractions:
@@ -1271,7 +1271,7 @@ GrassFortMiyuki_MapScripts:
 SECTION "Bank c@5bc3", ROMX[$5bc3], BANK[$c]
 
 GrassFortMiyuki_AfterDuelScripts:
-	npc_script OW_MIYUKI, $0c, $5c37
+	npc_script NPC_MIYUKI, $0c, $5c37
 	db $ff
 ; gap from 0x31bc8 to 0x31cbf
 
@@ -1292,11 +1292,11 @@ LightningFortEntrance_StepEvents:
 	db $ff
 
 LightningFortEntrance_NPCs:
-	npc OW_GR_CLERK_8, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_8, 3, 2, SOUTH, $0
 	db $ff
 
 LightningFortEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_8, $0c, $5d6e
+	npc_script NPC_GR_CLERK_8, $0c, $5d6e
 	db $ff
 
 LightningFortEntrance_OWInteractions:
@@ -1325,19 +1325,19 @@ LightningFortLobby_StepEvents:
 	db $ff
 
 LightningFortLobby_NPCs:
-	npc OW_GR_LASS_1, 5, 10, NORTH, $0
-	npc OW_GR_WOMAN_1, 3, 4, WEST, $0
-	npc OW_BUTCH_1, 10, 8, SOUTH, $0
-	npc OW_TAP, 8, 9, WEST, $0
-	npc OW_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc OW_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_GR_LASS_1, 5, 10, NORTH, $0
+	npc NPC_GR_WOMAN_1, 3, 4, WEST, $0
+	npc NPC_BUTCH_1, 10, 8, SOUTH, $0
+	npc NPC_TAP, 8, 9, WEST, $0
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
 	db $ff
 
 LightningFortLobby_NPCInteractions:
-	npc_script OW_GR_LASS_1, $0c, $5e82
-	npc_script OW_GR_WOMAN_1, $0c, $5ee8
-	npc_script OW_BUTCH_1, $0c, $5f2c
-	npc_script OW_TAP, $0c, $5f52
+	npc_script NPC_GR_LASS_1, $0c, $5e82
+	npc_script NPC_GR_WOMAN_1, $0c, $5ee8
+	npc_script NPC_BUTCH_1, $0c, $5f2c
+	npc_script NPC_TAP, $0c, $5f52
 	db $ff
 
 LightningFortLobby_OWInteractions:
@@ -1358,7 +1358,7 @@ LightningFortLobby_MapScripts:
 SECTION "Bank c@5e7d", ROMX[$5e7d], BANK[$c]
 
 LightningFortLobby_AfterDuelScripts:
-	npc_script OW_TAP, $0c, $5f8f
+	npc_script NPC_TAP, $0c, $5f8f
 	db $ff
 ; gap from 0x31e82 to 0x31fad
 
@@ -1377,11 +1377,11 @@ LightningFortRenna_StepEvents:
 	db $ff
 
 LightningFortRenna_NPCs:
-	npc OW_RENNA, 1, 2, NORTH, $0
+	npc NPC_RENNA, 1, 2, NORTH, $0
 	db $ff
 
 LightningFortRenna_NPCInteractions:
-	npc_script OW_RENNA, $0c, $6057
+	npc_script NPC_RENNA, $0c, $6057
 	db $ff
 
 LightningFortRenna_OWInteractions:
@@ -1401,7 +1401,7 @@ LightningFortRenna_MapScripts:
 SECTION "Bank c@6052", ROMX[$6052], BANK[$c]
 
 LightningFortRenna_AfterDuelScripts:
-	npc_script OW_RENNA, $0c, $60bb
+	npc_script NPC_RENNA, $0c, $60bb
 	db $ff
 ; gap from 0x32057 to 0x32148
 
@@ -1420,11 +1420,11 @@ LightningFortIchikawa_StepEvents:
 	db $ff
 
 LightningFortIchikawa_NPCs:
-	npc OW_ICHIKAWA, 5, 5, EAST, $0
+	npc NPC_ICHIKAWA, 5, 5, EAST, $0
 	db $ff
 
 LightningFortIchikawa_NPCInteractions:
-	npc_script OW_ICHIKAWA, $0c, $6204
+	npc_script NPC_ICHIKAWA, $0c, $6204
 	db $ff
 
 LightningFortIchikawa_OWInteractions:
@@ -1445,7 +1445,7 @@ LightningFortIchikawa_MapScripts:
 SECTION "Bank c@61ff", ROMX[$61ff], BANK[$c]
 
 LightningFortIchikawa_AfterDuelScripts:
-	npc_script OW_ICHIKAWA, $0c, $62a1
+	npc_script NPC_ICHIKAWA, $0c, $62a1
 	db $ff
 ; gap from 0x32204 to 0x3241e
 
@@ -1462,11 +1462,11 @@ LightningFortCatherine_StepEvents:
 	db $ff
 
 LightningFortCatherine_NPCs:
-	npc OW_CATHERINE, 7, 4, NORTH, $0
+	npc NPC_CATHERINE, 7, 4, NORTH, $0
 	db $ff
 
 LightningFortCatherine_NPCInteractions:
-	npc_script OW_CATHERINE, $0c, $6477
+	npc_script NPC_CATHERINE, $0c, $6477
 	db $ff
 
 LightningFortCatherine_MapScripts:
@@ -1480,7 +1480,7 @@ LightningFortCatherine_MapScripts:
 SECTION "Bank c@6472", ROMX[$6472], BANK[$c]
 
 LightningFortCatherine_AfterDuelScripts:
-	npc_script OW_CATHERINE, $0c, $64e1
+	npc_script NPC_CATHERINE, $0c, $64e1
 	db $ff
 ; gap from 0x32477 to 0x32531
 
@@ -1501,11 +1501,11 @@ FireFortEntrance_StepEvents:
 	db $ff
 
 FireFortEntrance_NPCs:
-	npc OW_GR_CLERK_9, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_9, 3, 1, SOUTH, $0
 	db $ff
 
 FireFortEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_9, $0c, $6632
+	npc_script NPC_GR_CLERK_9, $0c, $6632
 	db $ff
 
 FireFortEntrance_OWInteractions:
@@ -1536,17 +1536,17 @@ FireFortLobby_StepEvents:
 	db $ff
 
 FireFortLobby_NPCs:
-	npc OW_MIYAJIMA_ALT, 2, 10, SOUTH, $0
-	npc OW_YOUNGSTER_4, 7, 6, WEST, $0
-	npc OW_IMAKUNI_RED, 12, 1, NORTH, $67f5
-	npc OW_GR_CLERK_3, 5, 2, SOUTH, $0
-	npc OW_GR_CLERK_4, 8, 2, SOUTH, $0
+	npc NPC_MIYAJIMA_ALT, 2, 10, SOUTH, $0
+	npc NPC_YOUNGSTER_4, 7, 6, WEST, $0
+	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $67f5
+	npc NPC_GR_CLERK_3, 5, 2, SOUTH, $0
+	npc NPC_GR_CLERK_4, 8, 2, SOUTH, $0
 	db $ff
 
 FireFortLobby_NPCInteractions:
-	npc_script OW_MIYAJIMA_ALT, $0c, $6769
-	npc_script OW_YOUNGSTER_4, $0c, $67cf
-	npc_script OW_IMAKUNI_RED, $0f, $44e0
+	npc_script NPC_MIYAJIMA_ALT, $0c, $6769
+	npc_script NPC_YOUNGSTER_4, $0c, $67cf
+	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
 FireFortLobby_OWInteractions:
@@ -1581,11 +1581,11 @@ FireFortJes_StepEvents:
 	db $ff
 
 FireFortJes_NPCs:
-	npc OW_JES, 6, 2, NORTH, $0
+	npc NPC_JES, 6, 2, NORTH, $0
 	db $ff
 
 FireFortJes_NPCInteractions:
-	npc_script OW_JES, $0c, $68ae
+	npc_script NPC_JES, $0c, $68ae
 	db $ff
 
 FireFortJes_OWInteractions:
@@ -1605,7 +1605,7 @@ FireFortJes_MapScripts:
 SECTION "Bank c@68a9", ROMX[$68a9], BANK[$c]
 
 FireFortJes_AfterDuelScripts:
-	npc_script OW_JES, $0c, $6907
+	npc_script NPC_JES, $0c, $6907
 	db $ff
 ; gap from 0x328ae to 0x3296d
 
@@ -1624,11 +1624,11 @@ FireFortYuki_StepEvents:
 	db $ff
 
 FireFortYuki_NPCs:
-	npc OW_YUKI, 5, 3, SOUTH, $0
+	npc NPC_YUKI, 5, 3, SOUTH, $0
 	db $ff
 
 FireFortYuki_NPCInteractions:
-	npc_script OW_YUKI, $0c, $6a76
+	npc_script NPC_YUKI, $0c, $6a76
 	db $ff
 
 FireFortYuki_OWInteractions:
@@ -1648,7 +1648,7 @@ FireFortYuki_MapScripts:
 SECTION "Bank c@6a33", ROMX[$6a33], BANK[$c]
 
 FireFortYuki_AfterDuelScripts:
-	npc_script OW_YUKI, $0c, $6b43
+	npc_script NPC_YUKI, $0c, $6b43
 	db $ff
 ; gap from 0x32a38 to 0x32beb
 
@@ -1667,12 +1667,12 @@ FireFortShoko_StepEvents:
 	db $ff
 
 FireFortShoko_NPCs:
-	npc OW_SHOKO, 3, 4, EAST, $0
-	npc OW_COURTNEY, 3, 7, SOUTH, $6d82
+	npc NPC_SHOKO, 3, 4, EAST, $0
+	npc NPC_COURTNEY, 3, 7, SOUTH, $6d82
 	db $ff
 
 FireFortShoko_NPCInteractions:
-	npc_script OW_SHOKO, $0c, $6c9a
+	npc_script NPC_SHOKO, $0c, $6c9a
 	db $ff
 
 FireFortShoko_OWInteractions:
@@ -1692,7 +1692,7 @@ FireFortShoko_MapScripts:
 SECTION "Bank c@6c95", ROMX[$6c95], BANK[$c]
 
 FireFortShoko_AfterDuelScripts:
-	npc_script OW_SHOKO, $0c, $6d1f
+	npc_script NPC_SHOKO, $0c, $6d1f
 	db $ff
 ; gap from 0x32c9a to 0x32e20
 
@@ -1709,11 +1709,11 @@ FireFortHidero_StepEvents:
 	db $ff
 
 FireFortHidero_NPCs:
-	npc OW_HIDERO, 6, 5, SOUTH, $0
+	npc NPC_HIDERO, 6, 5, SOUTH, $0
 	db $ff
 
 FireFortHidero_NPCInteractions:
-	npc_script OW_HIDERO, $0c, $6e79
+	npc_script NPC_HIDERO, $0c, $6e79
 	db $ff
 
 FireFortHidero_MapScripts:
@@ -1727,7 +1727,7 @@ FireFortHidero_MapScripts:
 SECTION "Bank c@6e74", ROMX[$6e74], BANK[$c]
 
 FireFortHidero_AfterDuelScripts:
-	npc_script OW_HIDERO, $0c, $6efd
+	npc_script NPC_HIDERO, $0c, $6efd
 	db $ff
 ; gap from 0x32e79 to 0x32f5b
 
@@ -1748,11 +1748,11 @@ WaterFortEntrance_StepEvents:
 	db $ff
 
 WaterFortEntrance_NPCs:
-	npc OW_GR_CLERK_10, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_10, 3, 1, SOUTH, $0
 	db $ff
 
 WaterFortEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_10, $0c, $705c
+	npc_script NPC_GR_CLERK_10, $0c, $705c
 	db $ff
 
 WaterFortEntrance_OWInteractions:
@@ -1785,11 +1785,11 @@ WaterFortMiyajima_StepEvents:
 	db $ff
 
 WaterFortMiyajima_NPCs:
-	npc OW_MIYAJIMA, 4, 4, SOUTH, $0
+	npc NPC_MIYAJIMA, 4, 4, SOUTH, $0
 	db $ff
 
 WaterFortMiyajima_NPCInteractions:
-	npc_script OW_MIYAJIMA, $0c, $716a
+	npc_script NPC_MIYAJIMA, $0c, $716a
 	db $ff
 
 WaterFortMiyajima_OWInteractions:
@@ -1809,7 +1809,7 @@ WaterFortMiyajima_MapScripts:
 SECTION "Bank c@7165", ROMX[$7165], BANK[$c]
 
 WaterFortMiyajima_AfterDuelScripts:
-	npc_script OW_MIYAJIMA, $0c, $71d9
+	npc_script NPC_MIYAJIMA, $0c, $71d9
 	db $ff
 ; gap from 0x3316a to 0x3324d
 
@@ -1826,11 +1826,11 @@ WaterFortKanoko_StepEvents:
 	db $ff
 
 WaterFortKanoko_NPCs:
-	npc OW_KANOKO, 6, 4, SOUTH, $0
+	npc NPC_KANOKO, 6, 4, SOUTH, $0
 	db $ff
 
 WaterFortKanoko_NPCInteractions:
-	npc_script OW_KANOKO, $0c, $72a6
+	npc_script NPC_KANOKO, $0c, $72a6
 	db $ff
 
 WaterFortKanoko_MapScripts:
@@ -1844,7 +1844,7 @@ WaterFortKanoko_MapScripts:
 SECTION "Bank c@72a1", ROMX[$72a1], BANK[$c]
 
 WaterFortKanoko_AfterDuelScripts:
-	npc_script OW_KANOKO, $0c, $72ff
+	npc_script NPC_KANOKO, $0c, $72ff
 	db $ff
 ; gap from 0x332a6 to 0x33357
 
@@ -1863,11 +1863,11 @@ FightingFortEntrance_StepEvents:
 	db $ff
 
 FightingFortEntrance_NPCs:
-	npc OW_GR_CLERK_11, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_11, 3, 2, SOUTH, $0
 	db $ff
 
 FightingFortEntrance_NPCInteractions:
-	npc_script OW_GR_CLERK_11, $0c, $7434
+	npc_script NPC_GR_CLERK_11, $0c, $7434
 	db $ff
 
 FightingFortEntrance_OWInteractions:
@@ -1900,13 +1900,13 @@ FightingFortMaze2_StepEvents:
 	db $ff
 
 FightingFortMaze2_NPCs:
-	npc OW_CHEST_CLOSED, 5, 2, SOUTH, $75a2
-	npc OW_CHEST_OPENED, 5, 2, SOUTH, $75ba
+	npc NPC_CHEST_CLOSED, 5, 2, SOUTH, $75a2
+	npc NPC_CHEST_OPENED, 5, 2, SOUTH, $75ba
 	db $ff
 
 FightingFortMaze2_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0c, $7589
-	npc_script OW_CHEST_OPENED, $0c, $75af
+	npc_script NPC_CHEST_CLOSED, $0c, $7589
+	npc_script NPC_CHEST_OPENED, $0c, $75af
 	db $ff
 
 FightingFortMaze2_MapScripts:
@@ -1958,13 +1958,13 @@ FightingFortMaze4_StepEvents:
 	db $ff
 
 FightingFortMaze4_NPCs:
-	npc OW_CHEST_CLOSED, 3, 3, SOUTH, $76eb
-	npc OW_CHEST_OPENED, 3, 3, SOUTH, $7703
+	npc NPC_CHEST_CLOSED, 3, 3, SOUTH, $76eb
+	npc NPC_CHEST_OPENED, 3, 3, SOUTH, $7703
 	db $ff
 
 FightingFortMaze4_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0c, $76d2
-	npc_script OW_CHEST_OPENED, $0c, $76f8
+	npc_script NPC_CHEST_CLOSED, $0c, $76d2
+	npc_script NPC_CHEST_OPENED, $0c, $76f8
 	db $ff
 
 FightingFortMaze4_MapScripts:
@@ -2063,13 +2063,13 @@ FightingFortMaze8_StepEvents:
 	db $ff
 
 FightingFortMaze8_NPCs:
-	npc OW_CHEST_CLOSED, 2, 3, SOUTH, $78f0
-	npc OW_CHEST_OPENED, 2, 3, SOUTH, $7908
+	npc NPC_CHEST_CLOSED, 2, 3, SOUTH, $78f0
+	npc NPC_CHEST_OPENED, 2, 3, SOUTH, $7908
 	db $ff
 
 FightingFortMaze8_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0c, $78d7
-	npc_script OW_CHEST_OPENED, $0c, $78fd
+	npc_script NPC_CHEST_CLOSED, $0c, $78d7
+	npc_script NPC_CHEST_OPENED, $0c, $78fd
 	db $ff
 
 FightingFortMaze8_MapScripts:
@@ -2263,13 +2263,13 @@ FightingFortMaze17_StepEvents:
 	db $ff
 
 FightingFortMaze17_NPCs:
-	npc OW_CHEST_CLOSED, 1, 1, SOUTH, $7cd3
-	npc OW_CHEST_OPENED, 1, 1, SOUTH, $7ceb
+	npc NPC_CHEST_CLOSED, 1, 1, SOUTH, $7cd3
+	npc NPC_CHEST_OPENED, 1, 1, SOUTH, $7ceb
 	db $ff
 
 FightingFortMaze17_NPCInteractions:
-	npc_script OW_CHEST_CLOSED, $0c, $7cba
-	npc_script OW_CHEST_OPENED, $0c, $7ce0
+	npc_script NPC_CHEST_CLOSED, $0c, $7cba
+	npc_script NPC_CHEST_OPENED, $0c, $7ce0
 	db $ff
 
 FightingFortMaze17_MapScripts:

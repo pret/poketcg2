@@ -92,13 +92,13 @@ NPCDuelistPointers:
 	dw NULL
 
 ; NPC_DUELIST_STRUCT_*
-; $0    : OW_*
+; $0    : NPC_*
 ; $1, $2: Dialog*Text
 ; $3, $4: (short) home location text
 ; $5, $6: (short) title text
 ; $7--$b: *_DECK_ID
 SamNPCDuelistHeader:
-	db OW_SAM
+	db NPC_SAM
 	tx DialogSamText
 	tx 0
 	tx 0
@@ -108,7 +108,7 @@ SamNPCDuelistHeader:
 	db $ff
 	db $ff
 AaronNPCDuelistHeader:
-	db OW_AARON
+	db NPC_AARON
 	tx DialogAaronText
 	tx 0
 	tx DialogTechText
@@ -118,7 +118,7 @@ AaronNPCDuelistHeader:
 	db BRICK_WALK_DECK_ID
 	db BENCH_TRAP_DECK_ID
 NikkiNPCDuelistHeader:
-	db OW_NIKKI
+	db NPC_NIKKI
 	tx DialogNikkiText
 	tx GrassClubShortText
 	tx OpponentGrassClubMasterBracketedText
@@ -128,7 +128,7 @@ NikkiNPCDuelistHeader:
 	db $ff
 	db $ff
 BrittanyNPCDuelistHeader:
-	db OW_BRITTANY
+	db NPC_BRITTANY
 	tx DialogBrittanyText
 	tx GrassClubShortText
 	tx OpponentGrassClubMemberBracketedText
@@ -138,7 +138,7 @@ BrittanyNPCDuelistHeader:
 	db $ff
 	db $ff
 KristinNPCDuelistHeader:
-	db OW_KRISTIN
+	db NPC_KRISTIN
 	tx DialogKristinText
 	tx GrassClubShortText
 	tx OpponentGrassClubMemberBracketedText
@@ -148,7 +148,7 @@ KristinNPCDuelistHeader:
 	db $ff
 	db $ff
 HeatherNPCDuelistHeader:
-	db OW_HEATHER
+	db NPC_HEATHER
 	tx DialogHeatherText
 	tx GrassClubShortText
 	tx OpponentGrassClubMemberBracketedText
@@ -158,7 +158,7 @@ HeatherNPCDuelistHeader:
 	db $ff
 	db $ff
 AmyNPCDuelistHeader:
-	db OW_AMY_LOUNGE
+	db NPC_AMY_LOUNGE
 	tx DialogAmyText
 	tx WaterClubShortText
 	tx OpponentWaterClubMasterBracketedText
@@ -168,7 +168,7 @@ AmyNPCDuelistHeader:
 	db $ff
 	db $ff
 JoshuaNPCDuelistHeader:
-	db OW_JOSHUA
+	db NPC_JOSHUA
 	tx DialogJoshuaText
 	tx WaterClubShortText
 	tx OpponentWaterClubMemberBracketedText
@@ -178,7 +178,7 @@ JoshuaNPCDuelistHeader:
 	db $ff
 	db $ff
 SaraNPCDuelistHeader:
-	db OW_SARA
+	db NPC_SARA
 	tx DialogSaraText
 	tx WaterClubShortText
 	tx OpponentWaterClubMemberBracketedText
@@ -188,7 +188,7 @@ SaraNPCDuelistHeader:
 	db $ff
 	db $ff
 AmandaNPCDuelistHeader:
-	db OW_AMANDA
+	db NPC_AMANDA
 	tx DialogAmandaText
 	tx WaterClubShortText
 	tx OpponentWaterClubMemberBracketedText
@@ -198,7 +198,7 @@ AmandaNPCDuelistHeader:
 	db $ff
 	db $ff
 GeneNPCDuelistHeader:
-	db OW_GENE
+	db NPC_GENE
 	tx DialogGeneText
 	tx RockClubShortText
 	tx OpponentRockClubMasterBracketedText
@@ -208,7 +208,7 @@ GeneNPCDuelistHeader:
 	db $ff
 	db $ff
 MatthewNPCDuelistHeader:
-	db OW_MATTHEW
+	db NPC_MATTHEW
 	tx DialogMatthewText
 	tx RockClubShortText
 	tx OpponentRockClubMemberBracketedText
@@ -218,7 +218,7 @@ MatthewNPCDuelistHeader:
 	db $ff
 	db $ff
 RyanNPCDuelistHeader:
-	db OW_RYAN
+	db NPC_RYAN
 	tx DialogRyanText
 	tx RockClubShortText
 	tx OpponentRockClubMemberBracketedText
@@ -228,7 +228,7 @@ RyanNPCDuelistHeader:
 	db $ff
 	db $ff
 AndrewNPCDuelistHeader:
-	db OW_ANDREW
+	db NPC_ANDREW
 	tx DialogAndrewText
 	tx RockClubShortText
 	tx OpponentRockClubMemberBracketedText
@@ -238,7 +238,7 @@ AndrewNPCDuelistHeader:
 	db $ff
 	db $ff
 MitchNPCDuelistHeader:
-	db OW_MITCH
+	db NPC_MITCH
 	tx DialogMitchText
 	tx FightingClubShortText
 	tx OpponentFightingClubMasterBracketedText
@@ -248,7 +248,7 @@ MitchNPCDuelistHeader:
 	db $ff
 	db $ff
 MichaelNPCDuelistHeader:
-	db OW_MICHAEL
+	db NPC_MICHAEL
 	tx DialogMichaelText
 	tx FightingClubShortText
 	tx OpponentFightingClubMemberBracketedText
@@ -258,7 +258,7 @@ MichaelNPCDuelistHeader:
 	db $ff
 	db $ff
 ChrisNPCDuelistHeader:
-	db OW_CHRIS
+	db NPC_CHRIS
 	tx DialogChrisText
 	tx FightingClubShortText
 	tx OpponentFightingClubMemberBracketedText
@@ -268,7 +268,7 @@ ChrisNPCDuelistHeader:
 	db $ff
 	db $ff
 JessicaNPCDuelistHeader:
-	db OW_JESSICA
+	db NPC_JESSICA
 	tx DialogJessicaText
 	tx FightingClubShortText
 	tx OpponentFightingClubMemberBracketedText
@@ -278,7 +278,7 @@ JessicaNPCDuelistHeader:
 	db $ff
 	db $ff
 RickNPCDuelistHeader:
-	db OW_RICK
+	db NPC_RICK
 	tx DialogRickText
 	tx ScienceClubShortText
 	tx OpponentScienceClubMasterBracketedText
@@ -288,7 +288,7 @@ RickNPCDuelistHeader:
 	db $ff
 	db $ff
 DavidNPCDuelistHeader:
-	db OW_DAVID
+	db NPC_DAVID
 	tx DialogDavidText
 	tx ScienceClubShortText
 	tx OpponentScienceClubMemberBracketedText
@@ -298,7 +298,7 @@ DavidNPCDuelistHeader:
 	db $ff
 	db $ff
 JosephNPCDuelistHeader:
-	db OW_JOSEPH
+	db NPC_JOSEPH
 	tx DialogJosephText
 	tx ScienceClubShortText
 	tx OpponentScienceClubMemberBracketedText
@@ -308,7 +308,7 @@ JosephNPCDuelistHeader:
 	db $ff
 	db $ff
 ErikNPCDuelistHeader:
-	db OW_ERIK
+	db NPC_ERIK
 	tx DialogErikText
 	tx ScienceClubShortText
 	tx OpponentScienceClubMemberBracketedText
@@ -318,7 +318,7 @@ ErikNPCDuelistHeader:
 	db $ff
 	db $ff
 KenNPCDuelistHeader:
-	db OW_KEN
+	db NPC_KEN
 	tx DialogKenText
 	tx FireClubShortText
 	tx OpponentFireClubMasterBracketedText
@@ -328,7 +328,7 @@ KenNPCDuelistHeader:
 	db $ff
 	db $ff
 JohnNPCDuelistHeader:
-	db OW_JOHN
+	db NPC_JOHN
 	tx DialogJohnText
 	tx FireClubShortText
 	tx OpponentFireClubMemberBracketedText
@@ -338,7 +338,7 @@ JohnNPCDuelistHeader:
 	db $ff
 	db $ff
 AdamNPCDuelistHeader:
-	db OW_ADAM
+	db NPC_ADAM
 	tx DialogAdamText
 	tx FireClubShortText
 	tx OpponentFireClubMemberBracketedText
@@ -348,7 +348,7 @@ AdamNPCDuelistHeader:
 	db $ff
 	db $ff
 JonathanNPCDuelistHeader:
-	db OW_JONATHAN
+	db NPC_JONATHAN
 	tx DialogJonathanText
 	tx FireClubShortText
 	tx OpponentFireClubMemberBracketedText
@@ -358,7 +358,7 @@ JonathanNPCDuelistHeader:
 	db $ff
 	db $ff
 IsaacNPCDuelistHeader:
-	db OW_ISAAC
+	db NPC_ISAAC
 	tx DialogIsaacText
 	tx LightningClubShortText
 	tx OpponentLightningClubMasterBracketedText
@@ -368,7 +368,7 @@ IsaacNPCDuelistHeader:
 	db $ff
 	db $ff
 JenniferNPCDuelistHeader:
-	db OW_JENNIFER
+	db NPC_JENNIFER
 	tx DialogJenniferText
 	tx LightningClubShortText
 	tx OpponentLightningClubMemberBracketedText
@@ -378,7 +378,7 @@ JenniferNPCDuelistHeader:
 	db $ff
 	db $ff
 NicholasNPCDuelistHeader:
-	db OW_NICHOLAS
+	db NPC_NICHOLAS
 	tx DialogNicholasText
 	tx LightningClubShortText
 	tx OpponentLightningClubMemberBracketedText
@@ -388,7 +388,7 @@ NicholasNPCDuelistHeader:
 	db $ff
 	db $ff
 BrandonNPCDuelistHeader:
-	db OW_BRANDON
+	db NPC_BRANDON
 	tx DialogBrandonText
 	tx LightningClubShortText
 	tx OpponentLightningClubMemberBracketedText
@@ -398,7 +398,7 @@ BrandonNPCDuelistHeader:
 	db $ff
 	db $ff
 MurrayNPCDuelistHeader:
-	db OW_MURRAY
+	db NPC_MURRAY
 	tx DialogMurrayText
 	tx PsychicClubShortText
 	tx OpponentPsychicClubMasterBracketedText
@@ -408,7 +408,7 @@ MurrayNPCDuelistHeader:
 	db $ff
 	db $ff
 RobertNPCDuelistHeader:
-	db OW_ROBERT
+	db NPC_ROBERT
 	tx DialogRobertText
 	tx PsychicClubShortText
 	tx OpponentPsychicClubMemberBracketedText
@@ -418,7 +418,7 @@ RobertNPCDuelistHeader:
 	db $ff
 	db $ff
 DanielNPCDuelistHeader:
-	db OW_DANIEL
+	db NPC_DANIEL
 	tx DialogDanielText
 	tx PsychicClubShortText
 	tx OpponentPsychicClubMemberBracketedText
@@ -428,7 +428,7 @@ DanielNPCDuelistHeader:
 	db $ff
 	db $ff
 StephanieNPCDuelistHeader:
-	db OW_STEPHANIE
+	db NPC_STEPHANIE
 	tx DialogStephanieText
 	tx PsychicClubShortText
 	tx OpponentPsychicClubMemberBracketedText
@@ -438,7 +438,7 @@ StephanieNPCDuelistHeader:
 	db $ff
 	db $ff
 RodNPCDuelistHeader:
-	db OW_ROD
+	db NPC_ROD
 	tx DialogRodText
 	tx 0
 	tx OpponentGrandMasterText
@@ -448,7 +448,7 @@ RodNPCDuelistHeader:
 	db $ff
 	db $ff
 JackNPCDuelistHeader:
-	db OW_JACK
+	db NPC_JACK
 	tx DialogJackText
 	tx 0
 	tx OpponentGrandMasterText
@@ -458,7 +458,7 @@ JackNPCDuelistHeader:
 	db $ff
 	db $ff
 SteveNPCDuelistHeader:
-	db OW_STEVE
+	db NPC_STEVE
 	tx DialogSteveText
 	tx 0
 	tx OpponentGrandMasterText
@@ -468,7 +468,7 @@ SteveNPCDuelistHeader:
 	db $ff
 	db $ff
 CourtneyNPCDuelistHeader:
-	db OW_COURTNEY
+	db NPC_COURTNEY
 	tx DialogCourtneyText
 	tx 0
 	tx OpponentGrandMasterText
@@ -478,7 +478,7 @@ CourtneyNPCDuelistHeader:
 	db $ff
 	db $ff
 MorinoNPCDuelistHeader:
-	db OW_MORINO
+	db NPC_MORINO
 	tx DialogMorinoText
 	tx GRGrassFortShortText
 	tx OpponentGRGrassFortLeaderText
@@ -488,7 +488,7 @@ MorinoNPCDuelistHeader:
 	db $ff
 	db $ff
 MiyukiNPCDuelistHeader:
-	db OW_MIYUKI
+	db NPC_MIYUKI
 	tx DialogMiyukiText
 	tx GRGrassFortShortText
 	tx OpponentGRGrassFortMemberText
@@ -498,7 +498,7 @@ MiyukiNPCDuelistHeader:
 	db $ff
 	db $ff
 YutaNPCDuelistHeader:
-	db OW_YUTA
+	db NPC_YUTA
 	tx DialogYutaText
 	tx GRGrassFortShortText
 	tx OpponentGRGrassFortMemberText
@@ -508,7 +508,7 @@ YutaNPCDuelistHeader:
 	db $ff
 	db $ff
 MidoriNPCDuelistHeader:
-	db OW_MIDORI
+	db NPC_MIDORI
 	tx DialogMidoriText
 	tx GRGrassFortShortText
 	tx OpponentGRGrassFortMemberText
@@ -518,7 +518,7 @@ MidoriNPCDuelistHeader:
 	db $ff
 	db $ff
 CatherineNPCDuelistHeader:
-	db OW_CATHERINE
+	db NPC_CATHERINE
 	tx DialogCatherineText
 	tx GRLightningFortShortText
 	tx OpponentGRLightningFortLeaderText
@@ -528,7 +528,7 @@ CatherineNPCDuelistHeader:
 	db $ff
 	db $ff
 IchikawaNPCDuelistHeader:
-	db OW_ICHIKAWA
+	db NPC_ICHIKAWA
 	tx DialogIchikawaText
 	tx GRLightningFortShortText
 	tx OpponentGRLightningFortMemberText
@@ -538,7 +538,7 @@ IchikawaNPCDuelistHeader:
 	db $ff
 	db $ff
 RennaNPCDuelistHeader:
-	db OW_RENNA
+	db NPC_RENNA
 	tx DialogRennaText
 	tx GRLightningFortShortText
 	tx OpponentGRLightningFortMemberText
@@ -548,7 +548,7 @@ RennaNPCDuelistHeader:
 	db $ff
 	db $ff
 HideroNPCDuelistHeader:
-	db OW_HIDERO
+	db NPC_HIDERO
 	tx DialogHideroText
 	tx GRFireFortShortText
 	tx OpponentGRFireFortLeaderText
@@ -558,7 +558,7 @@ HideroNPCDuelistHeader:
 	db $ff
 	db $ff
 ShokoNPCDuelistHeader:
-	db OW_SHOKO
+	db NPC_SHOKO
 	tx DialogShokoText
 	tx GRFireFortShortText
 	tx OpponentGRFireFortMemberText
@@ -568,7 +568,7 @@ ShokoNPCDuelistHeader:
 	db $ff
 	db $ff
 YukiNPCDuelistHeader:
-	db OW_YUKI
+	db NPC_YUKI
 	tx DialogYukiText
 	tx GRFireFortShortText
 	tx OpponentGRFireFortMemberText
@@ -578,7 +578,7 @@ YukiNPCDuelistHeader:
 	db $ff
 	db $ff
 JesNPCDuelistHeader:
-	db OW_JES
+	db NPC_JES
 	tx DialogJesText
 	tx GRFireFortShortText
 	tx OpponentGRFireFortMemberText
@@ -588,7 +588,7 @@ JesNPCDuelistHeader:
 	db $ff
 	db $ff
 KanokoNPCDuelistHeader:
-	db OW_KANOKO
+	db NPC_KANOKO
 	tx DialogKanokoText
 	tx GRWaterFortShortText
 	tx OpponentGRWaterFortLeaderText
@@ -598,7 +598,7 @@ KanokoNPCDuelistHeader:
 	db $ff
 	db $ff
 AiraNPCDuelistHeader:
-	db OW_AIRA
+	db NPC_AIRA
 	tx DialogAiraText
 	tx GRWaterFortShortText
 	tx OpponentGRWaterFortMemberText
@@ -608,7 +608,7 @@ AiraNPCDuelistHeader:
 	db $ff
 	db $ff
 SentaNPCDuelistHeader:
-	db OW_SENTA
+	db NPC_SENTA
 	tx DialogSentaText
 	tx GRWaterFortShortText
 	tx OpponentGRWaterFortMemberText
@@ -618,7 +618,7 @@ SentaNPCDuelistHeader:
 	db $ff
 	db $ff
 MiyajimaNPCDuelistHeader:
-	db OW_MIYAJIMA
+	db NPC_MIYAJIMA
 	tx DialogMiyajimaText
 	tx GRWaterFortShortText
 	tx OpponentGRWaterFortMemberText
@@ -628,7 +628,7 @@ MiyajimaNPCDuelistHeader:
 	db $ff
 	db $ff
 KamiyaNPCDuelistHeader:
-	db OW_KAMIYA
+	db NPC_KAMIYA
 	tx DialogKamiyaText
 	tx GRFightingFortShortText
 	tx OpponentGRFightingFortLeaderText
@@ -638,7 +638,7 @@ KamiyaNPCDuelistHeader:
 	db $ff
 	db $ff
 GraceNPCDuelistHeader:
-	db OW_GRACE
+	db NPC_GRACE
 	tx DialogGraceText
 	tx GRFightingFortShortText
 	tx OpponentGRFightingFortMemberText
@@ -648,7 +648,7 @@ GraceNPCDuelistHeader:
 	db $ff
 	db $ff
 GodaNPCDuelistHeader:
-	db OW_GODA
+	db NPC_GODA
 	tx DialogGodaText
 	tx GRFightingFortShortText
 	tx OpponentGRFightingFortMemberText
@@ -658,7 +658,7 @@ GodaNPCDuelistHeader:
 	db $ff
 	db $ff
 MamiNPCDuelistHeader:
-	db OW_MAMI
+	db NPC_MAMI
 	tx DialogMamiText
 	tx GRPsychicStrongholdShortText
 	tx OpponentGRPsychicStrongholdLeaderText
@@ -668,7 +668,7 @@ MamiNPCDuelistHeader:
 	db $ff
 	db $ff
 RyokoNPCDuelistHeader:
-	db OW_RYOKO
+	db NPC_RYOKO
 	tx DialogRyokoText
 	tx GRPsychicStrongholdShortText
 	tx OpponentGRPsychicStrongholdMemberText
@@ -678,7 +678,7 @@ RyokoNPCDuelistHeader:
 	db $ff
 	db $ff
 YosukeNPCDuelistHeader:
-	db OW_YOSUKE
+	db NPC_YOSUKE
 	tx DialogYosukeText
 	tx GRPsychicStrongholdShortText
 	tx OpponentGRPsychicStrongholdMemberText
@@ -688,7 +688,7 @@ YosukeNPCDuelistHeader:
 	db $ff
 	db $ff
 KevinNPCDuelistHeader:
-	db OW_KEVIN
+	db NPC_KEVIN
 	tx DialogKevinText
 	tx GRPsychicStrongholdShortText
 	tx OpponentGRPsychicStrongholdMemberText
@@ -698,7 +698,7 @@ KevinNPCDuelistHeader:
 	db $ff
 	db $ff
 MiwaNPCDuelistHeader:
-	db OW_MIWA
+	db NPC_MIWA
 	tx DialogMiwaText
 	tx GRPsychicStrongholdShortText
 	tx OpponentGRPsychicStrongholdMemberText
@@ -708,7 +708,7 @@ MiwaNPCDuelistHeader:
 	db $ff
 	db $ff
 SamejimaNPCDuelistHeader:
-	db OW_SAMEJIMA
+	db NPC_SAMEJIMA
 	tx DialogSamejimaText
 	tx ColorlessAltarShortText
 	tx OpponentColorlessAltarGuardianText
@@ -718,7 +718,7 @@ SamejimaNPCDuelistHeader:
 	db $ff
 	db $ff
 IshiiNPCDuelistHeader:
-	db OW_ISHII
+	db NPC_ISHII
 	tx DialogIshiiText
 	tx ColorlessAltarShortText
 	tx OpponentColorlessAltarGuardianText
@@ -728,7 +728,7 @@ IshiiNPCDuelistHeader:
 	db $ff
 	db $ff
 NishijimaNPCDuelistHeader:
-	db OW_NISHIJIMA
+	db NPC_NISHIJIMA
 	tx DialogNishijimaText
 	tx ColorlessAltarShortText
 	tx OpponentColorlessAltarGuardianText
@@ -738,7 +738,7 @@ NishijimaNPCDuelistHeader:
 	db $ff
 	db $ff
 BiruritchiNPCDuelistHeader:
-	db OW_BIRURITCHI
+	db NPC_BIRURITCHI
 	tx DialogBiruritchiText
 	tx 0
 	tx OpponentGRKingText
@@ -748,7 +748,7 @@ BiruritchiNPCDuelistHeader:
 	db SMASH_TO_MINCEMEAT_DECK_ID
 	db $ff
 RuiNPCDuelistHeader:
-	db OW_RUI
+	db NPC_RUI
 	tx DialogRuiText
 	tx 0
 	tx OpponentGRBigBossText
@@ -758,7 +758,7 @@ RuiNPCDuelistHeader:
 	db $ff
 	db $ff
 KanzakiNPCDuelistHeader:
-	db OW_KANZAKI
+	db NPC_KANZAKI
 	tx DialogKanzakiText
 	tx 0
 	tx OpponentGRBigBossText
@@ -768,7 +768,7 @@ KanzakiNPCDuelistHeader:
 	db $ff
 	db $ff
 RonaldNPCDuelistHeader:
-	db OW_RONALD
+	db NPC_RONALD
 	tx DialogRonaldText
 	tx 0
 	tx OpponentRivalText
@@ -778,7 +778,7 @@ RonaldNPCDuelistHeader:
 	db RONALDS_PSYCHIC_DECK_ID
 	db RONALDS_ULTRA_DECK_ID
 ImakuniBlackNPCDuelistHeader:
-	db OW_IMAKUNI_BLACK
+	db NPC_IMAKUNI_BLACK
 	tx DialogImakuniText
 	tx 0
 	tx OpponentStrangeLifeFormText
@@ -788,7 +788,7 @@ ImakuniBlackNPCDuelistHeader:
 	db $ff
 	db $ff
 ImakuniRedNPCDuelistHeader:
-	db OW_IMAKUNI_RED
+	db NPC_IMAKUNI_RED
 	tx DialogImakuniText
 	tx 0
 	tx OpponentStrangeLifeFormText
@@ -798,7 +798,7 @@ ImakuniRedNPCDuelistHeader:
 	db $ff
 	db $ff
 IshiharaNPCDuelistHeader:
-	db OW_ISHIHARA
+	db NPC_ISHIHARA
 	tx DialogMrIshiharaText
 	tx 0
 	tx 0
@@ -808,7 +808,7 @@ IshiharaNPCDuelistHeader:
 	db $ff
 	db $ff
 TapNPCDuelistHeader:
-	db OW_TAP
+	db NPC_TAP
 	tx DialogTapText
 	tx 0
 	tx 0
@@ -818,7 +818,7 @@ TapNPCDuelistHeader:
 	db $ff
 	db $ff
 QueenNPCDuelistHeader:
-	db OW_QUEEN
+	db NPC_QUEEN
 	tx DialogQueenText
 	tx 0
 	tx 0
@@ -828,7 +828,7 @@ QueenNPCDuelistHeader:
 	db $ff
 	db $ff
 RookNPCDuelistHeader:
-	db OW_ROOK
+	db NPC_ROOK
 	tx DialogRookText
 	tx 0
 	tx 0
@@ -838,7 +838,7 @@ RookNPCDuelistHeader:
 	db $ff
 	db $ff
 BishopNPCDuelistHeader:
-	db OW_BISHOP
+	db NPC_BISHOP
 	tx DialogBishopText
 	tx 0
 	tx 0
@@ -848,7 +848,7 @@ BishopNPCDuelistHeader:
 	db $ff
 	db $ff
 KnightNPCDuelistHeader:
-	db OW_KNIGHT
+	db NPC_KNIGHT
 	tx DialogKnightText
 	tx 0
 	tx 0
@@ -858,7 +858,7 @@ KnightNPCDuelistHeader:
 	db $ff
 	db $ff
 PawnNPCDuelistHeader:
-	db OW_PAWN
+	db NPC_PAWN
 	tx DialogPawnText
 	tx 0
 	tx 0
@@ -868,7 +868,7 @@ PawnNPCDuelistHeader:
 	db $ff
 	db $ff
 TobichanNPCDuelistHeader:
-	db OW_TOBICHAN
+	db NPC_TOBICHAN
 	tx DialogTobichanText
 	tx 0
 	tx 0
@@ -878,7 +878,7 @@ TobichanNPCDuelistHeader:
 	db $ff
 	db $ff
 EijiNPCDuelistHeader:
-	db OW_EIJI
+	db NPC_EIJI
 	tx DialogEijiText
 	tx 0
 	tx 0
@@ -888,7 +888,7 @@ EijiNPCDuelistHeader:
 	db $ff
 	db $ff
 MagicianNPCDuelistHeader:
-	db OW_MAGICIAN
+	db NPC_MAGICIAN
 	tx DialogMagicianText
 	tx 0
 	tx 0
@@ -898,7 +898,7 @@ MagicianNPCDuelistHeader:
 	db $ff
 	db $ff
 YuiNPCDuelistHeader:
-	db OW_YUI
+	db NPC_YUI
 	tx DialogYuiText
 	tx 0
 	tx 0
@@ -908,7 +908,7 @@ YuiNPCDuelistHeader:
 	db $ff
 	db $ff
 ToshironNPCDuelistHeader:
-	db OW_TOSHIRON
+	db NPC_TOSHIRON
 	tx DialogToshironText
 	tx 0
 	tx 0
@@ -918,7 +918,7 @@ ToshironNPCDuelistHeader:
 	db $ff
 	db $ff
 PierrotNPCDuelistHeader:
-	db OW_PIERROT
+	db NPC_PIERROT
 	tx DialogPierrotText
 	tx 0
 	tx 0
@@ -928,7 +928,7 @@ PierrotNPCDuelistHeader:
 	db $ff
 	db $ff
 AnnaNPCDuelistHeader:
-	db OW_ANNA
+	db NPC_ANNA
 	tx DialogAnnaText
 	tx 0
 	tx 0
@@ -938,7 +938,7 @@ AnnaNPCDuelistHeader:
 	db $ff
 	db $ff
 DeeNPCDuelistHeader:
-	db OW_DEE
+	db NPC_DEE
 	tx DialogDeeText
 	tx 0
 	tx 0
@@ -948,7 +948,7 @@ DeeNPCDuelistHeader:
 	db $ff
 	db $ff
 MasqueradeNPCDuelistHeader:
-	db OW_MASQUERADE
+	db NPC_MASQUERADE
 	tx DialogMasqueradeText
 	tx 0
 	tx 0
@@ -958,7 +958,7 @@ MasqueradeNPCDuelistHeader:
 	db $ff
 	db $ff
 GR1NPCDuelistHeader:
-	db OW_GR_1
+	db NPC_GR_1
 	tx DialogGR1Text
 	tx 0
 	tx OpponentEnigmaticMaskText
@@ -968,7 +968,7 @@ GR1NPCDuelistHeader:
 	db $ff
 	db $ff
 GR2NPCDuelistHeader:
-	db OW_GR_2
+	db NPC_GR_2
 	tx DialogGR2Text
 	tx 0
 	tx OpponentEnigmaticMaskText
@@ -978,7 +978,7 @@ GR2NPCDuelistHeader:
 	db $ff
 	db $ff
 GR3NPCDuelistHeader:
-	db OW_GR_3
+	db NPC_GR_3
 	tx DialogGR3Text
 	tx 0
 	tx OpponentEnigmaticMaskText
@@ -988,7 +988,7 @@ GR3NPCDuelistHeader:
 	db $ff
 	db $ff
 GR4NPCDuelistHeader:
-	db OW_GR_4
+	db NPC_GR_4
 	tx DialogGR4Text
 	tx 0
 	tx OpponentEnigmaticMaskText
