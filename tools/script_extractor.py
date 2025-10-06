@@ -22,10 +22,10 @@ from constants import songs
 from constants import tilemaps
 from constants import vars
 
-args = None
-rom = None
-symbols = None
-texts = None
+# args = None
+# rom = None
+# symbols = None
+# texts = None
 
 # script command names and parameter lists
 script_commands = {
@@ -74,9 +74,9 @@ script_commands = {
 	0x28: { "name": "animate_player_movement",                "params": [ "byte", "byte" ] },
 	0x29: { "name": "animate_npc_movement",                   "params": [ "npc", "byte", "byte" ] },
 	0x2a: { "name": "animate_active_npc_movement",            "params": [ "byte", "byte" ] },
-	0x2b: { "name": "move_player",                            "params": [ "word", "bool" ] }, # todo: parse movement data
-	0x2c: { "name": "move_npc",                               "params": [ "npc", "word" ] }, # todo: parse movement data
-	0x2d: { "name": "move_active_npc",                        "params": [ "word" ] }, # todo: parse movement data
+	0x2b: { "name": "move_player",                            "params": [ "movement", "bool" ] }, # todo: parse movement data
+	0x2c: { "name": "move_npc",                               "params": [ "npc", "movement" ] }, # todo: parse movement data
+	0x2d: { "name": "move_active_npc",                        "params": [ "movement" ] }, # todo: parse movement data
 	0x2e: { "name": "start_duel",                             "params": [ "deck", "song" ] },
 	0x2f: { "name": "wait_for_player_animation",              "params": [] },
 	0x30: { "name": "wait_for_fade",                          "params": [] },
@@ -113,7 +113,7 @@ script_commands = {
 	0x4f: { "name": "pop_var",                                "params": [] },
 	0x50: { "name": "script_call",                            "params": [ "script", "condition" ] },
 	0x51: { "name": "script_ret",                             "params": [] },
-	0x52: { "name": "give_coin",                              "params": [ "coin" ] },
+	0x52: { "name": "give_coin",                              "params": [ "byte" ] },
 	0x53: { "name": "backup_active_npc",                      "params": [] },
 	0x54: { "name": "load_player",                            "params": [ "byte_decimal", "byte_decimal", "direction" ] },
 	0x55: { "name": "unload_player",                          "params": [] },
@@ -209,7 +209,7 @@ def get_relative_address(address):
 
 # get absolute pointer stored at an address in the rom
 # if bank is None, assumes the pointer refers to the same bank as the bank it is located in
-def get_pointer(address, bank=None):
+def get_pointer(address, rom, bank=None):
 	raw_pointer = rom[address + 1] * 0x100 + rom[address]
 	if raw_pointer < 0x4000:
 		bank = 0
@@ -218,7 +218,7 @@ def get_pointer(address, bank=None):
 	return (raw_pointer % 0x4000) + bank * 0x4000
 
 def make_address_comment(address):
-	if args.address_comments:
+	if False and args.address_comments:
 		return ": ; {:x} ({:x}:{:x})\n".format(address, get_bank(address), get_relative_address(address))
 	else:
 		return ":\n"
@@ -226,7 +226,7 @@ def make_address_comment(address):
 def make_blob(start, output, end=None):
 	return { "start": start, "output": output, "end": end if end else start }
 
-def dump_movement(address):
+def dump_movement(address, symbols, rom):
 	blobs = []
 	label = "NPCMovement_{:x}".format(address)
 	if address in symbols[get_bank(address)]:
@@ -243,7 +243,7 @@ def dump_movement(address):
 				jump -= 256
 			blobs.append(make_blob(address, "\tdb ${:02x}, {}\n\n".format(movement, jump), address + 2))
 			break
-		blobs.append(make_blob(address, "\tdb {}".format(directions[movement & 0b01111111]) + (" | NO_MOVE\n" if movement & 0b10000000 else "\n"), address + 1))
+		blobs.append(make_blob(address, "\tdb ${:02x}".format(movement) + ("\n"), address + 1))
 		address += 1
 	return blobs
 
@@ -254,7 +254,7 @@ def dump_movement_table(address):
 		label = symbols[get_bank(address)][address]
 	blobs.append(make_blob(address, label + make_address_comment(address)))
 	for i in range(4):
-		pointer = get_pointer(address)
+		pointer = get_pointer(address, rom)
 		blobs.append(make_blob(address, "\tdw NPCMovement_{:x}\n".format(pointer) + ("\n" if i == 3 else ""), address + 2))
 		blobs += dump_movement(pointer)
 		address += 2
@@ -262,8 +262,7 @@ def dump_movement_table(address):
 
 # parse a script starting at the given address
 # returns a list of all commands
-def dump_script(start_address, address=None, visited=set()):
-	global symbols
+def dump_script(start_address, symbols, rom, texts, address=None, visited=set()):
 	blobs = []
 	branches = set()
 	calls = set()
@@ -344,14 +343,14 @@ def dump_script(start_address, address=None, visited=set()):
 			elif param_type == "tilemap":
 				output += " {}".format(tilemaps[param + rom[address + 1] * 0x100])
 			elif param_type == "movement":
-				param = get_pointer(address)
+				param = get_pointer(address, rom)
 				label = "NPCMovement_{:x}".format(param)
 				if param in symbols[get_bank(param)]:
 					label = symbols[get_bank(param)][param]
 				output += " {}".format(label)
-				blobs += dump_movement(param)
+				blobs += dump_movement(param, symbols, rom)
 			elif param_type == "movement_table":
-				param = get_pointer(address)
+				param = get_pointer(address, rom)
 				label = "NPCMovementTable_{:x}".format(param)
 				if param in symbols[get_bank(param)]:
 					label = symbols[get_bank(param)][param]
@@ -365,12 +364,12 @@ def dump_script(start_address, address=None, visited=set()):
 					output += " {}".format(texts[text_id])
 			elif param_type == "script" or param_type == "script_far":
 				if param_type == "script":
-					param = get_pointer(address)
+					param = get_pointer(address, rom)
 				else:
 					bank = rom[address + 2]
 					if bank not in symbols:
 						symbols[bank] = load_symbols(args.symfile, bank)
-					param = get_pointer(address, bank)
+					param = get_pointer(address, rom, bank)
 				if param == 0x0000:
 					label = "NULL"
 				elif param == start_address:
@@ -381,13 +380,13 @@ def dump_script(start_address, address=None, visited=set()):
 					label = "Script_{:x}".format(param)
 					if param in symbols[get_bank(param)]:
 						label = symbols[get_bank(param)][param]
-					if args.follow_far_calls:
-						calls.add(param)
+					# if args.follow_far_calls:
+					calls.add(param)
 				else:
 					label = ".ows_{:x}".format(param)
 					if param in symbols[get_bank(param)]:
 						label = symbols[get_bank(param)][param]
-					if param > start_address or args.allow_backward_jumps:
+					if param > start_address: # or args.allow_backward_jumps:
 						branches.add(param)
 				if command_id == 0x50:
 					condition = rom[address + 2]
@@ -402,15 +401,15 @@ def dump_script(start_address, address=None, visited=set()):
 		output += "\n"
 		blobs.append(make_blob(command_address, output, address))
 		if command_id in quit_commands:
-			if rom[address] == 0xc9:
-				blobs.append(make_blob(address, "\tret\n", address + 1))
-				address += 1
+			# if rom[address] == 0xc9:
+			# 	blobs.append(make_blob(address, "\tret\n", address + 1))
+			# 	address += 1
 			blobs.append(make_blob(address, "; 0x{:x}\n\n".format(address)))
 			break
 	for branch in branches:
-		blobs += dump_script(start_address, branch, visited)
+		blobs += dump_script(start_address, symbols, rom, texts, branch, visited)
 	for call in calls:
-		blobs += dump_script(call, None, visited)
+		blobs += dump_script(call, symbols, rom, texts, None, visited)
 	return blobs
 
 def fill_gap(start, end):
@@ -427,7 +426,7 @@ def sort_and_filter(blobs):
 		if next and blob["start"] == next["start"] and blob["output"] == next["output"]:
 			continue
 		if next and blob["end"] < next["start"] and get_bank(blob["end"]) == get_bank(next["start"]):
-			if args.fill_gaps:
+			if False and args.fill_gaps:
 				blob["output"] += fill_gap(blob["end"], next["start"])
 			else:
 				blob["output"] += "; gap from 0x{:x} to 0x{:x}\n\n".format(blob["end"], next["start"])
@@ -525,7 +524,7 @@ if __name__ == "__main__":
 			bank = get_bank(addr)
 			if bank not in symbols:
 				symbols[bank] = load_symbols(args.symfile, bank)
-			blobs += dump_script(addr)
+			blobs += dump_script(addr, symbols, rom, texts)
 		except:
 			print("Parsing script failed: {}".format(address), file=sys.stderr)
 			if not args.ignore_errors:

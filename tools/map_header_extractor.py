@@ -11,6 +11,9 @@ from constants import mapgfx
 from constants import npcs
 from constants import songs
 
+import configuration
+from tcg2disasm import Disassembler
+
 args = None
 rom = None
 
@@ -41,7 +44,25 @@ def make_address_comment(address):
 def make_blob(start, output, end=None):
 	return { "start": start, "output": output, "end": end if end else start }
 
+# run the disassembler and return the output
+def dump_function(ptr):
+	if ptr in [0x37480]:
+		print('WARN: skipping cursed function {:x}'.format(ptr))
+		return []
+	if ptr == 0:
+		return []
+	print("DEBUG: disasm {:x}".format(ptr))
+
+	try:
+		disasm_output = disasm.output_bank_opcodes(ptr, None, parse_scripts=True)
+		return [make_blob(ptr, disasm_output[0] + "\n", disasm_output[1])]
+	except Exception as e:
+		print("ERR:", e, "in function {:x}".format(ptr))
+		return []
+
 def dump_npcs(function_address, map_name_camelcase):
+	blobs = []
+
 	# the functions should always start with <ld hl, xxx_NPCs>
 	if rom[function_address] == 0x21:
 		table_start_address = get_pointer(function_address + 1)
@@ -63,10 +84,11 @@ def dump_npcs(function_address, map_name_camelcase):
 		ptr = get_pointer(address+4)
 		raw_ptr = rom[address+4] + (rom[address+5])*0x100
 
-		if args.function_labels:
+		if args.function_labels and ptr != 0:
 			output += "\tnpc {}, {}, {}, {}, Func_{:x}\n".format(
 				npc_id,	x_coord, y_coord, direction, ptr
 			)
+			blobs += dump_function(ptr)
 		else:
 			output += "\tnpc {}, {}, {}, {}, ${:x}\n".format(
 				npc_id,	x_coord, y_coord, direction, raw_ptr
@@ -76,10 +98,11 @@ def dump_npcs(function_address, map_name_camelcase):
 		current_byte = rom[address]
 
 	output += "\tdb $ff\n"
-
-	return [make_blob(table_start_address, output, address+1)]
+	blobs.append(make_blob(table_start_address, output, address+1))
+	return blobs
 
 def dump_stepevents(function_address, map_name_camelcase):
+	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_StepEvents>
 	# <call Func_324d>
@@ -100,16 +123,21 @@ def dump_stepevents(function_address, map_name_camelcase):
 
 	current_byte = rom[address]
 	while current_byte != 0xff:
-		output += dump_ow_coordinate_function(address)
+
+		dump_output = dump_ow_coordinate_function(address)
+		output += dump_output['output']
+		blobs += dump_output['blobs']
 
 		address += 9
 		current_byte = rom[address]
 
 	output += "\tdb $ff\n"
 
-	return [make_blob(table_start_address, output, address+1)]
+	blobs.append(make_blob(table_start_address, output, address+1))
+	return blobs
 
 def dump_npcinteractions(function_address, map_name_camelcase):
+	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_NPCInteractions>
 	# <call Func_328c>
@@ -134,12 +162,13 @@ def dump_npcinteractions(function_address, map_name_camelcase):
 	current_byte = rom[address]
 	while current_byte != 0xff:
 		npc_id = npcs[rom[address]]
-		ptr = get_pointer(address+2)
 		bank = rom[address+1]
+		ptr = get_pointer(address+2, bank)
 		raw_ptr = rom[address+2] + (rom[address+3])*0x100
 
 		if args.function_labels:
 			output += "\tnpc_script {}, Func_{:x}\n".format(npc_id,ptr)
+			blobs += dump_function(ptr)
 		else:
 			output += "\tnpc_script {}, ${:02x}, ${:x}\n".format(npc_id, bank, raw_ptr)
 
@@ -148,9 +177,11 @@ def dump_npcinteractions(function_address, map_name_camelcase):
 
 	output += "\tdb $ff\n"
 
-	return [make_blob(table_start_address, output, address+1)]
+	blobs.append(make_blob(table_start_address, output, address+1))
+	return blobs
 
 def dump_afterduelscripts(function_address, map_name_camelcase):
+	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_AfterDuelScripts>
 	# <ld a, [$d60e]>
@@ -174,12 +205,13 @@ def dump_afterduelscripts(function_address, map_name_camelcase):
 	current_byte = rom[address]
 	while current_byte != 0xff:
 		npc_id = npcs[rom[address]]
-		ptr = get_pointer(address+2)
 		bank = rom[address+1]
+		ptr = get_pointer(address+2, bank)
 		raw_ptr = rom[address+2] + (rom[address+3])*0x100
 
 		if args.function_labels:
 			output += "\tnpc_script {}, Func_{:x}\n".format(npc_id,ptr)
+			blobs += dump_function(ptr)
 		else:
 			output += "\tnpc_script {}, ${:02x}, ${:x}\n".format(npc_id, bank, raw_ptr)
 
@@ -188,17 +220,19 @@ def dump_afterduelscripts(function_address, map_name_camelcase):
 
 	output += "\tdb $ff\n"
 
-	return [make_blob(table_start_address, output, address+1)]
+	blobs.append(make_blob(table_start_address, output, address+1))
+	return blobs
 
 def dump_ow_coordinate_function(address):
+	blobs = []
 	x_coord = rom[address]
 	y_coord = rom[address+1]
 	a_register = rom[address+2]
 	d_register = rom[address+3]
 	e_register = rom[address+4]
 	b_register = rom[address+5]
-	function_addr = get_pointer(address+7, rom[address+6])
 	bank = rom[address+6]
+	function_addr = get_pointer(address+7, bank)
 	raw_ptr = rom[address+7] + (rom[address+8])*0x100
 
 	# see map_exit macro
@@ -212,6 +246,7 @@ def dump_ow_coordinate_function(address):
 			output = "\tow_script {}, {}, Func_{:x}\n".format(
 				x_coord, y_coord, function_addr
 			)
+			blobs += dump_function(function_addr)
 		else:
 			output = "\tow_script {}, {}, ${:02x}, ${:x}\n".format(
 				x_coord, y_coord, bank, raw_ptr
@@ -222,13 +257,17 @@ def dump_ow_coordinate_function(address):
 			output = "\t_ow_coordinate_function {}, {}, {}, {}, {}, {}, Func_{:x}\n".format(
 				x_coord, y_coord, a_register, d_register, e_register, b_register, function_addr
 			)
+			blobs += dump_function(function_addr)
 		else:
 			output = "\t_ow_coordinate_function {}, {}, {}, {}, {}, {}, ${:02x}, ${:x}\n".format(
 				x_coord, y_coord, a_register, d_register, e_register, b_register, bank, raw_ptr
 			)
-	return output
+
+	# this is gross. I'm sorry.
+	return {'output':output, 'blobs':blobs}
 
 def dump_owinteractions(function_address, map_name_camelcase):
+	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_OWInteractions>
 	# <call Func_32bf>
@@ -251,14 +290,17 @@ def dump_owinteractions(function_address, map_name_camelcase):
 
 	current_byte = rom[address]
 	while current_byte != 0xff:
-		output += dump_ow_coordinate_function(address)
+		dump_output = dump_ow_coordinate_function(address)
+		output += dump_output['output']
+		blobs += dump_output['blobs']
 
 		address += 9
 		current_byte = rom[address]
 
 	output += "\tdb $ff\n"
 
-	return [make_blob(table_start_address, output, address+1)]
+	blobs.append(make_blob(table_start_address, output, address+1))
+	return blobs
 
 def dump_mapscripts_table(address, map_name_camelcase):
 	blobs = []
@@ -276,6 +318,7 @@ def dump_mapscripts_table(address, map_name_camelcase):
 
 		if args.function_labels:
 			output += "\tdbw ${:02x}, Func_{:x}\n".format(script_type, function_ptr)
+			blobs += dump_function(function_ptr)
 		else:
 			output += "\tdbw ${:02x}, ${:04x}\n".format(script_type, raw_ptr)
 
@@ -375,10 +418,16 @@ if __name__ == "__main__":
 	ap.add_argument("-f", "--function-labels", action="store_true", help="use function labels (Func_xxx) instead of raw bank/addr bytes")
 	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-r", "--rom", default="baserom.gbc", help="rom file to extract script from")
+	ap.add_argument("-s", "--symfile", default="poketcg2.sym", help="symfile to extract symbols from")
 
 	args = ap.parse_args()
 	rom = bytearray(open(args.rom, "rb").read())
 	blobs = []
+
+	# initialize disassembler
+	conf = configuration.Config()
+	disasm = Disassembler(conf)
+	disasm.initialize(args.rom, args.symfile)
 
 	map_header_table_addr = 0xc651
 	blobs += dump_mapheadersptrs_table(map_header_table_addr)
