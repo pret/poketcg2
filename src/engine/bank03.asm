@@ -2721,132 +2721,132 @@ RunOverworldScript::
 	jp hl
 
 OverworldScriptTable:
-	dw ScriptCommand_00 ; $00
-	dw ScriptCommand_01 ; $01
-	dw ScriptCommand_02 ; $02
-	dw ScriptCommand_03 ; $03
-	dw ScriptCommand_04 ; $04
-	dw ScriptCommand_05 ; $05
-	dw ScriptCommand_06 ; $06
-	dw ScriptCommand_07 ; $07
-	dw ScriptCommand_08 ; $08
-	dw ScriptCommand_09 ; $09
-	dw ScriptCommand_0A ; $0a
-	dw ScriptCommand_0B ; $0b
-	dw ScriptCommand_0C ; $0c
-	dw ScriptCommand_0D ; $0d
-	dw ScriptCommand_0E ; $0e
-	dw ScriptCommand_0F ; $0f
-	dw ScriptCommand_10 ; $10
-	dw ScriptCommand_11 ; $11
-	dw ScriptCommand_12 ; $12
-	dw ScriptCommand_13 ; $13
-	dw ScriptCommand_14 ; $14
-	dw ScriptCommand_15 ; $15
-	dw ScriptCommand_16 ; $16
-	dw ScriptCommand_17 ; $17
-	dw ScriptCommand_18 ; $18
-	dw ScriptCommand_19 ; $19
-	dw ScriptCommand_1A ; $1a
-	dw ScriptCommand_1B ; $1b
-	dw ScriptCommand_1C ; $1c
-	dw ScriptCommand_1D ; $1d
-	dw ScriptCommand_1E ; $1e
-	dw ScriptCommand_1F ; $1f
-	dw ScriptCommand_20 ; $20
-	dw ScriptCommand_21 ; $21
-	dw ScriptCommand_22 ; $22
-	dw ScriptCommand_23 ; $23
-	dw ScriptCommand_24 ; $24
-	dw ScriptCommand_25 ; $25
-	dw ScriptCommand_26 ; $26
-	dw ScriptCommand_27 ; $27
-	dw ScriptCommand_28 ; $28
-	dw ScriptCommand_29 ; $29
-	dw ScriptCommand_2A ; $2a
-	dw ScriptCommand_2B ; $2b
-	dw ScriptCommand_2C ; $2c
-	dw ScriptCommand_2D ; $2d
-	dw ScriptCommand_2E ; $2e
-	dw ScriptCommand_2F ; $2f
-	dw ScriptCommand_30 ; $30
-	dw ScriptCommand_31 ; $31
-	dw ScriptCommand_32 ; $32
-	dw ScriptCommand_33 ; $33
-	dw ScriptCommand_34 ; $34
-	dw ScriptCommand_35 ; $35
-	dw ScriptCommand_36 ; $36
-	dw ScriptCommand_37 ; $37
-	dw ScriptCommand_38 ; $38
-	dw ScriptCommand_39 ; $39
-	dw ScriptCommand_3A ; $3a
-	dw ScriptCommand_3B ; $3b
-	dw ScriptCommand_3C ; $3c
-	dw ScriptCommand_3D ; $3d
-	dw ScriptCommand_3E ; $3e
-	dw ScriptCommand_3F ; $3f
-	dw ScriptCommand_40 ; $40
-	dw ScriptCommand_41 ; $41
-	dw ScriptCommand_42 ; $42
-	dw ScriptCommand_43 ; $43
-	dw ScriptCommand_44 ; $44
-	dw ScriptCommand_45 ; $45
-	dw ScriptCommand_46 ; $46
-	dw ScriptCommand_47 ; $47
-	dw ScriptCommand_48 ; $48
-	dw ScriptCommand_49 ; $49
-	dw ScriptCommand_4A ; $4a
-	dw ScriptCommand_4B ; $4b
-	dw ScriptCommand_4C ; $4c
-	dw ScriptCommand_4D ; $4d
-	dw ScriptCommand_4E ; $4e
-	dw ScriptCommand_4F ; $4f
-	dw ScriptCommand_50 ; $50
-	dw ScriptCommand_51 ; $51
-	dw ScriptCommand_52 ; $52
-	dw ScriptCommand_53 ; $53
-	dw ScriptCommand_54 ; $54
-	dw ScriptCommand_55 ; $55
-	dw ScriptCommand_56 ; $56
-	dw ScriptCommand_57 ; $57
-	dw ScriptCommand_58 ; $58
-	dw ScriptCommand_59 ; $59
-	dw ScriptCommand_5A ; $5a
-	dw ScriptCommand_5B ; $5b
-	dw ScriptCommand_5C ; $5c
-	dw ScriptCommand_5D ; $5d
-	dw ScriptCommand_5E ; $5e
-	dw ScriptCommand_5F ; $5f
-	dw ScriptCommand_60 ; $60
-	dw ScriptCommand_61 ; $61
-	dw ScriptCommand_62 ; $62
-	dw ScriptCommand_63 ; $63
-	dw ScriptCommand_64 ; $64
-	dw ScriptCommand_65 ; $65
-	dw ScriptCommand_66 ; $66
-	dw ScriptCommand_67 ; $67
-	dw ScriptCommand_68 ; $68
-	dw ScriptCommand_69 ; $69
-	dw ScriptCommand_6A ; $6a
-	dw ScriptCommand_6B ; $6b
-	dw ScriptCommand_6C ; $6c
-	dw ScriptCommand_6D ; $6d
-	dw ScriptCommand_6E ; $6e
-	dw ScriptCommand_6F ; $6f
-	dw ScriptCommand_70 ; $70
-	dw ScriptCommand_71 ; $71
-	dw ScriptCommand_72 ; $72
-	dw ScriptCommand_73 ; $73
-	dw ScriptCommand_74 ; $74
-	dw ScriptCommand_75 ; $75
-	dw ScriptCommand_76 ; $76
-	dw ScriptCommand_77 ; $77
-	dw ScriptCommand_78 ; $78
-	dw ScriptCommand_79 ; $79
-	dw ScriptCommand_7A ; $7a
-	dw ScriptCommand_7B ; $7b
-	dw ScriptCommand_7C ; $7c
-	dw ScriptCommand_7D ; $7d
+	dw ScriptCommand_EndScript                        ; $00
+	dw ScriptCommand_01                               ; $01
+	dw ScriptCommand_02                               ; $02
+	dw ScriptCommand_PrintText                        ; $03
+	dw ScriptCommand_PrintVariableText                ; $04
+	dw ScriptCommand_PrintNPCText                     ; $05
+	dw ScriptCommand_PrintVariableNPCText             ; $06
+	dw ScriptCommand_AskQuestion                      ; $07
+	dw ScriptCommand_ScriptJump                       ; $08
+	dw ScriptCommand_ScriptJump_b0nz                  ; $09
+	dw ScriptCommand_ScriptJump_b0z                   ; $0a
+	dw ScriptCommand_ScriptJump_b1nz                  ; $0b
+	dw ScriptCommand_ScriptJump_b1z                   ; $0c
+	dw ScriptCommand_CompareLoadedVar                 ; $0d
+	dw ScriptCommand_SetEvent                         ; $0e
+	dw ScriptCommand_ResetEvent                       ; $0f
+	dw ScriptCommand_CheckEvent                       ; $10
+	dw ScriptCommand_SetVar                           ; $11
+	dw ScriptCommand_GetVar                           ; $12
+	dw ScriptCommand_IncVar                           ; $13
+	dw ScriptCommand_DecVar                           ; $14
+	dw ScriptCommand_LoadNPC                          ; $15
+	dw ScriptCommand_UnloadNPC                        ; $16
+	dw ScriptCommand_SetPlayerDirection               ; $17
+	dw ScriptCommand_SetActiveNPCDirection            ; $18
+	dw ScriptCommand_DoFrames                         ; $19
+	dw ScriptCommand_LoadTilemap                      ; $1a
+	dw ScriptCommand_ShowCardReceivedScreen           ; $1b
+	dw ScriptCommand_SetPlayerPosition                ; $1c
+	dw ScriptCommand_SetActiveNPCPosition             ; $1d
+	dw ScriptCommand_SetScrollState                   ; $1e
+	dw ScriptCommand_ScrollToPosition                 ; $1f
+	dw ScriptCommand_SetActiveNPC                     ; $20
+	dw ScriptCommand_SetPlayerPositionAndDirection    ; $21
+	dw ScriptCommand_SetNPCPositionAndDirection       ; $22
+	dw ScriptCommand_FadeIn                           ; $23
+	dw ScriptCommand_FadeOut                          ; $24
+	dw ScriptCommand_SetNPCDirection                  ; $25
+	dw ScriptCommand_SetNPCPosition                   ; $26
+	dw ScriptCommand_SetActiveNPCPositionAndDirection ; $27
+	dw ScriptCommand_AnimatePlayerMovement            ; $28
+	dw ScriptCommand_AnimateNPCMovement               ; $29
+	dw ScriptCommand_AnimateActiveNPCMovement         ; $2a
+	dw ScriptCommand_MovePlayer                       ; $2b
+	dw ScriptCommand_MoveNPC                          ; $2c
+	dw ScriptCommand_MoveActiveNPC                    ; $2d
+	dw ScriptCommand_StartDuel                        ; $2e
+	dw ScriptCommand_WaitForPlayerAnimation           ; $2f
+	dw ScriptCommand_WaitForFade                      ; $30
+	dw ScriptCommand_GetCardCountInCollectionAndDecks ; $31
+	dw ScriptCommand_GetCardCountInCollection         ; $32
+	dw ScriptCommand_GiveCard                         ; $33
+	dw ScriptCommand_TakeCard                         ; $34
+	dw ScriptCommand_NPCAskQuestion                   ; $35
+	dw ScriptCommand_GetPlayerDirection               ; $36
+	dw ScriptCommand_CompareVar                       ; $37
+	dw ScriptCommand_GetActiveNPCDirection            ; $38
+	dw ScriptCommand_ScrollToActiveNPC                ; $39
+	dw ScriptCommand_ScrollToPlayer                   ; $3a
+	dw ScriptCommand_ScrollToNPC                      ; $3b
+	dw ScriptCommand_SpinActiveNPC                    ; $3c
+	dw ScriptCommand_RestoreActiveNPCDirection        ; $3d
+	dw ScriptCommand_SpinActiveNPCReverse             ; $3e
+	dw ScriptCommand_ResetNPCFlag6                    ; $3f
+	dw ScriptCommand_SetNPCFlag6                      ; $40
+	dw ScriptCommand_DuelRequirementCheck             ; $41
+	dw ScriptCommand_GetActiveNPCOppositeDirection    ; $42
+	dw ScriptCommand_GetPlayerOppositeDirection       ; $43
+	dw ScriptCommand_PlaySFX                          ; $44
+	dw ScriptCommand_PlaySFXAndWait                   ; $45
+	dw ScriptCommand_SetTextRAM2                      ; $46
+	dw ScriptCommand_SetVariableTextRAM2              ; $47
+	dw ScriptCommand_WaitForNPCAnimation              ; $48
+	dw ScriptCommand_GetPlayerXPosition               ; $49
+	dw ScriptCommand_GetPlayerYPosition               ; $4a
+	dw ScriptCommand_RestoreNPCDirection              ; $4b
+	dw ScriptCommand_SpinNPC                          ; $4c
+	dw ScriptCommand_SpinNPCReverse                   ; $4d
+	dw ScriptCommand_PushVar                          ; $4e
+	dw ScriptCommand_PopVar                           ; $4f
+	dw ScriptCommand_ScriptCall                       ; $50
+	dw ScriptCommand_ScriptRet                        ; $51
+	dw ScriptCommand_GiveCoin                         ; $52
+	dw ScriptCommand_BackupActiveNPC                  ; $53
+	dw ScriptCommand_LoadPlayer                       ; $54
+	dw ScriptCommand_UnloadPlayer                     ; $55
+	dw ScriptCommand_GiveBoosterPacks                 ; $56
+	dw ScriptCommand_GetRandom                        ; $57
+	dw ScriptCommand_58                               ; $58
+	dw ScriptCommand_SetTextRAM3                      ; $59
+	dw ScriptCommand_QuitScript                       ; $5a
+	dw ScriptCommand_PlaySong                         ; $5b
+	dw ScriptCommand_ResumeSong                       ; $5c
+	dw ScriptCommand_ScriptCallfar                    ; $5d
+	dw ScriptCommand_ScriptRetfar                     ; $5e
+	dw ScriptCommand_CardPop                          ; $5f
+	dw ScriptCommand_PlaySongNext                     ; $60
+	dw ScriptCommand_SetTextRAM2b                     ; $61
+	dw ScriptCommand_SetVariableTextRAM2b             ; $62
+	dw ScriptCommand_ReplaceNPC                       ; $63
+	dw ScriptCommand_64                               ; $64
+	dw ScriptCommand_CheckNPCLoaded                   ; $65
+	dw ScriptCommand_GiveDeck                         ; $66
+	dw ScriptCommand_67                               ; $67
+	dw ScriptCommand_68                               ; $68
+	dw ScriptCommand_PrintNPCTextInstant              ; $69
+	dw ScriptCommand_VarAdd                           ; $6a
+	dw ScriptCommand_VarSub                           ; $6b
+	dw ScriptCommand_ReceiveCard                      ; $6c
+	dw ScriptCommand_Fetch_wda99                      ; $6d
+	dw ScriptCommand_CompareLoadedVarWord             ; $6e
+	dw ScriptCommand_Fetch_wda9b                      ; $6f
+	dw ScriptCommand_GameCenter                       ; $70
+	dw ScriptCommand_71                               ; $71
+	dw ScriptCommand_72                               ; $72
+	dw ScriptCommand_73                               ; $73
+	dw ScriptCommand_LoadTextRAM3                     ; $74
+	dw ScriptCommand_75                               ; $75
+	dw ScriptCommand_76                               ; $76
+	dw ScriptCommand_LinkDuel                         ; $77
+	dw ScriptCommand_WaitSong                         ; $78
+	dw ScriptCommand_LoadPalette                      ; $79
+	dw ScriptCommand_SetSpriteFrameset                ; $7a
+	dw ScriptCommand_WaitSFX                          ; $7b
+	dw ScriptCommand_PrintTextWideTextbox             ; $7c
+	dw ScriptCommand_WaitInput                        ; $7d
 
 ; add a to [wScriptPointer]
 ; if [wScriptBufferIndex] + a < 32, add a to [wScriptBufferIndex] too
@@ -2977,7 +2977,7 @@ Get1ScriptArg_IncrIndexBy4:
 	ld a, 4
 	jr Get1ScriptArg
 
-ScriptCommand_00:
+ScriptCommand_EndScript:
 	ld a, [wd618]
 	set 7, a
 	ld [wd618], a
@@ -2992,14 +2992,14 @@ ScriptCommand_02:
 	farcall Func_1101d
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_03:
+ScriptCommand_PrintText:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_04:
+ScriptCommand_PrintVariableText:
 	ld hl, wd618
 	bit 0, [hl]
 	jr z, .yes
@@ -3015,7 +3015,7 @@ ScriptCommand_04:
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_05:
+ScriptCommand_PrintNPCText:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld hl, wd60f
 	ld a, [hli]
@@ -3026,7 +3026,7 @@ ScriptCommand_05:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_06:
+ScriptCommand_PrintVariableNPCText:
 	ld hl, wd618
 	bit 0, [hl]
 	jr z, .yes
@@ -3046,7 +3046,7 @@ ScriptCommand_06:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_07:
+ScriptCommand_AskQuestion:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
@@ -3064,7 +3064,7 @@ ScriptCommand_07:
 	res 0, [hl]
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_08:
+ScriptCommand_ScriptJump:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	ld [wScriptPointer], a
@@ -3073,35 +3073,35 @@ ScriptCommand_08:
 	call ReloadScriptBuffer
 	jp ReloadScriptBuffer_Done
 
-ScriptCommand_09:
+ScriptCommand_ScriptJump_b0nz:
 	ld hl, wd618
 	bit 0, [hl]
 ; no
-	jp nz, ScriptCommand_08
+	jp nz, ScriptCommand_ScriptJump
 ; yes
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_0A:
+ScriptCommand_ScriptJump_b0z:
 	ld hl, wd618
 	bit 0, [hl]
 ; yes
-	jp z, ScriptCommand_08
+	jp z, ScriptCommand_ScriptJump
 ; no
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_0B:
+ScriptCommand_ScriptJump_b1nz:
 	ld hl, wd618
 	bit 1, [hl]
 ; invalid
-	jp nz, ScriptCommand_08
+	jp nz, ScriptCommand_ScriptJump
 ; valid
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_0C:
+ScriptCommand_ScriptJump_b1z:
 	ld hl, wd618
 	bit 1, [hl]
 ; valid
-	jp z, ScriptCommand_08
+	jp z, ScriptCommand_ScriptJump
 ; invalid
 	jp IncreaseScriptPointerBy3
 
@@ -3110,7 +3110,7 @@ ScriptCommand_0C:
 ; set bit 1 at wd618 if x > [wd616],
 ; else reset both bits,
 ; then IncreaseScriptPointerBy2
-ScriptCommand_0D:
+ScriptCommand_CompareLoadedVar:
 	call Get1ScriptArg_IncrIndexBy1
 	ld c, a
 	ld a, [wd616]
@@ -3126,17 +3126,17 @@ ScriptCommand_0D:
 .bit1_ok
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_0E:
+ScriptCommand_SetEvent:
 	call Get1ScriptArg_IncrIndexBy1
 	call MaxOutEventValue
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_0F:
+ScriptCommand_ResetEvent:
 	call Get1ScriptArg_IncrIndexBy1
 	call ZeroOutEventValue
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_10:
+ScriptCommand_CheckEvent:
 	call Get1ScriptArg_IncrIndexBy1
 	call GetEventValue
 	ld hl, wd618
@@ -3148,21 +3148,21 @@ ScriptCommand_10:
 	set 0, [hl]
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_11:
+ScriptCommand_SetVar:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	ld c, b
 	call SetVarValue
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_12:
+ScriptCommand_GetVar:
 	call Get1ScriptArg_IncrIndexBy1
 	call GetVarValue
 	ld [wd616], a
 	jp IncreaseScriptPointerBy2
 
 ; inc VAR_* constant value
-ScriptCommand_13:
+ScriptCommand_IncVar:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call GetVarValue
@@ -3173,7 +3173,7 @@ ScriptCommand_13:
 	jp IncreaseScriptPointerBy2
 
 ; dec VAR_* constant value
-ScriptCommand_14:
+ScriptCommand_DecVar:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call GetVarValue
@@ -3183,7 +3183,7 @@ ScriptCommand_14:
 	call SetVarValue
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_15:
+ScriptCommand_LoadNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3197,26 +3197,26 @@ ScriptCommand_15:
 	farcall LoadOWObjectInMap
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_16:
+ScriptCommand_UnloadNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall ClearOWObject
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_17:
+ScriptCommand_SetPlayerDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	ld b, a
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_18:
+ScriptCommand_SetActiveNPCDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	ld b, a
 	ld a, [wd60e]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_19:
+ScriptCommand_DoFrames:
 	call Get1ScriptArg_IncrIndexBy1
 	ld c, a
 .delay_loop
@@ -3225,7 +3225,7 @@ ScriptCommand_19:
 	jr nz, .delay_loop
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_1A:
+ScriptCommand_LoadTilemap:
 	call Get2ScriptArgs_IncrIndexBy1
 	push bc
 	call Get2ScriptArgs_IncrIndexBy3
@@ -3235,7 +3235,7 @@ ScriptCommand_1A:
 	farcall Func_12c0ce
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_1B:
+ScriptCommand_ShowCardReceivedScreen:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
@@ -3245,7 +3245,7 @@ ScriptCommand_1B:
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_1C:
+ScriptCommand_SetPlayerPosition:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
@@ -3253,7 +3253,7 @@ ScriptCommand_1C:
 	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_1D:
+ScriptCommand_SetActiveNPCPosition:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
@@ -3261,12 +3261,12 @@ ScriptCommand_1D:
 	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_1E:
+ScriptCommand_SetScrollState:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall SetOWScrollState
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_1F:
+ScriptCommand_ScrollToPosition:
 	call Get2ScriptArgs_IncrIndexBy1
 	sla c
 	sla b
@@ -3280,7 +3280,7 @@ ScriptCommand_1F:
 	jr nz, .delay_loop
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_20:
+ScriptCommand_SetActiveNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	ld [wd60e], a
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3290,7 +3290,7 @@ ScriptCommand_20:
 	ld [wd60f + 1], a
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_21:
+ScriptCommand_SetPlayerPositionAndDirection:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
@@ -3302,7 +3302,7 @@ ScriptCommand_21:
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_22:
+ScriptCommand_SetNPCPositionAndDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3317,27 +3317,27 @@ ScriptCommand_22:
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_23:
+ScriptCommand_FadeIn:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, b
 	ld b, c
 	farcall StartPalFadeFromBlackOrWhite
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_24:
+ScriptCommand_FadeOut:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, b
 	ld b, c
 	farcall StartPalFadeToBlackOrWhite
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_25:
+ScriptCommand_SetNPCDirection:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_26:
+ScriptCommand_SetNPCPosition:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3347,7 +3347,7 @@ ScriptCommand_26:
 	farcall SetOWObjectTilePosition
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_27:
+ScriptCommand_SetActiveNPCPositionAndDirection:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
@@ -3359,7 +3359,7 @@ ScriptCommand_27:
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_28:
+ScriptCommand_AnimatePlayerMovement:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, b
 	ld b, c
@@ -3379,7 +3379,7 @@ ScriptCommand_28:
 	farcall SetOWObjectFlag5_WithID
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_29:
+ScriptCommand_AnimateNPCMovement:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3399,7 +3399,7 @@ ScriptCommand_29:
 	pop af
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_2A:
+ScriptCommand_AnimateActiveNPCMovement:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, b
 	ld b, c
@@ -3414,7 +3414,7 @@ ScriptCommand_2A:
 	jr nz, .delay_loop
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_2B:
+ScriptCommand_MovePlayer:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
@@ -3431,7 +3431,7 @@ ScriptCommand_2B:
 .not_set
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_2C:
+ScriptCommand_MoveNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3443,7 +3443,7 @@ ScriptCommand_2C:
 	farcall Func_10def
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_2D:
+ScriptCommand_MoveActiveNPC:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
@@ -3453,7 +3453,7 @@ ScriptCommand_2D:
 	farcall Func_10def
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_2E:
+ScriptCommand_StartDuel:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	ld [wNPCDuelDeckID], a
@@ -3463,15 +3463,15 @@ ScriptCommand_2E:
 	set 1, [hl]
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_2F:
+ScriptCommand_WaitForPlayerAnimation:
 	call Func_3340
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_30:
+ScriptCommand_WaitForFade:
 	call WaitPalFading
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_31:
+ScriptCommand_GetCardCountInCollectionAndDecks:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
@@ -3488,7 +3488,7 @@ ScriptCommand_31:
 .done
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_32:
+ScriptCommand_GetCardCountInCollection:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
@@ -3505,21 +3505,21 @@ ScriptCommand_32:
 .done
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_33:
+ScriptCommand_GiveCard:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
 	call AddCardToCollection
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_34:
+ScriptCommand_TakeCard:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
 	call RemoveCardFromCollection
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_35:
+ScriptCommand_NPCAskQuestion:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
@@ -3543,14 +3543,14 @@ ScriptCommand_35:
 	res 0, [hl]
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_36:
+ScriptCommand_GetPlayerDirection:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_37:
+ScriptCommand_CompareVar:
 	call Get1ScriptArg_IncrIndexBy1
 	call GetVarValue
 	push af
@@ -3577,35 +3577,35 @@ ScriptCommand_37:
 .bit1_done
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_38:
+ScriptCommand_GetActiveNPCDirection:
 	ld a, [wd60e]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_39:
+ScriptCommand_ScrollToActiveNPC:
 	ld a, [wd60e]
 	farcall SetOWObjectAsScrollTarget
 	ld a, 1
 	farcall SetOWScrollState
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_3A:
+ScriptCommand_ScrollToPlayer:
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectAsScrollTarget
 	ld a, 1
 	farcall SetOWScrollState
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_3B:
+ScriptCommand_ScrollToNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall SetOWObjectAsScrollTarget
 	ld a, 1
 	farcall SetOWScrollState
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_3C:
+ScriptCommand_SpinActiveNPC:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, b
 	ld e, c
@@ -3632,14 +3632,14 @@ ScriptCommand_3C:
 	jr nz, .delay_loop_d
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_3D:
+ScriptCommand_RestoreActiveNPCDirection:
 	ld a, [wd616]
 	ld b, a
 	ld a, [wd60e]
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_3E:
+ScriptCommand_SpinActiveNPCReverse:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, b
 	ld e, c
@@ -3666,17 +3666,17 @@ ScriptCommand_3E:
 	jr nz, .delay_loop_d
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_3F:
+ScriptCommand_ResetNPCFlag6:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall ResetOWObjectSpriteAnimFlag6
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_40:
+ScriptCommand_SetNPCFlag6:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall SetOWObjectSpriteAnimFlag6
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_41:
+ScriptCommand_DuelRequirementCheck:
 	call ResetDuelDeckRequirementStatus
 	call Get1ScriptArg_IncrIndexBy1
 	ld hl, DuelRequirementFunctionMap
@@ -3849,7 +3849,7 @@ DuelRequirementFunctionMap:
 	key_func $12, DuelKanzakiRequirement
 	db $ff
 
-ScriptCommand_42:
+ScriptCommand_GetActiveNPCOppositeDirection:
 	ld a, [wd60e]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
@@ -3857,7 +3857,7 @@ ScriptCommand_42:
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_43:
+ScriptCommand_GetPlayerOppositeDirection:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
 	ld a, b
@@ -3865,25 +3865,25 @@ ScriptCommand_43:
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_44:
+ScriptCommand_PlaySFX:
 	call Get1ScriptArg_IncrIndexBy1
 	call PlaySFX
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_45:
+ScriptCommand_PlaySFXAndWait:
 	call Get1ScriptArg_IncrIndexBy1
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_46:
+ScriptCommand_SetTextRAM2:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	call LoadTxRam2
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_47:
+ScriptCommand_SetVariableTextRAM2:
 	ld hl, wd618
 	bit 0, [hl]
 	jr z, .yes
@@ -3898,26 +3898,26 @@ ScriptCommand_47:
 	call LoadTxRam2
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_48:
+ScriptCommand_WaitForNPCAnimation:
 	call Get1ScriptArg_IncrIndexBy1
 	call WaitForOWObjectAnimation
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_49:
+ScriptCommand_GetPlayerXPosition:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, d
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_4A:
+ScriptCommand_GetPlayerYPosition:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, e
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_4B:
+ScriptCommand_RestoreNPCDirection:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	ld a, [wd616]
@@ -3926,7 +3926,7 @@ ScriptCommand_4B:
 	farcall SetOWObjectDirection
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_4C:
+ScriptCommand_SpinNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3956,7 +3956,7 @@ ScriptCommand_4C:
 	jr nz, .delay_loop_d
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_4D:
+ScriptCommand_SpinNPCReverse:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -3986,7 +3986,7 @@ ScriptCommand_4D:
 	jr nz, .delay_loop_d
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_4E:
+ScriptCommand_PushVar:
 	ld hl, wd63e
 	ld a, [wd61d]
 	dec a
@@ -4000,7 +4000,7 @@ ScriptCommand_4E:
 	ld [hl], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_4F:
+ScriptCommand_PopVar:
 	ld hl, wd63e
 	ld a, [wd61d]
 	push af
@@ -4016,7 +4016,7 @@ ScriptCommand_4F:
 	ld [wd61d], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_50:
+ScriptCommand_ScriptCall:
 	call Get1ScriptArg_IncrIndexBy3
 	ld hl, wd618
 	cp b0nz
@@ -4071,7 +4071,7 @@ ScriptCommand_50:
 	call ReloadScriptBuffer
 	jp ReloadScriptBuffer_Done
 
-ScriptCommand_51:
+ScriptCommand_ScriptRet:
 	ld hl, wd63e
 	ld a, [wd61d]
 	inc a
@@ -4090,18 +4090,18 @@ ScriptCommand_51:
 	call ReloadScriptBuffer
 	jp ReloadScriptBuffer_Done
 
-ScriptCommand_52:
+ScriptCommand_GiveCoin:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall Func_1db63
 	call WaitPalFading
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_53:
+ScriptCommand_BackupActiveNPC:
 	ld a, [wd60e]
 	ld [wd616], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_54:
+ScriptCommand_LoadPlayer:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld d, c
 	ld e, b
@@ -4113,12 +4113,12 @@ ScriptCommand_54:
 	farcall LoadOWObjectInMap
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_55:
+ScriptCommand_UnloadPlayer:
 	ld a, [wPlayerOWObject]
 	farcall ClearOWObject
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_56:
+ScriptCommand_GiveBoosterPacks:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
@@ -4235,7 +4235,7 @@ ScriptCommand_56:
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_57:
+ScriptCommand_GetRandom:
 	call Get1ScriptArg_IncrIndexBy1
 	call Random
 	ld [wd616], a
@@ -4246,30 +4246,30 @@ ScriptCommand_58:
 	call Func_3154
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_59:
+ScriptCommand_SetTextRAM3:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	call LoadTxRam3
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_5A:
+ScriptCommand_QuitScript:
 	ld a, [wd618]
 	set 6, a
 	ld [wd618], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_5B:
+ScriptCommand_PlaySong:
 	call PauseSong
 	call Get1ScriptArg_IncrIndexBy1
 	call PlaySong
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_5C:
+ScriptCommand_ResumeSong:
 	call ResumeSong
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_5D:
+ScriptCommand_ScriptCallfar:
 	call Get1ScriptArg_IncrIndexBy3
 	push af
 	call Get2ScriptArgs_IncrIndexBy1
@@ -4302,7 +4302,7 @@ ScriptCommand_5D:
 	call ReloadScriptBuffer
 	jp ReloadScriptBuffer_Done
 
-ScriptCommand_5E:
+ScriptCommand_ScriptRetfar:
 	ld hl, wd63e
 	ld a, [wd61d]
 	inc a
@@ -4324,18 +4324,18 @@ ScriptCommand_5E:
 	call ReloadScriptBuffer
 	jp ReloadScriptBuffer_Done
 
-ScriptCommand_5F:
+ScriptCommand_CardPop:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall Func_1f7f1
 	call WaitPalFading
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_60:
+ScriptCommand_PlaySongNext:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall PlayAfterCurrentSong
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_61:
+ScriptCommand_SetTextRAM2b:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	ld [wTxRam2_b], a
@@ -4343,7 +4343,7 @@ ScriptCommand_61:
 	ld [wTxRam2_b + 1], a
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_62:
+ScriptCommand_SetVariableTextRAM2b:
 	ld hl, wd618
 	bit 0, [hl]
 	jr z, .yes
@@ -4359,7 +4359,7 @@ ScriptCommand_62:
 	ld [wTxRam2_b + 1], a
 	jp IncreaseScriptPointerBy5
 
-ScriptCommand_63:
+ScriptCommand_ReplaceNPC:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall GetOWObjectTilePosition
 	push de
@@ -4425,7 +4425,7 @@ ScriptCommand_64:
 .done
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_65:
+ScriptCommand_CheckNPCLoaded:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall CheckOWObjectPointerWithID
 	ld hl, wd618
@@ -4437,7 +4437,7 @@ ScriptCommand_65:
 	res 1, [hl]
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_66:
+ScriptCommand_GiveDeck:
 	call Get1ScriptArg_IncrIndexBy1
 	farcall Func_1acbf
 	ld hl, wd618
@@ -4463,7 +4463,7 @@ ScriptCommand_68:
 	jr nz, .delay_loop
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_69:
+ScriptCommand_PrintNPCTextInstant:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld hl, wd60f
 	ld a, [hli]
@@ -4474,7 +4474,7 @@ ScriptCommand_69:
 	farcall PrintTextInLabelledScrollableTextBox
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_6A:
+ScriptCommand_VarAdd:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	call GetVarValue
@@ -4485,7 +4485,7 @@ ScriptCommand_6A:
 	call SetVarValue
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_6B:
+ScriptCommand_VarSub:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, c
 	call GetVarValue
@@ -4496,7 +4496,7 @@ ScriptCommand_6B:
 	call SetVarValue
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_6C:
+ScriptCommand_ReceiveCard:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld e, c
 	ld d, b
@@ -4506,7 +4506,7 @@ ScriptCommand_6C:
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_6D:
+ScriptCommand_Fetch_wda99:
 	farcall GetDWwDA99
 	ld a, c
 	ld [wd616], a
@@ -4514,7 +4514,7 @@ ScriptCommand_6D:
 	ld [wd617], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_6E:
+ScriptCommand_CompareLoadedVarWord:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld a, [wd616]
 	ld e, a
@@ -4538,7 +4538,7 @@ ScriptCommand_6E:
 .skip_bit1
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_6F:
+ScriptCommand_Fetch_wda9b:
 	farcall GetDWwDA9B
 	ld a, c
 	ld [wd616], a
@@ -4546,7 +4546,7 @@ ScriptCommand_6F:
 	ld [wd617], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_70:
+ScriptCommand_GameCenter:
 	farcall Func_114af
 	jp IncreaseScriptPointerBy1
 
@@ -4564,7 +4564,7 @@ ScriptCommand_73:
 	farcall Func_115de
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_74:
+ScriptCommand_LoadTextRAM3:
 	ld a, [wd616]
 	ld l, a
 	ld a, [wd617]
@@ -4580,7 +4580,7 @@ ScriptCommand_76:
 	farcall Func_1cd36
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_77:
+ScriptCommand_LinkDuel:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	call ZeroOutEventValue
 	ld hl, wd618
@@ -4602,17 +4602,17 @@ ScriptCommand_77:
 	farcall PlayCurrentSong
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_78:
+ScriptCommand_WaitSong:
 	farcall WaitSong
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_79:
+ScriptCommand_LoadPalette:
 	call Get2ScriptArgs_IncrIndexBy1
 	farcall GetPalettesWithID
 	call FlushAllPalettes
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_7A:
+ScriptCommand_SetSpriteFrameset:
 	call Get1ScriptArg_IncrIndexBy1
 	push af
 	call Get2ScriptArgs_IncrIndexBy2
@@ -4620,18 +4620,18 @@ ScriptCommand_7A:
 	farcall SetAndInitOWObjectFrameset
 	jp IncreaseScriptPointerBy4
 
-ScriptCommand_7B:
+ScriptCommand_WaitSFX:
 	farcall WaitForSFXToFinish
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_7C:
+ScriptCommand_PrintTextWideTextbox:
 	call Get2ScriptArgs_IncrIndexBy1
 	ld l, c
 	ld h, b
 	farcall PrintTextInWideTextBox
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_7D:
+ScriptCommand_WaitInput:
 	call WaitForWideTextBoxInput
 	jp IncreaseScriptPointerBy1
 
