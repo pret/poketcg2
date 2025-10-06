@@ -19,8 +19,6 @@ INCBIN "gfx/fonts/full_width/extra.1bpp"
 HalfWidthFont::
 INCBIN "gfx/fonts/half_width.1bpp"
 
-SECTION "Gfx 1@70b0", ROMX
-
 Pals_6f0b0::
 	rgb 31, 31, 31
 	rgb 21, 21, 16
@@ -62,7 +60,7 @@ Pals_6f0b0::
 	rgb 27,  7,  3
 	rgb  0,  0,  0
 
-SECTION "Gfx 1@7150", ROMX
+SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
 
 SymbolsFont::
 INCBIN "gfx/fonts/symbols.2bpp"
@@ -71,8 +69,14 @@ SECTION "Card Gfx 1", ROMX
 
 CardGraphics::
 
-SECTION "Tilemaps 1", ROMX[$74f5], BANK[$4b]
+SECTION "Bank 4b", ROMX
+INCLUDE "engine/bank4b.asm"
+
+SECTION "Tilemaps 1", ROMX
 INCLUDE "data/maps/tilemaps1.asm"
+
+SECTION "Bank 4c", ROMX
+INCLUDE "engine/bank4c.asm"
 
 SECTION "Tilemaps 2", ROMX
 INCLUDE "data/maps/tilemaps2.asm"
@@ -2467,21 +2471,6 @@ Frameset10A::
 	oamframe  3,  1,   0,   0
 	oamreset
 
-SECTION "Framesets 1", ROMX
-INCLUDE "data/framesets1.asm"
-
-SECTION "Framesets 2", ROMX
-INCLUDE "data/framesets2.asm"
-
-SECTION "OW Tile Frames 1", ROMX
-INCLUDE "data/ow_tile_frames1.asm"
-
-SECTION "OW Animations", ROMX
-INCLUDE "data/ow_animations.asm"
-
-SECTION "OW Tile Frames 2", ROMX
-INCLUDE "data/ow_tile_frames2.asm"
-
 SECTION "Palettes 2", ROMX
 INCLUDE "data/palettes2.asm"
 
@@ -2499,3 +2488,18 @@ INCLUDE "data/oam4.asm"
 
 SECTION "OAM 5", ROMX
 INCLUDE "data/oam5.asm"
+
+SECTION "Framesets 1", ROMX
+INCLUDE "data/framesets1.asm"
+
+SECTION "Framesets 2", ROMX
+INCLUDE "data/framesets2.asm"
+
+SECTION "OW Tile Frames 1", ROMX
+INCLUDE "data/ow_tile_frames1.asm"
+
+SECTION "OW Animations", ROMX
+INCLUDE "data/ow_animations.asm"
+
+SECTION "OW Tile Frames 2", ROMX
+INCLUDE "data/ow_tile_frames2.asm"

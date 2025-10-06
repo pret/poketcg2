@@ -4786,3 +4786,6 @@ CountIfListedCardsInDeck:
 	or a
 	ret
 ; 0x260e7
+
+SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
+INCLUDE "engine/gbc_only_disclaimer.asm"

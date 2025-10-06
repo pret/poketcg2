@@ -1,5 +1,3 @@
-SECTION "Bank f@4000", ROMX[$4000], BANK[$f]
-
 Prologue::
 	xor a ; MUSIC_STOP
 	ld [wCurMusic], a

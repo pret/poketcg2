@@ -757,7 +757,7 @@ SetInitialGraphicsConfiguration:
 	pop af
 	ret
 
-SetFontAndTextBoxFrameColor_PreserveRegisters:
+SetFontAndTextBoxFrameColor_PreserveRegisters::
 	push af
 	push bc
 	push de
@@ -1290,7 +1290,7 @@ ENDR
 	ret
 
 ; b = direction
-SetSpriteAnimDirection:
+SetSpriteAnimDirection::
 	push af
 	push bc
 	push de
@@ -1772,7 +1772,7 @@ SetSpriteAnimFrameset:
 	ret
 
 ; bc = OWFRAMEGROUP_*
-SetSpriteAnimOWFrameGroup:
+SetSpriteAnimOWFrameGroup::
 	push af
 	push bc
 	push de
@@ -2844,7 +2844,7 @@ InitOWObjects:
 	pop af
 	ret
 
-_GetNextInactiveOWObject:
+_GetNextInactiveOWObject::
 	push af
 	push bc
 	push de
@@ -2925,7 +2925,7 @@ Func_1126b:
 	ld [hl], a
 	ret
 
-ConvertToSpriteAnimPosition:
+ConvertToSpriteAnimPosition::
 	push af
 	ld a, d
 	add $08
@@ -5006,7 +5006,8 @@ SetCthSpriteAnimAnimating:
 	call SetSpriteAnimAnimating
 	pop hl
 	ret
-; 0x12eb9
+
+INCLUDE "engine/scenes.asm"
 
 SECTION "Bank 4@73f0", ROMX[$73f0], BANK[$4]
 
@@ -5215,6 +5216,7 @@ DrawLoadedCard:
 ; 0x1352a
 
 SECTION "Bank 4@7890", ROMX[$7890], BANK[$4]
+
 INCLUDE "engine/credits_commands.asm"
 
 ShowProloguePortraitAndText_WithFade:

@@ -16,9 +16,6 @@ INCLUDE "engine/bank03.asm"
 SECTION "Bank 4", ROMX
 INCLUDE "engine/bank04.asm"
 
-SECTION "Scenes", ROMX[$6eb9], BANK[$4]
-INCLUDE "engine/scenes.asm"
-
 SECTION "Bank 5", ROMX
 INCLUDE "engine/bank05.asm"
 
@@ -33,9 +30,6 @@ INCLUDE "engine/bank08.asm"
 
 SECTION "Bank 9", ROMX
 INCLUDE "engine/bank09.asm"
-
-SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
-INCLUDE "engine/gbc_only_disclaimer.asm"
 
 SECTION "Bank a", ROMX
 INCLUDE "engine/bank0a.asm"
@@ -77,25 +71,5 @@ INCLUDE "data/cards1.asm"
 SECTION "Bank 18", ROMX
 INCLUDE "data/cards2.asm"
 
-SECTION "Decks", ROMX[$54ac], BANK[$16]
-INCLUDE "data/decks.asm"
-
 SECTION "Bank 1a", ROMX
 INCLUDE "engine/bank1a.asm"
-
-INCLUDE "engine/bank4b.asm"
-
-SECTION "Gfx Pointers", ROMX[$4545], BANK[$4b]
-INCLUDE "data/gfx_pointers/tilemaps.asm"
-INCLUDE "data/gfx_pointers/tilesets.asm"
-INCLUDE "data/gfx_pointers/palettes.asm"
-INCLUDE "data/gfx_pointers/sprite_animations.asm"
-INCLUDE "data/gfx_pointers/framesets.asm"
-INCLUDE "data/gfx_pointers/ow_tile_frames.asm"
-INCLUDE "data/gfx_pointers/ow_animations.asm"
-
-SECTION "Map Gfx", ROMX[$6c59], BANK[$4b]
-INCLUDE "data/map_gfx.asm"
-
-SECTION "Bank 4c", ROMX
-INCLUDE "engine/bank4c.asm"

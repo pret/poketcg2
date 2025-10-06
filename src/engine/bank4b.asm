@@ -1,5 +1,3 @@
-SECTION "Bank 4B@4000", ROMX[$4000], BANK[$4b]
-
 ; input:
 ; bc = PALETTE_* constant
 ; outputs pointer as b:hl
@@ -41,7 +39,7 @@ GetTilesetGfxPointer::
 
 ; bc = TILEMAP_* constant
 ; outputs pointer as b:hl
-GetTilemapGfxPointer:
+GetTilemapGfxPointer::
 	push af
 	sla c
 	rl b
@@ -133,7 +131,7 @@ GetFramesetPointer:
 
 ; bc = OWFRAMEGROUP_*
 ; a = direction
-GetOWObjectFrameset:
+GetOWObjectFrameset::
 	push af
 	push hl
 	sla c
@@ -176,7 +174,7 @@ Func_12c0b7:
 
 ; bc = TILEMAP_* constant
 ; de = OW coordinates
-Func_12c0ce:
+Func_12c0ce::
 	push af
 	push bc
 	push de
@@ -235,7 +233,7 @@ Func_12c0fc:
 ; output:
 ;  b = tilemap width
 ;  c = tilemap height
-LoadTilemap:
+LoadTilemap::
 	push af
 	push de
 	push hl
@@ -405,7 +403,7 @@ Func_12c1c1:
 	ret
 
 ; bc = MAP_GFX_* ID
-LoadOWMap:
+LoadOWMap::
 	ld a, c
 	ld [wOWMap + 0], a
 	ld a, b
@@ -554,7 +552,7 @@ LoadSpriteAnimGfx::
 	pop bc
 	ret
 
-UpdateSpriteAnim:
+UpdateSpriteAnim::
 	push af
 	push bc
 	push de
@@ -702,14 +700,15 @@ WriteCurSpriteAnim:
 	ld bc, (SPRITEANIMSTRUCT_START_DELAY - SPRITEANIMSTRUCT_FLAGS) + 1
 	call CopyDataHLtoDE_SaveRegisters
 	ret
-; 0x12c3dc
 
-SECTION "Bank 4B@43e0", ROMX[$43e0], BANK[$4b]
+Func_12c3dc:
+	call Func_3bc1
+	ret
 
 ; input:
 ;  b:hl = tilemap pointer
 ;  de = coordinates
-LoadPortraitAttributeMap:
+LoadPortraitAttributeMap::
 	push af
 	push bc
 	push de
@@ -744,7 +743,7 @@ LoadPortraitAttributeMap:
 ; a = ?
 ; b = direction
 ; de = coordinates
-_LoadOWObject:
+_LoadOWObject::
 	push af
 	push bc
 	push de
@@ -838,7 +837,7 @@ _LoadOWObject:
 	pop af
 	ret
 
-Func_12c49b:
+Func_12c49b::
 	push af
 	push bc
 	push de
@@ -937,9 +936,16 @@ Func_12c535:
 	pop bc
 	pop af
 	ret
-; 0x12c545
 
-SECTION "Bank 4B@707f", ROMX[$707f], BANK[$4b]
+INCLUDE "data/gfx_pointers/tilemaps.asm"
+INCLUDE "data/gfx_pointers/tilesets.asm"
+INCLUDE "data/gfx_pointers/palettes.asm"
+INCLUDE "data/gfx_pointers/sprite_animations.asm"
+INCLUDE "data/gfx_pointers/framesets.asm"
+INCLUDE "data/gfx_pointers/ow_tile_frames.asm"
+INCLUDE "data/gfx_pointers/ow_animations.asm"
+
+INCLUDE "data/map_gfx.asm"
 
 Data_12f07f:
 	dw TILESET_MARK, SPRITE_ANIM_67, OWFRAMEGROUP_0E            ; OWSPRITE_MARK

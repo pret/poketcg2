@@ -70,22 +70,22 @@ ROMX $12
 	"Bank 12"
 ROMX $13
 	"Bank 13"
+; ROMX $14 and $15 are empty
 ROMX $16
 	"Bank 16"
 ROMX $17
 	"Bank 17"
 ROMX $18
 	"Bank 18"
+; ROMX $19 not started
 ROMX $1a
 	"Bank 1a"
 ROMX $1b
 	"Gfx 1"
-	org $70b0
-	"Gfx 1@70b0"
-	org $7150
-	"Gfx 1@7150"
+; ROMX $1c not started
 ROMX $1d
 	"Card Gfx 1"
+; ROMX $1e-$36 not started
 ROMX $37
 	"Text Offsets"
 ROMX $38
@@ -123,9 +123,12 @@ ROMX $47
 	"Text 16"
 ROMX $48
 	"Text 17"
+; ROMX $49 and $4a are empty
+ROMX $4b
+	"Bank 4b"
+	"Tilemaps 1"
 ROMX $4c
 	"Bank 4c"
-	org $45ed
 	"Tilemaps 2"
 ROMX $4d
 	"Tilemaps 3"
@@ -199,8 +202,6 @@ ROMX $6e
 ROMX $6f
 	"Tilesets 32"
 	"Palettes 1"
-ROMX $77
-	"Audio 1"
 ROMX $70
 	"Palettes 2"
 	"OAM 1"
@@ -219,6 +220,8 @@ ROMX $75
 ROMX $76
 	"OW Animations"
 	"OW Tile Frames 2"
+ROMX $77
+	"Audio 1"
 ROMX $78
 	"Audio 2"
 ROMX $79
@@ -237,36 +240,20 @@ ROMX $7f
 	"Audio 9"
 WRAM0
 	"WRAM0"
+	org $c200
 	"WRAM0 Duels 1"
 	org $c600
 	"WRAM0 Text Engine"
+	org $ca00
 	"WRAM0 1"
-	org $cb6e
 	"WRAM0 Serial Transfer"
-	org $cbda
-	"WRAM0 Duels 2"
-	org $cc21
-	"WRAM0 Duels 2@cc21"
-	org $cd5b
 	"WRAM0 2"
+	"WRAM0 Duels 2"
+	"WRAM0 3"
 WRAMX 1
 	"WRAM1"
-	org $d0e1
-	"WRAM1@d0e1"
-	org $d380
-	"WRAM1@d380"
-	org $d4c8
-	"WRAM1@d4c8"
-	org $d548
-	"WRAM1@d548"
-	org $dc06
-	"WRAM1@dc06"
-	org $dd02
-	"WRAM1@dd02"
 WRAMX 2
 	"WRAM2"
-	org $d58e
-	"WRAM2@d58e"
 WRAMX 3
 	"WRAM3"
 WRAMX 7

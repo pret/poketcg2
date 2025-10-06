@@ -1,5 +1,3 @@
-SECTION "Bank b@4000", ROMX[$4000], BANK[$b]
-
 IshiharasHouse_MapHeader:
 	db MAP_GFX_ISHIHARAS_HOUSE
 	dba IshiharasHouse_MapScripts
@@ -329,8 +327,8 @@ PsychicClubEntrance_StepEvents:
 	map_exit 0, 4, MAP_PSYCHIC_CLUB_LOBBY, 14, 7, WEST
 	map_exit 4, 0, MAP_PSYCHIC_CLUB, 6, 12, NORTH
 	map_exit 5, 0, MAP_PSYCHIC_CLUB, 7, 12, NORTH
-	ow_script 4, 2, $0b, Func_2ca3e
-	ow_script 5, 2, $0b, Func_2ca3e
+	ow_script 4, 2, Func_2ca3e
+	ow_script 5, 2, Func_2ca3e
 	db $ff
 
 PsychicClubEntrance_NPCs:

@@ -349,6 +349,8 @@ wSerialRecvBuf:: ; cb9f
 
 wSerialEnd:: ; cbbf
 
+SECTION "WRAM0 2", WRAM0
+
 ; In a duel, the main menu current or last selected menu item
 ; From 0 to 5: Hand, Attack, Check, Pkmn Power, Retreat, Done
 wCurrentDuelMenuItem:: ; cbbf
@@ -654,7 +656,7 @@ wcc1a:: ; cc1a
 wcc1b:: ; cc1b
 	ds $1
 
-SECTION "WRAM0 Duels 2@cc21", WRAM0
+	ds $5
 
 wAttackEnergyCost:: ; cc21
 	ds NUM_TYPES
@@ -985,7 +987,7 @@ wDeckCheckCurStage1Count:: ; cd59
 wDeckCheckCurStage2Count:: ; cd5a
 	ds $1
 
-SECTION "WRAM0 2", WRAM0
+SECTION "WRAM0 3", WRAM0
 
 ; on CGB, attributes of the text box borders. (values 0-7 seem to be used, which only affect palette)
 ; on SGB, colorize text box border with SGB1 if non-0
@@ -1795,8 +1797,6 @@ wDamageAnimPlayAreaSide:: ; d0d8
 wIRDataBuffer:: ; d0d9
 	ds $8
 
-SECTION "WRAM1@d0e1", WRAMX
-
 wScrollMenuScrollOffset:: ; d0e1
 	ds $1
 
@@ -1985,7 +1985,7 @@ wBoosterPackCardListPrefixBuffer:: ; d2e0
 wTempSavedDeckCards:: ; d2fe
 	ds 2 * DECK_SIZE
 
-SECTION "WRAM1@d380", WRAMX
+	ds $a
 
 ; max number of cards that are allowed
 ; to include when building a deck configuration
@@ -2128,12 +2128,10 @@ wd49e:: ; d49e
 wd49f:: ; d49f
 	ds $1
 
-SECTION "WRAM1@d4c8", WRAMX
+	ds $28
 
 wd4c8:: ; d4c8
 	ds $80
-
-SECTION "WRAM1@d548", WRAMX
 
 wd548:: ; d548
 	ds $2
@@ -2849,7 +2847,7 @@ wTotalNumCardsCollected:: ; db15
 wdb1f:: ; db1f
 	ds $1
 
-SECTION "WRAM1@dc06", WRAMX
+	ds $e6
 
 wdc06:: ; dc06
 	ds $1
@@ -3014,7 +3012,7 @@ wAnimationSFX:: ; dcfa
 wAnimationUnknownParam:: ; dcfb
 	ds $1
 
-SECTION "WRAM1@dd02", WRAMX
+	ds $6
 
 ; stores the player's result in a duel (0: win, 1: loss, 2: ???, -1: transmission error?)
 ; to be read by the overworld caller
@@ -3211,7 +3209,7 @@ SECTION "WRAM2", WRAMX
 wScratchCardCollection:: ; d000
 	ds CARD_COLLECTION_SIZE
 
-SECTION "WRAM2@d58e", WRAMX
+SECTION "WRAM2@d58e", WRAMX[$d58e], BANK[$2]
 
 w2d58e:: ; d58e
 	ds $80
