@@ -2560,7 +2560,7 @@ TextOffsets::
 	textpointer DialogRodText                                         ; 0x09f7
 	textpointer DialogPlateOfLegendsText                              ; 0x09f8
 	textpointer DialogFatGuyText                                      ; 0x09f9
-	textpointer DialogChipAttendantText                               ; 0x09fa
+	textpointer DialogChipGirlText                                    ; 0x09fa
 	textpointer DialogChipSecurityText                                ; 0x09fb
 	textpointer DialogPawnText                                        ; 0x09fc
 	textpointer DialogKnightText                                      ; 0x09fd
@@ -2614,50 +2614,50 @@ TextOffsets::
 	textpointer DialogRonaldText                                      ; 0x0a2d
 	textpointer DialogGRXText                                         ; 0x0a2e
 	textpointer DialogImakuniText                                     ; 0x0a2f
-	textpointer DialogMaleKidText                                     ; 0x0a30
+	textpointer DialogLadText                                         ; 0x0a30
 	textpointer DialogBoyText                                         ; 0x0a31
-	textpointer DialogYoungManText                                    ; 0x0a32
-	textpointer DialogYoungGuyText                                    ; 0x0a33
-	textpointer DialogDudeText                                        ; 0x0a34
+	textpointer DialogChap1Text                                       ; 0x0a32
+	textpointer DialogChap2Text                                       ; 0x0a33
+	textpointer DialogFixerText                                       ; 0x0a34
 	textpointer DialogBroText                                         ; 0x0a35
-	textpointer DialogFemaleKidText                                   ; 0x0a36
-	textpointer DialogYoungWomanText                                  ; 0x0a37
-	textpointer DialogGalText                                         ; 0x0a38
+	textpointer DialogLassText                                        ; 0x0a36
+	textpointer DialogGal1Text                                        ; 0x0a37
+	textpointer DialogGal2Text                                        ; 0x0a38
 	textpointer DialogSisText                                         ; 0x0a39
-	textpointer DialogUncleText                                       ; 0x0a3a
-	textpointer DialogOldManText                                      ; 0x0a3b
-	textpointer DialogGrampsText                                      ; 0x0a3c
-	textpointer DialogElderGuyText                                    ; 0x0a3d
-	textpointer DialogAuntieText                                      ; 0x0a3e
+	textpointer DialogManText                                         ; 0x0a3a
+	textpointer DialogPappy1Text                                      ; 0x0a3b
+	textpointer DialogPappy2Text                                      ; 0x0a3c
+	textpointer DialogPappy3Text                                      ; 0x0a3d
+	textpointer DialogWomanText                                       ; 0x0a3e
 	textpointer DialogGrannyText                                      ; 0x0a3f
 	textpointer DialogLadyText                                        ; 0x0a40
-	textpointer DialogGRLadText                                       ; 0x0a41
-	textpointer DialogGRLassText                                      ; 0x0a42
-	textpointer DialogGRGrampsText                                    ; 0x0a43
-	textpointer DialogGRAuntieText                                    ; 0x0a44
+	textpointer DialogGRChapText                                      ; 0x0a41
+	textpointer DialogGRGalText                                       ; 0x0a42
+	textpointer DialogGRPappyText                                     ; 0x0a43
+	textpointer DialogGRWomanText                                     ; 0x0a44
 	textpointer DialogGRKidText                                       ; 0x0a45
-	textpointer DialogGRMateText                                      ; 0x0a46
+	textpointer DialogGRPersonText                                    ; 0x0a46
 	textpointer DialogGRGruntText                                     ; 0x0a47
-	textpointer DialogLightningAuntieText                             ; 0x0a48
-	textpointer DialogGRammpyText                                     ; 0x0a49
+	textpointer DialogGRLightningWomanText                            ; 0x0a48
+	textpointer DialogGRampyText                                      ; 0x0a49
 	textpointer DialogTechText                                        ; 0x0a4a
 	textpointer DialogLonghairedKidText                               ; 0x0a4b
-	textpointer DialogCapKidText                                      ; 0x0a4c
-	textpointer DialogSwimsuitKidText                                 ; 0x0a4d
-	textpointer DialogCommonKidText                                   ; 0x0a4e
-	textpointer DialogGlassesKidText                                  ; 0x0a4f
-	textpointer DialogGlassesBoyText                                  ; 0x0a50
-	textpointer DialogGlassesGirlText                                 ; 0x0a51
+	textpointer DialogCappedKidText                                   ; 0x0a4c
+	textpointer DialogSwimmerKidText                                  ; 0x0a4d
+	textpointer DialogYoungsterText                                   ; 0x0a4e
+	textpointer DialogGlassesKid1Text                                 ; 0x0a4f
+	textpointer DialogGlassesLadText                                  ; 0x0a50
+	textpointer DialogGlassesKid2Text                                 ; 0x0a51
 	textpointer DialogPunkKidText                                     ; 0x0a52
 	textpointer DialogChubbyKidText                                   ; 0x0a53
-	textpointer DialogCapManText                                      ; 0x0a54
-	textpointer DialogBlackBeltText                                   ; 0x0a55
-	textpointer DialogPunkDudeText                                    ; 0x0a56
-	textpointer DialogPunkGalText                                     ; 0x0a57
+	textpointer DialogCappedGuyText                                   ; 0x0a54
+	textpointer DialogMartialArtistText                               ; 0x0a55
+	textpointer DialogPunkGuyText                                     ; 0x0a56
+	textpointer DialogPunkText                                        ; 0x0a57
 	textpointer DialogAttendantText                                   ; 0x0a58
-	textpointer DialogClerkText                                       ; 0x0a59
+	textpointer DialogStaffText                                       ; 0x0a59
 	textpointer DialogReceptionistText                                ; 0x0a5a
-	textpointer DialogEmceeText                                       ; 0x0a5b
+	textpointer DialogCupHostText                                     ; 0x0a5b
 	textpointer GRFireFortShortText                                   ; 0x0a5c
 	textpointer GRWaterFortShortText                                  ; 0x0a5d
 	textpointer GRLightningFortShortText                              ; 0x0a5e
@@ -3396,54 +3396,54 @@ TextOffsets::
 	textpointer QueenPlayerWon1Text                                   ; 0x0d3b
 	textpointer QueenPlayerWon2Text                                   ; 0x0d3c
 	textpointer QueenPlayerLostText                                   ; 0x0d3d
-	textpointer GameCenterCoinFlipClerkNoPrizesTryAgainText           ; 0x0d3e
-	textpointer GameCenterCoinFlipClerk3HeadsPrizeText                ; 0x0d3f
-	textpointer GameCenterCoinFlipClerkTryAgainText                   ; 0x0d40
-	textpointer GameCenterCoinFlipClerk4HeadsPrizeText                ; 0x0d41
-	textpointer GameCenterCoinFlipClerk5HeadsPrizeText                ; 0x0d42
-	textpointer GameCenterCoinFlipClerk6HeadsPrizeText                ; 0x0d43
-	textpointer GameCenterCoinFlipClerk7HeadsPrizeText                ; 0x0d44
-	textpointer GameCenterCoinFlipClerk8HeadsPrizeText                ; 0x0d45
-	textpointer GameCenterCoinFlipClerk9HeadsPrizeText                ; 0x0d46
-	textpointer GameCenterCoinFlipClerkAlmostCompleteTryAgainText     ; 0x0d47
-	textpointer GameCenterCoinFlipClerk10HeadsPrizeText               ; 0x0d48
-	textpointer GameCenterCoinFlipClerk10HeadsCongratsText            ; 0x0d49
+	textpointer GameCenterCoinFlipAttendantNoPrizesTryAgainText       ; 0x0d3e
+	textpointer GameCenterCoinFlipAttendant3HeadsPrizeText            ; 0x0d3f
+	textpointer GameCenterCoinFlipAttendantTryAgainText               ; 0x0d40
+	textpointer GameCenterCoinFlipAttendant4HeadsPrizeText            ; 0x0d41
+	textpointer GameCenterCoinFlipAttendant5HeadsPrizeText            ; 0x0d42
+	textpointer GameCenterCoinFlipAttendant6HeadsPrizeText            ; 0x0d43
+	textpointer GameCenterCoinFlipAttendant7HeadsPrizeText            ; 0x0d44
+	textpointer GameCenterCoinFlipAttendant8HeadsPrizeText            ; 0x0d45
+	textpointer GameCenterCoinFlipAttendant9HeadsPrizeText            ; 0x0d46
+	textpointer GameCenterCoinFlipAttendantAlmostCompleteTryAgainText ; 0x0d47
+	textpointer GameCenterCoinFlipAttendant10HeadsPrizeText           ; 0x0d48
+	textpointer GameCenterCoinFlipAttendant10HeadsCongratsText        ; 0x0d49
 	textpointer TurnedOnBlackBoxText                                  ; 0x0d4a
 	textpointer TurnedOnBillsPCText                                   ; 0x0d4b
-	textpointer GameCenterBlackBoxClerkWelcomeText                    ; 0x0d4c
-	textpointer GameCenterBlackBoxClerkGuidePromptText                ; 0x0d4d
-	textpointer GameCenterBlackBoxClerkGuideText                      ; 0x0d4e
-	textpointer GameCenterBlackBoxClerkNoGuideText                    ; 0x0d4f
-	textpointer GameCenterBillsPCClerkWelcomeText                     ; 0x0d50
-	textpointer GameCenterBillsPCClerkGuidePromptText                 ; 0x0d51
-	textpointer GameCenterBillsPCClerkGuideText                       ; 0x0d52
-	textpointer GameCenterBillsPCClerkNoGuideText                     ; 0x0d53
-	textpointer GameCenterCoinFlipClerkWelcomeText                    ; 0x0d54
+	textpointer GameCenterBlackBoxAttendantWelcomeText                ; 0x0d4c
+	textpointer GameCenterBlackBoxAttendantGuidePromptText            ; 0x0d4d
+	textpointer GameCenterBlackBoxAttendantGuideText                  ; 0x0d4e
+	textpointer GameCenterBlackBoxAttendantNoGuideText                ; 0x0d4f
+	textpointer GameCenterBillsPCAttendantWelcomeText                 ; 0x0d50
+	textpointer GameCenterBillsPCAttendantGuidePromptText             ; 0x0d51
+	textpointer GameCenterBillsPCAttendantGuideText                   ; 0x0d52
+	textpointer GameCenterBillsPCAttendantNoGuideText                 ; 0x0d53
+	textpointer GameCenterCoinFlipAttendantWelcomeText                ; 0x0d54
 	textpointer GameCenterCoinFlipStartPromptText                     ; 0x0d55
-	textpointer GameCenterCoinFlipClerkStartText                      ; 0x0d56
-	textpointer GameCenterCoinFlipClerkNotEnoughChipsText             ; 0x0d57
-	textpointer GameCenterCoinFlipClerkComeAgainText                  ; 0x0d58
+	textpointer GameCenterCoinFlipAttendantStartText                  ; 0x0d56
+	textpointer GameCenterCoinFlipAttendantNotEnoughChipsText         ; 0x0d57
+	textpointer GameCenterCoinFlipAttendantComeAgainText              ; 0x0d58
 	textpointer Text0d59                                           ; 0x0d59
 	textpointer Text0d5a                                           ; 0x0d5a
 	textpointer Text0d5b                                           ; 0x0d5b
 	textpointer Text0d5c                                           ; 0x0d5c
-	textpointer GameCenterSlotMachine1ClerkWelcomeText                ; 0x0d5d
-	textpointer GameCenterSlotMachine1ClerkGuidePromptText            ; 0x0d5e
-	textpointer GameCenterSlotMachine1ClerkGuideText                  ; 0x0d5f
-	textpointer GameCenterSlotMachine1ClerkNoGuideText                ; 0x0d60
-	textpointer GameCenterSlotMachine5ClerkWelcomeText                ; 0x0d61
-	textpointer GameCenterSlotMachine5ClerkGuidePromptText            ; 0x0d62
-	textpointer GameCenterSlotMachine5ClerkGuideText                  ; 0x0d63
-	textpointer GameCenterSlotMachine5ClerkNoGuideText                ; 0x0d64
-	textpointer GameCenterCardDungeonClerkWelcomeText                 ; 0x0d65
+	textpointer GameCenterSlotMachine1AttendantWelcomeText            ; 0x0d5d
+	textpointer GameCenterSlotMachine1AttendantGuidePromptText        ; 0x0d5e
+	textpointer GameCenterSlotMachine1AttendantGuideText              ; 0x0d5f
+	textpointer GameCenterSlotMachine1AttendantNoGuideText            ; 0x0d60
+	textpointer GameCenterSlotMachine5AttendantWelcomeText            ; 0x0d61
+	textpointer GameCenterSlotMachine5AttendantGuidePromptText        ; 0x0d62
+	textpointer GameCenterSlotMachine5AttendantGuideText              ; 0x0d63
+	textpointer GameCenterSlotMachine5AttendantNoGuideText            ; 0x0d64
+	textpointer GameCenterCardDungeonAttendantWelcomeText             ; 0x0d65
 	textpointer GameCenterCardDungeonStartPromptText                  ; 0x0d66
-	textpointer GameCenterCardDungeonClerkNotEnoughChipsText          ; 0x0d67
-	textpointer GameCenterCardDungeonClerkReadDescriptionText         ; 0x0d68
-	textpointer GameCenterCardDungeonClerkEnterText                   ; 0x0d69
-	textpointer GameCenterCardDungeonClerkComeAgainText               ; 0x0d6a
-	textpointer GameCenterCardDungeonClerkPlayerWonComeAgainText      ; 0x0d6b
-	textpointer GameCenterCardDungeonClerkPlayerLostTryAgainText      ; 0x0d6c
-	textpointer GameCenterCardDungeonClerkPlayerQuitTryAgainText      ; 0x0d6d
+	textpointer GameCenterCardDungeonAttendantNotEnoughChipsText      ; 0x0d67
+	textpointer GameCenterCardDungeonAttendantReadDescriptionText     ; 0x0d68
+	textpointer GameCenterCardDungeonAttendantEnterText               ; 0x0d69
+	textpointer GameCenterCardDungeonAttendantComeAgainText           ; 0x0d6a
+	textpointer GameCenterCardDungeonAttendantPlayerWonComeAgainText  ; 0x0d6b
+	textpointer GameCenterCardDungeonAttendantPlayerLostTryAgainText  ; 0x0d6c
+	textpointer GameCenterCardDungeonAttendantPlayerQuitTryAgainText  ; 0x0d6d
 	textpointer Text0d6e                                           ; 0x0d6e
 	textpointer Text0d6f                                           ; 0x0d6f
 	textpointer Text0d70                                           ; 0x0d70
@@ -3452,21 +3452,21 @@ TextOffsets::
 	textpointer Text0d73                                           ; 0x0d73
 	textpointer Text0d74                                           ; 0x0d74
 	textpointer Text0d75                                           ; 0x0d75
-	textpointer GameCenterChipCounterWelcomeText                      ; 0x0d76
-	textpointer GameCenterChipCounterDepositInfoText                  ; 0x0d77
-	textpointer GameCenterChipCounterDepositReturnPromptText          ; 0x0d78
-	textpointer GameCenterChipCounterDepositReturnedText              ; 0x0d79
-	textpointer GameCenterChipCounterDepositReminderText              ; 0x0d7a
-	textpointer GameCenterChipCounterComeAgainText                    ; 0x0d7b
-	textpointer GameCenterChipCounterDepositPromptText                ; 0x0d7c
-	textpointer GameCenterChipCounterDepositedText                    ; 0x0d7d
-	textpointer GameCenterChipAttendantFirstServiceText               ; 0x0d7e
+	textpointer GameCenterChipDeskWelcomeText                         ; 0x0d76
+	textpointer GameCenterChipDeskDepositInfoText                     ; 0x0d77
+	textpointer GameCenterChipDeskDepositReturnPromptText             ; 0x0d78
+	textpointer GameCenterChipDeskDepositReturnedText                 ; 0x0d79
+	textpointer GameCenterChipDeskDepositReminderText                 ; 0x0d7a
+	textpointer GameCenterChipDeskComeAgainText                       ; 0x0d7b
+	textpointer GameCenterChipDeskDepositPromptText                   ; 0x0d7c
+	textpointer GameCenterChipDeskDepositedText                       ; 0x0d7d
+	textpointer GameCenterChipGirlFirstServiceText                    ; 0x0d7e
 	textpointer Received10ChipsText                                   ; 0x0d7f
-	textpointer GameCenterChipAttendantNoticeText                     ; 0x0d80
-	textpointer GameCenterChipAttendantRefillText                     ; 0x0d81
-	textpointer GameCenterChipAttendantWelcomeRefillText              ; 0x0d82
-	textpointer GameCenterChipAttendantEnjoyText                      ; 0x0d83
-	textpointer GameCenterChipAttendantRefillReminderText             ; 0x0d84
+	textpointer GameCenterChipGirlNoticeText                          ; 0x0d80
+	textpointer GameCenterChipGirlRefillText                          ; 0x0d81
+	textpointer GameCenterChipGirlWelcomeRefillText                   ; 0x0d82
+	textpointer GameCenterChipGirlEnjoyText                           ; 0x0d83
+	textpointer GameCenterChipGirlRefillReminderText                  ; 0x0d84
 	textpointer GameCenterChipSecurityReminderText                    ; 0x0d85
 	textpointer GameCenterChipSecurityWarningText                     ; 0x0d86
 	textpointer Text0d87                                           ; 0x0d87

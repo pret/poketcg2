@@ -321,31 +321,31 @@ Script_FinishedImakuniBlackDuel:
 
 SECTION "Bank f@4603", ROMX[$4603], BANK[$f]
 
-MasonLaboratorySide1_MapHeader:
-	db MAP_GFX_MASON_LABORATORY_SIDE_1
-	dba MasonLaboratorySide1_MapScripts
+MasonLaboratoryComputerRoom_MapHeader:
+	db MAP_GFX_MASON_LABORATORY_COMPUTER_ROOM
+	dba MasonLaboratoryComputerRoom_MapScripts
 	db MUSIC_OVERWORLD
 
-MasonLaboratorySide1_StepEvents:
+MasonLaboratoryComputerRoom_StepEvents:
 	map_exit 0, 5, MAP_MASON_LABORATORY_MAIN, 12, 5, WEST
 	map_exit 0, 6, MAP_MASON_LABORATORY_MAIN, 12, 6, WEST
 	db $ff
 
-MasonLaboratorySide1_NPCs:
-	npc NPC_TECH_13, 4, 3, SOUTH, NULL
-	npc NPC_TECH_14, 7, 3, SOUTH, NULL
-	npc NPC_TECH_15, 3, 8, NORTH, NULL
-	npc NPC_TECH_16, 7, 9, EAST, NULL
+MasonLaboratoryComputerRoom_NPCs:
+	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_1, 4, 3, SOUTH, NULL
+	npc NPC_LAB_TECH_DECK_SAVE_MACHINE, 7, 3, SOUTH, NULL
+	npc NPC_LAB_TECH_COMPUTER_ROOM, 3, 8, NORTH, NULL
+	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_2, 7, 9, EAST, NULL
 	db $ff
 
-MasonLaboratorySide1_NPCInteractions:
-	npc_script NPC_TECH_13, $0f, $4739
-	npc_script NPC_TECH_14, $0f, $475f
-	npc_script NPC_TECH_15, $0f, $477a
-	npc_script NPC_TECH_16, $0f, $47ab
+MasonLaboratoryComputerRoom_NPCInteractions:
+	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_1, $0f, $4739
+	npc_script NPC_LAB_TECH_DECK_SAVE_MACHINE, $0f, $475f
+	npc_script NPC_LAB_TECH_COMPUTER_ROOM, $0f, $477a
+	npc_script NPC_LAB_TECH_AUTO_DECK_MACHINE_2, $0f, $47ab
 	db $ff
 
-MasonLaboratorySide1_OWInteractions:
+MasonLaboratoryComputerRoom_OWInteractions:
 	ow_script 2, 3, $0f, $46c3
 	ow_script 3, 3, $0f, $46c3
 	ow_script 8, 10, $0f, $46e8
@@ -354,7 +354,7 @@ MasonLaboratorySide1_OWInteractions:
 	ow_script 9, 3, $0f, $4715
 	db $ff
 
-MasonLaboratorySide1_MapScripts:
+MasonLaboratoryComputerRoom_MapScripts:
 	dbw $06, $4689
 	dbw $08, $46b3
 	dbw $07, $4690
@@ -364,27 +364,27 @@ MasonLaboratorySide1_MapScripts:
 
 SECTION "Bank f@47dc", ROMX[$47dc], BANK[$f]
 
-MasonLaboratorySide2_MapHeader:
-	db MAP_GFX_MASON_LABORATORY_SIDE_2
-	dba MasonLaboratorySide2_MapScripts
+MasonLaboratoryTrainingRoom_MapHeader:
+	db MAP_GFX_MASON_LABORATORY_TRAINING_ROOM
+	dba MasonLaboratoryTrainingRoom_MapScripts
 	db MUSIC_OVERWORLD
 
-MasonLaboratorySide2_StepEvents:
+MasonLaboratoryTrainingRoom_StepEvents:
 	map_exit 13, 11, MAP_MASON_LABORATORY_MAIN, 1, 5, EAST
 	map_exit 13, 12, MAP_MASON_LABORATORY_MAIN, 1, 6, EAST
 	db $ff
 
-MasonLaboratorySide2_NPCs:
+MasonLaboratoryTrainingRoom_NPCs:
 	npc NPC_AARON, 11, 2, NORTH, NULL
-	npc NPC_TECH_17, 10, 11, EAST, NULL
+	npc NPC_LAB_TECH_TRAINING_ROOM, 10, 11, EAST, NULL
 	db $ff
 
-MasonLaboratorySide2_NPCInteractions:
+MasonLaboratoryTrainingRoom_NPCInteractions:
 	npc_script NPC_AARON, $0f, $484c
-	npc_script NPC_TECH_17, $0f, $4a4d
+	npc_script NPC_LAB_TECH_TRAINING_ROOM, $0f, $4a4d
 	db $ff
 
-MasonLaboratorySide2_MapScripts:
+MasonLaboratoryTrainingRoom_MapScripts:
 	dbw $06, $4817
 	dbw $08, $4825
 	dbw $09, $482d
@@ -394,7 +394,7 @@ MasonLaboratorySide2_MapScripts:
 
 SECTION "Bank f@483b", ROMX[$483b], BANK[$f]
 
-MasonLaboratorySide2_AfterDuelScripts:
+MasonLaboratoryTrainingRoom_AfterDuelScripts:
 	npc_script NPC_MINT, $0f, $4931
 	npc_script NPC_DR_MASON, $0f, $497e
 	npc_script NPC_RONALD, $0f, $49cb
@@ -442,23 +442,23 @@ LightningClubLobby_StepEvents:
 LightningClubLobby_NPCs:
 	npc NPC_JENNIFER, 9, 8, EAST, $4db1
 	npc NPC_BRANDON, 9, 6, EAST, $4db1
-	npc NPC_LASS3_2, 11, 2, NORTH, NULL
-	npc NPC_HOOD_4, 9, 4, SOUTH, NULL
-	npc NPC_LASS1_3, 5, 6, EAST, $4e9b
-	npc NPC_GR_LASS_7, 5, 6, EAST, $4ea8
-	npc NPC_CHAP_2, 8, 9, WEST, NULL
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_LIGHTNING_CLUB_LASS, 11, 2, NORTH, NULL
+	npc NPC_LIGHTNING_CLUB_PUNK_KID, 9, 4, SOUTH, NULL
+	npc NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, 5, 6, EAST, $4e9b
+	npc NPC_LIGHTNING_CLUB_GR_LASS, 5, 6, EAST, $4ea8
+	npc NPC_LIGHTNING_CLUB_BRO, 8, 9, WEST, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 LightningClubLobby_NPCInteractions:
 	npc_script NPC_JENNIFER, $0f, $4d4b
 	npc_script NPC_BRANDON, $0f, $4d7e
-	npc_script NPC_LASS3_2, $0f, $4dc6
-	npc_script NPC_HOOD_4, $0f, $4e39
-	npc_script NPC_LASS1_3, $0f, $4e6a
-	npc_script NPC_GR_LASS_7, $0f, $4e6a
-	npc_script NPC_CHAP_2, $0f, $4eb5
+	npc_script NPC_LIGHTNING_CLUB_LASS, $0f, $4dc6
+	npc_script NPC_LIGHTNING_CLUB_PUNK_KID, $0f, $4e39
+	npc_script NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, $0f, $4e6a
+	npc_script NPC_LIGHTNING_CLUB_GR_LASS, $0f, $4e6a
+	npc_script NPC_LIGHTNING_CLUB_BRO, $0f, $4eb5
 	db $ff
 
 LightningClubLobby_OWInteractions:
@@ -495,20 +495,20 @@ GrassClubLobby_NPCs:
 	npc NPC_BRITTANY, 7, 9, WEST, $50ec
 	npc NPC_KRISTIN, 6, 6, EAST, $50ec
 	npc NPC_HEATHER, 10, 8, EAST, $50ec
-	npc NPC_GRANNY, 3, 10, EAST, $5189
-	npc NPC_LASS2_3, 11, 4, SOUTH, $5189
-	npc NPC_GIRL_5, 7, 8, WEST, $5189
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, $5189
+	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, $5189
+	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, $5189
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 GrassClubLobby_NPCInteractions:
 	npc_script NPC_BRITTANY, $0f, $4fd8
 	npc_script NPC_KRISTIN, $0f, $5064
 	npc_script NPC_HEATHER, $0f, $50a8
-	npc_script NPC_GRANNY, $0f, $5101
-	npc_script NPC_LASS2_3, $0f, $5127
-	npc_script NPC_GIRL_5, $0f, $5158
+	npc_script NPC_GRASS_CLUB_GRANNY, $0f, $5101
+	npc_script NPC_GRASS_CLUB_LASS, $0f, $5127
+	npc_script NPC_GRASS_CLUB_CAPPED_LASS, $0f, $5158
 	db $ff
 
 GrassClubLobby_OWInteractions:
@@ -554,11 +554,11 @@ TcgChallengeHallEntrance_StepEvents:
 	db $ff
 
 TcgChallengeHallEntrance_NPCs:
-	npc NPC_CLERK_3, 3, 1, SOUTH, NULL
+	npc NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
-	npc_script NPC_CLERK_3, $0f, $5271
+	npc_script NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, $0f, $5271
 	db $ff
 
 TcgChallengeHallEntrance_MapScripts:
@@ -583,23 +583,23 @@ TcgChallengeHallLobby_StepEvents:
 	db $ff
 
 TcgChallengeHallLobby_NPCs:
-	npc NPC_CHAP_3, 10, 4, SOUTH, NULL
-	npc NPC_GAL_3, 7, 9, EAST, $55a3
-	npc NPC_HOOD_5, 5, 6, EAST, $55a3
-	npc NPC_PAPPY_4, 4, 9, EAST, $55ba
-	npc NPC_TECH_7, 9, 10, NORTH, $55ba
-	npc NPC_GIRL_6, 13, 9, WEST, $55ba
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_TCG_CHALLENGE_HALL_CHAP, 10, 4, SOUTH, NULL
+	npc NPC_CUP_HOST, 7, 9, EAST, $55a3
+	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, $55a3
+	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, $55ba
+	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, $55ba
+	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, $55ba
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
-	npc_script NPC_CHAP_3, $0f, $53c0
-	npc_script NPC_GAL_3, $0f, $54e9
-	npc_script NPC_HOOD_5, $0f, $5511
-	npc_script NPC_PAPPY_4, $0f, $5539
-	npc_script NPC_TECH_7, $0f, $556d
-	npc_script NPC_GIRL_6, $0f, $5588
+	npc_script NPC_TCG_CHALLENGE_HALL_CHAP, $0f, $53c0
+	npc_script NPC_CUP_HOST, $0f, $54e9
+	npc_script NPC_TCG_CHALLENGE_HALL_PUNK, $0f, $5511
+	npc_script NPC_TCG_CHALLENGE_HALL_PAPPY, $0f, $5539
+	npc_script NPC_TCG_CHALLENGE_HALL_TECH, $0f, $556d
+	npc_script NPC_TCG_CHALLENGE_HALL_GIRL, $0f, $5588
 	db $ff
 
 TcgChallengeHallLobby_OWInteractions:
@@ -638,11 +638,11 @@ PokemonDome_NPCs:
 	npc NPC_JACK, 12, 6, WEST, $592c
 	npc NPC_ROD, 6, 6, SOUTH, $59b1
 	npc NPC_GR_5, 7, 8, SOUTH, $59fc
-	npc NPC_LASS1_5, 7, 4, SOUTH, $5af0
-	npc NPC_LASS2_5, 8, 4, SOUTH, $5af0
-	npc NPC_GR_LASS_8, 4, 12, EAST, $5af0
-	npc NPC_YOUNGSTER_5, 9, 8, SOUTH, $5af0
-	npc NPC_SWIMMER, 2, 5, EAST, $5af0
+	npc NPC_TCG_CUP_CLERK_LEFT, 7, 4, SOUTH, $5af0
+	npc NPC_TCG_CUP_CLERK_RIGHT, 8, 4, SOUTH, $5af0
+	npc NPC_POKEMON_DOME_GR_LASS, 4, 12, EAST, $5af0
+	npc NPC_POKEMON_DOME_YOUNGSTER, 9, 8, SOUTH, $5af0
+	npc NPC_POKEMON_DOME_SWIMMER, 2, 5, EAST, $5af0
 	db $ff
 
 PokemonDome_NPCInteractions:
@@ -651,11 +651,11 @@ PokemonDome_NPCInteractions:
 	npc_script NPC_JACK, $0f, $58ac
 	npc_script NPC_ROD, $0f, $594f
 	npc_script NPC_GR_5, $0f, $59d4
-	npc_script NPC_LASS1_5, $0f, $5a09
-	npc_script NPC_LASS2_5, $0f, $5a09
-	npc_script NPC_GR_LASS_8, $0f, $5a6c
-	npc_script NPC_YOUNGSTER_5, $0f, $5a97
-	npc_script NPC_SWIMMER, $0f, $5abf
+	npc_script NPC_TCG_CUP_CLERK_LEFT, $0f, $5a09
+	npc_script NPC_TCG_CUP_CLERK_RIGHT, $0f, $5a09
+	npc_script NPC_POKEMON_DOME_GR_LASS, $0f, $5a6c
+	npc_script NPC_POKEMON_DOME_YOUNGSTER, $0f, $5a97
+	npc_script NPC_POKEMON_DOME_SWIMMER, $0f, $5abf
 	db $ff
 
 PokemonDome_OWInteractions:
@@ -701,7 +701,7 @@ PokemonDomeBack_NPCs:
 	npc NPC_STEVE, 8, 12, SOUTH, NULL
 	npc NPC_JACK, 8, 13, SOUTH, NULL
 	npc NPC_ROD, 7, 12, SOUTH, NULL
-	npc NPC_GAL_3, 7, 2, SOUTH, $668b
+	npc NPC_CUP_HOST, 7, 2, SOUTH, $668b
 	db $ff
 
 PokemonDomeBack_MapScripts:
@@ -732,12 +732,12 @@ IshiharasVilla1_StepEvents:
 
 IshiharasVilla1_NPCs:
 	npc NPC_ISHIHARA, 6, 5, WEST, $67d6
-	npc NPC_GR_GAL_4, 2, 2, NORTH, $68d3
+	npc NPC_ISHIHARAS_VILLA_GR_GAL, 2, 2, NORTH, $68d3
 	db $ff
 
 IshiharasVilla1_NPCInteractions:
 	npc_script NPC_ISHIHARA, $0f, $67c0
-	npc_script NPC_GR_GAL_4, $0f, $68b1
+	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, $0f, $68b1
 	db $ff
 
 IshiharasVilla1_OWInteractions:
@@ -771,12 +771,12 @@ IshiharasVilla2_StepEvents:
 
 IshiharasVilla2_NPCs:
 	npc NPC_ISHIHARA, 5, 4, SOUTH, $6a55
-	npc NPC_GR_GAL_4, 4, 2, NORTH, $6cd5
+	npc NPC_ISHIHARAS_VILLA_GR_GAL, 4, 2, NORTH, $6cd5
 	db $ff
 
 IshiharasVilla2_NPCInteractions:
 	npc_script NPC_ISHIHARA, $0f, $6a12
-	npc_script NPC_GR_GAL_4, $0f, $6c75
+	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, $0f, $6c75
 	db $ff
 
 IshiharasVilla2_OWInteractions:
@@ -821,15 +821,15 @@ GameCenterEntrance_StepEvents:
 	db $ff
 
 GameCenterEntrance_NPCs:
-	npc NPC_GR_CLERK_16, 9, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_17, 2, 2, SOUTH, NULL
-	npc NPC_CHIP_GIRL_1, 5, 2, SOUTH, NULL
-	npc NPC_MONOCLE_1, 4, 9, EAST, NULL
+	npc NPC_GR_CLERK_GAME_CENTER_PRIZE_DESK, 9, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GAME_CENTER_CHIP_DESK, 2, 2, SOUTH, NULL
+	npc NPC_CHIP_GIRL, 5, 2, SOUTH, NULL
+	npc NPC_CHIP_SECURITY, 4, 9, EAST, NULL
 	db $ff
 
 GameCenterEntrance_NPCInteractions:
-	npc_script NPC_CHIP_GIRL_1, $0f, $6e11
-	npc_script NPC_MONOCLE_1, $0f, $6e83
+	npc_script NPC_CHIP_GIRL, $0f, $6e11
+	npc_script NPC_CHIP_SECURITY, $0f, $6e83
 	db $ff
 
 GameCenterEntrance_OWInteractions:
@@ -857,18 +857,18 @@ GameCenterLobby_StepEvents:
 	db $ff
 
 GameCenterLobby_NPCs:
-	npc NPC_TECH_8, 10, 4, WEST, NULL
-	npc NPC_GR_LASS_6, 8, 9, EAST, NULL
-	npc NPC_GR_PAPPY_3, 3, 7, SOUTH, NULL
+	npc NPC_GAME_CENTER_TECH, 10, 4, WEST, NULL
+	npc NPC_GAME_CENTER_GR_LASS, 8, 9, EAST, NULL
+	npc NPC_GAME_CENTER_GR_PAPPY, 3, 7, SOUTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $703d
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GameCenterLobby_NPCInteractions:
-	npc_script NPC_TECH_8, $0f, $6fd6
-	npc_script NPC_GR_LASS_6, $0f, $6ff1
-	npc_script NPC_GR_PAPPY_3, $0f, $7017
+	npc_script NPC_GAME_CENTER_TECH, $0f, $6fd6
+	npc_script NPC_GAME_CENTER_GR_LASS, $0f, $6ff1
+	npc_script NPC_GAME_CENTER_GR_PAPPY, $0f, $7017
 	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
@@ -1004,20 +1004,20 @@ WaterFortLobby_StepEvents:
 	db $ff
 
 WaterFortLobby_NPCs:
-	npc NPC_SPECS_2, 10, 10, WEST, $7718
-	npc NPC_GR_LAD_3, 10, 10, WEST, $7735
-	npc NPC_GR_GRANNY_2, 2, 7, SOUTH, NULL
-	npc NPC_GR_GAL_2, 5, 9, NORTH, NULL
+	npc NPC_WATER_FORT_GLASSES_KID, 10, 10, WEST, $7718
+	npc NPC_WATER_FORT_GR_LAD, 10, 10, WEST, $7735
+	npc NPC_WATER_FORT_GR_GRANNY, 2, 7, SOUTH, NULL
+	npc NPC_WATER_FORT_GR_GAL, 5, 9, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $77a6
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 WaterFortLobby_NPCInteractions:
-	npc_script NPC_SPECS_2, $0f, $7691
-	npc_script NPC_GR_LAD_3, $0f, $7691
-	npc_script NPC_GR_GRANNY_2, $0f, $7752
-	npc_script NPC_GR_GAL_2, $0f, $7780
+	npc_script NPC_WATER_FORT_GLASSES_KID, $0f, $7691
+	npc_script NPC_WATER_FORT_GR_LAD, $0f, $7691
+	npc_script NPC_WATER_FORT_GR_GRANNY, $0f, $7752
+	npc_script NPC_WATER_FORT_GR_GAL, $0f, $7780
 	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 

@@ -570,21 +570,21 @@ PsychicClubLobby_StepEvents:
 	db $ff
 
 PsychicClubLobby_NPCs:
-	npc NPC_SPECS_5, 8, 8, EAST, NULL
-	npc NPC_LASS1_4, 10, 9, WEST, NULL
+	npc NPC_PSYCHIC_CLUB_GLASSES_LAD, 8, 8, EAST, NULL
+	npc NPC_PSYCHIC_CLUB_LASS, 10, 9, WEST, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $a8, $4c
-	npc NPC_LAD_6, 7, 6, EAST, NULL
-	npc NPC_GR_LASS_2, 14, 4, SOUTH, $0e, $4d
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_PSYCHIC_CLUB_CAPPED_LAD, 7, 6, EAST, NULL
+	npc NPC_PSYCHIC_CLUB_GR_LASS, 14, 4, SOUTH, $0e, $4d
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 PsychicClubLobby_NPCInteractions:
-	npc_script NPC_SPECS_5, $0b, $11, $4c
-	npc_script NPC_LASS1_4, $0b, $7d, $4c
+	npc_script NPC_PSYCHIC_CLUB_GLASSES_LAD, $0b, $11, $4c
+	npc_script NPC_PSYCHIC_CLUB_LASS, $0b, $7d, $4c
 	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script NPC_LAD_6, $0b, $b7, $4c
-	npc_script NPC_GR_LASS_2, $0b, $e8, $4c
+	npc_script NPC_PSYCHIC_CLUB_CAPPED_LAD, $0b, $b7, $4c
+	npc_script NPC_PSYCHIC_CLUB_GR_LASS, $0b, $e8, $4c
 	db $ff
 
 PsychicClubLobby_OWInteractions:
@@ -923,21 +923,21 @@ RockClubLobby_StepEvents:
 	db $ff
 
 RockClubLobby_NPCs:
-	npc NPC_LASS2_2, 5, 6, EAST, NULL
-	npc NPC_WOMAN, 12, 10, NORTH, NULL
+	npc NPC_ROCK_CLUB_LASS, 5, 6, EAST, NULL
+	npc NPC_ROCK_CLUB_WOMAN, 12, 10, NORTH, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $7c, $55
-	npc NPC_CHAP_1, 8, 9, WEST, NULL
-	npc NPC_LAD_3, 10, 3, SOUTH, NULL
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_ROCK_CLUB_CHAP, 8, 9, WEST, NULL
+	npc NPC_ROCK_CLUB_CAPPED_LAD, 10, 3, SOUTH, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 RockClubLobby_NPCInteractions:
-	npc_script NPC_LASS2_2, $0b, $e0, $54
-	npc_script NPC_WOMAN, $0b, $46, $55
+	npc_script NPC_ROCK_CLUB_LASS, $0b, $e0, $54
+	npc_script NPC_ROCK_CLUB_WOMAN, $0b, $46, $55
 	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script NPC_CHAP_1, $0b, $8b, $55
-	npc_script NPC_LAD_3, $0b, $c7, $55
+	npc_script NPC_ROCK_CLUB_CHAP, $0b, $8b, $55
+	npc_script NPC_ROCK_CLUB_CAPPED_LAD, $0b, $c7, $55
 	db $ff
 
 RockClubLobby_OWInteractions:
@@ -1279,20 +1279,20 @@ FightingClubLobby_StepEvents:
 	db $ff
 
 FightingClubLobby_NPCs:
-	npc NPC_PAPPY_2, 1, 5, SOUTH, NULL
-	npc NPC_SPECS_3, 4, 9, EAST, NULL
-	npc NPC_LAD4, 7, 9, WEST, NULL
-	npc NPC_GIRL_4, 6, 8, SOUTH, NULL
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_FIGHTING_CLUB_PAPPY, 1, 5, SOUTH, NULL
+	npc NPC_FIGHTING_CLUB_GLASSES_KID, 4, 9, EAST, NULL
+	npc NPC_FIGHTING_CLUB_CAPPED_GUY, 7, 9, WEST, NULL
+	npc NPC_FIGHTING_CLUB_CAPPED_LASS, 6, 8, SOUTH, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	npc NPC_MICHAEL, 11, 6, EAST, $97, $5b
 	db $ff
 
 FightingClubLobby_NPCInteractions:
-	npc_script NPC_PAPPY_2, $0b, $ac, $5b
-	npc_script NPC_SPECS_3, $0b, $17, $5c
-	npc_script NPC_LAD4, $0b, $48, $5c
-	npc_script NPC_GIRL_4, $0b, $79, $5c
+	npc_script NPC_FIGHTING_CLUB_PAPPY, $0b, $ac, $5b
+	npc_script NPC_FIGHTING_CLUB_GLASSES_KID, $0b, $17, $5c
+	npc_script NPC_FIGHTING_CLUB_CAPPED_GUY, $0b, $48, $5c
+	npc_script NPC_FIGHTING_CLUB_CAPPED_LASS, $0b, $79, $5c
 	npc_script NPC_MICHAEL, $0b, $0e, $5b
 	db $ff
 
@@ -1873,20 +1873,20 @@ ScienceClubLobby_NPCs:
 	npc NPC_DAVID, 9, 6, EAST, $0d, $68
 	npc NPC_ERIK, 4, 9, EAST, $0d, $68
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $22, $68
-	npc NPC_MAN_2, 3, 9, WEST, $d1, $68
-	npc NPC_SPECS_4, 13, 4, SOUTH, $d1, $68
-	npc NPC_TECH_6, 7, 9, WEST, $d1, $68
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_SCIENCE_CLUB_MAN, 3, 9, WEST, $d1, $68
+	npc NPC_SCIENCE_CLUB_GLASSES_KID, 13, 4, SOUTH, $d1, $68
+	npc NPC_SCIENCE_CLUB_TECH, 7, 9, WEST, $d1, $68
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 ScienceClubLobby_NPCInteractions:
 	npc_script NPC_DAVID, $0b, $6e, $67
 	npc_script NPC_ERIK, $0b, $e3, $67
 	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script NPC_MAN_2, $0b, $31, $68
-	npc_script NPC_SPECS_4, $0b, $62, $68
-	npc_script NPC_TECH_6, $0b, $a0, $68
+	npc_script NPC_SCIENCE_CLUB_MAN, $0b, $31, $68
+	npc_script NPC_SCIENCE_CLUB_GLASSES_KID, $0b, $62, $68
+	npc_script NPC_SCIENCE_CLUB_TECH, $0b, $a0, $68
 	db $ff
 
 ScienceClubLobby_OWInteractions:
@@ -2234,20 +2234,20 @@ WaterClubLobby_StepEvents:
 
 WaterClubLobby_NPCs:
 	npc NPC_JOSHUA, 8, 6, WEST, $5f, $6f
-	npc NPC_LASS2_4, 11, 1, WEST, NULL
+	npc NPC_WATER_CLUB_LASS, 11, 1, WEST, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $9f, $6f
-	npc NPC_PAPPY_3, 12, 11, EAST, NULL
-	npc NPC_LASS1_2, 4, 9, SOUTH, NULL
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_WATER_CLUB_PAPPY, 12, 11, EAST, NULL
+	npc NPC_WATER_CLUB_LONGHAIRED_LASS, 4, 9, SOUTH, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 WaterClubLobby_NPCInteractions:
 	npc_script NPC_JOSHUA, $0b, $ea, $6e
-	npc_script NPC_LASS2_4, $0b, $74, $6f
+	npc_script NPC_WATER_CLUB_LASS, $0b, $74, $6f
 	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script NPC_PAPPY_3, $0b, $ae, $6f
-	npc_script NPC_LASS1_2, $0b, $e1, $6f
+	npc_script NPC_WATER_CLUB_PAPPY, $0b, $ae, $6f
+	npc_script NPC_WATER_CLUB_LONGHAIRED_LASS, $0b, $e1, $6f
 	db $ff
 
 WaterClubLobby_OWInteractions:
@@ -2620,19 +2620,19 @@ FireClubLobby_StepEvents:
 	db $ff
 
 FireClubLobby_NPCs:
-	npc NPC_HOOD_3, 8, 4, NORTH, NULL
+	npc NPC_FIRE_CLUB_PUNK_GUY, 8, 4, NORTH, NULL
 	npc NPC_IMAKUNI_BLACK, 1, 10, WEST, $6f, $77
-	npc NPC_MANIA_4, 10, 9, NORTH, NULL
-	npc NPC_GAL_2, 5, 8, SOUTH, NULL
-	npc NPC_CLERK_1, 2, 2, SOUTH, NULL
-	npc NPC_CLERK_2, 4, 2, SOUTH, NULL
+	npc NPC_FIRE_CLUB_MARTIAL_ARTIST, 10, 9, NORTH, NULL
+	npc NPC_FIRE_CLUB_GAL, 5, 8, SOUTH, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 FireClubLobby_NPCInteractions:
-	npc_script NPC_HOOD_3, $0b, $09, $77
+	npc_script NPC_FIRE_CLUB_PUNK_GUY, $0b, $09, $77
 	npc_script NPC_IMAKUNI_BLACK, $0f, $0c, $43
-	npc_script NPC_MANIA_4, $0b, $7e, $77
-	npc_script NPC_GAL_2, $0b, $a4, $77
+	npc_script NPC_FIRE_CLUB_MARTIAL_ARTIST, $0b, $7e, $77
+	npc_script NPC_FIRE_CLUB_GAL, $0b, $a4, $77
 	db $ff
 
 FireClubLobby_OWInteractions:
@@ -2864,11 +2864,11 @@ PokemonDomeEntrance_StepEvents:
 	db $ff
 
 PokemonDomeEntrance_NPCs:
-	npc NPC_BUTCH_2, 8, 3, NORTH, $1d, $7e
+	npc NPC_POKEMON_DOME_FAT_GUY, 8, 3, NORTH, $1d, $7e
 	db $ff
 
 PokemonDomeEntrance_NPCInteractions:
-	npc_script NPC_BUTCH_2, $0b, $a3, $7d
+	npc_script NPC_POKEMON_DOME_FAT_GUY, $0b, $a3, $7d
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:

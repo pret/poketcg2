@@ -993,8 +993,8 @@ MapHeaderPtrs::
 	dba OverworldTcg_MapHeader
 	dba OverworldGr_MapHeader
 	dba MasonLaboratoryMain_MapHeader
-	dba MasonLaboratorySide1_MapHeader
-	dba MasonLaboratorySide2_MapHeader
+	dba MasonLaboratoryComputerRoom_MapHeader
+	dba MasonLaboratoryTrainingRoom_MapHeader
 	dba IshiharasHouse_MapHeader
 	dba LightningClubEntrance_MapHeader
 	dba LightningClubLobby_MapHeader

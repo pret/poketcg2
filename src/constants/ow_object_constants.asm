@@ -78,7 +78,7 @@
 	const OWSPRITE_CHAP                ; $4a
 	const OWSPRITE_MAN                 ; $4b
 	const OWSPRITE_PAPPY               ; $4c
-	const OWSPRITE_GAMBLER             ; $4d
+	const OWSPRITE_FIXER               ; $4d
 	const OWSPRITE_GR_LAD              ; $4e
 	const OWSPRITE_GR_CHAP             ; $4f
 	const OWSPRITE_MIYAJIMA            ; $50

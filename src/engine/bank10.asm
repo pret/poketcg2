@@ -638,29 +638,29 @@ MasonLaboratoryMain_MapHeader:
 MasonLaboratoryMain_StepEvents:
 	_ow_coordinate_function 6, 14, 0, 1, 7, 2, $10, $4fff
 	_ow_coordinate_function 7, 14, 0, 1, 7, 2, $10, $4fff
-	map_exit 0, 5, MAP_MASON_LABORATORY_SIDE_2, 12, 11, WEST
-	map_exit 0, 6, MAP_MASON_LABORATORY_SIDE_2, 12, 12, WEST
-	map_exit 13, 5, MAP_MASON_LABORATORY_SIDE_1, 1, 5, EAST
-	map_exit 13, 6, MAP_MASON_LABORATORY_SIDE_1, 1, 6, EAST
+	map_exit 0, 5, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 11, WEST
+	map_exit 0, 6, MAP_MASON_LABORATORY_TRAINING_ROOM, 12, 12, WEST
+	map_exit 13, 5, MAP_MASON_LABORATORY_COMPUTER_ROOM, 1, 5, EAST
+	map_exit 13, 6, MAP_MASON_LABORATORY_COMPUTER_ROOM, 1, 6, EAST
 	db $ff
 
 MasonLaboratoryMain_NPCs:
 	npc NPC_DR_MASON, 7, 5, SOUTH, $0
 	npc NPC_SAM, 2, 7, EAST, $0
-	npc NPC_TECH_9, 3, 2, SOUTH, $0
-	npc NPC_TECH_10, 11, 8, SOUTH, $0
-	npc NPC_TECH_11, 9, 10, WEST, $0
-	npc NPC_TECH_12, 10, 4, WEST, $0
+	npc NPC_LAB_TECH_PC_GUIDE, 3, 2, SOUTH, $0
+	npc NPC_LAB_TECH_CLUB_GUIDE, 11, 8, SOUTH, $0
+	npc NPC_LAB_TECH_BOOSTER_GUIDE, 9, 10, WEST, $0
+	npc NPC_LAB_TECH_ROOM_GUIDE, 10, 4, WEST, $0
 	npc NPC_RONALD, 3, 6, SOUTH, $521d
 	db $ff
 
 MasonLaboratoryMain_NPCInteractions:
 	npc_script NPC_DR_MASON, $10, $5188
 	npc_script NPC_SAM, $10, $5233
-	npc_script NPC_TECH_9, $10, $5370
-	npc_script NPC_TECH_10, $10, $5396
-	npc_script NPC_TECH_11, $10, $53bc
-	npc_script NPC_TECH_12, $10, $53e2
+	npc_script NPC_LAB_TECH_PC_GUIDE, $10, $5370
+	npc_script NPC_LAB_TECH_CLUB_GUIDE, $10, $5396
+	npc_script NPC_LAB_TECH_BOOSTER_GUIDE, $10, $53bc
+	npc_script NPC_LAB_TECH_ROOM_GUIDE, $10, $53e2
 	npc_script NPC_RONALD, $10, $51f2
 	db $ff
 
@@ -703,16 +703,16 @@ TcgChallengeHall_StepEvents:
 	db $ff
 
 TcgChallengeHall_NPCs:
-	npc NPC_GAL_3, 7, 2, SOUTH, $5768
-	npc NPC_LASS2_5, 10, 9, SOUTH, $5768
-	npc NPC_LASS1_5, 5, 9, SOUTH, $5768
-	npc NPC_MAN_3, 7, 10, SOUTH, $5751
+	npc NPC_CUP_HOST, 7, 2, SOUTH, $5768
+	npc NPC_TCG_CUP_CLERK_RIGHT, 10, 9, SOUTH, $5768
+	npc NPC_TCG_CUP_CLERK_LEFT, 5, 9, SOUTH, $5768
+	npc NPC_TCG_CHALLENGE_HALL_MAN, 7, 10, SOUTH, $5751
 	db $ff
 
 TcgChallengeHall_NPCInteractions:
-	npc_script NPC_LASS1_5, $10, $5662
-	npc_script NPC_LASS2_5, $10, $5705
-	npc_script NPC_MAN_3, $10, $5720
+	npc_script NPC_TCG_CUP_CLERK_LEFT, $10, $5662
+	npc_script NPC_TCG_CUP_CLERK_RIGHT, $10, $5705
+	npc_script NPC_TCG_CHALLENGE_HALL_MAN, $10, $5720
 	db $ff
 
 TcgChallengeHall_MapScripts:
@@ -821,15 +821,15 @@ GrChallengeHall_StepEvents:
 	db $ff
 
 GrChallengeHall_NPCs:
-	npc NPC_GAL_3, 7, 2, SOUTH, $694a
-	npc NPC_LASS1_6, 4, 8, SOUTH, $694a
-	npc NPC_LASS2_7, 11, 8, SOUTH, $694a
+	npc NPC_CUP_HOST, 7, 2, SOUTH, $694a
+	npc NPC_GR_CUP_CLERK_LEFT, 4, 8, SOUTH, $694a
+	npc NPC_GR_CUP_CLERK_RIGHT, 11, 8, SOUTH, $694a
 	npc NPC_GR_STAFF, 8, 6, NORTH, $699f
 	db $ff
 
 GrChallengeHall_NPCInteractions:
-	npc_script NPC_LASS1_6, $10, $688d
-	npc_script NPC_LASS2_7, $10, $692f
+	npc_script NPC_GR_CUP_CLERK_LEFT, $10, $688d
+	npc_script NPC_GR_CUP_CLERK_RIGHT, $10, $692f
 	npc_script NPC_GR_STAFF, $10, $6961
 	db $ff
 
