@@ -6855,7 +6855,7 @@ SetFontAndTextBoxFrameColor:
 	ret
 
 Func_6c12::
-	ld hl, $30d8
+	ld hl, Pals_6f0d8 - $4000
 	ld de, wBackgroundPalettesCGB + 2 * CGB_PAL_SIZE
 	ld c, 3 palettes
 	jp CopyFontsOrDuelGraphicsBytes

@@ -15,7 +15,7 @@ SECTION "rst18", ROM0
 	jp Bank1Call
 	ds 5
 SECTION "rst20", ROM0
-	jp $3c3c ; RST20
+	jp StubbedPlayDefaultSong
 	ds 5
 SECTION "rst28", ROM0
 	jp FarCall

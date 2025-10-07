@@ -8592,7 +8592,7 @@ GetAIScoreOfAttack:
 	ld a, e
 	ld [wTempTurnDuelistCardID], a
 	ld a, d
-	ld [$ccd5], a
+	ld [wTempTurnDuelistCardID + 1], a
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -8600,7 +8600,7 @@ GetAIScoreOfAttack:
 	ld a, e
 	ld [wTempNonTurnDuelistCardID], a
 	ld a, d
-	ld [$ccd7], a
+	ld [wTempNonTurnDuelistCardID + 1], a
 	bank1call HandleNoDamageOrEffectSubstatus
 	call SwapTurn
 	jr nc, .asm_17581
@@ -8693,7 +8693,7 @@ GetAIScoreOfAttack:
 	ld a, $01
 	ld [wd072], a
 	call AIDiscourage
-	ld a, [$cccc]
+	ld a, [wAIMaxDamage]
 	farcall $13, $4b6e
 	or a
 	jr z, .asm_17629
@@ -9955,7 +9955,7 @@ CalculateDamage_VersusDefendingPokemon:
 	ld hl, wDamage
 .Calculate:
 	ld e, [hl]
-	ld a, [$ccca]
+	ld a, [wDamage + 1]
 	ld d, a
 	push hl
 

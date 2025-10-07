@@ -4191,7 +4191,7 @@ CardAlbum:
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
 	bank1call SetDefaultPalettes
-	ld de, $3cff
+	lb de, $3c, $ff
 	call SetupText
 	lb de, 1, 1
 	call InitTextPrinting

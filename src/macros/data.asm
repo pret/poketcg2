@@ -161,5 +161,5 @@ ENDM
 ; for function maps
 MACRO key_func
 	db \1  ; key
-	dba \2 ; text ID
+	dba \2 ; func
 ENDM

@@ -309,7 +309,7 @@ AIEnergyTransTransferEnergyToBench:
 .use_pkmn_power
 	ld a, b
 	ldh [hTemp_ffa0], a
-	ld [$d07f], a
+	ld [wd07f], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -319,7 +319,7 @@ AIEnergyTransTransferEnergyToBench:
 .loop_energy
 	xor a
 	ldh [hAIPkmnPowerEffectParam], a
-	ld a, [$d07f]
+	ld a, [wd07f]
 	ldh [hTemp_ffa0], a
 
 	; returns when Arena card has no Grass energy cards attached.

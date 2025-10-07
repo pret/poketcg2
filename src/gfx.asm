@@ -45,6 +45,7 @@ Pals_6f0b0::
 	rgb 10, 10,  8
 	rgb  0,  0,  0
 
+Pals_6f0d8::
 	rgb 31, 31, 31
 	rgb 30, 29,  0
 	rgb 30,  3,  0

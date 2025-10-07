@@ -1618,6 +1618,7 @@ wAIRetreatedThisTurn::  ; d07d
 wAIVenusaurLv67DeckIndex::  ; d07e
 	ds $1
 
+wd07f:: ; d07f
 	ds $1
 
 wAIRetreatConsiderStatus:: ; d080
@@ -2521,7 +2522,14 @@ wOWScrollState:: ; d895
 wd896:: ; d896
 	ds $2
 
-	ds $3
+wd898:: ; d898
+	ds $1
+
+wd899:: ; d899
+	ds $1
+
+wd89a:: ; d89a
+	ds $1
 
 wOWScrollX:: ; d89b
 	ds $1

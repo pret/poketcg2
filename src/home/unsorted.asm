@@ -1395,9 +1395,9 @@ Func_37ce::
 	push bc
 	push de
 	push hl
-	ld a, [$d896]
+	ld a, [wd896]
 	ld c, a
-	ld a, [$d897]
+	ld a, [wd896 + 1]
 	ld b, a
 	or c
 	jr z, .asm_3823
@@ -1406,12 +1406,12 @@ Func_37ce::
 	farcall $7, $4941
 	cp $02
 	jr z, .asm_3823
-	ld a, [$d899]
+	ld a, [wd899]
 	dec a
-	ld [$d899], a
+	ld [wd899], a
 	jr nz, .asm_3823
-	ld a, [$d898]
-	ld [$d899], a
+	ld a, [wd898]
+	ld [wd899], a
 	farcall GetPaletteGfxPointer
 	ldh a, [hBankROM]
 	push af
@@ -1419,14 +1419,14 @@ Func_37ce::
 	call BankswitchROM
 	ld a, [hli]
 	ld b, a
-	ld a, [$d89a]
+	ld a, [wd89a]
 	ld c, a
 	inc a
 	cp b
 	jr nz, .asm_3810
 	xor a
 .asm_3810
-	ld [$d89a], a
+	ld [wd89a], a
 	sla c
 	sla c
 	sla c
