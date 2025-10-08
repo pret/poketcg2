@@ -10,7 +10,7 @@ from ctypes import c_int8
 import configuration
 from wram import read_constants
 
-from script_extractor import dump_script, load_texts, sort_and_filter, get_bank
+from script_extractor import ScriptExtractor
 
 z80_table = [
 	('nop', 0),                    # 00
@@ -1006,6 +1006,7 @@ class Disassembler(object):
 		self.sram = None
 		self.hram = None
 		self.wram = None
+		self.script_extractor = None
 
 	def initialize(self, rom, symfile):
 		"""
@@ -1023,6 +1024,17 @@ class Disassembler(object):
 		path = os.path.join(self.config.path, 'src/constants/hardware_constants.asm')
 		if os.path.exists(path):
 			self.gbhw = read_constants(path)
+
+		script_extractor_args = {
+			"address_comments":False,
+			"allow_backward_jumps":False,
+			"follow_far_calls":False,
+			"fill_gaps":False,
+			"skip_trailing_ret": True,
+			"rom":rom,
+			"symfile":symfile
+		}
+		self.script_extractor = ScriptExtractor(script_extractor_args)
 
 	def find_label(self, address, bank=0):
 		if type(address) is str:
@@ -1144,7 +1156,7 @@ class Disassembler(object):
 					offset = blob["end"]
 
 					# if there is a gap in two script blobs, break so we can continue disassembling bytes of code
-					if next and blob["end"] < next["start"] and get_bank(blob["end"]) == get_bank(next["start"]):
+					if next and blob["end"] < next["start"] and self.script_extractor.get_bank(blob["end"]) == self.script_extractor.get_bank(next["start"]):
 						break
 					i += 1
 
@@ -1422,12 +1434,11 @@ class Disassembler(object):
 			# dump script if we found one
 			if(parse_scripts and (opcode_byte in call_commands and target_label == "StartScript")):
 				print('DEBUG: script block @ {:x}'.format(offset))
-				texts = load_texts("src/text/text_offsets.asm")
 
 				# += here to handle cases where we still have future scripts to add to the output,
 				# but got back to this block because we disassembled a new StartScript call
-				script_blobs += dump_script(offset, self.sym, self.rom, texts, visited=set())
-				script_blobs = sort_and_filter(script_blobs)
+				script_blobs += self.script_extractor.dump_script(offset, visited=set())
+				script_blobs = self.script_extractor.sort_and_filter(script_blobs)
 
 			# stop processing regardless of function end if we've passed the stop offset and the hard stop (dry run) flag is set
 			if hard_stop and offset >= stop_offset:
@@ -1456,7 +1467,7 @@ class Disassembler(object):
 				output += blob["output"]
 				output += "\n"
 				offset = blob["end"]
-				if next and blob["end"] < next["start"] and get_bank(blob["end"]) == get_bank(next["start"]):
+				if next and blob["end"] < next["start"] and self.script_extractor.get_bank(blob["end"]) == self.script_extractor.get_bank(next["start"]):
 					break
 				i += 1
 			script_blobs = script_blobs[i+1:]
