@@ -1142,36 +1142,17 @@ class Disassembler(object):
 		while True:
 			# if we have reached one of the waiting script blobs, add them to the output
 			# and advance offset until we reach the next gap so we can continue disassembling from there.
-			if len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
-				i = 0
-				while i < len(script_blobs):
-					blob = script_blobs[i]
-					if i < len(script_blobs) - 1:
-						next = script_blobs[i+1]
-					else:
-						next = None
+			while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+				blob = script_blobs.pop(0)
+				output += blob["output"] + "\n"
+				offset = blob["end"]
 
-					output += blob["output"]
-					output += "\n"
-					offset = blob["end"]
-
-					# if there is a gap in two script blobs, break so we can continue disassembling bytes of code
-					if next and blob["end"] < next["start"] and self.script_extractor.get_bank(blob["end"]) == self.script_extractor.get_bank(next["start"]):
-						break
-					i += 1
-
-				# this removes all script blobs that were processed from the front of the list.
-				# if they were all in a contiguous block and were all processed, this will be empty.
-				script_blobs = script_blobs[i+1:]
-				local_offset = get_local_address(offset)
-				opcode_byte = rom[offset]
-
-				# script command 51 is the hard script return. this signals the end of a branch/function, so we need to stop immediately.
-				if rom[offset-1] == 0x51:
-					print("DEBUG: script_command_51 break")
-					if len(script_blobs) > 0:
-						print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
-					break
+			# script command 51 is the hard script return. this signals the end of a branch/function, so we need to stop immediately.
+			if parse_scripts and rom[offset-1] == 0x51:
+				print("DEBUG: script_command_51 break")
+				if len(script_blobs) > 0:
+					print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
+				break
 
 			#first check if this byte already has a label
 			#if it does, use the label
@@ -1454,28 +1435,15 @@ class Disassembler(object):
 				# otherwise, add some spacing
 				output += "\n"
 
-		# do this to output any dangling NPCMovement data tables
-		if len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
-			i = 0
-			while i < len(script_blobs):
-				blob = script_blobs[i]
-				if i < len(script_blobs) - 1:
-					next = script_blobs[i+1]
-				else:
-					next = None
+		# we have hit the end of the function, output any dangling scripts that are contiguous.
+		# do this primarily to output any dangling NPCMovement data tables
+		while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+			blob = script_blobs.pop(0)
+			output += blob["output"] + "\n"
+			offset = blob["end"]
 
-				output += blob["output"]
-				output += "\n"
-				offset = blob["end"]
-				if next and blob["end"] < next["start"] and self.script_extractor.get_bank(blob["end"]) == self.script_extractor.get_bank(next["start"]):
-					break
-				i += 1
-			script_blobs = script_blobs[i+1:]
-			local_offset = get_local_address(offset)
-			opcode_byte = rom[offset]
-
-			if len(script_blobs) > 0:
-				print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
+		if len(script_blobs) > 0:
+			print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
 
 		# before returning output, we need to clean up some things
 
