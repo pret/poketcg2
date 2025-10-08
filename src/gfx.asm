@@ -112,9 +112,9 @@ GRIslandOAMGfx::
 	dw 27 ; length
 	INCBIN "gfx/overworld_map/gr_oam.2bpp"
 
-IshiharaVilla2Tileset::
+IshiharaVillaLibraryTileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/ishihara_villa2.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa_library.2bpp"
 
 OWCoinsFortGfx::
 	dw 4 ; length
@@ -388,9 +388,9 @@ GRAirportTileset::
 	dw 208 ; length
 	INCBIN "gfx/tilesets/gr_airport.2bpp"
 
-IshiharaVilla1Tileset::
+IshiharaVillaMainTileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/ishihara_villa1.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa_main.2bpp"
 
 GameCenterEntranceTileset::
 	dw 74 ; length

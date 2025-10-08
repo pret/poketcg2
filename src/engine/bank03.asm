@@ -1031,8 +1031,8 @@ MapHeaderPtrs::
 	dba OverheadIslands_MapHeader
 	dba GrAirportEntrance_MapHeader
 	dba GrAirport_MapHeader
-	dba IshiharasVilla1_MapHeader
-	dba IshiharasVilla2_MapHeader
+	dba IshiharasVillaMain_MapHeader
+	dba IshiharasVillaLibrary_MapHeader
 	dba GameCenterEntrance_MapHeader
 	dba GameCenterLobby_MapHeader
 	dba GameCenter1_MapHeader

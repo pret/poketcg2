@@ -41,8 +41,8 @@
 	const TILESET_OVERHEAD_ISLANDS            ; $027
 	const TILESET_GR_AIRPORT_ENTRANCE         ; $028
 	const TILESET_GR_AIRPORT                  ; $029
-	const TILESET_ISHIHARA_VILLA_1            ; $02a
-	const TILESET_ISHIHARA_VILLA_2            ; $02b
+	const TILESET_ISHIHARA_VILLA_MAIN         ; $02a
+	const TILESET_ISHIHARA_VILLA_LIBRARY      ; $02b
 	const TILESET_GAME_CENTER_ENTRANCE        ; $02c
 	const TILESET_GAME_CENTER_LOBBY           ; $02d
 	const TILESET_GAME_CENTER_1               ; $02e

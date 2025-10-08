@@ -47,8 +47,8 @@ DEF GR_ISLAND  EQU $1
 	const MAP_OVERHEAD_ISLANDS               ; $26
 	const MAP_GR_AIRPORT_ENTRANCE            ; $27
 	const MAP_GR_AIRPORT                     ; $28
-	const MAP_ISHIHARAS_VILLA_1              ; $29
-	const MAP_ISHIHARAS_VILLA_2              ; $2a
+	const MAP_ISHIHARAS_VILLA_MAIN           ; $29
+	const MAP_ISHIHARAS_VILLA_LIBRARY        ; $2a
 	const MAP_GAME_CENTER_ENTRANCE           ; $2b
 	const MAP_GAME_CENTER_LOBBY              ; $2c
 	const MAP_GAME_CENTER_1                  ; $2d
@@ -169,8 +169,8 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GFX_OVERHEAD_ISLANDS               ; $26
 	const MAP_GFX_GR_AIRPORT_ENTRANCE            ; $27
 	const MAP_GFX_GR_AIRPORT                     ; $28
-	const MAP_GFX_ISHIHARAS_VILLA_1              ; $29
-	const MAP_GFX_ISHIHARAS_VILLA_2              ; $2a
+	const MAP_GFX_ISHIHARAS_VILLA_MAIN           ; $29
+	const MAP_GFX_ISHIHARAS_VILLA_LIBRARY        ; $2a
 	const MAP_GFX_GAME_CENTER_ENTRANCE           ; $2b
 	const MAP_GFX_GAME_CENTER_LOBBY              ; $2c
 	const MAP_GFX_GAME_CENTER_1                  ; $2d

@@ -41,8 +41,8 @@ Tilesets:
 	gfx_ptr OverheadIslandsGfx                ; $027
 	gfx_ptr GRAirportEntranceTileset          ; $028
 	gfx_ptr GRAirportTileset                  ; $029
-	gfx_ptr IshiharaVilla1Tileset             ; $02a
-	gfx_ptr IshiharaVilla2Tileset             ; $02B
+	gfx_ptr IshiharaVillaMainTileset          ; $02a
+	gfx_ptr IshiharaVillaLibraryTileset       ; $02B
 	gfx_ptr GameCenterEntranceTileset         ; $02c
 	gfx_ptr GameCenterLobbyTileset            ; $02d
 	gfx_ptr GameCenter1Tileset                ; $02e

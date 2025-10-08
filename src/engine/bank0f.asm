@@ -718,34 +718,34 @@ PokemonDomeBack_MapScripts:
 
 SECTION "Bank f@6698", ROMX[$6698], BANK[$f]
 
-IshiharasVilla1_MapHeader:
-	db MAP_GFX_ISHIHARAS_VILLA_1
-	dba IshiharasVilla1_MapScripts
+IshiharasVillaMain_MapHeader:
+	db MAP_GFX_ISHIHARAS_VILLA_MAIN
+	dba IshiharasVillaMain_MapScripts
 	db MUSIC_ISHIHARA
 
-IshiharasVilla1_StepEvents:
+IshiharasVillaMain_StepEvents:
 	map_exit 4, 10, OVERWORLD_MAP_GR, 4, 4, SOUTH
 	map_exit 5, 10, OVERWORLD_MAP_GR, 4, 4, SOUTH
-	map_exit 4, 0, MAP_ISHIHARAS_VILLA_2, 4, 7, NORTH
-	map_exit 5, 0, MAP_ISHIHARAS_VILLA_2, 5, 7, NORTH
+	map_exit 4, 0, MAP_ISHIHARAS_VILLA_LIBRARY, 4, 7, NORTH
+	map_exit 5, 0, MAP_ISHIHARAS_VILLA_LIBRARY, 5, 7, NORTH
 	db $ff
 
-IshiharasVilla1_NPCs:
+IshiharasVillaMain_NPCs:
 	npc NPC_ISHIHARA, 6, 5, WEST, $67d6
 	npc NPC_ISHIHARAS_VILLA_GR_GAL, 2, 2, NORTH, $68d3
 	db $ff
 
-IshiharasVilla1_NPCInteractions:
+IshiharasVillaMain_NPCInteractions:
 	npc_script NPC_ISHIHARA, $0f, $67c0
 	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, $0f, $68b1
 	db $ff
 
-IshiharasVilla1_OWInteractions:
+IshiharasVillaMain_OWInteractions:
 	ow_script 7, 2, PCMenu
 	ow_script 8, 2, PCMenu
 	db $ff
 
-IshiharasVilla1_MapScripts:
+IshiharasVillaMain_MapScripts:
 	dbw $06, $672a
 	dbw $08, $673a
 	dbw $09, $67bb
@@ -759,27 +759,27 @@ IshiharasVilla1_MapScripts:
 
 SECTION "Bank f@68e0", ROMX[$68e0], BANK[$f]
 
-IshiharasVilla2_MapHeader:
-	db MAP_GFX_ISHIHARAS_VILLA_2
-	dba IshiharasVilla2_MapScripts
+IshiharasVillaLibrary_MapHeader:
+	db MAP_GFX_ISHIHARAS_VILLA_LIBRARY
+	dba IshiharasVillaLibrary_MapScripts
 	db MUSIC_ISHIHARA
 
-IshiharasVilla2_StepEvents:
-	map_exit 4, 8, MAP_ISHIHARAS_VILLA_1, 4, 1, SOUTH
-	map_exit 5, 8, MAP_ISHIHARAS_VILLA_1, 5, 1, SOUTH
+IshiharasVillaLibrary_StepEvents:
+	map_exit 4, 8, MAP_ISHIHARAS_VILLA_MAIN, 4, 1, SOUTH
+	map_exit 5, 8, MAP_ISHIHARAS_VILLA_MAIN, 5, 1, SOUTH
 	db $ff
 
-IshiharasVilla2_NPCs:
+IshiharasVillaLibrary_NPCs:
 	npc NPC_ISHIHARA, 5, 4, SOUTH, $6a55
 	npc NPC_ISHIHARAS_VILLA_GR_GAL, 4, 2, NORTH, $6cd5
 	db $ff
 
-IshiharasVilla2_NPCInteractions:
+IshiharasVillaLibrary_NPCInteractions:
 	npc_script NPC_ISHIHARA, $0f, $6a12
 	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, $0f, $6c75
 	db $ff
 
-IshiharasVilla2_OWInteractions:
+IshiharasVillaLibrary_OWInteractions:
 	ow_script 1, 2, $10, $43de
 	ow_script 2, 2, $10, $43f4
 	ow_script 3, 2, $10, $440a
@@ -788,7 +788,7 @@ IshiharasVilla2_OWInteractions:
 	ow_script 8, 2, $10, $444c
 	db $ff
 
-IshiharasVilla2_MapScripts:
+IshiharasVillaLibrary_MapScripts:
 	dbw $06, $6981
 	dbw $08, $6991
 	dbw $07, $6988
