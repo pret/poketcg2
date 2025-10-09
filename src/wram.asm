@@ -2771,13 +2771,15 @@ wda94:: ; da94
 wScrollTargetObject:: ; da97
 	ds $1
 
+; set to FF while chip count window is on screen (top-left corner)
 wda98:: ; da98
 	ds $1
 
-wda99:: ; da99
+; max chips amount is 9999 (0x270f)
+wGameCenterChips:: ; da99
 	ds $2
 
-wda9b:: ; da9b
+wGameCenterBankedChips:: ; da9b
 	ds $2
 
 wIntroOrbsStates:: ; da9d

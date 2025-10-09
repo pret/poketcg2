@@ -116,16 +116,16 @@ ENDM
 	const ScriptCommand_VarAdd_index                           ; $6a
 	const ScriptCommand_VarSub_index                           ; $6b
 	const ScriptCommand_ReceiveCard_index                      ; $6c
-	const ScriptCommand_Fetch_wda99_index                      ; $6d
+	const ScriptCommand_GetGameCenterChips_index               ; $6d
 	const ScriptCommand_CompareLoadedVarWord_index             ; $6e
-	const ScriptCommand_Fetch_wda9b_index                      ; $6f
+	const ScriptCommand_GetGameCenterBankedChips_index         ; $6f
 	const ScriptCommand_GameCenter_index                       ; $70
 	const ScriptCommand_71_index                               ; $71
-	const ScriptCommand_72_index                               ; $72
-	const ScriptCommand_73_index                               ; $73
+	const ScriptCommand_IncreaseChips_index                    ; $72
+	const ScriptCommand_DecreaseChips_index                    ; $73
 	const ScriptCommand_LoadTextRAM3_index                     ; $74
-	const ScriptCommand_75_index                               ; $75
-	const ScriptCommand_76_index                               ; $76
+	const ScriptCommand_DepositChips_index                     ; $75
+	const ScriptCommand_WithdrawChips_index                    ; $76
 	const ScriptCommand_LinkDuel_index                         ; $77
 	const ScriptCommand_WaitSong_index                         ; $78
 	const ScriptCommand_LoadPalette_index                      ; $79
@@ -711,8 +711,8 @@ MACRO receive_card
 	dw \1 ; card
 ENDM
 
-MACRO fetch_wda99
-	run_command ScriptCommand_Fetch_wda99
+MACRO get_game_center_chips
+	run_command ScriptCommand_GetGameCenterChips
 ENDM
 
 MACRO compare_loaded_var_word
@@ -720,8 +720,8 @@ MACRO compare_loaded_var_word
 	dw \1 ; value to compare
 ENDM
 
-MACRO fetch_wda9b
-	run_command ScriptCommand_Fetch_wda9b
+MACRO get_game_center_banked_chips
+	run_command ScriptCommand_GetGameCenterBankedChips
 ENDM
 
 MACRO game_center
@@ -732,13 +732,13 @@ MACRO script_command_71
 	run_command ScriptCommand_71
 ENDM
 
-MACRO script_command_72
-	run_command ScriptCommand_72
+MACRO increase_chips
+	run_command ScriptCommand_IncreaseChips
 	dw \1
 ENDM
 
-MACRO script_command_73
-	run_command ScriptCommand_73
+MACRO decrease_chips
+	run_command ScriptCommand_DecreaseChips
 	dw \1
 ENDM
 
@@ -746,12 +746,12 @@ MACRO load_text_ram3
 	run_command ScriptCommand_LoadTextRAM3
 ENDM
 
-MACRO script_command_75
-	run_command ScriptCommand_75
+MACRO deposit_chips
+	run_command ScriptCommand_DepositChips
 ENDM
 
-MACRO script_command_76
-	run_command ScriptCommand_76
+MACRO withdraw_chips
+	run_command ScriptCommand_WithdrawChips
 ENDM
 
 MACRO link_duel

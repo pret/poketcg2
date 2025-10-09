@@ -139,16 +139,16 @@ script_commands = {
 	0x6a: { "name": "var_add",                                "params": [ "var", "byte" ] },
 	0x6b: { "name": "var_sub",                                "params": [ "var", "byte" ] },
 	0x6c: { "name": "receive_card",                           "params": [ "card" ] },
-	0x6d: { "name": "fetch_wda99",                            "params": [] },
+	0x6d: { "name": "get_game_center_chips",                  "params": [] },
 	0x6e: { "name": "compare_loaded_var_word",                "params": [ "word" ] },
-	0x6f: { "name": "fetch_wda9b",                            "params": [] },
+	0x6f: { "name": "get_game_center_banked_chips",           "params": [] },
 	0x70: { "name": "game_center",                            "params": [] },
 	0x71: { "name": "script_command_71",                      "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
-	0x72: { "name": "script_command_72",                      "params": [ "word" ] }, # ?
-	0x73: { "name": "script_command_73",                      "params": [ "word" ] }, # ?
+	0x72: { "name": "increase_chips",                         "params": [ "word" ] },
+	0x73: { "name": "decrease_chips",                         "params": [ "word" ] },
 	0x74: { "name": "load_text_ram3",                         "params": [] },
-	0x75: { "name": "script_command_75",                      "params": [] }, # ?
-	0x76: { "name": "script_command_76",                      "params": [] }, # ?
+	0x75: { "name": "deposit_chips",                          "params": [] },
+	0x76: { "name": "withdraw_chips",                         "params": [] },
 	0x77: { "name": "link_duel",                              "params": [] },
 	0x78: { "name": "wait_song",                              "params": [] },
 	0x79: { "name": "load_palette",                           "params": [ "palette" ] },

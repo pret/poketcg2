@@ -3426,9 +3426,9 @@ Func_11512:
 	push af
 	push bc
 	push hl
-	ld a, [wda99]
+	ld a, [wGameCenterChips]
 	ld l, a
-	ld a, [wda99 + 1]
+	ld a, [wGameCenterChips + 1]
 	ld h, a
 	add hl, bc
 	ld a, h
@@ -3440,9 +3440,9 @@ Func_11512:
 	lb hl, $27, $0f
 .got_value
 	ld a, l
-	ld [wda99], a
+	ld [wGameCenterChips], a
 	ld a, h
-	ld [wda99 + 1], a
+	ld [wGameCenterChips + 1], a
 	ld a, [wda98]
 	and a
 	jr z, .done
@@ -3467,9 +3467,9 @@ Func_11540:
 	add hl, bc
 	ld c, l
 	ld b, h
-	ld a, [wda99]
+	ld a, [wGameCenterChips]
 	ld l, a
-	ld a, [wda99 + 1]
+	ld a, [wGameCenterChips + 1]
 	ld h, a
 	add hl, bc
 	ld a, h
@@ -3481,9 +3481,9 @@ Func_11540:
 	ld hl, 0
 .got_value
 	ld a, l
-	ld [wda99], a
+	ld [wGameCenterChips], a
 	ld a, h
-	ld [wda99 + 1], a
+	ld [wGameCenterChips + 1], a
 	ld a, [wda98]
 	and a
 	jr z, .done
@@ -3498,20 +3498,20 @@ Func_11540:
 Func_1157c:
 	push af
 	xor a
-	ld [wda99], a
-	ld [wda99 + 1], a
-	ld [wda9b], a
-	ld [wda9b + 1], a
+	ld [wGameCenterChips], a
+	ld [wGameCenterChips + 1], a
+	ld [wGameCenterBankedChips], a
+	ld [wGameCenterBankedChips + 1], a
 	ld [wda98], a
 	pop af
 	ret
 
-; load [dw da99] to bc
-GetDWwDA99:
+; load [wGameCenterChips] to bc
+GetGameCenterChips:
 	push af
-	ld a, [wda99]
+	ld a, [wGameCenterChips]
 	ld c, a
-	ld a, [wda99 + 1]
+	ld a, [wGameCenterChips + 1]
 	ld b, a
 	pop af
 	ret
@@ -3625,9 +3625,9 @@ Func_11622:
 	push bc
 	push de
 	push hl
-	ld a, [wda99]
+	ld a, [wGameCenterChips]
 	ld l, a
-	ld a, [wda99 + 1]
+	ld a, [wGameCenterChips + 1]
 	ld h, a
 	lb de, 2, 2
 	call AdjustDECoordByhSC

@@ -2830,16 +2830,16 @@ OverworldScriptTable:
 	dw ScriptCommand_VarAdd                           ; $6a
 	dw ScriptCommand_VarSub                           ; $6b
 	dw ScriptCommand_ReceiveCard                      ; $6c
-	dw ScriptCommand_Fetch_wda99                      ; $6d
+	dw ScriptCommand_GetGameCenterChips               ; $6d
 	dw ScriptCommand_CompareLoadedVarWord             ; $6e
-	dw ScriptCommand_Fetch_wda9b                      ; $6f
+	dw ScriptCommand_GetGameCenterBankedChips         ; $6f
 	dw ScriptCommand_GameCenter                       ; $70
 	dw ScriptCommand_71                               ; $71
-	dw ScriptCommand_72                               ; $72
-	dw ScriptCommand_73                               ; $73
+	dw ScriptCommand_IncreaseChips                    ; $72
+	dw ScriptCommand_DecreaseChips                    ; $73
 	dw ScriptCommand_LoadTextRAM3                     ; $74
-	dw ScriptCommand_75                               ; $75
-	dw ScriptCommand_76                               ; $76
+	dw ScriptCommand_DepositChips                     ; $75
+	dw ScriptCommand_WithdrawChips                    ; $76
 	dw ScriptCommand_LinkDuel                         ; $77
 	dw ScriptCommand_WaitSong                         ; $78
 	dw ScriptCommand_LoadPalette                      ; $79
@@ -4505,8 +4505,8 @@ ScriptCommand_ReceiveCard:
 	call WaitPalFading
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_Fetch_wda99:
-	farcall GetDWwDA99
+ScriptCommand_GetGameCenterChips:
+	farcall GetGameCenterChips
 	ld a, c
 	ld [wScriptLoadedVar], a
 	ld a, b
@@ -4538,8 +4538,8 @@ ScriptCommand_CompareLoadedVarWord:
 .no_carry
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_Fetch_wda9b:
-	farcall GetDWwDA9B
+ScriptCommand_GetGameCenterBankedChips:
+	farcall GetGameCenterBankedChips
 	ld a, c
 	ld [wScriptLoadedVar], a
 	ld a, b
@@ -4554,12 +4554,12 @@ ScriptCommand_71:
 	farcall Func_114f9
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_72:
+ScriptCommand_IncreaseChips:
 	call Get2ScriptArgs_IncrIndexBy1
 	farcall Func_1159a
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_73:
+ScriptCommand_DecreaseChips:
 	call Get2ScriptArgs_IncrIndexBy1
 	farcall Func_115de
 	jp IncreaseScriptPointerBy3
@@ -4572,12 +4572,12 @@ ScriptCommand_LoadTextRAM3:
 	call LoadTxRam3
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_75:
-	farcall Func_1cd4e
+ScriptCommand_DepositChips:
+	farcall DepositChips
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_76:
-	farcall Func_1cd36
+ScriptCommand_WithdrawChips:
+	farcall WithdrawChips
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_LinkDuel:
