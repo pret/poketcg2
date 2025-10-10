@@ -3390,7 +3390,7 @@ Func_114af:
 	call AdjustDECoordByhSC
 	ldtx hl, PlayerDiaryCardsUnitText
 	call Func_35af
-	call Func_11622
+	call PrintNumberOfChips
 
 .fill
 	ld a, $ff
@@ -3422,7 +3422,8 @@ Func_114f9:
 	pop af
 	ret
 
-Func_11512:
+; bc = number of chips
+AddChips:
 	push af
 	push bc
 	push hl
@@ -3446,14 +3447,15 @@ Func_11512:
 	ld a, [wda98]
 	and a
 	jr z, .done
-	call Func_11622
+	call PrintNumberOfChips
 .done
 	pop hl
 	pop bc
 	pop af
 	ret
 
-Func_11540:
+; bc = number of chips
+SubtractChips:
 	push af
 	push bc
 	push hl
@@ -3487,7 +3489,7 @@ Func_11540:
 	ld a, [wda98]
 	and a
 	jr z, .done
-	call Func_11622
+	call PrintNumberOfChips
 .done
 	pop hl
 	pop bc
@@ -3516,7 +3518,10 @@ GetGameCenterChips:
 	pop af
 	ret
 
-Func_1159a:
+; increases player's chip count and ticks up the display on screen
+; while playing sfx. first ticks up slowly, then quickly if bc is large enough.
+; bc = number of chips
+IncreaseChipsSmoothly:
 	push af
 	push bc
 	push de
@@ -3534,7 +3539,7 @@ Func_1159a:
 	ld bc, 1
 	inc h
 .display_loop_1
-	call Func_115ce
+	call AddChipsAndPlaySFX
 	dec l
 	jr nz, .display_loop_1
 	dec h
@@ -3548,7 +3553,7 @@ Func_1159a:
 	ld c, e
 	ld e, 20
 .display_loop_2
-	call Func_115ce
+	call AddChipsAndPlaySFX
 	dec e
 	jr nz, .display_loop_2
 .done
@@ -3558,17 +3563,21 @@ Func_1159a:
 	pop af
 	ret
 
-Func_115ce:
+; bc = number of chips
+AddChipsAndPlaySFX:
 	push af
-	ld a, SFX_7C
+	ld a, SFX_ChipsCounting
 	call CallPlaySFX
 	pop af
-	call Func_11512
+	call AddChips
 	ld a, 3
 	call DoAFrames_WithPreCheck
 	ret
 
-Func_115de:
+; increases player's chip count and ticks down the display on screen
+; while playing sfx. first ticks down slowly, then quickly if bc is large enough.
+; bc = number of chips
+DecreaseChipsSmoothly:
 	push af
 	push bc
 	push de
@@ -3586,7 +3595,7 @@ Func_115de:
 	ld bc, 1
 	inc h
 .display_loop_1
-	call Func_11612
+	call SubtractChipsAndPlaySFX
 	dec l
 	jr nz, .display_loop_1
 	dec h
@@ -3600,7 +3609,7 @@ Func_115de:
 	ld c, e
 	ld e, 20
 .display_loop_2
-	call Func_11612
+	call SubtractChipsAndPlaySFX
 	dec e
 	jr nz, .display_loop_2
 .done
@@ -3610,17 +3619,19 @@ Func_115de:
 	pop af
 	ret
 
-Func_11612:
+; bc = number of chips
+SubtractChipsAndPlaySFX:
 	push af
-	ld a, SFX_7C
+	ld a, SFX_ChipsCounting
 	call CallPlaySFX
 	pop af
-	call Func_11540
+	call SubtractChips
 	ld a, 3
 	call DoAFrames_WithPreCheck
 	ret
 
-Func_11622:
+; prints value from RAM
+PrintNumberOfChips:
 	push af
 	push bc
 	push de

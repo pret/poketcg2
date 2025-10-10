@@ -2247,7 +2247,7 @@ sfxs = [
 	"SFX_79",
 	"SFX_7A",
 	"SFX_7B",
-	"SFX_7C",
+	"SFX_ChipsCounting",
 	"SFX_7D",
 	"SFX_7E",
 	"SFX_7F",

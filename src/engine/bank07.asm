@@ -1650,7 +1650,7 @@ WithdrawChips:
 	ld c, a
 	ld a, [wGameCenterBankedChips + 1]
 	ld b, a
-	farcall Func_1159a
+	farcall IncreaseChipsSmoothly
 	xor a
 	ld [wGameCenterBankedChips], a
 	ld [wGameCenterBankedChips + 1], a
@@ -1662,7 +1662,7 @@ DepositChips:
 	push af
 	push bc
 	farcall GetGameCenterChips
-	farcall Func_115de
+	farcall DecreaseChipsSmoothly
 	ld a, c
 	ld [wGameCenterBankedChips], a
 	ld a, b

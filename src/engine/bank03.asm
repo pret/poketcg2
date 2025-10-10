@@ -4556,12 +4556,12 @@ ScriptCommand_71:
 
 ScriptCommand_IncreaseChips:
 	call Get2ScriptArgs_IncrIndexBy1
-	farcall Func_1159a
+	farcall IncreaseChipsSmoothly
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_DecreaseChips:
 	call Get2ScriptArgs_IncrIndexBy1
-	farcall Func_115de
+	farcall DecreaseChipsSmoothly
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_LoadTextRAM3:
