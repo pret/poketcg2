@@ -2775,10 +2775,11 @@ wScrollTargetObject:: ; da97
 wda98:: ; da98
 	ds $1
 
-; max chips amount is 9999 (0x270f)
+; MAX_CHIPS = 9999 (0x270f)
 wGameCenterChips:: ; da99
 	ds $2
 
+; MAX_CHIPS = 9999 (0x270f)
 wGameCenterBankedChips:: ; da9b
 	ds $2
 

@@ -3432,12 +3432,12 @@ Func_11512:
 	ld h, a
 	add hl, bc
 	ld a, h
-	cp $27
+	cp HIGH(MAX_CHIPS)
 	jr c, .got_value
 	ld a, l
-	cp $0f
+	cp LOW(MAX_CHIPS)
 	jr c, .got_value
-	lb hl, $27, $0f
+	ld hl, MAX_CHIPS
 .got_value
 	ld a, l
 	ld [wGameCenterChips], a
@@ -3473,10 +3473,10 @@ Func_11540:
 	ld h, a
 	add hl, bc
 	ld a, h
-	cp $27
+	cp HIGH(MAX_CHIPS)
 	jr c, .got_value
 	ld a, l
-	cp $0f
+	cp LOW(MAX_CHIPS)
 	jr c, .got_value
 	ld hl, 0
 .got_value

@@ -48,6 +48,8 @@ DEF MAX_NUM_CARDPOP_RECORDS EQU 98
 DEF CARDPOP_RECORD_SIZE       EQU $20
 DEF CARDPOP_RECORD_STATS_SIZE EQU $05
 
+DEF MAX_CHIPS EQU 9999 ; 0x270f
+
 ; commands transmitted through IR to be
 ; executed by the other device
 ; (see ExecuteReceivedIRCommands)
