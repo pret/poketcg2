@@ -310,6 +310,17 @@ DEF EAST     EQU $01
 DEF SOUTH    EQU $02
 DEF WEST     EQU $03
 
+; the true max is probably much lower. this is just the biggest 6-bit number.
+DEF MAX_MOVEMENT EQU $3F
+
+; generate MOVE_x constants for use in NPCMovement data.
+; see also: script_extractor.py
+; The raw data value = (number of steps to move << 2) + 1
+; e.g. MOVE_2 = 0x09
+FOR N, MAX_MOVEMENT
+	DEF MOVE_{d:N} EQU (N << 2) + 1
+ENDR
+
 ; TODO: Identify WRAM to give them proper names
 DEF wD606_STRUCT_SIZE  EQU $8
 DEF SCRIPT_BUFFER_SIZE EQU $20
