@@ -1,5 +1,5 @@
 NumberOfSFX1:
-	db $a1
+	db NUM_SFX
 
 SFXHeaderPointers1:
 	dw SfxStop
@@ -126,7 +126,7 @@ SFXHeaderPointers1:
 	dw Sfx79
 	dw Sfx7a
 	dw Sfx7b
-	dw Sfx7c
+	dw Sfx_ChipsCounting
 	dw Sfx7d
 	dw Sfx7e
 	dw Sfx7f
@@ -802,10 +802,10 @@ Sfx5f:
 	dw Sfx7b_Ch1
 	dw Sfx7b_Ch2
 
-;Sfx7c
-	db BANK(Sfx7c)
+;Sfx_ChipsCounting
+	db BANK(Sfx_ChipsCounting)
 	db %0001
-	dw Sfx7c_Ch1
+	dw Sfx_ChipsCounting_Ch1
 
 ;Sfx7d
 	db BANK(Sfx7d)

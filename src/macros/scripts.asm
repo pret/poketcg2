@@ -121,8 +121,8 @@ ENDM
 	const ScriptCommand_GetGameCenterBankedChips_index         ; $6f
 	const ScriptCommand_GameCenter_index                       ; $70
 	const ScriptCommand_71_index                               ; $71
-	const ScriptCommand_IncreaseChips_index                    ; $72
-	const ScriptCommand_DecreaseChips_index                    ; $73
+	const ScriptCommand_GiveChips_index                        ; $72
+	const ScriptCommand_TakeChips_index                        ; $73
 	const ScriptCommand_LoadTextRAM3_index                     ; $74
 	const ScriptCommand_DepositChips_index                     ; $75
 	const ScriptCommand_WithdrawChips_index                    ; $76
@@ -732,13 +732,13 @@ MACRO script_command_71
 	run_command ScriptCommand_71
 ENDM
 
-MACRO increase_chips
-	run_command ScriptCommand_IncreaseChips
+MACRO give_chips
+	run_command ScriptCommand_GiveChips
 	dw \1
 ENDM
 
-MACRO decrease_chips
-	run_command ScriptCommand_DecreaseChips
+MACRO take_chips
+	run_command ScriptCommand_TakeChips
 	dw \1
 ENDM
 

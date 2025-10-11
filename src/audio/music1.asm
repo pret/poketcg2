@@ -2495,7 +2495,7 @@ Music1_SFXPriorities:
 	db $0a ; SFX_79
 	db $0a ; SFX_7A
 	db $0a ; SFX_7B
-	db $0a ; SFX_ChipsCounting
+	db $0a ; SFX_CHIPS_COUNTING
 	db $0a ; SFX_7D
 	db $0a ; SFX_7E
 	db $0a ; SFX_7F
@@ -2532,93 +2532,94 @@ Music1_SFXPriorities:
 	db $0a ; SFX_9E
 	db $0a ; SFX_9F
 	db $0a ; SFX_A0
-	db $0a ; SFX_A1
-	db $0a ; SFX_A2
-	db $0a ; SFX_A3
-	db $0a ; SFX_A4
-	db $0a ; SFX_A5
-	db $0a ; SFX_A6
-	db $0a ; SFX_A7
-	db $0a ; SFX_A8
-	db $0a ; SFX_A9
-	db $0a ; SFX_AA
-	db $0a ; SFX_AB
-	db $0a ; SFX_AC
-	db $0a ; SFX_AD
-	db $0a ; SFX_AE
-	db $0a ; SFX_AF
-	db $0a ; SFX_B0
-	db $0a ; SFX_B1
-	db $0a ; SFX_B2
-	db $0a ; SFX_B3
-	db $0a ; SFX_B4
-	db $0a ; SFX_B5
-	db $0a ; SFX_B6
-	db $0a ; SFX_B7
-	db $0a ; SFX_B8
-	db $0a ; SFX_B9
-	db $0a ; SFX_BA
-	db $0a ; SFX_BB
-	db $0a ; SFX_BC
-	db $0a ; SFX_BD
-	db $0a ; SFX_BE
-	db $0a ; SFX_BF
-	db $0a ; SFX_C0
-	db $0a ; SFX_C1
-	db $0a ; SFX_C2
-	db $0a ; SFX_C3
-	db $0a ; SFX_C4
-	db $0a ; SFX_C5
-	db $0a ; SFX_C6
-	db $0a ; SFX_C7
-	db $0a ; SFX_C8
-	db $0a ; SFX_C9
-	db $0a ; SFX_CA
-	db $0a ; SFX_CB
-	db $0a ; SFX_CC
-	db $0a ; SFX_CD
-	db $0a ; SFX_CE
-	db $0a ; SFX_CF
-	db $0a ; SFX_D0
-	db $0a ; SFX_D1
-	db $0a ; SFX_D2
-	db $0a ; SFX_D3
-	db $0a ; SFX_D4
-	db $0a ; SFX_D5
-	db $0a ; SFX_D6
-	db $0a ; SFX_D7
-	db $0a ; SFX_D8
-	db $0a ; SFX_D9
-	db $0a ; SFX_DA
-	db $0a ; SFX_DB
-	db $0a ; SFX_DC
-	db $0a ; SFX_DD
-	db $0a ; SFX_DE
-	db $0a ; SFX_DF
-	db $0a ; SFX_E0
-	db $0a ; SFX_E1
-	db $0a ; SFX_E2
-	db $0a ; SFX_E3
-	db $0a ; SFX_E4
-	db $0a ; SFX_E5
-	db $0a ; SFX_E6
-	db $0a ; SFX_E7
-	db $0a ; SFX_E8
-	db $0a ; SFX_E9
-	db $0a ; SFX_EA
-	db $0a ; SFX_EB
-	db $0a ; SFX_EC
-	db $0a ; SFX_ED
-	db $0a ; SFX_EE
-	db $0a ; SFX_EF
-	db $0a ; SFX_F0
-	db $0a ; SFX_F1
-	db $0a ; SFX_F2
-	db $0a ; SFX_F3
-	db $0a ; SFX_F4
-	db $0a ; SFX_F5
-	db $0a ; SFX_F6
-	db $0a ; SFX_F7
+
+	db $0a ; ?
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
+	db $0a
 
 INCLUDE "audio/music1_headers.asm"
 

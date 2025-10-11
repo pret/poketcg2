@@ -123,7 +123,7 @@
 	const SFX_79              ; $79
 	const SFX_7A              ; $7a
 	const SFX_7B              ; $7b
-	const SFX_ChipsCounting   ; $7c
+	const SFX_CHIPS_COUNTING  ; $7c
 	const SFX_7D              ; $7d
 	const SFX_7E              ; $7e
 	const SFX_7F              ; $7f
@@ -160,92 +160,5 @@
 	const SFX_9E              ; $9e
 	const SFX_9F              ; $9f
 	const SFX_A0              ; $a0
-	const SFX_A1              ; $a1
-	const SFX_A2              ; $a2
-	const SFX_A3              ; $a3
-	const SFX_A4              ; $a4
-	const SFX_A5              ; $a5
-	const SFX_A6              ; $a6
-	const SFX_A7              ; $a7
-	const SFX_A8              ; $a8
-	const SFX_A9              ; $a9
-	const SFX_AA              ; $aa
-	const SFX_AB              ; $ab
-	const SFX_AC              ; $ac
-	const SFX_AD              ; $ad
-	const SFX_AE              ; $ae
-	const SFX_AF              ; $af
-	const SFX_B0              ; $b0
-	const SFX_B1              ; $b1
-	const SFX_B2              ; $b2
-	const SFX_B3              ; $b3
-	const SFX_B4              ; $b4
-	const SFX_B5              ; $b5
-	const SFX_B6              ; $b6
-	const SFX_B7              ; $b7
-	const SFX_B8              ; $b8
-	const SFX_B9              ; $b9
-	const SFX_BA              ; $ba
-	const SFX_BB              ; $bb
-	const SFX_BC              ; $bc
-	const SFX_BD              ; $bd
-	const SFX_BE              ; $be
-	const SFX_BF              ; $bf
-	const SFX_C0              ; $c0
-	const SFX_C1              ; $c1
-	const SFX_C2              ; $c2
-	const SFX_C3              ; $c3
-	const SFX_C4              ; $c4
-	const SFX_C5              ; $c5
-	const SFX_C6              ; $c6
-	const SFX_C7              ; $c7
-	const SFX_C8              ; $c8
-	const SFX_C9              ; $c9
-	const SFX_CA              ; $ca
-	const SFX_CB              ; $cb
-	const SFX_CC              ; $cc
-	const SFX_CD              ; $cd
-	const SFX_CE              ; $ce
-	const SFX_CF              ; $cf
-	const SFX_D0              ; $d0
-	const SFX_D1              ; $d1
-	const SFX_D2              ; $d2
-	const SFX_D3              ; $d3
-	const SFX_D4              ; $d4
-	const SFX_D5              ; $d5
-	const SFX_D6              ; $d6
-	const SFX_D7              ; $d7
-	const SFX_D8              ; $d8
-	const SFX_D9              ; $d9
-	const SFX_DA              ; $da
-	const SFX_DB              ; $db
-	const SFX_DC              ; $dc
-	const SFX_DD              ; $dd
-	const SFX_DE              ; $de
-	const SFX_DF              ; $df
-	const SFX_E0              ; $e0
-	const SFX_E1              ; $e1
-	const SFX_E2              ; $e2
-	const SFX_E3              ; $e3
-	const SFX_E4              ; $e4
-	const SFX_E5              ; $e5
-	const SFX_E6              ; $e6
-	const SFX_E7              ; $e7
-	const SFX_E8              ; $e8
-	const SFX_E9              ; $e9
-	const SFX_EA              ; $ea
-	const SFX_EB              ; $eb
-	const SFX_EC              ; $ec
-	const SFX_ED              ; $ed
-	const SFX_EE              ; $ee
-	const SFX_EF              ; $ef
-	const SFX_F0              ; $f0
-	const SFX_F1              ; $f1
-	const SFX_F2              ; $f2
-	const SFX_F3              ; $f3
-	const SFX_F4              ; $f4
-	const SFX_F5              ; $f5
-	const SFX_F6              ; $f6
-	const SFX_F7              ; $f7
 
 DEF NUM_SFX EQU const_value

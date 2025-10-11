@@ -3566,7 +3566,7 @@ IncreaseChipsSmoothly:
 ; bc = number of chips
 AddChipsAndPlaySFX:
 	push af
-	ld a, SFX_ChipsCounting
+	ld a, SFX_CHIPS_COUNTING
 	call CallPlaySFX
 	pop af
 	call AddChips
@@ -3574,7 +3574,7 @@ AddChipsAndPlaySFX:
 	call DoAFrames_WithPreCheck
 	ret
 
-; increases player's chip count and ticks down the display on screen
+; decreases player's chip count and ticks down the display on screen
 ; while playing sfx. first ticks down slowly, then quickly if bc is large enough.
 ; bc = number of chips
 DecreaseChipsSmoothly:
@@ -3622,7 +3622,7 @@ DecreaseChipsSmoothly:
 ; bc = number of chips
 SubtractChipsAndPlaySFX:
 	push af
-	ld a, SFX_ChipsCounting
+	ld a, SFX_CHIPS_COUNTING
 	call CallPlaySFX
 	pop af
 	call SubtractChips

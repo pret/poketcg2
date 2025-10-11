@@ -1,4 +1,4 @@
-Sfx7c_Ch1:
+Sfx_ChipsCounting_Ch1:
 	sfx_8 17
 	sfx_1 196
 	sfx_2 4

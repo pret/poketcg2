@@ -2835,8 +2835,8 @@ OverworldScriptTable:
 	dw ScriptCommand_GetGameCenterBankedChips         ; $6f
 	dw ScriptCommand_GameCenter                       ; $70
 	dw ScriptCommand_71                               ; $71
-	dw ScriptCommand_IncreaseChips                    ; $72
-	dw ScriptCommand_DecreaseChips                    ; $73
+	dw ScriptCommand_GiveChips                        ; $72
+	dw ScriptCommand_TakeChips                        ; $73
 	dw ScriptCommand_LoadTextRAM3                     ; $74
 	dw ScriptCommand_DepositChips                     ; $75
 	dw ScriptCommand_WithdrawChips                    ; $76
@@ -4554,12 +4554,12 @@ ScriptCommand_71:
 	farcall Func_114f9
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_IncreaseChips:
+ScriptCommand_GiveChips:
 	call Get2ScriptArgs_IncrIndexBy1
 	farcall IncreaseChipsSmoothly
 	jp IncreaseScriptPointerBy3
 
-ScriptCommand_DecreaseChips:
+ScriptCommand_TakeChips:
 	call Get2ScriptArgs_IncrIndexBy1
 	farcall DecreaseChipsSmoothly
 	jp IncreaseScriptPointerBy3

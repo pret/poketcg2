@@ -2775,11 +2775,11 @@ wScrollTargetObject:: ; da97
 wda98:: ; da98
 	ds $1
 
-; MAX_CHIPS = 9999 (0x270f)
+; capped at MAX_CHIPS
 wGameCenterChips:: ; da99
 	ds $2
 
-; MAX_CHIPS = 9999 (0x270f)
+; capped at MAX_CHIPS
 wGameCenterBankedChips:: ; da9b
 	ds $2
 
