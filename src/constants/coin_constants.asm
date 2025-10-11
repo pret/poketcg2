@@ -27,6 +27,15 @@
 DEF NUM_COINS EQU const_value
 	const COIN_SENTINEL   ; $18
 ; checking GR Coin pieces may temporarily result in $18 + [0, 7]
+; the values for GR_PIECEs are used in calls to give_coin event script
+	const COIN_GR_PIECE1  ; $19
+	const COIN_GR_PIECE2  ; $1a
+	const COIN_GR_DUMMY2  ; $1b
+	const COIN_GR_PIECE3  ; $1c
+	const COIN_GR_DUMMY3  ; $1d
+	const COIN_GR_DUMMY4  ; $1e
+	const COIN_GR_DUMMY5  ; $1f
+	const COIN_GR_PIECE4  ; $20
 
 ; coin types, also used for pagination
 	const_def
