@@ -108,7 +108,7 @@ script_commands = {
 	0x4f: { "name": "pop_var",                                "params": [] },
 	0x50: { "name": "script_call",                            "params": [ "script", "condition" ] },
 	0x51: { "name": "script_ret",                             "params": [] },
-	0x52: { "name": "give_coin",                              "params": [ "byte" ] },
+	0x52: { "name": "give_coin",                              "params": [ "coin" ] },
 	0x53: { "name": "backup_active_npc",                      "params": [] },
 	0x54: { "name": "load_player",                            "params": [ "byte_decimal", "byte_decimal", "direction" ] },
 	0x55: { "name": "unload_player",                          "params": [] },
