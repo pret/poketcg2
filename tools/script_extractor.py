@@ -518,7 +518,7 @@ if __name__ == "__main__":
 	ap.add_argument("-a", "--address-comments", action="store_true", help="add address comments after labels")
 	ap.add_argument("-b", "--allow-backward-jumps", action="store_true", help="extract scripts that are found before the starting address")
 	ap.add_argument("-c", "--follow-far-calls", action="store_true", help="extract scripts that are in another bank")
-	ap.add_argument("--skip-trailing-ret", action="store_true", help="extract scripts that are in another bank")
+	ap.add_argument("--skip-trailing-ret", action="store_true", help="whether or not to output ret commands that exist 1 byte after script end")
 	ap.add_argument("-f", "--fix-unreachable", action="store_true", help="fix unreachable labels that are referenced from the wrong scope")
 	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-i", "--ignore-errors", action="store_true", help="silently proceed to the next address if an error occurs")
