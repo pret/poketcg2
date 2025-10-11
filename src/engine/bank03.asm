@@ -4091,7 +4091,7 @@ ScriptCommand_ScriptRet:
 
 ScriptCommand_GiveCoin:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_1db63
+	farcall GiveCoin
 	call WaitPalFading
 	jp IncreaseScriptPointerBy2
 

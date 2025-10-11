@@ -2655,7 +2655,7 @@ Func_1d9f9:
 
 SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
 
-Func_1db63:
+GiveCoin:
 	farcall Func_1022a
 	call Func_1db6f
 	farcall Func_10252
@@ -2666,7 +2666,7 @@ Func_1db6f:
 	push bc
 	push de
 	push hl
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	call Func_1db81
 	call Func_1dc0a
 	pop hl
@@ -2682,11 +2682,11 @@ Func_1db81:
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
 	call Func_3d0d
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	cp COIN_SENTINEL
 	jr c, .not_coin_gr
 	ld a, COIN_GR
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	xor a
 	jr .got_frames
 
@@ -2725,13 +2725,13 @@ Func_1db81:
 	ret
 
 Func_1dbee:
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	lb de, 88, 88
 	call CreateCoinAnimation
 	lb de,  0, 12
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinName
 	call LoadTxRam2
 	ret
@@ -2763,7 +2763,7 @@ Func_1dc2a:
 	ret
 
 .asm_1dc3c:
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinPossessionStatus
 	farcall Func_12c49b
 	ret
@@ -2783,7 +2783,7 @@ Func_1dc52:
 	ld h, 0
 	call LoadTxRam3
 	ldtx hl, ObtainedCoinTotalNumberText
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	cp COIN_GR
 	jr nz, .got_coin_and_text
 
@@ -2801,11 +2801,11 @@ Func_1dc52:
 	lb de, 1, 2
 	call Func_35bf
 	call Func_1dd08
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call Func_1dd89
 	ret
@@ -2822,7 +2822,7 @@ Func_1dca6:
 	push de
 	push hl
 	ld a, -1
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	call Func_1dcbf
 	pop hl
 	pop de
@@ -2832,8 +2832,8 @@ Func_1dca6:
 
 Func_1dcb7:
 	xor a
-	ld [wdc08], a
-	ld [wdc09], a
+	ld [wSelectedCoin], a
+	ld [wCoinPage], a
 	ret
 
 Func_1dcbf:
@@ -2858,11 +2858,11 @@ Func_1dce3:
 	ldtx hl, PlayerCoinSelectText
 	lb de,  1, 2
 	call Func_35af
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call Func_1dd89
 	call Func_1dd08
@@ -2873,7 +2873,7 @@ Func_1dd08:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ldtx hl, PlayerStatusCurrentCoinText
 	lb de,  4, 4
 	call Func_35af
@@ -2882,7 +2882,7 @@ Func_1dd08:
 	farcall FillBoxInBGMapWithZero
 	call GetCoinName
 	call Func_35af
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	lb de,  1, 4
 	farcall Func_12c49b
 	call Func_1dd3a
@@ -2898,10 +2898,10 @@ Func_1dd3a:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	call GetCoinType
 	ld c, a
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	cp b
 	jr z, .got_index
 	ld c, 8
@@ -3019,9 +3019,9 @@ Func_1dd89:
 	cp b
 	jr nz, .next_coin
 	ld a, d
-	ld [wdc0c], a
+	ld [wCoinPageXCoordinate], a
 	ld a, e
-	ld [wdc0d], a
+	ld [wCoinPageYCoordinate], a
 .next_coin
 	pop hl
 	ld bc, 3
@@ -3029,9 +3029,9 @@ Func_1dd89:
 	pop bc
 	dec c
 	jr nz, .loop_show_coin
-	ld a, [wdc0c]
+	ld a, [wCoinPageXCoordinate]
 	ld d, a
-	ld a, [wdc0d]
+	ld a, [wCoinPageYCoordinate]
 	ld e, a
 	pop hl
 	pop bc
@@ -3072,6 +3072,7 @@ _CoinPageTextTable:
 	tx EventCoinPage2Text
 	tx EventCoinPage3Text
 
+; see also: wCoinPageXCoordinate, wCoinPageYCoordinate
 _CoinPageListTable:
 	dw .page1
 	dw .page2
@@ -3115,12 +3116,12 @@ Func_1deac:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 .asm_1deb3
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call HandleMenuBox
 	jr c, .asm_1dec6
@@ -3133,10 +3134,10 @@ Func_1deac:
 	pop af
 	ret
 
-; COIN_* constant at [wdc09] * 8 + a
+; COIN_* constant at [wCoinPage] * 8 + a
 Func_1decb:
 	ld b, a
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 REPT 3 ; *8
 	add a
 ENDR
@@ -3156,7 +3157,7 @@ ENDR
 	call CallPlaySFX
 	pop af
 	ld a, b
-	ld [wdc08], a
+	ld [wSelectedCoin], a
 	call Func_1dd08
 	ret
 
@@ -3189,13 +3190,13 @@ Func_1df10:
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	inc a
 	cp 3
 	jr c, .got_value
 	xor a
 .got_value
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	call Func_1df89
@@ -3207,16 +3208,16 @@ Func_1df36:
 	ldh a, [hDPadHeld]
 	and D_RIGHT
 	ret z
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	cp 2
 	jr z, .done
 	push af
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	inc a
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	sub 3
@@ -3231,16 +3232,16 @@ Func_1df60:
 	and D_LEFT
 	ret z
 
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	and a
 	jr z, .done
 	push af
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	dec a
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	add 3
@@ -3281,7 +3282,7 @@ GetCoinType:
 	ret
 
 Func_1dfb5:
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ret
 
 Func_1dfb9::

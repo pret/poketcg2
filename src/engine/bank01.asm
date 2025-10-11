@@ -6045,7 +6045,7 @@ InitVariablesToBeginDuel:
 	ld [wPlayerAttackingCardIndex], a
 	ld [wPlayerAttackingAttackIndex], a
 
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ld [wPlayerCoin], a
 	call Func_6838
 
