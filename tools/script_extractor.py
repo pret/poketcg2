@@ -241,18 +241,17 @@ class ScriptExtractor(object):
 			label = self.symbols[self.get_bank(address)][address]
 		blobs.append(self.make_blob(address, label + self.make_address_comment(address)))
 		while 1:
-			movement = self.rom[address]
-			if movement == 0xff:
-				blobs.append(self.make_blob(address, "\tdb ${:02x}\n\n".format(movement), address + 1))
+			movement_direction = self.rom[address]
+			movement_steps = self.rom[address+1]
+
+			# convert raw value to MOVE_xx constant. see: script_constants.asm
+			movement_steps = (movement_steps - 1) >> 2
+
+			if movement_direction == 0xff:
+				blobs.append(self.make_blob(address, "\tdb $ff\n\n", address + 1))
 				break
-			if movement == 0xfe:
-				jump = self.rom[address + 1]
-				if jump > 127:
-					jump -= 256
-				blobs.append(self.make_blob(address, "\tdb ${:02x}, {}\n\n".format(movement, jump), address + 2))
-				break
-			blobs.append(self.make_blob(address, "\tdb ${:02x}".format(movement) + ("\n"), address + 1))
-			address += 1
+			blobs.append(self.make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
+			address += 2
 		return blobs
 
 	def dump_movement_table(self, address):
