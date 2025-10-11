@@ -69,9 +69,9 @@ script_commands = {
 	0x28: { "name": "animate_player_movement",                "params": [ "byte", "byte" ] },
 	0x29: { "name": "animate_npc_movement",                   "params": [ "npc", "byte", "byte" ] },
 	0x2a: { "name": "animate_active_npc_movement",            "params": [ "byte", "byte" ] },
-	0x2b: { "name": "move_player",                            "params": [ "movement", "bool" ] }, # todo: parse movement data
-	0x2c: { "name": "move_npc",                               "params": [ "npc", "movement" ] }, # todo: parse movement data
-	0x2d: { "name": "move_active_npc",                        "params": [ "movement" ] }, # todo: parse movement data
+	0x2b: { "name": "move_player",                            "params": [ "movement", "bool" ] },
+	0x2c: { "name": "move_npc",                               "params": [ "npc", "movement" ] },
+	0x2d: { "name": "move_active_npc",                        "params": [ "movement" ] },
 	0x2e: { "name": "start_duel",                             "params": [ "deck", "song" ] },
 	0x2f: { "name": "wait_for_player_animation",              "params": [] },
 	0x30: { "name": "wait_for_fade",                          "params": [] },
