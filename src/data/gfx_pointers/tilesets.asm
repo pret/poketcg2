@@ -4,8 +4,8 @@ Tilesets:
 	gfx_ptr GRIslandTilesetGfx                ; $002
 	gfx_ptr GRIslandOAMGfx                    ; $003
 	gfx_ptr MasonLabMainTileset               ; $004
-	gfx_ptr MasonLabSide1Tileset              ; $005
-	gfx_ptr MasonLabSide2Tileset              ; $006
+	gfx_ptr MasonLabComputerRoomTileset       ; $005
+	gfx_ptr MasonLabTrainingRoomTileset       ; $006
 	gfx_ptr IshiharaHouseTileset              ; $007
 	gfx_ptr LightningClubEntranceTileset      ; $008
 	gfx_ptr LightningClubLobbyTileset         ; $009
@@ -41,8 +41,8 @@ Tilesets:
 	gfx_ptr OverheadIslandsGfx                ; $027
 	gfx_ptr GRAirportEntranceTileset          ; $028
 	gfx_ptr GRAirportTileset                  ; $029
-	gfx_ptr IshiharaVilla1Tileset             ; $02a
-	gfx_ptr IshiharaVilla2Tileset             ; $02B
+	gfx_ptr IshiharaVillaMainTileset          ; $02a
+	gfx_ptr IshiharaVillaLibraryTileset       ; $02B
 	gfx_ptr GameCenterEntranceTileset         ; $02c
 	gfx_ptr GameCenterLobbyTileset            ; $02d
 	gfx_ptr GameCenter1Tileset                ; $02e
@@ -297,7 +297,7 @@ Tilesets:
 	gfx_ptr OWChapGfx                         ; $127
 	gfx_ptr OWManGfx                          ; $128
 	gfx_ptr OWPappyGfx                        ; $129
-	gfx_ptr OWGamblerGfx                      ; $12a
+	gfx_ptr OWFixerGfx                        ; $12a
 	gfx_ptr OWGRLadGfx                        ; $12b
 	gfx_ptr OWGRChapGfx                       ; $12c
 	gfx_ptr OWMiyajimaGfx                     ; $12d

@@ -4,8 +4,8 @@
 	const TILESET_GR_ISLAND                   ; $002
 	const TILESET_GR_OAM                      ; $003
 	const TILESET_MASON_LAB_MAIN              ; $004
-	const TILESET_MASON_LAB_SIDE_1            ; $005
-	const TILESET_MASON_LAB_SIDE_2            ; $006
+	const TILESET_MASON_LAB_COMPUTER_ROOM     ; $005
+	const TILESET_MASON_LAB_TRAINING_ROOM     ; $006
 	const TILESET_ISHIHARA_HOUSE              ; $007
 	const TILESET_LIGHTNING_CLUB_ENTRANCE     ; $008
 	const TILESET_LIGHTNING_CLUB_LOBBY        ; $009
@@ -41,8 +41,8 @@
 	const TILESET_OVERHEAD_ISLANDS            ; $027
 	const TILESET_GR_AIRPORT_ENTRANCE         ; $028
 	const TILESET_GR_AIRPORT                  ; $029
-	const TILESET_ISHIHARA_VILLA_1            ; $02a
-	const TILESET_ISHIHARA_VILLA_2            ; $02b
+	const TILESET_ISHIHARA_VILLA_MAIN         ; $02a
+	const TILESET_ISHIHARA_VILLA_LIBRARY      ; $02b
 	const TILESET_GAME_CENTER_ENTRANCE        ; $02c
 	const TILESET_GAME_CENTER_LOBBY           ; $02d
 	const TILESET_GAME_CENTER_1               ; $02e
@@ -297,7 +297,7 @@
 	const TILESET_CHAP                        ; $127
 	const TILESET_MAN                         ; $128
 	const TILESET_PAPPY                       ; $129
-	const TILESET_GAMBLER                     ; $12a
+	const TILESET_FIXER                       ; $12a
 	const TILESET_GR_LAD                      ; $12b
 	const TILESET_GR_CHAP                     ; $12c
 	const TILESET_MIYAJIMA                    ; $12d

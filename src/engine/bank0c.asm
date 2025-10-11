@@ -576,7 +576,7 @@ Func_303c7:
 
 .data
 	db MAP_GR_AIRPORT_ENTRANCE,         5, 11, NORTH ; OWMAP_GR_AIRPORT
-	db MAP_ISHIHARAS_VILLA_1,           4,  9, NORTH ; OWMAP_ISHIHARAS_VILLA
+	db MAP_ISHIHARAS_VILLA_MAIN,        4,  9, NORTH ; OWMAP_ISHIHARAS_VILLA
 	db MAP_GAME_CENTER_ENTRANCE,        5, 14, NORTH ; OWMAP_GAME_CENTER
 	db MAP_SEALED_FORT_ENTRANCE,        5,  7, NORTH ; OWMAP_SEALED_FORT
 	db MAP_GR_CHALLENGE_HALL_ENTRANCE,  4,  7, NORTH ; OWMAP_GR_CHALLENGE_HALL
@@ -1052,11 +1052,11 @@ GrChallengeHallEntrance_StepEvents:
 	db $ff
 
 GrChallengeHallEntrance_NPCs:
-	npc NPC_GR_CLERK_18, 3, 1, SOUTH, NULL
+	npc NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, NULL
 	db $ff
 
 GrChallengeHallEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_18, $0c, $54a1
+	npc_script NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, $0c, $54a1
 	db $ff
 
 GrChallengeHallEntrance_MapScripts:
@@ -1085,11 +1085,11 @@ GrassFortEntrance_StepEvents:
 	db $ff
 
 GrassFortEntrance_NPCs:
-	npc NPC_GR_CLERK_7, 3, 1, SOUTH, NULL
+	npc NPC_GR_CLERK_GRASS_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 GrassFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_7, $0c, $55ad
+	npc_script NPC_GR_CLERK_GRASS_FORT, $0c, $55ad
 	db $ff
 
 GrassFortEntrance_MapScripts:
@@ -1115,18 +1115,18 @@ GrassFortLobby_StepEvents:
 	db $ff
 
 GrassFortLobby_NPCs:
-	npc NPC_GR_LAD_2, 3, 4, SOUTH, NULL
-	npc NPC_GR_PAPPY_2, 3, 9, WEST, NULL
-	npc NPC_GR_LASS_4, 7, 7, NORTH, NULL
+	npc NPC_GRASS_FORT_GR_GRUNT, 3, 4, SOUTH, NULL
+	npc NPC_GRASS_FORT_GR_PAPPY, 3, 9, WEST, NULL
+	npc NPC_GRASS_FORT_GR_LASS, 7, 7, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $5776
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GrassFortLobby_NPCInteractions:
-	npc_script NPC_GR_LAD_2, $0c, $56b5
-	npc_script NPC_GR_PAPPY_2, $0c, $571f
-	npc_script NPC_GR_LASS_4, $0c, $5745
+	npc_script NPC_GRASS_FORT_GR_GRUNT, $0c, $56b5
+	npc_script NPC_GRASS_FORT_GR_PAPPY, $0c, $571f
+	npc_script NPC_GRASS_FORT_GR_LASS, $0c, $5745
 	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
@@ -1293,11 +1293,11 @@ LightningFortEntrance_StepEvents:
 	db $ff
 
 LightningFortEntrance_NPCs:
-	npc NPC_GR_CLERK_8, 3, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_LIGHTNING_FORT, 3, 2, SOUTH, NULL
 	db $ff
 
 LightningFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_8, $0c, $5d6e
+	npc_script NPC_GR_CLERK_LIGHTNING_FORT, $0c, $5d6e
 	db $ff
 
 LightningFortEntrance_OWInteractions:
@@ -1326,18 +1326,18 @@ LightningFortLobby_StepEvents:
 	db $ff
 
 LightningFortLobby_NPCs:
-	npc NPC_GR_LASS_1, 5, 10, NORTH, NULL
-	npc NPC_GR_WOMAN_1, 3, 4, WEST, NULL
-	npc NPC_BUTCH_1, 10, 8, SOUTH, NULL
+	npc NPC_LIGHTNING_FORT_GR_LASS, 5, 10, NORTH, NULL
+	npc NPC_LIGHTNING_FORT_GR_WOMAN, 3, 4, WEST, NULL
+	npc NPC_LIGHTNING_FORT_CHUBBY_KID, 10, 8, SOUTH, NULL
 	npc NPC_TAP, 8, 9, WEST, NULL
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 LightningFortLobby_NPCInteractions:
-	npc_script NPC_GR_LASS_1, $0c, $5e82
-	npc_script NPC_GR_WOMAN_1, $0c, $5ee8
-	npc_script NPC_BUTCH_1, $0c, $5f2c
+	npc_script NPC_LIGHTNING_FORT_GR_LASS, $0c, $5e82
+	npc_script NPC_LIGHTNING_FORT_GR_WOMAN, $0c, $5ee8
+	npc_script NPC_LIGHTNING_FORT_CHUBBY_KID, $0c, $5f2c
 	npc_script NPC_TAP, $0c, $5f52
 	db $ff
 
@@ -1502,11 +1502,11 @@ FireFortEntrance_StepEvents:
 	db $ff
 
 FireFortEntrance_NPCs:
-	npc NPC_GR_CLERK_9, 3, 1, SOUTH, NULL
+	npc NPC_GR_CLERK_FIRE_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 FireFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_9, $0c, $6632
+	npc_script NPC_GR_CLERK_FIRE_FORT, $0c, $6632
 	db $ff
 
 FireFortEntrance_OWInteractions:
@@ -1537,16 +1537,16 @@ FireFortLobby_StepEvents:
 	db $ff
 
 FireFortLobby_NPCs:
-	npc NPC_MIYAJIMA_ALT, 2, 10, SOUTH, NULL
-	npc NPC_YOUNGSTER_4, 7, 6, WEST, NULL
+	npc NPC_FIRE_FORT_GRAMPY, 2, 10, SOUTH, NULL
+	npc NPC_FIRE_FORT_YOUNGSTER, 7, 6, WEST, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $67f5
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 FireFortLobby_NPCInteractions:
-	npc_script NPC_MIYAJIMA_ALT, $0c, $6769
-	npc_script NPC_YOUNGSTER_4, $0c, $67cf
+	npc_script NPC_FIRE_FORT_GRAMPY, $0c, $6769
+	npc_script NPC_FIRE_FORT_YOUNGSTER, $0c, $67cf
 	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
@@ -1749,11 +1749,11 @@ WaterFortEntrance_StepEvents:
 	db $ff
 
 WaterFortEntrance_NPCs:
-	npc NPC_GR_CLERK_10, 3, 1, SOUTH, NULL
+	npc NPC_GR_CLERK_WATER_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 WaterFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_10, $0c, $705c
+	npc_script NPC_GR_CLERK_WATER_FORT, $0c, $705c
 	db $ff
 
 WaterFortEntrance_OWInteractions:
@@ -1864,11 +1864,11 @@ FightingFortEntrance_StepEvents:
 	db $ff
 
 FightingFortEntrance_NPCs:
-	npc NPC_GR_CLERK_11, 3, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_FIGHTING_FORT, 3, 2, SOUTH, NULL
 	db $ff
 
 FightingFortEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_11, $0c, $7434
+	npc_script NPC_GR_CLERK_FIGHTING_FORT, $0c, $7434
 	db $ff
 
 FightingFortEntrance_OWInteractions:

@@ -993,8 +993,8 @@ MapHeaderPtrs::
 	dba OverworldTcg_MapHeader
 	dba OverworldGr_MapHeader
 	dba MasonLaboratoryMain_MapHeader
-	dba MasonLaboratorySide1_MapHeader
-	dba MasonLaboratorySide2_MapHeader
+	dba MasonLaboratoryComputerRoom_MapHeader
+	dba MasonLaboratoryTrainingRoom_MapHeader
 	dba IshiharasHouse_MapHeader
 	dba LightningClubEntrance_MapHeader
 	dba LightningClubLobby_MapHeader
@@ -1031,8 +1031,8 @@ MapHeaderPtrs::
 	dba OverheadIslands_MapHeader
 	dba GrAirportEntrance_MapHeader
 	dba GrAirport_MapHeader
-	dba IshiharasVilla1_MapHeader
-	dba IshiharasVilla2_MapHeader
+	dba IshiharasVillaMain_MapHeader
+	dba IshiharasVillaLibrary_MapHeader
 	dba GameCenterEntrance_MapHeader
 	dba GameCenterLobby_MapHeader
 	dba GameCenter1_MapHeader

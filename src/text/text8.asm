@@ -1004,7 +1004,7 @@ QueenPlayerLostText:
 	linefw "対戦するぞえ"
 	done
 
-GameCenterCoinFlipClerkNoPrizesTryAgainText:
+GameCenterCoinFlipAttendantNoPrizesTryAgainText:
 	textfw "ざんねんでしたー!!"
 	linefw " "
 	linefw "3回いじょう 「おもて」がでないと"
@@ -1012,54 +1012,54 @@ GameCenterCoinFlipClerkNoPrizesTryAgainText:
 	linefw "また ちょうせんしてください!"
 	done
 
-GameCenterCoinFlipClerk3HeadsPrizeText:
+GameCenterCoinFlipAttendant3HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 3回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 20枚でーす!"
 	done
 
-GameCenterCoinFlipClerkTryAgainText:
+GameCenterCoinFlipAttendantTryAgainText:
 	textfw "また"
 	linefw "ちょうせんしてください!"
 	done
 
-GameCenterCoinFlipClerk4HeadsPrizeText:
+GameCenterCoinFlipAttendant4HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 4回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 40枚でーす!"
 	done
 
-GameCenterCoinFlipClerk5HeadsPrizeText:
+GameCenterCoinFlipAttendant5HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 5回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 100枚でーす!"
 	done
 
-GameCenterCoinFlipClerk6HeadsPrizeText:
+GameCenterCoinFlipAttendant6HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 6回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 200枚でーす!"
 	done
 
-GameCenterCoinFlipClerk7HeadsPrizeText:
+GameCenterCoinFlipAttendant7HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 7回でしたぁー"
 	linefw "けいひんは"
 	linefw "チップ 500枚でーす!"
 	done
 
-GameCenterCoinFlipClerk8HeadsPrizeText:
+GameCenterCoinFlipAttendant8HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 8回でしたぁー"
 	linefw "8回なんて すごいですねー!"
 	linefw "けいひんは チップ1000枚でーす!"
 	done
 
-GameCenterCoinFlipClerk9HeadsPrizeText:
+GameCenterCoinFlipAttendant9HeadsPrizeText:
 	textfw "はーい!"
 	linefw "「おもて」は 9回でしたぁー"
 	linefw "おしかったですね"
@@ -1068,12 +1068,12 @@ GameCenterCoinFlipClerk9HeadsPrizeText:
 	linefw "チップ 3000枚でーす!"
 	done
 
-GameCenterCoinFlipClerkAlmostCompleteTryAgainText:
+GameCenterCoinFlipAttendantAlmostCompleteTryAgainText:
 	textfw "10回も ユメじゃないですよ!"
 	linefw "また ちょうせんしてください!"
 	done
 
-GameCenterCoinFlipClerk10HeadsPrizeText:
+GameCenterCoinFlipAttendant10HeadsPrizeText:
 	textfw "おめでとうございまーす!"
 	linefw " "
 	linefw "「れんぞくコイントス」"
@@ -1082,7 +1082,7 @@ GameCenterCoinFlipClerk10HeadsPrizeText:
 	linefw "おうけとりくださーい!!"
 	done
 
-GameCenterCoinFlipClerk10HeadsCongratsText:
+GameCenterCoinFlipAttendant10HeadsCongratsText:
 	textfw "ほんとーに おめでとーございます!"
 	done
 
@@ -1096,7 +1096,7 @@ TurnedOnBillsPCText:
 	linefw "スイッチを いれました"
 	done
 
-GameCenterBlackBoxClerkWelcomeText:
+GameCenterBlackBoxAttendantWelcomeText:
 	textfw "ようこそいらっしゃいました"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1105,11 +1105,11 @@ GameCenterBlackBoxClerkWelcomeText:
 	linefw "ごせつめいいたしますよ"
 	done
 
-GameCenterBlackBoxClerkGuidePromptText:
+GameCenterBlackBoxAttendantGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-GameCenterBlackBoxClerkGuideText:
+GameCenterBlackBoxAttendantGuideText:
 	textfw "「ブラックボックス」は"
 	linefw "チップ5枚で あそべます"
 	linefw "ポケモンカードを 1枚から5枚"
@@ -1130,7 +1130,7 @@ GameCenterBlackBoxClerkGuideText:
 	linefw "おたのしみください"
 	done
 
-GameCenterBlackBoxClerkNoGuideText:
+GameCenterBlackBoxAttendantNoGuideText:
 	textfw "せつめいを きかれないのですね"
 	linefw "それも よいでしょう"
 	linefw "マシンの てじゅんどおりにすれば"
@@ -1143,7 +1143,7 @@ GameCenterBlackBoxClerkNoGuideText:
 	linefw "カードが とどきませんからね"
 	done
 
-GameCenterBillsPCClerkWelcomeText:
+GameCenterBillsPCAttendantWelcomeText:
 	textfw "こんにちは!"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1152,11 +1152,11 @@ GameCenterBillsPCClerkWelcomeText:
 	linefw "せつめいをするっす"
 	done
 
-GameCenterBillsPCClerkGuidePromptText:
+GameCenterBillsPCAttendantGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-GameCenterBillsPCClerkGuideText:
+GameCenterBillsPCAttendantGuideText:
 	textfw "では せつめいをするっす"
 	linefw " "
 	linefw "「マサキのパソコン」は"
@@ -1173,14 +1173,14 @@ GameCenterBillsPCClerkGuideText:
 	linefw "これで おわりっす"
 	done
 
-GameCenterBillsPCClerkNoGuideText:
+GameCenterBillsPCAttendantNoGuideText:
 	textfw "そうっすか? まあ マシンの"
 	linefw "いうとおりにすれば もんだいないっす"
 	linefw "ためしに いきなり あそんでみるのも"
 	linefw "いいかも しれないっす"
 	done
 
-GameCenterCoinFlipClerkWelcomeText:
+GameCenterCoinFlipAttendantWelcomeText:
 	textfw "こんにちは!"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1199,19 +1199,19 @@ GameCenterCoinFlipStartPromptText:
 	textfw "れんぞくコイントスで あそびますか?"
 	done
 
-GameCenterCoinFlipClerkStartText:
+GameCenterCoinFlipAttendantStartText:
 	textfw "それでは 「れんぞくコイントス」の"
 	linefw "はじまりでーす!!"
 	done
 
-GameCenterCoinFlipClerkNotEnoughChipsText:
+GameCenterCoinFlipAttendantNotEnoughChipsText:
 	textfw "もうしわけありませんが"
 	linefw "チップを おもちでは ないようですね"
 	linefw "「れんぞくコイントス」を あそぶには"
 	linefw "チップが 1枚ひつようです"
 	done
 
-GameCenterCoinFlipClerkComeAgainText:
+GameCenterCoinFlipAttendantComeAgainText:
 	textfw "それでは またいらしてくださーい!"
 	done
 
@@ -1241,7 +1241,7 @@ Text0d5c:
 	linefw "つぎのゲームを してみようかな?"
 	done
 
-GameCenterSlotMachine1ClerkWelcomeText:
+GameCenterSlotMachine1AttendantWelcomeText:
 	textfw "いらっしゃいましー"
 	linefw " "
 	linefw "ここのアトラクションは"
@@ -1252,11 +1252,11 @@ GameCenterSlotMachine1ClerkWelcomeText:
 	linefw "せつめいするよん"
 	done
 
-GameCenterSlotMachine1ClerkGuidePromptText:
+GameCenterSlotMachine1AttendantGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-GameCenterSlotMachine1ClerkGuideText:
+GameCenterSlotMachine1AttendantGuideText:
 	textfw "せつめいと いっても"
 	linefw "むずかしいことは ないよ"
 	linefw "スロットマシンで 3つのマークが"
@@ -1268,12 +1268,12 @@ GameCenterSlotMachine1ClerkGuideText:
 	linefw "さあ おためしあれ!"
 	done
 
-GameCenterSlotMachine1ClerkNoGuideText:
+GameCenterSlotMachine1AttendantNoGuideText:
 	textfw "まあ チップも 1枚だし"
 	linefw "ためすと いいよ"
 	done
 
-GameCenterSlotMachine5ClerkWelcomeText:
+GameCenterSlotMachine5AttendantWelcomeText:
 	textfw "はい! こんにちは"
 	linefw "「スロットマシン」ですか?"
 	linefw "あっちと ちがって こっちは"
@@ -1282,11 +1282,11 @@ GameCenterSlotMachine5ClerkWelcomeText:
 	linefw "きくきある?"
 	done
 
-GameCenterSlotMachine5ClerkGuidePromptText:
+GameCenterSlotMachine5AttendantGuidePromptText:
 	textfw "せつめいを ききますか?"
 	done
 
-GameCenterSlotMachine5ClerkGuideText:
+GameCenterSlotMachine5AttendantGuideText:
 	textfw "どっちの 「スロットマシン」も"
 	linefw "することは いっしょなんだ"
 	linefw "チップをつかって"
@@ -1301,12 +1301,12 @@ GameCenterSlotMachine5ClerkGuideText:
 	linefw "ぜひ やってみてね!"
 	done
 
-GameCenterSlotMachine5ClerkNoGuideText:
+GameCenterSlotMachine5AttendantNoGuideText:
 	textfw "「ひゃくぶんは いっけんに しかず」"
 	linefw "あそんで ためすのが イチバン!"
 	done
 
-GameCenterCardDungeonClerkWelcomeText:
+GameCenterCardDungeonAttendantWelcomeText:
 	textfw "ようこそ!"
 	linefw "カードダンジョンへ!!"
 	linefw "あそぶには チップが 10枚"
@@ -1317,41 +1317,41 @@ GameCenterCardDungeonStartPromptText:
 	textfw "カードダンジョンで あそびますか?"
 	done
 
-GameCenterCardDungeonClerkNotEnoughChipsText:
+GameCenterCardDungeonAttendantNotEnoughChipsText:
 	textfw "もうしわけありません"
 	linefw "チップが たりません"
 	linefw "チップを 10枚"
 	linefw "もって きてください"
 	done
 
-GameCenterCardDungeonClerkReadDescriptionText:
+GameCenterCardDungeonAttendantReadDescriptionText:
 	textfw "では まず このせつめいぶんを"
 	linefw "よんでください"
 	done
 
-GameCenterCardDungeonClerkEnterText:
+GameCenterCardDungeonAttendantEnterText:
 	textfw "それでは ダンジョンに"
 	linefw "おはいりください"
 	done
 
-GameCenterCardDungeonClerkComeAgainText:
+GameCenterCardDungeonAttendantComeAgainText:
 	textfw "カードダンジョンで"
 	linefw "あそびたくなったら いつでもどうぞ!"
 	done
 
-GameCenterCardDungeonClerkPlayerWonComeAgainText:
+GameCenterCardDungeonAttendantPlayerWonComeAgainText:
 	textfw "クィーンさまに 勝ったそうですね"
 	linefw "おめでとうございます!"
 	linefw "なんどでも あそべますから"
 	linefw "また あそびにきてください"
 	done
 
-GameCenterCardDungeonClerkPlayerLostTryAgainText:
+GameCenterCardDungeonAttendantPlayerLostTryAgainText:
 	textfw "おつかれさまでした"
 	linefw "また あそびに きてください"
 	done
 
-GameCenterCardDungeonClerkPlayerQuitTryAgainText:
+GameCenterCardDungeonAttendantPlayerQuitTryAgainText:
 	textfw "あれ 対戦を やめたんですか?"
 	linefw "よかったら また あそんでください"
 	done
@@ -1427,47 +1427,47 @@ Text0d75:
 	linefw "はなしかけて ちょうだいよ!"
 	done
 
-GameCenterChipCounterWelcomeText:
+GameCenterChipDeskWelcomeText:
 	textfw "いらっしゃいませ"
 	linefw "チップカウンターへ ようこそ!"
 	linefw "ここでは チップを あずけたり"
 	linefw "あずけたチップを うけとれます"
 	done
 
-GameCenterChipCounterDepositInfoText:
+GameCenterChipDeskDepositInfoText:
 	textfw "チップは <RAMNUM>枚"
 	linefw "あずかっています"
 	done
 
-GameCenterChipCounterDepositReturnPromptText:
+GameCenterChipDeskDepositReturnPromptText:
 	textfw "チップを おわたししますか?"
 	done
 
-GameCenterChipCounterDepositReturnedText:
+GameCenterChipDeskDepositReturnedText:
 	textfw "それでは チップ <RAMNUM>枚"
 	linefw "おうけとりください"
 	done
 
-GameCenterChipCounterDepositReminderText:
+GameCenterChipDeskDepositReminderText:
 	textfw "ゲームセンターを でるときには"
 	linefw "チップを あずけに きてください"
 	done
 
-GameCenterChipCounterComeAgainText:
+GameCenterChipDeskComeAgainText:
 	textfw "またの ごりようを"
 	linefw "おまちしております"
 	done
 
-GameCenterChipCounterDepositPromptText:
+GameCenterChipDeskDepositPromptText:
 	textfw "チップを あずけますか?"
 	done
 
-GameCenterChipCounterDepositedText:
+GameCenterChipDeskDepositedText:
 	textfw "たしかに <RAMNUM>枚"
 	linefw "おあずかりしました"
 	done
 
-GameCenterChipAttendantFirstServiceText:
+GameCenterChipGirlFirstServiceText:
 	textfw "いらっしゃいませ!"
 	linefw "ゲームセンターに ようこそ!"
 	linefw "あなたは チップを おもちでは"
@@ -1481,21 +1481,21 @@ Received10ChipsText:
 	linefw "チップを 10枚 もらった!"
 	done
 
-GameCenterChipAttendantNoticeText:
+GameCenterChipGirlNoticeText:
 	textfw "では ゲームセンターで"
 	linefw "おたのしみください"
 	linefw "そうそう チップは そとに"
 	linefw "もちだせないので ごちゅういを"
 	done
 
-GameCenterChipAttendantRefillText:
+GameCenterChipGirlRefillText:
 	textfw "あれ? チップを もってないんですね"
 	linefw "うーん あなただけに サービスです"
 	linefw "チップを 10枚"
 	linefw "さしあげましょう!!"
 	done
 
-GameCenterChipAttendantWelcomeRefillText:
+GameCenterChipGirlWelcomeRefillText:
 	textfw "こんにちは"
 	linefw "ゲームセンターへ ようこそ!"
 	linefw "おや"
@@ -1504,12 +1504,12 @@ GameCenterChipAttendantWelcomeRefillText:
 	linefw "10枚さしあげましょう"
 	done
 
-GameCenterChipAttendantEnjoyText:
+GameCenterChipGirlEnjoyText:
 	textfw "では ゲームセンターで"
 	linefw "おたのしみください"
 	done
 
-GameCenterChipAttendantRefillReminderText:
+GameCenterChipGirlRefillReminderText:
 	textfw "チップが なくなったら"
 	linefw "また きてください"
 	linefw "10枚だけですが チップを"

@@ -1122,7 +1122,7 @@ DialogFatGuyText:
 	textfw "ふとった男"
 	done
 
-DialogChipAttendantText:
+DialogChipGirlText:
 	textfw "チッパー"
 	done
 
@@ -1322,7 +1322,8 @@ DialogGR4Text:
 	textfw "GR4号"
 	done
 
-DialogGR5Text: ; unused
+; Airship clerk
+DialogGR5Text:
 	textfw "GR5号"
 	done
 
@@ -1338,7 +1339,7 @@ DialogImakuniText:
 	textfw "イマクニ?"
 	done
 
-DialogMaleKidText:
+DialogLadText:
 	textfw "おとこのこ"
 	done
 
@@ -1346,15 +1347,16 @@ DialogBoyText:
 	textfw "しょうねん"
 	done
 
-DialogYoungManText:
+DialogChap1Text:
 	textfw "おにいさん"
 	done
 
-DialogYoungGuyText:
+DialogChap2Text:
 	textfw "おにーさん"
 	done
 
-DialogDudeText:
+; a "businessman" playing slot machine while waiting for Biruritchi
+DialogFixerText:
 	textfw "おニイさん"
 	done
 
@@ -1362,15 +1364,15 @@ DialogBroText:
 	textfw "おにいちゃん"
 	done
 
-DialogFemaleKidText:
+DialogLassText:
 	textfw "おんなのこ"
 	done
 
-DialogYoungWomanText:
+DialogGal1Text:
 	textfw "おねいさん"
 	done
 
-DialogGalText:
+DialogGal2Text:
 	textfw "おねーさん"
 	done
 
@@ -1378,23 +1380,23 @@ DialogSisText:
 	textfw "おねぇちゃん"
 	done
 
-DialogUncleText:
+DialogManText:
 	textfw "おじさん"
 	done
 
-DialogOldManText:
+DialogPappy1Text:
 	textfw "おじいさん"
 	done
 
-DialogGrampsText:
+DialogPappy2Text:
 	textfw "おじぃさん"
 	done
 
-DialogElderGuyText:
+DialogPappy3Text:
 	textfw "おじーさん"
 	done
 
-DialogAuntieText:
+DialogWomanText:
 	textfw "おばさん"
 	done
 
@@ -1406,19 +1408,19 @@ DialogLadyText:
 	textfw "おじょーさま"
 	done
 
-DialogGRLadText:
+DialogGRChapText:
 	textfw "GRにいさん"
 	done
 
-DialogGRLassText:
+DialogGRGalText:
 	textfw "GRねーさん"
 	done
 
-DialogGRGrampsText:
+DialogGRPappyText:
 	textfw "GRじいさん"
 	done
 
-DialogGRAuntieText:
+DialogGRWomanText:
 	textfw "GRおばさん"
 	done
 
@@ -1426,7 +1428,8 @@ DialogGRKidText:
 	textfw "GR団のこ"
 	done
 
-DialogGRMateText:
+; just "person" but with granny sprite
+DialogGRPersonText:
 	textfw "GR団のひと"
 	done
 
@@ -1434,11 +1437,12 @@ DialogGRGruntText:
 	textfw "GR団員"
 	done
 
-DialogLightningAuntieText:
+DialogGRLightningWomanText:
 	textfw "雷おばさん"
 	done
 
-DialogGRammpyText:
+; pun intended
+DialogGRampyText:
 	textfw "おGさん"
 	done
 
@@ -1450,27 +1454,27 @@ DialogLonghairedKidText:
 	textfw "ロングのこ"
 	done
 
-DialogCapKidText:
+DialogCappedKidText:
 	textfw "ぼうしのこ"
 	done
 
-DialogSwimsuitKidText:
+DialogSwimmerKidText:
 	textfw "みずぎのこ"
 	done
 
-DialogCommonKidText:
+DialogYoungsterText:
 	textfw "ふつうのこ"
 	done
 
-DialogGlassesKidText:
+DialogGlassesKid1Text:
 	textfw "メガネのこ"
 	done
 
-DialogGlassesBoyText:
+DialogGlassesLadText:
 	textfw "メガネくん"
 	done
 
-DialogGlassesGirlText:
+DialogGlassesKid2Text:
 	textfw "めがねっこ"
 	done
 
@@ -1482,19 +1486,19 @@ DialogChubbyKidText:
 	textfw "ふとったこ"
 	done
 
-DialogCapManText:
+DialogCappedGuyText:
 	textfw "ぼうしの男"
 	done
 
-DialogBlackBeltText:
+DialogMartialArtistText:
 	textfw "かくとうか"
 	done
 
-DialogPunkDudeText:
+DialogPunkGuyText:
 	textfw "パンクの男"
 	done
 
-DialogPunkGalText:
+DialogPunkText:
 	textfw "パンクス"
 	done
 
@@ -1502,7 +1506,7 @@ DialogAttendantText:
 	textfw "かかりいん"
 	done
 
-DialogClerkText:
+DialogStaffText:
 	textfw "しょくいん"
 	done
 
@@ -1510,7 +1514,7 @@ DialogReceptionistText:
 	textfw "うけつけ"
 	done
 
-DialogEmceeText:
+DialogCupHostText:
 	textfw "しかい"
 	done
 

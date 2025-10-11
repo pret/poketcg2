@@ -43,15 +43,15 @@ TcgAirportEntrance_StepEvents:
 
 TcgAirportEntrance_NPCs:
 	npc NPC_GR_5, 10, 7, WEST, $46bc
-	npc NPC_GR_CLERK_1, 7, 3, SOUTH, NULL
-	npc NPC_GR_GAL_1, 3, 2, NORTH, NULL
-	npc NPC_MANIA_5, 1, 7, EAST, NULL
+	npc NPC_GR_CLERK_TCG_AIRPORT, 7, 3, SOUTH, NULL
+	npc NPC_TCG_AIRPORT_GR_SIS, 3, 2, NORTH, NULL
+	npc NPC_TCG_AIRPORT_MARTIAL_ARTIST, 1, 7, EAST, NULL
 	db $ff
 
 TcgAirportEntrance_NPCInteractions:
 	npc_script NPC_GR_5, $0d, $468f
-	npc_script NPC_GR_GAL_1, $0d, $471c
-	npc_script NPC_MANIA_5, $0d, $4742
+	npc_script NPC_TCG_AIRPORT_GR_SIS, $0d, $471c
+	npc_script NPC_TCG_AIRPORT_MARTIAL_ARTIST, $0d, $4742
 	db $ff
 
 TcgAirportEntrance_OWInteractions:
@@ -116,15 +116,15 @@ GrAirportEntrance_StepEvents:
 	db $ff
 
 GrAirportEntrance_NPCs:
-	npc NPC_GR_CLERK_2, 4, 3, SOUTH, NULL
-	npc NPC_GR_PAPPY_1, 10, 3, WEST, NULL
-	npc NPC_GR_LASS_3, 5, 8, WEST, NULL
+	npc NPC_GR_CLERK_GR_AIRPORT, 4, 3, SOUTH, NULL
+	npc NPC_GR_AIRPORT_GR_PAPPY, 10, 3, WEST, NULL
+	npc NPC_GR_AIRPORT_GR_LASS, 5, 8, WEST, NULL
 	db $ff
 
 GrAirportEntrance_NPCInteractions:
 	npc_script NPC_GR_CLERK_6, $0d, $4b36
-	npc_script NPC_GR_PAPPY_1, $0d, $4b51
-	npc_script NPC_GR_LASS_3, $0d, $4b77
+	npc_script NPC_GR_AIRPORT_GR_PAPPY, $0d, $4b51
+	npc_script NPC_GR_AIRPORT_GR_LASS, $0d, $4b77
 	db $ff
 
 GrAirportEntrance_OWInteractions:
@@ -154,19 +154,19 @@ GameCenter1_StepEvents:
 	db $ff
 
 GameCenter1_NPCs:
-	npc NPC_MONOCLE_2, 7, 4, SOUTH, NULL
-	npc NPC_DEALER_BOY_1, 1, 9, SOUTH, NULL
-	npc NPC_DEALER_GIRL_1, 9, 10, WEST, NULL
-	npc NPC_GR_GAL_3, 3, 5, EAST, NULL
-	npc NPC_BUTCH_3, 8, 8, EAST, NULL
+	npc NPC_ATTENDANT_BLACK_BOX, 7, 4, SOUTH, NULL
+	npc NPC_ATTENDANT_BILLS_PC, 1, 9, SOUTH, NULL
+	npc NPC_ATTENDANT_COIN_FLIP, 9, 10, WEST, NULL
+	npc NPC_GAME_CENTER_GR_GAL, 3, 5, EAST, NULL
+	npc NPC_GAME_CENTER_CHUBBY_KID, 8, 8, EAST, NULL
 	db $ff
 
 GameCenter1_NPCInteractions:
-	npc_script NPC_MONOCLE_2, $0d, $4d49
-	npc_script NPC_DEALER_BOY_1, $0d, $4d76
-	npc_script NPC_DEALER_GIRL_1, $0d, $4da3
-	npc_script NPC_GR_GAL_3, $0d, $4de6
-	npc_script NPC_BUTCH_3, $0d, $4e18
+	npc_script NPC_ATTENDANT_BLACK_BOX, $0d, $4d49
+	npc_script NPC_ATTENDANT_BILLS_PC, $0d, $4d76
+	npc_script NPC_ATTENDANT_COIN_FLIP, $0d, $4da3
+	npc_script NPC_GAME_CENTER_GR_GAL, $0d, $4de6
+	npc_script NPC_GAME_CENTER_CHUBBY_KID, $0d, $4e18
 	db $ff
 
 GameCenter1_OWInteractions:
@@ -195,21 +195,21 @@ GameCenter2_StepEvents:
 	db $ff
 
 GameCenter2_NPCs:
-	npc NPC_DEALER_BOY_2, 1, 10, SOUTH, NULL
-	npc NPC_CHIP_GIRL_2, 10, 10, SOUTH, NULL
-	npc NPC_DEALER_GIRL_2, 7, 3, SOUTH, NULL
-	npc NPC_MANIA_7, 2, 4, EAST, NULL
-	npc NPC_GAMBLER, 4, 10, NORTH, NULL
-	npc NPC_GR_WOMAN_2, 8, 10, NORTH, NULL
+	npc NPC_ATTENDANT_1COIN_SLOT, 1, 10, SOUTH, NULL
+	npc NPC_ATTENDANT_5COIN_SLOT, 10, 10, SOUTH, NULL
+	npc NPC_ATTENDANT_CARD_DUNGEON, 7, 3, SOUTH, NULL
+	npc NPC_GAME_CENTER_BOY, 2, 4, EAST, NULL
+	npc NPC_GAME_CENTER_FIXER, 4, 10, NORTH, NULL
+	npc NPC_GAME_CENTER_GR_WOMAN, 8, 10, NORTH, NULL
 	db $ff
 
 GameCenter2_NPCInteractions:
-	npc_script NPC_DEALER_BOY_2, $0d, $4f25
-	npc_script NPC_CHIP_GIRL_2, $0d, $4f50
-	npc_script NPC_DEALER_GIRL_2, $0d, $4f7b
-	npc_script NPC_MANIA_7, $0d, $5016
-	npc_script NPC_GAMBLER, $0d, $5047
-	npc_script NPC_GR_WOMAN_2, $0d, $506f
+	npc_script NPC_ATTENDANT_1COIN_SLOT, $0d, $4f25
+	npc_script NPC_ATTENDANT_5COIN_SLOT, $0d, $4f50
+	npc_script NPC_ATTENDANT_CARD_DUNGEON, $0d, $4f7b
+	npc_script NPC_GAME_CENTER_BOY, $0d, $5016
+	npc_script NPC_GAME_CENTER_FIXER, $0d, $5047
+	npc_script NPC_GAME_CENTER_GR_WOMAN, $0d, $506f
 	db $ff
 
 GameCenter2_OWInteractions:
@@ -276,19 +276,19 @@ GrChallengeHallLobby_StepEvents:
 	db $ff
 
 GrChallengeHallLobby_NPCs:
-	npc NPC_GR_GRANNY_1, 3, 5, WEST, NULL
-	npc NPC_GAL_3, 2, 10, NORTH, $53ce
-	npc NPC_GR_CHAP, 8, 9, EAST, $5444
-	npc NPC_GR_WOMAN_3, 12, 8, WEST, NULL
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CHALLENGE_HALL_GR_GRANNY, 3, 5, WEST, NULL
+	npc NPC_CUP_HOST, 2, 10, NORTH, $53ce
+	npc NPC_GR_CHALLENGE_HALL_GR_CHAP, 8, 9, EAST, $5444
+	npc NPC_GR_CHALLENGE_HALL_GR_WOMAN, 12, 8, WEST, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GrChallengeHallLobby_NPCInteractions:
-	npc_script NPC_GR_GRANNY_1, $0d, $5342
-	npc_script NPC_GAL_3, $0d, $53a8
-	npc_script NPC_GR_WOMAN_3, $0d, $5451
-	npc_script NPC_GR_CHAP, $0d, $53e5
+	npc_script NPC_GR_CHALLENGE_HALL_GR_GRANNY, $0d, $5342
+	npc_script NPC_CUP_HOST, $0d, $53a8
+	npc_script NPC_GR_CHALLENGE_HALL_GR_WOMAN, $0d, $5451
+	npc_script NPC_GR_CHALLENGE_HALL_GR_CHAP, $0d, $53e5
 	db $ff
 
 GrChallengeHallLobby_OWInteractions:
@@ -612,11 +612,11 @@ PsychicStrongholdEntrance_StepEvents:
 	db $ff
 
 PsychicStrongholdEntrance_NPCs:
-	npc NPC_GR_CLERK_12, 3, 1, SOUTH, NULL
+	npc NPC_GR_CLERK_PSYCHIC_STRONGHOLD, 3, 1, SOUTH, NULL
 	db $ff
 
 PsychicStrongholdEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_12, $0d, $6148
+	npc_script NPC_GR_CLERK_PSYCHIC_STRONGHOLD, $0d, $6148
 	db $ff
 
 PsychicStrongholdEntrance_MapScripts:
@@ -641,18 +641,18 @@ PsychicStrongholdLobby_StepEvents:
 	db $ff
 
 PsychicStrongholdLobby_NPCs:
-	npc NPC_GAL_1, 2, 6, WEST, NULL
-	npc NPC_MANIA_6, 5, 9, EAST, NULL
-	npc NPC_GR_LASS_5, 10, 4, EAST, NULL
+	npc NPC_PSYCHIC_STRONGHOLD_LADY, 2, 6, WEST, NULL
+	npc NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, 5, 9, EAST, NULL
+	npc NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, 10, 4, EAST, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, $6310
-	npc NPC_GR_CLERK_3, 5, 2, SOUTH, NULL
-	npc NPC_GR_CLERK_4, 8, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 PsychicStrongholdLobby_NPCInteractions:
-	npc_script NPC_GAL_1, $0d, $6250
-	npc_script NPC_MANIA_6, $0d, $62c4
-	npc_script NPC_GR_LASS_5, $0d, $62ea
+	npc_script NPC_PSYCHIC_STRONGHOLD_LADY, $0d, $6250
+	npc_script NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, $0d, $62c4
+	npc_script NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, $0d, $62ea
 	npc_script NPC_IMAKUNI_RED, $0f, $44e0
 	db $ff
 
@@ -820,13 +820,13 @@ GrCastleEntrance_StepEvents:
 	db $ff
 
 GrCastleEntrance_NPCs:
-	npc NPC_GR_CLERK_14, 7, 3, SOUTH, NULL
-	npc NPC_GR_CLERK_15, 3, 3, SOUTH, NULL
+	npc NPC_GR_CLERK_CASTLE_RIGHT, 7, 3, SOUTH, NULL
+	npc NPC_GR_CLERK_CASTLE_LEFT, 3, 3, SOUTH, NULL
 	db $ff
 
 GrCastleEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_14, $0d, $7493
-	npc_script NPC_GR_CLERK_15, $0d, $7534
+	npc_script NPC_GR_CLERK_CASTLE_RIGHT, $0d, $7493
+	npc_script NPC_GR_CLERK_CASTLE_LEFT, $0d, $7534
 	db $ff
 
 GrCastleEntrance_OWInteractions:

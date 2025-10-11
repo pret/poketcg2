@@ -112,9 +112,9 @@ GRIslandOAMGfx::
 	dw 27 ; length
 	INCBIN "gfx/overworld_map/gr_oam.2bpp"
 
-IshiharaVilla2Tileset::
+IshiharaVillaLibraryTileset::
 	dw 52 ; length
-	INCBIN "gfx/tilesets/ishihara_villa2.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa_library.2bpp"
 
 OWCoinsFortGfx::
 	dw 4 ; length
@@ -138,13 +138,13 @@ MasonLabMainTileset::
 	dw 148 ; length
 	INCBIN "gfx/tilesets/mason_lab_main.2bpp"
 
-MasonLabSide1Tileset::
+MasonLabComputerRoomTileset::
 	dw 134 ; length
-	INCBIN "gfx/tilesets/mason_lab_side1.2bpp"
+	INCBIN "gfx/tilesets/mason_lab_computer_room.2bpp"
 
-MasonLabSide2Tileset::
+MasonLabTrainingRoomTileset::
 	dw 97 ; length
-	INCBIN "gfx/tilesets/mason_lab_side2.2bpp"
+	INCBIN "gfx/tilesets/mason_lab_training_room.2bpp"
 
 IshiharaHouseTileset::
 	dw 66 ; length
@@ -388,9 +388,9 @@ GRAirportTileset::
 	dw 208 ; length
 	INCBIN "gfx/tilesets/gr_airport.2bpp"
 
-IshiharaVilla1Tileset::
+IshiharaVillaMainTileset::
 	dw 72 ; length
-	INCBIN "gfx/tilesets/ishihara_villa1.2bpp"
+	INCBIN "gfx/tilesets/ishihara_villa_main.2bpp"
 
 GameCenterEntranceTileset::
 	dw 74 ; length
@@ -1631,9 +1631,9 @@ OWPappyGfx::
 	dw 20 ; length
 	INCBIN "gfx/overworld_sprites/pappy.2bpp"
 
-OWGamblerGfx::
+OWFixerGfx::
 	dw 20 ; length
-	INCBIN "gfx/overworld_sprites/gambler.2bpp"
+	INCBIN "gfx/overworld_sprites/fixer.2bpp"
 
 OWGRLadGfx::
 	dw 20 ; length
