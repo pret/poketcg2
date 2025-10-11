@@ -2495,7 +2495,7 @@ Music1_SFXPriorities:
 	db $0a ; SFX_79
 	db $0a ; SFX_7A
 	db $0a ; SFX_7B
-	db $0a ; SFX_7C
+	db $0a ; SFX_ChipsCounting
 	db $0a ; SFX_7D
 	db $0a ; SFX_7E
 	db $0a ; SFX_7F

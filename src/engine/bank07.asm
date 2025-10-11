@@ -1634,39 +1634,39 @@ SetMenuBoxDelay:
 	ld [wMenuBoxDelay], a
 	ret
 
-GetDWwDA9B:
+GetGameCenterBankedChips:
 	push af
-	ld a, [wda9b]
+	ld a, [wGameCenterBankedChips]
 	ld c, a
-	ld a, [wda9b + 1]
+	ld a, [wGameCenterBankedChips + 1]
 	ld b, a
 	pop af
 	ret
 
-Func_1cd36:
+WithdrawChips:
 	push af
 	push bc
-	ld a, [wda9b]
+	ld a, [wGameCenterBankedChips]
 	ld c, a
-	ld a, [wda9b + 1]
+	ld a, [wGameCenterBankedChips + 1]
 	ld b, a
-	farcall Func_1159a
+	farcall IncreaseChipsSmoothly
 	xor a
-	ld [wda9b], a
-	ld [wda9b + 1], a
+	ld [wGameCenterBankedChips], a
+	ld [wGameCenterBankedChips + 1], a
 	pop bc
 	pop af
 	ret
 
-Func_1cd4e:
+DepositChips:
 	push af
 	push bc
-	farcall GetDWwDA99
-	farcall Func_115de
+	farcall GetGameCenterChips
+	farcall DecreaseChipsSmoothly
 	ld a, c
-	ld [wda9b], a
+	ld [wGameCenterBankedChips], a
 	ld a, b
-	ld [wda9b + 1], a
+	ld [wGameCenterBankedChips + 1], a
 	pop bc
 	pop af
 	ret
