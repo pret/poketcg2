@@ -16,8 +16,8 @@
 	const EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT               ; $0d
 	const EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT             ; $0e
 	const EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT            ; $0f
-	const EVENT_GOT_MAGNEMITE_COIN                        ; $10
-	const EVENT_GOT_GOLBAT_COIN                           ; $11
+	const EVENT_GOT_GOLBAT_COIN                           ; $10
+	const EVENT_GOT_MAGNEMITE_COIN                        ; $11
 	const EVENT_GOT_MAGMAR_COIN                           ; $12
 	const EVENT_GOT_PSYDUCK_COIN                          ; $13
 	const EVENT_GOT_MACHAMP_COIN                          ; $14

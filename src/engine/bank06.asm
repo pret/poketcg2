@@ -5571,7 +5571,7 @@ _SetUpAndStartLinkDuel:
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	call .PickNumberOfPrizeCards
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ld b, a
 	ld a, [wNPCDuelPrizes]
 	call SerialSend8Bytes
@@ -5594,7 +5594,7 @@ _SetUpAndStartLinkDuel:
 	ld [wNPCDuelPrizes], a
 	ld a, b
 	ld [wOppCoin], a
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	call SerialSend8Bytes
 	jr c, .error
 
