@@ -8,8 +8,8 @@
 	const COIN_PIKACHU    ; $05
 	const COIN_ALAKAZAM   ; $06
 	const COIN_KABUTO     ; $07
-	const COIN_MAGNEMITE  ; $08
-	const COIN_GOLBAT     ; $09
+	const COIN_GOLBAT     ; $08
+	const COIN_MAGNEMITE  ; $09
 	const COIN_MAGMAR     ; $0a
 	const COIN_PSYDUCK    ; $0b
 	const COIN_MACHAMP    ; $0c

@@ -3588,7 +3588,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_DUELTHEME_2 ; duel theme
 	db $0e ; ?
-	db COIN_MAGNEMITE ; coin
+	db COIN_GOLBAT ; coin
 
 	db NATURAL_SCIENCE_DECK_ID
 	tx NaturalScienceDeckName ; deck name
@@ -3852,7 +3852,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $1d ; ?
-	db COIN_MAGNEMITE ; coin
+	db COIN_GOLBAT ; coin
 
 	db DANGEROUS_BENCH_DECK_ID
 	tx DangerousBenchDeckName ; deck name
@@ -3896,7 +3896,7 @@ DeckIDData:
 	db $00 ; ?
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db $1e ; ?
-	db COIN_GOLBAT ; coin
+	db COIN_MAGNEMITE ; coin
 
 	db COMPLETE_COMBUSTION_DECK_ID
 	tx CompleteCombustionDeckName ; deck name
