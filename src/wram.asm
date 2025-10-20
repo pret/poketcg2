@@ -2865,25 +2865,27 @@ wdc06:: ; dc06
 
 	ds $1
 
-; coin settings?
-wdc08:: ; dc08
+wSelectedCoin:: ; dc08
 	ds $1
 
-; coin type/page?
-wdc09:: ; dc09
+; used when viewing your coins in Coin menu.
+; same values as COIN_TYPE_*
+wCoinPage:: ; dc09
 	ds $1
 
-; store an incoming Coin
-wdc0a:: ; dc0a
+; COIN_* id being given to player during cutscene
+wIncomingCoin:: ; dc0a
 	ds $1
 
 wdc0b:: ; dc0b
 	ds $1
 
-wdc0c:: ; dc0c
+; see: _CoinPageListTable for valid values
+wCoinPageXCoordinate:: ; dc0c
 	ds $1
 
-wdc0d:: ; dc0d
+; see: _CoinPageListTable for valid values
+wCoinPageYCoordinate:: ; dc0d
 	ds $1
 
 	ds $1

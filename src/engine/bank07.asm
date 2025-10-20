@@ -2157,8 +2157,8 @@ CheckIfCoinWasObtained:
 	db EVENT_GOT_PIKACHU_COIN    ; COIN_PIKACHU
 	db EVENT_GOT_ALAKAZAM_COIN   ; COIN_ALAKAZAM
 	db EVENT_GOT_KABUTO_COIN     ; COIN_KABUTO
-	db EVENT_GOT_MAGNEMITE_COIN  ; COIN_MAGNEMITE
 	db EVENT_GOT_GOLBAT_COIN     ; COIN_GOLBAT
+	db EVENT_GOT_MAGNEMITE_COIN  ; COIN_MAGNEMITE
 	db EVENT_GOT_MAGMAR_COIN     ; COIN_MAGMAR
 	db EVENT_GOT_PSYDUCK_COIN    ; COIN_PSYDUCK
 	db EVENT_GOT_MACHAMP_COIN    ; COIN_MACHAMP
@@ -2244,46 +2244,46 @@ GetCoinName:
 	ret
 
 .CoinTable:
-	tx ChanseyCoinText     ; GFX_COIN_CHANSEY
-	tx GRCoinText          ; GFX_COIN_GR
-	tx GrassCoinText       ; GFX_COIN_ODDISH
-	tx FireCoinText        ; GFX_COIN_CHARMANDER
-	tx WaterCoinText       ; GFX_COIN_STARMIE
-	tx LightningCoinText   ; GFX_COIN_PIKACHU
-	tx PsychicCoinText     ; GFX_COIN_ALAKAZAM
-	tx RockCoinText        ; GFX_COIN_KABUTO
-	tx GRGrassCoinText     ; GFX_COIN_GOLBAT
-	tx GRLightningCoinText ; GFX_COIN_MAGNEMITE
-	tx GRFireCoinText      ; GFX_COIN_MAGMAR
-	tx GRWaterCoinText     ; GFX_COIN_PSYDUCK
-	tx GRFightingCoinText  ; GFX_COIN_MACHAMP
-	tx GRPsychicCoinText   ; GFX_COIN_MEW
-	tx GRColorlessCoinText ; GFX_COIN_SNORLAX
-	tx GRKingCoinText      ; GFX_COIN_TOGEPI
-	tx PonytaCoinText      ; GFX_COIN_PONYTA
-	tx HorseaCoinText      ; GFX_COIN_HORSEA
-	tx ArbokCoinText       ; GFX_COIN_ARBOK
-	tx JigglypuffCoinText  ; GFX_COIN_JIGGLYPUFF
-	tx DugtrioCoinText     ; GFX_COIN_DUGTRIO
-	tx GengarCoinText      ; GFX_COIN_GENGAR
-	tx RaichuCoinText      ; GFX_COIN_RAICHU
-	tx LugiaCoinText       ; GFX_COIN_LUGIA
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY1
-	tx GRCoinPiece1Text    ; GFX_COIN_GR_PIECE1
-	tx GRCoinPiece2Text    ; GFX_COIN_GR_PIECE2
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY2
-	tx GRCoinPiece3Text    ; GFX_COIN_GR_PIECE3
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY3
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY4
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY5
-	tx GRCoinPiece4Text    ; GFX_COIN_GR_PIECE4
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY6
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY7
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY8
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY9
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY10
-	tx GRCoinText          ; GFX_COIN_GR_DUMMY11
-	; no GFX_COIN_GR_DUMMY12
+	tx ChanseyCoinText     ; COIN_CHANSEY
+	tx GRCoinText          ; COIN_GR
+	tx GrassCoinText       ; COIN_ODDISH
+	tx FireCoinText        ; COIN_CHARMANDER
+	tx WaterCoinText       ; COIN_STARMIE
+	tx LightningCoinText   ; COIN_PIKACHU
+	tx PsychicCoinText     ; COIN_ALAKAZAM
+	tx RockCoinText        ; COIN_KABUTO
+	tx GRGrassCoinText     ; COIN_GOLBAT
+	tx GRLightningCoinText ; COIN_MAGNEMITE
+	tx GRFireCoinText      ; COIN_MAGMAR
+	tx GRWaterCoinText     ; COIN_PSYDUCK
+	tx GRFightingCoinText  ; COIN_MACHAMP
+	tx GRPsychicCoinText   ; COIN_MEW
+	tx GRColorlessCoinText ; COIN_SNORLAX
+	tx GRKingCoinText      ; COIN_TOGEPI
+	tx PonytaCoinText      ; COIN_PONYTA
+	tx HorseaCoinText      ; COIN_HORSEA
+	tx ArbokCoinText       ; COIN_ARBOK
+	tx JigglypuffCoinText  ; COIN_JIGGLYPUFF
+	tx DugtrioCoinText     ; COIN_DUGTRIO
+	tx GengarCoinText      ; COIN_GENGAR
+	tx RaichuCoinText      ; COIN_RAICHU
+	tx LugiaCoinText       ; COIN_LUGIA
+	tx GRCoinText          ; COIN_GR_START
+	tx GRCoinPiece1Text    ; COIN_GR_PIECE1
+	tx GRCoinPiece2Text    ; COIN_GR_PIECE2
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE2
+	tx GRCoinPiece3Text    ; COIN_GR_PIECE3
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE3
+	tx GRCoinText          ; COIN_GR_PIECE2 | COIN_GR_PIECE3
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3
+	tx GRCoinPiece4Text    ; COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE2 | COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE3 | COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE1 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	tx GRCoinText          ; COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	; no COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 
 ; set bit 0--3 of a for each piece obtained
 CheckObtainedGRCoinPieces:
@@ -2311,14 +2311,14 @@ CheckObtainedGRCoinPieces:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	or b
-	and $f
+	and COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 	pop de
 	pop bc
 	ret
 
 ; a = COIN_* constant
-; for a non-GR Coin, keep a if already obtained, return a = $18 if not
-; for GR Coin, return a = (bit 0--3 for each piece) + $18
+; for a non-GR Coin, keep a if already obtained, return a = COIN_GR_START if not
+; for GR Coin, return a = (bit 0--3 for each piece) + COIN_GR_START
 GetCoinPossessionStatus:
 	push bc
 	ld b, a
@@ -2328,19 +2328,19 @@ GetCoinPossessionStatus:
 	call CheckIfCoinWasObtained
 	jr nz, .got_value
 ; not yet obtained
-	ld b, COIN_SENTINEL
+	ld b, COIN_GR_START
 .got_value
 	ld a, b
 	jr .done
 .check_gr_coin
 	call CheckObtainedGRCoinPieces
-	add COIN_SENTINEL
+	add COIN_GR_START
 .done
 	pop bc
 	ret
 
 ; input:
-; - a = GFX_COIN_* constant
+; - a = COIN_* constant
 ; - de = coordinates
 CreateCoinAnimation:
 	push af
@@ -2356,7 +2356,7 @@ ENDR
 	ld hl, .SpriteAnimGfxParams
 	add hl, bc
 	ld c, 0
-	cp NUM_GFX_MAIN_COINS
+	cp NUM_COIN_GFX
 	jr c, .got_obj_slot
 	ld c, 2
 .got_obj_slot
@@ -2370,46 +2370,46 @@ ENDR
 	ret
 
 .SpriteAnimGfxParams:
-	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_CHANSEY
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; GFX_COIN_GR
-	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; GFX_COIN_ODDISH
-	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; GFX_COIN_CHARMANDER
-	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; GFX_COIN_STARMIE
-	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; GFX_COIN_PIKACHU
-	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; GFX_COIN_ALAKAZAM
-	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; GFX_COIN_KABUTO
-	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; GFX_COIN_GOLBAT
-	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; GFX_COIN_MAGNEMITE
-	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; GFX_COIN_MAGMAR
-	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; GFX_COIN_PSYDUCK
-	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; GFX_COIN_MACHAMP
-	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; GFX_COIN_MEW
-	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; GFX_COIN_SNORLAX
-	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; GFX_COIN_TOGEPI
-	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; GFX_COIN_PONYTA
-	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; GFX_COIN_HORSEA
-	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; GFX_COIN_ARBOK
-	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; GFX_COIN_JIGGLYPUFF
-	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; GFX_COIN_DUGTRIO
-	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; GFX_COIN_GENGAR
-	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; GFX_COIN_RAICHU
-	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; GFX_COIN_LUGIA
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY1
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; GFX_COIN_GR_PIECE1
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; GFX_COIN_GR_PIECE2
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY2
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; GFX_COIN_GR_PIECE3
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY3
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY4
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY5
-	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; GFX_COIN_GR_PIECE4
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY6
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY7
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY8
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY9
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY10
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY11
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; GFX_COIN_GR_DUMMY12
+	dw TILESET_CHANSEY_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_CHANSEY
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_143 ; COIN_GR
+	dw TILESET_ODDISH_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_13D ; COIN_ODDISH
+	dw TILESET_CHARMANDER_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_13E ; COIN_CHARMANDER
+	dw TILESET_STARMIE_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_13F ; COIN_STARMIE
+	dw TILESET_PIKACHU_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_140 ; COIN_PIKACHU
+	dw TILESET_ALAKAZAM_COIN,   SPRITE_ANIM_85, FRAMESET_112, PALETTE_141 ; COIN_ALAKAZAM
+	dw TILESET_KABUTO_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_142 ; COIN_KABUTO
+	dw TILESET_GOLBAT_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_144 ; COIN_GOLBAT
+	dw TILESET_MAGNEMITE_COIN,  SPRITE_ANIM_85, FRAMESET_112, PALETTE_145 ; COIN_MAGNEMITE
+	dw TILESET_MAGMAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_146 ; COIN_MAGMAR
+	dw TILESET_PSYDUCK_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_147 ; COIN_PSYDUCK
+	dw TILESET_MACHAMP_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_148 ; COIN_MACHAMP
+	dw TILESET_MEW_COIN,        SPRITE_ANIM_85, FRAMESET_112, PALETTE_149 ; COIN_MEW
+	dw TILESET_SNORLAX_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_14A ; COIN_SNORLAX
+	dw TILESET_TOGEPI_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14B ; COIN_TOGEPI
+	dw TILESET_PONYTA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14C ; COIN_PONYTA
+	dw TILESET_HORSEA_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_14D ; COIN_HORSEA
+	dw TILESET_ARBOK_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_14E ; COIN_ARBOK
+	dw TILESET_JIGGLYPUFF_COIN, SPRITE_ANIM_85, FRAMESET_112, PALETTE_14F ; COIN_JIGGLYPUFF
+	dw TILESET_DUGTRIO_COIN,    SPRITE_ANIM_85, FRAMESET_112, PALETTE_150 ; COIN_DUGTRIO
+	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; COIN_GENGAR
+	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; COIN_RAICHU
+	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; COIN_LUGIA
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_START
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; COIN_GR_PIECE1
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; COIN_GR_PIECE2
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11A, PALETTE_143 ; COIN_GR_PIECE3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE2 | COIN_GR_PIECE3
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3
+	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_11B, PALETTE_143 ; COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE2 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_120, PALETTE_13B ; $28
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $29
 	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_121, PALETTE_13B ; $2a
@@ -2655,7 +2655,7 @@ Func_1d9f9:
 
 SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
 
-Func_1db63:
+GiveCoin:
 	farcall Func_1022a
 	call Func_1db6f
 	farcall Func_10252
@@ -2666,7 +2666,7 @@ Func_1db6f:
 	push bc
 	push de
 	push hl
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	call Func_1db81
 	call Func_1dc0a
 	pop hl
@@ -2682,11 +2682,11 @@ Func_1db81:
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
 	call Func_3d0d
-	ld a, [wdc0a]
-	cp COIN_SENTINEL
+	ld a, [wIncomingCoin]
+	cp COIN_GR_START
 	jr c, .not_coin_gr
 	ld a, COIN_GR
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	xor a
 	jr .got_frames
 
@@ -2725,13 +2725,13 @@ Func_1db81:
 	ret
 
 Func_1dbee:
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	lb de, 88, 88
 	call CreateCoinAnimation
 	lb de,  0, 12
 	lb bc, 20,  6
 	call DrawRegularTextBoxVRAM0
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinName
 	call LoadTxRam2
 	ret
@@ -2763,7 +2763,7 @@ Func_1dc2a:
 	ret
 
 .asm_1dc3c:
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinPossessionStatus
 	farcall Func_12c49b
 	ret
@@ -2783,7 +2783,7 @@ Func_1dc52:
 	ld h, 0
 	call LoadTxRam3
 	ldtx hl, ObtainedCoinTotalNumberText
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	cp COIN_GR
 	jr nz, .got_coin_and_text
 
@@ -2801,11 +2801,11 @@ Func_1dc52:
 	lb de, 1, 2
 	call Func_35bf
 	call Func_1dd08
-	ld a, [wdc0a]
+	ld a, [wIncomingCoin]
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call Func_1dd89
 	ret
@@ -2822,7 +2822,7 @@ Func_1dca6:
 	push de
 	push hl
 	ld a, -1
-	ld [wdc0a], a
+	ld [wIncomingCoin], a
 	call Func_1dcbf
 	pop hl
 	pop de
@@ -2832,8 +2832,8 @@ Func_1dca6:
 
 Func_1dcb7:
 	xor a
-	ld [wdc08], a
-	ld [wdc09], a
+	ld [wSelectedCoin], a
+	ld [wCoinPage], a
 	ret
 
 Func_1dcbf:
@@ -2858,11 +2858,11 @@ Func_1dce3:
 	ldtx hl, PlayerCoinSelectText
 	lb de,  1, 2
 	call Func_35af
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call Func_1dd89
 	call Func_1dd08
@@ -2873,7 +2873,7 @@ Func_1dd08:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ldtx hl, PlayerStatusCurrentCoinText
 	lb de,  4, 4
 	call Func_35af
@@ -2882,7 +2882,7 @@ Func_1dd08:
 	farcall FillBoxInBGMapWithZero
 	call GetCoinName
 	call Func_35af
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	lb de,  1, 4
 	farcall Func_12c49b
 	call Func_1dd3a
@@ -2898,10 +2898,10 @@ Func_1dd3a:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	call GetCoinType
 	ld c, a
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	cp b
 	jr z, .got_index
 	ld c, 8
@@ -3019,9 +3019,9 @@ Func_1dd89:
 	cp b
 	jr nz, .next_coin
 	ld a, d
-	ld [wdc0c], a
+	ld [wCoinPageXCoordinate], a
 	ld a, e
-	ld [wdc0d], a
+	ld [wCoinPageYCoordinate], a
 .next_coin
 	pop hl
 	ld bc, 3
@@ -3029,9 +3029,9 @@ Func_1dd89:
 	pop bc
 	dec c
 	jr nz, .loop_show_coin
-	ld a, [wdc0c]
+	ld a, [wCoinPageXCoordinate]
 	ld d, a
-	ld a, [wdc0d]
+	ld a, [wCoinPageYCoordinate]
 	ld e, a
 	pop hl
 	pop bc
@@ -3040,7 +3040,7 @@ Func_1dd89:
 
 Func_1de16:
 	call CheckObtainedGRCoinPieces
-	add COIN_SENTINEL
+	add COIN_GR_START
 	ret
 
 _CoinPageMenuParams:
@@ -3072,6 +3072,7 @@ _CoinPageTextTable:
 	tx EventCoinPage2Text
 	tx EventCoinPage3Text
 
+; see also: wCoinPageXCoordinate, wCoinPageYCoordinate
 _CoinPageListTable:
 	dw .page1
 	dw .page2
@@ -3087,8 +3088,8 @@ _CoinPageListTable:
 	db COIN_ALAKAZAM,   11, 14
 	db COIN_KABUTO,     16, 14
 .page2:
-	db COIN_MAGNEMITE,   1, 10
-	db COIN_GOLBAT,      6, 10
+	db COIN_GOLBAT,      1, 10
+	db COIN_MAGNEMITE,   6, 10
 	db COIN_MAGMAR,     11, 10
 	db COIN_PSYDUCK,    16, 10
 	db COIN_MACHAMP,     1, 14
@@ -3115,12 +3116,12 @@ Func_1deac:
 	push bc
 	push de
 	push hl
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 .asm_1deb3
 	call GetCoinType
 	push af
 	ld a, b
-	ld [wdc09], a
+	ld [wCoinPage], a
 	pop af
 	call HandleMenuBox
 	jr c, .asm_1dec6
@@ -3133,10 +3134,10 @@ Func_1deac:
 	pop af
 	ret
 
-; COIN_* constant at [wdc09] * 8 + a
+; COIN_* constant at [wCoinPage] * 8 + a
 Func_1decb:
 	ld b, a
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 REPT 3 ; *8
 	add a
 ENDR
@@ -3156,7 +3157,7 @@ ENDR
 	call CallPlaySFX
 	pop af
 	ld a, b
-	ld [wdc08], a
+	ld [wSelectedCoin], a
 	call Func_1dd08
 	ret
 
@@ -3189,13 +3190,13 @@ Func_1df10:
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	inc a
 	cp 3
 	jr c, .got_value
 	xor a
 .got_value
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	call Func_1df89
@@ -3207,16 +3208,16 @@ Func_1df36:
 	ldh a, [hDPadHeld]
 	and D_RIGHT
 	ret z
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	cp 2
 	jr z, .done
 	push af
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	inc a
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	sub 3
@@ -3231,16 +3232,16 @@ Func_1df60:
 	and D_LEFT
 	ret z
 
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	and a
 	jr z, .done
 	push af
 	ld a, SFX_01
 	call CallPlaySFX
 	pop af
-	ld a, [wdc09]
+	ld a, [wCoinPage]
 	dec a
-	ld [wdc09], a
+	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
 	add 3
@@ -3269,7 +3270,7 @@ Func_1df89:
 ; a = COIN_* constant
 ; return its COIN_TYPE_* in a and b
 GetCoinType:
-	cp COIN_SENTINEL
+	cp COIN_GR_START
 	jr c, .found_coin
 	ld a, COIN_GR
 .found_coin
@@ -3281,7 +3282,7 @@ GetCoinType:
 	ret
 
 Func_1dfb5:
-	ld a, [wdc08]
+	ld a, [wSelectedCoin]
 	ret
 
 Func_1dfb9::

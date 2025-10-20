@@ -1985,8 +1985,8 @@ EventVarMasks:
 	db $02, %00000010 ; EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	db $02, %00000100 ; EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	db $02, %00001000 ; EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
-	db $02, %00010000 ; EVENT_GOT_MAGNEMITE_COIN
-	db $02, %00100000 ; EVENT_GOT_GOLBAT_COIN
+	db $02, %00010000 ; EVENT_GOT_GOLBAT_COIN
+	db $02, %00100000 ; EVENT_GOT_MAGNEMITE_COIN
 	db $02, %01000000 ; EVENT_GOT_MAGMAR_COIN
 	db $02, %10000000 ; EVENT_GOT_PSYDUCK_COIN
 	db $03, %00000001 ; EVENT_GOT_MACHAMP_COIN
@@ -2565,14 +2565,14 @@ CheckGRIslandMilestoneEvents:
 	ld l, a
 	jp hl
 
-.check_magnemite_coin:
-	ld a, EVENT_GOT_MAGNEMITE_COIN
+.check_golbat_coin:
+	ld a, EVENT_GOT_GOLBAT_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_golbat_coin:
-	ld a, EVENT_GOT_GOLBAT_COIN
+.check_magnemite_coin:
+	ld a, EVENT_GOT_MAGNEMITE_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
@@ -2641,8 +2641,8 @@ CheckGRIslandMilestoneEvents:
 	ret
 
 .check_pointers:
-	dw .check_magnemite_coin
 	dw .check_golbat_coin
+	dw .check_magnemite_coin
 	dw .check_psyduck_coin
 	dw .check_magmar_coin
 	dw .check_machamp_coin
@@ -2664,7 +2664,7 @@ GetNumberOfDeckDiagnosisStepsUnlocked:
 	call GetEventValue
 	jr z, .got_num_steps
 	inc c
-	ld a, EVENT_GOT_GOLBAT_COIN
+	ld a, EVENT_GOT_MAGNEMITE_COIN
 	call GetEventValue
 	jr z, .got_num_steps
 	inc c
@@ -4091,7 +4091,7 @@ ScriptCommand_ScriptRet:
 
 ScriptCommand_GiveCoin:
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_1db63
+	farcall GiveCoin
 	call WaitPalFading
 	jp IncreaseScriptPointerBy2
 
