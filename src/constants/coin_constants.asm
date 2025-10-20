@@ -25,26 +25,21 @@
 	const COIN_RAICHU     ; $16
 	const COIN_LUGIA      ; $17
 DEF NUM_COINS EQU const_value
-	const COIN_SENTINEL   ; $18
-; checking GR Coin pieces may temporarily result in $18 + [0, 7]
-; the values for GR_PIECEs are used in calls to give_coin event script
-	const COIN_GR_PIECE1  ; $19
-	const COIN_GR_PIECE2  ; $1a
-	const COIN_GR_DUMMY2  ; $1b
-	const COIN_GR_PIECE3  ; $1c
-	const COIN_GR_DUMMY3  ; $1d
-	const COIN_GR_DUMMY4  ; $1e
-	const COIN_GR_DUMMY5  ; $1f
-	const COIN_GR_PIECE4  ; $20
-	const COIN_GR_DUMMY6  ; $21
-	const COIN_GR_DUMMY7  ; $22
-	const COIN_GR_DUMMY8  ; $23
-	const COIN_GR_DUMMY9  ; $24
-	const COIN_GR_DUMMY10 ; $25
-	const COIN_GR_DUMMY11 ; $26
-	const COIN_GR_DUMMY12 ; $27
+	const COIN_GR_START   ; $18
 
-DEF NUM_MAIN_COINS EQU const_value ; $28
+; handling GR Coin pieces uses COIN_GR_START + [0, 15]
+	const_def
+	const COIN_GR_PIECE1_F ; 0
+	const COIN_GR_PIECE2_F ; 1
+	const COIN_GR_PIECE3_F ; 2
+	const COIN_GR_PIECE4_F ; 3
+
+DEF COIN_GR_PIECE1 EQU 1 << COIN_GR_PIECE1_F ; 1
+DEF COIN_GR_PIECE2 EQU 1 << COIN_GR_PIECE2_F ; 2
+DEF COIN_GR_PIECE3 EQU 1 << COIN_GR_PIECE3_F ; 4
+DEF COIN_GR_PIECE4 EQU 1 << COIN_GR_PIECE4_F ; 8
+
+DEF NUM_COIN_GFX EQU COIN_GR_START + (COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4) + 1 ; $28
 
 ; coin types, also used for pagination
 	const_def
