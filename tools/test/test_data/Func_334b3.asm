@@ -3,8 +3,7 @@ Func_334b3:
 	farcall GetEventValue
 	jr nz, .asm_334f5
 	xor a
-	call StartScript
-Script_334bf:
+	start_script
 	script_command_01
 	check_event EVENT_INSERTED_RIGHT_COIN_IN_FIGHTING_FORT_DOOR
 	script_jump_if_b0z .ows_334f0

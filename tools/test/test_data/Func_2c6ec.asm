@@ -1,7 +1,6 @@
 Func_2c6ec:
 	xor a
-	call StartScript
-Script_2c6f0:
+	start_script
 	script_command_01
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2c724

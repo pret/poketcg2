@@ -7,8 +7,7 @@ Func_41233:
 	ld a, h
 	ld [$d610], a
 	xor a
-	call StartScript
-Script_41247:
+	start_script
 	script_command_01
 	check_event EVENT_TALKED_TO_SAM
 	script_jump_if_b0nz .ows_412f8
@@ -28,15 +27,13 @@ Script_41247:
 	jr z, .asm_412b2
 .asm_41264
 	xor a
-	call StartScript
-Script_41268:
+	start_script
 	script_jump .ows_412bd
 ; 0x4126b
 ; gap from 0x4126b to 0x412bd
 .asm_4126b
 	xor a
-	call StartScript
-Script_4126f:
+	start_script
 	print_npc_text Text0f14
 	ask_question Text0f15, TRUE
 	script_jump_if_b0z .ows_41287
@@ -56,8 +53,7 @@ Script_4126f:
 ; gap from 0x4128d to 0x412bd
 .asm_4128d
 	xor a
-	call StartScript
-Script_41291:
+	start_script
 	print_npc_text Text0f17
 	ask_question Text0f15, TRUE
 	script_jump_if_b0z .ows_412ac
@@ -79,8 +75,7 @@ Script_41291:
 ; gap from 0x412b2 to 0x412bd
 .asm_412b2
 	xor a
-	call StartScript
-Script_412b6:
+	start_script
 	script_call .ows_41408
 	print_npc_text Text0f16
 .ows_412bd

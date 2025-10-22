@@ -1393,11 +1393,23 @@ class Disassembler(object):
 					# error checking
 					raise ValueError("Invalid amount of args.")
 
-				# append the formatted opcode output string to the output
-				output += self.spacing + opcode_output_str + "\n" #+ " ; " + hex(offset)
-				# increase the current byte number and offset by the amount of arguments plus 1 (opcode itself)
-				current_byte_number += opcode_nargs + 1
-				offset += opcode_nargs + 1
+
+				# dump script if we found one. Note that we pass the offset of the "call StartScript"
+				# command (CD FF 32) into dump_script, and it is output there as "start_script"
+				if(parse_scripts and (opcode_byte in call_commands and target_label == "StartScript")):
+					print('DEBUG: script block @ {:x}'.format(offset))
+
+					# += here to handle cases where we still have future scripts to add to the output,
+					# but got back to this block because we disassembled a new StartScript call
+					script_blobs += self.script_extractor.dump_script(offset, visited=set())
+					script_blobs = self.script_extractor.sort_and_filter(script_blobs)
+
+				else:
+					# append the formatted opcode output string to the output
+					output += self.spacing + opcode_output_str + "\n" #+ " ; " + hex(offset)
+					# increase the current byte number and offset by the amount of arguments plus 1 (opcode itself)
+					current_byte_number += opcode_nargs + 1
+					offset += opcode_nargs + 1
 
 			else:
 				# output a single lined db, using the current byte
@@ -1411,15 +1423,6 @@ class Disassembler(object):
 
 			# update the local offset
 			local_offset = get_local_address(offset)
-
-			# dump script if we found one
-			if(parse_scripts and (opcode_byte in call_commands and target_label == "StartScript")):
-				print('DEBUG: script block @ {:x}'.format(offset))
-
-				# += here to handle cases where we still have future scripts to add to the output,
-				# but got back to this block because we disassembled a new StartScript call
-				script_blobs += self.script_extractor.dump_script(offset, visited=set())
-				script_blobs = self.script_extractor.sort_and_filter(script_blobs)
 
 			# stop processing regardless of function end if we've passed the stop offset and the hard stop (dry run) flag is set
 			if hard_stop and offset >= stop_offset:

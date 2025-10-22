@@ -1,7 +1,6 @@
 Func_3678e:
 	xor a
-	call StartScript
-Script_36792:
+	start_script
 	script_command_01
 	check_event EVENT_BEAT_MIWA
 	script_jump_if_b0z .ows_367b1

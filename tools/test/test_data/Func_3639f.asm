@@ -5,8 +5,7 @@ Func_3639f:
 	farcall Func_1f293
 .asm_363aa
 	xor a
-	call StartScript
-Script_363ae:
+	start_script
 	check_event EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
 	script_jump_if_b0z .ows_363be
 	unload_npc NPC_MIWA

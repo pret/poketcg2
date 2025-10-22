@@ -278,10 +278,15 @@ class ScriptExtractor(object):
 		branches = set()
 		calls = set()
 		if address is None:
-			label = "Script_{:x}".format(start_address)
-			if start_address in self.symbols[self.get_bank(start_address)]:
-				label = self.symbols[self.get_bank(start_address)][start_address]
-			blobs.append(self.make_blob(start_address, label + self.make_address_comment(start_address)))
+			# cd only happens when dump_script is called on a "call StartScript" command
+			# in this case, the script we are processing is inlined in an ASM function, and
+			# we want to omit the Script_xxx label.
+			# the "call StartScript" is replaced with start_script in the while loop.
+			if not self.rom[start_address] == 0xcd:
+				label = "Script_{:x}".format(start_address)
+				if start_address in self.symbols[self.get_bank(start_address)]:
+					label = self.symbols[self.get_bank(start_address)][start_address]
+				blobs.append(self.make_blob(start_address, label + self.make_address_comment(start_address)))
 			address = start_address
 		else:
 			label = ".ows_{:x}\n".format(address)

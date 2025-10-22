@@ -1,7 +1,6 @@
 Func_35e5e:
 	xor a
-	call StartScript
-Script_35e62:
+	start_script
 	script_command_01
 	check_event EVENT_FREED_MITCH
 	script_jump_if_b0z .ows_35e81
@@ -93,7 +92,6 @@ Script_35e62:
 ; gap from 0x35f10 to 0x35f11
 	ret
 NPCMovement_35f11:
-	db $02
-	db $15
+	db SOUTH, MOVE_5
 	db $ff
 ; 0x35f14

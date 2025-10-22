@@ -7,8 +7,7 @@ Func_3468f:
 	ld a, h
 	ld [$d610], a
 	xor a
-	call StartScript
-Script_346a3:
+	start_script
 	script_command_01
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_346c9
