@@ -11,6 +11,7 @@ from constants import coins
 from constants import conditions
 from constants import decks
 from constants import directions
+from constants import duel_requirements
 from constants import events
 from constants import framesets
 from constants import maps
@@ -95,7 +96,7 @@ script_commands = {
 	0x3e: { "name": "spin_active_npc_reverse",                "params": [ "word_decimal" ] },
 	0x3f: { "name": "reset_npc_flag6",                        "params": [ "npc" ] },
 	0x40: { "name": "set_npc_flag6",                          "params": [ "npc" ] },
-	0x41: { "name": "duel_requirement_check",                 "params": [ "byte" ] }, # todo: enumerate duel requirements
+	0x41: { "name": "duel_requirement_check",                 "params": [ "duel_requirement" ] },
 	0x42: { "name": "get_active_npc_opposite_direction",      "params": [] },
 	0x43: { "name": "get_player_opposite_direction",          "params": [] },
 	0x44: { "name": "play_sfx",                               "params": [ "sfx" ] },
@@ -168,33 +169,34 @@ quit_commands = [
 
 # length in bytes of each type of parameter
 param_lengths = {
-	"byte":           1,
-	"byte_decimal":   1,
-	"bool":           1,
-	"cardpop":        1,
-	"coin":           1,
-	"condition":      1,
-	"deck":           1,
-	"direction":      1,
-	"event":          1,
-	"map":            1,
-	"npc":            1,
-	"prizes":         1,
-	"sfx":            1,
-	"song":           1,
-	"var":            1,
-	"word":           2,
-	"word_decimal":   2,
-	"card":           2,
-	"frameset":       2,
-	"palette":        2,
-	"tilemap":        2,
-	"movement":       2,
-	"movement_table": 2,
-	"text":           2,
-	"script":         2,
-	"skip_word":      2,
-	"script_far":     3,
+	"byte":             1,
+	"byte_decimal":     1,
+	"bool":             1,
+	"cardpop":          1,
+	"coin":             1,
+	"condition":        1,
+	"deck":             1,
+	"direction":        1,
+	"duel_requirement": 1,
+	"event":            1,
+	"map":              1,
+	"npc":              1,
+	"prizes":           1,
+	"sfx":              1,
+	"song":             1,
+	"var":              1,
+	"word":             2,
+	"word_decimal":     2,
+	"card":             2,
+	"frameset":         2,
+	"palette":          2,
+	"tilemap":          2,
+	"movement":         2,
+	"movement_table":   2,
+	"text":             2,
+	"script":           2,
+	"skip_word":        2,
+	"script_far":       3,
 }
 
 def get_bank(address):
@@ -313,6 +315,8 @@ def dump_script(start_address, address=None, visited=set()):
 				output += " {}".format(decks[param])
 			elif param_type == "direction":
 				output += " {}".format(directions[param])
+			elif param_type == "duel_requirement":
+				output += " {}".format(duel_requirements[param])
 			elif param_type == "event":
 				output += " {}".format(events[param])
 			elif param_type == "map":
