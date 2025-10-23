@@ -88,5 +88,14 @@ class TestDisasm(unittest.TestCase):
             disasm_output = self.disasm.output_bank_opcodes(ptr, None, parse_scripts=True)[0]
             self.assertEqual(test_data, disasm_output)
 
+    def test_Func_41662(self):
+        ptr = 0x41662
+
+        with open("tools/test/test_data/Func_41662.asm") as f:
+            test_data = f.read()
+
+            disasm_output = self.disasm.output_bank_opcodes(ptr, None, parse_scripts=True)[0]
+            self.assertEqual(test_data, disasm_output)
+
 if __name__ == '__main__':
     unittest.main()

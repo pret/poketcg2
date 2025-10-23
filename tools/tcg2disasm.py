@@ -875,12 +875,6 @@ def all_byte_labels_are_defined(byte_labels):
 	"""
 	return (False not in [label["definition"] for label in byte_labels.values()])
 
-def no_scripts_remaining_at_offset(script_blobs, offset):
-	are_script_blobs_remaining_at_offset = len(script_blobs) > 0 and offset == script_blobs[0]["start"]
-	next_blob_not_NPCMovement = len(script_blobs) > 0 and not (script_blobs[0]["output"].startswith("NPCMovement_"))
-
-	return not (are_script_blobs_remaining_at_offset and next_blob_not_NPCMovement)
-
 def load_rom(path='baserom.gbc'):
 	return bytearray(open(path, 'rb').read())
 
@@ -1140,20 +1134,6 @@ class Disassembler(object):
 
 		script_blobs = []
 		while True:
-			# if we have reached one of the waiting script blobs, add them to the output
-			# and advance offset until we reach the next gap so we can continue disassembling from there.
-			while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
-				blob = script_blobs.pop(0)
-				output += blob["output"] + "\n"
-				offset = blob["end"]
-
-			# script command 51 is the hard script return. this signals the end of a branch/function, so we need to stop immediately.
-			if parse_scripts and rom[offset-1] == 0x51:
-				print("DEBUG: script_command_51 break")
-				if len(script_blobs) > 0:
-					print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
-				break
-
 			#first check if this byte already has a label
 			#if it does, use the label
 			#if not, generate a new label
@@ -1411,6 +1391,38 @@ class Disassembler(object):
 					current_byte_number += opcode_nargs + 1
 					offset += opcode_nargs + 1
 
+				# if we have reached one of the waiting script blobs, add them to the output
+				# and advance offset until we reach the next gap so we can continue disassembling from there.
+				while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+					blob = script_blobs.pop(0)
+					output += blob["output"] + "\n"
+					offset = blob["end"]
+
+				# if, after adding script blobs to the output, the next instruction is a ret,
+				# output the ret instruction and append more script blobs if available,
+				# until we run out of rets or blobs.
+				byte_after_scripts = rom[offset]
+				while parse_scripts and byte_after_scripts in unconditional_returns:
+					# output a .asm_xxx label before the ret, if there is one
+					local_offset = get_local_address(offset)
+					if local_offset in byte_labels.keys() and not byte_labels[local_offset]["definition"]:
+						byte_labels[local_offset]["definition"] = True
+						output += asm_label(offset) + "\n"
+
+					# output the ret, and update opcode_byte & offset since they are used later to
+					# determine if we should stop processing
+					opcode_byte = rom[offset]
+					output += self.spacing + z80_table[byte_after_scripts][0] + "\n"
+					offset += 1
+
+					# loop through script blobs and add them to output, as before
+					while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+						blob = script_blobs.pop(0)
+						output += blob["output"] + "\n"
+						offset = blob["end"]
+
+					byte_after_scripts = rom[offset]
+
 			else:
 				# output a single lined db, using the current byte
 				output += self.spacing + "db ${:02x}\n".format(opcode_byte) #+ " ; " + hex(offset)
@@ -1433,17 +1445,10 @@ class Disassembler(object):
 				if local_offset not in byte_labels.keys() and local_offset in data_tables.keys() and created_but_unused_labels_exist(data_tables) and parse_data:
 					is_data = True
 				#stop reading at a jump, relative jump or return
-				elif all_byte_labels_are_defined(byte_labels) and (offset >= stop_offset or stop_offset_undefined) and no_scripts_remaining_at_offset(script_blobs, offset):
+				elif all_byte_labels_are_defined(byte_labels) and (offset >= stop_offset or stop_offset_undefined):
 					break
 				# otherwise, add some spacing
 				output += "\n"
-
-		# we have hit the end of the function, output any dangling scripts that are contiguous.
-		# do this primarily to output any dangling NPCMovement data tables
-		while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
-			blob = script_blobs.pop(0)
-			output += blob["output"] + "\n"
-			offset = blob["end"]
 
 		if len(script_blobs) > 0:
 			print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
