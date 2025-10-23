@@ -3827,25 +3827,25 @@ CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
 	ret
 
 DuelRequirementFunctionMap:
-	key_func $00, DuelMiyukiRequirement
-	key_func $01, DuelRennaRequirement
-	key_func $02, DuelIchikawaRequirement
-	key_func $03, DuelYukiRequirement
-	key_func $04, DuelShokoRequirement
-	key_func $05, DuelMiyajimaRequirement
-	key_func $06, DuelSentaRequirement
-	key_func $07, DuelGodaRequirement
-	key_func $08, DuelGraceRequirement
-	key_func $09, DuelMiwaRequirement
-	key_func $0a, DuelYosukeRequirement
-	key_func $0b, DuelRyokoRequirement
-	key_func $0c, DuelNishijimaRequirement_Reroll
-	key_func $0d, DuelNishijimaRequirement_Use
-	key_func $0e, DuelIshiiRequirement_Reroll
-	key_func $0f, DuelIshiiRequirement_Use
-	key_func $10, DuelSamejimaRequirement_Reroll
-	key_func $11, DuelSamejimaRequirement_Use
-	key_func $12, DuelKanzakiRequirement
+	key_func DUEL_REQUIREMENT_MIYUKI, DuelMiyukiRequirement
+	key_func DUEL_REQUIREMENT_RENNA, DuelRennaRequirement
+	key_func DUEL_REQUIREMENT_ICHIKAWA, DuelIchikawaRequirement
+	key_func DUEL_REQUIREMENT_YUKI, DuelYukiRequirement
+	key_func DUEL_REQUIREMENT_SHOKO, DuelShokoRequirement
+	key_func DUEL_REQUIREMENT_MIYAJIMA, DuelMiyajimaRequirement
+	key_func DUEL_REQUIREMENT_SENTA, DuelSentaRequirement
+	key_func DUEL_REQUIREMENT_GODA, DuelGodaRequirement
+	key_func DUEL_REQUIREMENT_GRACE, DuelGraceRequirement
+	key_func DUEL_REQUIREMENT_MIWA, DuelMiwaRequirement
+	key_func DUEL_REQUIREMENT_YOSUKE, DuelYosukeRequirement
+	key_func DUEL_REQUIREMENT_RYOKO, DuelRyokoRequirement
+	key_func DUEL_REQUIREMENT_NISHIJIMA_REROLL, DuelNishijimaRequirement_Reroll
+	key_func DUEL_REQUIREMENT_NISHIJIMA_USE, DuelNishijimaRequirement_Use
+	key_func DUEL_REQUIREMENT_ISHII_REROLL, DuelIshiiRequirement_Reroll
+	key_func DUEL_REQUIREMENT_ISHII_USE, DuelIshiiRequirement_Use
+	key_func DUEL_REQUIREMENT_SAMEJIMA_REROLL, DuelSamejimaRequirement_Reroll
+	key_func DUEL_REQUIREMENT_SAMEJIMA_USE, DuelSamejimaRequirement_Use
+	key_func DUEL_REQUIREMENT_KANZAKI, DuelKanzakiRequirement
 	db $ff
 
 ScriptCommand_GetActiveNPCOppositeDirection:
