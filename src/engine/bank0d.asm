@@ -17,13 +17,20 @@ Script_FinishedRonaldDuelGCPieces2:
 	print_npc_text RonaldGCPieces2PlayerLostText
 .exit
 	script_command_02
-	move_active_npc $41f0
+	move_active_npc NPCMovement_341f0
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
+
+NPCMovement_341f0:
+	db SOUTH, MOVE_1
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+; 0x341f7
 
 SECTION "Bank d@4575", ROMX[$4575], BANK[$d]
 

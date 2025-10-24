@@ -74,9 +74,9 @@ script_commands = {
 	0x28: { "name": "animate_player_movement",                "params": [ "byte", "byte" ] },
 	0x29: { "name": "animate_npc_movement",                   "params": [ "npc", "byte", "byte" ] },
 	0x2a: { "name": "animate_active_npc_movement",            "params": [ "byte", "byte" ] },
-	0x2b: { "name": "move_player",                            "params": [ "word", "bool" ] }, # todo: parse movement data
-	0x2c: { "name": "move_npc",                               "params": [ "npc", "word" ] }, # todo: parse movement data
-	0x2d: { "name": "move_active_npc",                        "params": [ "word" ] }, # todo: parse movement data
+	0x2b: { "name": "move_player",                            "params": [ "movement", "bool" ] },
+	0x2c: { "name": "move_npc",                               "params": [ "npc", "movement" ] },
+	0x2d: { "name": "move_active_npc",                        "params": [ "movement" ] },
 	0x2e: { "name": "start_duel",                             "params": [ "deck", "song" ] },
 	0x2f: { "name": "wait_for_player_animation",              "params": [] },
 	0x30: { "name": "wait_for_fade",                          "params": [] },
@@ -193,7 +193,6 @@ param_lengths = {
 	"palette":          2,
 	"tilemap":          2,
 	"movement":         2,
-	"movement_table":   2,
 	"text":             2,
 	"script":           2,
 	"skip_word":        2,
@@ -234,30 +233,16 @@ def dump_movement(address):
 		label = symbols[get_bank(address)][address]
 	blobs.append(make_blob(address, label + make_address_comment(address)))
 	while 1:
-		movement = rom[address]
-		if movement == 0xff:
-			blobs.append(make_blob(address, "\tdb ${:02x}\n\n".format(movement), address + 1))
-			break
-		if movement == 0xfe:
-			jump = rom[address + 1]
-			if jump > 127:
-				jump -= 256
-			blobs.append(make_blob(address, "\tdb ${:02x}, {}\n\n".format(movement, jump), address + 2))
-			break
-		blobs.append(make_blob(address, "\tdb {}".format(directions[movement & 0b01111111]) + (" | NO_MOVE\n" if movement & 0b10000000 else "\n"), address + 1))
-		address += 1
-	return blobs
+		movement_direction = rom[address]
+		movement_steps = rom[address + 1]
 
-def dump_movement_table(address):
-	blobs = []
-	label = "NPCMovementTable_{:x}".format(address)
-	if address in symbols[get_bank(address)]:
-		label = symbols[get_bank(address)][address]
-	blobs.append(make_blob(address, label + make_address_comment(address)))
-	for i in range(4):
-		pointer = get_pointer(address)
-		blobs.append(make_blob(address, "\tdw NPCMovement_{:x}\n".format(pointer) + ("\n" if i == 3 else ""), address + 2))
-		blobs += dump_movement(pointer)
+		# convert raw value to MOVE_xx constant. see: script_constants.asm
+		movement_steps = (movement_steps - 1) >> 2
+
+		if movement_direction == 0xff:
+			blobs.append(make_blob(address, "\tdb $ff\n\n", address + 1))
+			break
+		blobs.append(make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
 		address += 2
 	return blobs
 
@@ -360,13 +345,6 @@ def dump_script(start_address, address=None, visited=set()):
 					label = symbols[get_bank(param)][param]
 				output += " {}".format(label)
 				blobs += dump_movement(param)
-			elif param_type == "movement_table":
-				param = get_pointer(address)
-				label = "NPCMovementTable_{:x}".format(param)
-				if param in symbols[get_bank(param)]:
-					label = symbols[get_bank(param)][param]
-				output += " {}".format(label)
-				blobs += dump_movement_table(param)
 			elif param_type == "text":
 				text_id = param + rom[address + 1] * 0x100
 				if text_id == 0x0000:

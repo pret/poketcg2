@@ -256,7 +256,7 @@ Script_FinishedImakuniBlackDuel:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .exit
-	move_active_npc $4492
+	move_active_npc NPCMovement_3c492
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
@@ -317,7 +317,12 @@ Script_FinishedImakuniBlackDuel:
 .boosters_3
 	give_booster_packs BoosterList_cdf0
 	script_ret
-; 0x3c492
+
+NPCMovement_3c492:
+	db NORTH, MOVE_3
+	db EAST, MOVE_14
+	db $ff
+; 0x3c497
 
 SECTION "Bank f@4603", ROMX[$4603], BANK[$f]
 
