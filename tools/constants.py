@@ -1,5 +1,3 @@
-boosters = {}
-
 cards = {
 	0x000: "VARIABLE_CARD",
 	0x001: "GRASS_ENERGY",

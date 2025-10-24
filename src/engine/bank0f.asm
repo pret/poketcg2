@@ -268,7 +268,7 @@ Script_FinishedImakuniBlackDuel:
 
 .win
 	print_npc_text ImakuniBlackPlayerWonNormalText
-	give_booster_packs $4ddd
+	give_booster_packs BoosterList_cddd
 	script_ret
 
 .three_wins
@@ -307,15 +307,15 @@ Script_FinishedImakuniBlackDuel:
 	script_jump .boosters_3
 
 .boosters_1
-	give_booster_packs $4de3
+	give_booster_packs BoosterList_cde3
 	script_ret
 
 .boosters_2
-	give_booster_packs $4de9
+	give_booster_packs BoosterList_cde9
 	script_ret
 
 .boosters_3
-	give_booster_packs $4df0
+	give_booster_packs BoosterList_cdf0
 	script_ret
 ; 0x3c492
 

@@ -2351,18 +2351,20 @@ wScriptBuffer:: ; d61e
 wScriptStack:: ; d63e
 	ds SCRIPT_STACK_SIZE
 
-wd64e:: ; d64e
+; buffer to hold booster pack random choice list
+wBoosterPackList:: ; d64e
 	ds $10
 
-wd65e:: ; d64e
+; size of wBoosterPackList
+wBoosterPackCount:: ; d65e
 	ds $1
 
-wd65f:: ; d64e
-	ds $1
+; the list of booster packs to give, chosen from wBoosterPackList
+wBoosterPacksToGive:: ; d65f
+	ds $8
 
-	ds $7
-
-wd667:: ; d667
+; the number of booster packs to give
+wNumBoosterPacksToGive:: ; d667
 	ds $1
 
 wd668:: ; d668

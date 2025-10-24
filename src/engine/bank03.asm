@@ -1108,10 +1108,7 @@ MapHeaderPtrs::
 	dba GrCastleBiruritchi_MapHeader
 
 INCLUDE "data/npc_duelists.asm"
-; 0xcc9b
-
-SECTION "Bank 3@4e41", ROMX[$4e41], BANK[$3]
-
+INCLUDE "data/booster_lists.asm"
 INCLUDE "data/card_receive_texts.asm"
 
 TCGIslandLocationNamePointers:
@@ -4122,15 +4119,16 @@ ScriptCommand_GiveBoosterPacks:
 	ld l, c
 	ld h, b
 	ld a, [hli]
-	cp 0
-	jr z, .zero
-	cp 1
-	jr z, .one
-	cp 2
-	jr z, .two
+	cp BOOSTERS_GIVE_ALL
+	jr z, .give_all
+	cp BOOSTERS_GIVE_N
+	jr z, .give_n
+	cp BOOSTERS_GIVE_RANDOM
+	jr z, .give_random
 	jp IncreaseScriptPointerBy3
 
-.zero
+; give all boosters in the list, by first counting the length of the list
+.give_all
 	push hl
 	xor a
 	ld c, a
@@ -4143,20 +4141,20 @@ ScriptCommand_GiveBoosterPacks:
 .counted_length
 	pop hl
 	ld a, c
-	ld [wd667], a
+	ld [wNumBoosterPacksToGive], a ; = list size
 	jr .give_boosters
 
-.two
-	ld a, [hli]
+.give_random
+	ld a, [hli] ; read N before the list
 	call Random
 	inc a
-	ld [wd667], a
+	ld [wNumBoosterPacksToGive], a ; = random [1,N]
 	jr .copy
-.one
-	ld a, [hli]
-	ld [wd667], a
+.give_n
+	ld a, [hli] ; read N before the list
+	ld [wNumBoosterPacksToGive], a ; = N
 .copy
-	ld de, wd64e
+	ld de, wBoosterPackList
 	xor a
 	ld c, a
 .loop_copy_and_count
@@ -4170,14 +4168,14 @@ ScriptCommand_GiveBoosterPacks:
 
 .copied_and_counted
 	ld a, c
-	ld [wd65e], a
-	ld de, wd65f
-	ld a, [wd667]
+	ld [wBoosterPackCount], a ; = list size
+	ld de, wBoosterPacksToGive
+	ld a, [wNumBoosterPacksToGive]
 	ld c, a
 .loop_random_copy
-	ld a, [wd65e]
+	ld a, [wBoosterPackCount]
 	call Random
-	ld hl, wd64e
+	ld hl, wBoosterPackList
 	add l
 	ld l, a
 	jr nc, .got_pointer
@@ -4189,13 +4187,13 @@ ScriptCommand_GiveBoosterPacks:
 	dec c
 	jr nz, .loop_random_copy
 
-	ld a, [wd667]
+	ld a, [wNumBoosterPacksToGive]
 	ld c, a
 .sort
-	ld a, [wd667]
+	ld a, [wNumBoosterPacksToGive]
 	ld b, a
-	ld hl, wd65f
-	ld de, wd65f
+	ld hl, wBoosterPacksToGive
+	ld de, wBoosterPacksToGive
 	inc de
 .loop_sort
 	dec b
@@ -4217,10 +4215,10 @@ ScriptCommand_GiveBoosterPacks:
 	dec c
 	jr nz, .sort
 
-	ld hl, wd65f
+	ld hl, wBoosterPacksToGive
 .give_boosters
 	farcall Func_1022a
-	ld a, [wd667]
+	ld a, [wNumBoosterPacksToGive]
 	ld c, a
 	xor a
 	ld b, a

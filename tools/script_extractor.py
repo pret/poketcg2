@@ -117,7 +117,7 @@ script_commands = {
 	0x53: { "name": "backup_active_npc",                      "params": [] },
 	0x54: { "name": "load_player",                            "params": [ "byte_decimal", "byte_decimal", "direction" ] },
 	0x55: { "name": "unload_player",                          "params": [] },
-	0x56: { "name": "give_booster_packs",                     "params": [ "word" ] }, # todo: parse booster data
+	0x56: { "name": "give_booster_packs",                     "params": [ "booster" ] },
 	0x57: { "name": "get_random",                             "params": [ "byte" ] },
 	0x58: { "name": "script_command_58",                      "params": [] }, # ?
 	0x59: { "name": "set_text_ram3",                          "params": [ "word" ] },
@@ -187,6 +187,7 @@ param_lengths = {
 	"var":              1,
 	"word":             2,
 	"word_decimal":     2,
+	"booster":          2,
 	"card":             2,
 	"frameset":         2,
 	"palette":          2,
@@ -335,6 +336,15 @@ def dump_script(start_address, address=None, visited=set()):
 				output += " ${:04x}".format(param + rom[address + 1] * 0x100)
 			elif param_type == "word_decimal":
 				output += " {}".format(param + rom[address + 1] * 0x100)
+			elif param_type == "booster":
+				bank = 3
+				if bank not in symbols:
+					symbols[bank] = load_symbols(args.symfile, bank)
+				param = get_pointer(address, bank)
+				label = "BoosterList_{:x}".format(param)
+				if param in symbols[bank]:
+					label = symbols[bank][param]
+				output += " {}".format(label)
 			elif param_type == "card":
 				output += " {}".format(cards[param + rom[address + 1] * 0x100])
 			elif param_type == "frameset":
