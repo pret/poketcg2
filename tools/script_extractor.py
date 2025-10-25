@@ -242,7 +242,7 @@ class ScriptExtractor(object):
 		blobs.append(self.make_blob(address, label + self.make_address_comment(address)))
 		while 1:
 			movement_direction = self.rom[address]
-			movement_steps = self.rom[address+1]
+			movement_steps = self.rom[address + 1]
 
 			# convert raw value to MOVE_xx constant. see: script_constants.asm
 			movement_steps = (movement_steps - 1) >> 2
@@ -269,7 +269,7 @@ class ScriptExtractor(object):
 			# in this case, the script we are processing is inlined in an ASM function, and
 			# we want to omit the Script_xxx label.
 			# the "call StartScript" is replaced with start_script in the while loop.
-			if not self.rom[start_address] == 0xcd:
+			if self.rom[start_address] != 0xcd:
 				label = "Script_{:x}".format(start_address)
 				if start_address in self.symbols[self.get_bank(start_address)]:
 					label = self.symbols[self.get_bank(start_address)][start_address]
@@ -512,12 +512,12 @@ if __name__ == "__main__":
 	ap.add_argument("-a", "--address-comments", action="store_true", help="add address comments after labels")
 	ap.add_argument("-b", "--allow-backward-jumps", action="store_true", help="extract scripts that are found before the starting address")
 	ap.add_argument("-c", "--follow-far-calls", action="store_true", help="extract scripts that are in another bank")
-	ap.add_argument("--skip-trailing-ret", action="store_true", help="whether or not to output ret commands that exist 1 byte after script end")
 	ap.add_argument("-f", "--fix-unreachable", action="store_true", help="fix unreachable labels that are referenced from the wrong scope")
 	ap.add_argument("-g", "--fill-gaps", action="store_true", help="use 'db's to fill the gaps between visited locations")
 	ap.add_argument("-i", "--ignore-errors", action="store_true", help="silently proceed to the next address if an error occurs")
 	ap.add_argument("-r", "--rom", default="baserom.gbc", help="rom file to extract script from")
 	ap.add_argument("-s", "--symfile", default="poketcg2.sym", help="symfile to extract symbols from")
+	ap.add_argument("-t", "--skip-trailing-ret", action="store_true", help="whether or not to output ret commands that exist 1 byte after script end")
 	ap.add_argument("addresses", nargs="+", help="addresses to extract from")
 	args = ap.parse_args()
 	extractor = ScriptExtractor(args.__dict__)
@@ -525,8 +525,7 @@ if __name__ == "__main__":
 	blobs = []
 	for address in args.addresses:
 		try:
-			addr = int(address, 16)
-			blobs += extractor.dump_script(addr)
+			blobs += extractor.dump_script(int(address, 16))
 		except:
 			print("Parsing script failed: {}".format(address), file=sys.stderr)
 			if not args.ignore_errors:

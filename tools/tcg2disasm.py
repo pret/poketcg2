@@ -1376,7 +1376,7 @@ class Disassembler(object):
 
 				# dump script if we found one. Note that we pass the offset of the "call StartScript"
 				# command (CD FF 32) into dump_script, and it is output there as "start_script"
-				if(parse_scripts and (opcode_byte in call_commands and target_label == "StartScript")):
+				if parse_scripts and (opcode_byte in call_commands and target_label == "StartScript"):
 					print('DEBUG: script block @ {:x}'.format(offset))
 
 					# += here to handle cases where we still have future scripts to add to the output,
