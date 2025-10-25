@@ -23,7 +23,7 @@ Func_2c6ec:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2c71e
 	print_npc_text Text0b1f
-	give_booster_packs $4d15
+	give_booster_packs BoosterList_cd15
 	print_npc_text Text0b20
 	script_jump .ows_2c721
 ; 0x2c71e
@@ -39,7 +39,7 @@ Func_2c6ec:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2c735
 	print_npc_text Text0b22
-	give_booster_packs $4d19
+	give_booster_packs BoosterList_cd19
 	print_npc_text Text0b23
 	script_jump .ows_2c738
 ; 0x2c735

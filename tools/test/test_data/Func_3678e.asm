@@ -8,7 +8,7 @@ Func_3678e:
 	script_jump_if_b0nz .ows_367ab
 	set_event EVENT_BEAT_MIWA
 	print_npc_text Text1153
-	give_booster_packs $4d92
+	give_booster_packs BoosterList_cd92
 	print_npc_text Text1154
 	script_jump .ows_367c8
 ; 0x367ab
@@ -23,7 +23,7 @@ Func_3678e:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_367c2
 	print_npc_text Text1156
-	give_booster_packs $4d92
+	give_booster_packs BoosterList_cd92
 	print_npc_text Text1157
 	script_jump .ows_367c5
 ; 0x367c2

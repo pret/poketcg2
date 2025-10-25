@@ -8,7 +8,7 @@ Func_35e5e:
 	script_jump_if_b0nz .ows_35e7b
 	set_event EVENT_FREED_MITCH
 	print_npc_text Text0bf2
-	give_booster_packs $4d86
+	give_booster_packs BoosterList_cd86
 	print_npc_text Text0bf3
 	script_jump .ows_35e98
 ; 0x35e7b
@@ -23,7 +23,7 @@ Func_35e5e:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_35e92
 	print_npc_text Text0bf5
-	give_booster_packs $4d86
+	give_booster_packs BoosterList_cd86
 	print_npc_text Text0bf6
 	script_jump .ows_35e95
 ; 0x35e92
