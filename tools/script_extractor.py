@@ -22,11 +22,6 @@ from constants import songs
 from constants import tilemaps
 from constants import vars
 
-args = None
-rom = None
-symbols = None
-texts = None
-
 # script command names and parameter lists
 script_commands = {
 	0xcd: { "name": "start_script",                           "params": [ "skip_word" ] },
@@ -199,230 +194,271 @@ param_lengths = {
 	"script_far":       3,
 }
 
-def get_bank(address):
-	return int(address / 0x4000)
+class ScriptExtractor(object):
+	def __init__(self, args):
+		self.args = args
+		self.rom = bytearray(open(args["rom"], "rb").read())
+		self.symbols = {}
+		self.texts = self.load_texts("src/text/text_offsets.asm")
+		self.symfile = args["symfile"]
+		self.address_comments = args["address_comments"]
+		self.allow_backward_jumps = args["allow_backward_jumps"]
+		self.follow_far_calls = args["follow_far_calls"]
+		self.fill_gaps = args["fill_gaps"]
+		self.skip_trailing_ret = args["skip_trailing_ret"]
 
-def get_relative_address(address):
-	if address < 0x4000:
-		return address
-	return (address % 0x4000) + 0x4000
+	def get_bank(self, address):
+		return int(address / 0x4000)
 
-# get absolute pointer stored at an address in the rom
-# if bank is None, assumes the pointer refers to the same bank as the bank it is located in
-def get_pointer(address, bank=None):
-	raw_pointer = rom[address + 1] * 0x100 + rom[address]
-	if raw_pointer < 0x4000:
-		bank = 0
-	if bank is None:
-		bank = get_bank(address)
-	return (raw_pointer % 0x4000) + bank * 0x4000
+	def get_relative_address(self, address):
+		if address < 0x4000:
+			return address
+		return (address % 0x4000) + 0x4000
 
-def make_address_comment(address):
-	if args.address_comments:
-		return ": ; {:x} ({:x}:{:x})\n".format(address, get_bank(address), get_relative_address(address))
-	else:
-		return ":\n"
+	# get absolute pointer stored at an address in the rom
+	# if bank is None, assumes the pointer refers to the same bank as the bank it is located in
+	def get_pointer(self, address, bank=None):
+		raw_pointer = self.rom[address + 1] * 0x100 + self.rom[address]
+		if raw_pointer < 0x4000:
+			bank = 0
+		if bank is None:
+			bank = self.get_bank(address)
+		return (raw_pointer % 0x4000) + bank * 0x4000
 
-def make_blob(start, output, end=None):
-	return { "start": start, "output": output, "end": end if end else start }
+	def make_address_comment(self, address):
+		if self.address_comments:
+			return ": ; {:x} ({:x}:{:x})\n".format(address, self.get_bank(address), self.get_relative_address(address))
+		else:
+			return ":\n"
 
-def dump_movement(address):
-	blobs = []
-	label = "NPCMovement_{:x}".format(address)
-	if address in symbols[get_bank(address)]:
-		label = symbols[get_bank(address)][address]
-	blobs.append(make_blob(address, label + make_address_comment(address)))
-	while 1:
-		movement_direction = rom[address]
-		movement_steps = rom[address + 1]
+	def make_blob(self, start, output, end=None):
+		return { "start": start, "output": output, "end": end if end else start }
 
-		# convert raw value to MOVE_xx constant. see: script_constants.asm
-		movement_steps = (movement_steps - 1) >> 2
+	def dump_movement(self, address):
+		blobs = []
+		label = "NPCMovement_{:x}".format(address)
+		if address in self.symbols[self.get_bank(address)]:
+			label = self.symbols[self.get_bank(address)][address]
+		blobs.append(self.make_blob(address, label + self.make_address_comment(address)))
+		while 1:
+			movement_direction = self.rom[address]
+			movement_steps = self.rom[address + 1]
 
-		if movement_direction == 0xff:
-			blobs.append(make_blob(address, "\tdb $ff\n\n", address + 1))
-			break
-		blobs.append(make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
-		address += 2
-	return blobs
+			# convert raw value to MOVE_xx constant. see: script_constants.asm
+			movement_steps = (movement_steps - 1) >> 2
 
-# parse a script starting at the given address
-# returns a list of all commands
-def dump_script(start_address, address=None, visited=set()):
-	global symbols
-	blobs = []
-	branches = set()
-	calls = set()
-	if address is None:
-		label = "Script_{:x}".format(start_address)
-		if start_address in symbols[get_bank(start_address)]:
-			label = symbols[get_bank(start_address)][start_address]
-		blobs.append(make_blob(start_address, label + make_address_comment(start_address)))
-		address = start_address
-	else:
-		label = ".ows_{:x}\n".format(address)
-		if address in symbols[get_bank(address)]:
-			label = symbols[get_bank(address)][address]
-			if label.startswith("."):
-				label += "\n"
-			else:
-				label += make_address_comment(address)
-		blobs.append(make_blob(address, label))
-	if address in visited:
+			if movement_direction == 0xff:
+				blobs.append(self.make_blob(address, "\tdb $ff\n\n", address + 1))
+				break
+			blobs.append(self.make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
+			address += 2
 		return blobs
-	visited.add(address)
-	while 1:
-		command_address = address
-		command_id = rom[command_address]
-		command = script_commands[command_id]
-		address += 1
-		output = "\t{}".format(command["name"])
-		# print all params for current command
-		for i in range(len(command["params"])):
-			param = rom[address]
-			param_type = command["params"][i]
-			param_length = param_lengths[param_type]
-			if param_type == "byte":
-				output += " ${:02x}".format(param)
-			elif param_type == "byte_decimal":
-				output += " {}".format(param)
-			elif param_type == "bool":
-				if param == 0:
-					output += " FALSE"
-				elif param == 1:
-					output += " TRUE"
+
+	# parse a script starting at the given address
+	# returns a list of all commands
+	def dump_script(self, start_address, address=None, visited=set()):
+		bank = self.get_bank(start_address)
+		if bank not in self.symbols:
+			self.symbols[bank] = self.load_symbols(self.symfile, bank)
+
+		blobs = []
+		branches = set()
+		calls = set()
+		if address is None:
+			# cd only happens when dump_script is called on a "call StartScript" command
+			# in this case, the script we are processing is inlined in an ASM function, and
+			# we want to omit the Script_xxx label.
+			# the "call StartScript" is replaced with start_script in the while loop.
+			if self.rom[start_address] != 0xcd:
+				label = "Script_{:x}".format(start_address)
+				if start_address in self.symbols[self.get_bank(start_address)]:
+					label = self.symbols[self.get_bank(start_address)][start_address]
+				blobs.append(self.make_blob(start_address, label + self.make_address_comment(start_address)))
+			address = start_address
+		else:
+			label = ".ows_{:x}\n".format(address)
+			if address in self.symbols[self.get_bank(address)]:
+				label = self.symbols[self.get_bank(address)][address]
+				if label.startswith("."):
+					label += "\n"
 				else:
-					raise ValueError
-			elif param_type == "cardpop":
-				output += " {}".format(cardpops[param])
-			elif param_type == "coin":
-				output += " {}".format(coins[param])
-			elif param_type == "deck":
-				output += " {}".format(decks[param])
-			elif param_type == "direction":
-				output += " {}".format(directions[param])
-			elif param_type == "duel_requirement":
-				output += " {}".format(duel_requirements[param])
-			elif param_type == "event":
-				output += " {}".format(events[param])
-			elif param_type == "map":
-				output += " {}".format(maps[param])
-			elif param_type == "npc":
-				output += " {}".format(npcs[param])
-			elif param_type == "prizes":
-				output += " PRIZES_{}".format(param)
-			elif param_type == "sfx":
-				output += " {}".format(sfxs[param])
-			elif param_type == "song":
-				output += " {}".format(songs[param])
-			elif param_type == "var":
-				output += " {}".format(vars[param])
-			elif param_type == "word":
-				output += " ${:04x}".format(param + rom[address + 1] * 0x100)
-			elif param_type == "word_decimal":
-				output += " {}".format(param + rom[address + 1] * 0x100)
-			elif param_type == "booster":
-				bank = 3
-				if bank not in symbols:
-					symbols[bank] = load_symbols(args.symfile, bank)
-				param = get_pointer(address, bank)
-				label = "BoosterList_{:x}".format(param)
-				if param in symbols[bank]:
-					label = symbols[bank][param]
-				output += " {}".format(label)
-			elif param_type == "card":
-				output += " {}".format(cards[param + rom[address + 1] * 0x100])
-			elif param_type == "frameset":
-				output += " {}".format(framesets[param + rom[address + 1] * 0x100])
-			elif param_type == "palette":
-				output += " {}".format(palettes[param + rom[address + 1] * 0x100])
-			elif param_type == "tilemap":
-				output += " {}".format(tilemaps[param + rom[address + 1] * 0x100])
-			elif param_type == "movement":
-				param = get_pointer(address)
-				label = "NPCMovement_{:x}".format(param)
-				if param in symbols[get_bank(param)]:
-					label = symbols[get_bank(param)][param]
-				output += " {}".format(label)
-				blobs += dump_movement(param)
-			elif param_type == "text":
-				text_id = param + rom[address + 1] * 0x100
-				if text_id == 0x0000:
-					output += " NULL"
-				else:
-					output += " {}".format(texts[text_id])
-			elif param_type == "script" or param_type == "script_far":
-				if param_type == "script":
-					param = get_pointer(address)
-				else:
-					bank = rom[address + 2]
-					if bank not in symbols:
-						symbols[bank] = load_symbols(args.symfile, bank)
-					param = get_pointer(address, bank)
-				if param == 0x0000:
-					label = "NULL"
-				elif param == start_address:
-					label = "Script_{:x}".format(param)
-					if param in symbols[get_bank(param)]:
-						label = symbols[get_bank(param)][param]
-				elif param_type == "script_far":
-					label = "Script_{:x}".format(param)
-					if param in symbols[get_bank(param)]:
-						label = symbols[get_bank(param)][param]
-					if args.follow_far_calls:
-						calls.add(param)
-				else:
-					label = ".ows_{:x}".format(param)
-					if param in symbols[get_bank(param)]:
-						label = symbols[get_bank(param)][param]
-					if param > start_address or args.allow_backward_jumps:
-						branches.add(param)
-				if command_id == 0x50:
-					condition = rom[address + 2]
-					if condition != 0:
-						output += " {},".format(conditions[condition])
-				output += " {}".format(label)
-			address += param_length
-			if i < len(command["params"]) - 1:
-				output += ","
-		if output.endswith(","):
-			output = output[:-1]
+					label += self.make_address_comment(address)
+			blobs.append(self.make_blob(address, label))
+		if address in visited:
+			return blobs
+		visited.add(address)
+		while 1:
+			command_address = address
+			command_id = self.rom[command_address]
+			command = script_commands[command_id]
+			address += 1
+			output = "\t{}".format(command["name"])
+			# print all params for current command
+			for i in range(len(command["params"])):
+				param = self.rom[address]
+				param_type = command["params"][i]
+				param_length = param_lengths[param_type]
+				if param_type == "byte":
+					output += " ${:02x}".format(param)
+				elif param_type == "byte_decimal":
+					output += " {}".format(param)
+				elif param_type == "bool":
+					if param == 0:
+						output += " FALSE"
+					elif param == 1:
+						output += " TRUE"
+					else:
+						raise ValueError
+				elif param_type == "cardpop":
+					output += " {}".format(cardpops[param])
+				elif param_type == "coin":
+					output += " {}".format(coins[param])
+				elif param_type == "deck":
+					output += " {}".format(decks[param])
+				elif param_type == "direction":
+					output += " {}".format(directions[param])
+				elif param_type == "duel_requirement":
+					output += " {}".format(duel_requirements[param])
+				elif param_type == "event":
+					output += " {}".format(events[param])
+				elif param_type == "map":
+					output += " {}".format(maps[param])
+				elif param_type == "npc":
+					output += " {}".format(npcs[param])
+				elif param_type == "prizes":
+					output += " PRIZES_{}".format(param)
+				elif param_type == "sfx":
+					output += " {}".format(sfxs[param])
+				elif param_type == "song":
+					output += " {}".format(songs[param])
+				elif param_type == "var":
+					output += " {}".format(vars[param])
+				elif param_type == "word":
+					output += " ${:04x}".format(param + self.rom[address + 1] * 0x100)
+				elif param_type == "word_decimal":
+					output += " {}".format(param + self.rom[address + 1] * 0x100)
+				elif param_type == "booster":
+					bank = 3
+					if bank not in self.symbols:
+						self.symbols[bank] = self.load_symbols(self.symfile, bank)
+					param = self.get_pointer(address, bank)
+					label = "BoosterList_{:x}".format(param)
+					if param in self.symbols[bank]:
+						label = self.symbols[bank][param]
+					output += " {}".format(label)
+				elif param_type == "card":
+					output += " {}".format(cards[param + self.rom[address + 1] * 0x100])
+				elif param_type == "frameset":
+					output += " {}".format(framesets[param + self.rom[address + 1] * 0x100])
+				elif param_type == "palette":
+					output += " {}".format(palettes[param + self.rom[address + 1] * 0x100])
+				elif param_type == "tilemap":
+					output += " {}".format(tilemaps[param + self.rom[address + 1] * 0x100])
+				elif param_type == "movement":
+					param = self.get_pointer(address)
+					label = "NPCMovement_{:x}".format(param)
+					if param in self.symbols[self.get_bank(param)]:
+						label = self.symbols[self.get_bank(param)][param]
+					output += " {}".format(label)
+					blobs += self.dump_movement(param)
+				elif param_type == "text":
+					text_id = param + self.rom[address + 1] * 0x100
+					if text_id == 0x0000:
+						output += " NULL"
+					else:
+						output += " {}".format(self.texts[text_id])
+				elif param_type == "script" or param_type == "script_far":
+					if param_type == "script":
+						param = self.get_pointer(address)
+					else:
+						bank = self.rom[address + 2]
+						if bank not in self.symbols:
+							self.symbols[bank] = self.load_symbols(self.symfile, bank)
+						param = self.get_pointer(address, bank)
+					if param == 0x0000:
+						label = "NULL"
+					elif param == start_address:
+						label = "Script_{:x}".format(param)
+						if param in self.symbols[self.get_bank(param)]:
+							label = self.symbols[self.get_bank(param)][param]
+					elif param_type == "script_far":
+						label = "Script_{:x}".format(param)
+						if param in self.symbols[self.get_bank(param)]:
+							label = self.symbols[self.get_bank(param)][param]
+						if self.follow_far_calls:
+							calls.add(param)
+					else:
+						label = ".ows_{:x}".format(param)
+						if param in self.symbols[self.get_bank(param)]:
+							label = self.symbols[self.get_bank(param)][param]
+						if param > start_address or self.allow_backward_jumps:
+							branches.add(param)
+					if command_id == 0x50:
+						condition = self.rom[address + 2]
+						if condition != 0:
+							output += " {},".format(conditions[condition])
+					output += " {}".format(label)
+				address += param_length
+				if i < len(command["params"]) - 1:
+					output += ","
+			if output.endswith(","):
+				output = output[:-1]
+			output += "\n"
+			blobs.append(self.make_blob(command_address, output, address))
+			if command_id in quit_commands:
+				if not self.skip_trailing_ret and self.rom[address] == 0xc9:
+					blobs.append(self.make_blob(address, "\tret\n", address + 1))
+					address += 1
+				blobs.append(self.make_blob(address, "; 0x{:x}\n\n".format(address)))
+				break
+		for branch in branches:
+			blobs += self.dump_script(start_address, branch, visited)
+		for call in calls:
+			blobs += self.dump_script(call, None, visited)
+		return blobs
+
+	def fill_gap(self, start, end):
+		output = ""
+		for address in range(start, end):
+			output += "\tdb ${:x}\n".format(self.rom[address])
 		output += "\n"
-		blobs.append(make_blob(command_address, output, address))
-		if command_id in quit_commands:
-			if rom[address] == 0xc9:
-				blobs.append(make_blob(address, "\tret\n", address + 1))
-				address += 1
-			blobs.append(make_blob(address, "; 0x{:x}\n\n".format(address)))
-			break
-	for branch in branches:
-		blobs += dump_script(start_address, branch, visited)
-	for call in calls:
-		blobs += dump_script(call, None, visited)
-	return blobs
+		return output
 
-def fill_gap(start, end):
-	output = ""
-	for address in range(start, end):
-		output += "\tdb ${:x}\n".format(rom[address])
-	output += "\n"
-	return output
+	def sort_and_filter(self, blobs):
+		blobs.sort(key=lambda b: (b["start"], b["end"], not b["output"].startswith(";")))
+		filtered = []
+		for blob, next in zip(blobs, blobs[1:]+[None]):
+			if next and blob["start"] == next["start"] and blob["output"] == next["output"]:
+				continue
+			if next and blob["end"] < next["start"] and self.get_bank(blob["end"]) == self.get_bank(next["start"]):
+				if self.fill_gaps:
+					blob["output"] += self.fill_gap(blob["end"], next["start"])
+				else:
+					blob["output"] += "; gap from 0x{:x} to 0x{:x}\n\n".format(blob["end"], next["start"])
+			filtered.append(blob)
+		if len(filtered) > 0:
+			filtered[-1]["output"] = filtered[-1]["output"].rstrip("\n")
+		return filtered
 
-def sort_and_filter(blobs):
-	blobs.sort(key=lambda b: (b["start"], b["end"], not b["output"].startswith(";")))
-	filtered = []
-	for blob, next in zip(blobs, blobs[1:]+[None]):
-		if next and blob["start"] == next["start"] and blob["output"] == next["output"]:
-			continue
-		if next and blob["end"] < next["start"] and get_bank(blob["end"]) == get_bank(next["start"]):
-			if args.fill_gaps:
-				blob["output"] += fill_gap(blob["end"], next["start"])
-			else:
-				blob["output"] += "; gap from 0x{:x} to 0x{:x}\n\n".format(blob["end"], next["start"])
-		filtered.append(blob)
-	if len(filtered) > 0:
-		filtered[-1]["output"] = filtered[-1]["output"].rstrip("\n")
-	return filtered
+	def load_symbols(self, symfile, load_bank):
+		sym = {}
+		for line in open(symfile, encoding="utf8"):
+			line = line.split(";")[0].strip()
+			if line.startswith("{:02x}:".format(load_bank)):
+				bank_address, label = line.split(" ")[:2]
+				bank, address = bank_address.split(":")
+				address = (int(address, 16) % 0x4000) + int(bank, 16) * 0x4000
+				if "." in label:
+					label = "." + label.split(".")[1]
+				sym[address] = label
+		return sym
+
+	def load_texts(self, txfile):
+		tx = [None]
+		for line in open(txfile, encoding="utf8"):
+			if line.startswith("\ttextpointer"):
+				tx.append(line.split()[1])
+		return tx
 
 def find_unreachable_labels(input):
 	scope = ""
@@ -471,26 +507,6 @@ def fix_unreachable_labels(input, unreachable_labels):
 	output = output.rstrip("\n")
 	return output
 
-def load_symbols(symfile, load_bank):
-	sym = {}
-	for line in open(symfile, encoding="utf8"):
-		line = line.split(";")[0].strip()
-		if line.startswith("{:02x}:".format(load_bank)):
-			bank_address, label = line.split(" ")[:2]
-			bank, address = bank_address.split(":")
-			address = (int(address, 16) % 0x4000) + int(bank, 16) * 0x4000
-			if "." in label:
-				label = "." + label.split(".")[1]
-			sym[address] = label
-	return sym
-
-def load_texts(txfile):
-	tx = [None]
-	for line in open(txfile, encoding="utf8"):
-		if line.startswith("\ttextpointer"):
-			tx.append(line.split()[1])
-	return tx
-
 if __name__ == "__main__":
 	ap = argparse.ArgumentParser(description="Pokemon TCG 2 Script Extractor")
 	ap.add_argument("-a", "--address-comments", action="store_true", help="add address comments after labels")
@@ -501,24 +517,20 @@ if __name__ == "__main__":
 	ap.add_argument("-i", "--ignore-errors", action="store_true", help="silently proceed to the next address if an error occurs")
 	ap.add_argument("-r", "--rom", default="baserom.gbc", help="rom file to extract script from")
 	ap.add_argument("-s", "--symfile", default="poketcg2.sym", help="symfile to extract symbols from")
+	ap.add_argument("-t", "--skip-trailing-ret", action="store_true", help="whether or not to output ret commands that exist 1 byte after script end")
 	ap.add_argument("addresses", nargs="+", help="addresses to extract from")
 	args = ap.parse_args()
-	rom = bytearray(open(args.rom, "rb").read())
-	symbols = {}
-	texts = load_texts("src/text/text_offsets.asm")
+	extractor = ScriptExtractor(args.__dict__)
+
 	blobs = []
 	for address in args.addresses:
 		try:
-			addr = int(address, 16)
-			bank = get_bank(addr)
-			if bank not in symbols:
-				symbols[bank] = load_symbols(args.symfile, bank)
-			blobs += dump_script(addr)
+			blobs += extractor.dump_script(int(address, 16))
 		except:
 			print("Parsing script failed: {}".format(address), file=sys.stderr)
 			if not args.ignore_errors:
 				raise
-	blobs = sort_and_filter(blobs)
+	blobs = extractor.sort_and_filter(blobs)
 	output = ""
 	for blob in blobs:
 		output += blob["output"]
