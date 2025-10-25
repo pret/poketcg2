@@ -10,6 +10,8 @@ from ctypes import c_int8
 import configuration
 from wram import read_constants
 
+from script_extractor import ScriptExtractor
+
 z80_table = [
 	('nop', 0),                    # 00
 	('ld bc, {}', 2),              # 01
@@ -998,6 +1000,7 @@ class Disassembler(object):
 		self.sram = None
 		self.hram = None
 		self.wram = None
+		self.script_extractor = None
 
 	def initialize(self, rom, symfile):
 		"""
@@ -1015,6 +1018,17 @@ class Disassembler(object):
 		path = os.path.join(self.config.path, 'src/constants/hardware_constants.asm')
 		if os.path.exists(path):
 			self.gbhw = read_constants(path)
+
+		script_extractor_args = {
+			"address_comments":False,
+			"allow_backward_jumps":False,
+			"follow_far_calls":False,
+			"fill_gaps":False,
+			"skip_trailing_ret": True,
+			"rom":rom,
+			"symfile":symfile
+		}
+		self.script_extractor = ScriptExtractor(script_extractor_args)
 
 	def find_label(self, address, bank=0):
 		if type(address) is str:
@@ -1075,7 +1089,7 @@ class Disassembler(object):
 
 		return None
 
-	def output_bank_opcodes(self, start_offset, stop_offset, hard_stop=False, parse_data=False):
+	def output_bank_opcodes(self, start_offset, stop_offset, hard_stop=False, parse_data=False, parse_scripts=False):
 		"""
 		Output bank opcodes.
 
@@ -1118,6 +1132,7 @@ class Disassembler(object):
 		output = "Func_%x:\n" % (start_offset)
 		is_data = False
 
+		script_blobs = []
 		while True:
 			#first check if this byte already has a label
 			#if it does, use the label
@@ -1358,11 +1373,55 @@ class Disassembler(object):
 					# error checking
 					raise ValueError("Invalid amount of args.")
 
-				# append the formatted opcode output string to the output
-				output += self.spacing + opcode_output_str + "\n" #+ " ; " + hex(offset)
-				# increase the current byte number and offset by the amount of arguments plus 1 (opcode itself)
-				current_byte_number += opcode_nargs + 1
-				offset += opcode_nargs + 1
+
+				# dump script if we found one. Note that we pass the offset of the "call StartScript"
+				# command (CD FF 32) into dump_script, and it is output there as "start_script"
+				if parse_scripts and (opcode_byte in call_commands and target_label == "StartScript"):
+					print('DEBUG: script block @ {:x}'.format(offset))
+
+					# += here to handle cases where we still have future scripts to add to the output,
+					# but got back to this block because we disassembled a new StartScript call
+					script_blobs += self.script_extractor.dump_script(offset, visited=set())
+					script_blobs = self.script_extractor.sort_and_filter(script_blobs)
+
+				else:
+					# append the formatted opcode output string to the output
+					output += self.spacing + opcode_output_str + "\n" #+ " ; " + hex(offset)
+					# increase the current byte number and offset by the amount of arguments plus 1 (opcode itself)
+					current_byte_number += opcode_nargs + 1
+					offset += opcode_nargs + 1
+
+				# if we have reached one of the waiting script blobs, add them to the output
+				# and advance offset until we reach the next gap so we can continue disassembling from there.
+				while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+					blob = script_blobs.pop(0)
+					output += blob["output"] + "\n"
+					offset = blob["end"]
+
+				# if, after adding script blobs to the output, the next instruction is a ret,
+				# output the ret instruction and append more script blobs if available,
+				# until we run out of rets or blobs.
+				byte_after_scripts = rom[offset]
+				while parse_scripts and byte_after_scripts in unconditional_returns:
+					# output a .asm_xxx label before the ret, if there is one
+					local_offset = get_local_address(offset)
+					if local_offset in byte_labels.keys() and not byte_labels[local_offset]["definition"]:
+						byte_labels[local_offset]["definition"] = True
+						output += asm_label(offset) + "\n"
+
+					# output the ret, and update opcode_byte & offset since they are used later to
+					# determine if we should stop processing
+					opcode_byte = rom[offset]
+					output += self.spacing + z80_table[byte_after_scripts][0] + "\n"
+					offset += 1
+
+					# loop through script blobs and add them to output, as before
+					while len(script_blobs) > 0 and offset == script_blobs[0]["start"]:
+						blob = script_blobs.pop(0)
+						output += blob["output"] + "\n"
+						offset = blob["end"]
+
+					byte_after_scripts = rom[offset]
 
 			else:
 				# output a single lined db, using the current byte
@@ -1381,7 +1440,7 @@ class Disassembler(object):
 			if hard_stop and offset >= stop_offset:
 				break
 			# check if this is the end of the function, or we're processing data (StartScript begins ow scripting)
-			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (opcode_byte in call_commands and target_label == "StartScript") or is_data:
+			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (not parse_scripts and opcode_byte in call_commands and target_label == "StartScript") or is_data:
 				# define data if it is located at the current offset
 				if local_offset not in byte_labels.keys() and local_offset in data_tables.keys() and created_but_unused_labels_exist(data_tables) and parse_data:
 					is_data = True
@@ -1390,6 +1449,9 @@ class Disassembler(object):
 					break
 				# otherwise, add some spacing
 				output += "\n"
+
+		if len(script_blobs) > 0:
+			print("WARN: {} script blobs starting at {:x} were not added to output".format(len(script_blobs), script_blobs[0]['start']))
 
 		# before returning output, we need to clean up some things
 
@@ -1457,6 +1519,7 @@ if __name__ == "__main__":
 	ap.add_argument("-nw", "--no-write", dest="no_write", action="store_true")
 	ap.add_argument("-d", "--dry-run", dest="dry_run", action="store_true")
 	ap.add_argument("-pd", "--parse_data", dest="parse_data", action="store_true")
+	ap.add_argument("-ps", "--parse_scripts", dest="parse_scripts", action="store_true")
 	ap.add_argument('offset')
 	ap.add_argument('end', nargs='?')
 
@@ -1472,7 +1535,7 @@ if __name__ == "__main__":
 	stop_addr = get_raw_addr(args.end)
 
 	# run the disassembler and return the output
-	output = disasm.output_bank_opcodes(start_addr,stop_addr,hard_stop=args.dry_run,parse_data=args.parse_data)[0]
+	output = disasm.output_bank_opcodes(start_addr,stop_addr,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts)[0]
 
 	# suppress output if quiet flag is set
 	if not args.quiet:
