@@ -112,7 +112,7 @@ script_commands = {
 	0x53: { "name": "backup_active_npc",                      "params": [] },
 	0x54: { "name": "load_player",                            "params": [ "byte_decimal", "byte_decimal", "direction" ] },
 	0x55: { "name": "unload_player",                          "params": [] },
-	0x56: { "name": "give_booster_packs",                     "params": [ "word" ] }, # todo: parse booster data
+	0x56: { "name": "give_booster_packs",                     "params": [ "booster" ] },
 	0x57: { "name": "get_random",                             "params": [ "byte" ] },
 	0x58: { "name": "script_command_58",                      "params": [] }, # ?
 	0x59: { "name": "set_text_ram3",                          "params": [ "word" ] },
@@ -182,12 +182,12 @@ param_lengths = {
 	"var":              1,
 	"word":             2,
 	"word_decimal":     2,
+	"booster":          2,
 	"card":             2,
 	"frameset":         2,
 	"palette":          2,
 	"tilemap":          2,
 	"movement":         2,
-	"movement_table":   2,
 	"text":             2,
 	"script":           2,
 	"skip_word":        2,
@@ -251,19 +251,6 @@ class ScriptExtractor(object):
 				blobs.append(self.make_blob(address, "\tdb $ff\n\n", address + 1))
 				break
 			blobs.append(self.make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
-			address += 2
-		return blobs
-
-	def dump_movement_table(self, address):
-		blobs = []
-		label = "NPCMovementTable_{:x}".format(address)
-		if address in self.symbols[self.get_bank(address)]:
-			label = self.symbols[self.get_bank(address)][address]
-		blobs.append(self.make_blob(address, label + self.make_address_comment(address)))
-		for i in range(4):
-			pointer = self.get_pointer(address)
-			blobs.append(self.make_blob(address, "\tdw NPCMovement_{:x}\n".format(pointer) + ("\n" if i == 3 else ""), address + 2))
-			blobs += self.dump_movement(pointer)
 			address += 2
 		return blobs
 
@@ -350,6 +337,15 @@ class ScriptExtractor(object):
 					output += " ${:04x}".format(param + self.rom[address + 1] * 0x100)
 				elif param_type == "word_decimal":
 					output += " {}".format(param + self.rom[address + 1] * 0x100)
+				elif param_type == "booster":
+					bank = 3
+					if bank not in self.symbols:
+						self.symbols[bank] = self.load_symbols(self.symfile, bank)
+					param = self.get_pointer(address, bank)
+					label = "BoosterList_{:x}".format(param)
+					if param in self.symbols[bank]:
+						label = self.symbols[bank][param]
+					output += " {}".format(label)
 				elif param_type == "card":
 					output += " {}".format(cards[param + self.rom[address + 1] * 0x100])
 				elif param_type == "frameset":
@@ -365,13 +361,6 @@ class ScriptExtractor(object):
 						label = self.symbols[self.get_bank(param)][param]
 					output += " {}".format(label)
 					blobs += self.dump_movement(param)
-				elif param_type == "movement_table":
-					param = self.get_pointer(address)
-					label = "NPCMovementTable_{:x}".format(param)
-					if param in self.symbols[self.get_bank(param)]:
-						label = self.symbols[self.get_bank(param)][param]
-					output += " {}".format(label)
-					blobs += self.dump_movement_table(param)
 				elif param_type == "text":
 					text_id = param + self.rom[address + 1] * 0x100
 					if text_id == 0x0000:

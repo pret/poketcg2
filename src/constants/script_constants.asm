@@ -354,3 +354,9 @@ DEF wDD37_BUFFER_SIZE  EQU $19
 	const DUEL_REQUIREMENT_SAMEJIMA_REROLL  ; $10
 	const DUEL_REQUIREMENT_SAMEJIMA_USE     ; $11
 	const DUEL_REQUIREMENT_KANZAKI          ; $12
+
+; booster pack list types, used by give_booster_packs
+	const_def
+	const BOOSTERS_GIVE_ALL    ; 0
+	const BOOSTERS_GIVE_N      ; 1
+	const BOOSTERS_GIVE_RANDOM ; 2
