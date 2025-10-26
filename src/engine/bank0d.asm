@@ -30,9 +30,69 @@ NPCMovement_341f0:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-; 0x341f7
 
-SECTION "Bank d@426f", ROMX[$426f], BANK[$d]
+Func_341f7:
+	xor a
+	start_script
+	wait_for_fade
+	script_command_64 $06
+	set_var VAR_TIMES_MET_RONALD, $04
+	set_var VAR_28, $01
+	set_var VAR_2B, $00
+	get_var VAR_21
+	compare_loaded_var $00
+	script_jump_if_b0nz .ows_3421c
+	compare_loaded_var $02
+	script_jump_if_b0nz .ows_34219
+	set_var VAR_21, $03
+	script_jump .ows_3421c
+.ows_34219
+	set_var VAR_21, $04
+.ows_3421c
+	load_npc NPC_RONALD, 4, 9, NORTH
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc NPCMovement_3425f
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1271
+	script_command_02
+	get_player_x_position
+	compare_loaded_var $05
+	script_jump_if_b0nz .ows_3423b
+	move_player NPCMovement_34265, TRUE
+	script_jump .ows_3423f
+.ows_3423b
+	move_player NPCMovement_34268, TRUE
+.ows_3423f
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1272
+	give_booster_packs BoosterList_ce35
+	print_npc_text Text1273
+	script_command_02
+	move_active_npc NPCMovement_34262
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+NPCMovement_3425f:
+	db NORTH, MOVE_5
+	db $ff
+NPCMovement_34262:
+	db SOUTH, MOVE_5
+	db $ff
+NPCMovement_34265:
+	db SOUTH, MOVE_2
+	db $ff
+NPCMovement_34268:
+	db SOUTH, MOVE_1
+	db WEST, MOVE_1
+	db SOUTH, MOVE_1
+	db $ff
 
 Func_3426f:
 	ld a, $a2
@@ -99,9 +159,35 @@ NPCMovement_342e5:
 NPCMovement_342ec:
 	db NORTH, MOVE_2
 	db $ff
-; 0x342ef
 
-SECTION "Bank d@4323", ROMX[$4323], BANK[$d]
+Func_342ef:
+	xor a
+	start_script
+	wait_for_fade
+	script_command_64 $14
+	set_var VAR_TIMES_MET_RONALD, $05
+	load_npc NPC_GR_X, 4, 15, SOUTH
+	set_active_npc NPC_GR_X, DialogGRXText
+	move_active_npc NPCMovement_3431d
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1277
+	script_command_02
+	move_active_npc NPCMovement_3431d
+	move_player NPCMovement_34320, TRUE
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1278
+	script_command_02
+	start_duel RONALDS_GRX_DECK_ID, MUSIC_MATCHSTART_2
+	end_script
+	ret
+NPCMovement_3431d:
+	db SOUTH, MOVE_2
+	db $ff
+NPCMovement_34320:
+	db NORTH, MOVE_3
+	db $ff
 
 Func_34323:
 	xor a
@@ -154,9 +240,54 @@ NPCMovement_3438c:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_6
 	db $ff
-; 0x34391
 
-SECTION "Bank d@43ef", ROMX[$43ef], BANK[$d]
+Func_34391:
+	xor a
+	start_script
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $06
+	load_npc NPC_GR_X, 4, 10, NORTH
+	set_active_npc NPC_GR_X, DialogGRXText
+	move_active_npc NPCMovement_343e2
+	wait_for_player_animation
+	check_event EVENT_GOT_MAGMAR_COIN
+	set_variable_text_ram2 GRWaterFortShortText, GRFireFortShortText
+	set_variable_text_ram2b GRFireFortShortText, GRWaterFortShortText
+	script_command_01
+	print_npc_text Text127f
+	script_command_02
+	get_player_x_position
+	compare_loaded_var $05
+	script_jump_if_b0nz .ows_343c4
+	move_player NPCMovement_343e5, TRUE
+	script_jump .ows_343c8
+.ows_343c4
+	move_player NPCMovement_343e8, TRUE
+.ows_343c8
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1280
+	script_command_02
+	spin_active_npc 515
+	replace_npc NPC_GR_X, NPC_RONALD
+	set_active_npc NPC_RONALD, DialogRonaldText
+	script_command_01
+	print_npc_text Text1281
+	script_command_02
+	start_duel RONALDS_POWER_DECK_ID, MUSIC_MATCHSTART_2
+	end_script
+	ret
+NPCMovement_343e2:
+	db NORTH, MOVE_6
+	db $ff
+NPCMovement_343e5:
+	db SOUTH, MOVE_2
+	db $ff
+NPCMovement_343e8:
+	db SOUTH, MOVE_1
+	db WEST, MOVE_1
+	db SOUTH, MOVE_1
+	db $ff
 
 Func_343ef:
 	xor a
@@ -188,9 +319,54 @@ Func_343ef:
 NPCMovement_3442a:
 	db SOUTH, MOVE_8
 	db $ff
-; 0x3442d
 
-SECTION "Bank d@448d", ROMX[$448d], BANK[$d]
+Func_3442d:
+	ld a, $63
+	ld [wScriptNPC], a
+	ld hl, $a2e
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	wait_for_fade
+	script_command_64 $19
+	script_command_64 $1a
+	set_var VAR_TIMES_MET_RONALD, $07
+	script_command_01
+	print_npc_text Text1285
+	script_command_02
+	move_player NPCMovement_34485, TRUE
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1286
+	script_command_02
+	spin_active_npc 515
+	replace_npc NPC_GR_X, NPC_RONALD
+	set_active_npc NPC_RONALD, DialogRonaldText
+	script_command_01
+	print_npc_text Text1287
+	script_command_02
+	spin_active_npc_reverse 515
+	replace_npc NPC_RONALD, NPC_GR_X
+	set_active_npc NPC_GR_X, DialogGRXText
+	move_active_npc NPCMovement_34488
+	wait_for_player_animation
+	unload_npc NPC_GR_X
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+NPCMovement_34485:
+	db NORTH, MOVE_3
+	db $ff
+NPCMovement_34488:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_6
+	db $ff
 
 Func_3448d:
 	xor a
@@ -266,9 +442,55 @@ NPCMovement_34518:
 NPCMovement_3451a:
 	db SOUTH, MOVE_2
 	db $ff
-; 0x3451d
 
-SECTION "Bank d@4575", ROMX[$4575], BANK[$d]
+Func_3451d:
+	xor a
+	start_script
+	wait_for_fade
+	load_npc NPC_RONALD, 4, 9, NORTH
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc NPCMovement_34565
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text128d
+	script_command_02
+	get_player_x_position
+	compare_loaded_var $05
+	script_jump_if_b0nz .ows_34541
+	move_player NPCMovement_3456b, TRUE
+	script_jump .ows_34545
+.ows_34541
+	move_player NPCMovement_3456e, TRUE
+.ows_34545
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text128e
+	give_booster_packs BoosterList_ce32
+	print_npc_text Text128f
+	script_command_02
+	move_active_npc NPCMovement_34568
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+NPCMovement_34565:
+	db NORTH, MOVE_5
+	db $ff
+NPCMovement_34568:
+	db SOUTH, MOVE_5
+	db $ff
+NPCMovement_3456b:
+	db SOUTH, MOVE_2
+	db $ff
+NPCMovement_3456e:
+	db SOUTH, MOVE_1
+	db WEST, MOVE_1
+	db SOUTH, MOVE_1
+	db $ff
 
 TcgAirportEntrance_MapHeader:
 	db MAP_GFX_TCG_AIRPORT_ENTRANCE
@@ -667,9 +889,68 @@ Func_3489d:
 	call Func_328c
 	scf
 	ret
-; 0x348a5
 
-SECTION "Bank d@4910", ROMX[$4910], BANK[$d]
+Func_348a5:
+	ld a, $32
+	ld [wScriptNPC], a
+	ld hl, $a2c
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	wait_for_fade
+	move_active_npc NPCMovement_348f0
+	move_player NPCMovement_348ff, TRUE
+	wait_for_player_animation
+	do_frames 30
+	script_command_01
+	print_npc_text Text081a
+	script_command_02
+	get_player_y_position
+	compare_loaded_var $09
+	script_jump_if_b0nz .ows_348d9
+	move_active_npc NPCMovement_348f5
+	move_player NPCMovement_34902, TRUE
+	script_jump .ows_348e0
+.ows_348d9
+	move_active_npc NPCMovement_348fa
+	move_player NPCMovement_34909, TRUE
+.ows_348e0
+	wait_for_player_animation
+	do_frames 60
+	end_script
+	ld a, $00
+	ld de, $0
+	ld b, $00
+	farcall Func_d3c4
+	ret
+NPCMovement_348f0:
+	db EAST, MOVE_9
+	db NORTH, MOVE_0
+	db $ff
+NPCMovement_348f5:
+	db NORTH, MOVE_5
+	db EAST, MOVE_2
+	db $ff
+NPCMovement_348fa:
+	db NORTH, MOVE_4
+	db EAST, MOVE_2
+	db $ff
+NPCMovement_348ff:
+	db EAST, MOVE_9
+	db $ff
+NPCMovement_34902:
+	db EAST, MOVE_1
+	db NORTH, MOVE_5
+	db EAST, MOVE_1
+	db $ff
+NPCMovement_34909:
+	db EAST, MOVE_1
+	db NORTH, MOVE_4
+	db EAST, MOVE_1
+	db $ff
 
 Func_34910:
 	ld a, $32
@@ -756,9 +1037,32 @@ NPCMovement_3499a:
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
 	db $ff
-; 0d:49a1
 
-SECTION "Bank d@49cd", ROMX[$49cd], BANK[$d]
+Func_349a1:
+	xor a
+	start_script
+	do_frames 60
+	move_player NPCMovement_349c6, TRUE
+	wait_for_player_animation
+	move_npc NPC_GR_5, NPCMovement_349c1
+	wait_for_player_animation
+	set_active_npc NPC_GR_5, DialogGR5Text
+	script_command_01
+	print_npc_text Text081e
+	script_command_02
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_349c1:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_3
+	db $ff
+NPCMovement_349c6:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_4
+	db NORTH, MOVE_0
+	db $ff
 
 Func_349cd:
 	call Func_349d5
@@ -1067,9 +1371,107 @@ Func_34c3c:
 
 Script_34c4c:
 	quit_script
-; 0x34c4d
 
-SECTION "Bank d@4d15", ROMX[$4d15], BANK[$d]
+Func_34c4d:
+	farcall Func_1d7be
+	cp $09
+	jp z, .asm_34cef
+	jp nc, .asm_34d03
+	cp $07
+	jr z, .asm_34cc7
+	jr nc, .asm_34cdb
+	cp $05
+	jr z, .asm_34c9f
+	jr nc, .asm_34cb3
+	cp $03
+	jr z, .asm_34c77
+	jr nc, .asm_34c8b
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendantNoPrizesTryAgainText
+	script_jump .ows_34d12
+.asm_34c77
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant3HeadsPrizeText
+	game_center
+	give_chips 20
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34c8b
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant4HeadsPrizeText
+	game_center
+	give_chips 40
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34c9f
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant5HeadsPrizeText
+	game_center
+	give_chips 100
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34cb3
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant6HeadsPrizeText
+	game_center
+	give_chips 200
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34cc7
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant7HeadsPrizeText
+	game_center
+	give_chips 500
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34cdb
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant8HeadsPrizeText
+	game_center
+	give_chips 1000
+	print_npc_text GameCenterCoinFlipAttendantTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34cef
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant9HeadsPrizeText
+	game_center
+	give_chips 3000
+	print_npc_text GameCenterCoinFlipAttendantAlmostCompleteTryAgainText
+	script_command_71
+	script_jump .ows_34d12
+.asm_34d03
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text GameCenterCoinFlipAttendant10HeadsPrizeText
+	receive_card MEW_LV8
+	print_npc_text GameCenterCoinFlipAttendant10HeadsCongratsText
+.ows_34d12
+	script_command_02
+	end_script
+	ret
 
 Func_34d15:
 	xor a
@@ -1425,9 +1827,36 @@ Func_34f7b:
 	script_command_02
 	end_script
 	ret
-; 0x34fde
 
-SECTION "Bank d@5016", ROMX[$5016], BANK[$d]
+Func_34fde:
+	ld a, $c7
+	ld [wScriptNPC], a
+	ld hl, $a58
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	set_active_npc_direction WEST
+	get_var VAR_3A
+	compare_loaded_var $06
+	script_jump_if_b0nz .ows_35005
+	script_jump_if_b1z .ows_3500b
+	print_npc_text GameCenterCardDungeonAttendantPlayerWonComeAgainText
+	script_jump .ows_3500e
+.ows_35005
+	print_npc_text GameCenterCardDungeonAttendantPlayerLostTryAgainText
+	script_jump .ows_3500e
+.ows_3500b
+	print_npc_text GameCenterCardDungeonAttendantPlayerQuitTryAgainText
+.ows_3500e
+	script_command_02
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
 
 Func_35016:
 	ld a, $da
@@ -2822,9 +3251,69 @@ Func_35a8c:
 FightingFort_AfterDuelScripts:
 	npc_script NPC_KAMIYA, Func_35b82
 	db $ff
-; gap from 0x35a9c to 0x35b16
 
-SECTION "Bank d@5b16", ROMX[$5b16], BANK[$d]
+Func_35a9c:
+	xor a
+	start_script
+	set_event EVENT_MET_FIGHTING_FORT_MEMBERS
+	move_player NPCMovement_35b09, TRUE
+	wait_for_player_animation
+	set_active_npc NPC_KAMIYA, DialogKamiyaText
+	script_command_01
+	print_npc_text Text0c11
+	script_command_02
+	do_frames 30
+	set_active_npc_direction WEST
+	do_frames 30
+	set_active_npc NPC_GODA, DialogGodaText
+	script_command_01
+	print_npc_text Text0c12
+	script_command_02
+	animate_active_npc_movement $02, $01
+	do_frames 30
+	set_active_npc NPC_KAMIYA, DialogKamiyaText
+	script_command_01
+	print_npc_text Text0c13
+	script_command_02
+	do_frames 30
+	set_active_npc_direction EAST
+	do_frames 30
+	script_command_01
+	set_active_npc NPC_GRACE, DialogGraceText
+	print_npc_text Text0c14
+	script_command_02
+	animate_active_npc_movement $02, $01
+	do_frames 30
+	set_active_npc NPC_KAMIYA, DialogKamiyaText
+	script_command_01
+	set_active_npc_direction SOUTH
+	print_npc_text Text0c15
+	script_command_02
+	do_frames 30
+	move_npc NPC_GODA, NPCMovement_35b0c
+	move_npc NPC_GRACE, NPCMovement_35b11
+	wait_for_player_animation
+	unload_npc NPC_GODA
+	unload_npc NPC_GRACE
+	do_frames 30
+	script_command_01
+	print_npc_text Text0c16
+	script_command_02
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_35b09:
+	db NORTH, MOVE_2
+	db $ff
+NPCMovement_35b0c:
+	db WEST, MOVE_2
+	db NORTH, MOVE_2
+	db $ff
+NPCMovement_35b11:
+	db EAST, MOVE_2
+	db NORTH, MOVE_2
+	db $ff
 
 Func_35b16:
 	ld a, $49
@@ -5023,9 +5512,47 @@ NPCMovement_36c30:
 NPCMovement_36c33:
 	db NORTH, RUN_3
 	db $ff
-; 0x36c36
 
-SECTION "Bank d@6c9b", ROMX[$6c9b], BANK[$d]
+Func_36c36:
+	ld a, $02
+	farcall SetOWScrollState
+	ld a, [wPlayerOWObject]
+	farcall ResetOWObjectFlag5_WithID
+	farcall GetOWObjectTilePosition
+	ld e, $0f
+	farcall SetOWObjectTilePosition
+	farcall SetOWObjectSpriteAnimFlag6
+	ld a, $e8
+	ld de, $60f
+	farcall SetOWObjectTilePosition
+	farcall SetOWObjectSpriteAnimFlag6
+	xor a
+	start_script
+	play_sfx SFX_88
+	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
+	move_player NPCMovement_36c95, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c95
+	wait_for_player_animation
+	move_player NPCMovement_36c98, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c98
+	wait_for_player_animation
+	do_frames 30
+	scroll_to_player
+	animate_player_movement $02, $01
+	unload_npc NPC_STRONGHOLD_PLATFORM
+	load_npc NPC_STRONGHOLD_PLATFORM, 6, 3, SOUTH
+	end_script
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectFlag5_WithID
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_36c95:
+	db SOUTH, RUN_3
+	db $ff
+NPCMovement_36c98:
+	db SOUTH, MOVE_1
+	db $ff
 
 PsychicStrongholdMami_MapHeader:
 	db MAP_GFX_PSYCHIC_STRONGHOLD_MAMI
@@ -5325,9 +5852,87 @@ Func_36e9b:
 	script_command_02
 	end_script
 	ret
-; 0x36ed7
 
-SECTION "Bank d@6f7f", ROMX[$6f7f], BANK[$d]
+Func_36ed7:
+	xor a
+	start_script
+	set_event EVENT_MET_MAMI_AND_ROD
+	move_player NPCMovement_36f40, TRUE
+	wait_for_player_animation
+	script_command_01
+	set_active_npc NPC_MAMI, DialogMamiText
+	print_npc_text Text1132
+	script_command_02
+	do_frames 30
+	set_active_npc_direction SOUTH
+	script_command_01
+	print_npc_text Text1133
+	script_command_02
+	set_active_npc_direction NORTH
+	do_frames 30
+	play_sfx_and_wait SFX_9D
+	do_frames 30
+	play_sfx_and_wait SFX_9D
+	do_frames 30
+	play_sfx_and_wait SFX_9D
+	do_frames 30
+	play_sfx_and_wait SFX_9E
+	do_frames 30
+	play_sfx_and_wait SFX_05
+	play_sfx SFX_86
+	load_npc NPC_WARP_SPARKLES, 8, 2, SOUTH
+	wait_for_npc_animation NPC_WARP_SPARKLES
+	load_npc NPC_ROD, 8, 2, SOUTH
+	unload_npc NPC_WARP_SPARKLES
+	do_frames 60
+	set_active_npc NPC_ROD, DialogRodText
+	set_active_npc_direction WEST
+	script_command_01
+	print_npc_text Text1134
+	set_active_npc NPC_MAMI, DialogMamiText
+	set_active_npc_direction EAST
+	print_npc_text Text1135
+	script_command_02
+	set_active_npc_direction SOUTH
+	do_frames 30
+	script_command_01
+	print_npc_text Text1136
+	script_command_02
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_36f40:
+	db NORTH, MOVE_4
+	db $ff
+
+Func_36f43:
+	call WaitPalFading
+	xor a
+	start_script
+	animate_player_movement $00, $01
+	end_script
+	ld a, $e8
+	ld bc, $155
+	farcall SetAndInitOWObjectFrameset
+	farcall StartOWObjectAnimation
+	ld a, $9e
+	farcall GetEventValue
+	jr z, .asm_36f69
+	ld a, $00
+	ld [wd582], a
+	ret
+.asm_36f69
+	ld a, $0a
+	ld [wd582], a
+	ld a, $0d
+	ld [wd592], a
+	ld hl, $6ed7
+	ld a, l
+	ld [wd593], a
+	ld a, h
+	ld [$d594], a
+	ret
 
 Func_36f7f:
 	push af

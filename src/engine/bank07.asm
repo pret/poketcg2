@@ -2560,9 +2560,13 @@ SetAndInitCoinAnimation:
 	pop bc
 	pop af
 	ret
-; 0x1d46a
 
-SECTION "Bank 7@5475", ROMX[$5475], BANK[$7]
+Func_1d46a:
+	push hl
+	farcall GetSpriteAnimBuffer
+	farcall CheckIsSpriteAnimAnimating
+	pop hl
+	ret
 
 ; a = $0: initializes values for new save
 ; a = $1: reads values from SRAM
@@ -2703,6 +2707,199 @@ Func_1d7a1:
 	ld [wdb1f], a
 	ret
 ; 0x1d7a6
+
+SECTION "Bank 7@57be", ROMX[$57be], BANK[$7]
+
+Func_1d7be:
+	farcall Func_1022a
+	call Func_1d7ca
+	farcall Func_10252
+	ret
+
+Func_1d7ca:
+	push de
+	push hl
+	push af
+	ld a, $03
+	call Func_3d3a
+	pop af
+	call Func_1d813
+	push af
+	ld a, $07
+	call Func_3d3a
+	pop af
+	call Func_1d7ec
+	ld hl, $db21
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld a, [$db20]
+	pop hl
+	pop de
+	ret
+
+Func_1d7ec:
+	ld a, [$db20]
+	add a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hli]
+	ld [$db21], a
+	ld a, [hl]
+	ld [$db22], a
+	ret
+; 0x1d7fd
+
+SECTION "Bank 7@5813", ROMX[$5813], BANK[$7]
+
+Func_1d813:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1d886
+	farcall SetFrameFuncAndFadeFromWhite
+.asm_1d81e
+	ld c, $00
+.asm_1d820
+	ld a, $00
+	call SetAndInitCoinAnimation
+.asm_1d825
+	call UpdateRNGSources
+	call DoFrame
+	ldh a, [hKeysPressed]
+	and $01
+	jr z, .asm_1d825
+	call UpdateRNGSources
+	and $01
+	ld b, a
+	push af
+	ld a, $0b
+	call CallPlaySFX
+	pop af
+	ld a, b
+	add $01
+	call SetAndInitCoinAnimation
+.asm_1d844
+	call DoFrame
+	call Func_1d46a
+	jr nz, .asm_1d844
+	ld a, b
+	and $01
+	jr nz, .asm_1d85a
+	push af
+	ld a, $54
+	call CallPlaySFX
+	pop af
+	jr .asm_1d861
+.asm_1d85a
+	push af
+	ld a, $55
+	call CallPlaySFX
+	pop af
+.asm_1d861
+	ld a, b
+	call Func_1d8c6
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	ld a, b
+	and a
+	jr nz, .asm_1d874
+	inc c
+	ld a, c
+	cp $0a
+	jr nz, .asm_1d820
+.asm_1d874
+	ld a, c
+	ld [$db20], a
+	cp $03
+	jr nc, .asm_1d881
+	call Func_1d8df
+	jr nc, .asm_1d81e
+.asm_1d881
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1d886:
+	push af
+	push bc
+	push de
+	push hl
+	farcall ClearSpriteAnims
+	call Func_1dfb5
+	ld de, $5858
+	call CreateCoinAnimation
+	ld a, $03
+	call SetAndInitCoinAnimation
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $634
+	ld de, $10c
+	call Func_2c4b
+	ld hl, $637
+	ld de, $10e
+	call Func_35af
+	ld de, $0
+	ld bc, $1404
+	farcall FillBoxInBGMapWithZero
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1d8c6:
+	push af
+	push bc
+	and a
+	jr nz, .asm_1d8cf
+	ld a, $22
+	jr .asm_1d8d1
+.asm_1d8cf
+	ld a, $23
+.asm_1d8d1
+	ld b, c
+	sla b
+	ld c, $00
+	call LoadScene
+	call FlushAllPalettes
+	pop bc
+	pop af
+	ret
+
+Func_1d8df:
+	ld de, $0
+	ld bc, $804
+	farcall FillBoxInBGMapWithZero
+	call DoFrame
+	farcall Func_114af
+	ld hl, $638
+	ld de, $7f4
+	ld a, $01
+	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
+	jr c, .asm_1d914
+	farcall GetGameCenterChips
+	ld a, b
+	or c
+	jr z, .asm_1d91d
+	ld bc, $1
+	farcall DecreaseChipsSmoothly
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	scf
+	ccf
+.asm_1d914
+	farcall Func_114f9
+	ret c
+	call Func_1d886
+	ret
+.asm_1d91d
+	ld hl, $d57
+	ld de, $7f4
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	scf
+	jr .asm_1d914
+; 0x1d92a
+
 
 SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
 
