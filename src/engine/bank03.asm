@@ -227,9 +227,27 @@ Func_c199:
 	ld [wd582], a
 	call Func_32f6
 	ret
-; 0xc1a2
 
-SECTION "Bank 3@41c9", ROMX[$41c9], BANK[$3]
+Func_c1a2:
+	call WaitPalFading
+	ret
+
+Func_c1a6:
+	call Func_3d0d
+	ld a, $05
+	call PlaySong
+	farcall Func_10772
+	call Func_3d4a
+	jr nz, .asm_c1bc
+	call Func_3d16
+	jr .asm_c1c3
+.asm_c1bc
+	farcall PlayCurrentSong
+	call Func_3d4f
+.asm_c1c3
+	ld a, $00
+	ld [wd582], a
+	ret
 
 HandleStartMenu:
 	xor a
@@ -5394,3 +5412,67 @@ ENDR
 	call DisableSRAM
 	ret
 ; 0xedec
+
+SECTION "Bank 3@7063", ROMX[$7063], BANK[$3]
+
+Func_f063:
+	ld b, d
+	farcall SetFrameFuncAndFadeFromWhite
+	call FlushAllPalettes
+	ld de, $201
+	ld b, $00
+	call Func_f085
+	ld b, $08
+	call Func_f085
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_f085:
+	push de
+	push bc
+	ld b, d
+	ld c, e
+	call BCCoordToBGMap0Address
+	pop bc
+	ld d, $00
+	ld c, $10
+.asm_f091
+	push bc
+	ld c, $10
+	push hl
+.asm_f095
+	xor a
+	call BankswitchVRAM
+	ei
+	di
+	call WaitForLCDOff
+	ld [hl], d
+	ei
+	ld a, $01
+	call BankswitchVRAM
+	ei
+	di
+	call WaitForLCDOff
+	xor a
+	or b
+	ld [hli], a
+	ei
+	inc d
+	dec c
+	jr nz, .asm_f095
+	pop hl
+	ld bc, $20
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .asm_f091
+	ld c, $03
+	farcall Func_10221.loop
+	pop de
+	ret
+; 0xf0c3

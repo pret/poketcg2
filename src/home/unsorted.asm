@@ -766,7 +766,7 @@ MultiplyBCByDE::
 ; output:
 ;  carry if bc < de
 ;  z if bc == de
-.CompareBCAndDE:
+.CompareBCAndDE::
 	ld a, b
 	cp d
 	ret c

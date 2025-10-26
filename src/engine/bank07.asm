@@ -149,7 +149,40 @@ Func_1c08b::
 	pop bc
 	pop af
 	ret
-; 0x1c0b2
+
+Func_1c0b2:
+	push bc
+	push de
+	push hl
+	ld hl, $40da
+	ld c, $09
+	ld b, $00
+.asm_1c0bc
+	push hl
+	ld a, [wOWMap]
+	ld e, a
+	ld a, [hli]
+	cp e
+	jr nz, .asm_1c0ce
+	ld a, [$d7ed]
+	ld e, a
+	ld a, [hl]
+	cp e
+	jr nz, .asm_1c0ce
+	inc b
+.asm_1c0ce
+	pop hl
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_1c0bc
+	ld a, b
+	and a
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x1c0da
 
 SECTION "Bank 7@40ec", ROMX[$40ec], BANK[$7]
 
@@ -2671,7 +2704,37 @@ Func_1d7a1:
 	ret
 ; 0x1d7a6
 
-SECTION "Bank 7@599e", ROMX[$599e], BANK[$7]
+SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
+
+Func_1d96e:
+	farcall Func_1022a
+	call Func_1d97a
+	farcall Func_10252
+	ret
+
+Func_1d97a:
+	push af
+	push bc
+	push de
+	push hl
+	ld [$db2f], a
+	farcall Func_1239b
+	jr c, .asm_1d999
+	push af
+	ld a, $03
+	call Func_3d3a
+	pop af
+	farcall Func_123fc
+	push af
+	ld a, $07
+	call Func_3d3a
+	pop af
+.asm_1d999
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_1d99e:
 	farcall Func_1022a
@@ -4986,7 +5049,56 @@ Func_1f293:
 	pop de
 	pop bc
 	ret
-; 0x1f309
+
+Func_1f309:
+	ld a, [wdd5a]
+	and a
+	ret
+
+Func_1f30e:
+	push af
+	ld a, e
+	ld [wdd5f], a
+	ld a, d
+	ld [wdd60], a
+	pop af
+	ret
+
+Func_1f319:
+	push af
+	ld a, e
+	ld [wdd73], a
+	ld a, d
+	ld [wdd74], a
+	pop af
+	ret
+
+Func_1f324:
+	push bc
+	ld a, [wdd5f]
+	ld b, a
+	ld a, [wdd60]
+	or b
+	scf
+	jr nz, .asm_1f331
+	ccf
+.asm_1f331
+	pop bc
+	ret
+
+Func_1f333:
+	push bc
+	ld a, [wdd73]
+	ld b, a
+	ld a, [wdd74]
+	or b
+	scf
+	jr nz, .asm_1f340
+	ccf
+.asm_1f340
+	pop bc
+	ret
+; 0x1f342
 
 SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
 
@@ -5179,9 +5291,60 @@ CardPopMenu:
 	pop bc
 	pop af
 	ret
-; 0x1f84c
 
-SECTION "Bank 7@78bd", ROMX[$78bd], BANK[$7]
+Func_1f84c:
+	farcall Func_102a4
+	call Func_1f858
+	farcall Func_102c4
+	ret
+
+Func_1f858:
+	push af
+	push bc
+	push de
+	push hl
+	ld [$dd93], a
+	call Func_1f867
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1f867:
+	farcall ZeroObjectPositionsAndEnableOBPFading
+	farcall SetInitialGraphicsConfiguration
+	call Func_1f88f
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+	ld hl, EnableSRAM
+	ld a, [$dd93]
+	and a
+	jr z, .asm_1f884
+	ld hl, $787
+.asm_1f884
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	ret
+
+Func_1f88f:
+	ld de, $0
+	ld bc, $1413
+	call DrawRegularTextBoxVRAM0
+	ld hl, $785
+	ld de, $102
+	call Func_35af
+	ld hl, $784
+	ld de, $100
+	call Func_2c4b
+	ld hl, $782
+	ld de, $d00
+	call Func_2c4b
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ret
 
 PlayerGenderAndNameSelection::
 	push af
@@ -5207,7 +5370,34 @@ PlayerGenderAndNameSelection::
 	pop bc
 	pop af
 	ret
-; 0x1f8eb
+
+Func_1f8eb:
+	farcall Func_1022a
+	call Func_1f8f7
+	farcall Func_10252
+	ret
+
+Func_1f8f7:
+	push af
+	push bc
+	push de
+	push hl
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall Func_2612a
+	jr c, .asm_1f914
+	ld hl, $7fe
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	call Func_1f319
+	ld a, $82
+	call Func_1f24e
+.asm_1f914
+	farcall FadeToWhiteAndUnsetFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1f91d
 
 SECTION "Bank 7@791d", ROMX[$791d], BANK[$7]
 

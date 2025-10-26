@@ -4785,7 +4785,436 @@ CountIfListedCardsInDeck:
 .found
 	or a
 	ret
-; 0x260e7
+
+Func_260e7:
+	call LoadCardDataToBuffer1_FromCardID
+	ld hl, wLoadedCard1Name
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld hl, wDuelTempList
+	ld de, $0
+.asm_260f6
+	inc de
+	push hl
+	push de
+	call LoadCardDataToBuffer1_FromCardID
+	jr c, .asm_2611d
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .asm_26119
+	ld hl, wLoadedCard1PreEvoName
+	ld a, c
+	cp [hl]
+	jr nz, .asm_26119
+	inc hl
+	ld a, b
+	cp [hl]
+	jr nz, .asm_26119
+	pop de
+	pop hl
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+	jr .asm_260f6
+.asm_26119
+	pop de
+	pop hl
+	jr .asm_260f6
+.asm_2611d
+	pop de
+	pop hl
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wDuelTempList
+	ld a, [hli]
+	or [hl]
+	ret z
+	scf
+	ret
+
+Func_2612a:
+	bank1call SetupDuel
+	call DisableLCD
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBox
+	ld de, $100
+	ld hl, $271
+	call Func_2c4b
+	ld de, $d00
+	ld hl, $272
+	call Func_2c4b
+	ld de, $202
+	ld hl, $273
+	call InitTextPrinting_ProcessTextFromID
+	ld hl, $274
+	call DrawWideTextBox_WaitForInput
+	ld hl, $275
+	call YesOrNoMenuWithText
+	ret c
+	farcall Func_1f333
+	ld hl, $27f
+	jr c, .asm_2619a
+	farcall GetGameCenterChips
+	ld hl, $280
+	ld a, b
+	or a
+	jr nz, .asm_2617a
+	ld a, c
+	cp $14
+	jr c, .asm_2619a
+.asm_2617a
+	ld de, $1b4
+	call GetCardCountInCollectionAndDecks
+	ld hl, $276
+	jr c, .asm_2619a
+	xor a
+	ld [wDeckDiagnosisStep], a
+	ld [wDeckDiagnosisTextIDsPtr], a
+	call Func_263a5
+	call Func_264a5
+	ld [wcd29], a
+	ld hl, $278
+	jr nc, .asm_2619f
+.asm_2619a
+	call PrintScrollableText_NoTextBoxLabel
+	scf
+	ret
+.asm_2619f
+	call Func_26353
+	ret c
+	call LoadCardDataToBuffer1_FromCardID
+	call DrawLargePictureOfCard
+	ld hl, $27a
+	call YesOrNoMenuWithText
+	jr nc, .asm_261b6
+	call Func_263a5
+	jr .asm_2619f
+.asm_261b6
+	call EmptyScreen
+	farcall Func_102ef.Func_10327
+	farcall Func_114af
+	ld hl, $27c
+	call DrawWideTextBox_WaitForInput
+	ld bc, $14
+	farcall DecreaseChipsSmoothly
+	farcall Func_114f9
+	ld de, $387f
+	call SetupText
+	call EmptyScreen
+	ld hl, $4930
+	ld de, $9300
+	ld b, $08
+	call CopyFontsOrDuelGraphicsTiles
+	call LoadCardOrDuelMenuBorderTiles
+	ld hl, $62a2
+	call WriteDataBlocksToBGMap0
+	ld de, $1b4
+	call LoadCardDataToBuffer2_FromCardID
+	ld hl, wLoadedCard2Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $3010
+	ld de, $8a00
+	call LoadCardGfx
+	ld a, $a0
+	ld hl, $601
+	ld de, $103
+	ld bc, $806
+	call FillRectangle
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	ld de, v0Tiles1
+	ld hl, $34d0
+	ld b, $10
+	call CopyFontsOrDuelGraphicsTiles
+	ld a, $80
+	ld de, $101
+	ld bc, $802
+	ld hl, $108
+	call FillRectangle
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $3010
+	ld de, $8d00
+	call LoadCardGfx
+	ld a, $d0
+	ld hl, $601
+	ld de, $b03
+	ld bc, $806
+	call FillRectangle
+	bank1call DrawCardGfxToDE_BGPalIndex2
+	ld de, $8900
+	ld hl, $36d0
+	ld b, $10
+	call CopyFontsOrDuelGraphicsTiles
+	ld a, $90
+	ld de, $b01
+	ld bc, $802
+	ld hl, $108
+	call FillRectangle
+	call FlushAllPalettes
+	ld hl, $27d
+	call DrawWideTextBox_WaitForInput
+	ld de, $1b4
+	call RemoveCardFromCollection
+	ld hl, wLoadedCard1ID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call RemoveCardFromCollection
+	ld a, [wLoadedCard1PokedexNumber]
+	ld de, $b6
+	cp $8a
+	ret z
+	ld de, $f8
+	cp $43
+	ret z
+	ld de, $101
+	cp $4b
+	ret z
+	ld de, $11c
+	cp $40
+	ret z
+	ld de, $12d
+	cp $5d
+	ret z
+	scf
+	ret
+; 0x262a2
+
+SECTION "bank 9@6353", ROMX[$6353], BANK[$9]
+
+Func_26353:
+.asm_26353
+	ld hl, $63bb
+	ld a, [wDeckDiagnosisStep]
+	call InitializeMenuParameters
+	ld a, [wcd29]
+	cp $07
+	jr nc, .asm_26366
+	ld [wNumScrollMenuItems], a
+.asm_26366
+	call Func_2641e
+	call EnableLCD
+.asm_2636c
+	call DoFrame
+	call HandleMenuInput
+	ld a, [wCurMenuItem]
+	ld [wDeckDiagnosisStep], a
+	jr nc, .asm_2636c
+	ldh a, [hCurScrollMenuItem]
+	cp $ff
+	jr z, .asm_2639b
+	add a
+	ld e, a
+	ld d, $00
+	ld hl, wPlayerDeck
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ldh a, [hKeysPressed]
+	and $08
+	ret z
+	call LoadCardDataToBuffer1_FromCardID
+	bank1call OpenCardPage_FromHand
+.asm_26396
+	call Func_263a5
+	jr .asm_26353
+.asm_2639b
+	ld hl, $27b
+	call YesOrNoMenuWithText
+	jr c, .asm_26396
+	scf
+	ret
+
+Func_263a5:
+	call EmptyScreen
+	ld de, $0
+	ld bc, GetPlayAreaCardAttachedEnergies
+	call DrawRegularTextBox
+Func_263b1:
+	ld de, $101
+	ld hl, $277
+	call InitTextPrinting_ProcessTextFromID
+	ret
+; 0x263bb
+
+SECTION "bank 9@63c4", ROMX[$63c4], BANK[$9]
+
+Func_263c4:
+	adc a
+	ld b, a
+	and $c0
+	jr z, .asm_26404
+	bit 7, b
+	jr nz, .asm_263e6
+	ld hl, wCurMenuItem
+	ld a, [wNumScrollMenuItems]
+	dec a
+	cp [hl]
+	jr nz, .asm_26404
+	xor a
+	ld [wCurMenuItem], a
+	ld hl, wDeckDiagnosisTextIDsPtr
+	ld a, [hl]
+	or a
+	jr z, .asm_26404
+	dec [hl]
+	jr .asm_26401
+.asm_263e6
+	ld hl, wCurMenuItem
+	ld a, [hl]
+	or a
+	jr nz, .asm_26404
+	ld a, [wNumScrollMenuItems]
+	dec a
+	ld [hl], a
+	ld hl, wDeckDiagnosisTextIDsPtr
+	add [hl]
+	inc a
+	ld hl, wcd29
+	cp [hl]
+	jr nc, .asm_26404
+	ld hl, wDeckDiagnosisTextIDsPtr
+	inc [hl]
+.asm_26401
+	call Func_2641e
+.asm_26404
+	ld a, [wCurMenuItem]
+	ld hl, wDeckDiagnosisTextIDsPtr
+	add [hl]
+	ldh [hCurScrollMenuItem], a
+	ldh a, [hKeysPressed]
+	and $09
+	jr nz, .asm_2641c
+	ldh a, [hKeysPressed]
+	and $02
+	ret z
+	ld a, $ff
+	ldh [hCurScrollMenuItem], a
+.asm_2641c
+	scf
+	ret
+
+Func_2641e:
+	call Func_263b1
+	ld a, [wNumScrollMenuItems]
+	ld b, a
+	ld a, [wDeckDiagnosisTextIDsPtr]
+	ld c, a
+	ld de, $204
+.asm_2642c
+	push bc
+	push de
+	ld a, c
+	call Func_26464
+	pop de
+	pop bc
+	inc e
+	inc e
+	inc c
+	dec b
+	jr nz, .asm_2642c
+	ld e, $00
+	ld a, [wDeckDiagnosisTextIDsPtr]
+	or a
+	jr z, .asm_26444
+	ld e, $0d
+.asm_26444
+	ld a, e
+	ld bc, $1303
+	call WriteByteToBGMap0
+	ld e, $00
+	ld a, [wDeckDiagnosisTextIDsPtr]
+	ld hl, wNumScrollMenuItems
+	add [hl]
+	ld hl, wcd29
+	cp [hl]
+	jr nc, .asm_2645c
+	ld e, $2f
+.asm_2645c
+	ld a, e
+	ld bc, $1311
+	call WriteByteToBGMap0
+	ret
+
+Func_26464:
+	push de
+	ld e, a
+	ld d, $00
+	ld hl, wOpponentDeck
+	add hl, de
+	ld a, [hl]
+	ld [wDeckCheckTotalEnergySurplus], a
+	sla e
+	rl d
+	ld hl, wPlayerDeck
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, $10
+	call CopyCardNameAndLevel
+	pop de
+	push de
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+	pop bc
+	push bc
+	ld b, $10
+	ld a, [wDeckCheckTotalEnergySurplus]
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	pop de
+	ld d, $12
+	call InitTextPrinting
+	ld de, $84
+	call Func_22ca
+	ret
+
+Func_264a5:
+	call EnableSRAM
+	ld de, wOpponentDeck
+	call SetListPointer
+	ld de, wPlayerDeck
+	call SetListPointer2
+	ld hl, $64dd
+	ld c, $00
+.asm_264b9
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, e
+	or d
+	jr z, .asm_264d5
+	push hl
+	ld hl, sCardCollection
+	add hl, de
+	ld a, [hl]
+	pop hl
+	bit 7, a
+	jr nz, .asm_264b9
+	call SetNextElementOfList
+	call Func_0b99
+	inc c
+	jr .asm_264b9
+.asm_264d5
+	call DisableSRAM
+	ld a, c
+	or a
+	ret nz
+	scf
+	ret
+; 0x264dd
 
 SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
 INCLUDE "engine/gbc_only_disclaimer.asm"

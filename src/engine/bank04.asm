@@ -983,7 +983,112 @@ Func_10742:
 	pop bc
 	pop af
 	ret
-; 0x10772
+
+Func_10772:
+	push af
+	push bc
+	push de
+	push hl
+	ld b, $00
+	farcall Func_1c0b2
+	jr z, .asm_1077f
+	inc b
+.asm_1077f
+	ld a, b
+	ld [$d8a0], a
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+.asm_1078a
+	ld a, [$d8a0]
+	and a
+	jr z, .asm_10793
+	call Func_114af
+.asm_10793
+	call Func_107bf
+	call Func_1081a
+	jr c, .asm_107ae
+	call Func_10836
+	jr c, .asm_107ae
+	call Func_10856
+	ld a, [$d8a0]
+	and a
+	jr z, .asm_1078a
+	call Func_114f9
+	jr .asm_1078a
+.asm_107ae
+	call Func_10856
+	ld a, [$d8a0]
+	and a
+	jr z, .asm_107ba
+	call Func_114f9
+.asm_107ba
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_107bf:
+	push af
+	push bc
+	push de
+	push hl
+	ld de, $c00
+	ld b, $04
+	ld hl, $47ee
+	call LoadMenuBoxParams
+	farcall Func_1cacf
+	ld a, [$d89f]
+	farcall DrawMenuBox
+	farcall Func_1f309
+	jr z, .asm_107e9
+	ld bc, $1208
+	ld d, $0e
+	ld e, $00
+	call Func_383b
+.asm_107e9
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x107ee
+
+SECTION "Bank 4@481a", ROMX[$481a], BANK[$4]
+
+Func_1081a:
+	ld a, [$d89f]
+	farcall HandleMenuBox
+	ld [$d89f], a
+	jr c, .asm_1082e
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1082e
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	ret
+
+Func_10836:
+	ld hl, $483d
+	call CallMappedFunction
+	ret
+; 0x1083d
+
+SECTION "Bank 4@4856", ROMX[$4856], BANK[$4]
+
+Func_10856:
+	farcall Func_1caf1
+	call LoadSymbolsFont
+	call Func_35a0
+	ret
+; 0x10861
 
 SECTION "Bank 4@488a", ROMX[$488a], BANK[$4]
 
@@ -4988,6 +5093,867 @@ Func_121e1:
 	ret
 ; 0x12214
 
+SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
+
+Func_1239b:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_123ab
+	call SetFrameFuncAndFadeFromWhite
+	call Func_123e2
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_123ab:
+	ld de, $0
+	ld bc, $140c
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld de, $100
+	ld hl, $62f
+	call Func_2c4b
+	ld de, $102
+	ld hl, $631
+	call Func_35af
+	ld a, [$db2f]
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ld hl, $7a1
+	ld de, $e00
+	call Func_2c4b
+	ret
+
+Func_123e2:
+	ld hl, $630
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ret c
+	call Func_3d0d
+	push af
+	ld a, $34
+	call Func_3d09
+	pop af
+	call WaitForSongToFinish
+	call Func_3d16
+	ret
+
+Func_123fc:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_125bf
+	xor a
+	ld [$db3c], a
+	xor a
+	ld [$db32], a
+	call Func_125ed
+	call Func_12d17
+	call SetFrameFuncAndFadeFromWhite
+	call Func_1241a
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1241a:
+.asm_1241a
+	call Func_12463
+	call Func_129ca
+	ret c
+	call Func_12546
+	call Func_1247d
+	push af
+	ld a, $7d
+	call CallPlaySFX
+	pop af
+	ld a, $08
+	call DoAFrames_WithPreCheck
+.asm_12433
+	call DoFrame
+	ld a, [$db3f]
+	ld b, a
+	ld a, [wVBlankCounter]
+	and b
+	jr nz, .asm_12433
+	call Func_12818
+	call Func_128aa
+	call Func_12670
+	call Func_129b8
+	jr nc, .asm_12433
+	call Func_12a6a
+	jr c, .asm_1245a
+	ld a, $1e
+	call DoAFrames_WithPreCheck
+	jr .asm_1241a
+.asm_1245a
+	call Func_12ac7
+	xor a
+	ld [$db35], a
+	jr .asm_1241a
+
+Func_12463:
+	ld a, $1e
+	call Random
+	add $18
+	ld [$db30], a
+	xor a
+	ld [$db31], a
+	ld a, $01
+	ld [$db3f], a
+	call Func_125dd
+	call Func_12dcc
+	ret
+
+Func_1247d:
+	ld a, [$db35]
+	and a
+	ret z
+	ld a, [$db36]
+	cp $03
+	jr z, .asm_1248e
+	cp $04
+	jr z, .asm_1248e
+	ret
+.asm_1248e
+	call Func_12d60
+	ret
+; 0x12492
+
+SECTION "Bank 4@6546", ROMX[$6546], BANK[$4]
+
+Func_12546:
+	ld a, [$db35]
+	and a
+	jr z, .asm_12551
+	dec a
+	ld [$db35], a
+	ret
+.asm_12551
+	call Func_12558
+	call Func_12570
+	ret
+
+Func_12558:
+	ld a, [$db32]
+	ld c, a
+	ld b, $00
+	ld hl, $6594
+	add hl, bc
+	ld b, [hl]
+	ld a, $64
+	call Random
+	cp b
+	ret nc
+	ld a, $03
+	ld [$db35], a
+	ret
+
+Func_12570:
+	ld a, [$db32]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $6596
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $64
+	call Random
+	ld b, a
+	ld c, $06
+.asm_12586
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	cp b
+	jr nc, .asm_1258f
+	dec c
+	jr nz, .asm_12586
+.asm_1258f
+	ld a, e
+	ld [$db36], a
+	ret
+; 0x12594
+
+SECTION "Bank 4@65b2", ROMX[$65b2], BANK[$4]
+
+Func_125b2:
+	push af
+	push hl
+	call Func_12cb2
+	ld a, $3a
+	ld [hli], a
+	xor a
+	ld [hl], a
+	pop hl
+	pop af
+	ret
+
+Func_125bf:
+	push af
+	push bc
+	ld c, $00
+.asm_125c3
+	call Func_125b2
+	inc c
+	ld a, c
+	cp $03
+	jr nz, .asm_125c3
+	pop bc
+	pop af
+	ret
+
+Func_125cf:
+	push af
+	push hl
+	call Func_12cb2
+	ld a, [hl]
+	and $3f
+	ld [hli], a
+	xor a
+	ld [hl], a
+	pop hl
+	pop af
+	ret
+
+Func_125dd:
+	push af
+	push bc
+	ld c, $00
+.asm_125e1
+	call Func_125cf
+	inc c
+	ld a, c
+	cp $03
+	jr nz, .asm_125e1
+	pop bc
+	pop af
+	ret
+
+Func_125ed:
+	and a
+	jr nz, .asm_1260c
+	ld hl, $db46
+	ld de, $6def
+	call Func_12628
+	ld hl, $db86
+	ld de, $6e03
+	call Func_12628
+	ld hl, $dbc6
+	ld de, $6e17
+	call Func_12628
+	ret
+.asm_1260c
+	ld hl, $db46
+	ld de, $6e2b
+	call Func_12628
+	ld hl, $db86
+	ld de, $6e3f
+	call Func_12628
+	ld hl, $dbc6
+	ld de, $6e53
+	call Func_12628
+	ret
+
+Func_12628:
+	ld c, $14
+.asm_1262a
+	push bc
+	push de
+	call Func_12636
+	pop de
+	pop bc
+	inc de
+	dec c
+	jr nz, .asm_1262a
+	ret
+
+Func_12636:
+	push hl
+	ld a, [de]
+	ld c, a
+	sla c
+	add c
+	ld c, a
+	ld b, $00
+	ld hl, $664f
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	ld c, $03
+.asm_12648
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .asm_12648
+	ret
+; 0x1264f
+
+SECTION "Bank 4@6670", ROMX[$6670], BANK[$4]
+
+Func_12670:
+	ld hl, $db23
+	ld c, $03
+.asm_12675
+	call Func_1267e
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_12675
+	ret
+
+Func_1267e:
+	push bc
+	push hl
+	ld a, [hl]
+	and $3f
+	ld e, a
+	dec c
+	ld b, $00
+	sla c
+	sla c
+	ld hl, $669c
+	add hl, bc
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_126a8
+	pop hl
+	pop bc
+	ret
+; 0x1269c
+
+SECTION "Bank 4@66a8", ROMX[$66a8], BANK[$4]
+
+Func_126a8:
+	ld d, $00
+	add hl, de
+	ld d, $07
+.asm_126ad
+	push de
+	ld a, [hli]
+	ld e, a
+	call Func_126c7
+	pop de
+	inc e
+	ld a, e
+	cp $3c
+	jr c, .asm_126c2
+	push bc
+	ld bc, $ffc4
+	add hl, bc
+	pop bc
+	ld e, $00
+.asm_126c2
+	inc c
+	dec d
+	jr nz, .asm_126ad
+	ret
+
+Func_126c7:
+	push af
+	push bc
+	push de
+	push hl
+	ld d, $00
+	sla e
+	rl d
+	sla e
+	rl d
+	sla e
+	rl d
+	ld hl, $6710
+	add hl, de
+	ld a, $04
+.asm_126df
+	push af
+	ld a, [hl]
+	add $80
+	ld d, a
+	pop af
+	inc hl
+	ld e, [hl]
+	inc hl
+	call Func_126f4
+	inc b
+	dec a
+	jr nz, .asm_126df
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_126f4:
+	push af
+	xor a
+	call BankswitchVRAM
+	push bc
+	push de
+	ld a, d
+	call WriteByteToBGMap0
+	ld a, $01
+	call BankswitchVRAM
+	pop de
+	pop bc
+	ld a, e
+	call WriteByteToBGMap0
+	xor a
+	call BankswitchVRAM
+	pop af
+	ret
+; 0x12710
+
+SECTION "Bank 4@6818", ROMX[$6818], BANK[$4]
+
+Func_12818:
+	ld c, $00
+.asm_1281a
+	call Func_12824
+	inc c
+	ld a, c
+	cp $03
+	jr nz, .asm_1281a
+	ret
+
+Func_12824:
+	call Func_12cb2
+	bit 7, [hl]
+	ret nz
+	bit 6, [hl]
+	jr nz, .asm_1283f
+.asm_1282e
+	ld a, [hl]
+	and $c0
+	ld b, a
+	ld a, [hl]
+	and $3f
+	dec a
+	cp $ff
+	jr nz, .asm_1283c
+	ld a, $3b
+.asm_1283c
+	or b
+	ld [hl], a
+	ret
+.asm_1283f
+	call Func_1286a
+	jr nz, .asm_1282e
+	inc hl
+	ld a, [hld]
+	and a
+	jr z, .asm_12856
+	ld e, a
+	and $1f
+	dec a
+	ld b, a
+	ld a, e
+	and $e0
+	or b
+	inc hl
+	ld [hld], a
+	jr nz, .asm_1282e
+.asm_12856
+	res 6, [hl]
+	set 7, [hl]
+	ld b, $00
+	call Func_12a99
+	call Func_12a8d
+	push af
+	ld a, $7e
+	call CallPlaySFX
+	pop af
+	ret
+
+Func_1286a:
+	ld a, [hl]
+	and $3f
+	cp $01
+	ret z
+	cp $04
+	ret z
+	cp $07
+	ret z
+	cp $0a
+	ret z
+	cp $0d
+	ret z
+	cp $10
+	ret z
+	cp $13
+	ret z
+	cp $16
+	ret z
+	cp $19
+	ret z
+	cp $1c
+	ret z
+	cp $1f
+	ret z
+	cp $22
+	ret z
+	cp $25
+	ret z
+	cp $28
+	ret z
+	cp $2b
+	ret z
+	cp $2e
+	ret z
+	cp $31
+	ret z
+	cp $34
+	ret z
+	cp $37
+	ret z
+	cp $3a
+	ret z
+	ret
+
+Func_128aa:
+	ld a, [$db30]
+	and a
+	jr z, .asm_128b5
+	dec a
+	ld [$db30], a
+	ret
+.asm_128b5
+	ld a, [$db31]
+	cp $03
+	ret z
+	ld a, [$db31]
+	and a
+	jr z, .asm_128c9
+	ld c, a
+	dec c
+	call Func_12cb2
+	bit 7, [hl]
+	ret z
+.asm_128c9
+	ld a, [$db31]
+	ld c, a
+	call Func_128eb
+	ld hl, $db31
+	inc [hl]
+	ld a, $1e
+	call Random
+	add $12
+	ld [$db30], a
+	ret
+; 0x128df
+
+SECTION "Bank 4@68eb", ROMX[$68eb], BANK[$4]
+
+Func_128eb:
+	call Func_12cb2
+	set 6, [hl]
+	call Func_128f4
+	ret
+
+Func_128f4:
+	ld e, c
+	sla e
+	ld d, $00
+	ld hl, $6901
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+; 0x12901
+
+SECTION "Bank 4@69b8", ROMX[$69b8], BANK[$4]
+
+Func_129b8:
+	scf
+	ccf
+	ld hl, $db23
+	ld c, $03
+.asm_129bf
+	bit 7, [hl]
+	jr z, .asm_129c9
+	inc hl
+	inc hl
+	dec c
+	jr nz, .asm_129bf
+	scf
+.asm_129c9
+	ret
+
+Func_129ca:
+	call Func_114af
+	call Func_11002
+	call Func_12a02
+	ld a, $3c
+	ld [$db3d], a
+.asm_129d8
+	call DoFrame
+	call UpdateRNGSources
+	jr c, .asm_129ee
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_129fa
+	ldh a, [hKeysPressed]
+	and $80
+	jr nz, .asm_129ee
+	jr .asm_129d8
+.asm_129ee
+	call Func_12a15
+	jr c, .asm_129d8
+	ld a, $14
+	call DoAFrames_WithPreCheck
+	jr .asm_129fb
+.asm_129fa
+	scf
+.asm_129fb
+	call Func_1101d
+	call Func_114f9
+	ret
+
+Func_12a02:
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $693
+	ld de, $10e
+	call Func_35af
+	ret
+
+Func_12a15:
+	call GetGameCenterChips
+	ld a, [$db2f]
+	ld e, a
+	ld d, $00
+	call MultiplyBCByDE.CompareBCAndDE
+	jr c, .asm_12a34
+	ld a, [$db2f]
+	ld c, a
+	ld b, $00
+	call DecreaseChipsSmoothly
+	ld a, $04
+	call DoAFrames_WithPreCheck
+	scf
+	ccf
+	ret
+.asm_12a34
+	push af
+	ld a, $04
+	call CallPlaySFX
+	pop af
+	scf
+	ret
+; 0x12a3d
+
+SECTION "Bank 4@6a6a", ROMX[$6a6a], BANK[$4]
+
+Func_12a6a:
+	ld c, $00
+	call Func_12a81
+	ld b, a
+.asm_12a70
+	call Func_12a81
+	cp b
+	jr nz, .asm_12a7e
+	inc c
+	ld a, c
+	cp $03
+	jr c, .asm_12a70
+	scf
+	ret
+.asm_12a7e
+	scf
+	ccf
+	ret
+; 0x12a81
+
+Func_12a81:
+	push bc
+	push hl
+	ld b, $00
+	ld hl, $db39
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	pop bc
+	ret
+; 0x12a8d
+
+SECTION "Bank 4@6a8d", ROMX[$6a8d], BANK[$4]
+
+Func_12a8d:
+	push bc
+	push hl
+	ld b, $00
+	ld hl, $db39
+	add hl, bc
+	ld [hl], a
+	pop hl
+	pop bc
+	ret
+; 0x12a99
+
+Func_12a99:
+	push bc
+	push de
+	push hl
+	call Func_12cb2
+	call Func_12cbd
+	ld a, [hl]
+	and $3f
+	add $02
+	sub b
+	sub b
+	sub b
+	bit 7, a
+	jr z, .asm_12ab0
+	add $3c
+.asm_12ab0
+	cp $3c
+	jr c, .asm_12ab6
+	sub $3c
+.asm_12ab6
+	ld c, a
+	ld b, $00
+	ld h, d
+	ld l, e
+	add hl, bc
+	ld a, [hl]
+	ld c, $03
+	call Func_34ca
+	ld a, b
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_12ac7:
+	call Func_12af1
+	ld c, $00
+	call Func_12a81
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $6adb
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+; 0x12adb
+
+SECTION "Bank 4@6af1", ROMX[$6af1], BANK[$4]
+
+Func_12af1:
+	call Func_12dcc
+	call Func_12d45
+	ld a, $28
+	call DoAFrames_WithPreCheck
+	ret
+; 0x12afd
+
+SECTION "Bank 4@6cb2", ROMX[$6cb2], BANK[$4]
+
+Func_12cb2:
+	push bc
+	sla c
+	ld b, $00
+	ld hl, $db23
+	add hl, bc
+	pop bc
+	ret
+
+Func_12cbd:
+	push bc
+	push hl
+	ld b, $00
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	sla c
+	rl b
+	ld hl, $db46
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	pop bc
+	ret
+; 0x12ce2
+
+SECTION "Bank 4@6cfc", ROMX[$6cfc], BANK[$4]
+
+Func_12cfc:
+	ld de, $80f
+	ld bc, $401
+	call FillBoxInBGMapWithZero
+	ld a, [$db34]
+	ld l, a
+	ld h, $00
+	ld de, $90f
+	ld a, $02
+	ld b, $00
+	farcall PrintNumber
+	ret
+; 0x12d17
+
+SECTION "Bank 4@6d17", ROMX[$6d17], BANK[$4]
+
+Func_12d17:
+	ld b, $04
+	ld hl, $6d2b
+	ld de, $0
+	ld c, $02
+	call LoadBGGraphics
+	call Func_12670
+	call Func_12cfc
+	ret
+; 0x12d2b
+
+SECTION "Bank 4@6d45", ROMX[$6d45], BANK[$4]
+
+Func_12d45:
+	ld b, $04
+	ld hl, $6d58
+	ld de, $5858
+	ld a, $ff
+	ld c, $00
+	call CreateSpriteAnim
+	call FlushAllPalettes
+	ret
+; 0x12d58
+
+SECTION "Bank 4@6d60", ROMX[$6d60], BANK[$4]
+
+Func_12d60:
+	ld b, $04
+	ld hl, $6d73
+	ld de, $5858
+	ld a, $ff
+	ld c, $00
+	call CreateSpriteAnim
+	call FlushAllPalettes
+	ret
+; 0x12d73
+
+SECTION "Bank 4@6dcc", ROMX[$6dcc], BANK[$4]
+
+Func_12dcc:
+	call ClearSpriteAnims
+	ret
+; 0x12dd0
+
 SECTION "Bank 4@6e68", ROMX[$6e68], BANK[$4]
 
 ; bc = TILEMAP_* constant
@@ -5050,6 +6016,396 @@ SetCthSpriteAnimAnimating:
 	ret
 
 INCLUDE "engine/scenes.asm"
+
+Func_1312e:
+	call Func_1022a
+	call Func_13138
+	call Func_10252
+	ret
+
+Func_13138:
+	push bc
+	push de
+	push hl
+	call Func_1315e
+	jr c, .asm_1315a
+	call Func_3d0d
+	push af
+	ld a, $08
+	call SetMusic
+	pop af
+	call Func_1320f
+	call Func_13357
+	jr c, .asm_13157
+	call Func_1323b
+	scf
+	ccf
+.asm_13157
+	call Func_3d16
+.asm_1315a
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_1315e:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld de, $40ff
+	call SetupText
+	call Func_13189
+	call SetFrameFuncAndFadeFromWhite
+	call SetFadePalsFrameFunc
+	call Func_131bd
+	jr c, .asm_13182
+	call Func_131fd
+	jr c, .asm_13182
+	call Func_131eb
+	jr c, .asm_13182
+	call Func_131d7
+.asm_13182
+	call UnsetFadePalsFrameFunc
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_13189:
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $753
+	ld de, $102
+	call Func_35af
+	ld hl, $752
+	ld de, $100
+	call Func_2c4b
+	ld hl, $5
+	call LoadTxRam3
+	ld hl, $7a1
+	ld de, $e00
+	call Func_2c4b
+	ret
+
+Func_131bd:
+	ld hl, $754
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ret c
+	call Func_3d0d
+	push af
+	ld a, $34
+	call Func_3d09
+	pop af
+	call WaitForSongToFinish
+	call Func_3d16
+	ret
+
+Func_131d7:
+	ld hl, $755
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ld c, $00
+	farcall Func_1c5a3
+	ret nc
+	ld hl, $759
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+
+Func_131eb:
+	call GetGameCenterChips
+	ld de, $5
+	call MultiplyBCByDE.CompareBCAndDE
+	ret z
+	ret nc
+	ld hl, $756
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+
+Func_131fd:
+	farcall Func_1f324
+	ret nc
+	ld hl, $757
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ld hl, $758
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+
+Func_1320f:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_13222
+	call SetFrameFuncAndFadeFromWhite
+	ld hl, $75b
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_13222:
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	bank1call SetNoLineSeparation
+	ld hl, $75a
+	ld de, $101
+	call Func_35af
+	bank1call SetOneLineSeparation
+	ret
+
+Func_1323b:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1325a
+	call SetFrameFuncAndFadeFromWhite
+	call Func_13267
+	ld hl, $75c
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	call Func_132c4
+	ld hl, $75d
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1325a:
+	call Func_1325e
+	ret
+
+Func_1325e:
+	ld a, $15
+	ld bc, $0
+	call LoadScene
+	ret
+
+Func_13267:
+	call ClearSpriteAnims
+	call Func_132f3
+	call FlushAllPalettes
+	call Func_133dc
+	ld c, a
+	ld a, $00
+	ld de, $2020
+.asm_13279
+	push bc
+	call Func_1328c
+	call Func_132ad
+	pop bc
+	push af
+	ld a, $18
+	add d
+	ld d, a
+	pop af
+	inc a
+	dec c
+	jr nz, .asm_13279
+	ret
+
+Func_1328c:
+	push de
+	ld de, $5858
+	call Func_13314
+	ld c, $01
+	call Func_13321
+	pop de
+	push af
+	ld a, $28
+	call DoAFrames_WithPreCheck
+	push af
+	ld a, $7f
+	call CallPlaySFX
+	pop af
+	ld a, $28
+	call DoAFrames_WithPreCheck
+	pop af
+	ret
+
+Func_132ad:
+	call Func_13314
+	ld c, $00
+	call Func_13321
+	push af
+	ld a, $80
+	call CallPlaySFX
+	pop af
+	push af
+	ld a, $14
+	call DoAFrames_WithPreCheck
+	pop af
+	ret
+
+Func_132c4:
+	ld a, $00
+	ld c, $05
+.asm_132c8
+	push bc
+	ld c, $02
+	call Func_13321
+	pop bc
+	inc a
+	dec c
+	jr nz, .asm_132c8
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	call ClearSpriteAnims
+	call Func_1333f
+	call FlushAllPalettes
+	ld a, $28
+	call DoAFrames_WithPreCheck
+	push af
+	ld a, $81
+	call CallPlaySFX
+	pop af
+	ld a, $14
+	call DoAFrames_WithPreCheck
+	ret
+
+Func_132f3:
+	ld hl, $730c
+	ld b, $04
+	ld de, $c0c0
+	ld c, $05
+.asm_132fd
+	push hl
+	push bc
+	ld a, $ff
+	ld c, $00
+	call CreateSpriteAnim
+	pop bc
+	pop hl
+	dec c
+	jr nz, .asm_132fd
+	ret
+; 0x1330c
+
+SECTION "Bank 4@7314", ROMX[$7314], BANK[$4]
+
+Func_13314:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, a
+	call SetCthSpriteAnimPosition
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_13321:
+	push af
+	push bc
+	push de
+	push hl
+	sla c
+	ld b, $00
+	ld hl, $7339
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld c, a
+	call SetCthSpriteAnimFrameset
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x13339
+
+SECTION "Bank 4@733f", ROMX[$733f], BANK[$4]
+
+Func_1333f:
+	ld hl, $734f
+	ld b, $04
+	ld a, $ff
+	ld de, $5858
+	ld c, $00
+	call CreateSpriteAnim
+	ret
+
+Func_1334f:
+	db $d3
+	ld bc, $9c
+	ld h, l
+	ld bc, $13a
+Func_13357:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call SetFrameFuncAndFadeFromWhite
+	call SetFadePalsFrameFunc
+.asm_13360
+	farcall Func_a705
+	jr nc, .asm_13373
+	ld hl, $778
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_13360
+	scf
+	jr .asm_13391
+.asm_13373
+	call Func_133dc
+	and a
+	jr nz, .asm_13381
+	ld hl, $7fd
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	jr .asm_13360
+.asm_13381
+	call Func_133b0
+	ld hl, $777
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_13360
+	call Func_13398
+.asm_13391
+	call UnsetFadePalsFrameFunc
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_13398:
+	call Func_114af
+	ld hl, BankswitchSRAM
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ld bc, $5
+	call DecreaseChipsSmoothly
+	ld a, $1e
+	call DoAFrames_WithPreCheck
+	call Func_114f9
+	ret
+
+Func_133b0:
+	farcall Func_a6ef
+	ld hl, $776
+	ld de, $101
+	call Func_35af
+	call Func_133dc
+	ld [wTxRam3], a
+	xor a
+	ld [$cddb], a
+	ld bc, $5
+	ld a, c
+	ld [wTxRam3_b], a
+	ld a, b
+	ld [$cddd], a
+	ld hl, $77a
+	ld de, $1001
+	call Func_35bf
+	ret
+
+Func_133dc:
+	push bc
+	push hl
+	ld hl, wCurDeckCards
+	ld c, $00
+.asm_133e3
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	or b
+	jr z, .asm_133ec
+	inc c
+	jr .asm_133e3
+.asm_133ec
+	ld a, c
+	pop hl
+	pop bc
+	ret
+; 0x133f0
 
 SECTION "Bank 4@73f0", ROMX[$73f0], BANK[$4]
 

@@ -432,7 +432,18 @@ PrepareMenuGraphics:
 	lb de, $3c, $bf
 	call SetupText
 	ret
-; 0x8f6b
+
+Func_8f6b:
+	ld de, wMaxNumCardsAllowed
+	ld b, $08
+.asm_8f70
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .asm_8f70
+	ret
+; 0x8f77
 
 SECTION "Bank 2@4fb9", ROMX[$4fb9], BANK[$2]
 
@@ -887,7 +898,192 @@ DrawHandCardsTileAtDE:
 	lb bc, 2, 2
 	call FillRectangle
 	ret
-; 0x95d6
+
+Func_95d6:
+	xor a
+	ld [hffbf], a
+	call WriteCardListsTerminatorBytes
+	call Func_9aaa
+	call Func_9a6d
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld [wCurCardTypeFilter], a
+	call Func_9d41
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+.asm_95f3
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and $08
+	jr z, .asm_960c
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	call Func_9787
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	jr .asm_95f3
+.asm_960c
+	ld a, [wCurCardTypeFilter]
+	ld b, a
+	ld a, [wTempCardTypeFilter]
+	cp b
+	jr z, .asm_9626
+	ld [wCurCardTypeFilter], a
+	ld hl, wScrollMenuScrollOffset
+	ld [hl], $00
+	call Func_9d41
+	ld a, $09
+	ld [wNumMenuItems], a
+.asm_9626
+	ldh a, [hDPadHeld]
+	and $80
+	jr z, .asm_9631
+	call ConfirmSelectionAndReturnCarry
+	jr .asm_963e
+.asm_9631
+	call HandleCardSelectionInput
+	jr nc, .asm_95f3
+	ld a, [hCurMenuItem]
+	cp $ff
+	jp z, Func_9712
+.asm_963e
+	ld a, [wNumEntriesInCurFilter]
+	or a
+	jr z, .asm_95f3
+	xor a
+.asm_9645
+	ld hl, $5a3a
+	call InitializeScrollMenuParameters
+	ld a, [wNumEntriesInCurFilter]
+	ld [wNumCardListEntries], a
+	ld hl, wNumVisibleCardListEntries
+	cp [hl]
+	jr nc, .asm_965a
+	ld [wNumMenuItems], a
+.asm_965a
+	ld hl, $5dbf
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	ld a, $01
+	ld [wd119], a
+.asm_9669
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and $08
+	jr z, .asm_9685
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	ld a, [wTempCardTypeFilter]
+	ld [$d11c], a
+	call Func_9787
+	ld a, [$d11c]
+	jr .asm_9645
+.asm_9685
+	ldh a, [hDPadHeld]
+	and $40
+	jr z, .asm_96a0
+	ld a, [wTempCardTypeFilter]
+	ld hl, wScrollMenuScrollOffset
+	add [hl]
+	jr nz, .asm_96a0
+	ld a, $ff
+	ld [hCurMenuItem], a
+	ld a, $ff
+	call PlayAcceptOrDeclineSFX
+	jr .asm_96f3
+.asm_96a0
+	call HandleSelectUpAndDownInList
+	jr c, .asm_9669
+	call HandleScrollListInput
+	jr c, .asm_96f3
+	jr .asm_9669
+.asm_96ac
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	ld a, [wNumMenuItems]
+	ld [wTempScrollMenuNumVisibleItems], a
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+	ld de, wTempCardList
+	ld hl, wCurCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call OpenCardPageFromCardList
+	call Func_9a6d
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	call DrawHorizontalListCursor_Visible
+	call Func_9dbf
+	ld hl, $5a3a
+	call InitializeScrollMenuParameters
+	ld a, [wTempScrollMenuNumVisibleItems]
+	ld [wNumMenuItems], a
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	jp .asm_9669
+.asm_96f3
+	call DrawListCursor_Invisible
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+	ld a, [hCurMenuItem]
+	cp $ff
+	jr nz, .asm_96ac
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	jp .asm_95f3
+
+Func_9712:
+	xor a
+	ld [wd0c1], a
+	ld de, $d386
+	ld hl, wTransitionTablePtr
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	ld a, $ff
+	ld [wd0c4], a
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+	ld hl, $d384
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	jp hl
+
+SECTION "Bank 2@5787", ROMX[$5787], BANK[$2]
+
+Func_9787:
+	ld hl, wScrollMenuScrollOffset
+	ld a, [hl]
+	ld hl, $d11f
+	ld [hl], a
+	call HandleDeckConfirmationMenu
+	ld hl, $d11f
+	ld a, [hl]
+	ld hl, wScrollMenuScrollOffset
+	ld [hl], a
+	call Func_9a6d
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	call DrawHorizontalListCursor_Visible
+	ld a, [wCurCardTypeFilter]
+	call Func_9d41
+	ld a, [wde84]
+	ld [wTempCardTypeFilter], a
+	ret
+; 0x97b9
 
 SECTION "Bank 2@5a31", ROMX[$5a31], BANK[$2]
 
@@ -900,6 +1096,23 @@ FiltersCardSelectionParams:
 	db SYM_CURSOR_D ; visible cursor tile
 	db SYM_SPACE ; invisible cursor tile
 	dw NULL ; wCardListHandlerFunction
+
+SECTION "Bank 2@5a6d", ROMX[$5a6d], BANK[$2]
+
+Func_9a6d:
+	call PrepareMenuGraphics
+	ld bc, $5
+	ld a, $1c
+	call FillBGMapLineWithA
+	call DrawCardTypeIcons
+	call PrintCardTypeCounts
+	ld de, $f00
+	call PrintTotalCardCount
+	ld de, $1100
+	call PrintSlashSixty
+	call EnableLCD
+	ret
+; 0x9a8e
 
 SECTION "Bank 2@5a8e", ROMX[$5a8e], BANK[$2]
 
@@ -920,7 +1133,19 @@ FillBGMapLineWithA:
 	call WriteBBytesToDE
 	call BankswitchVRAM0
 	ret
-; 0x9aaa
+
+Func_9aaa:
+	ld hl, wCardFilterCounts
+	ld de, CardTypeFilters
+.asm_9ab0
+	ld a, [de]
+	cp $ff
+	ret z
+	inc de
+	call Func_9cdc
+	ld [hli], a
+	jr .asm_9ab0
+; 0x9abb
 
 SECTION "Bank 2@5abb", ROMX[$5abb], BANK[$2]
 
@@ -1262,7 +1487,37 @@ Func_9c55:
 	pop bc
 	pop hl
 	ret
-; 0x9c80
+
+Func_9c80:
+	push af
+	push bc
+	push de
+	push hl
+.asm_9c84
+	ld a, [hl]
+	or a
+	jr z, .asm_9c8b
+	inc hl
+	jr .asm_9c84
+.asm_9c8b
+	push de
+	call GetCountOfCardInCurDeck
+	call ConvertToNumericalDigits
+	ld [hl], $05
+	inc hl
+	ld [hl], $2e
+	inc hl
+	pop de
+	call Func_9c55
+	call ConvertToNumericalDigits
+	ld [hl], $00
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x9ca6
+
 
 SECTION "Bank 2@5ca6", ROMX[$5ca6], BANK[$2]
 
@@ -1317,7 +1572,55 @@ ConvertToNumericalDigits:
 	ld a, b
 	ld [hli], a
 	ret
-; 0x9cdc
+
+Func_9cdc:
+	push de
+	push hl
+	ld hl, $0
+	ld b, a
+	ld c, $00
+.asm_9ce4
+	push hl
+	push bc
+	ld bc, wCurDeckCards
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop bc
+	pop hl
+	inc hl
+	inc hl
+	call CheckIfCardIDIsZero
+	jr c, .asm_9d16
+	call GetCardType
+	jr c, .asm_9d16
+	push hl
+	ld l, a
+	ld a, b
+	and $20
+	cp $20
+	jr z, .asm_9d0b
+	ld a, l
+	pop hl
+	cp b
+	jr nz, .asm_9ce4
+	jr .asm_9d13
+.asm_9d0b
+	ld a, l
+	pop hl
+	and $08
+	cp $08
+	jr nz, .asm_9ce4
+.asm_9d13
+	inc c
+	jr .asm_9ce4
+.asm_9d16
+	ld a, c
+	pop hl
+	pop de
+	ret
+; 0x9d1a
 
 SECTION "Bank 2@5d1a", ROMX[$5d1a], BANK[$2]
 
@@ -1347,7 +1650,46 @@ PrintCardTypeCounts:
 	ld hl, wDefaultText
 	call ProcessText
 	ret
-; 0x9d41
+
+Func_9d41:
+	push af
+	ld hl, CardTypeFilters
+	ld b, $00
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	push af
+	call EnableSRAM
+	ld hl, sCardCollection
+	ld de, wc000
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank02.loop
+	ld hl, $a200
+	ld de, $c100
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank02.loop
+	call DisableSRAM
+	ld a, [$d383]
+	or a
+	jr z, .asm_9d75
+	call GetSRAMPointerToCurDeckCards
+	ld d, h
+	ld e, l
+	call IncrementDeckCardsInTempCollection
+.asm_9d75
+	pop af
+	call CreateFilteredCardList
+	ld a, $06
+	ld [wNumVisibleCardListEntries], a
+	ld de, $107
+	ld hl, wCardListCoords
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call Func_9dbf
+	pop af
+	ret
+; 0x9d8c
 
 SECTION "Bank 2@5d8c", ROMX[$5d8c], BANK[$2]
 
@@ -1391,7 +1733,99 @@ PrintTotalCardCount:
 	ld hl, wDefaultText
 	call ProcessText
 	ret
-; 0x9dbf
+
+Func_9dbf:
+	push bc
+	ld hl, wCardListCoords
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld b, $13
+	ld c, e
+	dec c
+	ld a, [wScrollMenuScrollOffset]
+	or a
+	jr z, .asm_9dd4
+	ld a, $0d
+	jr .asm_9dd6
+.asm_9dd4
+	ld a, $00
+.asm_9dd6
+	call WriteByteToBGMap0
+	ld a, [wScrollMenuScrollOffset]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wTempCardList
+	add hl, bc
+	ld a, [wNumVisibleCardListEntries]
+.asm_9de7
+	push de
+	or a
+	jr z, .asm_9e25
+	ld b, a
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call CheckIfCardIDIsZero
+	jr c, .asm_9e13
+	call AddCardIDToVisibleList
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, $0d
+	push bc
+	push hl
+	push de
+	call CopyCardNameAndLevel
+	pop de
+	call Func_9c80
+	pop hl
+	pop bc
+	pop de
+	push hl
+	call InitTextPrinting
+	ld hl, wDefaultText
+	jr .asm_9e1b
+.asm_9e13
+	pop de
+	push hl
+	call InitTextPrinting
+	ld hl, Text_9e48
+.asm_9e1b
+	call ProcessText
+	pop hl
+	ld a, b
+	dec a
+	inc e
+	inc e
+	jr .asm_9de7
+.asm_9e25
+	ld a, [hli]
+	or a
+	jr nz, .asm_9e2d
+	ld a, [hli]
+	or a
+	jr z, .asm_9e36
+.asm_9e2d
+	pop de
+	xor a
+	ld [wUnableToScrollDown], a
+	ld a, $2f
+	jr .asm_9e3e
+.asm_9e36
+	pop de
+	ld a, $01
+	ld [wUnableToScrollDown], a
+	ld a, $00
+.asm_9e3e
+	ld b, $13
+	ld c, e
+	dec c
+	dec c
+	call WriteByteToBGMap0
+	pop bc
+	ret
+; 0x9e48
 
 SECTION "Bank 2@5e48", ROMX[$5e48], BANK[$2]
 
@@ -2821,6 +3255,35 @@ GetCardTypeIconPalette:
 	db ICON_TILE_TRAINER,         3
 	db $00, $ff
 ; 0xa603
+
+SECTION "Bank 2@66ef", ROMX[$66ef], BANK[$2]
+
+Func_a6ef:
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld hl, wCurDeckCards
+	ld de, wTempSavedDeckCards
+	ld b, $82
+	call CopyBBytesFromHLToDE_Bank02.loop
+	call Func_b90c
+	call Func_b81d
+	ret
+
+Func_a705:
+	ld hl, wCurDeckCards
+	ld a, $81
+	call ClearNBytesFromHL
+	ld a, $ff
+	ld [wCurDeck], a
+	ld hl, wCurDeckName
+	ld [hl], $00
+	ld hl, $6726
+	call Func_8f6b
+	ld a, $01
+	ld [wd121], a
+	call Func_95d6
+	ret
+; 0xa726
 
 SECTION "Bank 2@677f", ROMX[$677f], BANK[$2]
 
@@ -4758,6 +5221,141 @@ PrinterMenu:
 	db SYM_SPACE ; invisible cursor
 	dw NULL ; update func
 ; 0xb57c
+
+SECTION "Bank 2@781d", ROMX[$781d], BANK[$2]
+
+Func_b81d:
+	xor a
+	ld hl, wc000
+	call ClearNBytesFromHL
+	xor a
+	ld hl, $c100
+	call ClearNBytesFromHL
+	ld hl, wTempSavedDeckCards
+	call Func_b84d
+	ld a, $ff
+	call Func_b860
+	ld a, $05
+	ld [wNumVisibleCardListEntries], a
+	ld de, $203
+	ld hl, wCardListCoords
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, $1f
+	ld [wCursorAlternateTile], a
+	call PrintCardSelectionList
+	ret
+
+Func_b84d:
+	ld bc, wc000
+.asm_b850
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call CheckIfCardIDIsZero
+	ret c
+	inc hl
+	push hl
+	ld h, d
+	ld l, e
+	add hl, bc
+	inc [hl]
+	pop hl
+	jr .asm_b850
+
+Func_b860:
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	ld a, $51
+	ld hl, wUniqueDeckCardList
+	call ClearNBytesFromHL
+	ld a, $a0
+	ld hl, wTempCardList
+	call ClearNBytesFromHL
+	pop af
+	ld hl, $0
+	ld de, $0
+	ld b, a
+.asm_b87d
+	inc de
+	call GetCardType
+	jr c, .asm_b8bc
+	ld c, a
+	ld a, b
+	cp $ff
+	jr z, .asm_b89c
+	and $20
+	cp $20
+	jr z, .asm_b895
+	ld a, c
+	cp b
+	jr nz, .asm_b87d
+	jr .asm_b89c
+.asm_b895
+	ld a, c
+	and $08
+	cp $08
+	jr nz, .asm_b87d
+.asm_b89c
+	push bc
+	push hl
+	add hl, hl
+	ld bc, wTempCardList
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld hl, wc000
+	add hl, de
+	ld a, [hl]
+	and $7f
+	pop hl
+	or a
+	jr z, .asm_b8b9
+	push hl
+	ld bc, wUniqueDeckCardList
+	add hl, bc
+	ld [hl], a
+	pop hl
+	inc l
+.asm_b8b9
+	pop bc
+	jr .asm_b87d
+.asm_b8bc
+	ld a, l
+	ld [wNumEntriesInCurFilter], a
+	ld c, l
+	ld b, h
+	ld a, $ff
+	ld hl, wUniqueDeckCardList
+	add hl, bc
+	ld [hl], a
+	ld hl, wTempCardList
+	add hl, bc
+	add hl, bc
+	xor a
+	ld [hli], a
+	ld [hl], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xb8d6
+
+SECTION "Bank 2@790c", ROMX[$790c], BANK[$2]
+
+Func_b90c:
+	call PrepareMenuGraphics
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBox
+	ret
+; 0xb919
 
 SECTION "Bank 2@7947", ROMX[$7947], BANK[$2]
 

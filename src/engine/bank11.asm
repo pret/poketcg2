@@ -702,5 +702,10 @@ WaitForSFXToFinish::
 	jr nz, .loop_wait
 	ret
 
+SECTION "Bank 11@569f", ROMX[$569f], BANK[$11]
+
+Func_4569f:
+; TODO - ran into problems while disassembling this big chain of functions
+
 SECTION "Credits", ROMX[$5c6e], BANK[$11]
 INCLUDE "engine/credits.asm"
