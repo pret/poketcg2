@@ -770,6 +770,7 @@ SetFontAndTextBoxFrameColor_PreserveRegisters::
 	ret
 
 ; 0x10672
+Func_10672:
 	ret
 
 ; input: de = coord
@@ -6611,7 +6612,116 @@ DrawLoadedCard:
 	pop bc
 	pop af
 	ret
-; 0x1352a
+
+Func_1352a:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_13561.asm_1358a
+	ld hl, $0
+	ld a, $de
+	call Random
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, $de
+	call Random
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld d, h
+	ld e, l
+	call Func_13561.asm_135b3
+.asm_1354b
+	call DoFrame
+	ldh a, [hKeysPressed]
+	and $03
+	jr nz, .asm_13559
+	call Func_13561
+	jr .asm_1354b
+.asm_13559
+	call Func_13561.asm_135ac
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_13561:
+	ldh a, [hDPadHeld]
+	and $10
+	jr nz, .asm_1357c
+	ldh a, [hDPadHeld]
+	and $20
+	jr nz, .asm_1356e
+	ret
+.asm_1356e
+	ld bc, $1
+	call MultiplyBCByDE.CompareBCAndDE
+	jr c, .asm_13579
+	ld de, $1be
+.asm_13579
+	dec de
+	jr .asm_135b3
+.asm_1357c
+	ld bc, $1bc
+	call MultiplyBCByDE.CompareBCAndDE
+	jr nc, .asm_13587
+	ld de, $0
+.asm_13587
+	inc de
+	jr .asm_135b3
+.asm_1358a:
+	ld de, $504
+	ld bc, $a08
+	call AdjustDECoordByhSC
+	call CopyBGMapFromVRAMToWRAM
+	call ResetActiveSpriteAnimFlag6WithinArea
+	call DrawRegularTextBoxVRAM0
+	ld de, $b0b
+	ld bc, $301
+	ld hl, $2000
+	call AdjustDECoordByhSC
+	call FillBoxInBGMap
+	ret
+.asm_135ac:
+	call CopyBGMapFromWRAMToVRAM
+	call SetActiveSpriteAnimFlag6WithinArea
+	ret
+.asm_135b3
+	push de
+	push de
+	ld de, $605
+	call AdjustDECoordByhSC
+	ld b, d
+	ld c, e
+	pop de
+	push bc
+	ld c, $80
+	call LoadCardGfx_FromCardID
+	pop de
+	ld c, $05
+	call CopyCardPalettesToBGPals
+	ld b, $80
+	ld c, $05
+	call DrawLoadedCard
+	call FlushAllPalettes
+	pop de
+	push de
+	xor a
+	call BankswitchVRAM
+	ld h, d
+	ld l, e
+	ld de, $b0b
+	call AdjustDECoordByhSC
+	ld a, $03
+	ld b, $00
+	farcall PrintNumber
+	pop de
+	ret
+; 0x135ec
+
 
 SECTION "Bank 4@7890", ROMX[$7890], BANK[$4]
 

@@ -127,6 +127,144 @@ GetDuelInitialPrizesUpperBitsSet:
 	ret
 ; 0x863e
 
+SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
+
+Func_87d3:
+	xor a
+	ld [wMenuInputSFX], a
+	ld a, [wCurSongBankBackup]
+	ld d, a
+	ld a, [wMusicStereoPanningBackup]
+	ld e, a
+	ldh a, [hDPadHeld]
+	or a
+	jr z, .asm_8852
+	ld a, [$d0cd]
+	and $80
+	ldh a, [hDPadHeld]
+	jr nz, .asm_881c
+	bit 5, a
+	jr nz, .asm_87f5
+	bit 4, a
+	jr z, .asm_881c
+.asm_87f5
+	ld a, [$d0cd]
+	and $7f
+	cp $01
+	jr z, .asm_8809
+	cp $02
+	jr z, .asm_8810
+	ld a, e
+	or a
+	jr z, .asm_8816
+	dec e
+	jr .asm_8816
+.asm_8809
+	ld a, e
+	or a
+	jr nz, .asm_8816
+	inc e
+	jr .asm_8816
+.asm_8810
+	ld a, $01
+	sub d
+	ld d, a
+	jr .asm_883c
+.asm_8816
+	ld a, d
+	xor $01
+	ld d, a
+	jr .asm_883c
+.asm_881c
+	bit 6, a
+	jr nz, .asm_8824
+	bit 7, a
+	jr z, .asm_8852
+.asm_8824
+	ld a, [$d0cd]
+	and $7f
+	cp $02
+	jr z, .asm_8838
+	ld a, d
+	or a
+	jr z, .asm_8832
+	dec d
+.asm_8832
+	ld a, e
+	xor $01
+	ld e, a
+	jr .asm_883c
+.asm_8838
+	ld a, $01
+	sub e
+	ld e, a
+.asm_883c
+	ld a, $01
+	ld [wMenuInputSFX], a
+	push de
+	call .asm_8884
+	pop de
+	ld a, d
+	ld [wCurSongBankBackup], a
+	ld a, e
+	ld [wMusicStereoPanningBackup], a
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+.asm_8852
+	ldh a, [hKeysPressed]
+	and $03
+	jr z, .asm_886d
+	and $01
+	jr nz, .asm_8863
+	ld a, $ff
+	call PlayAcceptOrDeclineSFX
+	scf
+	ret
+.asm_8863
+	call .asm_88a3
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	scf
+	ret
+.asm_886d
+	ld a, [wMenuInputSFX]
+	or a
+	jr z, .asm_8876
+	call PlaySFX
+.asm_8876
+	ld hl, wScrollMenuCursorBlinkCounter
+	ld a, [hl]
+	inc [hl]
+	and $0f
+	ret nz
+	ld a, $0f
+	bit 4, [hl]
+	jr z, .asm_8886
+.asm_8884
+	ld a, $00
+.asm_8886
+	ld e, a
+	ld a, $0a
+	ld l, a
+	ld a, [wCurSongBankBackup]
+	ld h, a
+	call HtimesL
+	ld a, l
+	add $01
+	ld b, a
+	ld a, [wMusicStereoPanningBackup]
+	sla a
+	add $0e
+	ld c, a
+	ld a, e
+	call WriteByteToBGMap0
+	or a
+	ret
+.asm_88a3:
+	ld a, $0f
+	jr .asm_8886
+; 0x88a7
+
 SECTION "Bank 2@4acb", ROMX[$4acb], BANK[$2]
 
 LoadMenuCursorTile:
@@ -545,7 +683,108 @@ GetSRAMPointerToCurDeckCards:
 	pop de
 	pop af
 	ret
-; 0x9287
+
+Func_9287:
+	xor a
+	ld [wCurSongBankBackup], a
+	ld [wMusicStereoPanningBackup], a
+	ld [wScrollMenuCursorBlinkCounter], a
+	ret
+
+Func_9292:
+	xor a
+	ld [wMenuInputSFX], a
+	ld a, [wCurSongBankBackup]
+	ld d, a
+	ld a, [wMusicStereoPanningBackup]
+	ld e, a
+	ldh a, [hDPadHeld]
+	or a
+	jr z, .asm_92d3
+	bit 5, a
+	jr nz, .asm_92ab
+	bit 4, a
+	jr z, .asm_92b1
+.asm_92ab
+	ld a, d
+	xor $01
+	ld d, a
+	jr .asm_92bd
+.asm_92b1
+	bit 6, a
+	jr nz, .asm_92b9
+	bit 7, a
+	jr z, .asm_92d3
+.asm_92b9
+	ld a, e
+	xor $01
+	ld e, a
+.asm_92bd
+	ld a, $01
+	ld [wMenuInputSFX], a
+	push de
+	call .asm_9305
+	pop de
+	ld a, d
+	ld [wCurSongBankBackup], a
+	ld a, e
+	ld [wMusicStereoPanningBackup], a
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+.asm_92d3
+	ldh a, [hKeysPressed]
+	and $03
+	jr z, .asm_92ee
+	and $01
+	jr nz, .asm_92e4
+	ld a, $ff
+	call PlayAcceptOrDeclineSFX
+	scf
+	ret
+.asm_92e4
+	call .asm_9324
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	scf
+	ret
+.asm_92ee
+	ld a, [wMenuInputSFX]
+	or a
+	jr z, .asm_92f7
+	call PlaySFX
+.asm_92f7
+	ld hl, wScrollMenuCursorBlinkCounter
+	ld a, [hl]
+	inc [hl]
+	and $0f
+	ret nz
+	ld a, $0f
+	bit 4, [hl]
+	jr z, .asm_9307
+.asm_9305
+	ld a, $00
+.asm_9307
+	ld e, a
+	ld a, $0a
+	ld l, a
+	ld a, [wCurSongBankBackup]
+	ld h, a
+	call HtimesL
+	ld a, l
+	add $01
+	ld b, a
+	ld a, [wMusicStereoPanningBackup]
+	sla a
+	add $0e
+	ld c, a
+	ld a, e
+	call WriteByteToBGMap0
+	or a
+	ret
+.asm_9324:
+	ld a, $0f
+	jr .asm_9307
+; 0x9328
 
 SECTION "Bank 2@5328", ROMX[$5328], BANK[$2]
 
@@ -564,7 +803,64 @@ PlayAcceptOrDeclineSFX:
 	call PlaySFX
 	pop af
 	ret
-; 0x9337
+
+Func_9337:
+	push hl
+	ld d, h
+	ld e, l
+	ld hl, wTempSavedDeckCards
+	call CopyDeckFromSRAM
+	call EnableSRAM
+	ld hl, wTempSavedDeckCards
+	ld b, $3c
+.asm_9348
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call CheckIfCardIDIsZero
+	jr c, .asm_935b
+	inc hl
+	push hl
+	ld hl, sCardCollection
+	add hl, de
+	dec [hl]
+	pop hl
+	dec b
+	jr nz, .asm_9348
+.asm_935b
+	pop hl
+	ret
+; 0x935d
+
+SECTION "Bank 2@5397", ROMX[$5397], BANK[$2]
+
+Func_9397:
+	push hl
+	ld d, h
+	ld e, l
+	ld hl, wTempSavedDeckCards
+	call CopyDeckFromSRAM
+	call EnableSRAM
+	ld hl, wTempSavedDeckCards
+	ld b, $3c
+.asm_93a8
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call CheckIfCardIDIsZero
+	jr c, .asm_93bb
+	inc hl
+	push hl
+	ld hl, sCardCollection
+	add hl, de
+	inc [hl]
+	pop hl
+	dec b
+	jr nz, .asm_93a8
+.asm_93bb
+	pop hl
+	ret
+; 0x93bd
 
 SECTION "Bank 2@53bd", ROMX[$53bd], BANK[$2]
 
@@ -1084,6 +1380,32 @@ Func_9787:
 	ld [wTempCardTypeFilter], a
 	ret
 ; 0x97b9
+
+SECTION "Bank 2@5a0f", ROMX[$5a0f], BANK[$2]
+
+Func_9a0f:
+	ld hl, wCurDeckCards
+.asm_9a12
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call CheckIfCardIDIsZero
+	jr c, .asm_9a2f
+	call LoadCardDataToBuffer1_FromCardID
+	jr c, .asm_9a2f
+	ld a, [wLoadedCard1Type]
+	and $08
+	jr nz, .asm_9a12
+	ld a, [wLoadedCard1Stage]
+	or a
+	jr nz, .asm_9a12
+	scf
+	ret
+.asm_9a2f
+	or a
+	ret
+; 0x9a31
 
 SECTION "Bank 2@5a31", ROMX[$5a31], BANK[$2]
 
@@ -5220,7 +5542,144 @@ PrinterMenu:
 	db SYM_CURSOR_R ; visible cursor
 	db SYM_SPACE ; invisible cursor
 	dw NULL ; update func
-; 0xb57c
+
+Func_b57c:
+	push de
+	ld de, wCurDeckName
+	call CopyListFromHLToDE.loop
+	pop de
+	ld hl, wCurDeckCards
+	call CopyDeckFromSRAM
+.asm_b58a
+	ld a, $09
+	ld hl, wCardFilterCounts
+	call ClearNBytesFromHL
+	ld a, $3c
+	ld [wTotalCardCount], a
+	ld hl, wCardFilterCounts
+	ld [hl], a
+	call Func_b5b1
+	ret
+
+Func_b59f:
+	push de
+	ld de, wCurDeckName
+	call CopyListFromHLToDEInSRAM
+	pop hl
+	ld de, wCurDeckCards
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank02.loop
+	jr Func_b57c.asm_b58a
+
+Func_b5b1:
+	call SortCurDeckCardsByID
+	call CreateCurDeckUniqueCardList
+	xor a
+	ld [wScrollMenuScrollOffset], a
+.asm_b5bb
+	ld hl, $7621
+	call InitializeScrollMenuParameters
+	ld a, [wNumUniqueCards]
+	ld [wNumCardListEntries], a
+	cp $05
+	jr c, .asm_b5cd
+	ld a, $05
+.asm_b5cd
+	ld [wNumMenuItems], a
+	ld [wNumVisibleCardListEntries], a
+	call Func_b649
+	ld hl, $d38a
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call DrawWideTextBox_PrintText
+	ld hl, PrintConfirmationCardList
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	xor a
+	ld [wd119], a
+.asm_b5ed
+	call DoFrame
+	call HandleScrollListInput
+	jr c, .asm_b619
+	call HandleJumpListInput
+	jr c, .asm_b5ed
+	ldh a, [hDPadHeld]
+	and $08
+	jr z, .asm_b5ed
+.asm_b600
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	ld a, [wTempCardTypeFilter]
+	ld [wced7], a
+	ld de, wUniqueDeckCardList
+	ld hl, wCurCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call OpenCardPageFromCardList
+	jr .asm_b5bb
+.asm_b619
+	ld a, [hCurMenuItem]
+	cp $ff
+	ret z
+	jr .asm_b600
+; 0xb621
+
+SECTION "Bank 2@7649", ROMX[$7649], BANK[$2]
+
+Func_b649:
+	call Func_b659
+	ld de, $303
+	ld hl, wCardListCoords
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call PrintConfirmationCardList
+	ret
+
+Func_b659:
+	call EmptyScreenAndLoadFontDuelAndHandCardsIcons
+	call Func_b663
+	call EnableLCD
+	ret
+
+Func_b663:
+	ld a, [wCurDeckName]
+	or a
+	ret z
+	ld de, $1
+	call InitTextPrinting
+	ld a, [wCurDeck]
+	inc a
+	ld hl, wDefaultText
+	call ConvertToNumericalDigits
+	ld [hl], $77
+	inc hl
+	ld [hl], $00
+	ld hl, wDefaultText
+	call ProcessText
+	ld hl, wCurDeckName
+	ld de, wDefaultText
+	call CopyListFromHLToDE.loop
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld b, $00
+	ld hl, wDefaultText
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, DeckNameSuffix
+	call CopyListFromHLToDE.loop
+	ld de, $301
+	ld hl, wDefaultText
+	call InitTextPrinting
+	call ProcessText
+	ret
+; 0xb6ad
 
 SECTION "Bank 2@781d", ROMX[$781d], BANK[$2]
 
@@ -5599,7 +6058,15 @@ DeckDiagnosisResult:
 	pop bc
 	pop af
 	ret
-; 0xbaec
+
+Func_baec:
+	farcall Func_3ada1
+	ret
+
+Func_baf1:
+	farcall Func_2bc9f
+	ret
+; 0xbaf6
 
 SECTION "Bank 2@7af6", ROMX[$7af6], BANK[$2]
 

@@ -2698,7 +2698,235 @@ Func_1d53a:
 	pop bc
 	pop af
 	ret
-; 0x1d55d
+
+Func_1d55d:
+	farcall Func_11002
+	call Func_1d594
+	call Func_1d5aa
+	jr c, .asm_1d57c
+	farcall Func_1101d
+	farcall Func_1022a
+	call Func_1d584
+	farcall Func_10252
+	farcall Func_11002
+.asm_1d57c
+	call Func_1d59f
+	farcall Func_1101d
+	ret
+
+Func_1d584:
+	push af
+	push bc
+	push de
+	push hl
+	xor a
+	ld [$db18], a
+	call Func_1d5b4
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1d594:
+	ld de, $5e0
+	ld hl, $5e1
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1d59f:
+	ld de, $5e0
+	ld hl, $5e7
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1d5aa:
+	ld hl, $5e2
+	ld a, $01
+	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
+	ret
+
+Func_1d5b4:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1d5c7
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_1d66e
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1d5c7:
+	call Func_1d779
+	ld de, $0
+	ld b, $07
+	ld hl, $564a
+	call LoadMenuBoxParams
+	ld a, [$db18]
+	call DrawMenuBox
+	ld hl, $67d
+	ld de, $100
+	call Func_2c4b
+	ld de, $e00
+	ld bc, $501
+	farcall FillBoxInBGMapWithZero
+	ld hl, $5ca
+	ld de, $1200
+	call Func_35af
+	farcall GetGameCenterChips
+	ld de, $e00
+	ld h, b
+	ld l, c
+	ld a, $04
+	ld b, $01
+	call PrintNumber
+	ld hl, $db1a
+	ld e, $02
+	ld c, $05
+.asm_1d60e
+	ld a, [hli]
+	call Func_1d618
+	inc e
+	inc e
+	dec c
+	jr nz, .asm_1d60e
+	ret
+
+Func_1d618:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, $57a6
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld d, $02
+	call Func_35af
+	pop hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $04
+	ld b, $01
+	ld d, $0e
+	call PrintNumber
+	ld d, $12
+	ld hl, $5ca
+	call Func_35af
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1d64a
+
+SECTION "Bank 7@566e", ROMX[$566e], BANK[$7]
+
+Func_1d66e:
+.asm_1d66e
+	ld de, $10e
+	ld hl, $5e3
+	farcall PrintTextInWideTextBox
+	ld a, [$db18]
+	call HandleMenuBox
+	ld [$db18], a
+	jr c, .asm_1d68c
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	jr .asm_1d695
+.asm_1d68c
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	jr .asm_1d6b2
+.asm_1d695
+	ld hl, $5e5
+	ld a, $01
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_1d6b2
+	call Func_1d6be
+	jr c, .asm_1d6b2
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1d5c7
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+.asm_1d6b2
+	ld hl, $5e6
+	ld a, $01
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_1d66e
+	ret
+
+Func_1d6be:
+	ld a, [$db18]
+	ld c, a
+	ld b, $00
+	ld hl, $db1a
+	add hl, bc
+	ld a, [hl]
+	ld [$db19], a
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $57a6
+	add hl, bc
+	inc hl
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	farcall GetGameCenterChips
+	call MultiplyBCByDE.CompareBCAndDE
+	jr c, .asm_1d6fc
+	ld b, d
+	ld c, e
+	farcall SubtractChips
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	ld a, [$db19]
+	ld hl, $5704
+	call CallMappedFunction
+	call WaitPalFading_Bank07
+	ret
+.asm_1d6fc
+	ld hl, $5e4
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+; 0x1d704
+
+SECTION "Bank 7@5779", ROMX[$5779], BANK[$7]
+
+Func_1d779:
+	ld a, [wdb1f]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $5793
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $db1a
+	ld c, $05
+.asm_1d78c
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .asm_1d78c
+	ret
+; 0x1d793
 
 SECTION "Bank 7@57a1", ROMX[$57a1], BANK[$7]
 
@@ -4904,7 +5132,28 @@ Func_1e767:
 	ret
 ; 0x1e76c
 
-SECTION "Bank 7@6866", ROMX[$6866], BANK[$7]
+SECTION "Bank 7@6837", ROMX[$6837], BANK[$7]
+
+Func_1e837:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall Func_baec
+	ret
+; 0x1e840
+
+SECTION "Bank 7@6849", ROMX[$6849], BANK[$7]
+
+Func_1e849:
+	farcall Func_1022a
+	call Func_1e837
+	farcall Func_10252
+	ret
+
+Func_1e855:
+	farcall Func_1022a
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall Func_baf1
+	farcall Func_10252
+	ret
 
 LoadBoosterPackScene:
 	push af
@@ -5061,6 +5310,53 @@ _GiveBoosterPack:
 	farcall GetBoosterPack
 	ret
 ; 0x1e984
+
+SECTION "Bank 7@69ea", ROMX[$69ea], BANK[$7]
+
+Func_1e9ea:
+	push af
+	push bc
+	push de
+	push hl
+	ld d, h
+	ld e, l
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $dd0a
+	add hl, bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ea00:
+	push af
+	push hl
+	xor a
+	ld hl, $5be
+.asm_1ea06
+	call Func_1e9ea
+	inc a
+	cp $08
+	jr nz, .asm_1ea06
+	ld hl, $dd1a
+	ld c, $07
+	xor a
+.asm_1ea14
+	ld [hli], a
+	dec c
+	jr nz, .asm_1ea14
+	xor a
+	ld [$dd21], a
+	pop hl
+	pop af
+	ret
+; 0x1ea1f
 
 SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
 
@@ -5434,6 +5730,272 @@ GetwDD75:
 	and a
 	ret
 ; 0x1f627
+
+Func_1f627:
+	farcall Func_102a4
+	call Func_1f633
+	farcall Func_102c4
+	ret
+
+Func_1f633:
+	push af
+	push de
+	push hl
+	xor a
+	ld [$dd78], a
+	call Func_1f644
+	call Func_1f7ad
+	pop hl
+	pop de
+	pop af
+	ret
+
+Func_1f644:
+	farcall InitOWObjects
+	farcall SetInitialGraphicsConfiguration
+	farcall Func_10672
+	call Func_1f666
+	call Func_1f682
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+	call Func_1f6cd
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	ret
+
+Func_1f666:
+	ld de, $0
+	ld bc, GetPlayAreaCardAttachedEnergies
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $74c
+	ld de, $401
+	call Func_35af
+	ret
+
+Func_1f682:
+	ld b, $07
+	ld hl, $76ad
+	ld de, $3
+	call LoadMenuBoxParams
+	ld a, [$dd78]
+	call DrawMenuBox
+	ld de, $404
+	ld hl, $dd7a
+	ld c, $04
+.asm_1f69b
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call Func_35af
+	pop hl
+	inc hl
+	inc hl
+	inc hl
+	inc hl
+	inc e
+	inc e
+	dec c
+	jr nz, .asm_1f69b
+	ret
+; 0x1f6ad
+
+SECTION "Bank 7@76cd", ROMX[$76cd], BANK[$7]
+
+Func_1f6cd:
+.asm_1f6cd
+	call Func_1f748
+	xor a
+	ld [$dd79], a
+.asm_1f6d4
+	ld hl, $74d
+	ld de, $10e
+	call Func_35af
+.asm_1f6dd
+	ld a, [$dd78]
+	call HandleMenuBox
+	ld [$dd78], a
+	ldh a, [hKeysPressed]
+	and $08
+	jr z, .asm_1f6f1
+	call Func_1f71c
+	jr .asm_1f6d4
+.asm_1f6f1
+	ldh a, [hKeysPressed]
+	and $01
+	jr z, .asm_1f6fd
+	ld a, [$dd78]
+	call Func_1f752
+.asm_1f6fd
+	ldh a, [hKeysPressed]
+	and $02
+	jr z, .asm_1f709
+	ld a, [$dd78]
+	call Func_1f762
+.asm_1f709
+	ld a, [$dd79]
+	cp $02
+	jr nz, .asm_1f6dd
+	ld hl, $74e
+	ld a, $01
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_1f6cd
+	ret
+
+Func_1f71c:
+	call Func_1f7b6
+	call EmptyScreen
+	farcall InitOWObjects
+	farcall SetInitialGraphicsConfiguration
+	farcall Func_10672
+	call Func_1f666
+	call Func_1f682
+	ld a, [$dd79]
+	and a
+	jr z, .asm_1f744
+	ld a, [$dd8e]
+	ld d, $17
+	ld e, $00
+	call Func_1f76f
+.asm_1f744
+	call EnableLCD
+	ret
+
+Func_1f748:
+	xor a
+.asm_1f749
+	call Func_1f762
+	inc a
+	cp $04
+	jr nz, .asm_1f749
+	ret
+
+Func_1f752:
+	push af
+	ld d, $17
+	ld e, $00
+	call Func_1f76f
+	call Func_1f79e
+	call Func_1f77b
+	pop af
+	ret
+
+Func_1f762:
+	push af
+	ld d, $00
+	ld e, $00
+	call Func_1f76f
+	call Func_1f78d
+	pop af
+	ret
+
+Func_1f76f:
+	push af
+	add a
+	add $04
+	ld c, a
+	ld b, $03
+	call Func_383b
+	pop af
+	ret
+
+Func_1f77b:
+	ld c, a
+	ld b, $00
+	ld hl, $dd8a
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret nz
+	ld a, $ff
+	ld [hl], a
+	ld hl, $dd79
+	inc [hl]
+	ret
+
+Func_1f78d:
+	ld c, a
+	ld b, $00
+	ld hl, $dd8a
+	add hl, bc
+	ld a, [hl]
+	and a
+	ret z
+	xor a
+	ld [hl], a
+	ld hl, $dd79
+	dec [hl]
+	ret
+
+Func_1f79e:
+	ld a, [$dd79]
+	ld c, a
+	ld b, $00
+	ld hl, $dd8e
+	add hl, bc
+	ld a, [$dd78]
+	ld [hl], a
+	ret
+
+Func_1f7ad:
+	ld a, [$dd8e]
+	ld b, a
+	ld a, [$dd8f]
+	ld c, a
+	ret
+
+Func_1f7b6:
+	ld a, [$dd78]
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $dd7a
+	add hl, bc
+	inc hl
+	inc hl
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	farcall 1, LoadCardDataToBuffer1_FromCardID ; need to specify bank to match baserom
+	farcall SetupDuel
+	farcall OpenCardPage_FromHand
+	ret
+; 0x1f7d4
+
+SECTION "Bank 7@77d4", ROMX[$77d4], BANK[$7]
+
+Func_1f7d4:
+	push af
+	push bc
+	push de
+	push hl
+	ld d, h
+	ld e, l
+	push bc
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $dd7a
+	add hl, bc
+	pop bc
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1f7f1
 
 SECTION "Bank 7@77f1", ROMX[$77f1], BANK[$7]
 
