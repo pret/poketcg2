@@ -4259,9 +4259,42 @@ Func_32a28:
 FireFortYuki_AfterDuelScripts:
 	npc_script NPC_YUKI, Func_32b43
 	db $ff
-; gap from 0x32a38 to 0x32a76
 
-SECTION "Bank c@6a76", ROMX[$6a76], BANK[$c]
+Func_32a38:
+	ld a, $3f
+	ld [wScriptNPC], a
+	ld hl, $a13
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	wait_for_fade
+	script_command_01
+	print_npc_text Text0cc4
+	script_command_02
+	do_frames 60
+	set_active_npc_direction NORTH
+	do_frames 30
+	script_command_01
+	print_npc_text Text0cc5
+	script_command_02
+	do_frames 30
+	set_active_npc_direction SOUTH
+	script_command_01
+	print_npc_text Text0cc6
+	script_command_02
+	move_active_npc NPCMovement_32a71
+	wait_for_player_animation
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_32a71:
+	db NORTH, RUN_6
+	db SOUTH, MOVE_0
+	db $ff
 
 Func_32a76:
 	ld a, $3f
