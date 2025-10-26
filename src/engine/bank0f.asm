@@ -547,9 +547,162 @@ NPCMovement_3c492:
 	db NORTH, MOVE_3
 	db EAST, MOVE_14
 	db $ff
-; 0x3c497
 
-SECTION "Bank f@4603", ROMX[$4603], BANK[$f]
+Script_3c497:
+	set_var VAR_26, $0f
+	print_npc_text Text12d3
+	card_pop SCRIPTED_RARE_CARD_POP_IMAKUNI
+	print_npc_text Text12d4
+	quit_script
+; 0x3c4a3
+
+SECTION "Bank f@44e0", ROMX[$44e0], BANK[$f]
+
+Func_3c4e0:
+	ld a, $b1
+	ld [wScriptNPC], a
+	ld hl, $a2f
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	get_var VAR_23
+	compare_loaded_var $00
+	script_jump_if_b0nz .ows_3c50b
+	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
+	script_jump_if_b0nz .ows_3c514
+	get_random $14
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c514
+	script_jump Script_3c497
+.ows_3c50b
+	set_var VAR_23, $01
+	print_npc_text Text12d6
+	script_jump .ows_3c517
+.ows_3c514
+	print_npc_text Text12d7
+.ows_3c517
+	ask_question Text12d8, TRUE
+	script_jump_if_b0z .ows_3c527
+	print_npc_text Text12d9
+	script_command_02
+	start_duel STRANGE_DECK_ID, MUSIC_MATCHSTART_1
+	end_script
+	ret
+.ows_3c527
+	print_npc_text Text12da
+	script_command_02
+	end_script
+	ret
+
+Func_3c52d:
+	xor a
+	start_script
+	script_command_01
+	set_var VAR_26, $0f
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
+	script_jump_if_b0nz .ows_3c574
+	inc_var VAR_24
+	get_var VAR_24
+	compare_loaded_var $0a
+	script_jump_if_b1nz .ows_3c546
+	set_var VAR_24, $0a
+.ows_3c546
+	compare_loaded_var $03
+	script_jump_if_b0nz .ows_3c558
+	compare_loaded_var $06
+	script_jump_if_b0nz .ows_3c55f
+	compare_loaded_var $09
+	script_jump_if_b0nz .ows_3c566
+	script_jump .ows_3c56d
+.ows_3c558
+	script_call .ows_3c597
+	script_jump .ows_3c577
+.ows_3c55f
+	script_call .ows_3c5a4
+	script_jump .ows_3c577
+.ows_3c566
+	script_call .ows_3c5b1
+	script_jump .ows_3c577
+.ows_3c56d
+	script_call .ows_3c5ce
+	script_jump .ows_3c577
+.ows_3c574
+	print_npc_text Text12db
+.ows_3c577
+	script_command_02
+	get_player_direction
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c583
+	set_player_direction EAST
+	animate_player_movement $83, $02
+.ows_3c583
+	move_active_npc NPCMovement_3c5fe
+	wait_for_player_animation
+	unload_npc NPC_IMAKUNI_RED
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.ows_3c597
+	print_npc_text Text12dc
+	give_card SLOWPOKE_LV9
+	show_card_received_screen SLOWPOKE_LV9
+	print_npc_text Text12dd
+	script_ret
+.ows_3c5a4
+	print_npc_text Text12de
+	give_card IMAKUNI_CARD
+	show_card_received_screen IMAKUNI_CARD
+	print_npc_text Text12df
+	script_ret
+.ows_3c5b1
+	print_npc_text Text12e0
+	get_random $02
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c5c4
+	give_card SLOWPOKE_LV9
+	show_card_received_screen SLOWPOKE_LV9
+	script_jump .ows_3c5ca
+.ows_3c5c4
+	give_card IMAKUNI_CARD
+	show_card_received_screen IMAKUNI_CARD
+.ows_3c5ca
+	print_npc_text Text12e1
+	script_ret
+.ows_3c5ce
+	print_npc_text Text12e2
+	get_var VAR_24
+	compare_loaded_var $03
+	script_jump_if_b1nz .ows_3c5e5
+	compare_loaded_var $06
+	script_jump_if_b1nz .ows_3c5eb
+	compare_loaded_var $09
+	script_jump_if_b1nz .ows_3c5f1
+	script_jump .ows_3c5f7
+.ows_3c5e5
+	give_booster_packs BoosterList_cdf8
+	script_jump .ows_3c5fa
+.ows_3c5eb
+	give_booster_packs BoosterList_cdfe
+	script_jump .ows_3c5fa
+.ows_3c5f1
+	give_booster_packs BoosterList_ce05
+	script_jump .ows_3c5fa
+.ows_3c5f7
+	give_booster_packs BoosterList_ce0d
+.ows_3c5fa
+	print_npc_text Text12e3
+	script_ret
+NPCMovement_3c5fe:
+	db SOUTH, MOVE_5
+	db EAST, MOVE_3
+	db $ff
 
 MasonLaboratoryComputerRoom_MapHeader:
 	db MAP_GFX_MASON_LABORATORY_COMPUTER_ROOM

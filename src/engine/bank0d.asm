@@ -32,6 +32,164 @@ NPCMovement_341f0:
 	db $ff
 ; 0x341f7
 
+SECTION "Bank d@426f", ROMX[$426f], BANK[$d]
+
+Func_3426f:
+	ld a, $a2
+	farcall GetEventValue
+	jr nz, .asm_342d5
+	ld a, $a2
+	farcall MaxOutEventValue
+	ld a, $14
+	farcall GetEventValue
+	jr nz, .asm_342d5
+	xor a
+	start_script
+	play_song_next MUSIC_RONALD
+	scroll_to_position $ff, $00
+	load_npc NPC_RONALD, 6, 15, SOUTH
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc NPCMovement_342da
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1274
+	script_command_02
+	get_player_x_position
+	compare_loaded_var $06
+	script_jump_if_b0nz .ows_342ad
+	move_player NPCMovement_342e5, TRUE
+	script_jump .ows_342b1
+.ows_342ad
+	move_player NPCMovement_342ec, TRUE
+.ows_342b1
+	move_active_npc NPCMovement_342dd
+	scroll_to_position $02, $03
+	wait_for_player_animation
+	scroll_to_player
+	script_command_01
+	print_npc_text Text1275
+	give_card BILLS_COMPUTER
+	show_card_received_screen BILLS_COMPUTER
+	print_npc_text Text1276
+	script_command_02
+	move_active_npc NPCMovement_342e0
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+.asm_342d5
+	farcall Func_c199
+	ret
+NPCMovement_342da:
+	db SOUTH, MOVE_2
+	db $ff
+NPCMovement_342dd:
+	db SOUTH, MOVE_5
+	db $ff
+NPCMovement_342e0:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_8
+	db $ff
+NPCMovement_342e5:
+	db NORTH, MOVE_2
+	db EAST, MOVE_1
+	db NORTH, MOVE_0
+	db $ff
+NPCMovement_342ec:
+	db NORTH, MOVE_2
+	db $ff
+; 0x342ef
+
+SECTION "Bank d@4323", ROMX[$4323], BANK[$d]
+
+Func_34323:
+	xor a
+	start_script
+	script_command_01
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
+	script_jump_if_b0nz .ows_34358
+	print_npc_text Text1279
+	script_command_02
+	spin_active_npc 515
+	replace_npc NPC_GR_X, NPC_RONALD
+	set_active_npc NPC_RONALD, DialogRonaldText
+	script_command_01
+	print_npc_text Text127a
+	give_booster_packs BoosterList_cdcf
+	print_npc_text Text127b
+	script_command_02
+	spin_active_npc_reverse 515
+	replace_npc NPC_RONALD, NPC_GR_X
+	set_active_npc NPC_GR_X, DialogGRXText
+	script_command_01
+	print_npc_text Text127c
+	script_command_02
+	script_jump .ows_3437d
+.ows_34358
+	print_npc_text Text127d
+	script_command_02
+	spin_active_npc 515
+	replace_npc NPC_GR_X, NPC_RONALD
+	set_active_npc NPC_RONALD, DialogRonaldText
+	script_command_01
+	print_npc_text Text127e
+	print_npc_text Text127b
+	script_command_02
+	spin_active_npc_reverse 515
+	replace_npc NPC_RONALD, NPC_GR_X
+	set_active_npc NPC_GR_X, DialogGRXText
+	script_command_01
+	print_npc_text Text127c
+	script_command_02
+.ows_3437d
+	move_active_npc NPCMovement_3438c
+	wait_for_player_animation
+	unload_npc NPC_GR_X
+	end_script
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+NPCMovement_3438c:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_6
+	db $ff
+; 0x34391
+
+SECTION "Bank d@43ef", ROMX[$43ef], BANK[$d]
+
+Func_343ef:
+	xor a
+	start_script
+	script_command_01
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
+	script_jump_if_b0nz .ows_34408
+	print_npc_text Text1282
+	give_card COMPUTER_ERROR
+	show_card_received_screen COMPUTER_ERROR
+	print_npc_text Text1283
+	script_jump .ows_3440b
+.ows_34408
+	print_npc_text Text1284
+.ows_3440b
+	script_command_02
+	spin_active_npc_reverse 515
+	replace_npc NPC_RONALD, NPC_GR_X
+	set_active_npc NPC_GR_X, DialogGRXText
+	move_active_npc NPCMovement_3442a
+	wait_for_player_animation
+	unload_npc NPC_GR_X
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+NPCMovement_3442a:
+	db SOUTH, MOVE_8
+	db $ff
+; 0x3442d
+
 SECTION "Bank d@4575", ROMX[$4575], BANK[$d]
 
 TcgAirportEntrance_MapHeader:

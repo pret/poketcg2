@@ -320,7 +320,7 @@ Func_323f::
 Func_324d::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-.asm_3254
+.asm_3254::
 	ld a, [hli]
 	cp $ff
 	jr nz, .asm_325b

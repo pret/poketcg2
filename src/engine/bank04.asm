@@ -4955,7 +4955,38 @@ PrintCardAlbumProgress:
 	pop bc
 	pop af
 	ret
-; 0x121e1
+
+Func_121e1:
+	push bc
+	push de
+	push hl
+	ld hl, $db17
+	ld [hl], b
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $6214
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld b, $04
+	call LoadMenuBoxParams
+	farcall Func_1cacf
+	ld a, [$db17]
+	farcall DrawMenuBox
+	farcall HandleMenuBox
+	farcall Func_1caf1
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x12214
 
 SECTION "Bank 4@6e68", ROMX[$6e68], BANK[$4]
 
