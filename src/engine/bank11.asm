@@ -1,4 +1,59 @@
-SECTION "Bank 11@4039", ROMX[$4039], BANK[$11]
+Func_44000:
+	push af
+	push de
+	push hl
+.asm_44003
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_4400f
+	call RemoveCardFromCollection
+	jr .asm_44003
+.asm_4400f
+	pop hl
+	pop de
+	pop af
+	ret
+
+Func_44013:
+	push bc
+	push de
+	push hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_44030
+.asm_4401d
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .asm_44033
+	ld a, d
+	cp b
+	jr c, .asm_4402c
+	jr nz, .asm_4402c
+	ld a, e
+	cp c
+.asm_4402c
+	jr nz, .asm_44030
+	jr .asm_4401d
+.asm_44030
+	scf
+	jr .asm_44035
+.asm_44033
+	scf
+	ccf
+.asm_44035
+	pop hl
+	pop de
+	pop bc
+	ret
 
 ; counts number of cards in
 ; $0000 terminated list in hl
@@ -67,9 +122,352 @@ SearchCardInListInHL:
 	pop de
 	pop bc
 	ret
-; 0x44070
 
-SECTION "Bank 11@426a", ROMX[$426a], BANK[$11]
+Func_44070:
+	push hl
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_44078
+	inc h
+.asm_44078
+	call SearchCardInListInHL
+	pop hl
+	ret
+
+Func_4407d:
+	call CountCardsInHL
+	cp $02
+	jr z, .asm_4408a
+	cp $03
+	jr z, .asm_4408a
+	scf
+	ret
+.asm_4408a
+	push bc
+	push de
+	push hl
+	push hl
+	xor a
+	ld hl, $d57c
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	pop hl
+.asm_44099
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_440ca
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jp nc, .asm_4418a
+	push hl
+	ld hl, $d57c
+	ld a, [wLoadedCard1Stage]
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_440b9
+	inc h
+.asm_440b9
+	ld a, [hli]
+	ld c, a
+	ld a, [hld]
+	or c
+	push hl
+	pop bc
+	pop hl
+	jp nz, .asm_4418a
+	ld a, e
+	ld [bc], a
+	inc bc
+	ld a, d
+	ld [bc], a
+	jr .asm_44099
+.asm_440ca
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jp z, .asm_4416d
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_4412e
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_44113
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call Func_4427f
+	jp nc, .asm_4418a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	push hl
+	ld hl, wDuelTempList
+	call SearchCardInListInHL
+	pop hl
+	jp c, .asm_4418a
+	call Func_4427f
+	jp nc, .asm_4418a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wDuelTempList
+	call SearchCardInListInHL
+	jr c, .asm_4418a
+	xor a
+	jr .asm_44186
+.asm_44113
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call Func_4427f
+	jr nc, .asm_4418a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wDuelTempList
+	call SearchCardInListInHL
+	jr c, .asm_4418a
+	ld a, $01
+	jr .asm_44186
+.asm_4412e
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call Func_4427f
+	jr nc, .asm_4418a
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1PreEvoName]
+	ld c, a
+	ld a, [$cc3f]
+	ld b, a
+	ld hl, wDuelTempList
+.asm_4414d
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_4418a
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Name]
+	ld e, a
+	ld a, [$cc36]
+	ld d, a
+	ld a, d
+	cp b
+	jr c, .asm_44167
+	jr nz, .asm_44167
+	ld a, e
+	cp c
+.asm_44167
+	jr nz, .asm_4414d
+	ld a, $02
+	jr .asm_44186
+.asm_4416d
+	ld hl, $d57e
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	call Func_4427f
+	jr nc, .asm_4418a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wDuelTempList
+	call SearchCardInListInHL
+	jr c, .asm_4418a
+	ld a, $03
+.asm_44186
+	scf
+	ccf
+	jr .asm_4418b
+.asm_4418a
+	scf
+.asm_4418b
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x4418f
+
+SECTION "Bank 11@41ac", ROMX[$41ac], BANK[$11]
+
+Func_441ac:
+	push bc
+	push de
+	push hl
+	push hl
+	xor a
+	ld hl, wd561
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	pop hl
+.asm_441bc
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_441da
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $07
+	jr nc, .asm_441bc
+	ld de, wd561
+	add e
+	ld e, a
+	jr nc, .asm_441d5
+	inc d
+.asm_441d5
+	ld a, [de]
+	inc a
+	ld [de], a
+	jr .asm_441bc
+.asm_441da
+	ld de, $0
+	ld c, $00
+	ld hl, wd561
+.asm_441e2
+	ld a, [hli]
+	cp d
+	jr c, .asm_441f4
+	jr nz, .asm_441f2
+	call UpdateRNGSources
+	srl a
+	jr c, .asm_441f4
+	ld e, c
+	jr .asm_441f4
+.asm_441f2
+	ld d, a
+	ld e, c
+.asm_441f4
+	inc c
+	ld a, c
+	cp $07
+	jr nz, .asm_441e2
+	ld a, e
+	or a
+	jr nz, .asm_441ff
+	scf
+.asm_441ff
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_44203:
+	push bc
+	push de
+	push hl
+	farcall ZeroOutBytes_wd606
+.asm_4420a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_44221
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $07
+	jr nc, .asm_4420a
+	farcall SetBit_wd606
+	jr .asm_4420a
+.asm_44221
+	xor a
+	ld c, a
+.asm_44223
+	farcall CheckBit_wd606
+	jr z, .asm_4422a
+	inc c
+.asm_4422a
+	inc a
+	cp $07
+	jr nz, .asm_44223
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_44234:
+	push bc
+	push de
+	push hl
+	ld de, $1
+	ld hl, wDuelTempList
+	xor a
+	push af
+.asm_4423f
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp b
+	jr nz, .asm_44255
+	ld a, [wLoadedCard1Rarity]
+	cp c
+	jr nz, .asm_44255
+	pop af
+	inc a
+	push af
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+.asm_44255
+	ld a, d
+	cp $01
+	jr c, .asm_4425f
+	jr nz, .asm_4425f
+	ld a, e
+	cp $bd
+.asm_4425f
+	inc de
+	jr nz, .asm_4423f
+	xor a
+	ld [hli], a
+	ld [hl], a
+	pop af
+	pop hl
+	pop de
+	pop bc
+	ret
 
 ; appends card ID in de to list in hl
 AppendCardToListInHL:
@@ -94,7 +492,272 @@ AppendCardToListInHL:
 	pop bc
 	pop af
 	ret
-; 0x4427f
+
+Func_4427f:
+	push bc
+	push de
+	push hl
+	farcall Func_260e7
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_4428a:
+	push bc
+	push de
+	push hl
+	call LoadCardDataToBuffer1_FromCardID
+	ld hl, wLoadedCard1PreEvoName
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	ld hl, wDuelTempList
+	ld de, $0
+.asm_4429c
+	inc de
+	push hl
+	push de
+	call LoadCardDataToBuffer1_FromCardID
+	jr c, .asm_442c3
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .asm_442bf
+	ld hl, wLoadedCard1Name
+	ld a, c
+	cp [hl]
+	jr nz, .asm_442bf
+	inc hl
+	ld a, b
+	cp [hl]
+	jr nz, .asm_442bf
+	pop de
+	pop hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	jr .asm_4429c
+.asm_442bf
+	pop de
+	pop hl
+	jr .asm_4429c
+.asm_442c3
+	pop de
+	pop hl
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wDuelTempList
+	ld a, [hli]
+	or [hl]
+	pop hl
+	pop de
+	pop bc
+	ret z
+	scf
+	ret
+
+Func_442d3:
+	push bc
+	push de
+	push hl
+	call LoadCardDataToBuffer1_FromCardID
+	ld hl, wLoadedCard1Name
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	ld hl, wDuelTempList
+	ld de, $0
+.asm_442e5
+	inc de
+	push hl
+	push de
+	call LoadCardDataToBuffer1_FromCardID
+	jr c, .asm_4430c
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .asm_44308
+	ld hl, wLoadedCard1Name
+	ld a, c
+	cp [hl]
+	jr nz, .asm_44308
+	inc hl
+	ld a, b
+	cp [hl]
+	jr nz, .asm_44308
+	pop de
+	pop hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	jr .asm_442e5
+.asm_44308
+	pop de
+	pop hl
+	jr .asm_442e5
+.asm_4430c
+	pop de
+	pop hl
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wDuelTempList
+	ld a, [hli]
+	or [hl]
+	pop hl
+	pop de
+	pop bc
+	ret z
+	scf
+	ret
+; 0x4431c
+
+SECTION "Bank 11@433a", ROMX[$433a], BANK[$11]
+
+Func_4433a:
+	push bc
+	push de
+	push hl
+	ld c, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	or e
+	jr z, .asm_44357
+.asm_44345
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_4435a
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Rarity]
+	cp c
+	jr nz, .asm_44357
+	jr .asm_44345
+.asm_44357
+	scf
+	jr .asm_4435c
+.asm_4435a
+	scf
+	ccf
+.asm_4435c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_44360:
+	push bc
+	push de
+	push hl
+.asm_44363
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .asm_4438b
+	ld a, d
+	cp b
+	jr c, .asm_44372
+	jr nz, .asm_44372
+	ld a, e
+	cp c
+.asm_44372
+	jr nz, .asm_44363
+.asm_44374
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	dec hl
+	dec hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	or e
+	inc hl
+	inc hl
+	jr nz, .asm_44374
+	xor a
+	dec hl
+	ld [hld], a
+	ld [hl], a
+	scf
+	ccf
+	jr .asm_4438c
+.asm_4438b
+	scf
+.asm_4438c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_44390:
+	push bc
+	push de
+	push hl
+	farcall ZeroOutBytes_wd606
+.asm_44397
+	ld a, [bc]
+	ld e, a
+	inc bc
+	ld a, [bc]
+	ld d, a
+	inc bc
+	or e
+	jr z, .asm_443b4
+	ld a, $ff
+.asm_443a2
+	inc a
+	call Func_44070
+	jr c, .asm_443b8
+	farcall CheckBit_wd606
+	jr nz, .asm_443a2
+	farcall SetBit_wd606
+	jr .asm_44397
+.asm_443b4
+	scf
+	ccf
+	jr .asm_443b9
+.asm_443b8
+	scf
+.asm_443b9
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_443bd:
+	push af
+	push bc
+	push de
+	push hl
+.asm_443c1
+	ld a, [bc]
+	ld e, a
+	inc bc
+	ld a, [bc]
+	inc bc
+	ld d, a
+	or e
+	jr z, .asm_443cf
+	call Func_44360
+	jr .asm_443c1
+.asm_443cf
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x443d4
 
 SECTION "Bank 11@43d4", ROMX[$43d4], BANK[$11]
 
@@ -248,9 +911,58 @@ ShuffleCardsInHL:
 	pop bc
 	pop af
 	ret
-; 0x44481
 
-SECTION "Bank 11@44bd", ROMX[$44bd], BANK[$11]
+Func_44481:
+	push bc
+	push de
+	push hl
+	ld b, a
+	ld c, $00
+.asm_44487
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_4449a
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1RealSet]
+	cp b
+	jr nz, .asm_44487
+	inc c
+	jr .asm_44487
+.asm_4449a
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_4449f:
+	push bc
+	push de
+	push hl
+	ld b, a
+	ld c, $00
+.asm_444a5
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_444b8
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Set]
+	cp b
+	jr nz, .asm_444a5
+	inc c
+	jr .asm_444a5
+.asm_444b8
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
 
 _ChooseTitleScreenCards:
 	push af
@@ -705,7 +1417,927 @@ WaitForSFXToFinish::
 SECTION "Bank 11@569f", ROMX[$569f], BANK[$11]
 
 Func_4569f:
-; TODO - ran into problems while disassembling this big chain of functions
+	ld hl, wCurDeckCards
+	call Func_44000
+	ld a, $07
+	call Func_4449f
+	or a
+	jr nz, .asm_456da
+	call Func_44013
+	jr c, .asm_456be
+	call CountCardsInHL
+	cp $02
+	jr c, .asm_456be
+	call Func_456de
+	jr .asm_456dd
+.asm_456be
+	ld hl, wCurDeckCards
+	call Func_4407d
+	jr c, .asm_456cb
+	call Func_457ea
+	jr .asm_456dd
+.asm_456cb
+	ld a, $02
+	ld hl, wCurDeckCards
+	call Func_4433a
+	jr c, .asm_456da
+	call Func_45868
+	jr .asm_456dd
+.asm_456da
+	call Func_458bf
+.asm_456dd
+	ret
 
-SECTION "Credits", ROMX[$5c6e], BANK[$11]
+Func_456de:
+	ld hl, wCurDeckCards
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr c, .asm_456f9
+	cp $10
+	jr z, .asm_456f9
+	call Func_45bc3
+	jp .asm_457e9
+.asm_456f9
+	call CountCardsInHL
+	push af
+	cp $05
+	jr nz, .asm_45777
+	ld a, [wLoadedCard1Rarity]
+	cp $02
+	jr c, .asm_45777
+	pop af
+	call Func_45aaa
+	or a
+	jr nz, .asm_45711
+	jr .asm_4577e
+.asm_45711
+	call Func_4427f
+	jr nc, .asm_45741
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_4577e
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_4572c
+	inc h
+.asm_4572c
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	ld c, $03
+.asm_45734
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	dec c
+	jr nz, .asm_45734
+	xor a
+	ld [hli], a
+	ld [hl], a
+	jp .asm_457e9
+.asm_45741
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	ld b, a
+	ld c, $02
+	call Func_44234
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_4577e
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_45763
+	inc h
+.asm_45763
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	ld c, $05
+.asm_4576b
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	dec c
+	jr nz, .asm_4576b
+	xor a
+	ld [hli], a
+	ld [hl], a
+	jr .asm_457e9
+.asm_45777
+	pop af
+	call Func_45aaa
+	or a
+	jr nz, .asm_45790
+.asm_4577e
+	ld hl, wCurDeckCards
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hl], a
+	jr .asm_457e9
+.asm_45790
+	call Func_4427f
+	jr nc, .asm_457ba
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_4577e
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_457ab
+	inc h
+.asm_457ab
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hl], a
+	jr .asm_457e9
+.asm_457ba
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	ld b, a
+	ld c, $02
+	call Func_44234
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_4577e
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_457dc
+	inc h
+.asm_457dc
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	xor a
+	ld [hli], a
+	ld [hl], a
+.asm_457e9
+	ret
+
+Func_457ea:
+	call Func_45acb
+	cp $01
+	jr z, .asm_4580c
+	jr nz, .asm_45825
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	or d
+	jr z, .asm_45801
+	call Func_442d3
+	jr .asm_4583c
+.asm_45801
+	ld hl, $d57e
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	call Func_4428a
+	jr .asm_4583c
+.asm_4580c
+	ld hl, $d57e
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	or d
+	jr z, .asm_4581a
+	call Func_442d3
+	jr .asm_4583c
+.asm_4581a
+	ld hl, $d57c
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	call Func_4427f
+	jr .asm_4583c
+.asm_45825
+	ld hl, $d580
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	or d
+	jr z, .asm_45833
+	call Func_442d3
+	jr .asm_4583c
+.asm_45833
+	ld hl, $d57e
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	call Func_4427f
+.asm_4583c
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_45863
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_45852
+	inc h
+.asm_45852
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+.asm_45858
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	dec c
+	jr nz, .asm_45858
+	xor a
+	ld [hli], a
+	ld [hl], a
+.asm_45862
+	ret
+.asm_45863
+	call Func_45bc3
+	jr .asm_45862
+
+Func_45868:
+	xor a
+	ld hl, wdd5f
+	ld [hli], a
+	ld [hl], a
+	ld hl, BlackboxPromoCards
+.asm_45871
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .asm_458aa
+	push hl
+	ld hl, wCurDeckCards
+	call Func_44390
+	pop hl
+	jr c, .asm_458a5
+	ld a, [hli]
+	or a
+	jr z, .asm_4588e
+	ld a, $01
+	farcall GetEventValue
+	jr z, .asm_458a6
+.asm_4588e
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	push hl
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	ld hl, wCurDeckCards
+	call Func_443bd
+	pop hl
+	dec hl
+	dec hl
+	dec hl
+	jr .asm_45871
+.asm_458a5
+	inc hl
+.asm_458a6
+	inc hl
+	inc hl
+	jr .asm_45871
+.asm_458aa
+	ld hl, wCurDeckCards
+.asm_458ad
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_458be
+	push hl
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	pop hl
+	jr .asm_458ad
+.asm_458be
+	ret
+
+Func_458bf:
+	xor a
+	ld hl, wdd5f
+	ld [hli], a
+	ld [hl], a
+	ld hl, wCurDeckCards
+.asm_458c8
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_458f1
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .asm_458e7
+	ld a, [wLoadedCard1Set]
+	cp $07
+	jr z, .asm_458e7
+	ld a, [wLoadedCard1Rarity]
+	cp $02
+	jr c, .asm_458c8
+.asm_458e7
+	push hl
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	pop hl
+	jr .asm_458c8
+.asm_458f1
+	ld hl, wCurDeckCards
+	ld c, $00
+.asm_458f6
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .asm_45923
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $08
+	jr nc, .asm_458f6
+	ld a, [wLoadedCard1Set]
+	cp $07
+	jr z, .asm_4591f
+	ld a, [wLoadedCard1Rarity]
+	cp $01
+	jr z, .asm_4591a
+	jr nc, .asm_4591f
+	inc c
+	jr .asm_458f6
+.asm_4591a
+	inc c
+	inc c
+	inc c
+	jr .asm_458f6
+.asm_4591f
+	inc c
+	inc c
+	jr .asm_458f6
+.asm_45923
+	xor a
+	ld hl, wRemainingIntroCards
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld a, c
+	cp $0b
+	jr nc, .asm_459a9
+	cp $06
+	jr nc, .asm_45988
+	cp $02
+	jr nc, .asm_45965
+	ld hl, wCurDeckCards
+.asm_4593a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jp z, .asm_45a9b
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Type]
+	cp $07
+	jr nc, .asm_4593a
+	ld a, [wLoadedCard1Set]
+	cp $07
+	jr z, .asm_4593a
+	ld a, [wLoadedCard1Rarity]
+	cp $02
+	jp nc, .asm_4593a
+	push hl
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	pop hl
+	jr .asm_4593a
+.asm_45965
+	call Func_45b2d
+	inc a
+	ld c, a
+	ld hl, wRemainingIntroCards
+	ld a, $01
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	ld a, $03
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $02
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $01
+	ld [hl], a
+	jr .asm_459cb
+.asm_45988
+	call Func_45b2d
+	inc a
+	ld c, a
+	ld hl, wRemainingIntroCards
+	ld a, $05
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $03
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $01
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	inc [hl]
+	jr .asm_459cb
+.asm_459a9
+	call Func_45b2d
+	inc a
+	ld c, a
+	ld hl, $d578
+	ld a, $03
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $01
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	dec hl
+	ld a, $03
+	ld [hl], a
+	dec c
+	jr z, .asm_459cb
+	xor a
+	ld [hli], a
+	ld a, $03
+	ld [hl], a
+.asm_459cb
+	ld a, [wRemainingIntroCards]
+	or a
+	jr z, .asm_45a11
+	ld bc, $1000
+	ld hl, wCurDeckCards
+	call Func_44203
+	cp $05
+	jr z, .asm_459e2
+	call Func_441ac
+	ld b, a
+.asm_459e2
+	call Func_44234
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jp z, .asm_45a9c
+	ld b, a
+	ld a, [wRemainingIntroCards]
+	ld c, a
+.asm_459f7
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .asm_45a05
+	inc h
+.asm_45a05
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	dec c
+	jr nz, .asm_459f7
+.asm_45a11
+	ld a, [$d578]
+	or a
+	jr z, .asm_45a56
+	ld bc, $1001
+	ld hl, wCurDeckCards
+	call Func_44203
+	cp $05
+	jr z, .asm_45a28
+	call Func_441ac
+	ld b, a
+.asm_45a28
+	call Func_44234
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_45a9c
+	ld b, a
+	ld a, [$d578]
+	ld c, a
+.asm_45a3c
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .asm_45a4a
+	inc h
+.asm_45a4a
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	dec c
+	jr nz, .asm_45a3c
+.asm_45a56
+	ld a, [$d579]
+	or a
+	jr z, .asm_45a9b
+	ld bc, $1002
+	ld hl, wCurDeckCards
+	call Func_44203
+	cp $05
+	jr z, .asm_45a6d
+	call Func_441ac
+	ld b, a
+.asm_45a6d
+	call Func_44234
+	ld hl, wDuelTempList
+	call Func_45c07
+	call Func_45c3d
+	or a
+	jr z, .asm_45a9c
+	ld b, a
+	ld a, [$d579]
+	ld c, a
+.asm_45a81
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .asm_45a8f
+	inc h
+.asm_45a8f
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wdd5f
+	call AppendCardToListInHL
+	dec c
+	jr nz, .asm_45a81
+.asm_45a9b
+	ret
+.asm_45a9c
+	call Func_45bc3
+	ld hl, wdd5f
+	ld de, $a
+	call AppendCardToListInHL
+	jr .asm_45a9b
+
+Func_45aaa:
+	push bc
+	push hl
+	dec a
+	dec a
+	ld hl, $5ac7
+	add l
+	ld l, a
+	jr nc, .asm_45ab6
+	inc h
+.asm_45ab6
+	ld c, [hl]
+	ld a, $64
+	call Random
+	cp c
+	jr c, .asm_45ac3
+	ld a, $01
+	jr .asm_45ac4
+.asm_45ac3
+	xor a
+.asm_45ac4
+	pop hl
+	pop bc
+	ret
+; 0x45ac7
+
+SECTION "Bank 11@5acb", ROMX[$5acb], BANK[$11]
+
+Func_45acb:
+	sla a
+	push af
+	ld hl, $5b0d
+	add l
+	ld l, a
+	jr nc, .asm_45ad6
+	inc h
+.asm_45ad6
+	ld a, [hli]
+	ld c, a
+	ld b, [hl]
+	ld a, $64
+	call Random
+	cp c
+	jr c, .asm_45b00
+	cp b
+	jr c, .asm_45af2
+	pop af
+	ld hl, $5b25
+	add l
+	ld l, a
+	jr nc, .asm_45aed
+	inc h
+.asm_45aed
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+	jr .asm_45b0c
+.asm_45af2
+	pop af
+	ld hl, $5b1d
+	add l
+	ld l, a
+	jr nc, .asm_45afb
+	inc h
+.asm_45afb
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+	jr .asm_45b0c
+.asm_45b00
+	pop af
+	ld hl, $5b15
+	add l
+	ld l, a
+	jr nc, .asm_45b09
+	inc h
+.asm_45b09
+	ld a, [hli]
+	ld c, a
+	ld a, [hl]
+.asm_45b0c
+	ret
+; 0x45b0d
+
+SECTION "Bank 11@5b2d", ROMX[$5b2d], BANK[$11]
+
+Func_45b2d:
+	push bc
+	push de
+	push hl
+	sla a
+	sla a
+	ld hl, $5b5c
+	add l
+	ld l, a
+	jr nc, .asm_45b3c
+	inc h
+.asm_45b3c
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	ld l, $00
+	ld a, $64
+	call Random
+	cp c
+	jr c, .asm_45b57
+	inc l
+	cp b
+	jr c, .asm_45b57
+	inc l
+	cp e
+	jr c, .asm_45b57
+	inc l
+.asm_45b57
+	ld a, l
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x45b5c
+
+SECTION "Bank 11@5b9c", ROMX[$5b9c], BANK[$11]
+
+Func_45b9c:
+	push af
+	push bc
+	push de
+	push hl
+	ld c, e
+	ld b, d
+	ld hl, BlackboxPromoCards.OtherPromoCards
+.asm_45ba5
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .asm_45bbc
+	ld a, b
+	cp d
+	jr c, .asm_45bb4
+	jr nz, .asm_45bb4
+	ld a, c
+	cp e
+.asm_45bb4
+	jr nz, .asm_45ba5
+	pop hl
+	pop de
+	pop bc
+	pop af
+	scf
+	ret
+.asm_45bbc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	scf
+	ccf
+	ret
+; 0x45bc3
+
+SECTION "Bank 11@5bc3", ROMX[$5bc3], BANK[$11]
+
+Func_45bc3:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, wCurDeckCards
+	ld de, wdd5f
+	ld bc, $c
+	call CopyDataHLtoDE_SaveRegisters
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x45bd8
+
+SECTION "Bank 11@5c07", ROMX[$5c07], BANK[$11]
+
+Func_45c07:
+	push bc
+	push de
+	push hl
+	xor a
+	ld c, a
+.asm_45c0c
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	or e
+	jr z, .asm_45c29
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Set]
+	cp $07
+	jr nz, .asm_45c24
+	push hl
+	call Func_45c2e
+	pop hl
+	jr .asm_45c0c
+.asm_45c24
+	inc hl
+	inc hl
+	inc c
+	jr .asm_45c0c
+.asm_45c29
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_45c2e:
+.asm_45c2e
+	push hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	or e
+	ret z
+	jr .asm_45c2e
+
+Func_45c3d:
+	push bc
+	push de
+	push hl
+	xor a
+	ld c, a
+.asm_45c42
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	or e
+	jr z, .asm_45c5a
+	call Func_45b9c
+	jr nc, .asm_45c55
+	push hl
+	call Func_45c5f
+	pop hl
+	jr .asm_45c42
+.asm_45c55
+	inc hl
+	inc hl
+	inc c
+	jr .asm_45c42
+.asm_45c5a
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_45c5f:
+.asm_45c5f
+	push hl
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	pop hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
+	or e
+	ret z
+	jr .asm_45c5f
+
 INCLUDE "engine/credits.asm"
