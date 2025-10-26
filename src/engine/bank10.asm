@@ -1,4 +1,716 @@
-SECTION "Bank 10@4462", ROMX[$4462], BANK[$10]
+Func_40000:
+	ld hl, $ac5
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text CombosBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40016:
+	ld hl, $ac6
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text EnergyTransBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4002c:
+	ld hl, $ac7
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text ToxicGasBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40042:
+	ld hl, $ac8
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text RainDanceBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40058:
+	ld hl, $ac9
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SelfdestructBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4006e:
+	ld hl, $aca
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text DamageSwapBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40084:
+	ld hl, $acb
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text RemoveEnergiesBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4009a:
+	ld hl, $acc
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PrehistoricPowerBookText
+	script_command_02
+	end_script
+	ret
+
+Func_400b0:
+	ld hl, $acd
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text WeaknessResistanceBookText
+	script_command_02
+	end_script
+	ret
+
+Func_400c6:
+	ld hl, $ace
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text TeamGRBookText
+	script_command_02
+	end_script
+	ret
+
+Func_400dc:
+	ld hl, $acf
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GameCenterBookText
+	script_command_02
+	end_script
+	ret
+
+Func_400f2:
+	ld hl, $ad0
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SamePokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40108:
+	ld hl, $ad7
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text RockGroundPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4011e:
+	ld hl, $ad8
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FightingPokemonSurefireMethodBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40134:
+	ld hl, $ad9
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FightingPokemonFormidableOpponentsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4014a:
+	ld hl, $ada
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FightingPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40160:
+	ld hl, $adb
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FightingPokemonCombosBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40176:
+	ld hl, $adc
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FightingPokemonDeckBuildingBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4018c:
+	ld hl, $add
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PlantlikePokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_401a2:
+	ld hl, $ade
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GrassPokemonBreederBookText
+	script_command_02
+	end_script
+	ret
+
+Func_401b8:
+	ld hl, $adf
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GrassPokemonDeckBuildingBookText
+	script_command_02
+	end_script
+	ret
+
+Func_401ce:
+	ld hl, $ae0
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SciencePokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_401e4:
+	ld hl, $ae1
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SciencePokemonSurefireMethodBookText
+	script_command_02
+	end_script
+	ret
+
+Func_401fa:
+	ld hl, $ae2
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SciencePokemonDeckBuildingBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40210:
+	ld hl, $ae3
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text WaterPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40226:
+	ld hl, $ae4
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text WaterPokemonAttacksBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4023c:
+	ld hl, $ae5
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PsyduckGolduckBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40252:
+	ld hl, $ae6
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FirePokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40268:
+	ld hl, $ae7
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FirePokemonAttacksBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4027e:
+	ld hl, $ae8
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text FirePokemonDeckBuildingBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40294:
+	ld hl, $ae9
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LightningPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_402aa:
+	ld hl, $aea
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LightningPokemonDeckBuildingBookText
+	script_command_02
+	end_script
+	ret
+
+Func_402c0:
+	ld hl, $aeb
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text BirdPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_402d6:
+	ld hl, $aec
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PsychicPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_402ec:
+	ld hl, $aed
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PsychicPokemonPokemonPowerBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40302:
+	ld hl, $aee
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text UsefulButtonsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40318:
+	ld hl, $aef
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text ColorlessPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4032e:
+	ld hl, $af0
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text CardPopBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40344:
+	ld hl, $af1
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text EnergyCardColorsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4035a:
+	ld hl, $af2
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LegendaryPokemonCardsVol1BookText
+	script_command_02
+	end_script
+	ret
+
+Func_40370:
+	ld hl, $af3
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LegendaryPokemonCardsVol2BookText
+	script_command_02
+	end_script
+	ret
+
+Func_40386:
+	ld hl, $af4
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LegendaryPokemonCardsVol3BookText
+	script_command_02
+	end_script
+	ret
+
+Func_4039c:
+	ld hl, $af5
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text LegendaryPokemonCardsVol4BookText
+	script_command_02
+	end_script
+	ret
+
+Func_403b2:
+	ld hl, $af6
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GrandMastersBookText
+	script_command_02
+	end_script
+	ret
+
+Func_403c8:
+	ld hl, $af7
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text CoinsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_403de:
+	ld hl, $ad1
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text PhantomCardsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_403f4:
+	ld hl, $ad2
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text DarkPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4040a:
+	ld hl, $ad3
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text AugmentBasicPokemonBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40420:
+	ld hl, $ad4
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GRKingCardsBookText
+	script_command_02
+	end_script
+	ret
+
+Func_40436:
+	ld hl, $ad5
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text SpecialEnergyBookText
+	script_command_02
+	end_script
+	ret
+
+Func_4044c:
+	ld hl, $ad6
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	print_npc_text GetCoinsBookText
+	script_command_02
+	end_script
+	ret
 
 OverworldTcg_MapHeader:
 	db OVERWORLD_MAP_GFX_TCG
@@ -626,9 +1338,6 @@ DoGRShipMovement:
 	db $50, $58, WEST
 	db $50, $78, EAST
 	db $ff, $ff ; end
-; 0x40db3
-
-SECTION "Bank 10@4db3", ROMX[$4db3], BANK[$10]
 
 MasonLaboratoryMain_MapHeader:
 	db MAP_GFX_MASON_LABORATORY_MAIN

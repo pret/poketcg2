@@ -408,6 +408,59 @@ Func_1c448:
 	db $00, $01, $02
 ; 0x1c456
 
+SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
+
+Func_1c5a3:
+	push bc
+	push de
+	push hl
+	ld hl, $5b2
+	xor a
+	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_1c5ca
+	ld a, c
+	and a
+	jr nz, .asm_1c5b9
+	call Func_1c5d6
+	jr .asm_1c5bc
+.asm_1c5b9
+	call Func_3b1e
+.asm_1c5bc
+	push af
+	ld a, $56
+	call CallPlaySFX
+	pop af
+	ld hl, $632
+	scf
+	ccf
+	jr .asm_1c5ce
+.asm_1c5ca
+	ld hl, $633
+	scf
+.asm_1c5ce
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_1c5d6:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_10ed3
+	farcall Func_105de
+	call Func_3b1e
+	farcall Func_10ea7
+	farcall Func_1059f
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1c5f2
+
 SECTION "Bank 7@46bb", ROMX[$46bb], BANK[$7]
 
 SetAllPaletteFadeConfigsToEnabled:
@@ -2643,15 +2696,136 @@ _PlayLinkDuelAndGetResult:
 	pop de
 	pop bc
 	ret
-; 0x1d9be
 
-SECTION "Bank 7@59f9", ROMX[$59f9], BANK[$7]
+Func_1d9be:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_11002
+	call Func_1d9ff
+	call Func_1da45
+	jr c, .asm_1d9ed
+	ld a, [wdc06]
+	cp $04
+	jr z, .asm_1d9ed
+	call Func_1da1f
+	call Func_1da2a
+	jr c, .asm_1d9ed
+	call Func_3d0d
+	push af
+	ld a, $08
+	call SetMusic
+	pop af
+	call Func_1dac1
+	call Func_3d16
+.asm_1d9ed
+	call Func_1da14
+	farcall Func_1101d
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_1d9f9:
 	ld a, $04
 	ld [wdc06], a
 	ret
-; 0x1d9ff
+
+Func_1d9ff:
+	ld hl, $5f1
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ld hl, $5f2
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1da14:
+	ld hl, $5f6
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1da1f:
+	ld hl, $5f3
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1da2a:
+	ld hl, $5f4
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ld c, $01
+	call Func_1c5a3
+	ret nc
+	ld hl, $5f5
+	ld de, $5e0
+	farcall PrintScrollableText_WithTextBoxLabelVRAM0
+	ret
+
+Func_1da45:
+	call Func_1da4f
+	call Func_1da88
+	call Func_1dabd
+	ret
+
+Func_1da4f:
+	ld de, $400
+	ld b, $07
+	ld hl, $5a64
+	call LoadMenuBoxParams
+	ld a, [wdc06]
+	call Func_1cacf
+	call DrawMenuBox
+	ret
+; 0x1da64
+
+SECTION "Bank 7@5a88", ROMX[$5a88], BANK[$7]
+
+Func_1da88:
+	ld a, [wdc06]
+	call HandleMenuBox
+	ld [wdc06], a
+	push af
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $5ab5
+	add hl, bc
+	ld a, [hli]
+	ld [wTxRam2], a
+	ld a, [hl]
+	ld [$cdd7], a
+	pop af
+	jr c, .asm_1daad
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1daad
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	ret
+; 0x1dab5
+
+SECTION "Bank 7@5abd", ROMX[$5abd], BANK[$7]
+
+Func_1dabd:
+	call Func_1caf1
+	ret
+
+Func_1dac1:
+	ld a, [wdc06]
+	ld hl, $5acb
+	call CallMappedFunction
+	ret
+; 0x1dacb
 
 SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
 

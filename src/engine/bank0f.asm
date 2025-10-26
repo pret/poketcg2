@@ -199,9 +199,234 @@ Prologue::
 	farcall MoveOWObjectToTargetPosition
 	jr c, .loop_wait_2
 	ret
-; 0x3c1b9
 
-SECTION "Bank f@43ca", ROMX[$43ca], BANK[$f]
+Func_3c1b9:
+	ld a, $64
+	ld [wScriptNPC], a
+	ld hl, $a5a
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	ld a, $02
+	ld [wDuelTheme], a
+	jr Func_3c1d0.asm_3c1e5
+
+Func_3c1d0:
+	ld a, $68
+	ld [wScriptNPC], a
+	ld hl, $a5a
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	ld a, $1f
+	ld [wDuelTheme], a
+.asm_3c1e5
+	xor a
+	start_script
+	script_command_01
+	print_npc_text BattleCenterWelcomeText
+	ask_question BattleCenterBeginPromptText, TRUE
+	script_jump_if_b0z .ows_3c20b
+	play_song MUSIC_CARDPOP
+	script_command_64 $1c
+	script_command_02
+	link_duel
+	script_jump_if_b1nz .ows_3c204
+	script_call .ows_3c211
+	script_jump .ows_3c20b
+.ows_3c204
+	script_command_01
+	print_npc_text BattleCenterThankYouText
+	script_jump .ows_3c20e
+.ows_3c20b
+	print_npc_text BattleCenterComeAgainText
+.ows_3c20e
+	script_command_02
+	end_script
+	ret
+.ows_3c211
+	script_command_01
+	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
+	script_jump_if_b0nz .ows_3c242
+	script_call Script_3c2c1
+	print_npc_text BattleCenterWinRewardsText
+	check_event EVENT_GOT_MACHAMP_COIN
+	script_jump_if_b0z .ows_3c234
+	check_event EVENT_GOT_GR_COIN
+	script_jump_if_b0z .ows_3c22e
+	give_booster_packs BoosterList_ce17
+	script_jump .ows_3c237
+.ows_3c22e
+	give_booster_packs BoosterList_ce1c
+	script_jump .ows_3c237
+.ows_3c234
+	give_booster_packs BoosterList_ce21
+.ows_3c237
+	script_call .ows_3c25f
+	script_call Script_3c290
+	script_jump .ows_3c25e
+.ows_3c242
+	print_npc_text BattleCenterLoseRewardsText
+	check_event EVENT_GOT_MACHAMP_COIN
+	script_jump_if_b0z .ows_3c25b
+	check_event EVENT_GOT_GR_COIN
+	script_jump_if_b0z .ows_3c255
+	give_booster_packs BoosterList_ce26
+	script_jump .ows_3c25e
+.ows_3c255
+	give_booster_packs BoosterList_ce29
+	script_jump .ows_3c25e
+.ows_3c25b
+	give_booster_packs BoosterList_ce2c
+.ows_3c25e
+	script_ret
+.ows_3c25f
+	quit_script
+; 0x3c260
+
+SECTION "Bank f@4290", ROMX[$4290], BANK[$f]
+
+Script_3c290:
+	quit_script
+; 0x3c291
+
+SECTION "Bank f@42c1", ROMX[$42c1], BANK[$f]
+
+Script_3c2c1:
+	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
+	script_jump_if_b0nz .ows_3c2d8
+	get_var VAR_20
+	compare_loaded_var $0a
+	script_jump_if_b1z .ows_3c2d8
+	inc_var VAR_20
+	get_var VAR_20
+	compare_loaded_var $05
+	script_jump_if_b0z .ows_3c2d8
+	script_command_64 $0f
+.ows_3c2d8
+	script_ret
+
+Func_3c2d9:
+	ld a, $f2
+	farcall ZeroOutEventValue
+	farcall Func_1d9be
+	ld a, $f2
+	farcall GetEventValue
+	jr z, .asm_3c2ef
+	farcall PlayCurrentSong
+.asm_3c2ef
+	ret
+
+Script_3c2f0:
+	get_var VAR_21
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c30b
+	check_event EVENT_GOT_GR_COIN
+	script_jump_if_b0z .ows_3c305
+	set_var VAR_21, $01
+	set_var VAR_25, $09
+	script_jump .ows_3c30b
+
+.ows_3c305
+	set_var VAR_21, $03
+	set_var VAR_25, $09
+.ows_3c30b
+	script_retfar
+
+Func_3c30c:
+	ld a, $05
+	ld [wScriptNPC], a
+	ld hl, $a2f
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	get_var VAR_21
+	compare_loaded_var $02
+	script_jump_if_b1nz .ows_3c333
+	script_jump_if_b0nz .ows_3c37f
+	compare_loaded_var $03
+	script_jump_if_b0nz Script_3c3a5
+	script_jump Script_3c3ae
+.ows_3c333
+	set_var VAR_21, $02
+	set_var VAR_25, $0f
+	print_npc_text ImakuniBlackCardlessFirstCardPopText
+	card_pop SCRIPTED_CARD_POP_IMAKUNI
+	print_npc_text ImakuniBlackCardlessAfterFirstCardPopSaveText
+	quit_script
+	ld a, $03
+	farcall MaxOutEventValue
+	farcall Func_ea30
+	ld a, $03
+	farcall ZeroOutEventValue
+	ld a, $01
+	start_script
+	play_sfx SFX_56
+	print_text SavedDataText
+	print_npc_text ImakuniBlackCardlessAfterFirstCardPopResultText
+	script_command_02
+	get_player_direction
+	compare_loaded_var $02
+	script_jump_if_b0z .ows_3c36b
+	set_player_direction WEST
+	animate_player_movement $81, $02
+.ows_3c36b
+	move_active_npc NPCMovement_3c492
+	wait_for_player_animation
+	unload_npc NPC_IMAKUNI_BLACK
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.ows_3c37f
+	set_var VAR_25, $0f
+	print_npc_text ImakuniBlackCardlessAfterFirstCardPopRepeatText
+	script_command_02
+	get_player_direction
+	compare_loaded_var $02
+	script_jump_if_b0z .ows_3c391
+	set_player_direction WEST
+	animate_player_movement $81, $02
+.ows_3c391
+	move_active_npc NPCMovement_3c492
+	wait_for_player_animation
+	unload_npc NPC_IMAKUNI_BLACK
+	end_script
+; 0x3c398
+
+SECTION "Bank f@43a5", ROMX[$43a5], BANK[$f]
+
+Script_3c3a5:
+	set_var VAR_21, $04
+	print_npc_text ImakuniBlackWantsToDuelFirstEncounterText
+	script_jump Script_3c3b4
+
+Script_3c3ae:
+	print_npc_text ImakuniBlackWantsToDuelRepeatText
+	script_jump Script_3c3b4
+
+Script_3c3b4:
+	ask_question ImakuniBlackDuelPromptText, TRUE
+	script_jump_if_b0z .ows_3c3c4
+	print_npc_text ImakuniBlackDuelStartText
+	script_command_02
+	start_duel WEIRD_DECK_ID, MUSIC_MATCHSTART_1
+	end_script
+	ret
+
+.ows_3c3c4
+	print_npc_text ImakuniBlackDeclinedDuelText
+	script_command_02
+	end_script
+	ret
 
 Script_FinishedImakuniBlackDuel:
 	xor a
