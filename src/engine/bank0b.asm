@@ -695,9 +695,59 @@ LightningClub_AfterDuelScripts:
 	npc_script NPC_NICHOLAS, Func_2c847
 	npc_script NPC_BRANDON, Func_2c8dd
 	db $ff
-; 0x2c584
 
-SECTION "Bank b@45f5", ROMX[$45f5], BANK[$b]
+Func_2c584:
+	xor a
+	start_script
+	wait_for_fade
+	script_command_64 $13
+	set_event EVENT_MET_GR4_LIGHTNING_CLUB
+	set_active_npc NPC_GR_4, DialogGR4Text
+	script_command_01
+	print_npc_text Text0b03
+	set_active_npc NPC_NICHOLAS, DialogNicholasText
+	print_npc_text Text0b04
+	script_command_02
+	animate_active_npc_movement $02, $01
+	do_frames 30
+	script_command_01
+	set_active_npc NPC_GR_4, DialogGR4Text
+	print_npc_text Text0b05
+	set_active_npc NPC_ISAAC, DialogIsaacText
+	print_npc_text Text0b06
+	set_active_npc NPC_GR_4, DialogGR4Text
+	set_active_npc_direction WEST
+	print_npc_text Text0b07
+	set_active_npc NPC_ISAAC, DialogIsaacText
+	print_npc_text Text0b08
+	script_command_02
+	animate_active_npc_movement $02, $01
+	do_frames 30
+	script_command_01
+	set_active_npc NPC_GR_4, DialogGR4Text
+	set_active_npc_direction SOUTH
+	print_npc_text Text0b09
+	script_command_02
+	move_npc NPC_GR_4, NPCMovement_2c5e6
+	move_npc NPC_ISAAC, NPCMovement_2c5eb
+	move_npc NPC_NICHOLAS, NPCMovement_2c5f0
+	wait_for_player_animation
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_2c5e6:
+	db NORTH, MOVE_5
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_2c5eb:
+	db NORTH, MOVE_4
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_2c5f0:
+	db NORTH, MOVE_2
+	db SOUTH, MOVE_0
+	db $ff
 
 Script_2c5f5:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -1806,9 +1856,47 @@ PsychicClub_AfterDuelScripts:
 	npc_script NPC_STEPHANIE, Func_2d142
 	npc_script NPC_GR_4, Func_2d20e
 	db $ff
-; 0x2ce39
 
-SECTION "Bank b@4e88", ROMX[$4e88], BANK[$b]
+Func_2ce39:
+	xor a
+	start_script
+	wait_for_fade
+	set_event EVENT_MET_GR4_PSYCHIC_CLUB
+	set_event EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
+	do_frames 30
+	scroll_to_position $ff, $02
+	set_active_npc NPC_GR_4, DialogGR4Text
+	script_command_01
+	print_npc_text Text0b66
+	script_command_02
+	set_active_npc NPC_MURRAY, DialogMurrayText
+	do_frames 30
+	set_active_npc_direction NORTH
+	do_frames 30
+	script_command_01
+	print_npc_text Text0b67
+	set_active_npc NPC_GR_4, DialogGR4Text
+	print_npc_text Text0b68
+	script_command_02
+	move_npc NPC_MURRAY, NPCMovement_2ce7c
+	move_npc NPC_DANIEL, NPCMovement_2ce85
+	wait_for_player_animation
+	do_frames 30
+	scroll_to_position $ff, $05
+	scroll_to_player
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_2ce7c:
+	db NORTH, MOVE_1
+	db WEST, MOVE_1
+	db NORTH, MOVE_2
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_2ce85:
+	db SOUTH, MOVE_4
+	db $ff
 
 Func_2ce88:
 	ld a, $26
@@ -2433,9 +2521,22 @@ Script_2d2d1:
 	animate_player_movement $81, $02
 .ows_2d2ef
 	quit_script
-; 0x2d2f0
 
-SECTION "Bank b@530a", ROMX[$530a], BANK[$b]
+Func_2d2f0:
+	ld a, $31
+	ld b, $01
+	farcall SetOWObjectAnimStruct1Flag2
+	ld a, $01
+	start_script
+	move_active_npc NPCMovement_2d307
+	wait_for_player_animation
+	unload_npc NPC_GR_4
+	play_song_next MUSIC_CLUB_2
+	end_script
+	ret
+NPCMovement_2d307:
+	db SOUTH, RUN_9
+	db $ff
 
 RockClubEntrance_MapHeader:
 	db MAP_GFX_ROCK_CLUB_ENTRANCE
@@ -2896,9 +2997,69 @@ RockClub_AfterDuelScripts:
 	npc_script NPC_RYAN, Func_2d87e
 	npc_script NPC_ANDREW, Func_2d8d7
 	db $ff
-; 0x2d6ca
 
-SECTION "Bank b@5754", ROMX[$5754], BANK[$b]
+Func_2d6ca:
+	xor a
+	start_script
+	wait_for_fade
+	set_event EVENT_MET_GR1_ROCK_CLUB
+	script_command_01
+	set_active_npc NPC_GR_1, DialogGR1Text
+	print_npc_text Text10cc
+	script_command_02
+	scroll_to_position $ff, $00
+	script_command_01
+	set_active_npc NPC_GENE, DialogGeneText
+	print_npc_text Text10cd
+	script_command_02
+	set_player_position 6, 13
+	move_player NPCMovement_2d74e, TRUE
+	wait_for_player_animation
+	script_command_01
+	set_active_npc NPC_GR_1, DialogGR1Text
+	print_npc_text Text10ce
+	set_active_npc NPC_GENE, DialogGeneText
+	print_npc_text Text10cf
+	set_active_npc NPC_GR_1, DialogGR1Text
+	print_npc_text Text10d0
+	script_command_02
+	animate_active_npc_movement $82, $01
+	script_command_01
+	print_npc_text Text10d1
+	set_active_npc_direction NORTH
+	set_active_npc_direction SOUTH
+	print_npc_text Text10d2
+	set_active_npc_direction NORTH
+	print_npc_text Text10d3
+	script_command_02
+	move_active_npc NPCMovement_2d751
+	wait_for_player_animation
+	fade_out $03, FALSE
+	wait_for_fade
+	unload_npc NPC_GR_1
+	set_npc_position_and_direction NPC_MATTHEW, 2, 3, SOUTH
+	set_npc_position_and_direction NPC_RYAN, 9, 7, EAST
+	set_npc_position_and_direction NPC_ANDREW, 3, 8, EAST
+	set_player_position 7, 3
+	scroll_to_player
+	do_frames 32
+	play_song_next MUSIC_CLUB_2
+	fade_in $03, FALSE
+	wait_for_fade
+	script_command_01
+	set_active_npc NPC_GENE, DialogGeneText
+	print_npc_text Text10d4
+	script_command_02
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_2d74e:
+	db NORTH, MOVE_8
+	db $ff
+NPCMovement_2d751:
+	db SOUTH, MOVE_10
+	db $ff
 
 Func_2d754:
 	ld a, $09
@@ -8181,3 +8342,100 @@ Func_2fe97:
 	scf
 	ccf
 	ret
+
+Func_2fe9a:
+	ld a, [wd584]
+	cp $00
+	jr z, .asm_2febb
+	ld a, $00
+	ld de, $0
+	ld b, $00
+	farcall Func_d3c4
+	ld hl, Data_2ff50
+	ld a, $00
+	ld [wCurIsland], a
+	ld a, $0a
+	ld [wCurOWLocation], a
+	jr .asm_2fee2
+.asm_2febb
+	ld a, $01
+	ld de, $0
+	ld b, $00
+	farcall Func_d3c4
+	ld hl, Data_2ff48
+	ld a, $01
+	ld [wCurIsland], a
+	ld a, $00
+	ld [wCurOWLocation], a
+	ld a, $d9
+	farcall GetEventValue
+	jr nz, .asm_2fee2
+	push hl
+	ld hl, wd583
+	set 3, [hl]
+	pop hl
+.asm_2fee2
+	ld a, [hli]
+	ld e, [hl]
+	inc hl
+	ld d, a
+	cp $ff
+	jr z, .asm_2ff34
+	ld a, [hli]
+	ld b, a
+	push hl
+	push bc
+	ld a, $d1
+	farcall SetOWObjectTargetPosition
+	ld a, $d1
+	pop bc
+	farcall _SetOWObjectDirection
+.asm_2fefb
+	ld c, $03
+.asm_2fefd
+	push bc
+	call DoFrame
+	ld hl, wd583
+	bit 3, [hl]
+	jr nz, .asm_2ff17
+	bit 2, [hl]
+	jr nz, .asm_2ff17
+	ldh a, [hKeysPressed]
+	bit 1, a
+	jr z, .asm_2ff17
+	set 2, [hl]
+	call Func_2ff3f
+.asm_2ff17
+	pop bc
+	dec c
+	jr nz, .asm_2fefd
+	farcall MoveOWObjectToTargetPosition
+	jr c, .asm_2ff24
+	pop hl
+	jr .asm_2fee2
+.asm_2ff24
+	ld a, [wd583]
+	bit 2, a
+	jr z, .asm_2fefb
+	farcall CheckPalFading
+	jr nz, .asm_2fefb
+	pop hl
+	jr .asm_2ff37
+.asm_2ff34
+	call Func_2ff3f
+.asm_2ff37
+	call WaitPalFading
+	farcall Func_110a8
+	ret
+
+Func_2ff3f:
+	ld a, $00
+	ld b, $00
+	farcall StartPalFadeToBlackOrWhite
+	ret
+
+Data_2ff48:
+	db $90, $10, $01, $a0, $00, $01, $ff, $ff
+
+Data_2ff50:
+	db $10, $80, $03, $00, $90, $03, $ff, $ff
