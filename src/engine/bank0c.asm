@@ -13,7 +13,7 @@ Func_30007:
 	farcall Func_d3c4
 	ld a, $1e
 	call WaitAFrames
-	ld a, $00
+	ld a, EVENT_PLAYER_GENDER
 	farcall GetEventValue
 	jr nz, .asm_30024
 	ld bc, $ae
@@ -37,7 +37,7 @@ Func_30007:
 	ld a, $05
 	call WaitAFrames
 .asm_30050
-	ld a, $84
+	ld a, SFX_84
 	call PlaySFX
 	ret
 
@@ -46,23 +46,23 @@ Func_30056:
 	cp $01
 	ret nz
 	ld a, $3b
-	ld c, $01
+	ld c, VAR_01
 	farcall SetVarValue
 	ret
 
 Func_30065:
 	ld c, a
-	ld a, $3b
+	ld a, VAR_3B
 	farcall GetVarValue
 	cp c
 	jr nz, .asm_30077
 	inc c
-	ld a, $3b
+	ld a, VAR_3B
 	farcall SetVarValue
 	ret
 .asm_30077
 	ld a, $3b
-	ld c, $00
+	ld c, VAR_00
 	farcall SetVarValue
 	ret
 
@@ -1102,7 +1102,7 @@ Func_311d0:
 	ret
 
 Func_311d5:
-	ld a, $62
+	ld a, NPC_QUEEN
 	ld [wScriptNPC], a
 	ld hl, $a00
 	ld a, l
@@ -1332,7 +1332,7 @@ Func_3138d:
 	ret
 
 Func_313a8:
-	ld a, $d1
+	ld a, EVENT_SEALED_FORT_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_313ba
 	ld bc, $51
@@ -1343,7 +1343,7 @@ Func_313a8:
 	ret
 
 Func_313bc:
-	ld a, $d1
+	ld a, EVENT_SEALED_FORT_DOOR_STATE
 	farcall GetEventValue
 	ret nz
 	xor a
@@ -1390,7 +1390,7 @@ Func_31426:
 	ret
 
 Func_3142d:
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3143f
@@ -1399,7 +1399,7 @@ Func_3142d:
 	cp $06
 	jr nz, .asm_31444
 .asm_3143f
-	ld a, $1c
+	ld a, MUSIC_GRCHALLENGECUP
 	ld [wNextMusic], a
 .asm_31444
 	scf
@@ -1410,7 +1410,7 @@ Func_31447:
 	ld a, [wd585]
 	cp $01
 	jr nz, .asm_3148e
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_31460
@@ -1419,26 +1419,26 @@ Func_31447:
 	cp $06
 	jr nz, .asm_3148e
 .asm_31460
-	ld a, $33
+	ld a, VAR_33
 	farcall GetVarValue
 	cp $01
 	push af
-	ld a, $33
+	ld a, VAR_33
 	farcall ZeroOutVarValue
 	pop af
 	jr nz, .asm_3148e
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $06
 	jr z, .asm_31486
 	inc a
 	ld c, a
-	ld a, $30
+	ld a, VAR_30
 	farcall SetVarValue
 	jr .asm_3148e
 .asm_31486
 	ld a, $30
-	ld c, $05
+	ld c, VAR_05
 	farcall SetVarValue
 .asm_3148e
 	scf
@@ -1458,7 +1458,7 @@ Func_31499:
 	ret
 
 Func_314a1:
-	ld a, $de
+	ld a, NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -1536,7 +1536,7 @@ GrassFortEntrance_MapScripts:
 	db $ff
 
 Func_31559:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $05
 	jr c, .asm_31565
@@ -1562,7 +1562,7 @@ Func_31575:
 	ret
 
 Func_3157e:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $05
 	jr nc, .asm_3159d
@@ -1591,7 +1591,7 @@ Func_315a7:
 	ret
 
 Func_315ad:
-	ld a, $97
+	ld a, NPC_GR_CLERK_GRASS_FORT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -1658,7 +1658,7 @@ GrassFortLobby_MapScripts:
 	db $ff
 
 Func_3165e:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_3166a
@@ -1699,12 +1699,12 @@ Func_31693:
 	ret
 
 Func_31699:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_316b3
-	ld a, $b1
+	ld a, NPC_IMAKUNI_RED
 	farcall ClearOWObject
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
 	ld [wCurMusic], a
@@ -1713,7 +1713,7 @@ Func_31699:
 	ret
 
 Func_316b5:
-	ld a, $98
+	ld a, NPC_GRASS_FORT_GR_GRUNT
 	ld [wScriptNPC], a
 	ld hl, $a47
 	ld a, l
@@ -1763,7 +1763,7 @@ Func_316b5:
 	ret
 
 Func_3171f:
-	ld a, $99
+	ld a, NPC_GRASS_FORT_GR_PAPPY
 	ld [wScriptNPC], a
 	ld hl, $a3b
 	ld a, l
@@ -1785,7 +1785,7 @@ Func_3171f:
 	ret
 
 Func_31745:
-	ld a, $9a
+	ld a, NPC_GRASS_FORT_GR_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -1812,7 +1812,7 @@ Func_31745:
 	ret
 
 Func_31776:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_31782
@@ -1877,7 +1877,7 @@ Func_317eb:
 	ld bc, $3b
 	ld a, $14
 	farcall SetwD896
-	ld a, $ba
+	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_31809
 	scf
@@ -1911,10 +1911,10 @@ GrassFortMidori_AfterDuelScripts:
 	db $ff
 
 Func_31835:
-	ld a, $ba
+	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	ret nz
-	ld a, $15
+	ld a, NPC_RICK
 	ld [wScriptNPC], a
 	ld hl, $9e0
 	ld a, l
@@ -1937,7 +1937,7 @@ Func_31835:
 	ret
 
 Func_31864:
-	ld a, $ba
+	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_3186e
 	scf
@@ -1948,7 +1948,7 @@ Func_31864:
 	ret
 
 Func_31871:
-	ld a, $34
+	ld a, NPC_MIDORI
 	ld [wScriptNPC], a
 	ld hl, $a0a
 	ld a, l
@@ -2131,7 +2131,7 @@ Func_319d3:
 	ret
 
 Func_319dc:
-	ld a, $4b
+	ld a, EVENT_YUTAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_319e6
 	scf
@@ -2165,7 +2165,7 @@ GrassFortYuta_AfterDuelScripts:
 	db $ff
 
 Func_31a12:
-	ld a, $35
+	ld a, NPC_YUTA
 	ld [wScriptNPC], a
 	ld hl, $a0b
 	ld a, l
@@ -2269,10 +2269,10 @@ Func_31aa7:
 	ret
 
 Func_31ae1:
-	ld a, $4b
+	ld a, EVENT_YUTAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31b05
-	ld a, $35
+	ld a, NPC_YUTA
 	ld [wScriptNPC], a
 	ld hl, $a0b
 	ld a, l
@@ -2355,7 +2355,7 @@ Func_31b89:
 	ret
 
 Func_31b92:
-	ld a, $4c
+	ld a, EVENT_MIYUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_31b9c
 	scf
@@ -2389,7 +2389,7 @@ GrassFortMiyuki_AfterDuelScripts:
 	db $ff
 
 Func_31bc8:
-	ld a, $36
+	ld a, NPC_MIYUKI
 	ld [wScriptNPC], a
 	ld hl, $a0c
 	ld a, l
@@ -2513,7 +2513,7 @@ NPCMovement_31ca1:
 	db $ff
 
 Func_31ca8:
-	ld a, $4c
+	ld a, EVENT_MIYUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31cba
 	xor a
@@ -2573,7 +2573,7 @@ Func_31d2e:
 	ret
 
 Func_31d37:
-	ld a, $c7
+	ld a, EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_31d41
 	jr .asm_31d5c
@@ -2581,7 +2581,7 @@ Func_31d37:
 	ld bc, $65
 	ld de, $407
 	farcall Func_12c0ce
-	ld a, $10
+	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr nz, .asm_31d5c
 	ld a, $9b
@@ -2602,7 +2602,7 @@ Func_31d5e:
 	ret
 
 Func_31d6e:
-	ld a, $9b
+	ld a, NPC_GR_CLERK_LIGHTNING_FORT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -2629,7 +2629,7 @@ Func_31d6e:
 	ret
 
 Func_31da0:
-	ld a, $c7
+	ld a, EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_31dcd
 	xor a
@@ -2731,7 +2731,7 @@ LightningFortLobby_AfterDuelScripts:
 	db $ff
 
 Func_31e82:
-	ld a, $38
+	ld a, NPC_LIGHTNING_FORT_GR_LASS
 	ld [wScriptNPC], a
 	ld hl, $a45
 	ld a, l
@@ -2780,7 +2780,7 @@ Func_31e82:
 	ret
 
 Func_31ee8:
-	ld a, $9c
+	ld a, NPC_LIGHTNING_FORT_GR_WOMAN
 	ld [wScriptNPC], a
 	ld hl, $a48
 	ld a, l
@@ -2816,7 +2816,7 @@ Func_31ee8:
 	ret
 
 Func_31f2c:
-	ld a, $9d
+	ld a, NPC_LIGHTNING_FORT_CHUBBY_KID
 	ld [wScriptNPC], a
 	ld hl, $a53
 	ld a, l
@@ -2838,7 +2838,7 @@ Func_31f2c:
 	ret
 
 Func_31f52:
-	ld a, $9e
+	ld a, NPC_TAP
 	ld [wScriptNPC], a
 	ld hl, $a11
 	ld a, l
@@ -2939,7 +2939,7 @@ Func_32016:
 	jr nz, .asm_32021
 	farcall Func_1f293
 .asm_32021
-	ld a, $52
+	ld a, EVENT_RENNAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_3202b
 	scf
@@ -2973,7 +2973,7 @@ LightningFortRenna_AfterDuelScripts:
 	db $ff
 
 Func_32057:
-	ld a, $39
+	ld a, NPC_RENNA
 	ld [wScriptNPC], a
 	ld hl, $a0e
 	ld a, l
@@ -3059,10 +3059,10 @@ Func_320bb:
 	ret
 
 Func_320f5:
-	ld a, $52
+	ld a, EVENT_RENNAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32119
-	ld a, $39
+	ld a, NPC_RENNA
 	ld [wScriptNPC], a
 	ld hl, $a0e
 	ld a, l
@@ -3153,7 +3153,7 @@ Func_321ba:
 	ld bc, $6c
 	ld de, $300
 	farcall Func_12c0ce
-	ld a, $53
+	ld a, EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_321d8
 	ld bc, $6d
@@ -3190,7 +3190,7 @@ LightningFortIchikawa_AfterDuelScripts:
 	db $ff
 
 Func_32204:
-	ld a, $3a
+	ld a, NPC_ICHIKAWA
 	ld [wScriptNPC], a
 	ld hl, $a0f
 	ld a, l
@@ -3436,7 +3436,7 @@ NPCMovement_323e9:
 	db $ff
 
 Func_323f0:
-	ld a, $53
+	ld a, EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32402
 	xor a
@@ -3450,7 +3450,7 @@ Func_323f0:
 	ret
 
 Func_32407:
-	ld a, $c0
+	ld a, EVENT_FREED_STEVE
 	farcall GetEventValue
 	jr nz, .asm_32419
 	xor a
@@ -3518,7 +3518,7 @@ LightningFortCatherine_AfterDuelScripts:
 	db $ff
 
 Func_32477:
-	ld a, $3b
+	ld a, NPC_CATHERINE
 	ld [wScriptNPC], a
 	ld hl, $a10
 	ld a, l
@@ -3658,10 +3658,10 @@ FireFortEntrance_MapScripts:
 	db $ff
 
 Func_3259f:
-	ld a, $12
+	ld a, EVENT_GOT_MAGMAR_COIN
 	farcall GetEventValue
 	jr z, .asm_325b1
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $06
 	jr c, .asm_325b3
@@ -3688,10 +3688,10 @@ Func_325c3:
 	ret
 
 Func_325cc:
-	ld a, $c8
+	ld a, EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_325e0
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $06
 	jr c, .asm_325fd
@@ -3700,7 +3700,7 @@ Func_325cc:
 	ld bc, $73
 	ld de, $407
 	farcall Func_12c0ce
-	ld a, $11
+	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_3261a
 	ld a, $9f
@@ -3708,7 +3708,7 @@ Func_325cc:
 	farcall SetOWObjectTilePosition
 	jr .asm_3261a
 .asm_325fd
-	ld a, $12
+	ld a, EVENT_GOT_MAGMAR_COIN
 	farcall GetEventValue
 	jr z, .asm_3261a
 	ld a, $0a
@@ -3740,7 +3740,7 @@ Func_3262c:
 	ret
 
 Func_32632:
-	ld a, $9f
+	ld a, NPC_GR_CLERK_FIRE_FORT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -3767,7 +3767,7 @@ Func_32632:
 	ret
 
 Func_32664:
-	ld a, $c8
+	ld a, EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32691
 	xor a
@@ -3835,7 +3835,7 @@ FireFortLobby_MapScripts:
 	db $ff
 
 Func_32712:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $07
 	jr z, .asm_3271e
@@ -3876,12 +3876,12 @@ Func_32747:
 	ret
 
 Func_3274d:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_32767
-	ld a, $b1
+	ld a, NPC_IMAKUNI_RED
 	farcall ClearOWObject
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
 	ld [wCurMusic], a
@@ -3890,7 +3890,7 @@ Func_3274d:
 	ret
 
 Func_32769:
-	ld a, $3d
+	ld a, NPC_FIRE_FORT_GRAMPY
 	ld [wScriptNPC], a
 	ld hl, $a49
 	ld a, l
@@ -3939,7 +3939,7 @@ Func_32769:
 	ret
 
 Func_327cf:
-	ld a, $a0
+	ld a, NPC_FIRE_FORT_YOUNGSTER
 	ld [wScriptNPC], a
 	ld hl, $a4e
 	ld a, l
@@ -3961,7 +3961,7 @@ Func_327cf:
 	ret
 
 Func_327f5:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $07
 	jr z, .asm_32801
@@ -4023,7 +4023,7 @@ Func_3286d:
 	jr nz, .asm_32878
 	farcall Func_1f293
 .asm_32878
-	ld a, $59
+	ld a, EVENT_JES_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_32882
 	scf
@@ -4057,7 +4057,7 @@ FireFortJes_AfterDuelScripts:
 	db $ff
 
 Func_328ae:
-	ld a, $3e
+	ld a, NPC_JES
 	ld [wScriptNPC], a
 	ld hl, $a12
 	ld a, l
@@ -4150,7 +4150,7 @@ Func_32907:
 	ret
 
 Func_32956:
-	ld a, $59
+	ld a, EVENT_JES_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32968
 	xor a
@@ -4209,7 +4209,7 @@ Func_329cd:
 	ret
 
 Func_329d6:
-	ld a, $5a
+	ld a, EVENT_YUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_329e0
 	scf
@@ -4218,10 +4218,10 @@ Func_329d6:
 	ld bc, $7a
 	ld de, $500
 	farcall Func_12c0ce
-	ld a, $9b
+	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall GetEventValue
 	jr nz, .asm_32a16
-	ld a, $9b
+	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall MaxOutEventValue
 	ld a, $0a
 	ld [wd582], a
@@ -4261,7 +4261,7 @@ FireFortYuki_AfterDuelScripts:
 	db $ff
 
 Func_32a38:
-	ld a, $3f
+	ld a, NPC_YUKI
 	ld [wScriptNPC], a
 	ld hl, $a13
 	ld a, l
@@ -4297,7 +4297,7 @@ NPCMovement_32a71:
 	db $ff
 
 Func_32a76:
-	ld a, $3f
+	ld a, NPC_YUKI
 	ld [wScriptNPC], a
 	ld hl, $a13
 	ld a, l
@@ -4502,7 +4502,7 @@ Func_32b43:
 	ret
 
 Func_32bd4:
-	ld a, $5a
+	ld a, EVENT_YUKIS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32be6
 	xor a
@@ -4562,7 +4562,7 @@ Func_32c51:
 	ret
 
 Func_32c5a:
-	ld a, $5b
+	ld a, EVENT_SHOKOS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_32c64
 	scf
@@ -4599,7 +4599,7 @@ FireFortShoko_AfterDuelScripts:
 	db $ff
 
 Func_32c9a:
-	ld a, $40
+	ld a, NPC_SHOKO
 	ld [wScriptNPC], a
 	ld hl, $a14
 	ld a, l
@@ -4704,10 +4704,10 @@ Func_32d1f:
 	ret
 
 Func_32d59:
-	ld a, $5b
+	ld a, EVENT_SHOKOS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_32d7d
-	ld a, $40
+	ld a, NPC_SHOKO
 	ld [wScriptNPC], a
 	ld hl, $a14
 	ld a, l
@@ -4726,7 +4726,7 @@ Func_32d59:
 	ret
 
 Func_32d82:
-	ld a, $bf
+	ld a, EVENT_FREED_COURTNEY
 	farcall GetEventValue
 	jr z, .asm_32d8c
 	scf
@@ -4876,7 +4876,7 @@ FireFortHidero_AfterDuelScripts:
 	db $ff
 
 Func_32e79:
-	ld a, $41
+	ld a, NPC_HIDERO
 	ld [wScriptNPC], a
 	ld hl, $a15
 	ld a, l
@@ -5033,10 +5033,10 @@ WaterFortEntrance_MapScripts:
 	db $ff
 
 Func_32fc9:
-	ld a, $13
+	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr z, .asm_32fdb
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $06
 	jr c, .asm_32fdd
@@ -5063,10 +5063,10 @@ Func_32fed:
 	ret
 
 Func_32ff6:
-	ld a, $c9
+	ld a, EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_3300a
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $06
 	jr c, .asm_33027
@@ -5075,7 +5075,7 @@ Func_32ff6:
 	ld bc, $83
 	ld de, $407
 	farcall Func_12c0ce
-	ld a, $11
+	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_33044
 	ld a, $a1
@@ -5083,7 +5083,7 @@ Func_32ff6:
 	farcall SetOWObjectTilePosition
 	jr .asm_33044
 .asm_33027
-	ld a, $13
+	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr z, .asm_33044
 	ld a, $0a
@@ -5115,7 +5115,7 @@ Func_33056:
 	ret
 
 Func_3305c:
-	ld a, $a1
+	ld a, NPC_GR_CLERK_WATER_FORT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -5142,7 +5142,7 @@ Func_3305c:
 	ret
 
 Func_3308e:
-	ld a, $c9
+	ld a, EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_330bb
 	xor a
@@ -5220,7 +5220,7 @@ Func_33129:
 	jr nz, .asm_33134
 	farcall Func_1f293
 .asm_33134
-	ld a, $61
+	ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_3313e
 	scf
@@ -5254,7 +5254,7 @@ WaterFortMiyajima_AfterDuelScripts:
 	db $ff
 
 Func_3316a:
-	ld a, $43
+	ld a, NPC_MIYAJIMA
 	ld [wScriptNPC], a
 	ld hl, $a16
 	ld a, l
@@ -5364,7 +5364,7 @@ Func_331d9:
 	ret
 
 Func_33236:
-	ld a, $61
+	ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_33248
 	xor a
@@ -5432,7 +5432,7 @@ WaterFortKanoko_AfterDuelScripts:
 	db $ff
 
 Func_332a6:
-	ld a, $46
+	ld a, NPC_KANOKO
 	ld [wScriptNPC], a
 	ld hl, $a19
 	ld a, l
@@ -5572,7 +5572,7 @@ Func_333b4:
 	ret
 
 Func_333bd:
-	ld a, $ca
+	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_333c7
 	jr .asm_33422
@@ -5580,7 +5580,7 @@ Func_333bd:
 	ld bc, $93
 	ld de, $407
 	farcall Func_12c0ce
-	ld a, $cb
+	ld a, EVENT_INSERTED_LEFT_COIN_IN_FIGHTING_FORT_DOOR
 	farcall GetEventValue
 	jr z, .asm_333ed
 	ld bc, $187
@@ -5591,7 +5591,7 @@ Func_333bd:
 	farcall LoadOWObjectInMap
 	jr .asm_33422
 .asm_333ed
-	ld a, $cc
+	ld a, EVENT_INSERTED_RIGHT_COIN_IN_FIGHTING_FORT_DOOR
 	farcall GetEventValue
 	jr z, .asm_33409
 	ld bc, $186
@@ -5602,10 +5602,10 @@ Func_333bd:
 	farcall LoadOWObjectInMap
 	jr .asm_33422
 .asm_33409
-	ld a, $12
+	ld a, EVENT_GOT_MAGMAR_COIN
 	farcall GetEventValue
 	jr nz, .asm_33422
-	ld a, $13
+	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr nz, .asm_33422
 	ld a, $a4
@@ -5626,7 +5626,7 @@ Func_33424:
 	ret
 
 Func_33434:
-	ld a, $a4
+	ld a, NPC_GR_CLERK_FIGHTING_FORT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -5657,7 +5657,7 @@ Func_33434:
 	ret
 
 Func_33470:
-	ld a, $ca
+	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_334b2
 	xor a
@@ -5690,7 +5690,7 @@ Func_33470:
 	ret
 
 Func_334b3:
-	ld a, $ca
+	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_334f5
 	xor a
@@ -5807,7 +5807,7 @@ Func_33589:
 	ret
 
 Func_335a2:
-	ld a, $d3
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_1
 	farcall GetEventValue
 	jr nz, .asm_335ad
 	scf
@@ -5827,7 +5827,7 @@ Func_335af:
 	ret
 
 Func_335ba:
-	ld a, $d3
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_1
 	farcall GetEventValue
 	jr z, .asm_335c5
 	scf
@@ -5838,7 +5838,7 @@ Func_335ba:
 	ret
 
 Func_335c7:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $9a
 	ld de, $303
@@ -5962,7 +5962,7 @@ Func_336d2:
 	ret
 
 Func_336eb:
-	ld a, $d4
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_2
 	farcall GetEventValue
 	jr nz, .asm_336f6
 	scf
@@ -5982,7 +5982,7 @@ Func_336f8:
 	ret
 
 Func_33703:
-	ld a, $d4
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_2
 	farcall GetEventValue
 	jr z, .asm_3370e
 	scf
@@ -5993,7 +5993,7 @@ Func_33703:
 	ret
 
 Func_33710:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $9d
 	ld de, $203
@@ -6181,7 +6181,7 @@ Func_338d7:
 	ret
 
 Func_338f0:
-	ld a, $d5
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_3
 	farcall GetEventValue
 	jr nz, .asm_338fb
 	scf
@@ -6201,7 +6201,7 @@ Func_338fd:
 	ret
 
 Func_33908:
-	ld a, $d5
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_3
 	farcall GetEventValue
 	jr z, .asm_33913
 	scf
@@ -6212,7 +6212,7 @@ Func_33908:
 	ret
 
 Func_33915:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $bc
 	ld de, $303
@@ -6353,7 +6353,7 @@ Func_33a96:
 	ret
 
 Func_33aa1:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $c1
 	ld de, SetBGP
@@ -6440,7 +6440,7 @@ Func_33b86:
 	ret
 
 Func_33b91:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $c4
 	ld de, $203
@@ -6579,7 +6579,7 @@ Func_33cba:
 	ret
 
 Func_33cd3:
-	ld a, $d6
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_4
 	farcall GetEventValue
 	jr nz, .asm_33cde
 	scf
@@ -6599,7 +6599,7 @@ Func_33ce0:
 	ret
 
 Func_33ceb:
-	ld a, $d6
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_4
 	farcall GetEventValue
 	jr z, .asm_33cf6
 	scf
@@ -6610,7 +6610,7 @@ Func_33ceb:
 	ret
 
 Func_33cf8:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $c9
 	ld de, $803
@@ -6627,7 +6627,7 @@ Func_33cf8:
 	ret
 
 Func_33d1b:
-	ld a, $0f
+	ld a, SFX_0F
 	call PlaySFX
 	ld bc, $ca
 	ld de, SetBGP
@@ -6696,7 +6696,7 @@ ColorlessAltarEntrance_MapScripts:
 	db $ff
 
 Func_33dcc:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $07
 	jr c, .asm_33dd8
@@ -6715,7 +6715,7 @@ Func_33de1:
 	ret
 
 Func_33de8:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $07
 	jr nc, .asm_33e12
