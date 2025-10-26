@@ -201,7 +201,7 @@ Prologue::
 	ret
 
 Func_3c1b9:
-	ld a, $64
+	ld a, NPC_CLERK_BATTLE_CENTER
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -213,7 +213,7 @@ Func_3c1b9:
 	jr Func_3c1d0.asm_3c1e5
 
 Func_3c1d0:
-	ld a, $68
+	ld a, NPC_GR_CLERK_BATTLE_CENTER
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -351,10 +351,10 @@ Func_3c1d0:
 	script_ret
 
 Func_3c2d9:
-	ld a, $f2
+	ld a, EVENT_F2
 	farcall ZeroOutEventValue
 	farcall Func_1d9be
-	ld a, $f2
+	ld a, EVENT_F2
 	farcall GetEventValue
 	jr z, .asm_3c2ef
 	farcall PlayCurrentSong
@@ -378,7 +378,7 @@ Script_3c2f0:
 	script_retfar
 
 Func_3c30c:
-	ld a, $05
+	ld a, NPC_IMAKUNI_BLACK
 	ld [wScriptNPC], a
 	ld hl, $a2f
 	ld a, l
@@ -402,10 +402,10 @@ Func_3c30c:
 	card_pop SCRIPTED_CARD_POP_IMAKUNI
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopSaveText
 	quit_script
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 	farcall Func_ea30
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
@@ -594,10 +594,10 @@ Script_3c497:
 	card_pop SCRIPTED_RARE_CARD_POP_IMAKUNI
 	print_npc_text Text12d4
 	quit_script
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 	farcall Func_ea30
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
@@ -622,7 +622,7 @@ Script_3c497:
 	ret
 
 Func_3c4e0:
-	ld a, $b1
+	ld a, NPC_IMAKUNI_RED
 	ld [wScriptNPC], a
 	ld hl, $a2f
 	ld a, l
@@ -818,7 +818,7 @@ Func_3c690:
 	ret
 
 Func_3c697:
-	ld a, $10
+	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr z, .asm_3c6b1
 	ld a, $ba
@@ -863,7 +863,7 @@ Func_3c6c3:
 	ret
 
 Func_3c6e8:
-	ld a, $10
+	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	ret z
 	xor a
@@ -907,7 +907,7 @@ Func_3c715:
 	ret
 
 Func_3c739:
-	ld a, $b7
+	ld a, NPC_LAB_TECH_AUTO_DECK_MACHINE_1
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -929,7 +929,7 @@ Func_3c739:
 	ret
 
 Func_3c75f:
-	ld a, $b8
+	ld a, NPC_LAB_TECH_DECK_SAVE_MACHINE
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -945,7 +945,7 @@ Func_3c75f:
 	ret
 
 Func_3c77a:
-	ld a, $b9
+	ld a, NPC_LAB_TECH_COMPUTER_ROOM
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -972,7 +972,7 @@ Func_3c77a:
 	ret
 
 Func_3c7ab:
-	ld a, $ba
+	ld a, NPC_LAB_TECH_AUTO_DECK_MACHINE_2
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -1043,7 +1043,7 @@ Func_3c825:
 
 Func_3c82d:
 	ld hl, MasonLaboratoryTrainingRoom_AfterDuelScripts
-	ld a, $3b
+	ld a, VAR_3B
 	farcall GetVarValue
 	call Func_344c
 	scf
@@ -1057,7 +1057,7 @@ MasonLaboratoryTrainingRoom_AfterDuelScripts:
 	db $ff
 
 Func_3c84c:
-	ld a, $07
+	ld a, NPC_AARON
 	ld [wScriptNPC], a
 	ld hl, $9d2
 	ld a, l
@@ -1328,7 +1328,7 @@ NPCMovement_3ca48:
 	db $ff
 
 Func_3ca4d:
-	ld a, $bb
+	ld a, NPC_LAB_TECH_TRAINING_ROOM
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -1536,10 +1536,10 @@ LightningClubEntrance_MapScripts:
 	db $ff
 
 Func_3cbd4:
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cbe1
-	ld a, $14
+	ld a, MUSIC_HERECOMESGR
 	ld [wNextMusic], a
 .asm_3cbe1
 	scf
@@ -1564,10 +1564,10 @@ Func_3cbf4:
 	ret
 
 Func_3cbfb:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3cc0b
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cc35
 .asm_3cc0b
@@ -1592,12 +1592,12 @@ Func_3cbfb:
 	ret
 
 Func_3cc37:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3cc51
-	ld a, $03
+	ld a, NPC_RONALD
 	farcall ClearOWObject
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
 	ld [wCurMusic], a
@@ -1606,7 +1606,7 @@ Func_3cc37:
 	ret
 
 Func_3cc53:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_3cc5f
@@ -1667,10 +1667,10 @@ LightningClubLobby_MapScripts:
 	db $ff
 
 Func_3cd1b:
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cd28
-	ld a, $14
+	ld a, MUSIC_HERECOMESGR
 	ld [wNextMusic], a
 .asm_3cd28
 	scf
@@ -1700,7 +1700,7 @@ Func_3cd3b:
 	ret
 
 Func_3cd4b:
-	ld a, $23
+	ld a, NPC_JENNIFER
 	ld [wScriptNPC], a
 	ld hl, $9e9
 	ld a, l
@@ -1728,7 +1728,7 @@ Func_3cd4b:
 	ret
 
 Func_3cd7e:
-	ld a, $25
+	ld a, NPC_BRANDON
 	ld [wScriptNPC], a
 	ld hl, $9eb
 	ld a, l
@@ -1756,10 +1756,10 @@ Func_3cd7e:
 	ret
 
 Func_3cdb1:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3cdc3
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr z, .asm_3cdc3
 	scf
@@ -1770,7 +1770,7 @@ Func_3cdb1:
 	ret
 
 Func_3cdc6:
-	ld a, $7f
+	ld a, NPC_LIGHTNING_CLUB_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -1824,7 +1824,7 @@ Func_3cdc6:
 	ret
 
 Func_3ce39:
-	ld a, $80
+	ld a, NPC_LIGHTNING_CLUB_PUNK_KID
 	ld [wScriptNPC], a
 	ld hl, $a52
 	ld a, l
@@ -1851,7 +1851,7 @@ Func_3ce39:
 	ret
 
 Func_3ce6a:
-	ld a, $81
+	ld a, NPC_LIGHTNING_CLUB_LONGHAIRED_LASS
 	ld [wScriptNPC], a
 	ld hl, $a4b
 	ld a, l
@@ -1878,7 +1878,7 @@ Func_3ce6a:
 	ret
 
 Func_3ce9b:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3cea5
 	scf
@@ -1889,7 +1889,7 @@ Func_3ce9b:
 	ret
 
 Func_3cea8:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3ceb2
 	scf
@@ -1900,7 +1900,7 @@ Func_3cea8:
 	ret
 
 Func_3ceb5:
-	ld a, $82
+	ld a, NPC_LIGHTNING_CLUB_BRO
 	ld [wScriptNPC], a
 	ld hl, $a35
 	ld a, l
@@ -1975,10 +1975,10 @@ GrassClubLobby_MapScripts:
 	db $ff
 
 Func_3cf98:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_3cfa5
-	ld a, $14
+	ld a, MUSIC_HERECOMESGR
 	ld [wNextMusic], a
 .asm_3cfa5
 	scf
@@ -2019,7 +2019,7 @@ GrassClubLobby_AfterDuelScripts:
 	db $ff
 
 Func_3cfd8:
-	ld a, $12
+	ld a, NPC_BRITTANY
 	ld [wScriptNPC], a
 	ld hl, $9dd
 	ld a, l
@@ -2092,7 +2092,7 @@ Func_3d02b:
 	ret
 
 Func_3d064:
-	ld a, $13
+	ld a, NPC_KRISTIN
 	ld [wScriptNPC], a
 	ld hl, $9de
 	ld a, l
@@ -2129,7 +2129,7 @@ Func_3d064:
 	ret
 
 Func_3d0a8:
-	ld a, $14
+	ld a, NPC_HEATHER
 	ld [wScriptNPC], a
 	ld hl, $9df
 	ld a, l
@@ -2166,10 +2166,10 @@ Func_3d0a8:
 	ret
 
 Func_3d0ec:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d0fe
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_3d0fe
 	scf
@@ -2180,7 +2180,7 @@ Func_3d0ec:
 	ret
 
 Func_3d101:
-	ld a, $72
+	ld a, NPC_GRASS_CLUB_GRANNY
 	ld [wScriptNPC], a
 	ld hl, $a3f
 	ld a, l
@@ -2202,7 +2202,7 @@ Func_3d101:
 	ret
 
 Func_3d127:
-	ld a, $73
+	ld a, NPC_GRASS_CLUB_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -2229,7 +2229,7 @@ Func_3d127:
 	ret
 
 Func_3d158:
-	ld a, $74
+	ld a, NPC_GRASS_CLUB_CAPPED_LASS
 	ld [wScriptNPC], a
 	ld hl, $a4c
 	ld a, l
@@ -2256,10 +2256,10 @@ Func_3d158:
 	ret
 
 Func_3d189:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d19c
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_3d19c
 	scf
@@ -2300,7 +2300,7 @@ TcgChallengeHallEntrance_MapScripts:
 	db $ff
 
 Func_3d1f6:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3d208
@@ -2309,7 +2309,7 @@ Func_3d1f6:
 	cp $06
 	jr nz, .asm_3d20d
 .asm_3d208
-	ld a, $0b
+	ld a, MUSIC_CHALLENGEHALL
 	ld [wNextMusic], a
 .asm_3d20d
 	scf
@@ -2320,7 +2320,7 @@ Func_3d210:
 	ld a, [wd585]
 	cp $00
 	jr nz, .asm_3d257
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3d229
@@ -2329,15 +2329,15 @@ Func_3d210:
 	cp $06
 	jr nz, .asm_3d257
 .asm_3d229
-	ld a, $2b
+	ld a, VAR_2B
 	farcall GetVarValue
 	cp $01
 	push af
-	ld a, $2b
+	ld a, VAR_2B
 	farcall ZeroOutVarValue
 	pop af
 	jr nz, .asm_3d257
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $06
 	jr z, .asm_3d24f
@@ -2373,7 +2373,7 @@ Func_3d269:
 	ret
 
 Func_3d271:
-	ld a, $8a
+	ld a, NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -2471,7 +2471,7 @@ TcgChallengeHallLobby_MapScripts:
 	db $ff
 
 Func_3d386:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3d398
@@ -2480,7 +2480,7 @@ Func_3d386:
 	cp $06
 	jr nz, .asm_3d39d
 .asm_3d398
-	ld a, $0b
+	ld a, MUSIC_CHALLENGEHALL
 	ld [wNextMusic], a
 .asm_3d39d
 	scf
@@ -2510,7 +2510,7 @@ Func_3d3b0:
 	ret
 
 Func_3d3c0:
-	ld a, $8b
+	ld a, NPC_TCG_CHALLENGE_HALL_CHAP
 	ld [wScriptNPC], a
 	ld hl, $a33
 	ld a, l
@@ -2650,7 +2650,7 @@ Func_3d3c0:
 	ret
 
 Func_3d4e9:
-	ld a, $8c
+	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
 	ld hl, $a5b
 	ld a, l
@@ -2673,7 +2673,7 @@ Func_3d4e9:
 	ret
 
 Func_3d511:
-	ld a, $8d
+	ld a, NPC_TCG_CHALLENGE_HALL_PUNK
 	ld [wScriptNPC], a
 	ld hl, $a57
 	ld a, l
@@ -2696,7 +2696,7 @@ Func_3d511:
 	ret
 
 Func_3d539:
-	ld a, $8f
+	ld a, NPC_TCG_CHALLENGE_HALL_PAPPY
 	ld [wScriptNPC], a
 	ld hl, $a3c
 	ld a, l
@@ -2723,7 +2723,7 @@ Func_3d539:
 	ret
 
 Func_3d56d:
-	ld a, $90
+	ld a, NPC_TCG_CHALLENGE_HALL_TECH
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -2739,7 +2739,7 @@ Func_3d56d:
 	ret
 
 Func_3d588:
-	ld a, $91
+	ld a, NPC_TCG_CHALLENGE_HALL_GIRL
 	ld [wScriptNPC], a
 	ld hl, $a4c
 	ld a, l
@@ -2755,7 +2755,7 @@ Func_3d588:
 	ret
 
 Func_3d5a3:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3d5b8
@@ -2771,7 +2771,7 @@ Func_3d5a3:
 	ret
 
 Func_3d5ba:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_3d5ce
@@ -2839,30 +2839,30 @@ PokemonDome_MapScripts:
 	db $ff
 
 Func_3d67b:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3d6a1
-	ld a, $c2
+	ld a, EVENT_FREED_ROD
 	farcall GetEventValue
 	jr nz, .asm_3d69a
-	ld a, $0b
+	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_3d6b7
-	ld a, $14
+	ld a, MUSIC_HERECOMESGR
 	ld [wNextMusic], a
 	jr .asm_3d6b7
 .asm_3d69a
-	ld a, $0a
+	ld a, MUSIC_POKEMONDOME
 	ld [wNextMusic], a
 	jr .asm_3d6b7
 .asm_3d6a1
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_3d6b7
 	cp $04
 	jr c, .asm_3d69a
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d69a
 .asm_3d6b7
@@ -2892,7 +2892,7 @@ Func_3d6ca:
 	scf
 	ret
 .asm_3d6dd
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3d6fc
 	ld a, $0a
@@ -2929,7 +2929,7 @@ Func_3d719:
 	scf
 	ret
 .asm_3d722
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3d72c
 	scf
@@ -2976,7 +2976,7 @@ PokemonDome_AfterDuelScripts:
 	db $ff
 
 Func_3d768:
-	ld a, $2a
+	ld a, NPC_COURTNEY
 	ld [wScriptNPC], a
 	ld hl, $9f5
 	ld a, l
@@ -3046,13 +3046,13 @@ Func_3d7c6:
 	ret
 
 Func_3d7e2:
-	ld a, $bf
+	ld a, EVENT_FREED_COURTNEY
 	farcall GetEventValue
 	jr z, .asm_3d803
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d803
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3d803
@@ -3066,7 +3066,7 @@ Func_3d7e2:
 	ret
 
 Func_3d805:
-	ld a, $2b
+	ld a, NPC_STEVE
 	ld [wScriptNPC], a
 	ld hl, $9f4
 	ld a, l
@@ -3139,13 +3139,13 @@ Func_3d86d:
 	ret
 
 Func_3d889:
-	ld a, $c0
+	ld a, EVENT_FREED_STEVE
 	farcall GetEventValue
 	jr z, .asm_3d8aa
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d8aa
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3d8aa
@@ -3159,7 +3159,7 @@ Func_3d889:
 	ret
 
 Func_3d8ac:
-	ld a, $2c
+	ld a, NPC_JACK
 	ld [wScriptNPC], a
 	ld hl, $9f6
 	ld a, l
@@ -3231,13 +3231,13 @@ Func_3d910:
 	ret
 
 Func_3d92c:
-	ld a, $c1
+	ld a, EVENT_FREED_JACK
 	farcall GetEventValue
 	jr z, .asm_3d94d
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d94d
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3d94d
@@ -3251,7 +3251,7 @@ Func_3d92c:
 	ret
 
 Func_3d94f:
-	ld a, $2d
+	ld a, NPC_ROD
 	ld [wScriptNPC], a
 	ld hl, $9f7
 	ld a, l
@@ -3302,13 +3302,13 @@ Func_3d94f:
 	ret
 
 Func_3d9b1:
-	ld a, $c2
+	ld a, EVENT_FREED_ROD
 	farcall GetEventValue
 	jr z, .asm_3d9d2
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3d9d2
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3d9d2
@@ -3322,7 +3322,7 @@ Func_3d9b1:
 	ret
 
 Func_3d9d4:
-	ld a, $32
+	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ld hl, $a2c
 	ld a, l
@@ -3345,7 +3345,7 @@ Func_3d9d4:
 	ret
 
 Func_3d9fc:
-	ld a, $0b
+	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr z, .asm_3da06
 	scf
@@ -3356,7 +3356,7 @@ Func_3d9fc:
 	ret
 
 Func_3da09:
-	ld a, $92
+	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -3401,7 +3401,7 @@ Func_3da09:
 	ret
 
 Func_3da6c:
-	ld a, $d5
+	ld a, NPC_POKEMON_DOME_GR_LASS
 	ld [wScriptNPC], a
 	ld hl, $a45
 	ld a, l
@@ -3425,7 +3425,7 @@ Func_3da6c:
 	ret
 
 Func_3da97:
-	ld a, $d6
+	ld a, NPC_POKEMON_DOME_YOUNGSTER
 	ld [wScriptNPC], a
 	ld hl, $a30
 	ld a, l
@@ -3448,7 +3448,7 @@ Func_3da97:
 	ret
 
 Func_3dabf:
-	ld a, $d7
+	ld a, NPC_POKEMON_DOME_SWIMMER
 	ld [wScriptNPC], a
 	ld hl, $a4d
 	ld a, l
@@ -3475,16 +3475,16 @@ Func_3dabf:
 	ret
 
 Func_3daf0:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3db11
-	ld a, $0d
+	ld a, VAR_0D
 	farcall GetVarValue
 	cp $02
 	jr c, .asm_3db11
 	cp $04
 	jr c, .asm_3db0e
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_3db11
 .asm_3db0e
@@ -3675,14 +3675,14 @@ NPCMovement_3dc45:
 	db $ff
 
 Func_3dc4a:
-	ld a, $2d
+	ld a, NPC_ROD
 	ld [wScriptNPC], a
 	ld hl, $9f7
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
 	ld [$d610], a
-	ld a, $ee
+	ld a, EVENT_EE
 	farcall GetEventValue
 	jr z, .asm_3dc88
 	xor a
@@ -3712,7 +3712,7 @@ Func_3dc4a:
 	ret
 
 Func_3dc8e:
-	ld a, $92
+	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -3762,19 +3762,19 @@ Func_3dcf2:
 	ld a, $25
 	call Random
 	ld c, a
-	ld a, $10
+	ld a, VAR_10
 	farcall GetVarValue
 	cp c
 	jr z, .asm_3dcf2
-	ld a, $11
+	ld a, VAR_11
 	farcall GetVarValue
 	cp c
 	jr z, .asm_3dcf2
-	ld a, $12
+	ld a, VAR_12
 	farcall GetVarValue
 	cp c
 	jr z, .asm_3dcf2
-	ld a, $13
+	ld a, VAR_13
 	farcall GetVarValue
 	cp c
 	jr z, .asm_3dcf2
@@ -3857,7 +3857,7 @@ Func_3ddaf:
 	ret
 
 Func_3ddb8:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3ddec
 	ld a, $8c
@@ -3900,7 +3900,7 @@ Func_3ddb8:
 	farcall Func_10f0f
 	farcall Func_45416
 	farcall Func_454fa
-	ld a, $14
+	ld a, VAR_14
 	farcall GetVarValue
 	farcall Func_45484
 	ld de, $904
@@ -3938,12 +3938,12 @@ Func_3de6f:
 	ret
 
 PokemonDomeBack_AfterDuel:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3de7d
 	jp Func_3e2a4
 .asm_3de7d
-	ld a, $0c
+	ld a, VAR_0C
 	farcall GetVarValue
 	jp z, Func_3df57
 	dec a
@@ -3954,7 +3954,7 @@ PokemonDomeBack_AfterDuel:
 
 Func_3de91:
 	farcall Func_c18f
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3deb5
 	call .asm_3dea2
@@ -3983,7 +3983,7 @@ Func_3de91:
 	ret
 
 Func_3deca:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
 	farcall Func_45573
@@ -4302,7 +4302,7 @@ NPCMovement_3e126:
 	db $ff
 
 Func_3e12b:
-	ld a, $8c
+	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
 	ld hl, $a5b
 	ld a, l
@@ -4384,7 +4384,7 @@ Script_3e1b8:
 	ld a, $0e
 	ld c, $02
 	farcall SetVarValue
-	ld a, $1b
+	ld a, VAR_1B
 	farcall GetVarValue
 	farcall Func_45484
 	ld de, $904
@@ -4436,7 +4436,7 @@ Script_3e21c:
 	ld a, $0e
 	ld c, $03
 	farcall SetVarValue
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 	farcall Func_45484
 	ld de, $904
@@ -4456,7 +4456,7 @@ Script_3e21c:
 	wait_for_player_animation
 	script_command_01
 	quit_script
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
 	cp $03
@@ -4508,7 +4508,7 @@ Func_3e2a4:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e313
 	quit_script
-	ld a, $0e
+	ld a, VAR_0E
 	farcall GetVarValue
 	ld h, $00
 	ld l, a
@@ -4547,7 +4547,7 @@ Func_3e2a4:
 	script_jump Script_3e21c
 .ows_3e313
 	quit_script
-	ld a, $0e
+	ld a, VAR_0E
 	farcall GetVarValue
 	ld h, $00
 	ld l, a
@@ -4599,7 +4599,7 @@ Func_3e2a4:
 	quit_script
 ; 0x3e36d
 ; gap from 0x3e36d to 0x3e405
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
 	cp $03
@@ -4650,7 +4650,7 @@ Func_3e2a4:
 	start_script
 	print_npc_text Text0fce
 	quit_script
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
 	cp $03
@@ -5005,7 +5005,7 @@ NPCMovement_3e686:
 ; end mega function
 
 Func_3e68b:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3e695
 	scf
@@ -5054,21 +5054,21 @@ IshiharasVillaMain_MapScripts:
 	db $ff
 
 Func_3e704:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $05
 	jr c, .asm_3e722
 	jr z, .asm_3e71a
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr nz, .asm_3e722
 	jr .asm_3e727
 .asm_3e71a
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3e727
 .asm_3e722
-	ld a, $15
+	ld a, MUSIC_GROVERWORLD
 	ld [wNextMusic], a
 .asm_3e727
 	scf
@@ -5100,14 +5100,14 @@ Func_3e73a:
 Func_3e74a:
 	xor a
 	push af
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_3e758
 	pop af
 	or $01
 	push af
 .asm_3e758
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3e764
 	pop af
@@ -5120,7 +5120,7 @@ Func_3e74a:
 	ld c, a
 	ld a, $00
 	farcall SetVarValue
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 .asm_3e775
 	scf
@@ -5128,18 +5128,18 @@ Func_3e74a:
 	ret
 
 Func_3e778:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ccf
 	ret
 
 Func_3e787:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
@@ -5147,20 +5147,20 @@ Func_3e787:
 	pop af
 	bit 1, a
 	call nz, Func_3e7b4
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ret
 
 Func_3e7ad:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall MaxOutEventValue
 	ret
 
 Func_3e7b4:
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 
@@ -5170,10 +5170,10 @@ Func_3e7bb:
 	ret
 
 Func_3e7c0:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3e7d3
-	ld a, $97
+	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
 	jr nz, .asm_3e7d3
 	jp Func_3e854
@@ -5181,14 +5181,14 @@ Func_3e7c0:
 	jp Func_3e7f5
 
 Func_3e7d6:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $0a
 	jr c, .asm_3e7f3
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3e7f3
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr nz, .asm_3e7f3
 	scf
@@ -5199,7 +5199,7 @@ Func_3e7d6:
 	ret
 
 Func_3e7f5:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5252,7 +5252,7 @@ Func_3e836:
 	ret
 
 Func_3e854:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5314,7 +5314,7 @@ NPCMovement_3e8a8:
 	db $ff
 
 Func_3e8b1:
-	ld a, $dd
+	ld a, NPC_ISHIHARAS_VILLA_GR_GAL
 	ld [wScriptNPC], a
 	ld hl, $a26
 	ld a, l
@@ -5334,7 +5334,7 @@ Func_3e8b1:
 	ret
 
 Func_3e8d3:
-	ld a, $ce
+	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_3e8de
 	scf
@@ -5384,21 +5384,21 @@ IshiharasVillaLibrary_MapScripts:
 	db $ff
 
 Func_3e95b:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $05
 	jr c, .asm_3e979
 	jr z, .asm_3e971
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr nz, .asm_3e979
 	jr .asm_3e97e
 .asm_3e971
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3e97e
 .asm_3e979
-	ld a, $15
+	ld a, MUSIC_GROVERWORLD
 	ld [wNextMusic], a
 .asm_3e97e
 	scf
@@ -5430,14 +5430,14 @@ Func_3e991:
 Func_3e9a1:
 	xor a
 	push af
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr z, .asm_3e9af
 	pop af
 	or $01
 	push af
 .asm_3e9af
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3e9bb
 	pop af
@@ -5450,7 +5450,7 @@ Func_3e9a1:
 	ld c, a
 	ld a, $00
 	farcall SetVarValue
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 .asm_3e9cc
 	scf
@@ -5458,18 +5458,18 @@ Func_3e9a1:
 	ret
 
 Func_3e9cf:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ccf
 	ret
 
 Func_3e9de:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
@@ -5477,42 +5477,42 @@ Func_3e9de:
 	pop af
 	bit 1, a
 	call nz, Func_3ea0b
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
-	ld a, $00
+	ld a, VAR_00
 	farcall ZeroOutVarValue
 	scf
 	ret
 
 Func_3ea04:
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall MaxOutEventValue
 	ret
 
 Func_3ea0b:
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 
 Func_3ea12:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ea25
-	ld a, $97
+	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
 	jr nz, .asm_3ea25
 	jp Func_3ec58
 .asm_3ea25
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ea3b
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $06
 	jp z, Func_3ea86
 	jp Func_3ec3d
 .asm_3ea3b
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	sub $05
 	jp z, Func_3ea86
@@ -5525,24 +5525,24 @@ Func_3ea12:
 	jp Func_3ebda
 
 Func_3ea55:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $05
 	jr c, .asm_3ea84
 	jr z, .asm_3ea6f
 	cp $0a
 	jr z, .asm_3ea79
-	ld a, $f5
+	ld a, EVENT_F5
 	farcall GetEventValue
 	jr nz, .asm_3ea84
 	jr .asm_3ea81
 .asm_3ea6f
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3ea84
 	jr .asm_3ea81
 .asm_3ea79
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ea84
 .asm_3ea81
@@ -5554,7 +5554,7 @@ Func_3ea55:
 	ret
 
 Func_3ea86:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5578,7 +5578,7 @@ Func_3ea86:
 	ret
 
 Func_3eab1:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5625,7 +5625,7 @@ Func_3eab1:
 	ret
 
 Func_3eb14:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5672,7 +5672,7 @@ Func_3eb14:
 	ret
 
 Func_3eb77:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5719,7 +5719,7 @@ Func_3eb77:
 	ret
 
 Func_3ebda:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5766,7 +5766,7 @@ Func_3ebda:
 	ret
 
 Func_3ec3d:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5782,7 +5782,7 @@ Func_3ec3d:
 	ret
 
 Func_3ec58:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -5799,7 +5799,7 @@ Func_3ec58:
 	ret
 
 Func_3ec75:
-	ld a, $dd
+	ld a, NPC_ISHIHARAS_VILLA_GR_GAL
 	ld [wScriptNPC], a
 	ld hl, $a26
 	ld a, l
@@ -5854,10 +5854,10 @@ NPCMovement_3ecd2:
 	db $ff
 
 Func_3ecd5:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ece8
-	ld a, $83
+	ld a, EVENT_MET_GR_GAL_ISHIHARAS_VILLA
 	farcall GetEventValue
 	jr nz, .asm_3ece8
 	scf
@@ -5936,7 +5936,7 @@ Func_3edb2:
 	ret
 
 Func_3edb7:
-	ld a, $bf
+	ld a, NPC_GR_CLERK_GAME_CENTER_CHIP_DESK
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -5984,7 +5984,7 @@ Func_3edb7:
 	ret
 
 Func_3ee11:
-	ld a, $c0
+	ld a, NPC_CHIP_GIRL
 	ld [wScriptNPC], a
 	ld hl, $9fa
 	ld a, l
@@ -6041,7 +6041,7 @@ Func_3ee11:
 	ret
 
 Func_3ee83:
-	ld a, $c1
+	ld a, NPC_CHIP_SECURITY
 	ld [wScriptNPC], a
 	ld hl, $9fb
 	ld a, l
@@ -6084,7 +6084,7 @@ Func_3eec7:
 	farcall Func_c199
 	ret
 .asm_3eed4
-	ld a, $c1
+	ld a, NPC_CHIP_SECURITY
 	ld [wScriptNPC], a
 	ld hl, $9fb
 	ld a, l
@@ -6149,7 +6149,7 @@ GameCenterLobby_MapScripts:
 	db $ff
 
 Func_3ef80:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3ef8c
@@ -6190,12 +6190,12 @@ Func_3efb5:
 	ret
 
 Func_3efba:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3efd4
-	ld a, $b1
+	ld a, NPC_IMAKUNI_RED
 	farcall ClearOWObject
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
 	ld [wCurMusic], a
@@ -6204,7 +6204,7 @@ Func_3efba:
 	ret
 
 Func_3efd6:
-	ld a, $a9
+	ld a, NPC_GAME_CENTER_TECH
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -6220,7 +6220,7 @@ Func_3efd6:
 	ret
 
 Func_3eff1:
-	ld a, $aa
+	ld a, NPC_GAME_CENTER_GR_LASS
 	ld [wScriptNPC], a
 	ld hl, $a45
 	ld a, l
@@ -6242,7 +6242,7 @@ Func_3eff1:
 	ret
 
 Func_3f017:
-	ld a, $ab
+	ld a, NPC_GAME_CENTER_GR_PAPPY
 	ld [wScriptNPC], a
 	ld hl, $a3b
 	ld a, l
@@ -6264,7 +6264,7 @@ Func_3f017:
 	ret
 
 Func_3f03d:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_3f049
@@ -6350,7 +6350,7 @@ Func_3f0d4:
 	ret
 
 Func_3f0d9:
-	ld a, $5e
+	ld a, NPC_PAWN
 	ld [wScriptNPC], a
 	ld hl, $9fc
 	ld a, l
@@ -6480,7 +6480,7 @@ Func_3f1c6:
 	ret
 
 Func_3f1de:
-	ld a, $3a
+	ld a, VAR_3A
 	farcall GetVarValue
 	or a
 	jr nz, .asm_3f1f1
@@ -6568,7 +6568,7 @@ Func_3f27a:
 	ret
 
 Func_3f27f:
-	ld a, $5f
+	ld a, NPC_KNIGHT
 	ld [wScriptNPC], a
 	ld hl, $9fd
 	ld a, l
@@ -6719,7 +6719,7 @@ Func_3f395:
 	ret
 
 Func_3f3ad:
-	ld a, $3a
+	ld a, VAR_3A
 	farcall GetVarValue
 	cp $01
 	jr nz, .asm_3f3c1
@@ -6807,7 +6807,7 @@ Func_3f44a:
 	ret
 
 Func_3f44f:
-	ld a, $61
+	ld a, NPC_ROOK
 	ld [wScriptNPC], a
 	ld hl, $9ff
 	ld a, l
@@ -6973,7 +6973,7 @@ Func_3f57e:
 	ret
 
 Func_3f596:
-	ld a, $3a
+	ld a, VAR_3A
 	farcall GetVarValue
 	cp $03
 	jr nz, .asm_3f5aa
@@ -7031,7 +7031,7 @@ WaterFortLobby_MapScripts:
 	db $ff
 
 Func_3f63b:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $08
 	jr z, .asm_3f647
@@ -7072,12 +7072,12 @@ Func_3f670:
 	ret
 
 Func_3f675:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr z, .asm_3f68f
-	ld a, $b1
+	ld a, NPC_IMAKUNI_RED
 	farcall ClearOWObject
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, [wNextMusic]
 	ld [wCurMusic], a
@@ -7086,7 +7086,7 @@ Func_3f675:
 	ret
 
 Func_3f691:
-	ld a, $42
+	ld a, NPC_WATER_FORT_GLASSES_KID
 	ld [wScriptNPC], a
 	ld hl, $a4f
 	ld a, l
@@ -7151,13 +7151,13 @@ Func_3f691:
 	ret
 
 Func_3f718:
-	ld a, $b7
+	ld a, EVENT_TRADED_CARDS_WATER_FORT
 	farcall GetEventValue
 	jr z, .asm_3f732
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3f732
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3f732
 	scf
@@ -7168,13 +7168,13 @@ Func_3f718:
 	ret
 
 Func_3f735:
-	ld a, $b7
+	ld a, EVENT_TRADED_CARDS_WATER_FORT
 	farcall GetEventValue
 	jr z, .asm_3f74d
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_3f74d
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3f74f
 .asm_3f74d
@@ -7186,7 +7186,7 @@ Func_3f735:
 	ret
 
 Func_3f752:
-	ld a, $a2
+	ld a, NPC_WATER_FORT_GR_GRANNY
 	ld [wScriptNPC], a
 	ld hl, $a3f
 	ld a, l
@@ -7212,7 +7212,7 @@ Func_3f752:
 	ret
 
 Func_3f780:
-	ld a, $a3
+	ld a, NPC_WATER_FORT_GR_GAL
 	ld [wScriptNPC], a
 	ld hl, $a38
 	ld a, l
@@ -7234,7 +7234,7 @@ Func_3f780:
 	ret
 
 Func_3f7a6:
-	ld a, $26
+	ld a, VAR_26
 	farcall GetVarValue
 	cp $08
 	jr z, .asm_3f7b2
@@ -7306,7 +7306,7 @@ Func_3f817:
 	ret
 
 Func_3f830:
-	ld a, $d7
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	farcall GetEventValue
 	jr nz, .asm_3f83b
 	scf
@@ -7327,7 +7327,7 @@ Func_3f83d:
 	ret
 
 Func_3f84b:
-	ld a, $d7
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	farcall GetEventValue
 	jr z, .asm_3f856
 	scf
@@ -7338,7 +7338,7 @@ Func_3f84b:
 	ret
 
 Func_3f858:
-	ld a, $3b
+	ld a, VAR_3B
 	farcall GetVarValue
 	cp $03
 	jr nz, .asm_3f87b
@@ -7449,7 +7449,7 @@ Func_3f90c:
 	ret
 
 Func_3f925:
-	ld a, $d8
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	farcall GetEventValue
 	jr nz, .asm_3f930
 	scf
@@ -7477,7 +7477,7 @@ Func_3f932:
 	ret
 
 Func_3f951:
-	ld a, $d8
+	ld a, EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	farcall GetEventValue
 	jr z, .asm_3f95c
 	scf
