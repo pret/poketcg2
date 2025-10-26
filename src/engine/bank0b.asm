@@ -2523,7 +2523,7 @@ Script_2d2d1:
 	quit_script
 
 Func_2d2f0:
-	ld a, $31
+	ld a, NPC_GR_4
 	ld b, $01
 	farcall SetOWObjectAnimStruct1Flag2
 	ld a, $01
@@ -8385,9 +8385,9 @@ Func_2fe9a:
 	ld b, a
 	push hl
 	push bc
-	ld a, $d1
+	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectTargetPosition
-	ld a, $d1
+	ld a, NPC_GR_BLIMP
 	pop bc
 	farcall _SetOWObjectDirection
 .asm_2fefb
