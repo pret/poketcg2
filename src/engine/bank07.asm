@@ -5309,9 +5309,54 @@ _GiveBoosterPack:
 	ld a, [wCurBoosterPack]
 	farcall GetBoosterPack
 	ret
-; 0x1e984
 
-SECTION "Bank 7@69ea", ROMX[$69ea], BANK[$7]
+Func_1e984:
+	farcall Func_1022a
+	call Func_1e990
+	farcall Func_10252
+	ret
+
+Func_1e990:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1e99c
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1e99c:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall InitOWObjects
+	call Func_1e9ce
+	call Func_1ea1f
+	call Func_1ea6d
+	call Func_1eba4
+	ld bc, $161
+	farcall GetPaletteGfxPointer
+	ld c, $00
+	call LoadGfxPalettes
+	farcall SetFrameFuncAndFadeFromWhite
+	ld c, $02
+	farcall Func_10221.loop
+	call Func_3f61
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1e9ce:
+	ld a, $0e
+	ld bc, $0
+	call LoadScene
+	ld de, $101
+	ld bc, $1201
+	farcall FillBoxInBGMapWithZero
+	ld hl, $69b
+	ld de, $101
+	call Func_35af
+	ret
 
 Func_1e9ea:
 	push af
@@ -5356,7 +5401,219 @@ Func_1ea00:
 	pop hl
 	pop af
 	ret
-; 0x1ea1f
+
+Func_1ea1f:
+	push af
+	push bc
+	push de
+	push hl
+	ld de, $102
+	ld bc, $60f
+	farcall FillBoxInBGMapWithZero
+	ld de, $102
+	ld hl, $dd0a
+	xor a
+.asm_1ea34
+	push hl
+	push af
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop af
+	call Func_35bf
+	pop hl
+	inc hl
+	inc hl
+	inc e
+	inc e
+	inc a
+	cp $08
+	jr nz, .asm_1ea34
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ea4c:
+	push af
+	push bc
+	push hl
+	ld b, $00
+	ld hl, $dd1a
+	add hl, bc
+	ld [hl], a
+	dec a
+	and $01
+	inc c
+.asm_1ea5a
+	sla a
+	dec c
+	jr nz, .asm_1ea5a
+	ld b, a
+	srl b
+	ld a, [$dd21]
+	or b
+	ld [$dd21], a
+	pop hl
+	pop bc
+	pop af
+	ret
+
+Func_1ea6d:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, $dd1a
+	ld bc, $0
+.asm_1ea77
+	ld a, [hli]
+	and a
+	jr z, .asm_1ea89
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1ea94
+	call Func_1eaa5
+	pop hl
+	pop de
+	pop bc
+	pop af
+.asm_1ea89
+	inc c
+	ld a, c
+	cp $07
+	jr nz, .asm_1ea77
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ea94:
+	ld hl, $6aba
+	sla c
+	sla c
+	add hl, bc
+	dec a
+	ld c, a
+	sla c
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+
+Func_1eaa5:
+.asm_1eaa5
+	ld a, [hl]
+	cp $ff
+	ret z
+	ld b, [hl]
+	inc hl
+	ld c, [hl]
+	inc hl
+	ld a, [hl]
+	add $80
+	ld d, a
+	inc hl
+	ld e, [hl]
+	inc hl
+	call Func_383b
+	jr .asm_1eaa5
+	ret
+; 0x1eaba
+
+SECTION "Bank 7@6ba4", ROMX[$6ba4], BANK[$7]
+
+Func_1eba4:
+	push af
+	push bc
+	push de
+	push hl
+	ld hl, $69c
+	ld a, [$dd20]
+	and a
+	jr z, .asm_1ebd1
+	call Func_1ebe3
+	push af
+	farcall Func_4565d
+	ld [$dd22], a
+	call Func_1ec0f
+	ld hl, Func_3d54
+	call Func_3f6b
+	pop af
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $dd0a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.asm_1ebd1
+	ld de, $d09
+	ld bc, $601
+	farcall FillBoxInBGMapWithZero
+	call Func_35bf
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ebe3:
+	push bc
+	push de
+	push hl
+	ld hl, $6bff
+	ld d, $00
+.asm_1ebeb
+	ld a, [$dd21]
+	ld b, [hl]
+	inc hl
+	and b
+	ld c, [hl]
+	inc hl
+	inc d
+	cp c
+	jr nz, .asm_1ebeb
+	dec d
+	ld a, d
+	and $07
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x1ebff
+
+SECTION "Bank 7@6c0f", ROMX[$6c0f], BANK[$7]
+
+Func_1ec0f:
+	push af
+	push bc
+	push de
+	push hl
+	ld a, [$dd22]
+	ld b, $02
+	ld d, $70
+	ld e, $30
+	farcall LoadOWObject
+	farcall ResetOWObjectSpriteAnimating
+	ld b, $01
+	farcall _SetOWObjectFrameIndex
+	xor a
+	ld [$dd24], a
+	ld a, $02
+	ld [$dd23], a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1ec38
 
 SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
 

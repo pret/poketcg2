@@ -250,7 +250,7 @@ Func_3c1d0:
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c242
-	script_call Script_3c2c1
+	script_call .ows_3c2c1
 	print_npc_text BattleCenterWinRewardsText
 	check_event EVENT_GOT_MACHAMP_COIN
 	script_jump_if_b0z .ows_3c234
@@ -265,7 +265,7 @@ Func_3c1d0:
 	give_booster_packs BoosterList_ce21
 .ows_3c237
 	script_call .ows_3c25f
-	script_call Script_3c290
+	script_call .ows_3c290
 	script_jump .ows_3c25e
 .ows_3c242
 	print_npc_text BattleCenterLoseRewardsText
@@ -284,17 +284,59 @@ Func_3c1d0:
 	script_ret
 .ows_3c25f
 	quit_script
-; 0x3c260
-
-SECTION "Bank f@4290", ROMX[$4290], BANK[$f]
-
-Script_3c290:
+	call EnableSRAM
+	ld a, [sLinkDuelCounter]
+	ld c, a
+	ld a, [$a023]
+	ld b, a
+	call DisableSRAM
+	ld a, b
+	cp $00
+	jr c, .asm_3c278
+	jr nz, .asm_3c278
+	ld a, c
+	cp $32
+.asm_3c278
+	jr z, .asm_3c280
+	ld a, $01
+	start_script
+	script_ret
+.asm_3c280
+	ld a, $01
+	start_script
+	set_event EVENT_GOT_RAICHU_COIN
+	print_npc_text BattleCenter50WinsRewardsText
+	give_coin COIN_RAICHU
+	print_npc_text BattleCenterAppreciateContinuedSupportText
+	script_ret
+.ows_3c290
 	quit_script
-; 0x3c291
-
-SECTION "Bank f@42c1", ROMX[$42c1], BANK[$f]
-
-Script_3c2c1:
+	call EnableSRAM
+	ld a, [sLinkDuelCounter]
+	ld c, a
+	ld a, [$a023]
+	ld b, a
+	call DisableSRAM
+	ld a, b
+	cp $00
+	jr c, .asm_3c2a9
+	jr nz, .asm_3c2a9
+	ld a, c
+	cp $64
+.asm_3c2a9
+	jr z, .asm_3c2b1
+	ld a, $01
+	start_script
+	script_ret
+.asm_3c2b1
+	ld a, $01
+	start_script
+	set_event EVENT_GOT_LUGIA_COIN
+	print_npc_text BattleCenter100WinsRewardsText
+	give_coin COIN_LUGIA
+	print_npc_text BattleCenterAppreciateContinuedSupportText
+	script_ret
+.ows_3c2c1
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0nz .ows_3c2d8
 	get_var VAR_20
@@ -351,8 +393,8 @@ Func_3c30c:
 	script_jump_if_b1nz .ows_3c333
 	script_jump_if_b0nz .ows_3c37f
 	compare_loaded_var $03
-	script_jump_if_b0nz Script_3c3a5
-	script_jump Script_3c3ae
+	script_jump_if_b0nz .ows_3c3a5
+	script_jump .ows_3c3ae
 .ows_3c333
 	set_var VAR_21, $02
 	set_var VAR_25, $0f
@@ -400,20 +442,19 @@ Func_3c30c:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-; 0x3c398
-
-SECTION "Bank f@43a5", ROMX[$43a5], BANK[$f]
-
-Script_3c3a5:
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.ows_3c3a5
 	set_var VAR_21, $04
 	print_npc_text ImakuniBlackWantsToDuelFirstEncounterText
-	script_jump Script_3c3b4
-
-Script_3c3ae:
+	script_jump .ows_3c3b4
+.ows_3c3ae
 	print_npc_text ImakuniBlackWantsToDuelRepeatText
-	script_jump Script_3c3b4
-
-Script_3c3b4:
+	script_jump .ows_3c3b4
+.ows_3c3b4
 	ask_question ImakuniBlackDuelPromptText, TRUE
 	script_jump_if_b0z .ows_3c3c4
 	print_npc_text ImakuniBlackDuelStartText
@@ -421,7 +462,6 @@ Script_3c3b4:
 	start_duel WEIRD_DECK_ID, MUSIC_MATCHSTART_1
 	end_script
 	ret
-
 .ows_3c3c4
 	print_npc_text ImakuniBlackDeclinedDuelText
 	script_command_02
@@ -554,9 +594,32 @@ Script_3c497:
 	card_pop SCRIPTED_RARE_CARD_POP_IMAKUNI
 	print_npc_text Text12d4
 	quit_script
-; 0x3c4a3
-
-SECTION "Bank f@44e0", ROMX[$44e0], BANK[$f]
+	ld a, $03
+	farcall MaxOutEventValue
+	farcall Func_ea30
+	ld a, $03
+	farcall ZeroOutEventValue
+	ld a, $01
+	start_script
+	play_sfx SFX_56
+	print_text SavedDataText
+	print_npc_text Text12d5
+	script_command_02
+	get_player_direction
+	compare_loaded_var $00
+	script_jump_if_b0z .ows_3c4cc
+	set_player_direction EAST
+	animate_player_movement $83, $02
+.ows_3c4cc
+	move_active_npc NPCMovement_3c5fe
+	wait_for_player_animation
+	unload_npc NPC_IMAKUNI_RED
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
 
 Func_3c4e0:
 	ld a, $b1
@@ -3611,7 +3674,66 @@ NPCMovement_3dc45:
 	db NORTH, MOVE_4
 	db $ff
 
-SECTION "Bank f@5cbb", ROMX[$5cbb], BANK[$f]
+Func_3dc4a:
+	ld a, $2d
+	ld [wScriptNPC], a
+	ld hl, $9f7
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	ld a, $ee
+	farcall GetEventValue
+	jr z, .asm_3dc88
+	xor a
+	start_script
+	check_event EVENT_EC
+	script_jump_if_b0z .ows_3dc82
+	set_event EVENT_EC
+	do_frames 30
+	script_command_01
+	print_npc_text Text1028
+	script_command_02
+	do_frames 15
+	set_player_direction EAST
+	do_frames 30
+	set_player_direction WEST
+	do_frames 30
+	set_player_direction SOUTH
+	do_frames 30
+.ows_3dc82
+	script_command_01
+	print_npc_text Text1029
+	script_command_02
+	end_script
+.asm_3dc88
+	ld a, $00
+	ld [wd582], a
+	ret
+
+Func_3dc8e:
+	ld a, $92
+	ld [wScriptNPC], a
+	ld hl, $a5a
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	animate_active_npc_movement $03, $01
+	set_active_npc_direction EAST
+	move_player NPCMovement_3dcb8, TRUE
+	wait_for_player_animation
+	animate_active_npc_movement $01, $01
+	set_active_npc_direction SOUTH
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_3dcb8:
+	db SOUTH, MOVE_4
+	db $ff
 
 Script_3dcbb:
 	set_var VAR_10, $ff
@@ -3619,21 +3741,79 @@ Script_3dcbb:
 	set_var VAR_12, $ff
 	set_var VAR_13, $ff
 	quit_script
-; 0x3dcc8
+	call Func_3dcf2
+	ld a, $10
+	farcall SetVarValue
+	call Func_3dcf2
+	ld a, $11
+	farcall SetVarValue
+	call Func_3dcf2
+	ld a, $12
+	farcall SetVarValue
+	call Func_3dcf2
+	ld a, $13
+	farcall SetVarValue
+	ld a, $01
+	start_script
+	script_ret
 
-SECTION "Bank f@5d1d", ROMX[$5d1d], BANK[$f]
+Func_3dcf2:
+.asm_3dcf2
+	ld a, $25
+	call Random
+	ld c, a
+	ld a, $10
+	farcall GetVarValue
+	cp c
+	jr z, .asm_3dcf2
+	ld a, $11
+	farcall GetVarValue
+	cp c
+	jr z, .asm_3dcf2
+	ld a, $12
+	farcall GetVarValue
+	cp c
+	jr z, .asm_3dcf2
+	ld a, $13
+	farcall GetVarValue
+	cp c
+	jr z, .asm_3dcf2
+	ret
 
 Script_3dd1d:
 	quit_script
 ; 0x3dd1e
 
-SECTION "Bank f@5d3a", ROMX[$5d3a], BANK[$f]
+Func_3dd1e:
+	xor a
+	farcall Func_4568f
+	call LoadTxRam2
+	ld a, $01
+	farcall Func_4568f
+	ld a, l
+	ld [wTxRam2_b], a
+	ld a, h
+	ld [$cdd9], a
+	ld a, $01
+	start_script
+	script_ret
 
 Script_3dd3a:
 	quit_script
-; 0x3dd3b
 
-SECTION "Bank f@5d58", ROMX[$5d58], BANK[$f]
+Func_3dd3b:
+	ld a, $02
+	farcall Func_4568f
+	call LoadTxRam2
+	ld a, $03
+	farcall Func_4568f
+	ld a, l
+	ld [wTxRam2_b], a
+	ld a, h
+	ld [$cdd9], a
+	ld a, $01
+	start_script
+	script_ret
 
 PokemonDomeBack_MapHeader:
 	db MAP_GFX_POKEMON_DOME_BACK
@@ -3655,7 +3835,7 @@ PokemonDomeBack_NPCs:
 
 PokemonDomeBack_MapScripts:
 	dbw $06, Func_3dda8
-	dbw $09, Func_3de72
+	dbw $09, PokemonDomeBack_AfterDuel
 	dbw $07, Func_3ddaf
 	dbw $02, Func_3ddb8
 	dbw $04, Func_3de67
@@ -3757,7 +3937,7 @@ Func_3de6f:
 	ccf
 	ret
 
-Func_3de72:
+PokemonDomeBack_AfterDuel:
 	ld a, $01
 	farcall GetEventValue
 	jr z, .asm_3de7d
@@ -3809,7 +3989,74 @@ Func_3deca:
 	farcall Func_45573
 	ret
 
-SECTION "Bank f@5f57", ROMX[$5f57], BANK[$f]
+Func_3ded6:
+	xor a
+	start_script
+	move_npc NPC_ROD, .NPCMovement_3df13
+	move_npc NPC_COURTNEY, .NPCMovement_3df1e
+	move_npc NPC_STEVE, .NPCMovement_3df2d
+	move_npc NPC_JACK, .NPCMovement_3df36
+	move_player .NPCMovement_3df0a, TRUE
+	move_npc NPC_CUP_HOST, .NPCMovement_3df0a
+	wait_for_player_animation
+	do_frames 30
+	set_scroll_state $02
+	unload_npc NPC_CUP_HOST
+	set_active_npc NPC_ROD, DialogRodText
+	script_command_01
+	print_npc_text Text0f9a
+	script_command_02
+	move_npc NPC_COURTNEY, .NPCMovement_3df3f
+	wait_for_player_animation
+	script_jump .ows_3df46
+.NPCMovement_3df0a:
+	db NORTH, MOVE_3
+	db WEST, MOVE_3
+	db NORTH, MOVE_7
+	db EAST, MOVE_2
+	db $ff
+.NPCMovement_3df13:
+	db NORTH, MOVE_1
+	db WEST, MOVE_3
+	db NORTH, MOVE_9
+	db EAST, MOVE_3
+	db SOUTH, MOVE_0
+	db $ff
+.NPCMovement_3df1e:
+	db NORTH, MOVE_2
+	db WEST, MOVE_3
+	db NORTH, MOVE_5
+	db EAST, MOVE_6
+	db NORTH, MOVE_4
+	db EAST, MOVE_1
+	db WEST, MOVE_0
+	db $ff
+.NPCMovement_3df2d:
+	db NORTH, MOVE_1
+	db EAST, MOVE_3
+	db NORTH, MOVE_7
+	db WEST, MOVE_0
+	db $ff
+.NPCMovement_3df36:
+	db NORTH, MOVE_2
+	db EAST, MOVE_3
+	db NORTH, MOVE_5
+	db WEST, MOVE_0
+	db $ff
+.NPCMovement_3df3f:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_2
+	db WEST, MOVE_1
+	db $ff
+.ows_3df46
+	set_var VAR_0C, $00
+	set_active_npc NPC_COURTNEY, DialogCourtneyText
+	script_command_01
+	print_npc_text Text0f9b
+	script_command_02
+	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCHSTART_3
+	end_script
+	ret
 
 Func_3df57:
 	xor a
@@ -4054,7 +4301,28 @@ NPCMovement_3e126:
 	db SOUTH, MOVE_1
 	db $ff
 
-SECTION "Bank f@6158", ROMX[$6158], BANK[$f]
+Func_3e12b:
+	ld a, $8c
+	ld [wScriptNPC], a
+	ld hl, $a5b
+	ld a, l
+	ld [wScriptNPCName], a
+	ld a, h
+	ld [$d610], a
+	xor a
+	start_script
+	script_command_01
+	set_var VAR_0E, $00
+	print_npc_text Text0fb2
+	script_command_02
+	quit_script
+; 0x3e148
+	farcall Func_45573
+	farcall Func_455a3
+	ld a, $01
+	start_script
+	script_jump Script_3e158
+; 0x3e158
 
 Script_3e158:
 	set_var VAR_0E, $01
@@ -4112,24 +4380,131 @@ NPCMovement_3e1b3:
 
 Script_3e1b8:
 	quit_script
-; 0x3e1b9
-
-SECTION "Bank f@621c", ROMX[$621c], BANK[$f]
+	farcall Func_455a3
+	ld a, $0e
+	ld c, $02
+	farcall SetVarValue
+	ld a, $1b
+	farcall GetVarValue
+	farcall Func_45484
+	ld de, $904
+	ld b, $03
+	farcall LoadOWObjectInMap
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text Text0fba
+	script_command_02
+	move_active_npc NPCMovement_3e20d
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text0fbb
+	script_command_02
+	move_active_npc NPCMovement_3e212
+	wait_for_player_animation
+	quit_script
+	farcall Func_454bc
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text Text0fbc
+	script_command_02
+	move_active_npc NPCMovement_3e217
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text0fbd
+	script_command_02
+	end_script
+	farcall Func_454ab
+	ret
+NPCMovement_3e20d:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_3e212:
+	db EAST, MOVE_3
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_3e217:
+	db WEST, MOVE_2
+	db SOUTH, MOVE_0
+	db $ff
 
 Script_3e21c:
 	quit_script
-; 0x3e21d
+	farcall Func_455a3
+	ld a, $0e
+	ld c, $03
+	farcall SetVarValue
+	ld a, $1e
+	farcall GetVarValue
+	farcall Func_45484
+	ld de, $904
+	ld b, $03
+	farcall LoadOWObjectInMap
+	ld a, $01
+	start_script
+	script_command_01
+	print_npc_text Text0fbe
+	script_command_02
+	move_active_npc NPCMovement_3e295
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text0fbf
+	script_command_02
+	move_active_npc NPCMovement_3e29a
+	wait_for_player_animation
+	script_command_01
+	quit_script
+	ld a, $1e
+	farcall GetVarValue
+	farcall LoadNPCDuelistDeck
+	cp $03
+	jr z, .asm_3e272
+	farcall Func_454bc
+	ld a, $01
+	start_script
+	print_npc_text Text0fc0
+	script_jump .ows_3e285
+.asm_3e272
+	ld a, $01
+	start_script
+	print_npc_text Text0fc1
+	set_active_npc NPC_RONALD, DialogRonaldText
+	print_npc_text Text0fc2
+	set_active_npc NPC_CUP_HOST, DialogCupHostText
+.ows_3e285
+	script_command_02
+	move_active_npc NPCMovement_3e29f
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text0fc3
+	script_command_02
+	end_script
+	farcall Func_454ab
+	ret
+NPCMovement_3e295:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_3e29a:
+	db EAST, MOVE_3
+	db SOUTH, MOVE_0
+	db $ff
+NPCMovement_3e29f:
+	db WEST, MOVE_2
+	db SOUTH, MOVE_0
+	db $ff
 
-SECTION "Bank f@62a4", ROMX[$62a4], BANK[$f]
-
+; mega function
 Func_3e2a4:
 	xor a
 	start_script
 	script_command_01
 	get_var VAR_0E
 	compare_loaded_var $03
-	script_jump_if_b0nz Script_3e344
-	script_jump_if_b1z Script_3e416
+	script_jump_if_b0nz .ows_3e344
+	script_jump_if_b1z .Script_3e416
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e313
 	quit_script
@@ -4143,7 +4518,7 @@ Func_3e2a4:
 	start_script
 	print_npc_text Text0fc4
 	script_command_02
-	move_active_npc NPCMovement_3e333
+	move_active_npc .NPCMovement_3e333
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text0fc5
@@ -4153,10 +4528,10 @@ Func_3e2a4:
 	farcall Func_45484
 	push af
 	ld b, $0f
-	ld hl, $633f
+	ld hl, .NPCMovement_3e33f
 	farcall Func_10def
 	ld a, $8c
-	ld hl, $6338
+	ld hl, .NPCMovement_3e338
 	farcall Func_10def
 	call Func_3340
 	pop af
@@ -4183,30 +4558,133 @@ Func_3e2a4:
 	print_npc_text Text0fc7
 	print_npc_text Text0fc8
 	script_command_02
-	script_jump Script_3e65d
-NPCMovement_3e333:
+	script_jump .Script_3e65d
+.NPCMovement_3e333:
 	db EAST, MOVE_2
 	db SOUTH, MOVE_1
 	db $ff
 
-SECTION "Bank f@6344", ROMX[$6344], BANK[$f]
+.NPCMovement_3e338:
+	db NORTH, MOVE_1
+	db WEST, MOVE_2,
+	db SOUTH, MOVE_0,
+	db $ff
 
-Script_3e344:
+.NPCMovement_3e33f:
+	db EAST, MOVE_2
+	db SOUTH, MOVE_8
+	db $ff
+
+.ows_3e344:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz Script_3e3c0
+	script_jump_if_b0nz .Script_3e3c0
 	print_npc_text Text0fc9
 	quit_script
 ; 0x3e34d
-
-SECTION "Bank f@63c0", ROMX[$63c0], BANK[$f]
-
-Script_3e3c0:
+	farcall Func_455a3
+	ld a, $01
+	start_script
+	print_npc_text Text0fca
+	script_command_02
+	move_active_npc .NPCMovement_3e405
+	wait_for_player_animation
+	script_command_01
 	quit_script
-; 0x3e3c1
+; 0x3e360
+; gap from 0x3e360 to 0x3e405
+	farcall Func_454e3
+	ld a, $01
+	start_script
+	print_npc_text Text0fcb
+	quit_script
+; 0x3e36d
+; gap from 0x3e36d to 0x3e405
+	ld a, $1e
+	farcall GetVarValue
+	farcall LoadNPCDuelistDeck
+	cp $03
+	jr nz, .asm_3e38e
+	ld a, $01
+	start_script
+	set_active_npc NPC_RONALD, DialogRonaldText
+	print_npc_text Text0fcc
+	set_active_npc NPC_CUP_HOST, DialogCupHostText
+	script_jump .ows_3e393
+; 0x3e38e
+; gap from 0x3e38e to 0x3e393
+.asm_3e38e
+	ld a, $01
+	start_script
+.ows_3e393
+	script_command_02
+	quit_script
+; 0x3e395
+; gap from 0x3e395 to 0x3e405
+; 0x3e395
+; gap from 0x3e395 to 0x3e405
+	farcall Func_45488
+	farcall Func_45484
+	push af
+	ld b, $0f
+	ld hl, .NPCMovement_3e411
+	farcall Func_10def
+	ld a, $8c
+	ld hl, .NPCMovement_3e40a
+	farcall Func_10def
+	call Func_3340
+	pop af
+	farcall ClearOWObject
+	ld a, $01
+	start_script
+	script_jump .ows_3e428
 
-SECTION "Bank f@6416", ROMX[$6416], BANK[$f]
+.Script_3e3c0:
+	quit_script
+	farcall Func_454e3
+	ld a, $01
+	start_script
+	print_npc_text Text0fcd
+	quit_script
+	farcall Func_455a3
+	ld a, $01
+	start_script
+	print_npc_text Text0fce
+	quit_script
+	ld a, $1e
+	farcall GetVarValue
+	farcall LoadNPCDuelistDeck
+	cp $03
+	jr nz, .asm_3e3fc
+	ld a, $01
+	start_script
+	set_active_npc NPC_RONALD, DialogRonaldText
+	print_npc_text Text0fcf
+	set_active_npc NPC_CUP_HOST, DialogCupHostText
+	script_jump .ows_3e401
+.asm_3e3fc
+	ld a, $01
+	start_script
+.ows_3e401
+	script_command_02
+	script_jump .Script_3e65d
 
-Script_3e416:
+.NPCMovement_3e405:
+	db EAST, MOVE_2
+	db SOUTH, MOVE_1
+	db $ff
+
+.NPCMovement_3e40a:
+	db NORTH, MOVE_1
+	db WEST, MOVE_2
+	db SOUTH, MOVE_0
+	db $ff
+
+.NPCMovement_3e411:
+	db EAST, MOVE_2
+	db SOUTH, MOVE_8
+	db $ff
+
+.Script_3e416:
 	get_var VAR_1F
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_3e494
@@ -4285,7 +4763,7 @@ Script_3e416:
 	set_text_ram2 DialogCourtneyText
 	print_npc_text Text0fd7
 	script_command_02
-	script_jump Script_3e65d
+	script_jump .Script_3e65d
 
 .ows_3e4b4
 	set_var VAR_1F, $01
@@ -4334,7 +4812,7 @@ Script_3e416:
 	set_text_ram2 DialogSteveText
 	print_npc_text Text0fd7
 	script_command_02
-	script_jump Script_3e65d
+	script_jump .Script_3e65d
 
 .ows_3e515
 	set_var VAR_1F, $02
@@ -4381,7 +4859,7 @@ Script_3e416:
 	set_text_ram2 DialogJackText
 	print_npc_text Text0fd7
 	script_command_02
-	script_jump Script_3e65d
+	script_jump .Script_3e65d
 
 .ows_3e572
 	set_var VAR_1F, $03
@@ -4421,7 +4899,7 @@ Script_3e416:
 	set_text_ram2 DialogRodText
 	print_npc_text Text0fd7
 	script_command_02
-	script_jump Script_3e65d
+	script_jump .Script_3e65d
 
 .ows_3e5c4
 	set_event EVENT_DB
@@ -4434,14 +4912,12 @@ Script_3e416:
 	wait_song
 	resume_song
 	script_command_02
-	move_active_npc NPCMovement_3e658
+	move_active_npc .NPCMovement_3e658
 	wait_for_player_animation
 	set_player_direction NORTH
 	script_command_01
 	print_npc_text Text0fe1
 	quit_script
-
-Func_3e5e5:
 	xor a
 .asm_3e5e6
 	farcall Func_45676
@@ -4495,12 +4971,12 @@ Func_3e5e5:
 	farcall Func_d3c4
 	ret
 
-NPCMovement_3e658:
+.NPCMovement_3e658:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_1
 	db $ff
 
-Script_3e65d:
+.Script_3e65d:
 	set_var VAR_0D, $06
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
@@ -4526,6 +5002,7 @@ NPCMovement_3e686:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_8
 	db $ff
+; end mega function
 
 Func_3e68b:
 	ld a, $01
@@ -5624,7 +6101,10 @@ Func_3eec7:
 	end_script
 	ret
 
-SECTION "Bank f@6efa", ROMX[$6efa], BANK[$f]
+Func_3eef4:
+	ld a, $00
+	ld [wd582], a
+	ret
 
 GameCenterLobby_MapHeader:
 	db MAP_GFX_GAME_CENTER_LOBBY
@@ -5882,7 +6362,7 @@ Func_3f0d9:
 	script_command_01
 	get_var VAR_3A
 	compare_loaded_var $00
-	script_jump_if_b0z Script_3f157
+	script_jump_if_b0z .ows_3f157
 	game_center
 	check_event EVENT_TALKED_TO_PAWN
 	script_jump_if_b0z .ows_3f103
@@ -5929,10 +6409,8 @@ Func_3f0d9:
 	script_command_71
 	script_command_02
 	end_script
-
-SECTION "Bank f@7157", ROMX[$7157], BANK[$f]
-
-Script_3f157:
+	jp Func_3f1ba
+.ows_3f157:
 	print_npc_text PawnProceedRepeatText
 	script_command_02
 	end_script
@@ -5988,9 +6466,18 @@ Func_3f1ba:
 	ld b, $02
 	farcall Func_d3c4
 	ret
-; 0x3f1c6
 
-SECTION "Bank f@71de", ROMX[$71de], BANK[$f]
+Func_3f1c6:
+	xor a
+	start_script
+	animate_player_movement $00, $01
+	animate_player_movement $00, $01
+	play_sfx SFX_0F
+	load_tilemap TILEMAP_043, $04, $07
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
 
 Func_3f1de:
 	ld a, $3a
@@ -6218,9 +6705,18 @@ Func_3f389:
 	ld b, $02
 	farcall Func_d3c4
 	ret
-; 0x3f395
 
-SECTION "Bank f@73ad", ROMX[$73ad], BANK[$f]
+Func_3f395:
+	xor a
+	start_script
+	animate_player_movement $00, $01
+	animate_player_movement $00, $01
+	play_sfx SFX_0F
+	load_tilemap TILEMAP_046, $04, $07
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
 
 Func_3f3ad:
 	ld a, $3a
@@ -6463,9 +6959,18 @@ Func_3f572:
 	ld b, $02
 	farcall Func_d3c4
 	ret
-; 0x3f57e
 
-SECTION "Bank f@7596", ROMX[$7596], BANK[$f]
+Func_3f57e:
+	xor a
+	start_script
+	animate_player_movement $00, $01
+	animate_player_movement $00, $01
+	play_sfx SFX_0F
+	load_tilemap TILEMAP_04C, $04, $07
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
 
 Func_3f596:
 	ld a, $3a
@@ -6981,4 +7486,21 @@ Func_3f951:
 .asm_3f95c
 	scf
 	ret
-; 0x3f95e
+
+Func_3f95e:
+	ld a, [wPlayerOWObject]
+	ld b, $0f
+	ld hl, NPCMovement_3f980
+	farcall Func_10def
+	call Func_3340
+	ld a, [wPlayerOWObject]
+	farcall SetOWObjectFlag5_WithID
+	ld a, $01
+	farcall SetOWScrollState
+	ld a, $00
+	ld [wd582], a
+	ret
+
+NPCMovement_3f980:
+	db SOUTH, RUN_2
+	db $ff

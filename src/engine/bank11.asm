@@ -1653,9 +1653,109 @@ Func_45573:
 .asm_455a1
 	pop af
 	ret
-; 0x455a3
 
-SECTION "Bank 11@5676", ROMX[$5676], BANK[$11]
+Func_455a3:
+	ld a, $0e
+	farcall GetVarValue
+	cp $01
+	jp c, .asm_45658
+	jr z, .asm_455f0
+	cp $02
+	jr z, .asm_455c8
+	ld a, $f1
+	farcall GetEventValue
+	ld c, $06
+	jr z, .asm_455c2
+	ld a, $01
+	jr .asm_455c4
+.asm_455c2
+	ld a, $02
+.asm_455c4
+	farcall Func_1ea4c
+.asm_455c8
+	ld c, $04
+	ld a, $01
+	farcall Func_1ea4c
+	ld c, $05
+	ld a, $01
+	farcall Func_1ea4c
+	ld a, $1c
+	farcall GetVarValue
+	ld c, a
+	ld a, $1e
+	farcall GetVarValue
+	cp c
+	jr z, .asm_455f0
+	ld c, $05
+	ld a, $02
+	farcall Func_1ea4c
+.asm_455f0
+	ld c, $00
+	ld a, $01
+	farcall Func_1ea4c
+	ld c, $01
+	ld a, $01
+	farcall Func_1ea4c
+	ld a, $15
+	farcall GetVarValue
+	ld c, a
+	ld a, $1b
+	farcall GetVarValue
+	cp c
+	jr z, .asm_45618
+	ld c, $01
+	ld a, $02
+	farcall Func_1ea4c
+.asm_45618
+	ld c, $02
+	ld a, $01
+	farcall Func_1ea4c
+	ld a, $17
+	farcall GetVarValue
+	ld c, a
+	ld a, $1c
+	farcall GetVarValue
+	cp c
+	jr z, .asm_45638
+	ld c, $02
+	ld a, $02
+	farcall Func_1ea4c
+.asm_45638
+	ld c, $03
+	ld a, $01
+	farcall Func_1ea4c
+	ld a, $19
+	farcall GetVarValue
+	ld c, a
+	ld a, $1d
+	farcall GetVarValue
+	cp c
+	jr z, .asm_45658
+	ld c, $03
+	ld a, $02
+	farcall Func_1ea4c
+.asm_45658
+	farcall Func_1e984
+	ret
+
+Func_4565d:
+	push bc
+	push de
+	push hl
+	or a
+	jr nz, .asm_45668
+	ld a, [wPlayerOWObject]
+	jr .asm_45672
+.asm_45668
+	dec a
+	add $14
+	farcall GetVarValue
+	call Func_45484
+.asm_45672
+	pop hl
+	pop de
+	pop bc
+	ret
 
 Func_45676:
 	push af
