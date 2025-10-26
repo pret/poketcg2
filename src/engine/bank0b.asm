@@ -161,24 +161,24 @@ Func_2c16b:
 	ret
 
 Func_2c172:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_2c185
-	ld a, $97
+	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
 	jr nz, .asm_2c185
 	jp Func_2c3a5
 .asm_2c185
-	ld a, $f4
+	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_2c19b
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $05
 	jp c, Func_2c28c
 	jp Func_2c36d
 .asm_2c19b
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	or a
 	jp z, Func_2c1db
@@ -215,7 +215,7 @@ Func_2c1b8:
 	ret
 
 Func_2c1db:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -238,7 +238,7 @@ Func_2c1db:
 	ret
 
 Func_2c203:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -260,7 +260,7 @@ Func_2c203:
 	ret
 
 Func_2c229:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -307,7 +307,7 @@ Func_2c229:
 	ret
 
 Func_2c28c:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -323,7 +323,7 @@ Func_2c28c:
 	ret
 
 Func_2c2a7:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -370,7 +370,7 @@ Func_2c2a7:
 	ret
 
 Func_2c30a:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -417,7 +417,7 @@ Func_2c30a:
 	ret
 
 Func_2c36d:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -433,7 +433,7 @@ Func_2c36d:
 	ret
 
 Func_2c388:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -450,7 +450,7 @@ Func_2c388:
 	ret
 
 Func_2c3a5:
-	ld a, $04
+	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ld hl, $9d3
 	ld a, l
@@ -472,7 +472,7 @@ Func_2c3a5:
 	ret
 
 Func_2c3cb:
-	ld a, $11
+	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
 	ld hl, $9dc
 	ld a, l
@@ -561,7 +561,7 @@ NPCMovement_2c463:
 	db $ff
 
 Func_2c46a:
-	ld a, $02
+	ld a, VAR_02
 	farcall GetVarValue
 	cp $01
 	jr nz, .asm_2c477
@@ -802,7 +802,7 @@ NPCMovement_2c642:
 	db $ff
 
 Func_2c645:
-	ld a, $22
+	ld a, NPC_ISAAC
 	ld [wScriptNPC], a
 	ld hl, $9e8
 	ld a, l
@@ -937,7 +937,7 @@ Func_2c6ec:
 	ret
 
 Func_2c73b:
-	ld a, $23
+	ld a, NPC_JENNIFER
 	ld [wScriptNPC], a
 	ld hl, $9e9
 	ld a, l
@@ -993,7 +993,7 @@ Func_2c781:
 	ret
 
 Func_2c79d:
-	ld a, $24
+	ld a, NPC_NICHOLAS
 	ld [wScriptNPC], a
 	ld hl, $9ea
 	ld a, l
@@ -1130,7 +1130,7 @@ Func_2c847:
 	ret
 
 Func_2c897:
-	ld a, $25
+	ld a, NPC_BRANDON
 	ld [wScriptNPC], a
 	ld hl, $9eb
 	ld a, l
@@ -1186,10 +1186,10 @@ Func_2c8dd:
 	ret
 
 Func_2c8f9:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2c90c
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr z, .asm_2c90c
 	scf
@@ -1200,7 +1200,7 @@ Func_2c8f9:
 	ret
 
 Func_2c90e:
-	ld a, $31
+	ld a, NPC_GR_4
 	ld [wScriptNPC], a
 	ld hl, $a2b
 	ld a, l
@@ -1216,7 +1216,7 @@ Func_2c90e:
 	ret
 
 Func_2c929:
-	ld a, $08
+	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr z, .asm_2c933
 	scf
@@ -1586,7 +1586,7 @@ Func_2cbf5:
 	ret
 
 Func_2cc11:
-	ld a, $83
+	ld a, NPC_PSYCHIC_CLUB_GLASSES_LAD
 	ld [wScriptNPC], a
 	ld hl, $a50
 	ld a, l
@@ -1637,7 +1637,7 @@ Func_2cc11:
 	ret
 
 Func_2cc7d:
-	ld a, $84
+	ld a, NPC_PSYCHIC_CLUB_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -1660,7 +1660,7 @@ Func_2cc7d:
 	ret
 
 Func_2cca8:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $03
 	jr z, .asm_2ccb4
@@ -1672,7 +1672,7 @@ Func_2cca8:
 	ret
 
 Func_2ccb7:
-	ld a, $85
+	ld a, NPC_PSYCHIC_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
 	ld hl, $a4c
 	ld a, l
@@ -1699,7 +1699,7 @@ Func_2ccb7:
 	ret
 
 Func_2cce8:
-	ld a, $86
+	ld a, NPC_PSYCHIC_CLUB_GR_LASS
 	ld [wScriptNPC], a
 	ld hl, $a45
 	ld a, l
@@ -1721,10 +1721,10 @@ Func_2cce8:
 	ret
 
 Func_2cd0e:
-	ld a, $0b
+	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr z, .asm_2cd20
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_2cd20
 	scf
@@ -1899,7 +1899,7 @@ NPCMovement_2ce85:
 	db $ff
 
 Func_2ce88:
-	ld a, $26
+	ld a, NPC_MURRAY
 	ld [wScriptNPC], a
 	ld hl, $9f0
 	ld a, l
@@ -2069,7 +2069,7 @@ Func_2cf73:
 	ret
 
 Func_2cfcc:
-	ld a, $27
+	ld a, NPC_ROBERT
 	ld [wScriptNPC], a
 	ld hl, $9f1
 	ld a, l
@@ -2139,7 +2139,7 @@ Func_2d02a:
 	ret
 
 Func_2d046:
-	ld a, $28
+	ld a, NPC_DANIEL
 	ld [wScriptNPC], a
 	ld hl, $9f2
 	ld a, l
@@ -2202,7 +2202,7 @@ Func_2d097:
 	ret
 
 Func_2d0b3:
-	ld a, $29
+	ld a, NPC_STEPHANIE
 	ld [wScriptNPC], a
 	ld hl, $9f3
 	ld a, l
@@ -2324,7 +2324,7 @@ Func_2d142:
 	ret
 
 Func_2d190:
-	ld a, $31
+	ld a, NPC_GR_4
 	ld [wScriptNPC], a
 	ld hl, $a2b
 	ld a, l
@@ -2751,7 +2751,7 @@ Func_2d4c4:
 	ret
 
 Func_2d4e0:
-	ld a, $6a
+	ld a, NPC_ROCK_CLUB_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -2800,7 +2800,7 @@ Func_2d4e0:
 	ret
 
 Func_2d546:
-	ld a, $6b
+	ld a, NPC_ROCK_CLUB_WOMAN
 	ld [wScriptNPC], a
 	ld hl, $a3e
 	ld a, l
@@ -2828,7 +2828,7 @@ Func_2d546:
 	ret
 
 Func_2d57c:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $04
 	jr z, .asm_2d588
@@ -2840,7 +2840,7 @@ Func_2d57c:
 	ret
 
 Func_2d58b:
-	ld a, $6c
+	ld a, NPC_ROCK_CLUB_CHAP
 	ld [wScriptNPC], a
 	ld hl, $a32
 	ld a, l
@@ -2872,7 +2872,7 @@ Func_2d58b:
 	ret
 
 Func_2d5c7:
-	ld a, $6d
+	ld a, NPC_ROCK_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
 	ld hl, $a4c
 	ld a, l
@@ -3062,7 +3062,7 @@ NPCMovement_2d751:
 	db $ff
 
 Func_2d754:
-	ld a, $09
+	ld a, NPC_GENE
 	ld [wScriptNPC], a
 	ld hl, $9d4
 	ld a, l
@@ -3138,7 +3138,7 @@ Func_2d7c3:
 	ret
 
 Func_2d7ea:
-	ld a, $0a
+	ld a, NPC_MATTHEW
 	ld [wScriptNPC], a
 	ld hl, $9d5
 	ld a, l
@@ -3187,7 +3187,7 @@ Func_2d825:
 	ret
 
 Func_2d841:
-	ld a, $0b
+	ld a, NPC_RYAN
 	ld [wScriptNPC], a
 	ld hl, $9d6
 	ld a, l
@@ -3238,7 +3238,7 @@ Func_2d87e:
 	ret
 
 Func_2d89c:
-	ld a, $0c
+	ld a, NPC_ANDREW
 	ld [wScriptNPC], a
 	ld hl, $9d7
 	ld a, l
@@ -3287,7 +3287,7 @@ Func_2d8d7:
 	ret
 
 Func_2d8f3:
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr z, .asm_2d8fd
 	scf
@@ -3549,7 +3549,7 @@ FightingClubLobby_AfterDuelScripts:
 	db $ff
 
 Func_2db0e:
-	ld a, $0e
+	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
 	ld hl, $9d9
 	ld a, l
@@ -3622,10 +3622,10 @@ Func_2db7b:
 	ret
 
 Func_2db97:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2dba9
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr z, .asm_2dba9
 	scf
@@ -3636,7 +3636,7 @@ Func_2db97:
 	ret
 
 Func_2dbac:
-	ld a, $6e
+	ld a, NPC_FIGHTING_CLUB_PAPPY
 	ld [wScriptNPC], a
 	ld hl, $a3d
 	ld a, l
@@ -3687,7 +3687,7 @@ Func_2dbac:
 	ret
 
 Func_2dc17:
-	ld a, $6f
+	ld a, NPC_FIGHTING_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
 	ld hl, $a51
 	ld a, l
@@ -3714,7 +3714,7 @@ Func_2dc17:
 	ret
 
 Func_2dc48:
-	ld a, $70
+	ld a, NPC_FIGHTING_CLUB_CAPPED_GUY
 	ld [wScriptNPC], a
 	ld hl, $a54
 	ld a, l
@@ -3741,7 +3741,7 @@ Func_2dc48:
 	ret
 
 Func_2dc79:
-	ld a, $71
+	ld a, NPC_FIGHTING_CLUB_CAPPED_LASS
 	ld [wScriptNPC], a
 	ld hl, $a4c
 	ld a, l
@@ -3856,7 +3856,7 @@ FightingClub_AfterDuelScripts:
 	db $ff
 
 Func_2dd62:
-	ld a, $0d
+	ld a, NPC_MITCH
 	ld [wScriptNPC], a
 	ld hl, $9d8
 	ld a, l
@@ -3928,7 +3928,7 @@ Func_2ddc8:
 	ret
 
 Func_2dde4:
-	ld a, $b9
+	ld a, EVENT_GODAS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_2ddee
 	scf
@@ -3939,7 +3939,7 @@ Func_2dde4:
 	ret
 
 Func_2ddf1:
-	ld a, $0e
+	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
 	ld hl, $9d9
 	ld a, l
@@ -4042,7 +4042,7 @@ Func_2de75:
 	ret
 
 Func_2dead:
-	ld a, $0f
+	ld a, NPC_CHRIS
 	ld [wScriptNPC], a
 	ld hl, $9da
 	ld a, l
@@ -4121,7 +4121,7 @@ Func_2df1e:
 	ret
 
 Func_2df3a:
-	ld a, $10
+	ld a, NPC_JESSICA
 	ld [wScriptNPC], a
 	ld hl, $9db
 	ld a, l
@@ -4177,10 +4177,10 @@ Func_2df80:
 	ret
 
 Func_2df9c:
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr z, .asm_2dfaf
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2dfaf
 	scf
@@ -4191,7 +4191,7 @@ Func_2df9c:
 	ret
 
 Func_2dfb1:
-	ld a, $2e
+	ld a, NPC_GR_1
 	ld [wScriptNPC], a
 	ld hl, $a28
 	ld a, l
@@ -4255,10 +4255,10 @@ Func_2e008:
 	ret
 
 Func_2e023:
-	ld a, $0c
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2e036
-	ld a, $98
+	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr z, .asm_2e036
 	scf
@@ -4529,7 +4529,7 @@ GrassClub_AfterDuelScripts:
 	db $ff
 
 Func_2e226:
-	ld a, $11
+	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
 	ld hl, $9dc
 	ld a, l
@@ -4587,7 +4587,7 @@ Func_2e26e:
 	ret
 
 Func_2e28c:
-	ld a, $12
+	ld a, NPC_BRITTANY
 	ld [wScriptNPC], a
 	ld hl, $9dd
 	ld a, l
@@ -4678,7 +4678,7 @@ Func_2e2f6:
 	ret
 
 Func_2e332:
-	ld a, $13
+	ld a, NPC_KRISTIN
 	ld [wScriptNPC], a
 	ld hl, $9de
 	ld a, l
@@ -4734,7 +4734,7 @@ Func_2e378:
 	ret
 
 Func_2e394:
-	ld a, $14
+	ld a, NPC_HEATHER
 	ld [wScriptNPC], a
 	ld hl, $9df
 	ld a, l
@@ -4790,10 +4790,10 @@ Func_2e3da:
 	ret
 
 Func_2e3f6:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e409
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e409
 	scf
@@ -4804,7 +4804,7 @@ Func_2e3f6:
 	ret
 
 Func_2e40b:
-	ld a, $2f
+	ld a, NPC_GR_2
 	ld [wScriptNPC], a
 	ld hl, $a29
 	ld a, l
@@ -4881,13 +4881,13 @@ NPCMovement_2e495:
 	db $ff
 
 Func_2e498:
-	ld a, $05
+	ld a, EVENT_GOT_ODDISH_COIN
 	farcall GetEventValue
 	jr z, .asm_2e4b5
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e4b5
-	ld a, $0f
+	ld a, VAR_0F
 	farcall GetVarValue
 	cp $06
 	jr nz, .asm_2e4b5
@@ -5055,7 +5055,7 @@ ScienceClubEntrance_ShouldRonaldAppear:
 	ret
 
 Func_2e5d0:
-	ld a, $17
+	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
 	ld hl, $9e2
 	ld a, l
@@ -5238,7 +5238,7 @@ Func_2e752:
 	ret
 
 Func_2e76e:
-	ld a, $16
+	ld a, NPC_DAVID
 	ld [wScriptNPC], a
 	ld hl, $9e1
 	ld a, l
@@ -5303,7 +5303,7 @@ Func_2e7c7:
 	ret
 
 Func_2e7e3:
-	ld a, $18
+	ld a, NPC_ERIK
 	ld [wScriptNPC], a
 	ld hl, $9e3
 	ld a, l
@@ -5328,10 +5328,10 @@ Func_2e7e3:
 	ret
 
 Func_2e80d:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e81f
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e81f
 	scf
@@ -5342,7 +5342,7 @@ Func_2e80d:
 	ret
 
 Func_2e822:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $07
 	jr z, .asm_2e82e
@@ -5354,7 +5354,7 @@ Func_2e822:
 	ret
 
 Func_2e831:
-	ld a, $75
+	ld a, NPC_SCIENCE_CLUB_MAN
 	ld [wScriptNPC], a
 	ld hl, $a3a
 	ld a, l
@@ -5381,7 +5381,7 @@ Func_2e831:
 	ret
 
 Func_2e862:
-	ld a, $77
+	ld a, NPC_SCIENCE_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
 	ld hl, $a4f
 	ld a, l
@@ -5414,7 +5414,7 @@ Func_2e862:
 	ret
 
 Func_2e8a0:
-	ld a, $78
+	ld a, NPC_SCIENCE_CLUB_TECH
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -5441,10 +5441,10 @@ Func_2e8a0:
 	ret
 
 Func_2e8d1:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2e8e4
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2e8e4
 	scf
@@ -5558,7 +5558,7 @@ ScienceClub_AfterDuelScripts:
 
 
 Func_2e9c7:
-	ld a, $15
+	ld a, NPC_RICK
 	ld [wScriptNPC], a
 	ld hl, $9e0
 	ld a, l
@@ -5659,7 +5659,7 @@ Func_2ea4b:
 	ret
 
 Func_2ea87:
-	ld a, $ba
+	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
 	farcall GetEventValue
 	jr z, .asm_2ea92
 	scf
@@ -5670,7 +5670,7 @@ Func_2ea87:
 	ret
 
 Func_2ea94:
-	ld a, $16
+	ld a, NPC_DAVID
 	ld [wScriptNPC], a
 	ld hl, $9e1
 	ld a, l
@@ -5721,7 +5721,7 @@ Func_2ead1:
 	ret
 
 Func_2eaef:
-	ld a, $17
+	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
 	ld hl, $9e2
 	ld a, l
@@ -5822,7 +5822,7 @@ Func_2eb6d:
 	ret
 
 Func_2eba5:
-	ld a, $18
+	ld a, NPC_ERIK
 	ld [wScriptNPC], a
 	ld hl, $9e3
 	ld a, l
@@ -5878,10 +5878,10 @@ Func_2ebeb:
 	ret
 
 Func_2ec07:
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr z, .asm_2ec1a
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2ec1a
 	scf
@@ -5892,7 +5892,7 @@ Func_2ec07:
 	ret
 
 Func_2ec1c:
-	ld a, $2f
+	ld a, NPC_GR_2
 	ld [wScriptNPC], a
 	ld hl, $a29
 	ld a, l
@@ -5969,13 +5969,13 @@ NPCMovement_2eca6:
 	db $ff
 
 Func_2eca9:
-	ld a, $05
+	ld a, EVENT_GOT_ODDISH_COIN
 	farcall GetEventValue
 	jr z, .asm_2ecc6
-	ld a, $0d
+	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2ecc6
-	ld a, $0f
+	ld a, VAR_0F
 	farcall GetVarValue
 	cp $07
 	jr nz, .asm_2ecc6
@@ -6240,7 +6240,7 @@ Func_2eece:
 	ret
 
 Func_2eeea:
-	ld a, $1b
+	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
 	ld hl, $9e5
 	ld a, l
@@ -6305,10 +6305,10 @@ Func_2ef43:
 	ret
 
 Func_2ef5f:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2ef71
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2ef71
 	scf
@@ -6319,7 +6319,7 @@ Func_2ef5f:
 	ret
 
 Func_2ef74:
-	ld a, $7b
+	ld a, NPC_WATER_CLUB_LASS
 	ld [wScriptNPC], a
 	ld hl, $a36
 	ld a, l
@@ -6342,7 +6342,7 @@ Func_2ef74:
 	ret
 
 Func_2ef9f:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $08
 	jr z, .asm_2efab
@@ -6354,7 +6354,7 @@ Func_2ef9f:
 	ret
 
 Func_2efae:
-	ld a, $79
+	ld a, NPC_WATER_CLUB_PAPPY
 	ld [wScriptNPC], a
 	ld hl, $a3b
 	ld a, l
@@ -6382,7 +6382,7 @@ Func_2efae:
 	ret
 
 Func_2efe1:
-	ld a, $7a
+	ld a, NPC_WATER_CLUB_LONGHAIRED_LASS
 	ld [wScriptNPC], a
 	ld hl, $a4b
 	ld a, l
@@ -6621,7 +6621,7 @@ Script_2f19d:
 	ret
 
 Func_2f1d2:
-	ld a, $19
+	ld a, NPC_AMY
 	ld [wScriptNPC], a
 	ld hl, $9e4
 	ld a, l
@@ -6637,7 +6637,7 @@ Func_2f1d2:
 	ret
 
 Func_2f1ed:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f1f7
 	scf
@@ -6648,7 +6648,7 @@ Func_2f1ed:
 	ret
 
 Func_2f1fa:
-	ld a, $1a
+	ld a, NPC_AMY_LOUNGE
 	ld [wScriptNPC], a
 	ld hl, $9e4
 	ld a, l
@@ -6660,7 +6660,7 @@ Func_2f1fa:
 	ld a, e
 	cp $02
 	ret z
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	ret z
 	xor a
@@ -6763,7 +6763,7 @@ Func_2f28a:
 	ret
 
 Func_2f2cf:
-	ld a, $1b
+	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
 	ld hl, $9e5
 	ld a, l
@@ -6850,10 +6850,10 @@ Func_2f335:
 	ret
 
 Func_2f36d:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f380
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_2f380
 	scf
@@ -6864,7 +6864,7 @@ Func_2f36d:
 	ret
 
 Func_2f382:
-	ld a, $1c
+	ld a, NPC_SARA
 	ld [wScriptNPC], a
 	ld hl, $9e6
 	ld a, l
@@ -6927,7 +6927,7 @@ Func_2f3d5:
 	ret
 
 Func_2f3f1:
-	ld a, $1d
+	ld a, NPC_AMANDA
 	ld [wScriptNPC], a
 	ld hl, $9e7
 	ld a, l
@@ -7003,7 +7003,7 @@ Func_2f44f:
 	ret
 
 Func_2f478:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f483
 	scf
@@ -7014,7 +7014,7 @@ Func_2f478:
 	ret
 
 Func_2f485:
-	ld a, $30
+	ld a, NPC_GR_3
 	ld [wScriptNPC], a
 	ld hl, $a2a
 	ld a, l
@@ -7075,7 +7075,7 @@ Func_2f4d9:
 	ret
 
 Func_2f4f2:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2f4fc
 	scf
@@ -7336,7 +7336,7 @@ Func_2f6ed:
 	ret
 
 Func_2f709:
-	ld a, $7c
+	ld a, NPC_FIRE_CLUB_PUNK_GUY
 	ld [wScriptNPC], a
 	ld hl, $a56
 	ld a, l
@@ -7385,7 +7385,7 @@ Func_2f709:
 	ret
 
 Func_2f76f:
-	ld a, $25
+	ld a, VAR_25
 	farcall GetVarValue
 	cp $09
 	jr z, .asm_2f77b
@@ -7397,7 +7397,7 @@ Func_2f76f:
 	ret
 
 Func_2f77e:
-	ld a, $7d
+	ld a, NPC_FIRE_CLUB_MARTIAL_ARTIST
 	ld [wScriptNPC], a
 	ld hl, $a55
 	ld a, l
@@ -7419,7 +7419,7 @@ Func_2f77e:
 	ret
 
 Func_2f7a4:
-	ld a, $7e
+	ld a, NPC_FIRE_CLUB_GAL
 	ld [wScriptNPC], a
 	ld hl, $a37
 	ld a, l
@@ -7591,7 +7591,7 @@ NPCMovement_2f923:
 	db $ff
 
 Func_2f926:
-	ld a, $1e
+	ld a, NPC_KEN
 	ld [wScriptNPC], a
 	ld hl, $9ec
 	ld a, l
@@ -7731,7 +7731,7 @@ Func_2f9ed:
 	ret
 
 Func_2fa25:
-	ld a, $1f
+	ld a, NPC_JOHN
 	ld [wScriptNPC], a
 	ld hl, $9ed
 	ld a, l
@@ -7802,7 +7802,7 @@ Func_2fa85:
 	ret
 
 Func_2faa1:
-	ld a, $20
+	ld a, NPC_ADAM
 	ld [wScriptNPC], a
 	ld hl, $9ee
 	ld a, l
@@ -7897,7 +7897,7 @@ Func_2fb32:
 	ret
 
 Func_2fb4e:
-	ld a, $21
+	ld a, NPC_JONATHAN
 	ld [wScriptNPC], a
 	ld hl, $9ef
 	ld a, l
@@ -7972,7 +7972,7 @@ Func_2fbb7:
 	ret
 
 Func_2fbd3:
-	ld a, $30
+	ld a, NPC_GR_3
 	ld [wScriptNPC], a
 	ld hl, $a2a
 	ld a, l
@@ -8021,10 +8021,10 @@ Func_2fc0e:
 	ret
 
 Func_2fc29:
-	ld a, $07
+	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr z, .asm_2fc3c
-	ld a, $06
+	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	jr nz, .asm_2fc3c
 	scf
@@ -8093,25 +8093,25 @@ NPCMovement_2fcaa:
 	db $ff
 
 Func_2fcad:
-	ld a, $06
+	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Func_2f926
 
 Func_2fcb7:
-	ld a, $06
+	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Func_2fa25
 
 Func_2fcc1:
-	ld a, $06
+	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Func_2faa1
 
 Func_2fccb:
-	ld a, $06
+	ld a, EVENT_GOT_CHARMANDER_COIN
 	farcall GetEventValue
 	ret nz
 	jp Func_2fb4e
@@ -8190,7 +8190,7 @@ Func_2fd93:
 	ret
 
 Func_2fda3:
-	ld a, $b2
+	ld a, NPC_POKEMON_DOME_FAT_GUY
 	ld [wScriptNPC], a
 	ld hl, $9f9
 	ld a, l
@@ -8265,7 +8265,7 @@ Func_2fda3:
 	ret
 
 Func_2fe1d:
-	ld a, $0b
+	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_2fe27
 	scf
@@ -8276,7 +8276,7 @@ Func_2fe1d:
 	ret
 
 Func_2fe2a:
-	ld a, $00
+	ld a, NPC_MARK
 	ld [wScriptNPC], a
 	ld hl, $9f8
 	ld a, l
@@ -8367,7 +8367,7 @@ Func_2fe9a:
 	ld [wCurIsland], a
 	ld a, $00
 	ld [wCurOWLocation], a
-	ld a, $d9
+	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_2fee2
 	push hl
