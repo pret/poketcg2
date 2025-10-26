@@ -6590,18 +6590,17 @@ Func_3747b:
 	scf
 	ret
 
-; TODO: bugged function?
 Func_37480:
 	ld a, $ce
 	farcall GetEventValue
-	jr nz, .asm_37490
+	jr nz, .asm_37490 ; this jump target is likely a bug. should jump to 'ret'
 	xor a
-	call StartScript
-	ld bc, $fb03
-	ld a, [bc]
+	start_script
+	script_command_01
+	print_text DoorsAreShutText
 .asm_37490
-	ld [bc], a
-	nop
+	script_command_02
+	end_script
 	ret
 
 Func_37493:
