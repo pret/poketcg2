@@ -4529,10 +4529,10 @@ Func_3e2a4:
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e33f
-	farcall Func_10def
-	ld a, $8c
+	farcall MoveNPC
+	ld a, NPC_CUP_HOST
 	ld hl, .NPCMovement_3e338
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
@@ -4627,10 +4627,10 @@ Func_3e2a4:
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e411
-	farcall Func_10def
-	ld a, $8c
+	farcall MoveNPC
+	ld a, NPC_CUP_HOST
 	ld hl, .NPCMovement_3e40a
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
@@ -7491,7 +7491,7 @@ Func_3f95e:
 	ld a, [wPlayerOWObject]
 	ld b, $0f
 	ld hl, NPCMovement_3f980
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectFlag5_WithID

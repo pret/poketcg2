@@ -2164,8 +2164,9 @@ GetOWObjectSpeedAndMoveDuration::
 	ret
 
 ; a = NPC_* ID
-Func_10def:
-	call Func_11367
+; hl = NPCMovement data pointer
+MoveNPC:
+	call _MoveNPC
 	ret
 
 Func_10df3::
@@ -3219,7 +3220,8 @@ Func_1132e:
 	ret
 
 ; a = NPC_* ID
-Func_11367:
+; hl = NPCMovement data pointer
+_MoveNPC:
 	push af
 	push bc
 	push de

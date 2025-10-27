@@ -3435,7 +3435,7 @@ ScriptCommand_MovePlayer:
 	ld a, [wScriptBank]
 	ld b, a
 	ld a, [wPlayerOWObject]
-	farcall Func_10def
+	farcall MoveNPC
 	farcall ResetOWObjectFlag5_WithID
 	call Get1ScriptArg_IncrIndexBy3
 	or a
@@ -3454,7 +3454,7 @@ ScriptCommand_MoveNPC:
 	ld a, [wScriptBank]
 	ld b, a
 	pop af
-	farcall Func_10def
+	farcall MoveNPC
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_MoveActiveNPC:
@@ -3464,7 +3464,7 @@ ScriptCommand_MoveActiveNPC:
 	ld a, [wScriptBank]
 	ld b, a
 	ld a, [wScriptNPC]
-	farcall Func_10def
+	farcall MoveNPC
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_StartDuel:

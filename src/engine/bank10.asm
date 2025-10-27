@@ -2789,7 +2789,7 @@ Func_417df:
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, NPCMovement_418a1
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
@@ -2810,7 +2810,7 @@ Func_417df:
 	push af
 	ld b, $10
 	ld hl, NPCMovement_4189c
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
@@ -2915,7 +2915,7 @@ Func_418ed:
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, NPCMovement_419a6
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
@@ -2936,7 +2936,7 @@ Func_418ed:
 	push af
 	ld b, $10
 	ld hl, NPCMovement_419a1
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
@@ -3089,7 +3089,7 @@ Func_41a4d:
 	push af
 	ld b, $10
 	ld hl, .NPCMovement_41ae0
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
@@ -5423,23 +5423,23 @@ Script_42d40:
 	push af
 	ld b, $10
 	ld hl, NPCMovement_42d9b
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	push af
 	ld b, $10
 	ld hl, NPCMovement_42da0
-	farcall Func_10def
-	ld a, $e3
+	farcall MoveNPC
+	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, NPCMovement_42da3
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
-	ld a, $e3
+	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld b, $10
 	ld hl, NPCMovement_42da8
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
@@ -5484,18 +5484,18 @@ Script_42dad:
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, Data_42e02
-	farcall Func_10def
-	ld a, $e3
+	farcall MoveNPC
+	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, Data_42e0a
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	pop af
 	ld b, $10
 	ld hl, Data_42e05
-	farcall Func_10def
-	ld a, $e3
+	farcall MoveNPC
+	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld hl, Data_42e0f
-	farcall Func_10def
+	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
