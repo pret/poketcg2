@@ -1584,10 +1584,10 @@ Func_40fbc:
 	get_player_x_position
 	compare_loaded_var $07
 	script_jump_if_b0nz .ows_40fe4
-	move_player NPCMovement_40ff5, TRUE
+	move_player .NPCMovement_40ff5, TRUE
 	script_jump .ows_40fe8
 .ows_40fe4
-	move_player NPCMovement_40ffc, TRUE
+	move_player .NPCMovement_40ffc, TRUE
 .ows_40fe8
 	wait_for_player_animation
 	script_command_01
@@ -1597,12 +1597,12 @@ Func_40fbc:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_40ff5:
+.NPCMovement_40ff5:
 	db NORTH, MOVE_4
 	db EAST, MOVE_1
 	db NORTH, MOVE_4
 	db $ff
-NPCMovement_40ffc:
+.NPCMovement_40ffc:
 	db NORTH, MOVE_8
 	db $ff
 
@@ -2004,11 +2004,11 @@ Func_412c0:
 	reset_event EVENT_EF
 	print_npc_text Text0f1d
 	script_command_02
-	move_npc NPC_DR_MASON, NPCMovement_412f1
+	move_npc NPC_DR_MASON, .NPCMovement_412f1
 	wait_for_player_animation
 	end_script
 	ret
-NPCMovement_412f1:
+.NPCMovement_412f1:
 	db NORTH, MOVE_1
 	db EAST, MOVE_3
 	db SOUTH, MOVE_0
@@ -2021,7 +2021,6 @@ Script_412f8:
 	script_jump_if_b0nz .ows_4130a
 	print_npc_text Text0f20
 	script_jump .ows_4133b
-
 .ows_4130a
 	print_npc_text Text0f21
 	script_command_02
@@ -2042,7 +2041,6 @@ Script_412f8:
 	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
 	end_script
 	ret
-
 .ows_4133b
 	script_command_02
 	end_script
@@ -2063,7 +2061,7 @@ Func_4133e:
 .ows_41356
 	print_npc_text Text0f29
 	script_command_02
-	move_active_npc NPCMovement_41369
+	move_active_npc .NPCMovement_41369
 	wait_for_player_animation
 	script_command_01
 	set_active_npc NPC_SAM, DialogSamText
@@ -2071,7 +2069,7 @@ Func_4133e:
 	script_command_02
 	end_script
 	ret
-NPCMovement_41369:
+.NPCMovement_41369:
 	db NORTH, MOVE_1
 	db EAST, MOVE_3
 	db SOUTH, MOVE_0
@@ -2164,6 +2162,7 @@ Func_413e2:
 	script_command_02
 	end_script
 	ret
+
 Script_41408:
 	script_command_02
 	quit_script
@@ -2266,78 +2265,65 @@ Script_41499:
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_414c4
 	script_jump .ows_414d9
-
 .ows_414ac
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_414cb
-	move_player NPCMovement_414f0, TRUE
+	move_player .NPCMovement_414f0, TRUE
 	script_jump .ows_414d9
-
 .ows_414b8
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_414d2
-	move_player NPCMovement_414f5, TRUE
+	move_player .NPCMovement_414f5, TRUE
 	script_jump .ows_414de
-
 .ows_414c4
-	move_player NPCMovement_414fe, TRUE
+	move_player .NPCMovement_414fe, TRUE
 	script_jump .ows_414de
-
 .ows_414cb
-	move_player NPCMovement_41509, TRUE
+	move_player .NPCMovement_41509, TRUE
 	script_jump .ows_414de
-
 .ows_414d2
-	move_player NPCMovement_41512, TRUE
+	move_player .NPCMovement_41512, TRUE
 	script_jump .ows_414de
-
 .ows_414d9
 	wait_for_player_animation
-	move_player NPCMovement_414e9, TRUE
+	move_player .NPCMovement_414e9, TRUE
 .ows_414de
-	move_npc NPC_DR_MASON, NPCMovement_414e4
+	move_npc NPC_DR_MASON, .NPCMovement_414e4
 	wait_for_player_animation
 	script_ret
-
-NPCMovement_414e4:
+.NPCMovement_414e4:
 	db WEST, MOVE_3
 	db SOUTH, MOVE_1
 	db $ff
-
-NPCMovement_414e9:
+.NPCMovement_414e9:
 	db EAST, MOVE_3
 	db SOUTH, MOVE_1
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_414f0:
+.NPCMovement_414f0:
 	db NORTH, MOVE_1
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_414f5:
+.NPCMovement_414f5:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_414fe:
+.NPCMovement_414fe:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db EAST, MOVE_4
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41509:
+.NPCMovement_41509:
 	db SOUTH, MOVE_2
 	db EAST, MOVE_4
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41512:
+.NPCMovement_41512:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db NORTH, MOVE_2
@@ -2352,70 +2338,59 @@ Script_4151b:
 	script_jump_if_b0nz .ows_41532
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_4154a
-	move_player NPCMovement_4155e, TRUE
+	move_player .NPCMovement_4155e, TRUE
 	script_jump .ows_4155c
-
 .ows_41532
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_41551
-	move_player NPCMovement_41565, TRUE
+	move_player .NPCMovement_41565, TRUE
 	script_jump .ows_4155c
-
 .ows_4153e
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_41558
-	move_player NPCMovement_4156e, TRUE
+	move_player .NPCMovement_4156e, TRUE
 	script_jump .ows_4155c
-
 .ows_4154a
-	move_player NPCMovement_41577, TRUE
+	move_player .NPCMovement_41577, TRUE
 	script_jump .ows_4155c
-
 .ows_41551
-	move_player NPCMovement_41580, TRUE
+	move_player .NPCMovement_41580, TRUE
 	script_jump .ows_4155c
-
 .ows_41558
-	move_player NPCMovement_41589, TRUE
+	move_player .NPCMovement_41589, TRUE
 .ows_4155c
 	wait_for_player_animation
 	script_ret
-
-NPCMovement_4155e:
+.NPCMovement_4155e:
 	db EAST, MOVE_3
 	db SOUTH, MOVE_1
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41565:
+.NPCMovement_41565:
 	db NORTH, MOVE_1
 	db EAST, MOVE_4
 	db SOUTH, MOVE_1
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_4156e:
+.NPCMovement_4156e:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41577:
+.NPCMovement_41577:
 	db NORTH, MOVE_1
 	db EAST, MOVE_3
 	db SOUTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41580:
+.NPCMovement_41580:
 	db SOUTH, MOVE_2
 	db EAST, MOVE_4
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_41589:
+.NPCMovement_41589:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db NORTH, MOVE_2
@@ -2518,6 +2493,7 @@ Func_4163b:
 	scf
 	ccf
 	ret
+
 Func_4164f:
 	xor a
 	start_script
@@ -2575,10 +2551,10 @@ Func_41662:
 	get_player_direction
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_416d0
-	move_player NPCMovement_416f8, TRUE
+	move_player .NPCMovement_416f8, TRUE
 	script_jump .ows_416dd
 .ows_416d0
-	move_player NPCMovement_416fd, TRUE
+	move_player .NPCMovement_416fd, TRUE
 	script_jump .ows_416dd
 .ows_416d7
 	print_npc_text Text0955
@@ -2587,29 +2563,29 @@ Func_41662:
 	end_script
 	ret
 .ows_416dd
-	move_active_npc NPCMovement_416ec
+	move_active_npc .NPCMovement_416ec
 	wait_for_player_animation
-	move_player NPCMovement_41700, TRUE
-	move_active_npc NPCMovement_416f3
+	move_player .NPCMovement_41700, TRUE
+	move_active_npc .NPCMovement_416f3
 	wait_for_player_animation
 	script_jump Script_4177f
-NPCMovement_416ec:
+.NPCMovement_416ec:
 	db NORTH, MOVE_2
 	db EAST, MOVE_1
 	db WEST, MOVE_0
 	db $ff
-NPCMovement_416f3:
+.NPCMovement_416f3:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_416f8:
+.NPCMovement_416f8:
 	db EAST, MOVE_1
 	db NORTH, MOVE_3
 	db $ff
-NPCMovement_416fd:
+.NPCMovement_416fd:
 	db NORTH, MOVE_4
 	db $ff
-NPCMovement_41700:
+.NPCMovement_41700:
 	db NORTH, MOVE_2
 	db EAST, MOVE_1
 	db $ff
@@ -2788,7 +2764,7 @@ Func_417df:
 	ld de, $a09
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, NPCMovement_418a1
+	ld hl, .NPCMovement_418a1
 	farcall MoveNPC
 	call Func_3340
 	ld a, $01
@@ -2809,7 +2785,7 @@ Func_417df:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, NPCMovement_4189c
+	ld hl, .NPCMovement_4189c
 	farcall MoveNPC
 	call Func_3340
 	pop af
@@ -2818,13 +2794,11 @@ Func_417df:
 	start_script
 	script_command_01
 	script_ret
-
-NPCMovement_4189c:
+.NPCMovement_4189c:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-
-NPCMovement_418a1:
+.NPCMovement_418a1:
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db $ff
@@ -2838,7 +2812,7 @@ Script_418a6:
 	script_command_01
 	print_npc_text Text096a
 	script_command_02
-	move_active_npc NPCMovement_418e8
+	move_active_npc .NPCMovement_418e8
 	wait_for_player_animation
 	script_command_01
 	get_var VAR_28
@@ -2862,7 +2836,7 @@ Script_418a6:
 	end_script
 	farcall Func_453f9
 	ret
-NPCMovement_418e8:
+.NPCMovement_418e8:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
@@ -2914,7 +2888,7 @@ Func_418ed:
 	ld de, $a09
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, NPCMovement_419a6
+	ld hl, .NPCMovement_419a6
 	farcall MoveNPC
 	call Func_3340
 	ld a, $01
@@ -2935,7 +2909,7 @@ Func_418ed:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, NPCMovement_419a1
+	ld hl, .NPCMovement_419a1
 	farcall MoveNPC
 	call Func_3340
 	pop af
@@ -2944,13 +2918,11 @@ Func_418ed:
 	start_script
 	script_command_01
 	script_ret
-
-NPCMovement_419a1:
+.NPCMovement_419a1:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-
-NPCMovement_419a6:
+.NPCMovement_419a6:
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db $ff
@@ -3004,7 +2976,7 @@ Script_419ab:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 .ows_41a17
 	script_command_02
-	move_active_npc NPCMovement_41a48
+	move_active_npc .NPCMovement_41a48
 	wait_for_player_animation
 	script_command_01
 	get_var VAR_28
@@ -3028,7 +3000,7 @@ Script_419ab:
 	end_script
 	farcall Func_453f9
 	ret
-NPCMovement_41a48:
+.NPCMovement_41a48:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
@@ -3097,17 +3069,14 @@ Func_41a4d:
 	start_script
 	script_command_01
 	script_ret
-
 .NPCMovement_41ae0:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-
 .NPCMovement_41ae5:
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db $ff
-
 .ows_41aea
 	set_var VAR_2B, $01
 	get_var VAR_2A
@@ -3191,6 +3160,7 @@ Func_41a4d:
 	db WEST, MOVE_1
 	db EAST, MOVE_0
 	db $ff
+
 Script_41b98:
 	set_var VAR_2B, $02
 	script_command_02
@@ -3199,28 +3169,28 @@ Script_41b98:
 	script_command_01
 	print_npc_text Text0989
 	script_command_02
-	move_active_npc NPCMovement_41bc0
-	move_player NPCMovement_41bc5, TRUE
+	move_active_npc .NPCMovement_41bc0
+	move_player .NPCMovement_41bc5, TRUE
 	wait_for_player_animation
-	move_player NPCMovement_41bca, TRUE
-	move_npc NPC_TCG_CUP_CLERK_LEFT, NPCMovement_41bcd
+	move_player .NPCMovement_41bca, TRUE
+	move_npc NPC_TCG_CUP_CLERK_LEFT, .NPCMovement_41bcd
 	wait_for_player_animation
 	animate_npc_movement NPC_TCG_CUP_CLERK_LEFT, $01, $01
 	set_npc_direction NPC_TCG_CUP_CLERK_LEFT, SOUTH
 	end_script
 	ret
-NPCMovement_41bc0:
+.NPCMovement_41bc0:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
-NPCMovement_41bc5:
+.NPCMovement_41bc5:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db $ff
-NPCMovement_41bca:
+.NPCMovement_41bca:
 	db SOUTH, MOVE_3
 	db $ff
-NPCMovement_41bcd:
+.NPCMovement_41bcd:
 	db WEST, MOVE_1
 	db EAST, MOVE_0
 	db $ff
@@ -3378,20 +3348,20 @@ Func_41cd3:
 	script_jump_if_b0nz .ows_41d17
 	script_jump .ows_41d21
 .ows_41d0d
-	move_active_npc NPCMovement_41d42
-	move_player NPCMovement_41d4c, TRUE
+	move_active_npc .NPCMovement_41d42
+	move_player .NPCMovement_41d4c, TRUE
 	script_jump .ows_41d32
 .ows_41d17
-	move_active_npc NPCMovement_41d42
-	move_player NPCMovement_41d53, TRUE
+	move_active_npc .NPCMovement_41d42
+	move_player .NPCMovement_41d53, TRUE
 	script_jump .ows_41d32
 .ows_41d21
-	move_active_npc NPCMovement_41d47
-	move_player NPCMovement_41d58, TRUE
+	move_active_npc .NPCMovement_41d47
+	move_player .NPCMovement_41d58, TRUE
 	script_jump .ows_41d32
 .ows_41d2b
-	move_active_npc NPCMovement_41d47
-	move_player NPCMovement_41d5d, TRUE
+	move_active_npc .NPCMovement_41d47
+	move_player .NPCMovement_41d5d, TRUE
 .ows_41d32
 	wait_for_player_animation
 	do_frames 60
@@ -3401,34 +3371,28 @@ Func_41cd3:
 	ld b, NORTH
 	farcall Func_d3c4
 	ret
-
-NPCMovement_41d42:
+.NPCMovement_41d42:
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
 	db $ff
-
-NPCMovement_41d47:
+.NPCMovement_41d47:
 	db NORTH, MOVE_3
 	db EAST, MOVE_3
 	db $ff
-
-NPCMovement_41d4c:
+.NPCMovement_41d4c:
 	db WEST, MOVE_1
 	db NORTH, MOVE_3
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_41d53:
+.NPCMovement_41d53:
 	db NORTH, MOVE_4
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_41d58:
+.NPCMovement_41d58:
 	db NORTH, MOVE_4
 	db EAST, MOVE_2
 	db $ff
-
-NPCMovement_41d5d:
+.NPCMovement_41d5d:
 	db EAST, MOVE_1
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
@@ -3438,9 +3402,9 @@ Func_41d64:
 	xor a
 	start_script
 	do_frames 60
-	move_player NPCMovement_41da5, TRUE
+	move_player .NPCMovement_41da5, TRUE
 	wait_for_player_animation
-	move_npc NPC_GR_5, NPCMovement_41da0
+	move_npc NPC_GR_5, .NPCMovement_41da0
 	wait_for_player_animation
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_41d94
@@ -3465,11 +3429,11 @@ Func_41d64:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_41da0:
+.NPCMovement_41da0:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db $ff
-NPCMovement_41da5:
+.NPCMovement_41da5:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_4
 	db NORTH, MOVE_0
@@ -3691,7 +3655,7 @@ Func_41f66:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	move_active_npc NPCMovement_41fde
+	move_active_npc .NPCMovement_41fde
 	scroll_to_position $02, $02
 	wait_for_player_animation
 	scroll_to_player
@@ -3717,7 +3681,7 @@ Func_41f66:
 .asm_41fd9
 	farcall Func_c199
 	ret
-NPCMovement_41fde:
+.NPCMovement_41fde:
 	db SOUTH, MOVE_1
 	db $ff
 
@@ -3741,7 +3705,7 @@ Func_41fe1:
 	script_jump_if_b0z .ows_42044
 	print_npc_text Text108e
 	script_command_02
-	move_player NPCMovement_42047, TRUE
+	move_player .NPCMovement_42047, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOBICHAN, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -3769,7 +3733,7 @@ Func_41fe1:
 	script_command_02
 	end_script
 	ret
-NPCMovement_42047:
+.NPCMovement_42047:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_4
 	db EAST, MOVE_2
@@ -3821,7 +3785,7 @@ Func_4207e:
 	script_jump_if_b0z .ows_420e1
 	print_npc_text Text1095
 	script_command_02
-	move_player NPCMovement_420e4, TRUE
+	move_player .NPCMovement_420e4, TRUE
 	wait_for_player_animation
 	load_npc NPC_EIJI, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -3849,7 +3813,7 @@ Func_4207e:
 	script_command_02
 	end_script
 	ret
-NPCMovement_420e4:
+.NPCMovement_420e4:
 	db SOUTH, MOVE_4
 	db EAST, MOVE_4
 	db NORTH, MOVE_0
@@ -3900,7 +3864,7 @@ Func_42119:
 	script_jump_if_b0z .ows_4217c
 	print_npc_text Text109c
 	script_command_02
-	move_player NPCMovement_4217f, TRUE
+	move_player .NPCMovement_4217f, TRUE
 	wait_for_player_animation
 	load_npc NPC_MAGICIAN, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -3928,7 +3892,7 @@ Func_42119:
 	script_command_02
 	end_script
 	ret
-NPCMovement_4217f:
+.NPCMovement_4217f:
 	db SOUTH, MOVE_4
 	db EAST, MOVE_3
 	db NORTH, MOVE_0
@@ -3979,7 +3943,7 @@ Func_421b4:
 	script_jump_if_b0z .ows_42217
 	print_npc_text Text10a3
 	script_command_02
-	move_player NPCMovement_4221a, TRUE
+	move_player .NPCMovement_4221a, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOSHIRON, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4007,7 +3971,7 @@ Func_421b4:
 	script_command_02
 	end_script
 	ret
-NPCMovement_4221a:
+.NPCMovement_4221a:
 	db SOUTH, MOVE_4
 	db EAST, MOVE_2
 	db NORTH, MOVE_0
@@ -4058,7 +4022,7 @@ Func_4224f:
 	script_jump_if_b0z .ows_422b2
 	print_npc_text Text10aa
 	script_command_02
-	move_player NPCMovement_422b5, TRUE
+	move_player .NPCMovement_422b5, TRUE
 	wait_for_player_animation
 	load_npc NPC_PIERROT, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4086,7 +4050,7 @@ Func_4224f:
 	script_command_02
 	end_script
 	ret
-NPCMovement_422b5:
+.NPCMovement_422b5:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_4
 	db EAST, MOVE_2
@@ -4138,7 +4102,7 @@ Func_422ec:
 	script_jump_if_b0z .ows_4234f
 	print_npc_text Text10b1
 	script_command_02
-	move_player NPCMovement_42352, TRUE
+	move_player .NPCMovement_42352, TRUE
 	wait_for_player_animation
 	load_npc NPC_ANNA, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4166,7 +4130,7 @@ Func_422ec:
 	script_command_02
 	end_script
 	ret
-NPCMovement_42352:
+.NPCMovement_42352:
 	db SOUTH, MOVE_4
 	db WEST, MOVE_3
 	db NORTH, MOVE_0
@@ -4217,7 +4181,7 @@ Func_42387:
 	script_jump_if_b0z .ows_423ea
 	print_npc_text Text10b8
 	script_command_02
-	move_player NPCMovement_423ed, TRUE
+	move_player .NPCMovement_423ed, TRUE
 	wait_for_player_animation
 	load_npc NPC_DEE, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4245,7 +4209,7 @@ Func_42387:
 	script_command_02
 	end_script
 	ret
-NPCMovement_423ed:
+.NPCMovement_423ed:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_4
 	db WEST, MOVE_2
@@ -4297,7 +4261,7 @@ Func_42424:
 	script_jump_if_b0z .ows_42487
 	print_npc_text Text10bf
 	script_command_02
-	move_player NPCMovement_4248a, TRUE
+	move_player .NPCMovement_4248a, TRUE
 	wait_for_player_animation
 	load_npc NPC_MASQUERADE, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4325,7 +4289,7 @@ Func_42424:
 	script_command_02
 	end_script
 	ret
-NPCMovement_4248a:
+.NPCMovement_4248a:
 	db SOUTH, MOVE_4
 	db WEST, MOVE_2
 	db NORTH, MOVE_0
@@ -4376,7 +4340,7 @@ Func_424bf:
 	script_jump_if_b0z .ows_42522
 	print_npc_text Text10c6
 	script_command_02
-	move_player NPCMovement_42525, TRUE
+	move_player .NPCMovement_42525, TRUE
 	wait_for_player_animation
 	load_npc NPC_YUI, 6, 3, SOUTH
 	play_sfx SFX_9F
@@ -4404,7 +4368,7 @@ Func_424bf:
 	script_command_02
 	end_script
 	ret
-NPCMovement_42525:
+.NPCMovement_42525:
 	db SOUTH, MOVE_4
 	db WEST, MOVE_4
 	db NORTH, MOVE_0
@@ -4892,11 +4856,11 @@ Func_4288d:
 	script_jump_if_b0z .ows_42917
 	print_npc_text Text0df3
 	script_command_02
-	move_active_npc NPCMovement_4291d
-	move_player NPCMovement_42927, TRUE
+	move_active_npc .NPCMovement_4291d
+	move_player .NPCMovement_42927, TRUE
 	wait_for_player_animation
-	move_active_npc NPCMovement_42922
-	move_player NPCMovement_4292a, TRUE
+	move_active_npc .NPCMovement_42922
+	move_player .NPCMovement_4292a, TRUE
 	wait_for_player_animation
 	script_jump Script_429b6
 .ows_42917
@@ -4905,18 +4869,18 @@ Func_4288d:
 	script_command_02
 	end_script
 	ret
-NPCMovement_4291d:
+.NPCMovement_4291d:
 	db EAST, MOVE_1
 	db WEST, MOVE_0
 	db $ff
-NPCMovement_42922:
+.NPCMovement_42922:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
-NPCMovement_42927:
+.NPCMovement_42927:
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_4292a:
+.NPCMovement_4292a:
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
 	db $ff
@@ -5100,6 +5064,7 @@ Func_42a1b:
 	script_call Script_42dad
 	script_command_02
 	script_jump Script_42aae
+
 Script_42aae:
 	set_var VAR_2C, $02
 	quit_script
@@ -5130,6 +5095,7 @@ Script_42aae:
 	end_script
 	farcall Func_453f9
 	ret
+
 Func_42aee:
 	xor a
 	start_script
@@ -5187,6 +5153,7 @@ Func_42aee:
 	script_call Script_42dad
 	script_command_02
 	script_jump Script_42b81
+
 Script_42b81:
 	set_var VAR_2C, $03
 	quit_script
@@ -5348,6 +5315,7 @@ Func_42bb7:
 	db EAST, MOVE_1
 	db WEST, MOVE_0
 	db $ff
+
 Script_42cea:
 	set_var VAR_33, $02
 	script_command_02
@@ -5391,12 +5359,14 @@ Script_42d22:
 	set_active_npc_direction SOUTH
 	script_command_01
 	script_ret
+
 Script_42d2d:
 	script_command_02
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
 	script_command_01
 	script_ret
+
 Script_42d35:
 	script_command_02
 	animate_active_npc_movement $03, $01
@@ -5422,45 +5392,41 @@ Script_42d40:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, NPCMovement_42d9b
+	ld hl, .NPCMovement_42d9b
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	push af
 	ld b, $10
-	ld hl, NPCMovement_42da0
+	ld hl, .NPCMovement_42da0
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld hl, NPCMovement_42da3
+	ld hl, .NPCMovement_42da3
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	farcall ClearOWObject
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld b, $10
-	ld hl, NPCMovement_42da8
+	ld hl, .NPCMovement_42da8
 	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
 	script_command_01
 	script_ret
-
-NPCMovement_42d9b:
+.NPCMovement_42d9b:
 	db EAST, MOVE_2
 	db SOUTH, MOVE_2
 	db $ff
-
-NPCMovement_42da0:
+.NPCMovement_42da0:
 	db SOUTH, MOVE_5
 	db $ff
-
-NPCMovement_42da3:
+.NPCMovement_42da3:
 	db WEST, MOVE_1
 	db EAST, MOVE_0
 	db $ff
-
-NPCMovement_42da8:
+.NPCMovement_42da8:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
@@ -5483,18 +5449,18 @@ Script_42dad:
 	ld de, $b0a
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, Data_42e02
+	ld hl, .Data_42e02
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld hl, Data_42e0a
+	ld hl, .Data_42e0a
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	ld b, $10
-	ld hl, Data_42e05
+	ld hl, .Data_42e05
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld hl, Data_42e0f
+	ld hl, .Data_42e0f
 	farcall MoveNPC
 	call Func_3340
 	ld a, $01
@@ -5502,21 +5468,21 @@ Script_42dad:
 	script_command_01
 	script_ret
 
-Data_42e02:
+.Data_42e02:
 	db NORTH, MOVE_3
 	db $ff
 
-Data_42e05:
+.Data_42e05:
 	db NORTH, MOVE_3
 	db WEST, MOVE_2
 	db $ff
 
-Data_42e0a:
+.Data_42e0a:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
 
-Data_42e0f:
+.Data_42e0f:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
@@ -5798,10 +5764,10 @@ Data_43050:
 
 Script_43059:
 	game_center
-	move_npc NPC_RUI, NPCMovement_4310a
-	move_player NPCMovement_430f4, TRUE
+	move_npc NPC_RUI, .NPCMovement_4310a
+	move_player .NPCMovement_430f4, TRUE
 	wait_for_player_animation
-	move_npc NPC_RUI, NPCMovement_43113
+	move_npc NPC_RUI, .NPCMovement_43113
 	wait_for_player_animation
 	do_frames 30
 	script_command_01
@@ -5824,7 +5790,7 @@ Script_43059:
 	script_command_01
 	print_npc_text Text092d
 	script_command_02
-	move_active_npc NPCMovement_4311a
+	move_active_npc .NPCMovement_4311a
 	wait_for_player_animation
 	set_active_npc NPC_RUI, DialogRuiText
 	animate_active_npc_movement $00, $01
@@ -5832,7 +5798,7 @@ Script_43059:
 	script_command_01
 	print_npc_text Text092e
 	script_command_02
-	move_active_npc NPCMovement_4311f
+	move_active_npc .NPCMovement_4311f
 	wait_for_player_animation
 	unload_npc NPC_KANZAKI
 	unload_npc NPC_RUI
@@ -5859,61 +5825,53 @@ Script_43059:
 	script_command_01
 	print_npc_text Text0933
 	script_command_02
-	move_active_npc NPCMovement_4312d
-	move_player NPCMovement_43124, TRUE
+	move_active_npc .NPCMovement_4312d
+	move_player .NPCMovement_43124, TRUE
 	wait_for_player_animation
 	end_script
 	ld a, $00
 	ld [wd582], a
 	jp Func_43136
-
-NPCMovement_430f4:
+.NPCMovement_430f4:
 	db NORTH, MOVE_6
 	db WEST, MOVE_2
 	db NORTH, MOVE_5
 	db EAST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_430ff:
+.NPCMovement_430ff:
 	db NORTH, MOVE_5
 	db EAST, MOVE_1
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_4310a:
+.NPCMovement_4310a:
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db NORTH, MOVE_6
 	db SOUTH, MOVE_0
 	db $ff
-
-NPCMovement_43113:
+.NPCMovement_43113:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_4311a:
+.NPCMovement_4311a:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-
-NPCMovement_4311f:
+.NPCMovement_4311f:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_5
 	db $ff
-
-NPCMovement_43124:
+.NPCMovement_43124:
 	db EAST, MOVE_2
 	db SOUTH, MOVE_4
 	db WEST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_4312d:
+.NPCMovement_4312d:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_2
 	db WEST, MOVE_1
@@ -5988,6 +5946,7 @@ Func_431a6:
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0nz Script_4324b
 	script_jump Script_432a0
+
 Func_431bf:
 	xor a
 	start_script
@@ -5996,6 +5955,7 @@ Func_431bf:
 	script_command_02
 	end_script
 	ret
+
 Script_431ca:
 	inc_var VAR_09
 	end_script
@@ -6075,7 +6035,6 @@ Script_4324b:
 	print_variable_npc_text Text093d, Text093e
 	set_text_ram3 $0002
 	script_jump .ows_43285
-
 .ows_43266
 	get_var VAR_0A
 	compare_loaded_var $02
@@ -6085,13 +6044,11 @@ Script_4324b:
 	print_npc_text Text093f
 	set_text_ram3 $0003
 	script_jump .ows_43285
-
 .ows_4327b
 	get_var VAR_0A
 	compare_loaded_var $02
 	script_jump_if_b0nz Script_43000
 	script_jump Script_432f5
-
 .ows_43285
 	ask_question ChangeDeckPromptText, FALSE
 	script_jump_if_b0z .ows_43299
@@ -6102,7 +6059,6 @@ Script_4324b:
 	script_command_01
 	print_npc_text Text0941
 	script_jump .ows_43285
-
 .ows_43299
 	print_npc_text Text0942
 	script_command_02
@@ -6119,7 +6075,6 @@ Script_432a0:
 	print_variable_npc_text Text0943, Text0944
 	set_text_ram3 $0002
 	script_jump .ows_432da
-
 .ows_432bb
 	get_var VAR_0A
 	compare_loaded_var $02
@@ -6129,13 +6084,11 @@ Script_432a0:
 	print_npc_text Text0945
 	set_text_ram3 $0003
 	script_jump .ows_432da
-
 .ows_432d0
 	get_var VAR_0A
 	compare_loaded_var $02
 	script_jump_if_b0nz Script_432fb
 	script_jump Script_4332d
-
 .ows_432da
 	ask_question ChangeDeckPromptText, FALSE
 	script_jump_if_b0z .ows_432ee
@@ -6146,7 +6099,6 @@ Script_432a0:
 	script_command_01
 	print_npc_text Text0946
 	script_jump .ows_432da
-
 .ows_432ee
 	print_npc_text Text0947
 	script_command_02
@@ -6174,7 +6126,6 @@ Script_432fb:
 	script_call Script_43333
 	print_npc_text Text094a
 	script_jump Script_43044
-
 .ows_4331a
 	set_var VAR_0B, $03
 	print_npc_text Text094b
@@ -6224,36 +6175,31 @@ Script_4336b:
 	script_jump_if_b0nz .ows_4338d
 	compare_loaded_var $02
 	script_jump_if_b0nz .ows_43386
-	move_player NPCMovement_43394, TRUE
+	move_player .NPCMovement_43394, TRUE
 	script_jump .ows_43391
-
 .ows_43386
-	move_player NPCMovement_4339d, TRUE
+	move_player .NPCMovement_4339d, TRUE
 	script_jump .ows_43391
-
 .ows_4338d
-	move_player NPCMovement_433a6, TRUE
+	move_player .NPCMovement_433a6, TRUE
 .ows_43391
 	wait_for_player_animation
 	script_command_01
 .ows_43393
 	script_ret
-
-NPCMovement_43394:
+.NPCMovement_43394:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_3
 	db WEST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_4339d:
+.NPCMovement_4339d:
 	db EAST, MOVE_2
 	db SOUTH, MOVE_4
 	db WEST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_433a6:
+.NPCMovement_433a6:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db EAST, MOVE_2

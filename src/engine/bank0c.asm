@@ -2,11 +2,11 @@ Func_30000:
 	scf
 	ccf
 	push af
-	jr Func_30007
-Func_30005:
+	jr .asm_30007
+.asm_30005:
 	scf
 	push af
-Func_30007:
+.asm_30007:
 	ld a, MAP_FIGHTING_FORT_BASEMENT
 	lb de, 10, 01
 	ld b, SOUTH
@@ -182,14 +182,14 @@ Func_300a8:
 	farcall LoadOWObject
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
-	call z, .Func_30175
+	call z, .asm_30175
 	ld a, 0
 	call Func_338f
 	scf
 	ccf
 	ret
 
-.Func_30175:
+.asm_30175:
 	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectAsScrollTarget
 	ld a, $01
@@ -1252,34 +1252,29 @@ Script_312ea:
 	script_jump_if_b0nz .ows_31303
 	compare_loaded_var $01
 	script_jump_if_b0nz .ows_312fc
-	move_player NPCMovement_31309, TRUE
+	move_player .NPCMovement_31309, TRUE
 	script_jump .ows_31307
-
 .ows_312fc
-	move_player NPCMovement_31312, TRUE
+	move_player .NPCMovement_31312, TRUE
 	script_jump .ows_31307
-
 .ows_31303
-	move_player NPCMovement_3131b, TRUE
+	move_player .NPCMovement_3131b, TRUE
 .ows_31307
 	wait_for_player_animation
 	script_ret
-
-NPCMovement_31309:
+.NPCMovement_31309:
 	db NORTH, MOVE_1
 	db EAST, MOVE_3
 	db SOUTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_31312:
+.NPCMovement_31312:
 	db SOUTH, MOVE_2
 	db EAST, MOVE_4
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_3131b:
+.NPCMovement_3131b:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db NORTH, MOVE_2
@@ -2059,7 +2054,7 @@ Func_318e2:
 	fade_in $00, TRUE
 	wait_for_fade
 	set_active_npc NPC_RICK, DialogRickText
-	move_active_npc NPCMovement_3196b
+	move_active_npc .NPCMovement_3196b
 	wait_for_player_animation
 	set_player_direction EAST
 	script_command_01
@@ -2067,7 +2062,7 @@ Func_318e2:
 	receive_card HUNGRY_SNORLAX
 	print_npc_text Text0da2
 	script_command_02
-	move_active_npc NPCMovement_31970
+	move_active_npc .NPCMovement_31970
 	wait_for_player_animation
 	unload_npc NPC_RICK
 	set_player_direction NORTH
@@ -2077,11 +2072,11 @@ Func_318e2:
 	script_command_02
 	end_script
 	ret
-NPCMovement_3196b:
+.NPCMovement_3196b:
 	db SOUTH, MOVE_3
 	db WEST, MOVE_0
 	db $ff
-NPCMovement_31970:
+.NPCMovement_31970:
 	db SOUTH, MOVE_7
 	db $ff
 
@@ -2488,25 +2483,25 @@ Func_31c37:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_31c80
-	move_active_npc NPCMovement_31c9a
+	move_active_npc .NPCMovement_31c9a
 	wait_for_player_animation
 	do_frames 30
 	play_sfx SFX_0F
 	load_tilemap TILEMAP_062, $05, $00
 	do_frames 30
-	move_active_npc NPCMovement_31ca1
+	move_active_npc .NPCMovement_31ca1
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text0db5
 	script_command_02
 	end_script
 	ret
-NPCMovement_31c9a:
+.NPCMovement_31c9a:
 	db NORTH, MOVE_3
 	db WEST, MOVE_3
 	db NORTH, MOVE_1
 	db $ff
-NPCMovement_31ca1:
+.NPCMovement_31ca1:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_3
 	db SOUTH, MOVE_3
@@ -3318,15 +3313,15 @@ Func_322a1:
 	script_jump_if_b0nz .ows_3230d
 	compare_loaded_var $01
 	script_jump_if_b0nz .ows_32306
-	move_player NPCMovement_32367, TRUE
+	move_player .NPCMovement_32367, TRUE
 	script_jump .ows_32311
 .ows_32306
-	move_player NPCMovement_3236c, TRUE
+	move_player .NPCMovement_3236c, TRUE
 	script_jump .ows_32311
 .ows_3230d
-	move_player NPCMovement_32371, TRUE
+	move_player .NPCMovement_32371, TRUE
 .ows_32311
-	move_active_npc NPCMovement_32362
+	move_active_npc .NPCMovement_32362
 	wait_for_player_animation
 	do_frames 30
 	script_command_01
@@ -3357,22 +3352,23 @@ Func_322a1:
 	script_command_02
 	animate_active_npc_movement $01, $01
 	script_jump Script_32376
-NPCMovement_32362:
+.NPCMovement_32362:
 	db NORTH, MOVE_3
 	db WEST, MOVE_0
 	db $ff
-NPCMovement_32367:
+.NPCMovement_32367:
 	db WEST, MOVE_2
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_3236c:
+.NPCMovement_3236c:
 	db WEST, MOVE_1
 	db NORTH, MOVE_1
 	db $ff
-NPCMovement_32371:
+.NPCMovement_32371:
 	db WEST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
+
 Script_32376:
 	set_active_npc NPC_ICHIKAWA, DialogIchikawaText
 	script_command_01
@@ -3395,13 +3391,14 @@ Script_32376:
 	script_command_01
 	print_npc_text Text11ca
 	script_command_02
-	move_active_npc NPCMovement_323b2
+	move_active_npc .NPCMovement_323b2
 	wait_for_player_animation
 	unload_npc NPC_STEVE
 	script_jump Script_323b5
-NPCMovement_323b2:
+.NPCMovement_323b2:
 	db SOUTH, MOVE_8
 	db $ff
+
 Script_323b5:
 	set_active_npc NPC_ICHIKAWA, DialogIchikawaText
 	script_command_01
@@ -3425,11 +3422,11 @@ Script_323b5:
 	script_command_01
 	print_npc_text Text11cd
 	script_command_02
-	move_active_npc NPCMovement_323e9
+	move_active_npc .NPCMovement_323e9
 	wait_for_player_animation
 	end_script
 	ret
-NPCMovement_323e9:
+.NPCMovement_323e9:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_3
 	db EAST, MOVE_0
@@ -3790,6 +3787,7 @@ Func_32664:
 	end_script
 .asm_32691
 	ret
+
 Script_32692:
 	print_npc_text Text0c84
 	script_ret
@@ -4285,13 +4283,13 @@ Func_32a38:
 	script_command_01
 	print_npc_text Text0cc6
 	script_command_02
-	move_active_npc NPCMovement_32a71
+	move_active_npc .NPCMovement_32a71
 	wait_for_player_animation
 	end_script
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_32a71:
+.NPCMovement_32a71:
 	db NORTH, RUN_6
 	db SOUTH, MOVE_0
 	db $ff
@@ -4746,21 +4744,19 @@ Script_32d8f:
 	play_sfx SFX_0F
 	load_tilemap TILEMAP_080, $03, $07
 	do_frames 30
-	move_npc NPC_COURTNEY, NPCMovement_32de0
+	move_npc NPC_COURTNEY, .NPCMovement_32de0
 	get_player_direction
 	compare_loaded_var $01
 	script_jump_if_b0nz .ows_32dc1
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_32dba
-	move_player NPCMovement_32dec, TRUE
+	move_player .NPCMovement_32dec, TRUE
 	script_jump .ows_32dc5
-
 .ows_32dba
-	move_player NPCMovement_32df3, TRUE
+	move_player .NPCMovement_32df3, TRUE
 	script_jump .ows_32dc5
-
 .ows_32dc1
-	move_player NPCMovement_32df6, TRUE
+	move_player .NPCMovement_32df6, TRUE
 .ows_32dc5
 	wait_for_player_animation
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
@@ -4769,34 +4765,29 @@ Script_32d8f:
 	receive_card ARCANINE_LV34
 	print_npc_text Text0cb7
 	script_command_02
-	move_active_npc NPCMovement_32de9
+	move_active_npc .NPCMovement_32de9
 	set_player_direction SOUTH
 	wait_for_player_animation
 	unload_npc NPC_COURTNEY
 	script_jump Script_32dff
-
-NPCMovement_32de0:
+.NPCMovement_32de0:
 	db SOUTH, MOVE_3
 	db EAST, MOVE_3
 	db NORTH, MOVE_6
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_32de9:
+.NPCMovement_32de9:
 	db SOUTH, MOVE_7
 	db $ff
-
-NPCMovement_32dec:
+.NPCMovement_32dec:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_1
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_32df3:
+.NPCMovement_32df3:
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_32df6:
+.NPCMovement_32df6:
 	db NORTH, MOVE_1
 	db EAST, MOVE_2
 	db SOUTH, MOVE_1
@@ -5165,6 +5156,7 @@ Func_3308e:
 	end_script
 .asm_330bb
 	ret
+
 Script_330bc:
 	print_npc_text Text1216
 	script_ret
@@ -5721,6 +5713,7 @@ Func_334b3:
 	end_script
 .asm_334f5
 	ret
+
 Script_334f6:
 	script_command_64 $18
 	script_command_02
@@ -5728,6 +5721,7 @@ Script_334f6:
 	load_tilemap TILEMAP_094, $04, $07
 	end_script
 	ret
+
 Script_33502:
 	print_npc_text Text0be6
 	script_ret
@@ -6358,7 +6352,7 @@ Func_33aa1:
 	ld bc, $c1
 	ld de, SetBGP
 	farcall Func_12c0ce
-	call Func_30005
+	call Func_30000.asm_30005
 	ret
 
 FightingFortMaze13_MapHeader:
@@ -6623,7 +6617,7 @@ Func_33cf8:
 	call Func_30000
 	ret
 .asm_33d17
-	call Func_30005
+	call Func_30000.asm_30005
 	ret
 
 Func_33d1b:
@@ -6632,7 +6626,7 @@ Func_33d1b:
 	ld bc, $ca
 	ld de, SetBGP
 	farcall Func_12c0ce
-	call Func_30005
+	call Func_30000.asm_30005
 	ret
 
 FightingFortMaze20_MapHeader:

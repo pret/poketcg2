@@ -3,10 +3,10 @@ Script_34000:
 	set_var VAR_TIMES_MET_RONALD, $01
 	script_command_64 $10
 	set_active_npc NPC_RONALD, DialogRonaldText
-	move_player NPCMovement_34031, TRUE
+	move_player .NPCMovement_34031, TRUE
 	wait_for_player_animation
-	move_active_npc NPCMovement_3402b
-	move_player NPCMovement_34034, TRUE
+	move_active_npc .NPCMovement_3402b
+	move_player .NPCMovement_34034, TRUE
 	wait_for_player_animation
 	scroll_to_player
 	script_command_01
@@ -14,25 +14,21 @@ Script_34000:
 	script_command_02
 	set_player_direction WEST
 	animate_player_movement $81, $02
-	move_active_npc NPCMovement_3402e
+	move_active_npc .NPCMovement_3402e
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	play_song_next MUSIC_OVERWORLD
 	script_retfar
-
-NPCMovement_3402b:
+.NPCMovement_3402b:
 	db SOUTH, MOVE_2
 	db $ff
-
-NPCMovement_3402e:
+.NPCMovement_3402e:
 	db SOUTH, MOVE_6
 	db $ff
-
-NPCMovement_34031:
+.NPCMovement_34031:
 	db NORTH, RUN_5
 	db $ff
-
-NPCMovement_34034:
+.NPCMovement_34034:
 	db NORTH, MOVE_2
 	db $ff
 
@@ -55,15 +51,14 @@ Script_FinishedRonaldDuelGCPieces2:
 	print_npc_text RonaldGCPieces2PlayerLostText
 .exit
 	script_command_02
-	move_active_npc NPCMovement_341f0
+	move_active_npc .NPCMovement_341f0
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-
-NPCMovement_341f0:
+.NPCMovement_341f0:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_1
 	db SOUTH, MOVE_5
@@ -89,7 +84,7 @@ Func_341f7:
 .ows_3421c
 	load_npc NPC_RONALD, 4, 9, NORTH
 	set_active_npc NPC_RONALD, DialogRonaldText
-	move_active_npc NPCMovement_3425f
+	move_active_npc .NPCMovement_3425f
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text1271
@@ -97,10 +92,10 @@ Func_341f7:
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_3423b
-	move_player NPCMovement_34265, TRUE
+	move_player .NPCMovement_34265, TRUE
 	script_jump .ows_3423f
 .ows_3423b
-	move_player NPCMovement_34268, TRUE
+	move_player .NPCMovement_34268, TRUE
 .ows_3423f
 	wait_for_player_animation
 	script_command_01
@@ -108,7 +103,7 @@ Func_341f7:
 	give_booster_packs BoosterList_ce35
 	print_npc_text Text1273
 	script_command_02
-	move_active_npc NPCMovement_34262
+	move_active_npc .NPCMovement_34262
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
@@ -117,16 +112,16 @@ Func_341f7:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_3425f:
+.NPCMovement_3425f:
 	db NORTH, MOVE_5
 	db $ff
-NPCMovement_34262:
+.NPCMovement_34262:
 	db SOUTH, MOVE_5
 	db $ff
-NPCMovement_34265:
+.NPCMovement_34265:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_34268:
+.NPCMovement_34268:
 	db SOUTH, MOVE_1
 	db WEST, MOVE_1
 	db SOUTH, MOVE_1
@@ -147,7 +142,7 @@ Func_3426f:
 	scroll_to_position $ff, $00
 	load_npc NPC_RONALD, 6, 15, SOUTH
 	set_active_npc NPC_RONALD, DialogRonaldText
-	move_active_npc NPCMovement_342da
+	move_active_npc .NPCMovement_342da
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text1274
@@ -155,12 +150,12 @@ Func_3426f:
 	get_player_x_position
 	compare_loaded_var $06
 	script_jump_if_b0nz .ows_342ad
-	move_player NPCMovement_342e5, TRUE
+	move_player .NPCMovement_342e5, TRUE
 	script_jump .ows_342b1
 .ows_342ad
-	move_player NPCMovement_342ec, TRUE
+	move_player .NPCMovement_342ec, TRUE
 .ows_342b1
-	move_active_npc NPCMovement_342dd
+	move_active_npc .NPCMovement_342dd
 	scroll_to_position $02, $03
 	wait_for_player_animation
 	scroll_to_player
@@ -170,7 +165,7 @@ Func_3426f:
 	show_card_received_screen BILLS_COMPUTER
 	print_npc_text Text1276
 	script_command_02
-	move_active_npc NPCMovement_342e0
+	move_active_npc .NPCMovement_342e0
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
@@ -179,22 +174,22 @@ Func_3426f:
 .asm_342d5
 	farcall Func_c199
 	ret
-NPCMovement_342da:
+.NPCMovement_342da:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_342dd:
+.NPCMovement_342dd:
 	db SOUTH, MOVE_5
 	db $ff
-NPCMovement_342e0:
+.NPCMovement_342e0:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_8
 	db $ff
-NPCMovement_342e5:
+.NPCMovement_342e5:
 	db NORTH, MOVE_2
 	db EAST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_342ec:
+.NPCMovement_342ec:
 	db NORTH, MOVE_2
 	db $ff
 
@@ -206,13 +201,13 @@ Func_342ef:
 	set_var VAR_TIMES_MET_RONALD, $05
 	load_npc NPC_GR_X, 4, 15, SOUTH
 	set_active_npc NPC_GR_X, DialogGRXText
-	move_active_npc NPCMovement_3431d
+	move_active_npc .NPCMovement_3431d
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text1277
 	script_command_02
-	move_active_npc NPCMovement_3431d
-	move_player NPCMovement_34320, TRUE
+	move_active_npc .NPCMovement_3431d
+	move_player .NPCMovement_34320, TRUE
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text1278
@@ -220,10 +215,10 @@ Func_342ef:
 	start_duel RONALDS_GRX_DECK_ID, MUSIC_MATCHSTART_2
 	end_script
 	ret
-NPCMovement_3431d:
+.NPCMovement_3431d:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_34320:
+.NPCMovement_34320:
 	db NORTH, MOVE_3
 	db $ff
 
@@ -267,14 +262,14 @@ Func_34323:
 	print_npc_text Text127c
 	script_command_02
 .ows_3437d
-	move_active_npc NPCMovement_3438c
+	move_active_npc .NPCMovement_3438c
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_3438c:
+.NPCMovement_3438c:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_6
 	db $ff
@@ -286,7 +281,7 @@ Func_34391:
 	set_var VAR_TIMES_MET_RONALD, $06
 	load_npc NPC_GR_X, 4, 10, NORTH
 	set_active_npc NPC_GR_X, DialogGRXText
-	move_active_npc NPCMovement_343e2
+	move_active_npc .NPCMovement_343e2
 	wait_for_player_animation
 	check_event EVENT_GOT_MAGMAR_COIN
 	set_variable_text_ram2 GRWaterFortShortText, GRFireFortShortText
@@ -297,10 +292,10 @@ Func_34391:
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_343c4
-	move_player NPCMovement_343e5, TRUE
+	move_player .NPCMovement_343e5, TRUE
 	script_jump .ows_343c8
 .ows_343c4
-	move_player NPCMovement_343e8, TRUE
+	move_player .NPCMovement_343e8, TRUE
 .ows_343c8
 	wait_for_player_animation
 	script_command_01
@@ -315,13 +310,13 @@ Func_34391:
 	start_duel RONALDS_POWER_DECK_ID, MUSIC_MATCHSTART_2
 	end_script
 	ret
-NPCMovement_343e2:
+.NPCMovement_343e2:
 	db NORTH, MOVE_6
 	db $ff
-NPCMovement_343e5:
+.NPCMovement_343e5:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_343e8:
+.NPCMovement_343e8:
 	db SOUTH, MOVE_1
 	db WEST, MOVE_1
 	db SOUTH, MOVE_1
@@ -345,7 +340,7 @@ Func_343ef:
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
-	move_active_npc NPCMovement_3442a
+	move_active_npc .NPCMovement_3442a
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
@@ -354,7 +349,7 @@ Func_343ef:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_3442a:
+.NPCMovement_3442a:
 	db SOUTH, MOVE_8
 	db $ff
 
@@ -375,7 +370,7 @@ Func_3442d:
 	script_command_01
 	print_npc_text Text1285
 	script_command_02
-	move_player NPCMovement_34485, TRUE
+	move_player .NPCMovement_34485, TRUE
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text1286
@@ -389,7 +384,7 @@ Func_3442d:
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
-	move_active_npc NPCMovement_34488
+	move_active_npc .NPCMovement_34488
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
@@ -398,10 +393,10 @@ Func_3442d:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_34485:
+.NPCMovement_34485:
 	db NORTH, MOVE_3
 	db $ff
-NPCMovement_34488:
+.NPCMovement_34488:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_6
 	db $ff
@@ -455,17 +450,17 @@ Func_344da:
 	show_card_received_screen SUPER_ENERGY_RETRIEVAL
 	print_npc_text Text128b
 	script_command_02
-	move_active_npc NPCMovement_3451a
+	move_active_npc .NPCMovement_3451a
 	wait_for_player_animation
 	set_active_npc_direction NORTH
 	do_frames 60
-	move_active_npc NPCMovement_3451a
+	move_active_npc .NPCMovement_3451a
 	wait_for_player_animation
 	script_jump .ows_34508
 .ows_34500
 	print_npc_text Text128c
 	script_command_02
-	move_active_npc NPCMovement_34518
+	move_active_npc .NPCMovement_34518
 	wait_for_player_animation
 .ows_34508
 	unload_npc NPC_RONALD
@@ -475,9 +470,9 @@ Func_344da:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_34518:
+.NPCMovement_34518:
 	db SOUTH, MOVE_2
-NPCMovement_3451a:
+.NPCMovement_3451a:
 	db SOUTH, MOVE_2
 	db $ff
 
@@ -487,7 +482,7 @@ Func_3451d:
 	wait_for_fade
 	load_npc NPC_RONALD, 4, 9, NORTH
 	set_active_npc NPC_RONALD, DialogRonaldText
-	move_active_npc NPCMovement_34565
+	move_active_npc .NPCMovement_34565
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text128d
@@ -495,10 +490,10 @@ Func_3451d:
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_34541
-	move_player NPCMovement_3456b, TRUE
+	move_player .NPCMovement_3456b, TRUE
 	script_jump .ows_34545
 .ows_34541
-	move_player NPCMovement_3456e, TRUE
+	move_player .NPCMovement_3456e, TRUE
 .ows_34545
 	wait_for_player_animation
 	script_command_01
@@ -506,7 +501,7 @@ Func_3451d:
 	give_booster_packs BoosterList_ce32
 	print_npc_text Text128f
 	script_command_02
-	move_active_npc NPCMovement_34568
+	move_active_npc .NPCMovement_34568
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
@@ -515,16 +510,16 @@ Func_3451d:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
-NPCMovement_34565:
+.NPCMovement_34565:
 	db NORTH, MOVE_5
 	db $ff
-NPCMovement_34568:
+.NPCMovement_34568:
 	db SOUTH, MOVE_5
 	db $ff
-NPCMovement_3456b:
+.NPCMovement_3456b:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_3456e:
+.NPCMovement_3456e:
 	db SOUTH, MOVE_1
 	db WEST, MOVE_1
 	db SOUTH, MOVE_1
@@ -698,8 +693,8 @@ Func_346bc:
 Script_346c9:
 	print_npc_text Text0821
 	script_command_02
-	move_active_npc NPCMovement_346f0
-	move_player NPCMovement_346f3, TRUE
+	move_active_npc .NPCMovement_346f0
+	move_player .NPCMovement_346f3, TRUE
 	wait_for_player_animation
 	end_script
 	ld a, [wPlayerOWObject]
@@ -712,10 +707,10 @@ Script_346c9:
 	ld b, EAST
 	farcall Func_d3c4
 	ret
-NPCMovement_346f0:
+.NPCMovement_346f0:
 	db EAST, MOVE_2
 	db $ff
-NPCMovement_346f3:
+.NPCMovement_346f3:
 	db EAST, MOVE_3
 	db $ff
 
@@ -939,8 +934,8 @@ Func_348a5:
 	xor a
 	start_script
 	wait_for_fade
-	move_active_npc NPCMovement_348f0
-	move_player NPCMovement_348ff, TRUE
+	move_active_npc .NPCMovement_348f0
+	move_player .NPCMovement_348ff, TRUE
 	wait_for_player_animation
 	do_frames 30
 	script_command_01
@@ -949,12 +944,12 @@ Func_348a5:
 	get_player_y_position
 	compare_loaded_var $09
 	script_jump_if_b0nz .ows_348d9
-	move_active_npc NPCMovement_348f5
-	move_player NPCMovement_34902, TRUE
+	move_active_npc .NPCMovement_348f5
+	move_player .NPCMovement_34902, TRUE
 	script_jump .ows_348e0
 .ows_348d9
-	move_active_npc NPCMovement_348fa
-	move_player NPCMovement_34909, TRUE
+	move_active_npc .NPCMovement_348fa
+	move_player .NPCMovement_34909, TRUE
 .ows_348e0
 	wait_for_player_animation
 	do_frames 60
@@ -964,27 +959,27 @@ Func_348a5:
 	ld b, $00
 	farcall Func_d3c4
 	ret
-NPCMovement_348f0:
+.NPCMovement_348f0:
 	db EAST, MOVE_9
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_348f5:
+.NPCMovement_348f5:
 	db NORTH, MOVE_5
 	db EAST, MOVE_2
 	db $ff
-NPCMovement_348fa:
+.NPCMovement_348fa:
 	db NORTH, MOVE_4
 	db EAST, MOVE_2
 	db $ff
-NPCMovement_348ff:
+.NPCMovement_348ff:
 	db EAST, MOVE_9
 	db $ff
-NPCMovement_34902:
+.NPCMovement_34902:
 	db EAST, MOVE_1
 	db NORTH, MOVE_5
 	db EAST, MOVE_1
 	db $ff
-NPCMovement_34909:
+.NPCMovement_34909:
 	db EAST, MOVE_1
 	db NORTH, MOVE_4
 	db EAST, MOVE_1
@@ -1020,20 +1015,20 @@ Func_34910:
 	script_jump_if_b0nz .ows_34954
 	script_jump .ows_3495e
 .ows_3494a
-	move_active_npc NPCMovement_3497f
-	move_player NPCMovement_34989, TRUE
+	move_active_npc .NPCMovement_3497f
+	move_player .NPCMovement_34989, TRUE
 	script_jump .ows_3496f
 .ows_34954
-	move_active_npc NPCMovement_3497f
-	move_player NPCMovement_34990, TRUE
+	move_active_npc .NPCMovement_3497f
+	move_player .NPCMovement_34990, TRUE
 	script_jump .ows_3496f
 .ows_3495e
-	move_active_npc NPCMovement_34984
-	move_player NPCMovement_34995, TRUE
+	move_active_npc .NPCMovement_34984
+	move_player .NPCMovement_34995, TRUE
 	script_jump .ows_3496f
 .ows_34968
-	move_active_npc NPCMovement_34984
-	move_player NPCMovement_3499a, TRUE
+	move_active_npc .NPCMovement_34984
+	move_player .NPCMovement_3499a, TRUE
 .ows_3496f
 	wait_for_player_animation
 	do_frames 60
@@ -1043,34 +1038,28 @@ Func_34910:
 	ld b, $00
 	farcall Func_d3c4
 	ret
-
-NPCMovement_3497f:
+.NPCMovement_3497f:
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
 	db $ff
-
-NPCMovement_34984:
+.NPCMovement_34984:
 	db NORTH, MOVE_3
 	db EAST, MOVE_3
 	db $ff
-
-NPCMovement_34989:
+.NPCMovement_34989:
 	db WEST, MOVE_1
 	db NORTH, MOVE_3
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_34990:
+.NPCMovement_34990:
 	db NORTH, MOVE_4
 	db EAST, MOVE_1
 	db $ff
-
-NPCMovement_34995:
+.NPCMovement_34995:
 	db NORTH, MOVE_4
 	db EAST, MOVE_2
 	db $ff
-
-NPCMovement_3499a:
+.NPCMovement_3499a:
 	db EAST, MOVE_1
 	db NORTH, MOVE_3
 	db EAST, MOVE_2
@@ -1080,9 +1069,9 @@ Func_349a1:
 	xor a
 	start_script
 	do_frames 60
-	move_player NPCMovement_349c6, TRUE
+	move_player .NPCMovement_349c6, TRUE
 	wait_for_player_animation
-	move_npc NPC_GR_5, NPCMovement_349c1
+	move_npc NPC_GR_5, .NPCMovement_349c1
 	wait_for_player_animation
 	set_active_npc NPC_GR_5, DialogGR5Text
 	script_command_01
@@ -1092,11 +1081,11 @@ Func_349a1:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_349c1:
+.NPCMovement_349c1:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db $ff
-NPCMovement_349c6:
+.NPCMovement_349c6:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_4
 	db NORTH, MOVE_0
@@ -2433,7 +2422,7 @@ Func_353e5:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_35434
-	move_active_npc NPCMovement_3543f
+	move_active_npc .NPCMovement_3543f
 	wait_for_player_animation
 	unload_npc NPC_GR_CHALLENGE_HALL_GR_CHAP
 	end_script
@@ -2442,7 +2431,7 @@ Func_353e5:
 	script_command_02
 	end_script
 	ret
-NPCMovement_3543f:
+.NPCMovement_3543f:
 	db NORTH, MOVE_2
 	db EAST, MOVE_6
 	db $ff
@@ -2855,7 +2844,7 @@ Func_356e8:
 	set_player_direction NORTH
 	animate_player_movement $82, $02
 .ows_35735
-	move_active_npc NPCMovement_357a2
+	move_active_npc .NPCMovement_357a2
 	scroll_to_position $03, $00
 	wait_for_player_animation
 	do_frames 30
@@ -2867,7 +2856,7 @@ Func_356e8:
 	load_tilemap TILEMAP_08C, $05, $00
 	load_npc NPC_JACK, 6, 1, SOUTH
 	set_active_npc NPC_JACK, DialogJackText
-	move_active_npc NPCMovement_357aa
+	move_active_npc .NPCMovement_357aa
 	wait_for_player_animation
 	load_tilemap TILEMAP_08A, $05, $00
 	set_active_npc_direction EAST
@@ -2876,13 +2865,13 @@ Func_356e8:
 	script_jump_if_b0nz .ows_3577b
 	compare_loaded_var $02
 	script_jump_if_b0nz .ows_35774
-	move_player NPCMovement_357b0, TRUE
+	move_player .NPCMovement_357b0, TRUE
 	script_jump .ows_3577f
 .ows_35774
-	move_player NPCMovement_357b5, TRUE
+	move_player .NPCMovement_357b5, TRUE
 	script_jump .ows_3577f
 .ows_3577b
-	move_player NPCMovement_357ba, TRUE
+	move_player .NPCMovement_357ba, TRUE
 .ows_3577f
 	wait_for_player_animation
 	scroll_to_player
@@ -2894,46 +2883,47 @@ Func_356e8:
 	print_variable_npc_text Text124f, Text1250
 	print_npc_text Text1251
 	script_command_02
-	move_npc NPC_SENTA, NPCMovement_357a7
-	move_active_npc NPCMovement_357ad
+	move_npc NPC_SENTA, .NPCMovement_357a7
+	move_active_npc .NPCMovement_357ad
 	wait_for_player_animation
 	unload_npc NPC_JACK
 	script_jump Script_357bf
-NPCMovement_357a2:
+.NPCMovement_357a2:
 	db WEST, MOVE_5
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_357a7:
+.NPCMovement_357a7:
 	db WEST | MOVE_BACKWARDS, MOVE_1
 	db $ff
-NPCMovement_357aa:
+.NPCMovement_357aa:
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_357ad:
+.NPCMovement_357ad:
 	db SOUTH, MOVE_9
 	db $ff
-NPCMovement_357b0:
+.NPCMovement_357b0:
 	db NORTH, MOVE_4
 	db WEST, MOVE_4
 	db $ff
-NPCMovement_357b5:
+.NPCMovement_357b5:
 	db NORTH, MOVE_2
 	db WEST, MOVE_4
 	db $ff
-NPCMovement_357ba:
+.NPCMovement_357ba:
 	db NORTH, MOVE_4
 	db WEST, MOVE_3
 	db $ff
+
 Script_357bf:
 	set_active_npc NPC_SENTA, DialogSentaText
-	move_active_npc NPCMovement_357fe
+	move_active_npc .NPCMovement_357fe
 	wait_for_player_animation
 	set_player_direction SOUTH
 	do_frames 30
 	script_command_01
 	print_npc_text Text1252
 	script_command_02
-	move_active_npc NPCMovement_35803
+	move_active_npc .NPCMovement_35803
 	scroll_to_position $04, $02
 	wait_for_player_animation
 	do_frames 30
@@ -2944,7 +2934,7 @@ Script_357bf:
 	play_sfx SFX_0F
 	load_tilemap TILEMAP_08D, $0c, $05
 	do_frames 30
-	move_active_npc NPCMovement_35808
+	move_active_npc .NPCMovement_35808
 	scroll_to_position $03, $00
 	wait_for_player_animation
 	scroll_to_player
@@ -2956,15 +2946,15 @@ Script_357bf:
 	set_active_npc_direction SOUTH
 	end_script
 	ret
-NPCMovement_357fe:
+.NPCMovement_357fe:
 	db EAST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_35803:
+.NPCMovement_35803:
 	db SOUTH, MOVE_2
 	db EAST, MOVE_4
 	db $ff
-NPCMovement_35808:
+.NPCMovement_35808:
 	db WEST, MOVE_5
 	db NORTH, MOVE_3
 	db EAST, MOVE_0
@@ -3123,7 +3113,7 @@ Func_358f3:
 .ows_3592d
 	print_npc_text Text120f
 	script_command_02
-	move_active_npc NPCMovement_3597d
+	move_active_npc .NPCMovement_3597d
 	scroll_to_position $ff, $00
 	wait_for_player_animation
 	do_frames 30
@@ -3136,13 +3126,13 @@ Func_358f3:
 	get_player_x_position
 	compare_loaded_var $04
 	script_jump_if_b0z .ows_3595a
-	move_active_npc NPCMovement_35984
+	move_active_npc .NPCMovement_35984
 	scroll_to_position $ff, $01
 	wait_for_player_animation
 	set_active_npc_direction WEST
 	script_jump .ows_35961
 .ows_3595a
-	move_active_npc NPCMovement_35984
+	move_active_npc .NPCMovement_35984
 	scroll_to_position $ff, $02
 	wait_for_player_animation
 .ows_35961
@@ -3162,12 +3152,12 @@ Func_358f3:
 	set_active_npc_direction SOUTH
 	end_script
 	ret
-NPCMovement_3597d:
+.NPCMovement_3597d:
 	db NORTH, MOVE_4
 	db WEST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_35984:
+.NPCMovement_35984:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_4
 	db $ff
@@ -3294,7 +3284,7 @@ Func_35a9c:
 	xor a
 	start_script
 	set_event EVENT_MET_FIGHTING_FORT_MEMBERS
-	move_player NPCMovement_35b09, TRUE
+	move_player .NPCMovement_35b09, TRUE
 	wait_for_player_animation
 	set_active_npc NPC_KAMIYA, DialogKamiyaText
 	script_command_01
@@ -3328,8 +3318,8 @@ Func_35a9c:
 	print_npc_text Text0c15
 	script_command_02
 	do_frames 30
-	move_npc NPC_GODA, NPCMovement_35b0c
-	move_npc NPC_GRACE, NPCMovement_35b11
+	move_npc NPC_GODA, .NPCMovement_35b0c
+	move_npc NPC_GRACE, .NPCMovement_35b11
 	wait_for_player_animation
 	unload_npc NPC_GODA
 	unload_npc NPC_GRACE
@@ -3341,14 +3331,14 @@ Func_35a9c:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_35b09:
+.NPCMovement_35b09:
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_35b0c:
+.NPCMovement_35b0c:
 	db WEST, MOVE_2
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_35b11:
+.NPCMovement_35b11:
 	db EAST, MOVE_2
 	db NORTH, MOVE_2
 	db $ff
@@ -3458,11 +3448,11 @@ Func_35b82:
 	animate_player_movement $82, $02
 	set_player_direction NORTH
 .ows_35bd9
-	move_active_npc NPCMovement_35bdf
+	move_active_npc .NPCMovement_35bdf
 	wait_for_player_animation
 	end_script
 	ret
-NPCMovement_35bdf:
+.NPCMovement_35bdf:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
@@ -3542,7 +3532,7 @@ Func_35c86:
 	ld bc, $c7
 	ld de, SetBGP
 	farcall Func_12c0ce
-	farcall Func_30005
+	farcall Func_30000.asm_30005
 	ret
 
 FightingFortMaze18_MapHeader:
@@ -3598,7 +3588,7 @@ Func_35d22:
 	ld bc, $cc
 	ld de, SetBGP
 	farcall Func_12c0ce
-	farcall Func_30005
+	farcall Func_30000.asm_30005
 	ret
 
 FightingFortGoda_MapHeader:
@@ -3842,7 +3832,7 @@ Func_35e5e:
 	set_active_npc NPC_MITCH, DialogMitchText
 	print_npc_text Text0bfd
 	script_command_02
-	move_active_npc NPCMovement_35f11
+	move_active_npc .NPCMovement_35f11
 	wait_for_player_animation
 	unload_npc NPC_MITCH
 	set_active_npc NPC_GODA, DialogGodaText
@@ -3852,7 +3842,7 @@ Func_35e5e:
 	script_command_02
 	end_script
 	ret
-NPCMovement_35f11:
+.NPCMovement_35f11:
 	db SOUTH, MOVE_5
 	db $ff
 
@@ -4589,10 +4579,10 @@ Func_364ac:
 	get_player_x_position
 	compare_loaded_var $08
 	script_jump_if_b0nz .ows_364d4
-	move_player NPCMovement_3662f, TRUE
+	move_player .NPCMovement_3662f, TRUE
 	script_jump .ows_364d8
 .ows_364d4
-	move_player NPCMovement_36632, TRUE
+	move_player .NPCMovement_36632, TRUE
 .ows_364d8
 	scroll_to_position $03, $02
 	wait_for_player_animation
@@ -4601,11 +4591,11 @@ Func_364ac:
 	load_npc NPC_MAMI, 7, 15, SOUTH
 	load_npc NPC_STRONGHOLD_PLATFORM, 6, 15, SOUTH
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
-	move_active_npc NPCMovement_36639
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36639
+	move_active_npc .NPCMovement_36639
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36639
 	wait_for_player_animation
-	move_active_npc NPCMovement_3663c
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_3663c
+	move_active_npc .NPCMovement_3663c
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_3663c
 	wait_for_player_animation
 	do_frames 30
 	animate_active_npc_movement $02, $01
@@ -4613,7 +4603,7 @@ Func_364ac:
 	script_command_01
 	print_npc_text Text1138
 	script_command_02
-	move_active_npc NPCMovement_36629
+	move_active_npc .NPCMovement_36629
 	scroll_to_position $ff, $04
 	scroll_to_player
 	wait_for_player_animation
@@ -4722,7 +4712,7 @@ Func_364ac:
 	script_command_01
 	print_npc_text Text1146
 	script_command_02
-	move_active_npc NPCMovement_3662c
+	move_active_npc .NPCMovement_3662c
 	wait_for_player_animation
 	unload_npc NPC_MAMI
 	unload_npc NPC_STRONGHOLD_PLATFORM
@@ -4731,24 +4721,24 @@ Func_364ac:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_36629:
+.NPCMovement_36629:
 	db SOUTH, MOVE_3
 	db $ff
-NPCMovement_3662c:
+.NPCMovement_3662c:
 	db NORTH | MOVE_BACKWARDS, MOVE_4
 	db $ff
-NPCMovement_3662f:
+.NPCMovement_3662f:
 	db NORTH, MOVE_2
 	db $ff
-NPCMovement_36632:
+.NPCMovement_36632:
 	db NORTH, MOVE_2
 	db WEST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_36639:
+.NPCMovement_36639:
 	db SOUTH, RUN_3
 	db $ff
-NPCMovement_3663c:
+.NPCMovement_3663c:
 	db SOUTH, MOVE_1
 	db $ff
 
@@ -4758,11 +4748,11 @@ Script_3663f:
 	load_npc NPC_MAMI, 7, 15, SOUTH
 	load_npc NPC_STRONGHOLD_PLATFORM, 6, 15, SOUTH
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
-	move_npc NPC_MAMI, NPCMovement_36706
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36706
+	move_npc NPC_MAMI, .NPCMovement_36706
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36706
 	wait_for_player_animation
-	move_npc NPC_MAMI, NPCMovement_36709
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36709
+	move_npc NPC_MAMI, .NPCMovement_36709
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36709
 	wait_for_player_animation
 	do_frames 30
 	animate_npc_movement NPC_MAMI, $02, $01
@@ -4782,25 +4772,21 @@ Script_3663f:
 	compare_loaded_var $09
 	script_jump_if_b0nz .ows_3669a
 	script_jump .ows_366a5
-
 .ows_36692
 	animate_player_movement $01, $01
 	set_player_direction NORTH
 	script_jump .ows_366c9
-
 .ows_3669a
 	animate_player_movement $03, $01
 	animate_player_movement $03, $01
 	set_player_direction NORTH
 	script_jump .ows_366c9
-
 .ows_366a5
 	get_player_y_position
 	compare_loaded_var $08
 	script_jump_if_b0nz .ows_366b1
 	animate_player_movement $02, $01
 	script_jump .ows_366a5
-
 .ows_366b1
 	get_player_x_position
 	compare_loaded_var $07
@@ -4808,11 +4794,9 @@ Script_3663f:
 	script_jump_if_b1z .ows_366c0
 	animate_player_movement $01, $01
 	script_jump .ows_366b1
-
 .ows_366c0
 	animate_player_movement $03, $01
 	script_jump .ows_366b1
-
 .ows_366c6
 	animate_player_movement $00, $01
 .ows_366c9
@@ -4823,12 +4807,12 @@ Script_3663f:
 	animate_active_npc_movement $00, $01
 	do_frames 30
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
-	move_active_npc NPCMovement_3670c
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_3670c
+	move_active_npc .NPCMovement_3670c
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_3670c
 	wait_for_player_animation
 	play_sfx SFX_87
-	move_active_npc NPCMovement_3670f
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_3670f
+	move_active_npc .NPCMovement_3670f
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_3670f
 	wait_for_player_animation
 	unload_npc NPC_MAMI
 	unload_npc NPC_STRONGHOLD_PLATFORM
@@ -4839,20 +4823,16 @@ Script_3663f:
 	set_npc_direction NPC_YOSUKE, SOUTH
 	script_call Script_36b76
 	script_ret
-
-NPCMovement_36706:
+.NPCMovement_36706:
 	db SOUTH, RUN_3
 	db $ff
-
-NPCMovement_36709:
+.NPCMovement_36709:
 	db SOUTH, MOVE_1
 	db $ff
-
-NPCMovement_3670c:
+.NPCMovement_3670c:
 	db NORTH, MOVE_1
 	db $ff
-
-NPCMovement_3670f:
+.NPCMovement_3670f:
 	db NORTH, RUN_3
 	db $ff
 
@@ -5441,6 +5421,7 @@ Func_36ad3:
 	load_tilemap TILEMAP_0AA, $0b, $05
 	script_call Script_36ba6
 	script_ret
+
 Script_36b76:
 	check_event EVENT_BEAT_RYOKO
 	script_jump_if_b0nz .ows_36b8b
@@ -5535,19 +5516,19 @@ Func_36be5:
 	set_npc_direction NPC_STRONGHOLD_PLATFORM, NORTH
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
 	do_frames 30
-	move_player NPCMovement_36c30, FALSE
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c30
+	move_player .NPCMovement_36c30, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c30
 	wait_for_player_animation
 	play_sfx SFX_87
-	move_player NPCMovement_36c33, FALSE
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c33
+	move_player .NPCMovement_36c33, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c33
 	wait_for_player_animation
 	end_script
 	ret
-NPCMovement_36c30:
+.NPCMovement_36c30:
 	db NORTH, MOVE_1
 	db $ff
-NPCMovement_36c33:
+.NPCMovement_36c33:
 	db NORTH, RUN_3
 	db $ff
 
@@ -5568,11 +5549,11 @@ Func_36c36:
 	start_script
 	play_sfx SFX_88
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
-	move_player NPCMovement_36c95, FALSE
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c95
+	move_player .NPCMovement_36c95, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c95
 	wait_for_player_animation
-	move_player NPCMovement_36c98, FALSE
-	move_npc NPC_STRONGHOLD_PLATFORM, NPCMovement_36c98
+	move_player .NPCMovement_36c98, FALSE
+	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c98
 	wait_for_player_animation
 	do_frames 30
 	scroll_to_player
@@ -5585,10 +5566,10 @@ Func_36c36:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_36c95:
+.NPCMovement_36c95:
 	db SOUTH, RUN_3
 	db $ff
-NPCMovement_36c98:
+.NPCMovement_36c98:
 	db SOUTH, MOVE_1
 	db $ff
 
@@ -5713,7 +5694,6 @@ Script_36d75:
 	print_variable_npc_text Text1118, Text1119
 	script_command_02
 	script_jump .ows_36d87
-
 .ows_36d87
 	set_event EVENT_FREED_ROD
 	set_var VAR_28, $04
@@ -5736,7 +5716,6 @@ Script_36d75:
 	script_jump_if_b0nz .ows_36dba
 	set_player_direction EAST
 	script_jump .ows_36dc0
-
 .ows_36dba
 	animate_player_movement $02, $01
 	animate_player_movement $01, $01
@@ -5749,7 +5728,7 @@ Script_36d75:
 	print_npc_text Text111f
 	script_command_02
 	set_player_direction SOUTH
-	move_active_npc NPCMovement_36de5
+	move_active_npc .NPCMovement_36de5
 	wait_for_player_animation
 	unload_npc NPC_ROD
 	set_player_direction NORTH
@@ -5759,8 +5738,7 @@ Script_36d75:
 	script_command_02
 	end_script
 	ret
-
-NPCMovement_36de5:
+.NPCMovement_36de5:
 	db SOUTH, MOVE_7
 	db $ff
 
@@ -5895,7 +5873,7 @@ Func_36ed7:
 	xor a
 	start_script
 	set_event EVENT_MET_MAMI_AND_ROD
-	move_player NPCMovement_36f40, TRUE
+	move_player .NPCMovement_36f40, TRUE
 	wait_for_player_animation
 	script_command_01
 	set_active_npc NPC_MAMI, DialogMamiText
@@ -5940,7 +5918,7 @@ Func_36ed7:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_36f40:
+.NPCMovement_36f40:
 	db NORTH, MOVE_4
 	db $ff
 
@@ -6087,13 +6065,12 @@ Script_37031:
 	set_active_npc NPC_SAMEJIMA, DialogSamejimaText
 	print_npc_text Text0f5b
 	script_command_02
-	move_active_npc NPCMovement_3706c
+	move_active_npc .NPCMovement_3706c
 	wait_for_player_animation
 	set_npc_direction NPC_ISHII, NORTH
 	end_script
 	ret
-
-NPCMovement_3706c:
+.NPCMovement_3706c:
 	db NORTH, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
@@ -6712,17 +6689,14 @@ Func_37493:
 	script_command_02
 	end_script
 	ret
-
 .NPCMovement_37524:
 	db WEST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
 .NPCMovement_37529:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
-
 .ows_3752e
 	print_npc_text Text08e8
 	script_command_02
@@ -6795,23 +6769,19 @@ Func_37534:
 	ret z
 	call Func_3448d
 	ret
-
 .ows_375bf
 	print_npc_text Text08ed
 	script_command_02
 	end_script
 	ret
-
 .NPCMovement_375c5:
 	db EAST, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
 .NPCMovement_375ca:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
-
 .ows_375cf
 	print_npc_text Text08ee
 	script_command_02
@@ -7043,14 +7013,14 @@ Func_37709:
 Script_377c4:
 	print_npc_text Text08fa
 	script_command_02
-	move_active_npc NPCMovement_377ff
-	move_npc NPC_KANZAKI, NPCMovement_377fa
+	move_active_npc .NPCMovement_377ff
+	move_npc NPC_KANZAKI, .NPCMovement_377fa
 	wait_for_player_animation
-	move_player NPCMovement_377f3, TRUE
+	move_player .NPCMovement_377f3, TRUE
 	wait_for_player_animation
-	move_active_npc NPCMovement_37806
-	move_npc NPC_KANZAKI, NPCMovement_37806
-	move_player NPCMovement_37806, TRUE
+	move_active_npc .NPCMovement_37806
+	move_npc NPC_KANZAKI, .NPCMovement_37806
+	move_player .NPCMovement_37806, TRUE
 	wait_for_player_animation
 	set_scroll_state $02
 	animate_player_movement $00, $01
@@ -7060,24 +7030,21 @@ Script_377c4:
 	ld b, NORTH
 	farcall Func_d3c4
 	ret
-NPCMovement_377f3:
+.NPCMovement_377f3:
 	db NORTH, MOVE_2
 	db EAST, MOVE_2
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_377fa:
+.NPCMovement_377fa:
 	db EAST, MOVE_1
 	db NORTH, MOVE_1
 	db $ff
-
-NPCMovement_377ff:
+.NPCMovement_377ff:
 	db NORTH, MOVE_2
 	db WEST, MOVE_3
 	db NORTH, MOVE_1
 	db $ff
-
-NPCMovement_37806:
+.NPCMovement_37806:
 	db NORTH, MOVE_7
 	db $ff
 
@@ -7253,6 +7220,7 @@ Func_3792d:
 	script_command_02
 	end_script
 	ret
+
 Script_37952:
 	check_event EVENT_TALKED_TO_RUI
 	script_jump_if_b0z .ows_37980
@@ -7319,6 +7287,7 @@ Script_37952:
 	db SOUTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
+
 Script_379d7:
 	print_npc_text Text091b
 	print_npc_text Text0914
@@ -7451,48 +7420,41 @@ Script_37ac0:
 	script_jump_if_b0nz .ows_37ae8
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_37ae1
-	move_player NPCMovement_37af4, TRUE
+	move_player .NPCMovement_37af4, TRUE
 	script_jump .ows_37aec
-
 .ows_37ae1
-	move_player NPCMovement_37aff, TRUE
+	move_player .NPCMovement_37aff, TRUE
 	script_jump .ows_37aec
-
 .ows_37ae8
-	move_player NPCMovement_37b08, TRUE
+	move_player .NPCMovement_37b08, TRUE
 .ows_37aec
 	wait_for_player_animation
 	script_command_01
 .ows_37aee
 	script_ret
-
 .ows_37aef
-	move_npc NPC_RUI, NPCMovement_37b11
+	move_npc NPC_RUI, .NPCMovement_37b11
 	script_ret
-
-NPCMovement_37af4:
+.NPCMovement_37af4:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_3
 	db WEST, MOVE_5
 	db NORTH, MOVE_2
 	db EAST, MOVE_0
 	db $ff
-
-NPCMovement_37aff:
+.NPCMovement_37aff:
 	db SOUTH, MOVE_2
 	db WEST, MOVE_5
 	db NORTH, MOVE_2
 	db EAST, MOVE_0
 	db $ff
-
-NPCMovement_37b08:
+.NPCMovement_37b08:
 	db SOUTH, MOVE_1
 	db WEST, MOVE_4
 	db NORTH, MOVE_2
 	db EAST, MOVE_0
 	db $ff
-
-NPCMovement_37b11:
+.NPCMovement_37b11:
 	db NORTH, MOVE_2
 	db EAST, MOVE_2
 	db SOUTH, MOVE_0
@@ -7501,83 +7463,73 @@ NPCMovement_37b11:
 Script_37b18:
 	script_command_02
 	set_active_npc_direction EAST
-	move_npc NPC_KANZAKI, NPCMovement_37b5c
+	move_npc NPC_KANZAKI, .NPCMovement_37b5c
 	get_player_direction
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_37b38
 	compare_loaded_var $01
 	script_jump_if_b0nz .ows_37b31
-	move_player NPCMovement_37b3f, TRUE
+	move_player .NPCMovement_37b3f, TRUE
 	script_jump .ows_37b3c
-
 .ows_37b31
-	move_player NPCMovement_37b4a, TRUE
+	move_player .NPCMovement_37b4a, TRUE
 	script_jump .ows_37b3c
-
 .ows_37b38
-	move_player NPCMovement_37b53, TRUE
+	move_player .NPCMovement_37b53, TRUE
 .ows_37b3c
 	wait_for_player_animation
 	script_command_01
 	script_ret
-
-NPCMovement_37b3f:
+.NPCMovement_37b3f:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_3
 	db EAST, MOVE_5
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_37b4a:
+.NPCMovement_37b4a:
 	db SOUTH, MOVE_2
 	db EAST, MOVE_5
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_37b53:
+.NPCMovement_37b53:
 	db SOUTH, MOVE_1
 	db EAST, MOVE_4
 	db NORTH, MOVE_2
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_37b5c:
+.NPCMovement_37b5c:
 	db NORTH, MOVE_2
 	db WEST, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
 
 Script_37b63:
-	move_player NPCMovement_37b6d, TRUE
-	move_npc NPC_RUI, NPCMovement_37b72
+	move_player .NPCMovement_37b6d, TRUE
+	move_npc NPC_RUI, .NPCMovement_37b72
 	wait_for_player_animation
 	script_ret
-
-NPCMovement_37b6d:
+.NPCMovement_37b6d:
 	db SOUTH, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_37b72:
+.NPCMovement_37b72:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_2
 	db EAST, MOVE_0
 	db $ff
 
 Script_37b79:
-	move_player NPCMovement_37b83, TRUE
-	move_npc NPC_KANZAKI, NPCMovement_37b88
+	move_player .NPCMovement_37b83, TRUE
+	move_npc NPC_KANZAKI, .NPCMovement_37b88
 	wait_for_player_animation
 	script_ret
-
-NPCMovement_37b83:
+.NPCMovement_37b83:
 	db SOUTH, MOVE_1
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_37b88:
+.NPCMovement_37b88:
 	db EAST, MOVE_2
 	db SOUTH, MOVE_2
 	db WEST, MOVE_0

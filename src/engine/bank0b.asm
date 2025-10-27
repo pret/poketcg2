@@ -494,20 +494,20 @@ Func_2c3cb:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_2c3f8
-	move_active_npc NPCMovement_2c450
+	move_active_npc .NPCMovement_2c450
 	wait_for_player_animation
 	do_frames 30
 	get_player_y_position
 	compare_loaded_var $04
 	script_jump_if_b0nz .ows_2c40d
 	script_jump_if_b1nz .ows_2c413
-	move_active_npc NPCMovement_2c457
+	move_active_npc .NPCMovement_2c457
 	script_jump .ows_2c416
 .ows_2c40d
-	move_active_npc NPCMovement_2c45c
+	move_active_npc .NPCMovement_2c45c
 	script_jump .ows_2c416
 .ows_2c413
-	move_active_npc NPCMovement_2c463
+	move_active_npc .NPCMovement_2c463
 .ows_2c416
 	wait_for_player_animation
 	do_frames 15
@@ -540,21 +540,21 @@ Func_2c3cb:
 	script_command_02
 	end_script
 	ret
-NPCMovement_2c450:
+.NPCMovement_2c450:
 	db NORTH, MOVE_2
 	db WEST, MOVE_4
 	db NORTH, MOVE_0
 	db $ff
-NPCMovement_2c457:
+.NPCMovement_2c457:
 	db EAST, MOVE_4
 	db SOUTH, MOVE_2
 	db $ff
-NPCMovement_2c45c:
+.NPCMovement_2c45c:
 	db EAST, MOVE_4
 	db SOUTH, MOVE_2
 	db EAST, MOVE_0
 	db $ff
-NPCMovement_2c463:
+.NPCMovement_2c463:
 	db EAST, MOVE_4
 	db SOUTH, MOVE_1
 	db EAST, MOVE_0
@@ -728,23 +728,23 @@ Func_2c584:
 	set_active_npc_direction SOUTH
 	print_npc_text Text0b09
 	script_command_02
-	move_npc NPC_GR_4, NPCMovement_2c5e6
-	move_npc NPC_ISAAC, NPCMovement_2c5eb
-	move_npc NPC_NICHOLAS, NPCMovement_2c5f0
+	move_npc NPC_GR_4, .NPCMovement_2c5e6
+	move_npc NPC_ISAAC, .NPCMovement_2c5eb
+	move_npc NPC_NICHOLAS, .NPCMovement_2c5f0
 	wait_for_player_animation
 	end_script
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_2c5e6:
+.NPCMovement_2c5e6:
 	db NORTH, MOVE_5
 	db SOUTH, MOVE_0
 	db $ff
-NPCMovement_2c5eb:
+.NPCMovement_2c5eb:
 	db NORTH, MOVE_4
 	db SOUTH, MOVE_0
 	db $ff
-NPCMovement_2c5f0:
+.NPCMovement_2c5f0:
 	db NORTH, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
@@ -756,21 +756,21 @@ Script_2c5f5:
 	reset_event EVENT_TALKED_TO_NICHOLAS
 	reset_event EVENT_TALKED_TO_BRANDON
 	set_active_npc NPC_GR_4, DialogGR4Text
-	move_active_npc NPCMovement_2c637
+	move_active_npc .NPCMovement_2c637
 	wait_for_player_animation
 	set_active_npc_direction WEST
 	script_command_01
 	print_npc_text Text0b0a
 	script_command_02
-	move_active_npc NPCMovement_2c63a
+	move_active_npc .NPCMovement_2c63a
 	wait_for_player_animation
 	do_frames 30
-	move_active_npc NPCMovement_2c63d
+	move_active_npc .NPCMovement_2c63d
 	wait_for_player_animation
 	script_command_01
 	print_npc_text Text0b0b
 	script_command_02
-	move_active_npc NPCMovement_2c642
+	move_active_npc .NPCMovement_2c642
 	wait_for_player_animation
 	unload_npc NPC_GR_4
 	play_song_next MUSIC_CLUB_1
@@ -783,21 +783,17 @@ Script_2c5f5:
 	script_command_02
 	end_script
 	ret
-
-NPCMovement_2c637:
+.NPCMovement_2c637:
 	db SOUTH, MOVE_2
 	db $ff
-
-NPCMovement_2c63a:
+.NPCMovement_2c63a:
 	db SOUTH, MOVE_4
 	db $ff
-
-NPCMovement_2c63d:
+.NPCMovement_2c63d:
 	db NORTH, MOVE_4
 	db WEST, MOVE_0
 	db $ff
-
-NPCMovement_2c642:
+.NPCMovement_2c642:
 	db SOUTH, MOVE_8
 	db $ff
 
@@ -1878,8 +1874,8 @@ Func_2ce39:
 	set_active_npc NPC_GR_4, DialogGR4Text
 	print_npc_text Text0b68
 	script_command_02
-	move_npc NPC_MURRAY, NPCMovement_2ce7c
-	move_npc NPC_DANIEL, NPCMovement_2ce85
+	move_npc NPC_MURRAY, .NPCMovement_2ce7c
+	move_npc NPC_DANIEL, .NPCMovement_2ce85
 	wait_for_player_animation
 	do_frames 30
 	scroll_to_position $ff, $05
@@ -1888,13 +1884,13 @@ Func_2ce39:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_2ce7c:
+.NPCMovement_2ce7c:
 	db NORTH, MOVE_1
 	db WEST, MOVE_1
 	db NORTH, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
-NPCMovement_2ce85:
+.NPCMovement_2ce85:
 	db SOUTH, MOVE_4
 	db $ff
 
@@ -2427,13 +2423,12 @@ Script_2d249:
 	get_player_direction
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_2d25d
-	move_active_npc NPCMovement_2d296
-	move_player NPCMovement_2d29f, TRUE
+	move_active_npc .NPCMovement_2d296
+	move_player .NPCMovement_2d29f, TRUE
 	script_jump .ows_2d264
-
 .ows_2d25d
-	move_active_npc NPCMovement_2d2ae
-	move_player NPCMovement_2d2b7, TRUE
+	move_active_npc .NPCMovement_2d2ae
+	move_player .NPCMovement_2d2b7, TRUE
 .ows_2d264
 	wait_for_player_animation
 	script_command_01
@@ -2445,7 +2440,6 @@ Script_2d249:
 	wait_song
 	resume_song
 	script_jump .ows_2d285
-
 .ows_2d278
 	print_npc_text Text0bc2
 	play_song MUSIC_BOOSTER_PACK
@@ -2459,19 +2453,17 @@ Script_2d249:
 	give_coin COIN_ALAKAZAM
 	print_npc_text Text0bc6
 	script_command_02
-	move_active_npc NPCMovement_2d2c6
+	move_active_npc .NPCMovement_2d2c6
 	wait_for_player_animation
 	end_script
 	ret
-
-NPCMovement_2d296:
+.NPCMovement_2d296:
 	db SOUTH, RUN_2
 	db WEST, RUN_2
 	db SOUTH, RUN_4
 	db WEST, RUN_1
 	db $ff
-
-NPCMovement_2d29f:
+.NPCMovement_2d29f:
 	db SOUTH | MOVE_BACKWARDS, RUN_1
 	db EAST, RUN_0
 	db WEST | MOVE_BACKWARDS, RUN_2
@@ -2480,15 +2472,13 @@ NPCMovement_2d29f:
 	db EAST, RUN_0
 	db WEST | MOVE_BACKWARDS, RUN_2
 	db $ff
-
-NPCMovement_2d2ae:
+.NPCMovement_2d2ae:
 	db NORTH, RUN_2
 	db WEST, RUN_2
 	db SOUTH, RUN_8
 	db WEST, RUN_1
 	db $ff
-
-NPCMovement_2d2b7:
+.NPCMovement_2d2b7:
 	db NORTH | MOVE_BACKWARDS, RUN_1
 	db EAST, RUN_0
 	db WEST | MOVE_BACKWARDS, RUN_2
@@ -2497,8 +2487,7 @@ NPCMovement_2d2b7:
 	db EAST, RUN_0
 	db WEST | MOVE_BACKWARDS, RUN_2
 	db $ff
-
-NPCMovement_2d2c6:
+.NPCMovement_2d2c6:
 	db EAST, MOVE_1
 	db NORTH, MOVE_4
 	db EAST, MOVE_2
@@ -2528,13 +2517,13 @@ Func_2d2f0:
 	farcall SetOWObjectAnimStruct1Flag2
 	ld a, $01
 	start_script
-	move_active_npc NPCMovement_2d307
+	move_active_npc .NPCMovement_2d307
 	wait_for_player_animation
 	unload_npc NPC_GR_4
 	play_song_next MUSIC_CLUB_2
 	end_script
 	ret
-NPCMovement_2d307:
+.NPCMovement_2d307:
 	db SOUTH, RUN_9
 	db $ff
 
@@ -3013,7 +3002,7 @@ Func_2d6ca:
 	print_npc_text Text10cd
 	script_command_02
 	set_player_position 6, 13
-	move_player NPCMovement_2d74e, TRUE
+	move_player .NPCMovement_2d74e, TRUE
 	wait_for_player_animation
 	script_command_01
 	set_active_npc NPC_GR_1, DialogGR1Text
@@ -3032,7 +3021,7 @@ Func_2d6ca:
 	set_active_npc_direction NORTH
 	print_npc_text Text10d3
 	script_command_02
-	move_active_npc NPCMovement_2d751
+	move_active_npc .NPCMovement_2d751
 	wait_for_player_animation
 	fade_out $03, FALSE
 	wait_for_fade
@@ -3054,10 +3043,10 @@ Func_2d6ca:
 	ld a, $00
 	ld [wd582], a
 	ret
-NPCMovement_2d74e:
+.NPCMovement_2d74e:
 	db NORTH, MOVE_8
 	db $ff
-NPCMovement_2d751:
+.NPCMovement_2d751:
 	db SOUTH, MOVE_10
 	db $ff
 
@@ -3306,7 +3295,6 @@ Script_2d900:
 	wait_song
 	resume_song
 	script_jump .ows_2d91f
-
 .ows_2d912
 	print_npc_text Text10fe
 	play_song MUSIC_BOOSTER_PACK
@@ -4281,24 +4269,22 @@ Script_2e038:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_2e052
-	move_active_npc NPCMovement_2e067
+	move_active_npc .NPCMovement_2e067
 	wait_for_player_animation
 	set_active_npc_direction NORTH
 	script_command_01
 	print_npc_text Text08c3
 	script_command_02
-	move_active_npc NPCMovement_2e06a
+	move_active_npc .NPCMovement_2e06a
 	wait_for_player_animation
 	unload_npc NPC_GR_1
 	play_song_next MUSIC_CLUB_3
 	end_script
 	ret
-
-NPCMovement_2e067:
+.NPCMovement_2e067:
 	db SOUTH, MOVE_3
 	db $ff
-
-NPCMovement_2e06a:
+.NPCMovement_2e06a:
 	db SOUTH, MOVE_6
 	db $ff
 
@@ -4870,13 +4856,13 @@ Func_2e449:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_2e48b
-	move_active_npc NPCMovement_2e495
+	move_active_npc .NPCMovement_2e495
 	wait_for_player_animation
 	unload_npc NPC_GR_2
 	play_song_next MUSIC_CLUB_1
 	end_script
 	ret
-NPCMovement_2e495:
+.NPCMovement_2e495:
 	db SOUTH, MOVE_7
 	db $ff
 
@@ -5958,13 +5944,13 @@ Func_2ec5a:
 	set_player_direction EAST
 	animate_player_movement $83, $02
 .ows_2ec9c
-	move_active_npc NPCMovement_2eca6
+	move_active_npc .NPCMovement_2eca6
 	wait_for_player_animation
 	unload_npc NPC_GR_2
 	play_song_next MUSIC_CLUB_3
 	end_script
 	ret
-NPCMovement_2eca6:
+.NPCMovement_2eca6:
 	db SOUTH, MOVE_6
 	db $ff
 
@@ -6571,22 +6557,20 @@ Script_2f127:
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_2f182
-	move_active_npc NPCMovement_2f197
+	move_active_npc .NPCMovement_2f197
 	wait_for_player_animation
 	set_active_npc_direction NORTH
 	print_npc_text Text0835
 	script_command_02
-	move_active_npc NPCMovement_2f19a
+	move_active_npc .NPCMovement_2f19a
 	wait_for_player_animation
 	unload_npc NPC_GR_3
 	play_song_next MUSIC_CLUB_2
 	script_jump Script_2f19d
-
-NPCMovement_2f197:
+.NPCMovement_2f197:
 	db SOUTH, MOVE_2
 	db $ff
-
-NPCMovement_2f19a:
+.NPCMovement_2f19a:
 	db SOUTH, MOVE_5
 	db $ff
 
@@ -6603,7 +6587,6 @@ Script_2f19d:
 	wait_song
 	resume_song
 	script_jump .ows_2f1c5
-
 .ows_2f1b8
 	print_npc_text Text0838
 	play_song MUSIC_BOOSTER_PACK
@@ -7572,7 +7555,7 @@ Script_2f8f8:
 	script_command_02
 	do_frames 60
 	set_player_position 7, 6
-	move_player NPCMovement_2f923, TRUE
+	move_player .NPCMovement_2f923, TRUE
 	scroll_to_position $03, $05
 	wait_for_player_animation
 	scroll_to_player
@@ -7585,8 +7568,7 @@ Script_2f8f8:
 	script_command_02
 	end_script
 	ret
-
-NPCMovement_2f923:
+.NPCMovement_2f923:
 	db SOUTH, MOVE_3
 	db $ff
 
@@ -8013,7 +7995,6 @@ Func_2fc0e:
 	print_npc_text Text0c6c
 	give_booster_packs BoosterList_cd48
 	script_jump Script_2fc3e
-
 .ows_2fc23
 	print_npc_text Text0c6d
 	script_command_02
@@ -8053,7 +8034,7 @@ Script_2fc3e:
 	set_player_direction NORTH
 	animate_player_movement $82, $02
 .ows_2fc65
-	move_active_npc NPCMovement_2fca1
+	move_active_npc .NPCMovement_2fca1
 	scroll_to_position $03, $07
 	wait_for_player_animation
 	do_frames 60
@@ -8075,20 +8056,18 @@ Script_2fc3e:
 	script_command_01
 	print_npc_text Text0c73
 	script_command_02
-	move_active_npc NPCMovement_2fcaa
+	move_active_npc .NPCMovement_2fcaa
 	wait_for_player_animation
 	unload_npc NPC_GR_3
 	play_song_next MUSIC_CLUB_3
 	script_jump Script_2f8f8
-
-NPCMovement_2fca1:
+.NPCMovement_2fca1:
 	db EAST, MOVE_3
 	db SOUTH, MOVE_7
 	db WEST, MOVE_3
 	db NORTH, MOVE_0
 	db $ff
-
-NPCMovement_2fcaa:
+.NPCMovement_2fcaa:
 	db SOUTH, MOVE_4
 	db $ff
 
