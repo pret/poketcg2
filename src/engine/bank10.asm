@@ -2422,8 +2422,6 @@ NPCMovement_41589:
 	db WEST, MOVE_0
 	db $ff
 
-SECTION "Bank 10@5592", ROMX[$5592], BANK[$10]
-
 TcgChallengeHall_MapHeader:
 	db MAP_GFX_TCG_CHALLENGE_HALL
 	dba TcgChallengeHall_MapScripts
@@ -2790,7 +2788,7 @@ Func_417df:
 	ld de, $a09
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, $58a1
+	ld hl, NPCMovement_418a1
 	farcall Func_10def
 	call Func_3340
 	ld a, $01
@@ -2811,7 +2809,7 @@ Func_417df:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, $589c
+	ld hl, NPCMovement_4189c
 	farcall Func_10def
 	call Func_3340
 	pop af
@@ -2821,11 +2819,15 @@ Func_417df:
 	script_command_01
 	script_ret
 
-Data_4189c:
-	db $01, $05, $02, $15, $ff
+NPCMovement_4189c:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
 
-Data_418a1:
-	db $00, $15, $03, $05, $ff
+NPCMovement_418a1:
+	db NORTH, MOVE_5
+	db WEST, MOVE_1
+	db $ff
 
 Script_418a6:
 	set_var VAR_2C, $02
@@ -2912,7 +2914,7 @@ Func_418ed:
 	ld de, $a09
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, $59a6
+	ld hl, NPCMovement_419a6
 	farcall Func_10def
 	call Func_3340
 	ld a, $01
@@ -2933,7 +2935,7 @@ Func_418ed:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, $59a1
+	ld hl, NPCMovement_419a1
 	farcall Func_10def
 	call Func_3340
 	pop af
@@ -2943,11 +2945,16 @@ Func_418ed:
 	script_command_01
 	script_ret
 
-Data_419a1:
-	db $01, $05, $02, $15, $ff
+NPCMovement_419a1:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
 
-Data_419a6:
-	db $00, $15, $03, $05, $ff
+NPCMovement_419a6:
+	db NORTH, MOVE_5
+	db WEST, MOVE_1
+	db $ff
+
 Script_419ab:
 	set_var VAR_2C, $03
 	quit_script
@@ -3081,7 +3088,7 @@ Func_41a4d:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, $5ae0
+	ld hl, .NPCMovement_41ae0
 	farcall Func_10def
 	call Func_3340
 	pop af
@@ -3091,11 +3098,15 @@ Func_41a4d:
 	script_command_01
 	script_ret
 
-.Data_41ae0:
-	db $01, $05, $02, $15, $ff
+.NPCMovement_41ae0:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
 
-.Data_41ae5:
-	db $00, $15, $03, $05, $ff
+.NPCMovement_41ae5:
+	db NORTH, MOVE_5
+	db WEST, MOVE_1
+	db $ff
 
 .ows_41aea
 	set_var VAR_2B, $01
@@ -3423,7 +3434,46 @@ NPCMovement_41d5d:
 	db EAST, MOVE_2
 	db $ff
 
-SECTION "Bank 10@5dac", ROMX[$5dac], BANK[$10]
+Func_41d64:
+	xor a
+	start_script
+	do_frames 60
+	move_player NPCMovement_41da5, TRUE
+	wait_for_player_animation
+	move_npc NPC_GR_5, NPCMovement_41da0
+	wait_for_player_animation
+	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
+	script_jump_if_b0z .ows_41d94
+	check_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
+	script_jump_if_b0z .ows_41d88
+	set_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
+	script_command_01
+	print_npc_text Text082c
+	script_command_02
+	script_jump .ows_41d99
+.ows_41d88
+	set_active_npc NPC_GR_5, DialogGR5Text
+	script_command_01
+	print_npc_text Text082d
+	script_command_02
+	script_jump .ows_41d99
+.ows_41d94
+	script_command_64 $0e
+	script_jump .ows_41d88
+.ows_41d99
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ret
+NPCMovement_41da0:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_3
+	db $ff
+NPCMovement_41da5:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_4
+	db NORTH, MOVE_0
+	db $ff
 
 Func_41dac:
 	call Func_41db4
@@ -3636,7 +3686,7 @@ Func_41f66:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $56
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -3658,7 +3708,7 @@ Func_41f66:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $56
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -3697,7 +3747,7 @@ Func_41fe1:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $56
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -3743,7 +3793,7 @@ Func_42050:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $56
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -3777,7 +3827,7 @@ Func_4207e:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $57
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -3822,7 +3872,7 @@ Func_420eb:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $57
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -3856,7 +3906,7 @@ Func_42119:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $58
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -3901,7 +3951,7 @@ Func_42186:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $58
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -3935,7 +3985,7 @@ Func_421b4:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $59
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -3980,7 +4030,7 @@ Func_42221:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $59
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -4014,7 +4064,7 @@ Func_4224f:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $5a
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -4060,7 +4110,7 @@ Func_422be:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $5a
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -4094,7 +4144,7 @@ Func_422ec:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $5b
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -4139,7 +4189,7 @@ Func_42359:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $5b
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -4173,7 +4223,7 @@ Func_42387:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $5c
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -4219,7 +4269,7 @@ Func_423f6:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $5c
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -4253,7 +4303,7 @@ Func_42424:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $5d
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -4298,7 +4348,7 @@ Func_42491:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $5d
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
@@ -4332,7 +4382,7 @@ Func_424bf:
 	play_sfx SFX_9F
 	quit_script
 	ld a, $b0
-	ld hl, $657f
+	ld hl, Data_4257f
 	call Func_4255a
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
@@ -4377,13 +4427,14 @@ Func_4252c:
 	play_sfx SFX_A0
 	quit_script
 	ld a, $b0
-	ld hl, $65ae
+	ld hl, Data_425ae
 	call Func_4255a
 	ld a, $01
 	start_script
 	unload_npc NPC_YUI
 	end_script
 	ret
+
 Func_4255a:
 	push af
 	push bc
@@ -4411,9 +4462,19 @@ Func_4255a:
 	pop bc
 	pop af
 	ret
-; 0x4257f
 
-SECTION "Bank 10@65cf", ROMX[$65cf], BANK[$10]
+Data_4257f:
+	db $8a, $0a, $89, $09, $88, $08, $87, $07, $86, $06
+	db $85, $05, $84, $04, $83, $02, $82, $02, $82, $02
+	db $82, $02, $82, $02, $81, $01, $81, $01, $81, $01
+	db $81, $01, $81, $01, $81, $01, $81, $01, $81, $01
+	db $81, $01, $81, $01, $81, $01, $ff
+
+Data_425ae:
+	db $88, $08, $87, $07, $86, $06, $85, $05, $84, $04
+	db $83, $02, $82, $02, $82, $02, $81, $01, $81, $01
+	db $81, $01, $81, $01, $81, $01, $81, $01, $81, $01
+	db $81, $01, $ff
 
 GrChallengeHall_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL
@@ -5361,23 +5422,23 @@ Script_42d40:
 	farcall Func_453c3
 	push af
 	ld b, $10
-	ld hl, $6d9b
+	ld hl, NPCMovement_42d9b
 	farcall Func_10def
 	call Func_3340
 	pop af
 	push af
 	ld b, $10
-	ld hl, $6da0
+	ld hl, NPCMovement_42da0
 	farcall Func_10def
 	ld a, $e3
-	ld hl, $6da3
+	ld hl, NPCMovement_42da3
 	farcall Func_10def
 	call Func_3340
 	pop af
 	farcall ClearOWObject
 	ld a, $e3
 	ld b, $10
-	ld hl, $6da8
+	ld hl, NPCMovement_42da8
 	farcall Func_10def
 	call Func_3340
 	ld a, $01
@@ -5385,18 +5446,24 @@ Script_42d40:
 	script_command_01
 	script_ret
 
-Data_42d9b:
-	db $01, $09, $02, $09, $ff
+NPCMovement_42d9b:
+	db EAST, MOVE_2
+	db SOUTH, MOVE_2
+	db $ff
 
+NPCMovement_42da0:
+	db SOUTH, MOVE_5
+	db $ff
 
-Data_42da0:
-	db $02, $15, $ff
+NPCMovement_42da3:
+	db WEST, MOVE_1
+	db EAST, MOVE_0
+	db $ff
 
-Data_42da3:
-	db $03, $05, $01, $01, $ff
-
-Data_42da8:
-	db $01, $05, $02, $01, $ff
+NPCMovement_42da8:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
 
 Script_42dad:
 	script_command_02
@@ -5416,18 +5483,18 @@ Script_42dad:
 	ld de, $b0a
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, $6e02
+	ld hl, Data_42e02
 	farcall Func_10def
 	ld a, $e3
-	ld hl, $6e0a
+	ld hl, Data_42e0a
 	farcall Func_10def
 	call Func_3340
 	pop af
 	ld b, $10
-	ld hl, $6e05
+	ld hl, Data_42e05
 	farcall Func_10def
 	ld a, $e3
-	ld hl, $6e0f
+	ld hl, Data_42e0f
 	farcall Func_10def
 	call Func_3340
 	ld a, $01
@@ -5436,16 +5503,23 @@ Script_42dad:
 	script_ret
 
 Data_42e02:
-	db $00, $0d, $ff
+	db NORTH, MOVE_3
+	db $ff
 
 Data_42e05:
-	db $00, $0d, $03, $09, $ff
+	db NORTH, MOVE_3
+	db WEST, MOVE_2
+	db $ff
 
 Data_42e0a:
-	db $03, $05, $02, $01, $ff
+	db WEST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
 
 Data_42e0f:
-	db $01, $05, $02, $01, $ff
+	db EAST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
 
 Func_42e14:
 	ld a, $30
@@ -5721,9 +5795,130 @@ Script_43044:
 
 Data_43050:
 	db $af, $cd, $f2, $33, $0e, $a1, $2c, $53, $ff
-; 0x43059
 
-SECTION "Bank 10@7136", ROMX[$7136], BANK[$10]
+Script_43059:
+	game_center
+	move_npc NPC_RUI, NPCMovement_4310a
+	move_player NPCMovement_430f4, TRUE
+	wait_for_player_animation
+	move_npc NPC_RUI, NPCMovement_43113
+	wait_for_player_animation
+	do_frames 30
+	script_command_01
+	set_active_npc NPC_KANZAKI, DialogKanzakiText
+	print_npc_text Text092a
+	script_command_02
+	animate_active_npc_movement $82, $01
+	script_command_01
+	set_active_npc NPC_RUI, DialogRuiText
+	print_npc_text Text092b
+	script_command_02
+	animate_active_npc_movement $82, $01
+	script_command_01
+	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
+	print_npc_text Text092c
+	script_command_02
+	set_active_npc NPC_KANZAKI, DialogKanzakiText
+	animate_active_npc_movement $00, $01
+	set_active_npc_direction WEST
+	script_command_01
+	print_npc_text Text092d
+	script_command_02
+	move_active_npc NPCMovement_4311a
+	wait_for_player_animation
+	set_active_npc NPC_RUI, DialogRuiText
+	animate_active_npc_movement $00, $01
+	set_active_npc_direction EAST
+	script_command_01
+	print_npc_text Text092e
+	script_command_02
+	move_active_npc NPCMovement_4311f
+	wait_for_player_animation
+	unload_npc NPC_KANZAKI
+	unload_npc NPC_RUI
+	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
+	animate_active_npc_movement $02, $01
+	script_command_01
+	print_npc_text Text092f
+	script_command_02
+	animate_active_npc_movement $01, $01
+	script_command_01
+	print_npc_text Text0930
+	script_command_02
+	animate_active_npc_movement $03, $01
+	set_active_npc_direction SOUTH
+	script_command_01
+	print_npc_text Text0931
+	script_command_02
+	animate_active_npc_movement $03, $01
+	script_command_01
+	print_npc_text Text0932
+	script_command_02
+	animate_active_npc_movement $01, $01
+	set_active_npc_direction SOUTH
+	script_command_01
+	print_npc_text Text0933
+	script_command_02
+	move_active_npc NPCMovement_4312d
+	move_player NPCMovement_43124, TRUE
+	wait_for_player_animation
+	end_script
+	ld a, $00
+	ld [wd582], a
+	jp Func_43136
+
+NPCMovement_430f4:
+	db NORTH, MOVE_6
+	db WEST, MOVE_2
+	db NORTH, MOVE_5
+	db EAST, MOVE_2
+	db NORTH, MOVE_0
+	db $ff
+
+NPCMovement_430ff:
+	db NORTH, MOVE_5
+	db EAST, MOVE_1
+	db NORTH, MOVE_5
+	db WEST, MOVE_1
+	db NORTH, MOVE_0
+	db $ff
+
+NPCMovement_4310a:
+	db NORTH, MOVE_5
+	db WEST, MOVE_1
+	db NORTH, MOVE_6
+	db SOUTH, MOVE_0
+	db $ff
+
+NPCMovement_43113:
+	db SOUTH, MOVE_1
+	db EAST, MOVE_1
+	db NORTH, MOVE_0
+	db $ff
+
+NPCMovement_4311a:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+
+NPCMovement_4311f:
+	db WEST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+
+NPCMovement_43124:
+	db EAST, MOVE_2
+	db SOUTH, MOVE_4
+	db WEST, MOVE_2
+	db NORTH, MOVE_0
+	db $ff
+
+NPCMovement_4312d:
+	db EAST, MOVE_1
+	db SOUTH, MOVE_2
+	db WEST, MOVE_1
+	db SOUTH, MOVE_0
+	db $ff
 
 Func_43136:
 	ld a, $55
