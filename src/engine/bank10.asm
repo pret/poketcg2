@@ -1391,11 +1391,11 @@ MasonLaboratoryMain_MapScripts:
 	db $ff
 
 Func_40e72:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	or a
 	jr nz, .asm_40e80
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	ld [wNextMusic], a
 .asm_40e80
 	scf
@@ -1413,14 +1413,14 @@ Func_40e8a:
 	ret
 
 Func_40e91:
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	or a
 	jr z, .asm_40ead
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_40ee8
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	call nz, Func_40ef9
 	scf
@@ -1450,7 +1450,7 @@ Func_40e91:
 	scf
 	ret
 .asm_40ee8
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	call Func_40ef9
 	ld a, $00
@@ -1476,7 +1476,7 @@ Func_40f04:
 	ret
 
 Func_40f14:
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_40f1e
 	scf
@@ -1487,7 +1487,7 @@ Func_40f14:
 	ret
 
 Func_40f21:
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_40f34
 	ld hl, MasonLaboratoryMain_AfterDuelScripts
@@ -1568,7 +1568,7 @@ Func_40f46:
 	script_ret
 
 Func_40fbc:
-	ld a, $02
+	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
 	ld hl, $9d0
 	ld a, l
@@ -1607,7 +1607,7 @@ NPCMovement_40ffc:
 	db $ff
 
 Func_40fff:
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41013
 	ld a, $00
@@ -1616,13 +1616,13 @@ Func_40fff:
 	farcall Func_d3c4
 	ret
 .asm_41013
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall ZeroOutEventValue
 	call Func_40fbc
 	ret
 
 Func_4101d:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
 	farcall Func_ebc6
@@ -1664,7 +1664,7 @@ Func_4101d:
 	ret
 
 Func_41074:
-	ld a, $f1
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .asm_410ee
 	ld a, [wde11]
@@ -1685,7 +1685,7 @@ Func_41074:
 	ld a, b
 	ld [$de12], a
 .asm_4109a
-	ld a, $34
+	ld a, VAR_34
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_410c4
@@ -1728,7 +1728,7 @@ Func_41074:
 	farcall Func_135ec
 	jr .asm_41115
 .asm_410ee
-	ld a, $34
+	ld a, VAR_34
 	farcall GetVarValue
 	ld b, a
 	xor a
@@ -1742,7 +1742,7 @@ Func_41074:
 	ld a, b
 	ld [$de12], a
 .asm_4110a
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall ZeroOutEventValue
 	farcall Func_ec38
 .asm_41114
@@ -1817,7 +1817,7 @@ Func_41167:
 	ret
 
 Func_41188:
-	ld a, $02
+	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
 	ld hl, $9d0
 	ld a, l
@@ -1870,7 +1870,7 @@ Func_41188:
 	ret
 
 Func_411f2:
-	ld a, $03
+	ld a, NPC_RONALD
 	ld [wScriptNPC], a
 	ld hl, $a2d
 	ld a, l
@@ -1894,10 +1894,10 @@ Func_411f2:
 	ret
 
 Func_4121d:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_41230
-	ld a, $04
+	ld a, VAR_TIMES_MET_RONALD
 	farcall GetVarValue
 	or a
 	jr z, .asm_41230
@@ -1909,7 +1909,7 @@ Func_4121d:
 	ret
 
 Func_41233:
-	ld a, $06
+	ld a, NPC_SAM
 	ld [wScriptNPC], a
 	ld hl, $9d1
 	ld a, l
@@ -2078,7 +2078,7 @@ NPCMovement_41369:
 	db $ff
 
 Func_41370:
-	ld a, $b3
+	ld a, NPC_LAB_TECH_PC_GUIDE
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -2100,7 +2100,7 @@ Func_41370:
 	ret
 
 Func_41396:
-	ld a, $b4
+	ld a, NPC_LAB_TECH_CLUB_GUIDE
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -2122,7 +2122,7 @@ Func_41396:
 	ret
 
 Func_413bc:
-	ld a, $b5
+	ld a, NPC_LAB_TECH_BOOSTER_GUIDE
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -2144,7 +2144,7 @@ Func_413bc:
 	ret
 
 Func_413e2:
-	ld a, $b6
+	ld a, NPC_LAB_TECH_ROOM_GUIDE
 	ld [wScriptNPC], a
 	ld hl, $a4a
 	ld a, l
@@ -2458,7 +2458,7 @@ TcgChallengeHall_MapScripts:
 Func_415e6:
 	call Func_41bd2
 	jr c, .asm_415f0
-	ld a, $0b
+	ld a, MUSIC_CHALLENGEHALL
 	ld [wNextMusic], a
 .asm_415f0
 	scf
@@ -2482,7 +2482,7 @@ Func_41603:
 	jr c, .asm_41620
 	xor a
 	farcall Func_45301
-	ld a, $2d
+	ld a, VAR_2D
 	farcall GetVarValue
 	farcall Func_453c3
 	ld de, $904
@@ -2499,7 +2499,7 @@ Func_41622:
 	ret
 
 Func_4162a:
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	cp $02
 	jp c, Func_417df
@@ -2507,7 +2507,7 @@ Func_4162a:
 	jp Func_41a4d
 
 Func_4163b:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_41645
 	scf
@@ -2529,7 +2529,7 @@ Func_4164f:
 	script_jump Script_419ab
 
 Func_41662:
-	ld a, $92
+	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -2615,7 +2615,7 @@ NPCMovement_41700:
 	db $ff
 
 Func_41705:
-	ld a, $93
+	ld a, NPC_TCG_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -2631,7 +2631,7 @@ Func_41705:
 	ret
 
 Func_41720:
-	ld a, $8e
+	ld a, NPC_TCG_CHALLENGE_HALL_MAN
 	ld [wScriptNPC], a
 	ld hl, $a3a
 	ld a, l
@@ -2658,7 +2658,7 @@ Func_41720:
 	ret
 
 Func_41751:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_41766
@@ -2674,7 +2674,7 @@ Func_41751:
 	ret
 
 Func_41768:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_4177c
@@ -2781,7 +2781,7 @@ Func_417df:
 .ows_41840
 	script_command_02
 	quit_script
-	ld a, $2e
+	ld a, VAR_2E
 	farcall GetVarValue
 	farcall Func_453c3
 	ld b, $00
@@ -2804,7 +2804,7 @@ Func_417df:
 	print_npc_text Text0969
 	script_command_02
 	quit_script
-	ld a, $2d
+	ld a, VAR_2D
 	farcall GetVarValue
 	farcall Func_453c3
 	push af
@@ -2907,7 +2907,7 @@ Func_418ed:
 .ows_41945
 	script_command_02
 	quit_script
-	ld a, $2f
+	ld a, VAR_2F
 	farcall GetVarValue
 	farcall Func_453c3
 	ld b, $00
@@ -2930,7 +2930,7 @@ Func_418ed:
 	print_npc_text Text0969
 	script_command_02
 	quit_script
-	ld a, $2e
+	ld a, VAR_2E
 	farcall GetVarValue
 	farcall Func_453c3
 	push af
@@ -2973,7 +2973,7 @@ Script_419ab:
 	script_jump .ows_41a17
 .ows_419cf
 	quit_script
-	ld a, $2f
+	ld a, VAR_2F
 	farcall GetVarValue
 	farcall Func_453c3
 	cp $03
@@ -3083,7 +3083,7 @@ Func_41a4d:
 	print_npc_text Text0969
 	script_command_02
 	quit_script
-	ld a, $2f
+	ld a, VAR_2F
 	farcall GetVarValue
 	farcall Func_453c3
 	push af
@@ -3135,7 +3135,7 @@ Func_41a4d:
 	script_jump .ows_41b57
 .ows_41b20
 	quit_script
-	ld a, $29
+	ld a, VAR_29
 	farcall GetVarValue
 	farcall Func_f027
 	call LoadTxRam2
@@ -3143,7 +3143,7 @@ Func_41a4d:
 	start_script
 	print_npc_text Text0985
 	quit_script
-	ld a, $29
+	ld a, VAR_29
 	farcall GetVarValue
 	farcall Func_f010
 	ld e, c
@@ -3226,7 +3226,7 @@ NPCMovement_41bcd:
 	db $ff
 
 Func_41bd2:
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_41be6
@@ -3335,7 +3335,7 @@ Func_41ca1:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, $89
+	ld a, SFX_89
 	call PlaySFX
 	farcall WaitForSFXToFinish.loop_wait
 	scf
@@ -3349,7 +3349,7 @@ Func_41ccb:
 	ret
 
 Func_41cd3:
-	ld a, $32
+	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ld hl, $a2c
 	ld a, l
@@ -3661,14 +3661,14 @@ SealedFort_AfterDuelScripts:
 	db $ff
 
 Func_41f66:
-	ld a, $56
+	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
 	ld hl, $a01
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
 	ld [$d610], a
-	ld a, $ed
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41fd9
 	xor a
@@ -3722,7 +3722,7 @@ NPCMovement_41fde:
 	db $ff
 
 Func_41fe1:
-	ld a, $56
+	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
 	ld hl, $a01
 	ld a, l
@@ -3802,7 +3802,7 @@ Func_42050:
 	ret
 
 Func_4207e:
-	ld a, $57
+	ld a, NPC_EIJI
 	ld [wScriptNPC], a
 	ld hl, $a02
 	ld a, l
@@ -3881,7 +3881,7 @@ Func_420eb:
 	ret
 
 Func_42119:
-	ld a, $58
+	ld a, NPC_MAGICIAN
 	ld [wScriptNPC], a
 	ld hl, $a03
 	ld a, l
@@ -3960,7 +3960,7 @@ Func_42186:
 	ret
 
 Func_421b4:
-	ld a, $59
+	ld a, NPC_TOSHIRON
 	ld [wScriptNPC], a
 	ld hl, $a04
 	ld a, l
@@ -4039,7 +4039,7 @@ Func_42221:
 	ret
 
 Func_4224f:
-	ld a, $5a
+	ld a, NPC_PIERROT
 	ld [wScriptNPC], a
 	ld hl, $a05
 	ld a, l
@@ -4119,7 +4119,7 @@ Func_422be:
 	ret
 
 Func_422ec:
-	ld a, $5b
+	ld a, NPC_ANNA
 	ld [wScriptNPC], a
 	ld hl, $a07
 	ld a, l
@@ -4198,7 +4198,7 @@ Func_42359:
 	ret
 
 Func_42387:
-	ld a, $5c
+	ld a, NPC_DEE
 	ld [wScriptNPC], a
 	ld hl, $a06
 	ld a, l
@@ -4278,7 +4278,7 @@ Func_423f6:
 	ret
 
 Func_42424:
-	ld a, $5d
+	ld a, NPC_MASQUERADE
 	ld [wScriptNPC], a
 	ld hl, $a08
 	ld a, l
@@ -4357,7 +4357,7 @@ Func_42491:
 	ret
 
 Func_424bf:
-	ld a, $b0
+	ld a, NPC_YUI
 	ld [wScriptNPC], a
 	ld hl, $a09
 	ld a, l
@@ -4528,7 +4528,7 @@ Func_42640:
 	ret
 
 Func_42649:
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_4265f
@@ -4540,7 +4540,7 @@ Func_42649:
 	scf
 	ret
 .asm_4265f
-	ld a, $1c
+	ld a, MUSIC_GRCHALLENGECUP
 	ld [wNextMusic], a
 	jr .asm_4266b
 .asm_42666
@@ -4554,7 +4554,7 @@ Func_42649:
 Func_4266e:
 	call Func_42e14
 	jr nc, .asm_4268a
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $05
 	jr nz, .asm_426b7
@@ -4564,7 +4564,7 @@ Func_4266e:
 	farcall Func_10f0f
 	jr .asm_426b7
 .asm_4268a
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $06
 	jr nz, .asm_4269e
@@ -4574,7 +4574,7 @@ Func_4266e:
 .asm_4269e
 	ld a, $01
 	farcall Func_45301
-	ld a, $2d
+	ld a, VAR_2D
 	farcall GetVarValue
 	farcall Func_453c3
 	ld de, $904
@@ -4595,7 +4595,7 @@ Func_426b9:
 	ret
 
 Func_426c9:
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_426d3
 	scf
@@ -4606,10 +4606,10 @@ Func_426c9:
 	ret
 
 Func_426d6:
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_426ef
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	cp $02
 	jp c, Func_42a1b
@@ -4622,7 +4622,7 @@ Func_426d6:
 	ret
 
 Func_426f8:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_42702
 	scf
@@ -4645,7 +4645,7 @@ Func_4270c:
 	script_jump Script_42b81
 
 Func_4271f:
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
 	farcall Func_ebc6
@@ -4686,7 +4686,7 @@ Func_4271f:
 	ret
 
 Func_42776:
-	ld a, $f1
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .asm_427f2
 	ld a, [$de13]
@@ -4707,7 +4707,7 @@ Func_42776:
 	ld a, b
 	ld [$de14], a
 .asm_4279c
-	ld a, $34
+	ld a, VAR_34
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_427c7
@@ -4750,7 +4750,7 @@ Func_42776:
 	farcall Func_135ec
 	jr .asm_4281a
 .asm_427f2
-	ld a, $34
+	ld a, VAR_34
 	farcall GetVarValue
 	ld b, a
 	ld a, $01
@@ -4764,7 +4764,7 @@ Func_42776:
 	ld a, b
 	ld [$de14], a
 .asm_4280f
-	ld a, $eb
+	ld a, EVENT_EB
 	farcall ZeroOutEventValue
 	farcall Func_ec38
 .asm_42819
@@ -4839,7 +4839,7 @@ Func_4286c:
 	ret
 
 Func_4288d:
-	ld a, $e2
+	ld a, NPC_GR_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -4922,7 +4922,7 @@ NPCMovement_4292a:
 	db $ff
 
 Func_4292f:
-	ld a, $e3
+	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
 	ld hl, $a5a
 	ld a, l
@@ -4938,7 +4938,7 @@ Func_4292f:
 	ret
 
 Func_4294a:
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_4295e
@@ -4954,7 +4954,7 @@ Func_4294a:
 	ret
 
 Func_42961:
-	ld a, $e1
+	ld a, NPC_GR_STAFF
 	ld [wScriptNPC], a
 	ld hl, $a59
 	ld a, l
@@ -4987,7 +4987,7 @@ Func_42961:
 	ret
 
 Func_4299f:
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_429b4
@@ -5292,7 +5292,7 @@ Func_42bb7:
 	inc_var VAR_32
 .ows_42c72
 	quit_script
-	ld a, $31
+	ld a, VAR_31
 	farcall GetVarValue
 	farcall Func_f04d
 	call LoadTxRam2
@@ -5300,7 +5300,7 @@ Func_42bb7:
 	start_script
 	print_npc_text Text0e27
 	quit_script
-	ld a, $31
+	ld a, VAR_31
 	farcall GetVarValue
 	farcall Func_f036
 	ld e, c
@@ -5408,7 +5408,7 @@ Script_42d35:
 Script_42d40:
 	script_command_02
 	quit_script
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	ld c, $2d
 	cp $02
@@ -5468,7 +5468,7 @@ NPCMovement_42da8:
 Script_42dad:
 	script_command_02
 	quit_script
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	ld c, $2e
 	cp $02
@@ -5522,7 +5522,7 @@ Data_42e0f:
 	db $ff
 
 Func_42e14:
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 	cp $01
 	jr z, .asm_42e28
@@ -5647,7 +5647,7 @@ Func_42f35:
 	ret
 
 Func_42f3e:
-	ld a, $a1
+	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
 	jr nz, .asm_42f84
 	ld a, $0a
@@ -5726,7 +5726,7 @@ GrCastleBiruritchi_AfterDuelScripts:
 	db $ff
 
 Func_42fcd:
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall GetEventValue
 	jr nz, .asm_42fd7
 	scf
@@ -5739,7 +5739,7 @@ Func_42fcd:
 	ret
 
 Func_42fe1:
-	ld a, $55
+	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
 	ld hl, $a27
 	ld a, l
@@ -5921,7 +5921,7 @@ NPCMovement_4312d:
 	db $ff
 
 Func_43136:
-	ld a, $55
+	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
 	ld hl, $a27
 	ld a, l
@@ -6008,7 +6008,7 @@ Script_431ca:
 	jr z, .asm_43213
 	dec a
 	jr z, .asm_4322f
-	ld a, $08
+	ld a, VAR_08
 	farcall GetVarValue
 	bit 0, a
 	jr nz, .asm_431cd
@@ -6022,7 +6022,7 @@ Script_431ca:
 	end_script
 	ret
 .asm_431f7
-	ld a, $08
+	ld a, VAR_08
 	farcall GetVarValue
 	bit 1, a
 	jr nz, .asm_431cd
@@ -6036,7 +6036,7 @@ Script_431ca:
 	end_script
 	ret
 .asm_43213
-	ld a, $08
+	ld a, VAR_08
 	farcall GetVarValue
 	bit 2, a
 	jr nz, .asm_431cd
@@ -6050,7 +6050,7 @@ Script_431ca:
 	end_script
 	ret
 .asm_4322f
-	ld a, $08
+	ld a, VAR_08
 	farcall GetVarValue
 	bit 3, a
 	jr nz, .asm_431cd
@@ -6205,7 +6205,7 @@ Script_43333:
 	ld [wCurOWLocation], a
 	ld a, $00
 	ld [wCurIsland], a
-	ld a, $03
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
 	farcall Func_ea30
 	ld a, $01
