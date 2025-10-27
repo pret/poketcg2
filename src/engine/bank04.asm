@@ -6720,8 +6720,367 @@ Func_13561:
 	farcall PrintNumber
 	pop de
 	ret
-; 0x135ec
 
+Func_135ec:
+	call Func_102a4
+	call Func_135f6
+	call Func_102c4
+	ret
+
+Func_135f6:
+	push bc
+	push de
+	push hl
+	ld [$ddf6], a
+	ld a, c
+	ld [$ddf8], a
+	ld a, b
+	ld [$ddf7], a
+	and a
+	jr nz, .asm_1360e
+	call Func_13617
+	ld a, $00
+	jr c, .asm_13613
+.asm_1360e
+	call Func_136e4
+	ld a, $01
+.asm_13613
+	pop hl
+	pop de
+	pop bc
+	ret
+
+Func_13617:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld de, $40ff
+	call SetupText
+	call Func_1362d
+	call SetFrameFuncAndFadeFromWhite
+	call Func_136db
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1362d:
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $76b0
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $100
+	call Func_2c4b
+	ld hl, $7697
+	call Func_35cf
+	ld hl, $78f
+	ld de, $102
+	call Func_35bf
+	ld hl, wde0d
+	ld de, $e04
+	call Func_13681
+	ld hl, wde11
+	ld de, $e06
+	call Func_13681
+	ld hl, wde15
+	ld de, $e0a
+	call Func_13681
+	call Func_136b4
+	ret
+
+Func_13681:
+	push hl
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, $03
+	ld b, $01
+	farcall PrintNumber
+	pop hl
+	ret
+; 0x13697
+
+SECTION "Bank 4@76b4", ROMX[$76b4], BANK[$4]
+
+Func_136b4:
+	ld de, $de39
+	call Func_13d1f
+	ld a, [$ddf6]
+	add a
+	add a
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wde19
+	add hl, bc
+	call SavePlayerName
+	ld hl, $5be
+	ld de, $20a
+	call Func_35bf
+	ld hl, $de39
+	call SavePlayerName
+	ret
+
+Func_136db:
+	ld hl, BankswitchVRAM0
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ret
+
+Func_136e4:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld de, $40ff
+	call SetupText
+	call Func_1371f
+	call SetFrameFuncAndFadeFromWhite
+	ld a, [$ddf8]
+	and a
+	jr z, .asm_1370b
+	call Func_137fa
+	ld a, [$ddf8]
+	cp $02
+	jr z, .asm_13718
+	ld a, [$ddf7]
+	cp $05
+	scf
+	jr z, .asm_13718
+.asm_1370b
+	call Func_13792
+	call Func_137df
+	jr nc, .asm_1371b
+	ld a, $02
+	ld [$ddf8], a
+.asm_13718
+	call Func_1382e
+.asm_1371b
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1371f:
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $7749
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, $100
+	call Func_2c4b
+	call Func_1374d
+	ret
+; 0x13749
+
+SECTION "Bank 4@774d", ROMX[$774d], BANK[$4]
+
+Func_1374d:
+	ld hl, wddf9
+	ld c, $05
+	ld e, $02
+.asm_13754
+	call Func_13763
+	call Func_13778
+	call Func_13785
+	inc e
+	inc e
+	dec c
+	jr nz, .asm_13754
+	ret
+
+Func_13763:
+	push hl
+	ld a, $06
+	sub c
+	ld [wTxRam3], a
+	xor a
+	ld [$cddb], a
+	ld hl, $7a7
+	ld d, $02
+	call Func_35bf
+	pop hl
+	ret
+
+Func_13778:
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld d, $04
+	call Func_35bf
+	pop hl
+	inc hl
+	inc hl
+	ret
+
+Func_13785:
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld d, $0e
+	call Func_35bf
+	pop hl
+	inc hl
+	inc hl
+	ret
+
+Func_13792:
+	ld a, [$ddf7]
+	and a
+	jr nz, .asm_1379e
+	ld hl, $79c
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+.asm_1379e
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wde11
+	add hl, bc
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	ld de, $1
+	call MultiplyBCByDE.CompareBCAndDE
+	ret c
+	ret z
+	ld h, b
+	ld l, c
+	call LoadTxRam3
+	ld a, [$ddf7]
+	inc a
+	ld [wTxRam3_b], a
+	xor a
+	ld [$cddd], a
+	ld a, [$ddf7]
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wddf9
+	add hl, bc
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call LoadTxRam2
+	ld hl, $7a3
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+
+Func_137df:
+.asm_137df
+	ld hl, $79e
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	ret nc
+	ld hl, $7f7
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ld hl, $7f8
+	ld a, $01
+	call DrawWideTextBox_PrintTextWithYesOrNoMenu
+	jr c, .asm_137df
+	scf
+	ret
+
+Func_137fa:
+	ld a, [$ddf7]
+	dec a
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wddf9
+	add hl, bc
+	inc hl
+	inc hl
+	ld a, [hli]
+	ld [wTxRam2], a
+	ld a, [hl]
+	ld [$cdd7], a
+	ld a, [$ddf7]
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ld a, [$ddf8]
+	dec a
+	jr z, .asm_13827
+	ld hl, $7a5
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+.asm_13827
+	ld hl, $7a4
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
+
+Func_1382e:
+	push af
+	ld a, [$ddf8]
+	dec a
+	jr z, .asm_1384e
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wde11
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call LoadTxRam3
+	ld hl, $7a6
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	jr .asm_1387e
+.asm_1384e
+	call Func_3d0d
+	push af
+	ld a, $30
+	call Func_3d09
+	pop af
+	ld hl, $7f9
+	call PrintTextInWideTextBox
+	call WaitForSongToFinish
+	call Func_3d16
+	call WaitForWideTextBoxInput
+	ld a, [$ddf6]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wde0d
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call LoadTxRam3
+	ld hl, $7fa
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+.asm_1387e
+	ld hl, $7fb
+	call PrintScrollableText_NoTextBoxLabelVRAM0
+	pop af
+	ret
+; 0x13886
 
 SECTION "Bank 4@7890", ROMX[$7890], BANK[$4]
 
@@ -6983,9 +7342,22 @@ SavePlayerName:
 	pop bc
 	pop af
 	ret
-; 0x13d1f
 
-SECTION "Bank 4@7d37", ROMX[$7d37], BANK[$4]
+Func_13d1f:
+	push af
+	push bc
+	push de
+	push hl
+	call EnableSRAM
+	ld hl, sPlayerName
+	ld bc, $10
+	call CopyBCBytesFromHLToDE
+	call DisableSRAM
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 PlayerGenderSelection:
 	push af

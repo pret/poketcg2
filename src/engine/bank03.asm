@@ -5413,6 +5413,212 @@ ENDR
 	ret
 ; 0xedec
 
+SECTION "Bank 3@6f40", ROMX[$6f40], BANK[$3]
+
+Func_ef40:
+	or a
+	jr nz, .asm_ef54
+	ld a, $31
+	ld [wRemainingIntroCards], a
+	ld a, $ed
+	ld [wFilteredListPtr], a
+	ld a, $51
+	ld [$d576], a
+	jr .asm_ef63
+.asm_ef54
+	ld a, $25
+	ld [wRemainingIntroCards], a
+	ld a, $4f
+	ld [wFilteredListPtr], a
+	ld a, $52
+	ld [$d576], a
+.asm_ef63
+	ld e, $05
+	ld d, $35
+	ld c, $ff
+.asm_ef69
+	ld a, d
+	call SetVarValue
+	inc d
+	dec e
+	jr nz, .asm_ef69
+	ld c, $00
+.asm_ef73
+	ld b, $01
+	ld a, c
+	or a
+.asm_ef77
+	jr z, .asm_ef7e
+	sla b
+	dec a
+	jr .asm_ef77
+.asm_ef7e
+	call Func_ef97
+	call Func_efb3
+	jr c, .asm_ef7e
+	push bc
+	ld d, a
+	ld a, $35
+	add c
+	ld c, d
+	call SetVarValue
+	pop bc
+	inc c
+	ld a, $05
+	cp c
+	jr nz, .asm_ef73
+	ret
+
+Func_ef97:
+.asm_ef97
+	ld a, [wFilteredListPtr]
+	ld l, a
+	ld a, [$d576]
+	ld h, a
+	ld a, [wRemainingIntroCards]
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_efac
+	inc h
+.asm_efac
+	inc hl
+	ld a, [hld]
+	and b
+	jr z, .asm_ef97
+	ld a, [hl]
+	ret
+
+Func_efb3:
+	ld d, a
+	call LoadNPCDuelistDeck
+	ld l, a
+	ld e, $35
+.asm_efba
+	ld a, e
+	call GetVarValue
+	cp $ff
+	jr z, .asm_efcc
+	call LoadNPCDuelistDeck
+	inc e
+	cp l
+	jr nz, .asm_efba
+	ld a, d
+	scf
+	ret
+.asm_efcc
+	ld a, d
+	scf
+	ccf
+	ret
+
+Func_efd0:
+	ld c, $05
+	ld a, $35
+	ld hl, wddf9
+.asm_efd7
+	push af
+	call GetVarValue
+	call LoadNPCDuelistDeck
+	call LoadNPCDuelist
+	ld de, $d55a
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	ld de, $d556
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	pop af
+	inc a
+	dec c
+	jr nz, .asm_efd7
+	ret
+
+Func_eff7:
+	call Func_ec38
+	ld a, $34
+	call GetVarValue
+	dec a
+	ld c, a
+	ld a, $35
+	add c
+	call GetVarValue
+	ld [wNPCDuelDeckID], a
+	ld hl, wd583
+	set 1, [hl]
+	ret
+
+Func_f010:
+	push af
+	push hl
+	ld a, $29
+	call GetVarValue
+	sla a
+	ld hl, NonSpecialPromoCards
+	add l
+	ld l, a
+	jr nc, .asm_f021
+	inc h
+.asm_f021
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop hl
+	pop af
+	ret
+
+Func_f027:
+	push af
+	push bc
+	push de
+	call Func_f010
+	ld e, c
+	ld d, b
+	call GetReceivingCardShortName
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_f036:
+	push af
+	push hl
+	ld a, $31
+	call GetVarValue
+	sla a
+	ld hl, $51cb
+	add l
+	ld l, a
+	jr nc, .asm_f047
+	inc h
+.asm_f047
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop hl
+	pop af
+	ret
+
+Func_f04d:
+	push af
+	push bc
+	push de
+	call Func_f036
+	ld e, c
+	ld d, b
+	call GetReceivingCardLongName
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xf05c
+
 SECTION "Bank 3@7063", ROMX[$7063], BANK[$3]
 
 Func_f063:

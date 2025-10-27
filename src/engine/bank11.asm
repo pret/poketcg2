@@ -1414,7 +1414,132 @@ WaitForSFXToFinish::
 	jr nz, .loop_wait
 	ret
 
-SECTION "Bank 11@53c3", ROMX[$53c3], BANK[$11]
+SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
+
+Func_45301:
+	or a
+	jr nz, .asm_4531b
+	ld a, $2c
+	ld [wRemainingIntroCards], a
+	ld a, $b0
+	ld [wFilteredListPtr], a
+	ld a, $47
+	ld [$d576], a
+	ld a, $28
+	farcall GetVarValue
+	jr .asm_45330
+.asm_4531b
+	ld a, $1b
+	ld [wRemainingIntroCards], a
+	ld a, $60
+	ld [wFilteredListPtr], a
+	ld a, $48
+	ld [$d576], a
+	ld a, $30
+	farcall GetVarValue
+.asm_45330
+	cp $03
+	jr z, .asm_4533a
+	jr nc, .asm_4533e
+	ld a, $00
+	jr .asm_45340
+.asm_4533a
+	ld a, $01
+	jr .asm_45340
+.asm_4533e
+	ld a, $02
+.asm_45340
+	ld [$d578], a
+	ld e, $03
+	ld d, $2d
+	ld c, $ff
+.asm_45349
+	ld a, d
+	farcall SetVarValue
+	inc d
+	dec e
+	jr nz, .asm_45349
+	ld c, $00
+.asm_45354
+	ld b, $01
+	ld a, c
+	or a
+.asm_45358
+	jr z, .asm_4535f
+	sla b
+	dec a
+	jr .asm_45358
+.asm_4535f
+	call Func_45379
+	call Func_453a3
+	jr c, .asm_4535f
+	push bc
+	ld d, a
+	ld a, $2d
+	add c
+	ld c, d
+	farcall SetVarValue
+	pop bc
+	inc c
+	ld a, $03
+	cp c
+	jr nz, .asm_45354
+	ret
+
+Func_45379:
+.asm_45379
+	ld a, [$d578]
+	ld d, a
+	ld a, [wFilteredListPtr]
+	ld l, a
+	ld a, [$d576]
+	ld h, a
+	ld a, [wRemainingIntroCards]
+	call Random
+	sla a
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_45394
+	inc h
+.asm_45394
+	push hl
+	inc hl
+	ld a, d
+	add l
+	ld l, a
+	jr nc, .asm_4539c
+	inc h
+.asm_4539c
+	ld a, [hl]
+	pop hl
+	and b
+	jr z, .asm_45379
+	ld a, [hl]
+	ret
+
+Func_453a3:
+	ld d, a
+	farcall LoadNPCDuelistDeck
+	ld l, a
+	ld e, $2d
+.asm_453ab
+	ld a, e
+	farcall GetVarValue
+	cp $ff
+	jr z, .asm_453bf
+	farcall LoadNPCDuelistDeck
+	inc e
+	cp l
+	jr nz, .asm_453ab
+	ld a, d
+	scf
+	ret
+.asm_453bf
+	ld a, d
+	scf
+	ccf
+	ret
 
 Func_453c3:
 	farcall LoadNPCDuelistDeck
@@ -1423,9 +1548,42 @@ Func_453c3:
 	ld a, $19
 .asm_453cd
 	ret
-; 0x453ce
 
-SECTION "Bank 11@5416", ROMX[$5416], BANK[$11]
+Func_453ce:
+	ld a, $2c
+	farcall GetVarValue
+	ld c, a
+	dec c
+	ld a, $2d
+	add c
+	farcall GetVarValue
+	farcall LoadNPCDuelistDeck
+	farcall LoadNPCDuelist
+	ld a, [$d556]
+	ld l, a
+	ld a, [$d557]
+	ld h, a
+	call LoadTxRam2
+	ld a, l
+	ld [wTxRam2_b], a
+	ld a, h
+	ld [$cdd9], a
+	ret
+
+Func_453f9:
+	ld a, $2c
+	farcall GetVarValue
+	dec a
+	ld c, a
+	ld a, $2d
+	add c
+	farcall GetVarValue
+	ld [wNPCDuelDeckID], a
+	ld a, $29
+	ld [wDuelStartTheme], a
+	ld hl, wd583
+	set 1, [hl]
+	ret
 
 Func_45416:
 	ld e, $07
@@ -1790,8 +1948,6 @@ Func_4568f:
 	pop af
 	ret
 ; 0x4569f
-
-SECTION "Bank 11@569f", ROMX[$569f], BANK[$11]
 
 Func_4569f:
 	ld hl, wCurDeckCards

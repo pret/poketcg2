@@ -1,3 +1,41 @@
+Script_34000:
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $01
+	script_command_64 $10
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_player NPCMovement_34031, TRUE
+	wait_for_player_animation
+	move_active_npc NPCMovement_3402b
+	move_player NPCMovement_34034, TRUE
+	wait_for_player_animation
+	scroll_to_player
+	script_command_01
+	print_npc_text Text1263
+	script_command_02
+	set_player_direction WEST
+	animate_player_movement $81, $02
+	move_active_npc NPCMovement_3402e
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	play_song_next MUSIC_OVERWORLD
+	script_retfar
+
+NPCMovement_3402b:
+	db SOUTH, MOVE_2
+	db $ff
+
+NPCMovement_3402e:
+	db SOUTH, MOVE_6
+	db $ff
+
+NPCMovement_34031:
+	db NORTH, RUN_5
+	db $ff
+
+NPCMovement_34034:
+	db NORTH, MOVE_2
+	db $ff
+
 SECTION "Bank d@41c4", ROMX[$41c4], BANK[$d]
 
 ; RONALD_DUEL_GC_PIECES_2
