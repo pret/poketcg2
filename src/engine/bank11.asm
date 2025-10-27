@@ -1425,7 +1425,7 @@ Func_45301:
 	ld [wFilteredListPtr], a
 	ld a, $47
 	ld [$d576], a
-	ld a, $28
+	ld a, VAR_28
 	farcall GetVarValue
 	jr .asm_45330
 .asm_4531b
@@ -1435,7 +1435,7 @@ Func_45301:
 	ld [wFilteredListPtr], a
 	ld a, $48
 	ld [$d576], a
-	ld a, $30
+	ld a, VAR_30
 	farcall GetVarValue
 .asm_45330
 	cp $03
@@ -1550,7 +1550,7 @@ Func_453c3:
 	ret
 
 Func_453ce:
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	ld c, a
 	dec c
@@ -1571,7 +1571,7 @@ Func_453ce:
 	ret
 
 Func_453f9:
-	ld a, $2c
+	ld a, VAR_2C
 	farcall GetVarValue
 	dec a
 	ld c, a
@@ -1670,20 +1670,20 @@ Func_45484:
 	ret
 
 Func_45488:
-	ld a, $0e
+	ld a, VAR_0E
 	farcall GetVarValue
 	cp $02
 	jr z, .asm_4549c
 	jr nc, .asm_454a4
-	ld a, $14
+	ld a, VAR_14
 	farcall GetVarValue
 	jr .asm_454aa
 .asm_4549c
-	ld a, $1b
+	ld a, VAR_1B
 	farcall GetVarValue
 	jr .asm_454aa
 .asm_454a4
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 .asm_454aa
 	ret
@@ -1728,31 +1728,31 @@ Func_454e3:
 	ret
 
 Func_454fa:
-	ld a, $15
+	ld a, VAR_15
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
 	jr nc, .asm_4550e
-	ld a, $16
+	ld a, VAR_16
 	farcall GetVarValue
 	ld c, a
 .asm_4550e
 	ld a, $1b
 	farcall SetVarValue
-	ld a, $17
+	ld a, VAR_17
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
 	jr nc, .asm_45528
-	ld a, $18
+	ld a, VAR_18
 	farcall GetVarValue
 	ld c, a
 .asm_45528
 	ld a, $1c
 	farcall SetVarValue
-	ld a, $1a
+	ld a, VAR_1A
 	farcall GetVarValue
 	ld c, a
 	farcall LoadNPCDuelistDeck
@@ -1761,13 +1761,13 @@ Func_454fa:
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_4554a
-	ld a, $19
+	ld a, VAR_19
 	farcall GetVarValue
 	ld c, a
 .asm_4554a
 	ld a, $1d
 	farcall SetVarValue
-	ld a, $1d
+	ld a, VAR_1D
 	farcall GetVarValue
 	ld c, a
 	farcall LoadNPCDuelistDeck
@@ -1776,7 +1776,7 @@ Func_454fa:
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_4556c
-	ld a, $1c
+	ld a, VAR_1C
 	farcall GetVarValue
 	ld c, a
 .asm_4556c
@@ -1813,14 +1813,14 @@ Func_45573:
 	ret
 
 Func_455a3:
-	ld a, $0e
+	ld a, VAR_0E
 	farcall GetVarValue
 	cp $01
 	jp c, .asm_45658
 	jr z, .asm_455f0
 	cp $02
 	jr z, .asm_455c8
-	ld a, $f1
+	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	ld c, $06
 	jr z, .asm_455c2
@@ -1837,10 +1837,10 @@ Func_455a3:
 	ld c, $05
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, $1c
+	ld a, VAR_1C
 	farcall GetVarValue
 	ld c, a
-	ld a, $1e
+	ld a, VAR_1E
 	farcall GetVarValue
 	cp c
 	jr z, .asm_455f0
@@ -1854,10 +1854,10 @@ Func_455a3:
 	ld c, $01
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, $15
+	ld a, VAR_15
 	farcall GetVarValue
 	ld c, a
-	ld a, $1b
+	ld a, VAR_1B
 	farcall GetVarValue
 	cp c
 	jr z, .asm_45618
@@ -1868,10 +1868,10 @@ Func_455a3:
 	ld c, $02
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, $17
+	ld a, VAR_17
 	farcall GetVarValue
 	ld c, a
-	ld a, $1c
+	ld a, VAR_1C
 	farcall GetVarValue
 	cp c
 	jr z, .asm_45638
@@ -1882,10 +1882,10 @@ Func_455a3:
 	ld c, $03
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, $19
+	ld a, VAR_19
 	farcall GetVarValue
 	ld c, a
-	ld a, $1d
+	ld a, VAR_1D
 	farcall GetVarValue
 	cp c
 	jr z, .asm_45658
@@ -1906,7 +1906,7 @@ Func_4565d:
 	jr .asm_45672
 .asm_45668
 	dec a
-	add $14
+	add VAR_14
 	farcall GetVarValue
 	call Func_45484
 .asm_45672
@@ -2256,7 +2256,7 @@ Func_45868:
 	ld a, [hli]
 	or a
 	jr z, .asm_4588e
-	ld a, $01
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_458a6
 .asm_4588e
