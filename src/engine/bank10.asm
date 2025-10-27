@@ -1610,9 +1610,9 @@ Func_40fff:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41013
-	ld a, $00
-	ld de, $107
-	ld b, $02
+	ld a, OVERWORLD_MAP_TCG
+	lb  de, 1, 7
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 .asm_41013
@@ -3396,9 +3396,9 @@ Func_41cd3:
 	wait_for_player_animation
 	do_frames 60
 	end_script
-	ld a, $01
-	ld de, $0
-	ld b, $00
+	ld a, OVERWORLD_MAP_GR
+	lb de, 0, 0
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 
@@ -6197,9 +6197,9 @@ Script_43333:
 	call DisableSRAM
 	ld hl, wd583
 	set 6, [hl]
-	ld a, $02
-	ld de, $102
-	ld b, $00
+	ld a, MAP_MASON_LABORATORY_MAIN
+	lb de, 1, 2
+	ld b, NORTH
 	farcall Func_d3c4
 	ld a, $00
 	ld [wCurOWLocation], a

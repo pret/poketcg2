@@ -3564,9 +3564,9 @@ Script_3db41:
 	load_tilemap TILEMAP_037, $07, $00
 	do_frames 30
 	end_script
-	ld a, $25
-	ld de, $70e
-	ld b, $00
+	ld a, MAP_POKEMON_DOME_BACK
+	lb de, 7, 14
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 
@@ -3654,9 +3654,9 @@ Script_3dbde:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	end_script
-	ld a, $25
-	ld de, $604
-	ld b, $01
+	ld a, MAP_POKEMON_DOME_BACK
+	lb de, 6, 4
+	ld b, EAST
 	farcall Func_d3c4
 	ret
 NPCMovement_3dc38:
@@ -4269,9 +4269,9 @@ Func_3e091:
 	print_npc_text Text0fb0
 	script_command_02
 	end_script
-	ld a, $24
-	ld de, $701
-	ld b, $02
+	ld a, MAP_POKEMON_DOME
+	lb de, 7, 1
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 NPCMovement_3e0fe:
@@ -4290,9 +4290,9 @@ Script_3e105:
 	print_npc_text Text0fb1
 	script_command_02
 	end_script
-	ld a, $24
-	ld de, $701
-	ld b, $02
+	ld a, MAP_POKEMON_DOME
+	lb de, 7, 1
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
@@ -4965,9 +4965,9 @@ Func_3e2a4:
 	print_npc_text Text0fe6
 	script_command_02
 	end_script
-	ld a, $24
-	ld de, $701
-	ld b, $02
+	ld a, MAP_POKEMON_DOME
+	lb de, 7, 1
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
@@ -4988,9 +4988,9 @@ Func_3e2a4:
 	move_player NPCMovement_3e686, TRUE
 	wait_for_player_animation
 	end_script
-	ld a, $24
-	ld de, $701
-	ld b, $02
+	ld a, MAP_POKEMON_DOME
+	lb de, 7, 1
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 NPCMovement_3e681:
@@ -6461,9 +6461,9 @@ Func_3f15d:
 	ret
 
 Func_3f1ba:
-	ld a, $2e
-	ld de, $603
-	ld b, $02
+	ld a, MAP_GAME_CENTER_2
+	lb de, 6, 3
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
@@ -6700,9 +6700,9 @@ Func_3f317:
 	ret
 
 Func_3f389:
-	ld a, $2e
-	ld de, $603
-	ld b, $02
+	ld a, MAP_GAME_CENTER_2
+	lb de, 6, 3
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
@@ -6954,9 +6954,9 @@ Func_3f500:
 	ret
 
 Func_3f572:
-	ld a, $2e
-	ld de, $603
-	ld b, $02
+	ld a, MAP_GAME_CENTER_2
+	lb de, 6, 3
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 

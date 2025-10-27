@@ -707,9 +707,9 @@ Script_346c9:
 	ld c, e
 	ld a, VAR_3E
 	farcall SetVarValue
-	ld a, $1f
-	ld de, $1f1f
-	ld b, $01
+	ld a, MAP_TCG_AIRPORT
+	lb de, 31, 31
+	ld b, EAST
 	farcall Func_d3c4
 	ret
 NPCMovement_346f0:
@@ -1853,9 +1853,9 @@ Func_34f7b:
 	script_command_71
 	script_command_02
 	end_script
-	ld a, $2f
-	ld de, $508
-	ld b, $00
+	ld a, MAP_CARD_DUNGEON_PAWN
+	lb de, 5, 8
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 .ows_34fd7
@@ -2197,9 +2197,9 @@ Func_351dd:
 	ret
 
 Func_3524f:
-	ld a, $2e
-	ld de, $603
-	ld b, $02
+	ld a, MAP_GAME_CENTER_2
+	lb de, 6, 3
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
@@ -6551,9 +6551,9 @@ Func_373cb:
 	jr z, .asm_37409
 	inc d
 	inc d
-	ld e, $0e
-	ld b, $00
-	ld a, $72
+	ld e, 14
+	ld b, 0
+	ld a, MAP_GR_CASTLE
 	farcall Func_d3c4
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
@@ -7055,9 +7055,9 @@ Script_377c4:
 	set_scroll_state $02
 	animate_player_movement $00, $01
 	end_script
-	ld a, $73
-	ld de, $70e
-	ld b, $00
+	ld a, MAP_GR_CASTLE_BIRURITCHI
+	lb de, 7, 14
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 NPCMovement_377f3:

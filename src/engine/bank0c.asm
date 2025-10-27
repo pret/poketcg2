@@ -7,9 +7,9 @@ Func_30005:
 	scf
 	push af
 Func_30007:
-	ld a, $68
-	ld de, $a01
-	ld b, $02
+	ld a, MAP_FIGHTING_FORT_BASEMENT
+	lb de, 10, 01
+	ld b, SOUTH
 	farcall Func_d3c4
 	ld a, $1e
 	call WaitAFrames
@@ -1228,9 +1228,9 @@ Func_31285:
 	jp Func_312c6
 
 Func_312c6:
-	ld a, $2e
-	ld de, $603
-	ld b, $02
+	ld a, MAP_GAME_CENTER_2
+	lb de, 6, 3
+	ld b, SOUTH
 	farcall Func_d3c4
 	ret
 
