@@ -32,7 +32,204 @@ Script_34000:
 	db NORTH, MOVE_2
 	db $ff
 
-SECTION "Bank d@41c4", ROMX[$41c4], BANK[$d]
+Func_34037:
+	xor a
+	start_script
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $02
+	load_npc NPC_RONALD, 15, 3, EAST
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc .NPCMovement_34095
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1264
+	script_command_02
+	move_active_npc .NPCMovement_34095
+	move_player .NPCMovement_3409f, TRUE
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1265
+	card_pop SCRIPTED_CARD_POP_RONALD
+	print_npc_text Text1266
+	quit_script
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall MaxOutEventValue
+	farcall Func_ea30
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall ZeroOutEventValue
+	ld a, $01
+	start_script
+	play_sfx SFX_56
+	print_text SavedDataText
+	print_npc_text Text1267
+	script_command_02
+	move_active_npc .NPCMovement_34098
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.NPCMovement_34095:
+	db EAST, MOVE_2
+	db $ff
+.NPCMovement_34098:
+	db SOUTH, MOVE_1
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+.NPCMovement_3409f:
+	db NORTH, MOVE_4
+	db WEST, MOVE_0
+	db $ff
+
+Func_340a4:
+	xor a
+	start_script
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $02
+	load_npc NPC_RONALD, 15, 3, EAST
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc .NPCMovement_34102
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1264
+	script_command_02
+	move_active_npc .NPCMovement_34102
+	move_player .NPCMovement_3410c, TRUE
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1268
+	card_pop SCRIPTED_CARD_POP_RONALD
+	print_npc_text Text1266
+	quit_script
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall MaxOutEventValue
+	farcall Func_ea30
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall ZeroOutEventValue
+	ld a, $01
+	start_script
+	play_sfx SFX_56
+	print_text SavedDataText
+	print_npc_text Text1269
+	script_command_02
+	move_active_npc .NPCMovement_34105
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.NPCMovement_34102:
+	db EAST, MOVE_2
+	db $ff
+.NPCMovement_34105:
+	db SOUTH, MOVE_1
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+.NPCMovement_3410c:
+	db NORTH, MOVE_4
+	db WEST, MOVE_0
+	db $ff
+
+Func_34111:
+	xor a
+	start_script
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $02
+	load_npc NPC_RONALD, 15, 3, EAST
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc .NPCMovement_3416f
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text1264
+	script_command_02
+	move_active_npc .NPCMovement_3416f
+	move_player .NPCMovement_34179, TRUE
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text126a
+	card_pop SCRIPTED_CARD_POP_RONALD
+	print_npc_text Text1266
+	quit_script
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall MaxOutEventValue
+	farcall Func_ea30
+	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
+	farcall ZeroOutEventValue
+	ld a, $01
+	start_script
+	play_sfx SFX_56
+	print_text SavedDataText
+	print_npc_text Text126b
+	script_command_02
+	move_active_npc .NPCMovement_34172
+	wait_for_player_animation
+	unload_npc NPC_RONALD
+	end_script
+	ld a, $00
+	ld [wd582], a
+	ld a, [wNextMusic]
+	farcall PlayAfterCurrentSong
+	ret
+.NPCMovement_3416f:
+	db EAST, MOVE_2
+	db $ff
+.NPCMovement_34172:
+	db SOUTH, MOVE_1
+	db EAST, MOVE_1
+	db SOUTH, MOVE_5
+	db $ff
+.NPCMovement_34179:
+	db NORTH, MOVE_4
+	db WEST, MOVE_0
+	db $ff
+
+Func_3417e:
+	xor a
+	start_script
+	wait_for_fade
+	set_var VAR_TIMES_MET_RONALD, $03
+	load_npc NPC_RONALD, 15, 3, EAST
+	set_active_npc NPC_RONALD, DialogRonaldText
+	move_active_npc .NPCMovement_341b7
+	wait_for_player_animation
+	script_command_01
+	print_npc_text Text126c
+	script_command_02
+	get_player_x_position
+	compare_loaded_var $05
+	script_jump_if_b0nz .ows_341a5
+	move_player .NPCMovement_341ba, TRUE
+	script_jump .ows_341a9
+.ows_341a5
+	move_player .NPCMovement_341bf, TRUE
+.ows_341a9
+	move_active_npc .NPCMovement_341b7
+	wait_for_player_animation
+	script_command_01
+	print_npc_text RonaldGCPieces2WantsToDuelText
+	script_command_02
+	start_duel RONALDS_UNCOOL_DECK_ID, MUSIC_MATCHSTART_2
+	end_script
+	ret
+.NPCMovement_341b7:
+	db EAST, MOVE_2
+	db $ff
+.NPCMovement_341ba:
+	db SOUTH, MOVE_2
+	db WEST, MOVE_0
+	db $ff
+.NPCMovement_341bf:
+	db SOUTH, MOVE_2
+	db WEST, MOVE_1
+	db $ff
 
 ; RONALD_DUEL_GC_PIECES_2
 Script_FinishedRonaldDuelGCPieces2:
