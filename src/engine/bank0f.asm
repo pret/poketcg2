@@ -2343,11 +2343,11 @@ Func_3d210:
 	jr z, .asm_3d24f
 	inc a
 	ld c, a
-	ld a, $28
+	ld a, VAR_28
 	farcall SetVarValue
 	jr .asm_3d257
 .asm_3d24f
-	ld a, $28
+	ld a, VAR_28
 	ld c, $05
 	farcall SetVarValue
 .asm_3d257
@@ -3730,16 +3730,16 @@ Script_3dcbb:
 	set_var VAR_13, $ff
 	quit_script
 	call Func_3dcf2
-	ld a, $10
+	ld a, VAR_10
 	farcall SetVarValue
 	call Func_3dcf2
-	ld a, $11
+	ld a, VAR_11
 	farcall SetVarValue
 	call Func_3dcf2
-	ld a, $12
+	ld a, VAR_12
 	farcall SetVarValue
 	call Func_3dcf2
-	ld a, $13
+	ld a, VAR_13
 	farcall SetVarValue
 	ld a, $01
 	start_script
@@ -4371,7 +4371,7 @@ Script_3e158:
 Script_3e1b8:
 	quit_script
 	farcall Func_455a3
-	ld a, $0e
+	ld a, VAR_0E
 	ld c, $02
 	farcall SetVarValue
 	ld a, VAR_1B
@@ -4423,7 +4423,7 @@ Script_3e1b8:
 Script_3e21c:
 	quit_script
 	farcall Func_455a3
-	ld a, $0e
+	ld a, VAR_0E
 	ld c, $03
 	farcall SetVarValue
 	ld a, VAR_1E
@@ -7312,7 +7312,7 @@ Func_3f858:
 	farcall Func_1352a
 	ret
 .asm_3f87b
-	ld a, $3b
+	ld a, VAR_3B
 	ld c, $00
 	farcall SetVarValue
 	ret
@@ -7426,7 +7426,7 @@ Func_3f932:
 	ld a, [wd584]
 	cp $51
 	ret z
-	ld a, $3b
+	ld a, VAR_3B
 	ld c, $00
 	farcall SetVarValue
 	ret

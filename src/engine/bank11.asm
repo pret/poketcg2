@@ -1451,7 +1451,7 @@ Func_45301:
 .asm_45340
 	ld [$d578], a
 	ld e, $03
-	ld d, $2d
+	ld d, VAR_2D
 	ld c, $ff
 .asm_45349
 	ld a, d
@@ -1475,7 +1475,7 @@ Func_45301:
 	jr c, .asm_4535f
 	push bc
 	ld d, a
-	ld a, $2d
+	ld a, VAR_2D
 	add c
 	ld c, d
 	farcall SetVarValue
@@ -1522,7 +1522,7 @@ Func_453a3:
 	ld d, a
 	farcall LoadNPCDuelistDeck
 	ld l, a
-	ld e, $2d
+	ld e, VAR_2D
 .asm_453ab
 	ld a, e
 	farcall GetVarValue
@@ -1554,7 +1554,7 @@ Func_453ce:
 	farcall GetVarValue
 	ld c, a
 	dec c
-	ld a, $2d
+	ld a, VAR_2D
 	add c
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
@@ -1575,11 +1575,11 @@ Func_453f9:
 	farcall GetVarValue
 	dec a
 	ld c, a
-	ld a, $2d
+	ld a, VAR_2D
 	add c
 	farcall GetVarValue
 	ld [wNPCDuelDeckID], a
-	ld a, $29
+	ld a, MUSIC_MATCHSTART_2
 	ld [wDuelStartTheme], a
 	ld hl, wd583
 	set 1, [hl]
@@ -1587,7 +1587,7 @@ Func_453f9:
 
 Func_45416:
 	ld e, $07
-	ld d, $14
+	ld d, VAR_14
 	ld c, $ff
 .asm_4541c
 	ld a, d
@@ -1611,7 +1611,7 @@ Func_45416:
 	jr c, .asm_45432
 	push bc
 	ld d, a
-	ld a, $14
+	ld a, VAR_14
 	add c
 	ld c, d
 	farcall SetVarValue
@@ -1646,7 +1646,7 @@ Func_45464:
 	ld d, a
 	farcall LoadNPCDuelistDeck
 	ld l, a
-	ld e, $14
+	ld e, VAR_14
 .asm_4546c
 	ld a, e
 	farcall GetVarValue
@@ -1691,7 +1691,7 @@ Func_45488:
 Func_454ab:
 	call Func_45488
 	ld [wNPCDuelDeckID], a
-	ld a, $29
+	ld a, MUSIC_MATCHSTART_2
 	ld [wDuelStartTheme], a
 	ld hl, wd583
 	set 1, [hl]
@@ -1738,7 +1738,7 @@ Func_454fa:
 	farcall GetVarValue
 	ld c, a
 .asm_4550e
-	ld a, $1b
+	ld a, VAR_1B
 	farcall SetVarValue
 	ld a, VAR_17
 	farcall GetVarValue
@@ -1750,7 +1750,7 @@ Func_454fa:
 	farcall GetVarValue
 	ld c, a
 .asm_45528
-	ld a, $1c
+	ld a, VAR_1C
 	farcall SetVarValue
 	ld a, VAR_1A
 	farcall GetVarValue
@@ -1765,7 +1765,7 @@ Func_454fa:
 	farcall GetVarValue
 	ld c, a
 .asm_4554a
-	ld a, $1d
+	ld a, VAR_1D
 	farcall SetVarValue
 	ld a, VAR_1D
 	farcall GetVarValue
@@ -1780,13 +1780,13 @@ Func_454fa:
 	farcall GetVarValue
 	ld c, a
 .asm_4556c
-	ld a, $1e
+	ld a, VAR_1E
 	farcall SetVarValue
 	ret
 
 Func_45573:
 	farcall Func_1ea00
-	ld a, $14
+	ld a, VAR_14
 	ld c, $01
 .asm_4557b
 	push af

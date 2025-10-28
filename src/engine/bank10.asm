@@ -1694,7 +1694,7 @@ Func_41074:
 	ld c, $01
 	farcall Func_135ec
 	jp c, .asm_410fc
-	ld a, $34
+	ld a, VAR_34
 	ld d, a
 	farcall GetVarValue
 	inc a
@@ -4680,7 +4680,7 @@ Func_42776:
 	ld c, $01
 	farcall Func_135ec
 	jp c, .asm_42801
-	ld a, $34
+	ld a, VAR_34
 	ld d, a
 	farcall GetVarValue
 	inc a
@@ -5974,7 +5974,7 @@ Script_431ca:
 	jr nz, .asm_431cd
 	set 0, a
 	ld c, a
-	ld a, $08
+	ld a, VAR_08
 	farcall SetVarValue
 	xor a
 	start_script
@@ -5988,7 +5988,7 @@ Script_431ca:
 	jr nz, .asm_431cd
 	set 1, a
 	ld c, a
-	ld a, $08
+	ld a, VAR_08
 	farcall SetVarValue
 	xor a
 	start_script
@@ -6002,7 +6002,7 @@ Script_431ca:
 	jr nz, .asm_431cd
 	set 2, a
 	ld c, a
-	ld a, $08
+	ld a, VAR_08
 	farcall SetVarValue
 	xor a
 	start_script
@@ -6016,7 +6016,7 @@ Script_431ca:
 	jr nz, .asm_431cd
 	set 3, a
 	ld c, a
-	ld a, $08
+	ld a, VAR_08
 	farcall SetVarValue
 	xor a
 	start_script

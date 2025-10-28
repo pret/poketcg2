@@ -45,7 +45,7 @@ Func_30056:
 	ld a, [wd584]
 	cp $01
 	ret nz
-	ld a, $3b
+	ld a, VAR_3B
 	ld c, $01
 	farcall SetVarValue
 	ret
@@ -57,11 +57,11 @@ Func_30065:
 	cp c
 	jr nz, .asm_30077
 	inc c
-	ld a, $3b
+	ld a, VAR_3B
 	farcall SetVarValue
 	ret
 .asm_30077
-	ld a, $3b
+	ld a, VAR_3B
 	ld c, $00
 	farcall SetVarValue
 	ret
@@ -1428,11 +1428,11 @@ Func_31447:
 	jr z, .asm_31486
 	inc a
 	ld c, a
-	ld a, $30
+	ld a, VAR_30
 	farcall SetVarValue
 	jr .asm_3148e
 .asm_31486
-	ld a, $30
+	ld a, VAR_30
 	ld c, $05
 	farcall SetVarValue
 .asm_3148e
