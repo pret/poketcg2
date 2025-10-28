@@ -812,7 +812,7 @@ Func_9337:
 	call CopyDeckFromSRAM
 	call EnableSRAM
 	ld hl, wTempSavedDeckCards
-	ld b, $3c
+	ld b, DECK_SIZE
 .asm_9348
 	ld e, [hl]
 	inc hl
@@ -842,7 +842,7 @@ Func_9397:
 	call CopyDeckFromSRAM
 	call EnableSRAM
 	ld hl, wTempSavedDeckCards
-	ld b, $3c
+	ld b, DECK_SIZE
 .asm_93a8
 	ld e, [hl]
 	inc hl
@@ -1257,7 +1257,7 @@ Func_95d6:
 	jr nc, .asm_965a
 	ld [wNumMenuItems], a
 .asm_965a
-	ld hl, $5dbf
+	ld hl, Func_9dbf
 	ld d, h
 	ld a, l
 	ld hl, wScrollMenuScrollFunc
@@ -1395,7 +1395,7 @@ Func_9a0f:
 	call LoadCardDataToBuffer1_FromCardID
 	jr c, .asm_9a2f
 	ld a, [wLoadedCard1Type]
-	and $08
+	and TYPE_ENERGY
 	jr nz, .asm_9a12
 	ld a, [wLoadedCard1Stage]
 	or a
@@ -1423,14 +1423,14 @@ SECTION "Bank 2@5a6d", ROMX[$5a6d], BANK[$2]
 
 Func_9a6d:
 	call PrepareMenuGraphics
-	ld bc, $5
-	ld a, $1c
+	lb bc, 0, 5
+	ld a, SYM_BOX_TOP
 	call FillBGMapLineWithA
 	call DrawCardTypeIcons
 	call PrintCardTypeCounts
-	ld de, $f00
+	lb de, 15, 0
 	call PrintTotalCardCount
-	ld de, $1100
+	lb de, 17, 0
 	call PrintSlashSixty
 	call EnableLCD
 	ret
@@ -1827,12 +1827,12 @@ Func_9c80:
 	call ConvertToNumericalDigits
 	ld [hl], $05
 	inc hl
-	ld [hl], $2e
+	ld [hl], SYM_SLASH
 	inc hl
 	pop de
 	call Func_9c55
 	call ConvertToNumericalDigits
-	ld [hl], $00
+	ld [hl], TX_END
 	pop hl
 	pop de
 	pop bc
@@ -1985,11 +1985,11 @@ Func_9d41:
 	ld hl, sCardCollection
 	ld de, wc000
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank02.loop
+	call CopyBBytesFromHLToDE_Bank02
 	ld hl, $a200
 	ld de, $c100
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank02.loop
+	call CopyBBytesFromHLToDE_Bank02
 	call DisableSRAM
 	ld a, [$d383]
 	or a
@@ -2003,7 +2003,7 @@ Func_9d41:
 	call CreateFilteredCardList
 	ld a, $06
 	ld [wNumVisibleCardListEntries], a
-	ld de, $107
+	lb de, 1, 7
 	ld hl, wCardListCoords
 	ld [hl], e
 	inc hl
@@ -2068,10 +2068,10 @@ Func_9dbf:
 	ld a, [wScrollMenuScrollOffset]
 	or a
 	jr z, .asm_9dd4
-	ld a, $0d
+	ld a, SYM_CURSOR_U
 	jr .asm_9dd6
 .asm_9dd4
-	ld a, $00
+	ld a, SYM_SPACE
 .asm_9dd6
 	call WriteByteToBGMap0
 	ld a, [wScrollMenuScrollOffset]
@@ -2132,7 +2132,7 @@ Func_9dbf:
 	pop de
 	xor a
 	ld [wUnableToScrollDown], a
-	ld a, $2f
+	ld a, SYM_CURSOR_D
 	jr .asm_9e3e
 .asm_9e36
 	pop de
@@ -3586,7 +3586,7 @@ Func_a6ef:
 	ld hl, wCurDeckCards
 	ld de, wTempSavedDeckCards
 	ld b, $82
-	call CopyBBytesFromHLToDE_Bank02.loop
+	call CopyBBytesFromHLToDE_Bank02
 	call Func_b90c
 	call Func_b81d
 	ret
@@ -3598,7 +3598,7 @@ Func_a705:
 	ld a, $ff
 	ld [wCurDeck], a
 	ld hl, wCurDeckName
-	ld [hl], $00
+	ld [hl], TX_END
 	ld hl, $6726
 	call Func_8f6b
 	ld a, $01
@@ -5551,10 +5551,10 @@ Func_b57c:
 	ld hl, wCurDeckCards
 	call CopyDeckFromSRAM
 .asm_b58a
-	ld a, $09
+	ld a, NUM_FILTERS
 	ld hl, wCardFilterCounts
 	call ClearNBytesFromHL
-	ld a, $3c
+	ld a, DECK_SIZE
 	ld [wTotalCardCount], a
 	ld hl, wCardFilterCounts
 	ld [hl], a
@@ -5568,7 +5568,7 @@ Func_b59f:
 	pop hl
 	ld de, wCurDeckCards
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank02.loop
+	call CopyBBytesFromHLToDE_Bank02
 	jr Func_b57c.asm_b58a
 
 Func_b5b1:
@@ -5633,7 +5633,7 @@ SECTION "Bank 2@7649", ROMX[$7649], BANK[$2]
 
 Func_b649:
 	call Func_b659
-	ld de, $303
+	lb de, 3, 3
 	ld hl, wCardListCoords
 	ld [hl], e
 	inc hl
@@ -5674,7 +5674,7 @@ Func_b663:
 	ld e, l
 	ld hl, DeckNameSuffix
 	call CopyListFromHLToDE.loop
-	ld de, $301
+	lb de, 3, 1
 	ld hl, wDefaultText
 	call InitTextPrinting
 	call ProcessText
@@ -5696,12 +5696,12 @@ Func_b81d:
 	call Func_b860
 	ld a, $05
 	ld [wNumVisibleCardListEntries], a
-	ld de, $203
+	lb de, 2, 3
 	ld hl, wCardListCoords
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld a, $1f
+	ld a, SYM_BOX_RIGHT
 	ld [wCursorAlternateTile], a
 	call PrintCardSelectionList
 	ret
@@ -5810,8 +5810,8 @@ SECTION "Bank 2@790c", ROMX[$790c], BANK[$2]
 
 Func_b90c:
 	call PrepareMenuGraphics
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBox
 	ret
 ; 0xb919

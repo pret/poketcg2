@@ -234,7 +234,7 @@ Func_c1a2:
 
 Func_c1a6:
 	call Func_3d0d
-	ld a, $05
+	ld a, MUSIC_PAUSEMENU
 	call PlaySong
 	farcall Func_10772
 	call Func_3d4a
@@ -5434,7 +5434,7 @@ Func_ef40:
 	ld [$d576], a
 .asm_ef63
 	ld e, $05
-	ld d, $35
+	ld d, VAR_35
 	ld c, $ff
 .asm_ef69
 	ld a, d
@@ -5458,7 +5458,7 @@ Func_ef40:
 	jr c, .asm_ef7e
 	push bc
 	ld d, a
-	ld a, $35
+	ld a, VAR_35
 	add c
 	ld c, d
 	call SetVarValue
@@ -5494,7 +5494,7 @@ Func_efb3:
 	ld d, a
 	call LoadNPCDuelistDeck
 	ld l, a
-	ld e, $35
+	ld e, VAR_35
 .asm_efba
 	ld a, e
 	call GetVarValue
@@ -5515,7 +5515,7 @@ Func_efb3:
 
 Func_efd0:
 	ld c, $05
-	ld a, $35
+	ld a, VAR_35
 	ld hl, wddf9
 .asm_efd7
 	push af
@@ -5542,11 +5542,11 @@ Func_efd0:
 
 Func_eff7:
 	call Func_ec38
-	ld a, $34
+	ld a, VAR_34
 	call GetVarValue
 	dec a
 	ld c, a
-	ld a, $35
+	ld a, VAR_35
 	add c
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
@@ -5557,7 +5557,7 @@ Func_eff7:
 Func_f010:
 	push af
 	push hl
-	ld a, $29
+	ld a, VAR_29
 	call GetVarValue
 	sla a
 	ld hl, NonSpecialPromoCards
@@ -5589,7 +5589,7 @@ Func_f027:
 Func_f036:
 	push af
 	push hl
-	ld a, $31
+	ld a, VAR_31
 	call GetVarValue
 	sla a
 	ld hl, $51cb
