@@ -6675,14 +6675,14 @@ Func_13561:
 	inc de
 	jr .asm_135b3
 .asm_1358a:
-	ld de, $504
-	ld bc, $a08
+	lb de, 5, 4
+	lb bc, 10, 8
 	call AdjustDECoordByhSC
 	call CopyBGMapFromVRAMToWRAM
 	call ResetActiveSpriteAnimFlag6WithinArea
 	call DrawRegularTextBoxVRAM0
-	ld de, $b0b
-	ld bc, $301
+	lb de, 11, 11
+	lb bc, 3, 1
 	ld hl, $2000
 	call AdjustDECoordByhSC
 	call FillBoxInBGMap
@@ -6694,7 +6694,7 @@ Func_13561:
 .asm_135b3
 	push de
 	push de
-	ld de, $605
+	lb de, 6, 5
 	call AdjustDECoordByhSC
 	ld b, d
 	ld c, e
@@ -6715,7 +6715,7 @@ Func_13561:
 	call BankswitchVRAM
 	ld h, d
 	ld l, e
-	ld de, $b0b
+	lb de, 11, 11
 	call AdjustDECoordByhSC
 	ld a, $03
 	ld b, $00
