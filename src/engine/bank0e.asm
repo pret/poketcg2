@@ -4866,9 +4866,9 @@ Func_3ada1:
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
-	ld hl, $28d
+	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
-	ld de, $28d
+	ldtx de, PleaseSelectDeckText
 	call InitDeckMachineDrawingParams
 	call HandleDeckMachineSelection.start
 	jr c, .asm_3adb7
@@ -4904,7 +4904,7 @@ Func_3ada1:
 	jp c, .asm_3adb7
 	jr .asm_3ae65
 .asm_3ae1d
-	ld hl, $2ec
+	ldtx hl, DeleteSavedDeckPromptText
 	call YesOrNoMenuWithText
 	ld a, [wTempScrollMenuItem]
 	jr c, .asm_3adb7
@@ -4922,7 +4922,7 @@ Func_3ada1:
 	jp c, .asm_3adb7
 	jr .asm_3ae65
 .asm_3ae47
-	ld hl, $2db
+	ldtx hl, NoDecksSavedToMachineText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wTempScrollMenuItem]
 	jp .asm_3adb7
@@ -5691,7 +5691,7 @@ Func_3b315:
 	xor a
 	ld [wTxRam2], a
 	ld [$cdd7], a
-	ld hl, $2da
+	ldtx hl, SavedDeckToMachineText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -5820,7 +5820,7 @@ Func_3b3d1:
 	ret
 
 Func_3b3fa:
-	ld hl, $2dd
+	ldtx hl, ConfirmDeletePromptText
 	call YesOrNoMenuWithText
 	jr c, .asm_3b426
 	call GetSelectedSavedDeckPtr
@@ -5878,7 +5878,7 @@ DrawListScrollArrows:
 	ret
 
 Func_3b45f:
-	ld hl, $2df
+	ldtx hl, YouMayOnlyCarry4DecksText
 	call DrawWideTextBox_WaitForInput
 	ld a, $ff
 	farcall DrawDeckSelectionMenu
@@ -5886,7 +5886,7 @@ Func_3b45f:
 .asm_3b46c
 	ld hl, $735e
 	call InitializeMenuParameters
-	ld hl, $2e0
+	ldtx hl, ChooseDeckToDismantleText
 	call DrawWideTextBox_PrintText
 .asm_3b478
 	call DoFrame
@@ -5901,7 +5901,7 @@ Func_3b45f:
 	ret
 .asm_3b48f
 	ld [wCurDeck], a
-	ld hl, $2a7
+	ldtx hl, DeckBuildingDismantlePromptText
 	call YesOrNoMenuWithText
 	jr nc, .asm_3b49f
 	ld a, [wCurDeck]
@@ -5932,7 +5932,7 @@ Func_3b45f:
 	xor a
 	ld [wTxRam2], a
 	ld [$cdd7], a
-	ld hl, $2e1
+	ldtx hl, DismantledThisDeckText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wCurDeck]
 	ret
@@ -5957,7 +5957,7 @@ Func_3b4eb:
 	ld a, [wd49b]
 	or a
 	jr z, .asm_3b53a
-	ld hl, $2e3
+	ldtx hl, CannotBuildMustDismantleText
 	call DrawWideTextBox_WaitForInput
 	call Func_3b9d6
 	call Func_3b5f1
@@ -5966,7 +5966,7 @@ Func_3b4eb:
 	jr nc, .asm_3b53a
 	ret
 .asm_3b526
-	ld hl, $2e4
+	ldtx hl, YouDoNotOwnAllCardsNeededToBuildThisDeckText
 	call DrawWideTextBox_WaitForInput
 	call Func_3b92b
 	ld a, [wd49b]
@@ -6024,7 +6024,7 @@ Func_3b4eb:
 	xor a
 	ld [wTxRam2], a
 	ld [$cdd7], a
-	ld hl, $2e5
+	ldtx hl, BuiltDeckText
 	call DrawWideTextBox_WaitForInput
 	call SwitchToWRAM2
 	ld a, [$d280]
@@ -6053,7 +6053,7 @@ Func_3b4eb:
 Func_3b5f1:
 	call Func_3bcd6
 	farcall DrawDeckSelectionMenu
-	ld hl, $2ea
+	ldtx hl, DismantleTheseDecksPromptText
 	call YesOrNoMenuWithText
 	jr nc, .asm_3b601
 	ret
@@ -6086,7 +6086,7 @@ Func_3b5f1:
 	call DisableSRAM
 	ld a, [$d49a]
 	farcall DrawDeckSelectionMenu
-	ld hl, $2eb
+	ldtx hl, DismantledTheseDecksText
 	call DrawWideTextBox_WaitForInput
 	or a
 	ret
@@ -6107,9 +6107,9 @@ Func_3b646:
 	ret
 
 Func_3b661:
-	ld hl, $2ee
+	ldtx hl, MaySubInEnergyCardsToBuildThisDeckText
 	call DrawWideTextBox_WaitForInput
-	ld hl, $2ef
+	ldtx hl, BuildSubbedDeckPromptText
 	call YesOrNoMenuWithText
 	ret c
 	ld a, [wd49b]
@@ -6117,7 +6117,7 @@ Func_3b661:
 	add [hl]
 	cp $0a
 	jr c, .asm_3b681
-	ld hl, $2f0
+	ldtx hl, CannotBuildLackingTooManyCardsText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -6129,7 +6129,7 @@ Func_3b661:
 	jr c, .asm_3b696
 	cp b
 	jr nc, .asm_3b696
-	ld hl, $2f1
+	ldtx hl, CannotBuildLackingEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -6146,7 +6146,7 @@ Func_3b661:
 	call CopyBBytesFromHLToDE_Bank0e.loop
 	farcall Func_9a0f
 	jr c, .asm_3b6c0
-	ld hl, $2f2
+	ldtx hl, CannotBuildLackingBasicPokemonText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
@@ -6867,7 +6867,7 @@ Func_3bb09:
 .asm_3bb30
 	ld hl, $5eb5
 	farcall InitializeScrollMenuParameters
-	ld hl, $28d
+	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
 	ld a, [wNumDeckMachineEntries]
 	ld [wNumMenuItems], a
@@ -7017,14 +7017,14 @@ Func_3bc95:
 	bank1call SetDefaultPalettes
 	ld de, $3cff
 	call SetupText
-	ld de, $0
-	ld bc, $140c
+	lb de, 0, 0
+	lb bc, 20, 12
 	call DrawRegularTextBox
 	ld hl, wDeckMachineTitleText
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $100
+	lb de, 1, 0
 	call Func_2c4b
 	farcall Func_2bb32
 	call Func_3bd3b

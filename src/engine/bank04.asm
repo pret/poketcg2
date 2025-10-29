@@ -5115,35 +5115,35 @@ Func_1239b:
 	ret
 
 Func_123ab:
-	ld de, $0
-	ld bc, $140c
+	lb de, 0, 0
+	lb bc, 20, 12
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld de, $100
-	ld hl, $62f
+	lb de, 1, 0
+	ldtx hl, GameCenterSlotMachineTitleText
 	call Func_2c4b
-	ld de, $102
-	ld hl, $631
+	lb de, 1, 2
+	ldtx hl, GameCenterSlotMachineDescriptionText
 	call Func_35af
 	ld a, [$db2f]
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $7a1
-	ld de, $e00
+	ldtx hl, GameCenterXChipsPerPlayText
+	lb de, 14, 0
 	call Func_2c4b
 	ret
 
 Func_123e2:
-	ld hl, $630
+	ldtx hl, GameCenterSlotMachineStartPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
 	call Func_3d0d
 	push af
-	ld a, $34
+	ld a, MUSIC_DITTY_3
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -5727,11 +5727,11 @@ Func_129ca:
 	ret
 
 Func_12a02:
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $693
-	ld de, $10e
+	ldtx hl, GameCenterSlotMachineDialogText
+	lb de, 1, 14
 	call Func_35af
 	ret
 
@@ -6079,33 +6079,33 @@ Func_1315e:
 	ret
 
 Func_13189:
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $753
-	ld de, $102
+	ldtx hl, GameCenterBlackBoxDescriptionText
+	lb de, 1, 2
 	call Func_35af
-	ld hl, $752
-	ld de, $100
+	ldtx hl, GameCenterBlackBoxTitleText
+	lb de, 1, 0
 	call Func_2c4b
 	ld hl, $5
 	call LoadTxRam3
-	ld hl, $7a1
-	ld de, $e00
+	ldtx hl, GameCenterXChipsPerPlayText
+	lb de, 14, 0
 	call Func_2c4b
 	ret
 
 Func_131bd:
-	ld hl, $754
+	ldtx hl, GameCenterBlackBoxStartPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
 	call Func_3d0d
 	push af
-	ld a, $34
+	ld a, MUSIC_DITTY_3
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -6113,12 +6113,12 @@ Func_131bd:
 	ret
 
 Func_131d7:
-	ld hl, $755
+	ldtx hl, GameCenterBlackBoxSaveRequestText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ld c, $00
 	farcall Func_1c5a3
 	ret nc
-	ld hl, $759
+	ldtx hl, GameCenterBlackBoxUnableSaveRequiredText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 
@@ -6128,16 +6128,16 @@ Func_131eb:
 	call MultiplyBCByDE.CompareBCAndDE
 	ret z
 	ret nc
-	ld hl, $756
+	ldtx hl, GameCenterBlackBoxUnableNotEnoughChipsText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 
 Func_131fd:
 	farcall Func_1f324
 	ret nc
-	ld hl, $757
+	ldtx hl, GameCenterBlackBoxUnableLastOutputRemainingText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld hl, $758
+	ldtx hl, GameCenterBlackBoxUnableLastOutputRemainingTextCont
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 
@@ -6145,18 +6145,18 @@ Func_1320f:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call Func_13222
 	call SetFrameFuncAndFadeFromWhite
-	ld hl, $75b
+	ldtx hl, GameCenterBlackBoxProcedureDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
 
 Func_13222:
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	bank1call SetNoLineSeparation
-	ld hl, $75a
-	ld de, $101
+	ldtx hl, GameCenterBlackBoxProcedureText
+	lb de, 1, 1
 	call Func_35af
 	bank1call SetOneLineSeparation
 	ret
@@ -6166,10 +6166,10 @@ Func_1323b:
 	call Func_1325a
 	call SetFrameFuncAndFadeFromWhite
 	call Func_13267
-	ld hl, $75c
+	ldtx hl, GameCenterBlackBoxDoneText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	call Func_132c4
-	ld hl, $75d
+	ldtx hl, GameCenterToBeMailedText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
@@ -6343,7 +6343,7 @@ Func_13357:
 .asm_13360
 	farcall Func_a705
 	jr nc, .asm_13373
-	ld hl, $778
+	ldtx hl, GameCenterBlackBoxCancelPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_13360
@@ -6353,12 +6353,12 @@ Func_13357:
 	call Func_133dc
 	and a
 	jr nz, .asm_13381
-	ld hl, $7fd
+	ldtx hl, NoCardsSelectedTryAgainText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	jr .asm_13360
 .asm_13381
 	call Func_133b0
-	ld hl, $777
+	ldtx hl, GameCenterBlackBoxConfirmPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_13360
@@ -6370,7 +6370,7 @@ Func_13357:
 
 Func_13398:
 	call Func_114af
-	ld hl, BankswitchSRAM
+	ldtx hl, GameCenterBlackBoxChipsPaidText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ld bc, $5
 	call DecreaseChipsSmoothly
@@ -6381,8 +6381,8 @@ Func_13398:
 
 Func_133b0:
 	farcall Func_a6ef
-	ld hl, $776
-	ld de, $101
+	ldtx hl, GameCenterBlackBoxSendingHeaderText
+	lb de, 1, 1
 	call Func_35af
 	call Func_133dc
 	ld [wTxRam3], a
@@ -6393,8 +6393,8 @@ Func_133b0:
 	ld [wTxRam3_b], a
 	ld a, b
 	ld [$cddd], a
-	ld hl, $77a
-	ld de, $1001
+	ldtx hl, NumberSlashNumberText
+	lb de, 16, 1
 	call Func_35bf
 	ret
 
@@ -6771,11 +6771,11 @@ Func_13617:
 	ret
 
 Func_1362d:
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ld a, [$ddf6]
 	add a
@@ -6786,12 +6786,12 @@ Func_1362d:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $100
+	lb de, 1, 0
 	call Func_2c4b
 	ld hl, $7697
 	call Func_35cf
-	ld hl, $78f
-	ld de, $102
+	ldtx hl, ChallengeMachineScoreTitleText
+	lb de, 1, 2
 	call Func_35bf
 	ld hl, wde0d
 	ld de, $e04
@@ -6837,15 +6837,15 @@ Func_136b4:
 	ld hl, wde19
 	add hl, bc
 	call SavePlayerName
-	ld hl, $5be
-	ld de, $20a
+	ldtx hl, TxRam1Text
+	lb de, 2, 10
 	call Func_35bf
 	ld hl, $de39
 	call SavePlayerName
 	ret
 
 Func_136db:
-	ld hl, BankswitchVRAM0
+	ldtx hl, ChallengeMachineStartPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret
@@ -6880,11 +6880,11 @@ Func_136e4:
 	ret
 
 Func_1371f:
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ld a, [$ddf6]
 	add a
@@ -6895,7 +6895,7 @@ Func_1371f:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $100
+	lb de, 1, 0
 	call Func_2c4b
 	call Func_1374d
 	ret
@@ -6924,7 +6924,7 @@ Func_13763:
 	ld [wTxRam3], a
 	xor a
 	ld [$cddb], a
-	ld hl, $7a7
+	ldtx hl, TxRam3Text
 	ld d, $02
 	call Func_35bf
 	pop hl
@@ -6958,7 +6958,7 @@ Func_13792:
 	ld a, [$ddf7]
 	and a
 	jr nz, .asm_1379e
-	ld hl, $79c
+	ldtx hl, ChallengeMachineOpponentListDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 .asm_1379e
 	ld a, [$ddf6]
@@ -6995,19 +6995,19 @@ Func_13792:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ld hl, $7a3
+	ldtx hl, ChallengeMachineOpponentXDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 
 Func_137df:
 .asm_137df
-	ld hl, $79e
+	ldtx hl, ChallengeMachineDuelPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret nc
-	ld hl, $7f7
+	ldtx hl, ChallengeMachineQuitWinStreakWarningText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld hl, $7f8
+	ldtx hl, ChallengeMachineQuitPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_137df
@@ -7036,11 +7036,11 @@ Func_137fa:
 	ld a, [$ddf8]
 	dec a
 	jr z, .asm_13827
-	ld hl, $7a5
+	ldtx hl, ChallengeMachineLossDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 .asm_13827
-	ld hl, $7a4
+	ldtx hl, ChallengeMachineWinDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 
@@ -7059,13 +7059,13 @@ Func_1382e:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam3
-	ld hl, $7a6
+	ldtx hl, ChallengeMachineLossDialogWinStreakText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	jr .asm_1387e
 .asm_1384e
 	call Func_3d0d
 	push af
-	ld a, $30
+	ld a, MUSIC_MEDAL
 	call Func_3d09
 	pop af
 	ld hl, $7f9
@@ -7083,10 +7083,10 @@ Func_1382e:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam3
-	ld hl, $7fa
+	ldtx hl, ChallengeMachineSetsWonText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 .asm_1387e
-	ld hl, $7fb
+	ldtx hl, ChallengeMachineComeAgainText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	pop af
 	ret

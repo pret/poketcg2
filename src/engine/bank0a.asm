@@ -3635,8 +3635,8 @@ Func_2bcfb:
 	bank1call SetDefaultPalettes
 	ld de, $3cff
 	call SetupText
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBox
 	ld de, $100
 	ld a, [wd548]
@@ -3645,10 +3645,10 @@ Func_2bcfb:
 	ld hl, $30a
 	jr .asm_2bd34
 .asm_2bd31
-	ld hl, $319
+	ldtx hl, AutoDeckMachine2Text
 .asm_2bd34
 	call Func_2c4b
-	ld hl, $2f5
+	ldtx hl, ChooseDeckTypeText
 	call DrawWideTextBox_PrintText
 	call Func_2bd48
 	farcall Func_3bf5e

@@ -981,6 +981,8 @@ Func_35af::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35bf::
 	push af
 	push bc
@@ -2381,6 +2383,7 @@ Func_3d02::
 	pop af
 	ret
 
+; a = MUSIC_* constant
 Func_3d09::
 	call PlaySong
 	ret

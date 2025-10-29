@@ -447,7 +447,7 @@ Func_1c5a3:
 	push bc
 	push de
 	push hl
-	ld hl, $5b2
+	ldtx hl, PlayerDiaryPromptText
 	xor a
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_1c5ca
@@ -2762,14 +2762,14 @@ Func_1d5c7:
 	call LoadMenuBoxParams
 	ld a, [$db18]
 	call DrawMenuBox
-	ld hl, $67d
-	ld de, $100
+	ldtx hl, PlayersChipsText
+	lb de, 1, 0
 	call Func_2c4b
 	ld de, $e00
 	ld bc, $501
 	farcall FillBoxInBGMapWithZero
-	ld hl, $5ca
-	ld de, $1200
+	ldtx hl, PlayerDiaryCardsUnitText
+	lb de, 18, 0
 	call Func_35af
 	farcall GetGameCenterChips
 	ld de, $e00
@@ -2818,7 +2818,7 @@ Func_1d618:
 	ld d, $0e
 	call PrintNumber
 	ld d, $12
-	ld hl, $5ca
+	ldtx hl, PlayerDiaryCardsUnitText
 	call Func_35af
 	pop hl
 	pop de
@@ -2850,7 +2850,7 @@ Func_1d66e:
 	pop af
 	jr .asm_1d6b2
 .asm_1d695
-	ld hl, $5e5
+	ldtx hl, GameCenterPrizeExchangeConfirmText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_1d6b2
@@ -2861,7 +2861,7 @@ Func_1d66e:
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
 .asm_1d6b2
-	ld hl, $5e6
+	ldtx hl, GameCenterPrizeExchangeQuitConfirmText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_1d66e
@@ -2900,7 +2900,7 @@ Func_1d6be:
 	call WaitPalFading_Bank07
 	ret
 .asm_1d6fc
-	ld hl, $5e4
+	ldtx hl, GameCenterNotEnoughChipsText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
 ; 0x1d704
@@ -3057,14 +3057,14 @@ Func_1d886:
 	call CreateCoinAnimation
 	ld a, $03
 	call SetAndInitCoinAnimation
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $634
-	ld de, $10c
+	ldtx hl, GameCenterCoinFlipTitleText
+	lb de, 1, 12
 	call Func_2c4b
-	ld hl, $637
-	ld de, $10e
+	ldtx hl, GameCenterCoinFlipDialogText
+	lb de, 1, 14
 	call Func_35af
 	ld de, $0
 	ld bc, $1404
@@ -5353,8 +5353,8 @@ Func_1e9ce:
 	ld de, $101
 	ld bc, $1201
 	farcall FillBoxInBGMapWithZero
-	ld hl, $69b
-	ld de, $101
+	ldtx hl, GrandMasterCupBracketTitleText
+	lb de, 1, 1
 	call Func_35af
 	ret
 
@@ -6021,14 +6021,14 @@ Func_1f644:
 	ret
 
 Func_1f666:
-	ld de, $0
-	ld bc, GetPlayAreaCardAttachedEnergies
+	lb de, 0, 0
+	lb bc, 20, 3
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $74c
-	ld de, $401
+	ldtx hl, GrandMasterCupPrizesTitleText
+	lb de, 4, 1
 	call Func_35af
 	ret
 
@@ -6068,8 +6068,8 @@ Func_1f6cd:
 	xor a
 	ld [$dd79], a
 .asm_1f6d4
-	ld hl, $74d
-	ld de, $10e
+	ldtx hl, GrandMasterCupPrizesDialogText
+	lb de, 1, 14
 	call Func_35af
 .asm_1f6dd
 	ld a, [$dd78]
@@ -6096,7 +6096,7 @@ Func_1f6cd:
 	ld a, [$dd79]
 	cp $02
 	jr nz, .asm_1f6dd
-	ld hl, $74e
+	ldtx hl, GrandMasterCupPrizesConfirmPromptText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .asm_1f6cd
@@ -6333,11 +6333,11 @@ Func_1f867:
 	call Func_1f88f
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
-	ld hl, EnableSRAM
+	ldtx hl, GameCenterCardDungeonUnableNotEnoughChipsText
 	ld a, [$dd93]
 	and a
 	jr z, .asm_1f884
-	ld hl, $787
+	ldtx hl, GameCenterCardDungeonDialogText
 .asm_1f884
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call StartFadeToWhite
@@ -6345,20 +6345,20 @@ Func_1f867:
 	ret
 
 Func_1f88f:
-	ld de, $0
-	ld bc, $1413
+	lb de, 0, 0
+	lb bc, 20, 19
 	call DrawRegularTextBoxVRAM0
-	ld hl, $785
-	ld de, $102
+	ldtx hl, GameCenterCardDungeonDescriptionText
+	lb de, 1, 2
 	call Func_35af
-	ld hl, $784
-	ld de, $100
+	ldtx hl, GameCenterCardDungeonTitleText
+	lb de, 1, 0
 	call Func_2c4b
-	ld hl, $782
-	ld de, $d00
+	ldtx hl, GameCenter10ChipsPerPlayText
+	lb de, 13, 0
 	call Func_2c4b
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ret
 
@@ -6401,7 +6401,7 @@ Func_1f8f7:
 	farcall SetFrameFuncAndFadeFromWhite
 	farcall Func_2612a
 	jr c, .asm_1f914
-	ld hl, $7fe
+	ldtx hl, GameCenterToBeMailedText_2
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call Func_1f319
 	ld a, $82

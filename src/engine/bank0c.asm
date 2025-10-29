@@ -1211,7 +1211,7 @@ Func_31285:
 	call LoadTxRam3
 	ld c, l
 	ld b, h
-	ld hl, $afc
+	ldtx hl, ReceivedXChipsText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	farcall IncreaseChipsSmoothly
 	ld a, $01

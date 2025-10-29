@@ -4838,21 +4838,21 @@ Func_260e7:
 Func_2612a:
 	bank1call SetupDuel
 	call DisableLCD
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBox
-	ld de, $100
-	ld hl, $271
+	lb de, 1, 0
+	ldtx hl, GameCenterBillsPCTitleText
 	call Func_2c4b
-	ld de, $d00
-	ld hl, $272
+	lb de, 13, 0
+	ldtx hl, GameCenterBillsPC20ChipsPerPlayText
 	call Func_2c4b
-	ld de, $202
-	ld hl, $273
+	lb de, 2, 2
+	ldtx hl, GameCenterBillsPCDescriptionText
 	call InitTextPrinting_ProcessTextFromID
-	ld hl, $274
+	ldtx hl, GameCenterBillsPCDescriptionDialogText
 	call DrawWideTextBox_WaitForInput
-	ld hl, $275
+	ldtx hl, GameCenterBillsPCStartPromptText
 	call YesOrNoMenuWithText
 	ret c
 	farcall Func_1f333
@@ -4888,7 +4888,7 @@ Func_2612a:
 	ret c
 	call LoadCardDataToBuffer1_FromCardID
 	call DrawLargePictureOfCard
-	ld hl, $27a
+	ldtx hl, GameCenterBillsPCConfirmPromptText
 	call YesOrNoMenuWithText
 	jr nc, .asm_261b6
 	call Func_263a5
@@ -4897,7 +4897,7 @@ Func_2612a:
 	call EmptyScreen
 	farcall Func_102ef.Func_10327
 	farcall Func_114af
-	ld hl, $27c
+	ldtx hl, GameCenterBillsPCChipsPaidText
 	call DrawWideTextBox_WaitForInput
 	ld bc, $14
 	farcall DecreaseChipsSmoothly
@@ -4959,7 +4959,7 @@ Func_2612a:
 	lb hl, 1, 8
 	call FillRectangle
 	call FlushAllPalettes
-	ld hl, $27d
+	ldtx hl, GameCenterBillsPCCardsInsertedText
 	call DrawWideTextBox_WaitForInput
 	ld de, BILLS_COMPUTER
 	call RemoveCardFromCollection
@@ -5028,7 +5028,7 @@ Func_26353:
 	call Func_263a5
 	jr .asm_26353
 .asm_2639b
-	ld hl, $27b
+	ldtx hl, GameCenterBillsPCCancelPromptText
 	call YesOrNoMenuWithText
 	jr c, .asm_26396
 	scf
@@ -5036,12 +5036,13 @@ Func_26353:
 
 Func_263a5:
 	call EmptyScreen
-	ld de, $0
-	ld bc, GetPlayAreaCardAttachedEnergies
+	lb de, 0, 0
+	lb bc, 20, 3
 	call DrawRegularTextBox
+
 Func_263b1:
-	ld de, $101
-	ld hl, $277
+	lb de, 1, 1
+	ldtx hl, GameCenterBillsPCYourCompatibleCardsText
 	call InitTextPrinting_ProcessTextFromID
 	ret
 ; 0x263bb

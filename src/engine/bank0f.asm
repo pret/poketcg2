@@ -851,7 +851,7 @@ Func_3c6c3:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, $07
+	ld a, MUSIC_DECKMACHINE
 	call PlaySong
 	xor a
 	farcall Func_1e855
@@ -875,7 +875,7 @@ Func_3c6e8:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, $07
+	ld a, MUSIC_DECKMACHINE
 	call PlaySong
 	ld a, $01
 	farcall Func_1e855
@@ -896,7 +896,7 @@ Func_3c715:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, $07
+	ld a, MUSIC_DECKMACHINE
 	call PlaySong
 	farcall Func_1e849
 	call ResumeSong
@@ -6616,7 +6616,7 @@ Func_3f317:
 	call LoadTxRam3
 	ld c, l
 	ld b, h
-	ld hl, $afc
+	ldtx hl, ReceivedXChipsText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	farcall IncreaseChipsSmoothly
 	ld a, $01
@@ -6870,7 +6870,7 @@ Func_3f500:
 	call LoadTxRam3
 	ld c, l
 	ld b, h
-	ld hl, $afc
+	ldtx hl, ReceivedXChipsText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	farcall IncreaseChipsSmoothly
 	ld a, $01
