@@ -1426,15 +1426,15 @@ Func_40e91:
 	scf
 	ret
 .asm_40ead
-	ld a, $03
-	ld de, $605
-	ld b, $01
-	farcall Func_10f0f
+	ld a, NPC_RONALD
+	lb de, 6, 5
+	ld b, EAST
+	farcall SetOWObjectTilePositionAndDirection
 	ld a, [wPlayerOWObject]
-	ld de, $60f
+	lb de, 6, 15
 	farcall SetOWObjectTilePosition
-	ld a, $02
-	ld b, $03
+	ld a, NPC_DR_MASON
+	ld b, WEST
 	farcall SetOWObjectDirection
 	ld de, $408
 	farcall CalcOWScroll
@@ -1460,8 +1460,8 @@ Func_40e91:
 	ret
 
 Func_40ef9:
-	ld bc, $6
-	ld de, $500
+	ld bc, TILEMAP_006
+	lb de, 5, 0
 	farcall Func_12c0ce
 	ret
 
@@ -2460,8 +2460,8 @@ Func_41603:
 	ld a, VAR_2D
 	farcall GetVarValue
 	farcall Func_453c3
-	ld de, $904
-	ld b, $03
+	lb de, 9, 4
+	ld b, WEST
 	farcall LoadOWObjectInMap
 .asm_41620
 	scf
@@ -2760,8 +2760,8 @@ Func_417df:
 	ld a, VAR_2E
 	farcall GetVarValue
 	farcall Func_453c3
-	ld b, $00
-	ld de, $a09
+	ld b, NORTH
+	lb de, 10, 9
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, .NPCMovement_418a1
@@ -2884,8 +2884,8 @@ Func_418ed:
 	ld a, VAR_2F
 	farcall GetVarValue
 	farcall Func_453c3
-	ld b, $00
-	ld de, $a09
+	ld b, NORTH
+	lb de, 10, 9
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, .NPCMovement_419a6
@@ -3276,15 +3276,15 @@ Func_41c60:
 	ld [wd593], a
 	ld a, h
 	ld [$d594], a
-	ld a, $32
-	ld de, $505
+	ld a, NPC_GR_5
+	lb de, 5, 5
 	farcall SetOWObjectTilePosition
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 	ld a, [wPlayerOWObject]
-	ld de, $505
+	lb de, 5, 5
 	farcall SetOWObjectTilePosition
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 .asm_41c9f
 	scf
@@ -3485,10 +3485,10 @@ Func_41db4:
 	bit 5, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $01
+	ld a, NPC_GR_5
+	ld b, EAST
 	farcall SetOWObjectDirection
 	call Func_41e75
 	jr .asm_41e5b
@@ -3497,10 +3497,10 @@ Func_41db4:
 	bit 6, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
-	ld b, $00
+	ld b, NORTH
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $02
+	ld a, NPC_GR_5
+	ld b, SOUTH
 	farcall SetOWObjectDirection
 	call Func_41e75
 	jr .asm_41e5b
@@ -3509,10 +3509,10 @@ Func_41db4:
 	bit 6, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
-	ld b, $00
+	ld b, NORTH
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $02
+	ld a, NPC_GR_5
+	ld b, SOUTH
 	farcall SetOWObjectDirection
 	call Func_41e5c
 	jr .asm_41e5b
@@ -3521,38 +3521,38 @@ Func_41db4:
 	bit 4, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $03
+	ld a, NPC_GR_5
+	ld b, WEST
 	farcall SetOWObjectDirection
 	call Func_41e5c
 .asm_41e5b
 	ret
 
 Func_41e5c:
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $03
 	cp d
 	ret z
-	ld a, $32
-	ld bc, $8301
+	ld a, NPC_GR_5
+	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
-	ld a, $32
+	ld a, NPC_GR_5
 	call Func_336d
 	ret
 
 Func_41e75:
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $04
 	cp d
 	ret z
-	ld a, $32
-	ld bc, $8101
+	ld a, NPC_GR_5
+	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
-	ld a, $32
+	ld a, NPC_GR_5
 	call Func_336d
 	ret
 
@@ -4522,18 +4522,18 @@ Func_4266e:
 	farcall GetVarValue
 	cp $05
 	jr nz, .asm_426b7
-	ld a, $e1
-	ld de, $903
-	ld b, $02
-	farcall Func_10f0f
+	ld a, NPC_GR_STAFF
+	lb de, 9, 3
+	ld b, SOUTH
+	farcall SetOWObjectTilePositionAndDirection
 	jr .asm_426b7
 .asm_4268a
 	ld a, VAR_30
 	farcall GetVarValue
 	cp $06
 	jr nz, .asm_4269e
-	ld bc, $57
-	ld de, $500
+	ld bc, TILEMAP_057
+	lb de, 5, 0
 	farcall Func_12c0ce
 .asm_4269e
 	ld a, $01
@@ -4541,8 +4541,8 @@ Func_4266e:
 	ld a, VAR_2D
 	farcall GetVarValue
 	farcall Func_453c3
-	ld de, $904
-	ld b, $03
+	lb de, 9, 4
+	ld b, WEST
 	farcall LoadOWObjectInMap
 .asm_426b7
 	scf
@@ -5445,8 +5445,8 @@ Script_42dad:
 	farcall GetVarValue
 	farcall Func_453c3
 	push af
-	ld b, $00
-	ld de, $b0a
+	ld b, NORTH
+	lb de, 11, 10
 	farcall LoadOWObjectInMap
 	ld b, $10
 	ld hl, .Data_42e02
@@ -5625,19 +5625,19 @@ Func_42f3e:
 	ld [wd593], a
 	ld a, h
 	ld [$d594], a
-	ld a, $55
-	ld de, CopyDataHLtoDE_SaveRegisters
+	ld a, NPC_BIRURITCHI
+	lb de, 7, 2
 	farcall SetOWObjectTilePosition
-	ld a, $53
-	ld de, $80e
-	ld b, $00
+	ld a, NPC_KANZAKI
+	lb de, 8, 14
+	ld b, NORTH
 	farcall LoadOWObjectInMap
-	ld a, $54
-	ld de, $60e
-	ld b, $00
+	ld a, NPC_RUI
+	lb de, 6, 14
+	ld b, NORTH
 	farcall LoadOWObjectInMap
 	ld a, [wPlayerOWObject]
-	ld de, $70f
+	lb de, 7, 15
 	farcall SetOWObjectTilePosition
 .asm_42f84
 	scf

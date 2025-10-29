@@ -815,7 +815,7 @@ Func_34635:
 	bit 4, a
 	jr z, .asm_3468e
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
 	farcall GetOWObjectTilePosition
 	ld a, $09
@@ -827,26 +827,26 @@ Func_34635:
 	ld a, $07
 	cp e
 	jr nz, .asm_3468e
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $07
 	cp e
 	jr z, .asm_3468e
-	ld a, $32
-	ld bc, $8201
+	ld a, NPC_GR_5
+	lb bc, SOUTH | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
 	jr .asm_34689
 .asm_34675
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $06
 	cp e
 	jr z, .asm_3468e
-	ld a, $32
-	ld bc, $8001
+	ld a, NPC_GR_5
+	lb bc, NORTH | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
 .asm_34689
-	ld a, $32
+	ld a, NPC_GR_5
 	call Func_336d
 .asm_3468e
 	ret
@@ -1055,17 +1055,17 @@ Func_347ea:
 	add $03
 	push af
 	ld e, a
-	ld a, $32
-	ld d, $01
+	ld a, NPC_GR_5
+	ld d, 1
 	farcall SetOWObjectTilePosition
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
 	pop af
 	ld e, a
 	ld a, [wPlayerOWObject]
-	ld d, $00
+	ld d, 0
 	farcall SetOWObjectTilePosition
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
 	jr .asm_34871
 .asm_3483d
@@ -1078,15 +1078,15 @@ Func_347ea:
 	ld [wd593], a
 	ld a, h
 	ld [$d594], a
-	ld a, $32
-	ld de, $b05
+	ld a, NPC_GR_5
+	lb de, 11, 5
 	farcall SetOWObjectTilePosition
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 	ld a, [wPlayerOWObject]
-	ld de, $b05
+	lb de, 11, 5
 	farcall SetOWObjectTilePosition
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 .asm_34871
 	scf
@@ -1334,10 +1334,10 @@ Func_349d5:
 	bit 5, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $01
+	ld a, NPC_GR_5
+	ld b, EAST
 	farcall SetOWObjectDirection
 	call Func_34a96
 	jr .asm_34a7c
@@ -1346,10 +1346,10 @@ Func_349d5:
 	bit 6, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
-	ld b, $00
+	ld b, NORTH
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $02
+	ld a, NPC_GR_5
+	ld b, SOUTH
 	farcall SetOWObjectDirection
 	call Func_34a96
 	jr .asm_34a7c
@@ -1358,10 +1358,10 @@ Func_349d5:
 	bit 6, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
-	ld b, $00
+	ld b, NORTH
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $02
+	ld a, NPC_GR_5
+	ld b, SOUTH
 	farcall SetOWObjectDirection
 	call Func_34a7d
 	jr .asm_34a7c
@@ -1370,38 +1370,38 @@ Func_349d5:
 	bit 4, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
-	ld a, $32
-	ld b, $03
+	ld a, NPC_GR_5
+	ld b, WEST
 	farcall SetOWObjectDirection
 	call Func_34a7d
 .asm_34a7c
 	ret
 
 Func_34a7d:
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $09
 	cp d
 	ret z
-	ld a, $32
-	ld bc, $8301
+	ld a, NPC_GR_5
+	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
-	ld a, $32
+	ld a, NPC_GR_5
 	call Func_336d
 	ret
 
 Func_34a96:
-	ld a, $32
+	ld a, NPC_GR_5
 	farcall GetOWObjectTilePosition
 	ld a, $0a
 	cp d
 	ret z
-	ld a, $32
-	ld bc, $8101
+	ld a, NPC_GR_5
+	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
-	ld a, $32
+	ld a, NPC_GR_5
 	call Func_336d
 	ret
 
@@ -2212,8 +2212,8 @@ Func_350f6:
 	ret
 
 Func_35106:
-	ld bc, $49
-	ld de, $400
+	ld bc, TILEMAP_049
+	lb de, 4, 0
 	farcall Func_12c0ce
 	ld a, $0a
 	ld [wd582], a
@@ -2904,19 +2904,19 @@ Func_3562b:
 	ret
 
 Func_35634:
-	ld bc, $8a
-	ld de, $500
+	ld bc, TILEMAP_08A
+	lb de, 5, 0
 	farcall Func_12c0ce
 	ld a, EVENT_SENTAS_ROOM_BRIDGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3565f
-	ld bc, $8b
-	ld de, $c05
+	ld bc, TILEMAP_08B
+	lb de, 12, 5
 	farcall Func_12c0ce
-	ld a, $44
-	ld de, $b06
+	ld a, NPC_SENTA
+	lb de, 11, 6
 	farcall SetOWObjectTilePosition
-	ld b, $01
+	ld b, EAST
 	farcall SetOWObjectDirection
 .asm_3565f
 	scf
@@ -3201,11 +3201,11 @@ Func_35865:
 	ld a, EVENT_AIRAS_ROOM_BRIDGE_STATE
 	farcall GetEventValue
 	jr nz, .asm_35880
-	ld bc, $8f
-	ld de, $400
+	ld bc, TILEMAP_08F
+	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, $45
-	ld de, $505
+	ld a, NPC_AIRA
+	lb de, 5, 5
 	farcall SetOWObjectTilePosition
 .asm_35880
 	scf
@@ -3423,12 +3423,12 @@ Func_35a0d:
 	scf
 	ret
 .asm_35a2e
-	ld a, $49
-	ld de, CopyDataHLtoDE_SaveRegisters
+	ld a, NPC_KAMIYA
+	lb de, 7, 2
 	farcall SetOWObjectTilePosition
 .asm_35a37
-	ld bc, $96
-	ld de, $700
+	ld bc, TILEMAP_096
+	lb de, 7, 0
 	farcall Func_12c0ce
 	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
 	farcall GetEventValue
@@ -3444,13 +3444,13 @@ Func_35a0d:
 	ld [wd593], a
 	ld a, h
 	ld [$d594], a
-	ld a, $47
-	ld de, $502
-	ld b, $02
+	ld a, NPC_GODA
+	lb de, 5, 2
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
-	ld a, $48
-	ld de, $a02
-	ld b, $02
+	ld a, NPC_GRACE
+	lb de, 10, 2
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 .asm_35a7a
 	scf
@@ -3726,8 +3726,8 @@ Func_35c7b:
 Func_35c86:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $c7
-	ld de, SetBGP
+	ld bc, TILEMAP_0C7
+	lb de, 4, 6
 	farcall Func_12c0ce
 	farcall Func_30000.asm_30005
 	ret
@@ -3782,8 +3782,8 @@ Func_35d17:
 Func_35d22:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $cc
-	ld de, SetBGP
+	ld bc, TILEMAP_0CC
+	lb de, 4, 6
 	farcall Func_12c0ce
 	farcall Func_30000.asm_30005
 	ret
@@ -3838,8 +3838,8 @@ Func_35d8a:
 	scf
 	ret
 .asm_35d94
-	ld bc, $a1
-	ld de, FlushPalette
+	ld bc, TILEMAP_0A1
+	lb de, 4, 2
 	farcall Func_12c0ce
 	scf
 	ret
@@ -4323,9 +4323,9 @@ Func_36114:
 	farcall GetVarValue
 	cp $07
 	jr nc, .asm_3613e
-	ld a, $63
-	ld de, $403
-	ld b, $02
+	ld a, NPC_GR_X
+	lb de, 4, 3
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	ld a, $0a
 	ld [wd582], a
@@ -5735,11 +5735,11 @@ Func_36c36:
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	farcall GetOWObjectTilePosition
-	ld e, $0f
+	ld e, 15
 	farcall SetOWObjectTilePosition
 	farcall SetOWObjectSpriteAnimFlag6
-	ld a, $e8
-	ld de, $60f
+	ld a, NPC_STRONGHOLD_PLATFORM
+	lb de, 6, 15
 	farcall SetOWObjectTilePosition
 	farcall SetOWObjectSpriteAnimFlag6
 	xor a
@@ -6211,11 +6211,11 @@ Func_36ff2:
 	ld a, EVENT_MET_COLORLESS_ALTAR_MEMBERS
 	farcall GetEventValue
 	jr nz, .asm_3700f
-	ld a, $52
-	ld de, $506
+	ld a, NPC_SAMEJIMA
+	lb de, 5, 6
 	farcall SetOWObjectTilePosition
-	ld a, $52
-	ld b, $00
+	ld a, NPC_SAMEJIMA
+	ld b, NORTH
 	farcall SetOWObjectDirection
 .asm_3700f
 	scf
@@ -6732,8 +6732,8 @@ Func_373cb:
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	farcall StartOWObjectAnimation
-	ld b, $00
-	ld c, $01
+	ld b, NORTH
+	ld c, MOVE_SPEED_WALK
 	farcall Func_10e3c
 	jr .asm_3740c
 .asm_37409
@@ -6759,28 +6759,28 @@ Func_3741f:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_37469
-	ld bc, $b4
-	ld de, FlushPalette
+	ld bc, TILEMAP_0B4
+	lb de, 4, 2
 	farcall Func_12c0ce
 	ld a, EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
 	farcall GetEventValue
 	jr z, .asm_3744d
-	ld bc, $188
+	ld bc, PALETTE_188
 	farcall GetPalettesWithID
-	ld a, $e6
-	ld de, FlushPalette
-	ld b, $02
+	ld a, NPC_WHITE_CASTLE_COIN
+	lb de, 4, 2
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	jr .asm_37469
 .asm_3744d
 	ld a, EVENT_INSERTED_LEFT_COIN_IN_GR_CASTLE_DOOR
 	farcall GetEventValue
 	jr z, .asm_37469
-	ld bc, $189
+	ld bc, PALETTE_189
 	farcall GetPalettesWithID
-	ld a, $e7
-	ld de, $602
-	ld b, $02
+	ld a, NPC_PURPLE_CASTLE_COIN
+	lb de, 6, 2
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	jr .asm_37469
 .asm_37469
@@ -7059,38 +7059,38 @@ Func_3766c:
 	jr z, .asm_376cd
 	jr .asm_376eb
 .asm_37691
-	ld a, $53
-	ld de, $803
+	ld a, NPC_KANZAKI
+	lb de, 8, 3
 	farcall SetOWObjectTilePosition
-	ld b, $02
+	ld b, SOUTH
 	farcall SetOWObjectDirection
-	ld a, $54
-	ld de, $603
+	ld a, NPC_RUI
+	lb de, 6, 3
 	farcall SetOWObjectTilePosition
-	ld b, $02
+	ld b, SOUTH
 	farcall SetOWObjectDirection
-	ld a, $55
-	ld de, CopyDataHLtoDE_SaveRegisters
-	ld b, $02
+	ld a, NPC_BIRURITCHI
+	lb de, 7, 2
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	jr .asm_376eb
 .asm_376bc
-	ld a, $54
-	ld de, $707
+	ld a, NPC_RUI
+	lb de, 7, 7
 	farcall SetOWObjectTilePosition
-	ld b, $02
+	ld b, SOUTH
 	farcall SetOWObjectDirection
 	jr .asm_376eb
 .asm_376cd
-	ld a, $53
-	ld de, $707
+	ld a, NPC_KANZAKI
+	lb de, 7, 7
 	farcall SetOWObjectTilePosition
-	ld b, $02
+	ld b, SOUTH
 	farcall SetOWObjectDirection
-	ld a, $54
-	ld de, $909
+	ld a, NPC_RUI
+	lb de, 9, 9
 	farcall SetOWObjectTilePosition
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 .asm_376eb
 	scf

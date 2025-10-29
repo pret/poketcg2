@@ -1384,7 +1384,7 @@ Func_2ca46:
 	cp d
 	jr z, .exit
 	ld a, NPC_STEPHANIE
-	lb bc, $81, $01
+	lb bc, EAST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
 	jr .asm_2ca9a
 .asm_2ca86
@@ -1394,7 +1394,7 @@ Func_2ca46:
 	cp d
 	jr z, .exit
 	ld a, NPC_STEPHANIE
-	lb bc, $83, $01
+	lb bc, WEST | MOVE_BACKWARDS, MOVE_SPEED_WALK
 	farcall Func_10e3c
 .asm_2ca9a
 	ld a, NPC_STEPHANIE

@@ -31,8 +31,8 @@ Func_30000:
 	pop af
 	jr c, .asm_30050
 	ld a, [wPlayerOWObject]
-	ld b, $82
-	ld c, $02
+	ld b, SOUTH | MOVE_BACKWARDS
+	ld c, MOVE_SPEED_RUN
 	farcall Func_10e3c
 	ld a, $05
 	call WaitAFrames
@@ -1330,8 +1330,8 @@ Func_313a8:
 	ld a, EVENT_SEALED_FORT_DOOR_STATE
 	farcall GetEventValue
 	jr nz, .asm_313ba
-	ld bc, $51
-	ld de, $400
+	ld bc, TILEMAP_051
+	lb de, 4, 0
 	farcall Func_12c0ce
 .asm_313ba
 	scf
@@ -1878,8 +1878,8 @@ Func_317eb:
 	scf
 	ret
 .asm_31809
-	ld bc, $5b
-	ld de, $500
+	ld bc, TILEMAP_05B
+	lb de, 5, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -2132,8 +2132,8 @@ Func_319dc:
 	scf
 	ret
 .asm_319e6
-	ld bc, $5e
-	ld de, $400
+	ld bc, TILEMAP_05E
+	lb de, 4, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -2356,8 +2356,8 @@ Func_31b92:
 	scf
 	ret
 .asm_31b9c
-	ld bc, $61
-	ld de, $500
+	ld bc, TILEMAP_061
+	lb de, 5, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -2573,14 +2573,14 @@ Func_31d37:
 	jr z, .asm_31d41
 	jr .asm_31d5c
 .asm_31d41
-	ld bc, $65
-	ld de, $407
+	ld bc, TILEMAP_065
+	lb de, 4, 7
 	farcall Func_12c0ce
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr nz, .asm_31d5c
-	ld a, $9b
-	ld de, $408
+	ld a, NPC_GR_CLERK_LIGHTNING_FORT
+	lb de, 4, 8
 	farcall SetOWObjectTilePosition
 .asm_31d5c
 	scf
@@ -2940,8 +2940,8 @@ Func_32016:
 	scf
 	ret
 .asm_3202b
-	ld bc, $69
-	ld de, $400
+	ld bc, TILEMAP_069
+	lb de, 4, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -3145,19 +3145,19 @@ Func_321b1:
 	ret
 
 Func_321ba:
-	ld bc, $6c
-	ld de, $300
+	ld bc, TILEMAP_06C
+	lb de, 3, 0
 	farcall Func_12c0ce
 	ld a, EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	farcall GetEventValue
 	jr z, .asm_321d8
-	ld bc, $6d
-	ld de, $102
+	ld bc, TILEMAP_06D
+	lb de, 1, 2
 	farcall Func_12c0ce
 	jr .asm_321e2
 .asm_321d8
-	ld bc, $6e
-	ld de, $400
+	ld bc, TILEMAP_06E
+	lb de, 4, 0
 	farcall Func_12c0ce
 .asm_321e2
 	scf
@@ -3694,14 +3694,14 @@ Func_325cc:
 	jr c, .asm_325fd
 	jr .asm_3261a
 .asm_325e0
-	ld bc, $73
-	ld de, $407
+	ld bc, TILEMAP_073
+	lb de, 4, 7
 	farcall Func_12c0ce
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_3261a
-	ld a, $9f
-	ld de, $408
+	ld a, NPC_GR_CLERK_FIRE_FORT
+	lb de, 4, 8
 	farcall SetOWObjectTilePosition
 	jr .asm_3261a
 .asm_325fd
@@ -4027,8 +4027,8 @@ Func_3286d:
 	scf
 	ret
 .asm_32882
-	ld bc, $77
-	ld de, $400
+	ld bc, TILEMAP_077
+	lb de, 4, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -4213,8 +4213,8 @@ Func_329d6:
 	scf
 	ret
 .asm_329e0
-	ld bc, $7a
-	ld de, $500
+	ld bc, TILEMAP_07A
+	lb de, 5, 0
 	farcall Func_12c0ce
 	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall GetEventValue
@@ -4230,8 +4230,8 @@ Func_329d6:
 	ld [wd593], a
 	ld a, h
 	ld [$d594], a
-	ld a, $3f
-	ld de, DoAFrames
+	ld a, NPC_YUKI
+	lb de, 5, 9
 	farcall SetOWObjectTilePosition
 .asm_32a16
 	scf
@@ -4566,11 +4566,11 @@ Func_32c5a:
 	scf
 	ret
 .asm_32c64
-	ld bc, $7d
-	ld de, $307
+	ld bc, TILEMAP_07D
+	lb de, 3, 7
 	farcall Func_12c0ce
-	ld bc, $7e
-	ld de, $400
+	ld bc, TILEMAP_07E
+	lb de, 4, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -5063,14 +5063,14 @@ Func_32ff6:
 	jr c, .asm_33027
 	jr .asm_33044
 .asm_3300a
-	ld bc, $83
-	ld de, $407
+	ld bc, TILEMAP_083
+	lb de, 4, 7
 	farcall Func_12c0ce
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	farcall GetEventValue
 	jr nz, .asm_33044
-	ld a, $a1
-	ld de, $408
+	ld a, NPC_GR_CLERK_WATER_FORT
+	lb de, 4, 8
 	farcall SetOWObjectTilePosition
 	jr .asm_33044
 .asm_33027
@@ -5218,8 +5218,8 @@ Func_33129:
 	scf
 	ret
 .asm_3313e
-	ld bc, $87
-	ld de, $400
+	ld bc, TILEMAP_087
+	lb de, 4, 0
 	farcall Func_12c0ce
 	scf
 	ret
@@ -5569,28 +5569,28 @@ Func_333bd:
 	jr z, .asm_333c7
 	jr .asm_33422
 .asm_333c7
-	ld bc, $93
-	ld de, $407
+	ld bc, TILEMAP_093
+	lb de, 4, 7
 	farcall Func_12c0ce
 	ld a, EVENT_INSERTED_LEFT_COIN_IN_FIGHTING_FORT_DOOR
 	farcall GetEventValue
 	jr z, .asm_333ed
-	ld bc, $187
+	ld bc, PALETTE_187
 	farcall GetPalettesWithID
-	ld a, $e4
-	ld de, $407
-	ld b, $02
+	ld a, NPC_RED_FORT_COIN
+	lb de, 4, 7
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	jr .asm_33422
 .asm_333ed
 	ld a, EVENT_INSERTED_RIGHT_COIN_IN_FIGHTING_FORT_DOOR
 	farcall GetEventValue
 	jr z, .asm_33409
-	ld bc, $186
+	ld bc, PALETTE_186
 	farcall GetPalettesWithID
-	ld a, $e5
-	ld de, $507
-	ld b, $02
+	ld a, NPC_BLUE_FORT_COIN
+	lb de, 5, 7
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	jr .asm_33422
 .asm_33409
@@ -5600,8 +5600,8 @@ Func_333bd:
 	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr nz, .asm_33422
-	ld a, $a4
-	ld de, $408
+	ld a, NPC_GR_CLERK_FIGHTING_FORT
+	lb de, 4, 8
 	farcall SetOWObjectTilePosition
 .asm_33422
 	scf
@@ -5834,8 +5834,8 @@ Func_335ba:
 Func_335c7:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $9a
-	ld de, $303
+	ld bc, TILEMAP_09A
+	lb de, 3, 3
 	farcall Func_12c0ce
 	call Func_30000
 	ret
@@ -5989,8 +5989,8 @@ Func_33703:
 Func_33710:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $9d
-	ld de, $203
+	ld bc, TILEMAP_09D
+	lb de, 2, 3
 	farcall Func_12c0ce
 	call Func_30000
 	ret
@@ -6208,8 +6208,8 @@ Func_33908:
 Func_33915:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $bc
-	ld de, $303
+	ld bc, TILEMAP_0BC
+	lb de, 3, 3
 	farcall Func_12c0ce
 	call Func_30000
 	ret
@@ -6349,8 +6349,8 @@ Func_33a96:
 Func_33aa1:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $c1
-	ld de, SetBGP
+	ld bc, TILEMAP_0C1
+	lb de, 4, 6
 	farcall Func_12c0ce
 	call Func_30000.asm_30005
 	ret
@@ -6436,8 +6436,8 @@ Func_33b86:
 Func_33b91:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $c4
-	ld de, $203
+	ld bc, TILEMAP_0C4
+	lb de, 2, 3
 	farcall Func_12c0ce
 	call Func_30000
 	ret
@@ -6606,8 +6606,8 @@ Func_33ceb:
 Func_33cf8:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $c9
-	ld de, $803
+	ld bc, TILEMAP_0C9
+	lb de, 8, 3
 	farcall Func_12c0ce
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
@@ -6623,8 +6623,8 @@ Func_33cf8:
 Func_33d1b:
 	ld a, SFX_0F
 	call PlaySFX
-	ld bc, $ca
-	ld de, SetBGP
+	ld bc, TILEMAP_0CA
+	lb de, 4, 6
 	farcall Func_12c0ce
 	call Func_30000.asm_30005
 	ret
@@ -6713,9 +6713,9 @@ Func_33de8:
 	farcall GetVarValue
 	cp $07
 	jr nc, .asm_33e12
-	ld a, $63
-	ld de, $407
-	ld b, $02
+	ld a, NPC_GR_X
+	lb de, 4, 7
+	ld b, SOUTH
 	farcall LoadOWObjectInMap
 	ld a, $0a
 	ld [wd582], a

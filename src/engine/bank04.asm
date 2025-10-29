@@ -2064,7 +2064,9 @@ ENDR
 	pop af
 	ret
 
-; a = NPC_* constant
+; a = NPC_* ID
+; b = direction
+; de = coordinates
 LoadOWObjectInMap::
 	push af
 	push bc
@@ -2112,6 +2114,8 @@ GetOWObjectTilePosition::
 	pop af
 	ret
 
+; a = NPC_* ID
+; de = coordinates
 SetOWObjectTilePosition:
 	push af
 	push de
@@ -2387,7 +2391,10 @@ ResetOWObjectFlag5_WithID:
 	pop hl
 	ret
 
-Func_10f0f:
+; a = NPC_* ID
+; b = direction
+; de = coordinates
+SetOWObjectTilePositionAndDirection:
 	call SetOWObjectTilePosition
 	call SetOWObjectDirection
 	ret
@@ -3415,6 +3422,7 @@ PullSpriteAnimTileObjFromBank3:
 	pop af
 	ret
 
+; a = NPC_* ID
 SetOWObjectAsScrollTarget:
 	ld [wScrollTargetObject], a
 	call _GetOWObjectWithID

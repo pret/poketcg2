@@ -821,11 +821,11 @@ Func_3c697:
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	jr z, .asm_3c6b1
-	ld a, $ba
-	ld b, $03
+	ld a, NPC_LAB_TECH_AUTO_DECK_MACHINE_2
+	ld b, WEST
 	farcall SetOWObjectDirection
-	ld bc, $8
-	ld de, $707
+	ld bc, TILEMAP_008
+	lb de, 7, 7
 	farcall Func_12c0ce
 .asm_3c6b1
 	scf
@@ -1571,8 +1571,8 @@ Func_3cbfb:
 	farcall GetEventValue
 	jr nz, .asm_3cc35
 .asm_3cc0b
-	ld bc, $c
-	ld de, $100
+	ld bc, TILEMAP_00C
+	lb de, 1, 0
 	farcall Func_12c0ce
 	call Func_3cc53
 	jr c, .asm_3cc35
@@ -2883,8 +2883,8 @@ Func_3d6c1:
 	ret
 
 Func_3d6ca:
-	ld bc, $37
-	ld de, $700
+	ld bc, TILEMAP_037
+	lb de, 7, 0
 	farcall Func_12c0ce
 	ld a, [wd584]
 	cp $25
@@ -3848,12 +3848,12 @@ Func_3ddb8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3ddec
-	ld a, $8c
-	ld de, $80e
-	ld b, $00
+	ld a, NPC_CUP_HOST
+	lb de, 8, 14
+	ld b, NORTH
 	farcall LoadOWObjectInMap
 	farcall ResetOWObjectSpriteAnimFlag6
-	ld a, $8c
+	ld a, NPC_CUP_HOST
 	farcall SetOWObjectAsScrollTarget
 	ld a, $0a
 	ld [wd582], a
@@ -3867,32 +3867,32 @@ Func_3ddb8:
 	scf
 	ret
 .asm_3ddec
-	ld bc, $b9
-	ld de, $500
+	ld bc, TILEMAP_0B9
+	lb de, 5, 0
 	farcall Func_12c0ce
-	ld a, $2a
-	ld de, $305
-	ld b, $01
-	farcall Func_10f0f
-	ld a, $2b
-	ld de, $303
-	ld b, $01
-	farcall Func_10f0f
-	ld a, $2c
-	ld de, $c05
-	ld b, $03
-	farcall Func_10f0f
-	ld a, $2d
-	ld de, $c03
-	ld b, $03
-	farcall Func_10f0f
+	ld a, NPC_COURTNEY
+	lb de, 3, 5
+	ld b, EAST
+	farcall SetOWObjectTilePositionAndDirection
+	ld a, NPC_STEVE
+	lb de, 3, 3
+	ld b, EAST
+	farcall SetOWObjectTilePositionAndDirection
+	ld a, NPC_JACK
+	lb de, 12, 5
+	ld b, WEST
+	farcall SetOWObjectTilePositionAndDirection
+	ld a, NPC_ROD
+	lb de, 12, 3
+	ld b, WEST
+	farcall SetOWObjectTilePositionAndDirection
 	farcall Func_45416
 	farcall Func_454fa
 	ld a, VAR_14
 	farcall GetVarValue
 	farcall Func_45484
-	ld de, $904
-	ld b, $03
+	lb de, 9, 4
+	ld b, WEST
 	farcall LoadOWObjectInMap
 	ld de, $600
 	farcall CalcOWScroll
@@ -4377,8 +4377,8 @@ Script_3e1b8:
 	ld a, VAR_1B
 	farcall GetVarValue
 	farcall Func_45484
-	ld de, $904
-	ld b, $03
+	lb de, 9, 4
+	ld b, WEST
 	farcall LoadOWObjectInMap
 	ld a, $01
 	start_script
@@ -4429,8 +4429,8 @@ Script_3e21c:
 	ld a, VAR_1E
 	farcall GetVarValue
 	farcall Func_45484
-	ld de, $904
-	ld b, $03
+	lb de, 9, 4
+	ld b, WEST
 	farcall LoadOWObjectInMap
 	ld a, $01
 	start_script
@@ -6020,11 +6020,11 @@ Func_3ee9e:
 	ld a, b
 	or c
 	jr nz, .asm_3eec2
-	ld a, $c0
-	ld b, $01
+	ld a, NPC_CHIP_GIRL
+	ld b, EAST
 	farcall SetOWObjectDirection
 	ld a, [wPlayerOWObject]
-	ld b, $03
+	ld b, WEST
 	farcall SetOWObjectDirection
 	call Func_3ee11
 .asm_3eec2
@@ -6284,8 +6284,8 @@ Func_3f0a3:
 	ret
 
 Func_3f0b3:
-	ld bc, $43
-	ld de, $400
+	ld bc, TILEMAP_043
+	lb de, 4, 0
 	farcall Func_12c0ce
 	ld a, $0a
 	ld [wd582], a
@@ -6502,8 +6502,8 @@ Func_3f249:
 	ret
 
 Func_3f259:
-	ld bc, $46
-	ld de, $400
+	ld bc, TILEMAP_046
+	lb de, 4, 0
 	farcall Func_12c0ce
 	ld a, $0a
 	ld [wd582], a
@@ -6741,8 +6741,8 @@ Func_3f419:
 	ret
 
 Func_3f429:
-	ld bc, $4c
-	ld de, $400
+	ld bc, TILEMAP_04C
+	lb de, 4, 0
 	farcall Func_12c0ce
 	ld a, $0a
 	ld [wd582], a
@@ -7376,7 +7376,7 @@ Func_3f8c6:
 	ld [$d594], a
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
-	ld de, $a0f
+	lb de, 10, 15
 	farcall SetOWObjectTilePosition
 	ld de, $400
 	farcall CalcOWScroll
