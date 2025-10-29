@@ -4922,9 +4922,9 @@ Func_2612a:
 	ld de, $8a00
 	call LoadCardGfx
 	ld a, $a0
-	ld hl, $601
-	ld de, $103
-	ld bc, $806
+	lb hl, 6, 1
+	lb de, 1, 3
+	lb bc, 8, 6
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex5
 	ld de, v0Tiles1
@@ -4932,9 +4932,9 @@ Func_2612a:
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
 	ld a, $80
-	ld de, $101
-	ld bc, $802
-	ld hl, $108
+	lb de, 1, 1
+	lb bc, 8, 2
+	lb hl, 1, 8
 	call FillRectangle
 	ld hl, wLoadedCard1Gfx
 	ld a, [hli]
@@ -4944,9 +4944,9 @@ Func_2612a:
 	ld de, $8d00
 	call LoadCardGfx
 	ld a, $d0
-	ld hl, $601
-	ld de, $b03
-	ld bc, $806
+	lb hl, 6, 1
+	lb de, 11, 3
+	lb bc, 8, 6
 	call FillRectangle
 	bank1call DrawCardGfxToDE_BGPalIndex2
 	ld de, $8900
@@ -4954,14 +4954,14 @@ Func_2612a:
 	ld b, $10
 	call CopyFontsOrDuelGraphicsTiles
 	ld a, $90
-	ld de, $b01
-	ld bc, $802
-	ld hl, $108
+	lb de, 11 ,1
+	lb bc, 8, 2
+	lb hl, 1, 8
 	call FillRectangle
 	call FlushAllPalettes
 	ld hl, $27d
 	call DrawWideTextBox_WaitForInput
-	ld de, $1b4
+	ld de, BILLS_COMPUTER
 	call RemoveCardFromCollection
 	ld hl, wLoadedCard1ID
 	ld e, [hl]
