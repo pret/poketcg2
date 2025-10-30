@@ -220,7 +220,7 @@ Func_31a8::
 	bit SPRITEANIMSTRUCT_MOVE_F, a
 	jr z, .not_moving
 	ldh a, [hKeysHeld]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr nz, .b_btn_pressed
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectSpeedAndMoveDuration
@@ -420,9 +420,9 @@ Func_32d8::
 	call Func_32f6
 	jr nc, .done
 	ldh a, [hKeysPressed]
-	bit 0, a
+	bit B_PAD_A, a
 	jr nz, .asm_32e9
-	bit 3, a
+	bit B_PAD_START, a
 	jr nz, .asm_32f0
 	jr .done
 .asm_32e9
@@ -437,23 +437,23 @@ Func_32d8::
 
 Func_32f6::
 	ldh a, [hKeysHeld]
-	and D_PAD
+	and PAD_CTRL_PAD
 	jr z, .set_carry
 	ld b, NORTH
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .got_direction
 	inc b ; EAST
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .got_direction
 	inc b ; SOUTH
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .got_direction
-	; D_LEFT_F set
+	; B_PAD_LEFT set
 	inc b ; WEST
 .got_direction
 	ld c, 1
 	ldh a, [hKeysHeld]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .got_speed
 	inc c
 .got_speed
@@ -736,7 +736,7 @@ Func_34be::
 WaitForLCDOff::
 .loop_wait
 	ldh a, [rSTAT]
-	and STAT_LCDC_STATUS
+	and STAT_MODE
 	jr nz, .loop_wait
 	ret
 
@@ -837,7 +837,7 @@ CopyBCBytesFromHLToDE::
 
 SwitchWRAMBank::
 	ld [wWRAMBank], a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret
 
 DoAFrames_WithPreCheck::
@@ -1507,7 +1507,7 @@ CopyCGBBGPalsFromSource_WithPalOffset::
 	ld b, $00
 	sla c
 	sla c
-	sla c ; *CGB_PAL_SIZE
+	sla c ; *PAL_SIZE
 	ld hl, wBackgroundPalettesCGB
 	add hl, bc
 	ld d, h
@@ -1516,7 +1516,7 @@ CopyCGBBGPalsFromSource_WithPalOffset::
 	ld a, [hli]
 	ld c, a
 .loop_pals
-	ld b, CGB_PAL_SIZE
+	ld b, PAL_SIZE
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -1569,7 +1569,7 @@ LoadGfxPalettes::
 	ld b, $00
 	sla c
 	sla c
-	sla c ; *CGB_PAL_SIZE
+	sla c ; *PAL_SIZE
 	ld hl, wObjectPalettesCGB
 	add hl, bc
 	ld d, h
@@ -1579,7 +1579,7 @@ LoadGfxPalettes::
 	ld c, a
 	push bc
 .loop_pals
-	ld b, CGB_PAL_SIZE
+	ld b, PAL_SIZE
 .loop_copy
 	ld a, [hli]
 	ld [de], a
@@ -1711,7 +1711,7 @@ Func_3924::
 	ld a, c
 	bit 7, a
 	jr z, .set_attr
-	set OAM_TILE_BANK, b
+	set B_OAM_BANK1, b
 	res 7, c
 .set_attr
 	call SetOneObjectAttributes
@@ -2669,14 +2669,14 @@ ApplyBackgroundScroll::
 	push af
 	push hl
 
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, BANK("WRAM1")
-	ldh [rSVBK], a
+	ldh [rWBK], a
 
 	call DisableInt_LYCoincidence
 	ld hl, rSTAT
-	res STAT_LYCFLAG, [hl] ; reset coincidence flag
+	res B_STAT_LYCF, [hl] ; reset coincidence flag
 	ei
 	ld hl, wApplyBGScroll
 	ld a, [hl]
@@ -2699,7 +2699,7 @@ ApplyBackgroundScroll::
 	call GetNextBackgroundScroll
 	ld hl, rSTAT
 .wait_hblank_or_vblank
-	bit STAT_BUSY, [hl]
+	bit B_STAT_BUSY, [hl]
 	jr nz, .wait_hblank_or_vblank
 	ldh [rSCX], a
 	ldh a, [rLY]
@@ -2720,7 +2720,7 @@ ApplyBackgroundScroll::
 	call EnableInt_LYCoincidence
 .done
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop hl
 	pop af
 	ret
@@ -2763,10 +2763,10 @@ GetNextBackgroundScroll::
 EnableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
-	set STAT_LYC, [hl]
+	set B_STAT_LYC, [hl]
 	xor a
 	ld hl, rIE
-	set INT_LCD_STAT, [hl]
+	set B_IE_STAT, [hl]
 	pop hl
 	ret
 
@@ -2774,10 +2774,10 @@ EnableInt_LYCoincidence::
 DisableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
-	res STAT_LYC, [hl]
+	res B_STAT_LYC, [hl]
 	xor a
 	ld hl, rIE
-	res INT_LCD_STAT, [hl]
+	res B_IE_STAT, [hl]
 	pop hl
 	ret
 

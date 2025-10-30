@@ -167,7 +167,7 @@ HandleMultiDirectionalMenu:
 	inc hl
 	inc hl
 
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr z, .else_if_down
 	; up
 	ld a, [hl]
@@ -175,7 +175,7 @@ HandleMultiDirectionalMenu:
 
 .else_if_down
 	inc hl
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr z, .else_if_right
 	; down
 	ld a, [hl]
@@ -183,7 +183,7 @@ HandleMultiDirectionalMenu:
 
 .else_if_right
 	inc hl
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr z, .else_if_left
 	; right
 	ld a, [hl]
@@ -191,7 +191,7 @@ HandleMultiDirectionalMenu:
 
 .else_if_left
 	inc hl
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr z, .check_button
 	; left
 	ld a, [hl]
@@ -223,9 +223,9 @@ HandleMultiDirectionalMenu:
 ; check if one of the dpad, left or right, is pressed.
 ; if not, just go back to the start.
 	ldh a, [hDPadHeld]
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .left_or_right
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr z, HandleMultiDirectionalMenu
 
 .left_or_right
@@ -271,9 +271,9 @@ HandleMultiDirectionalMenu:
 	ld [wScrollMenuCursorBlinkCounter], a
 .check_button
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .no_btns
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_btn
 ; b btn
 	ld a, $ff ; cancel
@@ -438,7 +438,7 @@ SECTION "Bank 2@4fb9", ROMX[$4fb9], BANK[$2]
 
 Func_8fb9:
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	ret z
 	ld a, [wCurMenuItem]
 	ld [wCurDeck], a
@@ -1506,7 +1506,7 @@ HandleCardSelectionInput:
 	ld a, [wNumMenuItems]
 	ld c, a
 	ld a, [wCurScrollMenuItem]
-	bit D_LEFT_F, b
+	bit B_PAD_LEFT, b
 	jr z, .check_d_right
 	dec a
 	bit 7, a
@@ -1516,7 +1516,7 @@ HandleCardSelectionInput:
 	dec a
 	jr .got_cursor_pos
 .check_d_right
-	bit D_RIGHT_F, b
+	bit B_PAD_RIGHT, b
 	jr z, .handle_ab_btns
 	inc a
 	cp c
@@ -1537,9 +1537,9 @@ HandleCardSelectionInput:
 	ld a, [wCurScrollMenuItem]
 	ld [hCurMenuItem], a
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, HandleCardSelectionCursorBlink
-	and A_BUTTON
+	and PAD_A
 	jr nz, ConfirmSelectionAndReturnCarry
 	; b button
 	ld a, $ff
@@ -1621,7 +1621,7 @@ HandleScrollListInput:
 	ld a, [wNumMenuItems]
 	ld c, a
 	ld a, [wCurScrollMenuItem]
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 ; d_up
 	push af
@@ -1646,7 +1646,7 @@ HandleScrollListInput:
 	jr .done_scroll
 
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .asm_9fd8
 ; d_down
 	push af
@@ -1689,13 +1689,13 @@ HandleScrollListInput:
 	ld a, [wd119]
 	or a
 	jr z, .asm_9ff4
-	bit D_LEFT_F, b
+	bit B_PAD_LEFT, b
 	jr z, .asm_9fea
 	call GetSelectedVisibleCardID
 	call RemoveCardFromDeckAndUpdateCount
 	jr .asm_9ff4
 .asm_9fea
-	bit D_RIGHT_F, b
+	bit B_PAD_RIGHT, b
 	jr z, .asm_9ff4
 	call GetSelectedVisibleCardID
 	call AddCardToDeckAndUpdateCount
@@ -1725,9 +1725,9 @@ HandleScrollListInput:
 
 .null
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .check_sfx
-	and A_BUTTON
+	and PAD_A
 	jr nz, .selected
 	ld a, $ff
 	ld [hCurMenuItem], a
@@ -1818,7 +1818,7 @@ OpenCardPageFromCardList:
 .handle_input
 	ldh a, [hDPadHeld]
 	ld b, a
-	and A_BUTTON | B_BUTTON | SELECT | START
+	and PAD_A | PAD_B | PAD_SELECT | PAD_START
 	jp nz, .exit
 
 ; check d-pad
@@ -1830,7 +1830,7 @@ OpenCardPageFromCardList:
 	ld a, [wNumMenuItems]
 	ld c, a
 	ld a, [wCurScrollMenuItem]
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 	push af
 	ld a, TRUE
@@ -1848,7 +1848,7 @@ OpenCardPageFromCardList:
 	jr .reopen_card_page
 
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .handle_regular_card_page_input
 	push af
 	ld a, TRUE
@@ -2233,7 +2233,7 @@ HandleDeckConfirmationMenu:
 	call HandleJumpListInput
 	jr c, .loop_input
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop_input
 
 .selected_card
@@ -2276,9 +2276,9 @@ HandleJumpListInput:
 	ld a, [wScrollMenuScrollOffset]
 	ld c, a
 	ldh a, [hDPadHeld]
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr z, .d_right
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .d_left
 	or a
 	ret
@@ -2325,9 +2325,9 @@ HandleSelectUpAndDownInList:
 	ld a, [wScrollMenuScrollOffset]
 	ld c, a
 	ldh a, [hDPadHeld]
-	cp SELECT | D_DOWN
+	cp PAD_SELECT | PAD_DOWN
 	jr z, .sel_down
-	cp SELECT | D_UP
+	cp PAD_SELECT | PAD_UP
 	jr z, .sel_up
 	or a
 	ret
@@ -2371,7 +2371,7 @@ ShowDeckInfoHeaderAndWaitForBButton:
 .wait_input
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr z, .wait_input
 	ld a, $ff
 	call PlayAcceptOrDeclineSFX
@@ -3893,14 +3893,14 @@ HandleCardAlbumCardPage:
 .handle_input
 	ldh a, [hDPadHeld]
 	ld b, a
-	and BUTTONS
+	and PAD_BUTTONS
 	jp nz, .exit
 	xor a ; FALSE
 	ld [wMenuInputSFX], a
 	ld a, [wNumMenuItems]
 	ld c, a
 	ld a, [wCurScrollMenuItem]
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 
 	push af
@@ -3926,7 +3926,7 @@ HandleCardAlbumCardPage:
 	jr .got_new_pos
 
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .open_card_page
 	push af
 	ld a, SFX_01
@@ -4057,7 +4057,7 @@ CardAlbum:
 .loop_input_empty_list
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr z, .loop_input_empty_list
 	ld a, $ff
 	call PlayAcceptOrDeclineSFX
@@ -4093,7 +4093,7 @@ CardAlbum:
 	call HandleJumpListInput
 	jr c, .loop
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop
 .open_card_page
 	ld a, $01
@@ -4464,7 +4464,7 @@ PrinterMenu_PokemonCards:
 	ld [wNumMenuItems], a
 .handle_input
 	ldh a, [hDPadHeld]
-	and D_DOWN
+	and PAD_DOWN
 	jr z, .asm_b33b
 ; d_down
 	call ConfirmSelectionAndReturnCarry
@@ -4505,7 +4505,7 @@ PrinterMenu_PokemonCards:
 .loop_frame_2
 	call DoFrame
 	ldh a, [hDPadHeld]
-	and D_UP
+	and PAD_UP
 	jr z, .asm_b38e
 	ld a, [wTempCardTypeFilter]
 	ld hl, wScrollMenuScrollOffset
@@ -4520,7 +4520,7 @@ PrinterMenu_PokemonCards:
 	call HandleScrollListInput
 	jr c, .asm_b3e7
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop_frame_2
 ; start btn
 	ld a, $01
@@ -4808,7 +4808,7 @@ DeckDiagnosisResult:
 	call HandleScrollListInput
 	jr c, .selection_made
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop_input
 .open_card_page
 	ld a, SFX_01

@@ -6,10 +6,10 @@ VBlankHandler:
 	push hl
 	ldh a, [hBankROM]
 	push af
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ld hl, wReentrancyFlag
 	bit IN_VBLANK, [hl]
 	jr nz, .done
@@ -42,7 +42,7 @@ VBlankHandler:
 	res IN_VBLANK, [hl]
 .done
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop af
 	call BankswitchROM
 	pop hl

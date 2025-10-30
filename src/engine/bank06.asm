@@ -2192,13 +2192,13 @@ AttackAnimation_UnusedFF:
 ; - return
 TransmitIRBit:
 	jr c, .delay_once
-	ld [hl], RPF_WRITE_HI | RPF_ENREAD
+	ld [hl], RP_WRITE_HIGH | RP_ENABLE
 	ld a, 5
 	jr .loop_delay_1 ; jump to possibly to add more cycles?
 .loop_delay_1
 	dec a
 	jr nz, .loop_delay_1
-	ld [hl], RPF_WRITE_LO | RPF_ENREAD
+	ld [hl], RP_WRITE_LOW | RP_ENABLE
 	ld a, 14
 	jr .loop_delay_2 ; jump to possibly to add more cycles?
 .loop_delay_2
@@ -2265,7 +2265,7 @@ ReceiveByteThroughIR:
 	ld b, 0
 	ld hl, rRP
 .wait_ir
-	bit RPB_DATAIN, [hl]
+	bit B_RP_DATA_IN, [hl]
 	jr z, .ok
 	dec b
 	jr nz, .wait_ir
@@ -2299,11 +2299,11 @@ ReceiveByteThroughIR:
 ; if in any of the checks it is unset,
 ; then a is set to 0
 ; this is done a total of 9 times
-	bit RPB_DATAIN, [hl]
+	bit B_RP_DATA_IN, [hl]
 	jr nz, .asm_196ec
 	xor a
 .asm_196ec
-	bit RPB_DATAIN, [hl]
+	bit B_RP_DATA_IN, [hl]
 	jr nz, .asm_196f1
 	xor a
 .asm_196f1
@@ -2431,7 +2431,7 @@ StartIRCommunications:
 	call SwitchToCGBNormalSpeed
 	ld a, P14
 	ldh [rJOYP], a
-	ld a, RPF_ENREAD
+	ld a, RP_ENABLE
 	ldh [rRP], a
 	ret
 
@@ -2441,13 +2441,13 @@ CloseIRCommunications:
 	ldh [rJOYP], a
 .wait_vblank_on
 	ldh a, [rSTAT]
-	and STAT_LCDC_STATUS
-	cp STAT_ON_VBLANK
+	and STAT_MODE
+	cp STAT_VBLANK
 	jr z, .wait_vblank_on
 .wait_vblank_off
 	ldh a, [rSTAT]
-	and STAT_LCDC_STATUS
-	cp STAT_ON_VBLANK
+	and STAT_MODE
+	cp STAT_VBLANK
 	jr nz, .wait_vblank_off
 	call SwitchToCGBDoubleSpeed
 	ei
@@ -3180,14 +3180,14 @@ CardPopMenuParams:
 ; returns carry if selection with A btn was made
 HandleCardPopMenuInput:
 	ldh a, [hDPadHeld]
-	and D_UP | D_DOWN
+	and PAD_UP | PAD_DOWN
 	jr z, .no_up_down
 	call DrawCardPopMenuBox
 .no_up_down
 	ldh a, [hKeysPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .set_carry
-	and B_BUTTON
+	and PAD_B
 	ret z
 	ld a, $ff
 	ldh [hCurScrollMenuItem], a
@@ -3781,7 +3781,7 @@ ViewCardPopRecords:
 	; selected a record entry
 	call .LoadRecord
 	ldh a, [hKeysPressed]
-	and A_BUTTON
+	and PAD_A
 	jr nz, .show_record_page
 	ld hl, wCardPopRecordYourCardID
 	ld e, [hl]
@@ -3850,13 +3850,13 @@ ViewCardPopRecords:
 .loop_record_page_input
 	call DoFrame
 	ldh a, [hDPadHeld]
-	bit START_F, a
+	bit B_PAD_START, a
 	jr nz, .open_card_page
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .show_previous_record
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .show_next_record
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .loop_record_page_input
 	jp .init_list
 
@@ -4001,13 +4001,13 @@ ViewCardPopRecords:
 .HandleMenuInput:
 	ldh a, [hDPadHeld]
 	ld b, a
-	and D_PAD
+	and PAD_CTRL_PAD
 	jr z, .got_cur_menu_item
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr nz, .d_up
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr nz, .d_down
-	bit D_RIGHT_F, b
+	bit B_PAD_RIGHT, b
 	jr nz, .d_right
 
 ; d left
@@ -4083,10 +4083,10 @@ ViewCardPopRecords:
 	ldh [hCurScrollMenuItem], a
 
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	jr nz, .a_btn_or_start
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	ret z
 ; cancel
 	ld a, $ff
@@ -4347,7 +4347,7 @@ ENDR
 .loop_input
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON
+	and PAD_A
 	jr z, .loop_input
 ; pressed A
 	call RestoreVBlankFunction
@@ -4727,7 +4727,7 @@ TryInitPrinterCommunications:
 .wait_input
 	call DoFrame
 	ldh a, [hKeysHeld]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .b_button
 	ld bc, 0
 	lb de, PRINTERPKT_NUL, FALSE
@@ -5066,7 +5066,7 @@ PrintCardList:
 ; even if it's not marked as seen in the collection
 	ld e, FALSE
 	ldh a, [hKeysHeld]
-	and SELECT
+	and PAD_SELECT
 	jr z, .no_select
 	inc e ; TRUE
 .no_select
@@ -5697,7 +5697,7 @@ _SetUpAndStartLinkDuel:
 	ldh a, [hDPadHeld]
 	ld b, a
 	ld a, [wNPCDuelPrizes]
-	bit D_LEFT_F, b
+	bit B_PAD_LEFT, b
 	jr z, .check_d_right
 	dec a
 	cp PRIZES_2
@@ -5705,7 +5705,7 @@ _SetUpAndStartLinkDuel:
 	ld a, PRIZES_6  ; wrap around to 6
 	jr .got_prize_count
 .check_d_right
-	bit D_RIGHT_F, b
+	bit B_PAD_RIGHT, b
 	jr z, .check_a_button
 	inc a
 	cp PRIZES_6 + 1
@@ -5716,7 +5716,7 @@ _SetUpAndStartLinkDuel:
 	xor a
 	ld [wPrinterCurPrizeFrame], a
 .check_a_button
-	bit A_BUTTON_F, b
+	bit B_PAD_A, b
 	jr z, .loop_input
 	ret
 
@@ -5882,7 +5882,7 @@ DisplayBoosterContent:
 	ldtx hl, ChooseCardToCheckText
 	ldtx de, BoosterPackCardsText
 	bank1call SetCardListHeaderAndInfoText
-	ld a, START + A_BUTTON
+	ld a, PAD_START + PAD_A
 	ld [wNoItemSelectionMenuKeys], a
 	bank1call DisplayCardList
 	ret
@@ -6031,7 +6031,7 @@ InputPlayerName:
 	call UpdateRNGSources
 
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .check_select
 	ld a, $01
 	call PlayAcceptOrDeclineSFX_Bank06
@@ -6045,7 +6045,7 @@ InputPlayerName:
 
 .check_select
 	ldh a, [hDPadHeld]
-	and SELECT
+	and PAD_SELECT
 	jr z, .asm_1af3b
 	ld a, $01
 	call PlayAcceptOrDeclineSFX_Bank06
@@ -6289,7 +6289,7 @@ HandleNamingScreenInput:
 	ld h, a
 	ld a, [wNamingScreenCursorY]
 	ld l, a
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 	; move cursor down
 	dec a
@@ -6300,7 +6300,7 @@ HandleNamingScreenInput:
 	dec a
 	jr .apply_y_value
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .horizontal_directions
 	; move cursor up
 	inc a
@@ -6314,7 +6314,7 @@ HandleNamingScreenInput:
 	ld a, [wNamingScreenNumColumns]
 	ld c, a
 	ld a, h
-	bit D_LEFT_F, b
+	bit B_PAD_LEFT, b
 	jr z, .check_d_right
 	ld d, a
 	ld a, 6 ; is last row?
@@ -6361,7 +6361,7 @@ HandleNamingScreenInput:
 	jr .apply_x_value
 
 .check_d_right
-	bit D_RIGHT_F, b
+	bit B_PAD_RIGHT, b
 	jr z, .check_btns
 	ld d, a
 	ld a, 6 ; is last row?
@@ -6440,9 +6440,9 @@ HandleNamingScreenInput:
 
 .check_btns
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .no_pressed_btns
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_1b174
 	ld a, $ff
 .asm_1b174

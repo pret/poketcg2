@@ -174,7 +174,7 @@ Func_301c0:
 	call UpdateRNGSources
 	call Func_30242
 	ldh a, [hKeysPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr z, .loop
 	ld a, [wCurOWLocation]
 	call Func_3030a
@@ -680,7 +680,7 @@ Func_30452:
 	bit 2, [hl]
 	jr nz, .asm_304ed
 	ldh a, [hKeysPressed]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .asm_304ed
 	set 2, [hl]
 	ld a, $01
@@ -706,7 +706,7 @@ Func_30452:
 	bit 2, [hl]
 	jr nz, .move_to_target_position
 	ldh a, [hKeysPressed]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .move_to_target_position
 	set 2, [hl]
 	ld a, $01

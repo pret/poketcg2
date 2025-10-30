@@ -22,35 +22,35 @@ SFX2_Play:
 	rrca
 	ld [wdd8c], a
 	jr nc, .asm_1f802e
-	ld a, $8
-	ldh [rNR10], a
-	ldh [rNR12], a
-	swap a
-	ldh [rNR14], a
+	ld a, AUD1SWEEP_DOWN
+	ldh [rAUD1SWEEP], a
+	ldh [rAUD1ENV], a
+	swap a ; AUD1HIGH_RESTART
+	ldh [rAUD1HIGH], a
 .asm_1f802e
 	ld a, [wdd8c]
 	rrca
 	ld [wdd8c], a
 	jr nc, .asm_1f803f
-	ld a, $8
-	ldh [rNR22], a
-	swap a
-	ldh [rNR24], a
+	ld a, AUD2ENV_UP
+	ldh [rAUD2ENV], a
+	swap a ; AUD2HIGH_RESTART
+	ldh [rAUD2HIGH], a
 .asm_1f803f
 	ld a, [wdd8c]
 	rrca
 	ld [wdd8c], a
 	jr nc, .asm_1f804c
 	ld a, $0
-	ldh [rNR32], a
+	ldh [rAUD3LEVEL], a
 .asm_1f804c
 	ld a, [wdd8c]
 	rrca
 	jr nc, .asm_1f805a
-	ld a, $8
-	ldh [rNR42], a
-	swap a
-	ldh [rNR44], a
+	ld a, AUD4ENV_UP
+	ldh [rAUD4ENV], a
+	swap a ; AUD4GO_RESTART
+	ldh [rAUD4GO], a
 .asm_1f805a
 	ld a, $1
 	ld [wde53], a
@@ -82,8 +82,8 @@ SFX2_Play:
 	ld a, c
 	cp $0
 	jr nz, .asm_1f8091
-	ld a, $8
-	ldh [rNR10], a
+	ld a, AUD1SWEEP_DOWN
+	ldh [rAUD1SWEEP], a
 .asm_1f8091
 	ld hl, wde2f
 	add hl, bc
@@ -107,7 +107,7 @@ SFX2_Play:
 SFX2_Update:
 	ld a, [wCurSfxBank]
 	ldh [hBankROM], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ld a, [wdd8c]
 	or a
 	jr nz, .asm_fc063
@@ -218,7 +218,7 @@ SFX2_0:
 	ld [hl], $0
 	or d
 	ld d, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -251,7 +251,7 @@ SFX2_1:
 	ld a, [hli]
 	ld e, a
 	push hl
-	ld hl, rNR12
+	ld hl, rAUD1ENV
 	ld a, c
 	add a
 	add a
@@ -265,7 +265,7 @@ SFX2_1:
 SFX2_2:
 	swap a
 	ld e, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -379,7 +379,7 @@ Func_fc18d_2:
 	ld [hl], $0
 	or d
 	ld d, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -428,7 +428,7 @@ Func_fc1cd_2:
 	ld [hl], $0
 	or e
 	ld e, a
-	ld hl, rNR41
+	ld hl, rAUD4LEN
 	xor a
 	ld [hli], a
 	inc hl
@@ -448,7 +448,7 @@ SFX2_7:
 	ld h, [hl]
 	ld l, a
 	ld a, $0
-	ldh [rNR30], a
+	ldh [rAUD3ENA], a
 	ld b, d
 	ld de, $ff30
 .asm_fc215
@@ -462,7 +462,7 @@ SFX2_7:
 	ld a, $1
 	ld [wMusicWaveChange], a
 	ld a, $80
-	ldh [rNR30], a
+	ldh [rAUD3ENA], a
 	ld b, $0
 	pop hl
 	jp Func_fc094_2
@@ -494,7 +494,7 @@ SFX2_8:
 SFX2_9:
 	pop hl
 	ld a, [hli]
-	ldh [rNR10], a
+	ldh [rAUD1SWEEP], a
 	jp Func_fc094_2
 
 SFX2_end:
@@ -515,7 +515,7 @@ SFX2_end:
 	add c
 	ld e, a
 	ld d, b
-	ld hl, rNR12
+	ld hl, rAUD1ENV
 	add hl, de
 	ld a, $8
 	ld [hli], a
