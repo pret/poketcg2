@@ -1,3 +1,83 @@
+Func_10000::
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+.asm_1000b
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call FlushAllPalettes
+	call EnableLCD
+	call Func_1002b
+	call Func_10076
+	jr c, .asm_10023
+	call Func_10092
+	jr c, .asm_10023
+	jr .asm_1000b
+.asm_10023
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1002b:
+	push af
+	push bc
+	push de
+	push hl
+	ld de, $0
+	ld b, $04
+	ld hl, $4046
+	call LoadMenuBoxParams
+	ld a, [$d682]
+	farcall DrawMenuBox
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x10046
+
+SECTION "Bank 4@4076", ROMX[$4076], BANK[$4]
+
+Func_10076:
+	ld a, [$d682]
+	farcall HandleMenuBox
+	ld [$d682], a
+	jr c, .asm_1008a
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1008a
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	ret
+
+Func_10092:
+	ld hl, Data_10099
+	call CallMappedFunction
+	ret
+
+Data_10099: ; boot up debug menu options
+	db $00, $03, $00, $40 ; power on
+	db $01, $04, $b6, $40 ; coins
+	db $02, $04, $fa, $40 ; config
+	db $03, $03, $5a, $72 ; effect viewer
+	db $04, $04, $90, $78 ; staff roll
+	db $05, $04, $0d, $41 ; duel
+	db $06, $04, $25, $41 ; slot machine
+	db $ff
+; 0x100b6
+
 SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
 ; waits until any of the keys
@@ -1076,12 +1156,18 @@ Func_1081a:
 	ret
 
 Func_10836:
-	ld hl, $483d
+	ld hl, Data_1083d
 	call CallMappedFunction
 	ret
-; 0x1083d
 
-SECTION "Bank 4@4856", ROMX[$4856], BANK[$4]
+Data_1083d: ; pause menu
+	db $00, $07, $f2, $45 ; status
+	db $01, $07, $02, $45 ; diary
+	db $02, $04, $65, $48 ; deck
+	db $03, $07, $4f, $67 ; minicon
+	db $04, $07, $9a, $5c ; coin
+	db $05, $07, $6e, $41 ; settings
+	db $ff
 
 Func_10856:
 	farcall Func_1caf1

@@ -731,7 +731,7 @@ CoreGameLoop::
 	ret
 
 Func_34be::
-	farcall $4, $4000
+	farcall Func_10000
 	ret
 
 WaitForLCDOff::
@@ -853,6 +853,8 @@ DoAFrames_WithPreCheck::
 	pop af
 	ret
 
+; a - table index
+; hl - pointer to data table, $ff terminated
 CallMappedFunction::
 	ld c, a
 .loop_entries
