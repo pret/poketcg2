@@ -5423,7 +5423,7 @@ Func_ef40:
 	ld a, $ed
 	ld [wFilteredListPtr], a
 	ld a, $51
-	ld [$d576], a
+	ld [wFilteredListPtr+1], a
 	jr .asm_ef63
 .asm_ef54
 	ld a, $25
@@ -5431,7 +5431,7 @@ Func_ef40:
 	ld a, $4f
 	ld [wFilteredListPtr], a
 	ld a, $52
-	ld [$d576], a
+	ld [wFilteredListPtr+1], a
 .asm_ef63
 	ld e, $05
 	ld d, VAR_35
@@ -5473,7 +5473,7 @@ Func_ef97:
 .asm_ef97
 	ld a, [wFilteredListPtr]
 	ld l, a
-	ld a, [$d576]
+	ld a, [wFilteredListPtr+1]
 	ld h, a
 	ld a, [wRemainingIntroCards]
 	call Random
@@ -5625,7 +5625,7 @@ Func_f063:
 	ld b, d
 	farcall SetFrameFuncAndFadeFromWhite
 	call FlushAllPalettes
-	ld de, $201
+	lb de, 2, 1
 	ld b, $00
 	call Func_f085
 	ld b, $08
@@ -5638,6 +5638,8 @@ Func_f063:
 	pop af
 	ret
 
+; b - ?
+; de - coordinates
 Func_f085:
 	push de
 	push bc
@@ -5659,7 +5661,7 @@ Func_f085:
 	call WaitForLCDOff
 	ld [hl], d
 	ei
-	ld a, $01
+	ld a, BANK("VRAM1")
 	call BankswitchVRAM
 	ei
 	di
@@ -5678,7 +5680,7 @@ Func_f085:
 	dec c
 	jr nz, .asm_f091
 	ld c, $03
-	farcall Func_10221.loop
+	farcall Func_10221
 	pop de
 	ret
 ; 0xf0c3

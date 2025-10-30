@@ -998,7 +998,7 @@ Func_10772:
 	ld a, b
 	ld [$d8a0], a
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 .asm_1078a
@@ -1045,7 +1045,7 @@ Func_107bf:
 	farcall DrawMenuBox
 	farcall Func_1f309
 	jr z, .asm_107e9
-	ld bc, $1208
+	lb bc, 18, 8
 	ld d, $0e
 	ld e, $00
 	call Func_383b
@@ -1065,13 +1065,13 @@ Func_1081a:
 	ld [$d89f], a
 	jr c, .asm_1082e
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1082e
 	push af
-	ld a, $03
+	ld a, SFX_03
 	call CallPlaySFX
 	pop af
 	ret
@@ -2638,6 +2638,7 @@ Func_1101d:
 	pop af
 	ret
 
+; hl - text
 PrintScrollableText_NoTextBoxLabelVRAM0::
 	push af
 	push bc
@@ -2652,6 +2653,8 @@ PrintScrollableText_NoTextBoxLabelVRAM0::
 	pop af
 	ret
 
+; de - text box label
+; hl - text
 PrintScrollableText_WithTextBoxLabelVRAM0::
 	push af
 	push bc
@@ -5172,7 +5175,7 @@ Func_1241a:
 	call Func_12546
 	call Func_1247d
 	push af
-	ld a, $7d
+	ld a, SFX_7D
 	call CallPlaySFX
 	pop af
 	ld a, $08
@@ -5508,7 +5511,7 @@ Func_126f4:
 	push de
 	ld a, d
 	call WriteByteToBGMap0
-	ld a, $01
+	ld a, BANK("VRAM1")
 	call BankswitchVRAM
 	pop de
 	pop bc
@@ -5576,7 +5579,7 @@ Func_12824:
 	call Func_12a99
 	call Func_12a8d
 	push af
-	ld a, $7e
+	ld a, SFX_7E
 	call CallPlaySFX
 	pop af
 	ret
@@ -5753,7 +5756,7 @@ Func_12a15:
 	ret
 .asm_12a34
 	push af
-	ld a, $04
+	ld a, SFX_04
 	call CallPlaySFX
 	pop af
 	scf
@@ -5906,15 +5909,15 @@ Func_12cbd:
 SECTION "Bank 4@6cfc", ROMX[$6cfc], BANK[$4]
 
 Func_12cfc:
-	ld de, $80f
-	ld bc, $401
+	lb de, 8, 15
+	lb bc, 4, 1
 	call FillBoxInBGMapWithZero
 	ld a, [$db34]
 	ld l, a
 	ld h, $00
-	ld de, $90f
+	lb de, 9, 15
 	ld a, $02
-	ld b, $00
+	ld b, FALSE
 	farcall PrintNumber
 	ret
 ; 0x12d17
@@ -6042,7 +6045,7 @@ Func_13138:
 	jr c, .asm_1315a
 	call Func_3d0d
 	push af
-	ld a, $08
+	ld a, MUSIC_CARDPOP
 	call SetMusic
 	pop af
 	call Func_1320f
@@ -6179,8 +6182,8 @@ Func_1325a:
 	ret
 
 Func_1325e:
-	ld a, $15
-	ld bc, $0
+	ld a, SCENE_BLACK_BOX
+	lb bc, 0, 0
 	call LoadScene
 	ret
 
@@ -6218,7 +6221,7 @@ Func_1328c:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, $7f
+	ld a, SFX_7F
 	call CallPlaySFX
 	pop af
 	ld a, $28
@@ -6231,7 +6234,7 @@ Func_132ad:
 	ld c, $00
 	call Func_13321
 	push af
-	ld a, $80
+	ld a, SFX_80
 	call CallPlaySFX
 	pop af
 	push af
@@ -6259,7 +6262,7 @@ Func_132c4:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, $81
+	ld a, SFX_81
 	call CallPlaySFX
 	pop af
 	ld a, $14
@@ -7068,7 +7071,7 @@ Func_1382e:
 	ld a, MUSIC_MEDAL
 	call Func_3d09
 	pop af
-	ld hl, $7f9
+	ldtx hl, ChallengeMachineWonASetText
 	call PrintTextInWideTextBox
 	call WaitForSongToFinish
 	call Func_3d16

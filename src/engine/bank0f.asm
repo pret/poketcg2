@@ -4894,7 +4894,7 @@ Func_3e2a4:
 	ld a, [hli]
 	ld d, [hl]
 	ld e, a
-	ld hl, $fe2
+	ldtx hl, Text0fe2
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	pop bc
 	farcall Func_1022a

@@ -460,7 +460,7 @@ Func_1c5a3:
 	call Func_3b1e
 .asm_1c5bc
 	push af
-	ld a, $56
+	ld a, SFX_56
 	call CallPlaySFX
 	pop af
 	ld hl, $632
@@ -1606,7 +1606,7 @@ HandleMenuBox:
 	call BankswitchVRAM
 	pop af
 	call WriteByteToBGMap0
-	ld a, $01
+	ld a, BANK("VRAM1")
 	call BankswitchVRAM
 	ld a, $80 ; priority
 	call WriteByteToBGMap0
@@ -2729,19 +2729,19 @@ Func_1d584:
 	ret
 
 Func_1d594:
-	ld de, $5e0
-	ld hl, $5e1
+	ldtx de, ReceptionistText
+	ldtx hl, GameCenterPrizeExchangeWelcomeText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
 Func_1d59f:
-	ld de, $5e0
-	ld hl, $5e7
+	ldtx de, ReceptionistText
+	ldtx hl, GameCenterPrizeExchangeComeAgainText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
 Func_1d5aa:
-	ld hl, $5e2
+	ldtx hl, GameCenterPrizeExchangePromptText
 	ld a, $01
 	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
 	ret
@@ -2765,18 +2765,18 @@ Func_1d5c7:
 	ldtx hl, PlayersChipsText
 	lb de, 1, 0
 	call Func_2c4b
-	ld de, $e00
-	ld bc, $501
+	lb de, 14, 0
+	lb bc, 5, 1
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, PlayerDiaryCardsUnitText
 	lb de, 18, 0
 	call Func_35af
 	farcall GetGameCenterChips
-	ld de, $e00
+	lb de, 14, 0
 	ld h, b
 	ld l, c
 	ld a, $04
-	ld b, $01
+	ld b, TRUE
 	call PrintNumber
 	ld hl, $db1a
 	ld e, $02
@@ -2814,7 +2814,7 @@ Func_1d618:
 	ld h, [hl]
 	ld l, a
 	ld a, $04
-	ld b, $01
+	ld b, TRUE
 	ld d, $0e
 	call PrintNumber
 	ld d, $12
@@ -2831,21 +2831,21 @@ SECTION "Bank 7@566e", ROMX[$566e], BANK[$7]
 
 Func_1d66e:
 .asm_1d66e
-	ld de, $10e
-	ld hl, $5e3
+	lb de, 1, 14
+	ldtx hl, GameCenterPrizeExchangeChoosePrizeText
 	farcall PrintTextInWideTextBox
 	ld a, [$db18]
 	call HandleMenuBox
 	ld [$db18], a
 	jr c, .asm_1d68c
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	jr .asm_1d695
 .asm_1d68c
 	push af
-	ld a, $03
+	ld a, SFX_03
 	call CallPlaySFX
 	pop af
 	jr .asm_1d6b2
@@ -3000,7 +3000,7 @@ Func_1d813:
 	and $01
 	ld b, a
 	push af
-	ld a, $0b
+	ld a, SFX_0B
 	call CallPlaySFX
 	pop af
 	ld a, b
@@ -3014,13 +3014,13 @@ Func_1d813:
 	and $01
 	jr nz, .asm_1d85a
 	push af
-	ld a, $54
+	ld a, SFX_54
 	call CallPlaySFX
 	pop af
 	jr .asm_1d861
 .asm_1d85a
 	push af
-	ld a, $55
+	ld a, SFX_55
 	call CallPlaySFX
 	pop af
 .asm_1d861
@@ -3066,8 +3066,8 @@ Func_1d886:
 	ldtx hl, GameCenterCoinFlipDialogText
 	lb de, 1, 14
 	call Func_35af
-	ld de, $0
-	ld bc, $1404
+	lb de, 0, 0
+	lb bc, 20, 4
 	farcall FillBoxInBGMapWithZero
 	pop hl
 	pop de
@@ -3080,10 +3080,10 @@ Func_1d8c6:
 	push bc
 	and a
 	jr nz, .asm_1d8cf
-	ld a, $22
+	ld a, SCENE_COIN_TOSS_RESULT_1
 	jr .asm_1d8d1
 .asm_1d8cf
-	ld a, $23
+	ld a, SCENE_COIN_TOSS_RESULT_2
 .asm_1d8d1
 	ld b, c
 	sla b
@@ -3095,13 +3095,13 @@ Func_1d8c6:
 	ret
 
 Func_1d8df:
-	ld de, $0
-	ld bc, $804
+	lb de, 0, 0
+	lb bc, 8, 4
 	farcall FillBoxInBGMapWithZero
 	call DoFrame
 	farcall Func_114af
-	ld hl, $638
-	ld de, $7f4
+	ldtx hl, GameCenterCoinFlipRetryPromptText
+	ldtx de, AttendantText
 	ld a, $01
 	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
 	jr c, .asm_1d914
@@ -3109,9 +3109,9 @@ Func_1d8df:
 	ld a, b
 	or c
 	jr z, .asm_1d91d
-	ld bc, $1
+	ld bc, 1
 	farcall DecreaseChipsSmoothly
-	ld a, $3c
+	ld a, 60
 	call DoAFrames_WithPreCheck
 	scf
 	ccf
@@ -3121,8 +3121,8 @@ Func_1d8df:
 	call Func_1d886
 	ret
 .asm_1d91d
-	ld hl, $d57
-	ld de, $7f4
+	ldtx hl, GameCenterCoinFlipAttendantNotEnoughChipsText
+	ldtx de, AttendantText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	scf
 	jr .asm_1d914
@@ -3202,7 +3202,7 @@ Func_1d9be:
 	jr c, .asm_1d9ed
 	call Func_3d0d
 	push af
-	ld a, $08
+	ld a, MUSIC_CARDPOP
 	call SetMusic
 	pop af
 	call Func_1dac1
@@ -3222,35 +3222,35 @@ Func_1d9f9:
 	ret
 
 Func_1d9ff:
-	ld hl, $5f1
-	ld de, $5e0
+	ldtx hl, GiftCenterWelcomeText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	ld hl, $5f2
-	ld de, $5e0
+	ldtx hl, GiftCenterServicePromptText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
 Func_1da14:
-	ld hl, $5f6
-	ld de, $5e0
+	ldtx hl, GiftCenterComeAgainText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
 Func_1da1f:
-	ld hl, $5f3
-	ld de, $5e0
+	ldtx hl, GiftCenterServiceAcknowledgementText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
 Func_1da2a:
-	ld hl, $5f4
-	ld de, $5e0
+	ldtx hl, GiftCenterServiceSaveRequestText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ld c, $01
 	call Func_1c5a3
 	ret nc
-	ld hl, $5f5
-	ld de, $5e0
+	ldtx hl, GiftCenterServiceUnavailableSaveRequiredText
+	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
@@ -3290,13 +3290,13 @@ Func_1da88:
 	pop af
 	jr c, .asm_1daad
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1daad
 	push af
-	ld a, $03
+	ld a, SFX_03
 	call CallPlaySFX
 	pop af
 	ret
@@ -5341,17 +5341,17 @@ Func_1e99c:
 	call LoadGfxPalettes
 	farcall SetFrameFuncAndFadeFromWhite
 	ld c, $02
-	farcall Func_10221.loop
+	farcall Func_10221
 	call Func_3f61
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
 Func_1e9ce:
-	ld a, $0e
-	ld bc, $0
+	ld a, SCENE_TOURNAMENT_TABLE
+	lb bc, 0, 0
 	call LoadScene
-	ld de, $101
-	ld bc, $1201
+	lb de, 1, 1
+	lb bc, 18, 1
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, GrandMasterCupBracketTitleText
 	lb de, 1, 1
@@ -5407,10 +5407,10 @@ Func_1ea1f:
 	push bc
 	push de
 	push hl
-	ld de, $102
-	ld bc, $60f
+	lb de, 1, 2
+	lb bc, 6, 15
 	farcall FillBoxInBGMapWithZero
-	ld de, $102
+	lb de, 1, 2
 	ld hl, $dd0a
 	xor a
 .asm_1ea34
@@ -5554,8 +5554,8 @@ Func_1eba4:
 	ld h, [hl]
 	ld l, a
 .asm_1ebd1
-	ld de, $d09
-	ld bc, $601
+	lb de, 13, 9
+	lb bc, 6, 1
 	farcall FillBoxInBGMapWithZero
 	call Func_35bf
 	pop hl

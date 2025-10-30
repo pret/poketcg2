@@ -1460,6 +1460,9 @@ BankswitchVRAM::
 	call _BankswitchVRAM
 	ret
 
+; bc - coordinates
+; d - ?
+; e - ?
 Func_383b::
 	push af
 	push de
