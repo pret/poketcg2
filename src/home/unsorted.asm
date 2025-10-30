@@ -756,7 +756,7 @@ MultiplyBCByDE::
 	push af
 	push bc
 	push de
-	call .Multiply
+	call Multiply
 	pop de
 	pop bc
 	pop af
@@ -766,7 +766,7 @@ MultiplyBCByDE::
 ; output:
 ;  carry if bc < de
 ;  z if bc == de
-.CompareBCAndDE::
+CompareBCAndDE::
 	ld a, b
 	cp d
 	ret c
@@ -775,8 +775,8 @@ MultiplyBCByDE::
 	cp e
 	ret
 
-.Multiply:
-	call .CompareBCAndDE
+Multiply:
+	call CompareBCAndDE
 	jr c, .ok
 	; bc > de
 	; swap bc and de

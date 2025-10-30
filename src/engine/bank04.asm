@@ -5743,7 +5743,7 @@ Func_12a15:
 	ld a, [$db2f]
 	ld e, a
 	ld d, $00
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	jr c, .asm_12a34
 	ld a, [$db2f]
 	ld c, a
@@ -6128,7 +6128,7 @@ Func_131d7:
 Func_131eb:
 	call GetGameCenterChips
 	ld de, $5
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	ret z
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableNotEnoughChipsText
@@ -6645,7 +6645,7 @@ Func_1352a:
 	add hl, bc
 	ld d, h
 	ld e, l
-	call Func_13561.asm_135b3
+	call Func_135b3
 .asm_1354b
 	call DoFrame
 	ldh a, [hKeysPressed]
@@ -6671,20 +6671,20 @@ Func_13561:
 	ret
 .asm_1356e
 	ld bc, $1
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	jr c, .asm_13579
 	ld de, $1be
 .asm_13579
 	dec de
-	jr .asm_135b3
+	jr Func_135b3
 .asm_1357c
 	ld bc, $1bc
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	jr nc, .asm_13587
 	ld de, $0
 .asm_13587
 	inc de
-	jr .asm_135b3
+	jr Func_135b3
 .asm_1358a:
 	lb de, 5, 4
 	lb bc, 10, 8
@@ -6702,7 +6702,8 @@ Func_13561:
 	call CopyBGMapFromWRAMToVRAM
 	call SetActiveSpriteAnimFlag6WithinArea
 	ret
-.asm_135b3
+
+Func_135b3:
 	push de
 	push de
 	lb de, 6, 5
@@ -6974,7 +6975,7 @@ Func_13792:
 	inc hl
 	ld b, [hl]
 	ld de, $1
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	ret c
 	ret z
 	ld h, b

@@ -2887,7 +2887,7 @@ Func_1d6be:
 	inc hl
 	ld d, [hl]
 	farcall GetGameCenterChips
-	call MultiplyBCByDE.CompareBCAndDE
+	call CompareBCAndDE
 	jr c, .asm_1d6fc
 	ld b, d
 	ld c, e
