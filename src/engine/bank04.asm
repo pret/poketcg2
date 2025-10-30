@@ -231,7 +231,7 @@ CopyBGMapFromVRAMToWRAM:
 	dec b
 	jr nz, .loop_copy_vram1
 	pop hl
-	ld bc, BG_MAP_WIDTH
+	ld bc, TILEMAP_WIDTH
 	add hl, bc
 	pop bc
 	dec c
@@ -306,7 +306,7 @@ CopyBGMapFromWRAMToVRAM:
 	push hl
 	ld h, d
 	ld l, e
-	ld bc, BG_MAP_WIDTH
+	ld bc, TILEMAP_WIDTH
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -815,7 +815,7 @@ SafeClearBGMap:
 .wait_lcd_1
 	di
 	ldh a, [rSTAT]
-	and STAT_LCDC_STATUS
+	and STAT_MODE
 	jr nz, .wait_lcd_1
 	xor a
 	ld [hl], a
@@ -826,7 +826,7 @@ SafeClearBGMap:
 .wait_lcd_2
 	di
 	ldh a, [rSTAT]
-	and STAT_LCDC_STATUS
+	and STAT_MODE
 	jr nz, .wait_lcd_2
 	xor a
 	ld [hli], a
@@ -916,7 +916,7 @@ FillBoxInBGMap:
 	dec b
 	jr nz, .loop_columns
 	pop hl
-	ld de, BG_MAP_WIDTH
+	ld de, TILEMAP_WIDTH
 	add hl, de
 	pop bc
 	dec c
@@ -971,7 +971,7 @@ Func_10742:
 	dec b
 	jr nz, .loop_tiles
 	pop hl
-	ld de, BG_MAP_WIDTH
+	ld de, TILEMAP_WIDTH
 	add hl, de
 	pop bc
 	dec c
@@ -2729,8 +2729,8 @@ _PCMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
-	db B_BUTTON ; held keys
+	db PAD_A ; press keys
+	db PAD_B ; held keys
 	db FALSE ; has horizontal scroll
 	db 1 ; vertical step
 	dw NULL ; update function
@@ -3841,7 +3841,7 @@ IntroCheckInput:
 	ccf
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	jr z, .no_carry
 	scf
 .no_carry
@@ -3855,7 +3855,7 @@ WaitAFramesForInput:
 .loop_wait
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	jr nz, .set_carry
 	dec c
 	jr nz, .loop_wait
@@ -3879,7 +3879,7 @@ WaitBCFramesForInput:
 .loop_wait
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	jr nz, .set_carry
 	dec c
 	jr nz, .loop_wait
@@ -4146,7 +4146,7 @@ AnimateTitle:
 .asm_11976
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	scf
 	ret nz
 	ld a, [wIntroStateCounter]
@@ -4216,10 +4216,10 @@ AnimateTitle:
 	ld [hl], a
 	ld de, rBGPD
 	ld hl, wBackgroundPalettesCGB + $20
-	ld c, CGB_PAL_SIZE
+	ld c, PAL_SIZE
 .loop_load_pal
 	ldh a, [rSTAT]
-	and STAT_ON_OAM
+	and STAT_OAM
 	jr nz, .loop_load_pal
 	ld a, [hli]
 	ld [de], a
@@ -4262,7 +4262,7 @@ AnimateSubtitleEnter:
 .asm_11a3c
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	scf
 	ret nz
 	ld a, [wIntroStateCounter]
@@ -4378,7 +4378,7 @@ AnimateSubtitleEnter:
 	ld c, 2 palettes
 .asm_11af2
 	ldh a, [rSTAT]
-	and STAT_ON_OAM
+	and STAT_OAM
 	jr nz, .asm_11af2
 	ld a, [hli]
 	ld [de], a
@@ -4529,7 +4529,7 @@ AnimateSubtitleExit:
 .asm_11bd2
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	scf
 	ret nz
 .asm_11bdb
@@ -4665,7 +4665,7 @@ ScrollIntroCard:
 .asm_11cbc
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and A_BUTTON | START
+	and PAD_A | PAD_START
 	scf
 	jr nz, .done
 .asm_11cc6
@@ -4786,7 +4786,7 @@ ClearBoxInBGMap:
 	dec b
 	jr nz, .loop_columns
 	pop hl
-	ld de, BG_MAP_WIDTH
+	ld de, TILEMAP_WIDTH
 	add hl, de
 	pop bc
 	dec c
@@ -5113,7 +5113,7 @@ CopyCardPalettesToBGPals:
 	ld b, $00
 	sla c
 	sla c
-	sla c ; *CGB_PAL_SIZE
+	sla c ; *PAL_SIZE
 	ld hl, wBackgroundPalettesCGB
 	add hl, bc
 	ld d, h
@@ -5211,7 +5211,7 @@ DrawLoadedCard:
 	push hl
 	ld h, d
 	ld l, e
-	ld bc, BG_MAP_WIDTH - 8 ; start of next line
+	ld bc, TILEMAP_WIDTH - 8 ; start of next line
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -5545,7 +5545,7 @@ PlayerGenderSelection:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db TRUE ; has horizontal scroll
 	db 0 ; vertical step

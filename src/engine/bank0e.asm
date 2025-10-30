@@ -4595,7 +4595,7 @@ HandleScrollMenu:
 	ld a, [wNumMenuItems]
 	ld c, a
 	ld a, [wCurScrollMenuItem]
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 ; d-up
 	push af
@@ -4621,7 +4621,7 @@ HandleScrollMenu:
 	jr .scroll_done
 
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .call_update_func
 ; d-down
 	push af
@@ -4686,9 +4686,9 @@ HandleScrollMenu:
 
 .null
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .play_menu_input_sfx
-	and A_BUTTON
+	and PAD_A
 	jr nz, .asm_3ac12
 ; b button
 	ld a, $ff
@@ -4885,7 +4885,7 @@ HandleDeckMachineSelection:
 	call .HandleListJumps
 	jr c, .start
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .start
 
 ; start btn
@@ -4946,9 +4946,9 @@ HandleDeckMachineSelection:
 	ld a, [wScrollMenuScrollOffset]
 	ld c, a
 	ldh a, [hDPadHeld]
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr z, .d_right
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .d_left
 	or a
 	ret
@@ -5531,7 +5531,7 @@ SwitchToWRAM1:
 	jr z, .skip
 	ld a, $01
 	ld [wce4c], a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 .skip
 	pop af
 	ret
@@ -5543,7 +5543,7 @@ SwitchToWRAM2:
 	jr z, .skip
 	ld a, $02
 	ld [wce4c], a
-	ldh [rSVBK], a
+	ldh [rWBK], a
 .skip
 	pop af
 	ret

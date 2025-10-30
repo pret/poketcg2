@@ -1,3 +1,5 @@
+INCLUDE "constants/hardware.inc"
+
 INCLUDE "constants/animation_constants.asm"
 INCLUDE "constants/attack_animation_constants.asm"
 INCLUDE "constants/card_constants.asm"
@@ -9,7 +11,6 @@ INCLUDE "constants/deck_constants.asm"
 INCLUDE "constants/duel_constants.asm"
 INCLUDE "constants/duel_interface_constants.asm"
 INCLUDE "constants/gfx_constants.asm"
-INCLUDE "constants/hardware_constants.asm"
 INCLUDE "constants/intro_constants.asm"
 INCLUDE "constants/map_constants.asm"
 INCLUDE "constants/menu_constants.asm"

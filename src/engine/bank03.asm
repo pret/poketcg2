@@ -1187,9 +1187,9 @@ SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
 Func_d299::
 	push af
 	ldh a, [hKeysHeld]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr z, .skip_nop
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .skip_nop
 	nop
 	nop

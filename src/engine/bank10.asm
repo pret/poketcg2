@@ -155,7 +155,7 @@ HandleTCGIslandInput:
 	call UpdateRNGSources
 	call HandleTCGIslandDirectionalInput
 	ldh a, [hKeysPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr z, .loop_input
 	call Func_406d1
 	xor a
@@ -457,7 +457,7 @@ Func_406d1:
 	bit 2, [hl]
 	jr nz, .asm_40746
 	ldh a, [hKeysPressed]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .asm_40746
 	set 2, [hl]
 	ld a, $01
@@ -558,7 +558,7 @@ DoGRShipMovement:
 	bit 2, [hl]
 	jr nz, .skip_fade_out
 	ldh a, [hKeysPressed]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	jr z, .skip_fade_out
 	set 2, [hl]
 	call .FadeOut

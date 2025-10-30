@@ -309,7 +309,7 @@ Glossary:
 .loop_wait_b_btn
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr z, .loop_wait_b_btn
 	ld a, $ff
 	farcall PlayAcceptOrDeclineSFX

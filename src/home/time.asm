@@ -6,10 +6,10 @@ TimerHandler:
 	push bc
 	ei
 	call SerialTimerHandler
-	ldh a, [rSVBK]
+	ldh a, [rWBK]
 	push af
 	ld a, $1
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	; only trigger every fourth interrupt ≈ 60.24 Hz
 	ld hl, wTimerCounter
 	ld a, [hl]
@@ -35,7 +35,7 @@ TimerHandler:
 	res IN_TIMER, [hl]
 .done
 	pop af
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	pop bc
 	pop de
 	pop hl
@@ -76,16 +76,16 @@ IncrementPlayTimeCounter:
 SetupTimer:
 	push bc
 	ld b, -68 ; Value for Normal Speed
-	ldh a, [rKEY1]
-	and $80
+	ldh a, [rSPD]
+	and SPD_DOUBLE
 	jr z, .set_timer
-	ld b, $100 - 2 * 68 ; Value for CGB Double Speed
+	ld b, LOW(-68 * 2) ; Value for CGB Double Speed
 .set_timer
 	ld a, b
 	ldh [rTMA], a
-	ld a, TAC_16384_HZ
+	ld a, TAC_STOP | TAC_16KHZ
 	ldh [rTAC], a
-	ld a, TAC_START | TAC_16384_HZ
+	ld a, TAC_START | TAC_16KHZ
 	ldh [rTAC], a
 	pop bc
 	ret

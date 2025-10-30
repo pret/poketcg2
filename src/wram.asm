@@ -435,12 +435,12 @@ wPlayAreaSelectAction:: ; cbcd
 wTempRetreatCostCardsPos:: ; cbce
 	ds $1
 
-; in a card list, which keys (among START and A_BUTTON) do not open the item selection
+; in a card list, which keys (among START and A) do not open the item selection
 ; menu when a card is selected, directly "submitting" the selected card instead.
 wNoItemSelectionMenuKeys:: ; cbcf
 	ds $1
 
-; when viewing a card page, which keys (among B_BUTTON, D_UP, and D_DOWN) will exit the page,
+; when viewing a card page, which keys (among B, D_UP, and D_DOWN) will exit the page,
 ; either to go back to the previous menu or list, or to load the card page of the card above/below it
 wCardPageExitKeys:: ; cbd0
 	ds $1
@@ -2443,7 +2443,7 @@ wd693:: ; d693
 	ds $1
 
 wDecompressedBGMap:: ; d694
-	ds 2 * BG_MAP_WIDTH
+	ds 2 * TILEMAP_WIDTH
 
 wd6d4:: ; d6d4
 	ds $100

@@ -5,7 +5,7 @@ Bankswitch78To7e::
 	push af
 	ld a, $7e
 	ldh [hBankROM], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	pop af
 	ld bc, .bankswitch78
 	push bc
@@ -13,5 +13,5 @@ Bankswitch78To7e::
 .bankswitch78
 	ld a, $78
 	ldh [hBankROM], a
-	ld [MBC3RomBank], a
+	ld [rROMB], a
 	ret

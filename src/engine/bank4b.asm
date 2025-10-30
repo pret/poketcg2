@@ -328,7 +328,7 @@ LoadTilemap::
 .next_row
 	ld h, d
 	ld l, e
-	ld bc, BG_MAP_WIDTH
+	ld bc, TILEMAP_WIDTH
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -395,7 +395,7 @@ Func_12c1c1:
 	dec b
 	jr nz, .loop_cols
 	pop hl
-	ld bc, BG_MAP_WIDTH / 2
+	ld bc, TILEMAP_WIDTH / 2
 	add hl, bc
 	pop bc
 	dec c
@@ -726,12 +726,12 @@ LoadPortraitAttributeMap::
 .asm_12c3f3
 	pop af
 	and a
-	ld a, 2 | (1 << OAM_TILE_BANK)
+	ld a, 2 | OAM_BANK1
 	jr z, .got_pal_and_tiles
 	ld a, c
 	add $30
 	ld c, a
-	ld a, 5 | (1 << OAM_TILE_BANK)
+	ld a, 5 | OAM_BANK1
 .got_pal_and_tiles
 	call LoadTilemap
 	pop hl

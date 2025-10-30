@@ -596,7 +596,7 @@ Credits:
 	credits_show_tile $03, $10, $0f, $00
 	credits_print_text  4, 16, CreditsToBeContinuedText
 	credits_wait 120
-	credits_wait_input A_BUTTON | START
+	credits_wait_input PAD_A | PAD_START
 	credits_stop_music
 	credits_fade_out CREDITS_FADE_ALL, $0f
 	credits_wait 120
