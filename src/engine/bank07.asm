@@ -463,12 +463,12 @@ Func_1c5a3:
 	ld a, SFX_56
 	call CallPlaySFX
 	pop af
-	ld hl, $632
+	ldtx hl, PlayerDiarySavedText
 	scf
 	ccf
 	jr .asm_1c5ce
 .asm_1c5ca
-	ld hl, $633
+	ldtx hl, PlayerDiaryCancelledText
 	scf
 .asm_1c5ce
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
