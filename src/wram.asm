@@ -827,10 +827,12 @@ wcd0c:: ; cd0c
 wcd0d:: ; cd0d
 	ds $1
 
-wcd0e:: ; cd0e
+; index of deck requirements for this duel
+wDeckRequirement:: ; cd0e
 	ds $1
 
-wcd0f:: ; cd0f
+;index of duelist intro texts for this duel
+wDuelistIntroText:: ; cd0f
 	ds $1
 
 ; values used by Dark Wave and Darkness Veil

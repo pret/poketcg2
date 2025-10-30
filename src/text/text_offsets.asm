@@ -1631,7 +1631,7 @@ TextOffsets::
 	textpointer DuelistIntroScienceClubMemberText                     ; 0x0656
 	textpointer DuelistIntroWaterClubMemberText                       ; 0x0657
 	textpointer DuelistIntroFireClubMemberText                        ; 0x0658
-	textpointer DuelistIntroLightingClubMasterText                    ; 0x0659
+	textpointer DuelistIntroLightningClubMasterText                   ; 0x0659
 	textpointer DuelistIntroPsychicClubMasterText                     ; 0x065a
 	textpointer DuelistIntroRockClubMasterText                        ; 0x065b
 	textpointer DuelistIntroFightingClubMasterText                    ; 0x065c
@@ -1660,7 +1660,7 @@ TextOffsets::
 	textpointer DuelistIntroColorlessAltarGuardianText                ; 0x0673
 	textpointer DuelistIntroGRBigBossText                             ; 0x0674
 	textpointer DuelistIntroGRKingText                                ; 0x0675
-	textpointer DuelistIntroUntitledText                              ; 0x0676
+	textpointer DuelistIntroTapText                                   ; 0x0676
 	textpointer DuelistIntroDungeonMasterText                         ; 0x0677
 	textpointer DuelistIntroGhostMasterText                           ; 0x0678
 	textpointer MinicomDeckSaveMachineText                            ; 0x0679

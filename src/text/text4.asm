@@ -870,7 +870,7 @@ DuelistIntroFireClubMemberText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroLightingClubMasterText:
+DuelistIntroLightningClubMasterText:
 	textfw "エレキクラブマスター <RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done
@@ -1015,7 +1015,7 @@ DuelistIntroGRKingText:
 	linefw "<RAMTEXT>デッキ!"
 	done
 
-DuelistIntroUntitledText:
+DuelistIntroTapText:
 	textfw "<RAMTEXT>"
 	linefw "<RAMTEXT>デッキ!"
 	done

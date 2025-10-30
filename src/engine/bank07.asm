@@ -4313,7 +4313,7 @@ Func_1e60c:
 	ld [wTxRam2_b + 0], a
 	ld a, [wOpponentDeckName + 1]
 	ld [wTxRam2_b + 1], a
-	ld a, [wcd0f]
+	ld a, [wDuelistIntroText]
 	dec a
 	add a ; *2
 	ld c, a
@@ -4343,7 +4343,7 @@ Func_1e60c:
 	tx DuelistIntroScienceClubMemberText
 	tx DuelistIntroWaterClubMemberText
 	tx DuelistIntroFireClubMemberText
-	tx DuelistIntroLightingClubMasterText
+	tx DuelistIntroLightningClubMasterText
 	tx DuelistIntroPsychicClubMasterText
 	tx DuelistIntroRockClubMasterText
 	tx DuelistIntroFightingClubMasterText
@@ -4372,7 +4372,7 @@ Func_1e60c:
 	tx DuelistIntroColorlessAltarGuardianText
 	tx DuelistIntroGRBigBossText
 	tx DuelistIntroGRKingText
-	tx DuelistIntroUntitledText
+	tx DuelistIntroTapText
 	tx DuelistIntroDungeonMasterText
 	tx DuelistIntroGhostMasterText
 
