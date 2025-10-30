@@ -6051,7 +6051,7 @@ InitVariablesToBeginDuel:
 
 	ld b, MAX_PLAY_AREA_POKEMON
 	ld a, [wSpecialRule]
-	cp SMALL_BENCH
+	cp SPECIAL_RULE_SMALL_BENCH
 	jr nz, .got_bench_size
 	ld b, MAX_SMALL_BENCH_PLAY_AREA_POKEMON
 .got_bench_size
@@ -6434,7 +6434,7 @@ Func_6986:
 ; when attempting to open the Discard Pile
 IsBlackHoleRuleActive:
 	ld a, [wSpecialRule]
-	cp BLACK_HOLE
+	cp SPECIAL_RULE_BLACK_HOLE
 	jr z, .black_hole_rule
 	or a
 	ret
@@ -6804,7 +6804,7 @@ DamageCalculation:
 	jr z, .no_resistance
 	ld hl, -30
 	ld a, [wSpecialRule]
-	cp LOW_RESISTANCE
+	cp SPECIAL_RULE_LOW_RESISTANCE
 	jr nz, .got_resistance_modifier
 	ld hl, -10
 .got_resistance_modifier
@@ -8501,7 +8501,7 @@ CheckIfArenaCardIsProtectedFromStatusCondition:
 .check_chlorophyll
 	; Grass Pokémon cannot be statused if Chlorophyll is active
 	ld a, [wSpecialRule]
-	cp CHLOROPHYLL
+	cp SPECIAL_RULE_CHLOROPHYLL
 	jr z, .chlorophyll_active
 	or a
 	ret
@@ -8804,7 +8804,7 @@ CheckHypnoPuppetMaster:
 ; de = damage
 HandleThunderChargeDamageBoost:
 	ld a, [wSpecialRule]
-	cp THUNDER_CHARGE
+	cp SPECIAL_RULE_THUNDER_CHARGE
 	ret nz ; Thunder Charge not active
 	call GetAttackingCardType
 	cp TYPE_PKMN_LIGHTNING
@@ -8827,7 +8827,7 @@ HandleThunderChargeDamageBoost:
 ; and the defending Pokémon is Fire Type
 HandleFlameArmorWaterWeakness:
 	ld a, [wSpecialRule]
-	cp FLAME_ARMOR
+	cp SPECIAL_RULE_FLAME_ARMOR
 	jr z, .is_active
 .no_carry
 	or a
@@ -8851,7 +8851,7 @@ HandleFlameArmorWaterWeakness:
 ; and if the attacking Pokémon is Fighting type
 HandleEarthPowerRockResistance:
 	ld a, [wSpecialRule]
-	cp EARTH_POWER
+	cp SPECIAL_RULE_EARTH_POWER
 	jr z, .is_active
 .no_carry
 	or a
@@ -8915,7 +8915,7 @@ GetPlayAreaPokemonType:
 GetResistanceModifier::
 	ld hl, -30
 	ld a, [wSpecialRule]
-	cp LOW_RESISTANCE
+	cp SPECIAL_RULE_LOW_RESISTANCE
 	ret nz
 	ld hl, -10
 	ret
