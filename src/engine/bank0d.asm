@@ -4661,7 +4661,7 @@ Func_3639f:
 .asm_363e4
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectSpriteAnimFlag6
-	ld a, $e8
+	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, $0a
 	ld [wd582], a
@@ -4733,7 +4733,7 @@ Func_36448:
 	farcall SetOWObjectFrameset
 	jr .asm_3647c
 .asm_36476
-	ld a, $e8
+	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
 .asm_3647c
 	farcall Func_c1a6
@@ -5860,7 +5860,7 @@ Func_36d29:
 	farcall SetOWObjectFrameset
 	jr .asm_36d51
 .asm_36d4b
-	ld a, $e8
+	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
 .asm_36d51
 	farcall Func_c1a6
