@@ -1311,7 +1311,7 @@ BlackboxPromoCards:
 	dw DITTO, CLEFABLE
 	dw 0
 
-.OtherPromoCards:
+OtherPromoCards:
 	dw VENUSAUR_LV64
 	dw MARILL
 	dw OMASTAR_LV36
@@ -2723,7 +2723,7 @@ Func_45b9c:
 	push hl
 	ld c, e
 	ld b, d
-	ld hl, BlackboxPromoCards.OtherPromoCards
+	ld hl, OtherPromoCards
 .asm_45ba5
 	ld a, [hli]
 	ld c, a
