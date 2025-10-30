@@ -4124,7 +4124,7 @@ DeckIDData:
 	db KANZAKI_PIC ; Pic ID
 	db PRIZES_6 ; number of prize cards
 	db NO_SPECIAL_RULE ; special duel rules
-	db DECK_REQUIREMENT_FOUR_LEGENDARY_GB ; deck requirement
+	db DECK_REQUIREMENT_FOUR_GB_LEGENDARY ; deck requirement
 	db MUSIC_GRDUELTHEME_2 ; duel theme
 	db DUELIST_INTRO_GR_BIG_BOSS ; duelist intro text
 	db COIN_HORSEA ; coin
