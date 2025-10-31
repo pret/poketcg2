@@ -2223,7 +2223,7 @@ PracticeDuel_PrintTurnInstructions:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld de, $0
+	lb de, 0, 0
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	lb de, 1, 0

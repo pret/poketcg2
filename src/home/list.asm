@@ -1,5 +1,5 @@
 ; Save a pointer to a list, given at de, to wListPointer
-SetListPointer:
+SetListPointer::
 	push hl
 	ld hl, wListPointer
 SetListPointer_Common:
@@ -44,7 +44,7 @@ GetNextElementOfList2:
 
 ; Set the current element of the list at wListPointer to a,
 ; and advance the list to the next element
-SetNextElementOfList:
+SetNextElementOfList::
 	push hl
 	push de
 	ld hl, wListPointer

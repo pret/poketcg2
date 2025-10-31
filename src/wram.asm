@@ -1762,7 +1762,12 @@ wd0c4:: ; d0c4
 wNumberOfPrizeCardsToSelect:: ; d0c8
 	ds $1
 
-	ds $6
+	ds $4
+
+wd0cd:: ; d0cd
+	ds $1
+
+	ds $1
 
 ; $00 when the "In Play Area" screen has been opened from the Check menu
 ; $01 when the "In Play Area" screen has been opened by pressing the select button
@@ -1853,6 +1858,7 @@ wNumEntriesInCurFilter::
 wBoosterPackCardListSize:: ; d0ee
 	ds $1
 
+wd0ef:: ; d0ef
 	ds $2
 
 ; deck selected by the player in the Decks screen
@@ -1931,11 +1937,15 @@ wCurCardTypeFilter:: ; d11a
 wTempCurMenuItem:: ; d11b
 	ds $1
 
-	ds $2
+wd11c:: ; d11c
+	ds $1
+
+	ds $1
 
 wced7:: ; d11e
 	ds $1
 
+wd11f:: ; d11f
 	ds $1
 
 ; stores how many different cards there are in a deck
@@ -2001,12 +2011,24 @@ wd381:: ; d381
 wSameNameCardsLimit:: ; d382
 	ds $1
 
-	ds $5
+wd383:: ; d383
+	ds $1
+
+wd384:: ; d384
+	ds $2
+
+wd386:: ; d386
+	ds $2
 
 wCurCardListPtr:: ; d388
 	ds $1
 
-	ds $5
+	ds $1
+
+wd38a:: ; d38a
+	ds $1
+
+	ds $3
 
 ; the tile to draw in place of the cursor, in case
 ; the cursor is not to be drawn

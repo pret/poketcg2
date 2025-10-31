@@ -244,13 +244,18 @@ class ScriptExtractor(object):
 			movement_direction = self.rom[address]
 			movement_steps = self.rom[address + 1]
 
-			# convert raw value to MOVE_xx constant. see: script_constants.asm
-			movement_steps = (movement_steps - 1) >> 2
-
 			if movement_direction == 0xff:
 				blobs.append(self.make_blob(address, "\tdb $ff\n\n", address + 1))
 				break
-			blobs.append(self.make_blob(address, "\tdb {}, MOVE_{}\n".format(directions[movement_direction], movement_steps), address + 2))
+
+			direction_output = directions[movement_direction & 0b01111111] + (" | MOVE_BACKWARDS" if movement_direction & 0b10000000 else "")
+
+			# convert raw value to MOVE_xx constant. see: script_constants.asm
+			number_of_steps = (movement_steps) >> 2
+			move_speed = movement_steps & 0b11
+			steps_output = "MOVE_" + str(number_of_steps) if move_speed == 1 else "RUN_" + str(number_of_steps)
+
+			blobs.append(self.make_blob(address, "\tdb {}, {}\n".format(direction_output, steps_output), address + 2))
 			address += 2
 		return blobs
 

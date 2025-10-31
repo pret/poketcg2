@@ -494,6 +494,8 @@ PrintTextNoDelay::
 	call BankswitchROM
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_2c4b::
 	push hl
 	push de
