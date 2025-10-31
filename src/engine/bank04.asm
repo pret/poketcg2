@@ -73,8 +73,8 @@ HandleStartupDebugMenuOption:
 	key_func $02, DebugShowConfigMenu ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
-	db $05, $04, $0d, $41 ; duel
-	db $06, $04, $25, $41 ; slot machine
+	key_func $05, Func_1010d ; duel
+	key_func $06, Func_10125 ; slot machine
 	db $ff
 
 SetAllCoinsObtainedAndShowCoinMenu:
@@ -133,7 +133,36 @@ DebugShowConfigMenu:
 	farcall ShowConfigMenu
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
-; 0x1010d
+
+Func_1010d:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call SetFrameFuncAndFadeFromWhite
+	ld a, $28
+	call Random
+	add $05
+	ld [wNPCDuelDeckID], a
+	farcall Func_1e5a2
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_10125:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call Func_1157c
+	ld bc, $64
+	call AddChips
+	call Func_3d0d
+	push af
+	ld a, $20
+	call SetMusic
+	pop af
+	ld a, $05
+	farcall Func_1d97a
+	call Func_3d16
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+; 0x10150
 
 SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
