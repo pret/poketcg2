@@ -132,14 +132,14 @@ SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
 Func_87d3:
 	xor a
 	ld [wMenuInputSFX], a
-	ld a, [wCurSongBankBackup]
+	ld a, [wd0ef]
 	ld d, a
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wd0ef + 1]
 	ld e, a
 	ldh a, [hDPadHeld]
 	or a
 	jr z, .asm_8852
-	ld a, [$d0cd]
+	ld a, [wd0cd]
 	and $80
 	ldh a, [hDPadHeld]
 	jr nz, .asm_881c
@@ -148,7 +148,7 @@ Func_87d3:
 	bit 4, a
 	jr z, .asm_881c
 .asm_87f5
-	ld a, [$d0cd]
+	ld a, [wd0cd]
 	and $7f
 	cp $01
 	jr z, .asm_8809
@@ -181,7 +181,7 @@ Func_87d3:
 	bit 7, a
 	jr z, .asm_8852
 .asm_8824
-	ld a, [$d0cd]
+	ld a, [wd0cd]
 	and $7f
 	cp $02
 	jr z, .asm_8838
@@ -199,15 +199,15 @@ Func_87d3:
 	sub e
 	ld e, a
 .asm_883c
-	ld a, $01
+	ld a, SFX_01
 	ld [wMenuInputSFX], a
 	push de
 	call .asm_8884
 	pop de
 	ld a, d
-	ld [wCurSongBankBackup], a
+	ld [wd0ef], a
 	ld a, e
-	ld [wMusicStereoPanningBackup], a
+	ld [wd0ef + 1], a
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
 .asm_8852
@@ -246,13 +246,13 @@ Func_87d3:
 	ld e, a
 	ld a, $0a
 	ld l, a
-	ld a, [wCurSongBankBackup]
+	ld a, [wd0ef]
 	ld h, a
 	call HtimesL
 	ld a, l
 	add $01
 	ld b, a
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wd0ef + 1]
 	sla a
 	add $0e
 	ld c, a
@@ -600,7 +600,7 @@ Func_8fb9:
 	ret
 
 .valid_deck
-	ld a, SFX_01
+	ld a, $01
 	call PlayAcceptOrDeclineSFX
 	call GetSRAMPointerToCurDeckCards
 	push hl
@@ -686,17 +686,17 @@ GetSRAMPointerToCurDeckCards:
 
 Func_9287:
 	xor a
-	ld [wCurSongBankBackup], a
-	ld [wMusicStereoPanningBackup], a
+	ld [wd0ef], a
+	ld [wd0ef + 1], a
 	ld [wScrollMenuCursorBlinkCounter], a
 	ret
 
 Func_9292:
 	xor a
 	ld [wMenuInputSFX], a
-	ld a, [wCurSongBankBackup]
+	ld a, [wd0ef]
 	ld d, a
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wd0ef + 1]
 	ld e, a
 	ldh a, [hDPadHeld]
 	or a
@@ -720,15 +720,15 @@ Func_9292:
 	xor $01
 	ld e, a
 .asm_92bd
-	ld a, $01
+	ld a, SFX_01
 	ld [wMenuInputSFX], a
 	push de
 	call .asm_9305
 	pop de
 	ld a, d
-	ld [wCurSongBankBackup], a
+	ld [wd0ef], a
 	ld a, e
-	ld [wMusicStereoPanningBackup], a
+	ld [wd0ef + 1], a
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
 .asm_92d3
@@ -767,13 +767,13 @@ Func_9292:
 	ld e, a
 	ld a, $0a
 	ld l, a
-	ld a, [wCurSongBankBackup]
+	ld a, [wd0ef]
 	ld h, a
 	call HtimesL
 	ld a, l
 	add $01
 	ld b, a
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wd0ef + 1]
 	sla a
 	add $0e
 	ld c, a
@@ -784,9 +784,6 @@ Func_9292:
 .asm_9324:
 	ld a, $0f
 	jr .asm_9307
-; 0x9328
-
-SECTION "Bank 2@5328", ROMX[$5328], BANK[$2]
 
 ; play different sfx by a.
 ; if a is 0xff play SFX_03 (usually following a B press),
@@ -860,9 +857,6 @@ Func_9397:
 .asm_93bb
 	pop hl
 	ret
-; 0x93bd
-
-SECTION "Bank 2@53bd", ROMX[$53bd], BANK[$2]
 
 DrawDeckSelectionMenu:
 	ld [hffbf], a
@@ -1047,8 +1041,6 @@ DeckNameSuffix:
 	katakana "ッ"
 	katakana "キ"
 	done
-
-SECTION "Bank 2@5503", ROMX[$5503], BANK[$2]
 
 CopyListFromHLToDE:
 .loop
@@ -1273,9 +1265,9 @@ Func_95d6:
 	ld a, $01
 	call PlayAcceptOrDeclineSFX
 	ld a, [wTempCardTypeFilter]
-	ld [$d11c], a
+	ld [wd11c], a
 	call Func_9787
-	ld a, [$d11c]
+	ld a, [wd11c]
 	jr .asm_9645
 .asm_9685
 	ldh a, [hDPadHeld]
@@ -1339,7 +1331,7 @@ Func_95d6:
 Func_9712:
 	xor a
 	ld [wd0c1], a
-	ld de, $d386
+	ld de, wd386
 	ld hl, wTransitionTablePtr
 	ld a, [de]
 	ld [hli], a
@@ -1350,21 +1342,22 @@ Func_9712:
 	ld [wd0c4], a
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
-	ld hl, $d384
+	ld hl, wd384
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
+; 0x9731
 
 SECTION "Bank 2@5787", ROMX[$5787], BANK[$2]
 
 Func_9787:
 	ld hl, wScrollMenuScrollOffset
 	ld a, [hl]
-	ld hl, $d11f
+	ld hl, wd11f
 	ld [hl], a
 	call HandleDeckConfirmationMenu
-	ld hl, $d11f
+	ld hl, wd11f
 	ld a, [hl]
 	ld hl, wScrollMenuScrollOffset
 	ld [hl], a
@@ -1405,9 +1398,6 @@ Func_9a0f:
 .asm_9a2f
 	or a
 	ret
-; 0x9a31
-
-SECTION "Bank 2@5a31", ROMX[$5a31], BANK[$2]
 
 FiltersCardSelectionParams:
 	db 1 ; x pos
@@ -1434,9 +1424,6 @@ Func_9a6d:
 	call PrintSlashSixty
 	call EnableLCD
 	ret
-; 0x9a8e
-
-SECTION "Bank 2@5a8e", ROMX[$5a8e], BANK[$2]
 
 ; fills one line at coordinate bc in BG Map
 ; with the byte in register a
@@ -1467,9 +1454,6 @@ Func_9aaa:
 	call Func_9cdc
 	ld [hli], a
 	jr .asm_9ab0
-; 0x9abb
-
-SECTION "Bank 2@5abb", ROMX[$5abb], BANK[$2]
 
 ; a = byte to write
 ; b = number of bytes
@@ -1838,10 +1822,6 @@ Func_9c80:
 	pop bc
 	pop af
 	ret
-; 0x9ca6
-
-
-SECTION "Bank 2@5ca6", ROMX[$5ca6], BANK[$2]
 
 ; determines the ones and tens digits in a for printing
 ; the ones place is added $20 (SYM_0) so that it maps to a numerical character
@@ -1942,9 +1922,6 @@ Func_9cdc:
 	pop hl
 	pop de
 	ret
-; 0x9d1a
-
-SECTION "Bank 2@5d1a", ROMX[$5d1a], BANK[$2]
 
 ; prints the card count of each individual card type
 ; assumes CountNumberOfCardsForEachCardType was already called
@@ -1991,7 +1968,7 @@ Func_9d41:
 	ld b, $00
 	call CopyBBytesFromHLToDE_Bank02
 	call DisableSRAM
-	ld a, [$d383]
+	ld a, [wd383]
 	or a
 	jr z, .asm_9d75
 	call GetSRAMPointerToCurDeckCards
@@ -2011,9 +1988,6 @@ Func_9d41:
 	call Func_9dbf
 	pop af
 	ret
-; 0x9d8c
-
-SECTION "Bank 2@5d8c", ROMX[$5d8c], BANK[$2]
 
 ; used to filter the cards in the deck building/card selection screen
 CardTypeFilters:
@@ -2147,9 +2121,6 @@ Func_9dbf:
 	call WriteByteToBGMap0
 	pop bc
 	ret
-; 0x9e48
-
-SECTION "Bank 2@5e48", ROMX[$5e48], BANK[$2]
 
 Text_9e48:
 	db "<SPACE>"
@@ -5546,7 +5517,7 @@ PrinterMenu:
 Func_b57c:
 	push de
 	ld de, wCurDeckName
-	call CopyListFromHLToDE.loop
+	call CopyListFromHLToDE
 	pop de
 	ld hl, wCurDeckCards
 	call CopyDeckFromSRAM
@@ -5588,7 +5559,7 @@ Func_b5b1:
 	ld [wNumMenuItems], a
 	ld [wNumVisibleCardListEntries], a
 	call Func_b649
-	ld hl, $d38a
+	ld hl, wd38a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -5664,7 +5635,7 @@ Func_b663:
 	call ProcessText
 	ld hl, wCurDeckName
 	ld de, wDefaultText
-	call CopyListFromHLToDE.loop
+	call CopyListFromHLToDE
 	ld hl, wDefaultText
 	call GetTextLengthInTiles
 	ld b, $00
@@ -5673,7 +5644,7 @@ Func_b663:
 	ld d, h
 	ld e, l
 	ld hl, DeckNameSuffix
-	call CopyListFromHLToDE.loop
+	call CopyListFromHLToDE
 	lb de, 3, 1
 	ld hl, wDefaultText
 	call InitTextPrinting
@@ -5868,7 +5839,7 @@ DeckDiagnosisResult:
 	and START
 	jr z, .loop_input
 .open_card_page
-	ld a, SFX_01
+	ld a, $01
 	call PlayAcceptOrDeclineSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
@@ -6066,9 +6037,6 @@ Func_baec:
 Func_baf1:
 	farcall Func_2bc9f
 	ret
-; 0xbaf6
-
-SECTION "Bank 2@7af6", ROMX[$7af6], BANK[$2]
 
 PrinterMenu_DeckConfiguration:
 	farcall _PrinterMenu_DeckConfiguration

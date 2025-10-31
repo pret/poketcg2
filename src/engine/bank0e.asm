@@ -6896,7 +6896,7 @@ Func_3bb09:
 	ld a, c
 	call Func_3afb8
 	push hl
-	farcall AppendDeckName.text_end
+	farcall CheckIfDeckHasCards
 	pop hl
 	jr c, .asm_3bb4f
 	push hl
@@ -6984,7 +6984,7 @@ Func_3bb09:
 	pop af
 	call Func_3afb8
 	push hl
-	farcall AppendDeckName.text_end
+	farcall CheckIfDeckHasCards
 	pop hl
 	jp c, .asm_3bb4f
 	ld a, $01
