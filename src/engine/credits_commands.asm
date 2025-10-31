@@ -260,7 +260,7 @@ CreditsCmd_PrintHeader:
 	dec b
 	jr nz, .loop_tiles
 	pop hl
-	ld de, BG_MAP_WIDTH
+	ld de, TILEMAP_WIDTH
 	add hl, de
 	pop bc
 	dec c

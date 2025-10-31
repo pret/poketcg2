@@ -378,7 +378,7 @@ HandleWaitingLinkOpponentMenu:
 	call .HandleInput
 	call RefreshMenuCursor
 	ldh a, [hKeysPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_pressed
 	ld a, $01
 	bank1call HandleSpecialDuelMainSceneHotkeys
@@ -399,9 +399,9 @@ HandleWaitingLinkOpponentMenu:
 
 .HandleInput:
 	ldh a, [hDPadHeld]
-	bit B_BUTTON_F, a
+	bit B_PAD_B, a
 	ret nz
-	and D_LEFT | D_RIGHT
+	and PAD_LEFT | PAD_RIGHT
 	ret z
 	ld a, SFX_01
 	call PlaySFX
@@ -1617,14 +1617,14 @@ HandleDeckDiagnosisMenu:
 
 .UpdateFunc:
 	ldh a, [hDPadHeld]
-	and D_UP | D_DOWN
+	and PAD_UP | PAD_DOWN
 	jr z, .check_a_btn
 	call .PrintCursorMenuItemText
 .check_a_btn
 	ldh a, [hKeysPressed]
-	bit A_BUTTON_F, a
+	bit B_PAD_A, a
 	jr nz, .a_btn_pressed
-	and B_BUTTON
+	and PAD_B
 	ret z
 	; b btn pressed
 	ld a, $ff

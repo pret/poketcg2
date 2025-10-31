@@ -24,5 +24,5 @@ _BankswitchVRAM:
 
 ; set current dest WRAM bank to a
 BankswitchWRAM:
-	ldh [rSVBK], a
+	ldh [rWBK], a
 	ret

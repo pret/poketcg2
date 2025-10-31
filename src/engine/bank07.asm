@@ -1464,7 +1464,7 @@ HandleMenuBox:
 
 .UpPress:
 	ldh a, [hDPadHeld]
-	and D_UP
+	and PAD_UP
 	ret z
 	ld a, [wMenuBoxHasHorizontalScroll]
 	ld l, a ; unused
@@ -1487,7 +1487,7 @@ HandleMenuBox:
 
 .DownPress:
 	ldh a, [hDPadHeld]
-	and D_DOWN
+	and PAD_DOWN
 	ret z
 	ld a, [wMenuBoxHasHorizontalScroll]
 	ld l, a ; unused
@@ -1511,7 +1511,7 @@ HandleMenuBox:
 
 .LeftPress:
 	ldh a, [hDPadHeld]
-	and D_LEFT
+	and PAD_LEFT
 	ret z
 	ld a, [wMenuBoxHasHorizontalScroll]
 	and a
@@ -1532,7 +1532,7 @@ HandleMenuBox:
 
 .RightPress:
 	ldh a, [hDPadHeld]
-	and D_RIGHT
+	and PAD_RIGHT
 	ret z
 	ld a, [wMenuBoxHasHorizontalScroll]
 	and a
@@ -1863,7 +1863,7 @@ ShowStartMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db FALSE ; has horizontal scroll
 	db 0 ; vertical step
@@ -1880,7 +1880,7 @@ ShowStartMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db FALSE ; has horizontal scroll
 	db 1 ; vertical step
@@ -1898,7 +1898,7 @@ ShowStartMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db FALSE ; has horizontal scroll
 	db 1 ; vertical step
@@ -1917,7 +1917,7 @@ ShowStartMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db FALSE ; has horizontal scroll
 	db 1 ; vertical step
@@ -1937,7 +1937,7 @@ ShowStartMenu:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
+	db PAD_A ; press keys
 	db $00 ; held keys
 	db FALSE ; has horizontal scroll
 	db 1 ; vertical step
@@ -3408,7 +3408,7 @@ Func_1dc0a:
 	call DoFrame
 	call Func_1dc2a
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .delay_loop
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
@@ -3712,8 +3712,8 @@ _CoinPageMenuParams:
 	db SYM_SPACE ; space symbol
 	db SYM_CURSOR_R ; default cursor symbol
 	db SYM_CURSOR_R ; selection cursor symbol
-	db A_BUTTON ; press keys
-	db B_BUTTON ; held keys
+	db PAD_A ; press keys
+	db PAD_B ; held keys
 	db TRUE ; has horizontal scroll
 	db 4 ; vertical step
 	dw Func_1def1 ; update function
@@ -3845,7 +3845,7 @@ Func_1def1::
 
 Func_1df10:
 	ldh a, [hKeysPressed]
-	and SELECT
+	and PAD_SELECT
 	ret z
 
 	push af
@@ -3868,7 +3868,7 @@ Func_1df10:
 
 Func_1df36:
 	ldh a, [hDPadHeld]
-	and D_RIGHT
+	and PAD_RIGHT
 	ret z
 	ld a, [wCoinPage]
 	cp 2
@@ -3891,7 +3891,7 @@ Func_1df36:
 
 Func_1df60:
 	ldh a, [hDPadHeld]
-	and D_LEFT
+	and PAD_LEFT
 	ret z
 
 	ld a, [wCoinPage]

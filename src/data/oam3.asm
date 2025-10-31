@@ -14,54 +14,54 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7, -16, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -7,  -8, $03, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1,  -8, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7, -16, $02, 0 | OAM_YFLIP
+	dbsprite  -7,  -8, $03, 0 | OAM_YFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1, -16, $00, 0 | OAM_YFLIP
+	dbsprite   1,  -8, $01, 0 | OAM_YFLIP
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_1
 	db 16 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,  -8, $03, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1,  -8, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,  -8, $03, 0 | OAM_YFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1, -16, $00, 0 | OAM_YFLIP
+	dbsprite   1,  -8, $01, 0 | OAM_YFLIP
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $04, 0
 
 .frame_2
 	db 15 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite  -4, -13, $06, 0
 	dbsprite   1,  -8, $07, 0
@@ -70,16 +70,16 @@ OAMData33::
 	db 15 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite  -1, -14, $06, 0
 	dbsprite   1,  -8, $07, 0
@@ -88,16 +88,16 @@ OAMData33::
 	db 15 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite   6, -13, $06, 0
 	dbsprite   1,  -8, $07, 0
@@ -106,15 +106,15 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite  12,  -4, $06, 0
 	dbsprite   1,  -8, $08, 0
@@ -125,15 +125,15 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite  17,  -4, $06, 0
 	dbsprite   1,  -8, $08, 0
@@ -144,15 +144,15 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 0
 	dbsprite -23,  -8, $01, 0
-	dbsprite -23,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 0 | OAM_XFLIP
+	dbsprite -23,   8, $00, 0 | OAM_XFLIP
 	dbsprite -15, -16, $02, 0
 	dbsprite -15,  -8, $03, 0
-	dbsprite -15,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 0 | OAM_XFLIP
+	dbsprite -15,   8, $02, 0 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 0
 	dbsprite  14,  -4, $06, 0
 	dbsprite   1,  -8, $08, 0
@@ -163,15 +163,15 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 1
 	dbsprite -23,  -8, $01, 1
-	dbsprite -23,   0, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 1 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 1 | OAM_XFLIP
+	dbsprite -23,   8, $00, 1 | OAM_XFLIP
 	dbsprite -15, -16, $02, 1
 	dbsprite -15,  -8, $03, 1
-	dbsprite -15,   0, $03, 1 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 1 | OAM_XFLIP
+	dbsprite -15,   8, $02, 1 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 1
 	dbsprite  14,  -4, $06, 1
 	dbsprite   1,  -8, $08, 1
@@ -182,15 +182,15 @@ OAMData33::
 	db 16 ; size
 	dbsprite -23, -16, $00, 2
 	dbsprite -23,  -8, $01, 2
-	dbsprite -23,   0, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite -23,   8, $00, 2 | (1 << OAM_X_FLIP)
+	dbsprite -23,   0, $01, 2 | OAM_XFLIP
+	dbsprite -23,   8, $00, 2 | OAM_XFLIP
 	dbsprite -15, -16, $02, 2
 	dbsprite -15,  -8, $03, 2
-	dbsprite -15,   0, $03, 2 | (1 << OAM_X_FLIP)
-	dbsprite -15,   8, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -7,   0, $03, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -7,   8, $02, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1,   8, $00, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -15,   0, $03, 2 | OAM_XFLIP
+	dbsprite -15,   8, $02, 2 | OAM_XFLIP
+	dbsprite  -7,   0, $03, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -7,   8, $02, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1,   8, $00, 2 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -7, -16, $05, 2
 	dbsprite  14,  -4, $06, 2
 	dbsprite   1,  -8, $08, 2
@@ -333,55 +333,55 @@ OAMData36::
 
 .frame_0
 	db 5 ; size
-	dbsprite -28,  24, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   8, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -16, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -32, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -28,  24, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   8, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -16, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -32, $01, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_1
 	db 8 ; size
-	dbsprite -28,  16, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  -8, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -24, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  24, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   8, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   0, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -16, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -32, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -28,  16, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  -8, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -24, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  24, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   8, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   0, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -16, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -32, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
 .frame_2
 	db 8 ; size
-	dbsprite -28,  24, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   8, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   0, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -16, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -32, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  16, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  -8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -24, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -28,  24, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   8, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   0, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -16, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -32, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  16, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  -8, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -24, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_3
 	db 8 ; size
-	dbsprite -28,  16, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  -8, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -24, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  24, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -16, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -32, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -28,  16, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  -8, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -24, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  24, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -16, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -32, $00, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_4
 	db 8 ; size
-	dbsprite -28,  24, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   8, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,   0, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -16, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -32, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  16, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  -8, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28, -24, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -28,  24, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   8, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,   0, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -16, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -32, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  16, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  -8, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28, -24, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
 OAMData38::
 	dw .frame_0
@@ -398,200 +398,200 @@ OAMData38::
 
 .frame_0
 	db 12 ; size
-	dbsprite   8,   8, $06, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $06, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $06, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $06, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,   8, $06, 0 | OAM_YFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -16, $06, 0 | OAM_YFLIP
+	dbsprite   8,  -8, $06, 0 | OAM_YFLIP
+	dbsprite   8,   0, $06, 0 | OAM_YFLIP
 	dbsprite   0,   8, $06, 0
 	dbsprite   0, -16, $06, 0
 	dbsprite   0,  -8, $06, 0
 	dbsprite   0,   0, $06, 0
-	dbsprite   8, -24, $00, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8, -24, $00, 0 | OAM_YFLIP
 	dbsprite   0, -24, $00, 0
 
 .frame_1
 	db 12 ; size
-	dbsprite   8,   0, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $03, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $04, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,   0, $01, 0 | OAM_YFLIP
+	dbsprite   8,   8, $02, 0 | OAM_YFLIP
+	dbsprite   0,   0, $03, 0 | OAM_YFLIP
+	dbsprite   0,   8, $04, 0 | OAM_YFLIP
 	dbsprite  -8,   0, $00, 0
-	dbsprite  -8,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   8, $00, 0 | OAM_XFLIP
 	dbsprite   0, -24, $00, 0
-	dbsprite   8, -24, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $06, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $06, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8, -24, $00, 0 | OAM_YFLIP
+	dbsprite   8, -16, $06, 0 | OAM_YFLIP
+	dbsprite   8,  -8, $06, 0 | OAM_YFLIP
 	dbsprite   0, -16, $06, 0
 	dbsprite   0,  -8, $06, 0
 
 .frame_2
 	db 14 ; size
-	dbsprite   8,   0, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $03, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $04, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,   0, $01, 0 | OAM_YFLIP
+	dbsprite   8,   8, $02, 0 | OAM_YFLIP
+	dbsprite   0,   0, $03, 0 | OAM_YFLIP
+	dbsprite   0,   8, $04, 0 | OAM_YFLIP
 	dbsprite -16,   0, $01, 0
 	dbsprite -16,   8, $02, 0
 	dbsprite  -8,   0, $03, 0
 	dbsprite  -8,   8, $04, 0
 	dbsprite -16,  -8, $00, 0
-	dbsprite  -8,  -8, $00, 0 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -8, $00, 0 | OAM_YFLIP
 	dbsprite   0, -16, $00, 0
-	dbsprite   8, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $06, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8, -16, $00, 0 | OAM_YFLIP
+	dbsprite   8,  -8, $06, 0 | OAM_YFLIP
 	dbsprite   0,  -8, $06, 0
 
 .frame_3
 	db 15 ; size
-	dbsprite   8,  -8, $00, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -8, $00, 0 | OAM_YFLIP
 	dbsprite -16,   0, $01, 0
 	dbsprite -16,   8, $02, 0
 	dbsprite  -8,   8, $04, 0
-	dbsprite -16,  -8, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -16, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $04, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $05, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $05, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -8, $05, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $07, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16,  -8, $01, 0 | OAM_XFLIP
+	dbsprite -16, -16, $02, 0 | OAM_XFLIP
+	dbsprite  -8, -16, $04, 0 | OAM_XFLIP
+	dbsprite   0, -16, $00, 0 | OAM_YFLIP
+	dbsprite   8,   0, $01, 0 | OAM_YFLIP
+	dbsprite   8,   8, $02, 0 | OAM_YFLIP
+	dbsprite   0,   8, $04, 0 | OAM_YFLIP
+	dbsprite   0,   0, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   0, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -8, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -8, $07, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_4
 	db 15 ; size
-	dbsprite   8,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -8, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -16, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $04, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  -8, $01, 0 | OAM_XFLIP
+	dbsprite -16, -16, $02, 0 | OAM_XFLIP
+	dbsprite  -8, -16, $04, 0 | OAM_XFLIP
 	dbsprite -16,   0, $01, 0
 	dbsprite -16,   8, $02, 0
 	dbsprite  -8,   8, $04, 0
-	dbsprite   0,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -16, $04, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $05, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -8, $05, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $05, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $07, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   0,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,  -8, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -16, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -16, $04, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -8, $05, 0 | OAM_YFLIP
+	dbsprite  -8,  -8, $05, 0 | OAM_YFLIP
+	dbsprite  -8,   0, $05, 0 | OAM_YFLIP
+	dbsprite   0,   0, $07, 0 | OAM_YFLIP
 
 .frame_5
 	db 16 ; size
-	dbsprite   7,  -8, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7, -16, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -1, -16, $04, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7,   0, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   7,   8, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -1,   8, $04, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -15,  -8, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -15, -16, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7, -16, $04, 0 | (1 << OAM_X_FLIP)
+	dbsprite   7,  -8, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7, -16, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1, -16, $04, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7,   0, $01, 0 | OAM_YFLIP
+	dbsprite   7,   8, $02, 0 | OAM_YFLIP
+	dbsprite  -1,   8, $04, 0 | OAM_YFLIP
+	dbsprite -15,  -8, $01, 0 | OAM_XFLIP
+	dbsprite -15, -16, $02, 0 | OAM_XFLIP
+	dbsprite  -7, -16, $04, 0 | OAM_XFLIP
 	dbsprite  -7,  -8, $05, 0
 	dbsprite  -1,  -8, $05, 0
 	dbsprite  -1,   0, $05, 0
 	dbsprite -15,   0, $01, 0
 	dbsprite -15,   8, $02, 0
 	dbsprite  -7,   8, $04, 0
-	dbsprite  -7,   0, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -7,   0, $05, 0 | OAM_XFLIP
 
 .frame_6
 	db 16 ; size
-	dbsprite -16,  -7, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16, -15, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -15, $04, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -7, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -15, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -15, $04, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -7, $05, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -7, $05, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -16,  -7, $01, 1 | OAM_XFLIP
+	dbsprite -16, -15, $02, 1 | OAM_XFLIP
+	dbsprite  -8, -15, $04, 1 | OAM_XFLIP
+	dbsprite   8,  -7, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -15, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -15, $04, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -7, $05, 1 | OAM_YFLIP
+	dbsprite  -8,  -7, $05, 1 | OAM_YFLIP
 	dbsprite -16,  -1, $01, 1
 	dbsprite -16,   7, $02, 1
 	dbsprite  -8,   7, $04, 1
-	dbsprite   8,  -1, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   7, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   7, $04, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -1, $05, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -1, $05, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -1, $01, 1 | OAM_YFLIP
+	dbsprite   8,   7, $02, 1 | OAM_YFLIP
+	dbsprite   0,   7, $04, 1 | OAM_YFLIP
+	dbsprite   0,  -1, $05, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -1, $05, 1 | OAM_XFLIP | OAM_YFLIP
 
 .frame_7
 	db 16 ; size
-	dbsprite   7,  -8, $01, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7, -16, $02, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -1, -16, $04, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7,   0, $01, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   7,   8, $02, 2 | (1 << OAM_Y_FLIP)
-	dbsprite  -1,   8, $04, 2 | (1 << OAM_Y_FLIP)
-	dbsprite -15,  -8, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite -15, -16, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -7, -16, $04, 2 | (1 << OAM_X_FLIP)
+	dbsprite   7,  -8, $01, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7, -16, $02, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1, -16, $04, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7,   0, $01, 2 | OAM_YFLIP
+	dbsprite   7,   8, $02, 2 | OAM_YFLIP
+	dbsprite  -1,   8, $04, 2 | OAM_YFLIP
+	dbsprite -15,  -8, $01, 2 | OAM_XFLIP
+	dbsprite -15, -16, $02, 2 | OAM_XFLIP
+	dbsprite  -7, -16, $04, 2 | OAM_XFLIP
 	dbsprite  -7,  -8, $05, 2
 	dbsprite  -1,  -8, $05, 2
 	dbsprite  -1,   0, $05, 2
 	dbsprite -15,   0, $01, 2
 	dbsprite -15,   8, $02, 2
 	dbsprite  -7,   8, $04, 2
-	dbsprite  -7,   0, $05, 2 | (1 << OAM_X_FLIP)
+	dbsprite  -7,   0, $05, 2 | OAM_XFLIP
 
 .frame_8
 	db 16 ; size
-	dbsprite -16,  -7, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -15, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -15, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -7, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -15, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -15, $04, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -7, $05, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -7, $05, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -16,  -7, $01, 0 | OAM_XFLIP
+	dbsprite -16, -15, $02, 0 | OAM_XFLIP
+	dbsprite  -8, -15, $04, 0 | OAM_XFLIP
+	dbsprite   8,  -7, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -15, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -15, $04, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -7, $05, 0 | OAM_YFLIP
+	dbsprite  -8,  -7, $05, 0 | OAM_YFLIP
 	dbsprite -16,  -1, $01, 0
 	dbsprite -16,   7, $02, 0
 	dbsprite  -8,   7, $04, 0
-	dbsprite   8,  -1, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   7, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   7, $04, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -1, $05, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -1, $05, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -1, $01, 0 | OAM_YFLIP
+	dbsprite   8,   7, $02, 0 | OAM_YFLIP
+	dbsprite   0,   7, $04, 0 | OAM_YFLIP
+	dbsprite   0,  -1, $05, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -1, $05, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_9
 	db 16 ; size
-	dbsprite   7,  -8, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7, -16, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -1, -16, $04, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   7,   0, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   7,   8, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -1,   8, $04, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -15,  -8, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -15, -16, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -7, -16, $04, 1 | (1 << OAM_X_FLIP)
+	dbsprite   7,  -8, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7, -16, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1, -16, $04, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   7,   0, $01, 1 | OAM_YFLIP
+	dbsprite   7,   8, $02, 1 | OAM_YFLIP
+	dbsprite  -1,   8, $04, 1 | OAM_YFLIP
+	dbsprite -15,  -8, $01, 1 | OAM_XFLIP
+	dbsprite -15, -16, $02, 1 | OAM_XFLIP
+	dbsprite  -7, -16, $04, 1 | OAM_XFLIP
 	dbsprite  -7,  -8, $05, 1
 	dbsprite  -1,  -8, $05, 1
 	dbsprite  -1,   0, $05, 1
 	dbsprite -15,   0, $01, 1
 	dbsprite -15,   8, $02, 1
 	dbsprite  -7,   8, $04, 1
-	dbsprite  -7,   0, $05, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -7,   0, $05, 1 | OAM_XFLIP
 
 .frame_10
 	db 16 ; size
-	dbsprite -16,  -7, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite -16, -15, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -15, $04, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -7, $01, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -15, $02, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -15, $04, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -7, $05, 2 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -7, $05, 2 | (1 << OAM_Y_FLIP)
+	dbsprite -16,  -7, $01, 2 | OAM_XFLIP
+	dbsprite -16, -15, $02, 2 | OAM_XFLIP
+	dbsprite  -8, -15, $04, 2 | OAM_XFLIP
+	dbsprite   8,  -7, $01, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -15, $02, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -15, $04, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -7, $05, 2 | OAM_YFLIP
+	dbsprite  -8,  -7, $05, 2 | OAM_YFLIP
 	dbsprite -16,  -1, $01, 2
 	dbsprite -16,   7, $02, 2
 	dbsprite  -8,   7, $04, 2
-	dbsprite   8,  -1, $01, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   7, $02, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   7, $04, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -1, $05, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -1, $05, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -1, $01, 2 | OAM_YFLIP
+	dbsprite   8,   7, $02, 2 | OAM_YFLIP
+	dbsprite   0,   7, $04, 2 | OAM_YFLIP
+	dbsprite   0,  -1, $05, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -1, $05, 2 | OAM_XFLIP | OAM_YFLIP
 
 OAMData39::
 	dw .frame_0
@@ -608,9 +608,9 @@ OAMData39::
 .frame_1
 	db 4 ; size
 	dbsprite  -8,  -8, $02, 0
-	dbsprite  -8,   0, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   0, $02, 0 | OAM_XFLIP
 	dbsprite   0,  -8, $03, 0
-	dbsprite   0,   0, $03, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $03, 0 | OAM_XFLIP
 
 .frame_2
 	db 10 ; size
@@ -623,21 +623,21 @@ OAMData39::
 	dbsprite   5, -12, $0c, 0
 	dbsprite   5,  -4, $0d, 0
 	dbsprite   5,   4, $0e, 0
-	dbsprite -14,  12, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite -14,  12, $05, 0 | OAM_XFLIP
 
 .frame_3
 	db 6 ; size
 	dbsprite  -7,  -8, $00, 0
-	dbsprite  -7,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -7,   0, $00, 0 | OAM_XFLIP
 	dbsprite   1,  -8, $01, 0
-	dbsprite   1,   0, $01, 0 | (1 << OAM_X_FLIP)
+	dbsprite   1,   0, $01, 0 | OAM_XFLIP
 	dbsprite  -7, -16, $05, 0
-	dbsprite  -7,   8, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -7,   8, $05, 0 | OAM_XFLIP
 
 .frame_4
 	db 4 ; size
-	dbsprite   0,   0, $10, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $0f, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $10, 0 | OAM_XFLIP
+	dbsprite  -8,   0, $0f, 0 | OAM_XFLIP
 	dbsprite   0,  -8, $10, 0
 	dbsprite  -8,  -8, $0f, 0
 
@@ -652,7 +652,7 @@ OAMData39::
 	dbsprite   5, -12, $0c, 1
 	dbsprite   5,  -4, $0d, 1
 	dbsprite   5,   4, $0e, 1
-	dbsprite -14,  12, $05, 1 | (1 << OAM_X_FLIP)
+	dbsprite -14,  12, $05, 1 | OAM_XFLIP
 
 OAMData3A::
 	dw .frame_0
@@ -676,37 +676,37 @@ OAMData3A::
 	dbsprite -32,   0, $00, 1
 	dbsprite -40,   1, $00, 0
 	dbsprite -48,   2, $00, 1
-	dbsprite  16,  -7, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  24,  -8, $00, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  32,  -9, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  40, -10, $00, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  16,  -7, $00, 0 | OAM_YFLIP
+	dbsprite  24,  -8, $00, 1 | OAM_YFLIP
+	dbsprite  32,  -9, $00, 0 | OAM_YFLIP
+	dbsprite  40, -10, $00, 1 | OAM_YFLIP
 	dbsprite  -1,  16, $01, 0
 	dbsprite   0,  24, $01, 1
 	dbsprite   1,  32, $01, 0
 	dbsprite   2,  40, $01, 1
-	dbsprite  -7, -24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -32, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -9, -40, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10, -48, $01, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -7, -24, $01, 0 | OAM_XFLIP
+	dbsprite  -8, -32, $01, 1 | OAM_XFLIP
+	dbsprite  -9, -40, $01, 0 | OAM_XFLIP
+	dbsprite -10, -48, $01, 1 | OAM_XFLIP
 
 .frame_1
 	db 16 ; size
-	dbsprite -24,  -1, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -32,   0, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite -40,   1, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,   2, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  -7, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  24,  -8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  32,  -9, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  40, -10, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -1,  16, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  24, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1,  32, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   2,  40, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -7, -24, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -32, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -9, -40, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -10, -48, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24,  -1, $00, 1 | OAM_XFLIP
+	dbsprite -32,   0, $00, 0 | OAM_XFLIP
+	dbsprite -40,   1, $00, 1 | OAM_XFLIP
+	dbsprite -48,   2, $00, 0 | OAM_XFLIP
+	dbsprite  16,  -7, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  24,  -8, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  32,  -9, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  40, -10, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -1,  16, $01, 1 | OAM_YFLIP
+	dbsprite   0,  24, $01, 0 | OAM_YFLIP
+	dbsprite   1,  32, $01, 1 | OAM_YFLIP
+	dbsprite   2,  40, $01, 0 | OAM_YFLIP
+	dbsprite  -7, -24, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8, -32, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -9, -40, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -10, -48, $01, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_2
 	db 16 ; size
@@ -714,124 +714,124 @@ OAMData3A::
 	dbsprite -30,   8, $00, 1
 	dbsprite -38,  11, $00, 0
 	dbsprite -46,  14, $00, 1
-	dbsprite  14, -13, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  22, -16, $00, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  30, -19, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  38, -22, $00, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  14, -13, $00, 0 | OAM_YFLIP
+	dbsprite  22, -16, $00, 1 | OAM_YFLIP
+	dbsprite  30, -19, $00, 0 | OAM_YFLIP
+	dbsprite  38, -22, $00, 1 | OAM_YFLIP
 	dbsprite   5,  14, $01, 0
 	dbsprite   8,  22, $01, 1
 	dbsprite  11,  30, $01, 0
 	dbsprite  14,  38, $01, 1
-	dbsprite -13, -22, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -30, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -19, -38, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -22, -46, $01, 1 | (1 << OAM_X_FLIP)
+	dbsprite -13, -22, $01, 0 | OAM_XFLIP
+	dbsprite -16, -30, $01, 1 | OAM_XFLIP
+	dbsprite -19, -38, $01, 0 | OAM_XFLIP
+	dbsprite -22, -46, $01, 1 | OAM_XFLIP
 
 .frame_3
 	db 16 ; size
-	dbsprite -22,   5, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -30,   8, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite -38,  11, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -46,  14, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  14, -13, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  22, -16, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  30, -19, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  38, -22, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   5,  14, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  22, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  11,  30, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  14,  38, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -13, -22, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16, -30, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -19, -38, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -22, -46, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -22,   5, $00, 1 | OAM_XFLIP
+	dbsprite -30,   8, $00, 0 | OAM_XFLIP
+	dbsprite -38,  11, $00, 1 | OAM_XFLIP
+	dbsprite -46,  14, $00, 0 | OAM_XFLIP
+	dbsprite  14, -13, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  22, -16, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  30, -19, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  38, -22, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   5,  14, $01, 1 | OAM_YFLIP
+	dbsprite   8,  22, $01, 0 | OAM_YFLIP
+	dbsprite  11,  30, $01, 1 | OAM_YFLIP
+	dbsprite  14,  38, $01, 0 | OAM_YFLIP
+	dbsprite -13, -22, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16, -30, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -19, -38, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -22, -46, $01, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_4
 	db 12 ; size
-	dbsprite -42,  22, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -32,  16, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -22,  10, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  10,  14, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  16,  24, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  22,  34, $02, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -42,  22, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -32,  16, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -22,  10, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  10,  14, $02, 0 | OAM_YFLIP
+	dbsprite  16,  24, $02, 1 | OAM_YFLIP
+	dbsprite  22,  34, $02, 0 | OAM_YFLIP
 	dbsprite  34, -30, $02, 0
 	dbsprite  24, -24, $02, 1
 	dbsprite  14, -18, $02, 0
-	dbsprite -18, -22, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -24, -32, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite -30, -42, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite -18, -22, $02, 0 | OAM_XFLIP
+	dbsprite -24, -32, $02, 1 | OAM_XFLIP
+	dbsprite -30, -42, $02, 0 | OAM_XFLIP
 
 .frame_5
 	db 12 ; size
 	dbsprite -22,  10, $02, 1
 	dbsprite -32,  16, $02, 0
 	dbsprite -42,  22, $02, 1
-	dbsprite  22,  34, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  16,  24, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  10,  14, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  14, -18, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  24, -24, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  34, -30, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -30, -42, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -32, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -18, -22, $02, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  22,  34, $02, 1 | OAM_XFLIP
+	dbsprite  16,  24, $02, 0 | OAM_XFLIP
+	dbsprite  10,  14, $02, 1 | OAM_XFLIP
+	dbsprite  14, -18, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  24, -24, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  34, -30, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -30, -42, $02, 1 | OAM_YFLIP
+	dbsprite -24, -32, $02, 0 | OAM_YFLIP
+	dbsprite -18, -22, $02, 1 | OAM_YFLIP
 
 .frame_6
 	db 12 ; size
-	dbsprite -36,  28, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -28,  20, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -20,  12, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  12,  12, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  20,  20, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  28,  28, $02, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -36,  28, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -28,  20, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -20,  12, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  12,  12, $02, 0 | OAM_YFLIP
+	dbsprite  20,  20, $02, 1 | OAM_YFLIP
+	dbsprite  28,  28, $02, 0 | OAM_YFLIP
 	dbsprite  28, -36, $02, 0
 	dbsprite  20, -28, $02, 1
 	dbsprite  12, -20, $02, 0
-	dbsprite -20, -20, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -28, -28, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite -36, -36, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite -20, -20, $02, 0 | OAM_XFLIP
+	dbsprite -28, -28, $02, 1 | OAM_XFLIP
+	dbsprite -36, -36, $02, 0 | OAM_XFLIP
 
 .frame_7
 	db 12 ; size
 	dbsprite -20,  12, $02, 1
 	dbsprite -28,  20, $02, 0
 	dbsprite -36,  28, $02, 1
-	dbsprite  28,  28, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  20,  20, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  12,  12, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  12, -20, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  20, -28, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  28, -36, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -36, -36, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -28, -28, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -20, -20, $02, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  28,  28, $02, 1 | OAM_XFLIP
+	dbsprite  20,  20, $02, 0 | OAM_XFLIP
+	dbsprite  12,  12, $02, 1 | OAM_XFLIP
+	dbsprite  12, -20, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  20, -28, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  28, -36, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -36, -36, $02, 1 | OAM_YFLIP
+	dbsprite -28, -28, $02, 0 | OAM_YFLIP
+	dbsprite -20, -20, $02, 1 | OAM_YFLIP
 
 .frame_8
 	db 12 ; size
-	dbsprite -22, -18, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -32, -24, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite -42, -30, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite -22, -18, $02, 0 | OAM_XFLIP
+	dbsprite -32, -24, $02, 1 | OAM_XFLIP
+	dbsprite -42, -30, $02, 0 | OAM_XFLIP
 	dbsprite  22, -42, $02, 0
 	dbsprite  16, -32, $02, 1
 	dbsprite  10, -22, $02, 0
-	dbsprite  14,  10, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  24,  16, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  34,  22, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -30,  34, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  24, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -18,  14, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  14,  10, $02, 0 | OAM_YFLIP
+	dbsprite  24,  16, $02, 1 | OAM_YFLIP
+	dbsprite  34,  22, $02, 0 | OAM_YFLIP
+	dbsprite -30,  34, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  24, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -18,  14, $02, 0 | OAM_XFLIP | OAM_YFLIP
 
 .frame_9
 	db 12 ; size
-	dbsprite -42, -30, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32, -24, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -22, -18, $02, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  10, -22, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16, -32, $02, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  22, -42, $02, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  34,  22, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite  24,  16, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  14,  10, $02, 1 | (1 << OAM_X_FLIP)
+	dbsprite -42, -30, $02, 1 | OAM_YFLIP
+	dbsprite -32, -24, $02, 0 | OAM_YFLIP
+	dbsprite -22, -18, $02, 1 | OAM_YFLIP
+	dbsprite  10, -22, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16, -32, $02, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  22, -42, $02, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  34,  22, $02, 1 | OAM_XFLIP
+	dbsprite  24,  16, $02, 0 | OAM_XFLIP
+	dbsprite  14,  10, $02, 1 | OAM_XFLIP
 	dbsprite -18,  14, $02, 1
 	dbsprite -24,  24, $02, 0
 	dbsprite -30,  34, $02, 1
@@ -842,14 +842,14 @@ OAMData3A::
 	dbsprite -30, -16, $00, 0
 	dbsprite -38, -19, $00, 0
 	dbsprite -46, -22, $00, 0
-	dbsprite   5, -22, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -30, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  11, -38, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  14, -46, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  14,   5, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  22,   8, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  30,  11, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  38,  14, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   5, -22, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -30, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  11, -38, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  14, -46, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  14,   5, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  22,   8, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  30,  11, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  38,  14, $00, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -13,  14, $01, 0
 	dbsprite -16,  22, $01, 0
 	dbsprite -19,  30, $01, 0
@@ -857,22 +857,22 @@ OAMData3A::
 
 .frame_11
 	db 16 ; size
-	dbsprite -22, -13, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -30, -16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite -38, -19, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -46, -22, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   5, -22, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8, -30, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite  11, -38, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite  14, -46, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite  14,   5, $00, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  22,   8, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  30,  11, $00, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  38,  14, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -13,  14, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  22, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -19,  30, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -22,  38, $01, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -22, -13, $00, 1 | OAM_XFLIP
+	dbsprite -30, -16, $00, 0 | OAM_XFLIP
+	dbsprite -38, -19, $00, 1 | OAM_XFLIP
+	dbsprite -46, -22, $00, 0 | OAM_XFLIP
+	dbsprite   5, -22, $01, 1 | OAM_XFLIP
+	dbsprite   8, -30, $01, 0 | OAM_XFLIP
+	dbsprite  11, -38, $01, 1 | OAM_XFLIP
+	dbsprite  14, -46, $01, 0 | OAM_XFLIP
+	dbsprite  14,   5, $00, 1 | OAM_YFLIP
+	dbsprite  22,   8, $00, 0 | OAM_YFLIP
+	dbsprite  30,  11, $00, 1 | OAM_YFLIP
+	dbsprite  38,  14, $00, 0 | OAM_YFLIP
+	dbsprite -13,  14, $01, 1 | OAM_YFLIP
+	dbsprite -16,  22, $01, 0 | OAM_YFLIP
+	dbsprite -19,  30, $01, 1 | OAM_YFLIP
+	dbsprite -22,  38, $01, 0 | OAM_YFLIP
 
 .frame_12
 	db 16 ; size
@@ -884,33 +884,33 @@ OAMData3A::
 	dbsprite  -8,  24, $01, 1
 	dbsprite  -9,  32, $01, 0
 	dbsprite -10,  40, $01, 1
-	dbsprite  -1, -24, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -32, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   1, -40, $01, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   2, -48, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16,  -1, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  24,   0, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  32,   1, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  40,   2, $00, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -1, -24, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -32, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   1, -40, $01, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   2, -48, $01, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16,  -1, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  24,   0, $00, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  32,   1, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  40,   2, $00, 1 | OAM_XFLIP | OAM_YFLIP
 
 .frame_13
 	db 16 ; size
-	dbsprite -24,  -7, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -32,  -8, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite -40,  -9, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48, -10, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  -1, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite  24,   0, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  32,   1, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite  40,   2, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -7,  16, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  24, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -9,  32, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -10,  40, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -1, -24, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0, -32, $01, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   1, -40, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   2, -48, $01, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -24,  -7, $00, 1 | OAM_XFLIP
+	dbsprite -32,  -8, $00, 0 | OAM_XFLIP
+	dbsprite -40,  -9, $00, 1 | OAM_XFLIP
+	dbsprite -48, -10, $00, 0 | OAM_XFLIP
+	dbsprite  16,  -1, $00, 1 | OAM_XFLIP
+	dbsprite  24,   0, $00, 0 | OAM_XFLIP
+	dbsprite  32,   1, $00, 1 | OAM_XFLIP
+	dbsprite  40,   2, $00, 0 | OAM_XFLIP
+	dbsprite  -7,  16, $01, 1 | OAM_YFLIP
+	dbsprite  -8,  24, $01, 0 | OAM_YFLIP
+	dbsprite  -9,  32, $01, 1 | OAM_YFLIP
+	dbsprite -10,  40, $01, 0 | OAM_YFLIP
+	dbsprite  -1, -24, $01, 1 | OAM_YFLIP
+	dbsprite   0, -32, $01, 0 | OAM_YFLIP
+	dbsprite   1, -40, $01, 1 | OAM_YFLIP
+	dbsprite   2, -48, $01, 0 | OAM_YFLIP
 
 OAMData3B::
 	dw .frame_0
@@ -1025,19 +1025,19 @@ OAMData3B::
 
 .frame_8
 	db 5 ; size
-	dbsprite   5, -10, $2a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   4,   7, $2a, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   5, -10, $2a, 1 | OAM_YFLIP
+	dbsprite   4,   7, $2a, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -12, -18, $2a, 1
-	dbsprite  -8,   8, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -2, -17, $29, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,   8, $29, 1 | OAM_XFLIP
+	dbsprite  -2, -17, $29, 1 | OAM_YFLIP
 
 .frame_9
 	db 5 ; size
-	dbsprite  12, -17, $2a, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  10,  14, $2a, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  12, -17, $2a, 0 | OAM_YFLIP
+	dbsprite  10,  14, $2a, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -17, -24, $2a, 0
-	dbsprite -11,  15, $29, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0, -24, $29, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -11,  15, $29, 0 | OAM_XFLIP
+	dbsprite   0, -24, $29, 0 | OAM_YFLIP
 
 .frame_10
 	db 9 ; size
@@ -1240,11 +1240,11 @@ OAMData3B::
 	dbsprite -16,  17, $10, 0
 	dbsprite -16,   9, $0f, 0
 	dbsprite -24,  17, $0e, 0
-	dbsprite  13, -18, $2a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  12,  -1, $2a, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  13, -18, $2a, 1 | OAM_YFLIP
+	dbsprite  12,  -1, $2a, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -4, -26, $2a, 1
-	dbsprite   0,   0, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite   6, -25, $29, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   0,   0, $29, 1 | OAM_XFLIP
+	dbsprite   6, -25, $29, 1 | OAM_YFLIP
 
 .frame_19
 	db 34 ; size
@@ -1277,11 +1277,11 @@ OAMData3B::
 	dbsprite  -8,  14, $02, 0
 	dbsprite  -8,   6, $01, 0
 	dbsprite -16,  14, $00, 0
-	dbsprite  20, -25, $2a, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  18,   6, $2a, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  20, -25, $2a, 0 | OAM_YFLIP
+	dbsprite  18,   6, $2a, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -9, -32, $2a, 0
-	dbsprite  -3,   7, $29, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8, -32, $29, 0 | (1 << OAM_Y_FLIP)
+	dbsprite  -3,   7, $29, 0 | OAM_XFLIP
+	dbsprite   8, -32, $29, 0 | OAM_YFLIP
 
 .frame_20
 	db 25 ; size
@@ -1305,11 +1305,11 @@ OAMData3B::
 	dbsprite -16, -23, $0a, 0
 	dbsprite -24, -15, $09, 0
 	dbsprite -24, -23, $08, 0
-	dbsprite   5,   6, $2a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   4,  23, $2a, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   5,   6, $2a, 1 | OAM_YFLIP
+	dbsprite   4,  23, $2a, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -12,  -2, $2a, 1
-	dbsprite  -8,  24, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -2,  -1, $29, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  24, $29, 1 | OAM_XFLIP
+	dbsprite  -2,  -1, $29, 1 | OAM_YFLIP
 
 .frame_21
 	db 27 ; size
@@ -1335,11 +1335,11 @@ OAMData3B::
 	dbsprite -16, -18, $10, 0
 	dbsprite -16, -26, $0f, 0
 	dbsprite -24, -18, $0e, 0
-	dbsprite  12,  -1, $2a, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  10,  30, $2a, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  12,  -1, $2a, 0 | OAM_YFLIP
+	dbsprite  10,  30, $2a, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -17,  -8, $2a, 0
-	dbsprite -11,  31, $29, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -8, $29, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -11,  31, $29, 0 | OAM_XFLIP
+	dbsprite   0,  -8, $29, 0 | OAM_YFLIP
 
 .frame_22
 	db 18 ; size
@@ -1356,11 +1356,11 @@ OAMData3B::
 	dbsprite -32,   9, $02, 0
 	dbsprite -32,   1, $01, 0
 	dbsprite -40,   9, $00, 0
-	dbsprite  -3, -26, $2a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -4,  -9, $2a, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -3, -26, $2a, 1 | OAM_YFLIP
+	dbsprite  -4,  -9, $2a, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -20, -34, $2a, 1
-	dbsprite -16,  -8, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite -10, -33, $29, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -16,  -8, $29, 1 | OAM_XFLIP
+	dbsprite -10, -33, $29, 1 | OAM_YFLIP
 
 .frame_23
 	db 20 ; size
@@ -1379,11 +1379,11 @@ OAMData3B::
 	dbsprite -32,   6, $07, 0
 	dbsprite -24,   6, $09, 0
 	dbsprite -24,  -2, $08, 0
-	dbsprite   4, -33, $2a, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   2,  -2, $2a, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   4, -33, $2a, 0 | OAM_YFLIP
+	dbsprite   2,  -2, $2a, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -25, -40, $2a, 0
-	dbsprite -19,  -1, $29, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -40, $29, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -19,  -1, $29, 0 | OAM_XFLIP
+	dbsprite  -8, -40, $29, 0 | OAM_YFLIP
 
 OAMData3C::
 	dw .frame_0
@@ -1405,14 +1405,14 @@ OAMData3C::
 
 .frame_0
 	db 2 ; size
-	dbsprite   9,  -1, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite   9,  -1, $05, 0 | OAM_XFLIP
 	dbsprite   9,  -7, $05, 0
 
 .frame_1
 	db 6 ; size
-	dbsprite   1,  -3, $04, 1 | (1 << OAM_X_FLIP)
-	dbsprite   1,   5, $03, 1 | (1 << OAM_X_FLIP)
-	dbsprite   9,  -1, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite   1,  -3, $04, 1 | OAM_XFLIP
+	dbsprite   1,   5, $03, 1 | OAM_XFLIP
+	dbsprite   9,  -1, $05, 0 | OAM_XFLIP
 	dbsprite   1,  -5, $04, 1
 	dbsprite   1, -13, $03, 1
 	dbsprite   9,  -7, $05, 0
@@ -1422,25 +1422,25 @@ OAMData3C::
 	dbsprite  -8,   1, $02, 2
 	dbsprite  -8,  -7, $01, 2
 	dbsprite  -8, -15, $00, 2
-	dbsprite  -8,  -9, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -1, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   7, $00, 2 | (1 << OAM_X_FLIP)
-	dbsprite   1,  -3, $04, 1 | (1 << OAM_X_FLIP)
-	dbsprite   1,   5, $03, 1 | (1 << OAM_X_FLIP)
-	dbsprite   9,  -1, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -8,  -9, $02, 2 | OAM_XFLIP
+	dbsprite  -8,  -1, $01, 2 | OAM_XFLIP
+	dbsprite  -8,   7, $00, 2 | OAM_XFLIP
+	dbsprite   1,  -3, $04, 1 | OAM_XFLIP
+	dbsprite   1,   5, $03, 1 | OAM_XFLIP
+	dbsprite   9,  -1, $05, 0 | OAM_XFLIP
 	dbsprite   1,  -5, $04, 1
 	dbsprite   1, -13, $03, 1
 	dbsprite   9,  -7, $05, 0
 
 .frame_3
 	db 14 ; size
-	dbsprite  11,   1, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite -18,  -7, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -18,   1, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -18,   9, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -9,  -1, $04, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -9,   7, $03, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -1,   1, $05, 1 | (1 << OAM_X_FLIP)
+	dbsprite  11,   1, $0b, 0 | OAM_XFLIP
+	dbsprite -18,  -7, $02, 0 | OAM_XFLIP
+	dbsprite -18,   1, $01, 0 | OAM_XFLIP
+	dbsprite -18,   9, $00, 0 | OAM_XFLIP
+	dbsprite  -9,  -1, $04, 2 | OAM_XFLIP
+	dbsprite  -9,   7, $03, 2 | OAM_XFLIP
+	dbsprite  -1,   1, $05, 1 | OAM_XFLIP
 	dbsprite  11,  -9, $0b, 0
 	dbsprite -18,  -1, $02, 0
 	dbsprite -18,  -9, $01, 0
@@ -1451,15 +1451,15 @@ OAMData3C::
 
 .frame_4
 	db 18 ; size
-	dbsprite   4,   0, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite -28,  -5, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite -28,   3, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -28,  11, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -19,   1, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -19,   9, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -11,   3, $05, 2 | (1 << OAM_X_FLIP)
-	dbsprite  11,   1, $0b, 0 | (1 << OAM_X_FLIP)
+	dbsprite   4,   0, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   8, $09, 1 | OAM_XFLIP
+	dbsprite -28,  -5, $02, 1 | OAM_XFLIP
+	dbsprite -28,   3, $01, 1 | OAM_XFLIP
+	dbsprite -28,  11, $00, 1 | OAM_XFLIP
+	dbsprite -19,   1, $04, 0 | OAM_XFLIP
+	dbsprite -19,   9, $03, 0 | OAM_XFLIP
+	dbsprite -11,   3, $05, 2 | OAM_XFLIP
+	dbsprite  11,   1, $0b, 0 | OAM_XFLIP
 	dbsprite   4,  -8, $0a, 1
 	dbsprite   4, -16, $09, 1
 	dbsprite -28,  -3, $02, 1
@@ -1472,18 +1472,18 @@ OAMData3C::
 
 .frame_5
 	db 24 ; size
-	dbsprite   0,  16, $08, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   8, $07, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  16, $06, 2 | (1 << OAM_X_FLIP)
-	dbsprite -38,  -3, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite -38,   5, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite -38,  13, $00, 2 | (1 << OAM_X_FLIP)
-	dbsprite -29,   3, $04, 1 | (1 << OAM_X_FLIP)
-	dbsprite -29,  11, $03, 1 | (1 << OAM_X_FLIP)
-	dbsprite -21,   5, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite   4,   0, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite  11,   1, $0b, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,  16, $08, 2 | OAM_XFLIP
+	dbsprite  -8,   8, $07, 2 | OAM_XFLIP
+	dbsprite  -8,  16, $06, 2 | OAM_XFLIP
+	dbsprite -38,  -3, $02, 2 | OAM_XFLIP
+	dbsprite -38,   5, $01, 2 | OAM_XFLIP
+	dbsprite -38,  13, $00, 2 | OAM_XFLIP
+	dbsprite -29,   3, $04, 1 | OAM_XFLIP
+	dbsprite -29,  11, $03, 1 | OAM_XFLIP
+	dbsprite -21,   5, $05, 0 | OAM_XFLIP
+	dbsprite   4,   0, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   8, $09, 1 | OAM_XFLIP
+	dbsprite  11,   1, $0b, 0 | OAM_XFLIP
 	dbsprite   0, -24, $08, 2
 	dbsprite  -8, -16, $07, 2
 	dbsprite  -8, -24, $06, 2
@@ -1499,18 +1499,18 @@ OAMData3C::
 
 .frame_6
 	db 24 ; size
-	dbsprite  -8,  22, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  14, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  22, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   6, $0a, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  14, $09, 2 | (1 << OAM_X_FLIP)
-	dbsprite   3,   7, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,  -1, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -48,   7, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -48,  15, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite -39,   5, $04, 2 | (1 << OAM_X_FLIP)
-	dbsprite -39,  13, $03, 2 | (1 << OAM_X_FLIP)
-	dbsprite -31,   7, $05, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,  22, $08, 0 | OAM_XFLIP
+	dbsprite -16,  14, $07, 0 | OAM_XFLIP
+	dbsprite -16,  22, $06, 0 | OAM_XFLIP
+	dbsprite  -4,   6, $0a, 2 | OAM_XFLIP
+	dbsprite  -4,  14, $09, 2 | OAM_XFLIP
+	dbsprite   3,   7, $0b, 1 | OAM_XFLIP
+	dbsprite -48,  -1, $02, 0 | OAM_XFLIP
+	dbsprite -48,   7, $01, 0 | OAM_XFLIP
+	dbsprite -48,  15, $00, 0 | OAM_XFLIP
+	dbsprite -39,   5, $04, 2 | OAM_XFLIP
+	dbsprite -39,  13, $03, 2 | OAM_XFLIP
+	dbsprite -31,   7, $05, 1 | OAM_XFLIP
 	dbsprite  -8, -30, $08, 0
 	dbsprite -16, -22, $07, 0
 	dbsprite -16, -30, $06, 0
@@ -1526,18 +1526,18 @@ OAMData3C::
 
 .frame_7
 	db 24 ; size
-	dbsprite -16,  28, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  20, $07, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  28, $06, 1 | (1 << OAM_X_FLIP)
-	dbsprite -12,  12, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  20, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -5,  13, $0b, 2 | (1 << OAM_X_FLIP)
-	dbsprite -58,   1, $02, 1 | (1 << OAM_X_FLIP)
-	dbsprite -58,   9, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -58,  17, $00, 1 | (1 << OAM_X_FLIP)
-	dbsprite -49,   7, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -49,  15, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -41,   9, $05, 2 | (1 << OAM_X_FLIP)
+	dbsprite -16,  28, $08, 1 | OAM_XFLIP
+	dbsprite -24,  20, $07, 1 | OAM_XFLIP
+	dbsprite -24,  28, $06, 1 | OAM_XFLIP
+	dbsprite -12,  12, $0a, 0 | OAM_XFLIP
+	dbsprite -12,  20, $09, 0 | OAM_XFLIP
+	dbsprite  -5,  13, $0b, 2 | OAM_XFLIP
+	dbsprite -58,   1, $02, 1 | OAM_XFLIP
+	dbsprite -58,   9, $01, 1 | OAM_XFLIP
+	dbsprite -58,  17, $00, 1 | OAM_XFLIP
+	dbsprite -49,   7, $04, 0 | OAM_XFLIP
+	dbsprite -49,  15, $03, 0 | OAM_XFLIP
+	dbsprite -41,   9, $05, 2 | OAM_XFLIP
 	dbsprite -16, -36, $08, 1
 	dbsprite -24, -28, $07, 1
 	dbsprite -24, -36, $06, 1
@@ -1553,18 +1553,18 @@ OAMData3C::
 
 .frame_8
 	db 24 ; size
-	dbsprite -24,  34, $08, 2 | (1 << OAM_X_FLIP)
-	dbsprite -32,  26, $07, 2 | (1 << OAM_X_FLIP)
-	dbsprite -32,  34, $06, 2 | (1 << OAM_X_FLIP)
-	dbsprite -20,  18, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite -20,  26, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite -13,  19, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite -68,   3, $02, 2 | (1 << OAM_X_FLIP)
-	dbsprite -68,  11, $01, 2 | (1 << OAM_X_FLIP)
-	dbsprite -68,  19, $00, 2 | (1 << OAM_X_FLIP)
-	dbsprite -59,   9, $04, 1 | (1 << OAM_X_FLIP)
-	dbsprite -59,  17, $03, 1 | (1 << OAM_X_FLIP)
-	dbsprite -51,  11, $05, 0 | (1 << OAM_X_FLIP)
+	dbsprite -24,  34, $08, 2 | OAM_XFLIP
+	dbsprite -32,  26, $07, 2 | OAM_XFLIP
+	dbsprite -32,  34, $06, 2 | OAM_XFLIP
+	dbsprite -20,  18, $0a, 1 | OAM_XFLIP
+	dbsprite -20,  26, $09, 1 | OAM_XFLIP
+	dbsprite -13,  19, $0b, 0 | OAM_XFLIP
+	dbsprite -68,   3, $02, 2 | OAM_XFLIP
+	dbsprite -68,  11, $01, 2 | OAM_XFLIP
+	dbsprite -68,  19, $00, 2 | OAM_XFLIP
+	dbsprite -59,   9, $04, 1 | OAM_XFLIP
+	dbsprite -59,  17, $03, 1 | OAM_XFLIP
+	dbsprite -51,  11, $05, 0 | OAM_XFLIP
 	dbsprite -24, -42, $08, 2
 	dbsprite -32, -34, $07, 2
 	dbsprite -32, -42, $06, 2
@@ -1580,15 +1580,15 @@ OAMData3C::
 
 .frame_9
 	db 18 ; size
-	dbsprite -32,  40, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite -40,  32, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite -40,  40, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite -28,  24, $0a, 2 | (1 << OAM_X_FLIP)
-	dbsprite -28,  32, $09, 2 | (1 << OAM_X_FLIP)
-	dbsprite -21,  25, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite -69,  11, $04, 2 | (1 << OAM_X_FLIP)
-	dbsprite -69,  19, $03, 2 | (1 << OAM_X_FLIP)
-	dbsprite -61,  13, $05, 1 | (1 << OAM_X_FLIP)
+	dbsprite -32,  40, $08, 0 | OAM_XFLIP
+	dbsprite -40,  32, $07, 0 | OAM_XFLIP
+	dbsprite -40,  40, $06, 0 | OAM_XFLIP
+	dbsprite -28,  24, $0a, 2 | OAM_XFLIP
+	dbsprite -28,  32, $09, 2 | OAM_XFLIP
+	dbsprite -21,  25, $0b, 1 | OAM_XFLIP
+	dbsprite -69,  11, $04, 2 | OAM_XFLIP
+	dbsprite -69,  19, $03, 2 | OAM_XFLIP
+	dbsprite -61,  13, $05, 1 | OAM_XFLIP
 	dbsprite -32, -48, $08, 0
 	dbsprite -40, -40, $07, 0
 	dbsprite -40, -48, $06, 0
@@ -1601,13 +1601,13 @@ OAMData3C::
 
 .frame_10
 	db 14 ; size
-	dbsprite -40,  46, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,  38, $07, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,  46, $06, 1 | (1 << OAM_X_FLIP)
-	dbsprite -36,  30, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -36,  38, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite -29,  31, $0b, 2 | (1 << OAM_X_FLIP)
-	dbsprite -71,  15, $05, 2 | (1 << OAM_X_FLIP)
+	dbsprite -40,  46, $08, 1 | OAM_XFLIP
+	dbsprite -48,  38, $07, 1 | OAM_XFLIP
+	dbsprite -48,  46, $06, 1 | OAM_XFLIP
+	dbsprite -36,  30, $0a, 0 | OAM_XFLIP
+	dbsprite -36,  38, $09, 0 | OAM_XFLIP
+	dbsprite -29,  31, $0b, 2 | OAM_XFLIP
+	dbsprite -71,  15, $05, 2 | OAM_XFLIP
 	dbsprite -40, -54, $08, 1
 	dbsprite -48, -46, $07, 1
 	dbsprite -48, -54, $06, 1
@@ -1618,12 +1618,12 @@ OAMData3C::
 
 .frame_11
 	db 12 ; size
-	dbsprite -48,  52, $08, 2 | (1 << OAM_X_FLIP)
-	dbsprite -56,  44, $07, 2 | (1 << OAM_X_FLIP)
-	dbsprite -56,  52, $06, 2 | (1 << OAM_X_FLIP)
-	dbsprite -44,  36, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite -44,  44, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite -37,  37, $0b, 0 | (1 << OAM_X_FLIP)
+	dbsprite -48,  52, $08, 2 | OAM_XFLIP
+	dbsprite -56,  44, $07, 2 | OAM_XFLIP
+	dbsprite -56,  52, $06, 2 | OAM_XFLIP
+	dbsprite -44,  36, $0a, 1 | OAM_XFLIP
+	dbsprite -44,  44, $09, 1 | OAM_XFLIP
+	dbsprite -37,  37, $0b, 0 | OAM_XFLIP
 	dbsprite -48, -60, $08, 2
 	dbsprite -56, -52, $07, 2
 	dbsprite -56, -60, $06, 2
@@ -1633,12 +1633,12 @@ OAMData3C::
 
 .frame_12
 	db 12 ; size
-	dbsprite -56,  58, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite -64,  50, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite -64,  58, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite -52,  42, $0a, 2 | (1 << OAM_X_FLIP)
-	dbsprite -52,  50, $09, 2 | (1 << OAM_X_FLIP)
-	dbsprite -45,  43, $0b, 1 | (1 << OAM_X_FLIP)
+	dbsprite -56,  58, $08, 0 | OAM_XFLIP
+	dbsprite -64,  50, $07, 0 | OAM_XFLIP
+	dbsprite -64,  58, $06, 0 | OAM_XFLIP
+	dbsprite -52,  42, $0a, 2 | OAM_XFLIP
+	dbsprite -52,  50, $09, 2 | OAM_XFLIP
+	dbsprite -45,  43, $0b, 1 | OAM_XFLIP
 	dbsprite -56, -66, $08, 0
 	dbsprite -64, -58, $07, 0
 	dbsprite -64, -66, $06, 0
@@ -1648,12 +1648,12 @@ OAMData3C::
 
 .frame_13
 	db 12 ; size
-	dbsprite -64,  64, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite -72,  56, $07, 1 | (1 << OAM_X_FLIP)
-	dbsprite -72,  64, $06, 1 | (1 << OAM_X_FLIP)
-	dbsprite -60,  48, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -60,  56, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite -53,  49, $0b, 2 | (1 << OAM_X_FLIP)
+	dbsprite -64,  64, $08, 1 | OAM_XFLIP
+	dbsprite -72,  56, $07, 1 | OAM_XFLIP
+	dbsprite -72,  64, $06, 1 | OAM_XFLIP
+	dbsprite -60,  48, $0a, 0 | OAM_XFLIP
+	dbsprite -60,  56, $09, 0 | OAM_XFLIP
+	dbsprite -53,  49, $0b, 2 | OAM_XFLIP
 	dbsprite -64, -72, $08, 1
 	dbsprite -72, -64, $07, 1
 	dbsprite -72, -72, $06, 1
@@ -1663,10 +1663,10 @@ OAMData3C::
 
 .frame_14
 	db 8 ; size
-	dbsprite -72,  70, $08, 2 | (1 << OAM_X_FLIP)
-	dbsprite -68,  54, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite -68,  62, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite -61,  55, $0b, 0 | (1 << OAM_X_FLIP)
+	dbsprite -72,  70, $08, 2 | OAM_XFLIP
+	dbsprite -68,  54, $0a, 1 | OAM_XFLIP
+	dbsprite -68,  62, $09, 1 | OAM_XFLIP
+	dbsprite -61,  55, $0b, 0 | OAM_XFLIP
 	dbsprite -72, -78, $08, 2
 	dbsprite -68, -62, $0a, 1
 	dbsprite -68, -70, $09, 1
@@ -1674,7 +1674,7 @@ OAMData3C::
 
 .frame_15
 	db 2 ; size
-	dbsprite -69,  61, $0b, 1 | (1 << OAM_X_FLIP)
+	dbsprite -69,  61, $0b, 1 | OAM_XFLIP
 	dbsprite -69, -69, $0b, 1
 
 OAMData3D::
@@ -1699,18 +1699,18 @@ OAMData3D::
 
 .frame_1
 	db 13 ; size
-	dbsprite -40,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -40, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -48, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -56, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -64, -11, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -40,   3, $03, 1 | OAM_YFLIP
+	dbsprite -40,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -40, -11, $01, 1 | OAM_YFLIP
+	dbsprite -48,   3, $03, 1 | OAM_YFLIP
+	dbsprite -48,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -48, -11, $01, 1 | OAM_YFLIP
+	dbsprite -56,   3, $03, 1 | OAM_YFLIP
+	dbsprite -56,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -56, -11, $01, 1 | OAM_YFLIP
+	dbsprite -64,   3, $03, 1 | OAM_YFLIP
+	dbsprite -64,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -64, -11, $01, 1 | OAM_YFLIP
 	dbsprite -32,  -4, $00, 0
 
 .frame_2
@@ -1740,33 +1740,33 @@ OAMData3D::
 
 .frame_3
 	db 27 ; size
-	dbsprite -64,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -64, -11, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -64,   3, $03, 1 | OAM_YFLIP
+	dbsprite -64,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -64, -11, $01, 1 | OAM_YFLIP
 	dbsprite   0,   4, $08, 2
 	dbsprite   0,  -4, $07, 2
 	dbsprite   0, -12, $06, 2
 	dbsprite  -8,   4, $05, 2
 	dbsprite  -8, -12, $04, 2
-	dbsprite  -8,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -56, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -32, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -40, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -48, -11, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -56,   3, $03, 1 | OAM_YFLIP
+	dbsprite -56,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -56, -11, $01, 1 | OAM_YFLIP
+	dbsprite -16,   3, $03, 1 | OAM_YFLIP
+	dbsprite -16,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16, -11, $01, 1 | OAM_YFLIP
+	dbsprite -24,   3, $03, 1 | OAM_YFLIP
+	dbsprite -24,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -24, -11, $01, 1 | OAM_YFLIP
+	dbsprite -32,   3, $03, 1 | OAM_YFLIP
+	dbsprite -32,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -32, -11, $01, 1 | OAM_YFLIP
+	dbsprite -40,   3, $03, 1 | OAM_YFLIP
+	dbsprite -40,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -40, -11, $01, 1 | OAM_YFLIP
+	dbsprite -48,   3, $03, 1 | OAM_YFLIP
+	dbsprite -48,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -48, -11, $01, 1 | OAM_YFLIP
 
 .frame_4
 	db 27 ; size
@@ -1774,11 +1774,11 @@ OAMData3D::
 	dbsprite -56,  -4, $02, 0
 	dbsprite -56, -11, $01, 1
 	dbsprite -64,  -4, $19, 0
-	dbsprite   0, -12, $08, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -4, $07, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,   4, $06, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -12, $05, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   4, $04, 2 | (1 << OAM_X_FLIP)
+	dbsprite   0, -12, $08, 2 | OAM_XFLIP
+	dbsprite   0,  -4, $07, 2 | OAM_XFLIP
+	dbsprite   0,   4, $06, 2 | OAM_XFLIP
+	dbsprite  -8, -12, $05, 2 | OAM_XFLIP
+	dbsprite  -8,   4, $04, 2 | OAM_XFLIP
 	dbsprite  -8,  -4, $02, 0
 	dbsprite -16,   3, $03, 1
 	dbsprite -16,  -4, $02, 0
@@ -1800,15 +1800,15 @@ OAMData3D::
 
 .frame_5
 	db 38 ; size
-	dbsprite -32,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -32, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -40, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,  -4, $1a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,  -4, $1a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -4, $19, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -32,   3, $03, 1 | OAM_YFLIP
+	dbsprite -32,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -32, -11, $01, 1 | OAM_YFLIP
+	dbsprite -40,   3, $03, 1 | OAM_YFLIP
+	dbsprite -40,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -40, -11, $01, 1 | OAM_YFLIP
+	dbsprite -56,  -4, $1a, 1 | OAM_YFLIP
+	dbsprite -64,  -4, $1a, 1 | OAM_YFLIP
+	dbsprite -48,  -4, $19, 0 | OAM_YFLIP
 	dbsprite   8,   4, $18, 2
 	dbsprite   8,  -4, $17, 2
 	dbsprite   8, -12, $16, 2
@@ -1825,19 +1825,19 @@ OAMData3D::
 	dbsprite -16,   4, $0b, 2
 	dbsprite -16, -12, $0a, 2
 	dbsprite -16, -20, $09, 2
-	dbsprite  -8,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,   4, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64, -11, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16,   3, $03, 1 | OAM_YFLIP
+	dbsprite -16,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16, -11, $01, 1 | OAM_YFLIP
+	dbsprite -24,   3, $03, 1 | OAM_YFLIP
+	dbsprite -24,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -24, -11, $01, 1 | OAM_YFLIP
+	dbsprite -48,   3, $03, 1 | OAM_YFLIP
+	dbsprite -48, -11, $01, 1 | OAM_YFLIP
+	dbsprite -56,   3, $03, 1 | OAM_YFLIP
+	dbsprite -56, -11, $01, 1 | OAM_YFLIP
+	dbsprite -64,   4, $03, 1 | OAM_YFLIP
+	dbsprite -64, -11, $01, 1 | OAM_YFLIP
 
 .frame_6
 	db 37 ; size
@@ -1848,22 +1848,22 @@ OAMData3D::
 	dbsprite -48,  -4, $1a, 1
 	dbsprite -56,  -4, $1a, 1
 	dbsprite -32,  -4, $19, 0
-	dbsprite   8, -12, $18, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -4, $17, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,   4, $16, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0, -20, $15, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0, -12, $14, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -4, $13, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,   4, $12, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,  12, $11, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -20, $10, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -12, $0f, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   4, $0e, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  12, $0d, 2 | (1 << OAM_X_FLIP)
-	dbsprite -16, -20, $0c, 2 | (1 << OAM_X_FLIP)
-	dbsprite -16, -12, $0b, 2 | (1 << OAM_X_FLIP)
-	dbsprite -16,   4, $0a, 2 | (1 << OAM_X_FLIP)
-	dbsprite -16,  12, $09, 2 | (1 << OAM_X_FLIP)
+	dbsprite   8, -12, $18, 2 | OAM_XFLIP
+	dbsprite   8,  -4, $17, 2 | OAM_XFLIP
+	dbsprite   8,   4, $16, 2 | OAM_XFLIP
+	dbsprite   0, -20, $15, 2 | OAM_XFLIP
+	dbsprite   0, -12, $14, 2 | OAM_XFLIP
+	dbsprite   0,  -4, $13, 2 | OAM_XFLIP
+	dbsprite   0,   4, $12, 2 | OAM_XFLIP
+	dbsprite   0,  12, $11, 2 | OAM_XFLIP
+	dbsprite  -8, -20, $10, 2 | OAM_XFLIP
+	dbsprite  -8, -12, $0f, 2 | OAM_XFLIP
+	dbsprite  -8,   4, $0e, 2 | OAM_XFLIP
+	dbsprite  -8,  12, $0d, 2 | OAM_XFLIP
+	dbsprite -16, -20, $0c, 2 | OAM_XFLIP
+	dbsprite -16, -12, $0b, 2 | OAM_XFLIP
+	dbsprite -16,   4, $0a, 2 | OAM_XFLIP
+	dbsprite -16,  12, $09, 2 | OAM_XFLIP
 	dbsprite -64,   6, $03, 1
 	dbsprite -56, -12, $01, 1
 	dbsprite -56,   4, $03, 1
@@ -1881,15 +1881,15 @@ OAMData3D::
 
 .frame_7
 	db 32 ; size
-	dbsprite -59, -15, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -4, $1a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   6, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40, -12, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,   4, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48, -13, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -4, $1a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,  -4, $1a, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -4, $19, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -59, -15, $01, 1 | OAM_YFLIP
+	dbsprite -40,  -4, $1a, 1 | OAM_YFLIP
+	dbsprite -48,   6, $03, 1 | OAM_YFLIP
+	dbsprite -40, -12, $01, 1 | OAM_YFLIP
+	dbsprite -40,   4, $03, 1 | OAM_YFLIP
+	dbsprite -48, -13, $01, 1 | OAM_YFLIP
+	dbsprite -24,  -4, $1a, 1 | OAM_YFLIP
+	dbsprite -32,  -4, $1a, 1 | OAM_YFLIP
+	dbsprite -16,  -4, $19, 0 | OAM_YFLIP
 	dbsprite   8,   4, $18, 2
 	dbsprite   8,  -4, $17, 2
 	dbsprite   8, -12, $16, 2
@@ -1906,13 +1906,13 @@ OAMData3D::
 	dbsprite -16,   4, $0b, 2
 	dbsprite -16, -12, $0a, 2
 	dbsprite -16, -20, $09, 2
-	dbsprite  -8,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   3, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,   4, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32, -11, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16,   3, $03, 1 | OAM_YFLIP
+	dbsprite -16, -11, $01, 1 | OAM_YFLIP
+	dbsprite -24,   3, $03, 1 | OAM_YFLIP
+	dbsprite -24, -11, $01, 1 | OAM_YFLIP
+	dbsprite -32,   4, $03, 1 | OAM_YFLIP
+	dbsprite -32, -11, $01, 1 | OAM_YFLIP
 
 .frame_8
 	db 23 ; size
@@ -1986,162 +1986,162 @@ OAMData3E::
 
 .frame_0
 	db 7 ; size
-	dbsprite -64,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -64,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -72,  -4, $02, 0
 	dbsprite -72,  -9, $01, 1
-	dbsprite -72,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -72,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -64,  -4, $02, 0
 	dbsprite -64,  -9, $01, 1
 	dbsprite -56,  -4, $00, 0
 
 .frame_1
 	db 13 ; size
-	dbsprite -48,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -56,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -56,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -72,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -64,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -64,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -64,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -72,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -72,  -9, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -48,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -48,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -48,   2, $01, 1 | OAM_XFLIP
+	dbsprite -56,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -56,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -56,   2, $01, 1 | OAM_XFLIP
+	dbsprite -72,   2, $01, 1 | OAM_XFLIP
+	dbsprite -64,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -64,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -64,   2, $01, 1 | OAM_XFLIP
+	dbsprite -72,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -72,  -9, $01, 1 | OAM_YFLIP
 	dbsprite -40,  -4, $00, 0
 
 .frame_2
 	db 19 ; size
-	dbsprite -72,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -72,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -72,  -4, $02, 0
 	dbsprite -72,  -9, $01, 1
-	dbsprite -64,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -64,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -64,  -4, $02, 0
 	dbsprite -64,  -9, $01, 1
-	dbsprite -56,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -56,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -56,  -4, $02, 0
 	dbsprite -56,  -9, $01, 1
-	dbsprite -48,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -48,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -48,  -4, $02, 0
 	dbsprite -48,  -9, $01, 1
-	dbsprite -40,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -40,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -40,  -4, $02, 0
 	dbsprite -40,  -9, $01, 1
-	dbsprite -32,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -32,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -32,  -4, $02, 0
 	dbsprite -32,  -9, $01, 1
 	dbsprite -24,  -4, $00, 0
 
 .frame_3
 	db 25 ; size
-	dbsprite -64,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -64,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -64,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -72,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -72,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -72,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -32,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -32,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -40,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -56,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -56,  -9, $01, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -64,   2, $01, 1 | OAM_XFLIP
+	dbsprite -64,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -64,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -72,   2, $01, 1 | OAM_XFLIP
+	dbsprite -72,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -72,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -16,   2, $01, 1 | OAM_XFLIP
+	dbsprite -16,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -24,   2, $01, 1 | OAM_XFLIP
+	dbsprite -24,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -24,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -32,   2, $01, 1 | OAM_XFLIP
+	dbsprite -32,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -32,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -40,   2, $01, 1 | OAM_XFLIP
+	dbsprite -40,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -40,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -48,   2, $01, 1 | OAM_XFLIP
+	dbsprite -48,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -48,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -56,   2, $01, 1 | OAM_XFLIP
+	dbsprite -56,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -56,  -9, $01, 1 | OAM_YFLIP
 	dbsprite  -8,  -4, $00, 0
 
 .frame_4
 	db 29 ; size
-	dbsprite -48,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -48,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -48,  -4, $02, 0
 	dbsprite -48,  -9, $01, 1
 	dbsprite   0,   0, $06, 2
 	dbsprite   0,  -8, $05, 2
 	dbsprite  -8,   0, $04, 2
 	dbsprite  -8,  -8, $03, 2
-	dbsprite -72,   3, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -72,   3, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -72,  -4, $08, 1
 	dbsprite -72, -10, $01, 1
-	dbsprite -64,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -64,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -64,  -4, $07, 0
 	dbsprite -64,  -9, $01, 1
-	dbsprite -56,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -56,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -56,  -4, $02, 0
 	dbsprite -56,  -9, $01, 1
-	dbsprite -40,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -40,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -40,  -4, $02, 0
 	dbsprite -40,  -9, $01, 1
-	dbsprite -32,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -32,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -32,  -4, $02, 0
 	dbsprite -32,  -9, $01, 1
-	dbsprite -24,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24,  -4, $02, 0
 	dbsprite -24,  -9, $01, 1
-	dbsprite -16,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16,  -4, $02, 0
 	dbsprite -16,  -9, $01, 1
 	dbsprite  -8,  -4, $02, 0
 
 .frame_5
 	db 25 ; size
-	dbsprite   0,  -7, $06, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,   1, $05, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -7, $04, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   1, $03, 2 | (1 << OAM_X_FLIP)
-	dbsprite -64,   4, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -64, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56,   3, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -56,  -4, $08, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -56, -10, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -48,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -48,  -4, $07, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -48,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -32,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -32,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -32,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -40,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -40,  -4, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -40,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -4, $02, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   0,  -7, $06, 2 | OAM_XFLIP
+	dbsprite   0,   1, $05, 2 | OAM_XFLIP
+	dbsprite  -8,  -7, $04, 2 | OAM_XFLIP
+	dbsprite  -8,   1, $03, 2 | OAM_XFLIP
+	dbsprite -64,   4, $01, 1 | OAM_XFLIP
+	dbsprite -64, -11, $01, 1 | OAM_YFLIP
+	dbsprite -56,   3, $01, 1 | OAM_XFLIP
+	dbsprite -56,  -4, $08, 1 | OAM_YFLIP
+	dbsprite -56, -10, $01, 1 | OAM_YFLIP
+	dbsprite -48,   2, $01, 1 | OAM_XFLIP
+	dbsprite -48,  -4, $07, 0 | OAM_YFLIP
+	dbsprite -48,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -16,   2, $01, 1 | OAM_XFLIP
+	dbsprite -16,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -16,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -24,   2, $01, 1 | OAM_XFLIP
+	dbsprite -24,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -24,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -32,   2, $01, 1 | OAM_XFLIP
+	dbsprite -32,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -32,  -9, $01, 1 | OAM_YFLIP
+	dbsprite -40,   2, $01, 1 | OAM_XFLIP
+	dbsprite -40,  -4, $02, 0 | OAM_YFLIP
+	dbsprite -40,  -9, $01, 1 | OAM_YFLIP
+	dbsprite  -8,  -4, $02, 0 | OAM_YFLIP
 
 .frame_6
 	db 23 ; size
-	dbsprite   3, -11, $11, 2 | (1 << OAM_X_FLIP)
-	dbsprite   3,  -3, $10, 2 | (1 << OAM_X_FLIP)
-	dbsprite   3,   5, $0f, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -5, -11, $0e, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -5,  -3, $0d, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -5,   5, $0c, 2 | (1 << OAM_X_FLIP)
-	dbsprite -13, -11, $0b, 2 | (1 << OAM_X_FLIP)
-	dbsprite -13,   5, $09, 2 | (1 << OAM_X_FLIP)
-	dbsprite -49,   4, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   3, -11, $11, 2 | OAM_XFLIP
+	dbsprite   3,  -3, $10, 2 | OAM_XFLIP
+	dbsprite   3,   5, $0f, 2 | OAM_XFLIP
+	dbsprite  -5, -11, $0e, 2 | OAM_XFLIP
+	dbsprite  -5,  -3, $0d, 2 | OAM_XFLIP
+	dbsprite  -5,   5, $0c, 2 | OAM_XFLIP
+	dbsprite -13, -11, $0b, 2 | OAM_XFLIP
+	dbsprite -13,   5, $09, 2 | OAM_XFLIP
+	dbsprite -49,   4, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -49, -11, $01, 1
-	dbsprite -40,   3, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -40,   3, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -40,  -4, $08, 1
 	dbsprite -40, -10, $01, 1
-	dbsprite -32,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -32,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -32,  -4, $07, 0
 	dbsprite -32,  -9, $01, 1
-	dbsprite -16,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16,  -4, $02, 0
 	dbsprite -16,  -9, $01, 1
-	dbsprite -24,   2, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24,   2, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24,  -4, $02, 0
 	dbsprite -24,  -9, $01, 1
 	dbsprite  -8,  -4, $02, 0
@@ -2157,24 +2157,24 @@ OAMData3E::
 	dbsprite -13,   4, $0b, 2
 	dbsprite -13,  -4, $0a, 2
 	dbsprite -13, -12, $09, 2
-	dbsprite -33,   4, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -33, -11, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   3, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  -4, $08, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -10, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   2, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -4, $07, 0 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -9, $01, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -4, $02, 0 | (1 << OAM_Y_FLIP)
+	dbsprite -33,   4, $01, 1 | OAM_XFLIP
+	dbsprite -33, -11, $01, 1 | OAM_YFLIP
+	dbsprite -24,   3, $01, 1 | OAM_XFLIP
+	dbsprite -24,  -4, $08, 1 | OAM_YFLIP
+	dbsprite -24, -10, $01, 1 | OAM_YFLIP
+	dbsprite -16,   2, $01, 1 | OAM_XFLIP
+	dbsprite -16,  -4, $07, 0 | OAM_YFLIP
+	dbsprite -16,  -9, $01, 1 | OAM_YFLIP
+	dbsprite  -8,  -4, $02, 0 | OAM_YFLIP
 
 .frame_8
 	db 14 ; size
-	dbsprite  -8,   3, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -8,   3, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -8,  -4, $08, 1
 	dbsprite  -8, -10, $01, 1
-	dbsprite -25,   5, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -25,   5, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -25, -12, $01, 1
-	dbsprite -16,   4, $01, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16,   4, $01, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16, -11, $01, 1
 	dbsprite   0,   4, $18, 2
 	dbsprite   4,  -4, $17, 2
@@ -2186,11 +2186,11 @@ OAMData3E::
 
 .frame_9
 	db 14 ; size
-	dbsprite  -8,   3, $01, 1 | (1 << OAM_X_FLIP)
-	dbsprite -17,   4, $01, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   3, $01, 1 | OAM_XFLIP
+	dbsprite -17,   4, $01, 1 | OAM_XFLIP
 	dbsprite  -8, -11, $01, 1
 	dbsprite -17, -12, $01, 1
-	dbsprite  -8,  -4, $08, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -4, $08, 1 | OAM_YFLIP
 	dbsprite   5,   4, $21, 1
 	dbsprite   5,  -4, $20, 1
 	dbsprite   5, -12, $1f, 1
@@ -2282,8 +2282,8 @@ OAMData3F::
 	dbsprite -15,  -8, $02, 0
 	dbsprite -15, -16, $01, 0
 	dbsprite -15, -24, $00, 0
-	dbsprite   1,  24, $40, 1 | (1 << OAM_X_FLIP)
-	dbsprite   9,  24, $41, 1 | (1 << OAM_X_FLIP)
+	dbsprite   1,  24, $40, 1 | OAM_XFLIP
+	dbsprite   9,  24, $41, 1 | OAM_XFLIP
 	dbsprite   1,  16, $3e, 1
 	dbsprite   9,  16, $3f, 1
 	dbsprite   1, -32, $40, 1
@@ -2317,8 +2317,8 @@ OAMData3F::
 	dbsprite -16,  -8, $02, 0
 	dbsprite -16, -16, $01, 0
 	dbsprite -16, -24, $00, 0
-	dbsprite   0,  24, $40, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  24, $41, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,  24, $40, 0 | OAM_XFLIP
+	dbsprite   8,  24, $41, 0 | OAM_XFLIP
 	dbsprite   0,  16, $3e, 0
 	dbsprite   8,  16, $3f, 0
 	dbsprite   0, -32, $40, 0
@@ -2330,9 +2330,9 @@ OAMData3F::
 	db 30 ; size
 	dbsprite   0,  26, $42, 2
 	dbsprite   8,  32, $42, 2
-	dbsprite   0, -35, $42, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -40, $42, 2 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  20, $42, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   0, -35, $42, 2 | OAM_YFLIP
+	dbsprite   8, -40, $42, 2 | OAM_YFLIP
+	dbsprite   8,  20, $42, 0 | OAM_YFLIP
 	dbsprite   8, -28, $42, 0
 	dbsprite   8,  16, $17, 0
 	dbsprite   8,   8, $16, 0
@@ -2361,7 +2361,7 @@ OAMData3F::
 
 .frame_4
 	db 26 ; size
-	dbsprite   8,  36, $42, 2 | (1 << OAM_Y_FLIP)
+	dbsprite   8,  36, $42, 2 | OAM_YFLIP
 	dbsprite   8, -44, $42, 2
 	dbsprite   8,  16, $17, 0
 	dbsprite   8,   8, $16, 0
@@ -2808,8 +2808,8 @@ OAMData40::
 	dbsprite -29,   4, $18, 0
 	dbsprite -29,  -4, $17, 0
 	dbsprite -29, -12, $16, 0
-	dbsprite   0,  28, $29, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,  28, $2a, 2 | (1 << OAM_X_FLIP)
+	dbsprite   0,  28, $29, 2 | OAM_XFLIP
+	dbsprite   8,  28, $2a, 2 | OAM_XFLIP
 	dbsprite   0, -36, $29, 2
 	dbsprite   8, -36, $2a, 2
 
@@ -2876,9 +2876,9 @@ OAMData40::
 	dbsprite -29,   4, $18, 0
 	dbsprite -29,  -4, $17, 0
 	dbsprite -29, -12, $16, 0
-	dbsprite   8,  20, $28, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,  20, $27, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  20, $2b, 1 | (1 << OAM_X_FLIP)
+	dbsprite   8,  20, $28, 1 | OAM_XFLIP
+	dbsprite   0,  20, $27, 1 | OAM_XFLIP
+	dbsprite  -8,  20, $2b, 1 | OAM_XFLIP
 	dbsprite  -8, -28, $2b, 1
 	dbsprite   8, -28, $28, 1
 	dbsprite   0, -28, $27, 1
@@ -2914,13 +2914,13 @@ OAMData40::
 	dbsprite -29,   4, $18, 0
 	dbsprite -29,  -4, $17, 0
 	dbsprite -29, -12, $16, 0
-	dbsprite   0,  28, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,  28, $2a, 1 | (1 << OAM_X_FLIP)
+	dbsprite   0,  28, $29, 1 | OAM_XFLIP
+	dbsprite   8,  28, $2a, 1 | OAM_XFLIP
 	dbsprite   0, -36, $29, 1
 	dbsprite   8, -36, $2a, 1
-	dbsprite   8,  20, $28, 2 | (1 << OAM_X_FLIP)
-	dbsprite   0,  20, $27, 2 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  20, $2b, 2 | (1 << OAM_X_FLIP)
+	dbsprite   8,  20, $28, 2 | OAM_XFLIP
+	dbsprite   0,  20, $27, 2 | OAM_XFLIP
+	dbsprite  -8,  20, $2b, 2 | OAM_XFLIP
 	dbsprite  -8, -28, $2b, 2
 	dbsprite   8, -28, $28, 2
 	dbsprite   0, -28, $27, 2
@@ -2998,56 +2998,56 @@ OAMData41::
 
 .frame_7
 	db 2 ; size
-	dbsprite  14,  22, $0f, 1 | (1 << OAM_X_FLIP)
-	dbsprite  15,  23, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  14,  22, $0f, 1 | OAM_XFLIP
+	dbsprite  15,  23, $0e, 1 | OAM_XFLIP
 
 .frame_8
 	db 2 ; size
-	dbsprite  13,  21, $11, 1 | (1 << OAM_X_FLIP)
-	dbsprite  20,  28, $10, 1 | (1 << OAM_X_FLIP)
+	dbsprite  13,  21, $11, 1 | OAM_XFLIP
+	dbsprite  20,  28, $10, 1 | OAM_XFLIP
 
 .frame_9
 	db 4 ; size
-	dbsprite  19,  19, $15, 1 | (1 << OAM_X_FLIP)
-	dbsprite  19,  27, $14, 1 | (1 << OAM_X_FLIP)
-	dbsprite  11,  19, $13, 1 | (1 << OAM_X_FLIP)
-	dbsprite  11,  27, $12, 1 | (1 << OAM_X_FLIP)
+	dbsprite  19,  19, $15, 1 | OAM_XFLIP
+	dbsprite  19,  27, $14, 1 | OAM_XFLIP
+	dbsprite  11,  19, $13, 1 | OAM_XFLIP
+	dbsprite  11,  27, $12, 1 | OAM_XFLIP
 
 .frame_10
 	db 4 ; size
-	dbsprite  17,  17, $19, 1 | (1 << OAM_X_FLIP)
-	dbsprite  17,  25, $18, 1 | (1 << OAM_X_FLIP)
-	dbsprite   9,  17, $17, 1 | (1 << OAM_X_FLIP)
-	dbsprite   9,  25, $16, 1 | (1 << OAM_X_FLIP)
+	dbsprite  17,  17, $19, 1 | OAM_XFLIP
+	dbsprite  17,  25, $18, 1 | OAM_XFLIP
+	dbsprite   9,  17, $17, 1 | OAM_XFLIP
+	dbsprite   9,  25, $16, 1 | OAM_XFLIP
 
 .frame_11
 	db 5 ; size
-	dbsprite  23,  23, $1e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  15,   9, $1d, 1 | (1 << OAM_X_FLIP)
-	dbsprite  15,  17, $1c, 1 | (1 << OAM_X_FLIP)
-	dbsprite  15,  25, $1b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   7,  23, $1a, 1 | (1 << OAM_X_FLIP)
+	dbsprite  23,  23, $1e, 1 | OAM_XFLIP
+	dbsprite  15,   9, $1d, 1 | OAM_XFLIP
+	dbsprite  15,  17, $1c, 1 | OAM_XFLIP
+	dbsprite  15,  25, $1b, 1 | OAM_XFLIP
+	dbsprite   7,  23, $1a, 1 | OAM_XFLIP
 
 .frame_12
 	db 7 ; size
-	dbsprite  20,  14, $25, 1 | (1 << OAM_X_FLIP)
-	dbsprite  20,  22, $24, 1 | (1 << OAM_X_FLIP)
-	dbsprite  20,  30, $23, 1 | (1 << OAM_X_FLIP)
-	dbsprite  12,  14, $22, 1 | (1 << OAM_X_FLIP)
-	dbsprite  12,  22, $21, 1 | (1 << OAM_X_FLIP)
-	dbsprite  12,  30, $20, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,  22, $1f, 1 | (1 << OAM_X_FLIP)
+	dbsprite  20,  14, $25, 1 | OAM_XFLIP
+	dbsprite  20,  22, $24, 1 | OAM_XFLIP
+	dbsprite  20,  30, $23, 1 | OAM_XFLIP
+	dbsprite  12,  14, $22, 1 | OAM_XFLIP
+	dbsprite  12,  22, $21, 1 | OAM_XFLIP
+	dbsprite  12,  30, $20, 1 | OAM_XFLIP
+	dbsprite   4,  22, $1f, 1 | OAM_XFLIP
 
 .frame_13
 	db 8 ; size
-	dbsprite  22,  19, $2d, 1 | (1 << OAM_X_FLIP)
-	dbsprite  22,  27, $2c, 1 | (1 << OAM_X_FLIP)
-	dbsprite  14,  12, $2b, 1 | (1 << OAM_X_FLIP)
-	dbsprite  14,  20, $2a, 1 | (1 << OAM_X_FLIP)
-	dbsprite  14,  28, $29, 1 | (1 << OAM_X_FLIP)
-	dbsprite   6,  20, $28, 1 | (1 << OAM_X_FLIP)
-	dbsprite   6,  28, $27, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -2,  25, $26, 1 | (1 << OAM_X_FLIP)
+	dbsprite  22,  19, $2d, 1 | OAM_XFLIP
+	dbsprite  22,  27, $2c, 1 | OAM_XFLIP
+	dbsprite  14,  12, $2b, 1 | OAM_XFLIP
+	dbsprite  14,  20, $2a, 1 | OAM_XFLIP
+	dbsprite  14,  28, $29, 1 | OAM_XFLIP
+	dbsprite   6,  20, $28, 1 | OAM_XFLIP
+	dbsprite   6,  28, $27, 1 | OAM_XFLIP
+	dbsprite  -2,  25, $26, 1 | OAM_XFLIP
 
 .frame_14
 	db 14 ; size
@@ -3068,20 +3068,20 @@ OAMData41::
 
 .frame_15
 	db 14 ; size
-	dbsprite  16,  16, $0d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  24, $0c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  32, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,   8, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  24, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,   0, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,   8, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,   0, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,   8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -8, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -18,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite  16,  16, $0d, 0 | OAM_XFLIP
+	dbsprite  16,  24, $0c, 0 | OAM_XFLIP
+	dbsprite  16,  32, $0b, 0 | OAM_XFLIP
+	dbsprite   8,   8, $0a, 0 | OAM_XFLIP
+	dbsprite   8,  16, $09, 0 | OAM_XFLIP
+	dbsprite   8,  24, $08, 0 | OAM_XFLIP
+	dbsprite   0,  16, $05, 0 | OAM_XFLIP
+	dbsprite  -2,   0, $07, 0 | OAM_XFLIP
+	dbsprite  -2,   8, $06, 0 | OAM_XFLIP
+	dbsprite  -8,  -8, $04, 0 | OAM_XFLIP
+	dbsprite -10,   0, $03, 0 | OAM_XFLIP
+	dbsprite -10,   8, $02, 0 | OAM_XFLIP
+	dbsprite -16,  -8, $01, 0 | OAM_XFLIP
+	dbsprite -18,   0, $00, 0 | OAM_XFLIP
 
 OAMData42::
 	dw .frame_0
@@ -3099,7 +3099,7 @@ OAMData42::
 
 .frame_0
 	db 16 ; size
-	dbsprite   8, -24, $0e, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8, -24, $0e, 0 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  16, -16, $0e, 0
 	dbsprite  16, -24, $0d, 0
 	dbsprite  16, -32, $0c, 0
@@ -3118,29 +3118,29 @@ OAMData42::
 
 .frame_1
 	db 16 ; size
-	dbsprite   8,  16, $0e, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  16,   8, $0e, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  16, $0d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  24, $0c, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -8, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,   0, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,   8, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0, -16, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -8, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,   0, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,   8, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -16, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,  16, $0e, 0 | OAM_YFLIP
+	dbsprite  16,   8, $0e, 0 | OAM_XFLIP
+	dbsprite  16,  16, $0d, 0 | OAM_XFLIP
+	dbsprite  16,  24, $0c, 0 | OAM_XFLIP
+	dbsprite   8,  -8, $0b, 0 | OAM_XFLIP
+	dbsprite   8,   0, $0a, 0 | OAM_XFLIP
+	dbsprite   8,   8, $09, 0 | OAM_XFLIP
+	dbsprite   0, -16, $08, 0 | OAM_XFLIP
+	dbsprite   0,  -8, $07, 0 | OAM_XFLIP
+	dbsprite   0,   0, $06, 0 | OAM_XFLIP
+	dbsprite   0,   8, $05, 0 | OAM_XFLIP
+	dbsprite  -8, -16, $04, 0 | OAM_XFLIP
+	dbsprite  -8,  -8, $03, 0 | OAM_XFLIP
+	dbsprite  -8,   0, $02, 0 | OAM_XFLIP
+	dbsprite -16, -16, $01, 0 | OAM_XFLIP
+	dbsprite -16,  -8, $00, 0 | OAM_XFLIP
 
 .frame_2
 	db 4 ; size
-	dbsprite   0,  -8, $12, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,   0, $11, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $10, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $0f, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,  -8, $12, 0 | OAM_XFLIP
+	dbsprite   0,   0, $11, 0 | OAM_XFLIP
+	dbsprite  -8,  -8, $10, 0 | OAM_XFLIP
+	dbsprite  -8,   0, $0f, 0 | OAM_XFLIP
 
 .frame_3
 	db 6 ; size
@@ -3153,12 +3153,12 @@ OAMData42::
 
 .frame_4
 	db 6 ; size
-	dbsprite   6,   3, $18, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,  -5, $17, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,   3, $16, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10, -13, $15, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,  -5, $14, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,   3, $13, 0 | (1 << OAM_X_FLIP)
+	dbsprite   6,   3, $18, 0 | OAM_XFLIP
+	dbsprite  -2,  -5, $17, 0 | OAM_XFLIP
+	dbsprite  -2,   3, $16, 0 | OAM_XFLIP
+	dbsprite -10, -13, $15, 0 | OAM_XFLIP
+	dbsprite -10,  -5, $14, 0 | OAM_XFLIP
+	dbsprite -10,   3, $13, 0 | OAM_XFLIP
 
 .frame_5
 	db 8 ; size
@@ -3173,14 +3173,14 @@ OAMData42::
 
 .frame_6
 	db 8 ; size
-	dbsprite   4,  -4, $20, 0 | (1 << OAM_X_FLIP)
-	dbsprite   4,   4, $1f, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4, -12, $1e, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  -4, $1d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   4, $1c, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12, -12, $1b, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  -4, $1a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   4, $19, 0 | (1 << OAM_X_FLIP)
+	dbsprite   4,  -4, $20, 0 | OAM_XFLIP
+	dbsprite   4,   4, $1f, 0 | OAM_XFLIP
+	dbsprite  -4, -12, $1e, 0 | OAM_XFLIP
+	dbsprite  -4,  -4, $1d, 0 | OAM_XFLIP
+	dbsprite  -4,   4, $1c, 0 | OAM_XFLIP
+	dbsprite -12, -12, $1b, 0 | OAM_XFLIP
+	dbsprite -12,  -4, $1a, 0 | OAM_XFLIP
+	dbsprite -12,   4, $19, 0 | OAM_XFLIP
 
 .frame_7
 	db 7 ; size
@@ -3194,13 +3194,13 @@ OAMData42::
 
 .frame_8
 	db 7 ; size
-	dbsprite   5,  -4, $27, 0 | (1 << OAM_X_FLIP)
-	dbsprite   5,   4, $26, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -3, -12, $25, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -3,  -4, $24, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -3,   4, $23, 0 | (1 << OAM_X_FLIP)
-	dbsprite -11, -12, $22, 0 | (1 << OAM_X_FLIP)
-	dbsprite -11,  -4, $21, 0 | (1 << OAM_X_FLIP)
+	dbsprite   5,  -4, $27, 0 | OAM_XFLIP
+	dbsprite   5,   4, $26, 0 | OAM_XFLIP
+	dbsprite  -3, -12, $25, 0 | OAM_XFLIP
+	dbsprite  -3,  -4, $24, 0 | OAM_XFLIP
+	dbsprite  -3,   4, $23, 0 | OAM_XFLIP
+	dbsprite -11, -12, $22, 0 | OAM_XFLIP
+	dbsprite -11,  -4, $21, 0 | OAM_XFLIP
 
 .frame_9
 	db 9 ; size
@@ -3216,15 +3216,15 @@ OAMData42::
 
 .frame_10
 	db 9 ; size
-	dbsprite   6, -12, $30, 0 | (1 << OAM_X_FLIP)
-	dbsprite   6,  -4, $2f, 0 | (1 << OAM_X_FLIP)
-	dbsprite   6,   4, $2e, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2, -12, $2d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,  -4, $2c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,   4, $2b, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10, -12, $2a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,  -4, $29, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,   4, $28, 0 | (1 << OAM_X_FLIP)
+	dbsprite   6, -12, $30, 0 | OAM_XFLIP
+	dbsprite   6,  -4, $2f, 0 | OAM_XFLIP
+	dbsprite   6,   4, $2e, 0 | OAM_XFLIP
+	dbsprite  -2, -12, $2d, 0 | OAM_XFLIP
+	dbsprite  -2,  -4, $2c, 0 | OAM_XFLIP
+	dbsprite  -2,   4, $2b, 0 | OAM_XFLIP
+	dbsprite -10, -12, $2a, 0 | OAM_XFLIP
+	dbsprite -10,  -4, $29, 0 | OAM_XFLIP
+	dbsprite -10,   4, $28, 0 | OAM_XFLIP
 
 .frame_11
 	db 4 ; size
@@ -3280,183 +3280,183 @@ OAMData43::
 
 .frame_1
 	db 14 ; size
-	dbsprite  16,   8, $0d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  16, $0c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  16,  24, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,   0, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,   8, $09, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,   8, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,  -8, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -2,   0, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,  -8, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -10,   0, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16, -16, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -18,  -8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite  16,   8, $0d, 0 | OAM_XFLIP
+	dbsprite  16,  16, $0c, 0 | OAM_XFLIP
+	dbsprite  16,  24, $0b, 0 | OAM_XFLIP
+	dbsprite   8,   0, $0a, 0 | OAM_XFLIP
+	dbsprite   8,   8, $09, 0 | OAM_XFLIP
+	dbsprite   8,  16, $08, 0 | OAM_XFLIP
+	dbsprite   0,   8, $05, 0 | OAM_XFLIP
+	dbsprite  -2,  -8, $07, 0 | OAM_XFLIP
+	dbsprite  -2,   0, $06, 0 | OAM_XFLIP
+	dbsprite  -8, -16, $04, 0 | OAM_XFLIP
+	dbsprite -10,  -8, $03, 0 | OAM_XFLIP
+	dbsprite -10,   0, $02, 0 | OAM_XFLIP
+	dbsprite -16, -16, $01, 0 | OAM_XFLIP
+	dbsprite -18,  -8, $00, 0 | OAM_XFLIP
 
 .frame_2
 	db 2 ; size
-	dbsprite  16, -32, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  16, -32, $0e, 1 | OAM_XFLIP
+	dbsprite  16, -24, $0e, 1 | OAM_YFLIP
 
 .frame_3
 	db 5 ; size
 	dbsprite  16, -32, $0e, 1
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -24, $0e, 1 | OAM_YFLIP
+	dbsprite   8, -16, $0e, 1 | OAM_XFLIP
 
 .frame_4
 	db 11 ; size
-	dbsprite  16, -32, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8, -32, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  16,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16, -32, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8, -32, $0e, 1 | OAM_YFLIP
+	dbsprite  16, -24, $0e, 1 | OAM_XFLIP
+	dbsprite  16,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite   0, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16, -16, $0e, 1 | OAM_YFLIP
+	dbsprite   8, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite   0, -16, $0e, 1 | OAM_YFLIP
+	dbsprite   8, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP
 
 .frame_5
 	db 16 ; size
-	dbsprite  16, -32, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8, -32, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16, -32, $0e, 1 | OAM_XFLIP
+	dbsprite   8, -32, $0e, 1 | OAM_XFLIP
+	dbsprite   8,   0, $0e, 1 | OAM_YFLIP
+	dbsprite  -8, -16, $0e, 1 | OAM_XFLIP
+	dbsprite   0,   0, $0e, 1 | OAM_XFLIP
 	dbsprite  -8,   0, $0e, 1
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16, -16, $0e, 1 | OAM_XFLIP
 	dbsprite  16, -24, $0e, 1
-	dbsprite   8, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   8, -24, $0e, 1 | OAM_YFLIP
+	dbsprite   8, -16, $0e, 1 | OAM_XFLIP
 	dbsprite   8,  -8, $0e, 1
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   0,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite   0, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -24, $0e, 1 | OAM_XFLIP
 
 .frame_6
 	db 20 ; size
 	dbsprite  16, -32, $0e, 1
-	dbsprite  16,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite  16, -16, $0e, 1 | OAM_YFLIP
+	dbsprite  16, -24, $0e, 1 | OAM_YFLIP
+	dbsprite   8, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   8,   0, $0e, 1
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   8,  -8, $0e, 1 | OAM_XFLIP
 	dbsprite   8, -16, $0e, 1
 	dbsprite   0, -16, $0e, 1
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8, -16, $0e, 1 | OAM_YFLIP
+	dbsprite   0,   0, $0e, 1 | OAM_YFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   0, $0e, 1 | OAM_XFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   8, $0e, 1 | OAM_YFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_YFLIP
 	dbsprite -16,   0, $0e, 1
-	dbsprite -16,   8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,   8, $0e, 1 | OAM_XFLIP
 
 .frame_7
 	db 22 ; size
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16, -24, $0e, 1 | OAM_XFLIP
 	dbsprite  16, -16, $0e, 1
-	dbsprite   8, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8, -24, $0e, 1 | OAM_YFLIP
+	dbsprite   8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   8,  -8, $0e, 1
-	dbsprite   8, -16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   8, -16, $0e, 1 | OAM_XFLIP
+	dbsprite   0, -16, $0e, 1 | OAM_YFLIP
+	dbsprite  -8, -16, $0e, 1 | OAM_XFLIP
 	dbsprite   0,   8, $0e, 1
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  16, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   0,   0, $0e, 1 | OAM_YFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  16, $0e, 1 | OAM_YFLIP
 	dbsprite  -8,  16, $0e, 1
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   8, $0e, 1 | OAM_XFLIP
 	dbsprite -16,   8, $0e, 1
 	dbsprite  -8,   0, $0e, 1
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,   0, $0e, 1 | OAM_YFLIP
+	dbsprite -24,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  16, $0e, 1 | OAM_XFLIP
 
 .frame_8
 	db 20 ; size
-	dbsprite  16, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  16, -24, $0e, 1 | OAM_YFLIP
+	dbsprite   8,  -8, $0e, 1 | OAM_YFLIP
 	dbsprite   8, -16, $0e, 1
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   0, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_YFLIP
+	dbsprite   0,   0, $0e, 1 | OAM_XFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite  -8,  16, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,   0, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   0, $0e, 1 | OAM_YFLIP
 	dbsprite -24,   0, $0e, 1
-	dbsprite -16,  24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,  24, $0e, 1 | OAM_YFLIP
+	dbsprite -16,  16, $0e, 1 | OAM_YFLIP
+	dbsprite -16,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,   8, $0e, 1 | OAM_XFLIP
+	dbsprite -24,  16, $0e, 1 | OAM_YFLIP
+	dbsprite -24,  24, $0e, 1 | OAM_XFLIP
 
 .frame_9
 	db 15 ; size
-	dbsprite   8, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   8, -16, $0e, 1 | OAM_XFLIP
 	dbsprite   0,   0, $0e, 1
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite  -8,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   8, $0e, 1 | OAM_YFLIP
+	dbsprite  -8,   0, $0e, 1 | OAM_XFLIP
+	dbsprite -16,   0, $0e, 1 | OAM_YFLIP
+	dbsprite -24,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16,  16, $0e, 1
 	dbsprite -24,   8, $0e, 1
-	dbsprite -16,   8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,   8, $0e, 1 | OAM_XFLIP
 	dbsprite -24,  24, $0e, 1
-	dbsprite -24,  16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -24,  16, $0e, 1 | OAM_XFLIP
 
 .frame_10
 	db 10 ; size
 	dbsprite   0,  -8, $0e, 1
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -8,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   0, $0e, 1 | OAM_YFLIP
+	dbsprite -16,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16,  24, $0e, 1
-	dbsprite -16,  16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,  16, $0e, 1 | OAM_XFLIP
 	dbsprite -16,   8, $0e, 1
-	dbsprite -24,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24,  16, $0e, 1
 
 .frame_11
 	db 6 ; size
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  16, $0e, 1 | OAM_YFLIP
+	dbsprite -16,   8, $0e, 1 | OAM_XFLIP
+	dbsprite -24,   8, $0e, 1 | OAM_YFLIP
+	dbsprite -24,  24, $0e, 1 | OAM_YFLIP
+	dbsprite -24,  16, $0e, 1 | OAM_XFLIP
 
 .frame_12
 	db 3 ; size
-	dbsprite -16,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24,  24, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24,  16, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -16,   8, $0e, 1 | OAM_YFLIP
+	dbsprite -24,  24, $0e, 1 | OAM_XFLIP
+	dbsprite -24,  16, $0e, 1 | OAM_YFLIP
 
 .frame_13
 	db 1 ; size
@@ -3465,169 +3465,169 @@ OAMData43::
 .frame_14
 	db 2 ; size
 	dbsprite  16,  24, $0e, 1
-	dbsprite  16,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 
 .frame_15
 	db 5 ; size
-	dbsprite  16,  24, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  16,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  24, $0e, 1 | OAM_XFLIP
+	dbsprite  16,  16, $0e, 1 | OAM_YFLIP
+	dbsprite  16,   8, $0e, 1 | OAM_YFLIP
+	dbsprite   8,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   8,   8, $0e, 1
 
 .frame_16
 	db 11 ; size
-	dbsprite  16,  24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  24, $0e, 1 | OAM_YFLIP
+	dbsprite   8,  24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  16,  16, $0e, 1
 	dbsprite  16,   0, $0e, 1
-	dbsprite   0,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   0,  16, $0e, 1 | OAM_YFLIP
+	dbsprite  16,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,  16, $0e, 1 | OAM_YFLIP
+	dbsprite   8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,   8, $0e, 1 | OAM_YFLIP
 	dbsprite   0,   0, $0e, 1
 
 .frame_17
 	db 16 ; size
 	dbsprite  16,  24, $0e, 1
 	dbsprite   8,  24, $0e, 1
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -8,   8, $0e, 1
 	dbsprite   0,  -8, $0e, 1
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  16,   0, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   0, $0e, 1 | OAM_YFLIP
+	dbsprite  16,   0, $0e, 1 | OAM_YFLIP
 	dbsprite  16,   8, $0e, 1
-	dbsprite  16,  16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  16, $0e, 1 | OAM_XFLIP
+	dbsprite   8,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   8,   8, $0e, 1
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   8,   0, $0e, 1 | OAM_XFLIP
+	dbsprite   0,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_YFLIP
 	dbsprite   0,  16, $0e, 1
 
 .frame_18
 	db 20 ; size
-	dbsprite  16,  24, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  16,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  16,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16,  24, $0e, 1 | OAM_XFLIP
+	dbsprite  16,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  16,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,  16, $0e, 1 | OAM_YFLIP
+	dbsprite   0,  16, $0e, 1 | OAM_YFLIP
+	dbsprite   8,  -8, $0e, 1 | OAM_XFLIP
 	dbsprite   8,   0, $0e, 1
-	dbsprite   8,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   8,   8, $0e, 1 | OAM_XFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   0, $0e, 1 | OAM_YFLIP
 	dbsprite  -8,   0, $0e, 1
 	dbsprite  -8,  -8, $0e, 1
 	dbsprite   0, -16, $0e, 1
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_XFLIP
 	dbsprite -16, -16, $0e, 1
 
 .frame_19
 	db 22 ; size
 	dbsprite  16,  16, $0e, 1
-	dbsprite  16,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  16,   8, $0e, 1 | OAM_XFLIP
+	dbsprite   8,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite   8,   0, $0e, 1 | OAM_XFLIP
 	dbsprite   8,   8, $0e, 1
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   0,   8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -8,   8, $0e, 1
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   0, -16, $0e, 1 | OAM_XFLIP
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   0,   0, $0e, 1
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite  -8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,   0, $0e, 1 | OAM_YFLIP
+	dbsprite -16, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8, -24, $0e, 1 | OAM_XFLIP
 	dbsprite  -8, -16, $0e, 1
-	dbsprite -16, -16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -16, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -16, -16, $0e, 1 | OAM_XFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite -24, -16, $0e, 1 | OAM_YFLIP
 	dbsprite -24, -24, $0e, 1
 
 .frame_20
 	db 20 ; size
-	dbsprite  16,  16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,   8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite   0, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  16,  16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,   8, $0e, 1 | OAM_XFLIP
+	dbsprite   0,   8, $0e, 1 | OAM_YFLIP
+	dbsprite   0, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite   0,  -8, $0e, 1
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite   0,   0, $0e, 1 | OAM_YFLIP
 	dbsprite  -8,   0, $0e, 1
-	dbsprite -16,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -8, -24, $0e, 1
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8, -16, $0e, 1 | OAM_YFLIP
 	dbsprite -16,  -8, $0e, 1
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -8, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16, -32, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16, -16, $0e, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  -8, $0e, 1 | OAM_XFLIP
+	dbsprite -16, -32, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16, -16, $0e, 1 | OAM_YFLIP
 	dbsprite -24, -16, $0e, 1
-	dbsprite -24, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24, -32, $0e, 1
 
 .frame_21
 	db 15 ; size
 	dbsprite   8,   8, $0e, 1
-	dbsprite   0,  -8, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   0,  -8, $0e, 1 | OAM_XFLIP
 	dbsprite   0,   0, $0e, 1
-	dbsprite  -8,   0, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -24, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -8,   0, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8, -24, $0e, 1 | OAM_YFLIP
+	dbsprite  -8, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite  -8,  -8, $0e, 1
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -32, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -24, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24, -16, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite -16, -32, $0e, 1 | OAM_YFLIP
+	dbsprite -16, -24, $0e, 1 | OAM_XFLIP
+	dbsprite -24, -16, $0e, 1 | OAM_XFLIP
 	dbsprite -16, -16, $0e, 1
-	dbsprite -24, -32, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -24, -32, $0e, 1 | OAM_XFLIP
 	dbsprite -24, -24, $0e, 1
 
 .frame_22
 	db 10 ; size
-	dbsprite   0,   0, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -16,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -32, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $0e, 1 | OAM_XFLIP
+	dbsprite  -8, -16, $0e, 1 | OAM_YFLIP
+	dbsprite  -8,  -8, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -16,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite -16, -32, $0e, 1 | OAM_XFLIP
 	dbsprite -16, -24, $0e, 1
-	dbsprite -16, -16, $0e, 1 | (1 << OAM_X_FLIP)
-	dbsprite -24, -16, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -32, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -24, -24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -16, -16, $0e, 1 | OAM_XFLIP
+	dbsprite -24, -16, $0e, 1 | OAM_YFLIP
+	dbsprite -24, -32, $0e, 1 | OAM_YFLIP
+	dbsprite -24, -24, $0e, 1 | OAM_XFLIP
 
 .frame_23
 	db 6 ; size
-	dbsprite  -8,  -8, $0e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -16, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite  -8,  -8, $0e, 1 | OAM_YFLIP
+	dbsprite -16, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -16, -16, $0e, 1
-	dbsprite -24, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -24, -32, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -24, -32, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24, -24, $0e, 1
 
 .frame_24
 	db 3 ; size
-	dbsprite -16, -16, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -16, -16, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -24, -32, $0e, 1
-	dbsprite -24, -24, $0e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite -24, -24, $0e, 1 | OAM_XFLIP | OAM_YFLIP
 
 .frame_25
 	db 1 ; size
-	dbsprite -24, -24, $0e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -24, -24, $0e, 1 | OAM_XFLIP
 
 OAMData44::
 	dw .frame_0
@@ -4146,11 +4146,11 @@ OAMData47::
 
 .frame_1
 	db 14 ; size
-	dbsprite   8,  -8, $33, 2 | (1 << OAM_X_FLIP)
+	dbsprite   8,  -8, $33, 2 | OAM_XFLIP
 	dbsprite   8,   0, $33, 2
-	dbsprite  24,  -8, $16, 2 | (1 << OAM_X_FLIP)
-	dbsprite  16,  -8, $15, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -8, $14, 0 | (1 << OAM_X_FLIP)
+	dbsprite  24,  -8, $16, 2 | OAM_XFLIP
+	dbsprite  16,  -8, $15, 2 | OAM_XFLIP
+	dbsprite   8,  -8, $14, 0 | OAM_XFLIP
 	dbsprite  24,   0, $16, 2
 	dbsprite  16,   0, $15, 2
 	dbsprite   8,   0, $14, 0
@@ -4181,11 +4181,11 @@ OAMData47::
 
 .frame_3
 	db 23 ; size
-	dbsprite   8,  -8, $33, 2 | (1 << OAM_X_FLIP)
+	dbsprite   8,  -8, $33, 2 | OAM_XFLIP
 	dbsprite   8,   0, $33, 2
-	dbsprite  24,  -8, $16, 2 | (1 << OAM_X_FLIP)
-	dbsprite  16,  -8, $15, 2 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -8, $14, 0 | (1 << OAM_X_FLIP)
+	dbsprite  24,  -8, $16, 2 | OAM_XFLIP
+	dbsprite  16,  -8, $15, 2 | OAM_XFLIP
+	dbsprite   8,  -8, $14, 0 | OAM_XFLIP
 	dbsprite  24,   0, $16, 2
 	dbsprite  16,   0, $15, 2
 	dbsprite   8,   0, $14, 0
@@ -4292,40 +4292,40 @@ OAMData48::
 
 .frame_0
 	db 4 ; size
-	dbsprite   0,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  -8, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  -8, $00, 0 | OAM_YFLIP
+	dbsprite  -8,   0, $00, 0 | OAM_XFLIP
 	dbsprite  -8,  -8, $00, 0
 
 .frame_1
 	db 4 ; size
 	dbsprite   0,  -8, $01, 0
-	dbsprite   0,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   0, $00, 0 | OAM_XFLIP
 	dbsprite  -8,  -8, $00, 0
 
 .frame_2
 	db 5 ; size
 	dbsprite   1,  -9, $03, 0
 	dbsprite   0,  -8, $02, 0
-	dbsprite   0,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   0, $00, 0 | OAM_XFLIP
 	dbsprite  -8,  -8, $00, 0
 
 .frame_3
 	db 5 ; size
 	dbsprite   2, -10, $03, 0
 	dbsprite   0,  -8, $02, 0
-	dbsprite   0,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,   0, $00, 0 | OAM_XFLIP
 	dbsprite  -8,  -8, $00, 0
 
 .frame_4
 	db 5 ; size
 	dbsprite   4,  -9, $03, 0
 	dbsprite  -2,  -8, $02, 0
-	dbsprite  -2,   0, $00, 0 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -10,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite  -2,   0, $00, 0 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -10,   0, $00, 0 | OAM_XFLIP
 	dbsprite -10,  -8, $00, 0
 
 .frame_5
@@ -4334,16 +4334,16 @@ OAMData48::
 	dbsprite   5,  -3, $06, 0
 	dbsprite  -3,   0, $05, 0
 	dbsprite  -3,  -8, $04, 0
-	dbsprite -11,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -11,   0, $00, 0 | OAM_XFLIP
 	dbsprite -11,  -8, $00, 0
 
 .frame_6
 	db 6 ; size
-	dbsprite   8,  -3, $03, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,  -3, $03, 0 | OAM_YFLIP
 	dbsprite   5,  -3, $06, 0
 	dbsprite  -3,   0, $05, 0
 	dbsprite  -3,  -8, $04, 0
-	dbsprite -11,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -11,   0, $00, 0 | OAM_XFLIP
 	dbsprite -11,  -8, $00, 0
 
 .frame_7
@@ -4352,7 +4352,7 @@ OAMData48::
 	dbsprite   5,  -3, $06, 0
 	dbsprite  -3,   0, $05, 0
 	dbsprite  -3,  -8, $04, 0
-	dbsprite -11,   0, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite -11,   0, $00, 0 | OAM_XFLIP
 	dbsprite -11,  -8, $00, 0
 
 .frame_8
@@ -4361,7 +4361,7 @@ OAMData48::
 	dbsprite   5,  -3, $06, 1
 	dbsprite  -3,   0, $05, 1
 	dbsprite  -3,  -8, $04, 1
-	dbsprite -11,   0, $00, 1 | (1 << OAM_X_FLIP)
+	dbsprite -11,   0, $00, 1 | OAM_XFLIP
 	dbsprite -11,  -8, $00, 1
 
 .frame_9
@@ -4370,7 +4370,7 @@ OAMData48::
 	dbsprite   5,  -3, $06, 2
 	dbsprite  -3,   0, $05, 2
 	dbsprite  -3,  -8, $04, 2
-	dbsprite -11,   0, $00, 2 | (1 << OAM_X_FLIP)
+	dbsprite -11,   0, $00, 2 | OAM_XFLIP
 	dbsprite -11,  -8, $00, 2
 
 OAMData49::
@@ -4385,76 +4385,76 @@ OAMData49::
 
 .frame_0
 	db 15 ; size
-	dbsprite   2,   4, $0e, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  12, $0d, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  20, $0c, 2 | (1 << OAM_X_FLIP)
-	dbsprite   4, -16, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,  -8, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   0, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -4, -16, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  -8, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   0, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   8, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12, -16, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  -8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   2,   4, $0e, 2 | OAM_XFLIP
+	dbsprite   2,  12, $0d, 2 | OAM_XFLIP
+	dbsprite   2,  20, $0c, 2 | OAM_XFLIP
+	dbsprite   4, -16, $0b, 1 | OAM_XFLIP
+	dbsprite   4,  -8, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   0, $09, 1 | OAM_XFLIP
+	dbsprite   4,   8, $08, 1 | OAM_XFLIP
+	dbsprite  -4, -16, $07, 0 | OAM_XFLIP
+	dbsprite  -4,  -8, $06, 0 | OAM_XFLIP
+	dbsprite  -4,   0, $05, 0 | OAM_XFLIP
+	dbsprite  -4,   8, $04, 0 | OAM_XFLIP
+	dbsprite -12, -16, $03, 0 | OAM_XFLIP
+	dbsprite -12,  -8, $02, 0 | OAM_XFLIP
+	dbsprite -12,   0, $01, 0 | OAM_XFLIP
+	dbsprite -12,   8, $00, 0 | OAM_XFLIP
 
 .frame_1
 	db 15 ; size
-	dbsprite   2,   4, $11, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  12, $10, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  20, $0f, 2 | (1 << OAM_X_FLIP)
-	dbsprite   4, -16, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,  -8, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   0, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -4, -16, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  -8, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   0, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   8, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12, -16, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  -8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   2,   4, $11, 2 | OAM_XFLIP
+	dbsprite   2,  12, $10, 2 | OAM_XFLIP
+	dbsprite   2,  20, $0f, 2 | OAM_XFLIP
+	dbsprite   4, -16, $0b, 1 | OAM_XFLIP
+	dbsprite   4,  -8, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   0, $09, 1 | OAM_XFLIP
+	dbsprite   4,   8, $08, 1 | OAM_XFLIP
+	dbsprite  -4, -16, $07, 0 | OAM_XFLIP
+	dbsprite  -4,  -8, $06, 0 | OAM_XFLIP
+	dbsprite  -4,   0, $05, 0 | OAM_XFLIP
+	dbsprite  -4,   8, $04, 0 | OAM_XFLIP
+	dbsprite -12, -16, $03, 0 | OAM_XFLIP
+	dbsprite -12,  -8, $02, 0 | OAM_XFLIP
+	dbsprite -12,   0, $01, 0 | OAM_XFLIP
+	dbsprite -12,   8, $00, 0 | OAM_XFLIP
 
 .frame_2
 	db 16 ; size
-	dbsprite   2,  28, $0c, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,   4, $14, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  12, $13, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  20, $12, 2 | (1 << OAM_X_FLIP)
-	dbsprite   4, -16, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,  -8, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   0, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -4, -16, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  -8, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   0, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   8, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12, -16, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  -8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   2,  28, $0c, 2 | OAM_XFLIP
+	dbsprite   2,   4, $14, 2 | OAM_XFLIP
+	dbsprite   2,  12, $13, 2 | OAM_XFLIP
+	dbsprite   2,  20, $12, 2 | OAM_XFLIP
+	dbsprite   4, -16, $0b, 1 | OAM_XFLIP
+	dbsprite   4,  -8, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   0, $09, 1 | OAM_XFLIP
+	dbsprite   4,   8, $08, 1 | OAM_XFLIP
+	dbsprite  -4, -16, $07, 0 | OAM_XFLIP
+	dbsprite  -4,  -8, $06, 0 | OAM_XFLIP
+	dbsprite  -4,   0, $05, 0 | OAM_XFLIP
+	dbsprite  -4,   8, $04, 0 | OAM_XFLIP
+	dbsprite -12, -16, $03, 0 | OAM_XFLIP
+	dbsprite -12,  -8, $02, 0 | OAM_XFLIP
+	dbsprite -12,   0, $01, 0 | OAM_XFLIP
+	dbsprite -12,   8, $00, 0 | OAM_XFLIP
 
 .frame_3
 	db 31 ; size
-	dbsprite   2,   4, $0e, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  12, $0d, 2 | (1 << OAM_X_FLIP)
-	dbsprite   2,  20, $0c, 2 | (1 << OAM_X_FLIP)
-	dbsprite   4, -16, $0b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,  -8, $0a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   0, $09, 1 | (1 << OAM_X_FLIP)
-	dbsprite   4,   8, $08, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -4, -16, $07, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,  -8, $06, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   0, $05, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -4,   8, $04, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12, -16, $03, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,  -8, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   0, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite -12,   8, $00, 0 | (1 << OAM_X_FLIP)
+	dbsprite   2,   4, $0e, 2 | OAM_XFLIP
+	dbsprite   2,  12, $0d, 2 | OAM_XFLIP
+	dbsprite   2,  20, $0c, 2 | OAM_XFLIP
+	dbsprite   4, -16, $0b, 1 | OAM_XFLIP
+	dbsprite   4,  -8, $0a, 1 | OAM_XFLIP
+	dbsprite   4,   0, $09, 1 | OAM_XFLIP
+	dbsprite   4,   8, $08, 1 | OAM_XFLIP
+	dbsprite  -4, -16, $07, 0 | OAM_XFLIP
+	dbsprite  -4,  -8, $06, 0 | OAM_XFLIP
+	dbsprite  -4,   0, $05, 0 | OAM_XFLIP
+	dbsprite  -4,   8, $04, 0 | OAM_XFLIP
+	dbsprite -12, -16, $03, 0 | OAM_XFLIP
+	dbsprite -12,  -8, $02, 0 | OAM_XFLIP
+	dbsprite -12,   0, $01, 0 | OAM_XFLIP
+	dbsprite -12,   8, $00, 0 | OAM_XFLIP
 	dbsprite   8,  -8, $3e, 1
 	dbsprite   8, -16, $3d, 1
 	dbsprite   8, -24, $3c, 1
@@ -4474,100 +4474,100 @@ OAMData49::
 
 .frame_4
 	db 17 ; size
-	dbsprite  14,  -1, $25, 2 | (1 << OAM_X_FLIP)
-	dbsprite  14,   7, $24, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,  -1, $23, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,   7, $22, 2 | (1 << OAM_X_FLIP)
-	dbsprite  10,  -5, $21, 1 | (1 << OAM_X_FLIP)
-	dbsprite  10,   3, $20, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2, -13, $1f, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,  -5, $1e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,   3, $1d, 0 | (1 << OAM_X_FLIP)
-	dbsprite   2,  11, $1c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6, -13, $1b, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  -5, $1a, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,   3, $19, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  11, $18, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14, -13, $17, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,  -5, $16, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,   3, $15, 0 | (1 << OAM_X_FLIP)
+	dbsprite  14,  -1, $25, 2 | OAM_XFLIP
+	dbsprite  14,   7, $24, 2 | OAM_XFLIP
+	dbsprite   6,  -1, $23, 2 | OAM_XFLIP
+	dbsprite   6,   7, $22, 2 | OAM_XFLIP
+	dbsprite  10,  -5, $21, 1 | OAM_XFLIP
+	dbsprite  10,   3, $20, 1 | OAM_XFLIP
+	dbsprite   2, -13, $1f, 1 | OAM_XFLIP
+	dbsprite   2,  -5, $1e, 1 | OAM_XFLIP
+	dbsprite   2,   3, $1d, 0 | OAM_XFLIP
+	dbsprite   2,  11, $1c, 0 | OAM_XFLIP
+	dbsprite  -6, -13, $1b, 1 | OAM_XFLIP
+	dbsprite  -6,  -5, $1a, 0 | OAM_XFLIP
+	dbsprite  -6,   3, $19, 0 | OAM_XFLIP
+	dbsprite  -6,  11, $18, 0 | OAM_XFLIP
+	dbsprite -14, -13, $17, 0 | OAM_XFLIP
+	dbsprite -14,  -5, $16, 0 | OAM_XFLIP
+	dbsprite -14,   3, $15, 0 | OAM_XFLIP
 
 .frame_5
 	db 17 ; size
-	dbsprite  14,  -1, $29, 2 | (1 << OAM_X_FLIP)
-	dbsprite  14,   7, $28, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,  -1, $27, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,   7, $26, 2 | (1 << OAM_X_FLIP)
-	dbsprite  10,  -5, $21, 1 | (1 << OAM_X_FLIP)
-	dbsprite  10,   3, $20, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2, -13, $1f, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,  -5, $1e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,   3, $1d, 0 | (1 << OAM_X_FLIP)
-	dbsprite   2,  11, $1c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6, -13, $1b, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  -5, $1a, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,   3, $19, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  11, $18, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14, -13, $17, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,  -5, $16, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,   3, $15, 0 | (1 << OAM_X_FLIP)
+	dbsprite  14,  -1, $29, 2 | OAM_XFLIP
+	dbsprite  14,   7, $28, 2 | OAM_XFLIP
+	dbsprite   6,  -1, $27, 2 | OAM_XFLIP
+	dbsprite   6,   7, $26, 2 | OAM_XFLIP
+	dbsprite  10,  -5, $21, 1 | OAM_XFLIP
+	dbsprite  10,   3, $20, 1 | OAM_XFLIP
+	dbsprite   2, -13, $1f, 1 | OAM_XFLIP
+	dbsprite   2,  -5, $1e, 1 | OAM_XFLIP
+	dbsprite   2,   3, $1d, 0 | OAM_XFLIP
+	dbsprite   2,  11, $1c, 0 | OAM_XFLIP
+	dbsprite  -6, -13, $1b, 1 | OAM_XFLIP
+	dbsprite  -6,  -5, $1a, 0 | OAM_XFLIP
+	dbsprite  -6,   3, $19, 0 | OAM_XFLIP
+	dbsprite  -6,  11, $18, 0 | OAM_XFLIP
+	dbsprite -14, -13, $17, 0 | OAM_XFLIP
+	dbsprite -14,  -5, $16, 0 | OAM_XFLIP
+	dbsprite -14,   3, $15, 0 | OAM_XFLIP
 
 .frame_6
 	db 18 ; size
-	dbsprite  22,  15, $2e, 2 | (1 << OAM_X_FLIP)
-	dbsprite  14,  -1, $2d, 2 | (1 << OAM_X_FLIP)
-	dbsprite  14,   7, $2c, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,  -1, $2b, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,   7, $2a, 2 | (1 << OAM_X_FLIP)
-	dbsprite  10,  -5, $21, 1 | (1 << OAM_X_FLIP)
-	dbsprite  10,   3, $20, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2, -13, $1f, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,  -5, $1e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,   3, $1d, 0 | (1 << OAM_X_FLIP)
-	dbsprite   2,  11, $1c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6, -13, $1b, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  -5, $1a, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,   3, $19, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  11, $18, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14, -13, $17, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,  -5, $16, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,   3, $15, 0 | (1 << OAM_X_FLIP)
+	dbsprite  22,  15, $2e, 2 | OAM_XFLIP
+	dbsprite  14,  -1, $2d, 2 | OAM_XFLIP
+	dbsprite  14,   7, $2c, 2 | OAM_XFLIP
+	dbsprite   6,  -1, $2b, 2 | OAM_XFLIP
+	dbsprite   6,   7, $2a, 2 | OAM_XFLIP
+	dbsprite  10,  -5, $21, 1 | OAM_XFLIP
+	dbsprite  10,   3, $20, 1 | OAM_XFLIP
+	dbsprite   2, -13, $1f, 1 | OAM_XFLIP
+	dbsprite   2,  -5, $1e, 1 | OAM_XFLIP
+	dbsprite   2,   3, $1d, 0 | OAM_XFLIP
+	dbsprite   2,  11, $1c, 0 | OAM_XFLIP
+	dbsprite  -6, -13, $1b, 1 | OAM_XFLIP
+	dbsprite  -6,  -5, $1a, 0 | OAM_XFLIP
+	dbsprite  -6,   3, $19, 0 | OAM_XFLIP
+	dbsprite  -6,  11, $18, 0 | OAM_XFLIP
+	dbsprite -14, -13, $17, 0 | OAM_XFLIP
+	dbsprite -14,  -5, $16, 0 | OAM_XFLIP
+	dbsprite -14,   3, $15, 0 | OAM_XFLIP
 
 .frame_7
 	db 33 ; size
-	dbsprite  14,  -1, $25, 2 | (1 << OAM_X_FLIP)
-	dbsprite  14,   7, $24, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,  -1, $23, 2 | (1 << OAM_X_FLIP)
-	dbsprite   6,   7, $22, 2 | (1 << OAM_X_FLIP)
-	dbsprite  10,  -5, $21, 1 | (1 << OAM_X_FLIP)
-	dbsprite  10,   3, $20, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2, -13, $1f, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,  -5, $1e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   2,   3, $1d, 0 | (1 << OAM_X_FLIP)
-	dbsprite   2,  11, $1c, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6, -13, $1b, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  -5, $1a, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,   3, $19, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -6,  11, $18, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14, -13, $17, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,  -5, $16, 0 | (1 << OAM_X_FLIP)
-	dbsprite -14,   3, $15, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8, -32, $3e, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8, -24, $3d, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8, -16, $3c, 1 | (1 << OAM_X_FLIP)
-	dbsprite   8,  -8, $3b, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0, -32, $3a, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0, -24, $39, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0, -16, $38, 1 | (1 << OAM_X_FLIP)
-	dbsprite   0,  -8, $37, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -32, $36, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -24, $35, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8, -16, $34, 1 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  -8, $33, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16, -32, $32, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16, -24, $31, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16, -16, $30, 1 | (1 << OAM_X_FLIP)
-	dbsprite -16,  -8, $2f, 1 | (1 << OAM_X_FLIP)
+	dbsprite  14,  -1, $25, 2 | OAM_XFLIP
+	dbsprite  14,   7, $24, 2 | OAM_XFLIP
+	dbsprite   6,  -1, $23, 2 | OAM_XFLIP
+	dbsprite   6,   7, $22, 2 | OAM_XFLIP
+	dbsprite  10,  -5, $21, 1 | OAM_XFLIP
+	dbsprite  10,   3, $20, 1 | OAM_XFLIP
+	dbsprite   2, -13, $1f, 1 | OAM_XFLIP
+	dbsprite   2,  -5, $1e, 1 | OAM_XFLIP
+	dbsprite   2,   3, $1d, 0 | OAM_XFLIP
+	dbsprite   2,  11, $1c, 0 | OAM_XFLIP
+	dbsprite  -6, -13, $1b, 1 | OAM_XFLIP
+	dbsprite  -6,  -5, $1a, 0 | OAM_XFLIP
+	dbsprite  -6,   3, $19, 0 | OAM_XFLIP
+	dbsprite  -6,  11, $18, 0 | OAM_XFLIP
+	dbsprite -14, -13, $17, 0 | OAM_XFLIP
+	dbsprite -14,  -5, $16, 0 | OAM_XFLIP
+	dbsprite -14,   3, $15, 0 | OAM_XFLIP
+	dbsprite   8, -32, $3e, 1 | OAM_XFLIP
+	dbsprite   8, -24, $3d, 1 | OAM_XFLIP
+	dbsprite   8, -16, $3c, 1 | OAM_XFLIP
+	dbsprite   8,  -8, $3b, 1 | OAM_XFLIP
+	dbsprite   0, -32, $3a, 1 | OAM_XFLIP
+	dbsprite   0, -24, $39, 1 | OAM_XFLIP
+	dbsprite   0, -16, $38, 1 | OAM_XFLIP
+	dbsprite   0,  -8, $37, 1 | OAM_XFLIP
+	dbsprite  -8, -32, $36, 1 | OAM_XFLIP
+	dbsprite  -8, -24, $35, 1 | OAM_XFLIP
+	dbsprite  -8, -16, $34, 1 | OAM_XFLIP
+	dbsprite  -8,  -8, $33, 1 | OAM_XFLIP
+	dbsprite -16, -32, $32, 1 | OAM_XFLIP
+	dbsprite -16, -24, $31, 1 | OAM_XFLIP
+	dbsprite -16, -16, $30, 1 | OAM_XFLIP
+	dbsprite -16,  -8, $2f, 1 | OAM_XFLIP
 
 OAMData4A::
 	dw .frame_0
@@ -4597,35 +4597,35 @@ OAMData4A::
 
 .frame_1
 	db 5 ; size
-	dbsprite  -9, -24, $03, 1 | (1 << OAM_Y_FLIP)
-	dbsprite  -9, -16, $04, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -17, -16, $06, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -25, -24, $07, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -17, -24, $05, 1 | (1 << OAM_Y_FLIP)
+	dbsprite  -9, -24, $03, 1 | OAM_YFLIP
+	dbsprite  -9, -16, $04, 1 | OAM_YFLIP
+	dbsprite -17, -16, $06, 1 | OAM_YFLIP
+	dbsprite -25, -24, $07, 1 | OAM_YFLIP
+	dbsprite -17, -24, $05, 1 | OAM_YFLIP
 
 .frame_2
 	db 9 ; size
 	dbsprite -21, -31, $08, 0
-	dbsprite  -9, -24, $03, 2 | (1 << OAM_Y_FLIP)
-	dbsprite  -9, -16, $04, 2 | (1 << OAM_Y_FLIP)
-	dbsprite -17, -16, $06, 2 | (1 << OAM_Y_FLIP)
-	dbsprite -25, -24, $07, 2 | (1 << OAM_Y_FLIP)
-	dbsprite -17, -24, $05, 2 | (1 << OAM_Y_FLIP)
+	dbsprite  -9, -24, $03, 2 | OAM_YFLIP
+	dbsprite  -9, -16, $04, 2 | OAM_YFLIP
+	dbsprite -17, -16, $06, 2 | OAM_YFLIP
+	dbsprite -25, -24, $07, 2 | OAM_YFLIP
+	dbsprite -17, -24, $05, 2 | OAM_YFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
 
 .frame_3
 	db 13 ; size
-	dbsprite   0,  32, $11, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  40, $10, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  48, $0f, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  32, $0e, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  40, $0d, 0 | (1 << OAM_X_FLIP)
-	dbsprite  -8,  48, $0c, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  32, $0b, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  40, $0a, 0 | (1 << OAM_X_FLIP)
-	dbsprite -16,  48, $09, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,  32, $11, 0 | OAM_XFLIP
+	dbsprite   0,  40, $10, 0 | OAM_XFLIP
+	dbsprite   0,  48, $0f, 0 | OAM_XFLIP
+	dbsprite  -8,  32, $0e, 0 | OAM_XFLIP
+	dbsprite  -8,  40, $0d, 0 | OAM_XFLIP
+	dbsprite  -8,  48, $0c, 0 | OAM_XFLIP
+	dbsprite -16,  32, $0b, 0 | OAM_XFLIP
+	dbsprite -16,  40, $0a, 0 | OAM_XFLIP
+	dbsprite -16,  48, $09, 0 | OAM_XFLIP
 	dbsprite -21, -31, $08, 0
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
@@ -4634,11 +4634,11 @@ OAMData4A::
 .frame_4
 	db 9 ; size
 	dbsprite -21, -31, $08, 0
-	dbsprite   8,  16, $03, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $04, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $06, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  16, $07, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  16, $05, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   8,  16, $03, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,   8, $04, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   8, $06, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  16, $07, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  16, $05, 1 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
@@ -4646,35 +4646,35 @@ OAMData4A::
 .frame_5
 	db 13 ; size
 	dbsprite -21, -31, $08, 0
-	dbsprite   0,  24, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $03, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   8,   8, $04, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,   8, $06, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite  -8,  16, $07, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite   0,  16, $05, 2 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
+	dbsprite   0,  24, $08, 0 | OAM_XFLIP
+	dbsprite   8,  16, $03, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   8,   8, $04, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,   8, $06, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite  -8,  16, $07, 2 | OAM_XFLIP | OAM_YFLIP
+	dbsprite   0,  16, $05, 2 | OAM_XFLIP | OAM_YFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
-	dbsprite   8,  24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,  24, $01, 0 | OAM_XFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $02, 0 | OAM_XFLIP
 
 .frame_6
 	db 17 ; size
-	dbsprite  10, -32, $11, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  10, -40, $10, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  10, -48, $0f, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  18, -32, $0e, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  18, -40, $0d, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  18, -48, $0c, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  26, -32, $0b, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  26, -40, $0a, 0 | (1 << OAM_Y_FLIP)
-	dbsprite  26, -48, $09, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  24, $08, 0 | (1 << OAM_X_FLIP)
+	dbsprite  10, -32, $11, 0 | OAM_YFLIP
+	dbsprite  10, -40, $10, 0 | OAM_YFLIP
+	dbsprite  10, -48, $0f, 0 | OAM_YFLIP
+	dbsprite  18, -32, $0e, 0 | OAM_YFLIP
+	dbsprite  18, -40, $0d, 0 | OAM_YFLIP
+	dbsprite  18, -48, $0c, 0 | OAM_YFLIP
+	dbsprite  26, -32, $0b, 0 | OAM_YFLIP
+	dbsprite  26, -40, $0a, 0 | OAM_YFLIP
+	dbsprite  26, -48, $09, 0 | OAM_YFLIP
+	dbsprite   0,  24, $08, 0 | OAM_XFLIP
 	dbsprite -21, -31, $08, 0
-	dbsprite   8,  24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,  24, $01, 0 | OAM_XFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $02, 0 | OAM_XFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
@@ -4682,50 +4682,50 @@ OAMData4A::
 .frame_7
 	db 13 ; size
 	dbsprite -21, -31, $08, 0
-	dbsprite   0,  24, $08, 0 | (1 << OAM_X_FLIP)
+	dbsprite   0,  24, $08, 0 | OAM_XFLIP
 	dbsprite   2, -17, $03, 1
 	dbsprite   2,  -9, $04, 1
 	dbsprite  10,  -9, $06, 1
 	dbsprite  10, -17, $05, 1
 	dbsprite  18, -17, $07, 1
-	dbsprite   8,  24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,  24, $01, 0 | OAM_XFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $02, 0 | OAM_XFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
 
 .frame_8
 	db 17 ; size
-	dbsprite  13, -24, $08, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   0,  24, $08, 0 | (1 << OAM_X_FLIP)
+	dbsprite  13, -24, $08, 0 | OAM_YFLIP
+	dbsprite   0,  24, $08, 0 | OAM_XFLIP
 	dbsprite -21, -31, $08, 0
 	dbsprite   2, -17, $03, 2
 	dbsprite   2,  -9, $04, 2
 	dbsprite  10,  -9, $06, 2
 	dbsprite  10, -17, $05, 2
-	dbsprite   8,  24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $02, 0 | (1 << OAM_X_FLIP)
+	dbsprite   8,  24, $01, 0 | OAM_XFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $02, 0 | OAM_XFLIP
 	dbsprite  18, -17, $07, 2
-	dbsprite  13, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   5, -16, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   5, -24, $01, 0 | (1 << OAM_Y_FLIP)
+	dbsprite  13, -16, $00, 0 | OAM_YFLIP
+	dbsprite   5, -16, $02, 0 | OAM_YFLIP
+	dbsprite   5, -24, $01, 0 | OAM_YFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
 
 .frame_9
 	db 12 ; size
-	dbsprite   0,  24, $08, 0 | (1 << OAM_X_FLIP)
-	dbsprite  13, -24, $08, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   0,  24, $08, 0 | OAM_XFLIP
+	dbsprite  13, -24, $08, 0 | OAM_YFLIP
 	dbsprite -21, -31, $08, 0
-	dbsprite   8,  24, $01, 0 | (1 << OAM_X_FLIP)
-	dbsprite   0,  16, $00, 0 | (1 << OAM_X_FLIP)
-	dbsprite   8,  16, $02, 0 | (1 << OAM_X_FLIP)
-	dbsprite  13, -16, $00, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   5, -16, $02, 0 | (1 << OAM_Y_FLIP)
-	dbsprite   5, -24, $01, 0 | (1 << OAM_Y_FLIP)
+	dbsprite   8,  24, $01, 0 | OAM_XFLIP
+	dbsprite   0,  16, $00, 0 | OAM_XFLIP
+	dbsprite   8,  16, $02, 0 | OAM_XFLIP
+	dbsprite  13, -16, $00, 0 | OAM_YFLIP
+	dbsprite   5, -16, $02, 0 | OAM_YFLIP
+	dbsprite   5, -24, $01, 0 | OAM_YFLIP
 	dbsprite -21, -23, $00, 0
 	dbsprite -13, -23, $02, 0
 	dbsprite -13, -31, $01, 0
@@ -4833,9 +4833,9 @@ OAMData4C::
 
 .frame_5
 	db 16 ; size
-	dbsprite -14,  -3, $1e, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -14, -11, $1e, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -22,  -3, $1e, 1 | (1 << OAM_X_FLIP)
+	dbsprite -14,  -3, $1e, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -14, -11, $1e, 1 | OAM_YFLIP
+	dbsprite -22,  -3, $1e, 1 | OAM_XFLIP
 	dbsprite -22, -11, $1e, 1
 	dbsprite -16,  -4, $0b, 0
 	dbsprite  -8,  -1, $0a, 0
@@ -4853,12 +4853,12 @@ OAMData4C::
 .frame_6
 	db 21 ; size
 	dbsprite -18,  -7, $22, 1
-	dbsprite -10, -15, $1f, 1 | (1 << OAM_Y_FLIP)
-	dbsprite -10,   1, $1f, 1 | (1 << OAM_X_FLIP) | (1 << OAM_Y_FLIP)
-	dbsprite -26,   1, $1f, 1 | (1 << OAM_X_FLIP)
-	dbsprite -18,   1, $21, 1 | (1 << OAM_X_FLIP)
+	dbsprite -10, -15, $1f, 1 | OAM_YFLIP
+	dbsprite -10,   1, $1f, 1 | OAM_XFLIP | OAM_YFLIP
+	dbsprite -26,   1, $1f, 1 | OAM_XFLIP
+	dbsprite -18,   1, $21, 1 | OAM_XFLIP
 	dbsprite -18, -15, $21, 1
-	dbsprite -10,  -7, $20, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -10,  -7, $20, 1 | OAM_YFLIP
 	dbsprite -26,  -7, $20, 1
 	dbsprite -26, -15, $1f, 1
 	dbsprite -16,  -4, $0b, 0
@@ -4876,9 +4876,9 @@ OAMData4C::
 
 .frame_7
 	db 17 ; size
-	dbsprite -10,  -7, $23, 1 | (1 << OAM_Y_FLIP)
+	dbsprite -10,  -7, $23, 1 | OAM_YFLIP
 	dbsprite -26,  -7, $23, 1
-	dbsprite -18,   1, $24, 1 | (1 << OAM_X_FLIP)
+	dbsprite -18,   1, $24, 1 | OAM_XFLIP
 	dbsprite -18, -15, $24, 1
 	dbsprite -18,  -7, $25, 1
 	dbsprite -16,  -4, $0b, 0

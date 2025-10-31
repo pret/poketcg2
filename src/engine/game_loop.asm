@@ -19,7 +19,7 @@ GameLoop::
 	jr nz, .not_cgb
 	call ReadJoypad
 	ldh a, [hKeysHeld]
-	cp A_BUTTON | B_BUTTON
+	cp PAD_A | PAD_B
 	jr z, .ask_erase_backup_ram
 	farcall $4, CoreGameLoop ; unnecessary farcall?
 	jr GameLoop

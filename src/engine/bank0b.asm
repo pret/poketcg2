@@ -1363,7 +1363,7 @@ Func_2ca46:
 	farcall GetEventValue
 	jr nz, .exit
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .exit
 	ld a, [wPlayerOWObject]
 	ld b, NORTH

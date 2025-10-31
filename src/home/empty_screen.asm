@@ -6,7 +6,7 @@ EmptyScreen::
 	ld [wDuelDisplayedScreen], a
 	ret
 
-; returns v*BGMap0 + BG_MAP_WIDTH * c + b in de and hl.
+; returns v*BGMap0 + TILEMAP_WIDTH * c + b in de and hl.
 ; used to map coordinates at bc to a BGMap0 address.
 BCCoordToBGMap0Address::
 	ld l, c
