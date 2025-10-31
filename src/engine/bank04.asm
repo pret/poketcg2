@@ -69,14 +69,63 @@ HandleStartupDebugMenuOption:
 
 .FunctionMap: ; boot up debug menu options
 	key_func $00, _CoreGameLoop ; power on
-	db $01, $04, $b6, $40 ; coins
+	key_func $01, Func_100b6 ; coins
 	db $02, $04, $fa, $40 ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
 	db $05, $04, $0d, $41 ; duel
 	db $06, $04, $25, $41 ; slot machine
 	db $ff
-; 0x100b6
+
+Func_100b6:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	ld a, [wd693]
+	res 2, a
+	ld [wd693], a
+	call Func_100d4
+	farcall Func_1dca6
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+
+Func_100d4:
+	ld c, 24
+	ld hl, .Data_100e2
+.asm_100d9
+	ld a, [hli]
+	farcall MaxOutEventValue
+	dec c
+	jr nz, .asm_100d9
+	ret
+
+.Data_100e2:
+	db $04
+	db $0b
+	db $05
+	db $06
+	db $07
+	db $08
+	db $09
+	db $0a
+	db $10
+	db $11
+	db $12
+	db $13
+	db $14
+	db $15
+	db $16
+	db $17
+	db $18
+	db $19
+	db $1a
+	db $1b
+	db $1c
+	db $1d
+	db $1e
+	db $1f
+; 0x100fa
+
 
 SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
