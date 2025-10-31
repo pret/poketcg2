@@ -3470,18 +3470,18 @@ Func_1dc52:
 
 Func_1dc9a:
 	farcall Func_1022a
-	call Func_1dca6
+	call ShowCoinMenuWithoutIncomingCoin
 	farcall Func_10252
 	ret
 
-Func_1dca6:
+ShowCoinMenuWithoutIncomingCoin::
 	push af
 	push bc
 	push de
 	push hl
 	ld a, -1
 	ld [wIncomingCoin], a
-	call Func_1dcbf
+	call CoinMenu
 	pop hl
 	pop de
 	pop bc
@@ -3494,7 +3494,7 @@ Func_1dcb7:
 	ld [wCoinPage], a
 	ret
 
-Func_1dcbf:
+CoinMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall ClearSpriteAnims
 	call DisableLCD

@@ -69,7 +69,7 @@ HandleStartupDebugMenuOption:
 
 .FunctionMap: ; boot up debug menu options
 	key_func $00, _CoreGameLoop ; power on
-	key_func $01, Func_100b6 ; coins
+	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
 	db $02, $04, $fa, $40 ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
@@ -77,53 +77,54 @@ HandleStartupDebugMenuOption:
 	db $06, $04, $25, $41 ; slot machine
 	db $ff
 
-Func_100b6:
+SetAllCoinsObtainedAndShowCoinMenu:
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	ld a, [wd693]
 	res 2, a
 	ld [wd693], a
-	call Func_100d4
-	farcall Func_1dca6
+	call SetAllCoinEvents
+	farcall ShowCoinMenuWithoutIncomingCoin ; same menu that you see from the in-game coin menu
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 
-Func_100d4:
-	ld c, 24
-	ld hl, .Data_100e2
-.asm_100d9
+SetAllCoinEvents:
+	ld c, NUM_COINS
+	ld hl, .CoinEvents
+.loop
 	ld a, [hli]
 	farcall MaxOutEventValue
 	dec c
-	jr nz, .asm_100d9
+	jr nz, .loop
 	ret
 
-.Data_100e2:
-	db $04
-	db $0b
-	db $05
-	db $06
-	db $07
-	db $08
-	db $09
-	db $0a
-	db $10
-	db $11
-	db $12
-	db $13
-	db $14
-	db $15
-	db $16
-	db $17
-	db $18
-	db $19
-	db $1a
-	db $1b
-	db $1c
-	db $1d
-	db $1e
-	db $1f
+.CoinEvents:
+	; note that this is the order the coins are displayed in menu, not const value order
+	db EVENT_GOT_CHANSEY_COIN
+	db EVENT_GOT_GR_COIN
+	db EVENT_GOT_ODDISH_COIN
+	db EVENT_GOT_CHARMANDER_COIN
+	db EVENT_GOT_STARMIE_COIN
+	db EVENT_GOT_PIKACHU_COIN
+	db EVENT_GOT_ALAKAZAM_COIN
+	db EVENT_GOT_KABUTO_COIN
+	db EVENT_GOT_GOLBAT_COIN
+	db EVENT_GOT_MAGNEMITE_COIN
+	db EVENT_GOT_MAGMAR_COIN
+	db EVENT_GOT_PSYDUCK_COIN
+	db EVENT_GOT_MACHAMP_COIN
+	db EVENT_GOT_MEW_COIN
+	db EVENT_GOT_SNORLAX_COIN
+	db EVENT_GOT_TOGEPI_COIN
+	db EVENT_GOT_PONYTA_COIN
+	db EVENT_GOT_HORSEA_COIN
+	db EVENT_GOT_ARBOK_COIN
+	db EVENT_GOT_JIGGLYPUFF_COIN
+	db EVENT_GOT_DUGTRIO_COIN
+	db EVENT_GOT_GENGAR_COIN
+	db EVENT_GOT_RAICHU_COIN
+	db EVENT_GOT_LUGIA_COIN
 ; 0x100fa
 
 
