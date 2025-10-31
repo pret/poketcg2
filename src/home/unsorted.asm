@@ -1540,6 +1540,8 @@ CopyCGBBGPalsFromSource_WithPalOffset::
 	ldh [rBGP], a
 	ret
 
+; bc - x,y dimensions of text box
+; de - coordinates
 DrawRegularTextBoxVRAM0::
 	push af
 	push bc

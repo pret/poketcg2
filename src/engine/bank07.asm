@@ -319,247 +319,246 @@ GetDuelistPortrait::
 
 SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
 
-Func_1c17a:
+ShowConfigMenu:
 	push af
 	push bc
 	push de
 	push hl
 	call LoadSavedOptions
-	call Func_1c18c
-	call Func_1c3d5
+	call DrawAndHandleConfigMenu
+	call SaveConfigMenuChoicesToSRAM
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1c18c:
+DrawAndHandleConfigMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1c19f
+	call DrawConfigMenu
 	farcall SetFrameFuncAndFadeFromWhite
-	call Func_1c252
+	call HandleConfigMenu
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1c19f:
-	ld de, $0
-	ld bc, $1404
+DrawConfigMenu:
+	lb de, 0, 0
+	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
-	ld de, $4
-	ld bc, $1404
+	lb de, 0, 4
+	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
-	ld de, $8
-	ld bc, $1404
+	lb de, 0, 8
+	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1404
+	lb de, 0, 12
+	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
 	ld b, $07
 	ld hl, $44ee
-	ld de, $111
+	lb de, 1, 17
 	call LoadMenuBoxParams
 	ld b, $07
 	ld hl, $4476
-	ld de, $602
+	lb de, 6, 2
 	call LoadMenuBoxParams
-	ld a, [wd9d5]
+	ld a, [wMessageSpeedSetting]
 	call DrawMenuBox
 	ld b, $07
 	ld hl, $449a
-	ld de, $106
+	lb de, 1, 6
 	call LoadMenuBoxParams
-	ld a, [wd9d3]
+	ld a, [wDuelAnimationsSetting]
 	call DrawMenuBox
 	ld b, $07
 	ld hl, $44b6
-	ld de, $10a
+	lb de, 1, 10
 	call LoadMenuBoxParams
-	ld a, [wd9d4]
+	ld a, [wCoinTossAnimationSetting]
 	call DrawMenuBox
 	ld b, $07
 	ld hl, $44ce
-	ld de, $10e
+	lb de, 1, 14
 	call LoadMenuBoxParams
 	ld a, [wTextBoxFrameColor]
 	call DrawMenuBox
-	ld hl, $59d
-	ld de, $100
+	ldtx hl, ConfigMessageSpeedText
+	lb de, 1, 0
 	call Func_2c4b
-	ld hl, $59e
-	ld de, $104
+	ldtx hl, ConfigDuelAnimationText
+	lb de, 1, 4
 	call Func_2c4b
-	ld hl, $59f
-	ld de, $108
+	ldtx hl, ConfigCoinAnimationText
+	lb de, 1, 8
 	call Func_2c4b
-	ld hl, $771
-	ld de, $10c
+	ldtx hl, ConfigFrameColorText
+	lb de, 1, 12
 	call Func_2c4b
-	ld hl, $5a1
-	ld de, $202
+	ldtx hl, ConfigMessageSpeedSlowLabelText
+	lb de, 2, 2
 	call Func_35af
-	ld hl, $5a2
-	ld de, $1002
+	ldtx hl, ConfigMessageSpeedFastLabelText
+	lb de, 16, 2
 	call Func_35af
-	ld hl, $5a0
-	ld de, $211
+	ldtx hl, ConfigExitText
+	lb de, 2, 17
 	call Func_35af
 	ret
 
-Func_1c252:
-	ld a, [wd9d0]
+HandleConfigMenu:
+	ld a, [wSelectedConfigSubmenu]
 	ld c, a
 	inc a
 	dec a
-	jr z, .asm_1c266
+	jr z, .exit_menu_box
 	dec a
-	jr z, .asm_1c280
+	jr z, .message_speed_box
 	dec a
-	jr z, .asm_1c298
+	jr z, .duel_animations_box
 	dec a
-	jr z, .asm_1c2b0
+	jr z, .coin_toss_animation_box
 	dec a
-	jr z, .asm_1c2c8
-.asm_1c266
-	ld c, $00
-	call Func_1c363
-	jr nc, .asm_1c2e3
+	jr z, .frame_color_box
+.exit_menu_box
+	ld c, 0
+	call HandleConfigExitMenuBox
+	jr nc, .done
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and $02
-	jr nz, .asm_1c2e3
+	and B_BUTTON
+	jr nz, .done
 	ldh a, [hKeysHeld]
-	and $40
-	jr nz, .asm_1c2c8
-.asm_1c280
-	ld c, $01
-	call Func_1c2ef
+	and D_UP
+	jr nz, .frame_color_box
+.message_speed_box
+	ld c, 1
+	call HandleMessageSpeedSettingMenuBox
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and $02
-	jr nz, .asm_1c2e3
+	and B_BUTTON
+	jr nz, .done
 	ldh a, [hKeysHeld]
-	and $40
-	jr nz, .asm_1c266
-.asm_1c298
-	ld c, $02
-	call Func_1c30c
+	and D_UP
+	jr nz, .exit_menu_box
+.duel_animations_box
+	ld c, 2
+	call HandleDuelAnimationsSettingMenuBox
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and $02
-	jr nz, .asm_1c2e3
+	and B_BUTTON
+	jr nz, .done
 	ldh a, [hKeysHeld]
-	and $40
-	jr nz, .asm_1c280
-.asm_1c2b0
-	ld c, $03
-	call Func_1c329
+	and D_UP
+	jr nz, .message_speed_box
+.coin_toss_animation_box
+	ld c, 3
+	call HandleCoinTossAnimationSettingMenuBox
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and $02
-	jr nz, .asm_1c2e3
+	and B_BUTTON
+	jr nz, .done
 	ldh a, [hKeysHeld]
-	and $40
-	jr nz, .asm_1c298
-.asm_1c2c8
-	ld c, $04
-	call Func_1c346
+	and D_UP
+	jr nz, .duel_animations_box
+.frame_color_box
+	ld c, 4
+	call HandleTextBoxFrameColorSettingMenuBox
 	push af
-	ld a, $01
+	ld a, SFX_01
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and $02
-	jr nz, .asm_1c2e3
+	and B_BUTTON
+	jr nz, .done
 	ldh a, [hKeysHeld]
-	and $40
-	jr nz, .asm_1c2b0
-	jp .asm_1c266
-.asm_1c2e3
+	and D_UP
+	jr nz, .coin_toss_animation_box
+	jp .exit_menu_box
+.done
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	ld a, c
-	ld [wd9d0], a
+	ld [wSelectedConfigSubmenu], a
 	ret
 
-Func_1c2ef:
+HandleMessageSpeedSettingMenuBox:
 	ld b, $07
 	ld hl, $4476
-	ld de, $602
-	ld a, [wd9d5]
+	lb de, 6, 2
+	ld a, [wMessageSpeedSetting]
 	call LoadMenuBoxParams
-	ld a, $08
+	ld a, 8
 	call SetMenuBoxDelay
-	ld a, [wd9d5]
+	ld a, [wMessageSpeedSetting]
 	call HandleMenuBox
-	ld [wd9d5], a
+	ld [wMessageSpeedSetting], a
 	ret
 
-Func_1c30c:
+HandleDuelAnimationsSettingMenuBox:
 	ld b, $07
 	ld hl, $449a
-	ld de, $106
-	ld a, [wd9d3]
+	lb de, 1, 6
+	ld a, [wDuelAnimationsSetting]
 	call LoadMenuBoxParams
-	ld a, $08
+	ld a, 8
 	call SetMenuBoxDelay
-	ld a, [wd9d3]
+	ld a, [wDuelAnimationsSetting]
 	call HandleMenuBox
-	ld [wd9d3], a
+	ld [wDuelAnimationsSetting], a
 	ret
 
-Func_1c329:
+HandleCoinTossAnimationSettingMenuBox:
 	ld b, $07
 	ld hl, $44b6
-	ld de, $10a
-	ld a, [wd9d4]
+	lb de, 1, 10
+	ld a, [wCoinTossAnimationSetting]
 	call LoadMenuBoxParams
-	ld a, $08
+	ld a, 8
 	call SetMenuBoxDelay
-	ld a, [wd9d4]
+	ld a, [wCoinTossAnimationSetting]
 	call HandleMenuBox
-	ld [wd9d4], a
+	ld [wCoinTossAnimationSetting], a
 	ret
 
-Func_1c346:
+HandleTextBoxFrameColorSettingMenuBox:
 	ld b, $07
 	ld hl, $44ce
-	ld de, $10e
+	lb de, 1, 14
 	ld a, [wTextBoxFrameColor]
 	call LoadMenuBoxParams
-	ld a, $08
+	ld a, 8
 	call SetMenuBoxDelay
 	ld a, [wTextBoxFrameColor]
 	call HandleMenuBox
 	ld [wTextBoxFrameColor], a
 	ret
 
-Func_1c363:
+HandleConfigExitMenuBox:
 	ld b, $07
 	ld hl, $44ee
-	ld de, $111
+	lb de, 1, 17
 	xor a
 	call LoadMenuBoxParams
-	ld a, $08
+	ld a, 8
 	call SetMenuBoxDelay
 	xor a
 	call HandleMenuBox
 	ret
 ; 0x1c379
-
 
 SECTION "Bank 7@4395", ROMX[$4395], BANK[$7]
 
@@ -575,24 +574,24 @@ LoadSavedOptions:
 .LoadTextSpeed:
 	ld a, [sTextSpeed]
 	ld [wTextSpeed], a
-	call Func_1c448
+	call ConvertTextSpeedToMessageSpeedSetting
 	ld b, a
 	ld a, 4
 	sub b
-	ld [wd9d5], a
+	ld [wMessageSpeedSetting], a
 	ret
 
 .LoadDuelAnimation:
-	ld a, [s0a007]
-	ld [wd9d3], a
+	ld a, [sDuelAnimationsSetting]
+	ld [wDuelAnimationsSetting], a
 	srl a
 	and $01
 	ld [wAnimationsDisabled], a
 	ret
 
 .LoadCoinTossAnimation:
-	ld a, [s0a00b]
-	ld [wd9d4], a
+	ld a, [sCoinTossAnimationSetting]
+	ld [wCoinTossAnimationSetting], a
 	ret
 
 .LoadTextFrameColor:
@@ -600,28 +599,28 @@ LoadSavedOptions:
 	ld [wTextBoxFrameColor], a
 	ret
 
-Func_1c3d5:
+SaveConfigMenuChoicesToSRAM:
 	call EnableSRAM
-	call Func_1c3e8
-	call Func_1c3f9
-	call Func_1c417
+	call SaveMessageSpeed
+	call SaveDuelAnimationsSetting
+	call SaveCoinTossAnimationSetting
 	call SaveTextBoxFrameColor
 	call DisableSRAM
 	ret
 
-Func_1c3e8:
-	ld a, [wd9d5]
+SaveMessageSpeed:
+	ld a, [wMessageSpeedSetting]
 	ld b, a
-	ld a, $04
+	ld a, 4
 	sub b
-	call Func_1c438
+	call ConvertMessageSpeedSettingToTextSpeed
 	ld [sTextSpeed], a
 	ld [wTextSpeed], a
 	ret
 
-Func_1c3f9:
-	ld a, [wd9d3]
-	ld [s0a007], a
+SaveDuelAnimationsSetting:
+	ld a, [wDuelAnimationsSetting]
+	ld [sDuelAnimationsSetting], a
 	push af
 	srl a
 	and $01
@@ -636,11 +635,11 @@ Func_1c3f9:
 	ret
 
 .data
-	db $00, $01, $01
+	db 0, 1, 1
 
-Func_1c417:
-	ld a, [wd9d4]
-	ld [s0a00b], a
+SaveCoinTossAnimationSetting:
+	ld a, [wCoinTossAnimationSetting]
+	ld [sCoinTossAnimationSetting], a
 	ret
 
 SaveTextBoxFrameColor:
@@ -648,17 +647,19 @@ SaveTextBoxFrameColor:
 	ld [sTextBoxFrameColor], a
 	ret
 
-Func_1c425:
-	ld a, $02
-	ld [wd9d5], a
+InitDefaultConfigMenuSettings:
+	ld a, 2
+	ld [wMessageSpeedSetting], a
 	xor a
-	ld [wd9d4], a
-	ld [wd9d3], a
+	ld [wCoinTossAnimationSetting], a
+	ld [wDuelAnimationsSetting], a
 	ld [wTextBoxFrameColor], a
-	ld [wd9d0], a
+	ld [wSelectedConfigSubmenu], a
 	ret
 
-Func_1c438:
+; a - message speed setting
+; ret - a: text speed (in frames to wait between printing)
+ConvertMessageSpeedSettingToTextSpeed:
 	push bc
 	ld c, a
 	ld b, $00
@@ -669,9 +670,11 @@ Func_1c438:
 	ret
 
 .data
-	db $00, $01, $02, $04, $06
+	db 0, 1, 2, 4, 6
 
-Func_1c448:
+; a - text speed (in frames to wait between printing)
+; ret - a: message speed setting
+ConvertTextSpeedToMessageSpeedSetting:
 	push bc
 	ld c, a
 	ld b, $00
@@ -682,8 +685,9 @@ Func_1c448:
 	ret
 
 .data
-	db $00, $01, $02
-; 0x1c456
+	; values correspond to the 0,1,2,4,6 values just above
+	db 0, 1, 2, 0, 3, 0, 4
+; 0x1c45a
 
 SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
 
@@ -1960,6 +1964,7 @@ SetMenuBoxNumItems:
 	ld [wMenuBoxNumItems], a
 	ret
 
+; a - delay to set
 SetMenuBoxDelay:
 	ld [wMenuBoxDelay], a
 	ret
@@ -2845,8 +2850,8 @@ Func_1d475:
 	call EnableAnimations
 	call Func_1e767
 	farcall Func_111f0
-	call Func_1c425
-	call Func_1c3d5
+	call InitDefaultConfigMenuSettings
+	call SaveConfigMenuChoicesToSRAM
 	call LoadSavedOptions
 	ret
 

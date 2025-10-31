@@ -6165,7 +6165,7 @@ Func_6838:
 	call EnableSRAM
 	ld a, [sSkipDelayAllowed]
 	ld [wSkipDelayAllowed], a
-	ld a, [s0a00b]
+	ld a, [sCoinTossAnimationSetting]
 	ld [wcd14], a
 	call DisableSRAM
 	ret

@@ -70,7 +70,7 @@ HandleStartupDebugMenuOption:
 .FunctionMap: ; boot up debug menu options
 	key_func $00, _CoreGameLoop ; power on
 	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
-	key_func $02, Func_100fa ; config
+	key_func $02, DebugShowConfigMenu ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
 	db $05, $04, $0d, $41 ; duel
@@ -126,11 +126,11 @@ SetAllCoinEvents:
 	db EVENT_GOT_RAICHU_COIN
 	db EVENT_GOT_LUGIA_COIN
 
-Func_100fa:
+DebugShowConfigMenu:
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	farcall Func_1c17a
+	farcall ShowConfigMenu
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 ; 0x1010d
