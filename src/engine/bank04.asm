@@ -71,7 +71,7 @@ HandleStartupDebugMenuOption:
 	key_func $00, _CoreGameLoop ; power on
 	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
 	key_func $02, DebugShowConfigMenu ; config
-	key_func $03, Func_f25a ; effect viewer
+	key_func $03, DebugMenuEffectViewer ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
 	key_func $05, StartDebugDuelVsRandomOpponent ; duel
 	key_func $06, DebugSlotMachine ; slot machine
@@ -3675,11 +3675,11 @@ Func_114af:
 	lb de, 1, 1
 	call AdjustDECoordByhSC
 	ldtx hl, ChipsText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 6, 2
 	call AdjustDECoordByhSC
 	ldtx hl, PlayerDiaryCardsUnitText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call PrintNumberOfChips
 
 .fill
@@ -5189,7 +5189,7 @@ PrintPlayTime:
 	inc d
 	inc d
 	ldtx hl, SingleColonText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc d
 	ld a, [wDisplayMinutes]
 	ld l, a
@@ -5231,7 +5231,7 @@ PrintCardAlbumProgress:
 	inc d
 	inc d
 	ldtx hl, CardCountSeparatorText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc d
 	ld hl, wTotalNumCardsToCollect
 	ld a, [hli]
@@ -5300,7 +5300,7 @@ DrawSlotMachineDescriptionBox:
 	call Func_2c4b
 	lb de, 1, 2
 	ldtx hl, GameCenterSlotMachineDescriptionText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wdb2f]
 	ld l, a
 	ld h, $00
@@ -5906,7 +5906,7 @@ Func_12a02:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterSlotMachineDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_12a15:
@@ -6253,7 +6253,7 @@ Func_13189:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterBlackBoxDescriptionText
 	lb de, 1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterBlackBoxTitleText
 	lb de, 1, 0
 	call Func_2c4b
@@ -6323,7 +6323,7 @@ Func_13222:
 	bank1call SetNoLineSeparation
 	ldtx hl, GameCenterBlackBoxProcedureText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	bank1call SetOneLineSeparation
 	ret
 
@@ -6547,7 +6547,7 @@ Func_133b0:
 	farcall Func_a6ef
 	ldtx hl, GameCenterBlackBoxSendingHeaderText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call Func_133dc
 	ld [wTxRam3], a
 	xor a
@@ -6559,7 +6559,7 @@ Func_133b0:
 	ld [wTxRam3_b + 1], a
 	ldtx hl, NumberSlashNumberText
 	lb de, 16, 1
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ret
 
 Func_133dc:
@@ -6951,10 +6951,10 @@ Func_1362d:
 	lb de, 1, 0
 	call Func_2c4b
 	ld hl, $7697
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 	ldtx hl, ChallengeMachineScoreTitleText
 	lb de, 1, 2
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ld hl, wde0d
 	ld de, $e04
 	call Func_13681
@@ -7001,7 +7001,7 @@ Func_136b4:
 	call SavePlayerName
 	ldtx hl, TxRam1Text
 	lb de, 2, 10
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ld hl, wde39
 	call SavePlayerName
 	ret
@@ -7088,7 +7088,7 @@ Func_13763:
 	ld [wTxRam3 + 1], a
 	ldtx hl, TxRam3Text
 	ld d, $02
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	ret
 
@@ -7098,7 +7098,7 @@ Func_13778:
 	ld h, [hl]
 	ld l, a
 	ld d, $04
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -7110,7 +7110,7 @@ Func_13785:
 	ld h, [hl]
 	ld l, a
 	ld d, $0e
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl

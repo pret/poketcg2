@@ -396,13 +396,13 @@ DrawConfigMenu:
 	call Func_2c4b
 	ldtx hl, ConfigMessageSpeedSlowLabelText
 	lb de, 2, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, ConfigMessageSpeedFastLabelText
 	lb de, 16, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, ConfigExitText
 	lb de, 2, 17
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 HandleConfigMenu:
@@ -1617,7 +1617,7 @@ DrawMenuBox:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop de
 	pop bc
 	inc c
@@ -2063,7 +2063,7 @@ ShowStartMenu:
 	ld d, a
 	ld e, 8
 	ldtx hl, TxRam1Text
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 
 .skip_portrait_and_name
 	ld a, [wStartMenuConfiguration]
@@ -2277,7 +2277,7 @@ _StartMenuBoxUpdate::
 .NewGame:
 	lb de, 1, 12
 	ldtx hl, MainMenuNewGameDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .ContinueFromDiary:
@@ -2287,7 +2287,7 @@ _StartMenuBoxUpdate::
 	lb de, 1, 10
 	call Func_2c4b
 	ld hl, .TextItems
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 
 	; print number of event coins
 	; obtained by the player
@@ -2315,13 +2315,13 @@ _StartMenuBoxUpdate::
 .CardPop:
 	lb de, 1, 12
 	ldtx hl, MainMenuCardPopDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .ContinueDuel:
 	lb de, 1, 12
 	ldtx hl, MainMenuContinueDuelDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 HandleStartMenuBox:
@@ -2440,13 +2440,13 @@ ConfirmPlayerNameAndGender:
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ld hl, .TextItems
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 	lb bc, 12, 3
 	call DrawPlayerPortrait
 	; print name
 	ldtx hl, TxRam1Text
 	lb de, 5, 4
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	; print gender
 	farcall GetPlayerGender
 	and a
@@ -2455,7 +2455,7 @@ ConfirmPlayerNameAndGender:
 	ldtx hl, PlayerGenderFemaleText
 .got_gender_text
 	lb de, 5, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .TextItems:
@@ -3016,7 +3016,7 @@ Func_1d5c7:
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, PlayerDiaryCardsUnitText
 	lb de, 18, 0
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	farcall GetGameCenterChips
 	lb de, 14, 0
 	ld h, b
@@ -3052,7 +3052,7 @@ Func_1d618:
 	ld h, [hl]
 	ld l, a
 	ld d, $02
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -3065,7 +3065,7 @@ Func_1d618:
 	call PrintNumber
 	ld d, $12
 	ldtx hl, PlayerDiaryCardsUnitText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	pop de
 	pop bc
@@ -3311,7 +3311,7 @@ Func_1d886:
 	call Func_2c4b
 	ldtx hl, GameCenterCoinFlipDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 0, 0
 	lb bc, 20, 4
 	farcall FillBoxInBGMapWithZero
@@ -3707,7 +3707,7 @@ Func_1dc52:
 
 .got_coin_and_text
 	lb de, 1, 2
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	call Func_1dd08
 	ld a, [wIncomingCoin]
 	call GetCoinType
@@ -3765,7 +3765,7 @@ Func_1dce3:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, PlayerCoinSelectText
 	lb de,  1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
 	call GetCoinType
 	push af
@@ -3784,12 +3784,12 @@ Func_1dd08:
 	ld a, [wSelectedCoin]
 	ldtx hl, PlayerStatusCurrentCoinText
 	lb de,  4, 4
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de,  4, 6
 	lb bc, 12, 1
 	farcall FillBoxInBGMapWithZero
 	call GetCoinName
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
 	lb de,  1, 4
 	farcall Func_12c49b
@@ -3878,7 +3878,7 @@ Func_1dd89:
 	ld h, [hl]
 	ld l, a
 	lb de, 6, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop bc
 	push bc
 	ld c, b
@@ -4871,11 +4871,11 @@ AnimationCoordinates:
 	db  56, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $e
 	db  24, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $f
 
-Func_1e409:
+GetwDuelAnimBufferSize:
 	ld a, [wDuelAnimBufferSize]
 	ret
 
-Func_1e40d:
+GetwDuelAnimBufferCurPos:
 	ld a, [wDuelAnimBufferCurPos]
 	ret
 ; 0x1e411
@@ -5331,7 +5331,7 @@ ShowSpecialRuleDescription:
 	ld h, [hl]
 	ld l, a
 	lb de, 3, 4
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 
 	; print description
@@ -5344,7 +5344,7 @@ ShowSpecialRuleDescription:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .TitleAndDescriptionTextIDs:
@@ -5609,7 +5609,7 @@ Func_1e9ce:
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, GrandMasterCupBracketTitleText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_1e9ea:
@@ -5674,7 +5674,7 @@ Func_1ea1f:
 	ld h, [hl]
 	ld l, a
 	pop af
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -5811,7 +5811,7 @@ Func_1eba4:
 	lb de, 13, 9
 	lb bc, 6, 1
 	farcall FillBoxInBGMapWithZero
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	pop de
 	pop bc
@@ -6282,7 +6282,7 @@ Func_1f666:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GrandMasterCupPrizesTitleText
 	lb de, 4, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_1f682:
@@ -6300,7 +6300,7 @@ Func_1f682:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -6323,7 +6323,7 @@ Func_1f6cd:
 .asm_1f6d4
 	ldtx hl, GrandMasterCupPrizesDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 .asm_1f6dd
 	ld a, [wdd78]
 	call HandleMenuBox
@@ -6597,7 +6597,7 @@ Func_1f88f:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterCardDungeonDescriptionText
 	lb de, 1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterCardDungeonTitleText
 	lb de, 1, 0
 	call Func_2c4b

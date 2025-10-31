@@ -238,7 +238,7 @@ CreditsCmd_PrintHeader:
 	ld l, a
 	ld a, [wCreditsCmdArg5]
 	ld h, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld b, d
 	ld c, e
 	call BCCoordToBGMap0Address
@@ -279,7 +279,7 @@ CreditsCmd_PrintBlack:
 	ld l, a
 	ld a, [wCreditsCmdArg5]
 	ld h, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	bank1call SetFontAndTextBoxFrameColor
 	ret
 

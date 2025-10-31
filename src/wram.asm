@@ -2485,7 +2485,21 @@ wOWScrollSpeed:: ; d681
 wDebugMenuCursorPosition:: ; d682
 	ds $1
 
-	ds $9
+	ds $2
+
+wDebugAnimDuelistSide:: ;d685
+	ds $1
+
+wDebugSelectedAnimNumber:: ;d686
+	ds $1
+
+wDebugDuelAnimationScreen:: ;d687
+	ds $1
+
+wDebugDuelAnimLocationParam:: ;d688
+	ds $1
+
+	ds $3
 
 wd68c:: ; d68c
 	ds $1

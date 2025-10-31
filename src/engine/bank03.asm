@@ -5687,7 +5687,7 @@ Func_f085:
 
 SECTION "Bank 3@725a", ROMX[$725a], BANK[$3]
 
-Func_f25a:
+DebugMenuEffectViewer:
 	push af
 	push bc
 	push de
@@ -5699,20 +5699,20 @@ Func_f25a:
 	farcall WaitPalFading_Bank07
 	farcall Func_10d40
 	farcall SetInitialGraphicsConfiguration
-	ld de, $0
-	ld bc, $1412
+	lb de, 0, 0
+	lb bc, 20, 18
 	ld h, $00
 	ld l, $00
 	farcall FillBoxInBGMap
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	call Func_f328
-	call Func_f340.asm_f35a
-	call Func_f370.asm_f397
+	call DebugEffectViewer_PlaceTextItems
+	call ChangeAnimationPlayerSideOnStartPress.initialize
+	call ChangeEffectNumberOnDpadPress.initialize
 	call Func_3d0d
 	push af
-	ld a, $02
+	ld a, MUSIC_DUELTHEME_1
 	call SetMusic
 	pop af
 	farcall StartFadeFromWhite
@@ -5720,17 +5720,17 @@ Func_f25a:
 	ld a, $18
 	call Random
 	ld [wOppCoin], a
-.asm_f2b0
+.button_handling_loop
 	call DoFrame
-	call Func_f3b1
-	call Func_f340
-	call Func_f370
-	call Func_f2e2
-	call Func_f3c1
-	call Func_f3ee
+	call CancelAnimationOnBPress
+	call ChangeAnimationPlayerSideOnStartPress
+	call ChangeEffectNumberOnDpadPress
+	call PlayAnimationOnAPress
+	call DebugPrintAnimBufferCurPosAndSize
+	call ChangeDebugViewerStateText
 	ldh a, [hKeysPressed]
-	and $04
-	jr z, .asm_f2b0
+	and SELECT
+	jr z, .button_handling_loop
 	call FinishQueuedAnimations
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
@@ -5742,30 +5742,30 @@ Func_f25a:
 	pop af
 	ret
 
-Func_f2e2:
+PlayAnimationOnAPress:
 	ldh a, [hKeysPressed]
-	and $01
+	and A_BUTTON
 	ret z
-	ld a, [$d686]
+	ld a, [wDebugSelectedAnimNumber]
 	and a
 	ret z
-	cp $8d
-	jr z, .asm_f2f3
+	cp $8d ; highest number animation
+	jr z, .play
 	cp $8d
 	ret nc
-.asm_f2f3
+.play
 	call FinishQueuedAnimations
 	call ResetAnimationQueue
-	ld a, [$d686]
+	ld a, [wDebugSelectedAnimNumber]
 	ld [wCurAnimation], a
-	ld a, [$d687]
+	ld a, [wDebugDuelAnimationScreen]
 	ld [wDuelAnimationScreen], a
-	ld a, [$d685]
+	ld a, [wDebugAnimDuelistSide]
 	ld [wDuelAnimDuelistSide], a
-	ld a, [$d688]
+	ld a, [wDebugDuelAnimLocationParam]
 	ld [wDuelAnimLocationParam], a
 	ld a, $ff
-	call Random
+	call Random  ; pick random damage number to show
 	ld c, a
 	ld b, $00
 	ld hl, wDuelAnimDamage
@@ -5777,114 +5777,114 @@ Func_f2e2:
 	call LoadDuelAnimationToBuffer
 	ret
 
-Func_f328:
+DebugEffectViewer_PlaceTextItems:
 	ld hl, .Data_f32f
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 	ret
 
 .Data_f32f:
 	; x, y, text offset
-	db $0a, $0e, $24, $06
-	db $0e, $0f, $25, $06
-	db $0e, $10, $26, $06
-	db $02, $0d, $27, $06
+	textitem 10, 14, DebugEffectViewerStartButtonSwapText
+	textitem 14, 15, DebugEffectViewerAButtonPlayText
+	textitem 14, 16, DebugEffectViewerBButtonStopText
+	textitem 2, 13, DebugEffectViewerAnimationNumberText
 	db $ff
 
-Func_f340:
+ChangeAnimationPlayerSideOnStartPress:
 	ldh a, [hKeysPressed]
-	and $08
+	and START
 	ret z
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
-	ld b, $c3
-	ld c, $00
-	ld hl, $622
-	ld a, [$d685]
-	cp $c2
+	ld b, OPPONENT_TURN
+	ld c, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ldtx hl, DebugEffectViewerRightToLeftText
+	ld a, [wDebugAnimDuelistSide]
+	cp PLAYER_TURN
 	jr z, .asm_f361
-.asm_f35a
-	ld b, $c2
-	ld c, $00
-	ld hl, $621
+.initialize
+	ld b, PLAYER_TURN
+	ld c, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ldtx hl, DebugEffectViewerLeftToRightText
 .asm_f361
 	ld a, b
-	ld [$d685], a
+	ld [wDebugAnimDuelistSide], a
 	ld a, c
-	ld [$d687], a
-	ld de, $20e
-	call Func_35af
+	ld [wDebugDuelAnimationScreen], a
+	lb de, 2, 14
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
-Func_f370:
+ChangeEffectNumberOnDpadPress:
 	ldh a, [hDPadHeld]
-	and $40
+	and D_UP
 	jr z, .asm_f37a
 	ld b, $0a
 	jr .asm_f399
 .asm_f37a
 	ldh a, [hDPadHeld]
-	and $80
+	and D_DOWN
 	jr z, .asm_f384
 	ld b, $f6
 	jr .asm_f399
 .asm_f384
 	ldh a, [hDPadHeld]
-	and $20
+	and D_LEFT
 	jr z, .asm_f38e
 	ld b, $ff
 	jr .asm_f399
 .asm_f38e
 	ldh a, [hDPadHeld]
-	and $10
+	and D_RIGHT
 	ret z
 	ld b, $01
 	jr .asm_f399
-.asm_f397
+.initialize
 	ld b, $00
 .asm_f399
-	ld a, [$d686]
+	ld a, [wDebugSelectedAnimNumber]
 	add b
 	and $ff
-	ld [$d686], a
+	ld [wDebugSelectedAnimNumber], a
 	ld l, a
-	ld h, $00
-	ld de, $30d
-	ld a, $03
-	ld b, $00
+	ld h, 0
+	lb de, 3, 13
+	ld a, 3
+	ld b, FALSE
 	farcall PrintNumber
 	ret
 
-Func_f3b1:
+CancelAnimationOnBPress:
 	ldh a, [hKeysPressed]
-	and $02
+	and B_BUTTON
 	ret z
 	push af
-	ld a, $03
+	ld a, SFX_03
 	call CallPlaySFX
 	pop af
 	call FinishQueuedAnimations
 	ret
 
-Func_f3c1:
+DebugPrintAnimBufferCurPosAndSize:
 	push af
 	push bc
 	push de
 	push hl
-	farcall Func_1e40d
+	farcall GetwDuelAnimBufferCurPos
 	ld l, a
-	ld h, $00
-	ld de, $210
-	ld a, $02
-	ld b, $00
+	ld h, 0
+	lb de, 2, 16
+	ld a, 2
+	ld b, FALSE
 	farcall PrintNumber
-	farcall Func_1e409
+	farcall GetwDuelAnimBufferSize
 	ld l, a
-	ld h, $00
-	ld de, $510
-	ld a, $02
-	ld b, $00
+	ld h, 0
+	lb de, 5, 16
+	ld a, 2
+	ld b, FALSE
 	farcall PrintNumber
 	pop hl
 	pop de
@@ -5892,18 +5892,18 @@ Func_f3c1:
 	pop af
 	ret
 
-Func_f3ee:
+ChangeDebugViewerStateText:
 	push af
 	push bc
 	push de
 	push hl
 	call CheckAnyAnimationPlaying
-	ld hl, $628
+	ldtx hl, DebugEffectViewerPlayingStateText
 	jr c, .asm_f3fd
-	ld hl, $629
+	ldtx hl, DebugEffectViewerStopStateText
 .asm_f3fd
-	ld de, $d0d
-	call Func_35af
+	lb de, 13, 13
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	pop de
 	pop bc
