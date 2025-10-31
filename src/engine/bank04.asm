@@ -71,7 +71,7 @@ HandleStartupDebugMenuOption:
 	key_func $00, _CoreGameLoop ; power on
 	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
 	key_func $02, DebugShowConfigMenu ; config
-	db $03, $03, $5a, $72 ; effect viewer
+	key_func $03, Func_f25a ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
 	key_func $05, StartDebugDuelVsRandomOpponent ; duel
 	key_func $06, DebugSlotMachine ; slot machine

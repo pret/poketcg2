@@ -2285,10 +2285,10 @@ FinishQueuedAnimations::
 ; - a = animation index
 PlayDuelAnimation::
 	ld [wCurAnimation], a ; hold an animation temporarily
-	call .LoadDuelAnimationToBuffer
+	call LoadDuelAnimationToBuffer
 	ret
 
-.LoadDuelAnimationToBuffer:
+LoadDuelAnimationToBuffer::
 	ldh a, [hBankROM]
 	push af
 	ld [wDuelAnimReturnBank], a

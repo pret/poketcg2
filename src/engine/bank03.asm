@@ -5684,3 +5684,229 @@ Func_f085:
 	pop de
 	ret
 ; 0xf0c3
+
+SECTION "Bank 3@725a", ROMX[$725a], BANK[$3]
+
+Func_f25a:
+	push af
+	push bc
+	push de
+	push hl
+	farcall SetFadePalsFrameFunc
+	xor a
+	ld [wAnimationsDisabled], a
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	farcall Func_10d40
+	farcall SetInitialGraphicsConfiguration
+	ld de, $0
+	ld bc, $1412
+	ld h, $00
+	ld l, $00
+	farcall FillBoxInBGMap
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	call Func_f328
+	call Func_f340.asm_f35a
+	call Func_f370.asm_f397
+	call Func_3d0d
+	push af
+	ld a, $02
+	call SetMusic
+	pop af
+	farcall StartFadeFromWhite
+	farcall WaitPalFading_Bank07
+	ld a, $18
+	call Random
+	ld [wOppCoin], a
+.asm_f2b0
+	call DoFrame
+	call Func_f3b1
+	call Func_f340
+	call Func_f370
+	call Func_f2e2
+	call Func_f3c1
+	call Func_f3ee
+	ldh a, [hKeysPressed]
+	and $04
+	jr z, .asm_f2b0
+	call FinishQueuedAnimations
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call Func_3d16
+	farcall UnsetFadePalsFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_f2e2:
+	ldh a, [hKeysPressed]
+	and $01
+	ret z
+	ld a, [$d686]
+	and a
+	ret z
+	cp $8d
+	jr z, .asm_f2f3
+	cp $8d
+	ret nc
+.asm_f2f3
+	call FinishQueuedAnimations
+	call ResetAnimationQueue
+	ld a, [$d686]
+	ld [wCurAnimation], a
+	ld a, [$d687]
+	ld [wDuelAnimationScreen], a
+	ld a, [$d685]
+	ld [wDuelAnimDuelistSide], a
+	ld a, [$d688]
+	ld [wDuelAnimLocationParam], a
+	ld a, $ff
+	call Random
+	ld c, a
+	ld b, $00
+	ld hl, wDuelAnimDamage
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ld a, $07
+	ld [wDuelAnimSetScreen], a
+	call LoadDuelAnimationToBuffer
+	ret
+
+Func_f328:
+	ld hl, .Data_f32f
+	call Func_35cf
+	ret
+
+.Data_f32f:
+	; x, y, text offset
+	db $0a, $0e, $24, $06
+	db $0e, $0f, $25, $06
+	db $0e, $10, $26, $06
+	db $02, $0d, $27, $06
+	db $ff
+
+Func_f340:
+	ldh a, [hKeysPressed]
+	and $08
+	ret z
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ld b, $c3
+	ld c, $00
+	ld hl, $622
+	ld a, [$d685]
+	cp $c2
+	jr z, .asm_f361
+.asm_f35a
+	ld b, $c2
+	ld c, $00
+	ld hl, $621
+.asm_f361
+	ld a, b
+	ld [$d685], a
+	ld a, c
+	ld [$d687], a
+	ld de, $20e
+	call Func_35af
+	ret
+
+Func_f370:
+	ldh a, [hDPadHeld]
+	and $40
+	jr z, .asm_f37a
+	ld b, $0a
+	jr .asm_f399
+.asm_f37a
+	ldh a, [hDPadHeld]
+	and $80
+	jr z, .asm_f384
+	ld b, $f6
+	jr .asm_f399
+.asm_f384
+	ldh a, [hDPadHeld]
+	and $20
+	jr z, .asm_f38e
+	ld b, $ff
+	jr .asm_f399
+.asm_f38e
+	ldh a, [hDPadHeld]
+	and $10
+	ret z
+	ld b, $01
+	jr .asm_f399
+.asm_f397
+	ld b, $00
+.asm_f399
+	ld a, [$d686]
+	add b
+	and $ff
+	ld [$d686], a
+	ld l, a
+	ld h, $00
+	ld de, $30d
+	ld a, $03
+	ld b, $00
+	farcall PrintNumber
+	ret
+
+Func_f3b1:
+	ldh a, [hKeysPressed]
+	and $02
+	ret z
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	call FinishQueuedAnimations
+	ret
+
+Func_f3c1:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_1e40d
+	ld l, a
+	ld h, $00
+	ld de, $210
+	ld a, $02
+	ld b, $00
+	farcall PrintNumber
+	farcall Func_1e409
+	ld l, a
+	ld h, $00
+	ld de, $510
+	ld a, $02
+	ld b, $00
+	farcall PrintNumber
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_f3ee:
+	push af
+	push bc
+	push de
+	push hl
+	call CheckAnyAnimationPlaying
+	ld hl, $628
+	jr c, .asm_f3fd
+	ld hl, $629
+.asm_f3fd
+	ld de, $d0d
+	call Func_35af
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xf408

@@ -4870,7 +4870,15 @@ AnimationCoordinates:
 	db  88, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $d
 	db  56, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $e
 	db  24, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $f
-; 0x1e409
+
+Func_1e409:
+	ld a, [wDuelAnimBufferSize]
+	ret
+
+Func_1e40d:
+	ld a, [wDuelAnimBufferCurPos]
+	ret
+; 0x1e411
 
 SECTION "Bank 7@6419", ROMX[$6419], BANK[$7]
 
