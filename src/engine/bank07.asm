@@ -2837,7 +2837,7 @@ Func_1d475:
 	ld a, EVENT_GOT_CHANSEY_COIN
 	farcall MaxOutEventValue
 
-	farcall Func_1157c
+	farcall ClearGameCenterChips
 	call Func_1eca5
 	call Func_1d7a1
 	call Func_1d9f9
@@ -3195,12 +3195,12 @@ Func_1d7ca:
 	push hl
 	push af
 	ld a, $03
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	call Func_1d813
 	push af
 	ld a, $07
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	call Func_1d7ec
 	ld hl, wdb21
@@ -3376,30 +3376,31 @@ Func_1d8df:
 
 SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
 
-Func_1d96e:
+OWInteractionSlotMachine:
 	farcall Func_1022a
-	call Func_1d97a
+	call SlotMachine
 	farcall Func_10252
 	ret
 
-Func_1d97a:
+; a - chips per bet
+SlotMachine:
 	push af
 	push bc
 	push de
 	push hl
 	ld [wdb2f], a
-	farcall Func_1239b
-	jr c, .asm_1d999
+	farcall AskToPlaySlots
+	jr c, .done ; jump if player chose not to play
 	push af
 	ld a, $03
-	call Func_3d3a
+	call CallSetVolume
 	pop af
-	farcall Func_123fc
+	farcall StartSlotMachine
 	push af
 	ld a, $07
-	call Func_3d3a
+	call CallSetVolume
 	pop af
-.asm_1d999
+.done
 	pop hl
 	pop de
 	pop bc

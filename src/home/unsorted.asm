@@ -2428,7 +2428,7 @@ Func_3d32::
 	ld [wdd04], a
 	ret
 
-Func_3d3a::
+CallSetVolume::
 	call SetVolume
 	ret
 

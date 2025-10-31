@@ -354,7 +354,7 @@ CreditsCmd_MusicFadeOut:
 	dec a
 	push af
 	ld a, a
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	ld b, 20
 .loop_wait
@@ -369,7 +369,7 @@ CreditsCmd_SetVolume:
 	ld a, [wCreditsCmdArg1]
 	push af
 	ld a, a
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	ret
 

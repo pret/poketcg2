@@ -73,8 +73,8 @@ HandleStartupDebugMenuOption:
 	key_func $02, DebugShowConfigMenu ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
-	key_func $05, Func_1010d ; duel
-	key_func $06, Func_10125 ; slot machine
+	key_func $05, StartDebugDuelVsRandomOpponent ; duel
+	key_func $06, DebugSlotMachine ; slot machine
 	db $ff
 
 SetAllCoinsObtainedAndShowCoinMenu:
@@ -134,7 +134,7 @@ DebugShowConfigMenu:
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 
-Func_1010d:
+StartDebugDuelVsRandomOpponent:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call SetFrameFuncAndFadeFromWhite
 	ld a, $28
@@ -145,20 +145,20 @@ Func_1010d:
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_10125:
+DebugSlotMachine:
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	call Func_1157c
-	ld bc, $64
+	call ClearGameCenterChips
+	ld bc, 100
 	call AddChips
 	call Func_3d0d
 	push af
-	ld a, $20
+	ld a, MUSIC_GRDUELTHEME_2
 	call SetMusic
 	pop af
-	ld a, $05
-	farcall Func_1d97a
+	ld a, 5
+	farcall SlotMachine
 	call Func_3d16
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
@@ -3787,7 +3787,7 @@ SubtractChips:
 	ret
 
 ; clear wda98 to wda9c
-Func_1157c:
+ClearGameCenterChips:
 	push af
 	xor a
 	ld [wGameCenterChips], a
@@ -5280,15 +5280,15 @@ Func_121e1:
 
 SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
 
-Func_1239b:
+AskToPlaySlots:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_123ab
+	call DrawSlotMachineDescriptionBox
 	call SetFrameFuncAndFadeFromWhite
-	call Func_123e2
+	call PlaySlotsPrompt
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_123ab:
+DrawSlotMachineDescriptionBox:
 	lb de, 0, 0
 	lb bc, 20, 12
 	call DrawRegularTextBoxVRAM0
@@ -5310,7 +5310,7 @@ Func_123ab:
 	call Func_2c4b
 	ret
 
-Func_123e2:
+PlaySlotsPrompt:
 	ldtx hl, GameCenterSlotMachineStartPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
@@ -5324,7 +5324,7 @@ Func_123e2:
 	call Func_3d16
 	ret
 
-Func_123fc:
+StartSlotMachine:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call Func_125bf
 	xor a
