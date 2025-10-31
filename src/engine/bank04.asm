@@ -70,7 +70,7 @@ HandleStartupDebugMenuOption:
 .FunctionMap: ; boot up debug menu options
 	key_func $00, _CoreGameLoop ; power on
 	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
-	db $02, $04, $fa, $40 ; config
+	key_func $02, Func_100fa ; config
 	db $03, $03, $5a, $72 ; effect viewer
 	key_func $04, _PlayCredits ; staff roll
 	db $05, $04, $0d, $41 ; duel
@@ -125,8 +125,15 @@ SetAllCoinEvents:
 	db EVENT_GOT_GENGAR_COIN
 	db EVENT_GOT_RAICHU_COIN
 	db EVENT_GOT_LUGIA_COIN
-; 0x100fa
 
+Func_100fa:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	farcall Func_1c17a
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+; 0x1010d
 
 SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 

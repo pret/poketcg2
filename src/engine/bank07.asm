@@ -317,6 +317,250 @@ GetDuelistPortrait::
 	db PORTRAIT_DR_MASON      ; DR_MASON_PIC
 ; 0x1c116
 
+SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
+
+Func_1c17a:
+	push af
+	push bc
+	push de
+	push hl
+	call LoadSavedOptions
+	call Func_1c18c
+	call Func_1c3d5
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1c18c:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1c19f
+	farcall SetFrameFuncAndFadeFromWhite
+	call Func_1c252
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1c19f:
+	ld de, $0
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld de, $4
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld de, $8
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld b, $07
+	ld hl, $44ee
+	ld de, $111
+	call LoadMenuBoxParams
+	ld b, $07
+	ld hl, $4476
+	ld de, $602
+	call LoadMenuBoxParams
+	ld a, [wd9d5]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $449a
+	ld de, $106
+	call LoadMenuBoxParams
+	ld a, [wd9d3]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $44b6
+	ld de, $10a
+	call LoadMenuBoxParams
+	ld a, [wd9d4]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $44ce
+	ld de, $10e
+	call LoadMenuBoxParams
+	ld a, [wTextBoxFrameColor]
+	call DrawMenuBox
+	ld hl, $59d
+	ld de, $100
+	call Func_2c4b
+	ld hl, $59e
+	ld de, $104
+	call Func_2c4b
+	ld hl, $59f
+	ld de, $108
+	call Func_2c4b
+	ld hl, $771
+	ld de, $10c
+	call Func_2c4b
+	ld hl, $5a1
+	ld de, $202
+	call Func_35af
+	ld hl, $5a2
+	ld de, $1002
+	call Func_35af
+	ld hl, $5a0
+	ld de, $211
+	call Func_35af
+	ret
+
+Func_1c252:
+	ld a, [wd9d0]
+	ld c, a
+	inc a
+	dec a
+	jr z, .asm_1c266
+	dec a
+	jr z, .asm_1c280
+	dec a
+	jr z, .asm_1c298
+	dec a
+	jr z, .asm_1c2b0
+	dec a
+	jr z, .asm_1c2c8
+.asm_1c266
+	ld c, $00
+	call Func_1c363
+	jr nc, .asm_1c2e3
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_1c2e3
+	ldh a, [hKeysHeld]
+	and $40
+	jr nz, .asm_1c2c8
+.asm_1c280
+	ld c, $01
+	call Func_1c2ef
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_1c2e3
+	ldh a, [hKeysHeld]
+	and $40
+	jr nz, .asm_1c266
+.asm_1c298
+	ld c, $02
+	call Func_1c30c
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_1c2e3
+	ldh a, [hKeysHeld]
+	and $40
+	jr nz, .asm_1c280
+.asm_1c2b0
+	ld c, $03
+	call Func_1c329
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_1c2e3
+	ldh a, [hKeysHeld]
+	and $40
+	jr nz, .asm_1c298
+.asm_1c2c8
+	ld c, $04
+	call Func_1c346
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and $02
+	jr nz, .asm_1c2e3
+	ldh a, [hKeysHeld]
+	and $40
+	jr nz, .asm_1c2b0
+	jp .asm_1c266
+.asm_1c2e3
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ld a, c
+	ld [wd9d0], a
+	ret
+
+Func_1c2ef:
+	ld b, $07
+	ld hl, $4476
+	ld de, $602
+	ld a, [wd9d5]
+	call LoadMenuBoxParams
+	ld a, $08
+	call SetMenuBoxDelay
+	ld a, [wd9d5]
+	call HandleMenuBox
+	ld [wd9d5], a
+	ret
+
+Func_1c30c:
+	ld b, $07
+	ld hl, $449a
+	ld de, $106
+	ld a, [wd9d3]
+	call LoadMenuBoxParams
+	ld a, $08
+	call SetMenuBoxDelay
+	ld a, [wd9d3]
+	call HandleMenuBox
+	ld [wd9d3], a
+	ret
+
+Func_1c329:
+	ld b, $07
+	ld hl, $44b6
+	ld de, $10a
+	ld a, [wd9d4]
+	call LoadMenuBoxParams
+	ld a, $08
+	call SetMenuBoxDelay
+	ld a, [wd9d4]
+	call HandleMenuBox
+	ld [wd9d4], a
+	ret
+
+Func_1c346:
+	ld b, $07
+	ld hl, $44ce
+	ld de, $10e
+	ld a, [wTextBoxFrameColor]
+	call LoadMenuBoxParams
+	ld a, $08
+	call SetMenuBoxDelay
+	ld a, [wTextBoxFrameColor]
+	call HandleMenuBox
+	ld [wTextBoxFrameColor], a
+	ret
+
+Func_1c363:
+	ld b, $07
+	ld hl, $44ee
+	ld de, $111
+	xor a
+	call LoadMenuBoxParams
+	ld a, $08
+	call SetMenuBoxDelay
+	xor a
+	call HandleMenuBox
+	ret
+; 0x1c379
+
+
 SECTION "Bank 7@4395", ROMX[$4395], BANK[$7]
 
 LoadSavedOptions:
