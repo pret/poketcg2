@@ -68,11 +68,11 @@ HandleStartupDebugMenuOption:
 	ret
 
 .FunctionMap: ; boot up debug menu options
-	db $00, $03, $00, $40 ; power on
+	key_func $00, _CoreGameLoop ; power on
 	db $01, $04, $b6, $40 ; coins
 	db $02, $04, $fa, $40 ; config
 	db $03, $03, $5a, $72 ; effect viewer
-	db $04, $04, $90, $78 ; staff roll
+	key_func $04, _PlayCredits ; staff roll
 	db $05, $04, $0d, $41 ; duel
 	db $06, $04, $25, $41 ; slot machine
 	db $ff
