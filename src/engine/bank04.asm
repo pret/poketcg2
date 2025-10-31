@@ -1,23 +1,23 @@
-Func_10000::
+StartUpDebugMenu::
 	push af
 	push bc
 	push de
 	push hl
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
-.asm_1000b
+.loop
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call FlushAllPalettes
 	call EnableLCD
-	call Func_1002b
-	call Func_10076
-	jr c, .asm_10023
-	call Func_10092
-	jr c, .asm_10023
-	jr .asm_1000b
-.asm_10023
+	call InitStartupDebugMenuBox
+	call HandleStartupDebugMenuBox
+	jr c, .done
+	call HandleStartupDebugMenuOption
+	jr c, .done
+	jr .loop
+.done
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	pop hl
 	pop de
@@ -25,16 +25,16 @@ Func_10000::
 	pop af
 	ret
 
-Func_1002b:
+InitStartupDebugMenuBox:
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $0
+	lb de, 0, 0
 	ld b, $04
 	ld hl, $4046
 	call LoadMenuBoxParams
-	ld a, [$d682]
+	ld a, [wDebugMenuCursorPosition]
 	farcall DrawMenuBox
 	pop hl
 	pop de
@@ -45,29 +45,29 @@ Func_1002b:
 
 SECTION "Bank 4@4076", ROMX[$4076], BANK[$4]
 
-Func_10076:
-	ld a, [$d682]
+HandleStartupDebugMenuBox:
+	ld a, [wDebugMenuCursorPosition]
 	farcall HandleMenuBox
-	ld [$d682], a
+	ld [wDebugMenuCursorPosition], a
 	jr c, .asm_1008a
 	push af
-	ld a, $02
+	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1008a
 	push af
-	ld a, $03
+	ld a, SFX_03
 	call CallPlaySFX
 	pop af
 	ret
 
-Func_10092:
-	ld hl, Data_10099
+HandleStartupDebugMenuOption:
+	ld hl, .FunctionMap
 	call CallMappedFunction
 	ret
 
-Data_10099: ; boot up debug menu options
+.FunctionMap: ; boot up debug menu options
 	db $00, $03, $00, $40 ; power on
 	db $01, $04, $b6, $40 ; coins
 	db $02, $04, $fa, $40 ; config

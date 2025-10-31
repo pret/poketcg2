@@ -730,8 +730,8 @@ CoreGameLoop::
 	farcall _CoreGameLoop
 	ret
 
-Func_34be::
-	farcall Func_10000
+CallStartupDebugMenu::
+	farcall StartUpDebugMenu
 	ret
 
 WaitForLCDOff::

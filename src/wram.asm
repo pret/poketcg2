@@ -2481,7 +2481,10 @@ wd680:: ; d680
 wOWScrollSpeed:: ; d681
 	ds $1
 
-	ds $a
+wDebugMenuCursorPosition:: ; d682
+	ds $1
+
+	ds $9
 
 wd68c:: ; d68c
 	ds $1
