@@ -428,10 +428,10 @@ HandleConfigMenu:
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .done
 	ldh a, [hKeysHeld]
-	and D_UP
+	and PAD_UP
 	jr nz, .frame_color_box
 .message_speed_box
 	ld c, 1
@@ -441,10 +441,10 @@ HandleConfigMenu:
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .done
 	ldh a, [hKeysHeld]
-	and D_UP
+	and PAD_UP
 	jr nz, .exit_menu_box
 .duel_animations_box
 	ld c, 2
@@ -454,10 +454,10 @@ HandleConfigMenu:
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .done
 	ldh a, [hKeysHeld]
-	and D_UP
+	and PAD_UP
 	jr nz, .message_speed_box
 .coin_toss_animation_box
 	ld c, 3
@@ -467,10 +467,10 @@ HandleConfigMenu:
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .done
 	ldh a, [hKeysHeld]
-	and D_UP
+	and PAD_UP
 	jr nz, .duel_animations_box
 .frame_color_box
 	ld c, 4
@@ -480,10 +480,10 @@ HandleConfigMenu:
 	call CallPlaySFX
 	pop af
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .done
 	ldh a, [hKeysHeld]
-	and D_UP
+	and PAD_UP
 	jr nz, .coin_toss_animation_box
 	jp .exit_menu_box
 .done

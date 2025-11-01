@@ -5729,7 +5729,7 @@ DebugMenuEffectViewer:
 	call DebugPrintAnimBufferCurPosAndSize
 	call ChangeDebugViewerStateText
 	ldh a, [hKeysPressed]
-	and SELECT
+	and PAD_SELECT
 	jr z, .button_handling_loop
 	call FinishQueuedAnimations
 	farcall StartFadeToWhite
@@ -5744,7 +5744,7 @@ DebugMenuEffectViewer:
 
 PlayAnimationOnAPress:
 	ldh a, [hKeysPressed]
-	and A_BUTTON
+	and PAD_A
 	ret z
 	ld a, [wDebugSelectedAnimNumber]
 	and a
@@ -5765,7 +5765,7 @@ PlayAnimationOnAPress:
 	ld a, [wDebugDuelAnimLocationParam]
 	ld [wDuelAnimLocationParam], a
 	ld a, $ff
-	call Random  ; pick random damage number to show
+	call Random ; pick random damage number to show
 	ld c, a
 	ld b, $00
 	ld hl, wDuelAnimDamage
@@ -5792,7 +5792,7 @@ DebugEffectViewer_PlaceTextItems:
 
 ChangeAnimationPlayerSideOnStartPress:
 	ldh a, [hKeysPressed]
-	and START
+	and PAD_START
 	ret z
 	push af
 	ld a, SFX_02
@@ -5819,25 +5819,25 @@ ChangeAnimationPlayerSideOnStartPress:
 
 ChangeEffectNumberOnDpadPress:
 	ldh a, [hDPadHeld]
-	and D_UP
+	and PAD_UP
 	jr z, .asm_f37a
 	ld b, $0a
 	jr .asm_f399
 .asm_f37a
 	ldh a, [hDPadHeld]
-	and D_DOWN
+	and PAD_DOWN
 	jr z, .asm_f384
 	ld b, $f6
 	jr .asm_f399
 .asm_f384
 	ldh a, [hDPadHeld]
-	and D_LEFT
+	and PAD_LEFT
 	jr z, .asm_f38e
 	ld b, $ff
 	jr .asm_f399
 .asm_f38e
 	ldh a, [hDPadHeld]
-	and D_RIGHT
+	and PAD_RIGHT
 	ret z
 	ld b, $01
 	jr .asm_f399
@@ -5858,7 +5858,7 @@ ChangeEffectNumberOnDpadPress:
 
 CancelAnimationOnBPress:
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	ret z
 	push af
 	ld a, SFX_03
