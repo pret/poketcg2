@@ -5333,7 +5333,7 @@ PrinterMenu_PokemonCards:
 	call .Func_b45d
 	lb de, 1, 1
 	call InitTextPrinting
-	ld hl, $2f6
+	ldtx hl, PrintThisCardPromptYesNoText
 	call ProcessTextFromID
 	ld a, $01
 	ld hl, Data_ad05

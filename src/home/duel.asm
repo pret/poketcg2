@@ -1599,7 +1599,7 @@ CheckSelfConfusionDamage:
 	or a
 	ret
 .confused
-	ld de, $117 ; ConfusionCheckDamageText
+	ldtx de, ConfusionCheckDamageText
 	call TossCoin
 	jr c, .no_confusion_damage
 	ld a, 1
@@ -2093,7 +2093,7 @@ Func_19fd:
 Func_1a1e:
 	bank1call ClearNonTurnTemporaryDuelvars
 	call Func_19fd
-	ld hl, $1a2
+	ldtx hl, MetronomeWasUnsuccessfulText
 	jp DrawWideTextBox_WaitForInput
 
 ; return in a the retreat cost of the turn holder's arena or bench Pokemon

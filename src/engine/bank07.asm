@@ -5331,12 +5331,12 @@ Func_1e99c:
 	call Func_1ea1f
 	call Func_1ea6d
 	call Func_1eba4
-	ld bc, $161
+	ld bc, PALETTE_161
 	farcall GetPaletteGfxPointer
 	ld c, $00
 	call LoadGfxPalettes
 	farcall SetFrameFuncAndFadeFromWhite
-	ld c, $02
+	ld c, PAD_B
 	farcall Func_10221
 	call Func_3f61
 	farcall FadeToWhiteAndUnsetFrameFunc
@@ -5529,7 +5529,7 @@ Func_1eba4:
 	push bc
 	push de
 	push hl
-	ld hl, $69c
+	ldtx hl, GrandMasterCupBracketChampionshipText
 	ld a, [wdd20]
 	and a
 	jr z, .asm_1ebd1

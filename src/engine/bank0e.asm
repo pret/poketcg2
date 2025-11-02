@@ -6027,7 +6027,7 @@ Func_3b4eb:
 	ld b, $80
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-	ld bc, $2f3
+	ldtx bc, BuiltSubbedDeckWithTheseCardsText
 	ld hl, wd38a
 	ld a, c
 	ld [hli], a
@@ -6608,7 +6608,7 @@ Func_3b92b:
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld bc, $2e7
+	ldtx bc, LackTheseCardsToBuildThisDeckText
 	ld hl, wd38a
 	ld a, c
 	ld [hli], a
@@ -6738,10 +6738,10 @@ Func_3b9d6:
 	ld a, [wd49e]
 	or a
 	jr nz, .asm_3ba68
-	ld bc, $2e8
+	ldtx bc, UsingTheseCardsInOtherDecksText
 	jr .asm_3ba6b
 .asm_3ba68
-	ld bc, $2e9
+	ldtx bc, UsingTheseCardsTooInOtherDecksText
 .asm_3ba6b
 	ld hl, wd38a
 	ld a, c

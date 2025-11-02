@@ -3637,7 +3637,7 @@ Func_2bcfb:
 	ld a, [wd548]
 	or a
 	jr nz, .asm_2bd31
-	ld hl, $30a
+	ldtx hl, AutoDeckMachine1Text
 	jr .asm_2bd34
 .asm_2bd31
 	ldtx hl, AutoDeckMachine2Text

@@ -4856,10 +4856,10 @@ Func_2612a:
 	call YesOrNoMenuWithText
 	ret c
 	farcall Func_1f333
-	ld hl, $27f
+	ldtx hl, GameCenterBillsPCUnableLastOutputRemainingText
 	jr c, .asm_2619a
 	farcall GetGameCenterChips
-	ld hl, $280
+	ldtx hl, GameCenterBillsPCUnableNotEnoughChipsText
 	ld a, b
 	or a
 	jr nz, .asm_2617a
@@ -4867,9 +4867,9 @@ Func_2612a:
 	cp $14
 	jr c, .asm_2619a
 .asm_2617a
-	ld de, $1b4
+	ld de, BILLS_COMPUTER
 	call GetCardCountInCollectionAndDecks
-	ld hl, $276
+	ldtx hl, GameCenterBillsPCUnableNoBillsComputerText
 	jr c, .asm_2619a
 	xor a
 	ld [wDeckDiagnosisStep], a
@@ -4877,7 +4877,7 @@ Func_2612a:
 	call Func_263a5
 	call Func_264a5
 	ld [wcd29], a
-	ld hl, $278
+	ldtx hl, GameCenterBillsPCUnableNoCompatibleCardsText
 	jr nc, .asm_2619f
 .asm_2619a
 	call PrintScrollableText_NoTextBoxLabel
@@ -4912,7 +4912,7 @@ Func_2612a:
 	call LoadCardOrDuelMenuBorderTiles
 	ld hl, $62a2
 	call WriteDataBlocksToBGMap0
-	ld de, $1b4
+	ld de, BILLS_COMPUTER
 	call LoadCardDataToBuffer2_FromCardID
 	ld hl, wLoadedCard2Gfx
 	ld a, [hli]
