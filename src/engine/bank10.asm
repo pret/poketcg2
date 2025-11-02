@@ -2166,8 +2166,6 @@ Func_413e2:
 Script_41408:
 	script_command_02
 	quit_script
-
-Func_4140a:
 	ld b, $00
 .asm_4140c
 	xor a
@@ -2258,9 +2256,9 @@ Func_4140a:
 
 Script_41499:
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_414b8
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_414ac
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_414c4
@@ -2332,9 +2330,9 @@ Script_41499:
 
 Script_4151b:
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_4153e
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_41532
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_4154a
@@ -2549,7 +2547,7 @@ Func_41662:
 	print_npc_text Text0954
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_416d0
 	move_player .NPCMovement_416f8, TRUE
 	script_jump .ows_416dd
@@ -3339,9 +3337,9 @@ Func_41cd3:
 	print_npc_text Text082b
 	script_command_02
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_41d0d
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_41d2b
 	get_player_x_position
 	compare_loaded_var $04
@@ -6168,9 +6166,9 @@ Script_4336b:
 	script_command_02
 	set_active_npc_direction SOUTH
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_4338d
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0nz .ows_43386
 	move_player .NPCMovement_43394, TRUE
 	script_jump .ows_43391

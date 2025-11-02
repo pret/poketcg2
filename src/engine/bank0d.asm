@@ -1203,9 +1203,9 @@ Func_34910:
 	print_npc_text Text081d
 	script_command_02
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3494a
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_34968
 	get_player_x_position
 	compare_loaded_var $0a
@@ -1595,8 +1595,6 @@ Func_34c3c:
 
 Script_34c4c:
 	quit_script
-
-Func_34c4d:
 	farcall Func_1d7be
 	cp $09
 	jp z, .asm_34cef
@@ -1828,9 +1826,9 @@ Func_34de6:
 	print_npc_text Text0d59
 	script_command_02
 	get_active_npc_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_34e0f
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0nz .ows_34e14
 	set_active_npc_direction EAST
 	script_jump .ows_34e16
@@ -2614,7 +2612,7 @@ Func_353e5:
 	print_npc_text Text0e3f
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_35434
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -3036,7 +3034,7 @@ Func_356e8:
 	script_command_02
 	set_scroll_state $02
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0z .ows_35735
 	set_player_direction NORTH
 	animate_player_movement $82, $02
@@ -3339,7 +3337,7 @@ Func_358f3:
 	print_npc_text Text1211
 	script_command_02
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0z .ows_35976
 	set_player_direction NORTH
 	animate_player_movement $82, $02
@@ -3639,7 +3637,7 @@ Func_35b82:
 	print_npc_text Text0c26
 	script_command_02
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0z .ows_35bd9
 	set_player_direction NORTH
 	animate_player_movement $82, $02
@@ -5167,7 +5165,7 @@ Func_3678e:
 	ret
 .ows_3680c
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_36819
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -5297,7 +5295,7 @@ Func_36887:
 	ret
 .ows_36905
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_36912
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -5435,7 +5433,7 @@ Func_36990:
 	ret
 .ows_36a0c
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_36a19
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -5606,7 +5604,7 @@ Func_36ad3:
 	ret
 .ows_36b58
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_36b65
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -5909,7 +5907,7 @@ Script_36d75:
 	print_npc_text Text111d
 	script_command_02
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_36dba
 	set_player_direction EAST
 	script_jump .ows_36dc0
@@ -6844,7 +6842,7 @@ Func_37493:
 	print_npc_text Text08e5
 	script_command_02
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0z .ows_374d8
 	set_player_direction NORTH
 	animate_player_movement $82, $02
@@ -6929,7 +6927,7 @@ Func_37534:
 	print_npc_text Text08e5
 	script_command_02
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0z .ows_37579
 	set_player_direction NORTH
 	animate_player_movement $82, $02
@@ -7613,9 +7611,9 @@ Script_37ac0:
 	check_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	script_call b0z, .ows_37aef
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_37ae8
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_37ae1
 	move_player .NPCMovement_37af4, TRUE
 	script_jump .ows_37aec
@@ -7662,9 +7660,9 @@ Script_37b18:
 	set_active_npc_direction EAST
 	move_npc NPC_KANZAKI, .NPCMovement_37b5c
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_37b38
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_37b31
 	move_player .NPCMovement_37b3f, TRUE
 	script_jump .ows_37b3c

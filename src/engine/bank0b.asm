@@ -489,7 +489,7 @@ Func_2c3cb:
 	print_npc_text Text0eb5
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_2c3f8
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -2423,7 +2423,7 @@ Script_2d249:
 	print_npc_text Text0bbf
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2d25d
 	move_active_npc .NPCMovement_2d296
 	move_player .NPCMovement_2d29f, TRUE
@@ -2506,14 +2506,12 @@ Script_2d2d1:
 	print_variable_npc_text Text0bc9, Text0bca
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2d2ef
 	set_player_direction WEST
 	animate_player_movement $81, $02
 .ows_2d2ef
 	quit_script
-
-Func_2d2f0:
 	ld a, NPC_GR_4
 	ld b, $01
 	farcall SetOWObjectAnimStruct1Flag2
@@ -4263,12 +4261,12 @@ Func_2e023:
 Script_2e038:
 	set_event EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	print_npc_text Text08c0
-	give_coin COIN_GR_START + (COIN_GR_PIECE1)
+	give_coin COIN_GR_START + COIN_GR_PIECE1
 	check_event EVENT_GOT_GR_COIN
 	print_variable_npc_text Text08c1, Text08c2
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2e052
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -4857,7 +4855,7 @@ Func_2e449:
 	print_variable_npc_text Text0e77, Text0e78
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2e48b
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -5946,7 +5944,7 @@ Func_2ec5a:
 	print_variable_npc_text Text106a, Text106b
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2ec9c
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -6560,7 +6558,7 @@ Script_2f127:
 	script_command_01
 	do_frames 30
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2f182
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -8039,7 +8037,7 @@ Script_2fc3e:
 	script_command_02
 	set_scroll_state $02
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0z .ows_2fc65
 	set_player_direction NORTH
 	animate_player_movement $82, $02

@@ -413,7 +413,7 @@ Func_3c30c:
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopResultText
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_3c36b
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -432,7 +432,7 @@ Func_3c30c:
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopRepeatText
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_3c391
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -605,7 +605,7 @@ Script_3c497:
 	print_npc_text Text12d5
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3c4cc
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -697,7 +697,7 @@ Func_3c52d:
 .ows_3c577
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3c583
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -1345,9 +1345,9 @@ Func_3ca4d:
 
 Script_3ca68:
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3ca81
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3ca7a
 	move_player .NPCMovement_3ca94, TRUE
 	script_jump .ows_3ca85
@@ -1388,9 +1388,9 @@ Script_3ca68:
 
 Script_3cab1:
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3caca
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3cac3
 	move_player .NPCMovement_3cadd, TRUE
 	script_jump .ows_3cace
@@ -1437,9 +1437,9 @@ Script_3cab1:
 
 Script_3cb06:
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3cb1f
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3cb18
 	move_player .NPCMovement_3cb32, TRUE
 	script_jump .ows_3cb23
@@ -1478,9 +1478,9 @@ Script_3cb06:
 
 Script_3cb4b:
 	get_player_direction
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3cb64
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3cb5d
 	move_player .NPCMovement_3cb73, TRUE
 	script_jump .ows_3cb68
@@ -3527,9 +3527,9 @@ Func_3db13:
 
 Script_3db41:
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3db5a
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3db53
 	move_player .NPCMovement_3dbac, TRUE
 	script_jump .ows_3db5e
@@ -3615,7 +3615,7 @@ Script_3dbde:
 	animate_npc_movement NPC_TCG_CUP_CLERK_RIGHT, $01, $01
 	set_npc_direction NPC_TCG_CUP_CLERK_RIGHT, WEST
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3dbf8
 	move_player .NPCMovement_3dc38, TRUE
 	script_jump .ows_3dc17
@@ -3626,7 +3626,7 @@ Script_3dbde:
 	animate_npc_movement NPC_TCG_CUP_CLERK_LEFT, $03, $01
 	set_npc_direction NPC_TCG_CUP_CLERK_LEFT, EAST
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3dc13
 	move_player .NPCMovement_3dc41, TRUE
 	script_jump .ows_3dc17
@@ -3770,8 +3770,6 @@ Func_3dcf2:
 
 Script_3dd1d:
 	quit_script
-
-Func_3dd1e:
 	xor a
 	farcall Func_4568f
 	call LoadTxRam2
@@ -3787,8 +3785,6 @@ Func_3dd1e:
 
 Script_3dd3a:
 	quit_script
-
-Func_3dd3b:
 	ld a, $02
 	farcall Func_4568f
 	call LoadTxRam2
@@ -4305,9 +4301,6 @@ Func_3e12b:
 	print_npc_text Text0fb2
 	script_command_02
 	quit_script
-; 0x3e148
-
-; unreferenced?
 	farcall Func_45573
 	farcall Func_455a3
 	ld a, $01
@@ -4567,9 +4560,6 @@ Func_3e2a4:
 	script_jump_if_b0nz .ows_3e3c0
 	print_npc_text Text0fc9
 	quit_script
-; 0x3e34d
-
-; unreferenced?
 	farcall Func_455a3
 	ld a, $01
 	start_script
@@ -4579,17 +4569,11 @@ Func_3e2a4:
 	wait_for_player_animation
 	script_command_01
 	quit_script
-; 0x3e360
-
-; unreferenced?
 	farcall Func_454e3
 	ld a, $01
 	start_script
 	print_npc_text Text0fcb
 	quit_script
-; 0x3e36d
-
-; unreferenced?
 	ld a, VAR_1E
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
@@ -4607,9 +4591,6 @@ Func_3e2a4:
 .ows_3e393
 	script_command_02
 	quit_script
-; 0x3e395
-
-; unreferenced?
 	farcall Func_45488
 	farcall Func_45484
 	push af
@@ -5235,9 +5216,9 @@ Script_3e873:
 	script_command_02
 	set_active_npc_direction WEST
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3e88f
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3e888
 	move_player .NPCMovement_3e896, TRUE
 	script_jump .ows_3e893
@@ -5771,7 +5752,7 @@ Func_3ec75:
 	print_npc_text Text0ede
 	script_command_02
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3ec9d
 	set_player_direction EAST
 	animate_player_movement $83, $02
@@ -5904,10 +5885,10 @@ Func_3edb7:
 	script_command_01
 	print_npc_text GameCenterChipDeskWelcomeText
 	get_game_center_chips
-	compare_loaded_var_word $0000
+	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3edfd
 	get_game_center_banked_chips
-	compare_loaded_var_word $0000
+	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3ede0
 	script_jump .ows_3ee0e
 .ows_3ede0
@@ -5962,10 +5943,10 @@ Func_3ee11:
 	script_jump .ows_3ee80
 .ows_3ee3e
 	get_game_center_chips
-	compare_loaded_var_word $0000
+	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3ee7d
 	get_game_center_banked_chips
-	compare_loaded_var_word $0000
+	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3ee7d
 	quit_script
 	ld a, [wd584]

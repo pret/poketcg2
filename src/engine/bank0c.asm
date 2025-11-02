@@ -1347,9 +1347,9 @@ Func_312d2:
 
 Script_312ea:
 	get_player_direction
-	compare_loaded_var $00
+	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_31303
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_312fc
 	move_player .NPCMovement_31309, TRUE
 	script_jump .ows_31307
@@ -2577,7 +2577,7 @@ Func_31c37:
 	print_npc_text Text0db4
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_31c80
 	set_player_direction WEST
 	animate_player_movement $81, $02
@@ -3408,9 +3408,9 @@ Func_322a1:
 	print_npc_text Text11c2
 	script_command_02
 	get_player_direction
-	compare_loaded_var $02
+	compare_loaded_var SOUTH
 	script_jump_if_b0nz .ows_3230d
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_32306
 	move_player .NPCMovement_32367, TRUE
 	script_jump .ows_32311
@@ -4845,9 +4845,9 @@ Script_32d8f:
 	do_frames 30
 	move_npc NPC_COURTNEY, .NPCMovement_32de0
 	get_player_direction
-	compare_loaded_var $01
+	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_32dc1
-	compare_loaded_var $03
+	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_32dba
 	move_player .NPCMovement_32dec, TRUE
 	script_jump .ows_32dc5
