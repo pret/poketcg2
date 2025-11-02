@@ -2884,12 +2884,23 @@ wTotalNumCardsCollected:: ; db15
 wdb17:: ; db17
 	ds $1
 
-	ds $7
+wdb18:: ; db18
+	ds $1
+
+wdb19:: ; db19
+	ds $1
+
+wdb1a:: ; db1a
+	ds $5
 
 wdb1f:: ; db1f
 	ds $1
 
-	ds $3
+wdb20:: ; db20
+	ds $1
+
+wdb21:: ; db21
+	ds $2
 
 wdb23:: ; db23
 	ds $c
@@ -3137,7 +3148,26 @@ wCurBoosterPack:: ; dd08
 wAnotherBoosterPack:: ; dd09
 	ds $1
 
-	ds $1b
+wdd0a:: ; dd0a
+	ds $10
+
+wdd1a:: ; dd1a
+	ds $6
+
+wdd20:: ; dd20
+	ds $1
+
+wdd21:: ; dd21
+	ds $1
+
+wdd22:: ; dd22
+	ds $1
+
+wdd23:: ; dd23
+	ds $1
+
+wdd24:: ; dd24
+	ds $1
 
 wdd25:: ; dd25
 	ds $2
@@ -3212,7 +3242,23 @@ wdd76:: ; dd76
 wdd77:: ; dd77
 	ds $1
 
-	ds $1c
+wdd78:: ; dd78
+	ds $1
+
+wdd79:: ; dd79
+	ds $1
+
+wdd7a:: ; dd7a
+	ds $10
+
+wdd8a:: ; dd8a
+	ds $4
+
+wdd8e:: ; dd8e
+	ds $5
+
+wdd93:: ; dd93
+	ds $1
 
 wCardTilemap:: ; dd94
 	ds $30

@@ -164,7 +164,7 @@ Func_1c0b2:
 	ld a, [hli]
 	cp e
 	jr nz, .asm_1c0ce
-	ld a, [$d7ed]
+	ld a, [wOWMap + 1]
 	ld e, a
 	ld a, [hl]
 	cp e
@@ -2661,9 +2661,6 @@ Pals_1d50d:
 	rgb 31, 31, 31
 	rgb 31,  0,  0
 	rgb  1,  0,  5
-; 0x1d51d
-
-SECTION "Bank 7@551e", ROMX[$551e], BANK[$7]
 
 Func_1d51e:
 	push af
@@ -2720,7 +2717,7 @@ Func_1d584:
 	push de
 	push hl
 	xor a
-	ld [$db18], a
+	ld [wdb18], a
 	call Func_1d5b4
 	pop hl
 	pop de
@@ -2760,7 +2757,7 @@ Func_1d5c7:
 	ld b, $07
 	ld hl, $564a
 	call LoadMenuBoxParams
-	ld a, [$db18]
+	ld a, [wdb18]
 	call DrawMenuBox
 	ldtx hl, PlayersChipsText
 	lb de, 1, 0
@@ -2778,7 +2775,7 @@ Func_1d5c7:
 	ld a, $04
 	ld b, TRUE
 	call PrintNumber
-	ld hl, $db1a
+	ld hl, wdb1a
 	ld e, $02
 	ld c, $05
 .asm_1d60e
@@ -2834,9 +2831,9 @@ Func_1d66e:
 	lb de, 1, 14
 	ldtx hl, GameCenterPrizeExchangeChoosePrizeText
 	farcall PrintTextInWideTextBox
-	ld a, [$db18]
+	ld a, [wdb18]
 	call HandleMenuBox
-	ld [$db18], a
+	ld [wdb18], a
 	jr c, .asm_1d68c
 	push af
 	ld a, SFX_02
@@ -2868,13 +2865,13 @@ Func_1d66e:
 	ret
 
 Func_1d6be:
-	ld a, [$db18]
+	ld a, [wdb18]
 	ld c, a
 	ld b, $00
-	ld hl, $db1a
+	ld hl, wdb1a
 	add hl, bc
 	ld a, [hl]
-	ld [$db19], a
+	ld [wdb19], a
 	add a
 	add a
 	ld c, a
@@ -2894,7 +2891,7 @@ Func_1d6be:
 	farcall SubtractChips
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
-	ld a, [$db19]
+	ld a, [wdb19]
 	ld hl, $5704
 	call CallMappedFunction
 	call WaitPalFading_Bank07
@@ -2917,7 +2914,7 @@ Func_1d779:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, $db1a
+	ld de, wdb1a
 	ld c, $05
 .asm_1d78c
 	ld a, [hli]
@@ -2957,25 +2954,25 @@ Func_1d7ca:
 	call Func_3d3a
 	pop af
 	call Func_1d7ec
-	ld hl, $db21
+	ld hl, wdb21
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [$db20]
+	ld a, [wdb20]
 	pop hl
 	pop de
 	ret
 
 Func_1d7ec:
-	ld a, [$db20]
+	ld a, [wdb20]
 	add a
 	ld c, a
 	ld b, $00
 	add hl, bc
 	ld a, [hli]
-	ld [$db21], a
+	ld [wdb21], a
 	ld a, [hl]
-	ld [$db22], a
+	ld [wdb21 + 1], a
 	ret
 ; 0x1d7fd
 
@@ -2994,7 +2991,7 @@ Func_1d813:
 	call UpdateRNGSources
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and $01
+	and PAD_A
 	jr z, .asm_1d825
 	call UpdateRNGSources
 	and $01
@@ -3037,7 +3034,7 @@ Func_1d813:
 	jr nz, .asm_1d820
 .asm_1d874
 	ld a, c
-	ld [$db20], a
+	ld [wdb20], a
 	cp $03
 	jr nc, .asm_1d881
 	call Func_1d8df
@@ -3127,7 +3124,6 @@ Func_1d8df:
 	scf
 	jr .asm_1d914
 ; 0x1d92a
-
 
 SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
 
@@ -5368,7 +5364,7 @@ Func_1e9ea:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $dd0a
+	ld hl, wdd0a
 	add hl, bc
 	ld [hl], e
 	inc hl
@@ -5383,13 +5379,13 @@ Func_1ea00:
 	push af
 	push hl
 	xor a
-	ld hl, $5be
+	ldtx hl, TxRam1Text
 .asm_1ea06
 	call Func_1e9ea
 	inc a
 	cp $08
 	jr nz, .asm_1ea06
-	ld hl, $dd1a
+	ld hl, wdd1a
 	ld c, $07
 	xor a
 .asm_1ea14
@@ -5397,7 +5393,7 @@ Func_1ea00:
 	dec c
 	jr nz, .asm_1ea14
 	xor a
-	ld [$dd21], a
+	ld [wdd21], a
 	pop hl
 	pop af
 	ret
@@ -5411,7 +5407,7 @@ Func_1ea1f:
 	lb bc, 6, 15
 	farcall FillBoxInBGMapWithZero
 	lb de, 1, 2
-	ld hl, $dd0a
+	ld hl, wdd0a
 	xor a
 .asm_1ea34
 	push hl
@@ -5440,7 +5436,7 @@ Func_1ea4c:
 	push bc
 	push hl
 	ld b, $00
-	ld hl, $dd1a
+	ld hl, wdd1a
 	add hl, bc
 	ld [hl], a
 	dec a
@@ -5452,9 +5448,9 @@ Func_1ea4c:
 	jr nz, .asm_1ea5a
 	ld b, a
 	srl b
-	ld a, [$dd21]
+	ld a, [wdd21]
 	or b
-	ld [$dd21], a
+	ld [wdd21], a
 	pop hl
 	pop bc
 	pop af
@@ -5465,7 +5461,7 @@ Func_1ea6d:
 	push bc
 	push de
 	push hl
-	ld hl, $dd1a
+	ld hl, wdd1a
 	ld bc, $0
 .asm_1ea77
 	ld a, [hli]
@@ -5534,13 +5530,13 @@ Func_1eba4:
 	push de
 	push hl
 	ld hl, $69c
-	ld a, [$dd20]
+	ld a, [wdd20]
 	and a
 	jr z, .asm_1ebd1
 	call Func_1ebe3
 	push af
 	farcall Func_4565d
-	ld [$dd22], a
+	ld [wdd22], a
 	call Func_1ec0f
 	ld hl, Func_3d54
 	call Func_3f6b
@@ -5548,7 +5544,7 @@ Func_1eba4:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $dd0a
+	ld hl, wdd0a
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -5571,7 +5567,7 @@ Func_1ebe3:
 	ld hl, $6bff
 	ld d, $00
 .asm_1ebeb
-	ld a, [$dd21]
+	ld a, [wdd21]
 	ld b, [hl]
 	inc hl
 	and b
@@ -5596,7 +5592,7 @@ Func_1ec0f:
 	push bc
 	push de
 	push hl
-	ld a, [$dd22]
+	ld a, [wdd22]
 	ld b, $02
 	ld d, $70
 	ld e, $30
@@ -5605,9 +5601,9 @@ Func_1ec0f:
 	ld b, $01
 	farcall _SetOWObjectFrameIndex
 	xor a
-	ld [$dd24], a
+	ld [wdd24], a
 	ld a, $02
-	ld [$dd23], a
+	ld [wdd23], a
 	pop hl
 	pop de
 	pop bc
@@ -5986,7 +5982,6 @@ GetwDD75:
 	ld a, [wdd75]
 	and a
 	ret
-; 0x1f627
 
 Func_1f627:
 	farcall Func_102a4
@@ -5999,7 +5994,7 @@ Func_1f633:
 	push de
 	push hl
 	xor a
-	ld [$dd78], a
+	ld [wdd78], a
 	call Func_1f644
 	call Func_1f7ad
 	pop hl
@@ -6037,10 +6032,10 @@ Func_1f682:
 	ld hl, $76ad
 	ld de, $3
 	call LoadMenuBoxParams
-	ld a, [$dd78]
+	ld a, [wdd78]
 	call DrawMenuBox
 	ld de, $404
-	ld hl, $dd7a
+	ld hl, wdd7a
 	ld c, $04
 .asm_1f69b
 	push hl
@@ -6066,34 +6061,34 @@ Func_1f6cd:
 .asm_1f6cd
 	call Func_1f748
 	xor a
-	ld [$dd79], a
+	ld [wdd79], a
 .asm_1f6d4
 	ldtx hl, GrandMasterCupPrizesDialogText
 	lb de, 1, 14
 	call Func_35af
 .asm_1f6dd
-	ld a, [$dd78]
+	ld a, [wdd78]
 	call HandleMenuBox
-	ld [$dd78], a
+	ld [wdd78], a
 	ldh a, [hKeysPressed]
-	and $08
+	and PAD_START
 	jr z, .asm_1f6f1
 	call Func_1f71c
 	jr .asm_1f6d4
 .asm_1f6f1
 	ldh a, [hKeysPressed]
-	and $01
+	and PAD_A
 	jr z, .asm_1f6fd
-	ld a, [$dd78]
+	ld a, [wdd78]
 	call Func_1f752
 .asm_1f6fd
 	ldh a, [hKeysPressed]
-	and $02
+	and PAD_B
 	jr z, .asm_1f709
-	ld a, [$dd78]
+	ld a, [wdd78]
 	call Func_1f762
 .asm_1f709
-	ld a, [$dd79]
+	ld a, [wdd79]
 	cp $02
 	jr nz, .asm_1f6dd
 	ldtx hl, GrandMasterCupPrizesConfirmPromptText
@@ -6110,10 +6105,10 @@ Func_1f71c:
 	farcall Func_10672
 	call Func_1f666
 	call Func_1f682
-	ld a, [$dd79]
+	ld a, [wdd79]
 	and a
 	jr z, .asm_1f744
-	ld a, [$dd8e]
+	ld a, [wdd8e]
 	ld d, $17
 	ld e, $00
 	call Func_1f76f
@@ -6162,55 +6157,55 @@ Func_1f76f:
 Func_1f77b:
 	ld c, a
 	ld b, $00
-	ld hl, $dd8a
+	ld hl, wdd8a
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret nz
 	ld a, $ff
 	ld [hl], a
-	ld hl, $dd79
+	ld hl, wdd79
 	inc [hl]
 	ret
 
 Func_1f78d:
 	ld c, a
 	ld b, $00
-	ld hl, $dd8a
+	ld hl, wdd8a
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
 	xor a
 	ld [hl], a
-	ld hl, $dd79
+	ld hl, wdd79
 	dec [hl]
 	ret
 
 Func_1f79e:
-	ld a, [$dd79]
+	ld a, [wdd79]
 	ld c, a
 	ld b, $00
-	ld hl, $dd8e
+	ld hl, wdd8e
 	add hl, bc
-	ld a, [$dd78]
+	ld a, [wdd78]
 	ld [hl], a
 	ret
 
 Func_1f7ad:
-	ld a, [$dd8e]
+	ld a, [wdd8e]
 	ld b, a
-	ld a, [$dd8f]
+	ld a, [wdd8e + 1]
 	ld c, a
 	ret
 
 Func_1f7b6:
-	ld a, [$dd78]
+	ld a, [wdd78]
 	add a
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $dd7a
+	ld hl, wdd7a
 	add hl, bc
 	inc hl
 	inc hl
@@ -6221,9 +6216,6 @@ Func_1f7b6:
 	farcall SetupDuel
 	farcall OpenCardPage_FromHand
 	ret
-; 0x1f7d4
-
-SECTION "Bank 7@77d4", ROMX[$77d4], BANK[$7]
 
 Func_1f7d4:
 	push af
@@ -6237,7 +6229,7 @@ Func_1f7d4:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $dd7a
+	ld hl, wdd7a
 	add hl, bc
 	pop bc
 	ld [hl], e
@@ -6252,9 +6244,6 @@ Func_1f7d4:
 	pop bc
 	pop af
 	ret
-; 0x1f7f1
-
-SECTION "Bank 7@77f1", ROMX[$77f1], BANK[$7]
 
 Func_1f7f1:
 	farcall Func_102a4
@@ -6319,7 +6308,7 @@ Func_1f858:
 	push bc
 	push de
 	push hl
-	ld [$dd93], a
+	ld [wdd93], a
 	call Func_1f867
 	pop hl
 	pop de
@@ -6334,7 +6323,7 @@ Func_1f867:
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
 	ldtx hl, GameCenterCardDungeonUnableNotEnoughChipsText
-	ld a, [$dd93]
+	ld a, [wdd93]
 	and a
 	jr z, .asm_1f884
 	ldtx hl, GameCenterCardDungeonDialogText
@@ -6413,9 +6402,6 @@ Func_1f8f7:
 	pop bc
 	pop af
 	ret
-; 0x1f91d
-
-SECTION "Bank 7@791d", ROMX[$791d], BANK[$7]
 
 MACRO animation
 	dw \1 ; tileset ID
