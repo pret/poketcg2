@@ -2108,7 +2108,10 @@ wNamingScreenMode:: ; d3eb
 wd3ef:: ; d3ef
 	ds $1
 
-	ds $26
+	ds $1e
+
+wd40e:: ; d40e
+	ds $8
 
 ; pointers to all decks of current deck machine
 wMachineDeckPtrs:: ; d416
@@ -2151,7 +2154,15 @@ wd49e:: ; d49e
 wd49f:: ; d49f
 	ds $1
 
-	ds $28
+	ds $13
+
+wd4b3:: ; d4b3
+	ds $1
+
+wd4b4:: ; d4b4
+	ds $8
+
+	ds $c
 
 wd4c8:: ; d4c8
 	ds $80
@@ -2159,7 +2170,11 @@ wd4c8:: ; d4c8
 wd548:: ; d548
 	ds $2
 
-	ds $2
+wd54a:: ; d54a
+	ds $1
+
+wd54b:: ; d54b
+	ds $1
 
 wd54c:: ; d54c
 	ds $1

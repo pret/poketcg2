@@ -43,7 +43,6 @@ FindCardIDInNonTurnDuelistsPlayArea:
 	call FindCardIDInTurnDuelistsPlayArea
 	call SwapTurn
 	ret
-; 0x28039
 
 ; returns carry if card ID is found in turn duelist's Play Area
 ; inputs:
@@ -3319,7 +3318,7 @@ SECTION "Bank a@7b32", ROMX[$7b32], BANK[$a]
 
 Func_2bb32:
 	call EnableSRAM
-	ld a, [$d4b3]
+	ld a, [wd4b3]
 	ld l, a
 	ld h, $18
 	call HtimesL
@@ -3340,7 +3339,7 @@ Func_2bb32:
 	inc hl
 	call Func_2bbf9
 	push hl
-	ld de, $d4b4
+	ld de, wd4b4
 	ld h, c
 	ld l, $02
 	call HtimesL
@@ -3368,7 +3367,7 @@ Func_2bb7f:
 	ld l, c
 	ld h, $60
 	call HtimesL
-	ld de, $d40e
+	ld de, wd40e
 	add hl, de
 	ld d, h
 	ld e, l
@@ -3376,7 +3375,7 @@ Func_2bb7f:
 	ret
 
 Func_2bb8e:
-	ld a, [$d4b3]
+	ld a, [wd4b3]
 	cp $01
 	jr z, .asm_2bb9b
 	cp $08
@@ -3387,7 +3386,7 @@ Func_2bb8e:
 	push de
 	push hl
 	push bc
-	ld a, [$d4b3]
+	ld a, [wd4b3]
 	farcall CheckTCGIslandMilestoneEvents
 	inc b
 	ld e, $01
@@ -3523,9 +3522,6 @@ Func_2bbf9:
 	inc hl
 	inc hl
 	ret
-; 0x2bc4f
-
-SECTION "Bank a@7c4f", ROMX[$7c4f], BANK[$a]
 
 ; de = text ID
 Func_2bc4f:
@@ -3577,7 +3573,6 @@ Func_2bc4f:
 	db SYM_CURSOR_R ; cursor tile number
 	db SYM_SPACE ; tile behind cursor
 	dw NULL ; function pointer if non-0
-; 0x2bc9f
 
 Func_2bc9f:
 	ld [wd548], a
@@ -3605,10 +3600,10 @@ Func_2bc9f:
 	cp $ff
 	ret z
 	ld a, [wScrollMenuScrollOffset]
-	ld [$d54a], a
+	ld [wd54a], a
 	ld b, a
 	ld a, [wTempCardTypeFilter]
-	ld [$d54b], a
+	ld [wd54b], a
 	add b
 	ld hl, wd49f
 	ld c, a
@@ -3616,11 +3611,11 @@ Func_2bc9f:
 	add hl, bc
 	ld a, [hl]
 	dec a
-	ld [$d4b3], a
+	ld [wd4b3], a
 	farcall Func_3bb09
-	ld a, [$d54a]
+	ld a, [wd54a]
 	ld [wScrollMenuScrollOffset], a
-	ld a, [$d54b]
+	ld a, [wd54b]
 	jr .asm_2bca6
 
 Func_2bcfb:
@@ -3660,7 +3655,7 @@ Func_2bd48:
 	ld hl, wd49f
 	farcall ClearNBytesFromHL
 	ld a, $08
-	ld hl, $d4b4
+	ld hl, wd4b4
 	farcall ClearNBytesFromHL
 	ld bc, $0
 .asm_2bd5d
@@ -3725,7 +3720,7 @@ Func_2bd92:
 	pop bc
 	ld e, l
 	ld d, h
-	ld hl, $d4b4
+	ld hl, wd4b4
 	sla c
 	ld b, $00
 	add hl, bc

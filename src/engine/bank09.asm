@@ -5020,7 +5020,7 @@ Func_26353:
 	inc hl
 	ld d, [hl]
 	ldh a, [hKeysPressed]
-	and $08
+	and PAD_START
 	ret z
 	call LoadCardDataToBuffer1_FromCardID
 	bank1call OpenCardPage_FromHand
@@ -5093,10 +5093,10 @@ Func_263c4:
 	add [hl]
 	ldh [hCurScrollMenuItem], a
 	ldh a, [hKeysPressed]
-	and $09
+	and PAD_A | PAD_START
 	jr nz, .asm_2641c
 	ldh a, [hKeysPressed]
-	and $02
+	and PAD_B
 	ret z
 	ld a, $ff
 	ldh [hCurScrollMenuItem], a

@@ -6849,7 +6849,7 @@ Func_3bb09:
 .asm_3bb14
 	ld hl, $7c81
 .asm_3bb17
-	ld a, [$d4b3]
+	ld a, [wd4b3]
 	sla a
 	ld c, a
 	ld b, $00
@@ -6973,7 +6973,7 @@ Func_3bb09:
 	push af
 	sla c
 	ld b, $00
-	ld hl, $d4b4
+	ld hl, wd4b4
 	add hl, bc
 	ld bc, $d38a
 	ld a, [hli]
@@ -7096,7 +7096,7 @@ Func_3bd3b:
 	ld hl, wMachineDeckPtrs
 	farcall ClearNBytesFromHL
 	ld de, wMachineDeckPtrs
-	ld hl, $d40e
+	ld hl, wd40e
 	ld bc, $60
 	ld a, $04
 .asm_3bd4f
@@ -7148,7 +7148,7 @@ Func_3bf81:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $d4b4
+	ld hl, wd4b4
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
