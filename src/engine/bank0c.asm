@@ -1155,7 +1155,7 @@ CardDungeonQueen_MapHeader:
 	db MUSIC_FORT_3
 
 CardDungeonQueen_NPCs:
-	npc NPC_QUEEN, 3, 4, EAST, $0
+	npc NPC_QUEEN, 3, 4, EAST, NULL
 	db $ff
 
 CardDungeonQueen_NPCInteractions:
@@ -1463,7 +1463,7 @@ GrChallengeHallEntrance_StepEvents:
 	db $ff
 
 GrChallengeHallEntrance_NPCs:
-	npc NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, NULL
 	db $ff
 
 GrChallengeHallEntrance_NPCInteractions:
@@ -1613,7 +1613,7 @@ GrassFortEntrance_StepEvents:
 	db $ff
 
 GrassFortEntrance_NPCs:
-	npc NPC_GR_CLERK_GRASS_FORT, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_GRASS_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 GrassFortEntrance_NPCInteractions:
@@ -1720,12 +1720,12 @@ GrassFortLobby_StepEvents:
 	db $ff
 
 GrassFortLobby_NPCs:
-	npc NPC_GRASS_FORT_GR_GRUNT, 3, 4, SOUTH, $0
-	npc NPC_GRASS_FORT_GR_PAPPY, 3, 9, WEST, $0
-	npc NPC_GRASS_FORT_GR_LASS, 7, 7, NORTH, $0
+	npc NPC_GRASS_FORT_GR_GRUNT, 3, 4, SOUTH, NULL
+	npc NPC_GRASS_FORT_GR_PAPPY, 3, 9, WEST, NULL
+	npc NPC_GRASS_FORT_GR_LASS, 7, 7, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_31776
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GrassFortLobby_NPCInteractions:
@@ -1930,7 +1930,7 @@ GrassFortMidori_StepEvents:
 	db $ff
 
 GrassFortMidori_NPCs:
-	npc NPC_MIDORI, 5, 4, SOUTH, $0
+	npc NPC_MIDORI, 5, 4, SOUTH, NULL
 	npc NPC_RICK, 6, 2, SOUTH, Func_31864
 	db $ff
 
@@ -2192,7 +2192,7 @@ GrassFortYuta_StepEvents:
 	db $ff
 
 GrassFortYuta_NPCs:
-	npc NPC_YUTA, 4, 3, SOUTH, $0
+	npc NPC_YUTA, 4, 3, SOUTH, NULL
 	db $ff
 
 GrassFortYuta_NPCInteractions:
@@ -2416,7 +2416,7 @@ GrassFortMiyuki_StepEvents:
 	db $ff
 
 GrassFortMiyuki_NPCs:
-	npc NPC_MIYUKI, 9, 5, EAST, $0
+	npc NPC_MIYUKI, 9, 5, EAST, NULL
 	db $ff
 
 GrassFortMiyuki_NPCInteractions:
@@ -2635,7 +2635,7 @@ LightningFortEntrance_StepEvents:
 	db $ff
 
 LightningFortEntrance_NPCs:
-	npc NPC_GR_CLERK_LIGHTNING_FORT, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_LIGHTNING_FORT, 3, 2, SOUTH, NULL
 	db $ff
 
 LightningFortEntrance_NPCInteractions:
@@ -2762,12 +2762,12 @@ LightningFortLobby_StepEvents:
 	db $ff
 
 LightningFortLobby_NPCs:
-	npc NPC_LIGHTNING_FORT_GR_LASS, 5, 10, NORTH, $0
-	npc NPC_LIGHTNING_FORT_GR_WOMAN, 3, 4, WEST, $0
-	npc NPC_LIGHTNING_FORT_CHUBBY_KID, 10, 8, SOUTH, $0
-	npc NPC_TAP, 8, 9, WEST, $0
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_LIGHTNING_FORT_GR_LASS, 5, 10, NORTH, NULL
+	npc NPC_LIGHTNING_FORT_GR_WOMAN, 3, 4, WEST, NULL
+	npc NPC_LIGHTNING_FORT_CHUBBY_KID, 10, 8, SOUTH, NULL
+	npc NPC_TAP, 8, 9, WEST, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 LightningFortLobby_NPCInteractions:
@@ -2995,7 +2995,7 @@ LightningFortRenna_StepEvents:
 	db $ff
 
 LightningFortRenna_NPCs:
-	npc NPC_RENNA, 1, 2, NORTH, $0
+	npc NPC_RENNA, 1, 2, NORTH, NULL
 	db $ff
 
 LightningFortRenna_NPCInteractions:
@@ -3210,7 +3210,7 @@ LightningFortIchikawa_StepEvents:
 	db $ff
 
 LightningFortIchikawa_NPCs:
-	npc NPC_ICHIKAWA, 5, 5, EAST, $0
+	npc NPC_ICHIKAWA, 5, 5, EAST, NULL
 	db $ff
 
 LightningFortIchikawa_NPCInteractions:
@@ -3570,7 +3570,7 @@ LightningFortCatherine_StepEvents:
 	db $ff
 
 LightningFortCatherine_NPCs:
-	npc NPC_CATHERINE, 7, 4, NORTH, $0
+	npc NPC_CATHERINE, 7, 4, NORTH, NULL
 	db $ff
 
 LightningFortCatherine_NPCInteractions:
@@ -3732,7 +3732,7 @@ FireFortEntrance_StepEvents:
 	db $ff
 
 FireFortEntrance_NPCs:
-	npc NPC_GR_CLERK_FIRE_FORT, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_FIRE_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 FireFortEntrance_NPCInteractions:
@@ -3902,11 +3902,11 @@ FireFortLobby_StepEvents:
 	db $ff
 
 FireFortLobby_NPCs:
-	npc NPC_FIRE_FORT_GRAMPY, 2, 10, SOUTH, $0
-	npc NPC_FIRE_FORT_YOUNGSTER, 7, 6, WEST, $0
+	npc NPC_FIRE_FORT_GRAMPY, 2, 10, SOUTH, NULL
+	npc NPC_FIRE_FORT_YOUNGSTER, 7, 6, WEST, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_327f5
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 FireFortLobby_NPCInteractions:
@@ -4082,7 +4082,7 @@ FireFortJes_StepEvents:
 	db $ff
 
 FireFortJes_NPCs:
-	npc NPC_JES, 6, 2, NORTH, $0
+	npc NPC_JES, 6, 2, NORTH, NULL
 	db $ff
 
 FireFortJes_NPCInteractions:
@@ -4273,7 +4273,7 @@ FireFortYuki_StepEvents:
 	db $ff
 
 FireFortYuki_NPCs:
-	npc NPC_YUKI, 5, 3, SOUTH, $0
+	npc NPC_YUKI, 5, 3, SOUTH, NULL
 	db $ff
 
 FireFortYuki_NPCInteractions:
@@ -4625,7 +4625,7 @@ FireFortShoko_StepEvents:
 	db $ff
 
 FireFortShoko_NPCs:
-	npc NPC_SHOKO, 3, 4, EAST, $0
+	npc NPC_SHOKO, 3, 4, EAST, NULL
 	npc NPC_COURTNEY, 3, 7, SOUTH, Func_32d82
 	db $ff
 
@@ -4922,7 +4922,7 @@ FireFortHidero_StepEvents:
 	db $ff
 
 FireFortHidero_NPCs:
-	npc NPC_HIDERO, 6, 5, SOUTH, $0
+	npc NPC_HIDERO, 6, 5, SOUTH, NULL
 	db $ff
 
 FireFortHidero_NPCInteractions:
@@ -5101,7 +5101,7 @@ WaterFortEntrance_StepEvents:
 	db $ff
 
 WaterFortEntrance_NPCs:
-	npc NPC_GR_CLERK_WATER_FORT, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_WATER_FORT, 3, 1, SOUTH, NULL
 	db $ff
 
 WaterFortEntrance_NPCInteractions:
@@ -5273,7 +5273,7 @@ WaterFortMiyajima_StepEvents:
 	db $ff
 
 WaterFortMiyajima_NPCs:
-	npc NPC_MIYAJIMA, 4, 4, SOUTH, $0
+	npc NPC_MIYAJIMA, 4, 4, SOUTH, NULL
 	db $ff
 
 WaterFortMiyajima_NPCInteractions:
@@ -5479,7 +5479,7 @@ WaterFortKanoko_StepEvents:
 	db $ff
 
 WaterFortKanoko_NPCs:
-	npc NPC_KANOKO, 6, 4, SOUTH, $0
+	npc NPC_KANOKO, 6, 4, SOUTH, NULL
 	db $ff
 
 WaterFortKanoko_NPCInteractions:
@@ -5631,7 +5631,7 @@ FightingFortEntrance_StepEvents:
 	db $ff
 
 FightingFortEntrance_NPCs:
-	npc NPC_GR_CLERK_FIGHTING_FORT, 3, 2, SOUTH, $0
+	npc NPC_GR_CLERK_FIGHTING_FORT, 3, 2, SOUTH, NULL
 	db $ff
 
 FightingFortEntrance_NPCInteractions:

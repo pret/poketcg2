@@ -738,9 +738,9 @@ TcgAirportEntrance_StepEvents:
 
 TcgAirportEntrance_NPCs:
 	npc NPC_GR_5, 10, 7, WEST, Func_346bc
-	npc NPC_GR_CLERK_TCG_AIRPORT, 7, 3, SOUTH, $0
-	npc NPC_TCG_AIRPORT_GR_SIS, 3, 2, NORTH, $0
-	npc NPC_TCG_AIRPORT_MARTIAL_ARTIST, 1, 7, EAST, $0
+	npc NPC_GR_CLERK_TCG_AIRPORT, 7, 3, SOUTH, NULL
+	npc NPC_TCG_AIRPORT_GR_SIS, 3, 2, NORTH, NULL
+	npc NPC_TCG_AIRPORT_MARTIAL_ARTIST, 1, 7, EAST, NULL
 	db $ff
 
 TcgAirportEntrance_NPCInteractions:
@@ -997,7 +997,7 @@ TcgAirport_StepEvents:
 	db $ff
 
 TcgAirport_NPCs:
-	npc NPC_GR_5, 10, 8, SOUTH, $0
+	npc NPC_GR_5, 10, 8, SOUTH, NULL
 	db $ff
 
 TcgAirport_NPCInteractions:
@@ -1418,9 +1418,9 @@ GrAirportEntrance_StepEvents:
 	db $ff
 
 GrAirportEntrance_NPCs:
-	npc NPC_GR_CLERK_GR_AIRPORT, 4, 3, SOUTH, $0
-	npc NPC_GR_AIRPORT_GR_PAPPY, 10, 3, WEST, $0
-	npc NPC_GR_AIRPORT_GR_LASS, 5, 8, WEST, $0
+	npc NPC_GR_CLERK_GR_AIRPORT, 4, 3, SOUTH, NULL
+	npc NPC_GR_AIRPORT_GR_PAPPY, 10, 3, WEST, NULL
+	npc NPC_GR_AIRPORT_GR_LASS, 5, 8, WEST, NULL
 	db $ff
 
 GrAirportEntrance_NPCInteractions:
@@ -1544,11 +1544,11 @@ GameCenter1_StepEvents:
 	db $ff
 
 GameCenter1_NPCs:
-	npc NPC_ATTENDANT_BLACK_BOX, 7, 4, SOUTH, $0
-	npc NPC_ATTENDANT_BILLS_PC, 1, 9, SOUTH, $0
-	npc NPC_ATTENDANT_COIN_FLIP, 9, 10, WEST, $0
-	npc NPC_GAME_CENTER_GR_GAL, 3, 5, EAST, $0
-	npc NPC_GAME_CENTER_CHUBBY_KID, 8, 8, EAST, $0
+	npc NPC_ATTENDANT_BLACK_BOX, 7, 4, SOUTH, NULL
+	npc NPC_ATTENDANT_BILLS_PC, 1, 9, SOUTH, NULL
+	npc NPC_ATTENDANT_COIN_FLIP, 9, 10, WEST, NULL
+	npc NPC_GAME_CENTER_GR_GAL, 3, 5, EAST, NULL
+	npc NPC_GAME_CENTER_CHUBBY_KID, 8, 8, EAST, NULL
 	db $ff
 
 GameCenter1_NPCInteractions:
@@ -1884,12 +1884,12 @@ GameCenter2_StepEvents:
 	db $ff
 
 GameCenter2_NPCs:
-	npc NPC_ATTENDANT_1COIN_SLOT, 1, 10, SOUTH, $0
-	npc NPC_ATTENDANT_5COIN_SLOT, 10, 10, SOUTH, $0
-	npc NPC_ATTENDANT_CARD_DUNGEON, 7, 3, SOUTH, $0
-	npc NPC_GAME_CENTER_BOY, 2, 4, EAST, $0
-	npc NPC_GAME_CENTER_FIXER, 4, 10, NORTH, $0
-	npc NPC_GAME_CENTER_GR_WOMAN, 8, 10, NORTH, $0
+	npc NPC_ATTENDANT_1COIN_SLOT, 1, 10, SOUTH, NULL
+	npc NPC_ATTENDANT_5COIN_SLOT, 10, 10, SOUTH, NULL
+	npc NPC_ATTENDANT_CARD_DUNGEON, 7, 3, SOUTH, NULL
+	npc NPC_GAME_CENTER_BOY, 2, 4, EAST, NULL
+	npc NPC_GAME_CENTER_FIXER, 4, 10, NORTH, NULL
+	npc NPC_GAME_CENTER_GR_WOMAN, 8, 10, NORTH, NULL
 	db $ff
 
 GameCenter2_NPCInteractions:
@@ -2169,7 +2169,7 @@ CardDungeonBishop_StepEvents:
 	db $ff
 
 CardDungeonBishop_NPCs:
-	npc NPC_BISHOP, 5, 3, SOUTH, $0
+	npc NPC_BISHOP, 5, 3, SOUTH, NULL
 	db $ff
 
 CardDungeonBishop_NPCInteractions:
@@ -2426,12 +2426,12 @@ GrChallengeHallLobby_StepEvents:
 	db $ff
 
 GrChallengeHallLobby_NPCs:
-	npc NPC_GR_CHALLENGE_HALL_GR_GRANNY, 3, 5, WEST, $0
+	npc NPC_GR_CHALLENGE_HALL_GR_GRANNY, 3, 5, WEST, NULL
 	npc NPC_CUP_HOST, 2, 10, NORTH, Func_353ce
 	npc NPC_GR_CHALLENGE_HALL_GR_CHAP, 8, 9, EAST, Func_35444
-	npc NPC_GR_CHALLENGE_HALL_GR_WOMAN, 12, 8, WEST, $0
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CHALLENGE_HALL_GR_WOMAN, 12, 8, WEST, NULL
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GrChallengeHallLobby_NPCInteractions:
@@ -2697,7 +2697,7 @@ GrassFortMorino_StepEvents:
 	db $ff
 
 GrassFortMorino_NPCs:
-	npc NPC_MORINO, 7, 2, SOUTH, $0
+	npc NPC_MORINO, 7, 2, SOUTH, NULL
 	db $ff
 
 GrassFortMorino_NPCInteractions:
@@ -2876,7 +2876,7 @@ WaterFortSenta_StepEvents:
 	db $ff
 
 WaterFortSenta_NPCs:
-	npc NPC_SENTA, 6, 3, SOUTH, $0
+	npc NPC_SENTA, 6, 3, SOUTH, NULL
 	db $ff
 
 WaterFortSenta_NPCInteractions:
@@ -3170,7 +3170,7 @@ WaterFortAira_StepEvents:
 	db $ff
 
 WaterFortAira_NPCs:
-	npc NPC_AIRA, 4, 5, SOUTH, $0
+	npc NPC_AIRA, 4, 5, SOUTH, NULL
 	db $ff
 
 WaterFortAira_NPCInteractions:
@@ -3375,7 +3375,7 @@ FightingFort_StepEvents:
 	db $ff
 
 FightingFort_NPCs:
-	npc NPC_KAMIYA, 6, 2, SOUTH, $0
+	npc NPC_KAMIYA, 6, 2, SOUTH, NULL
 	db $ff
 
 FightingFort_NPCInteractions:
@@ -3799,7 +3799,7 @@ FightingFortGoda_StepEvents:
 	db $ff
 
 FightingFortGoda_NPCs:
-	npc NPC_GODA, 5, 4, SOUTH, $0
+	npc NPC_GODA, 5, 4, SOUTH, NULL
 	npc NPC_MITCH, 6, 2, SOUTH, Func_35de2
 	db $ff
 
@@ -4054,7 +4054,7 @@ FightingFortGrace_StepEvents:
 	db $ff
 
 FightingFortGrace_NPCs:
-	npc NPC_GRACE, 4, 2, SOUTH, $0
+	npc NPC_GRACE, 4, 2, SOUTH, NULL
 	npc NPC_CHEST_CLOSED, 5, 1, SOUTH, Func_36062
 	npc NPC_CHEST_OPENED, 5, 1, SOUTH, Func_36082
 	db $ff
@@ -4277,7 +4277,7 @@ PsychicStrongholdEntrance_StepEvents:
 	db $ff
 
 PsychicStrongholdEntrance_NPCs:
-	npc NPC_GR_CLERK_PSYCHIC_STRONGHOLD, 3, 1, SOUTH, $0
+	npc NPC_GR_CLERK_PSYCHIC_STRONGHOLD, 3, 1, SOUTH, NULL
 	db $ff
 
 PsychicStrongholdEntrance_NPCInteractions:
@@ -4382,12 +4382,12 @@ PsychicStrongholdLobby_StepEvents:
 	db $ff
 
 PsychicStrongholdLobby_NPCs:
-	npc NPC_PSYCHIC_STRONGHOLD_LADY, 2, 6, WEST, $0
-	npc NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, 5, 9, EAST, $0
-	npc NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, 10, 4, EAST, $0
+	npc NPC_PSYCHIC_STRONGHOLD_LADY, 2, 6, WEST, NULL
+	npc NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD, 5, 9, EAST, NULL
+	npc NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS, 10, 4, EAST, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_36310
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 PsychicStrongholdLobby_NPCInteractions:
@@ -4590,10 +4590,10 @@ PsychicStronghold_StepEvents:
 	db $ff
 
 PsychicStronghold_NPCs:
-	npc NPC_MIWA, 5, 7, SOUTH, $0
-	npc NPC_KEVIN, 3, 5, SOUTH, $0
-	npc NPC_YOSUKE, 10, 7, SOUTH, $0
-	npc NPC_RYOKO, 12, 5, SOUTH, $0
+	npc NPC_MIWA, 5, 7, SOUTH, NULL
+	npc NPC_KEVIN, 3, 5, SOUTH, NULL
+	npc NPC_YOSUKE, 10, 7, SOUTH, NULL
+	npc NPC_RYOKO, 12, 5, SOUTH, NULL
 	npc NPC_STRONGHOLD_PLATFORM, 6, 3, SOUTH, Func_36b8f
 	db $ff
 
@@ -5781,9 +5781,9 @@ PsychicStrongholdMami_StepEvents:
 	db $ff
 
 PsychicStrongholdMami_NPCs:
-	npc NPC_MAMI, 7, 2, NORTH, $0
+	npc NPC_MAMI, 7, 2, NORTH, NULL
 	npc NPC_ROD, 8, 2, SOUTH, Func_36e03
-	npc NPC_STRONGHOLD_PLATFORM, 6, 10, SOUTH, $0
+	npc NPC_STRONGHOLD_PLATFORM, 6, 10, SOUTH, NULL
 	db $ff
 
 PsychicStrongholdMami_NPCInteractions:
@@ -6175,9 +6175,9 @@ ColorlessAltar_StepEvents:
 	db $ff
 
 ColorlessAltar_NPCs:
-	npc NPC_NISHIJIMA, 6, 6, NORTH, $0
-	npc NPC_ISHII, 6, 3, NORTH, $0
-	npc NPC_SAMEJIMA, 5, 4, SOUTH, $0
+	npc NPC_NISHIJIMA, 6, 6, NORTH, NULL
+	npc NPC_ISHII, 6, 3, NORTH, NULL
+	npc NPC_SAMEJIMA, 5, 4, SOUTH, NULL
 	db $ff
 
 ColorlessAltar_NPCInteractions:
@@ -6686,8 +6686,8 @@ GrCastleEntrance_StepEvents:
 	db $ff
 
 GrCastleEntrance_NPCs:
-	npc NPC_GR_CLERK_CASTLE_RIGHT, 7, 3, SOUTH, $0
-	npc NPC_GR_CLERK_CASTLE_LEFT, 3, 3, SOUTH, $0
+	npc NPC_GR_CLERK_CASTLE_RIGHT, 7, 3, SOUTH, NULL
+	npc NPC_GR_CLERK_CASTLE_LEFT, 3, 3, SOUTH, NULL
 	db $ff
 
 GrCastleEntrance_NPCInteractions:
@@ -7013,8 +7013,8 @@ GrCastle_StepEvents:
 	db $ff
 
 GrCastle_NPCs:
-	npc NPC_KANZAKI, 9, 9, WEST, $0
-	npc NPC_RUI, 5, 9, EAST, $0
+	npc NPC_KANZAKI, 9, 9, WEST, NULL
+	npc NPC_RUI, 5, 9, EAST, NULL
 	db $ff
 
 GrCastle_NPCInteractions:

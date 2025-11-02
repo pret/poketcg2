@@ -778,10 +778,10 @@ MasonLaboratoryComputerRoom_StepEvents:
 	db $ff
 
 MasonLaboratoryComputerRoom_NPCs:
-	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_1, 4, 3, SOUTH, $0
-	npc NPC_LAB_TECH_DECK_SAVE_MACHINE, 7, 3, SOUTH, $0
-	npc NPC_LAB_TECH_COMPUTER_ROOM, 3, 8, NORTH, $0
-	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_2, 7, 9, EAST, $0
+	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_1, 4, 3, SOUTH, NULL
+	npc NPC_LAB_TECH_DECK_SAVE_MACHINE, 7, 3, SOUTH, NULL
+	npc NPC_LAB_TECH_COMPUTER_ROOM, 3, 8, NORTH, NULL
+	npc NPC_LAB_TECH_AUTO_DECK_MACHINE_2, 7, 9, EAST, NULL
 	db $ff
 
 MasonLaboratoryComputerRoom_NPCInteractions:
@@ -1009,8 +1009,8 @@ MasonLaboratoryTrainingRoom_StepEvents:
 	db $ff
 
 MasonLaboratoryTrainingRoom_NPCs:
-	npc NPC_AARON, 11, 2, NORTH, $0
-	npc NPC_LAB_TECH_TRAINING_ROOM, 10, 11, EAST, $0
+	npc NPC_AARON, 11, 2, NORTH, NULL
+	npc NPC_LAB_TECH_TRAINING_ROOM, 10, 11, EAST, NULL
 	db $ff
 
 MasonLaboratoryTrainingRoom_NPCInteractions:
@@ -1630,13 +1630,13 @@ LightningClubLobby_StepEvents:
 LightningClubLobby_NPCs:
 	npc NPC_JENNIFER, 9, 8, EAST, Func_3cdb1
 	npc NPC_BRANDON, 9, 6, EAST, Func_3cdb1
-	npc NPC_LIGHTNING_CLUB_LASS, 11, 2, NORTH, $0
-	npc NPC_LIGHTNING_CLUB_PUNK_KID, 9, 4, SOUTH, $0
+	npc NPC_LIGHTNING_CLUB_LASS, 11, 2, NORTH, NULL
+	npc NPC_LIGHTNING_CLUB_PUNK_KID, 9, 4, SOUTH, NULL
 	npc NPC_LIGHTNING_CLUB_LONGHAIRED_LASS, 5, 6, EAST, Func_3ce9b
 	npc NPC_LIGHTNING_CLUB_GR_LASS, 5, 6, EAST, Func_3cea8
-	npc NPC_LIGHTNING_CLUB_BRO, 8, 9, WEST, $0
-	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, $0
-	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, $0
+	npc NPC_LIGHTNING_CLUB_BRO, 8, 9, WEST, NULL
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 LightningClubLobby_NPCInteractions:
@@ -1943,8 +1943,8 @@ GrassClubLobby_NPCs:
 	npc NPC_GRASS_CLUB_GRANNY, 3, 10, EAST, Func_3d189
 	npc NPC_GRASS_CLUB_LASS, 11, 4, SOUTH, Func_3d189
 	npc NPC_GRASS_CLUB_CAPPED_LASS, 7, 8, WEST, Func_3d189
-	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, $0
-	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, $0
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 GrassClubLobby_NPCInteractions:
@@ -2284,7 +2284,7 @@ TcgChallengeHallEntrance_StepEvents:
 	db $ff
 
 TcgChallengeHallEntrance_NPCs:
-	npc NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, $0
+	npc NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, 3, 1, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
@@ -2434,14 +2434,14 @@ TcgChallengeHallLobby_StepEvents:
 	db $ff
 
 TcgChallengeHallLobby_NPCs:
-	npc NPC_TCG_CHALLENGE_HALL_CHAP, 10, 4, SOUTH, $0
+	npc NPC_TCG_CHALLENGE_HALL_CHAP, 10, 4, SOUTH, NULL
 	npc NPC_CUP_HOST, 7, 9, EAST, Func_3d5a3
 	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, Func_3d5a3
 	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, Func_3d5ba
 	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, Func_3d5ba
 	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, Func_3d5ba
-	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, $0
-	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, $0
+	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
+	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
@@ -3813,10 +3813,10 @@ PokemonDomeBack_StepEvents:
 	db $ff
 
 PokemonDomeBack_NPCs:
-	npc NPC_COURTNEY, 7, 13, SOUTH, $0
-	npc NPC_STEVE, 8, 12, SOUTH, $0
-	npc NPC_JACK, 8, 13, SOUTH, $0
-	npc NPC_ROD, 7, 12, SOUTH, $0
+	npc NPC_COURTNEY, 7, 13, SOUTH, NULL
+	npc NPC_STEVE, 8, 12, SOUTH, NULL
+	npc NPC_JACK, 8, 13, SOUTH, NULL
+	npc NPC_ROD, 7, 12, SOUTH, NULL
 	npc NPC_CUP_HOST, 7, 2, SOUTH, Func_3e68b
 	db $ff
 
@@ -5843,10 +5843,10 @@ GameCenterEntrance_StepEvents:
 	db $ff
 
 GameCenterEntrance_NPCs:
-	npc NPC_GR_CLERK_GAME_CENTER_PRIZE_DESK, 9, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GAME_CENTER_CHIP_DESK, 2, 2, SOUTH, $0
-	npc NPC_CHIP_GIRL, 5, 2, SOUTH, $0
-	npc NPC_CHIP_SECURITY, 4, 9, EAST, $0
+	npc NPC_GR_CLERK_GAME_CENTER_PRIZE_DESK, 9, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GAME_CENTER_CHIP_DESK, 2, 2, SOUTH, NULL
+	npc NPC_CHIP_GIRL, 5, 2, SOUTH, NULL
+	npc NPC_CHIP_SECURITY, 4, 9, EAST, NULL
 	db $ff
 
 GameCenterEntrance_NPCInteractions:
@@ -6073,12 +6073,12 @@ GameCenterLobby_StepEvents:
 	db $ff
 
 GameCenterLobby_NPCs:
-	npc NPC_GAME_CENTER_TECH, 10, 4, WEST, $0
-	npc NPC_GAME_CENTER_GR_LASS, 8, 9, EAST, $0
-	npc NPC_GAME_CENTER_GR_PAPPY, 3, 7, SOUTH, $0
+	npc NPC_GAME_CENTER_TECH, 10, 4, WEST, NULL
+	npc NPC_GAME_CENTER_GR_LASS, 8, 9, EAST, NULL
+	npc NPC_GAME_CENTER_GR_PAPPY, 3, 7, SOUTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_3f03d
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 GameCenterLobby_NPCInteractions:
@@ -6242,7 +6242,7 @@ CardDungeonPawn_StepEvents:
 	db $ff
 
 CardDungeonPawn_NPCs:
-	npc NPC_PAWN, 4, 4, SOUTH, $0
+	npc NPC_PAWN, 4, 4, SOUTH, NULL
 	db $ff
 
 CardDungeonPawn_NPCInteractions:
@@ -6460,7 +6460,7 @@ CardDungeonKnight_StepEvents:
 	db $ff
 
 CardDungeonKnight_NPCs:
-	npc NPC_KNIGHT, 4, 3, SOUTH, $0
+	npc NPC_KNIGHT, 4, 3, SOUTH, NULL
 	db $ff
 
 CardDungeonKnight_NPCInteractions:
@@ -6699,7 +6699,7 @@ CardDungeonRook_StepEvents:
 	db $ff
 
 CardDungeonRook_NPCs:
-	npc NPC_ROOK, 5, 3, SOUTH, $0
+	npc NPC_ROOK, 5, 3, SOUTH, NULL
 	db $ff
 
 CardDungeonRook_NPCInteractions:
@@ -6955,11 +6955,11 @@ WaterFortLobby_StepEvents:
 WaterFortLobby_NPCs:
 	npc NPC_WATER_FORT_GLASSES_KID, 10, 10, WEST, Func_3f718
 	npc NPC_WATER_FORT_GR_LAD, 10, 10, WEST, Func_3f735
-	npc NPC_WATER_FORT_GR_GRANNY, 2, 7, SOUTH, $0
-	npc NPC_WATER_FORT_GR_GAL, 5, 9, NORTH, $0
+	npc NPC_WATER_FORT_GR_GRANNY, 2, 7, SOUTH, NULL
+	npc NPC_WATER_FORT_GR_GAL, 5, 9, NORTH, NULL
 	npc NPC_IMAKUNI_RED, 12, 1, NORTH, Func_3f7a6
-	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, $0
-	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, $0
+	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
+	npc NPC_GR_CLERK_GIFT_CENTER, 8, 2, SOUTH, NULL
 	db $ff
 
 WaterFortLobby_NPCInteractions:

@@ -1354,12 +1354,12 @@ MasonLaboratoryMain_StepEvents:
 	db $ff
 
 MasonLaboratoryMain_NPCs:
-	npc NPC_DR_MASON, 7, 5, SOUTH, $0
-	npc NPC_SAM, 2, 7, EAST, $0
-	npc NPC_LAB_TECH_PC_GUIDE, 3, 2, SOUTH, $0
-	npc NPC_LAB_TECH_CLUB_GUIDE, 11, 8, SOUTH, $0
-	npc NPC_LAB_TECH_BOOSTER_GUIDE, 9, 10, WEST, $0
-	npc NPC_LAB_TECH_ROOM_GUIDE, 10, 4, WEST, $0
+	npc NPC_DR_MASON, 7, 5, SOUTH, NULL
+	npc NPC_SAM, 2, 7, EAST, NULL
+	npc NPC_LAB_TECH_PC_GUIDE, 3, 2, SOUTH, NULL
+	npc NPC_LAB_TECH_CLUB_GUIDE, 11, 8, SOUTH, NULL
+	npc NPC_LAB_TECH_BOOSTER_GUIDE, 9, 10, WEST, NULL
+	npc NPC_LAB_TECH_ROOM_GUIDE, 10, 4, WEST, NULL
 	npc NPC_RONALD, 3, 6, SOUTH, Func_4121d
 	db $ff
 
@@ -3226,7 +3226,7 @@ GrAirport_StepEvents:
 	db $ff
 
 GrAirport_NPCs:
-	npc NPC_GR_5, 4, 8, SOUTH, $0
+	npc NPC_GR_5, 4, 8, SOUTH, NULL
 	db $ff
 
 GrAirport_NPCInteractions:
@@ -5577,7 +5577,7 @@ GrCastleBiruritchi_StepEvents:
 	db $ff
 
 GrCastleBiruritchi_NPCs:
-	npc NPC_BIRURITCHI, 7, 5, SOUTH, $0
+	npc NPC_BIRURITCHI, 7, 5, SOUTH, NULL
 	db $ff
 
 GrCastleBiruritchi_NPCInteractions:
