@@ -2130,7 +2130,11 @@ wTempScrollMenuScrollOffset:: ; d47c
 wSelectedDeckMachineEntry:: ; d47d
 	ds $1
 
-	ds $19
+wd47e:: ; d47e
+	ds $18
+
+wd496:: ; d496
+	ds $1
 
 wDeckMachineTitleText:: ; d497
 	ds $2
@@ -2138,6 +2142,7 @@ wDeckMachineTitleText:: ; d497
 wNumDeckMachineEntries:: ; d499
 	ds $1
 
+wd49a:: ; d49a
 	ds $1
 
 wd49b:: ; d49b
@@ -3375,7 +3380,28 @@ SECTION "WRAM2", WRAMX
 wScratchCardCollection:: ; d000
 	ds CARD_COLLECTION_SIZE
 
-SECTION "WRAM2@d58e", WRAMX[$d58e], BANK[$2]
+w2d200:: ; d200
+	ds $80
+
+w2d280:: ; d280
+	ds $6
+
+w2d286:: ; d286
+	ds $1
+
+w2d287:: ; d287
+	ds $6
+
+w2d28d:: ; d28d
+	ds $1
+
+w2d28e:: ; d28e
+	ds $100
+
+w2d38e:: ; d38e
+	ds $80
+
+	ds $180
 
 w2d58e:: ; d58e
 	ds $80

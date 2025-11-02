@@ -122,7 +122,7 @@ DuelDataToSave:
 	dw wWhoseTurn, $24
 	dw hWhoseTurn, $1
 	dw wRNG1, $3
-	dw $d023, $20
+	dw wAIDuelVars, $20
 	dw NULL
 
 ; return carry if saved duel checksum

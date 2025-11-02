@@ -4847,12 +4847,11 @@ UpdateBoosterPackMenuArrows:
 	lb bc, 18, 12
 	call WriteByteToBGMap0
 	ret
-; 0x3ada1
 
 Func_3ada1:
 	xor a
 	ld [wScrollMenuScrollOffset], a
-	ld de, $2d3
+	ldtx de, DeckSaveMachineText
 	ld hl, wDeckMachineTitleText
 	ld [hl], e
 	inc hl
@@ -4870,7 +4869,7 @@ Func_3ada1:
 	call DrawWideTextBox_PrintText
 	ldtx de, PleaseSelectDeckText
 	call InitDeckMachineDrawingParams
-	call HandleDeckMachineSelection.start
+	call HandleDeckMachineSelection
 	jr c, .asm_3adb7
 	cp $ff
 	ret z
@@ -5142,9 +5141,6 @@ Func_3afb1:
 	ret z
 	inc de
 	jr .asm_3afb1
-; 0x3afb8
-
-SECTION "Bank e@6fb8", ROMX[$6fb8], BANK[$e]
 
 ; a = deck index in wMachineDeckPtrs
 Func_3afb8:
@@ -5290,9 +5286,6 @@ Func_3b078:
 	inc e
 	inc e
 	jr .asm_3b085
-; 0x3b096
-
-SECTION "Bank e@7096", ROMX[$7096], BANK[$e]
 
 ; prints the deck name of the deck corresponding
 ; to index in register a, from wMachineDeckPtrs
@@ -5675,7 +5668,7 @@ Func_3b315:
 	pop hl
 	ld b, $60
 	call EnableSRAM
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
 	call ClearScreenAndDrawDeckMachineScreen
 	call DrawListScrollArrows
@@ -5842,9 +5835,6 @@ Func_3b3fa:
 	ld a, [wTempCardTypeFilter]
 	scf
 	ret
-; 0x3b42b
-
-SECTION "Bank e@742b", ROMX[$742b], BANK[$e]
 
 DrawListScrollArrows:
 	ld a, [wScrollMenuScrollOffset]
@@ -5909,7 +5899,7 @@ Func_3b45f:
 .asm_3b49f
 	farcall GetSRAMPointerToCurDeck
 	push hl
-	ld de, $d47e
+	ld de, wd47e
 	call EnableSRAM
 	call Func_3afb1
 	pop hl
@@ -5927,7 +5917,7 @@ Func_3b45f:
 	ld hl, $735e
 	call InitializeMenuParameters
 	call DrawCursor2
-	ld hl, $d47e
+	ld hl, wd47e
 	farcall CopyDeckName
 	xor a
 	ld [wTxRam2], a
@@ -5940,7 +5930,7 @@ Func_3b45f:
 Func_3b4eb:
 	call SwitchToWRAM2
 	xor a
-	ld [$d280], a
+	ld [w2d280], a
 	call SwitchToWRAM1
 	ld a, [wSelectedDeckMachineEntry]
 	ld hl, wd49f
@@ -5984,21 +5974,21 @@ Func_3b4eb:
 	scf
 	ret
 .asm_3b54c
-	ld [$d496], a
+	ld [wd496], a
 	ld a, [wSelectedDeckMachineEntry]
 	call Func_3afb8
 	ld de, wc000
 	ld b, $60
 	call EnableSRAM
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM2
-	ld a, [$d280]
+	ld a, [w2d280]
 	or a
 	call nz, Func_3b7fc
 	call SwitchToWRAM1
 	ld hl, $c018
 	farcall Func_9337
-	ld a, [$d496]
+	ld a, [wd496]
 	ld l, a
 	ld h, $60
 	call HtimesL
@@ -6008,11 +5998,11 @@ Func_3b4eb:
 	ld e, l
 	ld hl, wc000
 	ld b, $60
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
 	ld a, $ff
 	farcall DrawDeckSelectionMenu
-	ld a, [$d496]
+	ld a, [wd496]
 	ld [wCurDeck], a
 	ld hl, $735e
 	call InitializeMenuParameters
@@ -6027,18 +6017,18 @@ Func_3b4eb:
 	ldtx hl, BuiltDeckText
 	call DrawWideTextBox_WaitForInput
 	call SwitchToWRAM2
-	ld a, [$d280]
+	ld a, [w2d280]
 	or a
 	call SwitchToWRAM1
 	jr z, .asm_3b5ef
 	call SwitchToWRAM2
-	ld hl, wCursorAlternateTile
+	ld hl, w2d38e
 	ld de, wc000
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ld bc, $2f3
-	ld hl, $d38a
+	ld hl, wd38a
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -6059,32 +6049,32 @@ Func_3b5f1:
 	ret
 .asm_3b601
 	call EnableSRAM
-	ld a, [$d49a]
+	ld a, [wd49a]
 	bit 0, a
 	jr z, .asm_3b610
 	ld a, $00
 	call Func_3b646
 .asm_3b610
-	ld a, [$d49a]
+	ld a, [wd49a]
 	bit 1, a
 	jr z, .asm_3b61c
 	ld a, $01
 	call Func_3b646
 .asm_3b61c
-	ld a, [$d49a]
+	ld a, [wd49a]
 	bit 2, a
 	jr z, .asm_3b628
 	ld a, $02
 	call Func_3b646
 .asm_3b628
-	ld a, [$d49a]
+	ld a, [wd49a]
 	bit 3, a
 	jr z, .asm_3b634
 	ld a, $03
 	call Func_3b646
 .asm_3b634
 	call DisableSRAM
-	ld a, [$d49a]
+	ld a, [wd49a]
 	farcall DrawDeckSelectionMenu
 	ldtx hl, DismantledTheseDecksText
 	call DrawWideTextBox_WaitForInput
@@ -6135,15 +6125,15 @@ Func_3b661:
 	ret
 .asm_3b696
 	call SwitchToWRAM2
-	ld hl, $d200
+	ld hl, w2d200
 	ld de, wc000
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ld hl, wc000
 	ld de, wCurDeckCards
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	farcall Func_9a0f
 	jr c, .asm_3b6c0
 	ldtx hl, CannotBuildLackingBasicPokemonText
@@ -6219,12 +6209,12 @@ Func_3b6c4:
 	ld hl, wTempCardList
 	ld de, wc000
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM2
 	ld hl, wc000
-	ld de, $d200
+	ld de, w2d200
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ret
 
@@ -6249,7 +6239,7 @@ Func_3b75a:
 	xor a
 	farcall CreateCardCollectionListWithDeckCards
 	call SwitchToWRAM2
-	ld hl, $d200
+	ld hl, w2d200
 .asm_3b765
 	ld e, [hl]
 	inc hl
@@ -6268,11 +6258,11 @@ Func_3b75a:
 	pop hl
 	jr .asm_3b765
 .asm_3b77c
-	ld hl, $c001
-	ld de, $d280
+	ld hl, wc000 + 1
+	ld de, w2d280
 	ld b, $06
-	call CopyBBytesFromHLToDE_Bank0e.loop
-	ld hl, $d280
+	call CopyBBytesFromHLToDE_Bank0e
+	ld hl, w2d280
 	ld bc, $6
 .asm_3b78d
 	ld a, [hli]
@@ -6290,9 +6280,9 @@ Func_3b75a:
 Func_3b79b:
 	call SwitchToWRAM2
 	ld a, $ff
-	ld [$d286], a
+	ld [w2d286], a
 	xor a
-	ld hl, $d287
+	ld hl, w2d287
 	ld [hli], a
 	inc a
 	ld [hli], a
@@ -6306,25 +6296,25 @@ Func_3b79b:
 	ld [hl], a
 	ld de, $0
 .asm_3b7b5
-	ld hl, $d280
+	ld hl, w2d280
 	add hl, de
 	call Func_3b7e4
 	ld a, e
 	add c
 	ld c, a
-	ld hl, $d280
+	ld hl, w2d280
 	add hl, de
 	ld a, [hl]
 	ld [hl], b
 	ld b, $00
-	ld hl, $d280
+	ld hl, w2d280
 	add hl, bc
 	ld [hl], a
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, de
 	ld a, [hl]
 	push hl
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, bc
 	ld c, [hl]
 	ld [hl], a
@@ -6361,18 +6351,18 @@ Func_3b7e4:
 Func_3b7fc:
 	call SwitchToWRAM2
 	ld hl, wc000
-	ld de, $d28e
+	ld de, w2d28e
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	call Func_3b6c4
 	call Func_3b75a
 	call Func_3b79b
 	call SwitchToWRAM2
-	ld hl, $d28e
+	ld hl, w2d28e
 	ld de, wc000
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ld de, $c018
 	ld hl, wTempSavedDeckCards
@@ -6380,13 +6370,13 @@ Func_3b7fc:
 	ld hl, wTempSavedDeckCards
 	ld de, $c018
 	ld b, $80
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM2
 	ld a, $80
-	ld hl, wListPointer
+	ld hl, wScratchCardCollection
 	farcall ClearNBytesFromHL
 	ld b, $00
-	ld de, $d200
+	ld de, w2d200
 .asm_3b84d
 	ld a, [de]
 	inc de
@@ -6407,11 +6397,11 @@ Func_3b7fc:
 	dec hl
 	push hl
 	ld a, $ff
-	ld [$d28d], a
+	ld [w2d28d], a
 	ld de, $0
 .asm_3b86a
 	push hl
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, de
 	ld a, [hl]
 	cp $ff
@@ -6429,7 +6419,7 @@ Func_3b7fc:
 	ld de, $0
 .asm_3b886
 	push hl
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, de
 	ld a, [hl]
 	cp $ff
@@ -6441,10 +6431,10 @@ Func_3b7fc:
 	jr .asm_3b886
 .asm_3b899
 	ld a, $80
-	ld hl, wCursorAlternateTile
+	ld hl, w2d38e
 	farcall ClearNBytesFromHL
 	pop hl
-	ld bc, wCursorAlternateTile
+	ld bc, w2d38e
 .asm_3b8a6
 	ld a, [hli]
 	ld [bc], a
@@ -6457,7 +6447,7 @@ Func_3b7fc:
 	call Func_3b91d
 	jr nc, .asm_3b8a6
 	ld hl, $c018
-	ld de, wListPointer
+	ld de, wScratchCardCollection
 	bank1call SaveDeckCards
 	call SwitchToWRAM1
 	ret
@@ -6487,7 +6477,7 @@ Func_3b8c0:
 
 Func_3b8da:
 	push hl
-	ld hl, $d280
+	ld hl, w2d280
 	add hl, de
 	ld a, [hl]
 	and $7f
@@ -6496,7 +6486,7 @@ Func_3b8da:
 	pop hl
 	push de
 	push hl
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, de
 	ld e, [hl]
 	inc e
@@ -6520,7 +6510,7 @@ Func_3b8da:
 	jr z, .asm_3b910
 	pop de
 	push hl
-	ld hl, $d280
+	ld hl, w2d280
 	add hl, de
 	xor a
 	ld [hl], a
@@ -6534,7 +6524,7 @@ Func_3b8da:
 	ld [hl], a
 	pop de
 	push hl
-	ld hl, $d287
+	ld hl, w2d287
 	add hl, de
 	ld [hl], c
 	pop hl
@@ -6619,7 +6609,7 @@ Func_3b92b:
 	ld [hli], a
 	ld [hl], a
 	ld bc, $2e7
-	ld hl, $d38a
+	ld hl, wd38a
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -6687,13 +6677,13 @@ Func_3b9d6:
 	farcall CreateCardCollectionListWithDeckCards
 	call SwitchToWRAM2
 	ld hl, wc000
-	ld de, wListPointer
+	ld de, wScratchCardCollection
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank0e.loop
-	ld hl, $c100
-	ld de, $d100
+	call CopyBBytesFromHLToDE_Bank0e
+	ld hl, wc000 + $100
+	ld de, wScratchCardCollection + $100
 	ld b, $00
-	call CopyBBytesFromHLToDE_Bank0e.loop
+	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ld a, $80
 	farcall CreateCardCollectionListWithDeckCards
@@ -6753,7 +6743,7 @@ Func_3b9d6:
 .asm_3ba68
 	ld bc, $2e9
 .asm_3ba6b
-	ld hl, $d38a
+	ld hl, wd38a
 	ld a, c
 	ld [hli], a
 	ld a, b
@@ -6786,9 +6776,6 @@ Func_3ba7d:
 .asm_3ba9a
 	or a
 	ret
-; 0x3ba9c
-
-SECTION "Bank e@7a9c", ROMX[$7a9c], BANK[$e]
 
 _PrinterMenu_DeckConfiguration:
 	xor a
@@ -6929,7 +6916,7 @@ Func_3bb09:
 	ld [wSelectedDeckMachineEntry], a
 	farcall Func_9287
 	xor a
-	ld [$d0cd], a
+	ld [wd0cd], a
 	call DrawWideTextBox
 	ld hl, $7c60
 	call PlaceTextItems
@@ -6975,7 +6962,7 @@ Func_3bb09:
 	ld b, $00
 	ld hl, wd4b4
 	add hl, bc
-	ld bc, $d38a
+	ld bc, wd38a
 	ld a, [hli]
 	ld [bc], a
 	inc bc
@@ -7034,7 +7021,7 @@ Func_3bc95:
 
 Func_3bcd6:
 	xor a
-	ld [$d49a], a
+	ld [wd49a], a
 	ld a, $01
 .asm_3bcdc
 	call Func_3bd28
@@ -7083,7 +7070,7 @@ Func_3bd28:
 	call CheckIfCanBuildSavedDeck
 	jr c, .asm_3bd38
 	pop af
-	ld [$d49a], a
+	ld [wd49a], a
 	or a
 	ret
 .asm_3bd38
