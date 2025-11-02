@@ -1762,7 +1762,12 @@ wd0c4:: ; d0c4
 wNumberOfPrizeCardsToSelect:: ; d0c8
 	ds $1
 
-	ds $6
+	ds $4
+
+wd0cd:: ; d0cd
+	ds $1
+
+	ds $1
 
 ; $00 when the "In Play Area" screen has been opened from the Check menu
 ; $01 when the "In Play Area" screen has been opened by pressing the select button
@@ -1853,6 +1858,7 @@ wNumEntriesInCurFilter::
 wBoosterPackCardListSize:: ; d0ee
 	ds $1
 
+wd0ef:: ; d0ef
 	ds $2
 
 ; deck selected by the player in the Decks screen
@@ -1931,11 +1937,15 @@ wCurCardTypeFilter:: ; d11a
 wTempCurMenuItem:: ; d11b
 	ds $1
 
-	ds $2
+wd11c:: ; d11c
+	ds $1
+
+	ds $1
 
 wced7:: ; d11e
 	ds $1
 
+wd11f:: ; d11f
 	ds $1
 
 ; stores how many different cards there are in a deck
@@ -2001,12 +2011,24 @@ wd381:: ; d381
 wSameNameCardsLimit:: ; d382
 	ds $1
 
-	ds $5
+wd383:: ; d383
+	ds $1
+
+wd384:: ; d384
+	ds $2
+
+wd386:: ; d386
+	ds $2
 
 wCurCardListPtr:: ; d388
 	ds $1
 
-	ds $5
+	ds $1
+
+wd38a:: ; d38a
+	ds $2
+
+	ds $2
 
 ; the tile to draw in place of the cursor, in case
 ; the cursor is not to be drawn
@@ -2086,7 +2108,10 @@ wNamingScreenMode:: ; d3eb
 wd3ef:: ; d3ef
 	ds $1
 
-	ds $26
+	ds $1e
+
+wd40e:: ; d40e
+	ds $8
 
 ; pointers to all decks of current deck machine
 wMachineDeckPtrs:: ; d416
@@ -2105,7 +2130,11 @@ wTempScrollMenuScrollOffset:: ; d47c
 wSelectedDeckMachineEntry:: ; d47d
 	ds $1
 
-	ds $19
+wd47e:: ; d47e
+	ds $18
+
+wd496:: ; d496
+	ds $1
 
 wDeckMachineTitleText:: ; d497
 	ds $2
@@ -2113,6 +2142,7 @@ wDeckMachineTitleText:: ; d497
 wNumDeckMachineEntries:: ; d499
 	ds $1
 
+wd49a:: ; d49a
 	ds $1
 
 wd49b:: ; d49b
@@ -2129,7 +2159,15 @@ wd49e:: ; d49e
 wd49f:: ; d49f
 	ds $1
 
-	ds $28
+	ds $13
+
+wd4b3:: ; d4b3
+	ds $1
+
+wd4b4:: ; d4b4
+	ds $8
+
+	ds $c
 
 wd4c8:: ; d4c8
 	ds $80
@@ -2137,7 +2175,11 @@ wd4c8:: ; d4c8
 wd548:: ; d548
 	ds $2
 
-	ds $2
+wd54a:: ; d54a
+	ds $1
+
+wd54b:: ; d54b
+	ds $1
 
 wd54c:: ; d54c
 	ds $1
@@ -2194,12 +2236,23 @@ wFilteredListPtr:: ; d575
 wRemainingIntroCards:: ; d577
 	ds $1
 
-	ds $3
+wd578:: ; d578
+	ds $1
+
+wd579:: ; d579
+	ds $2
 
 wIntroCardsRepeatsAllowed:: ; d57b
 	ds $1
 
-	ds $6
+wd57c:: ; d57c
+	ds $2
+
+wd57e:: ; d57e
+	ds $2
+
+wd580:: ; d580
+	ds $2
 
 wd582:: ; d582
 	ds $1
@@ -2313,6 +2366,7 @@ wd611:: ; d611
 wd613:: ; d613
 	ds $2
 
+wd615:: ; d615
 	ds $1
 
 ; sometimes treated as 8-bit, sometimes treated as 16-bit
@@ -2545,7 +2599,11 @@ wd89d:: ; d89d
 wd89e:: ; d89e
 	ds $1
 
-	ds $2
+wd89f:: ; d89f
+	ds $1
+
+wd8a0:: ; d8a0
+	ds $1
 
 wd8a1:: ; d8a1
 	ds $1
@@ -2855,12 +2913,79 @@ wTotalNumCardsToCollect:: ; db13
 wTotalNumCardsCollected:: ; db15
 	ds $2
 
-	ds $8
+wdb17:: ; db17
+	ds $1
+
+wdb18:: ; db18
+	ds $1
+
+wdb19:: ; db19
+	ds $1
+
+wdb1a:: ; db1a
+	ds $5
 
 wdb1f:: ; db1f
 	ds $1
 
-	ds $e6
+wdb20:: ; db20
+	ds $1
+
+wdb21:: ; db21
+	ds $2
+
+wdb23:: ; db23
+	ds $c
+
+wdb2f:: ; db2f
+	ds $1
+
+wdb30:: ; db30
+	ds $1
+
+wdb31:: ; db31
+	ds $1
+
+wdb32:: ; db32
+	ds $1
+
+	ds $1
+
+wdb34:: ; db34
+	ds $1
+
+wdb35:: ; db35
+	ds $1
+
+wdb36:: ; db36
+	ds $1
+
+	ds $2
+
+wdb39:: ; db39
+	ds $3
+
+wdb3c:: ; db3c
+	ds $1
+
+wdb3d:: ; db3d
+	ds $1
+
+	ds $1
+
+wdb3f:: ; db3f
+	ds $1
+
+	ds $6
+
+wdb46:: ; db46
+	ds $40
+
+wdb86:: ; db86
+	ds $40
+
+wdbc6:: ; dbc6
+	ds $40
 
 wdc06:: ; dc06
 	ds $1
@@ -3055,7 +3180,26 @@ wCurBoosterPack:: ; dd08
 wAnotherBoosterPack:: ; dd09
 	ds $1
 
-	ds $1b
+wdd0a:: ; dd0a
+	ds $10
+
+wdd1a:: ; dd1a
+	ds $6
+
+wdd20:: ; dd20
+	ds $1
+
+wdd21:: ; dd21
+	ds $1
+
+wdd22:: ; dd22
+	ds $1
+
+wdd23:: ; dd23
+	ds $1
+
+wdd24:: ; dd24
+	ds $1
 
 wdd25:: ; dd25
 	ds $2
@@ -3130,7 +3274,23 @@ wdd76:: ; dd76
 wdd77:: ; dd77
 	ds $1
 
-	ds $1c
+wdd78:: ; dd78
+	ds $1
+
+wdd79:: ; dd79
+	ds $1
+
+wdd7a:: ; dd7a
+	ds $10
+
+wdd8a:: ; dd8a
+	ds $4
+
+wdd8e:: ; dd8e
+	ds $5
+
+wdd93:: ; dd93
+	ds $1
 
 wCardTilemap:: ; dd94
 	ds $30
@@ -3144,23 +3304,43 @@ wCardTilemapOffset:: ; ddf4
 wddf5:: ; ddf5
 	ds $1
 
-	ds $3
+wddf6:: ; ddf6
+	ds $1
+
+wddf7:: ; ddf7
+	ds $1
+
+wddf8:: ; ddf8
+	ds $1
 
 wddf9:: ; ddf9
 	ds $14
 
 wde0d:: ; de0d
-	ds $4
+	ds $2
+
+wde0f:: ; de0f
+	ds $2
 
 wde11:: ; de11
-	ds $4
+	ds $2
+
+wde13:: ; de13
+	ds $2
 
 wde15:: ; de15
-	ds $4
+	ds $2
+
+wde17:: ; de17
+	ds $2
 
 wde19:: ; de19
-	ds $20
+	ds $10
 
+wde29:: ; de29
+	ds $10
+
+wde39:: ; de39
 	ds $10
 
 wCreditsCmdArg1:: ; de49
@@ -3224,7 +3404,28 @@ SECTION "WRAM2", WRAMX
 wScratchCardCollection:: ; d000
 	ds CARD_COLLECTION_SIZE
 
-SECTION "WRAM2@d58e", WRAMX[$d58e], BANK[$2]
+w2d200:: ; d200
+	ds $80
+
+w2d280:: ; d280
+	ds $6
+
+w2d286:: ; d286
+	ds $1
+
+w2d287:: ; d287
+	ds $6
+
+w2d28d:: ; d28d
+	ds $1
+
+w2d28e:: ; d28e
+	ds $100
+
+w2d38e:: ; d38e
+	ds $80
+
+	ds $180
 
 w2d58e:: ; d58e
 	ds $80

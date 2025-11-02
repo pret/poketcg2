@@ -43,7 +43,6 @@ FindCardIDInNonTurnDuelistsPlayArea:
 	call FindCardIDInTurnDuelistsPlayArea
 	call SwapTurn
 	ret
-; 0x28039
 
 ; returns carry if card ID is found in turn duelist's Play Area
 ; inputs:
@@ -3315,7 +3314,214 @@ AIDeckSpecificBenchScore:
 	ret
 ; 0x2a72f
 
-SECTION "Bank a@7c4f", ROMX[$7c4f], BANK[$a]
+SECTION "Bank a@7b32", ROMX[$7b32], BANK[$a]
+
+Func_2bb32:
+	call EnableSRAM
+	ld a, [wd4b3]
+	ld l, a
+	ld h, $18
+	call HtimesL
+	ld a, [wd548]
+	or a
+	jr nz, .asm_2bb49
+	ld bc, $7952
+	jr .asm_2bb4c
+.asm_2bb49
+	ld bc, $7a42
+.asm_2bb4c
+	add hl, bc
+	ld bc, $0
+.asm_2bb50
+	call Func_2bb7f
+	call Func_2bbbb
+	inc hl
+	inc hl
+	call Func_2bbf9
+	push hl
+	ld de, wd4b4
+	ld h, c
+	ld l, $02
+	call HtimesL
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hli]
+	ld [de], a
+	call Func_2bb8e
+	inc b
+	ld a, b
+	cp $04
+	jr nz, .asm_2bb50
+	ld a, c
+	ld [wNumDeckMachineEntries], a
+	call DisableSRAM
+	ret
+
+Func_2bb7f:
+	push hl
+	ld l, c
+	ld h, $60
+	call HtimesL
+	ld de, wd40e
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	ret
+
+Func_2bb8e:
+	ld a, [wd4b3]
+	cp $01
+	jr z, .asm_2bb9b
+	cp $08
+	jr z, .asm_2bb9b
+	inc c
+	ret
+.asm_2bb9b
+	push de
+	push hl
+	push bc
+	ld a, [wd4b3]
+	farcall CheckTCGIslandMilestoneEvents
+	inc b
+	ld e, $01
+.asm_2bba8
+	dec b
+	jr z, .asm_2bbaf
+	sla e
+	jr .asm_2bba8
+.asm_2bbaf
+	and e
+	or a
+	jr z, .asm_2bbb7
+	pop bc
+	inc c
+	jr .asm_2bbb8
+.asm_2bbb7
+	pop bc
+.asm_2bbb8
+	pop hl
+	pop de
+	ret
+
+Func_2bbbb:
+	push hl
+	push bc
+	push de
+	push de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld hl, wc000
+	xor a
+	ld b, $82
+.asm_2bbc8
+	ld [hli], a
+	dec b
+	jr nz, .asm_2bbc8
+	ld hl, wc000
+.asm_2bbcf
+	ld a, [de]
+	inc de
+	ld b, a
+	or a
+	jr z, .asm_2bbe2
+	ld a, [de]
+	inc de
+	ld c, a
+	ld a, [de]
+	inc de
+.asm_2bbda
+	ld [hl], c
+	inc hl
+	ld [hli], a
+	dec b
+	jr nz, .asm_2bbda
+	jr .asm_2bbcf
+.asm_2bbe2
+	pop hl
+	ld bc, $18
+	add hl, bc
+	ld de, wc000
+	farcall SwitchToWRAM2
+	bank1call SaveDeckCards
+	farcall SwitchToWRAM1
+	pop de
+	pop bc
+	pop hl
+	ret
+
+Func_2bbf9:
+	push hl
+	push bc
+	push de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld de, wDefaultText
+	call CopyText
+	pop hl
+	farcall SwitchToWRAM2
+	ld de, wDefaultText
+	ld b, $0f
+	ld c, $0e
+.asm_2bc11
+	ld a, [de]
+	inc de
+	or a
+	jr z, .asm_2bc45
+	cp $05
+	jr z, .asm_2bc2f
+	cp $04
+	jr z, .asm_2bc3a
+	cp c
+	jr z, .asm_2bc26
+	ld [hl], b
+	inc hl
+	ld [hli], a
+	jr .asm_2bc11
+.asm_2bc26
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, b
+	ld b, c
+	ld c, a
+	jr .asm_2bc11
+.asm_2bc2f
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	cp b
+	jr nz, .asm_2bc11
+	inc de
+	jr .asm_2bc11
+.asm_2bc3a
+	ld [hli], a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld a, [de]
+	cp b
+	jr nz, .asm_2bc11
+	inc de
+	jr .asm_2bc11
+.asm_2bc45
+	ld [hl], a
+	farcall SwitchToWRAM1
+	pop bc
+	pop hl
+	inc hl
+	inc hl
+	ret
 
 ; de = text ID
 Func_2bc4f:
@@ -3367,4 +3573,161 @@ Func_2bc4f:
 	db SYM_CURSOR_R ; cursor tile number
 	db SYM_SPACE ; tile behind cursor
 	dw NULL ; function pointer if non-0
-; 0x2bc9f
+
+Func_2bc9f:
+	ld [wd548], a
+	xor a
+	ld [wScrollMenuScrollOffset], a
+.asm_2bca6
+	ld hl, $7afb
+	farcall InitializeScrollMenuParameters
+	ld a, $05
+	ld [wNumMenuItems], a
+	call Func_2bcfb
+	ld hl, $7f5e
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	xor a
+	ld [wd119], a
+.asm_2bcc3
+	call DoFrame
+	farcall HandleScrollMenu
+	jr nc, .asm_2bcc3
+	ld a, [hCurMenuItem]
+	cp $ff
+	ret z
+	ld a, [wScrollMenuScrollOffset]
+	ld [wd54a], a
+	ld b, a
+	ld a, [wTempCardTypeFilter]
+	ld [wd54b], a
+	add b
+	ld hl, wd49f
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hl]
+	dec a
+	ld [wd4b3], a
+	farcall Func_3bb09
+	ld a, [wd54a]
+	ld [wScrollMenuScrollOffset], a
+	ld a, [wd54b]
+	jr .asm_2bca6
+
+Func_2bcfb:
+	xor a
+	ld [wTileMapFill], a
+	call EmptyScreen
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	farcall LoadMenuCursorTile
+	call LoadSymbolsFont
+	call LoadDuelCardSymbolTiles
+	bank1call SetDefaultPalettes
+	ld de, $3cff
+	call SetupText
+	lb de, 0, 0
+	lb bc, 20, 13
+	call DrawRegularTextBox
+	ld de, $100
+	ld a, [wd548]
+	or a
+	jr nz, .asm_2bd31
+	ld hl, $30a
+	jr .asm_2bd34
+.asm_2bd31
+	ldtx hl, AutoDeckMachine2Text
+.asm_2bd34
+	call Func_2c4b
+	ldtx hl, ChooseDeckTypeText
+	call DrawWideTextBox_PrintText
+	call Func_2bd48
+	farcall Func_3bf5e
+	call EnableLCD
+	ret
+
+Func_2bd48:
+	ld a, $08
+	ld hl, wd49f
+	farcall ClearNBytesFromHL
+	ld a, $08
+	ld hl, wd4b4
+	farcall ClearNBytesFromHL
+	ld bc, $0
+.asm_2bd5d
+	ld a, b
+	push bc
+	call Func_2bd7f
+	pop bc
+	jr nc, .asm_2bd6b
+	push bc
+	call Func_2bd92
+	pop bc
+	inc c
+.asm_2bd6b
+	inc b
+	ld a, b
+	cp $0a
+	jr nz, .asm_2bd5d
+	ld a, c
+	ld [wNumDeckMachineEntries], a
+	ld a, [wNumMenuItems]
+	cp c
+	ret c
+	ld a, c
+	ld [wNumMenuItems], a
+	ret
+
+Func_2bd7f:
+	push af
+	ld a, [wd548]
+	or a
+	jr nz, .asm_2bd8c
+	pop af
+	farcall CheckTCGIslandMilestoneEvents
+	ret
+.asm_2bd8c
+	pop af
+	farcall CheckGRIslandMilestoneEvents
+	ret
+
+Func_2bd92:
+	ld hl, wd49f
+	push bc
+	ld a, b
+	inc a
+	ld b, $00
+	add hl, bc
+	pop bc
+	ld [hl], a
+	ld a, [wd548]
+	or a
+	jr nz, .asm_2bda8
+	ld hl, $7dc3
+	jr .asm_2bdab
+.asm_2bda8
+	ld hl, $7dd7
+.asm_2bdab
+	push bc
+	ld c, b
+	sla c
+	ld b, $00
+	add hl, bc
+	pop bc
+	ld e, l
+	ld d, h
+	ld hl, wd4b4
+	sla c
+	ld b, $00
+	add hl, bc
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hl], a
+	ret
+; 0x2bdc3

@@ -227,9 +227,27 @@ Func_c199:
 	ld [wd582], a
 	call Func_32f6
 	ret
-; 0xc1a2
 
-SECTION "Bank 3@41c9", ROMX[$41c9], BANK[$3]
+Func_c1a2:
+	call WaitPalFading
+	ret
+
+Func_c1a6:
+	call Func_3d0d
+	ld a, MUSIC_PAUSEMENU
+	call PlaySong
+	farcall Func_10772
+	call Func_3d4a
+	jr nz, .asm_c1bc
+	call Func_3d16
+	jr .asm_c1c3
+.asm_c1bc
+	farcall PlayCurrentSong
+	call Func_3d4f
+.asm_c1c3
+	ld a, $00
+	ld [wd582], a
+	ret
 
 HandleStartMenu:
 	xor a
@@ -3417,7 +3435,7 @@ ScriptCommand_MovePlayer:
 	ld a, [wScriptBank]
 	ld b, a
 	ld a, [wPlayerOWObject]
-	farcall Func_10def
+	farcall MoveNPC
 	farcall ResetOWObjectFlag5_WithID
 	call Get1ScriptArg_IncrIndexBy3
 	or a
@@ -3436,7 +3454,7 @@ ScriptCommand_MoveNPC:
 	ld a, [wScriptBank]
 	ld b, a
 	pop af
-	farcall Func_10def
+	farcall MoveNPC
 	jp IncreaseScriptPointerBy4
 
 ScriptCommand_MoveActiveNPC:
@@ -3446,7 +3464,7 @@ ScriptCommand_MoveActiveNPC:
 	ld a, [wScriptBank]
 	ld b, a
 	ld a, [wScriptNPC]
-	farcall Func_10def
+	farcall MoveNPC
 	jp IncreaseScriptPointerBy3
 
 ScriptCommand_StartDuel:
@@ -5394,3 +5412,275 @@ ENDR
 	call DisableSRAM
 	ret
 ; 0xedec
+
+SECTION "Bank 3@6f40", ROMX[$6f40], BANK[$3]
+
+Func_ef40:
+	or a
+	jr nz, .asm_ef54
+	ld a, $31
+	ld [wRemainingIntroCards], a
+	ld a, $ed
+	ld [wFilteredListPtr], a
+	ld a, $51
+	ld [wFilteredListPtr+1], a
+	jr .asm_ef63
+.asm_ef54
+	ld a, $25
+	ld [wRemainingIntroCards], a
+	ld a, $4f
+	ld [wFilteredListPtr], a
+	ld a, $52
+	ld [wFilteredListPtr+1], a
+.asm_ef63
+	ld e, $05
+	ld d, VAR_35
+	ld c, $ff
+.asm_ef69
+	ld a, d
+	call SetVarValue
+	inc d
+	dec e
+	jr nz, .asm_ef69
+	ld c, $00
+.asm_ef73
+	ld b, $01
+	ld a, c
+	or a
+.asm_ef77
+	jr z, .asm_ef7e
+	sla b
+	dec a
+	jr .asm_ef77
+.asm_ef7e
+	call Func_ef97
+	call Func_efb3
+	jr c, .asm_ef7e
+	push bc
+	ld d, a
+	ld a, VAR_35
+	add c
+	ld c, d
+	call SetVarValue
+	pop bc
+	inc c
+	ld a, $05
+	cp c
+	jr nz, .asm_ef73
+	ret
+
+Func_ef97:
+.asm_ef97
+	ld a, [wFilteredListPtr]
+	ld l, a
+	ld a, [wFilteredListPtr+1]
+	ld h, a
+	ld a, [wRemainingIntroCards]
+	call Random
+	sla a
+	add l
+	ld l, a
+	jr nc, .asm_efac
+	inc h
+.asm_efac
+	inc hl
+	ld a, [hld]
+	and b
+	jr z, .asm_ef97
+	ld a, [hl]
+	ret
+
+Func_efb3:
+	ld d, a
+	call LoadNPCDuelistDeck
+	ld l, a
+	ld e, VAR_35
+.asm_efba
+	ld a, e
+	call GetVarValue
+	cp $ff
+	jr z, .asm_efcc
+	call LoadNPCDuelistDeck
+	inc e
+	cp l
+	jr nz, .asm_efba
+	ld a, d
+	scf
+	ret
+.asm_efcc
+	ld a, d
+	scf
+	ccf
+	ret
+
+Func_efd0:
+	ld c, $05
+	ld a, VAR_35
+	ld hl, wddf9
+.asm_efd7
+	push af
+	call GetVarValue
+	call LoadNPCDuelistDeck
+	call LoadNPCDuelist
+	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_TITLE_NAME
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ld a, [de]
+	ld [hli], a
+	pop af
+	inc a
+	dec c
+	jr nz, .asm_efd7
+	ret
+
+Func_eff7:
+	call Func_ec38
+	ld a, VAR_34
+	call GetVarValue
+	dec a
+	ld c, a
+	ld a, VAR_35
+	add c
+	call GetVarValue
+	ld [wNPCDuelDeckID], a
+	ld hl, wd583
+	set 1, [hl]
+	ret
+
+Func_f010:
+	push af
+	push hl
+	ld a, VAR_29
+	call GetVarValue
+	sla a
+	ld hl, NonSpecialPromoCards
+	add l
+	ld l, a
+	jr nc, .asm_f021
+	inc h
+.asm_f021
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop hl
+	pop af
+	ret
+
+Func_f027:
+	push af
+	push bc
+	push de
+	call Func_f010
+	ld e, c
+	ld d, b
+	call GetReceivingCardShortName
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_f036:
+	push af
+	push hl
+	ld a, VAR_31
+	call GetVarValue
+	sla a
+	ld hl, $51cb
+	add l
+	ld l, a
+	jr nc, .asm_f047
+	inc h
+.asm_f047
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	pop hl
+	pop af
+	ret
+
+Func_f04d:
+	push af
+	push bc
+	push de
+	call Func_f036
+	ld e, c
+	ld d, b
+	call GetReceivingCardLongName
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xf05c
+
+SECTION "Bank 3@7063", ROMX[$7063], BANK[$3]
+
+Func_f063:
+	ld b, d
+	farcall SetFrameFuncAndFadeFromWhite
+	call FlushAllPalettes
+	lb de, 2, 1
+	ld b, $00
+	call Func_f085
+	ld b, $08
+	call Func_f085
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; b - ?
+; de - coordinates
+Func_f085:
+	push de
+	push bc
+	ld b, d
+	ld c, e
+	call BCCoordToBGMap0Address
+	pop bc
+	ld d, $00
+	ld c, $10
+.asm_f091
+	push bc
+	ld c, $10
+	push hl
+.asm_f095
+	xor a
+	call BankswitchVRAM
+	ei
+	di
+	call WaitForLCDOff
+	ld [hl], d
+	ei
+	ld a, BANK("VRAM1")
+	call BankswitchVRAM
+	ei
+	di
+	call WaitForLCDOff
+	xor a
+	or b
+	ld [hli], a
+	ei
+	inc d
+	dec c
+	jr nz, .asm_f095
+	pop hl
+	ld bc, $20
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .asm_f091
+	ld c, PAD_A | PAD_B
+	farcall Func_10221
+	pop de
+	ret
+; 0xf0c3

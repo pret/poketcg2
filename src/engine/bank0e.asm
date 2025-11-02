@@ -4847,7 +4847,103 @@ UpdateBoosterPackMenuArrows:
 	lb bc, 18, 12
 	call WriteByteToBGMap0
 	ret
-; 0x3ada1
+
+Func_3ada1:
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ldtx de, DeckSaveMachineText
+	ld hl, wDeckMachineTitleText
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, $32
+	ld [wNumDeckMachineEntries], a
+	xor a
+.asm_3adb7
+	ld hl, $5eac
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ldtx hl, PleaseSelectDeckText
+	call DrawWideTextBox_PrintText
+	ldtx de, PleaseSelectDeckText
+	call InitDeckMachineDrawingParams
+	call HandleDeckMachineSelection
+	jr c, .asm_3adb7
+	cp $ff
+	ret z
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	farcall Func_9287
+	call DrawWideTextBox
+	ld hl, $6e7b
+	call PlaceTextItems
+.asm_3aded:
+	call DoFrame
+	farcall Func_9292
+	jp nc, .asm_3aded
+	cp $ff
+	jr nz, .asm_3ae01
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3adb7
+.asm_3ae01
+	ld a, [wMusicStereoPanningBackup]
+	sla a
+	ld hl, wCurSongBankBackup
+	add [hl]
+	or a
+	jr nz, .asm_3ae33
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr nc, .asm_3ae1d
+	call Func_3b2db
+	ld a, [wTempScrollMenuItem]
+	jp c, .asm_3adb7
+	jr .asm_3ae65
+.asm_3ae1d
+	ldtx hl, DeleteSavedDeckPromptText
+	call YesOrNoMenuWithText
+	ld a, [wTempScrollMenuItem]
+	jr c, .asm_3adb7
+	call Func_3b2db
+	ld a, [wTempScrollMenuItem]
+	jp c, .asm_3adb7
+	jr .asm_3ae65
+.asm_3ae33
+	cp $01
+	jr nz, .asm_3ae53
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr c, .asm_3ae47
+	call Func_3b3fa
+	ld a, [wTempScrollMenuItem]
+	jp c, .asm_3adb7
+	jr .asm_3ae65
+.asm_3ae47
+	ldtx hl, NoDecksSavedToMachineText
+	call DrawWideTextBox_WaitForInput
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3adb7
+.asm_3ae53
+	cp $02
+	jr nz, .asm_3ae7a
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr c, .asm_3ae47
+	call Func_3b4eb
+	ld a, [wTempScrollMenuItem]
+	jp nc, .asm_3adb7
+.asm_3ae65
+	ld a, [wTempScrollMenuScrollOffset]
+	ld [wScrollMenuScrollOffset], a
+	call ClearScreenAndDrawDeckMachineScreen
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3adb7
+.asm_3ae7a
+	ret
+; 0x3ae7b
 
 SECTION "Bank e@6e8c", ROMX[$6e8c], BANK[$e]
 
@@ -5036,9 +5132,15 @@ CopyBBytesFromHLToDE_Bank0e:
 	dec b
 	jr nz, .loop
 	ret
-; 0x3afb1
 
-SECTION "Bank e@6fb8", ROMX[$6fb8], BANK[$e]
+Func_3afb1:
+.asm_3afb1
+	ld a, [hli]
+	ld [de], a
+	or a
+	ret z
+	inc de
+	jr .asm_3afb1
 
 ; a = deck index in wMachineDeckPtrs
 Func_3afb8:
@@ -5148,9 +5250,42 @@ DrawDeckMachineScreen:
 	ld hl, hffbb
 	ld [hl], $00
 	jr PrintVisibleDeckMachineEntries
-; 0x3b069
 
-SECTION "Bank e@7096", ROMX[$7096], BANK[$e]
+Func_3b069:
+	ld hl, $7078
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	xor a
+	ld [wd119], a
+	ret
+
+Func_3b078:
+	ld de, $202
+	ld b, $04
+	ld a, [wNumDeckMachineEntries]
+	cp b
+	jr nc, .asm_3b084
+	ld b, a
+.asm_3b084
+	xor a
+.asm_3b085
+	push af
+	push bc
+	push de
+	call PrintDeckMachineEntry
+	pop de
+	pop bc
+	pop af
+	ret c
+	dec b
+	ret z
+	inc a
+	inc e
+	inc e
+	jr .asm_3b085
 
 ; prints the deck name of the deck corresponding
 ; to index in register a, from wMachineDeckPtrs
@@ -5497,6 +5632,64 @@ PrintNumSavedDecks:
 	ret
 ; 0x3b2af
 
+SECTION "Bank e@72db", ROMX[$72db], BANK[$e]
+
+Func_3b2db:
+	ld a, $ff
+	farcall DrawDeckSelectionMenu
+	xor a
+.asm_3b2e2
+	ld hl, $735e
+	call InitializeMenuParameters
+	ld hl, EnableInt_Timer
+	call DrawWideTextBox_PrintText
+.asm_3b2ee
+	call DoFrame
+	farcall Func_8fb9
+	jr c, .asm_3b2e2
+	call HandleMenuInput
+	jp nc, .asm_3b2ee
+	ldh a, [hCurScrollMenuItem]
+	cp $ff
+	ret z
+	ld [wCurDeck], a
+	farcall CheckIfCurDeckIsEmpty
+	jp nc, Func_3b315
+	farcall Func_9215
+	ld a, [wCurDeck]
+	jr .asm_3b2e2
+
+Func_3b315:
+	farcall GetSRAMPointerToCurDeck
+	push hl
+	call GetSelectedSavedDeckPtr
+	ld d, h
+	ld e, l
+	pop hl
+	ld b, $60
+	call EnableSRAM
+	call CopyBBytesFromHLToDE_Bank0e
+	call DisableSRAM
+	call ClearScreenAndDrawDeckMachineScreen
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ld a, [wTempScrollMenuItem]
+	ld hl, $5eac
+	farcall InitializeScrollMenuParameters
+	call HandleScrollMenu.draw_visible_cursor
+	farcall GetSRAMPointerToCurDeck
+	call EnableSRAM
+	farcall CopyDeckName
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, SavedDeckToMachineText
+	call DrawWideTextBox_WaitForInput
+	scf
+	ret
+; 0x3b35e
+
 SECTION "Bank e@7366", ROMX[$7366], BANK[$e]
 
 GetSelectedSavedDeckPtr:
@@ -5586,9 +5779,62 @@ CheckIfHasEnoughCardsToBuildDeck:
 .no_carry
 	or a
 	ret
-; 0x3b3d1
 
-SECTION "Bank e@742b", ROMX[$742b], BANK[$e]
+Func_3b3d1:
+	ld hl, sDeck1Name
+	ld a, [hl]
+	or a
+	jr nz, .asm_3b3da
+	xor a
+	ret
+.asm_3b3da
+	ld hl, sDeck2Name
+	ld a, [hl]
+	or a
+	jr nz, .asm_3b3e4
+	ld a, $01
+	ret
+.asm_3b3e4
+	ld hl, sDeck3Name
+	ld a, [hl]
+	or a
+	jr nz, .asm_3b3ee
+	ld a, $02
+	ret
+.asm_3b3ee
+	ld hl, sDeck4Name
+	ld a, [hl]
+	or a
+	jr nz, .asm_3b3f8
+	ld a, $03
+	ret
+.asm_3b3f8
+	scf
+	ret
+
+Func_3b3fa:
+	ldtx hl, ConfirmDeletePromptText
+	call YesOrNoMenuWithText
+	jr c, .asm_3b426
+	call GetSelectedSavedDeckPtr
+	push hl
+	call EnableSRAM
+	farcall CopyDeckName
+	pop hl
+	ld a, $60
+	farcall ClearNBytesFromHL
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ld hl, EnableInt_VBlank
+	call DrawWideTextBox_WaitForInput
+	or a
+	ret
+.asm_3b426
+	ld a, [wTempCardTypeFilter]
+	scf
+	ret
 
 DrawListScrollArrows:
 	ld a, [wScrollMenuScrollOffset]
@@ -5620,9 +5866,916 @@ DrawListScrollArrows:
 	lb bc, 19, 11
 	call WriteByteToBGMap0
 	ret
-; 0x3b45f
 
-SECTION "Bank e@7a9c", ROMX[$7a9c], BANK[$e]
+Func_3b45f:
+	ldtx hl, YouMayOnlyCarry4DecksText
+	call DrawWideTextBox_WaitForInput
+	ld a, $ff
+	farcall DrawDeckSelectionMenu
+	xor a
+.asm_3b46c
+	ld hl, $735e
+	call InitializeMenuParameters
+	ldtx hl, ChooseDeckToDismantleText
+	call DrawWideTextBox_PrintText
+.asm_3b478
+	call DoFrame
+	farcall Func_8fb9
+	jr c, .asm_3b46c
+	call HandleMenuInput
+	jp nc, .asm_3b478
+	ldh a, [hCurScrollMenuItem]
+	cp $ff
+	jr nz, .asm_3b48f
+	scf
+	ret
+.asm_3b48f
+	ld [wCurDeck], a
+	ldtx hl, DeckBuildingDismantlePromptText
+	call YesOrNoMenuWithText
+	jr nc, .asm_3b49f
+	ld a, [wCurDeck]
+	jr .asm_3b46c
+.asm_3b49f
+	farcall GetSRAMPointerToCurDeck
+	push hl
+	ld de, wd47e
+	call EnableSRAM
+	call Func_3afb1
+	pop hl
+	push hl
+	ld bc, $18
+	add hl, bc
+	farcall Func_9397
+	pop hl
+	ld a, $60
+	farcall ClearNBytesFromHL
+	call DisableSRAM
+	ld a, $ff
+	farcall DrawDeckSelectionMenu
+	ld a, [wCurDeck]
+	ld hl, $735e
+	call InitializeMenuParameters
+	call DrawCursor2
+	ld hl, wd47e
+	farcall CopyDeckName
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, DismantledThisDeckText
+	call DrawWideTextBox_WaitForInput
+	ld a, [wCurDeck]
+	ret
+
+Func_3b4eb:
+	call SwitchToWRAM2
+	xor a
+	ld [w2d280], a
+	call SwitchToWRAM1
+	ld a, [wSelectedDeckMachineEntry]
+	ld hl, wd49f
+	sla a
+	ld b, $00
+	ld c, a
+	add hl, bc
+	ld a, [hli]
+	ld [wd49b], a
+	ld a, [hl]
+	ld [wd49e], a
+	or a
+	jr nz, .asm_3b526
+	ld a, [wd49b]
+	or a
+	jr z, .asm_3b53a
+	ldtx hl, CannotBuildMustDismantleText
+	call DrawWideTextBox_WaitForInput
+	call Func_3b9d6
+	call Func_3b5f1
+	jr nc, .asm_3b53a
+	call Func_3b661
+	jr nc, .asm_3b53a
+	ret
+.asm_3b526
+	ldtx hl, YouDoNotOwnAllCardsNeededToBuildThisDeckText
+	call DrawWideTextBox_WaitForInput
+	call Func_3b92b
+	ld a, [wd49b]
+	or a
+	call nz, Func_3b9d6
+	call Func_3b661
+	ret c
+.asm_3b53a
+	call EnableSRAM
+	call Func_3b3d1
+	call DisableSRAM
+	jr nc, .asm_3b54c
+	call Func_3b45f
+	jr nc, .asm_3b54c
+	scf
+	ret
+.asm_3b54c
+	ld [wd496], a
+	ld a, [wSelectedDeckMachineEntry]
+	call Func_3afb8
+	ld de, wc000
+	ld b, $60
+	call EnableSRAM
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM2
+	ld a, [w2d280]
+	or a
+	call nz, Func_3b7fc
+	call SwitchToWRAM1
+	ld hl, $c018
+	farcall Func_9337
+	ld a, [wd496]
+	ld l, a
+	ld h, $60
+	call HtimesL
+	ld bc, sDeck1Name
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, wc000
+	ld b, $60
+	call CopyBBytesFromHLToDE_Bank0e
+	call DisableSRAM
+	ld a, $ff
+	farcall DrawDeckSelectionMenu
+	ld a, [wd496]
+	ld [wCurDeck], a
+	ld hl, $735e
+	call InitializeMenuParameters
+	call DrawCursor2
+	farcall GetSRAMPointerToCurDeck
+	call EnableSRAM
+	farcall CopyDeckName
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, BuiltDeckText
+	call DrawWideTextBox_WaitForInput
+	call SwitchToWRAM2
+	ld a, [w2d280]
+	or a
+	call SwitchToWRAM1
+	jr z, .asm_3b5ef
+	call SwitchToWRAM2
+	ld hl, w2d38e
+	ld de, wc000
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ld bc, $2f3
+	ld hl, wd38a
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hl], a
+	call GetSelectedSavedDeckPtr
+	ld de, wc000
+	farcall Func_b59f
+.asm_3b5ef
+	scf
+	ret
+
+Func_3b5f1:
+	call Func_3bcd6
+	farcall DrawDeckSelectionMenu
+	ldtx hl, DismantleTheseDecksPromptText
+	call YesOrNoMenuWithText
+	jr nc, .asm_3b601
+	ret
+.asm_3b601
+	call EnableSRAM
+	ld a, [wd49a]
+	bit 0, a
+	jr z, .asm_3b610
+	ld a, $00
+	call Func_3b646
+.asm_3b610
+	ld a, [wd49a]
+	bit 1, a
+	jr z, .asm_3b61c
+	ld a, $01
+	call Func_3b646
+.asm_3b61c
+	ld a, [wd49a]
+	bit 2, a
+	jr z, .asm_3b628
+	ld a, $02
+	call Func_3b646
+.asm_3b628
+	ld a, [wd49a]
+	bit 3, a
+	jr z, .asm_3b634
+	ld a, $03
+	call Func_3b646
+.asm_3b634
+	call DisableSRAM
+	ld a, [wd49a]
+	farcall DrawDeckSelectionMenu
+	ldtx hl, DismantledTheseDecksText
+	call DrawWideTextBox_WaitForInput
+	or a
+	ret
+
+Func_3b646:
+	ld l, a
+	ld h, $60
+	call HtimesL
+	ld bc, sDeck1Name
+	add hl, bc
+	push hl
+	ld bc, $18
+	add hl, bc
+	farcall Func_9397
+	pop hl
+	ld a, $60
+	farcall ClearNBytesFromHL
+	ret
+
+Func_3b661:
+	ldtx hl, MaySubInEnergyCardsToBuildThisDeckText
+	call DrawWideTextBox_WaitForInput
+	ldtx hl, BuildSubbedDeckPromptText
+	call YesOrNoMenuWithText
+	ret c
+	ld a, [wd49b]
+	ld hl, wd49e
+	add [hl]
+	cp $0a
+	jr c, .asm_3b681
+	ldtx hl, CannotBuildLackingTooManyCardsText
+	call DrawWideTextBox_WaitForInput
+	scf
+	ret
+.asm_3b681
+	push af
+	call Func_3b6c4
+	call Func_3b75a
+	pop bc
+	jr c, .asm_3b696
+	cp b
+	jr nc, .asm_3b696
+	ldtx hl, CannotBuildLackingEnergyCardsText
+	call DrawWideTextBox_WaitForInput
+	scf
+	ret
+.asm_3b696
+	call SwitchToWRAM2
+	ld hl, w2d200
+	ld de, wc000
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ld hl, wc000
+	ld de, wCurDeckCards
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	farcall Func_9a0f
+	jr c, .asm_3b6c0
+	ldtx hl, CannotBuildLackingBasicPokemonText
+	call DrawWideTextBox_WaitForInput
+	scf
+	ret
+.asm_3b6c0
+	call Func_3b79b
+	ret
+
+Func_3b6c4:
+	ld a, [wSelectedDeckMachineEntry]
+	ld [wCurDeck], a
+	call GetSelectedSavedDeckPtr
+	ld de, $18
+	add hl, de
+	ld d, h
+	ld e, l
+	ld hl, wCurDeckCards
+	farcall CopyDeckFromSRAM
+	farcall SortCurDeckCardsByID
+	farcall CreateCurDeckUniqueCardList
+	xor a
+	farcall CreateCardCollectionListWithDeckCards
+	ld hl, $0
+.asm_3b6ea
+	push hl
+	ld l, h
+	ld h, $00
+	ld de, wUniqueDeckCardList
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
+	inc h
+	inc h
+	call Func_3b91d
+	jr c, .asm_3b720
+	push bc
+	push de
+	push hl
+	ld hl, wCurDeckCards
+	call Func_3b746
+	pop hl
+	pop de
+	pop bc
+	jr nc, .asm_3b6ea
+	ld c, a
+.asm_3b70c
+	push hl
+	push de
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	pop de
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	inc l
+	inc l
+	dec c
+	jr nz, .asm_3b70c
+	jr .asm_3b6ea
+.asm_3b720
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wTempCardList
+	ld de, wc000
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM2
+	ld hl, wc000
+	ld de, w2d200
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ret
+
+Func_3b746:
+	call Func_3b9ba
+	ld hl, wc000
+	add hl, de
+	ld a, [hl]
+	and $7f
+	or a
+	ret z
+	cp b
+	jr nc, .asm_3b757
+	scf
+	ret
+.asm_3b757
+	ld a, b
+	scf
+	ret
+
+Func_3b75a:
+	xor a
+	farcall CreateCardCollectionListWithDeckCards
+	call SwitchToWRAM2
+	ld hl, w2d200
+.asm_3b765
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call Func_3b91d
+	jr c, .asm_3b77c
+	push hl
+	ld hl, wc000
+	add hl, de
+	ld a, [hl]
+	and $7f
+	jr z, .asm_3b779
+	dec [hl]
+.asm_3b779
+	pop hl
+	jr .asm_3b765
+.asm_3b77c
+	ld hl, wc000 + 1
+	ld de, w2d280
+	ld b, $06
+	call CopyBBytesFromHLToDE_Bank0e
+	ld hl, w2d280
+	ld bc, $6
+.asm_3b78d
+	ld a, [hli]
+	add b
+	jr c, .asm_3b797
+	ld b, a
+	dec c
+	jr nz, .asm_3b78d
+	ld b, a
+	or a
+.asm_3b797
+	call SwitchToWRAM1
+	ret
+
+Func_3b79b:
+	call SwitchToWRAM2
+	ld a, $ff
+	ld [w2d286], a
+	xor a
+	ld hl, w2d287
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hli], a
+	inc a
+	ld [hl], a
+	ld de, $0
+.asm_3b7b5
+	ld hl, w2d280
+	add hl, de
+	call Func_3b7e4
+	ld a, e
+	add c
+	ld c, a
+	ld hl, w2d280
+	add hl, de
+	ld a, [hl]
+	ld [hl], b
+	ld b, $00
+	ld hl, w2d280
+	add hl, bc
+	ld [hl], a
+	ld hl, w2d287
+	add hl, de
+	ld a, [hl]
+	push hl
+	ld hl, w2d287
+	add hl, bc
+	ld c, [hl]
+	ld [hl], a
+	pop hl
+	ld [hl], c
+	inc e
+	ld a, $06
+	cp e
+	jr nz, .asm_3b7b5
+	call SwitchToWRAM1
+	ret
+
+Func_3b7e4:
+	push de
+	ld e, $00
+	ld bc, $0
+.asm_3b7ea
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_3b7f9
+	and $7f
+	cp b
+	jr c, .asm_3b7f6
+	ld b, a
+	ld e, c
+.asm_3b7f6
+	inc c
+	jr .asm_3b7ea
+.asm_3b7f9
+	ld c, e
+	pop de
+	ret
+
+Func_3b7fc:
+	call SwitchToWRAM2
+	ld hl, wc000
+	ld de, w2d28e
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	call Func_3b6c4
+	call Func_3b75a
+	call Func_3b79b
+	call SwitchToWRAM2
+	ld hl, w2d28e
+	ld de, wc000
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ld de, $c018
+	ld hl, wTempSavedDeckCards
+	farcall CopyDeckFromSRAM
+	ld hl, wTempSavedDeckCards
+	ld de, $c018
+	ld b, $80
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM2
+	ld a, $80
+	ld hl, wScratchCardCollection
+	farcall ClearNBytesFromHL
+	ld b, $00
+	ld de, w2d200
+.asm_3b84d
+	ld a, [de]
+	inc de
+	ld [hli], a
+	ld c, a
+	ld a, [de]
+	inc de
+	ld [hli], a
+	push de
+	inc b
+	ld e, c
+	ld d, a
+	call Func_3b91d
+	pop de
+	jr nc, .asm_3b84d
+	dec b
+	dec hl
+	dec hl
+	push hl
+	ld a, $ff
+	ld [w2d28d], a
+	ld de, $0
+.asm_3b86a
+	push hl
+	ld hl, w2d287
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_3b882
+	call Func_3b8c0
+	pop hl
+	jr c, .asm_3b87f
+	call Func_3b8da
+	jr c, .asm_3b899
+.asm_3b87f
+	inc e
+	jr .asm_3b86a
+.asm_3b882
+	pop hl
+	ld de, $0
+.asm_3b886
+	push hl
+	ld hl, w2d287
+	add hl, de
+	ld a, [hl]
+	cp $ff
+	pop hl
+	jr z, .asm_3b899
+	call Func_3b8da
+	jr c, .asm_3b899
+	inc e
+	jr .asm_3b886
+.asm_3b899
+	ld a, $80
+	ld hl, w2d38e
+	farcall ClearNBytesFromHL
+	pop hl
+	ld bc, w2d38e
+.asm_3b8a6
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld e, a
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld d, a
+	call Func_3b91d
+	jr nc, .asm_3b8a6
+	ld hl, $c018
+	ld de, wScratchCardCollection
+	bank1call SaveDeckCards
+	call SwitchToWRAM1
+	ret
+
+Func_3b8c0:
+	push de
+	ld hl, $c018
+.asm_3b8c4
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call Func_3b91d
+	ccf
+	jr nc, .asm_3b8d8
+	cp e
+	jr nz, .asm_3b8c4
+	ld e, a
+	ld a, d
+	or a
+	ld a, e
+	jr nz, .asm_3b8c4
+	scf
+.asm_3b8d8
+	pop de
+	ret
+
+Func_3b8da:
+	push hl
+	ld hl, w2d280
+	add hl, de
+	ld a, [hl]
+	and $7f
+	jr z, .asm_3b90d
+	ld c, a
+	pop hl
+	push de
+	push hl
+	ld hl, w2d287
+	add hl, de
+	ld e, [hl]
+	inc e
+	ld d, $00
+	pop hl
+.asm_3b8f1
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	inc hl
+	inc b
+	dec c
+	jr z, .asm_3b900
+	ld a, $3c
+	cp b
+	jr z, .asm_3b910
+	jr .asm_3b8f1
+.asm_3b900
+	ld a, $3c
+	cp b
+	jr z, .asm_3b910
+	pop de
+	push hl
+	ld hl, w2d280
+	add hl, de
+	xor a
+	ld [hl], a
+.asm_3b90d
+	pop hl
+	or a
+	ret
+.asm_3b910
+	xor a
+	ld [hli], a
+	ld [hl], a
+	pop de
+	push hl
+	ld hl, w2d287
+	add hl, de
+	ld [hl], c
+	pop hl
+	scf
+	ret
+
+Func_3b91d:
+	push af
+	xor a
+	cp d
+	jr nz, .asm_3b928
+	cp e
+	jr nz, .asm_3b928
+	pop af
+	scf
+	ret
+.asm_3b928
+	pop af
+	or a
+	ret
+
+Func_3b92b:
+	ld a, [wSelectedDeckMachineEntry]
+	ld [wCurDeck], a
+	call GetSelectedSavedDeckPtr
+	ld de, $18
+	add hl, de
+	ld d, h
+	ld e, l
+	ld hl, wCurDeckCards
+	farcall CopyDeckFromSRAM
+	farcall SortCurDeckCardsByID
+	farcall CreateCurDeckUniqueCardList
+	ld a, $ff
+	farcall CreateCardCollectionListWithDeckCards
+	ld hl, $0
+.asm_3b952
+	push hl
+	ld l, h
+	ld h, $00
+	ld de, wUniqueDeckCardList
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
+	inc h
+	inc h
+	call Func_3b91d
+	jr c, .asm_3b988
+	push bc
+	push de
+	push hl
+	ld hl, wCurDeckCards
+	call Func_3b9a6
+	pop hl
+	pop de
+	pop bc
+	jr nc, .asm_3b952
+	ld c, a
+.asm_3b974
+	push hl
+	push de
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	pop de
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	inc l
+	inc l
+	dec c
+	jr nz, .asm_3b974
+	jr .asm_3b952
+.asm_3b988
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld bc, $2e7
+	ld hl, wd38a
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hl], a
+	call GetSelectedSavedDeckPtr
+	ld de, wTempCardList
+	farcall Func_b59f
+	ret
+
+Func_3b9a6:
+	call Func_3b9ba
+	ld hl, wc000
+	add hl, de
+	ld a, [hl]
+	and $7f
+	cp b
+	jr c, .asm_3b9b5
+	or a
+	ret
+.asm_3b9b5
+	ld e, a
+	ld a, b
+	sub e
+	scf
+	ret
+
+Func_3b9ba:
+	push de
+	ld b, $00
+.asm_3b9bd
+	push de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call Func_3b91d
+	ld a, e
+	ld c, d
+	pop de
+	jr c, .asm_3b9d4
+	cp e
+	jr nz, .asm_3b9bd
+	ld a, c
+	cp d
+	jr nz, .asm_3b9bd
+	inc b
+	jr .asm_3b9bd
+.asm_3b9d4
+	pop de
+	ret
+
+Func_3b9d6:
+	ld a, [wSelectedDeckMachineEntry]
+	ld [wCurDeck], a
+	call GetSelectedSavedDeckPtr
+	ld de, $18
+	add hl, de
+	ld d, h
+	ld e, l
+	ld hl, wCurDeckCards
+	farcall CopyDeckFromSRAM
+	farcall SortCurDeckCardsByID
+	farcall CreateCurDeckUniqueCardList
+	xor a
+	farcall CreateCardCollectionListWithDeckCards
+	call SwitchToWRAM2
+	ld hl, wc000
+	ld de, wScratchCardCollection
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank0e
+	ld hl, wc000 + $100
+	ld de, wScratchCardCollection + $100
+	ld b, $00
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ld a, $80
+	farcall CreateCardCollectionListWithDeckCards
+	ld hl, $0
+.asm_3ba1e
+	push hl
+	ld l, h
+	ld h, $00
+	ld de, wUniqueDeckCardList
+	add hl, de
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	pop hl
+	inc h
+	inc h
+	call Func_3b91d
+	jr c, .asm_3ba54
+	push bc
+	push de
+	push hl
+	ld hl, wCurDeckCards
+	call Func_3ba7d
+	pop hl
+	pop de
+	pop bc
+	jr nc, .asm_3ba1e
+	ld c, a
+.asm_3ba40
+	push hl
+	push de
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	pop de
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	pop hl
+	inc l
+	inc l
+	dec c
+	jr nz, .asm_3ba40
+	jr .asm_3ba1e
+.asm_3ba54
+	ld h, $00
+	ld de, wTempCardList
+	add hl, de
+	xor a
+	ld [hli], a
+	ld [hl], a
+	ld a, [wd49e]
+	or a
+	jr nz, .asm_3ba68
+	ld bc, $2e8
+	jr .asm_3ba6b
+.asm_3ba68
+	ld bc, $2e9
+.asm_3ba6b
+	ld hl, wd38a
+	ld a, c
+	ld [hli], a
+	ld a, b
+	ld [hl], a
+	call GetSelectedSavedDeckPtr
+	ld de, wTempCardList
+	farcall Func_b59f
+	ret
+
+Func_3ba7d:
+	call Func_3b9ba
+	call PrintDeckMachineEntry.GetCardCountInScratchCardCollection
+	ld c, a
+	ld a, b
+	sub c
+	jr z, .asm_3ba9a
+	jr c, .asm_3ba9a
+	ld b, a
+	ld hl, wc000
+	add hl, de
+	ld a, [hl]
+	and $7f
+	jr z, .asm_3ba9a
+	cp b
+	jr c, .asm_3ba98
+	ld a, b
+.asm_3ba98
+	scf
+	ret
+.asm_3ba9a
+	or a
+	ret
 
 _PrinterMenu_DeckConfiguration:
 	xor a
@@ -5673,4 +6826,351 @@ _PrinterMenu_DeckConfiguration:
 	ld a, [wTempScrollMenuItem]
 	ld [wCurScrollMenuItem], a
 	jp .start_selection
-; 0x3bb09
+
+Func_3bb09:
+	ld a, [wd548]
+	or a
+	jr nz, .asm_3bb14
+	ld hl, $7c6d
+	jr .asm_3bb17
+.asm_3bb14
+	ld hl, $7c81
+.asm_3bb17
+	ld a, [wd4b3]
+	sla a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld de, wDeckMachineTitleText
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	call Func_3bc95
+	xor a
+.asm_3bb30
+	ld hl, $5eb5
+	farcall InitializeScrollMenuParameters
+	ldtx hl, PleaseSelectDeckText
+	call DrawWideTextBox_PrintText
+	ld a, [wNumDeckMachineEntries]
+	ld [wNumMenuItems], a
+	ld a, $01
+	ld [wUnableToScrollDown], a
+	xor a
+	ld [wd119], a
+	call Func_3b069
+.asm_3bb4f
+	call DoFrame
+	call HandleScrollMenu
+	jr c, .asm_3bba2
+	ldh a, [hDPadHeld]
+	and PAD_START
+	jr z, .asm_3bb4f
+	ld a, [wScrollMenuScrollOffset]
+	ld [wTempScrollMenuScrollOffset], a
+	ld b, a
+	ld a, [wTempCardTypeFilter]
+	ld [wTempScrollMenuItem], a
+	add b
+	ld c, a
+	inc a
+	or $80
+	ld [wCurDeck], a
+	ld a, c
+	call Func_3afb8
+	push hl
+	farcall CheckIfDeckHasCards
+	pop hl
+	jr c, .asm_3bb4f
+	push hl
+	ld bc, $18
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	ld a, $01
+	farcall PlayAcceptOrDeclineSFX
+	farcall OpenDeckConfirmationMenu
+	ld a, [wTempScrollMenuScrollOffset]
+	ld [wScrollMenuScrollOffset], a
+	call Func_3bc95
+	ld a, [wTempScrollMenuItem]
+	ld [wTempCardTypeFilter], a
+	jp .asm_3bb30
+.asm_3bba2
+	call HandleScrollMenu.draw_visible_cursor
+	ld a, [wScrollMenuScrollOffset]
+	ld [wTempScrollMenuScrollOffset], a
+	ld a, [wTempCardTypeFilter]
+	ld [wTempScrollMenuItem], a
+	ld a, [hCurMenuItem]
+	cp $ff
+	jp z, .asm_3bc0e
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	farcall Func_9287
+	xor a
+	ld [wd0cd], a
+	call DrawWideTextBox
+	ld hl, $7c60
+	call PlaceTextItems
+.asm_3bbd2
+	call DoFrame
+	farcall Func_87d3
+	jp nc, .asm_3bbd2
+	cp $ff
+	jr nz, .asm_3bbe6
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3bb30
+.asm_3bbe6
+	ld a, [wMusicStereoPanningBackup]
+	sla a
+	ld hl, wCurSongBankBackup
+	add [hl]
+	or a
+	jr nz, .asm_3bc0a
+	call Func_3b4eb
+	ld a, [wTempScrollMenuItem]
+	jp nc, .asm_3bb30
+	ld a, [wTempScrollMenuScrollOffset]
+	ld [wScrollMenuScrollOffset], a
+	call Func_3bc95
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3bb30
+.asm_3bc0a
+	cp $01
+	jr nz, .asm_3bc0f
+.asm_3bc0e
+	ret
+.asm_3bc0f
+	ld a, [wScrollMenuScrollOffset]
+	ld [wTempScrollMenuScrollOffset], a
+	ld b, a
+	ld a, [wTempCardTypeFilter]
+	ld [wTempScrollMenuItem], a
+	add b
+	ld c, a
+	ld [wCurDeck], a
+	push af
+	sla c
+	ld b, $00
+	ld hl, wd4b4
+	add hl, bc
+	ld bc, wd38a
+	ld a, [hli]
+	ld [bc], a
+	inc bc
+	ld a, [hl]
+	ld [bc], a
+	pop af
+	call Func_3afb8
+	push hl
+	farcall CheckIfDeckHasCards
+	pop hl
+	jp c, .asm_3bb4f
+	ld a, $01
+	farcall PlayAcceptOrDeclineSFX
+	push hl
+	ld de, $18
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+	farcall Func_b57c
+	ld a, [wTempScrollMenuScrollOffset]
+	ld [wScrollMenuScrollOffset], a
+	call Func_3bc95
+	ld a, [wTempScrollMenuItem]
+	jp .asm_3bb30
+; 0x3bc60
+
+SECTION "Bank e@7c95", ROMX[$7c95], BANK[$e]
+
+Func_3bc95:
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	call EmptyScreen
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call LoadSymbolsFont
+	call LoadDuelCardSymbolTiles
+	bank1call SetDefaultPalettes
+	ld de, $3cff
+	call SetupText
+	lb de, 0, 0
+	lb bc, 20, 12
+	call DrawRegularTextBox
+	ld hl, wDeckMachineTitleText
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb de, 1, 0
+	call Func_2c4b
+	farcall Func_2bb32
+	call Func_3bd3b
+	call Func_3b078
+	call EnableLCD
+	ret
+
+Func_3bcd6:
+	xor a
+	ld [wd49a], a
+	ld a, $01
+.asm_3bcdc
+	call Func_3bd28
+	ret nc
+	sla a
+	cp $10
+	jr nz, .asm_3bcdc
+	ld a, $03
+	call Func_3bd28
+	ret nc
+	ld a, $05
+	call Func_3bd28
+	ret nc
+	ld a, $09
+	call Func_3bd28
+	ret nc
+	ld a, $06
+	call Func_3bd28
+	ret nc
+	ld a, $0a
+	call Func_3bd28
+	ret nc
+	ld a, $0c
+	call Func_3bd28
+	ret nc
+	ld a, $07
+	call Func_3bd28
+	ret nc
+	ld a, $0b
+	call Func_3bd28
+	ret nc
+	ld a, $0d
+	call Func_3bd28
+	ret nc
+	ld a, $0e
+	call Func_3bd28
+	ret nc
+	ld a, $ff
+	call Func_3bd28
+	ret
+
+Func_3bd28:
+	push af
+	ld hl, wSelectedDeckMachineEntry
+	ld b, [hl]
+	call CheckIfCanBuildSavedDeck
+	jr c, .asm_3bd38
+	pop af
+	ld [wd49a], a
+	or a
+	ret
+.asm_3bd38
+	pop af
+	scf
+	ret
+
+Func_3bd3b:
+	ld a, $08
+	ld hl, wMachineDeckPtrs
+	farcall ClearNBytesFromHL
+	ld de, wMachineDeckPtrs
+	ld hl, wd40e
+	ld bc, $60
+	ld a, $04
+.asm_3bd4f
+	push af
+	ld a, l
+	ld [de], a
+	inc de
+	ld a, h
+	ld [de], a
+	inc de
+	add hl, bc
+	pop af
+	dec a
+	jr nz, .asm_3bd4f
+	ret
+; 0x3bd5c
+
+SECTION "Bank e@7f5e", ROMX[$7f5e], BANK[$e]
+
+Func_3bf5e:
+	call Func_3bf95
+	ld a, [wNumDeckMachineEntries]
+	cp $05
+	jr c, .asm_3bf6a
+	ld a, $05
+.asm_3bf6a
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	ld de, $602
+.asm_3bf71
+	push af
+	push bc
+	push de
+	call Func_3bf81
+	pop de
+	pop bc
+	pop af
+	dec b
+	ret z
+	inc a
+	inc e
+	inc e
+	jr .asm_3bf71
+
+Func_3bf81:
+	push af
+	call InitTextPrinting
+	pop af
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wd4b4
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call ProcessTextFromID
+	ret
+
+Func_3bf95:
+	ld a, [wScrollMenuScrollOffset]
+	or a
+	jr z, .asm_3bf9f
+	ld a, $0d
+	jr .asm_3bfa1
+.asm_3bf9f
+	ld a, $1c
+.asm_3bfa1
+	ld bc, $1200
+	call WriteByteToBGMap0
+	ld a, [wScrollMenuScrollOffset]
+	add $05
+	ld b, a
+	inc b
+	ld a, [wNumDeckMachineEntries]
+	cp b
+	jr c, .asm_3bfbc
+	xor a
+	ld [wUnableToScrollDown], a
+	ld a, $2f
+	jr .asm_3bfc3
+.asm_3bfbc
+	ld a, $01
+	ld [wUnableToScrollDown], a
+	ld a, $1c
+.asm_3bfc3
+	ld bc, $120c
+	call WriteByteToBGMap0
+	ret
+; 0x3bfca

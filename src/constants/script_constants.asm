@@ -310,15 +310,20 @@ DEF EAST     EQU $01
 DEF SOUTH    EQU $02
 DEF WEST     EQU $03
 
+DEF MOVE_BACKWARDS  EQU %10000000 ; for when an NPC walks backwards
+DEF MOVE_SPEED_WALK EQU 1
+DEF MOVE_SPEED_RUN  EQU 2
+
 ; the true max is probably much lower. this is just the biggest 6-bit number.
 DEF MAX_MOVEMENT EQU $3F
 
 ; generate MOVE_x constants for use in NPCMovement data.
 ; see also: script_extractor.py
-; The raw data value = (number of steps to move << 2) + 1
-; e.g. MOVE_2 = 0x09
+; The raw data value = (number of steps to move << 2) + speed
+; e.g. MOVE_2 = 0x09; RUN_2 = 0x0a
 FOR N, MAX_MOVEMENT
-	DEF MOVE_{d:N} EQU (N << 2) + 1
+	DEF MOVE_{d:N} EQU (N << 2) + MOVE_SPEED_WALK
+	DEF RUN_{d:N} EQU (N << 2) + MOVE_SPEED_RUN
 ENDR
 
 ; TODO: Identify WRAM to give them proper names

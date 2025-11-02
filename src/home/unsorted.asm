@@ -320,7 +320,8 @@ Func_323f::
 Func_324d::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-.asm_3254
+;	fallthrough
+Func_3254::
 	ld a, [hli]
 	cp $ff
 	jr nz, .asm_325b
@@ -368,7 +369,7 @@ Func_324d::
 	jr nc, .asm_328a
 	inc h
 .asm_328a
-	jr .asm_3254
+	jr Func_3254
 
 Func_328c::
 	push hl
@@ -410,7 +411,7 @@ Func_32bf::
 	jr nz, .asm_32d6
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	call Func_324d.asm_3254
+	call Func_3254
 	ret
 .asm_32d6
 	scf
@@ -756,7 +757,7 @@ MultiplyBCByDE::
 	push af
 	push bc
 	push de
-	call .Multiply
+	call Multiply
 	pop de
 	pop bc
 	pop af
@@ -766,7 +767,7 @@ MultiplyBCByDE::
 ; output:
 ;  carry if bc < de
 ;  z if bc == de
-.CompareBCAndDE:
+CompareBCAndDE::
 	ld a, b
 	cp d
 	ret c
@@ -775,8 +776,8 @@ MultiplyBCByDE::
 	cp e
 	ret
 
-.Multiply:
-	call .CompareBCAndDE
+Multiply:
+	call CompareBCAndDE
 	jr c, .ok
 	; bc > de
 	; swap bc and de
@@ -981,6 +982,8 @@ Func_35af::
 	pop af
 	ret
 
+; hl = text ID
+; de = coordinates
 Func_35bf::
 	push af
 	push bc
@@ -1458,6 +1461,9 @@ BankswitchVRAM::
 	call _BankswitchVRAM
 	ret
 
+; bc - coordinates
+; d - ?
+; e - ?
 Func_383b::
 	push af
 	push de
@@ -2381,6 +2387,7 @@ Func_3d02::
 	pop af
 	ret
 
+; a = MUSIC_* constant
 Func_3d09::
 	call PlaySong
 	ret
