@@ -2366,6 +2366,7 @@ wd611:: ; d611
 wd613:: ; d613
 	ds $2
 
+wd615:: ; d615
 	ds $1
 
 ; sometimes treated as 8-bit, sometimes treated as 16-bit
@@ -3316,16 +3317,28 @@ wddf9:: ; ddf9
 	ds $14
 
 wde0d:: ; de0d
-	ds $4
+	ds $2
+
+wde0f:: ; de0f
+	ds $2
 
 wde11:: ; de11
-	ds $4
+	ds $2
+
+wde13:: ; de13
+	ds $2
 
 wde15:: ; de15
-	ds $4
+	ds $2
+
+wde17:: ; de17
+	ds $2
 
 wde19:: ; de19
-	ds $20
+	ds $10
+
+wde29:: ; de29
+	ds $10
 
 wde39:: ; de39
 	ds $10

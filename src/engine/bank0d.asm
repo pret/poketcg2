@@ -553,11 +553,11 @@ Func_343ef:
 Func_3442d:
 	ld a, NPC_GR_X
 	ld [wScriptNPC], a
-	ld hl, $a2e
+	ldtx hl, DialogGRXText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	wait_for_fade
@@ -812,7 +812,7 @@ Func_34635:
 	farcall GetEventValue
 	jr nz, .asm_3468e
 	ldh a, [hKeysHeld]
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr z, .asm_3468e
 	ld a, [wPlayerOWObject]
 	ld b, EAST
@@ -854,11 +854,11 @@ Func_34635:
 Func_3468f:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
-	ld hl, $a2c
+	ldtx hl, DialogGR5Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -914,11 +914,11 @@ Script_346c9:
 Func_346f6:
 	ld a, NPC_GR_CLERK_TCG_AIRPORT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -936,11 +936,11 @@ Func_346f6:
 Func_3471c:
 	ld a, NPC_TCG_AIRPORT_GR_SIS
 	ld [wScriptNPC], a
-	ld hl, $a39
+	ldtx hl, DialogSisText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -958,11 +958,11 @@ Func_3471c:
 Func_34742:
 	ld a, NPC_TCG_AIRPORT_MARTIAL_ARTIST
 	ld [wScriptNPC], a
-	ld hl, $a55
+	ldtx hl, DialogMartialArtistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1036,20 +1036,20 @@ Func_347e1:
 Func_347ea:
 	farcall ClearwD986
 	ld a, [wd584]
-	cp $00
+	cp OVERWORLD_MAP_TCG
 	jr z, .asm_3483d
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_34871
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_348a5)
 	ld [wd592], a
-	ld hl, $48a5
+	ld hl, Func_348a5
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, VAR_3E
 	farcall GetVarValue
 	add $03
@@ -1071,13 +1071,13 @@ Func_347ea:
 .asm_3483d
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_349a1)
 	ld [wd592], a
-	ld hl, $49a1
+	ld hl, Func_349a1
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, NPC_GR_5
 	lb de, 11, 5
 	farcall SetOWObjectTilePosition
@@ -1094,7 +1094,7 @@ Func_347ea:
 
 Func_34873:
 	ld a, [wd585]
-	cp $00
+	cp OVERWORLD_MAP_TCG
 	jr z, .asm_3487c
 	scf
 	ret
@@ -1102,14 +1102,14 @@ Func_34873:
 	ld a, $0a
 	ld c, $07
 	farcall InitMusicFadeOut
-	farcall MusicFadeOut.loop
+	farcall MusicFadeOut
 	xor a
 	call PlaySong
 	ld a, $07
 	call SetVolume
 	ld a, SFX_89
 	call PlaySFX
-	farcall WaitForSFXToFinish.loop_wait
+	farcall WaitForSFXToFinish
 	scf
 	ccf
 	ret
@@ -1123,11 +1123,11 @@ Func_3489d:
 Func_348a5:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
-	ld hl, $a2c
+	ldtx hl, DialogGR5Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	wait_for_fade
@@ -1151,9 +1151,9 @@ Func_348a5:
 	wait_for_player_animation
 	do_frames 60
 	end_script
-	ld a, $00
+	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
-	ld b, $00
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 .NPCMovement_348f0:
@@ -1185,11 +1185,11 @@ Func_348a5:
 Func_34910:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
-	ld hl, $a2c
+	ldtx hl, DialogGR5Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1230,9 +1230,9 @@ Func_34910:
 	wait_for_player_animation
 	do_frames 60
 	end_script
-	ld a, $00
+	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
-	ld b, $00
+	ld b, NORTH
 	farcall Func_d3c4
 	ret
 .NPCMovement_3497f:
@@ -1331,7 +1331,7 @@ Func_349d5:
 	jr .asm_34a7c
 .asm_34a0e
 	ldh a, [hKeysHeld]
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
 	ld b, WEST
@@ -1343,7 +1343,7 @@ Func_349d5:
 	jr .asm_34a7c
 .asm_34a2a
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
@@ -1355,7 +1355,7 @@ Func_349d5:
 	jr .asm_34a7c
 .asm_34a46
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
@@ -1367,7 +1367,7 @@ Func_349d5:
 	jr .asm_34a7c
 .asm_34a62
 	ldh a, [hKeysHeld]
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr z, .asm_34a7c
 	ld a, [wPlayerOWObject]
 	ld b, EAST
@@ -1465,11 +1465,11 @@ Func_34b26:
 Func_34b36:
 	ld a, NPC_GR_CLERK_6
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1481,11 +1481,11 @@ Func_34b36:
 Func_34b51:
 	ld a, NPC_GR_AIRPORT_GR_PAPPY
 	ld [wScriptNPC], a
-	ld hl, $a43
+	ldtx hl, DialogGRPappyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1503,11 +1503,11 @@ Func_34b51:
 Func_34b77:
 	ld a, NPC_GR_AIRPORT_GR_LASS
 	ld [wScriptNPC], a
-	ld hl, $a36
+	ldtx hl, DialogLassText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1729,11 +1729,11 @@ Func_34d35:
 Func_34d49:
 	ld a, NPC_ATTENDANT_BLACK_BOX
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1754,11 +1754,11 @@ Func_34d49:
 Func_34d76:
 	ld a, NPC_ATTENDANT_BILLS_PC
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1779,11 +1779,11 @@ Func_34d76:
 Func_34da3:
 	ld a, NPC_ATTENDANT_COIN_FLIP
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1817,11 +1817,11 @@ Func_34da3:
 Func_34de6:
 	ld a, NPC_GAME_CENTER_GR_GAL
 	ld [wScriptNPC], a
-	ld hl, $a42
+	ldtx hl, DialogGRGalText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1846,11 +1846,11 @@ Func_34de6:
 Func_34e18:
 	ld a, NPC_GAME_CENTER_CHUBBY_KID
 	ld [wScriptNPC], a
-	ld hl, $a53
+	ldtx hl, DialogChubbyKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1941,17 +1941,17 @@ Func_34ef7:
 
 Func_34f07:
 	ld a, [wd584]
-	cp $2d
+	cp MAP_GAME_CENTER_1
 	jr z, .asm_34f23
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34fde)
 	ld [wd592], a
-	ld hl, $4fde
+	ld hl, Func_34fde
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 .asm_34f23
 	scf
 	ret
@@ -1959,11 +1959,11 @@ Func_34f07:
 Func_34f25:
 	ld a, NPC_ATTENDANT_1COIN_SLOT
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1982,11 +1982,11 @@ Func_34f25:
 Func_34f50:
 	ld a, NPC_ATTENDANT_5COIN_SLOT
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2005,11 +2005,11 @@ Func_34f50:
 Func_34f7b:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2055,11 +2055,11 @@ Func_34f7b:
 Func_34fde:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
-	ld hl, $a58
+	ldtx hl, DialogAttendantText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2085,11 +2085,11 @@ Func_34fde:
 Func_35016:
 	ld a, NPC_GAME_CENTER_BOY
 	ld [wScriptNPC], a
-	ld hl, $a31
+	ldtx hl, DialogBoyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2112,11 +2112,11 @@ Func_35016:
 Func_35047:
 	ld a, NPC_GAME_CENTER_FIXER
 	ld [wScriptNPC], a
-	ld hl, $a34
+	ldtx hl, DialogFixerText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2135,11 +2135,11 @@ Func_35047:
 Func_3506f:
 	ld a, NPC_GAME_CENTER_GR_WOMAN
 	ld [wScriptNPC], a
-	ld hl, $a44
+	ldtx hl, DialogGRWomanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2217,13 +2217,13 @@ Func_35106:
 	farcall Func_12c0ce
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_3525b)
 	ld [wd592], a
-	ld hl, $525b
+	ld hl, Func_3525b
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	scf
 	ret
 
@@ -2235,11 +2235,11 @@ Func_35127:
 Func_3512c:
 	ld a, NPC_BISHOP
 	ld [wScriptNPC], a
-	ld hl, $9fe
+	ldtx hl, DialogBishopText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2279,7 +2279,7 @@ Func_3512c:
 .asm_35184
 	ld h, $00
 	ld l, a
-	ld [$d615], a
+	ld [wd615], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	ld a, b
@@ -2337,7 +2337,7 @@ Func_351dd:
 	print_npc_text BishopPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [$d615]
+	ld a, [wd615]
 	sla a
 	ld h, $00
 	ld l, a
@@ -2497,11 +2497,11 @@ Func_35332:
 Func_35342:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_GRANNY
 	ld [wScriptNPC], a
-	ld hl, $a46
+	ldtx hl, DialogGRPersonText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2546,11 +2546,11 @@ Func_35342:
 Func_353a8:
 	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
-	ld hl, $a5b
+	ldtx hl, DialogCupHostText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2584,11 +2584,11 @@ Func_353ce:
 Func_353e5:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_CHAP
 	ld [wScriptNPC], a
-	ld hl, $a41
+	ldtx hl, DialogGRChapText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2647,11 +2647,11 @@ Func_35444:
 Func_35451:
 	ld a, NPC_GR_CHALLENGE_HALL_GR_WOMAN
 	ld [wScriptNPC], a
-	ld hl, $a44
+	ldtx hl, DialogGRWomanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2743,11 +2743,11 @@ GrassFortMorino_AfterDuelScripts:
 Func_354fb:
 	ld a, NPC_MORINO
 	ld [wScriptNPC], a
-	ld hl, $a0d
+	ldtx hl, DialogMorinoText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2942,11 +2942,11 @@ WaterFortSenta_AfterDuelScripts:
 Func_35679:
 	ld a, NPC_SENTA
 	ld [wScriptNPC], a
-	ld hl, $a17
+	ldtx hl, DialogSentaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3231,11 +3231,11 @@ WaterFortAira_AfterDuelScripts:
 Func_3589a:
 	ld a, NPC_AIRA
 	ld [wScriptNPC], a
-	ld hl, $a18
+	ldtx hl, DialogAiraText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3409,7 +3409,7 @@ Func_35a04:
 
 Func_35a0d:
 	ld a, [wd584]
-	cp $50
+	cp MAP_FIGHTING_FORT_ENTRANCE
 	jr nz, .asm_35a18
 	farcall Func_1f293
 .asm_35a18
@@ -3437,13 +3437,13 @@ Func_35a0d:
 	farcall MaxOutEventValue
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_35a9c)
 	ld [wd592], a
-	ld hl, $5a9c
+	ld hl, Func_35a9c
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, NPC_GODA
 	lb de, 5, 2
 	ld b, SOUTH
@@ -3543,11 +3543,11 @@ Func_35a9c:
 Func_35b16:
 	ld a, NPC_KAMIYA
 	ld [wScriptNPC], a
-	ld hl, $a1a
+	ldtx hl, DialogKamiyaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3707,7 +3707,7 @@ Func_35c68:
 
 Func_35c6f:
 	ld a, [wd585]
-	cp $68
+	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35c78
 	scf
 	ret
@@ -3729,7 +3729,7 @@ Func_35c86:
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
 	farcall Func_12c0ce
-	farcall Func_30000.asm_30005
+	farcall Func_30005
 	ret
 
 FightingFortMaze18_MapHeader:
@@ -3763,7 +3763,7 @@ Func_35d04:
 
 Func_35d0b:
 	ld a, [wd585]
-	cp $68
+	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35d14
 	scf
 	ret
@@ -3785,7 +3785,7 @@ Func_35d22:
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
 	farcall Func_12c0ce
-	farcall Func_30000.asm_30005
+	farcall Func_30005
 	ret
 
 FightingFortGoda_MapHeader:
@@ -3871,11 +3871,11 @@ Func_35dc0:
 	ret nz
 	ld a, NPC_MITCH
 	ld [wScriptNPC], a
-	ld hl, $9d8
+	ldtx hl, DialogMitchText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3898,11 +3898,11 @@ Func_35de2:
 Func_35def:
 	ld a, NPC_GODA
 	ld [wScriptNPC], a
-	ld hl, $a1b
+	ldtx hl, DialogGodaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4104,11 +4104,11 @@ FightingFortGrace_AfterDuelScripts:
 Func_35f81:
 	ld a, NPC_GRACE
 	ld [wScriptNPC], a
-	ld hl, $a1c
+	ldtx hl, DialogGraceText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4300,7 +4300,7 @@ Func_360ef:
 	scf
 	ret
 .asm_360fb
-	ld a, $0f
+	ld a, MUSIC_RONALD
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -4329,13 +4329,13 @@ Func_36114:
 	farcall LoadOWObjectInMap
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_3442d)
 	ld [wd592], a
-	ld hl, $442d
+	ld hl, Func_3442d
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 .asm_3613e
 	scf
 	ret
@@ -4349,11 +4349,11 @@ Func_36140:
 Func_36148:
 	ld a, NPC_GR_CLERK_PSYCHIC_STRONGHOLD
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4421,7 +4421,7 @@ Func_361f9:
 	scf
 	ret
 .asm_36205
-	ld a, $24
+	ld a, MUSIC_IMAKUNI2
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -4471,11 +4471,11 @@ Func_36234:
 Func_36250:
 	ld a, NPC_PSYCHIC_STRONGHOLD_LADY
 	ld [wScriptNPC], a
-	ld hl, $a40
+	ldtx hl, DialogLadyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4524,11 +4524,11 @@ Func_36250:
 Func_362c4:
 	ld a, NPC_PSYCHIC_STRONGHOLD_UNCAPPED_LAD
 	ld [wScriptNPC], a
-	ld hl, $a30
+	ldtx hl, DialogLadText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4546,11 +4546,11 @@ Func_362c4:
 Func_362ea:
 	ld a, NPC_GR_PSYCHIC_STRONGHOLD_GR_LASS
 	ld [wScriptNPC], a
-	ld hl, $a36
+	ldtx hl, DialogLassText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4628,7 +4628,7 @@ Func_36396:
 
 Func_3639f:
 	ld a, [wd584]
-	cp $6b
+	cp MAP_PSYCHIC_STRONGHOLD_ENTRANCE
 	jr nz, .asm_363aa
 	farcall Func_1f293
 .asm_363aa
@@ -4654,7 +4654,7 @@ Func_3639f:
 .ows_363da
 	end_script
 	ld a, [wd584]
-	cp $6e
+	cp MAP_PSYCHIC_STRONGHOLD_MAMI
 	jr z, .asm_363e4
 	scf
 	ret
@@ -4665,13 +4665,13 @@ Func_3639f:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_36c36)
 	ld [wd592], a
-	ld hl, $6c36
+	ld hl, Func_36c36
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	scf
 	ret
 .ows_36408
@@ -4694,7 +4694,7 @@ Func_3639f:
 
 Func_36434:
 	ld a, [wd585]
-	cp $6e
+	cp MAP_PSYCHIC_STRONGHOLD_MAMI
 	jr z, .asm_3643d
 	scf
 	ret
@@ -4762,11 +4762,11 @@ PsychicStronghold_AfterDuelScripts:
 Func_364ac:
 	ld a, NPC_MAMI
 	ld [wScriptNPC], a
-	ld hl, $a21
+	ldtx hl, DialogMamiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5036,11 +5036,11 @@ Script_3663f:
 Func_36712:
 	ld a, NPC_MIWA
 	ld [wScriptNPC], a
-	ld hl, $a1d
+	ldtx hl, DialogMiwaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5183,11 +5183,11 @@ Func_3678e:
 Func_3682a:
 	ld a, NPC_KEVIN
 	ld [wScriptNPC], a
-	ld hl, $a1e
+	ldtx hl, DialogKevinText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5312,11 +5312,11 @@ Func_36887:
 Func_36921:
 	ld a, NPC_YOSUKE
 	ld [wScriptNPC], a
-	ld hl, $a1f
+	ldtx hl, DialogYosukeText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5451,11 +5451,11 @@ Func_36990:
 Func_36a2a:
 	ld a, NPC_RYOKO
 	ld [wScriptNPC], a
-	ld hl, $a20
+	ldtx hl, DialogRyokoText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5819,13 +5819,13 @@ Func_36cf5:
 	farcall SetwD896
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_36f43)
 	ld [wd592], a
-	ld hl, $6f43
+	ld hl, Func_36f43
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, $e8
 	ld bc, $156
 	farcall SetAndInitOWObjectFrameset
@@ -5942,11 +5942,11 @@ Script_36d75:
 Func_36de8:
 	ld a, NPC_ROD
 	ld [wScriptNPC], a
-	ld hl, $9f7
+	ldtx hl, DialogRodText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5972,11 +5972,11 @@ Func_36e03:
 Func_36e18:
 	ld a, NPC_MAMI
 	ld [wScriptNPC], a
-	ld hl, $a21
+	ldtx hl, DialogMamiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6138,13 +6138,13 @@ Func_36f43:
 .asm_36f69
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_36ed7)
 	ld [wd592], a
-	ld hl, $6ed7
+	ld hl, Func_36ed7
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ret
 
 Func_36f7f:
@@ -6285,11 +6285,11 @@ Script_37071:
 Func_37082:
 	ld a, NPC_NISHIJIMA
 	ld [wScriptNPC], a
-	ld hl, $a22
+	ldtx hl, DialogNishijimaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6415,11 +6415,11 @@ Func_3713b:
 Func_37179:
 	ld a, NPC_ISHII
 	ld [wScriptNPC], a
-	ld hl, $a24
+	ldtx hl, DialogIshiiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6560,11 +6560,11 @@ Func_3724a:
 Func_3728d:
 	ld a, NPC_SAMEJIMA
 	ld [wScriptNPC], a
-	ld hl, $a23
+	ldtx hl, DialogSamejimaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6721,12 +6721,12 @@ Func_373cb:
 	cp e
 	jr nz, .asm_37409
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .asm_37409
 	inc d
 	inc d
 	ld e, 14
-	ld b, 0
+	ld b, NORTH
 	ld a, MAP_GR_CASTLE
 	farcall Func_d3c4
 	ld a, [wPlayerOWObject]
@@ -6818,11 +6818,11 @@ Func_37480:
 Func_37493:
 	ld a, NPC_GR_CLERK_CASTLE_RIGHT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6903,11 +6903,11 @@ Func_37493:
 Func_37534:
 	ld a, NPC_GR_CLERK_CASTLE_LEFT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7044,7 +7044,7 @@ Func_37663:
 
 Func_3766c:
 	ld a, [wd584]
-	cp $71
+	cp MAP_GR_CASTLE_ENTRANCE
 	jr nz, .asm_37677
 	farcall Func_1f293
 .asm_37677
@@ -7119,11 +7119,11 @@ Func_37709:
 	farcall MaxOutEventValue
 	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
-	ld hl, $a27
+	ldtx hl, DialogBiruritchiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7248,11 +7248,11 @@ Script_377c4:
 Func_37809:
 	ld a, NPC_KANZAKI
 	ld [wScriptNPC], a
-	ld hl, $a25
+	ldtx hl, DialogKanzakiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7401,11 +7401,11 @@ Func_378cf:
 Func_3792d:
 	ld a, NPC_RUI
 	ld [wScriptNPC], a
-	ld hl, $a26
+	ldtx hl, DialogRuiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7572,11 +7572,11 @@ Func_37a76:
 	jr nz, .asm_37a9b
 	ld a, NPC_RUI
 	ld [wScriptNPC], a
-	ld hl, $a26
+	ldtx hl, DialogRuiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7586,11 +7586,11 @@ Func_37a76:
 .asm_37a9b
 	ld a, NPC_KANZAKI
 	ld [wScriptNPC], a
-	ld hl, $a25
+	ldtx hl, DialogKanzakiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01

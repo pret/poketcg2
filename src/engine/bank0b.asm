@@ -217,11 +217,11 @@ Func_2c1b8:
 Func_2c1db:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -240,11 +240,11 @@ Func_2c1db:
 Func_2c203:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -262,11 +262,11 @@ Func_2c203:
 Func_2c229:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -309,11 +309,11 @@ Func_2c229:
 Func_2c28c:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -325,11 +325,11 @@ Func_2c28c:
 Func_2c2a7:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -372,11 +372,11 @@ Func_2c2a7:
 Func_2c30a:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -419,11 +419,11 @@ Func_2c30a:
 Func_2c36d:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -435,11 +435,11 @@ Func_2c36d:
 Func_2c388:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -452,11 +452,11 @@ Func_2c388:
 Func_2c3a5:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
-	ld hl, $9d3
+	ldtx hl, DialogMrIshiharaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -474,11 +474,11 @@ Func_2c3a5:
 Func_2c3cb:
 	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
-	ld hl, $9dc
+	ldtx hl, DialogNikkiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -652,9 +652,9 @@ Func_2c50a:
 .asm_2c524
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0b
+	ld a, BANK(Func_2c584)
 	ld [wd592], a
-	ld hl, $4584
+	ld hl, Func_2c584
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -800,11 +800,11 @@ Script_2c5f5:
 Func_2c645:
 	ld a, NPC_ISAAC
 	ld [wScriptNPC], a
-	ld hl, $9e8
+	ldtx hl, DialogIsaacText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -935,11 +935,11 @@ Func_2c6ec:
 Func_2c73b:
 	ld a, NPC_JENNIFER
 	ld [wScriptNPC], a
-	ld hl, $9e9
+	ldtx hl, DialogJenniferText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -991,11 +991,11 @@ Func_2c781:
 Func_2c79d:
 	ld a, NPC_NICHOLAS
 	ld [wScriptNPC], a
-	ld hl, $9ea
+	ldtx hl, DialogNicholasText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1128,11 +1128,11 @@ Func_2c847:
 Func_2c897:
 	ld a, NPC_BRANDON
 	ld [wScriptNPC], a
-	ld hl, $9eb
+	ldtx hl, DialogBrandonText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1198,11 +1198,11 @@ Func_2c8f9:
 Func_2c90e:
 	ld a, NPC_GR_4
 	ld [wScriptNPC], a
-	ld hl, $a2b
+	ldtx hl, DialogGR4Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1308,17 +1308,19 @@ Func_2c9e8:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, $4037
+	ld hl, Func_34037
 	jr .got_event
 .duel
-	ld hl, $417e
+	ld hl, Func_3417e
 	jr .got_event
 .gift
-	ld hl, $41f7
+	ld hl, Func_341f7
 .got_event
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34037)
+	ASSERT BANK(Func_34037) == BANK(Func_3417e)
+	ASSERT BANK(Func_34037) == BANK(Func_341f7)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -1584,11 +1586,11 @@ Func_2cbf5:
 Func_2cc11:
 	ld a, NPC_PSYCHIC_CLUB_GLASSES_LAD
 	ld [wScriptNPC], a
-	ld hl, $a50
+	ldtx hl, DialogGlassesLadText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1635,11 +1637,11 @@ Func_2cc11:
 Func_2cc7d:
 	ld a, NPC_PSYCHIC_CLUB_LASS
 	ld [wScriptNPC], a
-	ld hl, $a36
+	ldtx hl, DialogLassText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1670,11 +1672,11 @@ Func_2cca8:
 Func_2ccb7:
 	ld a, NPC_PSYCHIC_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
-	ld hl, $a4c
+	ldtx hl, DialogCappedKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1697,11 +1699,11 @@ Func_2ccb7:
 Func_2cce8:
 	ld a, NPC_PSYCHIC_CLUB_GR_LASS
 	ld [wScriptNPC], a
-	ld hl, $a45
+	ldtx hl, DialogGRKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1805,9 +1807,9 @@ Func_2cda2:
 .asm_2cdc6
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0b
+	ld a, BANK(Func_2ce39)
 	ld [wd592], a
-	ld hl, $4e39
+	ld hl, Func_2ce39
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1897,11 +1899,11 @@ Func_2ce39:
 Func_2ce88:
 	ld a, NPC_MURRAY
 	ld [wScriptNPC], a
-	ld hl, $9f0
+	ldtx hl, DialogMurrayText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2067,11 +2069,11 @@ Func_2cf73:
 Func_2cfcc:
 	ld a, NPC_ROBERT
 	ld [wScriptNPC], a
-	ld hl, $9f1
+	ldtx hl, DialogRobertText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2137,11 +2139,11 @@ Func_2d02a:
 Func_2d046:
 	ld a, NPC_DANIEL
 	ld [wScriptNPC], a
-	ld hl, $9f2
+	ldtx hl, DialogDanielText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2200,11 +2202,11 @@ Func_2d097:
 Func_2d0b3:
 	ld a, NPC_STEPHANIE
 	ld [wScriptNPC], a
-	ld hl, $9f3
+	ldtx hl, DialogStephanieText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2322,11 +2324,11 @@ Func_2d142:
 Func_2d190:
 	ld a, NPC_GR_4
 	ld [wScriptNPC], a
-	ld hl, $a2b
+	ldtx hl, DialogGR4Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2583,9 +2585,9 @@ Func_2d37d:
 ; card pop
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34111)
 	ld [wd592], a
-	ld hl, $4111
+	ld hl, Func_34111
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -2742,11 +2744,11 @@ Func_2d4c4:
 Func_2d4e0:
 	ld a, NPC_ROCK_CLUB_LASS
 	ld [wScriptNPC], a
-	ld hl, $a36
+	ldtx hl, DialogLassText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2791,11 +2793,11 @@ Func_2d4e0:
 Func_2d546:
 	ld a, NPC_ROCK_CLUB_WOMAN
 	ld [wScriptNPC], a
-	ld hl, $a3e
+	ldtx hl, DialogWomanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2831,11 +2833,11 @@ Func_2d57c:
 Func_2d58b:
 	ld a, NPC_ROCK_CLUB_CHAP
 	ld [wScriptNPC], a
-	ld hl, $a32
+	ldtx hl, DialogChap1Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2863,11 +2865,11 @@ Func_2d58b:
 Func_2d5c7:
 	ld a, NPC_ROCK_CLUB_CAPPED_LAD
 	ld [wScriptNPC], a
-	ld hl, $a4c
+	ldtx hl, DialogCappedKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2950,9 +2952,9 @@ Func_2d673:
 	jr nz, .asm_2d6a4
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0b
+	ld a, BANK(Func_2d6ca)
 	ld [wd592], a
-	ld hl, $56ca
+	ld hl, Func_2d6ca
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -3053,11 +3055,11 @@ Func_2d6ca:
 Func_2d754:
 	ld a, NPC_GENE
 	ld [wScriptNPC], a
-	ld hl, $9d4
+	ldtx hl, DialogGeneText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3129,11 +3131,11 @@ Func_2d7c3:
 Func_2d7ea:
 	ld a, NPC_MATTHEW
 	ld [wScriptNPC], a
-	ld hl, $9d5
+	ldtx hl, DialogMatthewText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3178,11 +3180,11 @@ Func_2d825:
 Func_2d841:
 	ld a, NPC_RYAN
 	ld [wScriptNPC], a
-	ld hl, $9d6
+	ldtx hl, DialogRyanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3229,11 +3231,11 @@ Func_2d87e:
 Func_2d89c:
 	ld a, NPC_ANDREW
 	ld [wScriptNPC], a
-	ld hl, $9d7
+	ldtx hl, DialogAndrewText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3371,17 +3373,19 @@ Func_2d9a6:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, $4037
+	ld hl, Func_34037
 	jr .got_event
 .duel
-	ld hl, $417e
+	ld hl, Func_3417e
 	jr .got_event
 .gift
-	ld hl, $41f7
+	ld hl, Func_341f7
 .got_event
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34037)
+	ASSERT BANK(Func_34037) == BANK(Func_3417e)
+	ASSERT BANK(Func_34037) == BANK(Func_341f7)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -3539,11 +3543,11 @@ FightingClubLobby_AfterDuelScripts:
 Func_2db0e:
 	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
-	ld hl, $9d9
+	ldtx hl, DialogMichaelText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3626,11 +3630,11 @@ Func_2db97:
 Func_2dbac:
 	ld a, NPC_FIGHTING_CLUB_PAPPY
 	ld [wScriptNPC], a
-	ld hl, $a3d
+	ldtx hl, DialogPappy3Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3677,11 +3681,11 @@ Func_2dbac:
 Func_2dc17:
 	ld a, NPC_FIGHTING_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
-	ld hl, $a51
+	ldtx hl, DialogGlassesKid2Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3704,11 +3708,11 @@ Func_2dc17:
 Func_2dc48:
 	ld a, NPC_FIGHTING_CLUB_CAPPED_GUY
 	ld [wScriptNPC], a
-	ld hl, $a54
+	ldtx hl, DialogCappedGuyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3731,11 +3735,11 @@ Func_2dc48:
 Func_2dc79:
 	ld a, NPC_FIGHTING_CLUB_CAPPED_LASS
 	ld [wScriptNPC], a
-	ld hl, $a4c
+	ldtx hl, DialogCappedKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3846,11 +3850,11 @@ FightingClub_AfterDuelScripts:
 Func_2dd62:
 	ld a, NPC_MITCH
 	ld [wScriptNPC], a
-	ld hl, $9d8
+	ldtx hl, DialogMitchText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3929,11 +3933,11 @@ Func_2dde4:
 Func_2ddf1:
 	ld a, NPC_MICHAEL
 	ld [wScriptNPC], a
-	ld hl, $9d9
+	ldtx hl, DialogMichaelText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4032,11 +4036,11 @@ Func_2de75:
 Func_2dead:
 	ld a, NPC_CHRIS
 	ld [wScriptNPC], a
-	ld hl, $9da
+	ldtx hl, DialogChrisText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4111,11 +4115,11 @@ Func_2df1e:
 Func_2df3a:
 	ld a, NPC_JESSICA
 	ld [wScriptNPC], a
-	ld hl, $9db
+	ldtx hl, DialogJessicaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4181,11 +4185,11 @@ Func_2df9c:
 Func_2dfb1:
 	ld a, NPC_GR_1
 	ld [wScriptNPC], a
-	ld hl, $a28
+	ldtx hl, DialogGR1Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4346,17 +4350,19 @@ Func_2e0e3:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, $4037
+	ld hl, Func_34037
 	jr .got_event
 .duel
-	ld hl, $417e
+	ld hl, Func_3417e
 	jr .got_event
 .gift
-	ld hl, $41f7
+	ld hl, Func_341f7
 .got_event
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34037)
+	ASSERT BANK(Func_34037) == BANK(Func_3417e)
+	ASSERT BANK(Func_34037) == BANK(Func_341f7)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -4517,11 +4523,11 @@ GrassClub_AfterDuelScripts:
 Func_2e226:
 	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
-	ld hl, $9dc
+	ldtx hl, DialogNikkiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4575,11 +4581,11 @@ Func_2e26e:
 Func_2e28c:
 	ld a, NPC_BRITTANY
 	ld [wScriptNPC], a
-	ld hl, $9dd
+	ldtx hl, DialogBrittanyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4666,11 +4672,11 @@ Func_2e2f6:
 Func_2e332:
 	ld a, NPC_KRISTIN
 	ld [wScriptNPC], a
-	ld hl, $9de
+	ldtx hl, DialogKristinText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4722,11 +4728,11 @@ Func_2e378:
 Func_2e394:
 	ld a, NPC_HEATHER
 	ld [wScriptNPC], a
-	ld hl, $9df
+	ldtx hl, DialogHeatherText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4792,11 +4798,11 @@ Func_2e3f6:
 Func_2e40b:
 	ld a, NPC_GR_2
 	ld [wScriptNPC], a
-	ld hl, $a29
+	ldtx hl, DialogGR2Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4959,17 +4965,19 @@ Func_2e548:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, $4037
+	ld hl, Func_34037
 	jr .got_event
 .duel
-	ld hl, $417e
+	ld hl, Func_3417e
 	jr .got_event
 .gift
-	ld hl, $41f7
+	ld hl, Func_341f7
 .got_event
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34037)
+	ASSERT BANK(Func_34037) == BANK(Func_3417e)
+	ASSERT BANK(Func_34037) == BANK(Func_341f7)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -5043,11 +5051,11 @@ ScienceClubEntrance_ShouldRonaldAppear:
 Func_2e5d0:
 	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
-	ld hl, $9e2
+	ldtx hl, DialogJosephText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5226,11 +5234,11 @@ Func_2e752:
 Func_2e76e:
 	ld a, NPC_DAVID
 	ld [wScriptNPC], a
-	ld hl, $9e1
+	ldtx hl, DialogDavidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5291,11 +5299,11 @@ Func_2e7c7:
 Func_2e7e3:
 	ld a, NPC_ERIK
 	ld [wScriptNPC], a
-	ld hl, $9e3
+	ldtx hl, DialogErikText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5342,11 +5350,11 @@ Func_2e822:
 Func_2e831:
 	ld a, NPC_SCIENCE_CLUB_MAN
 	ld [wScriptNPC], a
-	ld hl, $a3a
+	ldtx hl, DialogManText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5369,11 +5377,11 @@ Func_2e831:
 Func_2e862:
 	ld a, NPC_SCIENCE_CLUB_GLASSES_KID
 	ld [wScriptNPC], a
-	ld hl, $a4f
+	ldtx hl, DialogGlassesKid1Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5402,11 +5410,11 @@ Func_2e862:
 Func_2e8a0:
 	ld a, NPC_SCIENCE_CLUB_TECH
 	ld [wScriptNPC], a
-	ld hl, $a4a
+	ldtx hl, DialogTechText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5542,15 +5550,14 @@ ScienceClub_AfterDuelScripts:
 	npc_script NPC_GR_2, Func_2ec5a
 	db $ff
 
-
 Func_2e9c7:
 	ld a, NPC_RICK
 	ld [wScriptNPC], a
-	ld hl, $9e0
+	ldtx hl, DialogRickText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5658,11 +5665,11 @@ Func_2ea87:
 Func_2ea94:
 	ld a, NPC_DAVID
 	ld [wScriptNPC], a
-	ld hl, $9e1
+	ldtx hl, DialogDavidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5709,11 +5716,11 @@ Func_2ead1:
 Func_2eaef:
 	ld a, NPC_JOSEPH
 	ld [wScriptNPC], a
-	ld hl, $9e2
+	ldtx hl, DialogJosephText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5810,11 +5817,11 @@ Func_2eb6d:
 Func_2eba5:
 	ld a, NPC_ERIK
 	ld [wScriptNPC], a
-	ld hl, $9e3
+	ldtx hl, DialogErikText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5880,11 +5887,11 @@ Func_2ec07:
 Func_2ec1c:
 	ld a, NPC_GR_2
 	ld [wScriptNPC], a
-	ld hl, $a29
+	ldtx hl, DialogGR2Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6034,16 +6041,17 @@ Func_2ed3e:
 	jr nz, .gift
 	ldtx hl, DialogGR3Text
 	call LoadTxRam2
-	ld hl, $40a4
+	ld hl, Func_340a4
 	jr .got_event
 .gift
 	ld a, EVENT_EE
 	farcall ZeroOutEventValue
-	ld hl, $451d
+	ld hl, Func_3451d
 .got_event
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_340a4)
+	ASSERT BANK(Func_340a4) == BANK(Func_3451d)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -6058,7 +6066,7 @@ Func_2ed75:
 	farcall GetEventValue
 	jr z, .asm_2ed8a
 	ld a, [wd585]
-	cp 0
+	cp OVERWORLD_MAP_TCG
 	jr nz, .asm_2ed8a
 	ld a, EVENT_TALKED_TO_SARA
 	farcall ZeroOutEventValue
@@ -6228,11 +6236,11 @@ Func_2eece:
 Func_2eeea:
 	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
-	ld hl, $9e5
+	ldtx hl, DialogJoshuaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6307,11 +6315,11 @@ Func_2ef5f:
 Func_2ef74:
 	ld a, NPC_WATER_CLUB_LASS
 	ld [wScriptNPC], a
-	ld hl, $a36
+	ldtx hl, DialogLassText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6342,11 +6350,11 @@ Func_2ef9f:
 Func_2efae:
 	ld a, NPC_WATER_CLUB_PAPPY
 	ld [wScriptNPC], a
-	ld hl, $a3b
+	ldtx hl, DialogPappy1Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6370,11 +6378,11 @@ Func_2efae:
 Func_2efe1:
 	ld a, NPC_WATER_CLUB_LONGHAIRED_LASS
 	ld [wScriptNPC], a
-	ld hl, $a4b
+	ldtx hl, DialogLonghairedKidText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6606,11 +6614,11 @@ Script_2f19d:
 Func_2f1d2:
 	ld a, NPC_AMY
 	ld [wScriptNPC], a
-	ld hl, $9e4
+	ldtx hl, DialogAmyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6633,11 +6641,11 @@ Func_2f1ed:
 Func_2f1fa:
 	ld a, NPC_AMY_LOUNGE
 	ld [wScriptNPC], a
-	ld hl, $9e4
+	ldtx hl, DialogAmyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 	ld a, e
@@ -6748,11 +6756,11 @@ Func_2f28a:
 Func_2f2cf:
 	ld a, NPC_JOSHUA
 	ld [wScriptNPC], a
-	ld hl, $9e5
+	ldtx hl, DialogJoshuaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6849,11 +6857,11 @@ Func_2f36d:
 Func_2f382:
 	ld a, NPC_SARA
 	ld [wScriptNPC], a
-	ld hl, $9e6
+	ldtx hl, DialogSaraText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6912,11 +6920,11 @@ Func_2f3d5:
 Func_2f3f1:
 	ld a, NPC_AMANDA
 	ld [wScriptNPC], a
-	ld hl, $9e7
+	ldtx hl, DialogAmandaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6999,11 +7007,11 @@ Func_2f478:
 Func_2f485:
 	ld a, NPC_GR_3
 	ld [wScriptNPC], a
-	ld hl, $a2a
+	ldtx hl, DialogGR3Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7130,17 +7138,19 @@ Func_2f575:
 	jr z, .duel
 	jr nc, .gift
 ; card pop
-	ld hl, $4037
+	ld hl, Func_34037
 	jr .asm_2f594
 .duel
-	ld hl, $417e
+	ld hl, Func_3417e
 	jr .asm_2f594
 .gift
-	ld hl, $41f7
+	ld hl, Func_341f7
 .asm_2f594
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0d
+	ld a, BANK(Func_34037)
+	ASSERT BANK(Func_34037) == BANK(Func_3417e)
+	ASSERT BANK(Func_34037) == BANK(Func_341f7)
 	ld [wd592], a
 	ld a, l
 	ld [wd593], a
@@ -7321,11 +7331,11 @@ Func_2f6ed:
 Func_2f709:
 	ld a, NPC_FIRE_CLUB_PUNK_GUY
 	ld [wScriptNPC], a
-	ld hl, $a56
+	ldtx hl, DialogPunkGuyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7382,11 +7392,11 @@ Func_2f76f:
 Func_2f77e:
 	ld a, NPC_FIRE_CLUB_MARTIAL_ARTIST
 	ld [wScriptNPC], a
-	ld hl, $a55
+	ldtx hl, DialogMartialArtistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7404,11 +7414,11 @@ Func_2f77e:
 Func_2f7a4:
 	ld a, NPC_FIRE_CLUB_GAL
 	ld [wScriptNPC], a
-	ld hl, $a37
+	ldtx hl, DialogGal1Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7575,11 +7585,11 @@ Script_2f8f8:
 Func_2f926:
 	ld a, NPC_KEN
 	ld [wScriptNPC], a
-	ld hl, $9ec
+	ldtx hl, DialogKenText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7715,11 +7725,11 @@ Func_2f9ed:
 Func_2fa25:
 	ld a, NPC_JOHN
 	ld [wScriptNPC], a
-	ld hl, $9ed
+	ldtx hl, DialogJohnText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7786,11 +7796,11 @@ Func_2fa85:
 Func_2faa1:
 	ld a, NPC_ADAM
 	ld [wScriptNPC], a
-	ld hl, $9ee
+	ldtx hl, DialogAdamText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7881,11 +7891,11 @@ Func_2fb32:
 Func_2fb4e:
 	ld a, NPC_JONATHAN
 	ld [wScriptNPC], a
-	ld hl, $9ef
+	ldtx hl, DialogJonathanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -7956,11 +7966,11 @@ Func_2fbb7:
 Func_2fbd3:
 	ld a, NPC_GR_3
 	ld [wScriptNPC], a
-	ld hl, $a2a
+	ldtx hl, DialogGR3Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -8171,11 +8181,11 @@ Func_2fd93:
 Func_2fda3:
 	ld a, NPC_POKEMON_DOME_FAT_GUY
 	ld [wScriptNPC], a
-	ld hl, $9f9
+	ldtx hl, DialogFatGuyText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -8257,11 +8267,11 @@ Func_2fe1d:
 Func_2fe2a:
 	ld a, NPC_MARK
 	ld [wScriptNPC], a
-	ld hl, $9f8
+	ldtx hl, DialogPlateOfLegendsText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -8284,7 +8294,7 @@ OverheadIslands_MapScripts:
 Func_2fe54:
 	farcall InitOWObjects
 	ld a, [wd584]
-	cp 0
+	cp OVERWORLD_MAP_TCG
 	jr nz, .asm_2fe6c
 	ld a, NPC_GR_BLIMP
 	lb de, 16, 128
@@ -8299,9 +8309,9 @@ Func_2fe54:
 .asm_2fe77
 	ld a, $0a
 	ld [wd582], a
-	ld a, $0b
+	ld a, BANK(Func_2fe9a)
 	ld [wd592], a
-	ld hl, $7e9a
+	ld hl, Func_2fe9a
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -8324,11 +8334,11 @@ Func_2fe97:
 
 Func_2fe9a:
 	ld a, [wd584]
-	cp $00
+	cp OVERWORLD_MAP_TCG
 	jr z, .asm_2febb
-	ld a, $00
+	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
-	ld b, $00
+	ld b, NORTH
 	farcall Func_d3c4
 	ld hl, Data_2ff50
 	ld a, $00
@@ -8337,9 +8347,9 @@ Func_2fe9a:
 	ld [wCurOWLocation], a
 	jr .asm_2fee2
 .asm_2febb
-	ld a, $01
+	ld a, OVERWORLD_MAP_GR
 	ld de, $0
-	ld b, $00
+	ld b, NORTH
 	farcall Func_d3c4
 	ld hl, Data_2ff48
 	ld a, $01
@@ -8380,7 +8390,7 @@ Func_2fe9a:
 	bit 2, [hl]
 	jr nz, .asm_2ff17
 	ldh a, [hKeysPressed]
-	bit 1, a
+	bit B_PAD_B, a
 	jr z, .asm_2ff17
 	set 2, [hl]
 	call Func_2ff3f

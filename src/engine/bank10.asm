@@ -1,9 +1,9 @@
 Func_40000:
-	ld hl, $ac5
+	ldtx hl, CombosBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -13,11 +13,11 @@ Func_40000:
 	ret
 
 Func_40016:
-	ld hl, $ac6
+	ldtx hl, EnergyTransBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -27,11 +27,11 @@ Func_40016:
 	ret
 
 Func_4002c:
-	ld hl, $ac7
+	ldtx hl, ToxicGasBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -41,11 +41,11 @@ Func_4002c:
 	ret
 
 Func_40042:
-	ld hl, $ac8
+	ldtx hl, RainDanceBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -55,11 +55,11 @@ Func_40042:
 	ret
 
 Func_40058:
-	ld hl, $ac9
+	ldtx hl, SelfdestructBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -69,11 +69,11 @@ Func_40058:
 	ret
 
 Func_4006e:
-	ld hl, $aca
+	ldtx hl, DamageSwapBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -83,11 +83,11 @@ Func_4006e:
 	ret
 
 Func_40084:
-	ld hl, $acb
+	ldtx hl, RemoveEnergiesBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -97,11 +97,11 @@ Func_40084:
 	ret
 
 Func_4009a:
-	ld hl, $acc
+	ldtx hl, PrehistoricPowerBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -111,11 +111,11 @@ Func_4009a:
 	ret
 
 Func_400b0:
-	ld hl, $acd
+	ldtx hl, WeaknessResistanceBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -125,11 +125,11 @@ Func_400b0:
 	ret
 
 Func_400c6:
-	ld hl, $ace
+	ldtx hl, TeamGRBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -139,11 +139,11 @@ Func_400c6:
 	ret
 
 Func_400dc:
-	ld hl, $acf
+	ldtx hl, GameCenterBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -153,11 +153,11 @@ Func_400dc:
 	ret
 
 Func_400f2:
-	ld hl, $ad0
+	ldtx hl, SamePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -167,11 +167,11 @@ Func_400f2:
 	ret
 
 Func_40108:
-	ld hl, $ad7
+	ldtx hl, RockGroundPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -181,11 +181,11 @@ Func_40108:
 	ret
 
 Func_4011e:
-	ld hl, $ad8
+	ldtx hl, FightingPokemonSurefireMethodBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -195,11 +195,11 @@ Func_4011e:
 	ret
 
 Func_40134:
-	ld hl, $ad9
+	ldtx hl, FightingPokemonFormidableOpponentsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -209,11 +209,11 @@ Func_40134:
 	ret
 
 Func_4014a:
-	ld hl, $ada
+	ldtx hl, FightingPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -223,11 +223,11 @@ Func_4014a:
 	ret
 
 Func_40160:
-	ld hl, $adb
+	ldtx hl, FightingPokemonCombosBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -237,11 +237,11 @@ Func_40160:
 	ret
 
 Func_40176:
-	ld hl, $adc
+	ldtx hl, FightingPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -251,11 +251,11 @@ Func_40176:
 	ret
 
 Func_4018c:
-	ld hl, $add
+	ldtx hl, PlantlikePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -265,11 +265,11 @@ Func_4018c:
 	ret
 
 Func_401a2:
-	ld hl, $ade
+	ldtx hl, GrassPokemonBreederBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -279,11 +279,11 @@ Func_401a2:
 	ret
 
 Func_401b8:
-	ld hl, $adf
+	ldtx hl, GrassPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -293,11 +293,11 @@ Func_401b8:
 	ret
 
 Func_401ce:
-	ld hl, $ae0
+	ldtx hl, SciencePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -307,11 +307,11 @@ Func_401ce:
 	ret
 
 Func_401e4:
-	ld hl, $ae1
+	ldtx hl, SciencePokemonSurefireMethodBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -321,11 +321,11 @@ Func_401e4:
 	ret
 
 Func_401fa:
-	ld hl, $ae2
+	ldtx hl, SciencePokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -335,11 +335,11 @@ Func_401fa:
 	ret
 
 Func_40210:
-	ld hl, $ae3
+	ldtx hl, WaterPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -349,11 +349,11 @@ Func_40210:
 	ret
 
 Func_40226:
-	ld hl, $ae4
+	ldtx hl, WaterPokemonAttacksBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -363,11 +363,11 @@ Func_40226:
 	ret
 
 Func_4023c:
-	ld hl, $ae5
+	ldtx hl, PsyduckGolduckBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -377,11 +377,11 @@ Func_4023c:
 	ret
 
 Func_40252:
-	ld hl, $ae6
+	ldtx hl, FirePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -391,11 +391,11 @@ Func_40252:
 	ret
 
 Func_40268:
-	ld hl, $ae7
+	ldtx hl, FirePokemonAttacksBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -405,11 +405,11 @@ Func_40268:
 	ret
 
 Func_4027e:
-	ld hl, $ae8
+	ldtx hl, FirePokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -419,11 +419,11 @@ Func_4027e:
 	ret
 
 Func_40294:
-	ld hl, $ae9
+	ldtx hl, LightningPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -433,11 +433,11 @@ Func_40294:
 	ret
 
 Func_402aa:
-	ld hl, $aea
+	ldtx hl, LightningPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -447,11 +447,11 @@ Func_402aa:
 	ret
 
 Func_402c0:
-	ld hl, $aeb
+	ldtx hl, BirdPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -461,11 +461,11 @@ Func_402c0:
 	ret
 
 Func_402d6:
-	ld hl, $aec
+	ldtx hl, PsychicPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -475,11 +475,11 @@ Func_402d6:
 	ret
 
 Func_402ec:
-	ld hl, $aed
+	ldtx hl, PsychicPokemonPokemonPowerBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -489,11 +489,11 @@ Func_402ec:
 	ret
 
 Func_40302:
-	ld hl, $aee
+	ldtx hl, UsefulButtonsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -503,11 +503,11 @@ Func_40302:
 	ret
 
 Func_40318:
-	ld hl, $aef
+	ldtx hl, ColorlessPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -517,11 +517,11 @@ Func_40318:
 	ret
 
 Func_4032e:
-	ld hl, $af0
+	ldtx hl, CardPopBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -531,11 +531,11 @@ Func_4032e:
 	ret
 
 Func_40344:
-	ld hl, $af1
+	ldtx hl, EnergyCardColorsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -545,11 +545,11 @@ Func_40344:
 	ret
 
 Func_4035a:
-	ld hl, $af2
+	ldtx hl, LegendaryPokemonCardsVol1BookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -559,11 +559,11 @@ Func_4035a:
 	ret
 
 Func_40370:
-	ld hl, $af3
+	ldtx hl, LegendaryPokemonCardsVol2BookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -573,11 +573,11 @@ Func_40370:
 	ret
 
 Func_40386:
-	ld hl, $af4
+	ldtx hl, LegendaryPokemonCardsVol3BookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -587,11 +587,11 @@ Func_40386:
 	ret
 
 Func_4039c:
-	ld hl, $af5
+	ldtx hl, LegendaryPokemonCardsVol4BookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -601,11 +601,11 @@ Func_4039c:
 	ret
 
 Func_403b2:
-	ld hl, $af6
+	ldtx hl, GrandMastersBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -615,11 +615,11 @@ Func_403b2:
 	ret
 
 Func_403c8:
-	ld hl, $af7
+	ldtx hl, CoinsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -629,11 +629,11 @@ Func_403c8:
 	ret
 
 Func_403de:
-	ld hl, $ad1
+	ldtx hl, PhantomCardsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -643,11 +643,11 @@ Func_403de:
 	ret
 
 Func_403f4:
-	ld hl, $ad2
+	ldtx hl, DarkPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -657,11 +657,11 @@ Func_403f4:
 	ret
 
 Func_4040a:
-	ld hl, $ad3
+	ldtx hl, AugmentBasicPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -671,11 +671,11 @@ Func_4040a:
 	ret
 
 Func_40420:
-	ld hl, $ad4
+	ldtx hl, GRKingCardsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -685,11 +685,11 @@ Func_40420:
 	ret
 
 Func_40436:
-	ld hl, $ad5
+	ldtx hl, SpecialEnergyBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -699,11 +699,11 @@ Func_40436:
 	ret
 
 Func_4044c:
-	ld hl, $ad6
+	ldtx hl, GetCoinsBookName
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -834,9 +834,9 @@ Func_4053b:
 
 Func_4053e:
 	ld a, [wd585]
-	cp $1f
+	cp MAP_TCG_AIRPORT
 	jr z, .asm_4054b
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40569
 	scf
 	ret
@@ -1293,7 +1293,7 @@ DoGRShipMovement:
 
 .done_movement
 	ld a, [wd585]
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40d71 ; unnecessary cp
 .asm_40d71
 	call .FadeOut
@@ -1306,7 +1306,7 @@ DoGRShipMovement:
 ; dependent on wd585
 .FadeOut:
 	ld a, [wd585]
-	cp $26
+	cp MAP_OVERHEAD_ISLANDS
 	jr nz, .to_black
 ; to white
 	ld a, $0
@@ -1440,13 +1440,13 @@ Func_40e91:
 	farcall CalcOWScroll
 	ld a, $0a
 	ld [wd582], a
-	ld a, $10
+	ld a, BANK(Func_40f46)
 	ld [wd592], a
-	ld hl, $4f46
+	ld hl, Func_40f46
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	scf
 	ret
 .asm_40ee8
@@ -1570,11 +1570,11 @@ Func_40f46:
 Func_40fbc:
 	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
-	ld hl, $9d0
+	ldtx hl, DialogDrMasonText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1611,7 +1611,7 @@ Func_40fff:
 	farcall GetEventValue
 	jr nz, .asm_41013
 	ld a, OVERWORLD_MAP_TCG
-	lb  de, 1, 7
+	lb de, 1, 7
 	ld b, SOUTH
 	farcall Func_d3c4
 	ret
@@ -1658,7 +1658,7 @@ Func_4101d:
 	ld a, c
 	ld [wde11], a
 	ld a, b
-	ld [$de12], a
+	ld [wde11 + 1], a
 	farcall Func_ec38
 .asm_41073
 	ret
@@ -1669,7 +1669,7 @@ Func_41074:
 	jp z, .asm_410ee
 	ld a, [wde11]
 	ld c, a
-	ld a, [$de12]
+	ld a, [wde11 + 1]
 	ld b, a
 	inc bc
 	ld a, b
@@ -1683,7 +1683,7 @@ Func_41074:
 	ld a, c
 	ld [wde11], a
 	ld a, b
-	ld [$de12], a
+	ld [wde11 + 1], a
 .asm_4109a
 	ld a, VAR_34
 	farcall GetVarValue
@@ -1706,7 +1706,7 @@ Func_41074:
 .asm_410c4
 	ld a, [wde0d]
 	ld c, a
-	ld a, [$de0e]
+	ld a, [wde0d + 1]
 	ld b, a
 	inc bc
 	ld a, b
@@ -1720,7 +1720,7 @@ Func_41074:
 	ld a, c
 	ld [wde0d], a
 	ld a, b
-	ld [$de0e], a
+	ld [wde0d + 1], a
 .asm_410e1
 	call Func_4112e
 	xor a
@@ -1740,7 +1740,7 @@ Func_41074:
 	ld a, c
 	ld [wde11], a
 	ld a, b
-	ld [$de12], a
+	ld [wde11 + 1], a
 .asm_4110a
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
@@ -1750,7 +1750,7 @@ Func_41074:
 .asm_41115
 	ld a, [wde11]
 	ld e, a
-	ld a, [$de12]
+	ld a, [wde11 + 1]
 	ld d, a
 	ld a, d
 	cp $00
@@ -1766,11 +1766,11 @@ Func_41074:
 Func_4112e:
 	ld a, [wde11]
 	ld c, a
-	ld a, [$de12]
+	ld a, [wde11 + 1]
 	ld b, a
 	ld a, [wde15]
 	ld e, a
-	ld a, [$de16]
+	ld a, [wde15 + 1]
 	ld d, a
 	ld a, b
 	cp d
@@ -1786,7 +1786,7 @@ Func_4112e:
 	ld a, c
 	ld [wde15], a
 	ld a, b
-	ld [$de16], a
+	ld [wde15 + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
 	ld de, wde19
@@ -1819,11 +1819,11 @@ Func_41167:
 Func_41188:
 	ld a, NPC_DR_MASON
 	ld [wScriptNPC], a
-	ld hl, $9d0
+	ldtx hl, DialogDrMasonText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1872,11 +1872,11 @@ Func_41188:
 Func_411f2:
 	ld a, NPC_RONALD
 	ld [wScriptNPC], a
-	ld hl, $a2d
+	ldtx hl, DialogRonaldText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -1911,11 +1911,11 @@ Func_4121d:
 Func_41233:
 	ld a, NPC_SAM
 	ld [wScriptNPC], a
-	ld hl, $9d1
+	ldtx hl, DialogSamText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2078,11 +2078,11 @@ Func_4133e:
 Func_41370:
 	ld a, NPC_LAB_TECH_PC_GUIDE
 	ld [wScriptNPC], a
-	ld hl, $a4a
+	ldtx hl, DialogTechText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2100,11 +2100,11 @@ Func_41370:
 Func_41396:
 	ld a, NPC_LAB_TECH_CLUB_GUIDE
 	ld [wScriptNPC], a
-	ld hl, $a4a
+	ldtx hl, DialogTechText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2122,11 +2122,11 @@ Func_41396:
 Func_413bc:
 	ld a, NPC_LAB_TECH_BOOSTER_GUIDE
 	ld [wScriptNPC], a
-	ld hl, $a4a
+	ldtx hl, DialogTechText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2144,11 +2144,11 @@ Func_413bc:
 Func_413e2:
 	ld a, NPC_LAB_TECH_ROOM_GUIDE
 	ld [wScriptNPC], a
-	ld hl, $a4a
+	ldtx hl, DialogTechText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2507,11 +2507,11 @@ Func_4164f:
 Func_41662:
 	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2593,11 +2593,11 @@ Func_41662:
 Func_41705:
 	ld a, NPC_TCG_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -2609,11 +2609,11 @@ Func_41705:
 Func_41720:
 	ld a, NPC_TCG_CHALLENGE_HALL_MAN
 	ld [wScriptNPC], a
-	ld hl, $a3a
+	ldtx hl, DialogManText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3265,17 +3265,17 @@ Func_41c57:
 Func_41c60:
 	farcall ClearwD986
 	ld a, [wd584]
-	cp $01
+	cp OVERWORLD_MAP_GR
 	jr nz, .asm_41c9f
 	ld a, $0a
 	ld [wd582], a
-	ld a, $10
+	ld a, BANK(Func_41d64)
 	ld [wd592], a
-	ld hl, $5d64
+	ld hl, Func_41d64
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, NPC_GR_5
 	lb de, 5, 5
 	farcall SetOWObjectTilePosition
@@ -3292,7 +3292,7 @@ Func_41c60:
 
 Func_41ca1:
 	ld a, [wd585]
-	cp $01
+	cp OVERWORLD_MAP_GR
 	jr z, .asm_41caa
 	scf
 	ret
@@ -3300,14 +3300,14 @@ Func_41ca1:
 	ld a, $0a
 	ld c, $07
 	farcall InitMusicFadeOut
-	farcall MusicFadeOut.loop
+	farcall MusicFadeOut
 	xor a
 	call PlaySong
 	ld a, $07
 	call SetVolume
 	ld a, SFX_89
 	call PlaySFX
-	farcall WaitForSFXToFinish.loop_wait
+	farcall WaitForSFXToFinish
 	scf
 	ccf
 	ret
@@ -3321,11 +3321,11 @@ Func_41ccb:
 Func_41cd3:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
-	ld hl, $a2c
+	ldtx hl, DialogGR5Text
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3482,7 +3482,7 @@ Func_41db4:
 	jr .asm_41e5b
 .asm_41ded
 	ldh a, [hKeysHeld]
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
 	ld b, WEST
@@ -3494,7 +3494,7 @@ Func_41db4:
 	jr .asm_41e5b
 .asm_41e09
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
@@ -3506,7 +3506,7 @@ Func_41db4:
 	jr .asm_41e5b
 .asm_41e25
 	ldh a, [hKeysHeld]
-	bit 6, a
+	bit B_PAD_UP, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
 	ld b, NORTH
@@ -3518,7 +3518,7 @@ Func_41db4:
 	jr .asm_41e5b
 .asm_41e41
 	ldh a, [hKeysHeld]
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr z, .asm_41e5b
 	ld a, [wPlayerOWObject]
 	ld b, EAST
@@ -3627,11 +3627,11 @@ SealedFort_AfterDuelScripts:
 Func_41f66:
 	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
-	ld hl, $a01
+	ldtx hl, DialogTobichanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr nz, .asm_41fd9
@@ -3688,11 +3688,11 @@ Func_41f66:
 Func_41fe1:
 	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
-	ld hl, $a01
+	ldtx hl, DialogTobichanText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3768,11 +3768,11 @@ Func_42050:
 Func_4207e:
 	ld a, NPC_EIJI
 	ld [wScriptNPC], a
-	ld hl, $a02
+	ldtx hl, DialogEijiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3847,11 +3847,11 @@ Func_420eb:
 Func_42119:
 	ld a, NPC_MAGICIAN
 	ld [wScriptNPC], a
-	ld hl, $a03
+	ldtx hl, DialogMagicianText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -3926,11 +3926,11 @@ Func_42186:
 Func_421b4:
 	ld a, NPC_TOSHIRON
 	ld [wScriptNPC], a
-	ld hl, $a04
+	ldtx hl, DialogToshironText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4005,11 +4005,11 @@ Func_42221:
 Func_4224f:
 	ld a, NPC_PIERROT
 	ld [wScriptNPC], a
-	ld hl, $a05
+	ldtx hl, DialogPierrotText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4085,11 +4085,11 @@ Func_422be:
 Func_422ec:
 	ld a, NPC_ANNA
 	ld [wScriptNPC], a
-	ld hl, $a07
+	ldtx hl, DialogAnnaText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4164,11 +4164,11 @@ Func_42359:
 Func_42387:
 	ld a, NPC_DEE
 	ld [wScriptNPC], a
-	ld hl, $a06
+	ldtx hl, DialogDeeText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4244,11 +4244,11 @@ Func_423f6:
 Func_42424:
 	ld a, NPC_MASQUERADE
 	ld [wScriptNPC], a
-	ld hl, $a08
+	ldtx hl, DialogMasqueradeText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4323,11 +4323,11 @@ Func_42491:
 Func_424bf:
 	ld a, NPC_YUI
 	ld [wScriptNPC], a
-	ld hl, $a09
+	ldtx hl, DialogYuiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4642,9 +4642,9 @@ Func_4271f:
 	jr z, .asm_42775
 	ld bc, $0
 	ld a, c
-	ld [$de13], a
+	ld [wde13], a
 	ld a, b
-	ld [$de14], a
+	ld [wde13 + 1], a
 	farcall Func_ec38
 .asm_42775
 	ret
@@ -4653,9 +4653,9 @@ Func_42776:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .asm_427f2
-	ld a, [$de13]
+	ld a, [wde13]
 	ld c, a
-	ld a, [$de14]
+	ld a, [wde13 + 1]
 	ld b, a
 	inc bc
 	ld a, b
@@ -4667,9 +4667,9 @@ Func_42776:
 .asm_42792
 	jr nc, .asm_4279c
 	ld a, c
-	ld [$de13], a
+	ld [wde13], a
 	ld a, b
-	ld [$de14], a
+	ld [wde13 + 1], a
 .asm_4279c
 	ld a, VAR_34
 	farcall GetVarValue
@@ -4690,9 +4690,9 @@ Func_42776:
 	farcall Func_eff7
 	jp .asm_42819
 .asm_427c7
-	ld a, [$de0f]
+	ld a, [wde0f]
 	ld c, a
-	ld a, [$de10]
+	ld a, [wde0f + 1]
 	ld b, a
 	inc bc
 	ld a, b
@@ -4704,9 +4704,9 @@ Func_42776:
 .asm_427da
 	jr nc, .asm_427e4
 	ld a, c
-	ld [$de0f], a
+	ld [wde0f], a
 	ld a, b
-	ld [$de10], a
+	ld [wde0f + 1], a
 .asm_427e4
 	call Func_42833
 	ld a, $01
@@ -4724,9 +4724,9 @@ Func_42776:
 	call Func_42833
 	ld bc, $0
 	ld a, c
-	ld [$de13], a
+	ld [wde13], a
 	ld a, b
-	ld [$de14], a
+	ld [wde13 + 1], a
 .asm_4280f
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
@@ -4734,9 +4734,9 @@ Func_42776:
 .asm_42819
 	ret
 .asm_4281a
-	ld a, [$de13]
+	ld a, [wde13]
 	ld e, a
-	ld a, [$de14]
+	ld a, [wde13 + 1]
 	ld d, a
 	ld a, d
 	cp $00
@@ -4750,13 +4750,13 @@ Func_42776:
 	jr .asm_4280f
 
 Func_42833:
-	ld a, [$de13]
+	ld a, [wde13]
 	ld c, a
-	ld a, [$de14]
+	ld a, [wde13 + 1]
 	ld b, a
-	ld a, [$de17]
+	ld a, [wde17]
 	ld e, a
-	ld a, [$de18]
+	ld a, [wde17 + 1]
 	ld d, a
 	ld a, b
 	cp d
@@ -4770,12 +4770,12 @@ Func_42833:
 	ret
 .asm_4284f
 	ld a, c
-	ld [$de17], a
+	ld [wde17], a
 	ld a, b
-	ld [$de18], a
+	ld [wde17 + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld de, $de29
+	ld de, wde29
 	ld bc, $10
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM
@@ -4805,11 +4805,11 @@ Func_4286c:
 Func_4288d:
 	ld a, NPC_GR_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4888,11 +4888,11 @@ Func_4288d:
 Func_4292f:
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
-	ld hl, $a5a
+	ldtx hl, DialogReceptionistText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -4920,11 +4920,11 @@ Func_4294a:
 Func_42961:
 	ld a, NPC_GR_STAFF
 	ld [wScriptNPC], a
-	ld hl, $a59
+	ldtx hl, DialogStaffText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5618,13 +5618,13 @@ Func_42f3e:
 	jr nz, .asm_42f84
 	ld a, $0a
 	ld [wd582], a
-	ld a, $10
+	ld a, BANK(Func_43050)
 	ld [wd592], a
-	ld hl, $7050
+	ld hl, Func_43050
 	ld a, l
 	ld [wd593], a
 	ld a, h
-	ld [$d594], a
+	ld [wd593 + 1], a
 	ld a, NPC_BIRURITCHI
 	lb de, 7, 2
 	farcall SetOWObjectTilePosition
@@ -5707,11 +5707,11 @@ Func_42fcd:
 Func_42fe1:
 	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
-	ld hl, $a27
+	ldtx hl, DialogBiruritchiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -5759,11 +5759,11 @@ Script_43044:
 	ld [wd54c], a
 	ret
 
-Data_43050:
-	db $af, $cd, $f2, $33, $0e, $a1, $2c, $53, $ff
-
-Script_43059:
-	game_center
+Func_43050:
+	xor a
+	start_script
+	set_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
+	move_npc NPC_KANZAKI, .NPCMovement_430ff
 	move_npc NPC_RUI, .NPCMovement_4310a
 	move_player .NPCMovement_430f4, TRUE
 	wait_for_player_animation
@@ -5881,11 +5881,11 @@ Script_43059:
 Func_43136:
 	ld a, NPC_BIRURITCHI
 	ld [wScriptNPC], a
-	ld hl, $a27
+	ldtx hl, DialogBiruritchiText
 	ld a, l
 	ld [wScriptNPCName], a
 	ld a, h
-	ld [$d610], a
+	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
 	script_command_01
@@ -6103,9 +6103,6 @@ Script_432a0:
 	print_npc_text Text0947
 	script_command_02
 	script_jump Script_431ca
-
-
-
 
 Script_432f5:
 	print_npc_text Text0948
