@@ -31,8 +31,8 @@ InitStartupDebugMenuBox:
 	push de
 	push hl
 	lb de, 0, 0
-	ld b, $04
-	ld hl, $4046
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
 	ld a, [wDebugMenuCursorPosition]
 	farcall DrawMenuBox
@@ -41,9 +41,30 @@ InitStartupDebugMenuBox:
 	pop bc
 	pop af
 	ret
-; 0x10046
 
-SECTION "Bank 4@4076", ROMX[$4076], BANK[$4]
+.menu_params:
+	db TRUE ; skip clear
+	db 16, 11 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db PAD_A ; press keys
+	db PAD_B ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw NULL ; update function
+	tx DebugKondoDebugText ; label text ID
+
+	textitem 2, 2, DebugPowerOnText
+	textitem 2, 3, PauseMenuCoinText
+	textitem 2, 4, PauseMenuConfigText
+	textitem 2, 5, DebugEffectViewerText
+	textitem 2, 6, DebugCreditsText
+	textitem 2, 7, DebugDuelText
+	textitem 2, 8, DebugSlotMachineText
+	textitem 2, 9, PauseMenuExitText
+	db $ff
 
 HandleStartupDebugMenuBox:
 	ld a, [wDebugMenuCursorPosition]
