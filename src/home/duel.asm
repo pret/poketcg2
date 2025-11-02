@@ -231,7 +231,7 @@ Func_0ffa::
 	push bc
 	ld c, a
 	ld a, [wSpecialRule]
-	cp SPECIAL_RULE_BLACK_HOLE
+	cp BLACK_HOLE
 	ld a, c
 	pop bc
 	jr z, PutCardInDiscardPile
@@ -884,7 +884,7 @@ PutHandCardInPlayArea::
 
 Func_12fc::
 	ld a, [wSpecialRule]
-	cp SPECIAL_RULE_ENERGY_RETURN
+	cp ENERGY_RETURN
 	jr nz, MovePlayAreaCardToDiscardPile
 	call EmptyPlayAreaSlot
 	ld l, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -1718,7 +1718,7 @@ ApplyDamageModifiers_DamageToTarget:
 	jr z, .check_pluspower_and_defender ; jump if not resistant
 	ld hl, -30
 	ld a, [wSpecialRule]
-	cp SPECIAL_RULE_LOW_RESISTANCE
+	cp LOW_RESISTANCE
 	jr nz, .asm_1801
 	ld hl, -10
 .asm_1801

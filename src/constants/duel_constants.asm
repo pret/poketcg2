@@ -311,22 +311,20 @@ DEF PRIZES_6    EQU $06
 	const SEARCHEFFECT_POKEMON        ; $4
 
 ; special rule constants, stored in wSpecialRule
-	const_def
-	const NO_SPECIAL_RULE             ; $0
-	const SPECIAL_RULE_CHLOROPHYLL    ; $1
-	const SPECIAL_RULE_THUNDER_CHARGE ; $2
-	const SPECIAL_RULE_FLAME_ARMOR    ; $3
-	const SPECIAL_RULE_SMALL_BENCH    ; $4
-	const SPECIAL_RULE_RUNNING_WATER  ; $5
-	const SPECIAL_RULE_EARTH_POWER    ; $6
-	const SPECIAL_RULE_LOW_RESISTANCE ; $7
-	const SPECIAL_RULE_ENERGY_RETURN  ; $8
-	const SPECIAL_RULE_TOUGH_ESCAPE   ; $9
-	const SPECIAL_RULE_BLACK_HOLE     ; $a
+	const_def 1
+	const CHLOROPHYLL    ; $1
+	const THUNDER_CHARGE ; $2
+	const FLAME_ARMOR    ; $3
+	const SMALL_BENCH    ; $4
+	const RUNNING_WATER  ; $5
+	const EARTH_POWER    ; $6
+	const LOW_RESISTANCE ; $7
+	const ENERGY_RETURN  ; $8
+	const TOUGH_ESCAPE   ; $9
+	const BLACK_HOLE     ; $a
 
 ; deck requirement constants, stored in wDeckRequirement
-	const_def
-	const NO_DECK_REQUIREMENT                  ; $00
+	const_def 1
 	const DECK_REQUIREMENT_GRASS_ENERGY        ; $01
 	const DECK_REQUIREMENT_LIGHTNING_ENERGY    ; $02
 	const DECK_REQUIREMENT_FIRE_ENERGY         ; $03
@@ -345,8 +343,7 @@ DEF PRIZES_6    EQU $06
 	const DECK_REQUIREMENT_COLORLESS_SAMEJIMA  ; $10
 
 ;duelist intro text constants, stored in wDuelistIntroText
-	const_def
-	const	NO_DUELIST_INTRO_TEXT                      ; $00
+	const_def 1
 	const	DUELIST_INTRO_LIGHTNING_CLUB_MEMBER        ; $01
 	const	DUELIST_INTRO_PSYCHIC_CLUB_MEMBER          ; $02
 	const	DUELIST_INTRO_ROCK_CLUB_MEMBER             ; $03
