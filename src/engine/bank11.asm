@@ -149,7 +149,7 @@ Func_4407d:
 	push hl
 	push hl
 	xor a
-	ld hl, $d57c
+	ld hl, wd57c
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
@@ -169,7 +169,7 @@ Func_4407d:
 	cp $08
 	jp nc, .asm_4418a
 	push hl
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [wLoadedCard1Stage]
 	sla a
 	add l
@@ -192,7 +192,7 @@ Func_4407d:
 	ld [bc], a
 	jr .asm_44099
 .asm_440ca
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -211,7 +211,7 @@ Func_4407d:
 	ld d, a
 	or e
 	jr z, .asm_44113
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -238,7 +238,7 @@ Func_4407d:
 	xor a
 	jr .asm_44186
 .asm_44113
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -254,7 +254,7 @@ Func_4407d:
 	ld a, $01
 	jr .asm_44186
 .asm_4412e
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -269,7 +269,7 @@ Func_4407d:
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1PreEvoName]
 	ld c, a
-	ld a, [$cc3f]
+	ld a, [wLoadedCard1PreEvoName + 1]
 	ld b, a
 	ld hl, wDuelTempList
 .asm_4414d
@@ -282,7 +282,7 @@ Func_4407d:
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Name]
 	ld e, a
-	ld a, [$cc36]
+	ld a, [wLoadedCard1Name + 1]
 	ld d, a
 	ld a, d
 	cp b
@@ -295,7 +295,7 @@ Func_4407d:
 	ld a, $02
 	jr .asm_44186
 .asm_4416d
-	ld hl, $d57e
+	ld hl, wd57e
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -757,9 +757,6 @@ Func_443bd:
 	pop bc
 	pop af
 	ret
-; 0x443d4
-
-SECTION "Bank 11@43d4", ROMX[$43d4], BANK[$11]
 
 ; filters card list in hl
 ; based on rarity in c and value in b:
@@ -1413,6 +1410,7 @@ WaitForSFXToFinish::
 	or a
 	jr nz, .loop_wait
 	ret
+; 0x449a8
 
 SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
 
@@ -1449,7 +1447,7 @@ Func_45301:
 .asm_4533e
 	ld a, $02
 .asm_45340
-	ld [$d578], a
+	ld [wd578], a
 	ld e, $03
 	ld d, VAR_2D
 	ld c, $ff
@@ -1488,7 +1486,7 @@ Func_45301:
 
 Func_45379:
 .asm_45379
-	ld a, [$d578]
+	ld a, [wd578]
 	ld d, a
 	ld a, [wFilteredListPtr]
 	ld l, a
@@ -1559,15 +1557,15 @@ Func_453ce:
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
 	farcall LoadNPCDuelist
-	ld a, [$d556]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
-	ld a, [$d557]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME + 1]
 	ld h, a
 	call LoadTxRam2
 	ld a, l
 	ld [wTxRam2_b], a
 	ld a, h
-	ld [$cdd9], a
+	ld [wTxRam2_b + 1], a
 	ret
 
 Func_453f9:
@@ -1701,28 +1699,28 @@ Func_454bc:
 	call Func_45488
 	farcall LoadNPCDuelistDeck
 	farcall LoadNPCDuelist
-	ld a, [$d558]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_LOCATION_NAME]
 	ld l, a
-	ld a, [$d559]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_LOCATION_NAME + 1]
 	ld h, a
 	call LoadTxRam2
-	ld a, [$d556]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
-	ld a, [$d557]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME + 1]
 	ld h, a
 	ld a, l
 	ld [wTxRam2_b], a
 	ld a, h
-	ld [$cdd9], a
+	ld [wTxRam2_b + 1], a
 	ret
 
 Func_454e3:
 	call Func_45488
 	farcall LoadNPCDuelistDeck
 	farcall LoadNPCDuelist
-	ld a, [$d556]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
-	ld a, [$d557]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME + 1]
 	ld h, a
 	call LoadTxRam2
 	ret
@@ -1794,9 +1792,9 @@ Func_45573:
 	farcall GetVarValue
 	farcall LoadNPCDuelistDeck
 	farcall LoadNPCDuelist
-	ld a, [$d556]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
-	ld a, [$d557]
+	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME + 1]
 	ld h, a
 	pop bc
 	ld a, c
@@ -1947,7 +1945,6 @@ Func_4568f:
 	pop bc
 	pop af
 	ret
-; 0x4569f
 
 Func_4569f:
 	ld hl, wCurDeckCards
@@ -2156,7 +2153,7 @@ Func_457ea:
 	cp $01
 	jr z, .asm_4580c
 	jr nz, .asm_45825
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2165,14 +2162,14 @@ Func_457ea:
 	call Func_442d3
 	jr .asm_4583c
 .asm_45801
-	ld hl, $d57e
+	ld hl, wd57e
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	call Func_4428a
 	jr .asm_4583c
 .asm_4580c
-	ld hl, $d57e
+	ld hl, wd57e
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2181,14 +2178,14 @@ Func_457ea:
 	call Func_442d3
 	jr .asm_4583c
 .asm_4581a
-	ld hl, $d57c
+	ld hl, wd57c
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	call Func_4427f
 	jr .asm_4583c
 .asm_45825
-	ld hl, $d580
+	ld hl, wd580
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2197,7 +2194,7 @@ Func_457ea:
 	call Func_442d3
 	jr .asm_4583c
 .asm_45833
-	ld hl, $d57e
+	ld hl, wd57e
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2445,7 +2442,7 @@ Func_458bf:
 	call Func_45b2d
 	inc a
 	ld c, a
-	ld hl, $d578
+	ld hl, wd578
 	ld a, $03
 	ld [hl], a
 	dec c
@@ -2504,7 +2501,7 @@ Func_458bf:
 	dec c
 	jr nz, .asm_459f7
 .asm_45a11
-	ld a, [$d578]
+	ld a, [wd578]
 	or a
 	jr z, .asm_45a56
 	ld bc, $1001
@@ -2522,7 +2519,7 @@ Func_458bf:
 	or a
 	jr z, .asm_45a9c
 	ld b, a
-	ld a, [$d578]
+	ld a, [wd578]
 	ld c, a
 .asm_45a3c
 	ld a, b
@@ -2542,7 +2539,7 @@ Func_458bf:
 	dec c
 	jr nz, .asm_45a3c
 .asm_45a56
-	ld a, [$d579]
+	ld a, [wd579]
 	or a
 	jr z, .asm_45a9b
 	ld bc, $1002
@@ -2560,7 +2557,7 @@ Func_458bf:
 	or a
 	jr z, .asm_45a9c
 	ld b, a
-	ld a, [$d579]
+	ld a, [wd579]
 	ld c, a
 .asm_45a81
 	ld a, b
@@ -2753,9 +2750,6 @@ Func_45b9c:
 	scf
 	ccf
 	ret
-; 0x45bc3
-
-SECTION "Bank 11@5bc3", ROMX[$5bc3], BANK[$11]
 
 Func_45bc3:
 	push af

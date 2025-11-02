@@ -2236,12 +2236,23 @@ wFilteredListPtr:: ; d575
 wRemainingIntroCards:: ; d577
 	ds $1
 
-	ds $3
+wd578:: ; d578
+	ds $1
+
+wd579:: ; d579
+	ds $2
 
 wIntroCardsRepeatsAllowed:: ; d57b
 	ds $1
 
-	ds $6
+wd57c:: ; d57c
+	ds $2
+
+wd57e:: ; d57e
+	ds $2
+
+wd580:: ; d580
+	ds $2
 
 wd582:: ; d582
 	ds $1

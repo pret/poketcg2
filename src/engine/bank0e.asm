@@ -6868,7 +6868,7 @@ Func_3bb09:
 	call HandleScrollMenu
 	jr c, .asm_3bba2
 	ldh a, [hDPadHeld]
-	and $08
+	and PAD_START
 	jr z, .asm_3bb4f
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
