@@ -3600,7 +3600,7 @@ Func_41f1b:
 	jr nz, .asm_41f34
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFort_OWInteractions
-	call Func_324d.asm_3254
+	call Func_3254
 .asm_41f34
 	scf
 	ret

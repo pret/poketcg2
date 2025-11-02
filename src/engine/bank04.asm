@@ -769,7 +769,6 @@ SetFontAndTextBoxFrameColor_PreserveRegisters::
 	pop af
 	ret
 
-; 0x10672
 Func_10672:
 	ret
 
@@ -996,13 +995,13 @@ Func_10772:
 	inc b
 .asm_1077f
 	ld a, b
-	ld [$d8a0], a
+	ld [wd8a0], a
 	push af
 	ld a, SFX_02
 	call CallPlaySFX
 	pop af
 .asm_1078a
-	ld a, [$d8a0]
+	ld a, [wd8a0]
 	and a
 	jr z, .asm_10793
 	call Func_114af
@@ -1013,14 +1012,14 @@ Func_10772:
 	call Func_10836
 	jr c, .asm_107ae
 	call Func_10856
-	ld a, [$d8a0]
+	ld a, [wd8a0]
 	and a
 	jr z, .asm_1078a
 	call Func_114f9
 	jr .asm_1078a
 .asm_107ae
 	call Func_10856
-	ld a, [$d8a0]
+	ld a, [wd8a0]
 	and a
 	jr z, .asm_107ba
 	call Func_114f9
@@ -1041,7 +1040,7 @@ Func_107bf:
 	ld hl, $47ee
 	call LoadMenuBoxParams
 	farcall Func_1cacf
-	ld a, [$d89f]
+	ld a, [wd89f]
 	farcall DrawMenuBox
 	farcall Func_1f309
 	jr z, .asm_107e9
@@ -1060,9 +1059,9 @@ Func_107bf:
 SECTION "Bank 4@481a", ROMX[$481a], BANK[$4]
 
 Func_1081a:
-	ld a, [$d89f]
+	ld a, [wd89f]
 	farcall HandleMenuBox
-	ld [$d89f], a
+	ld [wd89f], a
 	jr c, .asm_1082e
 	push af
 	ld a, SFX_02
@@ -5079,7 +5078,7 @@ Func_121e1:
 	push bc
 	push de
 	push hl
-	ld hl, $db17
+	ld hl, wdb17
 	ld [hl], b
 	add a
 	add a
@@ -5097,7 +5096,7 @@ Func_121e1:
 	ld b, $04
 	call LoadMenuBoxParams
 	farcall Func_1cacf
-	ld a, [$db17]
+	ld a, [wdb17]
 	farcall DrawMenuBox
 	farcall HandleMenuBox
 	farcall Func_1caf1
@@ -5130,7 +5129,7 @@ Func_123ab:
 	lb de, 1, 2
 	ldtx hl, GameCenterSlotMachineDescriptionText
 	call Func_35af
-	ld a, [$db2f]
+	ld a, [wdb2f]
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
@@ -5157,9 +5156,9 @@ Func_123fc:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call Func_125bf
 	xor a
-	ld [$db3c], a
+	ld [wdb3c], a
 	xor a
-	ld [$db32], a
+	ld [wdb32], a
 	call Func_125ed
 	call Func_12d17
 	call SetFrameFuncAndFadeFromWhite
@@ -5182,7 +5181,7 @@ Func_1241a:
 	call DoAFrames_WithPreCheck
 .asm_12433
 	call DoFrame
-	ld a, [$db3f]
+	ld a, [wdb3f]
 	ld b, a
 	ld a, [wVBlankCounter]
 	and b
@@ -5200,27 +5199,27 @@ Func_1241a:
 .asm_1245a
 	call Func_12ac7
 	xor a
-	ld [$db35], a
+	ld [wdb35], a
 	jr .asm_1241a
 
 Func_12463:
 	ld a, $1e
 	call Random
 	add $18
-	ld [$db30], a
+	ld [wdb30], a
 	xor a
-	ld [$db31], a
+	ld [wdb31], a
 	ld a, $01
-	ld [$db3f], a
+	ld [wdb3f], a
 	call Func_125dd
 	call Func_12dcc
 	ret
 
 Func_1247d:
-	ld a, [$db35]
+	ld a, [wdb35]
 	and a
 	ret z
-	ld a, [$db36]
+	ld a, [wdb36]
 	cp $03
 	jr z, .asm_1248e
 	cp $04
@@ -5234,11 +5233,11 @@ Func_1247d:
 SECTION "Bank 4@6546", ROMX[$6546], BANK[$4]
 
 Func_12546:
-	ld a, [$db35]
+	ld a, [wdb35]
 	and a
 	jr z, .asm_12551
 	dec a
-	ld [$db35], a
+	ld [wdb35], a
 	ret
 .asm_12551
 	call Func_12558
@@ -5246,7 +5245,7 @@ Func_12546:
 	ret
 
 Func_12558:
-	ld a, [$db32]
+	ld a, [wdb32]
 	ld c, a
 	ld b, $00
 	ld hl, $6594
@@ -5257,11 +5256,11 @@ Func_12558:
 	cp b
 	ret nc
 	ld a, $03
-	ld [$db35], a
+	ld [wdb35], a
 	ret
 
 Func_12570:
-	ld a, [$db32]
+	ld a, [wdb32]
 	add a
 	ld c, a
 	ld b, $00
@@ -5284,7 +5283,7 @@ Func_12570:
 	jr nz, .asm_12586
 .asm_1258f
 	ld a, e
-	ld [$db36], a
+	ld [wdb36], a
 	ret
 ; 0x12594
 
@@ -5346,24 +5345,24 @@ Func_125dd:
 Func_125ed:
 	and a
 	jr nz, .asm_1260c
-	ld hl, $db46
+	ld hl, wdb46
 	ld de, $6def
 	call Func_12628
-	ld hl, $db86
+	ld hl, wdb86
 	ld de, $6e03
 	call Func_12628
-	ld hl, $dbc6
+	ld hl, wdbc6
 	ld de, $6e17
 	call Func_12628
 	ret
 .asm_1260c
-	ld hl, $db46
+	ld hl, wdb46
 	ld de, $6e2b
 	call Func_12628
-	ld hl, $db86
+	ld hl, wdb86
 	ld de, $6e3f
 	call Func_12628
-	ld hl, $dbc6
+	ld hl, wdbc6
 	ld de, $6e53
 	call Func_12628
 	ret
@@ -5407,7 +5406,7 @@ Func_12636:
 SECTION "Bank 4@6670", ROMX[$6670], BANK[$4]
 
 Func_12670:
-	ld hl, $db23
+	ld hl, wdb23
 	ld c, $03
 .asm_12675
 	call Func_1267e
@@ -5630,17 +5629,17 @@ Func_1286a:
 	ret
 
 Func_128aa:
-	ld a, [$db30]
+	ld a, [wdb30]
 	and a
 	jr z, .asm_128b5
 	dec a
-	ld [$db30], a
+	ld [wdb30], a
 	ret
 .asm_128b5
-	ld a, [$db31]
+	ld a, [wdb31]
 	cp $03
 	ret z
-	ld a, [$db31]
+	ld a, [wdb31]
 	and a
 	jr z, .asm_128c9
 	ld c, a
@@ -5649,15 +5648,15 @@ Func_128aa:
 	bit 7, [hl]
 	ret z
 .asm_128c9
-	ld a, [$db31]
+	ld a, [wdb31]
 	ld c, a
 	call Func_128eb
-	ld hl, $db31
+	ld hl, wdb31
 	inc [hl]
 	ld a, $1e
 	call Random
 	add $12
-	ld [$db30], a
+	ld [wdb30], a
 	ret
 ; 0x128df
 
@@ -5686,7 +5685,7 @@ SECTION "Bank 4@69b8", ROMX[$69b8], BANK[$4]
 Func_129b8:
 	scf
 	ccf
-	ld hl, $db23
+	ld hl, wdb23
 	ld c, $03
 .asm_129bf
 	bit 7, [hl]
@@ -5704,16 +5703,16 @@ Func_129ca:
 	call Func_11002
 	call Func_12a02
 	ld a, $3c
-	ld [$db3d], a
+	ld [wdb3d], a
 .asm_129d8
 	call DoFrame
 	call UpdateRNGSources
 	jr c, .asm_129ee
 	ldh a, [hKeysPressed]
-	and $02
+	and PAD_B
 	jr nz, .asm_129fa
 	ldh a, [hKeysPressed]
-	and $80
+	and PAD_DOWN
 	jr nz, .asm_129ee
 	jr .asm_129d8
 .asm_129ee
@@ -5740,12 +5739,12 @@ Func_12a02:
 
 Func_12a15:
 	call GetGameCenterChips
-	ld a, [$db2f]
+	ld a, [wdb2f]
 	ld e, a
 	ld d, $00
 	call CompareBCAndDE
 	jr c, .asm_12a34
-	ld a, [$db2f]
+	ld a, [wdb2f]
 	ld c, a
 	ld b, $00
 	call DecreaseChipsSmoothly
@@ -5783,33 +5782,28 @@ Func_12a6a:
 	scf
 	ccf
 	ret
-; 0x12a81
 
 Func_12a81:
 	push bc
 	push hl
 	ld b, $00
-	ld hl, $db39
+	ld hl, wdb39
 	add hl, bc
 	ld a, [hl]
 	pop hl
 	pop bc
 	ret
-; 0x12a8d
-
-SECTION "Bank 4@6a8d", ROMX[$6a8d], BANK[$4]
 
 Func_12a8d:
 	push bc
 	push hl
 	ld b, $00
-	ld hl, $db39
+	ld hl, wdb39
 	add hl, bc
 	ld [hl], a
 	pop hl
 	pop bc
 	ret
-; 0x12a99
 
 Func_12a99:
 	push bc
@@ -5876,7 +5870,7 @@ Func_12cb2:
 	push bc
 	sla c
 	ld b, $00
-	ld hl, $db23
+	ld hl, wdb23
 	add hl, bc
 	pop bc
 	ret
@@ -5897,7 +5891,7 @@ Func_12cbd:
 	rl b
 	sla c
 	rl b
-	ld hl, $db46
+	ld hl, wdb46
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -5912,7 +5906,7 @@ Func_12cfc:
 	lb de, 8, 15
 	lb bc, 4, 1
 	call FillBoxInBGMapWithZero
-	ld a, [$db34]
+	ld a, [wdb34]
 	ld l, a
 	ld h, $00
 	lb de, 9, 15
@@ -5920,9 +5914,6 @@ Func_12cfc:
 	ld b, FALSE
 	farcall PrintNumber
 	ret
-; 0x12d17
-
-SECTION "Bank 4@6d17", ROMX[$6d17], BANK[$4]
 
 Func_12d17:
 	ld b, $04
@@ -6333,12 +6324,10 @@ Func_1333f:
 	ld c, $00
 	call CreateSpriteAnim
 	ret
+; 0x1334f
 
-Func_1334f:
-	db $d3
-	ld bc, $9c
-	ld h, l
-	ld bc, $13a
+SECTION "Bank 4@7357", ROMX[$7357], BANK[$4]
+
 Func_13357:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call SetFrameFuncAndFadeFromWhite
@@ -6390,12 +6379,12 @@ Func_133b0:
 	call Func_133dc
 	ld [wTxRam3], a
 	xor a
-	ld [$cddb], a
+	ld [wTxRam3 + 1], a
 	ld bc, $5
 	ld a, c
 	ld [wTxRam3_b], a
 	ld a, b
-	ld [$cddd], a
+	ld [wTxRam3_b + 1], a
 	ldtx hl, NumberSlashNumberText
 	lb de, 16, 1
 	call Func_35bf
@@ -6419,9 +6408,6 @@ Func_133dc:
 	pop hl
 	pop bc
 	ret
-; 0x133f0
-
-SECTION "Bank 4@73f0", ROMX[$73f0], BANK[$4]
 
 ; de = card ID
 DrawIntroCardGfx:
@@ -6649,7 +6635,7 @@ Func_1352a:
 .asm_1354b
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and $03
+	and PAD_A | PAD_B
 	jr nz, .asm_13559
 	call Func_13561
 	jr .asm_1354b
@@ -6745,11 +6731,11 @@ Func_135f6:
 	push bc
 	push de
 	push hl
-	ld [$ddf6], a
+	ld [wddf6], a
 	ld a, c
-	ld [$ddf8], a
+	ld [wddf8], a
 	ld a, b
-	ld [$ddf7], a
+	ld [wddf7], a
 	and a
 	jr nz, .asm_1360e
 	call Func_13617
@@ -6781,7 +6767,7 @@ Func_1362d:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00
@@ -6811,7 +6797,7 @@ Func_1362d:
 
 Func_13681:
 	push hl
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00
@@ -6829,9 +6815,9 @@ Func_13681:
 SECTION "Bank 4@76b4", ROMX[$76b4], BANK[$4]
 
 Func_136b4:
-	ld de, $de39
+	ld de, wde39
 	call Func_13d1f
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	add a
 	add a
@@ -6844,7 +6830,7 @@ Func_136b4:
 	ldtx hl, TxRam1Text
 	lb de, 2, 10
 	call Func_35bf
-	ld hl, $de39
+	ld hl, wde39
 	call SavePlayerName
 	ret
 
@@ -6860,14 +6846,14 @@ Func_136e4:
 	call SetupText
 	call Func_1371f
 	call SetFrameFuncAndFadeFromWhite
-	ld a, [$ddf8]
+	ld a, [wddf8]
 	and a
 	jr z, .asm_1370b
 	call Func_137fa
-	ld a, [$ddf8]
+	ld a, [wddf8]
 	cp $02
 	jr z, .asm_13718
-	ld a, [$ddf7]
+	ld a, [wddf7]
 	cp $05
 	scf
 	jr z, .asm_13718
@@ -6876,7 +6862,7 @@ Func_136e4:
 	call Func_137df
 	jr nc, .asm_1371b
 	ld a, $02
-	ld [$ddf8], a
+	ld [wddf8], a
 .asm_13718
 	call Func_1382e
 .asm_1371b
@@ -6890,7 +6876,7 @@ Func_1371f:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00
@@ -6927,7 +6913,7 @@ Func_13763:
 	sub c
 	ld [wTxRam3], a
 	xor a
-	ld [$cddb], a
+	ld [wTxRam3 + 1], a
 	ldtx hl, TxRam3Text
 	ld d, $02
 	call Func_35bf
@@ -6959,13 +6945,13 @@ Func_13785:
 	ret
 
 Func_13792:
-	ld a, [$ddf7]
+	ld a, [wddf7]
 	and a
 	jr nz, .asm_1379e
 	ldtx hl, ChallengeMachineOpponentListDialogText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 .asm_1379e
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00
@@ -6981,12 +6967,12 @@ Func_13792:
 	ld h, b
 	ld l, c
 	call LoadTxRam3
-	ld a, [$ddf7]
+	ld a, [wddf7]
 	inc a
 	ld [wTxRam3_b], a
 	xor a
-	ld [$cddd], a
-	ld a, [$ddf7]
+	ld [wTxRam3_b + 1], a
+	ld a, [wddf7]
 	add a
 	add a
 	ld c, a
@@ -7019,7 +7005,7 @@ Func_137df:
 	ret
 
 Func_137fa:
-	ld a, [$ddf7]
+	ld a, [wddf7]
 	dec a
 	add a
 	add a
@@ -7032,12 +7018,12 @@ Func_137fa:
 	ld a, [hli]
 	ld [wTxRam2], a
 	ld a, [hl]
-	ld [$cdd7], a
-	ld a, [$ddf7]
+	ld [wTxRam2 + 1], a
+	ld a, [wddf7]
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld a, [$ddf8]
+	ld a, [wddf8]
 	dec a
 	jr z, .asm_13827
 	ldtx hl, ChallengeMachineLossDialogText
@@ -7050,10 +7036,10 @@ Func_137fa:
 
 Func_1382e:
 	push af
-	ld a, [$ddf8]
+	ld a, [wddf8]
 	dec a
 	jr z, .asm_1384e
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00
@@ -7077,7 +7063,7 @@ Func_1382e:
 	call WaitForSongToFinish
 	call Func_3d16
 	call WaitForWideTextBoxInput
-	ld a, [$ddf6]
+	ld a, [wddf6]
 	add a
 	ld c, a
 	ld b, $00

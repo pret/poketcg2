@@ -1321,7 +1321,7 @@ Func_3138d:
 	jr nz, .asm_313a6
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFortEntrance_OWInteractions
-	call Func_324d.asm_3254
+	call Func_3254
 .asm_313a6
 	scf
 	ret

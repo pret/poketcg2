@@ -143,9 +143,9 @@ Func_87d3:
 	and $80
 	ldh a, [hDPadHeld]
 	jr nz, .asm_881c
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jr nz, .asm_87f5
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr z, .asm_881c
 .asm_87f5
 	ld a, [wd0cd]
@@ -212,9 +212,9 @@ Func_87d3:
 	ld [wScrollMenuCursorBlinkCounter], a
 .asm_8852
 	ldh a, [hKeysPressed]
-	and $03
+	and PAD_A | PAD_B
 	jr z, .asm_886d
-	and $01
+	and PAD_A
 	jr nz, .asm_8863
 	ld a, $ff
 	call PlayAcceptOrDeclineSFX
@@ -701,9 +701,9 @@ Func_9292:
 	ldh a, [hDPadHeld]
 	or a
 	jr z, .asm_92d3
-	bit 5, a
+	bit B_PAD_LEFT, a
 	jr nz, .asm_92ab
-	bit 4, a
+	bit B_PAD_RIGHT, a
 	jr z, .asm_92b1
 .asm_92ab
 	ld a, d
@@ -733,9 +733,9 @@ Func_9292:
 	ld [wScrollMenuCursorBlinkCounter], a
 .asm_92d3
 	ldh a, [hKeysPressed]
-	and $03
+	and PAD_A | PAD_B
 	jr z, .asm_92ee
-	and $01
+	and PAD_A
 	jr nz, .asm_92e4
 	ld a, $ff
 	call PlayAcceptOrDeclineSFX
@@ -1202,7 +1202,7 @@ Func_95d6:
 .asm_95f3
 	call DoFrame
 	ldh a, [hDPadHeld]
-	and $08
+	and PAD_START
 	jr z, .asm_960c
 	ld a, $01
 	call PlayAcceptOrDeclineSFX
@@ -1224,7 +1224,7 @@ Func_95d6:
 	ld [wNumMenuItems], a
 .asm_9626
 	ldh a, [hDPadHeld]
-	and $80
+	and PAD_DOWN
 	jr z, .asm_9631
 	call ConfirmSelectionAndReturnCarry
 	jr .asm_963e
@@ -1260,7 +1260,7 @@ Func_95d6:
 .asm_9669
 	call DoFrame
 	ldh a, [hDPadHeld]
-	and $08
+	and PAD_START
 	jr z, .asm_9685
 	ld a, $01
 	call PlayAcceptOrDeclineSFX
@@ -1271,7 +1271,7 @@ Func_95d6:
 	jr .asm_9645
 .asm_9685
 	ldh a, [hDPadHeld]
-	and $40
+	and PAD_UP
 	jr z, .asm_96a0
 	ld a, [wTempCardTypeFilter]
 	ld hl, wScrollMenuScrollOffset
@@ -5579,7 +5579,7 @@ Func_b5b1:
 	call HandleJumpListInput
 	jr c, .asm_b5ed
 	ldh a, [hDPadHeld]
-	and $08
+	and PAD_START
 	jr z, .asm_b5ed
 .asm_b600
 	ld a, $01

@@ -2026,9 +2026,9 @@ wCurCardListPtr:: ; d388
 	ds $1
 
 wd38a:: ; d38a
-	ds $1
+	ds $2
 
-	ds $3
+	ds $2
 
 ; the tile to draw in place of the cursor, in case
 ; the cursor is not to be drawn
@@ -2567,7 +2567,11 @@ wd89d:: ; d89d
 wd89e:: ; d89e
 	ds $1
 
-	ds $2
+wd89f:: ; d89f
+	ds $1
+
+wd8a0:: ; d8a0
+	ds $1
 
 wd8a1:: ; d8a1
 	ds $1
@@ -2877,12 +2881,68 @@ wTotalNumCardsToCollect:: ; db13
 wTotalNumCardsCollected:: ; db15
 	ds $2
 
-	ds $8
+wdb17:: ; db17
+	ds $1
+
+	ds $7
 
 wdb1f:: ; db1f
 	ds $1
 
-	ds $e6
+	ds $3
+
+wdb23:: ; db23
+	ds $c
+
+wdb2f:: ; db2f
+	ds $1
+
+wdb30:: ; db30
+	ds $1
+
+wdb31:: ; db31
+	ds $1
+
+wdb32:: ; db32
+	ds $1
+
+	ds $1
+
+wdb34:: ; db34
+	ds $1
+
+wdb35:: ; db35
+	ds $1
+
+wdb36:: ; db36
+	ds $1
+
+	ds $2
+
+wdb39:: ; db39
+	ds $3
+
+wdb3c:: ; db3c
+	ds $1
+
+wdb3d:: ; db3d
+	ds $1
+
+	ds $1
+
+wdb3f:: ; db3f
+	ds $1
+
+	ds $6
+
+wdb46:: ; db46
+	ds $40
+
+wdb86:: ; db86
+	ds $40
+
+wdbc6:: ; dbc6
+	ds $40
 
 wdc06:: ; dc06
 	ds $1
@@ -3166,7 +3226,14 @@ wCardTilemapOffset:: ; ddf4
 wddf5:: ; ddf5
 	ds $1
 
-	ds $3
+wddf6:: ; ddf6
+	ds $1
+
+wddf7:: ; ddf7
+	ds $1
+
+wddf8:: ; ddf8
+	ds $1
 
 wddf9:: ; ddf9
 	ds $14
@@ -3183,6 +3250,7 @@ wde15:: ; de15
 wde19:: ; de19
 	ds $20
 
+wde39:: ; de39
 	ds $10
 
 wCreditsCmdArg1:: ; de49

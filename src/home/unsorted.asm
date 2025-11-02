@@ -320,7 +320,8 @@ Func_323f::
 Func_324d::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-.asm_3254::
+;	fallthrough
+Func_3254::
 	ld a, [hli]
 	cp $ff
 	jr nz, .asm_325b
@@ -368,7 +369,7 @@ Func_324d::
 	jr nc, .asm_328a
 	inc h
 .asm_328a
-	jr .asm_3254
+	jr Func_3254
 
 Func_328c::
 	push hl
@@ -410,7 +411,7 @@ Func_32bf::
 	jr nz, .asm_32d6
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	call Func_324d.asm_3254
+	call Func_3254
 	ret
 .asm_32d6
 	scf

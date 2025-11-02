@@ -5690,7 +5690,7 @@ Func_3b315:
 	call DisableSRAM
 	xor a
 	ld [wTxRam2], a
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	ldtx hl, SavedDeckToMachineText
 	call DrawWideTextBox_WaitForInput
 	scf
@@ -5833,7 +5833,7 @@ Func_3b3fa:
 	call DisableSRAM
 	xor a
 	ld [wTxRam2], a
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	ld hl, EnableInt_VBlank
 	call DrawWideTextBox_WaitForInput
 	or a
@@ -5931,7 +5931,7 @@ Func_3b45f:
 	farcall CopyDeckName
 	xor a
 	ld [wTxRam2], a
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	ldtx hl, DismantledThisDeckText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wCurDeck]
@@ -6023,7 +6023,7 @@ Func_3b4eb:
 	call DisableSRAM
 	xor a
 	ld [wTxRam2], a
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	ldtx hl, BuiltDeckText
 	call DrawWideTextBox_WaitForInput
 	call SwitchToWRAM2

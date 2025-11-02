@@ -3142,7 +3142,7 @@ Func_1d97a:
 	push bc
 	push de
 	push hl
-	ld [$db2f], a
+	ld [wdb2f], a
 	farcall Func_1239b
 	jr c, .asm_1d999
 	push af
@@ -3286,7 +3286,7 @@ Func_1da88:
 	ld a, [hli]
 	ld [wTxRam2], a
 	ld a, [hl]
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	pop af
 	jr c, .asm_1daad
 	push af

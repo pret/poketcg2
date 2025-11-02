@@ -5522,13 +5522,13 @@ Func_efd0:
 	call GetVarValue
 	call LoadNPCDuelistDeck
 	call LoadNPCDuelist
-	ld de, $d55a
+	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_TITLE_NAME
 	ld a, [de]
 	ld [hli], a
 	inc de
 	ld a, [de]
 	ld [hli], a
-	ld de, $d556
+	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME
 	ld a, [de]
 	ld [hli], a
 	inc de
@@ -5679,7 +5679,7 @@ Func_f085:
 	pop bc
 	dec c
 	jr nz, .asm_f091
-	ld c, $03
+	ld c, PAD_A | PAD_B
 	farcall Func_10221
 	pop de
 	ret

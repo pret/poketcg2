@@ -253,7 +253,7 @@ class ScriptExtractor(object):
 			# convert raw value to MOVE_xx constant. see: script_constants.asm
 			number_of_steps = (movement_steps) >> 2
 			move_speed = movement_steps & 0b11
-			steps_output = "MOVE_" + str(number_of_steps) if move_speed == 1 else "RUN_" + str(number_of_steps)
+			steps_output = "{}_{}".format("MOVE" if move_speed == 1 else "RUN", number_of_steps)
 
 			blobs.append(self.make_blob(address, "\tdb {}, {}\n".format(direction_output, steps_output), address + 2))
 			address += 2
