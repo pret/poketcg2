@@ -1793,7 +1793,7 @@ Func_34da3:
 	script_jump_if_b0z .ows_34ddf
 	script_command_71
 	get_game_center_chips
-	compare_loaded_var_word $0000
+	compare_loaded_var_word 0
 	script_jump_if_b0nz .ows_34dd9
 	game_center
 	take_chips 1
@@ -2016,7 +2016,7 @@ Func_34f7b:
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
 	script_jump_if_b0z .ows_34fd7
 	get_game_center_chips
-	compare_loaded_var_word $000a
+	compare_loaded_var_word 10
 	script_jump_if_b1z .ows_34fb3
 	quit_script
 	xor a

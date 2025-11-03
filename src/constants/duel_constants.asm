@@ -342,49 +342,48 @@ DEF PRIZES_6    EQU $06
 	const DECK_REQUIREMENT_COLORLESS_ISHII     ; $0f
 	const DECK_REQUIREMENT_COLORLESS_SAMEJIMA  ; $10
 
-;duelist intro text constants, stored in wDuelistIntroText
+; duelist intro text constants, stored in wDuelistIntroText
 	const_def 1
-	const	DUELIST_INTRO_LIGHTNING_CLUB_MEMBER        ; $01
-	const	DUELIST_INTRO_PSYCHIC_CLUB_MEMBER          ; $02
-	const	DUELIST_INTRO_ROCK_CLUB_MEMBER             ; $03
-	const	DUELIST_INTRO_FIGHTING_CLUB_MEMBER         ; $04
-	const	DUELIST_INTRO_GRASS_CLUB_MEMBER            ; $05
-	const	DUELIST_INTRO_SCIENCE_CLUB_MEMBER          ; $06
-	const	DUELIST_INTRO_WATER_CLUB_MEMBER            ; $07
-	const	DUELIST_INTRO_FIRE_CLUB_MEMBER             ; $08
-	const	DUELIST_INTRO_LIGHTNING_CLUB_MASTER        ; $09
-	const	DUELIST_INTRO_PSYCHIC_CLUB_MASTER          ; $0a
-	const	DUELIST_INTRO_ROCK_CLUB_MASTER             ; $0b
-	const	DUELIST_INTRO_FIGHTING_CLUB_MASTER         ; $0c
-	const	DUELIST_INTRO_GRASS_CLUB_MASTER            ; $0d
-	const	DUELIST_INTRO_SCIENCE_CLUB_MASTER          ; $0e
-	const	DUELIST_INTRO_WATER_CLUB_MASTER            ; $0f
-	const	DUELIST_INTRO_FIRE_CLUB_MASTER             ; $10
-	const	DUELIST_INTRO_GRAND_MASTER                 ; $11
-	const	DUELIST_INTRO_TECH                         ; $12
-	const	DUELIST_INTRO_STRANGE_LIFE_FORM            ; $13
-	const	DUELIST_INTRO_COLLECTOR                    ; $14
-	const	DUELIST_INTRO_RIVAL                        ; $15
-	const	DUELIST_INTRO_ENIGMATIC_MASK               ; $16
-	const	DUELIST_INTRO_GR_GRASS_FORT_MEMBER         ; $17
-	const	DUELIST_INTRO_GR_LIGHTNING_FORT_MEMBER     ; $18
-	const	DUELIST_INTRO_GR_FIRE_FORT_MEMBER          ; $19
-	const	DUELIST_INTRO_GR_WATER_FORT_MEMBER         ; $1a
-	const	DUELIST_INTRO_GR_FIGHTING_FORT_MEMBER      ; $1b
-	const	DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; $1c
-	const	DUELIST_INTRO_GR_GRASS_FORT_LEADER         ; $1d
-	const	DUELIST_INTRO_GR_LIGHTNING_FORT_LEADER     ; $1e
-	const	DUELIST_INTRO_GR_FIRE_FORT_LEADER          ; $1f
-	const	DUELIST_INTRO_GR_WATER_FORT_LEADER         ; $20
-	const	DUELIST_INTRO_GR_FIGHTING_FORT_LEADER      ; $21
-	const	DUELIST_INTRO_GR_PSYCHIC_FORT_LEADER       ; $22
-	const	DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN  ; $23
-	const	DUELIST_INTRO_GR_BIG_BOSS                  ; $24
-	const	DUELIST_INTRO_GR_KING                      ; $25
-	const	DUELIST_INTRO_TAP                          ; $26
-	const	DUELIST_INTRO_DUNGEON_MASTER               ; $27
-	const	DUELIST_INTRO_GHOST_MASTER                 ; $28
-
+	const DUELIST_INTRO_LIGHTNING_CLUB_MEMBER        ; $01
+	const DUELIST_INTRO_PSYCHIC_CLUB_MEMBER          ; $02
+	const DUELIST_INTRO_ROCK_CLUB_MEMBER             ; $03
+	const DUELIST_INTRO_FIGHTING_CLUB_MEMBER         ; $04
+	const DUELIST_INTRO_GRASS_CLUB_MEMBER            ; $05
+	const DUELIST_INTRO_SCIENCE_CLUB_MEMBER          ; $06
+	const DUELIST_INTRO_WATER_CLUB_MEMBER            ; $07
+	const DUELIST_INTRO_FIRE_CLUB_MEMBER             ; $08
+	const DUELIST_INTRO_LIGHTNING_CLUB_MASTER        ; $09
+	const DUELIST_INTRO_PSYCHIC_CLUB_MASTER          ; $0a
+	const DUELIST_INTRO_ROCK_CLUB_MASTER             ; $0b
+	const DUELIST_INTRO_FIGHTING_CLUB_MASTER         ; $0c
+	const DUELIST_INTRO_GRASS_CLUB_MASTER            ; $0d
+	const DUELIST_INTRO_SCIENCE_CLUB_MASTER          ; $0e
+	const DUELIST_INTRO_WATER_CLUB_MASTER            ; $0f
+	const DUELIST_INTRO_FIRE_CLUB_MASTER             ; $10
+	const DUELIST_INTRO_GRAND_MASTER                 ; $11
+	const DUELIST_INTRO_TECH                         ; $12
+	const DUELIST_INTRO_STRANGE_LIFE_FORM            ; $13
+	const DUELIST_INTRO_COLLECTOR                    ; $14
+	const DUELIST_INTRO_RIVAL                        ; $15
+	const DUELIST_INTRO_ENIGMATIC_MASK               ; $16
+	const DUELIST_INTRO_GR_GRASS_FORT_MEMBER         ; $17
+	const DUELIST_INTRO_GR_LIGHTNING_FORT_MEMBER     ; $18
+	const DUELIST_INTRO_GR_FIRE_FORT_MEMBER          ; $19
+	const DUELIST_INTRO_GR_WATER_FORT_MEMBER         ; $1a
+	const DUELIST_INTRO_GR_FIGHTING_FORT_MEMBER      ; $1b
+	const DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; $1c
+	const DUELIST_INTRO_GR_GRASS_FORT_LEADER         ; $1d
+	const DUELIST_INTRO_GR_LIGHTNING_FORT_LEADER     ; $1e
+	const DUELIST_INTRO_GR_FIRE_FORT_LEADER          ; $1f
+	const DUELIST_INTRO_GR_WATER_FORT_LEADER         ; $20
+	const DUELIST_INTRO_GR_FIGHTING_FORT_LEADER      ; $21
+	const DUELIST_INTRO_GR_PSYCHIC_FORT_LEADER       ; $22
+	const DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN  ; $23
+	const DUELIST_INTRO_GR_BIG_BOSS                  ; $24
+	const DUELIST_INTRO_GR_KING                      ; $25
+	const DUELIST_INTRO_TAP                          ; $26
+	const DUELIST_INTRO_DUNGEON_MASTER               ; $27
+	const DUELIST_INTRO_GHOST_MASTER                 ; $28
 
 ; constants to use as input to SetCardSearchFuncParams
 	const_def

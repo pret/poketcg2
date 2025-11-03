@@ -827,11 +827,11 @@ wcd0c:: ; cd0c
 wcd0d:: ; cd0d
 	ds $1
 
-; index of deck requirements for this duel
+; DECK_REQUIREMENT_* constant for the current duel
 wDeckRequirement:: ; cd0e
 	ds $1
 
-;index of duelist intro texts for this duel
+; DUELIST_INTRO_* constant for the current duel
 wDuelistIntroText:: ; cd0f
 	ds $1
 

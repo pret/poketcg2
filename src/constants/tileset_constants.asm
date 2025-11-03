@@ -335,9 +335,9 @@
 	const TILESET_GLOW                        ; $14d
 	const TILESET_DAMAGE                      ; $14e
 	const TILESET_THUNDER                     ; $14f
-	const TILESET_LIGHTING                    ; $150
+	const TILESET_LIGHTNING                   ; $150
 	const TILESET_SPARK                       ; $151
-	const TILESET_BIG_LIGHTING                ; $152
+	const TILESET_BIG_LIGHTNING               ; $152
 	const TILESET_EMBER                       ; $153
 	const TILESET_FIRE_SPIN                   ; $154
 	const TILESET_FIRE_BIRD                   ; $155
