@@ -1,4 +1,4 @@
-Sfx24_Ch1:
+Sfx_Blizzard_Ch1:
 	sfx_8 17
 	sfx_1 111
 	sfx_loop 80

@@ -1,4 +1,4 @@
-Sfx44_Ch1:
+Sfx_Whirlwind_Ch1:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 31

@@ -1,4 +1,4 @@
-Sfx29_Ch1:
+Sfx_Avalanche_Ch1:
 	sfx_8 17
 	sfx_1 223
 	sfx_loop 40

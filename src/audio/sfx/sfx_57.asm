@@ -1,4 +1,4 @@
-Sfx57_Ch1:
+Sfx_PlayerWalkMap_Ch1:
 	sfx_loop 50
 	sfx_1 164
 	sfx_8 17

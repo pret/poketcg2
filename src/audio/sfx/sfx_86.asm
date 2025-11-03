@@ -1,4 +1,4 @@
-Sfx86_Ch1:
+Sfx_NpcWarpTransform_Ch1:
 	sfx_8 17
 	sfx_9 38
 	sfx_1 16

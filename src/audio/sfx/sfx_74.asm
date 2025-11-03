@@ -1,4 +1,4 @@
-Sfx74_Ch1:
+Sfx_CoinHurl_Ch1:
 	sfx_8 17
 	sfx_loop 3
 	sfx_1 241
@@ -22,7 +22,7 @@ Sfx74_Ch1:
 	sfx_6 3
 	sfx_end
 
-Sfx74_Ch2:
+Sfx_CoinHurl_Ch2:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 242

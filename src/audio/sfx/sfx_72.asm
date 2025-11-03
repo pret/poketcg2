@@ -1,4 +1,4 @@
-Sfx72_Ch1:
+Sfx_QuestionMark_Bench_Ch1:
 	sfx_1 176
 	sfx_8 17
 	sfx_2 8

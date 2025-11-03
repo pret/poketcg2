@@ -1,4 +1,4 @@
-Sfx3c_Ch1:
+Sfx_Toxic_Ch1:
 	sfx_loop 4
 	sfx_1 244
 	sfx_8 17

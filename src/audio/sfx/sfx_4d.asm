@@ -1,4 +1,4 @@
-Sfx4d_Ch1:
+Sfx_Whirlwind_Bench_Ch1:
 	sfx_1 239
 	sfx_8 17
 	sfx_2 0

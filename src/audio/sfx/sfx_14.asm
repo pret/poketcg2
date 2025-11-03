@@ -1,4 +1,4 @@
-Sfx14_Ch1:
+Sfx_Confusion_Ch1:
 	sfx_1 228
 	sfx_8 17
 	sfx_2 0

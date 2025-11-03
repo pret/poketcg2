@@ -1,4 +1,4 @@
-Sfx64_Ch1:
+Sfx_Fireball_Ch1:
 	sfx_8 17
 	sfx_2 8
 	sfx_1 32
@@ -70,7 +70,7 @@ Sfx64_Ch1:
 	sfx_0 7, 115
 	sfx_end
 
-Sfx64_Ch2:
+Sfx_Fireball_Ch2:
 	sfx_8 17
 	sfx_1 16
 	sfx_0 0, 17

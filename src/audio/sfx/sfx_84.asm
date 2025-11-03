@@ -1,4 +1,4 @@
-Sfx84_Ch1:
+Sfx_Pitfall_Ch1:
 	sfx_8 17
 	sfx_1 60
 	sfx_2 8

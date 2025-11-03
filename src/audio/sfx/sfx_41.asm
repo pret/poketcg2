@@ -1,4 +1,4 @@
-Sfx41_Ch1:
+Sfx_Protect_Ch1:
 	sfx_1 239
 	sfx_8 17
 	sfx_2 0

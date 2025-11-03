@@ -1,4 +1,4 @@
-Sfx94_Ch1:
+Sfx_VinePull_Ch1:
 	sfx_8 17
 	sfx_9 158
 	sfx_1 107

@@ -1,4 +1,4 @@
-Sfx98_Ch1:
+Sfx_DrillDive_Ch1:
 	sfx_8 17
 	sfx_1 80
 	sfx_2 4
@@ -44,7 +44,7 @@ Sfx98_Ch1:
 	sfx_0 5, 99
 	sfx_end
 
-Sfx98_Ch2:
+Sfx_DrillDive_Ch2:
 	sfx_8 17
 	sfx_1 43
 	sfx_0 0, 22

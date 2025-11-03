@@ -1,4 +1,4 @@
-Sfx75_Ch1:
+Sfx_Teleport_Ch1:
 	sfx_1 63
 	sfx_8 17
 	sfx_2 0
@@ -47,7 +47,7 @@ Sfx75_Ch1:
 	sfx_6 2
 	sfx_end
 
-Sfx75_Ch2:
+Sfx_Teleport_Ch2:
 	sfx_8 17
 	sfx_1 95
 	sfx_0 0, 2

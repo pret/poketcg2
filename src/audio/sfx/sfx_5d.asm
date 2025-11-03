@@ -1,4 +1,4 @@
-Sfx5d_Ch1:
+Sfx_ReceiveCardPop_Ch1:
 	sfx_1 208
 	sfx_8 17
 	sfx_2 8
@@ -14,7 +14,7 @@ Sfx5d_Ch1:
 	sfx_0 6, 246
 	sfx_end
 
-Sfx5d_Ch2:
+Sfx_ReceiveCardPop_Ch2:
 	sfx_1 29
 	sfx_8 17
 	sfx_2 0
@@ -38,7 +38,7 @@ Sfx5d_Ch2:
 	sfx_endloop
 	sfx_end
 
-Sfx5d_Ch3:
+Sfx_ReceiveCardPop_Ch3:
 	sfx_8 17
 	sfx_1 241
 	sfx_0 0, 99

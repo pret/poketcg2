@@ -1,4 +1,4 @@
-Sfx3a_Ch1:
+Sfx_Boyfriends_Ch1:
 	sfx_8 17
 	sfx_1 87
 	sfx_2 0

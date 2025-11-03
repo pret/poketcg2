@@ -1,4 +1,4 @@
-Sfx6d_Ch1:
+Sfx_IcePunch_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 8

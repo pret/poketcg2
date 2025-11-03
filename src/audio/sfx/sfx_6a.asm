@@ -1,4 +1,4 @@
-Sfx6a_Ch1:
+Sfx_MegaPunch_Ch1:
 	sfx_1 247
 	sfx_8 17
 	sfx_2 0
@@ -57,7 +57,7 @@ Sfx6a_Ch1:
 	sfx_0 6, 91
 	sfx_end
 
-Sfx6a_Ch2:
+Sfx_MegaPunch_Ch2:
 	sfx_8 17
 	sfx_1 31
 	sfx_0 0, 1

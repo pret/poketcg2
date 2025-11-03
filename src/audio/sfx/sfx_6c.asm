@@ -1,4 +1,4 @@
-Sfx6c_Ch1:
+Sfx_SludgePunch_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 8
@@ -137,7 +137,7 @@ Sfx6c_Ch1:
 	sfx_0 6, 66
 	sfx_end
 
-Sfx6c_Ch2:
+Sfx_SludgePunch_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 24

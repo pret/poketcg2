@@ -1,4 +1,4 @@
-Sfx7b_Ch1:
+Sfx_FocusBlast_Bench_Ch1:
 	sfx_8 17
 	sfx_2 8
 	sfx_1 27
@@ -76,7 +76,7 @@ Sfx7b_Ch1:
 	sfx_6 1
 	sfx_end
 
-Sfx7b_Ch2:
+Sfx_FocusBlast_Bench_Ch2:
 	sfx_8 17
 	sfx_1 64
 	sfx_0 0, 1

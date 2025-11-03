@@ -1,4 +1,4 @@
-Sfx37_Ch1:
+Sfx_Goo_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 0
@@ -71,7 +71,7 @@ Sfx37_Ch1:
 	sfx_0 7, 5
 	sfx_end
 
-Sfx37_Ch2:
+Sfx_Goo_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_5 0

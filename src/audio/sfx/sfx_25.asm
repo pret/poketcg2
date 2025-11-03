@@ -1,4 +1,4 @@
-Sfx25_Ch1:
+Sfx_Psychic_Ch1:
 	sfx_1 207
 	sfx_8 17
 	sfx_2 8

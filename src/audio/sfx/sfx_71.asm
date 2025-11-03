@@ -1,4 +1,4 @@
-Sfx71_Ch1:
+Sfx_Slap_Ch1:
 	sfx_1 44
 	sfx_8 17
 	sfx_2 8
@@ -32,7 +32,7 @@ Sfx71_Ch1:
 	sfx_0 6, 178
 	sfx_end
 
-Sfx71_Ch2:
+Sfx_Slap_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 18

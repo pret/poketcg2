@@ -1,4 +1,4 @@
-Sfx65_Ch1:
+Sfx_ContinuousFireball_Ch1:
 	sfx_8 17
 	sfx_2 8
 	sfx_1 32
@@ -109,7 +109,7 @@ Sfx65_Ch1:
 	sfx_0 6, 66
 	sfx_end
 
-Sfx65_Ch2:
+Sfx_ContinuousFireball_Ch2:
 	sfx_8 17
 	sfx_1 16
 	sfx_loop 3

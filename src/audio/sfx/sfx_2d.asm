@@ -1,4 +1,4 @@
-Sfx2d_Ch1:
+Sfx_Slash_Ch1:
 	sfx_8 17
 	sfx_1 223
 	sfx_0 0, 36

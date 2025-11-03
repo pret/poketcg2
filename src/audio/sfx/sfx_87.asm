@@ -1,4 +1,4 @@
-Sfx87_Ch1:
+Sfx_StrongholdPlatformUp_Ch1:
 	sfx_8 17
 	sfx_1 106
 	sfx_2 8

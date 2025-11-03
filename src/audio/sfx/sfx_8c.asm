@@ -1,4 +1,4 @@
-Sfx8c_Ch1:
+Sfx_BoneToss_Bench_Ch1:
 	sfx_8 17
 	sfx_1 29
 	sfx_2 8
@@ -76,7 +76,7 @@ Sfx8c_Ch1:
 	sfx_0 7, 223
 	sfx_end
 
-Sfx8c_Ch2:
+Sfx_BoneToss_Bench_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 14

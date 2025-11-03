@@ -1,4 +1,4 @@
-Sfx31_Ch1:
+Sfx_PotSmash_Ch1:
 	sfx_8 17
 	sfx_1 111
 	sfx_2 0

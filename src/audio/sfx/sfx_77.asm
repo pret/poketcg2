@@ -1,4 +1,4 @@
-Sfx77_Ch1:
+Sfx_Swift_Ch1:
 	sfx_8 17
 	sfx_1 65
 	sfx_2 0

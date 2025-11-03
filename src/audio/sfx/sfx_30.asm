@@ -1,4 +1,4 @@
-Sfx30_Ch1:
+Sfx_Drill_Ch1:
 	sfx_8 17
 	sfx_loop 8
 	sfx_1 129

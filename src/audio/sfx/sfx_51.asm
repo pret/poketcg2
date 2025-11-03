@@ -1,4 +1,4 @@
-Sfx51_Ch1:
+Sfx_Firegiver_Ch1:
 	sfx_1 0
 	sfx_5 0
 	sfx_6 20
@@ -119,7 +119,7 @@ Sfx51_Ch1:
 	sfx_endloop
 	sfx_end
 
-Sfx51_Ch2:
+Sfx_Firegiver_Ch2:
 	sfx_loop 65
 	sfx_1 127
 	sfx_8 17

@@ -1,4 +1,4 @@
-Sfx02_Ch1:
+Sfx_Confirm_Ch1:
 	sfx_1 194
 	sfx_8 17
 	sfx_2 8

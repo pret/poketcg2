@@ -1,4 +1,4 @@
-Sfx6e_Ch1:
+Sfx_Kick_Ch1:
 	sfx_1 61
 	sfx_8 17
 	sfx_2 4
@@ -58,7 +58,7 @@ Sfx6e_Ch1:
 	sfx_0 1, 107
 	sfx_end
 
-Sfx6e_Ch2:
+Sfx_Kick_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 23

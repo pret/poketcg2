@@ -1,4 +1,4 @@
-Sfx66_Ch1:
+Sfx_BenchManipulation_Ch1:
 	sfx_8 17
 	sfx_2 8
 	sfx_1 42

@@ -1,4 +1,4 @@
-Sfx8d_Ch1:
+Sfx_CoinHurl_Bench_Ch1:
 	sfx_8 17
 	sfx_1 240
 	sfx_2 4
@@ -22,7 +22,7 @@ Sfx8d_Ch1:
 	sfx_6 3
 	sfx_end
 
-Sfx8d_Ch2:
+Sfx_CoinHurl_Bench_Ch2:
 	sfx_8 17
 	sfx_1 245
 	sfx_0 0, 17

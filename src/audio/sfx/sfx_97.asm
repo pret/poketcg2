@@ -1,4 +1,4 @@
-Sfx97_Ch1:
+Sfx_BoneHeadbutt_Ch1:
 	sfx_8 17
 	sfx_9 54
 	sfx_loop 5
@@ -36,7 +36,7 @@ Sfx97_Ch1:
 	sfx_6 6
 	sfx_end
 
-Sfx97_Ch2:
+Sfx_BoneHeadbutt_Ch2:
 	sfx_8 17
 	sfx_1 80
 	sfx_loop 4

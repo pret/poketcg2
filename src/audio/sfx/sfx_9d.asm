@@ -1,4 +1,4 @@
-Sfx9d_Ch1:
+Sfx_ElectronicInput_Ch1:
 	sfx_1 98
 	sfx_8 17
 	sfx_2 8

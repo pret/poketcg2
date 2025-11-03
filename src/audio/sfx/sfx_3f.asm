@@ -1,4 +1,4 @@
-Sfx3f_Ch1:
+Sfx_Supersonic_Ch1:
 	sfx_8 17
 	sfx_loop 20
 	sfx_1 193

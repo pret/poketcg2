@@ -1,4 +1,4 @@
-Sfx2f_Ch1:
+Sfx_FurySwipes_Ch1:
 	sfx_8 17
 	sfx_1 214
 	sfx_0 0, 36

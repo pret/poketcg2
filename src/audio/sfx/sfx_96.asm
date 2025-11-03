@@ -1,4 +1,4 @@
-Sfx96_Ch1:
+Sfx_NineTails_Ch1:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 35
@@ -37,7 +37,7 @@ Sfx96_Ch1:
 	sfx_0 7, 221
 	sfx_end
 
-Sfx96_Ch2:
+Sfx_NineTails_Ch2:
 	sfx_8 17
 	sfx_1 27
 	sfx_0 0, 54

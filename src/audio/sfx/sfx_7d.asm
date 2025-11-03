@@ -1,4 +1,4 @@
-Sfx7d_Ch1:
+Sfx_SlotStart_Ch1:
 	sfx_8 17
 	sfx_1 244
 	sfx_2 8

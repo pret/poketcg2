@@ -1,4 +1,4 @@
-Sfx69_Ch1:
+Sfx_BoulderSmash_Ch1:
 	sfx_1 45
 	sfx_8 17
 	sfx_2 8
@@ -68,7 +68,7 @@ Sfx69_Ch1:
 	sfx_0 0, 44
 	sfx_end
 
-Sfx69_Ch2:
+Sfx_BoulderSmash_Ch2:
 	sfx_8 17
 	sfx_1 45
 	sfx_0 0, 65

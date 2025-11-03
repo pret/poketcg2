@@ -1,4 +1,4 @@
-Sfx7e_Ch1:
+Sfx_SlotReel_Ch1:
 	sfx_8 17
 	sfx_1 178
 	sfx_2 8

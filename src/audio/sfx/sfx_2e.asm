@@ -1,4 +1,4 @@
-Sfx2e_Ch1:
+Sfx_SonicBoom_Ch1:
 	sfx_8 17
 	sfx_1 223
 	sfx_0 0, 36

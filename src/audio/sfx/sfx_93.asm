@@ -1,4 +1,4 @@
-Sfx93_Ch1:
+Sfx_Guillotine_Ch1:
 	sfx_8 17
 	sfx_1 224
 	sfx_2 4
@@ -67,7 +67,7 @@ Sfx93_Ch1:
 	sfx_0 6, 214
 	sfx_end
 
-Sfx93_Ch2:
+Sfx_Guillotine_Ch2:
 	sfx_8 17
 	sfx_1 128
 	sfx_0 0, 100

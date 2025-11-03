@@ -1,4 +1,4 @@
-Sfx76_Ch1:
+Sfx_FollowMe_Ch1:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 9

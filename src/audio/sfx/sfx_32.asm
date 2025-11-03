@@ -1,4 +1,4 @@
-Sfx32_Ch1:
+Sfx_Bonemerang_Ch1:
 	sfx_1 143
 	sfx_8 17
 	sfx_2 8
@@ -164,7 +164,7 @@ Sfx32_Ch1:
 	sfx_0 7, 157
 	sfx_end
 
-Sfx32_Ch2:
+Sfx_Bonemerang_Ch2:
 	sfx_8 17
 	sfx_1 223
 	sfx_1 0

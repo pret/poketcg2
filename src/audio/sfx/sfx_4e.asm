@@ -1,4 +1,4 @@
-Sfx4e_Ch1:
+Sfx_Expand_Ch1:
 	sfx_1 239
 	sfx_8 17
 	sfx_2 8

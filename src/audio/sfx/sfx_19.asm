@@ -1,4 +1,4 @@
-Sfx19_Ch1:
+Sfx_Lightning_Ch1:
 	sfx_8 17
 	sfx_1 240
 	sfx_0 0, 98

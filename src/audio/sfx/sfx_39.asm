@@ -1,4 +1,4 @@
-Sfx39_Ch1:
+Sfx_StringShot_Ch1:
 	sfx_8 17
 	sfx_1 159
 	sfx_2 0
@@ -97,7 +97,7 @@ Sfx39_Ch1:
 	sfx_0 7, 157
 	sfx_end
 
-Sfx39_Ch2:
+Sfx_StringShot_Ch2:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 207

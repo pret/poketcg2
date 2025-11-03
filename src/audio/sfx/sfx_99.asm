@@ -1,4 +1,4 @@
-Sfx99_Ch1:
+Sfx_DarkSong_Ch1:
 	sfx_1 207
 	sfx_8 17
 	sfx_1 42

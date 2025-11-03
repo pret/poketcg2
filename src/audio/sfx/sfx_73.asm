@@ -1,4 +1,4 @@
-Sfx73_Ch1:
+Sfx_SkullBash_Ch1:
 	sfx_1 224
 	sfx_8 17
 	sfx_2 4
@@ -39,7 +39,7 @@ Sfx73_Ch1:
 	sfx_endloop
 	sfx_end
 
-Sfx73_Ch2:
+Sfx_SkullBash_Ch2:
 	sfx_8 17
 	sfx_1 80
 	sfx_loop 4

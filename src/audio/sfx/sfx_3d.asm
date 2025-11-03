@@ -1,4 +1,4 @@
-Sfx3d_Ch1:
+Sfx_ConfuseRay_Ch1:
 	sfx_8 17
 	sfx_1 255
 	sfx_2 0

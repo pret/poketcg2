@@ -1,4 +1,4 @@
-Sfx28_Ch1:
+Sfx_HyperBeam_Ch1:
 	sfx_1 100
 	sfx_8 17
 	sfx_2 4
@@ -19,7 +19,7 @@ Sfx28_Ch1:
 	sfx_0 7, 131
 	sfx_end
 
-Sfx28_Ch2:
+Sfx_HyperBeam_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_5 0

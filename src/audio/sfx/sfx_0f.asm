@@ -1,4 +1,4 @@
-Sfx0f_Ch1:
+Sfx_Doors_Ch1:
 	sfx_8 17
 	sfx_1 225
 	sfx_0 0, 82

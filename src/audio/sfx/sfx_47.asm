@@ -1,4 +1,4 @@
-Sfx47_Ch1:
+Sfx_SelfDestruct_Ch1:
 	sfx_8 17
 	sfx_1 207
 	sfx_0 0, 113

@@ -1,4 +1,4 @@
-Sfx78_Ch1:
+Sfx_3dAttack_Ch1:
 	sfx_8 17
 	sfx_1 33
 	sfx_2 4

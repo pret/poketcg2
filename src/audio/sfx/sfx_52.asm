@@ -1,4 +1,4 @@
-Sfx52_Ch1:
+Sfx_ThunderPunch_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 8
@@ -77,7 +77,7 @@ Sfx52_Ch1:
 	sfx_0 7, 107
 	sfx_end
 
-Sfx52_Ch2:
+Sfx_ThunderPunch_Ch2:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 0

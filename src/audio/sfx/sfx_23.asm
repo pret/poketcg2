@@ -1,4 +1,4 @@
-Sfx23_Ch1:
+Sfx_HydroPump_Ch1:
 	sfx_8 17
 	sfx_1 246
 	sfx_0 0, 132

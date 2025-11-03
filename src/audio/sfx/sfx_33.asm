@@ -1,4 +1,4 @@
-Sfx33_Ch1:
+Sfx_SeismicToss_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 0
@@ -71,7 +71,7 @@ Sfx33_Ch1:
 	sfx_0 4, 22
 	sfx_end
 
-Sfx33_Ch2:
+Sfx_SeismicToss_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_5 0

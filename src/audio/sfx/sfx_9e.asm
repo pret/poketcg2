@@ -1,4 +1,4 @@
-Sfx9e_Ch1:
+Sfx_ElectronicResponse_Ch1:
 	sfx_1 162
 	sfx_8 17
 	sfx_2 4

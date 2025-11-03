@@ -1,4 +1,4 @@
-Sfx50_Ch1:
+Sfx_ThunderWave_Ch1:
 	sfx_1 159
 	sfx_8 17
 	sfx_2 0
@@ -47,7 +47,7 @@ Sfx50_Ch1:
 	sfx_0 7, 223
 	sfx_end
 
-Sfx50_Ch2:
+Sfx_ThunderWave_Ch2:
 	sfx_1 207
 	sfx_8 17
 	sfx_loop 3

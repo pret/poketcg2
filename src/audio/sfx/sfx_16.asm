@@ -1,4 +1,4 @@
-Sfx16_Ch1:
+Sfx_SmallHit_Ch1:
 	sfx_8 17
 	sfx_1 241
 	sfx_0 0, 45

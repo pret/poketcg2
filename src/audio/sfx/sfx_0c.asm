@@ -1,4 +1,4 @@
-Sfx0c_Ch1:
+Sfx_Warp_Ch1:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 225

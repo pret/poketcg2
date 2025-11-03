@@ -1,4 +1,4 @@
-Sfx03_Ch1:
+Sfx_Cancel_Ch1:
 	sfx_1 212
 	sfx_8 17
 	sfx_2 0

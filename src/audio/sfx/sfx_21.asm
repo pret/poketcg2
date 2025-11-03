@@ -1,4 +1,4 @@
-Sfx21_Ch1:
+Sfx_WaterGun_Ch1:
 	sfx_8 17
 	sfx_1 111
 	sfx_0 0, 81

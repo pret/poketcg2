@@ -1,4 +1,4 @@
-Sfx67_Ch1:
+Sfx_PsychicBeam_Ch1:
 	sfx_1 127
 	sfx_8 17
 	sfx_2 4
@@ -48,7 +48,7 @@ Sfx67_Ch1:
 	sfx_0 4, 22
 	sfx_end
 
-Sfx67_Ch2:
+Sfx_PsychicBeam_Ch2:
 	sfx_8 17
 	sfx_1 199
 	sfx_0 0, 2

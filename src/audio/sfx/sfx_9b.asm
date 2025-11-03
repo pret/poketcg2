@@ -1,4 +1,4 @@
-Sfx9b_Ch1:
+Sfx_IntroTitleFlipUp_Ch1:
 	sfx_8 17
 	sfx_2 4
 	sfx_9 39
@@ -75,7 +75,7 @@ Sfx9b_Ch1:
 	sfx_6 1
 	sfx_end
 
-Sfx9b_Ch2:
+Sfx_IntroTitleFlipUp_Ch2:
 	sfx_8 17
 	sfx_1 16
 	sfx_0 0, 64

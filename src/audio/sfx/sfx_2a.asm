@@ -1,4 +1,4 @@
-Sfx2a_Ch1:
+Sfx_StoneBarrage_Ch1:
 	sfx_8 17
 	sfx_1 223
 	sfx_loop 4

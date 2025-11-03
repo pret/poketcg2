@@ -1,4 +1,4 @@
-Sfx4a_Ch1:
+Sfx_Drain_Ch1:
 	sfx_1 228
 	sfx_8 17
 	sfx_2 4

@@ -1,4 +1,4 @@
-Sfx79_Ch1:
+Sfx_DryUp_Ch1:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 44

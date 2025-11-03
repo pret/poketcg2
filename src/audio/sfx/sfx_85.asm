@@ -1,4 +1,4 @@
-Sfx85_Ch1:
+Sfx_OpenChest_Ch1:
 	sfx_8 17
 	sfx_9 45
 	sfx_1 241

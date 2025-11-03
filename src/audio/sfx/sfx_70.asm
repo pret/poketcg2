@@ -1,4 +1,4 @@
-Sfx70_Ch1:
+Sfx_TailWhip_Ch1:
 	sfx_1 27
 	sfx_8 17
 	sfx_2 8

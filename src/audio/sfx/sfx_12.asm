@@ -1,4 +1,4 @@
-Sfx12_Ch1:
+Sfx_Paralysis_Ch1:
 	sfx_1 228
 	sfx_8 17
 	sfx_2 0

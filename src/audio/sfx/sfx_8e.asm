@@ -1,4 +1,4 @@
-Sfx8e_Ch1:
+Sfx_BigSnore_Ch1:
 	sfx_8 17
 	sfx_1 45
 	sfx_2 8
@@ -74,7 +74,7 @@ Sfx8e_Ch1:
 	sfx_0 1, 6
 	sfx_end
 
-Sfx8e_Ch2:
+Sfx_BigSnore_Ch2:
 	sfx_8 17
 	sfx_1 16
 	sfx_0 0, 6

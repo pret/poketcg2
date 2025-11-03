@@ -1,4 +1,4 @@
-Sfx7f_Ch1:
+Sfx_BlackBoxInsert_Ch1:
 	sfx_8 17
 	sfx_1 123
 	sfx_0 0, 1

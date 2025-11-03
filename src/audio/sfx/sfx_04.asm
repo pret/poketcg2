@@ -1,4 +1,4 @@
-Sfx04_Ch1:
+Sfx_Denied_Ch1:
 	sfx_1 240
 	sfx_8 17
 	sfx_2 0

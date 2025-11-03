@@ -1,4 +1,4 @@
-Sfx2c_Ch1:
+Sfx_StretchKick_Ch1:
 	sfx_1 255
 	sfx_8 17
 	sfx_2 8

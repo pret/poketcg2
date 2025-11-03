@@ -1,4 +1,4 @@
-Sfxa0_Ch1:
+Sfx_GhostMasterDisappear_Ch1:
 	sfx_1 16
 	sfx_8 17
 	sfx_2 0

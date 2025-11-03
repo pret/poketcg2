@@ -1,4 +1,4 @@
-Sfx6f_Ch1:
+Sfx_TailSlap_Ch1:
 	sfx_1 139
 	sfx_8 17
 	sfx_2 4
@@ -71,7 +71,7 @@ Sfx6f_Ch1:
 	sfx_0 0, 44
 	sfx_end
 
-Sfx6f_Ch2:
+Sfx_TailSlap_Ch2:
 	sfx_8 17
 	sfx_1 0
 	sfx_6 23

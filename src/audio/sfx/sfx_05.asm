@@ -1,4 +1,4 @@
-Sfx05_Ch1:
+Sfx_Jingle_Ch1:
 	sfx_1 241
 	sfx_8 17
 	sfx_2 8
