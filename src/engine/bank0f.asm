@@ -125,7 +125,7 @@ Prologue::
 	farcall LoadOWObject
 	ld a, 30
 	call WaitAFrames
-	ld a, SFX_57
+	ld a, SFX_PLAYER_WALK_MAP
 	call PlaySFX
 	call .MovePlayer
 
@@ -139,7 +139,7 @@ Prologue::
 	call PlaySFX
 	ld a, $01
 	call Func_33a3
-	ld a, SFX_0C
+	ld a, SFX_WARP
 	call PlaySFX
 	ret
 
@@ -163,7 +163,7 @@ Prologue::
 	ret
 
 .DoGRShipBeamAnimation:
-	ld a, SFX_8B
+	ld a, SFX_GR_SHIP_BEAM
 	call PlaySFX
 	ld a, NPC_GR_BLIMP
 	farcall GetOWObjectPosition
@@ -408,7 +408,7 @@ Func_3c30c:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopResultText
 	script_command_02
@@ -600,7 +600,7 @@ Script_3c497:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text12d5
 	script_command_02
@@ -3545,7 +3545,7 @@ Script_3db41:
 	move_npc NPC_STEVE, .NPCMovement_3dbc3
 	wait_for_player_animation
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_038, $07, $00
 	do_frames 30
 	move_npc NPC_ROD, .NPCMovement_3dbca
@@ -3558,7 +3558,7 @@ Script_3db41:
 	move_player .NPCMovement_3dbb9, TRUE
 	wait_for_player_animation
 	do_frames 60
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_037, $07, $00
 	do_frames 30
 	end_script
@@ -3636,7 +3636,7 @@ Script_3dbde:
 	wait_for_player_animation
 	do_frames 30
 	set_scroll_state $02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_038, $07, $00
 	do_frames 30
 	animate_player_movement $00, $01
@@ -6379,7 +6379,7 @@ Func_3f15d:
 	set_var VAR_3A, $01
 	print_npc_text PawnProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_044, $04, $00
 	print_npc_text PawnProceedInitial2Text
 	script_jump .ows_3f1b7
@@ -6409,7 +6409,7 @@ Func_3f1c6:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_043, $04, $07
 	end_script
 	ld a, $00
@@ -6618,7 +6618,7 @@ Func_3f317:
 	set_var VAR_3A, $02
 	print_npc_text KnightProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_047, $04, $00
 	print_npc_text KnightProceedInitial2Text
 	script_jump .ows_3f386
@@ -6648,7 +6648,7 @@ Func_3f395:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_046, $04, $07
 	end_script
 	ld a, $00
@@ -6872,7 +6872,7 @@ Func_3f500:
 	set_var VAR_3A, $04
 	print_npc_text RookProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04D, $04, $00
 	print_npc_text RookProceedInitial2Text
 	script_jump .ows_3f56f
@@ -6902,7 +6902,7 @@ Func_3f57e:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04C, $04, $07
 	end_script
 	ld a, $00
@@ -7233,7 +7233,7 @@ Func_3f817:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_5
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -7376,7 +7376,7 @@ Func_3f90c:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 1, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText

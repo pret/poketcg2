@@ -17,7 +17,7 @@ AssertSFXFinished::
 	ret
 
 Func_3071::
-	ld a, SFX_04
+	ld a, SFX_DENIED
 PlaySFX::
 	farcall _PlaySFX
 	ret
@@ -126,7 +126,7 @@ NewGameAndPrologue::
 	ld a, $0e
 	ld [wCurOWLocation], a
 	farcall Func_ea30
-	ld a, SFX_56
+	ld a, SFX_SAVE_GAME
 	call PlaySFX
 	farcall WaitForSFXToFinish
 

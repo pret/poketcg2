@@ -6535,14 +6535,14 @@ Script_2f127:
 	set_active_npc_direction WEST
 	do_frames 60
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0834
 	script_command_67 $05, $1e
 	do_frames 60
 	fade_out $01, TRUE
 	wait_for_fade
 	script_command_68
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	script_command_02
 	unload_npc NPC_CAPTURED_AMY
 	unload_npc NPC_CAPTURED_SARA
@@ -8047,14 +8047,14 @@ Script_2fc3e:
 	wait_for_player_animation
 	do_frames 60
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0c72
 	script_command_67 $04, $1e
 	do_frames 60
 	fade_out $01, TRUE
 	wait_for_fade
 	script_command_68
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	script_command_02
 	load_tilemap TILEMAP_02E, $05, $0b
 	load_tilemap TILEMAP_02F, $05, $07

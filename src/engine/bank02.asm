@@ -199,7 +199,7 @@ Func_87d3:
 	sub e
 	ld e, a
 .asm_883c
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	push de
 	call .asm_8884
@@ -401,7 +401,7 @@ HandleMultiDirectionalMenu:
 	jr .make_bitmask_loop
 
 .sfx
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 
 	; reset cursor blink
@@ -720,7 +720,7 @@ Func_9292:
 	xor $01
 	ld e, a
 .asm_92bd
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	push de
 	call .asm_9305
@@ -786,16 +786,16 @@ Func_9292:
 	jr .asm_9307
 
 ; play different sfx by a.
-; if a is 0xff play SFX_03 (usually following a B press),
-; else play SFX_02 (usually following an A press).
+; if a is 0xff play SFX_CANCEL (usually following a B press),
+; else play SFX_CONFIRM (usually following an A press).
 PlayAcceptOrDeclineSFX:
 	push af
 	inc a
 	jr z, .cancel
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	jr .play_sfx
 .cancel
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 .play_sfx
 	call PlaySFX
 	pop af
@@ -2352,7 +2352,7 @@ HandleScrollListInput:
 	jr z, .check_d_down
 ; d_up
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	dec a
@@ -2377,7 +2377,7 @@ HandleScrollListInput:
 	jr z, .asm_9fd8
 ; d_down
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	inc a
@@ -2701,7 +2701,7 @@ AddCardToDeckAndUpdateCount:
 	scf
 	ret z ; cannot add because player doesn't own more copies
 
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	push de
 	call .AddCardToCurDeck
@@ -2857,7 +2857,7 @@ RemoveCardFromDeck:
 	pop de
 	or a
 	ret z ; card is not in deck
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	push de
 	call .RemoveCard
@@ -3034,7 +3034,7 @@ HandleJumpListInput:
 	ld [wScrollMenuScrollOffset], a
 	cp c
 	jr z, .no_scroll
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	ld hl, wScrollMenuScrollFunc
 	call CallIndirect
@@ -3083,7 +3083,7 @@ HandleSelectUpAndDownInList:
 	ld [wScrollMenuScrollOffset], a
 	cp c
 	jr z, .set_carry
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	ld hl, wScrollMenuScrollFunc
 	call CallIndirect
@@ -4660,7 +4660,7 @@ HandleCardAlbumCardPage:
 	jr z, .check_d_down
 
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	ld a, [wCurScrollMenuItem]
 	ld hl, wScrollMenuScrollOffset
@@ -4685,7 +4685,7 @@ HandleCardAlbumCardPage:
 	bit B_PAD_DOWN, b
 	jr z, .open_card_page
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	inc a

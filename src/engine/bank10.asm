@@ -850,7 +850,7 @@ Func_4053e:
 	call PlaySong
 	ld a, 7
 	call SetVolume
-	ld a, SFX_8A
+	ld a, SFX_GR_SHIP_HATCH_OPEN
 	call PlaySFX
 	farcall WaitForSFXToFinish
 .asm_40569
@@ -919,7 +919,7 @@ HandleTCGIslandDirectionalInput:
 	ret
 
 .got_key
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	ld a, [wCurOWLocation]
 	ld b, a
@@ -1128,7 +1128,7 @@ Func_406d1:
 	ld l, a
 	or h
 	jr z, .finish_movement ; is null
-	ld a, SFX_57
+	ld a, SFX_PLAYER_WALK_MAP
 	call PlaySFX
 
 .loop_commands
@@ -1525,7 +1525,7 @@ Func_40f46:
 	farcall Func_ea30
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	script_command_02
 	end_script
 	ld a, $00
@@ -3303,7 +3303,7 @@ Func_41ca1:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, SFX_89
+	ld a, SFX_GR_SHIP_HATCH_CLOSE
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	scf
@@ -3645,7 +3645,7 @@ Func_41f66:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	scroll_to_position $02, $00
 	load_npc NPC_TOBICHAN, 6, 2, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_4257f
@@ -3667,7 +3667,7 @@ Func_41f66:
 	print_npc_text Text108a
 .ows_41fc5
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_425ae
@@ -3706,7 +3706,7 @@ Func_41fe1:
 	move_player .NPCMovement_42047, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOBICHAN, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_4257f
@@ -3752,7 +3752,7 @@ Func_42050:
 	print_npc_text Text1093
 .ows_42069
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_425ae
@@ -3786,7 +3786,7 @@ Func_4207e:
 	move_player .NPCMovement_420e4, TRUE
 	wait_for_player_animation
 	load_npc NPC_EIJI, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $57
 	ld hl, Data_4257f
@@ -3831,7 +3831,7 @@ Func_420eb:
 	print_npc_text Text109a
 .ows_42104
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $57
 	ld hl, Data_425ae
@@ -3865,7 +3865,7 @@ Func_42119:
 	move_player .NPCMovement_4217f, TRUE
 	wait_for_player_animation
 	load_npc NPC_MAGICIAN, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $58
 	ld hl, Data_4257f
@@ -3910,7 +3910,7 @@ Func_42186:
 	print_npc_text Text10a1
 .ows_4219f
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $58
 	ld hl, Data_425ae
@@ -3944,7 +3944,7 @@ Func_421b4:
 	move_player .NPCMovement_4221a, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOSHIRON, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $59
 	ld hl, Data_4257f
@@ -3989,7 +3989,7 @@ Func_42221:
 	print_npc_text Text10a8
 .ows_4223a
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $59
 	ld hl, Data_425ae
@@ -4023,7 +4023,7 @@ Func_4224f:
 	move_player .NPCMovement_422b5, TRUE
 	wait_for_player_animation
 	load_npc NPC_PIERROT, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5a
 	ld hl, Data_4257f
@@ -4069,7 +4069,7 @@ Func_422be:
 	print_npc_text Text10af
 .ows_422d7
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5a
 	ld hl, Data_425ae
@@ -4103,7 +4103,7 @@ Func_422ec:
 	move_player .NPCMovement_42352, TRUE
 	wait_for_player_animation
 	load_npc NPC_ANNA, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5b
 	ld hl, Data_4257f
@@ -4148,7 +4148,7 @@ Func_42359:
 	print_npc_text Text10b6
 .ows_42372
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5b
 	ld hl, Data_425ae
@@ -4182,7 +4182,7 @@ Func_42387:
 	move_player .NPCMovement_423ed, TRUE
 	wait_for_player_animation
 	load_npc NPC_DEE, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5c
 	ld hl, Data_4257f
@@ -4228,7 +4228,7 @@ Func_423f6:
 	print_npc_text Text10bd
 .ows_4240f
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5c
 	ld hl, Data_425ae
@@ -4262,7 +4262,7 @@ Func_42424:
 	move_player .NPCMovement_4248a, TRUE
 	wait_for_player_animation
 	load_npc NPC_MASQUERADE, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5d
 	ld hl, Data_4257f
@@ -4307,7 +4307,7 @@ Func_42491:
 	print_npc_text Text10c4
 .ows_424aa
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5d
 	ld hl, Data_425ae
@@ -4341,7 +4341,7 @@ Func_424bf:
 	move_player .NPCMovement_42525, TRUE
 	wait_for_player_animation
 	load_npc NPC_YUI, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $b0
 	ld hl, Data_4257f
@@ -4386,7 +4386,7 @@ Func_4252c:
 	print_npc_text Text10cb
 .ows_42545
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $b0
 	ld hl, Data_425ae
@@ -6156,7 +6156,7 @@ Script_43333:
 	farcall Func_ea30
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	script_ret
 
 Script_4336b:

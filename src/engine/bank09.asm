@@ -403,7 +403,7 @@ HandleWaitingLinkOpponentMenu:
 	ret nz
 	and PAD_LEFT | PAD_RIGHT
 	ret z
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	call EraseCursor
 	ld hl, wCurrentDuelMenuItem
@@ -538,7 +538,7 @@ PrintAttachedEnergyToPokemon:
 ; print the PokemonEvolvedIntoPokemonText, given the Pokemon card to evolve in wPreEvolutionPokemonCard,
 ; and the evolved Pokemon card in hTempCardIndex_ff98. also play a sound effect.
 PrintPokemonEvolvedIntoPokemon:
-	ld a, SFX_5E
+	ld a, SFX_POKEMON_EVOLUTION
 	call PlaySFX
 	ld a, [wPreEvolutionPokemonCard]
 	call LoadCardNameToTxRam2
@@ -890,7 +890,7 @@ PlacePrizes:
 	call .DrawPrizeTile
 
 	push hl
-	ld a, SFX_08
+	ld a, SFX_PLACE_PRIZE
 	call PlaySFX
 	; print new deck card number
 	lb bc, 3, 5

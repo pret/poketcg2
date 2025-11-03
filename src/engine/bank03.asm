@@ -190,7 +190,7 @@ Func_c169:
 	ret
 
 Func_c16f:
-	ld a, SFX_0C
+	ld a, SFX_WARP
 	call PlaySFX
 	ret
 

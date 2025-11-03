@@ -4599,7 +4599,7 @@ HandleScrollMenu:
 	jr z, .check_d_down
 ; d-up
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	dec a
@@ -4625,7 +4625,7 @@ HandleScrollMenu:
 	jr z, .call_update_func
 ; d-down
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	inc a
@@ -5076,7 +5076,7 @@ HandleDeckMachineSelection:
 	jr z, .set_carry
 	; play SFX if jump was made
 	; and update UI
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	call DrawDeckMachineScreen
 	call PrintNumSavedDecks

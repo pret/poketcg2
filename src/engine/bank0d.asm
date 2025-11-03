@@ -59,7 +59,7 @@ Func_34037:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text1267
 	script_command_02
@@ -112,7 +112,7 @@ Func_340a4:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text1269
 	script_command_02
@@ -165,7 +165,7 @@ Func_34111:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text126b
 	script_command_02
@@ -1107,7 +1107,7 @@ Func_34873:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, SFX_89
+	ld a, SFX_GR_SHIP_HATCH_CLOSE
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	scf
@@ -2362,7 +2362,7 @@ Func_351dd:
 	set_var VAR_3A, $03
 	print_npc_text BishopProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04A, $04, $00
 	print_npc_text BishopProceedInitial2Text
 	script_jump .ows_3524c
@@ -2392,7 +2392,7 @@ Func_3525b:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_049, $04, $07
 	end_script
 	ld a, $00
@@ -3047,7 +3047,7 @@ Func_356e8:
 	print_npc_text Text124d
 	script_command_02
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_08C, $05, $00
 	load_npc NPC_JACK, 6, 1, SOUTH
 	set_active_npc NPC_JACK, DialogJackText
@@ -3126,7 +3126,7 @@ Script_357bf:
 	print_npc_text Text1253
 	script_command_02
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_08D, $0c, $05
 	do_frames 30
 	move_active_npc .NPCMovement_35808
@@ -3315,7 +3315,7 @@ Func_358f3:
 	script_command_01
 	print_npc_text Text1210
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_090, $04, $00
 	do_frames 30
 	get_player_x_position
@@ -3666,7 +3666,7 @@ Func_35be4:
 	script_jump_if_b0z .ows_35c0d
 	set_event EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_097, $07, $00
 	end_script
 	jr .asm_35c0f
@@ -3722,7 +3722,7 @@ Func_35c7b:
 	ret
 
 Func_35c86:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C7
 	lb de, 4, 6
@@ -3778,7 +3778,7 @@ Func_35d17:
 	ret
 
 Func_35d22:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0CC
 	lb de, 4, 6
@@ -3999,7 +3999,7 @@ Func_35e5e:
 	do_frames 30
 	fade_out $00, TRUE
 	wait_for_fade
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_0A2, $04, $02
 	set_active_npc_position_and_direction 5, 4, SOUTH
 	set_player_position_and_direction 5, 5, NORTH
@@ -4214,7 +4214,7 @@ Func_36049:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_GRACES_ROOM
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -4782,7 +4782,7 @@ Func_364ac:
 	scroll_to_position $03, $02
 	wait_for_player_animation
 	do_frames 60
-	play_sfx SFX_88
+	play_sfx SFX_STRONGHOLD_PLATFORM_DOWN
 	load_npc NPC_MAMI, 7, 15, SOUTH
 	load_npc NPC_STRONGHOLD_PLATFORM, 6, 15, SOUTH
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
@@ -4811,7 +4811,7 @@ Func_364ac:
 	print_npc_text Text113a
 	script_command_02
 	do_frames 30
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 10, 7, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_YOSUKE, 10, 7, SOUTH
@@ -4827,7 +4827,7 @@ Func_364ac:
 	print_npc_text Text113c
 	script_command_02
 	do_frames 30
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 7, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_GR_4, 5, 7, SOUTH
@@ -4847,10 +4847,10 @@ Func_364ac:
 	print_npc_text Text1140
 	script_command_02
 	animate_active_npc_movement $83, $02
-	play_sfx SFX_08
+	play_sfx SFX_PLACE_PRIZE
 	animate_active_npc_movement $81, $02
 	animate_active_npc_movement $83, $02
-	play_sfx SFX_08
+	play_sfx SFX_PLACE_PRIZE
 	animate_active_npc_movement $81, $02
 	set_active_npc_direction WEST
 	set_active_npc NPC_GR_4, DialogGR4Text
@@ -4859,7 +4859,7 @@ Func_364ac:
 	print_npc_text Text1141
 	script_command_02
 	spin_active_npc 260
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 7, SOUTH
 	unload_npc NPC_GR_4
 	wait_for_npc_animation NPC_WARP_SPARKLES
@@ -4881,7 +4881,7 @@ Func_364ac:
 	print_npc_text Text1143
 	script_command_02
 	do_frames 30
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 3, 5, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_KEVIN, 3, 5, SOUTH
@@ -4897,7 +4897,7 @@ Func_364ac:
 	print_npc_text Text1145
 	script_command_02
 	do_frames 30
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 12, 5, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_RYOKO, 12, 5, SOUTH
@@ -4939,7 +4939,7 @@ Func_364ac:
 
 Script_3663f:
 	do_frames 60
-	play_sfx SFX_88
+	play_sfx SFX_STRONGHOLD_PLATFORM_DOWN
 	load_npc NPC_MAMI, 7, 15, SOUTH
 	load_npc NPC_STRONGHOLD_PLATFORM, 6, 15, SOUTH
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
@@ -5005,7 +5005,7 @@ Script_3663f:
 	move_active_npc .NPCMovement_3670c
 	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_3670c
 	wait_for_player_animation
-	play_sfx SFX_87
+	play_sfx SFX_STRONGHOLD_PLATFORM_UP
 	move_active_npc .NPCMovement_3670f
 	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_3670f
 	wait_for_player_animation
@@ -5714,7 +5714,7 @@ Func_36be5:
 	move_player .NPCMovement_36c30, FALSE
 	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c30
 	wait_for_player_animation
-	play_sfx SFX_87
+	play_sfx SFX_STRONGHOLD_PLATFORM_UP
 	move_player .NPCMovement_36c33, FALSE
 	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c33
 	wait_for_player_animation
@@ -5742,7 +5742,7 @@ Func_36c36:
 	farcall SetOWObjectSpriteAnimFlag6
 	xor a
 	start_script
-	play_sfx SFX_88
+	play_sfx SFX_STRONGHOLD_PLATFORM_DOWN
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
 	move_player .NPCMovement_36c95, FALSE
 	move_npc NPC_STRONGHOLD_PLATFORM, .NPCMovement_36c95
@@ -6081,16 +6081,16 @@ Func_36ed7:
 	script_command_02
 	set_active_npc_direction NORTH
 	do_frames 30
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9E
+	play_sfx_and_wait SFX_ELECTRONIC_RESPONSE
 	do_frames 30
-	play_sfx_and_wait SFX_05
-	play_sfx SFX_86
+	play_sfx_and_wait SFX_JINGLE
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 8, 2, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_ROD, 8, 2, SOUTH
@@ -6850,7 +6850,7 @@ Func_37493:
 	move_active_npc .NPCMovement_37524
 	wait_for_player_animation
 	do_frames 30
-	play_sfx SFX_02
+	play_sfx SFX_CONFIRM
 	check_event EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	script_jump_if_b0z .ows_374f8
 	load_palette PALETTE_189
@@ -6861,7 +6861,7 @@ Func_37493:
 	print_npc_text Text08e6
 	script_jump .ows_3750d
 .ows_374f8
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_0B5, $04, $02
 	unload_npc NPC_WHITE_CASTLE_COIN
 	do_frames 30
@@ -6935,7 +6935,7 @@ Func_37534:
 	move_active_npc .NPCMovement_375c5
 	wait_for_player_animation
 	do_frames 30
-	play_sfx SFX_02
+	play_sfx SFX_CONFIRM
 	check_event EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	script_jump_if_b0z .ows_37599
 	load_palette PALETTE_188
@@ -6946,7 +6946,7 @@ Func_37534:
 	print_npc_text Text08ec
 	script_jump .ows_375ae
 .ows_37599
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_0B5, $04, $02
 	unload_npc NPC_PURPLE_CASTLE_COIN
 	do_frames 30

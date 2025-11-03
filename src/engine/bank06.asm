@@ -856,7 +856,7 @@ AttackAnimation_HyperBeam:
 
 AttackAnimation_Avalanche:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_ROCK_THROW
+	anim_opponent  DUEL_ANIM_AVALANCHE
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -880,7 +880,7 @@ AttackAnimation_Punch:
 
 AttackAnimation_Thunderpunch:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_THUNDERPUNCH
+	anim_opponent  DUEL_ANIM_THUNDER_PUNCH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -917,7 +917,7 @@ AttackAnimation_Whip:
 
 AttackAnimation_Tear:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_SONICBOOM
+	anim_opponent  DUEL_ANIM_SONIC_BOOM
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1192,18 +1192,18 @@ AttackAnimation_DevolutionBeam:
 	anim_player    DUEL_ANIM_GLOW
 	anim_normal    DUEL_ANIM_FLASH
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_end
 
 AttackAnimation_PkmnPower1:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_normal    DUEL_ANIM_FLASH
 	anim_end
 
 AttackAnimation_Firegiver:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_normal    DUEL_ANIM_FLASH
 	anim_play_area DUEL_ANIM_FIREGIVER_START
 	anim_play_area DUEL_ANIM_FIREGIVER_START
@@ -1211,15 +1211,15 @@ AttackAnimation_Firegiver:
 
 AttackAnimation_Quickfreeze:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_normal    DUEL_ANIM_QUICKFREEZE
 	anim_screen    DUEL_ANIM_GLOW
 	anim_end
 
 AttackAnimation_PealOfThunder:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
-	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_play_area DUEL_ANIM_GLOW_BENCH
+	anim_play_area DUEL_ANIM_THUNDER_BENCH
 	anim_screen    DUEL_ANIM_CONFUSION
 	anim_play_area DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
@@ -1228,14 +1228,14 @@ AttackAnimation_PealOfThunder:
 
 AttackAnimation_HealingWind:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_play_area DUEL_ANIM_HEALING_WIND
 	anim_end
 
 AttackAnimation_WhirlwindZigzag:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_normal    DUEL_ANIM_BENCH_WHIRLWIND
+	anim_normal    DUEL_ANIM_WHIRLWIND_BENCH
 	anim_end
 
 AttackAnimation_BigThunder:
@@ -1391,7 +1391,7 @@ AttackAnimation_Unused81:
 
 AttackAnimation_ThunderPlayArea:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_play_area DUEL_ANIM_THUNDER_BENCH
 	anim_play_area DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1464,7 +1464,7 @@ AttackAnimation_GustOfWind:
 
 AttackAnimation_HealBothSides:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_screen    DUEL_ANIM_GLOW
 	anim_player    DUEL_ANIM_HEAL
 	anim_opponent  DUEL_ANIM_HEAL
@@ -1487,7 +1487,7 @@ AttackAnimation_Unused91:
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
-	anim_play_area DUEL_ANIM_72
+	anim_play_area DUEL_ANIM_QUESTION_MARK_BENCH
 	anim_end
 
 AttackAnimation_Unused92:
@@ -1530,7 +1530,7 @@ AttackAnimation_LightningFlash:
 AttackAnimation_Unused9B:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_THUNDER
+	anim_play_area DUEL_ANIM_THUNDER_BENCH
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1548,7 +1548,7 @@ AttackAnimation_Unused9D:
 
 AttackAnimation_Fireball:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_64
+	anim_opponent  DUEL_ANIM_FIREBALL
 	anim_opponent  DUEL_ANIM_BIG_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1556,7 +1556,7 @@ AttackAnimation_Fireball:
 
 AttackAnimation_ContinuousFireball:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_65
+	anim_opponent  DUEL_ANIM_CONTINUOUS_FIREBALL
 	anim_opponent  DUEL_ANIM_BIG_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1592,7 +1592,7 @@ AttackAnimation_UnusedA4:
 AttackAnimation_BenchManipulation:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_normal    DUEL_ANIM_66
+	anim_normal    DUEL_ANIM_BENCH_MANIPULATION
 	anim_play_area DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1618,7 +1618,7 @@ AttackAnimation_UnusedA7:
 AttackAnimation_UnusedA8:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_66
+	anim_play_area DUEL_ANIM_BENCH_MANIPULATION
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1628,7 +1628,7 @@ AttackAnimation_Psybeam:
 AttackAnimation_AuroraWave:
 AttackAnimation_UnusedAD:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_67
+	anim_opponent  DUEL_ANIM_PSYCHIC_BEAM
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1636,9 +1636,9 @@ AttackAnimation_UnusedAD:
 
 AttackAnimation_UnusedAA:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_screen    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_67
+	anim_opponent  DUEL_ANIM_PSYCHIC_BEAM
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1647,7 +1647,7 @@ AttackAnimation_UnusedAA:
 AttackAnimation_UnusedAB:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_68
+	anim_play_area DUEL_ANIM_PSYCHIC_BEAM_BENCH
 	anim_play_area DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1655,7 +1655,7 @@ AttackAnimation_UnusedAB:
 
 AttackAnimation_RockThrow:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_69
+	anim_opponent  DUEL_ANIM_BOULDER_SMASH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1663,7 +1663,7 @@ AttackAnimation_RockThrow:
 
 AttackAnimation_BoulderSmash:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_69
+	anim_opponent  DUEL_ANIM_BOULDER_SMASH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1671,7 +1671,7 @@ AttackAnimation_BoulderSmash:
 
 AttackAnimation_MegaPunch:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6A
+	anim_opponent  DUEL_ANIM_MEGA_PUNCH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1679,7 +1679,7 @@ AttackAnimation_MegaPunch:
 
 AttackAnimation_Psypunch:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6B
+	anim_opponent  DUEL_ANIM_PSYPUNCH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1687,7 +1687,7 @@ AttackAnimation_Psypunch:
 
 AttackAnimation_SludgePunch:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6C
+	anim_opponent  DUEL_ANIM_SLUDGE_PUNCH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1696,7 +1696,7 @@ AttackAnimation_SludgePunch:
 AttackAnimation_UnusedB3:
 	anim_screen    DUEL_ANIM_GLOW
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_69
+	anim_opponent  DUEL_ANIM_BOULDER_SMASH
 	anim_screen    DUEL_ANIM_CONFUSION
 	anim_play_area DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
@@ -1706,7 +1706,7 @@ AttackAnimation_UnusedB3:
 AttackAnimation_UnusedB4:
 AttackAnimation_IcePunch:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6D
+	anim_opponent  DUEL_ANIM_ICE_PUNCH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1714,7 +1714,7 @@ AttackAnimation_IcePunch:
 
 AttackAnimation_LegSweep:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_KICK
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1723,7 +1723,7 @@ AttackAnimation_LegSweep:
 AttackAnimation_UnusedB7:
 AttackAnimation_SparkingKick:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_KICK
 	anim_opponent  DUEL_ANIM_BORDER_SPARK
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
@@ -1732,7 +1732,7 @@ AttackAnimation_SparkingKick:
 
 AttackAnimation_UnusedB9:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6E
+	anim_opponent  DUEL_ANIM_KICK
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1746,7 +1746,7 @@ AttackAnimation_PollenStench:
 
 AttackAnimation_UnusedBB:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_screen    DUEL_ANIM_GLOW
 	anim_opponent  DUEL_ANIM_POWDER
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
@@ -1754,7 +1754,7 @@ AttackAnimation_UnusedBB:
 
 AttackAnimation_UnusedBC:
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_BENCH_GLOW
+	anim_play_area DUEL_ANIM_GLOW_BENCH
 	anim_screen    DUEL_ANIM_GLOW
 	anim_player    DUEL_ANIM_POWDER
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
@@ -1827,7 +1827,7 @@ AttackAnimation_UnusedC7:
 
 AttackAnimation_TailSlap:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_6F
+	anim_opponent  DUEL_ANIM_TAIL_SLAP
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1835,19 +1835,19 @@ AttackAnimation_TailSlap:
 
 AttackAnimation_TailWhip:
 	anim_player    DUEL_ANIM_GLOW
-	anim_player    DUEL_ANIM_70
+	anim_player    DUEL_ANIM_TAIL_WHIP
 	anim_normal    DUEL_ANIM_DISTORT
 	anim_opponent  DUEL_ANIM_QUESTION_MARK
 	anim_end
 
 AttackAnimation_UnusedCA:
 	anim_player    DUEL_ANIM_GLOW
-	anim_player    DUEL_ANIM_70
+	anim_player    DUEL_ANIM_TAIL_WHIP
 	anim_end
 
 AttackAnimation_Slap:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_71
+	anim_opponent  DUEL_ANIM_SLAP
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1855,7 +1855,7 @@ AttackAnimation_Slap:
 
 AttackAnimation_UnusedCC:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_SKULL_BASH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1863,7 +1863,7 @@ AttackAnimation_UnusedCC:
 
 AttackAnimation_RocketTackle:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_SKULL_BASH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1888,7 +1888,7 @@ AttackAnimation_UnusedCF:
 
 AttackAnimation_CoinHurl:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_74
+	anim_opponent  DUEL_ANIM_COIN_HURL
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1897,7 +1897,7 @@ AttackAnimation_CoinHurl:
 AttackAnimation_UnusedD1:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_7D
+	anim_play_area DUEL_ANIM_COIN_HURL_BENCH
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -1905,7 +1905,7 @@ AttackAnimation_UnusedD1:
 
 AttackAnimation_Teleport:
 	anim_player    DUEL_ANIM_GLOW
-	anim_player    DUEL_ANIM_75
+	anim_player    DUEL_ANIM_TELEPORT
 	anim_end
 
 AttackAnimation_TeleportBlast:
@@ -1914,17 +1914,17 @@ AttackAnimation_TeleportBlast:
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
-	anim_player    DUEL_ANIM_75
+	anim_player    DUEL_ANIM_TELEPORT
 	anim_end
 
 AttackAnimation_FollowMe:
 	anim_player    DUEL_ANIM_GLOW
-	anim_player    DUEL_ANIM_76
+	anim_player    DUEL_ANIM_FOLLOW_ME
 	anim_end
 
 AttackAnimation_ShiningFinger:
 	anim_player    DUEL_ANIM_GLOW
-	anim_player    DUEL_ANIM_76
+	anim_player    DUEL_ANIM_FOLLOW_ME
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1941,7 +1941,7 @@ AttackAnimation_SuspiciousSoundwave:
 
 AttackAnimation_3dAttack:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_78
+	anim_opponent  DUEL_ANIM_3D_ATTACK
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1957,7 +1957,7 @@ AttackAnimation_RollOver:
 
 AttackAnimation_Swift:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_77
+	anim_opponent  DUEL_ANIM_SWIFT
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -1983,7 +1983,7 @@ AttackAnimation_ColdBreath:
 
 AttackAnimation_DryUp:
 	anim_player    DUEL_ANIM_GLOW
-	anim_normal    DUEL_ANIM_79
+	anim_normal    DUEL_ANIM_DRY_UP
 	anim_end
 
 AttackAnimation_UnusedE0:
@@ -2004,7 +2004,7 @@ AttackAnimation_TransDamage:
 
 AttackAnimation_FocusBlast:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_7A
+	anim_opponent  DUEL_ANIM_FOCUS_BLAST
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2013,7 +2013,7 @@ AttackAnimation_FocusBlast:
 AttackAnimation_UnusedE3:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_7B
+	anim_play_area DUEL_ANIM_FOCUS_BLAST_BENCH
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -2031,7 +2031,7 @@ AttackAnimation_FadeToBlack:
 AttackAnimation_UnusedE8:
 	anim_player    DUEL_ANIM_GLOW
 	anim_screen    DUEL_ANIM_CONFUSION
-	anim_play_area DUEL_ANIM_7C
+	anim_play_area DUEL_ANIM_BONE_TOSS_BENCH
 	anim_play_area DUEL_ANIM_SINGLE_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_play_area DUEL_ANIM_SHOW_DAMAGE
@@ -2049,7 +2049,7 @@ AttackAnimation_BigYawn:
 AttackAnimation_BigSnore:
 	anim_player    DUEL_ANIM_GLOW
 	anim_player    DUEL_ANIM_SLEEP
-	anim_opponent  DUEL_ANIM_7E
+	anim_opponent  DUEL_ANIM_BIG_SNORE
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2085,7 +2085,7 @@ AttackAnimation_TerrorStrike:
 
 AttackAnimation_SkullBash:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_73
+	anim_opponent  DUEL_ANIM_SKULL_BASH
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2093,7 +2093,7 @@ AttackAnimation_SkullBash:
 
 AttackAnimation_RazorLeaf:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_7F
+	anim_opponent  DUEL_ANIM_RAZOR_LEAF
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2101,14 +2101,14 @@ AttackAnimation_RazorLeaf:
 
 AttackAnimation_Guillotine:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_80
+	anim_opponent  DUEL_ANIM_GUILLOTINE
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
 	anim_end
 
 AttackAnimation_VinePull:
-	anim_opponent  DUEL_ANIM_81
+	anim_opponent  DUEL_ANIM_VINE_PULL
 	anim_end
 
 AttackAnimation_FuryStrikes:
@@ -2116,7 +2116,7 @@ AttackAnimation_FuryStrikes:
 
 AttackAnimation_DrillDive:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_85
+	anim_opponent  DUEL_ANIM_DRILL_DIVE
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2124,7 +2124,7 @@ AttackAnimation_DrillDive:
 
 AttackAnimation_DarkSong:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_86
+	anim_opponent  DUEL_ANIM_DARK_SONG
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2136,12 +2136,12 @@ AttackAnimation_UnusedF8:
 AttackAnimation_Perplex:
 	anim_player    DUEL_ANIM_GLOW
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
-	anim_opponent  DUEL_ANIM_82
+	anim_opponent  DUEL_ANIM_PERPLEX
 	anim_end
 
 AttackAnimation_NineTails:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_83
+	anim_opponent  DUEL_ANIM_NINE_TAILS
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -2170,7 +2170,7 @@ AttackAnimation_PushAside:
 
 AttackAnimation_BoneHeadbutt:
 	anim_player    DUEL_ANIM_GLOW
-	anim_opponent  DUEL_ANIM_84
+	anim_opponent  DUEL_ANIM_BONE_HEADBUTT
 	anim_opponent  DUEL_ANIM_HIT
 	anim_normal    DUEL_ANIM_SMALL_SHAKE_X
 	anim_opponent  DUEL_ANIM_SHOW_DAMAGE
@@ -3303,7 +3303,7 @@ LoadCardPopSceneAndHandleCommunications:
 	call LoadTxRam2
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-	ld a, SFX_5D
+	ld a, SFX_RECEIVE_CARD_POP
 	call PlaySFX
 .wait_sfx
 	call AssertSFXFinished
@@ -5970,16 +5970,16 @@ WhatIsYourNameData:
 SECTION "Bank 6@6e92", ROMX[$6e92], BANK[$6]
 
 ; play different sfx by a.
-; if a is 0xff play SFX_03 (usually following a B press),
-; else play SFX_02 (usually following an A press).
+; if a is 0xff play SFX_CANCEL (usually following a B press),
+; else play SFX_CONFIRM (usually following an A press).
 PlayAcceptOrDeclineSFX_Bank06:
 	push af
 	inc a
 	jr z, .sfx_decline
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	jr .sfx_accept
 .sfx_decline
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 .sfx_accept
 	call PlaySFX
 	pop af
@@ -6435,7 +6435,7 @@ HandleNamingScreenInput:
 	ld a, KEYBOARD_UNKNOWN
 	cp d
 	jp z, .start
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 
 .check_btns
