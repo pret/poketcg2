@@ -311,18 +311,80 @@ DEF PRIZES_6    EQU $06
 	const SEARCHEFFECT_POKEMON        ; $4
 
 ; special rule constants, stored in wSpecialRule
-	const_def
-	const NO_SPECIAL_RULE ; $0
-	const CHLOROPHYLL     ; $1
-	const THUNDER_CHARGE  ; $2
-	const FLAME_ARMOR     ; $3
-	const SMALL_BENCH     ; $4
-	const RUNNING_WATER   ; $5
-	const EARTH_POWER     ; $6
-	const LOW_RESISTANCE  ; $7
-	const ENERGY_RETURN   ; $8
-	const TOUGH_ESCAPE    ; $9
-	const BLACK_HOLE      ; $a
+	const_def 1
+	const CHLOROPHYLL    ; $1
+	const THUNDER_CHARGE ; $2
+	const FLAME_ARMOR    ; $3
+	const SMALL_BENCH    ; $4
+	const RUNNING_WATER  ; $5
+	const EARTH_POWER    ; $6
+	const LOW_RESISTANCE ; $7
+	const ENERGY_RETURN  ; $8
+	const TOUGH_ESCAPE   ; $9
+	const BLACK_HOLE     ; $a
+
+; deck requirement constants, stored in wDeckRequirement
+	const_def 1
+	const DECK_REQUIREMENT_GRASS_ENERGY        ; $01
+	const DECK_REQUIREMENT_LIGHTNING_ENERGY    ; $02
+	const DECK_REQUIREMENT_FIRE_ENERGY         ; $03
+	const DECK_REQUIREMENT_WATER_ENERGY        ; $04
+	const DECK_REQUIREMENT_FIGHTING_ENERGY     ; $05
+	const DECK_REQUIREMENT_PSYCHIC_ENERGY      ; $06
+	const DECK_REQUIREMENT_4X_PIKACHU          ; $07
+	const DECK_REQUIREMENT_4X_EEVEE            ; $08
+	const DECK_REQUIREMENT_4X_MAGIKARP         ; $09
+	const DECK_REQUIREMENT_6X_GASTLY_HAUNTER   ; $0a
+	const DECK_REQUIREMENT_FOUR_GB_LEGENDARY   ; $0b
+	const DECK_REQUIREMENT_NO_ENERGY_REMOVAL   ; $0c
+	const DECK_REQUIREMENT_NO_TRAINERS         ; $0d
+	const DECK_REQUIREMENT_COLORLESS_NISHIJIMA ; $0e
+	const DECK_REQUIREMENT_COLORLESS_ISHII     ; $0f
+	const DECK_REQUIREMENT_COLORLESS_SAMEJIMA  ; $10
+
+;duelist intro text constants, stored in wDuelistIntroText
+	const_def 1
+	const	DUELIST_INTRO_LIGHTNING_CLUB_MEMBER        ; $01
+	const	DUELIST_INTRO_PSYCHIC_CLUB_MEMBER          ; $02
+	const	DUELIST_INTRO_ROCK_CLUB_MEMBER             ; $03
+	const	DUELIST_INTRO_FIGHTING_CLUB_MEMBER         ; $04
+	const	DUELIST_INTRO_GRASS_CLUB_MEMBER            ; $05
+	const	DUELIST_INTRO_SCIENCE_CLUB_MEMBER          ; $06
+	const	DUELIST_INTRO_WATER_CLUB_MEMBER            ; $07
+	const	DUELIST_INTRO_FIRE_CLUB_MEMBER             ; $08
+	const	DUELIST_INTRO_LIGHTNING_CLUB_MASTER        ; $09
+	const	DUELIST_INTRO_PSYCHIC_CLUB_MASTER          ; $0a
+	const	DUELIST_INTRO_ROCK_CLUB_MASTER             ; $0b
+	const	DUELIST_INTRO_FIGHTING_CLUB_MASTER         ; $0c
+	const	DUELIST_INTRO_GRASS_CLUB_MASTER            ; $0d
+	const	DUELIST_INTRO_SCIENCE_CLUB_MASTER          ; $0e
+	const	DUELIST_INTRO_WATER_CLUB_MASTER            ; $0f
+	const	DUELIST_INTRO_FIRE_CLUB_MASTER             ; $10
+	const	DUELIST_INTRO_GRAND_MASTER                 ; $11
+	const	DUELIST_INTRO_TECH                         ; $12
+	const	DUELIST_INTRO_STRANGE_LIFE_FORM            ; $13
+	const	DUELIST_INTRO_COLLECTOR                    ; $14
+	const	DUELIST_INTRO_RIVAL                        ; $15
+	const	DUELIST_INTRO_ENIGMATIC_MASK               ; $16
+	const	DUELIST_INTRO_GR_GRASS_FORT_MEMBER         ; $17
+	const	DUELIST_INTRO_GR_LIGHTNING_FORT_MEMBER     ; $18
+	const	DUELIST_INTRO_GR_FIRE_FORT_MEMBER          ; $19
+	const	DUELIST_INTRO_GR_WATER_FORT_MEMBER         ; $1a
+	const	DUELIST_INTRO_GR_FIGHTING_FORT_MEMBER      ; $1b
+	const	DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; $1c
+	const	DUELIST_INTRO_GR_GRASS_FORT_LEADER         ; $1d
+	const	DUELIST_INTRO_GR_LIGHTNING_FORT_LEADER     ; $1e
+	const	DUELIST_INTRO_GR_FIRE_FORT_LEADER          ; $1f
+	const	DUELIST_INTRO_GR_WATER_FORT_LEADER         ; $20
+	const	DUELIST_INTRO_GR_FIGHTING_FORT_LEADER      ; $21
+	const	DUELIST_INTRO_GR_PSYCHIC_FORT_LEADER       ; $22
+	const	DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN  ; $23
+	const	DUELIST_INTRO_GR_BIG_BOSS                  ; $24
+	const	DUELIST_INTRO_GR_KING                      ; $25
+	const	DUELIST_INTRO_TAP                          ; $26
+	const	DUELIST_INTRO_DUNGEON_MASTER               ; $27
+	const	DUELIST_INTRO_GHOST_MASTER                 ; $28
+
 
 ; constants to use as input to SetCardSearchFuncParams
 	const_def
