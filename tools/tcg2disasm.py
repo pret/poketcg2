@@ -1133,6 +1133,7 @@ class Disassembler(object):
 		is_data = False
 
 		script_blobs = []
+		undefined_functions = []
 		while True:
 			#first check if this byte already has a label
 			#if it does, use the label
@@ -1241,7 +1242,9 @@ class Disassembler(object):
 								opcode_output_str = byte_labels[local_target_address]["name"]
 							elif target_address < start_offset:
 							# if we're jumping to an address that is located before the start offset, assume it is a function
-								opcode_output_str = "Func_%x" % target_address
+								target_label = "Func_%x" % target_address
+								opcode_output_str = opcode_str.format(target_label)
+								undefined_functions.append(target_address)
 							else:
 							# create a new label
 								opcode_output_str = asm_label(target_address)
@@ -1313,6 +1316,7 @@ class Disassembler(object):
 						if target_label is None:
 						# if this is a call or jump opcode and the target label is not defined, create an undocumented label descriptor
 							target_label = "Func_%x" % target_offset
+							undefined_functions.append(target_offset)
 
 					else:
 					# anything that isn't a call or jump is a load-based command
@@ -1365,6 +1369,7 @@ class Disassembler(object):
 						if target_label is None:
 						# if this is a call or jump opcode and the target label is not defined, create an undocumented label descriptor
 							target_label = "Func_%x" % target_offset
+							undefined_functions.append(target_offset)
 
 					# format the label that was created into the opcode string
 					opcode_output_str = opcode_str.format(target_label)
@@ -1492,7 +1497,49 @@ class Disassembler(object):
 		# add the offset of the final location
 		output += "; " + hex(offset)
 
-		return [output, offset, stop_offset, byte_labels, data_tables]
+		return {"output": output, "start_offset": start_offset, "end_offset": offset,
+		  "byte_labels": byte_labels, "data_tables": data_tables, "undefined_functions": undefined_functions}
+
+	def recursively_output_functions(self, addresses, hard_stop=False, parse_data=False, parse_scripts=False, visited=set()):
+		function_outputs = []
+
+		for current_address in addresses:
+			if current_address not in visited:
+				visited.add(current_address)
+
+				o = self.output_bank_opcodes(current_address,None,hard_stop,parse_data,parse_scripts)
+				function_outputs.append(o)
+				function_outputs += self.recursively_output_functions(o["undefined_functions"], hard_stop, parse_data, parse_scripts, visited)
+
+		return function_outputs
+
+def get_bank(address):
+	return int(address / 0x4000)
+
+def build_section(offset):
+	bank = get_bank(offset)
+	local_addr = get_local_address(offset)
+	return 'SECTION "Bank {:x}@{:04x}", ROMX[${:04x}], BANK[${:x}]\n\n'.format(bank, local_addr, local_addr, bank)
+
+def sort_and_add_sections(blobs, output_sections=False):
+	blobs.sort(key=lambda b: int(b["start_offset"]))
+	filtered = []
+
+	if output_sections:
+		# always add SECTION to start of first funtion's output
+		blobs[0]["output"] = build_section(blobs[0]["start_offset"]) + blobs[0]["output"]
+
+	for blob, next in zip(blobs, blobs[1:]+[None]):
+		if next and blob["start_offset"] < next["start_offset"] < blob["end_offset"]:
+			first_function = "Func_%x" % blob["start_offset"]
+			second_function = "Func_%x" % next["start_offset"]
+			print("WARN: overlap in functions:", first_function, second_function)
+		if output_sections and next and blob["end_offset"] < next["start_offset"]:
+			# if there is a gap, place a SECTION at the start of the next function's output
+			next["output"] = build_section(next["start_offset"]) + next["output"]
+
+		filtered.append(blob)
+	return filtered
 
 def get_raw_addr(addr):
 	if addr:
@@ -1520,7 +1567,9 @@ if __name__ == "__main__":
 	ap.add_argument("-d", "--dry-run", dest="dry_run", action="store_true")
 	ap.add_argument("-pd", "--parse_data", dest="parse_data", action="store_true")
 	ap.add_argument("-ps", "--parse_scripts", dest="parse_scripts", action="store_true")
-	ap.add_argument('offset')
+	ap.add_argument("--recurse", dest="recurse", action="store_true")
+	ap.add_argument("--sections", dest="sections", action="store_true")
+	ap.add_argument('offset', type=str)
 	ap.add_argument('end', nargs='?')
 
 	args = ap.parse_args()
@@ -1530,22 +1579,39 @@ if __name__ == "__main__":
 	disasm = Disassembler(conf)
 	disasm.initialize(args.rom, args.symfile)
 
-	# get global address of the start and stop offsets
-	start_addr = get_raw_addr(args.offset)
-	stop_addr = get_raw_addr(args.end)
 
 	# run the disassembler and return the output
-	output = disasm.output_bank_opcodes(start_addr,stop_addr,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts)[0]
+	function_outputs = []
+
+	if args.recurse:
+		# get global addresses
+		addresses = [get_raw_addr(s) for s in args.offset.split(",")]
+		function_outputs += disasm.recursively_output_functions(addresses,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts)
+	else:
+		# get global address of the start and stop offsets
+		start_addr = get_raw_addr(args.offset)
+		stop_addr = get_raw_addr(args.end)
+		function_outputs.append(disasm.output_bank_opcodes(start_addr,stop_addr,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts))
+
+	sort_and_add_sections(function_outputs, args.sections)
+
+	formatted_output = ''
+
+	for f in function_outputs:
+		formatted_output += f["output"]
+		formatted_output += "\n\n"
+
+	formatted_output = formatted_output.rstrip('\n')
 
 	# suppress output if quiet flag is set
 	if not args.quiet:
-		print(output)
+		print(formatted_output)
 
 	# only write to the output file if the no write flag is unset
 	if not args.no_write:
 		if args.append:
 			with open(args.filename, "a") as f:
-				f.write("\n\n" + output)
+				f.write("\n\n" + formatted_output)
 		else:
 			with open(args.filename, "w") as f:
-				f.write(output)
+				f.write(formatted_output)
