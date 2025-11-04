@@ -2163,7 +2163,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning2Text
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning3Text
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning4Text
-	tx $ffff
+	dw $ffff
 
 ConfirmPlayerNameAndGender:
 	push bc
