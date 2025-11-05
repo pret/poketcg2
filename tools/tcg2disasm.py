@@ -1238,8 +1238,7 @@ class Disassembler(object):
 								opcode_output_str = byte_labels[local_target_address]["name"]
 							elif target_address < start_offset:
 							# if we're jumping to an address that is located before the start offset, assume it is a function
-								target_label = "Func_%x" % target_address
-								opcode_output_str = opcode_str.format(target_label)
+								opcode_output_str = "Func_%x" % target_address
 								undefined_functions.append(target_address)
 							else:
 							# create a new label
