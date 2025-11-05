@@ -1,5 +1,5 @@
 ; vblank interrupt handler
-VBlankHandler:
+VBlankHandler::
 	push af
 	push bc
 	push de
@@ -20,7 +20,7 @@ VBlankHandler:
 	call hDMAFunction ; DMA-copy $ca00-$ca9f to OAM memory
 	xor a
 	ld [wVBlankOAMCopyToggle], a
-.no_oam_copy
+.no_oam_copy::
 	; flush scaling/windowing parameters
 	ldh a, [hSCX]
 	ldh [rSCX], a
@@ -40,7 +40,7 @@ VBlankHandler:
 	inc [hl]
 	ld hl, wReentrancyFlag
 	res IN_VBLANK, [hl]
-.done
+.done::
 	pop af
 	ldh [rWBK], a
 	pop af

@@ -46,7 +46,7 @@ SECTION "joypad", ROM0
 
 ; array of $00 used in ZeroAttributesAtDE
 ; to set some BGMap values to zero
-Zeroes:
+Zeroes::
 REPT $9f
 	db $00
 ENDR

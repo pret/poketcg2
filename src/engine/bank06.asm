@@ -11,7 +11,105 @@ ResetAttackAnimationIsPlaying::
 	ret
 ; 0x18a19
 
-SECTION "Bank 6@4ab1", ROMX[$4ab1], BANK[$6]
+Func_18a19:
+	ld hl, wEffectFunctionsFeedbackIndex
+	ld a, [hl]
+	or a
+	ret z
+	ld e, a
+	ld d, $00
+	ld hl, wEffectFunctionsFeedback
+	add hl, de
+	ld [hl], $00
+	ld hl, wEffectFunctionsFeedback
+.asm_18a2b
+	ld a, [hli]
+	or a
+	jr z, .asm_18a86
+	ld d, a
+	inc hl
+	ld a, [hli]
+	cp $02
+	jr nz, .asm_18a41
+	ld e, $7e
+	ldh a, [hWhoseTurn]
+	cp d
+	jr nz, .asm_18a77
+	ld e, $90
+	jr .asm_18a77
+.asm_18a41
+	ld e, $7d
+	cp $03
+	jr z, .asm_18a77
+	ld e, $7b
+	cp $80
+	jr nz, .asm_18a64
+	ld a, [wWhoseTurn]
+	ld c, a
+	ldh a, [hWhoseTurn]
+	cp c
+	jr z, .asm_18a5d
+	cp d
+	jr z, .asm_18a77
+	ld e, $92
+	jr .asm_18a77
+.asm_18a5d
+	cp d
+	jr nz, .asm_18a77
+	ld e, $92
+	jr .asm_18a77
+.asm_18a64
+	ld e, $7b
+	cp $c0
+	jr z, .asm_18a77
+	ld e, $7c
+	cp $01
+	jr nz, .asm_18a2b
+	ldh a, [hWhoseTurn]
+	cp d
+	jr nz, .asm_18a77
+	ld e, $7f
+.asm_18a77
+	ld a, e
+	ld [wLoadedAttackAnimation], a
+	xor a
+	ld [wDuelAnimLocationParam], a
+	push hl
+	call PlayAttackAnimationCommands
+	pop hl
+	jr .asm_18a2b
+.asm_18a86
+	ret
+; 0x18a87
+
+Func_18a87:
+	ld [wLoadedAttackAnimation], a
+	call ResetAttackAnimationIsPlaying
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld b, a
+	ld c, $00
+	ldh a, [hWhoseTurn]
+	ld h, a
+	call PlayAttackAnimation
+	call WaitAttackAnimation
+	ret
+; 0x18a9c
+
+Func_18a9c:
+	push hl
+	push de
+	call PlayAttackAnimation
+	call WaitAttackAnimation
+	pop de
+	pop hl
+	call SubtractHP
+	push hl
+	push de
+	bank1call DrawDuelHUDs
+	pop de
+	pop hl
+	ret
+; 0x18ab1
 
 ; if [wLoadedAttackAnimation] != 0, wait until the animation is over
 WaitAttackAnimation::

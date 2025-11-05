@@ -77,7 +77,8 @@ ROMX $17
 	"Bank 17"
 ROMX $18
 	"Bank 18"
-; ROMX $19 not started
+ROMX $19
+	"Bank 19"
 ROMX $1a
 	"Bank 1a"
 ROMX $1b

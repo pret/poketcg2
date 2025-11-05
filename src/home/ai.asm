@@ -91,7 +91,7 @@ AIDoAction_UpdatePortrait::
 	ld a, AIACTION_UPDATE_PORTRAIT
 	jr AIDoAction
 
-Func_2972:
+Func_2972::
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	ld b, a
@@ -106,13 +106,13 @@ Func_2972:
 	xor a
 	ret
 
-Func_2983:
+Func_2983::
 	ld a, $07
 	ld a, $01
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_298a:
+Func_298a::
 	ld a, $08
 	ld hl, hTemp_ffa0
 .asm_298f

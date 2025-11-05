@@ -625,7 +625,7 @@ EvolvePokemonCardIfPossible::
 
 ; evolve a turn holder's Pokemon card in the play area slot determined by hTempPlayAreaLocation_ff9d
 ; into another turn holder's Pokemon card identifier by its deck index (0-59) in hTempCardIndex_ff98.
-EvolvePokemonCard:
+EvolvePokemonCard::
 ; place the evolved Pokemon card in the play area location of the pre-evolved Pokemon card
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
@@ -724,7 +724,7 @@ CheckIfCanEvolveInto::
 ; e is the play area location offset (PLAY_AREA_*) of the Pokemon trying to evolve.
 ; d is the deck index (0-59) of the Pokemon card that was selected to be the evolution target.
 ; return carry if not basic to stage 2 evolution, or if evolution not possible this turn.
-CheckIfCanEvolveInto_BasicToStage2:
+CheckIfCanEvolveInto_BasicToStage2::
 	ld a, e
 	add DUELVARS_ARENA_CARD_FLAGS
 	get_turn_duelist_var
@@ -944,7 +944,7 @@ MovePlayAreaCardToDiscardPile::
 
 ; init a turn holder's play area slot to empty
 ; which slot (arena or benchx) is determined by the play area location offset (PLAY_AREA_*) in e
-EmptyPlayAreaSlot:
+EmptyPlayAreaSlot::
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ld d, -1
@@ -1512,7 +1512,7 @@ UsePokemonPower:
 ; called by UseAttackOrPokemonPower (on an attack only)
 ; in a link duel, it's used to send the other game data about the
 ; attack being in use, triggering a call to OppAction_BeginUseAttack in the receiver
-SendAttackDataToLinkOpponent:
+SendAttackDataToLinkOpponent::
 	ld a, [wccec]
 	or a
 	ret nz
@@ -1612,7 +1612,7 @@ CheckSelfConfusionDamage:
 
 ; Make turn holder deal A damage to self due to recoil (e.g. Thrash, Selfdestruct)
 ; display recoil animation
-DealRecoilDamageToSelf:
+DealRecoilDamageToSelf::
 	push af
 	ld a, ATK_ANIM_RECOIL_HIT
 	ld [wLoadedAttackAnimation], a
@@ -1930,7 +1930,7 @@ PrintKnockedOut:
 ; damage to deal is given in de.
 ; shows the defending player's play area screen when dealing the damage
 ; instead of the main duel interface with regular attack animation.
-DealDamageToPlayAreaPokemon_RegularAnim:
+DealDamageToPlayAreaPokemon_RegularAnim::
 	ld a, ATK_ANIM_BENCH_HIT
 	ld [wLoadedAttackAnimation], a
 ;	fallthrough
@@ -1947,6 +1947,7 @@ DealDamageToPlayAreaPokemon::
 	ld [wTempPlayAreaLocation_cceb], a
 	xor a
 	ld [wDamageEffectiveness], a
+.asm_192a::
 	push hl
 	push de
 	push bc

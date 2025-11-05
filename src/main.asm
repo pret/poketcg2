@@ -71,5 +71,8 @@ INCLUDE "data/cards1.asm"
 SECTION "Bank 18", ROMX
 INCLUDE "data/cards2.asm"
 
+SECTION "Bank 19", ROMX
+INCLUDE "engine/bank19.asm"
+
 SECTION "Bank 1a", ROMX
 INCLUDE "engine/bank1a.asm"

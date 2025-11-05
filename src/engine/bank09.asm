@@ -445,6 +445,38 @@ ResetDoFrameFunction_Bank9:
 	ret
 ; 0x24350
 
+Func_24350:
+	push de
+	ld hl, $ffb2
+	ld a, [hl]
+	inc [hl]
+	ld e, a
+	ld d, $00
+	ld hl, hTemp_ffa0
+	add hl, de
+	pop de
+	ret
+; 0x2435f
+
+Func_2435f:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ld hl, $ba
+	cp $3c
+	ccf
+	ret
+; 0x24369
+
+Func_24369:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld hl, wMaxNumPlayAreaPokemon
+	cp [hl]
+	ld hl, $bb
+	ccf
+	ret
+; 0x24375
+
 SECTION "Bank 9@43ee", ROMX[$43ee], BANK[$9]
 
 Func_243ee:
@@ -866,7 +898,63 @@ PlayShuffleAndDrawCardsAnimation:
 	ret
 ; 0x24958
 
-SECTION "Bank 9@49c6", ROMX[$49c6], BANK[$9]
+Func_24958:
+	ld a, [wDuelDisplayedScreen]
+	cp $09
+	jr z, .asm_24968
+	bank1call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call DrawDuelistPortraitsAndNames
+.asm_24968
+	ld a, $09
+	ld [wDuelDisplayedScreen], a
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ld a, $3c
+	sub [hl]
+	cp $02
+	jr c, .asm_249ac
+	ld hl, $65
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	call ResetAnimationQueue
+	ld e, $51
+	ldh a, [hWhoseTurn]
+	cp $c2
+	jr z, .asm_2498d
+	ld e, $52
+.asm_2498d
+	ld a, e
+	call PlayDuelAnimation
+	ld a, e
+	call PlayDuelAnimation
+	ld a, e
+	call PlayDuelAnimation
+.asm_24999
+	call DoFrame
+	bank1call CheckSkipDelayAllowed
+	jr c, .asm_249a6
+	call CheckAnyAnimationPlaying
+	jr c, .asm_24999
+.asm_249a6
+	call FinishQueuedAnimations
+	ld a, $01
+	ret
+.asm_249ac
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ld hl, $6a
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	ld a, $3c
+.asm_249bd
+	call DoFrame
+	dec a
+	jr nz, .asm_249bd
+	ld a, $01
+	ret
+; 0x249c6
 
 ; places the prize cards on both sides
 ; of the Play Area (player & opp)
@@ -922,8 +1010,6 @@ PlacePrizes:
 	db 6, 7, 13, 4 ; Prize 4
 	db 5, 8, 14, 3 ; Prize 5
 	db 6, 8, 13, 3 ; Prize 6
-
-SECTION "Bank 9@4a1f", ROMX[$4a1f], BANK[$9]
 
 ; display the animation of the turn duelist drawing one card at the beginning of the turn
 ; if there isn't any card left in the deck, let the player know with a text message
@@ -1121,7 +1207,185 @@ DeckAndHandIconsCGBPalData:
 	db $ff
 ; 0x24b83
 
-SECTION "Bank 9@4cd7", ROMX[$4cd7], BANK[$9]
+Func_24b83:
+	call EmptyScreen
+	ld de, $0
+	ld bc, $140d
+	call DrawRegularTextBox
+	ld hl, $1ca
+	call DrawWideTextBox_PrintText
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ld a, $3c
+	sub [hl]
+	ld c, $05
+	cp c
+	jr nc, .asm_24ba1
+	ld c, a
+.asm_24ba1
+	inc c
+	ld a, c
+	ld [wNumCardsBeingDrawn], a
+	ld de, $202
+	ld b, $20
+.asm_24bab
+	push bc
+	ld a, b
+	ld c, e
+	ld b, d
+	call WriteByteToBGMap0
+	push de
+	inc d
+	ld hl, $1cb
+	call InitTextPrinting_ProcessTextFromID
+	pop de
+	pop bc
+	inc e
+	inc b
+	dec c
+	jr nz, .asm_24bab
+	call EnableLCD
+	ld hl, $4be0
+	xor a
+	call InitializeMenuParameters
+	ld a, [wNumCardsBeingDrawn]
+	ld [wNumScrollMenuItems], a
+.asm_24bd1
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .asm_24bd1
+	cp $ff
+	jr z, .asm_24bd1
+	ldh a, [hCurScrollMenuItem]
+	ret
+; 0x24be0
+
+SECTION "Bank 9@4be8", ROMX[$4be8], BANK[$9]
+
+Func_24be8:
+	ldh a, [hTemp_ffa0]
+	ldh [$ffb2], a
+	call CreateDeckCardList
+	jr nc, .asm_24bf9
+	ld hl, $ba
+	call DrawWideTextBox_WaitForInput
+	jr .asm_24c62
+.asm_24bf9
+	call Func_24369
+	jr nc, .asm_24c22
+	call DrawWideTextBox_WaitForInput
+	ld hl, $193
+	call YesOrNoMenuWithText_SetCursorToYes
+	jr c, .asm_24c62
+	call CreateDeckCardList
+	bank1call InitAndDrawCardListScreenLayout
+	ld hl, $58
+	ld de, $b0
+	bank1call SetCardListHeaderAndInfoText
+	ld a, $09
+	ld [wNoItemSelectionMenuKeys], a
+	bank1call DisplayCardList
+	jr .asm_24c62
+.asm_24c22
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld a, [wMaxNumPlayAreaPokemon]
+	sub [hl]
+	ld [$cd1f], a
+.asm_24c2c
+	bank1call Func_5221
+	ld hl, $1c7
+	ld de, $b0
+	bank1call SetCardListHeaderAndInfoText
+.asm_24c38
+	bank1call DisplayCardList
+	ldh [hTempCardIndex_ff98], a
+	cp $ff
+	jr z, .asm_24c6c
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp $08
+	jr nc, .asm_24c38
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr nz, .asm_24c38
+	call Func_24350
+	ldh a, [hTempCardIndex_ff98]
+	ld [hl], a
+	call RemoveCardFromDuelTempList
+	jr c, .asm_24c62
+	ld hl, $cd1f
+	dec [hl]
+	jr nz, .asm_24c2c
+.asm_24c62
+	call Func_24350
+	ld [hl], $ff
+	ldh a, [$ffb2]
+	ldh [hTemp_ffa0], a
+	ret
+.asm_24c6c
+	ld a, [$cd1f]
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ld hl, $20d
+	call YesOrNoMenuWithText
+	jr c, .asm_24c2c
+	jr .asm_24c62
+; 0x24c7f
+
+Func_24c7f:
+	ldh a, [hTemp_ffa0]
+	sub $02
+	ld hl, wTxRam3
+	ld [hli], a
+	ld [hl], $00
+	inc hl
+	push hl
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld a, [wTxRam3]
+	add [hl]
+	pop hl
+	ld [hli], a
+	ld [hl], $00
+	ld hl, $252
+	call DrawWideTextBox_WaitForInput
+	ret
+; 0x24c9d
+
+Func_24c9d:
+	push hl
+	push bc
+	call SetCardSearchFuncParams
+	ld a, [wDuelTempList]
+	cp $ff
+	jr z, .asm_24cc0
+	ld hl, wDuelTempList
+.asm_24cac
+	ld a, [hli]
+	cp $ff
+	jr z, .asm_24cc0
+	call ExecuteCardSearchFunc
+	jr nc, .asm_24cac
+	pop bc
+	pop hl
+	call DrawWideTextBox_WaitForInput
+	xor a
+	ld [$cd20], a
+	ret
+.asm_24cc0
+	pop hl
+	call LoadTxRam2
+	pop hl
+	ld hl, $192
+	call DrawWideTextBox_WaitForInput
+	ld hl, $193
+	call YesOrNoMenuWithText_SetCursorToYes
+	ld a, $ff
+	ld [$cd20], a
+	ret
+; 0x24cd7
 
 ; saves a to wCardSearchFunc and de to wCardSearchFuncParam
 ; input:
@@ -1343,7 +1607,36 @@ ExecuteCardSearchFunc:
 	ret
 ; 0x24df8
 
-SECTION "Bank 9@4e25", ROMX[$4e25], BANK[$9]
+Func_24df8:
+	push hl
+	push de
+	bank1call Func_5221
+	pop de
+	pop hl
+	bank1call SetCardListHeaderAndInfoText
+.asm_24e02
+	bank1call DisplayCardList
+	jr c, .asm_24e16
+	call ExecuteCardSearchFunc
+	jr nc, .asm_24e1c
+	ld a, [$cd20]
+	or a
+	jr nz, .asm_24e02
+	ldh a, [hTempCardIndex_ff98]
+	or a
+	ret
+.asm_24e16
+	ld a, [$cd20]
+	or a
+	jr nz, .asm_24e21
+.asm_24e1c
+	call Func_3071
+	jr .asm_24e02
+.asm_24e21
+	ld a, $ff
+	scf
+	ret
+; 0x24e25
 
 ; given the deck index of a turn holder's card in register a,
 ; and a pointer in hl to the wLoadedCard* buffer where the card data is loaded,
@@ -1438,6 +1731,126 @@ ConvertSpecialTrainerCardToPokemon::
 	db 0 ; ?
 	db ATK_ANIM_NONE ; animation
 ; 0x24ebf
+
+Func_24ebf:
+	or a
+	call z, SwapTurn
+	push af
+	call Func_24ef5
+	pop af
+	call z, SwapTurn
+	ld hl, $4eed
+	xor a
+	call InitializeMenuParameters
+	call EnableLCD
+.asm_24ed5
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .asm_24ed5
+	cp $ff
+	jr z, .asm_24ed5
+	ld e, a
+	ld d, $00
+	ld hl, $4fda
+	add hl, de
+	ld a, [hl]
+	or a
+	ret
+; 0x24eeb
+
+SECTION "Bank 9@4ef5", ROMX[$4ef5], BANK[$9]
+
+Func_24ef5:
+	push hl
+	push af
+	call EmptyScreen
+	call ZeroObjectPositions
+	call LoadDuelCardSymbolTiles
+	bank1call Func_6c12
+	pop af
+	and $7f
+	ld [wTempPlayAreaLocation_cceb], a
+	add DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld de, $8a00
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $3010
+	call LoadCardGfx
+	ld de, $902
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	bank1call FlushAllPalettesIfNotDMG
+	ld a, $a0
+	ld hl, $601
+	ld de, $902
+	ld bc, $806
+	call FillRectangle
+	bank1call Func_56fa
+	ld a, $10
+	call CopyCardNameAndLevel
+	ld [hl], $00
+	ld de, $700
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+	ld hl, $4fc1
+	call PlaceTextItems
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetPlayAreaCardColor
+	inc a
+	ld bc, $e09
+	call WriteByteToBGMap0
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetArenaOrBenchCardWeakness
+	ld bc, $e0a
+	bank1call PrintCardPageWeaknessesOrResistances
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetArenaOrBenchCardResistance
+	ld bc, $e0b
+	bank1call PrintCardPageWeaknessesOrResistances
+	call DrawWideTextBox
+	ld de, $501
+	ld hl, $47
+	call InitTextPrinting_ProcessTextFromID
+	ld de, $10e
+	pop hl
+	call InitTextPrinting_ProcessTextFromID
+	ld hl, $4fce
+	ld de, $200
+	ld c, $06
+.asm_24f91
+	ld a, [hli]
+	push de
+	push bc
+	push hl
+	ld hl, $102
+	ld bc, $202
+	call FillRectangle
+	ld a, [wConsole]
+	cp $02
+	jr nz, .asm_24fb7
+	pop hl
+	push hl
+	call BankswitchVRAM1
+	ld a, [hl]
+	ld hl, $0
+	ld bc, $202
+	call FillRectangle
+	call BankswitchVRAM0
+.asm_24fb7
+	pop hl
+	pop bc
+	pop de
+	inc hl
+	inc e
+	inc e
+	dec c
+	jr nz, .asm_24f91
+	ret
+; 0x24fc1
 
 SECTION "Bank 9@4fe0", ROMX[$4fe0], BANK[$9]
 

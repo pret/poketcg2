@@ -477,7 +477,11 @@ OpenTurnHolderDiscardPileScreen:
 	jp OpenDiscardPileScreen
 ; 0x43d9
 
-SECTION "Bank 1@43e2", ROMX[$43e2], BANK[$1]
+Func_43d9:
+	call SwapTurn
+	call OpenTurnHolderHandScreen_Simple
+	jp SwapTurn
+; 0x43e2
 
 ; draw the turn holder's hand screen. simpler version of OpenPlayerHandScreen
 ; used only for checking the cards rather than for playing them.
@@ -1477,7 +1481,22 @@ DisplayCardDetailScreen:
 	ret
 ; 0x49e8
 
-SECTION "Bank 1@4a0d", ROMX[$4a0d], BANK[$1]
+Func_49e8:
+	ld a, [wDuelTempList]
+	cp $ff
+	ret z
+	call InitAndDrawCardListScreenLayout
+	call CountCardsInDuelTempList
+	ld hl, CardListParameters
+	ld de, $0
+	call PrintCardListItems
+	ld hl, $201
+	ld de, $101
+	call PrintTextNoDelay_Init
+	ld hl, $202
+	call DrawWideTextBox_WaitForInput
+	ret
+; 0x4a0d
 
 ; handles the initial duel actions:
 ; - drawing starting hand and placing the Basic Pokemon cards
@@ -2591,7 +2610,12 @@ SetCardListInfoBoxText:
 	ret
 ; 0x5221
 
-SECTION "Bank 1@522a", ROMX[$522a], BANK[$1]
+Func_5221:
+	call InitAndDrawCardListScreenLayout
+	ld a, $02
+	ld [wCardListItemSelectionMenuType], a
+	ret
+; 0x522a
 
 ; draw the layout of the screen that displays the player's Hand card list or a
 ; Discard Pile card list, including a bottom-right image of the current card.
@@ -2872,7 +2896,16 @@ CardListFunction:
 	ret
 ; 0x53bc
 
-SECTION "Bank 1@53cb", ROMX[$53cb], BANK[$1]
+Func_53bc:
+	ld hl, wPrintSortNumberInCardListPtr
+	ld de, $53d1
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, $01
+	ld [wSortCardListByID], a
+	ret
+; 0x53cb
 
 Func_53cb:
 	ld hl, wPrintSortNumberInCardListPtr
@@ -2980,7 +3013,23 @@ DrawCardPageCardGfx:
 	ret
 ; 0x5475
 
-SECTION "Bank 1@549b", ROMX[$549b], BANK[$1]
+Func_5475:
+	push hl
+	call EmptyScreen
+	ld de, $0
+	ld bc, $1412
+	call DrawRegularTextBox
+	ld a, $13
+	ld de, $102
+	call InitTextPrintingInTextbox
+	call SetNoLineSeparation
+	pop hl
+	call ProcessTextFromID
+	call EnableLCD
+	call SetOneLineSeparation
+	call WaitForWideTextBoxInput
+	ret
+; 0x549b
 
 ; has turn duelist take amount of prizes that are in wNumberPrizeCardsToTake
 ; returns carry if all prize cards were taken
@@ -3421,7 +3470,9 @@ FlushAllPalettesIfNotDMG:
 	ret
 ; 0x56fa
 
-	ret ; stray ret
+Func_56fa:
+	ret
+; 0x56fb
 
 JPWriteByteToBGMap0:
 	jp WriteByteToBGMap0
@@ -4280,7 +4331,28 @@ SelectingBenchPokemonMenu:
 	jp SetCursorParametersForTextBox
 ; 0x5bfd
 
-SECTION "Bank 1@5c30", ROMX[$5c30], BANK[$1]
+SECTION "Bank 1@5c15", ROMX[$5c15], BANK[$1]
+
+Func_5c15:
+	ld hl, wHUDEnergyAndHPBarsX
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld [hli], a
+	ld c, a
+	add a
+	add c
+	ld [hl], a
+	call PrintPlayAreaCardInformationAndLocation
+	ret
+; 0x5c23
+
+Func_5c23:
+	call Func_5c15
+	ld a, [wPracticeDuelTextY]
+	ld e, a
+	ld d, $00
+	call SetCursorParametersForTextBox_Default
+	ret
+; 0x5c30
 
 Func_5c30:
 	xor a
@@ -5666,7 +5738,126 @@ MoveCardToDiscardPileIfInArena:
 	ret
 ; 0x6470
 
-SECTION "Bank 1@6518", ROMX[$6518], BANK[$1]
+Func_6470:
+	call SwapTurn
+	call CheckIfArenaCardIsProtectedFromStatusCondition
+	call SwapTurn
+	jr nc, .asm_6488
+	ld a, c
+	ld hl, wNoEffectFromWhichStatus
+	or [hl]
+	ld [hl], a
+	ld a, $01
+	ld [wEffectFailed], a
+	or a
+	ret
+.asm_6488
+	ld hl, wEffectFunctionsFeedbackIndex
+	push hl
+	ld e, [hl]
+	ld d, $00
+	ld hl, wEffectFunctionsFeedback
+	add hl, de
+	call SwapTurn
+	ldh a, [hWhoseTurn]
+	ld [hli], a
+	call SwapTurn
+	ld [hl], b
+	inc hl
+	ld [hl], c
+	pop hl
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	scf
+	ret
+; 0x64a5
+
+Func_64a5:
+	xor a
+	ld [wPlayerArenaCardLastTurnStatus], a
+	ld [wOpponentArenaCardLastTurnStatus], a
+	ld hl, wEffectFunctionsFeedbackIndex
+	ld a, [hl]
+	or a
+	ret z
+	ld e, [hl]
+	ld d, $00
+	ld hl, wEffectFunctionsFeedback
+	add hl, de
+	ld [hl], $00
+	call CheckNoDamageOrEffect
+	jr c, .asm_64d3
+	ld hl, wEffectFunctionsFeedback
+.asm_64c3
+	ld a, [hli]
+	or a
+	jr z, .asm_64cd
+	ld d, a
+	call Func_64f0
+	jr .asm_64c3
+.asm_64cd
+	xor a
+	ld [wEffectFunctionsFeedbackIndex], a
+	scf
+	ret
+.asm_64d3
+	ld a, l
+	or h
+	call nz, DrawWideTextBox_PrintText
+	ld hl, wEffectFunctionsFeedback
+.asm_64db
+	ld a, [hli]
+	or a
+	jr z, .asm_64ef
+	ld d, a
+	ld a, [wWhoseTurn]
+	cp d
+	jr z, .asm_64ea
+	inc hl
+	inc hl
+	jr .asm_64db
+.asm_64ea
+	call Func_64f0
+	jr .asm_64db
+.asm_64ef
+	ret
+; 0x64f0
+
+Func_64f0:
+	ld e, $c8
+	ld a, [de]
+	or a
+	jr z, .asm_6515
+	ld e, $ec
+	ld a, [de]
+	and [hl]
+	inc hl
+	or [hl]
+	ld [de], a
+	dec hl
+	ld e, $fa
+	ld a, [de]
+	and [hl]
+	inc hl
+	or [hl]
+	inc hl
+	ld [de], a
+	and $0f
+	ret z
+	push hl
+	ld h, d
+	ld l, $c2
+	res 3, [hl]
+	ld l, $d4
+	ld [hl], $00
+	pop hl
+	ret
+.asm_6515
+	inc hl
+	inc hl
+	ret
+; 0x6518
 
 Func_6518::
 	call Func_7234
@@ -6759,6 +6950,7 @@ DamageCalculation:
 	ld a, e
 	or d
 	ret z ; no damage
+.asm_6b5d
 	ld a, b
 	call GetPlayAreaCardColor
 	call TranslateColorToWR
@@ -6965,7 +7157,33 @@ HandleDamageReduction::
 	ret
 ; 0x6c99
 
-SECTION "Bank 1@6cbf", ROMX[$6cbf], BANK[$1]
+Func_6c99:
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
+	get_turn_duelist_var
+	or a
+	ret z
+	cp $10
+	jp z, Func_6ca4
+	ret
+; 0x6ca4
+
+Func_6ca4:
+	ld a, [wLoadedAttackCategory]
+	cp $04
+	ret z
+	ld a, e
+	or d
+	ret z
+	push de
+	ld a, $00
+	ld [wDuelDisplayedScreen], a
+	ld de, $12e
+	call TossCoin
+	pop de
+	ret nc
+	ld de, $0
+	ret
+; 0x6cbf
 
 ; check if the defending card (turn holder's arena card) has any substatus that
 ; reduces the damage dealt to it this turn. (SUBSTATUS1 or Pkmn Powers)
@@ -7094,7 +7312,109 @@ HandleDamageReductionExceptSubstatus2:
 	ret
 ; 0x6d87
 
-SECTION "Bank 1@6e57", ROMX[$6e57], BANK[$1]
+Func_6d87:
+	ld a, [wLoadedAttackCategory]
+	cp $04
+	ret z
+	call CheckGoopGasAttackAndToxicGasActive
+	ret c
+	ld a, [wTempPlayAreaLocation_cceb]
+	or a
+	call nz, HandleDamageReductionExceptSubstatus2.pkmn_power
+	ld a, e
+	or d
+	ret z
+	push de
+	call CheckArticunoAuroraVeil
+	jr c, .asm_6da7
+	call HandleNoDamageOrEffectSubstatus.asm_7002
+	call nc, Func_7038
+.asm_6da7
+	pop de
+	ret nc
+	ld de, $0
+	ret
+; 0x6dad
+
+Func_6dad:
+	ld a, e
+	or d
+	ret z
+	ld a, [wIsDamageToSelf]
+	or a
+	ret nz
+	ld a, [wLoadedAttackCategory]
+	cp $04
+	ret z
+	call CheckGoopGasAttackAndToxicGasActive
+	ret c
+	ld a, [wTempPlayAreaLocation_cceb]
+	or a
+	ret z
+	ld hl, wTempNonTurnDuelistCardID
+	cphl MACHAMP_LV67
+	jr z, .asm_6dde
+	cphl KAKUNA_LV20
+	jr z, .asm_6e24
+	ret
+.asm_6dde
+	push hl
+	push de
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	push af
+	push hl
+	ld de, $a
+	call SubtractHP
+	ld a, [wLoadedCard2ID]
+	ld [wTempNonTurnDuelistCardID], a
+	ld a, [$cc7d]
+	ld [$ccd7], a
+	ld hl, $a
+	call LoadTxRam3
+	ld hl, wLoadedCard2Name
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call LoadTxRam2
+	ld hl, $157
+	call DrawWideTextBox_WaitForInput
+	pop hl
+	pop af
+	or a
+	jr z, .asm_6e1e
+	xor a
+	call PrintPlayAreaCardKnockedOutIfNoHP
+.asm_6e1e
+	call SwapTurn
+	pop de
+	pop hl
+	ret
+.asm_6e24
+	ld a, [wcd0a]
+	add $c8
+	call GetNonTurnDuelistVariable
+	or a
+	ret z
+	farcall ResetAttackAnimationIsPlaying
+	call Func_64a5
+	xor a
+	ld [wEffectFunctionsFeedbackIndex], a
+	ld [wDamageAnimPlayAreaLocation], a
+	ld bc, $f80
+	call Func_6470
+	call SwapTurn
+	farcall Func_18a19
+	farcall WaitAttackAnimation
+	call SwapTurn
+	ld hl, $161
+	call DrawWideTextBox_WaitForInput
+	ret
+; 0x6e57
 
 ApplyDarknessVeilDamageReduction:
 	ldh a, [hWhoseTurn]
@@ -7264,14 +7584,15 @@ Func_6f25:
 	call CheckIfCardIDIsDarkPokemon
 	pop de
 	or a
-	jr nz, .asm_6f37
+	jr nz, Func_6f37
 	ret
 
+Func_6f34:
 	ld a, b
 	or a
 	ret z
 
-.asm_6f37
+Func_6f37:
 	ld a, e
 	or d
 	ret z ; no damage
@@ -7401,6 +7722,7 @@ HandleNoDamageOrEffectSubstatus::
 	call CheckIsIncapableOfUsingPkmnPower_ArenaCard
 	ccf
 	ret nc
+.asm_7002
 	ld hl, wTempNonTurnDuelistCardID
 	cphl MEW_LV8
 	jr z, .neutralizing_shield
@@ -7432,9 +7754,22 @@ HandleNoDamageOrEffectSubstatus::
 	ld e, NO_DAMAGE_OR_EFFECT_NSHIELD
 	ldtx hl, NoDamageOrEffectDueToNShieldText
 	jr .no_damage_or_effect
-; 0x7038
 
-SECTION "Bank 1@7057", ROMX[$7057], BANK[$1]
+Func_7038:
+	ld hl, wTempNonTurnDuelistCardID
+	cphl HAUNTER_LV17
+	jr z, .asm_7048
+.asm_7046
+	or a
+	ret
+.asm_7048
+	ld a, [wLoadedAttackCategory]
+	cp $04
+	jr z, .asm_7046
+	ld a, [wTempPlayAreaLocation_cceb]
+	call CheckIsIncapableOfUsingPkmnPower
+	jr c, .asm_7046
+; 	fallthrough?
 
 CheckHaunterTransparency:
 	xor a
@@ -8722,7 +9057,30 @@ CheckArticunoAuroraVeil:
 	ret
 ; 0x79fd
 
-SECTION "Bank 1@7a2d", ROMX[$7a2d], BANK[$1]
+Func_79fd:
+	call CheckGoopGasAttackAndToxicGasActive
+	jr c, .asm_7a2b
+	call CheckArticunoAuroraVeil
+	jr c, .asm_7a26
+	ld hl, wTempNonTurnDuelistCardID
+	cphl DUGTRIO_LV40
+	jr nz, .asm_7a2b
+	ld a, [wLoadedAttackCategory]
+	cp $04
+	ret z
+	ld a, [wTempPlayAreaLocation_cceb]
+	or a
+	jr z, .asm_7a2b
+	call CheckIsIncapableOfUsingPkmnPower
+	jr c, .asm_7a2b
+.asm_7a26
+	ld de, $0
+	scf
+	ret
+.asm_7a2b
+	or a
+	ret
+; 0x7a2d
 
 ; returns carry if:
 ; - turn duelist has a Hypno lv30 in the Play Area;

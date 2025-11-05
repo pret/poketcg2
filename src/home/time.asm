@@ -1,5 +1,5 @@
 ; timer interrupt handler
-TimerHandler:
+TimerHandler::
 	push af
 	push hl
 	push de
@@ -43,7 +43,7 @@ TimerHandler:
 	reti
 
 ; increment play time counter by a tick
-IncrementPlayTimeCounter:
+IncrementPlayTimeCounter::
 	ld a, [wPlayTimeCounterEnable]
 	or a
 	ret z

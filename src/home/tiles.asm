@@ -154,6 +154,7 @@ LoadDeckAndDiscardPileIcons::
 	ld de, $8a00
 	ld b, $0d
 	call CopyFontsOrDuelGraphicsTiles
+.asm_1dff::
 	ld hl, $4240
 	ld a, [wConsole]
 	cp CONSOLE_CGB

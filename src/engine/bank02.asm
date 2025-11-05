@@ -1,4 +1,82 @@
-SECTION "Bank 2@43b3", ROMX[$43b3], BANK[$2]
+SECTION "Bank 2@4302", ROMX[$4302], BANK[$2]
+
+Func_8302:
+	ld a, h
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	ld a, l
+	ld [wCheckMenuPlayAreaWhichLayout], a
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+	call LoadMenuCursorTile
+	jr .asm_8333
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+.asm_8333
+	call LoadSymbolsFont
+	call LoadDeckAndDiscardPileIcons.asm_1dff
+	bank1call SetDefaultPalettes
+	ld de, $600
+	call InitTextPrinting
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	cp $c2
+	jr nz, .asm_8351
+	ld de, wDefaultText
+	call CopyPlayerName
+	jr .asm_8357
+.asm_8351
+	ld de, wDefaultText
+	call CopyOpponentName
+.asm_8357
+	ld hl, wDefaultText
+	call ProcessText
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld a, $06
+	add b
+	ld d, a
+	ld e, $00
+	call InitTextPrinting
+	ld hl, $2b5
+	call ProcessTextFromID
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ld a, [wCheckMenuPlayAreaWhichLayout]
+	cp b
+	jr nz, .asm_8396
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.player
+	call DrawPlayArea_PrizeCards
+	ld de, $602
+	call Func_8495
+	ld de, $109
+	ld c, $04
+	call Func_863e
+	xor a
+	call Func_86d7
+	jr .asm_83af
+.asm_8396
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.opponent
+	call DrawPlayArea_PrizeCards
+	ld de, $605
+	call Func_8495
+	ld de, $102
+	ld c, $04
+	call Func_863e
+	ld a, $01
+	call Func_86d7
+.asm_83af
+	call EnableLCD
+	ret
+; 0x83b3
 
 Func_82b6:
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
@@ -16,6 +94,57 @@ Func_82b6:
 	call DrawPlayArea_PrizeCards
 	ret
 ; 0x83cb
+
+SECTION "Bank 2@4495", ROMX[$4495], BANK[$2]
+
+Func_8495:
+	push de
+	ld a, $bb
+	ld l, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld a, [hl]
+	cp $ff
+	jr z, .asm_84e6
+	ld d, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ldh a, [hWhoseTurn]
+	cp b
+	jr nz, .asm_84b2
+	ld a, d
+	call LoadCardDataToBuffer1_FromDeckIndex
+	jr .asm_84bc
+.asm_84b2
+	call SwapTurn
+	ld a, d
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call SwapTurn
+.asm_84bc
+	ld de, $8a00
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld bc, $3010
+	call LoadCardGfx
+	pop de
+	push de
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	bank1call Func_6c12
+	bank1call FlushAllPalettesIfNotDMG
+	pop de
+	ld a, $a0
+	ld hl, $601
+	ld bc, $806
+	call FillRectangle
+	bank1call Func_56fa
+	ret
+.asm_84e6
+	bank1call Func_6c12
+	pop de
+	ret
+; 0x84eb
 
 SECTION "Bank 2@4587", ROMX[$4587], BANK[$2]
 
@@ -127,7 +256,219 @@ GetDuelInitialPrizesUpperBitsSet:
 	ret
 ; 0x863e
 
-SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
+Func_863e:
+	ld a, [wCheckMenuPlayAreaWhichLayout]
+	ld b, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	cp b
+	jr z, .asm_8654
+	ld a, d
+	add c
+	add c
+	add c
+	add c
+	ld d, a
+	xor a
+	sub c
+	ld c, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+.asm_8654
+	ld h, a
+	ld l, $f5
+	ld b, [hl]
+	ld l, $cf
+.asm_865a
+	dec b
+	jr z, .asm_869e
+	ld a, [hli]
+	push hl
+	push bc
+	sla a
+	sla a
+	add $e4
+	ld b, a
+	push bc
+	ld hl, $102
+	ld bc, $202
+	call FillRectangle
+	ld a, [wConsole]
+	cp $02
+	pop bc
+	jr nz, .asm_8697
+	ld a, b
+	cp $ec
+	jr z, .asm_8686
+	cp $f0
+	jr z, .asm_8686
+	ld a, $03
+	jr .asm_8688
+.asm_8686
+	ld a, $02
+.asm_8688
+	ld bc, $202
+	ld hl, $0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+.asm_8697
+	pop bc
+	pop hl
+	ld a, d
+	add c
+	ld d, a
+	jr .asm_865a
+.asm_869e
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld l, $f5
+	ld a, [wMaxNumPlayAreaPokemon]
+	sub [hl]
+	ret z
+	ld b, a
+	inc b
+.asm_86ab
+	dec b
+	ret z
+	push bc
+	ld a, $f4
+	ld hl, $102
+	ld bc, $202
+	call FillRectangle
+	ld a, [wConsole]
+	cp $02
+	jr nz, .asm_86d1
+	ld a, $03
+	ld bc, $202
+	ld hl, $0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+.asm_86d1
+	pop bc
+	ld a, d
+	add c
+	ld d, a
+	jr .asm_86ab
+; 0x86d7
+
+Func_86d7:
+	or a
+	jr nz, .asm_86df
+	ld hl, $4762
+	jr .asm_86e2
+.asm_86df
+	ld hl, $4768
+.asm_86e2
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, $f4
+	ld a, [de]
+	ld b, a
+	ld a, $d0
+	call Func_87a3
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, $ba
+	ld a, [de]
+	ld b, a
+	ld a, $3c
+	sub b
+	ld b, a
+	ld a, $d4
+	call Func_870e
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, $f3
+	ld a, [de]
+	ld b, a
+	ld a, $d8
+	call Func_870e
+	ret
+; 0x870e
+
+Func_870e:
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+	push hl
+	push bc
+	ld hl, $102
+	ld bc, $202
+	call FillRectangle
+	ld a, [wConsole]
+	cp $02
+	jr nz, .asm_8735
+	ld a, $03
+	ld bc, $202
+	ld hl, $0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+.asm_8735
+	inc d
+	inc d
+	inc e
+	call InitTextPrinting
+	pop bc
+	ld a, b
+	call CalculateOnesAndTensDigits
+	ld hl, wDecimalDigitsSymbols
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	ld hl, wDefaultText
+	ld [hl], $05
+	inc hl
+	ld [hl], $2d
+	inc hl
+	ld [hl], $05
+	inc hl
+	ld [hli], a
+	ld [hl], $05
+	inc hl
+	ld a, b
+	ld [hli], a
+	ld [hl], $00
+	ld hl, wDefaultText
+	call ProcessText
+	pop hl
+	ret
+; 0x8762
+
+SECTION "Bank 2@47a3", ROMX[$47a3], BANK[$2]
+
+Func_87a3:
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+	push hl
+	push bc
+	call InitTextPrinting
+	ld hl, $2bc
+	call ProcessTextFromID
+	pop bc
+	ld a, b
+	call CalculateOnesAndTensDigits
+	ld hl, wDecimalDigitsSymbols
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	ld hl, wDefaultText
+	ld [hl], $05
+	inc hl
+	ld [hli], a
+	ld [hl], $05
+	inc hl
+	ld a, b
+	ld [hli], a
+	ld [hl], $00
+	ld hl, wDefaultText
+	call ProcessText
+	pop hl
+	ret
+; 0x87d3
 
 Func_87d3:
 	xor a
@@ -470,7 +811,141 @@ ZeroObjectPositionsWithCopyToggleOn:
 	ret
 ; 0x8be6
 
-SECTION "Bank 2@4e6b", ROMX[$4e6b], BANK[$2]
+SECTION "Bank 2@4cc2", ROMX[$4cc2], BANK[$2]
+
+Func_8cc2:
+	ld a, [wcc07]
+	or a
+	ret z
+	ld a, $01
+	call PlayAcceptOrDeclineSFX
+	ld a, [wd0c1]
+	ld c, a
+	ld b, $01
+.asm_8cd2
+	or a
+	jr z, .asm_8cda
+	sla b
+	dec a
+	jr .asm_8cd2
+.asm_8cda
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	ret z
+	ld a, c
+	add DUELVARS_PRIZE_CARDS
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call Set_OBJ_8x16
+	bank1call OpenCardPage_FromHand
+	scf
+	ret
+; 0x8cee
+
+Func_8cee:
+	xor a
+	call Func_8e34
+	ld [wd0c1], a
+.asm_8cf5
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, a
+	call Func_8302
+	call DrawWideTextBox
+	ld de, $10e
+	call InitTextPrinting
+	ld hl, Set_OBJ_8x8
+	call ProcessTextFromID
+	ld de, $4c98
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+.asm_8d14
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and $08
+	jr z, .asm_8d27
+	call Func_8cc2
+	jr c, .asm_8cf5
+.asm_8d27
+	call HandleMultiDirectionalMenu
+	jr nc, .asm_8d14
+	cp $ff
+	jr z, .asm_8d14
+	call ZeroObjectPositionsWithCopyToggleOn
+	ld a, [wd0c1]
+	ld c, a
+	ld b, $01
+.asm_8d39
+	or a
+	jr z, .asm_8d41
+	sla b
+	dec a
+	jr .asm_8d39
+.asm_8d41
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	jr z, .asm_8d14
+	ld a, c
+	or $40
+	ret
+; 0x8d4b
+
+SECTION "Bank 2@4e34", ROMX[$4e34], BANK[$2]
+
+Func_8e34:
+	push bc
+	push de
+	push hl
+	ld e, $06
+	ld c, a
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, $f2
+	ld d, [hl]
+.asm_8e40
+	call Func_8e5c
+	and d
+	jr nz, .asm_8e57
+	dec e
+	jr nz, .asm_8e4d
+	ld c, $00
+	jr .asm_8e57
+.asm_8e4d
+	inc c
+	ld a, $06
+	cp c
+	jr nz, .asm_8e40
+	ld c, $00
+	jr .asm_8e40
+.asm_8e57
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+; 0x8e5c
+
+Func_8e5c:
+	push bc
+	ld a, c
+	ld b, $01
+.asm_8e60
+	or a
+	jr z, .asm_8e68
+	sla b
+	dec a
+	jr .asm_8e60
+.asm_8e68
+	ld a, b
+	pop bc
+	ret
+; 0x8e6b
 
 GlossaryTransitionTable_10Topics:
 	cursor_transition $08, $28, $00, 4, 1, 5, 5 ; 0
