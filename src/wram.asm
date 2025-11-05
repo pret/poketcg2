@@ -2704,7 +2704,7 @@ wSelectedConfigSubmenu:: ; d9d0
 
 	ds $2
 
-; see also: wDuelAnimationsSetting
+; see also: sDuelAnimationsSetting
 wDuelAnimationsSetting:: ; d9d3
 	ds $1
 
