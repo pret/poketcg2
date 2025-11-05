@@ -24,6 +24,11 @@ RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
 
+RGBASMFLAGS  ?= -Weverything -Wtruncation=1
+RGBLINKFLAGS ?= -Weverything -Wtruncation=1
+RGBFIXFLAGS  ?= -Weverything
+RGBGFXFLAGS  ?= -Weverything
+
 
 ### Build targets
 
@@ -58,7 +63,7 @@ tools:
 	$(MAKE) -C tools/
 
 
-RGBASMFLAGS = -I src/ -Weverything
+RGBASMFLAGS += -I src/
 # Create a sym/map for debug purposes if `make` run with `DEBUG=1`
 ifeq ($(DEBUG),1)
 RGBASMFLAGS += -E
@@ -90,29 +95,29 @@ endif
 %.asm: ;
 
 
-opts = -Cv -k 2P -l 0x33 -m 0x1b -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
+RGBFIXFLAGS += -Cv -k 2P -l 0x33 -m MBC5+RAM+BATTERY -p 0xff -r 03 -t POKEMON-CG2 -i BP7J
 
 $(rom): $(rom_obj) src/layout.link
-	$(RGBLINK) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
-	$(RGBFIX) $(opts) $@
+	$(RGBLINK) $(RGBLINKFLAGS) -p 0xff -m $(rom:.gbc=.map) -n $(rom:.gbc=.sym) -l src/layout.link -O baserom.gbc -o $@ $(filter %.o,$^)
+	$(RGBFIX) $(RGBFIXFLAGS) $@
 
 
 ### Misc file-specific graphics rules
 
-src/gfx/coins/%.2bpp: rgbgfx += -x 1
+src/gfx/coins/%.2bpp: RGBGFXFLAGS += -x 1
 
-src/gfx/booster_packs/beginning_pack.2bpp: rgbgfx += -x 2
-src/gfx/booster_packs/legendary_pack.2bpp: rgbgfx += -x 1
-src/gfx/booster_packs/fossil_pack.2bpp: rgbgfx += -x 2
-src/gfx/booster_packs/psychic_pack.2bpp: rgbgfx += -x 1
-src/gfx/booster_packs/ambition_pack.2bpp: rgbgfx += -x 2
-src/gfx/booster_packs/present_pack.2bpp: rgbgfx += -x 2
-src/gfx/booster_packs/pack_oam.2bpp: rgbgfx += -x 1
-src/gfx/titlescreen/title_screen.2bpp: rgbgfx += -x 4
-src/gfx/titlescreen/gb_error.2bpp: rgbgfx += -x 10
-src/gfx/black_box/black_box_bg.2bpp: rgbgfx += -x 5
-src/gfx/link/card_pop_scene.2bpp: rgbgfx += -x 9
-src/gfx/link/link_scene.2bpp: rgbgfx += -x 7
+src/gfx/booster_packs/beginning_pack.2bpp: RGBGFXFLAGS += -x 2
+src/gfx/booster_packs/legendary_pack.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/booster_packs/fossil_pack.2bpp: RGBGFXFLAGS += -x 2
+src/gfx/booster_packs/psychic_pack.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/booster_packs/ambition_pack.2bpp: RGBGFXFLAGS += -x 2
+src/gfx/booster_packs/present_pack.2bpp: RGBGFXFLAGS += -x 2
+src/gfx/booster_packs/pack_oam.2bpp: RGBGFXFLAGS += -x 1
+src/gfx/titlescreen/title_screen.2bpp: RGBGFXFLAGS += -x 4
+src/gfx/titlescreen/gb_error.2bpp: RGBGFXFLAGS += -x 10
+src/gfx/black_box/black_box_bg.2bpp: RGBGFXFLAGS += -x 5
+src/gfx/link/card_pop_scene.2bpp: RGBGFXFLAGS += -x 9
+src/gfx/link/link_scene.2bpp: RGBGFXFLAGS += -x 7
 
 ### Catch-all graphics rules
 
@@ -121,11 +126,11 @@ src/gfx/link/link_scene.2bpp: rgbgfx += -x 7
 %.pal: ;
 
 %.2bpp: %.png
-	$(RGBGFX) $(rgbgfx) -o $@ $<
+	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -o $@ $@)
 
 %.1bpp: %.png
-	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
+	$(RGBGFX) --colors dmg $(RGBGFXFLAGS) --depth 1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)

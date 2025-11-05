@@ -1,8 +1,8 @@
-MACRO lb ; r, hi, lo
+MACRO? lb ; r, hi, lo
 	ld \1, (\2) << 8 + ((\3) & $ff)
 ENDM
 
-MACRO ldtx
+MACRO? ldtx
 	IF _NARG == 2
 		ld \1, \2_
 	ELSE
@@ -10,12 +10,12 @@ MACRO ldtx
 	ENDC
 ENDM
 
-MACRO bank1call
+MACRO? bank1call
 	rst $18
 	dw \1
 ENDM
 
-MACRO farcall
+MACRO? farcall
 	rst $28
 	IF _NARG == 1
 		db BANK(\1)
@@ -27,19 +27,23 @@ MACRO farcall
 ENDM
 
 ; calls GetTurnDuelistVariable
-DEF get_turn_duelist_var EQUS "rst $30"
+MACRO? get_turn_duelist_var
+	rst $30
+ENDM
 
 ; the rst $38 handler is a single ret instruction
 ; probably used for testing purposes during development
-DEF debug_nop EQUS "rst $38"
+MACRO? debug_nop
+	rst $38
+ENDM
 
 ; Returns to the pointer in bc instead of where the stack was.
-MACRO retbc
+MACRO? retbc
 	push bc
 	ret
 ENDM
 
-MACRO cp16
+MACRO? cp16
 	ld a, d
 	cp HIGH(\1)
 	jr nz, :+
@@ -48,7 +52,7 @@ MACRO cp16
 :
 ENDM
 
-MACRO cphl
+MACRO? cphl
 	inc hl
 	ld a, [hld]
 	cp HIGH(\1)
