@@ -1,4 +1,4 @@
-Sfx5b_Ch1:
+Sfx_Tcg1_IntroOrbScatter_Ch1:
 	sfx_1 196
 	sfx_8 17
 	sfx_2 0

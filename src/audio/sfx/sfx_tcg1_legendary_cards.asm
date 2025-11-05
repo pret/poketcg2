@@ -1,4 +1,4 @@
-Sfx10_Ch1:
+Sfx_Tcg1_LegendaryCards_Ch1:
 	sfx_loop 5
 	sfx_8 17
 	sfx_1 55

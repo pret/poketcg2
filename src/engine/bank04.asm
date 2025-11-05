@@ -4036,7 +4036,7 @@ DoIntro:
 	call ResetIntroState
 	call ResetIntroOrbStates
 	push af
-	ld a, SFX_INTRO_ORB_TCG2
+	ld a, SFX_TCG2_INTRO_ORBS
 	call CallPlaySFX
 	pop af
 
@@ -4246,7 +4246,7 @@ AnimateTitle:
 	call WaitAFramesForInput
 	jr c, .finish
 	push af
-	ld a, SFX_INTRO_TITLE_FLIP_UP
+	ld a, SFX_TCG2_INTRO_TITLE
 	call CallPlaySFX
 	pop af
 	call .Expand
@@ -4364,7 +4364,7 @@ AnimateSubtitleEnter:
 	ld a, $02
 	call LoadTitleScreenGraphics
 	push af
-	ld a, SFX_INTRO_SUBTITLE_WOBBLE_IN
+	ld a, SFX_TCG2_INTRO_SUBTITLE
 	call CallPlaySFX
 	pop af
 	call .Distort
@@ -6212,7 +6212,7 @@ Func_1328c:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, SFX_BLACKBOX_INSERT
+	ld a, SFX_BLACK_BOX_INSERT
 	call CallPlaySFX
 	pop af
 	ld a, $28
@@ -6225,7 +6225,7 @@ Func_132ad:
 	ld c, $00
 	call Func_13321
 	push af
-	ld a, SFX_BLACKBOX_INSERTED
+	ld a, SFX_BLACK_BOX_INSERTED
 	call CallPlaySFX
 	pop af
 	push af
@@ -6253,7 +6253,7 @@ Func_132c4:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, SFX_BLACKBOX_TRANSMITTED
+	ld a, SFX_BLACK_BOX_TRANSMITTED
 	call CallPlaySFX
 	pop af
 	ld a, $14

@@ -1,4 +1,4 @@
-Sfx_IntroSubtitleWobbleIn_Ch1:
+Sfx_Tcg2_IntroSubtitle_Ch1:
 	sfx_8 17
 	sfx_2 0
 	sfx_9 39

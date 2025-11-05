@@ -1,4 +1,4 @@
-Sfx_IntroOrbTcg2_Ch1:
+Sfx_Tcg2_IntroOrbs_Ch1:
 	sfx_1 16
 	sfx_8 17
 	sfx_2 0

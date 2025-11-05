@@ -18,7 +18,7 @@ SFXHeaderPointers2:
 	dw Sfx0d
 	dw Sfx0e
 	dw Sfx_Doors
-	dw Sfx10
+	dw Sfx_Tcg1_LegendaryCards
 	dw Sfx_Glow
 	dw Sfx_Paralysis
 	dw Sfx_Sleep
@@ -90,18 +90,18 @@ SFXHeaderPointers2:
 	dw Sfx_CoinTossNegative
 	dw Sfx_SaveGame
 	dw Sfx_PlayerWalkMap
-	dw Sfx58
-	dw Sfx59
-	dw Sfx5a
-	dw Sfx5b
+	dw Sfx_Tcg1_IntroOrb
+	dw Sfx_Tcg1_IntroOrbSwoop
+	dw Sfx_Tcg1_IntroOrbTitle
+	dw Sfx_Tcg1_IntroOrbScatter
 	dw Sfx_FiregiverStart
 	dw Sfx_ReceiveCardPop
 	dw Sfx_PokemonEvolution
 	dw Sfx5f
-	dw Sfx60
-	dw Sfx61
-	dw Sfx62
-	dw Sfx63
+	dw Sfx_Placeholder60
+	dw Sfx_Placeholder61
+	dw Sfx_Placeholder62
+	dw Sfx_Placeholder63
 	dw Sfx_Fireball
 	dw Sfx_ContinuousFireball
 	dw Sfx_BenchManipulation
@@ -132,7 +132,7 @@ SFXHeaderPointers2:
 	dw Sfx_BlackBoxInsert
 	dw Sfx_BlackBoxInserted
 	dw Sfx_BlackBoxTransmitted
-	dw Sfx82
+	dw Sfx_NewMail
 	dw Sfx_PodDoors
 	dw Sfx_Pitfall
 	dw Sfx_OpenChest
@@ -156,21 +156,21 @@ SFXHeaderPointers2:
 	dw Sfx_BoneHeadbutt
 	dw Sfx_DrillDive
 	dw Sfx_DarkSong
-	dw Sfx_IntroOrbTcg2
-	dw Sfx_IntroTitleFlipUp
-	dw Sfx_IntroSubtitleWobbleIn
+	dw Sfx_Tcg2_IntroOrbs
+	dw Sfx_Tcg2_IntroTitle
+	dw Sfx_Tcg2_IntroSubtitle
 	dw Sfx_ElectronicInput
 	dw Sfx_ElectronicResponse
 	dw Sfx_GhostMasterAppear
 	dw Sfx_GhostMasterDisappear
 
-;Sfx60
-;Sfx61
-;Sfx62
-;Sfx63
-	db BANK(Sfx60)
+;Sfx_Placeholder60
+;Sfx_Placeholder61
+;Sfx_Placeholder62
+;Sfx_Placeholder63
+	db BANK(Sfx_Placeholder60)
 	db %0001
-	dw Sfx60_Ch1
+	dw Sfx_Placeholder60_Ch1
 
 SfxUnused:
 	db BANK(SfxUnused)
@@ -256,10 +256,10 @@ SfxUnused:
 	db %1000
 	dw Sfx_Doors_Ch1
 
-;Sfx10
-	db BANK(Sfx10)
+;Sfx_Tcg1_LegendaryCards
+	db BANK(Sfx_Tcg1_LegendaryCards)
 	db %0001
-	dw Sfx10_Ch1
+	dw Sfx_Tcg1_LegendaryCards_Ch1
 
 ;Sfx_Glow
 	db BANK(Sfx_Glow)
@@ -625,25 +625,25 @@ SfxUnused:
 	db %0001
 	dw Sfx_PlayerWalkMap_Ch1
 
-;Sfx58
-	db BANK(Sfx58)
+;Sfx_Tcg1_IntroOrb
+	db BANK(Sfx_Tcg1_IntroOrb)
 	db %0001
-	dw Sfx58_Ch1
+	dw Sfx_Tcg1_IntroOrb_Ch1
 
-;Sfx59
-	db BANK(Sfx59)
+;Sfx_Tcg1_IntroOrbSwoop
+	db BANK(Sfx_Tcg1_IntroOrbSwoop)
 	db %0001
-	dw Sfx59_Ch1
+	dw Sfx_Tcg1_IntroOrbSwoop_Ch1
 
-;Sfx5a
-	db BANK(Sfx5a)
+;Sfx_Tcg1_IntroOrbTitle
+	db BANK(Sfx_Tcg1_IntroOrbTitle)
 	db %0001
-	dw Sfx5a_Ch1
+	dw Sfx_Tcg1_IntroOrbTitle_Ch1
 
-;Sfx5b
-	db BANK(Sfx5b)
+;Sfx_Tcg1_IntroOrbScatter
+	db BANK(Sfx_Tcg1_IntroOrbScatter)
 	db %0001
-	dw Sfx5b_Ch1
+	dw Sfx_Tcg1_IntroOrbScatter_Ch1
 
 ;Sfx_FiregiverStart
 	db BANK(Sfx_FiregiverStart)
@@ -832,10 +832,10 @@ Sfx_BlackBoxTransmitted:
 	db %0001
 	dw Sfx_BlackBoxTransmitted_Ch1
 
-Sfx82:
-	db BANK(Sfx82)
+Sfx_NewMail:
+	db BANK(Sfx_NewMail)
 	db %0001
-	dw Sfx82_Ch1
+	dw Sfx_NewMail_Ch1
 
 Sfx_PodDoors:
 	db BANK(Sfx_PodDoors)
@@ -961,21 +961,21 @@ Sfx_DarkSong:
 	db %0001
 	dw Sfx_DarkSong_Ch1
 
-Sfx_IntroOrbTcg2:
-	db BANK(Sfx_IntroOrbTcg2)
+Sfx_Tcg2_IntroOrbs:
+	db BANK(Sfx_Tcg2_IntroOrbs)
 	db %0001
-	dw Sfx_IntroOrbTcg2_Ch1
+	dw Sfx_Tcg2_IntroOrbs_Ch1
 
-Sfx_IntroTitleFlipUp:
-	db BANK(Sfx_IntroTitleFlipUp)
+Sfx_Tcg2_IntroTitle:
+	db BANK(Sfx_Tcg2_IntroTitle)
 	db %1001
-	dw Sfx_IntroTitleFlipUp_Ch1
-	dw Sfx_IntroTitleFlipUp_Ch2
+	dw Sfx_Tcg2_IntroTitle_Ch1
+	dw Sfx_Tcg2_IntroTitle_Ch2
 
-Sfx_IntroSubtitleWobbleIn:
-	db BANK(Sfx_IntroSubtitleWobbleIn)
+Sfx_Tcg2_IntroSubtitle:
+	db BANK(Sfx_Tcg2_IntroSubtitle)
 	db %0001
-	dw Sfx_IntroSubtitleWobbleIn_Ch1
+	dw Sfx_Tcg2_IntroSubtitle_Ch1
 
 Sfx_ElectronicInput:
 	db BANK(Sfx_ElectronicInput)

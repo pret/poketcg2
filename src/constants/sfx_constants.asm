@@ -15,7 +15,7 @@
 	const SFX_0D                       ; $0d
 	const SFX_0E                       ; $0e
 	const SFX_DOORS                    ; $0f
-	const SFX_10                       ; $10
+	const SFX_TCG1_LEGENDARY_CARDS     ; $10
 	const SFX_GLOW                     ; $11
 	const SFX_PARALYSIS                ; $12
 	const SFX_SLEEP                    ; $13
@@ -87,18 +87,18 @@
 	const SFX_COIN_TOSS_NEGATIVE       ; $55
 	const SFX_SAVE_GAME                ; $56
 	const SFX_PLAYER_WALK_MAP          ; $57
-	const SFX_58                       ; $58
-	const SFX_59                       ; $59
-	const SFX_5A                       ; $5a
-	const SFX_5B                       ; $5b
+	const SFX_TCG1_INTRO_ORB           ; $58
+	const SFX_TCG1_INTRO_ORB_SWOOP     ; $59
+	const SFX_TCG1_INTRO_ORB_TITLE     ; $5a
+	const SFX_TCG1_INTRO_ORB_SCATTER   ; $5b
 	const SFX_FIREGIVER_START          ; $5c
 	const SFX_RECEIVE_CARD_POP         ; $5d
 	const SFX_POKEMON_EVOLUTION        ; $5e
 	const SFX_5F                       ; $5f
-	const SFX_60                       ; $60
-	const SFX_61                       ; $61
-	const SFX_62                       ; $62
-	const SFX_63                       ; $63
+	const SFX_PLACEHOLDER_60           ; $60
+	const SFX_PLACEHOLDER_61           ; $61
+	const SFX_PLACEHOLDER_62           ; $62
+	const SFX_PLACEHOLDER_63           ; $63
 	const SFX_FIREBALL                 ; $64
 	const SFX_CONTINUOUS_FIREBALL      ; $65
 	const SFX_BENCH_MANIPULATION       ; $66
@@ -126,10 +126,10 @@
 	const SFX_CHIPS_COUNTING           ; $7c
 	const SFX_SLOT_START               ; $7d
 	const SFX_SLOT_REEL                ; $7e
-	const SFX_BLACKBOX_INSERT          ; $7f
-	const SFX_BLACKBOX_INSERTED        ; $80
-	const SFX_BLACKBOX_TRANSMITTED     ; $81
-	const SFX_82                       ; $82
+	const SFX_BLACK_BOX_INSERT         ; $7f
+	const SFX_BLACK_BOX_INSERTED       ; $80
+	const SFX_BLACK_BOX_TRANSMITTED    ; $81
+	const SFX_NEW_MAIL                 ; $82
 	const SFX_POD_DOORS                ; $83
 	const SFX_PITFALL                  ; $84
 	const SFX_OPEN_CHEST               ; $85
@@ -153,9 +153,9 @@
 	const SFX_BONE_HEADBUTT            ; $97
 	const SFX_DRILL_DIVE               ; $98
 	const SFX_DARK_SONG                ; $99
-	const SFX_INTRO_ORB_TCG2           ; $9a
-	const SFX_INTRO_TITLE_FLIP_UP      ; $9b
-	const SFX_INTRO_SUBTITLE_WOBBLE_IN ; $9c
+	const SFX_TCG2_INTRO_ORBS          ; $9a
+	const SFX_TCG2_INTRO_TITLE         ; $9b
+	const SFX_TCG2_INTRO_SUBTITLE      ; $9c
 	const SFX_ELECTRONIC_INPUT         ; $9d
 	const SFX_ELECTRONIC_RESPONSE      ; $9e
 	const SFX_GHOST_MASTER_APPEAR      ; $9f

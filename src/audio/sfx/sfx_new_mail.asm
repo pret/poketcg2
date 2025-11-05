@@ -1,4 +1,4 @@
-Sfx82_Ch1:
+Sfx_NewMail_Ch1:
 	sfx_8 17
 	sfx_1 195
 	sfx_2 8
