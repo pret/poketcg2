@@ -1303,6 +1303,11 @@ class Disassembler(object):
 					if opcode_byte == 0xdf:
 					# bank1call
 						target_label = self.find_label(local_target_offset, 1)
+						if target_label is None:
+							# explicitly set target_label here if None because the next if statement
+							# would set it to a non-bank01 value
+							target_label = "Func_%x" % local_target_offset
+							undefined_functions.append(local_target_offset)
 					else:
 					# regular call or jump instructions
 						target_label = self.find_label(local_target_offset, bank_id)
