@@ -1,4 +1,4 @@
-Music_DuelTheme3_Ch2:
+Music_DuelThemeGrandMaster_Ch2:
 	speed 11
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -473,7 +473,7 @@ Branch_1e29b3:
 	music_ret
 
 
-Music_DuelTheme3_Ch1:
+Music_DuelThemeGrandMaster_Ch1:
 	speed 11
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -907,7 +907,7 @@ Branch_1e2bfc:
 	music_ret
 
 
-Music_DuelTheme3_Ch3:
+Music_DuelThemeGrandMaster_Ch3:
 	speed 11
 	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
@@ -1218,7 +1218,7 @@ Branch_1e2d86:
 	music_ret
 
 
-Music_DuelTheme3_Ch4:
+Music_DuelThemeGrandMaster_Ch4:
 	speed 11
 	MainLoop
 	Loop 2

@@ -3800,7 +3800,7 @@ IntroAndTitleScreen:
 .title_screen_idle
 	call Func_3d02
 	push af
-	ld a, MUSIC_TITLESCREEN
+	ld a, MUSIC_TITLE_SCREEN
 	call SetMusic
 	pop af
 	call TitleScreenPushStart
@@ -5145,7 +5145,7 @@ Func_123e2:
 	ret c
 	call Func_3d0d
 	push af
-	ld a, MUSIC_DITTY_3
+	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -6036,7 +6036,7 @@ Func_13138:
 	jr c, .asm_1315a
 	call Func_3d0d
 	push af
-	ld a, MUSIC_CARDPOP
+	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
 	call Func_1320f
@@ -6099,7 +6099,7 @@ Func_131bd:
 	ret c
 	call Func_3d0d
 	push af
-	ld a, MUSIC_DITTY_3
+	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish

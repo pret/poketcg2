@@ -1,4 +1,4 @@
-Music_GRDuelTheme3_Ch2:
+Music_DuelThemeGRKing_Ch2:
 	MainLoop
 	preset 27
 	stereo_panning 15, 15
@@ -788,7 +788,7 @@ Branch_1f672f:
 	music_ret
 
 
-Music_GRDuelTheme3_Ch1:
+Music_DuelThemeGRKing_Ch1:
 	MainLoop
 	preset 27
 	musicef -1
@@ -2136,7 +2136,7 @@ Branch_1f6df4:
 	music_ret
 
 
-Music_GRDuelTheme3_Ch3:
+Music_DuelThemeGRKing_Ch3:
 	wave 1
 	stereo_panning 15, 15
 	speed 1
@@ -3253,7 +3253,7 @@ Branch_1f72b7:
 	music_ret
 
 
-Music_GRDuelTheme3_Ch4:
+Music_DuelThemeGRKing_Ch4:
 	MainLoop
 	speed 1
 	octave 1

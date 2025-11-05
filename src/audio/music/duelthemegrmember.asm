@@ -1,4 +1,4 @@
-Music_GRDuelTheme1_Ch2:
+Music_DuelThemeGRMember_Ch2:
 	stereo_panning 15, 15
 	speed 1
 	preset 16
@@ -897,7 +897,7 @@ Branch_1f5ae8:
 	music_ret
 
 
-Music_GRDuelTheme1_Ch1:
+Music_DuelThemeGRMember_Ch1:
 	stereo_panning 15, 15
 	speed 1
 	preset 16
@@ -1904,7 +1904,7 @@ Music_GRDuelTheme1_Ch1:
 	EndMainLoop
 
 
-Music_GRDuelTheme1_Ch3:
+Music_DuelThemeGRMember_Ch3:
 	speed 1
 	wave 1
 	volume_envelope 2, 0
@@ -2468,7 +2468,7 @@ Branch_1f6313:
 	music_ret
 
 
-Music_GRDuelTheme1_Ch4:
+Music_DuelThemeGRMember_Ch4:
 	speed 1
 	octave 1
 	music_call Branch_1f6503

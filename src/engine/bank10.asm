@@ -735,7 +735,7 @@ Func_40474:
 	ret
 
 .asm_40482
-	ld a, MUSIC_GRBLIMP
+	ld a, MUSIC_GR_BLIMP
 	ld [wNextMusic], a
 	scf
 	ccf
@@ -1947,7 +1947,7 @@ Func_41233:
 	set_active_npc_direction EAST
 	script_call Script_41499
 	set_event EVENT_EF
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_41287
@@ -1965,7 +1965,7 @@ Func_41233:
 	script_command_01
 	print_npc_text Text0f18
 	script_command_02
-	start_duel UNUSED_SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel UNUSED_SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_412ac
@@ -2038,7 +2038,7 @@ Script_412f8:
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	print_npc_text Text0f25
 	script_command_02
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_4133b
@@ -2055,7 +2055,7 @@ Func_4133e:
 	script_jump_if_b0z .ows_41356
 	print_npc_text Text0f28
 	script_command_02
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_41356
@@ -2431,7 +2431,7 @@ TcgChallengeHall_MapScripts:
 Func_415e6:
 	call Func_41bd2
 	jr c, .asm_415f0
-	ld a, MUSIC_CHALLENGEHALL
+	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
 .asm_415f0
 	scf
@@ -3212,7 +3212,7 @@ Func_41bd2:
 GrAirport_MapHeader:
 	db MAP_GFX_GR_AIRPORT
 	dba GrAirport_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrAirport_StepEvents:
 	map_exit 13, 9, MAP_GR_AIRPORT_ENTRANCE, 1, 6, EAST
@@ -3724,7 +3724,7 @@ Func_41fe1:
 	print_npc_text Text1090
 .ows_4203e
 	script_command_02
-	start_duel POISON_STORM_DECK_ID, MUSIC_DITTY_2
+	start_duel POISON_STORM_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42044
@@ -3804,7 +3804,7 @@ Func_4207e:
 	print_npc_text Text1097
 .ows_420db
 	script_command_02
-	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_DITTY_2
+	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_420e1
@@ -3883,7 +3883,7 @@ Func_42119:
 	print_npc_text Text109e
 .ows_42176
 	script_command_02
-	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_DITTY_2
+	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4217c
@@ -3962,7 +3962,7 @@ Func_421b4:
 	print_npc_text Text10a5
 .ows_42211
 	script_command_02
-	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_DITTY_2
+	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42217
@@ -4041,7 +4041,7 @@ Func_4224f:
 	print_npc_text Text10ac
 .ows_422ac
 	script_command_02
-	start_duel BLAZING_FLAME_DECK_ID, MUSIC_DITTY_2
+	start_duel BLAZING_FLAME_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_422b2
@@ -4121,7 +4121,7 @@ Func_422ec:
 	print_npc_text Text10b3
 .ows_42349
 	script_command_02
-	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_DITTY_2
+	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4234f
@@ -4200,7 +4200,7 @@ Func_42387:
 	print_npc_text Text10ba
 .ows_423e4
 	script_command_02
-	start_duel BIG_THUNDER_DECK_ID, MUSIC_DITTY_2
+	start_duel BIG_THUNDER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_423ea
@@ -4280,7 +4280,7 @@ Func_42424:
 	print_npc_text Text10c1
 .ows_42481
 	script_command_02
-	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_DITTY_2
+	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42487
@@ -4359,7 +4359,7 @@ Func_424bf:
 	print_npc_text Text10c8
 .ows_4251c
 	script_command_02
-	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_DITTY_2
+	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42522
@@ -4441,7 +4441,7 @@ Data_425ae:
 GrChallengeHall_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL
 	dba GrChallengeHall_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrChallengeHall_StepEvents:
 	map_exit 7, 15, MAP_GR_CHALLENGE_HALL_ENTRANCE, 4, 1, SOUTH
@@ -4502,7 +4502,7 @@ Func_42649:
 	scf
 	ret
 .asm_4265f
-	ld a, MUSIC_GRCHALLENGECUP
+	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
 	jr .asm_4266b
 .asm_42666
@@ -5566,7 +5566,7 @@ Func_42eca:
 GrCastleBiruritchi_MapHeader:
 	db MAP_GFX_GR_CASTLE_BIRURITCHI
 	dba GrCastleBiruritchi_MapScripts
-	db MUSIC_GRCASTLE
+	db MUSIC_GR_CASTLE
 
 GrCastleBiruritchi_StepEvents:
 	map_exit 6, 15, MAP_GR_CASTLE, 6, 1, SOUTH
@@ -5720,7 +5720,7 @@ Func_42fe1:
 
 Script_43000:
 	script_command_64 $0c
-	play_song_next MUSIC_HALLOFHONOR
+	play_song_next MUSIC_HALL_OF_HONOR
 	script_command_02
 	print_npc_text Text0927
 	set_event EVENT_GOT_TOGEPI_COIN
@@ -5976,7 +5976,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel STOP_LIFE_DECK_ID, MUSIC_DITTY_2
+	start_duel STOP_LIFE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_431f7
@@ -5990,7 +5990,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel SCORCHER_DECK_ID, MUSIC_DITTY_2
+	start_duel SCORCHER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_43213
@@ -6004,7 +6004,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel TSUNAMI_STARTER_DECK_ID, MUSIC_DITTY_2
+	start_duel TSUNAMI_STARTER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_4322f
@@ -6018,7 +6018,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel SMASH_TO_MINCEMEAT_DECK_ID, MUSIC_DITTY_2
+	start_duel SMASH_TO_MINCEMEAT_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 
@@ -6109,7 +6109,7 @@ Script_432f5:
 	ret
 
 Script_432fb:
-	play_song_next MUSIC_HALLOFHONOR
+	play_song_next MUSIC_HALL_OF_HONOR
 	script_command_02
 	get_var VAR_0B
 	compare_loaded_var $01

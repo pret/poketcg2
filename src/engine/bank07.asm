@@ -1770,7 +1770,7 @@ ShowStartMenu:
 	push hl
 	ld [wStartMenuConfiguration], a
 	push af
-	ld a, MUSIC_PCMAINMENU
+	ld a, MUSIC_PC_MAIN_MENU
 	call SetMusic
 	pop af
 	call .HandleMenu
@@ -3198,7 +3198,7 @@ Func_1d9be:
 	jr c, .asm_1d9ed
 	call Func_3d0d
 	push af
-	ld a, MUSIC_CARDPOP
+	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
 	call Func_1dac1
@@ -6362,7 +6362,7 @@ PlayerGenderAndNameSelection::
 	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
 	push af
-	ld a, MUSIC_PCMAINMENU
+	ld a, MUSIC_PC_MAIN_MENU
 	call SetMusic
 	pop af
 	farcall PlayerGenderSelection

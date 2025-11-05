@@ -1,4 +1,4 @@
-Music_MatchStart1_Ch1:
+Music_MatchStartMember_Ch1:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8

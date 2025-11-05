@@ -1,4 +1,4 @@
-Music_Ditty1_Ch2:
+Music_MatchStartGRLeader_Ch2:
 	preset 2
 	speed 1
 	octave 2
@@ -84,7 +84,7 @@ Music_Ditty1_Ch2:
 	music_end
 
 
-Music_Ditty1_Ch1:
+Music_MatchStartGRLeader_Ch1:
 	preset 2
 	speed 1
 	octave 1
@@ -175,7 +175,7 @@ Music_Ditty1_Ch1:
 	music_end
 
 
-Music_Ditty1_Ch3:
+Music_MatchStartGRLeader_Ch3:
 	wave 5
 	speed 1
 	stereo_panning 15, 15

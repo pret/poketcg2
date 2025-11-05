@@ -234,7 +234,7 @@ Func_c1a2:
 
 Func_c1a6:
 	call Func_3d0d
-	ld a, MUSIC_PAUSEMENU
+	ld a, MUSIC_PAUSE_MENU
 	call PlaySong
 	farcall Func_10772
 	call Func_3d4a
@@ -1387,7 +1387,7 @@ Func_d3e9::
 
 PCMenu:
 	call PauseSong
-	ld a, MUSIC_PCMAINMENU
+	ld a, MUSIC_PC_MAIN_MENU
 	call PlaySong
 	farcall _PCMenu
 	call ResumeSong

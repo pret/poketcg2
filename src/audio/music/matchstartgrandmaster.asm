@@ -1,4 +1,4 @@
-Music_MatchStart3_Ch1:
+Music_MatchStartGrandMaster_Ch1:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8
@@ -163,7 +163,7 @@ Music_MatchStart3_Ch1:
 	music_end
 
 
-Music_MatchStart3_Ch2:
+Music_MatchStartGrandMaster_Ch2:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8

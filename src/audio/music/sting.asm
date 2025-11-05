@@ -1,4 +1,4 @@
-Music_Song3B_Ch1:
+Music_Sting_Ch1:
 	speed 4
 	stereo_panning TRUE, TRUE
 	cutoff 8
@@ -9,7 +9,7 @@ Music_Song3B_Ch1:
 	music_end
 
 
-Music_Song3B_Ch2:
+Music_Sting_Ch2:
 	speed 4
 	stereo_panning TRUE, TRUE
 	cutoff 8
@@ -20,7 +20,7 @@ Music_Song3B_Ch2:
 	music_end
 
 
-Music_Song3B_Ch3:
+Music_Sting_Ch3:
 	speed 4
 	stereo_panning TRUE, TRUE
 	wave 1
@@ -32,7 +32,7 @@ Music_Song3B_Ch3:
 	music_end
 
 
-Music_Song3B_Ch4:
+Music_Sting_Ch4:
 	speed 4
 	snare5 4
 	music_end

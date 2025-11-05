@@ -1,4 +1,4 @@
-Music_Ditty2_Ch2:
+Music_MatchStartGRExecs_Ch2:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -67,7 +67,7 @@ Music_Ditty2_Ch2:
 	music_end
 
 
-Music_Ditty2_Ch1:
+Music_MatchStartGRExecs_Ch1:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -164,7 +164,7 @@ Music_Ditty2_Ch1:
 	music_end
 
 
-Music_Ditty2_Ch3:
+Music_MatchStartGRExecs_Ch3:
 	wave 4
 	speed 1
 	echo 128

@@ -1,4 +1,4 @@
-Music_Ditty5_Ch2:
+Music_Fanfare2_Ch2:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -30,7 +30,7 @@ Music_Ditty5_Ch2:
 	music_end
 
 
-Music_Ditty5_Ch1:
+Music_Fanfare2_Ch1:
 	preset 2
 	speed 1
 	stereo_panning 15, 15

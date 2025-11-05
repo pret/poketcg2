@@ -216,7 +216,7 @@ Func_3417e:
 	script_command_01
 	print_npc_text RonaldGCPieces2WantsToDuelText
 	script_command_02
-	start_duel RONALDS_UNCOOL_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RONALDS_UNCOOL_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .NPCMovement_341b7:
@@ -409,7 +409,7 @@ Func_342ef:
 	script_command_01
 	print_npc_text Text1278
 	script_command_02
-	start_duel RONALDS_GRX_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RONALDS_GRX_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .NPCMovement_3431d:
@@ -504,7 +504,7 @@ Func_34391:
 	script_command_01
 	print_npc_text Text1281
 	script_command_02
-	start_duel RONALDS_POWER_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RONALDS_POWER_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .NPCMovement_343e2:
@@ -632,7 +632,7 @@ Func_3448d:
 	script_command_01
 	print_npc_text Text1289
 	script_command_02
-	start_duel RONALDS_PSYCHIC_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RONALDS_PSYCHIC_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 
@@ -773,7 +773,7 @@ Func_345fd:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_3460a
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_3460a
 	scf
@@ -1408,7 +1408,7 @@ Func_34a96:
 GrAirportEntrance_MapHeader:
 	db MAP_GFX_GR_AIRPORT_ENTRANCE
 	dba GrAirportEntrance_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrAirportEntrance_StepEvents:
 	map_exit 5, 12, OVERWORLD_MAP_GR, 4, 4, SOUTH
@@ -1534,7 +1534,7 @@ Func_34b9d:
 GameCenter1_MapHeader:
 	db MAP_GFX_GAME_CENTER_1
 	dba GameCenter1_MapScripts
-	db MUSIC_GAMECORNER
+	db MUSIC_GAME_CENTER
 
 GameCenter1_StepEvents:
 	map_exit 5, 14, MAP_GAME_CENTER_ENTRANCE, 5, 1, SOUTH
@@ -1874,7 +1874,7 @@ Func_34e18:
 GameCenter2_MapHeader:
 	db MAP_GFX_GAME_CENTER_2
 	dba GameCenter2_MapScripts
-	db MUSIC_GAMECORNER
+	db MUSIC_GAME_CENTER
 
 GameCenter2_StepEvents:
 	map_exit 0, 6, MAP_GAME_CENTER_1, 10, 6, WEST
@@ -2301,7 +2301,7 @@ Func_3512c:
 	print_npc_text BishopDuelStartText
 	script_command_71
 	script_command_02
-	start_duel TEXTURE_TUNER7_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel TEXTURE_TUNER7_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_351bb
@@ -2416,7 +2416,7 @@ Func_35273:
 GrChallengeHallLobby_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL_LOBBY
 	dba GrChallengeHallLobby_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrChallengeHallLobby_StepEvents:
 	map_exit 13, 6, MAP_GR_CHALLENGE_HALL_ENTRANCE, 1, 3, EAST
@@ -2463,7 +2463,7 @@ Func_35308:
 	cp $06
 	jr nz, .asm_3531f
 .asm_3531a
-	ld a, MUSIC_GRCHALLENGECUP
+	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
 .asm_3531f
 	scf
@@ -2767,7 +2767,7 @@ Func_354fb:
 	script_jump_if_b0z .ows_3553f
 	print_npc_text Text0db9
 	script_command_02
-	start_duel MAD_PETALS_DECK_ID, MUSIC_DITTY_1
+	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_3553f
@@ -2790,7 +2790,7 @@ Func_354fb:
 	script_jump_if_b0z .ows_3556a
 	print_npc_text Text0dbd
 	script_command_02
-	start_duel MAD_PETALS_DECK_ID, MUSIC_DITTY_1
+	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_3556a
@@ -2810,7 +2810,7 @@ Func_354fb:
 	script_jump_if_b0z .ows_35590
 	print_npc_text Text0dbd
 	script_command_02
-	start_duel MAD_PETALS_DECK_ID, MUSIC_DITTY_1
+	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35590
@@ -2967,7 +2967,7 @@ Func_35679:
 .ows_356b5
 	print_npc_text Text1240
 	script_command_02
-	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_356be
@@ -2987,7 +2987,7 @@ Func_35679:
 .ows_356d9
 	print_npc_text Text1244
 	script_command_02
-	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_356e2
@@ -3251,7 +3251,7 @@ Func_3589a:
 	script_jump_if_b0z .ows_358d4
 	print_npc_text Text1205
 	script_command_02
-	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_358d4
@@ -3265,7 +3265,7 @@ Func_3589a:
 	script_jump_if_b0z .ows_358ed
 	print_npc_text Text1208
 	script_command_02
-	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_358ed
@@ -3574,7 +3574,7 @@ Func_35b16:
 	script_jump_if_b0z .ows_35b63
 	print_npc_text Text0c1b
 	script_command_02
-	start_duel RUNNING_WILD_DECK_ID, MUSIC_DITTY_1
+	start_duel RUNNING_WILD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35b63
@@ -3588,7 +3588,7 @@ Func_35b16:
 	script_jump_if_b0z .ows_35b7c
 	print_npc_text Text0c1e
 	script_command_02
-	start_duel RUNNING_WILD_DECK_ID, MUSIC_DITTY_1
+	start_duel RUNNING_WILD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35b7c
@@ -3923,7 +3923,7 @@ Func_35def:
 .ows_35e2b
 	print_npc_text Text0bec
 	script_command_02
-	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35e34
@@ -3943,7 +3943,7 @@ Func_35def:
 .ows_35e4f
 	print_npc_text Text0bf0
 	script_command_02
-	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35e58
@@ -4131,7 +4131,7 @@ Func_35f81:
 .ows_35fc2
 	print_npc_text Text0c03
 	script_command_02
-	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35fcb
@@ -4156,7 +4156,7 @@ Func_35f81:
 .ows_35fec
 	print_npc_text Text0c08
 	script_command_02
-	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35ff5
@@ -4419,7 +4419,7 @@ Func_361f9:
 	scf
 	ret
 .asm_36205
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -5061,7 +5061,7 @@ Func_36712:
 .ows_3674e
 	print_npc_text Text114c
 	script_command_02
-	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36757
@@ -5088,7 +5088,7 @@ Func_36712:
 .ows_3677f
 	print_npc_text Text1151
 	script_command_02
-	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36788
@@ -5204,7 +5204,7 @@ Func_3682a:
 	check_event EVENT_BEAT_KEVIN
 	print_npc_text Text1162
 	script_command_02
-	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36866
@@ -5219,7 +5219,7 @@ Func_3682a:
 	check_event EVENT_BEAT_KEVIN
 	print_npc_text Text1162
 	script_command_02
-	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36881
@@ -5337,7 +5337,7 @@ Func_36921:
 .ows_3695d
 	print_npc_text Text1176
 	script_command_02
-	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36966
@@ -5357,7 +5357,7 @@ Func_36921:
 .ows_36981
 	print_npc_text Text1179
 	script_command_02
-	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3698a
@@ -5478,7 +5478,7 @@ Func_36a2a:
 .ows_36a6b
 	print_npc_text Text118a
 	script_command_02
-	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36a74
@@ -5498,7 +5498,7 @@ Func_36a2a:
 .ows_36a8f
 	print_npc_text Text118e
 	script_command_02
-	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36a98
@@ -5526,7 +5526,7 @@ Func_36a2a:
 .ows_36ac4
 	print_npc_text Text118e
 	script_command_02
-	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36acd
@@ -6008,7 +6008,7 @@ Func_36e18:
 	script_jump_if_b0z .ows_36e7c
 	print_npc_text Text1129
 	script_command_02
-	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_DITTY_1
+	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_36e7c
@@ -6022,7 +6022,7 @@ Func_36e18:
 	script_jump_if_b0z .ows_36e95
 	print_npc_text Text1129
 	script_command_02
-	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_DITTY_1
+	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_36e95
@@ -6325,7 +6325,7 @@ Func_37082:
 .ows_370dd
 	print_npc_text Text0f65
 	script_command_02
-	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_DITTY_1
+	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_370e6
@@ -6364,7 +6364,7 @@ Func_37082:
 .ows_37129
 	print_npc_text Text0f6b
 	script_command_02
-	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_DITTY_1
+	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_37132
@@ -6465,7 +6465,7 @@ Func_37179:
 .ows_371e8
 	print_npc_text Text0f7a
 	script_command_02
-	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_DITTY_1
+	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_371f1
@@ -6508,7 +6508,7 @@ Func_37179:
 .ows_3723b
 	print_npc_text Text0f80
 	script_command_02
-	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_DITTY_1
+	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_37244
@@ -6599,7 +6599,7 @@ Func_3728d:
 .ows_372e5
 	print_npc_text Text0f8d
 	script_command_02
-	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_DITTY_1
+	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_372ee
@@ -6628,7 +6628,7 @@ Func_3728d:
 .ows_3731a
 	print_npc_text Text0f92
 	script_command_02
-	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_DITTY_1
+	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_37323
@@ -6675,7 +6675,7 @@ Func_37329:
 GrCastleEntrance_MapHeader:
 	db MAP_GFX_GR_CASTLE_ENTRANCE
 	dba GrCastleEntrance_MapScripts
-	db MUSIC_GRCASTLE
+	db MUSIC_GR_CASTLE
 
 GrCastleEntrance_StepEvents:
 	map_exit 4, 8, OVERWORLD_MAP_GR, 4, 4, SOUTH
@@ -6996,7 +6996,7 @@ Script_375db:
 GrCastle_MapHeader:
 	db MAP_GFX_GR_CASTLE
 	dba GrCastle_MapScripts
-	db MUSIC_GRCASTLE
+	db MUSIC_GR_CASTLE
 
 GrCastle_StepEvents:
 	map_exit 6, 15, MAP_GR_CASTLE_ENTRANCE, 4, 3, SOUTH
@@ -7281,7 +7281,7 @@ Func_37809:
 	set_npc_direction NPC_RUI, SOUTH
 	print_npc_text Text08ff
 	script_command_02
-	start_duel BAD_GUYS_DECK_ID, MUSIC_DITTY_2
+	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37860
@@ -7308,7 +7308,7 @@ Func_37809:
 	script_call Script_37ac0
 	print_npc_text Text0905
 	script_command_02
-	start_duel BAD_GUYS_DECK_ID, MUSIC_DITTY_2
+	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37891
@@ -7337,7 +7337,7 @@ Func_37809:
 	script_call Script_37ac0
 	print_npc_text Text0905
 	script_command_02
-	start_duel BAD_GUYS_DECK_ID, MUSIC_DITTY_2
+	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_378c9
@@ -7449,21 +7449,21 @@ Script_37952:
 	print_npc_text Text0916
 	print_npc_text Text0917
 	script_command_02
-	start_duel POISON_MIST_DECK_ID, MUSIC_DITTY_2
+	start_duel POISON_MIST_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379a9
 	print_npc_text Text0918
 	print_npc_text Text0917
 	script_command_02
-	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_DITTY_2
+	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379b5
 	print_npc_text Text0919
 	print_npc_text Text0917
 	script_command_02
-	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_DITTY_2
+	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379c1
@@ -7498,21 +7498,21 @@ Script_379d7:
 	print_npc_text Text0916
 	print_npc_text Text091d
 	script_command_02
-	start_duel POISON_MIST_DECK_ID, MUSIC_DITTY_2
+	start_duel POISON_MIST_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a03
 	print_npc_text Text0918
 	print_npc_text Text091d
 	script_command_02
-	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_DITTY_2
+	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a0f
 	print_npc_text Text0919
 	print_npc_text Text091d
 	script_command_02
-	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_DITTY_2
+	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a1b

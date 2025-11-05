@@ -1,4 +1,4 @@
-Sfx90_Ch1:
+Sfx_SlotBonusHit_Ch1:
 	sfx_8 17
 	sfx_loop 2
 	sfx_1 192

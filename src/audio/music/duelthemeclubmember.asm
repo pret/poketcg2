@@ -1,4 +1,4 @@
-Music_DuelTheme1_Ch2:
+Music_DuelThemeClubMember_Ch2:
 	speed 7
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -501,7 +501,7 @@ Branch_1e191c:
 	music_ret
 
 
-Music_DuelTheme1_Ch1:
+Music_DuelThemeClubMember_Ch1:
 	speed 7
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -1305,7 +1305,7 @@ Branch_1e1dad:
 	music_ret
 
 
-Music_DuelTheme1_Ch3:
+Music_DuelThemeClubMember_Ch3:
 	speed 7
 	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
@@ -1818,7 +1818,7 @@ Branch_1e2014:
 	music_ret
 
 
-Music_DuelTheme1_Ch4:
+Music_DuelThemeClubMember_Ch4:
 	speed 7
 	octave 1
 	MainLoop

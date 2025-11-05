@@ -2514,9 +2514,9 @@ Music1_SFXPriorities:
 	db $0a ; SFX_BONE_TOSS_BENCH
 	db $0a ; SFX_COIN_HURL_BENCH
 	db $0a ; SFX_BIG_SNORE
-	db $0a ; SFX_8F
-	db $0a ; SFX_90
-	db $0a ; SFX_91
+	db $0a ; SFX_SLOT_BIG_HIT
+	db $0a ; SFX_SLOT_BONUS_HIT
+	db $0a ; SFX_SLOT_SMALL_HIT
 	db $0a ; SFX_RAZOR_LEAF
 	db $0a ; SFX_GUILLOTINE
 	db $0a ; SFX_VINE_PULL

@@ -3135,7 +3135,7 @@ DeckIDData:
 	db PRIZES_2 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3212,7 +3212,7 @@ DeckIDData:
 	db PRIZES_2 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3234,7 +3234,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3256,7 +3256,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3278,7 +3278,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3289,7 +3289,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3300,7 +3300,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TECH ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3311,7 +3311,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MASTER ; duelist intro text
 	db COIN_PIKACHU ; coin
 
@@ -3322,7 +3322,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MASTER ; duelist intro text
 	db COIN_PIKACHU ; coin
 
@@ -3333,7 +3333,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3344,7 +3344,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MEMBER ; duelist intro text
 	db COIN_PIKACHU ; coin
 
@@ -3355,7 +3355,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3366,7 +3366,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_LIGHTNING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3377,7 +3377,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_PSYCHIC_CLUB_MASTER ; duelist intro text
 	db COIN_ALAKAZAM ; coin
 
@@ -3388,7 +3388,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_PSYCHIC_CLUB_MASTER ; duelist intro text
 	db COIN_ALAKAZAM ; coin
 
@@ -3399,7 +3399,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_PSYCHIC_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3410,7 +3410,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_PSYCHIC_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3421,7 +3421,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_PSYCHIC_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3432,7 +3432,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_ROCK_CLUB_MASTER ; duelist intro text
 	db COIN_KABUTO ; coin
 
@@ -3443,7 +3443,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_ROCK_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3454,7 +3454,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_ROCK_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3465,7 +3465,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_ROCK_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3476,7 +3476,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_FIGHTING_CLUB_MASTER ; duelist intro text
 	db COIN_MACHAMP ; coin
 
@@ -3487,7 +3487,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIGHTING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3498,7 +3498,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIGHTING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3509,7 +3509,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIGHTING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3520,7 +3520,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIGHTING_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3531,7 +3531,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_GRASS_CLUB_MASTER ; duelist intro text
 	db COIN_ODDISH ; coin
 
@@ -3542,7 +3542,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_GRASS_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3553,7 +3553,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_GRASS_CLUB_MEMBER ; duelist intro text
 	db COIN_ODDISH ; coin
 
@@ -3564,7 +3564,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_GRASS_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3575,7 +3575,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_GRASS_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3586,7 +3586,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_SCIENCE_CLUB_MASTER ; duelist intro text
 	db COIN_GOLBAT ; coin
 
@@ -3597,7 +3597,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_SCIENCE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3608,7 +3608,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_SCIENCE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3619,7 +3619,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_SCIENCE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3630,7 +3630,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_WATER_CLUB_MASTER ; duelist intro text
 	db COIN_STARMIE ; coin
 
@@ -3641,7 +3641,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_WATER_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3652,7 +3652,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_WATER_CLUB_MEMBER ; duelist intro text
 	db COIN_STARMIE ; coin
 
@@ -3663,7 +3663,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_WATER_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3674,7 +3674,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_WATER_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3685,7 +3685,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_FIRE_CLUB_MASTER ; duelist intro text
 	db COIN_CHARMANDER ; coin
 
@@ -3696,7 +3696,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIRE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3707,7 +3707,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIRE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3718,7 +3718,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_FIRE_CLUB_MEMBER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3729,7 +3729,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_ENIGMATIC_MASK ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3740,7 +3740,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_ENIGMATIC_MASK ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3751,7 +3751,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_ENIGMATIC_MASK ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3762,7 +3762,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_ENIGMATIC_MASK ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3773,7 +3773,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GRAND_MASTER ; duel theme
 	db DUELIST_INTRO_GRAND_MASTER ; duelist intro text
 	db COIN_CHARMANDER ; coin
 
@@ -3784,7 +3784,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GRAND_MASTER ; duel theme
 	db DUELIST_INTRO_GRAND_MASTER ; duelist intro text
 	db COIN_PIKACHU ; coin
 
@@ -3795,7 +3795,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GRAND_MASTER ; duel theme
 	db DUELIST_INTRO_GRAND_MASTER ; duelist intro text
 	db COIN_STARMIE ; coin
 
@@ -3806,7 +3806,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GRAND_MASTER ; duel theme
 	db DUELIST_INTRO_GRAND_MASTER ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3817,7 +3817,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_GRASS_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3828,7 +3828,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_GRASS_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3839,7 +3839,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_GRASS_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_GRASS_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3850,7 +3850,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db CHLOROPHYLL ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_GRASS_FORT_LEADER ; duelist intro text
 	db COIN_GOLBAT ; coin
 
@@ -3861,7 +3861,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_TAP ; duelist intro text
 	db COIN_CHANSEY ; coin
 
@@ -3872,7 +3872,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_4X_PIKACHU ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_LIGHTNING_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3883,7 +3883,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_LIGHTNING_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_LIGHTNING_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3894,7 +3894,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db THUNDER_CHARGE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_LIGHTNING_FORT_LEADER ; duelist intro text
 	db COIN_MAGNEMITE ; coin
 
@@ -3905,7 +3905,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_FIRE_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3916,7 +3916,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_FIRE_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_FIRE_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3927,7 +3927,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_4X_EEVEE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_FIRE_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3938,7 +3938,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db FLAME_ARMOR ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_FIRE_FORT_LEADER ; duelist intro text
 	db COIN_MAGMAR ; coin
 
@@ -3949,7 +3949,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_WATER_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_WATER_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3960,7 +3960,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_4X_MAGIKARP ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_WATER_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3971,7 +3971,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db SMALL_BENCH ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_WATER_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -3982,7 +3982,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db RUNNING_WATER ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_WATER_FORT_LEADER ; duelist intro text
 	db COIN_PSYDUCK ; coin
 
@@ -3993,7 +3993,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_NO_ENERGY_REMOVAL ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_FIGHTING_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4004,7 +4004,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_FIGHTING_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_FIGHTING_FORT_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4015,7 +4015,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db EARTH_POWER ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_FIGHTING_FORT_LEADER ; duelist intro text
 	db COIN_MACHAMP ; coin
 
@@ -4026,7 +4026,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_PSYCHIC_ENERGY ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4037,7 +4037,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db LOW_RESISTANCE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4048,7 +4048,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_6X_GASTLY_HAUNTER ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4059,7 +4059,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_NO_TRAINERS ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_GR_PSYCHIC_STRONGHOLD_MEMBER ; duelist intro text
 	db COIN_GR ; coin
 
@@ -4070,7 +4070,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db ENERGY_RETURN ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_PSYCHIC_FORT_LEADER ; duelist intro text
 	db COIN_MEW ; coin
 
@@ -4081,7 +4081,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_COLORLESS_NISHIJIMA ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN ; duelist intro text
 	db COIN_SNORLAX ; coin
 
@@ -4092,7 +4092,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_COLORLESS_ISHII ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN ; duelist intro text
 	db COIN_SNORLAX ; coin
 
@@ -4103,7 +4103,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_COLORLESS_SAMEJIMA ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_COLORLESS_ALTAR_GUARDIAN ; duelist intro text
 	db COIN_SNORLAX ; coin
 
@@ -4125,7 +4125,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db DECK_REQUIREMENT_FOUR_GB_LEGENDARY ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_BIG_BOSS ; duelist intro text
 	db COIN_HORSEA ; coin
 
@@ -4136,7 +4136,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db TOUGH_ESCAPE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_BIG_BOSS ; duelist intro text
 	db COIN_ARBOK ; coin
 
@@ -4147,7 +4147,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db BLACK_HOLE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_BIG_BOSS ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4158,7 +4158,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db LOW_RESISTANCE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GR_BIG_BOSS ; duelist intro text
 	db COIN_GENGAR ; coin
 
@@ -4169,7 +4169,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GR_KING ; duel theme
 	db DUELIST_INTRO_GR_KING ; duelist intro text
 	db COIN_TOGEPI ; coin
 
@@ -4180,7 +4180,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GR_KING ; duel theme
 	db DUELIST_INTRO_GR_KING ; duelist intro text
 	db COIN_TOGEPI ; coin
 
@@ -4191,7 +4191,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GR_KING ; duel theme
 	db DUELIST_INTRO_GR_KING ; duelist intro text
 	db COIN_TOGEPI ; coin
 
@@ -4202,7 +4202,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_3 ; duel theme
+	db MUSIC_DUEL_THEME_GR_KING ; duel theme
 	db DUELIST_INTRO_GR_KING ; duelist intro text
 	db COIN_TOGEPI ; coin
 
@@ -4213,7 +4213,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MEMBER ; duel theme
 	db DUELIST_INTRO_DUNGEON_MASTER ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4224,7 +4224,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_DUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_CLUB_MASTER ; duel theme
 	db DUELIST_INTRO_DUNGEON_MASTER ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4235,7 +4235,7 @@ DeckIDData:
 	db PRIZES_4 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_DUNGEON_MASTER ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4246,7 +4246,7 @@ DeckIDData:
 	db PRIZES_5 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_1 ; duel theme
+	db MUSIC_DUEL_THEME_GR_MEMBER ; duel theme
 	db DUELIST_INTRO_DUNGEON_MASTER ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4257,7 +4257,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_DUNGEON_MASTER ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4279,7 +4279,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_IMAKUNI2 ; duel theme
+	db MUSIC_IMAKUNI_RED ; duel theme
 	db DUELIST_INTRO_STRANGE_LIFE_FORM ; duelist intro text
 	db COIN_JIGGLYPUFF ; coin
 
@@ -4345,7 +4345,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4356,7 +4356,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4367,7 +4367,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4378,7 +4378,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4389,7 +4389,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4400,7 +4400,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4411,7 +4411,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4422,7 +4422,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 
@@ -4433,7 +4433,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_GRDUELTHEME_2 ; duel theme
+	db MUSIC_DUEL_THEME_GR_LEADER ; duel theme
 	db DUELIST_INTRO_GHOST_MASTER ; duelist intro text
 	db COIN_LUGIA ; coin
 

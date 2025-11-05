@@ -145,9 +145,9 @@ SFXHeaderPointers1:
 	dw Sfx_BoneToss_Bench
 	dw Sfx_CoinHurl_Bench
 	dw Sfx_BigSnore
-	dw Sfx8f
-	dw Sfx90
-	dw Sfx91
+	dw Sfx_SlotBigHit
+	dw Sfx_SlotBonusHit
+	dw Sfx_SlotSmallHit
 	dw Sfx_RazorLeaf
 	dw Sfx_Guillotine
 	dw Sfx_VinePull
@@ -902,20 +902,20 @@ Sfx5f:
 	dw Sfx_BigSnore_Ch1
 	dw Sfx_BigSnore_Ch2
 
-;Sfx8f
-	db BANK(Sfx8f)
+;Sfx_SlotBigHit
+	db BANK(Sfx_SlotBigHit)
 	db %0001
-	dw Sfx8f_Ch1
+	dw Sfx_SlotBigHit_Ch1
 
-;Sfx90
-	db BANK(Sfx90)
+;Sfx_SlotBonusHit
+	db BANK(Sfx_SlotBonusHit)
 	db %0001
-	dw Sfx90_Ch1
+	dw Sfx_SlotBonusHit_Ch1
 
-;Sfx91
-	db BANK(Sfx91)
+;Sfx_SlotSmallHit
+	db BANK(Sfx_SlotSmallHit)
 	db %0001
-	dw Sfx91_Ch1
+	dw Sfx_SlotSmallHit_Ch1
 
 ;Sfx_RazorLeaf
 	db BANK(Sfx_RazorLeaf)

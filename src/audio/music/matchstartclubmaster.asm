@@ -1,4 +1,4 @@
-Music_MatchStart2_Ch1:
+Music_MatchStartClubMaster_Ch1:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8
@@ -88,7 +88,7 @@ Music_MatchStart2_Ch1:
 	music_end
 
 
-Music_MatchStart2_Ch2:
+Music_MatchStartClubMaster_Ch2:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8

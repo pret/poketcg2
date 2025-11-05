@@ -1577,7 +1577,7 @@ Func_453f9:
 	add c
 	farcall GetVarValue
 	ld [wNPCDuelDeckID], a
-	ld a, MUSIC_MATCHSTART_2
+	ld a, MUSIC_MATCH_START_CLUB_MASTER
 	ld [wDuelStartTheme], a
 	ld hl, wd583
 	set 1, [hl]
@@ -1689,7 +1689,7 @@ Func_45488:
 Func_454ab:
 	call Func_45488
 	ld [wNPCDuelDeckID], a
-	ld a, MUSIC_MATCHSTART_2
+	ld a, MUSIC_MATCH_START_CLUB_MASTER
 	ld [wDuelStartTheme], a
 	ld hl, wd583
 	set 1, [hl]

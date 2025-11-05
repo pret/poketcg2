@@ -141,7 +141,7 @@ MainDuelLoop:
 	cp TURN_PLAYER_LOST
 	jr z, .asm_41b3
 	ld b, DUEL_ANIM_DUEL_DRAW
-	ld c, MUSIC_MATCHDRAW
+	ld c, MUSIC_MATCH_DRAW
 	ldtx hl, DuelWasADrawText
 	ld a, $2
 	jr .set_duel_result
@@ -167,7 +167,7 @@ MainDuelLoop:
 
 .not_link_duel
 	ld b, DUEL_ANIM_DUEL_WIN
-	ld c, MUSIC_MATCHVICTORY
+	ld c, MUSIC_MATCH_VICTORY
 	ldtx hl, WonDuelText
 	xor a
 	jr .set_duel_result
@@ -177,7 +177,7 @@ MainDuelLoop:
 	jr nz, .asm_4192
 .asm_41b9
 	ld b, DUEL_ANIM_DUEL_LOSS
-	ld c, MUSIC_MATCHLOSS
+	ld c, MUSIC_MATCH_LOSS
 	ldtx hl, LostDuelText
 	ld a, $1
 .set_duel_result

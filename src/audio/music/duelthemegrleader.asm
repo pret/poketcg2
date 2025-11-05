@@ -1,4 +1,4 @@
-Music_GRDuelTheme2_Ch2:
+Music_DuelThemeGRLeader_Ch2:
 	preset 0
 	octave 3
 	speed 1
@@ -976,7 +976,7 @@ Branch_1ef628:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch1:
+Music_DuelThemeGRLeader_Ch1:
 	preset 9
 	octave 2
 	speed 1
@@ -1912,7 +1912,7 @@ Branch_1efa62:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch3:
+Music_DuelThemeGRLeader_Ch3:
 	wave 5
 	speed 1
 	volume_envelope 2, 0
@@ -2736,7 +2736,7 @@ Branch_1efdd9:
 	music_ret
 
 
-Music_GRDuelTheme2_Ch4:
+Music_DuelThemeGRLeader_Ch4:
 	octave 1
 	speed 1
 	snare4 14

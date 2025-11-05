@@ -142,9 +142,9 @@
 	const SFX_BONE_TOSS_BENCH          ; $8c
 	const SFX_COIN_HURL_BENCH          ; $8d
 	const SFX_BIG_SNORE                ; $8e
-	const SFX_8F                       ; $8f
-	const SFX_90                       ; $90
-	const SFX_91                       ; $91
+	const SFX_SLOT_BIG_HIT             ; $8f
+	const SFX_SLOT_BONUS_HIT           ; $90
+	const SFX_SLOT_SMALL_HIT           ; $91
 	const SFX_RAZOR_LEAF               ; $92
 	const SFX_GUILLOTINE               ; $93
 	const SFX_VINE_PULL                ; $94

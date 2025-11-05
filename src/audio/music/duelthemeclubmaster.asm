@@ -1,4 +1,4 @@
-Music_DuelTheme2_Ch2:
+Music_DuelThemeClubMaster_Ch2:
 	speed 9
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -429,7 +429,7 @@ Branch_1e2326:
 	music_ret
 
 
-Music_DuelTheme2_Ch1:
+Music_DuelThemeClubMaster_Ch1:
 	speed 9
 	stereo_panning TRUE, TRUE
 	vibrato_type 8
@@ -841,7 +841,7 @@ Branch_1e2525:
 	music_ret
 
 
-Music_DuelTheme2_Ch3:
+Music_DuelThemeClubMaster_Ch3:
 	speed 9
 	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
@@ -1099,7 +1099,7 @@ Branch_1e267b:
 	music_ret
 
 
-Music_DuelTheme2_Ch4:
+Music_DuelThemeClubMaster_Ch4:
 	speed 9
 	Loop 2
 	rest 12

@@ -1,4 +1,4 @@
-Music_GameCorner_Ch2:
+Music_GameCenter_Ch2:
 	MainLoop
 	preset 17
 	octave 1
@@ -363,7 +363,7 @@ Branch_1e75c7:
 	music_ret
 
 
-Music_GameCorner_Ch1:
+Music_GameCenter_Ch1:
 	MainLoop
 	volume_envelope 12, 2
 	duty 2
@@ -819,7 +819,7 @@ Branch_1e778f:
 	music_ret
 
 
-Music_GameCorner_Ch3:
+Music_GameCenter_Ch3:
 	wave 1
 	volume_envelope 2, 0
 	echo 64
@@ -1369,7 +1369,7 @@ Music_GameCorner_Ch3:
 	EndMainLoop
 
 
-Music_GameCorner_Ch4:
+Music_GameCenter_Ch4:
 	MainLoop
 	octave 1
 	speed 1

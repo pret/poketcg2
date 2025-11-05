@@ -2391,8 +2391,8 @@ Music7_SFXPriorities:
 INCLUDE "audio/music7_headers.asm"
 
 INCLUDE "audio/music/club2.asm"
-INCLUDE "audio/music/grdueltheme1.asm"
-INCLUDE "audio/music/grdueltheme3.asm"
-INCLUDE "audio/music/ditty6.asm"
+INCLUDE "audio/music/duelthemegrmember.asm"
+INCLUDE "audio/music/duelthemegrking.asm"
+INCLUDE "audio/music/grandmastercupchampion.asm"
 
 	ds $7c5

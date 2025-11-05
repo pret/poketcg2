@@ -2398,7 +2398,7 @@ INCLUDE "audio/music/ronald.asm"
 INCLUDE "audio/music/imakuni.asm"
 INCLUDE "audio/music/hallofhonor.asm"
 INCLUDE "audio/music/song12.asm"
-INCLUDE "audio/music/gamecorner.asm"
+INCLUDE "audio/music/gamecenter.asm"
 INCLUDE "audio/music/grblimp.asm"
 
 	ds $2a

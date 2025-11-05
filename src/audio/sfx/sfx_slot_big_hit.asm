@@ -1,4 +1,4 @@
-Sfx8f_Ch1:
+Sfx_SlotBigHit_Ch1:
 	sfx_8 17
 	sfx_1 192
 	sfx_2 4

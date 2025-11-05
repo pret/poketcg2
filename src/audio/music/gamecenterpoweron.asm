@@ -1,4 +1,4 @@
-Music_Ditty3_Ch2:
+Music_GameCenterPowerOn_Ch2:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -20,7 +20,7 @@ Music_Ditty3_Ch2:
 	music_end
 
 
-Music_Ditty3_Ch1:
+Music_GameCenterPowerOn_Ch1:
 	preset 2
 	speed 1
 	stereo_panning 15, 15
@@ -44,7 +44,7 @@ Music_Ditty3_Ch1:
 	music_end
 
 
-Music_Ditty3_Ch3:
+Music_GameCenterPowerOn_Ch3:
 	wave 5
 	speed 1
 	volume_envelope 4, 0

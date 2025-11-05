@@ -1,4 +1,4 @@
-Music_Ditty6_Ch2:
+Music_GrandMasterCupChampion_Ch2:
 	preset 34
 	speed 1
 	stereo_panning 15, 15
@@ -76,7 +76,7 @@ Music_Ditty6_Ch2:
 	music_end
 
 
-Music_Ditty6_Ch1:
+Music_GrandMasterCupChampion_Ch1:
 	preset 23
 	speed 1
 	stereo_panning 15, 15
@@ -223,7 +223,7 @@ Music_Ditty6_Ch1:
 	music_end
 
 
-Music_Ditty6_Ch3:
+Music_GrandMasterCupChampion_Ch3:
 	wave 5
 	volume_envelope 2, 0
 	echo 96
@@ -280,7 +280,7 @@ Music_Ditty6_Ch3:
 	music_end
 
 
-Music_Ditty6_Ch4:
+Music_GrandMasterCupChampion_Ch4:
 	octave 1
 	speed 1
 	stereo_panning 15, 15

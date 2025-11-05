@@ -1,4 +1,4 @@
-Music_Ditty4_Ch2:
+Music_Fanfare1_Ch2:
 	preset 0
 	speed 1
 	stereo_panning 15, 15
@@ -22,7 +22,7 @@ Music_Ditty4_Ch2:
 	music_end
 
 
-Music_Ditty4_Ch1:
+Music_Fanfare1_Ch1:
 	preset 0
 	speed 1
 	stereo_panning 15, 15
@@ -46,7 +46,7 @@ Music_Ditty4_Ch1:
 	music_end
 
 
-Music_Ditty4_Ch3:
+Music_Fanfare1_Ch3:
 	wave 4
 	speed 1
 	volume_envelope 4, 0

@@ -70,7 +70,7 @@ Func_30065:
 OverworldGr_MapHeader:
 	db OVERWORLD_MAP_GFX_GR
 	dba OverworldGr_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 OverworldGr_MapScripts:
 	dbw $01, Func_30092
@@ -89,7 +89,7 @@ Func_30092:
 	ccf
 	ret
 .asm_300a0
-	ld a, MUSIC_GRBLIMP
+	ld a, MUSIC_GR_BLIMP
 	ld [wNextMusic], a
 	scf
 	ccf
@@ -1273,7 +1273,7 @@ Func_311d5:
 	script_command_01
 	print_npc_text QueenDuelStart2Text
 	script_command_02
-	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_DITTY_1
+	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_31268
@@ -1451,7 +1451,7 @@ Func_313bc:
 GrChallengeHallEntrance_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL_ENTRANCE
 	dba GrChallengeHallEntrance_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrChallengeHallEntrance_StepEvents:
 	map_exit 4, 8, OVERWORLD_MAP_GR, 4, 4, SOUTH
@@ -1493,7 +1493,7 @@ Func_3142d:
 	cp $06
 	jr nz, .asm_31444
 .asm_3143f
-	ld a, MUSIC_GRCHALLENGECUP
+	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
 .asm_31444
 	scf
@@ -1759,7 +1759,7 @@ Func_3165e:
 	scf
 	ret
 .asm_3166a
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2079,7 +2079,7 @@ Func_31871:
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	print_npc_text Text0d95
 	script_command_02
-	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318c1
@@ -2094,7 +2094,7 @@ Func_31871:
 	script_jump_if_b0z .ows_318dc
 	print_npc_text Text0d98
 	script_command_02
-	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318dc
@@ -2307,7 +2307,7 @@ Func_31a12:
 	script_jump_if_b0z .ows_31a88
 	print_npc_text Text0dda
 	script_command_02
-	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31a88
@@ -2321,7 +2321,7 @@ Func_31a12:
 	script_jump_if_b0z .ows_31aa1
 	print_npc_text Text0ddd
 	script_command_02
-	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31aa1
@@ -2512,7 +2512,7 @@ Func_31bc8:
 .ows_31c04
 	print_npc_text Text0da8
 	script_command_02
-	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c0d
@@ -2532,7 +2532,7 @@ Func_31bc8:
 .ows_31c28
 	print_npc_text Text0dac
 	script_command_02
-	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c31
@@ -2954,7 +2954,7 @@ Func_31f52:
 	script_jump_if_b0z .ows_31f87
 	print_npc_text Text11fd
 	script_command_02
-	start_duel DANGEROUS_BENCH_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DANGEROUS_BENCH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31f87
@@ -3090,7 +3090,7 @@ Func_32057:
 .ows_32088
 	print_npc_text Text11de
 	script_command_02
-	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32091
@@ -3110,7 +3110,7 @@ Func_32057:
 .ows_320ac
 	print_npc_text Text11e2
 	script_command_02
-	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_320b5
@@ -3333,7 +3333,7 @@ Func_32204:
 .ows_3226e
 	print_npc_text Text11b6
 	script_command_02
-	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32277
@@ -3353,7 +3353,7 @@ Func_32204:
 .ows_32292
 	print_npc_text Text11ba
 	script_command_02
-	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3229b
@@ -3646,7 +3646,7 @@ Func_32477:
 	script_jump_if_b0z .ows_324bc
 	print_npc_text Text11d3
 	script_command_02
-	start_duel QUICK_ATTACK_DECK_ID, MUSIC_DITTY_1
+	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324bc
@@ -3663,7 +3663,7 @@ Func_32477:
 	script_jump_if_b0z .ows_324d9
 	print_npc_text Text11d3
 	script_command_02
-	start_duel QUICK_ATTACK_DECK_ID, MUSIC_DITTY_1
+	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324d9
@@ -3939,7 +3939,7 @@ Func_32712:
 	scf
 	ret
 .asm_3271e
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -4178,7 +4178,7 @@ Func_328ae:
 	script_jump_if_b0z .ows_328e8
 	print_npc_text Text0c9a
 	script_command_02
-	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_328e8
@@ -4192,7 +4192,7 @@ Func_328ae:
 	script_jump_if_b0z .ows_32901
 	print_npc_text Text0c9d
 	script_command_02
-	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32901
@@ -4457,7 +4457,7 @@ Func_32a76:
 .ows_32aea
 	print_npc_text Text0cd1
 	script_command_02
-	start_duel FIREBALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32af3
@@ -4501,7 +4501,7 @@ Func_32a76:
 .ows_32b34
 	print_npc_text Text0cd1
 	script_command_02
-	start_duel FIREBALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32b3d
@@ -4738,7 +4738,7 @@ Func_32c9a:
 .ows_32cec
 	print_npc_text Text0cac
 	script_command_02
-	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32cf5
@@ -4758,7 +4758,7 @@ Func_32c9a:
 .ows_32d10
 	print_npc_text Text0cac
 	script_command_02
-	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32d19
@@ -4992,7 +4992,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32eb8
 	print_npc_text Text0c88
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32eb8
@@ -5006,7 +5006,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32ed1
 	print_npc_text Text0c8b
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ed1
@@ -5027,7 +5027,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32ef7
 	print_npc_text Text0c8b
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ef7
@@ -5374,7 +5374,7 @@ Func_3316a:
 .ows_331a6
 	print_npc_text Text122c
 	script_command_02
-	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331af
@@ -5394,7 +5394,7 @@ Func_3316a:
 .ows_331ca
 	print_npc_text Text1230
 	script_command_02
-	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331d3
@@ -5547,7 +5547,7 @@ Func_332a6:
 	script_jump_if_b0z .ows_332e0
 	print_npc_text Text121a
 	script_command_02
-	start_duel WATER_STREAM_DECK_ID, MUSIC_DITTY_1
+	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332e0
@@ -5561,7 +5561,7 @@ Func_332a6:
 	script_jump_if_b0z .ows_332f9
 	print_npc_text Text121d
 	script_command_02
-	start_duel WATER_STREAM_DECK_ID, MUSIC_DITTY_1
+	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332f9

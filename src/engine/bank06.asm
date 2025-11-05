@@ -3632,7 +3632,7 @@ DecideCardToReceiveFromCardPop:
 	ld b, CARDPOP_DIAMOND
 	jr .got_rarity
 .star_rarity
-	ld a, MUSIC_MATCHVICTORY
+	ld a, MUSIC_MATCH_VICTORY
 	ld b, CARDPOP_STAR
 	jr .got_rarity
 .phantom
@@ -4280,7 +4280,7 @@ IngameCardPop:
 	ld [hl], d
 	ld de, IMAKUNI_CARD
 	call LoadCardDataToBuffer1_FromCardID
-	ld a, MUSIC_MATCHVICTORY
+	ld a, MUSIC_MATCH_VICTORY
 	ld [wCardPopCardObtainSong], a
 	ld bc, .data2
 ; fallthrough
