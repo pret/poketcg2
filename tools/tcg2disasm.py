@@ -1089,7 +1089,7 @@ class Disassembler(object):
 
 		return None
 
-	def output_bank_opcodes(self, start_offset, stop_offset, hard_stop=False, parse_data=False, parse_scripts=False):
+	def output_bank_opcodes(self, start_offset, hard_stop_offset=None, parse_data=False, parse_scripts=False):
 		"""
 		Output bank opcodes.
 
@@ -1110,13 +1110,9 @@ class Disassembler(object):
 
 		bank_id = start_offset // 0x4000
 
-		stop_offset_undefined = False
-
-		# check if stop_offset isn't defined
-		if stop_offset is None:
-			stop_offset_undefined = True
-			# stop at the end of the current bank if stop_offset is not defined
-			stop_offset = (bank_id + 1) * 0x4000 - 1
+		if hard_stop_offset is None:
+			# stop at the end of the current bank if hard_stop_offset is not defined
+			hard_stop_offset = (bank_id + 1) * 0x4000 - 1
 
 		if debug:
 			print(f"bank id is: {bank_id}")
@@ -1441,8 +1437,8 @@ class Disassembler(object):
 			# update the local offset
 			local_offset = get_local_address(offset)
 
-			# stop processing regardless of function end if we've passed the stop offset and the hard stop (dry run) flag is set
-			if hard_stop and offset >= stop_offset:
+			# stop processing regardless of function end if we've passed the hard stop offset
+			if hard_stop_offset and offset >= hard_stop_offset:
 				break
 			# check if this is the end of the function, or we're processing data (StartScript begins ow scripting)
 			elif (opcode_byte in unconditional_jumps + unconditional_returns) or (not parse_scripts and opcode_byte in call_commands and target_label == "StartScript") or is_data:
@@ -1450,7 +1446,7 @@ class Disassembler(object):
 				if local_offset not in byte_labels.keys() and local_offset in data_tables.keys() and created_but_unused_labels_exist(data_tables) and parse_data:
 					is_data = True
 				#stop reading at a jump, relative jump or return
-				elif all_byte_labels_are_defined(byte_labels) and (offset >= stop_offset or stop_offset_undefined):
+				elif all_byte_labels_are_defined(byte_labels):
 					break
 				# otherwise, add some spacing
 				output += "\n"
@@ -1500,16 +1496,18 @@ class Disassembler(object):
 		return {"output": output, "start_offset": start_offset, "end_offset": offset,
 		  "byte_labels": byte_labels, "data_tables": data_tables, "undefined_functions": undefined_functions}
 
-	def recursively_output_functions(self, addresses, hard_stop=False, parse_data=False, parse_scripts=False, visited=set()):
+	def recursively_output_functions(self, addresses, stop_addr, parse_data=False, parse_scripts=False, visited=set()):
 		function_outputs = []
 
 		for current_address in addresses:
 			if current_address not in visited:
 				visited.add(current_address)
 
-				o = self.output_bank_opcodes(current_address,None,hard_stop,parse_data,parse_scripts)
+				# if we pass a hard stop address that is > current_address, the output would stop immediately
+				stop = stop_addr if stop_addr and current_address < stop_addr else None
+				o = self.output_bank_opcodes(current_address,stop,parse_data,parse_scripts)
 				function_outputs.append(o)
-				function_outputs += self.recursively_output_functions(o["undefined_functions"], hard_stop, parse_data, parse_scripts, visited)
+				function_outputs += self.recursively_output_functions(o["undefined_functions"], stop_addr, parse_data, parse_scripts, visited)
 
 		return function_outputs
 
@@ -1564,13 +1562,12 @@ if __name__ == "__main__":
 	ap.add_argument("-q", "--quiet", dest="quiet", action="store_true")
 	ap.add_argument("-a", "--append", dest="append", action="store_true")
 	ap.add_argument("-nw", "--no-write", dest="no_write", action="store_true")
-	ap.add_argument("-d", "--dry-run", dest="dry_run", action="store_true")
 	ap.add_argument("-pd", "--parse_data", dest="parse_data", action="store_true")
 	ap.add_argument("-ps", "--parse_scripts", dest="parse_scripts", action="store_true")
 	ap.add_argument("--recurse", dest="recurse", action="store_true")
 	ap.add_argument("--sections", dest="sections", action="store_true")
-	ap.add_argument('offset', type=str)
-	ap.add_argument('end', nargs='?')
+	ap.add_argument("--hard-stop", dest="hard_stop", type=str)
+	ap.add_argument('addresses', type=str, nargs="+")
 
 	args = ap.parse_args()
 	conf = configuration.Config()
@@ -1583,15 +1580,14 @@ if __name__ == "__main__":
 	# run the disassembler and return the output
 	function_outputs = []
 
+	# get global addresses
+	addresses = [get_raw_addr(a) for a in args.addresses]
+	stop_addr = get_raw_addr(args.hard_stop)
 	if args.recurse:
-		# get global addresses
-		addresses = [get_raw_addr(s) for s in args.offset.split(",")]
-		function_outputs += disasm.recursively_output_functions(addresses,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts)
+		function_outputs += disasm.recursively_output_functions(addresses,stop_addr,parse_data=args.parse_data, parse_scripts=args.parse_scripts)
 	else:
-		# get global address of the start and stop offsets
-		start_addr = get_raw_addr(args.offset)
-		stop_addr = get_raw_addr(args.end)
-		function_outputs.append(disasm.output_bank_opcodes(start_addr,stop_addr,hard_stop=args.dry_run,parse_data=args.parse_data, parse_scripts=args.parse_scripts))
+		for start_addr in addresses:
+			function_outputs.append(disasm.output_bank_opcodes(start_addr,stop_addr,parse_data=args.parse_data, parse_scripts=args.parse_scripts))
 
 	sort_and_add_sections(function_outputs, args.sections)
 
