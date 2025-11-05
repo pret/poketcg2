@@ -15,7 +15,7 @@
 	const MUSIC_CLUB_2                    ; $0d
 	const MUSIC_CLUB_3                    ; $0e
 	const MUSIC_RONALD                    ; $0f
-	const MUSIC_IMAKUNI                   ; $10
+	const MUSIC_IMAKUNI_BLACK             ; $10
 	const MUSIC_HALL_OF_HONOR             ; $11
 	const MUSIC_12                        ; $12
 	const MUSIC_13                        ; $13

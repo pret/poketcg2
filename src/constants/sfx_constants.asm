@@ -138,7 +138,7 @@
 	const SFX_STRONGHOLD_PLATFORM_DOWN ; $88
 	const SFX_GR_BLIMP_HATCH_CLOSE     ; $89
 	const SFX_GR_BLIMP_HATCH_OPEN      ; $8a
-	const SFX_GR_BLIMP_BEAM            ; $8b
+	const SFX_GR_BLIMP_TRACTOR_BEAM    ; $8b
 	const SFX_BONE_TOSS_BENCH          ; $8c
 	const SFX_COIN_HURL_BENCH          ; $8d
 	const SFX_BIG_SNORE                ; $8e

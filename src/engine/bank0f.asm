@@ -163,7 +163,7 @@ Prologue::
 	ret
 
 .DoGRBlimpBeamAnimation:
-	ld a, SFX_GR_BLIMP_BEAM
+	ld a, SFX_GR_BLIMP_TRACTOR_BEAM
 	call PlaySFX
 	ld a, NPC_GR_BLIMP
 	farcall GetOWObjectPosition

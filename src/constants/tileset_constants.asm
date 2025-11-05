@@ -327,12 +327,12 @@
 	const TILESET_WARP_SPARKLES               ; $145
 	const TILESET_GR_BLIMP                    ; $146
 	const TILESET_TRACTOR_BEAM                ; $147
-	const TILESET_HIT                         ; $148
+	const TILESET_GLOW                        ; $148
 	const TILESET_PARALYSIS                   ; $149
 	const TILESET_SLEEP                       ; $14a
 	const TILESET_CONFUSION_STAR              ; $14b
 	const TILESET_POISON                      ; $14c
-	const TILESET_GLOW                        ; $14d
+	const TILESET_HIT                         ; $14d
 	const TILESET_DAMAGE                      ; $14e
 	const TILESET_THUNDER                     ; $14f
 	const TILESET_LIGHTNING                   ; $150
@@ -387,9 +387,9 @@
 	const TILESET_CAT_PUNCH                   ; $181
 	const TILESET_ELECTRIC_WAVE               ; $182
 	const TILESET_FIREBALLS                   ; $183
-	const TILESET_BENCH_MANIP                 ; $184
+	const TILESET_BENCH_MANIPULATION          ; $184
 	const TILESET_PSYCHIC_BEAM                ; $185
-	const TILESET_BENCH_PSYCHIC_BEAM          ; $186
+	const TILESET_PSYCHIC_BEAM_BENCH          ; $186
 	const TILESET_ROCK_THROW                  ; $187
 	const TILESET_MEGA_PUNCH                  ; $188
 	const TILESET_PSYPUNCH                    ; $189
@@ -402,7 +402,7 @@
 	const TILESET_QUESTION_MARK_SMALL         ; $190
 	const TILESET_SKULL_BASH                  ; $191
 	const TILESET_COIN_HURL                   ; $192
-	const TILESET_193                         ; $193
+	const TILESET_TELEPORT                    ; $193
 	const TILESET_FOLLOW_ME                   ; $194
 	const TILESET_SWIFT                       ; $195
 	const TILESET_3D_ATTACK                   ; $196

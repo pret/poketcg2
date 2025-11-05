@@ -884,7 +884,7 @@ OWRonaldGfx::
 	dw 20 ; length
 	INCBIN "gfx/overworld_sprites/ronald.2bpp"
 
-DuelPhysicalMovesGfx::
+DuelGlowGfx::
 	dw 9 ; length
 	INCBIN "gfx/duel/anims/glow.2bpp"
 
@@ -1010,7 +1010,7 @@ OWIsaacGfx::
 	dw 20 ; length
 	INCBIN "gfx/overworld_sprites/isaac.2bpp"
 
-DuelImpactGfx::
+DuelHitGfx::
 	dw 9 ; length
 	INCBIN "gfx/duel/anims/hit.2bpp"
 
@@ -1895,15 +1895,15 @@ DuelFireballsGfx::
 	dw 43 ; length
 	INCBIN "gfx/duel/anims/fireballs.2bpp"
 
-DuelBenchManipGfx::
+DuelBenchManipulationGfx::
 	dw 12 ; length
-	INCBIN "gfx/duel/anims/bench_manip.2bpp"
+	INCBIN "gfx/duel/anims/bench_manipulation.2bpp"
 
 DuelPsychicBeamGfx::
 	dw 49 ; length
 	INCBIN "gfx/duel/anims/psychic_beam.2bpp"
 
-DuelBenchPsychicBeamGfx::
+DuelPsychicBeamBenchGfx::
 	dw 34 ; length
 	INCBIN "gfx/duel/anims/psychic_beam_bench.2bpp"
 
@@ -1979,7 +1979,7 @@ DuelFocusBlastGfx::
 	dw 23 ; length
 	INCBIN "gfx/duel/anims/focus_blast.2bpp"
 
-DuelBenchFocusBlastGfx::
+DuelFocusBlastBenchGfx::
 	dw 12 ; length
 	INCBIN "gfx/duel/anims/focus_blast_bench.2bpp"
 

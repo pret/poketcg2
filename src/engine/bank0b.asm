@@ -1536,7 +1536,7 @@ Func_2cbba:
 	scf
 	ret
 .asm_2cbc6
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2677,7 +2677,7 @@ Func_2d472:
 	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2d486
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	ld [wNextMusic], a
 .asm_2d486
 	scf
@@ -2692,7 +2692,7 @@ Func_2d489:
 	scf
 	ret
 .asm_2d495
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -5175,7 +5175,7 @@ Func_2e709:
 	scf
 	ret
 .asm_2e715
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -6177,7 +6177,7 @@ Func_2ee85:
 	scf
 	ret
 .asm_2ee91
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -7279,7 +7279,7 @@ Func_2f6b2:
 	scf
 	ret
 .asm_2f6be
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf

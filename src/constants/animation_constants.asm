@@ -103,9 +103,9 @@
 	const DUEL_ANIM_DUEL_LOSS             ; $5e
 	const DUEL_ANIM_DUEL_DRAW             ; $5f
 	const DUEL_ANIM_UNUSED_DECK_PAUSE     ; $60
-	const DUEL_ANIM_UNUSED_61             ; $61
-	const DUEL_ANIM_UNUSED_62             ; $62
-	const DUEL_ANIM_UNUSED_63             ; $63
+	const DUEL_ANIM_PLACEHOLDER_61        ; $61
+	const DUEL_ANIM_PLACEHOLDER_62        ; $62
+	const DUEL_ANIM_PLACEHOLDER_63        ; $63
 	const DUEL_ANIM_FIREBALL              ; $64
 	const DUEL_ANIM_CONTINUOUS_FIREBALL   ; $65
 	const DUEL_ANIM_BENCH_MANIPULATION    ; $66
@@ -154,7 +154,7 @@ DEF DUEL_SCREEN_ANIMS EQU const_value
 	; this animation is only played within DUEL_ANIM_SHOW_DAMAGE
 	const DUEL_ANIM_DAMAGE_HUD            ; $8d
 
-	const_def $96
+	const_skip 8
 	; animations passed this point are treated differently
 DEF DUEL_SPECIAL_ANIMS EQU const_value
 	const DUEL_ANIM_SET_SCREEN            ; $96

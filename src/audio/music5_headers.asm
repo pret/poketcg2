@@ -18,7 +18,7 @@ SongBanks5:
 	db BANK(Music_Club2)
 	db BANK(Music_Club3)
 	db BANK(Music_Ronald)
-	db BANK(Music_Imakuni)
+	db BANK(Music_ImakuniBlack)
 	db BANK(Music_HallOfHonor)
 	db BANK(Music_Song12)
 	db BANK(Music_Song13)
@@ -80,7 +80,7 @@ SongHeaderPointers5:
 	dw Music_Club2
 	dw Music_Club3
 	dw Music_Ronald
-	dw Music_Imakuni
+	dw Music_ImakuniBlack
 	dw Music_HallOfHonor
 	dw Music_Song12
 	dw Music_Song13
@@ -233,12 +233,12 @@ SongHeaderPointers5:
 	dw Music_Ronald_Ch3
 	dw Music_Ronald_Ch4
 
-;Music_Imakuni
+;Music_ImakuniBlack
 	db %1111
-	dw Music_Imakuni_Ch1
-	dw Music_Imakuni_Ch2
-	dw Music_Imakuni_Ch3
-	dw Music_Imakuni_Ch4
+	dw Music_ImakuniBlack_Ch1
+	dw Music_ImakuniBlack_Ch2
+	dw Music_ImakuniBlack_Ch3
+	dw Music_ImakuniBlack_Ch4
 
 ;Music_HallOfHonor
 	db %0111

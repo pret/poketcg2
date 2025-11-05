@@ -141,7 +141,7 @@ SFXHeaderPointers1:
 	dw Sfx_StrongholdPlatformDown
 	dw Sfx_GRBlimpHatchClose
 	dw Sfx_GRBlimpHatchOpen
-	dw Sfx_GRBlimpBeam
+	dw Sfx_GRBlimpTractorBeam
 	dw Sfx_BoneToss_Bench
 	dw Sfx_CoinHurl_Bench
 	dw Sfx_BigSnore
@@ -879,10 +879,10 @@ Sfx5f:
 	dw Sfx_GRBlimpHatchOpen_Ch1
 	dw Sfx_GRBlimpHatchOpen_Ch2
 
-;Sfx_GRBlimpBeam
-	db BANK(Sfx_GRBlimpBeam)
+;Sfx_GRBlimpTractorBeam
+	db BANK(Sfx_GRBlimpTractorBeam)
 	db %0001
-	dw Sfx_GRBlimpBeam_Ch1
+	dw Sfx_GRBlimpTractorBeam_Ch1
 
 ;Sfx_BoneToss_Bench
 	db BANK(Sfx_BoneToss_Bench)

@@ -1,4 +1,4 @@
-Sfx_GRBlimpBeam_Ch1:
+Sfx_GRBlimpTractorBeam_Ch1:
 	sfx_8 17
 	sfx_1 105
 	sfx_2 8

@@ -1,4 +1,4 @@
-Music_Imakuni_Ch2:
+Music_ImakuniBlack_Ch2:
 	speed 3
 	stereo_panning TRUE, TRUE
 	vibrato_type 5
@@ -185,7 +185,7 @@ Branch_1e70ef:
 	music_ret
 
 
-Music_Imakuni_Ch1:
+Music_ImakuniBlack_Ch1:
 	stereo_panning TRUE, TRUE
 	vibrato_type 0
 	vibrato_delay 0
@@ -291,7 +291,7 @@ Branch_1e7177:
 	music_ret
 
 
-Music_Imakuni_Ch3:
+Music_ImakuniBlack_Ch3:
 	stereo_panning TRUE, TRUE
 	volume_envelope 2, 0
 	wave 1
@@ -472,7 +472,7 @@ Branch_1e724f:
 	music_ret
 
 
-Music_Imakuni_Ch4:
+Music_ImakuniBlack_Ch4:
 	speed 1
 	octave 1
 	Loop 10

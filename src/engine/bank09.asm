@@ -4268,7 +4268,7 @@ DeckIDData:
 	db PRIZES_6 ; number of prize cards
 	db NONE ; special duel rules
 	db NONE ; deck requirement
-	db MUSIC_IMAKUNI ; duel theme
+	db MUSIC_IMAKUNI_BLACK ; duel theme
 	db DUELIST_INTRO_STRANGE_LIFE_FORM ; duelist intro text
 	db COIN_PSYDUCK ; coin
 
