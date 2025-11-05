@@ -224,7 +224,7 @@ Func_30192:
 	call PlaySong
 	ld a, 7
 	call SetVolume
-	ld a, SFX_GR_SHIP_HATCH_OPEN
+	ld a, SFX_GR_BLIMP_HATCH_OPEN
 	call PlaySFX
 	farcall WaitForSFXToFinish
 .asm_301bd

@@ -1107,7 +1107,7 @@ Func_34873:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, SFX_GR_SHIP_HATCH_CLOSE
+	ld a, SFX_GR_BLIMP_HATCH_CLOSE
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	scf

@@ -24,23 +24,23 @@ Prologue::
 	call WaitPalFading
 	call EnableLCD
 
-	; do GR Ship movement
+	; do GR Blimp movement
 	ld a, NPC_GR_BLIMP
 	lb de, $a0, $30
 	ld b, WEST
 	farcall LoadOWObject
 	lb de, $78, $30
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $78, $10
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $58, $18
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 
 	ld a, $01
 	farcall ShowProloguePortraitAndText_WithFade
@@ -52,7 +52,7 @@ Prologue::
 	farcall LoadOWObject
 	lb de, $40, $30
 	ld b, WEST
-	call .MoveGRShip
+	call .MoveGRBlimp
 
 	; show beam animation on player
 	ld a, EVENT_PLAYER_GENDER
@@ -65,27 +65,27 @@ Prologue::
 .asm_3c090
 	ld a, [wPlayerOWObject]
 	farcall _SetAndInitOWObjectFrameset
-	call .DoGRShipBeamAnimation
+	call .DoGRBlimpBeamAnimation
 
-	; more GR Ship movement
+	; more GR Blimp movement
 	lb de, $20, $40
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $30, $58
 	ld b, EAST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $68, $50
 	ld b, EAST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $50, $5c
 	ld b, WEST
-	call .MoveGRShip
+	call .MoveGRBlimp
 	lb de, $50, $78
 	ld b, EAST
-	call .MoveGRShip
+	call .MoveGRBlimp
 
 	ld a, $02
 	farcall ShowProloguePortraitAndText_WithFade
@@ -145,7 +145,7 @@ Prologue::
 
 ; b = direction
 ; de = target position
-.MoveGRShip:
+.MoveGRBlimp:
 	push bc
 	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectTargetPosition
@@ -162,8 +162,8 @@ Prologue::
 	jr c, .loop
 	ret
 
-.DoGRShipBeamAnimation:
-	ld a, SFX_GR_SHIP_BEAM
+.DoGRBlimpBeamAnimation:
+	ld a, SFX_GR_BLIMP_BEAM
 	call PlaySFX
 	ld a, NPC_GR_BLIMP
 	farcall GetOWObjectPosition

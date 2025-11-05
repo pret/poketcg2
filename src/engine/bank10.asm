@@ -760,9 +760,9 @@ Func_4048a:
 
 	ld a, [wd584]
 	cp MAP_TCG_AIRPORT
-	jr z, .gr_ship_cutscene
+	jr z, .gr_blimp_cutscene
 	cp MAP_OVERHEAD_ISLANDS
-	jr z, .gr_ship_cutscene
+	jr z, .gr_blimp_cutscene
 
 	; this is the case where player is
 	; on OW map and navigating
@@ -792,16 +792,16 @@ Func_4048a:
 	scf
 	ret
 
-.gr_ship_cutscene
+.gr_blimp_cutscene
 	ld bc, TILEMAP_001
 	lb de, 0, 0
 	farcall Func_12c0ce
 
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(DoGRShipMovement)
+	ld a, BANK(DoGRBlimpMovement)
 	ld [wd592], a
-	ld hl, DoGRShipMovement
+	ld hl, DoGRBlimpMovement
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -850,7 +850,7 @@ Func_4053e:
 	call PlaySong
 	ld a, 7
 	call SetVolume
-	ld a, SFX_GR_SHIP_HATCH_OPEN
+	ld a, SFX_GR_BLIMP_HATCH_OPEN
 	call PlaySFX
 	farcall WaitForSFXToFinish
 .asm_40569
@@ -1216,7 +1216,7 @@ TCGIslandLocationPositions:
 
 INCLUDE "data/tcg_island_paths.asm"
 
-DoGRShipMovement:
+DoGRBlimpMovement:
 	ld a, [wd584]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa
@@ -3303,7 +3303,7 @@ Func_41ca1:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, SFX_GR_SHIP_HATCH_CLOSE
+	ld a, SFX_GR_BLIMP_HATCH_CLOSE
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	scf

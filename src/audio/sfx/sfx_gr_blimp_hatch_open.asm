@@ -1,4 +1,4 @@
-Sfx_GrShipHatchOpen_Ch1:
+Sfx_GRBlimpHatchOpen_Ch1:
 	sfx_8 17
 	sfx_1 243
 	sfx_2 0
@@ -42,7 +42,7 @@ Sfx_GrShipHatchOpen_Ch1:
 	sfx_0 1, 107
 	sfx_end
 
-Sfx_GrShipHatchOpen_Ch2:
+Sfx_GRBlimpHatchOpen_Ch2:
 	sfx_8 17
 	sfx_1 148
 	sfx_0 0, 86

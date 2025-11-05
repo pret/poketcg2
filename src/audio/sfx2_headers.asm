@@ -139,9 +139,9 @@ SFXHeaderPointers2:
 	dw Sfx_NpcWarpTransform
 	dw Sfx_StrongholdPlatformUp
 	dw Sfx_StrongholdPlatformDown
-	dw Sfx_GrShipHatchClose
-	dw Sfx_GrShipHatchOpen
-	dw Sfx_GrShipBeam
+	dw Sfx_GRBlimpHatchClose
+	dw Sfx_GRBlimpHatchOpen
+	dw Sfx_GRBlimpBeam
 	dw Sfx_BoneToss_Bench
 	dw Sfx_CoinHurl_Bench
 	dw Sfx_BigSnore
@@ -867,22 +867,22 @@ Sfx_StrongholdPlatformDown:
 	db %0001
 	dw Sfx_StrongholdPlatformDown_Ch1
 
-Sfx_GrShipHatchClose:
-	db BANK(Sfx_GrShipHatchClose)
+Sfx_GRBlimpHatchClose:
+	db BANK(Sfx_GRBlimpHatchClose)
 	db %1001
-	dw Sfx_GrShipHatchClose_Ch1
-	dw Sfx_GrShipHatchClose_Ch2
+	dw Sfx_GRBlimpHatchClose_Ch1
+	dw Sfx_GRBlimpHatchClose_Ch2
 
-Sfx_GrShipHatchOpen:
-	db BANK(Sfx_GrShipHatchOpen)
+Sfx_GRBlimpHatchOpen:
+	db BANK(Sfx_GRBlimpHatchOpen)
 	db %1001
-	dw Sfx_GrShipHatchOpen_Ch1
-	dw Sfx_GrShipHatchOpen_Ch2
+	dw Sfx_GRBlimpHatchOpen_Ch1
+	dw Sfx_GRBlimpHatchOpen_Ch2
 
-Sfx_GrShipBeam:
-	db BANK(Sfx_GrShipBeam)
+Sfx_GRBlimpBeam:
+	db BANK(Sfx_GRBlimpBeam)
 	db %0001
-	dw Sfx_GrShipBeam_Ch1
+	dw Sfx_GRBlimpBeam_Ch1
 
 Sfx_BoneToss_Bench:
 	db BANK(Sfx_BoneToss_Bench)
