@@ -4,7 +4,6 @@ Func_64000:
 	cp $02
 	ld hl, $bf
 	ret
-; 0x64009
 
 Func_64009:
 	ld hl, $1e2
@@ -17,7 +16,6 @@ Func_64009:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64022
 
 Func_64022:
 	ldh a, [hTemp_ffa0]
@@ -48,7 +46,6 @@ Func_64022:
 .asm_6405a
 	call SwapTurn
 	ret
-; 0x6405e
 
 Func_6405e:
 	ld de, $249
@@ -78,7 +75,6 @@ Func_6405e:
 	res 3, [hl]
 	bank1call DrawDuelHUDs
 	ret
-; 0x64098
 
 Func_64098:
 .asm_64098
@@ -100,14 +96,12 @@ Func_64098:
 .asm_640bd
 	bank1call Func_6518
 	ret
-; 0x640c1
 
 Func_640c1:
 	ld b, $00
 	ld de, $a
 	call Func_640ca
 	ret
-; 0x640ca
 
 Func_640ca:
 	push hl
@@ -162,12 +156,10 @@ Func_640ca:
 	pop de
 	pop hl
 	ret
-; 0x64120
 
 Func_64120:
 	farcall Func_2435f
 	ret
-; 0x64125
 
 Func_64125:
 	call CreateDeckCardList
@@ -182,7 +174,6 @@ Func_64125:
 .asm_64140
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64143
 
 Func_64143:
 	ldh a, [hTemp_ffa0]
@@ -198,14 +189,12 @@ Func_64143:
 .asm_6415d
 	farcall Func_680a0
 	ret
-; 0x64162
 
 Func_64162:
 	ld a, $02
 	ld [wGoopGasAttackActive], a
 	bank1call ClearChangedTypesIfMuk.ResetChangedTypes
 	ret
-; 0x6416b
 
 Func_6416b:
 	ld a, $ff
@@ -246,7 +235,6 @@ Func_6416b:
 .asm_641b6
 	call SwapTurn
 	ret
-; 0x641ba
 
 Func_641ba:
 	ldh a, [hTemp_ffa0]
@@ -258,19 +246,16 @@ Func_641ba:
 	farcall Func_680a0
 	call SwapTurn
 	ret
-; 0x641d0
 
 Func_641d0:
 	ld a, $01
 	ld [wcc07], a
 	ret
-; 0x641d6
 
 Func_641d6:
 	call Func_64244
 	ld hl, $24d
 	ret
-; 0x641dd
 
 Func_641dd:
 	xor a
@@ -305,7 +290,6 @@ Func_641dd:
 	ld [hl], $ff
 	or a
 	ret
-; 0x64221
 
 Func_64221:
 	ld hl, hTemp_ffa0
@@ -326,7 +310,6 @@ Func_64221:
 .asm_6423f
 	farcall Func_680a0
 	ret
-; 0x64244
 
 Func_64244:
 	bank1call IsBlackHoleRuleActive
@@ -367,7 +350,6 @@ Func_64244:
 .asm_6427b
 	scf
 	ret
-; 0x6427d
 
 Func_6427d:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -378,7 +360,6 @@ Func_6427d:
 	ld a, $0a
 	call Func_67859
 	ret
-; 0x6428b
 
 Func_6428b:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -391,7 +372,6 @@ Func_6428b:
 	ld [hl], $00
 	bank1call DrawDuelHUDs
 	ret
-; 0x6429d
 
 Func_6429d:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -400,7 +380,6 @@ Func_6429d:
 	call Func_640ca
 	bank1call Func_6518
 	ret
-; 0x642aa
 
 Func_642aa:
 	ld a, $f6
@@ -466,7 +445,6 @@ Func_642aa:
 	xor a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64335
 
 Func_64335:
 	ldh [hTemp_ffa0], a
@@ -485,7 +463,6 @@ Func_64335:
 	call SwapTurn
 	pop af
 	ret
-; 0x64352
 
 Func_64352:
 	ld hl, hTemp_ffa0
@@ -541,7 +518,6 @@ Func_64352:
 	farcall Func_680a0
 	call SwapTurn
 	ret
-; 0x643b4
 
 Func_643b4:
 	ld e, $00
@@ -549,7 +525,6 @@ Func_643b4:
 	ld hl, $b6
 	cp $0a
 	ret
-; 0x643bf
 
 Func_643bf:
 	ld e, $00
@@ -559,42 +534,35 @@ Func_643bf:
 	ld de, $a
 	farcall ApplyAndAnimateHPRecovery
 	ret
-; 0x643ce
 
 Func_643ce:
 	ld a, $17
 	farcall Func_6812e
 	ret
-; 0x643d5
 
 Func_643d5:
 	ld a, $0d
 	farcall Func_6810e
 	ret
-; 0x643dc
 
 Func_643dc:
 	scf
 	ret
-; 0x643de
 
 Func_643de:
 	scf
 	ret
-; 0x643e0
 
 Func_643e0:
 	ld a, $14
 	ld de, $a1e
 	farcall Func_680dd
 	ret
-; 0x643ea
 
 Func_643ea:
 	ld a, $14
 	farcall Func_682e0
 	ret
-; 0x643f1
 
 Func_643f1:
 	ld de, $11c
@@ -608,7 +576,6 @@ Func_643f1:
 	ld [wLoadedAttackAnimation], a
 	farcall Func_6809a
 	ret
-; 0x6440b
 
 Func_6440b:
 	ld de, $11b
@@ -621,7 +588,6 @@ Func_6440b:
 	ld a, $51
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x64421
 
 Func_64421:
 	ld de, $11c
@@ -635,20 +601,17 @@ Func_64421:
 	ld [wLoadedAttackAnimation], a
 	farcall Func_6809a
 	ret
-; 0x6443b
 
 Func_6443b:
 	ld a, $1e
 	farcall Func_6810e
 	ret
-; 0x64442
 
 Func_64442:
 	ld a, $28
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x6444c
 
 Func_6444c:
 	ld de, $10d
@@ -659,12 +622,10 @@ Func_6444c:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x64461
 
 Func_64461:
 	farcall Func_6843b
 	ret
-; 0x64466
 
 Func_64466:
 	ld hl, $164
@@ -678,13 +639,11 @@ Func_64466:
 	ldh [hTemp_ffa0], a
 	call SwapTurn
 	ret
-; 0x6447f
 
 Func_6447f:
 	farcall Func_6869d
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64486
 
 Func_64486:
 	call SwapTurn
@@ -696,7 +655,6 @@ Func_64486:
 	xor a
 	ld [wDuelDisplayedScreen], a
 	ret
-; 0x6449a
 
 Func_6449a:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -714,7 +672,6 @@ Func_6449a:
 .asm_644b3
 	scf
 	ret
-; 0x644b5
 
 Func_644b5:
 	ld a, $ff
@@ -761,7 +718,6 @@ Func_644b5:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	or a
 	ret
-; 0x64502
 
 Func_64502:
 	farcall Func_68465
@@ -778,13 +734,11 @@ Func_64502:
 	ld [hl], a
 	bank1call DrawDuelHUDs
 	ret
-; 0x6451c
 
 Func_6451c:
 	ld a, $23
 	farcall Func_68127
 	ret
-; 0x64523
 
 Func_64523:
 	ld hl, wDealtDamage
@@ -793,14 +747,12 @@ Func_64523:
 	ld d, [hl]
 	farcall ApplyAndAnimateHPRecovery
 	ret
-; 0x6452e
 
 Func_6452e:
 	ld de, $126
 	farcall TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64538
 
 Func_64538:
 	ldh a, [hTemp_ffa0]
@@ -809,14 +761,12 @@ Func_64538:
 	ld a, $28
 	call DealRecoilDamageToSelf
 	ret
-; 0x64542
 
 Func_64542:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
-; 0x6454c
 
 Func_6454c:
 	call CreateDeckCardList
@@ -832,7 +782,6 @@ Func_6454c:
 .asm_6456a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x6456d
 
 Func_6456d:
 	ld de, $2e
@@ -848,7 +797,6 @@ Func_6456d:
 	farcall ExecuteCardSearchFunc
 	jr nc, .asm_6457c
 	ret
-; 0x64589
 
 Func_64589:
 	ldh a, [hTemp_ffa0]
@@ -866,7 +814,6 @@ Func_64589:
 .asm_645a8
 	farcall Func_680a0
 	ret
-; 0x645ad
 
 Func_645ad:
 	ld hl, wDealtDamage
@@ -875,7 +822,6 @@ Func_645ad:
 	ld d, [hl]
 	farcall ApplyAndAnimateHPRecovery
 	ret
-; 0x645b8
 
 Func_645b8:
 	ld de, $123
@@ -886,30 +832,25 @@ Func_645b8:
 .asm_645c6
 	farcall Func_68045
 	ret
-; 0x645cb
 
 Func_645cb:
 	ld bc, $300
 	farcall Func_68e88
 	ret
-; 0x645d3
 
 Func_645d3:
 	ld a, $0a
 	farcall Func_68175
 	ret
-; 0x645da
 
 Func_645da:
 	farcall Func_68686
 	ret
-; 0x645df
 
 Func_645df:
 	farcall Func_686be
 	ldh [hTemp_ffa0], a
 	ret
-; 0x645e6
 
 Func_645e6:
 	ldh a, [hTemp_ffa0]
@@ -924,7 +865,6 @@ Func_645e6:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x645fc
 
 Func_645fc:
 	ldh a, [hTemp_ffa0]
@@ -938,13 +878,11 @@ Func_645fc:
 	call DealDamageToPlayAreaPokemon
 	call SwapTurn
 	ret
-; 0x64613
 
 Func_64613:
 	ld a, $26
 	farcall Func_68127
 	ret
-; 0x6461a
 
 Func_6461a:
 	xor a
@@ -962,7 +900,6 @@ Func_6461a:
 	ld a, c
 	farcall Func_680dd
 	ret
-; 0x64636
 
 Func_64636:
 	xor a
@@ -998,7 +935,6 @@ Func_64636:
 	ld a, $ff
 	ld [de], a
 	ret
-; 0x6466a
 
 Func_6466a:
 	xor a
@@ -1041,7 +977,6 @@ Func_6466a:
 	ldh [hTemp_ffa0], a
 	or a
 	ret
-; 0x646be
 
 Func_646be:
 	ld hl, hTempPlayAreaLocation_ffa1
@@ -1057,33 +992,28 @@ Func_646be:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x646d6
 
 Func_646d6:
 	farcall HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x646df
 
 Func_646df:
 	ldh a, [hTemp_ffa0]
 	farcall Func_6828a
 	ret
-; 0x646e6
 
 Func_646e6:
 	ld a, $17
 	farcall Func_6812e
 	ret
-; 0x646ed
 
 Func_646ed:
 	ld a, $1e
 	ld de, $3c
 	farcall Func_680dd
 	ret
-; 0x646f7
 
 Func_646f7:
 	ld hl, $14
@@ -1095,27 +1025,23 @@ Func_646f7:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x6470f
 
 Func_6470f:
 	ld a, $19
 	ld de, $141e
 	farcall Func_680dd
 	ret
-; 0x64719
 
 Func_64719:
 	ld a, $0a
 	farcall Func_682e0
 	ret
-; 0x64720
 
 Func_64720:
 	ld a, $14
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x6472a
 
 Func_6472a:
 	ld hl, $14
@@ -1127,19 +1053,16 @@ Func_6472a:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x64742
 
 Func_64742:
 	scf
 	ret
-; 0x64744
 
 Func_64744:
 	ld a, $14
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x6474e
 
 Func_6474e:
 	ld hl, $a
@@ -1150,27 +1073,23 @@ Func_6474e:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x64765
 
 Func_64765:
 	ld a, $0f
 	ld de, $a14
 	farcall Func_680dd
 	ret
-; 0x6476f
 
 Func_6476f:
 	ld a, $0a
 	farcall Func_682e0
 	ret
-; 0x64776
 
 Func_64776:
 	ld a, $14
 	ld de, $14
 	farcall Func_680dd
 	ret
-; 0x64780
 
 Func_64780:
 	ld de, $10d
@@ -1181,14 +1100,12 @@ Func_64780:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x64795
 
 Func_64795:
 	ld a, $0f
 	ld de, $1e
 	farcall Func_680dd
 	ret
-; 0x6479f
 
 Func_6479f:
 	ld hl, $a
@@ -1199,32 +1116,26 @@ Func_6479f:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x647b6
 
 Func_647b6:
 	farcall Func_6aa84
 	ret
-; 0x647bb
 
 Func_647bb:
 	farcall Func_6aa94
 	ret
-; 0x647c0
 
 Func_647c0:
 	farcall Func_6aaa0
 	ret
-; 0x647c5
 
 Func_647c5:
 	farcall Func_6aac0
 	ret
-; 0x647ca
 
 Func_647ca:
 	scf
 	ret
-; 0x647cc
 
 Func_647cc:
 	farcall Func_68055
@@ -1232,7 +1143,6 @@ Func_647cc:
 	farcall Func_6805c
 	call SwapTurn
 	ret
-; 0x647db
 
 Func_647db:
 	call SwapTurn
@@ -1261,7 +1171,6 @@ Func_647db:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x64813
 
 Func_64813:
 	ld a, $f4
@@ -1271,7 +1180,6 @@ Func_64813:
 	ld hl, $e7
 	scf
 	ret
-; 0x6481f
 
 Func_6481f:
 	ld de, $141
@@ -1301,7 +1209,6 @@ Func_6481f:
 	farcall Func_680a0
 	call SwapTurn
 	ret
-; 0x6485b
 
 Func_6485b:
 	farcall Func_2435f
@@ -1312,7 +1219,6 @@ Func_6485b:
 	ld hl, $1bd
 	ccf
 	ret
-; 0x6486c
 
 Func_6486c:
 	call CreateDeckCardList
@@ -1327,7 +1233,6 @@ Func_6486c:
 .asm_64882
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64885
 
 Func_64885:
 	ld hl, wDuelTempList
@@ -1341,7 +1246,6 @@ Func_64885:
 	jr nz, .asm_64888
 	scf
 	ret
-; 0x6489d
 
 Func_6489d:
 .asm_6489d
@@ -1384,7 +1288,6 @@ Func_6489d:
 .asm_648f9
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x648fc
 
 Func_648fc:
 	ldh a, [hTemp_ffa0]
@@ -1411,18 +1314,15 @@ Func_648fc:
 .asm_6492b
 	farcall Func_680a0
 	ret
-; 0x64930
 
 Func_64930:
 	farcall Func_2435f
 	ret
-; 0x64935
 
 Func_64935:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
-; 0x6493a
 
 Func_6493a:
 	call CreateDeckCardList
@@ -1437,7 +1337,6 @@ Func_6493a:
 .asm_64955
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64958
 
 Func_64958:
 	ldh a, [hTemp_ffa0]
@@ -1453,7 +1352,6 @@ Func_64958:
 .asm_64972
 	farcall Func_680a0
 	ret
-; 0x64977
 
 Func_64977:
 	farcall Func_24369
@@ -1464,7 +1362,6 @@ Func_64977:
 	ld hl, $ed
 	cp $02
 	ret
-; 0x6498a
 
 Func_6498a:
 	ld hl, $22e
@@ -1507,7 +1404,6 @@ Func_6498a:
 .asm_649d7
 	scf
 	ret
-; 0x649d9
 
 Func_649d9:
 	ld hl, hTemp_ffa0
@@ -1528,12 +1424,10 @@ Func_649d9:
 	bank1call DisplayCardDetailScreen
 .asm_64a02
 	ret
-; 0x64a03
 
 Func_64a03:
 	farcall Func_2435f
 	ret
-; 0x64a08
 
 Func_64a08:
 	ld c, $07
@@ -1580,7 +1474,6 @@ Func_64a08:
 	call Func_64a6b
 	jr nc, .asm_64a30
 	jr .asm_64a41
-; 0x64a4f
 
 Func_64a4f:
 	ldh a, [hTemp_ffa0]
@@ -1595,7 +1488,6 @@ Func_64a4f:
 .asm_64a66
 	farcall Func_680a0
 	ret
-; 0x64a6b
 
 Func_64a6b:
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -1603,7 +1495,6 @@ Func_64a6b:
 	cp $08
 	ccf
 	ret
-; 0x64a75
 
 Func_64a75:
 	jr Func_64aa4
@@ -1668,13 +1559,11 @@ Func_64aa4:
 	ld hl, $e8
 	scf
 	ret
-; 0x64ade
 
 Func_64ade:
 	ld hl, $ec
 	scf
 	ret
-; 0x64ae3
 
 Func_64ae3:
 	farcall Func_2435f
@@ -1683,7 +1572,6 @@ Func_64ae3:
 	farcall Func_2435f
 	call SwapTurn
 	ret
-; 0x64af3
 
 Func_64af3:
 	farcall Func_24b83
@@ -1691,7 +1579,6 @@ Func_64af3:
 	call Func_64aff
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x64aff
 
 Func_64aff:
 	ld a, $f6
@@ -1720,7 +1607,6 @@ Func_64aff:
 	jr .asm_64b26
 .asm_64b2f
 	ret
-; 0x64b30
 
 Func_64b30:
 	ldh a, [hTempCardIndex_ff9f]
@@ -1734,7 +1620,6 @@ Func_64b30:
 	ld a, $01
 	ld [wcd09], a
 	ret
-; 0x64b4b
 
 Func_64b4b:
 	or a
@@ -1756,14 +1641,12 @@ Func_64b4b:
 	dec c
 	jr nz, .asm_64b54
 	ret
-; 0x64b6b
 
 Func_64b6b:
 	ld a, $14
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x64b75
 
 Func_64b75:
 	ld hl, $a
@@ -1774,27 +1657,23 @@ Func_64b75:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x64b8c
 
 Func_64b8c:
 	ld a, $14
 	ld de, $a1e
 	farcall Func_680dd
 	ret
-; 0x64b96
 
 Func_64b96:
 	ld a, $14
 	farcall Func_682e0
 	ret
-; 0x64b9d
 
 Func_64b9d:
 	ld a, $32
 	ld de, $32
 	farcall Func_680dd
 	ret
-; 0x64ba7
 
 Func_64ba7:
 	ld de, $10d
@@ -1805,7 +1684,6 @@ Func_64ba7:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x64bbc
 
 Func_64bbc:
 	call SwapTurn
@@ -1833,7 +1711,6 @@ Func_64bbc:
 	call SwapTurn
 	or a
 	ret
-; 0x64bf1
 
 Func_64bf1:
 	ld hl, $1d4
@@ -1850,7 +1727,6 @@ Func_64bf1:
 	jr z, .asm_64bfd
 	call SwapTurn
 	ret
-; 0x64c10
 
 Func_64c10:
 	call SwapTurn
@@ -1882,7 +1758,6 @@ Func_64c10:
 	ldh [hTemp_ffa0], a
 	call SwapTurn
 	ret
-; 0x64c3a
 
 Func_64c3a:
 	ldh a, [hTemp_ffa0]
@@ -1901,7 +1776,6 @@ Func_64c3a:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x64c5b
 
 Func_64c5b:
 	ldh a, [hTemp_ffa0]
@@ -1920,7 +1794,6 @@ Func_64c5b:
 	call DealDamageToPlayAreaPokemon
 	call SwapTurn
 	ret
-; 0x64c7c
 
 Func_64c7c:
 	or $10
@@ -1928,7 +1801,6 @@ Func_64c7c:
 	ld a, $0b
 	farcall Func_681ec
 	ret
-; 0x64c88
 
 Func_64c88:
 	ld de, $14
@@ -1998,7 +1870,6 @@ Func_64cd1:
 	call SubtractHP
 	call PrintKnockedOutIfHLZero
 	ret
-; 0x64ce6
 
 Func_64ce6:
 	farcall HandleMandatorySwitchSelection
@@ -2015,7 +1886,6 @@ Func_64ce6:
 .asm_64cfd
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x64d00
 
 Func_64d00:
 	farcall HandleMandatorySwitchSelection
@@ -2036,7 +1906,6 @@ Func_64d00:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x64d2d
 
 Func_64d2d:
 	ldh a, [hTemp_ffa0]
@@ -2061,7 +1930,6 @@ Func_64d2d:
 	xor a
 	ld [wDuelDisplayedScreen], a
 	ret
-; 0x64d57
 
 Func_64d57:
 	ld de, $124
@@ -2072,7 +1940,6 @@ Func_64d57:
 .asm_64d65
 	farcall Func_6802e
 	ret
-; 0x64d6a
 
 Func_64d6a:
 	ld de, $138
@@ -2087,33 +1954,28 @@ Func_64d6a:
 	ld a, $1e
 	farcall Func_6810e
 	ret
-; 0x64d86
 
 Func_64d86:
 	ld a, $2d
 	farcall Func_68478
 	ret
-; 0x64d8d
 
 Func_64d8d:
 	ld a, $28
 	ld de, $1e32
 	farcall Func_680dd
 	ret
-; 0x64d97
 
 Func_64d97:
 	ld a, $14
 	farcall Func_682e0
 	ret
-; 0x64d9e
 
 Func_64d9e:
 	ld a, $14
 	ld de, $64
 	farcall Func_680dd
 	ret
-; 0x64da8
 
 Func_64da8:
 	xor a
@@ -2138,7 +2000,6 @@ Func_64da8:
 	ld a, h
 	ld [de], a
 	ret
-; 0x64dcc
 
 Func_64dcc:
 	farcall Func_6806e
@@ -2146,7 +2007,6 @@ Func_64dcc:
 	farcall Func_680f9
 	farcall Func_68074
 	ret
-; 0x64ddb
 
 Func_64ddb:
 	farcall Func_6808d
@@ -2156,7 +2016,6 @@ Func_64ddb:
 	ret c
 	farcall Func_24369
 	ret
-; 0x64dee
 
 Func_64dee:
 	ld de, $147
@@ -2183,7 +2042,6 @@ Func_64dee:
 	ldh [hTempRetreatCostCards], a
 	or a
 	ret
-; 0x64e27
 
 Func_64e27:
 	ld de, $147
@@ -2203,7 +2061,6 @@ Func_64e27:
 	farcall ExecuteCardSearchFunc
 	jr nc, .asm_64e40
 	ret
-; 0x64e4d
 
 Func_64e4d:
 	farcall Func_68465
@@ -2224,24 +2081,20 @@ Func_64e4d:
 .asm_64e72
 	farcall Func_680a0
 	ret
-; 0x64e77
 
 Func_64e77:
 	ld a, $0a
 	farcall Func_68175
 	ret
-; 0x64e7e
 
 Func_64e7e:
 	farcall Func_686be
 	ldh [hTemp_ffa0], a
 	ret
-; 0x64e85
 
 Func_64e85:
 	farcall Func_68686
 	ret
-; 0x64e8a
 
 Func_64e8a:
 	ldh a, [hTemp_ffa0]
@@ -2256,7 +2109,6 @@ Func_64e8a:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x64ea0
 
 Func_64ea0:
 	ldh a, [hTemp_ffa0]
@@ -2270,18 +2122,15 @@ Func_64ea0:
 	call DealDamageToPlayAreaPokemon
 	call SwapTurn
 	ret
-; 0x64eb7
 
 Func_64eb7:
 	farcall Func_6808d
 	ret
-; 0x64ebc
 
 Func_64ebc:
 	ld a, $14
 	farcall Func_68175
 	ret
-; 0x64ec3
 
 Func_64ec3:
 	farcall Func_686be
@@ -2302,7 +2151,6 @@ Func_64ec3:
 	ld a, [wDuelTempList]
 	ldh [hTempRetreatCostCards], a
 	ret
-; 0x64ef0
 
 Func_64ef0:
 	farcall Func_68686
@@ -2325,7 +2173,6 @@ Func_64ef0:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTempRetreatCostCards], a
 	ret
-; 0x64f1f
 
 Func_64f1f:
 	ldh a, [hTemp_ffa0]
@@ -2340,7 +2187,6 @@ Func_64f1f:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x64f35
 
 Func_64f35:
 	ldh a, [hTemp_ffa0]
@@ -2374,13 +2220,11 @@ Func_64f35:
 	call GetNonTurnDuelistVariable
 	ld [hl], $01
 	ret
-; 0x64f71
 
 Func_64f71:
 	ld a, $17
 	farcall Func_6812e
 	ret
-; 0x64f78
 
 Func_64f78:
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -2390,7 +2234,6 @@ Func_64f78:
 	farcall Func_6805c
 	call SwapTurn
 	ret
-; 0x64f88
 
 Func_64f88:
 	ld e, $00
@@ -2399,13 +2242,11 @@ Func_64f88:
 	ld d, $00
 	farcall ApplyAndAnimateHPRecovery
 	ret
-; 0x64f95
 
 Func_64f95:
 	ld bc, $101
 	farcall Func_68e88
 	ret
-; 0x64f9d
 
 Func_64f9d:
 	ld de, $129
@@ -2414,7 +2255,6 @@ Func_64f9d:
 	ld a, $0e
 	farcall Func_6812e
 	ret
-; 0x64fac
 
 Func_64fac:
 	ld e, $00
@@ -2426,7 +2266,6 @@ Func_64fac:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x64fc3
 
 Func_64fc3:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -2448,14 +2287,12 @@ Func_64fc3:
 	dec b
 	jr nz, .asm_64fca
 	ret
-; 0x64fde
 
 Func_64fde:
 	ld a, $1e
 	ld de, $3c
 	farcall Func_680dd
 	ret
-; 0x64fe8
 
 Func_64fe8:
 	ld hl, $1e
@@ -2469,12 +2306,10 @@ Func_64fe8:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x65002
 
 Func_65002:
 	farcall Func_6808d
 	ret
-; 0x65007
 
 Func_65007:
 	xor a
@@ -2488,7 +2323,6 @@ Func_65007:
 	farcall Func_6869d
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65020
 
 Func_65020:
 	xor a
@@ -2512,7 +2346,6 @@ Func_65020:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call SwapTurn
 	ret
-; 0x6504d
 
 Func_6504d:
 	ldh a, [hTemp_ffa0]
@@ -2527,12 +2360,10 @@ Func_6504d:
 	call DealDamageToPlayAreaPokemon_RegularAnim
 	call SwapTurn
 	ret
-; 0x65064
 
 Func_65064:
 	farcall Func_6844f
 	ret
-; 0x65069
 
 Func_65069:
 	farcall Func_68465
@@ -2542,13 +2373,11 @@ Func_65069:
 	ld hl, wcc1a
 	inc [hl]
 	ret
-; 0x6507a
 
 Func_6507a:
 	farcall Func_6808d
 	farcall Func_6844f
 	ret
-; 0x65083
 
 Func_65083:
 	ld a, $ff
@@ -2576,7 +2405,6 @@ Func_65083:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	or a
 	ret
-; 0x650b8
 
 Func_650b8:
 	farcall Func_68465
@@ -2614,7 +2442,6 @@ Func_650b8:
 .asm_650fe
 	bank1call Func_6518
 	ret
-; 0x65102
 
 Func_65102:
 	call LoadCardDataToBuffer2_FromDeckIndex
@@ -2628,20 +2455,17 @@ Func_65102:
 .asm_65112
 	scf
 	ret
-; 0x65114
 
 Func_65114:
 	ld a, $1e
 	ld de, $a28
 	farcall Func_680dd
 	ret
-; 0x6511e
 
 Func_6511e:
 	ld a, $1e
 	farcall Func_682e0
 	ret
-; 0x65125
 
 Func_65125:
 	farcall Func_6806e
@@ -2650,17 +2474,14 @@ Func_65125:
 	call DealDamageToPlayAreaPokemon_RegularAnim
 	farcall Func_68074
 	ret
-; 0x65136
 
 Func_65136:
 	scf
 	ret
-; 0x65138
 
 Func_65138:
 	farcall Func_6808d
 	ret
-; 0x6513d
 
 Func_6513d:
 	ld de, $12b
@@ -2690,7 +2511,6 @@ Func_6513d:
 	ld a, e
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65167
 
 Func_65167:
 	ld de, $12b
@@ -2705,7 +2525,6 @@ Func_65167:
 	jr c, .asm_6517a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65182
 
 Func_65182:
 	ldh a, [hTemp_ffa0]
@@ -2717,14 +2536,12 @@ Func_65182:
 	ld de, $1e
 	call DealDamageToPlayAreaPokemon_RegularAnim
 	ret
-; 0x65194
 
 Func_65194:
 	ld a, $3c
 	ld de, $3246
 	farcall Func_680dd
 	ret
-; 0x6519e
 
 Func_6519e:
 	ld de, $12c
@@ -2734,7 +2551,6 @@ Func_6519e:
 	ld a, $14
 	farcall Func_68163
 	ret
-; 0x651af
 
 Func_651af:
 	ldh a, [hTemp_ffa0]
@@ -2743,7 +2559,6 @@ Func_651af:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	ret
-; 0x651b9
 
 Func_651b9:
 	farcall Func_6808d
@@ -2773,7 +2588,6 @@ Func_651b9:
 	call SwapTurn
 	or a
 	ret
-; 0x651f3
 
 Func_651f3:
 	ld hl, $1d5
@@ -2790,7 +2604,6 @@ Func_651f3:
 .asm_6520c
 	call SwapTurn
 	ret
-; 0x65210
 
 Func_65210:
 	jr Func_65237
@@ -2872,7 +2685,6 @@ Func_65237:
 	farcall Func_24350
 	ld [hl], $ff
 	ret
-; 0x65297
 
 Func_65297:
 	call SwapTurn
@@ -2919,7 +2731,6 @@ Func_65297:
 	ld a, e
 	ldh [hTemp_ffa0], a
 	ret
-; 0x652d9
 
 Func_652d9:
 	call SwapTurn
@@ -2949,7 +2760,6 @@ Func_652d9:
 .asm_65304
 	ld [hl], $ff
 	ret
-; 0x65307
 
 Func_65307:
 	ldh a, [hTemp_ffa0]
@@ -2967,7 +2777,6 @@ Func_65307:
 	call GetNonTurnDuelistVariable
 	ld [hl], $05
 	ret
-; 0x65323
 
 Func_65323:
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -2993,7 +2802,6 @@ Func_65323:
 .asm_6534a
 	call SwapTurn
 	ret
-; 0x6534e
 
 Func_6534e:
 	ld c, $00
@@ -3007,7 +2815,6 @@ Func_6534e:
 	ret nc
 	inc c
 	jr .asm_65350
-; 0x6535f
 
 Func_6535f:
 	ld a, $c8
@@ -3078,14 +2885,12 @@ Func_65398:
 	ld [hl], $07
 	call SwapTurn
 	ret
-; 0x653d5
 
 Func_653d5:
 	ld a, $1e
 	ld de, $1e
 	farcall Func_680dd
 	ret
-; 0x653df
 
 Func_653df:
 	ld de, $10d
@@ -3100,7 +2905,6 @@ Func_653df:
 	ld a, $12
 	farcall Func_68127
 	ret
-; 0x653fc
 
 Func_653fc:
 	ld a, $ec
@@ -3111,13 +2915,11 @@ Func_653fc:
 	ld a, $0a
 	farcall Func_68163
 	ret
-; 0x6540d
 
 Func_6540d:
 	call Func_653fc
 	farcall Func_68012
 	ret
-; 0x65415
 
 Func_65415:
 	ld de, $110
@@ -3131,14 +2933,12 @@ Func_65415:
 	ld [wLoadedAttackAnimation], a
 	farcall Func_6809a
 	ret
-; 0x6542e
 
 Func_6542e:
 	ld a, $0f
 	ld de, $1e
 	farcall Func_680dd
 	ret
-; 0x65438
 
 Func_65438:
 	ld hl, $a
@@ -3150,14 +2950,12 @@ Func_65438:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x65451
 
 Func_65451:
 	ldh a, [hTemp_ffa0]
 	call ATimes10
 	call DealRecoilDamageToSelf
 	ret
-; 0x6545a
 
 Func_6545a:
 	ld e, $00
@@ -3184,14 +2982,12 @@ Func_6545a:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x65482
 
 Func_65482:
 	ld a, $2d
 	ld de, $5a
 	farcall Func_680dd
 	ret
-; 0x6548c
 
 Func_6548c:
 	ld hl, $1e
@@ -3205,14 +3001,12 @@ Func_6548c:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x654a6
 
 Func_654a6:
 	ld a, $1e
 	ld de, $3c
 	farcall Func_680dd
 	ret
-; 0x654b0
 
 Func_654b0:
 	ld de, $12d
@@ -3224,7 +3018,6 @@ Func_654b0:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x654c7
 
 Func_654c7:
 	ldh a, [hTemp_ffa0]
@@ -3233,13 +3026,11 @@ Func_654c7:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	ret
-; 0x654d1
 
 Func_654d1:
 	farcall Func_686be
 	ldh [hTemp_ffa0], a
 	ret
-; 0x654d8
 
 Func_654d8:
 	ld hl, $164
@@ -3255,7 +3046,6 @@ Func_654d8:
 	ldh [hTemp_ffa0], a
 	call SwapTurn
 	ret
-; 0x654f2
 
 Func_654f2:
 	ldh a, [hTemp_ffa0]
@@ -3295,13 +3085,11 @@ Func_654f2:
 	ld [wNoDamageOrEffect], a
 	call SwapTurn
 	ret
-; 0x6553a
 
 Func_6553a:
 	farcall Func_6808d
 	farcall Func_68501
 	ret
-; 0x65543
 
 Func_65543:
 	ld de, $10d
@@ -3310,7 +3098,6 @@ Func_65543:
 	ret nc
 	farcall Func_68633
 	ret
-; 0x65552
 
 Func_65552:
 	ld de, $10d
@@ -3321,7 +3108,6 @@ Func_65552:
 	farcall Func_690c3
 	jr c, .asm_6555c
 	ret
-; 0x65563
 
 Func_65563:
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -3335,7 +3121,6 @@ Func_65563:
 	ld [wLoadedAttackAnimation], a
 	farcall Func_6809a
 	ret
-; 0x65578
 
 Func_65578:
 	farcall Func_69686
@@ -3348,13 +3133,11 @@ Func_65578:
 	ld [hl], a
 	farcall Func_6818c
 	ret
-; 0x6558a
 
 Func_6558a:
 	farcall Func_6808d
 	farcall Func_2435f
 	ret
-; 0x65593
 
 Func_65593:
 	ld de, $10d
@@ -3373,7 +3156,6 @@ Func_65593:
 .asm_655b8
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x655bb
 
 Func_655bb:
 	ld de, $10d
@@ -3392,7 +3174,6 @@ Func_655bb:
 	farcall ExecuteCardSearchFunc
 	jr nc, .asm_655d1
 	ret
-; 0x655de
 
 Func_655de:
 	ldh a, [hTemp_ffa0]
@@ -3401,7 +3182,6 @@ Func_655de:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x655e7
 
 Func_655e7:
 	ldh a, [hTemp_ffa0]
@@ -3420,28 +3200,23 @@ Func_655e7:
 .asm_65605
 	farcall Func_680a0
 	ret
-; 0x6560a
 
 Func_6560a:
 	farcall Func_6927b
 	ret
-; 0x6560f
 
 Func_6560f:
 	farcall Func_6926c
 	ret
-; 0x65614
 
 Func_65614:
 	farcall Func_69291
 	ret
-; 0x65619
 
 Func_65619:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
-; 0x6561f
 
 Func_6561f:
 	call Func_6562a
@@ -3449,7 +3224,6 @@ Func_6561f:
 	ld a, $3c
 	farcall Func_6817e
 	ret
-; 0x6562a
 
 Func_6562a:
 	call SwapTurn
@@ -3457,13 +3231,11 @@ Func_6562a:
 	call SwapTurn
 	cp $05
 	ret
-; 0x65636
 
 Func_65636:
 	ld a, $10
 	farcall Func_68127
 	ret
-; 0x6563d
 
 Func_6563d:
 	call Func_6562a
@@ -3471,7 +3243,6 @@ Func_6563d:
 	ld a, $3c
 	farcall Func_6817e
 	ret
-; 0x65648
 
 Func_65648:
 	ld e, $00
@@ -3481,7 +3252,6 @@ Func_65648:
 	ld hl, $b6
 	scf
 	ret
-; 0x65654
 
 Func_65654:
 	xor a
@@ -3494,7 +3264,6 @@ Func_65654:
 	ret z
 	call Func_0ffa
 	jr .asm_6565b
-; 0x65665
 
 Func_65665:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -3515,7 +3284,6 @@ Func_6566a:
 	ld h, d
 	call LoadTxRam3
 	ret
-; 0x6567e
 
 Func_6567e:
 	farcall Func_682a9
@@ -3569,7 +3337,6 @@ Func_656c8:
 	ld [wLoadedAttackAnimation], a
 	farcall Func_6817e
 	ret
-; 0x656e4
 
 Func_656e4:
 	ld a, DUELVARS_ARENA_CARD_LAST_TURN_CHANGE_WEAK
@@ -3581,18 +3348,15 @@ Func_656e4:
 	call SubtractHP
 	call PrintKnockedOutIfHLZero
 	ret
-; 0x656f6
 
 Func_656f6:
 	farcall Func_6808d
 	ret
-; 0x656fb
 
 Func_656fb:
 	ld a, $14
 	farcall Func_6817e
 	ret
-; 0x65702
 
 Func_65702:
 	xor a
@@ -3612,7 +3376,6 @@ Func_65702:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call SwapTurn
 	ret
-; 0x65728
 
 Func_65728:
 	ld de, $12f
@@ -3622,13 +3385,11 @@ Func_65728:
 	farcall Func_686be
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65739
 
 Func_65739:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x6573e
 
 Func_6573e:
 	ldh a, [hTemp_ffa0]
@@ -3661,7 +3422,6 @@ Func_6573e:
 	call DealDamageToPlayAreaPokemon.asm_192a
 	call SwapTurn
 	ret
-; 0x65779
 
 Func_65779:
 	ld e, $00
@@ -3673,7 +3433,6 @@ Func_65779:
 	ld [$ccca], a
 	ld [wAIMinDamage], a
 	ret
-; 0x6578e
 
 Func_6578e:
 	ld hl, $a
@@ -3688,20 +3447,17 @@ Func_6578e:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x657ad
 
 Func_657ad:
 	farcall HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x657b6
 
 Func_657b6:
 	ldh a, [hTemp_ffa0]
 	farcall Func_6828a
 	ret
-; 0x657bd
 
 Func_657bd:
 	ld de, $130
@@ -3714,7 +3470,6 @@ Func_657bd:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x657d2
 
 Func_657d2:
 	ld e, $00
@@ -3755,7 +3510,6 @@ Func_657d2:
 	xor a
 	ld [wDuelDisplayedScreen], a
 	ret
-; 0x65816
 
 Func_65816:
 	farcall Func_681a4
@@ -3764,7 +3518,6 @@ Func_65816:
 .asm_65820
 	or a
 	ret
-; 0x65822
 
 Func_65822:
 	xor a
@@ -3777,7 +3530,6 @@ Func_65822:
 	ret nc
 	farcall Func_6a87d
 	ret
-; 0x65839
 
 Func_65839:
 	xor a
@@ -3791,7 +3543,6 @@ Func_65839:
 	farcall Func_685dd
 	ldh [hTemp_ffa0], a
 	ret
-; 0x65852
 
 Func_65852:
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -3799,12 +3550,10 @@ Func_65852:
 	ret z
 	farcall Func_6a8a5
 	ret
-; 0x6585b
 
 Func_6585b:
 	farcall Func_6808d
 	ret
-; 0x65860
 
 Func_65860:
 	xor a
@@ -3816,7 +3565,6 @@ Func_65860:
 	farcall Func_6807b
 	call Func_658b0
 	ret
-; 0x65875
 
 Func_65875:
 	xor a
@@ -3828,7 +3576,6 @@ Func_65875:
 	farcall Func_6807b
 	call Func_65978
 	ret
-; 0x6588a
 
 Func_6588a:
 	ld hl, hTemp_ffa0
@@ -3856,7 +3603,6 @@ Func_6588a:
 	jr nz, .asm_65897
 	call SwapTurn
 	ret
-; 0x658b0
 
 Func_658b0:
 	ldh [hTemp_ffa0], a
@@ -3881,7 +3627,7 @@ Func_658b0:
 	bank1call PrintPlayAreaCardList_EnableLCD
 .asm_658da
 	ldh a, [hCurScrollMenuItem]
-	ld hl, $5970
+	ld hl, Data_65970
 	call InitializeMenuParameters
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -3933,7 +3679,6 @@ Func_658b0:
 	dec c
 	jr nz, .asm_65936
 	ret
-; 0x6593d
 
 Func_6593d:
 	ld hl, wAttachedEnergyMenuNumerator
@@ -3953,7 +3698,6 @@ Func_6593d:
 	add hl, de
 	dec [hl]
 	ret
-; 0x65958
 
 Func_65958:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -3972,9 +3716,16 @@ Func_65958:
 	dec e
 	jr nz, .asm_65963
 	ret
-; 0x65970
 
-SECTION "Bank 19@5978", ROMX[$5978], BANK[$19]
+Data_65970:
+	db $00
+	db $03
+	db $03
+	db $06
+	db $0f
+	db $00
+	db $00
+	db $00
 
 Func_65978:
 	ldh [hTemp_ffa0], a
@@ -4019,7 +3770,6 @@ Func_65978:
 	ld a, $02
 	ld [$ce03], a
 	jr .asm_659a9
-; 0x659bf
 
 Func_659bf:
 	ld hl, $ce02
@@ -4031,7 +3781,6 @@ Func_659bf:
 	ld [hli], a
 	ld [hl], a
 	ret
-; 0x659ca
 
 Func_659ca:
 	ld a, $0c
@@ -4047,20 +3796,17 @@ Func_659ca:
 	ld [$ccca], a
 	ld [wAIMinDamage], a
 	ret
-; 0x659e7
 
 Func_659e7:
 	ld a, $0c
 	farcall Func_681e5
 	ld hl, $21c
 	ret
-; 0x659f1
 
 Func_659f1:
 	xor a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x659f5
 
 Func_659f5:
 	xor a
@@ -4110,7 +3856,7 @@ Func_659f5:
 	bank1call PrintPlayAreaCardList_EnableLCD
 .asm_65a56
 	ldh a, [hCurScrollMenuItem]
-	ld hl, $5b55
+	ld hl, Data_65b55
 	call InitializeMenuParameters
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -4166,7 +3912,6 @@ Func_659f5:
 	dec c
 	jr nz, .asm_65abb
 	ret
-; 0x65ac2
 
 Func_65ac2:
 	ld hl, hTemp_ffa0
@@ -4199,7 +3944,6 @@ Func_65ac2:
 	ld hl, wLoadedAttackCategory
 	res 7, [hl]
 	ret
-; 0x65af7
 
 Func_65af7:
 	ld hl, hTemp_ffa0
@@ -4232,7 +3976,6 @@ Func_65af7:
 	jr nz, .asm_65b0a
 	call SwapTurn
 	ret
-; 0x65b23
 
 Func_65b23:
 	ld hl, wAttachedEnergyMenuNumerator
@@ -4252,7 +3995,6 @@ Func_65b23:
 	add hl, de
 	dec [hl]
 	ret
-; 0x65b3e
 
 Func_65b3e:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -4270,14 +4012,20 @@ Func_65b3e:
 	dec e
 	jr nz, .asm_65b48
 	ret
-; 0x65b55
 
-SECTION "Bank 19@5b5d", ROMX[$5b5d], BANK[$19]
+Data_65b55:
+	db $00
+	db $00
+	db $03
+	db $06
+	db $0f
+	db $00
+	db $00
+	db $00
 
 Func_65b5d:
 	farcall Func_6808d
 	ret
-; 0x65b62
 
 Func_65b62:
 	xor a
@@ -4286,7 +4034,6 @@ Func_65b62:
 	xor a
 	farcall Func_6817e
 	ret
-; 0x65b6d
 
 Func_65b6d:
 	ld de, $132
@@ -4298,7 +4045,6 @@ Func_65b6d:
 	ld a, [wDuelTempList]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65b81
 
 Func_65b81:
 	ld de, $132
@@ -4320,7 +4066,6 @@ Func_65b81:
 .asm_65ba1
 	or a
 	ret
-; 0x65ba3
 
 Func_65ba3:
 	ldh a, [hTemp_ffa0]
@@ -4331,13 +4076,11 @@ Func_65ba3:
 	ret z
 	call Func_0ffa
 	ret
-; 0x65bb0
 
 Func_65bb0:
 	call Func_65bce
 	ld hl, $25
 	ret
-; 0x65bb7
 
 Func_65bb7:
 	farcall Func_6805c
@@ -4345,14 +4088,12 @@ Func_65bb7:
 	farcall Func_6805c
 	call SwapTurn
 	ret
-; 0x65bc6
 
 Func_65bc6:
 	call Func_65bce
 	ld hl, $e6
 	ccf
 	ret
-; 0x65bce
 
 Func_65bce:
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -4365,21 +4106,18 @@ Func_65bce:
 .asm_65bd9
 	or a
 	ret
-; 0x65bdb
 
 Func_65bdb:
 	ld a, $f1
 	call GetNonTurnDuelistVariable
 	set 3, [hl]
 	ret
-; 0x65be3
 
 Func_65be3:
 	ld a, $0a
 	ld de, $1e
 	farcall Func_680dd
 	ret
-; 0x65bed
 
 Func_65bed:
 	call SwapTurn
@@ -4421,7 +4159,6 @@ Func_65bed:
 	xor a
 	farcall Func_6817e
 	ret
-; 0x65c41
 
 Func_65c41:
 	ld de, $125
@@ -4432,7 +4169,6 @@ Func_65c41:
 .asm_65c4f
 	farcall Func_6805c
 	ret
-; 0x65c54
 
 Func_65c54:
 	call SwapTurn
@@ -4444,13 +4180,11 @@ Func_65c54:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x65c6a
 
 Func_65c6a:
 	farcall Func_6808d
 	scf
 	ret
-; 0x65c70
 
 Func_65c70:
 	ld de, $13f
@@ -4467,7 +4201,6 @@ Func_65c70:
 	call SwapTurn
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65c91
 
 Func_65c91:
 	ldh a, [hTemp_ffa0]
@@ -4514,7 +4247,6 @@ Func_65c91:
 	call SwapTurn
 	bank1call Func_6518
 	ret
-; 0x65cde
 
 Func_65cde:
 	ld de, $125
@@ -4525,18 +4257,15 @@ Func_65cde:
 .asm_65cec
 	farcall Func_6805c
 	ret
-; 0x65cf1
 
 Func_65cf1:
 	scf
 	ret
-; 0x65cf3
 
 Func_65cf3:
 	ld hl, $ccca
 	set 7, [hl]
 	ret
-; 0x65cf9
 
 Func_65cf9:
 	ld a, $19
@@ -4544,19 +4273,16 @@ Func_65cf9:
 	ld hl, $ccca
 	set 7, [hl]
 	ret
-; 0x65d04
 
 Func_65d04:
 	farcall Func_6808d
 	farcall Func_2435f
 	ret
-; 0x65d0d
 
 Func_65d0d:
 	xor a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x65d11
 
 Func_65d11:
 	ld de, $1bb
@@ -4597,7 +4323,6 @@ Func_65d11:
 	ld [hl], $ff
 	or a
 	ret
-; 0x65d63
 
 Func_65d63:
 	ldh a, [hTemp_ffa0]
@@ -4605,7 +4330,6 @@ Func_65d63:
 	ret nz
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x65d6b
 
 Func_65d6b:
 	ld hl, hTemp_ffa0
@@ -4626,25 +4350,21 @@ Func_65d6b:
 .asm_65d85
 	farcall Func_680a0
 	ret
-; 0x65d8a
 
 Func_65d8a:
 	ld a, $29
 	farcall Func_68127
 	ret
-; 0x65d91
 
 Func_65d91:
 	farcall Func_6808d
 	ret
-; 0x65d96
 
 Func_65d96:
 	ld a, $0f
 	ld de, $1e
 	farcall Func_680dd
 	ret
-; 0x65da0
 
 Func_65da0:
 	ld de, $133
@@ -4680,7 +4400,6 @@ Func_65dde:
 	ldh [hTemp_ffa0], a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65de4
 
 Func_65de4:
 	ldh a, [hTemp_ffa0]
@@ -4692,7 +4411,6 @@ Func_65de4:
 .asm_65df0
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x65df4
 
 Func_65df4:
 	ldh a, [hTemp_ffa0]
@@ -4709,12 +4427,10 @@ Func_65df4:
 	call DealDamageToPlayAreaPokemon
 	call SwapTurn
 	ret
-; 0x65e0f
 
 Func_65e0f:
 	farcall Func_6844f
 	ret
-; 0x65e14
 
 Func_65e14:
 	farcall Func_68465
@@ -4726,7 +4442,6 @@ Func_65e14:
 	get_turn_duelist_var
 	set 3, [hl]
 	ret
-; 0x65e28
 
 Func_65e28:
 	ld a, $1e
@@ -4738,12 +4453,10 @@ Func_65e28:
 	ld a, $01
 	ld [wcd0c], a
 	ret
-; 0x65e3a
 
 Func_65e3a:
 	farcall Func_2435f
 	ret
-; 0x65e3f
 
 Func_65e3f:
 	ld a, $05
@@ -4772,27 +4485,23 @@ Func_65e3f:
 	jr nz, .asm_65e43
 .asm_65e74
 	ret
-; 0x65e75
 
 Func_65e75:
 	ld a, $28
 	ld de, $1e32
 	farcall Func_680dd
 	ret
-; 0x65e7f
 
 Func_65e7f:
 	ld a, $14
 	farcall Func_682e0
 	ret
-; 0x65e86
 
 Func_65e86:
 	ld a, $50
 	ld de, $50
 	farcall Func_680dd
 	ret
-; 0x65e90
 
 Func_65e90:
 	ld de, $134
@@ -4805,7 +4514,6 @@ Func_65e90:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x65ea9
 
 Func_65ea9:
 	ld de, $10d
@@ -4819,27 +4527,23 @@ Func_65ea9:
 	ld a, $2a
 	farcall Func_68127
 	ret
-; 0x65ec2
 
 Func_65ec2:
 	ld bc, $100
 	farcall Func_68e88
 	ret
-; 0x65eca
 
 Func_65eca:
 	ld bc, $200
 	farcall Func_68e97
 	call Func_658b0
 	ret
-; 0x65ed5
 
 Func_65ed5:
 	ld bc, $200
 	farcall Func_68e97
 	call Func_65978
 	ret
-; 0x65ee0
 
 Func_65ee0:
 	ld hl, hTemp_ffa0
@@ -4867,26 +4571,22 @@ Func_65ee0:
 	jr nz, .asm_65eed
 	call SwapTurn
 	ret
-; 0x65f06
 
 Func_65f06:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
 	set 6, [hl]
 	ret
-; 0x65f0c
 
 Func_65f0c:
 	ld a, $2e
 	farcall Func_68478
 	ret
-; 0x65f13
 
 Func_65f13:
 	ld a, $2e
 	farcall Func_6846d
 	ret
-; 0x65f1a
 
 Func_65f1a:
 	xor a
@@ -4898,13 +4598,11 @@ Func_65f1a:
 	ld a, d
 	farcall Func_680dd
 	ret
-; 0x65f2d
 
 Func_65f2d:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
-; 0x65f32
 
 Func_65f32:
 	ld hl, $1d1
@@ -4966,7 +4664,6 @@ Func_65f32:
 	call YesOrNoMenuWithText_SetCursorToYes
 	jr c, .asm_65f38
 	ret
-; 0x65fa2
 
 Func_65fa2:
 	ld hl, hTemp_ffa0
@@ -4983,19 +4680,16 @@ Func_65fa2:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x65fbb
 
 Func_65fbb:
 	farcall Func_6808d
 	ret
-; 0x65fc0
 
 Func_65fc0:
 	ld a, $19
 	ld de, $141e
 	farcall Func_680dd
 	ret
-; 0x65fca
 
 Func_65fca:
 	ld de, $135
@@ -5006,7 +4700,6 @@ Func_65fca:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x65fdd
 
 Func_65fdd:
 	ldh a, [hTemp_ffa0]
@@ -5015,7 +4708,6 @@ Func_65fdd:
 	ld a, $0a
 	farcall Func_68163
 	ret
-; 0x65fe8
 
 Func_65fe8:
 	ldh a, [hTemp_ffa0]
@@ -5024,7 +4716,6 @@ Func_65fe8:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	farcall Func_6828a
 	ret
-; 0x65ff3
 
 Func_65ff3:
 	farcall Func_6844f
@@ -5032,7 +4723,6 @@ Func_65ff3:
 	call Func_6601c
 	ld hl, $1bd
 	ret
-; 0x65fff
 
 Func_65fff:
 	farcall Func_68465
@@ -5046,7 +4736,6 @@ Func_65fff:
 	ldh a, [hTempCardIndex_ff98]
 	bank1call DisplayPlayerDrawCardScreen
 	ret
-; 0x6601c
 
 Func_6601c:
 	bank1call CreateDiscardPileCardList
@@ -5064,7 +4753,6 @@ Func_6601c:
 .asm_66038
 	scf
 	ret
-; 0x6603a
 
 Func_6603a:
 	farcall Func_2435f
@@ -5073,7 +4761,6 @@ Func_6603a:
 	farcall Func_681e5
 	ld hl, $21b
 	ret
-; 0x66049
 
 Func_66049:
 	ld a, $0b
@@ -5082,7 +4769,6 @@ Func_66049:
 	farcall Func_68069
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66059
 
 Func_66059:
 	ldh a, [hTemp_ffa0]
@@ -5108,13 +4794,11 @@ Func_66059:
 	jr nz, .asm_66066
 .asm_6607e
 	ret
-; 0x6607f
 
 Func_6607f:
 	ld a, $2f
 	farcall Func_68478
 	ret
-; 0x66086
 
 Func_66086:
 	ld de, $139
@@ -5128,7 +4812,6 @@ Func_66086:
 	ld a, $2f
 	farcall Func_6846d
 	ret
-; 0x660a0
 
 Func_660a0:
 	ld e, $00
@@ -5142,7 +4825,6 @@ Func_660a0:
 	ld hl, $be
 	scf
 	ret
-; 0x660b1
 
 Func_660b1:
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -5172,7 +4854,6 @@ Func_660b1:
 	cp $3c
 	jr c, .asm_660c5
 	ret
-; 0x660e0
 
 Func_660e0:
 	farcall Func_681a4
@@ -5181,7 +4862,6 @@ Func_660e0:
 .asm_660ea
 	or a
 	ret
-; 0x660ec
 
 Func_660ec:
 	xor a
@@ -5194,7 +4874,6 @@ Func_660ec:
 	ret nc
 	farcall Func_6a87d
 	ret
-; 0x66103
 
 Func_66103:
 	xor a
@@ -5208,7 +4887,6 @@ Func_66103:
 	farcall Func_685dd
 	ldh [hTemp_ffa0], a
 	ret
-; 0x6611c
 
 Func_6611c:
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -5216,37 +4894,30 @@ Func_6611c:
 	ret z
 	farcall Func_6a8a5
 	ret
-; 0x66125
 
 Func_66125:
 	farcall Func_6b8c6
 	ret
-; 0x6612a
 
 Func_6612a:
 	farcall Func_6b8cd
 	ret
-; 0x6612f
 
 Func_6612f:
 	farcall Func_6b8dc
 	ret
-; 0x66134
 
 Func_66134:
 	farcall Func_6b8f6
 	ret
-; 0x66139
 
 Func_66139:
 	farcall Func_6b901
 	ret
-; 0x6613e
 
 Func_6613e:
 	farcall Func_2435f
 	ret
-; 0x66143
 
 Func_66143:
 	xor a
@@ -5261,7 +4932,6 @@ Func_66143:
 	jr .asm_66146
 .asm_66156
 	ret
-; 0x66157
 
 Func_66157:
 	ldh a, [hTemp_ffa0]
@@ -5285,19 +4955,16 @@ Func_66157:
 	jr nz, .asm_66162
 .asm_6617a
 	ret
-; 0x6617b
 
 Func_6617b:
 	farcall Func_6aa84
 	ret
-; 0x66180
 
 Func_66180:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x66187
 
 Func_66187:
 	ld a, $ff
@@ -5314,7 +4981,6 @@ Func_66187:
 .asm_661a1
 	farcall Func_6aa94
 	ret
-; 0x661a6
 
 Func_661a6:
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -5331,14 +4997,12 @@ Func_661a6:
 .asm_661bd
 	farcall Func_6aac0
 	ret
-; 0x661c2
 
 Func_661c2:
 	ld a, $1e
 	ld de, $3c
 	farcall Func_680dd
 	ret
-; 0x661cc
 
 Func_661cc:
 	ld hl, $14
@@ -5350,7 +5014,6 @@ Func_661cc:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x661e4
 
 Func_661e4:
 	ld a, DUELVARS_ARENA_CARD_FOOD_COUNTERS
@@ -5359,7 +5022,6 @@ Func_661e4:
 	cp $02
 	ccf
 	ret
-; 0x661ee
 
 Func_661ee:
 	ld a, DUELVARS_ARENA_CARD_FOOD_COUNTERS
@@ -5372,7 +5034,6 @@ Func_661ee:
 	call DrawWideTextBox_PrintText
 	bank1call DrawDuelHUDs
 	ret
-; 0x66202
 
 Func_66202:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -5390,13 +5051,11 @@ Func_66202:
 	ld [wDamage], a
 	ld [wAIMinDamage], a
 	ret
-; 0x6621f
 
 Func_6621f:
 	xor a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66223
 
 Func_66223:
 	ld a, DUELVARS_ARENA_CARD_FOOD_COUNTERS
@@ -5433,7 +5092,7 @@ Func_66223:
 	dec c
 	jr nz, .asm_66247
 	call EnableLCD
-	ld hl, $6291
+	ld hl, Data_66291
 	xor a
 	call InitializeMenuParameters
 	ldh a, [$ffb2]
@@ -5450,7 +5109,6 @@ Func_66223:
 .asm_6627c
 	scf
 	ret
-; 0x6627e
 
 Func_6627e:
 	ldh a, [hTemp_ffa0]
@@ -5465,9 +5123,19 @@ Func_6627e:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x66291
 
-SECTION "Bank 19@629a", ROMX[$629a], BANK[$19]
+Data_66291:
+	db $01
+	db $02
+	db $01
+	db $06
+	db $0f
+	db $00
+	db $00
+	db $00
+
+Func_66299:
+    ret
 
 Func_6629a:
 	farcall Func_6808d
@@ -5493,13 +5161,11 @@ Func_6629a:
 	ld hl, $e3
 	scf
 	jr .asm_662b6
-; 0x662c0
 
 Func_662c0:
 	xor a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x662c4
 
 Func_662c4:
 	ld de, $10d
@@ -5539,7 +5205,6 @@ Func_662c4:
 	ldh [hAIEnergyTransPlayAreaLocation], a
 	call SwapTurn
 	ret
-; 0x66315
 
 Func_66315:
 	ldh a, [hTemp_ffa0]
@@ -5568,24 +5233,20 @@ Func_66315:
 .asm_66341
 	call SwapTurn
 	ret
-; 0x66345
 
 Func_66345:
 	ld a, $1e
 	farcall Func_68175
 	ret
-; 0x6634c
 
 Func_6634c:
 	farcall Func_68686
 	ret
-; 0x66351
 
 Func_66351:
 	farcall Func_686be
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66358
 
 Func_66358:
 	ldh a, [hTemp_ffa0]
@@ -5600,7 +5261,6 @@ Func_66358:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x6636e
 
 Func_6636e:
 	ldh a, [hTemp_ffa0]
@@ -5614,12 +5274,10 @@ Func_6636e:
 	call DealDamageToPlayAreaPokemon
 	call SwapTurn
 	ret
-; 0x66385
 
 Func_66385:
 	farcall Func_2435f
 	ret
-; 0x6638a
 
 Func_6638a:
 	call CreateDeckCardList
@@ -5634,7 +5292,6 @@ Func_6638a:
 .asm_663a5
 	ldh [hTemp_ffa0], a
 	ret
-; 0x663a8
 
 Func_663a8:
 	ld a, $0c
@@ -5649,7 +5306,6 @@ Func_663a8:
 	farcall ExecuteCardSearchFunc
 	jr nc, .asm_663b4
 	ret
-; 0x663c1
 
 Func_663c1:
 	ldh a, [hTemp_ffa0]
@@ -5661,7 +5317,6 @@ Func_663c1:
 .asm_663cd
 	farcall Func_680a0
 	ret
-; 0x663d2
 
 Func_663d2:
 	xor a
@@ -5673,9 +5328,12 @@ Func_663d2:
 	ret z
 	call Func_0ffa
 	jr .asm_663d9
-; 0x663e2
 
-SECTION "Bank 19@63ec", ROMX[$63ec], BANK[$19]
+Func_663e2:
+	ld a, $0f
+	ld de, $1e
+	farcall Func_680dd
+	ret
 
 Func_663ec:
 	ld a, DUELVARS_ARENA_CARD_FLAGS
@@ -5685,14 +5343,12 @@ Func_663ec:
 	ld hl, $d1
 	scf
 	ret
-; 0x663f7
 
 Func_663f7:
 	ld a, DUELVARS_ARENA_CARD_FLAGS
 	get_turn_duelist_var
 	set 6, [hl]
 	ret
-; 0x663fd
 
 Func_663fd:
 	ld de, $105
@@ -5701,14 +5357,12 @@ Func_663fd:
 	xor a
 	farcall Func_6817e
 	ret
-; 0x6640b
 
 Func_6640b:
 	ld a, $0a
 	ld de, $14
 	farcall Func_680dd
 	ret
-; 0x66415
 
 Func_66415:
 	ld hl, $a
@@ -5719,25 +5373,21 @@ Func_66415:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x6642c
 
 Func_6642c:
 	ld a, $19
 	ld de, $141e
 	farcall Func_680dd
 	ret
-; 0x66436
 
 Func_66436:
 	ld a, $0a
 	farcall Func_682e0
 	ret
-; 0x6643d
 
 Func_6643d:
 	scf
 	ret
-; 0x6643f
 
 Func_6643f:
 	farcall Func_6843b
@@ -5760,7 +5410,7 @@ Func_6645c:
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
 	ld a, [$cdf8]
-	ld hl, $6568
+	ld hl, Data_66568
 	call InitializeMenuParameters
 	pop af
 	dec a
@@ -5826,7 +5476,6 @@ Func_6645c:
 	dec a
 	ld [$cdf8], a
 	jp Func_6645c
-; 0x664e2
 
 Func_664e2:
 	inc a
@@ -5846,7 +5495,6 @@ Func_664e2:
 	jr nz, .asm_664ed
 	or a
 	ret
-; 0x664f6
 
 Func_664f6:
 	ld a, $f5
@@ -5914,7 +5562,6 @@ Func_664f6:
 	ldh [hTempRetreatCostCards], a
 	call SwapTurn
 	ret
-; 0x6654e
 
 Func_6654e:
 	call SwapTurn
@@ -5932,16 +5579,22 @@ Func_6654e:
 .asm_66564
 	call SwapTurn
 	ret
-; 0x66568
 
-SECTION "Bank 19@6570", ROMX[$6570], BANK[$19]
+Data_66568:
+	db $00
+	db $03
+	db $03
+	db $06
+	db $0f
+	db $00
+	db $00
+	db $00
 
 Func_66570:
 	farcall Func_6844f
 	ret c
 	farcall Func_2435f
 	ret
-; 0x6657a
 
 Func_6657a:
 	call DrawCardFromDeck
@@ -5962,7 +5615,6 @@ Func_6657a:
 	call ReturnCardToDeck
 	or a
 	ret
-; 0x665a4
 
 Func_665a4:
 	farcall Func_68465
@@ -5972,14 +5624,12 @@ Func_665a4:
 	call RemoveCardFromHand
 	call ReturnCardToDeck
 	ret
-; 0x665b7
 
 Func_665b7:
 	ld a, $3c
 	ld de, $3c
 	farcall Func_680dd
 	ret
-; 0x665c1
 
 Func_665c1:
 	ld de, $10d
@@ -5990,14 +5640,12 @@ Func_665c1:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x665d6
 
 Func_665d6:
 	ld a, $0a
 	ld de, $14
 	farcall Func_680dd
 	ret
-; 0x665e0
 
 Func_665e0:
 	ld hl, $a
@@ -6008,14 +5656,12 @@ Func_665e0:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x665f7
 
 Func_665f7:
 	ld a, $32
 	ld de, $32
 	farcall Func_680dd
 	ret
-; 0x66601
 
 Func_66601:
 	ld de, $134
@@ -6028,13 +5674,11 @@ Func_66601:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x6661a
 
 Func_6661a:
 	ld a, $03
 	farcall Func_6812e
 	ret
-; 0x66621
 
 Func_66621:
 	farcall Func_6808d
@@ -6046,7 +5690,6 @@ Func_66621:
 	ld hl, $46
 	scf
 	ret
-; 0x66634
 
 Func_66634:
 	call Func_66653
@@ -6068,7 +5711,6 @@ Func_6663e:
 Func_66651:
 	or a
 	ret
-; 0x66653
 
 Func_66653:
 	ld a, [wcc1b]
@@ -6087,23 +5729,19 @@ Func_66653:
 	farcall Func_6809a
 	scf
 	ret
-; 0x66672
 
 Func_66672:
 	ld bc, $200
 	farcall Func_68e88
 	ret
-; 0x6667a
 
 Func_6667a:
 	farcall Func_6844f
 	ret
-; 0x6667f
 
 Func_6667f:
 	farcall Func_6a0a6
 	ret
-; 0x66684
 
 Func_66684:
 	ld hl, wDealtDamage
@@ -6113,20 +5751,17 @@ Func_66684:
 	ld de, $a
 	farcall ApplyAndAnimateHPRecovery
 	ret
-; 0x66692
 
 Func_66692:
 	ld a, $14
 	ld de, $a1e
 	farcall Func_680dd
 	ret
-; 0x6669c
 
 Func_6669c:
 	ld a, $14
 	farcall Func_682e0
 	ret
-; 0x666a3
 
 Func_666a3:
 	xor a
@@ -6138,14 +5773,12 @@ Func_666a3:
 	ret z
 	call Func_0ffa
 	jr .asm_666aa
-; 0x666b3
 
 Func_666b3:
 	ld a, $14
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x666bd
 
 Func_666bd:
 	ld hl, $14
@@ -6157,14 +5790,12 @@ Func_666bd:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x666d5
 
 Func_666d5:
 	ld a, $14
 	ld de, $28
 	farcall Func_680dd
 	ret
-; 0x666df
 
 Func_666df:
 	ld hl, $a
@@ -6175,14 +5806,12 @@ Func_666df:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x666f6
 
 Func_666f6:
 	ld a, $14
 	ld de, $14
 	farcall Func_680dd
 	ret
-; 0x66700
 
 Func_66700:
 	ld de, $10d
@@ -6193,40 +5822,33 @@ Func_66700:
 	farcall Func_6817e
 	farcall Func_6809a
 	ret
-; 0x66715
 
 Func_66715:
 	farcall Func_6927b
 	ret
-; 0x6671a
 
 Func_6671a:
 	farcall Func_6926c
 	ret
-; 0x6671f
 
 Func_6671f:
 	farcall Func_69291
 	ret
-; 0x66724
 
 Func_66724:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
-; 0x6672a
 
 Func_6672a:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	ret
-; 0x66730
 
 Func_66730:
 	farcall Func_6808d
 	farcall Func_68446
 	ret
-; 0x66739
 
 Func_66739:
 	ld de, $10e
@@ -6249,7 +5871,6 @@ Func_66739:
 	bank1call OpenPlayAreaScreenForSelection
 	ldh [hTempRetreatCostCards], a
 	ret
-; 0x66767
 
 Func_66767:
 	ldh a, [hTemp_ffa0]
@@ -6300,7 +5921,6 @@ Func_66767:
 .asm_667b4
 	call ShiftAllPokemonToFirstPlayAreaSlots
 	ret
-; 0x667b8
 
 Func_667b8:
 	ld de, $10e
@@ -6326,12 +5946,10 @@ Func_667b8:
 	jr nz, .asm_667cd
 .asm_667e5
 	ret
-; 0x667e6
 
 Func_667e6:
 	scf
 	ret
-; 0x667e8
 
 Func_667e8:
 	ld de, $fe
@@ -6340,7 +5958,6 @@ Func_667e8:
 	ret nc
 	farcall Func_6805c
 	ret
-; 0x667f7
 
 Func_667f7:
 	ldh a, [hTemp_ffa0]
@@ -6373,14 +5990,12 @@ Func_667f7:
 	jr nz, .asm_6680a
 	call SwapTurn
 	ret
-; 0x66829
 
 Func_66829:
 	ld de, $145
 	farcall TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66833
 
 Func_66833:
 	ldh a, [hTemp_ffa0]
@@ -6411,7 +6026,6 @@ Func_66833:
 	call SwapTurn
 	call DrawWideTextBox_PrintText
 	ret
-; 0x66877
 
 Func_66877:
 	ld hl, wDuelTempList
@@ -6428,7 +6042,6 @@ Func_66877:
 	ld a, [hl]
 	or a
 	ret
-; 0x6688d
 
 Func_6688d:
 	farcall Func_6843b
@@ -6440,7 +6053,6 @@ Func_6688d:
 	ret c
 	farcall Func_6844f
 	ret
-; 0x668a5
 
 Func_668a5:
 	farcall Func_68465
@@ -6482,7 +6094,6 @@ Func_668a5:
 	farcall Func_680ed
 	call SwapTurn
 	ret
-; 0x668ef
 
 Func_668ef:
 	xor a
@@ -6493,7 +6104,6 @@ Func_668ef:
 	ret c
 	farcall Func_6809a
 	ret
-; 0x66902
 
 Func_66902:
 	ldh a, [hTemp_ffa0]
@@ -6556,14 +6166,12 @@ Func_66902:
 	farcall Func_680a0
 	call SwapTurn
 	ret
-; 0x6696c
 
 Func_6696c:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ret
-; 0x66974
 
 Func_66974:
 	call CreateDeckCardList
@@ -6615,7 +6223,6 @@ Func_66974:
 	call Func_19e1
 	call WaitForWideTextBoxInput
 	ret
-; 0x669da
 
 Func_669da:
 	ld de, $10d
@@ -6625,7 +6232,6 @@ Func_669da:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x669e9
 
 Func_669e9:
 	ldh a, [hTemp_ffa0]
@@ -6665,7 +6271,6 @@ Func_669e9:
 	call Func_66a3c
 	call SwapTurn
 	ret
-; 0x66a2e
 
 Func_66a2e:
 	call SwapTurn
@@ -6674,7 +6279,6 @@ Func_66a2e:
 	call Func_66a3c
 	call SwapTurn
 	ret
-; 0x66a3c
 
 Func_66a3c:
 	ld a, [wTempPlayAreaLocation_cceb]
@@ -6695,25 +6299,21 @@ Func_66a3c:
 	get_turn_duelist_var
 	ld [hl], $08
 	ret
-; 0x66a62
 
 Func_66a62:
 	ld a, $1e
 	farcall Func_6810e
 	ret
-; 0x66a69
 
 Func_66a69:
 	ld a, $30
 	farcall Func_68478
 	ret
-; 0x66a70
 
 Func_66a70:
 	ld a, $30
 	farcall Func_6846d
 	ret
-; 0x66a77
 
 Func_66a77:
 	farcall Func_6843b
@@ -6729,7 +6329,6 @@ Func_66a77:
 	farcall Func_680f9
 	call SwapTurn
 	ret
-; 0x66a96
 
 Func_66a96:
 	call SwapTurn
@@ -6745,14 +6344,12 @@ Func_66a96:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
-; 0x66ab2
 
 Func_66ab2:
 	ld a, $2d
 	ld de, $5a
 	farcall Func_680dd
 	ret
-; 0x66abc
 
 Func_66abc:
 	ld hl, $a
@@ -6763,7 +6360,6 @@ Func_66abc:
 	call ATimes10
 	farcall Func_6817e
 	ret
-; 0x66ad3
 
 Func_66ad3:
 	farcall Func_6843b
@@ -6803,12 +6399,10 @@ Func_66ad3:
 	ld [wDuelDisplayedScreen], a
 	call SwapTurn
 	ret
-; 0x66b1c
 
 Func_66b1c:
 	scf
 	ret
-; 0x66b1e
 
 Func_66b1e:
 	call Func_66b45
@@ -6816,7 +6410,6 @@ Func_66b1e:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x66b2a
 
 Func_66b2a:
 	call Func_66b45
@@ -6830,7 +6423,6 @@ Func_66b2a:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x66b45
 
 Func_66b45:
 	ld b, $00
@@ -6854,12 +6446,10 @@ Func_66b45:
 	ret nz
 	scf
 	ret
-; 0x66b63
 
 Func_66b63:
 	scf
 	ret
-; 0x66b65
 
 Func_66b65:
 	ld hl, wLoadedAttackCategory
@@ -6906,7 +6496,6 @@ Func_66b65:
 	jr nz, .asm_66b8a
 	call SwapTurn
 	ret
-; 0x66bac
 
 Func_66bac:
 	farcall Func_68012
@@ -6924,13 +6513,11 @@ Func_66bac:
 .asm_66bc5
 	farcall Func_6805c
 	ret
-; 0x66bca
 
 Func_66bca:
 	ld a, $14
 	farcall Func_68163
 	ret
-; 0x66bd1
 
 Func_66bd1:
 	ld hl, $14
@@ -6942,17 +6529,14 @@ Func_66bd1:
 	call ATimes10
 	farcall Func_68163
 	ret
-; 0x66be9
 
 Func_66be9:
 	farcall Func_680a0
 	ret
-; 0x66bee
 
 Func_66bee:
 	farcall Func_680ab
 	ret
-; 0x66bf3
 
 Func_66bf3:
 	farcall Func_68335
@@ -6961,7 +6545,6 @@ Func_66bf3:
 	call Func_66c5f
 	ld hl, $d8
 	ret
-; 0x66c02
 
 Func_66c02:
 	ld hl, $1e1
@@ -7006,7 +6589,6 @@ Func_66c02:
 	ldh [hTempRetreatCostCards], a
 	or a
 	ret
-; 0x66c50
 
 Func_66c50:
 	ldh a, [hTemp_ffa0]
@@ -7016,7 +6598,6 @@ Func_66c50:
 	ldh a, [hTempRetreatCostCards]
 	call Func_67859
 	ret
-; 0x66c5f
 
 Func_66c5f:
 	ld a, DUELVARS_CARD_LOCATIONS
@@ -7042,7 +6623,6 @@ Func_66c5f:
 .asm_66c7e
 	or a
 	ret
-; 0x66c80
 
 Func_66c80:
 .asm_66c80
@@ -7068,7 +6648,6 @@ Func_66c80:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x66caf
 
 Func_66caf:
 	bank1call CheckIfArenaCardIsProtectedFromStatusCondition
@@ -7088,7 +6667,6 @@ Func_66caf:
 	ld [hl], a
 	bank1call DrawDuelHUDs
 	ret
-; 0x66cce
 
 Func_66cce:
 	call SwapTurn
@@ -7096,7 +6674,6 @@ Func_66cce:
 	ld hl, $b7
 	call SwapTurn
 	ret
-; 0x66cdb
 
 Func_66cdb:
 	ld hl, VBlankHandler.done
@@ -7105,12 +6682,10 @@ Func_66cdb:
 	call Func_66c80
 	call SwapTurn
 	ret
-; 0x66ceb
 
 Func_66ceb:
 	farcall Func_685dd
 	ret
-; 0x66cf0
 
 Func_66cf0:
 	call SwapTurn
@@ -7124,7 +6699,6 @@ Func_66cf0:
 	farcall Func_680ed
 	call SwapTurn
 	ret
-; 0x66d0c
 
 Func_66d0c:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -7135,7 +6709,6 @@ Func_66d0c:
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
 	ld hl, $b9
 	ret
-; 0x66d1d
 
 Func_66d1d:
 	ld hl, $1e2
@@ -7148,7 +6721,6 @@ Func_66d1d:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66d36
 
 Func_66d36:
 	ld a, $01
@@ -7181,7 +6753,6 @@ Func_66d36:
 	ld [hl], $ff
 	or a
 	ret
-; 0x66d79
 
 Func_66d79:
 	ld hl, hTemp_ffa0
@@ -7203,7 +6774,6 @@ Func_66d79:
 	ret c
 	bank1call Func_49e8
 	ret
-; 0x66d9d
 
 Func_66d9d:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -7212,7 +6782,6 @@ Func_66d9d:
 	ccf
 	ld hl, $ba
 	ret
-; 0x66da7
 
 Func_66da7:
 	call CreateDeckCardList
@@ -7227,7 +6796,6 @@ Func_66da7:
 .asm_66dc2
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66dc5
 
 Func_66dc5:
 	ldh a, [hTemp_ffa0]
@@ -7243,9 +6811,19 @@ Func_66dc5:
 .asm_66dde
 	call Func_66be9
 	ret
-; 0x66de2
 
-SECTION "Bank 19@6df4", ROMX[$6df4], BANK[$19]
+Func_66de2:
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp $08
+	jr c, .asm_66df2
+	cp $0e
+	jr nc, .asm_66df2
+	or a
+	ret
+    .asm_66df2
+	scf
+	ret
 
 Func_66df4:
 	call CreateHandCardList
@@ -7270,13 +6848,11 @@ Func_66df4:
 	jr nz, .asm_66e12
 .asm_66e1d
 	ret
-; 0x66e1e
 
 Func_66e1e:
 	farcall Func_68335
 	ld hl, $b5
 	ret
-; 0x66e26
 
 Func_66e26:
 	bank1call HasAlivePokemonInPlayArea
@@ -7298,7 +6874,6 @@ Func_66e26:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	or a
 	ret
-; 0x66e44
 
 Func_66e44:
 	ldh a, [hTemp_ffa0]
@@ -7306,7 +6881,6 @@ Func_66e44:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	call Func_67859
 	ret
-; 0x66e4e
 
 Func_66e4e:
 	ld de, $10f
@@ -7343,7 +6917,6 @@ Func_66e4e:
 	jr nz, .asm_66e86
 .asm_66e91
 	ret
-; 0x66e92
 
 Func_66e92:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -7353,7 +6926,6 @@ Func_66e92:
 	ret c
 	farcall Func_683b4
 	ret
-; 0x66ea0
 
 Func_66ea0:
 	call Func_677d3
@@ -7366,7 +6938,6 @@ Func_66ea0:
 	bank1call DisplayCardList
 	ldh [hTempRetreatCostCards], a
 	ret
-; 0x66eba
 
 Func_66eba:
 	ld hl, hTemp_ffa0
@@ -7385,7 +6956,6 @@ Func_66eba:
 	ld hl, $200
 	bank1call DisplayCardDetailScreen
 	ret
-; 0x66edf
 
 Func_66edf:
 	ld hl, $1e9
@@ -7395,7 +6965,6 @@ Func_66edf:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66ef0
 
 Func_66ef0:
 	ldh a, [hTemp_ffa0]
@@ -7411,18 +6980,15 @@ Func_66ef0:
 	ldh a, [hTemp_ffa0]
 	farcall Func_680ed
 	ret
-; 0x66f09
 
 Func_66f09:
 	farcall Func_24369
 	ret
-; 0x66f0e
 
 Func_66f0e:
 	ldh a, [hTempCardIndex_ff9f]
 	call PutHandPokemonCardInPlayArea
 	ret
-; 0x66f14
 
 Func_66f14:
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -7432,7 +6998,6 @@ Func_66f14:
 	ld hl, $be
 	scf
 	ret
-; 0x66f1e
 
 Func_66f1e:
 	ld a, $8a
@@ -7442,7 +7007,6 @@ Func_66f1e:
 	ld [hl], $00
 	bank1call DrawDuelHUDs
 	ret
-; 0x66f2c
 
 Func_66f2c:
 	call SwapTurn
@@ -7470,7 +7034,6 @@ Func_66f2c:
 .asm_66f5b
 	call SwapTurn
 	ret
-; 0x66f5f
 
 Func_66f5f:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -7484,12 +7047,10 @@ Func_66f5f:
 	cp $3c
 	ccf
 	ret
-; 0x66f72
 
 Func_66f72:
 	call Func_677d3
 	ret
-; 0x66f76
 
 Func_66f76:
 	call CreateDeckCardList
@@ -7502,7 +7063,6 @@ Func_66f76:
 	jr c, .asm_66f85
 	ldh [hTempRetreatCostCards], a
 	ret
-; 0x66f8d
 
 Func_66f8d:
 	ld hl, hTemp_ffa0
@@ -7517,23 +7077,19 @@ Func_66f8d:
 	call AddCardToHand
 	call Func_66be9
 	ret
-; 0x66fa9
 
 Func_66fa9:
 	farcall Func_24369
 	ret
-; 0x66fae
 
 Func_66fae:
 	ldh a, [hTempCardIndex_ff9f]
 	call PutHandPokemonCardInPlayArea
 	ret
-; 0x66fb4
 
 Func_66fb4:
 	farcall Func_68446
 	ret
-; 0x66fb9
 
 Func_66fb9:
 	ld hl, $1eb
@@ -7543,7 +7099,6 @@ Func_66fb9:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x66fca
 
 Func_66fca:
 	ldh a, [hTemp_ffa0]
@@ -7591,7 +7146,6 @@ Func_66fca:
 .asm_67014
 	call Func_66be9
 	ret
-; 0x67018
 
 Func_67018:
 	ld e, $00
@@ -7601,12 +7155,10 @@ Func_67018:
 	get_turn_duelist_var
 	inc [hl]
 	ret
-; 0x67024
 
 Func_67024:
 	farcall Func_68446
 	ret
-; 0x67029
 
 Func_67029:
 	ld hl, $164
@@ -7616,20 +7168,17 @@ Func_67029:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x6703a
 
 Func_6703a:
 	ldh a, [hTemp_ffa0]
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	ret
-; 0x67041
 
 Func_67041:
 	farcall Func_68335
 	ld hl, $b5
 	ret
-; 0x67049
 
 Func_67049:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -7673,7 +7222,6 @@ Func_67049:
 	dec d
 	jr nz, .asm_6704f
 	ret
-; 0x67086
 
 Func_67086:
 	call SwapTurn
@@ -7685,7 +7233,6 @@ Func_67086:
 .asm_67098
 	call SwapTurn
 	ret
-; 0x6709c
 
 Func_6709c:
 	call SwapTurn
@@ -7699,7 +7246,6 @@ Func_6709c:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x670ba
 
 Func_670ba:
 	call SwapTurn
@@ -7716,7 +7262,6 @@ Func_670ba:
 	bank1call DisplayCardDetailScreen
 	call SwapTurn
 	ret
-; 0x670de
 
 Func_670de:
 	call Func_67167
@@ -7727,7 +7272,6 @@ Func_670de:
 	ld hl, $c3
 	scf
 	ret
-; 0x670ec
 
 Func_670ec:
 	call Func_67167
@@ -7754,7 +7298,6 @@ Func_670ec:
 	jr c, .asm_6710c
 	or a
 	ret
-; 0x6711f
 
 Func_6711f:
 	ldh a, [hTempCardIndex_ff9f]
@@ -7791,7 +7334,6 @@ Func_6711f:
 	pop af
 	ldh [hTempCardIndex_ff9f], a
 	ret
-; 0x67167
 
 Func_67167:
 	call CreateHandCardList
@@ -7820,7 +7362,6 @@ Func_67167:
 	ret z
 	or a
 	ret
-; 0x6718c
 
 Func_6718c:
 	push de
@@ -7858,12 +7399,10 @@ Func_6718c:
 	pop de
 	scf
 	ret
-; 0x671bc
 
 Func_671bc:
 	farcall Func_68446
 	ret
-; 0x671c1
 
 Func_671c1:
 	ld hl, $1ee
@@ -7881,7 +7420,6 @@ Func_671c1:
 	bank1call OpenPlayAreaScreenForSelection
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x671e4
 
 Func_671e4:
 	ldh a, [hTemp_ffa0]
@@ -7944,7 +7482,6 @@ Func_671e4:
 	call SwapPlayAreaPokemon
 	call ShiftAllPokemonToFirstPlayAreaSlots
 	ret
-; 0x6724b
 
 Func_6724b:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -7955,7 +7492,6 @@ Func_6724b:
 	call Func_672d9
 	ld hl, $c4
 	ret
-; 0x6725b
 
 Func_6725b:
 	ld hl, TimerHandler
@@ -7968,7 +7504,6 @@ Func_6725b:
 	bank1call DisplayCardList
 	ldh [hTemp_ffa0], a
 	ret
-; 0x67276
 
 Func_67276:
 	ldh a, [hTemp_ffa0]
@@ -7995,7 +7530,6 @@ Func_67276:
 	call AddCardToHand
 	or a
 	ret
-; 0x672b0
 
 Func_672b0:
 	ldh a, [hTemp_ffa0]
@@ -8015,7 +7549,6 @@ Func_672b0:
 .asm_672d5
 	call Func_66be9
 	ret
-; 0x672d9
 
 Func_672d9:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -8046,7 +7579,6 @@ Func_672d9:
 .asm_67300
 	scf
 	ret
-; 0x67302
 
 Func_67302:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -8055,7 +7587,6 @@ Func_67302:
 	cp $3c
 	ccf
 	ret
-; 0x6730c
 
 Func_6730c:
 	ld hl, $1f3
@@ -8172,7 +7703,6 @@ Func_6730c:
 	ld [hl], $00
 	bank1call Func_53cb
 	jr .asm_67355
-; 0x673c7
 
 Func_673c7:
 	ld hl, hTemp_ffa0
@@ -8193,7 +7723,6 @@ Func_673c7:
 	dec c
 	jr nz, .asm_673d9
 	ret
-; 0x673e1
 
 Func_673e1:
 	ldh a, [hTempCardIndex_ff9f]
@@ -8216,7 +7745,6 @@ Func_673e1:
 	jr nz, .asm_673ee
 .asm_67405
 	ret
-; 0x67406
 
 Func_67406:
 	ldh a, [hTempCardIndex_ff9f]
@@ -8258,7 +7786,6 @@ Func_67420:
 	or a
 	call nz, Func_66be9
 	ret
-; 0x67454
 
 Func_67454:
 	ld a, [wDuelType]
@@ -8277,7 +7804,6 @@ Func_67454:
 	call Func_67472
 	call SwapTurn
 	ret
-; 0x67472
 
 Func_67472:
 	call CreateHandCardList
@@ -8294,7 +7820,6 @@ Func_67472:
 	ld hl, $209
 	call DrawWideTextBox_WaitForInput
 	ret
-; 0x67493
 
 Func_67493:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -8302,14 +7827,12 @@ Func_67493:
 	ld hl, $bf
 	cp $03
 	ret
-; 0x6749c
 
 Func_6749c:
 	ld hl, $1e7
 	ld de, $203
 	call Func_677d9
 	ret
-; 0x674a6
 
 Func_674a6:
 	ldh a, [hTemp_ffa0]
@@ -8324,7 +7847,6 @@ Func_674a6:
 	call DrawCardFromDeck
 	call AddCardToHand
 	ret
-; 0x674c6
 
 Func_674c6:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -8333,7 +7855,6 @@ Func_674c6:
 	cp $3c
 	ccf
 	ret
-; 0x674d0
 
 Func_674d0:
 	ld de, $10e
@@ -8352,7 +7873,6 @@ Func_674d0:
 .asm_674f5
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
-; 0x674f8
 
 Func_674f8:
 	ldh a, [hTemp_ffa0]
@@ -8371,7 +7891,6 @@ Func_674f8:
 .asm_67515
 	call Func_66be9
 	ret
-; 0x67519
 
 Func_67519:
 	bank1call IsBlackHoleRuleActive
@@ -8382,7 +7901,6 @@ Func_67519:
 .asm_67523
 	ld hl, $c5
 	ret
-; 0x67527
 
 Func_67527:
 	ld de, $10e
@@ -8404,7 +7922,6 @@ Func_67527:
 	ldh [hTemp_ffa0], a
 	or a
 	ret
-; 0x6754f
 
 Func_6754f:
 	ldh a, [hTemp_ffa0]
@@ -8418,14 +7935,12 @@ Func_6754f:
 	ld hl, $1f6
 	bank1call DisplayCardDetailScreen
 	ret
-; 0x67567
 
 Func_67567:
 	farcall Func_24369
 	ret c
 	farcall Func_6837a
 	ret
-; 0x67571
 
 Func_67571:
 	ld hl, $1f7
@@ -8439,7 +7954,6 @@ Func_67571:
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTemp_ffa0], a
 	ret
-; 0x6758f
 
 Func_6758f:
 	ldh a, [hTemp_ffa0]
@@ -8460,7 +7974,6 @@ Func_6758f:
 	ld hl, $63
 	bank1call DisplayCardDetailScreen
 	ret
-; 0x675b3
 
 Func_675b3:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -8478,7 +7991,6 @@ Func_675b3:
 	ld hl, $c6
 	scf
 	ret
-; 0x675ca
 
 Func_675ca:
 	ld hl, $1f8
@@ -8547,7 +8059,6 @@ Func_675ca:
 	pop hl
 	ld [hl], b
 	ret
-; 0x67640
 
 Func_67640:
 	ld hl, hTemp_ffa0
@@ -8581,7 +8092,6 @@ Func_67640:
 	call PrintPlayAreaCardKnockedOutIfNoHP
 	bank1call Func_6518
 	ret
-; 0x67678
 
 Func_67678:
 	call Func_66c5f
@@ -8592,7 +8102,6 @@ Func_67678:
 	ld hl, $c8
 	call SwapTurn
 	ret
-; 0x6768c
 
 Func_6768c:
 	ld hl, $1f9
@@ -8663,7 +8172,6 @@ Func_6768c:
 	call SwapTurn
 	or a
 	ret
-; 0x6771e
 
 Func_6771e:
 	ld hl, hTempPlayAreaLocation_ffa1
@@ -8690,7 +8198,6 @@ Func_6771e:
 	farcall Func_680ed
 	call SwapTurn
 	ret
-; 0x67751
 
 Func_67751:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -8701,12 +8208,10 @@ Func_67751:
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
 	ld hl, $b9
 	ret
-; 0x67762
 
 Func_67762:
 	call Func_677d3
 	ret
-; 0x67766
 
 Func_67766:
 	ld hl, $1fa
@@ -8739,7 +8244,6 @@ Func_67766:
 	ld [hl], $ff
 	or a
 	ret
-; 0x677a8
 
 Func_677a8:
 	ld hl, hTemp_ffa0
@@ -8764,7 +8268,6 @@ Func_677a8:
 	ret c
 	bank1call Func_49e8
 	ret
-; 0x677d3
 
 Func_677d3:
 	ld hl, $1e6
@@ -8803,12 +8306,10 @@ Func_677d9:
 .asm_6780c
 	scf
 	ret
-; 0x6780e
 
 Func_6780e:
 	farcall Func_6843b
 	ret
-; 0x67813
 
 Func_67813:
 	ld hl, $1fb
@@ -8820,7 +8321,6 @@ Func_67813:
 	ldh [hTemp_ffa0], a
 	call SwapTurn
 	ret
-; 0x6782a
 
 Func_6782a:
 	ld a, $8d
@@ -8834,7 +8334,6 @@ Func_6782a:
 	xor a
 	ld [wDuelDisplayedScreen], a
 	ret
-; 0x67843
 
 Func_67843:
 	ld [wLoadedAttackAnimation], a
@@ -8845,7 +8344,6 @@ Func_67843:
 	farcall PlayAttackAnimation
 	farcall WaitAttackAnimation
 	ret
-; 0x67859
 
 Func_67859:
 	ld e, a
