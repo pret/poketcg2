@@ -174,6 +174,9 @@ Func_680cc:
 	ld [hl], a
 	ret
 
+; a - loaded indo wDamage
+; d - loaded into wAIMinDamage
+; e - loaded into wAIMaxDamage
 Func_680dd:
 	ld [wDamage], a
 	xor a
@@ -1321,8 +1324,8 @@ Data_68743:
 	db $00
 
 Func_68753:
-	ld a, $05
-	ld de, $a
+	ld a, 5
+	lb de, 0, 10
 	call Func_680dd
 	ret
 
@@ -1509,8 +1512,8 @@ Func_6885b:
 	ret
 
 Func_68865:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -1705,7 +1708,7 @@ Func_68999:
 	ret
 
 Func_689ac:
-	ld a, $23
+	ld a, 35
 	ld de, LoadSymbolsFont
 	call Func_680dd
 	ret
@@ -1763,8 +1766,8 @@ Func_689da:
 	ret
 
 Func_689fe:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	call Func_680dd
 	ret
 
@@ -1829,8 +1832,8 @@ Func_68a5d:
 	ret
 
 Func_68a7d:
-	ld a, $1e
-	ld de, $1e
+	ld a, 30
+	lb de, 0, 30
 	call Func_680dd
 	ret
 
@@ -1852,8 +1855,8 @@ Func_68a9c:
 	ret
 
 Func_68aa0:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -1871,8 +1874,8 @@ Func_68aa9:
 	ret
 
 Func_68ac1:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -2376,8 +2379,8 @@ Func_68d9b:
 	ret
 
 Func_68df3:
-	ld a, $3c
-	ld de, $78
+	ld a, 60
+	lb de, 0, 120
 	call Func_680dd
 	ret
 
@@ -2525,8 +2528,8 @@ Func_68ed8:
 	jr Func_68e88
 
 Func_68edd:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -2676,8 +2679,8 @@ Func_68fbb:
 	ret
 
 Func_68fc3:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	call Func_680dd
 	ret
 
@@ -2733,8 +2736,8 @@ Func_6900a:
 	ret
 
 Func_6901e:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -2890,8 +2893,8 @@ Func_690d2:
 	ret
 
 Func_69109:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -2926,8 +2929,8 @@ Func_69139:
 	jp Func_68e88
 
 Func_6913f:
-	ld a, $1e
-	ld de, $1e
+	ld a, 30
+	lb de, 0, 30
 	call Func_680dd
 	ret
 	ret
@@ -2945,8 +2948,8 @@ Func_69149:
 	ret
 
 Func_69162:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -3153,8 +3156,8 @@ Func_692a9:
 	ret
 
 Func_692af:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -3218,8 +3221,8 @@ Func_69307:
 	ret
 
 Func_6930f:
-	ld a, $19
-	ld de, $141e
+	ld a, 25
+	lb de, 20, 30
 	call Func_680dd
 	ret
 
@@ -3389,8 +3392,8 @@ Func_693e6:
 	ret
 
 Func_6941b:
-	ld a, $50
-	ld de, $50
+	ld a, 80
+	lb de, 0, 80
 	call Func_680dd
 	ret
 
@@ -3408,8 +3411,8 @@ Func_69424:
 	ret
 
 Func_6943a:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -3668,8 +3671,8 @@ Func_69592:
 	ret
 
 Func_6959b:
-	ld a, $28
-	ld de, $50
+	ld a, 40
+	lb de, 0, 80
 	call Func_680dd
 	ret
 
@@ -3787,8 +3790,8 @@ Func_695bb:
 	ret
 
 Func_69667:
-	ld a, $46
-	ld de, $46
+	ld a, 70
+	lb de, 0, 70
 	call Func_680dd
 	ret
 
@@ -5067,8 +5070,8 @@ Func_69e49:
 	ret
 
 Func_69e55:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	call Func_680dd
 	ret
 
@@ -5091,8 +5094,8 @@ Func_69e73:
 	ret
 
 Func_69e82:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	call Func_680dd
 	ret
 
@@ -5139,8 +5142,8 @@ Func_69ec0:
 	ret
 
 Func_69ecc:
-	ld a, $0a
-	ld de, $64
+	ld a, 10
+	lb de, 0, 100
 	call Func_680dd
 	ret
 
@@ -5174,8 +5177,8 @@ Func_69ef8:
 	ret
 
 Func_69efe:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -5246,8 +5249,8 @@ Func_69f5a:
 	ret
 
 Func_69f62:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -5415,8 +5418,8 @@ Func_6a073:
 	ret
 
 Func_6a079:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -5567,8 +5570,8 @@ Func_6a190:
 	ret
 
 Func_6a194:
-	ld a, $23
-	ld de, LoadSymbolsFont
+	ld a, 35
+	lb de, 30, 40
 	call Func_680dd
 	ret
 
@@ -5595,8 +5598,8 @@ Func_6a1b6:
 	ret
 
 Func_6a1bc:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -5745,8 +5748,8 @@ Func_6a28f:
 	ret
 
 Func_6a2bb:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -5756,8 +5759,8 @@ Func_6a2c4:
 	ret
 
 Func_6a2ca:
-	ld a, $28
-	ld de, $50
+	ld a, 40
+	lb de, 0, 80
 	call Func_680dd
 	ret
 
@@ -5783,8 +5786,8 @@ Func_6a2ef:
 	jr Func_6a2fa
 
 Func_6a2f1:
-	ld a, $1e
-	ld de, $1e
+	ld a, 30
+	lb de, 0, 30
 	call Func_680dd
 	ret
 
@@ -6393,8 +6396,8 @@ Func_6a681:
 	ret
 
 Func_6a6b9:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	call Func_680dd
 	ret
 
@@ -6424,8 +6427,8 @@ Func_6a6dc:
 	ret
 
 Func_6a6f0:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -6487,8 +6490,8 @@ Func_6a738:
 	ret
 
 Func_6a742:
-	ld a, $28
-	ld de, $50
+	ld a, 40
+	lb de, 0, 80
 	call Func_680dd
 	ret
 
@@ -6513,8 +6516,8 @@ Func_6a764:
 	ret
 
 Func_6a768:
-	ld a, $1e
-	ld de, $1e
+	ld a, 30
+	lb de, 0, 30
 	call Func_680dd
 	ret
 
@@ -6560,8 +6563,8 @@ Func_6a793:
 	ret
 
 Func_6a7b1:
-	ld a, $28
-	ld de, $50
+	ld a, 40
+	lb de, 0, 80
 	call Func_680dd
 	ret
 
@@ -6577,8 +6580,8 @@ Func_6a7ba:
 	ret
 
 Func_6a7d0:
-	ld a, $19
-	ld de, $141e
+	ld a, 25
+	lb de, 20, 30
 	call Func_680dd
 	ret
 
@@ -6609,8 +6612,8 @@ Func_6a7e9:
 	ret
 
 Func_6a7fe:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	call Func_680dd
 	ret
 
@@ -6660,8 +6663,8 @@ Func_6a82b:
 	ret
 
 Func_6a850:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -7268,8 +7271,8 @@ Func_6aba3:
 	ret
 
 Func_6abf0:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	call Func_680dd
 	ret
 
@@ -7577,8 +7580,8 @@ Func_6ade0:
 	ret
 
 Func_6ae00:
-	ld a, $46
-	ld de, $46
+	ld a, 70
+	lb de, 0, 70
 	call Func_680dd
 	ret
 
@@ -7827,13 +7830,13 @@ Func_6af8f:
 	call Func_69283
 	cp $01
 	jr c, .asm_6afa1
-	ld a, $28
-	ld de, $1e32
+	ld a, 40
+	lb de, 30, 50
 	call Func_680dd
 	ret
 .asm_6afa1
-	ld a, $00
-	ld de, $0
+	ld a, 0
+	lb de, 0, 0
 	call Func_680dd
 	ret
 
@@ -7894,8 +7897,8 @@ Func_6aff0:
 	ret
 
 Func_6b00b:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	call Func_680dd
 	ret
 
@@ -8340,8 +8343,8 @@ Func_6b2ce:
 	ret
 
 Func_6b2d0:
-	ld a, $2d
-	ld de, $5a
+	ld a, 45
+	lb de, 0, 90
 	call Func_680dd
 	ret
 
@@ -8375,8 +8378,8 @@ Func_6b307:
 	ret
 
 Func_6b30b:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	call Func_680dd
 	ret
 
@@ -8801,8 +8804,8 @@ Func_6b59e:
 	ret
 
 Func_6b5c2:
-	ld a, $28
-	ld de, $28
+	ld a, 40
+	lb de, 0, 40
 	call Func_680dd
 	ret
 
@@ -8945,8 +8948,8 @@ Func_6b6af:
 	ret
 
 Func_6b6b1:
-	ld a, $1e
-	ld de, $1428
+	ld a, 30
+	lb de, 20, 40
 	call Func_680dd
 	ret
 
@@ -8976,8 +8979,8 @@ Func_6b6df:
 	ret
 
 Func_6b6e9:
-	ld a, $1e
-	ld de, $1428
+	ld a, 30
+	lb de, 20, 40
 	call Func_680dd
 	ret
 
@@ -9160,8 +9163,8 @@ Func_6b7d5:
 	ret
 
 Func_6b823:
-	ld a, $0f
-	ld de, $a14
+	ld a, 15
+	lb de, 10, 20
 	call Func_680dd
 	ret
 
@@ -9171,8 +9174,8 @@ Func_6b82c:
 	ret
 
 Func_6b832:
-	ld a, $32
-	ld de, $32
+	ld a, 50
+	lb de, 0, 50
 	call Func_680dd
 	ret
 
@@ -9402,8 +9405,8 @@ Func_6b971:
 	ret
 
 Func_6b991:
-	ld a, $1e
-	ld de, $1428
+	ld a, 30
+	lb de, 20, 40
 	call Func_680dd
 	ret
 
@@ -9512,8 +9515,8 @@ Func_6ba36:
 	ret
 
 Func_6ba60:
-	ld a, $46
-	ld de, $46
+	ld a, 70
+	lb de, 0, 70
 	call Func_680dd
 	ret
 

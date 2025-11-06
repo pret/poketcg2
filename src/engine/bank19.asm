@@ -554,8 +554,8 @@ Func_643de:
 	ret
 
 Func_643e0:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	farcall Func_680dd
 	ret
 
@@ -608,8 +608,8 @@ Func_6443b:
 	ret
 
 Func_64442:
-	ld a, $28
-	ld de, $28
+	ld a, 40
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -1010,8 +1010,8 @@ Func_646e6:
 	ret
 
 Func_646ed:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	farcall Func_680dd
 	ret
 
@@ -1027,8 +1027,8 @@ Func_646f7:
 	ret
 
 Func_6470f:
-	ld a, $19
-	ld de, $141e
+	ld a, 25
+	lb de, 20, 30
 	farcall Func_680dd
 	ret
 
@@ -1038,8 +1038,8 @@ Func_64719:
 	ret
 
 Func_64720:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -1059,8 +1059,8 @@ Func_64742:
 	ret
 
 Func_64744:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -1075,8 +1075,8 @@ Func_6474e:
 	ret
 
 Func_64765:
-	ld a, $0f
-	ld de, $a14
+	ld a, 15
+	lb de, 10, 20
 	farcall Func_680dd
 	ret
 
@@ -1086,8 +1086,8 @@ Func_6476f:
 	ret
 
 Func_64776:
-	ld a, $14
-	ld de, $14
+	ld a, 20
+	lb de, 0, 20
 	farcall Func_680dd
 	ret
 
@@ -1102,8 +1102,8 @@ Func_64780:
 	ret
 
 Func_64795:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -1643,8 +1643,8 @@ Func_64b4b:
 	ret
 
 Func_64b6b:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -1659,8 +1659,8 @@ Func_64b75:
 	ret
 
 Func_64b8c:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	farcall Func_680dd
 	ret
 
@@ -1670,8 +1670,8 @@ Func_64b96:
 	ret
 
 Func_64b9d:
-	ld a, $32
-	ld de, $32
+	ld a, 50
+	lb de, 0, 50
 	farcall Func_680dd
 	ret
 
@@ -1961,8 +1961,8 @@ Func_64d86:
 	ret
 
 Func_64d8d:
-	ld a, $28
-	ld de, $1e32
+	ld a, 40
+	lb de, 30, 50
 	farcall Func_680dd
 	ret
 
@@ -1972,8 +1972,8 @@ Func_64d97:
 	ret
 
 Func_64d9e:
-	ld a, $14
-	ld de, $64
+	ld a, 20
+	lb de, 0, 100
 	farcall Func_680dd
 	ret
 
@@ -2289,8 +2289,8 @@ Func_64fc3:
 	ret
 
 Func_64fde:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	farcall Func_680dd
 	ret
 
@@ -2457,8 +2457,8 @@ Func_65102:
 	ret
 
 Func_65114:
-	ld a, $1e
-	ld de, $a28
+	ld a, 30
+	lb de, 10, 40
 	farcall Func_680dd
 	ret
 
@@ -2538,8 +2538,8 @@ Func_65182:
 	ret
 
 Func_65194:
-	ld a, $3c
-	ld de, $3246
+	ld a, 60
+	lb de, 50, 70
 	farcall Func_680dd
 	ret
 
@@ -2887,8 +2887,8 @@ Func_65398:
 	ret
 
 Func_653d5:
-	ld a, $1e
-	ld de, $1e
+	ld a, 30
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -2935,8 +2935,8 @@ Func_65415:
 	ret
 
 Func_6542e:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -2984,8 +2984,8 @@ Func_6545a:
 	ret
 
 Func_65482:
-	ld a, $2d
-	ld de, $5a
+	ld a, 45
+	lb de, 0, 90
 	farcall Func_680dd
 	ret
 
@@ -3003,8 +3003,8 @@ Func_6548c:
 	ret
 
 Func_654a6:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	farcall Func_680dd
 	ret
 
@@ -4114,8 +4114,8 @@ Func_65bdb:
 	ret
 
 Func_65be3:
-	ld a, $0a
-	ld de, $1e
+	ld a, 10
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -4361,8 +4361,8 @@ Func_65d91:
 	ret
 
 Func_65d96:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -4487,8 +4487,8 @@ Func_65e3f:
 	ret
 
 Func_65e75:
-	ld a, $28
-	ld de, $1e32
+	ld a, 40
+	lb de, 30, 50
 	farcall Func_680dd
 	ret
 
@@ -4498,8 +4498,8 @@ Func_65e7f:
 	ret
 
 Func_65e86:
-	ld a, $50
-	ld de, $50
+	ld a, 80
+	lb de, 0, 80
 	farcall Func_680dd
 	ret
 
@@ -4686,8 +4686,8 @@ Func_65fbb:
 	ret
 
 Func_65fc0:
-	ld a, $19
-	ld de, $141e
+	ld a, 25
+	lb de, 20, 30
 	farcall Func_680dd
 	ret
 
@@ -4999,8 +4999,8 @@ Func_661a6:
 	ret
 
 Func_661c2:
-	ld a, $1e
-	ld de, $3c
+	ld a, 30
+	lb de, 0, 60
 	farcall Func_680dd
 	ret
 
@@ -5330,8 +5330,8 @@ Func_663d2:
 	jr .asm_663d9
 
 Func_663e2:
-	ld a, $0f
-	ld de, $1e
+	ld a, 15
+	lb de, 0, 30
 	farcall Func_680dd
 	ret
 
@@ -5359,8 +5359,8 @@ Func_663fd:
 	ret
 
 Func_6640b:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	farcall Func_680dd
 	ret
 
@@ -5375,8 +5375,8 @@ Func_66415:
 	ret
 
 Func_6642c:
-	ld a, $19
-	ld de, $141e
+	ld a, 25
+	lb de, 20, 30
 	farcall Func_680dd
 	ret
 
@@ -5626,8 +5626,8 @@ Func_665a4:
 	ret
 
 Func_665b7:
-	ld a, $3c
-	ld de, $3c
+	ld a, 60
+	lb de, 0, 60
 	farcall Func_680dd
 	ret
 
@@ -5642,8 +5642,8 @@ Func_665c1:
 	ret
 
 Func_665d6:
-	ld a, $0a
-	ld de, $14
+	ld a, 10
+	lb de, 0, 20
 	farcall Func_680dd
 	ret
 
@@ -5658,8 +5658,8 @@ Func_665e0:
 	ret
 
 Func_665f7:
-	ld a, $32
-	ld de, $32
+	ld a, 50
+	lb de, 0, 50
 	farcall Func_680dd
 	ret
 
@@ -5753,8 +5753,8 @@ Func_66684:
 	ret
 
 Func_66692:
-	ld a, $14
-	ld de, $a1e
+	ld a, 20
+	lb de, 10, 30
 	farcall Func_680dd
 	ret
 
@@ -5775,8 +5775,8 @@ Func_666a3:
 	jr .asm_666aa
 
 Func_666b3:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -5792,8 +5792,8 @@ Func_666bd:
 	ret
 
 Func_666d5:
-	ld a, $14
-	ld de, $28
+	ld a, 20
+	lb de, 0, 40
 	farcall Func_680dd
 	ret
 
@@ -5808,8 +5808,8 @@ Func_666df:
 	ret
 
 Func_666f6:
-	ld a, $14
-	ld de, $14
+	ld a, 20
+	lb de, 0, 20
 	farcall Func_680dd
 	ret
 
@@ -6346,8 +6346,8 @@ Func_66a96:
 	ret
 
 Func_66ab2:
-	ld a, $2d
-	ld de, $5a
+	ld a, 45
+	lb de, 0, 90
 	farcall Func_680dd
 	ret
 
