@@ -205,7 +205,7 @@ FocusedOneShotDescription:
 	linefw "このカードは「どつく」を使えない。"
 	done
 
-CorkscrewPunch:
+CorkscrewPunchName:
 	textfw "どつく"
 	done
 

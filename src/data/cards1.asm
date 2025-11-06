@@ -11934,7 +11934,7 @@ MachopLv18Card:
 
 	; attack 2
 	energy FIGHTING, 1, COLORLESS, 1 ; energies
-	tx CorkscrewPunch ; name
+	tx CorkscrewPunchName ; name
 	dw NONE ; description
 	dw NONE ; description (cont)
 	db 30 ; damage

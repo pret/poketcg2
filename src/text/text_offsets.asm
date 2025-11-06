@@ -5770,7 +5770,7 @@ SECTION "Text Offsets 2", ROMX
 	textpointer MachopName                                         ; 0x167e
 	textpointer FocusedOneShotName                                 ; 0x167f
 	textpointer FocusedOneShotDescription                          ; 0x1680
-	textpointer CorkscrewPunch                                     ; 0x1681
+	textpointer CorkscrewPunchName                                 ; 0x1681
 	textpointer SuperpowerName                                     ; 0x1682
 	textpointer MachopLv18Description                              ; 0x1683
 	textpointer LowKickName                                        ; 0x1684
