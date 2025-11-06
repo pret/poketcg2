@@ -2398,6 +2398,6 @@ INCLUDE "audio/music/pcmainmenu.asm"
 INCLUDE "audio/music/deckmachine.asm"
 INCLUDE "audio/music/cardpop.asm"
 INCLUDE "audio/music/overworld.asm"
-INCLUDE "audio/music/song27.asm"
+INCLUDE "audio/music/boop.asm"
 
 	ds $149

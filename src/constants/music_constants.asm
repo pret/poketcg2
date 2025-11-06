@@ -17,8 +17,8 @@
 	const MUSIC_RONALD                    ; $0f
 	const MUSIC_IMAKUNI_BLACK             ; $10
 	const MUSIC_HALL_OF_HONOR             ; $11
-	const MUSIC_12                        ; $12
-	const MUSIC_13                        ; $13
+	const MUSIC_STUB_12                   ; $12
+	const MUSIC_BOOP_13                   ; $13
 	const MUSIC_HERE_COMES_GR             ; $14
 	const MUSIC_GR_OVERWORLD              ; $15
 	const MUSIC_FORT_1                    ; $16
@@ -26,19 +26,19 @@
 	const MUSIC_FORT_3                    ; $18
 	const MUSIC_FORT_4                    ; $19
 	const MUSIC_GR_CASTLE                 ; $1a
-	const MUSIC_1B                        ; $1b
+	const MUSIC_BOOP_1B                   ; $1b
 	const MUSIC_GR_CHALLENGE_CUP          ; $1c
 	const MUSIC_GAME_CENTER               ; $1d
 	const MUSIC_GR_BLIMP                  ; $1e
 	const MUSIC_DUEL_THEME_GR_MEMBER      ; $1f
 	const MUSIC_DUEL_THEME_GR_LEADER      ; $20
 	const MUSIC_DUEL_THEME_GR_KING        ; $21
-	const MUSIC_22                        ; $22
+	const MUSIC_BOOP_22                   ; $22
 	const MUSIC_ISHIHARA                  ; $23
 	const MUSIC_IMAKUNI_RED               ; $24
 	const MUSIC_CREDITS                   ; $25
-	const MUSIC_26                        ; $26
-	const MUSIC_27                        ; $27
+	const MUSIC_BOOP_26                   ; $26
+	const MUSIC_BOOP_27                   ; $27
 	const MUSIC_MATCH_START_MEMBER        ; $28
 	const MUSIC_MATCH_START_CLUB_MASTER   ; $29
 	const MUSIC_MATCH_START_GRAND_MASTER  ; $2a

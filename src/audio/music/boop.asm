@@ -1,4 +1,4 @@
-Music_Song27_Ch1:
+Music_Boop_Ch1:
 	speed 1
 	stereo_panning TRUE, TRUE
 	cutoff 8

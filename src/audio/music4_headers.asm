@@ -20,8 +20,8 @@ SongBanks4:
 	db BANK(Music_Ronald)
 	db BANK(Music_ImakuniBlack)
 	db BANK(Music_HallOfHonor)
-	db BANK(Music_Song12)
-	db BANK(Music_Song13)
+	db BANK(Music_Stub12)
+	db BANK(Music_Boop13)
 	db BANK(Music_HereComesGR)
 	db BANK(Music_GROverworld)
 	db BANK(Music_Fort1)
@@ -29,19 +29,19 @@ SongBanks4:
 	db BANK(Music_Fort3)
 	db BANK(Music_Fort4)
 	db BANK(Music_GRCastle)
-	db BANK(Music_Song1B)
+	db BANK(Music_Boop1B)
 	db BANK(Music_GRChallengeCup)
 	db BANK(Music_GameCenter)
 	db BANK(Music_GRBlimp)
 	db BANK(Music_DuelThemeGRMember)
 	db BANK(Music_DuelThemeGRLeader)
 	db BANK(Music_DuelThemeGRKing)
-	db BANK(Music_Song22)
+	db BANK(Music_Boop22)
 	db BANK(Music_Ishihara)
 	db BANK(Music_ImakuniRed)
 	db BANK(Music_Credits)
-	db BANK(Music_Song26)
-	db BANK(Music_Song27)
+	db BANK(Music_Boop26)
+	db BANK(Music_Boop27)
 	db BANK(Music_MatchStartMember)
 	db BANK(Music_MatchStartClubMaster)
 	db BANK(Music_MatchStartGrandMaster)
@@ -82,8 +82,8 @@ SongHeaderPointers4:
 	dw Music_Ronald
 	dw Music_ImakuniBlack
 	dw Music_HallOfHonor
-	dw Music_Song12
-	dw Music_Song13
+	dw Music_Stub12
+	dw Music_Boop13
 	dw Music_HereComesGR
 	dw Music_GROverworld
 	dw Music_Fort1
@@ -91,19 +91,19 @@ SongHeaderPointers4:
 	dw Music_Fort3
 	dw Music_Fort4
 	dw Music_GRCastle
-	dw Music_Song1B
+	dw Music_Boop1B
 	dw Music_GRChallengeCup
 	dw Music_GameCenter
 	dw Music_GRBlimp
 	dw Music_DuelThemeGRMember
 	dw Music_DuelThemeGRLeader
 	dw Music_DuelThemeGRKing
-	dw Music_Song22
+	dw Music_Boop22
 	dw Music_Ishihara
 	dw Music_ImakuniRed
 	dw Music_Credits
-	dw Music_Song26
-	dw Music_Song27
+	dw Music_Boop26
+	dw Music_Boop27
 	dw Music_MatchStartMember
 	dw Music_MatchStartClubMaster
 	dw Music_MatchStartGrandMaster
@@ -247,12 +247,12 @@ Music_TitleScreen:
 	dw Music_HallOfHonor_Ch3
 	dw $0000
 
-;Music_Song12
+;Music_Stub12
 	db %1111
-	dw Music_Song12_Ch1
-	dw Music_Song12_Ch2
-	dw Music_Song12_Ch3
-	dw Music_Song12_Ch4
+	dw Music_Stub12_Ch1
+	dw Music_Stub12_Ch2
+	dw Music_Stub12_Ch3
+	dw Music_Stub12_Ch4
 
 Music_HereComesGR:
 	db %1111
@@ -366,9 +366,9 @@ Music_GROverworld:
 	dw Music_Credits_Ch3
 	dw Music_Credits_Ch4
 
-;Music_Song27
+;Music_Boop27
 	db %0001
-	dw Music_Song27_Ch1
+	dw Music_Boop_Ch1
 	dw $0000
 	dw $0000
 	dw $0000

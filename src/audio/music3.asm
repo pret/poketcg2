@@ -2397,7 +2397,7 @@ INCLUDE "audio/music/club3.asm"
 INCLUDE "audio/music/ronald.asm"
 INCLUDE "audio/music/imakuniblack.asm"
 INCLUDE "audio/music/hallofhonor.asm"
-INCLUDE "audio/music/song12.asm"
+INCLUDE "audio/music/stub12.asm"
 INCLUDE "audio/music/gamecenter.asm"
 INCLUDE "audio/music/grblimp.asm"
 
