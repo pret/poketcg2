@@ -3013,6 +3013,7 @@ DrawCardPageCardGfx:
 	ret
 ; 0x5475
 
+; hl - text
 Func_5475:
 	push hl
 	call EmptyScreen

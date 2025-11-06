@@ -1354,6 +1354,10 @@ Func_24c7f:
 	ret
 ; 0x24c9d
 
+; a - ?
+; bc - ?
+; de - ?
+; hl - text
 Func_24c9d:
 	push hl
 	push bc
@@ -1607,6 +1611,8 @@ ExecuteCardSearchFunc:
 	ret
 ; 0x24df8
 
+; hl = info text ID
+; de = header text ID
 Func_24df8:
 	push hl
 	push de

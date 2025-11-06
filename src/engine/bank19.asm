@@ -168,8 +168,8 @@ Func_64125:
 	ld a, $06
 	farcall Func_24c9d
 	jr c, .asm_64140
-	ld hl, $21a
-	ld de, $b0
+	ldtx hl, ChooseADarkPokemonText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_64140
 	ldh [hTemp_ffa0], a
@@ -207,8 +207,8 @@ Func_6416b:
 	jr .asm_641b6
 .asm_6417f
 	bank1call Func_5221
-	ld hl, $24b
-	ld de, $ae
+	ldtx hl, ChooseATrainerCardText_2
+	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
 .asm_6418b
 	bank1call DisplayCardList
@@ -266,7 +266,7 @@ Func_641dd:
 .asm_641e9
 	bank1call Func_5221
 	ld hl, IncrementPlayTimeCounter
-	ld de, $ad
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	jr nc, .asm_64204
@@ -448,11 +448,11 @@ Func_642aa:
 
 Func_64335:
 	ldh [hTemp_ffa0], a
-	ld hl, $251
+	ldtx hl, ChallengeDeclinedText
 	or a
 	scf
 	jr nz, .asm_64346
-	ld hl, $250
+	ldtx hl, ChallengeAcceptedText
 	ld a, $01
 	ldh [hTemp_ffa0], a
 	or a
@@ -676,7 +676,7 @@ Func_6449a:
 Func_644b5:
 	ld a, $ff
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ld de, $144
+	ldtx de, IfHeadsHeal1StatusOfYourActiveText
 	farcall Func_68079
 	jr c, .asm_644c4
 	or a
@@ -696,17 +696,17 @@ Func_644b5:
 .asm_644d4
 	ld a, [hl]
 	and $0f
-	ld hl, $223
+	ldtx hl, EffectTargetSleepText
 	cp $02
 	jr z, .asm_644e8
-	ld hl, $224
+	ldtx hl, EffectTargetParalysisText
 	cp $03
 	jr z, .asm_644e8
-	ld hl, $225
+	ldtx hl, EffectTargetConfusionText
 .asm_644e8
 	call LoadTxRam2
 	bank1call DrawDuelMainScene
-	ld hl, $222
+	ldtx hl, Choose1StatusToHealText
 	call TwoItemHorizontalMenu
 	ld e, $f0
 	ldh a, [hCurScrollMenuItem]
@@ -776,8 +776,8 @@ Func_6454c:
 	ld a, $05
 	farcall Func_24c9d
 	jr c, .asm_6456a
-	ld hl, $1b8
-	ld de, $b0
+	ldtx hl, ChooseAParasText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_6456a
 	ldh [hTemp_ffa0], a
@@ -1249,7 +1249,7 @@ Func_64885:
 
 Func_6489d:
 .asm_6489d
-	ld hl, $226
+	ldtx hl, ChooseDeckOrDiscardPileToCheckText
 	call TwoItemHorizontalMenu
 	ldh [hTemp_ffa0], a
 	jr nc, .asm_648da
@@ -1262,8 +1262,8 @@ Func_6489d:
 	jr .asm_6489d
 .asm_648b9
 	bank1call InitAndDrawCardListScreenLayout
-	ld de, $ad
-	ld hl, $22b
+	ldtx de, DuelistDiscardPileText
+	ldtx hl, ChooseAFossilText
 	bank1call SetCardListHeaderAndInfoText
 .asm_648c5
 	bank1call DisplayCardList
@@ -1282,8 +1282,8 @@ Func_6489d:
 	xor a
 	farcall Func_24c9d
 	jr c, .asm_648f9
-	ld hl, $22b
-	ld de, $b0
+	ldtx hl, ChooseAFossilText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_648f9
 	ldh [hTempPlayAreaLocation_ffa1], a
@@ -1331,8 +1331,8 @@ Func_6493a:
 	ld a, $0b
 	farcall Func_24c9d
 	jr c, .asm_64955
-	ld hl, $221
-	ld de, $b0
+	ldtx hl, ChooseAColorlessEvolutionPokemonText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_64955
 	ldh [hTemp_ffa0], a
@@ -1364,7 +1364,7 @@ Func_64977:
 	ret
 
 Func_6498a:
-	ld hl, $22e
+	ldtx hl, Choose2EnergyCardsFromHandToDiscardText
 	ld de, $204
 	push de
 	call DrawWideTextBox_WaitForInput
@@ -1392,8 +1392,8 @@ Func_6498a:
 	jr c, .asm_6499b
 	farcall Func_6837a
 	bank1call Func_5221
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	jr c, .asm_649d7
@@ -1452,8 +1452,8 @@ Func_64a08:
 	ld a, $ff
 	ld [de], a
 	bank1call Func_5221
-	ld hl, $22d
-	ld de, $b0
+	ldtx hl, ChooseBasicOrEvolutionCardText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .asm_64a30
 	bank1call DisplayCardList
@@ -1502,8 +1502,8 @@ Func_64a75:
 Func_64a77:
 	call Func_64aa4
 	bank1call Func_5221
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	ldh a, [hTempCardIndex_ff98]
@@ -2018,7 +2018,7 @@ Func_64ddb:
 	ret
 
 Func_64dee:
-	ld de, $147
+	ldtx de, MagnetCheckText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	jr c, .asm_64e05
@@ -2035,8 +2035,8 @@ Func_64dee:
 	ld a, $05
 	farcall Func_24c9d
 	jr c, .asm_64e23
-	ld hl, $1c3
-	ld de, $b0
+	ldtx hl, ChooseAMagnemiteText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_64e23
 	ldh [hTempRetreatCostCards], a
@@ -2044,7 +2044,7 @@ Func_64dee:
 	ret
 
 Func_64e27:
-	ld de, $147
+	ldtx de, MagnetCheckText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -2140,7 +2140,7 @@ Func_64ec3:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call SwapTurn
 	ret c
-	ld de, $128
+	ldtx de, IfHeadsDiscard1EnergyCardText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -2159,7 +2159,7 @@ Func_64ef0:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call SwapTurn
 	ret c
-	ld de, $128
+	ldtx de, IfHeadsDiscard1EnergyCardText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -2316,7 +2316,7 @@ Func_65007:
 	ldh [hTemp_ffa0], a
 	farcall Func_6843b
 	ret c
-	ld de, $12a
+	ldtx de, IfHeads10DamageToBenchText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -2329,7 +2329,7 @@ Func_65020:
 	ldh [hTemp_ffa0], a
 	farcall Func_6843b
 	ret c
-	ld de, $12a
+	ldtx de, IfHeads10DamageToBenchText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -2382,7 +2382,7 @@ Func_6507a:
 Func_65083:
 	ld a, $ff
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ld de, $13d
+	ldtx de, FossilizeCheckText
 	farcall Func_68079
 	jr c, .asm_6509c
 	farcall Func_6809a
@@ -2484,7 +2484,7 @@ Func_65138:
 	ret
 
 Func_6513d:
-	ld de, $12b
+	ldtx de, IfTails30DamageTo1OfYourPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -2513,7 +2513,7 @@ Func_6513d:
 	ret
 
 Func_65167:
-	ld de, $12b
+	ldtx de, IfTails30DamageTo1OfYourPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -3092,7 +3092,7 @@ Func_6553a:
 	ret
 
 Func_65543:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -3100,7 +3100,7 @@ Func_65543:
 	ret
 
 Func_65552:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -3140,7 +3140,7 @@ Func_6558a:
 	ret
 
 Func_65593:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -3150,15 +3150,15 @@ Func_65593:
 	ld a, $0a
 	farcall Func_24c9d
 	jr c, .asm_655b8
-	ld hl, $1ba
-	ld de, $b0
+	ldtx hl, ChooseATrainerCardText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_655b8
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
 Func_655bb:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -3361,7 +3361,7 @@ Func_656fb:
 Func_65702:
 	xor a
 	ldh [hTemp_ffa0], a
-	ld de, $12f
+	ldtx de, IfHeads20DamageTo1OfOppPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -3378,7 +3378,7 @@ Func_65702:
 	ret
 
 Func_65728:
-	ld de, $12f
+	ldtx de, IfHeads20DamageTo1OfOppPokemonText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -3524,7 +3524,7 @@ Func_65822:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	farcall Func_681a4
 	ret c
-	ld de, $131
+	ldtx de, IfHeadsDiscard1EnergyCardFromOpponentText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -3536,7 +3536,7 @@ Func_65839:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	farcall Func_681a4
 	ret c
-	ld de, $131
+	ldtx de, IfHeadsDiscard1EnergyCardFromOpponentText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -4036,7 +4036,7 @@ Func_65b62:
 	ret
 
 Func_65b6d:
-	ld de, $132
+	ldtx de, IfTailsDiscard1EnergyCardFromYourselfText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -4047,7 +4047,7 @@ Func_65b6d:
 	ret
 
 Func_65b81:
-	ld de, $132
+	ldtx de, IfTailsDiscard1EnergyCardFromYourselfText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	jr c, .asm_65ba1
@@ -4124,8 +4124,8 @@ Func_65bed:
 	call CreateHandCardList
 	jr c, .asm_65c32
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $58
-	ld de, $ae
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
 	ld a, $09
 	ld [wNoItemSelectionMenuKeys], a
@@ -4187,7 +4187,7 @@ Func_65c6a:
 	ret
 
 Func_65c70:
-	ld de, $13f
+	ldtx de, PowerOfDarknessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -4285,7 +4285,7 @@ Func_65d0d:
 	ret
 
 Func_65d11:
-	ld de, $1bb
+	ldtx de, IfHeadsAttachUpTo3WaterEnergyFromDeckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -4294,8 +4294,8 @@ Func_65d11:
 	call CreateDeckCardList
 .asm_65d22
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $1bc
-	ld de, $b0
+	ldtx hl, ChooseWaterEnergyText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .asm_65d2e
 	bank1call DisplayCardList
@@ -4367,7 +4367,7 @@ Func_65d96:
 	ret
 
 Func_65da0:
-	ld de, $133
+	ldtx de, IfHeads30DamageToOppIfTails10DamageToBenchText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -4378,7 +4378,7 @@ Func_65da0:
 	ret
 
 Func_65db7:
-	ld de, $133
+	ldtx de, IfHeads30DamageToOppIfTails10DamageToBenchText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -4605,7 +4605,7 @@ Func_65f2d:
 	ret
 
 Func_65f32:
-	ld hl, $1d1
+	ldtx hl, ProcedureForBurningFireText
 	bank1call Func_5475
 .asm_65f38
 	ldh a, [hWhoseTurn]
@@ -4660,7 +4660,7 @@ Func_65f32:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $1d0
+	ldtx hl, DiscardingXCardsPromptText
 	call YesOrNoMenuWithText_SetCursorToYes
 	jr c, .asm_65f38
 	ret
@@ -4692,7 +4692,7 @@ Func_65fc0:
 	ret
 
 Func_65fca:
-	ld de, $135
+	ldtx de, KickingAndStampingCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret c
@@ -4868,7 +4868,7 @@ Func_660ec:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	farcall Func_681a4
 	ret c
-	ld de, $131
+	ldtx de, IfHeadsDiscard1EnergyCardFromOpponentText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -4880,7 +4880,7 @@ Func_66103:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	farcall Func_681a4
 	ret c
-	ld de, $131
+	ldtx de, IfHeadsDiscard1EnergyCardFromOpponentText
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
@@ -5168,7 +5168,7 @@ Func_662c0:
 	ret
 
 Func_662c4:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	jr c, .asm_662d4
@@ -5286,8 +5286,8 @@ Func_6638a:
 	ld a, $0c
 	farcall Func_24c9d
 	jr c, .asm_663a5
-	ld hl, $1c0
-	ld de, $b0
+	ldtx hl, ChooseALightningEnergyText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_663a5
 	ldh [hTemp_ffa0], a
@@ -5719,7 +5719,7 @@ Func_66653:
 	or a
 	ret
 .asm_6665c
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	farcall Func_68079
 	ld [wcc1b], a
 	ccf
@@ -5851,7 +5851,7 @@ Func_66730:
 	ret
 
 Func_66739:
-	ld de, $10e
+	ldtx de, TrainerCardSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -6006,7 +6006,7 @@ Func_66833:
 	ld hl, $e7
 	jr c, .asm_66870
 	call Func_66877
-	ld hl, $1dd
+	ldtx hl, NoTrainerCardsInOppHandText
 	jr c, .asm_66870
 	ld hl, wDuelTempList
 	call CountCardsInDuelTempList
@@ -6017,7 +6017,7 @@ Func_66833:
 	pop af
 	call RemoveCardFromHand
 	call ReturnCardToDeck
-	ld hl, $1ff
+	ldtx hl, PokemonWasReturnedToDeckText
 	farcall _DisplayCardDetailScreen
 	farcall Func_680a0
 	call SwapTurn
@@ -6730,8 +6730,8 @@ Func_66d36:
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
 .asm_66d44
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	jr nc, .asm_66d5f
@@ -6790,8 +6790,8 @@ Func_66da7:
 	ld a, $03
 	farcall Func_24c9d
 	jr c, .asm_66dc2
-	ld hl, $180
-	ld de, $b0
+	ldtx hl, ChooseBasicEnergyCardText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_66dc2
 	ldh [hTemp_ffa0], a
@@ -6932,8 +6932,8 @@ Func_66ea0:
 	ret c
 	farcall Func_683b4
 	bank1call Func_5221
-	ld hl, $1e8
-	ld de, $ad
+	ldtx hl, ChooseCardToPlaceInHandText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	ldh [hTempRetreatCostCards], a
@@ -7055,8 +7055,8 @@ Func_66f72:
 Func_66f76:
 	call CreateDeckCardList
 	bank1call Func_5221
-	ld hl, $1e8
-	ld de, $b0
+	ldtx hl, ChooseCardToPlaceInHandText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .asm_66f85
 	bank1call DisplayCardList
@@ -7238,8 +7238,8 @@ Func_6709c:
 	call SwapTurn
 	farcall Func_6837a
 	bank1call Func_5221
-	ld hl, $1ec
-	ld de, $ad
+	ldtx hl, ChoosePokemonToPlaceInPlayText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	call SwapTurn
@@ -7276,8 +7276,8 @@ Func_670de:
 Func_670ec:
 	call Func_67167
 	bank1call Func_5221
-	ld hl, $b4
-	ld de, $ae
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	ret c
@@ -7461,11 +7461,11 @@ Func_671e4:
 .asm_67221
 	call Func_66bee
 	jr c, .asm_67236
-	ld hl, $1fd
+	ldtx hl, PokemonWasReturnedFromArenaToHandText
 	ldh a, [hTemp_ffa0]
 	or a
 	jr z, .asm_67231
-	ld hl, $1fe
+	ldtx hl, PokemonWasReturnedFromBenchToHandText
 .asm_67231
 	ldh a, [hTempCardIndex_ff98]
 	bank1call DisplayCardDetailScreen
@@ -7498,8 +7498,8 @@ Func_6725b:
 	call DrawWideTextBox_WaitForInput
 	call Func_672d9
 	bank1call Func_5221
-	ld hl, $1f0
-	ld de, $ae
+	ldtx hl, ChooseCardToExchangeText
+	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	ldh [hTemp_ffa0], a
@@ -7513,8 +7513,8 @@ Func_67276:
 	call DrawWideTextBox_WaitForInput
 	call CreateDeckCardList
 	bank1call Func_5221
-	ld hl, $1f2
-	ld de, $b0
+	ldtx hl, ChoosePokemonCardText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .asm_67293
 	bank1call DisplayCardList
@@ -7629,8 +7629,8 @@ Func_6730c:
 	jr nz, .asm_67340
 	ld [hl], $ff
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $18d
-	ld de, $b0
+	ldtx hl, ChooseTheOrderOfTheCardsText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call Func_53bc
 .asm_67355
@@ -7809,8 +7809,8 @@ Func_67472:
 	call CreateHandCardList
 	jr c, .asm_6748c
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $58
-	ld de, $ae
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
 	ld a, $09
 	ld [wNoItemSelectionMenuKeys], a
@@ -7857,7 +7857,7 @@ Func_674c6:
 	ret
 
 Func_674d0:
-	ld de, $10e
+	ldtx de, TrainerCardSuccessCheckText
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -7867,8 +7867,8 @@ Func_674d0:
 	ld a, $04
 	farcall Func_24c9d
 	jr c, .asm_674f5
-	ld hl, $1f2
-	ld de, $b0
+	ldtx hl, ChoosePokemonCardText
+	ldtx de, DuelistDeckText
 	farcall Func_24df8
 .asm_674f5
 	ldh [hTempPlayAreaLocation_ffa1], a
@@ -7903,13 +7903,13 @@ Func_67519:
 	ret
 
 Func_67527:
-	ld de, $10e
+	ldtx de, TrainerCardSuccessCheckText
 	farcall Func_68079
 	jr nc, .asm_67549
 	bank1call CreateDiscardPileCardList
 	bank1call Func_5221
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 .asm_6753f
 	bank1call DisplayCardList
@@ -7947,8 +7947,8 @@ Func_67571:
 	call DrawWideTextBox_WaitForInput
 	farcall Func_6837a
 	bank1call Func_5221
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	ldh a, [hTempCardIndex_ff98]
@@ -8219,8 +8219,8 @@ Func_67766:
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
 .asm_67770
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $b4
-	ld de, $ad
+	ldtx hl, PleaseSelectCardText
+	ldtx de, DuelistDiscardPileText
 	bank1call SetCardListHeaderAndInfoText
 	bank1call DisplayCardList
 	jr nc, .asm_6778b
