@@ -878,7 +878,11 @@ wNumCardsBeingDrawn:: ; cd1d
 wOpponentTurnEnded:: ; cd1e
 	ds $1
 
-	ds $2
+wcd1f:: ; cd1f
+	ds $1
+
+wcd20:: ; cd20
+	ds $1
 
 wCardSearchFunc:: ; cd21
 	ds $1
@@ -1164,7 +1168,29 @@ wPrinterStatus:: ; cdf5
 wSerialDataPtr:: ; cdf6
 	ds $2
 
-	ds $10
+wcdf8:: ; cdf8
+	ds $1
+
+wcdf9:: ; cdf9
+	ds $1
+
+	ds $1
+
+wcdfb:: ; cdfb
+	ds $1
+
+	ds $5
+
+wce01:: ; ce01
+	ds $1
+
+wce02:: ; ce02
+	ds $1
+
+wce03:: ; ce03
+	ds $1
+
+	ds $4
 
 wTempCardID_ce08:: ; ce08
 	ds $2

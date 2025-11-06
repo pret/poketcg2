@@ -104,7 +104,10 @@ hPlayAreaEffectTarget:: ; ffa4
 hAIEnergyTransPlayAreaLocation:: ; ffa5
 	ds $1
 
-	ds $d
+	ds $c
+
+hffb2:: ; ffb2
+	ds $1
 
 ; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3

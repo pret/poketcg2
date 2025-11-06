@@ -180,7 +180,7 @@ Func_680cc:
 Func_680dd:
 	ld [wDamage], a
 	xor a
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ld a, d
 	ld [wAIMinDamage], a
 	ld a, e
@@ -284,7 +284,7 @@ Func_68163:
 
 Func_68175:
 	call Func_6817e
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -293,7 +293,7 @@ Func_6817e:
 	ld [wAIMinDamage], a
 	ld [wAIMaxDamage], a
 	xor a
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ret
 
 Func_6818c:
@@ -331,7 +331,7 @@ Func_681af:
 .asm_681cb
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add $10
-	ld [$ce01], a
+	ld [wce01], a
 	ld a, $08
 	jr Func_681ec
 .asm_681d6
@@ -348,7 +348,7 @@ Func_681e3:
 Func_681e5:
 	push af
 	ld a, $10
-	ld [$ce01], a
+	ld [wce01], a
 	pop af
 
 Func_681ec:
@@ -360,7 +360,7 @@ Func_681ec:
 .asm_681f5
 	ld a, [hl]
 	push hl
-	ld hl, $ce01
+	ld hl, wce01
 	cp [hl]
 	pop hl
 	jr nz, .asm_6821b
@@ -863,11 +863,11 @@ Func_68486:
 	bank1call DrawDuelMainScene
 	call SwapTurn
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 .asm_6848f
 	bank1call PrintAndLoadAttacksToDuelTempList
 	push af
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld hl, Data_684e7
 	call InitializeMenuParameters
 	pop af
@@ -902,7 +902,7 @@ Func_68486:
 	ret
 .asm_684cf
 	ldh a, [hCurScrollMenuItem]
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
@@ -1012,7 +1012,7 @@ Func_68556:
 	ret
 
 Func_6856d:
-	ld hl, $ffb2
+	ld hl, hffb2
 	sub [hl]
 	ld l, a
 	ld h, $00
@@ -1097,7 +1097,7 @@ Func_685dd:
 	get_turn_duelist_var
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld e, $06
-	ld a, [$cc2f]
+	ld a, [wAttachedEnergies + 6]
 	or a
 	jr nz, .asm_6860f
 	ld a, [wLoadedCard1Type]
@@ -1271,7 +1271,7 @@ Func_68708:
 	ld a, [wLoadedCard1Name]
 	ld [de], a
 	inc de
-	ld a, [$cc36]
+	ld a, [wLoadedCard1Name + 1]
 	ld [de], a
 	inc de
 	ld a, [hli]
@@ -1704,7 +1704,7 @@ Func_68999:
 	ld a, l
 	ld [wDamage], a
 	ld a, h
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ret
 
 Func_689ac:
@@ -2017,12 +2017,12 @@ Func_68b81:
 	ret
 .asm_68b8f
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_5c30
 .asm_68b95
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld hl, Data_68743
 	call InitializeMenuParameters
 	pop af
@@ -2034,7 +2034,7 @@ Func_68b81:
 	cp $ff
 	ret z
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call Func_68c23
 	jr c, .asm_68c0f
 	ldh [hTempRetreatCostCards], a
@@ -2060,7 +2060,7 @@ Func_68b81:
 	jr nc, .asm_68be3
 	cp $ff
 	jr z, .asm_68c03
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldh [hAIEnergyTransPlayAreaLocation], a
 	ld a, $16
 	call SetOppAction_SerialSendDuelData
@@ -2489,8 +2489,8 @@ Func_68e97:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
-	ld a, [$cc30]
-	ld hl, $cc2c
+	ld a, [wAttachedEnergies + 7]
+	ld hl, wAttachedEnergies + 3
 	add [hl]
 	ld e, a
 	ld a, [wTotalAttachedEnergies]
@@ -2757,8 +2757,8 @@ Func_69033:
 Func_69037:
 	ld e, $00
 	call GetPlayAreaCardAttachedEnergies
-	ld a, [$cc2c]
-	ld hl, $cc30
+	ld a, [wAttachedEnergies + 3]
+	ld hl, wAttachedEnergies + 7
 	add [hl]
 	ld hl, $cd
 	cp $01
@@ -3125,7 +3125,7 @@ Func_6927b:
 Func_69283:
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies]
-	ld hl, $cc30
+	ld hl, wAttachedEnergies + 7
 	add [hl]
 	ld hl, $cb
 	ret
@@ -3176,7 +3176,7 @@ Func_692c6:
 	ldtx hl, ChooseAndDiscard2FireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call Func_681e3
 	xor a
 	bank1call DisplayEnergyDiscardMenu
@@ -3187,7 +3187,7 @@ Func_692c6:
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
 	call RemoveCardFromDuelTempList
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	ret nc
 	bank1call UpdateAttachedEnergyMenu
@@ -3195,7 +3195,7 @@ Func_692c6:
 
 Func_692ee:
 	call Func_69291
-	ld a, [$c511]
+	ld a, [wDuelTempList + 1]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
@@ -3313,14 +3313,14 @@ Func_69393:
 	ldtx hl, DiscardOppDeckAsManyFireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call Func_681e3
 	xor a
 	bank1call DisplayEnergyDiscardMenu
 	xor a
 	ld [wAttachedEnergyMenuDenominator], a
 .asm_693a7
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld [wAttachedEnergyMenuNumerator], a
 	bank1call HandleAttachedEnergyMenuInput
 	jr c, .asm_693c8
@@ -3329,7 +3329,7 @@ Func_69393:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_693c8
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $0f
 	jr nc, .asm_693c8
 	bank1call UpdateAttachedEnergyMenu
@@ -3337,7 +3337,7 @@ Func_69393:
 .asm_693c8
 	farcall Func_24350
 	ld [hl], $ff
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	ret
 
@@ -3506,7 +3506,7 @@ Func_694a0:
 	ldtx hl, ChooseAndDiscard2EnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	xor a
 	call CreateArenaOrBenchEnergyCardList
 	xor a
@@ -3521,7 +3521,7 @@ Func_694a0:
 	ld [hl], a
 	ld hl, wAttachedEnergyMenuNumerator
 	inc [hl]
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	jr nc, .asm_694d5
 	ldh a, [hTempCardIndex_ff98]
@@ -3636,14 +3636,14 @@ Func_6953f:
 	jr .asm_6954d
 .asm_69562
 	ld a, c
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	push bc
 	ldtx hl, AffectedByMixUpText
 	call DrawWideTextBox_WaitForInput
 	call Func_680a0
 	call CreateDeckCardList
 	pop bc
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	or a
 	jr z, .asm_6958e
 	ld hl, wDuelTempList
@@ -3734,7 +3734,7 @@ Func_695bb:
 	jr c, .asm_695fc
 	ld a, c
 .asm_695fc
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld d, $84
 	ld a, [wDuelistType]
 	cp $00
@@ -3743,7 +3743,7 @@ Func_695bb:
 .asm_69609
 	ld a, d
 	ld [wLoadedAttackAnimation], a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld c, a
 	ld hl, wDuelTempList
 .asm_69613
@@ -3780,7 +3780,7 @@ Func_695bb:
 	call AddCardToHand
 	dec c
 	jr nz, .asm_69613
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
@@ -3843,8 +3843,8 @@ Func_69686:
 Func_696b4:
 	ld e, $00
 	call GetPlayAreaCardAttachedEnergies
-	ld a, [$cc2e]
-	ld hl, $cc30
+	ld a, [wAttachedEnergies + 5]
+	ld hl, wAttachedEnergies + 7
 	add [hl]
 	ld hl, $cc
 	cp $01
@@ -3853,7 +3853,7 @@ Func_696b4:
 Func_696c6:
 	push hl
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	pop hl
 	jr c, .asm_69700
@@ -3876,7 +3876,7 @@ Func_696c6:
 	call RemoveCardFromDuelTempList
 	or a
 	jr z, .asm_69700
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	jr c, .asm_696d3
 .asm_69700
@@ -3913,12 +3913,12 @@ Func_6972f:
 	bank1call Func_5475
 	call SwapTurn
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_5c30
 .asm_6973e
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld hl, Data_68743
 	call InitializeMenuParameters
 	pop af
@@ -3929,7 +3929,7 @@ Func_6972f:
 	jr nc, .asm_6974e
 	cp $ff
 	jr z, .asm_697af
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call GetCardDamageAndMaxHP
 	or a
@@ -4253,7 +4253,7 @@ Func_6994a:
 .asm_69957
 	ld a, c
 	inc a
-	ld [$cd1f], a
+	ld [wcd1f], a
 	ld a, b
 	add $7e
 	ld l, a
@@ -4270,8 +4270,8 @@ Func_6994a:
 	call CountCardsInDuelTempList
 	ld b, a
 	ld a, $01
-	ldh [$ffb2], a
-	ld hl, $c51a
+	ldh [hffb2], a
+	ld hl, wDuelTempList + 10
 	xor a
 .asm_69978
 	ld [hli], a
@@ -4289,25 +4289,25 @@ Func_6994a:
 	ldh a, [hCurScrollMenuItem]
 	ld e, a
 	ld d, $00
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 	add hl, de
 	ld a, [hl]
 	or a
 	jr nz, .asm_6998d
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld [hl], a
 	inc a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_53cb
-	ldh a, [$ffb2]
-	ld hl, $cd1f
+	ldh a, [hffb2]
+	ld hl, wcd1f
 	cp [hl]
 	jr c, .asm_6998d
 	call EraseCursor
 	ld hl, $2f
 	call YesOrNoMenuWithText_LeftAligned
 	jr c, .asm_6996c
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 	ld de, wDuelTempList
 	ld c, $00
 .asm_699c3
@@ -4335,14 +4335,14 @@ Func_6994a:
 	or a
 	ret
 .asm_699e3
-	ld hl, $ffb2
+	ld hl, hffb2
 	ld a, [hl]
 	cp $01
 	jr z, .asm_6998d
 	dec a
 	ld [hl], a
 	ld c, a
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 .asm_699f1
 	ld a, [hli]
 	cp c
@@ -4417,12 +4417,12 @@ Func_69a4b:
 	ld hl, $18e
 	bank1call Func_5475
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_5c30
 .asm_69a65
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld hl, Data_68743
 	call InitializeMenuParameters
 	pop af
@@ -4434,7 +4434,7 @@ Func_69a4b:
 	cp $ff
 	ret z
 	ldh [hTempPlayAreaLocation_ffa1], a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call GetCardDamageAndMaxHP
 	or a
 	jr z, .asm_69ac7
@@ -4459,7 +4459,7 @@ Func_69a4b:
 	cp $ff
 	jr z, .asm_69abb
 	ldh [hTempRetreatCostCards], a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call Func_69ad5
 	jr c, .asm_69aa1
 	ld a, $16
@@ -4619,8 +4619,8 @@ Func_69b89:
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1ID]
 	ld [wTempNonTurnDuelistCardID], a
-	ld a, [$cc3b]
-	ld [$ccd7], a
+	ld a, [wLoadedCard1ID + 1]
+	ld [wTempNonTurnDuelistCardID + 1], a
 	ld de, $0
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
@@ -4869,12 +4869,12 @@ Func_69d03:
 	ld hl, $190
 	bank1call Func_5475
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_5c30
 .asm_69d1d
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld hl, Data_68743
 	call InitializeMenuParameters
 	pop af
@@ -4885,7 +4885,7 @@ Func_69d03:
 	jr nc, .asm_69d2d
 	cp $ff
 	ret z
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ld hl, hTemp_ffa0
 	cp [hl]
@@ -5661,7 +5661,7 @@ Func_6a217:
 
 Func_6a227:
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -5884,7 +5884,7 @@ Func_6a37a:
 	call SwapTurn
 	bank1call GetArenaCardColor
 	call SwapTurn
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	cp $06
 	ret z
 	call SwapTurn
@@ -5905,7 +5905,7 @@ Func_6a3a0:
 	ld a, d
 	bank1call GetPlayAreaCardColor
 	ld c, a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp c
 	jr nz, .asm_6a3bb
 	push de
@@ -5956,8 +5956,8 @@ Func_6a3f1:
 	ldtx hl, ChooseUpTo3BenchedPokemonToGiveDamageText
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ldh [$ffb2], a
-	ld [$cdf8], a
+	ldh [hffb2], a
+	ld [wcdf8], a
 	bank1call Func_5c30
 ;	fallthrough
 
@@ -5965,7 +5965,7 @@ Func_6a40b:
 .asm_6a40b
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ld a, [$cdf8]
+	ld a, [wcdf8]
 	ld hl, $474b
 	call InitializeMenuParameters
 	pop af
@@ -5977,7 +5977,7 @@ Func_6a40b:
 	jr nc, .asm_6a41d
 	cp $ff
 	jr z, .asm_6a46a
-	ld [$cdf8], a
+	ld [wcdf8], a
 	call Func_6a48b
 	jr nc, .asm_6a436
 	call Func_3071
@@ -5991,7 +5991,7 @@ Func_6a40b:
 	ldh a, [hCurScrollMenuItem]
 	inc a
 	ld [hl], a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld c, a
 	cp $03
 	jr nc, .asm_6a454
@@ -6012,11 +6012,11 @@ Func_6a40b:
 	ld [hl], $ff
 	ret
 .asm_6a46a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	or a
 	jr z, .asm_6a40b
 	dec a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld e, a
 	ld d, $00
 	ld hl, hTemp_ffa0
@@ -6028,13 +6028,13 @@ Func_6a40b:
 	call EraseCursor
 	pop af
 	dec a
-	ld [$cdf8], a
+	ld [wcdf8], a
 	jp Func_6a40b
 
 Func_6a48b:
 	inc a
 	ld c, a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld b, a
 	ld hl, hTemp_ffa0
 	inc b
@@ -6152,7 +6152,7 @@ Func_6a515:
 	ret
 
 Func_6a531:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -6327,7 +6327,7 @@ Func_6a5a4:
 	ret
 
 Func_6a63b:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -6853,7 +6853,7 @@ Func_6a958:
 .asm_6a961
 	call Func_68486
 	jr c, .asm_6a961
-	ld hl, $cdf9
+	ld hl, wcdf9
 	ld [hl], d
 	inc hl
 	ld [hl], e
@@ -6896,7 +6896,7 @@ Func_6a9ac:
 	call SendAttackDataToLinkOpponent
 	ld a, $15
 	call SetOppAction_SerialSendDuelData
-	ld hl, $cdf9
+	ld hl, wcdf9
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
@@ -6910,8 +6910,8 @@ Func_6a9ac:
 	ld [wPlayerAttackingAttackIndex], a
 	ld a, [wTempCardID_ccc2]
 	ld [wPlayerAttackingCardID], a
-	ld a, [$ccd3]
-	ld [$cc0e], a
+	ld a, [wTempCardID_ccc2 + 1]
+	ld [wPlayerAttackingCardID + 1], a
 	or a
 	ret
 
@@ -7294,7 +7294,7 @@ Func_6ac11:
 	get_turn_duelist_var
 	ld c, a
 	ld l, $c8
-	ld de, $cdfb
+	ld de, wcdfb
 .asm_6ac1a
 	ld a, [hli]
 	ld [de], a
@@ -7308,7 +7308,7 @@ Func_6ac21:
 	get_turn_duelist_var
 	ld c, a
 	ld l, $c8
-	ld de, $cdfb
+	ld de, wcdfb
 .asm_6ac2a
 	ld a, [de]
 	inc de
@@ -7699,7 +7699,7 @@ Func_6aea9:
 	ldh [hTemp_ffa0], a
 .asm_6aec9
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call Func_681e3
 	xor a
 	bank1call DisplayEnergyDiscardMenu
@@ -7739,7 +7739,7 @@ Func_6aef6:
 	ld a, l
 	ld [wDamage], a
 	ld a, h
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ret
 
 Func_6af16:
@@ -8631,7 +8631,7 @@ Func_6b470:
 	ret
 
 Func_6b4a4:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -8689,7 +8689,7 @@ Func_6b4d4:
 	ret
 
 Func_6b4fd:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -8749,7 +8749,7 @@ Func_6b551:
 	ret
 .asm_6b55e
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldtx hl, ChooseUpTo3PokemonCardsFromDiscardPileText
 	call DrawWideTextBox_WaitForInput
 .asm_6b567
@@ -8771,7 +8771,7 @@ Func_6b551:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_6b596
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $03
 	jr c, .asm_6b567
 .asm_6b596
@@ -9431,7 +9431,7 @@ Func_6b9a2:
 	call YesOrNoMenuWithText_SetCursorToYes
 	ret c
 	ld a, $ff
-	ld [$cd20], a
+	ld [wcd20], a
 	ld hl, $1c7
 	ld de, $b0
 	farcall Func_24df8
@@ -9454,9 +9454,9 @@ Func_6b9a2:
 	jr c, .asm_6b9ec
 	ld a, $02
 .asm_6b9ec
-	ld [$cd1f], a
+	ld [wcd1f], a
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 .asm_6b9f2
 	bank1call Func_5221
 	ld hl, $1c7
@@ -9465,10 +9465,10 @@ Func_6b9a2:
 .asm_6b9fe
 	bank1call DisplayCardList
 	jr nc, .asm_6ba13
-	ld a, [$cd20]
+	ld a, [wcd20]
 	or a
 	jr nz, .asm_6ba2f
-	ld a, [$cd1f]
+	ld a, [wcd1f]
 	call Func_6856d
 	jr c, .asm_6b9f2
 	jr .asm_6ba2f
@@ -9481,8 +9481,8 @@ Func_6b9a2:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_6ba2f
-	ldh a, [$ffb2]
-	ld hl, $cd1f
+	ldh a, [hffb2]
+	ld hl, wcd1f
 	cp [hl]
 	jr c, .asm_6b9f2
 .asm_6ba2f
@@ -9554,7 +9554,7 @@ Func_6ba7b:
 	ret
 
 Func_6ba9e:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 

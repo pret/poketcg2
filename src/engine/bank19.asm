@@ -259,7 +259,7 @@ Func_641d6:
 
 Func_641dd:
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldtx hl, NightlyGarbageRunPromptText
 	call DrawWideTextBox_WaitForInput
 	call Func_64244
@@ -282,7 +282,7 @@ Func_641dd:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_64219
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $03
 	jr c, .asm_641e9
 .asm_64219
@@ -434,7 +434,7 @@ Func_642aa:
 	call DrawWideTextBox_PrintText
 	call SerialRecvDuelData
 	call SwapTurn
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld e, a
 	ldh a, [hTemp_ffa0]
 	sub e
@@ -940,7 +940,7 @@ Func_6466a:
 	xor a
 	ld [wAttachedEnergyMenuNumerator], a
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	farcall Func_681e3
 	jr c, .asm_646b1
 	ldtx hl, ChooseUpTo2FireEnergyPlus20DamageForEachText
@@ -964,7 +964,7 @@ Func_6466a:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_646b1
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $03
 	jr nc, .asm_646b1
 .asm_646ac
@@ -1190,7 +1190,7 @@ Func_6481f:
 	ld hl, wDuelTempList
 	call ShuffleCards
 	ld a, $ff
-	ld [$c513], a
+	ld [wDuelTempList + 3], a
 	ld c, a
 .asm_64839
 	inc c
@@ -1370,7 +1370,7 @@ Func_6498a:
 	call DrawWideTextBox_WaitForInput
 	bank1call CreateEnergyCardListFromHand
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	pop hl
 .asm_6499b
 	push hl
@@ -1387,7 +1387,7 @@ Func_6498a:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	pop hl
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	jr c, .asm_6499b
 	farcall Func_6837a
@@ -1732,7 +1732,7 @@ Func_64c10:
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	ld hl, $ce02
+	ld hl, wce02
 	ld de, $0
 	ld c, a
 	ld b, $00
@@ -1797,7 +1797,7 @@ Func_64c5b:
 
 Func_64c7c:
 	or $10
-	ld [$ce01], a
+	ld [wce01], a
 	ld a, $0b
 	farcall Func_681ec
 	ret
@@ -2640,7 +2640,7 @@ Func_65233:
 Func_65237:
 	call SwapTurn
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldh a, [hTemp_ffa0]
 	call Func_64c7c
 	call SwapTurn
@@ -2674,7 +2674,7 @@ Func_65237:
 	ld hl, wAttachedEnergyMenuDenominator
 	cp [hl]
 	jr nc, .asm_6528d
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $0f
 	jr nc, .asm_6528d
 	bank1call UpdateAttachedEnergyMenu
@@ -3430,7 +3430,7 @@ Func_65779:
 	srl a
 	ld [wDamage], a
 	xor a
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ld [wAIMinDamage], a
 	ret
 
@@ -3622,7 +3622,7 @@ Func_658b0:
 	ld [wAttachedEnergyMenuNumerator], a
 	ldh [hCurScrollMenuItem], a
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call Func_5c30
 	bank1call PrintPlayAreaCardList_EnableLCD
 .asm_658da
@@ -3650,7 +3650,7 @@ Func_658b0:
 	ld [hl], a
 	ld e, a
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	inc [hl]
 	ld hl, wAttachedEnergyMenuNumerator
@@ -3670,7 +3670,7 @@ Func_658b0:
 .asm_6592b
 	call SwapTurn
 	ld hl, hTempPlayAreaLocation_ffa1
-	ld de, $ce02
+	ld de, wce02
 	ld c, $06
 .asm_65936
 	ld a, [de]
@@ -3686,7 +3686,7 @@ Func_6593d:
 	or a
 	ret z
 	dec [hl]
-	ld hl, $ffb2
+	ld hl, hffb2
 	dec [hl]
 	ld e, [hl]
 	ld d, $00
@@ -3694,7 +3694,7 @@ Func_6593d:
 	add hl, de
 	ld e, [hl]
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	dec [hl]
 	ret
@@ -3705,7 +3705,7 @@ Func_65958:
 	dec a
 	ld e, a
 	ld bc, $5
-	ld hl, $ce03
+	ld hl, wce03
 .asm_65963
 	ld a, [hli]
 	add $20
@@ -3751,13 +3751,13 @@ Func_65978:
 	farcall Func_6869d
 	ld e, a
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	pop bc
 	ld [hl], c
 .asm_659a9
 	ld hl, hTempPlayAreaLocation_ffa1
-	ld de, $ce02
+	ld de, wce02
 	ld c, $06
 .asm_659b1
 	ld a, [de]
@@ -3768,11 +3768,11 @@ Func_65978:
 	ret
 .asm_659b8
 	ld a, $02
-	ld [$ce03], a
+	ld [wce03], a
 	jr .asm_659a9
 
 Func_659bf:
-	ld hl, $ce02
+	ld hl, wce02
 	xor a
 	ld [hli], a
 	ld [hli], a
@@ -3793,7 +3793,7 @@ Func_659ca:
 	ld [wAIMaxDamage], a
 	xor a
 	ld [wDamage], a
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ld [wAIMinDamage], a
 	ret
 
@@ -3812,7 +3812,7 @@ Func_659f5:
 	xor a
 	ld [wAttachedEnergyMenuNumerator], a
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld a, $0c
 	farcall Func_681e5
 	xor a
@@ -3834,7 +3834,7 @@ Func_659f5:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_65a36
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $06
 	jr nc, .asm_65a36
 .asm_65a31
@@ -3844,7 +3844,7 @@ Func_659f5:
 	farcall Func_24350
 	ld [hl], $ff
 	call Func_659bf
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	sub $02
 	ldh [hTemp_ffa0], a
 	jr z, .asm_65aad
@@ -3877,7 +3877,7 @@ Func_659f5:
 	ld [hl], a
 	ld e, a
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	inc [hl]
 	ld hl, wAttachedEnergyMenuNumerator
@@ -3903,7 +3903,7 @@ Func_659f5:
 	ld d, $00
 	ld hl, hTempRetreatCostCards
 	add hl, de
-	ld de, $ce02
+	ld de, wce02
 	ld c, $06
 .asm_65abb
 	ld a, [de]
@@ -3983,7 +3983,7 @@ Func_65b23:
 	or a
 	ret z
 	dec [hl]
-	ld hl, $ffb2
+	ld hl, hffb2
 	dec [hl]
 	ld e, [hl]
 	ld d, $00
@@ -3991,7 +3991,7 @@ Func_65b23:
 	add hl, de
 	ld e, [hl]
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	dec [hl]
 	ret
@@ -4001,7 +4001,7 @@ Func_65b3e:
 	get_turn_duelist_var
 	ld e, a
 	ld bc, $2
-	ld hl, $ce02
+	ld hl, wce02
 .asm_65b48
 	ld a, [hli]
 	add $20
@@ -4150,7 +4150,7 @@ Func_65bed:
 	ld a, l
 	ld [wDamage], a
 	ld a, h
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ret
 .asm_65c32
 	ldtx hl, DuelistHasNoCardsInHandText
@@ -4263,14 +4263,14 @@ Func_65cf1:
 	ret
 
 Func_65cf3:
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
 Func_65cf9:
 	ld a, $19
 	ld [wLoadedAttackAnimation], a
-	ld hl, $ccca
+	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
@@ -4290,7 +4290,7 @@ Func_65d11:
 	ldh [hTemp_ffa0], a
 	ret nc
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call CreateDeckCardList
 .asm_65d22
 	bank1call InitAndDrawCardListScreenLayout
@@ -4315,7 +4315,7 @@ Func_65d11:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_65d5b
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $04
 	jr c, .asm_65d22
 .asm_65d5b
@@ -4460,7 +4460,7 @@ Func_65e3a:
 
 Func_65e3f:
 	ld a, $05
-	ldh [$ffb2], a
+	ldh [hffb2], a
 .asm_65e43
 	call DrawCardFromDeck
 	jr c, .asm_65e74
@@ -4480,7 +4480,7 @@ Func_65e3f:
 	ldtx hl, DiscardedCardText
 	ldh a, [hTempCardIndex_ff98]
 	bank1call DisplayCardDetailScreen
-	ld hl, $ffb2
+	ld hl, hffb2
 	dec [hl]
 	jr nz, .asm_65e43
 .asm_65e74
@@ -4618,7 +4618,7 @@ Func_65f32:
 	inc e
 	jr nz, .asm_65f40
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 .asm_65f48
 	bank1call HasAlivePokemonInPlayArea
 .asm_65f4b
@@ -4630,7 +4630,7 @@ Func_65f32:
 	jr c, .asm_65f4b
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	bank1call DisplayEnergyDiscardMenu
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld [wAttachedEnergyMenuNumerator], a
 	xor a
 	ld [wAttachedEnergyMenuDenominator], a
@@ -4640,7 +4640,7 @@ Func_65f32:
 	farcall Func_24350
 	ldh a, [hTempCardIndex_ff98]
 	ld [hl], a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $0f
 	jr c, .asm_65f48
 .asm_65f7d
@@ -4655,7 +4655,7 @@ Func_65f32:
 	ld [de], a
 	inc e
 	jr nz, .asm_65f8b
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	dec a
 	ld l, a
 	ld h, $00
@@ -5046,7 +5046,7 @@ Func_66202:
 	add $14
 	ld [wAIMaxDamage], a
 	xor a
-	ld [$ccca], a
+	ld [wDamage + 1], a
 	ld a, $14
 	ld [wDamage], a
 	ld [wAIMinDamage], a
@@ -5064,14 +5064,14 @@ Func_66223:
 	or a
 	ret z
 	inc a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call EmptyScreen
 	ld de, $0
 	ld bc, $140d
 	call DrawRegularTextBox
 	ldtx hl, ChooseHowManyFoodCountersToRemoveText
 	call DrawWideTextBox_PrintText
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld c, a
 	ld de, $202
 	ld b, $20
@@ -5095,7 +5095,7 @@ Func_66223:
 	ld hl, Data_66291
 	xor a
 	call InitializeMenuParameters
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld [wNumScrollMenuItems], a
 .asm_6626c
 	call DoFrame
@@ -5400,8 +5400,8 @@ Func_6643f:
 	ldtx hl, ChooseUpTo2BenchedPokemonToGiveDamageText
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ldh [$ffb2], a
-	ld [$cdf8], a
+	ldh [hffb2], a
+	ld [wcdf8], a
 	bank1call Func_5c30
 ;   fallthrough
 
@@ -5409,7 +5409,7 @@ Func_6645c:
 .asm_6645c
 	bank1call PrintPlayAreaCardList_EnableLCD
 	push af
-	ld a, [$cdf8]
+	ld a, [wcdf8]
 	ld hl, Data_66568
 	call InitializeMenuParameters
 	pop af
@@ -5419,7 +5419,7 @@ Func_6645c:
 	call DoFrame
 	call HandleMenuInput
 	ld a, e
-	ld [$cdf8], a
+	ld [wcdf8], a
 	jr nc, .asm_6646e
 	ldh a, [hCurScrollMenuItem]
 	cp $ff
@@ -5437,7 +5437,7 @@ Func_6645c:
 	ldh a, [hCurScrollMenuItem]
 	inc a
 	ld [hl], a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld c, a
 	cp $02
 	jr nc, .asm_664a9
@@ -5458,11 +5458,11 @@ Func_6645c:
 	ld [hl], $ff
 	ret
 .asm_664c0
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	or a
 	jr z, .asm_6645c
 	dec a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld e, a
 	ld d, $00
 	ld hl, hTemp_ffa0
@@ -5474,13 +5474,13 @@ Func_6645c:
 	call EraseCursor
 	pop af
 	dec a
-	ld [$cdf8], a
+	ld [wcdf8], a
 	jp Func_6645c
 
 Func_664e2:
 	inc a
 	ld c, a
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld b, a
 	ld hl, hTemp_ffa0
 	inc b
@@ -6059,18 +6059,18 @@ Func_668a5:
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	ld [$cdf8], a
+	ld [wcdf8], a
 	ld c, $1e
 .asm_668b4
 	push bc
-	ld a, [$cdf8]
+	ld a, [wcdf8]
 	call Random
 	ld [wTempPlayAreaLocation_cceb], a
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp $14
 	jr c, .asm_668e2
-	ld a, [$cdf8]
+	ld a, [wcdf8]
 	call Random
 	ld e, a
 	call GetCardDamageAndMaxHP
@@ -6244,7 +6244,7 @@ Func_669e9:
 	ld b, a
 	dec a
 	jr z, .asm_66a17
-	ld hl, $ce02
+	ld hl, wce02
 	push hl
 	xor a
 .asm_66a00
@@ -6260,7 +6260,7 @@ Func_669e9:
 	call UpdateRNGSources
 	and $01
 	ret z
-	ld a, [$ce03]
+	ld a, [wce03]
 .asm_66a17
 	call SwapTurn
 	ld [wTempPlayAreaLocation_cceb], a
@@ -6463,12 +6463,12 @@ Func_66b65:
 	call Random
 	ld e, a
 	ld d, $00
-	ld hl, $ce02
+	ld hl, wce02
 	add hl, de
 	inc [hl]
 	dec c
 	jr nz, .asm_66b72
-	ld hl, $ce02
+	ld hl, wce02
 	ld b, $00
 	ld c, $06
 .asm_66b8a
@@ -6724,7 +6724,7 @@ Func_66d1d:
 
 Func_66d36:
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ldtx hl, Choose2BasicEnergyCardsFromDiscardPileText
 	call DrawWideTextBox_WaitForInput
 	farcall CreateEnergyCardListFromDiscardPile_OnlyBasic
@@ -6745,7 +6745,7 @@ Func_66d36:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_66d71
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $03
 	jr c, .asm_66d44
 .asm_66d71
@@ -7324,7 +7324,7 @@ Func_6711f:
 	ld hl, wTxRam2_b
 	ld a, [wLoadedCard1Name]
 	ld [hli], a
-	ld a, [$cc36]
+	ld a, [wLoadedCard1Name + 1]
 	ld [hl], a
 	farcall DrawLargePictureOfCard
 	ld a, SFX_5E
@@ -7603,7 +7603,7 @@ Func_6730c:
 .asm_6731f
 	ld a, c
 	inc a
-	ld [$cd1f], a
+	ld [wcd1f], a
 	ld a, b
 	add $7e
 	ld l, a
@@ -7620,8 +7620,8 @@ Func_6730c:
 	call CountCardsInDuelTempList
 	ld b, a
 	ld a, $01
-	ldh [$ffb2], a
-	ld hl, $c51a
+	ldh [hffb2], a
+	ld hl, wDuelTempList + 10
 	xor a
 .asm_67340
 	ld [hli], a
@@ -7639,27 +7639,27 @@ Func_6730c:
 	ldh a, [hCurScrollMenuItem]
 	ld e, a
 	ld d, $00
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 	add hl, de
 	ld a, [hl]
 	or a
 	jr nz, .asm_67355
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ld [hl], a
 	inc a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	push af
 	bank1call Func_53cb
 	pop af
-	ldh a, [$ffb2]
-	ld hl, $cd1f
+	ldh a, [hffb2]
+	ld hl, wcd1f
 	cp [hl]
 	jr c, .asm_67355
 	call EraseCursor
 	ld hl, $2f
 	call YesOrNoMenuWithText_LeftAligned
 	jr c, .asm_67334
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 	ld de, wDuelTempList
 	ld c, $00
 .asm_6738d
@@ -7687,14 +7687,14 @@ Func_6730c:
 	or a
 	ret
 .asm_673ad
-	ld hl, $ffb2
+	ld hl, hffb2
 	ld a, [hl]
 	cp $01
 	jr z, .asm_67355
 	dec a
 	ld [hl], a
 	ld c, a
-	ld hl, $c51a
+	ld hl, wDuelTempList + 10
 .asm_673bb
 	ld a, [hli]
 	cp c
@@ -7762,7 +7762,7 @@ Func_67420:
 	call CreateHandCardList
 	bank1call SortCardsInDuelTempListByID
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	ld hl, wDuelTempList
 .asm_6742c
 	ld a, [hli]
@@ -7777,12 +7777,12 @@ Func_67420:
 	call RemoveCardFromHand
 	call ReturnCardToDeck
 	push hl
-	ld hl, $ffb2
+	ld hl, hffb2
 	inc [hl]
 	pop hl
 	jr .asm_6742c
 .asm_6744d
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	or a
 	call nz, Func_66be9
 	ret
@@ -7996,7 +7996,7 @@ Func_675ca:
 	ldtx hl, ChooseEvolutionCardAndPressAButtonToDevolveText
 	call DrawWideTextBox_WaitForInput
 	ld a, $01
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	bank1call HasAlivePokemonInPlayArea
 .asm_675d7
 	bank1call OpenPlayAreaScreenForSelection
@@ -8112,7 +8112,7 @@ Func_6768c:
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	ld a, $03
-	ldh [$ffb2], a
+	ldh [hffb2], a
 .asm_676a3
 	bank1call HasAlivePokemonInPlayArea
 	bank1call OpenPlayAreaScreenForSelection
@@ -8158,7 +8158,7 @@ Func_6768c:
 	call RemoveCardFromDuelTempList
 	ld hl, wAttachedEnergyMenuNumerator
 	inc [hl]
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $05
 	jr nc, .asm_67713
 	ld a, [wDuelTempList]
@@ -8236,7 +8236,7 @@ Func_67766:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_677a0
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $06
 	jr c, .asm_67770
 .asm_677a0
@@ -8281,7 +8281,7 @@ Func_677d9:
 	ldh a, [hTempCardIndex_ff9f]
 	call RemoveCardFromDuelTempList
 	xor a
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	pop hl
 .asm_677e9
 	push hl
@@ -8298,7 +8298,7 @@ Func_677d9:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	pop hl
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	cp $02
 	jr c, .asm_677e9
 	or a
