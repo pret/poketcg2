@@ -447,7 +447,7 @@ ResetDoFrameFunction_Bank9:
 
 Func_24350:
 	push de
-	ld hl, $ffb2
+	ld hl, hffb2
 	ld a, [hl]
 	inc [hl]
 	ld e, a
@@ -1209,8 +1209,8 @@ DeckAndHandIconsCGBPalData:
 
 Func_24b83:
 	call EmptyScreen
-	ld de, $0
-	ld bc, $140d
+	lb de, 0, 0
+	lb bc, 20, 13
 	call DrawRegularTextBox
 	ldtx hl, ComputerErrorPromptText
 	call DrawWideTextBox_PrintText
@@ -1264,7 +1264,7 @@ SECTION "Bank 9@4be8", ROMX[$4be8], BANK[$9]
 
 Func_24be8:
 	ldh a, [hTemp_ffa0]
-	ldh [$ffb2], a
+	ldh [hffb2], a
 	call CreateDeckCardList
 	jr nc, .asm_24bf9
 	ldtx hl, NoCardsLeftInTheDeckText
@@ -1274,13 +1274,13 @@ Func_24be8:
 	call Func_24369
 	jr nc, .asm_24c22
 	call DrawWideTextBox_WaitForInput
-	ld hl, $193
+	ldtx hl, NoTargetsButCheckDeckPromptText
 	call YesOrNoMenuWithText_SetCursorToYes
 	jr c, .asm_24c62
 	call CreateDeckCardList
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $58
-	ld de, $b0
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 	ld a, $09
 	ld [wNoItemSelectionMenuKeys], a
@@ -1291,11 +1291,11 @@ Func_24be8:
 	get_turn_duelist_var
 	ld a, [wMaxNumPlayAreaPokemon]
 	sub [hl]
-	ld [$cd1f], a
+	ld [wcd1f], a
 .asm_24c2c
 	bank1call Func_5221
-	ld hl, $1c7
-	ld de, $b0
+	ldtx hl, ChooseBasicPokemonText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .asm_24c38
 	bank1call DisplayCardList
@@ -1314,17 +1314,17 @@ Func_24be8:
 	ld [hl], a
 	call RemoveCardFromDuelTempList
 	jr c, .asm_24c62
-	ld hl, $cd1f
+	ld hl, wcd1f
 	dec [hl]
 	jr nz, .asm_24c2c
 .asm_24c62
 	call Func_24350
 	ld [hl], $ff
-	ldh a, [$ffb2]
+	ldh a, [hffb2]
 	ldh [hTemp_ffa0], a
 	ret
 .asm_24c6c
-	ld a, [$cd1f]
+	ld a, [wcd1f]
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
@@ -1376,7 +1376,7 @@ Func_24c9d:
 	pop hl
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ld [$cd20], a
+	ld [wcd20], a
 	ret
 .asm_24cc0
 	pop hl
@@ -1384,10 +1384,10 @@ Func_24c9d:
 	pop hl
 	ldtx hl, NoTargetsInDeckText
 	call DrawWideTextBox_WaitForInput
-	ld hl, $193
+	ldtx hl, NoTargetsButCheckDeckPromptText
 	call YesOrNoMenuWithText_SetCursorToYes
 	ld a, $ff
-	ld [$cd20], a
+	ld [wcd20], a
 	ret
 ; 0x24cd7
 
@@ -1625,14 +1625,14 @@ Func_24df8:
 	jr c, .asm_24e16
 	call ExecuteCardSearchFunc
 	jr nc, .asm_24e1c
-	ld a, [$cd20]
+	ld a, [wcd20]
 	or a
 	jr nz, .asm_24e02
 	ldh a, [hTempCardIndex_ff98]
 	or a
 	ret
 .asm_24e16
-	ld a, [$cd20]
+	ld a, [wcd20]
 	or a
 	jr nz, .asm_24e21
 .asm_24e1c
@@ -1786,42 +1786,42 @@ Func_24ef5:
 	ld l, a
 	ld bc, $3010
 	call LoadCardGfx
-	ld de, $902
+	lb de, 9, 2
 	bank1call DrawCardGfxToDE_BGPalIndex5
 	bank1call FlushAllPalettesIfNotDMG
 	ld a, $a0
-	ld hl, $601
-	ld de, $902
-	ld bc, $806
+	lb hl, 6, 1
+	lb de, 9, 2
+	lb bc, 8, 6
 	call FillRectangle
 	bank1call Func_56fa
 	ld a, $10
 	call CopyCardNameAndLevel
 	ld [hl], $00
-	ld de, $700
+	lb de, 7, 0
 	call InitTextPrinting
 	ld hl, wDefaultText
 	call ProcessText
-	ld hl, $4fc1
+	ld hl, .text_items
 	call PlaceTextItems
 	ld a, [wTempPlayAreaLocation_cceb]
 	bank1call GetPlayAreaCardColor
 	inc a
-	ld bc, $e09
+	lb bc, 14, 9
 	call WriteByteToBGMap0
 	ld a, [wTempPlayAreaLocation_cceb]
 	bank1call GetArenaOrBenchCardWeakness
-	ld bc, $e0a
+	lb bc, 14, 10
 	bank1call PrintCardPageWeaknessesOrResistances
 	ld a, [wTempPlayAreaLocation_cceb]
 	bank1call GetArenaOrBenchCardResistance
-	ld bc, $e0b
+	lb bc, 14, 11
 	bank1call PrintCardPageWeaknessesOrResistances
 	call DrawWideTextBox
-	ld de, $501
+	lb de, 5, 1
 	ldtx hl, ColorListText
 	call InitTextPrinting_ProcessTextFromID
-	ld de, $10e
+	lb de, 1, 14
 	pop hl
 	call InitTextPrinting_ProcessTextFromID
 	ld hl, $4fce
@@ -1832,8 +1832,8 @@ Func_24ef5:
 	push de
 	push bc
 	push hl
-	ld hl, $102
-	ld bc, $202
+	lb hl, 1, 2
+	lb bc, 2, 2
 	call FillRectangle
 	ld a, [wConsole]
 	cp $02
@@ -1842,8 +1842,8 @@ Func_24ef5:
 	push hl
 	call BankswitchVRAM1
 	ld a, [hl]
-	ld hl, $0
-	ld bc, $202
+	lb hl, 0, 0
+	lb bc, 2, 2
 	call FillRectangle
 	call BankswitchVRAM0
 .asm_24fb7
@@ -1856,7 +1856,13 @@ Func_24ef5:
 	dec c
 	jr nz, .asm_24f91
 	ret
-; 0x24fc1
+
+.text_items:
+	textitem 10, 9,  TypeText
+	textitem 10, 10, WeaknessText
+	textitem 10, 11, ResistanceText
+	db $ff
+; 0x24fce
 
 SECTION "Bank 9@4fe0", ROMX[$4fe0], BANK[$9]
 

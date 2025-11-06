@@ -2612,7 +2612,7 @@ SetCardListInfoBoxText:
 
 Func_5221:
 	call InitAndDrawCardListScreenLayout
-	ld a, $02
+	ld a, SELECT_CHECK
 	ld [wCardListItemSelectionMenuType], a
 	ret
 ; 0x522a
@@ -3017,8 +3017,8 @@ DrawCardPageCardGfx:
 Func_5475:
 	push hl
 	call EmptyScreen
-	ld de, $0
-	ld bc, $1412
+	lb de, 0, 0
+	lb bc, 20, 18
 	call DrawRegularTextBox
 	ld a, $13
 	ld de, $102
@@ -7373,8 +7373,8 @@ Func_6dad:
 	call SubtractHP
 	ld a, [wLoadedCard2ID]
 	ld [wTempNonTurnDuelistCardID], a
-	ld a, [$cc7d]
-	ld [$ccd7], a
+	ld a, [wLoadedCard2 + 9]
+	ld [wTempNonTurnDuelistCardID + 1], a
 	ld hl, $a
 	call LoadTxRam3
 	ld hl, wLoadedCard2Name
@@ -9067,7 +9067,7 @@ Func_79fd:
 	cphl DUGTRIO_LV40
 	jr nz, .asm_7a2b
 	ld a, [wLoadedAttackCategory]
-	cp $04
+	cp POKEMON_POWER
 	ret z
 	ld a, [wTempPlayAreaLocation_cceb]
 	or a

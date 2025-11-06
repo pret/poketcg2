@@ -46,7 +46,7 @@ Func_8302:
 	ld d, a
 	ld e, $00
 	call InitTextPrinting
-	ld hl, $2b5
+	ldtx hl, DuelistsPlayAreaSuffixText
 	call ProcessTextFromID
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
 	ld b, a
@@ -135,8 +135,8 @@ Func_8495:
 	bank1call FlushAllPalettesIfNotDMG
 	pop de
 	ld a, $a0
-	ld hl, $601
-	ld bc, $806
+	lb hl, 6, 1
+	lb bc, 8, 6
 	call FillRectangle
 	bank1call Func_56fa
 	ret
@@ -288,8 +288,8 @@ Func_863e:
 	add $e4
 	ld b, a
 	push bc
-	ld hl, $102
-	ld bc, $202
+	lb hl, 1, 2
+	lb bc, 2, 2
 	call FillRectangle
 	ld a, [wConsole]
 	cp $02
@@ -305,8 +305,8 @@ Func_863e:
 .asm_8686
 	ld a, $02
 .asm_8688
-	ld bc, $202
-	ld hl, $0
+	lb bc, 2, 2
+	lb hl, 0, 0
 	call BankswitchVRAM1
 	call FillRectangle
 	call BankswitchVRAM0
@@ -331,15 +331,15 @@ Func_863e:
 	ret z
 	push bc
 	ld a, $f4
-	ld hl, $102
-	ld bc, $202
+	lb hl, 1, 2
+	lb bc, 2, 2
 	call FillRectangle
 	ld a, [wConsole]
 	cp $02
 	jr nz, .asm_86d1
 	ld a, $03
-	ld bc, $202
-	ld hl, $0
+	lb bc, 2, 2
+	lb hl, 0, 0
 	call BankswitchVRAM1
 	call FillRectangle
 	call BankswitchVRAM0
@@ -393,15 +393,15 @@ Func_870e:
 	inc hl
 	push hl
 	push bc
-	ld hl, $102
-	ld bc, $202
+	lb hl, 1, 2
+	lb bc, 2, 2
 	call FillRectangle
 	ld a, [wConsole]
 	cp $02
 	jr nz, .asm_8735
 	ld a, $03
-	ld bc, $202
-	ld hl, $0
+	lb bc, 2, 2
+	lb hl, 0, 0
 	call BankswitchVRAM1
 	call FillRectangle
 	call BankswitchVRAM0
@@ -446,7 +446,7 @@ Func_87a3:
 	push hl
 	push bc
 	call InitTextPrinting
-	ld hl, $2bc
+	ldtx hl, HandText_2
 	call ProcessTextFromID
 	pop bc
 	ld a, b
