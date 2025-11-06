@@ -1589,10 +1589,10 @@ Func_688d4:
 
 Func_688de:
 	call CreateDeckCardList
-	ld hl, $17d
-	ld bc, $197
-	ld de, $2b
-	ld a, $05
+	ldtx hl, ChooseAnOddishFromDeckText
+	ldtx bc, EffectTargetOddishText
+	ld de, DEX_ODDISH
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_688fc
 	ldtx hl, ChooseAnOddishText
@@ -1603,8 +1603,8 @@ Func_688de:
 	ret
 
 Func_688ff:
-	ld de, $2b
-	ld a, $05
+	ld de, DEX_ODDISH
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -1788,9 +1788,9 @@ Func_68a1c:
 
 Func_68a26:
 	call CreateDeckCardList
-	ld hl, $181
-	ld bc, $196
-	ld a, $01
+	ldtx hl, ChooseNidoranFromDeckText
+	ldtx bc, EffectTargetNidoranMNidoranFText
+	ld a, CARDSEARCH_NIDORAN
 	farcall Func_24c9d
 	jr c, .asm_68a41
 	ldtx hl, ChooseNidoranText
@@ -1801,7 +1801,7 @@ Func_68a26:
 	ret
 
 Func_68a44:
-	ld a, $01
+	ld a, CARDSEARCH_NIDORAN
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -2170,10 +2170,10 @@ Func_68c76:
 
 Func_68c80:
 	call CreateDeckCardList
-	ld hl, $185
-	ld bc, $198
-	ld de, $45
-	ld a, $05
+	ldtx hl, ChooseABellsproutFromDeckText
+	ldtx bc, EffectTargetBellsproutText
+	ld de, DEX_BELLSPROUT
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_68c9e
 	ldtx hl, ChooseABellsproutText
@@ -2184,8 +2184,8 @@ Func_68c80:
 	ret
 
 Func_68ca1:
-	ld de, $45
-	ld a, $05
+	ld de, DEX_BELLSPROUT
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -2613,10 +2613,10 @@ Func_68f47:
 
 Func_68f51:
 	call CreateDeckCardList
-	ld hl, $179
-	ld bc, $199
-	ld de, $62
-	ld a, $05
+	ldtx hl, ChooseAKrabbyFromDeckText
+	ldtx bc, EffectTargetKrabbyText
+	ld de, DEX_KRABBY
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_68f6f
 	ldtx hl, ChooseAKrabbyText
@@ -2627,8 +2627,8 @@ Func_68f51:
 	ret
 
 Func_68f72:
-	ld de, $62
-	ld a, $05
+	ld de, DEX_KRABBY
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -5275,9 +5275,9 @@ Func_69f83:
 
 Func_69f8d:
 	call CreateDeckCardList
-	ld hl, $17c
-	ld bc, $19a
-	ld a, $02
+	ldtx hl, ChooseBasicFightingPokemonFromDeckText
+	ldtx bc, EffectTargetFightingPokemonText
+	ld a, CARDSEARCH_BASIC_FIGHTING_POKEMON
 	farcall Func_24c9d
 	jr c, .asm_69fa8
 	ldtx hl, ChooseBasicFightingPokemonText
@@ -5288,7 +5288,7 @@ Func_69f8d:
 	ret
 
 Func_69fab:
-	ld a, $02
+	ld a, CARDSEARCH_BASIC_FIGHTING_POKEMON
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -6337,9 +6337,9 @@ Func_6a641:
 
 Func_6a646:
 	call CreateDeckCardList
-	ld hl, $173
-	ld bc, VBlankHandler
-	ld a, $03
+	ldtx hl, Choose1BasicEnergyCardFromDeckText
+	ldtx bc, EffectTargetBasicEnergyText
+	ld a, CARDSEARCH_BASIC_ENERGY
 	farcall Func_24c9d
 	jr c, .asm_6a661
 	ldtx hl, ChooseBasicEnergyCardText
@@ -8038,10 +8038,10 @@ Func_6b0da:
 
 Func_6b0f4:
 	call CreateDeckCardList
-	ld hl, $1aa
-	ld bc, $1ab
-	ld de, $82
-	ld a, $05
+	ldtx hl, ChooseEvolutionCardForMagikarpFromDeckText
+	ldtx bc, EffectTargetGyaradosText
+	ld de, DEX_GYARADOS
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_6b112
 	ldtx hl, ChooseAGyaradosText
@@ -8052,8 +8052,8 @@ Func_6b0f4:
 	ret
 
 Func_6b115:
-	ld de, $82
-	ld a, $05
+	ld de, DEX_GYARADOS
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -8701,9 +8701,9 @@ Func_6b503:
 
 Func_6b508:
 	call CreateDeckCardList
-	ld hl, $1af
-	ld bc, $1b0
-	ld a, $07
+	ldtx hl, ChooseAPsychicEnergyCardFromDeckText
+	ldtx bc, EffectTargetPsychicEnergyText
+	ld a, CARDSEARCH_PSYCHIC_ENERGY
 	farcall Func_24c9d
 	jr c, .asm_6b523
 	ldtx hl, ChooseAPsychicEnergyCardText
@@ -8714,7 +8714,7 @@ Func_6b508:
 	ret
 
 Func_6b526:
-	ld a, $07
+	ld a, CARDSEARCH_PSYCHIC_ENERGY
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -9377,9 +9377,9 @@ Func_6b949:
 
 Func_6b952:
 	call CreateDeckCardList
-	ld hl, $1b3
-	ld bc, $1b4
-	ld a, $08
+	ldtx hl, ChooseAnEvolutionCardFromDeckText
+	ldtx bc, EffectTargetEvolutionCardText
+	ld a, CARDSEARCH_EVOLUTION_POKEMON
 	farcall Func_24c9d
 	jr c, .asm_6b96d
 	ldtx hl, ChooseAnEvolutionCardText
@@ -9443,9 +9443,9 @@ Func_6b9a2:
 	call DrawWideTextBox_WaitForInput
 	ret
 .asm_6b9d2
-	ld hl, $1c5
-	ld bc, $1c6
-	ld a, $0e
+	ldtx hl, ChooseUpTo2BasicPokemonFromDeckText
+	ldtx bc, EffectTargetBasicPokemonText
+	ld a, CARDSEARCH_BASIC_POKEMON
 	farcall Func_24c9d
 	ret c
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA

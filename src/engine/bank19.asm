@@ -163,9 +163,9 @@ Func_64120:
 
 Func_64125:
 	call CreateDeckCardList
-	ld hl, $218
-	ld bc, $219
-	ld a, $06
+	ldtx hl, ChooseADarkEvolutionCardText
+	ldtx bc, EffectTargetDarkPokemonText
+	ld a, CARDSEARCH_DARK_POKEMON
 	farcall Func_24c9d
 	jr c, .asm_64140
 	ldtx hl, ChooseADarkPokemonText
@@ -770,10 +770,10 @@ Func_64542:
 
 Func_6454c:
 	call CreateDeckCardList
-	ld hl, $1b6
-	ld bc, $1b7
-	ld de, $2e
-	ld a, $05
+	ldtx hl, ChooseAParasFromDeckText
+	ldtx bc, EffectTargetParasText
+	ld de, DEX_PARAS
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_6456a
 	ldtx hl, ChooseAParasText
@@ -784,8 +784,8 @@ Func_6454c:
 	ret
 
 Func_6456d:
-	ld de, $2e
-	ld a, $05
+	ld de, DEX_PARAS
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -1276,10 +1276,10 @@ Func_6489d:
 .asm_648da
 	call CreateDeckCardList
 	jr c, .asm_6489d
-	ld hl, $22a
-	ld bc, $229
-	ld de, $19d
-	xor a
+	ldtx hl, ChooseAFossilFromDeckText
+	ldtx bc, EffectTargetFossilText
+	ld de, MYSTERIOUS_FOSSIL
+	xor a ; CARDSEARCH_CARD_ID
 	farcall Func_24c9d
 	jr c, .asm_648f9
 	ldtx hl, ChooseAFossilText
@@ -1326,9 +1326,9 @@ Func_64935:
 
 Func_6493a:
 	call CreateDeckCardList
-	ld hl, $21f
-	ld bc, $220
-	ld a, $0b
+	ldtx hl, ChooseAColorlessEvolutionCardText
+	ldtx bc, EffectTargetColorlessEvolutionCardText
+	ld a, CARDSEARCH_EVOLUTION_COLORLESS_POKEMON
 	farcall Func_24c9d
 	jr c, .asm_64955
 	ldtx hl, ChooseAColorlessEvolutionPokemonText
@@ -2029,10 +2029,10 @@ Func_64dee:
 	ret
 .asm_64e05
 	call CreateDeckCardList
-	ld hl, $1c1
-	ld bc, $1c2
-	ld de, $51
-	ld a, $05
+	ldtx hl, ChooseAMagnemiteFromDeckText
+	ldtx bc, EffectTargetMagnemiteText
+	ld de, DEX_MAGNEMITE
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall Func_24c9d
 	jr c, .asm_64e23
 	ldtx hl, ChooseAMagnemiteText
@@ -2048,8 +2048,8 @@ Func_64e27:
 	farcall Func_68079
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret nc
-	ld de, $51
-	ld a, $05
+	ld de, DEX_MAGNEMITE
+	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -3145,9 +3145,9 @@ Func_65593:
 	ldh [hTemp_ffa0], a
 	ret nc
 	call CreateDeckCardList
-	ld hl, $1b9
-	ld bc, $20
-	ld a, $0a
+	ldtx hl, ChooseATrainerCardFromDeckText
+	ldtx bc, TrainerCardText
+	ld a, CARDSEARCH_TRAINER
 	farcall Func_24c9d
 	jr c, .asm_655b8
 	ldtx hl, ChooseATrainerCardText
@@ -3162,7 +3162,7 @@ Func_655bb:
 	farcall Func_68079
 	ldh [hTemp_ffa0], a
 	ret nc
-	ld a, $0a
+	ld a, CARDSEARCH_TRAINER
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -5281,9 +5281,9 @@ Func_66385:
 
 Func_6638a:
 	call CreateDeckCardList
-	ld hl, $1be
-	ld bc, VBlankHandler.no_oam_copy
-	ld a, $0c
+	ldtx hl, ChooseALightningEnergyFromDeckText
+	ldtx bc, EffectTargetLightningEnergyText
+	ld a, CARDSEARCH_LIGHTNING_ENERGY
 	farcall Func_24c9d
 	jr c, .asm_663a5
 	ldtx hl, ChooseALightningEnergyText
@@ -5294,7 +5294,7 @@ Func_6638a:
 	ret
 
 Func_663a8:
-	ld a, $0c
+	ld a, CARDSEARCH_LIGHTNING_ENERGY
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
 	ld hl, wDuelTempList
@@ -6785,9 +6785,9 @@ Func_66d9d:
 
 Func_66da7:
 	call CreateDeckCardList
-	ld hl, $173
-	ld bc, VBlankHandler
-	ld a, $03
+	ldtx hl, Choose1BasicEnergyCardFromDeckText
+	ldtx bc, EffectTargetBasicEnergyText
+	ld a, CARDSEARCH_BASIC_ENERGY
 	farcall Func_24c9d
 	jr c, .asm_66dc2
 	ldtx hl, ChooseBasicEnergyCardText
@@ -7862,9 +7862,9 @@ Func_674d0:
 	ldh [hTemp_ffa0], a
 	ret nc
 	call CreateDeckCardList
-	ld hl, $1f1
-	ld bc, $1f5
-	ld a, $04
+	ldtx hl, ChooseBasicOrEvolutionPokemonCardFromDeckText
+	ldtx bc, EffectTargetBasicOrEvolutionPokemonCardText
+	ld a, CARDSEARCH_ANY_ENERGY
 	farcall Func_24c9d
 	jr c, .asm_674f5
 	ldtx hl, ChoosePokemonCardText

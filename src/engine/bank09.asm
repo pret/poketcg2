@@ -1354,10 +1354,10 @@ Func_24c7f:
 	ret
 ; 0x24c9d
 
-; a - ?
-; bc - ?
-; de - ?
-; hl - text
+; - a = CARDSEARCH_* constant
+; - bc = text
+; - de = parameter for card search function
+; - hl = text
 Func_24c9d:
 	push hl
 	push bc
