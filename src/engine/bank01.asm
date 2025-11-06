@@ -1493,7 +1493,7 @@ Func_49e8:
 	ld hl, $201
 	ld de, $101
 	call PrintTextNoDelay_Init
-	ld hl, $202
+	ldtx hl, YouReceivedTheseCardsText
 	call DrawWideTextBox_WaitForInput
 	ret
 ; 0x4a0d
@@ -7177,7 +7177,7 @@ Func_6ca4:
 	push de
 	ld a, $00
 	ld [wDuelDisplayedScreen], a
-	ld de, $12e
+	ldtx de, BlinkCheckText
 	call TossCoin
 	pop de
 	ret nc
@@ -7381,7 +7381,7 @@ Func_6dad:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ld hl, $157
+	ldtx hl, ReceivedDamageDueToStrikesBackText
 	call DrawWideTextBox_WaitForInput
 	pop hl
 	pop af
@@ -7411,7 +7411,7 @@ Func_6dad:
 	farcall Func_18a19
 	farcall WaitAttackAnimation
 	call SwapTurn
-	ld hl, $161
+	ldtx hl, PoisonFluidActivatedText
 	call DrawWideTextBox_WaitForInput
 	ret
 ; 0x6e57

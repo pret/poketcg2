@@ -1,11 +1,11 @@
 Func_68000:
-	ld de, $ff
+	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, Func_68012
 	jp Func_68094
 
 Func_6800b:
-	ld de, $ff
+	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	ret nc
 
@@ -18,13 +18,13 @@ Func_68017:
 	jr Func_68061
 
 Func_6801c:
-	ld de, $fd
+	ldtx de, ParalysisInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, Func_6802e
 	jp Func_68094
 
 Func_68027:
-	ld de, $fd
+	ldtx de, ParalysisInflictionCheckText
 	call TossCoin_Bank1a
 	ret nc
 
@@ -33,13 +33,13 @@ Func_6802e:
 	jr Func_68061
 
 Func_68033:
-	ld de, $102
+	ldtx de, ConfusionInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, Func_68045
 	jp Func_68094
 
 Func_6803e:
-	ld de, $102
+	ldtx de, ConfusionInflictionCheckText
 	call TossCoin_Bank1a
 	ret nc
 
@@ -48,13 +48,13 @@ Func_68045:
 	jr Func_68061
 
 Func_6804a:
-	ld de, $fe
+	ldtx de, SleepInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, Func_6805c
 	jp Func_68094
 
 Func_68055:
-	ld de, $fe
+	ldtx de, SleepInflictionCheckText
 	call TossCoin_Bank1a
 	ret nc
 
@@ -66,10 +66,13 @@ Func_68061:
 	bank1call Func_6470
 	ret
 
+; de - text pointer. displayed during coin toss
 TossCoin_Bank1a:
 	call TossCoin
 	ret
 
+; a - number of coins to toss
+; de - text diplayed while tossing
 Func_68069:
 	call TossCoinATimes
 	ret
@@ -92,6 +95,10 @@ Func_68079:
 	ld a, 1
 ;	fallthrough
 
+
+; a - number of coins to toss
+; de - text diplayed while tossing
+; returns: the number of heads in a and in wCoinTossNumHeads, and carry if at least one heads
 Func_6807b:
 	push hl
 	push de
@@ -445,7 +452,7 @@ Func_68262:
 	ld a, $12
 	call CopyCardNameAndLevel
 	ld [hl], $00
-	ld hl, $20b
+	ldtx hl, PokemonDevolvedToText
 	call DrawWideTextBox_WaitForInput
 	pop de
 	ret
@@ -504,7 +511,7 @@ Func_682e0:
 	ld h, $00
 	push hl
 	call LoadTxRam3
-	ld de, $112
+	ldtx de, DamageCheckIfHeadsPlusDamageText
 	call TossCoin_Bank1a
 	pop hl
 	ret nc
@@ -1007,7 +1014,7 @@ Func_6856d:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $20d
+	ldtx hl, MaySelectMoreCardsButQuitPromptText
 	call YesOrNoMenuWithText
 	ret
 
@@ -1155,7 +1162,7 @@ Func_68665:
 	ldh [hTemp_ffa0], a
 	call Func_6843b
 	ret c
-	ld hl, $170
+	ldtx hl, ChooseBenchedPokemonToGiveDamageText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	bank1call HasAlivePokemonInBench
@@ -1168,7 +1175,7 @@ Func_68665:
 	ret
 
 Func_68686:
-	ld hl, $171
+	ldtx hl, ChoosePokemonToGiveDamageText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	bank1call HasAlivePokemonInPlayArea
@@ -1291,7 +1298,7 @@ Func_6872f:
 	ret
 
 Func_6873c:
-	ld hl, $32
+	ldtx hl, IncompleteText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -1320,7 +1327,7 @@ Func_68753:
 	ret
 
 Func_6875c:
-	ld de, $ff
+	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	jp c, Func_68012
 	ld a, $8c
@@ -1383,7 +1390,7 @@ Func_687b2:
 	ret
 
 Func_687b6:
-	ld hl, $164
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	bank1call HasAlivePokemonInBench
@@ -1412,7 +1419,7 @@ Func_687d5:
 	ret
 
 Func_687e9:
-	ld de, $115
+	ldtx de, AcidCheckText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $09
@@ -1445,7 +1452,7 @@ Func_6880b:
 	ret
 
 Func_68818:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $4f
@@ -1510,7 +1517,7 @@ Func_68865:
 Func_6886e:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -1549,13 +1556,13 @@ Func_688a4:
 	jp Func_680cb
 
 Func_688ac:
-	ld de, $11a
+	ldtx de, PoisonedIfHeadsConfusedIfTailsText
 	call TossCoin_Bank1a
 	jp c, Func_68012
 	jp Func_68045
 
 Func_688b8:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $4f
@@ -1618,7 +1625,7 @@ Func_6891b:
 	call Func_680ab
 	jr c, .asm_68937
 	ldh a, [hTemp_ffa0]
-	ld hl, $63
+	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 .asm_68937
 	call Func_680a0
@@ -1629,7 +1636,7 @@ Func_6893b:
 	ret
 
 Func_6893f:
-	ld hl, $164
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
 .asm_68948
@@ -1678,7 +1685,7 @@ Func_68985:
 	ld hl, $14
 	call LoadTxRam3
 	ld a, [wTotalAttachedEnergies]
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_68069
 
 Func_68999:
@@ -1704,7 +1711,7 @@ Func_689ac:
 	ret
 
 Func_689b5:
-	ld de, $108
+	ldtx de, IfHeadPlus10IfTails10ToYourselfText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -1764,7 +1771,7 @@ Func_689fe:
 Func_68a07:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $03
 	call Func_68069
 	call ATimes10
@@ -1815,7 +1822,7 @@ Func_68a5d:
 	call Func_680ab
 	jr c, .asm_68a79
 	ldh a, [hTemp_ffa0]
-	ld hl, $63
+	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 .asm_68a79
 	call Func_680a0
@@ -1828,7 +1835,7 @@ Func_68a7d:
 	ret
 
 Func_68a86:
-	ld de, $105
+	ldtx de, DamageCheckIfTailsNoDamageText
 	call TossCoin_Bank1a
 	jr c, .asm_68a96
 	xor a
@@ -1853,7 +1860,7 @@ Func_68aa0:
 Func_68aa9:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -1872,7 +1879,7 @@ Func_68ac1:
 Func_68aca:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -2199,7 +2206,7 @@ Func_68cbd:
 	call Func_680ab
 	jr c, .asm_68cd9
 	ldh a, [hTemp_ffa0]
-	ld hl, $63
+	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 .asm_68cd9
 	call Func_680a0
@@ -2245,7 +2252,7 @@ Func_68d09:
 	call Func_68d2d
 	call SwapTurn
 	ret nc
-	ld hl, $46
+	ldtx hl, UnableToSelectText
 	call DrawWideTextBox_WaitForInput
 	jr .asm_68d09
 
@@ -2281,7 +2288,7 @@ Func_68d44:
 	or $80
 	ld [hl], a
 	call Func_68708
-	ld hl, $16c
+	ldtx hl, ChangedTheColorOfPokemonToColorText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -2291,7 +2298,7 @@ Func_68d63:
 	jp Func_680cb
 
 Func_68d6b:
-	ld de, $103
+	ldtx de, VenomPowderCheckText
 	call TossCoin_Bank1a
 	ret nc
 	call Func_68012
@@ -2323,7 +2330,7 @@ Func_68d90:
 	ret
 
 Func_68d9b:
-	ld de, $10b
+	ldtx de, HealSuccessCheckText
 	call TossCoin_Bank1a
 	ldh [hTempPlayAreaLocation_ffa1], a
 	jr nc, .asm_68ddb
@@ -2333,7 +2340,7 @@ Func_68d9b:
 	jr z, .asm_68dd0
 	and $80
 	jr nz, .asm_68ddb
-	ld hl, $187
+	ldtx hl, ChoosePokemonToRemoveDamageCounterFromText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInPlayArea
 .asm_68db9
@@ -2377,7 +2384,7 @@ Func_68df3:
 Func_68dfc:
 	ld hl, $28
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $03
 	call Func_68069
 	add a
@@ -2527,7 +2534,7 @@ Func_68ee6:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $02
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_68069
 	ld e, a
 	add a
@@ -2554,7 +2561,7 @@ Func_68f10:
 	jp Func_68e88
 
 Func_68f16:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $4f
@@ -2642,7 +2649,7 @@ Func_68f8e:
 	call Func_680ab
 	jr c, .asm_68faa
 	ldh a, [hTemp_ffa0]
-	ld hl, $63
+	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 .asm_68faa
 	call Func_680a0
@@ -2677,7 +2684,7 @@ Func_68fc3:
 Func_68fcc:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $03
 	call Func_68069
 	call ATimes10
@@ -2702,7 +2709,7 @@ Func_68fee:
 	jp Func_68e88
 
 Func_68ff4:
-	ld de, $11b
+	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $52
@@ -2716,7 +2723,7 @@ Func_69006:
 	ret
 
 Func_6900a:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $4f
@@ -2799,7 +2806,7 @@ Func_69086:
 	ret
 
 Func_6908a:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $4f
@@ -2843,7 +2850,7 @@ Func_690c1:
 	jr Func_690d0
 
 Func_690c3:
-	ld hl, $17b
+	ldtx hl, ChooseAttackToDisableNextOppTurnText
 	call DrawWideTextBox_WaitForInput
 	call Func_68486
 	ld a, e
@@ -2877,7 +2884,7 @@ Func_690d2:
 	ld e, a
 	call Func_684ef
 	call LoadTxRam2
-	ld hl, $19f
+	ldtx hl, DisabledNextTurnText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	ret
@@ -2891,7 +2898,7 @@ Func_69109:
 Func_69112:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -2928,7 +2935,7 @@ Func_6913f:
 Func_69149:
 	ld a, $05
 	ld [wLoadedAttackAnimation], a
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jp c, Func_6802e
 	xor a
@@ -2946,7 +2953,7 @@ Func_69162:
 Func_6916b:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -2961,7 +2968,7 @@ Func_69183:
 	ret
 
 Func_69187:
-	ld de, $109
+	ldtx de, DamageToOppBenchIfHeadsDamageToYoursIfTailsText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
@@ -3002,7 +3009,7 @@ Func_691c4:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
-	ld hl, $165
+	ldtx hl, SelectPokemonToPlaceInTheArenaText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
 	bank1call OpenPlayAreaScreenForSelection
@@ -3046,7 +3053,7 @@ Func_69209:
 	ret
 
 Func_6920b:
-	ld de, $fd
+	ldtx de, ParalysisInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69220
 	call Func_6809a
@@ -3163,7 +3170,7 @@ Func_692be:
 	ret
 
 Func_692c6:
-	ld hl, $176
+	ldtx hl, ChooseAndDiscard2FireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ldh [$ffb2], a
@@ -3222,7 +3229,7 @@ Func_69318:
 	ret
 
 Func_6931e:
-	ld de, $11b
+	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $52
@@ -3236,7 +3243,7 @@ Func_69330:
 	ret
 
 Func_69334:
-	ld hl, $164
+	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
 	bank1call HasAlivePokemonInBench
@@ -3300,7 +3307,7 @@ Func_69385:
 	jp Func_6927b
 
 Func_69393:
-	ld hl, $177
+	ldtx hl, DiscardOppDeckAsManyFireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ldh [$ffb2], a
@@ -3376,7 +3383,7 @@ Func_693e6:
 	jr nz, .asm_69404
 	pop hl
 	call LoadTxRam3
-	ld hl, $205
+	ldtx hl, DiscardedCardsFromDeckText
 	call DrawWideTextBox_PrintText
 	call SwapTurn
 	ret
@@ -3388,7 +3395,7 @@ Func_6941b:
 	ret
 
 Func_69424:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69434
 	xor a
@@ -3493,7 +3500,7 @@ Func_69493:
 	ret
 
 Func_694a0:
-	ld hl, $178
+	ldtx hl, ChooseAndDiscard2EnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ldh [$ffb2], a
@@ -3628,7 +3635,7 @@ Func_6953f:
 	ld a, c
 	ldh [$ffb2], a
 	push bc
-	ld hl, $1a6
+	ldtx hl, AffectedByMixUpText
 	call DrawWideTextBox_WaitForInput
 	call Func_680a0
 	call CreateDeckCardList
@@ -3669,7 +3676,7 @@ Func_6959b:
 Func_695a4:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $08
 	call Func_68069
 	call ATimes10
@@ -3712,7 +3719,7 @@ Func_695bb:
 	ld a, c
 	or a
 	jr nz, .asm_695f2
-	ld hl, $20c
+	ldtx hl, ThereWasNoFireEnergyText
 	call DrawWideTextBox_WaitForInput
 	call Func_680a0
 	ret
@@ -3774,7 +3781,7 @@ Func_695bb:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $1a5
+	ldtx hl, DrewFireEnergyFromDeckText
 	call DrawWideTextBox_WaitForInput
 	call Func_680a0
 	ret
@@ -3786,7 +3793,7 @@ Func_69667:
 	ret
 
 Func_69670:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69680
 	xor a
@@ -4226,7 +4233,7 @@ Func_69929:
 	jr nz, .asm_69938
 	call Func_680ab
 	ret c
-	ld hl, $217
+	ldtx hl, RearrangedDuelistsDeckText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -4930,7 +4937,7 @@ Func_69d7d:
 	ret
 
 Func_69d88:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	jp nc, Func_6809a
@@ -5000,7 +5007,7 @@ Func_69df4:
 	call Func_680ab
 	ret c
 	ldh a, [hTempPlayAreaLocation_ffa1]
-	ld hl, $200
+	ldtx hl, WasPlacedInTheHandText
 	bank1call DisplayCardDetailScreen
 	ret
 
@@ -5068,7 +5075,7 @@ Func_69e55:
 Func_69e5e:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	call ATimes10
@@ -5141,7 +5148,7 @@ Func_69ed5:
 	xor a
 	ldh [hTemp_ffa0], a
 .asm_69ed8
-	ld de, $107
+	ldtx de, FlipUntilTails10DamageTimesHeadsText
 	xor a
 	call Func_68069
 	jr nc, .asm_69ee7
@@ -5175,7 +5182,7 @@ Func_69efe:
 Func_69f07:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $03
 	call Func_68069
 	add a
@@ -5184,7 +5191,7 @@ Func_69f07:
 	ret
 
 Func_69f1d:
-	ld de, $104
+	ldtx de, IfTailsYourPokemonBecomesConfusedText
 	call TossCoin_Bank1a
 	ret c
 	ld a, $29
@@ -5247,7 +5254,7 @@ Func_69f62:
 Func_69f6b:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld e, a
@@ -5301,7 +5308,7 @@ Func_69fc4:
 	call Func_680ab
 	jr c, .asm_69fe0
 	ldh a, [hTemp_ffa0]
-	ld hl, $63
+	ldtx hl, PlacedOnBenchText
 	bank1call DisplayCardDetailScreen
 .asm_69fe0
 	call Func_680a0
@@ -5371,7 +5378,7 @@ Func_6a033:
 	ret
 
 Func_6a041:
-	ld de, $11c
+	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $74
@@ -5416,7 +5423,7 @@ Func_6a079:
 Func_6a082:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $03
 	call Func_68069
 	add a
@@ -5464,7 +5471,7 @@ Func_6a0a6:
 	jr .asm_6a0e2
 .asm_6a0d5
 	call SwapTurn
-	ld hl, $19c
+	ldtx hl, PeekWasUsedToLookInYourHandText
 	bank1call DisplayCardDetailScreen
 	call SwapTurn
 	ret
@@ -5475,12 +5482,12 @@ Func_6a0a6:
 	xor $80
 	call DrawAIPeekScreen
 	call SwapTurn
-	ld hl, $19d
+	ldtx hl, CardPeekWasUsedOnText
 	call DrawWideTextBox_WaitForInput
 	ret
 
 Func_6a0f9:
-	ld de, $11c
+	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $ff
@@ -5509,7 +5516,7 @@ Func_6a12c:
 	call Func_6a151
 	call SwapTurn
 	call Func_6a151
-	ld hl, $1a0
+	ldtx hl, BasicPokemonWasPlacedOnEachBenchText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInPlayArea
 	bank1call OpenPlayAreaScreenForSelection
@@ -5566,7 +5573,7 @@ Func_6a194:
 	ret
 
 Func_6a19d:
-	ld de, $108
+	ldtx de, IfHeadPlus10IfTails10ToYourselfText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -5596,7 +5603,7 @@ Func_6a1bc:
 Func_6a1c5:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $112
+	ldtx de, DamageCheckIfHeadsPlusDamageText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $14
@@ -5623,7 +5630,7 @@ Func_6a1dc:
 Func_6a1f8:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $10c
+	ldtx de, IfTailsDamageToYourselfTooText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
@@ -5757,7 +5764,7 @@ Func_6a2ca:
 Func_6a2d3:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $04
 	call Func_68069
 	add a
@@ -5782,7 +5789,7 @@ Func_6a2f1:
 	ret
 
 Func_6a2fa:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_6a30d
 	xor a
@@ -5810,7 +5817,7 @@ Func_6a31e:
 Func_6a320:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $10c
+	ldtx de, IfTailsDamageToYourselfTooText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
@@ -5910,7 +5917,7 @@ Func_6a3a0:
 	ret
 
 Func_6a3c0:
-	ld de, $11b
+	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $52
@@ -5922,7 +5929,7 @@ Func_6a3c0:
 Func_6a3d2:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $10c
+	ldtx de, IfTailsDamageToYourselfTooText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
@@ -5943,7 +5950,7 @@ Func_6a3f1:
 	call Func_6843b
 	ret c
 	call SwapTurn
-	ld hl, $172
+	ldtx hl, ChooseUpTo3BenchedPokemonToGiveDamageText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ldh [$ffb2], a
@@ -6310,7 +6317,7 @@ Func_6a5a4:
 .asm_6a62a
 	bank1call DrawDuelMainScene
 	bank1call DrawDuelHUDs
-	ld hl, $1a4
+	ldtx hl, TheEnergyCardFromPlayAreaWasMovedText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	call Func_680ed
@@ -6340,7 +6347,7 @@ Func_6a646:
 	cp $ff
 	ret z
 	call EmptyScreen
-	ld hl, $174
+	ldtx hl, ChoosePokemonToAttachEnergyCardText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInPlayArea
 .asm_6a672
@@ -6394,7 +6401,7 @@ Func_6a6b9:
 Func_6a6c2:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	add a
@@ -6407,7 +6414,7 @@ Func_6a6d8:
 	ret
 
 Func_6a6dc:
-	ld de, $11c
+	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $c9
@@ -6452,7 +6459,7 @@ Func_6a714:
 	jp Func_6bde7
 
 Func_6a717:
-	ld de, $11b
+	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $52
@@ -6488,7 +6495,7 @@ Func_6a742:
 Func_6a74b:
 	ld hl, $28
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	add a
@@ -6527,7 +6534,7 @@ Func_6a77c:
 	ret
 
 Func_6a782:
-	ld de, $105
+	ldtx de, DamageCheckIfTailsNoDamageText
 	call TossCoin_Bank1a
 	ret c
 	xor a
@@ -6539,7 +6546,7 @@ Func_6a78e:
 	ret
 
 Func_6a793:
-	ld hl, $16d
+	ldtx hl, Draw1CardFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	farcall DisplayDrawOneCardScreen
 	call DrawCardFromDeck
@@ -6561,7 +6568,7 @@ Func_6a7b1:
 Func_6a7ba:
 	ld hl, $14
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $04
 	call Func_68069
 	add a
@@ -6593,7 +6600,7 @@ Func_6a7e1:
 Func_6a7e9:
 	xor a
 	call Func_6a7e1
-	ld de, $104
+	ldtx de, IfTailsYourPokemonBecomesConfusedText
 	call TossCoin_Bank1a
 	ret c
 	call SwapTurn
@@ -6611,7 +6618,7 @@ Func_6a807:
 	ld hl, $a
 	call LoadTxRam3
 	ld a, $02
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_68069
 	call ATimes10
 	call Func_6817e
@@ -6636,10 +6643,10 @@ Func_6a823:
 	ret
 
 Func_6a82b:
-	ld de, $106
+	ldtx de, IfHeadsDraw1CardFromDeckText
 	call TossCoin_Bank1a
 	ret nc
-	ld hl, $16d
+	ldtx hl, Draw1CardFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	farcall DisplayDrawOneCardScreen
 	call DrawCardFromDeck
@@ -6662,7 +6669,7 @@ Func_6a859:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $02
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_68069
 	ld e, a
 	add a
@@ -6690,7 +6697,7 @@ Func_6a87d:
 	xor a
 	call CreateArenaOrBenchEnergyCardList
 	jr c, .asm_6a89d
-	ld hl, $17a
+	ldtx hl, ChooseEnergyCardFromOppActiveToDiscardText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	bank1call DisplayEnergyDiscardMenu
@@ -6776,7 +6783,7 @@ Func_6a8d8:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ld hl, $19e
+	ldtx hl, PokemonAndAllAttachedCardsReturnedToHandText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ld [wDuelDisplayedScreen], a
@@ -6838,7 +6845,7 @@ Func_6a956:
 
 Func_6a958:
 	ld [wMetronomeEnergyCost], a
-	ld hl, $191
+	ldtx hl, ChooseOppAttackForMetronomeText
 	call DrawWideTextBox_WaitForInput
 .asm_6a961
 	call Func_68486
@@ -6864,7 +6871,7 @@ Func_6a958:
 	ld a, d
 	cp [hl]
 	jr nz, .asm_6a991
-	ld hl, $46
+	ldtx hl, UnableToSelectText
 	call DrawWideTextBox_WaitForInput
 	jr .asm_6a961
 .asm_6a991
@@ -7153,7 +7160,7 @@ Func_6aae2:
 	ret
 
 Func_6ab44:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
 	ld a, $6b
@@ -7188,7 +7195,7 @@ Func_6ab77:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
-	ld hl, $165
+	ldtx hl, SelectPokemonToPlaceInTheArenaText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
 	bank1call OpenPlayAreaScreenForSelection
@@ -7269,7 +7276,7 @@ Func_6abf0:
 Func_6abf9:
 	ld hl, $1e
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	ld c, a
@@ -7326,7 +7333,7 @@ Func_6ac4c:
 	call ExchangeRNG
 	call Func_6acbc
 	jr nc, .asm_6ac5b
-	ld hl, $149
+	ldtx hl, AttackUnsuccessfulText
 	call DrawWideTextBox_WaitForInput
 	ret
 .asm_6ac5b
@@ -7381,7 +7388,7 @@ Func_6ac4c:
 	inc de
 	ld a, [hl]
 	ld [de], a
-	ld hl, $163
+	ldtx hl, MetamorphsToText
 	call DrawWideTextBox_WaitForInput
 	xor a
 	ld [wDuelDisplayedScreen], a
@@ -7491,12 +7498,12 @@ Func_6ad65:
 	ret
 
 Func_6ad6f:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, Func_6ad7e
 
 Func_6ad77:
-	ld hl, $207
+	ldtx hl, NoneCameText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -7515,7 +7522,7 @@ Func_6ad7e:
 	ld a, $6a
 	farcall Func_18a87
 	ldh a, [hTempCardIndex_ff98]
-	ld hl, $208
+	ldtx hl, CameToTheBenchText
 	bank1call DisplayCardDetailScreen
 	call Func_680a0
 	ret
@@ -7648,7 +7655,7 @@ Func_6ae75:
 	ld e, $00
 	call Func_69283
 	ld hl, $32
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_6807b
 	ldh [hTemp_ffa0], a
 	or a
@@ -7678,7 +7685,7 @@ Func_6aea9:
 	ld e, $00
 	call Func_69283
 	ld hl, $32
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_6807b
 	ldh [hTemp_ffa0], a
 	or a
@@ -7760,7 +7767,7 @@ Func_6af2c:
 	jr c, .asm_6af60
 	call Func_6843b
 	jr c, .asm_6af60
-	ld hl, $1a8
+	ldtx hl, RemoveEnergyCardPromptText
 	call YesOrNoMenuWithText
 	ldh [hTemp_ffa0], a
 	jr c, .asm_6af60
@@ -7895,7 +7902,7 @@ Func_6b00b:
 Func_6b014:
 	ld hl, $a
 	call LoadTxRam3
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	ld a, $02
 	call Func_68069
 	call ATimes10
@@ -7913,7 +7920,7 @@ Func_6b02f:
 	ret
 
 Func_6b036:
-	ld de, $110
+	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret c
@@ -7938,7 +7945,7 @@ Func_6b059:
 	ret
 
 Func_6b05e:
-	ld hl, $16d
+	ldtx hl, Draw1CardFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	farcall DisplayDrawOneCardScreen
 	call DrawCardFromDeck
@@ -8095,7 +8102,7 @@ Func_6b15b:
 	ret
 
 Func_6b164:
-	ld de, $ff
+	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	jr nc, .asm_6b170
 	call Func_68012
@@ -8288,7 +8295,7 @@ Func_6b278:
 
 Func_6b27c:
 	call Func_68465
-	ld de, $11e
+	ldtx de, ConfuseOppIfHeadsConfuseYourselfIfTailsText
 	call TossCoin_Bank1a
 	jr c, .asm_6b298
 	ld a, $bc
@@ -8342,7 +8349,7 @@ Func_6b2d9:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $03
-	ld de, $113
+	ldtx de, DamageCheckXDamageTimesHeadsText
 	call Func_68069
 	ld e, a
 	add a
@@ -8374,7 +8381,7 @@ Func_6b30b:
 	ret
 
 Func_6b314:
-	ld de, $101
+	ldtx de, IfHeadsPlus20AndParalysisText
 	call TossCoin_Bank1a
 	ret nc
 	ld a, $14
@@ -8522,7 +8529,7 @@ Func_6b3cc:
 	ret
 
 Func_6b3fa:
-	ld de, $100
+	ldtx de, PoisonedIfHeadsParalyzedIfTailsText
 	call TossCoin_Bank1a
 	jr c, .asm_6b406
 	call Func_6802e
@@ -8536,7 +8543,7 @@ Func_6b40a:
 	ret
 
 Func_6b40e:
-	ld hl, $165
+	ldtx hl, SelectPokemonToPlaceInTheArenaText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
 .asm_6b417
@@ -8630,7 +8637,7 @@ Func_6b4aa:
 	ldh [hTemp_ffa0], a
 	call Func_68446
 	ret c
-	ld hl, $1ae
+	ldtx hl, SwitchOutDarkAlakazamPromptText
 	call YesOrNoMenuWithText
 	ret c
 	bank1call HasAlivePokemonInBench
@@ -8740,7 +8747,7 @@ Func_6b551:
 .asm_6b55e
 	xor a
 	ldh [$ffb2], a
-	ld hl, $1c4
+	ldtx hl, ChooseUpTo3PokemonCardsFromDiscardPileText
 	call DrawWideTextBox_WaitForInput
 .asm_6b567
 	bank1call Func_5221
@@ -8800,7 +8807,7 @@ Func_6b5c2:
 	ret
 
 Func_6b5cb:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
 	xor a
@@ -8815,7 +8822,7 @@ Func_6b5dd:
 
 Func_6b5e1:
 	call Func_68465
-	ld de, $11f
+	ldtx de, LongDistanceHypnosisCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_6b5fd
 	ld a, $a3
@@ -8881,7 +8888,7 @@ Func_6b644:
 	get_turn_duelist_var
 	push hl
 	dec a
-	ld de, $120
+	ldtx de, DamageCheckXDamageTimesTailsText
 	call Func_68069
 	pop hl
 	call SwapTurn
@@ -8947,7 +8954,7 @@ Func_6b6ba:
 	ld hl, $14
 	call LoadTxRam3
 	call SwapTurn
-	ld de, $121
+	ldtx de, DamageCheckIfTailsPlusDamageText
 	call TossCoin_Bank1a
 	call SwapTurn
 	jr c, .asm_6b6d3
@@ -9100,7 +9107,7 @@ Func_6b785:
 	ld h, [hl]
 	ld l, a
 	call LoadTxRam2
-	ld hl, $1fc
+	ldtx hl, PokemonAndAllAttachedCardsWereReturnedToDeckText
 	call DrawWideTextBox_WaitForInput
 	call Func_680a0
 	call SwapTurn
@@ -9136,7 +9143,7 @@ Func_6b7d5:
 	xor $80
 	call DrawAIPeekScreen
 	call SwapTurn
-	ld hl, $1b2
+	ldtx hl, CardTrickeryWasUsedOnText
 	call DrawWideTextBox_WaitForInput
 .asm_6b80d
 	ldh a, [hTempPlayAreaLocation_ffa1]
@@ -9170,7 +9177,7 @@ Func_6b832:
 	ret
 
 Func_6b83b:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
 	xor a
@@ -9388,7 +9395,7 @@ Func_6b971:
 	call Func_680ab
 	jr c, .asm_6b98d
 	ldh a, [hTempPlayAreaLocation_ffa1]
-	ld hl, $200
+	ldtx hl, WasPlacedInTheHandText
 	bank1call DisplayCardDetailScreen
 .asm_6b98d
 	call Func_680a0
@@ -9427,7 +9434,7 @@ Func_6b9a2:
 	farcall Func_24df8
 	ret
 .asm_6b9cb
-	ld hl, $ba
+	ldtx hl, NoCardsLeftInTheDeckText
 	call DrawWideTextBox_WaitForInput
 	ret
 .asm_6b9d2
@@ -9496,7 +9503,7 @@ Func_6ba36:
 	jr c, .asm_6ba39
 	push hl
 	ldh a, [hTempCardIndex_ff98]
-	ld hl, $64
+	ldtx hl, PlacedInArenaText
 	bank1call DisplayCardDetailScreen
 	pop hl
 	jr .asm_6ba39
@@ -9511,7 +9518,7 @@ Func_6ba60:
 	ret
 
 Func_6ba69:
-	ld de, $10d
+	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
 	xor a
@@ -9737,7 +9744,7 @@ Func_6bbe6:
 	ret
 
 Func_6bbec:
-	ld de, $142
+	ldtx de, ThunderAttackCheckText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret nc
@@ -10230,7 +10237,7 @@ Func_6be45:
 	call LoadCardDataToBuffer1_FromDeckIndex
 	pop af
 	call Func_68708
-	ld hl, $16a
+	ldtx hl, ChangedTheWeaknessOfPokemonToColorText
 	call DrawWideTextBox_PrintText
 	call SwapTurn
 	ret

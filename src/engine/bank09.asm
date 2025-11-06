@@ -914,7 +914,7 @@ Func_24958:
 	sub [hl]
 	cp $02
 	jr c, .asm_249ac
-	ld hl, $65
+	ldtx hl, ShufflesTheDeckText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	call ResetAnimationQueue
@@ -944,7 +944,7 @@ Func_24958:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $6a
+	ldtx hl, DeckPileCardCountText
 	call DrawWideTextBox_PrintText
 	call EnableLCD
 	ld a, $3c
@@ -1212,7 +1212,7 @@ Func_24b83:
 	ld de, $0
 	ld bc, $140d
 	call DrawRegularTextBox
-	ld hl, $1ca
+	ldtx hl, ComputerErrorPromptText
 	call DrawWideTextBox_PrintText
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -1236,7 +1236,7 @@ Func_24b83:
 	call WriteByteToBGMap0
 	push de
 	inc d
-	ld hl, $1cb
+	ldtx hl, EffectTargetCardsUnitText
 	call InitTextPrinting_ProcessTextFromID
 	pop de
 	pop bc
@@ -1267,7 +1267,7 @@ Func_24be8:
 	ldh [$ffb2], a
 	call CreateDeckCardList
 	jr nc, .asm_24bf9
-	ld hl, $ba
+	ldtx hl, NoCardsLeftInTheDeckText
 	call DrawWideTextBox_WaitForInput
 	jr .asm_24c62
 .asm_24bf9
@@ -1328,7 +1328,7 @@ Func_24be8:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $20d
+	ldtx hl, MaySelectMoreCardsButQuitPromptText
 	call YesOrNoMenuWithText
 	jr c, .asm_24c2c
 	jr .asm_24c62
@@ -1349,7 +1349,7 @@ Func_24c7f:
 	pop hl
 	ld [hli], a
 	ld [hl], $00
-	ld hl, $252
+	ldtx hl, DuelistSelectsPokemonTotalNumberText
 	call DrawWideTextBox_WaitForInput
 	ret
 ; 0x24c9d
@@ -1378,7 +1378,7 @@ Func_24c9d:
 	pop hl
 	call LoadTxRam2
 	pop hl
-	ld hl, $192
+	ldtx hl, NoTargetsInDeckText
 	call DrawWideTextBox_WaitForInput
 	ld hl, $193
 	call YesOrNoMenuWithText_SetCursorToYes
@@ -1813,7 +1813,7 @@ Func_24ef5:
 	bank1call PrintCardPageWeaknessesOrResistances
 	call DrawWideTextBox
 	ld de, $501
-	ld hl, $47
+	ldtx hl, ColorListText
 	call InitTextPrinting_ProcessTextFromID
 	ld de, $10e
 	pop hl
