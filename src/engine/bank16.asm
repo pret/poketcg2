@@ -23,20 +23,18 @@ EffectCommands::
 	; - EFFECTCMDTYPE_UNK_11: ?
 
 	; Attacks that have an EFFECTCMDTYPE_REQUIRE_SELECTION also must have either an EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN or an
-	; EFFECTCMDTYPE_AI_SELECTION (for anything not involving switching the defending Pokemon), to handle selections involving the AI.
+	; EFFECTCMDTYPE_AI_SELECTION or EFFECTCMDTYPE_UNK_11 (for anything not involving switching the defending Pokemon), to handle selections involving the AI.
 
-	; Similar attack effects of different Pokemon cards all point to a different command list,
-	; even though in some cases their commands and function pointers match.
+	; Every attack that has effects has its own unique command list. Command lists and functions are not shared between cards.
+	; A small set of command lists re-use a function for multiple effect types, typically one of these two combos:
+	;     EFFECTCMDTYPE_BEFORE_DAMAGE, EFFECTCMDTYPE_AI
+	;     EFFECTCMDTYPE_REQUIRE_SELECTION, EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN
 
-	; Function name examples
-	;	PoisonEffect                     ; generic effect shared by multiple attacks.
-	;	Paralysis50PercentEffect         ;
-	;	KakunaStiffenEffect              ; unique effect from an attack known by multiple cards.
-	;	MetapodStiffenEffect             ;
-	;	AcidEffect                       ; unique effect from an attack known by a single card
-	;	FoulOdorEffect                   ;
-	;	SpitPoison_Poison50PercentEffect ; unique effect made of more than one command.
-	;	SpitPoison_AIEffect              ;
+	; Command lists are named with the pattern:
+	;   {CardName}{AttackName}EffectCommands
+
+	; Functions are named with the pattern:
+	;	{CardName}{AttackName}_{EffectType}
 
 EkansLv10SpitPoisonEffectCommands:
 	db $1a ; effect bank
