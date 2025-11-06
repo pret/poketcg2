@@ -17,7 +17,7 @@ MachokeLv24Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58fe4 ; effect commands
+	dw MachokeLv24WickedJabEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -31,7 +31,7 @@ MachokeLv24Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58fe9 ; effect commands
+	dw MachokeLv24FocusBlastEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -83,7 +83,7 @@ MachokeLv28Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58e28 ; effect commands
+	dw MachokeLv28SteadyPunchEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -121,7 +121,7 @@ MachokeLv40Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_MINUS ; category
-	dw EffectCommands_585f0 ; effect commands
+	dw MachokeLv40KarateChopEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -135,7 +135,7 @@ MachokeLv40Card:
 	dw NONE ; description (cont)
 	db 60 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_585f8 ; effect commands
+	dw MachokeLv40SubmissionEffectCommands ; effect commands
 	db LOW_RECOIL  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -173,7 +173,7 @@ DarkMachokeCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58ae1 ; effect commands
+	dw DarkMachokeDragOffEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -187,7 +187,7 @@ DarkMachokeCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58aef ; effect commands
+	dw DarkMachokeKnockBackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -225,7 +225,7 @@ MachampLv54Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58ffd ; effect commands
+	dw MachampLv54SeethingAngerEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -239,7 +239,7 @@ MachampLv54Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59005 ; effect commands
+	dw MachampLv54FlingEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -277,7 +277,7 @@ MachampLv67Card:
 	tx StrikesBackDescriptionCont ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_585be ; effect commands
+	dw MachampLv67StrikesBackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -343,7 +343,7 @@ DarkMachampCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58afa ; effect commands
+	dw DarkMachampFlingAltEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -395,7 +395,7 @@ GeodudeLv15Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58ceb ; effect commands
+	dw GeodudeLv15HardenEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -433,7 +433,7 @@ GeodudeLv16Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_585a4 ; effect commands
+	dw GeodudeLv16StoneBarrageEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -485,7 +485,7 @@ GravelerLv27Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5902d ; effect commands
+	dw GravelerLv27BoulderSmashEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -537,7 +537,7 @@ GravelerLv28Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58e30 ; effect commands
+	dw GravelerLv28StoneBarrageAltEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -551,7 +551,7 @@ GravelerLv28Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58e38 ; effect commands
+	dw GravelerLv28EarthquakeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -589,7 +589,7 @@ GravelerLv29Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58602 ; effect commands
+	dw GravelerLv29HardenEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -655,7 +655,7 @@ GolemLv36Card:
 	dw NONE ; description (cont)
 	db 100 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_585fd ; effect commands
+	dw GolemLv36SelfdestructEffectCommands ; effect commands
 	db HIGH_RECOIL  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -707,7 +707,7 @@ GolemLv37Card:
 	tx RockBlastDescriptionCont ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5903b ; effect commands
+	dw GolemLv37RockBlastEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -759,7 +759,7 @@ OnixLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_585ac ; effect commands
+	dw OnixLv12HardenEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -797,7 +797,7 @@ OnixLv25Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58e8f ; effect commands
+	dw OnixLv25BindEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -811,7 +811,7 @@ OnixLv25Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58e94 ; effect commands
+	dw OnixLv25RockSealEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -849,7 +849,7 @@ CuboneLv13Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_585cd ; effect commands
+	dw CuboneLv13SnivelEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -863,7 +863,7 @@ CuboneLv13Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_585d2 ; effect commands
+	dw CuboneLv13RageEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE  ; flags 3
@@ -901,7 +901,7 @@ CuboneLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_590c6 ; effect commands
+	dw CuboneLv14BoneTossEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -953,7 +953,7 @@ MarowakLv26Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_585da ; effect commands
+	dw MarowakLv26BonemerangEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -967,7 +967,7 @@ MarowakLv26Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_585e2 ; effect commands
+	dw MarowakLv26CallForFriendEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -1005,7 +1005,7 @@ MarowakLv32Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58644 ; effect commands
+	dw MarowakLv32BoneAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -1019,7 +1019,7 @@ MarowakLv32Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58649 ; effect commands
+	dw MarowakLv32WailEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -1057,7 +1057,7 @@ DarkMarowakCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59327 ; effect commands
+	dw DarkMarowakBoneHeadbuttEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1109,7 +1109,7 @@ HitmonleeLv23Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58eab ; effect commands
+	dw HitmonleeLv23DoubleKickEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1123,7 +1123,7 @@ HitmonleeLv23Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58eb3 ; effect commands
+	dw HitmonleeLv23RollingKickEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1161,7 +1161,7 @@ HitmonleeLv30Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58617 ; effect commands
+	dw HitmonleeLv30StretchKickEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1213,7 +1213,7 @@ HitmonchanLv23Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58eb8 ; effect commands
+	dw HitmonchanLv23MatchPunchEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1317,7 +1317,7 @@ RhyhornCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58612 ; effect commands
+	dw RhyhornLeerEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -1369,7 +1369,7 @@ RhydonLv37Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_590e7 ; effect commands
+	dw RhydonLv37MountainBreakEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -1383,7 +1383,7 @@ RhydonLv37Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_590ef ; effect commands
+	dw RhydonLv37OneTwoStrikeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1435,7 +1435,7 @@ RhydonLv48Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58607 ; effect commands
+	dw RhydonLv48RamAltEffectCommands ; effect commands
 	db LOW_RECOIL  ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -1473,7 +1473,7 @@ KabutoLv9Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_585c3 ; effect commands
+	dw KabutoLv9KabutoArmorEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1525,7 +1525,7 @@ KabutoLv22Card:
 	tx PowerCantBeUsedIfStatusDescription ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58edd ; effect commands
+	dw KabutoLv22FossilizeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1539,7 +1539,7 @@ KabutoLv22Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58ee8 ; effect commands
+	dw KabutoLv22SharpClawsEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1591,7 +1591,7 @@ KabutopsCard:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_585c8 ; effect commands
+	dw KabutopsAbsorbEffectCommands ; effect commands
 	db NONE ; flags 1
 	db HEAL_USER  ; flags 2
 	db NONE ; flags 3
@@ -1629,7 +1629,7 @@ AerodactylLv28Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58637 ; effect commands
+	dw AerodactylLv28PrehistoricPowerEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1681,7 +1681,7 @@ AerodactylLv30Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58ef0 ; effect commands
+	dw AerodactylLv30SupersonicEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1695,7 +1695,7 @@ AerodactylLv30Card:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58ef5 ; effect commands
+	dw AerodactylLv30TailspinAttackEffectCommands ; effect commands
 	db LOW_RECOIL  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1733,7 +1733,7 @@ AbraLv8Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58cda ; effect commands
+	dw AbraLv8PsychicBeamEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1785,7 +1785,7 @@ AbraLv10Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58450 ; effect commands
+	dw AbraLv10PsyshockEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1837,7 +1837,7 @@ AbraLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58a34 ; effect commands
+	dw AbraLv14VanishEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -1851,7 +1851,7 @@ AbraLv14Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a3f ; effect commands
+	dw AbraLv14PsyshockEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1889,7 +1889,7 @@ KadabraLv38Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58578 ; effect commands
+	dw KadabraLv38RecoverEffectCommands ; effect commands
 	db NONE ; flags 1
 	db DISCARD_ENERGY  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1941,7 +1941,7 @@ KadabraLv39Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58fbe ; effect commands
+	dw KadabraLv39PsychoPanicEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -1955,7 +1955,7 @@ KadabraLv39Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58fc6 ; effect commands
+	dw KadabraLv39BlinkEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -1993,7 +1993,7 @@ DarkKadabraCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58a44 ; effect commands
+	dw DarkKadabraMatterExchangeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2007,7 +2007,7 @@ DarkKadabraCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a4f ; effect commands
+	dw DarkKadabraMindShockEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2045,7 +2045,7 @@ AlakazamLv42Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_584d3 ; effect commands
+	dw AlakazamLv42DamageSwapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2059,7 +2059,7 @@ AlakazamLv42Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_584de ; effect commands
+	dw AlakazamLv42ConfuseRayEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2097,7 +2097,7 @@ AlakazamLv45Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58fcb ; effect commands
+	dw AlakazamLv45PsychoPanicEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2111,7 +2111,7 @@ AlakazamLv45Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58fd3 ; effect commands
+	dw AlakazamLv45TransDamageEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -2149,7 +2149,7 @@ DarkAlakazamCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a57 ; effect commands
+	dw DarkAlakazamTeleportBlastEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -2163,7 +2163,7 @@ DarkAlakazamCard:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a65 ; effect commands
+	dw DarkAlakazamMindShockEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2215,7 +2215,7 @@ SlowpokeLv9Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5856a ; effect commands
+	dw SlowpokeLv9AmnesiaEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -2253,7 +2253,7 @@ SlowpokeLv16Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58a6d ; effect commands
+	dw SlowpokeLv16AfternoonNapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -2305,7 +2305,7 @@ SlowpokeLv18Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5854b ; effect commands
+	dw SlowpokeLv18SpacingOutEffectCommands ; effect commands
 	db NONE ; flags 1
 	db HEAL_USER  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -2319,7 +2319,7 @@ SlowpokeLv18Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58556 ; effect commands
+	dw SlowpokeLv18ScavengeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db DISCARD_ENERGY  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -2357,7 +2357,7 @@ SlowbroLv26Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_5853b ; effect commands
+	dw SlowbroLv26StrangeBehaviorEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -2371,7 +2371,7 @@ SlowbroLv26Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58546 ; effect commands
+	dw SlowbroLv26PsyshockEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2409,7 +2409,7 @@ SlowbroLv35Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59060 ; effect commands
+	dw SlowbroLv35BigYawnEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -2423,7 +2423,7 @@ SlowbroLv35Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59068 ; effect commands
+	dw SlowbroLv35BigSnoreEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2461,7 +2461,7 @@ DarkSlowbroCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58a7b ; effect commands
+	dw DarkSlowbroReelInEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2475,7 +2475,7 @@ DarkSlowbroCard:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a86 ; effect commands
+	dw DarkSlowbroFickleAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2513,7 +2513,7 @@ GastlyLv8Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5846b ; effect commands
+	dw GastlyLv8SleepingGasEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2527,7 +2527,7 @@ GastlyLv8Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58470 ; effect commands
+	dw GastlyLv8DestinyBondEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -2565,7 +2565,7 @@ GastlyLv13Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5906d ; effect commands
+	dw GastlyLv13SpookifyEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -2579,7 +2579,7 @@ GastlyLv13Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59072 ; effect commands
+	dw GastlyLv13FadeToBlackEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2617,7 +2617,7 @@ GastlyLv17Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58481 ; effect commands
+	dw GastlyLv17LickEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2631,7 +2631,7 @@ GastlyLv17Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58486 ; effect commands
+	dw GastlyLv17EnergyConversionEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -2669,7 +2669,7 @@ HaunterLv17Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_5849e ; effect commands
+	dw HaunterLv17TransparencyEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2683,7 +2683,7 @@ HaunterLv17Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_584a3 ; effect commands
+	dw HaunterLv17NightmareEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2721,7 +2721,7 @@ HaunterLv22Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58494 ; effect commands
+	dw HaunterLv22HypnosisMoveEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2735,7 +2735,7 @@ HaunterLv22Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58499 ; effect commands
+	dw HaunterLv22DreamEaterEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2773,7 +2773,7 @@ HaunterLv25Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59084 ; effect commands
+	dw HaunterLv25EerieLightEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2787,7 +2787,7 @@ HaunterLv25Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_59089 ; effect commands
+	dw HaunterLv25GrudgeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2825,7 +2825,7 @@ HaunterLv26Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_59077 ; effect commands
+	dw HaunterLv26PoltergeistEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -2839,7 +2839,7 @@ HaunterLv26Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5907f ; effect commands
+	dw HaunterLv26BadDreamsEffectCommands ; effect commands
 	db INFLICT_SLEEP | INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2877,7 +2877,7 @@ DarkHaunterCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_592e0 ; effect commands
+	dw DarkHaunterBotherEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -2929,7 +2929,7 @@ GengarLv38Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58455 ; effect commands
+	dw GengarLv38CurseEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2943,7 +2943,7 @@ GengarLv38Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58460 ; effect commands
+	dw GengarLv38DarkMindEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -2981,7 +2981,7 @@ GengarLv40Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_59091 ; effect commands
+	dw GengarLv40PowerOfDarknessEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -2995,7 +2995,7 @@ GengarLv40Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5909c ; effect commands
+	dw GengarLv40PsyHorrorEffectCommands ; effect commands
 	db INFLICT_SLEEP | INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3033,7 +3033,7 @@ DarkGengarCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_592e8 ; effect commands
+	dw DarkGengarPlayTricksEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3047,7 +3047,7 @@ DarkGengarCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_592f0 ; effect commands
+	dw DarkGengarPushAsideEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -3085,7 +3085,7 @@ DrowzeeLv10Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58a8e ; effect commands
+	dw DrowzeeLv10LongDistanceHypnosisEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3099,7 +3099,7 @@ DrowzeeLv10Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58a96 ; effect commands
+	dw DrowzeeLv10NightmareEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3151,7 +3151,7 @@ DrowzeeLv12Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_584c1 ; effect commands
+	dw DrowzeeLv12ConfuseRayEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3189,7 +3189,7 @@ HypnoLv30Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_590a1 ; effect commands
+	dw HypnoLv30PuppetMasterEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3203,7 +3203,7 @@ HypnoLv30Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_590a6 ; effect commands
+	dw HypnoLv30MindShockEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3241,7 +3241,7 @@ HypnoLv36Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_584a8 ; effect commands
+	dw HypnoLv36ProphecyEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_5  ; flags 2
 	db NONE ; flags 3
@@ -3255,7 +3255,7 @@ HypnoLv36Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_584b6 ; effect commands
+	dw HypnoLv36DarkMindEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -3307,7 +3307,7 @@ DarkHypnoCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58a9b ; effect commands
+	dw DarkHypnoBenchManipulationEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -3345,7 +3345,7 @@ MrMimeLv20Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58d30 ; effect commands
+	dw MrMimeLv20DampeningShieldEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3359,7 +3359,7 @@ MrMimeLv20Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58d35 ; effect commands
+	dw MrMimeLv20JugglingEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3397,7 +3397,7 @@ MrMimeLv28Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_584c6 ; effect commands
+	dw MrMimeLv28InvisibleWallEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3411,7 +3411,7 @@ MrMimeLv28Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_584cb ; effect commands
+	dw MrMimeLv28MeditateEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3449,7 +3449,7 @@ JynxLv18Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58ec6 ; effect commands
+	dw JynxLv18IcePunchEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3463,7 +3463,7 @@ JynxLv18Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58ecb ; effect commands
+	dw JynxLv18ColdBreathEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3501,7 +3501,7 @@ JynxLv23Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58589 ; effect commands
+	dw JynxLv23DoubleSlapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3515,7 +3515,7 @@ JynxLv23Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58591 ; effect commands
+	dw JynxLv23MeditateEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3567,7 +3567,7 @@ JynxLv27Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_5928b ; effect commands
+	dw JynxLv27DoubleSlapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3605,7 +3605,7 @@ MewtwoLv30Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_591c7 ; effect commands
+	dw MewtwoLv30EnergySpikeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -3619,7 +3619,7 @@ MewtwoLv30Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_591d5 ; effect commands
+	dw MewtwoLv30TelekinesisEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -3657,7 +3657,7 @@ MewtwoLv53Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58506 ; effect commands
+	dw MewtwoLv53PsychicEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3671,7 +3671,7 @@ MewtwoLv53Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5850e ; effect commands
+	dw MewtwoLv53BarrierEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK | DISCARD_ENERGY  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -3709,7 +3709,7 @@ MewtwoLv54Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58d6d ; effect commands
+	dw MewtwoLv54PsycrushEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3761,7 +3761,7 @@ MewtwoLv60Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5852d ; effect commands
+	dw MewtwoLv60EnergyAbsorptionEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -3813,7 +3813,7 @@ MewtwoAltLv60Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5851f ; effect commands
+	dw MewtwoAltLv60EnergyAbsorptionEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -3865,7 +3865,7 @@ MewtwoLv67Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_59161 ; effect commands
+	dw MewtwoLv67CompleteRecoveryEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -3879,7 +3879,7 @@ MewtwoLv67Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59169 ; effect commands
+	dw MewtwoLv67PsychoBlastEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3917,7 +3917,7 @@ GRsMewtwoCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_5932c ; effect commands
+	dw GRsMewtwoDarkWaveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3931,7 +3931,7 @@ GRsMewtwoCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_59331 ; effect commands
+	dw GRsMewtwoDarkAmplificationEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3969,7 +3969,7 @@ MewLv8Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_584fc ; effect commands
+	dw MewLv8NeutralShieldEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -3983,7 +3983,7 @@ MewLv8Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58501 ; effect commands
+	dw MewLv8PsyshockEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4021,7 +4021,7 @@ MewLv15Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58599 ; effect commands
+	dw MewLv15MysteryAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4073,7 +4073,7 @@ MewLv23Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_584e3 ; effect commands
+	dw MewLv23PsywaveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4087,7 +4087,7 @@ MewLv23Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_584eb ; effect commands
+	dw MewLv23DevolutionBeamEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -4125,7 +4125,7 @@ PidgeyLv8Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5885d ; effect commands
+	dw PidgeyLv8WhirlwindEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -4191,7 +4191,7 @@ PidgeyLv10Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58c42 ; effect commands
+	dw PidgeyLv10QuickAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4229,7 +4229,7 @@ PidgeottoLv36Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_587fa ; effect commands
+	dw PidgeottoLv36WhirlwindEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -4243,7 +4243,7 @@ PidgeottoLv36Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58805 ; effect commands
+	dw PidgeottoLv36MirrorMoveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -4281,7 +4281,7 @@ PidgeottoLv38Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58f34 ; effect commands
+	dw PidgeottoLv38TwisterEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -4295,7 +4295,7 @@ PidgeottoLv38Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58f39 ; effect commands
+	dw PidgeottoLv38FlyEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -4333,7 +4333,7 @@ PidgeotLv38Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_588be ; effect commands
+	dw PidgeotLv38SlicingWingEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -4347,7 +4347,7 @@ PidgeotLv38Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_588c3 ; effect commands
+	dw PidgeotLv38GaleEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -4399,7 +4399,7 @@ PidgeotLv40Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_587f5 ; effect commands
+	dw PidgeotLv40HurricaneEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4489,7 +4489,7 @@ RattataLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58b02 ; effect commands
+	dw RattataLv12TrickeryEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4503,7 +4503,7 @@ RattataLv12Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58b0a ; effect commands
+	dw RattataLv12QuickAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4555,7 +4555,7 @@ RattataLv15Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58c4a ; effect commands
+	dw RattataLv15TailWhipEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -4607,7 +4607,7 @@ RaticateCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5888e ; effect commands
+	dw RaticateSuperFangEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4659,7 +4659,7 @@ DarkRaticateCard:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b12 ; effect commands
+	dw DarkRaticateHyperFangEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4749,7 +4749,7 @@ SpearowLv12Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58dcd ; effect commands
+	dw SpearowLv12FuryAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4815,7 +4815,7 @@ SpearowLv13Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58751 ; effect commands
+	dw SpearowLv13MirrorMoveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -4853,7 +4853,7 @@ FearowLv24Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58dd5 ; effect commands
+	dw FearowLv24QuickAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4867,7 +4867,7 @@ FearowLv24Card:
 	dw NONE ; description (cont)
 	db 50 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58ddd ; effect commands
+	dw FearowLv24DrillDescentEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -4905,7 +4905,7 @@ FearowLv27Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5876b ; effect commands
+	dw FearowLv27AgilityEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -4957,7 +4957,7 @@ DarkFearowCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_59308 ; effect commands
+	dw DarkFearowFlyHighEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -4971,7 +4971,7 @@ DarkFearowCard:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5930d ; effect commands
+	dw DarkFearowDrillDiveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5009,7 +5009,7 @@ ClefairyLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5881f ; effect commands
+	dw ClefairyLv14SingEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5023,7 +5023,7 @@ ClefairyLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58824 ; effect commands
+	dw ClefairyLv14MetronomeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_5  ; flags 2
 	db NONE ; flags 3
@@ -5061,7 +5061,7 @@ ClefairyLv15Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58c73 ; effect commands
+	dw ClefairyLv15FollowMeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5075,7 +5075,7 @@ ClefairyLv15Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58c81 ; effect commands
+	dw ClefairyLv15ShiningFingersEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5113,7 +5113,7 @@ ClefableCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_587e5 ; effect commands
+	dw ClefableMetronomeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_5  ; flags 2
 	db NONE ; flags 3
@@ -5127,7 +5127,7 @@ ClefableCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_587f0 ; effect commands
+	dw ClefableMinimizeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5165,7 +5165,7 @@ DarkClefableCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_592d3 ; effect commands
+	dw DarkClefableDarknessVeilEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5179,7 +5179,7 @@ DarkClefableCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_592d8 ; effect commands
+	dw DarkClefableDarkSongEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5217,7 +5217,7 @@ JigglypuffLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58841 ; effect commands
+	dw JigglypuffLv12FirstAidEffectCommands ; effect commands
 	db NONE ; flags 1
 	db HEAL_USER  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5231,7 +5231,7 @@ JigglypuffLv12Card:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58849 ; effect commands
+	dw JigglypuffLv12DoubleEdgeEffectCommands ; effect commands
 	db LOW_RECOIL  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5269,7 +5269,7 @@ JigglypuffLv13Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_588cb ; effect commands
+	dw JigglypuffLv13FriendshipSongEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -5283,7 +5283,7 @@ JigglypuffLv13Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_588d3 ; effect commands
+	dw JigglypuffLv13ExpandEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5321,7 +5321,7 @@ JigglypuffLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5883c ; effect commands
+	dw JigglypuffLv14LullabyEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5373,7 +5373,7 @@ WigglytuffLv36Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5882f ; effect commands
+	dw WigglytuffLv36LullabyEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5387,7 +5387,7 @@ WigglytuffLv36Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58834 ; effect commands
+	dw WigglytuffLv36DoTheWaveEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5425,7 +5425,7 @@ WigglytuffLv40Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58c86 ; effect commands
+	dw WigglytuffLv40HelpingHandEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5439,7 +5439,7 @@ WigglytuffLv40Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58c91 ; effect commands
+	dw WigglytuffLv40ExpandEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5477,7 +5477,7 @@ MeowthLv10Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58b1a ; effect commands
+	dw MeowthLv10CoinHurlEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5529,7 +5529,7 @@ MeowthLv13Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_588b1 ; effect commands
+	dw MeowthLv13CatPunchEffectCommands ; effect commands
 	db DAMAGE_TO_OPPONENT_BENCH  ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5595,7 +5595,7 @@ MeowthLv14Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_59190 ; effect commands
+	dw MeowthLv14ClearProfitEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -5633,7 +5633,7 @@ MeowthLv15Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_587cd ; effect commands
+	dw MeowthLv15PayDayEffectCommands ; effect commands
 	db DRAW_CARD  ; flags 1
 	db NONE ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5699,7 +5699,7 @@ MeowthLv17Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_59293 ; effect commands
+	dw MeowthLv17FurySwipesEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5751,7 +5751,7 @@ PersianCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5884e ; effect commands
+	dw PersianPounceEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -5789,7 +5789,7 @@ DarkPersianLv28Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58b2e ; effect commands
+	dw DarkPersianLv28FascinateEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5803,7 +5803,7 @@ DarkPersianLv28Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b3f ; effect commands
+	dw DarkPersianLv28PoisonClawsEffectCommands ; effect commands
 	db INFLICT_POISON  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5841,7 +5841,7 @@ DarkPersianAltLv28Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_59177 ; effect commands
+	dw DarkPersianAltLv28FascinateEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -5855,7 +5855,7 @@ DarkPersianAltLv28Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59188 ; effect commands
+	dw DarkPersianAltLv28PoisonClawsEffectCommands ; effect commands
 	db INFLICT_POISON  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5893,7 +5893,7 @@ FarfetchdLv20Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5878a ; effect commands
+	dw FarfetchdLv20LeekSlapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5945,7 +5945,7 @@ FarfetchdAltLv20Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_591f9 ; effect commands
+	dw FarfetchdAltLv20LeekSlapEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -5997,7 +5997,7 @@ DoduoLv8Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58d09 ; effect commands
+	dw DoduoLv8GrowlEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -6049,7 +6049,7 @@ DoduoLv10Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_587b8 ; effect commands
+	dw DoduoLv10FuryAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6115,7 +6115,7 @@ DodrioLv25Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58d0e ; effect commands
+	dw DodrioLv25TriAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6153,7 +6153,7 @@ DodrioLv28Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_587c0 ; effect commands
+	dw DodrioLv28RetreatAidEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6167,7 +6167,7 @@ DodrioLv28Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_587c5 ; effect commands
+	dw DodrioLv28RageEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE  ; flags 3
@@ -6205,7 +6205,7 @@ LickitungLv20Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58d16 ; effect commands
+	dw LickitungLv20LickAltEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6219,7 +6219,7 @@ LickitungLv20Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58d1b ; effect commands
+	dw LickitungLv20StompEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6257,7 +6257,7 @@ LickitungLv26Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58853 ; effect commands
+	dw LickitungLv26TongueWrapEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6271,7 +6271,7 @@ LickitungLv26Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58858 ; effect commands
+	dw LickitungLv26SupersonicEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6309,7 +6309,7 @@ ChanseyLv40Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58d23 ; effect commands
+	dw ChanseyLv40SingEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6323,7 +6323,7 @@ ChanseyLv40Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58d28 ; effect commands
+	dw ChanseyLv40DoubleSlapAltEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6361,7 +6361,7 @@ ChanseyLv55Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58884 ; effect commands
+	dw ChanseyLv55ScrunchEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -6375,7 +6375,7 @@ ChanseyLv55Card:
 	dw NONE ; description (cont)
 	db 80 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58889 ; effect commands
+	dw ChanseyLv55DoubleEdgeEffectCommands ; effect commands
 	db HIGH_RECOIL  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6427,7 +6427,7 @@ KangaskhanLv36Card:
 	dw NONE ; description (cont)
 	db 80 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_590f7 ; effect commands
+	dw KangaskhanLv36TailDropEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6465,7 +6465,7 @@ KangaskhanLv38Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_59204 ; effect commands
+	dw KangaskhanLv38DizzyPunchEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6517,7 +6517,7 @@ KangaskhanLv40Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58798 ; effect commands
+	dw KangaskhanLv40FetchEffectCommands ; effect commands
 	db DRAW_CARD  ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -6531,7 +6531,7 @@ KangaskhanLv40Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_587a0 ; effect commands
+	dw KangaskhanLv40CometPunchEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6569,7 +6569,7 @@ TaurosLv32Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_587a8 ; effect commands
+	dw TaurosLv32StompEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db NONE ; flags 3
@@ -6583,7 +6583,7 @@ TaurosLv32Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_587b0 ; effect commands
+	dw TaurosLv32RampageEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db BOOST_IF_TAKEN_DAMAGE  ; flags 3
@@ -6621,7 +6621,7 @@ TaurosLv35Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_59132 ; effect commands
+	dw TaurosLv35KickingAndStampingEffectCommands ; effect commands
 	db NONE ; flags 1
 	db SWITCH_OPPONENT_POKEMON  ; flags 2
 	db NONE ; flags 3
@@ -6687,7 +6687,7 @@ DittoCard:
 	tx MorphDescriptionCont ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_588b6 ; effect commands
+	dw DittoMorphEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_6  ; flags 2
 	db FLAG_3_BIT_2  ; flags 3
@@ -6739,7 +6739,7 @@ EeveeLv5Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58d45 ; effect commands
+	dw EeveeLv5LungeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6791,7 +6791,7 @@ EeveeLv9Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b47 ; effect commands
+	dw EeveeLv9SandAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -6829,7 +6829,7 @@ EeveeLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58744 ; effect commands
+	dw EeveeLv12TailWhipEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -6843,7 +6843,7 @@ EeveeLv12Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58749 ; effect commands
+	dw EeveeLv12QuickAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6881,7 +6881,7 @@ PorygonLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58868 ; effect commands
+	dw PorygonLv12Conversion1EffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -6895,7 +6895,7 @@ PorygonLv12Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58876 ; effect commands
+	dw PorygonLv12Conversion2EffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -6933,7 +6933,7 @@ PorygonLv18Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58d4d ; effect commands
+	dw PorygonLv18Porygon3DAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -6947,7 +6947,7 @@ PorygonLv18Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_58d55 ; effect commands
+	dw PorygonLv18Conversion2EffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -6985,7 +6985,7 @@ PorygonLv20Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b4c ; effect commands
+	dw PorygonLv20Conversion1EffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -6999,7 +6999,7 @@ PorygonLv20Card:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b5a ; effect commands
+	dw PorygonLv20PsybeamEffectCommands ; effect commands
 	db INFLICT_CONFUSION  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7037,7 +7037,7 @@ CoolPorygonCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5919b ; effect commands
+	dw CoolPorygonTextureMagicEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -7051,7 +7051,7 @@ CoolPorygonCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_591a9 ; effect commands
+	dw CoolPorygonPorygon3DAttackEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7089,7 +7089,7 @@ SnorlaxLv20Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58780 ; effect commands
+	dw SnorlaxLv20ThickSkinnedEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7103,7 +7103,7 @@ SnorlaxLv20Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58785 ; effect commands
+	dw SnorlaxLv20BodySlamEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7141,7 +7141,7 @@ SnorlaxLv35Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58d63 ; effect commands
+	dw SnorlaxLv35GuardEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7155,7 +7155,7 @@ SnorlaxLv35Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58d68 ; effect commands
+	dw SnorlaxLv35RollOverEffectCommands ; effect commands
 	db INFLICT_SLEEP  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7193,7 +7193,7 @@ HungrySnorlaxCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_591b1 ; effect commands
+	dw HungrySnorlaxEatEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING | FLAG_3_BIT_2  ; flags 3
@@ -7207,7 +7207,7 @@ HungrySnorlaxCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_591b9 ; effect commands
+	dw HungrySnorlaxRolloutEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -7297,7 +7297,7 @@ DratiniLv12Card:
 	dw NONE ; description (cont)
 	db 10 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b5f ; effect commands
+	dw DratiniLv12WrapEffectCommands ; effect commands
 	db INFLICT_PARALYSIS  ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7349,7 +7349,7 @@ DragonairCard:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_587d2 ; effect commands
+	dw DragonairSlamEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7363,7 +7363,7 @@ DragonairCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_587da ; effect commands
+	dw DragonairHyperBeamEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db SPECIAL_AI_HANDLING  ; flags 3
@@ -7401,7 +7401,7 @@ DarkDragonairCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58b64 ; effect commands
+	dw DarkDragonairEvolutionaryLightEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7415,7 +7415,7 @@ DarkDragonairCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_58b6f ; effect commands
+	dw DarkDragonairTailStrikeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7453,7 +7453,7 @@ DragoniteLv41Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_588a1 ; effect commands
+	dw DragoniteLv41HealingWindEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7467,7 +7467,7 @@ DragoniteLv41Card:
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_588a9 ; effect commands
+	dw DragoniteLv41SlamEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7505,7 +7505,7 @@ DragoniteLv43Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_59224 ; effect commands
+	dw DragoniteLv43SpecialDeliveryEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7519,7 +7519,7 @@ DragoniteLv43Card:
 	dw NONE ; description (cont)
 	db 60 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_5922f ; effect commands
+	dw DragoniteLv43SupersonicFlightEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7557,7 +7557,7 @@ DragoniteLv45Card:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58770 ; effect commands
+	dw DragoniteLv45StepInEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7571,7 +7571,7 @@ DragoniteLv45Card:
 	dw NONE ; description (cont)
 	db 40 ; damage
 	db DAMAGE_X ; category
-	dw EffectCommands_58778 ; effect commands
+	dw DragoniteLv45SlamEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7609,7 +7609,7 @@ DarkDragoniteCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw EffectCommands_58b77 ; effect commands
+	dw DarkDragoniteSummonMinionsEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7623,7 +7623,7 @@ DarkDragoniteCard:
 	dw NONE ; description (cont)
 	db 70 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_58b82 ; effect commands
+	dw DarkDragoniteGiantTailEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7661,7 +7661,7 @@ TogepiCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db DAMAGE_NORMAL ; category
-	dw EffectCommands_59247 ; effect commands
+	dw TogepiSnivelEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NULLIFY_OR_WEAKEN_ATTACK  ; flags 2
 	db NONE ; flags 3
@@ -7675,7 +7675,7 @@ TogepiCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db RESIDUAL ; category
-	dw EffectCommands_5924c ; effect commands
+	dw TogepiMetronomeEffectCommands ; effect commands
 	db NONE ; flags 1
 	db FLAG_2_BIT_5  ; flags 2
 	db NONE ; flags 3
@@ -7713,7 +7713,7 @@ LugiaCard:
 	dw NONE ; description (cont)
 	db 20 ; damage
 	db DAMAGE_PLUS ; category
-	dw EffectCommands_59348 ; effect commands
+	dw LugiaAeroblastEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -7754,7 +7754,7 @@ GrassEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw GRASS_ENERGY
-	dw EffectCommands_5935e ; effect commands
+	dw GrassEnergyEffectCommands ; effect commands
 	tx GrassEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7766,7 +7766,7 @@ FireEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw FIRE_ENERGY
-	dw EffectCommands_5935c ; effect commands
+	dw FireEnergyEffectCommands ; effect commands
 	tx FireEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7778,7 +7778,7 @@ WaterEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw WATER_ENERGY
-	dw EffectCommands_5935a ; effect commands
+	dw WaterEnergyEffectCommands ; effect commands
 	tx WaterEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7790,7 +7790,7 @@ LightningEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw LIGHTNING_ENERGY
-	dw EffectCommands_59358 ; effect commands
+	dw LightningEnergyEffectCommands ; effect commands
 	tx LightningEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7802,7 +7802,7 @@ FightingEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw FIGHTING_ENERGY
-	dw EffectCommands_59356 ; effect commands
+	dw FightingEnergyEffectCommands ; effect commands
 	tx FightingEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7814,7 +7814,7 @@ PsychicEnergyCard:
 	db BASE_SET ; real set
 	db ENERGY ; in-game set
 	dw PSYCHIC_ENERGY
-	dw EffectCommands_59354 ; effect commands
+	dw PsychicEnergyEffectCommands ; effect commands
 	tx PsychicEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7826,7 +7826,7 @@ DoubleColorlessEnergyCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw DOUBLE_COLORLESS_ENERGY
-	dw EffectCommands_59352 ; effect commands
+	dw DoubleColorlessEnergyEffectCommands ; effect commands
 	tx DoubleColorlessEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7838,7 +7838,7 @@ PotionEnergyCard:
 	db TEAM_ROCKET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw POTION_ENERGY
-	dw EffectCommands_58bfa ; effect commands
+	dw PotionEnergyEffectCommands ; effect commands
 	tx PotionEnergyDescription ; description
 	tx PotionEnergyDescriptionCont ; description (cont)
 
@@ -7850,7 +7850,7 @@ FullhealEnergyCard:
 	db TEAM_ROCKET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw FULLHEAL_ENERGY
-	dw EffectCommands_58bff ; effect commands
+	dw FullhealEnergyEffectCommands ; effect commands
 	tx FullhealEnergyDescription ; description
 	tx PotionEnergyDescriptionCont ; description (cont)
 
@@ -7862,7 +7862,7 @@ RainbowEnergyCard:
 	db TEAM_ROCKET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw RAINBOW_ENERGY
-	dw EffectCommands_58c04 ; effect commands
+	dw RainbowEnergyEffectCommands ; effect commands
 	tx RainbowEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7874,7 +7874,7 @@ RecycleEnergyCard:
 	db GB ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw RECYCLE_ENERGY
-	dw EffectCommands_59350 ; effect commands
+	dw RecycleEnergyEffectCommands ; effect commands
 	tx RecycleEnergyDescription ; description
 	dw NONE ; description (cont)
 
@@ -7886,7 +7886,7 @@ SuperPotionCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw SUPER_POTION
-	dw EffectCommands_59360 ; effect commands
+	dw SuperPotionEffectCommands ; effect commands
 	tx SuperPotionDescription ; description
 	dw NONE ; description (cont)
 
@@ -7898,7 +7898,7 @@ ImakuniCardCard:
 	db PRO ; real set
 	db PROMOTIONAL ; in-game set
 	dw IMAKUNI_CARD
-	dw EffectCommands_5936b ; effect commands
+	dw ImakuniCardEffectCommands ; effect commands
 	tx ImakuniCardDescription ; description
 	dw NONE ; description (cont)
 
@@ -7910,7 +7910,7 @@ EnergyRemovalCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw ENERGY_REMOVAL
-	dw EffectCommands_59370 ; effect commands
+	dw EnergyRemovalEffectCommands ; effect commands
 	tx EnergyRemovalDescription ; description
 	dw NONE ; description (cont)
 
@@ -7922,7 +7922,7 @@ EnergyRetrievalCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw ENERGY_RETRIEVAL
-	dw EffectCommands_5937e ; effect commands
+	dw EnergyRetrievalEffectCommands ; effect commands
 	tx EnergyRetrievalDescription ; description
 	dw NONE ; description (cont)
 
@@ -7934,7 +7934,7 @@ EnergySearchCard:
 	db FOSSIL ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw ENERGY_SEARCH
-	dw EffectCommands_5938c ; effect commands
+	dw EnergySearchEffectCommands ; effect commands
 	tx EnergySearchDescription ; description
 	dw NONE ; description (cont)
 
@@ -7946,7 +7946,7 @@ ProfessorOakCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw PROFESSOR_OAK
-	dw EffectCommands_59397 ; effect commands
+	dw ProfessorOakEffectCommands ; effect commands
 	tx ProfessorOakDescription ; description
 	dw NONE ; description (cont)
 
@@ -7958,7 +7958,7 @@ FossilExcavationCard:
 	db EXPANSION_SHEET ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw FOSSIL_EXCAVATION
-	dw EffectCommands_58d7d ; effect commands
+	dw FossilExcavationEffectCommands ; effect commands
 	tx FossilExcavationDescription ; description
 	dw NONE ; description (cont)
 
@@ -7970,7 +7970,7 @@ PotionCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw POTION
-	dw EffectCommands_5939c ; effect commands
+	dw PotionEffectCommands ; effect commands
 	tx PotionDescription ; description
 	dw NONE ; description (cont)
 
@@ -7982,7 +7982,7 @@ GamblerCard:
 	db FOSSIL ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw GAMBLER
-	dw EffectCommands_593a7 ; effect commands
+	dw GamblerEffectCommands ; effect commands
 	tx GamblerDescription ; description
 	dw NONE ; description (cont)
 
@@ -7994,7 +7994,7 @@ ReviveCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw REVIVE
-	dw EffectCommands_59472 ; effect commands
+	dw ReviveEffectCommands ; effect commands
 	tx ReviveDescription ; description
 	dw NONE ; description (cont)
 
@@ -8006,7 +8006,7 @@ MaxReviveCard:
 	db EXPANSION_SHEET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw MAX_REVIVE
-	dw EffectCommands_58d99 ; effect commands
+	dw MaxReviveEffectCommands ; effect commands
 	tx MaxReviveDescription ; description
 	tx MaxReviveDescriptionCont ; description (cont)
 
@@ -8018,7 +8018,7 @@ SuperScoopUpCard:
 	db BULBASAUR_DECK ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw SUPER_SCOOP_UP
-	dw EffectCommands_592c3 ; effect commands
+	dw SuperScoopUpEffectCommands ; effect commands
 	tx SuperScoopUpDescription ; description
 	dw NONE ; description (cont)
 
@@ -8030,7 +8030,7 @@ DevolutionSprayCard:
 	db BASE_SET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw DEVOLUTION_SPRAY
-	dw EffectCommands_5947d ; effect commands
+	dw DevolutionSprayEffectCommands ; effect commands
 	tx DevolutionSprayDescription ; description
 	dw NONE ; description (cont)
 
@@ -8042,7 +8042,7 @@ ItemfinderCard:
 	db BASE_SET ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw ITEMFINDER
-	dw EffectCommands_593ac ; effect commands
+	dw ItemfinderEffectCommands ; effect commands
 	tx ItemfinderDescription ; description
 	dw NONE ; description (cont)
 
@@ -8054,7 +8054,7 @@ ChallengeCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw CHALLENGE
-	dw EffectCommands_58c09 ; effect commands
+	dw ChallengeEffectCommands ; effect commands
 	tx ChallengeDescription ; description
 	tx ChallengeDescriptionCont ; description (cont)
 
@@ -8066,7 +8066,7 @@ SuperEnergyRetrievalCard:
 	db PRO ; real set
 	db PROMOTIONAL ; in-game set
 	dw SUPER_ENERGY_RETRIEVAL
-	dw EffectCommands_59493 ; effect commands
+	dw SuperEnergyRetrievalEffectCommands ; effect commands
 	tx SuperEnergyRetrievalDescription ; description
 	dw NONE ; description (cont)
 
@@ -8078,7 +8078,7 @@ SuperEnergyRemovalCard:
 	db BASE_SET ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw SUPER_ENERGY_REMOVAL
-	dw EffectCommands_59488 ; effect commands
+	dw SuperEnergyRemovalEffectCommands ; effect commands
 	tx SuperEnergyRemovalDescription ; description
 	dw NONE ; description (cont)
 
@@ -8090,7 +8090,7 @@ MoonStoneCard:
 	db EXPANSION_SHEET ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw MOON_STONE
-	dw EffectCommands_58d8b ; effect commands
+	dw MoonStoneEffectCommands ; effect commands
 	tx MoonStoneDescription ; description
 	dw NONE ; description (cont)
 
@@ -8102,7 +8102,7 @@ DefenderCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw DEFENDER
-	dw EffectCommands_593b7 ; effect commands
+	dw DefenderEffectCommands ; effect commands
 	tx DefenderDescription ; description
 	dw NONE ; description (cont)
 
@@ -8114,7 +8114,7 @@ GustOfWindCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw GUST_OF_WIND
-	dw EffectCommands_594a1 ; effect commands
+	dw GustOfWindEffectCommands ; effect commands
 	tx GustOfWindDescription ; description
 	dw NONE ; description (cont)
 
@@ -8126,7 +8126,7 @@ MysteriousFossilCard:
 	db FOSSIL ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw MYSTERIOUS_FOSSIL
-	dw EffectCommands_593bf ; effect commands
+	dw MysteriousFossilEffectCommands ; effect commands
 	tx MysteriousFossilDescription ; description
 	tx MysteriousFossilDescriptionCont ; description (cont)
 
@@ -8138,7 +8138,7 @@ FullHealCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw FULL_HEAL
-	dw EffectCommands_593c7 ; effect commands
+	dw FullHealEffectCommands ; effect commands
 	tx FullHealDescription ; description
 	dw NONE ; description (cont)
 
@@ -8150,7 +8150,7 @@ ImposterOaksRevengeCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw IMPOSTER_OAKS_REVENGE
-	dw EffectCommands_58bbd ; effect commands
+	dw ImposterOaksRevengeEffectCommands ; effect commands
 	tx ImposterOaksRevengeDescription ; description
 	dw NONE ; description (cont)
 
@@ -8162,7 +8162,7 @@ ImposterProfessorOakCard:
 	db BASE_SET ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw IMPOSTER_PROFESSOR_OAK
-	dw EffectCommands_593cf ; effect commands
+	dw ImposterProfessorOakEffectCommands ; effect commands
 	tx ImposterProfessorOakDescription ; description
 	dw NONE ; description (cont)
 
@@ -8174,7 +8174,7 @@ SleepCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw SLEEP
-	dw EffectCommands_58bc8 ; effect commands
+	dw SleepEffectCommands ; effect commands
 	tx SleepDescription ; description
 	dw NONE ; description (cont)
 
@@ -8186,7 +8186,7 @@ ComputerErrorCard:
 	db PRO ; real set
 	db PROMOTIONAL ; in-game set
 	dw COMPUTER_ERROR
-	dw EffectCommands_58dc2 ; effect commands
+	dw ComputerErrorEffectCommands ; effect commands
 	tx ComputerErrorDescription ; description
 	dw NONE ; description (cont)
 
@@ -8198,7 +8198,7 @@ ComputerSearchCard:
 	db BASE_SET ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw COMPUTER_SEARCH
-	dw EffectCommands_593d4 ; effect commands
+	dw ComputerSearchEffectCommands ; effect commands
 	tx ComputerSearchDescription ; description
 	dw NONE ; description (cont)
 
@@ -8210,7 +8210,7 @@ DiggerCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw DIGGER
-	dw EffectCommands_58bcd ; effect commands
+	dw DiggerEffectCommands ; effect commands
 	tx DiggerDescription ; description
 	dw NONE ; description (cont)
 
@@ -8222,7 +8222,7 @@ ClefairyDollCard:
 	db BASE_SET ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw CLEFAIRY_DOLL
-	dw EffectCommands_593e2 ; effect commands
+	dw ClefairyDollEffectCommands ; effect commands
 	tx ClefairyDollDescription ; description
 	tx ClefairyDollDescriptionCont ; description (cont)
 
@@ -8234,7 +8234,7 @@ MrFujiCard:
 	db FOSSIL ; real set
 	db SKY_FLYING_POKEMON ; in-game set
 	dw MR_FUJI
-	dw EffectCommands_593ea ; effect commands
+	dw MrFujiEffectCommands ; effect commands
 	tx MrFujiDescription ; description
 	dw NONE ; description (cont)
 
@@ -8246,7 +8246,7 @@ PluspowerCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw PLUSPOWER
-	dw EffectCommands_593f5 ; effect commands
+	dw PluspowerEffectCommands ; effect commands
 	tx PluspowerDescription ; description
 	dw NONE ; description (cont)
 
@@ -8258,7 +8258,7 @@ SwitchCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw SWITCH
-	dw EffectCommands_593fa ; effect commands
+	dw SwitchEffectCommands ; effect commands
 	tx SwitchDescription ; description
 	dw NONE ; description (cont)
 
@@ -8270,7 +8270,7 @@ ScoopUpCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw SCOOP_UP
-	dw EffectCommands_59423 ; effect commands
+	dw ScoopUpEffectCommands ; effect commands
 	tx ScoopUpDescription ; description
 	dw NONE ; description (cont)
 
@@ -8282,7 +8282,7 @@ PokemonTraderCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw POKEMON_TRADER
-	dw EffectCommands_5942e ; effect commands
+	dw PokemonTraderEffectCommands ; effect commands
 	tx PokemonTraderDescription ; description
 	tx PokemonTraderDescriptionCont ; description (cont)
 
@@ -8294,7 +8294,7 @@ PokemonRecallCard:
 	db EXPANSION_SHEET ; real set
 	db SKY_FLYING_POKEMON ; in-game set
 	dw POKEMON_RECALL
-	dw EffectCommands_58daf ; effect commands
+	dw PokemonRecallEffectCommands ; effect commands
 	tx PokemonRecallDescription ; description
 	dw NONE ; description (cont)
 
@@ -8306,7 +8306,7 @@ PokedexCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw POKEDEX
-	dw EffectCommands_5943c ; effect commands
+	dw PokedexEffectCommands ; effect commands
 	tx PokedexDescription ; description
 	dw NONE ; description (cont)
 
@@ -8318,7 +8318,7 @@ PokemonCenterCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw POKEMON_CENTER
-	dw EffectCommands_59405 ; effect commands
+	dw PokemonCenterEffectCommands ; effect commands
 	tx PokemonCenterDescription ; description
 	dw NONE ; description (cont)
 
@@ -8330,7 +8330,7 @@ PokemonBreederCard:
 	db BASE_SET ; real set
 	db LEGENDARY_POWER ; in-game set
 	dw POKEMON_BREEDER
-	dw EffectCommands_59418 ; effect commands
+	dw PokemonBreederEffectCommands ; effect commands
 	tx PokemonBreederDescription ; description
 	dw NONE ; description (cont)
 
@@ -8342,7 +8342,7 @@ PokemonFluteCard:
 	db BASE_SET ; real set
 	db SKY_FLYING_POKEMON ; in-game set
 	dw POKEMON_FLUTE
-	dw EffectCommands_5940d ; effect commands
+	dw PokemonFluteEffectCommands ; effect commands
 	tx PokemonFluteDescription ; description
 	dw NONE ; description (cont)
 
@@ -8354,7 +8354,7 @@ TheBosssWayCard:
 	db TEAM_ROCKET ; real set
 	db WE_ARE_TEAM_ROCKET ; in-game set
 	dw THE_BOSSS_WAY
-	dw EffectCommands_58bd2 ; effect commands
+	dw TheBosssWayEffectCommands ; effect commands
 	tx TheBosssWayDescription ; description
 	dw NONE ; description (cont)
 
@@ -8366,7 +8366,7 @@ GoopGasAttackCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw GOOP_GAS_ATTACK
-	dw EffectCommands_58bdd ; effect commands
+	dw GoopGasAttackEffectCommands ; effect commands
 	tx GoopGasAttackDescription ; description
 	dw NONE ; description (cont)
 
@@ -8378,7 +8378,7 @@ BillCard:
 	db BASE_SET ; real set
 	db BEGINNING_POKEMON ; in-game set
 	dw BILL
-	dw EffectCommands_59447 ; effect commands
+	dw BillEffectCommands ; effect commands
 	tx BillDescription ; description
 	dw NONE ; description (cont)
 
@@ -8390,7 +8390,7 @@ BillsTeleporterCard:
 	db BULBASAUR_DECK ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw BILLS_TELEPORTER
-	dw EffectCommands_592ce ; effect commands
+	dw BillsTeleporterEffectCommands ; effect commands
 	tx BillsTeleporterDescription ; description
 	dw NONE ; description (cont)
 
@@ -8402,7 +8402,7 @@ BillsComputerCard:
 	db EXPANSION_SHEET ; real set
 	db PROMOTIONAL ; in-game set
 	dw BILLS_COMPUTER
-	dw EffectCommands_58dba ; effect commands
+	dw BillsComputerEffectCommands ; effect commands
 	tx BillsComputerDescription ; description
 	tx BillsComputerDescriptionCont ; description (cont)
 
@@ -8414,7 +8414,7 @@ MasterBallCard:
 	db EXPANSION_SHEET ; real set
 	db SKY_FLYING_POKEMON ; in-game set
 	dw MASTER_BALL
-	dw EffectCommands_58da4 ; effect commands
+	dw MasterBallEffectCommands ; effect commands
 	tx MasterBallDescription ; description
 	dw NONE ; description (cont)
 
@@ -8426,7 +8426,7 @@ LassCard:
 	db BASE_SET ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw LASS
-	dw EffectCommands_5944c ; effect commands
+	dw LassEffectCommands ; effect commands
 	tx LassDescription ; description
 	dw NONE ; description (cont)
 
@@ -8438,7 +8438,7 @@ MaintenanceCard:
 	db BASE_SET ; real set
 	db SKY_FLYING_POKEMON ; in-game set
 	dw MAINTENANCE
-	dw EffectCommands_59451 ; effect commands
+	dw MaintenanceEffectCommands ; effect commands
 	tx MaintenanceDescription ; description
 	dw NONE ; description (cont)
 
@@ -8450,7 +8450,7 @@ PokeballCard:
 	db JUNGLE ; real set
 	db ISLAND_OF_FOSSIL ; in-game set
 	dw POKEBALL
-	dw EffectCommands_5945c ; effect commands
+	dw PokeballEffectCommands ; effect commands
 	tx PokeballDescription ; description
 	dw NONE ; description (cont)
 
@@ -8462,7 +8462,7 @@ NightlyGarbageRunCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw NIGHTLY_GARBAGE_RUN
-	dw EffectCommands_58bef ; effect commands
+	dw NightlyGarbageRunEffectCommands ; effect commands
 	tx NightlyGarbageRunDescription ; description
 	dw NONE ; description (cont)
 
@@ -8474,7 +8474,7 @@ RecycleCard:
 	db FOSSIL ; real set
 	db PSYCHIC_BATTLE ; in-game set
 	dw RECYCLE
-	dw EffectCommands_59467 ; effect commands
+	dw RecycleEffectCommands ; effect commands
 	tx RecycleDescription ; description
 	dw NONE ; description (cont)
 
@@ -8486,7 +8486,7 @@ RocketsSneakAttackCard:
 	db TEAM_ROCKET ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw ROCKETS_SNEAK_ATTACK
-	dw EffectCommands_58be2 ; effect commands
+	dw RocketsSneakAttackEffectCommands ; effect commands
 	tx RocketsSneakAttackDescription ; description
 	dw NONE ; description (cont)
 
@@ -8498,7 +8498,7 @@ HereComesTeamRocketCard:
 	db TEAM_ROCKET ; real set
 	db PROMOTIONAL ; in-game set
 	dw HERE_COMES_TEAM_ROCKET
-	dw EffectCommands_58bea ; effect commands
+	dw HereComesTeamRocketEffectCommands ; effect commands
 	tx HereComesTeamRocketDescription ; description
 	dw NONE ; description (cont)
 
@@ -8510,6 +8510,6 @@ TheRocketsTrapCard:
 	db GYM_HEROES ; real set
 	db TEAM_ROCKETS_AMBITION ; in-game set
 	dw THE_ROCKETS_TRAP
-	dw EffectCommands_58d75 ; effect commands
+	dw TheRocketsTrapEffectCommands ; effect commands
 	tx TheRocketsTrapDescription ; description
 	dw NONE ; description (cont)

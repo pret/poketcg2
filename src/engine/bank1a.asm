@@ -1322,13 +1322,13 @@ Data_68743:
 	db $00
 	db $00
 
-Func_68753:
+EkansLv10SpitPoison_AI:
 	ld a, 5
 	lb de, 0, 10
 	call Func_680dd
 	ret
 
-Func_6875c:
+EkansLv10SpitPoison_BeforeDamage:
 	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	jp c, Func_68012
@@ -1337,15 +1337,15 @@ Func_6875c:
 	call Func_68094
 	ret
 
-Func_6876e:
+EkansLv10Wrap_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68772:
+ArbokLv27TerrorStrike_InitialEffect1:
 	call Func_6808d
 	ret
 
-Func_68776:
+ArbokLv27TerrorStrike_RequireSelection:
 	xor a
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -1359,7 +1359,7 @@ Func_68776:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6878e:
+ArbokLv27TerrorStrike_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -1367,31 +1367,31 @@ Func_6878e:
 	call Func_6828a
 	ret
 
-Func_68798:
+ArbokLv27PoisonFang_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_687a1:
+ArbokLv27PoisonFang_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_687a5:
+WeepinbellLv28PoisonPowder_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_687ae:
+WeepinbellLv28PoisonPowder_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_687b2:
+VictreebelLure_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_687b6:
+VictreebelLure_RequireSelection:
 	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
@@ -1404,12 +1404,12 @@ Func_687b6:
 	call SwapTurn
 	ret
 
-Func_687cf:
+VictreebelLure_AISelection:
 	call Func_6869d
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_687d5:
+VictreebelLure_AfterDamage:
 	call SwapTurn
 	ldh a, [hTemp_ffa0]
 	ld e, a
@@ -1420,7 +1420,7 @@ Func_687d5:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_687e9:
+VictreebelAcid_BeforeDamage:
 	ldtx de, AcidCheckText
 	call TossCoin_Bank1a
 	ret nc
@@ -1428,32 +1428,32 @@ Func_687e9:
 	call Func_6812e
 	ret
 
-Func_687f6:
+PinsirLv24Irongrip_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_687fa:
+CaterpieStringShot_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_687fe:
+GloomPoisonPowder_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_68807:
+GloomPoisonPowder_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6880b:
+GloomFoulOdor_BeforeDamage:
 	call Func_68045
 	call SwapTurn
 	call Func_68045
 	call SwapTurn
 	ret
 
-Func_68818:
+KakunaLv23Stiffen_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -1463,17 +1463,17 @@ Func_68818:
 	call Func_68127
 	ret
 
-Func_6882c:
+KakunaLv23PoisonPowder_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_68835:
+KakunaLv23PoisonPowder_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_68839:
+GolbatLv29LeechLife_AfterDamage:
 	ld hl, wDealtDamage
 	ld e, [hl]
 	inc hl
@@ -1481,11 +1481,11 @@ Func_68839:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_68843:
+VenonatLv12StunSpore_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68847:
+VenonatLv12LeechLife_AfterDamage:
 	ld hl, wDealtDamage
 	ld e, [hl]
 	inc hl
@@ -1493,16 +1493,16 @@ Func_68847:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_68851:
+ScytherLv25SwordsDance_BeforeDamage:
 	ld a, $1e
 	call Func_6810e
 	ret
 
-Func_68857:
+ZubatLv10Supersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_6885b:
+ZubatLv10LeechLife_AfterDamage:
 	ld hl, wDealtDamage
 	ld e, [hl]
 	inc hl
@@ -1510,13 +1510,13 @@ Func_6885b:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_68865:
+BeedrillTwineedle_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_6886e:
+BeedrillTwineedle_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -1529,21 +1529,21 @@ Func_6886e:
 	call Func_6817e
 	ret
 
-Func_68886:
+BeedrillPoisonSting_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6888f:
+BeedrillPoisonSting_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_68893:
+ExeggcuteHypnosisMove_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_68897:
+ExeggcuteLeechSeedAlt_AfterDamage:
 	ld hl, wDealtDamage
 	ld a, [hli]
 	or [hl]
@@ -1552,18 +1552,18 @@ Func_68897:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_688a4:
+KoffingLv13FoulGas_AI:
 	ld a, $05
 	ld de, $a
 	jp Func_680cb
 
-Func_688ac:
+KoffingLv13FoulGas_BeforeDamage:
 	ldtx de, PoisonedIfHeadsConfusedIfTailsText
 	call TossCoin_Bank1a
 	jp c, Func_68012
 	jp Func_68045
 
-Func_688b8:
+MetapodLv21Stiffen_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -1573,21 +1573,21 @@ Func_688b8:
 	call Func_68127
 	ret
 
-Func_688cc:
+MetapodLv21StunSpore_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_688d0:
+OddishLv8StunSpore_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_688d4:
+OddishLv8Sprout_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_688de:
+OddishLv8Sprout_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseAnOddishFromDeckText
 	ldtx bc, EffectTargetOddishText
@@ -1602,7 +1602,7 @@ Func_688de:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_688ff:
+OddishLv8Sprout_AISelection:
 	ld de, DEX_ODDISH
 	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
@@ -1617,7 +1617,7 @@ Func_688ff:
 	jr nc, .asm_6890e
 	ret
 
-Func_6891b:
+OddishLv8Sprout_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_68937
@@ -1633,11 +1633,11 @@ Func_6891b:
 	call Func_680a0
 	ret
 
-Func_6893b:
+ExeggutorTeleport_InitialEffect1:
 	call Func_68446
 	ret
 
-Func_6893f:
+ExeggutorTeleport_RequireSelection:
 	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
@@ -1648,14 +1648,14 @@ Func_6893f:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_68952:
+ExeggutorTeleport_AISelection:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	call Random
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6895b:
+ExeggutorTeleport_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	ld e, a
 	call SwapArenaWithBenchPokemon
@@ -1663,7 +1663,7 @@ Func_6895b:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_68966:
+ExeggutorBigEggsplosion_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld e, a
 	call GetPlayAreaCardAttachedEnergies
@@ -1681,7 +1681,7 @@ Func_68966:
 	ld [wAIMinDamage], a
 	ret
 
-Func_68985:
+ExeggutorBigEggsplosion_BeforeDamage:
 	ld e, $00
 	call GetPlayAreaCardAttachedEnergies
 	ld hl, $14
@@ -1706,13 +1706,13 @@ Func_68999:
 	ld [wDamage + 1], a
 	ret
 
-Func_689ac:
+NidokingThrash_AI:
 	ld a, 35
 	ld de, LoadSymbolsFont
 	call Func_680dd
 	ret
 
-Func_689b5:
+NidokingThrash_BeforeDamage:
 	ldtx de, IfHeadPlus10IfTails10ToYourselfText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
@@ -1721,7 +1721,7 @@ Func_689b5:
 	call Func_68163
 	ret
 
-Func_689c4:
+NidokingThrash_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -1729,16 +1729,16 @@ Func_689c4:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_689ce:
+NidokingToxic_AI:
 	ld a, $14
 	ld de, $1414
 	jp Func_680cb
 
-Func_689d6:
+NidokingToxic_BeforeDamage:
 	call Func_68017
 	ret
 
-Func_689da:
+NidoqueenBoyfriends_BeforeDamage:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld c, $00
@@ -1764,13 +1764,13 @@ Func_689da:
 	call Func_68163
 	ret
 
-Func_689fe:
+NidoranFLv13FurySwipes_AI:
 	ld a, 15
 	lb de, 0, 30
 	call Func_680dd
 	ret
 
-Func_68a07:
+NidoranFLv13FurySwipes_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -1780,13 +1780,13 @@ Func_68a07:
 	call Func_6817e
 	ret
 
-Func_68a1c:
+NidoranFLv13CallForFamily_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_68a26:
+NidoranFLv13CallForFamily_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseNidoranFromDeckText
 	ldtx bc, EffectTargetNidoranMNidoranFText
@@ -1800,7 +1800,7 @@ Func_68a26:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_68a44:
+NidoranFLv13CallForFamily_AISelection:
 	ld a, CARDSEARCH_NIDORAN
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
@@ -1814,7 +1814,7 @@ Func_68a44:
 	jr nc, .asm_68a50
 	ret
 
-Func_68a5d:
+NidoranFLv13CallForFamily_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_68a79
@@ -1830,13 +1830,13 @@ Func_68a5d:
 	call Func_680a0
 	ret
 
-Func_68a7d:
+NidoranMLv20HornHazard_AI:
 	ld a, 30
 	lb de, 0, 30
 	call Func_680dd
 	ret
 
-Func_68a86:
+NidoranMLv20HornHazard_BeforeDamage:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call TossCoin_Bank1a
 	jr c, .asm_68a96
@@ -1849,17 +1849,17 @@ Func_68a86:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_68a9c:
+NidorinaLv24Supersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_68aa0:
+NidorinaLv24DoubleKick_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_68aa9:
+NidorinaLv24DoubleKick_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -1872,13 +1872,13 @@ Func_68aa9:
 	call Func_6817e
 	ret
 
-Func_68ac1:
+NidorinoLv25DoubleKick_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_68aca:
+NidorinoLv25DoubleKick_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -1891,18 +1891,18 @@ Func_68aca:
 	call Func_6817e
 	ret
 
-Func_68ae2:
+ButterfreeWhirlwind_RequireSelection:
 	call HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_68aea:
+ButterfreeWhirlwind_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	call Func_6828a
 	ret
 
-Func_68af0:
+ButterfreeMegaDrain_AfterDamage:
 	ld hl, wDealtDamage
 	ld a, [hli]
 	ld h, [hl]
@@ -1919,35 +1919,35 @@ Func_68af0:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_68b08:
+ParasLv8Spore_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_68b0c:
+ParasectLv28Spore_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_68b10:
+WeedleLv12PoisonSting_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_68b19:
+WeedleLv12PoisonSting_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_68b1d:
+IvysaurLv20PoisonPowder_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_68b26:
+IvysaurLv20PoisonPowder_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_68b2a:
+BulbasaurLv13LeechSeed_AfterDamage:
 	ld hl, wDealtDamage
 	ld a, [hli]
 	or [hl]
@@ -1956,16 +1956,16 @@ Func_68b2a:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_68b37:
+VenusaurLv67EnergyTrans_InitialEffect2:
 	jr Func_68b40
 
-Func_68b39:
+VenusaurLv67EnergyTrans_RequireSelection:
 	jr Func_68b79
 
-Func_68b3b:
+VenusaurLv67EnergyTrans_BeforeDamage:
 	jr Func_68b81
 
-Func_68b3d:
+VenusaurLv67EnergyTrans_Unk11:
 	jp Func_68c14
 
 Func_68b40:
@@ -2127,48 +2127,48 @@ Func_68c30:
 	or a
 	ret
 
-Func_68c52:
+VenusaurAltLv67EnergyTrans_InitialEffect2:
 	jp Func_68b40
 
-Func_68c55:
+VenusaurAltLv67EnergyTrans_RequireSelection:
 	jp Func_68b79
 
-Func_68c58:
+VenusaurAltLv67EnergyTrans_BeforeDamage:
 	jp Func_68b81
 
-Func_68c5b:
+VenusaurAltLv67EnergyTrans_Unk11:
 	jr Func_68c14
 
-Func_68c5d:
+GrimerLv17NastyGoo_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68c61:
+GrimerLv17Minimize_BeforeDamage:
 	ld a, $18
 	call Func_68127
 	ret
 
-Func_68c67:
+MukToxicGas_InitialEffect1:
 	scf
 	ret
 
-Func_68c69:
+MukSludgeMove_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_68c72:
+MukSludgeMove_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_68c76:
+BellsproutLv11CallForFamily_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_68c80:
+BellsproutLv11CallForFamily_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseABellsproutFromDeckText
 	ldtx bc, EffectTargetBellsproutText
@@ -2183,7 +2183,7 @@ Func_68c80:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_68ca1:
+BellsproutLv11CallForFamily_AISelection:
 	ld de, DEX_BELLSPROUT
 	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
@@ -2198,7 +2198,7 @@ Func_68ca1:
 	jr nc, .asm_68cb0
 	ret
 
-Func_68cbd:
+BellsproutLv11CallForFamily_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_68cd9
@@ -2214,17 +2214,17 @@ Func_68cbd:
 	call Func_680a0
 	ret
 
-Func_68cdd:
+WeezingLv27Smog_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_68ce6:
+WeezingLv27Smog_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_68cea:
+WeezingLv27Selfdestruct_AfterDamage:
 	ld a, $3c
 	call DealRecoilDamageToSelf
 	call Func_6806e
@@ -2237,10 +2237,10 @@ Func_68cea:
 	call SwapTurn
 	ret
 
-Func_68d06:
+VenomothLv28Shift_InitialEffect2:
 	jp Func_6844f
 
-Func_68d09:
+VenomothLv28Shift_RequireSelection:
 .asm_68d09
 	ld hl, $169
 	ldh a, [hTemp_ffa0]
@@ -2277,7 +2277,7 @@ Func_68d2d:
 	scf
 	ret
 
-Func_68d44:
+VenomothLv28Shift_BeforeDamage:
 	call Func_68465
 	ldh a, [hTemp_ffa0]
 	add DUELVARS_ARENA_CARD
@@ -2294,12 +2294,12 @@ Func_68d44:
 	call DrawWideTextBox_WaitForInput
 	ret
 
-Func_68d63:
+VenomothLv28VenomPowder_AI:
 	ld a, $05
 	ld de, $a
 	jp Func_680cb
 
-Func_68d6b:
+VenomothLv28VenomPowder_BeforeDamage:
 	ldtx de, VenomPowderCheckText
 	call TossCoin_Bank1a
 	ret nc
@@ -2310,28 +2310,28 @@ Func_68d6b:
 	ld [wNoEffectFromWhichStatus], a
 	ret
 
-Func_68d7f:
+TangelaLv8Bind_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68d83:
+TangelaLv8PoisonPowder_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_68d8c:
+TangelaLv8PoisonPowder_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_68d90:
+VileplumeHeal_InitialEffect2:
 	call Func_6844f
 	ret c
 	call Func_68335
 	ld hl, $b5
 	ret
 
-Func_68d9b:
+VileplumeHeal_BeforeDamage:
 	ldtx de, HealSuccessCheckText
 	call TossCoin_Bank1a
 	ldh [hTempPlayAreaLocation_ffa1], a
@@ -2377,13 +2377,13 @@ Func_68d9b:
 	call ExchangeRNG
 	ret
 
-Func_68df3:
+VileplumePetalDance_AI:
 	ld a, 60
 	lb de, 0, 120
 	call Func_680dd
 	ret
 
-Func_68dfc:
+VileplumePetalDance_BeforeDamage:
 	ld hl, $28
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -2398,21 +2398,21 @@ Func_68dfc:
 	call SwapTurn
 	ret
 
-Func_68e1c:
+TangelaLv12StunSpore_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68e20:
+TangelaLv12PoisonWhip_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_68e29:
+TangelaLv12PoisonWhip_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_68e2d:
+VenusaurLv64SolarPower_InitialEffect2:
 	call Func_6844f
 	ret c
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -2428,7 +2428,7 @@ Func_68e2d:
 .asm_68e43
 	ret
 
-Func_68e44:
+VenusaurLv64SolarPower_BeforeDamage:
 	ld a, $8e
 	ld [wLoadedAttackAnimation], a
 	farcall ResetAttackAnimationIsPlaying
@@ -2449,7 +2449,7 @@ Func_68e44:
 	bank1call DrawDuelHUDs
 	ret
 
-Func_68e70:
+VenusaurLv64MegaDrain_AfterDamage:
 	ld hl, wDealtDamage
 	ld a, [hli]
 	ld h, [hl]
@@ -2522,17 +2522,17 @@ Func_68ec8:
 	ld [wAIMaxDamage], a
 	ret
 
-Func_68ed8:
+OmastarLv32WaterGun_BeforeDamage:
 	ld bc, $101
 	jr Func_68e88
 
-Func_68edd:
+OmastarLv32SpikeCannon_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_68ee6:
+OmastarLv32SpikeCannon_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $02
@@ -2545,24 +2545,24 @@ Func_68ee6:
 	call Func_6817e
 	ret
 
-Func_68efe:
+OmanyteLv19Clairvoyance_InitialEffect2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ret
 
-Func_68f08:
+OmanyteLv19Clairvoyance_BeforeDamage:
 	call Func_680ab
 	ret nc
 	bank1call Func_43d9
 	ret
 
-Func_68f10:
+OmanyteLv19WaterGun_BeforeDamage:
 	ld bc, $100
 	jp Func_68e88
 
-Func_68f16:
+WartortleLv22Withdraw_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -2572,30 +2572,30 @@ Func_68f16:
 	call Func_68127
 	ret
 
-Func_68f2a:
+BlastoiseLv52RainDance_InitialEffect1:
 	scf
 	ret
 
-Func_68f2c:
+BlastoiseLv52HydroPump_BeforeDamage:
 	ld bc, $300
 	jp Func_68e88
 
-Func_68f32:
+BlastoiseAltLv52RainDance_InitialEffect1:
 	scf
 	ret
 
-Func_68f34:
-	jr Func_68f2c
+BlastoiseAltLv52HydroPump_BeforeDamage:
+	jr BlastoiseLv52HydroPump_BeforeDamage
 
-Func_68f36:
+GyaradosBubblebeam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68f3a:
+KinglerLv27Flail_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_68f3f
 
-Func_68f3e:
+KinglerLv27Flail_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -2605,13 +2605,13 @@ Func_68f3f:
 	call Func_6817e
 	ret
 
-Func_68f47:
+KrabbyLv20CallForFamily_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_68f51:
+KrabbyLv20CallForFamily_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseAKrabbyFromDeckText
 	ldtx bc, EffectTargetKrabbyText
@@ -2626,7 +2626,7 @@ Func_68f51:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_68f72:
+KrabbyLv20CallForFamily_AISelection:
 	ld de, DEX_KRABBY
 	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
@@ -2641,7 +2641,7 @@ Func_68f72:
 	jr nc, .asm_68f81
 	ret
 
-Func_68f8e:
+KrabbyLv20CallForFamily_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_68faa
@@ -2657,11 +2657,11 @@ Func_68f8e:
 	call Func_680a0
 	ret
 
-Func_68fae:
+MagikarpLv8Flail_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_68fb3
 
-Func_68fb2:
+MagikarpLv8Flail_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -2671,19 +2671,19 @@ Func_68fb3:
 	call Func_6817e
 	ret
 
-Func_68fbb:
+PsyduckLv15Headache_BeforeDamage:
 	ld a, $f1
 	call GetNonTurnDuelistVariable
 	set 2, [hl]
 	ret
 
-Func_68fc3:
+PsyduckLv15FurySwipes_AI:
 	ld a, 15
 	lb de, 0, 30
 	call Func_680dd
 	ret
 
-Func_68fcc:
+PsyduckLv15FurySwipes_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -2693,24 +2693,24 @@ Func_68fcc:
 	call Func_6817e
 	ret
 
-Func_68fe1:
+GolduckLv27Psyshock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_68fe5:
+GolduckLv27HyperBeam_RequireSelection:
 	jp Func_6a87d
 
-Func_68fe8:
+GolduckLv27HyperBeam_AISelection:
 	jp Func_6a877
 
-Func_68feb:
+GolduckLv27HyperBeam_AfterDamage:
 	jp Func_6a8a5
 
-Func_68fee:
+SeadraLv23WaterGun_BeforeDamage:
 	ld bc, $101
 	jp Func_68e88
 
-Func_68ff4:
+SeadraLv23Agility_BeforeDamage:
 	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
@@ -2720,11 +2720,11 @@ Func_68ff4:
 	call Func_68127
 	ret
 
-Func_69006:
+ShellderLv8Supersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_6900a:
+ShellderLv8HideInShell_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -2734,26 +2734,26 @@ Func_6900a:
 	call Func_68127
 	ret
 
-Func_6901e:
+VaporeonLv42QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_69027:
+VaporeonLv42QuickAttack_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_6902d:
+VaporeonLv42WaterGun_BeforeDamage:
 	ld bc, $201
 	jp Func_68e88
 
-Func_69033:
+DewgongLv42IceBeam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_69037:
+StarmieRecover_InitialEffect1:
 	ld e, $00
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wAttachedEnergies + 3]
@@ -2767,7 +2767,7 @@ Func_69037:
 	cp $0a
 	ret
 
-Func_69052:
+StarmieRecover_InitialEffect2:
 	ld a, $0b
 	call Func_681e5
 	xor a
@@ -2779,19 +2779,19 @@ Func_69052:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69065:
+StarmieRecover_AISelection:
 	ld a, $0b
 	call Func_681e5
 	ld a, [wDuelTempList]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69070:
+StarmieRecover_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69076:
+StarmieRecover_AfterDamage:
 	ld e, $00
 	call GetCardDamageAndMaxHP
 	ld e, a
@@ -2799,15 +2799,15 @@ Func_69076:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_69082:
+StarmieStarFreeze_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_69086:
+SquirtleLv8Bubble_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6908a:
+SquirtleLv8Withdraw_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -2817,38 +2817,38 @@ Func_6908a:
 	call Func_68127
 	ret
 
-Func_6909e:
+HorseaLv19Smokescreen_BeforeDamage:
 	ld a, $01
 	call Func_6812e
 	ret
 
-Func_690a4:
+TentacruelSupersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_690a8:
+TentacruelJellyfishSting_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_690b1:
+TentacruelJellyfishSting_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_690b5:
+PoliwhirlLv28Amnesia_InitialEffect1:
 	call Func_68501
 	ret
 
-Func_690b9:
+PoliwhirlLv28Amnesia_InitialEffect2:
 	call Func_690c3
 	ret
 
-Func_690bd:
+PoliwhirlLv28Amnesia_AISelection:
 	call Func_68633
 	ret
 
-Func_690c1:
+PoliwhirlLv28Amnesia_BeforeDamage:
 	jr Func_690d0
 
 Func_690c3:
@@ -2891,13 +2891,13 @@ Func_690d2:
 	call SwapTurn
 	ret
 
-Func_69109:
+PoliwhirlLv28DoubleSlap_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_69112:
+PoliwhirlLv28DoubleSlap_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -2910,31 +2910,31 @@ Func_69112:
 	call Func_6817e
 	ret
 
-Func_6912a:
+PoliwrathLv48WaterGun_BeforeDamage:
 	ld bc, $201
 	jp Func_68e88
 
-Func_69130:
+PoliwrathLv48Whirlpool_RequireSelection:
 	jp Func_6a87d
 
-Func_69133:
+PoliwrathLv48Whirlpool_AISelection:
 	jp Func_6a877
 
-Func_69136:
+PoliwrathLv48Whirlpool_AfterDamage:
 	jp Func_6a8a5
 
-Func_69139:
+PoliwagLv13WaterGun_BeforeDamage:
 	ld bc, $100
 	jp Func_68e88
 
-Func_6913f:
+CloysterClamp_AI:
 	ld a, 30
 	lb de, 0, 30
 	call Func_680dd
 	ret
 	ret
 
-Func_69149:
+CloysterClamp_BeforeDamage:
 	ld a, $05
 	ld [wLoadedAttackAnimation], a
 	ldtx de, AttackSuccessCheckText
@@ -2946,13 +2946,13 @@ Func_69149:
 	call Func_6809a
 	ret
 
-Func_69162:
+CloysterSpikeCannon_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_6916b:
+CloysterSpikeCannon_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -2965,17 +2965,17 @@ Func_6916b:
 	call Func_6817e
 	ret
 
-Func_69183:
+ArticunoLv35FreezeDry_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_69187:
+ArticunoLv35Blizzard_BeforeDamage:
 	ldtx de, DamageToOppBenchIfHeadsDamageToYoursIfTailsText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69190:
+ArticunoLv35Blizzard_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr nz, .asm_6919e
@@ -2990,7 +2990,7 @@ Func_69190:
 	call SwapTurn
 	ret
 
-Func_691aa:
+TentacoolCowardice_InitialEffect2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	bank1call CheckIsIncapableOfUsingPkmnPower
@@ -3007,7 +3007,7 @@ Func_691aa:
 	or a
 	ret
 
-Func_691c4:
+TentacoolCowardice_RequireSelection:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -3019,7 +3019,7 @@ Func_691c4:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_691d9:
+TentacoolCowardice_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -3042,19 +3042,19 @@ Func_691d9:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_691ff:
+LaprasLv31WaterGun_BeforeDamage:
 	ld bc, $100
 	jp Func_68e88
 
-Func_69205:
+LaprasLv31ConfuseRay_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_69209:
+ArticunoLv37Quickfreeze_InitialEffect1:
 	scf
 	ret
 
-Func_6920b:
+ArticunoLv37Quickfreeze_PkmnPowerTrigger:
 	ldtx de, ParalysisInflictionCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69220
@@ -3087,12 +3087,12 @@ Func_6920b:
 	ld [hl], a
 	ret
 
-Func_69250:
+ArticunoLv37IceBreath_BeforeDamage:
 	xor a
 	call Func_6817e
 	ret
 
-Func_69255:
+ArticunoLv37IceBreath_AfterDamage:
 	call SwapTurn
 	call Func_68196
 	ld b, a
@@ -3101,7 +3101,7 @@ Func_69255:
 	call SwapTurn
 	ret
 
-Func_69266:
+VaporeonLv29FocusEnergy_BeforeDamage:
 	ld a, $1e
 	call Func_6810e
 	ret
@@ -3135,43 +3135,43 @@ Func_69291:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6929a:
+ArcanineLv45Flamethrower_InitialEffect1:
 	jp Func_6927b
 
-Func_6929d:
+ArcanineLv45Flamethrower_InitialEffect2:
 	jp Func_6926c
 
-Func_692a0:
+ArcanineLv45Flamethrower_AISelection:
 	jp Func_69291
 
-Func_692a3:
+ArcanineLv45Flamethrower_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_692a9:
+ArcanineLv45TakeDown_AfterDamage:
 	ld a, $1e
 	call DealRecoilDamageToSelf
 	ret
 
-Func_692af:
+ArcanineLv34QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_692b8:
+ArcanineLv34QuickAttack_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_692be:
+ArcanineLv34FlamesOfRage_InitialEffect1:
 	ld e, $00
 	call Func_69283
 	cp $02
 	ret
 
-Func_692c6:
+ArcanineLv34FlamesOfRage_InitialEffect2:
 	ldtx hl, ChooseAndDiscard2FireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
@@ -3192,24 +3192,24 @@ Func_692c6:
 	bank1call UpdateAttachedEnergyMenu
 	jr .asm_692d6
 
-Func_692ee:
+ArcanineLv34FlamesOfRage_AISelection:
 	call Func_69291
 	ld a, [wDuelTempList + 1]
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_692f7:
+ArcanineLv34FlamesOfRage_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	call Func_0ffa
 	ret
 
-Func_69302:
+ArcanineLv34FlamesOfRage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_69307
 
-Func_69306:
+ArcanineLv34FlamesOfRage_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -3219,18 +3219,18 @@ Func_69307:
 	call Func_68163
 	ret
 
-Func_6930f:
+RapidashLv33Stomp_AI:
 	ld a, 25
 	lb de, 20, 30
 	call Func_680dd
 	ret
 
-Func_69318:
+RapidashLv33Stomp_BeforeDamage:
 	ld a, $0a
 	call Func_682e0
 	ret
 
-Func_6931e:
+RapidashLv33Agility_BeforeDamage:
 	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
@@ -3240,11 +3240,11 @@ Func_6931e:
 	call Func_68127
 	ret
 
-Func_69330:
+NinetalesLv32LureAlt_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_69334:
+NinetalesLv32LureAlt_RequireSelection:
 	ldtx hl, SelectBenchedPokemonToSwitchWithActiveText
 	call DrawWideTextBox_WaitForInput
 	call SwapTurn
@@ -3257,12 +3257,12 @@ Func_69334:
 	call SwapTurn
 	ret
 
-Func_6934d:
+NinetalesLv32LureAlt_AISelection:
 	call Func_6869d
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69353:
+NinetalesLv32LureAlt_AfterDamage:
 	call SwapTurn
 	ldh a, [hTemp_ffa0]
 	ld e, a
@@ -3273,42 +3273,42 @@ Func_69353:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_69367:
+NinetalesLv32FireBlast_InitialEffect1:
 	jp Func_6927b
 
-Func_6936a:
+NinetalesLv32FireBlast_InitialEffect2:
 	jp Func_6926c
 
-Func_6936d:
+NinetalesLv32FireBlast_AISelection:
 	jp Func_69291
 
-Func_69370:
+NinetalesLv32FireBlast_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69376:
+CharmanderLv10Ember_InitialEffect1:
 	jp Func_6927b
 
-Func_69379:
+CharmanderLv10Ember_InitialEffect2:
 	jp Func_6926c
 
-Func_6937c:
+CharmanderLv10Ember_AISelection:
 	jp Func_69291
 
-Func_6937f:
+CharmanderLv10Ember_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69385:
+MoltresLv35Wildfire_InitialEffect1:
 	call SwapTurn
 	farcall Func_2435f
 	call SwapTurn
 	ret c
 	jp Func_6927b
 
-Func_69393:
+MoltresLv35Wildfire_InitialEffect2:
 	ldtx hl, DiscardOppDeckAsManyFireEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	xor a
@@ -3340,12 +3340,12 @@ Func_69393:
 	cp $02
 	ret
 
-Func_693d3:
+MoltresLv35Wildfire_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_693d8:
+MoltresLv35Wildfire_DiscardEnergy:
 	ld hl, hTemp_ffa0
 .asm_693db
 	ld a, [hli]
@@ -3356,7 +3356,7 @@ Func_693d8:
 .asm_693e5
 	ret
 
-Func_693e6:
+MoltresLv35Wildfire_AfterDamage:
 	ld c, $ff
 	ld hl, hTemp_ffa0
 .asm_693eb
@@ -3390,13 +3390,13 @@ Func_693e6:
 	call SwapTurn
 	ret
 
-Func_6941b:
+MoltresLv35DiveBomb_AI:
 	ld a, 80
 	lb de, 0, 80
 	call Func_680dd
 	ret
 
-Func_69424:
+MoltresLv35DiveBomb_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69434
@@ -3409,88 +3409,88 @@ Func_69424:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6943a:
+FlareonLv28QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_69443:
+FlareonLv28QuickAttack_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_69449:
+FlareonLv28Flamethrower_InitialEffect1:
 	jp Func_6927b
 
-Func_6944c:
+FlareonLv28Flamethrower_InitialEffect2:
 	jp Func_6926c
 
-Func_6944f:
+FlareonLv28Flamethrower_AISelection:
 	jp Func_69291
 
-Func_69452:
+FlareonLv28Flamethrower_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69458:
+MagmarLv24Flamethrower_InitialEffect1:
 	jp Func_6927b
 
-Func_6945b:
+MagmarLv24Flamethrower_InitialEffect2:
 	jp Func_6926c
 
-Func_6945e:
+MagmarLv24Flamethrower_AISelection:
 	jp Func_69291
 
-Func_69461:
+MagmarLv24Flamethrower_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69467:
+MagmarLv31Smokescreen_BeforeDamage:
 	ld a, $01
 	call Func_6812e
 	ret
 
-Func_6946d:
+MagmarLv31Smog_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_69476:
+MagmarLv31Smog_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6947a:
+CharmeleonFlamethrower_InitialEffect1:
 	jp Func_6927b
 
-Func_6947d:
+CharmeleonFlamethrower_InitialEffect2:
 	jp Func_6926c
 
-Func_69480:
+CharmeleonFlamethrower_AISelection:
 	jp Func_69291
 
-Func_69483:
+CharmeleonFlamethrower_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69489:
+CharizardLv76EnergyBurn_InitialEffect1:
 	scf
 	ret
 
-Func_6948b:
+CharizardLv76FireSpin_InitialEffect1:
 	jr Func_69493
 
-Func_6948d:
+CharizardLv76FireSpin_InitialEffect2:
 	jr Func_694a0
 
-Func_6948f:
+CharizardLv76FireSpin_DiscardEnergy:
 	jr Func_694e5
 
-Func_69491:
+CharizardLv76FireSpin_AISelection:
 	jr Func_694d7
 
 Func_69493:
@@ -3566,31 +3566,31 @@ Func_694f1:
 	scf
 	ret
 
-Func_6950c:
+CharizardAltLv76EnergyBurn_InitialEffect1:
 	scf
 	ret
 
-Func_6950e:
+CharizardAltLv76FireSpin_InitialEffect1:
 	jp Func_69493
 
-Func_69511:
+CharizardAltLv76FireSpin_InitialEffect2:
 	jr Func_694a0
 
-Func_69513:
+CharizardAltLv76FireSpin_DiscardEnergy:
 	jr Func_694e5
 
-Func_69515:
+CharizardAltLv76FireSpin_AISelection:
 	jr Func_694d7
 
-Func_69517:
+VulpixLv11ConfuseRay_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6951b:
+FlareonLv22Rage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_69520
 
-Func_6951f:
+FlareonLv22Rage_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -3600,7 +3600,7 @@ Func_69520:
 	call Func_68163
 	ret
 
-Func_69528:
+NinetalesLv35MixUp_InitialEffect1:
 	call SwapTurn
 	farcall Func_2435f
 	jr c, .asm_6953b
@@ -3614,7 +3614,7 @@ Func_69528:
 	call SwapTurn
 	ret
 
-Func_6953f:
+NinetalesLv35MixUp_AfterDamage:
 	call SwapTurn
 	call CreateHandCardList
 	bank1call SortCardsInDuelTempListByID
@@ -3669,13 +3669,13 @@ Func_69592:
 	cp $08
 	ret
 
-Func_6959b:
+NinetalesLv35DancingEmbers_AI:
 	ld a, 40
 	lb de, 0, 80
 	call Func_680dd
 	ret
 
-Func_695a4:
+NinetalesLv35DancingEmbers_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -3685,11 +3685,11 @@ Func_695a4:
 	call Func_6817e
 	ret
 
-Func_695b9:
+MoltresLv40Firegiver_InitialEffect1:
 	scf
 	ret
 
-Func_695bb:
+MoltresLv40Firegiver_PkmnPowerTrigger:
 	ld a, DUELVARS_CARD_LOCATIONS
 	get_turn_duelist_var
 	ld de, wDuelTempList
@@ -3788,13 +3788,13 @@ Func_695bb:
 	call Func_680a0
 	ret
 
-Func_69667:
+MoltresLv40DiveBomb_AI:
 	ld a, 70
 	lb de, 0, 70
 	call Func_680dd
 	ret
 
-Func_69670:
+MoltresLv40DiveBomb_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, .asm_69680
@@ -3885,11 +3885,11 @@ Func_696c6:
 	or a
 	ret
 
-Func_69708:
+AbraLv10Psyshock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6970c:
+GengarLv38Curse_InitialEffect2:
 	call Func_6844f
 	ret c
 	call SwapTurn
@@ -3908,7 +3908,7 @@ Func_6970c:
 	scf
 	ret
 
-Func_6972f:
+GengarLv38Curse_RequireSelection:
 	ldtx hl, ProcedureForCurseText
 	bank1call Func_5475
 	call SwapTurn
@@ -3979,7 +3979,7 @@ Func_6972f:
 	scf
 	ret
 
-Func_697b4:
+GengarLv38Curse_BeforeDamage:
 	call Func_68465
 	call SwapTurn
 	ld a, $f6
@@ -4020,11 +4020,11 @@ Func_697b4:
 	bank1call Func_6518
 	ret
 
-Func_69804:
+GengarLv38DarkMind_RequireSelection:
 	call Func_68665
 	ret
 
-Func_69808:
+GengarLv38DarkMind_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -4033,7 +4033,7 @@ Func_69808:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69816:
+GengarLv38DarkMind_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret z
@@ -4044,14 +4044,14 @@ Func_69816:
 	call SwapTurn
 	ret
 
-Func_69829:
+GastlyLv8SleepingGas_BeforeDamage:
 	call Func_6804a
 	ret
 
-Func_6982d:
+GastlyLv8DestinyBond_InitialEffect1:
 	jp Func_696b4
 
-Func_69830:
+GastlyLv8DestinyBond_InitialEffect2:
 	ld a, $0d
 	call Func_681e5
 	xor a
@@ -4062,38 +4062,38 @@ Func_69830:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69842:
+GastlyLv8DestinyBond_AISelection:
 	ld a, $0d
 	call Func_681e5
 	ld a, [wDuelTempList]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6984d:
+GastlyLv8DestinyBond_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69853:
+GastlyLv8DestinyBond_BeforeDamage:
 	ld a, $1b
 	call Func_68127
 	ret
 
-Func_69859:
+GastlyLv17Lick_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6985d:
+GastlyLv17EnergyConversion_InitialEffect1:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, $b8
 	ret
 
-Func_69864:
+GastlyLv17EnergyConversion_RequireSelection:
 	ldtx hl, Choose2EnergyCardsFromDiscardPileForHandText
 	call Func_696c6
 	ret
 
-Func_6986b:
+GastlyLv17EnergyConversion_AISelection:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
 	ld de, hTemp_ffa0
@@ -4111,7 +4111,7 @@ Func_6986b:
 	ld [de], a
 	ret
 
-Func_69884:
+GastlyLv17EnergyConversion_AfterDamage:
 	ld a, $0a
 	call DealRecoilDamageToSelf
 	ld hl, hTemp_ffa0
@@ -4131,11 +4131,11 @@ Func_69884:
 	bank1call Func_49e8
 	ret
 
-Func_698a6:
+HaunterLv22HypnosisMove_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_698aa:
+HaunterLv22DreamEater_InitialEffect1:
 	ld a, $ec
 	call GetNonTurnDuelistVariable
 	and $0f
@@ -4145,15 +4145,15 @@ Func_698aa:
 	scf
 	ret
 
-Func_698b9:
+HaunterLv17Transparency_InitialEffect1:
 	scf
 	ret
 
-Func_698bb:
+HaunterLv17Nightmare_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_698bf:
+HypnoLv36Prophecy_InitialEffect1:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp $3c
@@ -4169,7 +4169,7 @@ Func_698bf:
 	or a
 	ret
 
-Func_698d6:
+HypnoLv36Prophecy_RequireSelection:
 .asm_698d6
 	ldtx hl, ProcedureForProphecyText
 	bank1call Func_5475
@@ -4200,12 +4200,12 @@ Func_698d6:
 	call Func_6994a
 	ret
 
-Func_69910:
+HypnoLv36Prophecy_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69915:
+HypnoLv36Prophecy_AfterDamage:
 	ld hl, hTemp_ffa0
 	ld a, [hli]
 	or a
@@ -4352,11 +4352,11 @@ Func_6994a:
 	bank1call Func_53cb
 	jr .asm_6998d
 
-Func_699fd:
+HypnoLv36DarkMind_RequireSelection:
 	call Func_68665
 	ret
 
-Func_69a01:
+HypnoLv36DarkMind_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -4365,7 +4365,7 @@ Func_69a01:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69a0f:
+HypnoLv36DarkMind_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret z
@@ -4376,15 +4376,15 @@ Func_69a0f:
 	call SwapTurn
 	ret
 
-Func_69a22:
+DrowzeeLv12ConfuseRay_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_69a26:
+MrMimeLv28InvisibleWall_InitialEffect1:
 	scf
 	ret
 
-Func_69a28:
+MrMimeLv28Meditate_BeforeDamage:
 	call SwapTurn
 	ld e, $00
 	call GetCardDamageAndMaxHP
@@ -4392,7 +4392,7 @@ Func_69a28:
 	call Func_68163
 	ret
 
-Func_69a37:
+AlakazamLv42DamageSwap_InitialEffect2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	call Func_68335
@@ -4405,7 +4405,7 @@ Func_69a37:
 	scf
 	ret
 
-Func_69a4b:
+AlakazamLv42DamageSwap_BeforeDamage:
 	ld a, DUELVARS_DUELIST_TYPE
 	get_turn_duelist_var
 	cp $00
@@ -4474,7 +4474,7 @@ Func_69a4b:
 	call Func_3071
 	jr .asm_69a75
 
-Func_69acc:
+AlakazamLv42DamageSwap_Unk11:
 	call Func_69ad5
 	ret c
 	bank1call PrintPlayAreaCardList_EnableLCD
@@ -4504,15 +4504,15 @@ Func_69ad5:
 	scf
 	ret
 
-Func_69af1:
+AlakazamLv42ConfuseRay_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_69af5:
-	call Func_69afb
+MewLv23Psywave_AI:
+	call MewLv23Psywave_BeforeDamage
 	jp Func_6818c
 
-Func_69afb:
+MewLv23Psywave_BeforeDamage:
 	call Func_69686
 	ld hl, wDamage
 	ld [hl], e
@@ -4520,7 +4520,7 @@ Func_69afb:
 	ld [hl], d
 	ret
 
-Func_69b05:
+MewLv23DevolutionBeam_InitialEffect1:
 	call Func_69bf6
 	ret nc
 	call SwapTurn
@@ -4529,7 +4529,7 @@ Func_69b05:
 	ld hl, $c6
 	ret
 
-Func_69b16:
+MewLv23DevolutionBeam_InitialEffect2:
 	ldtx hl, ProcedureForDevolutionBeamText
 	bank1call Func_5475
 .asm_69b1c
@@ -4563,7 +4563,7 @@ Func_69b16:
 	scf
 	ret
 
-Func_69b50:
+MewLv23DevolutionBeam_AISelection:
 	ld a, $01
 	ldh [hTemp_ffa0], a
 	call SwapTurn
@@ -4577,12 +4577,12 @@ Func_69b50:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_69b68:
+MewLv23DevolutionBeam_BeforeDamage:
 	xor a
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_69b6d:
+MewLv23DevolutionBeam_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr z, Func_69b89
@@ -4702,19 +4702,19 @@ Func_69c19:
 	scf
 	ret
 
-Func_69c2e:
+MewLv8NeutralShield_InitialEffect1:
 	scf
 	ret
 
-Func_69c30:
+MewLv8Psyshock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_69c34:
-	call Func_69c3a
+MewtwoLv53Psychic_AI:
+	call MewtwoLv53Psychic_BeforeDamage
 	jp Func_6818c
 
-Func_69c3a:
+MewtwoLv53Psychic_BeforeDamage:
 	call Func_69686
 	ld hl, wDamage
 	ld a, e
@@ -4725,10 +4725,10 @@ Func_69c3a:
 	ld [hl], a
 	ret
 
-Func_69c47:
+MewtwoLv53Barrier_InitialEffect1:
 	jp Func_696b4
 
-Func_69c4a:
+MewtwoLv53Barrier_InitialEffect2:
 	ld a, $0d
 	call Func_681e5
 	xor a
@@ -4739,34 +4739,34 @@ Func_69c4a:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69c5c:
+MewtwoLv53Barrier_AISelection:
 	ld a, $0d
 	call Func_681e5
 	ld a, [wDuelTempList]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69c67:
+MewtwoLv53Barrier_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69c6d:
+MewtwoLv53Barrier_BeforeDamage:
 	ld a, $19
 	call Func_68127
 	ret
 
-Func_69c73:
+MewtwoAltLv60EnergyAbsorption_InitialEffect1:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, $b8
 	ret
 
-Func_69c7a:
+MewtwoAltLv60EnergyAbsorption_RequireSelection:
 	ldtx hl, Choose2EnergyCardsFromDiscardPileToAttachText
 	call Func_696c6
 	ret
 
-Func_69c81:
+MewtwoAltLv60EnergyAbsorption_AISelection:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
 	ld de, hTemp_ffa0
@@ -4784,7 +4784,7 @@ Func_69c81:
 	ld [de], a
 	ret
 
-Func_69c9a:
+MewtwoAltLv60EnergyAbsorption_AfterDamage:
 	ld hl, hTemp_ffa0
 .asm_69c9d
 	ld a, [hli]
@@ -4797,17 +4797,17 @@ Func_69c9a:
 	pop hl
 	jr .asm_69c9d
 
-Func_69cab:
+MewtwoLv60EnergyAbsorption_InitialEffect1:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, $b8
 	ret
 
-Func_69cb2:
+MewtwoLv60EnergyAbsorption_RequireSelection:
 	ldtx hl, Choose2EnergyCardsFromDiscardPileToAttachText
 	call Func_696c6
 	ret
 
-Func_69cb9:
+MewtwoLv60EnergyAbsorption_AISelection:
 	call CreateEnergyCardListFromDiscardPile_AllEnergy
 	ld hl, wDuelTempList
 	ld de, hTemp_ffa0
@@ -4825,7 +4825,7 @@ Func_69cb9:
 	ld [de], a
 	ret
 
-Func_69cd2:
+MewtwoLv60EnergyAbsorption_AfterDamage:
 	ld hl, hTemp_ffa0
 .asm_69cd5
 	ld a, [hli]
@@ -4838,7 +4838,7 @@ Func_69cd2:
 	pop hl
 	jr .asm_69cd5
 
-Func_69ce3:
+SlowbroLv26StrangeBehavior_InitialEffect2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	call Func_68335
@@ -4857,7 +4857,7 @@ Func_69ce3:
 	scf
 	ret
 
-Func_69d03:
+SlowbroLv26StrangeBehavior_BeforeDamage:
 	ld a, DUELVARS_DUELIST_TYPE
 	get_turn_duelist_var
 	cp $00
@@ -4902,7 +4902,7 @@ Func_69d03:
 	call Func_3071
 	jr .asm_69d2d
 
-Func_69d59:
+SlowbroLv26StrangeBehavior_Unk11:
 	call Func_69d62
 	ret c
 	bank1call PrintPlayAreaCardList_EnableLCD
@@ -4928,18 +4928,18 @@ Func_69d62:
 	scf
 	ret
 
-Func_69d79:
+SlowbroLv26Psyshock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_69d7d:
+SlowpokeLv18SpacingOut_InitialEffect1:
 	ld e, $00
 	call GetCardDamageAndMaxHP
 	ld hl, $b6
 	cp $0a
 	ret
 
-Func_69d88:
+SlowpokeLv18SpacingOut_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
@@ -4948,7 +4948,7 @@ Func_69d88:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_69d99:
+SlowpokeLv18SpacingOut_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -4956,14 +4956,14 @@ Func_69d99:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_69da4:
+SlowpokeLv18Scavenge_InitialEffect1:
 	call Func_696b4
 	ret c
 	call Func_683b4
 	ld hl, $ce
 	ret
 
-Func_69daf:
+SlowpokeLv18Scavenge_InitialEffect2:
 	ld a, $0d
 	call Func_681e5
 	xor a
@@ -4975,7 +4975,7 @@ Func_69daf:
 	or a
 	ret
 
-Func_69dc2:
+SlowpokeLv18Scavenge_AISelection:
 	ld a, $0d
 	call Func_681e5
 	ld a, [wDuelTempList]
@@ -4985,12 +4985,12 @@ Func_69dc2:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_69dd5:
+SlowpokeLv18Scavenge_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69ddb:
+SlowpokeLv18Scavenge_RequireSelection:
 	call Func_683b4
 	bank1call Func_5221
 	ldtx hl, PleaseSelectCardText
@@ -5003,7 +5003,7 @@ Func_69ddb:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_69df4:
+SlowpokeLv18Scavenge_AfterDamage:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	call MoveDiscardPileCardToHand
 	call AddCardToHand
@@ -5014,23 +5014,23 @@ Func_69df4:
 	bank1call DisplayCardDetailScreen
 	ret
 
-Func_69e09:
+SlowpokeLv9Amnesia_InitialEffect1:
 	call Func_68501
 	ret
 
-Func_69e0d:
+SlowpokeLv9Amnesia_InitialEffect2:
 	call Func_690c3
 	ret
 
-Func_69e11:
+SlowpokeLv9Amnesia_AISelection:
 	call Func_68633
 	ret
 
-Func_69e15:
+SlowpokeLv9Amnesia_BeforeDamage:
 	call Func_690d0
 	ret
 
-Func_69e19:
+KadabraLv38Recover_InitialEffect1:
 	call Func_696b4
 	ret c
 	call GetCardDamageAndMaxHP
@@ -5038,7 +5038,7 @@ Func_69e19:
 	cp $0a
 	ret
 
-Func_69e26:
+KadabraLv38Recover_InitialEffect2:
 	ld a, $0d
 	call Func_681e5
 	xor a
@@ -5049,19 +5049,19 @@ Func_69e26:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69e38:
+KadabraLv38Recover_AISelection:
 	ld a, $0d
 	call Func_681e5
 	ld a, [wDuelTempList]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69e43:
+KadabraLv38Recover_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	call Func_0ffa
 	ret
 
-Func_69e49:
+KadabraLv38Recover_AfterDamage:
 	ld e, $00
 	call GetCardDamageAndMaxHP
 	ld e, a
@@ -5069,13 +5069,13 @@ Func_69e49:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_69e55:
+JynxLv23DoubleSlap_AI:
 	ld a, 10
 	lb de, 0, 20
 	call Func_680dd
 	ret
 
-Func_69e5e:
+JynxLv23DoubleSlap_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -5085,7 +5085,7 @@ Func_69e5e:
 	call Func_6817e
 	ret
 
-Func_69e73:
+JynxLv23Meditate_BeforeDamage:
 	call SwapTurn
 	ld e, $00
 	call GetCardDamageAndMaxHP
@@ -5093,13 +5093,13 @@ Func_69e73:
 	call Func_68163
 	ret
 
-Func_69e82:
+MewLv15MysteryAttack_AI:
 	ld a, 10
 	lb de, 0, 20
 	call Func_680dd
 	ret
 
-Func_69e8b:
+MewLv15MysteryAttack_BeforeDamage:
 	ld a, $0a
 	call Func_6817e
 	call UpdateRNGSources
@@ -5133,7 +5133,7 @@ Func_69eb3:
 Func_69ebf:
 	ret
 
-Func_69ec0:
+MewLv15MysteryAttack_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $04
 	ret nz
@@ -5141,13 +5141,13 @@ Func_69ec0:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_69ecc:
+GeodudeLv16StoneBarrage_AI:
 	ld a, 10
 	lb de, 0, 100
 	call Func_680dd
 	ret
 
-Func_69ed5:
+GeodudeLv16StoneBarrage_BeforeDamage:
 	xor a
 	ldh [hTemp_ffa0], a
 .asm_69ed8
@@ -5171,18 +5171,18 @@ Func_69ed5:
 	ld [de], a
 	ret
 
-Func_69ef8:
+OnixLv12Harden_BeforeDamage:
 	ld a, $13
 	call Func_68127
 	ret
 
-Func_69efe:
+PrimeapeFurySwipes_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_69f07:
+PrimeapeFurySwipes_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -5193,7 +5193,7 @@ Func_69f07:
 	call Func_6817e
 	ret
 
-Func_69f1d:
+PrimeapeTantrum_BeforeDamage:
 	ldtx de, IfTailsYourPokemonBecomesConfusedText
 	call TossCoin_Bank1a
 	ret c
@@ -5204,15 +5204,15 @@ Func_69f1d:
 	call SwapTurn
 	ret
 
-Func_69f33:
+MachampLv67StrikesBack_InitialEffect1:
 	scf
 	ret
 
-Func_69f35:
+KabutoLv9KabutoArmor_InitialEffect1:
 	scf
 	ret
 
-Func_69f37:
+KabutopsAbsorb_AfterDamage:
 	ld hl, wDealtDamage
 	ld a, [hli]
 	ld h, [hl]
@@ -5229,16 +5229,16 @@ Func_69f37:
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_69f4f:
+CuboneLv13Snivel_BeforeDamage:
 	ld a, $03
 	call Func_6812e
 	ret
 
-Func_69f55:
+CuboneLv13Rage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_69f5a
 
-Func_69f59:
+CuboneLv13Rage_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -5248,13 +5248,13 @@ Func_69f5a:
 	call Func_68163
 	ret
 
-Func_69f62:
+MarowakLv26Bonemerang_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_69f6b:
+MarowakLv26Bonemerang_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -5267,13 +5267,13 @@ Func_69f6b:
 	call Func_6817e
 	ret
 
-Func_69f83:
+MarowakLv26CallForFriend_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_69f8d:
+MarowakLv26CallForFriend_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseBasicFightingPokemonFromDeckText
 	ldtx bc, EffectTargetFightingPokemonText
@@ -5287,7 +5287,7 @@ Func_69f8d:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_69fab:
+MarowakLv26CallForFriend_AISelection:
 	ld a, CARDSEARCH_BASIC_FIGHTING_POKEMON
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
@@ -5301,7 +5301,7 @@ Func_69fab:
 	jr nc, .asm_69fb7
 	ret
 
-Func_69fc4:
+MarowakLv26CallForFriend_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_69fe0
@@ -5317,12 +5317,12 @@ Func_69fc4:
 	call Func_680a0
 	ret
 
-Func_69fe4:
+MachokeLv40KarateChop_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	call Func_69fed
 	jp Func_6818c
 
-Func_69fec:
+MachokeLv40KarateChop_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -5343,12 +5343,12 @@ Func_69fed:
 	call Func_6817e
 	ret
 
-Func_6a003:
+MachokeLv40Submission_AfterDamage:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6a009:
+GolemLv36Selfdestruct_AfterDamage:
 	ld a, $64
 	call DealRecoilDamageToSelf
 	call Func_6806e
@@ -5361,18 +5361,18 @@ Func_6a009:
 	call SwapTurn
 	ret
 
-Func_6a025:
+GravelerLv29Harden_BeforeDamage:
 	ld a, $13
 	call Func_68127
 	ret
 
-Func_6a02b:
+RhydonLv48RamAlt_RequireSelection:
 	call HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a033:
+RhydonLv48RamAlt_AfterDamage:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	call Func_68074
@@ -5380,7 +5380,7 @@ Func_6a033:
 	call Func_6828a
 	ret
 
-Func_6a041:
+RhyhornLeer_BeforeDamage:
 	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -5390,20 +5390,20 @@ Func_6a041:
 	call Func_6812e
 	ret
 
-Func_6a055:
+HitmonleeLv30StretchKick_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_6a059:
+HitmonleeLv30StretchKick_RequireSelection:
 	call Func_68665
 	ret
 
-Func_6a05d:
+HitmonleeLv30StretchKick_AISelection:
 	call Func_6869d
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a063:
+HitmonleeLv30StretchKick_AfterDamage:
 	call SwapTurn
 	ldh a, [hTemp_ffa0]
 	ld b, a
@@ -5412,18 +5412,18 @@ Func_6a063:
 	call SwapTurn
 	ret
 
-Func_6a073:
+SandshrewLv12SandAttack_BeforeDamage:
 	ld a, $02
 	call Func_6812e
 	ret
 
-Func_6a079:
+SandslashLv33FurySwipes_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_6a082:
+SandslashLv33FurySwipes_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -5434,20 +5434,20 @@ Func_6a082:
 	call Func_6817e
 	ret
 
-Func_6a098:
+DugtrioLv36Earthquake_AfterDamage:
 	call Func_6806e
 	ld a, $0a
 	call Func_680f9
 	ret
 
-Func_6a0a1:
+AerodactylLv28PrehistoricPower_InitialEffect1:
 	scf
 	ret
 
-Func_6a0a3:
+MankeyLv7Peek_InitialEffect2:
 	jp Func_6844f
 
-Func_6a0a6:
+MankeyLv7Peek_BeforeDamage:
 	call Func_68465
 	ld a, DUELVARS_DUELIST_TYPE
 	get_turn_duelist_var
@@ -5489,7 +5489,7 @@ Func_6a0a6:
 	call DrawWideTextBox_WaitForInput
 	ret
 
-Func_6a0f9:
+MarowakLv32BoneAttack_BeforeDamage:
 	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	ret nc
@@ -5499,7 +5499,7 @@ Func_6a0f9:
 	call Func_6812e
 	ret
 
-Func_6a10b:
+MarowakLv32Wail_InitialEffect1:
 	farcall Func_2435f
 	jr nc, .asm_6a11c
 	call SwapTurn
@@ -5514,7 +5514,7 @@ Func_6a10b:
 	call SwapTurn
 	ret
 
-Func_6a12c:
+MarowakLv32Wail_AfterDamage:
 	call SwapTurn
 	call Func_6a151
 	call SwapTurn
@@ -5565,17 +5565,17 @@ Func_6a151:
 	call Func_680a0
 	ret
 
-Func_6a190:
+ElectabuzzLv35Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a194:
+ElectabuzzLv35Thunderpunch_AI:
 	ld a, 35
 	lb de, 30, 40
 	call Func_680dd
 	ret
 
-Func_6a19d:
+ElectabuzzLv35Thunderpunch_BeforeDamage:
 	ldtx de, IfHeadPlus10IfTails10ToYourselfText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
@@ -5584,7 +5584,7 @@ Func_6a19d:
 	call Func_68163
 	ret
 
-Func_6a1ac:
+ElectabuzzLv35Thunderpunch_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -5592,18 +5592,18 @@ Func_6a1ac:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6a1b6:
+ElectabuzzLv20LightScreen_BeforeDamage:
 	ld a, $1a
 	call Func_68127
 	ret
 
-Func_6a1bc:
+ElectabuzzLv20QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_6a1c5:
+ElectabuzzLv20QuickAttack_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckIfHeadsPlusDamageText
@@ -5613,11 +5613,11 @@ Func_6a1c5:
 	call Func_68163
 	ret
 
-Func_6a1d8:
+MagnemiteLv13ThunderWave_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a1dc:
+MagnemiteLv13Selfdestruct_AfterDamage:
 	ld a, $28
 	call DealRecoilDamageToSelf
 	call Func_6806e
@@ -5630,7 +5630,7 @@ Func_6a1dc:
 	call SwapTurn
 	ret
 
-Func_6a1f8:
+ZapdosLv64Thunder_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, IfTailsDamageToYourselfTooText
@@ -5638,7 +5638,7 @@ Func_6a1f8:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a207:
+ZapdosLv64Thunder_AfterDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldh a, [hTemp_ffa0]
@@ -5648,7 +5648,7 @@ Func_6a207:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6a217:
+ZapdosLv64Thunderbolt_BeforeDamage:
 	xor a
 	call CreateArenaOrBenchEnergyCardList
 	ld hl, wDuelTempList
@@ -5659,7 +5659,7 @@ Func_6a217:
 	call Func_0ffa
 	jr .asm_6a21e
 
-Func_6a227:
+ZapdosLv40Thunderstorm_AfterDamage:
 	ld a, $01
 	ldh [hffb2], a
 	call SwapTurn
@@ -5747,24 +5747,24 @@ Func_6a28f:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_6a2bb:
+JolteonLv29QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_6a2c4:
+JolteonLv29QuickAttack_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_6a2ca:
+JolteonLv29PinMissile_AI:
 	ld a, 40
 	lb de, 0, 80
 	call Func_680dd
 	ret
 
-Func_6a2d3:
+JolteonLv29PinMissile_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -5775,14 +5775,14 @@ Func_6a2d3:
 	call Func_6817e
 	ret
 
-Func_6a2e9:
+FlyingPikachuLv12Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a2ed:
+FlyingPikachuLv12Fly_AI:
 	jr Func_6a2f1
 
-Func_6a2ef:
+FlyingPikachuLv12Fly_BeforeDamage:
 	jr Func_6a2fa
 
 Func_6a2f1:
@@ -5807,17 +5807,17 @@ Func_6a2fa:
 	call Func_68127
 	ret
 
-Func_6a318:
+FlyingPikachuAltLv12Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a31c:
+FlyingPikachuAltLv12Fly_AI:
 	jr Func_6a2f1
 
-Func_6a31e:
+FlyingPikachuAltLv12Fly_BeforeDamage:
 	jr Func_6a2fa
 
-Func_6a320:
+PikachuLv12ThunderJolt_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, IfTailsDamageToYourselfTooText
@@ -5825,7 +5825,7 @@ Func_6a320:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a32f:
+PikachuLv12ThunderJolt_AfterDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldh a, [hTemp_ffa0]
@@ -5835,11 +5835,11 @@ Func_6a32f:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6a33f:
+PikachuLv14Spark_RequireSelection:
 	call Func_68665
 	ret
 
-Func_6a343:
+PikachuLv14Spark_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -5848,7 +5848,7 @@ Func_6a343:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a351:
+PikachuLv14Spark_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret z
@@ -5860,25 +5860,25 @@ Func_6a351:
 	call SwapTurn
 	ret
 
-Func_6a366:
+PikachuLv16Growl_BeforeDamage:
 	ld a, $17
 	call Func_6812e
 	ret
 
-Func_6a36c:
+PikachuLv16Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a370:
+PikachuAltLv16Growl_BeforeDamage:
 	ld a, $17
 	call Func_6812e
 	ret
 
-Func_6a376:
+PikachuAltLv16Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a37a:
+ElectrodeLv42ChainLightning_AfterDamage:
 	ld a, $0a
 	call Func_6817e
 	call SwapTurn
@@ -5919,7 +5919,7 @@ Func_6a3a0:
 	jr nz, .asm_6a3a8
 	ret
 
-Func_6a3c0:
+RaichuLv40Agility_BeforeDamage:
 	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
@@ -5929,7 +5929,7 @@ Func_6a3c0:
 	call Func_68127
 	ret
 
-Func_6a3d2:
+RaichuLv40Thunder_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, IfTailsDamageToYourselfTooText
@@ -5937,7 +5937,7 @@ Func_6a3d2:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a3e1:
+RaichuLv40Thunder_AfterDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldh a, [hTemp_ffa0]
@@ -5947,7 +5947,7 @@ Func_6a3e1:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6a3f1:
+RaichuLv45Gigashock_RequireSelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -6050,7 +6050,7 @@ Func_6a48b:
 	or a
 	ret
 
-Func_6a49f:
+RaichuLv45Gigashock_AISelection:
 	ld a, $f5
 	call GetNonTurnDuelistVariable
 	cp $05
@@ -6117,7 +6117,7 @@ Func_6a49f:
 	call SwapTurn
 	ret
 
-Func_6a4f7:
+RaichuLv45Gigashock_AfterDamage:
 	call SwapTurn
 	ld hl, hTemp_ffa0
 .asm_6a4fd
@@ -6134,11 +6134,11 @@ Func_6a4f7:
 	call SwapTurn
 	ret
 
-Func_6a511:
+MagnetonLv28ThunderWave_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a515:
+MagnetonLv28Selfdestruct_AfterDamage:
 	ld a, $50
 	call DealRecoilDamageToSelf
 	call Func_6806e
@@ -6151,12 +6151,12 @@ Func_6a515:
 	call SwapTurn
 	ret
 
-Func_6a531:
+MagnetonLv35Sonicboom_BeforeDamage:
 	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
-Func_6a537:
+MagnetonLv35Selfdestruct_AfterDamage:
 	ld a, $64
 	call DealRecoilDamageToSelf
 	call Func_6806e
@@ -6169,11 +6169,11 @@ Func_6a537:
 	call SwapTurn
 	ret
 
-Func_6a553:
+ZapdosLv68PealOfThunder_InitialEffect1:
 	scf
 	ret
 
-Func_6a555:
+ZapdosLv68PealOfThunder_PkmnPowerTrigger:
 	call ExchangeRNG
 	ld de, $1e
 	call Func_6a562
@@ -6214,13 +6214,13 @@ Func_6a586:
 	call SwapTurn
 	ret
 
-Func_6a59a:
+ZapdosLv68BigThunder_AfterDamage:
 	call ExchangeRNG
 	ld de, $46
 	call Func_6a562
 	ret
 
-Func_6a5a4:
+MagnemiteLv14MagneticStorm_AfterDamage:
 	ld a, DUELVARS_CARD_LOCATIONS
 	get_turn_duelist_var
 	ld de, wDuelTempList
@@ -6326,16 +6326,16 @@ Func_6a5a4:
 	call Func_680ed
 	ret
 
-Func_6a63b:
+ElectrodeLv35Sonicboom_BeforeDamage:
 	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
-Func_6a641:
+ElectrodeLv35EnergySpike_InitialEffect1:
 	farcall Func_2435f
 	ret
 
-Func_6a646:
+ElectrodeLv35EnergySpike_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, Choose1BasicEnergyCardFromDeckText
 	ldtx bc, EffectTargetBasicEnergyText
@@ -6360,12 +6360,12 @@ Func_6a646:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6a67c:
+ElectrodeLv35EnergySpike_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a681:
+ElectrodeLv35EnergySpike_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_6a6b5
@@ -6395,13 +6395,13 @@ Func_6a681:
 	call Func_680a0
 	ret
 
-Func_6a6b9:
+JolteonLv24DoubleKick_AI:
 	ld a, 20
 	lb de, 0, 40
 	call Func_680dd
 	ret
 
-Func_6a6c2:
+JolteonLv24DoubleKick_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -6412,11 +6412,11 @@ Func_6a6c2:
 	call Func_6817e
 	ret
 
-Func_6a6d8:
+JolteonLv24StunNeedle_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a6dc:
+EeveeLv12TailWhip_BeforeDamage:
 	ldtx de, IfHeadsOpponentCannotAttackText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -6426,42 +6426,42 @@ Func_6a6dc:
 	call Func_6812e
 	ret
 
-Func_6a6f0:
+EeveeLv12QuickAttack_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_6a6f9:
+EeveeLv12QuickAttack_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_6a6ff:
+SpearowLv13MirrorMove_AI:
 	jp Func_6bcdf
 
-Func_6a702:
+SpearowLv13MirrorMove_InitialEffect1:
 	jp Func_6bcea
 
-Func_6a705:
+SpearowLv13MirrorMove_InitialEffect2:
 	jp Func_6bd10
 
-Func_6a708:
+SpearowLv13MirrorMove_RequireSelection:
 	jp Func_6bd2c
 
-Func_6a70b:
+SpearowLv13MirrorMove_AISelection:
 	jp Func_6bd4b
 
-Func_6a70e:
+SpearowLv13MirrorMove_AISwitchDefendingPkmn:
 	jp Func_6bd76
 
-Func_6a711:
+SpearowLv13MirrorMove_BeforeDamage:
 	jp Func_6bd85
 
-Func_6a714:
+SpearowLv13MirrorMove_AfterDamage:
 	jp Func_6bde7
 
-Func_6a717:
+FearowLv27Agility_BeforeDamage:
 	ldtx de, IfHeadsDoNotReceiveDamageOrEffectText
 	call TossCoin_Bank1a
 	ret nc
@@ -6471,7 +6471,7 @@ Func_6a717:
 	call Func_68127
 	ret
 
-Func_6a729:
+DragoniteLv45StepIn_InitialEffect2:
 	call Func_6844f
 	ret c
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -6482,20 +6482,20 @@ Func_6a729:
 	scf
 	ret
 
-Func_6a738:
+DragoniteLv45StepIn_BeforeDamage:
 	call Func_68465
 	ldh a, [hTemp_ffa0]
 	ld e, a
 	call SwapArenaWithBenchPokemon
 	ret
 
-Func_6a742:
+DragoniteLv45Slam_AI:
 	ld a, 40
 	lb de, 0, 80
 	call Func_680dd
 	ret
 
-Func_6a74b:
+DragoniteLv45Slam_BeforeDamage:
 	ld hl, $28
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -6507,21 +6507,21 @@ Func_6a74b:
 	call Func_6817e
 	ret
 
-Func_6a762:
+SnorlaxLv20ThickSkinned_InitialEffect1:
 	scf
 	ret
 
-Func_6a764:
+SnorlaxLv20BodySlam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6a768:
+FarfetchdLv20LeekSlap_AI:
 	ld a, 30
 	lb de, 0, 30
 	call Func_680dd
 	ret
 
-Func_6a771:
+FarfetchdLv20LeekSlap_InitialEffect1:
 	ld a, DUELVARS_ARENA_CARD_FLAGS
 	get_turn_duelist_var
 	and $40
@@ -6530,13 +6530,13 @@ Func_6a771:
 	scf
 	ret
 
-Func_6a77c:
+FarfetchdLv20LeekSlap_DiscardEnergy:
 	ld a, DUELVARS_ARENA_CARD_FLAGS
 	get_turn_duelist_var
 	set 6, [hl]
 	ret
 
-Func_6a782:
+FarfetchdLv20LeekSlap_BeforeDamage:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call TossCoin_Bank1a
 	ret c
@@ -6544,11 +6544,11 @@ Func_6a782:
 	call Func_6817e
 	ret
 
-Func_6a78e:
+KangaskhanLv40Fetch_InitialEffect1:
 	farcall Func_2435f
 	ret
 
-Func_6a793:
+KangaskhanLv40Fetch_AfterDamage:
 	ldtx hl, Draw1CardFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	farcall DisplayDrawOneCardScreen
@@ -6562,13 +6562,13 @@ Func_6a793:
 	bank1call OpenCardPage_FromHand
 	ret
 
-Func_6a7b1:
+KangaskhanLv40CometPunch_AI:
 	ld a, 40
 	lb de, 0, 80
 	call Func_680dd
 	ret
 
-Func_6a7ba:
+KangaskhanLv40CometPunch_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -6579,18 +6579,18 @@ Func_6a7ba:
 	call Func_6817e
 	ret
 
-Func_6a7d0:
+TaurosLv32Stomp_AI:
 	ld a, 25
 	lb de, 20, 30
 	call Func_680dd
 	ret
 
-Func_6a7d9:
+TaurosLv32Stomp_BeforeDamage:
 	ld a, $0a
 	call Func_682e0
 	ret
 
-Func_6a7df:
+TaurosLv32Rampage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 ;	fallthrough
 
@@ -6600,7 +6600,7 @@ Func_6a7e1:
 	call Func_68163
 	ret
 
-Func_6a7e9:
+TaurosLv32Rampage_BeforeDamage:
 	xor a
 	call Func_6a7e1
 	ldtx de, IfTailsYourPokemonBecomesConfusedText
@@ -6611,13 +6611,13 @@ Func_6a7e9:
 	call SwapTurn
 	ret
 
-Func_6a7fe:
+DoduoLv10FuryAttack_AI:
 	ld a, 10
 	lb de, 0, 20
 	call Func_680dd
 	ret
 
-Func_6a807:
+DoduoLv10FuryAttack_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ld a, $02
@@ -6627,15 +6627,15 @@ Func_6a807:
 	call Func_6817e
 	ret
 
-Func_6a81c:
+DodrioLv28RetreatAid_InitialEffect1:
 	scf
 	ret
 
-Func_6a81e:
+DodrioLv28Rage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_6a823
 
-Func_6a822:
+DodrioLv28Rage_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -6645,7 +6645,7 @@ Func_6a823:
 	call Func_68163
 	ret
 
-Func_6a82b:
+MeowthLv15PayDay_AfterDamage:
 	ldtx de, IfHeadsDraw1CardFromDeckText
 	call TossCoin_Bank1a
 	ret nc
@@ -6662,13 +6662,13 @@ Func_6a82b:
 	bank1call OpenCardPage_FromHand
 	ret
 
-Func_6a850:
+DragonairSlam_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_6a859:
+DragonairSlam_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $02
@@ -6681,13 +6681,13 @@ Func_6a859:
 	call Func_6817e
 	ret
 
-Func_6a871:
+DragonairHyperBeam_RequireSelection:
 	jr Func_6a87d
 
-Func_6a873:
+DragonairHyperBeam_AISelection:
 	jr Func_6a877
 
-Func_6a875:
+DragonairHyperBeam_AfterDamage:
 	jr Func_6a8a5
 
 Func_6a877:
@@ -6732,27 +6732,27 @@ Func_6a8a5:
 	call SwapTurn
 	ret
 
-Func_6a8bf:
+ClefableMetronome_InitialEffect1:
 	ld a, $01
 	ld [wMetronomeEnergyCost], a
 	call Func_68501
 	ret
 
-Func_6a8c8:
+ClefableMetronome_AISelection:
 	call Func_6a9dd
 	ret
 
-Func_6a8cc:
+ClefableMetronome_InitialEffect2:
 	ld a, $01
 	call Func_6a958
 	ret
 
-Func_6a8d2:
+ClefableMinimize_BeforeDamage:
 	ld a, $18
 	call Func_68127
 	ret
 
-Func_6a8d8:
+PidgeotLv40Hurricane_AfterDamage:
 	call Func_682be
 	ret c
 	ld a, $c8
@@ -6793,56 +6793,56 @@ Func_6a8d8:
 	call SwapTurn
 	ret
 
-Func_6a91f:
+PidgeottoLv36Whirlwind_RequireSelection:
 	call HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6a927:
+PidgeottoLv36Whirlwind_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	call Func_6828a
 	ret
 
-Func_6a92d:
+PidgeottoLv36MirrorMove_AI:
 	jp Func_6bcdf
 
-Func_6a930:
+PidgeottoLv36MirrorMove_InitialEffect1:
 	jp Func_6bcea
 
-Func_6a933:
+PidgeottoLv36MirrorMove_InitialEffect2:
 	jp Func_6bd10
 
-Func_6a936:
+PidgeottoLv36MirrorMove_RequireSelection:
 	jp Func_6bd2c
 
-Func_6a939:
+PidgeottoLv36MirrorMove_AISelection:
 	jp Func_6bd4b
 
-Func_6a93c:
+PidgeottoLv36MirrorMove_AISwitchDefendingPkmn:
 	jp Func_6bd76
 
-Func_6a93f:
+PidgeottoLv36MirrorMove_BeforeDamage:
 	jp Func_6bd85
 
-Func_6a942:
+PidgeottoLv36MirrorMove_AfterDamage:
 	jp Func_6bde7
 
-Func_6a945:
+ClefairyLv14Sing_BeforeDamage:
 	call Func_6804a
 	ret
 
-Func_6a949:
+ClefairyLv14Metronome_InitialEffect1:
 	ld a, $03
 	ld [wMetronomeEnergyCost], a
 	call Func_68501
 	ret
 
-Func_6a952:
+ClefairyLv14Metronome_AISelection:
 	call Func_6a9dd
 	ret
 
-Func_6a956:
+ClefairyLv14Metronome_InitialEffect2:
 	ld a, $03
 ;	fallthrough
 
@@ -6918,11 +6918,11 @@ Func_6a9ac:
 Func_6a9dd:
 	ret
 
-Func_6a9de:
+WigglytuffLv36Lullaby_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_6a9e2:
+WigglytuffLv36DoTheWave_BeforeDamage:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	dec a
@@ -6930,61 +6930,61 @@ Func_6a9e2:
 	call Func_68163
 	ret
 
-Func_6a9ed:
+JigglypuffLv14Lullaby_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_6a9f1:
+JigglypuffLv12FirstAid_InitialEffect1:
 	ld e, $00
 	call GetCardDamageAndMaxHP
 	ld hl, $b6
 	cp $0a
 	ret
 
-Func_6a9fc:
+JigglypuffLv12FirstAid_AfterDamage:
 	ld de, $a
 	call ApplyAndAnimateHPRecovery
 	ret
 
-Func_6aa03:
+JigglypuffLv12DoubleEdge_AfterDamage:
 	ld a, $14
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6aa09:
+PersianPounce_BeforeDamage:
 	ld a, $07
 	call Func_6812e
 	ret
 
-Func_6aa0f:
+LickitungLv26TongueWrap_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6aa13:
+LickitungLv26Supersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_6aa17:
+PidgeyLv8Whirlwind_RequireSelection:
 	call HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6aa1f:
+PidgeyLv8Whirlwind_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	call Func_6828a
 	ret
 
-Func_6aa25:
+PorygonLv12Conversion1_InitialEffect1:
 	jr Func_6aa2e
 
-Func_6aa27:
+PorygonLv12Conversion1_InitialEffect2:
 	jr Func_6aa44
 
-Func_6aa29:
+PorygonLv12Conversion1_AISelection:
 	jp Func_6aae2
 
-Func_6aa2c:
+PorygonLv12Conversion1_AfterDamage:
 	jr Func_6aa4f
 
 Func_6aa2e:
@@ -7030,16 +7030,16 @@ Func_6aa4f:
 	call Func_6812e
 	ret
 
-Func_6aa7c:
+PorygonLv12Conversion2_InitialEffect1:
 	jr Func_6aa84
 
-Func_6aa7e:
+PorygonLv12Conversion2_InitialEffect2:
 	jr Func_6aa94
 
-Func_6aa80:
+PorygonLv12Conversion2_AISelection:
 	jr Func_6aaa0
 
-Func_6aa82:
+PorygonLv12Conversion2_AfterDamage:
 	jr Func_6aac0
 
 Func_6aa84:
@@ -7164,7 +7164,7 @@ Func_6aae2:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6ab44:
+ChanseyLv55Scrunch_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	jp nc, Func_6809a
@@ -7174,12 +7174,12 @@ Func_6ab44:
 	call Func_68127
 	ret
 
-Func_6ab58:
+ChanseyLv55DoubleEdge_AfterDamage:
 	ld a, $50
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6ab5e:
+RaticateSuperFang_BeforeDamage:
 	ld a, $c8
 	call GetNonTurnDuelistVariable
 	srl a
@@ -7190,13 +7190,13 @@ Func_6ab5e:
 	call Func_6817e
 	ret
 
-Func_6ab6f:
+EffectCommands_58896_InitialEffect2:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	call Func_68446
 	ret
 
-Func_6ab77:
+EffectCommands_58896_RequireSelection:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -7208,7 +7208,7 @@ Func_6ab77:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6ab8c:
+EffectCommands_58896_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	ld e, a
 	call Func_12fc
@@ -7222,11 +7222,11 @@ Func_6ab8c:
 	call ShiftAllPokemonToFirstPlayAreaSlots
 	ret
 
-Func_6aba1:
+DragoniteLv41HealingWind_InitialEffect1:
 	scf
 	ret
 
-Func_6aba3:
+DragoniteLv41HealingWind_PkmnPowerTrigger:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ld b, a
 	ld c, $00
@@ -7272,13 +7272,13 @@ Func_6aba3:
 	jr nz, .asm_6abc2
 	ret
 
-Func_6abf0:
+DragoniteLv41Slam_AI:
 	ld a, 30
 	lb de, 0, 60
 	call Func_680dd
 	ret
 
-Func_6abf9:
+DragoniteLv41Slam_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -7319,7 +7319,7 @@ Func_6ac21:
 	jr nz, .asm_6ac2a
 	ret
 
-Func_6ac31:
+MeowthLv13CatPunch_AfterDamage:
 	call SwapTurn
 	call Func_68196
 	ld b, a
@@ -7330,11 +7330,11 @@ Func_6ac31:
 	call SwapTurn
 	ret
 
-Func_6ac47:
+DittoMorph_InitialEffect1:
 	farcall Func_2435f
 	ret
 
-Func_6ac4c:
+DittoMorph_AfterDamage:
 	call ExchangeRNG
 	call Func_6acbc
 	jr nc, .asm_6ac5b
@@ -7452,7 +7452,7 @@ Func_6acf3:
 	scf
 	ret
 
-Func_6ad1a:
+PidgeotLv38SlicingWing_AfterDamage:
 	call SwapTurn
 	call Func_68196
 	ld b, a
@@ -7461,12 +7461,12 @@ Func_6ad1a:
 	call SwapTurn
 	ret
 
-Func_6ad2b:
+PidgeotLv38Gale_BeforeDamage:
 	ld a, $87
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6ad31:
+PidgeotLv38Gale_AfterDamage:
 	ld a, $c8
 	call GetNonTurnDuelistVariable
 	or a
@@ -7496,13 +7496,13 @@ Func_6ad31:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_6ad65:
+JigglypuffLv13FriendshipSong_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	farcall Func_24369
 	ret
 
-Func_6ad6f:
+JigglypuffLv13FriendshipSong_AfterDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	jr c, Func_6ad7e
@@ -7532,16 +7532,16 @@ Func_6ad7e:
 	call Func_680a0
 	ret
 
-Func_6adab:
+JigglypuffLv13Expand_AfterDamage:
 	ld a, $23
 	call Func_68127
 	ret
 
-Func_6adb1:
+CharmanderLv9GatherFire_InitialEffect2:
 	call Func_6844f
 	ret
 
-Func_6adb5:
+CharmanderLv9GatherFire_RequireSelection:
 	ldtx hl, ProcedureForGatherFireText
 	bank1call Func_5475
 	bank1call HasAlivePokemonInPlayArea
@@ -7564,7 +7564,7 @@ Func_6adb5:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6ade0:
+CharmanderLv9GatherFire_BeforeDamage:
 	call Func_68465
 	ldh a, [hTemp_ffa0]
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -7581,18 +7581,18 @@ Func_6ade0:
 	farcall Func_18a87
 	ret
 
-Func_6ae00:
+DarkCharmeleonFireball_AI:
 	ld a, 70
 	lb de, 0, 70
 	call Func_680dd
 	ret
 
-Func_6ae09:
+DarkCharmeleonFireball_InitialEffect1:
 	call Func_6808d
 	call Func_6927b
 	ret
 
-Func_6ae10:
+DarkCharmeleonFireball_AISwitchDefendingPkmn:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call Func_68079
 	ldh [hTemp_ffa0], a
@@ -7603,7 +7603,7 @@ Func_6ae10:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6ae23:
+DarkCharmeleonFireball_RequireSelection:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call Func_68079
 	ldh [hTemp_ffa0], a
@@ -7617,7 +7617,7 @@ Func_6ae23:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6ae3a:
+DarkCharmeleonFireball_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr z, .asm_6ae44
@@ -7630,12 +7630,12 @@ Func_6ae3a:
 	call Func_6809a
 	ret
 
-Func_6ae4f:
+DarkCharizardContinuousFireball_InitialEffect1:
 	call Func_6808d
 	call Func_6927b
 	ret
 
-Func_6ae56:
+DarkCharizardContinuousFireball_AI:
 	ld e, $00
 	call Func_69283
 	ld l, a
@@ -7654,7 +7654,7 @@ Func_6ae56:
 	ld [wAIMinDamage], a
 	ret
 
-Func_6ae75:
+DarkCharizardContinuousFireball_AISwitchDefendingPkmn:
 	ld hl, $32
 	call LoadTxRam3
 	ld e, $00
@@ -7684,7 +7684,7 @@ Func_6ae75:
 	ld [de], a
 	ret
 
-Func_6aea9:
+DarkCharizardContinuousFireball_RequireSelection:
 	ld hl, $32
 	call LoadTxRam3
 	ld e, $00
@@ -7722,7 +7722,7 @@ Func_6aea9:
 	bank1call UpdateAttachedEnergyMenu
 	jr .asm_6aed9
 
-Func_6aef6:
+DarkCharizardContinuousFireball_BeforeDamage:
 	ld hl, hTemp_ffa0
 	ld a, [hli]
 	or a
@@ -7744,28 +7744,28 @@ Func_6aef6:
 	ld [wDamage + 1], a
 	ret
 
-Func_6af16:
+PonytaLv15Ember_InitialEffect1:
 	call Func_6927b
 	ret
 
-Func_6af1a:
+PonytaLv15Ember_InitialEffect2:
 	call Func_6926c
 	ret
 
-Func_6af1e:
+PonytaLv15Ember_AISelection:
 	call Func_69291
 	ret
 
-Func_6af22:
+PonytaLv15Ember_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	jp Func_0ffa
 
-Func_6af27:
+DarkRapidashFlamePillar_AISelection:
 	ld a, $01
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6af2c:
+DarkRapidashFlamePillar_RequireSelection:
 	ld a, $01
 	ldh [hTemp_ffa0], a
 	call Func_6927b
@@ -7794,7 +7794,7 @@ Func_6af2c:
 	or a
 	ret
 
-Func_6af62:
+DarkRapidashFlamePillar_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -7809,11 +7809,11 @@ Func_6af62:
 	call SwapTurn
 	ret
 
-Func_6af7e:
+DarkFlareonRage_AI:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	jr Func_6af83
 
-Func_6af82:
+DarkFlareonRage_BeforeDamage:
 	xor a
 ;	fallthrough
 
@@ -7823,11 +7823,11 @@ Func_6af83:
 	call Func_68163
 	ret
 
-Func_6af8b:
+DarkFlareonPlayingWithFire_InitialEffect1:
 	call Func_6808d
 	ret
 
-Func_6af8f:
+DarkFlareonPlayingWithFire_AI:
 	ld e, $00
 	call Func_69283
 	cp $01
@@ -7842,7 +7842,7 @@ Func_6af8f:
 	call Func_680dd
 	ret
 
-Func_6afaa:
+DarkFlareonPlayingWithFire_AISwitchDefendingPkmn:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckIfHeadsPlusDamageText
@@ -7856,7 +7856,7 @@ Func_6afaa:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6afc5:
+DarkFlareonPlayingWithFire_RequireSelection:
 	ld hl, $14
 	call LoadTxRam3
 	ldtx de, DamageCheckIfHeadsPlusDamageText
@@ -7881,7 +7881,7 @@ Func_6afc5:
 	or a
 	ret
 
-Func_6aff0:
+DarkFlareonPlayingWithFire_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -7898,13 +7898,13 @@ Func_6aff0:
 	call Func_6809a
 	ret
 
-Func_6b00b:
+DarkWartortleDoubleSlap_AI:
 	ld a, 10
 	lb de, 0, 20
 	call Func_680dd
 	ret
 
-Func_6b014:
+DarkWartortleDoubleSlap_BeforeDamage:
 	ld hl, $a
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -7914,17 +7914,17 @@ Func_6b014:
 	call Func_6817e
 	ret
 
-Func_6b029:
+DarkWartortleMirrorShell_BeforeDamage:
 	ld a, $24
 	call Func_68127
 	ret
 
-Func_6b02f:
+DarkBlastoiseHydrocannon_BeforeDamage:
 	ld bc, $200
 	call Func_68e8f
 	ret
 
-Func_6b036:
+DarkBlastoiseRocketTackle_BeforeDamage:
 	ldtx de, IfHeadsNoDamageNextTurnText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
@@ -7933,7 +7933,7 @@ Func_6b036:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b045:
+DarkBlastoiseRocketTackle_AfterDamage:
 	ld de, $a
 	bank1call Func_6f37
 	ld a, e
@@ -7945,11 +7945,11 @@ Func_6b045:
 	call Func_68127
 	ret
 
-Func_6b059:
+PsyduckLv16Dizziness_InitialEffect1:
 	farcall Func_2435f
 	ret
 
-Func_6b05e:
+PsyduckLv16Dizziness_AfterDamage:
 	ldtx hl, Draw1CardFromTheDeckText
 	call DrawWideTextBox_WaitForInput
 	farcall DisplayDrawOneCardScreen
@@ -7963,12 +7963,12 @@ Func_6b05e:
 	bank1call OpenCardPage_FromHand
 	ret
 
-Func_6b07c:
+PsyduckLv16WaterGun_BeforeDamage:
 	ld bc, $101
 	call Func_68e88
 	ret
 
-Func_6b083:
+DarkGolduckThirdEye_InitialEffect1:
 	farcall Func_2435f
 	ret c
 	ld e, $00
@@ -7980,7 +7980,7 @@ Func_6b083:
 	scf
 	ret
 
-Func_6b097:
+DarkGolduckThirdEye_AISelection:
 	xor a
 	call CreateArenaOrBenchEnergyCardList
 	bank1call SortCardsInDuelTempListByID
@@ -7988,7 +7988,7 @@ Func_6b097:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b0a4:
+DarkGolduckThirdEye_InitialEffect2:
 	xor a
 	call CreateArenaOrBenchEnergyCardList
 	xor a
@@ -7999,11 +7999,11 @@ Func_6b0a4:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b0b5:
+DarkGolduckThirdEye_DiscardEnergy:
 	ldh a, [hTemp_ffa0]
 	jp Func_0ffa
 
-Func_6b0ba:
+DarkGolduckThirdEye_AfterDamage:
 	ld a, $03
 	farcall DisplayDrawNCardsScreen
 	ld c, $03
@@ -8023,7 +8023,7 @@ Func_6b0ba:
 .asm_6b0d9
 	ret
 
-Func_6b0da:
+MagikarpLv6RapidEvolution_InitialEffect1:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8036,7 +8036,7 @@ Func_6b0da:
 	scf
 	ret
 
-Func_6b0f4:
+MagikarpLv6RapidEvolution_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseEvolutionCardForMagikarpFromDeckText
 	ldtx bc, EffectTargetGyaradosText
@@ -8051,7 +8051,7 @@ Func_6b0f4:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b115:
+MagikarpLv6RapidEvolution_AISelection:
 	ld de, DEX_GYARADOS
 	ld a, CARDSEARCH_POKEDEX_NUMBER
 	farcall SetCardSearchFuncParams
@@ -8066,7 +8066,7 @@ Func_6b115:
 	jr nc, .asm_6b124
 	ret
 
-Func_6b131:
+MagikarpLv6RapidEvolution_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_6b145
@@ -8080,33 +8080,33 @@ Func_6b131:
 	call Func_680a0
 	ret
 
-Func_6b149:
+DarkGyaradosFinalBeam_InitialEffect1:
 	scf
 	ret
 
-Func_6b14b:
+DarkGyaradosIceBeam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6b14f:
+DarkVaporeonWhirlpool_RequireSelection:
 	call Func_6a87d
 	ret
 
-Func_6b153:
+DarkVaporeonWhirlpool_AISelection:
 	call Func_6a877
 	ret
 
-Func_6b157:
+DarkVaporeonWhirlpool_AfterDamage:
 	call Func_6a8a5
 	ret
 
-Func_6b15b:
+EkansLv15PoisonSting_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6b164:
+EkansLv15PoisonSting_BeforeDamage:
 	ldtx de, PoisonInflictionCheckText
 	call TossCoin_Bank1a
 	jr nc, .asm_6b170
@@ -8117,22 +8117,22 @@ Func_6b164:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b176:
+DarkArbokStare_AI:
 	ld a, $0a
 	call Func_68175
 	ret
 
-Func_6b17c:
+DarkArbokStare_RequireSelection:
 	call Func_68686
 	ret
 
-Func_6b180:
+DarkArbokStare_AISelection:
 	jr Func_6b18d
 
-Func_6b182:
+DarkArbokStare_BeforeDamage:
 	jr Func_6b193
 
-Func_6b184:
+DarkArbokStare_AfterDamage:
 	ld de, $a
 	jr Func_6b1a1
 
@@ -8203,11 +8203,11 @@ Func_6b1a1:
 	call SwapTurn
 	ret
 
-Func_6b1f3:
+DarkArbokPoisonVapor_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6b1f7:
+DarkArbokPoisonVapor_AfterDamage:
 	call SwapTurn
 	ld de, $a
 	bank1call Func_6f37
@@ -8216,11 +8216,11 @@ Func_6b1f7:
 	call SwapTurn
 	ret
 
-Func_6b208:
+DarkGolbatSneakAttack_InitialEffect1:
 	scf
 	ret
 
-Func_6b20a:
+DarkGolbatSneakAttack_RequireSelection:
 	call SwapTurn
 	bank1call HasAlivePokemonInPlayArea
 .asm_6b210
@@ -8230,7 +8230,7 @@ Func_6b20a:
 	call SwapTurn
 	ret
 
-Func_6b21b:
+DarkGolbatSneakAttack_PkmnPowerTrigger:
 	call SwapTurn
 	ldh a, [hTemp_ffa0]
 	ld b, a
@@ -8240,21 +8240,21 @@ Func_6b21b:
 	bank1call Func_6518
 	ret
 
-Func_6b22e:
+DarkGolbatFlitter_AI:
 	ld a, $14
 	call Func_68175
 	ret
 
-Func_6b234:
+DarkGolbatFlitter_RequireSelection:
 	call Func_68686
 	ret
 
-Func_6b238:
+DarkGolbatFlitter_AISelection:
 	call Func_686be
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b23e:
+DarkGolbatFlitter_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr nz, .asm_6b24d
@@ -8268,7 +8268,7 @@ Func_6b23e:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b252:
+DarkGolbatFlitter_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -8280,25 +8280,25 @@ Func_6b252:
 	call SwapTurn
 	ret
 
-Func_6b267:
+OddishLv21SleepPowder_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_6b26b:
+OddishLv21PoisonPowder_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_6b274:
+OddishLv21PoisonPowder_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6b278:
+DarkGloomPollenStench_InitialEffect2:
 	call Func_6844f
 	ret
 
-Func_6b27c:
+DarkGloomPollenStench_BeforeDamage:
 	call Func_68465
 	ldtx de, ConfuseOppIfHeadsConfuseYourselfIfTailsText
 	call TossCoin_Bank1a
@@ -8330,27 +8330,27 @@ Func_6b27c:
 	call c, WaitForWideTextBoxInput
 	ret
 
-Func_6b2c1:
+DarkGloomPoisonPowder_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_6b2ca:
+DarkGloomPoisonPowder_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6b2ce:
+DarkVileplumeHayFever_InitialEffect1:
 	scf
 	ret
 
-Func_6b2d0:
+DarkVileplumePetalWhirlwind_AI:
 	ld a, 45
 	lb de, 0, 90
 	call Func_680dd
 	ret
 
-Func_6b2d9:
+DarkVileplumePetalWhirlwind_BeforeDamage:
 	ld hl, $1e
 	call LoadTxRam3
 	ld a, $03
@@ -8369,23 +8369,23 @@ Func_6b2d9:
 	call SwapTurn
 	ret
 
-Func_6b2fe:
+GrimerLv10PoisonGas_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_6b307:
+GrimerLv10PoisonGas_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6b30b:
+GrimerLv10StickyHands_AI:
 	ld a, 20
 	lb de, 10, 30
 	call Func_680dd
 	ret
 
-Func_6b314:
+GrimerLv10StickyHands_BeforeDamage:
 	ldtx de, IfHeadsPlus20AndParalysisText
 	call TossCoin_Bank1a
 	ret nc
@@ -8394,31 +8394,31 @@ Func_6b314:
 	call Func_6802e
 	ret
 
-Func_6b324:
+DarkMukStickyGoo_InitialEffect1:
 	scf
 	ret
 
-Func_6b326:
+DarkMukSludgePunch_AI:
 	ld a, $1e
 	ld de, $1e1e
 	call Func_680b6
 	ret
 
-Func_6b32f:
+DarkMukSludgePunch_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6b333:
+KoffingLv12PoisonGas_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6b33c:
+KoffingLv12PoisonGas_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6b340:
+DarkWeezingMassExplosion_BeforeDamage:
 	ld e, $00
 	call Func_6b36a
 	call SwapTurn
@@ -8430,7 +8430,7 @@ Func_6b340:
 	call Func_6817e
 	ret
 
-Func_6b357:
+DarkWeezingMassExplosion_AfterDamage:
 	call SwapTurn
 	call Func_6b389
 	call SwapTurn
@@ -8533,7 +8533,7 @@ Func_6b3cc:
 	scf
 	ret
 
-Func_6b3fa:
+DarkWeezingStunGas_BeforeDamage:
 	ldtx de, PoisonedIfHeadsParalyzedIfTailsText
 	call TossCoin_Bank1a
 	jr c, .asm_6b406
@@ -8543,11 +8543,11 @@ Func_6b3fa:
 	call Func_68012
 	ret
 
-Func_6b40a:
+AbraLv14Vanish_InitialEffect1:
 	call Func_68446
 	ret
 
-Func_6b40e:
+AbraLv14Vanish_RequireSelection:
 	ldtx hl, SelectPokemonToPlaceInTheArenaText
 	call DrawWideTextBox_WaitForInput
 	bank1call HasAlivePokemonInBench
@@ -8557,7 +8557,7 @@ Func_6b40e:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b41f:
+AbraLv14Vanish_AfterDamage:
 	ld a, DUELVARS_CARD_LOCATIONS
 	get_turn_duelist_var
 .asm_6b422
@@ -8585,11 +8585,11 @@ Func_6b41f:
 	call Func_680a0
 	ret
 
-Func_6b44d:
+AbraLv14Psyshock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6b451:
+DarkKadabraMatterExchange_InitialEffect2:
 	call Func_6844f
 	ret c
 	farcall Func_2435f
@@ -8600,7 +8600,7 @@ Func_6b451:
 	cp $01
 	ret
 
-Func_6b463:
+DarkKadabraMatterExchange_RequireSelection:
 	call CreateHandCardList
 	bank1call Func_5221
 	bank1call DisplayCardList
@@ -8608,7 +8608,7 @@ Func_6b463:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6b470:
+DarkKadabraMatterExchange_BeforeDamage:
 	call Func_68465
 	ldh a, [hTemp_ffa0]
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -8632,12 +8632,12 @@ Func_6b470:
 	bank1call DisplayPlayerDrawCardScreen
 	ret
 
-Func_6b4a4:
+DarkKadabraMindShock_BeforeDamage:
 	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
-Func_6b4aa:
+DarkAlakazamTeleportBlast_RequireSelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_68446
@@ -8652,12 +8652,12 @@ Func_6b4aa:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b4c4:
+DarkAlakazamTeleportBlast_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b4c9:
+DarkAlakazamTeleportBlast_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret nz
@@ -8665,7 +8665,7 @@ Func_6b4c9:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b4d4:
+DarkAlakazamTeleportBlast_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret z
@@ -8690,16 +8690,16 @@ Func_6b4d4:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_6b4fd:
+DarkAlakazamMindShock_BeforeDamage:
 	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
-Func_6b503:
+SlowpokeLv16AfternoonNap_InitialEffect1:
 	farcall Func_2435f
 	ret
 
-Func_6b508:
+SlowpokeLv16AfternoonNap_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseAPsychicEnergyCardFromDeckText
 	ldtx bc, EffectTargetPsychicEnergyText
@@ -8713,7 +8713,7 @@ Func_6b508:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b526:
+SlowpokeLv16AfternoonNap_AISelection:
 	ld a, CARDSEARCH_PSYCHIC_ENERGY
 	farcall SetCardSearchFuncParams
 	call CreateDeckCardList
@@ -8727,7 +8727,7 @@ Func_6b526:
 	jr nc, .asm_6b532
 	ret
 
-Func_6b53f:
+SlowpokeLv16AfternoonNap_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	jr z, .asm_6b54b
@@ -8738,11 +8738,11 @@ Func_6b53f:
 	call Func_680a0
 	ret
 
-Func_6b54f:
+DarkSlowbroReelIn_InitialEffect1:
 	scf
 	ret
 
-Func_6b551:
+DarkSlowbroReelIn_RequireSelection:
 	call Func_68346
 	jr nc, .asm_6b55e
 	call DrawWideTextBox_WaitForInput
@@ -8782,7 +8782,7 @@ Func_6b551:
 	or a
 	ret
 
-Func_6b59e:
+DarkSlowbroReelIn_PkmnPowerTrigger:
 	ld hl, hTemp_ffa0
 	ld de, wDuelTempList
 	ld a, [hl]
@@ -8805,13 +8805,13 @@ Func_6b59e:
 .asm_6b5c1
 	ret
 
-Func_6b5c2:
+DarkSlowbroFickleAttack_AI:
 	ld a, 40
 	lb de, 0, 40
 	call Func_680dd
 	ret
 
-Func_6b5cb:
+DarkSlowbroFickleAttack_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
@@ -8821,11 +8821,11 @@ Func_6b5cb:
 	call Func_6809a
 	ret
 
-Func_6b5dd:
+DrowzeeLv10LongDistanceHypnosis_InitialEffect2:
 	call Func_6844f
 	ret
 
-Func_6b5e1:
+DrowzeeLv10LongDistanceHypnosis_BeforeDamage:
 	call Func_68465
 	ldtx de, LongDistanceHypnosisCheckText
 	call TossCoin_Bank1a
@@ -8857,11 +8857,11 @@ Func_6b5e1:
 	call c, WaitForWideTextBoxInput
 	ret
 
-Func_6b626:
+DrowzeeLv10Nightmare_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_6b62a:
+DarkHypnoBenchManipulation_AI:
 	ld a, $f5
 	call GetNonTurnDuelistVariable
 	add a
@@ -8873,11 +8873,11 @@ Func_6b62a:
 	ld [wAIMinDamage], a
 	ret
 
-Func_6b640:
+DarkHypnoBenchManipulation_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_6b644:
+DarkHypnoBenchManipulation_BeforeDamage:
 	call SwapTurn
 	ld a, $01
 	ld [wTempPlayAreaLocation_cceb], a
@@ -8906,21 +8906,21 @@ Func_6b644:
 	call Func_68175
 	ret
 
-Func_6b679:
+DiglettLv15DigUnder_AI:
 	ld a, $0a
 	call Func_68175
 	ret
 
-Func_6b67f:
+DiglettLv15DigUnder_RequireSelection:
 	call Func_68686
 	ret
 
-Func_6b683:
+DiglettLv15DigUnder_AISelection:
 	call Func_686be
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b689:
+DiglettLv15DigUnder_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr nz, .asm_6b698
@@ -8934,7 +8934,7 @@ Func_6b689:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b69d:
+DiglettLv15DigUnder_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -8945,17 +8945,17 @@ Func_6b69d:
 	call SwapTurn
 	ret
 
-Func_6b6af:
+DarkDugtrioSinkhole_InitialEffect1:
 	scf
 	ret
 
-Func_6b6b1:
+DarkDugtrioKnockDown_AI:
 	ld a, 30
 	lb de, 20, 40
 	call Func_680dd
 	ret
 
-Func_6b6ba:
+DarkDugtrioKnockDown_BeforeDamage:
 	ld hl, $14
 	call LoadTxRam3
 	call SwapTurn
@@ -8968,34 +8968,34 @@ Func_6b6ba:
 .asm_6b6d3
 	ret
 
-Func_6b6d4:
+MankeyLv14Mischief_InitialEffect1:
 	call SwapTurn
 	farcall Func_2435f
 	call SwapTurn
 	ret
 
-Func_6b6df:
+MankeyLv14Mischief_AfterDamage:
 	call SwapTurn
 	call Func_680a0
 	call SwapTurn
 	ret
 
-Func_6b6e9:
+MankeyLv14Anger_AI:
 	ld a, 30
 	lb de, 20, 40
 	call Func_680dd
 	ret
 
-Func_6b6f2:
+MankeyLv14Anger_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_6b6f8:
+DarkPrimeapeFrenzy_InitialEffect1:
 	scf
 	ret
 
-Func_6b6fa:
+DarkPrimeapeFrenziedAttack_AI:
 	ld hl, wTempTurnDuelistCardID
 	cphl DARK_PRIMEAPE
 	jr nz, .asm_6b716
@@ -9009,18 +9009,18 @@ Func_6b6fa:
 .asm_6b716
 	ret
 
-Func_6b717:
-	call Func_6b6fa
+DarkPrimeapeFrenziedAttack_BeforeDamage:
+	call DarkPrimeapeFrenziedAttack_AI
 	call SwapTurn
 	call Func_68045
 	call SwapTurn
 	ret
 
-Func_6b724:
+DarkMachokeDragOff_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_6b728:
+DarkMachokeDragOff_RequireSelection:
 	call SwapTurn
 	bank1call HasAlivePokemonInBench
 .asm_6b72e
@@ -9030,12 +9030,12 @@ Func_6b728:
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b739:
+DarkMachokeDragOff_AISelection:
 	call Func_6869d
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b73f:
+DarkMachokeDragOff_BeforeDamage:
 	call SwapTurn
 	ldh a, [hTemp_ffa0]
 	ld e, a
@@ -9064,22 +9064,22 @@ Func_6b73f:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_6b773:
+DarkMachokeKnockBack_RequireSelection:
 	call HandleMandatorySwitchSelection
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_6b77b:
+DarkMachokeKnockBack_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	call Func_6828a
 	ret
 
-Func_6b781:
+DarkMachampFlingAlt_InitialEffect1:
 	call Func_6843b
 	ret
 
-Func_6b785:
+DarkMachampFlingAlt_AfterDamage:
 	call Func_682be
 	ret c
 	call SwapTurn
@@ -9118,13 +9118,13 @@ Func_6b785:
 	call SwapTurn
 	ret
 
-Func_6b7cc:
+RattataLv12Trickery_InitialEffect2:
 	call Func_6844f
 	ret c
 	farcall Func_2435f
 	ret
 
-Func_6b7d5:
+RattataLv12Trickery_BeforeDamage:
 	call Func_68465
 	ld a, DUELVARS_DUELIST_TYPE
 	get_turn_duelist_var
@@ -9164,24 +9164,24 @@ Func_6b7d5:
 	call ReturnCardToDeck
 	ret
 
-Func_6b823:
+RattataLv12QuickAttack_AI:
 	ld a, 15
 	lb de, 10, 20
 	call Func_680dd
 	ret
 
-Func_6b82c:
+RattataLv12QuickAttack_BeforeDamage:
 	ld a, $0a
 	call Func_682e0
 	ret
 
-Func_6b832:
+DarkRaticateHyperFang_AI:
 	ld a, 50
 	lb de, 0, 50
 	call Func_680dd
 	ret
 
-Func_6b83b:
+DarkRaticateHyperFang_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
@@ -9191,16 +9191,16 @@ Func_6b83b:
 	call Func_6809a
 	ret
 
-Func_6b84d:
+MeowthLv10CoinHurl_InitialEffect1:
 	call Func_6808d
 	ret
 
-Func_6b851:
+MeowthLv10CoinHurl_AI:
 	ld a, $14
 	call Func_6817e
 	ret
 
-Func_6b857:
+MeowthLv10CoinHurl_RequireSelection:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call Func_68079
 	ldh [hTemp_ffa0], a
@@ -9214,7 +9214,7 @@ Func_6b857:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6b871:
+MeowthLv10CoinHurl_AISwitchDefendingPkmn:
 	ldtx de, DamageCheckIfTailsNoDamageText
 	call Func_68079
 	ldh [hTemp_ffa0], a
@@ -9223,7 +9223,7 @@ Func_6b871:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6b880:
+MeowthLv10CoinHurl_BeforeDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	jr nz, .asm_6b88d
@@ -9245,7 +9245,7 @@ Func_6b880:
 	ld [wLoadedAttackAnimation], a
 	ret
 
-Func_6b8a1:
+MeowthLv10CoinHurl_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret z
@@ -9261,19 +9261,19 @@ Func_6b8a1:
 	call SwapTurn
 	ret
 
-Func_6b8bc:
+DarkPersianLv28Fascinate_InitialEffect1:
 	jr Func_6b8c6
 
-Func_6b8be:
+DarkPersianLv28Fascinate_RequireSelection:
 	jr Func_6b8dc
 
-Func_6b8c0:
+DarkPersianLv28Fascinate_AISelection:
 	jr Func_6b8cd
 
-Func_6b8c2:
+DarkPersianLv28Fascinate_BeforeDamage:
 	jr Func_6b8f6
 
-Func_6b8c4:
+DarkPersianLv28Fascinate_AfterDamage:
 	jr Func_6b901
 
 Func_6b8c6:
@@ -9330,52 +9330,52 @@ Func_6b901:
 	ld [wDuelDisplayedScreen], a
 	ret
 
-Func_6b91e:
+DarkPersianLv28PoisonClaws_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6b927:
+DarkPersianLv28PoisonClaws_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6b92b:
+EeveeLv9SandAttack_BeforeDamage:
 	ld a, $02
 	call Func_6812e
 	ret
 
-Func_6b931:
+PorygonLv20Conversion1_InitialEffect1:
 	call Func_6aa2e
 	ret
 
-Func_6b935:
+PorygonLv20Conversion1_InitialEffect2:
 	call Func_6aa44
 	ret
 
-Func_6b939:
+PorygonLv20Conversion1_AISelection:
 	call Func_6aae2
 	ret
 
-Func_6b93d:
+PorygonLv20Conversion1_AfterDamage:
 	call Func_6aa4f
 	ret
 
-Func_6b941:
+PorygonLv20Psybeam_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6b945:
+DratiniLv12Wrap_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6b949:
+DarkDragonairEvolutionaryLight_InitialEffect2:
 	call Func_6844f
 	ret c
 	farcall Func_2435f
 	ret
 
-Func_6b952:
+DarkDragonairEvolutionaryLight_RequireSelection:
 	call CreateDeckCardList
 	ldtx hl, ChooseAnEvolutionCardFromDeckText
 	ldtx bc, EffectTargetEvolutionCardText
@@ -9390,7 +9390,7 @@ Func_6b952:
 	or a
 	ret
 
-Func_6b971:
+DarkDragonairEvolutionaryLight_BeforeDamage:
 	call Func_68465
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	cp $ff
@@ -9406,22 +9406,22 @@ Func_6b971:
 	call Func_680a0
 	ret
 
-Func_6b991:
+DarkDragonairTailStrike_AI:
 	ld a, 30
 	lb de, 20, 40
 	call Func_680dd
 	ret
 
-Func_6b99a:
+DarkDragonairTailStrike_BeforeDamage:
 	ld a, $14
 	call Func_682e0
 	ret
 
-Func_6b9a0:
+DarkDragoniteSummonMinions_InitialEffect1:
 	scf
 	ret
 
-Func_6b9a2:
+DarkDragoniteSummonMinions_RequireSelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call CreateDeckCardList
@@ -9492,7 +9492,7 @@ Func_6b9a2:
 	ld [hl], $ff
 	ret
 
-Func_6ba36:
+DarkDragoniteSummonMinions_PkmnPowerTrigger:
 	ld hl, hTemp_ffa0
 .asm_6ba39
 	ld a, [hli]
@@ -9516,13 +9516,13 @@ Func_6ba36:
 	call Func_680a0
 	ret
 
-Func_6ba60:
+DarkDragoniteGiantTail_AI:
 	ld a, 70
 	lb de, 0, 70
 	call Func_680dd
 	ret
 
-Func_6ba69:
+DarkDragoniteGiantTail_BeforeDamage:
 	ldtx de, AttackSuccessCheckText
 	call TossCoin_Bank1a
 	ret c
@@ -9532,7 +9532,7 @@ Func_6ba69:
 	call Func_6809a
 	ret
 
-Func_6ba7b:
+MagnemiteLv12Magnetism_BeforeDamage:
 	ld b, $00
 	ld a, DUELVARS_BENCH
 	get_turn_duelist_var
@@ -9555,12 +9555,12 @@ Func_6ba7b:
 	call Func_68163
 	ret
 
-Func_6ba9e:
+DarkMagnetonSonicboom_BeforeDamage:
 	ld hl, wDamage + 1
 	set 7, [hl]
 	ret
 
-Func_6baa4:
+DarkMagnetonMagneticLines_AISelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -9573,7 +9573,7 @@ Func_6baa4:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ret
 
-Func_6babb:
+DarkMagnetonMagneticLines_RequireSelection:
 	ld a, $ff
 	ldh [hTemp_ffa0], a
 	call Func_6843b
@@ -9597,7 +9597,7 @@ Func_6babb:
 	call SwapTurn
 	ret
 
-Func_6bae8:
+DarkMagnetonMagneticLines_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	cp $ff
 	ret z
@@ -9659,7 +9659,7 @@ Func_6bb19:
 	scf
 	ret
 
-Func_6bb51:
+DarkElectrodeEnergyBomb_InitialEffect1:
 	ld e, $00
 	call GetPlayAreaCardAttachedEnergies
 	ld a, [wTotalAttachedEnergies]
@@ -9669,7 +9669,7 @@ Func_6bb51:
 	scf
 	ret
 
-Func_6bb60:
+DarkElectrodeEnergyBomb_BeforeDamage:
 	call Func_68446
 	jr c, .asm_6bbc1
 	ld a, DUELVARS_DUELIST_TYPE
@@ -9689,7 +9689,7 @@ Func_6bb60:
 	ldh [hTemp_ffa0], a
 	ld a, e
 	ldh [hTempPlayAreaLocation_ffa1], a
-	call Func_6bbd7
+	call DarkElectrodeEnergyBomb_Unk11
 	jr .asm_6bb71
 .asm_6bb88
 	xor a
@@ -9734,7 +9734,7 @@ Func_6bb60:
 	call Func_680ed
 	ret
 
-Func_6bbd7:
+DarkElectrodeEnergyBomb_Unk11:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	ld e, a
 	ldh a, [hTemp_ffa0]
@@ -9743,12 +9743,12 @@ Func_6bbd7:
 	bank1call PrintPlayAreaCardList_EnableLCD
 	ret
 
-Func_6bbe6:
+DarkJolteonLightningFlash_BeforeDamage:
 	ld a, $0c
 	call Func_6812e
 	ret
 
-Func_6bbec:
+DarkJolteonThunderAttack_BeforeDamage:
 	ldtx de, ThunderAttackCheckText
 	call TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
@@ -9756,7 +9756,7 @@ Func_6bbec:
 	call Func_6802e
 	ret
 
-Func_6bbf9:
+DarkJolteonThunderAttack_AfterDamage:
 	ldh a, [hTemp_ffa0]
 	or a
 	ret nz
@@ -9764,199 +9764,199 @@ Func_6bbf9:
 	call DealRecoilDamageToSelf
 	ret
 
-Func_6bc03:
+BulbasaurLv15PoisonSeed_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_6bc0c:
+BulbasaurLv15PoisonSeed_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6bc10:
+MetapodLv20MysteriousPower_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bc14:
+WeedleLv15PoisonHorn_AI:
 	ld a, $0a
 	ld de, $a0a
 	call Func_680b6
 	ret
 
-Func_6bc1d:
+WeedleLv15PoisonHorn_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6bc21:
+PikachuLv5Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc25:
+NidoranFLv12PoisonSting_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6bc2e:
+NidoranFLv12PoisonSting_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6bc32:
+ClefairyLv15ShiningFingers_BeforeDamage:
 	call Func_6805c
 	ret
 
-Func_6bc36:
+ZubatLv12SuspiciousSoundwave_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bc3a:
+ParasectLv29ToxicSpore_AI:
 	ld a, $14
 	ld de, $1414
 	call Func_680b6
 	ret
 
-Func_6bc43:
+ParasectLv29ToxicSpore_BeforeDamage:
 	call Func_68012
 	ret
 
-Func_6bc47:
+PoliwagLv15Bubble_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc4b:
+PoliwhirlLv30BodySlam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc4f:
+LickitungLv20LickAlt_BeforeDamage:
 	call Func_6801c
 	ret
 
-Func_6bc53:
+ChanseyLv40Sing_BeforeDamage:
 	call Func_6804a
 	ret
 
-Func_6bc57:
+RaichuLv32SparkingKick_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc5b:
+SandshrewLv15PoisonSting_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6bc64:
+SandshrewLv15PoisonSting_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6bc68:
+SeelLv10IceBeam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc6c:
+DewgongLv24AuroraWave_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bc70:
+OnixLv25Bind_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc74:
+KrabbyLv17Bubble_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc78:
+VoltorbLv8Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc7c:
+HitmonleeLv23RollingKick_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc80:
+JynxLv18IcePunch_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc84:
+JynxLv18ColdBreath_BeforeDamage:
 	call Func_68055
 	ret
 
-Func_6bc88:
+LaprasLv24Sing_BeforeDamage:
 	call Func_6804a
 	ret
 
-Func_6bc8c:
+AerodactylLv30Supersonic_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_6bc90:
+ArticunoLv34IceBeam_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc94:
+ArbokLv30Wrap_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bc98:
+VenonatLv15Psybeam_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bc9c:
+MachokeLv24WickedJab_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bca0:
+BellsproutLv10StunSpore_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bca4:
+GastlyLv13FadeToBlack_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bca8:
+HaunterLv25EerieLight_BeforeDamage:
 	call Func_68033
 	ret
 
-Func_6bcac:
+DarkPersianAltLv28PoisonClaws_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6bcb5:
+DarkPersianAltLv28PoisonClaws_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6bcb9:
+KoffingLv14PoisonGas_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6bcc2:
+KoffingLv14PoisonGas_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6bcc6:
+KoffingLv14ConfusionGas_BeforeDamage:
 	call Func_6803e
 	ret
 
-Func_6bcca:
+ElectabuzzLv30Thundershock_BeforeDamage:
 	call Func_68027
 	ret
 
-Func_6bcce:
+MagmarLv18Smog_AI:
 	ld a, $05
 	ld de, $a
 	call Func_680b6
 	ret
 
-Func_6bcd7:
+MagmarLv18Smog_BeforeDamage:
 	call Func_6800b
 	ret
 
-Func_6bcdb:
+WartortleLv24Bubble_BeforeDamage:
 	call Func_68027
 	ret
 

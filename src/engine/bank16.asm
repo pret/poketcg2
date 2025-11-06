@@ -38,3890 +38,3890 @@ EffectCommands::
 	;	SpitPoison_Poison50PercentEffect ; unique effect made of more than one command.
 	;	SpitPoison_AIEffect              ;
 
-EffectCommands_58000:
+EkansLv10SpitPoisonEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6875c
-	dbw EFFECTCMDTYPE_AI, Func_68753
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EkansLv10SpitPoison_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, EkansLv10SpitPoison_AI
 	db $00
 
-EffectCommands_58008:
+EkansLv10WrapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6876e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EkansLv10Wrap_BeforeDamage
 	db $00
 
-EffectCommands_5800d:
+ArbokLv27TerrorStrikeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68772
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6878e
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68776
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_68776
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ArbokLv27TerrorStrike_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ArbokLv27TerrorStrike_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ArbokLv27TerrorStrike_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, ArbokLv27TerrorStrike_RequireSelection
 	db $00
 
-EffectCommands_5801b:
+ArbokLv27PoisonFangEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_687a1
-	dbw EFFECTCMDTYPE_AI, Func_68798
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArbokLv27PoisonFang_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ArbokLv27PoisonFang_AI
 	db $00
 
-EffectCommands_58023:
+WeepinbellLv28PoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_687ae
-	dbw EFFECTCMDTYPE_AI, Func_687a5
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WeepinbellLv28PoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, WeepinbellLv28PoisonPowder_AI
 	db $00
 
-EffectCommands_5802b:
+VictreebelLureEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_687b2
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_687d5
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_687b6
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_687cf
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, VictreebelLure_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, VictreebelLure_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VictreebelLure_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, VictreebelLure_AISelection
 	db $00
 
-EffectCommands_58039:
+VictreebelAcidEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_687e9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VictreebelAcid_BeforeDamage
 	db $00
 
-EffectCommands_5803e:
+PinsirLv24IrongripEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_687f6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PinsirLv24Irongrip_BeforeDamage
 	db $00
 
-EffectCommands_58043:
+CaterpieStringShotEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_687fa
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CaterpieStringShot_BeforeDamage
 	db $00
 
-EffectCommands_58048:
+GloomPoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68807
-	dbw EFFECTCMDTYPE_AI, Func_687fe
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GloomPoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GloomPoisonPowder_AI
 	db $00
 
-EffectCommands_58050:
+GloomFoulOdorEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6880b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GloomFoulOdor_BeforeDamage
 	db $00
 
-EffectCommands_58055:
+KakunaLv23StiffenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68818
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KakunaLv23Stiffen_BeforeDamage
 	db $00
 
-EffectCommands_5805a:
+KakunaLv23PoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68835
-	dbw EFFECTCMDTYPE_AI, Func_6882c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KakunaLv23PoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KakunaLv23PoisonPowder_AI
 	db $00
 
-EffectCommands_58062:
+GolbatLv29LeechLifeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68839
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolbatLv29LeechLife_AfterDamage
 	db $00
 
-EffectCommands_58067:
+VenonatLv12StunSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68843
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenonatLv12StunSpore_BeforeDamage
 	db $00
 
-EffectCommands_5806c:
+VenonatLv12LeechLifeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68847
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, VenonatLv12LeechLife_AfterDamage
 	db $00
 
-EffectCommands_58071:
+ScytherLv25SwordsDanceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68851
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ScytherLv25SwordsDance_BeforeDamage
 	db $00
 
-EffectCommands_58076:
+ZubatLv10SupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68857
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ZubatLv10Supersonic_BeforeDamage
 	db $00
 
-EffectCommands_5807b:
+ZubatLv10LeechLifeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6885b
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZubatLv10LeechLife_AfterDamage
 	db $00
 
-EffectCommands_58080:
+BeedrillTwineedleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6886e
-	dbw EFFECTCMDTYPE_AI, Func_68865
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BeedrillTwineedle_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, BeedrillTwineedle_AI
 	db $00
 
-EffectCommands_58088:
+BeedrillPoisonStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6888f
-	dbw EFFECTCMDTYPE_AI, Func_68886
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BeedrillPoisonSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, BeedrillPoisonSting_AI
 	db $00
 
-EffectCommands_58090:
+ExeggcuteHypnosisMoveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68893
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ExeggcuteHypnosisMove_BeforeDamage
 	db $00
 
-EffectCommands_58095:
+ExeggcuteLeechSeedAltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68897
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ExeggcuteLeechSeedAlt_AfterDamage
 	db $00
 
-EffectCommands_5809a:
+KoffingLv13FoulGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_688ac
-	dbw EFFECTCMDTYPE_AI, Func_688a4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KoffingLv13FoulGas_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KoffingLv13FoulGas_AI
 	db $00
 
-EffectCommands_580a2:
+MetapodLv21StiffenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_688b8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MetapodLv21Stiffen_BeforeDamage
 	db $00
 
-EffectCommands_580a7:
+MetapodLv21StunSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_688cc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MetapodLv21StunSpore_BeforeDamage
 	db $00
 
-EffectCommands_580ac:
+OddishLv8StunSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_688d0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OddishLv8StunSpore_BeforeDamage
 	db $00
 
-EffectCommands_580b1:
+OddishLv8SproutEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_688d4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6891b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_688de
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_688ff
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, OddishLv8Sprout_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, OddishLv8Sprout_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, OddishLv8Sprout_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, OddishLv8Sprout_AISelection
 	db $00
 
-EffectCommands_580bf:
+ExeggutorTeleportEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6893b
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6895b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6893f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_68952
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ExeggutorTeleport_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ExeggutorTeleport_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ExeggutorTeleport_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, ExeggutorTeleport_AISelection
 	db $00
 
-EffectCommands_580cd:
+ExeggutorBigEggsplosionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68985
-	dbw EFFECTCMDTYPE_AI, Func_68966
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ExeggutorBigEggsplosion_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ExeggutorBigEggsplosion_AI
 	db $00
 
-EffectCommands_580d5:
+NidokingThrashEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_689b5
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_689c4
-	dbw EFFECTCMDTYPE_AI, Func_689ac
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidokingThrash_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, NidokingThrash_AfterDamage
+	dbw EFFECTCMDTYPE_AI, NidokingThrash_AI
 	db $00
 
-EffectCommands_580e0:
+NidokingToxicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_689d6
-	dbw EFFECTCMDTYPE_AI, Func_689ce
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidokingToxic_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidokingToxic_AI
 	db $00
 
-EffectCommands_580e8:
+NidoqueenBoyfriendsEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_689da
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoqueenBoyfriends_BeforeDamage
 	db $00
 
-EffectCommands_580ed:
+NidoranFLv13FurySwipesEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68a07
-	dbw EFFECTCMDTYPE_AI, Func_689fe
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranFLv13FurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidoranFLv13FurySwipes_AI
 	db $00
 
-EffectCommands_580f5:
+NidoranFLv13CallForFamilyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68a1c
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68a5d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68a26
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_68a44
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, NidoranFLv13CallForFamily_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, NidoranFLv13CallForFamily_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, NidoranFLv13CallForFamily_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, NidoranFLv13CallForFamily_AISelection
 	db $00
 
-EffectCommands_58103:
+NidoranMLv20HornHazardEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68a86
-	dbw EFFECTCMDTYPE_AI, Func_68a7d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranMLv20HornHazard_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidoranMLv20HornHazard_AI
 	db $00
 
-EffectCommands_5810b:
+NidorinaLv24SupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68a9c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinaLv24Supersonic_BeforeDamage
 	db $00
 
-EffectCommands_58110:
+NidorinaLv24DoubleKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68aa9
-	dbw EFFECTCMDTYPE_AI, Func_68aa0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinaLv24DoubleKick_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidorinaLv24DoubleKick_AI
 	db $00
 
-EffectCommands_58118:
+NidorinoLv25DoubleKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68aca
-	dbw EFFECTCMDTYPE_AI, Func_68ac1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinoLv25DoubleKick_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidorinoLv25DoubleKick_AI
 	db $00
 
-EffectCommands_58120:
+ButterfreeWhirlwindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68aea
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68ae2
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_68ae2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ButterfreeWhirlwind_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ButterfreeWhirlwind_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, ButterfreeWhirlwind_RequireSelection
 	db $00
 
-EffectCommands_5812b:
+ButterfreeMegaDrainEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68af0
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ButterfreeMegaDrain_AfterDamage
 	db $00
 
-EffectCommands_58130:
+ParasLv8SporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68b08
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ParasLv8Spore_BeforeDamage
 	db $00
 
-EffectCommands_58135:
+ParasectLv28SporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68b0c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ParasectLv28Spore_BeforeDamage
 	db $00
 
-EffectCommands_5813a:
+WeedleLv12PoisonStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68b19
-	dbw EFFECTCMDTYPE_AI, Func_68b10
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WeedleLv12PoisonSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, WeedleLv12PoisonSting_AI
 	db $00
 
-EffectCommands_58142:
+IvysaurLv20PoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68b26
-	dbw EFFECTCMDTYPE_AI, Func_68b1d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, IvysaurLv20PoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, IvysaurLv20PoisonPowder_AI
 	db $00
 
-EffectCommands_5814a:
+BulbasaurLv13LeechSeedEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68b2a
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, BulbasaurLv13LeechSeed_AfterDamage
 	db $00
 
-EffectCommands_5814f:
+VenusaurLv67EnergyTransEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68b37
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68b3b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68b39
-	dbw EFFECTCMDTYPE_UNK_11, Func_68b3d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, VenusaurLv67EnergyTrans_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenusaurLv67EnergyTrans_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VenusaurLv67EnergyTrans_RequireSelection
+	dbw EFFECTCMDTYPE_UNK_11, VenusaurLv67EnergyTrans_Unk11
 	db $00
 
-EffectCommands_5815d:
+VenusaurAltLv67EnergyTransEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68c52
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68c58
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68c55
-	dbw EFFECTCMDTYPE_UNK_11, Func_68c5b
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, VenusaurAltLv67EnergyTrans_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenusaurAltLv67EnergyTrans_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VenusaurAltLv67EnergyTrans_RequireSelection
+	dbw EFFECTCMDTYPE_UNK_11, VenusaurAltLv67EnergyTrans_Unk11
 	db $00
 
-EffectCommands_5816b:
+GrimerLv17NastyGooEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68c5d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrimerLv17NastyGoo_BeforeDamage
 	db $00
 
-EffectCommands_58170:
+GrimerLv17MinimizeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68c61
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrimerLv17Minimize_BeforeDamage
 	db $00
 
-EffectCommands_58175:
+MukToxicGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68c67
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MukToxicGas_InitialEffect1
 	db $00
 
-EffectCommands_5817a:
+MukSludgeMoveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68c72
-	dbw EFFECTCMDTYPE_AI, Func_68c69
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MukSludgeMove_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MukSludgeMove_AI
 	db $00
 
-EffectCommands_58182:
+BellsproutLv11CallForFamilyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68c76
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68cbd
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68c80
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_68ca1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, BellsproutLv11CallForFamily_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, BellsproutLv11CallForFamily_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, BellsproutLv11CallForFamily_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, BellsproutLv11CallForFamily_AISelection
 	db $00
 
-EffectCommands_58190:
+WeezingLv27SmogEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68ce6
-	dbw EFFECTCMDTYPE_AI, Func_68cdd
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WeezingLv27Smog_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, WeezingLv27Smog_AI
 	db $00
 
-EffectCommands_58198:
+WeezingLv27SelfdestructEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68cea
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, WeezingLv27Selfdestruct_AfterDamage
 	db $00
 
-EffectCommands_5819d:
+VenomothLv28ShiftEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68d06
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68d44
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68d09
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, VenomothLv28Shift_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenomothLv28Shift_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VenomothLv28Shift_RequireSelection
 	db $00
 
-EffectCommands_581a8:
+VenomothLv28VenomPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68d6b
-	dbw EFFECTCMDTYPE_AI, Func_68d63
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenomothLv28VenomPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, VenomothLv28VenomPowder_AI
 	db $00
 
-EffectCommands_581b0:
+TangelaLv8BindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68d7f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TangelaLv8Bind_BeforeDamage
 	db $00
 
-EffectCommands_581b5:
+TangelaLv8PoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68d8c
-	dbw EFFECTCMDTYPE_AI, Func_68d83
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TangelaLv8PoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, TangelaLv8PoisonPowder_AI
 	db $00
 
-EffectCommands_581bd:
+VileplumeHealEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68d90
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68d9b
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, VileplumeHeal_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VileplumeHeal_BeforeDamage
 	db $00
 
-EffectCommands_581c5:
+VileplumePetalDanceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68dfc
-	dbw EFFECTCMDTYPE_AI, Func_68df3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VileplumePetalDance_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, VileplumePetalDance_AI
 	db $00
 
-EffectCommands_581cd:
+TangelaLv12StunSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68e1c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TangelaLv12StunSpore_BeforeDamage
 	db $00
 
-EffectCommands_581d2:
+TangelaLv12PoisonWhipEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68e29
-	dbw EFFECTCMDTYPE_AI, Func_68e20
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TangelaLv12PoisonWhip_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, TangelaLv12PoisonWhip_AI
 	db $00
 
-EffectCommands_581da:
+VenusaurLv64SolarPowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68e2d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68e44
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, VenusaurLv64SolarPower_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenusaurLv64SolarPower_BeforeDamage
 	db $00
 
-EffectCommands_581e2:
+VenusaurLv64MegaDrainEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68e70
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, VenusaurLv64MegaDrain_AfterDamage
 	db $00
 
-EffectCommands_581e7:
+OmastarLv32WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68ed8
-	dbw EFFECTCMDTYPE_AI, Func_68ed8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmastarLv32WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, OmastarLv32WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_581ef:
+OmastarLv32SpikeCannonEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68ee6
-	dbw EFFECTCMDTYPE_AI, Func_68edd
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmastarLv32SpikeCannon_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, OmastarLv32SpikeCannon_AI
 	db $00
 
-EffectCommands_581f7:
+OmanyteLv19ClairvoyanceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_68efe
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f08
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, OmanyteLv19Clairvoyance_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmanyteLv19Clairvoyance_BeforeDamage
 	db $00
 
-EffectCommands_581ff:
+OmanyteLv19WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f10
-	dbw EFFECTCMDTYPE_AI, Func_68f10
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmanyteLv19WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, OmanyteLv19WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_58207:
+WartortleLv22WithdrawEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f16
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WartortleLv22Withdraw_BeforeDamage
 	db $00
 
-EffectCommands_5820c:
+BlastoiseLv52RainDanceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68f2a
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, BlastoiseLv52RainDance_InitialEffect1
 	db $00
 
-EffectCommands_58211:
+BlastoiseLv52HydroPumpEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f2c
-	dbw EFFECTCMDTYPE_AI, Func_68f2c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BlastoiseLv52HydroPump_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, BlastoiseLv52HydroPump_BeforeDamage
 	db $00
 
-EffectCommands_58219:
+BlastoiseAltLv52RainDanceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68f32
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, BlastoiseAltLv52RainDance_InitialEffect1
 	db $00
 
-EffectCommands_5821e:
+BlastoiseAltLv52HydroPumpEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f34
-	dbw EFFECTCMDTYPE_AI, Func_68f34
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BlastoiseAltLv52HydroPump_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, BlastoiseAltLv52HydroPump_BeforeDamage
 	db $00
 
-EffectCommands_58226:
+GyaradosBubblebeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f36
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GyaradosBubblebeam_BeforeDamage
 	db $00
 
-EffectCommands_5822b:
+KinglerLv27FlailEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68f3e
-	dbw EFFECTCMDTYPE_AI, Func_68f3a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KinglerLv27Flail_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KinglerLv27Flail_AI
 	db $00
 
-EffectCommands_58233:
+KrabbyLv20CallForFamilyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_68f47
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68f8e
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68f51
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_68f72
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KrabbyLv20CallForFamily_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, KrabbyLv20CallForFamily_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, KrabbyLv20CallForFamily_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, KrabbyLv20CallForFamily_AISelection
 	db $00
 
-EffectCommands_58241:
+MagikarpLv8FlailEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68fb2
-	dbw EFFECTCMDTYPE_AI, Func_68fae
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagikarpLv8Flail_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagikarpLv8Flail_AI
 	db $00
 
-EffectCommands_58249:
+PsyduckLv15HeadacheEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68fbb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PsyduckLv15Headache_BeforeDamage
 	db $00
 
-EffectCommands_5824e:
+PsyduckLv15FurySwipesEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68fcc
-	dbw EFFECTCMDTYPE_AI, Func_68fc3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PsyduckLv15FurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PsyduckLv15FurySwipes_AI
 	db $00
 
-EffectCommands_58256:
+GolduckLv27PsyshockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68fe1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GolduckLv27Psyshock_BeforeDamage
 	db $00
 
-EffectCommands_5825b:
+GolduckLv27HyperBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_68feb
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_68fe5
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_68fe8
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolduckLv27HyperBeam_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GolduckLv27HyperBeam_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GolduckLv27HyperBeam_AISelection
 	db $00
 
-EffectCommands_58266:
+SeadraLv23WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68fee
-	dbw EFFECTCMDTYPE_AI, Func_68fee
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SeadraLv23WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, SeadraLv23WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_5826e:
+SeadraLv23AgilityEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_68ff4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SeadraLv23Agility_BeforeDamage
 	db $00
 
-EffectCommands_58273:
+ShellderLv8SupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69006
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ShellderLv8Supersonic_BeforeDamage
 	db $00
 
-EffectCommands_58278:
+ShellderLv8HideInShellEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6900a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ShellderLv8HideInShell_BeforeDamage
 	db $00
 
-EffectCommands_5827d:
+VaporeonLv42QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69027
-	dbw EFFECTCMDTYPE_AI, Func_6901e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VaporeonLv42QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, VaporeonLv42QuickAttack_AI
 	db $00
 
-EffectCommands_58285:
+VaporeonLv42WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6902d
-	dbw EFFECTCMDTYPE_AI, Func_6902d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VaporeonLv42WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, VaporeonLv42WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_5828d:
+DewgongLv42IceBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69033
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DewgongLv42IceBeam_BeforeDamage
 	db $00
 
-EffectCommands_58292:
+StarmieRecoverEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69037
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69052
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69076
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69070
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69065
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, StarmieRecover_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, StarmieRecover_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, StarmieRecover_AfterDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, StarmieRecover_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, StarmieRecover_AISelection
 	db $00
 
-EffectCommands_582a3:
+StarmieStarFreezeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69082
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, StarmieStarFreeze_BeforeDamage
 	db $00
 
-EffectCommands_582a8:
+SquirtleLv8BubbleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69086
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SquirtleLv8Bubble_BeforeDamage
 	db $00
 
-EffectCommands_582ad:
+SquirtleLv8WithdrawEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6908a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SquirtleLv8Withdraw_BeforeDamage
 	db $00
 
-EffectCommands_582b2:
+HorseaLv19SmokescreenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6909e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HorseaLv19Smokescreen_BeforeDamage
 	db $00
 
-EffectCommands_582b7:
+TentacruelSupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_690a4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TentacruelSupersonic_BeforeDamage
 	db $00
 
-EffectCommands_582bc:
+TentacruelJellyfishStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_690b1
-	dbw EFFECTCMDTYPE_AI, Func_690a8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TentacruelJellyfishSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, TentacruelJellyfishSting_AI
 	db $00
 
-EffectCommands_582c4:
+PoliwhirlLv28AmnesiaEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_690b5
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_690b9
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_690c1
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_690bd
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PoliwhirlLv28Amnesia_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PoliwhirlLv28Amnesia_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwhirlLv28Amnesia_BeforeDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, PoliwhirlLv28Amnesia_AISelection
 	db $00
 
-EffectCommands_582d2:
+PoliwhirlLv28DoubleSlapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69112
-	dbw EFFECTCMDTYPE_AI, Func_69109
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwhirlLv28DoubleSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PoliwhirlLv28DoubleSlap_AI
 	db $00
 
-EffectCommands_582da:
+PoliwrathLv48WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6912a
-	dbw EFFECTCMDTYPE_AI, Func_6912a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwrathLv48WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PoliwrathLv48WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_582e2:
+PoliwrathLv48WhirlpoolEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69136
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69130
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69133
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PoliwrathLv48Whirlpool_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PoliwrathLv48Whirlpool_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, PoliwrathLv48Whirlpool_AISelection
 	db $00
 
-EffectCommands_582ed:
+PoliwagLv13WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69139
-	dbw EFFECTCMDTYPE_AI, Func_69139
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwagLv13WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PoliwagLv13WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_582f5:
+CloysterClampEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69149
-	dbw EFFECTCMDTYPE_AI, Func_6913f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CloysterClamp_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, CloysterClamp_AI
 	db $00
 
-EffectCommands_582fd:
+CloysterSpikeCannonEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6916b
-	dbw EFFECTCMDTYPE_AI, Func_69162
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CloysterSpikeCannon_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, CloysterSpikeCannon_AI
 	db $00
 
-EffectCommands_58305:
+ArticunoLv35FreezeDryEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69183
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArticunoLv35FreezeDry_BeforeDamage
 	db $00
 
-EffectCommands_5830a:
+ArticunoLv35BlizzardEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69187
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69190
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArticunoLv35Blizzard_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ArticunoLv35Blizzard_AfterDamage
 	db $00
 
-EffectCommands_58312:
+TentacoolCowardiceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_691aa
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_691d9
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_691c4
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TentacoolCowardice_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TentacoolCowardice_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, TentacoolCowardice_RequireSelection
 	db $00
 
-EffectCommands_5831d:
+LaprasLv31WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_691ff
-	dbw EFFECTCMDTYPE_AI, Func_691ff
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LaprasLv31WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, LaprasLv31WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_58325:
+LaprasLv31ConfuseRayEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69205
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LaprasLv31ConfuseRay_BeforeDamage
 	db $00
 
-EffectCommands_5832a:
+ArticunoLv37QuickfreezeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69209
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6920b
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ArticunoLv37Quickfreeze_InitialEffect1
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, ArticunoLv37Quickfreeze_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58332:
+ArticunoLv37IceBreathEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69250
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69255
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArticunoLv37IceBreath_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ArticunoLv37IceBreath_AfterDamage
 	db $00
 
-EffectCommands_5833a:
+VaporeonLv29FocusEnergyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69266
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VaporeonLv29FocusEnergy_BeforeDamage
 	db $00
 
-EffectCommands_5833f:
+ArcanineLv45FlamethrowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6929a
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6929d
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_692a3
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_692a0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ArcanineLv45Flamethrower_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ArcanineLv45Flamethrower_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, ArcanineLv45Flamethrower_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, ArcanineLv45Flamethrower_AISelection
 	db $00
 
-EffectCommands_5834d:
+ArcanineLv45TakeDownEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_692a9
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ArcanineLv45TakeDown_AfterDamage
 	db $00
 
-EffectCommands_58352:
+ArcanineLv34QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_692b8
-	dbw EFFECTCMDTYPE_AI, Func_692af
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArcanineLv34QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ArcanineLv34QuickAttack_AI
 	db $00
 
-EffectCommands_5835a:
+ArcanineLv34FlamesOfRageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_692be
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_692c6
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69306
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_692f7
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_692ee
-	dbw EFFECTCMDTYPE_AI, Func_69302
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ArcanineLv34FlamesOfRage_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ArcanineLv34FlamesOfRage_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArcanineLv34FlamesOfRage_BeforeDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, ArcanineLv34FlamesOfRage_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, ArcanineLv34FlamesOfRage_AISelection
+	dbw EFFECTCMDTYPE_AI, ArcanineLv34FlamesOfRage_AI
 	db $00
 
-EffectCommands_5836e:
+RapidashLv33StompEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69318
-	dbw EFFECTCMDTYPE_AI, Func_6930f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RapidashLv33Stomp_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, RapidashLv33Stomp_AI
 	db $00
 
-EffectCommands_58376:
+RapidashLv33AgilityEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6931e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RapidashLv33Agility_BeforeDamage
 	db $00
 
-EffectCommands_5837b:
+NinetalesLv32LureAltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69330
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69353
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69334
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6934d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, NinetalesLv32LureAlt_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, NinetalesLv32LureAlt_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, NinetalesLv32LureAlt_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, NinetalesLv32LureAlt_AISelection
 	db $00
 
-EffectCommands_58389:
+NinetalesLv32FireBlastEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69367
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6936a
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69370
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6936d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, NinetalesLv32FireBlast_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, NinetalesLv32FireBlast_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, NinetalesLv32FireBlast_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, NinetalesLv32FireBlast_AISelection
 	db $00
 
-EffectCommands_58397:
+CharmanderLv10EmberEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69376
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69379
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6937f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6937c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharmanderLv10Ember_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CharmanderLv10Ember_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, CharmanderLv10Ember_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, CharmanderLv10Ember_AISelection
 	db $00
 
-EffectCommands_583a5:
+MoltresLv35WildfireEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69385
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69393
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_693e6
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_693d8
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_693d3
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MoltresLv35Wildfire_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MoltresLv35Wildfire_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MoltresLv35Wildfire_AfterDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, MoltresLv35Wildfire_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, MoltresLv35Wildfire_AISelection
 	db $00
 
-EffectCommands_583b6:
+MoltresLv35DiveBombEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69424
-	dbw EFFECTCMDTYPE_AI, Func_6941b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MoltresLv35DiveBomb_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MoltresLv35DiveBomb_AI
 	db $00
 
-EffectCommands_583be:
+FlareonLv28QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69443
-	dbw EFFECTCMDTYPE_AI, Func_6943a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlareonLv28QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FlareonLv28QuickAttack_AI
 	db $00
 
-EffectCommands_583c6:
+FlareonLv28FlamethrowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69449
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6944c
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69452
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6944f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, FlareonLv28Flamethrower_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, FlareonLv28Flamethrower_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, FlareonLv28Flamethrower_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, FlareonLv28Flamethrower_AISelection
 	db $00
 
-EffectCommands_583d4:
+MagmarLv24FlamethrowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69458
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6945b
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69461
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6945e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MagmarLv24Flamethrower_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MagmarLv24Flamethrower_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, MagmarLv24Flamethrower_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagmarLv24Flamethrower_AISelection
 	db $00
 
-EffectCommands_583e2:
+MagmarLv31SmokescreenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69467
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagmarLv31Smokescreen_BeforeDamage
 	db $00
 
-EffectCommands_583e7:
+MagmarLv31SmogEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69476
-	dbw EFFECTCMDTYPE_AI, Func_6946d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagmarLv31Smog_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagmarLv31Smog_AI
 	db $00
 
-EffectCommands_583ef:
+CharmeleonFlamethrowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6947a
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6947d
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69483
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69480
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharmeleonFlamethrower_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CharmeleonFlamethrower_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, CharmeleonFlamethrower_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, CharmeleonFlamethrower_AISelection
 	db $00
 
-EffectCommands_583fd:
+CharizardLv76EnergyBurnEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69489
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharizardLv76EnergyBurn_InitialEffect1
 	db $00
 
-EffectCommands_58402:
+CharizardLv76FireSpinEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6948b
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6948d
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6948f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69491
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharizardLv76FireSpin_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CharizardLv76FireSpin_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, CharizardLv76FireSpin_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, CharizardLv76FireSpin_AISelection
 	db $00
 
-EffectCommands_58410:
+CharizardAltLv76EnergyBurnEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6950c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharizardAltLv76EnergyBurn_InitialEffect1
 	db $00
 
-EffectCommands_58415:
+CharizardAltLv76FireSpinEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6950e
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69511
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69513
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69515
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CharizardAltLv76FireSpin_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CharizardAltLv76FireSpin_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, CharizardAltLv76FireSpin_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, CharizardAltLv76FireSpin_AISelection
 	db $00
 
-EffectCommands_58423:
+VulpixLv11ConfuseRayEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69517
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VulpixLv11ConfuseRay_BeforeDamage
 	db $00
 
-EffectCommands_58428:
+FlareonLv22RageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6951f
-	dbw EFFECTCMDTYPE_AI, Func_6951b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlareonLv22Rage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FlareonLv22Rage_AI
 	db $00
 
-EffectCommands_58430:
+NinetalesLv35MixUpEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69528
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6953f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, NinetalesLv35MixUp_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, NinetalesLv35MixUp_AfterDamage
 	db $00
 
-EffectCommands_58438:
+NinetalesLv35DancingEmbersEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_695a4
-	dbw EFFECTCMDTYPE_AI, Func_6959b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NinetalesLv35DancingEmbers_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NinetalesLv35DancingEmbers_AI
 	db $00
 
-EffectCommands_58440:
+MoltresLv40FiregiverEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_695b9
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_695bb
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MoltresLv40Firegiver_InitialEffect1
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, MoltresLv40Firegiver_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58448:
+MoltresLv40DiveBombEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69670
-	dbw EFFECTCMDTYPE_AI, Func_69667
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MoltresLv40DiveBomb_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MoltresLv40DiveBomb_AI
 	db $00
 
-EffectCommands_58450:
+AbraLv10PsyshockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69708
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AbraLv10Psyshock_BeforeDamage
 	db $00
 
-EffectCommands_58455:
+GengarLv38CurseEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6970c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_697b4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6972f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GengarLv38Curse_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GengarLv38Curse_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GengarLv38Curse_RequireSelection
 	db $00
 
-EffectCommands_58460:
+GengarLv38DarkMindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69816
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69804
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69808
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GengarLv38DarkMind_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GengarLv38DarkMind_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GengarLv38DarkMind_AISelection
 	db $00
 
-EffectCommands_5846b:
+GastlyLv8SleepingGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69829
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GastlyLv8SleepingGas_BeforeDamage
 	db $00
 
-EffectCommands_58470:
+GastlyLv8DestinyBondEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6982d
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69830
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69853
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6984d
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69842
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GastlyLv8DestinyBond_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GastlyLv8DestinyBond_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GastlyLv8DestinyBond_BeforeDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, GastlyLv8DestinyBond_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, GastlyLv8DestinyBond_AISelection
 	db $00
 
-EffectCommands_58481:
+GastlyLv17LickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69859
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GastlyLv17Lick_BeforeDamage
 	db $00
 
-EffectCommands_58486:
+GastlyLv17EnergyConversionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6985d
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69884
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69864
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6986b
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GastlyLv17EnergyConversion_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GastlyLv17EnergyConversion_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GastlyLv17EnergyConversion_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GastlyLv17EnergyConversion_AISelection
 	db $00
 
-EffectCommands_58494:
+HaunterLv22HypnosisMoveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_698a6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv22HypnosisMove_BeforeDamage
 	db $00
 
-EffectCommands_58499:
+HaunterLv22DreamEaterEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_698aa
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HaunterLv22DreamEater_InitialEffect1
 	db $00
 
-EffectCommands_5849e:
+HaunterLv17TransparencyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_698b9
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HaunterLv17Transparency_InitialEffect1
 	db $00
 
-EffectCommands_584a3:
+HaunterLv17NightmareEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_698bb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv17Nightmare_BeforeDamage
 	db $00
 
-EffectCommands_584a8:
+HypnoLv36ProphecyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_698bf
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69915
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_698d6
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69910
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HypnoLv36Prophecy_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, HypnoLv36Prophecy_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, HypnoLv36Prophecy_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, HypnoLv36Prophecy_AISelection
 	db $00
 
-EffectCommands_584b6:
+HypnoLv36DarkMindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69a0f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_699fd
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69a01
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, HypnoLv36DarkMind_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, HypnoLv36DarkMind_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, HypnoLv36DarkMind_AISelection
 	db $00
 
-EffectCommands_584c1:
+DrowzeeLv12ConfuseRayEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69a22
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DrowzeeLv12ConfuseRay_BeforeDamage
 	db $00
 
-EffectCommands_584c6:
+MrMimeLv28InvisibleWallEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69a26
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MrMimeLv28InvisibleWall_InitialEffect1
 	db $00
 
-EffectCommands_584cb:
+MrMimeLv28MeditateEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69a28
-	dbw EFFECTCMDTYPE_AI, Func_69a28
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MrMimeLv28Meditate_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MrMimeLv28Meditate_BeforeDamage
 	db $00
 
-EffectCommands_584d3:
+AlakazamLv42DamageSwapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69a37
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69a4b
-	dbw EFFECTCMDTYPE_UNK_11, Func_69acc
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, AlakazamLv42DamageSwap_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AlakazamLv42DamageSwap_BeforeDamage
+	dbw EFFECTCMDTYPE_UNK_11, AlakazamLv42DamageSwap_Unk11
 	db $00
 
-EffectCommands_584de:
+AlakazamLv42ConfuseRayEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69af1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AlakazamLv42ConfuseRay_BeforeDamage
 	db $00
 
-EffectCommands_584e3:
+MewLv23PsywaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69afb
-	dbw EFFECTCMDTYPE_AI, Func_69af5
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewLv23Psywave_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MewLv23Psywave_AI
 	db $00
 
-EffectCommands_584eb:
+MewLv23DevolutionBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69b05
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69b16
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69b68
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69b6d
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69b50
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewLv23DevolutionBeam_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MewLv23DevolutionBeam_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewLv23DevolutionBeam_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewLv23DevolutionBeam_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewLv23DevolutionBeam_AISelection
 	db $00
 
-EffectCommands_584fc:
+MewLv8NeutralShieldEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69c2e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewLv8NeutralShield_InitialEffect1
 	db $00
 
-EffectCommands_58501:
+MewLv8PsyshockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69c30
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewLv8Psyshock_BeforeDamage
 	db $00
 
-EffectCommands_58506:
+MewtwoLv53PsychicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69c3a
-	dbw EFFECTCMDTYPE_AI, Func_69c34
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewtwoLv53Psychic_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MewtwoLv53Psychic_AI
 	db $00
 
-EffectCommands_5850e:
+MewtwoLv53BarrierEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69c47
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69c4a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69c6d
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69c67
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69c5c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoLv53Barrier_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MewtwoLv53Barrier_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewtwoLv53Barrier_BeforeDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, MewtwoLv53Barrier_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewtwoLv53Barrier_AISelection
 	db $00
 
-EffectCommands_5851f:
+MewtwoAltLv60EnergyAbsorptionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69c73
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69c9a
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69c7a
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69c81
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoAltLv60EnergyAbsorption_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoAltLv60EnergyAbsorption_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MewtwoAltLv60EnergyAbsorption_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewtwoAltLv60EnergyAbsorption_AISelection
 	db $00
 
-EffectCommands_5852d:
+MewtwoLv60EnergyAbsorptionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69cab
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69cd2
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69cb2
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69cb9
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoLv60EnergyAbsorption_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoLv60EnergyAbsorption_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MewtwoLv60EnergyAbsorption_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewtwoLv60EnergyAbsorption_AISelection
 	db $00
 
-EffectCommands_5853b:
+SlowbroLv26StrangeBehaviorEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69ce3
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69d03
-	dbw EFFECTCMDTYPE_UNK_11, Func_69d59
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SlowbroLv26StrangeBehavior_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SlowbroLv26StrangeBehavior_BeforeDamage
+	dbw EFFECTCMDTYPE_UNK_11, SlowbroLv26StrangeBehavior_Unk11
 	db $00
 
-EffectCommands_58546:
+SlowbroLv26PsyshockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69d79
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SlowbroLv26Psyshock_BeforeDamage
 	db $00
 
-EffectCommands_5854b:
+SlowpokeLv18SpacingOutEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69d7d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69d88
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69d99
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowpokeLv18SpacingOut_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SlowpokeLv18SpacingOut_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SlowpokeLv18SpacingOut_AfterDamage
 	db $00
 
-EffectCommands_58556:
+SlowpokeLv18ScavengeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69da4
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69daf
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69df4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69ddb
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69dd5
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69dc2
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowpokeLv18Scavenge_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SlowpokeLv18Scavenge_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SlowpokeLv18Scavenge_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SlowpokeLv18Scavenge_RequireSelection
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, SlowpokeLv18Scavenge_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, SlowpokeLv18Scavenge_AISelection
 	db $00
 
-EffectCommands_5856a:
+SlowpokeLv9AmnesiaEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69e09
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69e0d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69e15
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69e11
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowpokeLv9Amnesia_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SlowpokeLv9Amnesia_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SlowpokeLv9Amnesia_BeforeDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, SlowpokeLv9Amnesia_AISelection
 	db $00
 
-EffectCommands_58578:
+KadabraLv38RecoverEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69e19
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_69e26
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69e49
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_69e43
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69e38
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KadabraLv38Recover_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, KadabraLv38Recover_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, KadabraLv38Recover_AfterDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, KadabraLv38Recover_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, KadabraLv38Recover_AISelection
 	db $00
 
-EffectCommands_58589:
+JynxLv23DoubleSlapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69e5e
-	dbw EFFECTCMDTYPE_AI, Func_69e55
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JynxLv23DoubleSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JynxLv23DoubleSlap_AI
 	db $00
 
-EffectCommands_58591:
+JynxLv23MeditateEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69e73
-	dbw EFFECTCMDTYPE_AI, Func_69e73
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JynxLv23Meditate_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JynxLv23Meditate_BeforeDamage
 	db $00
 
-EffectCommands_58599:
+MewLv15MysteryAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69e8b
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69ec0
-	dbw EFFECTCMDTYPE_AI, Func_69e82
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewLv15MysteryAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewLv15MysteryAttack_AfterDamage
+	dbw EFFECTCMDTYPE_AI, MewLv15MysteryAttack_AI
 	db $00
 
-EffectCommands_585a4:
+GeodudeLv16StoneBarrageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69ed5
-	dbw EFFECTCMDTYPE_AI, Func_69ecc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GeodudeLv16StoneBarrage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GeodudeLv16StoneBarrage_AI
 	db $00
 
-EffectCommands_585ac:
+OnixLv12HardenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69ef8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OnixLv12Harden_BeforeDamage
 	db $00
 
-EffectCommands_585b1:
+PrimeapeFurySwipesEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69f07
-	dbw EFFECTCMDTYPE_AI, Func_69efe
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PrimeapeFurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PrimeapeFurySwipes_AI
 	db $00
 
-EffectCommands_585b9:
+PrimeapeTantrumEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69f1d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PrimeapeTantrum_BeforeDamage
 	db $00
 
-EffectCommands_585be:
+MachampLv67StrikesBackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69f33
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MachampLv67StrikesBack_InitialEffect1
 	db $00
 
-EffectCommands_585c3:
+KabutoLv9KabutoArmorEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69f35
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KabutoLv9KabutoArmor_InitialEffect1
 	db $00
 
-EffectCommands_585c8:
+KabutopsAbsorbEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69f37
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, KabutopsAbsorb_AfterDamage
 	db $00
 
-EffectCommands_585cd:
+CuboneLv13SnivelEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69f4f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CuboneLv13Snivel_BeforeDamage
 	db $00
 
-EffectCommands_585d2:
+CuboneLv13RageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69f59
-	dbw EFFECTCMDTYPE_AI, Func_69f55
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CuboneLv13Rage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, CuboneLv13Rage_AI
 	db $00
 
-EffectCommands_585da:
+MarowakLv26BonemerangEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69f6b
-	dbw EFFECTCMDTYPE_AI, Func_69f62
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MarowakLv26Bonemerang_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MarowakLv26Bonemerang_AI
 	db $00
 
-EffectCommands_585e2:
+MarowakLv26CallForFriendEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_69f83
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_69fc4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_69f8d
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_69fab
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MarowakLv26CallForFriend_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MarowakLv26CallForFriend_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MarowakLv26CallForFriend_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MarowakLv26CallForFriend_AISelection
 	db $00
 
-EffectCommands_585f0:
+MachokeLv40KarateChopEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_69fec
-	dbw EFFECTCMDTYPE_AI, Func_69fe4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachokeLv40KarateChop_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MachokeLv40KarateChop_AI
 	db $00
 
-EffectCommands_585f8:
+MachokeLv40SubmissionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a003
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MachokeLv40Submission_AfterDamage
 	db $00
 
-EffectCommands_585fd:
+GolemLv36SelfdestructEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a009
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolemLv36Selfdestruct_AfterDamage
 	db $00
 
-EffectCommands_58602:
+GravelerLv29HardenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a025
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GravelerLv29Harden_BeforeDamage
 	db $00
 
-EffectCommands_58607:
+RhydonLv48RamAltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a033
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a02b
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6a02b
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RhydonLv48RamAlt_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RhydonLv48RamAlt_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, RhydonLv48RamAlt_RequireSelection
 	db $00
 
-EffectCommands_58612:
+RhyhornLeerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a041
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RhyhornLeer_BeforeDamage
 	db $00
 
-EffectCommands_58617:
+HitmonleeLv30StretchKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a055
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a063
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a059
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a05d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HitmonleeLv30StretchKick_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, HitmonleeLv30StretchKick_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, HitmonleeLv30StretchKick_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, HitmonleeLv30StretchKick_AISelection
 	db $00
 
-EffectCommands_58625:
+SandshrewLv12SandAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a073
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandshrewLv12SandAttack_BeforeDamage
 	db $00
 
-EffectCommands_5862a:
+SandslashLv33FurySwipesEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a082
-	dbw EFFECTCMDTYPE_AI, Func_6a079
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandslashLv33FurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, SandslashLv33FurySwipes_AI
 	db $00
 
-EffectCommands_58632:
+DugtrioLv36EarthquakeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a098
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DugtrioLv36Earthquake_AfterDamage
 	db $00
 
-EffectCommands_58637:
+AerodactylLv28PrehistoricPowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a0a1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, AerodactylLv28PrehistoricPower_InitialEffect1
 	db $00
 
-EffectCommands_5863c:
+MankeyLv7PeekEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a0a3
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a0a6
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MankeyLv7Peek_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MankeyLv7Peek_BeforeDamage
 	db $00
 
-EffectCommands_58644:
+MarowakLv32BoneAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a0f9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MarowakLv32BoneAttack_BeforeDamage
 	db $00
 
-EffectCommands_58649:
+MarowakLv32WailEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a10b
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a12c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MarowakLv32Wail_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MarowakLv32Wail_AfterDamage
 	db $00
 
-EffectCommands_58651:
+ElectabuzzLv35ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a190
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectabuzzLv35Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_58656:
+ElectabuzzLv35ThunderpunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a19d
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a1ac
-	dbw EFFECTCMDTYPE_AI, Func_6a194
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectabuzzLv35Thunderpunch_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ElectabuzzLv35Thunderpunch_AfterDamage
+	dbw EFFECTCMDTYPE_AI, ElectabuzzLv35Thunderpunch_AI
 	db $00
 
-EffectCommands_58661:
+ElectabuzzLv20LightScreenEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a1b6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectabuzzLv20LightScreen_BeforeDamage
 	db $00
 
-EffectCommands_58666:
+ElectabuzzLv20QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a1c5
-	dbw EFFECTCMDTYPE_AI, Func_6a1bc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectabuzzLv20QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ElectabuzzLv20QuickAttack_AI
 	db $00
 
-EffectCommands_5866e:
+MagnemiteLv13ThunderWaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a1d8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnemiteLv13ThunderWave_BeforeDamage
 	db $00
 
-EffectCommands_58673:
+MagnemiteLv13SelfdestructEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a1dc
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnemiteLv13Selfdestruct_AfterDamage
 	db $00
 
-EffectCommands_58678:
+ZapdosLv64ThunderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a1f8
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a207
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ZapdosLv64Thunder_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZapdosLv64Thunder_AfterDamage
 	db $00
 
-EffectCommands_58680:
+ZapdosLv64ThunderboltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a217
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ZapdosLv64Thunderbolt_BeforeDamage
 	db $00
 
-EffectCommands_58685:
+ZapdosLv40ThunderstormEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a227
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZapdosLv40Thunderstorm_AfterDamage
 	db $00
 
-EffectCommands_5868a:
+JolteonLv29QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a2c4
-	dbw EFFECTCMDTYPE_AI, Func_6a2bb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JolteonLv29QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JolteonLv29QuickAttack_AI
 	db $00
 
-EffectCommands_58692:
+JolteonLv29PinMissileEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a2d3
-	dbw EFFECTCMDTYPE_AI, Func_6a2ca
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JolteonLv29PinMissile_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JolteonLv29PinMissile_AI
 	db $00
 
-EffectCommands_5869a:
+FlyingPikachuLv12ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a2e9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlyingPikachuLv12Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_5869f:
+FlyingPikachuLv12FlyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a2ef
-	dbw EFFECTCMDTYPE_AI, Func_6a2ed
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlyingPikachuLv12Fly_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FlyingPikachuLv12Fly_AI
 	db $00
 
-EffectCommands_586a7:
+FlyingPikachuAltLv12ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a318
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlyingPikachuAltLv12Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_586ac:
+FlyingPikachuAltLv12FlyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a31e
-	dbw EFFECTCMDTYPE_AI, Func_6a31c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FlyingPikachuAltLv12Fly_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FlyingPikachuAltLv12Fly_AI
 	db $00
 
-EffectCommands_586b4:
+PikachuLv12ThunderJoltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a320
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a32f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv12ThunderJolt_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PikachuLv12ThunderJolt_AfterDamage
 	db $00
 
-EffectCommands_586bc:
+PikachuLv14SparkEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a351
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a33f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a343
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PikachuLv14Spark_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PikachuLv14Spark_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, PikachuLv14Spark_AISelection
 	db $00
 
-EffectCommands_586c7:
+PikachuLv16GrowlEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a366
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv16Growl_BeforeDamage
 	db $00
 
-EffectCommands_586cc:
+PikachuLv16ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a36c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv16Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_586d1:
+PikachuAltLv16GrowlEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a370
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuAltLv16Growl_BeforeDamage
 	db $00
 
-EffectCommands_586d6:
+PikachuAltLv16ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a376
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuAltLv16Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_586db:
+ElectrodeLv42ChainLightningEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a37a
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ElectrodeLv42ChainLightning_AfterDamage
 	db $00
 
-EffectCommands_586e0:
+RaichuLv40AgilityEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a3c0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv40Agility_BeforeDamage
 	db $00
 
-EffectCommands_586e5:
+RaichuLv40ThunderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a3d2
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a3e1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv40Thunder_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RaichuLv40Thunder_AfterDamage
 	db $00
 
-EffectCommands_586ed:
+RaichuLv45GigashockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a4f7
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a3f1
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a49f
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RaichuLv45Gigashock_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RaichuLv45Gigashock_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, RaichuLv45Gigashock_AISelection
 	db $00
 
-EffectCommands_586f8:
+MagnetonLv28ThunderWaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a511
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnetonLv28ThunderWave_BeforeDamage
 	db $00
 
-EffectCommands_586fd:
+MagnetonLv28SelfdestructEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a515
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnetonLv28Selfdestruct_AfterDamage
 	db $00
 
-EffectCommands_58702:
+MagnetonLv35SonicboomEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a531
-	dbw EFFECTCMDTYPE_AI, Func_6a531
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnetonLv35Sonicboom_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagnetonLv35Sonicboom_BeforeDamage
 	db $00
 
-EffectCommands_5870a:
+MagnetonLv35SelfdestructEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a537
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnetonLv35Selfdestruct_AfterDamage
 	db $00
 
-EffectCommands_5870f:
+ZapdosLv68PealOfThunderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a553
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6a555
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ZapdosLv68PealOfThunder_InitialEffect1
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, ZapdosLv68PealOfThunder_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58717:
+ZapdosLv68BigThunderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a59a
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZapdosLv68BigThunder_AfterDamage
 	db $00
 
-EffectCommands_5871c:
+MagnemiteLv14MagneticStormEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a5a4
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnemiteLv14MagneticStorm_AfterDamage
 	db $00
 
-EffectCommands_58721:
+ElectrodeLv35SonicboomEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a63b
-	dbw EFFECTCMDTYPE_AI, Func_6a63b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectrodeLv35Sonicboom_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ElectrodeLv35Sonicboom_BeforeDamage
 	db $00
 
-EffectCommands_58729:
+ElectrodeLv35EnergySpikeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a641
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a681
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a646
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a67c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ElectrodeLv35EnergySpike_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ElectrodeLv35EnergySpike_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ElectrodeLv35EnergySpike_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, ElectrodeLv35EnergySpike_AISelection
 	db $00
 
-EffectCommands_58737:
+JolteonLv24DoubleKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a6c2
-	dbw EFFECTCMDTYPE_AI, Func_6a6b9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JolteonLv24DoubleKick_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JolteonLv24DoubleKick_AI
 	db $00
 
-EffectCommands_5873f:
+JolteonLv24StunNeedleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a6d8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JolteonLv24StunNeedle_BeforeDamage
 	db $00
 
-EffectCommands_58744:
+EeveeLv12TailWhipEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a6dc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EeveeLv12TailWhip_BeforeDamage
 	db $00
 
-EffectCommands_58749:
+EeveeLv12QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a6f9
-	dbw EFFECTCMDTYPE_AI, Func_6a6f0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EeveeLv12QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, EeveeLv12QuickAttack_AI
 	db $00
 
-EffectCommands_58751:
+SpearowLv13MirrorMoveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a702
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a705
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a711
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a714
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a708
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a70b
-	dbw EFFECTCMDTYPE_AI, Func_6a6ff
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6a70e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SpearowLv13MirrorMove_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SpearowLv13MirrorMove_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SpearowLv13MirrorMove_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SpearowLv13MirrorMove_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SpearowLv13MirrorMove_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, SpearowLv13MirrorMove_AISelection
+	dbw EFFECTCMDTYPE_AI, SpearowLv13MirrorMove_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, SpearowLv13MirrorMove_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_5876b:
+FearowLv27AgilityEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a717
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FearowLv27Agility_BeforeDamage
 	db $00
 
-EffectCommands_58770:
+DragoniteLv45StepInEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a729
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a738
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DragoniteLv45StepIn_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragoniteLv45StepIn_BeforeDamage
 	db $00
 
-EffectCommands_58778:
+DragoniteLv45SlamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a74b
-	dbw EFFECTCMDTYPE_AI, Func_6a742
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragoniteLv45Slam_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DragoniteLv45Slam_AI
 	db $00
 
-EffectCommands_58780:
+SnorlaxLv20ThickSkinnedEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a762
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SnorlaxLv20ThickSkinned_InitialEffect1
 	db $00
 
-EffectCommands_58785:
+SnorlaxLv20BodySlamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a764
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SnorlaxLv20BodySlam_BeforeDamage
 	db $00
 
-EffectCommands_5878a:
+FarfetchdLv20LeekSlapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a771
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a782
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6a77c
-	dbw EFFECTCMDTYPE_AI, Func_6a768
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, FarfetchdLv20LeekSlap_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FarfetchdLv20LeekSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, FarfetchdLv20LeekSlap_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI, FarfetchdLv20LeekSlap_AI
 	db $00
 
-EffectCommands_58798:
+KangaskhanLv40FetchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a78e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a793
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KangaskhanLv40Fetch_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, KangaskhanLv40Fetch_AfterDamage
 	db $00
 
-EffectCommands_587a0:
+KangaskhanLv40CometPunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a7ba
-	dbw EFFECTCMDTYPE_AI, Func_6a7b1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KangaskhanLv40CometPunch_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KangaskhanLv40CometPunch_AI
 	db $00
 
-EffectCommands_587a8:
+TaurosLv32StompEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a7d9
-	dbw EFFECTCMDTYPE_AI, Func_6a7d0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TaurosLv32Stomp_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, TaurosLv32Stomp_AI
 	db $00
 
-EffectCommands_587b0:
+TaurosLv32RampageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a7e9
-	dbw EFFECTCMDTYPE_AI, Func_6a7df
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TaurosLv32Rampage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, TaurosLv32Rampage_AI
 	db $00
 
-EffectCommands_587b8:
+DoduoLv10FuryAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a807
-	dbw EFFECTCMDTYPE_AI, Func_6a7fe
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DoduoLv10FuryAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DoduoLv10FuryAttack_AI
 	db $00
 
-EffectCommands_587c0:
+DodrioLv28RetreatAidEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a81c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DodrioLv28RetreatAid_InitialEffect1
 	db $00
 
-EffectCommands_587c5:
+DodrioLv28RageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a822
-	dbw EFFECTCMDTYPE_AI, Func_6a81e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DodrioLv28Rage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DodrioLv28Rage_AI
 	db $00
 
-EffectCommands_587cd:
+MeowthLv15PayDayEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a82b
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MeowthLv15PayDay_AfterDamage
 	db $00
 
-EffectCommands_587d2:
+DragonairSlamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a859
-	dbw EFFECTCMDTYPE_AI, Func_6a850
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragonairSlam_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DragonairSlam_AI
 	db $00
 
-EffectCommands_587da:
+DragonairHyperBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a875
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a871
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a873
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DragonairHyperBeam_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DragonairHyperBeam_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DragonairHyperBeam_AISelection
 	db $00
 
-EffectCommands_587e5:
+ClefableMetronomeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a8bf
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a8cc
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a8c8
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ClefableMetronome_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ClefableMetronome_InitialEffect2
+	dbw EFFECTCMDTYPE_AI_SELECTION, ClefableMetronome_AISelection
 	db $00
 
-EffectCommands_587f0:
+ClefableMinimizeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a8d2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ClefableMinimize_BeforeDamage
 	db $00
 
-EffectCommands_587f5:
+PidgeotLv40HurricaneEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a8d8
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeotLv40Hurricane_AfterDamage
 	db $00
 
-EffectCommands_587fa:
+PidgeottoLv36WhirlwindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a927
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a91f
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6a91f
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeottoLv36Whirlwind_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PidgeottoLv36Whirlwind_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, PidgeottoLv36Whirlwind_RequireSelection
 	db $00
 
-EffectCommands_58805:
+PidgeottoLv36MirrorMoveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a930
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a933
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a93f
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a942
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6a936
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a939
-	dbw EFFECTCMDTYPE_AI, Func_6a92d
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6a93c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PidgeottoLv36MirrorMove_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PidgeottoLv36MirrorMove_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PidgeottoLv36MirrorMove_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeottoLv36MirrorMove_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PidgeottoLv36MirrorMove_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, PidgeottoLv36MirrorMove_AISelection
+	dbw EFFECTCMDTYPE_AI, PidgeottoLv36MirrorMove_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, PidgeottoLv36MirrorMove_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_5881f:
+ClefairyLv14SingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a945
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ClefairyLv14Sing_BeforeDamage
 	db $00
 
-EffectCommands_58824:
+ClefairyLv14MetronomeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a949
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6a956
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6a952
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ClefairyLv14Metronome_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ClefairyLv14Metronome_InitialEffect2
+	dbw EFFECTCMDTYPE_AI_SELECTION, ClefairyLv14Metronome_AISelection
 	db $00
 
-EffectCommands_5882f:
+WigglytuffLv36LullabyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a9de
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WigglytuffLv36Lullaby_BeforeDamage
 	db $00
 
-EffectCommands_58834:
+WigglytuffLv36DoTheWaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a9e2
-	dbw EFFECTCMDTYPE_AI, Func_6a9e2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WigglytuffLv36DoTheWave_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, WigglytuffLv36DoTheWave_BeforeDamage
 	db $00
 
-EffectCommands_5883c:
+JigglypuffLv14LullabyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6a9ed
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JigglypuffLv14Lullaby_BeforeDamage
 	db $00
 
-EffectCommands_58841:
+JigglypuffLv12FirstAidEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6a9f1
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6a9fc
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, JigglypuffLv12FirstAid_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, JigglypuffLv12FirstAid_AfterDamage
 	db $00
 
-EffectCommands_58849:
+JigglypuffLv12DoubleEdgeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6aa03
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, JigglypuffLv12DoubleEdge_AfterDamage
 	db $00
 
-EffectCommands_5884e:
+PersianPounceEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6aa09
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PersianPounce_BeforeDamage
 	db $00
 
-EffectCommands_58853:
+LickitungLv26TongueWrapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6aa0f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LickitungLv26TongueWrap_BeforeDamage
 	db $00
 
-EffectCommands_58858:
+LickitungLv26SupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6aa13
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LickitungLv26Supersonic_BeforeDamage
 	db $00
 
-EffectCommands_5885d:
+PidgeyLv8WhirlwindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6aa1f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6aa17
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6aa17
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeyLv8Whirlwind_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PidgeyLv8Whirlwind_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, PidgeyLv8Whirlwind_RequireSelection
 	db $00
 
-EffectCommands_58868:
+PorygonLv12Conversion1EffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6aa25
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6aa27
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6aa2c
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6aa29
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PorygonLv12Conversion1_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PorygonLv12Conversion1_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PorygonLv12Conversion1_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, PorygonLv12Conversion1_AISelection
 	db $00
 
-EffectCommands_58876:
+PorygonLv12Conversion2EffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6aa7c
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6aa7e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6aa82
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6aa80
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PorygonLv12Conversion2_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PorygonLv12Conversion2_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PorygonLv12Conversion2_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, PorygonLv12Conversion2_AISelection
 	db $00
 
-EffectCommands_58884:
+ChanseyLv55ScrunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ab44
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ChanseyLv55Scrunch_BeforeDamage
 	db $00
 
-EffectCommands_58889:
+ChanseyLv55DoubleEdgeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ab58
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ChanseyLv55DoubleEdge_AfterDamage
 	db $00
 
-EffectCommands_5888e:
+RaticateSuperFangEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ab5e
-	dbw EFFECTCMDTYPE_AI, Func_6ab5e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaticateSuperFang_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, RaticateSuperFang_BeforeDamage
 	db $00
 
 ; unreferenced
 EffectCommands_58896:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6ab6f
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ab8c
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6ab77
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, EffectCommands_58896_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EffectCommands_58896_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, EffectCommands_58896_RequireSelection
 	db $00
 
-EffectCommands_588a1:
+DragoniteLv41HealingWindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6aba1
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6aba3
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DragoniteLv41HealingWind_InitialEffect1
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, DragoniteLv41HealingWind_PkmnPowerTrigger
 	db $00
 
-EffectCommands_588a9:
+DragoniteLv41SlamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6abf9
-	dbw EFFECTCMDTYPE_AI, Func_6abf0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragoniteLv41Slam_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DragoniteLv41Slam_AI
 	db $00
 
-EffectCommands_588b1:
+MeowthLv13CatPunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ac31
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MeowthLv13CatPunch_AfterDamage
 	db $00
 
-EffectCommands_588b6:
+DittoMorphEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6ac47
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ac4c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DittoMorph_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DittoMorph_AfterDamage
 	db $00
 
-EffectCommands_588be:
+PidgeotLv38SlicingWingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ad1a
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeotLv38SlicingWing_AfterDamage
 	db $00
 
-EffectCommands_588c3:
+PidgeotLv38GaleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ad2b
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ad31
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PidgeotLv38Gale_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeotLv38Gale_AfterDamage
 	db $00
 
-EffectCommands_588cb:
+JigglypuffLv13FriendshipSongEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6ad65
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6ad6f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, JigglypuffLv13FriendshipSong_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, JigglypuffLv13FriendshipSong_AfterDamage
 	db $00
 
-EffectCommands_588d3:
+JigglypuffLv13ExpandEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6adab
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, JigglypuffLv13Expand_AfterDamage
 	db $00
 
-EffectCommands_588d8:
+CharmanderLv9GatherFireEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6adb1
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ade0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6adb5
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CharmanderLv9GatherFire_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CharmanderLv9GatherFire_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, CharmanderLv9GatherFire_RequireSelection
 	db $00
 
-EffectCommands_588e3:
+DarkCharmeleonFireballEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6ae09
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ae3a
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6ae23
-	dbw EFFECTCMDTYPE_AI, Func_6ae00
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6ae10
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkCharmeleonFireball_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkCharmeleonFireball_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkCharmeleonFireball_RequireSelection
+	dbw EFFECTCMDTYPE_AI, DarkCharmeleonFireball_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, DarkCharmeleonFireball_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_588f4:
+DarkCharizardContinuousFireballEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6ae4f
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6aef6
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6aea9
-	dbw EFFECTCMDTYPE_AI, Func_6ae56
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6ae75
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkCharizardContinuousFireball_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkCharizardContinuousFireball_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkCharizardContinuousFireball_RequireSelection
+	dbw EFFECTCMDTYPE_AI, DarkCharizardContinuousFireball_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, DarkCharizardContinuousFireball_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58905:
+PonytaLv15EmberEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6af16
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6af1a
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6af22
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6af1e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PonytaLv15Ember_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PonytaLv15Ember_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, PonytaLv15Ember_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, PonytaLv15Ember_AISelection
 	db $00
 
-EffectCommands_58913:
+DarkRapidashFlamePillarEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6af62
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6af2c
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6af27
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkRapidashFlamePillar_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkRapidashFlamePillar_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkRapidashFlamePillar_AISelection
 	db $00
 
-EffectCommands_5891e:
+DarkFlareonRageEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6af82
-	dbw EFFECTCMDTYPE_AI, Func_6af7e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkFlareonRage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkFlareonRage_AI
 	db $00
 
-EffectCommands_58926:
+DarkFlareonPlayingWithFireEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6af8b
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6aff0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6afc5
-	dbw EFFECTCMDTYPE_AI, Func_6af8f
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6afaa
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkFlareonPlayingWithFire_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkFlareonPlayingWithFire_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkFlareonPlayingWithFire_RequireSelection
+	dbw EFFECTCMDTYPE_AI, DarkFlareonPlayingWithFire_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, DarkFlareonPlayingWithFire_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58937:
+DarkWartortleDoubleSlapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b014
-	dbw EFFECTCMDTYPE_AI, Func_6b00b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkWartortleDoubleSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkWartortleDoubleSlap_AI
 	db $00
 
-EffectCommands_5893f:
+DarkWartortleMirrorShellEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b029
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkWartortleMirrorShell_BeforeDamage
 	db $00
 
-EffectCommands_58944:
+DarkBlastoiseHydrocannonEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b02f
-	dbw EFFECTCMDTYPE_AI, Func_6b02f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkBlastoiseHydrocannon_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkBlastoiseHydrocannon_BeforeDamage
 	db $00
 
-EffectCommands_5894c:
+DarkBlastoiseRocketTackleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b036
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b045
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkBlastoiseRocketTackle_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkBlastoiseRocketTackle_AfterDamage
 	db $00
 
-EffectCommands_58954:
+PsyduckLv16DizzinessEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b059
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b05e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PsyduckLv16Dizziness_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PsyduckLv16Dizziness_AfterDamage
 	db $00
 
-EffectCommands_5895c:
+PsyduckLv16WaterGunEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b07c
-	dbw EFFECTCMDTYPE_AI, Func_6b07c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PsyduckLv16WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PsyduckLv16WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_58964:
+DarkGolduckThirdEyeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b083
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b0a4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b0ba
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_6b0b5
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b097
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkGolduckThirdEye_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkGolduckThirdEye_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkGolduckThirdEye_AfterDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, DarkGolduckThirdEye_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkGolduckThirdEye_AISelection
 	db $00
 
-EffectCommands_58975:
+MagikarpLv6RapidEvolutionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b0da
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b131
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b0f4
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b115
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MagikarpLv6RapidEvolution_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagikarpLv6RapidEvolution_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MagikarpLv6RapidEvolution_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagikarpLv6RapidEvolution_AISelection
 	db $00
 
-EffectCommands_58983:
+DarkGyaradosFinalBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b149
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkGyaradosFinalBeam_InitialEffect1
 	db $00
 
-EffectCommands_58988:
+DarkGyaradosIceBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b14b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGyaradosIceBeam_BeforeDamage
 	db $00
 
-EffectCommands_5898d:
+DarkVaporeonWhirlpoolEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b157
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b14f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b153
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkVaporeonWhirlpool_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkVaporeonWhirlpool_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkVaporeonWhirlpool_AISelection
 	db $00
 
-EffectCommands_58998:
+EkansLv15PoisonStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b164
-	dbw EFFECTCMDTYPE_AI, Func_6b15b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EkansLv15PoisonSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, EkansLv15PoisonSting_AI
 	db $00
 
-EffectCommands_589a0:
+DarkArbokStareEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b182
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b184
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b17c
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b180
-	dbw EFFECTCMDTYPE_AI, Func_6b176
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkArbokStare_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkArbokStare_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkArbokStare_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkArbokStare_AISelection
+	dbw EFFECTCMDTYPE_AI, DarkArbokStare_AI
 	db $00
 
-EffectCommands_589b1:
+DarkArbokPoisonVaporEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b1f3
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b1f7
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkArbokPoisonVapor_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkArbokPoisonVapor_AfterDamage
 	db $00
 
-EffectCommands_589b9:
+DarkGolbatSneakAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b208
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b20a
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6b21b
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkGolbatSneakAttack_InitialEffect1
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkGolbatSneakAttack_RequireSelection
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, DarkGolbatSneakAttack_PkmnPowerTrigger
 	db $00
 
-EffectCommands_589c4:
+DarkGolbatFlitterEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b23e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b252
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b234
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b238
-	dbw EFFECTCMDTYPE_AI, Func_6b22e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGolbatFlitter_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkGolbatFlitter_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkGolbatFlitter_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkGolbatFlitter_AISelection
+	dbw EFFECTCMDTYPE_AI, DarkGolbatFlitter_AI
 	db $00
 
-EffectCommands_589d5:
+OddishLv21SleepPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b267
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OddishLv21SleepPowder_BeforeDamage
 	db $00
 
-EffectCommands_589da:
+OddishLv21PoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b274
-	dbw EFFECTCMDTYPE_AI, Func_6b26b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OddishLv21PoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, OddishLv21PoisonPowder_AI
 	db $00
 
-EffectCommands_589e2:
+DarkGloomPollenStenchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b278
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b27c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkGloomPollenStench_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGloomPollenStench_BeforeDamage
 	db $00
 
-EffectCommands_589ea:
+DarkGloomPoisonPowderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b2ca
-	dbw EFFECTCMDTYPE_AI, Func_6b2c1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGloomPoisonPowder_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkGloomPoisonPowder_AI
 	db $00
 
-EffectCommands_589f2:
+DarkVileplumeHayFeverEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b2ce
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkVileplumeHayFever_InitialEffect1
 	db $00
 
-EffectCommands_589f7:
+DarkVileplumePetalWhirlwindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b2d9
-	dbw EFFECTCMDTYPE_AI, Func_6b2d0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkVileplumePetalWhirlwind_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkVileplumePetalWhirlwind_AI
 	db $00
 
-EffectCommands_589ff:
+GrimerLv10PoisonGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b307
-	dbw EFFECTCMDTYPE_AI, Func_6b2fe
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrimerLv10PoisonGas_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GrimerLv10PoisonGas_AI
 	db $00
 
-EffectCommands_58a07:
+GrimerLv10StickyHandsEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b314
-	dbw EFFECTCMDTYPE_AI, Func_6b30b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrimerLv10StickyHands_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GrimerLv10StickyHands_AI
 	db $00
 
-EffectCommands_58a0f:
+DarkMukStickyGooEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b324
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkMukStickyGoo_InitialEffect1
 	db $00
 
-EffectCommands_58a14:
+DarkMukSludgePunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b32f
-	dbw EFFECTCMDTYPE_AI, Func_6b326
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkMukSludgePunch_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkMukSludgePunch_AI
 	db $00
 
-EffectCommands_58a1c:
+KoffingLv12PoisonGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b33c
-	dbw EFFECTCMDTYPE_AI, Func_6b333
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KoffingLv12PoisonGas_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KoffingLv12PoisonGas_AI
 	db $00
 
-EffectCommands_58a24:
+DarkWeezingMassExplosionEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b340
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b357
-	dbw EFFECTCMDTYPE_AI, Func_6b340
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkWeezingMassExplosion_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkWeezingMassExplosion_AfterDamage
+	dbw EFFECTCMDTYPE_AI, DarkWeezingMassExplosion_BeforeDamage
 	db $00
 
-EffectCommands_58a2f:
+DarkWeezingStunGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b3fa
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkWeezingStunGas_BeforeDamage
 	db $00
 
-EffectCommands_58a34:
+AbraLv14VanishEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b40a
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b41f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b40e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, AbraLv14Vanish_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, AbraLv14Vanish_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, AbraLv14Vanish_RequireSelection
 	db $00
 
-EffectCommands_58a3f:
+AbraLv14PsyshockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b44d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AbraLv14Psyshock_BeforeDamage
 	db $00
 
-EffectCommands_58a44:
+DarkKadabraMatterExchangeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b451
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b470
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b463
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkKadabraMatterExchange_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkKadabraMatterExchange_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkKadabraMatterExchange_RequireSelection
 	db $00
 
-EffectCommands_58a4f:
+DarkKadabraMindShockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b4a4
-	dbw EFFECTCMDTYPE_AI, Func_6b4a4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkKadabraMindShock_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkKadabraMindShock_BeforeDamage
 	db $00
 
-EffectCommands_58a57:
+DarkAlakazamTeleportBlastEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b4c9
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b4d4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b4aa
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b4c4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkAlakazamTeleportBlast_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkAlakazamTeleportBlast_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkAlakazamTeleportBlast_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkAlakazamTeleportBlast_AISelection
 	db $00
 
-EffectCommands_58a65:
+DarkAlakazamMindShockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b4fd
-	dbw EFFECTCMDTYPE_AI, Func_6b4fd
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkAlakazamMindShock_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkAlakazamMindShock_BeforeDamage
 	db $00
 
-EffectCommands_58a6d:
+SlowpokeLv16AfternoonNapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b503
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b53f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b508
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b526
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowpokeLv16AfternoonNap_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SlowpokeLv16AfternoonNap_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SlowpokeLv16AfternoonNap_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, SlowpokeLv16AfternoonNap_AISelection
 	db $00
 
-EffectCommands_58a7b:
+DarkSlowbroReelInEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b54f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b551
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6b59e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkSlowbroReelIn_InitialEffect1
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkSlowbroReelIn_RequireSelection
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, DarkSlowbroReelIn_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58a86:
+DarkSlowbroFickleAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b5cb
-	dbw EFFECTCMDTYPE_AI, Func_6b5c2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkSlowbroFickleAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkSlowbroFickleAttack_AI
 	db $00
 
-EffectCommands_58a8e:
+DrowzeeLv10LongDistanceHypnosisEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b5dd
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b5e1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DrowzeeLv10LongDistanceHypnosis_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DrowzeeLv10LongDistanceHypnosis_BeforeDamage
 	db $00
 
-EffectCommands_58a96:
+DrowzeeLv10NightmareEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b626
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DrowzeeLv10Nightmare_BeforeDamage
 	db $00
 
-EffectCommands_58a9b:
+DarkHypnoBenchManipulationEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b640
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b644
-	dbw EFFECTCMDTYPE_AI, Func_6b62a
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkHypnoBenchManipulation_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkHypnoBenchManipulation_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkHypnoBenchManipulation_AI
 	db $00
 
-EffectCommands_58aa6:
+DiglettLv15DigUnderEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b689
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b69d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b67f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b683
-	dbw EFFECTCMDTYPE_AI, Func_6b679
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DiglettLv15DigUnder_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DiglettLv15DigUnder_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DiglettLv15DigUnder_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DiglettLv15DigUnder_AISelection
+	dbw EFFECTCMDTYPE_AI, DiglettLv15DigUnder_AI
 	db $00
 
-EffectCommands_58ab7:
+DarkDugtrioSinkholeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b6af
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkDugtrioSinkhole_InitialEffect1
 	db $00
 
-EffectCommands_58abc:
+DarkDugtrioKnockDownEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b6ba
-	dbw EFFECTCMDTYPE_AI, Func_6b6b1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkDugtrioKnockDown_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkDugtrioKnockDown_AI
 	db $00
 
-EffectCommands_58ac4:
+MankeyLv14MischiefEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b6d4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b6df
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MankeyLv14Mischief_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MankeyLv14Mischief_AfterDamage
 	db $00
 
-EffectCommands_58acc:
+MankeyLv14AngerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b6f2
-	dbw EFFECTCMDTYPE_AI, Func_6b6e9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MankeyLv14Anger_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MankeyLv14Anger_AI
 	db $00
 
-EffectCommands_58ad4:
+DarkPrimeapeFrenzyEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b6f8
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkPrimeapeFrenzy_InitialEffect1
 	db $00
 
-EffectCommands_58ad9:
+DarkPrimeapeFrenziedAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b717
-	dbw EFFECTCMDTYPE_AI, Func_6b6fa
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkPrimeapeFrenziedAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkPrimeapeFrenziedAttack_AI
 	db $00
 
-EffectCommands_58ae1:
+DarkMachokeDragOffEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b724
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b73f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b728
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b739
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkMachokeDragOff_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkMachokeDragOff_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkMachokeDragOff_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkMachokeDragOff_AISelection
 	db $00
 
-EffectCommands_58aef:
+DarkMachokeKnockBackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b77b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b773
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6b773
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkMachokeKnockBack_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkMachokeKnockBack_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, DarkMachokeKnockBack_RequireSelection
 	db $00
 
-EffectCommands_58afa:
+DarkMachampFlingAltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b781
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b785
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkMachampFlingAlt_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkMachampFlingAlt_AfterDamage
 	db $00
 
-EffectCommands_58b02:
+RattataLv12TrickeryEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b7cc
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b7d5
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, RattataLv12Trickery_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RattataLv12Trickery_BeforeDamage
 	db $00
 
-EffectCommands_58b0a:
+RattataLv12QuickAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b82c
-	dbw EFFECTCMDTYPE_AI, Func_6b823
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RattataLv12QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, RattataLv12QuickAttack_AI
 	db $00
 
-EffectCommands_58b12:
+DarkRaticateHyperFangEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b83b
-	dbw EFFECTCMDTYPE_AI, Func_6b832
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkRaticateHyperFang_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkRaticateHyperFang_AI
 	db $00
 
-EffectCommands_58b1a:
+MeowthLv10CoinHurlEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b84d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b880
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b8a1
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b857
-	dbw EFFECTCMDTYPE_AI, Func_6b851
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6b871
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MeowthLv10CoinHurl_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MeowthLv10CoinHurl_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MeowthLv10CoinHurl_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MeowthLv10CoinHurl_RequireSelection
+	dbw EFFECTCMDTYPE_AI, MeowthLv10CoinHurl_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, MeowthLv10CoinHurl_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58b2e:
+DarkPersianLv28FascinateEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b8bc
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b8c2
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b8c4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b8be
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b8c0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkPersianLv28Fascinate_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkPersianLv28Fascinate_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkPersianLv28Fascinate_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkPersianLv28Fascinate_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkPersianLv28Fascinate_AISelection
 	db $00
 
-EffectCommands_58b3f:
+DarkPersianLv28PoisonClawsEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b927
-	dbw EFFECTCMDTYPE_AI, Func_6b91e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkPersianLv28PoisonClaws_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkPersianLv28PoisonClaws_AI
 	db $00
 
-EffectCommands_58b47:
+EeveeLv9SandAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b92b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EeveeLv9SandAttack_BeforeDamage
 	db $00
 
-EffectCommands_58b4c:
+PorygonLv20Conversion1EffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b931
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b935
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6b93d
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6b939
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PorygonLv20Conversion1_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PorygonLv20Conversion1_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PorygonLv20Conversion1_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, PorygonLv20Conversion1_AISelection
 	db $00
 
-EffectCommands_58b5a:
+PorygonLv20PsybeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b941
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PorygonLv20Psybeam_BeforeDamage
 	db $00
 
-EffectCommands_58b5f:
+DratiniLv12WrapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b945
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DratiniLv12Wrap_BeforeDamage
 	db $00
 
-EffectCommands_58b64:
+DarkDragonairEvolutionaryLightEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6b949
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b971
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b952
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkDragonairEvolutionaryLight_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkDragonairEvolutionaryLight_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkDragonairEvolutionaryLight_RequireSelection
 	db $00
 
-EffectCommands_58b6f:
+DarkDragonairTailStrikeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6b99a
-	dbw EFFECTCMDTYPE_AI, Func_6b991
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkDragonairTailStrike_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkDragonairTailStrike_AI
 	db $00
 
-EffectCommands_58b77:
+DarkDragoniteSummonMinionsEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6b9a0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6b9a2
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6ba36
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkDragoniteSummonMinions_InitialEffect1
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkDragoniteSummonMinions_RequireSelection
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, DarkDragoniteSummonMinions_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58b82:
+DarkDragoniteGiantTailEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ba69
-	dbw EFFECTCMDTYPE_AI, Func_6ba60
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkDragoniteGiantTail_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkDragoniteGiantTail_AI
 	db $00
 
-EffectCommands_58b8a:
+MagnemiteLv12MagnetismEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ba7b
-	dbw EFFECTCMDTYPE_AI, Func_6ba7b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnemiteLv12Magnetism_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagnemiteLv12Magnetism_BeforeDamage
 	db $00
 
-EffectCommands_58b92:
+DarkMagnetonSonicboomEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6ba9e
-	dbw EFFECTCMDTYPE_AI, Func_6ba9e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkMagnetonSonicboom_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkMagnetonSonicboom_BeforeDamage
 	db $00
 
-EffectCommands_58b9a:
+DarkMagnetonMagneticLinesEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6bae8
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6babb
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6baa4
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkMagnetonMagneticLines_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkMagnetonMagneticLines_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkMagnetonMagneticLines_AISelection
 	db $00
 
-EffectCommands_58ba5:
+DarkElectrodeEnergyBombEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6bb51
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bb60
-	dbw EFFECTCMDTYPE_UNK_11, Func_6bbd7
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkElectrodeEnergyBomb_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkElectrodeEnergyBomb_BeforeDamage
+	dbw EFFECTCMDTYPE_UNK_11, DarkElectrodeEnergyBomb_Unk11
 	db $00
 
-EffectCommands_58bb0:
+DarkJolteonLightningFlashEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bbe6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkJolteonLightningFlash_BeforeDamage
 	db $00
 
-EffectCommands_58bb5:
+DarkJolteonThunderAttackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bbec
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6bbf9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkJolteonThunderAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkJolteonThunderAttack_AfterDamage
 	db $00
 
-EffectCommands_58bbd:
+ImposterOaksRevengeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64000
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_64009
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64022
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ImposterOaksRevenge_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ImposterOaksRevenge_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ImposterOaksRevenge_BeforeDamage
 	db $00
 
-EffectCommands_58bc8:
+SleepEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6405e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Sleep_BeforeDamage
 	db $00
 
-EffectCommands_58bcd:
+DiggerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64098
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Digger_BeforeDamage
 	db $00
 
-EffectCommands_58bd2:
+TheBosssWayEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64120
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64143
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64125
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, TheBosssWay_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TheBosssWay_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, TheBosssWay_RequireSelection
 	db $00
 
-EffectCommands_58bdd:
+GoopGasAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64162
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GoopGasAttack_BeforeDamage
 	db $00
 
-EffectCommands_58be2:
+RocketsSneakAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_641ba
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6416b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RocketsSneakAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RocketsSneakAttack_RequireSelection
 	db $00
 
-EffectCommands_58bea:
+HereComesTeamRocketEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_641d0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HereComesTeamRocket_BeforeDamage
 	db $00
 
-EffectCommands_58bef:
+NightlyGarbageRunEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_641d6
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64221
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_641dd
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, NightlyGarbageRun_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NightlyGarbageRun_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, NightlyGarbageRun_RequireSelection
 	db $00
 
-EffectCommands_58bfa:
+PotionEnergyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6427d
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, PotionEnergy_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58bff:
+FullhealEnergyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6428b
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, FullhealEnergy_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58c04:
+RainbowEnergyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_6429d
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, RainbowEnergy_PkmnPowerTrigger
 	db $00
 
-EffectCommands_58c09:
+ChallengeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64352
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_642aa
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Challenge_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Challenge_RequireSelection
 	db $00
 
-EffectCommands_58c11:
+BulbasaurLv15FirstAidEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_643b4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_643bf
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, BulbasaurLv15FirstAid_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, BulbasaurLv15FirstAid_AfterDamage
 	db $00
 
-EffectCommands_58c19:
+BulbasaurLv15PoisonSeedEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc0c
-	dbw EFFECTCMDTYPE_AI, Func_6bc03
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BulbasaurLv15PoisonSeed_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, BulbasaurLv15PoisonSeed_AI
 	db $00
 
-EffectCommands_58c21:
+CharmanderLv12GrowlEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_643ce
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CharmanderLv12Growl_BeforeDamage
 	db $00
 
-EffectCommands_58c26:
+SquirtleLv15WaterPowerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_643d5
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SquirtleLv15WaterPower_BeforeDamage
 	db $00
 
-EffectCommands_58c2b:
+MetapodLv20GreenShieldEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_643dc
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MetapodLv20GreenShield_InitialEffect1
 	db $00
 
-EffectCommands_58c30:
+MetapodLv20MysteriousPowerEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc10
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MetapodLv20MysteriousPower_BeforeDamage
 	db $00
 
-EffectCommands_58c35:
+WeedleLv15PoisonHornEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc1d
-	dbw EFFECTCMDTYPE_AI, Func_6bc14
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WeedleLv15PoisonHorn_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, WeedleLv15PoisonHorn_AI
 	db $00
 
-EffectCommands_58c3d:
+KakunaLv20PoisonFluidEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_643de
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KakunaLv20PoisonFluid_InitialEffect1
 	db $00
 
-EffectCommands_58c42:
+PidgeyLv10QuickAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_643ea
-	dbw EFFECTCMDTYPE_AI, Func_643e0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PidgeyLv10QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PidgeyLv10QuickAttack_AI
 	db $00
 
-EffectCommands_58c4a:
+RattataLv15TailWhipEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_643f1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RattataLv15TailWhip_BeforeDamage
 	db $00
 
-EffectCommands_58c4f:
+PikachuLv5ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc21
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv5Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_58c54:
+PikachuLv5AgilityEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6440b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv5Agility_BeforeDamage
 	db $00
 
-EffectCommands_58c59:
+NidoranFLv12TailWhipEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64421
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranFLv12TailWhip_BeforeDamage
 	db $00
 
-EffectCommands_58c5e:
+NidoranFLv12PoisonStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc2e
-	dbw EFFECTCMDTYPE_AI, Func_6bc25
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranFLv12PoisonSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidoranFLv12PoisonSting_AI
 	db $00
 
-EffectCommands_58c66:
+NidoranMLv22FocusEnergyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6443b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranMLv22FocusEnergy_BeforeDamage
 	db $00
 
-EffectCommands_58c6b:
+NidoranMLv22HornRushEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6444c
-	dbw EFFECTCMDTYPE_AI, Func_64442
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidoranMLv22HornRush_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidoranMLv22HornRush_AI
 	db $00
 
-EffectCommands_58c73:
+ClefairyLv15FollowMeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64461
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64486
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64466
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6447f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ClefairyLv15FollowMe_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ClefairyLv15FollowMe_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ClefairyLv15FollowMe_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, ClefairyLv15FollowMe_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58c81:
+ClefairyLv15ShiningFingersEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc32
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ClefairyLv15ShiningFingers_BeforeDamage
 	db $00
 
-EffectCommands_58c86:
+WigglytuffLv40HelpingHandEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6449a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64502
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_644b5
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, WigglytuffLv40HelpingHand_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WigglytuffLv40HelpingHand_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, WigglytuffLv40HelpingHand_RequireSelection
 	db $00
 
-EffectCommands_58c91:
+WigglytuffLv40ExpandEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6451c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WigglytuffLv40Expand_BeforeDamage
 	db $00
 
-EffectCommands_58c96:
+ZubatLv12SuspiciousSoundwaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc36
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ZubatLv12SuspiciousSoundwave_BeforeDamage
 	db $00
 
-EffectCommands_58c9b:
+GolbatLv25LeechLifeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64523
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolbatLv25LeechLife_AfterDamage
 	db $00
 
-EffectCommands_58ca0:
+GolbatLv25NosediveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6452e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64538
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GolbatLv25Nosedive_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolbatLv25Nosedive_AfterDamage
 	db $00
 
-EffectCommands_58ca8:
+ParasLv15ScatterSporesEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64542
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64589
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6454c
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6456d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ParasLv15ScatterSpores_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ParasLv15ScatterSpores_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ParasLv15ScatterSpores_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, ParasLv15ScatterSpores_AISelection
 	db $00
 
-EffectCommands_58cb6:
+ParasectLv29ToxicSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc43
-	dbw EFFECTCMDTYPE_AI, Func_6bc3a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ParasectLv29ToxicSpore_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ParasectLv29ToxicSpore_AI
 	db $00
 
-EffectCommands_58cbe:
+ParasectLv29LeechLifeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_645ad
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ParasectLv29LeechLife_AfterDamage
 	db $00
 
-EffectCommands_58cc3:
+PoliwagLv15BubbleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc47
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwagLv15Bubble_BeforeDamage
 	db $00
 
-EffectCommands_58cc8:
+PoliwhirlLv30TwiddleEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_645b8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwhirlLv30Twiddle_BeforeDamage
 	db $00
 
-EffectCommands_58ccd:
+PoliwhirlLv30BodySlamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc4b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwhirlLv30BodySlam_BeforeDamage
 	db $00
 
-EffectCommands_58cd2:
+PoliwrathLv40HydroPumpEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_645cb
-	dbw EFFECTCMDTYPE_AI, Func_645cb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PoliwrathLv40HydroPump_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PoliwrathLv40HydroPump_BeforeDamage
 	db $00
 
-EffectCommands_58cda:
+AbraLv8PsychicBeamEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_645e6
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_645fc
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_645da
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_645df
-	dbw EFFECTCMDTYPE_AI, Func_645d3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AbraLv8PsychicBeam_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, AbraLv8PsychicBeam_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, AbraLv8PsychicBeam_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, AbraLv8PsychicBeam_AISelection
+	dbw EFFECTCMDTYPE_AI, AbraLv8PsychicBeam_AI
 	db $00
 
-EffectCommands_58ceb:
+GeodudeLv15HardenEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64613
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GeodudeLv15Harden_BeforeDamage
 	db $00
 
-EffectCommands_58cf0:
+RapidashLv30FlameInfernoEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_646be
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6466a
-	dbw EFFECTCMDTYPE_AI, Func_6461a
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_64636
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RapidashLv30FlameInferno_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RapidashLv30FlameInferno_RequireSelection
+	dbw EFFECTCMDTYPE_AI, RapidashLv30FlameInferno_AI
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, RapidashLv30FlameInferno_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58cfe:
+RapidashLv30KickAwayEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_646df
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_646d6
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_646d6
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RapidashLv30KickAway_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RapidashLv30KickAway_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, RapidashLv30KickAway_RequireSelection
 	db $00
 
-EffectCommands_58d09:
+DoduoLv8GrowlEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_646e6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DoduoLv8Growl_BeforeDamage
 	db $00
 
-EffectCommands_58d0e:
+DodrioLv25TriAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_646f7
-	dbw EFFECTCMDTYPE_AI, Func_646ed
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DodrioLv25TriAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DodrioLv25TriAttack_AI
 	db $00
 
-EffectCommands_58d16:
+LickitungLv20LickAltEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc4f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LickitungLv20LickAlt_BeforeDamage
 	db $00
 
-EffectCommands_58d1b:
+LickitungLv20StompEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64719
-	dbw EFFECTCMDTYPE_AI, Func_6470f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LickitungLv20Stomp_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, LickitungLv20Stomp_AI
 	db $00
 
-EffectCommands_58d23:
+ChanseyLv40SingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc53
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ChanseyLv40Sing_BeforeDamage
 	db $00
 
-EffectCommands_58d28:
+ChanseyLv40DoubleSlapAltEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6472a
-	dbw EFFECTCMDTYPE_AI, Func_64720
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ChanseyLv40DoubleSlapAlt_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ChanseyLv40DoubleSlapAlt_AI
 	db $00
 
-EffectCommands_58d30:
+MrMimeLv20DampeningShieldEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64742
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MrMimeLv20DampeningShield_InitialEffect1
 	db $00
 
-EffectCommands_58d35:
+MrMimeLv20JugglingEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6474e
-	dbw EFFECTCMDTYPE_AI, Func_64744
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MrMimeLv20Juggling_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MrMimeLv20Juggling_AI
 	db $00
 
-EffectCommands_58d3d:
+PinsirLv15SlicingThrowEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6476f
-	dbw EFFECTCMDTYPE_AI, Func_64765
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PinsirLv15SlicingThrow_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PinsirLv15SlicingThrow_AI
 	db $00
 
-EffectCommands_58d45:
+EeveeLv5LungeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64780
-	dbw EFFECTCMDTYPE_AI, Func_64776
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EeveeLv5Lunge_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, EeveeLv5Lunge_AI
 	db $00
 
-EffectCommands_58d4d:
+PorygonLv18Porygon3DAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6479f
-	dbw EFFECTCMDTYPE_AI, Func_64795
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PorygonLv18Porygon3DAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PorygonLv18Porygon3DAttack_AI
 	db $00
 
-EffectCommands_58d55:
+PorygonLv18Conversion2EffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_647b6
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_647bb
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_647c5
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_647c0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PorygonLv18Conversion2_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PorygonLv18Conversion2_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PorygonLv18Conversion2_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, PorygonLv18Conversion2_AISelection
 	db $00
 
-EffectCommands_58d63:
+SnorlaxLv35GuardEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_647ca
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SnorlaxLv35Guard_InitialEffect1
 	db $00
 
-EffectCommands_58d68:
+SnorlaxLv35RollOverEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_647cc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SnorlaxLv35RollOver_BeforeDamage
 	db $00
 
-EffectCommands_58d6d:
+MewtwoLv54PsycrushEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_647db
-	dbw EFFECTCMDTYPE_AI, Func_647db
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewtwoLv54Psycrush_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MewtwoLv54Psycrush_BeforeDamage
 	db $00
 
-EffectCommands_58d75:
+TheRocketsTrapEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64813
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6481f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, TheRocketsTrap_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TheRocketsTrap_BeforeDamage
 	db $00
 
-EffectCommands_58d7d:
+FossilExcavationEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6485b
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_648fc
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6489d
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_6486c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, FossilExcavation_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FossilExcavation_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, FossilExcavation_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, FossilExcavation_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58d8b:
+MoonStoneEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64930
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64958
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6493a
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64935
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MoonStone_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MoonStone_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MoonStone_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MoonStone_AISelection
 	db $00
 
-EffectCommands_58d99:
+MaxReviveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64977
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6498a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_649d9
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MaxRevive_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MaxRevive_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MaxRevive_BeforeDamage
 	db $00
 
-EffectCommands_58da4:
+MasterBallEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64a03
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64a4f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64a08
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MasterBall_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MasterBall_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MasterBall_RequireSelection
 	db $00
 
-EffectCommands_58daf:
+PokemonRecallEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64a75
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_64a77
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64a8e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokemonRecall_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PokemonRecall_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PokemonRecall_BeforeDamage
 	db $00
 
-EffectCommands_58dba:
+BillsComputerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64ade
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64ade
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, BillsComputer_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BillsComputer_InitialEffect1
 	db $00
 
-EffectCommands_58dc2:
+ComputerErrorEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64ae3
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64b30
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64af3
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ComputerError_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ComputerError_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ComputerError_RequireSelection
 	db $00
 
-EffectCommands_58dcd:
+SpearowLv12FuryAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64b75
-	dbw EFFECTCMDTYPE_AI, Func_64b6b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SpearowLv12FuryAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, SpearowLv12FuryAttack_AI
 	db $00
 
-EffectCommands_58dd5:
+FearowLv24QuickAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64b96
-	dbw EFFECTCMDTYPE_AI, Func_64b8c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FearowLv24QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FearowLv24QuickAttack_AI
 	db $00
 
-EffectCommands_58ddd:
+FearowLv24DrillDescentEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64ba7
-	dbw EFFECTCMDTYPE_AI, Func_64b9d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FearowLv24DrillDescent_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, FearowLv24DrillDescent_AI
 	db $00
 
-EffectCommands_58de5:
+RaichuLv32ShortCircuitEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64bbc
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64c3a
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64c5b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64bf1
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64c10
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, RaichuLv32ShortCircuit_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv32ShortCircuit_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RaichuLv32ShortCircuit_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, RaichuLv32ShortCircuit_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, RaichuLv32ShortCircuit_AISelection
 	db $00
 
-EffectCommands_58df6:
+RaichuLv32SparkingKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc57
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv32SparkingKick_BeforeDamage
 	db $00
 
-EffectCommands_58dfb:
+SandshrewLv15PoisonStingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc64
-	dbw EFFECTCMDTYPE_AI, Func_6bc5b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandshrewLv15PoisonSting_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, SandshrewLv15PoisonSting_AI
 	db $00
 
-EffectCommands_58e03:
+SandshrewLv15SwiftEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64c8d
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64c92
-	dbw EFFECTCMDTYPE_AI, Func_64c88
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandshrewLv15Swift_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SandshrewLv15Swift_AfterDamage
+	dbw EFFECTCMDTYPE_AI, SandshrewLv15Swift_AI
 	db $00
 
-EffectCommands_58e0e:
+VenomothLv22StirUpTwisterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64d2d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64d00
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64ce6
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, VenomothLv22StirUpTwister_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VenomothLv22StirUpTwister_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, VenomothLv22StirUpTwister_AISelection
 	db $00
 
-EffectCommands_58e19:
+VenomothLv22RainbowPowderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64d57
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenomothLv22RainbowPowder_BeforeDamage
 	db $00
 
-EffectCommands_58e1e:
+MachopLv18FocusedOneShotEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64d6a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachopLv18FocusedOneShot_BeforeDamage
 	db $00
 
-EffectCommands_58e23:
+MachopLv18CorkscrewPunchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64d86
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MachopLv18CorkscrewPunch_InitialEffect1
 	db $00
 
-EffectCommands_58e28:
+MachokeLv28SteadyPunchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64d97
-	dbw EFFECTCMDTYPE_AI, Func_64d8d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachokeLv28SteadyPunch_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MachokeLv28SteadyPunch_AI
 	db $00
 
-EffectCommands_58e30:
+GravelerLv28StoneBarrageAltEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64da8
-	dbw EFFECTCMDTYPE_AI, Func_64d9e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GravelerLv28StoneBarrageAlt_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GravelerLv28StoneBarrageAlt_AI
 	db $00
 
-EffectCommands_58e38:
+GravelerLv28EarthquakeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64dcc
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GravelerLv28Earthquake_AfterDamage
 	db $00
 
-EffectCommands_58e3d:
+MagnemiteLv15MagnetMoveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_64ddb
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64e4d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64dee
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64e27
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MagnemiteLv15MagnetMove_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnemiteLv15MagnetMove_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MagnemiteLv15MagnetMove_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagnemiteLv15MagnetMove_AISelection
 	db $00
 
-EffectCommands_58e4b:
+MagnemiteLv15SuperconductivityEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64e8a
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64ea0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64e85
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64e7e
-	dbw EFFECTCMDTYPE_AI, Func_64e77
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnemiteLv15Superconductivity_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnemiteLv15Superconductivity_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MagnemiteLv15Superconductivity_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagnemiteLv15Superconductivity_AISelection
+	dbw EFFECTCMDTYPE_AI, MagnemiteLv15Superconductivity_AI
 	db $00
 
-EffectCommands_58e5c:
+MagnetonLv30MicrowaveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_64eb7
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64f1f
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64f35
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_64ef0
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_64ec3
-	dbw EFFECTCMDTYPE_AI, Func_64ebc
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MagnetonLv30Microwave_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagnetonLv30Microwave_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MagnetonLv30Microwave_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MagnetonLv30Microwave_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagnetonLv30Microwave_AISelection
+	dbw EFFECTCMDTYPE_AI, MagnetonLv30Microwave_AI
 	db $00
 
-EffectCommands_58e70:
+SeelLv10GrowlEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64f71
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SeelLv10Growl_BeforeDamage
 	db $00
 
-EffectCommands_58e75:
+SeelLv10IceBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc68
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SeelLv10IceBeam_BeforeDamage
 	db $00
 
-EffectCommands_58e7a:
+DewgongLv24RestEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64f78
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_64f88
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DewgongLv24Rest_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DewgongLv24Rest_AfterDamage
 	db $00
 
-EffectCommands_58e82:
+DewgongLv24AuroraWaveEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc6c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DewgongLv24AuroraWave_BeforeDamage
 	db $00
 
-EffectCommands_58e87:
+ShellderLv16WaterSpoutEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64f95
-	dbw EFFECTCMDTYPE_AI, Func_64f95
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ShellderLv16WaterSpout_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ShellderLv16WaterSpout_BeforeDamage
 	db $00
 
-EffectCommands_58e8f:
+OnixLv25BindEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc70
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OnixLv25Bind_BeforeDamage
 	db $00
 
-EffectCommands_58e94:
+OnixLv25RockSealEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64f9d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OnixLv25RockSeal_BeforeDamage
 	db $00
 
-EffectCommands_58e99:
+KrabbyLv17BubbleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc74
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KrabbyLv17Bubble_BeforeDamage
 	db $00
 
-EffectCommands_58e9e:
+VoltorbLv8ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc78
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VoltorbLv8Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_58ea3:
+VoltorbLv8GroupSparkEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64fac
-	dbw EFFECTCMDTYPE_AI, Func_64fac
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VoltorbLv8GroupSpark_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, VoltorbLv8GroupSpark_BeforeDamage
 	db $00
 
-EffectCommands_58eab:
+HitmonleeLv23DoubleKickEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_64fe8
-	dbw EFFECTCMDTYPE_AI, Func_64fde
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HitmonleeLv23DoubleKick_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, HitmonleeLv23DoubleKick_AI
 	db $00
 
-EffectCommands_58eb3:
+HitmonleeLv23RollingKickEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc7c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HitmonleeLv23RollingKick_BeforeDamage
 	db $00
 
-EffectCommands_58eb8:
+HitmonchanLv23MatchPunchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65002
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6504d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65020
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65007
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HitmonchanLv23MatchPunch_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, HitmonchanLv23MatchPunch_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, HitmonchanLv23MatchPunch_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, HitmonchanLv23MatchPunch_AISelection
 	db $00
 
-EffectCommands_58ec6:
+JynxLv18IcePunchEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc80
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JynxLv18IcePunch_BeforeDamage
 	db $00
 
-EffectCommands_58ecb:
+JynxLv18ColdBreathEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc84
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JynxLv18ColdBreath_BeforeDamage
 	db $00
 
-EffectCommands_58ed0:
+LaprasLv24SingEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc88
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LaprasLv24Sing_BeforeDamage
 	db $00
 
-EffectCommands_58ed5:
+OmanyteLv20PrehistoricDreamEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_65064
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65069
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, OmanyteLv20PrehistoricDream_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmanyteLv20PrehistoricDream_BeforeDamage
 	db $00
 
-EffectCommands_58edd:
+KabutoLv22FossilizeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6507a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_650b8
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65083
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, KabutoLv22Fossilize_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KabutoLv22Fossilize_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, KabutoLv22Fossilize_RequireSelection
 	db $00
 
-EffectCommands_58ee8:
+KabutoLv22SharpClawsEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6511e
-	dbw EFFECTCMDTYPE_AI, Func_65114
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KabutoLv22SharpClaws_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KabutoLv22SharpClaws_AI
 	db $00
 
-EffectCommands_58ef0:
+AerodactylLv30SupersonicEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc8c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AerodactylLv30Supersonic_BeforeDamage
 	db $00
 
-EffectCommands_58ef5:
+AerodactylLv30TailspinAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65125
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, AerodactylLv30TailspinAttack_AfterDamage
 	db $00
 
-EffectCommands_58efa:
+ArticunoLv34AuroraVeilEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65136
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ArticunoLv34AuroraVeil_InitialEffect1
 	db $00
 
-EffectCommands_58eff:
+ArticunoLv34IceBeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc90
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArticunoLv34IceBeam_BeforeDamage
 	db $00
 
-EffectCommands_58f04:
+ZapdosLv28RagingThunderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65138
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65182
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65167
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6513d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ZapdosLv28RagingThunder_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZapdosLv28RagingThunder_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ZapdosLv28RagingThunder_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, ZapdosLv28RagingThunder_AISelection
 	db $00
 
-EffectCommands_58f12:
+ZapdosLv28ThunderCrashEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6519e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_651af
-	dbw EFFECTCMDTYPE_AI, Func_65194
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ZapdosLv28ThunderCrash_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ZapdosLv28ThunderCrash_AfterDamage
+	dbw EFFECTCMDTYPE_AI, ZapdosLv28ThunderCrash_AI
 	db $00
 
-EffectCommands_58f1d:
+MoltresLv37DryUpEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_651b9
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_651f3
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65218
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6521b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65210
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65212
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_65215
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MoltresLv37DryUp_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MoltresLv37DryUp_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MoltresLv37DryUp_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MoltresLv37DryUp_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MoltresLv37DryUp_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MoltresLv37DryUp_AISelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, MoltresLv37DryUp_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_58f34:
+PidgeottoLv38TwisterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6535f
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PidgeottoLv38Twister_AfterDamage
 	db $00
 
-EffectCommands_58f39:
+PidgeottoLv38FlyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_653df
-	dbw EFFECTCMDTYPE_AI, Func_653d5
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PidgeottoLv38Fly_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, PidgeottoLv38Fly_AI
 	db $00
 
-EffectCommands_58f41:
+ArbokLv30WrapEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc94
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArbokLv30Wrap_BeforeDamage
 	db $00
 
-EffectCommands_58f46:
+ArbokLv30DeadlyPoisonEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6540d
-	dbw EFFECTCMDTYPE_AI, Func_653fc
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ArbokLv30DeadlyPoison_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, ArbokLv30DeadlyPoison_AI
 	db $00
 
-EffectCommands_58f4e:
+SandslashLv35SandVeilEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65415
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandslashLv35SandVeil_BeforeDamage
 	db $00
 
-EffectCommands_58f53:
+SandslashLv35RollingNeedleEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65438
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65451
-	dbw EFFECTCMDTYPE_AI, Func_6542e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SandslashLv35RollingNeedle_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SandslashLv35RollingNeedle_AfterDamage
+	dbw EFFECTCMDTYPE_AI, SandslashLv35RollingNeedle_AI
 	db $00
 
-EffectCommands_58f5e:
+NidorinaLv22StrengthInNumbersEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6545a
-	dbw EFFECTCMDTYPE_AI, Func_6545a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinaLv22StrengthInNumbers_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidorinaLv22StrengthInNumbers_BeforeDamage
 	db $00
 
-EffectCommands_58f66:
+NidorinaLv22FurySwipesEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6548c
-	dbw EFFECTCMDTYPE_AI, Func_65482
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinaLv22FurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, NidorinaLv22FurySwipes_AI
 	db $00
 
-EffectCommands_58f6e:
+NidorinoLv23SwiftLungeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_654b0
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_654c7
-	dbw EFFECTCMDTYPE_AI, Func_654a6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, NidorinoLv23SwiftLunge_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, NidorinoLv23SwiftLunge_AfterDamage
+	dbw EFFECTCMDTYPE_AI, NidorinoLv23SwiftLunge_AI
 	db $00
 
-EffectCommands_58f79:
+VulpixLv13FoxFireEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_654f2
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_654d8
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_654d1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VulpixLv13FoxFire_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VulpixLv13FoxFire_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, VulpixLv13FoxFire_AISelection
 	db $00
 
-EffectCommands_58f84:
+VenonatLv15DisableEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6553a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65563
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65552
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65543
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, VenonatLv15Disable_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenonatLv15Disable_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, VenonatLv15Disable_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, VenonatLv15Disable_AISelection
 	db $00
 
-EffectCommands_58f92:
+VenonatLv15PsybeamEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc98
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, VenonatLv15Psybeam_BeforeDamage
 	db $00
 
-EffectCommands_58f97:
+GolduckLv28PsychicEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65578
-	dbw EFFECTCMDTYPE_AI, Func_65578
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GolduckLv28Psychic_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GolduckLv28Psychic_BeforeDamage
 	db $00
 
-EffectCommands_58f9f:
+GrowlitheLv16ErrandRunningEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6558a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_655de
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_655e7
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65593
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_655bb
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GrowlitheLv16ErrandRunning_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrowlitheLv16ErrandRunning_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GrowlitheLv16ErrandRunning_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GrowlitheLv16ErrandRunning_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GrowlitheLv16ErrandRunning_AISelection
 	db $00
 
-EffectCommands_58fb0:
+GrowlitheLv16EmberEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6560a
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6560f
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_65619
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65614
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GrowlitheLv16Ember_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GrowlitheLv16Ember_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, GrowlitheLv16Ember_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, GrowlitheLv16Ember_AISelection
 	db $00
 
-EffectCommands_58fbe:
+KadabraLv39PsychoPanicEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6561f
-	dbw EFFECTCMDTYPE_AI, Func_6561f
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KadabraLv39PsychoPanic_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KadabraLv39PsychoPanic_BeforeDamage
 	db $00
 
-EffectCommands_58fc6:
+KadabraLv39BlinkEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65636
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KadabraLv39Blink_BeforeDamage
 	db $00
 
-EffectCommands_58fcb:
+AlakazamLv45PsychoPanicEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6563d
-	dbw EFFECTCMDTYPE_AI, Func_6563d
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AlakazamLv45PsychoPanic_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, AlakazamLv45PsychoPanic_BeforeDamage
 	db $00
 
-EffectCommands_58fd3:
+AlakazamLv45TransDamageEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65648
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6567e
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65697
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_65654
-	dbw EFFECTCMDTYPE_AI, Func_65665
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, AlakazamLv45TransDamage_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, AlakazamLv45TransDamage_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, AlakazamLv45TransDamage_AfterDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, AlakazamLv45TransDamage_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI, AlakazamLv45TransDamage_AI
 	db $00
 
-EffectCommands_58fe4:
+MachokeLv24WickedJabEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bc9c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachokeLv24WickedJab_BeforeDamage
 	db $00
 
-EffectCommands_58fe9:
+MachokeLv24FocusBlastEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_656f6
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65739
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6573e
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65702
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65728
-	dbw EFFECTCMDTYPE_AI, Func_656fb
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MachokeLv24FocusBlast_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachokeLv24FocusBlast_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MachokeLv24FocusBlast_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MachokeLv24FocusBlast_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MachokeLv24FocusBlast_AISelection
+	dbw EFFECTCMDTYPE_AI, MachokeLv24FocusBlast_AI
 	db $00
 
-EffectCommands_58ffd:
+MachampLv54SeethingAngerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6578e
-	dbw EFFECTCMDTYPE_AI, Func_65779
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MachampLv54SeethingAnger_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MachampLv54SeethingAnger_AI
 	db $00
 
-EffectCommands_59005:
+MachampLv54FlingEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_657b6
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_657ad
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_657ad
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MachampLv54Fling_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MachampLv54Fling_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, MachampLv54Fling_RequireSelection
 	db $00
 
-EffectCommands_59010:
+BellsproutLv10SwayEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_657bd
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BellsproutLv10Sway_BeforeDamage
 	db $00
 
-EffectCommands_59015:
+BellsproutLv10StunSporeEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bca0
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BellsproutLv10StunSpore_BeforeDamage
 	db $00
 
-EffectCommands_5901a:
+WeepinbellLv23RegenerationEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_657d2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, WeepinbellLv23Regeneration_AfterDamage
 	db $00
 
-EffectCommands_5901f:
+WeepinbellLv23DissolveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65816
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65852
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65822
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65839
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, WeepinbellLv23Dissolve_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, WeepinbellLv23Dissolve_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, WeepinbellLv23Dissolve_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, WeepinbellLv23Dissolve_AISelection
 	db $00
 
-EffectCommands_5902d:
+GravelerLv27BoulderSmashEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6585b
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6588a
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65860
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65875
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GravelerLv27BoulderSmash_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GravelerLv27BoulderSmash_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GravelerLv27BoulderSmash_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GravelerLv27BoulderSmash_AISelection
 	db $00
 
-EffectCommands_5903b:
+GolemLv37RockBlastEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_659e7
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65ac2
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65af7
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_659f5
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_659f1
-	dbw EFFECTCMDTYPE_AI, Func_659ca
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GolemLv37RockBlast_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GolemLv37RockBlast_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, GolemLv37RockBlast_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GolemLv37RockBlast_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, GolemLv37RockBlast_AISelection
+	dbw EFFECTCMDTYPE_AI, GolemLv37RockBlast_AI
 	db $00
 
-EffectCommands_5904f:
+PonytaLv8FireworksEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65b5d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65ba3
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65b81
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65b6d
-	dbw EFFECTCMDTYPE_AI, Func_65b62
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PonytaLv8Fireworks_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PonytaLv8Fireworks_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PonytaLv8Fireworks_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, PonytaLv8Fireworks_AISelection
+	dbw EFFECTCMDTYPE_AI, PonytaLv8Fireworks_AI
 	db $00
 
-EffectCommands_59060:
+SlowbroLv35BigYawnEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65bb0
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65bb7
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowbroLv35BigYawn_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SlowbroLv35BigYawn_BeforeDamage
 	db $00
 
-EffectCommands_59068:
+SlowbroLv35BigSnoreEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65bc6
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SlowbroLv35BigSnore_InitialEffect1
 	db $00
 
-EffectCommands_5906d:
+GastlyLv13SpookifyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65bdb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GastlyLv13Spookify_BeforeDamage
 	db $00
 
-EffectCommands_59072:
+GastlyLv13FadeToBlackEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bca4
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GastlyLv13FadeToBlack_BeforeDamage
 	db $00
 
-EffectCommands_59077:
+HaunterLv26PoltergeistEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65bed
-	dbw EFFECTCMDTYPE_AI, Func_65be3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv26Poltergeist_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, HaunterLv26Poltergeist_AI
 	db $00
 
-EffectCommands_5907f:
+HaunterLv26BadDreamsEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65c41
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv26BadDreams_BeforeDamage
 	db $00
 
-EffectCommands_59084:
+HaunterLv25EerieLightEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bca8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv25EerieLight_BeforeDamage
 	db $00
 
-EffectCommands_59089:
+HaunterLv25GrudgeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65c54
-	dbw EFFECTCMDTYPE_AI, Func_65c54
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HaunterLv25Grudge_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, HaunterLv25Grudge_BeforeDamage
 	db $00
 
-EffectCommands_59091:
+GengarLv40PowerOfDarknessEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65c6a
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65c70
-	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, Func_65c91
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GengarLv40PowerOfDarkness_InitialEffect1
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, GengarLv40PowerOfDarkness_RequireSelection
+	dbw EFFECTCMDTYPE_PKMN_POWER_TRIGGER, GengarLv40PowerOfDarkness_PkmnPowerTrigger
 	db $00
 
-EffectCommands_5909c:
+GengarLv40PsyHorrorEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65cde
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GengarLv40PsyHorror_BeforeDamage
 	db $00
 
-EffectCommands_590a1:
+HypnoLv30PuppetMasterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65cf1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HypnoLv30PuppetMaster_InitialEffect1
 	db $00
 
-EffectCommands_590a6:
+HypnoLv30MindShockEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65cf3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HypnoLv30MindShock_BeforeDamage
 	db $00
 
 ; unreferenced
 EffectCommands_590ab:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65cf9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EffectCommands_590ab_BeforeDamage
 	db $00
 
-EffectCommands_590b0:
+KinglerLv33SaltWaterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65d04
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65d63
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65d6b
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65d11
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65d0d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, KinglerLv33SaltWater_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KinglerLv33SaltWater_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, KinglerLv33SaltWater_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, KinglerLv33SaltWater_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, KinglerLv33SaltWater_AISelection
 	db $00
 
-EffectCommands_590c1:
+KinglerLv33DoubleEdgedPincersEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65d8a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KinglerLv33DoubleEdgedPincers_BeforeDamage
 	db $00
 
-EffectCommands_590c6:
+CuboneLv14BoneTossEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65d91
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65de4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65df4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65db7
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65da0
-	dbw EFFECTCMDTYPE_AI, Func_65d96
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CuboneLv14BoneToss_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CuboneLv14BoneToss_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, CuboneLv14BoneToss_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, CuboneLv14BoneToss_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, CuboneLv14BoneToss_AISelection
+	dbw EFFECTCMDTYPE_AI, CuboneLv14BoneToss_AI
 	db $00
 
-EffectCommands_590da:
+WeezingLv26PoisonMistEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_65e0f
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65e14
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, WeezingLv26PoisonMist_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WeezingLv26PoisonMist_BeforeDamage
 	db $00
 
-EffectCommands_590e2:
+WeezingLv26GasExplosionEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65e28
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, WeezingLv26GasExplosion_AfterDamage
 	db $00
 
-EffectCommands_590e7:
+RhydonLv37MountainBreakEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65e3a
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65e3f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, RhydonLv37MountainBreak_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, RhydonLv37MountainBreak_AfterDamage
 	db $00
 
-EffectCommands_590ef:
+RhydonLv37OneTwoStrikeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65e7f
-	dbw EFFECTCMDTYPE_AI, Func_65e75
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RhydonLv37OneTwoStrike_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, RhydonLv37OneTwoStrike_AI
 	db $00
 
-EffectCommands_590f7:
+KangaskhanLv36TailDropEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65e90
-	dbw EFFECTCMDTYPE_AI, Func_65e86
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KangaskhanLv36TailDrop_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KangaskhanLv36TailDrop_AI
 	db $00
 
-EffectCommands_590ff:
+HorseaLv20HideEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65ea9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HorseaLv20Hide_BeforeDamage
 	db $00
 
-EffectCommands_59104:
+HorseaLv20WaterGunEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65ec2
-	dbw EFFECTCMDTYPE_AI, Func_65ec2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HorseaLv20WaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, HorseaLv20WaterGun_BeforeDamage
 	db $00
 
-EffectCommands_5910c:
+SeadraLv26WaterBombEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65ee0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65eca
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65ed5
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, SeadraLv26WaterBomb_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SeadraLv26WaterBomb_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, SeadraLv26WaterBomb_AISelection
 	db $00
 
-EffectCommands_59117:
+StaryuLv17StrangeBeamEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65f06
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, StaryuLv17StrangeBeam_AfterDamage
 	db $00
 
-EffectCommands_5911c:
+ScytherLv23SlashingStrikeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65f0c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65f13
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ScytherLv23SlashingStrike_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ScytherLv23SlashingStrike_BeforeDamage
 	db $00
 
-EffectCommands_59124:
+MagmarLv27BurningFireEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65fa2
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65f32
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65f2d
-	dbw EFFECTCMDTYPE_AI, Func_65f1a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagmarLv27BurningFire_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MagmarLv27BurningFire_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MagmarLv27BurningFire_AISelection
+	dbw EFFECTCMDTYPE_AI, MagmarLv27BurningFire_AI
 	db $00
 
-EffectCommands_59132:
+TaurosLv35KickingAndStampingEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_65fbb
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65fdd
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_65fe8
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_65fca
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_65fca
-	dbw EFFECTCMDTYPE_AI, Func_65fc0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, TaurosLv35KickingAndStamping_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TaurosLv35KickingAndStamping_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, TaurosLv35KickingAndStamping_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, TaurosLv35KickingAndStamping_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, TaurosLv35KickingAndStamping_RequireSelection
+	dbw EFFECTCMDTYPE_AI, TaurosLv35KickingAndStamping_AI
 	db $00
 
-EffectCommands_59146:
+OmanyteLv22FossilGuidanceEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_65ff3
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_65fff
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, OmanyteLv22FossilGuidance_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmanyteLv22FossilGuidance_BeforeDamage
 	db $00
 
-EffectCommands_5914e:
+OmastarLv36TentacleGripEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6603a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66049
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66059
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, OmastarLv36TentacleGrip_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmastarLv36TentacleGrip_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, OmastarLv36TentacleGrip_AfterDamage
 	db $00
 
-EffectCommands_59159:
+OmastarLv36CorrosiveAcidEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6607f
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66086
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, OmastarLv36CorrosiveAcid_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, OmastarLv36CorrosiveAcid_BeforeDamage
 	db $00
 
-EffectCommands_59161:
+MewtwoLv67CompleteRecoveryEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_660a0
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_660b1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoLv67CompleteRecovery_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoLv67CompleteRecovery_AfterDamage
 	db $00
 
-EffectCommands_59169:
+MewtwoLv67PsychoBlastEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_660e0
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6611c
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_660ec
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_66103
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoLv67PsychoBlast_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoLv67PsychoBlast_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MewtwoLv67PsychoBlast_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewtwoLv67PsychoBlast_AISelection
 	db $00
 
-EffectCommands_59177:
+DarkPersianAltLv28FascinateEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66125
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66134
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66139
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6612f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6612a
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkPersianAltLv28Fascinate_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkPersianAltLv28Fascinate_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkPersianAltLv28Fascinate_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DarkPersianAltLv28Fascinate_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DarkPersianAltLv28Fascinate_AISelection
 	db $00
 
-EffectCommands_59188:
+DarkPersianAltLv28PoisonClawsEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcb5
-	dbw EFFECTCMDTYPE_AI, Func_6bcac
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkPersianAltLv28PoisonClaws_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkPersianAltLv28PoisonClaws_AI
 	db $00
 
-EffectCommands_59190:
+MeowthLv14ClearProfitEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6613e
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66143
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66157
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MeowthLv14ClearProfit_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MeowthLv14ClearProfit_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MeowthLv14ClearProfit_AfterDamage
 	db $00
 
-EffectCommands_5919b:
+CoolPorygonTextureMagicEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6617b
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66187
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_661a6
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_66180
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, CoolPorygonTextureMagic_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, CoolPorygonTextureMagic_InitialEffect2
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, CoolPorygonTextureMagic_AfterDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, CoolPorygonTextureMagic_AISelection
 	db $00
 
-EffectCommands_591a9:
+CoolPorygonPorygon3DAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_661cc
-	dbw EFFECTCMDTYPE_AI, Func_661c2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, CoolPorygonPorygon3DAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, CoolPorygonPorygon3DAttack_AI
 	db $00
 
-EffectCommands_591b1:
+HungrySnorlaxEatEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_661e4
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_661ee
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, HungrySnorlaxEat_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, HungrySnorlaxEat_AfterDamage
 	db $00
 
-EffectCommands_591b9:
+HungrySnorlaxRolloutEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66223
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6627e
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6621f
-	dbw EFFECTCMDTYPE_AI, Func_66202
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, HungrySnorlaxRollout_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, HungrySnorlaxRollout_BeforeDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, HungrySnorlaxRollout_AISelection
+	dbw EFFECTCMDTYPE_AI, HungrySnorlaxRollout_AI
 	db $00
 
-EffectCommands_591c7:
+MewtwoLv30EnergySpikeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6629a
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66315
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_662c4
-	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, Func_662c0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MewtwoLv30EnergySpike_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoLv30EnergySpike_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MewtwoLv30EnergySpike_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SWITCH_DEFENDING_PKMN, MewtwoLv30EnergySpike_AISwitchDefendingPkmn
 	db $00
 
-EffectCommands_591d5:
+MewtwoLv30TelekinesisEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66358
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6636e
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6634c
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_66351
-	dbw EFFECTCMDTYPE_AI, Func_66345
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MewtwoLv30Telekinesis_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, MewtwoLv30Telekinesis_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, MewtwoLv30Telekinesis_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, MewtwoLv30Telekinesis_AISelection
+	dbw EFFECTCMDTYPE_AI, MewtwoLv30Telekinesis_AI
 	db $00
 
-EffectCommands_591e6:
+PikachuLv13RechargeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66385
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_663c1
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6638a
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_663a8
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PikachuLv13Recharge_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, PikachuLv13Recharge_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PikachuLv13Recharge_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, PikachuLv13Recharge_AISelection
 	db $00
 
-EffectCommands_591f4:
+PikachuLv13ThunderboltEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_663d2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PikachuLv13Thunderbolt_BeforeDamage
 	db $00
 
-EffectCommands_591f9:
+FarfetchdAltLv20LeekSlapEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_663ec
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_663fd
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_663f7
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, FarfetchdAltLv20LeekSlap_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FarfetchdAltLv20LeekSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, FarfetchdAltLv20LeekSlap_DiscardEnergy
 	db $00
 
-EffectCommands_59204:
+KangaskhanLv38DizzyPunchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66415
-	dbw EFFECTCMDTYPE_AI, Func_6640b
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KangaskhanLv38DizzyPunch_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KangaskhanLv38DizzyPunch_AI
 	db $00
 
-EffectCommands_5920c:
+DiglettLv16TripOverEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66436
-	dbw EFFECTCMDTYPE_AI, Func_6642c
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DiglettLv16TripOver_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DiglettLv16TripOver_AI
 	db $00
 
-EffectCommands_59214:
+DugtrioLv40GoUndergroundEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6643d
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DugtrioLv40GoUnderground_InitialEffect1
 	db $00
 
-EffectCommands_59219:
+DugtrioLv40EarthWaveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6654e
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6643f
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_664f6
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DugtrioLv40EarthWave_AfterDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DugtrioLv40EarthWave_RequireSelection
+	dbw EFFECTCMDTYPE_AI_SELECTION, DugtrioLv40EarthWave_AISelection
 	db $00
 
-EffectCommands_59224:
+DragoniteLv43SpecialDeliveryEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66570
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_665a4
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6657a
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DragoniteLv43SpecialDelivery_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragoniteLv43SpecialDelivery_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, DragoniteLv43SpecialDelivery_RequireSelection
 	db $00
 
-EffectCommands_5922f:
+DragoniteLv43SupersonicFlightEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_665c1
-	dbw EFFECTCMDTYPE_AI, Func_665b7
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DragoniteLv43SupersonicFlight_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DragoniteLv43SupersonicFlight_AI
 	db $00
 
-EffectCommands_59237:
+MagikarpLv10TrickleEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_665e0
-	dbw EFFECTCMDTYPE_AI, Func_665d6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagikarpLv10Trickle_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagikarpLv10Trickle_AI
 	db $00
 
-EffectCommands_5923f:
+MagikarpLv10DragonRageEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66601
-	dbw EFFECTCMDTYPE_AI, Func_665f7
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagikarpLv10DragonRage_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagikarpLv10DragonRage_AI
 	db $00
 
-EffectCommands_59247:
+TogepiSnivelEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6661a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TogepiSnivel_BeforeDamage
 	db $00
 
-EffectCommands_5924c:
+TogepiMetronomeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66621
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6663e
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_66634
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, TogepiMetronome_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TogepiMetronome_InitialEffect2
+	dbw EFFECTCMDTYPE_AI_SELECTION, TogepiMetronome_AISelection
 	db $00
 
-EffectCommands_59257:
+MarillWaterGunEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66672
-	dbw EFFECTCMDTYPE_AI, Func_66672
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MarillWaterGun_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MarillWaterGun_BeforeDamage
 	db $00
 
-EffectCommands_5925f:
+MankeyAltLv7PeekEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6667a
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6667f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MankeyAltLv7Peek_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MankeyAltLv7Peek_BeforeDamage
 	db $00
 
-EffectCommands_59267:
+IvysaurLv26LeechSeedAltEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66684
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, IvysaurLv26LeechSeedAlt_AfterDamage
 	db $00
 
-EffectCommands_5926c:
+KoffingLv14PoisonGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcc2
-	dbw EFFECTCMDTYPE_AI, Func_6bcb9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KoffingLv14PoisonGas_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, KoffingLv14PoisonGas_AI
 	db $00
 
-EffectCommands_59274:
+KoffingLv14ConfusionGasEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcc6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, KoffingLv14ConfusionGas_BeforeDamage
 	db $00
 
-EffectCommands_59279:
+RaichuLv33QuickAttackEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6669c
-	dbw EFFECTCMDTYPE_AI, Func_66692
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv33QuickAttack_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, RaichuLv33QuickAttack_AI
 	db $00
 
-EffectCommands_59281:
+RaichuLv33ThunderboltEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_666a3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, RaichuLv33Thunderbolt_BeforeDamage
 	db $00
 
-EffectCommands_59286:
+ElectabuzzLv30ThundershockEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcca
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ElectabuzzLv30Thundershock_BeforeDamage
 	db $00
 
-EffectCommands_5928b:
+JynxLv27DoubleSlapEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_666bd
-	dbw EFFECTCMDTYPE_AI, Func_666b3
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, JynxLv27DoubleSlap_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, JynxLv27DoubleSlap_AI
 	db $00
 
-EffectCommands_59293:
+MeowthLv17FurySwipesEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_666df
-	dbw EFFECTCMDTYPE_AI, Func_666d5
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MeowthLv17FurySwipes_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MeowthLv17FurySwipes_AI
 	db $00
 
-EffectCommands_5929b:
+GrowlitheLv12LungeEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66700
-	dbw EFFECTCMDTYPE_AI, Func_666f6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GrowlitheLv12Lunge_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GrowlitheLv12Lunge_AI
 	db $00
 
-EffectCommands_592a3:
+GrowlitheLv12EmberEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66715
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6671a
-	dbw EFFECTCMDTYPE_DISCARD_ENERGY, Func_66724
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_6671f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GrowlitheLv12Ember_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GrowlitheLv12Ember_InitialEffect2
+	dbw EFFECTCMDTYPE_DISCARD_ENERGY, GrowlitheLv12Ember_DiscardEnergy
+	dbw EFFECTCMDTYPE_AI_SELECTION, GrowlitheLv12Ember_AISelection
 	db $00
 
-EffectCommands_592b1:
+ArcanineLv35TakeDownEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_6672a
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, ArcanineLv35TakeDown_AfterDamage
 	db $00
 
-EffectCommands_592b6:
+MagmarLv18SmogEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcd7
-	dbw EFFECTCMDTYPE_AI, Func_6bcce
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MagmarLv18Smog_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, MagmarLv18Smog_AI
 	db $00
 
-EffectCommands_592be:
+WartortleLv24BubbleEffectCommands:
 	db $1a ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6bcdb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, WartortleLv24Bubble_BeforeDamage
 	db $00
 
-EffectCommands_592c3:
+SuperScoopUpEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66730
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66767
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_66739
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SuperScoopUp_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SuperScoopUp_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SuperScoopUp_RequireSelection
 	db $00
 
-EffectCommands_592ce:
+BillsTeleporterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_667b8
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, BillsTeleporter_BeforeDamage
 	db $00
 
-EffectCommands_592d3:
+DarkClefableDarknessVeilEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_667e6
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkClefableDarknessVeil_InitialEffect1
 	db $00
 
-EffectCommands_592d8:
+DarkClefableDarkSongEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_667e8
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_667f7
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkClefableDarkSong_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkClefableDarkSong_AfterDamage
 	db $00
 
-EffectCommands_592e0:
+DarkHaunterBotherEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66829
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66833
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkHaunterBother_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkHaunterBother_AfterDamage
 	db $00
 
-EffectCommands_592e8:
+DarkGengarPlayTricksEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6688d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_668a5
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkGengarPlayTricks_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGengarPlayTricks_BeforeDamage
 	db $00
 
-EffectCommands_592f0:
+DarkGengarPushAsideEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_668ef
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66902
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkGengarPushAside_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkGengarPushAside_AfterDamage
 	db $00
 
-EffectCommands_592f8:
+DarkStarmieRebirthEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6696c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66974
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DarkStarmieRebirth_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkStarmieRebirth_BeforeDamage
 	db $00
 
-EffectCommands_59300:
+DarkStarmieSpinningShowerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_669da
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_669e9
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkStarmieSpinningShower_BeforeDamage
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkStarmieSpinningShower_AfterDamage
 	db $00
 
-EffectCommands_59308:
+DarkFearowFlyHighEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66a62
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkFearowFlyHigh_BeforeDamage
 	db $00
 
-EffectCommands_5930d:
+DarkFearowDrillDiveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66a69
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66a70
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkFearowDrillDive_InitialEffect1
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkFearowDrillDive_AfterDamage
 	db $00
 
-EffectCommands_59315:
+DarkRaichuSurpriseThunderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66a77
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkRaichuSurpriseThunder_AfterDamage
 	db $00
 
-EffectCommands_5931a:
+DarkNinetalesPerplexEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66a96
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkNinetalesPerplex_BeforeDamage
 	db $00
 
-EffectCommands_5931f:
+DarkNinetalesNineTailsEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66abc
-	dbw EFFECTCMDTYPE_AI, Func_66ab2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkNinetalesNineTails_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, DarkNinetalesNineTails_AI
 	db $00
 
-EffectCommands_59327:
+DarkMarowakBoneHeadbuttEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66ad3
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkMarowakBoneHeadbutt_AfterDamage
 	db $00
 
-EffectCommands_5932c:
+GRsMewtwoDarkWaveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66b1c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GRsMewtwoDarkWave_InitialEffect1
 	db $00
 
-EffectCommands_59331:
+GRsMewtwoDarkAmplificationEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66b2a
-	dbw EFFECTCMDTYPE_AI, Func_66b1e
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GRsMewtwoDarkAmplification_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, GRsMewtwoDarkAmplification_AI
 	db $00
 
-EffectCommands_59339:
+DarkIvysaurVinePullEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66b63
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DarkIvysaurVinePull_InitialEffect1
 	db $00
 
-EffectCommands_5933e:
+DarkIvysaurFuryStrikesEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_AFTER_DAMAGE, Func_66b65
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, DarkIvysaurFuryStrikes_AfterDamage
 	db $00
 
-EffectCommands_59343:
+DarkVenusaurHorridPollenEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66bac
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DarkVenusaurHorridPollen_BeforeDamage
 	db $00
 
-EffectCommands_59348:
+LugiaAeroblastEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66bd1
-	dbw EFFECTCMDTYPE_AI, Func_66bca
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, LugiaAeroblast_BeforeDamage
+	dbw EFFECTCMDTYPE_AI, LugiaAeroblast_AI
 	db $00
 
-EffectCommands_59350:
-	db $19 ; effect bank
-	db $00
-
-EffectCommands_59352:
+RecycleEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_59354:
+DoubleColorlessEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_59356:
+PsychicEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_59358:
+FightingEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_5935a:
+LightningEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_5935c:
+WaterEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_5935e:
+FireEnergyEffectCommands:
 	db $19 ; effect bank
 	db $00
 
-EffectCommands_59360:
+GrassEnergyEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66bf3
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66c02
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66c50
 	db $00
 
-EffectCommands_5936b:
+SuperPotionEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66caf
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SuperPotion_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SuperPotion_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SuperPotion_BeforeDamage
 	db $00
 
-EffectCommands_59370:
+ImakuniCardEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66cce
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66cdb
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66cf0
-	dbw EFFECTCMDTYPE_AI_SELECTION, Func_66ceb
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ImakuniCard_BeforeDamage
 	db $00
 
-EffectCommands_5937e:
+EnergyRemovalEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66d0c
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66d1d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66d79
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_66d36
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, EnergyRemoval_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, EnergyRemoval_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EnergyRemoval_BeforeDamage
+	dbw EFFECTCMDTYPE_AI_SELECTION, EnergyRemoval_AISelection
 	db $00
 
-EffectCommands_5938c:
+EnergyRetrievalEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66d9d
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66dc5
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_66da7
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, EnergyRetrieval_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, EnergyRetrieval_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EnergyRetrieval_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, EnergyRetrieval_RequireSelection
 	db $00
 
-EffectCommands_59397:
+EnergySearchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66df4
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, EnergySearch_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, EnergySearch_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, EnergySearch_RequireSelection
 	db $00
 
-EffectCommands_5939c:
+ProfessorOakEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66e1e
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66e26
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66e44
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ProfessorOak_BeforeDamage
 	db $00
 
-EffectCommands_593a7:
+PotionEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66e4e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Potion_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Potion_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Potion_BeforeDamage
 	db $00
 
-EffectCommands_593ac:
+GamblerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66e92
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66ea0
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66eba
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Gambler_BeforeDamage
 	db $00
 
-EffectCommands_593b7:
+ItemfinderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66edf
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66ef0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Itemfinder_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Itemfinder_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Itemfinder_BeforeDamage
 	db $00
 
-EffectCommands_593bf:
+DefenderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66f09
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66f0e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Defender_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Defender_BeforeDamage
 	db $00
 
-EffectCommands_593c7:
+MysteriousFossilEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66f14
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66f1e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MysteriousFossil_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MysteriousFossil_BeforeDamage
 	db $00
 
-EffectCommands_593cf:
+FullHealEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66f2c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, FullHeal_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, FullHeal_BeforeDamage
 	db $00
 
-EffectCommands_593d4:
+ImposterProfessorOakEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66f5f
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66f72
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66f8d
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_66f76
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ImposterProfessorOak_BeforeDamage
 	db $00
 
-EffectCommands_593e2:
+ComputerSearchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66fa9
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66fae
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ComputerSearch_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ComputerSearch_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ComputerSearch_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, ComputerSearch_RequireSelection
 	db $00
 
-EffectCommands_593ea:
+ClefairyDollEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_66fb4
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_66fb9
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_66fca
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ClefairyDoll_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ClefairyDoll_BeforeDamage
 	db $00
 
-EffectCommands_593f5:
+MrFujiEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_67018
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, MrFuji_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, MrFuji_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, MrFuji_BeforeDamage
 	db $00
 
-EffectCommands_593fa:
+PluspowerEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67024
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_67029
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6703a
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Pluspower_BeforeDamage
 	db $00
 
-EffectCommands_59405:
+SwitchEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67041
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_67049
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Switch_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Switch_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Switch_BeforeDamage
 	db $00
 
-EffectCommands_5940d:
+PokemonCenterEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67086
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6709c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_670ba
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokemonCenter_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PokemonCenter_BeforeDamage
 	db $00
 
-EffectCommands_59418:
+PokemonFluteEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_670de
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_670ec
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6711f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokemonFlute_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PokemonFlute_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PokemonFlute_BeforeDamage
 	db $00
 
-EffectCommands_59423:
+PokemonBreederEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_671bc
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_671c1
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_671e4
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokemonBreeder_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PokemonBreeder_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PokemonBreeder_BeforeDamage
 	db $00
 
-EffectCommands_5942e:
+ScoopUpEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6724b
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6725b
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_672b0
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_67276
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, ScoopUp_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, ScoopUp_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, ScoopUp_BeforeDamage
 	db $00
 
-EffectCommands_5943c:
+PokemonTraderEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67302
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_673c7
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_6730c
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokemonTrader_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, PokemonTrader_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, PokemonTrader_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, PokemonTrader_RequireSelection
 	db $00
 
-EffectCommands_59447:
+PokedexEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_673e1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Pokedex_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Pokedex_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Pokedex_RequireSelection
 	db $00
 
-EffectCommands_5944c:
+BillEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_67406
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Bill_BeforeDamage
 	db $00
 
-EffectCommands_59451:
+LassEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67493
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6749c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_674a6
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Lass_BeforeDamage
 	db $00
 
-EffectCommands_5945c:
+MaintenanceEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_674c6
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_674f8
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_674d0
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Maintenance_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Maintenance_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Maintenance_BeforeDamage
 	db $00
 
-EffectCommands_59467:
+PokeballEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67519
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6754f
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_67527
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Pokeball_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Pokeball_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Pokeball_RequireSelection
 	db $00
 
-EffectCommands_59472:
+RecycleEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67567
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_67571
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6758f
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Recycle_InitialEffect1
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Recycle_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Recycle_RequireSelection
 	db $00
 
-EffectCommands_5947d:
+ReviveEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_675b3
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_675ca
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_67640
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Revive_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Revive_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Revive_BeforeDamage
 	db $00
 
-EffectCommands_59488:
+DevolutionSprayEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67678
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_6768c
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6771e
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, DevolutionSpray_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, DevolutionSpray_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, DevolutionSpray_BeforeDamage
 	db $00
 
-EffectCommands_59493:
+SuperEnergyRemovalEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_67751
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_67762
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_677a8
-	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, Func_67766
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SuperEnergyRemoval_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SuperEnergyRemoval_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SuperEnergyRemoval_BeforeDamage
 	db $00
 
-EffectCommands_594a1:
+SuperEnergyRetrievalEffectCommands:
 	db $19 ; effect bank
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, Func_6780e
-	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Func_67813
-	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, Func_6782a
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, SuperEnergyRetrieval_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, SuperEnergyRetrieval_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, SuperEnergyRetrieval_BeforeDamage
+	dbw EFFECTCMDTYPE_REQUIRE_SELECTION, SuperEnergyRetrieval_RequireSelection
+	db $00
+
+GustOfWindEffectCommands:
+	db $19 ; effect bank
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, GustOfWind_InitialEffect1
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GustOfWind_InitialEffect2
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GustOfWind_BeforeDamage
 	db $00
 
 INCLUDE "data/decks.asm"
