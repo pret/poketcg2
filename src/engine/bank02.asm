@@ -216,14 +216,14 @@ Func_87d3:
 	jr z, .asm_886d
 	and PAD_A
 	jr nz, .asm_8863
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	scf
 	ret
 .asm_8863
 	call .asm_88a3
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	scf
 	ret
 .asm_886d
@@ -414,14 +414,14 @@ HandleMultiDirectionalMenu:
 	and PAD_A
 	jr nz, .a_btn
 ; b btn
-	ld a, $ff ; cancel
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	scf
 	ret
 .a_btn
 	call .DrawCursor
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wd0c1]
 	scf
 	ret
@@ -593,15 +593,15 @@ Func_8fb9:
 	ld [wCurDeck], a
 	call CheckIfCurDeckIsEmpty
 	jp nc, .valid_deck ; can be jr
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	call Func_9215
 	scf
 	ret
 
 .valid_deck
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	call GetSRAMPointerToCurDeckCards
 	push hl
 	call GetSRAMPointerToCurDeck
@@ -737,14 +737,14 @@ Func_9292:
 	jr z, .asm_92ee
 	and PAD_A
 	jr nz, .asm_92e4
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	scf
 	ret
 .asm_92e4
 	call .asm_9324
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	scf
 	ret
 .asm_92ee
@@ -785,13 +785,13 @@ Func_9292:
 	ld a, $0f
 	jr .asm_9307
 
-; play different sfx by a.
-; if a is 0xff play SFX_CANCEL (usually following a B press),
-; else play SFX_CONFIRM (usually following an A press).
-PlayAcceptOrDeclineSFX:
+; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
+; else SFX_CONFIRM (usually following A button)
+PlayConfirmOrCancelSFX:
 	push af
 	inc a
 	jr z, .cancel
+; confirm
 	ld a, SFX_CONFIRM
 	jr .play_sfx
 .cancel
@@ -1204,8 +1204,8 @@ Func_95d6:
 	ldh a, [hDPadHeld]
 	and PAD_START
 	jr z, .asm_960c
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	call Func_9787
 	ld a, [wCurCardTypeFilter]
 	ld [wTempCardTypeFilter], a
@@ -1262,8 +1262,8 @@ Func_95d6:
 	ldh a, [hDPadHeld]
 	and PAD_START
 	jr z, .asm_9685
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wTempCardTypeFilter]
 	ld [wd11c], a
 	call Func_9787
@@ -1279,8 +1279,8 @@ Func_95d6:
 	jr nz, .asm_96a0
 	ld a, $ff
 	ld [hCurMenuItem], a
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	jr .asm_96f3
 .asm_96a0
 	call HandleSelectUpAndDownInList
@@ -1289,8 +1289,8 @@ Func_95d6:
 	jr c, .asm_96f3
 	jr .asm_9669
 .asm_96ac
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
@@ -2269,17 +2269,17 @@ HandleCardSelectionInput:
 	and PAD_A
 	jr nz, ConfirmSelectionAndReturnCarry
 	; b button
-	ld a, $ff
+	ld a, -1
 	ld [hCurMenuItem], a
-	call PlayAcceptOrDeclineSFX
+	call PlayConfirmOrCancelSFX ; MENU_CANCEL
 	scf
 	ret
 
 ; outputs cursor position in e and selection in a
 ConfirmSelectionAndReturnCarry:
 	call DrawHorizontalListCursor_Visible
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -2442,8 +2442,8 @@ HandleScrollListInput:
 	jr nc, .blink_cursor
 .selected
 	call DrawListCursor_Visible
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -2456,9 +2456,9 @@ HandleScrollListInput:
 	jr z, .check_sfx
 	and PAD_A
 	jr nz, .selected
-	ld a, $ff
+	ld a, -1
 	ld [hCurMenuItem], a
-	call PlayAcceptOrDeclineSFX
+	call PlayConfirmOrCancelSFX ; MENU_CANCEL
 	scf
 	ret
 
@@ -2964,8 +2964,8 @@ HandleDeckConfirmationMenu:
 	jr z, .loop_input
 
 .selected_card
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld [wced7], a
 
@@ -3100,8 +3100,8 @@ ShowDeckInfoHeaderAndWaitForBButton:
 	ldh a, [hKeysPressed]
 	and PAD_B
 	jr z, .wait_input
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	ret
 
 ShowConfirmationCardScreen:
@@ -4815,8 +4815,8 @@ CardAlbum:
 	ldh a, [hKeysPressed]
 	and PAD_B
 	jr z, .loop_input_empty_list
-	ld a, $ff
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	call PlayConfirmOrCancelSFX
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
 	ld a, [wTempScrollMenuItem]
@@ -4852,8 +4852,8 @@ CardAlbum:
 	and PAD_START
 	jr z, .loop
 .open_card_page
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wCurScrollMenuItem]
@@ -5279,8 +5279,8 @@ PrinterMenu_PokemonCards:
 	and PAD_START
 	jr z, .loop_frame_2
 ; start btn
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
@@ -5582,8 +5582,8 @@ Func_b5b1:
 	and PAD_START
 	jr z, .asm_b5ed
 .asm_b600
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wTempCardTypeFilter]
 	ld [wced7], a
 	ld de, wUniqueDeckCardList
@@ -5839,8 +5839,8 @@ DeckDiagnosisResult:
 	and PAD_START
 	jr z, .loop_input
 .open_card_page
-	ld a, $01
-	call PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wCurScrollMenuItem]

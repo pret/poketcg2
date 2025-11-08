@@ -5969,18 +5969,19 @@ WhatIsYourNameData:
 
 SECTION "Bank 6@6e92", ROMX[$6e92], BANK[$6]
 
-; play different sfx by a.
-; if a is 0xff play SFX_CANCEL (usually following a B press),
-; else play SFX_CONFIRM (usually following an A press).
-PlayAcceptOrDeclineSFX_Bank06:
+; dupe of PlayConfirmOrCancelSFX in bank 2
+; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
+; else SFX_CONFIRM (usually following A button)
+PlayConfirmOrCancelSFX_Bank06:
 	push af
 	inc a
-	jr z, .sfx_decline
+	jr z, .cancel
+; confirm
 	ld a, SFX_CONFIRM
-	jr .sfx_accept
-.sfx_decline
+	jr .play_sfx
+.cancel
 	ld a, SFX_CANCEL
-.sfx_accept
+.play_sfx
 	call PlaySFX
 	pop af
 	ret
@@ -6033,8 +6034,8 @@ InputPlayerName:
 	ldh a, [hDPadHeld]
 	and PAD_START
 	jr z, .check_select
-	ld a, $01
-	call PlayAcceptOrDeclineSFX_Bank06
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX_Bank06
 	call HideCursorAtCharPosition
 	ld a, 6
 	ld [wNamingScreenCursorY], a
@@ -6047,8 +6048,8 @@ InputPlayerName:
 	ldh a, [hDPadHeld]
 	and PAD_SELECT
 	jr z, .asm_1af3b
-	ld a, $01
-	call PlayAcceptOrDeclineSFX_Bank06
+	ld a, MENU_CONFIRM
+	call PlayConfirmOrCancelSFX_Bank06
 	ld a, [wNamingScreenMode]
 	inc a
 	cp NUM_NAME_MODES
@@ -6443,10 +6444,10 @@ HandleNamingScreenInput:
 	and PAD_A | PAD_B
 	jr z, .no_pressed_btns
 	and PAD_A
-	jr nz, .asm_1b174
-	ld a, $ff
-.asm_1b174
-	call PlayAcceptOrDeclineSFX_Bank06
+	jr nz, .got_sfx ; MENU_CONFIRM
+	ld a, MENU_CANCEL
+.got_sfx
+	call PlayConfirmOrCancelSFX_Bank06
 	push af
 	call ShowCursorAtCharPosition
 	pop af

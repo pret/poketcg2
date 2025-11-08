@@ -4677,7 +4677,7 @@ HandleScrollMenu:
 .asm_3ac12
 	call .draw_visible_cursor
 	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -4693,7 +4693,7 @@ HandleScrollMenu:
 ; b button
 	ld a, $ff
 	ld [hCurMenuItem], a
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX
 	scf
 	ret
 
@@ -5014,7 +5014,7 @@ HandleDeckMachineSelection:
 	ld e, l
 	pop hl
 	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -6893,7 +6893,7 @@ Func_3bb09:
 	ld e, l
 	pop hl
 	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -6975,7 +6975,7 @@ Func_3bb09:
 	pop hl
 	jp c, .asm_3bb4f
 	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX
 	push hl
 	ld de, $18
 	add hl, de

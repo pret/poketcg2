@@ -311,8 +311,8 @@ Glossary:
 	ldh a, [hKeysPressed]
 	and PAD_B
 	jr z, .loop_wait_b_btn
-	ld a, $ff
-	farcall PlayAcceptOrDeclineSFX
+	ld a, MENU_CANCEL
+	farcall PlayConfirmOrCancelSFX
 	ret
 
 MACRO explanation
