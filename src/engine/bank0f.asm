@@ -7279,7 +7279,7 @@ Func_3f858:
 	farcall GetVarValue
 	cp $03
 	jr nz, .asm_3f87b
-	ld a, [wd9d5]
+	ld a, [wMessageSpeedSetting]
 	ld b, a
 	ld a, [wTextBoxFrameColor]
 	ld c, a

@@ -5684,3 +5684,229 @@ Func_f085:
 	pop de
 	ret
 ; 0xf0c3
+
+SECTION "Bank 3@725a", ROMX[$725a], BANK[$3]
+
+DebugMenuEffectViewer:
+	push af
+	push bc
+	push de
+	push hl
+	farcall SetFadePalsFrameFunc
+	xor a
+	ld [wAnimationsDisabled], a
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	farcall Func_10d40
+	farcall SetInitialGraphicsConfiguration
+	lb de, 0, 0
+	lb bc, 20, 18
+	ld h, $00
+	ld l, $00
+	farcall FillBoxInBGMap
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	call DebugEffectViewer_PlaceTextItems
+	call ChangeAnimationPlayerSideOnStartPress.initialize
+	call ChangeEffectNumberOnDpadPress.initialize
+	call Func_3d0d
+	push af
+	ld a, MUSIC_DUELTHEME_1
+	call SetMusic
+	pop af
+	farcall StartFadeFromWhite
+	farcall WaitPalFading_Bank07
+	ld a, NUM_COINS
+	call Random
+	ld [wOppCoin], a
+.button_handling_loop
+	call DoFrame
+	call CancelAnimationOnBPress
+	call ChangeAnimationPlayerSideOnStartPress
+	call ChangeEffectNumberOnDpadPress
+	call PlayAnimationOnAPress
+	call DebugPrintAnimBufferCurPosAndSize
+	call ChangeDebugViewerStateText
+	ldh a, [hKeysPressed]
+	and PAD_SELECT
+	jr z, .button_handling_loop
+	call FinishQueuedAnimations
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call Func_3d16
+	farcall UnsetFadePalsFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+PlayAnimationOnAPress:
+	ldh a, [hKeysPressed]
+	and PAD_A
+	ret z
+	ld a, [wDebugSelectedAnimNumber]
+	and a
+	ret z
+	cp DUEL_ANIM_DAMAGE_HUD
+	jr z, .play
+	cp DUEL_ANIM_DAMAGE_HUD
+	ret nc
+.play
+	call FinishQueuedAnimations
+	call ResetAnimationQueue
+	ld a, [wDebugSelectedAnimNumber]
+	ld [wCurAnimation], a
+	ld a, [wDebugDuelAnimationScreen]
+	ld [wDuelAnimationScreen], a
+	ld a, [wDebugAnimDuelistSide]
+	ld [wDuelAnimDuelistSide], a
+	ld a, [wDebugDuelAnimLocationParam]
+	ld [wDuelAnimLocationParam], a
+	ld a, $ff
+	call Random ; pick random damage number to show
+	ld c, a
+	ld b, $00
+	ld hl, wDuelAnimDamage
+	ld [hl], c
+	inc hl
+	ld [hl], b
+	ld a, %111
+	ld [wDuelAnimEffectiveness], a
+	call LoadDuelAnimationToBuffer
+	ret
+
+DebugEffectViewer_PlaceTextItems:
+	ld hl, .Data_f32f
+	call PlaceTextItemsVRAM0
+	ret
+
+.Data_f32f:
+	; x, y, text offset
+	textitem 10, 14, DebugEffectViewerStartButtonSwapText
+	textitem 14, 15, DebugEffectViewerAButtonPlayText
+	textitem 14, 16, DebugEffectViewerBButtonStopText
+	textitem  2, 13, DebugEffectViewerAnimationNumberText
+	db $ff
+
+ChangeAnimationPlayerSideOnStartPress:
+	ldh a, [hKeysPressed]
+	and PAD_START
+	ret z
+	push af
+	ld a, SFX_02
+	call CallPlaySFX
+	pop af
+	ld b, OPPONENT_TURN
+	ld c, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ldtx hl, DebugEffectViewerRightToLeftText
+	ld a, [wDebugAnimDuelistSide]
+	cp PLAYER_TURN
+	jr z, .asm_f361
+.initialize
+	ld b, PLAYER_TURN
+	ld c, DUEL_ANIM_SCREEN_MAIN_SCENE
+	ldtx hl, DebugEffectViewerLeftToRightText
+.asm_f361
+	ld a, b
+	ld [wDebugAnimDuelistSide], a
+	ld a, c
+	ld [wDebugDuelAnimationScreen], a
+	lb de, 2, 14
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ret
+
+ChangeEffectNumberOnDpadPress:
+	ldh a, [hDPadHeld]
+	and PAD_UP
+	jr z, .check_down
+	ld b, 10
+	jr .update_anim
+.check_down
+	ldh a, [hDPadHeld]
+	and PAD_DOWN
+	jr z, .check_left
+	ld b, -10
+	jr .update_anim
+.check_left
+	ldh a, [hDPadHeld]
+	and PAD_LEFT
+	jr z, .check_right
+	ld b, -1
+	jr .update_anim
+.check_right
+	ldh a, [hDPadHeld]
+	and PAD_RIGHT
+	ret z
+	ld b, 1
+	jr .update_anim
+.initialize
+	ld b, 0
+.update_anim
+	ld a, [wDebugSelectedAnimNumber]
+	add b
+	and $ff
+	ld [wDebugSelectedAnimNumber], a
+	ld l, a
+	ld h, 0
+	lb de, 3, 13
+	ld a, 3
+	ld b, FALSE
+	farcall PrintNumber
+	ret
+
+CancelAnimationOnBPress:
+	ldh a, [hKeysPressed]
+	and PAD_B
+	ret z
+	push af
+	ld a, SFX_03
+	call CallPlaySFX
+	pop af
+	call FinishQueuedAnimations
+	ret
+
+DebugPrintAnimBufferCurPosAndSize:
+	push af
+	push bc
+	push de
+	push hl
+	farcall GetwDuelAnimBufferCurPos
+	ld l, a
+	ld h, 0
+	lb de, 2, 16
+	ld a, 2
+	ld b, FALSE
+	farcall PrintNumber
+	farcall GetwDuelAnimBufferSize
+	ld l, a
+	ld h, 0
+	lb de, 5, 16
+	ld a, 2
+	ld b, FALSE
+	farcall PrintNumber
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+ChangeDebugViewerStateText:
+	push af
+	push bc
+	push de
+	push hl
+	call CheckAnyAnimationPlaying
+	ldtx hl, DebugEffectViewerPlayingStateText
+	jr c, .asm_f3fd
+	ldtx hl, DebugEffectViewerStopStateText
+.asm_f3fd
+	lb de, 13, 13
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0xf408

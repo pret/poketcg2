@@ -730,8 +730,8 @@ CoreGameLoop::
 	farcall _CoreGameLoop
 	ret
 
-Func_34be::
-	farcall $4, $4000
+CallStartupDebugMenu::
+	farcall StartUpDebugMenu
 	ret
 
 WaitForLCDOff::
@@ -853,6 +853,8 @@ DoAFrames_WithPreCheck::
 	pop af
 	ret
 
+; a - table index
+; hl - pointer to data table, $ff terminated
 CallMappedFunction::
 	ld c, a
 .loop_entries
@@ -968,12 +970,12 @@ Func_35a0::
 
 ; hl = text ID
 ; de = coordinates
-Func_35af::
+InitTextPrinting_ProcessTextFromIDVRAM0::
 	push af
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call InitTextPrinting_ProcessTextFromID
 	pop hl
@@ -984,12 +986,12 @@ Func_35af::
 
 ; hl = text ID
 ; de = coordinates
-Func_35bf::
+PrintTextNoDelay_InitVRAM0::
 	push af
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call PrintTextNoDelay_Init
 	pop hl
@@ -998,12 +1000,17 @@ Func_35bf::
 	pop af
 	ret
 
-Func_35cf::
+; hl - list of text items
+;
+; writes n items of text each given in the following format in hl:
+; x coord, y coord, text id
+; $ff-terminated
+PlaceTextItemsVRAM0::
 	push af
 	push bc
 	push de
 	push hl
-	xor a
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	call PlaceTextItems
 	pop hl
@@ -1015,7 +1022,7 @@ Func_35cf::
 ; hl = text ID
 ; de = coordinates
 Func_35df::
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	push bc
 	push de
 	ld bc, $c0 tiles
@@ -1457,6 +1464,7 @@ Func_3828::
 	call FlushAllPalettes
 	ret
 
+; set current dest VRAM bank to a
 BankswitchVRAM::
 	call _BankswitchVRAM
 	ret
@@ -1538,6 +1546,8 @@ CopyCGBBGPalsFromSource_WithPalOffset::
 	ldh [rBGP], a
 	ret
 
+; bc - x,y dimensions of text box
+; de - coordinates
 DrawRegularTextBoxVRAM0::
 	push af
 	push bc
@@ -2281,10 +2291,10 @@ FinishQueuedAnimations::
 ; - a = animation index
 PlayDuelAnimation::
 	ld [wCurAnimation], a ; hold an animation temporarily
-	call .LoadDuelAnimationToBuffer
+	call LoadDuelAnimationToBuffer
 	ret
 
-.LoadDuelAnimationToBuffer:
+LoadDuelAnimationToBuffer::
 	ldh a, [hBankROM]
 	push af
 	ld [wDuelAnimReturnBank], a
@@ -2424,7 +2434,7 @@ Func_3d32::
 	ld [wdd04], a
 	ret
 
-Func_3d3a::
+CallSetVolume::
 	call SetVolume
 	ret
 

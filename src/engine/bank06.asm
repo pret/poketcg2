@@ -2829,7 +2829,7 @@ InitSaveData:
 
 ; miscellaneous data
 	xor a
-	ld [s0a007], a
+	ld [sDuelAnimationsSetting], a
 	ld [sSkipDelayAllowed], a
 	ld [s0a004], a
 	ld [sTotalCardPopsDone], a

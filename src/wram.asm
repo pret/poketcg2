@@ -1102,6 +1102,7 @@ wTxRam3_b:: ; cddc
 	ds $2
 
 ; when printing text, number of frames to wait between each text tile
+; derived from wMessageSpeedSetting
 wTextSpeed:: ; cdde
 	ds $1
 
@@ -2483,7 +2484,24 @@ wd680:: ; d680
 wOWScrollSpeed:: ; d681
 	ds $1
 
-	ds $a
+wDebugMenuCursorPosition:: ; d682
+	ds $1
+
+	ds $2
+
+wDebugAnimDuelistSide:: ; d685
+	ds $1
+
+wDebugSelectedAnimNumber:: ; d686
+	ds $1
+
+wDebugDuelAnimationScreen:: ; d687
+	ds $1
+
+wDebugDuelAnimLocationParam:: ; d688
+	ds $1
+
+	ds $3
 
 wd68c:: ; d68c
 	ds $1
@@ -2682,18 +2700,21 @@ wPortraitSlot:: ; d9ce
 wPortraitEmotion:: ; d9cf
 	ds $1
 
-wd9d0:: ; d9d0
+; which of the 5 submenus in the Config menu is selected
+wSelectedConfigSubmenu:: ; d9d0
 	ds $1
 
 	ds $2
 
-wd9d3:: ; d9d3
+; see also: sDuelAnimationsSetting
+wDuelAnimationsSetting:: ; d9d3
 	ds $1
 
-wd9d4:: ; d9d4
+wCoinTossAnimationSetting:: ; d9d4
 	ds $1
 
-wd9d5:: ; d9d5
+; used to set wTextSpeed, sTextSpeed
+wMessageSpeedSetting:: ; d9d5
 	ds $1
 
 wTextBoxFrameColor:: ; d9d6

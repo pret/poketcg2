@@ -1900,12 +1900,12 @@ GameCenter2_NPCInteractions:
 	db $ff
 
 GameCenter2_OWInteractions:
-	_ow_coordinate_function 2, 10, 1, 0, 0, 0, Func_1d96e
-	_ow_coordinate_function 3, 10, 1, 0, 0, 0, Func_1d96e
-	_ow_coordinate_function 4, 10, 1, 0, 0, 0, Func_1d96e
-	_ow_coordinate_function 7, 10, 5, 0, 0, 0, Func_1d96e
-	_ow_coordinate_function 8, 10, 5, 0, 0, 0, Func_1d96e
-	_ow_coordinate_function 9, 10, 5, 0, 0, 0, Func_1d96e
+	_ow_coordinate_function 2, 10, 1, 0, 0, 0, OWInteractionSlotMachine
+	_ow_coordinate_function 3, 10, 1, 0, 0, 0, OWInteractionSlotMachine
+	_ow_coordinate_function 4, 10, 1, 0, 0, 0, OWInteractionSlotMachine
+	_ow_coordinate_function 7, 10, 5, 0, 0, 0, OWInteractionSlotMachine
+	_ow_coordinate_function 8, 10, 5, 0, 0, 0, OWInteractionSlotMachine
+	_ow_coordinate_function 9, 10, 5, 0, 0, 0, OWInteractionSlotMachine
 	db $ff
 
 GameCenter2_MapScripts:

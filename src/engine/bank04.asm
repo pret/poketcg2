@@ -1,3 +1,190 @@
+StartUpDebugMenu::
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	ld a, SFX_02
+	call CallPlaySFX
+	pop af
+.loop
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call FlushAllPalettes
+	call EnableLCD
+	call InitStartupDebugMenuBox
+	call HandleStartupDebugMenuBox
+	jr c, .done
+	call HandleStartupDebugMenuOption
+	jr c, .done
+	jr .loop
+.done
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+InitStartupDebugMenuBox:
+	push af
+	push bc
+	push de
+	push hl
+	lb de, 0, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
+	call LoadMenuBoxParams
+	ld a, [wDebugMenuCursorPosition]
+	farcall DrawMenuBox
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.menu_params:
+	db TRUE ; skip clear
+	db 16, 11 ; width, height
+	db SYM_CURSOR_R ; blink cursor symbol
+	db SYM_SPACE ; space symbol
+	db SYM_CURSOR_R ; default cursor symbol
+	db SYM_CURSOR_R ; selection cursor symbol
+	db PAD_A ; press keys
+	db PAD_B ; held keys
+	db FALSE ; has horizontal scroll
+	db 1 ; vertical step
+	dw NULL ; update function
+	tx DebugKondoDebugText ; label text ID
+
+	textitem 2, 2, DebugPowerOnText
+	textitem 2, 3, PauseMenuCoinText
+	textitem 2, 4, PauseMenuConfigText
+	textitem 2, 5, DebugEffectViewerText
+	textitem 2, 6, DebugCreditsText
+	textitem 2, 7, DebugDuelText
+	textitem 2, 8, DebugSlotMachineText
+	textitem 2, 9, PauseMenuExitText
+	db $ff
+
+HandleStartupDebugMenuBox:
+	ld a, [wDebugMenuCursorPosition]
+	farcall HandleMenuBox
+	ld [wDebugMenuCursorPosition], a
+	jr c, .asm_1008a
+	push af
+	ld a, SFX_02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1008a
+	push af
+	ld a, SFX_03
+	call CallPlaySFX
+	pop af
+	ret
+
+HandleStartupDebugMenuOption:
+	ld hl, .FunctionMap
+	call CallMappedFunction
+	ret
+
+.FunctionMap: ; boot up debug menu options
+	key_func $00, _CoreGameLoop ; power on
+	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
+	key_func $02, DebugShowConfigMenu ; config
+	key_func $03, DebugMenuEffectViewer ; effect viewer
+	key_func $04, _PlayCredits ; staff roll
+	key_func $05, StartDebugDuelVsRandomOpponent ; duel
+	key_func $06, DebugSlotMachine ; slot machine
+	db $ff
+
+SetAllCoinsObtainedAndShowCoinMenu:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	ld a, [wd693]
+	res 2, a
+	ld [wd693], a
+	call SetAllCoinEvents
+	farcall ShowCoinMenuWithoutIncomingCoin ; same menu that you see from the in-game coin menu
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+
+SetAllCoinEvents:
+	ld c, NUM_COINS
+	ld hl, .CoinEvents
+.loop
+	ld a, [hli]
+	farcall MaxOutEventValue
+	dec c
+	jr nz, .loop
+	ret
+
+.CoinEvents:
+	; note that this is the order the coins are displayed in menu, not const value order
+	db EVENT_GOT_CHANSEY_COIN
+	db EVENT_GOT_GR_COIN
+	db EVENT_GOT_ODDISH_COIN
+	db EVENT_GOT_CHARMANDER_COIN
+	db EVENT_GOT_STARMIE_COIN
+	db EVENT_GOT_PIKACHU_COIN
+	db EVENT_GOT_ALAKAZAM_COIN
+	db EVENT_GOT_KABUTO_COIN
+	db EVENT_GOT_GOLBAT_COIN
+	db EVENT_GOT_MAGNEMITE_COIN
+	db EVENT_GOT_MAGMAR_COIN
+	db EVENT_GOT_PSYDUCK_COIN
+	db EVENT_GOT_MACHAMP_COIN
+	db EVENT_GOT_MEW_COIN
+	db EVENT_GOT_SNORLAX_COIN
+	db EVENT_GOT_TOGEPI_COIN
+	db EVENT_GOT_PONYTA_COIN
+	db EVENT_GOT_HORSEA_COIN
+	db EVENT_GOT_ARBOK_COIN
+	db EVENT_GOT_JIGGLYPUFF_COIN
+	db EVENT_GOT_DUGTRIO_COIN
+	db EVENT_GOT_GENGAR_COIN
+	db EVENT_GOT_RAICHU_COIN
+	db EVENT_GOT_LUGIA_COIN
+
+DebugShowConfigMenu:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	farcall ShowConfigMenu
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+
+StartDebugDuelVsRandomOpponent:
+	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call SetFrameFuncAndFadeFromWhite
+	ld a, $28
+	call Random
+	add $05
+	ld [wNPCDuelDeckID], a
+	farcall Func_1e5a2
+	call FadeToWhiteAndUnsetFrameFunc
+	ret
+
+DebugSlotMachine:
+	call SetSpriteAnimationAndFadePalsFrameFunc
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call ClearGameCenterChips
+	ld bc, 100
+	call AddChips
+	call Func_3d0d
+	push af
+	ld a, MUSIC_GRDUELTHEME_2
+	call SetMusic
+	pop af
+	ld a, 5
+	farcall SlotMachine
+	call Func_3d16
+	call UnsetSpriteAnimationAndFadePalsFrameFunc
+	ret
+; 0x10150
+
 SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
 ; waits until any of the keys
@@ -1076,12 +1263,18 @@ Func_1081a:
 	ret
 
 Func_10836:
-	ld hl, $483d
+	ld hl, Data_1083d
 	call CallMappedFunction
 	ret
-; 0x1083d
 
-SECTION "Bank 4@4856", ROMX[$4856], BANK[$4]
+Data_1083d: ; pause menu
+	db $00, $07, $f2, $45 ; status
+	db $01, $07, $02, $45 ; diary
+	db $02, $04, $65, $48 ; deck
+	db $03, $07, $4f, $67 ; minicon
+	db $04, $07, $9a, $5c ; coin
+	db $05, $07, $6e, $41 ; settings
+	db $ff
 
 Func_10856:
 	farcall Func_1caf1
@@ -3503,11 +3696,11 @@ Func_114af:
 	lb de, 1, 1
 	call AdjustDECoordByhSC
 	ldtx hl, ChipsText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 6, 2
 	call AdjustDECoordByhSC
 	ldtx hl, PlayerDiaryCardsUnitText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call PrintNumberOfChips
 
 .fill
@@ -3615,7 +3808,7 @@ SubtractChips:
 	ret
 
 ; clear wda98 to wda9c
-Func_1157c:
+ClearGameCenterChips:
 	push af
 	xor a
 	ld [wGameCenterChips], a
@@ -5017,7 +5210,7 @@ PrintPlayTime:
 	inc d
 	inc d
 	ldtx hl, SingleColonText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc d
 	ld a, [wDisplayMinutes]
 	ld l, a
@@ -5059,7 +5252,7 @@ PrintCardAlbumProgress:
 	inc d
 	inc d
 	ldtx hl, CardCountSeparatorText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc d
 	ld hl, wTotalNumCardsToCollect
 	ld a, [hli]
@@ -5108,15 +5301,15 @@ Func_121e1:
 
 SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
 
-Func_1239b:
+AskToPlaySlots:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_123ab
+	call DrawSlotMachineDescriptionBox
 	call SetFrameFuncAndFadeFromWhite
-	call Func_123e2
+	call PlaySlotsPrompt
 	call FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_123ab:
+DrawSlotMachineDescriptionBox:
 	lb de, 0, 0
 	lb bc, 20, 12
 	call DrawRegularTextBoxVRAM0
@@ -5128,7 +5321,7 @@ Func_123ab:
 	call Func_2c4b
 	lb de, 1, 2
 	ldtx hl, GameCenterSlotMachineDescriptionText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wdb2f]
 	ld l, a
 	ld h, $00
@@ -5138,7 +5331,7 @@ Func_123ab:
 	call Func_2c4b
 	ret
 
-Func_123e2:
+PlaySlotsPrompt:
 	ldtx hl, GameCenterSlotMachineStartPromptText
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
@@ -5152,7 +5345,7 @@ Func_123e2:
 	call Func_3d16
 	ret
 
-Func_123fc:
+StartSlotMachine:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call Func_125bf
 	xor a
@@ -5734,7 +5927,7 @@ Func_12a02:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterSlotMachineDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_12a15:
@@ -6081,7 +6274,7 @@ Func_13189:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterBlackBoxDescriptionText
 	lb de, 1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterBlackBoxTitleText
 	lb de, 1, 0
 	call Func_2c4b
@@ -6151,7 +6344,7 @@ Func_13222:
 	bank1call SetNoLineSeparation
 	ldtx hl, GameCenterBlackBoxProcedureText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	bank1call SetOneLineSeparation
 	ret
 
@@ -6375,7 +6568,7 @@ Func_133b0:
 	farcall Func_a6ef
 	ldtx hl, GameCenterBlackBoxSendingHeaderText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call Func_133dc
 	ld [wTxRam3], a
 	xor a
@@ -6387,7 +6580,7 @@ Func_133b0:
 	ld [wTxRam3_b + 1], a
 	ldtx hl, NumberSlashNumberText
 	lb de, 16, 1
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ret
 
 Func_133dc:
@@ -6779,10 +6972,10 @@ Func_1362d:
 	lb de, 1, 0
 	call Func_2c4b
 	ld hl, $7697
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 	ldtx hl, ChallengeMachineScoreTitleText
 	lb de, 1, 2
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ld hl, wde0d
 	ld de, $e04
 	call Func_13681
@@ -6829,7 +7022,7 @@ Func_136b4:
 	call SavePlayerName
 	ldtx hl, TxRam1Text
 	lb de, 2, 10
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	ld hl, wde39
 	call SavePlayerName
 	ret
@@ -6916,7 +7109,7 @@ Func_13763:
 	ld [wTxRam3 + 1], a
 	ldtx hl, TxRam3Text
 	ld d, $02
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	ret
 
@@ -6926,7 +7119,7 @@ Func_13778:
 	ld h, [hl]
 	ld l, a
 	ld d, $04
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -6938,7 +7131,7 @@ Func_13785:
 	ld h, [hl]
 	ld l, a
 	ld d, $0e
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl
