@@ -5717,7 +5717,7 @@ DebugMenuEffectViewer:
 	pop af
 	farcall StartFadeFromWhite
 	farcall WaitPalFading_Bank07
-	ld a, $18
+	ld a, NUM_COINS
 	call Random
 	ld [wOppCoin], a
 .button_handling_loop
@@ -5749,9 +5749,9 @@ PlayAnimationOnAPress:
 	ld a, [wDebugSelectedAnimNumber]
 	and a
 	ret z
-	cp $8d ; highest number animation
+	cp DUEL_ANIM_DAMAGE_HUD
 	jr z, .play
-	cp $8d
+	cp DUEL_ANIM_DAMAGE_HUD
 	ret nc
 .play
 	call FinishQueuedAnimations
@@ -5772,8 +5772,8 @@ PlayAnimationOnAPress:
 	ld [hl], c
 	inc hl
 	ld [hl], b
-	ld a, $07
-	ld [wDuelAnimSetScreen], a
+	ld a, %111
+	ld [wDuelAnimEffectiveness], a
 	call LoadDuelAnimationToBuffer
 	ret
 
@@ -5787,7 +5787,7 @@ DebugEffectViewer_PlaceTextItems:
 	textitem 10, 14, DebugEffectViewerStartButtonSwapText
 	textitem 14, 15, DebugEffectViewerAButtonPlayText
 	textitem 14, 16, DebugEffectViewerBButtonStopText
-	textitem 2, 13, DebugEffectViewerAnimationNumberText
+	textitem  2, 13, DebugEffectViewerAnimationNumberText
 	db $ff
 
 ChangeAnimationPlayerSideOnStartPress:
@@ -5820,30 +5820,30 @@ ChangeAnimationPlayerSideOnStartPress:
 ChangeEffectNumberOnDpadPress:
 	ldh a, [hDPadHeld]
 	and PAD_UP
-	jr z, .asm_f37a
-	ld b, $0a
-	jr .asm_f399
-.asm_f37a
+	jr z, .check_down
+	ld b, 10
+	jr .update_anim
+.check_down
 	ldh a, [hDPadHeld]
 	and PAD_DOWN
-	jr z, .asm_f384
-	ld b, $f6
-	jr .asm_f399
-.asm_f384
+	jr z, .check_left
+	ld b, -10
+	jr .update_anim
+.check_left
 	ldh a, [hDPadHeld]
 	and PAD_LEFT
-	jr z, .asm_f38e
-	ld b, $ff
-	jr .asm_f399
-.asm_f38e
+	jr z, .check_right
+	ld b, -1
+	jr .update_anim
+.check_right
 	ldh a, [hDPadHeld]
 	and PAD_RIGHT
 	ret z
-	ld b, $01
-	jr .asm_f399
+	ld b, 1
+	jr .update_anim
 .initialize
-	ld b, $00
-.asm_f399
+	ld b, 0
+.update_anim
 	ld a, [wDebugSelectedAnimNumber]
 	add b
 	and $ff

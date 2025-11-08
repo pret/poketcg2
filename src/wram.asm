@@ -2487,16 +2487,16 @@ wDebugMenuCursorPosition:: ; d682
 
 	ds $2
 
-wDebugAnimDuelistSide:: ;d685
+wDebugAnimDuelistSide:: ; d685
 	ds $1
 
-wDebugSelectedAnimNumber:: ;d686
+wDebugSelectedAnimNumber:: ; d686
 	ds $1
 
-wDebugDuelAnimationScreen:: ;d687
+wDebugDuelAnimationScreen:: ; d687
 	ds $1
 
-wDebugDuelAnimLocationParam:: ;d688
+wDebugDuelAnimLocationParam:: ; d688
 	ds $1
 
 	ds $3
