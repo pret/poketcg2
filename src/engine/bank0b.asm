@@ -612,7 +612,7 @@ Func_2c4db:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_2c4ea
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2c4f7
 .asm_2c4ea
@@ -829,7 +829,7 @@ Func_2c645:
 	script_jump_if_b0z .ows_2c68f
 	print_npc_text Text0b12
 	script_command_02
-	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2c68f
@@ -853,7 +853,7 @@ Func_2c645:
 	script_jump_if_b0z .ows_2c6ba
 	print_npc_text Text0b16
 	script_command_02
-	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2c6ba
@@ -878,7 +878,7 @@ Func_2c645:
 	script_jump_if_b0z .ows_2c6e6
 	print_npc_text Text0b1b
 	script_command_02
-	start_duel ELECTRIC_SELFDESTRUCT_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel ELECTRIC_SELFDESTRUCT_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2c6e6
@@ -962,7 +962,7 @@ Func_2c73b:
 	script_jump_if_b0z .ows_2c77b
 	print_npc_text Text0b29
 	script_command_02
-	start_duel I_LOVE_PIKACHU_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel I_LOVE_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c77b
@@ -1021,7 +1021,7 @@ Func_2c79d:
 	script_jump_if_b0z .ows_2c7ea
 	print_npc_text Text0b32
 	script_command_02
-	start_duel OVERFLOW_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel OVERFLOW_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c7ea
@@ -1045,7 +1045,7 @@ Func_2c79d:
 	script_jump_if_b0z .ows_2c815
 	print_npc_text Text0b36
 	script_command_02
-	start_duel OVERFLOW_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel OVERFLOW_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c815
@@ -1070,7 +1070,7 @@ Func_2c79d:
 	script_jump_if_b0z .ows_2c841
 	print_npc_text Text0b3b
 	script_command_02
-	start_duel TRIPLE_ZAPDOS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel TRIPLE_ZAPDOS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c841
@@ -1155,7 +1155,7 @@ Func_2c897:
 	script_jump_if_b0z .ows_2c8d7
 	print_npc_text Text0b49
 	script_command_02
-	start_duel TEN_THOUSAND_VOLTS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel TEN_THOUSAND_VOLTS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c8d7
@@ -1270,7 +1270,7 @@ Func_2c9b8:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2c9c5
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2c9c5
 	scf
@@ -1520,7 +1520,7 @@ Func_2cba8:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cbb7
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2cbb7
 .asm_2cbb7
@@ -1536,7 +1536,7 @@ Func_2cbba:
 	scf
 	ret
 .asm_2cbc6
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -1771,7 +1771,7 @@ Func_2cd82:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2cd8f
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2cd8f
 	scf
@@ -1926,7 +1926,7 @@ Func_2ce88:
 	script_jump_if_b0z .ows_2cecf
 	print_npc_text Text0b6c
 	script_command_02
-	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cecf
@@ -1957,7 +1957,7 @@ Func_2ce88:
 	script_jump_if_b0z .ows_2cf11
 	print_npc_text Text0b72
 	script_command_02
-	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cf11
@@ -1974,7 +1974,7 @@ Func_2ce88:
 	script_jump_if_b0z .ows_2cf2f
 	print_npc_text Text0b75
 	script_command_02
-	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cf2f
@@ -2007,7 +2007,7 @@ Func_2ce88:
 	script_jump_if_b0z .ows_2cf6d
 	print_npc_text Text0b7b
 	script_command_02
-	start_duel PSYCHIC_ELITE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel PSYCHIC_ELITE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cf6d
@@ -2110,7 +2110,7 @@ Func_2cfcc:
 	script_jump_if_b0z .ows_2d024
 	print_npc_text Text0b8b
 	script_command_02
-	start_duel PHANTOM_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PHANTOM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d024
@@ -2173,7 +2173,7 @@ Func_2d046:
 	script_jump_if_b0z .ows_2d091
 	print_npc_text Text0b95
 	script_command_02
-	start_duel PUPPET_MASTER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PUPPET_MASTER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d091
@@ -2219,7 +2219,7 @@ Func_2d0b3:
 	script_jump_if_b0z .ows_2d0e5
 	print_npc_text Text0b9c
 	script_command_02
-	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d0e5
@@ -2242,7 +2242,7 @@ Func_2d0b3:
 	script_jump_if_b0z .ows_2d110
 	print_npc_text Text0ba0
 	script_command_02
-	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d110
@@ -2267,7 +2267,7 @@ Func_2d0b3:
 	script_jump_if_b0z .ows_2d13c
 	print_npc_text Text0ba5
 	script_command_02
-	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d13c
@@ -2366,7 +2366,7 @@ Func_2d190:
 	check_event EVENT_A7
 	print_variable_npc_text Text0bb6, Text0bb7
 	script_command_02
-	start_duel GREAT_ROCKET4_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET4_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2d1f7
@@ -2553,7 +2553,7 @@ Func_2d356:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d363
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2d363
 	scf
@@ -2674,10 +2674,10 @@ Func_2d472:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d486
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2d486
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	ld [wNextMusic], a
 .asm_2d486
 	scf
@@ -2692,7 +2692,7 @@ Func_2d489:
 	scf
 	ret
 .asm_2d495
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2925,7 +2925,7 @@ Func_2d653:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d660
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2d660
 	scf
@@ -3094,7 +3094,7 @@ Func_2d754:
 	check_event EVENT_GOT_KABUTO_COIN
 	print_variable_npc_text Text10dc, Text10dd
 	script_command_02
-	start_duel EVEN3_YEARS_ON_A_ROCK_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel EVEN3_YEARS_ON_A_ROCK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2d7b7
@@ -3149,7 +3149,7 @@ Func_2d7ea:
 	script_jump_if_b0z .ows_2d81f
 	print_npc_text Text10e7
 	script_command_02
-	start_duel ROLLING_STONE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ROLLING_STONE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d81f
@@ -3198,7 +3198,7 @@ Func_2d841:
 	script_jump_if_b0z .ows_2d876
 	print_npc_text Text10ef
 	script_command_02
-	start_duel GREAT_EARTHQUAKE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel GREAT_EARTHQUAKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d876
@@ -3249,7 +3249,7 @@ Func_2d89c:
 	script_jump_if_b0z .ows_2d8d1
 	print_npc_text Text10f7
 	script_command_02
-	start_duel AWESOME_FOSSIL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel AWESOME_FOSSIL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d8d1
@@ -3340,7 +3340,7 @@ Func_2d97f:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2d98c
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2d98c
 	scf
@@ -3498,7 +3498,7 @@ Func_2dace:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dadb
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2dadb
 	scf
@@ -3571,7 +3571,7 @@ Func_2db0e:
 	script_jump_if_b0z .ows_2db5c
 	print_npc_text Text08cb
 	script_command_02
-	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2db5c
@@ -3585,7 +3585,7 @@ Func_2db0e:
 	script_jump_if_b0z .ows_2db75
 	print_npc_text Text08cb
 	script_command_02
-	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2db75
@@ -3791,7 +3791,7 @@ Func_2dcfe:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2dd0b
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2dd0b
 	scf
@@ -3870,7 +3870,7 @@ Func_2dd62:
 	script_jump_if_b0z .ows_2dd9c
 	print_npc_text Text088f
 	script_command_02
-	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2dd9c
@@ -3891,7 +3891,7 @@ Func_2dd62:
 	script_jump_if_b0z .ows_2ddc2
 	print_npc_text Text088f
 	script_command_02
-	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ddc2
@@ -3948,7 +3948,7 @@ Func_2ddf1:
 	script_jump_if_b0z .ows_2de23
 	print_npc_text Text0897
 	script_command_02
-	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de23
@@ -3969,7 +3969,7 @@ Func_2ddf1:
 	script_jump_if_b0z .ows_2de49
 	print_npc_text Text089b
 	script_command_02
-	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de49
@@ -3990,7 +3990,7 @@ Func_2ddf1:
 	script_jump_if_b0z .ows_2de6f
 	print_npc_text Text089b
 	script_command_02
-	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de6f
@@ -4063,7 +4063,7 @@ Func_2dead:
 	script_jump_if_b0z .ows_2def2
 	print_npc_text Text08a8
 	script_command_02
-	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2def2
@@ -4084,7 +4084,7 @@ Func_2dead:
 	script_jump_if_b0z .ows_2df18
 	print_npc_text Text08a8
 	script_command_02
-	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2df18
@@ -4140,7 +4140,7 @@ Func_2df3a:
 	script_jump_if_b0z .ows_2df7a
 	print_npc_text Text08b2
 	script_command_02
-	start_duel I_LOVE_TO_FIGHT_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel I_LOVE_TO_FIGHT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2df7a
@@ -4218,7 +4218,7 @@ Func_2dfb1:
 	script_jump_if_b0z .ows_2e000
 	print_npc_text Text08bc
 	script_command_02
-	start_duel GREAT_ROCKET1_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET1_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2e000
@@ -4317,7 +4317,7 @@ Func_2e0bc:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e0c9
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2e0c9
 	scf
@@ -4464,7 +4464,7 @@ GrassClub_MapScripts:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e1cf
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2e1cf
 	scf
@@ -4548,7 +4548,7 @@ Func_2e226:
 	script_jump_if_b0z .ows_2e266
 	print_npc_text Text0e49
 	script_command_02
-	start_duel MAX_ENERGY_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel MAX_ENERGY_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2e266
@@ -4601,7 +4601,7 @@ Func_2e28c:
 	script_jump_if_b0z .ows_2e2c6
 	print_npc_text Text0e51
 	script_command_02
-	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e2c6
@@ -4623,7 +4623,7 @@ Func_2e28c:
 	script_jump_if_b0z .ows_2e2ee
 	print_npc_text Text0e55
 	script_command_02
-	start_duel POISON_CURSE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POISON_CURSE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e2ee
@@ -4697,7 +4697,7 @@ Func_2e332:
 	script_jump_if_b0z .ows_2e372
 	print_npc_text Text0e61
 	script_command_02
-	start_duel GLITTERING_SCALES_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel GLITTERING_SCALES_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e372
@@ -4753,7 +4753,7 @@ Func_2e394:
 	script_jump_if_b0z .ows_2e3d4
 	print_npc_text Text0e6a
 	script_command_02
-	start_duel STEADY_INCREASE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STEADY_INCREASE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e3d4
@@ -4817,7 +4817,7 @@ Func_2e40b:
 	script_jump_if_b0z .ows_2e443
 	print_npc_text Text0e72
 	script_command_02
-	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2e443
@@ -4925,7 +4925,7 @@ Func_2e518:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e525
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2e525
 	scf
@@ -5159,7 +5159,7 @@ Func_2e6f7:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e706
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2e706
 .asm_2e706
@@ -5175,7 +5175,7 @@ Func_2e709:
 	scf
 	ret
 .asm_2e715
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -5254,7 +5254,7 @@ Func_2e76e:
 	script_jump_if_b0z .ows_2e7a8
 	print_npc_text Text1075
 	script_command_02
-	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e7a8
@@ -5268,7 +5268,7 @@ Func_2e76e:
 	script_jump_if_b0z .ows_2e7c1
 	print_npc_text Text1075
 	script_command_02
-	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e7c1
@@ -5485,7 +5485,7 @@ Func_2e945:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_2e952
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2e952
 	scf
@@ -5583,7 +5583,7 @@ Func_2e9c7:
 	script_jump_if_b0z .ows_2ea1b
 	print_npc_text Text1038
 	script_command_02
-	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ea1b
@@ -5605,7 +5605,7 @@ Func_2e9c7:
 	script_jump_if_b0z .ows_2ea43
 	print_npc_text Text103c
 	script_command_02
-	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ea43
@@ -5683,7 +5683,7 @@ Func_2ea94:
 	script_jump_if_b0z .ows_2eac9
 	print_npc_text Text1047
 	script_command_02
-	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eac9
@@ -5750,7 +5750,7 @@ Func_2eaef:
 	script_jump_if_b0z .ows_2eb41
 	print_npc_text Text1051
 	script_command_02
-	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eb41
@@ -5771,7 +5771,7 @@ Func_2eaef:
 	script_jump_if_b0z .ows_2eb67
 	print_npc_text Text1051
 	script_command_02
-	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eb67
@@ -5842,7 +5842,7 @@ Func_2eba5:
 	script_jump_if_b0z .ows_2ebe5
 	print_npc_text Text105d
 	script_command_02
-	start_duel GATHERING_NIDORAN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel GATHERING_NIDORAN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ebe5
@@ -5906,7 +5906,7 @@ Func_2ec1c:
 	script_jump_if_b0z .ows_2ec54
 	print_npc_text Text1065
 	script_command_02
-	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2ec54
@@ -6004,7 +6004,7 @@ Func_2ed17:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ed24
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2ed24
 	scf
@@ -6161,7 +6161,7 @@ Func_2ee73:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2ee82
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2ee82
 .asm_2ee82
@@ -6177,7 +6177,7 @@ Func_2ee85:
 	scf
 	ret
 .asm_2ee91
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -6256,7 +6256,7 @@ Func_2eeea:
 	script_jump_if_b0z .ows_2ef24
 	print_npc_text Text087e
 	script_command_02
-	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ef24
@@ -6270,7 +6270,7 @@ Func_2eeea:
 	script_jump_if_b0z .ows_2ef3d
 	print_npc_text Text087e
 	script_command_02
-	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ef3d
@@ -6445,7 +6445,7 @@ Func_2f085:
 	ld a, EVENT_GOT_STARMIE_COIN
 	farcall GetEventValue
 	jr nz, .asm_2f092
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2f092
 	scf
@@ -6535,14 +6535,14 @@ Script_2f127:
 	set_active_npc_direction WEST
 	do_frames 60
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0834
 	script_command_67 $05, $1e
 	do_frames 60
 	fade_out $01, TRUE
 	wait_for_fade
 	script_command_68
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	script_command_02
 	unload_npc NPC_CAPTURED_AMY
 	unload_npc NPC_CAPTURED_SARA
@@ -6683,7 +6683,7 @@ Func_2f1fa:
 	script_jump_if_b0z .ows_2f25e
 	print_npc_text Text0843
 	script_command_02
-	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f25e
@@ -6704,7 +6704,7 @@ Func_2f1fa:
 	script_jump_if_b0z .ows_2f284
 	print_npc_text Text0843
 	script_command_02
-	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f284
@@ -6776,7 +6776,7 @@ Func_2f2cf:
 	script_jump_if_b0z .ows_2f309
 	print_npc_text Text0850
 	script_command_02
-	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f309
@@ -6797,7 +6797,7 @@ Func_2f2cf:
 	script_jump_if_b0z .ows_2f32f
 	print_npc_text Text0854
 	script_command_02
-	start_duel ENERGY_REMOVAL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ENERGY_REMOVAL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f32f
@@ -6889,7 +6889,7 @@ Func_2f382:
 	script_jump_if_b0z .ows_2f3cf
 	print_npc_text Text0861
 	script_command_02
-	start_duel SPLASHING_ABOUT_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SPLASHING_ABOUT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f3cf
@@ -6959,7 +6959,7 @@ Func_2f3f1:
 	script_jump_if_b0z .ows_2f449
 	print_npc_text Text086c
 	script_command_02
-	start_duel BEACH_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BEACH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f449
@@ -7039,7 +7039,7 @@ Func_2f485:
 	script_jump_if_b0z .ows_2f4d3
 	print_npc_text Text0877
 	script_command_02
-	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2f4d3
@@ -7101,7 +7101,7 @@ Func_2f54e:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f55b
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2f55b
 	scf
@@ -7263,7 +7263,7 @@ Func_2f6a0:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f6af
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_2f6af
 .asm_2f6af
@@ -7279,7 +7279,7 @@ Func_2f6b2:
 	scf
 	ret
 .asm_2f6be
-	ld a, MUSIC_IMAKUNI
+	ld a, MUSIC_IMAKUNI_BLACK
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -7477,7 +7477,7 @@ Func_2f84e:
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	farcall GetEventValue
 	jr nz, .asm_2f85b
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2f85b
 	scf
@@ -7637,7 +7637,7 @@ Func_2f926:
 	script_jump_if_b0z .ows_2f99b
 	print_npc_text Text0c35
 	script_command_02
-	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f99b
@@ -7658,7 +7658,7 @@ Func_2f926:
 	script_jump_if_b0z .ows_2f9c1
 	print_npc_text Text0c35
 	script_command_02
-	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f9c1
@@ -7679,7 +7679,7 @@ Func_2f926:
 	script_jump_if_b0z .ows_2f9e7
 	print_npc_text Text0c35
 	script_command_02
-	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCHSTART_2
+	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f9e7
@@ -7765,7 +7765,7 @@ Func_2fa25:
 	script_jump_if_b0z .ows_2fa7f
 	print_npc_text Text0c48
 	script_command_02
-	start_duel FLAME_FESTIVAL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FLAME_FESTIVAL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fa7f
@@ -7839,7 +7839,7 @@ Func_2faa1:
 	script_jump_if_b0z .ows_2fb06
 	print_npc_text Text0c55
 	script_command_02
-	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fb06
@@ -7860,7 +7860,7 @@ Func_2faa1:
 	script_jump_if_b0z .ows_2fb2c
 	print_npc_text Text0c55
 	script_command_02
-	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fb2c
@@ -7935,7 +7935,7 @@ Func_2fb4e:
 	script_jump_if_b0z .ows_2fbb1
 	print_npc_text Text0c62
 	script_command_02
-	start_duel IMMORTAL_FLAME_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel IMMORTAL_FLAME_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fbb1
@@ -7984,7 +7984,7 @@ Func_2fbd3:
 	script_jump_if_b0z .ows_2fc08
 	print_npc_text Text0c6a
 	script_command_02
-	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_DITTY_1
+	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2fc08
@@ -8047,14 +8047,14 @@ Script_2fc3e:
 	wait_for_player_animation
 	do_frames 60
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0c72
 	script_command_67 $04, $1e
 	do_frames 60
 	fade_out $01, TRUE
 	wait_for_fade
 	script_command_68
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	script_command_02
 	load_tilemap TILEMAP_02E, $05, $0b
 	load_tilemap TILEMAP_02F, $05, $07
@@ -8147,7 +8147,7 @@ Func_2fd73:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_2fd80
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_2fd80
 	scf
@@ -8281,7 +8281,7 @@ Func_2fe2a:
 OverheadIslands_MapHeader:
 	db MAP_GFX_OVERHEAD_ISLANDS
 	dba OverheadIslands_MapScripts
-	db MUSIC_GRBLIMP
+	db MUSIC_GR_BLIMP
 
 OverheadIslands_MapScripts:
 	dbw $02, Func_2fe54

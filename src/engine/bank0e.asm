@@ -4599,7 +4599,7 @@ HandleScrollMenu:
 	jr z, .check_d_down
 ; d-up
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	dec a
@@ -4625,7 +4625,7 @@ HandleScrollMenu:
 	jr z, .call_update_func
 ; d-down
 	push af
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	pop af
 	inc a
@@ -4676,8 +4676,8 @@ HandleScrollMenu:
 
 .asm_3ac12
 	call .draw_visible_cursor
-	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	farcall PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -4691,9 +4691,9 @@ HandleScrollMenu:
 	and PAD_A
 	jr nz, .asm_3ac12
 ; b button
-	ld a, $ff
+	ld a, -1
 	ld [hCurMenuItem], a
-	farcall PlayAcceptOrDeclineSFX
+	farcall PlayConfirmOrCancelSFX ; MENU_CANCEL
 	scf
 	ret
 
@@ -5013,8 +5013,8 @@ HandleDeckMachineSelection:
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -5076,7 +5076,7 @@ HandleDeckMachineSelection:
 	jr z, .set_carry
 	; play SFX if jump was made
 	; and update UI
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	call DrawDeckMachineScreen
 	call PrintNumSavedDecks
@@ -6892,8 +6892,8 @@ Func_3bb09:
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -6974,8 +6974,8 @@ Func_3bb09:
 	farcall CheckIfDeckHasCards
 	pop hl
 	jp c, .asm_3bb4f
-	ld a, $01
-	farcall PlayAcceptOrDeclineSFX
+	ld a, MENU_CONFIRM
+	farcall PlayConfirmOrCancelSFX
 	push hl
 	ld de, $18
 	add hl, de

@@ -4,7 +4,7 @@ StartUpDebugMenu::
 	push de
 	push hl
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 .loop
@@ -72,13 +72,13 @@ HandleStartupDebugMenuBox:
 	ld [wDebugMenuCursorPosition], a
 	jr c, .asm_1008a
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1008a
 	push af
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
@@ -175,7 +175,7 @@ DebugSlotMachine:
 	call AddChips
 	call Func_3d0d
 	push af
-	ld a, MUSIC_GRDUELTHEME_2
+	ld a, MUSIC_DUEL_THEME_GR_LEADER
 	call SetMusic
 	pop af
 	ld a, 5
@@ -1184,7 +1184,7 @@ Func_10772:
 	ld a, b
 	ld [wd8a0], a
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 .asm_1078a
@@ -1251,13 +1251,13 @@ Func_1081a:
 	ld [wd89f], a
 	jr c, .asm_1082e
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1082e
 	push af
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
@@ -3058,13 +3058,13 @@ _PCMenu:
 	ld [wPCMenuCursorPosition], a
 	jr c, .asm_11161
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
 .asm_11161
 	push af
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
@@ -3993,7 +3993,7 @@ IntroAndTitleScreen:
 .title_screen_idle
 	call Func_3d02
 	push af
-	ld a, MUSIC_TITLESCREEN
+	ld a, MUSIC_TITLE_SCREEN
 	call SetMusic
 	pop af
 	call TitleScreenPushStart
@@ -4229,7 +4229,7 @@ DoIntro:
 	call ResetIntroState
 	call ResetIntroOrbStates
 	push af
-	ld a, SFX_9A
+	ld a, SFX_TCG2_INTRO_ORBS
 	call CallPlaySFX
 	pop af
 
@@ -4439,7 +4439,7 @@ AnimateTitle:
 	call WaitAFramesForInput
 	jr c, .finish
 	push af
-	ld a, SFX_9B
+	ld a, SFX_TCG2_INTRO_TITLE
 	call CallPlaySFX
 	pop af
 	call .Expand
@@ -4557,7 +4557,7 @@ AnimateSubtitleEnter:
 	ld a, $02
 	call LoadTitleScreenGraphics
 	push af
-	ld a, SFX_9C
+	ld a, SFX_TCG2_INTRO_SUBTITLE
 	call CallPlaySFX
 	pop af
 	call .Distort
@@ -5338,7 +5338,7 @@ PlaySlotsPrompt:
 	ret c
 	call Func_3d0d
 	push af
-	ld a, MUSIC_DITTY_3
+	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -5367,7 +5367,7 @@ Func_1241a:
 	call Func_12546
 	call Func_1247d
 	push af
-	ld a, SFX_7D
+	ld a, SFX_SLOT_START
 	call CallPlaySFX
 	pop af
 	ld a, $08
@@ -5771,7 +5771,7 @@ Func_12824:
 	call Func_12a99
 	call Func_12a8d
 	push af
-	ld a, SFX_7E
+	ld a, SFX_SLOT_REEL
 	call CallPlaySFX
 	pop af
 	ret
@@ -5948,7 +5948,7 @@ Func_12a15:
 	ret
 .asm_12a34
 	push af
-	ld a, SFX_04
+	ld a, SFX_DENIED
 	call CallPlaySFX
 	pop af
 	scf
@@ -6229,7 +6229,7 @@ Func_13138:
 	jr c, .asm_1315a
 	call Func_3d0d
 	push af
-	ld a, MUSIC_CARDPOP
+	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
 	call Func_1320f
@@ -6292,7 +6292,7 @@ Func_131bd:
 	ret c
 	call Func_3d0d
 	push af
-	ld a, MUSIC_DITTY_3
+	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
@@ -6405,7 +6405,7 @@ Func_1328c:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, SFX_7F
+	ld a, SFX_BLACK_BOX_INSERT
 	call CallPlaySFX
 	pop af
 	ld a, $28
@@ -6418,7 +6418,7 @@ Func_132ad:
 	ld c, $00
 	call Func_13321
 	push af
-	ld a, SFX_80
+	ld a, SFX_BLACK_BOX_INSERTED
 	call CallPlaySFX
 	pop af
 	push af
@@ -6446,7 +6446,7 @@ Func_132c4:
 	ld a, $28
 	call DoAFrames_WithPreCheck
 	push af
-	ld a, SFX_81
+	ld a, SFX_BLACK_BOX_TRANSMITTED
 	call CallPlaySFX
 	pop af
 	ld a, $14

@@ -38,7 +38,7 @@ Func_30005:
 	ld a, $05
 	call WaitAFrames
 .asm_30050
-	ld a, SFX_84
+	ld a, SFX_PITFALL
 	call PlaySFX
 	ret
 
@@ -70,7 +70,7 @@ Func_30065:
 OverworldGr_MapHeader:
 	db OVERWORLD_MAP_GFX_GR
 	dba OverworldGr_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 OverworldGr_MapScripts:
 	dbw $01, Func_30092
@@ -89,7 +89,7 @@ Func_30092:
 	ccf
 	ret
 .asm_300a0
-	ld a, MUSIC_GRBLIMP
+	ld a, MUSIC_GR_BLIMP
 	ld [wNextMusic], a
 	scf
 	ccf
@@ -224,7 +224,7 @@ Func_30192:
 	call PlaySong
 	ld a, 7
 	call SetVolume
-	ld a, SFX_8A
+	ld a, SFX_GR_BLIMP_HATCH_OPEN
 	call PlaySFX
 	farcall WaitForSFXToFinish
 .asm_301bd
@@ -317,7 +317,7 @@ Func_30242:
 	jr nz, .loop_shift
 	ret
 .asm_30250
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	ld a, [wCurOWLocation]
 	ld b, a
@@ -687,7 +687,7 @@ Func_30452:
 	ld l, a
 	or h
 	jp z, .finish_movement ; is null
-	ld a, SFX_57
+	ld a, SFX_PLAYER_WALK_MAP
 	call PlaySFX
 
 .loop_commands
@@ -1273,7 +1273,7 @@ Func_311d5:
 	script_command_01
 	print_npc_text QueenDuelStart2Text
 	script_command_02
-	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_DITTY_1
+	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_31268
@@ -1338,7 +1338,7 @@ Func_312d2:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04F, $04, $09
 	end_script
 	ld a, $00
@@ -1451,7 +1451,7 @@ Func_313bc:
 GrChallengeHallEntrance_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL_ENTRANCE
 	dba GrChallengeHallEntrance_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrChallengeHallEntrance_StepEvents:
 	map_exit 4, 8, OVERWORLD_MAP_GR, 4, 4, SOUTH
@@ -1493,7 +1493,7 @@ Func_3142d:
 	cp $06
 	jr nz, .asm_31444
 .asm_3143f
-	ld a, MUSIC_GRCHALLENGECUP
+	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
 .asm_31444
 	scf
@@ -1759,7 +1759,7 @@ Func_3165e:
 	scf
 	ret
 .asm_3166a
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -2079,7 +2079,7 @@ Func_31871:
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	print_npc_text Text0d95
 	script_command_02
-	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318c1
@@ -2094,7 +2094,7 @@ Func_31871:
 	script_jump_if_b0z .ows_318dc
 	print_npc_text Text0d98
 	script_command_02
-	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318dc
@@ -2145,7 +2145,7 @@ Func_318e2:
 	do_frames 30
 	fade_out $00, TRUE
 	wait_for_fade
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_05C, $05, $00
 	set_active_npc_direction SOUTH
 	set_player_position_and_direction 5, 5, NORTH
@@ -2278,7 +2278,7 @@ Func_31a12:
 	script_command_02
 	get_active_npc_direction
 	spin_active_npc 516
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 4, 3, SOUTH
 	reset_npc_flag6 NPC_YUTA
 	wait_for_npc_animation NPC_WARP_SPARKLES
@@ -2290,7 +2290,7 @@ Func_31a12:
 	print_npc_text Text0dd6
 	script_command_02
 	spin_npc_reverse NPC_GR_1, 516
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 4, 3, SOUTH
 	unload_npc NPC_GR_1
 	wait_for_npc_animation NPC_WARP_SPARKLES
@@ -2307,7 +2307,7 @@ Func_31a12:
 	script_jump_if_b0z .ows_31a88
 	print_npc_text Text0dda
 	script_command_02
-	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31a88
@@ -2321,7 +2321,7 @@ Func_31a12:
 	script_jump_if_b0z .ows_31aa1
 	print_npc_text Text0ddd
 	script_command_02
-	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31aa1
@@ -2393,7 +2393,7 @@ Script_31b0a:
 	script_command_01
 	print_npc_text Text0de7
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_05F, $04, $00
 	do_frames 30
 	restore_active_npc_direction
@@ -2512,7 +2512,7 @@ Func_31bc8:
 .ows_31c04
 	print_npc_text Text0da8
 	script_command_02
-	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c0d
@@ -2532,7 +2532,7 @@ Func_31bc8:
 .ows_31c28
 	print_npc_text Text0dac
 	script_command_02
-	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c31
@@ -2585,7 +2585,7 @@ Func_31c37:
 	move_active_npc .NPCMovement_31c9a
 	wait_for_player_animation
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_062, $05, $00
 	do_frames 30
 	move_active_npc .NPCMovement_31ca1
@@ -2737,7 +2737,7 @@ Func_31da0:
 	script_command_64 $15
 	set_event EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_066, $04, $07
 	end_script
 	jr .asm_31dcd
@@ -2954,7 +2954,7 @@ Func_31f52:
 	script_jump_if_b0z .ows_31f87
 	print_npc_text Text11fd
 	script_command_02
-	start_duel DANGEROUS_BENCH_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel DANGEROUS_BENCH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31f87
@@ -3090,7 +3090,7 @@ Func_32057:
 .ows_32088
 	print_npc_text Text11de
 	script_command_02
-	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32091
@@ -3110,7 +3110,7 @@ Func_32057:
 .ows_320ac
 	print_npc_text Text11e2
 	script_command_02
-	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_320b5
@@ -3179,15 +3179,15 @@ Script_3211e:
 	print_npc_text Text11ea
 	script_command_02
 	do_frames 60
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9D
+	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
-	play_sfx_and_wait SFX_9E
+	play_sfx_and_wait SFX_ELECTRONIC_RESPONSE
 	do_frames 60
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_06A, $04, $00
 	do_frames 60
 	set_active_npc_direction EAST
@@ -3302,7 +3302,7 @@ Func_32204:
 	print_npc_text Text11b0
 	script_command_02
 	get_active_npc_direction
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 5, SOUTH
 	reset_npc_flag6 NPC_ICHIKAWA
 	wait_for_npc_animation NPC_WARP_SPARKLES
@@ -3312,7 +3312,7 @@ Func_32204:
 	script_command_01
 	print_npc_text Text11b1
 	script_command_02
-	play_sfx SFX_86
+	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 5, SOUTH
 	unload_npc NPC_GR_3
 	wait_for_npc_animation NPC_WARP_SPARKLES
@@ -3333,7 +3333,7 @@ Func_32204:
 .ows_3226e
 	print_npc_text Text11b6
 	script_command_02
-	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32277
@@ -3353,7 +3353,7 @@ Func_32204:
 .ows_32292
 	print_npc_text Text11ba
 	script_command_02
-	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3229b
@@ -3424,7 +3424,7 @@ Func_322a1:
 	wait_for_player_animation
 	do_frames 30
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text11c3
 	script_command_67 $06, $1e
 	do_frames 60
@@ -3432,7 +3432,7 @@ Func_322a1:
 	script_command_02
 	do_frames 28
 	do_frames 30
-	play_sfx SFX_83
+	play_sfx SFX_POD_DOORS
 	load_npc NPC_POD_DOORS, 3, 1, SOUTH
 	load_tilemap TILEMAP_070, $03, $00
 	wait_for_npc_animation NPC_POD_DOORS
@@ -3508,13 +3508,13 @@ Script_323b5:
 	set_active_npc_direction NORTH
 	do_frames 30
 	script_command_01
-	play_sfx SFX_29
+	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text11cc
 	script_command_67 $04, $1e
 	script_command_68
 	script_command_02
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_06F, $04, $00
 	do_frames 60
 	set_active_npc_direction SOUTH
@@ -3646,7 +3646,7 @@ Func_32477:
 	script_jump_if_b0z .ows_324bc
 	print_npc_text Text11d3
 	script_command_02
-	start_duel QUICK_ATTACK_DECK_ID, MUSIC_DITTY_1
+	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324bc
@@ -3663,7 +3663,7 @@ Func_32477:
 	script_jump_if_b0z .ows_324d9
 	print_npc_text Text11d3
 	script_command_02
-	start_duel QUICK_ATTACK_DECK_ID, MUSIC_DITTY_1
+	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324d9
@@ -3877,7 +3877,7 @@ Func_32664:
 	script_command_64 $16
 	set_event EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_074, $04, $07
 	end_script
 	jr .asm_32691
@@ -3939,7 +3939,7 @@ Func_32712:
 	scf
 	ret
 .asm_3271e
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -4178,7 +4178,7 @@ Func_328ae:
 	script_jump_if_b0z .ows_328e8
 	print_npc_text Text0c9a
 	script_command_02
-	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_328e8
@@ -4192,7 +4192,7 @@ Func_328ae:
 	script_jump_if_b0z .ows_32901
 	print_npc_text Text0c9d
 	script_command_02
-	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32901
@@ -4237,7 +4237,7 @@ Func_32907:
 	get_active_npc_direction
 	set_active_npc_direction NORTH
 	do_frames 60
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_078, $04, $00
 	restore_active_npc_direction
 	script_command_01
@@ -4457,7 +4457,7 @@ Func_32a76:
 .ows_32aea
 	print_npc_text Text0cd1
 	script_command_02
-	start_duel FIREBALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32af3
@@ -4501,7 +4501,7 @@ Func_32a76:
 .ows_32b34
 	print_npc_text Text0cd1
 	script_command_02
-	start_duel FIREBALL_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32b3d
@@ -4588,7 +4588,7 @@ Func_32b43:
 	script_command_01
 	print_npc_text Text0ce5
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_07B, $05, $00
 	get_player_opposite_direction
 	restore_active_npc_direction
@@ -4738,7 +4738,7 @@ Func_32c9a:
 .ows_32cec
 	print_npc_text Text0cac
 	script_command_02
-	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32cf5
@@ -4758,7 +4758,7 @@ Func_32c9a:
 .ows_32d10
 	print_npc_text Text0cac
 	script_command_02
-	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32d19
@@ -4840,7 +4840,7 @@ Script_32d8f:
 	do_frames 30
 	set_active_npc_direction SOUTH
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_080, $03, $07
 	do_frames 30
 	move_npc NPC_COURTNEY, .NPCMovement_32de0
@@ -4902,7 +4902,7 @@ Script_32dff:
 	set_active_npc_direction NORTH
 	set_player_direction NORTH
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_07F, $04, $00
 	script_command_01
 	print_npc_text Text0cb9
@@ -4992,7 +4992,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32eb8
 	print_npc_text Text0c88
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32eb8
@@ -5006,7 +5006,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32ed1
 	print_npc_text Text0c8b
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ed1
@@ -5027,7 +5027,7 @@ Func_32e79:
 	script_jump_if_b0z .ows_32ef7
 	print_npc_text Text0c8b
 	script_command_02
-	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_DITTY_1
+	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ef7
@@ -5246,7 +5246,7 @@ Func_3308e:
 	script_command_64 $17
 	set_event EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_084, $04, $07
 	end_script
 	jr .asm_330bb
@@ -5374,7 +5374,7 @@ Func_3316a:
 .ows_331a6
 	print_npc_text Text122c
 	script_command_02
-	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331af
@@ -5394,7 +5394,7 @@ Func_3316a:
 .ows_331ca
 	print_npc_text Text1230
 	script_command_02
-	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331d3
@@ -5444,7 +5444,7 @@ Func_331d9:
 	get_active_npc_direction
 	set_active_npc_direction NORTH
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_088, $04, $00
 	do_frames 30
 	restore_active_npc_direction
@@ -5547,7 +5547,7 @@ Func_332a6:
 	script_jump_if_b0z .ows_332e0
 	print_npc_text Text121a
 	script_command_02
-	start_duel WATER_STREAM_DECK_ID, MUSIC_DITTY_1
+	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332e0
@@ -5561,7 +5561,7 @@ Func_332a6:
 	script_jump_if_b0z .ows_332f9
 	print_npc_text Text121d
 	script_command_02
-	start_duel WATER_STREAM_DECK_ID, MUSIC_DITTY_1
+	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332f9
@@ -5769,7 +5769,7 @@ Func_33470:
 .ows_3349d
 	print_text Text0be0
 	load_palette PALETTE_187
-	play_sfx SFX_02
+	play_sfx SFX_CONFIRM
 	load_npc NPC_RED_FORT_COIN, 4, 7, SOUTH
 	script_jump .ows_334b0
 .ows_334ad
@@ -5802,7 +5802,7 @@ Func_334b3:
 .ows_334e0
 	print_text Text0be4
 	load_palette PALETTE_186
-	play_sfx SFX_02
+	play_sfx SFX_CONFIRM
 	load_npc NPC_BLUE_FORT_COIN, 5, 7, SOUTH
 	script_jump .ows_334f3
 .ows_334f0
@@ -5816,7 +5816,7 @@ Func_334b3:
 Script_334f6:
 	script_command_64 $18
 	script_command_02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_094, $04, $07
 	end_script
 	ret
@@ -5890,7 +5890,7 @@ Func_33589:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_1
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 2, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -5931,7 +5931,7 @@ Func_335ba:
 	ret
 
 Func_335c7:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_09A
 	lb de, 3, 3
@@ -6045,7 +6045,7 @@ Func_336d2:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_2
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 3, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -6086,7 +6086,7 @@ Func_33703:
 	ret
 
 Func_33710:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_09D
 	lb de, 2, 3
@@ -6264,7 +6264,7 @@ Func_338d7:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_3
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 2, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -6305,7 +6305,7 @@ Func_33908:
 	ret
 
 Func_33915:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0BC
 	lb de, 3, 3
@@ -6446,7 +6446,7 @@ Func_33a96:
 	ret
 
 Func_33aa1:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C1
 	lb de, 4, 6
@@ -6533,7 +6533,7 @@ Func_33b86:
 	ret
 
 Func_33b91:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C4
 	lb de, 2, 3
@@ -6662,7 +6662,7 @@ Func_33cba:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_4
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 1, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -6703,7 +6703,7 @@ Func_33ceb:
 	ret
 
 Func_33cf8:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0C9
 	lb de, 8, 3
@@ -6720,7 +6720,7 @@ Func_33cf8:
 	ret
 
 Func_33d1b:
-	ld a, SFX_0F
+	ld a, SFX_DOORS
 	call PlaySFX
 	ld bc, TILEMAP_0CA
 	lb de, 4, 6

@@ -1322,7 +1322,7 @@ DialogGR4Text:
 	textfw "GR4号"
 	done
 
-; Airship clerk
+; a non-opponent clerk-like character
 DialogGR5Text:
 	textfw "GR5号"
 	done

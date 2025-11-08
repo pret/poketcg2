@@ -12,7 +12,7 @@ Prologue::
 	farcall InitOWObjects
 
 	; load map and fade in
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	farcall PlayAfterCurrentSong
 	ld bc, OVERWORLD_MAP_GFX_TCG
 	farcall LoadOWMap
@@ -24,23 +24,23 @@ Prologue::
 	call WaitPalFading
 	call EnableLCD
 
-	; do GR Ship movement
+	; do GR Blimp movement
 	ld a, NPC_GR_BLIMP
 	lb de, $a0, $30
 	ld b, WEST
 	farcall LoadOWObject
 	lb de, $78, $30
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $78, $10
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $58, $18
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 
 	ld a, $01
 	farcall ShowProloguePortraitAndText_WithFade
@@ -52,7 +52,7 @@ Prologue::
 	farcall LoadOWObject
 	lb de, $40, $30
 	ld b, WEST
-	call .MoveGRShip
+	call .MoveGRBlimp
 
 	; show beam animation on player
 	ld a, EVENT_PLAYER_GENDER
@@ -65,27 +65,27 @@ Prologue::
 .asm_3c090
 	ld a, [wPlayerOWObject]
 	farcall _SetAndInitOWObjectFrameset
-	call .DoGRShipBeamAnimation
+	call .DoGRBlimpBeamAnimation
 
-	; more GR Ship movement
+	; more GR Blimp movement
 	lb de, $20, $40
 	ld b, WEST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $30, $58
 	ld b, EAST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $68, $50
 	ld b, EAST
-	call .MoveGRShip
-	call .DoGRShipBeamAnimation
+	call .MoveGRBlimp
+	call .DoGRBlimpBeamAnimation
 	lb de, $50, $5c
 	ld b, WEST
-	call .MoveGRShip
+	call .MoveGRBlimp
 	lb de, $50, $78
 	ld b, EAST
-	call .MoveGRShip
+	call .MoveGRBlimp
 
 	ld a, $02
 	farcall ShowProloguePortraitAndText_WithFade
@@ -125,7 +125,7 @@ Prologue::
 	farcall LoadOWObject
 	ld a, 30
 	call WaitAFrames
-	ld a, SFX_57
+	ld a, SFX_PLAYER_WALK_MAP
 	call PlaySFX
 	call .MovePlayer
 
@@ -139,13 +139,13 @@ Prologue::
 	call PlaySFX
 	ld a, $01
 	call Func_33a3
-	ld a, SFX_0C
+	ld a, SFX_WARP
 	call PlaySFX
 	ret
 
 ; b = direction
 ; de = target position
-.MoveGRShip:
+.MoveGRBlimp:
 	push bc
 	ld a, NPC_GR_BLIMP
 	farcall SetOWObjectTargetPosition
@@ -162,8 +162,8 @@ Prologue::
 	jr c, .loop
 	ret
 
-.DoGRShipBeamAnimation:
-	ld a, SFX_8B
+.DoGRBlimpBeamAnimation:
+	ld a, SFX_GR_BLIMP_TRACTOR_BEAM
 	call PlaySFX
 	ld a, NPC_GR_BLIMP
 	farcall GetOWObjectPosition
@@ -208,7 +208,7 @@ Func_3c1b9:
 	ld [wScriptNPCName], a
 	ld a, h
 	ld [wScriptNPCName + 1], a
-	ld a, MUSIC_DUELTHEME_1
+	ld a, MUSIC_DUEL_THEME_CLUB_MEMBER
 	ld [wDuelTheme], a
 	jr Func_3c1d0.asm_3c1e5
 
@@ -220,7 +220,7 @@ Func_3c1d0:
 	ld [wScriptNPCName], a
 	ld a, h
 	ld [wScriptNPCName + 1], a
-	ld a, MUSIC_GRDUELTHEME_1
+	ld a, MUSIC_DUEL_THEME_GR_MEMBER
 	ld [wDuelTheme], a
 .asm_3c1e5
 	xor a
@@ -229,7 +229,7 @@ Func_3c1d0:
 	print_npc_text BattleCenterWelcomeText
 	ask_question BattleCenterBeginPromptText, TRUE
 	script_jump_if_b0z .ows_3c20b
-	play_song MUSIC_CARDPOP
+	play_song MUSIC_CARD_POP
 	script_command_64 $1c
 	script_command_02
 	link_duel
@@ -408,7 +408,7 @@ Func_3c30c:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopResultText
 	script_command_02
@@ -458,7 +458,7 @@ Func_3c30c:
 	script_jump_if_b0z .ows_3c3c4
 	print_npc_text ImakuniBlackDuelStartText
 	script_command_02
-	start_duel WEIRD_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel WEIRD_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3c3c4
@@ -600,7 +600,7 @@ Script_3c497:
 	farcall ZeroOutEventValue
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text12d5
 	script_command_02
@@ -651,7 +651,7 @@ Func_3c4e0:
 	script_jump_if_b0z .ows_3c527
 	print_npc_text Text12d9
 	script_command_02
-	start_duel STRANGE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel STRANGE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3c527
@@ -851,7 +851,7 @@ Func_3c6c3:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, MUSIC_DECKMACHINE
+	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
 	xor a
 	farcall Func_1e855
@@ -875,7 +875,7 @@ Func_3c6e8:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, MUSIC_DECKMACHINE
+	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
 	ld a, $01
 	farcall Func_1e855
@@ -896,7 +896,7 @@ Func_3c715:
 	script_command_02
 	end_script
 	call PauseSong
-	ld a, MUSIC_DECKMACHINE
+	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
 	farcall Func_1e849
 	call ResumeSong
@@ -1163,7 +1163,7 @@ Func_3c917:
 	print_npc_text Text0f43
 	script_command_02
 	set_var VAR_3B, $01
-	start_duel AARONS_STEP1_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel AARONS_STEP1_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 
@@ -1206,7 +1206,7 @@ Func_3c964:
 	print_npc_text Text0f48
 	script_command_02
 	set_var VAR_3B, $02
-	start_duel AARONS_STEP2_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel AARONS_STEP2_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 
@@ -1249,7 +1249,7 @@ Func_3c9b1:
 	print_npc_text Text0f4c
 	script_command_02
 	set_var VAR_3B, $03
-	start_duel AARONS_STEP3_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel AARONS_STEP3_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 
@@ -1296,11 +1296,11 @@ Func_3ca02:
 	get_random $02
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_3ca23
-	start_duel BRICK_WALK_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BRICK_WALK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3ca23
-	start_duel BENCH_TRAP_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel BENCH_TRAP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 
@@ -1539,7 +1539,7 @@ Func_3cbd4:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cbe1
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_3cbe1
 	scf
@@ -1670,7 +1670,7 @@ Func_3cd1b:
 	ld a, EVENT_GOT_PIKACHU_COIN
 	farcall GetEventValue
 	jr nz, .asm_3cd28
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_3cd28
 	scf
@@ -1978,7 +1978,7 @@ Func_3cf98:
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	farcall GetEventValue
 	jr nz, .asm_3cfa5
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 .asm_3cfa5
 	scf
@@ -2051,7 +2051,7 @@ Func_3cfd8:
 	script_jump_if_b0z .ows_3d023
 	print_npc_text Text0e7e
 	script_command_02
-	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3d023
@@ -2309,7 +2309,7 @@ Func_3d1f6:
 	cp $06
 	jr nz, .asm_3d20d
 .asm_3d208
-	ld a, MUSIC_CHALLENGEHALL
+	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
 .asm_3d20d
 	scf
@@ -2480,7 +2480,7 @@ Func_3d386:
 	cp $06
 	jr nz, .asm_3d39d
 .asm_3d398
-	ld a, MUSIC_CHALLENGEHALL
+	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
 .asm_3d39d
 	scf
@@ -2848,11 +2848,11 @@ Func_3d67b:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
 	jr nz, .asm_3d6b7
-	ld a, MUSIC_HERECOMESGR
+	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
 	jr .asm_3d6b7
 .asm_3d69a
-	ld a, MUSIC_POKEMONDOME
+	ld a, MUSIC_POKEMON_DOME
 	ld [wNextMusic], a
 	jr .asm_3d6b7
 .asm_3d6a1
@@ -3002,7 +3002,7 @@ Func_3d768:
 	script_jump_if_b0z .ows_3d7a7
 	print_npc_text Text0feb
 	script_command_02
-	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d7a7
@@ -3092,7 +3092,7 @@ Func_3d805:
 	script_jump_if_b0z .ows_3d844
 	print_npc_text Text0ff6
 	script_command_02
-	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d844
@@ -3185,7 +3185,7 @@ Func_3d8ac:
 	script_jump_if_b0z .ows_3d8eb
 	print_npc_text Text1003
 	script_command_02
-	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d8eb
@@ -3545,7 +3545,7 @@ Script_3db41:
 	move_npc NPC_STEVE, .NPCMovement_3dbc3
 	wait_for_player_animation
 	do_frames 30
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_038, $07, $00
 	do_frames 30
 	move_npc NPC_ROD, .NPCMovement_3dbca
@@ -3558,7 +3558,7 @@ Script_3db41:
 	move_player .NPCMovement_3dbb9, TRUE
 	wait_for_player_animation
 	do_frames 60
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_037, $07, $00
 	do_frames 30
 	end_script
@@ -3636,7 +3636,7 @@ Script_3dbde:
 	wait_for_player_animation
 	do_frames 30
 	set_scroll_state $02
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_038, $07, $00
 	do_frames 30
 	animate_player_movement $00, $01
@@ -3801,7 +3801,7 @@ Script_3dd3a:
 PokemonDomeBack_MapHeader:
 	db MAP_GFX_POKEMON_DOME_BACK
 	dba PokemonDomeBack_MapScripts
-	db MUSIC_POKEMONDOME
+	db MUSIC_POKEMON_DOME
 
 PokemonDomeBack_StepEvents:
 	map_exit 7, 15, MAP_POKEMON_DOME, 7, 1, SOUTH
@@ -4037,7 +4037,7 @@ Func_3ded6:
 	script_command_01
 	print_npc_text Text0f9b
 	script_command_02
-	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
@@ -4094,7 +4094,7 @@ Script_3df8d:
 	set_active_npc NPC_STEVE, DialogSteveText
 	print_npc_text Text0fa2
 	script_command_02
-	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
@@ -4151,7 +4151,7 @@ Script_3dff9:
 	set_active_npc NPC_JACK, DialogJackText
 	print_npc_text Text0fa7
 	script_command_02
-	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
@@ -4206,7 +4206,7 @@ Script_3e069:
 .ows_3e088
 	print_npc_text Text0fac
 	script_command_02
-	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
@@ -4696,7 +4696,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
 	script_command_02
-	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .NPCMovement_3e484:
@@ -4739,7 +4739,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
 	script_command_02
-	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .NPCMovement_3e4e3:
@@ -4783,7 +4783,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
 	script_command_02
-	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .NPCMovement_3e544:
@@ -4824,7 +4824,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
 	script_command_02
-	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCHSTART_3
+	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .NPCMovement_3e59d:
@@ -4851,7 +4851,7 @@ Func_3e2a4:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fdf
-	play_song MUSIC_DITTY6
+	play_song MUSIC_GRAND_MASTER_CUP_CHAMPION
 	print_npc_text Text0fe0
 	wait_song
 	resume_song
@@ -5010,7 +5010,7 @@ Func_3e704:
 	farcall GetEventValue
 	jr z, .asm_3e727
 .asm_3e722
-	ld a, MUSIC_GROVERWORLD
+	ld a, MUSIC_GR_OVERWORLD
 	ld [wNextMusic], a
 .asm_3e727
 	scf
@@ -5166,7 +5166,7 @@ Func_3e7f5:
 	script_call Script_3e873
 	print_npc_text Text0ee5
 	script_command_02
-	start_duel VERY_RARE_CARD_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel VERY_RARE_CARD_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3e830
@@ -5335,7 +5335,7 @@ Func_3e95b:
 	farcall GetEventValue
 	jr z, .asm_3e97e
 .asm_3e979
-	ld a, MUSIC_GROVERWORLD
+	ld a, MUSIC_GR_OVERWORLD
 	ld [wNextMusic], a
 .asm_3e97e
 	scf
@@ -5807,7 +5807,7 @@ Func_3ecd5:
 GameCenterEntrance_MapHeader:
 	db MAP_GFX_GAME_CENTER_ENTRANCE
 	dba GameCenterEntrance_MapScripts
-	db MUSIC_GAMECORNER
+	db MUSIC_GAME_CENTER
 
 GameCenterEntrance_StepEvents:
 	map_exit 5, 15, OVERWORLD_MAP_GR, 4, 4, SOUTH
@@ -6046,7 +6046,7 @@ Func_3eef4:
 GameCenterLobby_MapHeader:
 	db MAP_GFX_GAME_CENTER_LOBBY
 	dba GameCenterLobby_MapScripts
-	db MUSIC_GAMECORNER
+	db MUSIC_GAME_CENTER
 
 GameCenterLobby_StepEvents:
 	map_exit 13, 6, MAP_GAME_CENTER_ENTRANCE, 1, 6, EAST
@@ -6093,7 +6093,7 @@ Func_3ef80:
 	scf
 	ret
 .asm_3ef8c
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -6331,7 +6331,7 @@ Func_3f0d9:
 	print_npc_text PawnDuelStartText
 	script_command_71
 	script_command_02
-	start_duel TEST_YOUR_LUCK_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel TEST_YOUR_LUCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3f13b
@@ -6379,7 +6379,7 @@ Func_3f15d:
 	set_var VAR_3A, $01
 	print_npc_text PawnProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_044, $04, $00
 	print_npc_text PawnProceedInitial2Text
 	script_jump .ows_3f1b7
@@ -6409,7 +6409,7 @@ Func_3f1c6:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_043, $04, $07
 	end_script
 	ld a, $00
@@ -6560,7 +6560,7 @@ Func_3f27f:
 	print_npc_text KnightDuelStartText
 	script_command_71
 	script_command_02
-	start_duel PROTOHISTORIC_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel PROTOHISTORIC_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3f2f5
@@ -6618,7 +6618,7 @@ Func_3f317:
 	set_var VAR_3A, $02
 	print_npc_text KnightProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_047, $04, $00
 	print_npc_text KnightProceedInitial2Text
 	script_jump .ows_3f386
@@ -6648,7 +6648,7 @@ Func_3f395:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_046, $04, $07
 	end_script
 	ld a, $00
@@ -6814,7 +6814,7 @@ Func_3f44f:
 	print_npc_text RookDuelStartText
 	script_command_71
 	script_command_02
-	start_duel COLORLESS_ENERGY_DECK_ID, MUSIC_DITTY_1
+	start_duel COLORLESS_ENERGY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_3f4de
@@ -6872,7 +6872,7 @@ Func_3f500:
 	set_var VAR_3A, $04
 	print_npc_text RookProceedInitial1Text
 	set_active_npc_direction NORTH
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04D, $04, $00
 	print_npc_text RookProceedInitial2Text
 	script_jump .ows_3f56f
@@ -6902,7 +6902,7 @@ Func_3f57e:
 	start_script
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
-	play_sfx SFX_0F
+	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04C, $04, $07
 	end_script
 	ld a, $00
@@ -6975,7 +6975,7 @@ Func_3f63b:
 	scf
 	ret
 .asm_3f647
-	ld a, MUSIC_IMAKUNI2
+	ld a, MUSIC_IMAKUNI_RED
 	farcall PlayAfterCurrentSong
 	scf
 	ccf
@@ -7233,7 +7233,7 @@ Func_3f817:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_5
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
@@ -7376,7 +7376,7 @@ Func_3f90c:
 	start_script
 	script_command_01
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
-	play_sfx SFX_85
+	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 1, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText

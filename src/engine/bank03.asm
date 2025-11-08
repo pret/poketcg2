@@ -190,7 +190,7 @@ Func_c169:
 	ret
 
 Func_c16f:
-	ld a, SFX_0C
+	ld a, SFX_WARP
 	call PlaySFX
 	ret
 
@@ -234,7 +234,7 @@ Func_c1a2:
 
 Func_c1a6:
 	call Func_3d0d
-	ld a, MUSIC_PAUSEMENU
+	ld a, MUSIC_PAUSE_MENU
 	call PlaySong
 	farcall Func_10772
 	call Func_3d4a
@@ -1387,7 +1387,7 @@ Func_d3e9::
 
 PCMenu:
 	call PauseSong
-	ld a, MUSIC_PCMAINMENU
+	ld a, MUSIC_PC_MAIN_MENU
 	call PlaySong
 	farcall _PCMenu
 	call ResumeSong
@@ -5712,7 +5712,7 @@ DebugMenuEffectViewer:
 	call ChangeEffectNumberOnDpadPress.initialize
 	call Func_3d0d
 	push af
-	ld a, MUSIC_DUELTHEME_1
+	ld a, MUSIC_DUEL_THEME_CLUB_MEMBER
 	call SetMusic
 	pop af
 	farcall StartFadeFromWhite
@@ -5795,7 +5795,7 @@ ChangeAnimationPlayerSideOnStartPress:
 	and PAD_START
 	ret z
 	push af
-	ld a, SFX_02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ld b, OPPONENT_TURN
@@ -5861,7 +5861,7 @@ CancelAnimationOnBPress:
 	and PAD_B
 	ret z
 	push af
-	ld a, SFX_03
+	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	call FinishQueuedAnimations

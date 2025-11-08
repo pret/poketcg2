@@ -735,7 +735,7 @@ Func_40474:
 	ret
 
 .asm_40482
-	ld a, MUSIC_GRBLIMP
+	ld a, MUSIC_GR_BLIMP
 	ld [wNextMusic], a
 	scf
 	ccf
@@ -760,9 +760,9 @@ Func_4048a:
 
 	ld a, [wd584]
 	cp MAP_TCG_AIRPORT
-	jr z, .gr_ship_cutscene
+	jr z, .gr_blimp_cutscene
 	cp MAP_OVERHEAD_ISLANDS
-	jr z, .gr_ship_cutscene
+	jr z, .gr_blimp_cutscene
 
 	; this is the case where player is
 	; on OW map and navigating
@@ -792,16 +792,16 @@ Func_4048a:
 	scf
 	ret
 
-.gr_ship_cutscene
+.gr_blimp_cutscene
 	ld bc, TILEMAP_001
 	lb de, 0, 0
 	farcall Func_12c0ce
 
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(DoGRShipMovement)
+	ld a, BANK(DoGRBlimpMovement)
 	ld [wd592], a
-	ld hl, DoGRShipMovement
+	ld hl, DoGRBlimpMovement
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -850,7 +850,7 @@ Func_4053e:
 	call PlaySong
 	ld a, 7
 	call SetVolume
-	ld a, SFX_8A
+	ld a, SFX_GR_BLIMP_HATCH_OPEN
 	call PlaySFX
 	farcall WaitForSFXToFinish
 .asm_40569
@@ -919,7 +919,7 @@ HandleTCGIslandDirectionalInput:
 	ret
 
 .got_key
-	ld a, SFX_01
+	ld a, SFX_CURSOR
 	call PlaySFX
 	ld a, [wCurOWLocation]
 	ld b, a
@@ -1128,7 +1128,7 @@ Func_406d1:
 	ld l, a
 	or h
 	jr z, .finish_movement ; is null
-	ld a, SFX_57
+	ld a, SFX_PLAYER_WALK_MAP
 	call PlaySFX
 
 .loop_commands
@@ -1216,7 +1216,7 @@ TCGIslandLocationPositions:
 
 INCLUDE "data/tcg_island_paths.asm"
 
-DoGRShipMovement:
+DoGRBlimpMovement:
 	ld a, [wd584]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa
@@ -1525,7 +1525,7 @@ Func_40f46:
 	farcall Func_ea30
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	script_command_02
 	end_script
 	ld a, $00
@@ -1947,7 +1947,7 @@ Func_41233:
 	set_active_npc_direction EAST
 	script_call Script_41499
 	set_event EVENT_EF
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_41287
@@ -1965,7 +1965,7 @@ Func_41233:
 	script_command_01
 	print_npc_text Text0f18
 	script_command_02
-	start_duel UNUSED_SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel UNUSED_SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_412ac
@@ -2038,7 +2038,7 @@ Script_412f8:
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	print_npc_text Text0f25
 	script_command_02
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_4133b
@@ -2055,7 +2055,7 @@ Func_4133e:
 	script_jump_if_b0z .ows_41356
 	print_npc_text Text0f28
 	script_command_02
-	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCHSTART_1
+	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_41356
@@ -2431,7 +2431,7 @@ TcgChallengeHall_MapScripts:
 Func_415e6:
 	call Func_41bd2
 	jr c, .asm_415f0
-	ld a, MUSIC_CHALLENGEHALL
+	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
 .asm_415f0
 	scf
@@ -3212,7 +3212,7 @@ Func_41bd2:
 GrAirport_MapHeader:
 	db MAP_GFX_GR_AIRPORT
 	dba GrAirport_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrAirport_StepEvents:
 	map_exit 13, 9, MAP_GR_AIRPORT_ENTRANCE, 1, 6, EAST
@@ -3303,7 +3303,7 @@ Func_41ca1:
 	call PlaySong
 	ld a, $07
 	call SetVolume
-	ld a, SFX_89
+	ld a, SFX_GR_BLIMP_HATCH_CLOSE
 	call PlaySFX
 	farcall WaitForSFXToFinish
 	scf
@@ -3645,7 +3645,7 @@ Func_41f66:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	scroll_to_position $02, $00
 	load_npc NPC_TOBICHAN, 6, 2, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_4257f
@@ -3667,7 +3667,7 @@ Func_41f66:
 	print_npc_text Text108a
 .ows_41fc5
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_425ae
@@ -3706,7 +3706,7 @@ Func_41fe1:
 	move_player .NPCMovement_42047, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOBICHAN, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_4257f
@@ -3724,7 +3724,7 @@ Func_41fe1:
 	print_npc_text Text1090
 .ows_4203e
 	script_command_02
-	start_duel POISON_STORM_DECK_ID, MUSIC_DITTY_2
+	start_duel POISON_STORM_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42044
@@ -3752,7 +3752,7 @@ Func_42050:
 	print_npc_text Text1093
 .ows_42069
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
 	ld hl, Data_425ae
@@ -3786,7 +3786,7 @@ Func_4207e:
 	move_player .NPCMovement_420e4, TRUE
 	wait_for_player_animation
 	load_npc NPC_EIJI, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $57
 	ld hl, Data_4257f
@@ -3804,7 +3804,7 @@ Func_4207e:
 	print_npc_text Text1097
 .ows_420db
 	script_command_02
-	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_DITTY_2
+	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_420e1
@@ -3831,7 +3831,7 @@ Func_420eb:
 	print_npc_text Text109a
 .ows_42104
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $57
 	ld hl, Data_425ae
@@ -3865,7 +3865,7 @@ Func_42119:
 	move_player .NPCMovement_4217f, TRUE
 	wait_for_player_animation
 	load_npc NPC_MAGICIAN, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $58
 	ld hl, Data_4257f
@@ -3883,7 +3883,7 @@ Func_42119:
 	print_npc_text Text109e
 .ows_42176
 	script_command_02
-	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_DITTY_2
+	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4217c
@@ -3910,7 +3910,7 @@ Func_42186:
 	print_npc_text Text10a1
 .ows_4219f
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $58
 	ld hl, Data_425ae
@@ -3944,7 +3944,7 @@ Func_421b4:
 	move_player .NPCMovement_4221a, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOSHIRON, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $59
 	ld hl, Data_4257f
@@ -3962,7 +3962,7 @@ Func_421b4:
 	print_npc_text Text10a5
 .ows_42211
 	script_command_02
-	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_DITTY_2
+	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42217
@@ -3989,7 +3989,7 @@ Func_42221:
 	print_npc_text Text10a8
 .ows_4223a
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $59
 	ld hl, Data_425ae
@@ -4023,7 +4023,7 @@ Func_4224f:
 	move_player .NPCMovement_422b5, TRUE
 	wait_for_player_animation
 	load_npc NPC_PIERROT, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5a
 	ld hl, Data_4257f
@@ -4041,7 +4041,7 @@ Func_4224f:
 	print_npc_text Text10ac
 .ows_422ac
 	script_command_02
-	start_duel BLAZING_FLAME_DECK_ID, MUSIC_DITTY_2
+	start_duel BLAZING_FLAME_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_422b2
@@ -4069,7 +4069,7 @@ Func_422be:
 	print_npc_text Text10af
 .ows_422d7
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5a
 	ld hl, Data_425ae
@@ -4103,7 +4103,7 @@ Func_422ec:
 	move_player .NPCMovement_42352, TRUE
 	wait_for_player_animation
 	load_npc NPC_ANNA, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5b
 	ld hl, Data_4257f
@@ -4121,7 +4121,7 @@ Func_422ec:
 	print_npc_text Text10b3
 .ows_42349
 	script_command_02
-	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_DITTY_2
+	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4234f
@@ -4148,7 +4148,7 @@ Func_42359:
 	print_npc_text Text10b6
 .ows_42372
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5b
 	ld hl, Data_425ae
@@ -4182,7 +4182,7 @@ Func_42387:
 	move_player .NPCMovement_423ed, TRUE
 	wait_for_player_animation
 	load_npc NPC_DEE, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5c
 	ld hl, Data_4257f
@@ -4200,7 +4200,7 @@ Func_42387:
 	print_npc_text Text10ba
 .ows_423e4
 	script_command_02
-	start_duel BIG_THUNDER_DECK_ID, MUSIC_DITTY_2
+	start_duel BIG_THUNDER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_423ea
@@ -4228,7 +4228,7 @@ Func_423f6:
 	print_npc_text Text10bd
 .ows_4240f
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5c
 	ld hl, Data_425ae
@@ -4262,7 +4262,7 @@ Func_42424:
 	move_player .NPCMovement_4248a, TRUE
 	wait_for_player_animation
 	load_npc NPC_MASQUERADE, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $5d
 	ld hl, Data_4257f
@@ -4280,7 +4280,7 @@ Func_42424:
 	print_npc_text Text10c1
 .ows_42481
 	script_command_02
-	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_DITTY_2
+	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42487
@@ -4307,7 +4307,7 @@ Func_42491:
 	print_npc_text Text10c4
 .ows_424aa
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5d
 	ld hl, Data_425ae
@@ -4341,7 +4341,7 @@ Func_424bf:
 	move_player .NPCMovement_42525, TRUE
 	wait_for_player_animation
 	load_npc NPC_YUI, 6, 3, SOUTH
-	play_sfx SFX_9F
+	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
 	ld a, $b0
 	ld hl, Data_4257f
@@ -4359,7 +4359,7 @@ Func_424bf:
 	print_npc_text Text10c8
 .ows_4251c
 	script_command_02
-	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_DITTY_2
+	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42522
@@ -4386,7 +4386,7 @@ Func_4252c:
 	print_npc_text Text10cb
 .ows_42545
 	script_command_02
-	play_sfx SFX_A0
+	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $b0
 	ld hl, Data_425ae
@@ -4441,7 +4441,7 @@ Data_425ae:
 GrChallengeHall_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL
 	dba GrChallengeHall_MapScripts
-	db MUSIC_GROVERWORLD
+	db MUSIC_GR_OVERWORLD
 
 GrChallengeHall_StepEvents:
 	map_exit 7, 15, MAP_GR_CHALLENGE_HALL_ENTRANCE, 4, 1, SOUTH
@@ -4502,7 +4502,7 @@ Func_42649:
 	scf
 	ret
 .asm_4265f
-	ld a, MUSIC_GRCHALLENGECUP
+	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
 	jr .asm_4266b
 .asm_42666
@@ -5566,7 +5566,7 @@ Func_42eca:
 GrCastleBiruritchi_MapHeader:
 	db MAP_GFX_GR_CASTLE_BIRURITCHI
 	dba GrCastleBiruritchi_MapScripts
-	db MUSIC_GRCASTLE
+	db MUSIC_GR_CASTLE
 
 GrCastleBiruritchi_StepEvents:
 	map_exit 6, 15, MAP_GR_CASTLE, 6, 1, SOUTH
@@ -5720,7 +5720,7 @@ Func_42fe1:
 
 Script_43000:
 	script_command_64 $0c
-	play_song_next MUSIC_HALLOFHONOR
+	play_song_next MUSIC_HALL_OF_HONOR
 	script_command_02
 	print_npc_text Text0927
 	set_event EVENT_GOT_TOGEPI_COIN
@@ -5976,7 +5976,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel STOP_LIFE_DECK_ID, MUSIC_DITTY_2
+	start_duel STOP_LIFE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_431f7
@@ -5990,7 +5990,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel SCORCHER_DECK_ID, MUSIC_DITTY_2
+	start_duel SCORCHER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_43213
@@ -6004,7 +6004,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel TSUNAMI_STARTER_DECK_ID, MUSIC_DITTY_2
+	start_duel TSUNAMI_STARTER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .asm_4322f
@@ -6018,7 +6018,7 @@ Script_431ca:
 	farcall SetVarValue
 	xor a
 	start_script
-	start_duel SMASH_TO_MINCEMEAT_DECK_ID, MUSIC_DITTY_2
+	start_duel SMASH_TO_MINCEMEAT_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 
@@ -6109,7 +6109,7 @@ Script_432f5:
 	ret
 
 Script_432fb:
-	play_song_next MUSIC_HALLOFHONOR
+	play_song_next MUSIC_HALL_OF_HONOR
 	script_command_02
 	get_var VAR_0B
 	compare_loaded_var $01
@@ -6156,7 +6156,7 @@ Script_43333:
 	farcall Func_ea30
 	ld a, $01
 	start_script
-	play_sfx SFX_56
+	play_sfx SFX_SAVE_GAME
 	script_ret
 
 Script_4336b:

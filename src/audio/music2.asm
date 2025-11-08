@@ -2390,14 +2390,14 @@ Music2_SFXPriorities:
 
 INCLUDE "audio/music2_headers.asm"
 
-INCLUDE "audio/music/dueltheme1.asm"
-INCLUDE "audio/music/dueltheme2.asm"
-INCLUDE "audio/music/dueltheme3.asm"
+INCLUDE "audio/music/duelthemeclubmember.asm"
+INCLUDE "audio/music/duelthemeclubmaster.asm"
+INCLUDE "audio/music/duelthemegrandmaster.asm"
 INCLUDE "audio/music/pausemenu.asm"
 INCLUDE "audio/music/pcmainmenu.asm"
 INCLUDE "audio/music/deckmachine.asm"
 INCLUDE "audio/music/cardpop.asm"
 INCLUDE "audio/music/overworld.asm"
-INCLUDE "audio/music/song27.asm"
+INCLUDE "audio/music/boop.asm"
 
 	ds $149
