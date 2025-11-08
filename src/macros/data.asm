@@ -55,7 +55,11 @@ ENDM
 
 MACRO tx
 REPT _NARG
-	dw \1_
+	IF ISCONST(\1)
+		dw \1
+	ELSE
+		dw \1_
+	ENDC
 	SHIFT
 ENDR
 ENDM

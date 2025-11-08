@@ -100,8 +100,8 @@ NPCDuelistPointers:
 SamNPCDuelistHeader:
 	db NPC_SAM
 	tx DialogSamText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db UNUSED_SAMS_PRACTICE_DECK_ID
 	db $ff
 	db $ff
@@ -110,7 +110,7 @@ SamNPCDuelistHeader:
 AaronNPCDuelistHeader:
 	db NPC_AARON
 	tx DialogAaronText
-	tx 0
+	tx NONE
 	tx DialogTechText
 	db AARONS_STEP1_DECK_ID
 	db AARONS_STEP2_DECK_ID
@@ -440,7 +440,7 @@ StephanieNPCDuelistHeader:
 RodNPCDuelistHeader:
 	db NPC_ROD
 	tx DialogRodText
-	tx 0
+	tx NONE
 	tx OpponentGrandMasterText
 	db GREAT_DRAGON_DECK_ID
 	db $ff
@@ -450,7 +450,7 @@ RodNPCDuelistHeader:
 JackNPCDuelistHeader:
 	db NPC_JACK
 	tx DialogJackText
-	tx 0
+	tx NONE
 	tx OpponentGrandMasterText
 	db WATER_LEGEND_DECK_ID
 	db $ff
@@ -460,7 +460,7 @@ JackNPCDuelistHeader:
 SteveNPCDuelistHeader:
 	db NPC_STEVE
 	tx DialogSteveText
-	tx 0
+	tx NONE
 	tx OpponentGrandMasterText
 	db LEGENDARY_FOSSIL_DECK_ID
 	db $ff
@@ -470,7 +470,7 @@ SteveNPCDuelistHeader:
 CourtneyNPCDuelistHeader:
 	db NPC_COURTNEY
 	tx DialogCourtneyText
-	tx 0
+	tx NONE
 	tx OpponentGrandMasterText
 	db GRAND_FIRE_DECK_ID
 	db $ff
@@ -740,7 +740,7 @@ NishijimaNPCDuelistHeader:
 BiruritchiNPCDuelistHeader:
 	db NPC_BIRURITCHI
 	tx DialogBiruritchiText
-	tx 0
+	tx NONE
 	tx OpponentGRKingText
 	db STOP_LIFE_DECK_ID
 	db SCORCHER_DECK_ID
@@ -750,7 +750,7 @@ BiruritchiNPCDuelistHeader:
 RuiNPCDuelistHeader:
 	db NPC_RUI
 	tx DialogRuiText
-	tx 0
+	tx NONE
 	tx OpponentGRBigBossText
 	db POISON_MIST_DECK_ID
 	db ULTRA_REMOVAL_DECK_ID
@@ -760,7 +760,7 @@ RuiNPCDuelistHeader:
 KanzakiNPCDuelistHeader:
 	db NPC_KANZAKI
 	tx DialogKanzakiText
-	tx 0
+	tx NONE
 	tx OpponentGRBigBossText
 	db BAD_GUYS_DECK_ID
 	db $ff
@@ -770,7 +770,7 @@ KanzakiNPCDuelistHeader:
 RonaldNPCDuelistHeader:
 	db NPC_RONALD
 	tx DialogRonaldText
-	tx 0
+	tx NONE
 	tx OpponentRivalText
 	db RONALDS_UNCOOL_DECK_ID
 	db RONALDS_GRX_DECK_ID
@@ -780,7 +780,7 @@ RonaldNPCDuelistHeader:
 ImakuniBlackNPCDuelistHeader:
 	db NPC_IMAKUNI_BLACK
 	tx DialogImakuniText
-	tx 0
+	tx NONE
 	tx OpponentStrangeLifeFormText
 	db WEIRD_DECK_ID
 	db $ff
@@ -790,7 +790,7 @@ ImakuniBlackNPCDuelistHeader:
 ImakuniRedNPCDuelistHeader:
 	db NPC_IMAKUNI_RED
 	tx DialogImakuniText
-	tx 0
+	tx NONE
 	tx OpponentStrangeLifeFormText
 	db STRANGE_DECK_ID
 	db $ff
@@ -800,8 +800,8 @@ ImakuniRedNPCDuelistHeader:
 IshiharaNPCDuelistHeader:
 	db NPC_ISHIHARA
 	tx DialogMrIshiharaText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db VERY_RARE_CARD_DECK_ID
 	db $ff
 	db $ff
@@ -810,8 +810,8 @@ IshiharaNPCDuelistHeader:
 TapNPCDuelistHeader:
 	db NPC_TAP
 	tx DialogTapText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db DANGEROUS_BENCH_DECK_ID
 	db $ff
 	db $ff
@@ -820,8 +820,8 @@ TapNPCDuelistHeader:
 QueenNPCDuelistHeader:
 	db NPC_QUEEN
 	tx DialogQueenText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db POWERFUL_POKEMON_DECK_ID
 	db $ff
 	db $ff
@@ -830,8 +830,8 @@ QueenNPCDuelistHeader:
 RookNPCDuelistHeader:
 	db NPC_ROOK
 	tx DialogRookText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db COLORLESS_ENERGY_DECK_ID
 	db $ff
 	db $ff
@@ -840,8 +840,8 @@ RookNPCDuelistHeader:
 BishopNPCDuelistHeader:
 	db NPC_BISHOP
 	tx DialogBishopText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db TEXTURE_TUNER7_DECK_ID
 	db $ff
 	db $ff
@@ -850,8 +850,8 @@ BishopNPCDuelistHeader:
 KnightNPCDuelistHeader:
 	db NPC_KNIGHT
 	tx DialogKnightText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db PROTOHISTORIC_DECK_ID
 	db $ff
 	db $ff
@@ -860,8 +860,8 @@ KnightNPCDuelistHeader:
 PawnNPCDuelistHeader:
 	db NPC_PAWN
 	tx DialogPawnText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db TEST_YOUR_LUCK_DECK_ID
 	db $ff
 	db $ff
@@ -870,8 +870,8 @@ PawnNPCDuelistHeader:
 TobichanNPCDuelistHeader:
 	db NPC_TOBICHAN
 	tx DialogTobichanText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db POISON_STORM_DECK_ID
 	db $ff
 	db $ff
@@ -880,8 +880,8 @@ TobichanNPCDuelistHeader:
 EijiNPCDuelistHeader:
 	db NPC_EIJI
 	tx DialogEijiText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db EVERYBODYS_FRIEND_DECK_ID
 	db $ff
 	db $ff
@@ -890,8 +890,8 @@ EijiNPCDuelistHeader:
 MagicianNPCDuelistHeader:
 	db NPC_MAGICIAN
 	tx DialogMagicianText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db IMMORTAL_POKEMON_DECK_ID
 	db $ff
 	db $ff
@@ -900,8 +900,8 @@ MagicianNPCDuelistHeader:
 YuiNPCDuelistHeader:
 	db NPC_YUI
 	tx DialogYuiText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db TORRENTIAL_FLOOD_DECK_ID
 	db $ff
 	db $ff
@@ -910,8 +910,8 @@ YuiNPCDuelistHeader:
 ToshironNPCDuelistHeader:
 	db NPC_TOSHIRON
 	tx DialogToshironText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db TRAINER_IMPRISON_DECK_ID
 	db $ff
 	db $ff
@@ -920,8 +920,8 @@ ToshironNPCDuelistHeader:
 PierrotNPCDuelistHeader:
 	db NPC_PIERROT
 	tx DialogPierrotText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db BLAZING_FLAME_DECK_ID
 	db $ff
 	db $ff
@@ -930,8 +930,8 @@ PierrotNPCDuelistHeader:
 AnnaNPCDuelistHeader:
 	db NPC_ANNA
 	tx DialogAnnaText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db DAMAGE_CHAOS_DECK_ID
 	db $ff
 	db $ff
@@ -940,8 +940,8 @@ AnnaNPCDuelistHeader:
 DeeNPCDuelistHeader:
 	db NPC_DEE
 	tx DialogDeeText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db BIG_THUNDER_DECK_ID
 	db $ff
 	db $ff
@@ -950,8 +950,8 @@ DeeNPCDuelistHeader:
 MasqueradeNPCDuelistHeader:
 	db NPC_MASQUERADE
 	tx DialogMasqueradeText
-	tx 0
-	tx 0
+	tx NONE
+	tx NONE
 	db POWER_OF_DARKNESS_DECK_ID
 	db $ff
 	db $ff
@@ -960,7 +960,7 @@ MasqueradeNPCDuelistHeader:
 GR1NPCDuelistHeader:
 	db NPC_GR_1
 	tx DialogGR1Text
-	tx 0
+	tx NONE
 	tx OpponentEnigmaticMaskText
 	db GREAT_ROCKET1_DECK_ID
 	db $ff
@@ -970,7 +970,7 @@ GR1NPCDuelistHeader:
 GR2NPCDuelistHeader:
 	db NPC_GR_2
 	tx DialogGR2Text
-	tx 0
+	tx NONE
 	tx OpponentEnigmaticMaskText
 	db GREAT_ROCKET2_DECK_ID
 	db $ff
@@ -980,7 +980,7 @@ GR2NPCDuelistHeader:
 GR3NPCDuelistHeader:
 	db NPC_GR_3
 	tx DialogGR3Text
-	tx 0
+	tx NONE
 	tx OpponentEnigmaticMaskText
 	db GREAT_ROCKET3_DECK_ID
 	db $ff
@@ -990,7 +990,7 @@ GR3NPCDuelistHeader:
 GR4NPCDuelistHeader:
 	db NPC_GR_4
 	tx DialogGR4Text
-	tx 0
+	tx NONE
 	tx OpponentEnigmaticMaskText
 	db GREAT_ROCKET4_DECK_ID
 	db $ff

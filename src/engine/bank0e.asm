@@ -4676,7 +4676,7 @@ HandleScrollMenu:
 
 .asm_3ac12
 	call .draw_visible_cursor
-	ld a, $01
+	ld a, MENU_CONFIRM
 	farcall PlayConfirmOrCancelSFX
 	ld a, [wCurScrollMenuItem]
 	ld e, a
@@ -4691,9 +4691,9 @@ HandleScrollMenu:
 	and PAD_A
 	jr nz, .asm_3ac12
 ; b button
-	ld a, $ff
+	ld a, -1
 	ld [hCurMenuItem], a
-	farcall PlayConfirmOrCancelSFX
+	farcall PlayConfirmOrCancelSFX ; MENU_CANCEL
 	scf
 	ret
 
@@ -5013,7 +5013,7 @@ HandleDeckMachineSelection:
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, $01
+	ld a, MENU_CONFIRM
 	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
@@ -6892,7 +6892,7 @@ Func_3bb09:
 	ld d, h
 	ld e, l
 	pop hl
-	ld a, $01
+	ld a, MENU_CONFIRM
 	farcall PlayConfirmOrCancelSFX
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
@@ -6974,7 +6974,7 @@ Func_3bb09:
 	farcall CheckIfDeckHasCards
 	pop hl
 	jp c, .asm_3bb4f
-	ld a, $01
+	ld a, MENU_CONFIRM
 	farcall PlayConfirmOrCancelSFX
 	push hl
 	ld de, $18

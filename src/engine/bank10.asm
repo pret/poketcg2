@@ -1029,7 +1029,7 @@ HandleTCGIslandDirectionalInput:
 PrintTCGIslandLocationName:
 	lb de, 1, 1
 	ldtx hl, EmptyLocationNameText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 
 	ld a, [wCurOWLocation]
 	sla a
@@ -1047,7 +1047,7 @@ PrintTCGIslandLocationName:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .LocationTitleTextItems:

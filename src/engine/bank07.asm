@@ -317,6 +317,249 @@ GetDuelistPortrait::
 	db PORTRAIT_DR_MASON      ; DR_MASON_PIC
 ; 0x1c116
 
+SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
+
+ShowConfigMenu:
+	push af
+	push bc
+	push de
+	push hl
+	call LoadSavedOptions
+	call DrawAndHandleConfigMenu
+	call SaveConfigMenuChoicesToSRAM
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+DrawAndHandleConfigMenu:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DrawConfigMenu
+	farcall SetFrameFuncAndFadeFromWhite
+	call HandleConfigMenu
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+DrawConfigMenu:
+	lb de, 0, 0
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 4
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 8
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 12
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	ld b, $07
+	ld hl, $44ee
+	lb de, 1, 17
+	call LoadMenuBoxParams
+	ld b, $07
+	ld hl, $4476
+	lb de, 6, 2
+	call LoadMenuBoxParams
+	ld a, [wMessageSpeedSetting]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $449a
+	lb de, 1, 6
+	call LoadMenuBoxParams
+	ld a, [wDuelAnimationsSetting]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $44b6
+	lb de, 1, 10
+	call LoadMenuBoxParams
+	ld a, [wCoinTossAnimationSetting]
+	call DrawMenuBox
+	ld b, $07
+	ld hl, $44ce
+	lb de, 1, 14
+	call LoadMenuBoxParams
+	ld a, [wTextBoxFrameColor]
+	call DrawMenuBox
+	ldtx hl, ConfigMessageSpeedText
+	lb de, 1, 0
+	call Func_2c4b
+	ldtx hl, ConfigDuelAnimationText
+	lb de, 1, 4
+	call Func_2c4b
+	ldtx hl, ConfigCoinAnimationText
+	lb de, 1, 8
+	call Func_2c4b
+	ldtx hl, ConfigFrameColorText
+	lb de, 1, 12
+	call Func_2c4b
+	ldtx hl, ConfigMessageSpeedSlowLabelText
+	lb de, 2, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ldtx hl, ConfigMessageSpeedFastLabelText
+	lb de, 16, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ldtx hl, ConfigExitText
+	lb de, 2, 17
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ret
+
+HandleConfigMenu:
+	ld a, [wSelectedConfigSubmenu]
+	ld c, a
+	inc a
+	dec a
+	jr z, .exit_menu_box
+	dec a
+	jr z, .message_speed_box
+	dec a
+	jr z, .duel_animations_box
+	dec a
+	jr z, .coin_toss_animation_box
+	dec a
+	jr z, .frame_color_box
+.exit_menu_box
+	ld c, 0
+	call HandleConfigExitMenuBox
+	jr nc, .done
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr nz, .done
+	ldh a, [hKeysHeld]
+	and PAD_UP
+	jr nz, .frame_color_box
+.message_speed_box
+	ld c, 1
+	call HandleMessageSpeedSettingMenuBox
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr nz, .done
+	ldh a, [hKeysHeld]
+	and PAD_UP
+	jr nz, .exit_menu_box
+.duel_animations_box
+	ld c, 2
+	call HandleDuelAnimationsSettingMenuBox
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr nz, .done
+	ldh a, [hKeysHeld]
+	and PAD_UP
+	jr nz, .message_speed_box
+.coin_toss_animation_box
+	ld c, 3
+	call HandleCoinTossAnimationSettingMenuBox
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr nz, .done
+	ldh a, [hKeysHeld]
+	and PAD_UP
+	jr nz, .duel_animations_box
+.frame_color_box
+	ld c, 4
+	call HandleTextBoxFrameColorSettingMenuBox
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr nz, .done
+	ldh a, [hKeysHeld]
+	and PAD_UP
+	jr nz, .coin_toss_animation_box
+	jp .exit_menu_box
+.done
+	push af
+	ld a, SFX_CONFIRM
+	call CallPlaySFX
+	pop af
+	ld a, c
+	ld [wSelectedConfigSubmenu], a
+	ret
+
+HandleMessageSpeedSettingMenuBox:
+	ld b, $07
+	ld hl, $4476
+	lb de, 6, 2
+	ld a, [wMessageSpeedSetting]
+	call LoadMenuBoxParams
+	ld a, 8
+	call SetMenuBoxDelay
+	ld a, [wMessageSpeedSetting]
+	call HandleMenuBox
+	ld [wMessageSpeedSetting], a
+	ret
+
+HandleDuelAnimationsSettingMenuBox:
+	ld b, $07
+	ld hl, $449a
+	lb de, 1, 6
+	ld a, [wDuelAnimationsSetting]
+	call LoadMenuBoxParams
+	ld a, 8
+	call SetMenuBoxDelay
+	ld a, [wDuelAnimationsSetting]
+	call HandleMenuBox
+	ld [wDuelAnimationsSetting], a
+	ret
+
+HandleCoinTossAnimationSettingMenuBox:
+	ld b, $07
+	ld hl, $44b6
+	lb de, 1, 10
+	ld a, [wCoinTossAnimationSetting]
+	call LoadMenuBoxParams
+	ld a, 8
+	call SetMenuBoxDelay
+	ld a, [wCoinTossAnimationSetting]
+	call HandleMenuBox
+	ld [wCoinTossAnimationSetting], a
+	ret
+
+HandleTextBoxFrameColorSettingMenuBox:
+	ld b, $07
+	ld hl, $44ce
+	lb de, 1, 14
+	ld a, [wTextBoxFrameColor]
+	call LoadMenuBoxParams
+	ld a, 8
+	call SetMenuBoxDelay
+	ld a, [wTextBoxFrameColor]
+	call HandleMenuBox
+	ld [wTextBoxFrameColor], a
+	ret
+
+HandleConfigExitMenuBox:
+	ld b, $07
+	ld hl, $44ee
+	lb de, 1, 17
+	xor a
+	call LoadMenuBoxParams
+	ld a, 8
+	call SetMenuBoxDelay
+	xor a
+	call HandleMenuBox
+	ret
+; 0x1c379
+
 SECTION "Bank 7@4395", ROMX[$4395], BANK[$7]
 
 LoadSavedOptions:
@@ -331,24 +574,24 @@ LoadSavedOptions:
 .LoadTextSpeed:
 	ld a, [sTextSpeed]
 	ld [wTextSpeed], a
-	call Func_1c448
+	call ConvertTextSpeedToMessageSpeedSetting
 	ld b, a
 	ld a, 4
 	sub b
-	ld [wd9d5], a
+	ld [wMessageSpeedSetting], a
 	ret
 
 .LoadDuelAnimation:
-	ld a, [s0a007]
-	ld [wd9d3], a
+	ld a, [sDuelAnimationsSetting]
+	ld [wDuelAnimationsSetting], a
 	srl a
 	and $01
 	ld [wAnimationsDisabled], a
 	ret
 
 .LoadCoinTossAnimation:
-	ld a, [s0a00b]
-	ld [wd9d4], a
+	ld a, [sCoinTossAnimationSetting]
+	ld [wCoinTossAnimationSetting], a
 	ret
 
 .LoadTextFrameColor:
@@ -356,28 +599,28 @@ LoadSavedOptions:
 	ld [wTextBoxFrameColor], a
 	ret
 
-Func_1c3d5:
+SaveConfigMenuChoicesToSRAM:
 	call EnableSRAM
-	call Func_1c3e8
-	call Func_1c3f9
-	call Func_1c417
+	call SaveMessageSpeed
+	call SaveDuelAnimationsSetting
+	call SaveCoinTossAnimationSetting
 	call SaveTextBoxFrameColor
 	call DisableSRAM
 	ret
 
-Func_1c3e8:
-	ld a, [wd9d5]
+SaveMessageSpeed:
+	ld a, [wMessageSpeedSetting]
 	ld b, a
-	ld a, $04
+	ld a, 4
 	sub b
-	call Func_1c438
+	call ConvertMessageSpeedSettingToTextSpeed
 	ld [sTextSpeed], a
 	ld [wTextSpeed], a
 	ret
 
-Func_1c3f9:
-	ld a, [wd9d3]
-	ld [s0a007], a
+SaveDuelAnimationsSetting:
+	ld a, [wDuelAnimationsSetting]
+	ld [sDuelAnimationsSetting], a
 	push af
 	srl a
 	and $01
@@ -392,11 +635,11 @@ Func_1c3f9:
 	ret
 
 .data
-	db $00, $01, $01
+	db 0, 1, 1
 
-Func_1c417:
-	ld a, [wd9d4]
-	ld [s0a00b], a
+SaveCoinTossAnimationSetting:
+	ld a, [wCoinTossAnimationSetting]
+	ld [sCoinTossAnimationSetting], a
 	ret
 
 SaveTextBoxFrameColor:
@@ -404,17 +647,19 @@ SaveTextBoxFrameColor:
 	ld [sTextBoxFrameColor], a
 	ret
 
-Func_1c425:
-	ld a, $02
-	ld [wd9d5], a
+InitDefaultConfigMenuSettings:
+	ld a, 2
+	ld [wMessageSpeedSetting], a
 	xor a
-	ld [wd9d4], a
-	ld [wd9d3], a
+	ld [wCoinTossAnimationSetting], a
+	ld [wDuelAnimationsSetting], a
 	ld [wTextBoxFrameColor], a
-	ld [wd9d0], a
+	ld [wSelectedConfigSubmenu], a
 	ret
 
-Func_1c438:
+; a - message speed setting
+; ret - a: text speed (in frames to wait between printing)
+ConvertMessageSpeedSettingToTextSpeed:
 	push bc
 	ld c, a
 	ld b, $00
@@ -425,9 +670,11 @@ Func_1c438:
 	ret
 
 .data
-	db $00, $01, $02, $04, $06
+	db 0, 1, 2, 4, 6
 
-Func_1c448:
+; a - text speed (in frames to wait between printing)
+; ret - a: message speed setting
+ConvertTextSpeedToMessageSpeedSetting:
 	push bc
 	ld c, a
 	ld b, $00
@@ -438,8 +685,9 @@ Func_1c448:
 	ret
 
 .data
-	db $00, $01, $02
-; 0x1c456
+	; values correspond to the 0,1,2,4,6 values just above
+	db 0, 1, 2, 0, 3, 0, 4
+; 0x1c45a
 
 SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
 
@@ -1369,7 +1617,7 @@ DrawMenuBox:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop de
 	pop bc
 	inc c
@@ -1716,6 +1964,7 @@ SetMenuBoxNumItems:
 	ld [wMenuBoxNumItems], a
 	ret
 
+; a - delay to set
 SetMenuBoxDelay:
 	ld [wMenuBoxDelay], a
 	ret
@@ -1814,7 +2063,7 @@ ShowStartMenu:
 	ld d, a
 	ld e, 8
 	ldtx hl, TxRam1Text
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 
 .skip_portrait_and_name
 	ld a, [wStartMenuConfiguration]
@@ -2028,7 +2277,7 @@ _StartMenuBoxUpdate::
 .NewGame:
 	lb de, 1, 12
 	ldtx hl, MainMenuNewGameDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .ContinueFromDiary:
@@ -2038,7 +2287,7 @@ _StartMenuBoxUpdate::
 	lb de, 1, 10
 	call Func_2c4b
 	ld hl, .TextItems
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 
 	; print number of event coins
 	; obtained by the player
@@ -2066,13 +2315,13 @@ _StartMenuBoxUpdate::
 .CardPop:
 	lb de, 1, 12
 	ldtx hl, MainMenuCardPopDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .ContinueDuel:
 	lb de, 1, 12
 	ldtx hl, MainMenuContinueDuelDialogText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 HandleStartMenuBox:
@@ -2163,7 +2412,7 @@ AskToContinueFromDiaryInsteadOfDuel:
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning2Text
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning3Text
 	tx MainMenuContinueFromDiaryInsteadOfDuelWarning4Text
-	tx $ffff
+	dw $ffff
 
 ConfirmPlayerNameAndGender:
 	push bc
@@ -2191,13 +2440,13 @@ ConfirmPlayerNameAndGender:
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ld hl, .TextItems
-	call Func_35cf
+	call PlaceTextItemsVRAM0
 	lb bc, 12, 3
 	call DrawPlayerPortrait
 	; print name
 	ldtx hl, TxRam1Text
 	lb de, 5, 4
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	; print gender
 	farcall GetPlayerGender
 	and a
@@ -2206,7 +2455,7 @@ ConfirmPlayerNameAndGender:
 	ldtx hl, PlayerGenderFemaleText
 .got_gender_text
 	lb de, 5, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .TextItems:
@@ -2588,7 +2837,7 @@ Func_1d475:
 	ld a, EVENT_GOT_CHANSEY_COIN
 	farcall MaxOutEventValue
 
-	farcall Func_1157c
+	farcall ClearGameCenterChips
 	call Func_1eca5
 	call Func_1d7a1
 	call Func_1d9f9
@@ -2601,8 +2850,8 @@ Func_1d475:
 	call EnableAnimations
 	call Func_1e767
 	farcall Func_111f0
-	call Func_1c425
-	call Func_1c3d5
+	call InitDefaultConfigMenuSettings
+	call SaveConfigMenuChoicesToSRAM
 	call LoadSavedOptions
 	ret
 
@@ -2767,7 +3016,7 @@ Func_1d5c7:
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, PlayerDiaryCardsUnitText
 	lb de, 18, 0
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	farcall GetGameCenterChips
 	lb de, 14, 0
 	ld h, b
@@ -2803,7 +3052,7 @@ Func_1d618:
 	ld h, [hl]
 	ld l, a
 	ld d, $02
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -2816,7 +3065,7 @@ Func_1d618:
 	call PrintNumber
 	ld d, $12
 	ldtx hl, PlayerDiaryCardsUnitText
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	pop de
 	pop bc
@@ -2946,12 +3195,12 @@ Func_1d7ca:
 	push hl
 	push af
 	ld a, $03
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	call Func_1d813
 	push af
 	ld a, $07
-	call Func_3d3a
+	call CallSetVolume
 	pop af
 	call Func_1d7ec
 	ld hl, wdb21
@@ -3062,7 +3311,7 @@ Func_1d886:
 	call Func_2c4b
 	ldtx hl, GameCenterCoinFlipDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 0, 0
 	lb bc, 20, 4
 	farcall FillBoxInBGMapWithZero
@@ -3127,30 +3376,31 @@ Func_1d8df:
 
 SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
 
-Func_1d96e:
+OWInteractionSlotMachine:
 	farcall Func_1022a
-	call Func_1d97a
+	call SlotMachine
 	farcall Func_10252
 	ret
 
-Func_1d97a:
+; a - chips per bet
+SlotMachine:
 	push af
 	push bc
 	push de
 	push hl
 	ld [wdb2f], a
-	farcall Func_1239b
-	jr c, .asm_1d999
+	farcall AskToPlaySlots
+	jr c, .done ; jump if player chose not to play
 	push af
 	ld a, $03
-	call Func_3d3a
+	call CallSetVolume
 	pop af
-	farcall Func_123fc
+	farcall StartSlotMachine
 	push af
 	ld a, $07
-	call Func_3d3a
+	call CallSetVolume
 	pop af
-.asm_1d999
+.done
 	pop hl
 	pop de
 	pop bc
@@ -3457,7 +3707,7 @@ Func_1dc52:
 
 .got_coin_and_text
 	lb de, 1, 2
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	call Func_1dd08
 	ld a, [wIncomingCoin]
 	call GetCoinType
@@ -3470,18 +3720,18 @@ Func_1dc52:
 
 Func_1dc9a:
 	farcall Func_1022a
-	call Func_1dca6
+	call ShowCoinMenuWithoutIncomingCoin
 	farcall Func_10252
 	ret
 
-Func_1dca6:
+ShowCoinMenuWithoutIncomingCoin::
 	push af
 	push bc
 	push de
 	push hl
 	ld a, -1
 	ld [wIncomingCoin], a
-	call Func_1dcbf
+	call CoinMenu
 	pop hl
 	pop de
 	pop bc
@@ -3494,7 +3744,7 @@ Func_1dcb7:
 	ld [wCoinPage], a
 	ret
 
-Func_1dcbf:
+CoinMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall ClearSpriteAnims
 	call DisableLCD
@@ -3515,7 +3765,7 @@ Func_1dce3:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, PlayerCoinSelectText
 	lb de,  1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
 	call GetCoinType
 	push af
@@ -3534,12 +3784,12 @@ Func_1dd08:
 	ld a, [wSelectedCoin]
 	ldtx hl, PlayerStatusCurrentCoinText
 	lb de,  4, 4
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de,  4, 6
 	lb bc, 12, 1
 	farcall FillBoxInBGMapWithZero
 	call GetCoinName
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
 	lb de,  1, 4
 	farcall Func_12c49b
@@ -3628,7 +3878,7 @@ Func_1dd89:
 	ld h, [hl]
 	ld l, a
 	lb de, 6, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop bc
 	push bc
 	ld c, b
@@ -4620,7 +4870,15 @@ AnimationCoordinates:
 	db  88, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $d
 	db  56, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $e
 	db  24, 40, $ff ^ (SPRITE_ANIM_FLAG_CENTERED | SPRITE_ANIM_FLAG_8x16 | SPRITE_ANIM_FLAG_UNSKIPPABLE) ; $f
-; 0x1e409
+
+GetwDuelAnimBufferSize:
+	ld a, [wDuelAnimBufferSize]
+	ret
+
+GetwDuelAnimBufferCurPos:
+	ld a, [wDuelAnimBufferCurPos]
+	ret
+; 0x1e411
 
 SECTION "Bank 7@6419", ROMX[$6419], BANK[$7]
 
@@ -5073,7 +5331,7 @@ ShowSpecialRuleDescription:
 	ld h, [hl]
 	ld l, a
 	lb de, 3, 4
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 
 	; print description
@@ -5086,7 +5344,7 @@ ShowSpecialRuleDescription:
 	ld h, [hl]
 	ld l, a
 	lb de, 1, 8
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 .TitleAndDescriptionTextIDs:
@@ -5351,7 +5609,7 @@ Func_1e9ce:
 	farcall FillBoxInBGMapWithZero
 	ldtx hl, GrandMasterCupBracketTitleText
 	lb de, 1, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_1e9ea:
@@ -5416,7 +5674,7 @@ Func_1ea1f:
 	ld h, [hl]
 	ld l, a
 	pop af
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -5553,7 +5811,7 @@ Func_1eba4:
 	lb de, 13, 9
 	lb bc, 6, 1
 	farcall FillBoxInBGMapWithZero
-	call Func_35bf
+	call PrintTextNoDelay_InitVRAM0
 	pop hl
 	pop de
 	pop bc
@@ -6024,7 +6282,7 @@ Func_1f666:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GrandMasterCupPrizesTitleText
 	lb de, 4, 1
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
 Func_1f682:
@@ -6042,7 +6300,7 @@ Func_1f682:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	inc hl
 	inc hl
@@ -6065,7 +6323,7 @@ Func_1f6cd:
 .asm_1f6d4
 	ldtx hl, GrandMasterCupPrizesDialogText
 	lb de, 1, 14
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 .asm_1f6dd
 	ld a, [wdd78]
 	call HandleMenuBox
@@ -6339,7 +6597,7 @@ Func_1f88f:
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, GameCenterCardDungeonDescriptionText
 	lb de, 1, 2
-	call Func_35af
+	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ldtx hl, GameCenterCardDungeonTitleText
 	lb de, 1, 0
 	call Func_2c4b
