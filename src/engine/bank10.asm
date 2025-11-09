@@ -799,9 +799,9 @@ Func_4048a:
 
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(DoGRBlimpMovement)
+	ld a, BANK(DoGRBlimpMovement_TCGIsland)
 	ld [wd592], a
-	ld hl, DoGRBlimpMovement
+	ld hl, DoGRBlimpMovement_TCGIsland
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -1216,7 +1216,7 @@ TCGIslandLocationPositions:
 
 INCLUDE "data/tcg_island_paths.asm"
 
-DoGRBlimpMovement:
+DoGRBlimpMovement_TCGIsland:
 	ld a, [wd584]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa

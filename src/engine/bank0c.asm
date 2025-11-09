@@ -159,9 +159,9 @@ Func_300a8:
 	farcall Func_1d51e
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_310a8)
+	ld a, BANK(DoGRBlimpMovement_GRIsland)
 	ld [wd592], a
-	ld hl, Func_310a8
+	ld hl, DoGRBlimpMovement_GRIsland
 	ld a, l
 	ld [wd593 + 0], a
 	ld a, h
@@ -666,7 +666,7 @@ Func_30452:
 
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
-	ld hl, GRIslandMovementCommands
+	ld hl, GRIslandPlayerPaths
 	add l
 	ld l, a
 	jr nc, .got_pointer1
@@ -839,249 +839,40 @@ Data_3056a:
 	db 2, $30, $00, $00 ; OWMAP_COLORLESS_ALTAR
 	db 2, $30, $00, $00 ; OWMAP_GR_CASTLE
 
-GRIslandMovementCommands:
-	dw .GRAirport           ; OWMAP_GR_AIRPORT
-	dw .IshiharasVilla      ; OWMAP_ISHIHARAS_VILLA
-	dw .GameCenter          ; OWMAP_GAME_CENTER
-	dw .SealedFort          ; OWMAP_SEALED_FORT
-	dw .GRChallengeHall     ; OWMAP_GR_CHALLENGE_HALL
-	dw .GRGrassFort         ; OWMAP_GR_GRASS_FORT
-	dw .GRLightningFort     ; OWMAP_GR_LIGHTNING_FORT
-	dw .GRFireFort          ; OWMAP_GR_FIRE_FORT
-	dw .GRWaterFort         ; OWMAP_GR_WATER_FORT
-	dw .GRFightingFort      ; OWMAP_GR_FIGHTING_FORT
-	dw .GRPsychicStronghold ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw .ColorlessAltar      ; OWMAP_COLORLESS_ALTAR
-	dw .GRCastle            ; OWMAP_GR_CASTLE
+INCLUDE "data/gr_island_paths.asm"
 
-.GRAirport:
-	dw NULL ; OWMAP_GR_AIRPORT
-	dw $470a ; OWMAP_ISHIHARAS_VILLA
-	dw $4724 ; OWMAP_GAME_CENTER
-	dw $472a ; OWMAP_SEALED_FORT
-	dw $4732 ; OWMAP_GR_CHALLENGE_HALL
-	dw $4740 ; OWMAP_GR_GRASS_FORT
-	dw $4748 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4756 ; OWMAP_GR_FIRE_FORT
-	dw $4768 ; OWMAP_GR_WATER_FORT
-	dw $4778 ; OWMAP_GR_FIGHTING_FORT
-	dw $478a ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $47a0 ; OWMAP_COLORLESS_ALTAR
-	dw $47bc ; OWMAP_GR_CASTLE
-
-.IshiharasVilla:
-	dw $47d4 ; OWMAP_GR_AIRPORT
-	dw NULL ; OWMAP_ISHIHARAS_VILLA
-	dw $47ee ; OWMAP_GAME_CENTER
-	dw $480c ; OWMAP_SEALED_FORT
-	dw $482a ; OWMAP_GR_CHALLENGE_HALL
-	dw $4836 ; OWMAP_GR_GRASS_FORT
-	dw $484a ; OWMAP_GR_LIGHTNING_FORT
-	dw $4858 ; OWMAP_GR_FIRE_FORT
-	dw $4868 ; OWMAP_GR_WATER_FORT
-	dw $487a ; OWMAP_GR_FIGHTING_FORT
-	dw $4884 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $488c ; OWMAP_COLORLESS_ALTAR
-	dw $4896 ; OWMAP_GR_CASTLE
-
-.GameCenter:
-	dw $489e ; OWMAP_GR_AIRPORT
-	dw $48a4 ; OWMAP_ISHIHARAS_VILLA
-	dw NULL ; OWMAP_GAME_CENTER
-	dw $48c0 ; OWMAP_SEALED_FORT
-	dw $48cc ; OWMAP_GR_CHALLENGE_HALL
-	dw $48de ; OWMAP_GR_GRASS_FORT
-	dw $48ea ; OWMAP_GR_LIGHTNING_FORT
-	dw $48fc ; OWMAP_GR_FIRE_FORT
-	dw $4912 ; OWMAP_GR_WATER_FORT
-	dw $4926 ; OWMAP_GR_FIGHTING_FORT
-	dw $493c ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4956 ; OWMAP_COLORLESS_ALTAR
-	dw $4976 ; OWMAP_GR_CASTLE
-
-.SealedFort:
-	dw $4992 ; OWMAP_GR_AIRPORT
-	dw $499a ; OWMAP_ISHIHARAS_VILLA
-	dw $49b6 ; OWMAP_GAME_CENTER
-	dw NULL ; OWMAP_SEALED_FORT
-	dw $49c2 ; OWMAP_GR_CHALLENGE_HALL
-	dw $49d4 ; OWMAP_GR_GRASS_FORT
-	dw $49e0 ; OWMAP_GR_LIGHTNING_FORT
-	dw $49f2 ; OWMAP_GR_FIRE_FORT
-	dw $4a08 ; OWMAP_GR_WATER_FORT
-	dw $4a1c ; OWMAP_GR_FIGHTING_FORT
-	dw $4a32 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4a4c ; OWMAP_COLORLESS_ALTAR
-	dw $4a6c ; OWMAP_GR_CASTLE
-
-.GRChallengeHall:
-	dw $4a88 ; OWMAP_GR_AIRPORT
-	dw $4a98 ; OWMAP_ISHIHARAS_VILLA
-	dw $4aa4 ; OWMAP_GAME_CENTER
-	dw $4ab8 ; OWMAP_SEALED_FORT
-	dw NULL ; OWMAP_GR_CHALLENGE_HALL
-	dw $4acc ; OWMAP_GR_GRASS_FORT
-	dw $50a4 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4ad6 ; OWMAP_GR_FIRE_FORT
-	dw $4ade ; OWMAP_GR_WATER_FORT
-	dw $4ae6 ; OWMAP_GR_FIGHTING_FORT
-	dw $4aec ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4af6 ; OWMAP_COLORLESS_ALTAR
-	dw $4b06 ; OWMAP_GR_CASTLE
-
-.GRGrassFort:
-	dw $4b12 ; OWMAP_GR_AIRPORT
-	dw $4b1a ; OWMAP_ISHIHARAS_VILLA
-	dw $4b2e ; OWMAP_GAME_CENTER
-	dw $4b3a ; OWMAP_SEALED_FORT
-	dw $4b46 ; OWMAP_GR_CHALLENGE_HALL
-	dw NULL ; OWMAP_GR_GRASS_FORT
-	dw $4b50 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4b5a ; OWMAP_GR_FIRE_FORT
-	dw $4b68 ; OWMAP_GR_WATER_FORT
-	dw $4b74 ; OWMAP_GR_FIGHTING_FORT
-	dw $4b82 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4b94 ; OWMAP_COLORLESS_ALTAR
-	dw $4bac ; OWMAP_GR_CASTLE
-
-.GRLightningFort:
-	dw $4bc0 ; OWMAP_GR_AIRPORT
-	dw $4bd0 ; OWMAP_ISHIHARAS_VILLA
-	dw $4bdc ; OWMAP_GAME_CENTER
-	dw $4bf0 ; OWMAP_SEALED_FORT
-	dw $50a4 ; OWMAP_GR_CHALLENGE_HALL
-	dw $4c04 ; OWMAP_GR_GRASS_FORT
-	dw NULL ; OWMAP_GR_LIGHTNING_FORT
-	dw $4c0e ; OWMAP_GR_FIRE_FORT
-	dw $4c16 ; OWMAP_GR_WATER_FORT
-	dw $4c1c ; OWMAP_GR_FIGHTING_FORT
-	dw $4c24 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4c30 ; OWMAP_COLORLESS_ALTAR
-	dw $4c42 ; OWMAP_GR_CASTLE
-
-.GRFireFort:
-	dw $4c50 ; OWMAP_GR_AIRPORT
-	dw $4c64 ; OWMAP_ISHIHARAS_VILLA
-	dw $4c74 ; OWMAP_GAME_CENTER
-	dw $4c8c ; OWMAP_SEALED_FORT
-	dw $4ca4 ; OWMAP_GR_CHALLENGE_HALL
-	dw $4cac ; OWMAP_GR_GRASS_FORT
-	dw $4cba ; OWMAP_GR_LIGHTNING_FORT
-	dw NULL ; OWMAP_GR_FIRE_FORT
-	dw $4cc2 ; OWMAP_GR_WATER_FORT
-	dw $4cd0 ; OWMAP_GR_FIGHTING_FORT
-	dw $4cda ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4ce8 ; OWMAP_COLORLESS_ALTAR
-	dw $4cfc ; OWMAP_GR_CASTLE
-
-.GRWaterFort:
-	dw $4d0c ; OWMAP_GR_AIRPORT
-	dw $4d1e ; OWMAP_ISHIHARAS_VILLA
-	dw $4d2e ; OWMAP_GAME_CENTER
-	dw $4d44 ; OWMAP_SEALED_FORT
-	dw $4d5a ; OWMAP_GR_CHALLENGE_HALL
-	dw $4d62 ; OWMAP_GR_GRASS_FORT
-	dw $4d6e ; OWMAP_GR_LIGHTNING_FORT
-	dw $4d76 ; OWMAP_GR_FIRE_FORT
-	dw NULL ; OWMAP_GR_WATER_FORT
-	dw $4d84 ; OWMAP_GR_FIGHTING_FORT
-	dw $4d8e ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4d9c ; OWMAP_COLORLESS_ALTAR
-	dw $4db0 ; OWMAP_GR_CASTLE
-
-.GRFightingFort:
-	dw $4dc0 ; OWMAP_GR_AIRPORT
-	dw $4dd4 ; OWMAP_ISHIHARAS_VILLA
-	dw $4dde ; OWMAP_GAME_CENTER
-	dw $4df6 ; OWMAP_SEALED_FORT
-	dw $4e0e ; OWMAP_GR_CHALLENGE_HALL
-	dw $4e14 ; OWMAP_GR_GRASS_FORT
-	dw $4e22 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4e2a ; OWMAP_GR_FIRE_FORT
-	dw $4e34 ; OWMAP_GR_WATER_FORT
-	dw NULL ; OWMAP_GR_FIGHTING_FORT
-	dw $4e40 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4e48 ; OWMAP_COLORLESS_ALTAR
-	dw $4e56 ; OWMAP_GR_CASTLE
-
-.GRPsychicStronghold:
-	dw $4e60 ; OWMAP_GR_AIRPORT
-	dw $4e78 ; OWMAP_ISHIHARAS_VILLA
-	dw $4e80 ; OWMAP_GAME_CENTER
-	dw $4e9c ; OWMAP_SEALED_FORT
-	dw $4eb8 ; OWMAP_GR_CHALLENGE_HALL
-	dw $4ec2 ; OWMAP_GR_GRASS_FORT
-	dw $4ed4 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4ee0 ; OWMAP_GR_FIRE_FORT
-	dw $4eee ; OWMAP_GR_WATER_FORT
-	dw $4efe ; OWMAP_GR_FIGHTING_FORT
-	dw NULL ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $4f06 ; OWMAP_COLORLESS_ALTAR
-	dw $50a4 ; OWMAP_GR_CASTLE
-
-.ColorlessAltar:
-	dw $4f0e ; OWMAP_GR_AIRPORT
-	dw $4f2c ; OWMAP_ISHIHARAS_VILLA
-	dw $4f38 ; OWMAP_GAME_CENTER
-	dw $4f5a ; OWMAP_SEALED_FORT
-	dw $4f7c ; OWMAP_GR_CHALLENGE_HALL
-	dw $4f8c ; OWMAP_GR_GRASS_FORT
-	dw $4fa4 ; OWMAP_GR_LIGHTNING_FORT
-	dw $4fb6 ; OWMAP_GR_FIRE_FORT
-	dw $4fca ; OWMAP_GR_WATER_FORT
-	dw $4fe0 ; OWMAP_GR_FIGHTING_FORT
-	dw $4fee ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw NULL ; OWMAP_COLORLESS_ALTAR
-	dw $4fee ; OWMAP_GR_CASTLE
-
-.GRCastle:
-	dw $4ff6 ; OWMAP_GR_AIRPORT
-	dw $500e ; OWMAP_ISHIHARAS_VILLA
-	dw $5016 ; OWMAP_GAME_CENTER
-	dw $5032 ; OWMAP_SEALED_FORT
-	dw $504e ; OWMAP_GR_CHALLENGE_HALL
-	dw $5058 ; OWMAP_GR_GRASS_FORT
-	dw $506a ; OWMAP_GR_LIGHTNING_FORT
-	dw $5076 ; OWMAP_GR_FIRE_FORT
-	dw $5084 ; OWMAP_GR_WATER_FORT
-	dw $5094 ; OWMAP_GR_FIGHTING_FORT
-	dw $50a4 ; OWMAP_GR_PSYCHIC_STRONGHOLD
-	dw $509c ; OWMAP_COLORLESS_ALTAR
-	dw NULL ; OWMAP_GR_CASTLE
-; 0x3070a
-
-SECTION "Bank c@50a8", ROMX[$50a8], BANK[$c]
-
-Func_310a8:
+DoGRBlimpMovement_GRIsland:
 	ld a, [wd584]
 	cp MAP_GR_AIRPORT
 	jr z, .asm_310cf
+
 	ld a, MAP_GR_AIRPORT
-	ld de, $0
+	lb de, 0, 0
 	ld b, NORTH
 	farcall Func_d3c4
-	ld hl, $516e
+	ld hl, .movement_2
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
-	jr nz, .asm_310dd
+	jr nz, .start_movement
 	ld hl, wd583
 	set 3, [hl]
-	ld hl, $515a
-	jr .asm_310dd
+	ld hl, .movement_1
+	jr .start_movement
 .asm_310cf
 	ld a, MAP_OVERHEAD_ISLANDS
-	ld de, $0
+	lb de, 0, 0
 	ld b, NORTH
 	farcall Func_d3c4
-	ld hl, $517c
-.asm_310dd
-	ld a, [hli]
-	ld e, [hl]
+	ld hl, .movement_3
+
+.start_movement
+	ld a, [hli] ; coordinates
+	ld e, [hl]  ;
 	inc hl
 	ld d, a
 	cp $ff
-	jr z, .asm_3112f
-	ld a, [hli]
+	jr z, .done_movement
+	ld a, [hli] ; direction
 	ld b, a
 	push hl
 	push bc
@@ -1090,64 +881,91 @@ Func_310a8:
 	ld a, NPC_GR_BLIMP
 	pop bc
 	farcall _SetOWObjectDirection
-.asm_310f6
-	ld c, $04
-.asm_310f8
+
+; does movement every 4 frames
+; can be skipped with B button
+.loop_movement
+	ld c, 4
+.loop_wait
 	push bc
 	call DoFrame
 	ld hl, wd583
 	bit 3, [hl]
-	jr nz, .asm_31112
+	jr nz, .skip_fade_out
 	bit 2, [hl]
-	jr nz, .asm_31112
+	jr nz, .skip_fade_out
 	ldh a, [hKeysPressed]
 	bit B_PAD_B, a
-	jr z, .asm_31112
+	jr z, .skip_fade_out
 	set 2, [hl]
-	call Func_31141
-.asm_31112
+	call .FadeOut
+.skip_fade_out
 	pop bc
 	dec c
-	jr nz, .asm_310f8
+	jr nz, .loop_wait
 	farcall MoveOWObjectToTargetPosition
-	jr c, .asm_3111f
+	jr c, .still_moving
 	pop hl
-	jr .asm_310dd
-.asm_3111f
+	jr .start_movement
+.still_moving
 	ld a, [wd583]
 	bit 2, a
-	jr z, .asm_310f6
+	jr z, .loop_movement
 	farcall CheckPalFading
-	jr nz, .asm_310f6
+	jr nz, .loop_movement
 	pop hl
-	jr .asm_31139
-.asm_3112f
+	jr .finish
+
+.done_movement
 	ld a, [wd585]
 	cp MAP_OVERHEAD_ISLANDS
-	jr z, .asm_31136
+	jr z, .asm_31136 ; unnecessary cp
 .asm_31136
-	call Func_31141
-.asm_31139
+	call .FadeOut
+.finish
 	call WaitPalFading
 	farcall Func_110a8
 	ret
 
-Func_31141:
+; fades out to white or black
+; dependent on wd585
+.FadeOut:
 	ld a, [wd585]
 	cp MAP_OVERHEAD_ISLANDS
-	jr nz, .asm_31151
-	ld a, $00
+	jr nz, .to_black
+; to white
+	ld a, $0
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 	ret
-.asm_31151
-	ld a, $01
+.to_black
+	ld a, $1
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 	ret
-; 0x3115a
 
-SECTION "Bank c@518a", ROMX[$518a], BANK[$c]
+.movement_1
+	db $88, $88, EAST
+	db $a8, $40, EAST
+	db $60, $28, WEST
+	db $28, $68, WEST
+	db $18, $90, WEST
+	db $18, $b0, EAST
+	db $ff, $ff ; end
+
+.movement_2
+	db $50, $d8, EAST
+	db $50, $d0, EAST
+	db $18, $90, WEST
+	db $18, $b0, EAST
+	db $ff, $ff ; end
+
+.movement_3
+	db $18, $90, EAST
+	db $50, $d0, EAST
+	db $50, $d8, EAST
+	db $30, $f0, WEST
+	db $ff, $ff ; end
 
 CardDungeonQueen_MapHeader:
 	db MAP_GFX_CARD_DUNGEON_QUEEN
