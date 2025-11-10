@@ -583,6 +583,37 @@ Func_8f6b:
 	ret
 ; 0x8f77
 
+SECTION "Bank 2@4f7f", ROMX[$4f7f], BANK[$2]
+
+Func_8f7f:
+	ld hl, $4f77
+	call Func_8f6b
+	ld a, $ff
+	call DrawDeckSelectionMenu
+	xor a
+;	fallthrough
+
+Func_8f8b:
+.asm_8f8b
+	ld hl, $4fb1
+	call InitializeMenuParameters
+	ld hl, $28d
+	call DrawWideTextBox_PrintText
+.asm_8f97
+	call DoFrame
+	jr c, .asm_8f8b
+	call Func_8fb9
+	jr c, .asm_8f8b
+	call HandleMenuInput
+	jr nc, .asm_8f97
+	ldh a, [hCurScrollMenuItem]
+	cp $ff
+	ret z
+	ld [wCurDeck], a
+	jp Func_903f
+; 0x8fb1
+
+
 SECTION "Bank 2@4fb9", ROMX[$4fb9], BANK[$2]
 
 Func_8fb9:
@@ -636,7 +667,237 @@ OpenDeckConfirmationMenu:
 	ret
 ; 0x9014
 
-SECTION "Bank 2@5215", ROMX[$5215], BANK[$2]
+SECTION "Bank 2@503f", ROMX[$503f], BANK[$2]
+
+Func_903f:
+	call DrawWideTextBox
+	ld hl, $5254
+	call PlaceTextItems
+	call Func_9287
+;	fallthrough
+
+Func_904b:
+	call DoFrame
+	call Func_9292
+	jp nc, Func_904b
+	cp $ff
+	jr nz, .asm_9061
+	call Func_9292.asm_9305
+	ld a, [wCurDeck]
+	jp Func_8f8b
+.asm_9061
+	ld a, [wd0ef]
+	or a
+	jp nz, Func_91b7
+	ld a, [wMusicStereoPanningBackup]
+	or a
+	jp nz, Func_90d8
+	call GetSRAMPointerToCurDeckCards
+	ld e, l
+	ld d, h
+	ld hl, wCurDeckCards
+	call CopyDeckFromSRAM
+	ld de, wCurDeckName
+	call GetSRAMPointerToCurDeck
+	call CopyListFromHLToDEInSRAM
+	xor a
+	ld [wd121], a
+	call Func_95d6
+	jr nc, .asm_90cd
+	call EnableSRAM
+	ld hl, wCurDeckCards
+	call Func_935d
+	call GetSRAMPointerToCurDeckCards
+	call Func_9397
+	ld de, wCurDeckCards
+	bank1call SaveDeckCards
+	call GetSRAMPointerToCurDeck
+	ld d, h
+	ld e, l
+	ld hl, wCurDeckName
+	call CopyListFromHLToDE
+	call GetSRAMPointerToCurDeck
+	ld a, [hl]
+	call DisableSRAM
+	or a
+	jr z, Func_90e8
+	ld a, [hffbf]
+	or a
+	jr z, .asm_90cd
+	call EnableSRAM
+	ld de, wCurDeckCards
+	farcall Func_3be8d
+	call DisableSRAM
+	farcall Func_3bead
+.asm_90cd
+	ld a, $ff
+	call DrawDeckSelectionMenu
+	ld a, [wCurDeck]
+	jp Func_8f8b
+
+Func_90d8:
+	xor a
+	ld [hffbf], a
+	call CheckIfCurDeckIsEmpty
+	jp nc, Func_90e8
+	call Func_9215
+	jp Func_8f8b
+
+Func_90e8:
+	ld de, wCurDeckName
+	call GetSRAMPointerToCurDeck
+	call CopyListFromHLToDEInSRAM
+	call Func_9124
+	call GetSRAMPointerToCurDeck
+	ld d, h
+	ld e, l
+	ld hl, wCurDeckName
+	call CopyListFromHLToDEInSRAM
+	ld a, [hffbf]
+	or a
+	jr z, .asm_9119
+	call EnableSRAM
+	ld hl, wCurDeckName
+	ld de, wCurDeckCards
+	farcall Func_3be8d
+	call DisableSRAM
+	farcall Func_3bead
+.asm_9119
+	ld a, $ff
+	call DrawDeckSelectionMenu
+	ld a, [wCurDeck]
+	jp Func_8f8b
+
+Func_9124:
+	ld a, [wCurDeck]
+	or a
+	jr nz, .asm_912f
+	ld hl, $6e65
+	jr .asm_914a
+.asm_912f
+	dec a
+	jr nz, .asm_9137
+	ld hl, $6e6e
+	jr .asm_914a
+.asm_9137
+	dec a
+	jr nz, .asm_913f
+	ld hl, $6e77
+	jr .asm_914a
+.asm_913f
+	dec a
+	jr nz, .asm_9147
+	ld hl, $6e80
+	jr .asm_914a
+.asm_9147
+	ld hl, $6e89
+.asm_914a
+	ld a, $14
+	ld bc, $401
+	ld de, wCurDeckName
+	farcall Func_1aeab
+	ld a, [wCurDeckName]
+	or a
+	ret nz
+	call Func_915f
+	ret
+
+Func_915f:
+	ld hl, s0b7a1
+	call EnableSRAM
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	push de
+	ld de, wCurDeckName
+	call CopyPlayerName
+	ld h, d
+	ld l, e
+	pop de
+	ld [hl], $0e
+	inc hl
+	ld [hl], $29
+	inc hl
+	push hl
+	ld h, d
+	ld l, e
+	call Func_922e
+	call DisableSRAM
+	pop hl
+	ld a, [$d3ec]
+	ld [hl], $05
+	inc hl
+	ld [hli], a
+	ld a, [$d3ed]
+	ld [hl], $05
+	inc hl
+	ld [hli], a
+	ld a, [$d3ee]
+	ld [hl], $05
+	inc hl
+	ld [hli], a
+	xor a
+	ld [hl], a
+	ld hl, s0b7a1
+	call EnableSRAM
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld a, $03
+	cp d
+	jr nz, .asm_91af
+	ld a, $e7
+	cp e
+	jr nz, .asm_91af
+	ld de, $0
+.asm_91af
+	inc de
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	call DisableSRAM
+	ret
+
+Func_91b7:
+	ld a, [wMusicStereoPanningBackup]
+	or a
+	jp nz, Func_9253
+	call CheckIfCurDeckIsEmpty
+	jp nc, Func_91ca
+	call Func_9215
+	jp Func_8f8b
+
+Func_91ca:
+	call EnableSRAM
+	ld a, [sCurrentlySelectedDeck]
+	call DisableSRAM
+	ld h, $03
+	ld l, a
+	call HtimesL
+	ld e, l
+	inc e
+	ld d, $02
+	xor a
+	ld hl, $0
+	ld bc, $202
+	call FillRectangle
+	ld a, [wCurDeck]
+	call EnableSRAM
+	ld [sCurrentlySelectedDeck], a
+	call DisableSRAM
+	call DrawHandCardsTileOnCurDeck
+	call GetSRAMPointerToCurDeck
+	call EnableSRAM
+	call CopyDeckName
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [$cdd7], a
+	ld hl, $293
+	call DrawWideTextBox_WaitForInput
+	ld a, [wCurDeck]
+	jp Func_8f8b
+; 0x9215
 
 Func_9215:
 	ldtx hl, ThereIsNoDeckHereText
@@ -657,6 +918,36 @@ CheckIfCurDeckIsEmpty:
 	scf
 	ret
 ; 0x922e
+
+Func_922e:
+	ld de, $d3ec
+	ld bc, $ff9c
+	call Func_9244
+	ld bc, $fff6
+	call Func_9244
+	ld bc, $ffff
+	call Func_9244
+	ret
+
+Func_9244:
+	ld a, $1f
+.asm_9246
+	inc a
+	add hl, bc
+	jr c, .asm_9246
+	ld [de], a
+	inc de
+	ld a, l
+	sub c
+	ld l, a
+	ld a, h
+	sbc b
+	ld h, a
+	ret
+
+Func_9253:
+	ret
+; 0x9254
 
 SECTION "Bank 2@5265", ROMX[$5265], BANK[$2]
 
@@ -809,6 +1100,9 @@ Func_9337:
 	call CopyDeckFromSRAM
 	call EnableSRAM
 	ld hl, wTempSavedDeckCards
+;	fallthrough
+
+Func_9346:
 	ld b, DECK_SIZE
 .asm_9348
 	ld e, [hl]
@@ -828,6 +1122,11 @@ Func_9337:
 	pop hl
 	ret
 ; 0x935d
+
+Func_935d:
+	push hl
+	jr Func_9346
+; 0x9360
 
 SECTION "Bank 2@5397", ROMX[$5397], BANK[$2]
 

@@ -317,6 +317,15 @@ GetDuelistPortrait::
 	db PORTRAIT_DR_MASON      ; DR_MASON_PIC
 ; 0x1c116
 
+SECTION "Bank 7@416e", ROMX[$416e], BANK[$7]
+
+Func_1c16e:
+	farcall Func_1022a
+	call ShowConfigMenu
+	farcall Func_10252
+	ret
+; 0x1c17a
+
 SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
 
 ShowConfigMenu:
@@ -689,6 +698,71 @@ ConvertTextSpeedToMessageSpeedSetting:
 	db 0, 1, 2, 0, 3, 0, 4
 ; 0x1c45a
 
+SECTION "Bank 7@4502", ROMX[$4502], BANK[$7]
+
+Func_1c502:
+	farcall Func_1022a
+	call Func_1c50e
+	farcall Func_10252
+	ret
+
+Func_1c50e:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1c51a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1c51a:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call Func_1c53f
+	farcall SetFadePalsFrameFunc
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+	ld c, $00
+	call Func_1c5a3
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	farcall UnsetFadePalsFrameFunc
+	ret
+
+Func_1c53f:
+	ld de, $0
+	ld bc, $140c
+	call DrawRegularTextBoxVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $458e
+	call PlaceTextItemsVRAM0
+	ld bc, $103
+	call DrawPlayerPortrait
+	ld hl, $5ac
+	ld de, $501
+	call PrintTextNoDelay_InitVRAM0
+	ld hl, $5be
+	ld de, $b04
+	call PrintTextNoDelay_InitVRAM0
+	call CountEventCoinsObtained
+	ld l, a
+	ld h, $00
+	ld de, $1006
+	ld a, $02
+	ld b, $01
+	call PrintNumber
+	ld de, $d0a
+	farcall PrintPlayTime
+	ld de, $c08
+	farcall PrintCardAlbumProgress
+	ret
+; 0x1c58e
+
 SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
 
 Func_1c5a3:
@@ -741,6 +815,88 @@ Func_1c5d6:
 	pop af
 	ret
 ; 0x1c5f2
+
+Func_1c5f2:
+	farcall Func_1022a
+	call Func_1c5fe
+	farcall Func_10252
+	ret
+
+Func_1c5fe:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1c60a
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1c60a:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call Func_1c62d
+	call Func_1c667
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	ld c, $03
+	farcall Func_10221
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1c62d:
+	ld de, $0
+	ld bc, $1408
+	call DrawRegularTextBoxVRAM0
+	ld hl, $465a
+	call PlaceTextItemsVRAM0
+	ld bc, $101
+	call DrawPlayerPortrait
+	ld hl, $5be
+	ld de, $b02
+	call PrintTextNoDelay_InitVRAM0
+	ld de, $d06
+	farcall PrintPlayTime
+	ld de, $c04
+	farcall PrintCardAlbumProgress
+	ret
+; 0x1c65a
+
+SECTION "Bank 7@4667", ROMX[$4667], BANK[$7]
+
+Func_1c667:
+	ld de, $8
+	ld bc, $140a
+	call DrawRegularTextBoxVRAM0
+	ld de, $108
+	ld bc, $901
+	farcall FillBoxInBGMapWithZero
+	ld hl, $46b2
+	call PlaceTextItemsVRAM0
+	call Func_1dfb5
+	call GetCoinName
+	ld de, $40c
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call Func_1dfb5
+	add $28
+	ld de, $1c6c
+	call CreateCoinAnimation
+	call CheckObtainedGRCoinPieces
+	add $40
+	ld de, $1c8c
+	call CreateCoinAnimation
+	call CheckObtainedGRCoinPieces
+	and a
+	jr z, .asm_1c6b1
+	ld hl, $5b6
+	ld de, $40e
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+.asm_1c6b1
+	ret
+; 0x1c6b2
 
 SECTION "Bank 7@46bb", ROMX[$46bb], BANK[$7]
 
@@ -5378,6 +5534,25 @@ Func_1e73a:
 	ret
 ; 0x1e74f
 
+Func_1e74f:
+	farcall Func_1022a
+	call Func_1e75b
+	farcall Func_10252
+	ret
+
+Func_1e75b:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1e76c
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1e767
+
 SECTION "Bank 7@6767", ROMX[$6767], BANK[$7]
 
 Func_1e767:
@@ -5385,6 +5560,81 @@ Func_1e767:
 	ld [wdd07], a
 	ret
 ; 0x1e76c
+
+Func_1e76c:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1e795
+	farcall SetFrameFuncAndFadeFromWhite
+.asm_1e777
+	call Func_1e808
+	jr c, .asm_1e790
+	call Func_1e823
+	jr c, .asm_1e790
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1e795
+	call EnableLCD
+	jr .asm_1e777
+.asm_1e790
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+Func_1e795:
+	ld b, $07
+	ld hl, $67e0
+	ld de, $3
+	call LoadMenuBoxParams
+	ld a, [wdd07]
+	call DrawMenuBox
+	ld de, $0
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld hl, $598
+	ld de, CopyDataHLtoDE_SaveRegisters
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	ld hl, $67c
+	ld de, $10e
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call Func_1f309
+	jr z, .asm_1e7df
+	ld b, $07
+	ld hl, $6800
+	ld d, $78
+	ld e, $20
+	ld a, $00
+	ld c, $00
+	call CreateSpriteAnim
+.asm_1e7df
+	ret
+; 0x1e7e0
+
+SECTION "Bank 7@6808", ROMX[$6808], BANK[$7]
+
+Func_1e808:
+	ld a, [wdd07]
+	call HandleMenuBox
+	ld [wdd07], a
+	jr c, .asm_1e81b
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1e81b
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	ret
+
+Func_1e823:
+	ld hl, $682a
+	call CallMappedFunction
+	ret
+; 0x1e82a
 
 SECTION "Bank 7@6837", ROMX[$6837], BANK[$7]
 

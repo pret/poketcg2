@@ -7101,6 +7101,96 @@ Func_3bd3b:
 	ret
 ; 0x3bd5c
 
+SECTION "Bank e@7e8d", ROMX[$7e8d], BANK[$e]
+
+Func_3be8d:
+	push de
+	ld de, wc000
+	call Func_3afb1
+	pop de
+	ld hl, $c018
+	bank1call SaveDeckCards
+	call SwitchToWRAM2
+	ld hl, wc000
+	ld de, w2d28e
+	ld b, $60
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ret
+
+Func_3bead:
+	ld a, [wCurDeck]
+	push af
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld de, $2d3
+	ld hl, wDeckMachineTitleText
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, $32
+	ld [wNumDeckMachineEntries], a
+	xor a
+.asm_3bec7
+	ld hl, $5eac
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ld hl, $28d
+	call DrawWideTextBox_PrintText
+	ld de, $28d
+	call InitDeckMachineDrawingParams
+	call HandleDeckMachineSelection.start
+	jr c, .asm_3bec7
+	cp $ff
+	jr z, .asm_3bf50
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr c, .asm_3bf01
+	ld hl, $2ec
+	call YesOrNoMenuWithText
+	ld a, [wTempScrollMenuItem]
+	jr c, .asm_3bec7
+.asm_3bf01
+	call GetSelectedSavedDeckPtr
+	ld d, h
+	ld e, l
+	ld hl, w2d28e
+	ld b, $60
+	call EnableSRAM
+	call SwitchToWRAM2
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	call DisableSRAM
+	call ClearScreenAndDrawDeckMachineScreen
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ld a, [wTempScrollMenuItem]
+	ld hl, $5eac
+	farcall InitializeScrollMenuParameters
+	call HandleScrollMenu.draw_visible_cursor
+	pop af
+	ld [wCurDeck], a
+	farcall GetSRAMPointerToCurDeck
+	call EnableSRAM
+	farcall CopyDeckName
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [$cdd7], a
+	ld hl, $2da
+	call DrawWideTextBox_WaitForInput
+	ret
+.asm_3bf50
+	pop af
+	ld [wCurDeck], a
+	ret
+; 0x3bf55
+
 SECTION "Bank e@7f5e", ROMX[$7f5e], BANK[$e]
 
 Func_3bf5e:

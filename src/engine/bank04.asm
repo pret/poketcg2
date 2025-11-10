@@ -1268,12 +1268,12 @@ Func_10836:
 	ret
 
 Data_1083d: ; pause menu
-	db $00, $07, $f2, $45 ; status
-	db $01, $07, $02, $45 ; diary
-	db $02, $04, $65, $48 ; deck
-	db $03, $07, $4f, $67 ; minicon
-	db $04, $07, $9a, $5c ; coin
-	db $05, $07, $6e, $41 ; settings
+	key_func $00, Func_1c5f2 ; status
+	key_func $01, Func_1c502 ; diary
+	key_func $02, Func_10865 ; deck
+	key_func $03, Func_1e74f ; minicon
+	key_func $04, Func_1dc9a ; coin
+	key_func $05, Func_1c16e ; settings
 	db $ff
 
 Func_10856:
@@ -1282,6 +1282,31 @@ Func_10856:
 	call Func_35a0
 	ret
 ; 0x10861
+
+SECTION "Bank 4@4865", ROMX[$4865], BANK[$4]
+
+Func_10865:
+	call Func_1022a
+	call Func_1086f
+	call Func_10252
+	ret
+
+Func_1086f:
+	push af
+	push bc
+	push de
+	push hl
+	call SetFadePalsFrameFunc
+	farcall Func_8f7f
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call UnsetFadePalsFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+; 0x1088a
 
 SECTION "Bank 4@488a", ROMX[$488a], BANK[$4]
 

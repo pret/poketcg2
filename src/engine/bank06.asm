@@ -5993,6 +5993,9 @@ InputPlayerName:
 	ld a, MAX_PLAYER_NAME_LENGTH
 	ld hl, WhatIsYourNameData
 	lb bc, 12, 1
+;	fallthrough
+
+Func_1aeab:
 	call InitializeInputName
 	call Set_OBJ_8x8
 
