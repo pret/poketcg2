@@ -739,7 +739,7 @@ Func_1c53f:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $458e
+	ld hl, Data_1c58e
 	call PlaceTextItemsVRAM0
 	lb bc, 1, 3
 	call DrawPlayerPortrait
@@ -761,9 +761,14 @@ Func_1c53f:
 	lb de, 12, 8
 	farcall PrintCardAlbumProgress
 	ret
-; 0x1c58e
 
-SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
+Data_1c58e:
+	db $07, $04, $ad, $05
+	db $07, $06, $af, $05
+	db $12, $06, $ca, $05
+	db $07, $08, $b0, $05
+	db $07, $0a, $b1, $05
+	db $ff
 
 Func_1c5a3:
 	push bc
@@ -851,7 +856,7 @@ Func_1c62d:
 	lb de, 0, 0
 	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
-	ld hl, $465a
+	ld hl, Data_1c65a
 	call PlaceTextItemsVRAM0
 	lb bc, 1, 1
 	call DrawPlayerPortrait
@@ -863,9 +868,12 @@ Func_1c62d:
 	lb de, 12, 4
 	farcall PrintCardAlbumProgress
 	ret
-; 0x1c65a
 
-SECTION "Bank 7@4667", ROMX[$4667], BANK[$7]
+Data_1c65a:
+	db $07, $02, $ad, $05
+	db $07, $04, $b0, $05
+	db $07, $06, $b1, $05
+	db $ff
 
 Func_1c667:
 	lb de, 0, 8
@@ -874,7 +882,7 @@ Func_1c667:
 	lb de, 1, 8
 	lb bc, 9, 1
 	farcall FillBoxInBGMapWithZero
-	ld hl, $46b2
+	ld hl, Data_1c6b2
 	call PlaceTextItemsVRAM0
 	call Func_1dfb5
 	call GetCoinName
@@ -896,9 +904,11 @@ Func_1c667:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 .asm_1c6b1
 	ret
-; 0x1c6b2
 
-SECTION "Bank 7@46bb", ROMX[$46bb], BANK[$7]
+Data_1c6b2:
+	db $01, $08, $ae, $05
+	db $04, $0a, $b5, $05
+	db $ff
 
 SetAllPaletteFadeConfigsToEnabled:
 	call SetAllBGPaletteFadeConfigsToEnabled

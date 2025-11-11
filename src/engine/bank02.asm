@@ -671,7 +671,7 @@ SECTION "Bank 2@503f", ROMX[$503f], BANK[$2]
 
 Func_903f:
 	call DrawWideTextBox
-	ld hl, $5254
+	ld hl, Data_9254
 	call PlaceTextItems
 	call Func_9287
 ;	fallthrough
@@ -947,9 +947,13 @@ Func_9244:
 
 Func_9253:
 	ret
-; 0x9254
 
-SECTION "Bank 2@5265", ROMX[$5265], BANK[$2]
+Data_9254:
+	db $02, $0e, $8e, $02
+	db $0c, $0e, $90, $02
+	db $02, $10, $8f, $02
+	db $0c, $10, $91, $02
+	db $ff
 
 GetSRAMPointerToCurDeck:
 	ld a, [wCurDeck]
