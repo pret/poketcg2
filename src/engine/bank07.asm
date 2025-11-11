@@ -733,32 +733,32 @@ Func_1c51a:
 	ret
 
 Func_1c53f:
-	ld de, $0
-	ld bc, $140c
+	lb de, 0, 0
+	lb bc, 20, 12
 	call DrawRegularTextBoxVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
 	ld hl, $458e
 	call PlaceTextItemsVRAM0
-	ld bc, $103
+	lb bc, 1, 3
 	call DrawPlayerPortrait
-	ld hl, $5ac
-	ld de, $501
+	ldtx hl, PlayerDiaryTitleText
+	lb de, 5, 1
 	call PrintTextNoDelay_InitVRAM0
-	ld hl, $5be
-	ld de, $b04
+	ldtx hl, TxRam1Text
+	lb de, 11, 4
 	call PrintTextNoDelay_InitVRAM0
 	call CountEventCoinsObtained
 	ld l, a
 	ld h, $00
-	ld de, $1006
+	lb de, 16, 6
 	ld a, $02
-	ld b, $01
+	ld b, TRUE
 	call PrintNumber
-	ld de, $d0a
+	lb de, 13, 10
 	farcall PrintPlayTime
-	ld de, $c08
+	lb de, 12, 8
 	farcall PrintCardAlbumProgress
 	ret
 ; 0x1c58e
@@ -848,19 +848,19 @@ Func_1c60a:
 	ret
 
 Func_1c62d:
-	ld de, $0
-	ld bc, $1408
+	lb de, 0, 0
+	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
 	ld hl, $465a
 	call PlaceTextItemsVRAM0
-	ld bc, $101
+	lb bc, 1, 1
 	call DrawPlayerPortrait
-	ld hl, $5be
-	ld de, $b02
+	ldtx hl, TxRam1Text
+	lb de, 11, 2
 	call PrintTextNoDelay_InitVRAM0
-	ld de, $d06
+	lb de, 13, 6
 	farcall PrintPlayTime
-	ld de, $c04
+	lb de, 12, 4
 	farcall PrintCardAlbumProgress
 	ret
 ; 0x1c65a
@@ -868,31 +868,31 @@ Func_1c62d:
 SECTION "Bank 7@4667", ROMX[$4667], BANK[$7]
 
 Func_1c667:
-	ld de, $8
-	ld bc, $140a
+	lb de, 0, 8
+	lb bc, 20, 10
 	call DrawRegularTextBoxVRAM0
-	ld de, $108
-	ld bc, $901
+	lb de, 1, 8
+	lb bc, 9, 1
 	farcall FillBoxInBGMapWithZero
 	ld hl, $46b2
 	call PlaceTextItemsVRAM0
 	call Func_1dfb5
 	call GetCoinName
-	ld de, $40c
+	lb de, 4, 12
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call Func_1dfb5
 	add $28
-	ld de, $1c6c
+	lb de, 28, 108
 	call CreateCoinAnimation
 	call CheckObtainedGRCoinPieces
 	add $40
-	ld de, $1c8c
+	lb de, 28, 140
 	call CreateCoinAnimation
 	call CheckObtainedGRCoinPieces
 	and a
 	jr z, .asm_1c6b1
-	ld hl, $5b6
-	ld de, $40e
+	ldtx hl, PlayerStatusGRCoinText
+	lb de, 4, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 .asm_1c6b1
 	ret
@@ -5582,28 +5582,28 @@ Func_1e76c:
 Func_1e795:
 	ld b, $07
 	ld hl, $67e0
-	ld de, $3
+	lb de, 0, 3
 	call LoadMenuBoxParams
 	ld a, [wdd07]
 	call DrawMenuBox
-	ld de, $0
-	ld bc, $1404
+	lb de, 0, 0
+	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
-	ld hl, $598
+	ldtx hl, PauseMenuMinicomText
 	ld de, CopyDataHLtoDE_SaveRegisters
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-	ld de, $c
-	ld bc, $1406
+	lb de, 0, 12
+	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, $67c
-	ld de, $10e
+	ldtx hl, MinicomDialogText
+	lb de, 1, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call Func_1f309
 	jr z, .asm_1e7df
 	ld b, $07
 	ld hl, $6800
-	ld d, $78
-	ld e, $20
+	ld d, 120
+	ld e, 32
 	ld a, $00
 	ld c, $00
 	call CreateSpriteAnim
@@ -5619,13 +5619,13 @@ Func_1e808:
 	ld [wdd07], a
 	jr c, .asm_1e81b
 	push af
-	ld a, $02
+	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
 .asm_1e81b
 	push af
-	ld a, $03
+	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret

@@ -7137,9 +7137,9 @@ Func_3bead:
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
-	ld hl, $28d
+	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
-	ld de, $28d
+	ldtx de, PleaseSelectDeckText
 	call InitDeckMachineDrawingParams
 	call HandleDeckMachineSelection.start
 	jr c, .asm_3bec7
@@ -7151,7 +7151,7 @@ Func_3bead:
 	ld [wSelectedDeckMachineEntry], a
 	call CheckIfSelectedDeckMachineEntryIsEmpty
 	jr c, .asm_3bf01
-	ld hl, $2ec
+	ldtx hl, DeleteSavedDeckPromptText
 	call YesOrNoMenuWithText
 	ld a, [wTempScrollMenuItem]
 	jr c, .asm_3bec7
@@ -7182,7 +7182,7 @@ Func_3bead:
 	xor a
 	ld [wTxRam2], a
 	ld [$cdd7], a
-	ld hl, $2da
+	ldtx hl, SavedDeckToMachineText
 	call DrawWideTextBox_WaitForInput
 	ret
 .asm_3bf50

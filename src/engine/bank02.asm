@@ -597,7 +597,7 @@ Func_8f8b:
 .asm_8f8b
 	ld hl, $4fb1
 	call InitializeMenuParameters
-	ld hl, $28d
+	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
 .asm_8f97
 	call DoFrame
@@ -879,7 +879,7 @@ Func_91ca:
 	ld d, $02
 	xor a
 	ld hl, $0
-	ld bc, $202
+	lb bc, 2, 2
 	call FillRectangle
 	ld a, [wCurDeck]
 	call EnableSRAM
@@ -893,7 +893,7 @@ Func_91ca:
 	xor a
 	ld [wTxRam2], a
 	ld [$cdd7], a
-	ld hl, $293
+	ldtx hl, ChosenAsDuelingDeckText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wCurDeck]
 	jp Func_8f8b
