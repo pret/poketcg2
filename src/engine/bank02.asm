@@ -671,7 +671,7 @@ SECTION "Bank 2@503f", ROMX[$503f], BANK[$2]
 
 Func_903f:
 	call DrawWideTextBox
-	ld hl, Data_9254
+	ld hl, DeckSelectScreenTextItems
 	call PlaceTextItems
 	call Func_9287
 ;	fallthrough
@@ -948,11 +948,11 @@ Func_9244:
 Func_9253:
 	ret
 
-Data_9254:
-	db $02, $0e, $8e, $02
-	db $0c, $0e, $90, $02
-	db $02, $10, $8f, $02
-	db $0c, $10, $91, $02
+DeckSelectScreenTextItems:
+	textitem 2, 14, ModifyDeckText
+	textitem 12, 14, ChooseAsDuelingDeckText
+	textitem 2, 16, RenameDeckText
+	textitem 12, 16, CancelDeckText
 	db $ff
 
 GetSRAMPointerToCurDeck:

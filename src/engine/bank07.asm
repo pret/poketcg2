@@ -739,7 +739,7 @@ Func_1c53f:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	ld hl, Data_1c58e
+	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
 	lb bc, 1, 3
 	call DrawPlayerPortrait
@@ -762,12 +762,12 @@ Func_1c53f:
 	farcall PrintCardAlbumProgress
 	ret
 
-Data_1c58e:
-	db $07, $04, $ad, $05
-	db $07, $06, $af, $05
-	db $12, $06, $ca, $05
-	db $07, $08, $b0, $05
-	db $07, $0a, $b1, $05
+.TextItems:
+	textitem 7, 4, PlayerDiaryNameText
+	textitem 7, 6, PlayerDiaryEventCoinText
+	textitem 18, 6, PlayerDiaryCardsUnitText
+	textitem 7, 8, PlayerDiaryAlbumText
+	textitem 7, 10, PlayerDiaryPlayTimeText
 	db $ff
 
 Func_1c5a3:
@@ -856,7 +856,7 @@ Func_1c62d:
 	lb de, 0, 0
 	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
-	ld hl, Data_1c65a
+	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
 	lb bc, 1, 1
 	call DrawPlayerPortrait
@@ -869,10 +869,10 @@ Func_1c62d:
 	farcall PrintCardAlbumProgress
 	ret
 
-Data_1c65a:
-	db $07, $02, $ad, $05
-	db $07, $04, $b0, $05
-	db $07, $06, $b1, $05
+.TextItems:
+	textitem 7, 2, PlayerDiaryNameText
+	textitem 7, 4, PlayerDiaryAlbumText
+	textitem 7, 6, PlayerDiaryPlayTimeText
 	db $ff
 
 Func_1c667:
@@ -882,7 +882,7 @@ Func_1c667:
 	lb de, 1, 8
 	lb bc, 9, 1
 	farcall FillBoxInBGMapWithZero
-	ld hl, Data_1c6b2
+	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
 	call Func_1dfb5
 	call GetCoinName
@@ -905,9 +905,9 @@ Func_1c667:
 .asm_1c6b1
 	ret
 
-Data_1c6b2:
-	db $01, $08, $ae, $05
-	db $04, $0a, $b5, $05
+.TextItems:
+	textitem 1, 8, PlayerStatusEventCoinTitleText
+	textitem 4, 10, PlayerStatusCurrentCoinText
 	db $ff
 
 SetAllPaletteFadeConfigsToEnabled:
