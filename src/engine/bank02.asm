@@ -595,8 +595,8 @@ DeckBuildingParams:
 	db DECK_SIZE
 	db MAX_NUM_SAME_NAME_CARDS
 	db TRUE ; whether to include deck cards
-	db $31, $57 ; function
-	db $43, $5a ; data table
+	dw Func_9731 ; function
+	dw DeckConfigurationMenu_TransitionTable
 
 DeckSelectionMenu:
 	ld hl, DeckBuildingParams
@@ -1568,6 +1568,7 @@ HandleDeckBuildScreen:
 	ld [wCurCardTypeFilter], a ; FILTER_GRASS
 	call PrintFilteredCardList
 
+.skip_draw
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 .wait_input
@@ -1728,6 +1729,8 @@ OpenDeckConfigurationMenu:
 	ld [hl], a
 	ld a, $ff
 	ld [wd0c4], a
+
+.skip_init
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
 	ld hl, wDeckConfigurationMenuHandlerFunction
@@ -1735,9 +1738,47 @@ OpenDeckConfigurationMenu:
 	ld h, [hl]
 	ld l, a
 	jp hl
-; 0x9731
 
-SECTION "Bank 2@5787", ROMX[$5787], BANK[$2]
+Func_9731:
+	call Func_98eb
+	ld de, $0
+	ld bc, $1406
+	call DrawRegularTextBox
+	ld hl, $5b18
+	call PlaceTextItems
+.asm_9743
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call HandleMultiDirectionalMenu
+	jr nc, .asm_9743
+	ld [wde84], a
+	cp $ff
+	jr nz, .asm_9769
+	call DrawCardTypeIconsAndPrintCardCounts
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	ld a, [wCurCardTypeFilter]
+	call PrintFilteredCardList
+	jp HandleDeckBuildScreen.skip_draw
+.asm_9769
+	push af
+	call HandleMultiDirectionalMenu.DrawCursor
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	pop af
+	ld hl, .Data_977b
+	call JumpToFunctionInTable
+	jr OpenDeckConfigurationMenu.skip_init
+
+.Data_977b:
+	db $87, $57
+	db $b9, $57
+	db $a8, $58
+	db $ce, $57
+	db $27, $58
+	db $bd, $57
+
 
 ConfirmDeckConfiguration:
 	ld hl, wScrollMenuScrollOffset
@@ -1761,6 +1802,87 @@ ConfirmDeckConfiguration:
 	ld [wTempCardTypeFilter], a
 	ret
 ; 0x97b9
+
+SECTION "Bank 2@58b0", ROMX[$58b0], BANK[$2]
+
+Func_98b0:
+	push de
+	push hl
+	ld hl, $58e8
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	pop hl
+	call CopyListFromHLToDEInSRAM
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld b, $00
+	ld hl, wDefaultText
+	add hl, bc
+	ld d, h
+	ld e, l
+	ld hl, $58df
+	call CopyListFromHLToDE
+	pop de
+	ld hl, wDefaultText
+	call InitTextPrinting
+	call ProcessText
+	or a
+	ret
+; 0x98df
+
+SECTION "Bank 2@58eb", ROMX[$58eb], BANK[$2]
+
+Func_98eb:
+	ld de, $6
+	ld bc, $140c
+	call DrawRegularTextBox
+	ld hl, wCurDeckName
+	ld a, [hl]
+	or a
+	jr z, .asm_9910
+	ld de, $106
+	call Func_98b0
+	ld hl, wCurDeckName
+	call GetTextLengthInTiles
+	ld a, $05
+	add b
+	ld de, $106
+	call ZeroAttributesAtDE
+.asm_9910
+	ld hl, wCurDeckCards
+	farcall CheckDeck.asm_25461
+	ld de, $208
+	call InitTextPrinting
+	ld hl, $537
+	call ProcessTextFromID
+	ld a, [wDeckCheckEnergyCount]
+	ld de, $f08
+	call Func_9951
+	ld a, [wDeckCheckBasicCount]
+	ld de, $f0a
+	call Func_9951
+	ld a, [wDeckCheckStage1Count]
+	ld de, $f0c
+	call Func_9951
+	ld a, [wDeckCheckStage2Count]
+	ld de, $0f0e
+	call Func_9951
+	ld a, [wDeckCheckTrainerCount]
+	ld de, $f10
+	call Func_9951
+	ret
+
+Func_9951:
+	push de
+	ld hl, wDefaultText
+	call ConvertToNumericalDigits
+	ld [hl], $00
+	pop de
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+	ret
+; 0x9965
 
 SECTION "Bank 2@5a0f", ROMX[$5a0f], BANK[$2]
 
@@ -1797,7 +1919,15 @@ FiltersCardSelectionParams:
 	db SYM_SPACE ; invisible cursor tile
 	dw NULL ; wCardListHandlerFunction
 
-SECTION "Bank 2@5a6d", ROMX[$5a6d], BANK[$2]
+SECTION "Bank 2@5a43", ROMX[$5a43], BANK[$2]
+
+DeckConfigurationMenu_TransitionTable:
+	cursor_transition $10, $20, $00, $03, $03, $01, $02
+	cursor_transition $48, $20, $00, $04, $04, $02, $00
+	cursor_transition $80, $20, $00, $05, $05, $00, $01
+	cursor_transition $10, $30, $00, $00, $00, $04, $05
+	cursor_transition $48, $30, $00, $01, $01, $05, $03
+	cursor_transition $80, $30, $00, $02, $02, $03, $04
 
 ; draws each card type icon in a line
 ; the respective card counts underneath each icon
