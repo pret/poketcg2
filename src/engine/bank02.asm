@@ -595,7 +595,7 @@ Func_8f7f:
 
 Func_8f8b:
 .asm_8f8b
-	ld hl, $4fb1
+	ld hl, .MenuParameters
 	call InitializeMenuParameters
 	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
@@ -611,10 +611,9 @@ Func_8f8b:
 	ret z
 	ld [wCurDeck], a
 	jp Func_903f
-; 0x8fb1
 
-
-SECTION "Bank 2@4fb9", ROMX[$4fb9], BANK[$2]
+.MenuParameters:
+	menu_parameters 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_8fb9:
 	ldh a, [hDPadHeld]

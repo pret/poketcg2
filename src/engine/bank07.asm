@@ -5590,8 +5590,8 @@ Func_1e76c:
 	ret
 
 Func_1e795:
-	ld b, $07
-	ld hl, $67e0
+	ld b, BANK(.menu)
+	ld hl, .menu
 	lb de, 0, 3
 	call LoadMenuBoxParams
 	ld a, [wdd07]
@@ -5619,7 +5619,17 @@ Func_1e795:
 	call CreateSpriteAnim
 .asm_1e7df
 	ret
-; 0x1e7e0
+
+.menu:
+	menu_box_params TRUE, 20, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 3, 2, MinicomDeckSaveMachineText
+	textitem 3, 4, MinicomMailboxText
+	textitem 3, 6, MinicomCardAlbumText
+	textitem 3, 8, PCMenuShutdownText
+	db $ff
+; 0x1e800
 
 SECTION "Bank 7@6808", ROMX[$6808], BANK[$7]
 
