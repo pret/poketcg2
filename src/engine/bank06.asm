@@ -5965,9 +5965,31 @@ HandCardsGfx:
 WhatIsYourNameData:
 	textitem 1, 1, WhatIsYourNameText
 	db $ff ; end
-; 0x1ae65
 
-SECTION "Bank 6@6e92", ROMX[$6e92], BANK[$6]
+Deck1RenameText:
+	textitem 2, 1, Deck1Text
+	textitem 14, 1, DeckText
+	db $ff
+
+Deck2RenameText:
+	textitem 2, 1, Deck2Text
+	textitem 14, 1, DeckText
+	db $ff
+
+Deck3RenameText:
+	textitem 2, 1, Deck3Text
+	textitem 14, 1, DeckText
+	db $ff
+
+Deck4RenameText:
+	textitem 2, 1, Deck4Text
+	textitem 14, 1, DeckText
+	db $ff
+
+Deck5RenameText:
+	textitem 2, 1, Deck5Text
+	textitem 14, 1, DeckText
+	db $ff
 
 ; dupe of PlayConfirmOrCancelSFX in bank 2
 ; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
@@ -5995,7 +6017,11 @@ InputPlayerName:
 	lb bc, 12, 1
 ;	fallthrough
 
-Func_1aeab:
+; a = maximum length of name (depending on whether player's or deck's).
+; bc = position of name.
+; de = dest. pointer.
+; hl = pointer to text item of the question.
+InputName:
 	call InitializeInputName
 	call Set_OBJ_8x8
 

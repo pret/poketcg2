@@ -71,10 +71,12 @@ ENDR
 sCurrentlySelectedDeck:: ; b7a0
 	ds $1
 
-s0b7a1:: ; b7a1
-	ds $1
-
-	ds $1
+; keeps track of how many unnamed decks have been built
+; this is the number that gets appended at the end of
+; an unnamed deck (i.e. DECK XXX)
+; max number is MAX_UNNAMED_DECK_NUM
+sUnnamedDeckCounter:: ; b7a1
+	ds $2
 
 ; each bit represents whether the player has
 ; obtained a card from a given set

@@ -1861,8 +1861,11 @@ wNumEntriesInCurFilter::
 wBoosterPackCardListSize:: ; d0ee
 	ds $1
 
-wd0ef:: ; d0ef
-	ds $2
+wCheckMenuCursorXPosition:: ; d0ef
+	ds $1
+
+wCheckMenuCursorYPosition:: ; d0f0
+	ds $1
 
 ; deck selected by the player in the Decks screen
 wCurDeck:: ; d0f1
@@ -1940,7 +1943,7 @@ wCurCardTypeFilter:: ; d11a
 wTempCurMenuItem:: ; d11b
 	ds $1
 
-wd11c:: ; d11c
+wTempFilteredCardListNumCursorPositions:: ; d11c
 	ds $1
 
 	ds $1
@@ -1948,7 +1951,7 @@ wd11c:: ; d11c
 wced7:: ; d11e
 	ds $1
 
-wd11f:: ; d11f
+wCardListVisibleOffsetBackup:: ; d11f
 	ds $1
 
 ; stores how many different cards there are in a deck
@@ -2014,13 +2017,22 @@ wd381:: ; d381
 wSameNameCardsLimit:: ; d382
 	ds $1
 
-wd383:: ; d383
+; whether to include the cards in the selected deck
+; to appear in the filtered lists
+; is TRUE when building a deck (since the cards should be shown for removal)
+; is FALSE when choosing a deck configuration to send through Gift Center
+; (can't select cards that are included in already built decks)
+wIncludeCardsInDeck:: ; d383
 	ds $1
 
-wd384:: ; d384
+; pointer to a function that handles the menu
+; when building a deck configuration
+wDeckConfigurationMenuHandlerFunction:: ; d384
 	ds $2
 
-wd386:: ; d386
+; pointer to a transition table for the
+; function in wDeckConfigurationMenuHandlerFunction
+wDeckConfigurationMenuTransitionTable:: ; d386
 	ds $2
 
 wCurCardListPtr:: ; d388
@@ -2106,6 +2118,8 @@ wNamingScreenNamePosition:: ; d3e9
 wNamingScreenMode:: ; d3eb
 	ds $1
 
+; see also sUnnamedDeckCounter
+wTempUnnamedDeckCounter:: ; d3ec
 	ds $3
 
 wd3ef:: ; d3ef

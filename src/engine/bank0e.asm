@@ -4877,20 +4877,20 @@ Func_3ada1:
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
-	farcall Func_9287
+	farcall ResetCheckMenuCursorPositionAndBlink
 	call DrawWideTextBox
 	ld hl, $6e7b
 	call PlaceTextItems
 .asm_3aded:
 	call DoFrame
-	farcall Func_9292
+	farcall HandleCheckMenuInput
 	jp nc, .asm_3aded
 	cp $ff
 	jr nz, .asm_3ae01
 	ld a, [wTempScrollMenuItem]
 	jp .asm_3adb7
 .asm_3ae01
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wCheckMenuCursorYPosition]
 	sla a
 	ld hl, wCurSongBankBackup
 	add [hl]
@@ -5636,7 +5636,7 @@ SECTION "Bank e@72db", ROMX[$72db], BANK[$e]
 
 Func_3b2db:
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	xor a
 .asm_3b2e2
 	ld hl, $735e
@@ -5645,7 +5645,7 @@ Func_3b2db:
 	call DrawWideTextBox_PrintText
 .asm_3b2ee
 	call DoFrame
-	farcall Func_8fb9
+	farcall HandleStartButtonInDeckSelectionMenu
 	jr c, .asm_3b2e2
 	call HandleMenuInput
 	jp nc, .asm_3b2ee
@@ -5655,7 +5655,7 @@ Func_3b2db:
 	ld [wCurDeck], a
 	farcall CheckIfCurDeckIsEmpty
 	jp nc, Func_3b315
-	farcall Func_9215
+	farcall PrintThereIsNoDeckHereText
 	ld a, [wCurDeck]
 	jr .asm_3b2e2
 
@@ -5871,7 +5871,7 @@ Func_3b45f:
 	ldtx hl, YouMayOnlyCarry4DecksText
 	call DrawWideTextBox_WaitForInput
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	xor a
 .asm_3b46c
 	ld hl, $735e
@@ -5880,7 +5880,7 @@ Func_3b45f:
 	call DrawWideTextBox_PrintText
 .asm_3b478
 	call DoFrame
-	farcall Func_8fb9
+	farcall HandleStartButtonInDeckSelectionMenu
 	jr c, .asm_3b46c
 	call HandleMenuInput
 	jp nc, .asm_3b478
@@ -5906,13 +5906,13 @@ Func_3b45f:
 	push hl
 	ld bc, $18
 	add hl, bc
-	farcall Func_9397
+	farcall AddDeckToCollection
 	pop hl
 	ld a, $60
 	farcall ClearNBytesFromHL
 	call DisableSRAM
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ld a, [wCurDeck]
 	ld hl, $735e
 	call InitializeMenuParameters
@@ -6001,7 +6001,7 @@ Func_3b4eb:
 	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ld a, [wd496]
 	ld [wCurDeck], a
 	ld hl, $735e
@@ -6042,7 +6042,7 @@ Func_3b4eb:
 
 Func_3b5f1:
 	call Func_3bcd6
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ldtx hl, DismantleTheseDecksPromptText
 	call YesOrNoMenuWithText
 	jr nc, .asm_3b601
@@ -6075,7 +6075,7 @@ Func_3b5f1:
 .asm_3b634
 	call DisableSRAM
 	ld a, [wd49a]
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ldtx hl, DismantledTheseDecksText
 	call DrawWideTextBox_WaitForInput
 	or a
@@ -6090,7 +6090,7 @@ Func_3b646:
 	push hl
 	ld bc, $18
 	add hl, bc
-	farcall Func_9397
+	farcall AddDeckToCollection
 	pop hl
 	ld a, $60
 	farcall ClearNBytesFromHL
@@ -6914,7 +6914,7 @@ Func_3bb09:
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
-	farcall Func_9287
+	farcall ResetCheckMenuCursorPositionAndBlink
 	xor a
 	ld [wd0cd], a
 	call DrawWideTextBox
@@ -6929,7 +6929,7 @@ Func_3bb09:
 	ld a, [wTempScrollMenuItem]
 	jp .asm_3bb30
 .asm_3bbe6
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wCheckMenuCursorYPosition]
 	sla a
 	ld hl, wCurSongBankBackup
 	add [hl]

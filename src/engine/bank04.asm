@@ -1287,17 +1287,17 @@ SECTION "Bank 4@4865", ROMX[$4865], BANK[$4]
 
 PauseMenuDeckScreen:
 	call Func_1022a
-	call Func_1086f
+	call ShowDeckSelectionMenuFromPauseMenu
 	call Func_10252
 	ret
 
-Func_1086f:
+ShowDeckSelectionMenuFromPauseMenu:
 	push af
 	push bc
 	push de
 	push hl
 	call SetFadePalsFrameFunc
-	farcall Func_8f7f
+	farcall DeckSelectionMenu
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
 	call UnsetFadePalsFrameFunc
@@ -1306,9 +1306,6 @@ Func_1086f:
 	pop bc
 	pop af
 	ret
-; 0x1088a
-
-SECTION "Bank 4@488a", ROMX[$488a], BANK[$4]
 
 ZeroObjectPositionsAndEnableOBPFading:
 	push af
