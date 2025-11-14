@@ -1561,6 +1561,7 @@ HandleDeckBuildScreen:
 	ld [hffbf], a
 	call WriteCardListsTerminatorBytes
 	call CountNumberOfCardsForEachCardType
+.asm_95e0
 	call DrawCardTypeIconsAndPrintCardCounts
 
 	xor a
@@ -1755,6 +1756,7 @@ Func_9731:
 	ld [wde84], a
 	cp $ff
 	jr nz, .asm_9769
+.asm_9757
 	call DrawCardTypeIconsAndPrintCardCounts
 	ld a, [wTempCurMenuItem]
 	ld [wTempCardTypeFilter], a
@@ -1772,13 +1774,12 @@ Func_9731:
 	jr OpenDeckConfigurationMenu.skip_init
 
 .Data_977b:
-	db $87, $57
-	db $b9, $57
-	db $a8, $58
-	db $ce, $57
-	db $27, $58
-	db $bd, $57
-
+	dw ConfirmDeckConfiguration
+	dw Func_97b9
+	dw Func_98a8
+	dw Func_97ce
+	dw Func_9827
+	dw Func_97bd
 
 ConfirmDeckConfiguration:
 	ld hl, wScrollMenuScrollOffset
@@ -1801,9 +1802,126 @@ ConfirmDeckConfiguration:
 	ld a, [wde84]
 	ld [wTempCardTypeFilter], a
 	ret
-; 0x97b9
 
-SECTION "Bank 2@58b0", ROMX[$58b0], BANK[$2]
+Func_97b9:
+	add sp, $02
+	jr Func_9731.asm_9757
+
+Func_97bd:
+	call Func_9965
+	jr nc, .asm_97ca
+	ld hl, $2a6
+	call YesOrNoMenuWithText
+	jr c, Func_97ce.asm_9809
+.asm_97ca
+	add sp, $02
+	or a
+	ret
+
+Func_97ce:
+	ld a, [wTotalCardCount]
+	cp $3c
+	jp z, .asm_97f0
+	ld hl, $2a2
+	call DrawWideTextBox_WaitForInput
+	ld hl, $2a4
+	call YesOrNoMenuWithText
+	jr c, .asm_97e8
+	add sp, $02
+	or a
+	ret
+.asm_97e8
+	ld hl, $2a3
+	call DrawWideTextBox_WaitForInput
+	jr .asm_9809
+.asm_97f0
+	ld hl, $2a5
+	call YesOrNoMenuWithText
+	jr c, .asm_9809
+	call Func_9a0f
+	jr c, .asm_9816
+	ld hl, $2a0
+	call DrawWideTextBox_WaitForInput
+	ld hl, $2a1
+	call DrawWideTextBox_WaitForInput
+.asm_9809
+	call DrawCardTypeIconsAndPrintCardCounts
+	call PrintDeckBuildingCardList
+	ld a, [wde84]
+	ld [wTempCardTypeFilter], a
+	ret
+.asm_9816
+	ld hl, $2a8
+	call YesOrNoMenuWithText
+	jr c, .asm_9823
+	ld a, $01
+	ld [hffbf], a
+.asm_9823
+	add sp, $02
+	scf
+	ret
+
+Func_9827:
+	ld hl, $2a7
+	call YesOrNoMenuWithText
+	jr c, Func_97ce.asm_9809
+	call Func_99ed
+	jp nc, Func_985a
+	ld hl, $29f
+	call DrawWideTextBox_WaitForInput
+	call EmptyScreen
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	call DrawHorizontalListCursor_Visible
+	call PrintDeckBuildingCardList
+	call EnableLCD
+	ld a, [wde84]
+	ld [wTempCardTypeFilter], a
+	ret
+
+Func_985a:
+	call EnableSRAM
+	call GetSRAMPointerToCurDeck
+	ld a, [hl]
+	or a
+	jr z, .asm_9871
+	push hl
+	call GetSRAMPointerToCurDeckCards
+	call AddDeckToCollection
+	pop hl
+	ld a, $60
+	call ClearNBytesFromHL
+.asm_9871
+	ld hl, $2a9
+	call YesOrNoMenuWithText
+	jr c, .asm_989d
+	ld a, [wCurDeckName]
+	or a
+	jr z, .asm_98a0
+	ld a, [wTotalCardCount]
+	cp $3c
+	jp nz, .asm_98a0
+	call Func_9a0f
+	jr nc, .asm_98a0
+	ld hl, wCurDeckName
+	ld de, wCurDeckCards
+	farcall Func_3be8d
+	call DisableSRAM
+	farcall Func_3bead
+.asm_989d
+	add sp, $02
+	ret
+.asm_98a0
+	ld hl, $2aa
+	call DrawWideTextBox_WaitForInput
+	jr .asm_989d
+
+Func_98a8:
+	call InputCurDeckName
+	add sp, $02
+	jp HandleDeckBuildScreen.asm_95e0
 
 Func_98b0:
 	push de
@@ -1882,9 +2000,117 @@ Func_9951:
 	ld hl, wDefaultText
 	call ProcessText
 	ret
-; 0x9965
 
-SECTION "Bank 2@5a0f", ROMX[$5a0f], BANK[$2]
+Func_9965:
+	ld a, [wTotalCardCount]
+	or a
+	jr z, .asm_996f
+	cp $3c
+	jr nz, .asm_99e8
+.asm_996f
+	call GetSRAMPointerToCurDeckCards
+	ld d, h
+	ld e, l
+	ld hl, wc000
+	call EnableSRAM
+	bank1call DecompressSRAMDeck
+	call DisableSRAM
+	ld a, $ff
+	ld [$c078], a
+	ld [$c079], a
+	ld hl, wCurDeckCards
+.asm_998b
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	call CheckIfCardIDIsZero
+	jr c, .asm_99b7
+	push hl
+	ld hl, wc000
+.asm_9998
+	ld c, [hl]
+	inc hl
+	ld b, [hl]
+	inc hl
+	ld a, b
+	cp $ff
+	ld a, c
+	jr nz, .asm_99a9
+	cp $ff
+	jr nz, .asm_99a9
+	pop hl
+	jr .asm_998b
+.asm_99a9
+	cp e
+	jr nz, .asm_9998
+	ld a, b
+	cp d
+	jr nz, .asm_9998
+	dec hl
+	xor a
+	ld [hld], a
+	ld [hl], a
+	pop hl
+	jr .asm_998b
+.asm_99b7
+	ld hl, wc000
+.asm_99ba
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	cp16 $ffff
+	jr z, .asm_99d2
+	call CheckIfCardIDIsZero
+	jr nc, .asm_99e8
+	or a
+	jr nz, .asm_99e8
+	jr .asm_99ba
+.asm_99d2
+	call GetSRAMPointerToCurDeck
+	ld de, wCurDeckName
+	call EnableSRAM
+.asm_99db
+	ld a, [de]
+	cp [hl]
+	jr nz, .asm_99e8
+	inc de
+	inc hl
+	or a
+	jr nz, .asm_99db
+	call DisableSRAM
+	ret
+.asm_99e8
+	call DisableSRAM
+	scf
+	ret
+
+Func_99ed:
+	ld hl, wDecksValid
+	ld bc, $0
+.asm_99f3
+	inc b
+	ld a, $04
+	cp b
+	jr c, .asm_9a05
+	ld a, [hli]
+	or a
+	jr z, .asm_99f3
+	inc c
+	ld a, $01
+	cp c
+	jr nc, .asm_99f3
+.asm_9a03
+	or a
+	ret
+.asm_9a05
+	call GetSRAMPointerToCurDeckCards
+	call CheckIfDeckHasCards
+	jr c, .asm_9a03
+	scf
+	ret
+; 0x9a0f
 
 Func_9a0f:
 	ld hl, wCurDeckCards
