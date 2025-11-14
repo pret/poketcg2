@@ -189,7 +189,7 @@ SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
 ; waits until any of the keys
 ; in register c are pressed
-Func_10221:
+WaitForButtonPress:
 .loop
 	call DoFrame
 	ldh a, [hKeysPressed]
@@ -1263,17 +1263,17 @@ Func_1081a:
 	ret
 
 Func_10836:
-	ld hl, Data_1083d
+	ld hl, .function_map
 	call CallMappedFunction
 	ret
 
-Data_1083d: ; pause menu
-	key_func $00, Func_1c5f2 ; status
-	key_func $01, Func_1c502 ; diary
-	key_func $02, Func_10865 ; deck
-	key_func $03, Func_1e74f ; minicon
-	key_func $04, Func_1dc9a ; coin
-	key_func $05, Func_1c16e ; settings
+.function_map: ; pause menu
+	key_func $00, PauseMenuStatusScreen ; status
+	key_func $01, PauseMenuDiaryScreen ; diary
+	key_func $02, PauseMenuDeckScreen ; deck
+	key_func $03, PauseMenuMiniconScreen ; minicon
+	key_func $04, PauseMenuCoinScreen ; coin
+	key_func $05, PauseMenuSettingsScreen ; settings
 	db $ff
 
 Func_10856:
@@ -1285,7 +1285,7 @@ Func_10856:
 
 SECTION "Bank 4@4865", ROMX[$4865], BANK[$4]
 
-Func_10865:
+PauseMenuDeckScreen:
 	call Func_1022a
 	call Func_1086f
 	call Func_10252
@@ -6328,7 +6328,7 @@ Func_131d7:
 	ldtx hl, GameCenterBlackBoxSaveRequestText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ld c, $00
-	farcall Func_1c5a3
+	farcall DrawSavePromptAndWaitForInput
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableSaveRequiredText
 	call PrintScrollableText_NoTextBoxLabelVRAM0

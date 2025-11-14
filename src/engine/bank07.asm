@@ -319,7 +319,7 @@ GetDuelistPortrait::
 
 SECTION "Bank 7@416e", ROMX[$416e], BANK[$7]
 
-Func_1c16e:
+PauseMenuSettingsScreen:
 	farcall Func_1022a
 	call ShowConfigMenu
 	farcall Func_10252
@@ -700,39 +700,39 @@ ConvertTextSpeedToMessageSpeedSetting:
 
 SECTION "Bank 7@4502", ROMX[$4502], BANK[$7]
 
-Func_1c502:
+PauseMenuDiaryScreen:
 	farcall Func_1022a
-	call Func_1c50e
+	call PushRegistersAndShowDiaryScreen
 	farcall Func_10252
 	ret
 
-Func_1c50e:
+PushRegistersAndShowDiaryScreen:
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1c51a
+	call ShowDiaryScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1c51a:
+ShowDiaryScreen:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall ClearSpriteAnims
-	call Func_1c53f
+	call DrawDiaryStatusBox
 	farcall SetFadePalsFrameFunc
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
 	ld c, $00
-	call Func_1c5a3
+	call DrawSavePromptAndWaitForInput
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
 	ret
 
-Func_1c53f:
+DrawDiaryStatusBox:
 	lb de, 0, 0
 	lb bc, 20, 12
 	call DrawRegularTextBoxVRAM0
@@ -770,7 +770,8 @@ Func_1c53f:
 	textitem 7, 10, PlayerDiaryPlayTimeText
 	db $ff
 
-Func_1c5a3:
+; c - ?
+DrawSavePromptAndWaitForInput:
 	push bc
 	push de
 	push hl
@@ -819,40 +820,39 @@ Func_1c5d6:
 	pop bc
 	pop af
 	ret
-; 0x1c5f2
 
-Func_1c5f2:
+PauseMenuStatusScreen:
 	farcall Func_1022a
-	call Func_1c5fe
+	call PushRegistersAndShowStatusScreen
 	farcall Func_10252
 	ret
 
-Func_1c5fe:
+PushRegistersAndShowStatusScreen:
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1c60a
+	call ShowStatusScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1c60a:
+ShowStatusScreen:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall ClearSpriteAnims
 	call DisableLCD
-	call Func_1c62d
-	call Func_1c667
+	call DrawStatusScreenTopBox
+	call DrawStatusScreenBottomBox
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
-	ld c, $03
-	farcall Func_10221
+	ld c, PAD_A | PAD_B
+	farcall WaitForButtonPress
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1c62d:
+DrawStatusScreenTopBox:
 	lb de, 0, 0
 	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
@@ -875,7 +875,7 @@ Func_1c62d:
 	textitem 7, 6, PlayerDiaryPlayTimeText
 	db $ff
 
-Func_1c667:
+DrawStatusScreenBottomBox:
 	lb de, 0, 8
 	lb bc, 20, 10
 	call DrawRegularTextBoxVRAM0
@@ -3014,7 +3014,7 @@ Func_1d475:
 	farcall ClearCardPopNameList
 
 	call EnableAnimations
-	call Func_1e767
+	call ClearwMiniconMenuCursorPosition
 	farcall Func_111f0
 	call InitDefaultConfigMenuSettings
 	call SaveConfigMenuChoicesToSRAM
@@ -3659,7 +3659,7 @@ Func_1da2a:
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ld c, $01
-	call Func_1c5a3
+	call DrawSavePromptAndWaitForInput
 	ret nc
 	ldtx hl, GiftCenterServiceUnavailableSaveRequiredText
 	ldtx de, ReceptionistText
@@ -3884,7 +3884,7 @@ Func_1dc52:
 	call Func_1dd89
 	ret
 
-Func_1dc9a:
+PauseMenuCoinScreen:
 	farcall Func_1022a
 	call ShowCoinMenuWithoutIncomingCoin
 	farcall Func_10252
@@ -5542,59 +5542,54 @@ Func_1e73a:
 	pop bc
 	pop af
 	ret
-; 0x1e74f
 
-Func_1e74f:
+PauseMenuMiniconScreen:
 	farcall Func_1022a
-	call Func_1e75b
+	call PushRegistersAndShowMiniconScreen
 	farcall Func_10252
 	ret
 
-Func_1e75b:
+PushRegistersAndShowMiniconScreen:
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1e76c
+	call ShowMiniconScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x1e767
 
-SECTION "Bank 7@6767", ROMX[$6767], BANK[$7]
-
-Func_1e767:
+ClearwMiniconMenuCursorPosition:
 	xor a
-	ld [wdd07], a
+	ld [wMiniconMenuCursorPosition], a
 	ret
-; 0x1e76c
 
-Func_1e76c:
+ShowMiniconScreen:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1e795
+	call DrawMiniconMainScreen
 	farcall SetFrameFuncAndFadeFromWhite
-.asm_1e777
-	call Func_1e808
-	jr c, .asm_1e790
-	call Func_1e823
-	jr c, .asm_1e790
+.loop
+	call HandleMinicomMenuBox
+	jr c, .end
+	call CallMiniconMenuFunction
+	jr c, .end
 	call DisableLCD
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1e795
+	call DrawMiniconMainScreen
 	call EnableLCD
-	jr .asm_1e777
-.asm_1e790
+	jr .loop
+.end
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1e795:
+DrawMiniconMainScreen:
 	ld b, BANK(.menu)
 	ld hl, .menu
 	lb de, 0, 3
 	call LoadMenuBoxParams
-	ld a, [wdd07]
+	ld a, [wMiniconMenuCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
 	lb bc, 20, 4
@@ -5633,30 +5628,36 @@ Func_1e795:
 
 SECTION "Bank 7@6808", ROMX[$6808], BANK[$7]
 
-Func_1e808:
-	ld a, [wdd07]
+; return
+;	 a - cursor position, used later in CallMiniconMenuFunction
+HandleMinicomMenuBox:
+	ld a, [wMiniconMenuCursorPosition]
 	call HandleMenuBox
-	ld [wdd07], a
-	jr c, .asm_1e81b
+	ld [wMiniconMenuCursorPosition], a
+	jr c, .cancel
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1e81b
+.cancel
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
 
-Func_1e823:
-	ld hl, $682a
+; a - function table index
+CallMiniconMenuFunction:
+	ld hl, .minicon_functions
 	call CallMappedFunction
 	ret
-; 0x1e82a
 
-SECTION "Bank 7@6837", ROMX[$6837], BANK[$7]
+.minicon_functions:
+	db $00, $07, $37, $68
+	db $01, $07, $96, $6c
+	db $02, $07, $40, $68
+	db $ff
 
 Func_1e837:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
@@ -5865,7 +5866,7 @@ Func_1e99c:
 	call LoadGfxPalettes
 	farcall SetFrameFuncAndFadeFromWhite
 	ld c, PAD_B
-	farcall Func_10221
+	farcall WaitForButtonPress
 	call Func_3f61
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret

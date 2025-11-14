@@ -5680,7 +5680,7 @@ Func_f085:
 	dec c
 	jr nz, .asm_f091
 	ld c, PAD_A | PAD_B
-	farcall Func_10221
+	farcall WaitForButtonPress
 	pop de
 	ret
 ; 0xf0c3

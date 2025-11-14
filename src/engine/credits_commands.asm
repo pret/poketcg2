@@ -344,7 +344,7 @@ Func_13ac1::
 CreditsCmd_WaitInput:
 	ld a, [wCreditsCmdArg1]
 	ld c, a
-	call Func_10221
+	call WaitForButtonPress
 	ret
 
 CreditsCmd_MusicFadeOut:

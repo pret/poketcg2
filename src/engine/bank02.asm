@@ -574,12 +574,12 @@ PrepareMenuGraphics:
 Func_8f6b:
 	ld de, wMaxNumCardsAllowed
 	ld b, $08
-.asm_8f70
+.loop
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec b
-	jr nz, .asm_8f70
+	jr nz, .loop
 	ret
 ; 0x8f77
 
@@ -1160,6 +1160,7 @@ Func_9397:
 	pop hl
 	ret
 
+; a - ?
 DrawDeckSelectionMenu:
 	ld [hffbf], a
 

@@ -3194,7 +3194,7 @@ wdd05:: ; dd05
 wdd06:: ; dd06
 	ds $1
 
-wdd07:: ; dd07
+wMiniconMenuCursorPosition:: ; dd07
 	ds $1
 
 wCurBoosterPack:: ; dd08
