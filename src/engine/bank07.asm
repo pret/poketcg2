@@ -5654,18 +5654,20 @@ CallMiniconMenuFunction:
 	ret
 
 .minicon_functions:
-	db $00, $07, $37, $68
-	db $01, $07, $96, $6c
-	db $02, $07, $40, $68
+	key_func $00, Func_1e837
+	key_func $01, Func_1ec96
+	key_func $02, Func_1e840
 	db $ff
 
 Func_1e837:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall Func_baec
 	ret
-; 0x1e840
 
-SECTION "Bank 7@6849", ROMX[$6849], BANK[$7]
+Func_1e840:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall Func_a786
+	ret
 
 Func_1e849:
 	farcall Func_1022a
@@ -6140,7 +6142,20 @@ Func_1ec0f:
 	ret
 ; 0x1ec38
 
-SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
+SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
+
+Func_1ec96:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1ece4
+	call Func_1eda5
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 Func_1eca5:
 	push af
@@ -6172,9 +6187,680 @@ Func_1eca5:
 	pop bc
 	pop af
 	ret
-; 0x1ece4
 
-SECTION "Bank 7@724e", ROMX[$724e], BANK[$7]
+Func_1ece4:
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call Func_1ed18
+	call Func_1ed2d
+	call FlushAllPalettes
+	call EnableLCD
+	ld a, [wdd5a]
+	and a
+	jr z, .asm_1ed04
+	push af
+	ld a, $82
+	call CallPlaySFX
+	pop af
+.asm_1ed04
+	call Func_1ed57
+	call DisableLCD
+	xor a
+	ld [wdd5a], a
+	ld [wdd5c], a
+	ld [wdd5d], a
+	ld [wdd5b], a
+	ret
+
+Func_1ed18:
+	ld b, $00
+	ld a, [wdd5b]
+	and a
+	jr nz, .asm_1ed28
+	inc b
+	ld a, [wdd5a]
+	and a
+	jr nz, .asm_1ed28
+	inc b
+.asm_1ed28
+	ld a, b
+	ld [$dd31], a
+	ret
+
+Func_1ed2d:
+	ld de, $0
+	ld bc, $1404
+	call DrawRegularTextBoxVRAM0
+	ld hl, $72b
+	ld de, $602
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ld de, $c
+	ld bc, $1406
+	call DrawRegularTextBoxVRAM0
+	call Func_1ed5e
+	call Func_1ed4f
+	ret
+
+Func_1ed4f:
+	ld bc, $505
+	ld a, [hli]
+	call LoadScene
+	ret
+
+Func_1ed57:
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+;	fallthrough
+
+Func_1ed5e:
+	ld a, [$dd31]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $6d6d
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+; 0x1ed6d
+
+SECTION "Bank 7@6da5", ROMX[$6da5], BANK[$7]
+
+Func_1eda5:
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld de, $40ff
+	call SetupText
+	call Func_1edd1
+	call FlushAllPalettes
+	call EnableLCD
+.asm_1edbb
+	call Func_1ede4
+	call Func_1eef8
+	jr c, .asm_1edd0
+	call Func_1efa4
+	call Func_1efd9
+	jr c, .asm_1edbb
+	call Func_1efe1
+	jr .asm_1edbb
+.asm_1edd0
+	ret
+
+Func_1edd1:
+	ld de, $4
+	ld bc, $140e
+	call DrawRegularTextBoxVRAM0
+	ld de, $0
+	ld bc, $1405
+	call DrawRegularTextBoxVRAM0
+	ret
+
+Func_1ede4:
+	push af
+	push bc
+	push de
+	push hl
+	ld de, $105
+	ld b, $07
+	ld hl, $6ed8
+	call LoadMenuBoxParams
+	ld a, [wdd5d]
+	call DrawMenuBox
+	ld de, $0
+	ld bc, $1405
+	call DrawRegularTextBoxVRAM0
+	ld hl, $72f
+	ld a, [wdd50]
+	and a
+	jr nz, .asm_1ee0e
+	ld hl, $73a
+.asm_1ee0e
+	ld de, $102
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ld hl, $72b
+	ld de, $100
+	call Func_2c4b
+	ld a, [wdd5c]
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wdd51
+	add hl, bc
+	ld de, $206
+	ld c, $04
+.asm_1ee2e
+	ld a, [hli]
+	and a
+	jr z, .asm_1ee38
+	call Func_1ee4a
+	dec c
+	jr nz, .asm_1ee2e
+.asm_1ee38
+	ld a, $04
+	sub c
+	and a
+	jr nz, .asm_1ee3f
+	inc a
+.asm_1ee3f
+	call SetMenuBoxNumItems
+	call Func_1ee97
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ee4a:
+	push bc
+	push hl
+	ld hl, $730
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc e
+	ld hl, $731
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	and a
+	jr z, .asm_1ee68
+	bit 7, a
+	jr nz, .asm_1ee68
+	dec d
+	ld hl, $738
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc d
+.asm_1ee68
+	ld hl, $734f
+	and $7f
+	ld c, a
+	ld b, $00
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, d
+	add $05
+	ld d, a
+	dec e
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	inc hl
+	inc hl
+	inc e
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc e
+	inc e
+	ld a, d
+	sub $05
+	ld d, a
+	pop hl
+	pop bc
+	ret
+
+Func_1ee97:
+	ld bc, $111
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ld a, [wdd5c]
+	cp $01
+	jr nz, .asm_1eebd
+	ld bc, $104
+	ld d, $2f
+	ld e, $41
+	call Func_383b
+	ld bc, $111
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ret
+.asm_1eebd
+	ld a, [wdd50]
+	cp $05
+	ret c
+	ld bc, $111
+	ld d, $2f
+	ld e, $01
+	call Func_383b
+	ld bc, $104
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ret
+; 0x1eed8
+
+SECTION "Bank 7@6ef8", ROMX[$6ef8], BANK[$7]
+
+Func_1eef8:
+.asm_1eef8
+	ld a, [wdd5d]
+	call HandleMenuBox
+	ld [wdd5d], a
+	jr c, .asm_1ef22
+	call Func_1f342
+	ld c, a
+	ld b, $00
+	ld hl, wdd51
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .asm_1ef1a
+	push af
+	ld a, $04
+	call CallPlaySFX
+	pop af
+	jr .asm_1eef8
+.asm_1ef1a
+	push af
+	ld a, $02
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1ef22
+	push af
+	ld a, $03
+	call CallPlaySFX
+	pop af
+	ret
+; 0x1ef2a
+
+SECTION "Bank 7@6fa4", ROMX[$6fa4], BANK[$7]
+
+Func_1efa4:
+	ld de, $0
+	ld b, $07
+	ld hl, $6fbd
+	call LoadMenuBoxParams
+	xor a
+	call DrawMenuBox
+	ld hl, $732
+	ld de, $101
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ret
+; 0x1efbd
+
+SECTION "Bank 7@6fd9", ROMX[$6fd9], BANK[$7]
+
+Func_1efd9:
+	xor a
+	call HandleMenuBox
+	ld [wdd5e], a
+	ret
+
+Func_1efe1:
+	ld a, [wdd5e]
+	ld hl, .Data_1efeb
+	call CallMappedFunction
+	ret
+
+.Data_1efeb:
+	key_func $00, Func_1eff4
+	key_func $01, Func_1f161
+	db $ff
+
+Func_1eff4:
+	call Func_1effb
+	call Func_1f023
+	ret
+
+Func_1effb:
+	ld de, $407f
+	call SetupText
+	ld de, $0
+	ld bc, $1405
+	call DrawRegularTextBoxVRAM0
+	ld hl, $72b
+	ld de, $100
+	call Func_2c4b
+	ld hl, $701a
+	call PlaceTextItemsVRAM0
+	ret
+; 0x1f01a
+
+SECTION "Bank 7@7023", ROMX[$7023], BANK[$7]
+
+Func_1f023:
+	ld bc, $111
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	call Func_1f342
+	ld c, a
+	ld b, $00
+	ld hl, wdd51
+	add hl, bc
+	ld a, [hl]
+	ld [$dd30], a
+	set 7, a
+	ld [hl], a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, $734f
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld [$dd32], a
+	ld a, [hli]
+	ld [$dd33], a
+	call Func_1f07a
+	ld a, [hli]
+	ld [$dd34], a
+	ld a, [hli]
+	ld [$dd35], a
+	call Func_1f08b
+.asm_1f05f
+	ld a, [hl]
+	cp $ff
+	jr nz, .asm_1f06a
+	inc hl
+	ld a, [hld]
+	cp $ff
+	jr z, .asm_1f079
+.asm_1f06a
+	call Func_1f0a7
+	jr z, .asm_1f074
+	push hl
+	call WaitForWideTextBoxInput
+	pop hl
+.asm_1f074
+	call Func_1f0c3
+	jr .asm_1f05f
+.asm_1f079
+	ret
+
+Func_1f07a:
+	push hl
+	ld a, [$dd32]
+	ld l, a
+	ld a, [$dd33]
+	ld h, a
+	ld de, $602
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	ret
+
+Func_1f08b:
+	push hl
+	ld a, [$dd34]
+	ld l, a
+	ld a, [$dd35]
+	ld h, a
+	ld de, $603
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	ret
+
+Func_1f09c:
+	ld de, $105
+	ld bc, $120c
+	farcall FillBoxInBGMapWithZero
+	ret
+
+Func_1f0a7:
+	push hl
+	ld de, $80ff
+	call SetupText
+	pop hl
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	or h
+	jr z, .asm_1f0bf
+	call Func_1f09c
+	ld de, $106
+	call PrintTextNoDelay_InitVRAM0
+.asm_1f0bf
+	pop hl
+	inc hl
+	inc hl
+	ret
+
+Func_1f0c3:
+	push hl
+	ld a, [$dd30]
+	bit 7, a
+	jr nz, .asm_1f0e1
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	or b
+	jr z, .asm_1f0e1
+	bit 7, b
+	jr nz, .asm_1f0e5
+	bit 6, b
+	jr nz, .asm_1f0f6
+	bit 5, b
+	jr nz, .asm_1f103
+	bit 4, b
+	jr nz, .asm_1f11b
+.asm_1f0e1
+	pop hl
+	inc hl
+	inc hl
+	ret
+.asm_1f0e5
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	ld a, c
+	ld b, $00
+	call GiveBoosterPacks
+	call Func_1f140
+	jr .asm_1f0e1
+.asm_1f0f6
+	ld a, b
+	and $3f
+	ld d, a
+	ld e, c
+	call Func_1f12d
+	call Func_1f140
+	jr .asm_1f0e1
+.asm_1f103
+	push hl
+	ld hl, wdd5f
+.asm_1f107
+	xor a
+	ld e, [hl]
+	ld [hli], a
+	ld d, [hl]
+	ld [hli], a
+	ld a, d
+	or e
+	jr z, .asm_1f115
+	call Func_1f12d
+	jr .asm_1f107
+.asm_1f115
+	pop hl
+	call Func_1f140
+	jr .asm_1f0e1
+.asm_1f11b
+	push hl
+	ld hl, wdd73
+	xor a
+	ld e, [hl]
+	ld [hli], a
+	ld d, [hl]
+	ld [hli], a
+	call Func_1f12d
+	pop hl
+	call Func_1f140
+	jr .asm_1f0e1
+
+Func_1f12d:
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	push hl
+	farcall GetReceivedCardText
+	call AddCardToCollection
+	call Func_1d53a
+	pop hl
+	ret
+
+Func_1f140:
+	inc hl
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	or b
+	jr z, Func_1f0c3.asm_1f0e1
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DisableLCD
+	call Func_1edd1
+	call Func_1effb
+	call Func_1f07a
+	call Func_1f08b
+	call FlushAllPalettes
+	call EnableLCD
+	ret
+
+Func_1f161:
+	push af
+	push bc
+	push de
+	push hl
+	call Func_1f342
+	ld c, a
+	ld b, $00
+	ld hl, wdd51
+	add hl, bc
+	ld a, [hl]
+	ld [$dd30], a
+	call Func_1f1ca
+	jr c, .asm_1f1ad
+	dec a
+	jr z, .asm_1f1ad
+	bit 7, [hl]
+	jr nz, .asm_1f187
+	call Func_1f1d3
+	jr c, .asm_1f1ad
+	dec a
+	jr z, .asm_1f1ad
+.asm_1f187
+	xor a
+	ld [hl], a
+	ld d, h
+	ld e, l
+	inc hl
+	ld a, $08
+	sub c
+	and a
+	jr z, .asm_1f19d
+	ld c, a
+.asm_1f193
+	push af
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop af
+	dec a
+	jr nz, .asm_1f193
+	xor a
+	ld [hl], a
+.asm_1f19d
+	ld a, [wdd50]
+	dec a
+	ld [wdd50], a
+	call Func_1f236
+	call Func_1f1b2
+	call Func_1f210
+.asm_1f1ad
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1f1b2:
+	ld de, $0
+	ld bc, $1405
+	call DrawRegularTextBoxVRAM0
+	ld hl, $737
+	ld de, $102
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ld a, $3c
+	call DoAFrames_WithPreCheck
+	ret
+
+Func_1f1ca:
+	push hl
+	ld hl, $735
+	call Func_1f1dc
+	pop hl
+	ret
+
+Func_1f1d3:
+	push hl
+	ld hl, $736
+	call Func_1f1dc
+	pop hl
+	ret
+
+Func_1f1dc:
+	push hl
+	ld b, $07
+	ld hl, $71f8
+	ld de, $0
+	call LoadMenuBoxParams
+	pop hl
+	ld a, $01
+	call DrawMenuBox
+	ld de, $101
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call HandleMenuBox
+	ret
+; 0x1f1f8
+
+SECTION "Bank 7@7210", ROMX[$7210], BANK[$7]
+
+Func_1f210:
+	ld a, [wdd5d]
+	and a
+	jr nz, .asm_1f225
+	ld a, [wdd5c]
+	and a
+	ret z
+	xor a
+	ld [wdd5c], a
+	ld a, $03
+	ld [wdd5d], a
+	ret
+.asm_1f225
+	ld a, [wdd50]
+	ld c, a
+	call Func_1f342
+	cp c
+	ret c
+	ld a, [wdd5d]
+	dec a
+	ld [wdd5d], a
+	ret
+
+Func_1f236:
+	ld a, [$dd30]
+	cp $01
+	jr nz, .asm_1f244
+	ld de, $0
+	call Func_1f30e
+	ret
+.asm_1f244
+	cp $02
+	ret nz
+	ld de, $0
+	call Func_1f319
+	ret
 
 ; input: a
 ; set carry if [wdd36] = wDD37_BUFFER_SIZE - 1
@@ -6373,7 +7059,18 @@ Func_1f333:
 .asm_1f340
 	pop bc
 	ret
-; 0x1f342
+
+Func_1f342:
+	push bc
+	ld a, [wdd5c]
+	add a
+	add a
+	ld b, a
+	ld a, [wdd5d]
+	add b
+	pop bc
+	ret
+; 0x1f34f
 
 SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
 

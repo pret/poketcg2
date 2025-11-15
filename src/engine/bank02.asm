@@ -4401,9 +4401,131 @@ CopyBBytesFromHLToDE_Bank02:
 	dec b
 	jr nz, .loop
 	ret
-; 0xa786
 
-SECTION "Bank 2@689d", ROMX[$689d], BANK[$2]
+Func_a786:
+	call WriteCardListsTerminatorBytes
+	call PrintPlayersCardsHeaderInfo
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld [wCurCardTypeFilter], a
+	call PrintFilteredCardSelectionList
+	call EnableLCD
+	xor a
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+.asm_a7a0
+	call DoFrame
+	ld a, [wCurCardTypeFilter]
+	ld b, a
+	ld a, [wTempCardTypeFilter]
+	cp b
+	jr z, .asm_a7ca
+	ld [wCurCardTypeFilter], a
+	ld hl, wScrollMenuScrollOffset
+	ld [hl], $00
+	call PrintFilteredCardSelectionList
+	ld hl, hffbb
+	ld [hl], $01
+	call PrintPlayersCardsText
+	ld hl, hffbb
+	ld [hl], $00
+	ld a, $09
+	ld [wNumMenuItems], a
+.asm_a7ca
+	ldh a, [hDPadHeld]
+	and $80
+	jr z, .asm_a7d5
+	call ConfirmSelectionAndReturnCarry
+	jr .asm_a7e2
+.asm_a7d5
+	call HandleCardSelectionInput
+	jr nc, .asm_a7a0
+	ld a, [hCurMenuItem]
+	cp $ff
+	jr nz, .asm_a7e2
+	ret
+.asm_a7e2
+	ld a, [wNumEntriesInCurFilter]
+	or a
+	jr z, .asm_a7a0
+	xor a
+	ld hl, GeneralCardListMenuParams
+	call InitializeScrollMenuParameters
+	ld a, [wNumEntriesInCurFilter]
+	ld [wNumCardListEntries], a
+	ld hl, wNumVisibleCardListEntries
+	cp [hl]
+	jr nc, .asm_a7fe
+	ld [wNumMenuItems], a
+.asm_a7fe
+	ld hl, GeneralCardListUpdateFunc
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+	xor a
+	ld [wd119], a
+.asm_a80c
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and $40
+	jr z, .asm_a825
+	ld a, [wTempCardTypeFilter]
+	ld hl, wScrollMenuScrollOffset
+	add [hl]
+	jr nz, .asm_a825
+	ld a, $ff
+	ld [hCurMenuItem], a
+	jr .asm_a87e
+.asm_a825
+	call HandleSelectUpAndDownInList
+	jr c, .asm_a80c
+	call HandleScrollListInput
+	jr c, .asm_a87e
+	ldh a, [hDPadHeld]
+	and $08
+	jr z, .asm_a80c
+.asm_a835
+	ld a, $01
+	call PlayConfirmOrCancelSFX
+	ld a, [wNumMenuItems]
+	ld [wTempScrollMenuNumVisibleItems], a
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+	ld de, wTempCardList
+	ld hl, wCurCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call OpenCardPageFromCardList
+	call PrintPlayersCardsHeaderInfo
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	call DrawHorizontalListCursor_Visible
+	call PrintCardSelectionList
+	call EnableLCD
+	ld hl, GeneralCardListMenuParams
+	call InitializeScrollMenuParameters
+	ld a, [wTempScrollMenuNumVisibleItems]
+	ld [wNumMenuItems], a
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	jr .asm_a80c
+.asm_a87e
+	call DrawListCursor_Invisible
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+	ld a, [hCurMenuItem]
+	cp $ff
+	jr nz, .asm_a835
+	ld hl, FiltersCardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wCurCardTypeFilter]
+	ld [wTempCardTypeFilter], a
+	jp .asm_a7a0
 
 GeneralCardListMenuParams:
 	db 1 ; x pos
