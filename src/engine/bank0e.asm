@@ -6134,7 +6134,7 @@ Func_3b661:
 	ld de, wCurDeckCards
 	ld b, $80
 	call CopyBBytesFromHLToDE_Bank0e
-	farcall Func_9a0f
+	farcall CheckIfThereAreAnyBasicCardsInDeck
 	jr c, .asm_3b6c0
 	ldtx hl, CannotBuildLackingBasicPokemonText
 	call DrawWideTextBox_WaitForInput

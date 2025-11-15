@@ -1819,6 +1819,8 @@ wNamingScreenCursorBlinkCounter:: ; d0e3
 ; to check whether a new filter is to be applied
 wTempCardTypeFilter:: ; d0e4
 
+wCardListCursorPos:: ; d0e4
+
 wCurScrollMenuItem:: ; d0e4
 
 wNamingScreenCursorY:: ; d0e4

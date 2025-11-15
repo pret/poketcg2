@@ -595,7 +595,7 @@ DeckBuildingParams:
 	db DECK_SIZE
 	db MAX_NUM_SAME_NAME_CARDS
 	db TRUE ; whether to include deck cards
-	dw Func_9731 ; function
+	dw HandleDeckConfigurationMenu
 	dw DeckConfigurationMenu_TransitionTable
 
 DeckSelectionMenu:
@@ -1561,7 +1561,7 @@ HandleDeckBuildScreen:
 	ld [hffbf], a
 	call WriteCardListsTerminatorBytes
 	call CountNumberOfCardsForEachCardType
-.asm_95e0
+.skip_count
 	call DrawCardTypeIconsAndPrintCardCounts
 
 	xor a
@@ -1740,46 +1740,48 @@ OpenDeckConfigurationMenu:
 	ld l, a
 	jp hl
 
-Func_9731:
+HandleDeckConfigurationMenu:
 	call Func_98eb
-	ld de, $0
-	ld bc, $1406
+	lb de, 0, 0
+	lb bc, 20, 6
 	call DrawRegularTextBox
-	ld hl, $5b18
+	ld hl, DeckBuildMenuTextItems
 	call PlaceTextItems
-.asm_9743
+
+.do_frame
 	ld a, $01
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call HandleMultiDirectionalMenu
-	jr nc, .asm_9743
+	jr nc, .do_frame
 	ld [wde84], a
 	cp $ff
 	jr nz, .asm_9769
-.asm_9757
+.draw_icons
 	call DrawCardTypeIconsAndPrintCardCounts
 	ld a, [wTempCurMenuItem]
 	ld [wTempCardTypeFilter], a
 	ld a, [wCurCardTypeFilter]
 	call PrintFilteredCardList
 	jp HandleDeckBuildScreen.skip_draw
+
 .asm_9769
 	push af
 	call HandleMultiDirectionalMenu.DrawCursor
 	ld a, $01
 	ld [wVBlankOAMCopyToggle], a
 	pop af
-	ld hl, .Data_977b
+	ld hl, .function_table
 	call JumpToFunctionInTable
 	jr OpenDeckConfigurationMenu.skip_init
 
-.Data_977b:
+.function_table:
 	dw ConfirmDeckConfiguration
-	dw Func_97b9
-	dw Func_98a8
-	dw Func_97ce
-	dw Func_9827
-	dw Func_97bd
+	dw ModifyDeckConfiguration
+	dw ChangeDeckName
+	dw SaveDeckConfiguration
+	dw DismantleDeck
+	dw CancelDeckModifications
 
 ConfirmDeckConfiguration:
 	ld hl, wScrollMenuScrollOffset
@@ -1803,85 +1805,94 @@ ConfirmDeckConfiguration:
 	ld [wTempCardTypeFilter], a
 	ret
 
-Func_97b9:
+ModifyDeckConfiguration:
 	add sp, $02
-	jr Func_9731.asm_9757
+	jr HandleDeckConfigurationMenu.draw_icons
 
-Func_97bd:
-	call Func_9965
-	jr nc, .asm_97ca
-	ld hl, $2a6
+; returns carry set if player chose to go back
+CancelDeckModifications:
+; if deck was not changed, cancel modification immediately
+	call CheckIfCurrentDeckWasChanged
+	jr nc, .cancel_modification
+	ldtx hl, DeckBuildingQuitPromptText
 	call YesOrNoMenuWithText
-	jr c, Func_97ce.asm_9809
-.asm_97ca
+	jr c, SaveDeckConfiguration.go_back
+.cancel_modification
 	add sp, $02
 	or a
 	ret
 
-Func_97ce:
+SaveDeckConfiguration:
+; handle deck configuration size
 	ld a, [wTotalCardCount]
-	cp $3c
-	jp z, .asm_97f0
-	ld hl, $2a2
+	cp DECK_SIZE
+	jp z, .ask_to_save_deck
+	ldtx hl, DeckBuildingWarningNot60CardsText
 	call DrawWideTextBox_WaitForInput
-	ld hl, $2a4
+	ldtx hl, DeckBuildingRevertPromptText
 	call YesOrNoMenuWithText
-	jr c, .asm_97e8
+	jr c, .print_deck_size_warning
+; return no carry
 	add sp, $02
 	or a
 	ret
-.asm_97e8
-	ld hl, $2a3
+
+.print_deck_size_warning
+	ldtx hl, DeckBuildingWarningMustInclude60CardsText
 	call DrawWideTextBox_WaitForInput
-	jr .asm_9809
-.asm_97f0
-	ld hl, $2a5
+	jr .go_back
+
+.ask_to_save_deck
+	ldtx hl, DeckBuildingSavePromptText
 	call YesOrNoMenuWithText
-	jr c, .asm_9809
-	call Func_9a0f
-	jr c, .asm_9816
-	ld hl, $2a0
+	jr c, .go_back
+	call CheckIfThereAreAnyBasicCardsInDeck
+	jr c, .ask_to_save_to_deck_machine
+	ldtx hl, DeckBuildingWarningNoBasicPokemonText
 	call DrawWideTextBox_WaitForInput
-	ld hl, $2a1
+	ldtx hl, DeckBuildingWarningMustIncludeBasicPokemonText
 	call DrawWideTextBox_WaitForInput
-.asm_9809
+
+.go_back
 	call DrawCardTypeIconsAndPrintCardCounts
 	call PrintDeckBuildingCardList
 	ld a, [wde84]
-	ld [wTempCardTypeFilter], a
+	ld [wCardListCursorPos], a
 	ret
-.asm_9816
-	ld hl, $2a8
+
+.ask_to_save_to_deck_machine
+	ldtx hl, DeckBuildingSaveToMachinePromptText
 	call YesOrNoMenuWithText
-	jr c, .asm_9823
+	jr c, .set_carry
 	ld a, $01
 	ld [hffbf], a
-.asm_9823
+
+.set_carry
 	add sp, $02
 	scf
 	ret
 
-Func_9827:
-	ld hl, $2a7
+DismantleDeck:
+	ldtx hl, DeckBuildingDismantlePromptText
 	call YesOrNoMenuWithText
-	jr c, Func_97ce.asm_9809
-	call Func_99ed
-	jp nc, Func_985a
-	ld hl, $29f
+	jr c, SaveDeckConfiguration.go_back
+	call CheckIfHasOtherValidDecks
+	jp nc, .Dismantle
+	ldtx hl, DeckBuildingWarningTheOnlyDeckNotDismantleableText
 	call DrawWideTextBox_WaitForInput
 	call EmptyScreen
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wCurCardTypeFilter]
-	ld [wTempCardTypeFilter], a
+	ld [wCardListCursorPos], a
 	call DrawHorizontalListCursor_Visible
 	call PrintDeckBuildingCardList
 	call EnableLCD
 	ld a, [wde84]
-	ld [wTempCardTypeFilter], a
+	ld [wCardListCursorPos], a
 	ret
 
-Func_985a:
+.Dismantle
 	call EnableSRAM
 	call GetSRAMPointerToCurDeck
 	ld a, [hl]
@@ -1893,17 +1904,18 @@ Func_985a:
 	pop hl
 	ld a, $60
 	call ClearNBytesFromHL
+
 .asm_9871
-	ld hl, $2a9
+	ldtx hl, DeckBuildingRevertAndSaveToMachinePromptText
 	call YesOrNoMenuWithText
 	jr c, .asm_989d
 	ld a, [wCurDeckName]
 	or a
 	jr z, .asm_98a0
 	ld a, [wTotalCardCount]
-	cp $3c
+	cp DECK_SIZE
 	jp nz, .asm_98a0
-	call Func_9a0f
+	call CheckIfThereAreAnyBasicCardsInDeck
 	jr nc, .asm_98a0
 	ld hl, wCurDeckName
 	ld de, wCurDeckCards
@@ -1914,19 +1926,20 @@ Func_985a:
 	add sp, $02
 	ret
 .asm_98a0
-	ld hl, $2aa
+	ldtx hl, DeckBuildingWarningIncompleteCannotSaveToMachineText
 	call DrawWideTextBox_WaitForInput
 	jr .asm_989d
 
-Func_98a8:
+ChangeDeckName:
 	call InputCurDeckName
 	add sp, $02
-	jp HandleDeckBuildScreen.asm_95e0
+	jp HandleDeckBuildScreen.skip_count
 
+; de - coordinates
 Func_98b0:
 	push de
 	push hl
-	ld hl, $58e8
+	ld hl, .Data_98e8
 	ld de, wDefaultText
 	call CopyListFromHLToDE
 	pop hl
@@ -1938,7 +1951,7 @@ Func_98b0:
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, $58df
+	ld hl, .DeckNameSuffix
 	call CopyListFromHLToDE
 	pop de
 	ld hl, wDefaultText
@@ -1946,32 +1959,40 @@ Func_98b0:
 	call ProcessText
 	or a
 	ret
-; 0x98df
 
-SECTION "Bank 2@58eb", ROMX[$58eb], BANK[$2]
+.DeckNameSuffix
+	katakana "デ"
+	katakana "ッ"
+	katakana "キ"
+	katakana " "
+	done
+
+.Data_98e8:
+	katakana " "
+	done
 
 Func_98eb:
-	ld de, $6
-	ld bc, $140c
+	lb de, 0, 6
+	lb bc, 20, 12
 	call DrawRegularTextBox
 	ld hl, wCurDeckName
 	ld a, [hl]
 	or a
 	jr z, .asm_9910
-	ld de, $106
+	lb de, 1, 6
 	call Func_98b0
 	ld hl, wCurDeckName
 	call GetTextLengthInTiles
-	ld a, $05
+	ld a, 5
 	add b
-	ld de, $106
+	lb de, 1, 6
 	call ZeroAttributesAtDE
 .asm_9910
 	ld hl, wCurDeckCards
 	farcall CheckDeck.asm_25461
-	ld de, $208
+	lb de, 2, 8
 	call InitTextPrinting
-	ld hl, $537
+	ldtx hl, DeckDiagnosisBreakdownText
 	call ProcessTextFromID
 	ld a, [wDeckCheckEnergyCount]
 	ld de, $f08
@@ -1983,7 +2004,7 @@ Func_98eb:
 	ld de, $f0c
 	call Func_9951
 	ld a, [wDeckCheckStage2Count]
-	ld de, $0f0e
+	ld de, $f0e
 	call Func_9951
 	ld a, [wDeckCheckTrainerCount]
 	ld de, $f10
@@ -2001,13 +2022,16 @@ Func_9951:
 	call ProcessText
 	ret
 
-Func_9965:
+; returns carry if current deck was changed
+; either through its card configuration or its name
+CheckIfCurrentDeckWasChanged:
 	ld a, [wTotalCardCount]
 	or a
-	jr z, .asm_996f
-	cp $3c
-	jr nz, .asm_99e8
-.asm_996f
+	jr z, .skip_size_check
+	cp DECK_SIZE
+	jr nz, .set_carry
+
+.skip_size_check
 	call GetSRAMPointerToCurDeckCards
 	ld d, h
 	ld e, l
@@ -2063,75 +2087,83 @@ Func_9965:
 	cp16 $ffff
 	jr z, .asm_99d2
 	call CheckIfCardIDIsZero
-	jr nc, .asm_99e8
+	jr nc, .set_carry
 	or a
-	jr nz, .asm_99e8
+	jr nz, .set_carry
 	jr .asm_99ba
 .asm_99d2
 	call GetSRAMPointerToCurDeck
 	ld de, wCurDeckName
 	call EnableSRAM
-.asm_99db
+.loop_name
 	ld a, [de]
 	cp [hl]
-	jr nz, .asm_99e8
+	jr nz, .set_carry
 	inc de
 	inc hl
 	or a
-	jr nz, .asm_99db
+	jr nz, .loop_name
 	call DisableSRAM
 	ret
-.asm_99e8
+.set_carry
 	call DisableSRAM
 	scf
 	ret
 
-Func_99ed:
+; returns carry if doesn't have a valid deck
+; aside from the current deck
+CheckIfHasOtherValidDecks:
 	ld hl, wDecksValid
-	ld bc, $0
-.asm_99f3
+	lb bc, 0, 0
+.loop
 	inc b
-	ld a, $04
+	ld a, NUM_DECKS
 	cp b
-	jr c, .asm_9a05
+	jr c, .check_has_cards
 	ld a, [hli]
 	or a
-	jr z, .asm_99f3
+	jr z, .loop
+	; is valid
 	inc c
-	ld a, $01
+	ld a, 1
 	cp c
-	jr nc, .asm_99f3
-.asm_9a03
+	jr nc, .loop; just 1 valid
+	; at least 2 decks are valid
+.no_carry
 	or a
 	ret
-.asm_9a05
+
+.check_has_cards
+; doesn't have at least 2 valid decks
+; check if current deck is the only one
+; that is valid (i.e. has cards)
 	call GetSRAMPointerToCurDeckCards
 	call CheckIfDeckHasCards
-	jr c, .asm_9a03
+	jr c, .no_carry ; no cards
+	; has cards, is the only valid deck!
 	scf
 	ret
-; 0x9a0f
 
-Func_9a0f:
+CheckIfThereAreAnyBasicCardsInDeck:
 	ld hl, wCurDeckCards
-.asm_9a12
+.loop_cards
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
 	call CheckIfCardIDIsZero
-	jr c, .asm_9a2f
+	jr c, .no_carry
 	call LoadCardDataToBuffer1_FromCardID
-	jr c, .asm_9a2f
+	jr c, .no_carry
 	ld a, [wLoadedCard1Type]
 	and TYPE_ENERGY
-	jr nz, .asm_9a12
+	jr nz, .loop_cards
 	ld a, [wLoadedCard1Stage]
 	or a
-	jr nz, .asm_9a12
+	jr nz, .loop_cards
 	scf
 	ret
-.asm_9a2f
+.no_carry
 	or a
 	ret
 
@@ -2270,9 +2302,15 @@ DrawCardTypeIcons:
 	db ICON_TILE_TRAINER,   15, 2
 	db ICON_TILE_ENERGY,    17, 2
 	db $00
-; 0x9b18
 
-SECTION "Bank 2@5b31", ROMX[$5b31], BANK[$2]
+DeckBuildMenuTextItems:
+	textitem  2, 2, DeckBuildingConfirmText
+	textitem  9, 2, DeckBuildingContinueModifyingText
+	textitem 16, 2, DeckBuildingNameText
+	textitem  2, 4, DeckBuildingSaveText
+	textitem  9, 4, DeckBuildingDismantleText
+	textitem 16, 4, CancelDeckText
+	db $ff
 
 ; prints "/60" to the coordinates given in de
 PrintSlashSixty:
