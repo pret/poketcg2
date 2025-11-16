@@ -3261,48 +3261,72 @@ wdd2e:: ; dd2e
 wdd2f:: ; dd2f
 	ds $1
 
-	ds $6
-
-wdd36:: ; dd36
+; id of the mail item being read
+wMailId:: ; dd30
 	ds $1
 
-wdd37:: ; dd37
-	ds wDD37_BUFFER_SIZE
-
-wdd50:: ; dd50
+; 0 - mailbox full, 1 - new mail, 2 - no new mail
+wMailboxStatus:: ; dd31
 	ds $1
 
-wdd51:: ; dd51
+; text offset of the sender line. displayed when reading a mail
+wMailSenderText:: ; dd32
+	ds $2
+
+; text offset of the subject line. displayed when reading a mail
+wMailSubjectText:: ; dd34
+	ds $2
+
+; number of minicom mail queued to be delivered. mail is delivered when changing OW locations
+wNumMailInQueue:: ; dd36
+	ds $1
+
+; list of mail items queued to be delivered
+wMailQueue:: ; dd37
+	ds wMAIL_QUEUE_BUFFER_SIZE
+
+; total number of mail in your mailbox
+wMailCount:: ; dd50
+	ds $1
+
+; list of mail items in the player's mailbox. holds up to 8 mail.
+; Each byte is the id of a mail item.
+; When mail is read, $80 is added to the id
+wMailList:: ; dd51
 	ds $9
 
-wdd5a:: ; dd5a
+; $ff when the player has new mail. set to 0 when opening mincom mail menu. affects the mailbox animation
+wNewMail:: ; dd5a
 	ds $1
 
-wdd5b:: ; dd5b
+; copied from wNumMailInQueue when visiting world map.
+; cleared after viewing the mailbox screen once.
+; used to show the "mailbox full" graphic
+wTempNumMailInQueue:: ; dd5b
 	ds $1
 
-wdd5c:: ; dd5c
+; which page of mail you are viewing. 0 or 1
+wMailboxPage:: ; dd5c
 	ds $1
 
-wdd5d:: ; dd5d
+; the mail you have selected to read/delete
+wSelectedMailCursorPosition:: ; dd5d
 	ds $1
 
-wdd5e:: ; dd5e
+; 0 - read mail, 1 - delete mail, 2 - quit
+wMailOptionSelected:: ; dd5e
 	ds $1
 
-wdd5f:: ; dd5f
-	ds $1
+; card offset. the card mailed to you after using the Game Center black box
+wBlackBoxCardReceived:: ; dd5f
+	ds $2
 
-wdd60:: ; dd60
-	ds $1
-
+; TODO: are these also black box cards?
 	ds $12
 
-wdd73:: ; dd73
-	ds $1
-
-wdd74:: ; dd74
-	ds $1
+; card offset. the card mailed to you after using the Game Center Bill's PC
+wBillsPCCardReceived:: ; dd73
+	ds $2
 
 wdd75:: ; dd75
 	ds $1

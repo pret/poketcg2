@@ -2023,7 +2023,7 @@ Func_456de:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld c, $03
 .asm_45734
 	ld a, e
@@ -2057,7 +2057,7 @@ Func_456de:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld c, $05
 .asm_4576b
 	ld a, e
@@ -2080,7 +2080,7 @@ Func_456de:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -2107,7 +2107,7 @@ Func_456de:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -2137,7 +2137,7 @@ Func_456de:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld a, e
 	ld [hli], a
 	ld a, d
@@ -2215,7 +2215,7 @@ Func_457ea:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 .asm_45858
 	ld a, e
 	ld [hli], a
@@ -2234,7 +2234,7 @@ Func_457ea:
 
 Func_45868:
 	xor a
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld [hli], a
 	ld [hl], a
 	ld hl, BlackboxPromoCards
@@ -2262,7 +2262,7 @@ Func_45868:
 	ld a, [hld]
 	ld d, a
 	push hl
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	ld hl, wCurDeckCards
 	call Func_443bd
@@ -2287,7 +2287,7 @@ Func_45868:
 	or e
 	jr z, .asm_458be
 	push hl
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
 	jr .asm_458ad
@@ -2296,7 +2296,7 @@ Func_45868:
 
 Func_458bf:
 	xor a
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld [hli], a
 	ld [hl], a
 	ld hl, wCurDeckCards
@@ -2319,7 +2319,7 @@ Func_458bf:
 	jr c, .asm_458c8
 .asm_458e7
 	push hl
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
 	jr .asm_458c8
@@ -2387,7 +2387,7 @@ Func_458bf:
 	cp $02
 	jp nc, .asm_4593a
 	push hl
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
 	jr .asm_4593a
@@ -2496,7 +2496,7 @@ Func_458bf:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	dec c
 	jr nz, .asm_459f7
@@ -2534,7 +2534,7 @@ Func_458bf:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	dec c
 	jr nz, .asm_45a3c
@@ -2572,7 +2572,7 @@ Func_458bf:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	dec c
 	jr nz, .asm_45a81
@@ -2580,7 +2580,7 @@ Func_458bf:
 	ret
 .asm_45a9c
 	call Func_45bc3
-	ld hl, wdd5f
+	ld hl, wBlackBoxCardReceived
 	ld de, $a
 	call AppendCardToListInHL
 	jr .asm_45a9b
@@ -2757,7 +2757,7 @@ Func_45bc3:
 	push de
 	push hl
 	ld hl, wCurDeckCards
-	ld de, wdd5f
+	ld de, wBlackBoxCardReceived
 	ld bc, $c
 	call CopyDataHLtoDE_SaveRegisters
 	pop hl

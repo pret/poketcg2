@@ -6342,7 +6342,7 @@ Func_131eb:
 	ret
 
 Func_131fd:
-	farcall Func_1f324
+	farcall CheckForBlackBoxCardInMail
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableLastOutputRemainingText
 	call PrintScrollableText_NoTextBoxLabelVRAM0

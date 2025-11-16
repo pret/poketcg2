@@ -4433,7 +4433,7 @@ Func_a786:
 	ld [wNumMenuItems], a
 .asm_a7ca
 	ldh a, [hDPadHeld]
-	and $80
+	and PAD_DOWN
 	jr z, .asm_a7d5
 	call ConfirmSelectionAndReturnCarry
 	jr .asm_a7e2
@@ -4469,7 +4469,7 @@ Func_a786:
 .asm_a80c
 	call DoFrame
 	ldh a, [hDPadHeld]
-	and $40
+	and PAD_UP
 	jr z, .asm_a825
 	ld a, [wTempCardTypeFilter]
 	ld hl, wScrollMenuScrollOffset
@@ -4484,10 +4484,10 @@ Func_a786:
 	call HandleScrollListInput
 	jr c, .asm_a87e
 	ldh a, [hDPadHeld]
-	and $08
+	and PAD_START
 	jr z, .asm_a80c
 .asm_a835
-	ld a, $01
+	ld a, MENU_CONFIRM
 	call PlayConfirmOrCancelSFX
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a

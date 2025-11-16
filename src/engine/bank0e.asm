@@ -4857,7 +4857,7 @@ Func_3ada1:
 	inc hl
 	ld [hl], d
 	call ClearScreenAndDrawDeckMachineScreen
-	ld a, $32
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
 	ld [wNumDeckMachineEntries], a
 	xor a
 .asm_3adb7

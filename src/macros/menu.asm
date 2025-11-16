@@ -27,7 +27,7 @@ ENDM
 	\10 ; has horizontal scroll     - TRUE or FALSE
 	\11 ; vertical step             - int
 	\12 ; update function           - function ptr or NULL
-	\13 ; label text ID             - text ptr
+	\13 ; label text ID             - text ptr or NULL
 
 15 bytes. Used by LoadMenuBoxParams.
 Usually followed by a list of textitem macros, then $ff

@@ -4856,7 +4856,7 @@ Func_2612a:
 	ldtx hl, GameCenterBillsPCStartPromptText
 	call YesOrNoMenuWithText
 	ret c
-	farcall Func_1f333
+	farcall CheckForBillsPCCardInMail
 	ldtx hl, GameCenterBillsPCUnableLastOutputRemainingText
 	jr c, .asm_2619a
 	farcall GetGameCenterChips
