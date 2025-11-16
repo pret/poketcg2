@@ -7128,9 +7128,8 @@ GetSelectedMailPosition:
 	add b
 	pop bc
 	ret
-; 0x1f34f
 
-SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
+INCLUDE "data/mail.asm"
 
 Func_1f57b::
 	push af
