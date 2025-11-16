@@ -3321,7 +3321,7 @@ wMailOptionSelected:: ; dd5e
 wBlackBoxCardReceived:: ; dd5f
 	ds $2
 
-; TODO: are these also black box cards?
+; TODO: how many of these are these also black box cards?
 	ds $12
 
 ; card offset. the card mailed to you after using the Game Center Bill's PC

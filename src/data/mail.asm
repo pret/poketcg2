@@ -1,337 +1,345 @@
-Data_1f34f:
-	db $89, $73
-	db $8f, $73
-	db $9d, $73
-	db $ab, $73
-	db $bd, $73
-	db $d3, $73
-	db $e9, $73
-	db $fb, $73
-	db $09, $74
-	db $1b, $74
-	db $29, $74
-	db $3b, $74
-	db $4d, $74
-	db $5f, $74
-	db $6d, $74
-	db $7f, $74
-	db $8d, $74
-	db $9b, $74
-	db $a9, $74
-	db $b7, $74
-	db $c5, $74
-	db $db, $74
-	db $ed, $74
-	db $ff, $74
-	db $11, $75
-	db $23, $75
-	db $3d, $75
-	db $53, $75
-	db $6d, $75
+MACRO end_mail
+	dw MAIL_TERMINATOR
+ENDM
 
-Data_1f389:
+MACRO no_card
+	dw $0000
+ENDM
+
+Mail:
+	dw .MailEmpty
+	dw .MailBlackBox
+	dw .MailBillsPCOutput
+	dw .MailMailboxIntro
+	dw .MailDeckDiagnosis1
+	dw .MailDeckDiagnosis2
+	dw .MailDeckDiagnosis3
+	dw .MailDeckDiagnosis4
+	dw .MailAutoDeckMachine1
+	dw .MailAutoDeckMachine2
+	dw .MailAutoDeckMachine3
+	dw .MailAutoDeckMachine4
+	dw .MailAutoDeckMachine5
+	dw .MailChallengeMachine
+	dw .MailGRChallengeMachine
+	dw .MailGrandMasterCup
+	dw .MailRonaldsScoutGR1
+	dw .MailRonaldsScoutGR2
+	dw .MailRonaldsScoutGR3
+	dw .MailRonaldsScoutGR4
+	dw .MailRonaldsScoutMorino
+	dw .MailRonaldsScoutCatherine
+	dw .MailRonaldsScoutHidero
+	dw .MailRonaldsScoutKanoko
+	dw .MailRonaldsScoutKamiya
+	dw .MailRonaldsScoutMami
+	dw .MailRonaldsScoutColorlessAltar
+	dw .MailRonaldsScoutBiruritchi
+	dw .MailLinkDuel
+
+.MailEmpty
 	tx MailboxEmptySenderText
 	tx MailboxEmptySubjectText
-	db $ff, $ff
+	end_mail
 
-Data_1f38f:
+.MailBlackBox
 	tx MailBlackBoxOutputSenderText
 	tx MailBlackBoxOutputSubjectText
 	tx MailBlackBoxOutputBody1Text
-	db $00, $20
+	db $00, MAIL_COMMAND_GIVE_BLACK_BOX
 	tx MailBlackBoxOutputBody2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f39d:
+.MailBillsPCOutput
 	tx MailBillsPCOutputSenderText
 	tx MailBillsPCOutputSubjectText
 	tx MailBillsPCOutputBody1Text
-	db $00, $10
+	db $00, MAIL_COMMAND_GIVE_BILLS_PC
 	tx MailBillsPCOutputBody2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f3ab:
+.MailMailboxIntro
 	tx MailMailboxIntroSenderText
 	tx MailMailboxIntroSubjectText
 	tx MailMailboxIntroBody1Text
-	db $00, $00
+	no_card
 	tx MailMailboxIntroBody2Text
-	db $00, $00
+	no_card
 	tx MailMailboxIntroBody3Text
-	db $08, $80
-	db $ff, $ff
+	db BOOSTER_PRESENT_PACK_1, MAIL_COMMAND_GIVE_BOOSTER
+	end_mail
 
-Data_1f3bd:
+.MailDeckDiagnosis1
 	tx MailDeckDiagnosis1SenderText
 	tx MailDeckDiagnosis1SubjectText
 	tx MailDeckDiagnosis1Body1Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis1Body2Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis1Body3Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis1Body4Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f3d3:
+.MailDeckDiagnosis2
 	tx MailDeckDiagnosis2SenderText
 	tx MailDeckDiagnosis2SubjectText
 	tx MailDeckDiagnosis2Body1Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis2Body2Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis2Body3Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis2Body4Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f3e9:
+.MailDeckDiagnosis3
 	tx MailDeckDiagnosis3SenderText
 	tx MailDeckDiagnosis3SubjectText
 	tx MailDeckDiagnosis3Body1Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis3Body2Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis3Body3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f3fb:
+.MailDeckDiagnosis4
 	tx MailDeckDiagnosis4SenderText
 	tx MailDeckDiagnosis4SubjectText
 	tx MailDeckDiagnosis4Body1Text
-	db $00, $00
+	no_card
 	tx MailDeckDiagnosis4Body2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f409:
+.MailAutoDeckMachine1
 	tx MailAutoDeckMachine1SenderText
 	tx MailAutoDeckMachine1SubjectText
 	tx MailAutoDeckMachine1Body1Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine1Body2Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine1Body3Text
-	db $00, $80
-	db $ff, $ff
+	db BOOSTER_BEGINNING_POKEMON, MAIL_COMMAND_GIVE_BOOSTER
+	end_mail
 
-Data_1f41b:
+.MailAutoDeckMachine2
 	tx MailAutoDeckMachine2SenderText
 	tx MailAutoDeckMachine2SubjectText
 	tx MailAutoDeckMachine2Body1Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine2Body2Text
-	db $01, $80
-	db $ff, $ff
+	db BOOSTER_LEGENDARY_POWER, MAIL_COMMAND_GIVE_BOOSTER
+	end_mail
 
-Data_1f429:
+.MailAutoDeckMachine3
 	tx MailAutoDeckMachine3SenderText
 	tx MailAutoDeckMachine3SubjectText
 	tx MailAutoDeckMachine3Body1Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine3Body2Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine3Body3Text
-	db $02, $80
-	db $ff, $ff
+	db BOOSTER_ISLAND_OF_FOSSIL, MAIL_COMMAND_GIVE_BOOSTER
+	end_mail
 
-Data_1f43b:
+.MailAutoDeckMachine4
 	tx MailAutoDeckMachine4SenderText
 	tx MailAutoDeckMachine4SubjectText
 	tx MailAutoDeckMachine4Body1Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine4Body2Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine4Body3Text
-	db $04, $80
-	db $ff, $ff
+	db BOOSTER_SKY_FLYING_POKEMON, MAIL_COMMAND_GIVE_BOOSTER
+	end_mail
 
-Data_1f44d:
+.MailAutoDeckMachine5
 	tx MailAutoDeckMachine5SenderText
 	tx MailAutoDeckMachine5SubjectText
 	tx MailAutoDeckMachine5Body1Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine5Body2Text
-	db $00, $00
+	no_card
 	tx MailAutoDeckMachine5Body3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f45f:
+.MailChallengeMachine
 	tx MailChallengeMachineSenderText
 	tx MailChallengeMachineSubjectText
 	tx MailChallengeMachineBody1Text
-	db $00, $00
+	no_card
 	tx MailChallengeMachineBody2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f46d:
+.MailGRChallengeMachine
 	tx MailGRChallengeMachineSenderText
 	tx MailGRChallengeMachineSubjectText
 	tx MailGRChallengeMachineBody1Text
-	db $00, $00
+	no_card
 	tx MailGRChallengeMachineBody2Text
-	db $00, $00
+	no_card
 	tx MailGRChallengeMachineBody3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f47f:
+.MailGrandMasterCup
 	tx MailGrandMasterCupSenderText
 	tx MailGrandMasterCupSubjectText
 	tx MailGrandMasterCupBody1Text
-	db $00, $00
+	no_card
 	tx MailGrandMasterCupBody2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f48d:
+.MailRonaldsScoutGR1
 	tx MailRonaldsScoutGR1SenderText
 	tx MailRonaldsScoutGR1SubjectText
 	tx MailRonaldsScoutGR1Body1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutGR1Body2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f49b:
+.MailRonaldsScoutGR2
 	tx MailRonaldsScoutGR2SenderText
 	tx MailRonaldsScoutGR2SubjectText
 	tx MailRonaldsScoutGR2Body1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutGR2Body2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4a9:
+.MailRonaldsScoutGR3
 	tx MailRonaldsScoutGR3SenderText
 	tx MailRonaldsScoutGR3SubjectText
 	tx MailRonaldsScoutGR3Body1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutGR3Body2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4b7:
+.MailRonaldsScoutGR4
 	tx MailRonaldsScoutGR4SenderText
 	tx MailRonaldsScoutGR4SubjectText
 	tx MailRonaldsScoutGR4Body1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutGR4Body2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4c5:
+.MailRonaldsScoutMorino
 	tx MailRonaldsScoutMorinoSenderText
 	tx MailRonaldsScoutMorinoSubjectText
 	tx MailRonaldsScoutMorinoBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMorinoBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMorinoBody3Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMorinoBody4Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4db:
+.MailRonaldsScoutCatherine
 	tx MailRonaldsScoutCatherineSenderText
 	tx MailRonaldsScoutCatherineSubjectText
 	tx MailRonaldsScoutCatherineBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutCatherineBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutCatherineBody3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4ed:
+.MailRonaldsScoutHidero
 	tx MailRonaldsScoutHideroSenderText
 	tx MailRonaldsScoutHideroSubjectText
 	tx MailRonaldsScoutHideroBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutHideroBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutHideroBody3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f4ff:
+.MailRonaldsScoutKanoko
 	tx MailRonaldsScoutKanokoSenderText
 	tx MailRonaldsScoutKanokoSubjectText
 	tx MailRonaldsScoutKanokoBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutKanokoBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutKanokoBody3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f511:
+.MailRonaldsScoutKamiya
 	tx MailRonaldsScoutKamiyaSenderText
 	tx MailRonaldsScoutKamiyaSubjectText
 	tx MailRonaldsScoutKamiyaBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutKamiyaBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutKamiyaBody3Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f523:
+.MailRonaldsScoutMami
 	tx MailRonaldsScoutMamiSenderText
 	tx MailRonaldsScoutMamiSubjectText
 	tx MailRonaldsScoutMamiBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMamiBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMamiBody3Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMamiBody4Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutMamiBody5Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f53d:
+.MailRonaldsScoutColorlessAltar
 	tx MailRonaldsScoutColorlessAltarSenderText
 	tx MailRonaldsScoutColorlessAltarSubjectText
 	tx MailRonaldsScoutColorlessAltarBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutColorlessAltarBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutColorlessAltarBody3Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutColorlessAltarBody4Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f553:
+.MailRonaldsScoutBiruritchi
 	tx MailRonaldsScoutBiruritchiSenderText
 	tx MailRonaldsScoutBiruritchiSubjectText
 	tx MailRonaldsScoutBiruritchiBody1Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutBiruritchiBody2Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutBiruritchiBody3Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutBiruritchiBody4Text
-	db $00, $00
+	no_card
 	tx MailRonaldsScoutBiruritchiBody5Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail
 
-Data_1f56d:
+.MailLinkDuel
 	tx MailLinkDuelSenderText
 	tx MailLinkDuelSubjectText
 	tx MailLinkDuelBody1Text
-	db $00, $00
+	no_card
 	tx MailLinkDuelBody2Text
-	db $00, $00
-	db $ff, $ff
+	no_card
+	end_mail

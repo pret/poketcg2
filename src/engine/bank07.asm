@@ -6578,7 +6578,7 @@ _ReadMail:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $734f ; TODO: data table of all mail
+	ld hl, Mail
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -6594,7 +6594,7 @@ _ReadMail:
 	ld [wMailSubjectText + 1], a
 	call PrintMailSubject
 .read_mail_loop
-	; mail is terminated with $ffff
+	; mail is terminated with MAIL_TERMINATOR ($ffff)
 	ld a, [hl]
 	cp $ff
 	jr nz, .print_body
@@ -6609,7 +6609,7 @@ _ReadMail:
 	call WaitForWideTextBoxInput
 	pop hl
 .asm_1f074
-	call ProcessMailCommand
+	call GiveCardsAttachedToMailPage
 	jr .read_mail_loop
 .done
 	ret
@@ -6668,53 +6668,62 @@ PrintMailBodyPage:
 	inc hl
 	ret
 
-; processes a mail command at hl that is not just body text (e.g. giving booster packs or cards)
-ProcessMailCommand:
+; give the card(s) attached to the current page of mail, if present
+GiveCardsAttachedToMailPage:
 	push hl
 	ld a, [wMailId]
 	bit B_MAIL_READ, a
 	; don't give out a card again if this mail has already been read
 	jr nz, .done
+
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
 	or b
 	jr z, .done
-	bit 7, b
-	jr nz, .asm_1f0e5
-	bit 6, b
-	jr nz, .asm_1f0f6
-	bit 5, b
-	jr nz, .asm_1f103
-	bit 4, b
-	jr nz, .asm_1f11b
+	bit B_MAIL_BOOSTER_PACK, b
+	jr nz, .give_booster
+	bit B_MAIL_GENERIC_CARD, b
+	jr nz, .give_generic_card
+	bit B_MAIL_BLACK_BOX, b
+	jr nz, .give_blackbox_cards
+	bit B_MAIL_BILLS_PC, b
+	jr nz, .give_billspc_card
+
 .done
 	pop hl
 	inc hl
 	inc hl
 	ret
-.asm_1f0e5
+
+; gives the booster pack specified in the first byte of the command
+.give_booster
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ld a, c
 	ld b, $00
 	call GiveBoosterPacks
-	call .asm_1f140
+	call .redraw_mail_screen
 	jr .done
 
-.asm_1f0f6
+; gives a card specified in the first byte of the command.
+; this would effectively be a "hard-coded" card delivered with the mail.
+; appears to be unused in the real game mail data
+.give_generic_card
 	ld a, b
-	and $3f
+	and %00111111
 	ld d, a
 	ld e, c
-	call .asm_1f12d
-	call .asm_1f140
+	call .give_card
+	call .redraw_mail_screen
 	jr .done
 
-.asm_1f103
+; gives the cards attached to black box mail, found at [wBlackBoxCardReceived]
+; clears out the cards by setting to $0000 as it gives them
+.give_blackbox_cards
 	push hl
 	ld hl, wBlackBoxCardReceived
-.asm_1f107
+.blackbox_card_loop
 	xor a
 	ld e, [hl]
 	ld [hli], a
@@ -6722,15 +6731,16 @@ ProcessMailCommand:
 	ld [hli], a
 	ld a, d
 	or e
-	jr z, .asm_1f115
-	call .asm_1f12d
-	jr .asm_1f107
-.asm_1f115
+	jr z, .loop_done
+	call .give_card
+	jr .blackbox_card_loop
+.loop_done
 	pop hl
-	call .asm_1f140
+	call .redraw_mail_screen
 	jr .done
 
-.asm_1f11b
+; gives the cards attached to bill's PC mail, found at [wBillsPCCardReceived]
+.give_billspc_card
 	push hl
 	ld hl, wBillsPCCardReceived
 	xor a
@@ -6738,12 +6748,12 @@ ProcessMailCommand:
 	ld [hli], a
 	ld d, [hl]
 	ld [hli], a
-	call .asm_1f12d
+	call .give_card
 	pop hl
-	call .asm_1f140
+	call .redraw_mail_screen
 	jr .done
 
-.asm_1f12d
+.give_card
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	push hl
@@ -6753,7 +6763,7 @@ ProcessMailCommand:
 	pop hl
 	ret
 
-.asm_1f140
+.redraw_mail_screen
 	inc hl
 	ld a, [hli]
 	ld b, a
