@@ -3283,7 +3283,7 @@ wNumMailInQueue:: ; dd36
 
 ; list of mail items queued to be delivered
 wMailQueue:: ; dd37
-	ds wMAIL_QUEUE_BUFFER_SIZE
+	ds MAIL_QUEUE_BUFFER_SIZE
 
 ; total number of mail in your mailbox
 wMailCount:: ; dd50
@@ -3293,7 +3293,7 @@ wMailCount:: ; dd50
 ; Each byte is the id of a mail item.
 ; When mail is read, $80 is added to the id
 wMailList:: ; dd51
-	ds $9
+	ds MAIL_BUFFER_SIZE
 
 ; $ff when the player has new mail. set to 0 when opening mincom mail menu. affects the mailbox animation
 wNewMail:: ; dd5a
@@ -3317,12 +3317,9 @@ wSelectedMailCursorPosition:: ; dd5d
 wMailOptionSelected:: ; dd5e
 	ds $1
 
-; card offset. the card mailed to you after using the Game Center black box
+; card offsets. the cards mailed to you after using the Game Center black box
 wBlackBoxCardReceived:: ; dd5f
-	ds $2
-
-; TODO: how many of these are these also black box cards?
-	ds $12
+	ds BLACK_BOX_CARDS_BUFFER_SIZE
 
 ; card offset. the card mailed to you after using the Game Center Bill's PC
 wBillsPCCardReceived:: ; dd73

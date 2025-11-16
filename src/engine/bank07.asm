@@ -6176,11 +6176,11 @@ InitializeMailboxWRAM:
 	ld [wBillsPCCardReceived + 1], a
 	xor a
 	ld hl, wMailQueue
-	ld bc, wMAIL_QUEUE_BUFFER_SIZE
+	ld bc, MAIL_QUEUE_BUFFER_SIZE
 	call WriteBCBytesToHL
 	xor a
 	ld hl, wMailList
-	ld bc, $9
+	ld bc, MAIL_BUFFER_SIZE
 	call WriteBCBytesToHL
 	pop hl
 	pop de
@@ -6925,7 +6925,7 @@ DeleteGameCenterMailedCard:
 	ret
 
 ; input: a
-; set carry if [wNumMailInQueue] = wMAIL_QUEUE_BUFFER_SIZE - 1
+; set carry if [wNumMailInQueue] = MAIL_QUEUE_BUFFER_SIZE - 1
 ; else:
 ; - if bit 7 of a is 0, [wMailQueue + [wNumMailInQueue] ] = a
 ; - if bit 7 of a is 1,
@@ -6938,7 +6938,7 @@ Func_1f24e:
 	push hl
 	ld e, a
 	ld a, [wNumMailInQueue]
-	cp wMAIL_QUEUE_BUFFER_SIZE - 1
+	cp MAIL_QUEUE_BUFFER_SIZE - 1
 	jr z, .set_carry
 	bit 7, e
 	call z, .not_bit7
@@ -6972,7 +6972,7 @@ Func_1f24e:
 .has_bit7:
 	push af
 	ld hl, wMailQueue
-	ld c, wMAIL_QUEUE_BUFFER_SIZE - 1
+	ld c, MAIL_QUEUE_BUFFER_SIZE - 1
 .check_byte_loop
 	bit 7, [hl]
 	jr z, .shift_loop
