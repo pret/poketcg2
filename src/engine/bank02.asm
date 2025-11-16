@@ -838,7 +838,7 @@ InputCurDeckName:
 
 	ld [hl], TX_HIRAGANA
 	inc hl
-	ld [hl], $29 ; "の"
+	ldfw [hl], "の"
 	inc hl
 
 	push hl
