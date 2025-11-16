@@ -6294,7 +6294,7 @@ MinicomMailboxMainScreen:
 	call FlushAllPalettes
 	call EnableLCD
 .loop
-	call Func_1ede4
+	call MailboxMainScreen
 	call Func_1eef8
 	jr c, .done
 	call MailboxSelectedMail_LoadMenuBoxParams
@@ -6314,14 +6314,14 @@ MinicomMailboxMainScreen_DrawTextBoxes:
 	call DrawRegularTextBoxVRAM0
 	ret
 
-Func_1ede4:
+MailboxMainScreen:
 	push af
 	push bc
 	push de
 	push hl
 	lb de, 1, 5
-	ld b, BANK(Data_1eed8)
-	ld hl, Data_1eed8
+	ld b, BANK(MailboxMainScreenMenuBoxParams)
+	ld hl, MailboxMainScreenMenuBoxParams
 	call LoadMenuBoxParams
 	ld a, [wSelectedMailCursorPosition]
 	call DrawMenuBox
@@ -6346,22 +6346,22 @@ Func_1ede4:
 	ld b, $00
 	ld hl, wMailList
 	add hl, bc
-	ld de, $206
-	ld c, $04
-.asm_1ee2e
+	lb de, 2, 6
+	ld c, 4 ; number of mail items that can fit on screen
+.print_mail_loop
 	ld a, [hli]
 	and a
-	jr z, .asm_1ee38
-	call Func_1ee4a
+	jr z, .count_mail_items_on_screen
+	call PrintMailSenderAndSubjectToScreen
 	dec c
-	jr nz, .asm_1ee2e
-.asm_1ee38
-	ld a, $04
+	jr nz, .print_mail_loop
+.count_mail_items_on_screen
+	ld a, 4 ; number of mail items that can fit on screen
 	sub c
 	and a
-	jr nz, .asm_1ee3f
+	jr nz, .done
 	inc a
-.asm_1ee3f
+.done
 	call SetMenuBoxNumItems
 	call Func_1ee97
 	pop hl
@@ -6370,7 +6370,9 @@ Func_1ede4:
 	pop af
 	ret
 
-Func_1ee4a:
+; a - mail ID to print
+; de - coordinates passed to InitTextPrinting_ProcessTextFromIDVRAM0
+PrintMailSenderAndSubjectToScreen:
 	push bc
 	push hl
 	ldtx hl, MailboxSenderText
@@ -6380,15 +6382,15 @@ Func_1ee4a:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	and a
 	jr z, .asm_1ee68
-	bit 7, a
+	bit B_MAIL_READ, a
 	jr nz, .asm_1ee68
 	dec d
 	ldtx hl, MailboxUnreadSymbolText
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc d
 .asm_1ee68
-	ld hl, $734f
-	and $7f
+	ld hl, Mail
+	and %01111111 ; drop bit 7 (B_MAIL_READ)
 	ld c, a
 	ld b, $00
 	sla c
@@ -6401,11 +6403,14 @@ Func_1ee4a:
 	add $05
 	ld d, a
 	dec e
+
 	push hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; sender
 	call InitTextPrinting_ProcessTextFromIDVRAM0
+
 	pop hl
 	inc hl
 	inc hl
@@ -6413,6 +6418,7 @@ Func_1ee4a:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
+	; subject
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	inc e
 	inc e
@@ -6454,10 +6460,11 @@ Func_1ee97:
 	call Func_383b
 	ret
 
-Data_1eed8:
+; a menu box with blank text items that line up with mail items on screen
+MailboxMainScreenMenuBoxParams:
 	menu_box_params FALSE, 18, 12, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, FALSE, 1, Func_3e75, NULL
+		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
 	textitem  1, 1, SingleSpaceText
 	textitem  1, 4, SingleSpaceText
 	textitem  1, 7, SingleSpaceText
@@ -6495,37 +6502,40 @@ Func_1eef8:
 	pop af
 	ret
 
-Func_1ef2a::
+_UpdateMailboxPage::
 	push af
 	push bc
 	push de
 	push hl
 	call GetMenuBoxFocusedItem
-	and $03
-	cp $03
-	call z, Func_1ef46
+	and $03 ; bottom-most mail item on the screen
+	cp 3
+	call z, ScrollMailboxPageOnPadDown
 	call GetMenuBoxFocusedItem
 	and $03
-	and a
-	call z, Func_1ef73
+	and a ; top mail item on the screen
+	call z, ScrollMailboxPageOnPadUp
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1ef46:
+ScrollMailboxPageOnPadDown:
 	ldh a, [hDPadHeld]
-	and $80
+	and PAD_DOWN
 	ret z
+
 	ld a, [wMailboxPage]
-	cp $01
+	cp 1
 	ret z
+
 	ld a, [wMailCount]
-	cp $05
+	cp 5
 	ret c
+
 	push af
-	ld a, $01
+	ld a, SFX_CURSOR
 	call CallPlaySFX
 	pop af
 	ld a, [wMailboxPage]
@@ -6533,28 +6543,30 @@ Func_1ef46:
 	ld [wMailboxPage], a
 	xor a
 	ld [wSelectedMailCursorPosition], a
-	call Func_1ede4
+	call MailboxMainScreen
 	call SetMenuBoxFocusedItem
 	call SetwDA37
 	ret
 
-Func_1ef73:
+ScrollMailboxPageOnPadUp:
 	ldh a, [hDPadHeld]
-	and $40
+	and PAD_UP
 	ret z
+
 	ld a, [wMailboxPage]
 	and a
 	ret z
+
 	push af
-	ld a, $01
+	ld a, SFX_CURSOR
 	call CallPlaySFX
 	pop af
 	ld a, [wMailboxPage]
 	dec a
 	ld [wMailboxPage], a
-	ld a, $03
+	ld a, 3
 	ld [wSelectedMailCursorPosition], a
-	call Func_1ede4
+	call MailboxMainScreen
 	call SetMenuBoxFocusedItem
 	call SetwDA37
 	ret
