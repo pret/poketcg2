@@ -6924,32 +6924,34 @@ DeleteGameCenterMailedCard:
 	call SetBillsPCCard
 	ret
 
-; input: a
-; set carry if [wNumMailInQueue] = MAIL_QUEUE_BUFFER_SIZE - 1
+; input: a - new mail to add to queue
+; set carry and quit if mail queue is full, i.e. [wNumMailInQueue] = MAIL_QUEUE_BUFFER_SIZE - 1
 ; else:
-; - if bit 7 of a is 0, [wMailQueue + [wNumMailInQueue] ] = a
-; - if bit 7 of a is 1,
-;   (the first byte in wMailQueue[n] whose bit 7 is 0) = a
-;   and shift the rest
-; and increment [wNumMailInQueue] by 1
-Func_1f24e:
+; - if bit 7 (B_MAIL_PRIORITY_DELIVERY) of a is 0, add to the END of the mail queue
+; - if bit 7 (B_MAIL_PRIORITY_DELIVERY) of a is 1,
+;     add to the FRONT of the mail queue and shift the rest
+;	  this new mail will be inserted BETWEEN any current priority mail in the queue, and the non-priority
+; finally, increment [wNumMailInQueue] by 1
+AddMailToQueue:
 	push bc
 	push de
 	push hl
 	ld e, a
 	ld a, [wNumMailInQueue]
 	cp MAIL_QUEUE_BUFFER_SIZE - 1
-	jr z, .set_carry
-	bit 7, e
-	call z, .not_bit7
-	call nz, .has_bit7
+	jr z, .mail_queue_full
+
+	bit B_MAIL_PRIORITY_DELIVERY, e
+	call z, .not_priority
+	call nz, .has_priority
+
 	ld hl, wNumMailInQueue
 	inc [hl]
 ; clear carry
 	scf
 	ccf
 	jr .done
-.set_carry
+.mail_queue_full
 	scf
 ; fallthrough
 .done
@@ -6958,7 +6960,8 @@ Func_1f24e:
 	pop bc
 	ret
 
-.not_bit7:
+; if not priority mail, add it to the END of the mail queue
+.not_priority:
 	push af
 	ld a, [wNumMailInQueue]
 	ld c, a
@@ -6969,19 +6972,22 @@ Func_1f24e:
 	pop af
 	ret
 
-.has_bit7:
+; if mail is high priority, add it to the FRONT of the mail queue
+; black box and bill's PC mail, for example, are sent as high priority
+.has_priority:
 	push af
 	ld hl, wMailQueue
 	ld c, MAIL_QUEUE_BUFFER_SIZE - 1
+	; skip past other high priority mail
 .check_byte_loop
-	bit 7, [hl]
+	bit B_MAIL_PRIORITY_DELIVERY, [hl]
 	jr z, .shift_loop
 	inc hl
 	dec c
 	jr nz, .check_byte_loop
 .shift_loop
 	ld b, [hl]
-	ld [hl], e
+	ld [hl], e ; at top of function, e was copied from input a (our new mail)
 	ld e, b
 	inc hl
 	dec c
@@ -6989,52 +6995,63 @@ Func_1f24e:
 	pop af
 	ret
 
-Func_1f293:
+DeliverMailFromQueue:
 	push af
 	push bc
 	push de
 	push hl
 	ld a, [wNumMailInQueue]
 	and a
-	jr z, .asm_1f2eb
-	ld a, $ff
+	jr z, .done
+
+	ld a, NEW_MAIL
 	ld [wNewMail], a
 	ld a, [wMailCount]
-	cp $08
-	jr z, .asm_1f2eb
+	cp MAIL_MAX_NUM
+	; if the mailbox already has MAIL_MAX_NUM, can't deliver more mail
+	jr z, .done
+
 	ld de, wMailList
 	ld hl, wMailQueue
 	ld a, [wMailCount]
 	ld b, a
-	ld a, $08
+	ld a, MAIL_MAX_NUM
 	sub b
-	ld b, a
-	ld c, $00
-.asm_1f2b9
+	ld b, a ; number of mail to insert
+	ld c, $00 ; counts how many times we insert mail in the loop
+
+.insert_new_mail_loop
 	ld a, [hli]
 	and a
-	jr z, .asm_1f2c6
-	res 7, a
-	call .Func_1f2f6
+	; break the loop if the next mail in the queue is $00, i.e. we have drained the whole queue
+	jr z, .done_inserting_mail
+	 ; reset bit 7, because when mail is in the mailbox it means it has been read (B_MAIL_READ)
+	res B_MAIL_PRIORITY_DELIVERY, a
+	call InsertNewMail
 	inc c
 	dec b
-	jr nz, .asm_1f2b9
-.asm_1f2c6
+	jr nz, .insert_new_mail_loop
+	; fallthrough if b = 0; i.e. when we have filled up the mailbox again
+
+.done_inserting_mail
+	; update the mail counts based on how many we inserted
 	ld a, [wMailCount]
 	add c
 	ld [wMailCount], a
 	ld a, [wNumMailInQueue]
 	sub c
 	ld [wNumMailInQueue], a
+
 	ld hl, wMailQueue
 	ld b, $00
 	add hl, bc
 	ld de, wMailQueue
-	ld a, $18
+	ld a, MAIL_QUEUE_BUFFER_SIZE - 1
 	sub c
 	ld c, a
 	ld a, [hli]
-.asm_1f2e2
+
+.loop2
 	ld [de], a
 	inc de
 	ld b, [hl]
@@ -7042,8 +7059,9 @@ Func_1f293:
 	ld [hli], a
 	ld a, b
 	dec c
-	jr nz, .asm_1f2e2
-.asm_1f2eb
+	jr nz, .loop2
+
+.done
 	ld a, [wNumMailInQueue]
 	ld [wTempNumMailInQueue], a
 	pop hl
@@ -7052,12 +7070,14 @@ Func_1f293:
 	pop af
 	ret
 
-; shift data in de 1 byte right
-.Func_1f2f6:
+; a - new mail to add
+; de - wMailList
+; Shifts the mail list one byte to the right, and inserts (a) at the front
+InsertNewMail:
 	push bc
 	push de
 	push hl
-	ld c, $08
+	ld c, MAIL_MAX_NUM
 .loop
 	ld l, a
 	ld a, [de]
@@ -7686,8 +7706,8 @@ Func_1f8f7:
 	ldtx hl, GameCenterToBeMailedText_2
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call SetBillsPCCard
-	ld a, $82
-	call Func_1f24e
+	ld a, $82 ; priority bill's PC mail
+	call AddMailToQueue
 .asm_1f914
 	farcall FadeToWhiteAndUnsetFrameFunc
 	pop hl

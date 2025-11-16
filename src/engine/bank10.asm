@@ -860,7 +860,7 @@ Func_4053e:
 
 HandleTCGIslandInput:
 	farcall Func_d683
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop_input
 	call DoFrame
@@ -1514,9 +1514,9 @@ Func_40f46:
 	wait_for_player_animation
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	script_command_01
-	script_command_64 $03
-	script_command_64 $04
-	script_command_64 $08
+	send_mail $03
+	send_mail $04
+	send_mail $08
 	set_event EVENT_GOT_CHANSEY_COIN
 	script_call .ows_40f83
 	script_call .ows_40fac
@@ -1647,7 +1647,7 @@ Func_4101d:
 	start_script
 	set_event EVENT_EB
 	set_var VAR_34, $01
-	script_command_64 $0d
+	send_mail $0d
 	end_script
 	farcall Func_eff7
 	jr .asm_41073
@@ -3420,7 +3420,7 @@ Func_41d64:
 	script_command_02
 	script_jump .ows_41d99
 .ows_41d94
-	script_command_64 $0e
+	send_mail $0e
 	script_jump .ows_41d88
 .ows_41d99
 	end_script
@@ -5719,7 +5719,7 @@ Func_42fe1:
 	script_jump Script_432a0
 
 Script_43000:
-	script_command_64 $0c
+	send_mail $0c
 	play_song_next MUSIC_HALL_OF_HONOR
 	script_command_02
 	print_npc_text Text0927

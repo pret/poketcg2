@@ -2379,11 +2379,11 @@ wScriptNPC:: ; d60e
 wScriptNPCName:: ; d60f
 	ds $2
 
-wd611:: ; d611
-	ds $2
-
-wd613:: ; d613
-	ds $2
+; a bitmask for every unique mail in the game (29 total).
+; the corresponding bit is set when a mail is sent, and mask is checked before sending
+; mail in event scripts. Mail that is not sent via event script skips the check.
+wSentMailBitmask:: ; d611
+	ds $4
 
 wd615:: ; d615
 	ds $1

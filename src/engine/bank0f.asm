@@ -230,7 +230,7 @@ Func_3c1d0:
 	ask_question BattleCenterBeginPromptText, TRUE
 	script_jump_if_b0z .ows_3c20b
 	play_song MUSIC_CARD_POP
-	script_command_64 $1c
+	send_mail $1c
 	script_command_02
 	link_duel
 	script_jump_if_b1nz .ows_3c204
@@ -346,7 +346,7 @@ Func_3c1d0:
 	get_var VAR_20
 	compare_loaded_var $05
 	script_jump_if_b0z .ows_3c2d8
-	script_command_64 $0f
+	send_mail $0f
 .ows_3c2d8
 	script_ret
 
