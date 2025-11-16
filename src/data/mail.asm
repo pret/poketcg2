@@ -30,308 +30,308 @@ Data_1f34f:
 	db $6d, $75
 
 Data_1f389:
-	db $9e, $06
-	db $9f, $06
+	tx MailboxEmptySenderText
+	tx MailboxEmptySubjectText
 	db $ff, $ff
 
 Data_1f38f:
-	db $a0, $06
-	db $a1, $06
-	db $a2, $06
+	tx MailBlackBoxOutputSenderText
+	tx MailBlackBoxOutputSubjectText
+	tx MailBlackBoxOutputBody1Text
 	db $00, $20
-	db $a3, $06
+	tx MailBlackBoxOutputBody2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f39d:
-	db $a4, $06
-	db $a5, $06
-	db $a6, $06
+	tx MailBillsPCOutputSenderText
+	tx MailBillsPCOutputSubjectText
+	tx MailBillsPCOutputBody1Text
 	db $00, $10
-	db $a7, $06
+	tx MailBillsPCOutputBody2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f3ab:
-	db $a8, $06
-	db $a9, $06
-	db $aa, $06
+	tx MailMailboxIntroSenderText
+	tx MailMailboxIntroSubjectText
+	tx MailMailboxIntroBody1Text
 	db $00, $00
-	db $ab, $06
+	tx MailMailboxIntroBody2Text
 	db $00, $00
-	db $ac, $06
+	tx MailMailboxIntroBody3Text
 	db $08, $80
 	db $ff, $ff
 
 Data_1f3bd:
-	db $ae, $06
-	db $af, $06
-	db $b0, $06
+	tx MailDeckDiagnosis1SenderText
+	tx MailDeckDiagnosis1SubjectText
+	tx MailDeckDiagnosis1Body1Text
 	db $00, $00
-	db $b1, $06
+	tx MailDeckDiagnosis1Body2Text
 	db $00, $00
-	db $b2, $06
+	tx MailDeckDiagnosis1Body3Text
 	db $00, $00
-	db $b3, $06
+	tx MailDeckDiagnosis1Body4Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f3d3:
-	db $b4, $06
-	db $b5, $06
-	db $b6, $06
+	tx MailDeckDiagnosis2SenderText
+	tx MailDeckDiagnosis2SubjectText
+	tx MailDeckDiagnosis2Body1Text
 	db $00, $00
-	db $b7, $06
+	tx MailDeckDiagnosis2Body2Text
 	db $00, $00
-	db $b8, $06
+	tx MailDeckDiagnosis2Body3Text
 	db $00, $00
-	db $b9, $06
+	tx MailDeckDiagnosis2Body4Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f3e9:
-	db $ba, $06
-	db $bb, $06
-	db $bc, $06
+	tx MailDeckDiagnosis3SenderText
+	tx MailDeckDiagnosis3SubjectText
+	tx MailDeckDiagnosis3Body1Text
 	db $00, $00
-	db $bd, $06
+	tx MailDeckDiagnosis3Body2Text
 	db $00, $00
-	db $be, $06
+	tx MailDeckDiagnosis3Body3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f3fb:
-	db $bf, $06
-	db $c0, $06
-	db $c1, $06
+	tx MailDeckDiagnosis4SenderText
+	tx MailDeckDiagnosis4SubjectText
+	tx MailDeckDiagnosis4Body1Text
 	db $00, $00
-	db $c2, $06
+	tx MailDeckDiagnosis4Body2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f409:
-	db $c3, $06
-	db $c4, $06
-	db $c5, $06
+	tx MailAutoDeckMachine1SenderText
+	tx MailAutoDeckMachine1SubjectText
+	tx MailAutoDeckMachine1Body1Text
 	db $00, $00
-	db $c6, $06
+	tx MailAutoDeckMachine1Body2Text
 	db $00, $00
-	db $c7, $06
+	tx MailAutoDeckMachine1Body3Text
 	db $00, $80
 	db $ff, $ff
 
 Data_1f41b:
-	db $c8, $06
-	db $c9, $06
-	db $ca, $06
+	tx MailAutoDeckMachine2SenderText
+	tx MailAutoDeckMachine2SubjectText
+	tx MailAutoDeckMachine2Body1Text
 	db $00, $00
-	db $cb, $06
+	tx MailAutoDeckMachine2Body2Text
 	db $01, $80
 	db $ff, $ff
 
 Data_1f429:
-	db $cd, $06
-	db $ce, $06
-	db $cf, $06
+	tx MailAutoDeckMachine3SenderText
+	tx MailAutoDeckMachine3SubjectText
+	tx MailAutoDeckMachine3Body1Text
 	db $00, $00
-	db $d0, $06
+	tx MailAutoDeckMachine3Body2Text
 	db $00, $00
-	db $d1, $06
+	tx MailAutoDeckMachine3Body3Text
 	db $02, $80
 	db $ff, $ff
 
 Data_1f43b:
-	db $d2, $06
-	db $d3, $06
-	db $d4, $06
+	tx MailAutoDeckMachine4SenderText
+	tx MailAutoDeckMachine4SubjectText
+	tx MailAutoDeckMachine4Body1Text
 	db $00, $00
-	db $d5, $06
+	tx MailAutoDeckMachine4Body2Text
 	db $00, $00
-	db $d6, $06
+	tx MailAutoDeckMachine4Body3Text
 	db $04, $80
 	db $ff, $ff
 
 Data_1f44d:
-	db $d7, $06
-	db $d8, $06
-	db $d9, $06
+	tx MailAutoDeckMachine5SenderText
+	tx MailAutoDeckMachine5SubjectText
+	tx MailAutoDeckMachine5Body1Text
 	db $00, $00
-	db $da, $06
+	tx MailAutoDeckMachine5Body2Text
 	db $00, $00
-	db $db, $06
+	tx MailAutoDeckMachine5Body3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f45f:
-	db $dc, $06
-	db $dd, $06
-	db $de, $06
+	tx MailChallengeMachineSenderText
+	tx MailChallengeMachineSubjectText
+	tx MailChallengeMachineBody1Text
 	db $00, $00
-	db $df, $06
+	tx MailChallengeMachineBody2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f46d:
-	db $e0, $06
-	db $e1, $06
-	db $e2, $06
+	tx MailGRChallengeMachineSenderText
+	tx MailGRChallengeMachineSubjectText
+	tx MailGRChallengeMachineBody1Text
 	db $00, $00
-	db $e3, $06
+	tx MailGRChallengeMachineBody2Text
 	db $00, $00
-	db $e4, $06
+	tx MailGRChallengeMachineBody3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f47f:
-	db $e5, $06
-	db $e6, $06
-	db $e7, $06
+	tx MailGrandMasterCupSenderText
+	tx MailGrandMasterCupSubjectText
+	tx MailGrandMasterCupBody1Text
 	db $00, $00
-	db $e8, $06
+	tx MailGrandMasterCupBody2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f48d:
-	db $e9, $06
-	db $ea, $06
-	db $eb, $06
+	tx MailRonaldsScoutGR1SenderText
+	tx MailRonaldsScoutGR1SubjectText
+	tx MailRonaldsScoutGR1Body1Text
 	db $00, $00
-	db $ec, $06
+	tx MailRonaldsScoutGR1Body2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f49b:
-	db $ed, $06
-	db $ee, $06
-	db $ef, $06
+	tx MailRonaldsScoutGR2SenderText
+	tx MailRonaldsScoutGR2SubjectText
+	tx MailRonaldsScoutGR2Body1Text
 	db $00, $00
-	db $f0, $06
+	tx MailRonaldsScoutGR2Body2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4a9:
-	db $f1, $06
-	db $f2, $06
-	db $f3, $06
+	tx MailRonaldsScoutGR3SenderText
+	tx MailRonaldsScoutGR3SubjectText
+	tx MailRonaldsScoutGR3Body1Text
 	db $00, $00
-	db $f4, $06
+	tx MailRonaldsScoutGR3Body2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4b7:
-	db $f5, $06
-	db $f6, $06
-	db $f7, $06
+	tx MailRonaldsScoutGR4SenderText
+	tx MailRonaldsScoutGR4SubjectText
+	tx MailRonaldsScoutGR4Body1Text
 	db $00, $00
-	db $f8, $06
+	tx MailRonaldsScoutGR4Body2Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4c5:
-	db $f9, $06
-	db $fa, $06
-	db $fb, $06
+	tx MailRonaldsScoutMorinoSenderText
+	tx MailRonaldsScoutMorinoSubjectText
+	tx MailRonaldsScoutMorinoBody1Text
 	db $00, $00
-	db $fc, $06
+	tx MailRonaldsScoutMorinoBody2Text
 	db $00, $00
-	db $fd, $06
+	tx MailRonaldsScoutMorinoBody3Text
 	db $00, $00
-	db $fe, $06
+	tx MailRonaldsScoutMorinoBody4Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4db:
-	db $ff, $06
-	db $00, $07
-	db $01, $07
+	tx MailRonaldsScoutCatherineSenderText
+	tx MailRonaldsScoutCatherineSubjectText
+	tx MailRonaldsScoutCatherineBody1Text
 	db $00, $00
-	db $02, $07
+	tx MailRonaldsScoutCatherineBody2Text
 	db $00, $00
-	db $03, $07
+	tx MailRonaldsScoutCatherineBody3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4ed:
-	db $04, $07
-	db $05, $07
-	db $06, $07
+	tx MailRonaldsScoutHideroSenderText
+	tx MailRonaldsScoutHideroSubjectText
+	tx MailRonaldsScoutHideroBody1Text
 	db $00, $00
-	db $07, $07
+	tx MailRonaldsScoutHideroBody2Text
 	db $00, $00
-	db $08, $07
+	tx MailRonaldsScoutHideroBody3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f4ff:
-	db $09, $07
-	db $0a, $07
-	db $0b, $07
+	tx MailRonaldsScoutKanokoSenderText
+	tx MailRonaldsScoutKanokoSubjectText
+	tx MailRonaldsScoutKanokoBody1Text
 	db $00, $00
-	db $0c, $07
+	tx MailRonaldsScoutKanokoBody2Text
 	db $00, $00
-	db $0d, $07
+	tx MailRonaldsScoutKanokoBody3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f511:
-	db $0e, $07
-	db $0f, $07
-	db $10, $07
+	tx MailRonaldsScoutKamiyaSenderText
+	tx MailRonaldsScoutKamiyaSubjectText
+	tx MailRonaldsScoutKamiyaBody1Text
 	db $00, $00
-	db $11, $07
+	tx MailRonaldsScoutKamiyaBody2Text
 	db $00, $00
-	db $12, $07
+	tx MailRonaldsScoutKamiyaBody3Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f523:
-	db $13, $07
-	db $14, $07
-	db $15, $07
+	tx MailRonaldsScoutMamiSenderText
+	tx MailRonaldsScoutMamiSubjectText
+	tx MailRonaldsScoutMamiBody1Text
 	db $00, $00
-	db $16, $07
+	tx MailRonaldsScoutMamiBody2Text
 	db $00, $00
-	db $17, $07
+	tx MailRonaldsScoutMamiBody3Text
 	db $00, $00
-	db $18, $07
+	tx MailRonaldsScoutMamiBody4Text
 	db $00, $00
-	db $19, $07
+	tx MailRonaldsScoutMamiBody5Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f53d:
-	db $1a, $07
-	db $1b, $07
-	db $1c, $07
+	tx MailRonaldsScoutColorlessAltarSenderText
+	tx MailRonaldsScoutColorlessAltarSubjectText
+	tx MailRonaldsScoutColorlessAltarBody1Text
 	db $00, $00
-	db $1d, $07
+	tx MailRonaldsScoutColorlessAltarBody2Text
 	db $00, $00
-	db $1e, $07
+	tx MailRonaldsScoutColorlessAltarBody3Text
 	db $00, $00
-	db $1f, $07
+	tx MailRonaldsScoutColorlessAltarBody4Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f553:
-	db $20, $07
-	db $21, $07
-	db $22, $07
+	tx MailRonaldsScoutBiruritchiSenderText
+	tx MailRonaldsScoutBiruritchiSubjectText
+	tx MailRonaldsScoutBiruritchiBody1Text
 	db $00, $00
-	db $23, $07
+	tx MailRonaldsScoutBiruritchiBody2Text
 	db $00, $00
-	db $24, $07
+	tx MailRonaldsScoutBiruritchiBody3Text
 	db $00, $00
-	db $25, $07
+	tx MailRonaldsScoutBiruritchiBody4Text
 	db $00, $00
-	db $26, $07
+	tx MailRonaldsScoutBiruritchiBody5Text
 	db $00, $00
 	db $ff, $ff
 
 Data_1f56d:
-	db $27, $07
-	db $28, $07
-	db $29, $07
+	tx MailLinkDuelSenderText
+	tx MailLinkDuelSubjectText
+	tx MailLinkDuelBody1Text
 	db $00, $00
-	db $2a, $07
+	tx MailLinkDuelBody2Text
 	db $00, $00
 	db $ff, $ff
