@@ -2665,7 +2665,7 @@ LoadScene::
 	ret
 
 Func_3e75::
-	farcall $7, $6f2a
+	farcall Func_1ef2a
 	ret
 
 Func_3e7a::

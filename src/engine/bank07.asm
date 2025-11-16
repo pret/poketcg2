@@ -6457,7 +6457,7 @@ Func_1ee97:
 Data_1eed8:
 	menu_box_params FALSE, 18, 12, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, FALSE, 1, $3e75, NULL
+		PAD_A, PAD_B, FALSE, 1, Func_3e75, NULL
 	textitem  1, 1, SingleSpaceText
 	textitem  1, 4, SingleSpaceText
 	textitem  1, 7, SingleSpaceText
@@ -6494,7 +6494,71 @@ Func_1eef8:
 	call CallPlaySFX
 	pop af
 	ret
-; 0x1ef2a
+
+Func_1ef2a::
+	push af
+	push bc
+	push de
+	push hl
+	call GetMenuBoxFocusedItem
+	and $03
+	cp $03
+	call z, Func_1ef46
+	call GetMenuBoxFocusedItem
+	and $03
+	and a
+	call z, Func_1ef73
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+Func_1ef46:
+	ldh a, [hDPadHeld]
+	and $80
+	ret z
+	ld a, [wMailboxPage]
+	cp $01
+	ret z
+	ld a, [wMailCount]
+	cp $05
+	ret c
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ld a, [wMailboxPage]
+	inc a
+	ld [wMailboxPage], a
+	xor a
+	ld [wSelectedMailCursorPosition], a
+	call Func_1ede4
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+
+Func_1ef73:
+	ldh a, [hDPadHeld]
+	and $40
+	ret z
+	ld a, [wMailboxPage]
+	and a
+	ret z
+	push af
+	ld a, $01
+	call CallPlaySFX
+	pop af
+	ld a, [wMailboxPage]
+	dec a
+	ld [wMailboxPage], a
+	ld a, $03
+	ld [wSelectedMailCursorPosition], a
+	call Func_1ede4
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+; 0x1ef9a
 
 SECTION "Bank 7@6fa4", ROMX[$6fa4], BANK[$7]
 
