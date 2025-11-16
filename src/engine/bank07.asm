@@ -3014,7 +3014,7 @@ Func_1d475:
 	farcall ClearCardPopNameList
 
 	call EnableAnimations
-	call ClearwMiniconMenuCursorPosition
+	call ClearwMinicomMenuCursorPosition
 	farcall Func_111f0
 	call InitDefaultConfigMenuSettings
 	call SaveConfigMenuChoicesToSRAM
@@ -5543,53 +5543,53 @@ Func_1e73a:
 	pop af
 	ret
 
-PauseMenuMiniconScreen:
+PauseMenuMinicomScreen:
 	farcall Func_1022a
-	call PushRegistersAndShowMiniconScreen
+	call PushRegistersAndShowMinicomScreen
 	farcall Func_10252
 	ret
 
-PushRegistersAndShowMiniconScreen:
+PushRegistersAndShowMinicomScreen:
 	push af
 	push bc
 	push de
 	push hl
-	call ShowMiniconScreen
+	call ShowMinicomScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-ClearwMiniconMenuCursorPosition:
+ClearwMinicomMenuCursorPosition:
 	xor a
-	ld [wMiniconMenuCursorPosition], a
+	ld [wMinicomMenuCursorPosition], a
 	ret
 
-ShowMiniconScreen:
+ShowMinicomScreen:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call DrawMiniconMainScreen
+	call DrawMinicomMainScreen
 	farcall SetFrameFuncAndFadeFromWhite
 .loop
 	call HandleMinicomMenuBox
 	jr c, .end
-	call CallMiniconMenuFunction
+	call CallMinicomMenuFunction
 	jr c, .end
 	call DisableLCD
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call DrawMiniconMainScreen
+	call DrawMinicomMainScreen
 	call EnableLCD
 	jr .loop
 .end
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-DrawMiniconMainScreen:
+DrawMinicomMainScreen:
 	ld b, BANK(.menu)
 	ld hl, .menu
 	lb de, 0, 3
 	call LoadMenuBoxParams
-	ld a, [wMiniconMenuCursorPosition]
+	ld a, [wMinicomMenuCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
 	lb bc, 20, 4
@@ -5629,11 +5629,11 @@ DrawMiniconMainScreen:
 SECTION "Bank 7@6808", ROMX[$6808], BANK[$7]
 
 ; return
-;	 a - cursor position, used later in CallMiniconMenuFunction
+;	 a - cursor position, used later in CallMinicomMenuFunction
 HandleMinicomMenuBox:
-	ld a, [wMiniconMenuCursorPosition]
+	ld a, [wMinicomMenuCursorPosition]
 	call HandleMenuBox
-	ld [wMiniconMenuCursorPosition], a
+	ld [wMinicomMenuCursorPosition], a
 	jr c, .cancel
 	push af
 	ld a, SFX_CONFIRM
@@ -5648,30 +5648,30 @@ HandleMinicomMenuBox:
 	ret
 
 ; a - function table index
-CallMiniconMenuFunction:
-	ld hl, .minicon_functions
+CallMinicomMenuFunction:
+	ld hl, .minicom_functions
 	call CallMappedFunction
 	ret
 
-.minicon_functions:
-	key_func $00, MiniconDeckSaveMachine
-	key_func $01, MiniconMailbox
-	key_func $02, MiniconCardAlbum
+.minicom_functions:
+	key_func $00, MinicomDeckSaveMachine
+	key_func $01, MinicomMailbox
+	key_func $02, MinicomCardAlbum
 	db $ff
 
-MiniconDeckSaveMachine:
+MinicomDeckSaveMachine:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall Func_baec
 	ret
 
-MiniconCardAlbum:
+MinicomCardAlbum:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall Func_a786
 	ret
 
 Func_1e849:
 	farcall Func_1022a
-	call MiniconDeckSaveMachine
+	call MinicomDeckSaveMachine
 	farcall Func_10252
 	ret
 
@@ -6144,13 +6144,13 @@ Func_1ec0f:
 
 SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
 
-MiniconMailbox:
+MinicomMailbox:
 	push af
 	push bc
 	push de
 	push hl
-	call MiniconMailboxNewMailScreen
-	call MiniconMailboxMainScreen
+	call MinicomMailboxNewMailScreen
+	call MinicomMailboxMainScreen
 	pop hl
 	pop de
 	pop bc
@@ -6189,7 +6189,7 @@ InitializeMailboxWRAM:
 	ret
 
 ; the screen after selecting the mailbox which has a large picture of a literal mailbox on it
-MiniconMailboxNewMailScreen:
+MinicomMailboxNewMailScreen:
 	call DisableLCD
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call CalculateMailboxStatus
@@ -6285,12 +6285,12 @@ Func_1ed5e:
 
 SECTION "Bank 7@6da5", ROMX[$6da5], BANK[$7]
 
-MiniconMailboxMainScreen:
+MinicomMailboxMainScreen:
 	call DisableLCD
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	lb de, $40, $ff
 	call SetupText
-	call MiniconMailboxMainScreen_DrawTextBoxes
+	call MinicomMailboxMainScreen_DrawTextBoxes
 	call FlushAllPalettes
 	call EnableLCD
 .loop
@@ -6305,7 +6305,7 @@ MiniconMailboxMainScreen:
 .done
 	ret
 
-MiniconMailboxMainScreen_DrawTextBoxes:
+MinicomMailboxMainScreen_DrawTextBoxes:
 	lb de, 0, 4
 	lb bc, 20, 14
 	call DrawRegularTextBoxVRAM0
@@ -6772,7 +6772,7 @@ GiveCardsAttachedToMailPage:
 	jr z, .done
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call DisableLCD
-	call MiniconMailboxMainScreen_DrawTextBoxes
+	call MinicomMailboxMainScreen_DrawTextBoxes
 	call DrawReadMailScreenHeader
 	call PrintMailSender
 	call PrintMailSubject

@@ -3210,7 +3210,7 @@ wdd05:: ; dd05
 wdd06:: ; dd06
 	ds $1
 
-wMiniconMenuCursorPosition:: ; dd07
+wMinicomMenuCursorPosition:: ; dd07
 	ds $1
 
 wCurBoosterPack:: ; dd08
