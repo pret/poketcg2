@@ -6261,13 +6261,27 @@ Func_1ed5e:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $6d6d ; TODO: mailbox scene data table
+	ld hl, .MailboxScenes
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ret
-; 0x1ed6d
+
+.MailboxScenes:
+	dw .SceneFull
+	dw .SceneGotMail
+	dw .SceneNoNewMail
+.SceneFull
+	db SCENE_FULL_MAILBOX
+	tx MailboxFullWarningText
+.SceneGotMail
+	db SCENE_GOT_MAIL
+	tx MailboxNewMailText
+.SceneNoNewMail
+	db SCENE_MAILBOX
+	tx MailboxNoNewMailText
+; 0x1ed7c
 
 SECTION "Bank 7@6da5", ROMX[$6da5], BANK[$7]
 
