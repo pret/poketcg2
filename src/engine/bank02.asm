@@ -2052,7 +2052,9 @@ AppendDeckName:
 	katakana "デ"
 	katakana "ッ"
 	katakana "キ"
-	db "<SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE>"
+REPT 10
+	db "<SPACE>"
+ENDR
 .text_end
 
 ; returns carry if the deck in hl
@@ -3482,26 +3484,9 @@ PrintDeckBuildingCardList:
 	ret
 
 Text_9e48:
+REPT 20
 	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
+ENDR
 	done
 
 ; returns carry if card ID in de is $0000

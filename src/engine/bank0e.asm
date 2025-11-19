@@ -5454,7 +5454,9 @@ PrintDeckMachineEntry:
 	ret
 
 .text
-	db "<SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE>"
+REPT 7
+	db "<SPACE>"
+ENDR
 	done
 
 ; de = card ID
