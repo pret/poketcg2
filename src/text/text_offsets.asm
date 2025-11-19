@@ -3826,12 +3826,12 @@ TextOffsets::
 	textpointer Text0ee9                                           ; 0x0ee9
 	textpointer Text0eea                                           ; 0x0eea
 	textpointer Text0eeb                                           ; 0x0eeb
-	textpointer Text0eec                                           ; 0x0eec
-	textpointer Text0eed                                           ; 0x0eed
-	textpointer Text0eee                                           ; 0x0eee
-	textpointer Text0eef                                           ; 0x0eef
-	textpointer Text0ef0                                           ; 0x0ef0
-	textpointer Text0ef1                                           ; 0x0ef1
+	textpointer ItsAutoDeckMachine1Text                               ; 0x0eec
+	textpointer AutoDeckMachine1PromptText                            ; 0x0eed
+	textpointer ItsAutoDeckMachine2Text                               ; 0x0eee
+	textpointer AutoDeckMachine2PromptText                            ; 0x0eef
+	textpointer ItsDeckSaveMachineText                                ; 0x0ef0
+	textpointer DeckSaveMachinePromptText                             ; 0x0ef1
 	textpointer Text0ef2                                           ; 0x0ef2
 	textpointer Text0ef3                                           ; 0x0ef3
 	textpointer Text0ef4                                           ; 0x0ef4

@@ -259,27 +259,27 @@ Text0eeb:
 	linefw "べんきょうすると よろしいですわ"
 	done
 
-Text0eec:
+ItsAutoDeckMachine1Text:
 	textfw "オートデッキマシン1号が ある!"
 	done
 
-Text0eed:
+AutoDeckMachine1PromptText:
 	textfw "デッキを つくりますか?"
 	done
 
-Text0eee:
+ItsAutoDeckMachine2Text:
 	textfw "オートデッキマシン2号が ある!"
 	done
 
-Text0eef:
+AutoDeckMachine2PromptText:
 	textfw "デッキを つくりますか?"
 	done
 
-Text0ef0:
+ItsDeckSaveMachineText:
 	textfw "デッキきろくマシンが ある!"
 	done
 
-Text0ef1:
+DeckSaveMachinePromptText:
 	textfw "デッキきろくマシンを つかいますか?"
 	done
 

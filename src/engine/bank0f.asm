@@ -792,12 +792,12 @@ MasonLaboratoryComputerRoom_NPCInteractions:
 	db $ff
 
 MasonLaboratoryComputerRoom_OWInteractions:
-	ow_script 2, 3, Func_3c6c3
-	ow_script 3, 3, Func_3c6c3
-	ow_script 8, 10, Func_3c6e8
-	ow_script 9, 10, Func_3c6e8
-	ow_script 8, 3, Func_3c715
-	ow_script 9, 3, Func_3c715
+	ow_script 2,  3, Script_AutoDeckMachine1
+	ow_script 3,  3, Script_AutoDeckMachine1
+	ow_script 8, 10, Script_AutoDeckMachine2
+	ow_script 9, 10, Script_AutoDeckMachine2
+	ow_script 8,  3, Script_DeckSaveMachine
+	ow_script 9,  3, Script_DeckSaveMachine
 	db $ff
 
 MasonLaboratoryComputerRoom_MapScripts:
@@ -841,13 +841,13 @@ Func_3c6b3:
 	scf
 	ret
 
-Func_3c6c3:
+Script_AutoDeckMachine1:
 	xor a
 	start_script
 	script_command_01
-	print_text Text0eec
-	ask_question Text0eed, TRUE
-	script_jump_if_b0z .ows_3c6e5
+	print_text ItsAutoDeckMachine1Text
+	ask_question AutoDeckMachine1PromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -857,21 +857,21 @@ Func_3c6c3:
 	farcall Func_1e855
 	call ResumeSong
 	ret
-.ows_3c6e5
+.cancel
 	script_command_02
 	end_script
 	ret
 
-Func_3c6e8:
+Script_AutoDeckMachine2:
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	ret z
 	xor a
 	start_script
 	script_command_01
-	print_text Text0eee
-	ask_question Text0eed, TRUE
-	script_jump_if_b0z .ows_3c712
+	print_text ItsAutoDeckMachine2Text
+	ask_question AutoDeckMachine1PromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -881,18 +881,18 @@ Func_3c6e8:
 	farcall Func_1e855
 	call ResumeSong
 	ret
-.ows_3c712
+.cancel
 	script_command_02
 	end_script
 	ret
 
-Func_3c715:
+Script_DeckSaveMachine:
 	xor a
 	start_script
 	script_command_01
-	print_text Text0ef0
-	ask_question Text0ef1, TRUE
-	script_jump_if_b0z .ows_3c736
+	print_text ItsDeckSaveMachineText
+	ask_question DeckSaveMachinePromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -901,7 +901,7 @@ Func_3c715:
 	farcall Func_1e849
 	call ResumeSong
 	ret
-.ows_3c736
+.cancel
 	script_command_02
 	end_script
 	ret
