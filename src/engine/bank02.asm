@@ -7515,11 +7515,20 @@ Func_baec:
 	farcall Func_3ada1
 	ret
 
-Func_baf1:
-	farcall Func_2bc9f
+HandleAutoDeckMenu:
+	farcall _HandleAutoDeckMenu
 	ret
 
 PrinterMenu_DeckConfiguration:
 	farcall _PrinterMenu_DeckConfiguration
 	ret
-; 0xbafb
+
+AutoDeckMachineMenuParams:
+	db 4, 2 ; cursor x, cursor y
+	db 2 ; y separation
+	db 0 ; x separation
+	db NUM_DECK_MACHINE_VISIBLE_DECKS ; number of items
+	db SYM_CURSOR_R ; cursor tile number
+	db SYM_SPACE ; tile behind cursor
+	dw NULL ; function pointer if non-0
+; 0xbb04, end of bank 2

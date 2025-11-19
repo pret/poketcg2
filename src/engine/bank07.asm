@@ -5678,7 +5678,7 @@ Func_1e849:
 Func_1e855:
 	farcall Func_1022a
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	farcall Func_baf1
+	farcall HandleAutoDeckMenu
 	farcall Func_10252
 	ret
 
