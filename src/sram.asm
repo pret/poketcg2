@@ -72,8 +72,7 @@ sCurrentlySelectedDeck:: ; b7a0
 	ds $1
 
 ; keeps track of how many unnamed decks have been built
-; this is the number that gets appended at the end of
-; an unnamed deck (i.e. DECK XXX)
+; as they suffix the number ### in the form of "<PLYAYER>の###デッキ"
 ; max number is MAX_UNNAMED_DECK_NUM
 sUnnamedDeckCounter:: ; b7a1
 	ds $2

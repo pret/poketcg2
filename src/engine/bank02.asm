@@ -744,9 +744,9 @@ DeckSelectionSubMenu:
 	jr z, .asm_90cd
 	call EnableSRAM
 	ld de, wCurDeckCards
-	farcall Func_3be8d
+	farcall SaveDeckDataToWRAM2
 	call DisableSRAM
-	farcall Func_3bead
+	farcall OpenDeckSaveMachineFromDeckBuilding
 .asm_90cd
 	ld a, ALL_DECKS
 	call DrawDecksScreen
@@ -777,9 +777,9 @@ DeckSelectionSubMenu:
 	call EnableSRAM
 	ld hl, wCurDeckName
 	ld de, wCurDeckCards
-	farcall Func_3be8d
+	farcall SaveDeckDataToWRAM2
 	call DisableSRAM
-	farcall Func_3bead
+	farcall OpenDeckSaveMachineFromDeckBuilding
 .asm_9119
 	ld a, ALL_DECKS
 	call DrawDecksScreen
@@ -1919,9 +1919,9 @@ DismantleDeck:
 	jr nc, .asm_98a0
 	ld hl, wCurDeckName
 	ld de, wCurDeckCards
-	farcall Func_3be8d
+	farcall SaveDeckDataToWRAM2
 	call DisableSRAM
-	farcall Func_3bead
+	farcall OpenDeckSaveMachineFromDeckBuilding
 .asm_989d
 	add sp, $02
 	ret

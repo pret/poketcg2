@@ -4892,7 +4892,7 @@ Func_3ada1:
 .asm_3ae01
 	ld a, [wCheckMenuCursorYPosition]
 	sla a
-	ld hl, wCurSongBankBackup
+	ld hl, wCheckMenuCursorXPosition
 	add [hl]
 	or a
 	jr nz, .asm_3ae33
@@ -5133,7 +5133,7 @@ CopyBBytesFromHLToDE_Bank0e:
 	jr nz, .loop
 	ret
 
-Func_3afb1:
+CopyListFromHLToDE_Bank0e:
 .asm_3afb1
 	ld a, [hli]
 	ld [de], a
@@ -5901,7 +5901,7 @@ Func_3b45f:
 	push hl
 	ld de, wd47e
 	call EnableSRAM
-	call Func_3afb1
+	call CopyListFromHLToDE_Bank0e
 	pop hl
 	push hl
 	ld bc, $18
@@ -7103,37 +7103,37 @@ Func_3bd3b:
 
 SECTION "Bank e@7e8d", ROMX[$7e8d], BANK[$e]
 
-Func_3be8d:
+SaveDeckDataToWRAM2:
 	push de
 	ld de, wc000
-	call Func_3afb1
+	call CopyListFromHLToDE_Bank0e
 	pop de
-	ld hl, $c018
+	ld hl, wc000 + DECK_NAME_SIZE
 	bank1call SaveDeckCards
 	call SwitchToWRAM2
 	ld hl, wc000
 	ld de, w2d28e
-	ld b, $60
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ret
 
-Func_3bead:
+OpenDeckSaveMachineFromDeckBuilding:
 	ld a, [wCurDeck]
 	push af
 	xor a
 	ld [wScrollMenuScrollOffset], a
-	ld de, $2d3
+	ldtx de, DeckSaveMachineText
 	ld hl, wDeckMachineTitleText
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	call ClearScreenAndDrawDeckMachineScreen
-	ld a, $32
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
 	ld [wNumDeckMachineEntries], a
 	xor a
-.asm_3bec7
-	ld hl, $5eac
+.wait_input
+	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
@@ -7141,26 +7141,26 @@ Func_3bead:
 	call DrawWideTextBox_PrintText
 	ldtx de, PleaseSelectDeckText
 	call InitDeckMachineDrawingParams
-	call HandleDeckMachineSelection.start
-	jr c, .asm_3bec7
+	call HandleDeckMachineSelection
+	jr c, .wait_input
 	cp $ff
-	jr z, .asm_3bf50
+	jr z, .cancel
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
 	call CheckIfSelectedDeckMachineEntryIsEmpty
-	jr c, .asm_3bf01
+	jr c, .save_deck
 	ldtx hl, DeleteSavedDeckPromptText
 	call YesOrNoMenuWithText
 	ld a, [wTempScrollMenuItem]
-	jr c, .asm_3bec7
-.asm_3bf01
+	jr c, .wait_input
+.save_deck
 	call GetSelectedSavedDeckPtr
 	ld d, h
 	ld e, l
 	ld hl, w2d28e
-	ld b, $60
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call EnableSRAM
 	call SwitchToWRAM2
 	call CopyBBytesFromHLToDE_Bank0e
@@ -7170,7 +7170,7 @@ Func_3bead:
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
 	ld a, [wTempScrollMenuItem]
-	ld hl, $5eac
+	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call HandleScrollMenu.draw_visible_cursor
 	pop af
@@ -7181,11 +7181,11 @@ Func_3bead:
 	call DisableSRAM
 	xor a
 	ld [wTxRam2], a
-	ld [$cdd7], a
+	ld [wTxRam2 + 1], a
 	ldtx hl, SavedDeckToMachineText
 	call DrawWideTextBox_WaitForInput
 	ret
-.asm_3bf50
+.cancel
 	pop af
 	ld [wCurDeck], a
 	ret
