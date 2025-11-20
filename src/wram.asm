@@ -3516,7 +3516,8 @@ w2d28e:: ; d28e
 w2d38e:: ; d38e
 	ds $80
 
-	ds $180
+wAutoDecks:: ; d40e
+	ds DECK_COMPRESSED_STRUCT_SIZE * NUM_AUTO_DECK_MACHINE_SLOTS
 
 w2d58e:: ; d58e
 	ds $80

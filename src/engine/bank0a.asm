@@ -3367,9 +3367,9 @@ Func_2bb32:
 Func_2bb7f:
 	push hl
 	ld l, c
-	ld h, $60
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
-	ld de, wd40e
+	ld de, wAutoDecks
 	add hl, de
 	ld d, h
 	ld e, l
