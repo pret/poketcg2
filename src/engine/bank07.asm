@@ -5595,7 +5595,7 @@ DrawMinicomMainScreen:
 	lb bc, 20, 4
 	call DrawRegularTextBoxVRAM0
 	ldtx hl, PauseMenuMinicomText
-	ld de, CopyDataHLtoDE_SaveRegisters
+	lb de, 7, 2
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 0, 12
 	lb bc, 20, 6
@@ -5604,15 +5604,15 @@ DrawMinicomMainScreen:
 	lb de, 1, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call Func_1f309
-	jr z, .asm_1e7df
-	ld b, $07
-	ld hl, $6800
+	jr z, .done
+	ld b, BANK(.SpriteAnimGfxParams)
+	ld hl, .SpriteAnimGfxParams
 	ld d, 120
 	ld e, 32
 	ld a, $00
 	ld c, $00
 	call CreateSpriteAnim
-.asm_1e7df
+.done
 	ret
 
 .menu:
@@ -5624,9 +5624,12 @@ DrawMinicomMainScreen:
 	textitem 3, 6, MinicomCardAlbumText
 	textitem 3, 8, PCMenuShutdownText
 	db $ff
-; 0x1e800
 
-SECTION "Bank 7@6808", ROMX[$6808], BANK[$7]
+.SpriteAnimGfxParams:
+	dw TILESET_SMALL_ENVELOPE
+	dw SPRITE_ANIM_AA
+	dw FRAMESET_173
+	dw PALETTE_180
 
 ; return
 ;	 a - cursor position, used later in CallMinicomMenuFunction
@@ -6347,7 +6350,7 @@ MailboxMainScreen:
 	ld hl, wMailList
 	add hl, bc
 	lb de, 2, 6
-	ld c, 4 ; number of mail items that can fit on screen
+	ld c, MAIL_MAX_ON_SCREEN
 .print_mail_loop
 	ld a, [hli]
 	and a
@@ -6356,7 +6359,7 @@ MailboxMainScreen:
 	dec c
 	jr nz, .print_mail_loop
 .count_mail_items_on_screen
-	ld a, 4 ; number of mail items that can fit on screen
+	ld a, MAIL_MAX_ON_SCREEN
 	sub c
 	and a
 	jr nz, .done

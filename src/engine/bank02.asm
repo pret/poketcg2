@@ -571,7 +571,6 @@ PrepareMenuGraphics:
 	call SetupText
 	ret
 
-Func_8f6b:
 ; inits the following deck building params from hl:
 ; wMaxNumCardsAllowed
 ; wd381
@@ -4384,7 +4383,7 @@ Func_a705:
 	ld hl, wCurDeckName
 	ld [hl], TX_END
 	ld hl, $6726
-	call Func_8f6b
+	call InitDeckBuildingParams
 	ld a, $01
 	ld [wd121], a
 	call HandleDeckBuildScreen
