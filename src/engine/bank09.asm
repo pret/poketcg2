@@ -2727,7 +2727,7 @@ CheckDeck:
 .asm_25461
 	push hl
 	ld hl, wDeckCheckCardCounts
-	ld c, wDeckCheckCardCountsEnd - wDeckCheckCardCounts
+	ld c, DECKCHECKSTRUCT_LENGTH
 	xor a
 .loop_clear
 	ld [hli], a
@@ -2750,22 +2750,22 @@ CheckDeck:
 	inc [hl]
 .not_rainbow
 	ld a, [wLoadedCard1Type]
-	ld e, $4
+	ld e, DECKCHECKSTRUCT_TRAINER
 	cp TYPE_TRAINER
 	jr z, .got_type
-	ld e, $0
+	ld e, DECKCHECKSTRUCT_ENERGY
 	cp TYPE_ENERGY
 	jr nc, .got_type
-	ld e, $1
+	ld e, DECKCHECKSTRUCT_BASIC_PKMN
 	ld a, [wLoadedCard1Stage]
 	or a
 	jr z, .got_type
-	ld e, $2
+	ld e, DECKCHECKSTRUCT_STAGE1_PKMN
 	cp STAGE1
 	jr z, .got_type
-	ld e, $3
+	ld e, DECKCHECKSTRUCT_STAGE2_PKMN
 .got_type
-	ld d, $00
+	ld d, 0
 	ld hl, wDeckCheckCardCounts
 	add hl, de
 	inc [hl]
