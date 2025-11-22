@@ -2385,67 +2385,67 @@ MainMenuNewGameInsteadOfContinueDeletedText:
 	textfw "すべてのデータをさくじょしました"
 	done
 
-PrologueScene1Line1Text:
+ProloguePlayerRecapLine1Text:
 	textfw "<RAMNAME>は ポケモンカードを"
 	linefw "あつめるのが だいすきです"
 	done
 
-PrologueScene1Line2Text:
+ProloguePlayerRecapLine2Text:
 	textfw "<RAMNAME>は このしまにつたわる"
 	linefw "伝説のポケモンカードを ゲットのため"
 	done
 
-PrologueScene1Line3Text:
+ProloguePlayerRecapLine3Text:
 	textfw "8にんの クラブマスターと"
 	linefw "伝説のポケモンカードを まもる"
 	done
 
-PrologueScene1Line4Text:
+ProloguePlayerRecapLine4Text:
 	textfw "4にんの グランドマスターに"
 	linefw "ちょうせんしたのでした・・・"
 	done
 
-PrologueScene1Line5Text:
+ProloguePlayerRecapLine5Text:
 	textfw "そして ついには!"
 	linefw "グランドマスターを たおして"
 	done
 
-PrologueScene1Line6Text:
+ProloguePlayerRecapLine6Text:
 	textfw "4枚の 伝説のポケモンカードを"
 	linefw "そのてに ゲットしたのです"
 	done
 
-PrologueScene1Line7Text:
+ProloguePlayerRecapLine7Text:
 	textfw "そんな ある日・・・"
 	linefw "じけんは おこりました!"
 	done
 
-PrologueScene2Line1Text:
+PrologueGRInvasionLine1Text:
 	textfw "とつぜん"
 	linefw "なぞのぐん団が おそってきたのです!"
 	done
 
-PrologueScene2Line2Text:
+PrologueGRInvasionLine2Text:
 	textfw "その名を 「GR団」!"
 	linefw "「グレートロケット団」と いいました"
 	done
 
-PrologueScene2Line3Text:
+PrologueGRInvasionLine3Text:
 	textfw "「GR団」は クラブを こうげき!"
 	linefw "カードを うばっていったのです!"
 	done
 
-PrologueScene3Line1Text:
+ProloguePlayerToLabLine1Text:
 	textfw "もっていたカードを GR団に"
 	linefw "うばわれた <RAMNAME>は"
 	done
 
-PrologueScene3Line2Text:
+ProloguePlayerToLabLine2Text:
 	textfw "このことを しらせるため"
 	linefw "ポケモンカードの 研究者である"
 	done
 
-PrologueScene3Line3Text:
+ProloguePlayerToLabLine3Text:
 	textfw "Dr.オーヤマのいる 研究所へ"
 	linefw "むかったのでした・・・"
 	done

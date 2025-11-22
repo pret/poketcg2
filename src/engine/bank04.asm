@@ -7338,17 +7338,17 @@ ShowProloguePortraitAndText:
 	ret
 
 .FunctionMap:
-	key_func $00, .Func_13bd8
-	key_func $01, .Func_13bdf
-	key_func $02, .Func_13bd8
+	key_func PROLOGUE_PLAYER_RECAP,  .Player
+	key_func PROLOGUE_GR_INVASION,   .GR
+	key_func PROLOGUE_PLAYER_TO_LAB, .Player
 	db $ff ; end
 
-.Func_13bd8:
+.Player:
 	lb bc, 7, 3
 	call DrawPlayerPortrait
 	ret
 
-.Func_13bdf:
+.GR:
 	ld a, GR_1_PIC
 	lb bc, 7, 3
 	ld e, EMOTION_NORMAL
@@ -7369,30 +7369,30 @@ ShowProloguePortraitAndText:
 	ret
 
 .TextListPointers:
-	dw .text_list1
-	dw .text_list2
-	dw .text_list3
+	dw .PlayerRecap
+	dw .GRInvasion
+	dw .PlayerToLab
 
-.text_list1
-	tx PrologueScene1Line1Text
-	tx PrologueScene1Line2Text
-	tx PrologueScene1Line3Text
-	tx PrologueScene1Line4Text
-	tx PrologueScene1Line5Text
-	tx PrologueScene1Line6Text
-	tx PrologueScene1Line7Text
+.PlayerRecap
+	tx ProloguePlayerRecapLine1Text
+	tx ProloguePlayerRecapLine2Text
+	tx ProloguePlayerRecapLine3Text
+	tx ProloguePlayerRecapLine4Text
+	tx ProloguePlayerRecapLine5Text
+	tx ProloguePlayerRecapLine6Text
+	tx ProloguePlayerRecapLine7Text
 	dw $ffff
 
-.text_list2
-	tx PrologueScene2Line1Text
-	tx PrologueScene2Line2Text
-	tx PrologueScene2Line3Text
+.GRInvasion
+	tx PrologueGRInvasionLine1Text
+	tx PrologueGRInvasionLine2Text
+	tx PrologueGRInvasionLine3Text
 	dw $ffff
 
-.text_list3
-	tx PrologueScene3Line1Text
-	tx PrologueScene3Line2Text
-	tx PrologueScene3Line3Text
+.PlayerToLab
+	tx ProloguePlayerToLabLine1Text
+	tx ProloguePlayerToLabLine2Text
+	tx ProloguePlayerToLabLine3Text
 	dw $ffff
 ; 0x13c22
 

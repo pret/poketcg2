@@ -1896,19 +1896,19 @@ TextOffsets::
 	textpointer MainMenuNewGameInsteadOfContinueWarning2Text          ; 0x075f
 	textpointer MainMenuNewGameInsteadOfContinueConfirmPromptText     ; 0x0760
 	textpointer MainMenuNewGameInsteadOfContinueDeletedText           ; 0x0761
-	textpointer PrologueScene1Line1Text                               ; 0x0762
-	textpointer PrologueScene1Line2Text                               ; 0x0763
-	textpointer PrologueScene1Line3Text                               ; 0x0764
-	textpointer PrologueScene1Line4Text                               ; 0x0765
-	textpointer PrologueScene1Line5Text                               ; 0x0766
-	textpointer PrologueScene1Line6Text                               ; 0x0767
-	textpointer PrologueScene1Line7Text                               ; 0x0768
-	textpointer PrologueScene2Line1Text                               ; 0x0769
-	textpointer PrologueScene2Line2Text                               ; 0x076a
-	textpointer PrologueScene2Line3Text                               ; 0x076b
-	textpointer PrologueScene3Line1Text                               ; 0x076c
-	textpointer PrologueScene3Line2Text                               ; 0x076d
-	textpointer PrologueScene3Line3Text                               ; 0x076e
+	textpointer ProloguePlayerRecapLine1Text                          ; 0x0762
+	textpointer ProloguePlayerRecapLine2Text                          ; 0x0763
+	textpointer ProloguePlayerRecapLine3Text                          ; 0x0764
+	textpointer ProloguePlayerRecapLine4Text                          ; 0x0765
+	textpointer ProloguePlayerRecapLine5Text                          ; 0x0766
+	textpointer ProloguePlayerRecapLine6Text                          ; 0x0767
+	textpointer ProloguePlayerRecapLine7Text                          ; 0x0768
+	textpointer PrologueGRInvasionLine1Text                           ; 0x0769
+	textpointer PrologueGRInvasionLine2Text                           ; 0x076a
+	textpointer PrologueGRInvasionLine3Text                           ; 0x076b
+	textpointer ProloguePlayerToLabLine1Text                          ; 0x076c
+	textpointer ProloguePlayerToLabLine2Text                          ; 0x076d
+	textpointer ProloguePlayerToLabLine3Text                          ; 0x076e
 	textpointer IntroductionText                                      ; 0x076f
 	textpointer ConfigTitleText_2                                     ; 0x0770
 	textpointer ConfigFrameColorText                                  ; 0x0771
