@@ -163,20 +163,20 @@ DEF PRESENT_PACK EQU 7
 
 ; booster pack constants
 	const_def
-	const BOOSTER_BEGINNING_POKEMON     ; $0
-	const BOOSTER_LEGENDARY_POWER       ; $1
-	const BOOSTER_ISLAND_OF_FOSSIL      ; $2
-	const BOOSTER_PSYCHIC_BATTLE        ; $3
-	const BOOSTER_SKY_FLYING_POKEMON    ; $4
-	const BOOSTER_WE_ARE_TEAM_ROCKET    ; $5
-	const BOOSTER_TEAM_ROCKETS_AMBITION ; $6
-	const BOOSTER_DEBUG_1               ; $7
-	const BOOSTER_PRESENT_PACK_1        ; $8
-	const BOOSTER_PRESENT_PACK_2        ; $9
-	const BOOSTER_PRESENT_PACK_3        ; $a
-	const BOOSTER_PRESENT_PACK_4        ; $b
-	const BOOSTER_PRESENT_PACK_5        ; $c
-	const BOOSTER_DEBUG_2               ; $d
+	const BOOSTER_BEGINNING_POKEMON            ; $0
+	const BOOSTER_LEGENDARY_POWER              ; $1
+	const BOOSTER_ISLAND_OF_FOSSIL             ; $2
+	const BOOSTER_PSYCHIC_BATTLE               ; $3
+	const BOOSTER_SKY_FLYING_POKEMON           ; $4
+	const BOOSTER_WE_ARE_TEAM_ROCKET           ; $5
+	const BOOSTER_TEAM_ROCKETS_AMBITION        ; $6
+	const BOOSTER_DEBUG_10_STAR                ; $7
+	const BOOSTER_PRESENT_10_ENERGY            ; $8
+	const BOOSTER_PRESENT_FROM_ALL_SETS        ; $9
+	const BOOSTER_PRESENT_FROM_NON_ROCKET_SETS ; $a
+	const BOOSTER_PRESENT_FROM_LATTER_4_SETS   ; $b
+	const BOOSTER_PRESENT_FROM_ROCKET_SETS     ; $c
+	const BOOSTER_DEBUG_2_STAR                 ; $d
 
 ; real card set constants
 	const_def
