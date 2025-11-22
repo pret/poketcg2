@@ -31,6 +31,16 @@
 	const STARTMENU_NEW_GAME            ; 2
 	const STARTMENU_CONTINUE_DUEL       ; 3
 
+; debug menu options
+	const_def
+	const DEBUGMENU_POWER_ON      ; 0
+	const DEBUGMENU_COIN          ; 1
+	const DEBGUMENU_CONFIG        ; 2
+	const DEBUGMENU_EFFECT_VIEWER ; 3
+	const DEBUGMENU_CREDITS       ; 4
+	const DEBUGMENU_DUEL          ; 5
+	const DEBUGMENU_SLOT          ; 6
+
 ; constants for wGlossaryMenu
 	const_def
 	const GLOSSARY_GAME_BASICS            ; $0

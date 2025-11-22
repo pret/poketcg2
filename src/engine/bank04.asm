@@ -88,14 +88,14 @@ HandleStartupDebugMenuOption:
 	call CallMappedFunction
 	ret
 
-.FunctionMap: ; boot up debug menu options
-	key_func $00, _CoreGameLoop ; power on
-	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
-	key_func $02, DebugShowConfigMenu ; config
-	key_func $03, DebugMenuEffectViewer ; effect viewer
-	key_func $04, _PlayCredits ; staff roll
-	key_func $05, StartDebugDuelVsRandomOpponent ; duel
-	key_func $06, DebugSlotMachine ; slot machine
+.FunctionMap
+	key_func DEBUGMENU_POWER_ON,      _CoreGameLoop
+	key_func DEBUGMENU_COIN,          SetAllCoinsObtainedAndShowCoinMenu
+	key_func DEBGUMENU_CONFIG,        DebugShowConfigMenu
+	key_func DEBUGMENU_EFFECT_VIEWER, DebugMenuEffectViewer
+	key_func DEBUGMENU_CREDITS,       _PlayCredits
+	key_func DEBUGMENU_DUEL,          StartDebugDuelVsRandomOpponent
+	key_func DEBUGMENU_SLOT,          DebugSlotMachine
 	db $ff
 
 SetAllCoinsObtainedAndShowCoinMenu:
