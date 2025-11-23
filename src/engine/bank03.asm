@@ -2311,7 +2311,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, set bit n at (wd606 + m)
+; set n, [wd606 + m], where a = 8m + n
 SetBit_wd606:
 	push af
 	push bc
@@ -2323,9 +2323,9 @@ REPT 3
 ENDR
 	add l
 	ld l, a
-	jr nc, .got_byte
+	jr nc, .bitmask
 	inc h
-.got_byte
+.bitmask
 	pop af
 	and 7
 	inc a
@@ -2333,10 +2333,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, [hl]
 	or b
 	ld [hl], a
@@ -2345,7 +2345,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, clear bit n at (wd606 + m)
+; res n, [wd606 + m], where a = 8m + n
 ClearBit_wd606:
 	push af
 	push bc
@@ -2357,9 +2357,9 @@ REPT 3
 ENDR
 	add l
 	ld l, a
-	jr nc, .got_byte
+	jr nc, .bitmask
 	inc h
-.got_byte
+.bitmask
 	pop af
 	and 7
 	inc a
@@ -2367,10 +2367,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, b
 	cpl
 	and [hl]
@@ -2380,9 +2380,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, return in the z flag whether bit n at (wd606 + m) is empty
-; z: empty, nz: set
-; then restore bc and load b from it into a
+; bit n, [wd606 + m], where a = 8m + n
 CheckBit_wd606:
 	push bc
 	push hl
@@ -2394,9 +2392,9 @@ REPT 3
 ENDR
 	add l
 	ld l, a
-	jr nc, .got_byte
+	jr nc, .bitmask
 	inc h
-.got_byte
+.bitmask
 	pop af
 	and 7
 	inc a
@@ -2404,10 +2402,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, [hl]
 	and b
 	pop bc
