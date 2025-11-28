@@ -967,7 +967,7 @@ UnnamedDeckCounterToText:
 	ret
 
 .get_digit
-	ld a, $1f ; "0" - 1
+	ld a, SYM_0 - 1
 .subtract_loop
 	inc a
 	add hl, bc
