@@ -319,7 +319,7 @@ GetDuelistPortrait::
 
 SECTION "Bank 7@416e", ROMX[$416e], BANK[$7]
 
-PauseMenuSettingsScreen:
+PauseMenuConfigScreen:
 	farcall Func_1022a
 	call ShowConfigMenu
 	farcall Func_10252

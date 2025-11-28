@@ -1273,7 +1273,7 @@ Func_10836:
 	key_func $02, PauseMenuDeckScreen ; deck
 	key_func $03, PauseMenuMinicomScreen ; minicom
 	key_func $04, PauseMenuCoinScreen ; coin
-	key_func $05, PauseMenuSettingsScreen ; settings
+	key_func $05, PauseMenuConfigScreen ; config
 	db $ff
 
 Func_10856:
