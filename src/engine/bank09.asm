@@ -5316,52 +5316,59 @@ CountIfListedCardsInDeck:
 	or a
 	ret
 
-Func_260e7:
+; for a card in de,
+; create in wDuelTempList a list of its unique evo cards
+; also set carry if at least 1
+_ListUniqueEvoCardsFromDE:
 	call LoadCardDataToBuffer1_FromCardID
 	ld hl, wLoadedCard1Name
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
 	ld hl, wDuelTempList
-	ld de, $0
-.asm_260f6
+	ld de, GRASS_ENERGY - 1 ; 0
+.loop_cards
 	inc de
 	push hl
 	push de
 	call LoadCardDataToBuffer1_FromCardID
-	jr c, .asm_2611d
+	jr c, .exit
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_26119
+	cp TYPE_ENERGY
+	jr nc, .next_card
 	ld hl, wLoadedCard1PreEvoName
 	ld a, c
 	cp [hl]
-	jr nz, .asm_26119
+	jr nz, .next_card
 	inc hl
 	ld a, b
 	cp [hl]
-	jr nz, .asm_26119
+	jr nz, .next_card
+; found evo
 	pop de
 	pop hl
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
-	jr .asm_260f6
-.asm_26119
+	jr .loop_cards
+.next_card
 	pop de
 	pop hl
-	jr .asm_260f6
-.asm_2611d
+	jr .loop_cards
+
+.exit
 	pop de
 	pop hl
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
 	ld hl, wDuelTempList
 	ld a, [hli]
 	or [hl]
-	ret z
+	ret z ; empty
+; not empty
 	scf
 	ret
 

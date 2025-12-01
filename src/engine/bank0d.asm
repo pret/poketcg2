@@ -1560,8 +1560,8 @@ GameCenter1_NPCInteractions:
 	db $ff
 
 GameCenter1_OWInteractions:
-	ow_script 5, 4, Func_34d15
-	ow_script 6, 4, Func_34d15
+	ow_script 5, 4, Script_BlackBox
+	ow_script 6, 4, Script_BlackBox
 	ow_script 2, 9, Func_34d35
 	db $ff
 
@@ -1695,7 +1695,7 @@ Script_34c4c:
 	end_script
 	ret
 
-Func_34d15:
+Script_BlackBox:
 	xor a
 	start_script
 	script_command_01
@@ -1704,7 +1704,7 @@ Func_34d15:
 	end_script
 	farcall Func_1312e
 	jr c, .asm_34d2f
-	farcall Func_4569f
+	farcall ProcessBlackBoxInputAndOutput
 	ld a, $81 ; priority black box mail
 	farcall AddMailToQueue
 .asm_34d2f

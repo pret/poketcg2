@@ -91,10 +91,11 @@ DEF PKMN_CARD_DATA_LENGTH EQU _RS ; $42
 	const WATER       ; $03
 	const FIGHTING    ; $04
 	const PSYCHIC     ; $05
-DEF NUM_COLORED_TYPES EQU const_value
+DEF NUM_COLORED_TYPES EQU const_value ; $06
 	const COLORLESS   ; $06
+DEF NUM_PKMN_TYPES    EQU const_value ; $07
 	const RAINBOW     ; $07
-DEF NUM_TYPES EQU const_value
+DEF NUM_TYPES         EQU const_value ; $08
 
 ; generic type (color) flag constants
 DEF FIRE_F      EQU $1 << FIRE      ; $01
@@ -195,10 +196,12 @@ DEF PRESENT_PACK EQU 7
 DEF NUM_CARDS_IN_BOOSTER EQU 10
 
 ; CARD_DATA_STAGE constants
-DEF BASIC  EQU $00
-DEF STAGE1 EQU $01
-DEF STAGE2 EQU $02
-DEF STAGE2_WITHOUT_STAGE1 EQU $03
+const_def
+	const BASIC                 ; 0
+	const STAGE1                ; 1
+	const STAGE2                ; 2
+DEF NUM_REGULAR_EVO_STAGES EQU const_value
+	const STAGE2_WITHOUT_STAGE1 ; 3
 
 ; CARD_DATA_WEAKNESS and CARD_DATA_RESISTANCE constants
 DEF WR_FIRE      EQU $80

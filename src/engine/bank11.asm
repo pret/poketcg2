@@ -1,23 +1,27 @@
-Func_44000:
+; hl = card list
+TakeOutCardsInHLFromCollection:
 	push af
 	push de
 	push hl
-.asm_44003
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_4400f
+	jr z, .done
 	call RemoveCardFromCollection
-	jr .asm_44003
-.asm_4400f
+	jr .loop_cards
+.done
 	pop hl
 	pop de
 	pop af
 	ret
 
-Func_44013:
+; for a card list in hl,
+; reset carry if all cards are identical
+; set carry if it's empty or has different cards
+CheckIfAllIdenticalCardsInHL:
 	push bc
 	push de
 	push hl
@@ -26,30 +30,31 @@ Func_44013:
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_44030
-.asm_4401d
+	jr z, .empty_or_different
+.loop_cards
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_44033
+	jr z, .all_identical
 	ld a, d
 	cp b
-	jr c, .asm_4402c
-	jr nz, .asm_4402c
+	jr c, .skip_low
+	jr nz, .skip_low
 	ld a, e
 	cp c
-.asm_4402c
-	jr nz, .asm_44030
-	jr .asm_4401d
-.asm_44030
+.skip_low
+	jr nz, .empty_or_different
+	jr .loop_cards
+
+.empty_or_different
 	scf
-	jr .asm_44035
-.asm_44033
+	jr .done
+.all_identical
 	scf
 	ccf
-.asm_44035
+.done
 	pop hl
 	pop de
 	pop bc
@@ -69,10 +74,10 @@ CountCardsInHL:
 	ld b, a
 	ld a, [hli]
 	or b
-	jr z, .asm_44046
+	jr z, .done
 	inc c
 	jr .loop
-.asm_44046
+.done
 	ld a, c
 	pop hl
 	pop bc
@@ -123,60 +128,78 @@ SearchCardInListInHL:
 	pop bc
 	ret
 
-Func_44070:
+; SearchCardInListInHL[a:]
+; input:
+;  hl = card list
+;  de = card ID to search for
+;  a = offset
+; output:
+;  carry set if not found
+;  a = index in list if found
+SearchCardInListInHL_Offset:
 	push hl
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_44078
+	jr nc, .search
 	inc h
-.asm_44078
+.search
 	call SearchCardInListInHL
 	pop hl
 	ret
 
-Func_4407d:
+; check if card list in hl has a valid evo line and nothing else
+; (1 card each as follows)
+; return evo-stage flags in a:
+;   0: BASIC, STAGE1, STAGE2
+;   1: BASIC, STAGE1
+;   2: BASIC, STAGE2
+;   3: STAGE1, STAGE2
+; set carry if invalid
+CheckIfEvoLineInHL:
 	call CountCardsInHL
-	cp $02
-	jr z, .asm_4408a
-	cp $03
-	jr z, .asm_4408a
+	cp 2
+	jr z, .two_or_three
+	cp 3
+	jr z, .two_or_three
+; otherwise invalid
 	scf
 	ret
-.asm_4408a
+
+.two_or_three
 	push bc
 	push de
 	push hl
 	push hl
+; init buffer
 	xor a
-	ld hl, wd57c
+	ld hl, wTempBlackBoxInputEvoLine
+REPT 2 * NUM_REGULAR_EVO_STAGES
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	ENDR
+
 	pop hl
-.asm_44099
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_440ca
+	jr z, .check_evo_combo
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jp nc, .asm_4418a
+	cp TYPE_ENERGY
+	jp nc, .invalid
+; pkmn
 	push hl
-	ld hl, wd57c
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [wLoadedCard1Stage]
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_440b9
+	jr nc, .store_in_buffer
 	inc h
-.asm_440b9
+.store_in_buffer
 	ld a, [hli]
 	ld c, a
 	ld a, [hld]
@@ -184,41 +207,44 @@ Func_4407d:
 	push hl
 	pop bc
 	pop hl
-	jp nz, .asm_4418a
+	jp nz, .invalid ; the same stage already exists
 	ld a, e
 	ld [bc], a
 	inc bc
 	ld a, d
 	ld [bc], a
-	jr .asm_44099
-.asm_440ca
-	ld hl, wd57c
+	jr .loop_cards
+
+.check_evo_combo
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jp z, .asm_4416d
-	ld a, [hli]
+	jp z, .no_basic_input
+	ld a, [hli] ; wTempBlackBoxInputStage1
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_4412e
-	ld a, [hli]
+	jr z, .basic_and_stage2
+	ld a, [hli] ; wTempBlackBoxInputStage2
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_44113
-	ld hl, wd57c
+	jr z, .basic_and_stage1
+
+; BASIC | STAGE1 | STAGE2
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Func_4427f
-	jp nc, .asm_4418a
-	ld a, [hli]
+	call ListUniqueEvoCardsFromDE
+	jp nc, .invalid
+	ld a, [hli] ; wTempBlackBoxInputStage1
 	ld e, a
 	ld a, [hli]
 	ld d, a
@@ -226,44 +252,46 @@ Func_4407d:
 	ld hl, wDuelTempList
 	call SearchCardInListInHL
 	pop hl
-	jp c, .asm_4418a
-	call Func_4427f
-	jp nc, .asm_4418a
-	ld a, [hli]
+	jp c, .invalid
+	call ListUniqueEvoCardsFromDE
+	jp nc, .invalid
+	ld a, [hli] ; wTempBlackBoxInputStage2
 	ld e, a
 	ld d, [hl]
 	ld hl, wDuelTempList
 	call SearchCardInListInHL
-	jr c, .asm_4418a
-	xor a
-	jr .asm_44186
-.asm_44113
-	ld hl, wd57c
+	jr c, .invalid
+	xor a ; 0 instead of (BASIC | STAGE1 | STAGE2)
+	jr .valid
+
+.basic_and_stage1
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Func_4427f
-	jr nc, .asm_4418a
-	ld a, [hli]
+	call ListUniqueEvoCardsFromDE
+	jr nc, .invalid
+	ld a, [hli] ; wTempBlackBoxInputStage1
 	ld e, a
 	ld d, [hl]
 	ld hl, wDuelTempList
 	call SearchCardInListInHL
-	jr c, .asm_4418a
-	ld a, $01
-	jr .asm_44186
-.asm_4412e
-	ld hl, wd57c
+	jr c, .invalid
+	ld a, BASIC | STAGE1
+	jr .valid
+
+.basic_and_stage2
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Func_4427f
-	jr nc, .asm_4418a
+	call ListUniqueEvoCardsFromDE
+	jr nc, .invalid
 	inc hl
 	inc hl
-	ld a, [hli]
+	ld a, [hli] ; wTempBlackBoxInputStage2
 	ld e, a
 	ld d, [hl]
 	call LoadCardDataToBuffer1_FromCardID
@@ -272,13 +300,13 @@ Func_4407d:
 	ld a, [wLoadedCard1PreEvoName + 1]
 	ld b, a
 	ld hl, wDuelTempList
-.asm_4414d
+.loop_lookup
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_4418a
+	jr z, .invalid
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Name]
 	ld e, a
@@ -286,163 +314,208 @@ Func_4407d:
 	ld d, a
 	ld a, d
 	cp b
-	jr c, .asm_44167
-	jr nz, .asm_44167
+	jr c, .next_lookup
+	jr nz, .next_lookup
 	ld a, e
 	cp c
-.asm_44167
-	jr nz, .asm_4414d
-	ld a, $02
-	jr .asm_44186
-.asm_4416d
-	ld hl, wd57e
+.next_lookup
+	jr nz, .loop_lookup
+	ld a, BASIC | STAGE2
+	jr .valid
+
+.no_basic_input
+	ld hl, wTempBlackBoxInputStage1
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call Func_4427f
-	jr nc, .asm_4418a
-	ld a, [hli]
+	call ListUniqueEvoCardsFromDE
+	jr nc, .invalid
+	ld a, [hli] ; wTempBlackBoxInputStage2
 	ld e, a
 	ld d, [hl]
 	ld hl, wDuelTempList
 	call SearchCardInListInHL
-	jr c, .asm_4418a
-	ld a, $03
-.asm_44186
+	jr c, .invalid
+	ld a, STAGE1 | STAGE2
+
+.valid
 	scf
 	ccf
-	jr .asm_4418b
-.asm_4418a
+	jr .done
+.invalid
 	scf
-.asm_4418b
+.done
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x4418f
 
-SECTION "Bank 11@41ac", ROMX[$41ac], BANK[$11]
+; unreferenced?
+; compare card lists in bc and hl
+; clear carry if equal
+; set carry if different
+CheckIfListsInBCAndHLAreEqual:
+	push bc
+	push de
+	push hl
+	call CheckIfListInBCIsSubsetOfListInHL
+	jr c, .different
+	call CountCardsInHL
+	ld e, a
+	ld l, c
+	ld h, b
+	call CountCardsInHL
+	cp e
+	jr nz, .different
+	scf
+	ccf
+	jr .done
+.different
+	scf
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
 
-Func_441ac:
+; return in a the most frequent type in card list in hl
+; with rng as tiebreaker
+; set carry for TYPE_PKMN_FIRE (= 0)
+GetMostFrequentPkmnTypeInHL:
 	push bc
 	push de
 	push hl
 	push hl
+; init buffer
 	xor a
-	ld hl, wd561
+	ld hl, wNumBlackBoxInputPkmnPerType
+REPT NUM_PKMN_TYPES - 1
 	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
-	ld [hli], a
+	ENDR
 	ld [hl], a
+
 	pop hl
-.asm_441bc
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_441da
+	jr z, .check_count
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $07
-	jr nc, .asm_441bc
-	ld de, wd561
+	cp TYPE_PKMN
+	jr nc, .loop_cards
+	ld de, wNumBlackBoxInputPkmnPerType
 	add e
 	ld e, a
-	jr nc, .asm_441d5
+	jr nc, .incr_count
 	inc d
-.asm_441d5
+.incr_count
 	ld a, [de]
 	inc a
 	ld [de], a
-	jr .asm_441bc
-.asm_441da
-	ld de, $0
-	ld c, $00
-	ld hl, wd561
-.asm_441e2
+	jr .loop_cards
+
+.check_count
+	ld de, 0
+	ld c, 0
+	ld hl, wNumBlackBoxInputPkmnPerType
+.loop_check_count
 	ld a, [hli]
 	cp d
-	jr c, .asm_441f4
-	jr nz, .asm_441f2
+	jr c, .next_type
+	jr nz, .get_type_and_count
+; tie
 	call UpdateRNGSources
 	srl a
-	jr c, .asm_441f4
+	jr c, .next_type
 	ld e, c
-	jr .asm_441f4
-.asm_441f2
+	jr .next_type
+
+.get_type_and_count
 	ld d, a
 	ld e, c
-.asm_441f4
+.next_type
 	inc c
 	ld a, c
-	cp $07
-	jr nz, .asm_441e2
+	cp NUM_PKMN_TYPES
+	jr nz, .loop_check_count
+
+; got most frequent type
 	ld a, e
 	or a
-	jr nz, .asm_441ff
+	jr nz, .done
+; set carry for TYPE_PKMN_FIRE
 	scf
-.asm_441ff
+.done
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_44203:
+; return in a the number of unique pkmn types in the card list in hl
+CountUniquePkmnTypesInHL:
 	push bc
 	push de
 	push hl
+; init buffer
 	farcall ZeroOutBytes_wd606
-.asm_4420a
+
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_44221
+	jr z, .count_types
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $07
-	jr nc, .asm_4420a
+	cp TYPE_PKMN
+	jr nc, .loop_cards
+; pkmn, set type bit
 	farcall SetBit_wd606
-	jr .asm_4420a
-.asm_44221
+	jr .loop_cards
+
+.count_types
 	xor a
 	ld c, a
-.asm_44223
+.loop_count_types
 	farcall CheckBit_wd606
-	jr z, .asm_4422a
+	jr z, .next_bit
 	inc c
-.asm_4422a
+.next_bit
 	inc a
-	cp $07
-	jr nz, .asm_44223
+	cp NUM_PKMN_TYPES
+	jr nz, .loop_count_types
+; got type counts
 	ld a, c
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_44234:
+; create in wDuelTempList a list of unique cards that matches
+; both b = TYPE_* and c = rarity
+; and return the list length in a
+ListUniqueCardsOfTheSameTypeAndRarity:
 	push bc
 	push de
 	push hl
-	ld de, $1
+	ld de, GRASS_ENERGY
 	ld hl, wDuelTempList
 	xor a
 	push af
-.asm_4423f
+.loop_cards
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
 	cp b
-	jr nz, .asm_44255
+	jr nz, .check_bounds
 	ld a, [wLoadedCard1Rarity]
 	cp c
-	jr nz, .asm_44255
+	jr nz, .check_bounds
+; match, append it and incr length counter
 	pop af
 	inc a
 	push af
@@ -450,16 +523,17 @@ Func_44234:
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-.asm_44255
+.check_bounds
 	ld a, d
-	cp $01
-	jr c, .asm_4425f
-	jr nz, .asm_4425f
+	cp HIGH(NUM_CARDS)
+	jr c, .next_card
+	jr nz, .next_card
 	ld a, e
-	cp $bd
-.asm_4425f
+	cp LOW(NUM_CARDS)
+.next_card
 	inc de
-	jr nz, .asm_4423f
+	jr nz, .loop_cards
+; done, append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -493,17 +567,23 @@ AppendCardToListInHL:
 	pop af
 	ret
 
-Func_4427f:
+; for a card in de,
+; create in wDuelTempList a list of its unique evo cards
+; also return carry if at least 1
+ListUniqueEvoCardsFromDE:
 	push bc
 	push de
 	push hl
-	farcall Func_260e7
+	farcall _ListUniqueEvoCardsFromDE
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_4428a:
+; for a card in de,
+; create in wDuelTempList a list of its unique pre-evo cards
+; also set carry if at least 1
+ListUniquePreEvoCardsFromDE:
 	push bc
 	push de
 	push hl
@@ -513,38 +593,41 @@ Func_4428a:
 	ld c, a
 	ld b, [hl]
 	ld hl, wDuelTempList
-	ld de, $0
-.asm_4429c
+	ld de, GRASS_ENERGY - 1 ; 0
+.loop_cards
 	inc de
 	push hl
 	push de
 	call LoadCardDataToBuffer1_FromCardID
-	jr c, .asm_442c3
+	jr c, .exit
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_442bf
+	cp TYPE_ENERGY
+	jr nc, .next_card
 	ld hl, wLoadedCard1Name
 	ld a, c
 	cp [hl]
-	jr nz, .asm_442bf
+	jr nz, .next_card
 	inc hl
 	ld a, b
 	cp [hl]
-	jr nz, .asm_442bf
+	jr nz, .next_card
+; found pre-evo
 	pop de
 	pop hl
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-	jr .asm_4429c
-.asm_442bf
+	jr .loop_cards
+.next_card
 	pop de
 	pop hl
-	jr .asm_4429c
-.asm_442c3
+	jr .loop_cards
+
+.exit
 	pop de
 	pop hl
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -554,11 +637,15 @@ Func_4428a:
 	pop hl
 	pop de
 	pop bc
-	ret z
+	ret z ; empty
+; not empty
 	scf
 	ret
 
-Func_442d3:
+; for a card in de,
+; create in wDuelTempList a list of unique cards of the same name
+; also return carry if at least 1 (i.e. always)
+ListUniqueCardsOfTheSameName:
 	push bc
 	push de
 	push hl
@@ -568,38 +655,41 @@ Func_442d3:
 	ld c, a
 	ld b, [hl]
 	ld hl, wDuelTempList
-	ld de, $0
-.asm_442e5
+	ld de, GRASS_ENERGY - 1 ; 0
+.loop_cards
 	inc de
 	push hl
 	push de
 	call LoadCardDataToBuffer1_FromCardID
-	jr c, .asm_4430c
+	jr c, .exit
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_44308
+	cp TYPE_ENERGY
+	jr nc, .next_card
 	ld hl, wLoadedCard1Name
 	ld a, c
 	cp [hl]
-	jr nz, .asm_44308
+	jr nz, .next_card
 	inc hl
 	ld a, b
 	cp [hl]
-	jr nz, .asm_44308
+	jr nz, .next_card
+; found the same name
 	pop de
 	pop hl
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
-	jr .asm_442e5
-.asm_44308
+	jr .loop_cards
+.next_card
 	pop de
 	pop hl
-	jr .asm_442e5
-.asm_4430c
+	jr .loop_cards
+
+.exit
 	pop de
 	pop hl
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -609,68 +699,105 @@ Func_442d3:
 	pop hl
 	pop de
 	pop bc
-	ret z
+	ret z ; empty, impossible
+; not empty
 	scf
 	ret
-; 0x4431c
 
-SECTION "Bank 11@433a", ROMX[$433a], BANK[$11]
-
-Func_4433a:
+; unreferenced?
+; a = rarity, hl = card list
+; return in a the count of cards of that rarity in hl
+CountCardsOfRarityOfAInHL:
 	push bc
 	push de
 	push hl
-	ld c, a
-	ld a, [hli]
-	ld e, a
-	ld a, [hld]
-	ld d, a
-	or e
-	jr z, .asm_44357
-.asm_44345
+	ld b, a
+	ld c, 0
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_4435a
+	jr z, .done
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Rarity]
-	cp c
-	jr nz, .asm_44357
-	jr .asm_44345
-.asm_44357
-	scf
-	jr .asm_4435c
-.asm_4435a
-	scf
-	ccf
-.asm_4435c
+	cp b
+	jr nz, .loop_cards
+	inc c
+	jr .loop_cards
+
+.done
+	ld a, c
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_44360:
+; for a card list in hl,
+; reset carry if all cards have the same rarity
+; set carry if it's empty or has different rarities
+CheckIfAllIdenticalRarityInHL:
 	push bc
 	push de
 	push hl
-.asm_44363
+	ld c, a
+	ld a, [hli]
+	ld e, a
+	ld a, [hld]
+	ld d, a
+	or e
+	jr z, .empty_or_different
+.loop_cards
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .all_identical_rarity
+	call LoadCardDataToBuffer1_FromCardID
+	ld a, [wLoadedCard1Rarity]
+	cp c
+	jr nz, .empty_or_different
+	jr .loop_cards
+
+.empty_or_different
+	scf
+	jr .done
+.all_identical_rarity
+	scf
+	ccf
+.done
+	pop hl
+	pop de
+	pop bc
+	ret
+
+; if a card in de is in the list in hl,
+; drop the first occurrence of it and shift the rest
+; else (i.e. not found) set carry
+RemoveCardFromListInHL:
+	push bc
+	push de
+	push hl
+.loop_cards
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_4438b
+	jr z, .not_found
 	ld a, d
 	cp b
-	jr c, .asm_44372
-	jr nz, .asm_44372
+	jr c, .next_card
+	jr nz, .next_card
 	ld a, e
 	cp c
-.asm_44372
-	jr nz, .asm_44363
-.asm_44374
+.next_card
+	jr nz, .loop_cards
+
+; found
+.loop_shift
 	ld a, [hli]
 	ld e, a
 	ld a, [hld]
@@ -684,28 +811,36 @@ Func_44360:
 	or e
 	inc hl
 	inc hl
-	jr nz, .asm_44374
+	jr nz, .loop_shift
+; ensure the $0000 terminator (redundant?)
 	xor a
 	dec hl
 	ld [hld], a
 	ld [hl], a
 	scf
 	ccf
-	jr .asm_4438c
-.asm_4438b
+	jr .done
+
+.not_found
 	scf
-.asm_4438c
+.done
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_44390:
+; compare two card lists in bc and hl
+; if bc is a subset of hl (dupes apply), reset carry
+; else set carry
+; e.g. whether black box input contains blackbox_promo recipes
+CheckIfListInBCIsSubsetOfListInHL:
 	push bc
 	push de
 	push hl
+; init buffer
 	farcall ZeroOutBytes_wd606
-.asm_44397
+
+.loop_list_bc
 	ld a, [bc]
 	ld e, a
 	inc bc
@@ -713,34 +848,39 @@ Func_44390:
 	ld d, a
 	inc bc
 	or e
-	jr z, .asm_443b4
-	ld a, $ff
-.asm_443a2
+	jr z, .exit
+	ld a, -1
+.loop_list_hl
 	inc a
-	call Func_44070
-	jr c, .asm_443b8
+	call SearchCardInListInHL_Offset
+	jr c, .not_found
+; found, set index bit
 	farcall CheckBit_wd606
-	jr nz, .asm_443a2
+	jr nz, .loop_list_hl
 	farcall SetBit_wd606
-	jr .asm_44397
-.asm_443b4
+	jr .loop_list_bc
+
+.exit
 	scf
 	ccf
-	jr .asm_443b9
-.asm_443b8
+	jr .done
+.not_found
 	scf
-.asm_443b9
+.done
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_443bd:
+; for each card in bc,
+; drop the first occurence of it in hl and shift the rest
+; set carry if not found
+RemoveCardsInBCFromHL:
 	push af
 	push bc
 	push de
 	push hl
-.asm_443c1
+.loop_remove
 	ld a, [bc]
 	ld e, a
 	inc bc
@@ -748,10 +888,11 @@ Func_443bd:
 	inc bc
 	ld d, a
 	or e
-	jr z, .asm_443cf
-	call Func_44360
-	jr .asm_443c1
-.asm_443cf
+	jr z, .done
+	call RemoveCardFromListInHL
+	jr .loop_remove
+
+.done
 	pop hl
 	pop de
 	pop bc
@@ -791,7 +932,7 @@ FilterCardListInHL:
 	cp c
 	jr nz, .loop_cards
 	ld a, b
-	cp $01
+	cp FILTER_ONLY_TRAINER
 	jr z, .only_trainers
 	jr nc, .only_energy
 ; only pkmn
@@ -909,52 +1050,56 @@ ShuffleCardsInHL:
 	pop af
 	ret
 
-Func_44481:
+; unreferenced
+; countif( (card list in hl), (real card set constant in a) )
+CountCardsFromRealSetOfAInHL:
 	push bc
 	push de
 	push hl
 	ld b, a
-	ld c, $00
-.asm_44487
+	ld c, 0
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_4449a
+	jr z, .done
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1RealSet]
 	cp b
-	jr nz, .asm_44487
+	jr nz, .loop_cards
 	inc c
-	jr .asm_44487
-.asm_4449a
+	jr .loop_cards
+.done
 	ld a, c
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_4449f:
+; countif( (card list in hl), (card set constant in a) )
+; often with a = PROMOTIONAL
+CountCardsFromSetOfAInHL:
 	push bc
 	push de
 	push hl
 	ld b, a
-	ld c, $00
-.asm_444a5
+	ld c, 0
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_444b8
+	jr z, .done
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Set]
 	cp b
-	jr nz, .asm_444a5
+	jr nz, .loop_cards
 	inc c
-	jr .asm_444a5
-.asm_444b8
+	jr .loop_cards
+.done
 	ld a, c
 	pop hl
 	pop de
@@ -974,8 +1119,8 @@ _ChooseTitleScreenCards:
 	ld [wIntroCardsRepeatsAllowed], a
 
 	call EnableSRAM
-	ld hl, sDeck1Name
-	ld c, $05
+	ld hl, sDeck1
+	ld c, NUM_DECKS + 1
 .loop_decks
 	ld a, [hli]
 	ld e, a
@@ -1010,7 +1155,7 @@ _ChooseTitleScreenCards:
 .star_pkmn
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $0, STAR
+	lb bc, FILTER_ONLY_PKMN, STAR
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1021,7 +1166,7 @@ _ChooseTitleScreenCards:
 .diamond_pkmn
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $0, DIAMOND
+	lb bc, FILTER_ONLY_PKMN, DIAMOND
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1032,7 +1177,7 @@ _ChooseTitleScreenCards:
 .circle_pkmn
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $0, CIRCLE
+	lb bc, FILTER_ONLY_PKMN, CIRCLE
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1043,7 +1188,7 @@ _ChooseTitleScreenCards:
 .star_trainers
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $1, STAR
+	lb bc, FILTER_ONLY_TRAINER, STAR
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1054,7 +1199,7 @@ _ChooseTitleScreenCards:
 .diamond_trainers
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $1, DIAMOND
+	lb bc, FILTER_ONLY_TRAINER, DIAMOND
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1065,7 +1210,7 @@ _ChooseTitleScreenCards:
 .circle_trainers
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $1, CIRCLE
+	lb bc, FILTER_ONLY_TRAINER, CIRCLE
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1077,7 +1222,7 @@ _ChooseTitleScreenCards:
 .star_energy
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $2, STAR
+	lb bc, FILTER_ONLY_ENERGY, STAR
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1088,7 +1233,7 @@ _ChooseTitleScreenCards:
 .diamond_energy
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $2, DIAMOND
+	lb bc, FILTER_ONLY_ENERGY, DIAMOND
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1099,7 +1244,7 @@ _ChooseTitleScreenCards:
 .circle_energy
 	push hl
 	ld hl, wPlayerDeck
-	lb bc, $2, CIRCLE
+	lb bc, FILTER_ONLY_ENERGY, CIRCLE
 	call FilterCardListInHL
 	pop hl
 	ld b, a
@@ -1930,39 +2075,50 @@ Func_4568f:
 	pop af
 	ret
 
-Func_4569f:
+; calc black box output from input
+ProcessBlackBoxInputAndOutput:
 	ld hl, wCurDeckCards
-	call Func_44000
-	ld a, $07
-	call Func_4449f
+	call TakeOutCardsInHLFromCollection
+	ld a, PROMOTIONAL
+	call CountCardsFromSetOfAInHL
 	or a
-	jr nz, .asm_456da
-	call Func_44013
-	jr c, .asm_456be
+	jr nz, .check_promo
+; no promo
+	call CheckIfAllIdenticalCardsInHL
+	jr c, .check_evo_line ; empty or different
 	call CountCardsInHL
-	cp $02
-	jr c, .asm_456be
-	call Func_456de
-	jr .asm_456dd
-.asm_456be
+	cp 2
+	jr c, .check_evo_line ; only 1
+; 2+ of a kind, nothing else
+	call ProcessBlackBoxInputAndOutput_AllDupes
+	jr .done
+
+.check_evo_line
 	ld hl, wCurDeckCards
-	call Func_4407d
-	jr c, .asm_456cb
-	call Func_457ea
-	jr .asm_456dd
-.asm_456cb
-	ld a, $02
+	call CheckIfEvoLineInHL
+	jr c, .check_rarity
+; evo line
+	call ProcessBlackBoxInputAndOutput_EvoLine
+	jr .done
+
+.check_rarity
+	ld a, STAR
 	ld hl, wCurDeckCards
-	call Func_4433a
-	jr c, .asm_456da
-	call Func_45868
-	jr .asm_456dd
-.asm_456da
-	call Func_458bf
-.asm_456dd
+	call CheckIfAllIdenticalRarityInHL
+	jr c, .check_promo
+; star cards
+	call ProcessBlackBoxInputAndOutput_Stars
+	jr .done
+
+; has promo, or different cards of different rarities
+.check_promo
+	call ProcessBlackBoxInputAndOutput_Regular
+
+.done
 	ret
 
-Func_456de:
+; 2+ of a kind, nothing else
+ProcessBlackBoxInputAndOutput_AllDupes:
 	ld hl, wCurDeckCards
 	ld a, [hli]
 	ld e, a
@@ -1970,96 +2126,115 @@ Func_456de:
 	ld d, a
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr c, .asm_456f9
-	cp $10
-	jr z, .asm_456f9
-	call Func_45bc3
-	jp .asm_457e9
-.asm_456f9
+	cp TYPE_ENERGY
+	jr c, .non_energy
+	cp TYPE_TRAINER
+	jr z, .non_energy
+; energy
+	call ProcessBlackBoxInputAndOutput_ReturnAll
+	jp .done
+
+.non_energy
 	call CountCardsInHL
 	push af
-	cp $05
-	jr nz, .asm_45777
+	cp MAX_NUM_BLACK_BOX_INPUT
+	jr nz, .not_five_or_nonstar
+; 5 of a kind
 	ld a, [wLoadedCard1Rarity]
-	cp $02
-	jr c, .asm_45777
+	cp STAR
+	jr c, .not_five_or_nonstar
+
+; 5 of a kind & star+
+; 50% super bonus : 50% whiff
 	pop af
-	call Func_45aaa
+	call GetBlackBoxOutputBonusFlag
 	or a
-	jr nz, .asm_45711
-	jr .asm_4577e
-.asm_45711
-	call Func_4427f
-	jr nc, .asm_45741
+	jr nz, .output_super_bonus
+	jr .whiffed_return_1
+
+.output_super_bonus
+	call ListUniqueEvoCardsFromDE
+	jr nc, .output_super_bonus_no_evo
+; has evo
+; return 3 copies of a random card of the input's evo
+; if no non-promo candidates, whiff
 	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
 	or a
-	jr z, .asm_4577e
+	jr z, .whiffed_return_1
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_4572c
+	jr nc, .output_super_bonus_got_1_evo
 	inc h
-.asm_4572c
+.output_super_bonus_got_1_evo
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	ld hl, wBlackBoxCardReceived
-	ld c, $03
-.asm_45734
+	ld c, 3
+.loop_fill_3
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
 	dec c
-	jr nz, .asm_45734
+	jr nz, .loop_fill_3
+; append $0000-terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
-	jp .asm_457e9
-.asm_45741
+	jp .done
+
+; no evo
+; return 5 copies of a random star card of the input's type
+; if no non-promo candidates, whiff
+.output_super_bonus_no_evo
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
 	ld b, a
-	ld c, $02
-	call Func_44234
+	ld c, STAR
+	call ListUniqueCardsOfTheSameTypeAndRarity
 	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
 	or a
-	jr z, .asm_4577e
+	jr z, .whiffed_return_1
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_45763
+	jr nc, .output_super_bonus_got_1_star
 	inc h
-.asm_45763
+.output_super_bonus_got_1_star
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	ld hl, wBlackBoxCardReceived
-	ld c, $05
-.asm_4576b
+	ld c, 5
+.loop_fill_5
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
 	dec c
-	jr nz, .asm_4576b
+	jr nz, .loop_fill_5
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
-	jr .asm_457e9
-.asm_45777
+	jr .done
+
+; (count)*10% bonus : otherwise whiff
+.not_five_or_nonstar
 	pop af
-	call Func_45aaa
+	call GetBlackBoxOutputBonusFlag
 	or a
-	jr nz, .asm_45790
-.asm_4577e
+	jr nz, .output_bonus
+
+.whiffed_return_1
 	ld hl, wCurDeckCards
 	ld a, [hli]
 	ld e, a
@@ -2069,25 +2244,30 @@ Func_456de:
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
-	jr .asm_457e9
-.asm_45790
-	call Func_4427f
-	jr nc, .asm_457ba
+	jr .done
+
+.output_bonus
+	call ListUniqueEvoCardsFromDE
+	jr nc, .output_bonus_no_evo
+; has evo
+; return 1 copy of a random card of the input's evo
+; if no non-promo candidates, whiff
 	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
 	or a
-	jr z, .asm_4577e
+	jr z, .whiffed_return_1
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_457ab
+	jr nc, .output_bonus_got_1_evo
 	inc h
-.asm_457ab
+.output_bonus_got_1_evo
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2096,28 +2276,33 @@ Func_456de:
 	ld [hli], a
 	ld a, d
 	ld [hli], a
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
-	jr .asm_457e9
-.asm_457ba
+	jr .done
+
+; no evo
+; return 1 copy of a random star card of the input's type
+; if no non-promo candidates, whiff
+.output_bonus_no_evo
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
 	ld b, a
-	ld c, $02
-	call Func_44234
+	ld c, STAR
+	call ListUniqueCardsOfTheSameTypeAndRarity
 	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
 	or a
-	jr z, .asm_4577e
+	jr z, .whiffed_return_1
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_457dc
+	jr nc, .output_bonus_no_evo_got_1_star
 	inc h
-.asm_457dc
+.output_bonus_no_evo_got_1_star
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -2129,118 +2314,139 @@ Func_456de:
 	xor a
 	ld [hli], a
 	ld [hl], a
-.asm_457e9
+.done
 	ret
 
-Func_457ea:
-	call Func_45acb
-	cp $01
-	jr z, .asm_4580c
-	jr nz, .asm_45825
-	ld hl, wd57c
+ProcessBlackBoxInputAndOutput_EvoLine:
+	call GetBlackBoxEvoLineOutputCountAndScore
+	cp 1
+	jr z, .score_1
+	jr nz, .score_0_or_2
+
+; unreachable part
+; list basic cards of the evo line
+; glad this devolution-thingy doesn't exist!
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	or d
-	jr z, .asm_45801
-	call Func_442d3
-	jr .asm_4583c
-.asm_45801
-	ld hl, wd57e
+	jr z, .no_basic_input
+	call ListUniqueCardsOfTheSameName
+	jr .output
+.no_basic_input
+	ld hl, wTempBlackBoxInputStage1
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	call Func_4428a
-	jr .asm_4583c
-.asm_4580c
-	ld hl, wd57e
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	or d
-	jr z, .asm_4581a
-	call Func_442d3
-	jr .asm_4583c
-.asm_4581a
-	ld hl, wd57c
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	call Func_4427f
-	jr .asm_4583c
-.asm_45825
-	ld hl, wd580
+	call ListUniquePreEvoCardsFromDE
+	jr .output
+
+; list stage1 cards of the evo line
+.score_1
+	ld hl, wTempBlackBoxInputStage1
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	or d
-	jr z, .asm_45833
-	call Func_442d3
-	jr .asm_4583c
-.asm_45833
-	ld hl, wd57e
+	jr z, .no_stage1_input
+	call ListUniqueCardsOfTheSameName
+	jr .output
+.no_stage1_input
+	ld hl, wTempBlackBoxInputBasic
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	call Func_4427f
-.asm_4583c
+	call ListUniqueEvoCardsFromDE ; this may include both dark and non-dark
+	jr .output
+
+; list stage2 cards of the evo line
+.score_0_or_2
+	ld hl, wTempBlackBoxInputStage2
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	or d
+	jr z, .no_stage2_input
+	call ListUniqueCardsOfTheSameName
+	jr .output
+.no_stage2_input
+	ld hl, wTempBlackBoxInputStage1
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	call ListUniqueEvoCardsFromDE
+
+; return c copies of a random card from the list
+; if no non-promo candidates, return all input cards
+.output
 	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
 	or a
-	jr z, .asm_45863
+	jr z, .return_all
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_45852
+	jr nc, .got_1_card
 	inc h
-.asm_45852
+.got_1_card
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
 	ld hl, wBlackBoxCardReceived
-.asm_45858
+.loop_fill_c
 	ld a, e
 	ld [hli], a
 	ld a, d
 	ld [hli], a
 	dec c
-	jr nz, .asm_45858
+	jr nz, .loop_fill_c
+
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
-.asm_45862
+.done
 	ret
-.asm_45863
-	call Func_45bc3
-	jr .asm_45862
 
-Func_45868:
+.return_all
+	call ProcessBlackBoxInputAndOutput_ReturnAll
+	jr .done
+
+; star cards of 2+ kinds
+ProcessBlackBoxInputAndOutput_Stars:
+; init output
 	xor a
 	ld hl, wBlackBoxCardReceived
 	ld [hli], a
 	ld [hl], a
+; check promo recipe
 	ld hl, BlackboxPromoCards
-.asm_45871
+.loop_promo_recipes
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_458aa
+	jr z, .return_rest
 	push hl
 	ld hl, wCurDeckCards
-	call Func_44390
+	call CheckIfListInBCIsSubsetOfListInHL
 	pop hl
-	jr c, .asm_458a5
-	ld a, [hli]
+	jr c, .next_promo_recipe
+; input contains promo recipe, but is it locked to post-game?
+	ld a, [hli] ; locked-to-post-game flag
 	or a
-	jr z, .asm_4588e
+	jr z, .valid_recipe
+; check if post-game
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr z, .asm_458a6
-.asm_4588e
+	jr z, .next_promo_recipe_after_flag ; locked to post-game
+; the current recipe is valid
+; append it to output and remove the recipe cards from input
+.valid_recipe
 	ld a, [hli]
 	ld e, a
 	ld a, [hld]
@@ -2249,455 +2455,577 @@ Func_45868:
 	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	ld hl, wCurDeckCards
-	call Func_443bd
+	call RemoveCardsInBCFromHL
+; check the current recipe again
 	pop hl
 	dec hl
 	dec hl
 	dec hl
-	jr .asm_45871
-.asm_458a5
+	jr .loop_promo_recipes
+.next_promo_recipe
 	inc hl
-.asm_458a6
+.next_promo_recipe_after_flag
 	inc hl
 	inc hl
-	jr .asm_45871
-.asm_458aa
+	jr .loop_promo_recipes
+
+.return_rest
 	ld hl, wCurDeckCards
-.asm_458ad
+.loop_return
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_458be
+	jr z, .done
 	push hl
 	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
-	jr .asm_458ad
-.asm_458be
+	jr .loop_return
+.done
 	ret
 
-Func_458bf:
+; has promo, or different cards of different rarities
+ProcessBlackBoxInputAndOutput_Regular:
+; init output
 	xor a
 	ld hl, wBlackBoxCardReceived
 	ld [hli], a
 	ld [hl], a
+; return all promo, star+, and non-pkmn cards
 	ld hl, wCurDeckCards
-.asm_458c8
+.loop_cards_1
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_458f1
+	jr z, .calc_score
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_458e7
+	cp TYPE_ENERGY
+	jr nc, .return_promo_and_star_and_nonpkmn
 	ld a, [wLoadedCard1Set]
-	cp $07
-	jr z, .asm_458e7
+	cp PROMOTIONAL
+	jr z, .return_promo_and_star_and_nonpkmn
 	ld a, [wLoadedCard1Rarity]
-	cp $02
-	jr c, .asm_458c8
-.asm_458e7
+	cp STAR
+	jr c, .loop_cards_1
+.return_promo_and_star_and_nonpkmn
 	push hl
 	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
-	jr .asm_458c8
-.asm_458f1
+	jr .loop_cards_1
+
+; input cards rarity score:
+;   0 per non-pkmn
+;   1 per circle pkmn
+;   2 per promo/star+ pkmn
+;   3 per diamond pkmn
+.calc_score
 	ld hl, wCurDeckCards
-	ld c, $00
-.asm_458f6
+	ld c, 0
+.loop_cards_2
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .asm_45923
+	jr z, .check_score
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_458f6
+	cp TYPE_ENERGY
+	jr nc, .loop_cards_2 ; score0
 	ld a, [wLoadedCard1Set]
-	cp $07
-	jr z, .asm_4591f
+	cp PROMOTIONAL
+	jr z, .score2
 	ld a, [wLoadedCard1Rarity]
-	cp $01
-	jr z, .asm_4591a
-	jr nc, .asm_4591f
+	cp DIAMOND
+	jr z, .score3
+	jr nc, .score2
+; score1
 	inc c
-	jr .asm_458f6
-.asm_4591a
-	inc c
-	inc c
-	inc c
-	jr .asm_458f6
-.asm_4591f
+	jr .loop_cards_2
+.score3
 	inc c
 	inc c
-	jr .asm_458f6
-.asm_45923
+	inc c
+	jr .loop_cards_2
+.score2
+	inc c
+	inc c
+	jr .loop_cards_2
+
+.check_score
+; init buffer
 	xor a
-	ld hl, wRemainingIntroCards
+	ld hl, wBlackBoxOutputCountCircle
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
 	ld a, c
-	cp $0b
-	jr nc, .asm_459a9
-	cp $06
-	jr nc, .asm_45988
-	cp $02
-	jr nc, .asm_45965
+	cp 11
+	jr nc, .scored_11_or_more
+	cp 6
+	jr nc, .scored_6_to_10
+	cp 2
+	jr nc, .scored_2_to_5
+
+; input score = 0, 1
+; return the circle pkmn as well
+; (.return_promo_and_star_and_nonpkmn has already decided to return all non-pkmn cards)
 	ld hl, wCurDeckCards
-.asm_4593a
+.loop_cards_3
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
 	ld d, a
 	or e
-	jp z, .asm_45a9b
+	jp z, .done
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Type]
-	cp $07
-	jr nc, .asm_4593a
+	cp TYPE_PKMN
+	jr nc, .loop_cards_3
 	ld a, [wLoadedCard1Set]
-	cp $07
-	jr z, .asm_4593a
+	cp PROMOTIONAL
+	jr z, .loop_cards_3 ; impossible
 	ld a, [wLoadedCard1Rarity]
-	cp $02
-	jp nc, .asm_4593a
+	cp STAR
+	jp nc, .loop_cards_3 ; impossible
 	push hl
 	ld hl, wBlackBoxCardReceived
 	call AppendCardToListInHL
 	pop hl
-	jr .asm_4593a
-.asm_45965
-	call Func_45b2d
-	inc a
-	ld c, a
-	ld hl, wRemainingIntroCards
-	ld a, $01
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	ld a, $03
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $02
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $01
-	ld [hl], a
-	jr .asm_459cb
-.asm_45988
-	call Func_45b2d
-	inc a
-	ld c, a
-	ld hl, wRemainingIntroCards
-	ld a, $05
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $03
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $01
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	inc [hl]
-	jr .asm_459cb
-.asm_459a9
-	call Func_45b2d
-	inc a
-	ld c, a
-	ld hl, wd578
-	ld a, $03
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $01
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	dec hl
-	ld a, $03
-	ld [hl], a
-	dec c
-	jr z, .asm_459cb
-	xor a
-	ld [hli], a
-	ld a, $03
-	ld [hl], a
-.asm_459cb
-	ld a, [wRemainingIntroCards]
-	or a
-	jr z, .asm_45a11
-	ld bc, $1000
-	ld hl, wCurDeckCards
-	call Func_44203
-	cp $05
-	jr z, .asm_459e2
-	call Func_441ac
-	ld b, a
-.asm_459e2
-	call Func_44234
-	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
-	or a
-	jp z, .asm_45a9c
-	ld b, a
-	ld a, [wRemainingIntroCards]
-	ld c, a
-.asm_459f7
-	ld a, b
-	call Random
-	sla a
-	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .asm_45a05
-	inc h
-.asm_45a05
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	ld hl, wBlackBoxCardReceived
-	call AppendCardToListInHL
-	dec c
-	jr nz, .asm_459f7
-.asm_45a11
-	ld a, [wd578]
-	or a
-	jr z, .asm_45a56
-	ld bc, $1001
-	ld hl, wCurDeckCards
-	call Func_44203
-	cp $05
-	jr z, .asm_45a28
-	call Func_441ac
-	ld b, a
-.asm_45a28
-	call Func_44234
-	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
-	or a
-	jr z, .asm_45a9c
-	ld b, a
-	ld a, [wd578]
-	ld c, a
-.asm_45a3c
-	ld a, b
-	call Random
-	sla a
-	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .asm_45a4a
-	inc h
-.asm_45a4a
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	ld hl, wBlackBoxCardReceived
-	call AppendCardToListInHL
-	dec c
-	jr nz, .asm_45a3c
-.asm_45a56
-	ld a, [wd579]
-	or a
-	jr z, .asm_45a9b
-	ld bc, $1002
-	ld hl, wCurDeckCards
-	call Func_44203
-	cp $05
-	jr z, .asm_45a6d
-	call Func_441ac
-	ld b, a
-.asm_45a6d
-	call Func_44234
-	ld hl, wDuelTempList
-	call Func_45c07
-	call Func_45c3d
-	or a
-	jr z, .asm_45a9c
-	ld b, a
-	ld a, [wd579]
-	ld c, a
-.asm_45a81
-	ld a, b
-	call Random
-	sla a
-	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .asm_45a8f
-	inc h
-.asm_45a8f
-	ld a, [hli]
-	ld e, a
-	ld d, [hl]
-	ld hl, wBlackBoxCardReceived
-	call AppendCardToListInHL
-	dec c
-	jr nz, .asm_45a81
-.asm_45a9b
-	ret
-.asm_45a9c
-	call Func_45bc3
-	ld hl, wBlackBoxCardReceived
-	ld de, $a
-	call AppendCardToListInHL
-	jr .asm_45a9b
+	jr .loop_cards_3
 
-Func_45aaa:
+; input score = [2, 5]
+; for the index n = [0, 3] by rng check,
+; output count (circle, star, diamond):
+;   n = 0: 1, 0, 0
+;   n = 1: 3, 0, 0
+;   n = 2: 0, 2, 0
+;   n = 3: 0, 0, 1
+.scored_2_to_5
+	call GetBlackBoxOutputIndex
+	inc a
+	ld c, a
+	ld hl, wBlackBoxOutputCountCircle
+	ld a, 1
+	ld [hl], a
+	dec c
+	jr z, .output
+	ld a, 3
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 2
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 1
+	ld [hl], a
+	jr .output
+
+; input score = [6, 10]
+; (particularly useful, as inputting 5 promo pkmn yields score 10)
+; for the index n = [0, 3] by rng check,
+; output count (circle, star, diamond):
+;   n = 0: 5, 0, 0
+;   n = 1: 0, 3, 0
+;   n = 2: 0, 0, 1
+;   n = 3: 0, 0, 2
+.scored_6_to_10
+	call GetBlackBoxOutputIndex
+	inc a
+	ld c, a
+	ld hl, wBlackBoxOutputCountCircle
+	ld a, 5
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 3
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 1
+	ld [hl], a
+	dec c
+	jr z, .output
+	inc [hl]
+	jr .output
+
+; input score = 11 or more
+; for the index n = [0, 3] by rng check,
+; output count (circle, star, diamond):
+;   n = 0: 0, 3, 0
+;   n = 1: 0, 0, 1
+;   n = 2: 0, 3, 1
+;   n = 3: 0, 0, 3
+.scored_11_or_more
+	call GetBlackBoxOutputIndex
+	inc a
+	ld c, a
+	ld hl, wBlackBoxOutputCountDiamond
+	ld a, 3
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 1
+	ld [hl], a
+	dec c
+	jr z, .output
+	dec hl
+	ld a, 3
+	ld [hl], a
+	dec c
+	jr z, .output
+	xor a
+	ld [hli], a
+	ld a, 3
+	ld [hl], a
+
+; TYPE_TRAINER is the default card type in b
+; so that inputting 5 cards of unique types can yields trainer card(s)
+.output
+	ld a, [wBlackBoxOutputCountCircle]
+	or a
+	jr z, .output_diamond
+
+; output circle
+	lb bc, TYPE_TRAINER, CIRCLE
+	ld hl, wCurDeckCards
+	call CountUniquePkmnTypesInHL
+	cp MAX_NUM_BLACK_BOX_INPUT
+	jr z, .list_circle
+	call GetMostFrequentPkmnTypeInHL
+	ld b, a
+.list_circle
+	call ListUniqueCardsOfTheSameTypeAndRarity
+	ld hl, wDuelTempList
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
+	or a
+	jp z, .return_all_and_bonus_rainbow_energy
+	ld b, a
+	ld a, [wBlackBoxOutputCountCircle]
+	ld c, a
+.loop_random_pick_circle
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .append_circle
+	inc h
+.append_circle
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wBlackBoxCardReceived
+	call AppendCardToListInHL
+	dec c
+	jr nz, .loop_random_pick_circle
+
+.output_diamond
+	ld a, [wBlackBoxOutputCountDiamond]
+	or a
+	jr z, .output_star
+	lb bc, TYPE_TRAINER, DIAMOND
+	ld hl, wCurDeckCards
+	call CountUniquePkmnTypesInHL
+	cp MAX_NUM_BLACK_BOX_INPUT
+	jr z, .list_diamond
+	call GetMostFrequentPkmnTypeInHL
+	ld b, a
+.list_diamond
+	call ListUniqueCardsOfTheSameTypeAndRarity
+	ld hl, wDuelTempList
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
+	or a
+	jr z, .return_all_and_bonus_rainbow_energy
+	ld b, a
+	ld a, [wBlackBoxOutputCountDiamond]
+	ld c, a
+.loop_random_pick_diamond
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .append_diamond
+	inc h
+.append_diamond
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wBlackBoxCardReceived
+	call AppendCardToListInHL
+	dec c
+	jr nz, .loop_random_pick_diamond
+
+.output_star
+	ld a, [wBlackBoxOutputCountStar]
+	or a
+	jr z, .done
+	lb bc, TYPE_TRAINER, STAR
+	ld hl, wCurDeckCards
+	call CountUniquePkmnTypesInHL
+	cp MAX_NUM_BLACK_BOX_INPUT
+	jr z, .list_star
+	call GetMostFrequentPkmnTypeInHL
+	ld b, a
+.list_star
+	call ListUniqueCardsOfTheSameTypeAndRarity
+	ld hl, wDuelTempList
+	call ExcludePromoCardsFromHLAndUpdateLengthCount
+	call ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount
+	or a
+	jr z, .return_all_and_bonus_rainbow_energy
+	ld b, a
+	ld a, [wBlackBoxOutputCountStar]
+	ld c, a
+.loop_random_pick_star
+	ld a, b
+	call Random
+	sla a
+	ld hl, wDuelTempList
+	add l
+	ld l, a
+	jr nc, .append_star
+	inc h
+.append_star
+	ld a, [hli]
+	ld e, a
+	ld d, [hl]
+	ld hl, wBlackBoxCardReceived
+	call AppendCardToListInHL
+	dec c
+	jr nz, .loop_random_pick_star
+
+.done
+	ret
+
+.return_all_and_bonus_rainbow_energy
+	call ProcessBlackBoxInputAndOutput_ReturnAll
+	ld hl, wBlackBoxCardReceived
+	ld de, RAINBOW_ENERGY
+	call AppendCardToListInHL
+	jr .done
+
+; rng check [0, 99] for a = card count [2, 5]
+; succeeds if > .cutoffs[a-2], return TRUE
+; ((100 - .cutoffs[a-2])% chance)
+; otherwise FALSE
+GetBlackBoxOutputBonusFlag:
 	push bc
 	push hl
 	dec a
 	dec a
-	ld hl, $5ac7
+	ld hl, .cutoffs
 	add l
 	ld l, a
-	jr nc, .asm_45ab6
+	jr nc, .call_random
 	inc h
-.asm_45ab6
+.call_random
 	ld c, [hl]
-	ld a, $64
+	ld a, 100
 	call Random
 	cp c
-	jr c, .asm_45ac3
-	ld a, $01
-	jr .asm_45ac4
-.asm_45ac3
+	jr c, .fail
+; pass
+	ld a, TRUE
+	jr .done
+.fail
 	xor a
-.asm_45ac4
+.done
 	pop hl
 	pop bc
 	ret
-; 0x45ac7
 
-SECTION "Bank 11@5acb", ROMX[$5acb], BANK[$11]
+.cutoffs:
+	db 80 ; 2
+	db 70 ; 3
+	db 60 ; 4
+	db 50 ; 5
 
-Func_45acb:
+; evo-line flag input in a:
+;   0: BASIC | STAGE1 | STAGE2,
+;   1: BASIC | STAGE1,
+;   2: BASIC | STAGE2,
+;   3: STAGE1 | STAGE2
+; rng check [0, 99] against .cutoffs[a],
+; then get n such that rng < .cutoffs[a][n], otherwise n = 2
+; output:
+;   count c = .ValueTable_n[a][0],
+;   score a = .ValueTable_n[a][1]
+GetBlackBoxEvoLineOutputCountAndScore:
 	sla a
 	push af
-	ld hl, $5b0d
+	ld hl, .cutoffs
 	add l
 	ld l, a
-	jr nc, .asm_45ad6
+	jr nc, .call_random
 	inc h
-.asm_45ad6
+.call_random
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
-	ld a, $64
+	ld a, 100
 	call Random
 	cp c
-	jr c, .asm_45b00
+	jr c, .table0
 	cp b
-	jr c, .asm_45af2
+	jr c, .table1
+
+; table2
 	pop af
-	ld hl, $5b25
+	ld hl, .ValueTable2
 	add l
 	ld l, a
-	jr nc, .asm_45aed
+	jr nc, .get_from_table2
 	inc h
-.asm_45aed
+.get_from_table2
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
-	jr .asm_45b0c
-.asm_45af2
+	jr .done
+
+.table1
 	pop af
-	ld hl, $5b1d
+	ld hl, .ValueTable1
 	add l
 	ld l, a
-	jr nc, .asm_45afb
+	jr nc, .get_from_table1
 	inc h
-.asm_45afb
+.get_from_table1
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
-	jr .asm_45b0c
-.asm_45b00
+	jr .done
+
+.table0
 	pop af
-	ld hl, $5b15
+	ld hl, .ValueTable0
 	add l
 	ld l, a
-	jr nc, .asm_45b09
+	jr nc, .get_from_table0
 	inc h
-.asm_45b09
+.get_from_table0
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
-.asm_45b0c
+
+.done
 	ret
-; 0x45b0d
 
-SECTION "Bank 11@5b2d", ROMX[$5b2d], BANK[$11]
+; e.g. {20, 70} -> 20% table0 : 50% table1 : 30% table2
+.cutoffs:
+	db 40,  80 ; 0
+	db 50, 100 ; 1
+	db 40,  80 ; 2
+	db 20,  70 ; 3
 
-Func_45b2d:
+; output count, output score
+.ValueTable0:
+	db 3, 0 ; 0
+	db 2, 0 ; 1
+	db 2, 0 ; 2
+	db 2, 0 ; 3
+.ValueTable1:
+	db 3, 1 ; 0
+	db 2, 1 ; 1
+	db 2, 1 ; 2
+	db 2, 1 ; 3
+.ValueTable2:
+	db 3, 2 ; 0
+	db 0, 0 ; 1, impossible
+	db 2, 2 ; 2
+	db 2, 1 ; 3
+
+; for a = input score [0, 15],
+; rng check [0, 99] against .cutoffs[a],
+; get n such that rng < .cutoffs[a][n],
+; then return n in a
+GetBlackBoxOutputIndex:
 	push bc
 	push de
 	push hl
 	sla a
 	sla a
-	ld hl, $5b5c
+	ld hl, .cutoffs
 	add l
 	ld l, a
-	jr nc, .asm_45b3c
+	jr nc, .rng_check
 	inc h
-.asm_45b3c
-	ld a, [hli]
+.rng_check
+	ld a, [hli] ; cutoff 0
 	ld c, a
-	ld a, [hli]
+	ld a, [hli] ; cutoff 1
 	ld b, a
-	ld a, [hli]
+	ld a, [hli] ; cutoff 2
 	ld e, a
-	ld a, [hli]
-	ld d, a
-	ld l, $00
-	ld a, $64
+	ld a, [hli] ; cutoff 3 (terminator)
+	ld d, a     ; unused
+	ld l, 0
+	ld a, 100
 	call Random
 	cp c
-	jr c, .asm_45b57
+	jr c, .done
 	inc l
 	cp b
-	jr c, .asm_45b57
+	jr c, .done
 	inc l
 	cp e
-	jr c, .asm_45b57
+	jr c, .done
 	inc l
-.asm_45b57
+
+.done
 	ld a, l
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x45b5c
 
-SECTION "Bank 11@5b9c", ROMX[$5b9c], BANK[$11]
+; e.g. {20, 70, 90, 100} -> 20% : 50% : 20% : 10%
+.cutoffs:
+; section 0, fillers
+	db 100, 100, 100, 100 ; $0
+	db 100, 100, 100, 100 ; $1
+; section 1
+	db  50,  90,  98, 100 ; $2
+	db  40,  90,  98, 100 ; $3
+	db  30,  80,  95, 100 ; $4
+	db  25,  75,  92, 100 ; $5
+; section 2
+	db  50,  90,  98, 100 ; $6
+	db  40,  90,  98, 100 ; $7
+	db  30,  80,  95, 100 ; $8
+	db  25,  75,  92, 100 ; $9
+	db  20,  70,  90, 100 ; $a
+; section 3
+	db  50,  90,  98, 100 ; $b
+	db  40,  90,  98, 100 ; $c
+	db  30,  80,  95, 100 ; $d
+	db  25,  75,  92, 100 ; $e
+	db  20,  70,  90, 100 ; $f
 
-Func_45b9c:
+; return carry if card ID in de is found in SpecialPromoCards
+CheckIfSpecialPromoCard:
 	push af
 	push bc
 	push de
@@ -2705,28 +3033,31 @@ Func_45b9c:
 	ld c, e
 	ld b, d
 	ld hl, SpecialPromoCards
-.asm_45ba5
+.loop_cards
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_45bbc
+	jr z, .not_found
 	ld a, b
 	cp d
-	jr c, .asm_45bb4
-	jr nz, .asm_45bb4
+	jr c, .next_card
+	jr nz, .next_card
 	ld a, c
 	cp e
-.asm_45bb4
-	jr nz, .asm_45ba5
+.next_card
+	jr nz, .loop_cards
+
+; found
 	pop hl
 	pop de
 	pop bc
 	pop af
 	scf
 	ret
-.asm_45bbc
+
+.not_found
 	pop hl
 	pop de
 	pop bc
@@ -2735,59 +3066,108 @@ Func_45b9c:
 	ccf
 	ret
 
-Func_45bc3:
+; put back all wCurDeckCards (i.e. input) to wBlackBoxCardReceived
+ProcessBlackBoxInputAndOutput_ReturnAll:
 	push af
 	push bc
 	push de
 	push hl
 	ld hl, wCurDeckCards
 	ld de, wBlackBoxCardReceived
-	ld bc, $c
+	ld bc, 2 * (MAX_NUM_BLACK_BOX_INPUT + 1)
 	call CopyDataHLtoDE_SaveRegisters
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x45bd8
 
-SECTION "Bank 11@5c07", ROMX[$5c07], BANK[$11]
+; unreferenced & bugged
+; intended to count SpecialPromoCards in card list in hl
+; but just return a = 0
+Stubbed_CountSpecialPromoCardsInHL:
+	push bc
+	push de
+	push hl
+	ld c, 0
+.loop_cards_in_list
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
+	or e
+	jr z, .done
+	push bc
+	push hl
+	ld hl, SpecialPromoCards
+.loop_promo
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld b, a
+	or c
+	jr z, .next_card_in_list
+	ld a, b
+	cp d
+	jr c, .next_promo
+	jr nz, .next_promo
+	ld a, c
+	cp e
+.next_promo
+	jr nz, .loop_promo
+	pop hl
+	pop bc
+	inc c
+	jr .loop_cards_in_list
+.next_card_in_list
+	pop hl
+	pop bc
+	jr .loop_cards_in_list
+.done
+; bug, must use c
+; ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
 
-Func_45c07:
+; drop promo cards from card list in hl and shift the rest
+; and update the list length in a
+ExcludePromoCardsFromHLAndUpdateLengthCount:
 	push bc
 	push de
 	push hl
 	xor a
 	ld c, a
-.asm_45c0c
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hld]
 	ld d, a
 	or e
-	jr z, .asm_45c29
+	jr z, .done
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, [wLoadedCard1Set]
-	cp $07
-	jr nz, .asm_45c24
+	cp PROMOTIONAL
+	jr nz, .not_promo
+; found promo
 	push hl
-	call Func_45c2e
+	call .ExcludePromo
 	pop hl
-	jr .asm_45c0c
-.asm_45c24
+	jr .loop_cards
+.not_promo
 	inc hl
 	inc hl
 	inc c
-	jr .asm_45c0c
-.asm_45c29
+	jr .loop_cards
+.done
 	ld a, c
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_45c2e:
-.asm_45c2e
+.ExcludePromo:
 	push hl
 	inc hl
 	inc hl
@@ -2801,41 +3181,45 @@ Func_45c2e:
 	ld [hli], a
 	or e
 	ret z
-	jr .asm_45c2e
+	jr .ExcludePromo
 
-Func_45c3d:
+; drop SpecialPromoCards from card list in hl and shift the rest
+; and update the list length in a
+; actually reduntant, as ExcludePromoCardsFromHLAndUpdateLengthCount
+; already handles them
+ExcludeSpecialPromoCardsFromHLAndUpdateLengthCount:
 	push bc
 	push de
 	push hl
 	xor a
 	ld c, a
-.asm_45c42
+.loop_cards
 	ld a, [hli]
 	ld e, a
 	ld a, [hld]
 	ld d, a
 	or e
-	jr z, .asm_45c5a
-	call Func_45b9c
-	jr nc, .asm_45c55
+	jr z, .done
+	call CheckIfSpecialPromoCard
+	jr nc, .not_special_promo
+; found special promo
 	push hl
-	call Func_45c5f
+	call .ExcludeSpecialPromo
 	pop hl
-	jr .asm_45c42
-.asm_45c55
+	jr .loop_cards
+.not_special_promo
 	inc hl
 	inc hl
 	inc c
-	jr .asm_45c42
-.asm_45c5a
+	jr .loop_cards
+.done
 	ld a, c
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_45c5f:
-.asm_45c5f
+.ExcludeSpecialPromo:
 	push hl
 	inc hl
 	inc hl
@@ -2849,6 +3233,6 @@ Func_45c5f:
 	ld [hli], a
 	or e
 	ret z
-	jr .asm_45c5f
+	jr .ExcludeSpecialPromo
 
 INCLUDE "engine/credits.asm"

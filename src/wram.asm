@@ -2266,6 +2266,9 @@ wd554:: ; d554
 wCurrentNPCDuelistData:: ; d555
 	ds NPC_DUELIST_STRUCT_SIZE
 
+; TODO: is this really union?
+UNION
+
 wd561:: ; d561
 	ds $1
 
@@ -2278,10 +2281,20 @@ wd563:: ; d563
 wd565:: ; d565
 	ds $1
 
-	ds $f
+NEXTU
+
+wNumBlackBoxInputPkmnPerType:: ; d561
+	ds NUM_PKMN_TYPES
+
+ENDU
+
+	ds $d
 
 wFilteredListPtr:: ; d575
 	ds $2
+
+; TODO: is this really union?
+UNION
 
 wRemainingIntroCards:: ; d577
 	ds $1
@@ -2295,14 +2308,33 @@ wd579:: ; d579
 wIntroCardsRepeatsAllowed:: ; d57b
 	ds $1
 
-wd57c:: ; d57c
+NEXTU
+
+wBlackBoxOutputCountCircle:: ; d577
+	ds $1
+
+wBlackBoxOutputCountDiamond:: ; d578
+	ds $1
+
+wBlackBoxOutputCountStar:: ; d579
+	ds $1
+
 	ds $2
 
-wd57e:: ; d57e
+wTempBlackBoxInputEvoLine:: ; d57c
+
+wTempBlackBoxInputBasic:: ; d57c
 	ds $2
 
-wd580:: ; d580
+wTempBlackBoxInputStage1:: ; d57e
 	ds $2
+
+wTempBlackBoxInputStage2:: ; d580
+	ds $2
+
+wTempBlackBoxInputEvoLineEnd:: ; d582
+
+ENDU
 
 wd582:: ; d582
 	ds $1
@@ -2399,6 +2431,8 @@ wEventVars:: ; d59e
 wGeneralVars:: ; d5d2
 	ds GENERAL_VAR_BYTES
 
+; various temp flags
+; e.g. blackbox input type flags, evo stage flags, etc.
 wd606:: ; d606
 	ds wD606_STRUCT_SIZE
 

@@ -66,7 +66,7 @@ Mail:
 	tx MailMailboxIntroSubjectText
 	mail MailMailboxIntroBody1Text
 	mail MailMailboxIntroBody2Text
-	mail MailMailboxIntroBody3Text, BOOSTER_PRESENT_PACK_1, MAIL_COMMAND_GIVE_BOOSTER
+	mail MailMailboxIntroBody3Text, BOOSTER_PRESENT_10_ENERGY, MAIL_COMMAND_GIVE_BOOSTER
 	end_mail
 
 .MailDeckDiagnosis1
