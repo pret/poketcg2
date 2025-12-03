@@ -4871,8 +4871,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer PotionEnergyName                                   ; 0x12fb
 	textpointer PotionEnergyDescription                            ; 0x12fc
 	textpointer PotionEnergyDescriptionCont                        ; 0x12fd
-	textpointer FullhealEnergyName                                 ; 0x12fe
-	textpointer FullhealEnergyDescription                          ; 0x12ff
+	textpointer FullHealEnergyName                                 ; 0x12fe
+	textpointer FullHealEnergyDescription                          ; 0x12ff
 	textpointer RainbowEnergyName                                  ; 0x1300
 	textpointer RainbowEnergyDescription                           ; 0x1301
 	textpointer RecycleEnergyName                                  ; 0x1302
@@ -6369,8 +6369,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer SuperScoopUpDescription                            ; 0x18d5
 	textpointer DevolutionSprayName                                ; 0x18d6
 	textpointer DevolutionSprayDescription                         ; 0x18d7
-	textpointer ItemfinderName                                     ; 0x18d8
-	textpointer ItemfinderDescription                              ; 0x18d9
+	textpointer ItemFinderName                                     ; 0x18d8
+	textpointer ItemFinderDescription                              ; 0x18d9
 	textpointer ChallengeName                                      ; 0x18da
 	textpointer ChallengeDescription                               ; 0x18db
 	textpointer ChallengeDescriptionCont                           ; 0x18dc
@@ -6405,8 +6405,8 @@ SECTION "Text Offsets 2", ROMX
 	textpointer ClefairyDollDescriptionCont                        ; 0x18f9
 	textpointer MrFujiName                                         ; 0x18fa
 	textpointer MrFujiDescription                                  ; 0x18fb
-	textpointer PluspowerName                                      ; 0x18fc
-	textpointer PluspowerDescription                               ; 0x18fd
+	textpointer PlusPowerName                                      ; 0x18fc
+	textpointer PlusPowerDescription                               ; 0x18fd
 	textpointer SwitchName                                         ; 0x18fe
 	textpointer SwitchDescription                                  ; 0x18ff
 	textpointer ScoopUpName                                        ; 0x1900

@@ -1800,10 +1800,10 @@ HandleAIFossilize:
 	ld a, -1
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ldtx de, FossilizeCheckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	jr c, .got_heads
-	farcall Func_6809a
-	call Func_19e1
+	farcall SetWasUnsuccessful
+	call PrintFailedEffectText
 	call WaitForWideTextBoxInput
 	jr .got_tails
 .got_heads
@@ -1948,11 +1948,11 @@ HandleAIMagnet:
 	ld a, OPPACTION_UNK_0C
 	farcall AIMakeDecision
 	ldtx de, MagnetCheckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hAIPkmnPowerEffectParam], a
 	jr c, .heads
-	farcall Func_6809a
-	call Func_19e1
+	farcall SetWasUnsuccessful
+	call PrintFailedEffectText
 	call WaitForWideTextBoxInput
 .heads
 	ld a, OPPACTION_USE_PKMN_POWER
@@ -2609,7 +2609,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 	ret
 
 .HandlePrehistoricDream:
-	ld a, [wcc1a]
+	ld a, [wPrehistoricDreamBoost]
 	or a
 	ret nz
 	ld a, DUELVARS_ARENA_CARD
@@ -2646,7 +2646,7 @@ HandleAIPrehistoricDreamAndPoisonMist:
 	ld a, %10 ; only second attack
 	ret nz
 .simulate_attack
-	; temporarily add Pluspower to simulate
+	; temporarily add PlusPower to simulate
 	; the attack boost by Prehistoric Dream
 	push af
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
@@ -4320,7 +4320,7 @@ Func_3a887:
 	jr z, .no_carry
 	inc c
 	push bc
-	bank1call GetArenaOrBenchCardWeakness
+	bank1call GetPlayAreaCardWeakness
 	pop bc
 	ld hl, wd075
 	cp [hl]

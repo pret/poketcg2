@@ -11,7 +11,7 @@ ATimes10::
 
 ; returns a /= 10
 ; returns carry if a % 10 >= 5
-ADividedBy10:
+ADividedBy10::
 	push de
 	ld e, -1
 .asm_c62

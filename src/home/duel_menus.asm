@@ -52,7 +52,7 @@ DrawPlayersPrizeAndBenchCards:
 	call BankswitchROM
 	ret
 
-HandlePeekSelection:
+HandlePeekSelection::
 	ldh a, [hBankROM]
 	push af
 	ld a, $02 ; BANK(_HandlePeekSelection)
@@ -64,7 +64,7 @@ HandlePeekSelection:
 	ld a, b
 	ret
 
-DrawAIPeekScreen:
+DrawAIPeekScreen::
 	ld b, a
 	ldh a, [hBankROM]
 	push af

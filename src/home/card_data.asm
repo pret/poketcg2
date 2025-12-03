@@ -101,6 +101,7 @@ GetCardType::
 	pop hl
 	ret
 
+; returns nz if card ID given in de is a Dark Pokémon
 CheckIfCardIDIsDarkPokemon::
 	push hl
 	push de

@@ -593,11 +593,11 @@ PotionEnergyDescriptionCont:
 	linefw "わりになる。"
 	done
 
-FullhealEnergyName:
+FullHealEnergyName:
 	textfw "なんでもなおし配合E"
 	done
 
-FullhealEnergyDescription:
+FullHealEnergyDescription:
 	textfw "【特殊エネルギーカード】"
 	linefw "このカードは「無色」エネルギー1個"
 	linefw "ぶんとしてあつかう。このカードを手札"

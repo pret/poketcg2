@@ -350,9 +350,11 @@ RestartPracticeDuelTurn:
 ; the bottom text box changes depending on whether the turn belongs to the player (show the duel menu),
 ; an AI opponent (print "Waiting..." and a reduced menu) or a link opponent (print "<Duelist> is thinking").
 DuelMainInterface:
-	ld a, [wcd09]
+	; if used Computer Error, behave as if "Done" was selected to end turn
+	ld a, [wTurnEndedDueToComputerError]
 	or a
 	jp nz, DuelMenu_Done
+
 	call DrawDuelMainScene
 	ld a, [wDuelistType]
 	cp DUELIST_TYPE_PLAYER
@@ -475,9 +477,13 @@ OpenNonTurnHolderDiscardPileScreen:
 ; draw the turn holder's discard pile screen
 OpenTurnHolderDiscardPileScreen:
 	jp OpenDiscardPileScreen
-; 0x43d9
 
-SECTION "Bank 1@43e2", ROMX[$43e2], BANK[$1]
+; draw the non-turn holder's hand screen. simpler version of OpenPlayerHandScreen
+; used only for checking the cards rather than for playing them.
+OpenNonTurnHolderHandScreen_Simple:
+	call SwapTurn
+	call OpenTurnHolderHandScreen_Simple
+	jp SwapTurn
 
 ; draw the turn holder's hand screen. simpler version of OpenPlayerHandScreen
 ; used only for checking the cards rather than for playing them.
@@ -732,8 +738,8 @@ PlayPokemonCard:
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, 20
 	call CopyCardNameAndLevel
-	ld [hl], $00
-	ld hl, $0000
+	ld [hl], TX_END
+	ld hl, NULL
 	call LoadTxRam2
 	ldtx hl, PlacedOnBenchText
 	call DrawWideTextBox_WaitForInput
@@ -1359,13 +1365,18 @@ CheckIfEnoughEnergiesToAttack:
 	ld d, [hl] ; card's deck index (0 to 59)
 	inc hl
 	ld e, [hl] ; attack index (0 or 1)
-	call .CheckEnergy
+	call CheckIfEnoughEnergiesForGivenAttack
 	pop bc
 	pop hl
 	ret
 
-; returns carry if no enough energy
-.CheckEnergy:
+; check if a pokemon card has enough energy attached to it in order to use an attack
+; input:
+;   d = deck index of card (0 to 59)
+;   e = attack index (SECOND_ATTACK or FIRST_ATTACK_OR_PKMN_POWER)
+;   wAttachedEnergies and wTotalAttachedEnergies
+; returns: carry if not enough energy, nc if enough energy.
+CheckIfEnoughEnergiesForGivenAttack:
 	push hl
 	push de
 	push bc
@@ -1475,9 +1486,22 @@ DisplayCardDetailScreen:
 	call LoadCardDataToBuffer1_FromDeckIndex
 	farcall _DisplayCardDetailScreen
 	ret
-; 0x49e8
 
-SECTION "Bank 1@4a0d", ROMX[$4a0d], BANK[$1]
+DisplayCardListDetails:
+	ld a, [wDuelTempList]
+	cp $ff
+	ret z
+	call InitAndDrawCardListScreenLayout
+	call CountCardsInDuelTempList ; list length
+	ld hl, CardListParameters ; other list params
+	lb de, 0, 0 ; initial page scroll offset, initial item (in the visible page)
+	call PrintCardListItems
+	ldtx hl, TheCardYouReceivedText
+	lb de, 1, 1
+	call PrintTextNoDelay_Init
+	ldtx hl, YouReceivedTheseCardsText
+	call DrawWideTextBox_WaitForInput
+	ret
 
 ; handles the initial duel actions:
 ; - drawing starting hand and placing the Basic Pokemon cards
@@ -1584,7 +1608,7 @@ HandleDuelSetup:
 ; player flips coin
 	ld de, wDefaultText
 	call CopyPlayerName
-	ld hl, $0000
+	ld hl, NULL
 	call LoadTxRam2
 	ldtx hl, YouPlayFirstText
 	ldtx de, IfHeadsDuelistPlaysFirstText
@@ -1602,7 +1626,7 @@ HandleDuelSetup:
 ; opp flips coin
 	ld de, wDefaultText
 	call CopyOpponentName
-	ld hl, $0000
+	ld hl, NULL
 	call LoadTxRam2
 	ldtx hl, YouPlaySecondText
 	ldtx de, IfHeadsDuelistPlaysFirstText
@@ -2120,7 +2144,7 @@ DrawDuelHUD:
 	ld b, HP_BAR_LENGTH / 2 ; second row of the HP bar
 	call SafeCopyDataHLtoDE
 
-	; print number of attached Pluspower and Defender with respective icon, if any
+	; print number of attached PlusPower and Defender with respective icon, if any
 	ld hl, wHUDEnergyAndHPBarsX
 	ld a, [hli]
 	add 6
@@ -2134,7 +2158,7 @@ DrawDuelHUD:
 	ld a, SYM_PLUSPOWER
 	call WriteByteToBGMap0
 	inc b
-	ld a, [hl] ; number of attached Pluspower
+	ld a, [hl] ; number of attached PlusPower
 	add SYM_0
 	call WriteByteToBGMap0
 	dec b
@@ -2589,9 +2613,12 @@ SetCardListInfoBoxText:
 	ld a, h
 	ld [wCardListInfoBoxText + 1], a
 	ret
-; 0x5221
 
-SECTION "Bank 1@522a", ROMX[$522a], BANK[$1]
+InitAndDrawCardListScreenLayout_WithSelectCheckMenu:
+	call InitAndDrawCardListScreenLayout
+	ld a, SELECT_CHECK
+	ld [wCardListItemSelectionMenuType], a
+	ret
 
 ; draw the layout of the screen that displays the player's Hand card list or a
 ; Discard Pile card list, including a bottom-right image of the current card.
@@ -2639,7 +2666,7 @@ DrawCardListScreenLayout:
 	lb de, 12, 12
 	lb bc, 8, 6
 	call FillRectangle
-	call Func_53cb
+	call PrintSortNumberInCardList_CallFromPointer
 	ld a, [wDuelTempList]
 	cp $ff
 	scf
@@ -2711,7 +2738,7 @@ DisplayCardList:
 	ld hl, wSelectedDuelSubMenuItem
 	ld [hli], a
 	ld [hl], a
-	ld a, 1
+	ld a, TRUE
 	ld [wSortCardListByID], a
 	call EraseCursor
 	jr .reload_list
@@ -2870,16 +2897,43 @@ CardListFunction:
 	call LoadSelectedCardGfx
 	or a
 	ret
-; 0x53bc
 
-SECTION "Bank 1@53cb", ROMX[$53cb], BANK[$1]
+PrintSortNumberInCardList_SetPointer:
+	ld hl, wPrintSortNumberInCardListPtr
+	ld de, PrintSortNumberInCardList
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, TRUE
+	ld [wSortCardListByID], a
+	ret
 
-Func_53cb:
+PrintSortNumberInCardList_CallFromPointer:
 	ld hl, wPrintSortNumberInCardListPtr
 	jp CallIndirect
-; 0x53d1
 
-SECTION "Bank 1@53e9", ROMX[$53e9], BANK[$1]
+; goes through list in wDuelTempList + 10
+; and prints the number stored in each entry
+; beside the corresponding card in screen.
+; used in lists for reordering cards in the Deck.
+PrintSortNumberInCardList:
+	lb bc, 1, 2
+	ld hl, wDuelTempList + 10
+.next
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	or a ; SYM_SPACE
+	jr z, .space
+	add SYM_0 ; load number symbol
+.space
+	call WriteByteToBGMap0
+	; move two lines down
+	inc c
+	inc c
+	jr .next
+.done
+	ret
 
 ; draw the card page of the card at wLoadedCard1 and listen for input
 ; in order to switch the page or to exit.
@@ -2978,9 +3032,26 @@ DrawCardPageCardGfx:
 	lb de, 6, 4
 	call DrawCardGfxToDE_BGPalIndex5
 	ret
-; 0x5475
 
-SECTION "Bank 1@549b", ROMX[$549b], BANK[$1]
+; draws text box that covers the whole screen
+; and prints the text ID in hl, then
+; waits for Player input.
+DrawWholeScreenTextBox:
+	push hl
+	call EmptyScreen
+	lb de, 0, 0
+	lb bc, 20, 18
+	call DrawRegularTextBox
+	ld a, 19
+	lb de, 1, 2
+	call InitTextPrintingInTextbox
+	call SetNoLineSeparation
+	pop hl
+	call ProcessTextFromID
+	call EnableLCD
+	call SetOneLineSeparation
+	call WaitForWideTextBoxInput
+	ret
 
 ; has turn duelist take amount of prizes that are in wNumberPrizeCardsToTake
 ; returns carry if all prize cards were taken
@@ -3042,7 +3113,7 @@ TurnDuelistTakePrizes:
 	cp $ff
 	jr z, .asm_586f
 	call AddCardToHand
-	call .Func_551d
+	call .OpenCardPageIfFaceUp
 
 .asm_586f
 	ld a, [wTempNumRemainingPrizeCards]
@@ -3058,11 +3129,13 @@ TurnDuelistTakePrizes:
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
 
-.Func_551d:
+; if wPrizeCardsFaceUp is TRUE, then
+; open card's page
+.OpenCardPageIfFaceUp:
 	ld e, a
-	ld a, [wcc07]
+	ld a, [wPrizeCardsFaceUp]
 	or a
-	ret z
+	ret z ; face down
 	ld a, e
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ldtx hl, DrewFromPrizesText
@@ -3419,9 +3492,10 @@ FlushAllPalettesIfNotDMG:
 	ret z
 	call FlushAllPalettes
 	ret
-; 0x56fa
 
-	ret ; stray ret
+; remnant from TCG1
+StubbedApplyBGP6OrSGB3ToCardImage:
+	ret
 
 JPWriteByteToBGMap0:
 	jp WriteByteToBGMap0
@@ -4280,9 +4354,28 @@ SelectingBenchPokemonMenu:
 	jp SetCursorParametersForTextBox
 ; 0x5bfd
 
-SECTION "Bank 1@5c30", ROMX[$5c30], BANK[$1]
+SECTION "Bank 1@5c15", ROMX[$5c15], BANK[$1]
 
-Func_5c30:
+InitAndPrintPlayAreaCardInformationAndLocation:
+	ld hl, wCurPlayAreaSlot
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld [hli], a
+	ld c, a
+	add a
+	add c
+	ld [hl], a
+	call PrintPlayAreaCardInformationAndLocation
+	ret
+
+InitAndPrintPlayAreaCardInformationAndLocation_WithTextBox:
+	call InitAndPrintPlayAreaCardInformationAndLocation
+	ld a, [wPracticeDuelTextY]
+	ld e, a
+	ld d, 0
+	call SetCursorParametersForTextBox_Default
+	ret
+
+SetupPlayAreaScreen:
 	xor a
 	ld [wExcludeArenaPokemon], a
 	ld a, [wDuelDisplayedScreen]
@@ -4596,7 +4689,7 @@ PrintPlayAreaCardHeader:
 	call CheckPrintDoublePoisoned
 
 .skip_status
-	; finally check whether to print the Pluspower and/or Defender symbols
+	; finally check whether to print the PlusPower and/or Defender symbols
 	ld a, [wCurPlayAreaSlot]
 	add DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
 	get_turn_duelist_var
@@ -4950,7 +5043,7 @@ AttemptRetreat:
 	ld a, [hli]
 	cp $ff
 	jr z, .asm_6033
-	call Func_0ffa
+	call DiscardCard
 	jr .discard_loop
 
 .asm_6033
@@ -4977,7 +5070,7 @@ AttemptRetreat:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	ld e, a
 	call SwapArenaWithBenchPokemon
-	call Func_6518
+	call HandleDestinyBondAndBetweenTurnKnockOuts
 	pop af
 	or a
 	ret
@@ -5343,7 +5436,7 @@ HandleBetweenTurnsEvents:
 	call IsArenaPokemonAsleepOrPoisoned
 	call SwapTurn
 	jr c, .something_to_handle
-	call DiscardAttachedPluspowers
+	call DiscardAttachedPlusPowers
 	call SwapTurn
 	call DiscardAttachedDefenders
 	call SwapTurn
@@ -5392,7 +5485,7 @@ HandleBetweenTurnsEvents:
 	call WaitForWideTextBoxInput
 
 .discard_pluspower
-	call DiscardAttachedPluspowers
+	call DiscardAttachedPlusPowers
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -5415,7 +5508,7 @@ HandleBetweenTurnsEvents:
 	ret
 
 ; discard any PLUSPOWER attached to the turn holder's arena and/or bench Pokemon
-DiscardAttachedPluspowers:
+DiscardAttachedPlusPowers:
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
 	get_turn_duelist_var
 	ld e, MAX_PLAY_AREA_POKEMON
@@ -5656,7 +5749,7 @@ MoveCardToDiscardPileIfInArena:
 	jr nz, .skip ; jump if not the card id provided in de
 	ld a, l
 	push bc
-	call Func_0ffa
+	call DiscardCard
 	pop bc
 .skip
 	inc l
@@ -5664,12 +5757,148 @@ MoveCardToDiscardPileIfInArena:
 	cp DECK_SIZE
 	jr c, .next_card
 	ret
-; 0x6470
 
-SECTION "Bank 1@6518", ROMX[$6518], BANK[$1]
+_QueueStatusCondition:
+	call SwapTurn
+	call CheckIfArenaCardIsProtectedFromStatusCondition
+	call SwapTurn
+	jr nc, .not_protected
+	ld a, c
+	ld hl, wNoEffectFromWhichStatus
+	or [hl]
+	ld [hl], a
+	ld a, EFFECT_FAILED_NO_EFFECT
+	ld [wEffectFailed], a
+	or a
+	ret
 
-Func_6518::
-	call Func_7234
+.not_protected
+	; insert new entry to wEffectFunctionsFeedback
+	ld hl, wEffectFunctionsFeedbackIndex
+	push hl
+	ld e, [hl]
+	ld d, $00
+	ld hl, wEffectFunctionsFeedback
+	add hl, de
+	call SwapTurn
+	ldh a, [hWhoseTurn]
+	ld [hli], a
+	call SwapTurn
+	ld [hl], b ; mask of status to not overwrite
+	inc hl
+	ld [hl], c ; status to inflict
+	pop hl
+	; increment wEffectFunctionsFeedbackIndex by 3 (size of entry)
+	inc [hl]
+	inc [hl]
+	inc [hl]
+	scf
+	ret
+
+; this function applies all status conditions in order
+; that have been added to the wStatusConditionQueue
+; return carry if any status conditions were applied
+; and the defending Pokemon didn't have "No Damage or Effect" status
+ApplyStatusConditionQueue:
+	xor a
+	ld [wPlayerArenaCardLastTurnStatus], a
+	ld [wOpponentArenaCardLastTurnStatus], a
+	ld hl, wEffectFunctionsFeedbackIndex
+	ld a, [hl]
+	or a
+	ret z
+	ld e, [hl]
+	ld d, $00
+	ld hl, wEffectFunctionsFeedback
+	add hl, de
+	ld [hl], $00 ; terminating byte
+	call CheckNoDamageOrEffect
+	jr c, .no_damage_or_effect
+
+; apply all status conditions unconditionally
+	ld hl, wEffectFunctionsFeedback
+.apply_status_loop
+	ld a, [hli]
+	or a
+	jr z, .done_apply_all
+	ld d, a ; which duelist side
+	call ApplyStatusConditionToArenaPokemon
+	jr .apply_status_loop
+.done_apply_all
+	xor a
+	ld [wEffectFunctionsFeedbackIndex], a
+	scf
+	ret
+
+.no_damage_or_effect
+	ld a, l
+	or h
+	call nz, DrawWideTextBox_PrintText
+
+; if no damage or effect to defending Pokemon,
+; we will just apply the conditions to turn duelist's Pokemon
+	ld hl, wEffectFunctionsFeedback
+.apply_own_status_loop
+	ld a, [hli]
+	or a
+	jr z, .done_apply_own
+	ld d, a
+	ld a, [wWhoseTurn]
+	cp d
+	jr z, .apply_own_condition
+	inc hl
+	inc hl
+	jr .apply_own_status_loop
+.apply_own_condition
+	call ApplyStatusConditionToArenaPokemon
+	jr .apply_own_status_loop
+.done_apply_own
+	ret
+
+; apply the status condition at hl+1 to the arena Pokemon
+; discard the arena Pokemon's status conditions contained in the bitmask at hl
+ApplyStatusConditionToArenaPokemon:
+	; skip status if Pokémon is KO'd
+	ld e, DUELVARS_ARENA_CARD_HP
+	ld a, [de]
+	or a
+	jr z, .no_hp
+	ld e, DUELVARS_ARENA_CARD_STATUS
+	ld a, [de]
+	and [hl]
+	inc hl
+	or [hl]
+	ld [de], a
+	dec hl
+	ld e, DUELVARS_ARENA_CARD_LAST_TURN_STATUS
+	ld a, [de]
+	and [hl]
+	inc hl
+	or [hl]
+	inc hl
+	ld [de], a
+	and CNF_SLP_PRZ
+	ret z
+
+	; is confusion/sleep/paralysis
+	; reset changed type (since this is achieved by Venomoth's Shift,
+	; and so stops working when it is affected by those conditions)
+	push hl
+	ld h, d
+	ld l, DUELVARS_ARENA_CARD_FLAGS
+	res AFFECTED_BY_POISON_MIST_F, [hl]
+	ld l, DUELVARS_ARENA_CARD_CHANGED_TYPE
+	ld [hl], $00 ; reset changed type
+	pop hl
+	ret
+
+.no_hp
+	inc hl
+	inc hl
+	ret
+
+HandleDestinyBondAndBetweenTurnKnockOuts::
+	call HandleDestinyBondAndFinalBeam
 ;	fallthrough
 
 HandleBetweenTurnKnockOuts:
@@ -5725,7 +5954,7 @@ HandleBetweenTurnKnockOuts:
 	call MoveAllTurnHolderKnockedOutPokemonToDiscardPile
 	call SwapTurn
 	call ShiftAllPokemonToFirstPlayAreaSlots
-	call Func_7943
+	call HandleGasExplosionKnockOut
 	pop af
 	ret
 
@@ -5786,7 +6015,7 @@ MoveAllTurnHolderKnockedOutPokemonToDiscardPile:
 	jr nz, .next
 	push hl
 	push de
-	call Func_12fc
+	call DiscardPlayAreaCard
 	pop de
 	pop hl
 .next
@@ -6037,8 +6266,8 @@ InitVariablesToBeginDuel:
 	ld [wDuelFinished], a
 	ld [wDuelTurns], a
 	ld [wccfc], a
-	ld [wGoopGasAttackActive], a
-	ld [wcc07], a
+	ld [wGoopGasAttackActiveTurns], a
+	ld [wPrizeCardsFaceUp], a
 
 	ld a, $ff
 	ld [wcc0f], a
@@ -6083,11 +6312,11 @@ InitVariablesToBeginTurn:
 	ld [wAlreadyPlayedEnergy], a
 	ld [wGotHeadsFromConfusionCheckDuringRetreat], a
 	ld [wcc03], a
-	ld [wcd09], a
+	ld [wTurnEndedDueToComputerError], a
 	ld [wEffectFailed], a
 	ld [wMetronomeEnergyCost], a
 	ld a, $ff
-	ld [wcc1b], a
+	ld [wMiniMetronomeCoinTossResult], a
 	ldh a, [hWhoseTurn]
 	ld [wWhoseTurn], a
 	farcall ResetAttackAnimationIsPlaying
@@ -6710,7 +6939,7 @@ ClearNonTurnTemporaryDuelvars::
 	ld [hli], a ; DUELVARS_ARENA_CARD_LAST_TURN_SUBSTATUS2
 	ld [hli], a ; DUELVARS_ARENA_CARD_LAST_TURN_CHANGE_WEAK
 	ld [hli], a ; DUELVARS_ARENA_CARD_LAST_TURN_EFFECT
-	ld [hl], a  ; DUELVARS_UNK_FE
+	ld [hl], a  ; DUELVARS_ATTACK_NAME
 	ret
 
 ; same as ClearNonTurnTemporaryDuelvars, except the non-turn holder's arena
@@ -6759,6 +6988,7 @@ DamageCalculation:
 	ld a, e
 	or d
 	ret z ; no damage
+DamageCalculation_WeaknessAndResistance:
 	ld a, b
 	call GetPlayAreaCardColor
 	call TranslateColorToWR
@@ -6769,12 +6999,12 @@ DamageCalculation:
 	or a
 	jr z, .not_self_damage_1
 	ld a, [wTempPlayAreaLocation_cceb]
-	call GetArenaOrBenchCardWeakness
+	call GetPlayAreaCardWeakness
 	jr .got_weakness
 .not_self_damage_1
 	call SwapTurn
 	ld a, [wTempPlayAreaLocation_cceb]
-	call GetArenaOrBenchCardWeakness
+	call GetPlayAreaCardWeakness
 	call SwapTurn
 .got_weakness
 	and b
@@ -6792,12 +7022,12 @@ DamageCalculation:
 	or a
 	jr z, .not_self_damage_2
 	ld a, [wTempPlayAreaLocation_cceb]
-	call GetArenaOrBenchCardResistance
+	call GetPlayAreaCardResistance
 	jr .got_resistance
 .not_self_damage_2
 	call SwapTurn
 	ld a, [wTempPlayAreaLocation_cceb]
-	call GetArenaOrBenchCardResistance
+	call GetPlayAreaCardResistance
 	call SwapTurn
 .got_resistance
 	and b
@@ -6866,7 +7096,7 @@ SECTION "Bank 1@6c22", ROMX[$6c22], BANK[$1]
 HandleDamageModifiersEffects::
 	call HandlePrehistoricDreamDamageBoost
 	call HandleThunderChargeDamageBoost
-	call Func_6f25
+	call HandleDarkWaveDamageBoost
 
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
 	get_turn_duelist_var
@@ -6881,7 +7111,7 @@ HandleDamageModifiersEffects::
 .HandleSubstatus1DamageModifiers:
 	cp SUBSTATUS1_NEXT_TURN_DOUBLE_DAMAGE
 	jr z, .double_damage
-	cp SUBSTATUS1_UNK_0D
+	cp SUBSTATUS1_NEXT_TURN_TRIPLE_DAMAGE
 	jr z, .triple_damage
 	ret
 .double_damage
@@ -6905,12 +7135,12 @@ HandleDamageModifiersEffects::
 	ret
 
 ; compares loaded attack name with
-; turn holder's DUELVARS_UNK_FE
+; turn holder's DUELVARS_ATTACK_NAME
 ; if it's the same, then return z
 .Func_6c5a:
 	push hl
 	push de
-	ld l, DUELVARS_UNK_FE
+	ld l, DUELVARS_ATTACK_NAME
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -6981,29 +7211,29 @@ HandleDamageReductionExceptSubstatus2:
 
 	cp SUBSTATUS1_DOUBLE_DAMAGE
 	jp z, .double_damage
-	cp SUBSTATUS1_UNK_28
+	cp SUBSTATUS1_SWAY
 	jr z, .no_damage
-	cp SUBSTATUS1_UNK_27
+	cp SUBSTATUS1_SAND_VEIL
 	jr z, .no_damage
 	cp SUBSTATUS1_NO_DAMAGE_STIFFEN
 	jr z, .no_damage
-	cp SUBSTATUS1_NO_DAMAGE_10
+	cp SUBSTATUS1_NO_DAMAGE_WITHDRAW
 	jr z, .no_damage
-	cp SUBSTATUS1_NO_DAMAGE_11
+	cp SUBSTATUS1_NO_DAMAGE_HIDE_IN_SHELL
 	jr z, .no_damage
-	cp SUBSTATUS1_NO_DAMAGE_17
+	cp SUBSTATUS1_NO_DAMAGE_SCRUNCH
 	jr z, .no_damage
 	cp SUBSTATUS1_REDUCE_BY_10
 	jr z, .reduce_damage_by_10
 	cp SUBSTATUS1_REDUCE_BY_20
 	jr z, .reduce_damage_by_20
-	cp SUBSTATUS1_HARDEN
+	cp SUBSTATUS1_PREVENT_LESS_THAN_40
 	jr z, .prevent_less_than_40_damage
-	cp SUBSTATUS1_UNK_26
+	cp SUBSTATUS1_PREVENT_LESS_THAN_30
 	jr z, .prevent_less_than_30_damage
 	cp SUBSTATUS1_HALVE_DAMAGE
 	jr z, .halve_damage
-	cp SUBSTATUS1_UNK_25
+	cp SUBSTATUS1_NO_DAMAGE_ROCKET_TACKLE
 	jr z, .no_damage
 
 .not_affected_by_substatus1
@@ -7254,8 +7484,10 @@ SetDarkWaveAndDarknessVeilDamageModifiers::
 	ld [hl], d
 	ret
 
+; if wTempTurnDuelistCardID corresponds to a Dark Pokémon
+; then apply wDarkWaveDamageModifier to damage given in de
 ; de = damage
-Func_6f25:
+HandleDarkWaveDamageBoost:
 	push de
 	ld hl, wTempTurnDuelistCardID
 	ld e, [hl]
@@ -7264,14 +7496,19 @@ Func_6f25:
 	call CheckIfCardIDIsDarkPokemon
 	pop de
 	or a
-	jr nz, .asm_6f37
+	jr nz, ApplyDarkWaveDamageBoost
 	ret
 
+; input:
+; - b = PLAY_AREA_* target
+ApplyDarkWaveDamageBoostIfTargetIsBench:
 	ld a, b
 	or a
-	ret z
+	ret z ; is Arena
+;	fallthrough
 
-.asm_6f37
+; de = damage
+ApplyDarkWaveDamageBoost:
 	ld a, e
 	or d
 	ret z ; no damage
@@ -7287,8 +7524,12 @@ Func_6f25:
 	ld d, a
 	ret
 
-; e = PLAY_AREA_* location
-Func_6f49:
+; runs substatus and Pkmn Power checks to see if
+; Play Area card given in e is impervious to effect/damage
+; if it is, print related message and return carry
+; input:
+; - e = PLAY_AREA_* location
+HandlePlayAreaCardNoDamageOrEffect:
 	ld a, e
 	ld [wTempPlayAreaLocation_cceb], a
 	or a
@@ -7308,7 +7549,9 @@ Func_6f49:
 	dec hl
 	ld [hl], e
 	call HandleNoDamageOrEffectSubstatus
-	jr nc, .asm_6f76
+	jr nc, .substatus_check_done
+	; is under substatus that prevents damage/effect
+	; print its corresponding text
 	push af
 	call DrawWideTextBox_PrintText
 	ld a, [wDuelDisplayedScreen]
@@ -7317,7 +7560,8 @@ Func_6f49:
 	call WaitForWideTextBoxInput
 .skip_wait_for_input
 	pop af
-.asm_6f76
+
+.substatus_check_done
 	pop de
 	pop hl
 	ld [hl], d
@@ -7351,7 +7595,7 @@ Func_6f49:
 	call GetNonTurnDuelistVariable
 	or a
 	jr z, .no_carry
-	ld a, $05
+	ld a, NO_DAMAGE_OR_EFFECT_NSHIELD
 	ld [wNoDamageOrEffect], a
 	ldtx hl, NoDamageOrEffectDueToNShieldText
 .asm_6fbb
@@ -7432,9 +7676,25 @@ HandleNoDamageOrEffectSubstatus::
 	ld e, NO_DAMAGE_OR_EFFECT_NSHIELD
 	ldtx hl, NoDamageOrEffectDueToNShieldText
 	jr .no_damage_or_effect
-; 0x7038
 
-SECTION "Bank 1@7057", ROMX[$7057], BANK[$1]
+; if the Pokemon being attacked is HAUNTER_LV17, and its Transparency is active,
+; there is a 50% chance that any damage or effect is prevented
+; return carry if damage is prevented
+HandleTransparency:
+	ld hl, wTempNonTurnDuelistCardID
+	cphl HAUNTER_LV17
+	jr z, .transparency
+.done
+	or a
+	ret
+.transparency
+	ld a, [wLoadedAttackCategory]
+	cp POKEMON_POWER
+	jr z, .done ; Transparency has no effect against Pkmn Powers
+	ld a, [wTempPlayAreaLocation_cceb]
+	call CheckIsIncapableOfUsingPkmnPower
+	jr c, .done
+;	fallthrough
 
 CheckHaunterTransparency:
 	xor a
@@ -7452,15 +7712,15 @@ CheckHaunterTransparency:
 	pop hl
 	ret nc
 	set PLAY_AREA_FLAG_UNK_1_F, [hl]
-.asm_7074
-	ld a, $04
+.no_damage_or_effect
+	ld a, NO_DAMAGE_OR_EFFECT_TRANSPARENCY
 	ld [wNoDamageOrEffect], a
 	ldtx hl, NoDamageOrEffectDueToTransparencyText
 	scf
 	ret
 .asm_707e
 	bit PLAY_AREA_FLAG_UNK_1_F, [hl]
-	jr nz, .asm_7074
+	jr nz, .no_damage_or_effect
 	or a
 	ret
 
@@ -7687,27 +7947,28 @@ ClearDamageReductionSubstatus2:
 ; clears the SUBSTATUS1 and updates the double damage condition of the player about to start his turn
 UpdateSubstatusConditions_StartOfTurn:
 	xor a
-	ld [wcc1a], a
-	ld [wcd0c], a
+	ld [wPrehistoricDreamBoost], a
+	ld [wKnockedOutByGasExplosion], a
 
-	; reset bit flag 3 in all Play Area Pokémon
+	; reset Poison Mist flag in all Play Area Pokémon
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 .loop_play_area
-	res PLAY_AREA_FLAG_UNK_3_F, [hl]
+	res AFFECTED_BY_POISON_MIST_F, [hl]
 	inc hl
 	dec c
 	jr nz, .loop_play_area
 
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
-	res SUBSTATUS3_UNK_6_F, [hl]
+	res SUBSTATUS3_STRANGE_BEAM_F, [hl]
 
+	; if turn countdown is not %11 then reset substatus1
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
-	bit SUBSTATUS3_UNK_5_F, [hl]
+	bit SUBSTATUS3_TURN_COUNTDOWN_HI_F, [hl]
 	ret nz
 	ld l, DUELVARS_ARENA_CARD_SUBSTATUS1
 	ld [hl], $00
@@ -7724,8 +7985,8 @@ UpdateSubstatusConditions_EndOfTurn:
 	dec c
 	jr nz, .loop_play_area
 
-	; reset Goop Gas attack flag
-	ld hl, wGoopGasAttackActive
+	; decrement Goop Gas Attack turns
+	ld hl, wGoopGasAttackActiveTurns
 	ld a, [hl]
 	or a
 	jr z, .goop_gas_attack_not_active
@@ -7738,15 +7999,17 @@ UpdateSubstatusConditions_EndOfTurn:
 	res SUBSTATUS3_SPOOKIFY_F, [hl]
 	res SUBSTATUS3_PERPLEX_F, [hl]
 
-	bit SUBSTATUS3_UNK_5_F, [hl]
-	jr z, .asm_71d0
-	res SUBSTATUS3_UNK_4_F, [hl]
-	res SUBSTATUS3_UNK_5_F, [hl]
+	bit SUBSTATUS3_TURN_COUNTDOWN_HI_F, [hl]
+	jr z, .tick_turn_countdown
+	; reset turn countdown
+	res SUBSTATUS3_TURN_COUNTDOWN_LO_F, [hl]
+	res SUBSTATUS3_TURN_COUNTDOWN_HI_F, [hl]
 	jr .reset_substatus2
-.asm_71d0
-	bit SUBSTATUS3_UNK_4_F, [hl]
+.tick_turn_countdown
+	bit SUBSTATUS3_TURN_COUNTDOWN_LO_F, [hl]
 	jr z, .reset_substatus2
-	set SUBSTATUS3_UNK_5_F, [hl]
+	; set turn countdown to %11
+	set SUBSTATUS3_TURN_COUNTDOWN_HI_F, [hl]
 
 .reset_substatus2
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS2
@@ -7772,7 +8035,7 @@ CheckIfCannotDrawDueToPerplex:
 ; otherwise, checks for Muk in Play Area with Pkmn Power active
 ; and if there is at least 1, return carry and a = $0
 CheckGoopGasAttackAndToxicGasActive:
-	ld a, [wGoopGasAttackActive]
+	ld a, [wGoopGasAttackActiveTurns]
 	or a
 	jr nz, .goop_gas_attack_active
 	push de
@@ -7820,7 +8083,7 @@ CheckRainDanceScenario:
 	or a
 	ret
 
-Func_7234:
+HandleDestinyBondAndFinalBeam:
 	call HandleDestinyBondSubstatus
 	call HandleFinalBeam
 	ret
@@ -7907,7 +8170,7 @@ HandleFinalBeam:
 	ld a, b
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld de, $0
+	ld de, 0
 	cp $ff
 	call nz, GetCardIDFromDeckIndex
 	call SwapTurn
@@ -8074,16 +8337,17 @@ GetPlayAreaCardColor::
 	and $f
 	ret
 
-; return in a the weakness of the turn holder's Play Area Pokemon
-; if [DUELVARS_ARENA_CARD_CHANGED_WEAKNESS] != 0, return it instead
-; input:
-; - a = PLAY_AREA_* constant
-GetArenaOrBenchCardWeakness:
+; return in a the weakness of the turn holder's arena or benchx Pokemon given the PLAY_AREA_* value in a
+; if a == 0 and [DUELVARS_ARENA_CARD_CHANGED_WEAKNESS] != 0,
+; return [DUELVARS_ARENA_CARD_CHANGED_WEAKNESS] instead
+GetPlayAreaCardWeakness:
 	or a
 	jr z, GetArenaCardWeakness
 	add DUELVARS_ARENA_CARD
-	jr GetPlayAreaCardWeakness
+	jr GetCardWeakness
 
+; return in a the weakness of the turn holder's arena Pokemon
+; if [DUELVARS_ARENA_CARD_CHANGED_WEAKNESS] != 0, return it instead
 GetArenaCardWeakness::
 	ld a, DUELVARS_ARENA_CARD_CHANGED_WEAKNESS
 	get_turn_duelist_var
@@ -8092,22 +8356,23 @@ GetArenaCardWeakness::
 	ld a, DUELVARS_ARENA_CARD
 ;	fallthrough
 
-GetPlayAreaCardWeakness:
+GetCardWeakness:
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Weakness]
 	ret
 
-; return in a the resistance of the turn holder's Play Area Pokemon
-; if [DUELVARS_ARENA_CARD_CHANGED_RESISTANCE] != 0, return it instead
-; input:
-; - a = PLAY_AREA_* constant
-GetArenaOrBenchCardResistance:
+; return in a the resistance of the turn holder's arena or benchx Pokemon given the PLAY_AREA_* value in a
+; if a == 0 and [DUELVARS_ARENA_CARD_CHANGED_RESISTANCE] != 0,
+; return [DUELVARS_ARENA_CARD_CHANGED_RESISTANCE] instead
+GetPlayAreaCardResistance:
 	or a
 	jr z, GetArenaCardResistance
 	add DUELVARS_ARENA_CARD
-	jr GetPlayAreaCardResistance
+	jr GetCardResistance
 
+; return in a the resistance of the arena Pokemon
+; if [DUELVARS_ARENA_CARD_CHANGED_RESISTANCE] != 0, return it instead
 GetArenaCardResistance::
 	ld a, DUELVARS_ARENA_CARD_CHANGED_RESISTANCE
 	get_turn_duelist_var
@@ -8116,7 +8381,7 @@ GetArenaCardResistance::
 	ld a, DUELVARS_ARENA_CARD
 	;	fallthrough
 
-GetPlayAreaCardResistance:
+GetCardResistance:
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Resistance]
@@ -8533,15 +8798,16 @@ CheckWhetherToApplyWeakness::
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
 	call .SwapTurnIfNotDamageToSelf
-	bit SUBSTATUS3_UNK_6_F, a
+	bit SUBSTATUS3_STRANGE_BEAM_F, a
 	jr z, .no_carry
-	call .Func_78f2
+	call .CheckStrangeBeam
 	ret c
 .no_carry
 	or a
 	ret
 
-.Func_78f2:
+.CheckStrangeBeam:
+	; don't apply weakness if Defending card is Water
 	call .SwapTurnIfNotDamageToSelf
 	call GetDefendingCardType
 	call .SwapTurnIfNotDamageToSelf
@@ -8551,6 +8817,8 @@ CheckWhetherToApplyWeakness::
 	ret
 
 .CheckGreenShield:
+	; if Defending card is Grass, and Metapod has active Pkmn Power
+	; then do not apply weakness
 	call .SwapTurnIfNotDamageToSelf
 	push de
 	ld de, METAPOD_LV20
@@ -8599,25 +8867,31 @@ CheckIfDampeningShieldIsActive:
 	pop de
 	ret
 
-Func_7943:
-	ld a, [wcd0c]
+; if Arena card was KO'd by Gas Explosion
+; the new Arena card is poisoned
+HandleGasExplosionKnockOut:
+	ld a, [wKnockedOutByGasExplosion]
 	or a
-	ret z
+	ret z ; wasn't ko'd by Gas Explosion
+
 	ld a, DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
 	or a
 	ret z ; hp == 0
+
+	; this is a new Arena card after a Gas Explosion knock out,
+	; poison it if it is affected
 	call SwapTurn
 	call CheckIfArenaCardIsProtectedFromStatusCondition
 	jr c, .no_poison
-	ld e, $00
-	call Func_6f49
+	ld e, PLAY_AREA_ARENA
+	call HandlePlayAreaCardNoDamageOrEffect
 	jr c, .no_poison
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	ld [hl], POISONED
-	xor a
-	ld [wcd0c], a
+	xor a ; FALSE
+	ld [wKnockedOutByGasExplosion], a
 .no_poison
 	call SwapTurn
 	ret
@@ -8641,7 +8915,7 @@ Func_796b:
 	ld b, PLAY_AREA_ARENA
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 .loop_play_area_pkmn
-	bit PLAY_AREA_FLAG_UNK_3_F, [hl]
+	bit AFFECTED_BY_POISON_MIST_F, [hl]
 	jr z, .next_pkmn
 	push hl
 	push bc
@@ -8661,7 +8935,7 @@ Func_796b:
 
 ; de = damage
 HandlePrehistoricDreamDamageBoost:
-	ld a, [wcc1a]
+	ld a, [wPrehistoricDreamBoost]
 	or a
 	ret z ; no boost
 	ld a, [wIsDamageToSelf]
@@ -8684,7 +8958,7 @@ HandlePrehistoricDreamDamageBoost:
 	jr c, .not_fossil_card
 	cp DEX_AERODACTYL + 1
 	jr nc, .not_fossil_card
-	ld a, [wcc1a]
+	ld a, [wPrehistoricDreamBoost]
 	call ATimes10
 	add e
 	ld e, a

@@ -3617,7 +3617,7 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 
 .power_of_darkness
 	ldtx de, PowerOfDarknessCheckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	call SwapTurn
 	ld e, PLAY_AREA_ARENA

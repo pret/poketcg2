@@ -12,7 +12,7 @@ CardPointers::
 	card_ptr PsychicEnergyCard         ; PSYCHIC_ENERGY
 	card_ptr DoubleColorlessEnergyCard ; DOUBLE_COLORLESS_ENERGY
 	card_ptr PotionEnergyCard          ; POTION_ENERGY
-	card_ptr FullhealEnergyCard        ; FULLHEAL_ENERGY
+	card_ptr FullHealEnergyCard        ; FULLHEAL_ENERGY
 	card_ptr RainbowEnergyCard         ; RAINBOW_ENERGY
 	card_ptr RecycleEnergyCard         ; RECYCLE_ENERGY
 	card_ptr BulbasaurLv12Card         ; BULBASAUR_LV12
@@ -409,7 +409,7 @@ CardPointers::
 	card_ptr MaxReviveCard             ; MAX_REVIVE
 	card_ptr SuperScoopUpCard          ; SUPER_SCOOP_UP
 	card_ptr DevolutionSprayCard       ; DEVOLUTION_SPRAY
-	card_ptr ItemfinderCard            ; ITEMFINDER
+	card_ptr ItemFinderCard            ; ITEMFINDER
 	card_ptr ChallengeCard             ; CHALLENGE
 	card_ptr SuperEnergyRetrievalCard  ; SUPER_ENERGY_RETRIEVAL
 	card_ptr SuperEnergyRemovalCard    ; SUPER_ENERGY_REMOVAL
@@ -426,7 +426,7 @@ CardPointers::
 	card_ptr DiggerCard                ; DIGGER
 	card_ptr ClefairyDollCard          ; CLEFAIRY_DOLL
 	card_ptr MrFujiCard                ; MR_FUJI
-	card_ptr PluspowerCard             ; PLUSPOWER
+	card_ptr PlusPowerCard             ; PLUSPOWER
 	card_ptr SwitchCard                ; SWITCH
 	card_ptr ScoopUpCard               ; SCOOP_UP
 	card_ptr PokemonTraderCard         ; POKEMON_TRADER

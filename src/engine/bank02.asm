@@ -1,4 +1,91 @@
-SECTION "Bank 2@43b3", ROMX[$43b3], BANK[$2]
+SECTION "Bank 2@4302", ROMX[$4302], BANK[$2]
+
+Func_8302:
+	ld a, h
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	ld a, l
+	ld [wCheckMenuPlayAreaWhichLayout], a
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+	call LoadMenuCursorTile
+	jr DrawYourOrOppPlayAreaScreen_EmptiedScreen
+
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+;	fallthrough
+
+DrawYourOrOppPlayAreaScreen_EmptiedScreen:
+	call LoadSymbolsFont
+	call Func_1dff
+	bank1call SetDefaultPalettes
+	lb de, 6, 0
+	call InitTextPrinting
+
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	cp PLAYER_TURN
+	jr nz, .opp_name
+
+; print <RAMNAME>'s Play Area
+	ld de, wDefaultText
+	call CopyPlayerName
+	jr .got_duelist_name
+.opp_name
+	ld de, wDefaultText
+	call CopyOpponentName
+.got_duelist_name
+	ld hl, wDefaultText
+
+	call ProcessText
+	ld hl, wDefaultText
+	call GetTextLengthInTiles
+	ld a, 6 ; max name size in tiles
+	add b
+	ld d, a ; text horizontal alignment
+	ld e, 0
+	call InitTextPrinting
+	ldtx hl, DuelistsPlayAreaSuffixText
+	call ProcessTextFromID
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ld a, [wCheckMenuPlayAreaWhichLayout]
+	cp b
+	jr nz, .not_equal
+
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.player
+	call DrawPlayArea_PrizeCards
+	lb de, 6, 2 ; coordinates of player's active card
+	call DrawYourOrOppPlayArea_ActiveCardGfx
+	lb de, 1, 9 ; coordinates of player's bench cards
+	ld c, 4
+	call DrawPlayArea_BenchCards
+	xor a
+	call DrawYourOrOppPlayArea_Icons
+	jr .done
+
+.not_equal
+	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.opponent
+	call DrawPlayArea_PrizeCards
+	lb de, 6, 5 ; coordinates of opponent's active card
+	call DrawYourOrOppPlayArea_ActiveCardGfx
+	lb de, 1, 2 ; coordinates of opponent's bench cards
+	ld c, 4 ; spacing
+	call DrawPlayArea_BenchCards
+	ld a, $01
+	call DrawYourOrOppPlayArea_Icons
+
+.done
+	call EnableLCD
+	ret
 
 Func_82b6:
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
@@ -16,6 +103,66 @@ Func_82b6:
 	call DrawPlayArea_PrizeCards
 	ret
 ; 0x83cb
+
+SECTION "Bank 2@4495", ROMX[$4495], BANK[$2]
+
+; draws the active card gfx at coordinates de
+; of the player (or opponent) depending on wCheckMenuPlayAreaWhichDuelist
+; input:
+; de = coordinates
+DrawYourOrOppPlayArea_ActiveCardGfx:
+	push de
+	ld a, DUELVARS_ARENA_CARD
+	ld l, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld a, [hl]
+	cp -1
+	jr z, .no_pokemon
+
+	ld d, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ldh a, [hWhoseTurn]
+	cp b
+	jr nz, .swap
+	ld a, d
+	call LoadCardDataToBuffer1_FromDeckIndex
+	jr .draw
+.swap
+	call SwapTurn
+	ld a, d
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call SwapTurn
+
+.draw
+	ld de, v0Tiles1 + $20 tiles ; destination offset of loaded gfx
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb bc, $30, TILE_SIZE
+	call LoadCardGfx
+	pop de
+	push de
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	bank1call Func_6c12
+	bank1call FlushAllPalettesIfNotDMG
+	pop de
+
+; draw card gfx
+	ld a, $a0
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	bank1call StubbedApplyBGP6OrSGB3ToCardImage
+	ret
+
+.no_pokemon
+	bank1call Func_6c12
+	pop de
+	ret
+; 0x84eb
 
 SECTION "Bank 2@4587", ROMX[$4587], BANK[$2]
 
@@ -49,13 +196,13 @@ DrawPlayArea_PrizeCards:
 	ld a, $e0 ; tile byte for empty slot
 	jr .draw
 .not_taken
-	ld a, [wcc07]
+	ld a, [wPrizeCardsFaceUp]
 	or a
-	jr z, .asm_85b2
-	ld a, $f9
+	jr z, .face_down
+	ld a, $f9 ; tile byte for face up card
 	jr .draw
-.asm_85b2
-	ld a, $dc ; tile byte for card
+.face_down
+	ld a, $dc ; tile byte for face down card
 .draw
 	ld e, [hl]
 	inc hl
@@ -125,7 +272,259 @@ GetDuelInitialPrizesUpperBitsSet:
 	or %11000000
 	ld [wDuelInitialPrizesUpperBitsSet], a
 	ret
-; 0x863e
+
+; draws filled and empty bench slots depending on the turn loaded in wCheckMenuPlayAreaWhichDuelist
+; if wCheckMenuPlayAreaWhichDuelist is different from wCheckMenuPlayAreaWhichLayout adjusts coordinates of the bench slots
+; input:
+; de = coordinates to draw bench
+; c  = spacing between slots
+DrawPlayArea_BenchCards:
+	ld a, [wCheckMenuPlayAreaWhichLayout]
+	ld b, a
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	cp b
+	jr z, .skip
+
+; adjust the starting bench position for opponent
+	ld a, d
+	add c
+	add c
+	add c
+	add c
+	ld d, a
+	; d = d + 4 * c
+
+; have the spacing go to the left instead of right
+	xor a
+	sub c
+	ld c, a
+	; c = $ff - c + 1
+
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+.skip
+	ld h, a
+	ld l, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	ld b, [hl]
+	ld l, DUELVARS_BENCH1_CARD_STAGE
+.loop_1
+	dec b ; num of Bench Pokemon left
+	jr z, .done
+
+	ld a, [hli]
+	push hl
+	push bc
+	sla a
+	sla a
+	add $e4
+; a holds the correct stage gfx tile
+	ld b, a
+	push bc
+
+	lb hl, 1, 2
+	lb bc, 2, 2
+	call FillRectangle
+
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	pop bc
+	jr nz, .next
+
+	ld a, b
+	cp $ec ; tile offset of 2 stage
+	jr z, .two_stage
+	cp $f0 ; tile offset of 2 stage with no 1 stage
+	jr z, .two_stage
+
+	ld a, $03 ; blue colour
+	jr .palette
+.two_stage
+	ld a, $02 ; red colour
+.palette
+	lb bc, 2, 2
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+
+.next ; adjust coordinates for next card
+	pop bc
+	pop hl
+	ld a, d
+	add c
+	ld d, a
+	; d = d + c
+	jr .loop_1
+
+.done
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld l, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	ld a, [wMaxNumPlayAreaPokemon]
+	sub [hl]
+	ret z ; return if already full
+
+	ld b, a
+	inc b
+.loop_2
+	dec b
+	ret z
+
+	push bc
+	ld a, $f4 ; empty bench slot tile
+	lb hl, 1, 2
+	lb bc, 2, 2
+	call FillRectangle
+
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jr nz, .not_cgb
+
+	ld a, $03 ; colour
+	lb bc, 2, 2
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+
+.not_cgb
+	pop bc
+	ld a, d
+	add c
+	ld d, a
+	jr .loop_2
+
+; draws Your/Opp Play Area icons depending on value in a
+; the icons correspond to Deck, Discard Pile, and Hand
+; the corresponding number of cards is printed alongside each icon
+; for "Hand", text is displayed rather than an icon
+; input:
+; a = $00: draws player icons
+; a = $01: draws opponent icons
+DrawYourOrOppPlayArea_Icons:
+	or a
+	jr nz, .opponent
+	ld hl, PlayAreaIconCoordinates.player1
+	jr .draw
+.opponent
+	ld hl, PlayAreaIconCoordinates.opponent1
+
+.draw
+; hand icon and value
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	ld a, [de]
+	ld b, a
+	ld a, $d0 ; hand icon, unused?
+	call $47a3
+
+; deck icon and value
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	ld a, [de]
+	ld b, a
+	ld a, DECK_SIZE
+	sub b
+	ld b, a
+	ld a, $d4 ; deck icon
+	call DrawPlayArea_IconWithValue
+
+; discard pile icon and value
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_IN_DISCARD_PILE
+	ld a, [de]
+	ld b, a
+	ld a, $d8 ; discard pile icon
+	call DrawPlayArea_IconWithValue
+	ret
+
+; draws the interface icon corresponding to the gfx tile in a
+; also prints the number in decimal corresponding to the value in b
+; the coordinates in screen are given by [hl]
+; input:
+; a  = tile for the icon
+; b  = value to print alongside icon
+; hl = pointer to coordinates
+DrawPlayArea_IconWithValue:
+; drawing the icon
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+	push hl
+	push bc
+	lb hl, 1, 2
+	lb bc, 2, 2
+	call FillRectangle
+
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jr nz, .skip
+	ld a, $03
+	lb bc, 2, 2
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+
+.skip
+; adjust coordinate to the lower right
+	inc d
+	inc d
+	inc e
+	call InitTextPrinting
+	pop bc
+	ld a, b
+	call CalculateOnesAndTensDigits
+
+	ld hl, wDecimalDigitsSymbols
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+
+; loading numerical and cross symbols
+	ld hl, wDefaultText
+	ld [hl], TX_SYMBOL
+	inc hl
+	ld [hl], SYM_CROSS
+	inc hl
+	ld [hl], TX_SYMBOL
+	inc hl
+	ld [hli], a ; tens place
+	ld [hl], TX_SYMBOL
+	inc hl
+	ld a, b
+	ld [hli], a ; ones place
+	ld [hl], TX_END
+
+; printing the decimal value
+	ld hl, wDefaultText
+	call ProcessText
+	pop hl
+	ret
+
+PlayAreaIconCoordinates:
+; used for "Your/Opp. Play Area" screen
+.player1
+	db 15,  7 ; hand
+	db 15,  2 ; deck
+	db 15,  4 ; discard pile
+.opponent1
+	db  1,  5 ; hand
+	db  1,  9 ; deck
+	db  1,  7 ; discard pile
+
+; used for "In Play Area" screen
+.player2
+	db 15, 14
+	db 15,  9
+	db 15, 11
+.opponent2
+	db  0,  2
+	db  0,  6
+	db  0,  4
 
 SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
 
@@ -470,7 +869,156 @@ ZeroObjectPositionsWithCopyToggleOn:
 	ret
 ; 0x8be6
 
-SECTION "Bank 2@4e6b", ROMX[$4e6b], BANK[$2]
+SECTION "Bank 2@4c98", ROMX[$4c98], BANK[$2]
+
+PickPrizeCardTransitionTable:
+	cursor_transition $08, $28, $00, $04, $02, $01, $01
+	cursor_transition $30, $28, $20, $05, $03, $00, $00
+	cursor_transition $08, $38, $00, $00, $04, $03, $03
+	cursor_transition $30, $38, $20, $01, $05, $02, $02
+	cursor_transition $08, $48, $00, $02, $00, $05, $05
+	cursor_transition $30, $48, $20, $03, $01, $04, $04
+
+OpenPrizeCardPageIfFaceUp:
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	ret z ; not face-up
+
+	ld a, SFX_CURSOR
+	call PlayConfirmOrCancelSFX
+
+	ld a, [wd0c1]
+	ld c, a
+	ld b, $1
+.loop_bitmasks
+	or a
+	jr z, .got_prize
+	sla b
+	dec a
+	jr .loop_bitmasks
+.got_prize
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	ret z ; no prize card here
+
+	; open this card's page
+	ld a, c
+	add DUELVARS_PRIZE_CARDS
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call Set_OBJ_8x16
+	bank1call OpenCardPage_FromHand
+	scf
+	ret
+
+HandlePrizeCardPlayerSelection:
+	xor a
+	call GetFirstSetPrizeCard
+	ld [wd0c1], a
+
+.draw_screen
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, a
+	call Func_8302
+	call DrawWideTextBox
+	lb de, 1, 14
+	call InitTextPrinting
+	ldtx hl, PleaseChooseAPrizeText
+	call ProcessTextFromID
+	ld de, PickPrizeCardTransitionTable
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+.loop
+	ld a, $01
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and PAD_START
+	jr z, .read_input
+	; start button
+	call OpenPrizeCardPageIfFaceUp
+	jr c, .draw_screen
+.read_input
+	call HandleMultiDirectionalMenu
+	jr nc, .loop
+	cp $ff
+	jr z, .loop
+	call ZeroObjectPositionsWithCopyToggleOn
+	ld a, [wd0c1]
+	ld c, a
+	ld b, $1
+.loop_bitmasks
+	or a
+	jr z, .got_prize
+	sla b
+	dec a
+	jr .loop_bitmasks
+.got_prize
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	jr z, .loop ; this prize card has been removed
+	ld a, c
+	or $40
+	ret
+; 0x8d4b
+
+SECTION "Bank 2@4e34", ROMX[$4e34], BANK[$2]
+
+; gets the first prize card index that is set
+; beginning from index in register a
+; a = prize card index
+GetFirstSetPrizeCard:
+	push bc
+	push de
+	push hl
+	ld e, PRIZES_6
+	ld c, a
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, DUELVARS_PRIZES
+	ld d, [hl]
+.loop_prizes
+	call .GetPrizeMask
+	and d
+	jr nz, .done
+	dec e
+	jr nz, .next_prize
+	ld c, 0
+	jr .done
+.next_prize
+	inc c
+	ld a, PRIZES_6
+	cp c
+	jr nz, .loop_prizes
+	ld c, 0
+	jr .loop_prizes
+.done
+	ld a, c
+	pop hl
+	pop de
+	pop bc
+	ret
+
+; returns 1 shifted left by c bits
+.GetPrizeMask:
+	push bc
+	ld a, c
+	ld b, $1
+.loop
+	or a
+	jr z, .got_mask
+	sla b
+	dec a
+	jr .loop
+.got_mask
+	ld a, b
+	pop bc
+	ret
 
 GlossaryTransitionTable_10Topics:
 	cursor_transition $08, $28, $00, 4, 1, 5, 5 ; 0
@@ -511,17 +1059,17 @@ CopyDeckFromSRAM:
 	ret
 
 ; clears some WRAM addresses to act as
-; terminator bytes to wTempCardList and wCurDeckCards
+; terminating bytes to wTempCardList and wCurDeckCards
 WriteCardListsTerminatorBytes:
 	xor a
 	ld hl, wTempCardList
 	ld bc, $80
 	add hl, bc
-	ld [hl], a ; terminator byte
+	ld [hl], a ; terminating byte
 	ld hl, wCurDeckCards
 	ld bc, $80
 	add hl, bc
-	ld [hl], a ; terminator byte
+	ld [hl], a ; terminating byte
 	ret
 
 Func_8f10:
@@ -2843,7 +3391,7 @@ RemoveCardFromDeckAndUpdateCount:
 	ret nc
 	push de
 	call PrintCardTypeCounts
-	ld de, $f00
+	lb de, 15, 0
 	call PrintTotalCardCount
 	pop de
 	call GetCountOfCardInCurDeck

@@ -91,34 +91,50 @@ AIDoAction_UpdatePortrait::
 	ld a, AIACTION_UPDATE_PORTRAIT
 	jr AIDoAction
 
-Func_2972:
+AIChooseCardsToDrawFromComputerError::
+	; choose so that at least 10 cards
+	; are remaining in the deck after drawing
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	ld b, a
-	ld a, 50
+	ld a, DECK_SIZE - 10
 	sub b
-	jr c, .asm_2981
+	jr c, .dont_draw
+	; if less than 6, draw that amount of cards
 	cp 6
 	ret c
+	; no risk of having less than 10 cards left,
+	; draw max amount of cards
 	ld a, 5
 	ret
-.asm_2981
+
+.dont_draw
 	xor a
 	ret
 
-Func_2983:
-	ld a, $07
-	ld a, $01
+; get AI response to Challenge! card effect
+; always declines
+AIAcceptOrDeclineChallenge::
+	ld a, $07 ; useless load
+	; AI always declines challenge, which
+	; correponds to an output of TRUE
+	ld a, TRUE
 	ldh [hTemp_ffa0], a
 	ret
 
-Func_298a:
-	ld a, $08
-	ld hl, hTemp_ffa0
-.asm_298f
+; looks like scrapped code to select Pokémon in the deck for AI
+; AI selects no cards
+AIDecideChallengeCards::
+	ld a, $08 ; useless load
+
+	; iterate list to find terminating byte...
+	ld hl, hTempList
+.loop
 	ld a, [hli]
 	cp $ff
-	jr nz, .asm_298f
+	jr nz, .loop
+	; ...then load a terminating byte in next position
+	; (signalling that no cards were chosen)
 	ld a, $ff
 	ld [hl], a
 	ret

@@ -374,7 +374,7 @@ wNumPlayAreaItems:: ; cbc1
 ; such as PrintPlayAreaCardLocation, PrintPlayAreaCardInformation and PrintPlayAreaCardHeader
 wCurPlayAreaSlot:: ; cbc2
 
-; X position to display the attached energies, HP bar, and Pluspower/Defender icons
+; X position to display the attached energies, HP bar, and PlusPower/Defender icons
 ; obviously different for player and opponent side. used by DrawDuelHUD.
 wHUDEnergyAndHPBarsX:: ; cbc2
 	ds $1
@@ -501,7 +501,10 @@ wcbeb:: ; cbeb
 wAttachedEnergyMenuDenominator:: ; cbec
 	ds $1
 
-wAttachedEnergyMenuNumerator:: ; cbed
+wAttachedEnergyMenuNumerator::
+
+; number of selections already done in BenchMultiSelectMenu
+wPlayAreaMultiSelectMenuNumSelections:: ; cbed
 	ds $1
 
 ; text ID to show in the Attached Energy screen
@@ -582,10 +585,12 @@ wAlreadyPlayedEnergy:: ; cc04
 wGotHeadsFromConfusionCheckDuringRetreat:: ; cc05
 	ds $1
 
-wGoopGasAttackActive:: ; cc06
+wGoopGasAttackActiveTurns:: ; cc06
 	ds $1
 
-wcc07:: ; cc07
+; if TRUE, then Prize Cards are turned face up
+; set to TRUE by the effects of Here Comes Team Rocket!
+wPrizeCardsFaceUp:: ; cc07
 	ds $1
 
 ; DUELIST_TYPE_* of the turn holder
@@ -650,10 +655,14 @@ wOppCoin:: ; cc18
 wPlayerCoin:: ; cc19
 	ds $1
 
-wcc1a:: ; cc1a
+; increments each time turn-holder uses Prehistoric Dream
+; attack by a "Fossil" Pokémon will be boosted by 10 * this amount
+wPrehistoricDreamBoost:: ; cc1a
 	ds $1
 
-wcc1b:: ; cc1b
+; to keep track on the result of the coin toss when using Mini-Metronome
+; -1 means the coin hasn't been tossed yet, 0 means it was tails, 1 was heads
+wMiniMetronomeCoinTossResult:: ; cc1b
 	ds $1
 
 	ds $5
@@ -812,7 +821,7 @@ wDeckSize:: ; cd07
 wSkipDelayAllowed:: ; cd08
 	ds $1
 
-wcd09:: ; cd09
+wTurnEndedDueToComputerError:: ; cd09
 	ds $1
 
 wcd0a:: ; cd0a
@@ -821,7 +830,7 @@ wcd0a:: ; cd0a
 wcd0b:: ; cd0b
 	ds $1
 
-wcd0c:: ; cd0c
+wKnockedOutByGasExplosion:: ; cd0c
 	ds $1
 
 wcd0d:: ; cd0d
@@ -878,7 +887,11 @@ wNumCardsBeingDrawn:: ; cd1d
 wOpponentTurnEnded:: ; cd1e
 	ds $1
 
-	ds $2
+; stores the amount of cards that are being ordered.
+wNumberOfCardsToOrder:: ; cd1f
+	ds $1
+
+	ds $1
 
 wCardSearchFunc:: ; cd21
 	ds $1
@@ -1165,7 +1178,26 @@ wPrinterStatus:: ; cdf5
 wSerialDataPtr:: ; cdf6
 	ds $2
 
-	ds $10
+; keeps track of which Bench Pokemon is pointed
+; by the cursor during Gigashock selection screen
+wCurGigashockItem:: ; cdf8
+	ds $1
+
+; card index and its attack index chosen
+; to be used by Metronome.
+wMetronomeSelectedAttack:: ; cdf9
+	ds $2
+	
+wBackupPlayerAreaHP:: ; cdfb
+	ds MAX_PLAY_AREA_POKEMON
+
+wce01:: ; ce01
+	ds $1
+
+; holds misc values corresponding to each Play Area card
+; (e.g. how many times each card is selected to be damaged)
+wPlayAreaList:: ; ce02
+	ds MAX_PLAY_AREA_POKEMON
 
 wTempCardID_ce08:: ; ce08
 	ds $2
@@ -1486,8 +1518,8 @@ wAIPlayAreaCardToSwitch:: ; d044
 	ds $1
 
 ; the index of attack chosen by AI
-; to use with Pluspower.
-wAIPluspowerAttack:: ; d045
+; to use with PlusPower.
+wAIPlusPowerAttack:: ; d045
 	ds $1
 
 ; whether AI is allowed to play an energy card

@@ -82,19 +82,32 @@ hOppActionTableIndex:: ; ffa0
 hTempCardIndex_ff9f:: ; ffa1
 	ds $1
 
+UNION
+
 ; multipurpose temp storage (card's deck index, selected attack index, status condition...)
 hTemp_ffa0:: ; ffa2
 	ds $1
 
 ; a PLAY_AREA_* constant (0: arena card, 1-5: bench card)
 hTempPlayAreaLocation_ffa1:: ; ffa3
+	ds $1
+
+; $ff-terminated list of cards to be discarded upon retreat
+hTempRetreatCostCards:: ; ffa4
+	ds $6
+
+NEXTU
+
+	ds $1
 
 ; parameter to be used by the AI's Pkmn Power effect
 hAIPkmnPowerEffectParam:: ; ffa3
 	ds $1
 
-; $ff-terminated list of cards to be discarded upon retreat
-hTempRetreatCostCards:: ; ffa4
+; parameters chosen by AI in Energy Trans routine.
+; the deck index (0-59) of the energy card to transfer
+; and the Play Area location (PLAY_AREA_*) of card to receive that energy card.
+hAIEnergyTransEnergyCard:: ; ffa4
 
 ; PLAY_AREA_*  of target selected for some Pkmn Powers,
 ; (e.g. Curse, Damage Swap) and for trainer card effect.
@@ -104,7 +117,21 @@ hPlayAreaEffectTarget:: ; ffa4
 hAIEnergyTransPlayAreaLocation:: ; ffa5
 	ds $1
 
-	ds $d
+NEXTU
+
+; list of various items, such as
+; cards selected for various effects,
+; Play Area locations, etc.
+hTempList:: ; ffa2
+	ds 15
+
+ENDU
+
+	ds $1
+
+; stores the item number in the selection menu of various effects
+hCurSelectionItem:: ; ffb2
+	ds $1
 
 ; hffa8 through hffbb belong to the text engine
 hffa8:: ; ffb3

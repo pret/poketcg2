@@ -61,8 +61,11 @@ INCLUDE "engine/bank12.asm"
 SECTION "Bank 13", ROMX
 INCLUDE "engine/bank13.asm"
 
-SECTION "Bank 16", ROMX
-INCLUDE "engine/bank16.asm"
+SECTION "Effect Commands", ROMX
+INCLUDE "engine/duel/effect_commands.asm"
+
+SECTION "Decks", ROMX
+INCLUDE "data/decks.asm"
 
 SECTION "Bank 17", ROMX
 INCLUDE "data/card_pointers.asm"
@@ -71,5 +74,8 @@ INCLUDE "data/cards1.asm"
 SECTION "Bank 18", ROMX
 INCLUDE "data/cards2.asm"
 
-SECTION "Bank 1a", ROMX
-INCLUDE "engine/bank1a.asm"
+SECTION "Effect Functions 2", ROMX
+INCLUDE "engine/duel/effect_functions2.asm"
+
+SECTION "Effect Functions 1", ROMX
+INCLUDE "engine/duel/effect_functions1.asm"

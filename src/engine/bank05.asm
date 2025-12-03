@@ -8452,11 +8452,11 @@ AIProcessAndTryToUseAttack:
 ; AI will use it if wAIExecuteProcessedAttack is 0.
 ; in either case, return carry if an attack is chosen to be used.
 AIProcessAttacks:
-; if AI used Pluspower, load its attack index
+; if AI used PlusPower, load its attack index
 	ld a, [wPreviousAIFlags]
 	and AI_FLAG_USED_PLUSPOWER
 	jr z, .no_pluspower
-	ld a, [wAIPluspowerAttack]
+	ld a, [wAIPlusPowerAttack]
 	cp $02
 	jr nc, .no_pluspower
 	ld [wSelectedAttack], a
@@ -9484,7 +9484,7 @@ AIPickPrizeCards:
 	add DUELVARS_PRIZE_CARDS
 	get_turn_duelist_var
 	call AddCardToHand
-	bank1call TurnDuelistTakePrizes.Func_551d
+	bank1call TurnDuelistTakePrizes.OpenCardPageIfFaceUp
 	ret
 
 .prize_flags
@@ -10029,7 +10029,7 @@ CalculateDamage_VersusDefendingPokemon:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add CARD_LOCATION_ARENA
 	ld b, a
-	call ApplyAttachedPluspower
+	call ApplyAttachedPlusPower
 	call SwapTurn
 	ld b, CARD_LOCATION_ARENA
 	call ApplyAttachedDefender
@@ -10265,7 +10265,7 @@ CalculateDamage_FromDefendingPokemon:
 
 .apply_pluspower_and_defender
 	ld b, CARD_LOCATION_ARENA
-	call ApplyAttachedPluspower
+	call ApplyAttachedPlusPower
 	call SwapTurn
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add CARD_LOCATION_ARENA
