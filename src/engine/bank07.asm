@@ -324,9 +324,6 @@ PauseMenuConfigScreen:
 	call ShowConfigMenu
 	farcall Func_10252
 	ret
-; 0x1c17a
-
-SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
 
 ShowConfigMenu:
 	push af
@@ -6393,7 +6390,7 @@ PrintMailSenderAndSubjectToScreen:
 	inc d
 .asm_1ee68
 	ld hl, Mail
-	and %01111111 ; drop bit 7 (B_MAIL_READ)
+	and ~(1 << B_MAIL_READ)
 	ld c, a
 	ld b, $00
 	sla c
@@ -7104,7 +7101,7 @@ DeliverMailFromQueue:
 	and a
 	; break the loop if the next mail in the queue is $00, i.e. we have drained the whole queue
 	jr z, .done_inserting_mail
-	 ; reset bit 7, because when mail is in the mailbox it means it has been read (B_MAIL_READ)
+	; reset bit 7, because when mail is in the mailbox it means it has been read (B_MAIL_READ)
 	res B_MAIL_PRIORITY_DELIVERY, a
 	call InsertNewMail
 	inc c

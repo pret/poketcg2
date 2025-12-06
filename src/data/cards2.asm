@@ -515,7 +515,7 @@ GravelerLv27Card:
 	db 27 ; level
 	length 1.0 ; length
 	weight 105.0 ; weight
-	tx GravelerLv27Description; description
+	tx GravelerLv27Description ; description
 	db NONE | HAS_EVOLUTION ; AI info
 
 GravelerLv28Card:

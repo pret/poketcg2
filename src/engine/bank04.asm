@@ -1268,12 +1268,12 @@ Func_10836:
 	ret
 
 .function_map: ; pause menu
-	key_func $00, PauseMenuStatusScreen ; status
-	key_func $01, PauseMenuDiaryScreen ; diary
-	key_func $02, PauseMenuDeckScreen ; deck
-	key_func $03, PauseMenuMinicomScreen ; minicom
-	key_func $04, PauseMenuCoinScreen ; coin
-	key_func $05, PauseMenuConfigScreen ; config
+	key_func $00, PauseMenuStatusScreen
+	key_func $01, PauseMenuDiaryScreen
+	key_func $02, PauseMenuDeckScreen
+	key_func $03, PauseMenuMinicomScreen
+	key_func $04, PauseMenuCoinScreen
+	key_func $05, PauseMenuConfigScreen
 	db $ff
 
 Func_10856:

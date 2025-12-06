@@ -2557,7 +2557,7 @@ AIActionTable_CompleteCombustionDeck:
 	dw GROWLITHE_LV12
 	dw PONYTA_LV15
 	dw MAGMAR_LV27
-	dw NULL; end
+	dw NULL ; end
 
 .list_bench
 	dw MAGMAR_LV27
@@ -2565,7 +2565,7 @@ AIActionTable_CompleteCombustionDeck:
 	dw GROWLITHE_LV12
 	dw MEOWTH_LV14
 	dw KANGASKHAN_LV40
-	dw NULL; end
+	dw NULL ; end
 
 .StoreListPointers:
 	ld hl, wAICardListArenaPriority

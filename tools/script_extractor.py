@@ -126,7 +126,7 @@ script_commands = {
 	0x61: { "name": "set_text_ram2b",                         "params": [ "text" ] },
 	0x62: { "name": "set_variable_text_ram2b",                "params": [ "text", "text" ] },
 	0x63: { "name": "replace_npc",                            "params": [ "npc", "npc" ] },
-	0x64: { "name": "send_mail",                              "params": [ "byte" ] }, # ?
+	0x64: { "name": "send_mail",                              "params": [ "byte" ] }, # todo: enumerate mail
 	0x65: { "name": "check_npc_loaded",                       "params": [ "npc" ] },
 	0x66: { "name": "give_deck",                              "params": [ "deck" ] },
 	0x67: { "name": "script_command_67",                      "params": [ "byte", "byte" ] }, # ?

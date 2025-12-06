@@ -1044,7 +1044,7 @@ HandleCheckMenuInput:
 	jr z, .check_vertical
 .horizontal
 	ld a, d
-	xor $01; flips x coordinate
+	xor $01 ; flips x coordinate
 	ld d, a
 	jr .okay
 .check_vertical
@@ -1181,7 +1181,6 @@ _DecrementDeckCardsInCollection:
 .done
 	pop hl
 	ret
-; 0x935d
 
 ; goes through whole deck in hl
 ; for each card ID, goes to its corresponding
@@ -1753,7 +1752,7 @@ HandleDeckConfigurationMenu:
 	call DoFrame
 	call HandleMultiDirectionalMenu
 	jr nc, .do_frame
-	ld [wde84], a
+	ld [wd11d], a
 	cp $ff
 	jr nz, .asm_9769
 .draw_icons
@@ -1800,7 +1799,7 @@ ConfirmDeckConfiguration:
 	call DrawHorizontalListCursor_Visible
 	ld a, [wCurCardTypeFilter]
 	call PrintFilteredCardList
-	ld a, [wde84]
+	ld a, [wd11d]
 	ld [wTempCardTypeFilter], a
 	ret
 
@@ -1855,8 +1854,8 @@ SaveDeckConfiguration:
 .go_back
 	call DrawCardTypeIconsAndPrintCardCounts
 	call PrintDeckBuildingCardList
-	ld a, [wde84]
-	ld [wCardListCursorPos], a
+	ld a, [wd11d]
+	ld [wCurScrollMenuItem], a
 	ret
 
 .ask_to_save_to_deck_machine
@@ -1883,12 +1882,12 @@ DismantleDeck:
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wCurCardTypeFilter]
-	ld [wCardListCursorPos], a
+	ld [wTempCardTypeFilter], a
 	call DrawHorizontalListCursor_Visible
 	call PrintDeckBuildingCardList
 	call EnableLCD
-	ld a, [wde84]
-	ld [wCardListCursorPos], a
+	ld a, [wd11d]
+	ld [wCurScrollMenuItem], a
 	ret
 
 .Dismantle
@@ -1994,19 +1993,19 @@ Func_98eb:
 	ldtx hl, DeckDiagnosisBreakdownText
 	call ProcessTextFromID
 	ld a, [wDeckCheckEnergyCount]
-	ld de, $f08
+	lb de, 15, 8
 	call Func_9951
 	ld a, [wDeckCheckBasicCount]
-	ld de, $f0a
+	lb de, 15, 10
 	call Func_9951
 	ld a, [wDeckCheckStage1Count]
-	ld de, $f0c
+	lb de, 15, 12
 	call Func_9951
 	ld a, [wDeckCheckStage2Count]
-	ld de, $f0e
+	lb de, 15, 14
 	call Func_9951
 	ld a, [wDeckCheckTrainerCount]
-	ld de, $f10
+	lb de, 15, 16
 	call Func_9951
 	ret
 
@@ -2034,13 +2033,13 @@ CheckIfCurrentDeckWasChanged:
 	call GetSRAMPointerToCurDeckCards
 	ld d, h
 	ld e, l
-	ld hl, wc000
+	ld hl, wTempCardCollection
 	call EnableSRAM
 	bank1call DecompressSRAMDeck
 	call DisableSRAM
 	ld a, $ff
-	ld [$c078], a
-	ld [$c079], a
+	ld [wTempCardCollection + DECK_SIZE_BYTES], a
+	ld [wTempCardCollection + DECK_SIZE_BYTES + 1], a
 	ld hl, wCurDeckCards
 .asm_998b
 	ld e, [hl]
@@ -2050,7 +2049,7 @@ CheckIfCurrentDeckWasChanged:
 	call CheckIfCardIDIsZero
 	jr c, .asm_99b7
 	push hl
-	ld hl, wc000
+	ld hl, wTempCardCollection
 .asm_9998
 	ld c, [hl]
 	inc hl
@@ -2077,7 +2076,7 @@ CheckIfCurrentDeckWasChanged:
 	pop hl
 	jr .asm_998b
 .asm_99b7
-	ld hl, wc000
+	ld hl, wTempCardCollection
 .asm_99ba
 	ld e, [hl]
 	inc hl
@@ -2126,7 +2125,7 @@ CheckIfHasOtherValidDecks:
 	inc c
 	ld a, 1
 	cp c
-	jr nc, .loop; just 1 valid
+	jr nc, .loop ; just 1 valid
 	; at least 2 decks are valid
 .no_carry
 	or a

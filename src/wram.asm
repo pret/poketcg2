@@ -1819,8 +1819,6 @@ wNamingScreenCursorBlinkCounter:: ; d0e3
 ; to check whether a new filter is to be applied
 wTempCardTypeFilter:: ; d0e4
 
-wCardListCursorPos:: ; d0e4
-
 wCurScrollMenuItem:: ; d0e4
 
 wNamingScreenCursorY:: ; d0e4
@@ -1948,6 +1946,7 @@ wTempCurMenuItem:: ; d11b
 wTempFilteredCardListNumCursorPositions:: ; d11c
 	ds $1
 
+wd11d:: ; d11d
 	ds $1
 
 wced7:: ; d11e
@@ -2379,11 +2378,11 @@ wScriptNPC:: ; d60e
 wScriptNPCName:: ; d60f
 	ds $2
 
-; a bitmask for every unique mail in the game (29 total).
+; a bitfield for every unique mail in the game (29 total).
 ; the corresponding bit is set when a mail is sent, and mask is checked before sending
 ; mail in event scripts. Mail that is not sent via event script skips the check.
-wSentMailBitmask:: ; d611
-	ds $4
+wSentMailBitfield:: ; d611
+	ds (NUM_UNIQUE_MAILS_IN_GAME + 7) / 8
 
 wd615:: ; d615
 	ds $1

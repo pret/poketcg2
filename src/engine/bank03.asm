@@ -348,10 +348,10 @@ Func_c24d:
 	ld [wd586], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
-	ld [wSentMailBitmask + 0], a
-	ld [wSentMailBitmask + 1], a
-	ld [wSentMailBitmask + 2], a
-	ld [wSentMailBitmask + 3], a
+	ld [wSentMailBitfield + 0], a
+	ld [wSentMailBitfield + 1], a
+	ld [wSentMailBitfield + 2], a
+	ld [wSentMailBitfield + 3], a
 	call Func_ebc6
 	jr nc, .asm_c299
 	call Func_eb39
@@ -2836,7 +2836,7 @@ OverworldScriptTable:
 	dw ScriptCommand_SetTextRAM2b                     ; $61
 	dw ScriptCommand_SetVariableTextRAM2b             ; $62
 	dw ScriptCommand_ReplaceNPC                       ; $63
-	dw ScriptCommand_SendMail                               ; $64
+	dw ScriptCommand_SendMail                         ; $64
 	dw ScriptCommand_CheckNPCLoaded                   ; $65
 	dw ScriptCommand_GiveDeck                         ; $66
 	dw ScriptCommand_67                               ; $67
@@ -4390,8 +4390,8 @@ ScriptCommand_ReplaceNPC:
 ; for the buffer value n,
 ; - if n = 0 or n >= NUM_UNIQUE_MAILS_IN_GAME, skip
 ; - else, set bit (m-1) of [dw hl] and AddMailToQueue, where
-;   - hl = wSentMailBitmask and m = n    if 0 < n <= 16,
-;   - hl = wSentMailBitmask + 2 and m = n-16 if 16 < n < NUM_UNIQUE_MAILS_IN_GAME,
+;   - hl = wSentMailBitfield and m = n    if 0 < n <= 16,
+;   - hl = wSentMailBitfield + 2 and m = n-16 if 16 < n < NUM_UNIQUE_MAILS_IN_GAME,
 ; then IncreaseScriptPointerBy2
 ScriptCommand_SendMail:
 	call Get1ScriptArg_IncrIndexBy1
@@ -4401,22 +4401,22 @@ ScriptCommand_SendMail:
 	cp NUM_UNIQUE_MAILS_IN_GAME
 	jr nc, .done ; mail > NUM_UNIQUE_MAILS_IN_GAME is another invalid mail number
 
-	ld hl, wSentMailBitmask
+	ld hl, wSentMailBitfield
 	cp $10 + 1
-	jr c, .set_bitmask
+	jr c, .set_bitfield
 	inc hl
-	inc hl ; wSentMailBitmask + 2
+	inc hl ; wSentMailBitfield + 2
 	sub $10
-.set_bitmask
+.set_bitfield
 	ld de, 1
-.set_bitmask_loop
+.set_bitfield_loop
 	dec a
-	jr z, .got_bitmask
+	jr z, .got_bitfield
 	sla e
 	rl d
-	jr .set_bitmask_loop
-.got_bitmask
-	ld a, [hli] ; wSentMailBitmask or wSentMailBitmask + 2
+	jr .set_bitfield_loop
+.got_bitfield
+	ld a, [hli] ; wSentMailBitfield or wSentMailBitfield + 2
 	ld c, a
 	ld a, [hld]
 	ld b, a
@@ -4430,7 +4430,7 @@ ScriptCommand_SendMail:
 	jr nz, .done
 
 	; if we got here, this mail has never been sent before.
-	; set the appropriate bit in the bitmask, and send the mail
+	; set the appropriate bit in the bitfield, and send the mail
 	ld a, c
 	or e
 	ld c, a
