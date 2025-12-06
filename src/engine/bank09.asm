@@ -1900,7 +1900,7 @@ Func_24ef5:
 
 ; print list of color names on all list items
 	lb de, 5, 1
-	ldtx  hl, ColorListText
+	ldtx hl, ColorListText
 	call InitTextPrinting_ProcessTextFromID
 
 ; print input hl to text box
