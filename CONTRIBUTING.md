@@ -226,10 +226,10 @@ CopyLine::
 ; check if a pokemon card has enough energy attached to it in order to use an attack
 ; input:
 ;   d = deck index of card (0 to 59)
-;   e = attack index (0 or 1)
+;   e = attack index (SECOND_ATTACK or FIRST_ATTACK_OR_PKMN_POWER)
 ;   wAttachedEnergies and wTotalAttachedEnergies
 ; returns: carry if not enough energy, nc if enough energy.
-_CheckIfEnoughEnergiesToAttack:
+CheckIfEnoughEnergiesForGivenAttack:
 ```
 
 ```asm

@@ -501,7 +501,7 @@ wcbeb:: ; cbeb
 wAttachedEnergyMenuDenominator:: ; cbec
 	ds $1
 
-wAttachedEnergyMenuNumerator::
+wAttachedEnergyMenuNumerator:: ; cbed
 
 ; number of selections already done in BenchMultiSelectMenu
 wPlayAreaMultiSelectMenuNumSelections:: ; cbed
@@ -3326,7 +3326,7 @@ wMailCount:: ; dd50
 wMailList:: ; dd51
 	ds MAIL_BUFFER_SIZE
 
-; $ff when the player has new mail. set to 0 when opening mincom mail menu. affects the mailbox animation
+; $ff when the player has new mail. set to 0 when opening minicom mail menu. affects the mailbox animation
 wNewMail:: ; dd5a
 	ds $1
 

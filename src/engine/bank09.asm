@@ -1225,7 +1225,7 @@ HandleComputerErrorPlayerSelection:
 	lb de, 0, 0
 	lb bc, 20, 13
 	call DrawRegularTextBox
-	ld hl, $1ca
+	ldtx hl, ComputerErrorPromptText
 	call DrawWideTextBox_PrintText
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -1253,7 +1253,7 @@ HandleComputerErrorPlayerSelection:
 	call WriteByteToBGMap0
 	push de
 	inc d ; y + 1
-	ld hl, $1cb
+	ldtx hl, EffectTargetCardsUnitText
 	call InitTextPrinting_ProcessTextFromID
 	pop de
 	pop bc
@@ -1293,7 +1293,7 @@ HandleChallengeCardPlayerSelection:
 	call CreateDeckCardList
 	jr nc, .has_deck_cards
 	; no cards
-	ld hl, $ba
+	ldtx hl, NoCardsLeftInTheDeckText
 	call DrawWideTextBox_WaitForInput
 	jr .done_selection
 
@@ -1301,15 +1301,15 @@ HandleChallengeCardPlayerSelection:
 	call CheckIfHasSpaceInBench
 	jr nc, .has_space_in_bench
 	call DrawWideTextBox_WaitForInput
-	ld hl, $193
+	ldtx hl, NoTargetsButCheckDeckPromptText
 	call YesOrNoMenuWithText_SetCursorToYes
 	jr c, .done_selection
 
 	; no space in Bench, but player chose to look at deck anyway
 	call CreateDeckCardList ; unnecessary, already done above
 	bank1call InitAndDrawCardListScreenLayout
-	ld hl, $58
-	ld de, $b0
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 	ld a, PAD_A | PAD_START
 	ld [wNoItemSelectionMenuKeys], a
@@ -1325,8 +1325,8 @@ HandleChallengeCardPlayerSelection:
 	ld [wNumberOfCardsToOrder], a
 .start_selection
 	bank1call InitAndDrawCardListScreenLayout_WithSelectCheckMenu
-	ld hl, $1c7
-	ld de, $b0
+	ldtx hl, ChooseBasicPokemonText
+	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderAndInfoText
 .loop_selection
 	bank1call DisplayCardList
@@ -1365,7 +1365,7 @@ HandleChallengeCardPlayerSelection:
 	ld l, a
 	ld h, $00
 	call LoadTxRam3
-	ld hl, $20d
+	ldtx hl, MaySelectMoreCardsButQuitPromptText
 	call YesOrNoMenuWithText
 	jr c, .start_selection
 	jr .done_selection
@@ -1385,7 +1385,7 @@ PrintHowManyCardsLinkOpponentChoseDueToChallenge:
 	pop hl
 	ld [hli], a
 	ld [hl], TX_END
-	ld hl, $252
+	ldtx hl, DuelistSelectsPokemonTotalNumberText
 	call DrawWideTextBox_WaitForInput
 	ret
 
@@ -1900,7 +1900,7 @@ Func_24ef5:
 
 ; print list of color names on all list items
 	lb de, 5, 1
-	ld hl, $47
+	ldtx  hl, ColorListText
 	call InitTextPrinting_ProcessTextFromID
 
 ; print input hl to text box

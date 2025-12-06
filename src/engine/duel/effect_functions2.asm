@@ -636,13 +636,13 @@ KakunaPoisonFluidEffect:
 	scf
 	ret
 
-PideyQuickAttack_AIEffect:
+PidgeyQuickAttack_AIEffect:
 	ld a, (10 + 30) / 2
 	lb de, 10, 30
 	farcall SetExpectedAIDamage
 	ret
 
-PideyQuickAttack_DamageBoostEffect:
+PidgeyQuickAttack_DamageBoostEffect:
 	ld a, 20
 	farcall AddDamageIfHeads
 	ret
@@ -1742,7 +1742,7 @@ BillsComputerEffect:
 
 ComputerError_DecksCheck:
 	farcall CheckIfDeckIsEmpty
-	ret nc ; deck no empty
+	ret nc ; deck not empty
 	call SwapTurn
 	farcall CheckIfDeckIsEmpty
 	call SwapTurn
@@ -3292,13 +3292,13 @@ StrengthInNumbersEffect:
 	farcall AddToDamage
 	ret
 
-NidoranaFurySwipes_AIEffect:
+NidorinaFurySwipes_AIEffect:
 	ld a, (30 * 3) / 2
 	lb de, 0, 90
 	farcall SetExpectedAIDamage
 	ret
 
-NidoranaFurySwipes_MultiplierEffect:
+NidorinaFurySwipes_MultiplierEffect:
 	ld hl, 30
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText
@@ -3313,7 +3313,7 @@ NidoranaFurySwipes_MultiplierEffect:
 
 SwiftLunge_AIEffect:
 	; inconsistent with other AI estimations,
-	; cwhich would put the full damage here
+	; which would put the full damage here
 	ld a, 30
 	lb de, 0, 60
 	farcall SetExpectedAIDamage
@@ -3972,7 +3972,7 @@ BenchMultiSelectMenuPlayerSelection:
 	ld [wPlayAreaMultiSelectMenuNumSelections], a
 
 	; set current item to 0 and set to start
-	; at hTemplist + 1
+	; at hTempList + 1
 	ldh [hCurScrollMenuItem], a
 	ld a, 1
 	ldh [hCurSelectionItem], a
@@ -5139,7 +5139,7 @@ BurningFire_PlayerSelectEffect:
 	jr c, .start_selection
 	ret
 
-BurningFire_DiscardAndMutliplierEffect:
+BurningFire_DiscardAndMultiplierEffect:
 	ld hl, hTemp_ffa0
 	ld c, 0 ; energy discarded tally
 .loop_discard
@@ -7035,7 +7035,7 @@ NineTails_AIEffect:
 	farcall SetExpectedAIDamage
 	ret
 
-NineTails_MulitplierEffect:
+NineTails_MultiplierEffect:
 	ld hl, 10
 	call LoadTxRam3
 	ldtx de, DamageCheckXDamageTimesHeadsText

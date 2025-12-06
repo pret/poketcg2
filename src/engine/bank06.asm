@@ -100,7 +100,7 @@ PlayAttackAnimationOverAttackingPokemon:
 	ret
 
 ; plays wLoadedAttackAnimation with damage given in de
-; substracts de from hp given in hl, then updates HUD
+; subtracts de from hp given in hl, then updates HUD
 PlayAnimationAndSubtractFromHP:
 	push hl
 	push de

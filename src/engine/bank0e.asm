@@ -5641,7 +5641,7 @@ Func_3b2db:
 .asm_3b2e2
 	ld hl, $735e
 	call InitializeMenuParameters
-	ld hl, EnableInt_Timer
+	ldtx hl, ChooseDeckToSaveToMachineText
 	call DrawWideTextBox_PrintText
 .asm_3b2ee
 	call DoFrame
@@ -5827,7 +5827,7 @@ Func_3b3fa:
 	xor a
 	ld [wTxRam2], a
 	ld [wTxRam2 + 1], a
-	ld hl, EnableInt_VBlank
+	ldtx hl, DeletedDeckFromMachineText
 	call DrawWideTextBox_WaitForInput
 	or a
 	ret

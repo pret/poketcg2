@@ -117,7 +117,7 @@ AIChooseCardsToDrawFromComputerError::
 AIAcceptOrDeclineChallenge::
 	ld a, $07 ; useless load
 	; AI always declines challenge, which
-	; correponds to an output of TRUE
+	; corresponds to an output of TRUE
 	ld a, TRUE
 	ldh [hTemp_ffa0], a
 	ret
