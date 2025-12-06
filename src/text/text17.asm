@@ -816,11 +816,11 @@ DevolutionSprayDescription:
 	linefw "そのポケモンを「退化」させる。"
 	done
 
-ItemfinderName:
+ItemFinderName:
 	textfw "ダウジングマシーン"
 	done
 
-ItemfinderDescription:
+ItemFinderDescription:
 	textfw "手札からカードを2枚選んでトラッシュ"
 	linefw "しなければ、このカードは使えない。"
 	linefw "あなたのトラッシュから「トレーナーカ"
@@ -1044,11 +1044,11 @@ MrFujiDescription:
 	linefw "その山札をよく切る。"
 	done
 
-PluspowerName:
+PlusPowerName:
 	textfw "プラスパワー"
 	done
 
-PluspowerDescription:
+PlusPowerDescription:
 	textfw "このカードはあなたの対戦ポケモンに"
 	linefw "つけて使い、あなたの番の終わりにトラ"
 	linefw "ッシュする。このカードをつけている"

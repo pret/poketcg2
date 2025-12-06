@@ -95,12 +95,12 @@ DEF AI_ENERGY_FLAG_SKIP_ARENA_CARD EQU 1 << 7 ; whether to include Arena card in
 	const AI_TRAINER_CARD_PHASE_13 ; $0d
 	; Super Potion
 	; Defender
-	; Pluspower
+	; PlusPower
 	; Lass
 
 	const AI_TRAINER_CARD_PHASE_14 ; $0e
 	; Defender
-	; Pluspower
+	; PlusPower
 
 	const AI_TRAINER_CARD_PHASE_15 ; $0f
 	; Professor Oak

@@ -72,14 +72,16 @@ ROMX $13
 	"Bank 13"
 ; ROMX $14 and $15 are empty
 ROMX $16
-	"Bank 16"
+	"Effect Commands"
+	"Decks"
 ROMX $17
 	"Bank 17"
 ROMX $18
 	"Bank 18"
-; ROMX $19 not started
+ROMX $19
+	"Effect Functions 2"
 ROMX $1a
-	"Bank 1a"
+	"Effect Functions 1"
 ROMX $1b
 	"Gfx 1"
 ; ROMX $1c not started

@@ -754,7 +754,7 @@ AISelectSpecialAttackParameters:
 
 	; toss coin
 	ldtx de, IfHeadsAttachUpTo3WaterEnergyFromDeckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 
 	; check number of Water energies attached to Kingler
@@ -901,7 +901,7 @@ AISelectSpecialAttackParameters:
 	call CreateArenaOrBenchEnergyCardList
 	jp c, .asm_286ad
 	; show Play Area
-	bank1call Func_5c30
+	bank1call SetupPlayAreaScreen
 	bank1call PrintPlayAreaCardList_EnableLCD
 .asm_28633
 	; check a potential target to give energy card
@@ -979,7 +979,7 @@ AISelectSpecialAttackParameters:
 	or a
 	jp nz, .no_carry
 	ldtx de, IfTails30DamageTo1OfYourPokemonText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	or a
 	jr nz, .asm_286c7
@@ -1035,7 +1035,7 @@ AISelectSpecialAttackParameters:
 	or a
 	jp nz, .no_carry
 	ldtx de, AttackSuccessCheckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	or a
 	jr z, .errand_running_tails
@@ -1117,7 +1117,7 @@ AISelectSpecialAttackParameters:
 	jp nc, .no_carry
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ldtx de, AttackSuccessCheckText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	scf
 	ret
@@ -1129,7 +1129,7 @@ AISelectSpecialAttackParameters:
 	jp c, .no_carry
 	; no Play Area Pokémon has damage
 	ldtx de, DamageCheckIfTailsNoDamageText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	xor a ; choose Arena card
 	ldh [hTempPlayAreaLocation_ffa1], a
@@ -1527,7 +1527,7 @@ AISelectSpecialAttackParameters:
 	farcall TossCoin_Bank1a
 	ldh [hTemp_ffa0], a
 	ret c
-	farcall Func_6809a
+	farcall SetWasUnsuccessful
 	scf
 	ret
 
@@ -1654,7 +1654,7 @@ AISelectSpecialAttackParameters:
 .got_focus_blast_target
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ldtx de, IfHeads20DamageTo1OfOppPokemonText
-	farcall Func_68079
+	farcall Serial_TossCoin
 	ldh [hTemp_ffa0], a
 	scf
 	ret

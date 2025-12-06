@@ -443,7 +443,41 @@ ResetDoFrameFunction_Bank9:
 	ld [hli], a
 	ld [hl], a
 	ret
-; 0x24350
+
+; outputs in hl the next position
+; in hTempList to place a new card,
+; and increments hCurSelectionItem.
+GetNextPositionInTempList:
+	push de
+	ld hl, hCurSelectionItem
+	ld a, [hl]
+	inc [hl]
+	ld e, a
+	ld d, $00
+	ld hl, hTempList
+	add hl, de
+	pop de
+	ret
+
+; returns carry if Deck is empty
+CheckIfDeckIsEmpty:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ldtx hl, NoCardsLeftInTheDeckText
+	cp DECK_SIZE
+	ccf
+	ret
+
+; returns carry if Play Area is full
+CheckIfHasSpaceInBench:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld hl, wMaxNumPlayAreaPokemon
+	cp [hl]
+	ldtx hl, NoSpaceOnTheBenchText
+	ccf
+	ret
+; 0x24375
 
 SECTION "Bank 9@43ee", ROMX[$43ee], BANK[$9]
 
@@ -864,9 +898,72 @@ PlayShuffleAndDrawCardsAnimation:
 	call FinishQueuedAnimations
 	pop bc
 	ret
-; 0x24958
 
-SECTION "Bank 9@49c6", ROMX[$49c6], BANK[$9]
+PlayDeckShuffleAnimation:
+	ld a, [wDuelDisplayedScreen]
+	cp SHUFFLE_DECK
+	jr z, .skip_draw_scene
+	bank1call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call DrawDuelistPortraitsAndNames
+.skip_draw_scene
+	ld a, SHUFFLE_DECK
+	ld [wDuelDisplayedScreen], a
+
+; if duelist has only one card in deck,
+; skip shuffling animation
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ld a, DECK_SIZE
+	sub [hl]
+	cp 2
+	jr c, .one_card_in_deck
+
+	ldtx hl, ShufflesTheDeckText
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	call ResetAnimationQueue
+
+; load correct animation depending on turn duelist
+	ld e, DUEL_ANIM_PLAYER_SHUFFLE
+	ldh a, [hWhoseTurn]
+	cp PLAYER_TURN
+	jr z, .load_anim
+	ld e, DUEL_ANIM_OPP_SHUFFLE
+.load_anim
+; play animation 3 times
+REPT 3
+	ld a, e
+	call PlayDuelAnimation
+ENDR
+
+.loop_anim
+	call DoFrame
+	bank1call CheckSkipDelayAllowed
+	jr c, .done_anim
+	call CheckAnyAnimationPlaying
+	jr c, .loop_anim
+
+.done_anim
+	call FinishQueuedAnimations
+	ld a, $01
+	ret
+
+.one_card_in_deck
+; no animation, just print text and delay
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ldtx hl, DeckPileCardCountText
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	ld a, 60
+.loop_wait
+	call DoFrame
+	dec a
+	jr nz, .loop_wait
+	ld a, $01
+	ret
 
 ; places the prize cards on both sides
 ; of the Play Area (player & opp)
@@ -1119,9 +1216,219 @@ DeckAndHandIconsCGBPalData:
 	db 13,  9, $03, $03, 0
 	db 13, 10, $03, $03, 0
 	db $ff
-; 0x24b83
 
-SECTION "Bank 9@4cd7", ROMX[$4cd7], BANK[$9]
+; draws a menu on screen for selecting number of cards
+; that player chooses to draw from the deck
+; due to the effects of Computer Error
+HandleComputerErrorPlayerSelection:
+	call EmptyScreen
+	lb de, 0, 0
+	lb bc, 20, 13
+	call DrawRegularTextBox
+	ld hl, $1ca
+	call DrawWideTextBox_PrintText
+
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	ld a, DECK_SIZE
+	sub [hl]
+	; a = num cards in deck
+	ld c, 5
+	cp c
+	jr nc, .got_num_cards
+	ld c, a ; load num cards left
+.got_num_cards
+	inc c ; plus 1 due to 0
+	ld a, c
+	ld [wNumCardsBeingDrawn], a
+
+	; draws 0 1 2 3 4 5
+	lb de, 2, 2
+	ld b, SYM_0
+.loop_draw_numbers
+	push bc
+	ld a, b
+	ld c, e
+	ld b, d
+	call WriteByteToBGMap0
+	push de
+	inc d ; y + 1
+	ld hl, $1cb
+	call InitTextPrinting_ProcessTextFromID
+	pop de
+	pop bc
+	inc e ; increment x
+	inc b ; increment digit to draw
+	dec c
+	jr nz, .loop_draw_numbers
+
+	call EnableLCD
+	ld hl, .MenuParameters
+	xor a
+	call InitializeMenuParameters
+	ld a, [wNumCardsBeingDrawn]
+	ld [wNumScrollMenuItems], a
+.loop_input
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .loop_input
+	cp $ff
+	jr z, .loop_input ; mandatory
+	ldh a, [hCurScrollMenuItem]
+	ret
+
+.MenuParameters:
+	db 1, 2 ; cursor x, cursor y
+	db 1 ; y displacement between items
+	db 6 ; number of items
+	db SYM_CURSOR_R ; cursor tile number
+	db SYM_SPACE ; tile behind cursor
+	dw NULL ; function pointer if non-0
+
+; handles player selection when opponent
+; accepts challenge due to the effects of Challenge! card
+HandleChallengeCardPlayerSelection:
+	ldh a, [hTemp_ffa0]
+	ldh [hCurSelectionItem], a
+	call CreateDeckCardList
+	jr nc, .has_deck_cards
+	; no cards
+	ld hl, $ba
+	call DrawWideTextBox_WaitForInput
+	jr .done_selection
+
+.has_deck_cards
+	call CheckIfHasSpaceInBench
+	jr nc, .has_space_in_bench
+	call DrawWideTextBox_WaitForInput
+	ld hl, $193
+	call YesOrNoMenuWithText_SetCursorToYes
+	jr c, .done_selection
+
+	; no space in Bench, but player chose to look at deck anyway
+	call CreateDeckCardList ; unnecessary, already done above
+	bank1call InitAndDrawCardListScreenLayout
+	ld hl, $58
+	ld de, $b0
+	bank1call SetCardListHeaderAndInfoText
+	ld a, PAD_A | PAD_START
+	ld [wNoItemSelectionMenuKeys], a
+	bank1call DisplayCardList
+	jr .done_selection
+
+.has_space_in_bench
+	; get number of maximum cards that can select
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld a, [wMaxNumPlayAreaPokemon]
+	sub [hl]
+	ld [wNumberOfCardsToOrder], a
+.start_selection
+	bank1call InitAndDrawCardListScreenLayout_WithSelectCheckMenu
+	ld hl, $1c7
+	ld de, $b0
+	bank1call SetCardListHeaderAndInfoText
+.loop_selection
+	bank1call DisplayCardList
+	ldh [hTempCardIndex_ff98], a
+	cp $ff
+	jr z, .try_cancel ; player cancelled operation
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .loop_selection ; not Pkmn
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr nz, .loop_selection ; not Basic
+	; add this Basic Pokémon to hTempList
+	call GetNextPositionInTempList
+	ldh a, [hTempCardIndex_ff98]
+	ld [hl], a
+	call RemoveCardFromDuelTempList
+	jr c, .done_selection
+	; check if we are done selecting
+	ld hl, wNumberOfCardsToOrder
+	dec [hl]
+	jr nz, .start_selection
+
+.done_selection
+	call GetNextPositionInTempList
+	ld [hl], $ff ; terminating byte
+	ldh a, [hCurSelectionItem]
+	ldh [hTemp_ffa0], a
+	ret
+
+.try_cancel
+	; prompt player if they still want to exit
+	; since they can still select more cards
+	ld a, [wNumberOfCardsToOrder]
+	ld l, a
+	ld h, $00
+	call LoadTxRam3
+	ld hl, $20d
+	call YesOrNoMenuWithText
+	jr c, .start_selection
+	jr .done_selection
+
+PrintHowManyCardsLinkOpponentChoseDueToChallenge:
+	ldh a, [hTemp_ffa0]
+	sub $02
+	ld hl, wTxRam3
+	ld [hli], a
+	ld [hl], $00
+	inc hl
+	push hl
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld a, [wTxRam3]
+	add [hl]
+	pop hl
+	ld [hli], a
+	ld [hl], TX_END
+	ld hl, $252
+	call DrawWideTextBox_WaitForInput
+	ret
+
+; input:
+; - a = CARDSEARCH_* constant
+; - de = parameter for card search function
+; - hl = text to print while selecting target in deck
+; - bc = target name to print in case target not found
+; returns -1 in a if no valid target found in wDuelTempList
+; and carry set if player agreed to check deck anyway
+LookForCardsInDeck:
+	push hl
+	push bc
+	call SetCardSearchFuncParams
+	ld a, [wDuelTempList]
+	cp $ff
+	jr z, .none_in_deck
+
+	ld hl, wDuelTempList
+.loop_deck
+	ld a, [hli]
+	cp $ff
+	jr z, .none_in_deck
+	call ExecuteCardSearchFunc
+	jr nc, .loop_deck
+	pop bc
+	pop hl
+	call DrawWideTextBox_WaitForInput
+	xor a
+	ld [$cd20], a
+	ret
+
+.none_in_deck
+	pop hl
+	call LoadTxRam2
+	pop hl
+	ldtx hl, NoTargetsInDeckText
+	call DrawWideTextBox_WaitForInput
+	ldtx hl, NoTargetsButCheckDeckPromptText
+	call YesOrNoMenuWithText_SetCursorToYes
+	ld a, $ff
+	ld [$cd20], a
+	ret
 
 ; saves a to wCardSearchFunc and de to wCardSearchFuncParam
 ; input:
@@ -1163,7 +1470,7 @@ ExecuteCardSearchFunc:
 	dw .SearchNidoran                ; CARDSEARCH_NIDORAN
 	dw .SearchBasicFightingPkmn      ; CARDSEARCH_BASIC_FIGHTING_POKEMON
 	dw .SearchBasicEnergy            ; CARDSEARCH_BASIC_ENERGY
-	dw .SearchAnyEnergy              ; CARDSEARCH_ANY_ENERGY
+	dw .SearchPkmn                   ; CARDSEARCH_POKEMON
 	dw .SearchPokedexNumber          ; CARDSEARCH_POKEDEX_NUMBER
 	dw .SearchDarkPkmn               ; CARDSEARCH_DARK_POKEMON
 	dw .SearchPsychicEnergy          ; CARDSEARCH_PSYCHIC_ENERGY
@@ -1233,8 +1540,8 @@ ExecuteCardSearchFunc:
 	scf
 	ret
 
-; returns carry if input card is an energy card
-.SearchAnyEnergy:
+; returns carry if input card is a Pokémon Card
+.SearchPkmn:
 	ld a, e
 	call GetCardIDFromDeckIndex
 	call GetCardType
@@ -1341,9 +1648,50 @@ ExecuteCardSearchFunc:
 .Func_24df6:
 	scf
 	ret
-; 0x24df8
 
-SECTION "Bank 9@4e25", ROMX[$4e25], BANK[$9]
+; displays the deck card selection screen for a specific target
+; the target is set by a previous call to SetCardSearchFuncParams
+; expected to be called after LookForCardsInDeck, since
+; we need to know whether there is a valid target or not in $cd20
+; input:
+; - hl = info text ID
+; - de = header text ID
+; returns carry if no selection made, else return selection in [hTempCardIndex_ff98]
+SelectCardSearchTarget:
+	push hl
+	push de
+	bank1call InitAndDrawCardListScreenLayout_WithSelectCheckMenu
+	pop de
+	pop hl
+	bank1call SetCardListHeaderAndInfoText
+.loop
+	; player input for selection
+	bank1call DisplayCardList
+	jr c, .check_can_exit
+	; is selected card valid selection?
+	call ExecuteCardSearchFunc
+	jr nc, .invalid_selection
+	ld a, [$cd20]
+	or a
+	jr nz, .loop
+	; valid selection
+	ldh a, [hTempCardIndex_ff98]
+	or a
+	ret
+
+.check_can_exit
+	; only allowed to exit if $cd20 is 0
+	ld a, [$cd20]
+	or a
+	jr nz, .exit_without_selecting
+.invalid_selection
+	call PlaySFX_InvalidChoice
+	jr .loop
+
+.exit_without_selecting
+	ld a, $ff
+	scf
+	ret
 
 ; given the deck index of a turn holder's card in register a,
 ; and a pointer in hl to the wLoadedCard* buffer where the card data is loaded,
@@ -1437,9 +1785,190 @@ ConvertSpecialTrainerCardToPokemon::
 	db NONE ; flags 3
 	db 0 ; ?
 	db ATK_ANIM_NONE ; animation
-; 0x24ebf
 
-SECTION "Bank 9@4fe0", ROMX[$4fe0], BANK[$9]
+; handles drawing and selection of screen for
+; choosing a color (excluding colorless), for use
+; of Shift Pkmn Power and Conversion attacks.
+; outputs in a the color that was selected
+; input:
+;	a  = Play Area location (PLAY_AREA_*), with:
+;	     bit 7 not set if it's applying to opponent's card
+;	     bit 7 set if it's applying to player's card
+;	hl = text to be printed in the bottom box
+; output:
+;	a = color that was selected
+HandleColorChangeScreen:
+	or a
+	call z, SwapTurn
+	push af
+	call Func_24ef5
+	pop af
+	call z, SwapTurn
+
+	ld hl, .menu_params
+	xor a
+	call InitializeMenuParameters
+	call EnableLCD
+
+.loop_input
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .loop_input
+	cp -1 ; b pressed?
+	jr z, .loop_input
+	ld e, a
+	ld d, $00
+	ld hl, ShiftListItemToColor
+	add hl, de
+	ld a, [hl]
+	or a
+	ret
+
+	scf
+	ret
+
+.menu_params
+	db 1, 1 ; cursor x, cursor y
+	db 2 ; y displacement between items
+	db MAX_PLAY_AREA_POKEMON ; number of items
+	db SYM_CURSOR_R ; cursor tile number
+	db SYM_SPACE ; tile behind cursor
+	dw NULL ; function pointer if non-0
+
+Func_24ef5:
+	push hl
+	push af
+	call EmptyScreen
+	call ZeroObjectPositions
+	call LoadDuelCardSymbolTiles
+	bank1call Func_6c12
+
+; load card data
+	pop af
+	and $7f
+	ld [wTempPlayAreaLocation_cceb], a
+	add DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+
+; draw card gfx
+	ld de, v0Tiles1 + $20 tiles ; destination offset of loaded gfx
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb bc, $30, TILE_SIZE
+	call LoadCardGfx
+	lb de, 9, 2
+	bank1call DrawCardGfxToDE_BGPalIndex5
+	bank1call FlushAllPalettesIfNotDMG
+	ld a, $a0
+	lb hl, 6, 1
+	lb de, 9, 2
+	lb bc, 8, 6
+	call FillRectangle
+	bank1call StubbedApplyBGP6OrSGB3ToCardImage
+
+; print card name and level at the top
+	ld a, 16
+	call CopyCardNameAndLevel
+	ld [hl], TX_END
+	lb de, 7, 0
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+
+	ld hl, ShiftMenuData
+	call PlaceTextItems
+
+; print card's color, resistance and weakness
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetPlayAreaCardColor
+	inc a
+	lb bc, 14, 9
+	call WriteByteToBGMap0
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetPlayAreaCardWeakness
+	lb bc, 14, 10
+	bank1call PrintCardPageWeaknessesOrResistances
+	ld a, [wTempPlayAreaLocation_cceb]
+	bank1call GetPlayAreaCardResistance
+	lb bc, 14, 11
+	bank1call PrintCardPageWeaknessesOrResistances
+
+	call DrawWideTextBox
+
+; print list of color names on all list items
+	lb de, 5, 1
+	ld hl, $47
+	call InitTextPrinting_ProcessTextFromID
+
+; print input hl to text box
+	lb de, 1, 14
+	pop hl
+	call InitTextPrinting_ProcessTextFromID
+
+; draw and apply palette to color icons
+	ld hl, ColorTileAndBGP
+	lb de, 2, 0
+	ld c, NUM_COLORED_TYPES
+.loop_colors
+	ld a, [hli]
+	push de
+	push bc
+	push hl
+	lb hl, 1, 2
+	lb bc, 2, 2
+	call FillRectangle
+
+	; this is a remnant from TCG1
+	; console is always CGB
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jr nz, .skip_vram1
+	pop hl
+	push hl
+	call BankswitchVRAM1
+	ld a, [hl]
+	lb hl, 0, 0
+	lb bc, 2, 2
+	call FillRectangle
+	call BankswitchVRAM0
+
+.skip_vram1
+	pop hl
+	pop bc
+	pop de
+	inc hl
+	inc e
+	inc e
+	dec c
+	jr nz, .loop_colors
+	ret
+
+ShiftMenuData:
+	; x, y, text id
+	textitem 10,  9, TypeText
+	textitem 10, 10, WeaknessText
+	textitem 10, 11, ResistanceText
+	db $ff
+
+ColorTileAndBGP:
+	; tile, BG
+	db $e4, $03
+	db $e0, $02
+	db $ec, $03
+	db $e8, $02
+	db $f0, $04
+	db $f4, $04
+
+ShiftListItemToColor:
+	db GRASS
+	db FIRE
+	db WATER
+	db LIGHTNING
+	db FIGHTING
+	db PSYCHIC
 
 DeckDiagnosis:
 	farcall GetNumberOfDeckDiagnosisStepsUnlocked

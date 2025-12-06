@@ -153,12 +153,12 @@ MACRO duel_vars
 \1Bench4CardAttachedDefender::   ds $1
 \1Bench5CardAttachedDefender::   ds $1
 
-\1ArenaCardAttachedPluspower::   ds $1
-\1Bench1CardAttachedPluspower::  ds $1
-\1Bench2CardAttachedPluspower::  ds $1
-\1Bench3CardAttachedPluspower::  ds $1
-\1Bench4CardAttachedPluspower::  ds $1
-\1Bench5CardAttachedPluspower::  ds $1
+\1ArenaCardAttachedPlusPower::   ds $1
+\1Bench1CardAttachedPlusPower::  ds $1
+\1Bench2CardAttachedPlusPower::  ds $1
+\1Bench3CardAttachedPlusPower::  ds $1
+\1Bench4CardAttachedPlusPower::  ds $1
+\1Bench5CardAttachedPlusPower::  ds $1
 
 \1ArenaCardFoodCounters::        ds $1
 \1Bench1FoodCounters::           ds $1
@@ -212,7 +212,9 @@ MACRO duel_vars
 ; see LAST_TURN_EFFECT_* constants.
 \1ArenaCardLastTurnEffect::      ds $1
 
-\1Unkfe::                        ds $2
+; caches an attack name's ID for use with some attack effects
+; (either to boost it or prevent its use on the next turn)
+\1AttackName::                   ds $2
 ENDM
 
 MACRO sprite_anim_struct

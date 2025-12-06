@@ -269,7 +269,7 @@ AIChooseFocusBlastTarget:
 ; - a = PLAY_AREA_* location
 CheckIfPlayAreaCardIsResistantToArenaCard:
 	call SwapTurn
-	bank1call GetArenaOrBenchCardResistance
+	bank1call GetPlayAreaCardResistance
 	call SwapTurn
 	push af
 	bank1call GetArenaCardColor
@@ -287,7 +287,7 @@ CheckIfPlayAreaCardIsResistantToArenaCard:
 ; - a = PLAY_AREA_* location
 CheckIfPlayAreaCardIsWeakToArenaCard:
 	call SwapTurn
-	bank1call GetArenaOrBenchCardWeakness
+	bank1call GetPlayAreaCardWeakness
 	call SwapTurn
 	push af
 	bank1call GetArenaCardColor
