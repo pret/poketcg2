@@ -2664,8 +2664,8 @@ LoadScene::
 	farcall _LoadScene
 	ret
 
-Func_3e75::
-	farcall $7, $6f2a
+UpdateMailboxPage::
+	farcall _UpdateMailboxPage
 	ret
 
 Func_3e7a::

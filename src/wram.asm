@@ -1819,6 +1819,8 @@ wNamingScreenCursorBlinkCounter:: ; d0e3
 ; to check whether a new filter is to be applied
 wTempCardTypeFilter:: ; d0e4
 
+wCardListCursorPos:: ; d0e4
+
 wCurScrollMenuItem:: ; d0e4
 
 wNamingScreenCursorY:: ; d0e4
@@ -1861,8 +1863,11 @@ wNumEntriesInCurFilter::
 wBoosterPackCardListSize:: ; d0ee
 	ds $1
 
-wd0ef:: ; d0ef
-	ds $2
+wCheckMenuCursorXPosition:: ; d0ef
+	ds $1
+
+wCheckMenuCursorYPosition:: ; d0f0
+	ds $1
 
 ; deck selected by the player in the Decks screen
 wCurDeck:: ; d0f1
@@ -1940,7 +1945,7 @@ wCurCardTypeFilter:: ; d11a
 wTempCurMenuItem:: ; d11b
 	ds $1
 
-wd11c:: ; d11c
+wTempFilteredCardListNumCursorPositions:: ; d11c
 	ds $1
 
 	ds $1
@@ -1948,7 +1953,7 @@ wd11c:: ; d11c
 wced7:: ; d11e
 	ds $1
 
-wd11f:: ; d11f
+wCardListVisibleOffsetBackup:: ; d11f
 	ds $1
 
 ; stores how many different cards there are in a deck
@@ -2014,13 +2019,22 @@ wd381:: ; d381
 wSameNameCardsLimit:: ; d382
 	ds $1
 
-wd383:: ; d383
+; whether to include the cards in the selected deck
+; to appear in the filtered lists
+; is TRUE when building a deck (since the cards should be shown for removal)
+; is FALSE when choosing a deck configuration to send through Gift Center
+; (can't select cards that are included in already built decks)
+wIncludeCardsInDeck:: ; d383
 	ds $1
 
-wd384:: ; d384
+; pointer to a function that handles the menu
+; when building a deck configuration
+wDeckConfigurationMenuHandlerFunction:: ; d384
 	ds $2
 
-wd386:: ; d386
+; pointer to a transition table for the
+; function in wDeckConfigurationMenuHandlerFunction
+wDeckConfigurationMenuTransitionTable:: ; d386
 	ds $2
 
 wCurCardListPtr:: ; d388
@@ -2106,6 +2120,8 @@ wNamingScreenNamePosition:: ; d3e9
 wNamingScreenMode:: ; d3eb
 	ds $1
 
+; see also sUnnamedDeckCounter
+wTempUnnamedDeckCounter:: ; d3ec
 	ds $3
 
 wd3ef:: ; d3ef
@@ -2363,11 +2379,11 @@ wScriptNPC:: ; d60e
 wScriptNPCName:: ; d60f
 	ds $2
 
-wd611:: ; d611
-	ds $2
-
-wd613:: ; d613
-	ds $2
+; a bitmask for every unique mail in the game (29 total).
+; the corresponding bit is set when a mail is sent, and mask is checked before sending
+; mail in event scripts. Mail that is not sent via event script skips the check.
+wSentMailBitmask:: ; d611
+	ds $4
 
 wd615:: ; d615
 	ds $1
@@ -3194,7 +3210,7 @@ wdd05:: ; dd05
 wdd06:: ; dd06
 	ds $1
 
-wdd07:: ; dd07
+wMinicomMenuCursorPosition:: ; dd07
 	ds $1
 
 wCurBoosterPack:: ; dd08
@@ -3245,48 +3261,69 @@ wdd2e:: ; dd2e
 wdd2f:: ; dd2f
 	ds $1
 
-	ds $6
-
-wdd36:: ; dd36
+; id of the mail item being read
+wMailId:: ; dd30
 	ds $1
 
-wdd37:: ; dd37
-	ds wDD37_BUFFER_SIZE
-
-wdd50:: ; dd50
+; 0 - mailbox full, 1 - new mail, 2 - no new mail
+wMailboxStatus:: ; dd31
 	ds $1
 
-wdd51:: ; dd51
-	ds $9
+; text offset of the sender line. displayed when reading a mail
+wMailSenderText:: ; dd32
+	ds $2
 
-wdd5a:: ; dd5a
+; text offset of the subject line. displayed when reading a mail
+wMailSubjectText:: ; dd34
+	ds $2
+
+; number of minicom mail queued to be delivered. mail is delivered when changing OW locations
+wNumMailInQueue:: ; dd36
 	ds $1
 
-wdd5b:: ; dd5b
+; list of mail items queued to be delivered
+wMailQueue:: ; dd37
+	ds MAIL_QUEUE_BUFFER_SIZE
+
+; total number of mail in your mailbox
+wMailCount:: ; dd50
 	ds $1
 
-wdd5c:: ; dd5c
+; list of mail items in the player's mailbox. holds up to 8 mail.
+; Each byte is the id of a mail item.
+; When mail is read, $80 is added to the id
+wMailList:: ; dd51
+	ds MAIL_BUFFER_SIZE
+
+; $ff when the player has new mail. set to 0 when opening mincom mail menu. affects the mailbox animation
+wNewMail:: ; dd5a
 	ds $1
 
-wdd5d:: ; dd5d
+; copied from wNumMailInQueue when visiting world map.
+; cleared after viewing the mailbox screen once.
+; used to show the "mailbox full" graphic
+wTempNumMailInQueue:: ; dd5b
 	ds $1
 
-wdd5e:: ; dd5e
+; which page of mail you are viewing. 0 or 1
+wMailboxPage:: ; dd5c
 	ds $1
 
-wdd5f:: ; dd5f
+; the mail you have selected to read/delete
+wSelectedMailCursorPosition:: ; dd5d
 	ds $1
 
-wdd60:: ; dd60
+; 0 - read mail, 1 - delete mail, 2 - quit
+wMailOptionSelected:: ; dd5e
 	ds $1
 
-	ds $12
+; card offsets. the cards mailed to you after using the Game Center black box
+wBlackBoxCardReceived:: ; dd5f
+	ds BLACK_BOX_CARDS_BUFFER_SIZE
 
-wdd73:: ; dd73
-	ds $1
-
-wdd74:: ; dd74
-	ds $1
+; card offset. the card mailed to you after using the Game Center Bill's PC
+wBillsPCCardReceived:: ; dd73
+	ds $2
 
 wdd75:: ; dd75
 	ds $1

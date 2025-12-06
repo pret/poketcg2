@@ -189,7 +189,7 @@ SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
 
 ; waits until any of the keys
 ; in register c are pressed
-Func_10221:
+WaitForButtonPress:
 .loop
 	call DoFrame
 	ldh a, [hKeysPressed]
@@ -1263,17 +1263,17 @@ Func_1081a:
 	ret
 
 Func_10836:
-	ld hl, Data_1083d
+	ld hl, .function_map
 	call CallMappedFunction
 	ret
 
-Data_1083d: ; pause menu
-	db $00, $07, $f2, $45 ; status
-	db $01, $07, $02, $45 ; diary
-	db $02, $04, $65, $48 ; deck
-	db $03, $07, $4f, $67 ; minicon
-	db $04, $07, $9a, $5c ; coin
-	db $05, $07, $6e, $41 ; settings
+.function_map: ; pause menu
+	key_func $00, PauseMenuStatusScreen ; status
+	key_func $01, PauseMenuDiaryScreen ; diary
+	key_func $02, PauseMenuDeckScreen ; deck
+	key_func $03, PauseMenuMinicomScreen ; minicom
+	key_func $04, PauseMenuCoinScreen ; coin
+	key_func $05, PauseMenuConfigScreen ; config
 	db $ff
 
 Func_10856:
@@ -1283,7 +1283,29 @@ Func_10856:
 	ret
 ; 0x10861
 
-SECTION "Bank 4@488a", ROMX[$488a], BANK[$4]
+SECTION "Bank 4@4865", ROMX[$4865], BANK[$4]
+
+PauseMenuDeckScreen:
+	call Func_1022a
+	call ShowDeckSelectionMenuFromPauseMenu
+	call Func_10252
+	ret
+
+ShowDeckSelectionMenuFromPauseMenu:
+	push af
+	push bc
+	push de
+	push hl
+	call SetFadePalsFrameFunc
+	farcall DeckSelectionMenu
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	call UnsetFadePalsFrameFunc
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
 ZeroObjectPositionsAndEnableOBPFading:
 	push af
@@ -6303,7 +6325,7 @@ Func_131d7:
 	ldtx hl, GameCenterBlackBoxSaveRequestText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	ld c, $00
-	farcall Func_1c5a3
+	farcall DrawSavePromptAndWaitForInput
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableSaveRequiredText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
@@ -6320,7 +6342,7 @@ Func_131eb:
 	ret
 
 Func_131fd:
-	farcall Func_1f324
+	farcall CheckForBlackBoxCardInMail
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableLastOutputRemainingText
 	call PrintScrollableText_NoTextBoxLabelVRAM0

@@ -69,7 +69,7 @@ Func_2c0c8:
 Func_2c0d1:
 	xor a
 	start_script
-	script_command_64 $11
+	send_mail $11
 	end_script
 	ld a, EVENT_F5
 	farcall GetEventValue
@@ -700,7 +700,7 @@ Func_2c584:
 	xor a
 	start_script
 	wait_for_fade
-	script_command_64 $13
+	send_mail $13
 	set_event EVENT_MET_GR4_LIGHTNING_CLUB
 	set_active_npc NPC_GR_4, DialogGR4Text
 	script_command_01
@@ -6031,7 +6031,7 @@ Func_2ed37:
 Func_2ed3e:
 	xor a
 	start_script
-	script_command_64 $12
+	send_mail $12
 	end_script
 	call WaterClubEntrance_ShouldRonaldAppear
 	jr c, .quit
@@ -6529,7 +6529,7 @@ Script_2f127:
 	reset_event EVENT_TALKED_TO_KEN
 	reset_event EVENT_TALKED_TO_ADAM
 	reset_event EVENT_TALKED_TO_GR3_WATER_CLUB
-	script_command_64 $05
+	send_mail $05
 	print_npc_text Text0833
 	script_command_02
 	set_active_npc_direction WEST
@@ -7128,7 +7128,7 @@ Func_2f56e:
 Func_2f575:
 	xor a
 	start_script
-	script_command_64 $12
+	send_mail $12
 	end_script
 	call FireClubEntrance_ShouldRonaldAppear
 	jr c, .quit
@@ -8024,7 +8024,7 @@ Func_2fc29:
 	ret
 
 Script_2fc3e:
-	script_command_64 $09
+	send_mail $09
 	set_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	print_npc_text Text0c6e
 	give_coin COIN_GR_START + COIN_GR_PIECE3

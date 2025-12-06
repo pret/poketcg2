@@ -1,7 +1,7 @@
 Script_34000:
 	wait_for_fade
 	set_var VAR_TIMES_MET_RONALD, $01
-	script_command_64 $10
+	send_mail $10
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_player .NPCMovement_34031, TRUE
 	wait_for_player_animation
@@ -265,7 +265,7 @@ Func_341f7:
 	xor a
 	start_script
 	wait_for_fade
-	script_command_64 $06
+	send_mail $06
 	set_var VAR_TIMES_MET_RONALD, $04
 	set_var VAR_28, $01
 	set_var VAR_2B, $00
@@ -394,7 +394,7 @@ Func_342ef:
 	xor a
 	start_script
 	wait_for_fade
-	script_command_64 $14
+	send_mail $14
 	set_var VAR_TIMES_MET_RONALD, $05
 	load_npc NPC_GR_X, 4, 15, SOUTH
 	set_active_npc NPC_GR_X, DialogGRXText
@@ -561,8 +561,8 @@ Func_3442d:
 	xor a
 	start_script
 	wait_for_fade
-	script_command_64 $19
-	script_command_64 $1a
+	send_mail $19
+	send_mail $1a
 	set_var VAR_TIMES_MET_RONALD, $07
 	script_command_01
 	print_npc_text Text1285
@@ -601,7 +601,7 @@ Func_3442d:
 Func_3448d:
 	xor a
 	start_script
-	script_command_64 $1b
+	send_mail $1b
 	set_var VAR_TIMES_MET_RONALD, $08
 	play_song_next MUSIC_RONALD
 	do_frames 60
@@ -1705,8 +1705,8 @@ Func_34d15:
 	farcall Func_1312e
 	jr c, .asm_34d2f
 	farcall Func_4569f
-	ld a, $81
-	farcall Func_1f24e
+	ld a, $81 ; priority black box mail
+	farcall AddMailToQueue
 .asm_34d2f
 	ld a, $00
 	ld [wd582], a
@@ -2830,7 +2830,7 @@ Func_35596:
 	script_jump_if_b0nz .ows_355b4
 	set_event EVENT_BEAT_MORINO
 	reset_event EVENT_TALKED_TO_MORINO
-	script_command_64 $0a
+	send_mail $0a
 	print_npc_text Text0dc0
 	give_booster_packs BoosterList_cd59
 	script_jump .ows_355d1
@@ -3409,7 +3409,7 @@ Func_35a0d:
 	ld a, [wd584]
 	cp MAP_FIGHTING_FORT_ENTRANCE
 	jr nz, .asm_35a18
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_35a18
 	ld a, EVENT_BEAT_KAMIYA
 	farcall GetEventValue
@@ -3630,7 +3630,7 @@ Func_35b82:
 	end_script
 	ret
 .ows_35bbf
-	script_command_64 $0b
+	send_mail $0b
 	set_event EVENT_GOT_MACHAMP_COIN
 	print_npc_text Text0c25
 	give_coin COIN_MACHAMP
@@ -4628,7 +4628,7 @@ Func_3639f:
 	ld a, [wd584]
 	cp MAP_PSYCHIC_STRONGHOLD_ENTRANCE
 	jr nz, .asm_363aa
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_363aa
 	xor a
 	start_script
@@ -6205,7 +6205,7 @@ Func_36fe9:
 	ret
 
 Func_36ff2:
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 	ld a, EVENT_MET_COLORLESS_ALTAR_MEMBERS
 	farcall GetEventValue
 	jr nz, .asm_3700f
@@ -7044,7 +7044,7 @@ Func_3766c:
 	ld a, [wd584]
 	cp MAP_GR_CASTLE_ENTRANCE
 	jr nz, .asm_37677
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_37677
 	ld a, EVENT_MET_BIRURITCHI_AND_ADMINS
 	farcall GetEventValue

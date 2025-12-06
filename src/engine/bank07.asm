@@ -317,6 +317,15 @@ GetDuelistPortrait::
 	db PORTRAIT_DR_MASON      ; DR_MASON_PIC
 ; 0x1c116
 
+SECTION "Bank 7@416e", ROMX[$416e], BANK[$7]
+
+PauseMenuConfigScreen:
+	farcall Func_1022a
+	call ShowConfigMenu
+	farcall Func_10252
+	ret
+; 0x1c17a
+
 SECTION "Bank 7@417a", ROMX[$417a], BANK[$7]
 
 ShowConfigMenu:
@@ -689,9 +698,80 @@ ConvertTextSpeedToMessageSpeedSetting:
 	db 0, 1, 2, 0, 3, 0, 4
 ; 0x1c45a
 
-SECTION "Bank 7@45a3", ROMX[$45a3], BANK[$7]
+SECTION "Bank 7@4502", ROMX[$4502], BANK[$7]
 
-Func_1c5a3:
+PauseMenuDiaryScreen:
+	farcall Func_1022a
+	call PushRegistersAndShowDiaryScreen
+	farcall Func_10252
+	ret
+
+PushRegistersAndShowDiaryScreen:
+	push af
+	push bc
+	push de
+	push hl
+	call ShowDiaryScreen
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+ShowDiaryScreen:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call DrawDiaryStatusBox
+	farcall SetFadePalsFrameFunc
+	call StartFadeFromWhite
+	call WaitPalFading_Bank07
+	ld c, $00
+	call DrawSavePromptAndWaitForInput
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	farcall UnsetFadePalsFrameFunc
+	ret
+
+DrawDiaryStatusBox:
+	lb de, 0, 0
+	lb bc, 20, 12
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	ld hl, .TextItems
+	call PlaceTextItemsVRAM0
+	lb bc, 1, 3
+	call DrawPlayerPortrait
+	ldtx hl, PlayerDiaryTitleText
+	lb de, 5, 1
+	call PrintTextNoDelay_InitVRAM0
+	ldtx hl, TxRam1Text
+	lb de, 11, 4
+	call PrintTextNoDelay_InitVRAM0
+	call CountEventCoinsObtained
+	ld l, a
+	ld h, $00
+	lb de, 16, 6
+	ld a, $02
+	ld b, TRUE
+	call PrintNumber
+	lb de, 13, 10
+	farcall PrintPlayTime
+	lb de, 12, 8
+	farcall PrintCardAlbumProgress
+	ret
+
+.TextItems:
+	textitem 7, 4, PlayerDiaryNameText
+	textitem 7, 6, PlayerDiaryEventCoinText
+	textitem 18, 6, PlayerDiaryCardsUnitText
+	textitem 7, 8, PlayerDiaryAlbumText
+	textitem 7, 10, PlayerDiaryPlayTimeText
+	db $ff
+
+; c - ?
+DrawSavePromptAndWaitForInput:
 	push bc
 	push de
 	push hl
@@ -740,9 +820,95 @@ Func_1c5d6:
 	pop bc
 	pop af
 	ret
-; 0x1c5f2
 
-SECTION "Bank 7@46bb", ROMX[$46bb], BANK[$7]
+PauseMenuStatusScreen:
+	farcall Func_1022a
+	call PushRegistersAndShowStatusScreen
+	farcall Func_10252
+	ret
+
+PushRegistersAndShowStatusScreen:
+	push af
+	push bc
+	push de
+	push hl
+	call ShowStatusScreen
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+ShowStatusScreen:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall ClearSpriteAnims
+	call DisableLCD
+	call DrawStatusScreenTopBox
+	call DrawStatusScreenBottomBox
+	call EnableLCD
+	farcall SetFrameFuncAndFadeFromWhite
+	ld c, PAD_A | PAD_B
+	farcall WaitForButtonPress
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+DrawStatusScreenTopBox:
+	lb de, 0, 0
+	lb bc, 20, 8
+	call DrawRegularTextBoxVRAM0
+	ld hl, .TextItems
+	call PlaceTextItemsVRAM0
+	lb bc, 1, 1
+	call DrawPlayerPortrait
+	ldtx hl, TxRam1Text
+	lb de, 11, 2
+	call PrintTextNoDelay_InitVRAM0
+	lb de, 13, 6
+	farcall PrintPlayTime
+	lb de, 12, 4
+	farcall PrintCardAlbumProgress
+	ret
+
+.TextItems:
+	textitem 7, 2, PlayerDiaryNameText
+	textitem 7, 4, PlayerDiaryAlbumText
+	textitem 7, 6, PlayerDiaryPlayTimeText
+	db $ff
+
+DrawStatusScreenBottomBox:
+	lb de, 0, 8
+	lb bc, 20, 10
+	call DrawRegularTextBoxVRAM0
+	lb de, 1, 8
+	lb bc, 9, 1
+	farcall FillBoxInBGMapWithZero
+	ld hl, .TextItems
+	call PlaceTextItemsVRAM0
+	call Func_1dfb5
+	call GetCoinName
+	lb de, 4, 12
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call Func_1dfb5
+	add $28
+	lb de, 28, 108
+	call CreateCoinAnimation
+	call CheckObtainedGRCoinPieces
+	add $40
+	lb de, 28, 140
+	call CreateCoinAnimation
+	call CheckObtainedGRCoinPieces
+	and a
+	jr z, .asm_1c6b1
+	ldtx hl, PlayerStatusGRCoinText
+	lb de, 4, 14
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+.asm_1c6b1
+	ret
+
+.TextItems:
+	textitem 1, 8, PlayerStatusEventCoinTitleText
+	textitem 4, 10, PlayerStatusCurrentCoinText
+	db $ff
 
 SetAllPaletteFadeConfigsToEnabled:
 	call SetAllBGPaletteFadeConfigsToEnabled
@@ -2838,7 +3004,7 @@ Func_1d475:
 	farcall MaxOutEventValue
 
 	farcall ClearGameCenterChips
-	call Func_1eca5
+	call InitializeMailboxWRAM
 	call Func_1d7a1
 	call Func_1d9f9
 	call Func_1dcb7
@@ -2848,7 +3014,7 @@ Func_1d475:
 	farcall ClearCardPopNameList
 
 	call EnableAnimations
-	call Func_1e767
+	call ClearwMinicomMenuCursorPosition
 	farcall Func_111f0
 	call InitDefaultConfigMenuSettings
 	call SaveConfigMenuChoicesToSRAM
@@ -3493,7 +3659,7 @@ Func_1da2a:
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ld c, $01
-	call Func_1c5a3
+	call DrawSavePromptAndWaitForInput
 	ret nc
 	ldtx hl, GiftCenterServiceUnavailableSaveRequiredText
 	ldtx de, ReceptionistText
@@ -3718,7 +3884,7 @@ Func_1dc52:
 	call Func_1dd89
 	ret
 
-Func_1dc9a:
+PauseMenuCoinScreen:
 	farcall Func_1022a
 	call ShowCoinMenuWithoutIncomingCoin
 	farcall Func_10252
@@ -5376,29 +5542,139 @@ Func_1e73a:
 	pop bc
 	pop af
 	ret
-; 0x1e74f
 
-SECTION "Bank 7@6767", ROMX[$6767], BANK[$7]
-
-Func_1e767:
-	xor a
-	ld [wdd07], a
+PauseMenuMinicomScreen:
+	farcall Func_1022a
+	call PushRegistersAndShowMinicomScreen
+	farcall Func_10252
 	ret
-; 0x1e76c
 
-SECTION "Bank 7@6837", ROMX[$6837], BANK[$7]
+PushRegistersAndShowMinicomScreen:
+	push af
+	push bc
+	push de
+	push hl
+	call ShowMinicomScreen
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
 
-Func_1e837:
+ClearwMinicomMenuCursorPosition:
+	xor a
+	ld [wMinicomMenuCursorPosition], a
+	ret
+
+ShowMinicomScreen:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DrawMinicomMainScreen
+	farcall SetFrameFuncAndFadeFromWhite
+.loop
+	call HandleMinicomMenuBox
+	jr c, .end
+	call CallMinicomMenuFunction
+	jr c, .end
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DrawMinicomMainScreen
+	call EnableLCD
+	jr .loop
+.end
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+DrawMinicomMainScreen:
+	ld b, BANK(.menu)
+	ld hl, .menu
+	lb de, 0, 3
+	call LoadMenuBoxParams
+	ld a, [wMinicomMenuCursorPosition]
+	call DrawMenuBox
+	lb de, 0, 0
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, PauseMenuMinicomText
+	lb de, 7, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, MinicomDialogText
+	lb de, 1, 14
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call Func_1f309
+	jr z, .done
+	ld b, BANK(.SpriteAnimGfxParams)
+	ld hl, .SpriteAnimGfxParams
+	ld d, 120
+	ld e, 32
+	ld a, $00
+	ld c, $00
+	call CreateSpriteAnim
+.done
+	ret
+
+.menu:
+	menu_box_params TRUE, 20, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 3, 2, MinicomDeckSaveMachineText
+	textitem 3, 4, MinicomMailboxText
+	textitem 3, 6, MinicomCardAlbumText
+	textitem 3, 8, PCMenuShutdownText
+	db $ff
+
+.SpriteAnimGfxParams:
+	dw TILESET_SMALL_ENVELOPE
+	dw SPRITE_ANIM_AA
+	dw FRAMESET_173
+	dw PALETTE_180
+
+; return
+;	 a - cursor position, used later in CallMinicomMenuFunction
+HandleMinicomMenuBox:
+	ld a, [wMinicomMenuCursorPosition]
+	call HandleMenuBox
+	ld [wMinicomMenuCursorPosition], a
+	jr c, .cancel
+	push af
+	ld a, SFX_CONFIRM
+	call CallPlaySFX
+	pop af
+	ret
+.cancel
+	push af
+	ld a, SFX_CANCEL
+	call CallPlaySFX
+	pop af
+	ret
+
+; a - function table index
+CallMinicomMenuFunction:
+	ld hl, .minicom_functions
+	call CallMappedFunction
+	ret
+
+.minicom_functions:
+	key_func $00, MinicomDeckSaveMachine
+	key_func $01, MinicomMailbox
+	key_func $02, MinicomCardAlbum
+	db $ff
+
+MinicomDeckSaveMachine:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall Func_baec
 	ret
-; 0x1e840
 
-SECTION "Bank 7@6849", ROMX[$6849], BANK[$7]
+MinicomCardAlbum:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	farcall Func_a786
+	ret
 
 Func_1e849:
 	farcall Func_1022a
-	call Func_1e837
+	call MinicomDeckSaveMachine
 	farcall Func_10252
 	ret
 
@@ -5595,7 +5871,7 @@ Func_1e99c:
 	call LoadGfxPalettes
 	farcall SetFrameFuncAndFadeFromWhite
 	ld c, PAD_B
-	farcall Func_10221
+	farcall WaitForButtonPress
 	call Func_3f61
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
@@ -5869,68 +6145,892 @@ Func_1ec0f:
 	ret
 ; 0x1ec38
 
-SECTION "Bank 7@6ca5", ROMX[$6ca5], BANK[$7]
+SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
 
-Func_1eca5:
+MinicomMailbox:
+	push af
+	push bc
+	push de
+	push hl
+	call MinicomMailboxNewMailScreen
+	call MinicomMailboxMainScreen
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+InitializeMailboxWRAM:
 	push af
 	push bc
 	push de
 	push hl
 	xor a
-	ld [wdd36], a
-	ld [wdd50], a
-	ld [wdd5c], a
-	ld [wdd5d], a
-	ld [wdd5e], a
-	ld [wdd5b], a
-	ld [wdd5a], a
-	ld [wdd5f], a
-	ld [wdd60], a
-	ld [wdd73], a
-	ld [wdd74], a
+	ld [wNumMailInQueue], a
+	ld [wMailCount], a
+	ld [wMailboxPage], a
+	ld [wSelectedMailCursorPosition], a
+	ld [wMailOptionSelected], a
+	ld [wTempNumMailInQueue], a
+	ld [wNewMail], a
+	ld [wBlackBoxCardReceived], a
+	ld [wBlackBoxCardReceived + 1], a
+	ld [wBillsPCCardReceived], a
+	ld [wBillsPCCardReceived + 1], a
 	xor a
-	ld hl, wdd37
-	ld bc, $19
+	ld hl, wMailQueue
+	ld bc, MAIL_QUEUE_BUFFER_SIZE
 	call WriteBCBytesToHL
 	xor a
-	ld hl, wdd51
-	ld bc, $9
+	ld hl, wMailList
+	ld bc, MAIL_BUFFER_SIZE
 	call WriteBCBytesToHL
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x1ece4
 
-SECTION "Bank 7@724e", ROMX[$724e], BANK[$7]
+; the screen after selecting the mailbox which has a large picture of a literal mailbox on it
+MinicomMailboxNewMailScreen:
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call CalculateMailboxStatus
+	call Func_1ed2d
+	call FlushAllPalettes
+	call EnableLCD
+	ld a, [wNewMail]
+	and a
+	jr z, .asm_1ed04
+	push af
+	ld a, SFX_NEW_MAIL
+	call CallPlaySFX
+	pop af
+.asm_1ed04
+	call Func_1ed57
+	call DisableLCD
+	xor a
+	ld [wNewMail], a
+	ld [wMailboxPage], a
+	ld [wSelectedMailCursorPosition], a
+	ld [wTempNumMailInQueue], a
+	ret
 
-; input: a
-; set carry if [wdd36] = wDD37_BUFFER_SIZE - 1
+CalculateMailboxStatus:
+	ld b, $00
+	ld a, [wTempNumMailInQueue]
+	and a
+	jr nz, .asm_1ed28
+	inc b
+	ld a, [wNewMail]
+	and a
+	jr nz, .asm_1ed28
+	inc b
+.asm_1ed28
+	ld a, b
+	ld [wMailboxStatus], a
+	ret
+
+Func_1ed2d:
+	lb de, 0, 0
+	lb bc, 20, 4
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, MailboxTitleText
+	lb de, 6, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	call Func_1ed5e
+	call LoadMailboxScene
+	ret
+
+LoadMailboxScene:
+	lb bc, 5, 5
+	ld a, [hli]
+	call LoadScene
+	ret
+
+; hl - text
+Func_1ed57:
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+;	fallthrough
+
+Func_1ed5e:
+	ld a, [wMailboxStatus]
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, .MailboxScenes
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ret
+
+.MailboxScenes:
+	dw .SceneFull
+	dw .SceneGotMail
+	dw .SceneNoNewMail
+.SceneFull
+	db SCENE_FULL_MAILBOX
+	tx MailboxFullWarningText
+.SceneGotMail
+	db SCENE_GOT_MAIL
+	tx MailboxNewMailText
+.SceneNoNewMail
+	db SCENE_MAILBOX
+	tx MailboxNoNewMailText
+; 0x1ed7c
+
+SECTION "Bank 7@6da5", ROMX[$6da5], BANK[$7]
+
+MinicomMailboxMainScreen:
+	call DisableLCD
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	lb de, $40, $ff
+	call SetupText
+	call MinicomMailboxMainScreen_DrawTextBoxes
+	call FlushAllPalettes
+	call EnableLCD
+.loop
+	call MailboxMainScreen
+	call Func_1eef8
+	jr c, .done
+	call MailboxSelectedMail_LoadMenuBoxParams
+	call MailboxSelectedMail_HandleMenuBox
+	jr c, .loop
+	call MailboxSelectedMail_CallMappedFunction
+	jr .loop
+.done
+	ret
+
+MinicomMailboxMainScreen_DrawTextBoxes:
+	lb de, 0, 4
+	lb bc, 20, 14
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 0
+	lb bc, 20, 5
+	call DrawRegularTextBoxVRAM0
+	ret
+
+MailboxMainScreen:
+	push af
+	push bc
+	push de
+	push hl
+	lb de, 1, 5
+	ld b, BANK(MailboxMainScreenMenuBoxParams)
+	ld hl, MailboxMainScreenMenuBoxParams
+	call LoadMenuBoxParams
+	ld a, [wSelectedMailCursorPosition]
+	call DrawMenuBox
+	lb de, 0, 0
+	lb bc, 20, 5
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, MailboxChooseMailText
+	ld a, [wMailCount]
+	and a
+	jr nz, .asm_1ee0e
+	ldtx hl, MailboxEmptyText
+.asm_1ee0e
+	lb de, 1, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ldtx hl, MailboxTitleText
+	lb de, 1, 0
+	call Func_2c4b
+	ld a, [wMailboxPage]
+	add a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, wMailList
+	add hl, bc
+	lb de, 2, 6
+	ld c, MAIL_MAX_ON_SCREEN
+.print_mail_loop
+	ld a, [hli]
+	and a
+	jr z, .count_mail_items_on_screen
+	call PrintMailSenderAndSubjectToScreen
+	dec c
+	jr nz, .print_mail_loop
+.count_mail_items_on_screen
+	ld a, MAIL_MAX_ON_SCREEN
+	sub c
+	and a
+	jr nz, .done
+	inc a
+.done
+	call SetMenuBoxNumItems
+	call Func_1ee97
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; a - mail ID to print
+; de - coordinates passed to InitTextPrinting_ProcessTextFromIDVRAM0
+PrintMailSenderAndSubjectToScreen:
+	push bc
+	push hl
+	ldtx hl, MailboxSenderText
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc e
+	ldtx hl, MailboxSubjectText
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	and a
+	jr z, .asm_1ee68
+	bit B_MAIL_READ, a
+	jr nz, .asm_1ee68
+	dec d
+	ldtx hl, MailboxUnreadSymbolText
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc d
+.asm_1ee68
+	ld hl, Mail
+	and %01111111 ; drop bit 7 (B_MAIL_READ)
+	ld c, a
+	ld b, $00
+	sla c
+	rl b
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, d
+	add $05
+	ld d, a
+	dec e
+
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	; sender
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+
+	pop hl
+	inc hl
+	inc hl
+	inc e
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	; subject
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	inc e
+	inc e
+	ld a, d
+	sub $05
+	ld d, a
+	pop hl
+	pop bc
+	ret
+
+Func_1ee97:
+	lb bc, 1, 17
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ld a, [wMailboxPage]
+	cp $01
+	jr nz, .asm_1eebd
+	lb bc, 1, 4
+	ld d, $2f
+	ld e, $41
+	call Func_383b
+	lb bc, 1, 17
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ret
+.asm_1eebd
+	ld a, [wMailCount]
+	cp $05
+	ret c
+	lb bc, 1, 17
+	ld d, $2f
+	ld e, $01
+	call Func_383b
+	lb bc, 1, 4
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	ret
+
+; a menu box with blank text items that line up with mail items on screen
+MailboxMainScreenMenuBoxParams:
+	menu_box_params FALSE, 18, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
+	textitem  1, 1, SingleSpaceText
+	textitem  1, 4, SingleSpaceText
+	textitem  1, 7, SingleSpaceText
+	textitem  1, 10, SingleSpaceText
+	db $ff
+
+Func_1eef8:
+	ld a, [wSelectedMailCursorPosition]
+	call HandleMenuBox
+	ld [wSelectedMailCursorPosition], a
+	jr c, .asm_1ef22
+	call GetSelectedMailPosition
+	ld c, a
+	ld b, $00
+	ld hl, wMailList
+	add hl, bc
+	ld a, [hl]
+	and a
+	jr nz, .asm_1ef1a
+	push af
+	ld a, SFX_DENIED
+	call CallPlaySFX
+	pop af
+	jr Func_1eef8
+.asm_1ef1a
+	push af
+	ld a, SFX_CONFIRM
+	call CallPlaySFX
+	pop af
+	ret
+.asm_1ef22
+	push af
+	ld a, SFX_CANCEL
+	call CallPlaySFX
+	pop af
+	ret
+
+_UpdateMailboxPage::
+	push af
+	push bc
+	push de
+	push hl
+	call GetMenuBoxFocusedItem
+	and $03 ; bottom-most mail item on the screen
+	cp 3
+	call z, ScrollMailboxPageOnPadDown
+	call GetMenuBoxFocusedItem
+	and $03
+	and a ; top mail item on the screen
+	call z, ScrollMailboxPageOnPadUp
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+ScrollMailboxPageOnPadDown:
+	ldh a, [hDPadHeld]
+	and PAD_DOWN
+	ret z
+
+	ld a, [wMailboxPage]
+	cp 1
+	ret z
+
+	ld a, [wMailCount]
+	cp 5
+	ret c
+
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ld a, [wMailboxPage]
+	inc a
+	ld [wMailboxPage], a
+	xor a
+	ld [wSelectedMailCursorPosition], a
+	call MailboxMainScreen
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+
+ScrollMailboxPageOnPadUp:
+	ldh a, [hDPadHeld]
+	and PAD_UP
+	ret z
+
+	ld a, [wMailboxPage]
+	and a
+	ret z
+
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	ld a, [wMailboxPage]
+	dec a
+	ld [wMailboxPage], a
+	ld a, 3
+	ld [wSelectedMailCursorPosition], a
+	call MailboxMainScreen
+	call SetMenuBoxFocusedItem
+	call SetwDA37
+	ret
+; 0x1ef9a
+
+SECTION "Bank 7@6fa4", ROMX[$6fa4], BANK[$7]
+
+MailboxSelectedMail_LoadMenuBoxParams:
+	lb de, 0, 0
+	ld b, BANK(.menu_box_params)
+	ld hl, .menu_box_params
+	call LoadMenuBoxParams
+	xor a
+	call DrawMenuBox
+	ldtx hl, MailboxActionPromptText
+	lb de, 1, 1
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ret
+
+.menu_box_params
+	menu_box_params TRUE, 20, 5, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 0, NULL, NULL
+	textitem  2, 3, MailboxActionReadText
+	textitem  9, 3, MailboxActionDeleteText
+	textitem 16, 3, GiftCenterQuitText
+	db $ff
+
+MailboxSelectedMail_HandleMenuBox:
+	xor a
+	call HandleMenuBox
+	ld [wMailOptionSelected], a
+	ret
+
+MailboxSelectedMail_CallMappedFunction:
+	ld a, [wMailOptionSelected]
+	ld hl, .function_map
+	call CallMappedFunction
+	ret
+
+.function_map:
+	key_func $00, ReadMail
+	key_func $01, DeleteMail
+	db $ff
+
+ReadMail:
+	call DrawReadMailScreenHeader
+	call _ReadMail
+	ret
+
+; draws the box at the top that says the sender and subject
+; does not actually fill in the sender and subject names though
+DrawReadMailScreenHeader:
+	lb de, $40, $7f
+	call SetupText
+	lb de, 0, 0
+	lb bc, 20, 5
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, MailboxTitleText
+	lb de, 1, 0
+	call Func_2c4b
+	ld hl, .text_items
+	call PlaceTextItemsVRAM0
+	ret
+
+.text_items:
+	textitem 1, 2, MailboxSenderText
+	textitem 1, 3, MailboxSubjectText
+	db $ff
+
+_ReadMail:
+	lb bc, 1, 17
+	ld d, $1d
+	ld e, $01
+	call Func_383b
+	call GetSelectedMailPosition
+	ld c, a
+	ld b, $00
+	ld hl, wMailList
+	add hl, bc
+	ld a, [hl]
+	ld [wMailId], a
+	set B_MAIL_READ, a ; mark mail as read
+	ld [hl], a
+	add a
+	ld c, a
+	ld b, $00
+	ld hl, Mail
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld a, [hli]
+	ld [wMailSenderText], a
+	ld a, [hli]
+	ld [wMailSenderText + 1], a
+	call PrintMailSender
+	ld a, [hli]
+	ld [wMailSubjectText], a
+	ld a, [hli]
+	ld [wMailSubjectText + 1], a
+	call PrintMailSubject
+.read_mail_loop
+	; mail is terminated with MAIL_TERMINATOR ($ffff)
+	ld a, [hl]
+	cp $ff
+	jr nz, .print_body
+	inc hl
+	ld a, [hld]
+	cp $ff
+	jr z, .done
+.print_body
+	call PrintMailBodyPage
+	jr z, .asm_1f074
+	push hl
+	call WaitForWideTextBoxInput
+	pop hl
+.asm_1f074
+	call GiveCardsAttachedToMailPage
+	jr .read_mail_loop
+.done
+	ret
+
+PrintMailSender:
+	push hl
+	ld a, [wMailSenderText]
+	ld l, a
+	ld a, [wMailSenderText + 1]
+	ld h, a
+	lb de, 6, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	ret
+
+PrintMailSubject:
+	push hl
+	ld a, [wMailSubjectText]
+	ld l, a
+	ld a, [wMailSubjectText + 1]
+	ld h, a
+	lb de, 6, 3
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	pop hl
+	ret
+
+ClearMailBodyPage:
+	lb de, 1, 5
+	lb bc, 18, 12
+	farcall FillBoxInBGMapWithZero
+	ret
+
+; hl - mail body text
+; fills the lower portion of the ReadMail screen with the mail body text at hl
+; and then increments hl by 2 (advancing it to the next body page's text).
+; prints nothing if value at hl is $0000
+; return
+;	- hl: input incremented by 2
+PrintMailBodyPage:
+	push hl
+	lb de, $80, $ff
+	call SetupText
+	pop hl
+	push hl
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	or h
+	jr z, .skip
+	call ClearMailBodyPage
+	lb de, 1, 6
+	call PrintTextNoDelay_InitVRAM0
+.skip
+	pop hl
+	inc hl
+	inc hl
+	ret
+
+; give the card(s) attached to the current page of mail, if present
+GiveCardsAttachedToMailPage:
+	push hl
+	ld a, [wMailId]
+	bit B_MAIL_READ, a
+	; don't give out a card again if this mail has already been read
+	jr nz, .done
+
+	ld a, [hli]
+	ld b, [hl]
+	ld c, a
+	or b
+	jr z, .done
+	bit B_MAIL_BOOSTER_PACK, b
+	jr nz, .give_booster
+	bit B_MAIL_GENERIC_CARD, b
+	jr nz, .give_generic_card
+	bit B_MAIL_BLACK_BOX, b
+	jr nz, .give_blackbox_cards
+	bit B_MAIL_BILLS_PC, b
+	jr nz, .give_billspc_card
+
+.done
+	pop hl
+	inc hl
+	inc hl
+	ret
+
+; gives the booster pack specified in the first byte of the command
+.give_booster
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	ld a, c
+	ld b, $00
+	call GiveBoosterPacks
+	call .redraw_mail_screen
+	jr .done
+
+; gives a card specified in the first byte of the command.
+; this would effectively be a "hard-coded" card delivered with the mail.
+; appears to be unused in the real game mail data
+.give_generic_card
+	ld a, b
+	and %00111111
+	ld d, a
+	ld e, c
+	call .give_card
+	call .redraw_mail_screen
+	jr .done
+
+; gives the cards attached to black box mail, found at [wBlackBoxCardReceived]
+; clears out the cards by setting to $0000 as it gives them
+.give_blackbox_cards
+	push hl
+	ld hl, wBlackBoxCardReceived
+.blackbox_card_loop
+	xor a
+	ld e, [hl]
+	ld [hli], a
+	ld d, [hl]
+	ld [hli], a
+	ld a, d
+	or e
+	jr z, .loop_done
+	call .give_card
+	jr .blackbox_card_loop
+.loop_done
+	pop hl
+	call .redraw_mail_screen
+	jr .done
+
+; gives the cards attached to bill's PC mail, found at [wBillsPCCardReceived]
+.give_billspc_card
+	push hl
+	ld hl, wBillsPCCardReceived
+	xor a
+	ld e, [hl]
+	ld [hli], a
+	ld d, [hl]
+	ld [hli], a
+	call .give_card
+	pop hl
+	call .redraw_mail_screen
+	jr .done
+
+.give_card
+	call StartFadeToWhite
+	call WaitPalFading_Bank07
+	push hl
+	farcall GetReceivedCardText
+	call AddCardToCollection
+	call Func_1d53a
+	pop hl
+	ret
+
+.redraw_mail_screen
+	inc hl
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	or b
+	jr z, .done
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call DisableLCD
+	call MinicomMailboxMainScreen_DrawTextBoxes
+	call DrawReadMailScreenHeader
+	call PrintMailSender
+	call PrintMailSubject
+	call FlushAllPalettes
+	call EnableLCD
+	ret
+
+DeleteMail:
+	push af
+	push bc
+	push de
+	push hl
+	call GetSelectedMailPosition
+	ld c, a
+	ld b, $00
+	ld hl, wMailList
+	add hl, bc
+	ld a, [hl]
+	ld [wMailId], a
+	call MailboxYesNoPrompt_DeleteConfirm
+	jr c, .asm_1f1ad
+	dec a
+	jr z, .asm_1f1ad
+	bit 7, [hl]
+	jr nz, .asm_1f187
+	call MailboxYesNoPrompt_DeleteUnreadConfirm
+	jr c, .asm_1f1ad
+	dec a
+	jr z, .asm_1f1ad
+.asm_1f187
+	xor a
+	ld [hl], a
+	ld d, h
+	ld e, l
+	inc hl
+	ld a, $08
+	sub c
+	and a
+	jr z, .asm_1f19d
+	ld c, a
+.asm_1f193
+	push af
+	ld a, [hli]
+	ld [de], a
+	inc de
+	pop af
+	dec a
+	jr nz, .asm_1f193
+	xor a
+	ld [hl], a
+.asm_1f19d
+	ld a, [wMailCount]
+	dec a
+	ld [wMailCount], a
+	call DeleteGameCenterMailedCard
+	call DrawMailDeletedTextBox
+	call Func_1f210
+.asm_1f1ad
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+DrawMailDeletedTextBox:
+	lb de, 0, 0
+	lb bc, 20, 5
+	call DrawRegularTextBoxVRAM0
+	ldtx hl, MailboxDeletedText
+	lb de, 1, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ld a, 60
+	call DoAFrames_WithPreCheck
+	ret
+
+MailboxYesNoPrompt_DeleteConfirm:
+	push hl
+	ldtx hl, MailboxActionDeleteConfirmText
+	call MailboxYesNoPrompt
+	pop hl
+	ret
+
+MailboxYesNoPrompt_DeleteUnreadConfirm:
+	push hl
+	ldtx hl, MailboxActionDeleteUnreadConfirmText
+	call MailboxYesNoPrompt
+	pop hl
+	ret
+
+; hl - text
+MailboxYesNoPrompt:
+	push hl
+	ld b, BANK(.menu_box_params)
+	ld hl, .menu_box_params
+	lb de, 0, 0
+	call LoadMenuBoxParams
+	pop hl
+	ld a, $01
+	call DrawMenuBox
+	lb de, 1, 1
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	call HandleMenuBox
+	ret
+
+.menu_box_params
+	menu_box_params TRUE, 20, 5, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 0, NULL, NULL
+	textitem  7, 3, PlayerDiaryPromptYesText
+	textitem  11, 3, PlayerDiaryPromptNoText
+	db $ff
+
+Func_1f210:
+	ld a, [wSelectedMailCursorPosition]
+	and a
+	jr nz, .asm_1f225
+	ld a, [wMailboxPage]
+	and a
+	ret z
+	xor a
+	ld [wMailboxPage], a
+	ld a, $03
+	ld [wSelectedMailCursorPosition], a
+	ret
+.asm_1f225
+	ld a, [wMailCount]
+	ld c, a
+	call GetSelectedMailPosition
+	cp c
+	ret c
+	ld a, [wSelectedMailCursorPosition]
+	dec a
+	ld [wSelectedMailCursorPosition], a
+	ret
+
+; if the current mail being read/acted on is from the game center,
+; delete the card that is waiting to be collected.
+DeleteGameCenterMailedCard:
+	ld a, [wMailId]
+	cp $01 ; black box mail id
+	jr nz, .asm_1f244
+	ld de, $0
+	call SetBlackBoxCard
+	ret
+.asm_1f244
+	cp $02 ; bill's PC mail id
+	ret nz
+	ld de, $0
+	call SetBillsPCCard
+	ret
+
+; input: a - new mail to add to queue
+; set carry and quit if mail queue is full, i.e. [wNumMailInQueue] = MAIL_QUEUE_BUFFER_SIZE - 1
 ; else:
-; - if bit 7 of a is 0, [wdd37 + [wdd36] ] = a
-; - if bit 7 of a is 1,
-;   (the first byte in wdd37[n] whose bit 7 is 0) = a
-;   and shift the rest
-; and increment [wdd36] by 1
-Func_1f24e:
+; - if bit 7 (B_MAIL_PRIORITY_DELIVERY) of a is 0, add to the END of the mail queue
+; - if bit 7 (B_MAIL_PRIORITY_DELIVERY) of a is 1,
+;     add to the FRONT of the mail queue and shift the rest
+;	  this new mail will be inserted BETWEEN any current priority mail in the queue, and the non-priority
+; finally, increment [wNumMailInQueue] by 1
+AddMailToQueue:
 	push bc
 	push de
 	push hl
 	ld e, a
-	ld a, [wdd36]
-	cp wDD37_BUFFER_SIZE - 1
-	jr z, .set_carry
-	bit 7, e
-	call z, .not_bit7
-	call nz, .has_bit7
-	ld hl, wdd36
+	ld a, [wNumMailInQueue]
+	cp MAIL_QUEUE_BUFFER_SIZE - 1
+	jr z, .mail_queue_full
+
+	bit B_MAIL_PRIORITY_DELIVERY, e
+	call z, .not_priority
+	call nz, .has_priority
+
+	ld hl, wNumMailInQueue
 	inc [hl]
 ; clear carry
 	scf
 	ccf
 	jr .done
-.set_carry
+.mail_queue_full
 	scf
 ; fallthrough
 .done
@@ -5939,30 +7039,34 @@ Func_1f24e:
 	pop bc
 	ret
 
-.not_bit7:
+; if not priority mail, add it to the END of the mail queue
+.not_priority:
 	push af
-	ld a, [wdd36]
+	ld a, [wNumMailInQueue]
 	ld c, a
 	ld b, 0
-	ld hl, wdd37
+	ld hl, wMailQueue
 	add hl, bc
 	ld [hl], e
 	pop af
 	ret
 
-.has_bit7:
+; if mail is high priority, add it to the FRONT of the mail queue
+; black box and bill's PC mail, for example, are sent as high priority
+.has_priority:
 	push af
-	ld hl, wdd37
-	ld c, wDD37_BUFFER_SIZE - 1
+	ld hl, wMailQueue
+	ld c, MAIL_QUEUE_BUFFER_SIZE - 1
+	; skip past other high priority mail
 .check_byte_loop
-	bit 7, [hl]
+	bit B_MAIL_PRIORITY_DELIVERY, [hl]
 	jr z, .shift_loop
 	inc hl
 	dec c
 	jr nz, .check_byte_loop
 .shift_loop
 	ld b, [hl]
-	ld [hl], e
+	ld [hl], e ; at top of function, e was copied from input a (our new mail)
 	ld e, b
 	inc hl
 	dec c
@@ -5970,52 +7074,63 @@ Func_1f24e:
 	pop af
 	ret
 
-Func_1f293:
+DeliverMailFromQueue:
 	push af
 	push bc
 	push de
 	push hl
-	ld a, [wdd36]
+	ld a, [wNumMailInQueue]
 	and a
-	jr z, .asm_1f2eb
-	ld a, $ff
-	ld [wdd5a], a
-	ld a, [wdd50]
-	cp $08
-	jr z, .asm_1f2eb
-	ld de, wdd51
-	ld hl, wdd37
-	ld a, [wdd50]
+	jr z, .done
+
+	ld a, NEW_MAIL
+	ld [wNewMail], a
+	ld a, [wMailCount]
+	cp MAIL_MAX_NUM
+	; if the mailbox already has MAIL_MAX_NUM, can't deliver more mail
+	jr z, .done
+
+	ld de, wMailList
+	ld hl, wMailQueue
+	ld a, [wMailCount]
 	ld b, a
-	ld a, $08
+	ld a, MAIL_MAX_NUM
 	sub b
-	ld b, a
-	ld c, $00
-.asm_1f2b9
+	ld b, a ; number of mail to insert
+	ld c, $00 ; counts how many times we insert mail in the loop
+
+.insert_new_mail_loop
 	ld a, [hli]
 	and a
-	jr z, .asm_1f2c6
-	res 7, a
-	call .Func_1f2f6
+	; break the loop if the next mail in the queue is $00, i.e. we have drained the whole queue
+	jr z, .done_inserting_mail
+	 ; reset bit 7, because when mail is in the mailbox it means it has been read (B_MAIL_READ)
+	res B_MAIL_PRIORITY_DELIVERY, a
+	call InsertNewMail
 	inc c
 	dec b
-	jr nz, .asm_1f2b9
-.asm_1f2c6
-	ld a, [wdd50]
+	jr nz, .insert_new_mail_loop
+	; fallthrough if b = 0; i.e. when we have filled up the mailbox again
+
+.done_inserting_mail
+	; update the mail counts based on how many we inserted
+	ld a, [wMailCount]
 	add c
-	ld [wdd50], a
-	ld a, [wdd36]
+	ld [wMailCount], a
+	ld a, [wNumMailInQueue]
 	sub c
-	ld [wdd36], a
-	ld hl, wdd37
+	ld [wNumMailInQueue], a
+
+	ld hl, wMailQueue
 	ld b, $00
 	add hl, bc
-	ld de, wdd37
-	ld a, $18
+	ld de, wMailQueue
+	ld a, MAIL_QUEUE_BUFFER_SIZE - 1
 	sub c
 	ld c, a
 	ld a, [hli]
-.asm_1f2e2
+
+.loop2
 	ld [de], a
 	inc de
 	ld b, [hl]
@@ -6023,22 +7138,25 @@ Func_1f293:
 	ld [hli], a
 	ld a, b
 	dec c
-	jr nz, .asm_1f2e2
-.asm_1f2eb
-	ld a, [wdd36]
-	ld [wdd5b], a
+	jr nz, .loop2
+
+.done
+	ld a, [wNumMailInQueue]
+	ld [wTempNumMailInQueue], a
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-; shift data in de 1 byte right
-.Func_1f2f6:
+; a - new mail to add
+; de - wMailList
+; Shifts the mail list one byte to the right, and inserts (a) at the front
+InsertNewMail:
 	push bc
 	push de
 	push hl
-	ld c, $08
+	ld c, MAIL_MAX_NUM
 .loop
 	ld l, a
 	ld a, [de]
@@ -6055,33 +7173,36 @@ Func_1f293:
 	ret
 
 Func_1f309:
-	ld a, [wdd5a]
+	ld a, [wNewMail]
 	and a
 	ret
 
-Func_1f30e:
+; de - card offset
+SetBlackBoxCard:
 	push af
 	ld a, e
-	ld [wdd5f], a
+	ld [wBlackBoxCardReceived], a
 	ld a, d
-	ld [wdd60], a
+	ld [wBlackBoxCardReceived + 1], a
 	pop af
 	ret
 
-Func_1f319:
+; de - card offset
+SetBillsPCCard:
 	push af
 	ld a, e
-	ld [wdd73], a
+	ld [wBillsPCCardReceived], a
 	ld a, d
-	ld [wdd74], a
+	ld [wBillsPCCardReceived + 1], a
 	pop af
 	ret
 
-Func_1f324:
+; set carry if there is a black box card
+CheckForBlackBoxCardInMail:
 	push bc
-	ld a, [wdd5f]
+	ld a, [wBlackBoxCardReceived]
 	ld b, a
-	ld a, [wdd60]
+	ld a, [wBlackBoxCardReceived + 1]
 	or b
 	scf
 	jr nz, .asm_1f331
@@ -6090,11 +7211,12 @@ Func_1f324:
 	pop bc
 	ret
 
-Func_1f333:
+; set carry if there is a bill's pc card
+CheckForBillsPCCardInMail:
 	push bc
-	ld a, [wdd73]
+	ld a, [wBillsPCCardReceived]
 	ld b, a
-	ld a, [wdd74]
+	ld a, [wBillsPCCardReceived + 1]
 	or b
 	scf
 	jr nz, .asm_1f340
@@ -6102,9 +7224,21 @@ Func_1f333:
 .asm_1f340
 	pop bc
 	ret
-; 0x1f342
 
-SECTION "Bank 7@757b", ROMX[$757b], BANK[$7]
+; return
+;	a - position in the mail list of the currently selected mail item
+GetSelectedMailPosition:
+	push bc
+	ld a, [wMailboxPage]
+	add a
+	add a
+	ld b, a
+	ld a, [wSelectedMailCursorPosition]
+	add b
+	pop bc
+	ret
+
+INCLUDE "data/mail.asm"
 
 Func_1f57b::
 	push af
@@ -6650,9 +7784,9 @@ Func_1f8f7:
 	jr c, .asm_1f914
 	ldtx hl, GameCenterToBeMailedText_2
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	call Func_1f319
-	ld a, $82
-	call Func_1f24e
+	call SetBillsPCCard
+	ld a, $82 ; priority bill's PC mail
+	call AddMailToQueue
 .asm_1f914
 	farcall FadeToWhiteAndUnsetFrameFunc
 	pop hl

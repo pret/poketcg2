@@ -2185,7 +2185,7 @@ CheckDeck:
 ; of each type there are (Basic, Stage1, Stage2, Energy, Trainer)
 ; and within Energy cards, count each color as well
 ; outputs all results in wDeckCheckCardCounts
-.GetDeckCardCounts:
+.GetDeckCardCounts
 	ld e, l
 	ld d, h
 	ld hl, wPlayerDeck
@@ -2195,6 +2195,7 @@ CheckDeck:
 	call DisableSRAM
 	pop hl
 
+.asm_25461
 	push hl
 	ld hl, wDeckCheckCardCounts
 	ld c, wDeckCheckCardCountsEnd - wDeckCheckCardCounts
@@ -4855,7 +4856,7 @@ Func_2612a:
 	ldtx hl, GameCenterBillsPCStartPromptText
 	call YesOrNoMenuWithText
 	ret c
-	farcall Func_1f333
+	farcall CheckForBillsPCCardInMail
 	ldtx hl, GameCenterBillsPCUnableLastOutputRemainingText
 	jr c, .asm_2619a
 	farcall GetGameCenterChips

@@ -234,7 +234,7 @@ Func_30192:
 
 Func_301c0:
 	farcall Func_d683
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 	call WaitPalFading
 .loop
 	call DoFrame
@@ -1784,7 +1784,7 @@ Func_317eb:
 	ld a, [wd584]
 	cp MAP_GRASS_FORT_ENTRANCE
 	jr nz, .asm_317f6
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_317f6
 	ld bc, $3b
 	ld a, $14
@@ -2552,7 +2552,7 @@ Func_31da0:
 	script_jump_if_b0nz .ows_31dcb
 	ask_question Text11ae, TRUE
 	script_jump_if_b0z .ows_31dcb
-	script_command_64 $15
+	send_mail $15
 	set_event EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
 	play_sfx SFX_DOORS
@@ -2849,7 +2849,7 @@ Func_32016:
 	ld a, [wd584]
 	cp MAP_LIGHTNING_FORT_ENTRANCE
 	jr nz, .asm_32021
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_32021
 	ld a, EVENT_RENNAS_ROOM_DOOR_STATE
 	farcall GetEventValue
@@ -3502,7 +3502,7 @@ Func_324e1:
 	set_event EVENT_BEAT_CATHERINE
 	set_var VAR_30, $01
 	set_var VAR_33, $00
-	script_command_64 $07
+	send_mail $07
 	print_npc_text Text11d6
 	give_booster_packs BoosterList_cd63
 	script_jump .ows_32524
@@ -3692,7 +3692,7 @@ Func_32664:
 	script_jump_if_b0nz .ows_3268f
 	ask_question Text0c83, TRUE
 	script_jump_if_b0z .ows_3268f
-	script_command_64 $16
+	send_mail $16
 	set_event EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
 	play_sfx SFX_DOORS
@@ -3936,7 +3936,7 @@ Func_3286d:
 	ld a, [wd584]
 	cp MAP_FIRE_FORT_ENTRANCE
 	jr nz, .asm_32878
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_32878
 	ld a, EVENT_JES_ROOM_DOOR_STATE
 	farcall GetEventValue
@@ -5061,7 +5061,7 @@ Func_3308e:
 	script_jump_if_b0nz .ows_330b9
 	ask_question Text1215, TRUE
 	script_jump_if_b0z .ows_330b9
-	script_command_64 $17
+	send_mail $17
 	set_event EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
 	script_command_02
 	play_sfx SFX_DOORS
@@ -5127,7 +5127,7 @@ Func_33129:
 	ld a, [wd584]
 	cp MAP_WATER_FORT_ENTRANCE
 	jr nz, .asm_33134
-	farcall Func_1f293
+	farcall DeliverMailFromQueue
 .asm_33134
 	ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	farcall GetEventValue
@@ -5632,7 +5632,7 @@ Func_334b3:
 	ret
 
 Script_334f6:
-	script_command_64 $18
+	send_mail $18
 	script_command_02
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_094, $04, $07

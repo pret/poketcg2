@@ -4857,7 +4857,7 @@ Func_3ada1:
 	inc hl
 	ld [hl], d
 	call ClearScreenAndDrawDeckMachineScreen
-	ld a, $32
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
 	ld [wNumDeckMachineEntries], a
 	xor a
 .asm_3adb7
@@ -4877,22 +4877,22 @@ Func_3ada1:
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
-	farcall Func_9287
+	farcall ResetCheckMenuCursorPositionAndBlink
 	call DrawWideTextBox
 	ld hl, $6e7b
 	call PlaceTextItems
 .asm_3aded:
 	call DoFrame
-	farcall Func_9292
+	farcall HandleCheckMenuInput
 	jp nc, .asm_3aded
 	cp $ff
 	jr nz, .asm_3ae01
 	ld a, [wTempScrollMenuItem]
 	jp .asm_3adb7
 .asm_3ae01
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wCheckMenuCursorYPosition]
 	sla a
-	ld hl, wCurSongBankBackup
+	ld hl, wCheckMenuCursorXPosition
 	add [hl]
 	or a
 	jr nz, .asm_3ae33
@@ -5133,7 +5133,7 @@ CopyBBytesFromHLToDE_Bank0e:
 	jr nz, .loop
 	ret
 
-Func_3afb1:
+CopyListFromHLToDE_Bank0e:
 .asm_3afb1
 	ld a, [hli]
 	ld [de], a
@@ -5636,7 +5636,7 @@ SECTION "Bank e@72db", ROMX[$72db], BANK[$e]
 
 Func_3b2db:
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	xor a
 .asm_3b2e2
 	ld hl, $735e
@@ -5645,7 +5645,7 @@ Func_3b2db:
 	call DrawWideTextBox_PrintText
 .asm_3b2ee
 	call DoFrame
-	farcall Func_8fb9
+	farcall HandleStartButtonInDeckSelectionMenu
 	jr c, .asm_3b2e2
 	call HandleMenuInput
 	jp nc, .asm_3b2ee
@@ -5655,7 +5655,7 @@ Func_3b2db:
 	ld [wCurDeck], a
 	farcall CheckIfCurDeckIsEmpty
 	jp nc, Func_3b315
-	farcall Func_9215
+	farcall PrintThereIsNoDeckHereText
 	ld a, [wCurDeck]
 	jr .asm_3b2e2
 
@@ -5871,7 +5871,7 @@ Func_3b45f:
 	ldtx hl, YouMayOnlyCarry4DecksText
 	call DrawWideTextBox_WaitForInput
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	xor a
 .asm_3b46c
 	ld hl, $735e
@@ -5880,7 +5880,7 @@ Func_3b45f:
 	call DrawWideTextBox_PrintText
 .asm_3b478
 	call DoFrame
-	farcall Func_8fb9
+	farcall HandleStartButtonInDeckSelectionMenu
 	jr c, .asm_3b46c
 	call HandleMenuInput
 	jp nc, .asm_3b478
@@ -5901,18 +5901,18 @@ Func_3b45f:
 	push hl
 	ld de, wd47e
 	call EnableSRAM
-	call Func_3afb1
+	call CopyListFromHLToDE_Bank0e
 	pop hl
 	push hl
 	ld bc, $18
 	add hl, bc
-	farcall Func_9397
+	farcall AddDeckToCollection
 	pop hl
 	ld a, $60
 	farcall ClearNBytesFromHL
 	call DisableSRAM
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ld a, [wCurDeck]
 	ld hl, $735e
 	call InitializeMenuParameters
@@ -6001,7 +6001,7 @@ Func_3b4eb:
 	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
 	ld a, $ff
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ld a, [wd496]
 	ld [wCurDeck], a
 	ld hl, $735e
@@ -6042,7 +6042,7 @@ Func_3b4eb:
 
 Func_3b5f1:
 	call Func_3bcd6
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ldtx hl, DismantleTheseDecksPromptText
 	call YesOrNoMenuWithText
 	jr nc, .asm_3b601
@@ -6075,7 +6075,7 @@ Func_3b5f1:
 .asm_3b634
 	call DisableSRAM
 	ld a, [wd49a]
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	ldtx hl, DismantledTheseDecksText
 	call DrawWideTextBox_WaitForInput
 	or a
@@ -6090,7 +6090,7 @@ Func_3b646:
 	push hl
 	ld bc, $18
 	add hl, bc
-	farcall Func_9397
+	farcall AddDeckToCollection
 	pop hl
 	ld a, $60
 	farcall ClearNBytesFromHL
@@ -6134,7 +6134,7 @@ Func_3b661:
 	ld de, wCurDeckCards
 	ld b, $80
 	call CopyBBytesFromHLToDE_Bank0e
-	farcall Func_9a0f
+	farcall CheckIfThereAreAnyBasicCardsInDeck
 	jr c, .asm_3b6c0
 	ldtx hl, CannotBuildLackingBasicPokemonText
 	call DrawWideTextBox_WaitForInput
@@ -6914,7 +6914,7 @@ Func_3bb09:
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
-	farcall Func_9287
+	farcall ResetCheckMenuCursorPositionAndBlink
 	xor a
 	ld [wd0cd], a
 	call DrawWideTextBox
@@ -6929,7 +6929,7 @@ Func_3bb09:
 	ld a, [wTempScrollMenuItem]
 	jp .asm_3bb30
 .asm_3bbe6
-	ld a, [wMusicStereoPanningBackup]
+	ld a, [wCheckMenuCursorYPosition]
 	sla a
 	ld hl, wCurSongBankBackup
 	add [hl]
@@ -7100,6 +7100,96 @@ Func_3bd3b:
 	jr nz, .asm_3bd4f
 	ret
 ; 0x3bd5c
+
+SECTION "Bank e@7e8d", ROMX[$7e8d], BANK[$e]
+
+SaveDeckDataToWRAM2:
+	push de
+	ld de, wc000
+	call CopyListFromHLToDE_Bank0e
+	pop de
+	ld hl, wc000 + DECK_NAME_SIZE
+	bank1call SaveDeckCards
+	call SwitchToWRAM2
+	ld hl, wc000
+	ld de, w2d28e
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	ret
+
+OpenDeckSaveMachineFromDeckBuilding:
+	ld a, [wCurDeck]
+	push af
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ldtx de, DeckSaveMachineText
+	ld hl, wDeckMachineTitleText
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
+	ld [wNumDeckMachineEntries], a
+	xor a
+.wait_input
+	ld hl, DeckMachineSelectionParams
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ldtx hl, PleaseSelectDeckText
+	call DrawWideTextBox_PrintText
+	ldtx de, PleaseSelectDeckText
+	call InitDeckMachineDrawingParams
+	call HandleDeckMachineSelection
+	jr c, .wait_input
+	cp $ff
+	jr z, .cancel
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr c, .save_deck
+	ldtx hl, DeleteSavedDeckPromptText
+	call YesOrNoMenuWithText
+	ld a, [wTempScrollMenuItem]
+	jr c, .wait_input
+.save_deck
+	call GetSelectedSavedDeckPtr
+	ld d, h
+	ld e, l
+	ld hl, w2d28e
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
+	call EnableSRAM
+	call SwitchToWRAM2
+	call CopyBBytesFromHLToDE_Bank0e
+	call SwitchToWRAM1
+	call DisableSRAM
+	call ClearScreenAndDrawDeckMachineScreen
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ld a, [wTempScrollMenuItem]
+	ld hl, DeckMachineSelectionParams
+	farcall InitializeScrollMenuParameters
+	call HandleScrollMenu.draw_visible_cursor
+	pop af
+	ld [wCurDeck], a
+	farcall GetSRAMPointerToCurDeck
+	call EnableSRAM
+	farcall CopyDeckName
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, SavedDeckToMachineText
+	call DrawWideTextBox_WaitForInput
+	ret
+.cancel
+	pop af
+	ld [wCurDeck], a
+	ret
+; 0x3bf55
 
 SECTION "Bank e@7f5e", ROMX[$7f5e], BANK[$e]
 

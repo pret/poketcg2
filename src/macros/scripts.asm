@@ -107,7 +107,7 @@ ENDM
 	const ScriptCommand_SetTextRAM2b_index                     ; $61
 	const ScriptCommand_SetVariableTextRAM2b_index             ; $62
 	const ScriptCommand_ReplaceNPC_index                       ; $63
-	const ScriptCommand_64_index                               ; $64
+	const ScriptCommand_SendMail_index                         ; $64
 	const ScriptCommand_CheckNPCLoaded_index                   ; $65
 	const ScriptCommand_GiveDeck_index                         ; $66
 	const ScriptCommand_67_index                               ; $67
@@ -664,8 +664,8 @@ MACRO replace_npc
 	db \2 ; npc to load
 ENDM
 
-MACRO script_command_64
-	run_command ScriptCommand_64
+MACRO send_mail
+	run_command ScriptCommand_SendMail
 	db \1
 ENDM
 

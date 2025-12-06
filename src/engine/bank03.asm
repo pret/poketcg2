@@ -348,10 +348,10 @@ Func_c24d:
 	ld [wd586], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
-	ld [wd611 + 0], a
-	ld [wd611 + 1], a
-	ld [wd613 + 0], a
-	ld [wd613 + 1], a
+	ld [wSentMailBitmask + 0], a
+	ld [wSentMailBitmask + 1], a
+	ld [wSentMailBitmask + 2], a
+	ld [wSentMailBitmask + 3], a
 	call Func_ebc6
 	jr nc, .asm_c299
 	call Func_eb39
@@ -2836,7 +2836,7 @@ OverworldScriptTable:
 	dw ScriptCommand_SetTextRAM2b                     ; $61
 	dw ScriptCommand_SetVariableTextRAM2b             ; $62
 	dw ScriptCommand_ReplaceNPC                       ; $63
-	dw ScriptCommand_64                               ; $64
+	dw ScriptCommand_SendMail                               ; $64
 	dw ScriptCommand_CheckNPCLoaded                   ; $65
 	dw ScriptCommand_GiveDeck                         ; $66
 	dw ScriptCommand_67                               ; $67
@@ -4388,22 +4388,24 @@ ScriptCommand_ReplaceNPC:
 	jp IncreaseScriptPointerBy3
 
 ; for the buffer value n,
-; - if n = 0 or n >= 29, skip
-; - else, set bit (m-1) of [dw hl] and Func_1f24e, where
-;   - hl = wd611 and m = n    if 0 < n <= 16,
-;   - hl = wd613 and m = n-16 if 16 < n < 29,
+; - if n = 0 or n >= NUM_UNIQUE_MAILS_IN_GAME, skip
+; - else, set bit (m-1) of [dw hl] and AddMailToQueue, where
+;   - hl = wSentMailBitmask and m = n    if 0 < n <= 16,
+;   - hl = wSentMailBitmask + 2 and m = n-16 if 16 < n < NUM_UNIQUE_MAILS_IN_GAME,
 ; then IncreaseScriptPointerBy2
-ScriptCommand_64:
+ScriptCommand_SendMail:
 	call Get1ScriptArg_IncrIndexBy1
 	or a
-	jr z, .done
-	cp $1d
-	jr nc, .done
-	ld hl, wd611
+	jr z, .done ; 0 is an invalid mail number
+
+	cp NUM_UNIQUE_MAILS_IN_GAME
+	jr nc, .done ; mail > NUM_UNIQUE_MAILS_IN_GAME is another invalid mail number
+
+	ld hl, wSentMailBitmask
 	cp $10 + 1
 	jr c, .set_bitmask
 	inc hl
-	inc hl ; wd613
+	inc hl ; wSentMailBitmask + 2
 	sub $10
 .set_bitmask
 	ld de, 1
@@ -4414,7 +4416,7 @@ ScriptCommand_64:
 	rl d
 	jr .set_bitmask_loop
 .got_bitmask
-	ld a, [hli]
+	ld a, [hli] ; wSentMailBitmask or wSentMailBitmask + 2
 	ld c, a
 	ld a, [hld]
 	ld b, a
@@ -4424,8 +4426,11 @@ ScriptCommand_64:
 	ld a, b
 	and d
 .checked_bit
+	; if the bit is set then we have already sent this mail before. do not send again
 	jr nz, .done
-; set bit and call
+
+	; if we got here, this mail has never been sent before.
+	; set the appropriate bit in the bitmask, and send the mail
 	ld a, c
 	or e
 	ld c, a
@@ -4436,7 +4441,7 @@ ScriptCommand_64:
 	ld [hli], a
 	ld [hl], b
 	call Get1ScriptArg_IncrIndexBy1
-	farcall Func_1f24e
+	farcall AddMailToQueue
 .done
 	jp IncreaseScriptPointerBy2
 
@@ -5680,7 +5685,7 @@ Func_f085:
 	dec c
 	jr nz, .asm_f091
 	ld c, PAD_A | PAD_B
-	farcall Func_10221
+	farcall WaitForButtonPress
 	pop de
 	ret
 ; 0xf0c3

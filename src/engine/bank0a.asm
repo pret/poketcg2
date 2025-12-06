@@ -3531,7 +3531,7 @@ Func_2bc4f:
 	ld [hl], d
 
 	ld a, $ff ; all decks
-	farcall DrawDeckSelectionMenu
+	farcall DrawDecksScreen
 	xor a
 .asm_2bc5c
 	ld hl, .MenuParameters
@@ -3543,7 +3543,7 @@ Func_2bc4f:
 	call DrawWideTextBox_PrintText
 .loop_input
 	call DoFrame
-	farcall Func_8fb9
+	farcall HandleStartButtonInDeckSelectionMenu
 	jr c, .asm_2bc5c
 	call HandleMenuInput
 	jp nc, .loop_input ; can be jr
@@ -3558,7 +3558,7 @@ Func_2bc4f:
 	farcall CheckIfCurDeckIsEmpty
 	jp nc, .valid ; can be jr
 	; deck is empty
-	farcall Func_9215
+	farcall PrintThereIsNoDeckHereText
 	jr .asm_2bc5c
 
 .valid
