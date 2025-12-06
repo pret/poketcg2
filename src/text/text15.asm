@@ -611,7 +611,7 @@ DryUpDescription:
 	linefw "はがしてトラッシュする。"
 	done
 
-FireWingDescription:
+FireWingName:
 	textfw "ほのおのつばさ"
 	done
 
