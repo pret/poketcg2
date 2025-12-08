@@ -312,7 +312,7 @@ Glossary:
 	and PAD_B
 	jr z, .loop_wait_b_btn
 	ld a, MENU_CANCEL
-	farcall PlayConfirmOrCancelSFX
+	farcall PlaySFXConfirmOrCancel
 	ret
 
 MACRO explanation

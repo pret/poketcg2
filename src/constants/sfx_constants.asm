@@ -163,7 +163,6 @@
 
 DEF NUM_SFX EQU const_value
 
-; PlayConfirmOrCancelSFX args
+; PlaySFXConfirmOrCancel args
 DEF MENU_CANCEL  EQU -1
-; doesn't have to be 1 but is often used as such in the code
-DEF MENU_CONFIRM EQU  1
+DEF MENU_CONFIRM EQU  1 ; != -1, but uses 1 most of the time

@@ -41,13 +41,40 @@
 	const DEBUGMENU_DUEL          ; 5
 	const DEBUGMENU_SLOT          ; 6
 
+; pause menu options
+	const_def
+	const PAUSEMENU_STATUS  ; 0
+	const PAUSEMENU_DIARY   ; 1
+	const PAUSEMENU_DECK    ; 2
+	const PAUSEMENU_MINICOM ; 3
+	const PAUSEMENU_COIN    ; 4
+	const PAUSEMENU_CONFIG  ; 5
+
+; pc menu options
+	const_def
+	const PCMENU_CARD_ALBUM     ; 0
+	const PCMENU_DECK_DIAGNOSIS ; 1
+	const PCMENU_GLOSSARY       ; 2
+	const PCMENU_PRINTER        ; 3
+
+; minicom menu options
+	const_def
+	const MINICOMMENU_DECK_SAVE_MACHINE ; 0
+	const MINICOMMENU_MAILBOX           ; 1
+	const MINICOMMENU_CARD_ALBUM        ; 2
+
+; mailbox options
+	const_def
+	const MAILBOXMENU_READ   ; 0
+	const MAILBOXMENU_DELETE ; 1
+
 ; constants for wGlossaryMenu
 	const_def
-	const GLOSSARY_GAME_BASICS            ; $0
-	const GLOSSARY_CARD_TYPE_EXPLANATIONS ; $1
-	const GLOSSARY_STATUS_WINNING_LOSING  ; $2
-	const GLOSSARY_SPECIAL_DUEL_RULES     ; $3
-	const GLOSSARY_EXIT                   ; $4
+	const GLOSSARY_GAME_BASICS            ; 0
+	const GLOSSARY_CARD_TYPE_EXPLANATIONS ; 1
+	const GLOSSARY_STATUS_WINNING_LOSING  ; 2
+	const GLOSSARY_SPECIAL_DUEL_RULES     ; 3
+	const GLOSSARY_EXIT                   ; 4
 
 ; filter types for CardTypeFilters
 ; used to categorise the different cards

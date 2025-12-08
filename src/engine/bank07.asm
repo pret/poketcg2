@@ -5654,9 +5654,9 @@ CallMinicomMenuFunction:
 	ret
 
 .minicom_functions:
-	key_func $00, MinicomDeckSaveMachine
-	key_func $01, MinicomMailbox
-	key_func $02, MinicomCardAlbum
+	key_func MINICOMMENU_DECK_SAVE_MACHINE, MinicomDeckSaveMachine
+	key_func MINICOMMENU_MAILBOX,           MinicomMailbox
+	key_func MINICOMMENU_CARD_ALBUM,        MinicomCardAlbum
 	db $ff
 
 MinicomDeckSaveMachine:
@@ -6608,8 +6608,8 @@ MailboxSelectedMail_CallMappedFunction:
 	ret
 
 .function_map:
-	key_func $00, ReadMail
-	key_func $01, DeleteMail
+	key_func MAILBOXMENU_READ,   ReadMail
+	key_func MAILBOXMENU_DELETE, DeleteMail
 	db $ff
 
 ReadMail:

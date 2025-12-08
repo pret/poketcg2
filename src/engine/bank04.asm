@@ -1268,12 +1268,12 @@ Func_10836:
 	ret
 
 .function_map: ; pause menu
-	key_func $00, PauseMenuStatusScreen
-	key_func $01, PauseMenuDiaryScreen
-	key_func $02, PauseMenuDeckScreen
-	key_func $03, PauseMenuMinicomScreen
-	key_func $04, PauseMenuCoinScreen
-	key_func $05, PauseMenuConfigScreen
+	key_func PAUSEMENU_STATUS,  PauseMenuStatusScreen
+	key_func PAUSEMENU_DIARY,   PauseMenuDiaryScreen
+	key_func PAUSEMENU_DECK,    PauseMenuDeckScreen
+	key_func PAUSEMENU_MINICOM, PauseMenuMinicomScreen
+	key_func PAUSEMENU_COIN,    PauseMenuCoinScreen
+	key_func PAUSEMENU_CONFIG,  PauseMenuConfigScreen
 	db $ff
 
 Func_10856:
@@ -3098,10 +3098,10 @@ _PCMenu:
 	ret
 
 .function_map
-	key_func $0, .CardAlbum
-	key_func $1, .DeckDiagnosis
-	key_func $2, .Glossary
-	key_func $3, .Printer
+	key_func PCMENU_CARD_ALBUM,     .CardAlbum
+	key_func PCMENU_DECK_DIAGNOSIS, .DeckDiagnosis
+	key_func PCMENU_GLOSSARY,       .Glossary
+	key_func PCMENU_PRINTER,        .Printer
 	db $ff ; end
 
 .Func_11181:

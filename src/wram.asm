@@ -1187,7 +1187,7 @@ wCurGigashockItem:: ; cdf8
 ; to be used by Metronome.
 wMetronomeSelectedAttack:: ; cdf9
 	ds $2
-	
+
 wBackupPlayerAreaHP:: ; cdfb
 	ds MAX_PLAY_AREA_POKEMON
 
@@ -3384,7 +3384,7 @@ wMailOptionSelected:: ; dd5e
 
 ; card offsets. the cards mailed to you after using the Game Center black box
 wBlackBoxCardReceived:: ; dd5f
-	ds BLACK_BOX_CARDS_BUFFER_SIZE
+	ds BLACK_BOX_OUTPUT_BYTES
 
 ; card offset. the card mailed to you after using the Game Center Bill's PC
 wBillsPCCardReceived:: ; dd73
