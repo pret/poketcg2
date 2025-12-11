@@ -575,7 +575,8 @@ wMaxNumPlayAreaPokemon:: ; cc01
 wDuelType:: ; cc02
 	ds $1
 
-wcc03:: ; cc03
+; set to 1 if the coin toss during the CheckSandAttackSmokescreenOrLightningFlashSubstatus check is heads
+wGotHeadsFromSandAttackSmokescreenOrLightningFlashCheck:: ; cc03
 	ds $1
 
 wAlreadyPlayedEnergy:: ; cc04
@@ -795,9 +796,8 @@ wEffectFailed:: ; cd02
 wPreEvolutionPokemonCard:: ; cd03
 	ds $1
 
-; flag to determine whether DUELVARS_ARENA_CARD_LAST_TURN_DAMAGE
-; gets zeroed or gets updated with wDealtDamage
-wccef:: ; cd04
+; whether or not current Arena card was switched due to an effect
+wForcedSwitchPlayAreaLocation:: ; cd04
 	ds $1
 
 ; stores the energy cost of the Metronome attack being used.
@@ -858,7 +858,9 @@ wcd14:: ; cd14
 wcd15:: ; cd15
 	ds $1
 
-wcd16:: ; cd16
+; if TRUE, then attack selected with Metronome/Mini-Metronome
+; does not have its requirements met in order to be used
+wMetronomeAttackCannotBeUsed:: ; cd16
 	ds $1
 
 wcd17:: ; cd17
@@ -1208,6 +1210,9 @@ wce0a:: ; ce0a
 wce0c:: ; ce0c
 	ds $1
 
+; stores the real Retreat cost of a card
+; taking into account Pkmn Powers and Special Rules
+wEffectiveRetreatCost:: ; ce0d
 	ds $1
 
 wVBlankFunctionTrampolineBackup:: ; ce0e
@@ -1416,7 +1421,21 @@ wRefreshMenuCursorSFX:: ; d01d
 wDefaultYesOrNo:: ; d01e
 	ds $1
 
-	ds $4
+; stores the total number of coins to flip
+wCoinTossTotalNum:: ; d01f
+	ds $1
+
+; this stores the result from a coin toss (number of heads)
+wCoinTossNumHeads:: ; d020
+	ds $1
+
+; stores type of the duelist that is tossing coins
+wCoinTossDuelistType:: ; d021
+	ds $1
+
+; holds the number of coins that have already been tossed
+wCoinTossNumTossed:: ; d022
+	ds $1
 
 wAIDuelVars::
 ; saves the prizes that the AI already used Peek on
@@ -3144,7 +3163,11 @@ wDuelAnimBuffer:: ; dc60
 	duel_anim_struct wDuelAnim16
 wDuelAnimBufferEnd::
 
-	ds $2
+wdce0:: ; dce0
+	ds $1
+
+wdce1:: ; dce1
+	ds $1
 
 ; holds an animation to play
 wCurAnimation:: ; dce2

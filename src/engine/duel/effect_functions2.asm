@@ -6267,21 +6267,23 @@ MiniMetronome_CheckAttacks:
 
 MiniMetronome_AISelectEffect:
 	call GetMiniMetronomeCoinTossResult
-	jr c, MiniMetronomeUnsuccessful
+	jr c, MiniMetronome_UseAttackEffect.no_carry
 	farcall HandleAIMetronomeEffect
 	ret
 
 MiniMetronome_UseAttackEffect:
 	call GetMiniMetronomeCoinTossResult
-	jr c, MiniMetronomeUnsuccessful
+	jr c, .no_carry ; got heads, continue
 	ld a, 2
 	farcall HandlePlayerMetronomeEffect
-	ld a, [wcd16]
+	ld a, [wMetronomeAttackCannotBeUsed]
 	or a
-	jr z, MiniMetronomeUnsuccessful
+	jr z, .no_carry ; requirements are met, continue
+	; selected attack cannot be used due
+	; to a missing requirement
 	scf
 	ret
-MiniMetronomeUnsuccessful:
+.no_carry
 	or a
 	ret
 
@@ -7082,7 +7084,7 @@ BoneHeadbuttEffect:
 	jr c, .unaffected
 	call SwapArenaWithBenchPokemon
 	ld a, e
-	ld [wccef], a
+	ld [wForcedSwitchPlayAreaLocation], a
 	xor a
 	ld [wccc5], a
 .unaffected

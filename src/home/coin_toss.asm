@@ -8,7 +8,7 @@ TossCoinATimes::
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	farcall $9, $6526 ; _TossCoin
+	farcall _TossCoin
 	pop hl
 	ret
 
@@ -23,7 +23,7 @@ TossCoin::
 	inc hl
 	ld [hl], d
 	ld a, 1
-	farcall $9, $6526 ; _TossCoin
+	farcall _TossCoin
 	ld hl, wDuelDisplayedScreen
 	ld [hl], 0
 	pop hl

@@ -97,8 +97,8 @@
 	const DUEL_ANIM_COIN_SPIN             ; $58
 	const DUEL_ANIM_COIN_TOSS_GOING_HEADS ; $59
 	const DUEL_ANIM_COIN_TOSS_GOING_TAILS ; $5a
-	const DUEL_ANIM_COIN_HEADS            ; $5b
-	const DUEL_ANIM_COIN_TAILS            ; $5c
+	const DUEL_ANIM_COIN_TAILS            ; $5b
+	const DUEL_ANIM_COIN_HEADS            ; $5c
 	const DUEL_ANIM_DUEL_WIN              ; $5d
 	const DUEL_ANIM_DUEL_LOSS             ; $5e
 	const DUEL_ANIM_DUEL_DRAW             ; $5f

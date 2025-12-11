@@ -477,7 +477,28 @@ CheckIfHasSpaceInBench:
 	ldtx hl, NoSpaceOnTheBenchText
 	ccf
 	ret
-; 0x24375
+
+; prints "<Arena Pokémon>'s <attack>"
+PrintAttackDeclarationText::
+	bank1call DrawDuelMainScene
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, 18
+	call CopyCardNameAndLevel
+	ld [hl], TX_END
+	ld hl, wTxRam2
+	xor a
+	ld [hli], a ; NULL
+	ld [hli], a ;
+	ld a, [wLoadedAttackName + 0]
+	ld [hli], a
+	ld a, [wLoadedAttackName + 1]
+	ld [hli], a
+	ldtx hl, PokemonsAttackText
+	call DrawWideTextBox_PrintText
+	ret
+; 0x2439a
 
 SECTION "Bank 9@43ee", ROMX[$43ee], BANK[$9]
 
@@ -5749,3 +5770,340 @@ Func_264a5:
 
 SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
 INCLUDE "engine/gbc_only_disclaimer.asm"
+
+SECTION "bank 9@6526", ROMX[$6526], BANK[$9]
+
+_TossCoin::
+	ld [wCoinTossTotalNum], a
+	ld a, [wDuelDisplayedScreen]
+	cp COIN_TOSS
+	jr z, .print_text
+
+	xor a
+	ld [wCoinTossNumTossed], a
+	call EmptyScreen
+	call LoadDuelCoinTossResultTiles
+
+.print_text
+; no need to print text if this is not the first coin toss
+	ld a, [wCoinTossNumTossed]
+	or a
+	jr nz, .clear_text_pointer
+	ld a, COIN_TOSS
+	ld [wDuelDisplayedScreen], a
+	lb de, 0, 12
+	lb bc, 20, 6
+	ld hl, NULL
+	call DrawLabeledTextBox
+	call EnableLCD
+	lb de, 1, 14
+	ld a, 19
+	call InitTextPrintingInTextbox
+	ld hl, wCoinTossScreenTextID
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call PrintText
+
+.clear_text_pointer
+	ld hl, wCoinTossScreenTextID
+	xor a
+	ld [hli], a
+	ld [hl], a
+
+; store duelist type and reset number of heads
+	call EnableLCD
+	ld a, DUELVARS_DUELIST_TYPE
+	get_turn_duelist_var
+	ld [wCoinTossDuelistType], a
+	call ExchangeRNG
+	xor a
+	ld [wCoinTossNumHeads], a
+
+.toss_next_coin
+; skip printing text if it's only one coin toss
+	ld a, [wCoinTossTotalNum]
+	cp 2
+	jr c, .skip_print_coin_tally
+
+; write "#coin/#total coins"
+	lb bc, 15, 11
+	ld a, [wCoinTossNumTossed]
+	inc a ; current coin number is wCoinTossNumTossed + 1
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	ld b, 17
+	ld a, SYM_SLASH
+	call WriteByteToBGMap0
+	inc b
+	ld a, [wCoinTossTotalNum]
+	bank1call WriteTwoDigitNumberInTxSymbolFormat
+
+.skip_print_coin_tally
+	call ResetAnimationQueue
+	ld a, DUEL_ANIM_COIN_SPIN
+	call .LoadCoinAnimation
+
+	ld a, [wCoinTossDuelistType]
+	or a
+	jr z, .player_tossing ; DUELIST_TYPE_PLAYER
+; opponent tossing
+	call .WaitForOpponent
+	jr .generate_coin_result
+.player_tossing
+	; wait for input, and send byte when player is ready to toss
+	call WaitForWideTextBoxInput
+	call .SendSerialByte
+
+.generate_coin_result
+	call ResetAnimationQueue
+	ld d, DUEL_ANIM_COIN_TOSS_GOING_TAILS
+	ld e, TAILS
+	call UpdateRNGSources
+	rla
+	jr c, .got_result
+	ld d, DUEL_ANIM_COIN_TOSS_GOING_HEADS
+	ld e, HEADS
+
+.got_result
+; already decided on coin toss result,
+; check if we should show animation or not
+	ld a, [wcd14]
+	or a
+	jr z, .dont_skip_animation
+	ldh a, [hKeysHeld]
+	and PAD_B | PAD_UP | PAD_DOWN
+	jr nz, .skip_animation
+.dont_skip_animation
+; load the correct tossing animation
+	ld a, d
+	call .LoadCoinAnimation
+
+.skip_animation
+	ld a, [wCoinTossDuelistType]
+	or a
+	jr z, .wait_anim ; player tossing
+; opponent tossing
+	ld a, e
+	call .GetOpponentCoinResult
+	ld e, a ; coin result from opponent
+	jr .done_toss_anim
+
+.wait_anim
+	push de
+	call DoFrame
+	call CheckAnyAnimationPlaying
+	pop de
+	jr c, .wait_anim
+	ld a, e
+	call .SendSerialByte
+
+.done_toss_anim
+	ld b, DUEL_ANIM_COIN_HEADS
+	ld c, $34 ; tile for cross
+	ld a, e
+	or a
+	jr z, .show_result
+	ld b, DUEL_ANIM_COIN_TAILS
+	ld c, $30 ; tile for circle
+	ld hl, wCoinTossNumHeads
+	inc [hl]
+
+.show_result
+	ld a, b
+	call .LoadCoinAnimation
+
+; load correct sound effect
+; the sound of the coin toss result
+; is dependant on whether it was the Player
+; or the Opponent to get heads/tails
+	ld a, [wCoinTossDuelistType]
+	or a
+	jr z, .check_sfx
+	ld a, $1
+	xor e ; invert result in case it's not Player
+	ld e, a
+.check_sfx
+	ld d, SFX_COIN_TOSS_POSITIVE
+	ld a, e
+	or a
+	jr nz, .got_sfx
+	ld d, SFX_COIN_TOSS_NEGATIVE
+.got_sfx
+	ld a, d
+	call PlaySFX
+
+; in case it's a multiple coin toss scenario,
+; then the result needs to be registered on screen
+; with a circle (o) or a cross (x)
+	ld a, [wCoinTossTotalNum]
+	dec a
+	jr z, .incr_num_coin_tossed ; skip if not more than 1 coin toss
+	ld a, c
+	push af
+	ld e, 0
+	ld a, [wCoinTossNumTossed]
+; calculate the offset to draw the circle/cross
+.loop_get_offset
+	; if < 10, then the offset is simply calculated
+	; from wCoinTossNumTossed * 2...
+	cp 10
+	jr c, .got_offset
+	; ...else the y-offset is added for each multiple of 10
+	inc e
+	inc e
+	sub 10
+	jr .loop_get_offset
+
+.got_offset
+	add a
+	ld d, a
+	lb bc, 2, 2
+	pop af
+
+	push af
+	push bc
+	push de
+	ld l, $1 ; red
+	cp $30 ; circle tile?
+	jr z, .got_color
+	inc l ; $2 blue
+.got_color
+	ld a, l
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+	pop de
+	pop bc
+	pop af
+	lb hl, 1, 2
+	call FillRectangle
+
+.incr_num_coin_tossed
+	ld hl, wCoinTossNumTossed
+	inc [hl]
+
+	ld a, [wCoinTossDuelistType]
+	or a
+	jr z, .player_tossing_next_coin
+	; wait for input if we are finished, that is
+	; if wCoinTossNumTossed == wCoinTossTotalNum
+	ld a, [hl]
+	ld hl, wCoinTossTotalNum
+	cp [hl]
+	call z, WaitForWideTextBoxInput
+
+	; delay/wait for link opp input
+	call .WaitForOpponent
+
+	; if we are "tossing until tails",
+	; (i.e. wCoinTossTotalNum == 0)
+	; and we got no heads, wait for input
+	ld a, [wCoinTossTotalNum]
+	ld hl, wCoinTossNumHeads
+	or [hl]
+	jr nz, .check_if_finished
+	call z, WaitForWideTextBoxInput
+	jr .check_if_finished
+
+.player_tossing_next_coin
+	call WaitForWideTextBoxInput
+	call .SendSerialByte
+
+.check_if_finished
+	call FinishQueuedAnimations
+	ld a, [wCoinTossNumTossed]
+	ld hl, wCoinTossTotalNum
+	cp [hl]
+	jp c, .toss_next_coin
+	call ExchangeRNG
+	call FinishQueuedAnimations
+	call ResetAnimationQueue
+
+; return carry if at least 1 heads
+	ld a, [wCoinTossNumHeads]
+	or a
+	ret z
+	scf
+	ret
+
+.LoadCoinAnimation:
+	ld [wCurAnimation], a
+	ldh a, [hWhoseTurn]
+	ld [wDuelAnimDuelistSide], a
+	ld a, [wOppCoin]
+	ld [wdce1], a
+	ld a, [wPlayerCoin]
+	ld [wdce0], a
+	call LoadDuelAnimationToBuffer
+	ret
+
+; input:
+; - a = byte to send through serial
+.SendSerialByte:
+	ldh [hff96], a
+	ld a, [wDuelType]
+	cp DUELTYPE_LINK
+	ret nz ; not link duel
+	ldh a, [hff96]
+	call SerialSendByte
+	call .CheckTransmissionError
+	ret
+
+; if opponent is AI, then wait for animation and
+; use the result generated beforehand (input register a)
+; if link opponent, then wait for serial byte which
+; gives the coin result
+; input:
+; - a = coin result to use for AI (HEADS or TAILS)
+; output:
+; - a = coin result (HEADS or TAILS)
+.GetOpponentCoinResult:
+	ldh [hff96], a
+	ld a, [wDuelType]
+	cp DUELTYPE_LINK
+	jr z, .wait_serial_byte_recv
+.wait_anim_ai
+	call DoFrame
+	call CheckAnyAnimationPlaying
+	jr c, .wait_anim_ai
+	ldh a, [hff96]
+	ret
+
+; waits for opponent
+; AI delays for 30 frames
+; link opponent sends byte through serial when ready
+.WaitForOpponent:
+	ldh [hff96], a
+	ld a, [wDuelType]
+	cp DUELTYPE_LINK
+	jr z, .wait_serial_byte_recv
+
+; delay coin flip for AI opponent
+	ld a, 30
+.ai_coin_toss_delay
+	call DoFrame
+	dec a
+	jr nz, .ai_coin_toss_delay
+	ldh a, [hff96]
+	ret
+
+.wait_serial_byte_recv
+	call DoFrame
+	call SerialRecvByte
+	jr c, .wait_serial_byte_recv
+	call .CheckTransmissionError
+	ret
+
+.CheckTransmissionError:
+	push af
+	ld a, [wSerialFlags]
+	or a
+	jr nz, .transmission_error
+	pop af
+	ret
+.transmission_error
+	call FinishQueuedAnimations
+	call DuelTransmissionError
+	ret
+; 0x26709

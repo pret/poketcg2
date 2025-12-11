@@ -540,19 +540,21 @@ PrintDevolvedCardNameAndLevelText:
 	pop de
 	ret
 
+; input:
+; - a = PLAY_AREA_* constant of Bench Pokémon to switch to
 HandleSwitchDefendingPokemonEffect:
 	ld e, a
 	cp $ff
-	ret z
+	ret z ; none selected
 
 	push de
 	call HandleNoDamageOrEffect
 	pop de
-	ret c
+	ret c ; no effect
 
 ; attack was successful, switch Defending Pokemon
 	ld a, e
-	ld [wccef], a
+	ld [wForcedSwitchPlayAreaLocation], a
 	call SwapTurn
 	call SwapArenaWithBenchPokemon
 	call SwapTurn
@@ -7739,8 +7741,8 @@ HandlePlayerMetronomeEffect:
 	jr nc, .initial_effect_2
 	; some requirement is not met
 	call DrawWideTextBox_WaitForInput
-	ld a, $01
-	ld [wcd16], a
+	ld a, TRUE
+	ld [wMetronomeAttackCannotBeUsed], a
 	call .UseAttack
 	scf
 	ret
@@ -7762,7 +7764,7 @@ HandlePlayerMetronomeEffect:
 	ld e, [hl]
 	ld a, [wMetronomeEnergyCost]
 	ld c, a
-	ld a, [wcd16]
+	ld a, [wMetronomeAttackCannotBeUsed]
 	call SerialSend8Bytes
 
 	ldh a, [hTempCardIndex_ff9f]

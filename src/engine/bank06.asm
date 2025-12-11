@@ -11,7 +11,7 @@ ResetAttackAnimationIsPlaying::
 	ret
 
 ; plays all animations that are queued in wStatusConditionQueue
-PlayStatusConditionQueueAnimations:
+PlayStatusConditionQueueAnimations::
 	ld hl, wEffectFunctionsFeedbackIndex
 	ld a, [hl]
 	or a
@@ -101,7 +101,7 @@ PlayAttackAnimationOverAttackingPokemon:
 
 ; plays wLoadedAttackAnimation with damage given in de
 ; subtracts de from hp given in hl, then updates HUD
-PlayAnimationAndSubtractFromHP:
+PlayAnimationAndSubtractFromHP::
 	push hl
 	push de
 	call PlayAttackAnimation
