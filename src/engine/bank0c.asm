@@ -1065,13 +1065,7 @@ Func_311d5:
 	ld [wd615], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
-	ld a, b
-	cp h
-	jr c, .asm_3123b
-	jr nz, .asm_3123b
-	ld a, c
-	cp l
-.asm_3123b
+	cp16bc_long hl
 	jr nc, .asm_31248
 	ld a, $01
 	start_script

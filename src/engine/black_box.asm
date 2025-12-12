@@ -963,13 +963,7 @@ CheckIfSpecialPromoCard:
 	ld b, a
 	or c
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next_card
-	jr nz, .next_card
-	ld a, c
-	cp e
-.next_card
+	cp16bc_long de
 	jr nz, .loop_cards
 
 ; found
@@ -1030,13 +1024,7 @@ Stubbed_CountSpecialPromoCardsInHL:
 	ld b, a
 	or c
 	jr z, .next_card_in_list
-	ld a, b
-	cp d
-	jr c, .next_promo
-	jr nz, .next_promo
-	ld a, c
-	cp e
-.next_promo
+	cp16bc_long de
 	jr nz, .loop_promo
 	pop hl
 	pop bc

@@ -764,7 +764,8 @@ CountGRCoinPiecesObtained:
 	pop bc
 	ret
 
-; return the location name in hl, using c == island and a == location
+; for c = island and a = location,
+; return the location name in hl
 GetLocationName:
 	push af
 	push bc
@@ -801,7 +802,7 @@ GetCurrentLocationName:
 	pop af
 	ret
 
-; using de == receiving card, return its long name in hl
+; for de = receiving card id, return its long name in hl
 ; the first half of this function and the next two are identical
 GetReceivingCardLongName:
 	push af
@@ -813,21 +814,9 @@ GetReceivingCardLongName:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -859,7 +848,7 @@ GetReceivingCardLongName:
 	pop af
 	ret
 
-; using de == receiving card, return its short name in hl
+; for de = receiving card id, return its short name in hl
 GetReceivingCardShortName:
 	push af
 	push bc
@@ -870,21 +859,9 @@ GetReceivingCardShortName:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_short_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -918,7 +895,7 @@ GetReceivingCardShortName:
 	pop af
 	ret
 
-; using de == receiving card, return its "received" text in hl
+; for de = receiving card id, return its "received" text in hl
 GetReceivedCardText:
 	push af
 	push bc
@@ -929,21 +906,9 @@ GetReceivedCardText:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_received_text
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
 	add l
@@ -4541,14 +4506,7 @@ ScriptCommand_CompareLoadedVarWord:
 	ld hl, wScriptFlags
 	res 0, [hl]
 	res 1, [hl]
-	ld a, d
-	cp b
-	jr c, .high_byte_not_equal
-	jr nz, .high_byte_not_equal
-; high byte equal
-	ld a, e
-	cp c
-.high_byte_not_equal
+	cp16_long bc
 	jr nz, .not_equal
 	set 0, [hl]
 .not_equal
@@ -5130,25 +5088,13 @@ Func_ebc6:
 	ld e, a
 	ld a, [wde15 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_ec1d
-	jr nz, .asm_ec1d
-	ld a, e
-	cp $00
-.asm_ec1d
+	cp16_long 0
 	jr z, .asm_ec36
 	ld a, [wde15 + 2]
 	ld e, a
 	ld a, [wde15 + 3]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_ec31
-	jr nz, .asm_ec31
-	ld a, e
-	cp $00
-.asm_ec31
+	cp16_long 0
 	jr z, .asm_ec36
 	scf
 	ccf

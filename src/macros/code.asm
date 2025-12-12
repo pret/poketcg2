@@ -52,6 +52,46 @@ MACRO? cp16
 :
 ENDM
 
+MACRO? cp16_long
+	ld a, d
+	cp HIGH(\1)
+	jr c, :+
+	jr nz, :+
+	ld a, e
+	cp LOW(\1)
+:
+ENDM
+
+MACRO? cp16bc_long
+	ld a, b
+	cp HIGH(\1)
+	jr c, :+
+	jr nz, :+
+	ld a, c
+	cp LOW(\1)
+:
+ENDM
+
+MACRO? cp16_lb
+	ld a, d
+	cp \1
+	jr c, :+
+	jr nz, :+
+	ld a, e
+	cp \2
+:
+ENDM
+
+MACRO? cp16bc_lb
+	ld a, b
+	cp \1
+	jr c, :+
+	jr nz, :+
+	ld a, c
+	cp \2
+:
+ENDM
+
 MACRO? cphl
 	inc hl
 	ld a, [hld]
@@ -60,4 +100,8 @@ MACRO? cphl
 	ld a, [hl]
 	cp LOW(\1)
 :
+ENDM
+
+MACRO? cpcoord
+	cp16_lb \1, \2
 ENDM

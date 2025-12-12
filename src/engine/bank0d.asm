@@ -1296,37 +1296,13 @@ Func_349cd:
 Func_349d5:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	ld a, d
-	cp $0b
-	jr c, .asm_349e6
-	jr nz, .asm_349e6
-	ld a, e
-	cp $08
-.asm_349e6
+	cpcoord 11, 8
 	jr z, .asm_34a0e
-	ld a, d
-	cp $0a
-	jr c, .asm_349f2
-	jr nz, .asm_349f2
-	ld a, e
-	cp $09
-.asm_349f2
+	cpcoord 10, 9
 	jr z, .asm_34a2a
-	ld a, d
-	cp $09
-	jr c, .asm_349fe
-	jr nz, .asm_349fe
-	ld a, e
-	cp $09
-.asm_349fe
+	cpcoord 9, 9
 	jr z, .asm_34a46
-	ld a, d
-	cp $08
-	jr c, .asm_34a0a
-	jr nz, .asm_34a0a
-	ld a, e
-	cp $08
-.asm_34a0a
+	cpcoord 8, 8
 	jr z, .asm_34a62
 	jr .asm_34a7c
 .asm_34a0e
@@ -2280,13 +2256,7 @@ Func_3512c:
 	ld [wd615], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
-	ld a, b
-	cp h
-	jr c, .asm_35199
-	jr nz, .asm_35199
-	ld a, c
-	cp l
-.asm_35199
+	cp16bc_long hl
 	jr nc, .asm_351a6
 	ld a, $01
 	start_script

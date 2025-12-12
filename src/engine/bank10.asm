@@ -1672,13 +1672,7 @@ Func_41074:
 	ld a, [wde11 + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_41090
-	jr nz, .asm_41090
-	ld a, c
-	cp $e8
-.asm_41090
+	cp16bc_long 1000
 	jr nc, .asm_4109a
 	ld a, c
 	ld [wde11], a
@@ -1709,13 +1703,7 @@ Func_41074:
 	ld a, [wde0d + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_410d7
-	jr nz, .asm_410d7
-	ld a, c
-	cp $e8
-.asm_410d7
+	cp16bc_long 1000
 	jr nc, .asm_410e1
 	ld a, c
 	ld [wde0d], a
@@ -1752,13 +1740,7 @@ Func_41074:
 	ld e, a
 	ld a, [wde11 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_41127
-	jr nz, .asm_41127
-	ld a, e
-	cp $32
-.asm_41127
+	cp16_long 50
 	jr nz, .asm_4110a
 	call Func_41167
 	jr .asm_4110a
@@ -1772,13 +1754,7 @@ Func_4112e:
 	ld e, a
 	ld a, [wde15 + 1]
 	ld d, a
-	ld a, b
-	cp d
-	jr c, .asm_41146
-	jr nz, .asm_41146
-	ld a, c
-	cp e
-.asm_41146
+	cp16bc_long de
 	jr nc, .asm_4114a
 	scf
 	ret
@@ -3445,37 +3421,13 @@ Func_41dac:
 Func_41db4:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	ld a, d
-	cp $05
-	jr c, .asm_41dc5
-	jr nz, .asm_41dc5
-	ld a, e
-	cp $08
-.asm_41dc5
+	cpcoord 5, 8
 	jr z, .asm_41ded
-	ld a, d
-	cp $04
-	jr c, .asm_41dd1
-	jr nz, .asm_41dd1
-	ld a, e
-	cp $09
-.asm_41dd1
+	cpcoord 4, 9
 	jr z, .asm_41e09
-	ld a, d
-	cp $03
-	jr c, .asm_41ddd
-	jr nz, .asm_41ddd
-	ld a, e
-	cp $09
-.asm_41ddd
+	cpcoord 3, 9
 	jr z, .asm_41e25
-	ld a, d
-	cp $02
-	jr c, .asm_41de9
-	jr nz, .asm_41de9
-	ld a, e
-	cp $08
-.asm_41de9
+	cpcoord 2, 8
 	jr z, .asm_41e41
 	jr .asm_41e5b
 .asm_41ded
@@ -4656,13 +4608,7 @@ Func_42776:
 	ld a, [wde13 + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_42792
-	jr nz, .asm_42792
-	ld a, c
-	cp $e8
-.asm_42792
+	cp16bc_long 1000
 	jr nc, .asm_4279c
 	ld a, c
 	ld [wde13], a
@@ -4693,13 +4639,7 @@ Func_42776:
 	ld a, [wde0f + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_427da
-	jr nz, .asm_427da
-	ld a, c
-	cp $e8
-.asm_427da
+	cp16bc_long 1000
 	jr nc, .asm_427e4
 	ld a, c
 	ld [wde0f], a
@@ -4736,13 +4676,7 @@ Func_42776:
 	ld e, a
 	ld a, [wde13 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_4282c
-	jr nz, .asm_4282c
-	ld a, e
-	cp $32
-.asm_4282c
+	cp16_long 50
 	jr nz, .asm_4280f
 	call Func_4286c
 	jr .asm_4280f
@@ -4756,13 +4690,7 @@ Func_42833:
 	ld e, a
 	ld a, [wde17 + 1]
 	ld d, a
-	ld a, b
-	cp d
-	jr c, .asm_4284b
-	jr nz, .asm_4284b
-	ld a, c
-	cp e
-.asm_4284b
+	cp16bc_long de
 	jr nc, .asm_4284f
 	scf
 	ret

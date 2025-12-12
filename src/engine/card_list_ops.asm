@@ -38,13 +38,7 @@ CheckIfAllIdenticalCardsInHL:
 	ld b, a
 	or c
 	jr z, .all_identical
-	ld a, d
-	cp b
-	jr c, .skip_low
-	jr nz, .skip_low
-	ld a, e
-	cp c
-.skip_low
+	cp16_long bc
 	jr nz, .empty_or_different
 	jr .loop_cards
 
@@ -102,13 +96,7 @@ SearchCardInListInHL:
 	ld b, a
 	or c
 	jr z, .not_found
-	ld a, d
-	cp b
-	jr c, .not_equal
-	jr nz, .not_equal
-	ld a, e
-	cp c
-.not_equal
+	cp16_long bc
 	jr z, .found
 	pop af
 	inc a
@@ -312,13 +300,7 @@ ENDR
 	ld e, a
 	ld a, [wLoadedCard1Name + 1]
 	ld d, a
-	ld a, d
-	cp b
-	jr c, .next_lookup
-	jr nz, .next_lookup
-	ld a, e
-	cp c
-.next_lookup
+	cp16_long bc
 	jr nz, .loop_lookup
 	ld a, BASIC | STAGE2
 	jr .valid
@@ -524,13 +506,7 @@ ListUniqueCardsOfTheSameTypeAndRarity:
 	ld a, d
 	ld [hli], a
 .check_bounds
-	ld a, d
-	cp HIGH(NUM_CARDS)
-	jr c, .next_card
-	jr nz, .next_card
-	ld a, e
-	cp LOW(NUM_CARDS)
-.next_card
+	cp16_long NUM_CARDS
 	inc de
 	jr nz, .loop_cards
 ; done, append $0000 terminator
@@ -787,13 +763,7 @@ RemoveCardFromListInHL:
 	ld b, a
 	or c
 	jr z, .not_found
-	ld a, d
-	cp b
-	jr c, .next_card
-	jr nz, .next_card
-	ld a, e
-	cp c
-.next_card
+	cp16_long bc
 	jr nz, .loop_cards
 
 ; found

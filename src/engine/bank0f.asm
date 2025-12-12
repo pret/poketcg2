@@ -290,13 +290,7 @@ Func_3c1d0:
 	ld a, [sLinkDuelCounter + 1]
 	ld b, a
 	call DisableSRAM
-	ld a, b
-	cp $00
-	jr c, .asm_3c278
-	jr nz, .asm_3c278
-	ld a, c
-	cp $32
-.asm_3c278
+	cp16bc_long 50
 	jr z, .asm_3c280
 	ld a, $01
 	start_script
@@ -317,13 +311,7 @@ Func_3c1d0:
 	ld a, [sLinkDuelCounter + 1]
 	ld b, a
 	call DisableSRAM
-	ld a, b
-	cp $00
-	jr c, .asm_3c2a9
-	jr nz, .asm_3c2a9
-	ld a, c
-	cp $64
-.asm_3c2a9
+	cp16bc_long 100
 	jr z, .asm_3c2b1
 	ld a, $01
 	start_script
@@ -6793,13 +6781,7 @@ Func_3f44f:
 	ld [wd615], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
-	ld a, b
-	cp h
-	jr c, .asm_3f4bc
-	jr nz, .asm_3f4bc
-	ld a, c
-	cp l
-.asm_3f4bc
+	cp16bc_long hl
 	jr nc, .asm_3f4c9
 	ld a, $01
 	start_script
@@ -7283,13 +7265,7 @@ Func_3f858:
 	ld b, a
 	ld a, [wTextBoxFrameColor]
 	ld c, a
-	ld a, b
-	cp $00
-	jr c, .asm_3f874
-	jr nz, .asm_3f874
-	ld a, c
-	cp $03
-.asm_3f874
+	cp16bc_lb 0, 3
 	jr nz, .asm_3f87b
 	farcall Func_1352a
 	ret
