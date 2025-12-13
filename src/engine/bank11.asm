@@ -171,11 +171,7 @@ _ChooseTitleScreenCards:
 	ld hl, wDuelTempList
 	ld a, c
 	sla a
-	add l
-	ld l, a
-	jr nc, .no_carry
-	inc h
-.no_carry
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -387,19 +383,11 @@ Func_45379:
 	call Random
 	sla a
 	sla a
-	add l
-	ld l, a
-	jr nc, .asm_45394
-	inc h
-.asm_45394
+	add_hl_a
 	push hl
 	inc hl
 	ld a, d
-	add l
-	ld l, a
-	jr nc, .asm_4539c
-	inc h
-.asm_4539c
+	add_hl_a
 	ld a, [hl]
 	pop hl
 	and b
@@ -521,11 +509,7 @@ SetGrandMasterCupOpponents:
 	ld a, NUM_GRANDMASTERCUP_OPPONENT_IDS
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .compare
-	inc h
-.compare
+	add_hl_a
 	push hl
 	inc hl
 	ld a, [hl]
@@ -819,11 +803,7 @@ GetGrandMasterCupPrizeCardID:
 	farcall GetVarValue
 	ld hl, GrandMasterCupPromoPrizes
 	sla a
-	add l
-	ld l, a
-	jr nc, .asm_45689
-	inc h
-.asm_45689
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a

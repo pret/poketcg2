@@ -127,11 +127,7 @@ SearchCardInListInHL:
 SearchCardInListInHL_Offset:
 	push hl
 	sla a
-	add l
-	ld l, a
-	jr nc, .search
-	inc h
-.search
+	add_hl_a
 	call SearchCardInListInHL
 	pop hl
 	ret
@@ -183,11 +179,7 @@ ENDR
 	ld hl, wTempBlackBoxInputBasic
 	ld a, [wLoadedCard1Stage]
 	sla a
-	add l
-	ld l, a
-	jr nc, .store_in_buffer
-	inc h
-.store_in_buffer
+	add_hl_a
 	ld a, [hli]
 	ld c, a
 	ld a, [hld]
@@ -196,6 +188,7 @@ ENDR
 	pop bc
 	pop hl
 	jp nz, .invalid ; the same stage already exists
+; store in buffer
 	ld a, e
 	ld [bc], a
 	inc bc
@@ -390,11 +383,8 @@ ENDR
 	cp TYPE_PKMN
 	jr nc, .loop_cards
 	ld de, wNumBlackBoxInputPkmnPerType
-	add e
-	ld e, a
-	jr nc, .incr_count
-	inc d
-.incr_count
+	add_de_a
+; incr count
 	ld a, [de]
 	inc a
 	ld [de], a
@@ -983,19 +973,11 @@ ShuffleCardsInHL:
 	ld a, b
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .no_carry1
-	inc h
-.no_carry1
+	add_hl_a
 	ld a, b
 	call Random
 	sla a
-	add e
-	ld e, a
-	jr nc, .no_carry2
-	inc d
-.no_carry2
+	add_de_a
 	ld b, [hl]
 	ld a, [de]
 	ld [hl], a

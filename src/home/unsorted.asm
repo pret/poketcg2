@@ -364,11 +364,7 @@ Func_3254::
 	inc hl
 .asm_3283
 	ld a, $07
-	add l
-	ld l, a
-	jr nc, .asm_328a
-	inc h
-.asm_328a
+	add_hl_a
 	jr Func_3254
 
 Func_328c::

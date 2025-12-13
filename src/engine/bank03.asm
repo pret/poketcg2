@@ -144,11 +144,7 @@ StartMenu_CardPop:
 Func_c12e::
 	sla a
 	ld hl, .PointerTable
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -721,10 +717,7 @@ GetNPCByDeck:
 	ld c, MAX_NPC_DUELIST_DECKS
 	push hl
 	ld a, NPC_DUELIST_STRUCT_DECKS
-	add l
-	ld l, a
-	jr nc, .loop_decks
-	inc h
+	add_hl_a
 .loop_decks
 	ld a, [hli]
 	cp b
@@ -780,11 +773,7 @@ GetLocationName:
 .got_island
 	ld a, b
 	sla a
-	add l
-	ld l, a
-	jr nc, .got_location
-	inc h
-.got_location
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -821,11 +810,7 @@ GetReceivingCardLongName:
 	cp16bc_long de
 	jr z, .load_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -866,11 +851,7 @@ GetReceivingCardShortName:
 	cp16bc_long de
 	jr z, .load_short_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -913,11 +894,7 @@ GetReceivedCardText:
 	cp16bc_long de
 	jr z, .load_received_text
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	push hl
@@ -1297,11 +1274,7 @@ Func_d3e9::
 	ld a, b
 	rlca
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	add d
 	ld d, a
@@ -2252,11 +2225,7 @@ SetBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .bitmask
-	inc h
-.bitmask
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2286,11 +2255,7 @@ ClearBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .bitmask
-	inc h
-.bitmask
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2321,11 +2286,7 @@ CheckBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .bitmask
-	inc h
-.bitmask
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2352,11 +2313,7 @@ CheckTCGIslandMilestoneEvents:
 	push hl
 	sla a
 	ld hl, .check_pointers
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2499,11 +2456,7 @@ CheckGRIslandMilestoneEvents:
 	push hl
 	sla a
 	ld hl, .check_pointers
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2640,25 +2593,13 @@ RunOverworldScript::
 	ld hl, wScriptBufferIndex
 	ld a, [hl]
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_offset
-	inc h
-.got_offset
+	add_hl_a
 	ld a, [hl]
 	ld d, a
 	ld hl, OverworldScriptTable
-	add l
-	ld l, a
-	jr nc, .next
-	inc h
-.next
+	add_hl_a
 	ld a, d
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2798,11 +2739,7 @@ OverworldScriptTable:
 IncreaseScriptPointer:
 	ld c, a
 	ld hl, wScriptPointer
-	add [hl]
-	ld [hli], a
-	jr nc, .next
-	inc [hl]
-.next
+	add_at_hl_a
 	ld a, c
 	ld hl, wScriptBufferIndex
 	add [hl]
@@ -2852,11 +2789,7 @@ Get2ScriptArgs:
 	pop bc
 	dec a
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -2892,11 +2825,7 @@ Get1ScriptArg:
 	jr nc, .fallback
 	pop bc
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	or a
 	ret
@@ -3934,11 +3863,7 @@ ScriptCommand_PushVar:
 	ld a, [wScriptStackOffset]
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptLoadedVar]
 	ld [hl], a
 	jp IncreaseScriptPointerBy1
@@ -3947,11 +3872,7 @@ ScriptCommand_PopVar:
 	ld hl, wScriptStack
 	ld a, [wScriptStackOffset]
 	push af
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	ld [wScriptLoadedVar], a
 	pop af
@@ -3997,11 +3918,7 @@ ScriptCommand_ScriptCall:
 	dec a
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptPointer]
 	ld [hli], a
 	ld a, [wScriptPointer + 1]
@@ -4020,11 +3937,7 @@ ScriptCommand_ScriptRet:
 	inc a
 	inc a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	dec hl
 	ld a, [hld]
 	ld [wScriptPointer + 1], a
@@ -4123,11 +4036,7 @@ ScriptCommand_GiveBoosterPacks:
 	ld a, [wBoosterPackCount]
 	call Random
 	ld hl, wBoosterPackList
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	ld [de], a
 	inc de
@@ -4225,11 +4134,7 @@ ScriptCommand_ScriptCallfar:
 	dec a
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptPointer]
 	ld [hli], a
 	ld a, [wScriptPointer + 1]
@@ -4253,11 +4158,7 @@ ScriptCommand_ScriptRetfar:
 	inc a
 	inc a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	dec hl
 	ld a, [hld]
 	ld [wScriptBank], a
@@ -5385,7 +5286,7 @@ Func_ef40:
 	ret
 
 Func_ef97:
-.asm_ef97
+.loop
 	ld a, [wFilteredListPtr]
 	ld l, a
 	ld a, [wFilteredListPtr+1]
@@ -5393,15 +5294,11 @@ Func_ef97:
 	ld a, [wRemainingIntroCards]
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .asm_efac
-	inc h
-.asm_efac
+	add_hl_a
 	inc hl
 	ld a, [hld]
 	and b
-	jr z, .asm_ef97
+	jr z, .loop
 	ld a, [hl]
 	ret
 
@@ -5478,11 +5375,7 @@ GetTCGChallengeCupPrizeCardID:
 	call GetVarValue
 	sla a
 	ld hl, TCGChallengeCupPromoPrizes
-	add l
-	ld l, a
-	jr nc, .asm_f021
-	inc h
-.asm_f021
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -5514,11 +5407,7 @@ GetGRChallengeCupPrizeCardID:
 	call GetVarValue
 	sla a
 	ld hl, GRChallengeCupPromoPrizes
-	add l
-	ld l, a
-	jr nc, .asm_f047
-	inc h
-.asm_f047
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a

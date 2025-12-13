@@ -105,3 +105,27 @@ ENDM
 MACRO? cpcoord
 	cp16_lb \1, \2
 ENDM
+
+MACRO? add_r16_r8
+	add LOW(\1)
+	ld LOW(\1), \2
+	jr nc, :+
+	inc HIGH(\1)
+:
+ENDM
+
+MACRO? add_hl_a
+	add_r16_r8 hl, a
+ENDM
+
+MACRO? add_de_a
+	add_r16_r8 de, a
+ENDM
+
+MACRO? add_at_hl_a
+	add [hl]
+	ld [hli], a
+	jr nc, :+
+	inc [hl]
+:
+ENDM

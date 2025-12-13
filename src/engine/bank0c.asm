@@ -255,11 +255,7 @@ Func_301c0:
 PlacePlayerInGRIslandLocation:
 	sla a ; *2
 	ld hl, GRIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -271,11 +267,7 @@ Func_30202:
 	push af
 	sla a ; *2
 	ld hl, GRIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -324,17 +316,9 @@ Func_30242:
 	sla a
 	sla a ; *4
 	ld hl, .LocationConnections
-	add l
-	ld l, a
-	jr nc, .got_pointer1
-	inc h
-.got_pointer1
+	add_hl_a
 	ld a, c
-	add l
-	ld l, a
-	jr nc, .got_pointer2
-	inc h
-.got_pointer2
+	add_hl_a
 	ld a, [hl]
 	cp b
 	jr z, .done
@@ -433,11 +417,7 @@ PrintGRIslandLocationName:
 	sla a
 	sla a ; *4
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -466,11 +446,7 @@ PrintGRIslandLocationName:
 Func_3030a:
 	sla a ; *2
 	ld hl, .PointerTable
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -512,11 +488,7 @@ Func_30343:
 	sla a
 	sla a ; *4
 	ld hl, Data_3056a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld [wd680], a
 	ld a, [hli]
@@ -529,11 +501,7 @@ Func_3035f:
 	sla a
 	sla a ; *4
 	ld hl, Data_3056a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, c
 	ld [wOWScrollSpeed], a
 	ld a, [hli]
@@ -596,11 +564,7 @@ Func_303c7:
 	sla a
 	sla a ; *4
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl] ; map
 	inc hl
 	ld d, [hl] ; x
@@ -667,21 +631,13 @@ Func_30452:
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
 	ld hl, GRIslandPlayerPaths
-	add l
-	ld l, a
-	jr nc, .got_pointer1
-	inc h
-.got_pointer1
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wCurOWLocation]
 	sla a ; *2
-	add l
-	ld l, a
-	jr nc, .got_pointer2
-	inc h
-.got_pointer2
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -715,11 +671,7 @@ Func_30452:
 	ld a, [wCurOWLocation]
 	sla a ; *2
 	ld hl, GRIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer3
-	inc h
-.got_pointer3
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -732,11 +684,7 @@ Func_30452:
 	ld a, e
 	sla a ; *2
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer4
-	inc h
-.got_pointer4
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a

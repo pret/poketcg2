@@ -878,11 +878,7 @@ HandleTCGIslandInput:
 PlacePlayerInTCGIslandLocation:
 	sla a ; *2
 	ld hl, TCGIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -893,11 +889,7 @@ PlacePlayerInTCGIslandLocation:
 UpdateTCGIslandCursorPosition:
 	sla a ; *2
 	ld hl, TCGIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -926,17 +918,9 @@ HandleTCGIslandDirectionalInput:
 	sla a
 	sla a ; *4
 	ld hl, .LocationConnections
-	add l
-	ld l, a
-	jr nc, .got_pointer_1
-	inc h
-.got_pointer_1
+	add_hl_a
 	ld a, c
-	add l
-	ld l, a
-	jr nc, .got_pointer_2
-	inc h
-.got_pointer_2
+	add_hl_a
 	ld a, [hl]
 	cp b
 	jr z, .done
@@ -1035,11 +1019,7 @@ PrintTCGIslandLocationName:
 	sla a
 	sla a ; *4
 	ld hl, .LocationTitleTextItems
-	add l
-	ld l, a
-	jr nc, .ok
-	inc h
-.ok
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1070,11 +1050,7 @@ Func_40682:
 	sla a
 	sla a ; *4
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl] ; map
 	inc hl
 	ld d, [hl] ; x
@@ -1108,21 +1084,13 @@ Func_406d1:
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
 	ld hl, TCGIslandPlayerPaths
-	add l
-	ld l, a
-	jr nc, .got_pointer_1
-	inc h
-.got_pointer_1
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wCurOWLocation]
 	sla a ; *2
-	add l
-	ld l, a
-	jr nc, .got_pointer_2
-	inc h
-.got_pointer_2
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1152,11 +1120,7 @@ Func_406d1:
 	ld a, [wCurOWLocation]
 	sla a
 	ld hl, TCGIslandLocationPositions
-	add l ; *2
-	ld l, a
-	jr nc, .got_pointer_3
-	inc h
-.got_pointer_3
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a

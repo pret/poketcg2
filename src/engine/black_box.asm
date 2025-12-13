@@ -88,11 +88,7 @@ ProcessBlackBoxInputAndOutput_AllDupes:
 	jr z, .whiffed_return_1
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .output_super_bonus_got_1_evo
-	inc h
-.output_super_bonus_got_1_evo
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -127,11 +123,7 @@ ProcessBlackBoxInputAndOutput_AllDupes:
 	jr z, .whiffed_return_1
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .output_super_bonus_got_1_star
-	inc h
-.output_super_bonus_got_1_star
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -186,11 +178,7 @@ ProcessBlackBoxInputAndOutput_AllDupes:
 	jr z, .whiffed_return_1
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .output_bonus_got_1_evo
-	inc h
-.output_bonus_got_1_evo
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -221,11 +209,7 @@ ProcessBlackBoxInputAndOutput_AllDupes:
 	jr z, .whiffed_return_1
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .output_bonus_no_evo_got_1_star
-	inc h
-.output_bonus_no_evo_got_1_star
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -310,11 +294,7 @@ ProcessBlackBoxInputAndOutput_EvoLine:
 	jr z, .return_all
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .got_1_card
-	inc h
-.got_1_card
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -649,11 +629,7 @@ ProcessBlackBoxInputAndOutput_Regular:
 	call Random
 	sla a
 	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .append_circle
-	inc h
-.append_circle
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -688,11 +664,7 @@ ProcessBlackBoxInputAndOutput_Regular:
 	call Random
 	sla a
 	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .append_diamond
-	inc h
-.append_diamond
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -727,11 +699,7 @@ ProcessBlackBoxInputAndOutput_Regular:
 	call Random
 	sla a
 	ld hl, wDuelTempList
-	add l
-	ld l, a
-	jr nc, .append_star
-	inc h
-.append_star
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
@@ -760,11 +728,7 @@ GetBlackBoxOutputBonusFlag:
 	dec a
 	dec a
 	ld hl, .cutoffs
-	add l
-	ld l, a
-	jr nc, .call_random
-	inc h
-.call_random
+	add_hl_a
 	ld c, [hl]
 	ld a, 100
 	call Random
@@ -800,11 +764,7 @@ GetBlackBoxEvoLineOutputCountAndScore:
 	sla a
 	push af
 	ld hl, .cutoffs
-	add l
-	ld l, a
-	jr nc, .call_random
-	inc h
-.call_random
+	add_hl_a
 	ld a, [hli]
 	ld c, a
 	ld b, [hl]
@@ -818,11 +778,7 @@ GetBlackBoxEvoLineOutputCountAndScore:
 ; table2
 	pop af
 	ld hl, .ValueTable2
-	add l
-	ld l, a
-	jr nc, .get_from_table2
-	inc h
-.get_from_table2
+	add_hl_a
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -831,11 +787,7 @@ GetBlackBoxEvoLineOutputCountAndScore:
 .table1
 	pop af
 	ld hl, .ValueTable1
-	add l
-	ld l, a
-	jr nc, .get_from_table1
-	inc h
-.get_from_table1
+	add_hl_a
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -844,11 +796,7 @@ GetBlackBoxEvoLineOutputCountAndScore:
 .table0
 	pop af
 	ld hl, .ValueTable0
-	add l
-	ld l, a
-	jr nc, .get_from_table0
-	inc h
-.get_from_table0
+	add_hl_a
 	ld a, [hli]
 	ld c, a
 	ld a, [hl]
@@ -891,11 +839,7 @@ GetBlackBoxOutputIndex:
 	sla a
 	sla a
 	ld hl, .cutoffs
-	add l
-	ld l, a
-	jr nc, .rng_check
-	inc h
-.rng_check
+	add_hl_a
 	ld a, [hli] ; cutoff 0
 	ld c, a
 	ld a, [hli] ; cutoff 1
