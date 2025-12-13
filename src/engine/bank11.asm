@@ -809,7 +809,7 @@ Func_4565d:
 	pop bc
 	ret
 
-; for a = [0, 3], return in bc the prize card id
+; for a = [0, 3], return bc = prize card id
 ; at GrandMasterCupPromoPrizes[VAR_GRANDMASTERCUP_PRIZE_INDEX_[a]]
 GetGrandMasterCupPrizeCardID:
 	push af
@@ -831,7 +831,7 @@ GetGrandMasterCupPrizeCardID:
 	pop af
 	ret
 
-; for a = [0, 3], return in hl the prize card name
+; for a = [0, 3], return hl = prize card name
 ; at GrandMasterCupPromoPrizes[VAR_GRANDMASTERCUP_PRIZE_INDEX_[a]]
 GetGrandMasterCupPrizeCardName:
 	push af

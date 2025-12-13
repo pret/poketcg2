@@ -624,10 +624,10 @@ Func_c439:
 	call SetVarValue
 	ld a, VAR_2B
 	call ZeroOutVarValue
-	ld a, $11
+	ld a, NUM_TCG_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
 .skip
 	ret
@@ -657,10 +657,10 @@ Func_c477:
 	call SetVarValue
 	ld a, VAR_33
 	call ZeroOutVarValue
-	ld a, $11
+	ld a, NUM_GR_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
 .asm_c4b4
 	ret
@@ -1128,43 +1128,7 @@ GRIslandLocationNamePointers:
 	tx MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
-; 34 promo cards
-; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
-NonSpecialPromoCards:
-	dw ARCANINE_LV34
-	dw PIKACHU_LV16
-	dw PIKACHU_ALT_LV16
-	dw SURFING_PIKACHU_LV13
-	dw SURFING_PIKACHU_ALT_LV13
-	dw ELECTABUZZ_LV20
-	dw SLOWPOKE_LV9
-	dw MEWTWO_ALT_LV60
-	dw MEWTWO_LV60
-	dw MEW_LV8
-	dw JIGGLYPUFF_LV12
-	dw FLYING_PIKACHU_LV12
-	dw IMAKUNI_CARD
-	dw SUPER_ENERGY_RETRIEVAL
-	dw MEWTWO_LV30
-	dw PIKACHU_LV13
-	dw FLYING_PIKACHU_ALT_LV12
-	dw DARK_PERSIAN_ALT_LV28
-	dw MEOWTH_LV14
-	dw COMPUTER_ERROR
-	dw COOL_PORYGON
-	dw HUNGRY_SNORLAX
-	dw VENUSAUR_ALT_LV67
-	dw CHARIZARD_ALT_LV76
-	dw BLASTOISE_ALT_LV52
-	dw FARFETCHD_ALT_LV20
-	dw KANGASKHAN_LV38
-	dw DIGLETT_LV16
-	dw DUGTRIO_LV40
-	dw DRAGONITE_LV43
-	dw MAGIKARP_LV10
-	dw TOGEPI
-	dw MARILL
-	dw MANKEY_ALT_LV7
+INCLUDE "data/challenge_cup.asm"
 ; 0xd1ed
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
@@ -2241,7 +2205,7 @@ GeneralVarMasks:
 	db $1a, %11110000 ; VAR_26
 	db $1b, %00001111 ; VAR_27
 	db $1b, %01110000 ; VAR_28
-	db $1c, %00011111 ; VAR_29
+	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	db $1d, %00001111 ; VAR_2A
 	db $1d, %00110000 ; VAR_2B
 	db $1d, %11000000 ; VAR_2C
@@ -2249,7 +2213,7 @@ GeneralVarMasks:
 	db $1f, %11111111 ; VAR_2E
 	db $20, %11111111 ; VAR_2F
 	db $21, %00000111 ; VAR_30
-	db $21, %11111000 ; VAR_31
+	db $21, %11111000 ; VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	db $22, %00001111 ; VAR_32
 	db $22, %00110000 ; VAR_33
 	db $23, %00000111 ; VAR_34
@@ -5505,13 +5469,15 @@ Func_eff7:
 	set 1, [hl]
 	ret
 
-Func_f010:
+; return bc = prize card id
+; at TCGChallengeCupPromoPrizes[VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX]
+GetTCGChallengeCupPrizeCardID:
 	push af
 	push hl
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	call GetVarValue
 	sla a
-	ld hl, NonSpecialPromoCards
+	ld hl, TCGChallengeCupPromoPrizes
 	add l
 	ld l, a
 	jr nc, .asm_f021
@@ -5524,11 +5490,13 @@ Func_f010:
 	pop af
 	ret
 
-Func_f027:
+; return hl = prize card name
+; at TCGChallengeCupPromoPrizes[VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX]
+GetTCGChallengeCupPrizeCardName:
 	push af
 	push bc
 	push de
-	call Func_f010
+	call GetTCGChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	call GetReceivingCardShortName
@@ -5537,13 +5505,15 @@ Func_f027:
 	pop af
 	ret
 
-Func_f036:
+; return bc = prize card id
+; at GRChallengeCupPromoPrizes[VAR_GR_CHALLENGE_CUP_PRIZE_INDEX]
+GetGRChallengeCupPrizeCardID:
 	push af
 	push hl
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call GetVarValue
 	sla a
-	ld hl, $51cb
+	ld hl, GRChallengeCupPromoPrizes
 	add l
 	ld l, a
 	jr nc, .asm_f047
@@ -5556,11 +5526,13 @@ Func_f036:
 	pop af
 	ret
 
-Func_f04d:
+; return hl = prize card name
+; at GRChallengeCupPromoPrizes[VAR_GR_CHALLENGE_CUP_PRIZE_INDEX]
+GetGRChallengeCupPrizeCardName:
 	push af
 	push bc
 	push de
-	call Func_f036
+	call GetGRChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	call GetReceivingCardLongName

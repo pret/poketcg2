@@ -2505,7 +2505,7 @@ Func_41662:
 	script_jump .ows_416b8
 .ows_41699
 	quit_script
-	farcall Func_f027
+	farcall GetTCGChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
@@ -3078,17 +3078,17 @@ Func_41a4d:
 	script_jump .ows_41b57
 .ows_41b20
 	quit_script
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f027
+	farcall GetTCGChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
 	print_npc_text Text0985
 	quit_script
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f010
+	farcall GetTCGChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_1022a
@@ -4755,7 +4755,7 @@ Func_4288d:
 	script_jump .ows_428f9
 .ows_428c4
 	quit_script
-	farcall Func_f04d
+	farcall GetGRChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
@@ -5185,17 +5185,17 @@ Func_42bb7:
 	inc_var VAR_32
 .ows_42c72
 	quit_script
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f04d
+	farcall GetGRChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
 	print_npc_text Text0e27
 	quit_script
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f036
+	farcall GetGRChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_1022a

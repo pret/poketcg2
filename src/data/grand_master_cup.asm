@@ -11,7 +11,7 @@ GrandMasterCupOpps:
 	db RONALDS_ULTRA_DECK_ID,          %01000000 ; GRANDMASTERCUP_RONALD
 
 ; 37 promos
-; NonSpecialPromoCards + legendaries - IMAKUNI_CARD
+; challenge cup prizes + legendaries - IMAKUNI_CARD
 GrandMasterCupPromoPrizes:
 	dw ARCANINE_LV34
 	dw PIKACHU_LV16

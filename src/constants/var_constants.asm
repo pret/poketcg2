@@ -40,7 +40,7 @@
 	const VAR_26                             ; $26
 	const VAR_27                             ; $27
 	const VAR_28                             ; $28
-	const VAR_29                             ; $29
+	const VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX  ; $29
 	const VAR_2A                             ; $2a
 	const VAR_2B                             ; $2b
 	const VAR_2C                             ; $2c
@@ -48,7 +48,7 @@
 	const VAR_2E                             ; $2e
 	const VAR_2F                             ; $2f
 	const VAR_30                             ; $30
-	const VAR_31                             ; $31
+	const VAR_GR_CHALLENGE_CUP_PRIZE_INDEX   ; $31
 	const VAR_32                             ; $32
 	const VAR_33                             ; $33
 	const VAR_34                             ; $34
