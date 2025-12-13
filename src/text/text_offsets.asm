@@ -4128,14 +4128,14 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text1014                                              ; 0x1014
 	textpointer Text1015                                              ; 0x1015
 	textpointer Text1016                                              ; 0x1016
-	textpointer Text1017                                              ; 0x1017
-	textpointer Text1018                                              ; 0x1018
-	textpointer Text1019                                              ; 0x1019
-	textpointer Text101a                                              ; 0x101a
-	textpointer Text101b                                              ; 0x101b
-	textpointer Text101c                                              ; 0x101c
-	textpointer Text101d                                              ; 0x101d
-	textpointer Text101e                                              ; 0x101e
+	textpointer GrandMasterCupClerkWelcomeText                        ; 0x1017
+	textpointer GrandMasterCupClerkPrizesText                         ; 0x1018
+	textpointer GrandMasterCupClerkInviteText                         ; 0x1019
+	textpointer GrandMasterCupClerkPlayerLostText                     ; 0x101a
+	textpointer GrandMasterCupClerkPlayerWonGrandFinalText            ; 0x101b
+	textpointer GrandMasterCupClerkEnterPromptText                    ; 0x101c
+	textpointer GrandMasterCupClerkEnterAcceptedText                  ; 0x101d
+	textpointer GrandMasterCupClerkEnterDeclinedText                  ; 0x101e
 	textpointer Text101f                                              ; 0x101f
 	textpointer Text1020                                              ; 0x1020
 	textpointer Text1021                                              ; 0x1021

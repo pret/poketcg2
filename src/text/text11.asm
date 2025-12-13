@@ -811,7 +811,7 @@ Text1016:
 	linefw "ポケモンカードの ゲットあるのみ!"
 	done
 
-Text1017:
+GrandMasterCupClerkWelcomeText:
 	textfw "ただいま グランドマスター杯を"
 	linefw "かいさいしています!"
 	linefw "トーナメント戦を 勝ちぬいて"
@@ -820,42 +820,42 @@ Text1017:
 	linefw "ごうか賞品を プレゼント!"
 	done
 
-Text1018:
+GrandMasterCupClerkPrizesText:
 	textfw "「<RAMTEXT>」"
 	linefw "「<RAMTEXT>」"
 	done
 
-Text1019:
+GrandMasterCupClerkInviteText:
 	textfw "この 4枚のプロモーションカードの"
 	linefw "なかから 2枚を プレゼント!"
 	linefw "<RAMNAME>さん さんかなさいますか"
 	linefw "グランドマスター杯に?"
 	done
 
-Text101a:
+GrandMasterCupClerkPlayerLostText:
 	textfw "ざんねんでしたね・・・"
 	linefw "<RAMNAME>さん"
 	linefw "つぎの グランドマスター杯は"
 	linefw "がんばって くださいね"
 	done
 
-Text101b:
+GrandMasterCupClerkPlayerWonGrandFinalText:
 	textfw "おめでとうございます"
 	linefw "<RAMNAME>さん"
 	linefw "つぎの グランドマスター杯も"
 	linefw "また ゆうしょう してくださいね"
 	done
 
-Text101c:
+GrandMasterCupClerkEnterPromptText:
 	textfw "グランドマスター杯にさんかしますか?"
 	done
 
-Text101d:
+GrandMasterCupClerkEnterAcceptedText:
 	textfw "それでは"
 	linefw "ファイナルホールへ どうぞ!"
 	done
 
-Text101e:
+GrandMasterCupClerkEnterDeclinedText:
 	textfw "そうですか ざんねんですね"
 	linefw "どうぞ また おこしください"
 	done

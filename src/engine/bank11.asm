@@ -220,8 +220,9 @@ _ChooseTitleScreenCards:
 INCLUDE "data/black_box_promos.asm"
 ; 0x447b0
 
+SECTION "Bank 11@48cc", ROMX[$48cc], BANK[$11]
 
-SECTION "Bank 11@4928", ROMX[$4928], BANK[$11]
+INCLUDE "data/grand_master_cup.asm"
 
 ; a = MUSIC_*
 PlayAfterCurrentSong:
@@ -429,12 +430,13 @@ Func_453a3:
 	ccf
 	ret
 
+; special handling for Amy?
 Func_453c3:
 	farcall LoadNPCDuelistDeck
-	cp $1a
-	jr nz, .asm_453cd
-	ld a, $19
-.asm_453cd
+	cp NPC_AMY_LOUNGE
+	jr nz, .done
+	ld a, NPC_AMY
+.done
 	ret
 
 Func_453ce:
@@ -473,81 +475,85 @@ Func_453f9:
 	set 1, [hl]
 	ret
 
-Func_45416:
-	ld e, $07
-	ld d, VAR_14
+SetGrandMasterCupOpponents:
+	ld e, NUM_GRANDMASTERCUP_OPPONENTS
+	ld d, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	ld c, $ff
-.asm_4541c
+.loop_init
 	ld a, d
 	farcall SetVarValue
 	inc d
 	dec e
-	jr nz, .asm_4541c
-	ld c, $00
-.asm_45427
-	ld b, $01
+	jr nz, .loop_init
+; b = 1 << c for c = opponent slot number [0, 6]
+; set opponents randomly with the bitmask b
+; so Ronald may only be chosen at the last slot
+	ld c, 0
+.loop_set_opponents
+	ld b, 1
 	ld a, c
 	or a
-.asm_4542b
-	jr z, .asm_45432
+.loop_shift
+	jr z, .set_opponent
 	sla b
 	dec a
-	jr .asm_4542b
-.asm_45432
-	call Func_4544c
-	call Func_45464
-	jr c, .asm_45432
+	jr .loop_shift
+.set_opponent
+	call .PickOpponent
+	call .CheckDupe
+	jr c, .set_opponent
 	push bc
 	ld d, a
-	ld a, VAR_14
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	add c
 	ld c, d
 	farcall SetVarValue
 	pop bc
 	inc c
-	ld a, $07
+	ld a, NUM_GRANDMASTERCUP_OPPONENTS
 	cp c
-	jr nz, .asm_45427
+	jr nz, .loop_set_opponents
 	ret
 
-Func_4544c:
-.asm_4544c
-	ld hl, $48cc
-	ld a, $09
+; for b = bitmask, choose a random opponent and return their deck id in a
+.PickOpponent:
+	ld hl, GrandMasterCupOpps
+	ld a, NUM_GRANDMASTERCUP_OPPONENT_IDS
 	call Random
 	sla a
 	add l
 	ld l, a
-	jr nc, .asm_4545b
+	jr nc, .compare
 	inc h
-.asm_4545b
+.compare
 	push hl
 	inc hl
 	ld a, [hl]
 	pop hl
 	and b
-	jr z, .asm_4544c
+	jr z, .PickOpponent
 	ld a, [hl]
 	ret
 
-Func_45464:
+; set carry if the opponent is already picked
+.CheckDupe:
 	ld d, a
 	farcall LoadNPCDuelistDeck
 	ld l, a
-	ld e, VAR_14
-.asm_4546c
+	ld e, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+.loop_check
 	ld a, e
 	farcall GetVarValue
 	cp $ff
-	jr z, .asm_45480
+	jr z, .done
 	farcall LoadNPCDuelistDeck
 	inc e
 	cp l
-	jr nz, .asm_4546c
+	jr nz, .loop_check
 	ld a, d
 	scf
 	ret
-.asm_45480
+.done
 	ld a, d
 	scf
 	ccf
@@ -563,7 +569,7 @@ Func_45488:
 	cp $02
 	jr z, .asm_4549c
 	jr nc, .asm_454a4
-	ld a, VAR_14
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
 	jr .asm_454aa
 .asm_4549c
@@ -616,40 +622,40 @@ Func_454e3:
 	ret
 
 Func_454fa:
-	ld a, VAR_15
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_1
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
 	jr nc, .asm_4550e
-	ld a, VAR_16
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_2
 	farcall GetVarValue
 	ld c, a
 .asm_4550e
 	ld a, VAR_1B
 	farcall SetVarValue
-	ld a, VAR_17
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_3
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
 	jr nc, .asm_45528
-	ld a, VAR_18
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_4
 	farcall GetVarValue
 	ld c, a
 .asm_45528
 	ld a, VAR_1C
 	farcall SetVarValue
-	ld a, VAR_1A
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_6
 	farcall GetVarValue
 	ld c, a
 	farcall LoadNPCDuelistDeck
-	cp $03
+	cp NPC_RONALD
 	jr z, .asm_4554a
 	call UpdateRNGSources
 	rrca
 	jr c, .asm_4554a
-	ld a, VAR_19
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_5
 	farcall GetVarValue
 	ld c, a
 .asm_4554a
@@ -659,7 +665,7 @@ Func_454fa:
 	farcall GetVarValue
 	ld c, a
 	farcall LoadNPCDuelistDeck
-	cp $03
+	cp NPC_RONALD
 	jr z, .asm_4556c
 	call UpdateRNGSources
 	rrca
@@ -674,7 +680,7 @@ Func_454fa:
 
 Func_45573:
 	farcall Func_1ea00
-	ld a, VAR_14
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	ld c, $01
 .asm_4557b
 	push af
@@ -742,7 +748,7 @@ Func_455a3:
 	ld c, $01
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, VAR_15
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_1
 	farcall GetVarValue
 	ld c, a
 	ld a, VAR_1B
@@ -756,7 +762,7 @@ Func_455a3:
 	ld c, $02
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, VAR_17
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_3
 	farcall GetVarValue
 	ld c, a
 	ld a, VAR_1C
@@ -770,7 +776,7 @@ Func_455a3:
 	ld c, $03
 	ld a, $01
 	farcall Func_1ea4c
-	ld a, VAR_19
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_5
 	farcall GetVarValue
 	ld c, a
 	ld a, VAR_1D
@@ -794,7 +800,7 @@ Func_4565d:
 	jr .asm_45672
 .asm_45668
 	dec a
-	add VAR_14
+	add VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
 	call Func_45484
 .asm_45672
@@ -803,13 +809,15 @@ Func_4565d:
 	pop bc
 	ret
 
-Func_45676:
+; for a = [0, 3], return in bc the prize card id
+; at GrandMasterCupPromoPrizes[VAR_GRANDMASTERCUP_PRIZE_INDEX_[a]]
+GetGrandMasterCupPrizeCardID:
 	push af
 	push hl
-	ld c, $10
+	ld c, VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	add c
 	farcall GetVarValue
-	ld hl, $48de
+	ld hl, GrandMasterCupPromoPrizes
 	sla a
 	add l
 	ld l, a
@@ -823,11 +831,13 @@ Func_45676:
 	pop af
 	ret
 
-Func_4568f:
+; for a = [0, 3], return in hl the prize card name
+; at GrandMasterCupPromoPrizes[VAR_GRANDMASTERCUP_PRIZE_INDEX_[a]]
+GetGrandMasterCupPrizeCardName:
 	push af
 	push bc
 	push de
-	call Func_45676
+	call GetGrandMasterCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall GetReceivingCardLongName
