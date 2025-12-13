@@ -409,7 +409,7 @@ Func_45379:
 
 Func_453a3:
 	ld d, a
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	ld l, a
 	ld e, VAR_2D
 .asm_453ab
@@ -417,7 +417,7 @@ Func_453a3:
 	farcall GetVarValue
 	cp $ff
 	jr z, .asm_453bf
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	inc e
 	cp l
 	jr nz, .asm_453ab
@@ -432,7 +432,7 @@ Func_453a3:
 
 ; special handling for Amy?
 Func_453c3:
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	cp NPC_AMY_LOUNGE
 	jr nz, .done
 	ld a, NPC_AMY
@@ -447,7 +447,7 @@ Func_453ce:
 	ld a, VAR_2D
 	add c
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
@@ -538,7 +538,7 @@ SetGrandMasterCupOpponents:
 ; set carry if the opponent is already picked
 .CheckDupe:
 	ld d, a
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	ld l, a
 	ld e, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 .loop_check
@@ -546,7 +546,7 @@ SetGrandMasterCupOpponents:
 	farcall GetVarValue
 	cp $ff
 	jr z, .done
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	inc e
 	cp l
 	jr nz, .loop_check
@@ -593,7 +593,7 @@ Func_454ab:
 
 Func_454bc:
 	call Func_45488
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_LOCATION_NAME]
 	ld l, a
@@ -612,7 +612,7 @@ Func_454bc:
 
 Func_454e3:
 	call Func_45488
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a
@@ -649,7 +649,7 @@ Func_454fa:
 	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_6
 	farcall GetVarValue
 	ld c, a
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	cp NPC_RONALD
 	jr z, .asm_4554a
 	call UpdateRNGSources
@@ -664,7 +664,7 @@ Func_454fa:
 	ld a, VAR_1D
 	farcall GetVarValue
 	ld c, a
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	cp NPC_RONALD
 	jr z, .asm_4556c
 	call UpdateRNGSources
@@ -686,7 +686,7 @@ Func_45573:
 	push af
 	push bc
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
+	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
 	ld l, a

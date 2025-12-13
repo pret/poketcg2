@@ -4431,8 +4431,8 @@ Script_3e21c:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr z, .asm_3e272
 	farcall Func_454bc
 	ld a, $01
@@ -4566,8 +4566,8 @@ Func_3e2a4:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr nz, .asm_3e38e
 	ld a, $01
 	start_script
@@ -4611,8 +4611,8 @@ Func_3e2a4:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr nz, .asm_3e3fc
 	ld a, $01
 	start_script

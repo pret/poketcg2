@@ -701,7 +701,9 @@ LoadNPCDuelist:
 	pop af
 	ret
 
-LoadNPCDuelistDeck:
+; for a = deck id,
+; return a = NPC_* constant corresponding to that deck
+GetNPCByDeck:
 	push bc
 	push de
 	push hl
@@ -726,7 +728,7 @@ LoadNPCDuelistDeck:
 .loop_decks
 	ld a, [hli]
 	cp b
-	jr z, .got_deck
+	jr z, .get_npc_id
 	dec c
 	jr nz, .loop_decks
 	pop hl
@@ -734,7 +736,7 @@ LoadNPCDuelistDeck:
 .not_found
 	debug_nop
 	jr .done
-.got_deck
+.get_npc_id
 	pop hl
 	ld a, [hl]
 .done
@@ -5441,7 +5443,7 @@ Func_ef97:
 
 Func_efb3:
 	ld d, a
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	ld l, a
 	ld e, VAR_35
 .asm_efba
@@ -5449,7 +5451,7 @@ Func_efb3:
 	call GetVarValue
 	cp $ff
 	jr z, .asm_efcc
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	inc e
 	cp l
 	jr nz, .asm_efba
@@ -5469,7 +5471,7 @@ Func_efd0:
 .asm_efd7
 	push af
 	call GetVarValue
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	call LoadNPCDuelist
 	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_TITLE_NAME
 	ld a, [de]
