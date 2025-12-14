@@ -265,7 +265,7 @@ SerialHandleSend:
 	ret
 
 ; store byte at a in wSerialSendBuf for sending
-SerialSendByte:
+SerialSendByte::
 	push hl
 	push de
 	push bc
