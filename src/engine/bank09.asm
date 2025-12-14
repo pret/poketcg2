@@ -5771,8 +5771,6 @@ Func_264a5:
 SECTION "GBC Only Disclaimer", ROMX[$64fd], BANK[$9]
 INCLUDE "engine/gbc_only_disclaimer.asm"
 
-SECTION "bank 9@6526", ROMX[$6526], BANK[$9]
-
 _TossCoin::
 	ld [wCoinTossTotalNum], a
 	ld a, [wDuelDisplayedScreen]

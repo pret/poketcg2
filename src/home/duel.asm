@@ -1481,7 +1481,7 @@ ClearNonTurnTemporaryDuelvars_ResetCarry:
 ; called when attacker deals damage to itself due to confusion
 ; display the corresponding animation and deal 20 damage to self
 HandleConfusionDamageToSelf:
-	bank1call CheckIfArenaCardIsDarkPrimeapAndHasPkmnPowerActive
+	bank1call CheckIfArenaCardIsDarkPrimeapeAndHasPkmnPowerActive
 	jr c, .got_damage
 	ld de, 20 ; damage
 .got_damage

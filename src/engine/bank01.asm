@@ -9105,7 +9105,7 @@ HandleRetreatPkmnPowers:
 ; and its Frenzy Pkmn Power is active
 ; also returns the correct amount of damage to
 ; inflict to itself in case it's hurt by its own confusion
-CheckIfArenaCardIsDarkPrimeapAndHasPkmnPowerActive::
+CheckIfArenaCardIsDarkPrimeapeAndHasPkmnPowerActive::
 	call CheckGoopGasAttackAndToxicGasActive
 	jr c, .no_carry
 	ld a, DUELVARS_ARENA_CARD_FLAGS
