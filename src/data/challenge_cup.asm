@@ -1,7 +1,7 @@
 ; exclude Legendaries, GR Mewtwo, Phantoms, Bill's Computer and related ones
 
 TCGChallengeCupPromoPrizes:
-  dw ARCANINE_LV34
+	dw ARCANINE_LV34
 	dw PIKACHU_LV16
 	dw PIKACHU_ALT_LV16
 	dw SURFING_PIKACHU_LV13

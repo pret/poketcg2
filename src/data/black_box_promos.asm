@@ -5,10 +5,7 @@ MACRO blackbox_promo
 ENDM
 
 MACRO blackbox_promo_recipe
-	REPT _NARG
-		dw \1 ; input card id
-		SHIFT
-	ENDR
+	dw \# ; input card ids
 	dw 0 ; end of list
 ENDM
 
@@ -111,7 +108,7 @@ BlackboxPromoCards:
 
 ; phantoms, ishihara tradings, and game center prizes (but a few exceptions)
 ; used as special cases in black box, but actually redundant
-; might be intended for non-recipe promos?
+; could've been intended for non-recipe promos?
 SpecialPromoCards:
 	dw VENUSAUR_LV64
 	dw MARILL
@@ -120,14 +117,14 @@ SpecialPromoCards:
 	dw MACHAMP_LV54
 	dw ALAKAZAM_LV45
 	dw GENGAR_LV40
-	dw MEWTWO_LV30 ; weird, out of the pattern
+	dw MEWTWO_LV30 ; not as special as the others
 	dw MEW_LV15
 	dw MEW_LV8
 	dw SURFING_PIKACHU_LV13
 	dw SURFING_PIKACHU_ALT_LV13
 	dw FLYING_PIKACHU_LV12
 	dw FLYING_PIKACHU_ALT_LV12
-	dw DRAGONITE_LV43 ; weird, out of the pattern
+	dw DRAGONITE_LV43 ; not as special as the others
 	dw TOGEPI
 	dw LUGIA
 	dw HERE_COMES_TEAM_ROCKET

@@ -157,7 +157,8 @@ AutoDeckMachine2Entries:
 		MachineAtrociousWeezingDeckDescriptionText
 ; dark lightning
 	auto_deck MachineTheBenchIsAlsoASurpriseDeckList, \
-		MachineTheBenchIsAlsoASurpriseDeckText, MachineTheBenchIsAlsoASurpriseDeckDescriptionText
+		MachineTheBenchIsAlsoASurpriseDeckText, \
+		MachineTheBenchIsAlsoASurpriseDeckDescriptionText
 	auto_deck MachineEnergyConservationDeckList, \
 		MachineEnergyConservationDeckText, \
 		MachineEnergyConservationDeckDescriptionText

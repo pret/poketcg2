@@ -3760,4 +3760,3 @@ Func_2bd92:
 	tx DarkSpecialDeckMachineText
 	tx RareCardDeckMachineText
 	tx MysteriousCardDeckMachineTextPadded
-; 0x2bdeb, end of bank a

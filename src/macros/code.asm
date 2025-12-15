@@ -72,7 +72,7 @@ MACRO? cp16bc_long
 :
 ENDM
 
-MACRO? cp16_lb
+MACRO? cp16_bytes
 	ld a, d
 	cp \1
 	jr c, :+
@@ -82,7 +82,7 @@ MACRO? cp16_lb
 :
 ENDM
 
-MACRO? cp16bc_lb
+MACRO? cp16bc_bytes
 	ld a, b
 	cp \1
 	jr c, :+
@@ -90,6 +90,10 @@ MACRO? cp16bc_lb
 	ld a, c
 	cp \2
 :
+ENDM
+
+MACRO? cpcoord
+	cp16_bytes \1, \2
 ENDM
 
 MACRO? cphl
@@ -100,10 +104,6 @@ MACRO? cphl
 	ld a, [hl]
 	cp LOW(\1)
 :
-ENDM
-
-MACRO? cpcoord
-	cp16_lb \1, \2
 ENDM
 
 MACRO? add_r16_r8

@@ -884,7 +884,7 @@ OpenPrizeCardPageIfFaceUp:
 	or a
 	ret z ; not face-up
 
-	ld a, SFX_CURSOR
+	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 
 	ld a, [wd0c1]
@@ -7516,4 +7516,3 @@ AutoDeckMachineMenuParams:
 	db SYM_CURSOR_R ; cursor tile number
 	db SYM_SPACE ; tile behind cursor
 	dw NULL ; function pointer if non-0
-; 0xbb04, end of bank 2

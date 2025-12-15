@@ -7267,7 +7267,7 @@ Func_3f858:
 	ld b, a
 	ld a, [wTextBoxFrameColor]
 	ld c, a
-	cp16bc_lb 0, 3
+	cp16bc_bytes 0, 3
 	jr nz, .asm_3f87b
 	farcall Func_1352a
 	ret

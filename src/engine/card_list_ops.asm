@@ -833,7 +833,7 @@ CheckIfListInBCIsSubsetOfListInHL:
 	ret
 
 ; for each card in bc,
-; drop the first occurence of it in hl and shift the rest
+; drop the first occurrence of it in hl and shift the rest
 ; set carry if not found
 RemoveCardsInBCFromHL:
 	push af

@@ -91,7 +91,7 @@ HandleStartupDebugMenuOption:
 .FunctionMap
 	key_func DEBUGMENU_POWER_ON,      _CoreGameLoop
 	key_func DEBUGMENU_COIN,          SetAllCoinsObtainedAndShowCoinMenu
-	key_func DEBGUMENU_CONFIG,        DebugShowConfigMenu
+	key_func DEBUGMENU_CONFIG,        DebugShowConfigMenu
 	key_func DEBUGMENU_EFFECT_VIEWER, DebugMenuEffectViewer
 	key_func DEBUGMENU_CREDITS,       _PlayCredits
 	key_func DEBUGMENU_DUEL,          StartDebugDuelVsRandomOpponent
