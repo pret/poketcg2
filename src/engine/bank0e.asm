@@ -4677,7 +4677,7 @@ HandleScrollMenu:
 .asm_3ac12
 	call .draw_visible_cursor
 	ld a, MENU_CONFIRM
-	farcall PlayConfirmOrCancelSFX
+	farcall PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -4693,7 +4693,7 @@ HandleScrollMenu:
 ; b button
 	ld a, -1
 	ld [hCurMenuItem], a
-	farcall PlayConfirmOrCancelSFX ; MENU_CANCEL
+	farcall PlaySFXConfirmOrCancel ; MENU_CANCEL
 	scf
 	ret
 
@@ -5014,7 +5014,7 @@ HandleDeckMachineSelection:
 	ld e, l
 	pop hl
 	ld a, MENU_CONFIRM
-	farcall PlayConfirmOrCancelSFX
+	farcall PlaySFXConfirmOrCancel
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -5251,8 +5251,10 @@ DrawDeckMachineScreen:
 	ld [hl], $00
 	jr PrintVisibleDeckMachineEntries
 
+; update wScrollMenuScrollFunc to PrintVisibleAutoDeckMachineEntries
+; and init wd119
 Func_3b069:
-	ld hl, $7078
+	ld hl, PrintVisibleAutoDeckMachineEntries
 	ld d, h
 	ld a, l
 	ld hl, wScrollMenuScrollFunc
@@ -5262,16 +5264,17 @@ Func_3b069:
 	ld [wd119], a
 	ret
 
-Func_3b078:
-	ld de, $202
-	ld b, $04
+; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine sections
+PrintVisibleAutoDeckMachineEntries:
+	lb de, 2, 2
+	ld b, NUM_AUTO_DECK_MACHINE_SLOTS
 	ld a, [wNumDeckMachineEntries]
 	cp b
-	jr nc, .asm_3b084
+	jr nc, .got_offset
 	ld b, a
-.asm_3b084
+.got_offset
 	xor a
-.asm_3b085
+.loop
 	push af
 	push bc
 	push de
@@ -5285,7 +5288,7 @@ Func_3b078:
 	inc a
 	inc e
 	inc e
-	jr .asm_3b085
+	jr .loop
 
 ; prints the deck name of the deck corresponding
 ; to index in register a, from wMachineDeckPtrs
@@ -5454,7 +5457,9 @@ PrintDeckMachineEntry:
 	ret
 
 .text
-	db "<SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE>"
+REPT 7
+	db "<SPACE>"
+ENDR
 	done
 
 ; de = card ID
@@ -6893,7 +6898,7 @@ Func_3bb09:
 	ld e, l
 	pop hl
 	ld a, MENU_CONFIRM
-	farcall PlayConfirmOrCancelSFX
+	farcall PlaySFXConfirmOrCancel
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -6975,7 +6980,7 @@ Func_3bb09:
 	pop hl
 	jp c, .asm_3bb4f
 	ld a, MENU_CONFIRM
-	farcall PlayConfirmOrCancelSFX
+	farcall PlaySFXConfirmOrCancel
 	push hl
 	ld de, $18
 	add hl, de
@@ -6997,12 +7002,12 @@ Func_3bc95:
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
 	call EmptyScreen
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
 	bank1call SetDefaultPalettes
-	ld de, $3cff
+	lb de, $3c, $ff
 	call SetupText
 	lb de, 0, 0
 	lb bc, 20, 12
@@ -7014,8 +7019,8 @@ Func_3bc95:
 	lb de, 1, 0
 	call Func_2c4b
 	farcall Func_2bb32
-	call Func_3bd3b
-	call Func_3b078
+	call CreateAutoDeckPointerList
+	call PrintVisibleAutoDeckMachineEntries
 	call EnableLCD
 	ret
 
@@ -7078,15 +7083,16 @@ Func_3bd28:
 	scf
 	ret
 
-Func_3bd3b:
-	ld a, $08
+; write to wMachineDeckPtrs the pointers to the auto decks in WRAM2 wAutoDecks
+CreateAutoDeckPointerList:
+	ld a, 2 * NUM_AUTO_DECK_MACHINE_SLOTS
 	ld hl, wMachineDeckPtrs
 	farcall ClearNBytesFromHL
 	ld de, wMachineDeckPtrs
-	ld hl, wd40e
-	ld bc, $60
-	ld a, $04
-.asm_3bd4f
+	ld hl, wAutoDecks
+	ld bc, DECK_COMPRESSED_STRUCT_SIZE
+	ld a, NUM_AUTO_DECK_MACHINE_SLOTS
+.loop
 	push af
 	ld a, l
 	ld [de], a
@@ -7097,7 +7103,7 @@ Func_3bd3b:
 	add hl, bc
 	pop af
 	dec a
-	jr nz, .asm_3bd4f
+	jr nz, .loop
 	ret
 ; 0x3bd5c
 

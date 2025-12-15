@@ -878,11 +878,7 @@ HandleTCGIslandInput:
 PlacePlayerInTCGIslandLocation:
 	sla a ; *2
 	ld hl, TCGIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -893,11 +889,7 @@ PlacePlayerInTCGIslandLocation:
 UpdateTCGIslandCursorPosition:
 	sla a ; *2
 	ld hl, TCGIslandLocationPositions
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -926,17 +918,9 @@ HandleTCGIslandDirectionalInput:
 	sla a
 	sla a ; *4
 	ld hl, .LocationConnections
-	add l
-	ld l, a
-	jr nc, .got_pointer_1
-	inc h
-.got_pointer_1
+	add_hl_a
 	ld a, c
-	add l
-	ld l, a
-	jr nc, .got_pointer_2
-	inc h
-.got_pointer_2
+	add_hl_a
 	ld a, [hl]
 	cp b
 	jr z, .done
@@ -1035,11 +1019,7 @@ PrintTCGIslandLocationName:
 	sla a
 	sla a ; *4
 	ld hl, .LocationTitleTextItems
-	add l
-	ld l, a
-	jr nc, .ok
-	inc h
-.ok
+	add_hl_a
 	ld a, [hli]
 	ld e, a
 	ld a, [hli]
@@ -1070,11 +1050,7 @@ Func_40682:
 	sla a
 	sla a ; *4
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl] ; map
 	inc hl
 	ld d, [hl] ; x
@@ -1108,21 +1084,13 @@ Func_406d1:
 	ld a, [wPlayerOWLocation]
 	sla a ; *2
 	ld hl, TCGIslandPlayerPaths
-	add l
-	ld l, a
-	jr nc, .got_pointer_1
-	inc h
-.got_pointer_1
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld a, [wCurOWLocation]
 	sla a ; *2
-	add l
-	ld l, a
-	jr nc, .got_pointer_2
-	inc h
-.got_pointer_2
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -1152,11 +1120,7 @@ Func_406d1:
 	ld a, [wCurOWLocation]
 	sla a
 	ld hl, TCGIslandLocationPositions
-	add l ; *2
-	ld l, a
-	jr nc, .got_pointer_3
-	inc h
-.got_pointer_3
+	add_hl_a
 	ld a, [hli]
 	ld e, [hl]
 	ld d, a
@@ -1672,13 +1636,7 @@ Func_41074:
 	ld a, [wde11 + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_41090
-	jr nz, .asm_41090
-	ld a, c
-	cp $e8
-.asm_41090
+	cp16bc_long 1000
 	jr nc, .asm_4109a
 	ld a, c
 	ld [wde11], a
@@ -1709,13 +1667,7 @@ Func_41074:
 	ld a, [wde0d + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_410d7
-	jr nz, .asm_410d7
-	ld a, c
-	cp $e8
-.asm_410d7
+	cp16bc_long 1000
 	jr nc, .asm_410e1
 	ld a, c
 	ld [wde0d], a
@@ -1752,13 +1704,7 @@ Func_41074:
 	ld e, a
 	ld a, [wde11 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_41127
-	jr nz, .asm_41127
-	ld a, e
-	cp $32
-.asm_41127
+	cp16_long 50
 	jr nz, .asm_4110a
 	call Func_41167
 	jr .asm_4110a
@@ -1772,13 +1718,7 @@ Func_4112e:
 	ld e, a
 	ld a, [wde15 + 1]
 	ld d, a
-	ld a, b
-	cp d
-	jr c, .asm_41146
-	jr nz, .asm_41146
-	ld a, c
-	cp e
-.asm_41146
+	cp16bc_long de
 	jr nc, .asm_4114a
 	scf
 	ret
@@ -2529,7 +2469,7 @@ Func_41662:
 	script_jump .ows_416b8
 .ows_41699
 	quit_script
-	farcall Func_f027
+	farcall GetTCGChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
@@ -3102,17 +3042,17 @@ Func_41a4d:
 	script_jump .ows_41b57
 .ows_41b20
 	quit_script
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f027
+	farcall GetTCGChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
 	print_npc_text Text0985
 	quit_script
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f010
+	farcall GetTCGChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_1022a
@@ -3445,37 +3385,13 @@ Func_41dac:
 Func_41db4:
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	ld a, d
-	cp $05
-	jr c, .asm_41dc5
-	jr nz, .asm_41dc5
-	ld a, e
-	cp $08
-.asm_41dc5
+	cpcoord 5, 8
 	jr z, .asm_41ded
-	ld a, d
-	cp $04
-	jr c, .asm_41dd1
-	jr nz, .asm_41dd1
-	ld a, e
-	cp $09
-.asm_41dd1
+	cpcoord 4, 9
 	jr z, .asm_41e09
-	ld a, d
-	cp $03
-	jr c, .asm_41ddd
-	jr nz, .asm_41ddd
-	ld a, e
-	cp $09
-.asm_41ddd
+	cpcoord 3, 9
 	jr z, .asm_41e25
-	ld a, d
-	cp $02
-	jr c, .asm_41de9
-	jr nz, .asm_41de9
-	ld a, e
-	cp $08
-.asm_41de9
+	cpcoord 2, 8
 	jr z, .asm_41e41
 	jr .asm_41e5b
 .asm_41ded
@@ -4656,13 +4572,7 @@ Func_42776:
 	ld a, [wde13 + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_42792
-	jr nz, .asm_42792
-	ld a, c
-	cp $e8
-.asm_42792
+	cp16bc_long 1000
 	jr nc, .asm_4279c
 	ld a, c
 	ld [wde13], a
@@ -4693,13 +4603,7 @@ Func_42776:
 	ld a, [wde0f + 1]
 	ld b, a
 	inc bc
-	ld a, b
-	cp $03
-	jr c, .asm_427da
-	jr nz, .asm_427da
-	ld a, c
-	cp $e8
-.asm_427da
+	cp16bc_long 1000
 	jr nc, .asm_427e4
 	ld a, c
 	ld [wde0f], a
@@ -4736,13 +4640,7 @@ Func_42776:
 	ld e, a
 	ld a, [wde13 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_4282c
-	jr nz, .asm_4282c
-	ld a, e
-	cp $32
-.asm_4282c
+	cp16_long 50
 	jr nz, .asm_4280f
 	call Func_4286c
 	jr .asm_4280f
@@ -4756,13 +4654,7 @@ Func_42833:
 	ld e, a
 	ld a, [wde17 + 1]
 	ld d, a
-	ld a, b
-	cp d
-	jr c, .asm_4284b
-	jr nz, .asm_4284b
-	ld a, c
-	cp e
-.asm_4284b
+	cp16bc_long de
 	jr nc, .asm_4284f
 	scf
 	ret
@@ -4827,7 +4719,7 @@ Func_4288d:
 	script_jump .ows_428f9
 .ows_428c4
 	quit_script
-	farcall Func_f04d
+	farcall GetGRChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
@@ -5257,17 +5149,17 @@ Func_42bb7:
 	inc_var VAR_32
 .ows_42c72
 	quit_script
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f04d
+	farcall GetGRChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
 	print_npc_text Text0e27
 	quit_script
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
-	farcall Func_f036
+	farcall GetGRChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_1022a

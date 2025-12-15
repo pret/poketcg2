@@ -3312,27 +3312,28 @@ AIDeckSpecificBenchScore:
 	; at least 2 GR's Mewtwo in Play Area
 	ld a, 28
 	ret
-; 0x2a72f
 
-SECTION "Bank a@7b32", ROMX[$7b32], BANK[$a]
+INCLUDE "src/data/auto_deck_list.asm"
+INCLUDE "src/data/auto_deck_machine.asm"
 
 Func_2bb32:
 	call EnableSRAM
 	ld a, [wd4b3]
 	ld l, a
-	ld h, $18
+	ld h, 24
 	call HtimesL
 	ld a, [wd548]
 	or a
-	jr nz, .asm_2bb49
-	ld bc, $7952
-	jr .asm_2bb4c
-.asm_2bb49
-	ld bc, $7a42
-.asm_2bb4c
+	jr nz, .machine_2
+; machine 1
+	ld bc, AutoDeckMachine1Entries
+	jr .got_addr
+.machine_2
+	ld bc, AutoDeckMachine2Entries
+.got_addr
 	add hl, bc
 	ld bc, $0
-.asm_2bb50
+.loop
 	call Func_2bb7f
 	call Func_2bbbb
 	inc hl
@@ -3341,7 +3342,7 @@ Func_2bb32:
 	push hl
 	ld de, wd4b4
 	ld h, c
-	ld l, $02
+	ld l, 2
 	call HtimesL
 	add hl, de
 	ld d, h
@@ -3355,8 +3356,9 @@ Func_2bb32:
 	call Func_2bb8e
 	inc b
 	ld a, b
-	cp $04
-	jr nz, .asm_2bb50
+	cp 4
+	jr nz, .loop
+
 	ld a, c
 	ld [wNumDeckMachineEntries], a
 	call DisableSRAM
@@ -3365,9 +3367,9 @@ Func_2bb32:
 Func_2bb7f:
 	push hl
 	ld l, c
-	ld h, $60
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
-	ld de, wd40e
+	ld de, wAutoDecks
 	add hl, de
 	ld d, h
 	ld e, l
@@ -3574,17 +3576,17 @@ Func_2bc4f:
 	db SYM_SPACE ; tile behind cursor
 	dw NULL ; function pointer if non-0
 
-Func_2bc9f:
+_HandleAutoDeckMenu:
 	ld [wd548], a
 	xor a
 	ld [wScrollMenuScrollOffset], a
 .asm_2bca6
-	ld hl, $7afb
+	ld hl, AutoDeckMachineMenuParams
 	farcall InitializeScrollMenuParameters
-	ld a, $05
+	ld a, NUM_DECK_MACHINE_VISIBLE_DECKS
 	ld [wNumMenuItems], a
-	call Func_2bcfb
-	ld hl, $7f5e
+	call .InitMenu
+	ld hl, Func_3bf5e
 	ld d, h
 	ld a, l
 	ld hl, wScrollMenuScrollFunc
@@ -3592,13 +3594,14 @@ Func_2bc9f:
 	ld [hl], d
 	xor a
 	ld [wd119], a
-.asm_2bcc3
+.wait_input
 	call DoFrame
 	farcall HandleScrollMenu
-	jr nc, .asm_2bcc3
+	jr nc, .wait_input
 	ld a, [hCurMenuItem]
 	cp $ff
-	ret z
+	ret z ; cancel
+
 	ld a, [wScrollMenuScrollOffset]
 	ld [wd54a], a
 	ld b, a
@@ -3618,30 +3621,31 @@ Func_2bc9f:
 	ld a, [wd54b]
 	jr .asm_2bca6
 
-Func_2bcfb:
+.InitMenu:
 	xor a
 	ld [wTileMapFill], a
 	call EmptyScreen
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	farcall LoadMenuCursorTile
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
 	bank1call SetDefaultPalettes
-	ld de, $3cff
+	lb de, $3c, $ff
 	call SetupText
 	lb de, 0, 0
 	lb bc, 20, 13
 	call DrawRegularTextBox
-	ld de, $100
+	lb de, 1, 0
 	ld a, [wd548]
 	or a
-	jr nz, .asm_2bd31
+	jr nz, .machine_2
+; machine 1
 	ldtx hl, AutoDeckMachine1Text
-	jr .asm_2bd34
-.asm_2bd31
+	jr .got_name
+.machine_2
 	ldtx hl, AutoDeckMachine2Text
-.asm_2bd34
+.got_name
 	call Func_2c4b
 	ldtx hl, ChooseDeckTypeText
 	call DrawWideTextBox_PrintText
@@ -3686,11 +3690,12 @@ Func_2bd7f:
 	push af
 	ld a, [wd548]
 	or a
-	jr nz, .asm_2bd8c
+	jr nz, .machine_2
+; machine 1
 	pop af
 	farcall CheckTCGIslandMilestoneEvents
 	ret
-.asm_2bd8c
+.machine_2
 	pop af
 	farcall CheckGRIslandMilestoneEvents
 	ret
@@ -3700,29 +3705,30 @@ Func_2bd92:
 	push bc
 	ld a, b
 	inc a
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	pop bc
 	ld [hl], a
 	ld a, [wd548]
 	or a
-	jr nz, .asm_2bda8
-	ld hl, $7dc3
-	jr .asm_2bdab
-.asm_2bda8
-	ld hl, $7dd7
-.asm_2bdab
+	jr nz, .machine_2
+; machine 1
+	ld hl, .Machine1SectionTitles
+	jr .got_addr
+.machine_2
+	ld hl, .Machine2SectionTitles
+.got_addr
 	push bc
 	ld c, b
 	sla c
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	pop bc
 	ld e, l
 	ld d, h
 	ld hl, wd4b4
 	sla c
-	ld b, $00
+	ld b, 0
 	add hl, bc
 	ld a, [de]
 	ld [hli], a
@@ -3730,4 +3736,27 @@ Func_2bd92:
 	ld a, [de]
 	ld [hl], a
 	ret
-; 0x2bdc3
+
+.Machine1SectionTitles:
+	tx BasicDeckMachineTextPadded
+	tx GivenDeckMachineTextPadded
+	tx FightingDeckMachineText
+	tx GrassDeckMachineText
+	tx WaterDeckMachineText
+	tx FireDeckMachineText
+	tx LightningDeckMachineText
+	tx PsychicDeckMachineText
+	tx SpecialDeckMachineTextPadded
+	tx LegendaryDeckMachineTextPadded
+
+.Machine2SectionTitles:
+	tx DarkGrassDeckMachineText
+	tx DarkLightningDeckMachineText
+	tx DarkWaterDeckMachineText
+	tx DarkFireDeckMachineText
+	tx DarkFightingDeckMachineText
+	tx DarkPsychicDeckMachineText
+	tx ColorlessDeckMachineTextPadded
+	tx DarkSpecialDeckMachineText
+	tx RareCardDeckMachineText
+	tx MysteriousCardDeckMachineTextPadded

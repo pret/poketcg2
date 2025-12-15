@@ -315,7 +315,7 @@ DEF MOVE_SPEED_WALK EQU 1
 DEF MOVE_SPEED_RUN  EQU 2
 
 ; the true max is probably much lower. this is just the biggest 6-bit number.
-DEF MAX_MOVEMENT EQU $3F
+DEF MAX_MOVEMENT EQU $3f
 
 ; generate MOVE_x constants for use in NPCMovement data.
 ; see also: script_extractor.py
@@ -336,21 +336,22 @@ DEF MAIL_MAX_NUM                EQU 8
 DEF MAIL_MAX_ON_SCREEN          EQU 4
 DEF MAIL_BUFFER_SIZE            EQU MAIL_MAX_NUM + 1
 DEF MAIL_QUEUE_BUFFER_SIZE      EQU 25
-DEF BLACK_BOX_CARDS_BUFFER_SIZE EQU 20
 DEF NEW_MAIL EQU $ff
 
 DEF B_MAIL_READ EQU 7
 DEF B_MAIL_PRIORITY_DELIVERY EQU 7
 
-DEF B_MAIL_BOOSTER_PACK EQU 7
-DEF B_MAIL_GENERIC_CARD EQU 6
-DEF B_MAIL_BLACK_BOX    EQU 5
-DEF B_MAIL_BILLS_PC     EQU 4
+; mail attachments
+	const_def 4
+	const B_MAIL_BILLS_PC     ; 4
+	const B_MAIL_BLACK_BOX    ; 5
+	const B_MAIL_GENERIC_CARD ; 6
+	const B_MAIL_BOOSTER_PACK ; 7
 
-DEF MAIL_COMMAND_GIVE_BOOSTER      EQU 1 << B_MAIL_BOOSTER_PACK
-DEF MAIL_COMMAND_GIVE_GENERIC_CARD EQU 1 << B_MAIL_GENERIC_CARD
-DEF MAIL_COMMAND_GIVE_BLACK_BOX    EQU 1 << B_MAIL_BLACK_BOX
 DEF MAIL_COMMAND_GIVE_BILLS_PC     EQU 1 << B_MAIL_BILLS_PC
+DEF MAIL_COMMAND_GIVE_BLACK_BOX    EQU 1 << B_MAIL_BLACK_BOX
+DEF MAIL_COMMAND_GIVE_GENERIC_CARD EQU 1 << B_MAIL_GENERIC_CARD
+DEF MAIL_COMMAND_GIVE_BOOSTER      EQU 1 << B_MAIL_BOOSTER_PACK
 DEF MAIL_TERMINATOR EQU $ffff
 
 ; TODO: Figure out why 2 is added in IngameCardPop
@@ -359,7 +360,8 @@ DEF MAIL_TERMINATOR EQU $ffff
 	const SCRIPTED_CARD_POP_IMAKUNI      ; $1
 	const SCRIPTED_RARE_CARD_POP_IMAKUNI ; $2
 
-; duel requirement IDs. used in DuelRequirementFunctionMap, and duel_requirement_check script calls
+; duel requirement IDs
+; for DuelRequirementFunctionMap and duel_requirement_check script calls
 	const_def
 	const DUEL_REQUIREMENT_MIYUKI           ; $00
 	const DUEL_REQUIREMENT_RENNA            ; $01

@@ -977,7 +977,7 @@ SetUsedPkmnPowerThisTurnFlag:
 ; - a = SUBSTATUS1_* constant
 ApplySubstatus1ToAttackingCardAndSetCountdown:
 	call ApplySubstatus1ToAttackingCard
-	
+
 	; set turn countdown to %01
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	get_turn_duelist_var
@@ -2416,12 +2416,7 @@ CheckIfCardHasGrassOrRainbowEnergyAttached:
 	push hl
 	ld a, l
 	call GetCardIDFromDeckIndex
-	ld a, d
-	cp b
-	jr nz, .not_equal
-	ld a, e
-	cp c
-.not_equal
+	cp16 bc
 	pop hl
 	pop de
 	jr z, .no_carry
@@ -9832,7 +9827,7 @@ ReelIn_AddToHandEffect:
 	cp $ff
 	jr nz, .loop_add_cards
 	ret
-	
+
 .loop_add_cards
 	; copy from hTempList to wDuelTempList
 	ld a, [hli]

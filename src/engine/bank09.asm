@@ -2748,7 +2748,7 @@ CheckDeck:
 .asm_25461
 	push hl
 	ld hl, wDeckCheckCardCounts
-	ld c, wDeckCheckCardCountsEnd - wDeckCheckCardCounts
+	ld c, DECKCHECKSTRUCT_LENGTH
 	xor a
 .loop_clear
 	ld [hli], a
@@ -2771,22 +2771,22 @@ CheckDeck:
 	inc [hl]
 .not_rainbow
 	ld a, [wLoadedCard1Type]
-	ld e, $4
+	ld e, DECKCHECKSTRUCT_TRAINER
 	cp TYPE_TRAINER
 	jr z, .got_type
-	ld e, $0
+	ld e, DECKCHECKSTRUCT_ENERGY
 	cp TYPE_ENERGY
 	jr nc, .got_type
-	ld e, $1
+	ld e, DECKCHECKSTRUCT_BASIC_PKMN
 	ld a, [wLoadedCard1Stage]
 	or a
 	jr z, .got_type
-	ld e, $2
+	ld e, DECKCHECKSTRUCT_STAGE1_PKMN
 	cp STAGE1
 	jr z, .got_type
-	ld e, $3
+	ld e, DECKCHECKSTRUCT_STAGE2_PKMN
 .got_type
-	ld d, $00
+	ld d, 0
 	ld hl, wDeckCheckCardCounts
 	add hl, de
 	inc [hl]
@@ -3507,13 +3507,13 @@ GenerateBoosterContent:
 	db SKY_FLYING_POKEMON,    SKY_FLYING_POKEMON,    1, 3, 6,  0 ; BOOSTER_SKY_FLYING_POKEMON
 	db WE_ARE_TEAM_ROCKET,    WE_ARE_TEAM_ROCKET,    1, 3, 6,  0 ; BOOSTER_WE_ARE_TEAM_ROCKET
 	db TEAM_ROCKETS_AMBITION, TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_TEAM_ROCKETS_AMBITION
-	db BEGINNING_POKEMON,     PROMOTIONAL,          10, 0, 0,  0 ; BOOSTER_DEBUG_1
-	db BEGINNING_POKEMON,     BEGINNING_POKEMON,     0, 0, 0, 10 ; BOOSTER_PRESENT_PACK_1
-	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_PACK_2
-	db BEGINNING_POKEMON,     SKY_FLYING_POKEMON,    1, 3, 6,  0 ; BOOSTER_PRESENT_PACK_3
-	db PSYCHIC_BATTLE,        TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_PACK_4
-	db WE_ARE_TEAM_ROCKET,    TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_PACK_5
-	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 2, 3, 5,  0 ; BOOSTER_DEBUG_2
+	db BEGINNING_POKEMON,     PROMOTIONAL,          10, 0, 0,  0 ; BOOSTER_DEBUG_10_STAR
+	db BEGINNING_POKEMON,     BEGINNING_POKEMON,     0, 0, 0, 10 ; BOOSTER_PRESENT_10_ENERGY
+	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_FROM_ALL_SETS
+	db BEGINNING_POKEMON,     SKY_FLYING_POKEMON,    1, 3, 6,  0 ; BOOSTER_PRESENT_FROM_NON_ROCKET_SETS
+	db PSYCHIC_BATTLE,        TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_FROM_LATTER_4_SETS
+	db WE_ARE_TEAM_ROCKET,    TEAM_ROCKETS_AMBITION, 1, 3, 6,  0 ; BOOSTER_PRESENT_FROM_ROCKET_SETS
+	db BEGINNING_POKEMON,     TEAM_ROCKETS_AMBITION, 2, 3, 5,  0 ; BOOSTER_DEBUG_2_STAR
 
 ; fills wCardPopCandidateList with cards that satisfy
 ; certain criteria:
@@ -5337,52 +5337,59 @@ CountIfListedCardsInDeck:
 	or a
 	ret
 
-Func_260e7:
+; for a card in de,
+; create in wDuelTempList a list of its unique evo cards
+; also set carry if at least 1
+_ListUniqueEvoCardsFromDE:
 	call LoadCardDataToBuffer1_FromCardID
 	ld hl, wLoadedCard1Name
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
 	ld hl, wDuelTempList
-	ld de, $0
-.asm_260f6
+	ld de, GRASS_ENERGY - 1 ; 0
+.loop_cards
 	inc de
 	push hl
 	push de
 	call LoadCardDataToBuffer1_FromCardID
-	jr c, .asm_2611d
+	jr c, .exit
 	ld a, [wLoadedCard1Type]
-	cp $08
-	jr nc, .asm_26119
+	cp TYPE_ENERGY
+	jr nc, .next_card
 	ld hl, wLoadedCard1PreEvoName
 	ld a, c
 	cp [hl]
-	jr nz, .asm_26119
+	jr nz, .next_card
 	inc hl
 	ld a, b
 	cp [hl]
-	jr nz, .asm_26119
+	jr nz, .next_card
+; found evo
 	pop de
 	pop hl
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
-	jr .asm_260f6
-.asm_26119
+	jr .loop_cards
+.next_card
 	pop de
 	pop hl
-	jr .asm_260f6
-.asm_2611d
+	jr .loop_cards
+
+.exit
 	pop de
 	pop hl
+; append $0000 terminator
 	xor a
 	ld [hli], a
 	ld [hl], a
 	ld hl, wDuelTempList
 	ld a, [hli]
 	or [hl]
-	ret z
+	ret z ; empty
+; not empty
 	scf
 	ret
 

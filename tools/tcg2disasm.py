@@ -1198,7 +1198,8 @@ class Disassembler(object):
 				opcode_arg_3 = rom[offset+3]
 
 				if opcode_nargs == 0:
-					# handle cp16
+					# handle cp16*
+					# cp16 card_id
 					if opcode_byte == 0x7a \
 					and rom[offset+1] == 0xfe \
 					and rom[offset+3] == 0x20 and rom[offset+4] == 0x03 \
@@ -1206,6 +1207,61 @@ class Disassembler(object):
 					and rom[offset+6] == 0xfe:
 						card_id = (rom[offset+2] << 8) + rom[offset+7]
 						opcode_output_str = "cp16 " + cards[card_id]
+						opcode_nargs = 7
+					# cp16 bc
+					elif opcode_byte == 0x7a \
+					and rom[offset+1] == 0xb8 \
+					and rom[offset+2] == 0x20 and rom[offset+3] == 0x02 \
+					and rom[offset+4] == 0x7b \
+					and rom[offset+5] == 0xb9:
+						opcode_output_str = "cp16 bc"
+						opcode_nargs = 5
+					# cp16_long
+					elif opcode_byte == 0x7a \
+					and rom[offset+1] == 0xfe \
+					and rom[offset+3] == 0x38 and rom[offset+4] == 0x05 \
+					and rom[offset+5] == 0x20 and rom[offset+6] == 0x03 \
+					and rom[offset+7] == 0x7b \
+					and rom[offset+8] == 0xfe:
+						cp16val = (rom[offset+2] << 8) + rom[offset+9]
+						opcode_output_str = "cp16_long ${:x}".format(cp16val)
+						opcode_nargs = 9
+					# cp16_long bc
+					elif opcode_byte == 0x7a \
+					and rom[offset+1] == 0xb8 \
+					and rom[offset+2] == 0x38 and rom[offset+3] == 0x04 \
+					and rom[offset+4] == 0x20 and rom[offset+5] == 0x02 \
+					and rom[offset+6] == 0x7b \
+					and rom[offset+7] == 0xb9:
+						opcode_output_str = "cp16_long bc"
+						opcode_nargs = 7
+					# cp16bc_long
+					elif opcode_byte == 0x78 \
+					and rom[offset+1] == 0xb8 \
+					and rom[offset+3] == 0x38 and rom[offset+4] == 0x05 \
+					and rom[offset+5] == 0x20 and rom[offset+6] == 0x03 \
+					and rom[offset+7] == 0x79 \
+					and rom[offset+8] == 0xfe:
+						cp16val = (rom[offset+2] << 8) + rom[offset+9]
+						opcode_output_str = "cp16bc_long ${:x}".format(cp16val)
+						opcode_nargs = 9
+					# cp16bc_long de
+					elif opcode_byte == 0x78 \
+					and rom[offset+1] == 0xba \
+					and rom[offset+2] == 0x38 and rom[offset+3] == 0x04 \
+					and rom[offset+4] == 0x20 and rom[offset+5] == 0x02 \
+					and rom[offset+6] == 0x79 \
+					and rom[offset+7] == 0xbb:
+						opcode_output_str = "cp16bc_long de"
+						opcode_nargs = 7
+					# cp16bc_long hl
+					elif opcode_byte == 0x78 \
+					and rom[offset+1] == 0xbc \
+					and rom[offset+2] == 0x38 and rom[offset+3] == 0x04 \
+					and rom[offset+4] == 0x20 and rom[offset+5] == 0x02 \
+					and rom[offset+6] == 0x79 \
+					and rom[offset+7] == 0xbd:
+						opcode_output_str = "cp16bc_long hl"
 						opcode_nargs = 7
 					# handle cphl
 					elif opcode_byte == 0x23 \
@@ -1217,6 +1273,28 @@ class Disassembler(object):
 						card_id = (rom[offset+3] << 8) + rom[offset+8]
 						opcode_output_str = "cphl " + cards[card_id]
 						opcode_nargs = 8
+					# handle add_*_a
+					# add_hl_a
+					elif opcode_byte == 0x85 \
+					and rom[offset+1] == 0x6f \
+					and rom[offset+2] == 0x30 and rom[offset+3] == 0x01 \
+					and rom[offset+4] == 0x24:
+						opcode_output_str = "add_hl_a"
+						opcode_nargs = 4
+					# add_de_a
+					elif opcode_byte == 0x83 \
+					and rom[offset+1] == 0x5f \
+					and rom[offset+2] == 0x30 and rom[offset+3] == 0x01 \
+					and rom[offset+4] == 0x14:
+						opcode_output_str = "add_de_a"
+						opcode_nargs = 4
+					# add_at_hl_a
+					elif opcode_byte == 0x86 \
+					and rom[offset+1] == 0x22 \
+					and rom[offset+2] == 0x30 and rom[offset+3] == 0x01 \
+					and rom[offset+4] == 0x34:
+						opcode_output_str = "add_at_hl_a"
+						opcode_nargs = 4
 					else:
 						# set output string simply as the opcode
 						opcode_output_str = opcode_str

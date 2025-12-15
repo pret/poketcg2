@@ -616,13 +616,13 @@ Func_87d3:
 	and PAD_A
 	jr nz, .asm_8863
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 .asm_8863
 	call .asm_88a3
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 .asm_886d
@@ -814,13 +814,13 @@ HandleMultiDirectionalMenu:
 	jr nz, .a_btn
 ; b btn
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 .a_btn
 	call .DrawCursor
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wd0c1]
 	scf
 	ret
@@ -884,8 +884,8 @@ OpenPrizeCardPageIfFaceUp:
 	or a
 	ret z ; not face-up
 
-	ld a, SFX_CURSOR
-	call PlayConfirmOrCancelSFX
+	ld a, MENU_CONFIRM
+	call PlaySFXConfirmOrCancel
 
 	ld a, [wd0c1]
 	ld c, a
@@ -1183,14 +1183,14 @@ HandleStartButtonInDeckSelectionMenu:
 	call CheckIfCurDeckIsEmpty
 	jp nc, .valid_deck ; can be jr
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	call PrintThereIsNoDeckHereText
 	scf
 	ret
 
 .valid_deck
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	call GetSRAMPointerToCurDeckCards
 	push hl
 	call GetSRAMPointerToCurDeck
@@ -1623,14 +1623,14 @@ HandleCheckMenuInput:
 	and PAD_A
 	jr nz, .a_press
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 
 .a_press
 	call DisplayCheckMenuCursor
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 .no_input
@@ -1683,7 +1683,7 @@ DisplayCheckMenuCursor:
 
 ; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
 ; else SFX_CONFIRM (usually following A button)
-PlayConfirmOrCancelSFX:
+PlaySFXConfirmOrCancel:
 	push af
 	inc a
 	jr z, .cancel
@@ -2052,7 +2052,9 @@ AppendDeckName:
 	katakana "デ"
 	katakana "ッ"
 	katakana "キ"
-	db "<SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE><SPACE>"
+REPT 10
+	db "<SPACE>"
+ENDR
 .text_end
 
 ; returns carry if the deck in hl
@@ -2124,7 +2126,7 @@ HandleDeckBuildScreen:
 	and PAD_START
 	jr z, .no_start_btn_1
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	call ConfirmDeckConfiguration
 	ld a, [wCurCardTypeFilter]
 	ld [wTempCardTypeFilter], a
@@ -2191,7 +2193,7 @@ HandleDeckBuildScreen:
 	and PAD_START
 	jr z, .no_start_btn_2
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 
 	; temporarily store current cursor position
 	; to retrieve it later
@@ -2212,7 +2214,7 @@ HandleDeckBuildScreen:
 	ld a, $ff
 	ld [hCurMenuItem], a
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	jr .asm_96f3
 
 .asm_96a0
@@ -2224,7 +2226,7 @@ HandleDeckBuildScreen:
 
 .asm_96ac
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
@@ -3482,26 +3484,9 @@ PrintDeckBuildingCardList:
 	ret
 
 Text_9e48:
+REPT 20
 	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
-	db "<SPACE>"
+ENDR
 	done
 
 ; returns carry if card ID in de is $0000
@@ -3630,7 +3615,7 @@ HandleCardSelectionInput:
 	; b button
 	ld a, -1
 	ld [hCurMenuItem], a
-	call PlayConfirmOrCancelSFX ; MENU_CANCEL
+	call PlaySFXConfirmOrCancel ; MENU_CANCEL
 	scf
 	ret
 
@@ -3638,7 +3623,7 @@ HandleCardSelectionInput:
 ConfirmSelectionAndReturnCarry:
 	call DrawHorizontalListCursor_Visible
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -3802,7 +3787,7 @@ HandleScrollListInput:
 .selected
 	call DrawListCursor_Visible
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
 	ld e, a
 	ld a, [hCurMenuItem]
@@ -3817,7 +3802,7 @@ HandleScrollListInput:
 	jr nz, .selected
 	ld a, -1
 	ld [hCurMenuItem], a
-	call PlayConfirmOrCancelSFX ; MENU_CANCEL
+	call PlaySFXConfirmOrCancel ; MENU_CANCEL
 	scf
 	ret
 
@@ -4324,7 +4309,7 @@ HandleDeckConfirmationMenu:
 
 .selected_card
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
 	ld [wced7], a
 
@@ -4460,7 +4445,7 @@ ShowDeckInfoHeaderAndWaitForBButton:
 	and PAD_B
 	jr z, .wait_input
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ret
 
 ShowConfirmationCardScreen:
@@ -5034,7 +5019,7 @@ Func_a786:
 	jr z, .asm_a80c
 .asm_a835
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
@@ -6297,7 +6282,7 @@ CardAlbum:
 	and PAD_B
 	jr z, .loop_input_empty_list
 	ld a, MENU_CANCEL
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
 	ld a, [wTempScrollMenuItem]
@@ -6334,7 +6319,7 @@ CardAlbum:
 	jr z, .loop
 .open_card_page
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wCurScrollMenuItem]
@@ -6761,7 +6746,7 @@ PrinterMenu_PokemonCards:
 	jr z, .loop_frame_2
 ; start btn
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
@@ -7064,7 +7049,7 @@ Func_b5b1:
 	jr z, .asm_b5ed
 .asm_b600
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wTempCardTypeFilter]
 	ld [wced7], a
 	ld de, wUniqueDeckCardList
@@ -7321,7 +7306,7 @@ DeckDiagnosisResult:
 	jr z, .loop_input
 .open_card_page
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX
+	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wCurScrollMenuItem]
@@ -7515,11 +7500,19 @@ Func_baec:
 	farcall Func_3ada1
 	ret
 
-Func_baf1:
-	farcall Func_2bc9f
+HandleAutoDeckMenu:
+	farcall _HandleAutoDeckMenu
 	ret
 
 PrinterMenu_DeckConfiguration:
 	farcall _PrinterMenu_DeckConfiguration
 	ret
-; 0xbafb
+
+AutoDeckMachineMenuParams:
+	db 4, 2 ; cursor x, cursor y
+	db 2 ; y separation
+	db 0 ; x separation
+	db NUM_DECK_MACHINE_VISIBLE_DECKS ; number of items
+	db SYM_CURSOR_R ; cursor tile number
+	db SYM_SPACE ; tile behind cursor
+	dw NULL ; function pointer if non-0

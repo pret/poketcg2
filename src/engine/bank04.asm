@@ -88,14 +88,14 @@ HandleStartupDebugMenuOption:
 	call CallMappedFunction
 	ret
 
-.FunctionMap: ; boot up debug menu options
-	key_func $00, _CoreGameLoop ; power on
-	key_func $01, SetAllCoinsObtainedAndShowCoinMenu ; coins
-	key_func $02, DebugShowConfigMenu ; config
-	key_func $03, DebugMenuEffectViewer ; effect viewer
-	key_func $04, _PlayCredits ; staff roll
-	key_func $05, StartDebugDuelVsRandomOpponent ; duel
-	key_func $06, DebugSlotMachine ; slot machine
+.FunctionMap
+	key_func DEBUGMENU_POWER_ON,      _CoreGameLoop
+	key_func DEBUGMENU_COIN,          SetAllCoinsObtainedAndShowCoinMenu
+	key_func DEBUGMENU_CONFIG,        DebugShowConfigMenu
+	key_func DEBUGMENU_EFFECT_VIEWER, DebugMenuEffectViewer
+	key_func DEBUGMENU_CREDITS,       _PlayCredits
+	key_func DEBUGMENU_DUEL,          StartDebugDuelVsRandomOpponent
+	key_func DEBUGMENU_SLOT,          DebugSlotMachine
 	db $ff
 
 SetAllCoinsObtainedAndShowCoinMenu:
@@ -1268,12 +1268,12 @@ Func_10836:
 	ret
 
 .function_map: ; pause menu
-	key_func $00, PauseMenuStatusScreen
-	key_func $01, PauseMenuDiaryScreen
-	key_func $02, PauseMenuDeckScreen
-	key_func $03, PauseMenuMinicomScreen
-	key_func $04, PauseMenuCoinScreen
-	key_func $05, PauseMenuConfigScreen
+	key_func PAUSEMENU_STATUS,  PauseMenuStatusScreen
+	key_func PAUSEMENU_DIARY,   PauseMenuDiaryScreen
+	key_func PAUSEMENU_DECK,    PauseMenuDeckScreen
+	key_func PAUSEMENU_MINICOM, PauseMenuMinicomScreen
+	key_func PAUSEMENU_COIN,    PauseMenuCoinScreen
+	key_func PAUSEMENU_CONFIG,  PauseMenuConfigScreen
 	db $ff
 
 Func_10856:
@@ -3098,10 +3098,10 @@ _PCMenu:
 	ret
 
 .function_map
-	key_func $0, .CardAlbum
-	key_func $1, .DeckDiagnosis
-	key_func $2, .Glossary
-	key_func $3, .Printer
+	key_func PCMENU_CARD_ALBUM,     .CardAlbum
+	key_func PCMENU_DECK_DIAGNOSIS, .DeckDiagnosis
+	key_func PCMENU_GLOSSARY,       .Glossary
+	key_func PCMENU_PRINTER,        .Printer
 	db $ff ; end
 
 .Func_11181:
@@ -7338,17 +7338,17 @@ ShowProloguePortraitAndText:
 	ret
 
 .FunctionMap:
-	key_func $00, .Func_13bd8
-	key_func $01, .Func_13bdf
-	key_func $02, .Func_13bd8
+	key_func PROLOGUE_PLAYER_RECAP,  .Player
+	key_func PROLOGUE_GR_INVASION,   .GR
+	key_func PROLOGUE_PLAYER_TO_LAB, .Player
 	db $ff ; end
 
-.Func_13bd8:
+.Player:
 	lb bc, 7, 3
 	call DrawPlayerPortrait
 	ret
 
-.Func_13bdf:
+.GR:
 	ld a, GR_1_PIC
 	lb bc, 7, 3
 	ld e, EMOTION_NORMAL
@@ -7369,30 +7369,30 @@ ShowProloguePortraitAndText:
 	ret
 
 .TextListPointers:
-	dw .text_list1
-	dw .text_list2
-	dw .text_list3
+	dw .PlayerRecap
+	dw .GRInvasion
+	dw .PlayerToLab
 
-.text_list1
-	tx PrologueScene1Line1Text
-	tx PrologueScene1Line2Text
-	tx PrologueScene1Line3Text
-	tx PrologueScene1Line4Text
-	tx PrologueScene1Line5Text
-	tx PrologueScene1Line6Text
-	tx PrologueScene1Line7Text
+.PlayerRecap
+	tx ProloguePlayerRecapLine1Text
+	tx ProloguePlayerRecapLine2Text
+	tx ProloguePlayerRecapLine3Text
+	tx ProloguePlayerRecapLine4Text
+	tx ProloguePlayerRecapLine5Text
+	tx ProloguePlayerRecapLine6Text
+	tx ProloguePlayerRecapLine7Text
 	dw $ffff
 
-.text_list2
-	tx PrologueScene2Line1Text
-	tx PrologueScene2Line2Text
-	tx PrologueScene2Line3Text
+.GRInvasion
+	tx PrologueGRInvasionLine1Text
+	tx PrologueGRInvasionLine2Text
+	tx PrologueGRInvasionLine3Text
 	dw $ffff
 
-.text_list3
-	tx PrologueScene3Line1Text
-	tx PrologueScene3Line2Text
-	tx PrologueScene3Line3Text
+.PlayerToLab
+	tx ProloguePlayerToLabLine1Text
+	tx ProloguePlayerToLabLine2Text
+	tx ProloguePlayerToLabLine3Text
 	dw $ffff
 ; 0x13c22
 

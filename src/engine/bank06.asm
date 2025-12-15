@@ -6094,10 +6094,10 @@ Deck5RenameText:
 	textitem 14, 1, DeckText
 	db $ff
 
-; dupe of PlayConfirmOrCancelSFX in bank 2
+; dupe of PlaySFXConfirmOrCancel in bank 2
 ; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
 ; else SFX_CONFIRM (usually following A button)
-PlayConfirmOrCancelSFX_Bank06:
+PlaySFXConfirmOrCancel_Bank06:
 	push af
 	inc a
 	jr z, .cancel
@@ -6167,7 +6167,7 @@ InputName:
 	and PAD_START
 	jr z, .check_select
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX_Bank06
+	call PlaySFXConfirmOrCancel_Bank06
 	call HideCursorAtCharPosition
 	ld a, 6
 	ld [wNamingScreenCursorY], a
@@ -6181,7 +6181,7 @@ InputName:
 	and PAD_SELECT
 	jr z, .asm_1af3b
 	ld a, MENU_CONFIRM
-	call PlayConfirmOrCancelSFX_Bank06
+	call PlaySFXConfirmOrCancel_Bank06
 	ld a, [wNamingScreenMode]
 	inc a
 	cp NUM_NAME_MODES
@@ -6579,7 +6579,7 @@ HandleNamingScreenInput:
 	jr nz, .got_sfx ; MENU_CONFIRM
 	ld a, MENU_CANCEL
 .got_sfx
-	call PlayConfirmOrCancelSFX_Bank06
+	call PlaySFXConfirmOrCancel_Bank06
 	push af
 	call ShowCursorAtCharPosition
 	pop af

@@ -144,11 +144,7 @@ StartMenu_CardPop:
 Func_c12e::
 	sla a
 	ld hl, .PointerTable
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -624,10 +620,10 @@ Func_c439:
 	call SetVarValue
 	ld a, VAR_2B
 	call ZeroOutVarValue
-	ld a, $11
+	ld a, NUM_TCG_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
 .skip
 	ret
@@ -657,10 +653,10 @@ Func_c477:
 	call SetVarValue
 	ld a, VAR_33
 	call ZeroOutVarValue
-	ld a, $11
+	ld a, NUM_GR_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
 .asm_c4b4
 	ret
@@ -701,7 +697,9 @@ LoadNPCDuelist:
 	pop af
 	ret
 
-LoadNPCDuelistDeck:
+; for a = deck id,
+; return a = NPC_* constant corresponding to that deck
+GetNPCByDeck:
 	push bc
 	push de
 	push hl
@@ -719,14 +717,11 @@ LoadNPCDuelistDeck:
 	ld c, MAX_NPC_DUELIST_DECKS
 	push hl
 	ld a, NPC_DUELIST_STRUCT_DECKS
-	add l
-	ld l, a
-	jr nc, .loop_decks
-	inc h
+	add_hl_a
 .loop_decks
 	ld a, [hli]
 	cp b
-	jr z, .got_deck
+	jr z, .get_npc_id
 	dec c
 	jr nz, .loop_decks
 	pop hl
@@ -734,7 +729,7 @@ LoadNPCDuelistDeck:
 .not_found
 	debug_nop
 	jr .done
-.got_deck
+.get_npc_id
 	pop hl
 	ld a, [hl]
 .done
@@ -764,7 +759,8 @@ CountGRCoinPiecesObtained:
 	pop bc
 	ret
 
-; return the location name in hl, using c == island and a == location
+; for c = island and a = location,
+; return the location name in hl
 GetLocationName:
 	push af
 	push bc
@@ -777,11 +773,7 @@ GetLocationName:
 .got_island
 	ld a, b
 	sla a
-	add l
-	ld l, a
-	jr nc, .got_location
-	inc h
-.got_location
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -801,7 +793,7 @@ GetCurrentLocationName:
 	pop af
 	ret
 
-; using de == receiving card, return its long name in hl
+; for de = receiving card id, return its long name in hl
 ; the first half of this function and the next two are identical
 GetReceivingCardLongName:
 	push af
@@ -813,28 +805,12 @@ GetReceivingCardLongName:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -859,7 +835,7 @@ GetReceivingCardLongName:
 	pop af
 	ret
 
-; using de == receiving card, return its short name in hl
+; for de = receiving card id, return its short name in hl
 GetReceivingCardShortName:
 	push af
 	push bc
@@ -870,28 +846,12 @@ GetReceivingCardShortName:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_short_name
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	call LoadCardDataToBuffer1_FromCardID
@@ -918,7 +878,7 @@ GetReceivingCardShortName:
 	pop af
 	ret
 
-; using de == receiving card, return its "received" text in hl
+; for de = receiving card id, return its "received" text in hl
 GetReceivedCardText:
 	push af
 	push bc
@@ -929,28 +889,12 @@ GetReceivedCardText:
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, b
-	cp $ff
-	jr c, .ok
-	jr nz, .ok ; redundant
-	ld a, c
-	cp $ff
-.ok
+	cp16bc_long $ffff
 	jr z, .not_found
-	ld a, b
-	cp d
-	jr c, .next
-	jr nz, .next
-	ld a, c
-	cp e
-.next
+	cp16bc_long de
 	jr z, .load_received_text
 	ld a, CARD_RECEIVE_STRUCT_TEXTS_SIZE
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	jr .loop_cards
 .not_found
 	push hl
@@ -1161,43 +1105,7 @@ GRIslandLocationNamePointers:
 	tx MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
-; 34 promo cards
-; just excluding Legendaries, Phantoms, Bill's Computer and related ones, and GR Mewtwo
-NonSpecialPromoCards:
-	dw ARCANINE_LV34
-	dw PIKACHU_LV16
-	dw PIKACHU_ALT_LV16
-	dw SURFING_PIKACHU_LV13
-	dw SURFING_PIKACHU_ALT_LV13
-	dw ELECTABUZZ_LV20
-	dw SLOWPOKE_LV9
-	dw MEWTWO_ALT_LV60
-	dw MEWTWO_LV60
-	dw MEW_LV8
-	dw JIGGLYPUFF_LV12
-	dw FLYING_PIKACHU_LV12
-	dw IMAKUNI_CARD
-	dw SUPER_ENERGY_RETRIEVAL
-	dw MEWTWO_LV30
-	dw PIKACHU_LV13
-	dw FLYING_PIKACHU_ALT_LV12
-	dw DARK_PERSIAN_ALT_LV28
-	dw MEOWTH_LV14
-	dw COMPUTER_ERROR
-	dw COOL_PORYGON
-	dw HUNGRY_SNORLAX
-	dw VENUSAUR_ALT_LV67
-	dw CHARIZARD_ALT_LV76
-	dw BLASTOISE_ALT_LV52
-	dw FARFETCHD_ALT_LV20
-	dw KANGASKHAN_LV38
-	dw DIGLETT_LV16
-	dw DUGTRIO_LV40
-	dw DRAGONITE_LV43
-	dw MAGIKARP_LV10
-	dw TOGEPI
-	dw MARILL
-	dw MANKEY_ALT_LV7
+INCLUDE "data/challenge_cup.asm"
 ; 0xd1ed
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
@@ -1366,11 +1274,7 @@ Func_d3e9::
 	ld a, b
 	rlca
 	ld hl, .data
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	add d
 	ld d, a
@@ -2249,17 +2153,17 @@ GeneralVarMasks:
 	db $06, %00011100 ; VAR_0D
 	db $06, %11100000 ; VAR_0E
 	db $07, %00001111 ; VAR_0F
-	db $08, %11111111 ; VAR_10
-	db $09, %11111111 ; VAR_11
-	db $0a, %11111111 ; VAR_12
-	db $0b, %11111111 ; VAR_13
-	db $0c, %11111111 ; VAR_14
-	db $0d, %11111111 ; VAR_15
-	db $0e, %11111111 ; VAR_16
-	db $0f, %11111111 ; VAR_17
-	db $10, %11111111 ; VAR_18
-	db $11, %11111111 ; VAR_19
-	db $12, %11111111 ; VAR_1A
+	db $08, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_0
+	db $09, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_1
+	db $0a, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_2
+	db $0b, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_3
+	db $0c, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	db $0d, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_1
+	db $0e, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_2
+	db $0f, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_3
+	db $10, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_4
+	db $11, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_5
+	db $12, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_6
 	db $13, %11111111 ; VAR_1B
 	db $14, %11111111 ; VAR_1C
 	db $15, %11111111 ; VAR_1D
@@ -2274,7 +2178,7 @@ GeneralVarMasks:
 	db $1a, %11110000 ; VAR_26
 	db $1b, %00001111 ; VAR_27
 	db $1b, %01110000 ; VAR_28
-	db $1c, %00011111 ; VAR_29
+	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	db $1d, %00001111 ; VAR_2A
 	db $1d, %00110000 ; VAR_2B
 	db $1d, %11000000 ; VAR_2C
@@ -2282,7 +2186,7 @@ GeneralVarMasks:
 	db $1f, %11111111 ; VAR_2E
 	db $20, %11111111 ; VAR_2F
 	db $21, %00000111 ; VAR_30
-	db $21, %11111000 ; VAR_31
+	db $21, %11111000 ; VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	db $22, %00001111 ; VAR_32
 	db $22, %00110000 ; VAR_33
 	db $23, %00000111 ; VAR_34
@@ -2311,7 +2215,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, set bit n at (wd606 + m)
+; set n, [wd606 + m], where a = 8m + n
 SetBit_wd606:
 	push af
 	push bc
@@ -2321,11 +2225,7 @@ SetBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .got_byte
-	inc h
-.got_byte
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2333,10 +2233,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, [hl]
 	or b
 	ld [hl], a
@@ -2345,7 +2245,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, clear bit n at (wd606 + m)
+; res n, [wd606 + m], where a = 8m + n
 ClearBit_wd606:
 	push af
 	push bc
@@ -2355,11 +2255,7 @@ ClearBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .got_byte
-	inc h
-.got_byte
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2367,10 +2263,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, b
 	cpl
 	and [hl]
@@ -2380,9 +2276,7 @@ ENDR
 	pop af
 	ret
 
-; for the bit offset a = 8m + n, return in the z flag whether bit n at (wd606 + m) is empty
-; z: empty, nz: set
-; then restore bc and load b from it into a
+; bit n, [wd606 + m], where a = 8m + n
 CheckBit_wd606:
 	push bc
 	push hl
@@ -2392,11 +2286,7 @@ CheckBit_wd606:
 REPT 3
 	srl a
 ENDR
-	add l
-	ld l, a
-	jr nc, .got_byte
-	inc h
-.got_byte
+	add_hl_a
 	pop af
 	and 7
 	inc a
@@ -2404,10 +2294,10 @@ ENDR
 	ld b, 1
 .loop_bitmask
 	dec c
-	jr z, .got_bit
+	jr z, .got_bitmask
 	sla b
 	jr .loop_bitmask
-.got_bit
+.got_bitmask
 	ld a, [hl]
 	and b
 	pop bc
@@ -2423,11 +2313,7 @@ CheckTCGIslandMilestoneEvents:
 	push hl
 	sla a
 	ld hl, .check_pointers
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2570,11 +2456,7 @@ CheckGRIslandMilestoneEvents:
 	push hl
 	sla a
 	ld hl, .check_pointers
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2711,25 +2593,13 @@ RunOverworldScript::
 	ld hl, wScriptBufferIndex
 	ld a, [hl]
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_offset
-	inc h
-.got_offset
+	add_hl_a
 	ld a, [hl]
 	ld d, a
 	ld hl, OverworldScriptTable
-	add l
-	ld l, a
-	jr nc, .next
-	inc h
-.next
+	add_hl_a
 	ld a, d
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2869,11 +2739,7 @@ OverworldScriptTable:
 IncreaseScriptPointer:
 	ld c, a
 	ld hl, wScriptPointer
-	add [hl]
-	ld [hli], a
-	jr nc, .next
-	inc [hl]
-.next
+	add_at_hl_a
 	ld a, c
 	ld hl, wScriptBufferIndex
 	add [hl]
@@ -2923,11 +2789,7 @@ Get2ScriptArgs:
 	pop bc
 	dec a
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -2963,11 +2825,7 @@ Get1ScriptArg:
 	jr nc, .fallback
 	pop bc
 	ld hl, wScriptBuffer
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	or a
 	ret
@@ -4005,11 +3863,7 @@ ScriptCommand_PushVar:
 	ld a, [wScriptStackOffset]
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptLoadedVar]
 	ld [hl], a
 	jp IncreaseScriptPointerBy1
@@ -4018,11 +3872,7 @@ ScriptCommand_PopVar:
 	ld hl, wScriptStack
 	ld a, [wScriptStackOffset]
 	push af
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	ld [wScriptLoadedVar], a
 	pop af
@@ -4068,11 +3918,7 @@ ScriptCommand_ScriptCall:
 	dec a
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptPointer]
 	ld [hli], a
 	ld a, [wScriptPointer + 1]
@@ -4091,11 +3937,7 @@ ScriptCommand_ScriptRet:
 	inc a
 	inc a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	dec hl
 	ld a, [hld]
 	ld [wScriptPointer + 1], a
@@ -4194,11 +4036,7 @@ ScriptCommand_GiveBoosterPacks:
 	ld a, [wBoosterPackCount]
 	call Random
 	ld hl, wBoosterPackList
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [hl]
 	ld [de], a
 	inc de
@@ -4296,11 +4134,7 @@ ScriptCommand_ScriptCallfar:
 	dec a
 	dec a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	ld a, [wScriptPointer]
 	ld [hli], a
 	ld a, [wScriptPointer + 1]
@@ -4324,11 +4158,7 @@ ScriptCommand_ScriptRetfar:
 	inc a
 	inc a
 	ld [wScriptStackOffset], a
-	add l
-	ld l, a
-	jr nc, .got_pointer
-	inc h
-.got_pointer
+	add_hl_a
 	dec hl
 	ld a, [hld]
 	ld [wScriptBank], a
@@ -4543,14 +4373,7 @@ ScriptCommand_CompareLoadedVarWord:
 	ld hl, wScriptFlags
 	res 0, [hl]
 	res 1, [hl]
-	ld a, d
-	cp b
-	jr c, .high_byte_not_equal
-	jr nz, .high_byte_not_equal
-; high byte equal
-	ld a, e
-	cp c
-.high_byte_not_equal
+	cp16_long bc
 	jr nz, .not_equal
 	set 0, [hl]
 .not_equal
@@ -5132,25 +4955,13 @@ Func_ebc6:
 	ld e, a
 	ld a, [wde15 + 1]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_ec1d
-	jr nz, .asm_ec1d
-	ld a, e
-	cp $00
-.asm_ec1d
+	cp16_long 0
 	jr z, .asm_ec36
 	ld a, [wde15 + 2]
 	ld e, a
 	ld a, [wde15 + 3]
 	ld d, a
-	ld a, d
-	cp $00
-	jr c, .asm_ec31
-	jr nz, .asm_ec31
-	ld a, e
-	cp $00
-.asm_ec31
+	cp16_long 0
 	jr z, .asm_ec36
 	scf
 	ccf
@@ -5475,7 +5286,7 @@ Func_ef40:
 	ret
 
 Func_ef97:
-.asm_ef97
+.loop
 	ld a, [wFilteredListPtr]
 	ld l, a
 	ld a, [wFilteredListPtr+1]
@@ -5483,21 +5294,17 @@ Func_ef97:
 	ld a, [wRemainingIntroCards]
 	call Random
 	sla a
-	add l
-	ld l, a
-	jr nc, .asm_efac
-	inc h
-.asm_efac
+	add_hl_a
 	inc hl
 	ld a, [hld]
 	and b
-	jr z, .asm_ef97
+	jr z, .loop
 	ld a, [hl]
 	ret
 
 Func_efb3:
 	ld d, a
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	ld l, a
 	ld e, VAR_35
 .asm_efba
@@ -5505,7 +5312,7 @@ Func_efb3:
 	call GetVarValue
 	cp $ff
 	jr z, .asm_efcc
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	inc e
 	cp l
 	jr nz, .asm_efba
@@ -5525,7 +5332,7 @@ Func_efd0:
 .asm_efd7
 	push af
 	call GetVarValue
-	call LoadNPCDuelistDeck
+	call GetNPCByDeck
 	call LoadNPCDuelist
 	ld de, wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_TITLE_NAME
 	ld a, [de]
@@ -5559,18 +5366,16 @@ Func_eff7:
 	set 1, [hl]
 	ret
 
-Func_f010:
+; return bc = prize card id
+; at TCGChallengeCupPromoPrizes[VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX]
+GetTCGChallengeCupPrizeCardID:
 	push af
 	push hl
-	ld a, VAR_29
+	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	call GetVarValue
 	sla a
-	ld hl, NonSpecialPromoCards
-	add l
-	ld l, a
-	jr nc, .asm_f021
-	inc h
-.asm_f021
+	ld hl, TCGChallengeCupPromoPrizes
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -5578,11 +5383,13 @@ Func_f010:
 	pop af
 	ret
 
-Func_f027:
+; return hl = prize card name
+; at TCGChallengeCupPromoPrizes[VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX]
+GetTCGChallengeCupPrizeCardName:
 	push af
 	push bc
 	push de
-	call Func_f010
+	call GetTCGChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	call GetReceivingCardShortName
@@ -5591,18 +5398,16 @@ Func_f027:
 	pop af
 	ret
 
-Func_f036:
+; return bc = prize card id
+; at GRChallengeCupPromoPrizes[VAR_GR_CHALLENGE_CUP_PRIZE_INDEX]
+GetGRChallengeCupPrizeCardID:
 	push af
 	push hl
-	ld a, VAR_31
+	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call GetVarValue
 	sla a
-	ld hl, $51cb
-	add l
-	ld l, a
-	jr nc, .asm_f047
-	inc h
-.asm_f047
+	ld hl, GRChallengeCupPromoPrizes
+	add_hl_a
 	ld a, [hli]
 	ld b, [hl]
 	ld c, a
@@ -5610,11 +5415,13 @@ Func_f036:
 	pop af
 	ret
 
-Func_f04d:
+; return hl = prize card name
+; at GRChallengeCupPromoPrizes[VAR_GR_CHALLENGE_CUP_PRIZE_INDEX]
+GetGRChallengeCupPrizeCardName:
 	push af
 	push bc
 	push de
-	call Func_f036
+	call GetGRChallengeCupPrizeCardID
 	ld e, c
 	ld d, b
 	call GetReceivingCardLongName

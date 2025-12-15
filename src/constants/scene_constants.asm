@@ -36,3 +36,9 @@
 	const SCENE_COIN_TOSS_RESULT_1            ; $22
 	const SCENE_COIN_TOSS_RESULT_2            ; $23
 	const SCENE_GBC_ONLY_DISCLAIMER           ; $24
+
+; prologue scenes
+	const_def
+	const PROLOGUE_PLAYER_RECAP  ; 0
+	const PROLOGUE_GR_INVASION   ; 1
+	const PROLOGUE_PLAYER_TO_LAB ; 2

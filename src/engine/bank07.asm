@@ -5654,9 +5654,9 @@ CallMinicomMenuFunction:
 	ret
 
 .minicom_functions:
-	key_func $00, MinicomDeckSaveMachine
-	key_func $01, MinicomMailbox
-	key_func $02, MinicomCardAlbum
+	key_func MINICOMMENU_DECK_SAVE_MACHINE, MinicomDeckSaveMachine
+	key_func MINICOMMENU_MAILBOX,           MinicomMailbox
+	key_func MINICOMMENU_CARD_ALBUM,        MinicomCardAlbum
 	db $ff
 
 MinicomDeckSaveMachine:
@@ -5678,7 +5678,7 @@ Func_1e849:
 Func_1e855:
 	farcall Func_1022a
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	farcall Func_baf1
+	farcall HandleAutoDeckMenu
 	farcall Func_10252
 	ret
 
@@ -5790,13 +5790,13 @@ _GiveBoosterPack:
 	tx BoosterPack5Text, BoosterPackFlyingPokemonText       ; BOOSTER_SKY_FLYING_POKEMON
 	tx BoosterPack6Text, BoosterPackWeAreTeamRocketText     ; BOOSTER_WE_ARE_TEAM_ROCKET
 	tx BoosterPack7Text, BoosterPackTeamRocketsAmbitionText ; BOOSTER_TEAM_ROCKETS_AMBITION
-	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_1
-	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_1
-	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_2
-	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_3
-	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_4
-	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_PACK_5
-	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_2
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_10_STAR
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_10_ENERGY
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_FROM_ALL_SETS
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_FROM_NON_ROCKET_SETS
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_FROM_LATTER_4_SETS
+	tx SingleSpaceText,  PresentPackText                    ; BOOSTER_PRESENT_FROM_ROCKET_SETS
+	tx SingleSpaceText,  DebugUnregisteredText              ; BOOSTER_DEBUG_2_STAR
 
 .DrawScreen:
 	ld a, [wCurBoosterPack]
@@ -5820,13 +5820,13 @@ _GiveBoosterPack:
 	db SKY_FLYING_POKEMON    ; BOOSTER_SKY_FLYING_POKEMON
 	db WE_ARE_TEAM_ROCKET    ; BOOSTER_WE_ARE_TEAM_ROCKET
 	db TEAM_ROCKETS_AMBITION ; BOOSTER_TEAM_ROCKETS_AMBITION
-	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_1
-	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_1
-	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_2
-	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_3
-	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_4
-	db PRESENT_PACK          ; BOOSTER_PRESENT_PACK_5
-	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_2
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_10_STAR
+	db PRESENT_PACK          ; BOOSTER_PRESENT_10_ENERGY
+	db PRESENT_PACK          ; BOOSTER_PRESENT_FROM_ALL_SETS
+	db PRESENT_PACK          ; BOOSTER_PRESENT_FROM_NON_ROCKET_SETS
+	db PRESENT_PACK          ; BOOSTER_PRESENT_FROM_LATTER_4_SETS
+	db PRESENT_PACK          ; BOOSTER_PRESENT_FROM_ROCKET_SETS
+	db BEGINNING_POKEMON     ; BOOSTER_DEBUG_2_STAR
 
 .GetPack:
 	call DoFrame
@@ -6608,8 +6608,8 @@ MailboxSelectedMail_CallMappedFunction:
 	ret
 
 .function_map:
-	key_func $00, ReadMail
-	key_func $01, DeleteMail
+	key_func MAILBOXMENU_READ,   ReadMail
+	key_func MAILBOXMENU_DELETE, DeleteMail
 	db $ff
 
 ReadMail:

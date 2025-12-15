@@ -31,13 +31,50 @@
 	const STARTMENU_NEW_GAME            ; 2
 	const STARTMENU_CONTINUE_DUEL       ; 3
 
+; debug menu options
+	const_def
+	const DEBUGMENU_POWER_ON      ; 0
+	const DEBUGMENU_COIN          ; 1
+	const DEBUGMENU_CONFIG        ; 2
+	const DEBUGMENU_EFFECT_VIEWER ; 3
+	const DEBUGMENU_CREDITS       ; 4
+	const DEBUGMENU_DUEL          ; 5
+	const DEBUGMENU_SLOT          ; 6
+
+; pause menu options
+	const_def
+	const PAUSEMENU_STATUS  ; 0
+	const PAUSEMENU_DIARY   ; 1
+	const PAUSEMENU_DECK    ; 2
+	const PAUSEMENU_MINICOM ; 3
+	const PAUSEMENU_COIN    ; 4
+	const PAUSEMENU_CONFIG  ; 5
+
+; pc menu options
+	const_def
+	const PCMENU_CARD_ALBUM     ; 0
+	const PCMENU_DECK_DIAGNOSIS ; 1
+	const PCMENU_GLOSSARY       ; 2
+	const PCMENU_PRINTER        ; 3
+
+; minicom menu options
+	const_def
+	const MINICOMMENU_DECK_SAVE_MACHINE ; 0
+	const MINICOMMENU_MAILBOX           ; 1
+	const MINICOMMENU_CARD_ALBUM        ; 2
+
+; mailbox options
+	const_def
+	const MAILBOXMENU_READ   ; 0
+	const MAILBOXMENU_DELETE ; 1
+
 ; constants for wGlossaryMenu
 	const_def
-	const GLOSSARY_GAME_BASICS            ; $0
-	const GLOSSARY_CARD_TYPE_EXPLANATIONS ; $1
-	const GLOSSARY_STATUS_WINNING_LOSING  ; $2
-	const GLOSSARY_SPECIAL_DUEL_RULES     ; $3
-	const GLOSSARY_EXIT                   ; $4
+	const GLOSSARY_GAME_BASICS            ; 0
+	const GLOSSARY_CARD_TYPE_EXPLANATIONS ; 1
+	const GLOSSARY_STATUS_WINNING_LOSING  ; 2
+	const GLOSSARY_SPECIAL_DUEL_RULES     ; 3
+	const GLOSSARY_EXIT                   ; 4
 
 ; filter types for CardTypeFilters
 ; used to categorise the different cards
@@ -54,11 +91,17 @@ DEF FILTER_ENERGY    EQU $20
 
 DEF NUM_FILTERS EQU 9
 
+; for FilterCardListInHL
+DEF FILTER_ONLY_PKMN    EQU 0
+DEF FILTER_ONLY_TRAINER EQU FILTER_TRAINER >> 4 ; 1
+DEF FILTER_ONLY_ENERGY  EQU FILTER_ENERGY  >> 4 ; 2, or any number > 1
+
 DEF NUM_DECK_CONFIRMATION_VISIBLE_CARDS EQU 7
 DEF NUM_FILTERED_LIST_VISIBLE_CARDS     EQU 6
 
-DEF NUM_DECK_SAVE_MACHINE_SLOTS EQU 50
+DEF NUM_DECK_SAVE_MACHINE_SLOTS    EQU 50
 DEF NUM_DECK_MACHINE_VISIBLE_DECKS EQU 5
+DEF NUM_AUTO_DECK_MACHINE_SLOTS    EQU 4
 
 ; deck flags
 	const_def

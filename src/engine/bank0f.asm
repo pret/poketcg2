@@ -290,13 +290,7 @@ Func_3c1d0:
 	ld a, [sLinkDuelCounter + 1]
 	ld b, a
 	call DisableSRAM
-	ld a, b
-	cp $00
-	jr c, .asm_3c278
-	jr nz, .asm_3c278
-	ld a, c
-	cp $32
-.asm_3c278
+	cp16bc_long 50
 	jr z, .asm_3c280
 	ld a, $01
 	start_script
@@ -317,13 +311,7 @@ Func_3c1d0:
 	ld a, [sLinkDuelCounter + 1]
 	ld b, a
 	call DisableSRAM
-	ld a, b
-	cp $00
-	jr c, .asm_3c2a9
-	jr nz, .asm_3c2a9
-	ld a, c
-	cp $64
-.asm_3c2a9
+	cp16bc_long 100
 	jr z, .asm_3c2b1
 	ld a, $01
 	start_script
@@ -792,12 +780,12 @@ MasonLaboratoryComputerRoom_NPCInteractions:
 	db $ff
 
 MasonLaboratoryComputerRoom_OWInteractions:
-	ow_script 2, 3, Func_3c6c3
-	ow_script 3, 3, Func_3c6c3
-	ow_script 8, 10, Func_3c6e8
-	ow_script 9, 10, Func_3c6e8
-	ow_script 8, 3, Func_3c715
-	ow_script 9, 3, Func_3c715
+	ow_script 2,  3, Script_AutoDeckMachine1
+	ow_script 3,  3, Script_AutoDeckMachine1
+	ow_script 8, 10, Script_AutoDeckMachine2
+	ow_script 9, 10, Script_AutoDeckMachine2
+	ow_script 8,  3, Script_DeckSaveMachine
+	ow_script 9,  3, Script_DeckSaveMachine
 	db $ff
 
 MasonLaboratoryComputerRoom_MapScripts:
@@ -841,13 +829,13 @@ Func_3c6b3:
 	scf
 	ret
 
-Func_3c6c3:
+Script_AutoDeckMachine1:
 	xor a
 	start_script
 	script_command_01
-	print_text Text0eec
-	ask_question Text0eed, TRUE
-	script_jump_if_b0z .ows_3c6e5
+	print_text ItsAutoDeckMachine1Text
+	ask_question AutoDeckMachine1PromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -857,21 +845,21 @@ Func_3c6c3:
 	farcall Func_1e855
 	call ResumeSong
 	ret
-.ows_3c6e5
+.cancel
 	script_command_02
 	end_script
 	ret
 
-Func_3c6e8:
+Script_AutoDeckMachine2:
 	ld a, EVENT_GOT_GOLBAT_COIN
 	farcall GetEventValue
 	ret z
 	xor a
 	start_script
 	script_command_01
-	print_text Text0eee
-	ask_question Text0eed, TRUE
-	script_jump_if_b0z .ows_3c712
+	print_text ItsAutoDeckMachine2Text
+	ask_question AutoDeckMachine1PromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -881,18 +869,18 @@ Func_3c6e8:
 	farcall Func_1e855
 	call ResumeSong
 	ret
-.ows_3c712
+.cancel
 	script_command_02
 	end_script
 	ret
 
-Func_3c715:
+Script_DeckSaveMachine:
 	xor a
 	start_script
 	script_command_01
-	print_text Text0ef0
-	ask_question Text0ef1, TRUE
-	script_jump_if_b0z .ows_3c736
+	print_text ItsDeckSaveMachineText
+	ask_question DeckSaveMachinePromptText, TRUE
+	script_jump_if_b0z .cancel
 	script_command_02
 	end_script
 	call PauseSong
@@ -901,7 +889,7 @@ Func_3c715:
 	farcall Func_1e849
 	call ResumeSong
 	ret
-.ows_3c736
+.cancel
 	script_command_02
 	end_script
 	ret
@@ -3372,29 +3360,29 @@ Func_3da09:
 	compare_loaded_var $02
 	script_jump_if_b0z .ows_3da31
 	set_var VAR_0D, $03
-	script_call Script_3dcbb
+	script_call Script_SetGrandMasterCupPrizes
 .ows_3da31
-	print_npc_text Text1017
-	script_call Script_3dd1d
-	print_npc_text Text1018
-	script_call Script_3dd3a
-	print_npc_text Text1018
-	print_npc_text Text1019
+	print_npc_text GrandMasterCupClerkWelcomeText
+	script_call Script_LoadFirstTwoGrandMasterCupPrizeCardNames
+	print_npc_text GrandMasterCupClerkPrizesText
+	script_call Script_LoadLastTwoGrandMasterCupPrizeCardNames
+	print_npc_text GrandMasterCupClerkPrizesText
+	print_npc_text GrandMasterCupClerkInviteText
 	script_jump .ows_3da52
 .ows_3da48
 	compare_loaded_var $06
-	print_variable_npc_text Text101a, Text101b
+	print_variable_npc_text GrandMasterCupClerkPlayerLostText, GrandMasterCupClerkPlayerWonGrandFinalText
 	script_jump .ows_3da69
 .ows_3da52
-	ask_question Text101c, TRUE
-	script_jump_if_b0z .ows_3da66
+	ask_question GrandMasterCupClerkEnterPromptText, TRUE
+	script_jump_if_b0z .declined
 	set_var VAR_0D, $04
 	set_var VAR_20, $00
-	print_npc_text Text101d
+	print_npc_text GrandMasterCupClerkEnterAcceptedText
 	script_command_02
 	script_jump Script_3dbde
-.ows_3da66
-	print_npc_text Text101e
+.declined
+	print_npc_text GrandMasterCupClerkEnterDeclinedText
 .ows_3da69
 	script_command_02
 	end_script
@@ -3723,58 +3711,60 @@ Func_3dc8e:
 	db SOUTH, MOVE_4
 	db $ff
 
-Script_3dcbb:
-	set_var VAR_10, $ff
-	set_var VAR_11, $ff
-	set_var VAR_12, $ff
-	set_var VAR_13, $ff
+Script_SetGrandMasterCupPrizes:
+; init
+	set_var VAR_GRANDMASTERCUP_PRIZE_INDEX_0, $ff
+	set_var VAR_GRANDMASTERCUP_PRIZE_INDEX_1, $ff
+	set_var VAR_GRANDMASTERCUP_PRIZE_INDEX_2, $ff
+	set_var VAR_GRANDMASTERCUP_PRIZE_INDEX_3, $ff
 	quit_script
-	call Func_3dcf2
-	ld a, VAR_10
+; set
+	call .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	farcall SetVarValue
-	call Func_3dcf2
-	ld a, VAR_11
+	call .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_1
 	farcall SetVarValue
-	call Func_3dcf2
-	ld a, VAR_12
+	call .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_2
 	farcall SetVarValue
-	call Func_3dcf2
-	ld a, VAR_13
+	call .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_3
 	farcall SetVarValue
 	ld a, $01
 	start_script
 	script_ret
 
-Func_3dcf2:
-.asm_3dcf2
-	ld a, $25
+; return a = random prize index, while also ensuring no dupes
+.PickPrize:
+	ld a, NUM_GRANDMASTERCUP_PRIZE_POOL
 	call Random
 	ld c, a
-	ld a, VAR_10
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	farcall GetVarValue
 	cp c
-	jr z, .asm_3dcf2
-	ld a, VAR_11
+	jr z, .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_1
 	farcall GetVarValue
 	cp c
-	jr z, .asm_3dcf2
-	ld a, VAR_12
+	jr z, .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_2
 	farcall GetVarValue
 	cp c
-	jr z, .asm_3dcf2
-	ld a, VAR_13
+	jr z, .PickPrize
+	ld a, VAR_GRANDMASTERCUP_PRIZE_INDEX_3
 	farcall GetVarValue
 	cp c
-	jr z, .asm_3dcf2
+	jr z, .PickPrize
 	ret
 
-Script_3dd1d:
+Script_LoadFirstTwoGrandMasterCupPrizeCardNames:
 	quit_script
-	xor a
-	farcall Func_4568f
+	xor a ; GRANDMASTERCUP_PRIZE_0
+	farcall GetGrandMasterCupPrizeCardName
 	call LoadTxRam2
-	ld a, $01
-	farcall Func_4568f
+	ld a, GRANDMASTERCUP_PRIZE_1
+	farcall GetGrandMasterCupPrizeCardName
 	ld a, l
 	ld [wTxRam2_b], a
 	ld a, h
@@ -3783,13 +3773,13 @@ Script_3dd1d:
 	start_script
 	script_ret
 
-Script_3dd3a:
+Script_LoadLastTwoGrandMasterCupPrizeCardNames:
 	quit_script
-	ld a, $02
-	farcall Func_4568f
+	ld a, GRANDMASTERCUP_PRIZE_2
+	farcall GetGrandMasterCupPrizeCardName
 	call LoadTxRam2
-	ld a, $03
-	farcall Func_4568f
+	ld a, GRANDMASTERCUP_PRIZE_3
+	farcall GetGrandMasterCupPrizeCardName
 	ld a, l
 	ld [wTxRam2_b], a
 	ld a, h
@@ -3881,9 +3871,9 @@ Func_3ddb8:
 	lb de, 12, 3
 	ld b, WEST
 	farcall SetOWObjectTilePositionAndDirection
-	farcall Func_45416
+	farcall SetGrandMasterCupOpponents
 	farcall Func_454fa
-	ld a, VAR_14
+	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
 	farcall Func_45484
 	lb de, 9, 4
@@ -4441,8 +4431,8 @@ Script_3e21c:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr z, .asm_3e272
 	farcall Func_454bc
 	ld a, $01
@@ -4576,8 +4566,8 @@ Func_3e2a4:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr nz, .asm_3e38e
 	ld a, $01
 	start_script
@@ -4621,8 +4611,8 @@ Func_3e2a4:
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall LoadNPCDuelistDeck
-	cp $03
+	farcall GetNPCByDeck
+	cp NPC_RONALD
 	jr nz, .asm_3e3fc
 	ld a, $01
 	start_script
@@ -4864,8 +4854,8 @@ Func_3e2a4:
 	quit_script
 	xor a
 .asm_3e5e6
-	farcall Func_45676
-	farcall Func_4568f
+	farcall GetGrandMasterCupPrizeCardID
+	farcall GetGrandMasterCupPrizeCardName
 	farcall Func_1f7d4
 	inc a
 	cp $04
@@ -4882,13 +4872,13 @@ Func_3e2a4:
 	farcall Func_1022a
 	push bc
 	ld a, b
-	farcall Func_45676
+	farcall GetGrandMasterCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_c646
 	pop bc
 	ld a, c
-	farcall Func_45676
+	farcall GetGrandMasterCupPrizeCardID
 	ld e, c
 	ld d, b
 	farcall Func_c646
@@ -6793,13 +6783,7 @@ Func_3f44f:
 	ld [wd615], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
-	ld a, b
-	cp h
-	jr c, .asm_3f4bc
-	jr nz, .asm_3f4bc
-	ld a, c
-	cp l
-.asm_3f4bc
+	cp16bc_long hl
 	jr nc, .asm_3f4c9
 	ld a, $01
 	start_script
@@ -7283,13 +7267,7 @@ Func_3f858:
 	ld b, a
 	ld a, [wTextBoxFrameColor]
 	ld c, a
-	ld a, b
-	cp $00
-	jr c, .asm_3f874
-	jr nz, .asm_3f874
-	ld a, c
-	cp $03
-.asm_3f874
+	cp16bc_bytes 0, 3
 	jr nz, .asm_3f87b
 	farcall Func_1352a
 	ret
