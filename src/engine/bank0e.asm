@@ -5384,7 +5384,7 @@ PrintDeckMachineEntry:
 	ld [hl], a
 
 	push bc
-	ld a, $ff ; all decks
+	ld a, ALL_DECKS
 	call .CountCardsNeededToBuildInCardCollection
 	ld [wd49e], a
 	pop bc

@@ -142,21 +142,17 @@ Glossary:
 	db 11, 18 ; BLACK_HOLE
 
 .MainMenuParameters:
-	db 1, 3 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 5 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menuparams_x_y_dy_num 1, 3, 2, 5
 
 .MainMenuItems:
-	textitem 2,  1, GlossaryTitleText
-	textitem 3,  3, GlossaryGameBasicsText
-	textitem 3,  5, GlossaryCardTypesAndKeywordsText
-	textitem 3,  7, GlossaryStatusesAndDecisionText
-	textitem 3,  9, GlossarySpecialRulesText
-	textitem 3, 11, GlossaryExitText
-	db $ff
+	textitems_begin
+		textitem 2,  1, GlossaryTitleText
+		textitem 3,  3, GlossaryGameBasicsText
+		textitem 3,  5, GlossaryCardTypesAndKeywordsText
+		textitem 3,  7, GlossaryStatusesAndDecisionText
+		textitem 3,  9, GlossarySpecialRulesText
+		textitem 3, 11, GlossaryExitText
+	textitems_end
 
 ; shows which topics are inside this Glossary menu
 ; each menu has a text ID for title and for the items

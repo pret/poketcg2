@@ -760,12 +760,13 @@ DrawDiaryStatusBox:
 	ret
 
 .TextItems:
-	textitem 7, 4, PlayerDiaryNameText
-	textitem 7, 6, PlayerDiaryEventCoinText
-	textitem 18, 6, PlayerDiaryCardsUnitText
-	textitem 7, 8, PlayerDiaryAlbumText
-	textitem 7, 10, PlayerDiaryPlayTimeText
-	db $ff
+	textitems_begin
+		textitem  7,  4, PlayerDiaryNameText
+		textitem  7,  6, PlayerDiaryEventCoinText
+		textitem 18,  6, PlayerDiaryCardsUnitText
+		textitem  7,  8, PlayerDiaryAlbumText
+		textitem  7, 10, PlayerDiaryPlayTimeText
+	textitems_end
 
 ; c - ?
 DrawSavePromptAndWaitForInput:
@@ -867,10 +868,11 @@ DrawStatusScreenTopBox:
 	ret
 
 .TextItems:
-	textitem 7, 2, PlayerDiaryNameText
-	textitem 7, 4, PlayerDiaryAlbumText
-	textitem 7, 6, PlayerDiaryPlayTimeText
-	db $ff
+	textitems_begin
+		textitem 7, 2, PlayerDiaryNameText
+		textitem 7, 4, PlayerDiaryAlbumText
+		textitem 7, 6, PlayerDiaryPlayTimeText
+	textitems_end
 
 DrawStatusScreenBottomBox:
 	lb de, 0, 8
@@ -903,9 +905,10 @@ DrawStatusScreenBottomBox:
 	ret
 
 .TextItems:
-	textitem 1, 8, PlayerStatusEventCoinTitleText
-	textitem 4, 10, PlayerStatusCurrentCoinText
-	db $ff
+	textitems_begin
+		textitem 1,  8, PlayerStatusEventCoinTitleText
+		textitem 4, 10, PlayerStatusCurrentCoinText
+	textitems_end
 
 SetAllPaletteFadeConfigsToEnabled:
 	call SetAllBGPaletteFadeConfigsToEnabled
@@ -2194,7 +2197,7 @@ ShowStartMenu:
 
 .HandleMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld de, $4090
+	lb de, $40, $90
 	call SetupText
 	call .DrawMenu
 	farcall SetFrameFuncAndFadeFromWhite
@@ -2269,97 +2272,42 @@ ShowStartMenu:
 	dw .Config4Params ; STARTMENU_CONFIG_4
 
 .Config0Params
-	db TRUE ; ?
-	db 12, 4 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 0 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
-	textitem 2, 2, MainMenuNewGameText
-	db $ff ; end
+	menuboxparams_config_w_h_vstep 12, 4, 0
+	menuboxtexts_begin
+		menuboxtext 2, 2, MainMenuNewGameText
+	menuboxtexts_end
 
 .Config1Params
-	db TRUE ; ?
-	db 12, 6 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
-	textitem 2, 2, MainMenuContinueFromDiaryText
-	textitem 2, 4, MainMenuNewGameText
-	db $ff ; end
+	menuboxparams_config_w_h_vstep 12, 6, 1
+	menuboxtexts_begin
+		menuboxtext 2, 2, MainMenuContinueFromDiaryText
+		menuboxtext 2, 4, MainMenuNewGameText
+	menuboxtexts_end
 
 .Config2Params
-	db TRUE ; ?
-	db 12, 8 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
-	textitem 2, 2, MainMenuCardPopText
-	textitem 2, 4, MainMenuContinueFromDiaryText
-	textitem 2, 6, MainMenuNewGameText
-	db $ff ; end
+	menuboxparams_config_w_h_vstep 12, 8, 1
+	menuboxtexts_begin
+		menuboxtext 2, 2, MainMenuCardPopText
+		menuboxtext 2, 4, MainMenuContinueFromDiaryText
+		menuboxtext 2, 6, MainMenuNewGameText
+	menuboxtexts_end
 
 .Config3Params
-	db TRUE ; ?
-	db 12, 10 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
-	textitem 2, 2, MainMenuCardPopText
-	textitem 2, 4, MainMenuContinueFromDiaryText
-	textitem 2, 6, MainMenuNewGameText
-	textitem 2, 8, MainMenuContinueDuelText
-	db $ff ; end
+	menuboxparams_config_w_h_vstep 12, 10, 1
+	menuboxtexts_begin
+		menuboxtext 2, 2, MainMenuCardPopText
+		menuboxtext 2, 4, MainMenuContinueFromDiaryText
+		menuboxtext 2, 6, MainMenuNewGameText
+		menuboxtext 2, 8, MainMenuContinueDuelText
+	menuboxtexts_end
 
 .Config4Params
-	db TRUE ; ?
-	db 12, 8 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
-	textitem 2, 2, MainMenuContinueFromDiaryText
-	textitem 2, 4, MainMenuNewGameText
-	textitem 2, 6, MainMenuContinueDuelText
-	db $ff ; end
+	menuboxparams_config_w_h_vstep 12, 8, 1
+	menuboxtexts_begin
+		menuboxtext 2, 2, MainMenuContinueFromDiaryText
+		menuboxtext 2, 4, MainMenuNewGameText
+		menuboxtext 2, 6, MainMenuContinueDuelText
+	menuboxtexts_end
 
 _StartMenuBoxUpdate::
 	push af
@@ -2469,11 +2417,12 @@ _StartMenuBoxUpdate::
 	ret
 
 .TextItems:
-	textitem  3, 12, PlayerDiaryEventCoinText
-	textitem 15, 12, PlayerDiaryCardsUnitText
-	textitem  3, 14, PlayerDiaryAlbumText
-	textitem  3, 16, PlayerDiaryPlayTimeText
-	db $ff
+	textitems_begin
+		textitem  3, 12, PlayerDiaryEventCoinText
+		textitem 15, 12, PlayerDiaryCardsUnitText
+		textitem  3, 14, PlayerDiaryAlbumText
+		textitem  3, 16, PlayerDiaryPlayTimeText
+	textitems_end
 
 .CardPop:
 	lb de, 1, 12
@@ -2622,9 +2571,10 @@ ConfirmPlayerNameAndGender:
 	ret
 
 .TextItems:
-	textitem 2, 2, PlayerDiaryNameText
-	textitem 2, 6, PlayerGenderText
-	db $ff
+	textitems_begin
+		textitem 2, 2, PlayerDiaryNameText
+		textitem 2, 6, PlayerGenderText
+	textitems_end
 
 .ShowYesOrNoMenu:
 	ldtx hl, IsThisOKText_2
@@ -4025,10 +3975,7 @@ Func_1dd89:
 	push hl
 	push af
 	push bc
-	lb de, 0, 10
-	ld b, BANK(_CoinPageMenuParams)
-	ld hl, _CoinPageMenuParams
-	call LoadMenuBoxParams
+	ldmenubox_reverse _CoinPageMenuParams, 0, 10
 	call DrawMenuBox
 	pop bc
 	push bc
@@ -4115,28 +4062,17 @@ Func_1de16:
 	ret
 
 _CoinPageMenuParams:
-	db FALSE ; skip clear
-	db 20, 7 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db PAD_B ; held keys
-	db TRUE ; has horizontal scroll
-	db 4 ; vertical step
-	dw Func_1def1 ; update function
-	dw NULL ; label text ID
-
-	textitem  1,  1, SingleSpaceText
-	textitem  6,  1, SingleSpaceText
-	textitem 11,  1, SingleSpaceText
-	textitem 16,  1, SingleSpaceText
-	textitem  1,  5, SingleSpaceText
-	textitem  6,  5, SingleSpaceText
-	textitem 11,  5, SingleSpaceText
-	textitem 16,  5, SingleSpaceText
-	db $ff
+	menuboxparams_noskipclear_w_h_vstep_fn 20, 7, 4, Func_1def1
+	menuboxtexts_begin
+		menuboxtext  1,  1, SingleSpaceText
+		menuboxtext  6,  1, SingleSpaceText
+		menuboxtext 11,  1, SingleSpaceText
+		menuboxtext 16,  1, SingleSpaceText
+		menuboxtext  1,  5, SingleSpaceText
+		menuboxtext  6,  5, SingleSpaceText
+		menuboxtext 11,  5, SingleSpaceText
+		menuboxtext 16,  5, SingleSpaceText
+	menuboxtexts_end
 
 _CoinPageTextTable:
 	tx EventCoinPage1Text
@@ -5582,10 +5518,7 @@ ShowMinicomScreen:
 	ret
 
 DrawMinicomMainScreen:
-	ld b, BANK(.menu)
-	ld hl, .menu
-	lb de, 0, 3
-	call LoadMenuBoxParams
+	ldmenubox .menu, 0, 3
 	ld a, [wMinicomMenuCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
@@ -5613,14 +5546,13 @@ DrawMinicomMainScreen:
 	ret
 
 .menu:
-	menu_box_params TRUE, 20, 10, \
-		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, FALSE, 1, NULL, NULL
-	textitem 3, 2, MinicomDeckSaveMachineText
-	textitem 3, 4, MinicomMailboxText
-	textitem 3, 6, MinicomCardAlbumText
-	textitem 3, 8, PCMenuShutdownText
-	db $ff
+	menuboxparams_nohscroll_w_h_vstep 20, 10, 1
+	menuboxtexts_begin
+		menuboxtext 3, 2, MinicomDeckSaveMachineText
+		menuboxtext 3, 4, MinicomMailboxText
+		menuboxtext 3, 6, MinicomCardAlbumText
+		menuboxtext 3, 8, PCMenuShutdownText
+	menuboxtexts_end
 
 .SpriteAnimGfxParams:
 	dw TILESET_SMALL_ENVELOPE
@@ -6319,10 +6251,7 @@ MailboxMainScreen:
 	push bc
 	push de
 	push hl
-	lb de, 1, 5
-	ld b, BANK(MailboxMainScreenMenuBoxParams)
-	ld hl, MailboxMainScreenMenuBoxParams
-	call LoadMenuBoxParams
+	ldmenubox_reverse MailboxMainScreenMenuBoxParams, 1, 5
 	ld a, [wSelectedMailCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
@@ -6462,14 +6391,13 @@ Func_1ee97:
 
 ; a menu box with blank text items that line up with mail items on screen
 MailboxMainScreenMenuBoxParams:
-	menu_box_params FALSE, 18, 12, \
-		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
-	textitem  1, 1, SingleSpaceText
-	textitem  1, 4, SingleSpaceText
-	textitem  1, 7, SingleSpaceText
-	textitem  1, 10, SingleSpaceText
-	db $ff
+	menuboxparams_noskipclear_nohscroll_w_h_vstep_fn 18, 12, 1, UpdateMailboxPage
+	menuboxtexts_begin
+		menuboxtext 1,  1, SingleSpaceText
+		menuboxtext 1,  4, SingleSpaceText
+		menuboxtext 1,  7, SingleSpaceText
+		menuboxtext 1, 10, SingleSpaceText
+	menuboxtexts_end
 
 Func_1eef8:
 	ld a, [wSelectedMailCursorPosition]
@@ -6575,10 +6503,7 @@ ScrollMailboxPageOnPadUp:
 SECTION "Bank 7@6fa4", ROMX[$6fa4], BANK[$7]
 
 MailboxSelectedMail_LoadMenuBoxParams:
-	lb de, 0, 0
-	ld b, BANK(.menu_box_params)
-	ld hl, .menu_box_params
-	call LoadMenuBoxParams
+	ldmenubox_reverse .menu_box_params, 0, 0
 	xor a
 	call DrawMenuBox
 	ldtx hl, MailboxActionPromptText
@@ -6587,13 +6512,12 @@ MailboxSelectedMail_LoadMenuBoxParams:
 	ret
 
 .menu_box_params
-	menu_box_params TRUE, 20, 5, \
-		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, TRUE, 0, NULL, NULL
-	textitem  2, 3, MailboxActionReadText
-	textitem  9, 3, MailboxActionDeleteText
-	textitem 16, 3, GiftCenterQuitText
-	db $ff
+	menuboxparams_w_h_vstep 20, 5, 0
+	menuboxtexts_begin
+		menuboxtext  2, 3, MailboxActionReadText
+		menuboxtext  9, 3, MailboxActionDeleteText
+		menuboxtext 16, 3, GiftCenterQuitText
+	menuboxtexts_end
 
 MailboxSelectedMail_HandleMenuBox:
 	xor a
@@ -6633,9 +6557,10 @@ DrawReadMailScreenHeader:
 	ret
 
 .text_items:
-	textitem 1, 2, MailboxSenderText
-	textitem 1, 3, MailboxSubjectText
-	db $ff
+	textitems_begin
+		textitem 1, 2, MailboxSenderText
+		textitem 1, 3, MailboxSubjectText
+	textitems_end
 
 _ReadMail:
 	lb bc, 1, 17
@@ -6941,12 +6866,9 @@ MailboxYesNoPrompt_DeleteUnreadConfirm:
 ; hl - text
 MailboxYesNoPrompt:
 	push hl
-	ld b, BANK(.menu_box_params)
-	ld hl, .menu_box_params
-	lb de, 0, 0
-	call LoadMenuBoxParams
+	ldmenubox .menu_box_params, 0, 0
 	pop hl
-	ld a, $01
+	ld a, 1
 	call DrawMenuBox
 	lb de, 1, 1
 	call InitTextPrinting_ProcessTextFromIDVRAM0
@@ -6954,12 +6876,11 @@ MailboxYesNoPrompt:
 	ret
 
 .menu_box_params
-	menu_box_params TRUE, 20, 5, \
-		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, TRUE, 0, NULL, NULL
-	textitem  7, 3, PlayerDiaryPromptYesText
-	textitem  11, 3, PlayerDiaryPromptNoText
-	db $ff
+	menuboxparams_w_h_vstep 20, 5, 0
+	menuboxtexts_begin
+		menuboxtext  7, 3, PlayerDiaryPromptYesText
+		menuboxtext 11, 3, PlayerDiaryPromptNoText
+	menuboxtexts_end
 
 Func_1f210:
 	ld a, [wSelectedMailCursorPosition]

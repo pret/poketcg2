@@ -1063,13 +1063,7 @@ HandleAttachedEnergyMenuInput:
 	ret
 
 AttachedEnergyCardListParameters:
-	db 1, 5 ; cursor x, cursor y
-	db 4 ; item x
-	db 14 ; maximum length, in tiles, occupied by the name and level string of each card in the list
-	db 4 ; number of items selectable without scrolling
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	cardlistparams_x_y_num_fn 1, 5, 4, NULL
 
 ; triggered by selecting the "Attack" item in the duel menu
 DuelMenu_Attack:
@@ -1200,12 +1194,7 @@ OpenAttackPage:
 	ret
 
 AttackMenuParameters:
-	db 1, 13 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 2 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menuparams_x_y_dy_num 1, 13, 2, 2
 
 ; display the card page with id at wAttackPageNumber of wLoadedCard1
 DisplayAttackPage:
@@ -1870,13 +1859,7 @@ DisplayNoBasicPokemonInHandScreen:
 	ret
 
 NoBasicPokemonCardListParameters:
-	db 1, 3 ; cursor x, cursor y
-	db 4 ; item x
-	db 14 ; maximum length, in tiles, occupied by the name and level string of each card in the list
-	db 7 ; number of items selectable without scrolling
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	cardlistparams_x_y_num_fn 1, 3, 7, NULL
 
 ; used only during the practice duel with Sam.
 ; displays the list with the player's cards in hand, and the player's name above the list.
@@ -2515,14 +2498,14 @@ DisplayDuelistTurnScreen:
 SECTION "Bank 1@517e", ROMX[$517e], BANK[$1]
 
 DuelMenuData:
-	; x, y, text id
-	textitem  3, 14, HandText
-	textitem  9, 14, CheckText
-	textitem 15, 14, RetreatText
-	textitem  3, 16, AttackText
-	textitem  9, 16, PokemonPowerHiraganaText
-	textitem 15, 16, DoneText
-	db $ff
+	textitems_begin
+		textitem  3, 14, HandText
+		textitem  9, 14, CheckText
+		textitem 15, 14, RetreatText
+		textitem  3, 16, AttackText
+		textitem  9, 16, PokemonPowerHiraganaText
+		textitem 15, 16, DoneText
+	textitems_end
 
 ; display the screen that prompts the player to choose a Pokemon card to
 ; place in the arena or in the bench at the beginning of the duel.
@@ -2858,21 +2841,10 @@ CardListItemSelectionMenu:
 	ret
 
 ItemSelectionMenuParameters:
-	db 1, 14 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 2 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menuparams_x_y_dy_num 1, 14, 2, 2
 
 CardListParameters:
-	db 1, 3 ; cursor x, cursor y
-	db 4 ; item x
-	db 14 ; maximum length, in tiles, occupied by the name and level string of each card in the list
-	db 5 ; number of items selectable without scrolling
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw CardListFunction ; function pointer if non-0
+	cardlistparams_x_y_num_fn 1, 3, 5, CardListFunction
 
 ; return carry if any of the buttons is pressed, and load the graphics
 ; of the card pointed to by the cursor whenever a d-pad key is released.
@@ -3764,10 +3736,11 @@ DrawCardPageBoxAndCardGfx:
 	ret
 
 CardPageRetreatWRTextData:
-	textitem 1, 14, RetreatText
-	textitem 1, 15, WeaknessText
-	textitem 1, 16, ResistanceText
-	db $ff
+	textitems_begin
+		textitem 1, 14, RetreatText
+		textitem 1, 15, WeaknessText
+		textitem 1, 16, ResistanceText
+	textitems_end
 
 CardPageLvHPNoTextTileData:
 	db 11,  2, SYM_Lv, 0
@@ -3909,9 +3882,10 @@ DrawCardPageSet2AndRarityIcons:
 	ret
 
 CardPageLengthWeightTextData:
-	textitem 1, 11, LengthText
-	textitem 1, 12, WeightText
-	db $ff
+	textitems_begin
+		textitem 1, 11, LengthText
+		textitem 1, 12, WeightText
+	textitems_end
 
 CardPageLvHPTextTileData:
 	db 11, 2, SYM_Lv, 0
@@ -4213,20 +4187,10 @@ DisplayPlayAreaScreen:
 	ret
 
 PlayAreaScreenMenuParameters_ActivePokemonIncluded:
-	db 0, 0 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db 6 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw PlayAreaScreenMenuFunction ; function pointer if non-0
+	menuparams_x_y_dy_num_fn 0, 0, 3, 6, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuParameters_ActivePokemonExcluded:
-	db 0, 3 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db 6 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw PlayAreaScreenMenuFunction ; function pointer if non-0
+	menuparams_x_y_dy_num_fn 0, 3, 3, 6, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuFunction:
 	ldh a, [hKeysPressed]

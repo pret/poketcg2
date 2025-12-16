@@ -3272,13 +3272,7 @@ DrawCardPopMenuBox:
 	tx CardPopExitText
 
 CardPopMenuParams:
-	db 9 ; x pos
-	db 2 ; y pos
-	db 2 ; y spacing
-	db 3 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw HandleCardPopMenuInput ; wCardListHandlerFunction
+	menuparams_x_y_dy_num_fn 9, 2, 2, 3, HandleCardPopMenuInput
 
 ; returns carry if selection with A btn was made
 HandleCardPopMenuInput:
@@ -4014,14 +4008,15 @@ ViewCardPopRecords:
 	ret
 
 .text_items
-	textitem 1,  0, CardPopRecordContentText
-	textitem 8,  4, CardPopRecordFriendCoinQuantityText
-	textitem 8,  6, CardPopRecordFriendCardQuantityText
-	textitem 8,  8, CardPopRecordFriendBattleQuantityText
-	textitem 1, 10, CardPopRecordCardsText
-	textitem 1, 12, CardPopRecordYourResultText
-	textitem 1, 15, CardPopRecordFriendResultText
-	db $ff ; end
+	textitems_begin
+		textitem 1,  0, CardPopRecordContentText
+		textitem 8,  4, CardPopRecordFriendCoinQuantityText
+		textitem 8,  6, CardPopRecordFriendCardQuantityText
+		textitem 8,  8, CardPopRecordFriendBattleQuantityText
+		textitem 1, 10, CardPopRecordCardsText
+		textitem 1, 12, CardPopRecordYourResultText
+		textitem 1, 15, CardPopRecordFriendResultText
+	textitems_end
 
 .PicIDs
 	db MARK_PIC
@@ -4093,13 +4088,7 @@ ViewCardPopRecords:
 	ret
 
 .MenuParams:
-	db 1 ; x pos
-	db 4 ; y pos
-	db 3 ; y spacing
-	db 5 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw .HandleMenuInput ; wCardListHandlerFunction
+	menuparams_x_y_dy_num_fn 1, 4, 3, 5, .HandleMenuInput
 
 .HandleMenuInput:
 	ldh a, [hDPadHeld]
@@ -4742,10 +4731,11 @@ DrawBottomCardInfoInSRAMGfxBuffer0:
 	ret
 
 RetreatWeakResistData:
-	textitem 1, 70, RetreatText
-	textitem 1, 71, WeaknessText
-	textitem 1, 72, ResistanceText
-	db $ff
+	textitems_begin
+		textitem 1, 70, RetreatText
+		textitem 1, 71, WeaknessText
+		textitem 1, 72, ResistanceText
+	textitems_end
 
 Func_1a011:
 	call TryInitPrinterCommunications
@@ -6066,33 +6056,39 @@ HandCardsGfx:
 	INCBIN "gfx/hand_cards.2bpp"
 
 WhatIsYourNameData:
-	textitem 1, 1, WhatIsYourNameText
-	db $ff ; end
+	textitems_begin
+		textitem 1, 1, WhatIsYourNameText
+	textitems_end
 
 Deck1RenameText:
-	textitem 2, 1, Deck1Text
-	textitem 14, 1, DeckText
-	db $ff
+	textitems_begin
+		textitem  2, 1, Deck1Text
+		textitem 14, 1, DeckText
+	textitems_end
 
 Deck2RenameText:
-	textitem 2, 1, Deck2Text
-	textitem 14, 1, DeckText
-	db $ff
+	textitems_begin
+		textitem  2, 1, Deck2Text
+		textitem 14, 1, DeckText
+	textitems_end
 
 Deck3RenameText:
-	textitem 2, 1, Deck3Text
-	textitem 14, 1, DeckText
-	db $ff
+	textitems_begin
+		textitem  2, 1, Deck3Text
+		textitem 14, 1, DeckText
+	textitems_end
 
 Deck4RenameText:
-	textitem 2, 1, Deck4Text
-	textitem 14, 1, DeckText
-	db $ff
+	textitems_begin
+		textitem  2, 1, Deck4Text
+		textitem 14, 1, DeckText
+	textitems_end
 
 Deck5RenameText:
-	textitem 2, 1, Deck5Text
-	textitem 14, 1, DeckText
-	db $ff
+	textitems_begin
+		textitem  2, 1, Deck5Text
+		textitem 14, 1, DeckText
+	textitems_end
 
 ; dupe of PlaySFXConfirmOrCancel in bank 2
 ; if a = MENU_CANCEL (-1), play SFX_CANCEL (usually following B button)
@@ -6307,14 +6303,14 @@ UpdateNamingScreenUI:
 	ld l, c
 	call PlaceTextItems
 .print
-	ld hl, .text_items1
+	ld hl, .end_text
 	call PlaceTextItems
 
 	ld a, [wNamingScreenMode]
 	or a
 	jr nz, .asm_1afe5
 ; NAME_MODE_HIRAGANA
-	ld hl, .text_items2
+	ld hl, .switches_from_hiragana
 	call PlaceTextItems
 	ldtx hl, HiraganaKeyboardText
 	jr .asm_1b00a
@@ -6322,7 +6318,7 @@ UpdateNamingScreenUI:
 	dec a
 	jr nz, .asm_1aff3
 ; NAME_MODE_KATAKANA
-	ld hl, .text_items3
+	ld hl, .switches_from_katakana
 	call PlaceTextItems
 	ldtx hl, KatakanaKeyboardText
 	jr .asm_1b00a
@@ -6330,13 +6326,13 @@ UpdateNamingScreenUI:
 	dec a
 	jr nz, .asm_1b001
 ; NAME_MODE_UPPER_ABC
-	ld hl, .text_items4
+	ld hl, .switches_from_uppercase
 	call PlaceTextItems
 	ldtx hl, UppercaseKeyboardText
 	jr .asm_1b00a
 .asm_1b001
 ; NAME_MODE_LOWER_ABC
-	ld hl, .text_items5
+	ld hl, .switches_from_lowercase
 	call PlaceTextItems
 	ldtx hl, LowercaseKeyboardText
 .asm_1b00a
@@ -6346,33 +6342,22 @@ UpdateNamingScreenUI:
 	call EnableLCD
 	ret
 
-.text_items1:
-	textitem 16, 16, EndText
-	db $ff ; end
+.end_text
+	textitems_begin
+		textitem 16, 16, EndText
+	textitems_end
 
-.text_items2:
-	textitem  2, 16, KatakanaOptionText
-	textitem  7, 16, UppercaseOptionText
-	textitem 12, 16, LowercaseOptionText
-	db $ff ; end
+.switches_from_hiragana
+	keyboardswitchers KatakanaOptionText, UppercaseOptionText, LowercaseOptionText
 
-.text_items3:
-	textitem  2, 16, HiraganaOptionText
-	textitem  7, 16, UppercaseOptionText
-	textitem 12, 16, LowercaseOptionText
-	db $ff ; end
+.switches_from_katakana
+	keyboardswitchers HiraganaOptionText, UppercaseOptionText, LowercaseOptionText
 
-.text_items4:
-	textitem  2, 16, HiraganaOptionText
-	textitem  7, 16, KatakanaOptionText
-	textitem 12, 16, LowercaseOptionText
-	db $ff ; end
+.switches_from_uppercase
+	keyboardswitchers HiraganaOptionText, KatakanaOptionText, LowercaseOptionText
 
-.text_items5:
-	textitem  2, 16, HiraganaOptionText
-	textitem  7, 16, KatakanaOptionText
-	textitem 12, 16, UppercaseOptionText
-	db $ff ; end
+.switches_from_lowercase
+	keyboardswitchers HiraganaOptionText, KatakanaOptionText, UppercaseOptionText
 
 DrawTextboxForKeyboard:
 	lb de, 0, 3
