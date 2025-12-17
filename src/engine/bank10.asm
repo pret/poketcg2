@@ -3208,9 +3208,9 @@ Func_41c60:
 	jr nz, .asm_41c9f
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_41d64)
+	ld a, BANK(GrAirportGr5LandedScript)
 	ld [wd592], a
-	ld hl, Func_41d64
+	ld hl, GrAirportGr5LandedScript
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -3268,14 +3268,14 @@ Func_41cd3:
 	xor a
 	start_script
 	script_command_01
-	npc_ask_question Text0829, TRUE
-	script_jump_if_b0nz .ows_41cf5
-	print_npc_text Text082a
+	npc_ask_question GRAirportGR5FlightPromptText, TRUE
+	script_jump_if_b0nz .start_flight
+	print_npc_text GRAirportGR5DeclinedFlightText
 	script_command_02
 	end_script
 	ret
-.ows_41cf5
-	print_npc_text Text082b
+.start_flight
+	print_npc_text GRAirportGR5StartFlightText
 	script_command_02
 	get_player_direction
 	compare_loaded_var WEST
@@ -3337,7 +3337,7 @@ Func_41cd3:
 	db EAST, MOVE_2
 	db $ff
 
-Func_41d64:
+GrAirportGr5LandedScript:
 	xor a
 	start_script
 	do_frames 60
@@ -3346,24 +3346,24 @@ Func_41d64:
 	move_npc NPC_GR_5, .NPCMovement_41da0
 	wait_for_player_animation
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_41d94
+	script_jump_if_b0z .postgame
 	check_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-	script_jump_if_b0z .ows_41d88
+	script_jump_if_b0z .repeat
 	set_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	script_command_01
-	print_npc_text Text082c
+	print_npc_text GRAirportGR5LandedInitialText
 	script_command_02
-	script_jump .ows_41d99
-.ows_41d88
+	script_jump .done
+.repeat
 	set_active_npc NPC_GR_5, DialogGR5Text
 	script_command_01
-	print_npc_text Text082d
+	print_npc_text GRAirportGR5LandedRepeatText
 	script_command_02
-	script_jump .ows_41d99
-.ows_41d94
+	script_jump .done
+.postgame
 	send_mail $0e
-	script_jump .ows_41d88
-.ows_41d99
+	script_jump .repeat
+.done
 	end_script
 	ld a, $00
 	ld [wd582], a

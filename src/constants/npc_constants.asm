@@ -246,7 +246,7 @@ DEF NUM_PICS EQU const_value
 	const NPC_TCG_CHALLENGE_HALL_GIRL           ; $91
 	const NPC_TCG_CUP_CLERK_LEFT                ; $92
 	const NPC_TCG_CUP_CLERK_RIGHT               ; $93
-	const NPC_GR_CLERK_6                        ; $94
+	const NPC_GR_CLERK_GR_AIRPORT_2             ; $94
 	const NPC_GR_AIRPORT_GR_PAPPY               ; $95
 	const NPC_GR_AIRPORT_GR_LASS                ; $96
 	const NPC_GR_CLERK_GRASS_FORT               ; $97

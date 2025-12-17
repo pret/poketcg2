@@ -744,13 +744,13 @@ TcgAirportEntrance_NPCs:
 	db $ff
 
 TcgAirportEntrance_NPCInteractions:
-	npc_script NPC_GR_5, Func_3468f
-	npc_script NPC_TCG_AIRPORT_GR_SIS, Func_3471c
-	npc_script NPC_TCG_AIRPORT_MARTIAL_ARTIST, Func_34742
+	npc_script NPC_GR_5, TcgAirportEntranceGr5Script
+	npc_script NPC_TCG_AIRPORT_GR_SIS, TcgAirportEntranceGrSisScript
+	npc_script NPC_TCG_AIRPORT_MARTIAL_ARTIST, TcgAirportEntranceMartialArtistScript
 	db $ff
 
 TcgAirportEntrance_OWInteractions:
-	ow_script 7, 5, Func_346f6
+	ow_script 7, 5, TcgAirportEntranceGrClerkScript
 	db $ff
 
 TcgAirportEntrance_MapScripts:
@@ -851,7 +851,7 @@ Func_34635:
 .asm_3468e
 	ret
 
-Func_3468f:
+TcgAirportEntranceGr5Script:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -865,13 +865,13 @@ Func_3468f:
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z Script_346c9
 	check_event EVENT_TALKED_TO_GR5_TCG_AIRPORT
-	script_jump_if_b0z .ows_346b6
+	script_jump_if_b0z .talked
 	set_event EVENT_TALKED_TO_GR5_TCG_AIRPORT
-	print_npc_text Text081f
-	script_jump .ows_346b9
-.ows_346b6
-	print_npc_text Text0820
-.ows_346b9
+	print_npc_text TCGAirportGR5FirstInteractionText
+	script_jump .done
+.talked
+	print_npc_text TCGAirportGR5GRCoinIncompleteText
+.done
 	script_command_02
 	end_script
 	ret
@@ -888,7 +888,7 @@ Func_346bc:
 	ret
 
 Script_346c9:
-	print_npc_text Text0821
+	print_npc_text TCGAirportGR5GRCoinCompleteText
 	script_command_02
 	move_active_npc .NPCMovement_346f0
 	move_player .NPCMovement_346f3, TRUE
@@ -911,7 +911,7 @@ Script_346c9:
 	db EAST, MOVE_3
 	db $ff
 
-Func_346f6:
+TcgAirportEntranceGrClerkScript:
 	ld a, NPC_GR_CLERK_TCG_AIRPORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -923,17 +923,17 @@ Func_346f6:
 	start_script
 	script_command_01
 	check_event EVENT_GOT_GR_COIN
-	script_jump_if_b0z .ows_34716
-	print_npc_text Text0822
-	script_jump .ows_34719
-.ows_34716
-	print_npc_text Text0823
-.ows_34719
+	script_jump_if_b0z .has_gr_coin
+	print_npc_text TCGAirportGRClerkGRCoinIncompleteText
+	script_jump .done
+.has_gr_coin
+	print_npc_text TCGAirportGRClerkGRCoinCompleteText
+.done
 	script_command_02
 	end_script
 	ret
 
-Func_3471c:
+TcgAirportEntranceGrSisScript:
 	ld a, NPC_TCG_AIRPORT_GR_SIS
 	ld [wScriptNPC], a
 	ldtx hl, DialogSisText
@@ -945,17 +945,17 @@ Func_3471c:
 	start_script
 	script_command_01
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3473c
-	print_npc_text Text0824
-	script_jump .ows_3473f
-.ows_3473c
-	print_npc_text Text0825
-.ows_3473f
+	script_jump_if_b0z .postgame
+	print_npc_text TCGAirportGRSisNormalText
+	script_jump .done
+.postgame
+	print_npc_text TCGAirportGRSisPostgameText
+.done
 	script_command_02
 	end_script
 	ret
 
-Func_34742:
+TcgAirportEntranceMartialArtistScript:
 	ld a, NPC_TCG_AIRPORT_MARTIAL_ARTIST
 	ld [wScriptNPC], a
 	ldtx hl, DialogMartialArtistText
@@ -967,17 +967,17 @@ Func_34742:
 	start_script
 	script_command_01
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3476d
+	script_jump_if_b0z .postgame
 	check_event EVENT_GOT_GR_COIN
-	script_jump_if_b0z .ows_34767
-	print_npc_text Text0826
-	script_jump .ows_34770
-.ows_34767
-	print_npc_text Text0827
-	script_jump .ows_34770
-.ows_3476d
-	print_npc_text Text0828
-.ows_34770
+	script_jump_if_b0z .has_gr_coin
+	print_npc_text TCGAirportMartialArtistGRCoinIncompleteText
+	script_jump .done
+.has_gr_coin
+	print_npc_text TCGAirportMartialArtistGRCoinCompleteText
+	script_jump .done
+.postgame
+	print_npc_text TCGAirportMartialArtistPostgameText
+.done
 	script_command_02
 	end_script
 	ret
@@ -1001,7 +1001,7 @@ TcgAirport_NPCs:
 	db $ff
 
 TcgAirport_NPCInteractions:
-	npc_script NPC_GR_5, Func_34910
+	npc_script NPC_GR_5, TcgAirportGr5Script
 	db $ff
 
 TcgAirport_MapScripts:
@@ -1043,9 +1043,9 @@ Func_347ea:
 	jr nz, .asm_34871
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_348a5)
+	ld a, BANK(TcgAirportGr5FirstFlightScript)
 	ld [wd592], a
-	ld hl, Func_348a5
+	ld hl, TcgAirportGr5FirstFlightScript
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1071,9 +1071,9 @@ Func_347ea:
 .asm_3483d
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_349a1)
+	ld a, BANK(TcgAirportGr5LandedScript)
 	ld [wd592], a
-	ld hl, Func_349a1
+	ld hl, TcgAirportGr5LandedScript
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1120,7 +1120,7 @@ Func_3489d:
 	scf
 	ret
 
-Func_348a5:
+TcgAirportGr5FirstFlightScript:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -1136,7 +1136,7 @@ Func_348a5:
 	wait_for_player_animation
 	do_frames 30
 	script_command_01
-	print_npc_text Text081a
+	print_npc_text TCGAirportGR5FlightInitialText
 	script_command_02
 	get_player_y_position
 	compare_loaded_var $09
@@ -1182,7 +1182,7 @@ Func_348a5:
 	db EAST, MOVE_1
 	db $ff
 
-Func_34910:
+TcgAirportGr5Script:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -1193,14 +1193,14 @@ Func_34910:
 	xor a
 	start_script
 	script_command_01
-	npc_ask_question Text081b, TRUE
-	script_jump_if_b0nz .ows_34932
-	print_npc_text Text081c
+	npc_ask_question TCGAirportGR5FlightPromptText, TRUE
+	script_jump_if_b0nz .start_flight
+	print_npc_text TCGAirportGR5DeclinedFlightText
 	script_command_02
 	end_script
 	ret
-.ows_34932
-	print_npc_text Text081d
+.start_flight
+	print_npc_text TCGAirportGR5StartFlightText
 	script_command_02
 	get_player_direction
 	compare_loaded_var WEST
@@ -1262,7 +1262,7 @@ Func_34910:
 	db EAST, MOVE_2
 	db $ff
 
-Func_349a1:
+TcgAirportGr5LandedScript:
 	xor a
 	start_script
 	do_frames 60
@@ -1272,7 +1272,7 @@ Func_349a1:
 	wait_for_player_animation
 	set_active_npc NPC_GR_5, DialogGR5Text
 	script_command_01
-	print_npc_text Text081e
+	print_npc_text TCGAirportGR5LandedText
 	script_command_02
 	end_script
 	ld a, $00
@@ -1400,14 +1400,14 @@ GrAirportEntrance_NPCs:
 	db $ff
 
 GrAirportEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_6, Func_34b36
-	npc_script NPC_GR_AIRPORT_GR_PAPPY, Func_34b51
-	npc_script NPC_GR_AIRPORT_GR_LASS, Func_34b77
+	npc_script NPC_GR_CLERK_GR_AIRPORT_2, GrAirportEntranceGrClerkScript
+	npc_script NPC_GR_AIRPORT_GR_PAPPY, GrAirportEntranceGrPappyScript
+	npc_script NPC_GR_AIRPORT_GR_LASS, GrAirportEntranceGrLassScript
 	db $ff
 
 GrAirportEntrance_OWInteractions:
-	ow_script 4, 5, Func_34b36
-	ow_script 8, 2, Func_34b9d
+	ow_script 4, 5, GrAirportEntranceGrClerkScript
+	ow_script 8, 2, GrAirportEntranceStatueScript
 	db $ff
 
 GrAirportEntrance_MapScripts:
@@ -1438,8 +1438,8 @@ Func_34b26:
 	scf
 	ret
 
-Func_34b36:
-	ld a, NPC_GR_CLERK_6
+GrAirportEntranceGrClerkScript:
+	ld a, NPC_GR_CLERK_GR_AIRPORT_2
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
 	ld a, l
@@ -1449,12 +1449,12 @@ Func_34b36:
 	xor a
 	start_script
 	script_command_01
-	print_npc_text Text082e
+	print_npc_text GRAirportGRClerkText
 	script_command_02
 	end_script
 	ret
 
-Func_34b51:
+GrAirportEntranceGrPappyScript:
 	ld a, NPC_GR_AIRPORT_GR_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRPappyText
@@ -1466,17 +1466,17 @@ Func_34b51:
 	start_script
 	script_command_01
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_34b71
-	print_npc_text Text082f
-	script_jump .ows_34b74
-.ows_34b71
-	print_npc_text Text0830
-.ows_34b74
+	script_jump_if_b0z .postgame
+	print_npc_text GRAirportGRPappyNormalText
+	script_jump .done
+.postgame
+	print_npc_text GRAirportGRPappyPostgameText
+.done
 	script_command_02
 	end_script
 	ret
 
-Func_34b77:
+GrAirportEntranceGrLassScript:
 	ld a, NPC_GR_AIRPORT_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -1488,17 +1488,17 @@ Func_34b77:
 	start_script
 	script_command_01
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_34b97
-	print_npc_text Text0831
-	script_jump .ows_34b9a
-.ows_34b97
-	print_npc_text Text0832
-.ows_34b9a
+	script_jump_if_b0z .postgame
+	print_npc_text GRAirportGRLassNormalText
+	script_jump .done
+.postgame
+	print_npc_text GRAirportGRLassPostgameText
+.done
 	script_command_02
 	end_script
 	ret
 
-Func_34b9d:
+GrAirportEntranceStatueScript:
 	xor a
 	start_script
 	script_command_01

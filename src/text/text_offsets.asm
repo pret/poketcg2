@@ -2080,31 +2080,31 @@ TextOffsets::
 	textpointer DebugHoldGrandMasterCupText                           ; 0x0817
 	textpointer DebugGet10CardsEachText                               ; 0x0818
 	textpointer DebugGet10EnergyCardsEachText                         ; 0x0819
-	textpointer Text081a                                              ; 0x081a
-	textpointer Text081b                                              ; 0x081b
-	textpointer Text081c                                              ; 0x081c
-	textpointer Text081d                                              ; 0x081d
-	textpointer Text081e                                              ; 0x081e
-	textpointer Text081f                                              ; 0x081f
-	textpointer Text0820                                              ; 0x0820
-	textpointer Text0821                                              ; 0x0821
-	textpointer Text0822                                              ; 0x0822
-	textpointer Text0823                                              ; 0x0823
-	textpointer Text0824                                              ; 0x0824
-	textpointer Text0825                                              ; 0x0825
-	textpointer Text0826                                              ; 0x0826
-	textpointer Text0827                                              ; 0x0827
-	textpointer Text0828                                              ; 0x0828
-	textpointer Text0829                                              ; 0x0829
-	textpointer Text082a                                              ; 0x082a
-	textpointer Text082b                                              ; 0x082b
-	textpointer Text082c                                              ; 0x082c
-	textpointer Text082d                                              ; 0x082d
-	textpointer Text082e                                              ; 0x082e
-	textpointer Text082f                                              ; 0x082f
-	textpointer Text0830                                              ; 0x0830
-	textpointer Text0831                                              ; 0x0831
-	textpointer Text0832                                              ; 0x0832
+	textpointer TCGAirportGR5FlightInitialText                        ; 0x081a
+	textpointer TCGAirportGR5FlightPromptText                         ; 0x081b
+	textpointer TCGAirportGR5DeclinedFlightText                       ; 0x081c
+	textpointer TCGAirportGR5StartFlightText                          ; 0x081d
+	textpointer TCGAirportGR5LandedText                               ; 0x081e
+	textpointer TCGAirportGR5FirstInteractionText                     ; 0x081f
+	textpointer TCGAirportGR5GRCoinIncompleteText                     ; 0x0820
+	textpointer TCGAirportGR5GRCoinCompleteText                       ; 0x0821
+	textpointer TCGAirportGRClerkGRCoinIncompleteText                 ; 0x0822
+	textpointer TCGAirportGRClerkGRCoinCompleteText                   ; 0x0823
+	textpointer TCGAirportGRSisNormalText                             ; 0x0824
+	textpointer TCGAirportGRSisPostgameText                           ; 0x0825
+	textpointer TCGAirportMartialArtistGRCoinIncompleteText           ; 0x0826
+	textpointer TCGAirportMartialArtistGRCoinCompleteText             ; 0x0827
+	textpointer TCGAirportMartialArtistPostgameText                   ; 0x0828
+	textpointer GRAirportGR5FlightPromptText                          ; 0x0829
+	textpointer GRAirportGR5DeclinedFlightText                        ; 0x082a
+	textpointer GRAirportGR5StartFlightText                           ; 0x082b
+	textpointer GRAirportGR5LandedInitialText                         ; 0x082c
+	textpointer GRAirportGR5LandedRepeatText                          ; 0x082d
+	textpointer GRAirportGRClerkText                                  ; 0x082e
+	textpointer GRAirportGRPappyNormalText                            ; 0x082f
+	textpointer GRAirportGRPappyPostgameText                          ; 0x0830
+	textpointer GRAirportGRLassNormalText                             ; 0x0831
+	textpointer GRAirportGRLassPostgameText                           ; 0x0832
 	textpointer Text0833                                              ; 0x0833
 	textpointer Text0834                                              ; 0x0834
 	textpointer Text0835                                              ; 0x0835
