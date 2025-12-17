@@ -565,7 +565,7 @@ Challenge_DrawOrPlaceInPlayAreaEffect:
 	ret
 
 ; hTempList holds 2 $ff-terminated lists of cards
-; first is the player's cards, and the second is the opponent's cards 
+; first is the player's cards, and the second is the opponent's cards
 .loop_add_to_play_area_player
 	ld a, [hli]
 	cp $ff
@@ -4087,12 +4087,7 @@ RefreshBenchMultiSelectCounts:
 	ret
 
 BenchMultiSelectMenuParameters:
-	db 0, 3 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 BenchMultiSelectMenuAISelection:
 	ldh [hTemp_ffa0], a
@@ -4428,12 +4423,7 @@ RefreshRockBlastSelectCounts:
 	ret
 
 RockBlastSelectionMenuParameters:
-	db 0, 0 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Fireworks_InitialEffect:
 	farcall Func_6808d
@@ -4904,7 +4894,7 @@ GasExplosionEffect:
 	ld a, DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
 	or a
-	ret nz ; 
+	ret nz ;
 	ld a, TRUE
 	ld [wKnockedOutByGasExplosion], a
 	ret
@@ -5572,7 +5562,7 @@ Rollout_PlayerSelectEffect:
 	ldtx hl, ChooseHowManyFoodCountersToRemoveText
 	call DrawWideTextBox_PrintText
 
-	; draw the different choices of 
+	; draw the different choices of
 	; number of food counters to remove (0, 1, 2)
 	; in a vertical list
 	ldh a, [hCurSelectionItem]
@@ -5635,12 +5625,7 @@ Rollout_RemoveCountersAndDamageBoostEffect:
 	ret
 
 RolloutMenuParameters:
-	db 1, 2 ; cursor x, cursor y
-	db 1 ; y displacement between items
-	db 6 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
 
 	ret ; stray ret
 
@@ -6148,12 +6133,7 @@ EarthWave_BenchDamageEffect:
 	ret
 
 EarthPowerMenuParameters:
-	db 0, 3 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 SpecialDelivery_UseAndDeckCheck:
 	farcall CheckIfCanUsePkmnPowerThisTurn
@@ -6916,7 +6896,7 @@ SpinningShower_AttackRandomPlayAreaCardsEffect:
 	dec a
 	jr z, .AttackPlayAreaCard ; no bench, attack Arena card
 
-	; label each Play Area card (0, 1, 2, etc) 
+	; label each Play Area card (0, 1, 2, etc)
 	ld hl, wPlayAreaList
 	push hl
 	xor a
@@ -8584,7 +8564,7 @@ Pokedex_PlayerSelection:
 	call YesOrNoMenuWithText_LeftAligned
 	jr c, .clear_list ; "No" was selected, start over
 	; selection was confirmed
-	
+
 ; now wDuelTempList + 10 will be overwritten with the
 ; card indices in order of selection.
 	ld hl, wDuelTempList + 10
@@ -8935,7 +8915,7 @@ Revive_PlaceInPlayAreaEffect:
 	call MoveDiscardPileCardToHand
 	call AddCardToHand
 	call PutHandPokemonCardInPlayArea
-	
+
 ; set HP to half, rounded up
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var

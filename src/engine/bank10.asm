@@ -1044,6 +1044,7 @@ PrintTCGIslandLocationName:
 	textitem 1, 4, MapTCGAirportText       ; OWMAP_TCG_AIRPORT
 	textitem 1, 2, MapTCGChallengeHallText ; OWMAP_TCG_CHALLENGE_HALL
 	textitem 1, 3, MapPokemonDomeText      ; OWMAP_POKEMON_DOME
+	; no sentinels
 
 Func_40682:
 	ld a, [wCurOWLocation]

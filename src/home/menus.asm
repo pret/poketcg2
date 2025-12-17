@@ -318,9 +318,9 @@ DuelMenuCursorCoords::
 PrintCardListItems::
 	call InitializeCardListParameters
 	ld hl, wMenuFunctionPointer
-	ld a, $24 ; LOW(CardListMenuFunction)
+	ld a, LOW(CardListMenuFunction)
 	ld [hli], a
-	ld a, $25 ; HIGH(CardListMenuFunction)
+	ld a, HIGH(CardListMenuFunction)
 	ld [hli], a
 	ld a, 2
 	ld [wYDisplacementBetweenMenuItems], a
@@ -890,12 +890,7 @@ DrawNarrowTextBox_WaitForInput::
 	ret
 
 NarrowTextBoxMenuParameters::
-	db 10, 17 ; cursor x, cursor y
-	db 1 ; y displacement between items
-	db 1 ; number of items
-	db SYM_CURSOR_D ; cursor tile number
-	db SYM_BOX_BOTTOM ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 10, 17, 1, 1, SYM_CURSOR_D, SYM_BOX_BOTTOM, NULL
 
 ; draw a 20x6 text box aligned to the bottom of the screen
 DrawWideTextBox::
@@ -942,12 +937,7 @@ WaitForWideTextBoxInput_AdvanceRNG::
 	ret
 
 WideTextBoxMenuParameters::
-	db 18, 17 ; cursor x, cursor y
-	db 1 ; y displacement between items
-	db 1 ; number of items
-	db SYM_CURSOR_D ; cursor tile number
-	db SYM_BOX_BOTTOM ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 18, 17, 1, 1, SYM_CURSOR_D, SYM_BOX_BOTTOM, NULL
 
 ; display a two-item horizontal menu with custom text provided in hl and handle input
 TwoItemHorizontalMenu::

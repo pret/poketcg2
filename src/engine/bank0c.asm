@@ -442,6 +442,7 @@ PrintGRIslandLocationName:
 	textitem 33, 1, MapGRPsychicStrongholdText ; OWMAP_GR_PSYCHIC_STRONGHOLD
 	textitem 33, 3, MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
 	textitem 33, 2, MapGRCastleText            ; OWMAP_GR_CASTLE
+	; no sentinels
 
 Func_3030a:
 	sla a ; *2

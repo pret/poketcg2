@@ -9,9 +9,26 @@
 
 8 bytes. Used by InitializeMenuParameters.
 */
-MACRO menu_parameters
+MACRO? menu_params
 	db \1, \2, \3, \4, \5, \6
 	dw \7
+ENDM
+
+/*
+	\1 ; cursor x coordinate            - int
+	\2 ; cursor y coordinate            - int
+	\3 ; y displacement between items   - int
+	\4 ; x displacement between items   - int
+	\5 ; number of items                - int
+	\6 ; cursor tile number             - SYM_*, usually SYM_CURSOR_R
+	\7 ; tile behind cursor             - SYM_*, usually SYM_SPACE
+	\8 ; function pointer if non-0      - function ptr or NULL
+
+9 bytes. Used by InitializeScrollMenuParameters.
+*/
+MACRO? scrollmenu_params
+	db \1, \2, \3, \4, \5, \6, \7
+	dw \8
 ENDM
 
 /*
@@ -30,10 +47,27 @@ ENDM
 	\13 ; label text ID             - text ptr or NULL
 
 15 bytes. Used by LoadMenuBoxParams.
-Usually followed by a list of textitem macros, then $ff
+Usually followed by textitem(s) and textitems_end
 */
-MACRO menu_box_params
+MACRO? menubox_params
 	db \1, \2, \3, \4, \5, \6, \7, \8, \9, \<10>, \<11>
 	dw \<12>
 	tx \<13>
+ENDM
+
+/*
+	\1 ; cursor x coordinate                               - int
+	\2 ; cursor y coordinate                               - int
+	\3 ; item x position                                   - int, usually 4
+	\4 ; item name max length in tiles (name+level string) - int, usually 14
+	\5 ; number of items (without scrolling)               - int
+	\6 ; cursor tile number                                - SYM_*, usually SYM_CURSOR_R
+	\7 ; tile behind cursor                                - SYM_*, usually SYM_SPACE
+	\8 ; function pointer if non-0                         - function ptr or NULL
+
+9 bytes. Used by InitializeCardListParameters
+*/
+MACRO? cardlist_params
+	db \1, \2, \3, \4, \5, \6, \7
+	dw \8
 ENDM

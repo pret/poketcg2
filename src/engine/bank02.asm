@@ -1172,7 +1172,7 @@ DeckSelectionMenu:
 	jp DeckSelectionSubMenu
 
 .MenuParameters:
-	menu_parameters 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 HandleStartButtonInDeckSelectionMenu:
 	ldh a, [hDPadHeld]
@@ -1534,11 +1534,11 @@ CancelDeckSelectionSubMenu:
 	ret
 
 DeckSelectScreenTextItems:
-	textitem 2, 14, ModifyDeckText
+	textitem  2, 14, ModifyDeckText
 	textitem 12, 14, ChooseAsDuelingDeckText
-	textitem 2, 16, RenameDeckText
+	textitem  2, 16, RenameDeckText
 	textitem 12, 16, CancelDeckText
-	db $ff
+	textitems_end
 
 GetSRAMPointerToCurDeck:
 	ld a, [wCurDeck]
@@ -1897,7 +1897,7 @@ DrawDecksScreen:
 	textitem 4,  5, Deck2Text ; "2・"
 	textitem 4,  8, Deck3Text ; "3・"
 	textitem 4, 11, Deck4Text ; "4・"
-	db $ff
+	textitems_end
 
 CopyDeckName:
 	ld de, wDefaultText
@@ -2716,14 +2716,7 @@ CheckIfThereAreAnyBasicCardsInDeck:
 	ret
 
 FiltersCardSelectionParams:
-	db 1 ; x pos
-	db 1 ; y pos
-	db 0 ; y spacing
-	db 2 ; x spacing
-	db NUM_FILTERS ; num entries
-	db SYM_CURSOR_D ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw NULL ; wCardListHandlerFunction
+	scrollmenu_params 1, 1, 0, 2, NUM_FILTERS, SYM_CURSOR_D, SYM_SPACE, NULL
 
 SECTION "Bank 2@5a43", ROMX[$5a43], BANK[$2]
 
@@ -2858,7 +2851,7 @@ DeckBuildMenuTextItems:
 	textitem  2, 4, DeckBuildingSaveText
 	textitem  9, 4, DeckBuildingDismantleText
 	textitem 16, 4, CancelDeckText
-	db $ff
+	textitems_end
 
 ; prints "/60" to the coordinates given in de
 PrintSlashSixty:
@@ -3553,14 +3546,7 @@ InitializeScrollMenuParameters:
 	ret
 
 DeckMachineSelectionParams:
-	db 1 ; x pos
-	db 2 ; y pos
-	db 2 ; y spacing
-	db 0 ; x spacing
-	db 5 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw NULL ; wCardListHandlerFunction
+	scrollmenu_params 1, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 ; 0x9eb5
 
 SECTION "Bank 2@5ebe", ROMX[$5ebe], BANK[$2]
@@ -4330,14 +4316,7 @@ HandleDeckConfirmationMenu:
 	jr .selected_card
 
 .CardSelectionParams
-	db 0 ; x pos
-	db 5 ; y pos
-	db 2 ; y spacing
-	db 0 ; x spacing
-	db 7 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw NULL ; wCardListHandlerFunction
+	scrollmenu_params 0, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles the cases where player presses
 ; left or right to jump in a scrolling list
@@ -5059,14 +5038,7 @@ Func_a786:
 	jp .asm_a7a0
 
 GeneralCardListMenuParams:
-	db 1 ; x pos
-	db 5 ; y pos
-	db 2 ; y spacing
-	db 0 ; x spacing
-	db 7 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw NULL ; wCardListHandlerFunction
+	scrollmenu_params 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 GeneralCardListUpdateFunc:
 	ld a, $01
@@ -6368,22 +6340,10 @@ CardAlbum:
 	jp .booster_pack_menu
 
 .BoosterPackMenuParams:
-	db 3, 2 ; x,y offset
-	db 2 ; y separation
-	db 0 ; x separation
-	db 5 ; number of items
-	db SYM_CURSOR_R ; visible cursor
-	db SYM_SPACE ; invisible cursor
-	dw NULL ; update func
+	scrollmenu_params 3, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .BoosterPackCardsMenuParams
-	db 1, 4 ; x,y offset
-	db 2 ; y separation
-	db 0 ; x separation
-	db 7 ; number of items
-	db SYM_CURSOR_R ; visible cursor
-	db SYM_SPACE ; invisible cursor
-	dw NULL ; update func
+	scrollmenu_params 1, 4, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .CountCardIDs:
 	ld hl, wBoosterPackCardList
@@ -6801,8 +6761,8 @@ PrinterMenu_PokemonCards:
 	call InitTextPrinting
 	ldtx hl, PrintThisCardPromptYesNoText
 	call ProcessTextFromID
-	ld a, $01
-	ld hl, Data_ad05
+	ld a, 1
+	ld hl, PrinterMenu_Params
 	call InitializeScrollMenuParameters
 .loop_frame_3
 	call DoFrame
@@ -6853,15 +6813,8 @@ PrinterMenu_PokemonCards:
 	call BankswitchVRAM0
 	ret
 
-Data_ad05:
-	db 3 ; x pos
-	db 3 ; y pos
-	db 0 ; y spacing
-	db 4 ; x spacing
-	db 2 ; num entries
-	db SYM_CURSOR_R ; visible cursor tile
-	db SYM_SPACE ; invisible cursor tile
-	dw NULL ; wCardListHandlerFunction
+PrinterMenu_Params:
+	scrollmenu_params 3, 3, 0, 4, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 PrinterMenu_CardList:
 	call WriteCardListsTerminatorBytes
@@ -6879,8 +6832,8 @@ PrinterMenu_CardList:
 	call InitTextPrinting
 	ldtx hl, PrintCardListPromptText
 	call ProcessTextFromID
-	ld a, $01
-	ld hl, Data_ad05
+	ld a, 1
+	ld hl, PrinterMenu_Params
 	call InitializeScrollMenuParameters
 .loop_frame
 	call DoFrame
@@ -6937,12 +6890,7 @@ PrinterMenu:
 	dw .QuitPrint
 
 .MenuParameters:
-	db 5, 2 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 5 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 5, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .PrintQuality:
 	ldtx hl, PrinterContrastSettingsPromptText
@@ -6972,13 +6920,7 @@ PrinterMenu:
 	jr .loop_input
 
 .PrinterQualityMenuParams
-	db 5, 16 ; x,y offset
-	db 0 ; y separation
-	db 2 ; x separation
-	db 5 ; number of items
-	db SYM_CURSOR_R ; visible cursor
-	db SYM_SPACE ; invisible cursor
-	dw NULL ; update func
+	scrollmenu_params 5, 16, 0, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_b57c:
 	push de
@@ -7509,10 +7451,4 @@ PrinterMenu_DeckConfiguration:
 	ret
 
 AutoDeckMachineMenuParams:
-	db 4, 2 ; cursor x, cursor y
-	db 2 ; y separation
-	db 0 ; x separation
-	db NUM_DECK_MACHINE_VISIBLE_DECKS ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	scrollmenu_params 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL

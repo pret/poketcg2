@@ -1068,12 +1068,7 @@ HandleDefendingPokemonAttackSelection:
 	jr .start
 
 .menu_parameters
-	db 1, 13 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 2 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; loads in hl the pointer to attack's name.
 ; input:
@@ -1548,20 +1543,10 @@ Func_6873c:
 	ret
 
 PlayAreaSelectionMenuParameters:
-	db 0, 0 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 BenchSelectionMenuParameters:
-	db 0, 3 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 SpitPoison_AIEffect:
 	ld a, 10 / 2

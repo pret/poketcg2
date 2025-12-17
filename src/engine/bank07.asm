@@ -760,12 +760,12 @@ DrawDiaryStatusBox:
 	ret
 
 .TextItems:
-	textitem 7, 4, PlayerDiaryNameText
-	textitem 7, 6, PlayerDiaryEventCoinText
-	textitem 18, 6, PlayerDiaryCardsUnitText
-	textitem 7, 8, PlayerDiaryAlbumText
-	textitem 7, 10, PlayerDiaryPlayTimeText
-	db $ff
+	textitem  7,  4, PlayerDiaryNameText
+	textitem  7,  6, PlayerDiaryEventCoinText
+	textitem 18,  6, PlayerDiaryCardsUnitText
+	textitem  7,  8, PlayerDiaryAlbumText
+	textitem  7, 10, PlayerDiaryPlayTimeText
+	textitems_end
 
 ; c - ?
 DrawSavePromptAndWaitForInput:
@@ -870,7 +870,7 @@ DrawStatusScreenTopBox:
 	textitem 7, 2, PlayerDiaryNameText
 	textitem 7, 4, PlayerDiaryAlbumText
 	textitem 7, 6, PlayerDiaryPlayTimeText
-	db $ff
+	textitems_end
 
 DrawStatusScreenBottomBox:
 	lb de, 0, 8
@@ -903,9 +903,9 @@ DrawStatusScreenBottomBox:
 	ret
 
 .TextItems:
-	textitem 1, 8, PlayerStatusEventCoinTitleText
+	textitem 1,  8, PlayerStatusEventCoinTitleText
 	textitem 4, 10, PlayerStatusCurrentCoinText
-	db $ff
+	textitems_end
 
 SetAllPaletteFadeConfigsToEnabled:
 	call SetAllBGPaletteFadeConfigsToEnabled
@@ -2194,7 +2194,7 @@ ShowStartMenu:
 
 .HandleMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld de, $4090
+	lb de, $40, $90
 	call SetupText
 	call .DrawMenu
 	farcall SetFrameFuncAndFadeFromWhite
@@ -2269,97 +2269,47 @@ ShowStartMenu:
 	dw .Config4Params ; STARTMENU_CONFIG_4
 
 .Config0Params
-	db TRUE ; ?
-	db 12, 4 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 0 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 12, 4, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 0, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuNewGameText
-	db $ff ; end
+	textitems_end
 
 .Config1Params
-	db TRUE ; ?
-	db 12, 6 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 12, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuContinueFromDiaryText
 	textitem 2, 4, MainMenuNewGameText
-	db $ff ; end
+	textitems_end
 
 .Config2Params
-	db TRUE ; ?
-	db 12, 8 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 12, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuCardPopText
 	textitem 2, 4, MainMenuContinueFromDiaryText
 	textitem 2, 6, MainMenuNewGameText
-	db $ff ; end
+	textitems_end
 
 .Config3Params
-	db TRUE ; ?
-	db 12, 10 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 12, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuCardPopText
 	textitem 2, 4, MainMenuContinueFromDiaryText
 	textitem 2, 6, MainMenuNewGameText
 	textitem 2, 8, MainMenuContinueDuelText
-	db $ff ; end
+	textitems_end
 
 .Config4Params
-	db TRUE ; ?
-	db 12, 8 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw StartMenuBoxUpdate ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 12, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuContinueFromDiaryText
 	textitem 2, 4, MainMenuNewGameText
 	textitem 2, 6, MainMenuContinueDuelText
-	db $ff ; end
+	textitems_end
 
 _StartMenuBoxUpdate::
 	push af
@@ -2473,7 +2423,7 @@ _StartMenuBoxUpdate::
 	textitem 15, 12, PlayerDiaryCardsUnitText
 	textitem  3, 14, PlayerDiaryAlbumText
 	textitem  3, 16, PlayerDiaryPlayTimeText
-	db $ff
+	textitems_end
 
 .CardPop:
 	lb de, 1, 12
@@ -2624,7 +2574,7 @@ ConfirmPlayerNameAndGender:
 .TextItems:
 	textitem 2, 2, PlayerDiaryNameText
 	textitem 2, 6, PlayerGenderText
-	db $ff
+	textitems_end
 
 .ShowYesOrNoMenu:
 	ldtx hl, IsThisOKText_2
@@ -4115,19 +4065,9 @@ Func_1de16:
 	ret
 
 _CoinPageMenuParams:
-	db FALSE ; skip clear
-	db 20, 7 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db PAD_B ; held keys
-	db TRUE ; has horizontal scroll
-	db 4 ; vertical step
-	dw Func_1def1 ; update function
-	dw NULL ; label text ID
-
+	menubox_params FALSE, 20, 7, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 4, Func_1def1, NULL
 	textitem  1,  1, SingleSpaceText
 	textitem  6,  1, SingleSpaceText
 	textitem 11,  1, SingleSpaceText
@@ -4136,7 +4076,7 @@ _CoinPageMenuParams:
 	textitem  6,  5, SingleSpaceText
 	textitem 11,  5, SingleSpaceText
 	textitem 16,  5, SingleSpaceText
-	db $ff
+	textitems_end
 
 _CoinPageTextTable:
 	tx EventCoinPage1Text
@@ -5613,14 +5553,14 @@ DrawMinicomMainScreen:
 	ret
 
 .menu:
-	menu_box_params TRUE, 20, 10, \
+	menubox_params TRUE, 20, 10, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, NULL, NULL
 	textitem 3, 2, MinicomDeckSaveMachineText
 	textitem 3, 4, MinicomMailboxText
 	textitem 3, 6, MinicomCardAlbumText
 	textitem 3, 8, PCMenuShutdownText
-	db $ff
+	textitems_end
 
 .SpriteAnimGfxParams:
 	dw TILESET_SMALL_ENVELOPE
@@ -6462,14 +6402,14 @@ Func_1ee97:
 
 ; a menu box with blank text items that line up with mail items on screen
 MailboxMainScreenMenuBoxParams:
-	menu_box_params FALSE, 18, 12, \
+	menubox_params FALSE, 18, 12, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
-	textitem  1, 1, SingleSpaceText
-	textitem  1, 4, SingleSpaceText
-	textitem  1, 7, SingleSpaceText
-	textitem  1, 10, SingleSpaceText
-	db $ff
+	textitem 1,  1, SingleSpaceText
+	textitem 1,  4, SingleSpaceText
+	textitem 1,  7, SingleSpaceText
+	textitem 1, 10, SingleSpaceText
+	textitems_end
 
 Func_1eef8:
 	ld a, [wSelectedMailCursorPosition]
@@ -6587,13 +6527,13 @@ MailboxSelectedMail_LoadMenuBoxParams:
 	ret
 
 .menu_box_params
-	menu_box_params TRUE, 20, 5, \
+	menubox_params TRUE, 20, 5, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, TRUE, 0, NULL, NULL
 	textitem  2, 3, MailboxActionReadText
 	textitem  9, 3, MailboxActionDeleteText
 	textitem 16, 3, GiftCenterQuitText
-	db $ff
+	textitems_end
 
 MailboxSelectedMail_HandleMenuBox:
 	xor a
@@ -6635,7 +6575,7 @@ DrawReadMailScreenHeader:
 .text_items:
 	textitem 1, 2, MailboxSenderText
 	textitem 1, 3, MailboxSubjectText
-	db $ff
+	textitems_end
 
 _ReadMail:
 	lb bc, 1, 17
@@ -6946,7 +6886,7 @@ MailboxYesNoPrompt:
 	lb de, 0, 0
 	call LoadMenuBoxParams
 	pop hl
-	ld a, $01
+	ld a, 1
 	call DrawMenuBox
 	lb de, 1, 1
 	call InitTextPrinting_ProcessTextFromIDVRAM0
@@ -6954,12 +6894,12 @@ MailboxYesNoPrompt:
 	ret
 
 .menu_box_params
-	menu_box_params TRUE, 20, 5, \
+	menubox_params TRUE, 20, 5, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, TRUE, 0, NULL, NULL
 	textitem  7, 3, PlayerDiaryPromptYesText
-	textitem  11, 3, PlayerDiaryPromptNoText
-	db $ff
+	textitem 11, 3, PlayerDiaryPromptNoText
+	textitems_end
 
 Func_1f210:
 	ld a, [wSelectedMailCursorPosition]

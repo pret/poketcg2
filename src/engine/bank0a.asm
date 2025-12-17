@@ -3532,7 +3532,7 @@ Func_2bc4f:
 	inc hl
 	ld [hl], d
 
-	ld a, $ff ; all decks
+	ld a, ALL_DECKS
 	farcall DrawDecksScreen
 	xor a
 .asm_2bc5c
@@ -3569,12 +3569,7 @@ Func_2bc4f:
 	ret
 
 .MenuParameters:
-	db 1, 2 ; cursor x, cursor y
-	db 3 ; y displacement between items
-	db NUM_DECKS ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 _HandleAutoDeckMenu:
 	ld [wd548], a

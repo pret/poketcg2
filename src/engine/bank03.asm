@@ -5590,17 +5590,16 @@ PlayAnimationOnAPress:
 	ret
 
 DebugEffectViewer_PlaceTextItems:
-	ld hl, .Data_f32f
+	ld hl, .text_items
 	call PlaceTextItemsVRAM0
 	ret
 
-.Data_f32f:
-	; x, y, text offset
+.text_items
 	textitem 10, 14, DebugEffectViewerStartButtonSwapText
 	textitem 14, 15, DebugEffectViewerAButtonPlayText
 	textitem 14, 16, DebugEffectViewerBButtonStopText
 	textitem  2, 13, DebugEffectViewerAnimationNumberText
-	db $ff
+	textitems_end
 
 ChangeAnimationPlayerSideOnStartPress:
 	ldh a, [hKeysPressed]

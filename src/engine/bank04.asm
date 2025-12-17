@@ -43,19 +43,9 @@ InitStartupDebugMenuBox:
 	ret
 
 .menu_params:
-	db TRUE ; skip clear
-	db 16, 11 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db PAD_B ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw NULL ; update function
-	tx DebugKondoDebugText ; label text ID
-
+	menubox_params TRUE, 16, 11, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, DebugKondoDebugText
 	textitem 2, 2, DebugPowerOnText
 	textitem 2, 3, PauseMenuCoinText
 	textitem 2, 4, PauseMenuConfigText
@@ -64,7 +54,7 @@ InitStartupDebugMenuBox:
 	textitem 2, 7, DebugDuelText
 	textitem 2, 8, DebugSlotMachineText
 	textitem 2, 9, PauseMenuExitText
-	db $ff
+	textitems_end
 
 HandleStartupDebugMenuBox:
 	ld a, [wDebugMenuCursorPosition]
@@ -3054,25 +3044,15 @@ _PCMenu:
 	ret
 
 .menu_params
-	db TRUE ; skip clear
-	db 10, 12 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db PAD_B ; held keys
-	db FALSE ; has horizontal scroll
-	db 1 ; vertical step
-	dw NULL ; update function
-	dw NULL ; label text ID
-
+	menubox_params TRUE, 10, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
 	textitem 2,  2, PCMenuCardAlbumText
 	textitem 2,  4, PCMenuDeckDiagnosisText
 	textitem 2,  6, PCMenuGlossaryText
 	textitem 2,  8, PCMenuPrintText
 	textitem 2, 10, PCMenuShutdownText
-	db $ff
+	textitems_end
 
 .HandleInput:
 	ld a, [wPCMenuCursorPosition]
@@ -6270,7 +6250,7 @@ Func_13138:
 
 Func_1315e:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld de, $40ff
+	lb de, $40, $ff
 	call SetupText
 	call Func_13189
 	call SetFrameFuncAndFadeFromWhite
@@ -6967,7 +6947,7 @@ Func_135f6:
 
 Func_13617:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld de, $40ff
+	lb de, $40, $ff
 	call SetupText
 	call Func_1362d
 	call SetFrameFuncAndFadeFromWhite
@@ -7057,7 +7037,7 @@ Func_136db:
 
 Func_136e4:
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld de, $40ff
+	lb de, $40, $ff
 	call SetupText
 	call Func_1371f
 	call SetFrameFuncAndFadeFromWhite
@@ -7623,22 +7603,12 @@ PlayerGenderSelection:
 	ret
 
 .MenuParams
-	db FALSE ; skip clear
-	db 16, 1 ; width, height
-	db SYM_CURSOR_R ; blink cursor symbol
-	db SYM_SPACE ; space symbol
-	db SYM_CURSOR_R ; default cursor symbol
-	db SYM_CURSOR_R ; selection cursor symbol
-	db PAD_A ; press keys
-	db $00 ; held keys
-	db TRUE ; has horizontal scroll
-	db 0 ; vertical step
-	dw NULL ; update function
-	dw NULL ; label text ID
-
+	menubox_params FALSE, 16, 1, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, TRUE, 0, NULL, NULL
 	textitem  1, 0, PlayerGenderMaleText
 	textitem 11, 0, PlayerGenderFemaleText
-	db $ff
+	textitems_end
 
 .HandleSelection:
 .loop

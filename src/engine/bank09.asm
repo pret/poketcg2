@@ -1299,12 +1299,7 @@ HandleComputerErrorPlayerSelection:
 	ret
 
 .MenuParameters:
-	db 1, 2 ; cursor x, cursor y
-	db 1 ; y displacement between items
-	db 6 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles player selection when opponent
 ; accepts challenge due to the effects of Challenge! card
@@ -1849,12 +1844,7 @@ HandleColorChangeScreen:
 	ret
 
 .menu_params
-	db 1, 1 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db MAX_PLAY_AREA_POKEMON ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw NULL ; function pointer if non-0
+	menu_params 1, 1, 2, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_24ef5:
 	push hl
@@ -1968,11 +1958,10 @@ Func_24ef5:
 	ret
 
 ShiftMenuData:
-	; x, y, text id
 	textitem 10,  9, TypeText
 	textitem 10, 10, WeaknessText
 	textitem 10, 11, ResistanceText
-	db $ff
+	textitems_end
 
 ColorTileAndBGP:
 	; tile, BG
@@ -2158,12 +2147,7 @@ HandleDeckDiagnosisMenu:
 	ret
 
 .MenuParameters:
-	db 11, 2 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 5 ; number of items
-	db SYM_CURSOR_R ; cursor tile number
-	db SYM_SPACE ; tile behind cursor
-	dw .UpdateFunc ; function pointer if non-0
+	menu_params 11, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, .UpdateFunc
 
 .UpdateFunc:
 	ldh a, [hDPadHeld]
@@ -5460,7 +5444,7 @@ Func_2612a:
 	ld bc, $14
 	farcall DecreaseChipsSmoothly
 	farcall Func_114f9
-	ld de, $387f
+	lb de, $38, $7f
 	call SetupText
 	call EmptyScreen
 	ld hl, $4930
