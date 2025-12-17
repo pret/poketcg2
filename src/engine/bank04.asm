@@ -43,7 +43,7 @@ InitStartupDebugMenuBox:
 	ret
 
 .menu_params:
-	menu_box_parameters TRUE, 16, 11, \
+	menubox_params TRUE, 16, 11, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, NULL, DebugKondoDebugText
 	textitem 2, 2, DebugPowerOnText
@@ -3044,7 +3044,7 @@ _PCMenu:
 	ret
 
 .menu_params
-	menu_box_parameters TRUE, 10, 12, \
+	menubox_params TRUE, 10, 12, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, NULL, NULL
 	textitem 2,  2, PCMenuCardAlbumText
@@ -7603,7 +7603,7 @@ PlayerGenderSelection:
 	ret
 
 .MenuParams
-	menu_box_parameters FALSE, 16, 1, \
+	menubox_params FALSE, 16, 1, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, TRUE, 0, NULL, NULL
 	textitem  1, 0, PlayerGenderMaleText

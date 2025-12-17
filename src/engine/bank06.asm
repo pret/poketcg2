@@ -3272,7 +3272,7 @@ DrawCardPopMenuBox:
 	tx CardPopExitText
 
 CardPopMenuParams:
-	menu_parameters 9, 2, 2, 3, SYM_CURSOR_R, SYM_SPACE, HandleCardPopMenuInput
+	menu_params 9, 2, 2, 3, SYM_CURSOR_R, SYM_SPACE, HandleCardPopMenuInput
 
 ; returns carry if selection with A btn was made
 HandleCardPopMenuInput:
@@ -4087,7 +4087,7 @@ ViewCardPopRecords:
 	ret
 
 .MenuParams:
-	menu_parameters 1, 4, 3, 5, SYM_CURSOR_R, SYM_SPACE, .HandleMenuInput
+	menu_params 1, 4, 3, 5, SYM_CURSOR_R, SYM_SPACE, .HandleMenuInput
 
 .HandleMenuInput:
 	ldh a, [hDPadHeld]

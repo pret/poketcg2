@@ -2269,14 +2269,14 @@ ShowStartMenu:
 	dw .Config4Params ; STARTMENU_CONFIG_4
 
 .Config0Params
-	menu_box_parameters TRUE, 12, 4, \
+	menubox_params TRUE, 12, 4, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, FALSE, 0, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuNewGameText
 	textitems_end
 
 .Config1Params
-	menu_box_parameters TRUE, 12, 6, \
+	menubox_params TRUE, 12, 6, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuContinueFromDiaryText
@@ -2284,7 +2284,7 @@ ShowStartMenu:
 	textitems_end
 
 .Config2Params
-	menu_box_parameters TRUE, 12, 8, \
+	menubox_params TRUE, 12, 8, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuCardPopText
@@ -2293,7 +2293,7 @@ ShowStartMenu:
 	textitems_end
 
 .Config3Params
-	menu_box_parameters TRUE, 12, 10, \
+	menubox_params TRUE, 12, 10, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuCardPopText
@@ -2303,7 +2303,7 @@ ShowStartMenu:
 	textitems_end
 
 .Config4Params
-	menu_box_parameters TRUE, 12, 8, \
+	menubox_params TRUE, 12, 8, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
 	textitem 2, 2, MainMenuContinueFromDiaryText
@@ -4065,7 +4065,7 @@ Func_1de16:
 	ret
 
 _CoinPageMenuParams:
-	menu_box_parameters FALSE, 20, 7, \
+	menubox_params FALSE, 20, 7, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, TRUE, 4, Func_1def1, NULL
 	textitem  1,  1, SingleSpaceText
@@ -5553,7 +5553,7 @@ DrawMinicomMainScreen:
 	ret
 
 .menu:
-	menu_box_parameters TRUE, 20, 10, \
+	menubox_params TRUE, 20, 10, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, NULL, NULL
 	textitem 3, 2, MinicomDeckSaveMachineText
@@ -6402,7 +6402,7 @@ Func_1ee97:
 
 ; a menu box with blank text items that line up with mail items on screen
 MailboxMainScreenMenuBoxParams:
-	menu_box_parameters FALSE, 18, 12, \
+	menubox_params FALSE, 18, 12, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
 	textitem 1,  1, SingleSpaceText
@@ -6527,7 +6527,7 @@ MailboxSelectedMail_LoadMenuBoxParams:
 	ret
 
 .menu_box_params
-	menu_box_parameters TRUE, 20, 5, \
+	menubox_params TRUE, 20, 5, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, TRUE, 0, NULL, NULL
 	textitem  2, 3, MailboxActionReadText
@@ -6894,7 +6894,7 @@ MailboxYesNoPrompt:
 	ret
 
 .menu_box_params
-	menu_box_parameters TRUE, 20, 5, \
+	menubox_params TRUE, 20, 5, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
 		PAD_A, PAD_B, TRUE, 0, NULL, NULL
 	textitem  7, 3, PlayerDiaryPromptYesText

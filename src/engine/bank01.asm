@@ -1063,7 +1063,7 @@ HandleAttachedEnergyMenuInput:
 	ret
 
 AttachedEnergyCardListParameters:
-	card_list_parameters 1, 5, 4, 14, 4, SYM_CURSOR_R, SYM_SPACE, NULL
+	cardlist_params 1, 5, 4, 14, 4, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; triggered by selecting the "Attack" item in the duel menu
 DuelMenu_Attack:
@@ -1194,7 +1194,7 @@ OpenAttackPage:
 	ret
 
 AttackMenuParameters:
-	menu_parameters 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; display the card page with id at wAttackPageNumber of wLoadedCard1
 DisplayAttackPage:
@@ -1859,7 +1859,7 @@ DisplayNoBasicPokemonInHandScreen:
 	ret
 
 NoBasicPokemonCardListParameters:
-	card_list_parameters 1, 3, 4, 14, 7, SYM_CURSOR_R, SYM_SPACE, NULL
+	cardlist_params 1, 3, 4, 14, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; used only during the practice duel with Sam.
 ; displays the list with the player's cards in hand, and the player's name above the list.
@@ -2840,10 +2840,10 @@ CardListItemSelectionMenu:
 	ret
 
 ItemSelectionMenuParameters:
-	menu_parameters 1, 14, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 14, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 CardListParameters:
-	card_list_parameters 1, 3, 4, 14, 5, SYM_CURSOR_R, SYM_SPACE, CardListFunction
+	cardlist_params 1, 3, 4, 14, 5, SYM_CURSOR_R, SYM_SPACE, CardListFunction
 
 ; return carry if any of the buttons is pressed, and load the graphics
 ; of the card pointed to by the cursor whenever a d-pad key is released.
@@ -4184,10 +4184,10 @@ DisplayPlayAreaScreen:
 	ret
 
 PlayAreaScreenMenuParameters_ActivePokemonIncluded:
-	menu_parameters 0, 0, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
+	menu_params 0, 0, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuParameters_ActivePokemonExcluded:
-	menu_parameters 0, 3, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
+	menu_params 0, 3, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuFunction:
 	ldh a, [hKeysPressed]

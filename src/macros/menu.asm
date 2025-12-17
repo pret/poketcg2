@@ -9,7 +9,7 @@
 
 8 bytes. Used by InitializeMenuParameters.
 */
-MACRO? menu_parameters
+MACRO? menu_params
 	db \1, \2, \3, \4, \5, \6
 	dw \7
 ENDM
@@ -26,7 +26,7 @@ ENDM
 
 9 bytes. Used by InitializeScrollMenuParameters.
 */
-MACRO? scroll_menu_parameters
+MACRO? scrollmenu_params
 	db \1, \2, \3, \4, \5, \6, \7
 	dw \8
 ENDM
@@ -49,7 +49,7 @@ ENDM
 15 bytes. Used by LoadMenuBoxParams.
 Usually followed by textitem(s) and textitems_end
 */
-MACRO? menu_box_parameters
+MACRO? menubox_params
 	db \1, \2, \3, \4, \5, \6, \7, \8, \9, \<10>, \<11>
 	dw \<12>
 	tx \<13>
@@ -67,7 +67,7 @@ ENDM
 
 9 bytes. Used by InitializeCardListParameters
 */
-MACRO? card_list_parameters
+MACRO? cardlist_params
 	db \1, \2, \3, \4, \5, \6, \7
 	dw \8
 ENDM

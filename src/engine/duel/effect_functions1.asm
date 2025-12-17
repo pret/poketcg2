@@ -1068,7 +1068,7 @@ HandleDefendingPokemonAttackSelection:
 	jr .start
 
 .menu_parameters
-	menu_parameters 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; loads in hl the pointer to attack's name.
 ; input:
@@ -1543,10 +1543,10 @@ Func_6873c:
 	ret
 
 PlayAreaSelectionMenuParameters:
-	menu_parameters 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 BenchSelectionMenuParameters:
-	menu_parameters 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 SpitPoison_AIEffect:
 	ld a, 10 / 2

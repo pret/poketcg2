@@ -1299,7 +1299,7 @@ HandleComputerErrorPlayerSelection:
 	ret
 
 .MenuParameters:
-	menu_parameters 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles player selection when opponent
 ; accepts challenge due to the effects of Challenge! card
@@ -1844,7 +1844,7 @@ HandleColorChangeScreen:
 	ret
 
 .menu_params
-	menu_parameters 1, 1, 2, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 1, 2, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_24ef5:
 	push hl
@@ -2147,7 +2147,7 @@ HandleDeckDiagnosisMenu:
 	ret
 
 .MenuParameters:
-	menu_parameters 11, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, .UpdateFunc
+	menu_params 11, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, .UpdateFunc
 
 .UpdateFunc:
 	ldh a, [hDPadHeld]

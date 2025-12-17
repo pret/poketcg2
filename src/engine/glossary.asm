@@ -142,7 +142,7 @@ Glossary:
 	db 11, 18 ; BLACK_HOLE
 
 .MainMenuParameters:
-	menu_parameters 1, 3, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 3, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .MainMenuItems:
 	textitem 2,  1, GlossaryTitleText

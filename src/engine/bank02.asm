@@ -1172,7 +1172,7 @@ DeckSelectionMenu:
 	jp DeckSelectionSubMenu
 
 .MenuParameters:
-	menu_parameters 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 HandleStartButtonInDeckSelectionMenu:
 	ldh a, [hDPadHeld]
@@ -2716,7 +2716,7 @@ CheckIfThereAreAnyBasicCardsInDeck:
 	ret
 
 FiltersCardSelectionParams:
-	scroll_menu_parameters 1, 1, 0, 2, NUM_FILTERS, SYM_CURSOR_D, SYM_SPACE, NULL
+	scrollmenu_params 1, 1, 0, 2, NUM_FILTERS, SYM_CURSOR_D, SYM_SPACE, NULL
 
 SECTION "Bank 2@5a43", ROMX[$5a43], BANK[$2]
 
@@ -3546,7 +3546,7 @@ InitializeScrollMenuParameters:
 	ret
 
 DeckMachineSelectionParams:
-	scroll_menu_parameters 1, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 1, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 ; 0x9eb5
 
 SECTION "Bank 2@5ebe", ROMX[$5ebe], BANK[$2]
@@ -4316,7 +4316,7 @@ HandleDeckConfirmationMenu:
 	jr .selected_card
 
 .CardSelectionParams
-	scroll_menu_parameters 0, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 0, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles the cases where player presses
 ; left or right to jump in a scrolling list
@@ -5038,7 +5038,7 @@ Func_a786:
 	jp .asm_a7a0
 
 GeneralCardListMenuParams:
-	scroll_menu_parameters 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 GeneralCardListUpdateFunc:
 	ld a, $01
@@ -6340,10 +6340,10 @@ CardAlbum:
 	jp .booster_pack_menu
 
 .BoosterPackMenuParams:
-	scroll_menu_parameters 3, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 3, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .BoosterPackCardsMenuParams
-	scroll_menu_parameters 1, 4, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 1, 4, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .CountCardIDs:
 	ld hl, wBoosterPackCardList
@@ -6814,7 +6814,7 @@ PrinterMenu_PokemonCards:
 	ret
 
 PrinterMenu_Params:
-	scroll_menu_parameters 3, 3, 0, 4, 2, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 3, 3, 0, 4, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 PrinterMenu_CardList:
 	call WriteCardListsTerminatorBytes
@@ -6890,7 +6890,7 @@ PrinterMenu:
 	dw .QuitPrint
 
 .MenuParameters:
-	menu_parameters 5, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+	menu_params 5, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .PrintQuality:
 	ldtx hl, PrinterContrastSettingsPromptText
@@ -6920,7 +6920,7 @@ PrinterMenu:
 	jr .loop_input
 
 .PrinterQualityMenuParams
-	scroll_menu_parameters 5, 16, 0, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 5, 16, 0, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_b57c:
 	push de
@@ -7451,4 +7451,4 @@ PrinterMenu_DeckConfiguration:
 	ret
 
 AutoDeckMachineMenuParams:
-	scroll_menu_parameters 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
