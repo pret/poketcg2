@@ -3423,10 +3423,10 @@ TextOffsets::
 	textpointer GameCenterCoinFlipAttendantStartText                  ; 0x0d56
 	textpointer GameCenterCoinFlipAttendantNotEnoughChipsText         ; 0x0d57
 	textpointer GameCenterCoinFlipAttendantComeAgainText              ; 0x0d58
-	textpointer Text0d59                                              ; 0x0d59
-	textpointer Text0d5a                                              ; 0x0d5a
-	textpointer Text0d5b                                              ; 0x0d5b
-	textpointer Text0d5c                                              ; 0x0d5c
+	textpointer GameCenterGRGalText                                   ; 0x0d59
+	textpointer GameCenterCoinTossBoyInitialText                      ; 0x0d5a
+	textpointer GameCenterCoinTossBoyRepeatText                       ; 0x0d5b
+	textpointer GameCenterCoinTossBoyPostgameText                     ; 0x0d5c
 	textpointer GameCenterSlotMachine1AttendantWelcomeText            ; 0x0d5d
 	textpointer GameCenterSlotMachine1AttendantGuidePromptText        ; 0x0d5e
 	textpointer GameCenterSlotMachine1AttendantGuideText              ; 0x0d5f
@@ -3444,14 +3444,14 @@ TextOffsets::
 	textpointer GameCenterCardDungeonAttendantPlayerWonComeAgainText  ; 0x0d6b
 	textpointer GameCenterCardDungeonAttendantPlayerLostTryAgainText  ; 0x0d6c
 	textpointer GameCenterCardDungeonAttendantPlayerQuitTryAgainText  ; 0x0d6d
-	textpointer Text0d6e                                              ; 0x0d6e
-	textpointer Text0d6f                                              ; 0x0d6f
-	textpointer Text0d70                                              ; 0x0d70
-	textpointer Text0d71                                              ; 0x0d71
-	textpointer Text0d72                                              ; 0x0d72
-	textpointer Text0d73                                              ; 0x0d73
-	textpointer Text0d74                                              ; 0x0d74
-	textpointer Text0d75                                              ; 0x0d75
+	textpointer GameCenterCardDungeonBoy1Text                         ; 0x0d6e
+	textpointer GameCenterCardDungeonBoy2Text                         ; 0x0d6f
+	textpointer GameCenterCardDungeonBoy3Text                         ; 0x0d70
+	textpointer GameCenterFixerNormalText                             ; 0x0d71
+	textpointer GameCenterFixerPostgameText                           ; 0x0d72
+	textpointer GameCenterSlotMachineGRWomanInitialText               ; 0x0d73
+	textpointer GameCenterSlotMachineGRWomanWhiffText                 ; 0x0d74
+	textpointer GameCenterSlotMachineGRWomanHitText                   ; 0x0d75
 	textpointer GameCenterChipDeskWelcomeText                         ; 0x0d76
 	textpointer GameCenterChipDeskDepositInfoText                     ; 0x0d77
 	textpointer GameCenterChipDeskDepositReturnPromptText             ; 0x0d78

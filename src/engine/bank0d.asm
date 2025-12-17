@@ -1528,17 +1528,17 @@ GameCenter1_NPCs:
 	db $ff
 
 GameCenter1_NPCInteractions:
-	npc_script NPC_ATTENDANT_BLACK_BOX, Func_34d49
-	npc_script NPC_ATTENDANT_BILLS_PC, Func_34d76
-	npc_script NPC_ATTENDANT_COIN_FLIP, Func_34da3
-	npc_script NPC_GAME_CENTER_GR_GAL, Func_34de6
-	npc_script NPC_GAME_CENTER_CHUBBY_KID, Func_34e18
+	npc_script NPC_ATTENDANT_BLACK_BOX, GameCenterBlackBoxAttendantScript
+	npc_script NPC_ATTENDANT_BILLS_PC, GameCenterBillsPCAttendantScript
+	npc_script NPC_ATTENDANT_COIN_FLIP, GameCenterCoinFlipAttendantScript
+	npc_script NPC_GAME_CENTER_GR_GAL, GameCenterGRGalScript
+	npc_script NPC_GAME_CENTER_CHUBBY_KID, GameCenterCoinTossBoyScript
 	db $ff
 
 GameCenter1_OWInteractions:
 	ow_script 5, 4, Script_BlackBox
 	ow_script 6, 4, Script_BlackBox
-	ow_script 2, 9, Func_34d35
+	ow_script 2, 9, Script_BillsPC
 	db $ff
 
 GameCenter1_MapScripts:
@@ -1569,104 +1569,104 @@ Func_34c3c:
 	scf
 	ret
 
-Script_34c4c:
+Script_PlayCoinFlipGame:
 	quit_script
 	farcall Func_1d7be
-	cp $09
-	jp z, .asm_34cef
-	jp nc, .asm_34d03
-	cp $07
-	jr z, .asm_34cc7
-	jr nc, .asm_34cdb
-	cp $05
-	jr z, .asm_34c9f
-	jr nc, .asm_34cb3
-	cp $03
-	jr z, .asm_34c77
-	jr nc, .asm_34c8b
+	cp 9
+	jp z, .streak_9
+	jp nc, .streak_10
+	cp 7
+	jr z, .streak_7
+	jr nc, .streak_8
+	cp 5
+	jr z, .streak_5
+	jr nc, .streak_6
+	cp 3
+	jr z, .streak_3
+	jr nc, .streak_4
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendantNoPrizesTryAgainText
-	script_jump .ows_34d12
-.asm_34c77
+	script_jump .quit
+.streak_3
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant3HeadsPrizeText
 	game_center
-	give_chips 20
+	give_chips CHIPS_COIN_FLIP_STREAK_3
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34c8b
+	script_jump .quit
+.streak_4
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant4HeadsPrizeText
 	game_center
-	give_chips 40
+	give_chips CHIPS_COIN_FLIP_STREAK_4
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34c9f
+	script_jump .quit
+.streak_5
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant5HeadsPrizeText
 	game_center
-	give_chips 100
+	give_chips CHIPS_COIN_FLIP_STREAK_5
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34cb3
+	script_jump .quit
+.streak_6
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant6HeadsPrizeText
 	game_center
-	give_chips 200
+	give_chips CHIPS_COIN_FLIP_STREAK_6
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34cc7
+	script_jump .quit
+.streak_7
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant7HeadsPrizeText
 	game_center
-	give_chips 500
+	give_chips CHIPS_COIN_FLIP_STREAK_7
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34cdb
+	script_jump .quit
+.streak_8
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant8HeadsPrizeText
 	game_center
-	give_chips 1000
+	give_chips CHIPS_COIN_FLIP_STREAK_8
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34cef
+	script_jump .quit
+.streak_9
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant9HeadsPrizeText
 	game_center
-	give_chips 3000
+	give_chips CHIPS_COIN_FLIP_STREAK_9
 	print_npc_text GameCenterCoinFlipAttendantAlmostCompleteTryAgainText
 	script_command_71
-	script_jump .ows_34d12
-.asm_34d03
+	script_jump .quit
+.streak_10
 	ld a, $01
 	start_script
 	script_command_01
 	print_npc_text GameCenterCoinFlipAttendant10HeadsPrizeText
 	receive_card MEW_LV8
 	print_npc_text GameCenterCoinFlipAttendant10HeadsCongratsText
-.ows_34d12
+.quit
 	script_command_02
 	end_script
 	ret
@@ -1688,7 +1688,7 @@ Script_BlackBox:
 	ld [wd582], a
 	ret
 
-Func_34d35:
+Script_BillsPC:
 	xor a
 	start_script
 	script_command_01
@@ -1700,7 +1700,7 @@ Func_34d35:
 	ld [wd582], a
 	ret
 
-Func_34d49:
+GameCenterBlackBoxAttendantScript:
 	ld a, NPC_ATTENDANT_BLACK_BOX
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1715,17 +1715,17 @@ Func_34d49:
 	restore_active_npc_direction
 	print_npc_text GameCenterBlackBoxAttendantWelcomeText
 	ask_question GameCenterBlackBoxAttendantGuidePromptText, TRUE
-	script_jump_if_b0z .ows_34d70
+	script_jump_if_b0z .declined_guide
 	print_npc_text GameCenterBlackBoxAttendantGuideText
-	script_jump .ows_34d73
-.ows_34d70
+	script_jump .quit
+.declined_guide
 	print_npc_text GameCenterBlackBoxAttendantNoGuideText
-.ows_34d73
+.quit
 	script_command_02
 	end_script
 	ret
 
-Func_34d76:
+GameCenterBillsPCAttendantScript:
 	ld a, NPC_ATTENDANT_BILLS_PC
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1740,17 +1740,17 @@ Func_34d76:
 	restore_active_npc_direction
 	print_npc_text GameCenterBillsPCAttendantWelcomeText
 	ask_question GameCenterBillsPCAttendantGuidePromptText, TRUE
-	script_jump_if_b0z .ows_34d9d
+	script_jump_if_b0z .declined_guide
 	print_npc_text GameCenterBillsPCAttendantGuideText
-	script_jump .ows_34da0
-.ows_34d9d
+	script_jump .quit
+.declined_guide
 	print_npc_text GameCenterBillsPCAttendantNoGuideText
-.ows_34da0
+.quit
 	script_command_02
 	end_script
 	ret
 
-Func_34da3:
+GameCenterCoinFlipAttendantScript:
 	ld a, NPC_ATTENDANT_COIN_FLIP
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1766,29 +1766,29 @@ Func_34da3:
 	game_center
 	print_npc_text GameCenterCoinFlipAttendantWelcomeText
 	ask_question GameCenterCoinFlipStartPromptText, TRUE
-	script_jump_if_b0z .ows_34ddf
+	script_jump_if_b0z .declined
 	script_command_71
 	get_game_center_chips
 	compare_loaded_var_word 0
-	script_jump_if_b0nz .ows_34dd9
+	script_jump_if_b0nz .not_enough_chips
 	game_center
-	take_chips 1
+	take_chips CHIPS_BET_COIN_FLIP
 	print_npc_text GameCenterCoinFlipAttendantStartText
 	script_command_71
 	script_command_02
-	script_jump Script_34c4c
-.ows_34dd9
+	script_jump Script_PlayCoinFlipGame
+.not_enough_chips
 	print_npc_text GameCenterCoinFlipAttendantNotEnoughChipsText
-	script_jump .ows_34de3
-.ows_34ddf
+	script_jump .quit
+.declined
 	print_npc_text GameCenterCoinFlipAttendantComeAgainText
 	script_command_71
-.ows_34de3
+.quit
 	script_command_02
 	end_script
 	ret
 
-Func_34de6:
+GameCenterGRGalScript:
 	ld a, NPC_GAME_CENTER_GR_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRGalText
@@ -1799,7 +1799,7 @@ Func_34de6:
 	xor a
 	start_script
 	script_command_01
-	print_npc_text Text0d59
+	print_npc_text GameCenterGRGalText
 	script_command_02
 	get_active_npc_direction
 	compare_loaded_var EAST
@@ -1807,17 +1807,17 @@ Func_34de6:
 	compare_loaded_var SOUTH
 	script_jump_if_b0nz .ows_34e14
 	set_active_npc_direction EAST
-	script_jump .ows_34e16
+	script_jump .done
 .ows_34e0f
 	set_active_npc_direction SOUTH
-	script_jump .ows_34e16
+	script_jump .done
 .ows_34e14
 	set_active_npc_direction NORTH
-.ows_34e16
+.done
 	end_script
 	ret
 
-Func_34e18:
+GameCenterCoinTossBoyScript:
 	ld a, NPC_GAME_CENTER_CHUBBY_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogChubbyKidText
@@ -1831,18 +1831,18 @@ Func_34e18:
 	get_player_opposite_direction
 	restore_active_npc_direction
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_34e47
+	script_jump_if_b0z .postgame
 	check_event EVENT_TALKED_TO_COIN_TOSS_BOY
-	script_jump_if_b0z .ows_34e41
+	script_jump_if_b0z .talked
 	set_event EVENT_TALKED_TO_COIN_TOSS_BOY
-	print_npc_text Text0d5a
-	script_jump .ows_34e4a
-.ows_34e41
-	print_npc_text Text0d5b
-	script_jump .ows_34e4a
-.ows_34e47
-	print_npc_text Text0d5c
-.ows_34e4a
+	print_npc_text GameCenterCoinTossBoyInitialText
+	script_jump .done
+.talked
+	print_npc_text GameCenterCoinTossBoyRepeatText
+	script_jump .done
+.postgame
+	print_npc_text GameCenterCoinTossBoyPostgameText
+.done
 	script_command_02
 	end_script
 	ret
@@ -1867,12 +1867,12 @@ GameCenter2_NPCs:
 	db $ff
 
 GameCenter2_NPCInteractions:
-	npc_script NPC_ATTENDANT_1COIN_SLOT, Func_34f25
-	npc_script NPC_ATTENDANT_5COIN_SLOT, Func_34f50
-	npc_script NPC_ATTENDANT_CARD_DUNGEON, Func_34f7b
-	npc_script NPC_GAME_CENTER_BOY, Func_35016
-	npc_script NPC_GAME_CENTER_FIXER, Func_35047
-	npc_script NPC_GAME_CENTER_GR_WOMAN, Func_3506f
+	npc_script NPC_ATTENDANT_1COIN_SLOT, GameCenter1CoinSlotAttendantScript
+	npc_script NPC_ATTENDANT_5COIN_SLOT, GameCenter5CoinSlotAttendantScript
+	npc_script NPC_ATTENDANT_CARD_DUNGEON, GameCenterCardDungeonAttendantScript_Enter
+	npc_script NPC_GAME_CENTER_BOY, GameCenterCardDungeonBoyScript
+	npc_script NPC_GAME_CENTER_FIXER, GameCenterFixerScript
+	npc_script NPC_GAME_CENTER_GR_WOMAN, GameCenterSlotMachineGRWomanScript
 	db $ff
 
 GameCenter2_OWInteractions:
@@ -1919,9 +1919,9 @@ Func_34f07:
 	jr z, .asm_34f23
 	ld a, $0a
 	ld [wd582], a
-	ld a, BANK(Func_34fde)
+	ld a, BANK(GameCenterCardDungeonAttendantScript_Exit)
 	ld [wd592], a
-	ld hl, Func_34fde
+	ld hl, GameCenterCardDungeonAttendantScript_Exit
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1930,7 +1930,7 @@ Func_34f07:
 	scf
 	ret
 
-Func_34f25:
+GameCenter1CoinSlotAttendantScript:
 	ld a, NPC_ATTENDANT_1COIN_SLOT
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1943,17 +1943,17 @@ Func_34f25:
 	script_command_01
 	print_npc_text GameCenterSlotMachine1AttendantWelcomeText
 	ask_question GameCenterSlotMachine1AttendantGuidePromptText, TRUE
-	script_jump_if_b0z .ows_34f4a
+	script_jump_if_b0z .declined_guide
 	print_npc_text GameCenterSlotMachine1AttendantGuideText
-	script_jump .ows_34f4d
-.ows_34f4a
+	script_jump .quit
+.declined_guide
 	print_npc_text GameCenterSlotMachine1AttendantNoGuideText
-.ows_34f4d
+.quit
 	script_command_02
 	end_script
 	ret
 
-Func_34f50:
+GameCenter5CoinSlotAttendantScript:
 	ld a, NPC_ATTENDANT_5COIN_SLOT
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1966,17 +1966,17 @@ Func_34f50:
 	script_command_01
 	print_npc_text GameCenterSlotMachine5AttendantWelcomeText
 	ask_question GameCenterSlotMachine5AttendantGuidePromptText, TRUE
-	script_jump_if_b0z .ows_34f75
+	script_jump_if_b0z .declined_guide
 	print_npc_text GameCenterSlotMachine5AttendantGuideText
-	script_jump .ows_34f78
-.ows_34f75
+	script_jump .quit
+.declined_guide
 	print_npc_text GameCenterSlotMachine5AttendantNoGuideText
-.ows_34f78
+.quit
 	script_command_02
 	end_script
 	ret
 
-Func_34f7b:
+GameCenterCardDungeonAttendantScript_Enter:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1990,18 +1990,18 @@ Func_34f7b:
 	game_center
 	print_npc_text GameCenterCardDungeonAttendantWelcomeText
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
-	script_jump_if_b0z .ows_34fd7
+	script_jump_if_b0z .declined
 	get_game_center_chips
 	compare_loaded_var_word 10
-	script_jump_if_b1z .ows_34fb3
+	script_jump_if_b1z .start
 	quit_script
 	xor a
 	farcall Func_1f84c
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantNotEnoughChipsText
-	script_jump .ows_34fda
-.ows_34fb3
+	script_jump .quit
+.start
 	set_var VAR_3A, $00
 	print_npc_text GameCenterCardDungeonAttendantReadDescriptionText
 	quit_script
@@ -2018,15 +2018,15 @@ Func_34f7b:
 	ld b, NORTH
 	farcall Func_d3c4
 	ret
-.ows_34fd7
+.declined
 	print_npc_text GameCenterCardDungeonAttendantComeAgainText
-.ows_34fda
+.quit
 	script_command_71
 	script_command_02
 	end_script
 	ret
 
-Func_34fde:
+GameCenterCardDungeonAttendantScript_Exit:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -2040,23 +2040,23 @@ Func_34fde:
 	set_active_npc_direction WEST
 	get_var VAR_3A
 	compare_loaded_var $06
-	script_jump_if_b0nz .ows_35005
-	script_jump_if_b1z .ows_3500b
+	script_jump_if_b0nz .player_lost
+	script_jump_if_b1z .player_quit
 	print_npc_text GameCenterCardDungeonAttendantPlayerWonComeAgainText
-	script_jump .ows_3500e
-.ows_35005
+	script_jump .done
+.player_lost
 	print_npc_text GameCenterCardDungeonAttendantPlayerLostTryAgainText
-	script_jump .ows_3500e
-.ows_3500b
+	script_jump .done
+.player_quit
 	print_npc_text GameCenterCardDungeonAttendantPlayerQuitTryAgainText
-.ows_3500e
+.done
 	script_command_02
 	end_script
 	ld a, $00
 	ld [wd582], a
 	ret
 
-Func_35016:
+GameCenterCardDungeonBoyScript:
 	ld a, NPC_GAME_CENTER_BOY
 	ld [wScriptNPC], a
 	ldtx hl, DialogBoyText
@@ -2068,22 +2068,22 @@ Func_35016:
 	start_script
 	script_command_01
 	check_event EVENT_GOT_MACHAMP_COIN
-	script_jump_if_b0z .ows_35041
+	script_jump_if_b0z .phase3
 	check_event EVENT_GOT_MAGNEMITE_COIN
-	script_jump_if_b0z .ows_3503b
-	print_npc_text Text0d6e
-	script_jump .ows_35044
-.ows_3503b
-	print_npc_text Text0d6f
-	script_jump .ows_35044
-.ows_35041
-	print_npc_text Text0d70
-.ows_35044
+	script_jump_if_b0z .phase2
+	print_npc_text GameCenterCardDungeonBoy1Text
+	script_jump .done
+.phase2
+	print_npc_text GameCenterCardDungeonBoy2Text
+	script_jump .done
+.phase3
+	print_npc_text GameCenterCardDungeonBoy3Text
+.done
 	script_command_02
 	end_script
 	ret
 
-Func_35047:
+GameCenterFixerScript:
 	ld a, NPC_GAME_CENTER_FIXER
 	ld [wScriptNPC], a
 	ldtx hl, DialogFixerText
@@ -2095,18 +2095,18 @@ Func_35047:
 	start_script
 	script_command_01
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_35067
-	print_npc_text Text0d71
-	script_jump .ows_3506a
-.ows_35067
-	print_npc_text Text0d72
-.ows_3506a
+	script_jump_if_b0z .postgame
+	print_npc_text GameCenterFixerNormalText
+	script_jump .done
+.postgame
+	print_npc_text GameCenterFixerPostgameText
+.done
 	set_active_npc_direction NORTH
 	script_command_02
 	end_script
 	ret
 
-Func_3506f:
+GameCenterSlotMachineGRWomanScript:
 	ld a, NPC_GAME_CENTER_GR_WOMAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRWomanText
@@ -2118,15 +2118,17 @@ Func_3506f:
 	start_script
 	script_command_01
 	check_event EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
-	script_jump_if_b0z .ows_35091
+	script_jump_if_b0z .talked
 	set_event EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
-	print_npc_text Text0d73
-	script_jump .ows_3509a
-.ows_35091
-	get_random $02
-	compare_loaded_var $00
-	print_variable_npc_text Text0d74, Text0d75
-.ows_3509a
+	print_npc_text GameCenterSlotMachineGRWomanInitialText
+	script_jump .done
+.talked
+	get_random 2
+	compare_loaded_var 0
+	print_variable_npc_text \
+		GameCenterSlotMachineGRWomanWhiffText, \
+		GameCenterSlotMachineGRWomanHitText
+.done
 	set_active_npc_direction NORTH
 	script_command_02
 	end_script
