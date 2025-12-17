@@ -760,12 +760,11 @@ DrawDiaryStatusBox:
 	ret
 
 .TextItems:
-	textitems_begin
-		textitem  7,  4, PlayerDiaryNameText
-		textitem  7,  6, PlayerDiaryEventCoinText
-		textitem 18,  6, PlayerDiaryCardsUnitText
-		textitem  7,  8, PlayerDiaryAlbumText
-		textitem  7, 10, PlayerDiaryPlayTimeText
+	textitem  7,  4, PlayerDiaryNameText
+	textitem  7,  6, PlayerDiaryEventCoinText
+	textitem 18,  6, PlayerDiaryCardsUnitText
+	textitem  7,  8, PlayerDiaryAlbumText
+	textitem  7, 10, PlayerDiaryPlayTimeText
 	textitems_end
 
 ; c - ?
@@ -868,10 +867,9 @@ DrawStatusScreenTopBox:
 	ret
 
 .TextItems:
-	textitems_begin
-		textitem 7, 2, PlayerDiaryNameText
-		textitem 7, 4, PlayerDiaryAlbumText
-		textitem 7, 6, PlayerDiaryPlayTimeText
+	textitem 7, 2, PlayerDiaryNameText
+	textitem 7, 4, PlayerDiaryAlbumText
+	textitem 7, 6, PlayerDiaryPlayTimeText
 	textitems_end
 
 DrawStatusScreenBottomBox:
@@ -905,9 +903,8 @@ DrawStatusScreenBottomBox:
 	ret
 
 .TextItems:
-	textitems_begin
-		textitem 1,  8, PlayerStatusEventCoinTitleText
-		textitem 4, 10, PlayerStatusCurrentCoinText
+	textitem 1,  8, PlayerStatusEventCoinTitleText
+	textitem 4, 10, PlayerStatusCurrentCoinText
 	textitems_end
 
 SetAllPaletteFadeConfigsToEnabled:
@@ -2272,42 +2269,47 @@ ShowStartMenu:
 	dw .Config4Params ; STARTMENU_CONFIG_4
 
 .Config0Params
-	menuboxparams_config_w_h_vstep 12, 4, 0
-	menuboxtexts_begin
-		menuboxtext 2, 2, MainMenuNewGameText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 12, 4, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 0, StartMenuBoxUpdate, NULL
+	textitem 2, 2, MainMenuNewGameText
+	textitems_end
 
 .Config1Params
-	menuboxparams_config_w_h_vstep 12, 6, 1
-	menuboxtexts_begin
-		menuboxtext 2, 2, MainMenuContinueFromDiaryText
-		menuboxtext 2, 4, MainMenuNewGameText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 12, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
+	textitems_end
 
 .Config2Params
-	menuboxparams_config_w_h_vstep 12, 8, 1
-	menuboxtexts_begin
-		menuboxtext 2, 2, MainMenuCardPopText
-		menuboxtext 2, 4, MainMenuContinueFromDiaryText
-		menuboxtext 2, 6, MainMenuNewGameText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 12, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
+	textitems_end
 
 .Config3Params
-	menuboxparams_config_w_h_vstep 12, 10, 1
-	menuboxtexts_begin
-		menuboxtext 2, 2, MainMenuCardPopText
-		menuboxtext 2, 4, MainMenuContinueFromDiaryText
-		menuboxtext 2, 6, MainMenuNewGameText
-		menuboxtext 2, 8, MainMenuContinueDuelText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 12, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
+	textitem 2, 2, MainMenuCardPopText
+	textitem 2, 4, MainMenuContinueFromDiaryText
+	textitem 2, 6, MainMenuNewGameText
+	textitem 2, 8, MainMenuContinueDuelText
+	textitems_end
 
 .Config4Params
-	menuboxparams_config_w_h_vstep 12, 8, 1
-	menuboxtexts_begin
-		menuboxtext 2, 2, MainMenuContinueFromDiaryText
-		menuboxtext 2, 4, MainMenuNewGameText
-		menuboxtext 2, 6, MainMenuContinueDuelText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 12, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, FALSE, 1, StartMenuBoxUpdate, NULL
+	textitem 2, 2, MainMenuContinueFromDiaryText
+	textitem 2, 4, MainMenuNewGameText
+	textitem 2, 6, MainMenuContinueDuelText
+	textitems_end
 
 _StartMenuBoxUpdate::
 	push af
@@ -2417,11 +2419,10 @@ _StartMenuBoxUpdate::
 	ret
 
 .TextItems:
-	textitems_begin
-		textitem  3, 12, PlayerDiaryEventCoinText
-		textitem 15, 12, PlayerDiaryCardsUnitText
-		textitem  3, 14, PlayerDiaryAlbumText
-		textitem  3, 16, PlayerDiaryPlayTimeText
+	textitem  3, 12, PlayerDiaryEventCoinText
+	textitem 15, 12, PlayerDiaryCardsUnitText
+	textitem  3, 14, PlayerDiaryAlbumText
+	textitem  3, 16, PlayerDiaryPlayTimeText
 	textitems_end
 
 .CardPop:
@@ -2571,9 +2572,8 @@ ConfirmPlayerNameAndGender:
 	ret
 
 .TextItems:
-	textitems_begin
-		textitem 2, 2, PlayerDiaryNameText
-		textitem 2, 6, PlayerGenderText
+	textitem 2, 2, PlayerDiaryNameText
+	textitem 2, 6, PlayerGenderText
 	textitems_end
 
 .ShowYesOrNoMenu:
@@ -3975,7 +3975,10 @@ Func_1dd89:
 	push hl
 	push af
 	push bc
-	ldmenubox_reverse _CoinPageMenuParams, 0, 10
+	lb de, 0, 10
+	ld b, BANK(_CoinPageMenuParams)
+	ld hl, _CoinPageMenuParams
+	call LoadMenuBoxParams
 	call DrawMenuBox
 	pop bc
 	push bc
@@ -4062,17 +4065,18 @@ Func_1de16:
 	ret
 
 _CoinPageMenuParams:
-	menuboxparams_noskipclear_w_h_vstep_fn 20, 7, 4, Func_1def1
-	menuboxtexts_begin
-		menuboxtext  1,  1, SingleSpaceText
-		menuboxtext  6,  1, SingleSpaceText
-		menuboxtext 11,  1, SingleSpaceText
-		menuboxtext 16,  1, SingleSpaceText
-		menuboxtext  1,  5, SingleSpaceText
-		menuboxtext  6,  5, SingleSpaceText
-		menuboxtext 11,  5, SingleSpaceText
-		menuboxtext 16,  5, SingleSpaceText
-	menuboxtexts_end
+	menu_box_parameters FALSE, 20, 7, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 4, Func_1def1, NULL
+	textitem  1,  1, SingleSpaceText
+	textitem  6,  1, SingleSpaceText
+	textitem 11,  1, SingleSpaceText
+	textitem 16,  1, SingleSpaceText
+	textitem  1,  5, SingleSpaceText
+	textitem  6,  5, SingleSpaceText
+	textitem 11,  5, SingleSpaceText
+	textitem 16,  5, SingleSpaceText
+	textitems_end
 
 _CoinPageTextTable:
 	tx EventCoinPage1Text
@@ -5518,7 +5522,10 @@ ShowMinicomScreen:
 	ret
 
 DrawMinicomMainScreen:
-	ldmenubox .menu, 0, 3
+	ld b, BANK(.menu)
+	ld hl, .menu
+	lb de, 0, 3
+	call LoadMenuBoxParams
 	ld a, [wMinicomMenuCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
@@ -5546,13 +5553,14 @@ DrawMinicomMainScreen:
 	ret
 
 .menu:
-	menuboxparams_nohscroll_w_h_vstep 20, 10, 1
-	menuboxtexts_begin
-		menuboxtext 3, 2, MinicomDeckSaveMachineText
-		menuboxtext 3, 4, MinicomMailboxText
-		menuboxtext 3, 6, MinicomCardAlbumText
-		menuboxtext 3, 8, PCMenuShutdownText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 20, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 3, 2, MinicomDeckSaveMachineText
+	textitem 3, 4, MinicomMailboxText
+	textitem 3, 6, MinicomCardAlbumText
+	textitem 3, 8, PCMenuShutdownText
+	textitems_end
 
 .SpriteAnimGfxParams:
 	dw TILESET_SMALL_ENVELOPE
@@ -6251,7 +6259,10 @@ MailboxMainScreen:
 	push bc
 	push de
 	push hl
-	ldmenubox_reverse MailboxMainScreenMenuBoxParams, 1, 5
+	lb de, 1, 5
+	ld b, BANK(MailboxMainScreenMenuBoxParams)
+	ld hl, MailboxMainScreenMenuBoxParams
+	call LoadMenuBoxParams
 	ld a, [wSelectedMailCursorPosition]
 	call DrawMenuBox
 	lb de, 0, 0
@@ -6391,13 +6402,14 @@ Func_1ee97:
 
 ; a menu box with blank text items that line up with mail items on screen
 MailboxMainScreenMenuBoxParams:
-	menuboxparams_noskipclear_nohscroll_w_h_vstep_fn 18, 12, 1, UpdateMailboxPage
-	menuboxtexts_begin
-		menuboxtext 1,  1, SingleSpaceText
-		menuboxtext 1,  4, SingleSpaceText
-		menuboxtext 1,  7, SingleSpaceText
-		menuboxtext 1, 10, SingleSpaceText
-	menuboxtexts_end
+	menu_box_parameters FALSE, 18, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, UpdateMailboxPage, NULL
+	textitem 1,  1, SingleSpaceText
+	textitem 1,  4, SingleSpaceText
+	textitem 1,  7, SingleSpaceText
+	textitem 1, 10, SingleSpaceText
+	textitems_end
 
 Func_1eef8:
 	ld a, [wSelectedMailCursorPosition]
@@ -6503,7 +6515,10 @@ ScrollMailboxPageOnPadUp:
 SECTION "Bank 7@6fa4", ROMX[$6fa4], BANK[$7]
 
 MailboxSelectedMail_LoadMenuBoxParams:
-	ldmenubox_reverse .menu_box_params, 0, 0
+	lb de, 0, 0
+	ld b, BANK(.menu_box_params)
+	ld hl, .menu_box_params
+	call LoadMenuBoxParams
 	xor a
 	call DrawMenuBox
 	ldtx hl, MailboxActionPromptText
@@ -6512,12 +6527,13 @@ MailboxSelectedMail_LoadMenuBoxParams:
 	ret
 
 .menu_box_params
-	menuboxparams_w_h_vstep 20, 5, 0
-	menuboxtexts_begin
-		menuboxtext  2, 3, MailboxActionReadText
-		menuboxtext  9, 3, MailboxActionDeleteText
-		menuboxtext 16, 3, GiftCenterQuitText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 20, 5, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 0, NULL, NULL
+	textitem  2, 3, MailboxActionReadText
+	textitem  9, 3, MailboxActionDeleteText
+	textitem 16, 3, GiftCenterQuitText
+	textitems_end
 
 MailboxSelectedMail_HandleMenuBox:
 	xor a
@@ -6557,9 +6573,8 @@ DrawReadMailScreenHeader:
 	ret
 
 .text_items:
-	textitems_begin
-		textitem 1, 2, MailboxSenderText
-		textitem 1, 3, MailboxSubjectText
+	textitem 1, 2, MailboxSenderText
+	textitem 1, 3, MailboxSubjectText
 	textitems_end
 
 _ReadMail:
@@ -6866,7 +6881,10 @@ MailboxYesNoPrompt_DeleteUnreadConfirm:
 ; hl - text
 MailboxYesNoPrompt:
 	push hl
-	ldmenubox .menu_box_params, 0, 0
+	ld b, BANK(.menu_box_params)
+	ld hl, .menu_box_params
+	lb de, 0, 0
+	call LoadMenuBoxParams
 	pop hl
 	ld a, 1
 	call DrawMenuBox
@@ -6876,11 +6894,12 @@ MailboxYesNoPrompt:
 	ret
 
 .menu_box_params
-	menuboxparams_w_h_vstep 20, 5, 0
-	menuboxtexts_begin
-		menuboxtext  7, 3, PlayerDiaryPromptYesText
-		menuboxtext 11, 3, PlayerDiaryPromptNoText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 20, 5, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, TRUE, 0, NULL, NULL
+	textitem  7, 3, PlayerDiaryPromptYesText
+	textitem 11, 3, PlayerDiaryPromptNoText
+	textitems_end
 
 Func_1f210:
 	ld a, [wSelectedMailCursorPosition]

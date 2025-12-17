@@ -1299,7 +1299,7 @@ HandleComputerErrorPlayerSelection:
 	ret
 
 .MenuParameters:
-	menuparams_x_y_dy_num 1, 2, 1, 6
+	menu_parameters 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles player selection when opponent
 ; accepts challenge due to the effects of Challenge! card
@@ -1844,7 +1844,7 @@ HandleColorChangeScreen:
 	ret
 
 .menu_params
-	menuparams_x_y_dy_num 1, 1, 2, MAX_PLAY_AREA_POKEMON
+	menu_parameters 1, 1, 2, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_24ef5:
 	push hl
@@ -1958,10 +1958,9 @@ Func_24ef5:
 	ret
 
 ShiftMenuData:
-	textitems_begin
-		textitem 10,  9, TypeText
-		textitem 10, 10, WeaknessText
-		textitem 10, 11, ResistanceText
+	textitem 10,  9, TypeText
+	textitem 10, 10, WeaknessText
+	textitem 10, 11, ResistanceText
 	textitems_end
 
 ColorTileAndBGP:
@@ -2148,7 +2147,7 @@ HandleDeckDiagnosisMenu:
 	ret
 
 .MenuParameters:
-	menuparams_x_y_dy_num_fn 11, 2, 2, 5, .UpdateFunc
+	menu_parameters 11, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, .UpdateFunc
 
 .UpdateFunc:
 	ldh a, [hDPadHeld]

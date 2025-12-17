@@ -3569,7 +3569,7 @@ Func_2bc4f:
 	ret
 
 .MenuParameters:
-	menuparams_x_y_dy_num 1, 2, 3, NUM_DECKS
+	menu_parameters 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 _HandleAutoDeckMenu:
 	ld [wd548], a

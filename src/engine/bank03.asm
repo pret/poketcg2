@@ -5595,11 +5595,10 @@ DebugEffectViewer_PlaceTextItems:
 	ret
 
 .text_items
-	textitems_begin
-		textitem 10, 14, DebugEffectViewerStartButtonSwapText
-		textitem 14, 15, DebugEffectViewerAButtonPlayText
-		textitem 14, 16, DebugEffectViewerBButtonStopText
-		textitem  2, 13, DebugEffectViewerAnimationNumberText
+	textitem 10, 14, DebugEffectViewerStartButtonSwapText
+	textitem 14, 15, DebugEffectViewerAButtonPlayText
+	textitem 14, 16, DebugEffectViewerBButtonStopText
+	textitem  2, 13, DebugEffectViewerAnimationNumberText
 	textitems_end
 
 ChangeAnimationPlayerSideOnStartPress:

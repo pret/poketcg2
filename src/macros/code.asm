@@ -106,20 +106,20 @@ MACRO? cphl
 :
 ENDM
 
-MACRO? add_r16_r8
-	add LOW(\1)
-	ld LOW(\1), \2
+MACRO? add_hl_a
+	add l
+	ld l, a
 	jr nc, :+
-	inc HIGH(\1)
+	inc h
 :
 ENDM
 
-MACRO? add_hl_a
-	add_r16_r8 hl, a
-ENDM
-
 MACRO? add_de_a
-	add_r16_r8 de, a
+	add e
+	ld e, a
+	jr nc, :+
+	inc d
+:
 ENDM
 
 MACRO? add_at_hl_a

@@ -4087,7 +4087,7 @@ RefreshBenchMultiSelectCounts:
 	ret
 
 BenchMultiSelectMenuParameters:
-	menuparams_x_y_dy_num 0, 3, 3, MAX_PLAY_AREA_POKEMON
+	menu_parameters 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 BenchMultiSelectMenuAISelection:
 	ldh [hTemp_ffa0], a
@@ -4423,7 +4423,7 @@ RefreshRockBlastSelectCounts:
 	ret
 
 RockBlastSelectionMenuParameters:
-	menuparams_x_y_dy_num 0, 0, 3, MAX_PLAY_AREA_POKEMON
+	menu_parameters 0, 0, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Fireworks_InitialEffect:
 	farcall Func_6808d
@@ -5625,7 +5625,7 @@ Rollout_RemoveCountersAndDamageBoostEffect:
 	ret
 
 RolloutMenuParameters:
-	menuparams_x_y_dy_num 1, 2, 1, 6
+	menu_parameters 1, 2, 1, 6, SYM_CURSOR_R, SYM_SPACE, NULL
 
 	ret ; stray ret
 
@@ -6133,7 +6133,7 @@ EarthWave_BenchDamageEffect:
 	ret
 
 EarthPowerMenuParameters:
-	menuparams_x_y_dy_num 0, 3, 3, MAX_PLAY_AREA_POKEMON
+	menu_parameters 0, 3, 3, MAX_PLAY_AREA_POKEMON, SYM_CURSOR_R, SYM_SPACE, NULL
 
 SpecialDelivery_UseAndDeckCheck:
 	farcall CheckIfCanUsePkmnPowerThisTurn

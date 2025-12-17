@@ -30,7 +30,10 @@ InitStartupDebugMenuBox:
 	push bc
 	push de
 	push hl
-	ldmenubox_reverse .menu_params, 0, 0
+	lb de, 0, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
+	call LoadMenuBoxParams
 	ld a, [wDebugMenuCursorPosition]
 	farcall DrawMenuBox
 	pop hl
@@ -40,17 +43,18 @@ InitStartupDebugMenuBox:
 	ret
 
 .menu_params:
-	menuboxparams_nohscroll_w_h_vstep_tx 16, 11, 1, DebugKondoDebugText
-	menuboxtexts_begin
-		menuboxtext 2, 2, DebugPowerOnText
-		menuboxtext 2, 3, PauseMenuCoinText
-		menuboxtext 2, 4, PauseMenuConfigText
-		menuboxtext 2, 5, DebugEffectViewerText
-		menuboxtext 2, 6, DebugCreditsText
-		menuboxtext 2, 7, DebugDuelText
-		menuboxtext 2, 8, DebugSlotMachineText
-		menuboxtext 2, 9, PauseMenuExitText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 16, 11, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, DebugKondoDebugText
+	textitem 2, 2, DebugPowerOnText
+	textitem 2, 3, PauseMenuCoinText
+	textitem 2, 4, PauseMenuConfigText
+	textitem 2, 5, DebugEffectViewerText
+	textitem 2, 6, DebugCreditsText
+	textitem 2, 7, DebugDuelText
+	textitem 2, 8, DebugSlotMachineText
+	textitem 2, 9, PauseMenuExitText
+	textitems_end
 
 HandleStartupDebugMenuBox:
 	ld a, [wDebugMenuCursorPosition]
@@ -3026,7 +3030,10 @@ _PCMenu:
 	push bc
 	push de
 	push hl
-	ldmenubox_reverse .menu_params, 10, 0
+	lb de, 10, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
+	call LoadMenuBoxParams
 	farcall Func_1cacf
 	ld a, [wPCMenuCursorPosition]
 	farcall DrawMenuBox
@@ -3037,14 +3044,15 @@ _PCMenu:
 	ret
 
 .menu_params
-	menuboxparams_nohscroll_w_h_vstep 10, 12, 1
-	menuboxtexts_begin
-		menuboxtext 2,  2, PCMenuCardAlbumText
-		menuboxtext 2,  4, PCMenuDeckDiagnosisText
-		menuboxtext 2,  6, PCMenuGlossaryText
-		menuboxtext 2,  8, PCMenuPrintText
-		menuboxtext 2, 10, PCMenuShutdownText
-	menuboxtexts_end
+	menu_box_parameters TRUE, 10, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, PCMenuCardAlbumText
+	textitem 2,  4, PCMenuDeckDiagnosisText
+	textitem 2,  6, PCMenuGlossaryText
+	textitem 2,  8, PCMenuPrintText
+	textitem 2, 10, PCMenuShutdownText
+	textitems_end
 
 .HandleInput:
 	ld a, [wPCMenuCursorPosition]
@@ -7583,7 +7591,10 @@ PlayerGenderSelection:
 	lb de, 12, 4
 	farcall DrawPortrait
 
-	ldmenubox .MenuParams, 2, 2
+	ld b, BANK(.MenuParams)
+	ld hl, .MenuParams
+	lb de, 2, 2
+	call LoadMenuBoxParams
 	ld a, [wde64]
 	farcall DrawMenuBox
 	lb de, 0, 12
@@ -7592,11 +7603,12 @@ PlayerGenderSelection:
 	ret
 
 .MenuParams
-	menuboxparams_noskipclear_noheldkey_w_h_vstep 16, 1, 0
-	menuboxtexts_begin
-		menuboxtext  1, 0, PlayerGenderMaleText
-		menuboxtext 11, 0, PlayerGenderFemaleText
-	menuboxtexts_end
+	menu_box_parameters FALSE, 16, 1, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, 0, TRUE, 0, NULL, NULL
+	textitem  1, 0, PlayerGenderMaleText
+	textitem 11, 0, PlayerGenderFemaleText
+	textitems_end
 
 .HandleSelection:
 .loop

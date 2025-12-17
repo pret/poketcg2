@@ -148,21 +148,16 @@ MACRO? ow_frame_end
 	dw $ffff
 ENDM
 
-; text items
-MACRO? textitems_begin
-ENDM
-
+; \1 = x
+; \2 = y
+; \3 = text ID
 MACRO? textitem
-	db \1, \2 ; x, y
-	tx \3     ; text ID
+	db \1, \2
+	tx \3
 ENDM
 
 MACRO? textitems_end
 	db $ff
-ENDM
-
-MACRO? textitems_nosentinels
-	; marker macro
 ENDM
 
 ; cursor x / cursor y / attribute / idx-up / idx-down / idx-right / idx-left

@@ -142,16 +142,15 @@ Glossary:
 	db 11, 18 ; BLACK_HOLE
 
 .MainMenuParameters:
-	menuparams_x_y_dy_num 1, 3, 2, 5
+	menu_parameters 1, 3, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .MainMenuItems:
-	textitems_begin
-		textitem 2,  1, GlossaryTitleText
-		textitem 3,  3, GlossaryGameBasicsText
-		textitem 3,  5, GlossaryCardTypesAndKeywordsText
-		textitem 3,  7, GlossaryStatusesAndDecisionText
-		textitem 3,  9, GlossarySpecialRulesText
-		textitem 3, 11, GlossaryExitText
+	textitem 2,  1, GlossaryTitleText
+	textitem 3,  3, GlossaryGameBasicsText
+	textitem 3,  5, GlossaryCardTypesAndKeywordsText
+	textitem 3,  7, GlossaryStatusesAndDecisionText
+	textitem 3,  9, GlossarySpecialRulesText
+	textitem 3, 11, GlossaryExitText
 	textitems_end
 
 ; shows which topics are inside this Glossary menu

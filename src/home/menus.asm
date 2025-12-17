@@ -890,7 +890,7 @@ DrawNarrowTextBox_WaitForInput::
 	ret
 
 NarrowTextBoxMenuParameters::
-	menuparams_textbox_x_y 10, 17
+	menu_parameters 10, 17, 1, 1, SYM_CURSOR_D, SYM_BOX_BOTTOM, NULL
 
 ; draw a 20x6 text box aligned to the bottom of the screen
 DrawWideTextBox::
@@ -937,7 +937,7 @@ WaitForWideTextBoxInput_AdvanceRNG::
 	ret
 
 WideTextBoxMenuParameters::
-	menuparams_textbox_x_y 18, 17
+	menu_parameters 18, 17, 1, 1, SYM_CURSOR_D, SYM_BOX_BOTTOM, NULL
 
 ; display a two-item horizontal menu with custom text provided in hl and handle input
 TwoItemHorizontalMenu::

@@ -3272,7 +3272,7 @@ DrawCardPopMenuBox:
 	tx CardPopExitText
 
 CardPopMenuParams:
-	menuparams_x_y_dy_num_fn 9, 2, 2, 3, HandleCardPopMenuInput
+	menu_parameters 9, 2, 2, 3, SYM_CURSOR_R, SYM_SPACE, HandleCardPopMenuInput
 
 ; returns carry if selection with A btn was made
 HandleCardPopMenuInput:
@@ -4008,14 +4008,13 @@ ViewCardPopRecords:
 	ret
 
 .text_items
-	textitems_begin
-		textitem 1,  0, CardPopRecordContentText
-		textitem 8,  4, CardPopRecordFriendCoinQuantityText
-		textitem 8,  6, CardPopRecordFriendCardQuantityText
-		textitem 8,  8, CardPopRecordFriendBattleQuantityText
-		textitem 1, 10, CardPopRecordCardsText
-		textitem 1, 12, CardPopRecordYourResultText
-		textitem 1, 15, CardPopRecordFriendResultText
+	textitem 1,  0, CardPopRecordContentText
+	textitem 8,  4, CardPopRecordFriendCoinQuantityText
+	textitem 8,  6, CardPopRecordFriendCardQuantityText
+	textitem 8,  8, CardPopRecordFriendBattleQuantityText
+	textitem 1, 10, CardPopRecordCardsText
+	textitem 1, 12, CardPopRecordYourResultText
+	textitem 1, 15, CardPopRecordFriendResultText
 	textitems_end
 
 .PicIDs
@@ -4088,7 +4087,7 @@ ViewCardPopRecords:
 	ret
 
 .MenuParams:
-	menuparams_x_y_dy_num_fn 1, 4, 3, 5, .HandleMenuInput
+	menu_parameters 1, 4, 3, 5, SYM_CURSOR_R, SYM_SPACE, .HandleMenuInput
 
 .HandleMenuInput:
 	ldh a, [hDPadHeld]
@@ -4731,10 +4730,9 @@ DrawBottomCardInfoInSRAMGfxBuffer0:
 	ret
 
 RetreatWeakResistData:
-	textitems_begin
-		textitem 1, 70, RetreatText
-		textitem 1, 71, WeaknessText
-		textitem 1, 72, ResistanceText
+	textitem 1, 70, RetreatText
+	textitem 1, 71, WeaknessText
+	textitem 1, 72, ResistanceText
 	textitems_end
 
 Func_1a011:
@@ -6056,38 +6054,32 @@ HandCardsGfx:
 	INCBIN "gfx/hand_cards.2bpp"
 
 WhatIsYourNameData:
-	textitems_begin
-		textitem 1, 1, WhatIsYourNameText
+	textitem 1, 1, WhatIsYourNameText
 	textitems_end
 
 Deck1RenameText:
-	textitems_begin
-		textitem  2, 1, Deck1Text
-		textitem 14, 1, DeckText
+	textitem  2, 1, Deck1Text
+	textitem 14, 1, DeckText
 	textitems_end
 
 Deck2RenameText:
-	textitems_begin
-		textitem  2, 1, Deck2Text
-		textitem 14, 1, DeckText
+	textitem  2, 1, Deck2Text
+	textitem 14, 1, DeckText
 	textitems_end
 
 Deck3RenameText:
-	textitems_begin
-		textitem  2, 1, Deck3Text
-		textitem 14, 1, DeckText
+	textitem  2, 1, Deck3Text
+	textitem 14, 1, DeckText
 	textitems_end
 
 Deck4RenameText:
-	textitems_begin
-		textitem  2, 1, Deck4Text
-		textitem 14, 1, DeckText
+	textitem  2, 1, Deck4Text
+	textitem 14, 1, DeckText
 	textitems_end
 
 Deck5RenameText:
-	textitems_begin
-		textitem  2, 1, Deck5Text
-		textitem 14, 1, DeckText
+	textitem  2, 1, Deck5Text
+	textitem 14, 1, DeckText
 	textitems_end
 
 ; dupe of PlaySFXConfirmOrCancel in bank 2
@@ -6343,21 +6335,32 @@ UpdateNamingScreenUI:
 	ret
 
 .end_text
-	textitems_begin
-		textitem 16, 16, EndText
+	textitem 16, 16, EndText
 	textitems_end
 
 .switches_from_hiragana
-	keyboardswitchers KatakanaOptionText, UppercaseOptionText, LowercaseOptionText
+	textitem  2, 16, KatakanaOptionText
+	textitem  7, 16, UppercaseOptionText
+	textitem 12, 16, LowercaseOptionText
+	textitems_end
 
 .switches_from_katakana
-	keyboardswitchers HiraganaOptionText, UppercaseOptionText, LowercaseOptionText
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, UppercaseOptionText
+	textitem 12, 16, LowercaseOptionText
+	textitems_end
 
 .switches_from_uppercase
-	keyboardswitchers HiraganaOptionText, KatakanaOptionText, LowercaseOptionText
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, KatakanaOptionText
+	textitem 12, 16, LowercaseOptionText
+	textitems_end
 
 .switches_from_lowercase
-	keyboardswitchers HiraganaOptionText, KatakanaOptionText, UppercaseOptionText
+	textitem  2, 16, HiraganaOptionText
+	textitem  7, 16, KatakanaOptionText
+	textitem 12, 16, UppercaseOptionText
+	textitems_end
 
 DrawTextboxForKeyboard:
 	lb de, 0, 3

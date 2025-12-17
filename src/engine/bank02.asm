@@ -1172,7 +1172,7 @@ DeckSelectionMenu:
 	jp DeckSelectionSubMenu
 
 .MenuParameters:
-	menuparams_x_y_dy_num 1, 2, 3, NUM_DECKS
+	menu_parameters 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 HandleStartButtonInDeckSelectionMenu:
 	ldh a, [hDPadHeld]
@@ -1534,11 +1534,10 @@ CancelDeckSelectionSubMenu:
 	ret
 
 DeckSelectScreenTextItems:
-	textitems_begin
-		textitem  2, 14, ModifyDeckText
-		textitem 12, 14, ChooseAsDuelingDeckText
-		textitem  2, 16, RenameDeckText
-		textitem 12, 16, CancelDeckText
+	textitem  2, 14, ModifyDeckText
+	textitem 12, 14, ChooseAsDuelingDeckText
+	textitem  2, 16, RenameDeckText
+	textitem 12, 16, CancelDeckText
 	textitems_end
 
 GetSRAMPointerToCurDeck:
@@ -1894,11 +1893,10 @@ DrawDecksScreen:
 	ret
 
 .text_items
-	textitems_begin
-		textitem 4,  2, Deck1Text ; "1・"
-		textitem 4,  5, Deck2Text ; "2・"
-		textitem 4,  8, Deck3Text ; "3・"
-		textitem 4, 11, Deck4Text ; "4・"
+	textitem 4,  2, Deck1Text ; "1・"
+	textitem 4,  5, Deck2Text ; "2・"
+	textitem 4,  8, Deck3Text ; "3・"
+	textitem 4, 11, Deck4Text ; "4・"
 	textitems_end
 
 CopyDeckName:
@@ -2718,7 +2716,7 @@ CheckIfThereAreAnyBasicCardsInDeck:
 	ret
 
 FiltersCardSelectionParams:
-	scrollmenuparamsdown_x_y_dy_dx_num 1, 1, 0, 2, NUM_FILTERS
+	scroll_menu_parameters 1, 1, 0, 2, NUM_FILTERS, SYM_CURSOR_D, SYM_SPACE, NULL
 
 SECTION "Bank 2@5a43", ROMX[$5a43], BANK[$2]
 
@@ -2847,13 +2845,12 @@ DrawCardTypeIcons:
 	db $00
 
 DeckBuildMenuTextItems:
-	textitems_begin
-		textitem  2, 2, DeckBuildingConfirmText
-		textitem  9, 2, DeckBuildingContinueModifyingText
-		textitem 16, 2, DeckBuildingNameText
-		textitem  2, 4, DeckBuildingSaveText
-		textitem  9, 4, DeckBuildingDismantleText
-		textitem 16, 4, CancelDeckText
+	textitem  2, 2, DeckBuildingConfirmText
+	textitem  9, 2, DeckBuildingContinueModifyingText
+	textitem 16, 2, DeckBuildingNameText
+	textitem  2, 4, DeckBuildingSaveText
+	textitem  9, 4, DeckBuildingDismantleText
+	textitem 16, 4, CancelDeckText
 	textitems_end
 
 ; prints "/60" to the coordinates given in de
@@ -3549,7 +3546,7 @@ InitializeScrollMenuParameters:
 	ret
 
 DeckMachineSelectionParams:
-	scrollmenuparams_x_y_dy_dx_num 1, 2, 2, 0, 5
+	scroll_menu_parameters 1, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 ; 0x9eb5
 
 SECTION "Bank 2@5ebe", ROMX[$5ebe], BANK[$2]
@@ -4319,7 +4316,7 @@ HandleDeckConfirmationMenu:
 	jr .selected_card
 
 .CardSelectionParams
-	scrollmenuparams_x_y_dy_dx_num 0, 5, 2, 0, 7
+	scroll_menu_parameters 0, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; handles the cases where player presses
 ; left or right to jump in a scrolling list
@@ -5041,7 +5038,7 @@ Func_a786:
 	jp .asm_a7a0
 
 GeneralCardListMenuParams:
-	scrollmenuparams_x_y_dy_dx_num 1, 5, 2, 0, 7
+	scroll_menu_parameters 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 GeneralCardListUpdateFunc:
 	ld a, $01
@@ -6343,10 +6340,10 @@ CardAlbum:
 	jp .booster_pack_menu
 
 .BoosterPackMenuParams:
-	scrollmenuparams_x_y_dy_dx_num 3, 2, 2, 0, 5
+	scroll_menu_parameters 3, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .BoosterPackCardsMenuParams
-	scrollmenuparams_x_y_dy_dx_num 1, 4, 2, 0, 7
+	scroll_menu_parameters 1, 4, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .CountCardIDs:
 	ld hl, wBoosterPackCardList
@@ -6817,7 +6814,7 @@ PrinterMenu_PokemonCards:
 	ret
 
 PrinterMenu_Params:
-	scrollmenuparams_x_y_dy_dx_num 3, 3, 0, 4, 2
+	scroll_menu_parameters 3, 3, 0, 4, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 PrinterMenu_CardList:
 	call WriteCardListsTerminatorBytes
@@ -6893,7 +6890,7 @@ PrinterMenu:
 	dw .QuitPrint
 
 .MenuParameters:
-	menuparams_x_y_dy_num 5, 2, 2, 5
+	menu_parameters 5, 2, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 .PrintQuality:
 	ldtx hl, PrinterContrastSettingsPromptText
@@ -6923,7 +6920,7 @@ PrinterMenu:
 	jr .loop_input
 
 .PrinterQualityMenuParams
-	scrollmenuparams_x_y_dy_dx_num 5, 16, 0, 2, 5
+	scroll_menu_parameters 5, 16, 0, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
 Func_b57c:
 	push de
@@ -7454,4 +7451,4 @@ PrinterMenu_DeckConfiguration:
 	ret
 
 AutoDeckMachineMenuParams:
-	scrollmenuparams_x_y_dy_dx_num 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS
+	scroll_menu_parameters 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL

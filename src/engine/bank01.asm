@@ -1063,7 +1063,7 @@ HandleAttachedEnergyMenuInput:
 	ret
 
 AttachedEnergyCardListParameters:
-	cardlistparams_x_y_num_fn 1, 5, 4, NULL
+	card_list_parameters 1, 5, 4, 14, 4, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; triggered by selecting the "Attack" item in the duel menu
 DuelMenu_Attack:
@@ -1194,7 +1194,7 @@ OpenAttackPage:
 	ret
 
 AttackMenuParameters:
-	menuparams_x_y_dy_num 1, 13, 2, 2
+	menu_parameters 1, 13, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; display the card page with id at wAttackPageNumber of wLoadedCard1
 DisplayAttackPage:
@@ -1859,7 +1859,7 @@ DisplayNoBasicPokemonInHandScreen:
 	ret
 
 NoBasicPokemonCardListParameters:
-	cardlistparams_x_y_num_fn 1, 3, 7, NULL
+	card_list_parameters 1, 3, 4, 14, 7, SYM_CURSOR_R, SYM_SPACE, NULL
 
 ; used only during the practice duel with Sam.
 ; displays the list with the player's cards in hand, and the player's name above the list.
@@ -2498,13 +2498,12 @@ DisplayDuelistTurnScreen:
 SECTION "Bank 1@517e", ROMX[$517e], BANK[$1]
 
 DuelMenuData:
-	textitems_begin
-		textitem  3, 14, HandText
-		textitem  9, 14, CheckText
-		textitem 15, 14, RetreatText
-		textitem  3, 16, AttackText
-		textitem  9, 16, PokemonPowerHiraganaText
-		textitem 15, 16, DoneText
+	textitem  3, 14, HandText
+	textitem  9, 14, CheckText
+	textitem 15, 14, RetreatText
+	textitem  3, 16, AttackText
+	textitem  9, 16, PokemonPowerHiraganaText
+	textitem 15, 16, DoneText
 	textitems_end
 
 ; display the screen that prompts the player to choose a Pokemon card to
@@ -2841,10 +2840,10 @@ CardListItemSelectionMenu:
 	ret
 
 ItemSelectionMenuParameters:
-	menuparams_x_y_dy_num 1, 14, 2, 2
+	menu_parameters 1, 14, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
 
 CardListParameters:
-	cardlistparams_x_y_num_fn 1, 3, 5, CardListFunction
+	card_list_parameters 1, 3, 4, 14, 5, SYM_CURSOR_R, SYM_SPACE, CardListFunction
 
 ; return carry if any of the buttons is pressed, and load the graphics
 ; of the card pointed to by the cursor whenever a d-pad key is released.
@@ -3736,10 +3735,9 @@ DrawCardPageBoxAndCardGfx:
 	ret
 
 CardPageRetreatWRTextData:
-	textitems_begin
-		textitem 1, 14, RetreatText
-		textitem 1, 15, WeaknessText
-		textitem 1, 16, ResistanceText
+	textitem 1, 14, RetreatText
+	textitem 1, 15, WeaknessText
+	textitem 1, 16, ResistanceText
 	textitems_end
 
 CardPageLvHPNoTextTileData:
@@ -3882,9 +3880,8 @@ DrawCardPageSet2AndRarityIcons:
 	ret
 
 CardPageLengthWeightTextData:
-	textitems_begin
-		textitem 1, 11, LengthText
-		textitem 1, 12, WeightText
+	textitem 1, 11, LengthText
+	textitem 1, 12, WeightText
 	textitems_end
 
 CardPageLvHPTextTileData:
@@ -4187,10 +4184,10 @@ DisplayPlayAreaScreen:
 	ret
 
 PlayAreaScreenMenuParameters_ActivePokemonIncluded:
-	menuparams_x_y_dy_num_fn 0, 0, 3, 6, PlayAreaScreenMenuFunction
+	menu_parameters 0, 0, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuParameters_ActivePokemonExcluded:
-	menuparams_x_y_dy_num_fn 0, 3, 3, 6, PlayAreaScreenMenuFunction
+	menu_parameters 0, 3, 3, 6, SYM_CURSOR_R, SYM_SPACE, PlayAreaScreenMenuFunction
 
 PlayAreaScreenMenuFunction:
 	ldh a, [hKeysPressed]

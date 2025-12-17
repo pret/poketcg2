@@ -1031,20 +1031,20 @@ PrintTCGIslandLocationName:
 	ret
 
 .LocationTitleTextItems:
-	textitems_nosentinels
-		textitem 1, 3, MapMasonLabText         ; OWMAP_MASON_LABORATORY
-		textitem 1, 2, MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
-		textitem 1, 3, MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
-		textitem 1, 3, MapPsychicClubText      ; OWMAP_PSYCHIC_CLUB
-		textitem 1, 3, MapRockClubText         ; OWMAP_ROCK_CLUB
-		textitem 1, 3, MapFightingClubText     ; OWMAP_FIGHTING_CLUB
-		textitem 1, 3, MapGrassClubText        ; OWMAP_GRASS_CLUB
-		textitem 1, 2, MapScienceClubText      ; OWMAP_SCIENCE_CLUB
-		textitem 1, 3, MapWaterClubText        ; OWMAP_WATER_CLUB
-		textitem 1, 3, MapFireClubText         ; OWMAP_FIRE_CLUB
-		textitem 1, 4, MapTCGAirportText       ; OWMAP_TCG_AIRPORT
-		textitem 1, 2, MapTCGChallengeHallText ; OWMAP_TCG_CHALLENGE_HALL
-		textitem 1, 3, MapPokemonDomeText      ; OWMAP_POKEMON_DOME
+	textitem 1, 3, MapMasonLabText         ; OWMAP_MASON_LABORATORY
+	textitem 1, 2, MapIshiharasHouseText   ; OWMAP_ISHIHARAS_HOUSE
+	textitem 1, 3, MapLightningClubText    ; OWMAP_LIGHTNING_CLUB
+	textitem 1, 3, MapPsychicClubText      ; OWMAP_PSYCHIC_CLUB
+	textitem 1, 3, MapRockClubText         ; OWMAP_ROCK_CLUB
+	textitem 1, 3, MapFightingClubText     ; OWMAP_FIGHTING_CLUB
+	textitem 1, 3, MapGrassClubText        ; OWMAP_GRASS_CLUB
+	textitem 1, 2, MapScienceClubText      ; OWMAP_SCIENCE_CLUB
+	textitem 1, 3, MapWaterClubText        ; OWMAP_WATER_CLUB
+	textitem 1, 3, MapFireClubText         ; OWMAP_FIRE_CLUB
+	textitem 1, 4, MapTCGAirportText       ; OWMAP_TCG_AIRPORT
+	textitem 1, 2, MapTCGChallengeHallText ; OWMAP_TCG_CHALLENGE_HALL
+	textitem 1, 3, MapPokemonDomeText      ; OWMAP_POKEMON_DOME
+	; no sentinels
 
 Func_40682:
 	ld a, [wCurOWLocation]
