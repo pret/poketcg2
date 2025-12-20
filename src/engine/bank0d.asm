@@ -2002,7 +2002,7 @@ GameCenterCardDungeonAttendantScript_Enter:
 	print_npc_text GameCenterCardDungeonAttendantNotEnoughChipsText
 	script_jump .quit
 .start
-	set_var VAR_CARD_DUNGEON_PROGRESS, $00
+	set_var VAR_CARD_DUNGEON_PROGRESS, 0
 	print_npc_text GameCenterCardDungeonAttendantReadDescriptionText
 	quit_script
 	ld a, $01
@@ -2039,7 +2039,7 @@ GameCenterCardDungeonAttendantScript_Exit:
 	script_command_01
 	set_active_npc_direction WEST
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var $06
+	compare_loaded_var CARDDUNGEON_LOST
 	script_jump_if_b0nz .player_lost
 	script_jump_if_b1z .player_quit
 	print_npc_text GameCenterCardDungeonAttendantPlayerWonComeAgainText
@@ -2220,7 +2220,7 @@ CardDungeonBishopScript:
 	start_script
 	script_command_01
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var $02
+	compare_loaded_var CARDDUNGEON_WON_KNIGHT
 	script_jump_if_b0z Script_CardDungeonBishopProceedRepeat
 	game_center
 	check_event EVENT_TALKED_TO_BISHOP
@@ -2284,7 +2284,7 @@ CardDungeonBishopScript:
 	print_npc_text BishopResumeDuelText
 	script_jump .duel_prompt
 .quit
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text BishopPlayerQuitText
 	script_command_71
 	script_command_02
@@ -2324,7 +2324,7 @@ Func_351dd:
 	script_command_71
 	script_jump .proceed
 .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $06
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text BishopPlayerLostText
 	script_command_02
 	end_script
@@ -2332,7 +2332,7 @@ Func_351dd:
 .proceed
 	ask_question BishopProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_CARD_DUNGEON_PROGRESS, $03
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_BISHOP
 	print_npc_text BishopProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
@@ -2343,7 +2343,7 @@ Func_351dd:
 	print_npc_text BishopDeclinedProceedingText
 	ask_question BishopWithdrawFromCardDungeonPromptText, TRUE
 	script_jump_if_b0z .proceed
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text BishopPlayerWithdrewText
 	script_command_02
 	end_script

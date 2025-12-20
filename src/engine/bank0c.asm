@@ -1045,7 +1045,7 @@ CardDungeonQueenScript:
 	print_npc_text QueenResumeDuelText
 	script_jump .duel_prompt
 .quit
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text QueenPlayerQuitText
 	script_command_71
 	script_command_02
@@ -1061,7 +1061,7 @@ Func_31285:
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $05
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_QUEEN
 	print_npc_text QueenPlayerWon1Text
 	game_center
 	quit_script
@@ -1081,7 +1081,7 @@ Func_31285:
 	script_command_71
 	script_jump .done
 .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $06
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text QueenPlayerLostText
 .done
 	script_command_02

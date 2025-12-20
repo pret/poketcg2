@@ -6288,7 +6288,7 @@ CardDungeonPawnScript:
 	start_script
 	script_command_01
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var $00
+	compare_loaded_var 0
 	script_jump_if_b0z .proceed
 	game_center
 	check_event EVENT_TALKED_TO_PAWN
@@ -6331,7 +6331,7 @@ CardDungeonPawnScript:
 	print_npc_text PawnResumeDuelText
 	script_jump .duel_prompt
 .quit
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text PawnPlayerQuitText
 	script_command_71
 	script_command_02
@@ -6358,7 +6358,7 @@ Func_3f15d:
 	script_command_71
 	script_jump .proceed
 .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $06
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text PawnPlayerLostText
 	script_command_02
 	end_script
@@ -6366,7 +6366,7 @@ Func_3f15d:
 .proceed
 	ask_question PawnProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_CARD_DUNGEON_PROGRESS, $01
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_PAWN
 	print_npc_text PawnProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
@@ -6377,7 +6377,7 @@ Func_3f15d:
 	print_npc_text PawnDeclinedProceedingText
 	ask_question PawnWithdrawFromCardDungeonPromptText, TRUE
 	script_jump_if_b0z .proceed
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text PawnPlayerWithdrewText
 	script_command_02
 	end_script
@@ -6506,7 +6506,7 @@ CardDungeonKnightScript:
 	start_script
 	script_command_01
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var $01
+	compare_loaded_var CARDDUNGEON_WON_PAWN
 	script_jump_if_b0z .proceed_repeat
 	game_center
 	check_event EVENT_TALKED_TO_KNIGHT
@@ -6561,7 +6561,7 @@ CardDungeonKnightScript:
 	print_npc_text KnightResumeDuelText
 	script_jump .duel_prompt
 .quit
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text KnightPlayerQuitText
 	script_command_71
 	script_command_02
@@ -6598,7 +6598,7 @@ Func_3f317:
 	script_command_71
 	script_jump .proceed
 .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $06
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text KnightPlayerLostText
 	script_command_02
 	end_script
@@ -6606,7 +6606,7 @@ Func_3f317:
 .proceed
 	ask_question KnightProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_CARD_DUNGEON_PROGRESS, $02
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_KNIGHT
 	print_npc_text KnightProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
@@ -6617,7 +6617,7 @@ Func_3f317:
 	print_npc_text KnightDeclinedProceedingText
 	ask_question KnightWithdrawFromCardDungeonPromptText, TRUE
 	script_jump_if_b0z .proceed
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text KnightPlayerWithdrewText
 	script_command_02
 	end_script
@@ -6746,7 +6746,7 @@ CardDungeonRookScript:
 	start_script
 	script_command_01
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var $03
+	compare_loaded_var CARDDUNGEON_WON_BISHOP
 	script_jump_if_b0z .proceed_repeat
 	game_center
 	check_event EVENT_TALKED_TO_ROOK
@@ -6810,7 +6810,7 @@ CardDungeonRookScript:
 	print_npc_text RookResumeDuelText
 	script_jump .duel_prompt
 .quit
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text RookPlayerQuitText
 	script_command_71
 	script_command_02
@@ -6847,7 +6847,7 @@ Func_3f500:
 	script_command_71
 	script_jump .proceed
 .player_lost
-	set_var VAR_CARD_DUNGEON_PROGRESS, $06
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text RookPlayerLostText
 	script_command_02
 	end_script
@@ -6855,7 +6855,7 @@ Func_3f500:
 .proceed
 	ask_question RookProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_CARD_DUNGEON_PROGRESS, $04
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_ROOK
 	print_npc_text RookProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
@@ -6866,7 +6866,7 @@ Func_3f500:
 	print_npc_text RookDeclinedProceedingText
 	ask_question RookWithdrawFromCardDungeonPromptText, TRUE
 	script_jump_if_b0z .proceed
-	set_var VAR_CARD_DUNGEON_PROGRESS, $07
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text RookPlayerWithdrewText
 	script_command_02
 	end_script
