@@ -2469,7 +2469,7 @@ wScriptNPCName:: ; d60f
 wSentMailBitfield:: ; d611
 	ds (NUM_UNIQUE_MAILS_IN_GAME + 7) / 8
 
-wd615:: ; d615
+wTempCardDungeonBet:: ; d615
 	ds $1
 
 ; sometimes treated as 8-bit, sometimes treated as 16-bit
@@ -3036,7 +3036,7 @@ wTotalNumCardsToCollect:: ; db13
 wTotalNumCardsCollected:: ; db15
 	ds $2
 
-wdb17:: ; db17
+wPopupMenuCursorPosition:: ; db17
 	ds $1
 
 wdb18:: ; db18

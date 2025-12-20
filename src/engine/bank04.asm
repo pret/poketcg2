@@ -5269,17 +5269,19 @@ PrintCardAlbumProgress:
 	pop af
 	ret
 
-Func_121e1:
+; a = POPUPMENU_* constant
+; b = cursor pos
+HandlePopupMenu:
 	push bc
 	push de
 	push hl
-	ld hl, wdb17
+	ld hl, wPopupMenuCursorPosition
 	ld [hl], b
 	add a
-	add a
+	add a ; *4
 	ld c, a
-	ld b, $00
-	ld hl, $6214
+	ld b, 0
+	ld hl, .ParamItems
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -5288,10 +5290,10 @@ Func_121e1:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld b, $04
+	ld b, BANK(.ParamItems)
 	call LoadMenuBoxParams
 	farcall Func_1cacf
-	ld a, [wdb17]
+	ld a, [wPopupMenuCursorPosition]
 	farcall DrawMenuBox
 	farcall HandleMenuBox
 	farcall Func_1caf1
@@ -5299,7 +5301,125 @@ Func_121e1:
 	pop de
 	pop bc
 	ret
-; 0x12214
+
+.ParamItems
+	paramitem  0,  6, .SamRules          ; POPUPMENU_SAM_RULES
+	paramitem  0, 10, .Sam               ; POPUPMENU_SAM
+	paramitem  0,  0, .Aaron1            ; POPUPMENU_AARON_1
+	paramitem  0,  0, .Aaron2            ; POPUPMENU_AARON_2
+	paramitem  0,  0, .Aaron3            ; POPUPMENU_AARON_3
+	paramitem  0,  0, .Aaron4            ; POPUPMENU_AARON_4
+	paramitem  0, 13, .CardDungeonKnight ; POPUPMENU_CARD_DUNGEON_KNIGHT
+	paramitem  0, 13, .CardDungeonBishop ; POPUPMENU_CARD_DUNGEON_BISHOP
+	paramitem  0, 13, .CardDungeonRook   ; POPUPMENU_CARD_DUNGEON_ROOK
+	paramitem  0, 13, .CardDungeonQueen  ; POPUPMENU_CARD_DUNGEON_QUEEN
+	paramitem  0, 13, .CardDungeonPawn   ; POPUPMENU_CARD_DUNGEON_PAWN
+
+.SamRules
+	menubox_params TRUE, 14, 18, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, SamRulesEnergyText
+	textitem 2,  4, SamRulesAttackText
+	textitem 2,  6, SamRulesSwitchText
+	textitem 2,  8, SamRulesEvolutionText
+	textitem 2, 10, SamRulesPokemonPowerText
+	textitem 2, 12, SamRulesEndOfTurnText
+	textitem 2, 14, SamRulesDecisionText
+	textitem 2, 16, SamRulesQuitText
+	textitems_end
+
+.Sam
+	menubox_params TRUE, 10, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, MasonLabPracticeDuelText
+	textitem 2, 4, MasonLabRegularDuelText
+	textitem 2, 6, SamRulesText
+	textitem 2, 8, SamQuitText
+	textitems_end
+
+.Aaron1
+	menubox_params TRUE, 10, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, GiftCenterQuitText
+	textitems_end
+
+.Aaron2
+	menubox_params TRUE, 10, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, AaronStep2Text
+	textitem 2, 6, GiftCenterQuitText
+	textitems_end
+
+.Aaron3
+	menubox_params TRUE, 10, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, AaronStep2Text
+	textitem 2, 6, AaronStep3Text
+	textitem 2, 8, GiftCenterQuitText
+	textitems_end
+
+.Aaron4
+	menubox_params TRUE, 10, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, AaronStep1Text
+	textitem 2,  4, AaronStep2Text
+	textitem 2,  6, AaronStep3Text
+	textitem 2,  8, MasonLabRegularDuelText
+	textitem 2, 10, GiftCenterQuitText
+	textitems_end
+
+.CardDungeonKnight
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBet20Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonBishop
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBet30Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonRook
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet30Text
+	textitem 2, 4, GameCenterCardDungeonBet50Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonQueen
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet50Text
+	textitem 2, 4, GameCenterCardDungeonBet100Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonPawn
+	menubox_params TRUE, 7, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBetCancelText
+	textitems_end
 
 SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
 

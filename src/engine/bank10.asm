@@ -1866,7 +1866,7 @@ Func_41233:
 	end_script
 	ld a, $01
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_41264
 	or a
 	jr z, .asm_4126b
@@ -2110,7 +2110,7 @@ Script_41408:
 	ld b, $00
 .asm_4140c
 	xor a
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_41428
 	or a
 	jr z, .asm_4142f

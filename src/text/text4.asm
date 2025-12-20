@@ -2242,11 +2242,11 @@ SamRulesQuitText:
 	textfw "きくことは ない"
 	done
 
-SamPracticeDuelText:
+MasonLabPracticeDuelText:
 	textfw "れんしゅう対戦"
 	done
 
-SamRegularDuelText:
+MasonLabRegularDuelText:
 	textfw "ふつうに対戦"
 	done
 

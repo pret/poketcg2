@@ -2002,7 +2002,7 @@ GameCenterCardDungeonAttendantScript_Enter:
 	print_npc_text GameCenterCardDungeonAttendantNotEnoughChipsText
 	script_jump .quit
 .start
-	set_var VAR_3A, $00
+	set_var VAR_CARD_DUNGEON_PROGRESS, $00
 	print_npc_text GameCenterCardDungeonAttendantReadDescriptionText
 	quit_script
 	ld a, $01
@@ -2038,7 +2038,7 @@ GameCenterCardDungeonAttendantScript_Exit:
 	start_script
 	script_command_01
 	set_active_npc_direction WEST
-	get_var VAR_3A
+	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var $06
 	script_jump_if_b0nz .player_lost
 	script_jump_if_b1z .player_quit
@@ -2149,12 +2149,12 @@ CardDungeonBishop_NPCs:
 	db $ff
 
 CardDungeonBishop_NPCInteractions:
-	npc_script NPC_BISHOP, Func_3512c
+	npc_script NPC_BISHOP, CardDungeonBishopScript
 	db $ff
 
 CardDungeonBishop_OWInteractions:
-	ow_script 4, 1, Func_35273
-	ow_script 5, 1, Func_35273
+	ow_script 4, 1, CardDungeonBishopDoorsScript
+	ow_script 5, 1, CardDungeonBishopDoorsScript
 	db $ff
 
 CardDungeonBishop_MapScripts:
@@ -2208,7 +2208,7 @@ Func_35127:
 	scf
 	ret
 
-Func_3512c:
+CardDungeonBishopScript:
 	ld a, NPC_BISHOP
 	ld [wScriptNPC], a
 	ldtx hl, DialogBishopText
@@ -2219,52 +2219,53 @@ Func_3512c:
 	xor a
 	start_script
 	script_command_01
-	get_var VAR_3A
+	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var $02
-	script_jump_if_b0z Script_351d7
+	script_jump_if_b0z Script_CardDungeonBishopProceedRepeat
 	game_center
 	check_event EVENT_TALKED_TO_BISHOP
-	script_jump_if_b0z .ows_35156
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_BISHOP
 	print_npc_text BishopWantsToDuelInitialText
-	script_jump .ows_35159
-.ows_35156
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text BishopWantsToDuelRepeatText
-.ows_35159
+.duel_prompt
 	ask_question BishopDuelPromptText, TRUE
-	script_jump_if_b0z .ows_351bb
-.ows_35160
+	script_jump_if_b0z .quit_prompt
+.bet_start
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $07
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3517c
-	cp $01
-	jr z, .asm_35178
-	jr nc, .asm_3517c
-	ld a, $0a
-	jr .asm_35184
-.asm_35178
-	ld a, $1e
-	jr .asm_35184
-.asm_3517c
+	ld a, POPUPMENU_CARD_DUNGEON_BISHOP
+	ld b, 0
+	farcall HandlePopupMenu
+	jr c, .cancel
+	cp 1 ; cursor pos
+	jr z, .bet_30
+	jr nc, .cancel
+; bet 10
+	ld a, CHIPS_BET_DUNGEON_10
+	jr .bet_check
+.bet_30
+	ld a, CHIPS_BET_DUNGEON_30
+	jr .bet_check
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_351bb
-.asm_35184
-	ld h, $00
+	script_jump .quit_prompt
+.bet_check
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	cp16bc_long hl
-	jr nc, .asm_351a6
+	jr nc, .bet
 	ld a, $01
 	start_script
 	print_npc_text BishopNotEnoughChipsText
-	script_jump .ows_35160
-.asm_351a6
+	script_jump .bet_start
+.bet
 	ld c, l
 	ld b, h
 	farcall DecreaseChipsSmoothly
@@ -2276,14 +2277,14 @@ Func_3512c:
 	start_duel TEXTURE_TUNER7_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_351bb
+.quit_prompt
 	print_npc_text BishopDeclinedDuelText
 	ask_question BishopQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_351cb
+	script_jump_if_b0nz .quit
 	print_npc_text BishopResumeDuelText
-	script_jump .ows_35159
-.ows_351cb
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text BishopPlayerQuitText
 	script_command_71
 	script_command_02
@@ -2292,7 +2293,7 @@ Func_3512c:
 Func_351d4:
 	jp Func_3524f
 
-Script_351d7:
+Script_CardDungeonBishopProceedRepeat:
 	print_npc_text BishopProceedRepeatText
 	script_command_02
 	end_script
@@ -2303,13 +2304,13 @@ Func_351dd:
 	start_script
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_35210
+	script_jump_if_b0nz .player_lost
 	print_npc_text BishopPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -2321,33 +2322,33 @@ Func_351dd:
 	start_script
 	print_npc_text BishopPlayerWon2Text
 	script_command_71
-	script_jump .ows_3521b
-.ows_35210
-	set_var VAR_3A, $06
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $06
 	print_npc_text BishopPlayerLostText
 	script_command_02
 	end_script
 	jp Func_3524f
-.ows_3521b
+.proceed
 	ask_question BishopProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_35237
-	set_var VAR_3A, $03
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, $03
 	print_npc_text BishopProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04A, $04, $00
 	print_npc_text BishopProceedInitial2Text
-	script_jump .ows_3524c
-.ows_35237
+	script_jump .done
+.declined
 	print_npc_text BishopDeclinedProceedingText
 	ask_question BishopWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3521b
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text BishopPlayerWithdrewText
 	script_command_02
 	end_script
 	jp Func_3524f
-.ows_3524c
+.done
 	script_command_02
 	end_script
 	ret
@@ -2371,18 +2372,18 @@ Func_3525b:
 	ld [wd582], a
 	ret
 
-Func_35273:
-	ld a, VAR_3A
+CardDungeonBishopDoorsScript:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $02
-	jr nz, .asm_35287
+	jr nz, .done
 	xor a
 	start_script
 	script_command_01
 	print_text DoorsAreShutText
 	script_command_02
 	end_script
-.asm_35287
+.done
 	ret
 
 GrChallengeHallLobby_MapHeader:

@@ -926,7 +926,7 @@ CardDungeonQueen_NPCs:
 	db $ff
 
 CardDungeonQueen_NPCInteractions:
-	npc_script NPC_QUEEN, Func_311d5
+	npc_script NPC_QUEEN, CardDungeonQueenScript
 	db $ff
 
 CardDungeonQueen_MapScripts:
@@ -967,7 +967,7 @@ Func_311d0:
 	scf
 	ret
 
-Func_311d5:
+CardDungeonQueenScript:
 	ld a, NPC_QUEEN
 	ld [wScriptNPC], a
 	ldtx hl, DialogQueenText
@@ -980,47 +980,48 @@ Func_311d5:
 	script_command_01
 	game_center
 	check_event EVENT_TALKED_TO_QUEEN
-	script_jump_if_b0z .ows_311f8
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_QUEEN
 	print_npc_text QueenWantsToDuelInitialText
-	script_jump .ows_311fb
-.ows_311f8
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text QueenWantsToDuelRepeatText
-.ows_311fb
+.duel_prompt
 	ask_question QueenDuelPromptText, TRUE
-	script_jump_if_b0z .ows_31268
-.ows_31202
+	script_jump_if_b0z .quit_prompt
+.bet_start
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $09
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3121e
-	cp $01
-	jr z, .asm_3121a
-	jr nc, .asm_3121e
-	ld a, $32
-	jr .asm_31226
-.asm_3121a
-	ld a, $64
-	jr .asm_31226
-.asm_3121e
+	ld a, POPUPMENU_CARD_DUNGEON_QUEEN
+	ld b, 0
+	farcall HandlePopupMenu
+	jr c, .cancel
+	cp 1
+	jr z, .bet_100
+	jr nc, .cancel
+; bet 50
+	ld a, CHIPS_BET_DUNGEON_50
+	jr .bet_check
+.bet_100
+	ld a, CHIPS_BET_DUNGEON_100
+	jr .bet_check
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_31268
-.asm_31226
-	ld h, $00
+	script_jump .quit_prompt
+.bet_check
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	cp16bc_long hl
-	jr nc, .asm_31248
+	jr nc, .bet
 	ld a, $01
 	start_script
 	print_npc_text QueenNotEnoughChipsText
-	script_jump .ows_31202
-.asm_31248
+	script_jump .bet_start
+.bet
 	ld c, l
 	ld b, h
 	farcall DecreaseChipsSmoothly
@@ -1037,14 +1038,14 @@ Func_311d5:
 	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
-.ows_31268
+.quit_prompt
 	print_npc_text QueenDeclinedDuelText
 	ask_question QueenQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_31278
+	script_jump_if_b0nz .quit
 	print_npc_text QueenResumeDuelText
-	script_jump .ows_311fb
-.ows_31278
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text QueenPlayerQuitText
 	script_command_71
 	script_command_02
@@ -1059,14 +1060,14 @@ Func_31285:
 	start_script
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_312bb
-	set_var VAR_3A, $05
+	script_jump_if_b0nz .player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $05
 	print_npc_text QueenPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -1078,11 +1079,11 @@ Func_31285:
 	start_script
 	print_npc_text QueenPlayerWon2Text
 	script_command_71
-	script_jump .ows_312c1
-.ows_312bb
-	set_var VAR_3A, $06
+	script_jump .done
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $06
 	print_npc_text QueenPlayerLostText
-.ows_312c1
+.done
 	script_command_02
 	end_script
 	jp Func_312c6

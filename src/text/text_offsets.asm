@@ -1866,8 +1866,8 @@ TextOffsets::
 	textpointer SamRulesEndOfTurnText                                 ; 0x0741
 	textpointer SamRulesDecisionText                                  ; 0x0742
 	textpointer SamRulesQuitText                                      ; 0x0743
-	textpointer SamPracticeDuelText                                   ; 0x0744
-	textpointer SamRegularDuelText                                    ; 0x0745
+	textpointer MasonLabPracticeDuelText                              ; 0x0744
+	textpointer MasonLabRegularDuelText                               ; 0x0745
 	textpointer SamRulesText                                          ; 0x0746
 	textpointer SamQuitText                                           ; 0x0747
 	textpointer AaronStep1Text                                        ; 0x0748

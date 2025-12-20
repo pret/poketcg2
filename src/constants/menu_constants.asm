@@ -76,6 +76,20 @@
 	const GLOSSARY_SPECIAL_DUEL_RULES     ; 3
 	const GLOSSARY_EXIT                   ; 4
 
+; pop-up menu index
+	const_def
+	const POPUPMENU_SAM_RULES           ; $0
+	const POPUPMENU_SAM                 ; $1
+	const POPUPMENU_AARON_1             ; $2
+	const POPUPMENU_AARON_2             ; $3
+	const POPUPMENU_AARON_3             ; $4
+	const POPUPMENU_AARON_4             ; $5
+	const POPUPMENU_CARD_DUNGEON_KNIGHT ; $6
+	const POPUPMENU_CARD_DUNGEON_BISHOP ; $7
+	const POPUPMENU_CARD_DUNGEON_ROOK   ; $8
+	const POPUPMENU_CARD_DUNGEON_QUEEN  ; $9
+	const POPUPMENU_CARD_DUNGEON_PAWN   ; $a
+
 ; filter types for CardTypeFilters
 ; used to categorise the different cards
 ; i.e. in the deck building screen

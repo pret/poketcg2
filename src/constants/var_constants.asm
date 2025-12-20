@@ -57,7 +57,7 @@
 	const VAR_37                             ; $37
 	const VAR_38                             ; $38
 	const VAR_39                             ; $39
-	const VAR_3A                             ; $3a
+	const VAR_CARD_DUNGEON_PROGRESS          ; $3a
 	const VAR_3B                             ; $3b
 	const VAR_NPC_DECK_ID                    ; $3c
 	const VAR_DUEL_START_THEME               ; $3d

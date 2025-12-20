@@ -1086,7 +1086,7 @@ Func_3c84c:
 	quit_script
 	ld a, $02
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1096,7 +1096,7 @@ Func_3c84c:
 	quit_script
 	ld a, $03
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1108,7 +1108,7 @@ Func_3c84c:
 	quit_script
 	ld a, $04
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1124,7 +1124,7 @@ Func_3c84c:
 	quit_script
 	ld a, $05
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	cp $01
 	jp c, Func_3c917
@@ -6217,12 +6217,12 @@ CardDungeonPawn_NPCs:
 	db $ff
 
 CardDungeonPawn_NPCInteractions:
-	npc_script NPC_PAWN, Func_3f0d9
+	npc_script NPC_PAWN, CardDungeonPawnScript
 	db $ff
 
 CardDungeonPawn_OWInteractions:
-	ow_script 4, 1, Func_3f1de
-	ow_script 5, 1, Func_3f1de
+	ow_script 4, 1, CardDungeonPawnDoorsScript
+	ow_script 5, 1, CardDungeonPawnDoorsScript
 	db $ff
 
 CardDungeonPawn_MapScripts:
@@ -6276,7 +6276,7 @@ Func_3f0d4:
 	scf
 	ret
 
-Func_3f0d9:
+CardDungeonPawnScript:
 	ld a, NPC_PAWN
 	ld [wScriptNPC], a
 	ldtx hl, DialogPawnText
@@ -6287,57 +6287,57 @@ Func_3f0d9:
 	xor a
 	start_script
 	script_command_01
-	get_var VAR_3A
+	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var $00
-	script_jump_if_b0z .ows_3f157
+	script_jump_if_b0z .proceed
 	game_center
 	check_event EVENT_TALKED_TO_PAWN
-	script_jump_if_b0z .ows_3f103
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_PAWN
 	print_npc_text PawnWantsToDuelInitialText
-	script_jump .ows_3f106
-.ows_3f103
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text PawnWantsToDuelRepeatText
-.ows_3f106
+.duel_prompt
 	ask_question PawnDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f13b
+	script_jump_if_b0z .quit_prompt
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $0a
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f126
+	ld a, POPUPMENU_CARD_DUNGEON_PAWN
+	ld b, 0
+	farcall HandlePopupMenu
+	jr c, .cancel
 	or a
-	jr nz, .asm_3f126
+	jr nz, .cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f12e
-.asm_3f126
+	script_jump .bet_start
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f13b
-.ows_3f12e
-	take_chips 10
+	script_jump .quit_prompt
+.bet_start
+	take_chips CHIPS_BET_DUNGEON_10
 	print_npc_text PawnDuelStartText
 	script_command_71
 	script_command_02
 	start_duel TEST_YOUR_LUCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_3f13b
+.quit_prompt
 	print_npc_text PawnDeclinedDuelText
 	ask_question PawnQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f14b
+	script_jump_if_b0nz .quit
 	print_npc_text PawnResumeDuelText
-	script_jump .ows_3f106
-.ows_3f14b
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text PawnPlayerQuitText
 	script_command_71
 	script_command_02
 	end_script
 	jp Func_3f1ba
-.ows_3f157:
+.proceed
 	print_npc_text PawnProceedRepeatText
 	script_command_02
 	end_script
@@ -6348,41 +6348,41 @@ Func_3f15d:
 	start_script
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f17b
+	script_jump_if_b0nz .player_lost
 	print_npc_text PawnPlayerWon1Text
 	game_center
-	set_text_ram3 20
+	set_text_ram3 CHIPS_BET_DUNGEON_10 * 2
 	print_text ReceivedXChipsText
-	give_chips 20
+	give_chips CHIPS_BET_DUNGEON_10 * 2
 	print_npc_text PawnPlayerWon2Text
 	script_command_71
-	script_jump .ows_3f186
-.ows_3f17b
-	set_var VAR_3A, $06
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $06
 	print_npc_text PawnPlayerLostText
 	script_command_02
 	end_script
 	jp Func_3f1ba
-.ows_3f186
+.proceed
 	ask_question PawnProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f1a2
-	set_var VAR_3A, $01
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, $01
 	print_npc_text PawnProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_044, $04, $00
 	print_npc_text PawnProceedInitial2Text
-	script_jump .ows_3f1b7
-.ows_3f1a2
+	script_jump .done
+.declined
 	print_npc_text PawnDeclinedProceedingText
 	ask_question PawnWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f186
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text PawnPlayerWithdrewText
 	script_command_02
 	end_script
 	jp Func_3f1ba
-.ows_3f1b7
+.done
 	script_command_02
 	end_script
 	ret
@@ -6406,18 +6406,18 @@ Func_3f1c6:
 	ld [wd582], a
 	ret
 
-Func_3f1de:
-	ld a, VAR_3A
+CardDungeonPawnDoorsScript:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	or a
-	jr nz, .asm_3f1f1
+	jr nz, .done
 	xor a
 	start_script
 	script_command_01
 	print_text DoorsAreShutText
 	script_command_02
 	end_script
-.asm_3f1f1
+.done
 	ret
 
 CardDungeonKnight_MapHeader:
@@ -6435,12 +6435,12 @@ CardDungeonKnight_NPCs:
 	db $ff
 
 CardDungeonKnight_NPCInteractions:
-	npc_script NPC_KNIGHT, Func_3f27f
+	npc_script NPC_KNIGHT, CardDungeonKnightScript
 	db $ff
 
 CardDungeonKnight_OWInteractions:
-	ow_script 4, 1, Func_3f3ad
-	ow_script 5, 1, Func_3f3ad
+	ow_script 4, 1, CardDungeonKnightDoorsScript
+	ow_script 5, 1, CardDungeonKnightDoorsScript
 	db $ff
 
 CardDungeonKnight_MapScripts:
@@ -6494,7 +6494,7 @@ Func_3f27a:
 	scf
 	ret
 
-Func_3f27f:
+CardDungeonKnightScript:
 	ld a, NPC_KNIGHT
 	ld [wScriptNPC], a
 	ldtx hl, DialogKnightText
@@ -6505,42 +6505,43 @@ Func_3f27f:
 	xor a
 	start_script
 	script_command_01
-	get_var VAR_3A
+	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var $01
-	script_jump_if_b0z .ows_3f311
+	script_jump_if_b0z .proceed_repeat
 	game_center
 	check_event EVENT_TALKED_TO_KNIGHT
-	script_jump_if_b0z .ows_3f2a9
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_KNIGHT
 	print_npc_text KnightWantsToDuelInitialText
-	script_jump .ows_3f2ac
-.ows_3f2a9
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text KnightWantsToDuelRepeatText
-.ows_3f2ac
+.duel_prompt
 	ask_question KnightDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f2f5
+	script_jump_if_b0z .quit_prompt
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $06
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f2cf
-	cp $01
-	jr z, .asm_3f2cb
-	jr nc, .asm_3f2cf
-	ld a, $0a
-	jr .asm_3f2d7
-.asm_3f2cb
-	ld a, $14
-	jr .asm_3f2d7
-.asm_3f2cf
+	ld a, POPUPMENU_CARD_DUNGEON_KNIGHT
+	ld b, 0
+	farcall HandlePopupMenu
+	jr c, .cancel
+	cp 1
+	jr z, .bet_20
+	jr nc, .cancel
+; bet 10
+	ld a, CHIPS_BET_DUNGEON_10
+	jr .bet
+.bet_20
+	ld a, CHIPS_BET_DUNGEON_20
+	jr .bet
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f2f5
-.asm_3f2d7
-	ld h, $00
+	script_jump .quit_prompt
+.bet
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	ld c, l
 	ld b, h
@@ -6553,20 +6554,20 @@ Func_3f27f:
 	start_duel PROTOHISTORIC_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_3f2f5
+.quit_prompt
 	print_npc_text KnightDeclinedDuelText
 	ask_question KnightQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f305
+	script_jump_if_b0nz .quit
 	print_npc_text KnightResumeDuelText
-	script_jump .ows_3f2ac
-.ows_3f305
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text KnightPlayerQuitText
 	script_command_71
 	script_command_02
 	end_script
 	jp Func_3f389
-.ows_3f311
+.proceed_repeat
 	print_npc_text KnightProceedRepeatText
 	script_command_02
 	end_script
@@ -6577,13 +6578,13 @@ Func_3f317:
 	start_script
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f34a
+	script_jump_if_b0nz .player_lost
 	print_npc_text KnightPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -6595,33 +6596,33 @@ Func_3f317:
 	start_script
 	print_npc_text KnightPlayerWon2Text
 	script_command_71
-	script_jump .ows_3f355
-.ows_3f34a
-	set_var VAR_3A, $06
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $06
 	print_npc_text KnightPlayerLostText
 	script_command_02
 	end_script
 	jp Func_3f389
-.ows_3f355
+.proceed
 	ask_question KnightProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f371
-	set_var VAR_3A, $02
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, $02
 	print_npc_text KnightProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_047, $04, $00
 	print_npc_text KnightProceedInitial2Text
-	script_jump .ows_3f386
-.ows_3f371
+	script_jump .done
+.declined
 	print_npc_text KnightDeclinedProceedingText
 	ask_question KnightWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f355
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text KnightPlayerWithdrewText
 	script_command_02
 	end_script
 	jp Func_3f389
-.ows_3f386
+.done
 	script_command_02
 	end_script
 	ret
@@ -6645,18 +6646,18 @@ Func_3f395:
 	ld [wd582], a
 	ret
 
-Func_3f3ad:
-	ld a, VAR_3A
+CardDungeonKnightDoorsScript:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $01
-	jr nz, .asm_3f3c1
+	jr nz, .done
 	xor a
 	start_script
 	script_command_01
 	print_text DoorsAreShutText
 	script_command_02
 	end_script
-.asm_3f3c1
+.done
 	ret
 
 CardDungeonRook_MapHeader:
@@ -6674,12 +6675,12 @@ CardDungeonRook_NPCs:
 	db $ff
 
 CardDungeonRook_NPCInteractions:
-	npc_script NPC_ROOK, Func_3f44f
+	npc_script NPC_ROOK, CardDungeonRookScript
 	db $ff
 
 CardDungeonRook_OWInteractions:
-	ow_script 4, 1, Func_3f596
-	ow_script 5, 1, Func_3f596
+	ow_script 4, 1, CardDungeonRookDoorsScript
+	ow_script 5, 1, CardDungeonRookDoorsScript
 	db $ff
 
 CardDungeonRook_MapScripts:
@@ -6733,7 +6734,7 @@ Func_3f44a:
 	scf
 	ret
 
-Func_3f44f:
+CardDungeonRookScript:
 	ld a, NPC_ROOK
 	ld [wScriptNPC], a
 	ldtx hl, DialogRookText
@@ -6744,52 +6745,53 @@ Func_3f44f:
 	xor a
 	start_script
 	script_command_01
-	get_var VAR_3A
+	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var $03
-	script_jump_if_b0z .ows_3f4fa
+	script_jump_if_b0z .proceed_repeat
 	game_center
 	check_event EVENT_TALKED_TO_ROOK
-	script_jump_if_b0z .ows_3f479
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_ROOK
 	print_npc_text RookWantsToDuelInitialText
-	script_jump .ows_3f47c
-.ows_3f479
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text RookWantsToDuelRepeatText
-.ows_3f47c
+.duel_prompt
 	ask_question RookDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f4de
-.ows_3f483
+	script_jump_if_b0z .quit_prompt
+.bet_start
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $08
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f49f
-	cp $01
-	jr z, .asm_3f49b
-	jr nc, .asm_3f49f
-	ld a, $1e
-	jr .asm_3f4a7
-.asm_3f49b
-	ld a, $32
-	jr .asm_3f4a7
-.asm_3f49f
+	ld a, POPUPMENU_CARD_DUNGEON_ROOK
+	ld b, 0
+	farcall HandlePopupMenu
+	jr c, .cancel
+	cp 1
+	jr z, .bet_50
+	jr nc, .cancel
+; bet 30
+	ld a, CHIPS_BET_DUNGEON_30
+	jr .bet_check
+.bet_50
+	ld a, CHIPS_BET_DUNGEON_50
+	jr .bet_check
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f4de
-.asm_3f4a7
-	ld h, $00
+	script_jump .quit_prompt
+.bet_check
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	cp16bc_long hl
-	jr nc, .asm_3f4c9
+	jr nc, .bet
 	ld a, $01
 	start_script
 	print_npc_text RookNotEnoughChipsText
-	script_jump .ows_3f483
-.asm_3f4c9
+	script_jump .bet_start
+.bet
 	ld c, l
 	ld b, h
 	farcall DecreaseChipsSmoothly
@@ -6801,20 +6803,20 @@ Func_3f44f:
 	start_duel COLORLESS_ENERGY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
-.ows_3f4de
+.quit_prompt
 	print_npc_text RookDeclinedDuelText
 	ask_question RookQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f4ee
+	script_jump_if_b0nz .quit
 	print_npc_text RookResumeDuelText
-	script_jump .ows_3f47c
-.ows_3f4ee
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text RookPlayerQuitText
 	script_command_71
 	script_command_02
 	end_script
 	jp Func_3f572
-.ows_3f4fa
+.proceed_repeat
 	print_npc_text RookProceedRepeatText
 	script_command_02
 	end_script
@@ -6825,13 +6827,13 @@ Func_3f500:
 	start_script
 	script_command_01
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f533
+	script_jump_if_b0nz .player_lost
 	print_npc_text RookPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -6843,33 +6845,33 @@ Func_3f500:
 	start_script
 	print_npc_text RookPlayerWon2Text
 	script_command_71
-	script_jump .ows_3f53e
-.ows_3f533
-	set_var VAR_3A, $06
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, $06
 	print_npc_text RookPlayerLostText
 	script_command_02
 	end_script
 	jp Func_3f572
-.ows_3f53e
+.proceed
 	ask_question RookProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f55a
-	set_var VAR_3A, $04
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, $04
 	print_npc_text RookProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_04D, $04, $00
 	print_npc_text RookProceedInitial2Text
-	script_jump .ows_3f56f
-.ows_3f55a
+	script_jump .done
+.declined
 	print_npc_text RookDeclinedProceedingText
 	ask_question RookWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f53e
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, $07
 	print_npc_text RookPlayerWithdrewText
 	script_command_02
 	end_script
 	jp Func_3f572
-.ows_3f56f
+.done
 	script_command_02
 	end_script
 	ret
@@ -6893,18 +6895,18 @@ Func_3f57e:
 	ld [wd582], a
 	ret
 
-Func_3f596:
-	ld a, VAR_3A
+CardDungeonRookDoorsScript:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $03
-	jr nz, .asm_3f5aa
+	jr nz, .done
 	xor a
 	start_script
 	script_command_01
 	print_text DoorsAreShutText
 	script_command_02
 	end_script
-.asm_3f5aa
+.done
 	ret
 
 WaterFortLobby_MapHeader:
