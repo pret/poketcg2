@@ -56,6 +56,7 @@
 	const PCMENU_DECK_DIAGNOSIS ; 1
 	const PCMENU_GLOSSARY       ; 2
 	const PCMENU_PRINTER        ; 3
+	const PCMENU_SHUTDOWN       ; 4
 
 ; minicom menu options
 	const_def

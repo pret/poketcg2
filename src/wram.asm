@@ -2250,14 +2250,14 @@ wd54a:: ; d54a
 wd54b:: ; d54b
 	ds $1
 
-wd54c:: ; d54c
+wNextGameEvent:: ; d54c
 	ds $1
 
-; how far has the player progressed
-; $0: no save data
-; $1: entered player info
-; $2: watched prologue
-wd54d:: ; d54d
+; MAP_* constant
+; also used for new-game entry flag:
+;   FALSE: no save data
+;    TRUE: entered player info
+wNextWarpMap:: ; d54d
 	ds $1
 
 wd54e:: ; d54e
@@ -2269,11 +2269,10 @@ wd54f:: ; d54f
 wPlayerOWObject:: ; d550
 	ds $1
 
-; bank number of wd552
-wd551:: ; d551
+wCurMapScriptsBank:: ; d551
 	ds $1
 
-wd552:: ; d552
+wCurMapScriptsPointer:: ; d552
 	ds $2
 
 ; bit 0: has save data
@@ -2355,11 +2354,13 @@ wTempBlackBoxInputEvoLineEnd:: ; d582
 
 ENDU
 
-wd582:: ; d582
+; OWMODE_* constant
+wOverworldMode:: ; d582
 	ds $1
 
+; bit 0: set when player warps
 ; bit 1: set when NPC initiates duel
-wd583:: ; d583
+wOverworldTransition:: ; d583
 	ds $1
 
 ; MAP_* constant
@@ -2385,14 +2386,16 @@ wPlayerOWLocation:: ; d588
 wCurIsland:: ; d589
 	ds $1
 
+wNextMapHeaderData:: ; d58a
+
 ; MAP_GFX_* constant
-wCurMapGfx:: ; d58a
+wNextMapGfx:: ; d58a
 	ds $1
 
-wd58b:: ; d58b
+wNextMapScriptsBank:: ; d58b
 	ds $1
 
-wd58c:: ; d58c
+wNextMapScriptsPointer:: ; d58c
 	ds $2
 
 ; MUSIC_* constant
@@ -2401,18 +2404,22 @@ wd58c:: ; d58c
 wNextMusic:: ; d58e
 	ds $1
 
-wd58f:: ; d58f
+wNextMapHeaderDataEnd::
+
+wNextWarpPlayerXCoord:: ; d58f
 	ds $1
 
-wd590:: ; d590
+wNextWarpPlayerYCoord:: ; d590
 	ds $1
 
-wd591:: ; d591
+wNextWarpPlayerDirection:: ; d591
 	ds $1
 
+; bank of wd593
 wd592:: ; d592
 	ds $1
 
+; ptr
 wd593:: ; d593
 	ds $2
 
@@ -2719,10 +2726,11 @@ wd89d:: ; d89d
 wd89e:: ; d89e
 	ds $1
 
-wd89f:: ; d89f
+wPauseMenuCursorPosition:: ; d89f
 	ds $1
 
-wd8a0:: ; d8a0
+; if TRUE, pause menu adds chips display
+wPauseMenuWithChips:: ; d8a0
 	ds $1
 
 wd8a1:: ; d8a1
@@ -3289,13 +3297,13 @@ wDuelResult:: ; dd02
 wDuelStartTheme:: ; dd03
 	ds $1
 
-wdd04:: ; dd04
+wTempActiveMusic:: ; dd04
 	ds $1
 
-wdd05:: ; dd05
+wTempActiveMusicState:: ; dd05
 	ds $1
 
-wdd06:: ; dd06
+wActiveMusicState:: ; dd06
 	ds $1
 
 wMinicomMenuCursorPosition:: ; dd07

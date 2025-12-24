@@ -8,8 +8,8 @@ ENDM
 
 	const_def
 	const ScriptCommand_EndScript_index                        ; $00
-	const ScriptCommand_01_index                               ; $01
-	const ScriptCommand_02_index                               ; $02
+	const ScriptCommand_StartDialog_index                      ; $01
+	const ScriptCommand_EndDialog_index                        ; $02
 	const ScriptCommand_PrintText_index                        ; $03
 	const ScriptCommand_PrintVariableText_index                ; $04
 	const ScriptCommand_PrintNPCText_index                     ; $05
@@ -95,7 +95,7 @@ ENDM
 	const ScriptCommand_UnloadPlayer_index                     ; $55
 	const ScriptCommand_GiveBoosterPacks_index                 ; $56
 	const ScriptCommand_GetRandom_index                        ; $57
-	const ScriptCommand_58_index                               ; $58
+	const ScriptCommand_OpenMenu_index                         ; $58
 	const ScriptCommand_SetTextRAM3_index                      ; $59
 	const ScriptCommand_QuitScript_index                       ; $5a
 	const ScriptCommand_PlaySong_index                         ; $5b
@@ -142,12 +142,12 @@ MACRO end_script
 	run_command ScriptCommand_EndScript
 ENDM
 
-MACRO script_command_01
-	run_command ScriptCommand_01
+MACRO start_dialog
+	run_command ScriptCommand_StartDialog
 ENDM
 
-MACRO script_command_02
-	run_command ScriptCommand_02
+MACRO end_dialog
+	run_command ScriptCommand_EndDialog
 ENDM
 
 MACRO print_text
@@ -600,8 +600,8 @@ MACRO get_random
 	db \1 ; max (exclusive)
 ENDM
 
-MACRO script_command_58
-	run_command ScriptCommand_58
+MACRO open_menu
+	run_command ScriptCommand_OpenMenu
 ENDM
 
 MACRO set_text_ram3

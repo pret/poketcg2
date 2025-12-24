@@ -163,14 +163,14 @@ DebugSlotMachine:
 	call ClearGameCenterChips
 	ld bc, 100
 	call AddChips
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_DUEL_THEME_GR_LEADER
 	call SetMusic
 	pop af
 	ld a, 5
 	farcall SlotMachine
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 ; 0x10150
@@ -313,7 +313,7 @@ Func_102ef:
 	ld bc, $40
 	call WriteBCBytesToHL
 
-	call .Func_10327
+	call Func_10327
 
 	xor a
 	ld [wd896 + 0], a
@@ -324,7 +324,7 @@ Func_102ef:
 	pop af
 	ret
 
-.Func_10327:
+Func_10327:
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -1161,103 +1161,115 @@ Func_10742:
 	pop af
 	ret
 
-Func_10772:
+HandlePauseMenu:
 	push af
 	push bc
 	push de
 	push hl
-	ld b, $00
-	farcall Func_1c0b2
-	jr z, .asm_1077f
-	inc b
-.asm_1077f
+	ld b, FALSE
+	farcall CheckIfGameCenter
+	jr z, .checked_game_center
+	inc b ; TRUE
+.checked_game_center
 	ld a, b
-	ld [wd8a0], a
+	ld [wPauseMenuWithChips], a
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
-.asm_1078a
-	ld a, [wd8a0]
+.loop_menu
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_10793
-	call Func_114af
-.asm_10793
-	call Func_107bf
-	call Func_1081a
-	jr c, .asm_107ae
-	call Func_10836
-	jr c, .asm_107ae
-	call Func_10856
-	ld a, [wd8a0]
+	jr z, .display
+	call TurnOnCurChipsHUD
+.display
+	call .ShowMenu
+	call .HandleInput
+	jr c, .cancel
+	call .ExecuteSelectedOption
+	jr c, .cancel
+	call .RestoreNPCs
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_1078a
-	call Func_114f9
-	jr .asm_1078a
-.asm_107ae
-	call Func_10856
-	ld a, [wd8a0]
+	jr z, .loop_menu
+	call TurnOffCurChipsHUD
+	jr .loop_menu
+.cancel
+	call .RestoreNPCs
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_107ba
-	call Func_114f9
-.asm_107ba
+	jr z, .quit
+	call TurnOffCurChipsHUD
+.quit
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_107bf:
+.ShowMenu:
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $c00
-	ld b, $04
-	ld hl, $47ee
+	lb de, 12, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
-	farcall Func_1cacf
-	ld a, [wd89f]
+	farcall HideNPCAnimsUnderMenuBox
+	ld a, [wPauseMenuCursorPosition]
 	farcall DrawMenuBox
-	farcall Func_1f309
-	jr z, .asm_107e9
+	farcall GetNewMailFlag
+	jr z, .done_show_menu
+; has new mail(s), so add an asterisk
 	lb bc, 18, 8
-	ld d, $0e
-	ld e, $00
+	ld d, SYM_ATK_DESCR
+	ld e, $00 ; priority
 	call Func_383b
-.asm_107e9
+.done_show_menu
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x107ee
 
-SECTION "Bank 4@481a", ROMX[$481a], BANK[$4]
+.menu_params
+	menubox_params TRUE, 8, 16, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, PauseMenuStatusText
+	textitem 2,  4, PauseMenuDiaryText
+	textitem 2,  6, PauseMenuDeckText
+	textitem 2,  8, PauseMenuMinicomText
+	textitem 2, 10, PauseMenuCoinText
+	textitem 2, 12, PauseMenuConfigText
+	textitem 2, 14, PauseMenuExitText
+	textitems_end
 
-Func_1081a:
-	ld a, [wd89f]
+.HandleInput:
+	ld a, [wPauseMenuCursorPosition]
 	farcall HandleMenuBox
-	ld [wd89f], a
-	jr c, .asm_1082e
+	ld [wPauseMenuCursorPosition], a
+	jr c, .cancel_input
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1082e
+.cancel_input
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
 
-Func_10836:
+; a = option that was selected
+.ExecuteSelectedOption:
 	ld hl, .function_map
 	call CallMappedFunction
 	ret
 
-.function_map: ; pause menu
+.function_map
 	key_func PAUSEMENU_STATUS,  PauseMenuStatusScreen
 	key_func PAUSEMENU_DIARY,   PauseMenuDiaryScreen
 	key_func PAUSEMENU_DECK,    PauseMenuDeckScreen
@@ -1266,8 +1278,8 @@ Func_10836:
 	key_func PAUSEMENU_CONFIG,  PauseMenuConfigScreen
 	db $ff
 
-Func_10856:
-	farcall Func_1caf1
+.RestoreNPCs:
+	farcall ShowNPCAnimsUnderMenuBox
 	call LoadSymbolsFont
 	call Func_35a0
 	ret
@@ -2812,7 +2824,7 @@ IsStillOWObject:
 	db NPC_STRONGHOLD_PLATFORM
 	db $ff ; end
 
-Func_11002:
+HideNPCAnimsUnderDialogBox:
 	push af
 	push bc
 	push de
@@ -2829,7 +2841,7 @@ Func_11002:
 	pop af
 	ret
 
-Func_1101d:
+ShowNPCAnimsUnderDialogBox:
 	push af
 	push bc
 	push de
@@ -2989,36 +3001,38 @@ _PCMenu:
 	push bc
 	push de
 	push hl
-	call Func_11002
+	call HideNPCAnimsUnderDialogBox
 	ldtx hl, TurnedOnPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld e, $01
-.asm_110d5
+	ld e, TRUE ; has dialog box
+.loop_menu
 	call .ShowMenu
 	call .HandleInput
-	jr c, .asm_110f2
+	jr c, .cancel
 	push de
 	call .ExecuteSelectedOption
 	pop de
-	jr c, .asm_110f2
-	call .Func_11181
+	jr c, .cancel
+	call .RestoreNPCs
 	ld a, e
 	and a
-	jr z, .asm_110f0
-	call Func_1101d
-	ld e, $00
-.asm_110f0
-	jr .asm_110d5
-.asm_110f2
-	call .Func_11181
+	jr z, .turned_off_dialog_box
+; the "turned on" dialog is no longer valid, so turn off dialog box
+	call ShowNPCAnimsUnderDialogBox
+	ld e, FALSE
+.turned_off_dialog_box
+	jr .loop_menu
+.cancel
+	call .RestoreNPCs
 	ld a, e
 	and a
-	jr nz, .asm_110fc
-	call Func_11002
-.asm_110fc
+	jr nz, .quit
+; no dialog box, so turn it on again
+	call HideNPCAnimsUnderDialogBox
+.quit
 	ldtx hl, TurnedOffPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	call Func_1101d
+	call ShowNPCAnimsUnderDialogBox
 	pop hl
 	pop de
 	pop bc
@@ -3034,7 +3048,7 @@ _PCMenu:
 	ld b, BANK(.menu_params)
 	ld hl, .menu_params
 	call LoadMenuBoxParams
-	farcall Func_1cacf
+	farcall HideNPCAnimsUnderMenuBox
 	ld a, [wPCMenuCursorPosition]
 	farcall DrawMenuBox
 	pop hl
@@ -3058,13 +3072,13 @@ _PCMenu:
 	ld a, [wPCMenuCursorPosition]
 	farcall HandleMenuBox
 	ld [wPCMenuCursorPosition], a
-	jr c, .asm_11161
+	jr c, .cancel_input
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_11161
+.cancel_input
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
@@ -3084,8 +3098,8 @@ _PCMenu:
 	key_func PCMENU_PRINTER,        .Printer
 	db $ff ; end
 
-.Func_11181:
-	farcall Func_1caf1
+.RestoreNPCs:
+	farcall ShowNPCAnimsUnderMenuBox
 	ret
 
 .CardAlbum:
@@ -3131,7 +3145,7 @@ _PCMenu:
 	ret
 
 Func_111f0:
-	ld a, $04
+	ld a, PCMENU_SHUTDOWN
 	ld [wPCMenuCursorPosition], a
 	ret
 
@@ -3677,7 +3691,7 @@ _SetOWObjectFrameIndex:
 	call SetSpriteAnimFrameIndex
 	ret
 
-Func_114af:
+TurnOnCurChipsHUD:
 	push af
 	push bc
 	push de
@@ -3714,7 +3728,7 @@ Func_114af:
 	pop af
 	ret
 
-Func_114f9:
+TurnOffCurChipsHUD:
 	push af
 	push bc
 	push de
@@ -5271,6 +5285,7 @@ PrintCardAlbumProgress:
 
 ; a = POPUPMENU_* constant
 ; b = cursor pos
+; return a = selected item's cursor pos, and set carry if cancelled
 HandlePopupMenu:
 	push bc
 	push de
@@ -5292,11 +5307,11 @@ HandlePopupMenu:
 	ld l, a
 	ld b, BANK(.ParamItems)
 	call LoadMenuBoxParams
-	farcall Func_1cacf
+	farcall HideNPCAnimsUnderMenuBox
 	ld a, [wPopupMenuCursorPosition]
 	farcall DrawMenuBox
 	farcall HandleMenuBox
-	farcall Func_1caf1
+	farcall ShowNPCAnimsUnderMenuBox
 	pop hl
 	pop de
 	pop bc
@@ -5420,6 +5435,7 @@ HandlePopupMenu:
 	textitem 2, 2, GameCenterCardDungeonBet10Text
 	textitem 2, 4, GameCenterCardDungeonBetCancelText
 	textitems_end
+; 0x12390
 
 SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
 
@@ -5458,13 +5474,13 @@ PlaySlotsPrompt:
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	ret
 
 StartSlotMachine:
@@ -6014,8 +6030,8 @@ Func_129b8:
 	ret
 
 Func_129ca:
-	call Func_114af
-	call Func_11002
+	call TurnOnCurChipsHUD
+	call HideNPCAnimsUnderDialogBox
 	call Func_12a02
 	ld a, $3c
 	ld [wdb3d], a
@@ -6039,8 +6055,8 @@ Func_129ca:
 .asm_129fa
 	scf
 .asm_129fb
-	call Func_1101d
-	call Func_114f9
+	call ShowNPCAnimsUnderDialogBox
+	call TurnOffCurChipsHUD
 	ret
 
 Func_12a02:
@@ -6063,7 +6079,7 @@ Func_12a15:
 	ld c, a
 	ld b, $00
 	call DecreaseChipsSmoothly
-	ld a, $04
+	ld a, 4
 	call DoAFrames_WithPreCheck
 	scf
 	ccf
@@ -6349,7 +6365,7 @@ Func_13138:
 	push hl
 	call Func_1315e
 	jr c, .asm_1315a
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_CARD_POP
 	call SetMusic
@@ -6361,7 +6377,7 @@ Func_13138:
 	scf
 	ccf
 .asm_13157
-	call Func_3d16
+	call ResumeSong_ClearTemp
 .asm_1315a
 	pop hl
 	pop de
@@ -6412,13 +6428,13 @@ Func_131bd:
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
 	call Func_3d09
 	pop af
 	call WaitForSongToFinish
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	ret
 
 Func_131d7:
@@ -6676,14 +6692,14 @@ Func_13357:
 	ret
 
 Func_13398:
-	call Func_114af
+	call TurnOnCurChipsHUD
 	ldtx hl, GameCenterBlackBoxChipsPaidText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld bc, $5
+	ld bc, CHIPS_BET_BLACK_BOX
 	call DecreaseChipsSmoothly
-	ld a, $1e
+	ld a, 30
 	call DoAFrames_WithPreCheck
-	call Func_114f9
+	call TurnOffCurChipsHUD
 	ret
 
 Func_133b0:
@@ -6695,7 +6711,7 @@ Func_133b0:
 	ld [wTxRam3], a
 	xor a
 	ld [wTxRam3 + 1], a
-	ld bc, $5
+	ld bc, MAX_NUM_BLACK_BOX_INPUT
 	ld a, c
 	ld [wTxRam3_b], a
 	ld a, b
@@ -6932,37 +6948,34 @@ Func_1352a:
 	push bc
 	push de
 	push hl
-	call Func_13561.asm_1358a
+	call .asm_1358a
 	ld hl, $0
-	ld a, $de
+REPT 2
+	ld a, (NUM_CARDS - 1) / 2
 	call Random
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, $de
-	call Random
-	ld c, a
-	ld b, $00
-	add hl, bc
+ENDR
 	ld d, h
 	ld e, l
-	call Func_135b3
+	call .Draw
 .asm_1354b
 	call DoFrame
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
 	jr nz, .asm_13559
-	call Func_13561
+	call .asm_13561
 	jr .asm_1354b
 .asm_13559
-	call Func_13561.asm_135ac
+	call .asm_135ac
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_13561:
+.asm_13561:
 	ldh a, [hDPadHeld]
 	and $10
 	jr nz, .asm_1357c
@@ -6971,21 +6984,22 @@ Func_13561:
 	jr nz, .asm_1356e
 	ret
 .asm_1356e
-	ld bc, $1
+	ld bc, GRASS_ENERGY
 	call CompareBCAndDE
 	jr c, .asm_13579
-	ld de, $1be
+	ld de, NUM_CARDS + 1
 .asm_13579
 	dec de
-	jr Func_135b3
+	jr .Draw
 .asm_1357c
-	ld bc, $1bc
+	ld bc, NUM_CARDS - 1
 	call CompareBCAndDE
 	jr nc, .asm_13587
-	ld de, $0
+	ld de, 0
 .asm_13587
 	inc de
-	jr Func_135b3
+	jr .Draw
+
 .asm_1358a:
 	lb de, 5, 4
 	lb bc, 10, 8
@@ -6995,16 +7009,17 @@ Func_13561:
 	call DrawRegularTextBoxVRAM0
 	lb de, 11, 11
 	lb bc, 3, 1
-	ld hl, $2000
+	lb hl, $20, $00
 	call AdjustDECoordByhSC
 	call FillBoxInBGMap
 	ret
+
 .asm_135ac:
 	call CopyBGMapFromWRAMToVRAM
 	call SetActiveSpriteAnimFlag6WithinArea
 	ret
 
-Func_135b3:
+.Draw:
 	push de
 	push de
 	lb de, 6, 5
@@ -7030,8 +7045,8 @@ Func_135b3:
 	ld l, e
 	lb de, 11, 11
 	call AdjustDECoordByhSC
-	ld a, $03
-	ld b, $00
+	ld a, 3
+	ld b, FALSE
 	farcall PrintNumber
 	pop de
 	ret
@@ -7368,7 +7383,7 @@ Func_1382e:
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	jr .asm_1387e
 .asm_1384e
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_MEDAL
 	call Func_3d09
@@ -7376,7 +7391,7 @@ Func_1382e:
 	ldtx hl, ChallengeMachineWonASetText
 	call PrintTextInWideTextBox
 	call WaitForSongToFinish
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	call WaitForWideTextBoxInput
 	ld a, [wddf6]
 	add a

@@ -35,13 +35,13 @@ StartMenu_NewGame:
 	call Func_e97a
 	call Func_c24d
 	call Func_eb97
+	xor a ; FALSE
+	farcall ReadOrInitSaveData
+	ld a, GAME_EVENT_NEWGAME_PROLOGUE
+	ld [wNextGameEvent], a
 	xor a
-	farcall Func_1d475
-	ld a, $04
-	ld [wd54c], a
-	xor a
-	ld [wd54d], a
-	call Func_3087
+	ld [wNextWarpMap], a
+	call ExecuteGameEvent
 	scf
 	ret
 
@@ -57,10 +57,10 @@ StartMenu_ContinueFromDiary:
 	call Func_eaea
 	xor a
 	call PlaySong
-	ld a, [wd54c]
-	cp $04
+	ld a, [wNextGameEvent]
+	cp GAME_EVENT_NEWGAME_PROLOGUE
 	jr z, .asm_c0a0
-	cp $03
+	cp GAME_EVENT_DUEL
 	jr z, .asm_c0ab
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
@@ -68,20 +68,20 @@ StartMenu_ContinueFromDiary:
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
-	ld a, $01
-	farcall Func_1d475
-	ld hl, wd583
+	ld a, TRUE
+	farcall ReadOrInitSaveData
+	ld hl, wOverworldTransition
 	set 7, [hl]
-	ld a, $02
-	ld [wd54c], a
-	call Func_3087
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
+	call ExecuteGameEvent
 	scf
 	ret
 
 .asm_c0a0
-	ld a, $01
-	farcall Func_1d475
-	call Func_3087
+	ld a, TRUE
+	farcall ReadOrInitSaveData
+	call ExecuteGameEvent
 	scf
 	ret
 
@@ -92,8 +92,8 @@ StartMenu_ContinueFromDiary:
 	call Func_33b7
 	call Func_c29d
 	call Func_e9a7
-	ld a, $01
-	farcall Func_1d475
+	ld a, TRUE
+	farcall ReadOrInitSaveData
 	call DisableLCD
 	farcall Func_10b9c
 	farcall Func_1055e
@@ -101,36 +101,36 @@ StartMenu_ContinueFromDiary:
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
-	ld a, $0e
-	call Func_3154
+	ld a, OWMODE_0E
+	call ExecuteOWModeScript
 	ld a, VAR_NPC_DECK_ID
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
 	ld a, VAR_DUEL_START_THEME
 	call GetVarValue
 	ld [wDuelStartTheme], a
-	call Func_3087
+	call ExecuteGameEvent
 	scf
 	ret
 
 StartMenu_ContinueDuel:
-	ld a, $01
-	farcall Func_1d475
+	ld a, TRUE
+	farcall ReadOrInitSaveData
 	xor a
 	call PlaySong
 	call Func_eb16
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
 	call MaxOutEventValue
-	ld a, $0e
-	call Func_3154
-	ld a, $03
-	ld [wd54c], a
-	call Func_3087
+	ld a, OWMODE_0E
+	call ExecuteOWModeScript
+	ld a, GAME_EVENT_DUEL
+	ld [wNextGameEvent], a
+	call ExecuteGameEvent
 	scf
 	ret
 
@@ -140,8 +140,9 @@ StartMenu_CardPop:
 	ccf
 	ret
 
+; a = OWMODE_* constant
 ; jump to .PointerTable[a]
-Func_c12e::
+OWModePostprocess::
 	sla a
 	ld hl, .PointerTable
 	add_hl_a
@@ -151,33 +152,32 @@ Func_c12e::
 	jp hl
 
 .PointerTable
-	dw Func_31a1 ; $00
-	dw Func_c162 ; $01
-	dw Func_c17d ; $02
-	dw Func_c169 ; $03
-	dw Func_c183 ; $04
-	dw Func_31a8 ; $05
-	dw Func_c199 ; $06
-	dw Func_c162 ; $07
-	dw Func_c163 ; $08
-	dw Func_c189 ; $09
-	dw Func_3234 ; $0a
-	dw Func_c18f ; $0b
-	dw Func_c162 ; $0c
-	dw Func_c162 ; $0d
-	dw Func_c162 ; $0e
-	dw Func_c16f ; $0f
-	dw Func_c175 ; $10
-	dw $41a2     ; $11
-	dw $41a6     ; $12
+	dw Func_31a1 ; OWMODE_00
+	dw Func_c162 ; OWMODE_01
+	dw Func_c17d ; OWMODE_02
+	dw Func_c169 ; OWMODE_03
+	dw Func_c183 ; OWMODE_04
+	dw Func_31a8 ; OWMODE_05
+	dw Func_c199 ; OWMODE_06
+	dw Func_c162 ; OWMODE_07
+	dw Func_c163 ; OWMODE_08
+	dw Func_c189 ; OWMODE_AFTER_DUEL
+	dw Func_3234 ; OWMODE_0A
+	dw Func_c18f ; OWMODE_0B
+	dw Func_c162 ; OWMODE_0C
+	dw Func_c162 ; OWMODE_0D
+	dw Func_c162 ; OWMODE_0E
+	dw Func_c16f ; OWMODE_0F
+	dw Func_c175 ; OWMODE_10
+	dw Func_c1a2 ; OWMODE_11
+	dw PauseMenu ; OWMODE_PAUSE_MENU
 
 Func_c162:
 	ret
 
-; clear wd582
 Func_c163:
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 Func_c169:
@@ -205,22 +205,20 @@ Func_c183:
 	call Func_33a3
 	ret
 
-; clear wd582, dupe of Func_c163
 Func_c189:
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 Func_c18f:
 	farcall PlayCurrentSong
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
-; clear wd582, then Func_32f6
 Func_c199:
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	call Func_32f6
 	ret
 
@@ -228,21 +226,21 @@ Func_c1a2:
 	call WaitPalFading
 	ret
 
-Func_c1a6:
-	call Func_3d0d
+PauseMenu:
+	call PauseSong_SaveState
 	ld a, MUSIC_PAUSE_MENU
 	call PlaySong
-	farcall Func_10772
-	call Func_3d4a
-	jr nz, .asm_c1bc
-	call Func_3d16
-	jr .asm_c1c3
-.asm_c1bc
+	farcall HandlePauseMenu
+	call GetActiveMusicState
+	jr nz, .replay_current_song
+	call ResumeSong_ClearTemp
+	jr .done
+.replay_current_song
 	farcall PlayCurrentSong
-	call Func_3d4f
-.asm_c1c3
-	ld a, $00
-	ld [wd582], a
+	call ResetActiveMusicState
+.done
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 HandleStartMenu:
@@ -333,13 +331,13 @@ Func_c24d:
 	ld [wPlayTimeCounter + 4], a
 	call ClearSavedDecks
 	xor a
-	ld [wd54c], a
-	ld [wd54d], a
+	ld [wNextGameEvent], a
+	ld [wNextWarpMap], a
 	ld [wd54e], a
 	ld [wd54f], a
-	ld [wd551], a
-	ld [wd552 + 0], a
-	ld [wd552 + 1], a
+	ld [wCurMapScriptsBank], a
+	ld [wCurMapScriptsPointer + 0], a
+	ld [wCurMapScriptsPointer + 1], a
 	ld [wCurIsland], a
 	ld [wd586], a
 	ld [wCurOWLocation], a
@@ -949,7 +947,7 @@ Func_c646:
 	farcall Func_1d53a
 	ret
 
-; bank and offset table of data for Func_d421 and Func_33b7
+; bank and offset table of data for LoadMapHeader and Func_33b7
 ; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
 MapHeaderPtrs::
 	dba OverworldTcg_MapHeader
@@ -1110,7 +1108,9 @@ INCLUDE "data/challenge_cup.asm"
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
 
-Func_d299::
+; main ow handler for GAME_EVENT_OVERWORLD_UPDATE
+; e.g. map loading, player movement/interactions, game event transitions
+OverworldLoop::
 	push af
 	ldh a, [hKeysHeld]
 	bit B_PAD_A, a
@@ -1123,78 +1123,79 @@ Func_d299::
 	nop
 .skip_nop
 	pop af
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 6, [hl]
-	jr nz, .asm_d2c1
+	jr nz, .warp
 	bit 7, [hl]
-	jp nz, .asm_d398
+	jp nz, .fade
 	ld a, EVENT_02
 	call GetEventValue
-	jp nz, .asm_d377
+	jp nz, .end_duel
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-.asm_d2c1
-	ld hl, wd58b
+.warp
+	ld hl, wNextMapScriptsBank
 	ld a, [hl]
-	ld [wd551], a
-	ld hl, wd58c
+	ld [wCurMapScriptsBank], a
+	ld hl, wNextMapScriptsPointer
 	ld a, [hli]
-	ld [wd552 + 0], a
+	ld [wCurMapScriptsPointer + 0], a
 	ld a, [hl]
-	ld [wd552 + 1], a
-	ld a, $01
-	call Func_3154
+	ld [wCurMapScriptsPointer + 1], a
+	ld a, OWMODE_01
+	call ExecuteOWModeScript
 	farcall Func_102ef
 	xor a
 	farcall Func_10d40
 	ld a, $01
 	farcall SetOWScrollState
 	ld b, $00
-	ld a, [wCurMapGfx]
+	ld a, [wNextMapGfx]
 	ld c, a
 	farcall LoadOWMap
-	ld a, [wd58f]
+	ld a, [wNextWarpPlayerXCoord]
 	ld d, a
-	ld a, [wd590]
+	ld a, [wNextWarpPlayerYCoord]
 	ld e, a
-	ld a, [wd591]
+	ld a, [wNextWarpPlayerDirection]
 	ld b, a
 	ld a, [wPlayerOWObject]
 	farcall LoadOWObjectInMap
 	farcall StopOWObjectAnimation
 	farcall SetOWObjectAsScrollTarget
 	farcall SetOWObjectFlag5_WithID
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	xor a
-	ld [wd583], a
-	ld a, $07
-	call Func_3154
-	ld a, $10
-	call Func_3154
-	ld a, $02
-	call Func_3154
-	ld a, $03
-	call Func_3154
+	ld [wOverworldTransition], a
+	ld a, OWMODE_07
+	call ExecuteOWModeScript
+	ld a, OWMODE_10
+	call ExecuteOWModeScript
+	ld a, OWMODE_02
+	call ExecuteOWModeScript
+	ld a, OWMODE_03
+	call ExecuteOWModeScript
 
-.asm_d333
+.wait_input
 	ld a, [wVBlankCounter]
 	and $3f
 	call z, UpdateRNGSources
-	ld a, [wd582]
-	call Func_3154
-	ld a, [wd583]
+	ld a, [wOverworldMode]
+	call ExecuteOWModeScript
+	ld a, [wOverworldTransition]
 	bit 1, a
 	jr nz, .start_duel
 	bit 0, a
-	jr z, .asm_d333
-	ld a, $04
-	call Func_3154
-	ld a, $0f
-	call Func_3154
+	jr z, .wait_input
+	ld a, OWMODE_04
+	call ExecuteOWModeScript
+	ld a, OWMODE_0F
+	call ExecuteOWModeScript
 	ret
+
 .start_duel
 	ld a, [wNPCDuelDeckID]
 	ld c, a
@@ -1206,60 +1207,60 @@ Func_d299::
 	call SetVarValue
 	ld a, EVENT_02
 	call MaxOutEventValue
-	ld a, $03
-	ld [wd54c], a
+	ld a, GAME_EVENT_DUEL
+	ld [wNextGameEvent], a
 	call Func_eaa8
 	ret
 
-.asm_d377
-	ld a, $11
-	call Func_3154
+.end_duel
+	ld a, OWMODE_11
+	call ExecuteOWModeScript
 	ld a, EVENT_02
 	call ZeroOutEventValue
 	call Func_e9a7
 	ld a, EVENT_F0
 	call ZeroOutEventValue
 	farcall PlayCurrentSong
-	ld a, $09
-	ld [wd582], a
+	ld a, OWMODE_AFTER_DUEL
+	ld [wOverworldMode], a
 	xor a
-	ld [wd583], a
-	jr .asm_d333
+	ld [wOverworldTransition], a
+	jr .wait_input
 
-.asm_d398
+.fade
 	farcall Func_10b9c
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
-	ld a, $00
+	ld a, FALSE
 	ld b, $00
 	farcall StartPalFadeFromBlackOrWhite
-	ld a, $0b
-	ld [wd582], a
-	ld hl, wd583
+	ld a, OWMODE_0B
+	ld [wOverworldMode], a
+	ld hl, wOverworldTransition
 	res 7, [hl]
-	jp .asm_d333
+	jp .wait_input
 
 ; a = map id
 ; b = direction
 ; de = coordinates
-Func_d3c4:
-	ld [wd54d], a
-	ld a, $02
-	ld [wd54c], a
+SetWarpData:
+	ld [wNextWarpMap], a
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
 	ld a, d
-	ld [wd58f], a
+	ld [wNextWarpPlayerXCoord], a
 	ld a, e
-	ld [wd590], a
+	ld [wNextWarpPlayerYCoord], a
 	ld a, b
-	ld [wd591], a
-	ld a, $00
-	ld [wd582], a
-	ld hl, wd583
+	ld [wNextWarpPlayerDirection], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
+	ld hl, wOverworldTransition
 	set 0, [hl]
-	ld a, [wd54d]
+	ld a, [wNextWarpMap]
 	ld [wd585], a
 	ret
 
@@ -1297,10 +1298,12 @@ PCMenu:
 	call ResumeSong
 	ret
 
-Func_d421::
+; a = map id
+; load *_MapHeader at MapHeaderPtrs[a] into wNextMapHeaderData
+LoadMapHeader::
 	push af
 	ld c, a
-	ld b, $00
+	ld b, 0
 	sla c
 	add c ; *3
 	ld c, a
@@ -1308,13 +1311,13 @@ Func_d421::
 	ld hl, MapHeaderPtrs
 	add hl, bc
 	ld a, [hli]
-	ld c, a     ; bank
-	ld a, [hli] ; offset
+	ld c, a     ; *_MapHeader bank
+	ld a, [hli] ; *_MapHeader ptr
 	ld h, [hl]  ;
 	ld l, a
 	ld a, c
-	ld de, wCurMapGfx
-	ld bc, $5
+	ld de, wNextMapHeaderData
+	ld bc, MAPHEADERSTRUCT_LENGTH
 	call CopyFarHLToDE
 	ld a, [wd586]
 	ld [wd584], a
@@ -2607,8 +2610,8 @@ RunOverworldScript::
 
 OverworldScriptTable:
 	dw ScriptCommand_EndScript                        ; $00
-	dw ScriptCommand_01                               ; $01
-	dw ScriptCommand_02                               ; $02
+	dw ScriptCommand_StartDialog                      ; $01
+	dw ScriptCommand_EndDialog                        ; $02
 	dw ScriptCommand_PrintText                        ; $03
 	dw ScriptCommand_PrintVariableText                ; $04
 	dw ScriptCommand_PrintNPCText                     ; $05
@@ -2694,7 +2697,7 @@ OverworldScriptTable:
 	dw ScriptCommand_UnloadPlayer                     ; $55
 	dw ScriptCommand_GiveBoosterPacks                 ; $56
 	dw ScriptCommand_GetRandom                        ; $57
-	dw ScriptCommand_58                               ; $58
+	dw ScriptCommand_OpenMenu                         ; $58
 	dw ScriptCommand_SetTextRAM3                      ; $59
 	dw ScriptCommand_QuitScript                       ; $5a
 	dw ScriptCommand_PlaySong                         ; $5b
@@ -2856,13 +2859,13 @@ ScriptCommand_EndScript:
 	ld [wScriptFlags], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_01:
+ScriptCommand_StartDialog:
 	call DoFrame
-	farcall Func_11002
+	farcall HideNPCAnimsUnderDialogBox
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_02:
-	farcall Func_1101d
+ScriptCommand_EndDialog:
+	farcall ShowNPCAnimsUnderDialogBox
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_PrintText:
@@ -3331,7 +3334,7 @@ ScriptCommand_StartDuel:
 	ld [wNPCDuelDeckID], a
 	ld a, b
 	ld [wDuelStartTheme], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	jp IncreaseScriptPointerBy3
 
@@ -3552,7 +3555,7 @@ ScriptCommand_DuelRequirementCheck:
 	call ResetDuelDeckRequirementStatus
 	call Get1ScriptArg_IncrIndexBy1
 	ld hl, DuelRequirementFunctionMap
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	jp IncreaseScriptPointerBy2
 
 ResetDuelDeckRequirementStatus:
@@ -4094,9 +4097,9 @@ ScriptCommand_GetRandom:
 	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_58:
-	ld a, $12
-	call Func_3154
+ScriptCommand_OpenMenu:
+	ld a, OWMODE_PAUSE_MENU
+	call ExecuteOWModeScript
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_SetTextRAM3:
@@ -4391,11 +4394,11 @@ ScriptCommand_GetGameCenterBankedChips:
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GameCenter:
-	farcall Func_114af
+	farcall TurnOnCurChipsHUD
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_71:
-	farcall Func_114f9
+	farcall TurnOffCurChipsHUD
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GiveChips:
@@ -4725,8 +4728,8 @@ Func_ea19:
 	ret
 
 Func_ea30::
-	ld a, $0c
-	call Func_3154
+	ld a, OWMODE_0C
+	call ExecuteOWModeScript
 	farcall Func_10f32
 	xor a
 	ld [wd668], a
@@ -4772,8 +4775,8 @@ Func_ea30::
 	jr nz, .error
 	ld a, $01
 	call Func_e9d6
-	ld a, $0d
-	call Func_3154
+	ld a, OWMODE_0D
+	call ExecuteOWModeScript
 	ret
 
 .error
@@ -5362,7 +5365,7 @@ Func_eff7:
 	add c
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	ret
 
@@ -5522,7 +5525,7 @@ DebugMenuEffectViewer:
 	call DebugEffectViewer_PlaceTextItems
 	call ChangeAnimationPlayerSideOnStartPress.initialize
 	call ChangeEffectNumberOnDpadPress.initialize
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_DUEL_THEME_CLUB_MEMBER
 	call SetMusic
@@ -5546,7 +5549,7 @@ DebugMenuEffectViewer:
 	call FinishQueuedAnimations
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	farcall UnsetFadePalsFrameFunc
 	pop hl
 	pop de

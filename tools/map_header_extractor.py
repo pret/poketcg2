@@ -14,6 +14,28 @@ from constants import songs
 import configuration
 from tcg2disasm import Disassembler
 
+script_types = [
+	"OWMODE_00",
+	"OWMODE_01",
+	"OWMODE_02",
+	"OWMODE_03",
+	"OWMODE_04",
+	"OWMODE_05",
+	"OWMODE_06",
+	"OWMODE_07",
+	"OWMODE_08",
+	"OWMODE_AFTER_DUEL",
+	"OWMODE_0A",
+	"OWMODE_0B",
+	"OWMODE_0C",
+	"OWMODE_0D",
+	"OWMODE_0E",
+	"OWMODE_0F",
+	"OWMODE_10",
+	"OWMODE_11",
+	"OWMODE_PAUSE_MENU"
+]
+
 args = None
 rom = None
 
@@ -317,10 +339,10 @@ def dump_mapscripts_table(address, map_name_camelcase):
 		raw_ptr = rom[address+1] + (rom[address+2])*0x100
 
 		if args.function_labels:
-			output += "\tdbw ${:02x}, Func_{:x}\n".format(script_type, function_ptr)
+			output += "\tdbw " + script_types[script_type] + ", Func_{:x}\n".format(function_ptr)
 			blobs += dump_function(function_ptr)
 		else:
-			output += "\tdbw ${:02x}, ${:04x}\n".format(script_type, raw_ptr)
+			output += "\tdbw " + script_types[script_type] + ", ${:04x}\n".format(raw_ptr)
 
 		if script_type == 6:
 			blobs += dump_stepevents(function_ptr, map_name_camelcase)

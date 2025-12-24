@@ -34,14 +34,14 @@ IshiharasHouse_OWInteractions:
 	db $ff
 
 IshiharasHouse_MapScripts:
-	dbw $06, Func_2c0c1
-	dbw $08, Func_2c0f1
-	dbw $07, Func_2c0c8
-	dbw $02, Func_2c0d1
-	dbw $0c, Func_2c101
-	dbw $0d, Func_2c12f
-	dbw $0b, Func_2c13e
-	dbw $01, Func_2c0b4
+	dbw OWMODE_06, Func_2c0c1
+	dbw OWMODE_08, Func_2c0f1
+	dbw OWMODE_07, Func_2c0c8
+	dbw OWMODE_02, Func_2c0d1
+	dbw OWMODE_0C, Func_2c101
+	dbw OWMODE_0D, Func_2c12f
+	dbw OWMODE_0B, Func_2c13e
+	dbw OWMODE_01, Func_2c0b4
 	db $ff
 
 Func_2c0b4:
@@ -224,7 +224,7 @@ Func_2c1db:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_2c1fd
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -233,7 +233,7 @@ Func_2c1db:
 .ows_2c1fd
 	print_npc_text Text0e98
 .ows_2c200
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -247,7 +247,7 @@ Func_2c203:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0z .ows_2c223
 	print_npc_text Text0e99
@@ -255,7 +255,7 @@ Func_2c203:
 .ows_2c223
 	print_npc_text Text0e9a
 .ows_2c226
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -269,7 +269,7 @@ Func_2c229:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_2c24b
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -302,7 +302,7 @@ Func_2c229:
 	set_var VAR_02, $03
 	print_npc_text Text0ea2
 .ows_2c289
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -316,9 +316,9 @@ Func_2c28c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0ea3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -332,7 +332,7 @@ Func_2c2a7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_2c2c9
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -365,7 +365,7 @@ Func_2c2a7:
 	set_var VAR_02, $04
 	print_npc_text Text0eaa
 .ows_2c307
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -379,7 +379,7 @@ Func_2c30a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_2c32c
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -412,7 +412,7 @@ Func_2c30a:
 	set_var VAR_02, $05
 	print_npc_text Text0eb1
 .ows_2c36a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -426,9 +426,9 @@ Func_2c36d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0eb2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -442,9 +442,9 @@ Func_2c388:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0eb3
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -459,10 +459,10 @@ Func_2c3a5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	print_npc_text Text0eb4
-	script_command_02
+	end_dialog
 	get_var VAR_02
 	compare_loaded_var $06
 	script_jump_if_b1nz .ows_2c3c9
@@ -481,13 +481,13 @@ Func_2c3cb:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_NIKKI
 	script_jump_if_b0z .ows_2c446
 	set_event EVENT_TALKED_TO_NIKKI
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	print_npc_text Text0eb5
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_2c3f8
@@ -511,7 +511,7 @@ Func_2c3cb:
 .ows_2c416
 	wait_for_player_animation
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0eb6
 	give_deck GIVE_IN_ANTI_GR2_DECK_ID
 	script_jump_if_b1nz .ows_2c42c
@@ -537,7 +537,7 @@ Func_2c3cb:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	print_variable_npc_text Text0ebd, Text0ebe
 .ows_2c44d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_2c450:
@@ -599,13 +599,13 @@ LightningClub_NPCInteractions:
 	db $ff
 
 LightningClub_MapScripts:
-	dbw $06, Func_2c4fa
-	dbw $08, Func_2c560
-	dbw $09, Func_2c568
-	dbw $07, Func_2c501
-	dbw $01, Func_2c4db
-	dbw $02, Func_2c50a
-	dbw $01, Func_2c4db
+	dbw OWMODE_06, Func_2c4fa
+	dbw OWMODE_08, Func_2c560
+	dbw OWMODE_AFTER_DUEL, Func_2c568
+	dbw OWMODE_07, Func_2c501
+	dbw OWMODE_01, Func_2c4db
+	dbw OWMODE_02, Func_2c50a
+	dbw OWMODE_01, Func_2c4db
 	db $ff
 
 Func_2c4db:
@@ -620,7 +620,7 @@ Func_2c4db:
 	farcall GetEventValue
 	jr nz, .asm_2c4f7
 	ld a, MAP_GFX_LIGHTNING_CLUB_2
-	ld [wCurMapGfx], a
+	ld [wNextMapGfx], a
 .asm_2c4f7
 	scf
 	ccf
@@ -650,8 +650,8 @@ Func_2c50a:
 	jr z, .asm_2c54f
 	jr .asm_2c55e
 .asm_2c524
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_2c584)
 	ld [wd592], a
 	ld hl, Func_2c584
@@ -685,7 +685,7 @@ Func_2c560:
 Func_2c568:
 	ld hl, LightningClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -703,14 +703,14 @@ Func_2c584:
 	send_mail $13
 	set_event EVENT_MET_GR4_LIGHTNING_CLUB
 	set_active_npc NPC_GR_4, DialogGR4Text
-	script_command_01
+	start_dialog
 	print_npc_text Text0b03
 	set_active_npc NPC_NICHOLAS, DialogNicholasText
 	print_npc_text Text0b04
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $02, $01
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GR_4, DialogGR4Text
 	print_npc_text Text0b05
 	set_active_npc NPC_ISAAC, DialogIsaacText
@@ -720,21 +720,21 @@ Func_2c584:
 	print_npc_text Text0b07
 	set_active_npc NPC_ISAAC, DialogIsaacText
 	print_npc_text Text0b08
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $02, $01
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GR_4, DialogGR4Text
 	set_active_npc_direction SOUTH
 	print_npc_text Text0b09
-	script_command_02
+	end_dialog
 	move_npc NPC_GR_4, .NPCMovement_2c5e6
 	move_npc NPC_ISAAC, .NPCMovement_2c5eb
 	move_npc NPC_NICHOLAS, .NPCMovement_2c5f0
 	wait_for_player_animation
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_2c5e6:
 	db NORTH, MOVE_5
@@ -759,28 +759,28 @@ Script_2c5f5:
 	move_active_npc .NPCMovement_2c637
 	wait_for_player_animation
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text0b0a
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2c63a
 	wait_for_player_animation
 	do_frames 30
 	move_active_npc .NPCMovement_2c63d
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0b0b
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2c642
 	wait_for_player_animation
 	unload_npc NPC_GR_4
 	play_song_next MUSIC_CLUB_1
-	script_command_01
+	start_dialog
 	set_active_npc NPC_ISAAC, DialogIsaacText
 	set_event EVENT_GOT_PIKACHU_COIN
 	print_npc_text Text0b0c
 	give_coin COIN_PIKACHU
 	print_npc_text Text0b0d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_2c637:
@@ -807,7 +807,7 @@ Func_2c645:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2c6c6
 	check_event EVENT_GOT_PIKACHU_COIN
@@ -828,14 +828,14 @@ Func_2c645:
 	ask_question Text0b11, TRUE
 	script_jump_if_b0z .ows_2c68f
 	print_npc_text Text0b12
-	script_command_02
+	end_dialog
 	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2c68f
 	print_npc_text Text0b13
 .ows_2c692
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c695
@@ -852,7 +852,7 @@ Func_2c645:
 	ask_question Text0b11, TRUE
 	script_jump_if_b0z .ows_2c6ba
 	print_npc_text Text0b16
-	script_command_02
+	end_dialog
 	start_duel SKY_SPARK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -862,7 +862,7 @@ Func_2c645:
 .ows_2c6c0
 	print_npc_text Text0b18
 .ows_2c6c3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c6c6
@@ -877,20 +877,20 @@ Func_2c645:
 	ask_question Text0b11, TRUE
 	script_jump_if_b0z .ows_2c6e6
 	print_npc_text Text0b1b
-	script_command_02
+	end_dialog
 	start_duel ELECTRIC_SELFDESTRUCT_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2c6e6
 	print_npc_text Text0b1c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2c6ec:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2c724
 	check_event EVENT_GOT_PIKACHU_COIN
@@ -898,11 +898,11 @@ Func_2c6ec:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2c707
 	print_npc_text Text0b1d
-	script_command_02
+	end_dialog
 	script_jump Script_2c5f5
 .ows_2c707
 	print_npc_text Text0b1e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c70d
@@ -915,7 +915,7 @@ Func_2c6ec:
 .ows_2c71e
 	print_npc_text Text0b21
 .ows_2c721
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c724
@@ -928,7 +928,7 @@ Func_2c6ec:
 .ows_2c735
 	print_npc_text Text0b24
 .ows_2c738
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -942,7 +942,7 @@ Func_2c73b:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2c768
 	check_event EVENT_TALKED_TO_JENNIFER
@@ -953,7 +953,7 @@ Func_2c73b:
 .ows_2c762
 	print_npc_text Text0b26
 .ows_2c765
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c768
@@ -961,20 +961,20 @@ Func_2c73b:
 	ask_question Text0b28, TRUE
 	script_jump_if_b0z .ows_2c77b
 	print_npc_text Text0b29
-	script_command_02
+	end_dialog
 	start_duel I_LOVE_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c77b
 	print_npc_text Text0b2a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2c781:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2c797
 	print_npc_text Text0b2b
@@ -984,7 +984,7 @@ Func_2c781:
 .ows_2c797
 	print_npc_text Text0b2d
 .ows_2c79a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -998,7 +998,7 @@ Func_2c79d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2c821
 	check_event EVENT_GOT_PIKACHU_COIN
@@ -1020,14 +1020,14 @@ Func_2c79d:
 	ask_question Text0b31, TRUE
 	script_jump_if_b0z .ows_2c7ea
 	print_npc_text Text0b32
-	script_command_02
+	end_dialog
 	start_duel OVERFLOW_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c7ea
 	print_npc_text Text0b33
 .ows_2c7ed
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c7f0
@@ -1044,7 +1044,7 @@ Func_2c79d:
 	ask_question Text0b31, TRUE
 	script_jump_if_b0z .ows_2c815
 	print_npc_text Text0b36
-	script_command_02
+	end_dialog
 	start_duel OVERFLOW_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1054,7 +1054,7 @@ Func_2c79d:
 .ows_2c81b
 	print_npc_text Text0b38
 .ows_2c81e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c821
@@ -1069,20 +1069,20 @@ Func_2c79d:
 	ask_question Text0b31, TRUE
 	script_jump_if_b0z .ows_2c841
 	print_npc_text Text0b3b
-	script_command_02
+	end_dialog
 	start_duel TRIPLE_ZAPDOS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c841
 	print_npc_text Text0b3c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2c847:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2c880
 	check_event EVENT_GOT_PIKACHU_COIN
@@ -1095,7 +1095,7 @@ Func_2c847:
 .ows_2c863
 	print_npc_text Text0b3e
 .ows_2c866
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c869
@@ -1108,7 +1108,7 @@ Func_2c847:
 .ows_2c87a
 	print_npc_text Text0b41
 .ows_2c87d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c880
@@ -1121,7 +1121,7 @@ Func_2c847:
 .ows_2c891
 	print_npc_text Text0b44
 .ows_2c894
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1135,7 +1135,7 @@ Func_2c897:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2c8c4
 	check_event EVENT_TALKED_TO_BRANDON
@@ -1146,7 +1146,7 @@ Func_2c897:
 .ows_2c8be
 	print_npc_text Text0b46
 .ows_2c8c1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2c8c4
@@ -1154,20 +1154,20 @@ Func_2c897:
 	ask_question Text0b48, TRUE
 	script_jump_if_b0z .ows_2c8d7
 	print_npc_text Text0b49
-	script_command_02
+	end_dialog
 	start_duel TEN_THOUSAND_VOLTS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2c8d7
 	print_npc_text Text0b4a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2c8dd:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2c8f3
 	print_npc_text Text0b4b
@@ -1177,7 +1177,7 @@ Func_2c8dd:
 .ows_2c8f3
 	print_npc_text Text0b4d
 .ows_2c8f6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1205,9 +1205,9 @@ Func_2c90e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0b4e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1247,15 +1247,15 @@ PsychicClubEntrance_NPCInteractions:
 	db $ff
 
 PsychicClubEntrance_MapScripts:
-	dbw $00, Func_2c9ac
-	dbw $06, Func_2c9d8
-	dbw $08, Func_2ca14
-	dbw $09, Func_2ca1c
-	dbw $07, Func_2c9df
-	dbw $02, Func_2c9e8
-	dbw $0b, Func_2ca22
-	dbw $01, Func_2c9b8
-	dbw $10, Func_2c9c8
+	dbw OWMODE_00, Func_2c9ac
+	dbw OWMODE_06, Func_2c9d8
+	dbw OWMODE_08, Func_2ca14
+	dbw OWMODE_AFTER_DUEL, Func_2ca1c
+	dbw OWMODE_07, Func_2c9df
+	dbw OWMODE_02, Func_2c9e8
+	dbw OWMODE_0B, Func_2ca22
+	dbw OWMODE_01, Func_2c9b8
+	dbw OWMODE_10, Func_2c9c8
 	db $ff
 
 Func_2c9ac:
@@ -1316,8 +1316,8 @@ Func_2c9e8:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
@@ -1415,9 +1415,9 @@ Func_2caa0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text StephanieBeatGR4AtLightningClubFirstText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1507,13 +1507,13 @@ PsychicClubLobby_OWInteractions:
 	db $ff
 
 PsychicClubLobby_MapScripts:
-	dbw $06, Func_2cbcf
-	dbw $08, Func_2cbdf
-	dbw $07, Func_2cbd6
-	dbw $09, Func_2cbef
-	dbw $0b, Func_2cbf5
-	dbw $01, Func_2cba8
-	dbw $10, Func_2cbba
+	dbw OWMODE_06, Func_2cbcf
+	dbw OWMODE_08, Func_2cbdf
+	dbw OWMODE_07, Func_2cbd6
+	dbw OWMODE_AFTER_DUEL, Func_2cbef
+	dbw OWMODE_0B, Func_2cbf5
+	dbw OWMODE_01, Func_2cba8
+	dbw OWMODE_10, Func_2cbba
 	db $ff
 
 Func_2cba8:
@@ -1593,7 +1593,7 @@ Func_2cc11:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_PSYCHIC_CLUB
 	script_jump_if_b0z .ows_2cc77
 	check_event EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_CLUB
@@ -1630,7 +1630,7 @@ Func_2cc11:
 .ows_2cc77
 	print_npc_text Text0bd4
 .ows_2cc7a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1644,7 +1644,7 @@ Func_2cc7d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	compare_var VAR_25, $03
 	script_jump_if_b0nz .ows_2cca2
 	script_callfar Script_3c2f0
@@ -1653,7 +1653,7 @@ Func_2cc7d:
 .ows_2cca2
 	print_npc_text Text0bd6
 .ows_2cca5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1679,7 +1679,7 @@ Func_2ccb7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2cce2
 	check_event EVENT_GOT_GR_COIN
@@ -1692,7 +1692,7 @@ Func_2ccb7:
 .ows_2cce2
 	print_npc_text Text0bd9
 .ows_2cce5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1706,7 +1706,7 @@ Func_2cce8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2cd08
 	print_npc_text Text0bda
@@ -1714,7 +1714,7 @@ Func_2cce8:
 .ows_2cd08
 	print_npc_text Text0bdb
 .ows_2cd0b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1759,12 +1759,12 @@ PsychicClub_NPCInteractions:
 	db $ff
 
 PsychicClub_MapScripts:
-	dbw $06, Func_2cd92
-	dbw $08, Func_2ce11
-	dbw $09, Func_2ce19
-	dbw $07, Func_2cd99
-	dbw $02, Func_2cda2
-	dbw $01, Func_2cd82
+	dbw OWMODE_06, Func_2cd92
+	dbw OWMODE_08, Func_2ce11
+	dbw OWMODE_AFTER_DUEL, Func_2ce19
+	dbw OWMODE_07, Func_2cd99
+	dbw OWMODE_02, Func_2cda2
+	dbw OWMODE_01, Func_2cd82
 	db $ff
 
 Func_2cd82:
@@ -1805,8 +1805,8 @@ Func_2cda2:
 	farcall Func_12c0ce
 	jr .asm_2ce0f
 .asm_2cdc6
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_2ce39)
 	ld [wd592], a
 	ld hl, Func_2ce39
@@ -1843,7 +1843,7 @@ Func_2ce11:
 Func_2ce19:
 	ld hl, PsychicClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -1864,18 +1864,18 @@ Func_2ce39:
 	do_frames 30
 	scroll_to_position $ff, $02
 	set_active_npc NPC_GR_4, DialogGR4Text
-	script_command_01
+	start_dialog
 	print_npc_text Text0b66
-	script_command_02
+	end_dialog
 	set_active_npc NPC_MURRAY, DialogMurrayText
 	do_frames 30
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0b67
 	set_active_npc NPC_GR_4, DialogGR4Text
 	print_npc_text Text0b68
-	script_command_02
+	end_dialog
 	move_npc NPC_MURRAY, .NPCMovement_2ce7c
 	move_npc NPC_DANIEL, .NPCMovement_2ce85
 	wait_for_player_animation
@@ -1883,8 +1883,8 @@ Func_2ce39:
 	scroll_to_position $ff, $05
 	scroll_to_player
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_2ce7c:
 	db NORTH, MOVE_1
@@ -1906,7 +1906,7 @@ Func_2ce88:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2cf3b
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -1925,7 +1925,7 @@ Func_2ce88:
 	ask_question Text0b6b, TRUE
 	script_jump_if_b0z .ows_2cecf
 	print_npc_text Text0b6c
-	script_command_02
+	end_dialog
 	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -1956,14 +1956,14 @@ Func_2ce88:
 	ask_question Text0b6b, TRUE
 	script_jump_if_b0z .ows_2cf11
 	print_npc_text Text0b72
-	script_command_02
+	end_dialog
 	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cf11
 	print_npc_text Text0b73
 .ows_2cf14
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2cf17
@@ -1973,7 +1973,7 @@ Func_2ce88:
 	ask_question Text0b6b, TRUE
 	script_jump_if_b0z .ows_2cf2f
 	print_npc_text Text0b75
-	script_command_02
+	end_dialog
 	start_duel HAND_OVER_GR_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -1983,7 +1983,7 @@ Func_2ce88:
 .ows_2cf35
 	print_npc_text Text0b77
 .ows_2cf38
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2cf3b
@@ -2006,20 +2006,20 @@ Func_2ce88:
 	ask_question Text0b6b, TRUE
 	script_jump_if_b0z .ows_2cf6d
 	print_npc_text Text0b7b
-	script_command_02
+	end_dialog
 	start_duel PSYCHIC_ELITE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2cf6d
 	print_npc_text Text0b7c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2cf73:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2cfb5
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -2036,7 +2036,7 @@ Func_2cf73:
 .ows_2cf98
 	print_npc_text Text0b7e
 .ows_2cf9b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2cf9e
@@ -2049,7 +2049,7 @@ Func_2cf73:
 .ows_2cfaf
 	print_npc_text Text0b81
 .ows_2cfb2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2cfb5
@@ -2062,7 +2062,7 @@ Func_2cf73:
 .ows_2cfc6
 	print_npc_text Text0b84
 .ows_2cfc9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2076,13 +2076,13 @@ Func_2cfcc:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2d004
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	script_jump_if_b0z .ows_2cff1
 	print_npc_text Text0b85
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2cff1
@@ -2094,7 +2094,7 @@ Func_2cfcc:
 	set_event EVENT_TALKED_TO_ROBERT
 	print_npc_text Text0b87
 .ows_2d001
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d004
@@ -2109,20 +2109,20 @@ Func_2cfcc:
 	ask_question Text0b8a, TRUE
 	script_jump_if_b0z .ows_2d024
 	print_npc_text Text0b8b
-	script_command_02
+	end_dialog
 	start_duel PHANTOM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d024
 	print_npc_text Text0b8c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d02a:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d040
 	print_npc_text Text0b8d
@@ -2132,7 +2132,7 @@ Func_2d02a:
 .ows_2d040
 	print_npc_text Text0b8f
 .ows_2d043
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2146,18 +2146,18 @@ Func_2d046:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2d071
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	script_jump_if_b0z .ows_2d06b
 	print_npc_text Text0b90
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d06b
 	print_npc_text Text0b91
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d071
@@ -2172,20 +2172,20 @@ Func_2d046:
 	ask_question Text0b94, TRUE
 	script_jump_if_b0z .ows_2d091
 	print_npc_text Text0b95
-	script_command_02
+	end_dialog
 	start_duel PUPPET_MASTER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d091
 	print_npc_text Text0b96
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d097:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d0ad
 	print_npc_text Text0b97
@@ -2195,7 +2195,7 @@ Func_2d097:
 .ows_2d0ad
 	print_npc_text Text0b99
 .ows_2d0b0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2209,7 +2209,7 @@ Func_2d0b3:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2d11c
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -2218,13 +2218,13 @@ Func_2d0b3:
 	ask_question Text0b9b, TRUE
 	script_jump_if_b0z .ows_2d0e5
 	print_npc_text Text0b9c
-	script_command_02
+	end_dialog
 	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d0e5
 	print_npc_text Text0b9d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d0eb
@@ -2241,7 +2241,7 @@ Func_2d0b3:
 	ask_question Text0b9b, TRUE
 	script_jump_if_b0z .ows_2d110
 	print_npc_text Text0ba0
-	script_command_02
+	end_dialog
 	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -2251,7 +2251,7 @@ Func_2d0b3:
 .ows_2d116
 	print_npc_text Text0ba2
 .ows_2d119
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d11c
@@ -2266,20 +2266,20 @@ Func_2d0b3:
 	ask_question Text0b9b, TRUE
 	script_jump_if_b0z .ows_2d13c
 	print_npc_text Text0ba5
-	script_command_02
+	end_dialog
 	start_duel PSYCHOKINESIS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d13c
 	print_npc_text Text0ba6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d142:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2d179
 	check_event EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -2291,7 +2291,7 @@ Func_2d142:
 .ows_2d15c
 	print_npc_text Text0ba8
 .ows_2d15f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d162
@@ -2304,7 +2304,7 @@ Func_2d142:
 .ows_2d173
 	print_npc_text Text0bab
 .ows_2d176
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2d179
@@ -2317,7 +2317,7 @@ Func_2d142:
 .ows_2d18a
 	print_npc_text Text0bae
 .ows_2d18d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2331,7 +2331,7 @@ Func_2d190:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_WALKED_INTO_MURRAYS_CLUB_ROOM
 	script_jump_if_b0nz .ows_2d1c8
 	check_event EVENT_A7
@@ -2365,7 +2365,7 @@ Func_2d190:
 	script_jump_if_b0z .ows_2d1f7
 	check_event EVENT_A7
 	print_variable_npc_text Text0bb6, Text0bb7
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET4_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
@@ -2379,14 +2379,14 @@ Func_2d190:
 .ows_2d208
 	print_npc_text Text0bba
 .ows_2d20b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d20e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d225
 	check_event EVENT_A7
@@ -2404,7 +2404,7 @@ Func_2d20e:
 .ows_2d236
 	print_npc_text Text0bbe
 .ows_2d239
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2421,7 +2421,7 @@ Func_2d23c:
 
 Script_2d249:
 	print_npc_text Text0bbf
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2d25d
@@ -2433,7 +2433,7 @@ Script_2d249:
 	move_player .NPCMovement_2d2b7, TRUE
 .ows_2d264
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0bc0
 	give_deck UNFORGIVING_ANTI_GR4_DECK_ID
 	script_jump_if_b1nz .ows_2d278
@@ -2454,7 +2454,7 @@ Script_2d249:
 	print_npc_text Text0bc5
 	give_coin COIN_ALAKAZAM
 	print_npc_text Text0bc6
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2d2c6
 	wait_for_player_animation
 	end_script
@@ -2504,7 +2504,7 @@ Script_2d2d1:
 	print_variable_npc_text Text0bc7, Text0bc8
 	give_coin COIN_GR_START + COIN_GR_PIECE4
 	print_variable_npc_text Text0bc9, Text0bca
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2d2ef
@@ -2542,11 +2542,11 @@ RockClubEntrance_StepEvents:
 	db $ff
 
 RockClubEntrance_MapScripts:
-	dbw $06, Func_2d376
-	dbw $02, Func_2d37d
-	dbw $0b, Func_2d399
-	dbw $01, Func_2d356
-	dbw $10, Func_2d366
+	dbw OWMODE_06, Func_2d376
+	dbw OWMODE_02, Func_2d37d
+	dbw OWMODE_0B, Func_2d399
+	dbw OWMODE_01, Func_2d356
+	dbw OWMODE_10, Func_2d366
 	db $ff
 
 Func_2d356:
@@ -2581,8 +2581,8 @@ Func_2d37d:
 	call RockClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 ; card pop
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34111)
 	ld [wd592], a
 	ld hl, Func_34111
@@ -2661,13 +2661,13 @@ RockClubLobby_OWInteractions:
 	db $ff
 
 RockClubLobby_MapScripts:
-	dbw $06, Func_2d49e
-	dbw $08, Func_2d4ae
-	dbw $07, Func_2d4a5
-	dbw $09, Func_2d4be
-	dbw $0b, Func_2d4c4
-	dbw $01, Func_2d472
-	dbw $10, Func_2d489
+	dbw OWMODE_06, Func_2d49e
+	dbw OWMODE_08, Func_2d4ae
+	dbw OWMODE_07, Func_2d4a5
+	dbw OWMODE_AFTER_DUEL, Func_2d4be
+	dbw OWMODE_0B, Func_2d4c4
+	dbw OWMODE_01, Func_2d472
+	dbw OWMODE_10, Func_2d489
 	db $ff
 
 Func_2d472:
@@ -2749,7 +2749,7 @@ Func_2d4e0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_ROCK_CLUB
 	script_jump_if_b0z .ows_2d540
 	check_event EVENT_TALKED_TO_TRADE_NPC_ROCK_CLUB
@@ -2784,7 +2784,7 @@ Func_2d4e0:
 .ows_2d540
 	print_npc_text Text110a
 .ows_2d543
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2798,7 +2798,7 @@ Func_2d546:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	compare_var VAR_25, $04
 	script_jump_if_b0nz .ows_2d576
 	script_callfar Script_3c2f0
@@ -2812,7 +2812,7 @@ Func_2d546:
 .ows_2d576
 	print_npc_text Text110d
 .ows_2d579
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2838,7 +2838,7 @@ Func_2d58b:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2d5c1
 	check_event EVENT_GOT_GR_COIN
@@ -2856,7 +2856,7 @@ Func_2d58b:
 .ows_2d5c1
 	print_npc_text Text1111
 .ows_2d5c4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2870,7 +2870,7 @@ Func_2d5c7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2d5f2
 	check_event EVENT_GOT_GR_COIN
@@ -2883,7 +2883,7 @@ Func_2d5c7:
 .ows_2d5f2
 	print_npc_text Text1114
 .ows_2d5f5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2913,12 +2913,12 @@ RockClub_NPCInteractions:
 	db $ff
 
 RockClub_MapScripts:
-	dbw $06, Func_2d663
-	dbw $08, Func_2d6a6
-	dbw $07, Func_2d66a
-	dbw $02, Func_2d673
-	dbw $09, Func_2d6ae
-	dbw $01, Func_2d653
+	dbw OWMODE_06, Func_2d663
+	dbw OWMODE_08, Func_2d6a6
+	dbw OWMODE_07, Func_2d66a
+	dbw OWMODE_02, Func_2d673
+	dbw OWMODE_AFTER_DUEL, Func_2d6ae
+	dbw OWMODE_01, Func_2d653
 	db $ff
 
 Func_2d653:
@@ -2948,8 +2948,8 @@ Func_2d673:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d6a4
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_2d6ca)
 	ld [wd592], a
 	ld hl, Func_2d6ca
@@ -2976,7 +2976,7 @@ Func_2d6a6:
 Func_2d6ae:
 	ld hl, RockClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -2992,35 +2992,35 @@ Func_2d6ca:
 	start_script
 	wait_for_fade
 	set_event EVENT_MET_GR1_ROCK_CLUB
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GR_1, DialogGR1Text
 	print_npc_text Text10cc
-	script_command_02
+	end_dialog
 	scroll_to_position $ff, $00
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GENE, DialogGeneText
 	print_npc_text Text10cd
-	script_command_02
+	end_dialog
 	set_player_position 6, 13
 	move_player .NPCMovement_2d74e, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GR_1, DialogGR1Text
 	print_npc_text Text10ce
 	set_active_npc NPC_GENE, DialogGeneText
 	print_npc_text Text10cf
 	set_active_npc NPC_GR_1, DialogGR1Text
 	print_npc_text Text10d0
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $82, $01
-	script_command_01
+	start_dialog
 	print_npc_text Text10d1
 	set_active_npc_direction NORTH
 	set_active_npc_direction SOUTH
 	print_npc_text Text10d2
 	set_active_npc_direction NORTH
 	print_npc_text Text10d3
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2d751
 	wait_for_player_animation
 	fade_out $03, FALSE
@@ -3035,13 +3035,13 @@ Func_2d6ca:
 	play_song_next MUSIC_CLUB_2
 	fade_in $03, FALSE
 	wait_for_fade
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GENE, DialogGeneText
 	print_npc_text Text10d4
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_2d74e:
 	db NORTH, MOVE_8
@@ -3060,7 +3060,7 @@ Func_2d754:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GENE
 	script_jump_if_b0z .ows_2d776
 	set_event EVENT_TALKED_TO_GENE
@@ -3093,7 +3093,7 @@ Func_2d754:
 	script_jump_if_b0z .ows_2d7b7
 	check_event EVENT_GOT_KABUTO_COIN
 	print_variable_npc_text Text10dc, Text10dd
-	script_command_02
+	end_dialog
 	start_duel EVEN3_YEARS_ON_A_ROCK_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -3101,14 +3101,14 @@ Func_2d754:
 	check_event EVENT_GOT_KABUTO_COIN
 	print_variable_npc_text Text10de, Text10df
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d7c3:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d7de
 	check_event EVENT_GOT_KABUTO_COIN
@@ -3122,7 +3122,7 @@ Func_2d7c3:
 	print_variable_npc_text Text10e2, Text10e3
 .ows_2d7e5
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3136,7 +3136,7 @@ Func_2d7ea:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_MATTHEW
 	script_jump_if_b0z .ows_2d80c
 	set_event EVENT_TALKED_TO_MATTHEW
@@ -3148,20 +3148,20 @@ Func_2d7ea:
 	ask_question Text10e6, TRUE
 	script_jump_if_b0z .ows_2d81f
 	print_npc_text Text10e7
-	script_command_02
+	end_dialog
 	start_duel ROLLING_STONE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d81f
 	print_npc_text Text10e8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d825:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d83b
 	print_npc_text Text10e9
@@ -3171,7 +3171,7 @@ Func_2d825:
 .ows_2d83b
 	print_npc_text Text10eb
 .ows_2d83e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3185,7 +3185,7 @@ Func_2d841:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_RYAN
 	script_jump_if_b0z .ows_2d863
 	set_event EVENT_TALKED_TO_RYAN
@@ -3197,21 +3197,21 @@ Func_2d841:
 	ask_question Text10ee, TRUE
 	script_jump_if_b0z .ows_2d876
 	print_npc_text Text10ef
-	script_command_02
+	end_dialog
 	start_duel GREAT_EARTHQUAKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d876
 	print_npc_text Text10f0
 	set_active_npc_direction EAST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d87e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d894
 	print_npc_text Text10f1
@@ -3222,7 +3222,7 @@ Func_2d87e:
 	print_npc_text Text10f3
 .ows_2d897
 	set_active_npc_direction EAST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3236,7 +3236,7 @@ Func_2d89c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ANDREW
 	script_jump_if_b0z .ows_2d8be
 	set_event EVENT_TALKED_TO_ANDREW
@@ -3248,20 +3248,20 @@ Func_2d89c:
 	ask_question Text10f6, TRUE
 	script_jump_if_b0z .ows_2d8d1
 	print_npc_text Text10f7
-	script_command_02
+	end_dialog
 	start_duel AWESOME_FOSSIL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2d8d1
 	print_npc_text Text10f8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2d8d7:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2d8ed
 	print_npc_text Text10f9
@@ -3271,7 +3271,7 @@ Func_2d8d7:
 .ows_2d8ed
 	print_npc_text Text10fb
 .ows_2d8f0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3309,7 +3309,7 @@ Script_2d900:
 	give_coin COIN_KABUTO
 	print_npc_text Text1102
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3328,12 +3328,12 @@ FightingClubEntrance_StepEvents:
 	db $ff
 
 FightingClubEntrance_MapScripts:
-	dbw $06, Func_2d99f
-	dbw $09, Func_2d9d2
-	dbw $02, Func_2d9a6
-	dbw $0b, Func_2d9d8
-	dbw $01, Func_2d97f
-	dbw $10, Func_2d98f
+	dbw OWMODE_06, Func_2d99f
+	dbw OWMODE_AFTER_DUEL, Func_2d9d2
+	dbw OWMODE_02, Func_2d9a6
+	dbw OWMODE_0B, Func_2d9d8
+	dbw OWMODE_01, Func_2d97f
+	dbw OWMODE_10, Func_2d98f
 	db $ff
 
 Func_2d97f:
@@ -3379,8 +3379,8 @@ Func_2d9a6:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
@@ -3487,11 +3487,11 @@ FightingClubLobby_OWInteractions:
 	db $ff
 
 FightingClubLobby_MapScripts:
-	dbw $06, Func_2dade
-	dbw $08, Func_2daee
-	dbw $07, Func_2dae5
-	dbw $09, Func_2dafe
-	dbw $01, Func_2dace
+	dbw OWMODE_06, Func_2dade
+	dbw OWMODE_08, Func_2daee
+	dbw OWMODE_07, Func_2dae5
+	dbw OWMODE_AFTER_DUEL, Func_2dafe
+	dbw OWMODE_01, Func_2dace
 	db $ff
 
 Func_2dace:
@@ -3530,7 +3530,7 @@ Func_2daee:
 Func_2dafe:
 	ld hl, FightingClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -3548,7 +3548,7 @@ Func_2db0e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2db62
 	check_event EVENT_TALKED_TO_MICHAEL
@@ -3570,13 +3570,13 @@ Func_2db0e:
 	ask_question Text08ca, TRUE
 	script_jump_if_b0z .ows_2db5c
 	print_npc_text Text08cb
-	script_command_02
+	end_dialog
 	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2db5c
 	print_npc_text Text08cc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2db62
@@ -3584,20 +3584,20 @@ Func_2db0e:
 	ask_question Text08ca, TRUE
 	script_jump_if_b0z .ows_2db75
 	print_npc_text Text08cb
-	script_command_02
+	end_dialog
 	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2db75
 	print_npc_text Text08cc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2db7b:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2db91
 	print_npc_text Text08ce
@@ -3607,7 +3607,7 @@ Func_2db7b:
 .ows_2db91
 	print_npc_text Text08d0
 .ows_2db94
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3635,7 +3635,7 @@ Func_2dbac:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_FIGHTING_CLUB
 	script_jump_if_b0z .ows_2dc0f
 	check_event EVENT_TALKED_TO_TRADE_NPC_FIGHTING_CLUB
@@ -3671,7 +3671,7 @@ Func_2dbac:
 .ows_2dc0f
 	print_npc_text Text08d9
 .ows_2dc12
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	end_script
 	ret
@@ -3686,7 +3686,7 @@ Func_2dc17:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2dc42
 	check_event EVENT_GOT_GR_COIN
@@ -3699,7 +3699,7 @@ Func_2dc17:
 .ows_2dc42
 	print_npc_text Text08dc
 .ows_2dc45
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3713,7 +3713,7 @@ Func_2dc48:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2dc73
 	check_event EVENT_GOT_GR_COIN
@@ -3726,7 +3726,7 @@ Func_2dc48:
 .ows_2dc73
 	print_npc_text Text08df
 .ows_2dc76
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3740,7 +3740,7 @@ Func_2dc79:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2dc99
 	print_npc_text Text08e0
@@ -3748,7 +3748,7 @@ Func_2dc79:
 .ows_2dc99
 	print_npc_text Text08e1
 .ows_2dc9c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3779,12 +3779,12 @@ FightingClub_NPCInteractions:
 	db $ff
 
 FightingClub_MapScripts:
-	dbw $06, Func_2dd0e
-	dbw $08, Func_2dd3a
-	dbw $07, Func_2dd31
-	dbw $09, Func_2dd42
-	dbw $02, Func_2dd15
-	dbw $01, Func_2dcfe
+	dbw OWMODE_06, Func_2dd0e
+	dbw OWMODE_08, Func_2dd3a
+	dbw OWMODE_07, Func_2dd31
+	dbw OWMODE_AFTER_DUEL, Func_2dd42
+	dbw OWMODE_02, Func_2dd15
+	dbw OWMODE_01, Func_2dcfe
 	db $ff
 
 Func_2dcfe:
@@ -3833,7 +3833,7 @@ Func_2dd3a:
 Func_2dd42:
 	ld hl, FightingClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -3855,7 +3855,7 @@ Func_2dd62:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2dda2
 	check_event EVENT_TALKED_TO_MITCH
@@ -3869,13 +3869,13 @@ Func_2dd62:
 	ask_question Text088e, TRUE
 	script_jump_if_b0z .ows_2dd9c
 	print_npc_text Text088f
-	script_command_02
+	end_dialog
 	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2dd9c
 	print_npc_text Text0890
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2dda2
@@ -3890,20 +3890,20 @@ Func_2dd62:
 	ask_question Text088e, TRUE
 	script_jump_if_b0z .ows_2ddc2
 	print_npc_text Text088f
-	script_command_02
+	end_dialog
 	start_duel RAGING_BILLOW_OF_FISTS_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ddc2
 	print_npc_text Text0890
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ddc8:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2ddde
 	print_npc_text Text0892
@@ -3913,7 +3913,7 @@ Func_2ddc8:
 .ows_2ddde
 	print_npc_text Text0894
 .ows_2dde1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3938,7 +3938,7 @@ Func_2ddf1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2de4f
 	check_event EVENT_GOT_GR_COIN
@@ -3947,13 +3947,13 @@ Func_2ddf1:
 	ask_question Text0896, TRUE
 	script_jump_if_b0z .ows_2de23
 	print_npc_text Text0897
-	script_command_02
+	end_dialog
 	start_duel YOU_CAN_DO_IT_MACHOP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de23
 	print_npc_text Text0898
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2de29
@@ -3968,13 +3968,13 @@ Func_2ddf1:
 	ask_question Text0896, TRUE
 	script_jump_if_b0z .ows_2de49
 	print_npc_text Text089b
-	script_command_02
+	end_dialog
 	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de49
 	print_npc_text Text089c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2de4f
@@ -3989,20 +3989,20 @@ Func_2ddf1:
 	ask_question Text0896, TRUE
 	script_jump_if_b0z .ows_2de6f
 	print_npc_text Text089b
-	script_command_02
+	end_dialog
 	start_duel NEW_MACHOKE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2de6f
 	print_npc_text Text089c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2de75:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2de96
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4014,7 +4014,7 @@ Func_2de75:
 .ows_2de90
 	print_npc_text Text08a0
 .ows_2de93
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2de96
@@ -4027,7 +4027,7 @@ Func_2de75:
 .ows_2dea7
 	print_npc_text Text08a3
 .ows_2deaa
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4041,13 +4041,13 @@ Func_2dead:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2def8
 	check_event EVENT_GOT_STARMIE_COIN
 	script_jump_if_b0z .ows_2ded2
 	print_npc_text Text08a4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ded2
@@ -4062,13 +4062,13 @@ Func_2dead:
 	ask_question Text08a7, TRUE
 	script_jump_if_b0z .ows_2def2
 	print_npc_text Text08a8
-	script_command_02
+	end_dialog
 	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2def2
 	print_npc_text Text08a9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2def8
@@ -4083,20 +4083,20 @@ Func_2dead:
 	ask_question Text08a7, TRUE
 	script_jump_if_b0z .ows_2df18
 	print_npc_text Text08a8
-	script_command_02
+	end_dialog
 	start_duel SKILLED_WARRIOR_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2df18
 	print_npc_text Text08a9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2df1e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2df34
 	print_npc_text Text08ab
@@ -4106,7 +4106,7 @@ Func_2df1e:
 .ows_2df34
 	print_npc_text Text08ad
 .ows_2df37
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4120,11 +4120,11 @@ Func_2df3a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2df5a
 	print_npc_text Text08ae
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2df5a
@@ -4139,20 +4139,20 @@ Func_2df3a:
 	ask_question Text08b1, TRUE
 	script_jump_if_b0z .ows_2df7a
 	print_npc_text Text08b2
-	script_command_02
+	end_dialog
 	start_duel I_LOVE_TO_FIGHT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2df7a
 	print_npc_text Text08b3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2df80:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2df96
 	print_npc_text Text08b4
@@ -4162,7 +4162,7 @@ Func_2df80:
 .ows_2df96
 	print_npc_text Text08b6
 .ows_2df99
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4190,7 +4190,7 @@ Func_2dfb1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_KABUTO_COIN
 	script_jump_if_b0z .ows_2dfe0
 	check_event EVENT_TALKED_TO_GR1_FIGHTING_CLUB
@@ -4202,7 +4202,7 @@ Func_2dfb1:
 	print_npc_text Text08b8
 .ows_2dfdb
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2dfe0
@@ -4217,21 +4217,21 @@ Func_2dfb1:
 	ask_question Text08bb, TRUE
 	script_jump_if_b0z .ows_2e000
 	print_npc_text Text08bc
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET1_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2e000
 	print_npc_text Text08bd
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e008:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e01d
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -4240,7 +4240,7 @@ Func_2e008:
 	script_jump Script_2e038
 .ows_2e01d
 	print_npc_text Text08bf
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4264,7 +4264,7 @@ Script_2e038:
 	give_coin COIN_GR_START + COIN_GR_PIECE1
 	check_event EVENT_GOT_GR_COIN
 	print_variable_npc_text Text08c1, Text08c2
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2e052
@@ -4274,9 +4274,9 @@ Script_2e038:
 	move_active_npc .NPCMovement_2e067
 	wait_for_player_animation
 	set_active_npc_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08c3
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2e06a
 	wait_for_player_animation
 	unload_npc NPC_GR_1
@@ -4305,12 +4305,12 @@ GrassClubEntrance_StepEvents:
 	db $ff
 
 GrassClubEntrance_MapScripts:
-	dbw $06, Func_2e0dc
-	dbw $09, Func_2e10f
-	dbw $02, Func_2e0e3
-	dbw $0b, Func_2e115
-	dbw $01, Func_2e0bc
-	dbw $10, Func_2e0cc
+	dbw OWMODE_06, Func_2e0dc
+	dbw OWMODE_AFTER_DUEL, Func_2e10f
+	dbw OWMODE_02, Func_2e0e3
+	dbw OWMODE_0B, Func_2e115
+	dbw OWMODE_01, Func_2e0bc
+	dbw OWMODE_10, Func_2e0cc
 	db $ff
 
 Func_2e0bc:
@@ -4356,8 +4356,8 @@ Func_2e0e3:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
@@ -4452,12 +4452,12 @@ GrassClub_NPCInteractions:
 	db $ff
 
 GrassClub_MapScripts:
-	dbw $06, Func_2e1d2
-	dbw $08, Func_2e1fe
-	dbw $09, Func_2e206
-	dbw $02, Func_2e1d9
-	dbw $07, Func_2e1f5
-	dbw $01, Func_2e1c2
+	dbw OWMODE_06, Func_2e1d2
+	dbw OWMODE_08, Func_2e1fe
+	dbw OWMODE_AFTER_DUEL, Func_2e206
+	dbw OWMODE_02, Func_2e1d9
+	dbw OWMODE_07, Func_2e1f5
+	dbw OWMODE_01, Func_2e1c2
 	db $ff
 
 	Func_2e1c2:
@@ -4506,7 +4506,7 @@ Func_2e1fe:
 Func_2e206:
 	ld hl, GrassClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -4528,11 +4528,11 @@ Func_2e226:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2e246
 	print_npc_text Text0e45
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e246
@@ -4547,21 +4547,21 @@ Func_2e226:
 	ask_question Text0e48, TRUE
 	script_jump_if_b0z .ows_2e266
 	print_npc_text Text0e49
-	script_command_02
+	end_dialog
 	start_duel MAX_ENERGY_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2e266
 	print_npc_text Text0e4a
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e26e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e284
 	print_npc_text Text0e4b
@@ -4572,7 +4572,7 @@ Func_2e26e:
 	print_npc_text Text0e4d
 .ows_2e287
 	set_active_npc_direction SOUTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4586,7 +4586,7 @@ Func_2e28c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2e2ce
 	check_event EVENT_TALKED_TO_BRITTANY
@@ -4600,14 +4600,14 @@ Func_2e28c:
 	ask_question Text0e50, TRUE
 	script_jump_if_b0z .ows_2e2c6
 	print_npc_text Text0e51
-	script_command_02
+	end_dialog
 	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e2c6
 	print_npc_text Text0e52
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e2ce
@@ -4622,21 +4622,21 @@ Func_2e28c:
 	ask_question Text0e50, TRUE
 	script_jump_if_b0z .ows_2e2ee
 	print_npc_text Text0e55
-	script_command_02
+	end_dialog
 	start_duel POISON_CURSE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e2ee
 	print_npc_text Text0e56
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e2f6:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2e319
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4649,7 +4649,7 @@ Func_2e2f6:
 	print_npc_text Text0e59
 .ows_2e314
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e319
@@ -4663,7 +4663,7 @@ Func_2e2f6:
 	print_npc_text Text0e5c
 .ows_2e32d
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4677,11 +4677,11 @@ Func_2e332:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_STARMIE_COIN
 	script_jump_if_b0z .ows_2e352
 	print_npc_text Text0e5d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e352
@@ -4696,20 +4696,20 @@ Func_2e332:
 	ask_question Text0e60, TRUE
 	script_jump_if_b0z .ows_2e372
 	print_npc_text Text0e61
-	script_command_02
+	end_dialog
 	start_duel GLITTERING_SCALES_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e372
 	print_npc_text Text0e62
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e378:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e38e
 	print_npc_text Text0e63
@@ -4719,7 +4719,7 @@ Func_2e378:
 .ows_2e38e
 	print_npc_text Text0e65
 .ows_2e391
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4733,11 +4733,11 @@ Func_2e394:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2e3b4
 	print_npc_text Text0e66
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e3b4
@@ -4752,20 +4752,20 @@ Func_2e394:
 	ask_question Text0e69, TRUE
 	script_jump_if_b0z .ows_2e3d4
 	print_npc_text Text0e6a
-	script_command_02
+	end_dialog
 	start_duel STEADY_INCREASE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e3d4
 	print_npc_text Text0e6b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e3da:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e3f0
 	print_npc_text Text0e6c
@@ -4775,7 +4775,7 @@ Func_2e3da:
 .ows_2e3f0
 	print_npc_text Text0e6e
 .ows_2e3f3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4803,7 +4803,7 @@ Func_2e40b:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
 	script_jump_if_b0z .ows_2e430
 	set_event EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
@@ -4816,20 +4816,20 @@ Func_2e40b:
 	ask_question Text0e71, TRUE
 	script_jump_if_b0z .ows_2e443
 	print_npc_text Text0e72
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2e443
 	print_npc_text Text0e73
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e449:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e46b
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -4844,7 +4844,7 @@ Func_2e449:
 	script_jump .ows_2e471
 .ows_2e46b
 	print_npc_text Text0e75
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e471
@@ -4853,7 +4853,7 @@ Func_2e449:
 	give_coin COIN_GR_START + COIN_GR_PIECE2
 	check_event EVENT_GOT_GR_COIN
 	print_variable_npc_text Text0e77, Text0e78
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2e48b
@@ -4911,14 +4911,14 @@ ScienceClubEntrance_NPCInteractions:
 	db $ff
 
 ScienceClubEntrance_MapScripts:
-	dbw $06, Func_2e538
-	dbw $08, Func_2e574
-	dbw $09, Func_2e57c
-	dbw $07, Func_2e53f
-	dbw $02, Func_2e548
-	dbw $0b, Func_2e582
-	dbw $01, Func_2e518
-	dbw $10, Func_2e528
+	dbw OWMODE_06, Func_2e538
+	dbw OWMODE_08, Func_2e574
+	dbw OWMODE_AFTER_DUEL, Func_2e57c
+	dbw OWMODE_07, Func_2e53f
+	dbw OWMODE_02, Func_2e548
+	dbw OWMODE_0B, Func_2e582
+	dbw OWMODE_01, Func_2e518
+	dbw OWMODE_10, Func_2e528
 	db $ff
 
 Func_2e518:
@@ -4971,8 +4971,8 @@ Func_2e548:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
@@ -5056,7 +5056,7 @@ Func_2e5d0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2e624
 	check_event EVENT_TALKED_TO_JOSEPH
@@ -5087,7 +5087,7 @@ Func_2e5d0:
 .ows_2e624
 	print_npc_text Text1071
 .ows_2e627
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5146,13 +5146,13 @@ ScienceClubLobby_OWInteractions:
 	db $ff
 
 ScienceClubLobby_MapScripts:
-	dbw $06, Func_2e71e
-	dbw $08, Func_2e72e
-	dbw $09, Func_2e73e
-	dbw $07, Func_2e725
-	dbw $0b, Func_2e752
-	dbw $01, Func_2e6f7
-	dbw $10, Func_2e709
+	dbw OWMODE_06, Func_2e71e
+	dbw OWMODE_08, Func_2e72e
+	dbw OWMODE_AFTER_DUEL, Func_2e73e
+	dbw OWMODE_07, Func_2e725
+	dbw OWMODE_0B, Func_2e752
+	dbw OWMODE_01, Func_2e6f7
+	dbw OWMODE_10, Func_2e709
 	db $ff
 
 Func_2e6f7:
@@ -5206,7 +5206,7 @@ Func_2e72e:
 Func_2e73e:
 	ld hl, ScienceClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -5239,7 +5239,7 @@ Func_2e76e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2e7ae
 	check_event EVENT_TALKED_TO_DAVID
@@ -5253,13 +5253,13 @@ Func_2e76e:
 	ask_question Text1074, TRUE
 	script_jump_if_b0z .ows_2e7a8
 	print_npc_text Text1075
-	script_command_02
+	end_dialog
 	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e7a8
 	print_npc_text Text1076
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e7ae
@@ -5267,20 +5267,20 @@ Func_2e76e:
 	ask_question Text1074, TRUE
 	script_jump_if_b0z .ows_2e7c1
 	print_npc_text Text1075
-	script_command_02
+	end_dialog
 	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2e7c1
 	print_npc_text Text1076
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2e7c7:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2e7dd
 	print_npc_text Text1078
@@ -5290,7 +5290,7 @@ Func_2e7c7:
 .ows_2e7dd
 	print_npc_text Text107a
 .ows_2e7e0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5304,18 +5304,18 @@ Func_2e7e3:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2e805
 	print_npc_text Text107b
 	set_active_npc_direction EAST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2e805
 	print_npc_text Text107c
 	set_active_npc_direction EAST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5355,7 +5355,7 @@ Func_2e831:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2e85c
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
@@ -5368,7 +5368,7 @@ Func_2e831:
 .ows_2e85c
 	print_npc_text Text107f
 .ows_2e85f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5382,7 +5382,7 @@ Func_2e862:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2e88d
 	check_event EVENT_GOT_GR_COIN
@@ -5401,7 +5401,7 @@ Func_2e862:
 .ows_2e89a
 	print_npc_text Text1083
 .ows_2e89d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5415,7 +5415,7 @@ Func_2e8a0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2e8cb
 	check_event EVENT_GOT_GR_COIN
@@ -5428,7 +5428,7 @@ Func_2e8a0:
 .ows_2e8cb
 	print_npc_text Text1086
 .ows_2e8ce
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5473,12 +5473,12 @@ ScienceClub_NPCInteractions:
 	db $ff
 
 ScienceClub_MapScripts:
-	dbw $06, Func_2e955
-	dbw $08, Func_2e99f
-	dbw $09, Func_2e9a7
-	dbw $02, Func_2e95c
-	dbw $07, Func_2e996
-	dbw $01, Func_2e945
+	dbw OWMODE_06, Func_2e955
+	dbw OWMODE_08, Func_2e99f
+	dbw OWMODE_AFTER_DUEL, Func_2e9a7
+	dbw OWMODE_02, Func_2e95c
+	dbw OWMODE_07, Func_2e996
+	dbw OWMODE_01, Func_2e945
 	db $ff
 
 Func_2e945:
@@ -5536,7 +5536,7 @@ Func_2e99f:
 Func_2e9a7:
 	ld hl, ScienceClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -5558,7 +5558,7 @@ Func_2e9c7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2ea23
 	compare_var VAR_01, $03
@@ -5582,14 +5582,14 @@ Func_2e9c7:
 	ask_question Text1037, TRUE
 	script_jump_if_b0z .ows_2ea1b
 	print_npc_text Text1038
-	script_command_02
+	end_dialog
 	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ea1b
 	print_npc_text Text1039
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ea23
@@ -5604,21 +5604,21 @@ Func_2e9c7:
 	ask_question Text1037, TRUE
 	script_jump_if_b0z .ows_2ea43
 	print_npc_text Text103c
-	script_command_02
+	end_dialog
 	start_duel DARK_SCIENCE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2ea43
 	print_npc_text Text103d
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ea4b:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2ea6e
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5631,7 +5631,7 @@ Func_2ea4b:
 	print_npc_text Text1040
 .ows_2ea69
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ea6e
@@ -5645,7 +5645,7 @@ Func_2ea4b:
 	print_npc_text Text1043
 .ows_2ea82
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5670,7 +5670,7 @@ Func_2ea94:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_DAVID
 	script_jump_if_b0z .ows_2eab6
 	set_event EVENT_TALKED_TO_DAVID
@@ -5682,21 +5682,21 @@ Func_2ea94:
 	ask_question Text1046, TRUE
 	script_jump_if_b0z .ows_2eac9
 	print_npc_text Text1047
-	script_command_02
+	end_dialog
 	start_duel NATURAL_SCIENCE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eac9
 	print_npc_text Text1048
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ead1:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2eae7
 	print_npc_text Text1049
@@ -5707,7 +5707,7 @@ Func_2ead1:
 	print_npc_text Text104b
 .ows_2eaea
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5721,7 +5721,7 @@ Func_2eaef:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2eb47
 	check_event EVENT_GOT_STARMIE_COIN
@@ -5734,7 +5734,7 @@ Func_2eaef:
 .ows_2eb1b
 	print_npc_text Text104d
 .ows_2eb1e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2eb21
@@ -5749,13 +5749,13 @@ Func_2eaef:
 	ask_question Text1050, TRUE
 	script_jump_if_b0z .ows_2eb41
 	print_npc_text Text1051
-	script_command_02
+	end_dialog
 	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eb41
 	print_npc_text Text1052
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2eb47
@@ -5770,20 +5770,20 @@ Func_2eaef:
 	ask_question Text1050, TRUE
 	script_jump_if_b0z .ows_2eb67
 	print_npc_text Text1051
-	script_command_02
+	end_dialog
 	start_duel POISONOUS_SWAMP_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2eb67
 	print_npc_text Text1052
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2eb6d:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2eb8e
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5795,7 +5795,7 @@ Func_2eb6d:
 .ows_2eb88
 	print_npc_text Text1057
 .ows_2eb8b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2eb8e
@@ -5808,7 +5808,7 @@ Func_2eb6d:
 .ows_2eb9f
 	print_npc_text Text1057
 .ows_2eba2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5822,11 +5822,11 @@ Func_2eba5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2ebc5
 	print_npc_text Text1059
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ebc5
@@ -5841,20 +5841,20 @@ Func_2eba5:
 	ask_question Text105c, TRUE
 	script_jump_if_b0z .ows_2ebe5
 	print_npc_text Text105d
-	script_command_02
+	end_dialog
 	start_duel GATHERING_NIDORAN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ebe5
 	print_npc_text Text105e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ebeb:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2ec01
 	print_npc_text Text105f
@@ -5864,7 +5864,7 @@ Func_2ebeb:
 .ows_2ec01
 	print_npc_text Text1061
 .ows_2ec04
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5892,7 +5892,7 @@ Func_2ec1c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
 	script_jump_if_b0z .ows_2ec41
 	set_event EVENT_TALKED_TO_GR2_SCIENCE_GRASS_CLUB
@@ -5905,20 +5905,20 @@ Func_2ec1c:
 	ask_question Text1064, TRUE
 	script_jump_if_b0z .ows_2ec54
 	print_npc_text Text1065
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET2_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2ec54
 	print_npc_text Text1066
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ec5a:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2ec7c
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -5933,7 +5933,7 @@ Func_2ec5a:
 	script_jump .ows_2ec82
 .ows_2ec7c
 	print_npc_text Text1068
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ec82
@@ -5942,7 +5942,7 @@ Func_2ec5a:
 	give_coin COIN_GR_START + COIN_GR_PIECE2
 	check_event EVENT_GOT_GR_COIN
 	print_variable_npc_text Text106a, Text106b
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_2ec9c
@@ -5992,12 +5992,12 @@ WaterClubEntrance_StepEvents:
 	db $ff
 
 WaterClubEntrance_MapScripts:
-	dbw $06, Func_2ed37
-	dbw $02, Func_2ed3e
-	dbw $04, Func_2ed75
-	dbw $0b, Func_2ed8c
-	dbw $01, Func_2ed17
-	dbw $10, Func_2ed27
+	dbw OWMODE_06, Func_2ed37
+	dbw OWMODE_02, Func_2ed3e
+	dbw OWMODE_04, Func_2ed75
+	dbw OWMODE_0B, Func_2ed8c
+	dbw OWMODE_01, Func_2ed17
+	dbw OWMODE_10, Func_2ed27
 	db $ff
 
 Func_2ed17:
@@ -6046,8 +6046,8 @@ Func_2ed3e:
 	farcall ZeroOutEventValue
 	ld hl, Func_3451d
 .got_event
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_340a4)
 	ASSERT BANK(Func_340a4) == BANK(Func_3451d)
 	ld [wd592], a
@@ -6148,13 +6148,13 @@ WaterClubLobby_OWInteractions:
 	db $ff
 
 WaterClubLobby_MapScripts:
-	dbw $06, Func_2ee9a
-	dbw $08, Func_2eeaa
-	dbw $09, Func_2eeba
-	dbw $07, Func_2eea1
-	dbw $0b, Func_2eece
-	dbw $01, Func_2ee73
-	dbw $10, Func_2ee85
+	dbw OWMODE_06, Func_2ee9a
+	dbw OWMODE_08, Func_2eeaa
+	dbw OWMODE_AFTER_DUEL, Func_2eeba
+	dbw OWMODE_07, Func_2eea1
+	dbw OWMODE_0B, Func_2eece
+	dbw OWMODE_01, Func_2ee73
+	dbw OWMODE_10, Func_2ee85
 	db $ff
 
 Func_2ee73:
@@ -6208,7 +6208,7 @@ Func_2eeaa:
 Func_2eeba:
 	ld hl, WaterClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -6241,7 +6241,7 @@ Func_2eeea:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2ef2a
 	check_event EVENT_TALKED_TO_JOSHUA
@@ -6255,13 +6255,13 @@ Func_2eeea:
 	ask_question Text087d, TRUE
 	script_jump_if_b0z .ows_2ef24
 	print_npc_text Text087e
-	script_command_02
+	end_dialog
 	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ef24
 	print_npc_text Text087f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2ef2a
@@ -6269,20 +6269,20 @@ Func_2eeea:
 	ask_question Text087d, TRUE
 	script_jump_if_b0z .ows_2ef3d
 	print_npc_text Text087e
-	script_command_02
+	end_dialog
 	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2ef3d
 	print_npc_text Text087f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2ef43:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2ef59
 	print_npc_text Text0881
@@ -6292,7 +6292,7 @@ Func_2ef43:
 .ows_2ef59
 	print_npc_text Text0883
 .ows_2ef5c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6320,7 +6320,7 @@ Func_2ef74:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	compare_var VAR_25, $08
 	script_jump_if_b0nz .ows_2ef99
 	script_callfar Script_3c2f0
@@ -6329,7 +6329,7 @@ Func_2ef74:
 .ows_2ef99
 	print_npc_text Text0885
 .ows_2ef9c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6355,7 +6355,7 @@ Func_2efae:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2efdb
 	check_event EVENT_GOT_STARMIE_COIN
@@ -6369,7 +6369,7 @@ Func_2efae:
 .ows_2efdb
 	print_npc_text Text0888
 .ows_2efde
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6383,7 +6383,7 @@ Func_2efe1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2f00c
 	check_event EVENT_GOT_GR_COIN
@@ -6396,7 +6396,7 @@ Func_2efe1:
 .ows_2f00c
 	print_npc_text Text088b
 .ows_2f00f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6433,12 +6433,12 @@ WaterClub_OWInteractions:
 	db $ff
 
 WaterClub_MapScripts:
-	dbw $06, Func_2f095
-	dbw $08, Func_2f0f7
-	dbw $02, Func_2f0a5
-	dbw $09, Func_2f107
-	dbw $07, Func_2f09c
-	dbw $01, Func_2f085
+	dbw OWMODE_06, Func_2f095
+	dbw OWMODE_08, Func_2f0f7
+	dbw OWMODE_02, Func_2f0a5
+	dbw OWMODE_AFTER_DUEL, Func_2f107
+	dbw OWMODE_07, Func_2f09c
+	dbw OWMODE_01, Func_2f085
 	db $ff
 
 Func_2f085:
@@ -6510,7 +6510,7 @@ Func_2f0f7:
 Func_2f107:
 	ld hl, WaterClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -6531,10 +6531,10 @@ Script_2f127:
 	reset_event EVENT_TALKED_TO_GR3_WATER_CLUB
 	send_mail $05
 	print_npc_text Text0833
-	script_command_02
+	end_dialog
 	set_active_npc_direction WEST
 	do_frames 60
-	script_command_01
+	start_dialog
 	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0834
 	script_command_67 $05, $1e
@@ -6543,7 +6543,7 @@ Script_2f127:
 	wait_for_fade
 	script_command_68
 	play_sfx SFX_DOORS
-	script_command_02
+	end_dialog
 	unload_npc NPC_CAPTURED_AMY
 	unload_npc NPC_CAPTURED_SARA
 	unload_npc NPC_CAPTURED_AMANDA
@@ -6555,7 +6555,7 @@ Script_2f127:
 	do_frames 28
 	fade_in $01, TRUE
 	wait_for_fade
-	script_command_01
+	start_dialog
 	do_frames 30
 	get_player_direction
 	compare_loaded_var NORTH
@@ -6567,7 +6567,7 @@ Script_2f127:
 	wait_for_player_animation
 	set_active_npc_direction NORTH
 	print_npc_text Text0835
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2f19a
 	wait_for_player_animation
 	unload_npc NPC_GR_3
@@ -6584,7 +6584,7 @@ Script_2f19d:
 	set_active_npc NPC_AMY, DialogAmyText
 	animate_player_movement $00, $01
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0836
 	give_deck VENGEFUL_ANTI_GR3_DECK_ID
 	script_jump_if_b1nz .ows_2f1b8
@@ -6605,7 +6605,7 @@ Script_2f19d:
 	print_npc_text Text083b
 	give_coin COIN_STARMIE
 	print_npc_text Text083c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6619,9 +6619,9 @@ Func_2f1d2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text083d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6654,7 +6654,7 @@ Func_2f1fa:
 	ret z
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2f264
 	check_event EVENT_FREED_STEVE
@@ -6667,7 +6667,7 @@ Func_2f1fa:
 .ows_2f238
 	print_npc_text Text083f
 .ows_2f23b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f23e
@@ -6682,13 +6682,13 @@ Func_2f1fa:
 	ask_question Text0842, TRUE
 	script_jump_if_b0z .ows_2f25e
 	print_npc_text Text0843
-	script_command_02
+	end_dialog
 	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f25e
 	print_npc_text Text0844
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f264
@@ -6703,20 +6703,20 @@ Func_2f1fa:
 	ask_question Text0842, TRUE
 	script_jump_if_b0z .ows_2f284
 	print_npc_text Text0843
-	script_command_02
+	end_dialog
 	start_duel RAIN_DANCE_CONFUSION_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f284
 	print_npc_text Text0844
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f28a:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2f2ab
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -6728,7 +6728,7 @@ Func_2f28a:
 .ows_2f2a5
 	print_npc_text Text0849
 .ows_2f2a8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f2ab
@@ -6747,7 +6747,7 @@ Func_2f28a:
 .ows_2f2c9
 	print_npc_text Text084c
 .ows_2f2cc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6761,7 +6761,7 @@ Func_2f2cf:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2f30f
 	check_event EVENT_TALKED_TO_JOSHUA
@@ -6775,13 +6775,13 @@ Func_2f2cf:
 	ask_question Text084f, TRUE
 	script_jump_if_b0z .ows_2f309
 	print_npc_text Text0850
-	script_command_02
+	end_dialog
 	start_duel CONSERVING_WATER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f309
 	print_npc_text Text0851
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f30f
@@ -6796,20 +6796,20 @@ Func_2f2cf:
 	ask_question Text084f, TRUE
 	script_jump_if_b0z .ows_2f32f
 	print_npc_text Text0854
-	script_command_02
+	end_dialog
 	start_duel ENERGY_REMOVAL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f32f
 	print_npc_text Text0855
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f335:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2f356
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -6821,7 +6821,7 @@ Func_2f335:
 .ows_2f350
 	print_npc_text Text0858
 .ows_2f353
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f356
@@ -6834,7 +6834,7 @@ Func_2f335:
 .ows_2f367
 	print_npc_text Text085b
 .ows_2f36a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6862,7 +6862,7 @@ Func_2f382:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0nz .ows_2f3af
 	check_event EVENT_TALKED_TO_SARA
@@ -6873,7 +6873,7 @@ Func_2f382:
 .ows_2f3a9
 	print_npc_text Text085d
 .ows_2f3ac
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f3af
@@ -6888,20 +6888,20 @@ Func_2f382:
 	ask_question Text0860, TRUE
 	script_jump_if_b0z .ows_2f3cf
 	print_npc_text Text0861
-	script_command_02
+	end_dialog
 	start_duel SPLASHING_ABOUT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f3cf
 	print_npc_text Text0862
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f3d5:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2f3eb
 	print_npc_text Text0863
@@ -6911,7 +6911,7 @@ Func_2f3d5:
 .ows_2f3eb
 	print_npc_text Text0865
 .ows_2f3ee
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6925,7 +6925,7 @@ Func_2f3f1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2f429
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -6938,12 +6938,12 @@ Func_2f3f1:
 .ows_2f41d
 	print_npc_text Text0867
 .ows_2f420
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f423
 	print_npc_text Text0868
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f429
@@ -6958,20 +6958,20 @@ Func_2f3f1:
 	ask_question Text086b, TRUE
 	script_jump_if_b0z .ows_2f449
 	print_npc_text Text086c
-	script_command_02
+	end_dialog
 	start_duel BEACH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2f449
 	print_npc_text Text086d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f44f:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2f472
 	print_npc_text Text086e
@@ -6987,7 +6987,7 @@ Func_2f44f:
 .ows_2f472
 	print_npc_text Text0871
 .ows_2f475
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7012,24 +7012,24 @@ Func_2f485:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GR3_WATER_CLUB
 	script_jump_if_b0z .ows_2f4c0
 	set_event EVENT_TALKED_TO_GR3_WATER_CLUB
 	print_npc_text Text0872
-	script_command_02
+	end_dialog
 	set_active_npc_direction WEST
 	scroll_to_position $00, $ff
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0873
-	script_command_02
+	end_dialog
 	scroll_to_position $08, $ff
 	scroll_to_player
 	get_player_opposite_direction
 	restore_active_npc_direction
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0874
 	script_jump .ows_2f4c3
 .ows_2f4c0
@@ -7038,20 +7038,20 @@ Func_2f485:
 	ask_question Text0876, TRUE
 	script_jump_if_b0z .ows_2f4d3
 	print_npc_text Text0877
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2f4d3
 	print_npc_text Text0878
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f4d9:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2f4ec
 	print_npc_text Text0879
@@ -7059,7 +7059,7 @@ Func_2f4d9:
 	script_jump Script_2f127
 .ows_2f4ec
 	print_npc_text Text087a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7089,12 +7089,12 @@ FireClubEntrance_StepEvents:
 	db $ff
 
 FireClubEntrance_MapScripts:
-	dbw $06, Func_2f56e
-	dbw $09, Func_2f5a8
-	dbw $02, Func_2f575
-	dbw $0b, Func_2f5ae
-	dbw $01, Func_2f54e
-	dbw $10, Func_2f55e
+	dbw OWMODE_06, Func_2f56e
+	dbw OWMODE_AFTER_DUEL, Func_2f5a8
+	dbw OWMODE_02, Func_2f575
+	dbw OWMODE_0B, Func_2f5ae
+	dbw OWMODE_01, Func_2f54e
+	dbw OWMODE_10, Func_2f55e
 	db $ff
 
 Func_2f54e:
@@ -7144,8 +7144,8 @@ Func_2f575:
 .gift
 	ld hl, Func_341f7
 .asm_2f594
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
@@ -7250,13 +7250,13 @@ FireClubLobby_OWInteractions:
 	db $ff
 
 FireClubLobby_MapScripts:
-	dbw $06, Func_2f6c7
-	dbw $08, Func_2f6d7
-	dbw $07, Func_2f6ce
-	dbw $09, Func_2f6e7
-	dbw $0b, Func_2f6ed
-	dbw $01, Func_2f6a0
-	dbw $10, Func_2f6b2
+	dbw OWMODE_06, Func_2f6c7
+	dbw OWMODE_08, Func_2f6d7
+	dbw OWMODE_07, Func_2f6ce
+	dbw OWMODE_AFTER_DUEL, Func_2f6e7
+	dbw OWMODE_0B, Func_2f6ed
+	dbw OWMODE_01, Func_2f6a0
+	dbw OWMODE_10, Func_2f6b2
 	db $ff
 
 Func_2f6a0:
@@ -7336,7 +7336,7 @@ Func_2f709:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_FIRE_CLUB
 	script_jump_if_b0z .ows_2f769
 	check_event EVENT_TALKED_TO_TRADE_NPC_FIRE_CLUB
@@ -7371,7 +7371,7 @@ Func_2f709:
 .ows_2f769
 	print_npc_text Text0c7b
 .ows_2f76c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7397,7 +7397,7 @@ Func_2f77e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .ows_2f79e
 	print_npc_text Text0c7c
@@ -7405,7 +7405,7 @@ Func_2f77e:
 .ows_2f79e
 	print_npc_text Text0c7d
 .ows_2f7a1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7419,7 +7419,7 @@ Func_2f7a4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2f7c4
 	print_npc_text Text0c7e
@@ -7427,7 +7427,7 @@ Func_2f7a4:
 .ows_2f7c4
 	print_npc_text Text0c7f
 .ows_2f7c7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7465,12 +7465,12 @@ FireClub_OWInteractions:
 	db $ff
 
 FireClub_MapScripts:
-	dbw $06, Func_2f85e
-	dbw $08, Func_2f8c8
-	dbw $09, Func_2f8d8
-	dbw $02, Func_2f86e
-	dbw $07, Func_2f865
-	dbw $01, Func_2f84e
+	dbw OWMODE_06, Func_2f85e
+	dbw OWMODE_08, Func_2f8c8
+	dbw OWMODE_AFTER_DUEL, Func_2f8d8
+	dbw OWMODE_02, Func_2f86e
+	dbw OWMODE_07, Func_2f865
+	dbw OWMODE_01, Func_2f84e
 	db $ff
 
 Func_2f84e:
@@ -7542,7 +7542,7 @@ Func_2f8c8:
 Func_2f8d8:
 	ld hl, FireClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -7556,11 +7556,11 @@ FireClub_AfterDuelScripts:
 
 Script_2f8f8:
 	set_active_npc NPC_KEN, DialogKenText
-	script_command_01
+	start_dialog
 	set_active_npc_direction NORTH
 	do_frames 60
 	print_npc_text Text0c29
-	script_command_02
+	end_dialog
 	do_frames 60
 	set_player_position 7, 6
 	move_player .NPCMovement_2f923, TRUE
@@ -7568,12 +7568,12 @@ Script_2f8f8:
 	wait_for_player_animation
 	scroll_to_player
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_event EVENT_GOT_CHARMANDER_COIN
 	print_npc_text Text0c2a
 	give_coin COIN_CHARMANDER
 	print_npc_text Text0c2b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_2f923:
@@ -7590,7 +7590,7 @@ Func_2f926:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2f9c7
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
@@ -7611,17 +7611,17 @@ Func_2f926:
 	check_event EVENT_GOT_STARMIE_COIN
 	print_variable_npc_text Text0c2e, Text0c2f
 .ows_2f96c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f96f
 	print_npc_text Text0c30
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f975
 	print_npc_text Text0c31
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f97b
@@ -7636,13 +7636,13 @@ Func_2f926:
 	ask_question Text0c34, TRUE
 	script_jump_if_b0z .ows_2f99b
 	print_npc_text Text0c35
-	script_command_02
+	end_dialog
 	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f99b
 	print_npc_text Text0c36
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f9a1
@@ -7657,13 +7657,13 @@ Func_2f926:
 	ask_question Text0c34, TRUE
 	script_jump_if_b0z .ows_2f9c1
 	print_npc_text Text0c35
-	script_command_02
+	end_dialog
 	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f9c1
 	print_npc_text Text0c39
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2f9c7
@@ -7678,20 +7678,20 @@ Func_2f926:
 	ask_question Text0c34, TRUE
 	script_jump_if_b0z .ows_2f9e7
 	print_npc_text Text0c35
-	script_command_02
+	end_dialog
 	start_duel GO_ARCANINE_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
 .ows_2f9e7
 	print_npc_text Text0c39
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2f9ed:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GODAS_ROOM_CAGE_STATE
 	script_jump_if_b0z .ows_2fa0e
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -7703,7 +7703,7 @@ Func_2f9ed:
 .ows_2fa08
 	print_npc_text Text0c3d
 .ows_2fa0b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fa0e
@@ -7716,7 +7716,7 @@ Func_2f9ed:
 .ows_2fa1f
 	print_npc_text Text0c40
 .ows_2fa22
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7730,7 +7730,7 @@ Func_2fa25:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2fa5f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -7739,17 +7739,17 @@ Func_2fa25:
 	script_jump_if_b0z .ows_2fa59
 	check_event EVENT_GOT_STARMIE_COIN
 	print_variable_npc_text Text0c41, Text0c42
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fa53
 	print_npc_text Text0c43
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fa59
 	print_npc_text Text0c44
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fa5f
@@ -7764,20 +7764,20 @@ Func_2fa25:
 	ask_question Text0c47, TRUE
 	script_jump_if_b0z .ows_2fa7f
 	print_npc_text Text0c48
-	script_command_02
+	end_dialog
 	start_duel FLAME_FESTIVAL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fa7f
 	print_npc_text Text0c49
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2fa85:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2fa9b
 	print_npc_text Text0c4a
@@ -7787,7 +7787,7 @@ Func_2fa85:
 .ows_2fa9b
 	print_npc_text Text0c4c
 .ows_2fa9e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7801,7 +7801,7 @@ Func_2faa1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2fb0c
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -7818,12 +7818,12 @@ Func_2faa1:
 	check_event EVENT_GOT_STARMIE_COIN
 	print_variable_npc_text Text0c4f, Text0c50
 .ows_2fadd
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fae0
 	print_npc_text Text0c51
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fae6
@@ -7838,13 +7838,13 @@ Func_2faa1:
 	ask_question Text0c54, TRUE
 	script_jump_if_b0z .ows_2fb06
 	print_npc_text Text0c55
-	script_command_02
+	end_dialog
 	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fb06
 	print_npc_text Text0c56
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fb0c
@@ -7859,20 +7859,20 @@ Func_2faa1:
 	ask_question Text0c54, TRUE
 	script_jump_if_b0z .ows_2fb2c
 	print_npc_text Text0c55
-	script_command_02
+	end_dialog
 	start_duel ELECTRIC_CURRENT_SHOCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fb2c
 	print_npc_text Text0c56
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2fb32:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2fb48
 	print_npc_text Text0c58
@@ -7882,7 +7882,7 @@ Func_2fb32:
 .ows_2fb48
 	print_npc_text Text0c5a
 .ows_2fb4b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7896,7 +7896,7 @@ Func_2fb4e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_2fb8b
 	check_event EVENT_GOT_CHARMANDER_COIN
@@ -7914,12 +7914,12 @@ Func_2fb4e:
 .ows_2fb85
 	print_npc_text Text0c5d
 .ows_2fb88
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fb8b
 	print_npc_text Text0c5e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fb91
@@ -7934,20 +7934,20 @@ Func_2fb4e:
 	ask_question Text0c61, TRUE
 	script_jump_if_b0z .ows_2fbb1
 	print_npc_text Text0c62
-	script_command_02
+	end_dialog
 	start_duel IMMORTAL_FLAME_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_2fbb1
 	print_npc_text Text0c63
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2fbb7:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2fbcd
 	print_npc_text Text0c64
@@ -7957,7 +7957,7 @@ Func_2fbb7:
 .ows_2fbcd
 	print_npc_text Text0c66
 .ows_2fbd0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7971,7 +7971,7 @@ Func_2fbd3:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GR3_WATER_CLUB
 	script_jump_if_b0z .ows_2fbf5
 	set_event EVENT_TALKED_TO_GR3_WATER_CLUB
@@ -7983,20 +7983,20 @@ Func_2fbd3:
 	ask_question Text0c69, TRUE
 	script_jump_if_b0z .ows_2fc08
 	print_npc_text Text0c6a
-	script_command_02
+	end_dialog
 	start_duel GREAT_ROCKET3_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_2fc08
 	print_npc_text Text0c6b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_2fc0e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_2fc23
 	reset_event EVENT_TALKED_TO_ADAM
@@ -8005,7 +8005,7 @@ Func_2fc0e:
 	script_jump Script_2fc3e
 .ows_2fc23
 	print_npc_text Text0c6d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -8034,7 +8034,7 @@ Script_2fc3e:
 	reset_event EVENT_TALKED_TO_ADAM
 	reset_event EVENT_TALKED_TO_JONATHAN
 	print_npc_text Text0c71
-	script_command_02
+	end_dialog
 	set_scroll_state $02
 	get_player_direction
 	compare_loaded_var WEST
@@ -8046,7 +8046,7 @@ Script_2fc3e:
 	scroll_to_position $03, $07
 	wait_for_player_animation
 	do_frames 60
-	script_command_01
+	start_dialog
 	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text0c72
 	script_command_67 $04, $1e
@@ -8055,15 +8055,15 @@ Script_2fc3e:
 	wait_for_fade
 	script_command_68
 	play_sfx SFX_DOORS
-	script_command_02
+	end_dialog
 	load_tilemap TILEMAP_02E, $05, $0b
 	load_tilemap TILEMAP_02F, $05, $07
 	do_frames 28
 	fade_in $01, TRUE
 	wait_for_fade
-	script_command_01
+	start_dialog
 	print_npc_text Text0c73
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_2fcaa
 	wait_for_player_animation
 	unload_npc NPC_GR_3
@@ -8137,10 +8137,10 @@ PokemonDomeEntrance_OWInteractions:
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
-	dbw $06, Func_2fd83
-	dbw $08, Func_2fd93
-	dbw $07, Func_2fd8a
-	dbw $01, Func_2fd73
+	dbw OWMODE_06, Func_2fd83
+	dbw OWMODE_08, Func_2fd93
+	dbw OWMODE_07, Func_2fd8a
+	dbw OWMODE_01, Func_2fd73
 	db $ff
 
 Func_2fd73:
@@ -8186,7 +8186,7 @@ Func_2fda3:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_2fdfa
 	check_event EVENT_FREED_ROD
@@ -8198,34 +8198,34 @@ Func_2fda3:
 	check_event EVENT_FREED_STEVE
 	script_jump_if_b0z .ows_2fdd7
 	print_npc_text Text102a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fdd7
 	print_npc_text Text102b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fddd
 	print_npc_text Text102c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fde3
 	check_event EVENT_FREED_COURTNEY
 	script_jump_if_b0z .ows_2fdee
 	print_npc_text Text102d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fdee
 	print_npc_text Text102e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fdf4
 	print_npc_text Text102f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fdfa
@@ -8237,17 +8237,17 @@ Func_2fda3:
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_2fe11
 	print_npc_text Text1030
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fe11
 	print_npc_text Text1031
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_2fe17
 	print_npc_text Text1032
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -8272,9 +8272,9 @@ Func_2fe2a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text1033
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -8284,9 +8284,9 @@ OverheadIslands_MapHeader:
 	db MUSIC_GR_BLIMP
 
 OverheadIslands_MapScripts:
-	dbw $02, Func_2fe54
-	dbw $04, Func_2fe94
-	dbw $0f, Func_2fe97
+	dbw OWMODE_02, Func_2fe54
+	dbw OWMODE_04, Func_2fe94
+	dbw OWMODE_0F, Func_2fe97
 	db $ff
 
 Func_2fe54:
@@ -8305,8 +8305,8 @@ Func_2fe54:
 	ld b, WEST
 	farcall LoadOWObject
 .asm_2fe77
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_2fe9a)
 	ld [wd592], a
 	ld hl, Func_2fe9a
@@ -8337,7 +8337,7 @@ Func_2fe9a:
 	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, Data_2ff50
 	ld a, $00
 	ld [wCurIsland], a
@@ -8348,7 +8348,7 @@ Func_2fe9a:
 	ld a, OVERWORLD_MAP_GR
 	ld de, $0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, Data_2ff48
 	ld a, $01
 	ld [wCurIsland], a
@@ -8358,7 +8358,7 @@ Func_2fe9a:
 	farcall GetEventValue
 	jr nz, .asm_2fee2
 	push hl
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 3, [hl]
 	pop hl
 .asm_2fee2
@@ -8382,7 +8382,7 @@ Func_2fe9a:
 .asm_2fefd
 	push bc
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 3, [hl]
 	jr nz, .asm_2ff17
 	bit 2, [hl]
@@ -8401,7 +8401,7 @@ Func_2fe9a:
 	pop hl
 	jr .asm_2fee2
 .asm_2ff24
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .asm_2fefb
 	farcall CheckPalFading

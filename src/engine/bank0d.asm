@@ -9,9 +9,9 @@ Script_34000:
 	move_player .NPCMovement_34034, TRUE
 	wait_for_player_animation
 	scroll_to_player
-	script_command_01
+	start_dialog
 	print_npc_text Text1263
-	script_command_02
+	end_dialog
 	set_player_direction WEST
 	animate_player_movement $81, $02
 	move_active_npc .NPCMovement_3402e
@@ -41,13 +41,13 @@ Func_34037:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_34095
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1264
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34095
 	move_player .NPCMovement_3409f, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1265
 	card_pop SCRIPTED_CARD_POP_RONALD
 	print_npc_text Text1266
@@ -62,13 +62,13 @@ Func_34037:
 	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text1267
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34098
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -94,13 +94,13 @@ Func_340a4:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_34102
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1264
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34102
 	move_player .NPCMovement_3410c, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1268
 	card_pop SCRIPTED_CARD_POP_RONALD
 	print_npc_text Text1266
@@ -115,13 +115,13 @@ Func_340a4:
 	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text1269
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34105
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -147,13 +147,13 @@ Func_34111:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_3416f
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1264
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3416f
 	move_player .NPCMovement_34179, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text126a
 	card_pop SCRIPTED_CARD_POP_RONALD
 	print_npc_text Text1266
@@ -168,13 +168,13 @@ Func_34111:
 	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text126b
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34172
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -200,9 +200,9 @@ Func_3417e:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_341b7
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text126c
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_341a5
@@ -213,9 +213,9 @@ Func_3417e:
 .ows_341a9
 	move_active_npc .NPCMovement_341b7
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text RonaldGCPieces2WantsToDuelText
-	script_command_02
+	end_dialog
 	start_duel RONALDS_UNCOOL_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -235,7 +235,7 @@ Func_3417e:
 Script_FinishedRonaldDuelGCPieces2:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text RonaldGCPieces2PlayerWon1Text
@@ -247,7 +247,7 @@ Script_FinishedRonaldDuelGCPieces2:
 .player_lost
 	print_npc_text RonaldGCPieces2PlayerLostText
 .exit
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_341f0
 	wait_for_player_animation
 	unload_npc NPC_RONALD
@@ -283,9 +283,9 @@ Func_341f7:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_3425f
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1271
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_3423b
@@ -295,17 +295,17 @@ Func_341f7:
 	move_player .NPCMovement_34268, TRUE
 .ows_3423f
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1272
 	give_booster_packs BoosterList_ce35
 	print_npc_text Text1273
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34262
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -341,9 +341,9 @@ Func_3426f:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_342da
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1274
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $06
 	script_jump_if_b0nz .ows_342ad
@@ -356,12 +356,12 @@ Func_3426f:
 	scroll_to_position $02, $03
 	wait_for_player_animation
 	scroll_to_player
-	script_command_01
+	start_dialog
 	print_npc_text Text1275
 	give_card BILLS_COMPUTER
 	show_card_received_screen BILLS_COMPUTER
 	print_npc_text Text1276
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_342e0
 	wait_for_player_animation
 	unload_npc NPC_RONALD
@@ -400,15 +400,15 @@ Func_342ef:
 	set_active_npc NPC_GR_X, DialogGRXText
 	move_active_npc .NPCMovement_3431d
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1277
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3431d
 	move_player .NPCMovement_34320, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1278
-	script_command_02
+	end_dialog
 	start_duel RONALDS_GRX_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -422,42 +422,42 @@ Func_342ef:
 Func_34323:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_34358
 	print_npc_text Text1279
-	script_command_02
+	end_dialog
 	spin_active_npc 515
 	replace_npc NPC_GR_X, NPC_RONALD
 	set_active_npc NPC_RONALD, DialogRonaldText
-	script_command_01
+	start_dialog
 	print_npc_text Text127a
 	give_booster_packs BoosterList_cdcf
 	print_npc_text Text127b
-	script_command_02
+	end_dialog
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
-	script_command_01
+	start_dialog
 	print_npc_text Text127c
-	script_command_02
+	end_dialog
 	script_jump .ows_3437d
 .ows_34358
 	print_npc_text Text127d
-	script_command_02
+	end_dialog
 	spin_active_npc 515
 	replace_npc NPC_GR_X, NPC_RONALD
 	set_active_npc NPC_RONALD, DialogRonaldText
-	script_command_01
+	start_dialog
 	print_npc_text Text127e
 	print_npc_text Text127b
-	script_command_02
+	end_dialog
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
-	script_command_01
+	start_dialog
 	print_npc_text Text127c
-	script_command_02
+	end_dialog
 .ows_3437d
 	move_active_npc .NPCMovement_3438c
 	wait_for_player_animation
@@ -483,9 +483,9 @@ Func_34391:
 	check_event EVENT_GOT_MAGMAR_COIN
 	set_variable_text_ram2 GRWaterFortShortText, GRFireFortShortText
 	set_variable_text_ram2b GRFireFortShortText, GRWaterFortShortText
-	script_command_01
+	start_dialog
 	print_npc_text Text127f
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_343c4
@@ -495,15 +495,15 @@ Func_34391:
 	move_player .NPCMovement_343e8, TRUE
 .ows_343c8
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1280
-	script_command_02
+	end_dialog
 	spin_active_npc 515
 	replace_npc NPC_GR_X, NPC_RONALD
 	set_active_npc NPC_RONALD, DialogRonaldText
-	script_command_01
+	start_dialog
 	print_npc_text Text1281
-	script_command_02
+	end_dialog
 	start_duel RONALDS_POWER_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -522,7 +522,7 @@ Func_34391:
 Func_343ef:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_34408
 	print_npc_text Text1282
@@ -533,7 +533,7 @@ Func_343ef:
 .ows_34408
 	print_npc_text Text1284
 .ows_3440b
-	script_command_02
+	end_dialog
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
@@ -541,8 +541,8 @@ Func_343ef:
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -564,20 +564,20 @@ Func_3442d:
 	send_mail $19
 	send_mail $1a
 	set_var VAR_TIMES_MET_RONALD, $07
-	script_command_01
+	start_dialog
 	print_npc_text Text1285
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_34485, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1286
-	script_command_02
+	end_dialog
 	spin_active_npc 515
 	replace_npc NPC_GR_X, NPC_RONALD
 	set_active_npc NPC_RONALD, DialogRonaldText
-	script_command_01
+	start_dialog
 	print_npc_text Text1287
-	script_command_02
+	end_dialog
 	spin_active_npc_reverse 515
 	replace_npc NPC_RONALD, NPC_GR_X
 	set_active_npc NPC_GR_X, DialogGRXText
@@ -585,8 +585,8 @@ Func_3442d:
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -612,9 +612,9 @@ Func_3448d:
 	animate_active_npc_movement $82, $01
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text1288
-	script_command_02
+	end_dialog
 .ows_344b5
 	get_player_x_position
 	compare_loaded_var $05
@@ -629,9 +629,9 @@ Func_3448d:
 	set_player_direction SOUTH
 	do_frames 30
 	set_active_npc_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text1289
-	script_command_02
+	end_dialog
 	start_duel RONALDS_PSYCHIC_DECK_ID, MUSIC_MATCH_START_CLUB_MASTER
 	end_script
 	ret
@@ -639,14 +639,14 @@ Func_3448d:
 Func_344da:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_34500
 	print_npc_text Text128a
 	give_card SUPER_ENERGY_RETRIEVAL
 	show_card_received_screen SUPER_ENERGY_RETRIEVAL
 	print_npc_text Text128b
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3451a
 	wait_for_player_animation
 	set_active_npc_direction NORTH
@@ -656,14 +656,14 @@ Func_344da:
 	script_jump .ows_34508
 .ows_34500
 	print_npc_text Text128c
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34518
 	wait_for_player_animation
 .ows_34508
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -681,9 +681,9 @@ Func_3451d:
 	set_active_npc NPC_RONALD, DialogRonaldText
 	move_active_npc .NPCMovement_34565
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text128d
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_34541
@@ -693,17 +693,17 @@ Func_3451d:
 	move_player .NPCMovement_3456e, TRUE
 .ows_34545
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text128e
 	give_booster_packs BoosterList_ce32
 	print_npc_text Text128f
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_34568
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -744,21 +744,21 @@ TcgAirportEntrance_NPCs:
 	db $ff
 
 TcgAirportEntrance_NPCInteractions:
-	npc_script NPC_GR_5, TcgAirportEntranceGr5Script
-	npc_script NPC_TCG_AIRPORT_GR_SIS, TcgAirportEntranceGrSisScript
-	npc_script NPC_TCG_AIRPORT_MARTIAL_ARTIST, TcgAirportEntranceMartialArtistScript
+	npc_script NPC_GR_5, Script_GR5_TCGAirportEntrance
+	npc_script NPC_TCG_AIRPORT_GR_SIS, Script_TCGAirportGRSis
+	npc_script NPC_TCG_AIRPORT_MARTIAL_ARTIST, Script_TCGAirportMartialArtist
 	db $ff
 
 TcgAirportEntrance_OWInteractions:
-	ow_script 7, 5, TcgAirportEntranceGrClerkScript
+	ow_script 7, 5, Script_TCGAirportGRClerk
 	db $ff
 
 TcgAirportEntrance_MapScripts:
-	dbw $00, Func_345f1
-	dbw $06, Func_3460d
-	dbw $08, Func_3461d
-	dbw $07, Func_34614
-	dbw $01, Func_345fd
+	dbw OWMODE_00, Func_345f1
+	dbw OWMODE_06, Func_3460d
+	dbw OWMODE_08, Func_3461d
+	dbw OWMODE_07, Func_34614
+	dbw OWMODE_01, Func_345fd
 	db $ff
 
 Func_345f1:
@@ -851,7 +851,7 @@ Func_34635:
 .asm_3468e
 	ret
 
-TcgAirportEntranceGr5Script:
+Script_GR5_TCGAirportEntrance:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -861,7 +861,7 @@ TcgAirportEntranceGr5Script:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z Script_346c9
 	check_event EVENT_TALKED_TO_GR5_TCG_AIRPORT
@@ -872,7 +872,7 @@ TcgAirportEntranceGr5Script:
 .talked
 	print_npc_text TCGAirportGR5GRCoinIncompleteText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -889,7 +889,7 @@ Func_346bc:
 
 Script_346c9:
 	print_npc_text TCGAirportGR5GRCoinCompleteText
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_346f0
 	move_player .NPCMovement_346f3, TRUE
 	wait_for_player_animation
@@ -902,7 +902,7 @@ Script_346c9:
 	ld a, MAP_TCG_AIRPORT
 	lb de, 31, 31
 	ld b, EAST
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_346f0:
 	db EAST, MOVE_2
@@ -911,7 +911,7 @@ Script_346c9:
 	db EAST, MOVE_3
 	db $ff
 
-TcgAirportEntranceGrClerkScript:
+Script_TCGAirportGRClerk:
 	ld a, NPC_GR_CLERK_TCG_AIRPORT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -921,7 +921,7 @@ TcgAirportEntranceGrClerkScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GR_COIN
 	script_jump_if_b0z .has_gr_coin
 	print_npc_text TCGAirportGRClerkGRCoinIncompleteText
@@ -929,11 +929,11 @@ TcgAirportEntranceGrClerkScript:
 .has_gr_coin
 	print_npc_text TCGAirportGRClerkGRCoinCompleteText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-TcgAirportEntranceGrSisScript:
+Script_TCGAirportGRSis:
 	ld a, NPC_TCG_AIRPORT_GR_SIS
 	ld [wScriptNPC], a
 	ldtx hl, DialogSisText
@@ -943,7 +943,7 @@ TcgAirportEntranceGrSisScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
 	print_npc_text TCGAirportGRSisNormalText
@@ -951,11 +951,11 @@ TcgAirportEntranceGrSisScript:
 .postgame
 	print_npc_text TCGAirportGRSisPostgameText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-TcgAirportEntranceMartialArtistScript:
+Script_TCGAirportMartialArtist:
 	ld a, NPC_TCG_AIRPORT_MARTIAL_ARTIST
 	ld [wScriptNPC], a
 	ldtx hl, DialogMartialArtistText
@@ -965,7 +965,7 @@ TcgAirportEntranceMartialArtistScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
 	check_event EVENT_GOT_GR_COIN
@@ -978,7 +978,7 @@ TcgAirportEntranceMartialArtistScript:
 .postgame
 	print_npc_text TCGAirportMartialArtistPostgameText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1001,16 +1001,16 @@ TcgAirport_NPCs:
 	db $ff
 
 TcgAirport_NPCInteractions:
-	npc_script NPC_GR_5, TcgAirportGr5Script
+	npc_script NPC_GR_5, Script_GR5_TCGAirport
 	db $ff
 
 TcgAirport_MapScripts:
-	dbw $00, Func_347ce
-	dbw $06, Func_347da
-	dbw $08, Func_3489d
-	dbw $07, Func_347e1
-	dbw $02, Func_347ea
-	dbw $0f, Func_34873
+	dbw OWMODE_00, Func_347ce
+	dbw OWMODE_06, Func_347da
+	dbw OWMODE_08, Func_3489d
+	dbw OWMODE_07, Func_347e1
+	dbw OWMODE_02, Func_347ea
+	dbw OWMODE_0F, Func_34873
 	db $ff
 
 Func_347ce:
@@ -1041,11 +1041,11 @@ Func_347ea:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_34871
-	ld a, $0a
-	ld [wd582], a
-	ld a, BANK(TcgAirportGr5FirstFlightScript)
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
+	ld a, BANK(Script_GR5_TCGAirportFirstFlight)
 	ld [wd592], a
-	ld hl, TcgAirportGr5FirstFlightScript
+	ld hl, Script_GR5_TCGAirportFirstFlight
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1069,11 +1069,11 @@ Func_347ea:
 	farcall SetOWObjectDirection
 	jr .asm_34871
 .asm_3483d
-	ld a, $0a
-	ld [wd582], a
-	ld a, BANK(TcgAirportGr5LandedScript)
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
+	ld a, BANK(Script_GR5_TCGAirportLanded)
 	ld [wd592], a
-	ld hl, TcgAirportGr5LandedScript
+	ld hl, Script_GR5_TCGAirportLanded
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1120,7 +1120,7 @@ Func_3489d:
 	scf
 	ret
 
-TcgAirportGr5FirstFlightScript:
+Script_GR5_TCGAirportFirstFlight:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -1135,9 +1135,9 @@ TcgAirportGr5FirstFlightScript:
 	move_player .NPCMovement_348ff, TRUE
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text TCGAirportGR5FlightInitialText
-	script_command_02
+	end_dialog
 	get_player_y_position
 	compare_loaded_var $09
 	script_jump_if_b0nz .ows_348d9
@@ -1154,7 +1154,7 @@ TcgAirportGr5FirstFlightScript:
 	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_348f0:
 	db EAST, MOVE_9
@@ -1182,7 +1182,7 @@ TcgAirportGr5FirstFlightScript:
 	db EAST, MOVE_1
 	db $ff
 
-TcgAirportGr5Script:
+Script_GR5_TCGAirport:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -1192,16 +1192,16 @@ TcgAirportGr5Script:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	npc_ask_question TCGAirportGR5FlightPromptText, TRUE
 	script_jump_if_b0nz .start_flight
 	print_npc_text TCGAirportGR5DeclinedFlightText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .start_flight
 	print_npc_text TCGAirportGR5StartFlightText
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_3494a
@@ -1233,7 +1233,7 @@ TcgAirportGr5Script:
 	ld a, OVERWORLD_MAP_TCG
 	ld de, $0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3497f:
 	db NORTH, MOVE_3
@@ -1262,7 +1262,7 @@ TcgAirportGr5Script:
 	db EAST, MOVE_2
 	db $ff
 
-TcgAirportGr5LandedScript:
+Script_GR5_TCGAirportLanded:
 	xor a
 	start_script
 	do_frames 60
@@ -1271,12 +1271,12 @@ TcgAirportGr5LandedScript:
 	move_npc NPC_GR_5, .NPCMovement_349c1
 	wait_for_player_animation
 	set_active_npc NPC_GR_5, DialogGR5Text
-	script_command_01
+	start_dialog
 	print_npc_text TCGAirportGR5LandedText
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_349c1:
 	db WEST, MOVE_1
@@ -1400,20 +1400,20 @@ GrAirportEntrance_NPCs:
 	db $ff
 
 GrAirportEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_GR_AIRPORT_2, GrAirportEntranceGrClerkScript
-	npc_script NPC_GR_AIRPORT_GR_PAPPY, GrAirportEntranceGrPappyScript
-	npc_script NPC_GR_AIRPORT_GR_LASS, GrAirportEntranceGrLassScript
+	npc_script NPC_GR_CLERK_GR_AIRPORT_2, Script_GRAirportGRClerk
+	npc_script NPC_GR_AIRPORT_GR_PAPPY, Script_GRAirportGRPappy
+	npc_script NPC_GR_AIRPORT_GR_LASS, Script_GRAirportGRLass
 	db $ff
 
 GrAirportEntrance_OWInteractions:
-	ow_script 4, 5, GrAirportEntranceGrClerkScript
-	ow_script 8, 2, GrAirportEntranceStatueScript
+	ow_script 4, 5, Script_GRAirportGRClerk
+	ow_script 8, 2, Script_GRAirportStatue
 	db $ff
 
 GrAirportEntrance_MapScripts:
-	dbw $06, Func_34b16
-	dbw $08, Func_34b26
-	dbw $07, Func_34b1d
+	dbw OWMODE_06, Func_34b16
+	dbw OWMODE_08, Func_34b26
+	dbw OWMODE_07, Func_34b1d
 	db $ff
 
 Func_34b16:
@@ -1438,7 +1438,7 @@ Func_34b26:
 	scf
 	ret
 
-GrAirportEntranceGrClerkScript:
+Script_GRAirportGRClerk:
 	ld a, NPC_GR_CLERK_GR_AIRPORT_2
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -1448,13 +1448,13 @@ GrAirportEntranceGrClerkScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GRAirportGRClerkText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GrAirportEntranceGrPappyScript:
+Script_GRAirportGRPappy:
 	ld a, NPC_GR_AIRPORT_GR_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRPappyText
@@ -1464,7 +1464,7 @@ GrAirportEntranceGrPappyScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
 	print_npc_text GRAirportGRPappyNormalText
@@ -1472,11 +1472,11 @@ GrAirportEntranceGrPappyScript:
 .postgame
 	print_npc_text GRAirportGRPappyPostgameText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GrAirportEntranceGrLassScript:
+Script_GRAirportGRLass:
 	ld a, NPC_GR_AIRPORT_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogLassText
@@ -1486,7 +1486,7 @@ GrAirportEntranceGrLassScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
 	print_npc_text GRAirportGRLassNormalText
@@ -1494,16 +1494,16 @@ GrAirportEntranceGrLassScript:
 .postgame
 	print_npc_text GRAirportGRLassPostgameText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GrAirportEntranceStatueScript:
+Script_GRAirportStatue:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text BiruritchiStatueCaptionText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1528,11 +1528,11 @@ GameCenter1_NPCs:
 	db $ff
 
 GameCenter1_NPCInteractions:
-	npc_script NPC_ATTENDANT_BLACK_BOX, GameCenterBlackBoxAttendantScript
-	npc_script NPC_ATTENDANT_BILLS_PC, GameCenterBillsPCAttendantScript
-	npc_script NPC_ATTENDANT_COIN_FLIP, GameCenterCoinFlipAttendantScript
-	npc_script NPC_GAME_CENTER_GR_GAL, GameCenterGRGalScript
-	npc_script NPC_GAME_CENTER_CHUBBY_KID, GameCenterCoinTossBoyScript
+	npc_script NPC_ATTENDANT_BLACK_BOX, Script_BlackBoxAttendant
+	npc_script NPC_ATTENDANT_BILLS_PC, Script_BillsPCAttendant
+	npc_script NPC_ATTENDANT_COIN_FLIP, Script_CoinFlipGameAttendant
+	npc_script NPC_GAME_CENTER_GR_GAL, Script_GameCenterGRGal
+	npc_script NPC_GAME_CENTER_CHUBBY_KID, Script_CoinTossBoy
 	db $ff
 
 GameCenter1_OWInteractions:
@@ -1542,9 +1542,9 @@ GameCenter1_OWInteractions:
 	db $ff
 
 GameCenter1_MapScripts:
-	dbw $06, Func_34c2c
-	dbw $08, Func_34c3c
-	dbw $07, Func_34c33
+	dbw OWMODE_06, Func_34c2c
+	dbw OWMODE_08, Func_34c3c
+	dbw OWMODE_07, Func_34c33
 	db $ff
 
 Func_34c2c:
@@ -1569,7 +1569,7 @@ Func_34c3c:
 	scf
 	ret
 
-Script_PlayCoinFlipGame:
+Script_CoinFlipGame:
 	quit_script
 	farcall Func_1d7be
 	cp 9
@@ -1586,13 +1586,13 @@ Script_PlayCoinFlipGame:
 	jr nc, .streak_4
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendantNoPrizesTryAgainText
 	script_jump .quit
 .streak_3
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant3HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_3
@@ -1602,7 +1602,7 @@ Script_PlayCoinFlipGame:
 .streak_4
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant4HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_4
@@ -1612,7 +1612,7 @@ Script_PlayCoinFlipGame:
 .streak_5
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant5HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_5
@@ -1622,7 +1622,7 @@ Script_PlayCoinFlipGame:
 .streak_6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant6HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_6
@@ -1632,7 +1632,7 @@ Script_PlayCoinFlipGame:
 .streak_7
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant7HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_7
@@ -1642,7 +1642,7 @@ Script_PlayCoinFlipGame:
 .streak_8
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant8HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_8
@@ -1652,7 +1652,7 @@ Script_PlayCoinFlipGame:
 .streak_9
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant9HeadsPrizeText
 	game_center
 	give_chips CHIPS_COIN_FLIP_STREAK_9
@@ -1662,21 +1662,21 @@ Script_PlayCoinFlipGame:
 .streak_10
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant10HeadsPrizeText
 	receive_card MEW_LV8
 	print_npc_text GameCenterCoinFlipAttendant10HeadsCongratsText
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_BlackBox:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TurnedOnBlackBoxText
-	script_command_02
+	end_dialog
 	end_script
 	farcall Func_1312e
 	jr c, .asm_34d2f
@@ -1684,23 +1684,23 @@ Script_BlackBox:
 	ld a, $81 ; priority black box mail
 	farcall AddMailToQueue
 .asm_34d2f
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 Script_BillsPC:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TurnedOnBillsPCText
-	script_command_02
+	end_dialog
 	end_script
 	farcall Func_1f8eb
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
-GameCenterBlackBoxAttendantScript:
+Script_BlackBoxAttendant:
 	ld a, NPC_ATTENDANT_BLACK_BOX
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1710,7 +1710,7 @@ GameCenterBlackBoxAttendantScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	print_npc_text GameCenterBlackBoxAttendantWelcomeText
@@ -1721,11 +1721,11 @@ GameCenterBlackBoxAttendantScript:
 .declined_guide
 	print_npc_text GameCenterBlackBoxAttendantNoGuideText
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterBillsPCAttendantScript:
+Script_BillsPCAttendant:
 	ld a, NPC_ATTENDANT_BILLS_PC
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1735,7 +1735,7 @@ GameCenterBillsPCAttendantScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	print_npc_text GameCenterBillsPCAttendantWelcomeText
@@ -1746,11 +1746,11 @@ GameCenterBillsPCAttendantScript:
 .declined_guide
 	print_npc_text GameCenterBillsPCAttendantNoGuideText
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterCoinFlipAttendantScript:
+Script_CoinFlipGameAttendant:
 	ld a, NPC_ATTENDANT_COIN_FLIP
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1760,7 +1760,7 @@ GameCenterCoinFlipAttendantScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	game_center
@@ -1775,8 +1775,8 @@ GameCenterCoinFlipAttendantScript:
 	take_chips CHIPS_BET_COIN_FLIP
 	print_npc_text GameCenterCoinFlipAttendantStartText
 	script_command_71
-	script_command_02
-	script_jump Script_PlayCoinFlipGame
+	end_dialog
+	script_jump Script_CoinFlipGame
 .not_enough_chips
 	print_npc_text GameCenterCoinFlipAttendantNotEnoughChipsText
 	script_jump .quit
@@ -1784,11 +1784,11 @@ GameCenterCoinFlipAttendantScript:
 	print_npc_text GameCenterCoinFlipAttendantComeAgainText
 	script_command_71
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterGRGalScript:
+Script_GameCenterGRGal:
 	ld a, NPC_GAME_CENTER_GR_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRGalText
@@ -1798,9 +1798,9 @@ GameCenterGRGalScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterGRGalText
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_34e0f
@@ -1817,7 +1817,7 @@ GameCenterGRGalScript:
 	end_script
 	ret
 
-GameCenterCoinTossBoyScript:
+Script_CoinTossBoy:
 	ld a, NPC_GAME_CENTER_CHUBBY_KID
 	ld [wScriptNPC], a
 	ldtx hl, DialogChubbyKidText
@@ -1827,7 +1827,7 @@ GameCenterCoinTossBoyScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
@@ -1843,7 +1843,7 @@ GameCenterCoinTossBoyScript:
 .postgame
 	print_npc_text GameCenterCoinTossBoyPostgameText
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1867,12 +1867,12 @@ GameCenter2_NPCs:
 	db $ff
 
 GameCenter2_NPCInteractions:
-	npc_script NPC_ATTENDANT_1COIN_SLOT, GameCenter1CoinSlotAttendantScript
-	npc_script NPC_ATTENDANT_5COIN_SLOT, GameCenter5CoinSlotAttendantScript
-	npc_script NPC_ATTENDANT_CARD_DUNGEON, GameCenterCardDungeonAttendantScript_Enter
-	npc_script NPC_GAME_CENTER_BOY, GameCenterCardDungeonBoyScript
-	npc_script NPC_GAME_CENTER_FIXER, GameCenterFixerScript
-	npc_script NPC_GAME_CENTER_GR_WOMAN, GameCenterSlotMachineGRWomanScript
+	npc_script NPC_ATTENDANT_1COIN_SLOT, Script_1CoinSlotAttendant
+	npc_script NPC_ATTENDANT_5COIN_SLOT, Script_5CoinSlotAttendant
+	npc_script NPC_ATTENDANT_CARD_DUNGEON, Script_CardDungeonAttendantEnter
+	npc_script NPC_GAME_CENTER_BOY, Script_CardDungeonBoy
+	npc_script NPC_GAME_CENTER_FIXER, Script_Fixer
+	npc_script NPC_GAME_CENTER_GR_WOMAN, Script_SlotMachineGRWoman
 	db $ff
 
 GameCenter2_OWInteractions:
@@ -1885,10 +1885,10 @@ GameCenter2_OWInteractions:
 	db $ff
 
 GameCenter2_MapScripts:
-	dbw $06, Func_34ee7
-	dbw $08, Func_34ef7
-	dbw $07, Func_34eee
-	dbw $02, Func_34f07
+	dbw OWMODE_06, Func_34ee7
+	dbw OWMODE_08, Func_34ef7
+	dbw OWMODE_07, Func_34eee
+	dbw OWMODE_02, Func_34f07
 	db $ff
 
 Func_34ee7:
@@ -1917,11 +1917,11 @@ Func_34f07:
 	ld a, [wd584]
 	cp MAP_GAME_CENTER_1
 	jr z, .asm_34f23
-	ld a, $0a
-	ld [wd582], a
-	ld a, BANK(GameCenterCardDungeonAttendantScript_Exit)
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
+	ld a, BANK(Script_CardDungeonAttendantExit)
 	ld [wd592], a
-	ld hl, GameCenterCardDungeonAttendantScript_Exit
+	ld hl, Script_CardDungeonAttendantExit
 	ld a, l
 	ld [wd593], a
 	ld a, h
@@ -1930,7 +1930,7 @@ Func_34f07:
 	scf
 	ret
 
-GameCenter1CoinSlotAttendantScript:
+Script_1CoinSlotAttendant:
 	ld a, NPC_ATTENDANT_1COIN_SLOT
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1940,7 +1940,7 @@ GameCenter1CoinSlotAttendantScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterSlotMachine1AttendantWelcomeText
 	ask_question GameCenterSlotMachine1AttendantGuidePromptText, TRUE
 	script_jump_if_b0z .declined_guide
@@ -1949,11 +1949,11 @@ GameCenter1CoinSlotAttendantScript:
 .declined_guide
 	print_npc_text GameCenterSlotMachine1AttendantNoGuideText
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenter5CoinSlotAttendantScript:
+Script_5CoinSlotAttendant:
 	ld a, NPC_ATTENDANT_5COIN_SLOT
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1963,7 +1963,7 @@ GameCenter5CoinSlotAttendantScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterSlotMachine5AttendantWelcomeText
 	ask_question GameCenterSlotMachine5AttendantGuidePromptText, TRUE
 	script_jump_if_b0z .declined_guide
@@ -1972,11 +1972,11 @@ GameCenter5CoinSlotAttendantScript:
 .declined_guide
 	print_npc_text GameCenterSlotMachine5AttendantNoGuideText
 .quit
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterCardDungeonAttendantScript_Enter:
+Script_CardDungeonAttendantEnter:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -1986,7 +1986,7 @@ GameCenterCardDungeonAttendantScript_Enter:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	game_center
 	print_npc_text GameCenterCardDungeonAttendantWelcomeText
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
@@ -2011,22 +2011,22 @@ GameCenterCardDungeonAttendantScript_Enter:
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantEnterText
 	script_command_71
-	script_command_02
+	end_dialog
 	end_script
 	ld a, MAP_CARD_DUNGEON_PAWN
 	lb de, 5, 8
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .declined
 	print_npc_text GameCenterCardDungeonAttendantComeAgainText
 .quit
 	script_command_71
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterCardDungeonAttendantScript_Exit:
+Script_CardDungeonAttendantExit:
 	ld a, NPC_ATTENDANT_CARD_DUNGEON
 	ld [wScriptNPC], a
 	ldtx hl, DialogAttendantText
@@ -2036,7 +2036,7 @@ GameCenterCardDungeonAttendantScript_Exit:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction WEST
 	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var CARDDUNGEON_LOST
@@ -2050,13 +2050,13 @@ GameCenterCardDungeonAttendantScript_Exit:
 .player_quit
 	print_npc_text GameCenterCardDungeonAttendantPlayerQuitTryAgainText
 .done
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
-GameCenterCardDungeonBoyScript:
+Script_CardDungeonBoy:
 	ld a, NPC_GAME_CENTER_BOY
 	ld [wScriptNPC], a
 	ldtx hl, DialogBoyText
@@ -2066,7 +2066,7 @@ GameCenterCardDungeonBoyScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_MACHAMP_COIN
 	script_jump_if_b0z .phase3
 	check_event EVENT_GOT_MAGNEMITE_COIN
@@ -2079,11 +2079,11 @@ GameCenterCardDungeonBoyScript:
 .phase3
 	print_npc_text GameCenterCardDungeonBoy3Text
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterFixerScript:
+Script_Fixer:
 	ld a, NPC_GAME_CENTER_FIXER
 	ld [wScriptNPC], a
 	ldtx hl, DialogFixerText
@@ -2093,7 +2093,7 @@ GameCenterFixerScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
 	print_npc_text GameCenterFixerNormalText
@@ -2102,11 +2102,11 @@ GameCenterFixerScript:
 	print_npc_text GameCenterFixerPostgameText
 .done
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-GameCenterSlotMachineGRWomanScript:
+Script_SlotMachineGRWoman:
 	ld a, NPC_GAME_CENTER_GR_WOMAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRWomanText
@@ -2116,7 +2116,7 @@ GameCenterSlotMachineGRWomanScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
 	script_jump_if_b0z .talked
 	set_event EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
@@ -2130,7 +2130,7 @@ GameCenterSlotMachineGRWomanScript:
 		GameCenterSlotMachineGRWomanHitText
 .done
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2149,20 +2149,20 @@ CardDungeonBishop_NPCs:
 	db $ff
 
 CardDungeonBishop_NPCInteractions:
-	npc_script NPC_BISHOP, CardDungeonBishopScript
+	npc_script NPC_BISHOP, Script_Bishop
 	db $ff
 
 CardDungeonBishop_OWInteractions:
-	ow_script 4, 1, CardDungeonBishopDoorsScript
-	ow_script 5, 1, CardDungeonBishopDoorsScript
+	ow_script 4, 1, Script_CardDungeonBishopDoors
+	ow_script 5, 1, Script_CardDungeonBishopDoors
 	db $ff
 
 CardDungeonBishop_MapScripts:
-	dbw $06, Func_350e6
-	dbw $08, Func_350f6
-	dbw $09, Func_35127
-	dbw $07, Func_350ed
-	dbw $02, Func_35106
+	dbw OWMODE_06, Func_350e6
+	dbw OWMODE_08, Func_350f6
+	dbw OWMODE_AFTER_DUEL, Func_35127
+	dbw OWMODE_07, Func_350ed
+	dbw OWMODE_02, Func_35106
 	db $ff
 
 Func_350e6:
@@ -2188,11 +2188,11 @@ Func_350f6:
 	ret
 
 Func_35106:
-	ld bc, TILEMAP_049
+	ld bc, TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3525b)
 	ld [wd592], a
 	ld hl, Func_3525b
@@ -2208,7 +2208,7 @@ Func_35127:
 	scf
 	ret
 
-CardDungeonBishopScript:
+Script_Bishop:
 	ld a, NPC_BISHOP
 	ld [wScriptNPC], a
 	ldtx hl, DialogBishopText
@@ -2218,9 +2218,9 @@ CardDungeonBishopScript:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_CARD_DUNGEON_PROGRESS
-	compare_loaded_var CARDDUNGEON_WON_KNIGHT
+	compare_loaded_var CARDDUNGEON_BEAT_KNIGHT
 	script_jump_if_b0z Script_CardDungeonBishopProceedRepeat
 	game_center
 	check_event EVENT_TALKED_TO_BISHOP
@@ -2239,8 +2239,9 @@ CardDungeonBishopScript:
 	ld a, POPUPMENU_CARD_DUNGEON_BISHOP
 	ld b, 0
 	farcall HandlePopupMenu
+; menu: bet 10, bet 30, cancel
 	jr c, .cancel
-	cp 1 ; cursor pos
+	cp 1
 	jr z, .bet_30
 	jr nc, .cancel
 ; bet 10
@@ -2273,7 +2274,7 @@ CardDungeonBishopScript:
 	start_script
 	print_npc_text BishopDuelStartText
 	script_command_71
-	script_command_02
+	end_dialog
 	start_duel TEXTURE_TUNER7_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -2287,22 +2288,22 @@ CardDungeonBishopScript:
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text BishopPlayerQuitText
 	script_command_71
-	script_command_02
+	end_dialog
 	end_script
 
 Func_351d4:
-	jp Func_3524f
+	jp CardDungeonBishop_SetWarp
 
 Script_CardDungeonBishopProceedRepeat:
 	print_npc_text BishopProceedRepeatText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_351dd:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text BishopPlayerWon1Text
@@ -2326,17 +2327,17 @@ Func_351dd:
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text BishopPlayerLostText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3524f
+	jp CardDungeonBishop_SetWarp
 .proceed
 	ask_question BishopProceedWithCardDungeonPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_WON_BISHOP
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_BISHOP
 	print_npc_text BishopProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_04A, $04, $00
+	load_tilemap TILEMAP_CARD_DUNGEON_BISHOP_BACK_DOORS_OPEN, 4, 0
 	print_npc_text BishopProceedInitial2Text
 	script_jump .done
 .declined
@@ -2345,19 +2346,19 @@ Func_351dd:
 	script_jump_if_b0z .proceed
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text BishopPlayerWithdrewText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3524f
+	jp CardDungeonBishop_SetWarp
 .done
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3524f:
+CardDungeonBishop_SetWarp:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_3525b:
@@ -2366,22 +2367,22 @@ Func_3525b:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_049, $04, $07
+	load_tilemap TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
-CardDungeonBishopDoorsScript:
+Script_CardDungeonBishopDoors:
 	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $02
 	jr nz, .done
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .done
 	ret
@@ -2420,10 +2421,10 @@ GrChallengeHallLobby_OWInteractions:
 	db $ff
 
 GrChallengeHallLobby_MapScripts:
-	dbw $06, Func_35322
-	dbw $08, Func_35332
-	dbw $07, Func_35329
-	dbw $01, Func_35308
+	dbw OWMODE_06, Func_35322
+	dbw OWMODE_08, Func_35332
+	dbw OWMODE_07, Func_35329
+	dbw OWMODE_01, Func_35308
 	db $ff
 
 Func_35308:
@@ -2475,7 +2476,7 @@ Func_35342:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_GR_CHALLENGE_HALL
 	script_jump_if_b0z .ows_353a2
 	check_event EVENT_TALKED_TO_TRADE_NPC_GR_CHALLENGE_HALL
@@ -2510,7 +2511,7 @@ Func_35342:
 .ows_353a2
 	print_npc_text Text0e39
 .ows_353a5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2524,7 +2525,7 @@ Func_353a8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_353c8
 	print_npc_text Text0e3a
@@ -2532,7 +2533,7 @@ Func_353a8:
 .ows_353c8
 	print_npc_text Text0e3b
 .ows_353cb
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2562,7 +2563,7 @@ Func_353e5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_35423
 	get_var VAR_30
@@ -2583,7 +2584,7 @@ Func_353e5:
 .ows_35423
 	set_event EVENT_94
 	print_npc_text Text0e3f
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_35434
@@ -2596,7 +2597,7 @@ Func_353e5:
 	end_script
 	ret
 .ows_3543c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_3543f:
@@ -2625,7 +2626,7 @@ Func_35451:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_33
 	compare_loaded_var $02
 	script_jump_if_b0nz .ows_35490
@@ -2653,7 +2654,7 @@ Func_35451:
 .ows_3549c
 	print_npc_text Text0e44
 .ows_3549f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2676,10 +2677,10 @@ GrassFortMorino_NPCInteractions:
 	db $ff
 
 GrassFortMorino_MapScripts:
-	dbw $06, Func_354d3
-	dbw $08, Func_354e3
-	dbw $09, Func_354eb
-	dbw $07, Func_354da
+	dbw OWMODE_06, Func_354d3
+	dbw OWMODE_08, Func_354e3
+	dbw OWMODE_AFTER_DUEL, Func_354eb
+	dbw OWMODE_07, Func_354da
 	db $ff
 
 Func_354d3:
@@ -2703,7 +2704,7 @@ Func_354e3:
 Func_354eb:
 	ld hl, GrassFortMorino_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -2721,7 +2722,7 @@ Func_354fb:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_35570
 	check_event EVENT_BEAT_MORINO
@@ -2739,13 +2740,13 @@ Func_354fb:
 	ask_question Text0db8, TRUE
 	script_jump_if_b0z .ows_3553f
 	print_npc_text Text0db9
-	script_command_02
+	end_dialog
 	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_3553f
 	print_npc_text Text0dba
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35545
@@ -2762,13 +2763,13 @@ Func_354fb:
 	ask_question Text0db8, TRUE
 	script_jump_if_b0z .ows_3556a
 	print_npc_text Text0dbd
-	script_command_02
+	end_dialog
 	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_3556a
 	print_npc_text Text0dbe
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35570
@@ -2782,21 +2783,21 @@ Func_354fb:
 	ask_question Text0db8, TRUE
 	script_jump_if_b0z .ows_35590
 	print_npc_text Text0dbd
-	script_command_02
+	end_dialog
 	start_duel MAD_PETALS_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35590
 	print_npc_text Text0dbe
 .ows_35593
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_35596:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MORINO
 	script_jump_if_b0z .ows_355ba
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -2809,7 +2810,7 @@ Func_35596:
 	script_jump .ows_355d1
 .ows_355b4
 	print_npc_text Text0dc1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_355ba
@@ -2822,7 +2823,7 @@ Func_35596:
 .ows_355cb
 	print_npc_text Text0dc4
 .ows_355ce
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_355d1
@@ -2830,7 +2831,7 @@ Func_35596:
 	print_npc_text Text0dc5
 	give_coin COIN_GOLBAT
 	print_npc_text Text0dc6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2855,11 +2856,11 @@ WaterFortSenta_NPCInteractions:
 	db $ff
 
 WaterFortSenta_MapScripts:
-	dbw $06, Func_35624
-	dbw $08, Func_35661
-	dbw $09, Func_35669
-	dbw $07, Func_3562b
-	dbw $02, Func_35634
+	dbw OWMODE_06, Func_35624
+	dbw OWMODE_08, Func_35661
+	dbw OWMODE_AFTER_DUEL, Func_35669
+	dbw OWMODE_07, Func_3562b
+	dbw OWMODE_02, Func_35634
 	db $ff
 
 Func_35624:
@@ -2902,7 +2903,7 @@ Func_35661:
 Func_35669:
 	ld hl, WaterFortSenta_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -2920,7 +2921,7 @@ Func_35679:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SENTAS_ROOM_BRIDGE_STATE
 	script_jump_if_b0z .ows_356c4
 	check_event EVENT_TALKED_TO_SENTA
@@ -2939,14 +2940,14 @@ Func_35679:
 	script_jump .ows_356c1
 .ows_356b5
 	print_npc_text Text1240
-	script_command_02
+	end_dialog
 	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_356be
 	print_npc_text Text1241
 .ows_356c1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_356c4
@@ -2959,21 +2960,21 @@ Func_35679:
 	script_jump .ows_356e5
 .ows_356d9
 	print_npc_text Text1244
-	script_command_02
+	end_dialog
 	start_duel PARALYZED_PARALYZED_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_356e2
 	print_npc_text Text1245
 .ows_356e5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_356e8:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SENTAS_ROOM_BRIDGE_STATE
 	script_jump_if_b0z .ows_3570b
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -2985,7 +2986,7 @@ Func_356e8:
 	script_jump .ows_35722
 .ows_35705
 	print_npc_text Text1248
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3570b
@@ -2998,13 +2999,13 @@ Func_356e8:
 .ows_3571c
 	print_npc_text Text124b
 .ows_3571f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35722
 	set_event EVENT_FREED_JACK
 	print_npc_text Text124c
-	script_command_02
+	end_dialog
 	set_scroll_state $02
 	get_player_direction
 	compare_loaded_var EAST
@@ -3016,9 +3017,9 @@ Func_356e8:
 	scroll_to_position $03, $00
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text124d
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_08C, $05, $00
@@ -3044,13 +3045,13 @@ Func_356e8:
 	wait_for_player_animation
 	scroll_to_player
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text124e
 	receive_card MAGIKARP_LV10
 	check_event EVENT_FREED_COURTNEY
 	print_variable_npc_text Text124f, Text1250
 	print_npc_text Text1251
-	script_command_02
+	end_dialog
 	move_npc NPC_SENTA, .NPCMovement_357a7
 	move_active_npc .NPCMovement_357ad
 	wait_for_player_animation
@@ -3088,16 +3089,16 @@ Script_357bf:
 	wait_for_player_animation
 	set_player_direction SOUTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1252
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_35803
 	scroll_to_position $04, $02
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1253
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_08D, $0c, $05
@@ -3108,9 +3109,9 @@ Script_357bf:
 	scroll_to_player
 	do_frames 30
 	set_player_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text1254
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	end_script
 	ret
@@ -3149,11 +3150,11 @@ WaterFortAira_NPCInteractions:
 	db $ff
 
 WaterFortAira_MapScripts:
-	dbw $06, Func_35855
-	dbw $08, Func_35882
-	dbw $09, Func_3588a
-	dbw $07, Func_3585c
-	dbw $02, Func_35865
+	dbw OWMODE_06, Func_35855
+	dbw OWMODE_08, Func_35882
+	dbw OWMODE_AFTER_DUEL, Func_3588a
+	dbw OWMODE_07, Func_3585c
+	dbw OWMODE_02, Func_35865
 	db $ff
 
 Func_35855:
@@ -3191,7 +3192,7 @@ Func_35882:
 Func_3588a:
 	ld hl, WaterFortAira_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -3209,7 +3210,7 @@ Func_3589a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_AIRAS_ROOM_BRIDGE_STATE
 	script_jump_if_b0z .ows_358da
 	check_event EVENT_TALKED_TO_AIRA
@@ -3223,13 +3224,13 @@ Func_3589a:
 	ask_question Text1204, TRUE
 	script_jump_if_b0z .ows_358d4
 	print_npc_text Text1205
-	script_command_02
+	end_dialog
 	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_358d4
 	print_npc_text Text1206
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_358da
@@ -3237,20 +3238,20 @@ Func_3589a:
 	ask_question Text1204, TRUE
 	script_jump_if_b0z .ows_358ed
 	print_npc_text Text1208
-	script_command_02
+	end_dialog
 	start_duel BENCH_CALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_358ed
 	print_npc_text Text1209
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_358f3:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_AIRAS_ROOM_BRIDGE_STATE
 	script_jump_if_b0z .ows_35916
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3262,7 +3263,7 @@ Func_358f3:
 	script_jump .ows_3592d
 .ows_35910
 	print_npc_text Text120c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35916
@@ -3275,19 +3276,19 @@ Func_358f3:
 .ows_35927
 	print_npc_text Text120c
 .ows_3592a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3592d
 	print_npc_text Text120f
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3597d
 	scroll_to_position $ff, $00
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1210
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_090, $04, $00
 	do_frames 30
@@ -3306,9 +3307,9 @@ Func_358f3:
 .ows_35961
 	scroll_to_player
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1211
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var EAST
 	script_jump_if_b0z .ows_35976
@@ -3359,11 +3360,11 @@ FightingFort_OWInteractions:
 	db $ff
 
 FightingFort_MapScripts:
-	dbw $06, Func_359fd
-	dbw $08, Func_35a7c
-	dbw $09, Func_35a8c
-	dbw $07, Func_35a04
-	dbw $02, Func_35a0d
+	dbw OWMODE_06, Func_359fd
+	dbw OWMODE_08, Func_35a7c
+	dbw OWMODE_AFTER_DUEL, Func_35a8c
+	dbw OWMODE_07, Func_35a04
+	dbw OWMODE_02, Func_35a0d
 	db $ff
 
 Func_359fd:
@@ -3406,8 +3407,8 @@ Func_35a0d:
 	jr nz, .asm_35a7a
 	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
 	farcall MaxOutEventValue
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_35a9c)
 	ld [wd592], a
 	ld hl, Func_35a9c
@@ -3440,7 +3441,7 @@ Func_35a7c:
 Func_35a8c:
 	ld hl, FightingFort_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -3455,36 +3456,36 @@ Func_35a9c:
 	move_player .NPCMovement_35b09, TRUE
 	wait_for_player_animation
 	set_active_npc NPC_KAMIYA, DialogKamiyaText
-	script_command_01
+	start_dialog
 	print_npc_text Text0c11
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction WEST
 	do_frames 30
 	set_active_npc NPC_GODA, DialogGodaText
-	script_command_01
+	start_dialog
 	print_npc_text Text0c12
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $02, $01
 	do_frames 30
 	set_active_npc NPC_KAMIYA, DialogKamiyaText
-	script_command_01
+	start_dialog
 	print_npc_text Text0c13
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction EAST
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GRACE, DialogGraceText
 	print_npc_text Text0c14
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $02, $01
 	do_frames 30
 	set_active_npc NPC_KAMIYA, DialogKamiyaText
-	script_command_01
+	start_dialog
 	set_active_npc_direction SOUTH
 	print_npc_text Text0c15
-	script_command_02
+	end_dialog
 	do_frames 30
 	move_npc NPC_GODA, .NPCMovement_35b0c
 	move_npc NPC_GRACE, .NPCMovement_35b11
@@ -3492,12 +3493,12 @@ Func_35a9c:
 	unload_npc NPC_GODA
 	unload_npc NPC_GRACE
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0c16
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_35b09:
 	db NORTH, MOVE_2
@@ -3521,7 +3522,7 @@ Func_35b16:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KAMIYA
 	script_jump_if_b0z .ows_35b69
 	check_event EVENT_FREED_MITCH
@@ -3531,7 +3532,7 @@ Func_35b16:
 	script_jump .ows_35b43
 .ows_35b3d
 	print_npc_text Text0c17
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35b43
@@ -3546,13 +3547,13 @@ Func_35b16:
 	ask_question Text0c1a, TRUE
 	script_jump_if_b0z .ows_35b63
 	print_npc_text Text0c1b
-	script_command_02
+	end_dialog
 	start_duel RUNNING_WILD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35b63
 	print_npc_text Text0c1c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35b69
@@ -3560,20 +3561,20 @@ Func_35b16:
 	ask_question Text0c1a, TRUE
 	script_jump_if_b0z .ows_35b7c
 	print_npc_text Text0c1e
-	script_command_02
+	end_dialog
 	start_duel RUNNING_WILD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_35b7c
 	print_npc_text Text0c1f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_35b82:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KAMIYA
 	script_jump_if_b0z .ows_35ba8
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3586,7 +3587,7 @@ Func_35b82:
 	script_jump .ows_35bbf
 .ows_35ba2
 	print_npc_text Text0c21
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35ba8
@@ -3599,7 +3600,7 @@ Func_35b82:
 .ows_35bb9
 	print_npc_text Text0c24
 .ows_35bbc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35bbf
@@ -3608,7 +3609,7 @@ Func_35b82:
 	print_npc_text Text0c25
 	give_coin COIN_MACHAMP
 	print_npc_text Text0c26
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var EAST
 	script_jump_if_b0z .ows_35bd9
@@ -3631,20 +3632,20 @@ Func_35be4:
 	jr nz, .asm_35c0f
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text0c27
 	check_event EVENT_GOT_MACHAMP_COIN
 	script_jump_if_b0nz .ows_35c0d
 	ask_question Text0c28, TRUE
 	script_jump_if_b0z .ows_35c0d
 	set_event EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_097, $07, $00
 	end_script
 	jr .asm_35c0f
 .ows_35c0d
-	script_command_02
+	end_dialog
 	end_script
 .asm_35c0f
 	ret
@@ -3666,9 +3667,9 @@ FightingFortMaze16_StepEvents:
 	db $ff
 
 FightingFortMaze16_MapScripts:
-	dbw $06, Func_35c68
-	dbw $0f, Func_35c6f
-	dbw $02, Func_35c7b
+	dbw OWMODE_06, Func_35c68
+	dbw OWMODE_0F, Func_35c6f
+	dbw OWMODE_02, Func_35c7b
 	db $ff
 
 Func_35c68:
@@ -3722,9 +3723,9 @@ FightingFortMaze18_StepEvents:
 	db $ff
 
 FightingFortMaze18_MapScripts:
-	dbw $06, Func_35d04
-	dbw $0f, Func_35d0b
-	dbw $02, Func_35d17
+	dbw OWMODE_06, Func_35d04
+	dbw OWMODE_0F, Func_35d0b
+	dbw OWMODE_02, Func_35d17
 	db $ff
 
 Func_35d04:
@@ -3783,11 +3784,11 @@ FightingFortGoda_OWInteractions:
 	db $ff
 
 FightingFortGoda_MapScripts:
-	dbw $06, Func_35d7a
-	dbw $08, Func_35da0
-	dbw $09, Func_35db0
-	dbw $07, Func_35d81
-	dbw $02, Func_35d8a
+	dbw OWMODE_06, Func_35d7a
+	dbw OWMODE_08, Func_35da0
+	dbw OWMODE_AFTER_DUEL, Func_35db0
+	dbw OWMODE_07, Func_35d81
+	dbw OWMODE_02, Func_35d8a
 	db $ff
 
 Func_35d7a:
@@ -3828,7 +3829,7 @@ Func_35da0:
 Func_35db0:
 	ld hl, FightingFortGoda_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -3849,9 +3850,9 @@ Func_35dc0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0be7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3876,7 +3877,7 @@ Func_35def:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_MITCH
 	script_jump_if_b0z .ows_35e3a
 	check_event EVENT_TALKED_TO_GODA
@@ -3895,14 +3896,14 @@ Func_35def:
 	script_jump .ows_35e37
 .ows_35e2b
 	print_npc_text Text0bec
-	script_command_02
+	end_dialog
 	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35e34
 	print_npc_text Text0bed
 .ows_35e37
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35e3a
@@ -3915,21 +3916,21 @@ Func_35def:
 	script_jump .ows_35e5b
 .ows_35e4f
 	print_npc_text Text0bf0
-	script_command_02
+	end_dialog
 	start_duel ROCK_BLAST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35e58
 	print_npc_text Text0bf1
 .ows_35e5b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_35e5e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_MITCH
 	script_jump_if_b0z .ows_35e81
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3941,7 +3942,7 @@ Func_35e5e:
 	script_jump .ows_35e98
 .ows_35e7b
 	print_npc_text Text0bf4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35e81
@@ -3954,7 +3955,7 @@ Func_35e5e:
 .ows_35e92
 	print_npc_text Text0bf7
 .ows_35e95
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35e98
@@ -3966,7 +3967,7 @@ Func_35e5e:
 	reset_event EVENT_TALKED_TO_MITCH
 	reset_event EVENT_TALKED_TO_STEPHANIE
 	print_npc_text Text0bf8
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
 	do_frames 30
@@ -3982,32 +3983,32 @@ Func_35e5e:
 	wait_for_fade
 	do_frames 30
 	set_active_npc NPC_MITCH, DialogMitchText
-	script_command_01
+	start_dialog
 	set_player_direction EAST
 	print_npc_text Text0bf9
 	receive_card COOL_PORYGON
 	print_npc_text Text0bfa
-	script_command_02
+	end_dialog
 	script_jump .ows_35ee4
 .ows_35ee4
 	animate_active_npc_movement $02, $01
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0bfb
 	set_active_npc NPC_GODA, DialogGodaText
 	print_npc_text Text0bfc
 	set_active_npc NPC_MITCH, DialogMitchText
 	print_npc_text Text0bfd
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_35f11
 	wait_for_player_animation
 	unload_npc NPC_MITCH
 	set_active_npc NPC_GODA, DialogGodaText
-	script_command_01
+	start_dialog
 	set_player_direction NORTH
 	print_npc_text Text0bfe
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_35f11:
@@ -4037,10 +4038,10 @@ FightingFortGrace_NPCInteractions:
 	db $ff
 
 FightingFortGrace_MapScripts:
-	dbw $06, Func_35f59
-	dbw $08, Func_35f69
-	dbw $09, Func_35f71
-	dbw $07, Func_35f60
+	dbw OWMODE_06, Func_35f59
+	dbw OWMODE_08, Func_35f69
+	dbw OWMODE_AFTER_DUEL, Func_35f71
+	dbw OWMODE_07, Func_35f60
 	db $ff
 
 Func_35f59:
@@ -4064,7 +4065,7 @@ Func_35f69:
 Func_35f71:
 	ld hl, FightingFortGrace_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -4082,7 +4083,7 @@ Func_35f81:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_EF
 	script_jump_if_b0z .ows_35fd1
 	check_event EVENT_GRACES_ROOM_CHEST_STATE
@@ -4103,19 +4104,19 @@ Func_35f81:
 	script_jump .ows_35fce
 .ows_35fc2
 	print_npc_text Text0c03
-	script_command_02
+	end_dialog
 	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35fcb
 	print_npc_text Text0c04
 .ows_35fce
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35fd1
 	print_npc_text Text0c05
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_35fd7
@@ -4128,21 +4129,21 @@ Func_35f81:
 	script_jump .ows_35ff8
 .ows_35fec
 	print_npc_text Text0c08
-	script_command_02
+	end_dialog
 	start_duel FULL_STRENGTH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_35ff5
 	print_npc_text Text0c09
 .ows_35ff8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_35ffb:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GRACES_ROOM_CHEST_STATE
 	script_jump_if_b0z .ows_3601b
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4153,7 +4154,7 @@ Func_35ffb:
 	script_jump .ows_36032
 .ows_36015
 	print_npc_text Text0c0b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3601b
@@ -4166,33 +4167,33 @@ Func_35ffb:
 .ows_3602c
 	print_npc_text Text0c0e
 .ows_3602f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36032
 	set_event EVENT_EF
 	print_npc_text Text0c0f
-	script_command_02
+	end_dialog
 	spin_active_npc 260
 	load_npc NPC_CHEST_CLOSED, 5, 1, SOUTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0c10
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_36049:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_GRACES_ROOM
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	receive_card DUGTRIO_LV40
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4213,9 +4214,9 @@ Func_36062:
 Func_36077:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4256,11 +4257,11 @@ PsychicStrongholdEntrance_NPCInteractions:
 	db $ff
 
 PsychicStrongholdEntrance_MapScripts:
-	dbw $06, Func_36104
-	dbw $08, Func_36140
-	dbw $07, Func_3610b
-	dbw $02, Func_36114
-	dbw $10, Func_360ef
+	dbw OWMODE_06, Func_36104
+	dbw OWMODE_08, Func_36140
+	dbw OWMODE_07, Func_3610b
+	dbw OWMODE_02, Func_36114
+	dbw OWMODE_10, Func_360ef
 	db $ff
 
 Func_360ef:
@@ -4298,8 +4299,8 @@ Func_36114:
 	lb de, 4, 3
 	ld b, SOUTH
 	farcall LoadOWObjectInMap
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3442d)
 	ld [wd592], a
 	ld hl, Func_3442d
@@ -4327,7 +4328,7 @@ Func_36148:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_MEW_COIN
 	script_jump_if_b0z .ows_36169
 	script_call .ows_3616f
@@ -4335,7 +4336,7 @@ Func_36148:
 .ows_36169
 	print_npc_text Text1115
 .ows_3616c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3616f
@@ -4376,12 +4377,12 @@ PsychicStrongholdLobby_OWInteractions:
 	db $ff
 
 PsychicStrongholdLobby_MapScripts:
-	dbw $06, Func_3620e
-	dbw $08, Func_3621e
-	dbw $09, Func_3622e
-	dbw $0b, Func_36234
-	dbw $07, Func_36215
-	dbw $10, Func_361f9
+	dbw OWMODE_06, Func_3620e
+	dbw OWMODE_08, Func_3621e
+	dbw OWMODE_AFTER_DUEL, Func_3622e
+	dbw OWMODE_0B, Func_36234
+	dbw OWMODE_07, Func_36215
+	dbw OWMODE_10, Func_361f9
 	db $ff
 
 Func_361f9:
@@ -4449,7 +4450,7 @@ Func_36250:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_PSYCHIC_STRONGHOLD
 	script_jump_if_b0z .ows_362be
 	check_event EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_STRONGHOLD
@@ -4488,7 +4489,7 @@ Func_36250:
 .ows_362be
 	print_npc_text Text11a6
 .ows_362c1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4502,7 +4503,7 @@ Func_362c4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_RYOKO
 	script_jump_if_b0z .ows_362e4
 	print_npc_text Text11a7
@@ -4510,7 +4511,7 @@ Func_362c4:
 .ows_362e4
 	print_npc_text Text11a8
 .ows_362e7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4524,7 +4525,7 @@ Func_362ea:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3630a
 	print_npc_text Text11a9
@@ -4532,7 +4533,7 @@ Func_362ea:
 .ows_3630a
 	print_npc_text Text11aa
 .ows_3630d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4576,13 +4577,13 @@ PsychicStronghold_NPCInteractions:
 	db $ff
 
 PsychicStronghold_MapScripts:
-	dbw $06, Func_3638f
-	dbw $08, Func_36440
-	dbw $12, Func_36448
-	dbw $09, Func_36490
-	dbw $07, Func_36396
-	dbw $02, Func_3639f
-	dbw $0f, Func_36434
+	dbw OWMODE_06, Func_3638f
+	dbw OWMODE_08, Func_36440
+	dbw OWMODE_PAUSE_MENU, Func_36448
+	dbw OWMODE_AFTER_DUEL, Func_36490
+	dbw OWMODE_07, Func_36396
+	dbw OWMODE_02, Func_3639f
+	dbw OWMODE_0F, Func_36434
 	db $ff
 
 Func_3638f:
@@ -4634,8 +4635,8 @@ Func_3639f:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_36c36)
 	ld [wd592], a
 	ld hl, Func_36c36
@@ -4707,9 +4708,9 @@ Func_36448:
 	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
 .asm_3647c
-	farcall Func_c1a6
-	ld a, $e8
-	ld bc, $155
+	farcall PauseMenu
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_155
 	farcall SetOWObjectFrameset
 	farcall SetOWObjectSpriteAnimFlag6
 	scf
@@ -4719,7 +4720,7 @@ Func_36448:
 Func_36490:
 	ld hl, PsychicStronghold_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -4740,10 +4741,10 @@ Func_364ac:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
 	print_npc_text Text1137
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $08
 	script_jump_if_b0nz .ows_364d4
@@ -4768,57 +4769,57 @@ Func_364ac:
 	do_frames 30
 	animate_active_npc_movement $02, $01
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_155
-	script_command_01
+	start_dialog
 	print_npc_text Text1138
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_36629
 	scroll_to_position $ff, $04
 	scroll_to_player
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1139
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text113a
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 10, 7, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_YOSUKE, 10, 7, SOUTH
 	unload_npc NPC_WARP_SPARKLES
-	script_command_01
+	start_dialog
 	set_active_npc NPC_YOSUKE, DialogYosukeText
 	print_npc_text Text113b
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc NPC_MAMI, DialogMamiText
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text113c
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 7, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_GR_4, 5, 7, SOUTH
 	unload_npc NPC_WARP_SPARKLES
-	script_command_01
+	start_dialog
 	set_active_npc NPC_GR_4, DialogGR4Text
 	print_npc_text Text113d
 	set_active_npc NPC_MAMI, DialogMamiText
 	print_npc_text Text113e
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc NPC_GR_4, DialogGR4Text
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text113f
 	set_active_npc NPC_MAMI, DialogMamiText
 	print_npc_text Text1140
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $83, $02
 	play_sfx SFX_PLACE_PRIZE
 	animate_active_npc_movement $81, $02
@@ -4828,9 +4829,9 @@ Func_364ac:
 	set_active_npc_direction WEST
 	set_active_npc NPC_GR_4, DialogGR4Text
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text1141
-	script_command_02
+	end_dialog
 	spin_active_npc 260
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 7, SOUTH
@@ -4839,9 +4840,9 @@ Func_364ac:
 	load_npc NPC_MIWA, 5, 7, SOUTH
 	unload_npc NPC_WARP_SPARKLES
 	set_active_npc NPC_MIWA, DialogMiwaText
-	script_command_01
+	start_dialog
 	print_npc_text Text1142
-	script_command_02
+	end_dialog
 	spin_active_npc 267
 	set_active_npc NPC_MAMI, DialogMamiText
 	do_frames 60
@@ -4850,25 +4851,25 @@ Func_364ac:
 	animate_active_npc_movement $80, $01
 	do_frames 30
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text1143
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 3, 5, SOUTH
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	load_npc NPC_KEVIN, 3, 5, SOUTH
 	unload_npc NPC_WARP_SPARKLES
-	script_command_01
+	start_dialog
 	set_active_npc NPC_KEVIN, DialogKevinText
 	print_npc_text Text1144
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc NPC_MAMI, DialogMamiText
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text1145
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 12, 5, SOUTH
@@ -4877,17 +4878,17 @@ Func_364ac:
 	unload_npc NPC_WARP_SPARKLES
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text1146
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3662c
 	wait_for_player_animation
 	unload_npc NPC_MAMI
 	unload_npc NPC_STRONGHOLD_PLATFORM
 	do_frames 30
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_36629:
 	db SOUTH, MOVE_3
@@ -4969,9 +4970,9 @@ Script_3663f:
 	animate_player_movement $00, $01
 .ows_366c9
 	set_active_npc NPC_MAMI, DialogMamiText
-	script_command_01
+	start_dialog
 	print_npc_text Text1147
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $00, $01
 	do_frames 30
 	set_sprite_frameset NPC_STRONGHOLD_PLATFORM, FRAMESET_156
@@ -5014,7 +5015,7 @@ Func_36712:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MIWA
 	script_jump_if_b0z .ows_3675d
 	check_event EVENT_TALKED_TO_MIWA
@@ -5033,14 +5034,14 @@ Func_36712:
 	script_jump .ows_3675a
 .ows_3674e
 	print_npc_text Text114c
-	script_command_02
+	end_dialog
 	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36757
 	print_npc_text Text114d
 .ows_3675a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3675d
@@ -5060,21 +5061,21 @@ Func_36712:
 	script_jump .ows_3678b
 .ows_3677f
 	print_npc_text Text1151
-	script_command_02
+	end_dialog
 	start_duel DIRECT_HIT_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36788
 	print_npc_text Text1152
 .ows_3678b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3678e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MIWA
 	script_jump_if_b0z .ows_367b1
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5086,7 +5087,7 @@ Func_3678e:
 	script_jump .ows_367c8
 .ows_367ab
 	print_npc_text Text1155
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_367b1
@@ -5099,7 +5100,7 @@ Func_3678e:
 .ows_367c2
 	print_npc_text Text1158
 .ows_367c5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_367c8
@@ -5110,30 +5111,30 @@ Func_3678e:
 	script_jump_if_b0nz .ows_367e7
 	inc_var VAR_03
 	print_npc_text Text1159
-	script_command_02
+	end_dialog
 	script_call .ows_3680c
-	script_command_01
+	start_dialog
 	print_npc_text Text115a
 	script_jump .ows_36809
 .ows_367e7
 	set_var VAR_03, $03
 	print_npc_text Text115b
-	script_command_02
+	end_dialog
 	script_call .ows_3680c
-	script_command_01
+	start_dialog
 	print_npc_text Text115c
-	script_command_02
+	end_dialog
 	script_call Script_3663f
 	end_script
 	ret
 .ows_367fd
 	print_npc_text Text115d
-	script_command_02
+	end_dialog
 	script_call .ows_3680c
-	script_command_01
+	start_dialog
 	print_npc_text Text115e
 .ows_36809
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3680c
@@ -5161,7 +5162,7 @@ Func_3682a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KEVIN
 	script_jump_if_b0z .ows_3686c
 	check_event EVENT_TALKED_TO_KEVIN
@@ -5176,13 +5177,13 @@ Func_3682a:
 	script_jump_if_b0z .ows_36866
 	check_event EVENT_BEAT_KEVIN
 	print_npc_text Text1162
-	script_command_02
+	end_dialog
 	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36866
 	print_npc_text Text1163
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3686c
@@ -5191,20 +5192,20 @@ Func_3682a:
 	script_jump_if_b0z .ows_36881
 	check_event EVENT_BEAT_KEVIN
 	print_npc_text Text1162
-	script_command_02
+	end_dialog
 	start_duel SUPERDESTRUCTIVE_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36881
 	print_npc_text Text1165
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_36887:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KEVIN
 	script_jump_if_b0z .ows_368aa
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5216,7 +5217,7 @@ Func_36887:
 	script_jump .ows_368c1
 .ows_368a4
 	print_npc_text Text1168
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_368aa
@@ -5229,7 +5230,7 @@ Func_36887:
 .ows_368bb
 	print_npc_text Text116b
 .ows_368be
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_368c1
@@ -5240,30 +5241,30 @@ Func_36887:
 	script_jump_if_b0nz .ows_368e0
 	inc_var VAR_03
 	print_npc_text Text116c
-	script_command_02
+	end_dialog
 	script_call .ows_36905
-	script_command_01
+	start_dialog
 	print_npc_text Text116d
 	script_jump .ows_36902
 .ows_368e0
 	set_var VAR_03, $03
 	print_npc_text Text116e
-	script_command_02
+	end_dialog
 	script_call .ows_36905
-	script_command_01
+	start_dialog
 	print_npc_text Text116f
-	script_command_02
+	end_dialog
 	script_call Script_3663f
 	end_script
 	ret
 .ows_368f6
 	print_npc_text Text1170
-	script_command_02
+	end_dialog
 	script_call .ows_36905
-	script_command_01
+	start_dialog
 	print_npc_text Text1171
 .ows_36902
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36905
@@ -5290,7 +5291,7 @@ Func_36921:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_YOSUKE
 	script_jump_if_b0z .ows_3696c
 	check_event EVENT_TALKED_TO_YOSUKE
@@ -5309,14 +5310,14 @@ Func_36921:
 	script_jump .ows_36969
 .ows_3695d
 	print_npc_text Text1176
-	script_command_02
+	end_dialog
 	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36966
 	print_npc_text Text1177
 .ows_36969
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3696c
@@ -5329,21 +5330,21 @@ Func_36921:
 	script_jump .ows_3698d
 .ows_36981
 	print_npc_text Text1179
-	script_command_02
+	end_dialog
 	start_duel BAD_DREAM_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3698a
 	print_npc_text Text117a
 .ows_3698d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_36990:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_YOSUKE
 	script_jump_if_b0z .ows_369b3
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5355,7 +5356,7 @@ Func_36990:
 	script_jump .ows_369ca
 .ows_369ad
 	print_npc_text Text117d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_369b3
@@ -5368,7 +5369,7 @@ Func_36990:
 .ows_369c4
 	print_npc_text Text117d
 .ows_369c7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_369ca
@@ -5378,30 +5379,30 @@ Func_36990:
 	script_jump_if_b0nz .ows_369e7
 	inc_var VAR_03
 	print_npc_text Text1180
-	script_command_02
+	end_dialog
 	script_call .ows_36a0c
-	script_command_01
+	start_dialog
 	print_npc_text Text1181
 	script_jump .ows_36a09
 .ows_369e7
 	set_var VAR_03, $03
 	print_npc_text Text1182
-	script_command_02
+	end_dialog
 	script_call .ows_36a0c
-	script_command_01
+	start_dialog
 	print_npc_text Text1183
-	script_command_02
+	end_dialog
 	script_call Script_3663f
 	end_script
 	ret
 .ows_369fd
 	print_npc_text Text1184
-	script_command_02
+	end_dialog
 	script_call .ows_36a0c
-	script_command_01
+	start_dialog
 	print_npc_text Text1185
 .ows_36a09
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36a0c
@@ -5429,7 +5430,7 @@ Func_36a2a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MAMI
 	script_jump_if_b0z .ows_36aa2
 	check_event EVENT_BEAT_RYOKO
@@ -5450,14 +5451,14 @@ Func_36a2a:
 	script_jump .ows_36a77
 .ows_36a6b
 	print_npc_text Text118a
-	script_command_02
+	end_dialog
 	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36a74
 	print_npc_text Text118b
 .ows_36a77
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36a7a
@@ -5470,7 +5471,7 @@ Func_36a2a:
 	script_jump .ows_36a9b
 .ows_36a8f
 	print_npc_text Text118e
-	script_command_02
+	end_dialog
 	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -5478,7 +5479,7 @@ Func_36a2a:
 	print_npc_text Text118f
 .ows_36a9b
 	script_call Script_36b76
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36aa2
@@ -5498,21 +5499,21 @@ Func_36a2a:
 	script_jump .ows_36ad0
 .ows_36ac4
 	print_npc_text Text118e
-	script_command_02
+	end_dialog
 	start_duel POKEMON_POWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_36acd
 	print_npc_text Text118f
 .ows_36ad0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_36ad3:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_RYOKO
 	script_jump_if_b0z .ows_36afa
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5525,7 +5526,7 @@ Func_36ad3:
 .ows_36af0
 	print_npc_text Text1194
 	script_call Script_36b76
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36afa
@@ -5539,7 +5540,7 @@ Func_36ad3:
 	print_npc_text Text1197
 .ows_36b0e
 	script_call Script_36b76
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36b15
@@ -5549,30 +5550,30 @@ Func_36ad3:
 	script_jump_if_b0nz .ows_36b32
 	inc_var VAR_03
 	print_npc_text Text1198
-	script_command_02
+	end_dialog
 	script_call .ows_36b58
-	script_command_01
+	start_dialog
 	print_npc_text Text1199
 	script_jump .ows_36b51
 .ows_36b32
 	set_var VAR_03, $03
 	print_npc_text Text119a
-	script_command_02
+	end_dialog
 	script_call .ows_36b58
-	script_command_01
+	start_dialog
 	print_npc_text Text119b
-	script_command_02
+	end_dialog
 	script_call Script_3663f
 	end_script
 	ret
 .ows_36b48
 	print_npc_text Text119c
-	script_command_02
+	end_dialog
 	script_call .ows_36b58
-	script_command_01
+	start_dialog
 .ows_36b51
 	script_call Script_36b76
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36b58
@@ -5652,7 +5653,7 @@ Func_36bc8:
 	pop de
 	pop bc
 	pop af
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_36be5:
@@ -5675,7 +5676,7 @@ Func_36be5:
 	pop de
 	pop bc
 	pop af
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	xor a
@@ -5731,8 +5732,8 @@ Func_36c36:
 	end_script
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectFlag5_WithID
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_36c95:
 	db SOUTH, RUN_3
@@ -5763,13 +5764,13 @@ PsychicStrongholdMami_NPCInteractions:
 	db $ff
 
 PsychicStrongholdMami_MapScripts:
-	dbw $06, Func_36ce5
-	dbw $08, Func_36d21
-	dbw $12, Func_36d29
-	dbw $09, Func_36d65
-	dbw $07, Func_36cec
-	dbw $02, Func_36cf5
-	dbw $0f, Func_36d1e
+	dbw OWMODE_06, Func_36ce5
+	dbw OWMODE_08, Func_36d21
+	dbw OWMODE_PAUSE_MENU, Func_36d29
+	dbw OWMODE_AFTER_DUEL, Func_36d65
+	dbw OWMODE_07, Func_36cec
+	dbw OWMODE_02, Func_36cf5
+	dbw OWMODE_0F, Func_36d1e
 	db $ff
 
 Func_36ce5:
@@ -5788,8 +5789,8 @@ Func_36cf5:
 	ld bc, $5f
 	ld a, $02
 	farcall SetwD896
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_36f43)
 	ld [wd592], a
 	ld hl, Func_36f43
@@ -5834,9 +5835,9 @@ Func_36d29:
 	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
 .asm_36d51
-	farcall Func_c1a6
-	ld a, $e8
-	ld bc, $155
+	farcall PauseMenu
+	ld a, NPC_STRONGHOLD_PLATFORM
+	ld bc, FRAMESET_155
 	farcall SetOWObjectFrameset
 	farcall SetOWObjectSpriteAnimFlag6
 	scf
@@ -5846,7 +5847,7 @@ Func_36d29:
 Func_36d65:
 	ld hl, PsychicStrongholdMami_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -5860,25 +5861,25 @@ Script_36d75:
 	give_coin COIN_MEW
 	check_event EVENT_GOT_SNORLAX_COIN
 	print_variable_npc_text Text1118, Text1119
-	script_command_02
+	end_dialog
 	script_jump .ows_36d87
 .ows_36d87
 	set_event EVENT_FREED_ROD
 	set_var VAR_28, $04
 	set_active_npc_direction EAST
 	set_npc_direction NPC_ROD, WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text111a
 	set_active_npc NPC_ROD, DialogRodText
 	print_npc_text Text111b
 	set_active_npc NPC_MAMI, DialogMamiText
 	print_npc_text Text111c
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	set_active_npc NPC_ROD, DialogRodText
 	print_npc_text Text111d
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var EAST
 	script_jump_if_b0nz .ows_36dba
@@ -5890,20 +5891,20 @@ Script_36d75:
 .ows_36dc0
 	animate_active_npc_movement $02, $01
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text111e
 	receive_card DRAGONITE_LV43
 	print_npc_text Text111f
-	script_command_02
+	end_dialog
 	set_player_direction SOUTH
 	move_active_npc .NPCMovement_36de5
 	wait_for_player_animation
 	unload_npc NPC_ROD
 	set_player_direction NORTH
-	script_command_01
+	start_dialog
 	set_active_npc NPC_MAMI, DialogMamiText
 	print_npc_text Text1120
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_36de5:
@@ -5920,9 +5921,9 @@ Func_36de8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text1121
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5950,7 +5951,7 @@ Func_36e18:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MAMI
 	script_jump_if_b0z .ows_36e82
 	check_event EVENT_TALKED_TO_MAMI
@@ -5980,13 +5981,13 @@ Func_36e18:
 	ask_question Text1128, TRUE
 	script_jump_if_b0z .ows_36e7c
 	print_npc_text Text1129
-	script_command_02
+	end_dialog
 	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_36e7c
 	print_npc_text Text112a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36e82
@@ -5994,20 +5995,20 @@ Func_36e18:
 	ask_question Text1128, TRUE
 	script_jump_if_b0z .ows_36e95
 	print_npc_text Text1129
-	script_command_02
+	end_dialog
 	start_duel SPIRITED_AWAY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_36e95
 	print_npc_text Text112c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_36e9b:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_MAMI
 	script_jump_if_b0z .ows_36ec0
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -6020,7 +6021,7 @@ Func_36e9b:
 	script_jump Script_36d75
 .ows_36eba
 	print_npc_text Text112e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_36ec0
@@ -6033,7 +6034,7 @@ Func_36e9b:
 .ows_36ed1
 	print_npc_text Text1131
 .ows_36ed4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6043,15 +6044,15 @@ Func_36ed7:
 	set_event EVENT_MET_MAMI_AND_ROD
 	move_player .NPCMovement_36f40, TRUE
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_MAMI, DialogMamiText
 	print_npc_text Text1132
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text1133
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	do_frames 30
 	play_sfx_and_wait SFX_ELECTRONIC_INPUT
@@ -6071,20 +6072,20 @@ Func_36ed7:
 	do_frames 60
 	set_active_npc NPC_ROD, DialogRodText
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text1134
 	set_active_npc NPC_MAMI, DialogMamiText
 	set_active_npc_direction EAST
 	print_npc_text Text1135
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1136
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_36f40:
 	db NORTH, MOVE_4
@@ -6103,12 +6104,12 @@ Func_36f43:
 	ld a, EVENT_MET_MAMI_AND_ROD
 	farcall GetEventValue
 	jr z, .asm_36f69
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .asm_36f69
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_36ed7)
 	ld [wd592], a
 	ld hl, Func_36ed7
@@ -6132,7 +6133,7 @@ Func_36f7f:
 	pop de
 	pop bc
 	pop af
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 ColorlessAltar_MapHeader:
@@ -6158,11 +6159,11 @@ ColorlessAltar_NPCInteractions:
 	db $ff
 
 ColorlessAltar_MapScripts:
-	dbw $06, Func_36fe2
-	dbw $08, Func_37011
-	dbw $09, Func_37019
-	dbw $07, Func_36fe9
-	dbw $02, Func_36ff2
+	dbw OWMODE_06, Func_36fe2
+	dbw OWMODE_08, Func_37011
+	dbw OWMODE_AFTER_DUEL, Func_37019
+	dbw OWMODE_07, Func_36fe9
+	dbw OWMODE_02, Func_36ff2
 	db $ff
 
 Func_36fe2:
@@ -6201,7 +6202,7 @@ Func_37011:
 Func_37019:
 	ld hl, ColorlessAltar_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -6218,21 +6219,21 @@ Script_37031:
 	print_npc_text Text0f57
 	set_npc_direction NPC_NISHIJIMA, SOUTH
 	print_npc_text Text0f58
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0f59
 	set_active_npc NPC_ISHII, DialogIshiiText
 	print_npc_text Text0f5a
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	do_frames 30
 	set_npc_direction NPC_SAMEJIMA, SOUTH
-	script_command_01
+	start_dialog
 	set_active_npc NPC_SAMEJIMA, DialogSamejimaText
 	print_npc_text Text0f5b
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3706c
 	wait_for_player_animation
 	set_npc_direction NPC_ISHII, NORTH
@@ -6249,7 +6250,7 @@ Script_37071:
 	give_coin COIN_SNORLAX
 	check_event EVENT_GOT_MEW_COIN
 	print_variable_npc_text Text0f5d, Text0f5e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6263,7 +6264,7 @@ Func_37082:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MET_COLORLESS_ALTAR_MEMBERS
 	script_jump_if_b0nz Script_37031
 	get_player_opposite_direction
@@ -6297,7 +6298,7 @@ Func_37082:
 	script_jump .ows_370ec
 .ows_370dd
 	print_npc_text Text0f65
-	script_command_02
+	end_dialog
 	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
@@ -6305,7 +6306,7 @@ Func_37082:
 	print_npc_text Text0f66
 	print_npc_text Text0f64
 .ows_370ec
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_370ef
@@ -6336,7 +6337,7 @@ Func_37082:
 	script_jump .ows_37138
 .ows_37129
 	print_npc_text Text0f6b
-	script_command_02
+	end_dialog
 	start_duel SNORLAX_GUARD_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
@@ -6344,14 +6345,14 @@ Func_37082:
 	print_npc_text Text0f6c
 	print_npc_text Text0f64
 .ows_37138
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3713b:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	reset_event EVENT_TALKED_TO_NISHIJIMA_2
 	check_event EVENT_BEAT_NISHIJIMA
 	script_jump_if_b0z .ows_37162
@@ -6366,7 +6367,7 @@ Func_3713b:
 .ows_3715c
 	print_npc_text Text0f6f
 .ows_3715f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_37162
@@ -6379,7 +6380,7 @@ Func_3713b:
 .ows_37173
 	print_npc_text Text0f72
 .ows_37176
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6393,7 +6394,7 @@ Func_37179:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	check_event EVENT_BEAT_ISHII
@@ -6406,18 +6407,18 @@ Func_37179:
 	set_event EVENT_TALKED_TO_ISHII_2
 	duel_requirement_check DUEL_REQUIREMENT_ISHII_REROLL
 	print_npc_text Text0f73
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	reset_npc_flag6 NPC_ISHII
 	load_npc NPC_GR_2, 6, 3, NORTH
 	restore_npc_direction NPC_GR_2
-	script_command_01
+	start_dialog
 	print_npc_text Text0f74
-	script_command_02
+	end_dialog
 	spin_npc NPC_GR_2, 519
 	unload_npc NPC_GR_2
 	set_npc_flag6 NPC_ISHII
-	script_command_01
+	start_dialog
 	print_npc_text Text0f75
 	script_jump .ows_371d6
 .ows_371c7
@@ -6437,14 +6438,14 @@ Func_37179:
 	script_jump .ows_371f4
 .ows_371e8
 	print_npc_text Text0f7a
-	script_command_02
+	end_dialog
 	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_371f1
 	print_npc_text Text0f7b
 .ows_371f4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_371f7
@@ -6480,21 +6481,21 @@ Func_37179:
 	script_jump .ows_37247
 .ows_3723b
 	print_npc_text Text0f80
-	script_command_02
+	end_dialog
 	start_duel EYE_OF_THE_STORM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_37244
 	print_npc_text Text0f81
 .ows_37247
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3724a:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	reset_event EVENT_TALKED_TO_ISHII_2
 	check_event EVENT_BEAT_ISHII
 	script_jump_if_b0z .ows_37276
@@ -6511,7 +6512,7 @@ Func_3724a:
 .ows_37270
 	print_npc_text Text0f84
 .ows_37273
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_37276
@@ -6524,7 +6525,7 @@ Func_3724a:
 .ows_37287
 	print_npc_text Text0f87
 .ows_3728a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6538,7 +6539,7 @@ Func_3728d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MET_COLORLESS_ALTAR_MEMBERS
 	script_jump_if_b0nz Script_37031
 	get_player_opposite_direction
@@ -6571,14 +6572,14 @@ Func_3728d:
 	script_jump .ows_372f1
 .ows_372e5
 	print_npc_text Text0f8d
-	script_command_02
+	end_dialog
 	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_372ee
 	print_npc_text Text0f8e
 .ows_372f1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_372f4
@@ -6600,21 +6601,21 @@ Func_3728d:
 	script_jump .ows_37326
 .ows_3731a
 	print_npc_text Text0f92
-	script_command_02
+	end_dialog
 	start_duel SUDDEN_GROWTH_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_37323
 	print_npc_text Text0f93
 .ows_37326
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_37329:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	reset_event EVENT_TALKED_TO_SAMEJIMA_2
 	check_event EVENT_BEAT_SAMEJIMA
 	script_jump_if_b0z .ows_3734e
@@ -6628,7 +6629,7 @@ Func_37329:
 .ows_37348
 	print_npc_text Text0f96
 .ows_3734b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3734e
@@ -6641,7 +6642,7 @@ Func_37329:
 .ows_3735f
 	print_npc_text Text0f99
 .ows_37362
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6673,12 +6674,12 @@ GrCastleEntrance_OWInteractions:
 	db $ff
 
 GrCastleEntrance_MapScripts:
-	dbw $00, Func_373cb
-	dbw $06, Func_3740f
-	dbw $08, Func_3746b
-	dbw $07, Func_37416
-	dbw $02, Func_3741f
-	dbw $09, Func_3747b
+	dbw OWMODE_00, Func_373cb
+	dbw OWMODE_06, Func_3740f
+	dbw OWMODE_08, Func_3746b
+	dbw OWMODE_07, Func_37416
+	dbw OWMODE_02, Func_3741f
+	dbw OWMODE_AFTER_DUEL, Func_3747b
 	db $ff
 
 Func_373cb:
@@ -6699,7 +6700,7 @@ Func_373cb:
 	ld e, 14
 	ld b, NORTH
 	ld a, MAP_GR_CASTLE
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	farcall StartOWObjectAnimation
@@ -6779,10 +6780,10 @@ Func_37480:
 	jr nz, .asm_37490 ; this jump target is likely a bug. should jump to 'ret'
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
 .asm_37490
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6796,7 +6797,7 @@ Func_37493:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	script_jump_if_b0z Script_375d5
 	check_event EVENT_INSERTED_LEFT_COIN_IN_GR_CASTLE_DOOR
@@ -6804,7 +6805,7 @@ Func_37493:
 	check_event EVENT_GOT_MEW_COIN
 	script_jump_if_b0z .ows_374bd
 	print_npc_text Text08e2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_374bd
@@ -6813,7 +6814,7 @@ Func_37493:
 	script_jump_if_b0z .ows_3751e
 	set_event EVENT_INSERTED_LEFT_COIN_IN_GR_CASTLE_DOOR
 	print_npc_text Text08e5
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var EAST
 	script_jump_if_b0z .ows_374d8
@@ -6830,7 +6831,7 @@ Func_37493:
 	load_npc NPC_PURPLE_CASTLE_COIN, 6, 2, SOUTH
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08e6
 	script_jump .ows_3750d
 .ows_374f8
@@ -6839,11 +6840,11 @@ Func_37493:
 	unload_npc NPC_WHITE_CASTLE_COIN
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08e6
 	script_call Script_375db
 .ows_3750d
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_37529
 	wait_for_player_animation
 	end_script
@@ -6854,7 +6855,7 @@ Func_37493:
 	ret
 .ows_3751e
 	print_npc_text Text08e7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_37524:
@@ -6867,7 +6868,7 @@ Func_37493:
 	db $ff
 .ows_3752e
 	print_npc_text Text08e8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6881,7 +6882,7 @@ Func_37534:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	script_jump_if_b0z Script_375d5
 	check_event EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
@@ -6889,7 +6890,7 @@ Func_37534:
 	check_event EVENT_GOT_SNORLAX_COIN
 	script_jump_if_b0z .ows_3755e
 	print_npc_text Text08e9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3755e
@@ -6898,7 +6899,7 @@ Func_37534:
 	script_jump_if_b0z .ows_375bf
 	set_event EVENT_INSERTED_RIGHT_COIN_IN_GR_CASTLE_DOOR
 	print_npc_text Text08e5
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var WEST
 	script_jump_if_b0z .ows_37579
@@ -6915,7 +6916,7 @@ Func_37534:
 	load_npc NPC_WHITE_CASTLE_COIN, 4, 2, SOUTH
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08ec
 	script_jump .ows_375ae
 .ows_37599
@@ -6924,11 +6925,11 @@ Func_37534:
 	unload_npc NPC_PURPLE_CASTLE_COIN
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08ec
 	script_call Script_375db
 .ows_375ae
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_375ca
 	wait_for_player_animation
 	end_script
@@ -6939,7 +6940,7 @@ Func_37534:
 	ret
 .ows_375bf
 	print_npc_text Text08ed
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_375c5:
@@ -6952,13 +6953,13 @@ Func_37534:
 	db $ff
 .ows_375cf
 	print_npc_text Text08ee
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_375d5:
 	print_npc_text Text08ef
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6994,11 +6995,11 @@ GrCastle_NPCInteractions:
 	db $ff
 
 GrCastle_MapScripts:
-	dbw $06, Func_3765c
-	dbw $08, Func_376ed
-	dbw $09, Func_376f5
-	dbw $07, Func_37663
-	dbw $02, Func_3766c
+	dbw OWMODE_06, Func_3765c
+	dbw OWMODE_08, Func_376ed
+	dbw OWMODE_AFTER_DUEL, Func_376f5
+	dbw OWMODE_07, Func_37663
+	dbw OWMODE_02, Func_3766c
 	db $ff
 
 Func_3765c:
@@ -7076,7 +7077,7 @@ Func_376ed:
 Func_376f5:
 	ld hl, GrCastle_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCAfterDuelScript
 	scf
 	ret
 
@@ -7097,61 +7098,61 @@ Func_37709:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text08f1
 	get_player_x_position
 	compare_loaded_var $07
 	script_jump_if_b0nz .ows_3773e
-	script_command_02
+	end_dialog
 	compare_loaded_var $08
 	script_jump_if_b0nz .ows_3773a
 	animate_player_movement $01, $01
-	script_command_01
+	start_dialog
 	script_jump .ows_3773e
 .ows_3773a
 	animate_player_movement $03, $01
-	script_command_01
+	start_dialog
 .ows_3773e
 	set_player_direction NORTH
 	print_npc_text Text08f2
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text08f3
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text08f4
 	set_active_npc NPC_KANZAKI, DialogKanzakiText
 	print_npc_text Text08f5
-	script_command_02
+	end_dialog
 	spin_active_npc_reverse 263
 	do_frames 30
 	animate_active_npc_movement $02, $01
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
 	print_npc_text Text08f6
 	set_active_npc NPC_RUI, DialogRuiText
 	print_npc_text Text08f7
-	script_command_02
+	end_dialog
 	spin_active_npc 772
 	do_frames 10
 	animate_active_npc_movement $02, $01
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
 	print_npc_text Text08f8
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_377aa
 	wait_for_player_animation
 	unload_npc NPC_BIRURITCHI
-	script_command_01
+	start_dialog
 	set_active_npc NPC_KANZAKI, DialogKanzakiText
 	print_npc_text Text08f9
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_377ad, TRUE
 	move_active_npc .NPCMovement_377b6
 	move_npc NPC_RUI, .NPCMovement_377bf
@@ -7180,7 +7181,7 @@ Func_37709:
 
 Script_377c4:
 	print_npc_text Text08fa
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_377ff
 	move_npc NPC_KANZAKI, .NPCMovement_377fa
 	wait_for_player_animation
@@ -7196,7 +7197,7 @@ Script_377c4:
 	ld a, MAP_GR_CASTLE_BIRURITCHI
 	lb de, 7, 14
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_377f3:
 	db NORTH, MOVE_2
@@ -7226,7 +7227,7 @@ Func_37809:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_37897
 	check_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
@@ -7237,7 +7238,7 @@ Func_37809:
 	check_event EVENT_TALKED_TO_KANZAKI
 	script_jump_if_b0z .ows_3783b
 	set_event EVENT_TALKED_TO_KANZAKI
-	script_command_01
+	start_dialog
 	print_npc_text Text08fb
 	script_jump .ows_3783e
 .ows_3783b
@@ -7253,19 +7254,19 @@ Func_37809:
 	script_call Script_37ac0
 	set_npc_direction NPC_RUI, SOUTH
 	print_npc_text Text08ff
-	script_command_02
+	end_dialog
 	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37860
 	print_npc_text Text0900
 .ows_37863
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_37866
 	print_npc_text Text0901
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3786c
@@ -7280,14 +7281,14 @@ Func_37809:
 	print_npc_text Text0904
 	script_call Script_37ac0
 	print_npc_text Text0905
-	script_command_02
+	end_dialog
 	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37891
 	print_npc_text Text0906
 .ows_37894
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_37897
@@ -7309,21 +7310,21 @@ Func_37809:
 	print_npc_text Text0904
 	script_call Script_37ac0
 	print_npc_text Text0905
-	script_command_02
+	end_dialog
 	start_duel BAD_GUYS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_378c9
 	print_npc_text Text0906
 .ows_378cc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_378cf:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_37912
 	check_event EVENT_BEAT_KANZAKI
@@ -7337,7 +7338,7 @@ Func_378cf:
 	script_jump Script_37952
 .ows_378f1
 	print_npc_text Text090a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_378f7
@@ -7350,7 +7351,7 @@ Func_378cf:
 .ows_37908
 	print_npc_text Text090d
 .ows_3790b
-	script_command_02
+	end_dialog
 	script_call Script_37b63
 	end_script
 	ret
@@ -7364,7 +7365,7 @@ Func_378cf:
 .ows_37923
 	print_npc_text Text090f
 .ows_37926
-	script_command_02
+	end_dialog
 	script_call Script_37b63
 	end_script
 	ret
@@ -7379,13 +7380,13 @@ Func_3792d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	script_jump_if_b0z Script_379d7
 	check_event EVENT_BEAT_KANZAKI
 	script_jump_if_b0z Script_37952
 	print_npc_text Text0910
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7397,12 +7398,12 @@ Script_37952:
 	print_npc_text Text0911
 	set_active_npc NPC_KANZAKI, DialogKanzakiText
 	print_npc_text Text0912
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_379c7
 	move_npc NPC_RUI, .NPCMovement_379d0
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_RUI, DialogRuiText
 	print_npc_text Text0913
 	print_npc_text Text0914
@@ -7421,27 +7422,27 @@ Script_37952:
 	script_jump_if_b0nz .ows_379a9
 	print_npc_text Text0916
 	print_npc_text Text0917
-	script_command_02
+	end_dialog
 	start_duel POISON_MIST_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379a9
 	print_npc_text Text0918
 	print_npc_text Text0917
-	script_command_02
+	end_dialog
 	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379b5
 	print_npc_text Text0919
 	print_npc_text Text0917
-	script_command_02
+	end_dialog
 	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_379c1
 	print_npc_text Text091a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_379c7:
@@ -7470,34 +7471,34 @@ Script_379d7:
 	script_jump_if_b0nz .ows_37a03
 	print_npc_text Text0916
 	print_npc_text Text091d
-	script_command_02
+	end_dialog
 	start_duel POISON_MIST_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a03
 	print_npc_text Text0918
 	print_npc_text Text091d
-	script_command_02
+	end_dialog
 	start_duel ULTRA_REMOVAL_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a0f
 	print_npc_text Text0919
 	print_npc_text Text091d
-	script_command_02
+	end_dialog
 	start_duel PSYCHIC_BATTLE_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_37a1b
 	print_npc_text Text091e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_37a21:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_RUI
 	script_jump_if_b0z .ows_37a44
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -7509,7 +7510,7 @@ Func_37a21:
 	script_jump Script_377c4
 .ows_37a3e
 	print_npc_text Text0921
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_37a44
@@ -7522,7 +7523,7 @@ Func_37a21:
 .ows_37a55
 	print_npc_text Text0924
 .ows_37a58
-	script_command_02
+	end_dialog
 	script_call Script_37b79
 	end_script
 	ret
@@ -7550,7 +7551,7 @@ Func_37a76:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction NORTH
 	print_npc_text Text0925
 	script_jump .ows_37ab5
@@ -7564,22 +7565,22 @@ Func_37a76:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction NORTH
 	print_npc_text Text0926
 .ows_37ab5
-	script_command_02
+	end_dialog
 	animate_player_movement $02, $01
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 Script_37ac0:
 	get_player_x_position
 	compare_loaded_var $09
 	script_jump_if_b1nz .ows_37aee
-	script_command_02
+	end_dialog
 	set_active_npc_direction WEST
 	check_event EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	script_call b0z, .ows_37aef
@@ -7597,7 +7598,7 @@ Script_37ac0:
 	move_player .NPCMovement_37b08, TRUE
 .ows_37aec
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 .ows_37aee
 	script_ret
 .ows_37aef
@@ -7629,7 +7630,7 @@ Script_37ac0:
 	db $ff
 
 Script_37b18:
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	move_npc NPC_KANZAKI, .NPCMovement_37b5c
 	get_player_direction
@@ -7646,7 +7647,7 @@ Script_37b18:
 	move_player .NPCMovement_37b53, TRUE
 .ows_37b3c
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_37b3f:
 	db WEST, MOVE_1

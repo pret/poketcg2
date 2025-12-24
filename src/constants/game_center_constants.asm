@@ -34,10 +34,10 @@ DEF BLACK_BOX_OUTPUT_BYTES   EQU 2 * MAX_NUM_BLACK_BOX_OUTPUT
 ; card dungeon
 ; for VAR_CARD_DUNGEON_PROGRESS
   const_def 1
-  const CARDDUNGEON_WON_PAWN         ; 1
-  const CARDDUNGEON_WON_KNIGHT       ; 2
-  const CARDDUNGEON_WON_BISHOP       ; 3
-  const CARDDUNGEON_WON_ROOK         ; 4
-  const CARDDUNGEON_WON_QUEEN        ; 5
+  const CARDDUNGEON_BEAT_PAWN        ; 1
+  const CARDDUNGEON_BEAT_KNIGHT      ; 2
+  const CARDDUNGEON_BEAT_BISHOP      ; 3
+  const CARDDUNGEON_BEAT_ROOK        ; 4
+  const CARDDUNGEON_BEAT_QUEEN       ; 5
   const CARDDUNGEON_LOST             ; 6
   const CARDDUNGEON_QUIT_OR_WITHDREW ; 7
