@@ -46,7 +46,7 @@ MACRO npc ; 6 bytes
 	ENDC
 ENDM
 
-; \1 = NPC_* object id
+; \1 = key (usually NPC_* object id)
 ; \2-\4 = bank, address of NPC function
 MACRO npc_script ; 4 bytes
 	db \1

@@ -2319,6 +2319,8 @@ ClearOWObject:
 	call _ClearOWObject
 	ret
 
+; input: a = NPC_* ID
+; output: de = tile coordinates
 GetOWObjectTilePosition::
 	push af
 	push hl

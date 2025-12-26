@@ -797,12 +797,12 @@ MasonLaboratoryComputerRoom_MapScripts:
 
 Func_3c689:
 	ld hl, MasonLaboratoryComputerRoom_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3c690:
 	ld hl, MasonLaboratoryComputerRoom_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_3c697:
@@ -1015,12 +1015,12 @@ MasonLaboratoryTrainingRoom_MapScripts:
 
 Func_3c817:
 	ld hl, MasonLaboratoryTrainingRoom_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3c81e:
 	ld hl, MasonLaboratoryTrainingRoom_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_3c825:
@@ -1033,15 +1033,16 @@ Func_3c82d:
 	ld hl, MasonLaboratoryTrainingRoom_AfterDuelScripts
 	ld a, VAR_3B
 	farcall GetVarValue
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
+; use VAR_3B instead of npc id
 MasonLaboratoryTrainingRoom_AfterDuelScripts:
-	npc_script NPC_MINT, Func_3c931
-	npc_script NPC_DR_MASON, Func_3c97e
-	npc_script NPC_RONALD, Func_3c9cb
-	npc_script NPC_ISHIHARA, Func_3ca28
+	npc_script AARON_STEP_1, Func_3c931
+	npc_script AARON_STEP_2, Func_3c97e
+	npc_script AARON_STEP_3, Func_3c9cb
+	npc_script AARON_STEP_4, Func_3ca28
 	db $ff
 
 Func_3c84c:
@@ -1150,7 +1151,7 @@ Func_3c917:
 	start_dialog
 	print_npc_text Text0f43
 	end_dialog
-	set_var VAR_3B, $01
+	set_var VAR_3B, AARON_STEP_1
 	start_duel AARONS_STEP1_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1193,7 +1194,7 @@ Func_3c964:
 	start_dialog
 	print_npc_text Text0f48
 	end_dialog
-	set_var VAR_3B, $02
+	set_var VAR_3B, AARON_STEP_2
 	start_duel AARONS_STEP2_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1236,7 +1237,7 @@ Func_3c9b1:
 	start_dialog
 	print_npc_text Text0f4c
 	end_dialog
-	set_var VAR_3B, $03
+	set_var VAR_3B, AARON_STEP_3
 	start_duel AARONS_STEP3_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1280,7 +1281,7 @@ Func_3ca02:
 	start_dialog
 	print_npc_text Text0f52
 	end_dialog
-	set_var VAR_3B, $04
+	set_var VAR_3B, AARON_STEP_4
 	get_random $02
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_3ca23
@@ -1548,7 +1549,7 @@ Func_3cbe4:
 
 Func_3cbf4:
 	ld hl, LightningClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cbfb:
@@ -1667,12 +1668,12 @@ Func_3cd1b:
 
 Func_3cd2b:
 	ld hl, LightningClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cd32:
 	ld hl, LightningClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1975,12 +1976,12 @@ Func_3cf98:
 
 Func_3cfa8:
 	ld hl, GrassClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cfaf:
 	ld hl, GrassClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1998,7 +1999,7 @@ Func_3cfb8:
 Func_3cfc8:
 	ld hl, GrassClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2344,12 +2345,12 @@ Func_3d210:
 
 Func_3d259:
 	ld hl, TcgChallengeHallEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d260:
 	ld hl, TcgChallengeHallEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2477,12 +2478,12 @@ Func_3d386:
 
 Func_3d3a0:
 	ld hl, TcgChallengeHallLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d3a7:
 	ld hl, TcgChallengeHallLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2860,12 +2861,12 @@ Func_3d67b:
 
 Func_3d6ba:
 	ld hl, PokemonDome_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d6c1:
 	ld hl, PokemonDome_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2953,7 +2954,7 @@ Func_3d740:
 Func_3d750:
 	ld hl, PokemonDome_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3819,12 +3820,12 @@ PokemonDomeBack_MapScripts:
 
 Func_3dda8:
 	ld hl, PokemonDomeBack_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ddaf:
 	ld hl, PokemonDomeBack_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5009,12 +5010,12 @@ Func_3e704:
 
 Func_3e72a:
 	ld hl, IshiharasVillaMain_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3e731:
 	ld hl, IshiharasVillaMain_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5334,12 +5335,12 @@ Func_3e95b:
 
 Func_3e981:
 	ld hl, IshiharasVillaLibrary_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3e988:
 	ld hl, IshiharasVillaLibrary_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5838,12 +5839,12 @@ GameCenterEntrance_MapScripts:
 
 Func_3ed92:
 	ld hl, GameCenterEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ed99:
 	ld hl, GameCenterEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6091,12 +6092,12 @@ Func_3ef80:
 
 Func_3ef95:
 	ld hl, GameCenterLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ef9c:
 	ld hl, GameCenterLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6235,12 +6236,12 @@ CardDungeonPawn_MapScripts:
 
 Func_3f093:
 	ld hl, CardDungeonPawn_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f09a:
 	ld hl, CardDungeonPawn_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6454,12 +6455,12 @@ CardDungeonKnight_MapScripts:
 
 Func_3f239:
 	ld hl, CardDungeonKnight_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f240:
 	ld hl, CardDungeonKnight_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6695,12 +6696,12 @@ CardDungeonRook_MapScripts:
 
 Func_3f409:
 	ld hl, CardDungeonRook_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f410:
 	ld hl, CardDungeonRook_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6972,12 +6973,12 @@ Func_3f63b:
 
 Func_3f650:
 	ld hl, WaterFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f657:
 	ld hl, WaterFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7201,12 +7202,12 @@ FightingFortMaze19_MapScripts:
 
 Func_3f7ff:
 	ld hl, FightingFortMaze19_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f806:
 	ld hl, FightingFortMaze19_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7310,12 +7311,12 @@ FightingFortBasement_MapScripts:
 
 Func_3f8b6:
 	ld hl, FightingFortBasement_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f8bd:
 	ld hl, FightingFortBasement_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret

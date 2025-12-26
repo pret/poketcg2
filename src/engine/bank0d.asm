@@ -782,12 +782,12 @@ Func_345fd:
 
 Func_3460d:
 	ld hl, TcgAirportEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_34614:
 	ld hl, TcgAirportEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1023,12 +1023,12 @@ Func_347ce:
 
 Func_347da:
 	ld hl, TcgAirport_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_347e1:
 	ld hl, TcgAirport_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1418,12 +1418,12 @@ GrAirportEntrance_MapScripts:
 
 Func_34b16:
 	ld hl, GrAirportEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_34b1d:
 	ld hl, GrAirportEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1549,12 +1549,12 @@ GameCenter1_MapScripts:
 
 Func_34c2c:
 	ld hl, GameCenter1_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_34c33:
 	ld hl, GameCenter1_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1893,12 +1893,12 @@ GameCenter2_MapScripts:
 
 Func_34ee7:
 	ld hl, GameCenter2_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_34eee:
 	ld hl, GameCenter2_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2167,12 +2167,12 @@ CardDungeonBishop_MapScripts:
 
 Func_350e6:
 	ld hl, CardDungeonBishop_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_350ed:
 	ld hl, CardDungeonBishop_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2446,12 +2446,12 @@ Func_35308:
 
 Func_35322:
 	ld hl, GrChallengeHallLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35329:
 	ld hl, GrChallengeHallLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2685,12 +2685,12 @@ GrassFortMorino_MapScripts:
 
 Func_354d3:
 	ld hl, GrassFortMorino_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_354da:
 	ld hl, GrassFortMorino_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2704,7 +2704,7 @@ Func_354e3:
 Func_354eb:
 	ld hl, GrassFortMorino_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2865,12 +2865,12 @@ WaterFortSenta_MapScripts:
 
 Func_35624:
 	ld hl, WaterFortSenta_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3562b:
 	ld hl, WaterFortSenta_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2903,7 +2903,7 @@ Func_35661:
 Func_35669:
 	ld hl, WaterFortSenta_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3159,12 +3159,12 @@ WaterFortAira_MapScripts:
 
 Func_35855:
 	ld hl, WaterFortAira_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3585c:
 	ld hl, WaterFortAira_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3192,7 +3192,7 @@ Func_35882:
 Func_3588a:
 	ld hl, WaterFortAira_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3369,12 +3369,12 @@ FightingFort_MapScripts:
 
 Func_359fd:
 	ld hl, FightingFort_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35a04:
 	ld hl, FightingFort_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3441,7 +3441,7 @@ Func_35a7c:
 Func_35a8c:
 	ld hl, FightingFort_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3674,7 +3674,7 @@ FightingFortMaze16_MapScripts:
 
 Func_35c68:
 	ld hl, FightingFortMaze16_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35c6f:
@@ -3730,7 +3730,7 @@ FightingFortMaze18_MapScripts:
 
 Func_35d04:
 	ld hl, FightingFortMaze18_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35d0b:
@@ -3793,12 +3793,12 @@ FightingFortGoda_MapScripts:
 
 Func_35d7a:
 	ld hl, FightingFortGoda_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35d81:
 	ld hl, FightingFortGoda_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3829,7 +3829,7 @@ Func_35da0:
 Func_35db0:
 	ld hl, FightingFortGoda_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4046,12 +4046,12 @@ FightingFortGrace_MapScripts:
 
 Func_35f59:
 	ld hl, FightingFortGrace_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_35f60:
 	ld hl, FightingFortGrace_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4065,7 +4065,7 @@ Func_35f69:
 Func_35f71:
 	ld hl, FightingFortGrace_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4280,12 +4280,12 @@ Func_360ef:
 
 Func_36104:
 	ld hl, PsychicStrongholdEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3610b:
 	ld hl, PsychicStrongholdEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4401,12 +4401,12 @@ Func_361f9:
 
 Func_3620e:
 	ld hl, PsychicStrongholdLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_36215:
 	ld hl, PsychicStrongholdLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4588,12 +4588,12 @@ PsychicStronghold_MapScripts:
 
 Func_3638f:
 	ld hl, PsychicStronghold_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_36396:
 	ld hl, PsychicStronghold_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4720,7 +4720,7 @@ Func_36448:
 Func_36490:
 	ld hl, PsychicStronghold_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5775,12 +5775,12 @@ PsychicStrongholdMami_MapScripts:
 
 Func_36ce5:
 	ld hl, PsychicStrongholdMami_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_36cec:
 	ld hl, PsychicStrongholdMami_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5847,7 +5847,7 @@ Func_36d29:
 Func_36d65:
 	ld hl, PsychicStrongholdMami_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -6168,12 +6168,12 @@ ColorlessAltar_MapScripts:
 
 Func_36fe2:
 	ld hl, ColorlessAltar_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_36fe9:
 	ld hl, ColorlessAltar_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6202,7 +6202,7 @@ Func_37011:
 Func_37019:
 	ld hl, ColorlessAltar_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -6717,12 +6717,12 @@ Func_373cb:
 
 Func_3740f:
 	ld hl, GrCastleEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_37416:
 	ld hl, GrCastleEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7004,12 +7004,12 @@ GrCastle_MapScripts:
 
 Func_3765c:
 	ld hl, GrCastle_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_37663:
 	ld hl, GrCastle_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7077,7 +7077,7 @@ Func_376ed:
 Func_376f5:
 	ld hl, GrCastle_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 

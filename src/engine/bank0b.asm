@@ -56,12 +56,12 @@ Func_2c0b4:
 
 Func_2c0c1:
 	ld hl, IshiharasHouse_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2c0c8:
 	ld hl, IshiharasHouse_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -628,12 +628,12 @@ Func_2c4db:
 
 Func_2c4fa:
 	ld hl, LightningClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2c501:
 	ld hl, LightningClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -685,7 +685,7 @@ Func_2c560:
 Func_2c568:
 	ld hl, LightningClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -1291,12 +1291,12 @@ Func_2c9c8:
 
 Func_2c9d8:
 	ld hl, PsychicClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2c9df:
 	ld hl, PsychicClubEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1544,12 +1544,12 @@ Func_2cbba:
 
 Func_2cbcf:
 	ld hl, PsychicClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2cbd6:
 	ld hl, PsychicClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1780,12 +1780,12 @@ Func_2cd82:
 
 Func_2cd92:
 	ld hl, PsychicClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2cd99:
 	ld hl, PsychicClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1843,7 +1843,7 @@ Func_2ce11:
 Func_2ce19:
 	ld hl, PsychicClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2574,7 +2574,7 @@ Func_2d366:
 
 Func_2d376:
 	ld hl, RockClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2d37d:
@@ -2700,12 +2700,12 @@ Func_2d489:
 
 Func_2d49e:
 	ld hl, RockClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2d4a5:
 	ld hl, RockClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2934,12 +2934,12 @@ Func_2d653:
 
 Func_2d663:
 	ld hl, RockClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2d66a:
 	ld hl, RockClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2976,7 +2976,7 @@ Func_2d6a6:
 Func_2d6ae:
 	ld hl, RockClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3361,7 +3361,7 @@ Func_2d98f:
 
 Func_2d99f:
 	ld hl, FightingClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2d9a6:
@@ -3507,12 +3507,12 @@ Func_2dace:
 
 Func_2dade:
 	ld hl, FightingClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2dae5:
 	ld hl, FightingClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3530,7 +3530,7 @@ Func_2daee:
 Func_2dafe:
 	ld hl, FightingClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3800,7 +3800,7 @@ Func_2dcfe:
 
 Func_2dd0e:
 	ld hl, FightingClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2dd15:
@@ -3819,7 +3819,7 @@ Func_2dd15:
 
 Func_2dd31:
 	ld hl, FightingClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3833,7 +3833,7 @@ Func_2dd3a:
 Func_2dd42:
 	ld hl, FightingClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4338,7 +4338,7 @@ Func_2e0cc:
 
 Func_2e0dc:
 	ld hl, GrassClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2e0e3:
@@ -4473,7 +4473,7 @@ GrassClub_MapScripts:
 
 Func_2e1d2:
 	ld hl, GrassClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2e1d9:
@@ -4492,7 +4492,7 @@ Func_2e1d9:
 
 Func_2e1f5:
 	ld hl, GrassClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4506,7 +4506,7 @@ Func_2e1fe:
 Func_2e206:
 	ld hl, GrassClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4946,12 +4946,12 @@ Func_2e528:
 
 Func_2e538:
 	ld hl, ScienceClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2e53f:
 	ld hl, ScienceClubEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5183,12 +5183,12 @@ Func_2e709:
 
 Func_2e71e:
 	ld hl, ScienceClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2e725:
 	ld hl, ScienceClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5206,7 +5206,7 @@ Func_2e72e:
 Func_2e73e:
 	ld hl, ScienceClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5494,7 +5494,7 @@ Func_2e945:
 
 Func_2e955:
 	ld hl, ScienceClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2e95c:
@@ -5522,7 +5522,7 @@ Func_2e95c:
 
 Func_2e996:
 	ld hl, ScienceClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5536,7 +5536,7 @@ Func_2e99f:
 Func_2e9a7:
 	ld hl, ScienceClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -6025,7 +6025,7 @@ Func_2ed27:
 
 Func_2ed37:
 	ld hl, WaterClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2ed3e:
@@ -6185,12 +6185,12 @@ Func_2ee85:
 
 Func_2ee9a:
 	ld hl, WaterClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2eea1:
 	ld hl, WaterClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6208,7 +6208,7 @@ Func_2eeaa:
 Func_2eeba:
 	ld hl, WaterClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -6454,12 +6454,12 @@ Func_2f085:
 
 Func_2f095:
 	ld hl, WaterClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2f09c:
 	ld hl, WaterClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6510,7 +6510,7 @@ Func_2f0f7:
 Func_2f107:
 	ld hl, WaterClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -7122,7 +7122,7 @@ Func_2f55e:
 
 Func_2f56e:
 	ld hl, FireClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2f575:
@@ -7287,12 +7287,12 @@ Func_2f6b2:
 
 Func_2f6c7:
 	ld hl, FireClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2f6ce:
 	ld hl, FireClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7486,12 +7486,12 @@ Func_2f84e:
 
 Func_2f85e:
 	ld hl, FireClub_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2f865:
 	ld hl, FireClub_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7542,7 +7542,7 @@ Func_2f8c8:
 Func_2f8d8:
 	ld hl, FireClub_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -8156,12 +8156,12 @@ Func_2fd73:
 
 Func_2fd83:
 	ld hl, PokemonDomeEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_2fd8a:
 	ld hl, PokemonDomeEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret

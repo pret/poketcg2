@@ -3555,7 +3555,7 @@ ScriptCommand_DuelRequirementCheck:
 	call ResetDuelDeckRequirementStatus
 	call Get1ScriptArg_IncrIndexBy1
 	ld hl, DuelRequirementFunctionMap
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	jp IncreaseScriptPointerBy2
 
 ResetDuelDeckRequirementStatus:

@@ -1369,12 +1369,12 @@ Func_40e72:
 
 Func_40e83:
 	ld hl, MasonLaboratoryMain_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_40e8a:
 	ld hl, MasonLaboratoryMain_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_40e91:
@@ -1457,7 +1457,7 @@ Func_40f21:
 	jr nz, .asm_40f34
 	ld hl, MasonLaboratoryMain_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 .asm_40f34
@@ -2381,12 +2381,12 @@ Func_415e6:
 
 Func_415f3:
 	ld hl, TcgChallengeHall_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_415fa:
 	ld hl, TcgChallengeHall_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3191,12 +3191,12 @@ Func_41c44:
 
 Func_41c50:
 	ld hl, GrAirport_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_41c57:
 	ld hl, GrAirport_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3503,7 +3503,7 @@ SealedFort_MapScripts:
 
 Func_41f14:
 	ld hl, SealedFort_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_41f1b:
@@ -3515,7 +3515,7 @@ Func_41f1b:
 	jr nz, .asm_41f34
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFort_OWInteractions
-	call Func_3254
+	call ExecuteCoordScript
 .asm_41f34
 	scf
 	ret
@@ -3523,7 +3523,7 @@ Func_41f1b:
 Func_41f36:
 	ld hl, SealedFort_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4396,12 +4396,12 @@ GrChallengeHall_MapScripts:
 
 Func_42639:
 	ld hl, GrChallengeHall_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42640:
 	ld hl, GrChallengeHall_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5415,7 +5415,7 @@ FightingFortMaze1_MapScripts:
 
 Func_42e6e:
 	ld hl, FightingFortMaze1_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42e75:
@@ -5446,7 +5446,7 @@ FightingFortMaze21_MapScripts:
 
 Func_42ec3:
 	ld hl, FightingFortMaze21_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42eca:
@@ -5493,12 +5493,12 @@ GrCastleBiruritchi_MapScripts:
 
 Func_42f2e:
 	ld hl, GrCastleBiruritchi_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42f35:
 	ld hl, GrCastleBiruritchi_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5574,7 +5574,7 @@ Func_42fad:
 Func_42fbd:
 	ld hl, GrCastleBiruritchi_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 

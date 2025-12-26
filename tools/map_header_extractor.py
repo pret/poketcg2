@@ -127,7 +127,7 @@ def dump_stepevents(function_address, map_name_camelcase):
 	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_StepEvents>
-	# <call Func_324d>
+	# <call ExecutePlayerCoordScript>
 	temp = function_address
 	while rom[temp] != 0xc9: # ret
 		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and rom[temp+4] == 0x4d and rom[temp+5] == 0x32:
@@ -293,7 +293,7 @@ def dump_owinteractions(function_address, map_name_camelcase):
 	# the functions should always have:
 	# <ld hl, xxx_OWInteractions>
 	# <call Func_32bf>
-	# Only the two SealedFort maps instead have: <call Func_3254>
+	# Only the two SealedFort maps instead have: <call ExecuteCoordScript>
 	table_start_address = None
 	temp = function_address
 	while rom[temp] != 0xc9: # ret

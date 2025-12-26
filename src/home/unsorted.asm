@@ -266,29 +266,30 @@ Func_31a8::
 .done
 	ret
 
-Func_3205::
-.asm_3205
-	ld a, [hli]
+; hl = npc list (*_NPCs)
+LoadNPCs::
+.loop_lookup
+	ld a, [hli] ; OWNPCSTRUCT_NPC_ID
 	cp $ff
 	ret z
 	push af
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_X_COORD
 	ld d, a
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_Y_COORD
 	ld e, a
 	push de
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_DIRECTION
 	ld b, a
 	push bc
 	push hl
-	ld a, [hli]
-	ld h, [hl]
+	ld a, [hli] ; OWNPCSTRUCT_PRELOAD_FUNC
+	ld h, [hl]  ;
 	ld l, a
 	or h
-	jr z, .asm_321e
-	call Func_3233
-	jr c, .asm_322c
-.asm_321e
+	jr z, .load
+	call .PreloadFunc
+	jr c, .next
+.load
 	pop hl
 	pop bc
 	pop de
@@ -298,15 +299,15 @@ Func_3205::
 	pop hl
 	inc hl
 	inc hl
-	jr .asm_3205
-.asm_322c
+	jr .loop_lookup
+.next
 	pop hl
-	add sp, $06
+	add sp, OWNPCSTRUCT_LENGTH
 	inc hl
 	inc hl
-	jr .asm_3205
+	jr .loop_lookup
 
-Func_3233::
+.PreloadFunc:
 	jp hl
 
 Func_3234::
@@ -327,56 +328,65 @@ Func_323f::
 	ld l, a
 	jp hl
 
-Func_324d::
+; hl = script list (*_StepEvents, *_OWInteractions, etc.)
+ExecutePlayerCoordScript::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 ;	fallthrough
-Func_3254::
-	ld a, [hli]
+
+; hl = script list (*_StepEvents, *_OWInteractions, etc.)
+; de = x, y
+; run a script whose x0, y0 keys match
+; if not found, set carry
+ExecuteCoordScript::
+.loop_lookup
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_X0
 	cp $ff
-	jr nz, .asm_325b
+	jr nz, .check_coord
 	scf
 	ret
-.asm_325b
+.check_coord
 	cp d
-	jr nz, .asm_3282
-	ld a, [hli]
+	jr nz, .next_skip_y
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_Y0
 	cp e
-	jr nz, .asm_3283
+	jr nz, .next
 	ldh a, [hBankROM]
 	push af
-	call .asm_326f
+	call .Script
 	pop af
 	call BankswitchROM
 	scf
 	ccf
 	ret
 
-.asm_326f
-	ld a, [hli]
+.Script
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_ARG_A
 	push af
-	ld d, [hl]
+	ld d, [hl]  ; OWCOORDFUNCSTRUCT_ARG_D
 	inc hl
-	ld e, [hl]
+	ld e, [hl]  ; OWCOORDFUNCSTRUCT_ARG_E
 	inc hl
-	ld b, [hl]
+	ld b, [hl]  ; OWCOORDFUNCSTRUCT_ARG_B
 	inc hl
-	ld c, [hl]
+	ld c, [hl]  ; OWCOORDFUNCSTRUCT_SCRIPT_BANK
 	inc hl
-	ld a, [hli]
-	ld h, [hl]
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_SCRIPT_PTR
+	ld h, [hl]  ;
 	ld l, a
 	ld a, c
 	call BankswitchROM
 	pop af
 	jp hl
-.asm_3282
-	inc hl
-.asm_3283
-	ld a, $07
-	add_hl_a
-	jr Func_3254
 
+.next_skip_y
+	inc hl
+.next
+	ld a, OWCOORDFUNCSTRUCT_LENGTH - OWCOORDFUNCSTRUCT_ARGS
+	add_hl_a
+	jr .loop_lookup
+
+; hl = npc script list (*_NPCInteractions)
 Func_328c::
 	push hl
 	farcall Func_d3e9
@@ -388,13 +398,14 @@ Func_328c::
 	pop af
 	farcall SetOWObjectDirection
 	pop hl
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	ret
 .set_carry
 	pop hl
 	scf
 	ret
 
+; hl = npc script list (*_NPCInteractions)
 Func_32aa::
 	push hl
 	farcall Func_d3e9
@@ -402,24 +413,27 @@ Func_32aa::
 	cp $ff
 	jr z, .set_carry
 	pop hl
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	ret
 .set_carry
 	pop hl
 	scf
 	ret
 
+; if player's anim struct flag 0 or 1 is set, set carry
+; else, execute player's coord script with the script list in hl
 Func_32bf::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
-	ld a, $00
+	ld a, 0
 	cp b
-	jr nz, .asm_32d6
+	jr nz, .set_carry
+; this is just equivalent to ExecutePlayerCoordScript
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	call Func_3254
+	call ExecuteCoordScript
 	ret
-.asm_32d6
+.set_carry
 	scf
 	ret
 
@@ -640,9 +654,9 @@ CopyFarHLToDE::
 	call BankswitchROM
 	ret
 
-; a = NPC_* ID
-; hl = *_AfterDuelScripts
-ExecuteNPCAfterDuelScript::
+; a = key (usually NPC_* ID)
+; hl = script list (*_NPCInteractions, *_AfterDuelScripts, etc.)
+ExecuteNPCScript::
 	ld c, a
 .loop_lookup
 	ld a, [hli]

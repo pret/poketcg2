@@ -938,7 +938,7 @@ CardDungeonQueen_MapScripts:
 
 Func_311a8:
 	ld hl, CardDungeonQueen_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1171,7 +1171,7 @@ SealedFortEntrance_MapScripts:
 
 Func_31386:
 	ld hl, SealedFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3138d:
@@ -1183,7 +1183,7 @@ Func_3138d:
 	jr nz, .asm_313a6
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFortEntrance_OWInteractions
-	call Func_3254
+	call ExecuteCoordScript
 .asm_313a6
 	scf
 	ret
@@ -1243,7 +1243,7 @@ GrChallengeHallEntrance_MapScripts:
 
 Func_31426:
 	ld hl, GrChallengeHallEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3142d:
@@ -1303,7 +1303,7 @@ Func_31447:
 
 Func_31490:
 	ld hl, GrChallengeHallEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1408,12 +1408,12 @@ Func_31559:
 
 Func_3156e:
 	ld hl, GrassFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31575:
 	ld hl, GrassFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1530,12 +1530,12 @@ Func_3165e:
 
 Func_31673:
 	ld hl, GrassFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3167a:
 	ld hl, GrassFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1715,12 +1715,12 @@ GrassFortMidori_MapScripts:
 
 Func_317db:
 	ld hl, GrassFortMidori_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_317e2:
 	ld hl, GrassFortMidori_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1759,7 +1759,7 @@ Func_31815:
 Func_31825:
 	ld hl, GrassFortMidori_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -1977,12 +1977,12 @@ GrassFortYuta_MapScripts:
 
 Func_319cc:
 	ld hl, GrassFortYuta_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_319d3:
 	ld hl, GrassFortYuta_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2013,7 +2013,7 @@ Func_319f2:
 Func_31a02:
 	ld hl, GrassFortYuta_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2201,12 +2201,12 @@ GrassFortMiyuki_MapScripts:
 
 Func_31b82:
 	ld hl, GrassFortMiyuki_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31b89:
 	ld hl, GrassFortMiyuki_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2237,7 +2237,7 @@ Func_31ba8:
 Func_31bb8:
 	ld hl, GrassFortMiyuki_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2419,12 +2419,12 @@ LightningFortEntrance_MapScripts:
 
 Func_31d27:
 	ld hl, LightningFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31d2e:
 	ld hl, LightningFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2556,12 +2556,12 @@ LightningFortLobby_MapScripts:
 
 Func_31e52:
 	ld hl, LightningFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31e59:
 	ld hl, LightningFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2579,7 +2579,7 @@ Func_31e62:
 Func_31e72:
 	ld hl, LightningFortLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2780,12 +2780,12 @@ LightningFortRenna_MapScripts:
 
 Func_32006:
 	ld hl, LightningFortRenna_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3200d:
 	ld hl, LightningFortRenna_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2821,7 +2821,7 @@ Func_32037:
 Func_32047:
 	ld hl, LightningFortRenna_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2996,12 +2996,12 @@ LightningFortIchikawa_MapScripts:
 
 Func_321aa:
 	ld hl, LightningFortIchikawa_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_321b1:
 	ld hl, LightningFortIchikawa_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3038,7 +3038,7 @@ Func_321e4:
 Func_321f4:
 	ld hl, LightningFortIchikawa_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3349,12 +3349,12 @@ LightningFortCatherine_MapScripts:
 
 Func_3244f:
 	ld hl, LightningFortCatherine_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32456:
 	ld hl, LightningFortCatherine_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3368,7 +3368,7 @@ Func_3245f:
 Func_32467:
 	ld hl, LightningFortCatherine_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3536,12 +3536,12 @@ Func_3259f:
 
 Func_325bc:
 	ld hl, FireFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_325c3:
 	ld hl, FireFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3710,12 +3710,12 @@ Func_32712:
 
 Func_32727:
 	ld hl, FireFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3272e:
 	ld hl, FireFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3867,12 +3867,12 @@ FireFortJes_MapScripts:
 
 Func_3285d:
 	ld hl, FireFortJes_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32864:
 	ld hl, FireFortJes_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3908,7 +3908,7 @@ Func_3288e:
 Func_3289e:
 	ld hl, FireFortJes_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4058,12 +4058,12 @@ FireFortYuki_MapScripts:
 
 Func_329c6:
 	ld hl, FireFortYuki_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_329cd:
 	ld hl, FireFortYuki_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4112,7 +4112,7 @@ Func_32a18:
 Func_32a28:
 	ld hl, FireFortYuki_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4411,12 +4411,12 @@ FireFortShoko_MapScripts:
 
 Func_32c4a:
 	ld hl, FireFortShoko_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32c51:
 	ld hl, FireFortShoko_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4450,7 +4450,7 @@ Func_32c7a:
 Func_32c8a:
 	ld hl, FireFortShoko_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4701,12 +4701,12 @@ FireFortHidero_MapScripts:
 
 Func_32e51:
 	ld hl, FireFortHidero_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32e58:
 	ld hl, FireFortHidero_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4720,7 +4720,7 @@ Func_32e61:
 Func_32e69:
 	ld hl, FireFortHidero_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4905,12 +4905,12 @@ Func_32fc9:
 
 Func_32fe6:
 	ld hl, WaterFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32fed:
 	ld hl, WaterFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5058,12 +5058,12 @@ WaterFortMiyajima_MapScripts:
 
 Func_33119:
 	ld hl, WaterFortMiyajima_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33120:
 	ld hl, WaterFortMiyajima_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5099,7 +5099,7 @@ Func_3314a:
 Func_3315a:
 	ld hl, WaterFortMiyajima_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5258,12 +5258,12 @@ WaterFortKanoko_MapScripts:
 
 Func_3327e:
 	ld hl, WaterFortKanoko_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33285:
 	ld hl, WaterFortKanoko_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5277,7 +5277,7 @@ Func_3328e:
 Func_33296:
 	ld hl, WaterFortKanoko_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call ExecuteNPCAfterDuelScript
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5415,12 +5415,12 @@ FightingFortEntrance_MapScripts:
 
 Func_333ad:
 	ld hl, FightingFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_333b4:
 	ld hl, FightingFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5621,7 +5621,7 @@ FightingFortMaze2_MapScripts:
 
 Func_33565:
 	ld hl, FightingFortMaze2_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3356c:
@@ -5637,7 +5637,7 @@ Func_3356c:
 
 Func_33578:
 	ld hl, FightingFortMaze2_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5723,7 +5723,7 @@ FightingFortMaze3_MapScripts:
 
 Func_3361d:
 	ld hl, FightingFortMaze3_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33624:
@@ -5769,7 +5769,7 @@ FightingFortMaze4_MapScripts:
 
 Func_336a3:
 	ld hl, FightingFortMaze4_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_336aa:
@@ -5792,7 +5792,7 @@ Func_336b6:
 
 Func_336c1:
 	ld hl, FightingFortMaze4_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5876,7 +5876,7 @@ FightingFortMaze5_MapScripts:
 
 Func_33754:
 	ld hl, FightingFortMaze5_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3375b:
@@ -5907,7 +5907,7 @@ FightingFortMaze6_MapScripts:
 
 Func_337a9:
 	ld hl, FightingFortMaze6_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_337b0:
@@ -5940,7 +5940,7 @@ FightingFortMaze7_MapScripts:
 
 Func_33810:
 	ld hl, FightingFortMaze7_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33817:
@@ -5988,7 +5988,7 @@ FightingFortMaze8_MapScripts:
 
 Func_338a8:
 	ld hl, FightingFortMaze8_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_338af:
@@ -6011,7 +6011,7 @@ Func_338bb:
 
 Func_338c6:
 	ld hl, FightingFortMaze8_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6097,7 +6097,7 @@ FightingFortMaze9_MapScripts:
 
 Func_3396b:
 	ld hl, FightingFortMaze9_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33972:
@@ -6125,7 +6125,7 @@ FightingFortMaze10_MapScripts:
 
 Func_339ab:
 	ld hl, FightingFortMaze10_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 FightingFortMaze11_MapHeader:
@@ -6151,7 +6151,7 @@ FightingFortMaze11_MapScripts:
 
 Func_33a07:
 	ld hl, FightingFortMaze11_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33a0e:
@@ -6187,7 +6187,7 @@ FightingFortMaze12_MapScripts:
 
 Func_33a83:
 	ld hl, FightingFortMaze12_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33a8a:
@@ -6240,7 +6240,7 @@ FightingFortMaze13_MapScripts:
 
 Func_33b09:
 	ld hl, FightingFortMaze13_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33b10:
@@ -6274,7 +6274,7 @@ FightingFortMaze14_MapScripts:
 
 Func_33b73:
 	ld hl, FightingFortMaze14_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33b7a:
@@ -6325,7 +6325,7 @@ FightingFortMaze15_MapScripts:
 
 Func_33be7:
 	ld hl, FightingFortMaze15_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33bee:
@@ -6371,7 +6371,7 @@ FightingFortMaze17_MapScripts:
 
 Func_33c6d:
 	ld hl, FightingFortMaze17_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33c74:
@@ -6409,7 +6409,7 @@ Func_33c9d:
 
 Func_33ca9:
 	ld hl, FightingFortMaze17_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6509,7 +6509,7 @@ FightingFortMaze20_MapScripts:
 
 Func_33d5c:
 	ld hl, FightingFortMaze20_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 FightingFortMaze22_MapHeader:
@@ -6530,7 +6530,7 @@ FightingFortMaze22_MapScripts:
 
 Func_33d91:
 	ld hl, FightingFortMaze22_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 ColorlessAltarEntrance_MapHeader:
@@ -6567,7 +6567,7 @@ Func_33dcc:
 
 Func_33de1:
 	ld hl, ColorlessAltarEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33de8:
