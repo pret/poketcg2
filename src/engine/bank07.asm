@@ -150,41 +150,42 @@ Func_1c08b::
 	pop af
 	ret
 
-Func_1c0b2:
+; return TRUE if wOWMap is in Game Center
+CheckIfGameCenter:
 	push bc
 	push de
 	push hl
-	ld hl, $40da
-	ld c, $09
-	ld b, $00
-.asm_1c0bc
+	ld hl, .GameCenterOWMaps
+	ld c, 9 ; table size
+	ld b, 0
+.loop_lookup
 	push hl
 	ld a, [wOWMap]
 	ld e, a
 	ld a, [hli]
 	cp e
-	jr nz, .asm_1c0ce
+	jr nz, .next
 	ld a, [wOWMap + 1]
 	ld e, a
 	ld a, [hl]
 	cp e
-	jr nz, .asm_1c0ce
+	jr nz, .next
 	inc b
-.asm_1c0ce
+.next
 	pop hl
 	inc hl
 	inc hl
 	dec c
-	jr nz, .asm_1c0bc
+	jr nz, .loop_lookup
 	ld a, b
 	and a
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x1c0da
 
-SECTION "Bank 7@40ec", ROMX[$40ec], BANK[$7]
+.GameCenterOWMaps:
+	dw $02b, $02c, $02d, $02e, $02f, $030, $031, $032, $033
 
 GetPlayerPortrait::
 	push bc
@@ -1696,7 +1697,7 @@ SetAllOBPaletteFadeConfigsToEnabled:
 
 SECTION "Bank 7@4acf", ROMX[$4acf], BANK[$7]
 
-Func_1cacf:
+HideNPCAnimsUnderMenuBox:
 	push af
 	push bc
 	push de
@@ -1716,7 +1717,7 @@ Func_1cacf:
 	pop af
 	ret
 
-Func_1caf1:
+ShowNPCAnimsUnderMenuBox:
 	push af
 	push bc
 	push de
@@ -2930,16 +2931,17 @@ Func_1d46a:
 	pop hl
 	ret
 
-; a = $0: initializes values for new save
-; a = $1: reads values from SRAM
-Func_1d475:
+; a: has-save flag
+; if FALSE, initializes values for new save
+; if TRUE, reads values from SRAM
+ReadOrInitSaveData:
 	ld hl, .FunctionMap
 	call CallMappedFunction
 	ret
 
 .FunctionMap
-	key_func $0, .Initialize
-	key_func $1, .Read
+	key_func FALSE, .Initialize
+	key_func TRUE,  .Read
 	db $ff ; end
 
 .Initialize:
@@ -3047,9 +3049,9 @@ Func_1d53a:
 	push hl
 	farcall SetFrameFuncAndFadeFromWhite
 	farcall SetFadePalsFrameFunc
-	call Func_3d1f
+	call SetActiveMusicState
 	farcall _ShowReceivedCardScreen
-	call Func_3d32
+	call ClearTempActiveMusic
 	farcall UnsetFadePalsFrameFunc
 	farcall FadeToWhiteAndUnsetFrameFunc
 	pop hl
@@ -3059,18 +3061,18 @@ Func_1d53a:
 	ret
 
 Func_1d55d:
-	farcall Func_11002
+	farcall HideNPCAnimsUnderDialogBox
 	call Func_1d594
 	call Func_1d5aa
 	jr c, .asm_1d57c
-	farcall Func_1101d
+	farcall ShowNPCAnimsUnderDialogBox
 	farcall Func_1022a
 	call Func_1d584
 	farcall Func_10252
-	farcall Func_11002
+	farcall HideNPCAnimsUnderDialogBox
 .asm_1d57c
 	call Func_1d59f
-	farcall Func_1101d
+	farcall ShowNPCAnimsUnderDialogBox
 	ret
 
 Func_1d584:
@@ -3458,7 +3460,7 @@ Func_1d8df:
 	lb bc, 8, 4
 	farcall FillBoxInBGMapWithZero
 	call DoFrame
-	farcall Func_114af
+	farcall TurnOnCurChipsHUD
 	ldtx hl, GameCenterCoinFlipRetryPromptText
 	ldtx de, AttendantText
 	ld a, $01
@@ -3468,14 +3470,14 @@ Func_1d8df:
 	ld a, b
 	or c
 	jr z, .asm_1d91d
-	ld bc, 1
+	ld bc, CHIPS_BET_COIN_FLIP
 	farcall DecreaseChipsSmoothly
 	ld a, 60
 	call DoAFrames_WithPreCheck
 	scf
 	ccf
 .asm_1d914
-	farcall Func_114f9
+	farcall TurnOffCurChipsHUD
 	ret c
 	call Func_1d886
 	ret
@@ -3549,7 +3551,7 @@ Func_1d9be:
 	push bc
 	push de
 	push hl
-	farcall Func_11002
+	farcall HideNPCAnimsUnderDialogBox
 	call Func_1d9ff
 	call Func_1da45
 	jr c, .asm_1d9ed
@@ -3559,16 +3561,16 @@ Func_1d9be:
 	call Func_1da1f
 	call Func_1da2a
 	jr c, .asm_1d9ed
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
 	call Func_1dac1
-	call Func_3d16
+	call ResumeSong_ClearTemp
 .asm_1d9ed
 	call Func_1da14
-	farcall Func_1101d
+	farcall ShowNPCAnimsUnderDialogBox
 	pop hl
 	pop de
 	pop bc
@@ -3625,7 +3627,7 @@ Func_1da4f:
 	ld hl, $5a64
 	call LoadMenuBoxParams
 	ld a, [wdc06]
-	call Func_1cacf
+	call HideNPCAnimsUnderMenuBox
 	call DrawMenuBox
 	ret
 ; 0x1da64
@@ -3664,7 +3666,7 @@ Func_1da88:
 SECTION "Bank 7@5abd", ROMX[$5abd], BANK[$7]
 
 Func_1dabd:
-	call Func_1caf1
+	call ShowNPCAnimsUnderMenuBox
 	ret
 
 Func_1dac1:
@@ -3702,7 +3704,7 @@ Func_1db81:
 	call Func_1dbee
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
-	call Func_3d0d
+	call PauseSong_SaveState
 	ld a, [wIncomingCoin]
 	cp COIN_GR_START
 	jr c, .not_coin_gr
@@ -3731,7 +3733,7 @@ Func_1db81:
 	call WaitForSongToFinish
 	ld a, 60
 	call DoAFrames_WithPreCheck
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	call WaitForWideTextBoxInput
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ld a, [wd693]
@@ -5540,7 +5542,7 @@ DrawMinicomMainScreen:
 	ldtx hl, MinicomDialogText
 	lb de, 1, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-	call Func_1f309
+	call GetNewMailFlag
 	jr z, .done
 	ld b, BANK(.SpriteAnimGfxParams)
 	ld hl, .SpriteAnimGfxParams
@@ -5680,7 +5682,7 @@ _GiveBoosterPack:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call .DrawScreen
 	farcall SetFrameFuncAndFadeFromWhite
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_BOOSTER_PACK
 	call Func_3d09
@@ -5711,7 +5713,7 @@ _GiveBoosterPack:
 	call WaitForSongToFinish
 	ld a, 60
 	call DoAFrames_WithPreCheck
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	call WaitForWideTextBoxInput
 	ldtx hl, OpenedBoosterPackText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
@@ -7109,7 +7111,7 @@ InsertNewMail:
 	pop bc
 	ret
 
-Func_1f309:
+GetNewMailFlag:
 	ld a, [wNewMail]
 	and a
 	ret

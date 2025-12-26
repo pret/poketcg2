@@ -1866,8 +1866,8 @@ TextOffsets::
 	textpointer SamRulesEndOfTurnText                                 ; 0x0741
 	textpointer SamRulesDecisionText                                  ; 0x0742
 	textpointer SamRulesQuitText                                      ; 0x0743
-	textpointer SamPracticeDuelText                                   ; 0x0744
-	textpointer SamRegularDuelText                                    ; 0x0745
+	textpointer MasonLabPracticeDuelText                              ; 0x0744
+	textpointer MasonLabRegularDuelText                               ; 0x0745
 	textpointer SamRulesText                                          ; 0x0746
 	textpointer SamQuitText                                           ; 0x0747
 	textpointer AaronStep1Text                                        ; 0x0748
@@ -2080,31 +2080,31 @@ TextOffsets::
 	textpointer DebugHoldGrandMasterCupText                           ; 0x0817
 	textpointer DebugGet10CardsEachText                               ; 0x0818
 	textpointer DebugGet10EnergyCardsEachText                         ; 0x0819
-	textpointer Text081a                                              ; 0x081a
-	textpointer Text081b                                              ; 0x081b
-	textpointer Text081c                                              ; 0x081c
-	textpointer Text081d                                              ; 0x081d
-	textpointer Text081e                                              ; 0x081e
-	textpointer Text081f                                              ; 0x081f
-	textpointer Text0820                                              ; 0x0820
-	textpointer Text0821                                              ; 0x0821
-	textpointer Text0822                                              ; 0x0822
-	textpointer Text0823                                              ; 0x0823
-	textpointer Text0824                                              ; 0x0824
-	textpointer Text0825                                              ; 0x0825
-	textpointer Text0826                                              ; 0x0826
-	textpointer Text0827                                              ; 0x0827
-	textpointer Text0828                                              ; 0x0828
-	textpointer Text0829                                              ; 0x0829
-	textpointer Text082a                                              ; 0x082a
-	textpointer Text082b                                              ; 0x082b
-	textpointer Text082c                                              ; 0x082c
-	textpointer Text082d                                              ; 0x082d
-	textpointer Text082e                                              ; 0x082e
-	textpointer Text082f                                              ; 0x082f
-	textpointer Text0830                                              ; 0x0830
-	textpointer Text0831                                              ; 0x0831
-	textpointer Text0832                                              ; 0x0832
+	textpointer TCGAirportGR5FlightInitialText                        ; 0x081a
+	textpointer TCGAirportGR5FlightPromptText                         ; 0x081b
+	textpointer TCGAirportGR5DeclinedFlightText                       ; 0x081c
+	textpointer TCGAirportGR5StartFlightText                          ; 0x081d
+	textpointer TCGAirportGR5LandedText                               ; 0x081e
+	textpointer TCGAirportGR5FirstInteractionText                     ; 0x081f
+	textpointer TCGAirportGR5GRCoinIncompleteText                     ; 0x0820
+	textpointer TCGAirportGR5GRCoinCompleteText                       ; 0x0821
+	textpointer TCGAirportGRClerkGRCoinIncompleteText                 ; 0x0822
+	textpointer TCGAirportGRClerkGRCoinCompleteText                   ; 0x0823
+	textpointer TCGAirportGRSisNormalText                             ; 0x0824
+	textpointer TCGAirportGRSisPostgameText                           ; 0x0825
+	textpointer TCGAirportMartialArtistGRCoinIncompleteText           ; 0x0826
+	textpointer TCGAirportMartialArtistGRCoinCompleteText             ; 0x0827
+	textpointer TCGAirportMartialArtistPostgameText                   ; 0x0828
+	textpointer GRAirportGR5FlightPromptText                          ; 0x0829
+	textpointer GRAirportGR5DeclinedFlightText                        ; 0x082a
+	textpointer GRAirportGR5StartFlightText                           ; 0x082b
+	textpointer GRAirportGR5LandedInitialText                         ; 0x082c
+	textpointer GRAirportGR5LandedRepeatText                          ; 0x082d
+	textpointer GRAirportGRClerkText                                  ; 0x082e
+	textpointer GRAirportGRPappyNormalText                            ; 0x082f
+	textpointer GRAirportGRPappyPostgameText                          ; 0x0830
+	textpointer GRAirportGRLassNormalText                             ; 0x0831
+	textpointer GRAirportGRLassPostgameText                           ; 0x0832
 	textpointer Text0833                                              ; 0x0833
 	textpointer Text0834                                              ; 0x0834
 	textpointer Text0835                                              ; 0x0835
@@ -3423,10 +3423,10 @@ TextOffsets::
 	textpointer GameCenterCoinFlipAttendantStartText                  ; 0x0d56
 	textpointer GameCenterCoinFlipAttendantNotEnoughChipsText         ; 0x0d57
 	textpointer GameCenterCoinFlipAttendantComeAgainText              ; 0x0d58
-	textpointer Text0d59                                              ; 0x0d59
-	textpointer Text0d5a                                              ; 0x0d5a
-	textpointer Text0d5b                                              ; 0x0d5b
-	textpointer Text0d5c                                              ; 0x0d5c
+	textpointer GameCenterGRGalText                                   ; 0x0d59
+	textpointer GameCenterCoinTossBoyInitialText                      ; 0x0d5a
+	textpointer GameCenterCoinTossBoyRepeatText                       ; 0x0d5b
+	textpointer GameCenterCoinTossBoyPostgameText                     ; 0x0d5c
 	textpointer GameCenterSlotMachine1AttendantWelcomeText            ; 0x0d5d
 	textpointer GameCenterSlotMachine1AttendantGuidePromptText        ; 0x0d5e
 	textpointer GameCenterSlotMachine1AttendantGuideText              ; 0x0d5f
@@ -3444,14 +3444,14 @@ TextOffsets::
 	textpointer GameCenterCardDungeonAttendantPlayerWonComeAgainText  ; 0x0d6b
 	textpointer GameCenterCardDungeonAttendantPlayerLostTryAgainText  ; 0x0d6c
 	textpointer GameCenterCardDungeonAttendantPlayerQuitTryAgainText  ; 0x0d6d
-	textpointer Text0d6e                                              ; 0x0d6e
-	textpointer Text0d6f                                              ; 0x0d6f
-	textpointer Text0d70                                              ; 0x0d70
-	textpointer Text0d71                                              ; 0x0d71
-	textpointer Text0d72                                              ; 0x0d72
-	textpointer Text0d73                                              ; 0x0d73
-	textpointer Text0d74                                              ; 0x0d74
-	textpointer Text0d75                                              ; 0x0d75
+	textpointer GameCenterCardDungeonBoy1Text                         ; 0x0d6e
+	textpointer GameCenterCardDungeonBoy2Text                         ; 0x0d6f
+	textpointer GameCenterCardDungeonBoy3Text                         ; 0x0d70
+	textpointer GameCenterFixerNormalText                             ; 0x0d71
+	textpointer GameCenterFixerPostgameText                           ; 0x0d72
+	textpointer GameCenterSlotMachineGRWomanInitialText               ; 0x0d73
+	textpointer GameCenterSlotMachineGRWomanWhiffText                 ; 0x0d74
+	textpointer GameCenterSlotMachineGRWomanHitText                   ; 0x0d75
 	textpointer GameCenterChipDeskWelcomeText                         ; 0x0d76
 	textpointer GameCenterChipDeskDepositInfoText                     ; 0x0d77
 	textpointer GameCenterChipDeskDepositReturnPromptText             ; 0x0d78

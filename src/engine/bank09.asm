@@ -5437,13 +5437,13 @@ Func_2612a:
 	jr .asm_2619f
 .asm_261b6
 	call EmptyScreen
-	farcall Func_102ef.Func_10327
-	farcall Func_114af
+	farcall Func_10327
+	farcall TurnOnCurChipsHUD
 	ldtx hl, GameCenterBillsPCChipsPaidText
 	call DrawWideTextBox_WaitForInput
-	ld bc, $14
+	ld bc, CHIPS_BET_BILLS_PC
 	farcall DecreaseChipsSmoothly
-	farcall Func_114f9
+	farcall TurnOffCurChipsHUD
 	lb de, $38, $7f
 	call SetupText
 	call EmptyScreen

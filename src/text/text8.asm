@@ -1215,26 +1215,26 @@ GameCenterCoinFlipAttendantComeAgainText:
 	textfw "それでは またいらしてくださーい!"
 	done
 
-Text0d59:
+GameCenterGRGalText:
 	textfw "ああー どれで あそんでいいのか"
 	linefw "まよっちゃうわぁー"
 	done
 
-Text0d5a:
+GameCenterCoinTossBoyInitialText:
 	textfw "「れんぞくコイントス」は"
 	linefw "コインをなげて オモテをだすんだ"
 	linefw "れんぞく10かい オモテがでると"
 	linefw "すごいカードが もらえるんだ"
 	done
 
-Text0d5b:
+GameCenterCoinTossBoyRepeatText:
 	textfw "ドキドキ つぎは オモテが"
 	linefw "でるかなぁ?"
 	linefw "オモテがでるか ドキドキして"
 	linefw "みもほそる おもいだよー"
 	done
 
-Text0d5c:
+GameCenterCoinTossBoyPostgameText:
 	textfw "さすがに 「れんぞくコイントス」も"
 	linefw "なれたから ドキドキしないや"
 	linefw "そろそろ"
@@ -1356,7 +1356,7 @@ GameCenterCardDungeonAttendantPlayerQuitTryAgainText:
 	linefw "よかったら また あそんでください"
 	done
 
-Text0d6e:
+GameCenterCardDungeonBoy1Text:
 	textfw "オレは"
 	linefw "ダンジョンに ちょうせんしてる"
 	linefw "チップを かけて カードバトルを"
@@ -1365,7 +1365,7 @@ Text0d6e:
 	linefw "勝てないんだよーーーー!!!!"
 	done
 
-Text0d6f:
+GameCenterCardDungeonBoy2Text:
 	textfw "ふっふふふ・・・ポーンちゃんには"
 	linefw "勝ったんだぜーーーー!!!!"
 	linefw "だけど・・・4ばんめのルークさまに"
@@ -1373,14 +1373,14 @@ Text0d6f:
 	linefw "ルークさま つよいしなぁ・・・"
 	done
 
-Text0d70:
+GameCenterCardDungeonBoy3Text:
 	textfw "もーダメだぁ!!!"
 	linefw "どうやっても 勝てねーーー!!!!"
 	linefw "ダンジョンクリアは"
 	linefw "もう あきらめたぜ・・・ふぅ・・・"
 	done
 
-Text0d71:
+GameCenterFixerNormalText:
 	textfw "いやー しごとで"
 	linefw "GR団のキャッスルに きたんだけど"
 	linefw "GR団のキングさまが"
@@ -1389,7 +1389,7 @@ Text0d71:
 	linefw "じかんを つぶしてるって わけさ"
 	done
 
-Text0d72:
+GameCenterFixerPostgameText:
 	textfw "いやー しごとで"
 	linefw "GR団のキャッスルに きたんだけど"
 	linefw "しごとが なくなっちゃってさ"
@@ -1398,7 +1398,7 @@ Text0d72:
 	linefw "ないんだよ まっ しょーがねぇな"
 	done
 
-Text0d73:
+GameCenterSlotMachineGRWomanInitialText:
 	textfw "あーちょっと はなしかけないで!"
 	linefw "スロットマシンで あそんでるんだから"
 	linefw "エネルギーマークが そろうと"
@@ -1409,7 +1409,7 @@ Text0d73:
 	linefw "あそんでみたら?"
 	done
 
-Text0d74:
+GameCenterSlotMachineGRWomanWhiffText:
 	textfw "あー ちょっと はなしかけないでよ!"
 	linefw "マークが そろいそうなんだから・・・"
 	linefw "・・・きーー!! はずれたわ!!"
@@ -1418,7 +1418,7 @@ Text0d74:
 	linefw "ジャマしないで ちょうだいよ!"
 	done
 
-Text0d75:
+GameCenterSlotMachineGRWomanHitText:
 	textfw "あー ちょっと はなしかけないでよ!"
 	linefw "マークが そろいそうなんだから・・・"
 	linefw "・・・あーー!! おおアタリ!!"

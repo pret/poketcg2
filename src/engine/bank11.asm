@@ -236,7 +236,7 @@ PlayAfterCurrentSong:
 .play_song
 	ld a, b
 	ld [wCurMusic], a
-	ld [wdd04], a
+	ld [wTempActiveMusic], a
 	call PlaySong
 	ret
 
@@ -459,7 +459,7 @@ Func_453f9:
 	ld [wNPCDuelDeckID], a
 	ld a, MUSIC_MATCH_START_CLUB_MASTER
 	ld [wDuelStartTheme], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	ret
 
@@ -571,7 +571,7 @@ Func_454ab:
 	ld [wNPCDuelDeckID], a
 	ld a, MUSIC_MATCH_START_CLUB_MASTER
 	ld [wDuelStartTheme], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	ret
 
