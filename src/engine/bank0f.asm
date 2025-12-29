@@ -455,7 +455,7 @@ Func_3c30c:
 	end_script
 	ret
 
-Script_FinishedImakuniBlackDuel:
+Script_ImakuniBlackAfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -6733,7 +6733,7 @@ Func_3f429:
 	ret
 
 Func_3f44a:
-	call Func_3f500
+	call Script_RookAfterDuel
 	scf
 	ret
 
@@ -6826,7 +6826,7 @@ Script_Rook:
 	end_script
 	ret
 
-Func_3f500:
+Script_RookAfterDuel:
 	xor a
 	start_script
 	start_dialog

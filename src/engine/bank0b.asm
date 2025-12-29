@@ -1337,7 +1337,7 @@ Func_2ca14:
 	ret
 
 Func_2ca1c:
-	farcall Script_FinishedRonaldDuelGCPieces2
+	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
@@ -1565,7 +1565,7 @@ Func_2cbdf:
 	ret
 
 Func_2cbef:
-	farcall Script_FinishedImakuniBlackDuel
+	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 
@@ -2721,7 +2721,7 @@ Func_2d4ae:
 	ret
 
 Func_2d4be:
-	farcall Script_FinishedImakuniBlackDuel
+	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 
@@ -3394,7 +3394,7 @@ Func_2d9a6:
 	ret
 
 Func_2d9d2:
-	farcall Script_FinishedRonaldDuelGCPieces2
+	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
@@ -4371,7 +4371,7 @@ Func_2e0e3:
 	ret
 
 Func_2e10f:
-	farcall Script_FinishedRonaldDuelGCPieces2
+	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
@@ -4992,7 +4992,7 @@ Func_2e574:
 	ret
 
 Func_2e57c:
-	farcall Script_FinishedRonaldDuelGCPieces2
+	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
@@ -5212,7 +5212,7 @@ Func_2e73e:
 
 ScienceClubLobby_AfterDuelScripts:
 	npc_script NPC_DAVID, Func_2e7c7
-	npc_script NPC_IMAKUNI_BLACK, Script_FinishedImakuniBlackDuel
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
 Func_2e752:
@@ -6214,7 +6214,7 @@ Func_2eeba:
 
 WaterClubLobby_AfterDuelScripts:
 	npc_script NPC_JOSHUA, Func_2ef43
-	npc_script NPC_IMAKUNI_BLACK, Script_FinishedImakuniBlackDuel
+	npc_script NPC_IMAKUNI_BLACK, Script_ImakuniBlackAfterDuel
 	db $ff
 
 Func_2eece:
@@ -7159,7 +7159,7 @@ Func_2f575:
 	ret
 
 Func_2f5a8:
-	farcall Script_FinishedRonaldDuelGCPieces2
+	farcall Script_RonaldGCPieces2AfterDuel
 	scf
 	ret
 
@@ -7308,7 +7308,7 @@ Func_2f6d7:
 	ret
 
 Func_2f6e7:
-	farcall Script_FinishedImakuniBlackDuel
+	farcall Script_ImakuniBlackAfterDuel
 	scf
 	ret
 

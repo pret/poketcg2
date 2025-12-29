@@ -232,7 +232,7 @@ Func_3417e:
 	db $ff
 
 ; RONALD_DUEL_GC_PIECES_2
-Script_FinishedRonaldDuelGCPieces2:
+Script_RonaldGCPieces2AfterDuel:
 	xor a
 	start_script
 	start_dialog
@@ -2204,7 +2204,7 @@ Func_35106:
 	ret
 
 Func_35127:
-	call Func_351dd
+	call Script_BishopAfterDuel
 	scf
 	ret
 
@@ -2300,7 +2300,7 @@ Script_CardDungeonBishopProceedRepeat:
 	end_script
 	ret
 
-Func_351dd:
+Script_BishopAfterDuel:
 	xor a
 	start_script
 	start_dialog
