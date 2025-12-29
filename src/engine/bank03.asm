@@ -158,8 +158,8 @@ OWModePostprocess::
 	dw Func_c169 ; OWMODE_03
 	dw Func_c183 ; OWMODE_04
 	dw Func_31a8 ; OWMODE_05
-	dw Func_c199 ; OWMODE_06
-	dw Func_c162 ; OWMODE_07
+	dw Func_c199 ; OWMODE_STEP_EVENT
+	dw Func_c162 ; OWMODE_NPC_POSITION
 	dw Func_c163 ; OWMODE_INTERACT
 	dw Func_c189 ; OWMODE_AFTER_DUEL
 	dw Func_3234 ; OWMODE_0A
@@ -1170,7 +1170,7 @@ OverworldLoop::
 	ld [wOverworldMode], a
 	xor a
 	ld [wOverworldTransition], a
-	ld a, OWMODE_07
+	ld a, OWMODE_NPC_POSITION
 	call ExecuteOWModeScript
 	ld a, OWMODE_MUSIC_POSTLOAD
 	call ExecuteOWModeScript

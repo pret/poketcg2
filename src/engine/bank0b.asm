@@ -34,9 +34,9 @@ IshiharasHouse_OWInteractions:
 	db $ff
 
 IshiharasHouse_MapScripts:
-	dbw OWMODE_06, Func_2c0c1
+	dbw OWMODE_STEP_EVENT, Func_2c0c1
 	dbw OWMODE_INTERACT, Func_2c0f1
-	dbw OWMODE_07, Func_2c0c8
+	dbw OWMODE_NPC_POSITION, Func_2c0c8
 	dbw OWMODE_02, Func_2c0d1
 	dbw OWMODE_0C, Func_2c101
 	dbw OWMODE_0D, Func_2c12f
@@ -599,10 +599,10 @@ LightningClub_NPCInteractions:
 	db $ff
 
 LightningClub_MapScripts:
-	dbw OWMODE_06, Func_2c4fa
+	dbw OWMODE_STEP_EVENT, Func_2c4fa
 	dbw OWMODE_INTERACT, Func_2c560
 	dbw OWMODE_AFTER_DUEL, Func_2c568
-	dbw OWMODE_07, Func_2c501
+	dbw OWMODE_NPC_POSITION, Func_2c501
 	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
 	dbw OWMODE_02, Func_2c50a
 	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
@@ -1248,10 +1248,10 @@ PsychicClubEntrance_NPCInteractions:
 
 PsychicClubEntrance_MapScripts:
 	dbw OWMODE_00, Func_2c9ac
-	dbw OWMODE_06, Func_2c9d8
+	dbw OWMODE_STEP_EVENT, Func_2c9d8
 	dbw OWMODE_INTERACT, Func_2ca14
 	dbw OWMODE_AFTER_DUEL, Func_2ca1c
-	dbw OWMODE_07, Func_2c9df
+	dbw OWMODE_NPC_POSITION, Func_2c9df
 	dbw OWMODE_02, Func_2c9e8
 	dbw OWMODE_0B, Func_2ca22
 	dbw OWMODE_MUSIC_PRELOAD, Func_2c9b8
@@ -1507,9 +1507,9 @@ PsychicClubLobby_OWInteractions:
 	db $ff
 
 PsychicClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2cbcf
+	dbw OWMODE_STEP_EVENT, Func_2cbcf
 	dbw OWMODE_INTERACT, Func_2cbdf
-	dbw OWMODE_07, Func_2cbd6
+	dbw OWMODE_NPC_POSITION, Func_2cbd6
 	dbw OWMODE_AFTER_DUEL, Func_2cbef
 	dbw OWMODE_0B, Func_2cbf5
 	dbw OWMODE_MUSIC_PRELOAD, Func_2cba8
@@ -1759,10 +1759,10 @@ PsychicClub_NPCInteractions:
 	db $ff
 
 PsychicClub_MapScripts:
-	dbw OWMODE_06, Func_2cd92
+	dbw OWMODE_STEP_EVENT, Func_2cd92
 	dbw OWMODE_INTERACT, Func_2ce11
 	dbw OWMODE_AFTER_DUEL, Func_2ce19
-	dbw OWMODE_07, Func_2cd99
+	dbw OWMODE_NPC_POSITION, Func_2cd99
 	dbw OWMODE_02, Func_2cda2
 	dbw OWMODE_MUSIC_PRELOAD, Func_2cd82
 	db $ff
@@ -2542,7 +2542,7 @@ RockClubEntrance_StepEvents:
 	db $ff
 
 RockClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2d376
+	dbw OWMODE_STEP_EVENT, Func_2d376
 	dbw OWMODE_02, Func_2d37d
 	dbw OWMODE_0B, Func_2d399
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d356
@@ -2661,9 +2661,9 @@ RockClubLobby_OWInteractions:
 	db $ff
 
 RockClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2d49e
+	dbw OWMODE_STEP_EVENT, Func_2d49e
 	dbw OWMODE_INTERACT, Func_2d4ae
-	dbw OWMODE_07, Func_2d4a5
+	dbw OWMODE_NPC_POSITION, Func_2d4a5
 	dbw OWMODE_AFTER_DUEL, Func_2d4be
 	dbw OWMODE_0B, Func_2d4c4
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d472
@@ -2913,9 +2913,9 @@ RockClub_NPCInteractions:
 	db $ff
 
 RockClub_MapScripts:
-	dbw OWMODE_06, Func_2d663
+	dbw OWMODE_STEP_EVENT, Func_2d663
 	dbw OWMODE_INTERACT, Func_2d6a6
-	dbw OWMODE_07, Func_2d66a
+	dbw OWMODE_NPC_POSITION, Func_2d66a
 	dbw OWMODE_02, Func_2d673
 	dbw OWMODE_AFTER_DUEL, Func_2d6ae
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d653
@@ -3328,7 +3328,7 @@ FightingClubEntrance_StepEvents:
 	db $ff
 
 FightingClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2d99f
+	dbw OWMODE_STEP_EVENT, Func_2d99f
 	dbw OWMODE_AFTER_DUEL, Func_2d9d2
 	dbw OWMODE_02, Func_2d9a6
 	dbw OWMODE_0B, Func_2d9d8
@@ -3487,9 +3487,9 @@ FightingClubLobby_OWInteractions:
 	db $ff
 
 FightingClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2dade
+	dbw OWMODE_STEP_EVENT, Func_2dade
 	dbw OWMODE_INTERACT, Func_2daee
-	dbw OWMODE_07, Func_2dae5
+	dbw OWMODE_NPC_POSITION, Func_2dae5
 	dbw OWMODE_AFTER_DUEL, Func_2dafe
 	dbw OWMODE_MUSIC_PRELOAD, Func_2dace
 	db $ff
@@ -3779,9 +3779,9 @@ FightingClub_NPCInteractions:
 	db $ff
 
 FightingClub_MapScripts:
-	dbw OWMODE_06, Func_2dd0e
+	dbw OWMODE_STEP_EVENT, Func_2dd0e
 	dbw OWMODE_INTERACT, Func_2dd3a
-	dbw OWMODE_07, Func_2dd31
+	dbw OWMODE_NPC_POSITION, Func_2dd31
 	dbw OWMODE_AFTER_DUEL, Func_2dd42
 	dbw OWMODE_02, Func_2dd15
 	dbw OWMODE_MUSIC_PRELOAD, Func_2dcfe
@@ -4305,7 +4305,7 @@ GrassClubEntrance_StepEvents:
 	db $ff
 
 GrassClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2e0dc
+	dbw OWMODE_STEP_EVENT, Func_2e0dc
 	dbw OWMODE_AFTER_DUEL, Func_2e10f
 	dbw OWMODE_02, Func_2e0e3
 	dbw OWMODE_0B, Func_2e115
@@ -4452,11 +4452,11 @@ GrassClub_NPCInteractions:
 	db $ff
 
 GrassClub_MapScripts:
-	dbw OWMODE_06, Func_2e1d2
+	dbw OWMODE_STEP_EVENT, Func_2e1d2
 	dbw OWMODE_INTERACT, Func_2e1fe
 	dbw OWMODE_AFTER_DUEL, Func_2e206
 	dbw OWMODE_02, Func_2e1d9
-	dbw OWMODE_07, Func_2e1f5
+	dbw OWMODE_NPC_POSITION, Func_2e1f5
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e1c2
 	db $ff
 
@@ -4911,10 +4911,10 @@ ScienceClubEntrance_NPCInteractions:
 	db $ff
 
 ScienceClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2e538
+	dbw OWMODE_STEP_EVENT, Func_2e538
 	dbw OWMODE_INTERACT, Func_2e574
 	dbw OWMODE_AFTER_DUEL, Func_2e57c
-	dbw OWMODE_07, Func_2e53f
+	dbw OWMODE_NPC_POSITION, Func_2e53f
 	dbw OWMODE_02, Func_2e548
 	dbw OWMODE_0B, Func_2e582
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e518
@@ -5146,10 +5146,10 @@ ScienceClubLobby_OWInteractions:
 	db $ff
 
 ScienceClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2e71e
+	dbw OWMODE_STEP_EVENT, Func_2e71e
 	dbw OWMODE_INTERACT, Func_2e72e
 	dbw OWMODE_AFTER_DUEL, Func_2e73e
-	dbw OWMODE_07, Func_2e725
+	dbw OWMODE_NPC_POSITION, Func_2e725
 	dbw OWMODE_0B, Func_2e752
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e6f7
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2e709
@@ -5473,11 +5473,11 @@ ScienceClub_NPCInteractions:
 	db $ff
 
 ScienceClub_MapScripts:
-	dbw OWMODE_06, Func_2e955
+	dbw OWMODE_STEP_EVENT, Func_2e955
 	dbw OWMODE_INTERACT, Func_2e99f
 	dbw OWMODE_AFTER_DUEL, Func_2e9a7
 	dbw OWMODE_02, Func_2e95c
-	dbw OWMODE_07, Func_2e996
+	dbw OWMODE_NPC_POSITION, Func_2e996
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e945
 	db $ff
 
@@ -5992,7 +5992,7 @@ WaterClubEntrance_StepEvents:
 	db $ff
 
 WaterClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2ed37
+	dbw OWMODE_STEP_EVENT, Func_2ed37
 	dbw OWMODE_02, Func_2ed3e
 	dbw OWMODE_04, Func_2ed75
 	dbw OWMODE_0B, Func_2ed8c
@@ -6148,10 +6148,10 @@ WaterClubLobby_OWInteractions:
 	db $ff
 
 WaterClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2ee9a
+	dbw OWMODE_STEP_EVENT, Func_2ee9a
 	dbw OWMODE_INTERACT, Func_2eeaa
 	dbw OWMODE_AFTER_DUEL, Func_2eeba
-	dbw OWMODE_07, Func_2eea1
+	dbw OWMODE_NPC_POSITION, Func_2eea1
 	dbw OWMODE_0B, Func_2eece
 	dbw OWMODE_MUSIC_PRELOAD, Func_2ee73
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2ee85
@@ -6433,11 +6433,11 @@ WaterClub_OWInteractions:
 	db $ff
 
 WaterClub_MapScripts:
-	dbw OWMODE_06, Func_2f095
+	dbw OWMODE_STEP_EVENT, Func_2f095
 	dbw OWMODE_INTERACT, Func_2f0f7
 	dbw OWMODE_02, Func_2f0a5
 	dbw OWMODE_AFTER_DUEL, Func_2f107
-	dbw OWMODE_07, Func_2f09c
+	dbw OWMODE_NPC_POSITION, Func_2f09c
 	dbw OWMODE_MUSIC_PRELOAD, Func_2f085
 	db $ff
 
@@ -7089,7 +7089,7 @@ FireClubEntrance_StepEvents:
 	db $ff
 
 FireClubEntrance_MapScripts:
-	dbw OWMODE_06, Func_2f56e
+	dbw OWMODE_STEP_EVENT, Func_2f56e
 	dbw OWMODE_AFTER_DUEL, Func_2f5a8
 	dbw OWMODE_02, Func_2f575
 	dbw OWMODE_0B, Func_2f5ae
@@ -7250,9 +7250,9 @@ FireClubLobby_OWInteractions:
 	db $ff
 
 FireClubLobby_MapScripts:
-	dbw OWMODE_06, Func_2f6c7
+	dbw OWMODE_STEP_EVENT, Func_2f6c7
 	dbw OWMODE_INTERACT, Func_2f6d7
-	dbw OWMODE_07, Func_2f6ce
+	dbw OWMODE_NPC_POSITION, Func_2f6ce
 	dbw OWMODE_AFTER_DUEL, Func_2f6e7
 	dbw OWMODE_0B, Func_2f6ed
 	dbw OWMODE_MUSIC_PRELOAD, Func_2f6a0
@@ -7465,11 +7465,11 @@ FireClub_OWInteractions:
 	db $ff
 
 FireClub_MapScripts:
-	dbw OWMODE_06, Func_2f85e
+	dbw OWMODE_STEP_EVENT, Func_2f85e
 	dbw OWMODE_INTERACT, Func_2f8c8
 	dbw OWMODE_AFTER_DUEL, Func_2f8d8
 	dbw OWMODE_02, Func_2f86e
-	dbw OWMODE_07, Func_2f865
+	dbw OWMODE_NPC_POSITION, Func_2f865
 	dbw OWMODE_MUSIC_PRELOAD, Func_2f84e
 	db $ff
 
@@ -8137,9 +8137,9 @@ PokemonDomeEntrance_OWInteractions:
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
-	dbw OWMODE_06, Func_2fd83
+	dbw OWMODE_STEP_EVENT, Func_2fd83
 	dbw OWMODE_INTERACT, Func_2fd93
-	dbw OWMODE_07, Func_2fd8a
+	dbw OWMODE_NPC_POSITION, Func_2fd8a
 	dbw OWMODE_MUSIC_PRELOAD, Func_2fd73
 	db $ff
 

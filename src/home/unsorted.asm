@@ -259,7 +259,7 @@ Func_31a8::
 	jr .done
 
 .not_moving
-	ld a, OWMODE_06
+	ld a, OWMODE_STEP_EVENT
 	ld [wOverworldMode], a
 	ld a, [wPlayerOWObject]
 	farcall StopOWObjectAnimation

@@ -1346,11 +1346,11 @@ MasonLaboratoryMain_OWInteractions:
 	db $ff
 
 MasonLaboratoryMain_MapScripts:
-	dbw OWMODE_06, Func_40e83
+	dbw OWMODE_STEP_EVENT, Func_40e83
 	dbw OWMODE_INTERACT, Func_40f04
 	dbw OWMODE_AFTER_DUEL, Func_40f21
 	dbw OWMODE_11, Func_40f14
-	dbw OWMODE_07, Func_40e8a
+	dbw OWMODE_NPC_POSITION, Func_40e8a
 	dbw OWMODE_02, Func_40e91
 	dbw OWMODE_MUSIC_PRELOAD, Func_40e72
 	db $ff
@@ -2360,10 +2360,10 @@ TcgChallengeHall_NPCInteractions:
 	db $ff
 
 TcgChallengeHall_MapScripts:
-	dbw OWMODE_06, Func_415f3
+	dbw OWMODE_STEP_EVENT, Func_415f3
 	dbw OWMODE_INTERACT, Func_41622
 	dbw OWMODE_AFTER_DUEL, Func_4162a
-	dbw OWMODE_07, Func_415fa
+	dbw OWMODE_NPC_POSITION, Func_415fa
 	dbw OWMODE_MUSIC_PRELOAD, Func_415e6
 	dbw OWMODE_02, Func_41603
 	dbw OWMODE_0B, Func_4163b
@@ -3174,9 +3174,9 @@ GrAirport_NPCInteractions:
 
 GrAirport_MapScripts:
 	dbw OWMODE_00, Func_41c44
-	dbw OWMODE_06, Func_41c50
+	dbw OWMODE_STEP_EVENT, Func_41c50
 	dbw OWMODE_INTERACT, Func_41ccb
-	dbw OWMODE_07, Func_41c57
+	dbw OWMODE_NPC_POSITION, Func_41c57
 	dbw OWMODE_02, Func_41c60
 	dbw OWMODE_0F, Func_41ca1
 	db $ff
@@ -3496,7 +3496,7 @@ SealedFort_OWInteractions:
 	db $ff
 
 SealedFort_MapScripts:
-	dbw OWMODE_06, Func_41f14
+	dbw OWMODE_STEP_EVENT, Func_41f14
 	dbw OWMODE_INTERACT, Func_41f1b
 	dbw OWMODE_AFTER_DUEL, Func_41f36
 	db $ff
@@ -4384,11 +4384,11 @@ GrChallengeHall_OWInteractions:
 	db $ff
 
 GrChallengeHall_MapScripts:
-	dbw OWMODE_06, Func_42639
+	dbw OWMODE_STEP_EVENT, Func_42639
 	dbw OWMODE_INTERACT, Func_426b9
 	dbw OWMODE_AFTER_DUEL, Func_426d6
 	dbw OWMODE_11, Func_426c9
-	dbw OWMODE_07, Func_42640
+	dbw OWMODE_NPC_POSITION, Func_42640
 	dbw OWMODE_02, Func_4266e
 	dbw OWMODE_MUSIC_PRELOAD, Func_42649
 	dbw OWMODE_0B, Func_426f8
@@ -5409,7 +5409,7 @@ FightingFortMaze1_StepEvents:
 	db $ff
 
 FightingFortMaze1_MapScripts:
-	dbw OWMODE_06, Func_42e6e
+	dbw OWMODE_STEP_EVENT, Func_42e6e
 	dbw OWMODE_02, Func_42e75
 	db $ff
 
@@ -5440,7 +5440,7 @@ FightingFortMaze21_StepEvents:
 	db $ff
 
 FightingFortMaze21_MapScripts:
-	dbw OWMODE_06, Func_42ec3
+	dbw OWMODE_STEP_EVENT, Func_42ec3
 	dbw OWMODE_02, Func_42eca
 	db $ff
 
@@ -5481,10 +5481,10 @@ GrCastleBiruritchi_OWInteractions:
 	db $ff
 
 GrCastleBiruritchi_MapScripts:
-	dbw OWMODE_06, Func_42f2e
+	dbw OWMODE_STEP_EVENT, Func_42f2e
 	dbw OWMODE_INTERACT, Func_42fad
 	dbw OWMODE_AFTER_DUEL, Func_42fbd
-	dbw OWMODE_07, Func_42f35
+	dbw OWMODE_NPC_POSITION, Func_42f35
 	dbw OWMODE_02, Func_42f3e
 	dbw OWMODE_0B, Func_42fcd
 	dbw OWMODE_04, Func_42f86
