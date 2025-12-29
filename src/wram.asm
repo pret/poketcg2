@@ -2780,8 +2780,9 @@ wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
 wd986:: ; d986
 	ds $1
 
-; NPC_* ID or $ff
-wd987:: ; d987
+; NPC_* ID (or NPC_NONE)
+; See also; wScriptNPC
+wTempScriptNPC:: ; d987
 	ds $1
 
 	ds $1

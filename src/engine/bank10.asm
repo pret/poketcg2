@@ -1347,7 +1347,7 @@ MasonLaboratoryMain_OWInteractions:
 
 MasonLaboratoryMain_MapScripts:
 	dbw OWMODE_06, Func_40e83
-	dbw OWMODE_08, Func_40f04
+	dbw OWMODE_INTERACT, Func_40f04
 	dbw OWMODE_AFTER_DUEL, Func_40f21
 	dbw OWMODE_11, Func_40f14
 	dbw OWMODE_07, Func_40e8a
@@ -2361,7 +2361,7 @@ TcgChallengeHall_NPCInteractions:
 
 TcgChallengeHall_MapScripts:
 	dbw OWMODE_06, Func_415f3
-	dbw OWMODE_08, Func_41622
+	dbw OWMODE_INTERACT, Func_41622
 	dbw OWMODE_AFTER_DUEL, Func_4162a
 	dbw OWMODE_07, Func_415fa
 	dbw OWMODE_01, Func_415e6
@@ -3175,7 +3175,7 @@ GrAirport_NPCInteractions:
 GrAirport_MapScripts:
 	dbw OWMODE_00, Func_41c44
 	dbw OWMODE_06, Func_41c50
-	dbw OWMODE_08, Func_41ccb
+	dbw OWMODE_INTERACT, Func_41ccb
 	dbw OWMODE_07, Func_41c57
 	dbw OWMODE_02, Func_41c60
 	dbw OWMODE_0F, Func_41ca1
@@ -3184,7 +3184,7 @@ GrAirport_MapScripts:
 Func_41c44:
 	call DoFrame
 	call Func_41db4
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	scf
 	ccf
 	ret
@@ -3497,7 +3497,7 @@ SealedFort_OWInteractions:
 
 SealedFort_MapScripts:
 	dbw OWMODE_06, Func_41f14
-	dbw OWMODE_08, Func_41f1b
+	dbw OWMODE_INTERACT, Func_41f1b
 	dbw OWMODE_AFTER_DUEL, Func_41f36
 	db $ff
 
@@ -4385,7 +4385,7 @@ GrChallengeHall_OWInteractions:
 
 GrChallengeHall_MapScripts:
 	dbw OWMODE_06, Func_42639
-	dbw OWMODE_08, Func_426b9
+	dbw OWMODE_INTERACT, Func_426b9
 	dbw OWMODE_AFTER_DUEL, Func_426d6
 	dbw OWMODE_11, Func_426c9
 	dbw OWMODE_07, Func_42640
@@ -5482,7 +5482,7 @@ GrCastleBiruritchi_OWInteractions:
 
 GrCastleBiruritchi_MapScripts:
 	dbw OWMODE_06, Func_42f2e
-	dbw OWMODE_08, Func_42fad
+	dbw OWMODE_INTERACT, Func_42fad
 	dbw OWMODE_AFTER_DUEL, Func_42fbd
 	dbw OWMODE_07, Func_42f35
 	dbw OWMODE_02, Func_42f3e

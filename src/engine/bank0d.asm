@@ -756,7 +756,7 @@ TcgAirportEntrance_OWInteractions:
 TcgAirportEntrance_MapScripts:
 	dbw OWMODE_00, Func_345f1
 	dbw OWMODE_06, Func_3460d
-	dbw OWMODE_08, Func_3461d
+	dbw OWMODE_INTERACT, Func_3461d
 	dbw OWMODE_07, Func_34614
 	dbw OWMODE_01, Func_345fd
 	db $ff
@@ -764,7 +764,7 @@ TcgAirportEntrance_MapScripts:
 Func_345f1:
 	call DoFrame
 	call Func_34635
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	scf
 	ccf
 	ret
@@ -1007,7 +1007,7 @@ TcgAirport_NPCInteractions:
 TcgAirport_MapScripts:
 	dbw OWMODE_00, Func_347ce
 	dbw OWMODE_06, Func_347da
-	dbw OWMODE_08, Func_3489d
+	dbw OWMODE_INTERACT, Func_3489d
 	dbw OWMODE_07, Func_347e1
 	dbw OWMODE_02, Func_347ea
 	dbw OWMODE_0F, Func_34873
@@ -1016,7 +1016,7 @@ TcgAirport_MapScripts:
 Func_347ce:
 	call DoFrame
 	call Func_349d5
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	scf
 	ccf
 	ret
@@ -1412,7 +1412,7 @@ GrAirportEntrance_OWInteractions:
 
 GrAirportEntrance_MapScripts:
 	dbw OWMODE_06, Func_34b16
-	dbw OWMODE_08, Func_34b26
+	dbw OWMODE_INTERACT, Func_34b26
 	dbw OWMODE_07, Func_34b1d
 	db $ff
 
@@ -1543,7 +1543,7 @@ GameCenter1_OWInteractions:
 
 GameCenter1_MapScripts:
 	dbw OWMODE_06, Func_34c2c
-	dbw OWMODE_08, Func_34c3c
+	dbw OWMODE_INTERACT, Func_34c3c
 	dbw OWMODE_07, Func_34c33
 	db $ff
 
@@ -1886,7 +1886,7 @@ GameCenter2_OWInteractions:
 
 GameCenter2_MapScripts:
 	dbw OWMODE_06, Func_34ee7
-	dbw OWMODE_08, Func_34ef7
+	dbw OWMODE_INTERACT, Func_34ef7
 	dbw OWMODE_07, Func_34eee
 	dbw OWMODE_02, Func_34f07
 	db $ff
@@ -2159,7 +2159,7 @@ CardDungeonBishop_OWInteractions:
 
 CardDungeonBishop_MapScripts:
 	dbw OWMODE_06, Func_350e6
-	dbw OWMODE_08, Func_350f6
+	dbw OWMODE_INTERACT, Func_350f6
 	dbw OWMODE_AFTER_DUEL, Func_35127
 	dbw OWMODE_07, Func_350ed
 	dbw OWMODE_02, Func_35106
@@ -2422,7 +2422,7 @@ GrChallengeHallLobby_OWInteractions:
 
 GrChallengeHallLobby_MapScripts:
 	dbw OWMODE_06, Func_35322
-	dbw OWMODE_08, Func_35332
+	dbw OWMODE_INTERACT, Func_35332
 	dbw OWMODE_07, Func_35329
 	dbw OWMODE_01, Func_35308
 	db $ff
@@ -2678,7 +2678,7 @@ GrassFortMorino_NPCInteractions:
 
 GrassFortMorino_MapScripts:
 	dbw OWMODE_06, Func_354d3
-	dbw OWMODE_08, Func_354e3
+	dbw OWMODE_INTERACT, Func_354e3
 	dbw OWMODE_AFTER_DUEL, Func_354eb
 	dbw OWMODE_07, Func_354da
 	db $ff
@@ -2857,7 +2857,7 @@ WaterFortSenta_NPCInteractions:
 
 WaterFortSenta_MapScripts:
 	dbw OWMODE_06, Func_35624
-	dbw OWMODE_08, Func_35661
+	dbw OWMODE_INTERACT, Func_35661
 	dbw OWMODE_AFTER_DUEL, Func_35669
 	dbw OWMODE_07, Func_3562b
 	dbw OWMODE_02, Func_35634
@@ -3151,7 +3151,7 @@ WaterFortAira_NPCInteractions:
 
 WaterFortAira_MapScripts:
 	dbw OWMODE_06, Func_35855
-	dbw OWMODE_08, Func_35882
+	dbw OWMODE_INTERACT, Func_35882
 	dbw OWMODE_AFTER_DUEL, Func_3588a
 	dbw OWMODE_07, Func_3585c
 	dbw OWMODE_02, Func_35865
@@ -3361,7 +3361,7 @@ FightingFort_OWInteractions:
 
 FightingFort_MapScripts:
 	dbw OWMODE_06, Func_359fd
-	dbw OWMODE_08, Func_35a7c
+	dbw OWMODE_INTERACT, Func_35a7c
 	dbw OWMODE_AFTER_DUEL, Func_35a8c
 	dbw OWMODE_07, Func_35a04
 	dbw OWMODE_02, Func_35a0d
@@ -3785,7 +3785,7 @@ FightingFortGoda_OWInteractions:
 
 FightingFortGoda_MapScripts:
 	dbw OWMODE_06, Func_35d7a
-	dbw OWMODE_08, Func_35da0
+	dbw OWMODE_INTERACT, Func_35da0
 	dbw OWMODE_AFTER_DUEL, Func_35db0
 	dbw OWMODE_07, Func_35d81
 	dbw OWMODE_02, Func_35d8a
@@ -4039,7 +4039,7 @@ FightingFortGrace_NPCInteractions:
 
 FightingFortGrace_MapScripts:
 	dbw OWMODE_06, Func_35f59
-	dbw OWMODE_08, Func_35f69
+	dbw OWMODE_INTERACT, Func_35f69
 	dbw OWMODE_AFTER_DUEL, Func_35f71
 	dbw OWMODE_07, Func_35f60
 	db $ff
@@ -4258,7 +4258,7 @@ PsychicStrongholdEntrance_NPCInteractions:
 
 PsychicStrongholdEntrance_MapScripts:
 	dbw OWMODE_06, Func_36104
-	dbw OWMODE_08, Func_36140
+	dbw OWMODE_INTERACT, Func_36140
 	dbw OWMODE_07, Func_3610b
 	dbw OWMODE_02, Func_36114
 	dbw OWMODE_10, Func_360ef
@@ -4378,7 +4378,7 @@ PsychicStrongholdLobby_OWInteractions:
 
 PsychicStrongholdLobby_MapScripts:
 	dbw OWMODE_06, Func_3620e
-	dbw OWMODE_08, Func_3621e
+	dbw OWMODE_INTERACT, Func_3621e
 	dbw OWMODE_AFTER_DUEL, Func_3622e
 	dbw OWMODE_0B, Func_36234
 	dbw OWMODE_07, Func_36215
@@ -4578,7 +4578,7 @@ PsychicStronghold_NPCInteractions:
 
 PsychicStronghold_MapScripts:
 	dbw OWMODE_06, Func_3638f
-	dbw OWMODE_08, Func_36440
+	dbw OWMODE_INTERACT, Func_36440
 	dbw OWMODE_PAUSE_MENU, Func_36448
 	dbw OWMODE_AFTER_DUEL, Func_36490
 	dbw OWMODE_07, Func_36396
@@ -5765,7 +5765,7 @@ PsychicStrongholdMami_NPCInteractions:
 
 PsychicStrongholdMami_MapScripts:
 	dbw OWMODE_06, Func_36ce5
-	dbw OWMODE_08, Func_36d21
+	dbw OWMODE_INTERACT, Func_36d21
 	dbw OWMODE_PAUSE_MENU, Func_36d29
 	dbw OWMODE_AFTER_DUEL, Func_36d65
 	dbw OWMODE_07, Func_36cec
@@ -6160,7 +6160,7 @@ ColorlessAltar_NPCInteractions:
 
 ColorlessAltar_MapScripts:
 	dbw OWMODE_06, Func_36fe2
-	dbw OWMODE_08, Func_37011
+	dbw OWMODE_INTERACT, Func_37011
 	dbw OWMODE_AFTER_DUEL, Func_37019
 	dbw OWMODE_07, Func_36fe9
 	dbw OWMODE_02, Func_36ff2
@@ -6676,7 +6676,7 @@ GrCastleEntrance_OWInteractions:
 GrCastleEntrance_MapScripts:
 	dbw OWMODE_00, Func_373cb
 	dbw OWMODE_06, Func_3740f
-	dbw OWMODE_08, Func_3746b
+	dbw OWMODE_INTERACT, Func_3746b
 	dbw OWMODE_07, Func_37416
 	dbw OWMODE_02, Func_3741f
 	dbw OWMODE_AFTER_DUEL, Func_3747b
@@ -6709,7 +6709,7 @@ Func_373cb:
 	farcall Func_10e3c
 	jr .asm_3740c
 .asm_37409
-	call Func_32d8
+	call HandleOverworldPlayerInput
 .asm_3740c
 	scf
 	ccf
@@ -6996,7 +6996,7 @@ GrCastle_NPCInteractions:
 
 GrCastle_MapScripts:
 	dbw OWMODE_06, Func_3765c
-	dbw OWMODE_08, Func_376ed
+	dbw OWMODE_INTERACT, Func_376ed
 	dbw OWMODE_AFTER_DUEL, Func_376f5
 	dbw OWMODE_07, Func_37663
 	dbw OWMODE_02, Func_3766c

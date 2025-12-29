@@ -220,7 +220,7 @@ Func_3195::
 
 Func_31a1::
 	call Func_3332
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	ret
 
 Func_31a8::
@@ -390,8 +390,8 @@ ExecuteCoordScript::
 Func_328c::
 	push hl
 	farcall Func_d3e9
-	farcall Func_10dfb
-	cp $ff
+	farcall FindNPCAtLocation
+	cp NPC_NONE
 	jr z, .set_carry
 	push af
 	call Func_3195
@@ -409,8 +409,8 @@ Func_328c::
 Func_32aa::
 	push hl
 	farcall Func_d3e9
-	farcall Func_10dfb
-	cp $ff
+	farcall FindNPCAtLocation
+	cp NPC_NONE
 	jr z, .set_carry
 	pop hl
 	call ExecuteNPCScript
@@ -437,8 +437,8 @@ Func_32bf::
 	scf
 	ret
 
-Func_32d8::
-	call Func_32f6
+HandleOverworldPlayerInput::
+	call HandleOverworldPlayerMoveInput
 	jr nc, .done
 	ldh a, [hKeysPressed]
 	bit B_PAD_A, a
@@ -447,7 +447,7 @@ Func_32d8::
 	jr nz, .start_btn_pressed
 	jr .done
 .a_btn_pressed
-	ld a, OWMODE_08
+	ld a, OWMODE_INTERACT
 	ld [wOverworldMode], a
 	jr .done
 .start_btn_pressed
@@ -456,7 +456,7 @@ Func_32d8::
 .done
 	ret
 
-Func_32f6::
+HandleOverworldPlayerMoveInput::
 	ldh a, [hKeysHeld]
 	and PAD_CTRL_PAD
 	jr z, .set_carry

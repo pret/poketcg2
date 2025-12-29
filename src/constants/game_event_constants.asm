@@ -19,7 +19,7 @@ DEF NUM_GAME_EVENTS EQU const_value ; 6
 	const OWMODE_05         ; $05
 	const OWMODE_06         ; $06
 	const OWMODE_07         ; $07
-	const OWMODE_08         ; $08
+	const OWMODE_INTERACT   ; $08
 	const OWMODE_AFTER_DUEL ; $09
 	const OWMODE_0A         ; $0a
 	const OWMODE_0B         ; $0b

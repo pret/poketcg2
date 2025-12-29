@@ -160,7 +160,7 @@ OWModePostprocess::
 	dw Func_31a8 ; OWMODE_05
 	dw Func_c199 ; OWMODE_06
 	dw Func_c162 ; OWMODE_07
-	dw Func_c163 ; OWMODE_08
+	dw Func_c163 ; OWMODE_INTERACT
 	dw Func_c189 ; OWMODE_AFTER_DUEL
 	dw Func_3234 ; OWMODE_0A
 	dw Func_c18f ; OWMODE_0B
@@ -219,7 +219,7 @@ Func_c18f:
 Func_c199:
 	ld a, OWMODE_00
 	ld [wOverworldMode], a
-	call Func_32f6
+	call HandleOverworldPlayerMoveInput
 	ret
 
 Func_c1a2:
@@ -1274,7 +1274,7 @@ Func_d3e9::
 	pop de
 	ld a, b
 	rlca
-	ld hl, .data
+	ld hl, .offsets
 	add_hl_a
 	ld a, [hli]
 	add d
@@ -1284,11 +1284,11 @@ Func_d3e9::
 	ld e, a
 	ret
 
-.data
-	db  0, -1
-	db  1,  0
-	db  0,  1
-	db -1,  0
+.offsets
+	db  0, -1 ; NORTH
+	db  1,  0 ; EAST
+	db  0,  1 ; SOUTH
+	db -1,  0 ; WEST
 
 PCMenu:
 	call PauseSong

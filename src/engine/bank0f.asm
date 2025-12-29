@@ -790,7 +790,7 @@ MasonLaboratoryComputerRoom_OWInteractions:
 
 MasonLaboratoryComputerRoom_MapScripts:
 	dbw OWMODE_06, Func_3c689
-	dbw OWMODE_08, Func_3c6b3
+	dbw OWMODE_INTERACT, Func_3c6b3
 	dbw OWMODE_07, Func_3c690
 	dbw OWMODE_02, Func_3c697
 	db $ff
@@ -1008,7 +1008,7 @@ MasonLaboratoryTrainingRoom_NPCInteractions:
 
 MasonLaboratoryTrainingRoom_MapScripts:
 	dbw OWMODE_06, Func_3c817
-	dbw OWMODE_08, Func_3c825
+	dbw OWMODE_INTERACT, Func_3c825
 	dbw OWMODE_AFTER_DUEL, Func_3c82d
 	dbw OWMODE_07, Func_3c81e
 	db $ff
@@ -1650,7 +1650,7 @@ LightningClubLobby_OWInteractions:
 
 LightningClubLobby_MapScripts:
 	dbw OWMODE_06, Func_3cd2b
-	dbw OWMODE_08, Func_3cd3b
+	dbw OWMODE_INTERACT, Func_3cd3b
 	dbw OWMODE_07, Func_3cd32
 	dbw OWMODE_01, Func_3cd1b
 	db $ff
@@ -1957,7 +1957,7 @@ GrassClubLobby_OWInteractions:
 
 GrassClubLobby_MapScripts:
 	dbw OWMODE_06, Func_3cfa8
-	dbw OWMODE_08, Func_3cfb8
+	dbw OWMODE_INTERACT, Func_3cfb8
 	dbw OWMODE_07, Func_3cfaf
 	dbw OWMODE_AFTER_DUEL, Func_3cfc8
 	dbw OWMODE_01, Func_3cf98
@@ -2282,7 +2282,7 @@ TcgChallengeHallEntrance_NPCInteractions:
 
 TcgChallengeHallEntrance_MapScripts:
 	dbw OWMODE_06, Func_3d259
-	dbw OWMODE_08, Func_3d269
+	dbw OWMODE_INTERACT, Func_3d269
 	dbw OWMODE_07, Func_3d260
 	dbw OWMODE_01, Func_3d1f6
 	dbw OWMODE_04, Func_3d210
@@ -2454,7 +2454,7 @@ TcgChallengeHallLobby_OWInteractions:
 
 TcgChallengeHallLobby_MapScripts:
 	dbw OWMODE_06, Func_3d3a0
-	dbw OWMODE_08, Func_3d3b0
+	dbw OWMODE_INTERACT, Func_3d3b0
 	dbw OWMODE_07, Func_3d3a7
 	dbw OWMODE_01, Func_3d386
 	db $ff
@@ -2818,7 +2818,7 @@ PokemonDome_OWInteractions:
 
 PokemonDome_MapScripts:
 	dbw OWMODE_06, Func_3d6ba
-	dbw OWMODE_08, Func_3d740
+	dbw OWMODE_INTERACT, Func_3d740
 	dbw OWMODE_AFTER_DUEL, Func_3d750
 	dbw OWMODE_07, Func_3d6c1
 	dbw OWMODE_02, Func_3d6ca
@@ -4977,7 +4977,7 @@ IshiharasVillaMain_OWInteractions:
 
 IshiharasVillaMain_MapScripts:
 	dbw OWMODE_06, Func_3e72a
-	dbw OWMODE_08, Func_3e73a
+	dbw OWMODE_INTERACT, Func_3e73a
 	dbw OWMODE_AFTER_DUEL, Func_3e7bb
 	dbw OWMODE_07, Func_3e731
 	dbw OWMODE_0C, Func_3e74a
@@ -5303,7 +5303,7 @@ IshiharasVillaLibrary_OWInteractions:
 
 IshiharasVillaLibrary_MapScripts:
 	dbw OWMODE_06, Func_3e981
-	dbw OWMODE_08, Func_3e991
+	dbw OWMODE_INTERACT, Func_3e991
 	dbw OWMODE_07, Func_3e988
 	dbw OWMODE_0C, Func_3e9a1
 	dbw OWMODE_0D, Func_3e9cf
@@ -5833,7 +5833,7 @@ GameCenterEntrance_OWInteractions:
 
 GameCenterEntrance_MapScripts:
 	dbw OWMODE_06, Func_3ed92
-	dbw OWMODE_08, Func_3eda2
+	dbw OWMODE_INTERACT, Func_3eda2
 	dbw OWMODE_07, Func_3ed99
 	db $ff
 
@@ -6069,7 +6069,7 @@ GameCenterLobby_OWInteractions:
 
 GameCenterLobby_MapScripts:
 	dbw OWMODE_06, Func_3ef95
-	dbw OWMODE_08, Func_3efa5
+	dbw OWMODE_INTERACT, Func_3efa5
 	dbw OWMODE_AFTER_DUEL, Func_3efb5
 	dbw OWMODE_0B, Func_3efba
 	dbw OWMODE_07, Func_3ef9c
@@ -6228,7 +6228,7 @@ CardDungeonPawn_OWInteractions:
 
 CardDungeonPawn_MapScripts:
 	dbw OWMODE_06, Func_3f093
-	dbw OWMODE_08, Func_3f0a3
+	dbw OWMODE_INTERACT, Func_3f0a3
 	dbw OWMODE_AFTER_DUEL, Func_3f0d4
 	dbw OWMODE_07, Func_3f09a
 	dbw OWMODE_02, Func_3f0b3
@@ -6447,7 +6447,7 @@ CardDungeonKnight_OWInteractions:
 
 CardDungeonKnight_MapScripts:
 	dbw OWMODE_06, Func_3f239
-	dbw OWMODE_08, Func_3f249
+	dbw OWMODE_INTERACT, Func_3f249
 	dbw OWMODE_AFTER_DUEL, Func_3f27a
 	dbw OWMODE_07, Func_3f240
 	dbw OWMODE_02, Func_3f259
@@ -6688,7 +6688,7 @@ CardDungeonRook_OWInteractions:
 
 CardDungeonRook_MapScripts:
 	dbw OWMODE_06, Func_3f409
-	dbw OWMODE_08, Func_3f419
+	dbw OWMODE_INTERACT, Func_3f419
 	dbw OWMODE_AFTER_DUEL, Func_3f44a
 	dbw OWMODE_07, Func_3f410
 	dbw OWMODE_02, Func_3f429
@@ -6950,7 +6950,7 @@ WaterFortLobby_OWInteractions:
 
 WaterFortLobby_MapScripts:
 	dbw OWMODE_06, Func_3f650
-	dbw OWMODE_08, Func_3f660
+	dbw OWMODE_INTERACT, Func_3f660
 	dbw OWMODE_AFTER_DUEL, Func_3f670
 	dbw OWMODE_0B, Func_3f675
 	dbw OWMODE_07, Func_3f657
@@ -7196,7 +7196,7 @@ FightingFortMaze19_NPCInteractions:
 
 FightingFortMaze19_MapScripts:
 	dbw OWMODE_06, Func_3f7ff
-	dbw OWMODE_08, Func_3f80f
+	dbw OWMODE_INTERACT, Func_3f80f
 	dbw OWMODE_07, Func_3f806
 	db $ff
 
@@ -7304,7 +7304,7 @@ FightingFortBasement_NPCInteractions:
 
 FightingFortBasement_MapScripts:
 	dbw OWMODE_06, Func_3f8b6
-	dbw OWMODE_08, Func_3f904
+	dbw OWMODE_INTERACT, Func_3f904
 	dbw OWMODE_07, Func_3f8bd
 	dbw OWMODE_02, Func_3f8c6
 	db $ff

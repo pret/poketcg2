@@ -23,7 +23,7 @@ script_types = [
 	"OWMODE_05",
 	"OWMODE_06",
 	"OWMODE_07",
-	"OWMODE_08",
+	"OWMODE_INTERACT",
 	"OWMODE_AFTER_DUEL",
 	"OWMODE_0A",
 	"OWMODE_0B",

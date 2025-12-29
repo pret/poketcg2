@@ -2401,13 +2401,13 @@ CheckOWObjectPointerWithID:
 
 ; outputs NPC ID of OW object that is
 ; in the grid position de
-; if no object, then output $ff
-Func_10dfb::
+; if no object, then output NPC_NONE (-1)
+FindNPCAtLocation::
 	push bc
 	push de
 	push hl
-	ld a, $ff
-	ld [wd987], a
+	ld a, NPC_NONE
+	ld [wTempScriptNPC], a
 
 	call GetOWObjectsPointer
 	ld c, MAX_NUM_OW_OBJECTS
@@ -2436,7 +2436,7 @@ Func_10dfb::
 	cp c
 	jr nz, .next
 	ld a, h
-	ld [wd987], a
+	ld [wTempScriptNPC], a
 .next
 	pop hl
 	pop de
@@ -2446,7 +2446,7 @@ Func_10dfb::
 	dec c
 	jr nz, .loop
 
-	ld a, [wd987]
+	ld a, [wTempScriptNPC]
 	pop hl
 	pop de
 	pop bc
@@ -2505,7 +2505,7 @@ Func_10e3c::
 	cp $10
 	jr nc, .blocked
 .asm_10e7f
-	call Func_10dfb
+	call FindNPCAtLocation
 	inc a
 	jr nz, .blocked
 	sla d

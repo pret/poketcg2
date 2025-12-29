@@ -35,7 +35,7 @@ IshiharasHouse_OWInteractions:
 
 IshiharasHouse_MapScripts:
 	dbw OWMODE_06, Func_2c0c1
-	dbw OWMODE_08, Func_2c0f1
+	dbw OWMODE_INTERACT, Func_2c0f1
 	dbw OWMODE_07, Func_2c0c8
 	dbw OWMODE_02, Func_2c0d1
 	dbw OWMODE_0C, Func_2c101
@@ -600,7 +600,7 @@ LightningClub_NPCInteractions:
 
 LightningClub_MapScripts:
 	dbw OWMODE_06, Func_2c4fa
-	dbw OWMODE_08, Func_2c560
+	dbw OWMODE_INTERACT, Func_2c560
 	dbw OWMODE_AFTER_DUEL, Func_2c568
 	dbw OWMODE_07, Func_2c501
 	dbw OWMODE_01, Func_2c4db
@@ -1249,7 +1249,7 @@ PsychicClubEntrance_NPCInteractions:
 PsychicClubEntrance_MapScripts:
 	dbw OWMODE_00, Func_2c9ac
 	dbw OWMODE_06, Func_2c9d8
-	dbw OWMODE_08, Func_2ca14
+	dbw OWMODE_INTERACT, Func_2ca14
 	dbw OWMODE_AFTER_DUEL, Func_2ca1c
 	dbw OWMODE_07, Func_2c9df
 	dbw OWMODE_02, Func_2c9e8
@@ -1261,7 +1261,7 @@ PsychicClubEntrance_MapScripts:
 Func_2c9ac:
 	call Func_3332
 	call Func_2ca46
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	scf
 	ccf
 	ret
@@ -1508,7 +1508,7 @@ PsychicClubLobby_OWInteractions:
 
 PsychicClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2cbcf
-	dbw OWMODE_08, Func_2cbdf
+	dbw OWMODE_INTERACT, Func_2cbdf
 	dbw OWMODE_07, Func_2cbd6
 	dbw OWMODE_AFTER_DUEL, Func_2cbef
 	dbw OWMODE_0B, Func_2cbf5
@@ -1760,7 +1760,7 @@ PsychicClub_NPCInteractions:
 
 PsychicClub_MapScripts:
 	dbw OWMODE_06, Func_2cd92
-	dbw OWMODE_08, Func_2ce11
+	dbw OWMODE_INTERACT, Func_2ce11
 	dbw OWMODE_AFTER_DUEL, Func_2ce19
 	dbw OWMODE_07, Func_2cd99
 	dbw OWMODE_02, Func_2cda2
@@ -2662,7 +2662,7 @@ RockClubLobby_OWInteractions:
 
 RockClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2d49e
-	dbw OWMODE_08, Func_2d4ae
+	dbw OWMODE_INTERACT, Func_2d4ae
 	dbw OWMODE_07, Func_2d4a5
 	dbw OWMODE_AFTER_DUEL, Func_2d4be
 	dbw OWMODE_0B, Func_2d4c4
@@ -2914,7 +2914,7 @@ RockClub_NPCInteractions:
 
 RockClub_MapScripts:
 	dbw OWMODE_06, Func_2d663
-	dbw OWMODE_08, Func_2d6a6
+	dbw OWMODE_INTERACT, Func_2d6a6
 	dbw OWMODE_07, Func_2d66a
 	dbw OWMODE_02, Func_2d673
 	dbw OWMODE_AFTER_DUEL, Func_2d6ae
@@ -3488,7 +3488,7 @@ FightingClubLobby_OWInteractions:
 
 FightingClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2dade
-	dbw OWMODE_08, Func_2daee
+	dbw OWMODE_INTERACT, Func_2daee
 	dbw OWMODE_07, Func_2dae5
 	dbw OWMODE_AFTER_DUEL, Func_2dafe
 	dbw OWMODE_01, Func_2dace
@@ -3780,7 +3780,7 @@ FightingClub_NPCInteractions:
 
 FightingClub_MapScripts:
 	dbw OWMODE_06, Func_2dd0e
-	dbw OWMODE_08, Func_2dd3a
+	dbw OWMODE_INTERACT, Func_2dd3a
 	dbw OWMODE_07, Func_2dd31
 	dbw OWMODE_AFTER_DUEL, Func_2dd42
 	dbw OWMODE_02, Func_2dd15
@@ -4453,7 +4453,7 @@ GrassClub_NPCInteractions:
 
 GrassClub_MapScripts:
 	dbw OWMODE_06, Func_2e1d2
-	dbw OWMODE_08, Func_2e1fe
+	dbw OWMODE_INTERACT, Func_2e1fe
 	dbw OWMODE_AFTER_DUEL, Func_2e206
 	dbw OWMODE_02, Func_2e1d9
 	dbw OWMODE_07, Func_2e1f5
@@ -4912,7 +4912,7 @@ ScienceClubEntrance_NPCInteractions:
 
 ScienceClubEntrance_MapScripts:
 	dbw OWMODE_06, Func_2e538
-	dbw OWMODE_08, Func_2e574
+	dbw OWMODE_INTERACT, Func_2e574
 	dbw OWMODE_AFTER_DUEL, Func_2e57c
 	dbw OWMODE_07, Func_2e53f
 	dbw OWMODE_02, Func_2e548
@@ -5147,7 +5147,7 @@ ScienceClubLobby_OWInteractions:
 
 ScienceClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2e71e
-	dbw OWMODE_08, Func_2e72e
+	dbw OWMODE_INTERACT, Func_2e72e
 	dbw OWMODE_AFTER_DUEL, Func_2e73e
 	dbw OWMODE_07, Func_2e725
 	dbw OWMODE_0B, Func_2e752
@@ -5474,7 +5474,7 @@ ScienceClub_NPCInteractions:
 
 ScienceClub_MapScripts:
 	dbw OWMODE_06, Func_2e955
-	dbw OWMODE_08, Func_2e99f
+	dbw OWMODE_INTERACT, Func_2e99f
 	dbw OWMODE_AFTER_DUEL, Func_2e9a7
 	dbw OWMODE_02, Func_2e95c
 	dbw OWMODE_07, Func_2e996
@@ -6149,7 +6149,7 @@ WaterClubLobby_OWInteractions:
 
 WaterClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2ee9a
-	dbw OWMODE_08, Func_2eeaa
+	dbw OWMODE_INTERACT, Func_2eeaa
 	dbw OWMODE_AFTER_DUEL, Func_2eeba
 	dbw OWMODE_07, Func_2eea1
 	dbw OWMODE_0B, Func_2eece
@@ -6434,7 +6434,7 @@ WaterClub_OWInteractions:
 
 WaterClub_MapScripts:
 	dbw OWMODE_06, Func_2f095
-	dbw OWMODE_08, Func_2f0f7
+	dbw OWMODE_INTERACT, Func_2f0f7
 	dbw OWMODE_02, Func_2f0a5
 	dbw OWMODE_AFTER_DUEL, Func_2f107
 	dbw OWMODE_07, Func_2f09c
@@ -7251,7 +7251,7 @@ FireClubLobby_OWInteractions:
 
 FireClubLobby_MapScripts:
 	dbw OWMODE_06, Func_2f6c7
-	dbw OWMODE_08, Func_2f6d7
+	dbw OWMODE_INTERACT, Func_2f6d7
 	dbw OWMODE_07, Func_2f6ce
 	dbw OWMODE_AFTER_DUEL, Func_2f6e7
 	dbw OWMODE_0B, Func_2f6ed
@@ -7466,7 +7466,7 @@ FireClub_OWInteractions:
 
 FireClub_MapScripts:
 	dbw OWMODE_06, Func_2f85e
-	dbw OWMODE_08, Func_2f8c8
+	dbw OWMODE_INTERACT, Func_2f8c8
 	dbw OWMODE_AFTER_DUEL, Func_2f8d8
 	dbw OWMODE_02, Func_2f86e
 	dbw OWMODE_07, Func_2f865
@@ -8138,7 +8138,7 @@ PokemonDomeEntrance_OWInteractions:
 
 PokemonDomeEntrance_MapScripts:
 	dbw OWMODE_06, Func_2fd83
-	dbw OWMODE_08, Func_2fd93
+	dbw OWMODE_INTERACT, Func_2fd93
 	dbw OWMODE_07, Func_2fd8a
 	dbw OWMODE_01, Func_2fd73
 	db $ff

@@ -332,6 +332,8 @@ DEF NUM_PICS EQU const_value
 	const NPC_PURPLE_CASTLE_COIN                ; $e7
 	const NPC_STRONGHOLD_PLATFORM               ; $e8
 
+DEF NPC_NONE EQU -1
+
 ; NPCDuelistPointers use this ordering
 	const_def
 	const NPC_DUELIST_SAM           ; $00
