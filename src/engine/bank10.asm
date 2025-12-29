@@ -718,7 +718,7 @@ OverworldTcg_MapHeader:
 	db MUSIC_OVERWORLD
 
 OverworldTcg_MapScripts:
-	dbw OWMODE_01, Func_40474
+	dbw OWMODE_MUSIC_PRELOAD, Func_40474
 	dbw OWMODE_02, Func_4048a
 	dbw OWMODE_04, Func_4053b
 	dbw OWMODE_0F, Func_4053e
@@ -1352,7 +1352,7 @@ MasonLaboratoryMain_MapScripts:
 	dbw OWMODE_11, Func_40f14
 	dbw OWMODE_07, Func_40e8a
 	dbw OWMODE_02, Func_40e91
-	dbw OWMODE_01, Func_40e72
+	dbw OWMODE_MUSIC_PRELOAD, Func_40e72
 	db $ff
 
 Func_40e72:
@@ -2364,7 +2364,7 @@ TcgChallengeHall_MapScripts:
 	dbw OWMODE_INTERACT, Func_41622
 	dbw OWMODE_AFTER_DUEL, Func_4162a
 	dbw OWMODE_07, Func_415fa
-	dbw OWMODE_01, Func_415e6
+	dbw OWMODE_MUSIC_PRELOAD, Func_415e6
 	dbw OWMODE_02, Func_41603
 	dbw OWMODE_0B, Func_4163b
 	db $ff
@@ -4390,7 +4390,7 @@ GrChallengeHall_MapScripts:
 	dbw OWMODE_11, Func_426c9
 	dbw OWMODE_07, Func_42640
 	dbw OWMODE_02, Func_4266e
-	dbw OWMODE_01, Func_42649
+	dbw OWMODE_MUSIC_PRELOAD, Func_42649
 	dbw OWMODE_0B, Func_426f8
 	db $ff
 

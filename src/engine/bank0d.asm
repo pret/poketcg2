@@ -758,7 +758,7 @@ TcgAirportEntrance_MapScripts:
 	dbw OWMODE_06, Func_3460d
 	dbw OWMODE_INTERACT, Func_3461d
 	dbw OWMODE_07, Func_34614
-	dbw OWMODE_01, Func_345fd
+	dbw OWMODE_MUSIC_PRELOAD, Func_345fd
 	db $ff
 
 Func_345f1:
@@ -2424,7 +2424,7 @@ GrChallengeHallLobby_MapScripts:
 	dbw OWMODE_06, Func_35322
 	dbw OWMODE_INTERACT, Func_35332
 	dbw OWMODE_07, Func_35329
-	dbw OWMODE_01, Func_35308
+	dbw OWMODE_MUSIC_PRELOAD, Func_35308
 	db $ff
 
 Func_35308:
@@ -4261,7 +4261,7 @@ PsychicStrongholdEntrance_MapScripts:
 	dbw OWMODE_INTERACT, Func_36140
 	dbw OWMODE_07, Func_3610b
 	dbw OWMODE_02, Func_36114
-	dbw OWMODE_10, Func_360ef
+	dbw OWMODE_MUSIC_POSTLOAD, Func_360ef
 	db $ff
 
 Func_360ef:
@@ -4382,7 +4382,7 @@ PsychicStrongholdLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_3622e
 	dbw OWMODE_0B, Func_36234
 	dbw OWMODE_07, Func_36215
-	dbw OWMODE_10, Func_361f9
+	dbw OWMODE_MUSIC_POSTLOAD, Func_361f9
 	db $ff
 
 Func_361f9:

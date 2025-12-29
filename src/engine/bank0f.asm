@@ -1520,8 +1520,8 @@ LightningClubEntrance_MapScripts:
 	dbw OWMODE_06, Func_3cbf4
 	dbw OWMODE_02, Func_3cbfb
 	dbw OWMODE_0B, Func_3cc37
-	dbw OWMODE_01, Func_3cbd4
-	dbw OWMODE_10, Func_3cbe4
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cbd4
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3cbe4
 	db $ff
 
 Func_3cbd4:
@@ -1652,7 +1652,7 @@ LightningClubLobby_MapScripts:
 	dbw OWMODE_06, Func_3cd2b
 	dbw OWMODE_INTERACT, Func_3cd3b
 	dbw OWMODE_07, Func_3cd32
-	dbw OWMODE_01, Func_3cd1b
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cd1b
 	db $ff
 
 Func_3cd1b:
@@ -1960,7 +1960,7 @@ GrassClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_3cfb8
 	dbw OWMODE_07, Func_3cfaf
 	dbw OWMODE_AFTER_DUEL, Func_3cfc8
-	dbw OWMODE_01, Func_3cf98
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cf98
 	db $ff
 
 Func_3cf98:
@@ -2284,7 +2284,7 @@ TcgChallengeHallEntrance_MapScripts:
 	dbw OWMODE_06, Func_3d259
 	dbw OWMODE_INTERACT, Func_3d269
 	dbw OWMODE_07, Func_3d260
-	dbw OWMODE_01, Func_3d1f6
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d1f6
 	dbw OWMODE_04, Func_3d210
 	db $ff
 
@@ -2456,7 +2456,7 @@ TcgChallengeHallLobby_MapScripts:
 	dbw OWMODE_06, Func_3d3a0
 	dbw OWMODE_INTERACT, Func_3d3b0
 	dbw OWMODE_07, Func_3d3a7
-	dbw OWMODE_01, Func_3d386
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d386
 	db $ff
 
 Func_3d386:
@@ -2824,7 +2824,7 @@ PokemonDome_MapScripts:
 	dbw OWMODE_02, Func_3d6ca
 	dbw OWMODE_04, Func_3d719
 	dbw OWMODE_0F, Func_3d734
-	dbw OWMODE_01, Func_3d67b
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d67b
 	db $ff
 
 Func_3d67b:
@@ -4983,7 +4983,7 @@ IshiharasVillaMain_MapScripts:
 	dbw OWMODE_0C, Func_3e74a
 	dbw OWMODE_0D, Func_3e778
 	dbw OWMODE_0B, Func_3e787
-	dbw OWMODE_01, Func_3e704
+	dbw OWMODE_MUSIC_PRELOAD, Func_3e704
 	db $ff
 
 Func_3e704:
@@ -5308,7 +5308,7 @@ IshiharasVillaLibrary_MapScripts:
 	dbw OWMODE_0C, Func_3e9a1
 	dbw OWMODE_0D, Func_3e9cf
 	dbw OWMODE_0B, Func_3e9de
-	dbw OWMODE_01, Func_3e95b
+	dbw OWMODE_MUSIC_PRELOAD, Func_3e95b
 	db $ff
 
 Func_3e95b:
@@ -6073,7 +6073,7 @@ GameCenterLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_3efb5
 	dbw OWMODE_0B, Func_3efba
 	dbw OWMODE_07, Func_3ef9c
-	dbw OWMODE_10, Func_3ef80
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3ef80
 	db $ff
 
 Func_3ef80:
@@ -6954,7 +6954,7 @@ WaterFortLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_3f670
 	dbw OWMODE_0B, Func_3f675
 	dbw OWMODE_07, Func_3f657
-	dbw OWMODE_10, Func_3f63b
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3f63b
 	db $ff
 
 Func_3f63b:

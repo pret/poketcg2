@@ -16,7 +16,7 @@ from tcg2disasm import Disassembler
 
 script_types = [
 	"OWMODE_00",
-	"OWMODE_01",
+	"OWMODE_MUSIC_PRELOAD",
 	"OWMODE_02",
 	"OWMODE_03",
 	"OWMODE_04",
@@ -31,7 +31,7 @@ script_types = [
 	"OWMODE_0D",
 	"OWMODE_0E",
 	"OWMODE_0F",
-	"OWMODE_10",
+	"OWMODE_MUSIC_POSTLOAD",
 	"OWMODE_11",
 	"OWMODE_PAUSE_MENU"
 ]

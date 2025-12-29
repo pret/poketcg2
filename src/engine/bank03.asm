@@ -153,7 +153,7 @@ OWModePostprocess::
 
 .PointerTable
 	dw Func_31a1 ; OWMODE_00
-	dw Func_c162 ; OWMODE_01
+	dw Func_c162 ; OWMODE_MUSIC_PRELOAD
 	dw Func_c17d ; OWMODE_02
 	dw Func_c169 ; OWMODE_03
 	dw Func_c183 ; OWMODE_04
@@ -168,7 +168,7 @@ OWModePostprocess::
 	dw Func_c162 ; OWMODE_0D
 	dw Func_c162 ; OWMODE_0E
 	dw Func_c16f ; OWMODE_0F
-	dw Func_c175 ; OWMODE_10
+	dw Func_c175 ; OWMODE_MUSIC_POSTLOAD
 	dw Func_c1a2 ; OWMODE_11
 	dw PauseMenu ; OWMODE_PAUSE_MENU
 
@@ -1142,7 +1142,7 @@ OverworldLoop::
 	ld [wCurMapScriptsPointer + 0], a
 	ld a, [hl]
 	ld [wCurMapScriptsPointer + 1], a
-	ld a, OWMODE_01
+	ld a, OWMODE_MUSIC_PRELOAD
 	call ExecuteOWModeScript
 	farcall Func_102ef
 	xor a
@@ -1172,7 +1172,7 @@ OverworldLoop::
 	ld [wOverworldTransition], a
 	ld a, OWMODE_07
 	call ExecuteOWModeScript
-	ld a, OWMODE_10
+	ld a, OWMODE_MUSIC_POSTLOAD
 	call ExecuteOWModeScript
 	ld a, OWMODE_02
 	call ExecuteOWModeScript

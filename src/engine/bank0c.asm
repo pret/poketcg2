@@ -73,7 +73,7 @@ OverworldGr_MapHeader:
 	db MUSIC_GR_OVERWORLD
 
 OverworldGr_MapScripts:
-	dbw OWMODE_01, Func_30092
+	dbw OWMODE_MUSIC_PRELOAD, Func_30092
 	dbw OWMODE_02, Func_300a8
 	dbw OWMODE_04, Func_3018b
 	dbw OWMODE_0F, Func_30192
@@ -1237,7 +1237,7 @@ GrChallengeHallEntrance_MapScripts:
 	dbw OWMODE_06, Func_31426
 	dbw OWMODE_INTERACT, Func_31499
 	dbw OWMODE_07, Func_31490
-	dbw OWMODE_01, Func_3142d
+	dbw OWMODE_MUSIC_PRELOAD, Func_3142d
 	dbw OWMODE_04, Func_31447
 	db $ff
 
@@ -1389,7 +1389,7 @@ GrassFortEntrance_MapScripts:
 	dbw OWMODE_02, Func_3157e
 	dbw OWMODE_AFTER_DUEL, Func_315a7
 	dbw OWMODE_07, Func_31575
-	dbw OWMODE_10, Func_31559
+	dbw OWMODE_MUSIC_POSTLOAD, Func_31559
 	db $ff
 
 Func_31559:
@@ -1511,7 +1511,7 @@ GrassFortLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_31693
 	dbw OWMODE_0B, Func_31699
 	dbw OWMODE_07, Func_3167a
-	dbw OWMODE_10, Func_3165e
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3165e
 	db $ff
 
 Func_3165e:
@@ -3513,7 +3513,7 @@ FireFortEntrance_MapScripts:
 	dbw OWMODE_07, Func_325c3
 	dbw OWMODE_02, Func_325cc
 	dbw OWMODE_AFTER_DUEL, Func_3262c
-	dbw OWMODE_10, Func_3259f
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3259f
 	db $ff
 
 Func_3259f:
@@ -3691,7 +3691,7 @@ FireFortLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_32747
 	dbw OWMODE_0B, Func_3274d
 	dbw OWMODE_07, Func_3272e
-	dbw OWMODE_10, Func_32712
+	dbw OWMODE_MUSIC_POSTLOAD, Func_32712
 	db $ff
 
 Func_32712:
@@ -4882,7 +4882,7 @@ WaterFortEntrance_MapScripts:
 	dbw OWMODE_07, Func_32fed
 	dbw OWMODE_02, Func_32ff6
 	dbw OWMODE_AFTER_DUEL, Func_33056
-	dbw OWMODE_10, Func_32fc9
+	dbw OWMODE_MUSIC_POSTLOAD, Func_32fc9
 	db $ff
 
 Func_32fc9:
@@ -6548,7 +6548,7 @@ ColorlessAltarEntrance_StepEvents:
 ColorlessAltarEntrance_MapScripts:
 	dbw OWMODE_06, Func_33de1
 	dbw OWMODE_02, Func_33de8
-	dbw OWMODE_10, Func_33dcc
+	dbw OWMODE_MUSIC_POSTLOAD, Func_33dcc
 	db $ff
 
 Func_33dcc:

@@ -41,7 +41,7 @@ IshiharasHouse_MapScripts:
 	dbw OWMODE_0C, Func_2c101
 	dbw OWMODE_0D, Func_2c12f
 	dbw OWMODE_0B, Func_2c13e
-	dbw OWMODE_01, Func_2c0b4
+	dbw OWMODE_MUSIC_PRELOAD, Func_2c0b4
 	db $ff
 
 Func_2c0b4:
@@ -603,9 +603,9 @@ LightningClub_MapScripts:
 	dbw OWMODE_INTERACT, Func_2c560
 	dbw OWMODE_AFTER_DUEL, Func_2c568
 	dbw OWMODE_07, Func_2c501
-	dbw OWMODE_01, Func_2c4db
+	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
 	dbw OWMODE_02, Func_2c50a
-	dbw OWMODE_01, Func_2c4db
+	dbw OWMODE_MUSIC_PRELOAD, Func_2c4db
 	db $ff
 
 Func_2c4db:
@@ -1254,8 +1254,8 @@ PsychicClubEntrance_MapScripts:
 	dbw OWMODE_07, Func_2c9df
 	dbw OWMODE_02, Func_2c9e8
 	dbw OWMODE_0B, Func_2ca22
-	dbw OWMODE_01, Func_2c9b8
-	dbw OWMODE_10, Func_2c9c8
+	dbw OWMODE_MUSIC_PRELOAD, Func_2c9b8
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2c9c8
 	db $ff
 
 Func_2c9ac:
@@ -1512,8 +1512,8 @@ PsychicClubLobby_MapScripts:
 	dbw OWMODE_07, Func_2cbd6
 	dbw OWMODE_AFTER_DUEL, Func_2cbef
 	dbw OWMODE_0B, Func_2cbf5
-	dbw OWMODE_01, Func_2cba8
-	dbw OWMODE_10, Func_2cbba
+	dbw OWMODE_MUSIC_PRELOAD, Func_2cba8
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2cbba
 	db $ff
 
 Func_2cba8:
@@ -1764,7 +1764,7 @@ PsychicClub_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2ce19
 	dbw OWMODE_07, Func_2cd99
 	dbw OWMODE_02, Func_2cda2
-	dbw OWMODE_01, Func_2cd82
+	dbw OWMODE_MUSIC_PRELOAD, Func_2cd82
 	db $ff
 
 Func_2cd82:
@@ -2545,8 +2545,8 @@ RockClubEntrance_MapScripts:
 	dbw OWMODE_06, Func_2d376
 	dbw OWMODE_02, Func_2d37d
 	dbw OWMODE_0B, Func_2d399
-	dbw OWMODE_01, Func_2d356
-	dbw OWMODE_10, Func_2d366
+	dbw OWMODE_MUSIC_PRELOAD, Func_2d356
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2d366
 	db $ff
 
 Func_2d356:
@@ -2666,8 +2666,8 @@ RockClubLobby_MapScripts:
 	dbw OWMODE_07, Func_2d4a5
 	dbw OWMODE_AFTER_DUEL, Func_2d4be
 	dbw OWMODE_0B, Func_2d4c4
-	dbw OWMODE_01, Func_2d472
-	dbw OWMODE_10, Func_2d489
+	dbw OWMODE_MUSIC_PRELOAD, Func_2d472
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2d489
 	db $ff
 
 Func_2d472:
@@ -2918,7 +2918,7 @@ RockClub_MapScripts:
 	dbw OWMODE_07, Func_2d66a
 	dbw OWMODE_02, Func_2d673
 	dbw OWMODE_AFTER_DUEL, Func_2d6ae
-	dbw OWMODE_01, Func_2d653
+	dbw OWMODE_MUSIC_PRELOAD, Func_2d653
 	db $ff
 
 Func_2d653:
@@ -3332,8 +3332,8 @@ FightingClubEntrance_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2d9d2
 	dbw OWMODE_02, Func_2d9a6
 	dbw OWMODE_0B, Func_2d9d8
-	dbw OWMODE_01, Func_2d97f
-	dbw OWMODE_10, Func_2d98f
+	dbw OWMODE_MUSIC_PRELOAD, Func_2d97f
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2d98f
 	db $ff
 
 Func_2d97f:
@@ -3491,7 +3491,7 @@ FightingClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2daee
 	dbw OWMODE_07, Func_2dae5
 	dbw OWMODE_AFTER_DUEL, Func_2dafe
-	dbw OWMODE_01, Func_2dace
+	dbw OWMODE_MUSIC_PRELOAD, Func_2dace
 	db $ff
 
 Func_2dace:
@@ -3784,7 +3784,7 @@ FightingClub_MapScripts:
 	dbw OWMODE_07, Func_2dd31
 	dbw OWMODE_AFTER_DUEL, Func_2dd42
 	dbw OWMODE_02, Func_2dd15
-	dbw OWMODE_01, Func_2dcfe
+	dbw OWMODE_MUSIC_PRELOAD, Func_2dcfe
 	db $ff
 
 Func_2dcfe:
@@ -4309,8 +4309,8 @@ GrassClubEntrance_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2e10f
 	dbw OWMODE_02, Func_2e0e3
 	dbw OWMODE_0B, Func_2e115
-	dbw OWMODE_01, Func_2e0bc
-	dbw OWMODE_10, Func_2e0cc
+	dbw OWMODE_MUSIC_PRELOAD, Func_2e0bc
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2e0cc
 	db $ff
 
 Func_2e0bc:
@@ -4457,7 +4457,7 @@ GrassClub_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2e206
 	dbw OWMODE_02, Func_2e1d9
 	dbw OWMODE_07, Func_2e1f5
-	dbw OWMODE_01, Func_2e1c2
+	dbw OWMODE_MUSIC_PRELOAD, Func_2e1c2
 	db $ff
 
 	Func_2e1c2:
@@ -4917,8 +4917,8 @@ ScienceClubEntrance_MapScripts:
 	dbw OWMODE_07, Func_2e53f
 	dbw OWMODE_02, Func_2e548
 	dbw OWMODE_0B, Func_2e582
-	dbw OWMODE_01, Func_2e518
-	dbw OWMODE_10, Func_2e528
+	dbw OWMODE_MUSIC_PRELOAD, Func_2e518
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2e528
 	db $ff
 
 Func_2e518:
@@ -5151,8 +5151,8 @@ ScienceClubLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2e73e
 	dbw OWMODE_07, Func_2e725
 	dbw OWMODE_0B, Func_2e752
-	dbw OWMODE_01, Func_2e6f7
-	dbw OWMODE_10, Func_2e709
+	dbw OWMODE_MUSIC_PRELOAD, Func_2e6f7
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2e709
 	db $ff
 
 Func_2e6f7:
@@ -5478,7 +5478,7 @@ ScienceClub_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2e9a7
 	dbw OWMODE_02, Func_2e95c
 	dbw OWMODE_07, Func_2e996
-	dbw OWMODE_01, Func_2e945
+	dbw OWMODE_MUSIC_PRELOAD, Func_2e945
 	db $ff
 
 Func_2e945:
@@ -5996,8 +5996,8 @@ WaterClubEntrance_MapScripts:
 	dbw OWMODE_02, Func_2ed3e
 	dbw OWMODE_04, Func_2ed75
 	dbw OWMODE_0B, Func_2ed8c
-	dbw OWMODE_01, Func_2ed17
-	dbw OWMODE_10, Func_2ed27
+	dbw OWMODE_MUSIC_PRELOAD, Func_2ed17
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2ed27
 	db $ff
 
 Func_2ed17:
@@ -6153,8 +6153,8 @@ WaterClubLobby_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2eeba
 	dbw OWMODE_07, Func_2eea1
 	dbw OWMODE_0B, Func_2eece
-	dbw OWMODE_01, Func_2ee73
-	dbw OWMODE_10, Func_2ee85
+	dbw OWMODE_MUSIC_PRELOAD, Func_2ee73
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2ee85
 	db $ff
 
 Func_2ee73:
@@ -6438,7 +6438,7 @@ WaterClub_MapScripts:
 	dbw OWMODE_02, Func_2f0a5
 	dbw OWMODE_AFTER_DUEL, Func_2f107
 	dbw OWMODE_07, Func_2f09c
-	dbw OWMODE_01, Func_2f085
+	dbw OWMODE_MUSIC_PRELOAD, Func_2f085
 	db $ff
 
 Func_2f085:
@@ -7093,8 +7093,8 @@ FireClubEntrance_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2f5a8
 	dbw OWMODE_02, Func_2f575
 	dbw OWMODE_0B, Func_2f5ae
-	dbw OWMODE_01, Func_2f54e
-	dbw OWMODE_10, Func_2f55e
+	dbw OWMODE_MUSIC_PRELOAD, Func_2f54e
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2f55e
 	db $ff
 
 Func_2f54e:
@@ -7255,8 +7255,8 @@ FireClubLobby_MapScripts:
 	dbw OWMODE_07, Func_2f6ce
 	dbw OWMODE_AFTER_DUEL, Func_2f6e7
 	dbw OWMODE_0B, Func_2f6ed
-	dbw OWMODE_01, Func_2f6a0
-	dbw OWMODE_10, Func_2f6b2
+	dbw OWMODE_MUSIC_PRELOAD, Func_2f6a0
+	dbw OWMODE_MUSIC_POSTLOAD, Func_2f6b2
 	db $ff
 
 Func_2f6a0:
@@ -7470,7 +7470,7 @@ FireClub_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2f8d8
 	dbw OWMODE_02, Func_2f86e
 	dbw OWMODE_07, Func_2f865
-	dbw OWMODE_01, Func_2f84e
+	dbw OWMODE_MUSIC_PRELOAD, Func_2f84e
 	db $ff
 
 Func_2f84e:
@@ -8140,7 +8140,7 @@ PokemonDomeEntrance_MapScripts:
 	dbw OWMODE_06, Func_2fd83
 	dbw OWMODE_INTERACT, Func_2fd93
 	dbw OWMODE_07, Func_2fd8a
-	dbw OWMODE_01, Func_2fd73
+	dbw OWMODE_MUSIC_PRELOAD, Func_2fd73
 	db $ff
 
 Func_2fd73:
