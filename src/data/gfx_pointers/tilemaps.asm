@@ -65,20 +65,20 @@ Tilemaps:
 	gfx_ptr Tilemap03F ; TILEMAP_03F
 	gfx_ptr Tilemap040 ; TILEMAP_040
 	gfx_ptr Tilemap041 ; TILEMAP_041
-	gfx_ptr Tilemap042 ; TILEMAP_042
-	gfx_ptr Tilemap043 ; TILEMAP_043
-	gfx_ptr Tilemap044 ; TILEMAP_044
-	gfx_ptr Tilemap045 ; TILEMAP_045
-	gfx_ptr Tilemap046 ; TILEMAP_046
-	gfx_ptr Tilemap047 ; TILEMAP_047
-	gfx_ptr Tilemap048 ; TILEMAP_048
-	gfx_ptr Tilemap049 ; TILEMAP_049
-	gfx_ptr Tilemap04A ; TILEMAP_04A
-	gfx_ptr Tilemap04B ; TILEMAP_04B
-	gfx_ptr Tilemap04C ; TILEMAP_04C
-	gfx_ptr Tilemap04D ; TILEMAP_04D
-	gfx_ptr Tilemap04E ; TILEMAP_04E
-	gfx_ptr Tilemap04F ; TILEMAP_04F
+	gfx_ptr Tilemap042 ; TILEMAP_CARD_DUNGEON_PAWN
+	gfx_ptr Tilemap043 ; TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
+	gfx_ptr Tilemap044 ; TILEMAP_CARD_DUNGEON_PAWN_BACK_DOORS_OPEN
+	gfx_ptr Tilemap045 ; TILEMAP_CARD_DUNGEON_KNIGHT
+	gfx_ptr Tilemap046 ; TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
+	gfx_ptr Tilemap047 ; TILEMAP_CARD_DUNGEON_KNIGHT_BACK_DOORS_OPEN
+	gfx_ptr Tilemap048 ; TILEMAP_CARD_DUNGEON_BISHOP
+	gfx_ptr Tilemap049 ; TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
+	gfx_ptr Tilemap04A ; TILEMAP_CARD_DUNGEON_BISHOP_BACK_DOORS_OPEN
+	gfx_ptr Tilemap04B ; TILEMAP_CARD_DUNGEON_ROOK
+	gfx_ptr Tilemap04C ; TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
+	gfx_ptr Tilemap04D ; TILEMAP_CARD_DUNGEON_ROOK_BACK_DOORS_OPEN
+	gfx_ptr Tilemap04E ; TILEMAP_CARD_DUNGEON_QUEEN
+	gfx_ptr Tilemap04F ; TILEMAP_CARD_DUNGEON_QUEEN_FRONT_DOORS_SHUT
 	gfx_ptr Tilemap050 ; TILEMAP_050
 	gfx_ptr Tilemap051 ; TILEMAP_051
 	gfx_ptr Tilemap052 ; TILEMAP_052

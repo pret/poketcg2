@@ -26,7 +26,7 @@ ENDM
 ; \5 = y coordinate to load player in dest map
 ; \6 = direction player faces when loaded in dest map
 MACRO map_exit ; 9 bytes
-	_ow_coordinate_function \1, \2, \3, \4, \5, \6, Func_d3c4
+	_ow_coordinate_function \1, \2, \3, \4, \5, \6, SetWarpData
 ENDM
 
 ; \1 = NPC_* object id
@@ -46,7 +46,7 @@ MACRO npc ; 6 bytes
 	ENDC
 ENDM
 
-; \1 = NPC_* object id
+; \1 = key (usually NPC_* object id)
 ; \2-\4 = bank, address of NPC function
 MACRO npc_script ; 4 bytes
 	db \1

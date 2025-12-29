@@ -9,9 +9,9 @@ Func_30005:
 	push af
 .asm_30007:
 	ld a, MAP_FIGHTING_FORT_BASEMENT
-	lb de, 10, 01
+	lb de, 10, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld a, $1e
 	call WaitAFrames
 	ld a, EVENT_PLAYER_GENDER
@@ -73,10 +73,10 @@ OverworldGr_MapHeader:
 	db MUSIC_GR_OVERWORLD
 
 OverworldGr_MapScripts:
-	dbw $01, Func_30092
-	dbw $02, Func_300a8
-	dbw $04, Func_3018b
-	dbw $0f, Func_30192
+	dbw OWMODE_MUSIC_PRELOAD, Func_30092
+	dbw OWMODE_02, Func_300a8
+	dbw OWMODE_04, Func_3018b
+	dbw OWMODE_0F, Func_30192
 	db $ff ; end
 
 Func_30092:
@@ -143,8 +143,8 @@ Func_300a8:
 	call PlacePlayerInGRIslandLocation
 	ld a, [wCurOWLocation]
 	call Func_30202
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_301c0)
 	ld [wd592], a
 	ld hl, Func_301c0
@@ -157,8 +157,8 @@ Func_300a8:
 
 .asm_3012c
 	farcall Func_1d51e
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(DoGRBlimpMovement_GRIsland)
 	ld [wd592], a
 	ld hl, DoGRBlimpMovement_GRIsland
@@ -573,7 +573,7 @@ Func_303c7:
 	ld e, [hl] ; y
 	inc hl
 	ld b, [hl] ; direction
-	farcall Func_d3c4
+	farcall SetWarpData
 .done
 	ret
 
@@ -597,13 +597,13 @@ Func_303c7:
 	ld a, MAP_FIGHTING_FORT_ENTRANCE
 	lb de, 4, 11
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	jr .done
 .from_north
 	ld a, MAP_FIGHTING_FORT
 	lb de, 7, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	jr .done
 
 .data
@@ -692,7 +692,7 @@ Func_30452:
 	farcall Func_d56b
 .loop_wait_camera
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 2, [hl]
 	jr nz, .asm_304ed
 	ldh a, [hKeysPressed]
@@ -708,7 +708,7 @@ Func_30452:
 	pop hl
 	jr .loop_commands
 .asm_304f6
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .loop_wait_camera
 	farcall CheckPalFading
@@ -718,7 +718,7 @@ Func_30452:
 
 .loop_wait_movement
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 2, [hl]
 	jr nz, .move_to_target_position
 	ldh a, [hKeysPressed]
@@ -734,7 +734,7 @@ Func_30452:
 	pop hl
 	jp .loop_commands
 .asm_3052a
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .loop_wait_movement
 	farcall CheckPalFading
@@ -798,12 +798,12 @@ DoGRBlimpMovement_GRIsland:
 	ld a, MAP_GR_AIRPORT
 	lb de, 0, 0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, .movement_2
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .start_movement
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 3, [hl]
 	ld hl, .movement_1
 	jr .start_movement
@@ -811,7 +811,7 @@ DoGRBlimpMovement_GRIsland:
 	ld a, MAP_OVERHEAD_ISLANDS
 	lb de, 0, 0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, .movement_3
 
 .start_movement
@@ -838,7 +838,7 @@ DoGRBlimpMovement_GRIsland:
 .loop_wait
 	push bc
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 3, [hl]
 	jr nz, .skip_fade_out
 	bit 2, [hl]
@@ -857,7 +857,7 @@ DoGRBlimpMovement_GRIsland:
 	pop hl
 	jr .start_movement
 .still_moving
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .loop_movement
 	farcall CheckPalFading
@@ -926,19 +926,19 @@ CardDungeonQueen_NPCs:
 	db $ff
 
 CardDungeonQueen_NPCInteractions:
-	npc_script NPC_QUEEN, Func_311d5
+	npc_script NPC_QUEEN, Script_Queen
 	db $ff
 
 CardDungeonQueen_MapScripts:
-	dbw $08, Func_311b1
-	dbw $09, Func_311d0
-	dbw $07, Func_311a8
-	dbw $02, Func_311b9
+	dbw OWMODE_INTERACT, Func_311b1
+	dbw OWMODE_AFTER_DUEL, Func_311d0
+	dbw OWMODE_NPC_POSITION, Func_311a8
+	dbw OWMODE_02, Func_311b9
 	db $ff
 
 Func_311a8:
 	ld hl, CardDungeonQueen_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -950,8 +950,8 @@ Func_311b1:
 	ret
 
 Func_311b9:
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_312d2)
 	ld [wd592], a
 	ld hl, Func_312d2
@@ -963,11 +963,11 @@ Func_311b9:
 	ret
 
 Func_311d0:
-	call Func_31285
+	call Script_QueenAfterDuel
 	scf
 	ret
 
-Func_311d5:
+Script_Queen:
 	ld a, NPC_QUEEN
 	ld [wScriptNPC], a
 	ldtx hl, DialogQueenText
@@ -977,50 +977,52 @@ Func_311d5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	game_center
 	check_event EVENT_TALKED_TO_QUEEN
-	script_jump_if_b0z .ows_311f8
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_QUEEN
 	print_npc_text QueenWantsToDuelInitialText
-	script_jump .ows_311fb
-.ows_311f8
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text QueenWantsToDuelRepeatText
-.ows_311fb
+.duel_prompt
 	ask_question QueenDuelPromptText, TRUE
-	script_jump_if_b0z .ows_31268
-.ows_31202
+	script_jump_if_b0z .quit_prompt
+.bet_start
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $09
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3121e
-	cp $01
-	jr z, .asm_3121a
-	jr nc, .asm_3121e
-	ld a, $32
-	jr .asm_31226
-.asm_3121a
-	ld a, $64
-	jr .asm_31226
-.asm_3121e
+	ld a, POPUPMENU_CARD_DUNGEON_QUEEN
+	ld b, 0
+	farcall HandlePopupMenu
+; menu: bet 50, bet 100, cancel
+	jr c, .cancel
+	cp 1
+	jr z, .bet_100
+	jr nc, .cancel
+; bet 50
+	ld a, CHIPS_BET_DUNGEON_50
+	jr .bet_check
+.bet_100
+	ld a, CHIPS_BET_DUNGEON_100
+	jr .bet_check
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_31268
-.asm_31226
-	ld h, $00
+	script_jump .quit_prompt
+.bet_check
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	cp16bc_long hl
-	jr nc, .asm_31248
+	jr nc, .bet
 	ld a, $01
 	start_script
 	print_npc_text QueenNotEnoughChipsText
-	script_jump .ows_31202
-.asm_31248
+	script_jump .bet_start
+.bet
 	ld c, l
 	ld b, h
 	farcall DecreaseChipsSmoothly
@@ -1028,45 +1030,45 @@ Func_311d5:
 	start_script
 	print_npc_text QueenDuelStart1Text
 	script_command_71
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_312ea
-	script_command_01
+	start_dialog
 	print_npc_text QueenDuelStart2Text
-	script_command_02
+	end_dialog
 	start_duel POWERFUL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
-.ows_31268
+.quit_prompt
 	print_npc_text QueenDeclinedDuelText
 	ask_question QueenQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_31278
+	script_jump_if_b0nz .quit
 	print_npc_text QueenResumeDuelText
-	script_jump .ows_311fb
-.ows_31278
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text QueenPlayerQuitText
 	script_command_71
-	script_command_02
+	end_dialog
 	end_script
 
 Func_31281:
-	jp Func_312c6
+	jp CardDungeonQueen_SetWarp
 	ret
 
-Func_31285:
+Script_QueenAfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_312bb
-	set_var VAR_3A, $05
+	script_jump_if_b0nz .player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_QUEEN
 	print_npc_text QueenPlayerWon1Text
 	game_center
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -1078,20 +1080,20 @@ Func_31285:
 	start_script
 	print_npc_text QueenPlayerWon2Text
 	script_command_71
-	script_jump .ows_312c1
-.ows_312bb
-	set_var VAR_3A, $06
+	script_jump .done
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text QueenPlayerLostText
-.ows_312c1
-	script_command_02
+.done
+	end_dialog
 	end_script
-	jp Func_312c6
+	jp CardDungeonQueen_SetWarp
 
-Func_312c6:
+CardDungeonQueen_SetWarp:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_312d2:
@@ -1100,10 +1102,10 @@ Func_312d2:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_04F, $04, $09
+	load_tilemap TILEMAP_CARD_DUNGEON_QUEEN_FRONT_DOORS_SHUT, 4, 9
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 
 Script_312ea:
@@ -1162,14 +1164,14 @@ SealedFortEntrance_OWInteractions:
 	db $ff
 
 SealedFortEntrance_MapScripts:
-	dbw $06, Func_31386
-	dbw $08, Func_3138d
-	dbw $02, Func_313a8
+	dbw OWMODE_STEP_EVENT, Func_31386
+	dbw OWMODE_INTERACT, Func_3138d
+	dbw OWMODE_02, Func_313a8
 	db $ff
 
 Func_31386:
 	ld hl, SealedFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3138d:
@@ -1181,7 +1183,7 @@ Func_3138d:
 	jr nz, .asm_313a6
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFortEntrance_OWInteractions
-	call Func_3254
+	call ExecuteCoordScript
 .asm_313a6
 	scf
 	ret
@@ -1203,9 +1205,9 @@ Func_313bc:
 	ret nz
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text1087
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1232,16 +1234,16 @@ GrChallengeHallEntrance_NPCInteractions:
 	db $ff
 
 GrChallengeHallEntrance_MapScripts:
-	dbw $06, Func_31426
-	dbw $08, Func_31499
-	dbw $07, Func_31490
-	dbw $01, Func_3142d
-	dbw $04, Func_31447
+	dbw OWMODE_STEP_EVENT, Func_31426
+	dbw OWMODE_INTERACT, Func_31499
+	dbw OWMODE_NPC_POSITION, Func_31490
+	dbw OWMODE_MUSIC_PRELOAD, Func_3142d
+	dbw OWMODE_04, Func_31447
 	db $ff
 
 Func_31426:
 	ld hl, GrChallengeHallEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3142d:
@@ -1301,7 +1303,7 @@ Func_31447:
 
 Func_31490:
 	ld hl, GrChallengeHallEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1322,7 +1324,7 @@ Func_314a1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_33
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_314f8
@@ -1355,7 +1357,7 @@ Func_314a1:
 .ows_314f8
 	print_npc_text Text0e31
 .ows_314fb
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1382,12 +1384,12 @@ GrassFortEntrance_NPCInteractions:
 	db $ff
 
 GrassFortEntrance_MapScripts:
-	dbw $06, Func_3156e
-	dbw $08, Func_3159f
-	dbw $02, Func_3157e
-	dbw $09, Func_315a7
-	dbw $07, Func_31575
-	dbw $10, Func_31559
+	dbw OWMODE_STEP_EVENT, Func_3156e
+	dbw OWMODE_INTERACT, Func_3159f
+	dbw OWMODE_02, Func_3157e
+	dbw OWMODE_AFTER_DUEL, Func_315a7
+	dbw OWMODE_NPC_POSITION, Func_31575
+	dbw OWMODE_MUSIC_POSTLOAD, Func_31559
 	db $ff
 
 Func_31559:
@@ -1406,12 +1408,12 @@ Func_31559:
 
 Func_3156e:
 	ld hl, GrassFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31575:
 	ld hl, GrassFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1421,8 +1423,8 @@ Func_3157e:
 	farcall GetVarValue
 	cp $05
 	jr nc, .asm_3159d
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_342ef)
 	ld [wd592], a
 	ld hl, Func_342ef
@@ -1455,7 +1457,7 @@ Func_315ad:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GOLBAT_COIN
 	script_jump_if_b0z .ows_315ce
 	script_call .ows_315d4
@@ -1463,7 +1465,7 @@ Func_315ad:
 .ows_315ce
 	print_npc_text Text0d8c
 .ows_315d1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_315d4
@@ -1504,12 +1506,12 @@ GrassFortLobby_OWInteractions:
 	db $ff
 
 GrassFortLobby_MapScripts:
-	dbw $06, Func_31673
-	dbw $08, Func_31683
-	dbw $09, Func_31693
-	dbw $0b, Func_31699
-	dbw $07, Func_3167a
-	dbw $10, Func_3165e
+	dbw OWMODE_STEP_EVENT, Func_31673
+	dbw OWMODE_INTERACT, Func_31683
+	dbw OWMODE_AFTER_DUEL, Func_31693
+	dbw OWMODE_0B, Func_31699
+	dbw OWMODE_NPC_POSITION, Func_3167a
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3165e
 	db $ff
 
 Func_3165e:
@@ -1528,12 +1530,12 @@ Func_3165e:
 
 Func_31673:
 	ld hl, GrassFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3167a:
 	ld hl, GrassFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1577,7 +1579,7 @@ Func_316b5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_GRASS_FORT
 	script_jump_if_b0z .ows_31715
 	check_event EVENT_TALKED_TO_TRADE_NPC_GRASS_FORT
@@ -1613,7 +1615,7 @@ Func_316b5:
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	print_variable_npc_text Text0dce, Text0dcf
 .ows_3171c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1627,7 +1629,7 @@ Func_3171f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3173f
 	print_npc_text Text0dd0
@@ -1635,7 +1637,7 @@ Func_3171f:
 .ows_3173f
 	print_npc_text Text0dd1
 .ows_31742
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1649,7 +1651,7 @@ Func_31745:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SEALED_FORT_DOOR_STATE
 	script_jump_if_b0z .ows_31770
 	check_event EVENT_FREED_RICK
@@ -1662,7 +1664,7 @@ Func_31745:
 .ows_31770
 	print_npc_text Text0dd4
 .ows_31773
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1704,21 +1706,21 @@ GrassFortMidori_OWInteractions:
 	db $ff
 
 GrassFortMidori_MapScripts:
-	dbw $06, Func_317db
-	dbw $08, Func_31815
-	dbw $09, Func_31825
-	dbw $02, Func_317eb
-	dbw $07, Func_317e2
+	dbw OWMODE_STEP_EVENT, Func_317db
+	dbw OWMODE_INTERACT, Func_31815
+	dbw OWMODE_AFTER_DUEL, Func_31825
+	dbw OWMODE_02, Func_317eb
+	dbw OWMODE_NPC_POSITION, Func_317e2
 	db $ff
 
 Func_317db:
 	ld hl, GrassFortMidori_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_317e2:
 	ld hl, GrassFortMidori_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1757,7 +1759,7 @@ Func_31815:
 Func_31825:
 	ld hl, GrassFortMidori_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -1778,7 +1780,7 @@ Func_31835:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_RICK
 	script_jump_if_b0z .ows_3185e
 	set_event EVENT_TALKED_TO_RICK
@@ -1787,7 +1789,7 @@ Func_31835:
 .ows_3185e
 	print_npc_text Text0d8f
 .ows_31861
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1812,24 +1814,24 @@ Func_31871:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_RICK
 	script_jump_if_b0z .ows_318c9
 	check_event EVENT_TALKED_TO_MIDORI
 	script_jump_if_b0z .ows_318ac
 	set_event EVENT_TALKED_TO_MIDORI
 	print_npc_text Text0d90
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_active_npc_direction
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0d91
-	script_command_02
+	end_dialog
 	do_frames 30
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0d92
 	script_jump .ows_318af
 .ows_318ac
@@ -1839,14 +1841,14 @@ Func_31871:
 	script_jump_if_b0z .ows_318c1
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	print_npc_text Text0d95
-	script_command_02
+	end_dialog
 	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318c1
 	check_event EVENT_MIDORIS_ROOM_CAGE_STATE
 	print_npc_text Text0d96
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_318c9
@@ -1854,20 +1856,20 @@ Func_31871:
 	ask_question Text0d94, TRUE
 	script_jump_if_b0z .ows_318dc
 	print_npc_text Text0d98
-	script_command_02
+	end_dialog
 	start_duel BUG_COLLECTING_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_318dc
 	print_npc_text Text0d99
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_318e2:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_FREED_RICK
 	script_jump_if_b0z .ows_31905
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -1879,7 +1881,7 @@ Func_318e2:
 	script_jump .ows_3191c
 .ows_318ff
 	print_npc_text Text0d9c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31905
@@ -1892,7 +1894,7 @@ Func_318e2:
 .ows_31916
 	print_npc_text Text0d9f
 .ows_31919
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3191c
@@ -1900,7 +1902,7 @@ Func_318e2:
 	reset_event EVENT_TALKED_TO_RICK
 	reset_event EVENT_TALKED_TO_JOSEPH
 	print_npc_text Text0da0
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
 	do_frames 30
@@ -1917,19 +1919,19 @@ Func_318e2:
 	move_active_npc .NPCMovement_3196b
 	wait_for_player_animation
 	set_player_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text0da1
 	receive_card HUNGRY_SNORLAX
 	print_npc_text Text0da2
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_31970
 	wait_for_player_animation
 	unload_npc NPC_RICK
 	set_player_direction NORTH
 	set_active_npc NPC_MIDORI, DialogMidoriText
-	script_command_01
+	start_dialog
 	print_npc_text Text0da3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_3196b:
@@ -1966,21 +1968,21 @@ GrassFortYuta_OWInteractions:
 	db $ff
 
 GrassFortYuta_MapScripts:
-	dbw $06, Func_319cc
-	dbw $08, Func_319f2
-	dbw $09, Func_31a02
-	dbw $02, Func_319dc
-	dbw $07, Func_319d3
+	dbw OWMODE_STEP_EVENT, Func_319cc
+	dbw OWMODE_INTERACT, Func_319f2
+	dbw OWMODE_AFTER_DUEL, Func_31a02
+	dbw OWMODE_02, Func_319dc
+	dbw OWMODE_NPC_POSITION, Func_319d3
 	db $ff
 
 Func_319cc:
 	ld hl, GrassFortYuta_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_319d3:
 	ld hl, GrassFortYuta_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2011,7 +2013,7 @@ Func_319f2:
 Func_31a02:
 	ld hl, GrassFortYuta_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2029,14 +2031,14 @@ Func_31a12:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_YUTAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_31a8e
 	check_event EVENT_TALKED_TO_YUTA
 	script_jump_if_b0z .ows_31a75
 	set_event EVENT_TALKED_TO_YUTA
 	print_npc_text Text0dd5
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	spin_active_npc 516
 	play_sfx SFX_NPC_WARP_TRANSFORM
@@ -2047,9 +2049,9 @@ Func_31a12:
 	restore_npc_direction NPC_GR_1
 	unload_npc NPC_WARP_SPARKLES
 	spin_npc NPC_GR_1, 772
-	script_command_01
+	start_dialog
 	print_npc_text Text0dd6
-	script_command_02
+	end_dialog
 	spin_npc_reverse NPC_GR_1, 516
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 4, 3, SOUTH
@@ -2058,7 +2060,7 @@ Func_31a12:
 	set_npc_flag6 NPC_YUTA
 	unload_npc NPC_WARP_SPARKLES
 	spin_active_npc_reverse 772
-	script_command_01
+	start_dialog
 	print_npc_text Text0dd7
 	script_jump .ows_31a78
 .ows_31a75
@@ -2067,13 +2069,13 @@ Func_31a12:
 	ask_question Text0dd9, TRUE
 	script_jump_if_b0z .ows_31a88
 	print_npc_text Text0dda
-	script_command_02
+	end_dialog
 	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31a88
 	print_npc_text Text0ddb
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31a8e
@@ -2081,20 +2083,20 @@ Func_31a12:
 	ask_question Text0dd9, TRUE
 	script_jump_if_b0z .ows_31aa1
 	print_npc_text Text0ddd
-	script_command_02
+	end_dialog
 	start_duel DEMONIC_FOREST_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31aa1
 	print_npc_text Text0dde
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_31aa7:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_YUTAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_31aca
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -2106,7 +2108,7 @@ Func_31aa7:
 	script_jump Script_31b0a
 .ows_31ac4
 	print_npc_text Text0de1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31aca
@@ -2119,7 +2121,7 @@ Func_31aa7:
 .ows_31adb
 	print_npc_text Text0de4
 .ows_31ade
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2136,10 +2138,10 @@ Func_31ae1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction NORTH
 	print_npc_text Text0de5
-	script_command_02
+	end_dialog
 	end_script
 .asm_31b05
 	farcall Func_c199
@@ -2147,20 +2149,20 @@ Func_31ae1:
 
 Script_31b0a:
 	print_npc_text Text0de6
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0de7
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_05F, $04, $00
 	do_frames 30
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0de8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2190,21 +2192,21 @@ GrassFortMiyuki_OWInteractions:
 	db $ff
 
 GrassFortMiyuki_MapScripts:
-	dbw $06, Func_31b82
-	dbw $08, Func_31ba8
-	dbw $09, Func_31bb8
-	dbw $07, Func_31b89
-	dbw $02, Func_31b92
+	dbw OWMODE_STEP_EVENT, Func_31b82
+	dbw OWMODE_INTERACT, Func_31ba8
+	dbw OWMODE_AFTER_DUEL, Func_31bb8
+	dbw OWMODE_NPC_POSITION, Func_31b89
+	dbw OWMODE_02, Func_31b92
 	db $ff
 
 Func_31b82:
 	ld hl, GrassFortMiyuki_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31b89:
 	ld hl, GrassFortMiyuki_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2235,7 +2237,7 @@ Func_31ba8:
 Func_31bb8:
 	ld hl, GrassFortMiyuki_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2253,7 +2255,7 @@ Func_31bc8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIYUKIS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_31c13
 	check_event EVENT_TALKED_TO_MIYUKI
@@ -2272,14 +2274,14 @@ Func_31bc8:
 	script_jump .ows_31c10
 .ows_31c04
 	print_npc_text Text0da8
-	script_command_02
+	end_dialog
 	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c0d
 	print_npc_text Text0da9
 .ows_31c10
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31c13
@@ -2292,21 +2294,21 @@ Func_31bc8:
 	script_jump .ows_31c34
 .ows_31c28
 	print_npc_text Text0dac
-	script_command_02
+	end_dialog
 	start_duel STICKY_POISON_GAS_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31c31
 	print_npc_text Text0dad
 .ows_31c34
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_31c37:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIYUKIS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_31c5a
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -2318,7 +2320,7 @@ Func_31c37:
 	script_jump .ows_31c71
 .ows_31c54
 	print_npc_text Text0db0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31c5a
@@ -2331,12 +2333,12 @@ Func_31c37:
 .ows_31c6b
 	print_npc_text Text0db3
 .ows_31c6e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_31c71
 	print_npc_text Text0db4
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_31c80
@@ -2351,9 +2353,9 @@ Func_31c37:
 	do_frames 30
 	move_active_npc .NPCMovement_31ca1
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0db5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_31c9a:
@@ -2373,9 +2375,9 @@ Func_31ca8:
 	jr nz, .asm_31cba
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_31cba
 	farcall Func_c199
@@ -2409,20 +2411,20 @@ LightningFortEntrance_OWInteractions:
 	db $ff
 
 LightningFortEntrance_MapScripts:
-	dbw $06, Func_31d27
-	dbw $08, Func_31d5e
-	dbw $07, Func_31d2e
-	dbw $02, Func_31d37
+	dbw OWMODE_STEP_EVENT, Func_31d27
+	dbw OWMODE_INTERACT, Func_31d5e
+	dbw OWMODE_NPC_POSITION, Func_31d2e
+	dbw OWMODE_02, Func_31d37
 	db $ff
 
 Func_31d27:
 	ld hl, LightningFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31d2e:
 	ld hl, LightningFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2466,7 +2468,7 @@ Func_31d6e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_MAGNEMITE_COIN
 	script_jump_if_b0z .ows_31d9a
 	check_event EVENT_GOT_GOLBAT_COIN
@@ -2479,7 +2481,7 @@ Func_31d6e:
 .ows_31d9a
 	print_npc_text Text11ac
 .ows_31d9d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2489,7 +2491,7 @@ Func_31da0:
 	jr nz, .asm_31dcd
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text11ad
 	check_event EVENT_GOT_GOLBAT_COIN
 	script_jump_if_b0nz .ows_31dcb
@@ -2497,13 +2499,13 @@ Func_31da0:
 	script_jump_if_b0z .ows_31dcb
 	send_mail $15
 	set_event EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_066, $04, $07
 	end_script
 	jr .asm_31dcd
 .ows_31dcb
-	script_command_02
+	end_dialog
 	end_script
 .asm_31dcd
 	ret
@@ -2546,20 +2548,20 @@ LightningFortLobby_OWInteractions:
 	db $ff
 
 LightningFortLobby_MapScripts:
-	dbw $06, Func_31e52
-	dbw $08, Func_31e62
-	dbw $09, Func_31e72
-	dbw $07, Func_31e59
+	dbw OWMODE_STEP_EVENT, Func_31e52
+	dbw OWMODE_INTERACT, Func_31e62
+	dbw OWMODE_AFTER_DUEL, Func_31e72
+	dbw OWMODE_NPC_POSITION, Func_31e59
 	db $ff
 
 Func_31e52:
 	ld hl, LightningFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_31e59:
 	ld hl, LightningFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2577,7 +2579,7 @@ Func_31e62:
 Func_31e72:
 	ld hl, LightningFortLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2595,7 +2597,7 @@ Func_31e82:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_LIGHTNING_FORT
 	script_jump_if_b0z .ows_31ee2
 	check_event EVENT_TALKED_TO_TRADE_NPC_LIGHTNING_FORT
@@ -2630,7 +2632,7 @@ Func_31e82:
 .ows_31ee2
 	print_npc_text Text11f3
 .ows_31ee5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2644,7 +2646,7 @@ Func_31ee8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_31f26
 	check_event EVENT_FREED_ROD
@@ -2666,7 +2668,7 @@ Func_31ee8:
 .ows_31f26
 	print_npc_text Text11f7
 .ows_31f29
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2680,7 +2682,7 @@ Func_31f2c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_LIGHTNING_FORT
 	script_jump_if_b0z .ows_31f4c
 	print_npc_text Text11f8
@@ -2688,7 +2690,7 @@ Func_31f2c:
 .ows_31f4c
 	print_npc_text Text11f9
 .ows_31f4f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2702,7 +2704,7 @@ Func_31f52:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_TAP
 	script_jump_if_b0z .ows_31f74
 	set_event EVENT_TALKED_TO_TAP
@@ -2714,13 +2716,13 @@ Func_31f52:
 	ask_question Text11fc, TRUE
 	script_jump_if_b0z .ows_31f87
 	print_npc_text Text11fd
-	script_command_02
+	end_dialog
 	start_duel DANGEROUS_BENCH_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_31f87
 	print_npc_text Text11fe
-	script_command_02
+	end_dialog
 	set_active_npc_direction WEST
 	end_script
 	ret
@@ -2728,7 +2730,7 @@ Func_31f52:
 Func_31f8f:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_31fa5
 	print_npc_text Text11ff
@@ -2739,7 +2741,7 @@ Func_31f8f:
 	print_npc_text Text1201
 .ows_31fa8
 	set_active_npc_direction WEST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2769,21 +2771,21 @@ LightningFortRenna_OWInteractions:
 	db $ff
 
 LightningFortRenna_MapScripts:
-	dbw $06, Func_32006
-	dbw $08, Func_32037
-	dbw $09, Func_32047
-	dbw $07, Func_3200d
-	dbw $02, Func_32016
+	dbw OWMODE_STEP_EVENT, Func_32006
+	dbw OWMODE_INTERACT, Func_32037
+	dbw OWMODE_AFTER_DUEL, Func_32047
+	dbw OWMODE_NPC_POSITION, Func_3200d
+	dbw OWMODE_02, Func_32016
 	db $ff
 
 Func_32006:
 	ld hl, LightningFortRenna_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3200d:
 	ld hl, LightningFortRenna_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2819,7 +2821,7 @@ Func_32037:
 Func_32047:
 	ld hl, LightningFortRenna_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2837,7 +2839,7 @@ Func_32057:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_RENNAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32097
 	set_event EVENT_TALKED_TO_RENNA
@@ -2850,14 +2852,14 @@ Func_32057:
 	script_jump .ows_32094
 .ows_32088
 	print_npc_text Text11de
-	script_command_02
+	end_dialog
 	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32091
 	print_npc_text Text11df
 .ows_32094
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32097
@@ -2870,21 +2872,21 @@ Func_32057:
 	script_jump .ows_320b8
 .ows_320ac
 	print_npc_text Text11e2
-	script_command_02
+	end_dialog
 	start_duel CHAIN_LIGHTNING_BY_PIKACHU_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_320b5
 	print_npc_text Text11e3
 .ows_320b8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_320bb:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_RENNAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_320de
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -2896,7 +2898,7 @@ Func_320bb:
 	script_jump Script_3211e
 .ows_320d8
 	print_npc_text Text11e6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_320de
@@ -2909,7 +2911,7 @@ Func_320bb:
 .ows_320ef
 	print_npc_text Text11e6
 .ows_320f2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2926,10 +2928,10 @@ Func_320f5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction EAST
 	print_npc_text Text11e9
-	script_command_02
+	end_dialog
 	end_script
 .asm_32119
 	farcall Func_c199
@@ -2938,7 +2940,7 @@ Func_320f5:
 Script_3211e:
 	set_active_npc_direction NORTH
 	print_npc_text Text11ea
-	script_command_02
+	end_dialog
 	do_frames 60
 	play_sfx_and_wait SFX_ELECTRONIC_INPUT
 	do_frames 30
@@ -2952,9 +2954,9 @@ Script_3211e:
 	load_tilemap TILEMAP_06A, $04, $00
 	do_frames 60
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text11eb
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2985,21 +2987,21 @@ LightningFortIchikawa_OWInteractions:
 	db $ff
 
 LightningFortIchikawa_MapScripts:
-	dbw $06, Func_321aa
-	dbw $08, Func_321e4
-	dbw $09, Func_321f4
-	dbw $07, Func_321b1
-	dbw $02, Func_321ba
+	dbw OWMODE_STEP_EVENT, Func_321aa
+	dbw OWMODE_INTERACT, Func_321e4
+	dbw OWMODE_AFTER_DUEL, Func_321f4
+	dbw OWMODE_NPC_POSITION, Func_321b1
+	dbw OWMODE_02, Func_321ba
 	db $ff
 
 Func_321aa:
 	ld hl, LightningFortIchikawa_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_321b1:
 	ld hl, LightningFortIchikawa_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3036,7 +3038,7 @@ Func_321e4:
 Func_321f4:
 	ld hl, LightningFortIchikawa_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3054,14 +3056,14 @@ Func_32204:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_3227d
 	check_event EVENT_TALKED_TO_ICHIKAWA
 	script_jump_if_b0z .ows_32259
 	set_event EVENT_TALKED_TO_ICHIKAWA
 	print_npc_text Text11b0
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 5, SOUTH
@@ -3070,16 +3072,16 @@ Func_32204:
 	load_npc NPC_GR_3, 5, 5, EAST
 	restore_npc_direction NPC_GR_3
 	unload_npc NPC_WARP_SPARKLES
-	script_command_01
+	start_dialog
 	print_npc_text Text11b1
-	script_command_02
+	end_dialog
 	play_sfx SFX_NPC_WARP_TRANSFORM
 	load_npc NPC_WARP_SPARKLES, 5, 5, SOUTH
 	unload_npc NPC_GR_3
 	wait_for_npc_animation NPC_WARP_SPARKLES
 	set_npc_flag6 NPC_ICHIKAWA
 	unload_npc NPC_WARP_SPARKLES
-	script_command_01
+	start_dialog
 	print_npc_text Text11b2
 	script_jump .ows_3225c
 .ows_32259
@@ -3093,14 +3095,14 @@ Func_32204:
 	script_jump .ows_3227a
 .ows_3226e
 	print_npc_text Text11b6
-	script_command_02
+	end_dialog
 	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32277
 	print_npc_text Text11b7
 .ows_3227a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3227d
@@ -3113,21 +3115,21 @@ Func_32204:
 	script_jump .ows_3229e
 .ows_32292
 	print_npc_text Text11ba
-	script_command_02
+	end_dialog
 	start_duel THIS_IS_THE_POWER_OF_ELECTRICITY_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3229b
 	print_npc_text Text11bb
 .ows_3229e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_322a1:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_ICHIKAWAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_322c4
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3139,7 +3141,7 @@ Func_322a1:
 	script_jump .ows_322db
 .ows_322be
 	print_npc_text Text11be
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_322c4
@@ -3152,7 +3154,7 @@ Func_322a1:
 .ows_322d5
 	print_npc_text Text11c1
 .ows_322d8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_322db
@@ -3167,7 +3169,7 @@ Func_322a1:
 	reset_event EVENT_TALKED_TO_ROBERT
 	set_var VAR_28, $02
 	print_npc_text Text11c2
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0nz .ows_3230d
@@ -3184,13 +3186,13 @@ Func_322a1:
 	move_active_npc .NPCMovement_32362
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text11c3
 	script_command_67 $06, $1e
 	do_frames 60
 	script_command_68
-	script_command_02
+	end_dialog
 	do_frames 28
 	do_frames 30
 	play_sfx SFX_POD_DOORS
@@ -3205,11 +3207,11 @@ Func_322a1:
 	set_active_npc_direction SOUTH
 	do_frames 30
 	set_active_npc NPC_STEVE, DialogSteveText
-	script_command_01
+	start_dialog
 	print_npc_text Text11c4
 	receive_card ELECTABUZZ_LV20
 	print_npc_text Text11c5
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $01, $01
 	script_jump Script_32376
 .NPCMovement_32362:
@@ -3231,26 +3233,26 @@ Func_322a1:
 
 Script_32376:
 	set_active_npc NPC_ICHIKAWA, DialogIchikawaText
-	script_command_01
+	start_dialog
 	print_npc_text Text11c6
 	set_active_npc NPC_STEVE, DialogSteveText
 	print_npc_text Text11c7
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	set_active_npc NPC_ICHIKAWA, DialogIchikawaText
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text11c8
 	set_active_npc NPC_STEVE, DialogSteveText
 	print_npc_text Text11c9
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $02, $01
 	set_active_npc_direction WEST
 	set_player_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text11ca
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_323b2
 	wait_for_player_animation
 	unload_npc NPC_STEVE
@@ -3261,27 +3263,27 @@ Script_32376:
 
 Script_323b5:
 	set_active_npc NPC_ICHIKAWA, DialogIchikawaText
-	script_command_01
+	start_dialog
 	set_player_direction NORTH
 	print_npc_text Text11cb
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	play_sfx SFX_AVALANCHE
 	print_npc_text_instant Text11cc
 	script_command_67 $04, $1e
 	script_command_68
-	script_command_02
+	end_dialog
 	do_frames 30
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_06F, $04, $00
 	do_frames 60
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text11cd
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_323e9
 	wait_for_player_animation
 	end_script
@@ -3298,9 +3300,9 @@ Func_323f0:
 	jr nz, .asm_32402
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_32402
 	farcall Func_c199
@@ -3312,9 +3314,9 @@ Func_32407:
 	jr nz, .asm_32419
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text11ce
-	script_command_02
+	end_dialog
 	end_script
 .asm_32419
 	farcall Func_c199
@@ -3339,20 +3341,20 @@ LightningFortCatherine_NPCInteractions:
 	db $ff
 
 LightningFortCatherine_MapScripts:
-	dbw $06, Func_3244f
-	dbw $08, Func_3245f
-	dbw $09, Func_32467
-	dbw $07, Func_32456
+	dbw OWMODE_STEP_EVENT, Func_3244f
+	dbw OWMODE_INTERACT, Func_3245f
+	dbw OWMODE_AFTER_DUEL, Func_32467
+	dbw OWMODE_NPC_POSITION, Func_32456
 	db $ff
 
 Func_3244f:
 	ld hl, LightningFortCatherine_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32456:
 	ld hl, LightningFortCatherine_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3366,7 +3368,7 @@ Func_3245f:
 Func_32467:
 	ld hl, LightningFortCatherine_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3384,18 +3386,18 @@ Func_32477:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_CATHERINE
 	script_jump_if_b0z .ows_324c4
 	check_event EVENT_TALKED_TO_CATHERINE
 	script_jump_if_b0z .ows_324a7
 	set_event EVENT_TALKED_TO_CATHERINE
 	print_npc_text Text11cf
-	script_command_02
+	end_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text11d0
 	script_jump .ows_324ac
 .ows_324a7
@@ -3406,13 +3408,13 @@ Func_32477:
 	ask_question Text11d2, TRUE
 	script_jump_if_b0z .ows_324bc
 	print_npc_text Text11d3
-	script_command_02
+	end_dialog
 	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324bc
 	print_npc_text Text11d4
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -3423,13 +3425,13 @@ Func_32477:
 	ask_question Text11d2, TRUE
 	script_jump_if_b0z .ows_324d9
 	print_npc_text Text11d3
-	script_command_02
+	end_dialog
 	start_duel QUICK_ATTACK_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_324d9
 	print_npc_text Text11d4
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -3437,7 +3439,7 @@ Func_32477:
 Func_324e1:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_CATHERINE
 	script_jump_if_b0z .ows_3250b
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3451,7 +3453,7 @@ Func_324e1:
 	script_jump .ows_32524
 .ows_32503
 	print_npc_text Text11d7
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -3465,7 +3467,7 @@ Func_324e1:
 .ows_3251c
 	print_npc_text Text11d7
 .ows_3251f
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -3474,7 +3476,7 @@ Func_324e1:
 	print_npc_text Text11d9
 	give_coin COIN_MAGNEMITE
 	print_npc_text Text11da
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3506,12 +3508,12 @@ FireFortEntrance_OWInteractions:
 	db $ff
 
 FireFortEntrance_MapScripts:
-	dbw $06, Func_325bc
-	dbw $08, Func_3261c
-	dbw $07, Func_325c3
-	dbw $02, Func_325cc
-	dbw $09, Func_3262c
-	dbw $10, Func_3259f
+	dbw OWMODE_STEP_EVENT, Func_325bc
+	dbw OWMODE_INTERACT, Func_3261c
+	dbw OWMODE_NPC_POSITION, Func_325c3
+	dbw OWMODE_02, Func_325cc
+	dbw OWMODE_AFTER_DUEL, Func_3262c
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3259f
 	db $ff
 
 Func_3259f:
@@ -3534,12 +3536,12 @@ Func_3259f:
 
 Func_325bc:
 	ld hl, FireFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_325c3:
 	ld hl, FireFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3568,8 +3570,8 @@ Func_325cc:
 	ld a, EVENT_GOT_MAGMAR_COIN
 	farcall GetEventValue
 	jr z, .asm_3261a
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34391)
 	ld [wd592], a
 	ld hl, Func_34391
@@ -3606,7 +3608,7 @@ Func_32632:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_MAGMAR_COIN
 	script_jump_if_b0z .ows_3265e
 	check_event EVENT_GOT_MAGNEMITE_COIN
@@ -3619,7 +3621,7 @@ Func_32632:
 .ows_3265e
 	print_npc_text Text0c81
 .ows_32661
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3629,7 +3631,7 @@ Func_32664:
 	jr nz, .asm_32691
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text0c82
 	check_event EVENT_GOT_MAGNEMITE_COIN
 	script_jump_if_b0nz .ows_3268f
@@ -3637,13 +3639,13 @@ Func_32664:
 	script_jump_if_b0z .ows_3268f
 	send_mail $16
 	set_event EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_074, $04, $07
 	end_script
 	jr .asm_32691
 .ows_3268f
-	script_command_02
+	end_dialog
 	end_script
 .asm_32691
 	ret
@@ -3684,12 +3686,12 @@ FireFortLobby_OWInteractions:
 	db $ff
 
 FireFortLobby_MapScripts:
-	dbw $06, Func_32727
-	dbw $08, Func_32737
-	dbw $09, Func_32747
-	dbw $0b, Func_3274d
-	dbw $07, Func_3272e
-	dbw $10, Func_32712
+	dbw OWMODE_STEP_EVENT, Func_32727
+	dbw OWMODE_INTERACT, Func_32737
+	dbw OWMODE_AFTER_DUEL, Func_32747
+	dbw OWMODE_0B, Func_3274d
+	dbw OWMODE_NPC_POSITION, Func_3272e
+	dbw OWMODE_MUSIC_POSTLOAD, Func_32712
 	db $ff
 
 Func_32712:
@@ -3708,12 +3710,12 @@ Func_32712:
 
 Func_32727:
 	ld hl, FireFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3272e:
 	ld hl, FireFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3757,7 +3759,7 @@ Func_32769:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_FIRE_FORT
 	script_jump_if_b0z .ows_327c9
 	check_event EVENT_TALKED_TO_TRADE_NPC_FIRE_FORT
@@ -3792,7 +3794,7 @@ Func_32769:
 .ows_327c9
 	print_npc_text Text0cc1
 .ows_327cc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3806,7 +3808,7 @@ Func_327cf:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_327ef
 	print_npc_text Text0cc2
@@ -3814,7 +3816,7 @@ Func_327cf:
 .ows_327ef
 	print_npc_text Text0cc3
 .ows_327f2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3856,21 +3858,21 @@ FireFortJes_OWInteractions:
 	db $ff
 
 FireFortJes_MapScripts:
-	dbw $06, Func_3285d
-	dbw $08, Func_3288e
-	dbw $09, Func_3289e
-	dbw $07, Func_32864
-	dbw $02, Func_3286d
+	dbw OWMODE_STEP_EVENT, Func_3285d
+	dbw OWMODE_INTERACT, Func_3288e
+	dbw OWMODE_AFTER_DUEL, Func_3289e
+	dbw OWMODE_NPC_POSITION, Func_32864
+	dbw OWMODE_02, Func_3286d
 	db $ff
 
 Func_3285d:
 	ld hl, FireFortJes_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32864:
 	ld hl, FireFortJes_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3906,7 +3908,7 @@ Func_3288e:
 Func_3289e:
 	ld hl, FireFortJes_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3924,7 +3926,7 @@ Func_328ae:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_JES_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_328ee
 	check_event EVENT_TALKED_TO_JES
@@ -3938,13 +3940,13 @@ Func_328ae:
 	ask_question Text0c99, TRUE
 	script_jump_if_b0z .ows_328e8
 	print_npc_text Text0c9a
-	script_command_02
+	end_dialog
 	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_328e8
 	print_npc_text Text0c9b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_328ee
@@ -3952,20 +3954,20 @@ Func_328ae:
 	ask_question Text0c99, TRUE
 	script_jump_if_b0z .ows_32901
 	print_npc_text Text0c9d
-	script_command_02
+	end_dialog
 	start_duel COMPLETE_COMBUSTION_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32901
 	print_npc_text Text0c9e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_32907:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_JES_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32927
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -3976,7 +3978,7 @@ Func_32907:
 	script_jump .ows_3293e
 .ows_32921
 	print_npc_text Text0ca0
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32927
@@ -3989,21 +3991,21 @@ Func_32907:
 .ows_32938
 	print_npc_text Text0ca3
 .ows_3293b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3293e
 	print_npc_text Text0ca4
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	set_active_npc_direction NORTH
 	do_frames 60
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_078, $04, $00
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0ca5
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4013,9 +4015,9 @@ Func_32956:
 	jr nz, .asm_32968
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_32968
 	farcall Func_c199
@@ -4047,21 +4049,21 @@ FireFortYuki_OWInteractions:
 	db $ff
 
 FireFortYuki_MapScripts:
-	dbw $06, Func_329c6
-	dbw $08, Func_32a18
-	dbw $09, Func_32a28
-	dbw $07, Func_329cd
-	dbw $02, Func_329d6
+	dbw OWMODE_STEP_EVENT, Func_329c6
+	dbw OWMODE_INTERACT, Func_32a18
+	dbw OWMODE_AFTER_DUEL, Func_32a28
+	dbw OWMODE_NPC_POSITION, Func_329cd
+	dbw OWMODE_02, Func_329d6
 	db $ff
 
 Func_329c6:
 	ld hl, FireFortYuki_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_329cd:
 	ld hl, FireFortYuki_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4081,8 +4083,8 @@ Func_329d6:
 	jr nz, .asm_32a16
 	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall MaxOutEventValue
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_32a38)
 	ld [wd592], a
 	ld hl, Func_32a38
@@ -4110,7 +4112,7 @@ Func_32a18:
 Func_32a28:
 	ld hl, FireFortYuki_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4129,25 +4131,25 @@ Func_32a38:
 	xor a
 	start_script
 	wait_for_fade
-	script_command_01
+	start_dialog
 	print_npc_text Text0cc4
-	script_command_02
+	end_dialog
 	do_frames 60
 	set_active_npc_direction NORTH
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0cc5
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0cc6
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_32a71
 	wait_for_player_animation
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_00
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_32a71:
 	db NORTH, RUN_6
@@ -4164,38 +4166,38 @@ Func_32a76:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_YUKIS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32b0d
 	check_event EVENT_TALKED_TO_YUKI
 	script_jump_if_b0z .ows_32ab1
 	set_event EVENT_TALKED_TO_YUKI
 	print_npc_text Text0cc7
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	do_frames 30
 	set_active_npc_direction WEST
 	do_frames 90
-	script_command_01
+	start_dialog
 	print_npc_text Text0cc8
-	script_command_02
+	end_dialog
 	do_frames 30
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0cc9
 	script_jump .ows_32ac6
 .ows_32ab1
 	print_npc_text Text0cca
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	set_active_npc_direction WEST
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0ccb
-	script_command_02
+	end_dialog
 	restore_active_npc_direction
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0ccc
 .ows_32ac6
 	ask_question Text0ccd, TRUE
@@ -4203,55 +4205,55 @@ Func_32a76:
 	duel_requirement_check DUEL_REQUIREMENT_YUKI
 	script_jump_if_b1z .ows_32aea
 	print_npc_text Text0cce
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	set_active_npc_direction WEST
 	do_frames 60
-	script_command_01
+	start_dialog
 	print_npc_text Text0ccf
-	script_command_02
+	end_dialog
 	do_frames 30
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0cd0
 	script_jump .ows_32b0a
 .ows_32aea
 	print_npc_text Text0cd1
-	script_command_02
+	end_dialog
 	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32af3
 	print_npc_text Text0cd2
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_player_direction
 	restore_active_npc_direction
 	do_frames 60
-	script_command_01
+	start_dialog
 	print_npc_text Text0cd3
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_player_opposite_direction
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0cd4
 .ows_32b0a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32b0d
 	print_npc_text Text0cd5
-	script_command_02
+	end_dialog
 	get_active_npc_direction
 	set_active_npc_direction WEST
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0cd6
-	script_command_02
+	end_dialog
 	restore_active_npc_direction
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0cd7
 	ask_question Text0ccd, TRUE
 	script_jump_if_b0z .ows_32b3d
@@ -4261,21 +4263,21 @@ Func_32a76:
 	script_jump .ows_32b40
 .ows_32b34
 	print_npc_text Text0cd1
-	script_command_02
+	end_dialog
 	start_duel FIREBALL_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32b3d
 	print_npc_text Text0cd9
 .ows_32b40
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_32b43:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_YUKIS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32b77
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4286,19 +4288,19 @@ Func_32b43:
 	script_jump .ows_32b9f
 .ows_32b5d
 	print_npc_text Text0cdb
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_active_npc_direction
 	set_active_npc_direction WEST
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0cdc
-	script_command_02
+	end_dialog
 	do_frames 15
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0cdd
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32b77
@@ -4306,56 +4308,56 @@ Func_32b43:
 	script_jump_if_b0nz .ows_32b99
 	print_npc_text Text0cde
 	give_booster_packs BoosterList_cd6e
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_player_direction
 	restore_active_npc_direction
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0cdf
-	script_command_02
+	end_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0ce0
 	script_jump .ows_32b9c
 .ows_32b99
 	print_npc_text Text0ce1
 .ows_32b9c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32b9f
 	print_npc_text Text0ce2
-	script_command_02
+	end_dialog
 	do_frames 60
 	get_player_direction
 	restore_active_npc_direction
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text0ce3
-	script_command_02
+	end_dialog
 	do_frames 15
 	get_player_opposite_direction
 	restore_active_npc_direction
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0ce4
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
 	do_frames 60
-	script_command_01
+	start_dialog
 	print_npc_text Text0ce5
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_07B, $05, $00
 	get_player_opposite_direction
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text0ce6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4365,9 +4367,9 @@ Func_32bd4:
 	jr nz, .asm_32be6
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_32be6
 	farcall Func_c199
@@ -4400,21 +4402,21 @@ FireFortShoko_OWInteractions:
 	db $ff
 
 FireFortShoko_MapScripts:
-	dbw $06, Func_32c4a
-	dbw $08, Func_32c7a
-	dbw $09, Func_32c8a
-	dbw $07, Func_32c51
-	dbw $02, Func_32c5a
+	dbw OWMODE_STEP_EVENT, Func_32c4a
+	dbw OWMODE_INTERACT, Func_32c7a
+	dbw OWMODE_AFTER_DUEL, Func_32c8a
+	dbw OWMODE_NPC_POSITION, Func_32c51
+	dbw OWMODE_02, Func_32c5a
 	db $ff
 
 Func_32c4a:
 	ld hl, FireFortShoko_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32c51:
 	ld hl, FireFortShoko_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4448,7 +4450,7 @@ Func_32c7a:
 Func_32c8a:
 	ld hl, FireFortShoko_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4466,25 +4468,25 @@ Func_32c9a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SHOKOS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32cfb
 	check_event EVENT_TALKED_TO_SHOKO
 	script_jump_if_b0z .ows_32cd7
 	set_event EVENT_TALKED_TO_SHOKO
 	print_npc_text Text0ca6
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_active_npc_direction
 	set_active_npc_direction SOUTH
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0ca7
-	script_command_02
+	end_dialog
 	do_frames 30
 	restore_active_npc_direction
 	do_frames 15
-	script_command_01
+	start_dialog
 	print_npc_text Text0ca8
 	script_jump .ows_32cda
 .ows_32cd7
@@ -4498,14 +4500,14 @@ Func_32c9a:
 	script_jump .ows_32cf8
 .ows_32cec
 	print_npc_text Text0cac
-	script_command_02
+	end_dialog
 	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32cf5
 	print_npc_text Text0cad
 .ows_32cf8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32cfb
@@ -4518,21 +4520,21 @@ Func_32c9a:
 	script_jump .ows_32d1c
 .ows_32d10
 	print_npc_text Text0cac
-	script_command_02
+	end_dialog
 	start_duel EEVEE_SHOWDOWN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_32d19
 	print_npc_text Text0cad
 .ows_32d1c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_32d1f:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SHOKOS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_32d42
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4544,7 +4546,7 @@ Func_32d1f:
 	script_jump Script_32d8f
 .ows_32d3c
 	print_npc_text Text0cb1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32d42
@@ -4557,7 +4559,7 @@ Func_32d1f:
 .ows_32d53
 	print_npc_text Text0cb1
 .ows_32d56
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4574,10 +4576,10 @@ Func_32d59:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction NORTH
 	print_npc_text Text0cb4
-	script_command_02
+	end_dialog
 	end_script
 .asm_32d7d
 	farcall Func_c199
@@ -4597,7 +4599,7 @@ Func_32d82:
 Script_32d8f:
 	set_event EVENT_FREED_COURTNEY
 	print_npc_text Text0cb5
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction SOUTH
 	do_frames 30
@@ -4620,11 +4622,11 @@ Script_32d8f:
 .ows_32dc5
 	wait_for_player_animation
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
-	script_command_01
+	start_dialog
 	print_npc_text Text0cb6
 	receive_card ARCANINE_LV34
 	print_npc_text Text0cb7
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_32de9
 	set_player_direction SOUTH
 	wait_for_player_animation
@@ -4656,18 +4658,18 @@ Script_32d8f:
 
 Script_32dff:
 	set_active_npc NPC_SHOKO, DialogShokoText
-	script_command_01
+	start_dialog
 	print_npc_text Text0cb8
-	script_command_02
+	end_dialog
 	do_frames 30
 	set_active_npc_direction NORTH
 	set_player_direction NORTH
 	do_frames 30
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_07F, $04, $00
-	script_command_01
+	start_dialog
 	print_npc_text Text0cb9
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	end_script
 	ret
@@ -4691,20 +4693,20 @@ FireFortHidero_NPCInteractions:
 	db $ff
 
 FireFortHidero_MapScripts:
-	dbw $06, Func_32e51
-	dbw $08, Func_32e61
-	dbw $09, Func_32e69
-	dbw $07, Func_32e58
+	dbw OWMODE_STEP_EVENT, Func_32e51
+	dbw OWMODE_INTERACT, Func_32e61
+	dbw OWMODE_AFTER_DUEL, Func_32e69
+	dbw OWMODE_NPC_POSITION, Func_32e58
 	db $ff
 
 Func_32e51:
 	ld hl, FireFortHidero_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32e58:
 	ld hl, FireFortHidero_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4718,7 +4720,7 @@ Func_32e61:
 Func_32e69:
 	ld hl, FireFortHidero_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -4736,7 +4738,7 @@ Func_32e79:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_32ed7
 	check_event EVENT_BEAT_HIDERO
@@ -4752,13 +4754,13 @@ Func_32e79:
 	ask_question Text0c87, TRUE
 	script_jump_if_b0z .ows_32eb8
 	print_npc_text Text0c88
-	script_command_02
+	end_dialog
 	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32eb8
 	print_npc_text Text0c89
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32ebe
@@ -4766,13 +4768,13 @@ Func_32e79:
 	ask_question Text0c87, TRUE
 	script_jump_if_b0z .ows_32ed1
 	print_npc_text Text0c8b
-	script_command_02
+	end_dialog
 	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ed1
 	print_npc_text Text0c8c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32ed7
@@ -4787,20 +4789,20 @@ Func_32e79:
 	ask_question Text0c87, TRUE
 	script_jump_if_b0z .ows_32ef7
 	print_npc_text Text0c8b
-	script_command_02
+	end_dialog
 	start_duel GAZE_UPON_THE_POWER_OF_FIRE_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_32ef7
 	print_npc_text Text0c8c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_32efd:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_HIDERO
 	script_jump_if_b0z .ows_32f27
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -4814,7 +4816,7 @@ Func_32efd:
 	script_jump .ows_32f3e
 .ows_32f21
 	print_npc_text Text0c8f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32f27
@@ -4827,7 +4829,7 @@ Func_32efd:
 .ows_32f38
 	print_npc_text Text0c92
 .ows_32f3b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32f3e
@@ -4837,7 +4839,7 @@ Func_32efd:
 	print_npc_text Text0c94
 	check_event EVENT_GOT_PSYDUCK_COIN
 	print_variable_npc_text Text0c95, Text0c96
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_32f52
@@ -4875,12 +4877,12 @@ WaterFortEntrance_OWInteractions:
 	db $ff
 
 WaterFortEntrance_MapScripts:
-	dbw $06, Func_32fe6
-	dbw $08, Func_33046
-	dbw $07, Func_32fed
-	dbw $02, Func_32ff6
-	dbw $09, Func_33056
-	dbw $10, Func_32fc9
+	dbw OWMODE_STEP_EVENT, Func_32fe6
+	dbw OWMODE_INTERACT, Func_33046
+	dbw OWMODE_NPC_POSITION, Func_32fed
+	dbw OWMODE_02, Func_32ff6
+	dbw OWMODE_AFTER_DUEL, Func_33056
+	dbw OWMODE_MUSIC_POSTLOAD, Func_32fc9
 	db $ff
 
 Func_32fc9:
@@ -4903,12 +4905,12 @@ Func_32fc9:
 
 Func_32fe6:
 	ld hl, WaterFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_32fed:
 	ld hl, WaterFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -4937,8 +4939,8 @@ Func_32ff6:
 	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr z, .asm_33044
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_34391)
 	ld [wd592], a
 	ld hl, Func_34391
@@ -4975,7 +4977,7 @@ Func_3305c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_PSYDUCK_COIN
 	script_jump_if_b0z .ows_33088
 	check_event EVENT_GOT_MAGNEMITE_COIN
@@ -4988,7 +4990,7 @@ Func_3305c:
 .ows_33088
 	print_npc_text Text1213
 .ows_3308b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -4998,7 +5000,7 @@ Func_3308e:
 	jr nz, .asm_330bb
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text Text1214
 	check_event EVENT_GOT_MAGNEMITE_COIN
 	script_jump_if_b0nz .ows_330b9
@@ -5006,13 +5008,13 @@ Func_3308e:
 	script_jump_if_b0z .ows_330b9
 	send_mail $17
 	set_event EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_084, $04, $07
 	end_script
 	jr .asm_330bb
 .ows_330b9
-	script_command_02
+	end_dialog
 	end_script
 .asm_330bb
 	ret
@@ -5047,21 +5049,21 @@ WaterFortMiyajima_OWInteractions:
 	db $ff
 
 WaterFortMiyajima_MapScripts:
-	dbw $06, Func_33119
-	dbw $08, Func_3314a
-	dbw $09, Func_3315a
-	dbw $07, Func_33120
-	dbw $02, Func_33129
+	dbw OWMODE_STEP_EVENT, Func_33119
+	dbw OWMODE_INTERACT, Func_3314a
+	dbw OWMODE_AFTER_DUEL, Func_3315a
+	dbw OWMODE_NPC_POSITION, Func_33120
+	dbw OWMODE_02, Func_33129
 	db $ff
 
 Func_33119:
 	ld hl, WaterFortMiyajima_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33120:
 	ld hl, WaterFortMiyajima_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5097,7 +5099,7 @@ Func_3314a:
 Func_3315a:
 	ld hl, WaterFortMiyajima_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5115,7 +5117,7 @@ Func_3316a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_331b5
 	check_event EVENT_TALKED_TO_MIYAJIMA
@@ -5134,14 +5136,14 @@ Func_3316a:
 	script_jump .ows_331b2
 .ows_331a6
 	print_npc_text Text122c
-	script_command_02
+	end_dialog
 	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331af
 	print_npc_text Text122d
 .ows_331b2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_331b5
@@ -5154,21 +5156,21 @@ Func_3316a:
 	script_jump .ows_331d6
 .ows_331ca
 	print_npc_text Text1230
-	script_command_02
+	end_dialog
 	start_duel WHIRLPOOL_SHOWER_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_331d3
 	print_npc_text Text1231
 .ows_331d6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_331d9:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MIYAJIMAS_ROOM_DOOR_STATE
 	script_jump_if_b0z .ows_33203
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5182,7 +5184,7 @@ Func_331d9:
 	check_event EVENT_PLAYER_GENDER
 	set_variable_text_ram2 Text1234, Text1235
 	print_npc_text Text1236
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_33203
@@ -5195,12 +5197,12 @@ Func_331d9:
 .ows_33214
 	print_npc_text Text1239
 .ows_33217
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3321a
 	print_npc_text Text123a
-	script_command_02
+	end_dialog
 	do_frames 30
 	get_active_npc_direction
 	set_active_npc_direction NORTH
@@ -5209,9 +5211,9 @@ Func_331d9:
 	load_tilemap TILEMAP_088, $04, $00
 	do_frames 30
 	restore_active_npc_direction
-	script_command_01
+	start_dialog
 	print_npc_text Text123b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5221,9 +5223,9 @@ Func_33236:
 	jr nz, .asm_33248
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_33248
 	farcall Func_c199
@@ -5248,20 +5250,20 @@ WaterFortKanoko_NPCInteractions:
 	db $ff
 
 WaterFortKanoko_MapScripts:
-	dbw $06, Func_3327e
-	dbw $08, Func_3328e
-	dbw $09, Func_33296
-	dbw $07, Func_33285
+	dbw OWMODE_STEP_EVENT, Func_3327e
+	dbw OWMODE_INTERACT, Func_3328e
+	dbw OWMODE_AFTER_DUEL, Func_33296
+	dbw OWMODE_NPC_POSITION, Func_33285
 	db $ff
 
 Func_3327e:
 	ld hl, WaterFortKanoko_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33285:
 	ld hl, WaterFortKanoko_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5275,7 +5277,7 @@ Func_3328e:
 Func_33296:
 	ld hl, WaterFortKanoko_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5293,7 +5295,7 @@ Func_332a6:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KANOKO
 	script_jump_if_b0z .ows_332e6
 	check_event EVENT_TALKED_TO_KANOKO
@@ -5307,13 +5309,13 @@ Func_332a6:
 	ask_question Text1219, TRUE
 	script_jump_if_b0z .ows_332e0
 	print_npc_text Text121a
-	script_command_02
+	end_dialog
 	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332e0
 	print_npc_text Text121b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_332e6
@@ -5321,20 +5323,20 @@ Func_332a6:
 	ask_question Text1219, TRUE
 	script_jump_if_b0z .ows_332f9
 	print_npc_text Text121d
-	script_command_02
+	end_dialog
 	start_duel WATER_STREAM_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
 .ows_332f9
 	print_npc_text Text121e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_332ff:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BEAT_KANOKO
 	script_jump_if_b0z .ows_33326
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -5347,7 +5349,7 @@ Func_332ff:
 	script_jump .ows_3333d
 .ows_33320
 	print_npc_text Text1221
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_33326
@@ -5360,7 +5362,7 @@ Func_332ff:
 .ows_33337
 	print_npc_text Text1224
 .ows_3333a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3333d
@@ -5369,7 +5371,7 @@ Func_332ff:
 	give_coin COIN_PSYDUCK
 	check_event EVENT_GOT_MAGMAR_COIN
 	print_variable_npc_text Text1226, Text1227
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3334e
@@ -5405,20 +5407,20 @@ FightingFortEntrance_OWInteractions:
 	db $ff
 
 FightingFortEntrance_MapScripts:
-	dbw $06, Func_333ad
-	dbw $08, Func_33424
-	dbw $07, Func_333b4
-	dbw $02, Func_333bd
+	dbw OWMODE_STEP_EVENT, Func_333ad
+	dbw OWMODE_INTERACT, Func_33424
+	dbw OWMODE_NPC_POSITION, Func_333b4
+	dbw OWMODE_02, Func_333bd
 	db $ff
 
 Func_333ad:
 	ld hl, FightingFortEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_333b4:
 	ld hl, FightingFortEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5487,7 +5489,7 @@ Func_33434:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_MACHAMP_COIN
 	script_jump_if_b0z .ows_33465
 	check_event EVENT_GOT_MAGMAR_COIN
@@ -5502,7 +5504,7 @@ Func_33434:
 .ows_33465
 	print_npc_text Text0bdd
 .ows_33468
-	script_command_02
+	end_dialog
 	end_script
 	ld a, $01
 	call Func_30065
@@ -5514,7 +5516,7 @@ Func_33470:
 	jr nz, .asm_334b2
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_INSERTED_LEFT_COIN_IN_FIGHTING_FORT_DOOR
 	script_jump_if_b0z .ows_334ad
 	print_text Text0bde
@@ -5536,7 +5538,7 @@ Func_33470:
 .ows_334ad
 	print_text Text0be1
 .ows_334b0
-	script_command_02
+	end_dialog
 	end_script
 .asm_334b2
 	ret
@@ -5547,7 +5549,7 @@ Func_334b3:
 	jr nz, .asm_334f5
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_INSERTED_RIGHT_COIN_IN_FIGHTING_FORT_DOOR
 	script_jump_if_b0z .ows_334f0
 	print_text Text0be2
@@ -5569,14 +5571,14 @@ Func_334b3:
 .ows_334f0
 	print_text Text0be5
 .ows_334f3
-	script_command_02
+	end_dialog
 	end_script
 .asm_334f5
 	ret
 
 Script_334f6:
 	send_mail $18
-	script_command_02
+	end_dialog
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_094, $04, $07
 	end_script
@@ -5611,15 +5613,15 @@ FightingFortMaze2_NPCInteractions:
 	db $ff
 
 FightingFortMaze2_MapScripts:
-	dbw $06, Func_33565
-	dbw $08, Func_33581
-	dbw $07, Func_33578
-	dbw $0f, Func_3356c
+	dbw OWMODE_STEP_EVENT, Func_33565
+	dbw OWMODE_INTERACT, Func_33581
+	dbw OWMODE_NPC_POSITION, Func_33578
+	dbw OWMODE_0F, Func_3356c
 	db $ff
 
 Func_33565:
 	ld hl, FightingFortMaze2_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3356c:
@@ -5635,7 +5637,7 @@ Func_3356c:
 
 Func_33578:
 	ld hl, FightingFortMaze2_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5649,14 +5651,14 @@ Func_33581:
 Func_33589:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_1
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 2, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	give_booster_packs BoosterList_ce38
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5674,9 +5676,9 @@ Func_335a2:
 Func_335af:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5715,13 +5717,13 @@ FightingFortMaze3_StepEvents:
 	db $ff
 
 FightingFortMaze3_MapScripts:
-	dbw $06, Func_3361d
-	dbw $02, Func_33624
+	dbw OWMODE_STEP_EVENT, Func_3361d
+	dbw OWMODE_02, Func_33624
 	db $ff
 
 Func_3361d:
 	ld hl, FightingFortMaze3_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33624:
@@ -5758,16 +5760,16 @@ FightingFortMaze4_NPCInteractions:
 	db $ff
 
 FightingFortMaze4_MapScripts:
-	dbw $06, Func_336a3
-	dbw $08, Func_336ca
-	dbw $07, Func_336c1
-	dbw $0f, Func_336aa
-	dbw $02, Func_336b6
+	dbw OWMODE_STEP_EVENT, Func_336a3
+	dbw OWMODE_INTERACT, Func_336ca
+	dbw OWMODE_NPC_POSITION, Func_336c1
+	dbw OWMODE_0F, Func_336aa
+	dbw OWMODE_02, Func_336b6
 	db $ff
 
 Func_336a3:
 	ld hl, FightingFortMaze4_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_336aa:
@@ -5790,7 +5792,7 @@ Func_336b6:
 
 Func_336c1:
 	ld hl, FightingFortMaze4_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5804,14 +5806,14 @@ Func_336ca:
 Func_336d2:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_2
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 3, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	give_booster_packs BoosterList_ce3b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5829,9 +5831,9 @@ Func_336eb:
 Func_336f8:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5868,13 +5870,13 @@ FightingFortMaze5_StepEvents:
 	db $ff
 
 FightingFortMaze5_MapScripts:
-	dbw $06, Func_33754
-	dbw $02, Func_3375b
+	dbw OWMODE_STEP_EVENT, Func_33754
+	dbw OWMODE_02, Func_3375b
 	db $ff
 
 Func_33754:
 	ld hl, FightingFortMaze5_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3375b:
@@ -5899,13 +5901,13 @@ FightingFortMaze6_StepEvents:
 	db $ff
 
 FightingFortMaze6_MapScripts:
-	dbw $06, Func_337a9
-	dbw $02, Func_337b0
+	dbw OWMODE_STEP_EVENT, Func_337a9
+	dbw OWMODE_02, Func_337b0
 	db $ff
 
 Func_337a9:
 	ld hl, FightingFortMaze6_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_337b0:
@@ -5932,13 +5934,13 @@ FightingFortMaze7_StepEvents:
 	db $ff
 
 FightingFortMaze7_MapScripts:
-	dbw $06, Func_33810
-	dbw $02, Func_33817
+	dbw OWMODE_STEP_EVENT, Func_33810
+	dbw OWMODE_02, Func_33817
 	db $ff
 
 Func_33810:
 	ld hl, FightingFortMaze7_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33817:
@@ -5977,16 +5979,16 @@ FightingFortMaze8_NPCInteractions:
 	db $ff
 
 FightingFortMaze8_MapScripts:
-	dbw $06, Func_338a8
-	dbw $08, Func_338cf
-	dbw $07, Func_338c6
-	dbw $0f, Func_338af
-	dbw $02, Func_338bb
+	dbw OWMODE_STEP_EVENT, Func_338a8
+	dbw OWMODE_INTERACT, Func_338cf
+	dbw OWMODE_NPC_POSITION, Func_338c6
+	dbw OWMODE_0F, Func_338af
+	dbw OWMODE_02, Func_338bb
 	db $ff
 
 Func_338a8:
 	ld hl, FightingFortMaze8_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_338af:
@@ -6009,7 +6011,7 @@ Func_338bb:
 
 Func_338c6:
 	ld hl, FightingFortMaze8_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6023,14 +6025,14 @@ Func_338cf:
 Func_338d7:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_3
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 2, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	give_booster_packs BoosterList_ce3e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6048,9 +6050,9 @@ Func_338f0:
 Func_338fd:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6089,13 +6091,13 @@ FightingFortMaze9_StepEvents:
 	db $ff
 
 FightingFortMaze9_MapScripts:
-	dbw $06, Func_3396b
-	dbw $02, Func_33972
+	dbw OWMODE_STEP_EVENT, Func_3396b
+	dbw OWMODE_02, Func_33972
 	db $ff
 
 Func_3396b:
 	ld hl, FightingFortMaze9_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33972:
@@ -6118,12 +6120,12 @@ FightingFortMaze10_StepEvents:
 	db $ff
 
 FightingFortMaze10_MapScripts:
-	dbw $06, Func_339ab
+	dbw OWMODE_STEP_EVENT, Func_339ab
 	db $ff
 
 Func_339ab:
 	ld hl, FightingFortMaze10_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 FightingFortMaze11_MapHeader:
@@ -6143,13 +6145,13 @@ FightingFortMaze11_StepEvents:
 	db $ff
 
 FightingFortMaze11_MapScripts:
-	dbw $06, Func_33a07
-	dbw $02, Func_33a0e
+	dbw OWMODE_STEP_EVENT, Func_33a07
+	dbw OWMODE_02, Func_33a0e
 	db $ff
 
 Func_33a07:
 	ld hl, FightingFortMaze11_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33a0e:
@@ -6178,14 +6180,14 @@ FightingFortMaze12_StepEvents:
 	db $ff
 
 FightingFortMaze12_MapScripts:
-	dbw $06, Func_33a83
-	dbw $0f, Func_33a8a
-	dbw $02, Func_33a96
+	dbw OWMODE_STEP_EVENT, Func_33a83
+	dbw OWMODE_0F, Func_33a8a
+	dbw OWMODE_02, Func_33a96
 	db $ff
 
 Func_33a83:
 	ld hl, FightingFortMaze12_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33a8a:
@@ -6232,13 +6234,13 @@ FightingFortMaze13_StepEvents:
 	db $ff
 
 FightingFortMaze13_MapScripts:
-	dbw $06, Func_33b09
-	dbw $02, Func_33b10
+	dbw OWMODE_STEP_EVENT, Func_33b09
+	dbw OWMODE_02, Func_33b10
 	db $ff
 
 Func_33b09:
 	ld hl, FightingFortMaze13_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33b10:
@@ -6265,14 +6267,14 @@ FightingFortMaze14_StepEvents:
 	db $ff
 
 FightingFortMaze14_MapScripts:
-	dbw $06, Func_33b73
-	dbw $0f, Func_33b7a
-	dbw $02, Func_33b86
+	dbw OWMODE_STEP_EVENT, Func_33b73
+	dbw OWMODE_0F, Func_33b7a
+	dbw OWMODE_02, Func_33b86
 	db $ff
 
 Func_33b73:
 	ld hl, FightingFortMaze14_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33b7a:
@@ -6317,13 +6319,13 @@ FightingFortMaze15_StepEvents:
 	db $ff
 
 FightingFortMaze15_MapScripts:
-	dbw $06, Func_33be7
-	dbw $02, Func_33bee
+	dbw OWMODE_STEP_EVENT, Func_33be7
+	dbw OWMODE_02, Func_33bee
 	db $ff
 
 Func_33be7:
 	ld hl, FightingFortMaze15_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33bee:
@@ -6360,16 +6362,16 @@ FightingFortMaze17_NPCInteractions:
 	db $ff
 
 FightingFortMaze17_MapScripts:
-	dbw $06, Func_33c6d
-	dbw $08, Func_33cb2
-	dbw $07, Func_33ca9
-	dbw $02, Func_33c74
-	dbw $0f, Func_33c9d
+	dbw OWMODE_STEP_EVENT, Func_33c6d
+	dbw OWMODE_INTERACT, Func_33cb2
+	dbw OWMODE_NPC_POSITION, Func_33ca9
+	dbw OWMODE_02, Func_33c74
+	dbw OWMODE_0F, Func_33c9d
 	db $ff
 
 Func_33c6d:
 	ld hl, FightingFortMaze17_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33c74:
@@ -6382,8 +6384,8 @@ Func_33c74:
 	scf
 	ret
 .asm_33c86
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_33cf8)
 	ld [wd592], a
 	ld hl, Func_33cf8
@@ -6407,7 +6409,7 @@ Func_33c9d:
 
 Func_33ca9:
 	ld hl, FightingFortMaze17_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6421,14 +6423,14 @@ Func_33cb2:
 Func_33cba:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_4
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 1, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	receive_card DIGLETT_LV16
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6446,9 +6448,9 @@ Func_33cd3:
 Func_33ce0:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6502,12 +6504,12 @@ FightingFortMaze20_StepEvents:
 	db $ff
 
 FightingFortMaze20_MapScripts:
-	dbw $06, Func_33d5c
+	dbw OWMODE_STEP_EVENT, Func_33d5c
 	db $ff
 
 Func_33d5c:
 	ld hl, FightingFortMaze20_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 FightingFortMaze22_MapHeader:
@@ -6523,12 +6525,12 @@ FightingFortMaze22_StepEvents:
 	db $ff
 
 FightingFortMaze22_MapScripts:
-	dbw $06, Func_33d91
+	dbw OWMODE_STEP_EVENT, Func_33d91
 	db $ff
 
 Func_33d91:
 	ld hl, FightingFortMaze22_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 ColorlessAltarEntrance_MapHeader:
@@ -6544,9 +6546,9 @@ ColorlessAltarEntrance_StepEvents:
 	db $ff
 
 ColorlessAltarEntrance_MapScripts:
-	dbw $06, Func_33de1
-	dbw $02, Func_33de8
-	dbw $10, Func_33dcc
+	dbw OWMODE_STEP_EVENT, Func_33de1
+	dbw OWMODE_02, Func_33de8
+	dbw OWMODE_MUSIC_POSTLOAD, Func_33dcc
 	db $ff
 
 Func_33dcc:
@@ -6565,7 +6567,7 @@ Func_33dcc:
 
 Func_33de1:
 	ld hl, ColorlessAltarEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_33de8:
@@ -6577,8 +6579,8 @@ Func_33de8:
 	lb de, 4, 7
 	ld b, SOUTH
 	farcall LoadOWObjectInMap
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_0A
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3442d)
 	ld [wd592], a
 	ld hl, Func_3442d

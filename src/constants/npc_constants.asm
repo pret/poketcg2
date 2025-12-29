@@ -246,7 +246,7 @@ DEF NUM_PICS EQU const_value
 	const NPC_TCG_CHALLENGE_HALL_GIRL           ; $91
 	const NPC_TCG_CUP_CLERK_LEFT                ; $92
 	const NPC_TCG_CUP_CLERK_RIGHT               ; $93
-	const NPC_GR_CLERK_6                        ; $94
+	const NPC_GR_CLERK_GR_AIRPORT_2             ; $94
 	const NPC_GR_AIRPORT_GR_PAPPY               ; $95
 	const NPC_GR_AIRPORT_GR_LASS                ; $96
 	const NPC_GR_CLERK_GRASS_FORT               ; $97
@@ -331,6 +331,8 @@ DEF NUM_PICS EQU const_value
 	const NPC_WHITE_CASTLE_COIN                 ; $e6
 	const NPC_PURPLE_CASTLE_COIN                ; $e7
 	const NPC_STRONGHOLD_PLATFORM               ; $e8
+
+DEF NPC_NONE EQU -1
 
 ; NPCDuelistPointers use this ordering
 	const_def
@@ -437,3 +439,20 @@ DEF NPC_DUELIST_STRUCT_TITLE_NAME    RW ; $5
 DEF NPC_DUELIST_STRUCT_DECKS         RB MAX_NPC_DUELIST_DECKS ; $7
 
 DEF NPC_DUELIST_STRUCT_SIZE EQU _RS ; $c
+
+; overworld npc struct constants
+RSRESET
+DEF OWNPCSTRUCT_NPC_ID       RB ; 0
+DEF OWNPCSTRUCT_X_COORD      RB ; 1
+DEF OWNPCSTRUCT_Y_COORD      RB ; 2
+DEF OWNPCSTRUCT_DIRECTION    RB ; 3
+DEF OWNPCSTRUCT_PRELOAD_FUNC RW ; 4
+
+DEF OWNPCSTRUCT_LENGTH EQU _RS ; 6
+
+; Aaron's steps, used in VAR_3B
+	const_def 1
+	const AARON_STEP_1 ; 1
+	const AARON_STEP_2 ; 2
+	const AARON_STEP_3 ; 3
+	const AARON_STEP_4 ; 4
