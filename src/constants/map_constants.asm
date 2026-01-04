@@ -123,6 +123,8 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GR_CASTLE                      ; $72
 	const MAP_GR_CASTLE_BIRURITCHI           ; $73
 
+DEF MAP_NONE EQU -1
+
 	; MAP_GFX_*
 	; referenced in MapHeaders, and others. see also: data/map_gfx.asm
 	; only 2 maps have alternate graphics: MAP_LIGHTNING_CLUB, MAP_GFX_GR_CHALLENGE_HALL

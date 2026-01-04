@@ -16,7 +16,7 @@ DEF NUM_GAME_EVENTS EQU const_value ; 6
 	const OWMODE_02             ; $02
 	const OWMODE_03             ; $03
 	const OWMODE_04             ; $04
-	const OWMODE_05             ; $05
+	const OWMODE_MOVE           ; $05
 	const OWMODE_STEP_EVENT     ; $06
 	const OWMODE_NPC_POSITION   ; $07
 	const OWMODE_INTERACT       ; $08

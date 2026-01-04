@@ -2363,14 +2363,13 @@ wOverworldMode:: ; d582
 wOverworldTransition:: ; d583
 	ds $1
 
-; MAP_* constant
-wd584:: ; d584
+wPrevMap:: ; d584
 	ds $1
 
-wd585:: ; d585
+wTempPrevMap:: ; d585
 	ds $1
 
-wd586:: ; d586
+wCurMap:: ; d586
 	ds $1
 
 ; OWMAP_* constant

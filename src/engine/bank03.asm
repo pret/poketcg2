@@ -152,27 +152,27 @@ OWModePostprocess::
 	jp hl
 
 .PointerTable
-	dw Func_31a1 ; OWMODE_00
-	dw Func_c162 ; OWMODE_MUSIC_PRELOAD
-	dw Func_c17d ; OWMODE_02
-	dw Func_c169 ; OWMODE_03
-	dw Func_c183 ; OWMODE_04
-	dw Func_31a8 ; OWMODE_05
-	dw Func_c199 ; OWMODE_STEP_EVENT
-	dw Func_c162 ; OWMODE_NPC_POSITION
-	dw Func_c163 ; OWMODE_INTERACT
-	dw Func_c189 ; OWMODE_AFTER_DUEL
-	dw Func_3234 ; OWMODE_0A
-	dw Func_c18f ; OWMODE_0B
-	dw Func_c162 ; OWMODE_0C
-	dw Func_c162 ; OWMODE_0D
-	dw Func_c162 ; OWMODE_0E
-	dw Func_c16f ; OWMODE_0F
-	dw Func_c175 ; OWMODE_MUSIC_POSTLOAD
-	dw Func_c1a2 ; OWMODE_11
-	dw PauseMenu ; OWMODE_PAUSE_MENU
+	dw Func_31a1   ; OWMODE_00
+	dw .Exit       ; OWMODE_MUSIC_PRELOAD
+	dw Func_c17d   ; OWMODE_02
+	dw Func_c169   ; OWMODE_03
+	dw Func_c183   ; OWMODE_04
+	dw Func_31a8   ; OWMODE_MOVE
+	dw Func_c199   ; OWMODE_STEP_EVENT
+	dw .Exit       ; OWMODE_NPC_POSITION
+	dw Func_c163   ; OWMODE_INTERACT
+	dw Func_c189   ; OWMODE_AFTER_DUEL
+	dw Func_3234   ; OWMODE_0A
+	dw Func_c18f   ; OWMODE_0B
+	dw .Exit       ; OWMODE_0C
+	dw .Exit       ; OWMODE_0D
+	dw .Exit       ; OWMODE_0E
+	dw PlaySFXWarp ; OWMODE_0F
+	dw Func_c175   ; OWMODE_MUSIC_POSTLOAD
+	dw Func_c1a2   ; OWMODE_11
+	dw PauseMenu   ; OWMODE_PAUSE_MENU
 
-Func_c162:
+.Exit:
 	ret
 
 Func_c163:
@@ -185,7 +185,7 @@ Func_c169:
 	call WaitAFrames
 	ret
 
-Func_c16f:
+PlaySFXWarp:
 	ld a, SFX_WARP
 	call PlaySFX
 	ret
@@ -339,7 +339,7 @@ Func_c24d:
 	ld [wCurMapScriptsPointer + 0], a
 	ld [wCurMapScriptsPointer + 1], a
 	ld [wCurIsland], a
-	ld [wd586], a
+	ld [wCurMap], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
 	ld [wSentMailBitfield + 0], a
@@ -432,32 +432,32 @@ Func_c319:
 	call GetVarValue
 	cp $04
 	jr c, .asm_c32d
-	jr z, .asm_c357
+	jr z, .done
 	ld a, VAR_0D
 	ld c, $01
 	call SetVarValue
-	jr .asm_c357
+	jr .done
 .asm_c32d
-	ld a, [wd586]
-	cp $23
-	jr z, .asm_c357
-	cp $24
-	jr z, .asm_c357
-	cp $25
-	jr z, .asm_c357
+	ld a, [wCurMap]
+	cp MAP_POKEMON_DOME_ENTRANCE
+	jr z, .done
+	cp MAP_POKEMON_DOME
+	jr z, .done
+	cp MAP_POKEMON_DOME_BACK
+	jr z, .done
 	ld a, VAR_0D
 	call GetVarValue
 	cp $02
-	jr z, .asm_c357
+	jr z, .done
 	jr nc, .asm_c358
 	ld a, VAR_20
 	call GetVarValue
 	cp $0a
-	jr c, .asm_c357
+	jr c, .done
 	ld a, VAR_0D
 	ld c, $02
 	call SetVarValue
-.asm_c357
+.done
 	ret
 .asm_c358
 	ld a, VAR_0D
@@ -465,7 +465,7 @@ Func_c319:
 	call SetVarValue
 	ld a, VAR_20
 	call ZeroOutVarValue
-	jr .asm_c357
+	jr .done
 
 Func_c366:
 	ld a, VAR_21
@@ -1261,7 +1261,7 @@ SetWarpData:
 	ld hl, wOverworldTransition
 	set 0, [hl]
 	ld a, [wNextWarpMap]
-	ld [wd585], a
+	ld [wTempPrevMap], a
 	ret
 
 Func_d3e9::
@@ -1319,12 +1319,12 @@ LoadMapHeader::
 	ld de, wNextMapHeaderData
 	ld bc, MAPHEADERSTRUCT_LENGTH
 	call CopyFarHLToDE
-	ld a, [wd586]
-	ld [wd584], a
+	ld a, [wCurMap]
+	ld [wPrevMap], a
 	pop af
-	ld [wd586], a
-	ld a, $ff
-	ld [wd585], a
+	ld [wCurMap], a
+	ld a, MAP_NONE
+	ld [wTempPrevMap], a
 	ret
 
 ; a = NPC_* ID

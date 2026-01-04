@@ -313,12 +313,12 @@ LoadNPCs::
 Func_3234::
 	ldh a, [hBankROM]
 	push af
-	call Func_323f
+	call .Script
 	pop af
 	call BankswitchROM
 	ret
 
-Func_323f::
+.Script:
 	ld hl, wd592
 	ld a, [hl]
 	call BankswitchROM
@@ -482,7 +482,7 @@ HandleOverworldPlayerMoveInput::
 	farcall Func_10e3c
 	or a
 	jr z, .set_carry
-	ld a, OWMODE_05
+	ld a, OWMODE_MOVE
 	ld [wOverworldMode], a
 	ld a, [wPlayerOWObject]
 	farcall StartOWObjectAnimation
@@ -573,7 +573,7 @@ Func_33a3::
 	ret
 
 Func_33b7::
-	ld a, [wd586]
+	ld a, [wCurMap]
 	ld c, a
 	ld b, $00
 	sla c

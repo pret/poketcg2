@@ -1035,7 +1035,7 @@ Func_347e1:
 
 Func_347ea:
 	farcall ClearwD986
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr z, .asm_3483d
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
@@ -1093,7 +1093,7 @@ Func_347ea:
 	ret
 
 Func_34873:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr z, .asm_3487c
 	scf
@@ -1914,7 +1914,7 @@ Func_34ef7:
 	ret
 
 Func_34f07:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
 	jr z, .asm_34f23
 	ld a, OWMODE_0A
@@ -3380,7 +3380,7 @@ Func_35a04:
 	ret
 
 Func_35a0d:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT_ENTRANCE
 	jr nz, .asm_35a18
 	farcall DeliverMailFromQueue
@@ -3678,7 +3678,7 @@ Func_35c68:
 	ret
 
 Func_35c6f:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35c78
 	scf
@@ -3734,7 +3734,7 @@ Func_35d04:
 	ret
 
 Func_35d0b:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_35d14
 	scf
@@ -4599,7 +4599,7 @@ Func_36396:
 	ret
 
 Func_3639f:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_PSYCHIC_STRONGHOLD_ENTRANCE
 	jr nz, .asm_363aa
 	farcall DeliverMailFromQueue
@@ -4625,7 +4625,7 @@ Func_3639f:
 	script_call b0z, .ows_36426
 .ows_363da
 	end_script
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_PSYCHIC_STRONGHOLD_MAMI
 	jr z, .asm_363e4
 	scf
@@ -4665,7 +4665,7 @@ Func_3639f:
 	script_ret
 
 Func_36434:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_PSYCHIC_STRONGHOLD_MAMI
 	jr z, .asm_3643d
 	scf
@@ -7015,7 +7015,7 @@ Func_37663:
 	ret
 
 Func_3766c:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GR_CASTLE_ENTRANCE
 	jr nz, .asm_37677
 	farcall DeliverMailFromQueue

@@ -2306,7 +2306,7 @@ Func_3d1f6:
 	ret
 
 Func_3d210:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr nz, .asm_3d257
 	ld a, VAR_28
@@ -2875,7 +2875,7 @@ Func_3d6ca:
 	ld bc, TILEMAP_037
 	lb de, 7, 0
 	farcall Func_12c0ce
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d6dd
 	scf
@@ -2912,7 +2912,7 @@ Func_3d6ca:
 	ret
 
 Func_3d719:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d722
 	scf
@@ -2931,7 +2931,7 @@ Func_3d719:
 	ret
 
 Func_3d734:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d73d
 	scf
@@ -5940,7 +5940,7 @@ Func_3ee11:
 	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3ee7d
 	quit_script
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
 	jr nz, .asm_3ee67
 	ld a, $01
@@ -7325,7 +7325,7 @@ Func_3f8c6:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	jr nz, .asm_3f8d8
 	scf
@@ -7389,7 +7389,7 @@ Func_3f932:
 	end_script
 	ld a, $02
 	farcall Func_30065
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	ret z
 	ld a, VAR_3B

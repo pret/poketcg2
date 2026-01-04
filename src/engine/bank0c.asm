@@ -43,7 +43,7 @@ Func_30005:
 	ret
 
 Func_30056:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
 	ret nz
 	ld a, VAR_3B
@@ -80,7 +80,7 @@ OverworldGr_MapScripts:
 	db $ff ; end
 
 Func_30092:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_300a0
 	cp MAP_GR_AIRPORT
@@ -118,7 +118,7 @@ Func_300a8:
 	ld a, [wCurOWLocation]
 	call PrintGRIslandLocationName
 
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_3012c
 	cp MAP_GR_AIRPORT
@@ -166,7 +166,7 @@ Func_300a8:
 	ld [wd593 + 0], a
 	ld a, h
 	ld [wd593 + 1], a
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_30159
 	ld a, NPC_GR_BLIMP
@@ -207,7 +207,7 @@ Func_3018b:
 	ret
 
 Func_30192:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_GR_AIRPORT
 	jr z, .asm_3019f
 	cp MAP_OVERHEAD_ISLANDS
@@ -590,7 +590,7 @@ Func_303c7:
 	jr z, .from_north
 	cp OWMAP_GR_FIGHTING_FORT
 	jr nz, .from_south
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	jr z, .from_north
 .from_south
@@ -791,7 +791,7 @@ Data_3056a:
 INCLUDE "data/gr_island_paths.asm"
 
 DoGRBlimpMovement_GRIsland:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GR_AIRPORT
 	jr z, .asm_310cf
 
@@ -866,7 +866,7 @@ DoGRBlimpMovement_GRIsland:
 	jr .finish
 
 .done_movement
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_31136 ; unnecessary cp
 .asm_31136
@@ -877,9 +877,9 @@ DoGRBlimpMovement_GRIsland:
 	ret
 
 ; fades out to white or black
-; dependent on wd585
+; dependent on wTempPrevMap
 .FadeOut:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr nz, .to_black
 ; to white
@@ -1264,7 +1264,7 @@ Func_3142d:
 	ret
 
 Func_31447:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr nz, .asm_3148e
 	ld a, VAR_30
@@ -1726,7 +1726,7 @@ Func_317e2:
 	ret
 
 Func_317eb:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GRASS_FORT_ENTRANCE
 	jr nz, .asm_317f6
 	farcall DeliverMailFromQueue
@@ -2791,7 +2791,7 @@ Func_3200d:
 	ret
 
 Func_32016:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_LIGHTNING_FORT_ENTRANCE
 	jr nz, .asm_32021
 	farcall DeliverMailFromQueue
@@ -3878,7 +3878,7 @@ Func_32864:
 	ret
 
 Func_3286d:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIRE_FORT_ENTRANCE
 	jr nz, .asm_32878
 	farcall DeliverMailFromQueue
@@ -5069,7 +5069,7 @@ Func_33120:
 	ret
 
 Func_33129:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_WATER_FORT_ENTRANCE
 	jr nz, .asm_33134
 	farcall DeliverMailFromQueue
@@ -5625,7 +5625,7 @@ Func_33565:
 	ret
 
 Func_3356c:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_33575
 	scf
@@ -5773,7 +5773,7 @@ Func_336a3:
 	ret
 
 Func_336aa:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_336b3
 	scf
@@ -5992,7 +5992,7 @@ Func_338a8:
 	ret
 
 Func_338af:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_338b8
 	scf
@@ -6191,7 +6191,7 @@ Func_33a83:
 	ret
 
 Func_33a8a:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_33a93
 	scf
@@ -6278,7 +6278,7 @@ Func_33b73:
 	ret
 
 Func_33b7a:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_33b83
 	scf
@@ -6378,7 +6378,7 @@ Func_33c74:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT_MAZE_18
 	jr z, .asm_33c86
 	scf
@@ -6397,7 +6397,7 @@ Func_33c74:
 	ret
 
 Func_33c9d:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_FIGHTING_FORT_BASEMENT
 	jr z, .asm_33ca6
 	scf

@@ -725,7 +725,7 @@ OverworldTcg_MapScripts:
 	db $ff ; end
 
 Func_40474:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40482
 	cp MAP_TCG_AIRPORT
@@ -758,7 +758,7 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	call PrintTCGIslandLocationName
 
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .gr_blimp_cutscene
 	cp MAP_OVERHEAD_ISLANDS
@@ -807,7 +807,7 @@ Func_4048a:
 	ld a, h
 	ld [wd593 + 1], a
 
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40528
 	ld a, NPC_GR_BLIMP
@@ -833,7 +833,7 @@ Func_4053b:
 	ret
 
 Func_4053e:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_4054b
 	cp MAP_OVERHEAD_ISLANDS
@@ -1182,7 +1182,7 @@ TCGIslandLocationPositions:
 INCLUDE "data/tcg_island_paths.asm"
 
 DoGRBlimpMovement_TCGIsland:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa
 
@@ -1257,7 +1257,7 @@ DoGRBlimpMovement_TCGIsland:
 	jr .finish
 
 .done_movement
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40d71 ; unnecessary cp
 .asm_40d71
@@ -1268,9 +1268,9 @@ DoGRBlimpMovement_TCGIsland:
 	ret
 
 ; fades out to white or black
-; dependent on wd585
+; dependent on wTempPrevMap
 .FadeOut:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr nz, .to_black
 ; to white
@@ -3203,7 +3203,7 @@ Func_41c57:
 
 Func_41c60:
 	farcall ClearwD986
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr nz, .asm_41c9f
 	ld a, OWMODE_0A
@@ -3230,7 +3230,7 @@ Func_41c60:
 	ret
 
 Func_41ca1:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr z, .asm_41caa
 	scf

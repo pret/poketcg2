@@ -6063,7 +6063,7 @@ Func_2ed75:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
 	jr z, .asm_2ed8a
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr nz, .asm_2ed8a
 	ld a, EVENT_TALKED_TO_SARA
@@ -8291,7 +8291,7 @@ OverheadIslands_MapScripts:
 
 Func_2fe54:
 	farcall InitOWObjects
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr nz, .asm_2fe6c
 	ld a, NPC_GR_BLIMP
@@ -8331,7 +8331,7 @@ Func_2fe97:
 	ret
 
 Func_2fe9a:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
 	jr z, .asm_2febb
 	ld a, OVERWORLD_MAP_TCG
