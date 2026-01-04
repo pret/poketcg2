@@ -152,7 +152,7 @@ OWModePostprocess::
 	jp hl
 
 .PointerTable
-	dw Func_31a1   ; OWMODE_00
+	dw Func_31a1   ; OWMODE_IDLE
 	dw .Exit       ; OWMODE_MUSIC_PRELOAD
 	dw Func_c17d   ; OWMODE_02
 	dw Func_c169   ; OWMODE_03
@@ -162,7 +162,7 @@ OWModePostprocess::
 	dw .Exit       ; OWMODE_NPC_POSITION
 	dw Func_c163   ; OWMODE_INTERACT
 	dw Func_c189   ; OWMODE_AFTER_DUEL
-	dw Func_3234   ; OWMODE_0A
+	dw Func_3234   ; OWMODE_SCRIPT
 	dw Func_c18f   ; OWMODE_0B
 	dw .Exit       ; OWMODE_0C
 	dw .Exit       ; OWMODE_0D
@@ -176,7 +176,7 @@ OWModePostprocess::
 	ret
 
 Func_c163:
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -206,18 +206,18 @@ Func_c183:
 	ret
 
 Func_c189:
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
 Func_c18f:
 	farcall PlayCurrentSong
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
 Func_c199:
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	call HandleOverworldPlayerMoveInput
 	ret
@@ -239,7 +239,7 @@ PauseMenu:
 	farcall PlayCurrentSong
 	call ResetActiveMusicState
 .done
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -1166,7 +1166,7 @@ OverworldLoop::
 	farcall SetOWObjectFlag5_WithID
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	xor a
 	ld [wOverworldTransition], a
@@ -1256,7 +1256,7 @@ SetWarpData:
 	ld [wNextWarpPlayerYCoord], a
 	ld a, b
 	ld [wNextWarpPlayerDirection], a
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld hl, wOverworldTransition
 	set 0, [hl]

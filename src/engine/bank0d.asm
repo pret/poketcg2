@@ -67,7 +67,7 @@ Func_34037:
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -120,7 +120,7 @@ Func_340a4:
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -173,7 +173,7 @@ Func_34111:
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -304,7 +304,7 @@ Func_341f7:
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -541,7 +541,7 @@ Func_343ef:
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -585,7 +585,7 @@ Func_3442d:
 	wait_for_player_animation
 	unload_npc NPC_GR_X
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -662,7 +662,7 @@ Func_344da:
 .ows_34508
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -702,7 +702,7 @@ Func_3451d:
 	wait_for_player_animation
 	unload_npc NPC_RONALD
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -754,7 +754,7 @@ TcgAirportEntrance_OWInteractions:
 	db $ff
 
 TcgAirportEntrance_MapScripts:
-	dbw OWMODE_00, Func_345f1
+	dbw OWMODE_IDLE, Func_345f1
 	dbw OWMODE_STEP_EVENT, Func_3460d
 	dbw OWMODE_INTERACT, Func_3461d
 	dbw OWMODE_NPC_POSITION, Func_34614
@@ -1005,7 +1005,7 @@ TcgAirport_NPCInteractions:
 	db $ff
 
 TcgAirport_MapScripts:
-	dbw OWMODE_00, Func_347ce
+	dbw OWMODE_IDLE, Func_347ce
 	dbw OWMODE_STEP_EVENT, Func_347da
 	dbw OWMODE_INTERACT, Func_3489d
 	dbw OWMODE_NPC_POSITION, Func_347e1
@@ -1041,15 +1041,15 @@ Func_347ea:
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .asm_34871
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_GR5_TCGAirportFirstFlight)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Script_GR5_TCGAirportFirstFlight
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, VAR_3E
 	farcall GetVarValue
 	add $03
@@ -1069,15 +1069,15 @@ Func_347ea:
 	farcall SetOWObjectDirection
 	jr .asm_34871
 .asm_3483d
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_GR5_TCGAirportLanded)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Script_GR5_TCGAirportLanded
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_GR_5
 	lb de, 11, 5
 	farcall SetOWObjectTilePosition
@@ -1275,7 +1275,7 @@ Script_GR5_TCGAirportLanded:
 	print_npc_text TCGAirportGR5LandedText
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_349c1:
@@ -1684,7 +1684,7 @@ Script_BlackBox:
 	ld a, $81 ; priority black box mail
 	farcall AddMailToQueue
 .asm_34d2f
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -1696,7 +1696,7 @@ Script_BillsPC:
 	end_dialog
 	end_script
 	farcall Func_1f8eb
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -1917,15 +1917,15 @@ Func_34f07:
 	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
 	jr z, .asm_34f23
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_CardDungeonAttendantExit)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Script_CardDungeonAttendantExit
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_34f23
 	scf
 	ret
@@ -2052,7 +2052,7 @@ Script_CardDungeonAttendantExit:
 .done
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -2191,15 +2191,15 @@ Func_35106:
 	ld bc, TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3525b)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3525b
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -2369,7 +2369,7 @@ Func_3525b:
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_CARD_DUNGEON_BISHOP_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -3407,15 +3407,15 @@ Func_35a0d:
 	jr nz, .asm_35a7a
 	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
 	farcall MaxOutEventValue
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_35a9c)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_35a9c
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_GODA
 	lb de, 5, 2
 	ld b, SOUTH
@@ -3497,7 +3497,7 @@ Func_35a9c:
 	print_npc_text Text0c16
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_35b09:
@@ -4299,15 +4299,15 @@ Func_36114:
 	lb de, 4, 3
 	ld b, SOUTH
 	farcall LoadOWObjectInMap
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3442d)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3442d
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3613e
 	scf
 	ret
@@ -4635,15 +4635,15 @@ Func_3639f:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, NPC_STRONGHOLD_PLATFORM
 	farcall ResetOWObjectSpriteAnimFlag6
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_36c36)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_36c36
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 .ows_36408
@@ -4887,7 +4887,7 @@ Func_364ac:
 	unload_npc NPC_STRONGHOLD_PLATFORM
 	do_frames 30
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_36629:
@@ -5732,7 +5732,7 @@ Func_36c36:
 	end_script
 	ld a, [wPlayerOWObject]
 	farcall SetOWObjectFlag5_WithID
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_36c95:
@@ -5789,15 +5789,15 @@ Func_36cf5:
 	ld bc, $5f
 	ld a, $02
 	farcall SetwD896
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_36f43)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_36f43
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, $e8
 	ld bc, $156
 	farcall SetAndInitOWObjectFrameset
@@ -6084,7 +6084,7 @@ Func_36ed7:
 	print_npc_text Text1136
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_36f40:
@@ -6104,19 +6104,19 @@ Func_36f43:
 	ld a, EVENT_MET_MAMI_AND_ROD
 	farcall GetEventValue
 	jr z, .asm_36f69
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .asm_36f69
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_36ed7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_36ed7
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ret
 
 Func_36f7f:
@@ -6674,7 +6674,7 @@ GrCastleEntrance_OWInteractions:
 	db $ff
 
 GrCastleEntrance_MapScripts:
-	dbw OWMODE_00, Func_373cb
+	dbw OWMODE_IDLE, Func_373cb
 	dbw OWMODE_STEP_EVENT, Func_3740f
 	dbw OWMODE_INTERACT, Func_3746b
 	dbw OWMODE_NPC_POSITION, Func_37416
@@ -7572,7 +7572,7 @@ Func_37a76:
 	end_dialog
 	animate_player_movement $02, $01
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 

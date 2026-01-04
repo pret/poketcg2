@@ -780,15 +780,15 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	call UpdateTCGIslandCursorPosition
 
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(HandleTCGIslandInput)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, HandleTCGIslandInput
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -797,15 +797,15 @@ Func_4048a:
 	lb de, 0, 0
 	farcall Func_12c0ce
 
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(DoGRBlimpMovement_TCGIsland)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, DoGRBlimpMovement_TCGIsland
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 
 	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
@@ -1403,15 +1403,15 @@ Func_40e91:
 	farcall SetOWObjectDirection
 	ld de, $408
 	farcall CalcOWScroll
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_40f46)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_40f46
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 .asm_40ee8
@@ -1493,7 +1493,7 @@ Func_40f46:
 	play_sfx SFX_SAVE_GAME
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_40f80:
@@ -1559,7 +1559,7 @@ Func_40fbc:
 	print_npc_text Text0f05
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_40ff5:
@@ -3173,7 +3173,7 @@ GrAirport_NPCInteractions:
 	db $ff
 
 GrAirport_MapScripts:
-	dbw OWMODE_00, Func_41c44
+	dbw OWMODE_IDLE, Func_41c44
 	dbw OWMODE_STEP_EVENT, Func_41c50
 	dbw OWMODE_INTERACT, Func_41ccb
 	dbw OWMODE_NPC_POSITION, Func_41c57
@@ -3206,15 +3206,15 @@ Func_41c60:
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr nz, .asm_41c9f
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_GR5_GRAirportLanded)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Script_GR5_GRAirportLanded
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_GR_5
 	lb de, 5, 5
 	farcall SetOWObjectTilePosition
@@ -3365,7 +3365,7 @@ Script_GR5_GRAirportLanded:
 	script_jump .repeat
 .done
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_41da0:
@@ -5507,15 +5507,15 @@ Func_42f3e:
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
 	jr nz, .asm_42f84
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_43050)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_43050
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_BIRURITCHI
 	lb de, 7, 2
 	farcall SetOWObjectTilePosition
@@ -5720,7 +5720,7 @@ Func_43050:
 	move_player .NPCMovement_43124, TRUE
 	wait_for_player_animation
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	jp Func_43136
 .NPCMovement_430f4:

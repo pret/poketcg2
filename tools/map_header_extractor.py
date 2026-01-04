@@ -15,7 +15,7 @@ import configuration
 from tcg2disasm import Disassembler
 
 script_types = [
-	"OWMODE_00",
+	"OWMODE_IDLE",
 	"OWMODE_MUSIC_PRELOAD",
 	"OWMODE_02",
 	"OWMODE_03",
@@ -25,7 +25,7 @@ script_types = [
 	"OWMODE_NPC_POSITION",
 	"OWMODE_INTERACT",
 	"OWMODE_AFTER_DUEL",
-	"OWMODE_0A",
+	"OWMODE_SCRIPT",
 	"OWMODE_0B",
 	"OWMODE_0C",
 	"OWMODE_0D",

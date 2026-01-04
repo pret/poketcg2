@@ -319,10 +319,10 @@ Func_3234::
 	ret
 
 .Script:
-	ld hl, wd592
+	ld hl, wOverworldScriptBank
 	ld a, [hl]
 	call BankswitchROM
-	ld hl, wd593
+	ld hl, wOverworldScriptPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a

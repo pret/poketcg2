@@ -650,15 +650,15 @@ Func_2c50a:
 	jr z, .asm_2c54f
 	jr .asm_2c55e
 .asm_2c524
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_2c584)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_2c584
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_ISAAC, 5, 9, SOUTH
@@ -733,7 +733,7 @@ Func_2c584:
 	move_npc NPC_NICHOLAS, .NPCMovement_2c5f0
 	wait_for_player_animation
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_2c5e6:
@@ -1247,7 +1247,7 @@ PsychicClubEntrance_NPCInteractions:
 	db $ff
 
 PsychicClubEntrance_MapScripts:
-	dbw OWMODE_00, Func_2c9ac
+	dbw OWMODE_IDLE, Func_2c9ac
 	dbw OWMODE_STEP_EVENT, Func_2c9d8
 	dbw OWMODE_INTERACT, Func_2ca14
 	dbw OWMODE_AFTER_DUEL, Func_2ca1c
@@ -1316,16 +1316,16 @@ Func_2c9e8:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -1805,15 +1805,15 @@ Func_2cda2:
 	farcall Func_12c0ce
 	jr .asm_2ce0f
 .asm_2cdc6
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_2ce39)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_2ce39
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_MURRAY, 7, 6, SOUTH
@@ -1883,7 +1883,7 @@ Func_2ce39:
 	scroll_to_position $ff, $05
 	scroll_to_player
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_2ce7c:
@@ -2581,15 +2581,15 @@ Func_2d37d:
 	call RockClubEntrance_ShouldRonaldAppear
 	jr c, .quit
 ; card pop
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34111)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_34111
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -2948,15 +2948,15 @@ Func_2d673:
 	ld a, EVENT_MET_GR1_ROCK_CLUB
 	farcall GetEventValue
 	jr nz, .asm_2d6a4
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_2d6ca)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_2d6ca
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	xor a
 	start_script
 	set_npc_position_and_direction NPC_MATTHEW, 5, 1, SOUTH
@@ -3040,7 +3040,7 @@ Func_2d6ca:
 	print_npc_text Text10d4
 	end_dialog
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_2d74e:
@@ -3379,16 +3379,16 @@ Func_2d9a6:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -4356,16 +4356,16 @@ Func_2e0e3:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -4971,16 +4971,16 @@ Func_2e548:
 .gift
 	ld hl, Func_341f7
 .got_event
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -6046,15 +6046,15 @@ Func_2ed3e:
 	farcall ZeroOutEventValue
 	ld hl, Func_3451d
 .got_event
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_340a4)
 	ASSERT BANK(Func_340a4) == BANK(Func_3451d)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -7144,16 +7144,16 @@ Func_2f575:
 .gift
 	ld hl, Func_341f7
 .asm_2f594
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34037)
 	ASSERT BANK(Func_34037) == BANK(Func_3417e)
 	ASSERT BANK(Func_34037) == BANK(Func_341f7)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .quit
 	scf
 	ret
@@ -8305,15 +8305,15 @@ Func_2fe54:
 	ld b, WEST
 	farcall LoadOWObject
 .asm_2fe77
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_2fe9a)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_2fe9a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, 0
 	call Func_338f
 	scf

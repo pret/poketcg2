@@ -410,7 +410,7 @@ Func_3c30c:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -429,7 +429,7 @@ Func_3c30c:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -512,7 +512,7 @@ Script_ImakuniBlackAfterDuel:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -602,7 +602,7 @@ Script_3c497:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_RED
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -694,7 +694,7 @@ Func_3c52d:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_RED
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
@@ -1567,15 +1567,15 @@ Func_3cbfb:
 	jr c, .asm_3cc35
 	ldtx hl, DialogGR4Text
 	call LoadTxRam2
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_340a4)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_340a4
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3cc35
 	scf
 	ret
@@ -2884,26 +2884,26 @@ Func_3d6ca:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3d6fc
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3dc4a)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3dc4a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	jr .asm_3d711
 .asm_3d6fc
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3dc8e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3dc8e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3d711
 	ld a, $00
 	call Func_338f
@@ -3684,7 +3684,7 @@ Func_3dc4a:
 	end_dialog
 	end_script
 .asm_3dc88
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -3705,7 +3705,7 @@ Func_3dc8e:
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_3dcb8:
@@ -3841,15 +3841,15 @@ Func_3ddb8:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, NPC_CUP_HOST
 	farcall SetOWObjectAsScrollTarget
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3ded6)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3ded6
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 .asm_3ddec
@@ -3884,15 +3884,15 @@ Func_3ddb8:
 	farcall CalcOWScroll
 	ld a, $02
 	farcall SetOWScrollState
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3e12b)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3e12b
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, $00
 	call Func_338f
 	scf
@@ -6030,7 +6030,7 @@ Func_3eec7:
 	ret
 
 Func_3eef4:
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -6260,15 +6260,15 @@ Func_3f0b3:
 	ld bc, TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f1c6)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f1c6
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -6404,7 +6404,7 @@ Func_3f1c6:
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -6479,15 +6479,15 @@ Func_3f259:
 	ld bc, TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f395)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f395
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -6645,7 +6645,7 @@ Func_3f395:
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -6720,15 +6720,15 @@ Func_3f429:
 	ld bc, TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f57e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f57e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -6895,7 +6895,7 @@ Func_3f57e:
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -7331,15 +7331,15 @@ Func_3f8c6:
 	scf
 	ret
 .asm_3f8d8
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3f95e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f95e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	lb de, 10, 15
@@ -7418,7 +7418,7 @@ Func_3f95e:
 	farcall SetOWObjectFlag5_WithID
 	ld a, $01
 	farcall SetOWScrollState
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_3f980:

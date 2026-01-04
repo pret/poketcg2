@@ -2414,12 +2414,10 @@ wNextWarpPlayerYCoord:: ; d590
 wNextWarpPlayerDirection:: ; d591
 	ds $1
 
-; bank of wd593
-wd592:: ; d592
+wOverworldScriptBank:: ; d592
 	ds $1
 
-; ptr
-wd593:: ; d593
+wOverworldScriptPointer:: ; d593
 	ds $2
 
 ; NPC_* ID

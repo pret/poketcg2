@@ -143,29 +143,29 @@ Func_300a8:
 	call PlacePlayerInGRIslandLocation
 	ld a, [wCurOWLocation]
 	call Func_30202
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_301c0)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_301c0
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
 .asm_3012c
 	farcall Func_1d51e
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(DoGRBlimpMovement_GRIsland)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, DoGRBlimpMovement_GRIsland
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_30159
@@ -950,15 +950,15 @@ Func_311b1:
 	ret
 
 Func_311b9:
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_312d2)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_312d2
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -1104,7 +1104,7 @@ Func_312d2:
 	play_sfx SFX_DOORS
 	load_tilemap TILEMAP_CARD_DUNGEON_QUEEN_FRONT_DOORS_SHUT, 4, 9
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
@@ -1423,15 +1423,15 @@ Func_3157e:
 	farcall GetVarValue
 	cp $05
 	jr nc, .asm_3159d
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_342ef)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_342ef
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3159d
 	scf
 	ret
@@ -3570,15 +3570,15 @@ Func_325cc:
 	ld a, EVENT_GOT_MAGMAR_COIN
 	farcall GetEventValue
 	jr z, .asm_3261a
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34391)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_34391
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3261a
 	scf
 	ret
@@ -4083,15 +4083,15 @@ Func_329d6:
 	jr nz, .asm_32a16
 	ld a, EVENT_MET_YUKI_FIRE_FORT
 	farcall MaxOutEventValue
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_32a38)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_32a38
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_YUKI
 	lb de, 5, 9
 	farcall SetOWObjectTilePosition
@@ -4148,7 +4148,7 @@ Func_32a38:
 	move_active_npc .NPCMovement_32a71
 	wait_for_player_animation
 	end_script
-	ld a, OWMODE_00
+	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 .NPCMovement_32a71:
@@ -4939,15 +4939,15 @@ Func_32ff6:
 	ld a, EVENT_GOT_PSYDUCK_COIN
 	farcall GetEventValue
 	jr z, .asm_33044
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_34391)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_34391
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_33044
 	scf
 	ret
@@ -6384,15 +6384,15 @@ Func_33c74:
 	scf
 	ret
 .asm_33c86
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_33cf8)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_33cf8
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -6579,15 +6579,15 @@ Func_33de8:
 	lb de, 4, 7
 	ld b, SOUTH
 	farcall LoadOWObjectInMap
-	ld a, OWMODE_0A
+	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_3442d)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3442d
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_33e12
 	scf
 	ret
