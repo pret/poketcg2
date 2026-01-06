@@ -4662,8 +4662,8 @@ Func_e9a7:
 	ret
 
 Func_e9b7:
-	ld a, $02
-	call Func_e9d6
+	ld a, 2
+	call BulkCopySRAM
 	ldh a, [hBankSRAM]
 	push af
 	ld a, BANK("SRAM2")
@@ -4677,31 +4677,36 @@ Func_e9b7:
 	call DisableSRAM
 	ret
 
-Func_e9d6:
-	cp $01
-	jr z, .asm_e9e2
-	jr nc, .asm_e9e8
-	ld e, $02
-	ld d, $00
-	jr .asm_e9f7
-.asm_e9e2
-	ld e, $00
-	ld d, $02
-	jr .asm_e9f7
-.asm_e9e8
-	ld e, $00
-	ld d, $02
+; sram copy
+; a = 0: sCardAndDeckSaveData onwards, from SRAM2 to SRAM0
+; a = 1: sCardAndDeckSaveData onwards, from SRAM0 to SRAM2
+; a = 2: all, from SRAM0 to SRAM2
+BulkCopySRAM:
+	cp 1
+	jr z, .from_sram0_to_sram2
+	jr nc, .all_from_sram0_to_sram2
+; from sram2 to sram0
+	ld e, BANK("SRAM2")
+	ld d, BANK("SRAM0")
+	jr .card_deck_onwards
+.from_sram0_to_sram2
+	ld e, BANK("SRAM0")
+	ld d, BANK("SRAM2")
+	jr .card_deck_onwards
+.all_from_sram0_to_sram2
+	ld e, BANK("SRAM0")
+	ld d, BANK("SRAM2")
 	ldh a, [hBankSRAM]
 	push af
-	ld bc, $2000
-	ld hl, s0a000
-	jr .asm_ea00
-.asm_e9f7
+	ld bc, SIZEOF(SRAM)
+	ld hl, STARTOF(SRAM)
+	jr .loop_copy
+.card_deck_onwards
 	ldh a, [hBankSRAM]
 	push af
-	ld bc, $1f00
+	ld bc, SIZEOF(SRAM) - (sCardAndDeckSaveData - STARTOF(SRAM))
 	ld hl, sCardAndDeckSaveData
-.asm_ea00
+.loop_copy
 	ld a, e
 	call BankswitchSRAM
 	ld a, [hl]
@@ -4713,7 +4718,7 @@ Func_e9d6:
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_ea00
+	jr nz, .loop_copy
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
@@ -4777,8 +4782,8 @@ Func_ea30::
 	ld a, c
 	cp e
 	jr nz, .error
-	ld a, $01
-	call Func_e9d6
+	ld a, 1
+	call BulkCopySRAM
 	ld a, OWMODE_0D
 	call ExecuteOWModeScript
 	ret
@@ -4817,7 +4822,7 @@ Func_eaa8:
 Func_eaea:
 	call Func_eaf6
 	xor a
-	call Func_e9d6
+	call BulkCopySRAM
 	farcall Func_10f78
 	ret
 

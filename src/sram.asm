@@ -109,7 +109,8 @@ sCardPopRecords:: ; a100
 
 SECTION "SRAM2", SRAM
 
-
+; the same structure as SRAM0
+; see BulkCopySRAM
 
 SECTION "SRAM3", SRAM
 
