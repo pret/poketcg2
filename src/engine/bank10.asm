@@ -751,7 +751,7 @@ Func_4048a:
 	ld [wPlayerOWLocation], a
 
 	ld a, NPC_VOLCANO_SMOKE_TCG
-	lb de, $78, $00
+	lb de, 120, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
@@ -811,14 +811,14 @@ Func_4048a:
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40528
 	ld a, NPC_GR_BLIMP
-	lb de, $50, $78
+	lb de, 80, 120
 	ld b, EAST
 	farcall LoadOWObject
 	scf
 	ret
 .asm_40528
 	ld a, NPC_GR_BLIMP
-	lb de, $90, $60
+	lb de, 144, 96
 	ld b, WEST
 	farcall LoadOWObject
 	ld a, $00
@@ -6040,9 +6040,9 @@ Script_43333:
 	lb de, 1, 2
 	ld b, NORTH
 	farcall SetWarpData
-	ld a, $00
+	ld a, OWMAP_MASON_LABORATORY
 	ld [wCurOWLocation], a
-	ld a, $00
+	ld a, TCG_ISLAND
 	ld [wCurIsland], a
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue

@@ -82,13 +82,13 @@ OverworldGr_MapScripts:
 Func_30092:
 	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
-	jr z, .asm_300a0
+	jr z, .set_blimp_music
 	cp MAP_GR_AIRPORT
-	jr z, .asm_300a0
+	jr z, .set_blimp_music
 	scf
 	ccf
 	ret
-.asm_300a0
+.set_blimp_music
 	ld a, MUSIC_GR_BLIMP
 	ld [wNextMusic], a
 	scf
@@ -106,12 +106,12 @@ Func_300a8:
 	ld [wPlayerOWLocation], a
 
 	ld a, NPC_VOLCANO_SMOKE_GR
-	lb de, $3c, $20
+	lb de, 60, 32
 	ld b, NORTH
 	farcall LoadOWObject
 
 	ld a, NPC_GR_CASTLE_FLAG
-	lb de, $b0, $00
+	lb de, 176, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
@@ -170,7 +170,7 @@ Func_300a8:
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_30159
 	ld a, NPC_GR_BLIMP
-	lb de, $18, $b0
+	lb de, 24, 176
 	ld b, EAST
 	farcall LoadOWObject
 	scf
@@ -178,7 +178,7 @@ Func_300a8:
 
 .asm_30159
 	ld a, NPC_GR_BLIMP
-	lb de, $30, $f0
+	lb de, 48, 240
 	ld b, EAST
 	farcall LoadOWObject
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE

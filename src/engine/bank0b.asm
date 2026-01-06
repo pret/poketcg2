@@ -8293,18 +8293,19 @@ Func_2fe54:
 	farcall InitOWObjects
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
-	jr nz, .asm_2fe6c
+	jr nz, .from_gr_to_tcg
+; from tcg to gr
 	ld a, NPC_GR_BLIMP
 	lb de, 16, 128
 	ld b, EAST
 	farcall LoadOWObject
-	jr .asm_2fe77
-.asm_2fe6c
+	jr .got_blimp_data
+.from_gr_to_tcg
 	ld a, NPC_GR_BLIMP
 	lb de, 144, 16
 	ld b, WEST
 	farcall LoadOWObject
-.asm_2fe77
+.got_blimp_data
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Func_2fe9a)
@@ -8333,41 +8334,42 @@ Func_2fe97:
 Func_2fe9a:
 	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_TCG
-	jr z, .asm_2febb
+	jr z, .from_tcg_to_gr
+; from gr to tcg
 	ld a, OVERWORLD_MAP_TCG
-	ld de, $0
+	lb de, 0, 0
 	ld b, NORTH
 	farcall SetWarpData
-	ld hl, Data_2ff50
-	ld a, $00
+	ld hl, .BlimpMovementWestward
+	ld a, TCG_ISLAND
 	ld [wCurIsland], a
-	ld a, $0a
+	ld a, OWMAP_TCG_AIRPORT
 	ld [wCurOWLocation], a
-	jr .asm_2fee2
-.asm_2febb
+	jr .loop_flyover
+.from_tcg_to_gr
 	ld a, OVERWORLD_MAP_GR
-	ld de, $0
+	lb de, 0, 0
 	ld b, NORTH
 	farcall SetWarpData
-	ld hl, Data_2ff48
-	ld a, $01
+	ld hl, .BlimpMovementEastward
+	ld a, GR_ISLAND
 	ld [wCurIsland], a
-	ld a, $00
+	ld a, OWMAP_GR_AIRPORT
 	ld [wCurOWLocation], a
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
-	jr nz, .asm_2fee2
+	jr nz, .loop_flyover
 	push hl
 	ld hl, wOverworldTransition
 	set 3, [hl]
 	pop hl
-.asm_2fee2
+.loop_flyover
 	ld a, [hli]
 	ld e, [hl]
 	inc hl
 	ld d, a
 	cp $ff
-	jr z, .asm_2ff34
+	jr z, .fade
 	ld a, [hli]
 	ld b, a
 	push hl
@@ -8377,52 +8379,56 @@ Func_2fe9a:
 	ld a, NPC_GR_BLIMP
 	pop bc
 	farcall _SetOWObjectDirection
-.asm_2fefb
-	ld c, $03
-.asm_2fefd
+.loop_movement
+	ld c, 3
+.loop_transitions
 	push bc
 	call DoFrame
 	ld hl, wOverworldTransition
 	bit 3, [hl]
-	jr nz, .asm_2ff17
+	jr nz, .next_transition
 	bit 2, [hl]
-	jr nz, .asm_2ff17
+	jr nz, .next_transition
 	ldh a, [hKeysPressed]
 	bit B_PAD_B, a
-	jr z, .asm_2ff17
+	jr z, .next_transition
 	set 2, [hl]
-	call Func_2ff3f
-.asm_2ff17
+	call .FadeToWhite
+.next_transition
 	pop bc
 	dec c
-	jr nz, .asm_2fefd
+	jr nz, .loop_transitions
 	farcall MoveOWObjectToTargetPosition
-	jr c, .asm_2ff24
+	jr c, .moving
 	pop hl
-	jr .asm_2fee2
-.asm_2ff24
+	jr .loop_flyover
+.moving
 	ld a, [wOverworldTransition]
 	bit 2, a
-	jr z, .asm_2fefb
+	jr z, .loop_movement
 	farcall CheckPalFading
-	jr nz, .asm_2fefb
+	jr nz, .loop_movement
 	pop hl
-	jr .asm_2ff37
-.asm_2ff34
-	call Func_2ff3f
-.asm_2ff37
+	jr .exit
+.fade
+	call .FadeToWhite
+.exit
 	call WaitPalFading
 	farcall Func_110a8
 	ret
 
-Func_2ff3f:
+.FadeToWhite:
 	ld a, $00
 	ld b, $00
 	farcall StartPalFadeToBlackOrWhite
 	ret
 
-Data_2ff48:
-	db $90, $10, $01, $a0, $00, $01, $ff, $ff
+.BlimpMovementEastward:
+	db 144, 16, EAST
+	db 160,  0, EAST
+	dw $ffff
 
-Data_2ff50:
-	db $10, $80, $03, $00, $90, $03, $ff, $ff
+.BlimpMovementWestward:
+	db 16, 128, WEST
+	db  0, 144, WEST
+	dw $ffff

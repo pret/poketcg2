@@ -26,18 +26,18 @@ Prologue::
 
 	; do GR Blimp movement
 	ld a, NPC_GR_BLIMP
-	lb de, $a0, $30
+	lb de, 160, 48
 	ld b, WEST
 	farcall LoadOWObject
-	lb de, $78, $30
+	lb de, 120, 48
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $78, $10
+	lb de, 120, 16
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $58, $18
+	lb de, 88, 24
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
@@ -47,10 +47,10 @@ Prologue::
 
 	; load player object in map
 	ld a, [wPlayerOWObject]
-	lb de, $44, $44
+	lb de, 68, 68
 	ld b, SOUTH
 	farcall LoadOWObject
-	lb de, $40, $30
+	lb de, 64, 48
 	ld b, WEST
 	call .MoveGRBlimp
 
@@ -68,22 +68,22 @@ Prologue::
 	call .DoGRBlimpBeamAnimation
 
 	; more GR Blimp movement
-	lb de, $20, $40
+	lb de, 32, 64
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $30, $58
+	lb de, 48, 88
 	ld b, EAST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $68, $50
+	lb de, 104, 80
 	ld b, EAST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $50, $5c
+	lb de, 80, 92
 	ld b, WEST
 	call .MoveGRBlimp
-	lb de, $50, $78
+	lb de, 80, 120
 	ld b, EAST
 	call .MoveGRBlimp
 
@@ -120,7 +120,7 @@ Prologue::
 	call WaitForOWObjectAnimation
 	ld a, [wPlayerOWObject]
 	farcall _ClearOWObject
-	lb de, $44, $44
+	lb de, 68, 68
 	ld b, SOUTH
 	farcall LoadOWObject
 	ld a, 30
@@ -183,16 +183,16 @@ Prologue::
 
 .MovePlayer:
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall _SetOWObjectAnimStruct1Flag2
-	lb de, $24, $68
+	lb de, 36, 104
 	farcall SetOWObjectTargetPosition
 .loop_wait_1
 	call DoFrame
 	farcall MoveOWObjectToTargetPosition
 	jr c, .loop_wait_1
 	ld a, [wPlayerOWObject]
-	lb de, $c, $68
+	lb de, 12, 104
 	farcall SetOWObjectTargetPosition
 .loop_wait_2
 	call DoFrame
@@ -3880,7 +3880,7 @@ Func_3ddb8:
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
-	ld de, $600
+	lb de, 6, 0
 	farcall CalcOWScroll
 	ld a, $02
 	farcall SetOWScrollState

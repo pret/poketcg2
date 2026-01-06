@@ -6066,9 +6066,9 @@ Func_1ec0f:
 	push de
 	push hl
 	ld a, [wdd22]
-	ld b, $02
-	ld d, $70
-	ld e, $30
+	ld b, SOUTH
+	ld d, 112
+	ld e, 48
 	farcall LoadOWObject
 	farcall ResetOWObjectSpriteAnimating
 	ld b, $01
