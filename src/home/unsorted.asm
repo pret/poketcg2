@@ -588,16 +588,16 @@ Func_33b7::
 	ld h, [hl]
 	ld l, a
 	ld a, c
-	ld de, wd561
-	ld bc, $5
+	ld de, wTempMapHeaderData
+	ld bc, MAPHEADERSTRUCT_LENGTH
 	call CopyFarHLToDE
-	ld a, [wd562]
+	ld a, [wTempMapScriptsBank]
 	ld [wCurMapScriptsBank], a
 	ld [wNextMapScriptsBank], a
-	ld a, [wd563 + 0]
+	ld a, [wTempMapScriptsPointer + 0]
 	ld [wCurMapScriptsPointer + 0], a
 	ld [wNextMapScriptsPointer + 0], a
-	ld a, [wd563 + 1]
+	ld a, [wTempMapScriptsPointer + 1]
 	ld [wCurMapScriptsPointer + 1], a
 	ld [wNextMapScriptsPointer + 1], a
 	ret

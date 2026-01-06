@@ -2287,17 +2287,22 @@ wCurrentNPCDuelistData:: ; d555
 ; TODO: is this really union?
 UNION
 
-wd561:: ; d561
+; MAPHEADERSTRUCT_*
+wTempMapHeaderData:: ; d561
+
+wTempMapGfx:: ; d561
 	ds $1
 
-wd562:: ; d562
+wTempMapScriptsBank:: ; d562
 	ds $1
 
-wd563:: ; d563
+wTempMapScriptsPointer:: ; d563
 	ds $2
 
-wd565:: ; d565
+wTempMapMusic:: ; d565
 	ds $1
+
+wTempMapHeaderDataEnd::
 
 NEXTU
 
