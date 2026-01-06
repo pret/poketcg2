@@ -306,20 +306,20 @@ Func_45301:
 	jr nz, .asm_4531b
 	ld a, $2c
 	ld [wRemainingIntroCards], a
-	ld a, $b0
+	ld a, LOW($47b0)
 	ld [wFilteredListPtr], a
-	ld a, $47
-	ld [wFilteredListPtr+1], a
+	ld a, HIGH($47b0)
+	ld [wFilteredListPtr + 1], a
 	ld a, VAR_28
 	farcall GetVarValue
 	jr .asm_45330
 .asm_4531b
 	ld a, $1b
 	ld [wRemainingIntroCards], a
-	ld a, $60
+	ld a, LOW($4860)
 	ld [wFilteredListPtr], a
-	ld a, $48
-	ld [wFilteredListPtr+1], a
+	ld a, HIGH($4860)
+	ld [wFilteredListPtr + 1], a
 	ld a, VAR_30
 	farcall GetVarValue
 .asm_45330
@@ -377,7 +377,7 @@ Func_45379:
 	ld d, a
 	ld a, [wFilteredListPtr]
 	ld l, a
-	ld a, [wFilteredListPtr+1]
+	ld a, [wFilteredListPtr + 1]
 	ld h, a
 	ld a, [wRemainingIntroCards]
 	call Random

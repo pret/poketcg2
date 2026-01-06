@@ -4525,7 +4525,7 @@ Func_e8a3:
 	ret
 
 Func_e8b7:
-	ld a, $02
+	ld a, BANK("SRAM2")
 	ld [wd668], a
 	ldh a, [hBankSRAM]
 	push af
@@ -4539,14 +4539,14 @@ Func_e8b7:
 	ld a, b
 	cp $16
 	jr nz, .asm_e918
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ea19
 	call Func_ed7c
 	ld a, [wd66d]
@@ -4578,11 +4578,11 @@ Func_e8b7:
 	ret
 
 Func_e91a:
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
 	ldh a, [hBankSRAM]
 	push af
-	xor a
+	xor a ; BANK("SRAM0")
 	call BankswitchSRAM
 	ld a, [$b800]
 	ld b, a
@@ -4592,14 +4592,14 @@ Func_e91a:
 	ld a, b
 	cp $16
 	jr nz, .asm_e978
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ea19
 	call Func_ed7c
 	ld a, [wd66d]
@@ -4735,17 +4735,17 @@ Func_ea30::
 	ld a, OWMODE_0C
 	call ExecuteOWModeScript
 	farcall Func_10f32
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
 .asm_ea3d
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ec94
 	call EnableSRAM
 	ld a, $16
@@ -4789,16 +4789,16 @@ Func_ea30::
 
 Func_eaa8:
 	farcall Func_10f32
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ec94
 	call EnableSRAM
 	ld a, $16
@@ -4822,31 +4822,31 @@ Func_eaea:
 	ret
 
 Func_eaf6:
-	ld a, $02
+	ld a, BANK("SRAM2")
 	ld [wd668], a
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ea19
 	call Func_ed0b
 	ret
 
 Func_eb16:
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
-	ld a, $ec
+	ld a, LOW($6dec)
 	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
+	ld a, HIGH($6dec)
+	ld [wd66f + 1], a
+	ld a, LOW($b801)
 	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
+	ld a, HIGH($b801)
+	ld [wd671 + 1], a
 	call Func_ea19
 	call Func_ed0b
 	farcall Func_10f78
@@ -4856,11 +4856,12 @@ Func_eb39:
 	ld hl, wddf9
 	xor a
 	ld c, $14
-.asm_eb3f
+.loop_init
 	ld [hli], a
 	dec c
-	jr nz, .asm_eb3f
+	jr nz, .loop_init
 
+; init verbosely from wde0d to wde17
 	ld hl, wde0d
 	xor a
 REPT 4
@@ -4878,18 +4879,18 @@ REPT 4
 ENDR
 
 	ld a, $01
-	ld [wde15 + 0], a
+	ld [wde15], a
 	ld a, $05
-	ld [wde15 + 2], a
+	ld [wde17], a
 	ld hl, .data
 	ld de, wde19
 	ld c, $20
-.asm_eb6d
+.loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_eb6d
+	jr nz, .loop_copy
 	call Func_ec38
 	ret
 
@@ -4904,6 +4905,7 @@ Func_eb97:
 	call Func_eb39
 .asm_eb9f
 	call Func_ec6c
+; init verbosely from wde0d to wde13
 	ld hl, wde0d
 	xor a
 REPT 4
@@ -4927,16 +4929,16 @@ Func_ebb6:
 	ret
 
 Func_ebc6:
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
-	ld a, $20
+	ld a, LOW($6f20)
 	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
+	ld a, HIGH($6f20)
+	ld [wd66f + 1], a
+	ld a, LOW($baa4)
 	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
+	ld a, HIGH($baa4)
+	ld [wd671 + 1], a
 	call EnableSRAM
 	ld a, [$bae6]
 	ld [wd673], a
@@ -4964,9 +4966,9 @@ Func_ebc6:
 	ld d, a
 	cp16_long 0
 	jr z, .asm_ec36
-	ld a, [wde15 + 2]
+	ld a, [wde17 + 0]
 	ld e, a
-	ld a, [wde15 + 3]
+	ld a, [wde17 + 1]
 	ld d, a
 	cp16_long 0
 	jr z, .asm_ec36
@@ -4978,16 +4980,16 @@ Func_ebc6:
 	ret
 
 Func_ec38:
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
-	ld a, $20
+	ld a, LOW($6f20)
 	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
+	ld a, HIGH($6f20)
+	ld [wd66f + 1], a
+	ld a, LOW($baa4)
 	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
+	ld a, HIGH($baa4)
+	ld [wd671 + 1], a
 	call Func_ec94
 	call EnableSRAM
 	ld a, [wd66d]
@@ -5000,16 +5002,16 @@ Func_ec38:
 	ret
 
 Func_ec6c:
-	xor a
+	xor a ; BANK("SRAM0")
 	ld [wd668], a
-	ld a, $20
+	ld a, LOW($6f20)
 	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
+	ld a, HIGH($6f20)
+	ld [wd66f + 1], a
+	ld a, LOW($baa4)
 	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
+	ld a, HIGH($baa4)
+	ld [wd671 + 1], a
 	call EnableSRAM
 	ld a, [$bae6]
 	ld [wd673], a
@@ -5031,11 +5033,11 @@ Func_ec94:
 	ld [wd66e], a
 	ld a, [wd66f]
 	ld l, a
-	ld a, [wd670]
+	ld a, [wd66f + 1]
 	ld h, a
 	ld a, [wd671]
 	ld e, a
-	ld a, [wd672]
+	ld a, [wd671 + 1]
 	ld d, a
 .asm_ecbf
 	ld a, [hli]
@@ -5104,11 +5106,11 @@ Func_ed0b:
 	ld [wd66e], a
 	ld a, [wd66f]
 	ld l, a
-	ld a, [wd670]
+	ld a, [wd66f + 1]
 	ld h, a
 	ld a, [wd671]
 	ld e, a
-	ld a, [wd672]
+	ld a, [wd671 + 1]
 	ld d, a
 .asm_ed31
 	ld a, [hli]
@@ -5176,11 +5178,11 @@ Func_ed7c:
 	ld [wd66e], a
 	ld a, [wd66f]
 	ld l, a
-	ld a, [wd670]
+	ld a, [wd66f + 1]
 	ld h, a
 	ld a, [wd671]
 	ld e, a
-	ld a, [wd672]
+	ld a, [wd671 + 1]
 	ld d, a
 .asm_eda2
 	ld a, [hli]
@@ -5243,18 +5245,18 @@ Func_ef40:
 	jr nz, .asm_ef54
 	ld a, $31
 	ld [wRemainingIntroCards], a
-	ld a, $ed
+	ld a, LOW($51ed)
 	ld [wFilteredListPtr], a
-	ld a, $51
-	ld [wFilteredListPtr+1], a
+	ld a, HIGH($51ed)
+	ld [wFilteredListPtr + 1], a
 	jr .asm_ef63
 .asm_ef54
 	ld a, $25
 	ld [wRemainingIntroCards], a
-	ld a, $4f
+	ld a, LOW($524f)
 	ld [wFilteredListPtr], a
-	ld a, $52
-	ld [wFilteredListPtr+1], a
+	ld a, HIGH($524f)
+	ld [wFilteredListPtr + 1], a
 .asm_ef63
 	ld e, $05
 	ld d, VAR_35
@@ -5296,7 +5298,7 @@ Func_ef97:
 .loop
 	ld a, [wFilteredListPtr]
 	ld l, a
-	ld a, [wFilteredListPtr+1]
+	ld a, [wFilteredListPtr + 1]
 	ld h, a
 	ld a, [wRemainingIntroCards]
 	call Random

@@ -2533,6 +2533,7 @@ wBoosterPacksToGive:: ; d65f
 wNumBoosterPacksToGive:: ; d667
 	ds $1
 
+; sram bank
 wd668:: ; d668
 	ds $1
 
@@ -2553,17 +2554,13 @@ wd66d:: ; d66d
 wd66e:: ; d66e
 	ds $1
 
+; data ptr
 wd66f:: ; d66f
-	ds $1
+	ds $2
 
-wd670:: ; d670
-	ds $1
-
+; sram ptr
 wd671:: ; d671
-	ds $1
-
-wd672:: ; d672
-	ds $1
+	ds $2
 
 wd673:: ; d673
 	ds $1

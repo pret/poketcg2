@@ -6243,7 +6243,7 @@ Func_12cfc:
 	ld l, a
 	ld h, $00
 	lb de, 9, 15
-	ld a, $02
+	ld a, 2
 	ld b, FALSE
 	farcall PrintNumber
 	ret
@@ -7116,18 +7116,18 @@ Func_1362d:
 	lb de, 1, 2
 	call PrintTextNoDelay_InitVRAM0
 	ld hl, wde0d
-	ld de, $e04
-	call Func_13681
+	lb de, 14, 4
+	call .PrintScore
 	ld hl, wde11
-	ld de, $e06
-	call Func_13681
+	lb de, 14, 6
+	call .PrintScore
 	ld hl, wde15
-	ld de, $e0a
-	call Func_13681
+	lb de, 14, 10
+	call .PrintScore
 	call Func_136b4
 	ret
 
-Func_13681:
+.PrintScore:
 	push hl
 	ld a, [wddf6]
 	add a
@@ -7137,8 +7137,8 @@ Func_13681:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $03
-	ld b, $01
+	ld a, 3
+	ld b, TRUE
 	farcall PrintNumber
 	pop hl
 	ret

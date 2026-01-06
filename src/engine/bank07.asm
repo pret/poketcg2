@@ -751,7 +751,7 @@ DrawDiaryStatusBox:
 	ld l, a
 	ld h, $00
 	lb de, 16, 6
-	ld a, $02
+	ld a, 2
 	ld b, TRUE
 	call PrintNumber
 	lb de, 13, 10
@@ -3136,7 +3136,7 @@ Func_1d5c7:
 	lb de, 14, 0
 	ld h, b
 	ld l, c
-	ld a, $04
+	ld a, 4
 	ld b, TRUE
 	call PrintNumber
 	ld hl, wdb1a
@@ -3166,7 +3166,7 @@ Func_1d618:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld d, $02
+	ld d, 2
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	inc hl
@@ -3174,11 +3174,11 @@ Func_1d618:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $04
+	ld a, 4
 	ld b, TRUE
-	ld d, $0e
+	ld d, 14
 	call PrintNumber
-	ld d, $12
+	ld d, 18
 	ldtx hl, PlayerDiaryCardsUnitText
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
