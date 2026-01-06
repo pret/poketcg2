@@ -369,7 +369,7 @@ Func_3426f:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 .asm_342d5
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_342da:
 	db SOUTH, MOVE_2
@@ -804,7 +804,7 @@ Func_3461d:
 
 Func_3462d:
 	call Func_34635
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_34635:
@@ -1009,8 +1009,8 @@ TcgAirport_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_347da
 	dbw OWMODE_INTERACT, Func_3489d
 	dbw OWMODE_NPC_POSITION, Func_347e1
-	dbw OWMODE_02, Func_347ea
-	dbw OWMODE_0F, Func_34873
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_347ea
+	dbw OWMODE_WARP_END_SFX, Func_34873
 	db $ff
 
 Func_347ce:
@@ -1290,7 +1290,7 @@ Script_GR5_TCGAirportLanded:
 
 Func_349cd:
 	call Func_349d5
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_349d5:
@@ -1888,7 +1888,7 @@ GameCenter2_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_34ee7
 	dbw OWMODE_INTERACT, Func_34ef7
 	dbw OWMODE_NPC_POSITION, Func_34eee
-	dbw OWMODE_02, Func_34f07
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_34f07
 	db $ff
 
 Func_34ee7:
@@ -2162,7 +2162,7 @@ CardDungeonBishop_MapScripts:
 	dbw OWMODE_INTERACT, Func_350f6
 	dbw OWMODE_AFTER_DUEL, Func_35127
 	dbw OWMODE_NPC_POSITION, Func_350ed
-	dbw OWMODE_02, Func_35106
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35106
 	db $ff
 
 Func_350e6:
@@ -2860,7 +2860,7 @@ WaterFortSenta_MapScripts:
 	dbw OWMODE_INTERACT, Func_35661
 	dbw OWMODE_AFTER_DUEL, Func_35669
 	dbw OWMODE_NPC_POSITION, Func_3562b
-	dbw OWMODE_02, Func_35634
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35634
 	db $ff
 
 Func_35624:
@@ -3154,7 +3154,7 @@ WaterFortAira_MapScripts:
 	dbw OWMODE_INTERACT, Func_35882
 	dbw OWMODE_AFTER_DUEL, Func_3588a
 	dbw OWMODE_NPC_POSITION, Func_3585c
-	dbw OWMODE_02, Func_35865
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35865
 	db $ff
 
 Func_35855:
@@ -3364,7 +3364,7 @@ FightingFort_MapScripts:
 	dbw OWMODE_INTERACT, Func_35a7c
 	dbw OWMODE_AFTER_DUEL, Func_35a8c
 	dbw OWMODE_NPC_POSITION, Func_35a04
-	dbw OWMODE_02, Func_35a0d
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35a0d
 	db $ff
 
 Func_359fd:
@@ -3668,8 +3668,8 @@ FightingFortMaze16_StepEvents:
 
 FightingFortMaze16_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_35c68
-	dbw OWMODE_0F, Func_35c6f
-	dbw OWMODE_02, Func_35c7b
+	dbw OWMODE_WARP_END_SFX, Func_35c6f
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35c7b
 	db $ff
 
 Func_35c68:
@@ -3724,8 +3724,8 @@ FightingFortMaze18_StepEvents:
 
 FightingFortMaze18_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_35d04
-	dbw OWMODE_0F, Func_35d0b
-	dbw OWMODE_02, Func_35d17
+	dbw OWMODE_WARP_END_SFX, Func_35d0b
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35d17
 	db $ff
 
 Func_35d04:
@@ -3788,7 +3788,7 @@ FightingFortGoda_MapScripts:
 	dbw OWMODE_INTERACT, Func_35da0
 	dbw OWMODE_AFTER_DUEL, Func_35db0
 	dbw OWMODE_NPC_POSITION, Func_35d81
-	dbw OWMODE_02, Func_35d8a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_35d8a
 	db $ff
 
 Func_35d7a:
@@ -4260,7 +4260,7 @@ PsychicStrongholdEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_36104
 	dbw OWMODE_INTERACT, Func_36140
 	dbw OWMODE_NPC_POSITION, Func_3610b
-	dbw OWMODE_02, Func_36114
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36114
 	dbw OWMODE_MUSIC_POSTLOAD, Func_360ef
 	db $ff
 
@@ -4582,8 +4582,8 @@ PsychicStronghold_MapScripts:
 	dbw OWMODE_PAUSE_MENU, Func_36448
 	dbw OWMODE_AFTER_DUEL, Func_36490
 	dbw OWMODE_NPC_POSITION, Func_36396
-	dbw OWMODE_02, Func_3639f
-	dbw OWMODE_0F, Func_36434
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3639f
+	dbw OWMODE_WARP_END_SFX, Func_36434
 	db $ff
 
 Func_3638f:
@@ -5669,7 +5669,7 @@ Func_36be5:
 	pop de
 	pop bc
 	pop af
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .asm_36bfc
 	pop hl
@@ -5769,8 +5769,8 @@ PsychicStrongholdMami_MapScripts:
 	dbw OWMODE_PAUSE_MENU, Func_36d29
 	dbw OWMODE_AFTER_DUEL, Func_36d65
 	dbw OWMODE_NPC_POSITION, Func_36cec
-	dbw OWMODE_02, Func_36cf5
-	dbw OWMODE_0F, Func_36d1e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36cf5
+	dbw OWMODE_WARP_END_SFX, Func_36d1e
 	db $ff
 
 Func_36ce5:
@@ -6163,7 +6163,7 @@ ColorlessAltar_MapScripts:
 	dbw OWMODE_INTERACT, Func_37011
 	dbw OWMODE_AFTER_DUEL, Func_37019
 	dbw OWMODE_NPC_POSITION, Func_36fe9
-	dbw OWMODE_02, Func_36ff2
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_36ff2
 	db $ff
 
 Func_36fe2:
@@ -6678,7 +6678,7 @@ GrCastleEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3740f
 	dbw OWMODE_INTERACT, Func_3746b
 	dbw OWMODE_NPC_POSITION, Func_37416
-	dbw OWMODE_02, Func_3741f
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3741f
 	dbw OWMODE_AFTER_DUEL, Func_3747b
 	db $ff
 
@@ -6999,7 +6999,7 @@ GrCastle_MapScripts:
 	dbw OWMODE_INTERACT, Func_376ed
 	dbw OWMODE_AFTER_DUEL, Func_376f5
 	dbw OWMODE_NPC_POSITION, Func_37663
-	dbw OWMODE_02, Func_3766c
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3766c
 	db $ff
 
 Func_3765c:
@@ -7535,7 +7535,7 @@ Func_37a5f:
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
 	jp z, Func_37a76
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_37a76:

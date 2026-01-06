@@ -74,9 +74,9 @@ OverworldGr_MapHeader:
 
 OverworldGr_MapScripts:
 	dbw OWMODE_MUSIC_PRELOAD, Func_30092
-	dbw OWMODE_02, Func_300a8
-	dbw OWMODE_04, Func_3018b
-	dbw OWMODE_0F, Func_30192
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_300a8
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3018b
+	dbw OWMODE_WARP_END_SFX, Func_30192
 	db $ff ; end
 
 Func_30092:
@@ -933,7 +933,7 @@ CardDungeonQueen_MapScripts:
 	dbw OWMODE_INTERACT, Func_311b1
 	dbw OWMODE_AFTER_DUEL, Func_311d0
 	dbw OWMODE_NPC_POSITION, Func_311a8
-	dbw OWMODE_02, Func_311b9
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_311b9
 	db $ff
 
 Func_311a8:
@@ -1166,7 +1166,7 @@ SealedFortEntrance_OWInteractions:
 SealedFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_31386
 	dbw OWMODE_INTERACT, Func_3138d
-	dbw OWMODE_02, Func_313a8
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_313a8
 	db $ff
 
 Func_31386:
@@ -1238,7 +1238,7 @@ GrChallengeHallEntrance_MapScripts:
 	dbw OWMODE_INTERACT, Func_31499
 	dbw OWMODE_NPC_POSITION, Func_31490
 	dbw OWMODE_MUSIC_PRELOAD, Func_3142d
-	dbw OWMODE_04, Func_31447
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_31447
 	db $ff
 
 Func_31426:
@@ -1386,7 +1386,7 @@ GrassFortEntrance_NPCInteractions:
 GrassFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3156e
 	dbw OWMODE_INTERACT, Func_3159f
-	dbw OWMODE_02, Func_3157e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3157e
 	dbw OWMODE_AFTER_DUEL, Func_315a7
 	dbw OWMODE_NPC_POSITION, Func_31575
 	dbw OWMODE_MUSIC_POSTLOAD, Func_31559
@@ -1709,7 +1709,7 @@ GrassFortMidori_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_317db
 	dbw OWMODE_INTERACT, Func_31815
 	dbw OWMODE_AFTER_DUEL, Func_31825
-	dbw OWMODE_02, Func_317eb
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_317eb
 	dbw OWMODE_NPC_POSITION, Func_317e2
 	db $ff
 
@@ -1971,7 +1971,7 @@ GrassFortYuta_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_319cc
 	dbw OWMODE_INTERACT, Func_319f2
 	dbw OWMODE_AFTER_DUEL, Func_31a02
-	dbw OWMODE_02, Func_319dc
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_319dc
 	dbw OWMODE_NPC_POSITION, Func_319d3
 	db $ff
 
@@ -2144,7 +2144,7 @@ Func_31ae1:
 	end_dialog
 	end_script
 .asm_31b05
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Script_31b0a:
@@ -2196,7 +2196,7 @@ GrassFortMiyuki_MapScripts:
 	dbw OWMODE_INTERACT, Func_31ba8
 	dbw OWMODE_AFTER_DUEL, Func_31bb8
 	dbw OWMODE_NPC_POSITION, Func_31b89
-	dbw OWMODE_02, Func_31b92
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_31b92
 	db $ff
 
 Func_31b82:
@@ -2380,7 +2380,7 @@ Func_31ca8:
 	end_dialog
 	end_script
 .asm_31cba
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 LightningFortEntrance_MapHeader:
@@ -2414,7 +2414,7 @@ LightningFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_31d27
 	dbw OWMODE_INTERACT, Func_31d5e
 	dbw OWMODE_NPC_POSITION, Func_31d2e
-	dbw OWMODE_02, Func_31d37
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_31d37
 	db $ff
 
 Func_31d27:
@@ -2775,7 +2775,7 @@ LightningFortRenna_MapScripts:
 	dbw OWMODE_INTERACT, Func_32037
 	dbw OWMODE_AFTER_DUEL, Func_32047
 	dbw OWMODE_NPC_POSITION, Func_3200d
-	dbw OWMODE_02, Func_32016
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_32016
 	db $ff
 
 Func_32006:
@@ -2934,7 +2934,7 @@ Func_320f5:
 	end_dialog
 	end_script
 .asm_32119
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Script_3211e:
@@ -2991,7 +2991,7 @@ LightningFortIchikawa_MapScripts:
 	dbw OWMODE_INTERACT, Func_321e4
 	dbw OWMODE_AFTER_DUEL, Func_321f4
 	dbw OWMODE_NPC_POSITION, Func_321b1
-	dbw OWMODE_02, Func_321ba
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_321ba
 	db $ff
 
 Func_321aa:
@@ -3305,7 +3305,7 @@ Func_323f0:
 	end_dialog
 	end_script
 .asm_32402
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_32407:
@@ -3319,7 +3319,7 @@ Func_32407:
 	end_dialog
 	end_script
 .asm_32419
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 LightningFortCatherine_MapHeader:
@@ -3511,7 +3511,7 @@ FireFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_325bc
 	dbw OWMODE_INTERACT, Func_3261c
 	dbw OWMODE_NPC_POSITION, Func_325c3
-	dbw OWMODE_02, Func_325cc
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_325cc
 	dbw OWMODE_AFTER_DUEL, Func_3262c
 	dbw OWMODE_MUSIC_POSTLOAD, Func_3259f
 	db $ff
@@ -3862,7 +3862,7 @@ FireFortJes_MapScripts:
 	dbw OWMODE_INTERACT, Func_3288e
 	dbw OWMODE_AFTER_DUEL, Func_3289e
 	dbw OWMODE_NPC_POSITION, Func_32864
-	dbw OWMODE_02, Func_3286d
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3286d
 	db $ff
 
 Func_3285d:
@@ -4020,7 +4020,7 @@ Func_32956:
 	end_dialog
 	end_script
 .asm_32968
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 FireFortYuki_MapHeader:
@@ -4053,7 +4053,7 @@ FireFortYuki_MapScripts:
 	dbw OWMODE_INTERACT, Func_32a18
 	dbw OWMODE_AFTER_DUEL, Func_32a28
 	dbw OWMODE_NPC_POSITION, Func_329cd
-	dbw OWMODE_02, Func_329d6
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_329d6
 	db $ff
 
 Func_329c6:
@@ -4372,7 +4372,7 @@ Func_32bd4:
 	end_dialog
 	end_script
 .asm_32be6
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 FireFortShoko_MapHeader:
@@ -4406,7 +4406,7 @@ FireFortShoko_MapScripts:
 	dbw OWMODE_INTERACT, Func_32c7a
 	dbw OWMODE_AFTER_DUEL, Func_32c8a
 	dbw OWMODE_NPC_POSITION, Func_32c51
-	dbw OWMODE_02, Func_32c5a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_32c5a
 	db $ff
 
 Func_32c4a:
@@ -4582,7 +4582,7 @@ Func_32d59:
 	end_dialog
 	end_script
 .asm_32d7d
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_32d82:
@@ -4880,7 +4880,7 @@ WaterFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_32fe6
 	dbw OWMODE_INTERACT, Func_33046
 	dbw OWMODE_NPC_POSITION, Func_32fed
-	dbw OWMODE_02, Func_32ff6
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_32ff6
 	dbw OWMODE_AFTER_DUEL, Func_33056
 	dbw OWMODE_MUSIC_POSTLOAD, Func_32fc9
 	db $ff
@@ -5053,7 +5053,7 @@ WaterFortMiyajima_MapScripts:
 	dbw OWMODE_INTERACT, Func_3314a
 	dbw OWMODE_AFTER_DUEL, Func_3315a
 	dbw OWMODE_NPC_POSITION, Func_33120
-	dbw OWMODE_02, Func_33129
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33129
 	db $ff
 
 Func_33119:
@@ -5228,7 +5228,7 @@ Func_33236:
 	end_dialog
 	end_script
 .asm_33248
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 WaterFortKanoko_MapHeader:
@@ -5410,7 +5410,7 @@ FightingFortEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_333ad
 	dbw OWMODE_INTERACT, Func_33424
 	dbw OWMODE_NPC_POSITION, Func_333b4
-	dbw OWMODE_02, Func_333bd
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_333bd
 	db $ff
 
 Func_333ad:
@@ -5616,7 +5616,7 @@ FightingFortMaze2_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33565
 	dbw OWMODE_INTERACT, Func_33581
 	dbw OWMODE_NPC_POSITION, Func_33578
-	dbw OWMODE_0F, Func_3356c
+	dbw OWMODE_WARP_END_SFX, Func_3356c
 	db $ff
 
 Func_33565:
@@ -5718,7 +5718,7 @@ FightingFortMaze3_StepEvents:
 
 FightingFortMaze3_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3361d
-	dbw OWMODE_02, Func_33624
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33624
 	db $ff
 
 Func_3361d:
@@ -5763,8 +5763,8 @@ FightingFortMaze4_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_336a3
 	dbw OWMODE_INTERACT, Func_336ca
 	dbw OWMODE_NPC_POSITION, Func_336c1
-	dbw OWMODE_0F, Func_336aa
-	dbw OWMODE_02, Func_336b6
+	dbw OWMODE_WARP_END_SFX, Func_336aa
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_336b6
 	db $ff
 
 Func_336a3:
@@ -5871,7 +5871,7 @@ FightingFortMaze5_StepEvents:
 
 FightingFortMaze5_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33754
-	dbw OWMODE_02, Func_3375b
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3375b
 	db $ff
 
 Func_33754:
@@ -5902,7 +5902,7 @@ FightingFortMaze6_StepEvents:
 
 FightingFortMaze6_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_337a9
-	dbw OWMODE_02, Func_337b0
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_337b0
 	db $ff
 
 Func_337a9:
@@ -5935,7 +5935,7 @@ FightingFortMaze7_StepEvents:
 
 FightingFortMaze7_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33810
-	dbw OWMODE_02, Func_33817
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33817
 	db $ff
 
 Func_33810:
@@ -5982,8 +5982,8 @@ FightingFortMaze8_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_338a8
 	dbw OWMODE_INTERACT, Func_338cf
 	dbw OWMODE_NPC_POSITION, Func_338c6
-	dbw OWMODE_0F, Func_338af
-	dbw OWMODE_02, Func_338bb
+	dbw OWMODE_WARP_END_SFX, Func_338af
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_338bb
 	db $ff
 
 Func_338a8:
@@ -6092,7 +6092,7 @@ FightingFortMaze9_StepEvents:
 
 FightingFortMaze9_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3396b
-	dbw OWMODE_02, Func_33972
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33972
 	db $ff
 
 Func_3396b:
@@ -6146,7 +6146,7 @@ FightingFortMaze11_StepEvents:
 
 FightingFortMaze11_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33a07
-	dbw OWMODE_02, Func_33a0e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33a0e
 	db $ff
 
 Func_33a07:
@@ -6181,8 +6181,8 @@ FightingFortMaze12_StepEvents:
 
 FightingFortMaze12_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33a83
-	dbw OWMODE_0F, Func_33a8a
-	dbw OWMODE_02, Func_33a96
+	dbw OWMODE_WARP_END_SFX, Func_33a8a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33a96
 	db $ff
 
 Func_33a83:
@@ -6235,7 +6235,7 @@ FightingFortMaze13_StepEvents:
 
 FightingFortMaze13_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33b09
-	dbw OWMODE_02, Func_33b10
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33b10
 	db $ff
 
 Func_33b09:
@@ -6268,8 +6268,8 @@ FightingFortMaze14_StepEvents:
 
 FightingFortMaze14_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33b73
-	dbw OWMODE_0F, Func_33b7a
-	dbw OWMODE_02, Func_33b86
+	dbw OWMODE_WARP_END_SFX, Func_33b7a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33b86
 	db $ff
 
 Func_33b73:
@@ -6320,7 +6320,7 @@ FightingFortMaze15_StepEvents:
 
 FightingFortMaze15_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33be7
-	dbw OWMODE_02, Func_33bee
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33bee
 	db $ff
 
 Func_33be7:
@@ -6365,8 +6365,8 @@ FightingFortMaze17_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33c6d
 	dbw OWMODE_INTERACT, Func_33cb2
 	dbw OWMODE_NPC_POSITION, Func_33ca9
-	dbw OWMODE_02, Func_33c74
-	dbw OWMODE_0F, Func_33c9d
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33c74
+	dbw OWMODE_WARP_END_SFX, Func_33c9d
 	db $ff
 
 Func_33c6d:
@@ -6547,7 +6547,7 @@ ColorlessAltarEntrance_StepEvents:
 
 ColorlessAltarEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_33de1
-	dbw OWMODE_02, Func_33de8
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_33de8
 	dbw OWMODE_MUSIC_POSTLOAD, Func_33dcc
 	db $ff
 

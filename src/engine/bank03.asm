@@ -152,35 +152,35 @@ OWModePostprocess::
 	jp hl
 
 .PointerTable
-	dw Func_31a1   ; OWMODE_IDLE
-	dw .Exit       ; OWMODE_MUSIC_PRELOAD
-	dw Func_c17d   ; OWMODE_02
-	dw Func_c169   ; OWMODE_03
-	dw Func_c183   ; OWMODE_04
-	dw Func_31a8   ; OWMODE_MOVE
-	dw Func_c199   ; OWMODE_STEP_EVENT
-	dw .Exit       ; OWMODE_NPC_POSITION
-	dw Func_c163   ; OWMODE_INTERACT
-	dw Func_c189   ; OWMODE_AFTER_DUEL
-	dw Func_3234   ; OWMODE_SCRIPT
-	dw Func_c18f   ; OWMODE_0B
-	dw .Exit       ; OWMODE_0C
-	dw .Exit       ; OWMODE_0D
-	dw .Exit       ; OWMODE_0E
-	dw PlaySFXWarp ; OWMODE_0F
-	dw Func_c175   ; OWMODE_MUSIC_POSTLOAD
-	dw Func_c1a2   ; OWMODE_11
-	dw PauseMenu   ; OWMODE_PAUSE_MENU
+	dw Func_31a1                               ; OWMODE_IDLE
+	dw .Exit                                   ; OWMODE_MUSIC_PRELOAD
+	dw OverworldFadeInToBlack                  ; OWMODE_WARP_FADE_IN_PRELOAD
+	dw Overworld10FramesWarpInterval           ; OWMODE_WARP_INTERVAL
+	dw OverworldFadeOutToBlack                 ; OWMODE_WARP_FADE_OUT_PRELOAD
+	dw Func_31a8                               ; OWMODE_MOVE
+	dw OverworldResumeAndHandlePlayerMoveInput ; OWMODE_STEP_EVENT
+	dw .Exit                                   ; OWMODE_NPC_POSITION
+	dw OverworldResumeFromInteract             ; OWMODE_INTERACT
+	dw OverworldResumeAfterDuel                ; OWMODE_AFTER_DUEL
+	dw ExecuteWRAMOverworldScript              ; OWMODE_SCRIPT
+	dw OverworldResumeWithCurSong              ; OWMODE_0B
+	dw .Exit                                   ; OWMODE_0C
+	dw .Exit                                   ; OWMODE_0D
+	dw .Exit                                   ; OWMODE_0E
+	dw PlaySFXWarp                             ; OWMODE_WARP_END_SFX
+	dw PlayNextMusic                           ; OWMODE_MUSIC_POSTLOAD
+	dw OverworldWaitPalFading                  ; OWMODE_11
+	dw PauseMenu                               ; OWMODE_PAUSE_MENU
 
 .Exit:
 	ret
 
-Func_c163:
+OverworldResumeFromInteract:
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
-Func_c169:
+Overworld10FramesWarpInterval:
 	ld a, 10
 	call WaitAFrames
 	ret
@@ -190,39 +190,43 @@ PlaySFXWarp:
 	call PlaySFX
 	ret
 
-Func_c175:
+PlayNextMusic:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
 
-Func_c17d:
+; fade in to black + some processing
+OverworldFadeInToBlack:
 	ld a, $01
 	call Func_338f
 	ret
 
-Func_c183:
+; fade out to black + some processing
+OverworldFadeOutToBlack:
 	ld a, $01
 	call Func_33a3
 	ret
 
-Func_c189:
+OverworldResumeAfterDuel:
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
-Func_c18f:
+; may as well be called directly
+OverworldResumeWithCurSong:
 	farcall PlayCurrentSong
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
-Func_c199:
+; may as well be called directly
+OverworldResumeAndHandlePlayerMoveInput:
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	call HandleOverworldPlayerMoveInput
 	ret
 
-Func_c1a2:
+OverworldWaitPalFading:
 	call WaitPalFading
 	ret
 
@@ -1174,9 +1178,9 @@ OverworldLoop::
 	call ExecuteOWModeScript
 	ld a, OWMODE_MUSIC_POSTLOAD
 	call ExecuteOWModeScript
-	ld a, OWMODE_02
+	ld a, OWMODE_WARP_FADE_IN_PRELOAD
 	call ExecuteOWModeScript
-	ld a, OWMODE_03
+	ld a, OWMODE_WARP_INTERVAL
 	call ExecuteOWModeScript
 
 .wait_input
@@ -1190,9 +1194,9 @@ OverworldLoop::
 	jr nz, .start_duel
 	bit 0, a
 	jr z, .wait_input
-	ld a, OWMODE_04
+	ld a, OWMODE_WARP_FADE_OUT_PRELOAD
 	call ExecuteOWModeScript
-	ld a, OWMODE_0F
+	ld a, OWMODE_WARP_END_SFX
 	call ExecuteOWModeScript
 	ret
 

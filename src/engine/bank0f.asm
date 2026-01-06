@@ -792,7 +792,7 @@ MasonLaboratoryComputerRoom_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3c689
 	dbw OWMODE_INTERACT, Func_3c6b3
 	dbw OWMODE_NPC_POSITION, Func_3c690
-	dbw OWMODE_02, Func_3c697
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3c697
 	db $ff
 
 Func_3c689:
@@ -1518,7 +1518,7 @@ LightningClubEntrance_StepEvents:
 
 LightningClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3cbf4
-	dbw OWMODE_02, Func_3cbfb
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3cbfb
 	dbw OWMODE_0B, Func_3cc37
 	dbw OWMODE_MUSIC_PRELOAD, Func_3cbd4
 	dbw OWMODE_MUSIC_POSTLOAD, Func_3cbe4
@@ -2285,7 +2285,7 @@ TcgChallengeHallEntrance_MapScripts:
 	dbw OWMODE_INTERACT, Func_3d269
 	dbw OWMODE_NPC_POSITION, Func_3d260
 	dbw OWMODE_MUSIC_PRELOAD, Func_3d1f6
-	dbw OWMODE_04, Func_3d210
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d210
 	db $ff
 
 Func_3d1f6:
@@ -2821,9 +2821,9 @@ PokemonDome_MapScripts:
 	dbw OWMODE_INTERACT, Func_3d740
 	dbw OWMODE_AFTER_DUEL, Func_3d750
 	dbw OWMODE_NPC_POSITION, Func_3d6c1
-	dbw OWMODE_02, Func_3d6ca
-	dbw OWMODE_04, Func_3d719
-	dbw OWMODE_0F, Func_3d734
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3d6ca
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d719
+	dbw OWMODE_WARP_END_SFX, Func_3d734
 	dbw OWMODE_MUSIC_PRELOAD, Func_3d67b
 	db $ff
 
@@ -3505,7 +3505,7 @@ Func_3db13:
 	end_dialog
 	end_script
 .asm_3db36
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_3db3b:
 	db NORTH, MOVE_4
@@ -3811,11 +3811,11 @@ PokemonDomeBack_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3dda8
 	dbw OWMODE_AFTER_DUEL, PokemonDomeBack_AfterDuel
 	dbw OWMODE_NPC_POSITION, Func_3ddaf
-	dbw OWMODE_02, Func_3ddb8
-	dbw OWMODE_04, Func_3de67
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3ddb8
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3de67
 	dbw OWMODE_0B, Func_3de91
 	dbw OWMODE_0E, Func_3deca
-	dbw OWMODE_0F, Func_3de6f
+	dbw OWMODE_WARP_END_SFX, Func_3de6f
 	db $ff
 
 Func_3dda8:
@@ -3927,7 +3927,7 @@ PokemonDomeBack_AfterDuel:
 	jp Func_3e091
 
 Func_3de91:
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3deb5
@@ -6001,7 +6001,7 @@ Func_3ee9e:
 	farcall SetOWObjectDirection
 	call Func_3ee11
 .asm_3eec2
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_3eec7:
@@ -6009,7 +6009,7 @@ Func_3eec7:
 	ld a, b
 	or c
 	jr nz, .asm_3eed4
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .asm_3eed4
 	ld a, NPC_CHIP_SECURITY
@@ -6231,7 +6231,7 @@ CardDungeonPawn_MapScripts:
 	dbw OWMODE_INTERACT, Func_3f0a3
 	dbw OWMODE_AFTER_DUEL, Func_3f0d4
 	dbw OWMODE_NPC_POSITION, Func_3f09a
-	dbw OWMODE_02, Func_3f0b3
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f0b3
 	db $ff
 
 Func_3f093:
@@ -6450,7 +6450,7 @@ CardDungeonKnight_MapScripts:
 	dbw OWMODE_INTERACT, Func_3f249
 	dbw OWMODE_AFTER_DUEL, Func_3f27a
 	dbw OWMODE_NPC_POSITION, Func_3f240
-	dbw OWMODE_02, Func_3f259
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f259
 	db $ff
 
 Func_3f239:
@@ -6691,7 +6691,7 @@ CardDungeonRook_MapScripts:
 	dbw OWMODE_INTERACT, Func_3f419
 	dbw OWMODE_AFTER_DUEL, Func_3f44a
 	dbw OWMODE_NPC_POSITION, Func_3f410
-	dbw OWMODE_02, Func_3f429
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f429
 	db $ff
 
 Func_3f409:
@@ -7306,7 +7306,7 @@ FightingFortBasement_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3f8b6
 	dbw OWMODE_INTERACT, Func_3f904
 	dbw OWMODE_NPC_POSITION, Func_3f8bd
-	dbw OWMODE_02, Func_3f8c6
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f8c6
 	db $ff
 
 Func_3f8b6:

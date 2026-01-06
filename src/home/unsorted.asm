@@ -310,7 +310,7 @@ LoadNPCs::
 .PreloadFunc:
 	jp hl
 
-Func_3234::
+ExecuteWRAMOverworldScript::
 	ldh a, [hBankROM]
 	push af
 	call .Script

@@ -719,9 +719,9 @@ OverworldTcg_MapHeader:
 
 OverworldTcg_MapScripts:
 	dbw OWMODE_MUSIC_PRELOAD, Func_40474
-	dbw OWMODE_02, Func_4048a
-	dbw OWMODE_04, Func_4053b
-	dbw OWMODE_0F, Func_4053e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4048a
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_4053b
+	dbw OWMODE_WARP_END_SFX, Func_4053e
 	db $ff ; end
 
 Func_40474:
@@ -1351,7 +1351,7 @@ MasonLaboratoryMain_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_40f21
 	dbw OWMODE_11, Func_40f14
 	dbw OWMODE_NPC_POSITION, Func_40e8a
-	dbw OWMODE_02, Func_40e91
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_40e91
 	dbw OWMODE_MUSIC_PRELOAD, Func_40e72
 	db $ff
 
@@ -2365,7 +2365,7 @@ TcgChallengeHall_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_4162a
 	dbw OWMODE_NPC_POSITION, Func_415fa
 	dbw OWMODE_MUSIC_PRELOAD, Func_415e6
-	dbw OWMODE_02, Func_41603
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41603
 	dbw OWMODE_0B, Func_4163b
 	db $ff
 
@@ -2427,7 +2427,7 @@ Func_4163b:
 	scf
 	ret
 .asm_41645
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_4164f
 	scf
 	ccf
@@ -3177,8 +3177,8 @@ GrAirport_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_41c50
 	dbw OWMODE_INTERACT, Func_41ccb
 	dbw OWMODE_NPC_POSITION, Func_41c57
-	dbw OWMODE_02, Func_41c60
-	dbw OWMODE_0F, Func_41ca1
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41c60
+	dbw OWMODE_WARP_END_SFX, Func_41ca1
 	db $ff
 
 Func_41c44:
@@ -3380,7 +3380,7 @@ Script_GR5_GRAirportLanded:
 
 Func_41dac:
 	call Func_41db4
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_41db4:
@@ -3594,7 +3594,7 @@ Func_41f66:
 	unload_npc NPC_TOBICHAN
 	end_script
 .asm_41fd9
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_41fde:
 	db SOUTH, MOVE_1
@@ -4389,7 +4389,7 @@ GrChallengeHall_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_426d6
 	dbw OWMODE_11, Func_426c9
 	dbw OWMODE_NPC_POSITION, Func_42640
-	dbw OWMODE_02, Func_4266e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4266e
 	dbw OWMODE_MUSIC_PRELOAD, Func_42649
 	dbw OWMODE_0B, Func_426f8
 	db $ff
@@ -4507,7 +4507,7 @@ Func_426f8:
 	scf
 	ret
 .asm_42702
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_4270c
 	scf
 	ccf
@@ -5410,7 +5410,7 @@ FightingFortMaze1_StepEvents:
 
 FightingFortMaze1_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_42e6e
-	dbw OWMODE_02, Func_42e75
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42e75
 	db $ff
 
 Func_42e6e:
@@ -5441,7 +5441,7 @@ FightingFortMaze21_StepEvents:
 
 FightingFortMaze21_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_42ec3
-	dbw OWMODE_02, Func_42eca
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42eca
 	db $ff
 
 Func_42ec3:
@@ -5485,10 +5485,10 @@ GrCastleBiruritchi_MapScripts:
 	dbw OWMODE_INTERACT, Func_42fad
 	dbw OWMODE_AFTER_DUEL, Func_42fbd
 	dbw OWMODE_NPC_POSITION, Func_42f35
-	dbw OWMODE_02, Func_42f3e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42f3e
 	dbw OWMODE_0B, Func_42fcd
-	dbw OWMODE_04, Func_42f86
-	dbw OWMODE_0F, Func_42fa1
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_42f86
+	dbw OWMODE_WARP_END_SFX, Func_42fa1
 	db $ff
 
 Func_42f2e:
@@ -5589,7 +5589,7 @@ Func_42fcd:
 	scf
 	ret
 .asm_42fd7
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_42fe1
 	scf
 	ccf
