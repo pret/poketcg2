@@ -155,8 +155,8 @@ CheckIfGameCenter:
 	push bc
 	push de
 	push hl
-	ld hl, .GameCenterOWMaps
-	ld c, 9 ; table size
+	ld hl, .GameCenterMaps
+	ld c, MAP_CARD_DUNGEON_QUEEN - MAP_GAME_CENTER_ENTRANCE + 1
 	ld b, 0
 .loop_lookup
 	push hl
@@ -184,8 +184,17 @@ CheckIfGameCenter:
 	pop bc
 	ret
 
-.GameCenterOWMaps:
-	dw $02b, $02c, $02d, $02e, $02f, $030, $031, $032, $033
+.GameCenterMaps:
+	dw MAP_GAME_CENTER_ENTRANCE
+	dw MAP_GAME_CENTER_LOBBY
+	dw MAP_GAME_CENTER_1
+	dw MAP_GAME_CENTER_2
+	dw MAP_CARD_DUNGEON_PAWN
+	dw MAP_CARD_DUNGEON_KNIGHT
+	dw MAP_CARD_DUNGEON_BISHOP
+	dw MAP_CARD_DUNGEON_ROOK
+	dw MAP_CARD_DUNGEON_QUEEN
+	; no sentinels
 
 GetPlayerPortrait::
 	push bc
