@@ -214,9 +214,8 @@ _ChooseTitleScreenCards:
 	dw $0000
 
 INCLUDE "data/black_box_promos.asm"
-; 0x447b0
 
-SECTION "Bank 11@48cc", ROMX[$48cc], BANK[$11]
+INCLUDE "data/challenge_cup_opponents.asm"
 
 INCLUDE "data/grand_master_cup.asm"
 
@@ -304,21 +303,21 @@ SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
 Func_45301:
 	or a
 	jr nz, .asm_4531b
-	ld a, $2c
+	ld a, NUM_TCG_CHALLENGE_CUP_OPPONENT_POOL
 	ld [wRemainingIntroCards], a
-	ld a, LOW($47b0)
+	ld a, LOW(TCGChallengeCupOpponents)
 	ld [wFilteredListPtr], a
-	ld a, HIGH($47b0)
+	ld a, HIGH(TCGChallengeCupOpponents)
 	ld [wFilteredListPtr + 1], a
 	ld a, VAR_28
 	farcall GetVarValue
 	jr .asm_45330
 .asm_4531b
-	ld a, $1b
+	ld a, NUM_GR_CHALLENGE_CUP_OPPONENT_POOL
 	ld [wRemainingIntroCards], a
-	ld a, LOW($4860)
+	ld a, LOW(GRChallengeCupOpponents)
 	ld [wFilteredListPtr], a
-	ld a, HIGH($4860)
+	ld a, HIGH(GRChallengeCupOpponents)
 	ld [wFilteredListPtr + 1], a
 	ld a, VAR_30
 	farcall GetVarValue
@@ -326,16 +325,16 @@ Func_45301:
 	cp $03
 	jr z, .asm_4533a
 	jr nc, .asm_4533e
-	ld a, $00
+	ld a, 0
 	jr .asm_45340
 .asm_4533a
-	ld a, $01
+	ld a, 1
 	jr .asm_45340
 .asm_4533e
-	ld a, $02
+	ld a, 2
 .asm_45340
 	ld [wd578], a
-	ld e, $03
+	ld e, 3
 	ld d, VAR_2D
 	ld c, $ff
 .asm_45349
@@ -344,9 +343,9 @@ Func_45301:
 	inc d
 	dec e
 	jr nz, .asm_45349
-	ld c, $00
+	ld c, 0
 .asm_45354
-	ld b, $01
+	ld b, 1
 	ld a, c
 	or a
 .asm_45358
@@ -366,7 +365,7 @@ Func_45301:
 	farcall SetVarValue
 	pop bc
 	inc c
-	ld a, $03
+	ld a, 3
 	cp c
 	jr nz, .asm_45354
 	ret

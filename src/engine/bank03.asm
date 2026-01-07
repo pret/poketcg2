@@ -1107,7 +1107,7 @@ GRIslandLocationNamePointers:
 	tx MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
-INCLUDE "data/challenge_cup.asm"
+INCLUDE "data/challenge_cup_prizes.asm"
 ; 0xd1ed
 
 SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
