@@ -1,3 +1,41 @@
+; challenge cup constants
+	const_def
+	const TCG_CHALLENGE_CUP ; 0
+	const GR_CHALLENGE_CUP  ; 1
+
+; wChallengeCupIndex constants
+; actual titles:
+;   TCG: "Challenge Cup" (1, 2, 3)
+;    GR: "Team GR Cup" (1, 2), "King Cup" (3)
+	const_def
+	const CHALLENGE_CUP_1 ; 0
+	const CHALLENGE_CUP_2 ; 1
+	const CHALLENGE_CUP_3 ; 2
+
+; VAR_*_CHALLENGE_CUP_STATE constants
+; cup 1 and 2: limited time windows
+; cup 3: post-game
+	const_def
+	const CHALLENGE_CUP_DEAD       ; 0
+	const CHALLENGE_CUP_1_START    ; 1
+	const CHALLENGE_CUP_1_END      ; 2
+	const CHALLENGE_CUP_2_START    ; 3
+	const CHALLENGE_CUP_2_END      ; 4
+	const CHALLENGE_CUP_3_UNLOCKED ; 5
+	const CHALLENGE_CUP_3_START    ; 6
+
+; challenge cup rounds
+DEF NUM_CHALLENGE_CUP_ROUNDS EQU 3
+
+; VAR_*_CHALLENGE_CUP_RESULT constants
+	const_def
+	const CHALLENGE_CUP_RESULT_NONE ; 0
+	const CHALLENGE_CUP_RESULT_WON  ; 1
+	const CHALLENGE_CUP_RESULT_LOST ; 2
+
+; challenge cup win threshold for coin prizes
+DEF NUM_CHALLENGE_CUP_WIN_THRESHOLD EQU 10
+
 ; cup opponents
 	const_def
 	const GRANDMASTERCUP_GENE   ; 0
@@ -17,7 +55,7 @@ DEF NUM_GRANDMASTERCUP_OPPONENTS EQU NUM_GRANDMASTERCUP_DUELISTS - 1 ; 7
 DEF NUM_TCG_CHALLENGE_CUP_OPPONENT_POOL EQU 44
 DEF NUM_GR_CHALLENGE_CUP_OPPONENT_POOL  EQU 27
 
-; cup prizes
+; cup prize cards
 DEF NUM_GRANDMASTERCUP_PRIZE_POOL EQU 37
 
   const_def

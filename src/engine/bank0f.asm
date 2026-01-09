@@ -2277,7 +2277,7 @@ TcgChallengeHallEntrance_NPCs:
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
-	npc_script NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, Func_3d271
+	npc_script NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, Script_TCGChallengeHallEntranceClerk
 	db $ff
 
 TcgChallengeHallEntrance_MapScripts:
@@ -2289,18 +2289,18 @@ TcgChallengeHallEntrance_MapScripts:
 	db $ff
 
 Func_3d1f6:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d208
-	cp $03
-	jr z, .asm_3d208
-	cp $06
-	jr nz, .asm_3d20d
-.asm_3d208
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
-.asm_3d20d
+.inactive
 	scf
 	ccf
 	ret
@@ -2308,38 +2308,40 @@ Func_3d1f6:
 Func_3d210:
 	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
-	jr nz, .asm_3d257
-	ld a, VAR_28
+	jr nz, .done
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d229
-	cp $03
-	jr z, .asm_3d229
-	cp $06
-	jr nz, .asm_3d257
-.asm_3d229
-	ld a, VAR_2B
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .done
+.active
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	farcall GetVarValue
-	cp $01
+	cp CHALLENGE_CUP_RESULT_WON
 	push af
-	ld a, VAR_2B
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	farcall ZeroOutVarValue
 	pop af
-	jr nz, .asm_3d257
-	ld a, VAR_28
+	jr nz, .done
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $06
-	jr z, .asm_3d24f
+	cp CHALLENGE_CUP_3_START
+	jr z, .adjust
 	inc a
 	ld c, a
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall SetVarValue
-	jr .asm_3d257
-.asm_3d24f
-	ld a, VAR_28
-	ld c, $05
+	jr .done
+; keep the state var < 7
+; verbose: dec a between inc a :: ld c, a above should suffice
+.adjust
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	farcall SetVarValue
-.asm_3d257
+.done
 	scf
 	ret
 
@@ -2361,7 +2363,7 @@ Func_3d269:
 	scf
 	ret
 
-Func_3d271:
+Script_TCGChallengeHallEntranceClerk:
 	ld a, NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -2372,42 +2374,42 @@ Func_3d271:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_2B
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3d2d1
-	get_var VAR_28
-	compare_loaded_var $05
-	script_jump_if_b0nz .ows_3d2c5
-	script_jump_if_b1z .ows_3d2cb
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_3d2b9
-	script_jump_if_b1z .ows_3d2bf
-	compare_loaded_var $01
-	script_jump_if_b0nz .ows_3d2ad
-	script_jump_if_b1z .ows_3d2b3
-	print_npc_text Text098a
-	script_jump .ows_3d2d4
-.ows_3d2ad
-	print_npc_text Text098b
-	script_jump .ows_3d2d4
-.ows_3d2b3
-	print_npc_text Text098c
-	script_jump .ows_3d2d4
-.ows_3d2b9
-	print_npc_text Text098d
-	script_jump .ows_3d2d4
-.ows_3d2bf
-	print_npc_text Text098e
-	script_jump .ows_3d2d4
-.ows_3d2c5
-	print_npc_text Text098f
-	script_jump .ows_3d2d4
-.ows_3d2cb
-	print_npc_text Text0990
-	script_jump .ows_3d2d4
-.ows_3d2d1
-	print_npc_text Text0991
-.ows_3d2d4
+	get_var VAR_TCG_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_NONE
+	script_jump_if_b0z .tcg_cup_played
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_UNLOCKED
+	script_jump_if_b0nz .tcg_cup3_inactive
+	script_jump_if_b1z .tcg_cup3_active
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .tcg_cup2_active
+	script_jump_if_b1z .tcg_cup2_over
+	compare_loaded_var CHALLENGE_CUP_1_START
+	script_jump_if_b0nz .tcg_cup1_active
+	script_jump_if_b1z .tcg_cup1_over
+	print_npc_text TCGChallengeHallEntranceClerkNoCardsText
+	script_jump .done
+.tcg_cup1_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup1ActiveText
+	script_jump .done
+.tcg_cup1_over
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup1OverText
+	script_jump .done
+.tcg_cup2_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup2ActiveText
+	script_jump .done
+.tcg_cup2_over
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup2OverText
+	script_jump .done
+.tcg_cup3_inactive
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup3InactiveText
+	script_jump .done
+.tcg_cup3_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup3ActiveText
+	script_jump .done
+.tcg_cup_played
+	print_npc_text TCGChallengeHallEntranceClerkTCGCupPlayedText
+.done
 	end_dialog
 	end_script
 	ret
@@ -2424,18 +2426,18 @@ TcgChallengeHallLobby_StepEvents:
 
 TcgChallengeHallLobby_NPCs:
 	npc NPC_TCG_CHALLENGE_HALL_CHAP, 10, 4, SOUTH, NULL
-	npc NPC_CUP_HOST, 7, 9, EAST, Func_3d5a3
-	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, Func_3d5a3
-	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, Func_3d5ba
-	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, Func_3d5ba
-	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, Func_3d5ba
+	npc NPC_CUP_HOST, 7, 9, EAST, TcgChallengeHallLobby_DisappearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, TcgChallengeHallLobby_DisappearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, TcgChallengeHallLobby_AppearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, TcgChallengeHallLobby_AppearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, TcgChallengeHallLobby_AppearDuringTCGCups
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
 	npc_script NPC_TCG_CHALLENGE_HALL_CHAP, Func_3d3c0
-	npc_script NPC_CUP_HOST, Func_3d4e9
+	npc_script NPC_CUP_HOST, Script_CupHostTCGLobby
 	npc_script NPC_TCG_CHALLENGE_HALL_PUNK, Func_3d511
 	npc_script NPC_TCG_CHALLENGE_HALL_PAPPY, Func_3d539
 	npc_script NPC_TCG_CHALLENGE_HALL_TECH, Func_3d56d
@@ -2460,18 +2462,18 @@ TcgChallengeHallLobby_MapScripts:
 	db $ff
 
 Func_3d386:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d398
-	cp $03
-	jr z, .asm_3d398
-	cp $06
-	jr nz, .asm_3d39d
-.asm_3d398
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
-.asm_3d39d
+.inactive
 	scf
 	ccf
 	ret
@@ -2638,7 +2640,7 @@ Func_3d3c0:
 	end_script
 	ret
 
-Func_3d4e9:
+Script_CupHostTCGLobby:
 	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
 	ldtx hl, DialogCupHostText
@@ -2649,14 +2651,14 @@ Func_3d4e9:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_28
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3d50b
-	print_npc_text Text09ab
-	script_jump .ows_3d50e
-.ows_3d50b
-	print_npc_text Text09ac
-.ows_3d50e
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_DEAD
+	script_jump_if_b0z .tcg_cup_unlocked
+	print_npc_text TCGChallengeHallLobbyCupHostNoCardsText
+	script_jump .done
+.tcg_cup_unlocked
+	print_npc_text TCGChallengeHallLobbyCupHostStandbyText
+.done
 	end_dialog
 	end_script
 	ret
@@ -2672,8 +2674,8 @@ Func_3d511:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_28
-	compare_loaded_var $00
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_DEAD
 	script_jump_if_b0z .ows_3d533
 	print_npc_text Text09ad
 	script_jump .ows_3d536
@@ -2695,16 +2697,16 @@ Func_3d539:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_2B
-	compare_loaded_var $02
+	get_var VAR_TCG_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_LOST
 	script_jump_if_b0nz .ows_3d561
-	get_var VAR_28
-	compare_loaded_var $06
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
 	print_variable_npc_text Text09af, Text09b0
 	script_jump .ows_3d56a
 .ows_3d561
-	get_var VAR_28
-	compare_loaded_var $06
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
 	print_variable_npc_text Text09b1, Text09b2
 .ows_3d56a
 	end_dialog
@@ -2743,34 +2745,34 @@ Func_3d588:
 	end_script
 	ret
 
-Func_3d5a3:
-	ld a, VAR_28
+TcgChallengeHallLobby_DisappearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d5b8
-	cp $03
-	jr z, .asm_3d5b8
-	cp $06
-	jr z, .asm_3d5b8
+	cp CHALLENGE_CUP_1_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_2_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_3_START
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d5b8
+.disappear
 	scf
 	ret
 
-Func_3d5ba:
-	ld a, VAR_28
+TcgChallengeHallLobby_AppearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d5ce
-	cp $03
-	jr z, .asm_3d5ce
-	cp $06
-	jr z, .asm_3d5ce
+	cp CHALLENGE_CUP_1_START
+	jr z, .appear
+	cp CHALLENGE_CUP_2_START
+	jr z, .appear
+	cp CHALLENGE_CUP_3_START
+	jr z, .appear
 	scf
 	ret
-.asm_3d5ce
+.appear
 	scf
 	ccf
 	ret
@@ -3876,7 +3878,7 @@ Func_3ddb8:
 	farcall Func_454fa
 	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
@@ -4312,7 +4314,7 @@ Script_3e158:
 	move_active_npc .NPCMovement_3e1ae
 	wait_for_player_animation
 	quit_script
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentTitleAndName
 	ld a, $01
 	start_script
 	start_dialog
@@ -4337,7 +4339,7 @@ Script_3e158:
 	print_npc_text Text0fb9
 	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e1a9:
 	db WEST, MOVE_1
@@ -4360,7 +4362,7 @@ Script_3e1b8:
 	farcall SetVarValue
 	ld a, VAR_1B
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
@@ -4377,7 +4379,7 @@ Script_3e1b8:
 	move_active_npc .NPCMovement_3e212
 	wait_for_player_animation
 	quit_script
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentTitleAndName
 	ld a, $01
 	start_script
 	start_dialog
@@ -4389,7 +4391,7 @@ Script_3e1b8:
 	print_npc_text Text0fbd
 	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e20d:
 	db WEST, MOVE_1
@@ -4412,7 +4414,7 @@ Script_3e21c:
 	farcall SetVarValue
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
@@ -4435,7 +4437,7 @@ Script_3e21c:
 	farcall GetNPCByDeck
 	cp NPC_RONALD
 	jr z, .asm_3e272
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentTitleAndName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc0
@@ -4455,7 +4457,7 @@ Script_3e21c:
 	print_npc_text Text0fc3
 	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e295:
 	db WEST, MOVE_1
@@ -4487,7 +4489,7 @@ Func_3e2a4:
 	ld h, $00
 	ld l, a
 	call LoadTxRam3
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc4
@@ -4499,7 +4501,7 @@ Func_3e2a4:
 	end_dialog
 	quit_script
 	farcall Func_45488
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e33f
@@ -4526,7 +4528,7 @@ Func_3e2a4:
 	ld h, $00
 	ld l, a
 	call LoadTxRam3
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc7
@@ -4560,7 +4562,7 @@ Func_3e2a4:
 	wait_for_player_animation
 	start_dialog
 	quit_script
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fcb
@@ -4583,7 +4585,7 @@ Func_3e2a4:
 	end_dialog
 	quit_script
 	farcall Func_45488
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e411
@@ -4600,7 +4602,7 @@ Func_3e2a4:
 
 .ows_3e3c0:
 	quit_script
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fcd

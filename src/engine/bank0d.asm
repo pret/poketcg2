@@ -267,8 +267,8 @@ Func_341f7:
 	wait_for_fade
 	send_mail $06
 	set_var VAR_TIMES_MET_RONALD, $04
-	set_var VAR_28, $01
-	set_var VAR_2B, $00
+	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_START
+	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
 	get_var VAR_21
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_3421c
@@ -2399,7 +2399,7 @@ GrChallengeHallLobby_StepEvents:
 
 GrChallengeHallLobby_NPCs:
 	npc NPC_GR_CHALLENGE_HALL_GR_GRANNY, 3, 5, WEST, NULL
-	npc NPC_CUP_HOST, 2, 10, NORTH, Func_353ce
+	npc NPC_CUP_HOST, 2, 10, NORTH, GrChallengeHallLobby_DisappearDuringGRCups
 	npc NPC_GR_CHALLENGE_HALL_GR_CHAP, 8, 9, EAST, Func_35444
 	npc NPC_GR_CHALLENGE_HALL_GR_WOMAN, 12, 8, WEST, NULL
 	npc NPC_GR_CLERK_BATTLE_CENTER, 5, 2, SOUTH, NULL
@@ -2408,7 +2408,7 @@ GrChallengeHallLobby_NPCs:
 
 GrChallengeHallLobby_NPCInteractions:
 	npc_script NPC_GR_CHALLENGE_HALL_GR_GRANNY, Func_35342
-	npc_script NPC_CUP_HOST, Func_353a8
+	npc_script NPC_CUP_HOST, Script_CupHostGRLobby
 	npc_script NPC_GR_CHALLENGE_HALL_GR_WOMAN, Func_35451
 	npc_script NPC_GR_CHALLENGE_HALL_GR_CHAP, Func_353e5
 	db $ff
@@ -2428,18 +2428,18 @@ GrChallengeHallLobby_MapScripts:
 	db $ff
 
 Func_35308:
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3531a
-	cp $03
-	jr z, .asm_3531a
-	cp $06
-	jr nz, .asm_3531f
-.asm_3531a
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
-.asm_3531f
+.inactive
 	scf
 	ccf
 	ret
@@ -2515,7 +2515,7 @@ Func_35342:
 	end_script
 	ret
 
-Func_353a8:
+Script_CupHostGRLobby:
 	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
 	ldtx hl, DialogCupHostText
@@ -2527,29 +2527,29 @@ Func_353a8:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_353c8
-	print_npc_text Text0e3a
-	script_jump .ows_353cb
-.ows_353c8
-	print_npc_text Text0e3b
-.ows_353cb
+	script_jump_if_b0z .gr_cup3_unlocked
+	print_npc_text GRChallengeHallLobbyCupHostStandbyText
+	script_jump .done
+.gr_cup3_unlocked
+	print_npc_text GRChallengeHallLobbyCupHostStandbyGRCup3Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_353ce:
-	ld a, VAR_30
+GrChallengeHallLobby_DisappearDuringGRCups:
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_353e3
-	cp $03
-	jr z, .asm_353e3
-	cp $06
-	jr z, .asm_353e3
+	cp CHALLENGE_CUP_1_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_2_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_3_START
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_353e3
+.disappear
 	scf
 	ret
 
@@ -2566,11 +2566,11 @@ Func_353e5:
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_35423
-	get_var VAR_30
-	compare_loaded_var $03
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
 	script_jump_if_b0nz .ows_35417
 	script_jump_if_b1z .ows_3541d
-	compare_loaded_var $01
+	compare_loaded_var CHALLENGE_CUP_1_START
 	script_jump_if_b0nz .ows_35417
 	script_jump_if_b1z .ows_3541d
 	print_npc_text Text0e3c
@@ -2608,11 +2608,11 @@ Func_353e5:
 Func_35444:
 	ld a, EVENT_94
 	farcall GetEventValue
-	jr nz, .asm_3544f
+	jr nz, .disappear
 	scf
 	ccf
 	ret
-.asm_3544f
+.disappear
 	scf
 	ret
 
@@ -2627,17 +2627,17 @@ Func_35451:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_33
-	compare_loaded_var $02
+	get_var VAR_GR_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_LOST
 	script_jump_if_b0nz .ows_35490
-	get_var VAR_30
-	compare_loaded_var $05
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_UNLOCKED
 	script_jump_if_b0nz .ows_35496
 	script_jump_if_b1z .ows_3549c
-	compare_loaded_var $03
+	compare_loaded_var CHALLENGE_CUP_2_START
 	script_jump_if_b0nz .ows_3548a
 	script_jump_if_b1z .ows_35484
-	compare_loaded_var $01
+	compare_loaded_var CHALLENGE_CUP_1_START
 	script_jump_if_b0nz .ows_3548a
 .ows_35484
 	print_npc_text Text0e40
@@ -3580,8 +3580,8 @@ Func_35b82:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_35ba2
 	set_event EVENT_BEAT_KAMIYA
-	set_var VAR_30, $03
-	set_var VAR_33, $00
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_2_START
+	set_var VAR_GR_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
 	print_npc_text Text0c20
 	give_booster_packs BoosterList_cd8e
 	script_jump .ows_35bbf
@@ -5865,7 +5865,7 @@ Script_36d75:
 	script_jump .ows_36d87
 .ows_36d87
 	set_event EVENT_FREED_ROD
-	set_var VAR_28, $04
+	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_2_END
 	set_active_npc_direction EAST
 	set_npc_direction NPC_ROD, WEST
 	start_dialog
@@ -6014,7 +6014,7 @@ Func_36e9b:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_36eba
 	set_event EVENT_BEAT_MAMI
-	set_var VAR_30, $04
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_2_END
 	reset_event EVENT_TALKED_TO_RYOKO
 	print_npc_text Text112d
 	give_booster_packs BoosterList_cda2

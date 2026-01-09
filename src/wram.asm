@@ -2319,10 +2319,17 @@ wFilteredListPtr:: ; d575
 ; TODO: is this really union?
 UNION
 
+wNumChallengeCupOpponents:: ; d577
+	ds $1
+
+wChallengeCupIndex:: ; d578
+	ds $1
+
+NEXTU
+
 wRemainingIntroCards:: ; d577
 	ds $1
 
-wd578:: ; d578
 	ds $1
 
 wd579:: ; d579

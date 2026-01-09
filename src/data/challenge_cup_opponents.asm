@@ -1,4 +1,5 @@
-; deck id, bitmask 0/1/2
+; deck id and bitmask cup1, 2, 3 for SetChallengeCupOpponents
+
 TCGChallengeCupOpponents:
   db ROLLING_STONE_DECK_ID,                    %111, %011, %011
   db GREAT_EARTHQUAKE_DECK_ID,                 %111, %011, %011

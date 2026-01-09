@@ -1230,7 +1230,7 @@ GrChallengeHallEntrance_NPCs:
 	db $ff
 
 GrChallengeHallEntrance_NPCInteractions:
-	npc_script NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, Func_314a1
+	npc_script NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE, Script_GRChallengeHallEntranceGRClerk
 	db $ff
 
 GrChallengeHallEntrance_MapScripts:
@@ -1247,18 +1247,18 @@ Func_31426:
 	ret
 
 Func_3142d:
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3143f
-	cp $03
-	jr z, .asm_3143f
-	cp $06
-	jr nz, .asm_31444
-.asm_3143f
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
-.asm_31444
+.inactive
 	scf
 	ccf
 	ret
@@ -1266,38 +1266,40 @@ Func_3142d:
 Func_31447:
 	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_GR
-	jr nz, .asm_3148e
-	ld a, VAR_30
+	jr nz, .done
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_31460
-	cp $03
-	jr z, .asm_31460
-	cp $06
-	jr nz, .asm_3148e
-.asm_31460
-	ld a, VAR_33
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .done
+.active
+	ld a, VAR_GR_CHALLENGE_CUP_RESULT
 	farcall GetVarValue
-	cp $01
+	cp CHALLENGE_CUP_RESULT_WON
 	push af
-	ld a, VAR_33
+	ld a, VAR_GR_CHALLENGE_CUP_RESULT
 	farcall ZeroOutVarValue
 	pop af
-	jr nz, .asm_3148e
-	ld a, VAR_30
+	jr nz, .done
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $06
-	jr z, .asm_31486
+	cp CHALLENGE_CUP_3_START
+	jr z, .adjust
 	inc a
 	ld c, a
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall SetVarValue
-	jr .asm_3148e
-.asm_31486
-	ld a, VAR_30
-	ld c, $05
+	jr .done
+; keep the state var < 7
+; verbose: dec a between inc a :: ld c, a above should suffice
+.adjust
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	farcall SetVarValue
-.asm_3148e
+.done
 	scf
 	ret
 
@@ -1314,7 +1316,7 @@ Func_31499:
 	scf
 	ret
 
-Func_314a1:
+Script_GRChallengeHallEntranceGRClerk:
 	ld a, NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -1325,38 +1327,38 @@ Func_314a1:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_33
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_314f8
-	get_var VAR_30
-	compare_loaded_var $05
-	script_jump_if_b0nz .ows_314ec
-	script_jump_if_b1z .ows_314f2
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_314e0
-	script_jump_if_b1z .ows_314e6
-	compare_loaded_var $01
-	script_jump_if_b0nz .ows_314da
-	print_npc_text Text0e2b
-	script_jump .ows_314fb
-.ows_314da
-	print_npc_text Text0e2c
-	script_jump .ows_314fb
-.ows_314e0
-	print_npc_text Text0e2d
-	script_jump .ows_314fb
-.ows_314e6
-	print_npc_text Text0e2e
-	script_jump .ows_314fb
-.ows_314ec
-	print_npc_text Text0e2f
-	script_jump .ows_314fb
-.ows_314f2
-	print_npc_text Text0e30
-	script_jump .ows_314fb
-.ows_314f8
-	print_npc_text Text0e31
-.ows_314fb
+	get_var VAR_GR_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_NONE
+	script_jump_if_b0z .gr_cup_played
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_UNLOCKED
+	script_jump_if_b0nz .gr_cup3_inactive
+	script_jump_if_b1z .gr_cup3_active
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .gr_cup2_active
+	script_jump_if_b1z .gr_cup2_inactive
+	compare_loaded_var CHALLENGE_CUP_1_START
+	script_jump_if_b0nz .gr_cup1_active
+	print_npc_text GRChallengeHallEntranceClerkGRCup1InactiveText
+	script_jump .done
+.gr_cup1_active
+	print_npc_text GRChallengeHallEntranceClerkGRCup1ActiveText
+	script_jump .done
+.gr_cup2_active
+	print_npc_text GRChallengeHallEntranceClerkGRCup2ActiveText
+	script_jump .done
+.gr_cup2_inactive
+	print_npc_text GRChallengeHallEntranceClerkGRCup2InactiveText
+	script_jump .done
+.gr_cup3_inactive
+	print_npc_text GRChallengeHallEntranceClerkGRCup3InactiveText
+	script_jump .done
+.gr_cup3_active
+	print_npc_text GRChallengeHallEntranceClerkGRCup3ActiveText
+	script_jump .done
+.gr_cup_played
+	print_npc_text GRChallengeHallEntranceClerkGRCupPlayedText
+.done
 	end_dialog
 	end_script
 	ret
@@ -3167,7 +3169,7 @@ Func_322a1:
 	reset_event EVENT_TALKED_TO_KEN
 	reset_event EVENT_TALKED_TO_ADAM
 	reset_event EVENT_TALKED_TO_ROBERT
-	set_var VAR_28, $02
+	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_END
 	print_npc_text Text11c2
 	end_dialog
 	get_player_direction
@@ -3445,8 +3447,8 @@ Func_324e1:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_32503
 	set_event EVENT_BEAT_CATHERINE
-	set_var VAR_30, $01
-	set_var VAR_33, $00
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_START
+	set_var VAR_GR_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
 	send_mail $07
 	print_npc_text Text11d6
 	give_booster_packs BoosterList_cd63
@@ -4808,8 +4810,8 @@ Func_32efd:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_32f21
 	set_event EVENT_BEAT_HIDERO
-	set_var VAR_28, $03
-	set_var VAR_2B, $00
+	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_2_START
+	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_NONE
 	script_call .ows_32f52
 	print_npc_text Text0c8e
 	give_booster_packs BoosterList_cd75
@@ -4845,7 +4847,7 @@ Func_32efd:
 .ows_32f52
 	check_event EVENT_GOT_PSYDUCK_COIN
 	script_jump_if_b0nz .ows_32f5a
-	set_var VAR_30, $02
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_END
 .ows_32f5a
 	script_ret
 
@@ -5377,7 +5379,7 @@ Func_332ff:
 .ows_3334e
 	check_event EVENT_GOT_MAGMAR_COIN
 	script_jump_if_b0nz .ows_33356
-	set_var VAR_30, $02
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_1_END
 .ows_33356
 	script_ret
 

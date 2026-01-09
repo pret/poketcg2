@@ -598,29 +598,29 @@ Func_c3d4:
 	ret
 
 Func_c439:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	call GetVarValue
-	cp $05
+	cp CHALLENGE_CUP_3_UNLOCKED
 	jr c, .skip
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
-	jr nz, .asm_c450
+	jr nz, .determine
 	ld a, [wCurOWLocation]
 	cp OWMAP_TCG_CHALLENGE_HALL
 	jr z, .skip
-.asm_c450
-	ld a, VAR_28
-	ld c, $05
+.determine
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	call SetVarValue
-	ld a, $04
+	ld a, 4
 	call Random
 	or a
 	jr nz, .skip
 	; 1/4 chance
-	ld a, VAR_28
-	ld c, $06
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue
-	ld a, VAR_2B
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	call ZeroOutVarValue
 	ld a, NUM_TCG_CHALLENGE_CUP_PRIZE_POOL
 	call Random
@@ -631,36 +631,36 @@ Func_c439:
 	ret
 
 Func_c477:
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	call GetVarValue
-	cp $05
-	jr c, .asm_c4b4
+	cp CHALLENGE_CUP_3_UNLOCKED
+	jr c, .skip
 	ld a, [wCurIsland]
 	cp GR_ISLAND
-	jr nz, .asm_c48e
+	jr nz, .determine
 	ld a, [wCurOWLocation]
 	cp OWMAP_GR_CHALLENGE_HALL
-	jr z, .asm_c4b4
-.asm_c48e
-	ld a, VAR_30
-	ld c, $05
+	jr z, .skip
+.determine
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	call SetVarValue
-	ld a, $05
+	ld a, 5
 	call Random
 	or a
-	jr nz, .asm_c4b4
+	jr nz, .skip
 	; 1/5 chance
-	ld a, VAR_30
-	ld c, $06
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue
-	ld a, VAR_33
+	ld a, VAR_GR_CHALLENGE_CUP_RESULT
 	call ZeroOutVarValue
 	ld a, NUM_GR_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
 	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
-.asm_c4b4
+.skip
 	ret
 
 ; load the NPC duelist header corresponding to register a into wCurrentNPCDuelistData
@@ -2184,18 +2184,18 @@ GeneralVarMasks:
 	db $1a, %00001111 ; VAR_25
 	db $1a, %11110000 ; VAR_26
 	db $1b, %00001111 ; VAR_27
-	db $1b, %01110000 ; VAR_28
+	db $1b, %01110000 ; VAR_TCG_CHALLENGE_CUP_STATE
 	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
-	db $1d, %00001111 ; VAR_2A
-	db $1d, %00110000 ; VAR_2B
-	db $1d, %11000000 ; VAR_2C
-	db $1e, %11111111 ; VAR_2D
-	db $1f, %11111111 ; VAR_2E
-	db $20, %11111111 ; VAR_2F
-	db $21, %00000111 ; VAR_30
+	db $1d, %00001111 ; VAR_TIMES_WON_TCG_CHALLENGE_CUP
+	db $1d, %00110000 ; VAR_TCG_CHALLENGE_CUP_RESULT
+	db $1d, %11000000 ; VAR_CHALLENGECUP_CURRENT_ROUND
+	db $1e, %11111111 ; VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
+	db $1f, %11111111 ; VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
+	db $20, %11111111 ; VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
+	db $21, %00000111 ; VAR_GR_CHALLENGE_CUP_STATE
 	db $21, %11111000 ; VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
-	db $22, %00001111 ; VAR_32
-	db $22, %00110000 ; VAR_33
+	db $22, %00001111 ; VAR_TIMES_WON_GR_CHALLENGE_CUP
+	db $22, %00110000 ; VAR_GR_CHALLENGE_CUP_RESULT
 	db $23, %00000111 ; VAR_34
 	db $24, %11111111 ; VAR_35
 	db $25, %11111111 ; VAR_36

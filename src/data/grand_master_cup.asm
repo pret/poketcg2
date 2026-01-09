@@ -1,5 +1,5 @@
 ; deck id and bitmask for SetGrandMasterCupOpponents
-GrandMasterCupOpps:
+GrandMasterCupOpponents:
 	db EVEN3_YEARS_ON_A_ROCK_DECK_ID,  %01111111 ; GRANDMASTERCUP_GENE
 	db RAGING_BILLOW_OF_FISTS_DECK_ID, %01111111 ; GRANDMASTERCUP_MITCH
 	db MAX_ENERGY_DECK_ID,             %01111111 ; GRANDMASTERCUP_NIKKI

@@ -300,85 +300,94 @@ WaitForSFXToFinish::
 
 SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
 
-Func_45301:
+; for a = TCG_CHALLENGE_CUP or GR_CHALLENGE_CUP,
+; set three opponents for the cup
+SetChallengeCupOpponents:
 	or a
-	jr nz, .asm_4531b
+	jr nz, .gr_cup
+; tcg cup
 	ld a, NUM_TCG_CHALLENGE_CUP_OPPONENT_POOL
-	ld [wRemainingIntroCards], a
+	ld [wNumChallengeCupOpponents], a
 	ld a, LOW(TCGChallengeCupOpponents)
 	ld [wFilteredListPtr], a
 	ld a, HIGH(TCGChallengeCupOpponents)
 	ld [wFilteredListPtr + 1], a
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	jr .asm_45330
-.asm_4531b
+	jr .get_cup_index
+.gr_cup
 	ld a, NUM_GR_CHALLENGE_CUP_OPPONENT_POOL
-	ld [wRemainingIntroCards], a
+	ld [wNumChallengeCupOpponents], a
 	ld a, LOW(GRChallengeCupOpponents)
 	ld [wFilteredListPtr], a
 	ld a, HIGH(GRChallengeCupOpponents)
 	ld [wFilteredListPtr + 1], a
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-.asm_45330
-	cp $03
-	jr z, .asm_4533a
-	jr nc, .asm_4533e
-	ld a, 0
-	jr .asm_45340
-.asm_4533a
-	ld a, 1
-	jr .asm_45340
-.asm_4533e
-	ld a, 2
-.asm_45340
-	ld [wd578], a
-	ld e, 3
-	ld d, VAR_2D
+.get_cup_index
+	cp CHALLENGE_CUP_2_START
+	jr z, .cup2
+	jr nc, .cup3
+; cup1
+	ld a, CHALLENGE_CUP_1
+	jr .set_cup_index
+.cup2
+	ld a, CHALLENGE_CUP_2
+	jr .set_cup_index
+.cup3
+	ld a, CHALLENGE_CUP_3
+.set_cup_index
+	ld [wChallengeCupIndex], a
+; init
+	ld e, NUM_CHALLENGE_CUP_ROUNDS
+	ld d, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	ld c, $ff
-.asm_45349
+.loop_init
 	ld a, d
 	farcall SetVarValue
 	inc d
 	dec e
-	jr nz, .asm_45349
+	jr nz, .loop_init
+; set
+; b = 1 << c for c = round number [0, 2]
+; set opponents randomly with the bitmask b and wChallengeCupIndex
 	ld c, 0
-.asm_45354
+.loop_set_opponents
 	ld b, 1
 	ld a, c
 	or a
-.asm_45358
-	jr z, .asm_4535f
+.loop_shift
+	jr z, .loop_pick
 	sla b
 	dec a
-	jr .asm_45358
-.asm_4535f
-	call Func_45379
-	call Func_453a3
-	jr c, .asm_4535f
+	jr .loop_shift
+.loop_pick
+	call .PickOpponent
+	call .CheckDupe
+	jr c, .loop_pick
 	push bc
 	ld d, a
-	ld a, VAR_2D
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	add c
 	ld c, d
 	farcall SetVarValue
 	pop bc
 	inc c
-	ld a, 3
+	ld a, NUM_CHALLENGE_CUP_ROUNDS
 	cp c
-	jr nz, .asm_45354
+	jr nz, .loop_set_opponents
 	ret
 
-Func_45379:
-.asm_45379
-	ld a, [wd578]
+; for b = bitmask, choose a random opponent with wChallengeCupIndex
+; and return their deck id in a
+.PickOpponent:
+	ld a, [wChallengeCupIndex]
 	ld d, a
 	ld a, [wFilteredListPtr]
 	ld l, a
 	ld a, [wFilteredListPtr + 1]
 	ld h, a
-	ld a, [wRemainingIntroCards]
+	ld a, [wNumChallengeCupOpponents]
 	call Random
 	sla a
 	sla a
@@ -390,35 +399,36 @@ Func_45379:
 	ld a, [hl]
 	pop hl
 	and b
-	jr z, .asm_45379
+	jr z, .PickOpponent
 	ld a, [hl]
 	ret
 
-Func_453a3:
+; set carry if the opponent is already picked
+.CheckDupe:
 	ld d, a
 	farcall GetNPCByDeck
 	ld l, a
-	ld e, VAR_2D
-.asm_453ab
+	ld e, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
+.loop_check
 	ld a, e
 	farcall GetVarValue
 	cp $ff
-	jr z, .asm_453bf
+	jr z, .done
 	farcall GetNPCByDeck
 	inc e
 	cp l
-	jr nz, .asm_453ab
+	jr nz, .loop_check
 	ld a, d
 	scf
 	ret
-.asm_453bf
+.done
 	ld a, d
 	scf
 	ccf
 	ret
 
-; special handling for Amy?
-Func_453c3:
+; GetNPCByDeck, with special handling for Amy
+GetNPCByDeck_AdjustAmy:
 	farcall GetNPCByDeck
 	cp NPC_AMY_LOUNGE
 	jr nz, .done
@@ -426,12 +436,12 @@ Func_453c3:
 .done
 	ret
 
-Func_453ce:
-	ld a, VAR_2C
+LoadChallengeCupOpponentName:
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
 	ld c, a
 	dec c
-	ld a, VAR_2D
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	add c
 	farcall GetVarValue
 	farcall GetNPCByDeck
@@ -447,12 +457,12 @@ Func_453ce:
 	ld [wTxRam2_b + 1], a
 	ret
 
-Func_453f9:
-	ld a, VAR_2C
+SetChallengeCupDuelParams:
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
 	dec a
 	ld c, a
-	ld a, VAR_2D
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	add c
 	farcall GetVarValue
 	ld [wNPCDuelDeckID], a
@@ -463,6 +473,7 @@ Func_453f9:
 	ret
 
 SetGrandMasterCupOpponents:
+; init
 	ld e, NUM_GRANDMASTERCUP_OPPONENTS
 	ld d, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	ld c, $ff
@@ -472,6 +483,7 @@ SetGrandMasterCupOpponents:
 	inc d
 	dec e
 	jr nz, .loop_init
+; set
 ; b = 1 << c for c = opponent slot number [0, 6]
 ; set opponents randomly with the bitmask b
 ; so Ronald may only be chosen at the last slot
@@ -481,14 +493,14 @@ SetGrandMasterCupOpponents:
 	ld a, c
 	or a
 .loop_shift
-	jr z, .set_opponent
+	jr z, .loop_pick
 	sla b
 	dec a
 	jr .loop_shift
-.set_opponent
+.loop_pick
 	call .PickOpponent
 	call .CheckDupe
-	jr c, .set_opponent
+	jr c, .loop_pick
 	push bc
 	ld d, a
 	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
@@ -504,7 +516,7 @@ SetGrandMasterCupOpponents:
 
 ; for b = bitmask, choose a random opponent and return their deck id in a
 .PickOpponent:
-	ld hl, GrandMasterCupOpps
+	ld hl, GrandMasterCupOpponents
 	ld a, NUM_GRANDMASTERCUP_OPPONENT_IDS
 	call Random
 	sla a
@@ -542,8 +554,10 @@ SetGrandMasterCupOpponents:
 	ccf
 	ret
 
-Func_45484:
-	call Func_453c3
+; just GetNPCByDeck_AdjustAmy
+; tried to add something for pokemon dome?
+GetNPCByDeck_AdjustAmy_PokemonDome:
+	call GetNPCByDeck_AdjustAmy
 	ret
 
 Func_45488:
@@ -565,7 +579,7 @@ Func_45488:
 .asm_454aa
 	ret
 
-Func_454ab:
+SetGrandMasterCupDuelParams:
 	call Func_45488
 	ld [wNPCDuelDeckID], a
 	ld a, MUSIC_MATCH_START_CLUB_MASTER
@@ -574,7 +588,7 @@ Func_454ab:
 	set 1, [hl]
 	ret
 
-Func_454bc:
+LoadGrandMasterCupOpponentTitleAndName:
 	call Func_45488
 	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
@@ -593,7 +607,7 @@ Func_454bc:
 	ld [wTxRam2_b + 1], a
 	ret
 
-Func_454e3:
+LoadGrandMasterCupOpponentName:
 	call Func_45488
 	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
@@ -785,7 +799,7 @@ Func_4565d:
 	dec a
 	add VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
-	call Func_45484
+	call GetNPCByDeck_AdjustAmy_PokemonDome
 .asm_45672
 	pop hl
 	pop de
