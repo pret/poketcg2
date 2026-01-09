@@ -1,12 +1,12 @@
 Sfx_ElectronicInput_Ch1:
-	sfx_1 98
-	sfx_8 17
-	sfx_2 8
-	sfx_0 7, 107
-	sfx_0 6, 178
-	sfx_1 160
-	sfx_2 8
-	sfx_0 7, 167
-	sfx_5 0
-	sfx_6 1
+	sfx_env 6, 2
+	sfx_pan TRUE, TRUE
+	sfx_duty 2
+	sfx_freq $76b
+	sfx_freq $6b2
+	sfx_env 10, 0
+	sfx_duty 2
+	sfx_freq $7a7
+	sfx_pitch_offset 0
+	sfx_wait 1
 	sfx_end

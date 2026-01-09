@@ -1,49 +1,49 @@
 Sfx_CoinHurl_Ch1:
-	sfx_8 17
+	sfx_pan TRUE, TRUE
 	sfx_loop 3
-	sfx_1 241
-	sfx_2 4
-	sfx_0 7, 172
-	sfx_0 7, 5
-	sfx_0 6, 137
-	sfx_1 68
-	sfx_2 8
-	sfx_0 7, 223
-	sfx_5 0
-	sfx_6 4
-	sfx_1 35
-	sfx_2 8
-	sfx_0 7, 223
-	sfx_6 2
+	sfx_env 15, 1
+	sfx_duty 1
+	sfx_freq $7ac
+	sfx_freq $705
+	sfx_freq $689
+	sfx_env 4, 4
+	sfx_duty 2
+	sfx_freq $7df
+	sfx_pitch_offset 0
+	sfx_wait 4
+	sfx_env 2, 3
+	sfx_duty 2
+	sfx_freq $7df
+	sfx_wait 2
 	sfx_endloop
-	sfx_1 18
-	sfx_2 8
-	sfx_0 7, 223
-	sfx_6 3
+	sfx_env 1, 2
+	sfx_duty 2
+	sfx_freq $7df
+	sfx_wait 3
 	sfx_end
 
 Sfx_CoinHurl_Ch2:
-	sfx_8 17
+	sfx_pan TRUE, TRUE
 	sfx_loop 2
-	sfx_1 242
-	sfx_0 0, 17
-	sfx_0 0, 101
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_1 0
-	sfx_6 3
+	sfx_env 15, 2
+	sfx_freq $11
+	sfx_freq $65
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
+	sfx_env 0, 0
+	sfx_wait 3
 	sfx_endloop
-	sfx_1 242
-	sfx_0 0, 17
-	sfx_0 0, 101
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
+	sfx_env 15, 2
+	sfx_freq $11
+	sfx_freq $65
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
 	sfx_end

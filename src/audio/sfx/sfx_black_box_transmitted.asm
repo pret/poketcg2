@@ -1,52 +1,52 @@
 Sfx_BlackBoxTransmitted_Ch1:
-	sfx_8 17
-	sfx_1 195
-	sfx_2 4
-	sfx_0 7, 144
-	sfx_5 0
-	sfx_6 2
-	sfx_1 195
-	sfx_2 4
-	sfx_0 7, 172
-	sfx_6 2
-	sfx_1 198
-	sfx_2 4
-	sfx_0 7, 190
-	sfx_6 4
-	sfx_1 99
-	sfx_2 4
-	sfx_0 7, 144
-	sfx_6 2
-	sfx_1 99
-	sfx_2 4
-	sfx_0 7, 172
-	sfx_6 2
-	sfx_1 103
-	sfx_2 4
-	sfx_0 7, 190
-	sfx_6 4
-	sfx_1 67
-	sfx_2 4
-	sfx_0 7, 144
-	sfx_6 2
-	sfx_1 67
-	sfx_2 4
-	sfx_0 7, 172
-	sfx_6 2
-	sfx_1 71
-	sfx_2 4
-	sfx_0 7, 190
-	sfx_6 4
-	sfx_1 36
-	sfx_2 4
-	sfx_0 7, 144
-	sfx_6 2
-	sfx_1 36
-	sfx_2 4
-	sfx_0 7, 172
-	sfx_6 2
-	sfx_1 39
-	sfx_2 4
-	sfx_0 7, 190
-	sfx_6 4
+	sfx_pan TRUE, TRUE
+	sfx_env 12, 3
+	sfx_duty 1
+	sfx_freq $790
+	sfx_pitch_offset 0
+	sfx_wait 2
+	sfx_env 12, 3
+	sfx_duty 1
+	sfx_freq $7ac
+	sfx_wait 2
+	sfx_env 12, 6
+	sfx_duty 1
+	sfx_freq $7be
+	sfx_wait 4
+	sfx_env 6, 3
+	sfx_duty 1
+	sfx_freq $790
+	sfx_wait 2
+	sfx_env 6, 3
+	sfx_duty 1
+	sfx_freq $7ac
+	sfx_wait 2
+	sfx_env 6, 7
+	sfx_duty 1
+	sfx_freq $7be
+	sfx_wait 4
+	sfx_env 4, 3
+	sfx_duty 1
+	sfx_freq $790
+	sfx_wait 2
+	sfx_env 4, 3
+	sfx_duty 1
+	sfx_freq $7ac
+	sfx_wait 2
+	sfx_env 4, 7
+	sfx_duty 1
+	sfx_freq $7be
+	sfx_wait 4
+	sfx_env 2, 4
+	sfx_duty 1
+	sfx_freq $790
+	sfx_wait 2
+	sfx_env 2, 4
+	sfx_duty 1
+	sfx_freq $7ac
+	sfx_wait 2
+	sfx_env 2, 7
+	sfx_duty 1
+	sfx_freq $7be
+	sfx_wait 4
 	sfx_end

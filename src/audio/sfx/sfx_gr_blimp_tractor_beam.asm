@@ -1,135 +1,135 @@
 Sfx_GRBlimpTractorBeam_Ch1:
-	sfx_8 17
-	sfx_1 105
-	sfx_2 8
-	sfx_0 4, 229
-	sfx_0 5, 17
-	sfx_0 4, 229
-	sfx_0 5, 17
-	sfx_0 4, 229
-	sfx_0 5, 17
-	sfx_0 5, 60
-	sfx_0 5, 99
-	sfx_0 5, 60
-	sfx_0 5, 99
-	sfx_1 192
-	sfx_2 8
+	sfx_pan TRUE, TRUE
+	sfx_env 6, -1
+	sfx_duty 2
+	sfx_freq $4e5
+	sfx_freq $511
+	sfx_freq $4e5
+	sfx_freq $511
+	sfx_freq $4e5
+	sfx_freq $511
+	sfx_freq $53c
+	sfx_freq $563
+	sfx_freq $53c
+	sfx_freq $563
+	sfx_env 12, 0
+	sfx_duty 2
 	sfx_loop 3
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 224
-	sfx_2 8
+	sfx_env 14, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 176
-	sfx_2 8
+	sfx_env 11, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 240
-	sfx_2 8
+	sfx_env 15, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 176
-	sfx_2 8
+	sfx_env 11, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 240
-	sfx_2 8
+	sfx_env 15, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 208
-	sfx_2 8
+	sfx_env 13, 0
+	sfx_duty 2
 	sfx_loop 2
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
 	sfx_endloop
-	sfx_1 240
-	sfx_2 8
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_0 6, 40
-	sfx_1 199
-	sfx_2 8
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 5, 172
-	sfx_0 5, 205
-	sfx_1 135
-	sfx_2 8
-	sfx_0 5, 137
-	sfx_0 5, 172
-	sfx_0 5, 99
-	sfx_0 5, 137
-	sfx_1 103
-	sfx_2 8
-	sfx_0 5, 60
-	sfx_0 5, 99
-	sfx_0 5, 17
-	sfx_0 5, 60
+	sfx_env 15, 0
+	sfx_duty 2
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_freq $628
+	sfx_env 12, 7
+	sfx_duty 2
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $5ac
+	sfx_freq $5cd
+	sfx_env 8, 7
+	sfx_duty 2
+	sfx_freq $589
+	sfx_freq $5ac
+	sfx_freq $563
+	sfx_freq $589
+	sfx_env 6, 7
+	sfx_duty 2
+	sfx_freq $53c
+	sfx_freq $563
+	sfx_freq $511
+	sfx_freq $53c
 	sfx_end

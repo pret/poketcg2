@@ -1,109 +1,109 @@
 Sfx_MegaPunch_Ch1:
-	sfx_1 247
-	sfx_8 17
-	sfx_2 0
-	sfx_0 1, 201
-	sfx_0 2, 34
-	sfx_0 2, 120
-	sfx_0 2, 198
-	sfx_0 3, 18
-	sfx_0 3, 88
-	sfx_0 3, 155
-	sfx_1 189
-	sfx_2 0
-	sfx_0 3, 218
-	sfx_0 4, 22
-	sfx_0 4, 78
-	sfx_0 4, 131
-	sfx_5 0
-	sfx_6 1
-	sfx_0 4, 78
-	sfx_6 1
-	sfx_1 240
-	sfx_2 0
-	sfx_0 4, 22
-	sfx_6 1
-	sfx_0 3, 218
-	sfx_6 1
-	sfx_0 3, 155
-	sfx_6 1
-	sfx_0 3, 88
-	sfx_6 1
-	sfx_1 255
-	sfx_2 8
-	sfx_0 6, 246
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_1 255
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_0 0, 156
-	sfx_0 0, 44
-	sfx_1 245
-	sfx_2 0
-	sfx_0 6, 11
-	sfx_0 6, 137
-	sfx_1 149
-	sfx_2 0
-	sfx_0 6, 231
-	sfx_0 6, 91
-	sfx_1 85
-	sfx_2 0
-	sfx_0 6, 231
-	sfx_0 6, 91
-	sfx_1 53
-	sfx_2 0
-	sfx_0 6, 231
-	sfx_0 6, 91
+	sfx_env 15, 7
+	sfx_pan TRUE, TRUE
+	sfx_duty 0
+	sfx_freq $1c9
+	sfx_freq $222
+	sfx_freq $278
+	sfx_freq $2c6
+	sfx_freq $312
+	sfx_freq $358
+	sfx_freq $39b
+	sfx_env 11, -5
+	sfx_duty 0
+	sfx_freq $3da
+	sfx_freq $416
+	sfx_freq $44e
+	sfx_freq $483
+	sfx_pitch_offset 0
+	sfx_wait 1
+	sfx_freq $44e
+	sfx_wait 1
+	sfx_env 15, 0
+	sfx_duty 0
+	sfx_freq $416
+	sfx_wait 1
+	sfx_freq $3da
+	sfx_wait 1
+	sfx_freq $39b
+	sfx_wait 1
+	sfx_freq $358
+	sfx_wait 1
+	sfx_env 15, -7
+	sfx_duty 2
+	sfx_freq $6f6
+	sfx_freq $563
+	sfx_freq $416
+	sfx_env 15, -7
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_freq $9c
+	sfx_freq $2c
+	sfx_env 15, 5
+	sfx_duty 0
+	sfx_freq $60b
+	sfx_freq $689
+	sfx_env 9, 5
+	sfx_duty 0
+	sfx_freq $6e7
+	sfx_freq $65b
+	sfx_env 5, 5
+	sfx_duty 0
+	sfx_freq $6e7
+	sfx_freq $65b
+	sfx_env 3, 5
+	sfx_duty 0
+	sfx_freq $6e7
+	sfx_freq $65b
 	sfx_end
 
 Sfx_MegaPunch_Ch2:
-	sfx_8 17
-	sfx_1 31
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 2
-	sfx_0 0, 3
-	sfx_0 0, 3
-	sfx_0 0, 3
-	sfx_0 0, 4
-	sfx_0 0, 5
-	sfx_0 0, 15
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_1 244
-	sfx_0 0, 15
-	sfx_0 0, 66
-	sfx_0 0, 67
-	sfx_0 0, 67
-	sfx_0 0, 77
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_1 115
-	sfx_0 0, 67
-	sfx_0 0, 67
-	sfx_0 0, 66
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_1 66
-	sfx_0 0, 67
-	sfx_0 0, 67
-	sfx_0 0, 66
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_0 0, 76
-	sfx_0 0, 76
+	sfx_pan TRUE, TRUE
+	sfx_env 1, -7
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $2
+	sfx_freq $3
+	sfx_freq $3
+	sfx_freq $3
+	sfx_freq $4
+	sfx_freq $5
+	sfx_freq $f
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $11
+	sfx_freq $11
+	sfx_env 15, 4
+	sfx_freq $f
+	sfx_freq $42
+	sfx_freq $43
+	sfx_freq $43
+	sfx_freq $4d
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_env 7, 3
+	sfx_freq $43
+	sfx_freq $43
+	sfx_freq $42
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_env 4, 2
+	sfx_freq $43
+	sfx_freq $43
+	sfx_freq $42
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_freq $4c
+	sfx_freq $4c
 	sfx_end

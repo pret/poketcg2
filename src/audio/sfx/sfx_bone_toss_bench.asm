@@ -1,109 +1,109 @@
 Sfx_BoneToss_Bench_Ch1:
-	sfx_8 17
-	sfx_1 29
-	sfx_2 8
+	sfx_pan TRUE, TRUE
+	sfx_env 1, -5
+	sfx_duty 2
 	sfx_loop 2
-	sfx_1 29
-	sfx_2 8
-	sfx_0 7, 172
-	sfx_0 7, 177
-	sfx_1 61
-	sfx_2 8
-	sfx_0 7, 186
-	sfx_0 7, 190
-	sfx_1 93
-	sfx_2 8
-	sfx_0 7, 197
-	sfx_0 7, 200
-	sfx_1 112
-	sfx_2 8
-	sfx_0 7, 209
-	sfx_0 7, 212
-	sfx_1 85
-	sfx_2 8
-	sfx_0 7, 217
-	sfx_0 7, 219
-	sfx_1 53
-	sfx_2 8
-	sfx_0 7, 221
-	sfx_0 7, 223
+	sfx_env 1, -5
+	sfx_duty 2
+	sfx_freq $7ac
+	sfx_freq $7b1
+	sfx_env 3, -5
+	sfx_duty 2
+	sfx_freq $7ba
+	sfx_freq $7be
+	sfx_env 5, -5
+	sfx_duty 2
+	sfx_freq $7c5
+	sfx_freq $7c8
+	sfx_env 7, 0
+	sfx_duty 2
+	sfx_freq $7d1
+	sfx_freq $7d4
+	sfx_env 5, 5
+	sfx_duty 2
+	sfx_freq $7d9
+	sfx_freq $7db
+	sfx_env 3, 5
+	sfx_duty 2
+	sfx_freq $7dd
+	sfx_freq $7df
 	sfx_endloop
-	sfx_1 31
-	sfx_2 8
-	sfx_0 7, 172
-	sfx_0 7, 177
-	sfx_1 47
-	sfx_2 8
-	sfx_0 7, 186
-	sfx_0 7, 190
-	sfx_1 77
-	sfx_2 8
-	sfx_0 7, 197
-	sfx_0 7, 200
-	sfx_1 96
-	sfx_2 8
-	sfx_0 7, 209
-	sfx_0 7, 212
-	sfx_1 69
-	sfx_2 8
-	sfx_0 7, 217
-	sfx_0 7, 219
-	sfx_1 37
-	sfx_2 8
-	sfx_0 7, 221
-	sfx_0 7, 223
-	sfx_1 16
-	sfx_2 8
-	sfx_0 7, 172
-	sfx_0 7, 177
-	sfx_0 7, 186
-	sfx_0 7, 190
-	sfx_1 45
-	sfx_2 8
-	sfx_0 7, 197
-	sfx_0 7, 200
-	sfx_1 64
-	sfx_2 8
-	sfx_0 7, 209
-	sfx_0 7, 212
-	sfx_1 37
-	sfx_2 8
-	sfx_0 7, 217
-	sfx_0 7, 219
-	sfx_1 16
-	sfx_2 8
-	sfx_0 7, 221
-	sfx_0 7, 223
+	sfx_env 1, -7
+	sfx_duty 2
+	sfx_freq $7ac
+	sfx_freq $7b1
+	sfx_env 2, -7
+	sfx_duty 2
+	sfx_freq $7ba
+	sfx_freq $7be
+	sfx_env 4, -5
+	sfx_duty 2
+	sfx_freq $7c5
+	sfx_freq $7c8
+	sfx_env 6, 0
+	sfx_duty 2
+	sfx_freq $7d1
+	sfx_freq $7d4
+	sfx_env 4, 5
+	sfx_duty 2
+	sfx_freq $7d9
+	sfx_freq $7db
+	sfx_env 2, 5
+	sfx_duty 2
+	sfx_freq $7dd
+	sfx_freq $7df
+	sfx_env 1, 0
+	sfx_duty 2
+	sfx_freq $7ac
+	sfx_freq $7b1
+	sfx_freq $7ba
+	sfx_freq $7be
+	sfx_env 2, -5
+	sfx_duty 2
+	sfx_freq $7c5
+	sfx_freq $7c8
+	sfx_env 4, 0
+	sfx_duty 2
+	sfx_freq $7d1
+	sfx_freq $7d4
+	sfx_env 2, 5
+	sfx_duty 2
+	sfx_freq $7d9
+	sfx_freq $7db
+	sfx_env 1, 0
+	sfx_duty 2
+	sfx_freq $7dd
+	sfx_freq $7df
 	sfx_end
 
 Sfx_BoneToss_Bench_Ch2:
-	sfx_8 17
-	sfx_1 0
-	sfx_6 14
-	sfx_1 243
-	sfx_0 0, 102
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_1 247
-	sfx_0 0, 19
-	sfx_0 0, 99
-	sfx_0 0, 83
-	sfx_0 0, 81
-	sfx_0 0, 81
-	sfx_0 0, 81
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_1 119
-	sfx_0 0, 99
-	sfx_0 0, 83
-	sfx_0 0, 81
-	sfx_1 71
-	sfx_0 0, 99
-	sfx_0 0, 83
-	sfx_0 0, 81
-	sfx_1 39
-	sfx_0 0, 99
-	sfx_0 0, 83
-	sfx_0 0, 81
+	sfx_pan TRUE, TRUE
+	sfx_env 0, 0
+	sfx_wait 14
+	sfx_env 15, 3
+	sfx_freq $66
+	sfx_freq $64
+	sfx_freq $64
+	sfx_env 15, 7
+	sfx_freq $13
+	sfx_freq $63
+	sfx_freq $53
+	sfx_freq $51
+	sfx_freq $51
+	sfx_freq $51
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_env 7, 7
+	sfx_freq $63
+	sfx_freq $53
+	sfx_freq $51
+	sfx_env 4, 7
+	sfx_freq $63
+	sfx_freq $53
+	sfx_freq $51
+	sfx_env 2, 7
+	sfx_freq $63
+	sfx_freq $53
+	sfx_freq $51
 	sfx_end
