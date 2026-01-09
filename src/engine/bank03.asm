@@ -2725,8 +2725,8 @@ OverworldScriptTable:
 	dw ScriptCommand_GetGameCenterChips               ; $6d
 	dw ScriptCommand_CompareLoadedVarWord             ; $6e
 	dw ScriptCommand_GetGameCenterBankedChips         ; $6f
-	dw ScriptCommand_GameCenter                       ; $70
-	dw ScriptCommand_71                               ; $71
+	dw ScriptCommand_ShowChipsHUD                     ; $70
+	dw ScriptCommand_HideChipsHUD                     ; $71
 	dw ScriptCommand_GiveChips                        ; $72
 	dw ScriptCommand_TakeChips                        ; $73
 	dw ScriptCommand_LoadTextRAM3                     ; $74
@@ -4397,11 +4397,11 @@ ScriptCommand_GetGameCenterBankedChips:
 	ld [wScriptLoadedVar + 1], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_GameCenter:
+ScriptCommand_ShowChipsHUD:
 	farcall TurnOnCurChipsHUD
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_71:
+ScriptCommand_HideChipsHUD:
 	farcall TurnOffCurChipsHUD
 	jp IncreaseScriptPointerBy1
 

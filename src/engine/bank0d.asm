@@ -1594,70 +1594,70 @@ Script_CoinFlipGame:
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant3HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_3
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_4
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant4HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_4
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_5
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant5HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_5
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_6
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant6HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_6
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_7
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant7HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_7
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_8
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant8HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_8
 	print_npc_text GameCenterCoinFlipAttendantTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_9
 	ld a, $01
 	start_script
 	start_dialog
 	print_npc_text GameCenterCoinFlipAttendant9HeadsPrizeText
-	game_center
+	show_chips_hud
 	give_chips CHIPS_COIN_FLIP_STREAK_9
 	print_npc_text GameCenterCoinFlipAttendantAlmostCompleteTryAgainText
-	script_command_71
+	hide_chips_hud
 	script_jump .quit
 .streak_10
 	ld a, $01
@@ -1763,18 +1763,18 @@ Script_CoinFlipGameAttendant:
 	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
-	game_center
+	show_chips_hud
 	print_npc_text GameCenterCoinFlipAttendantWelcomeText
 	ask_question GameCenterCoinFlipStartPromptText, TRUE
 	script_jump_if_b0z .declined
-	script_command_71
+	hide_chips_hud
 	get_game_center_chips
 	compare_loaded_var_word 0
 	script_jump_if_b0nz .not_enough_chips
-	game_center
+	show_chips_hud
 	take_chips CHIPS_BET_COIN_FLIP
 	print_npc_text GameCenterCoinFlipAttendantStartText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	script_jump Script_CoinFlipGame
 .not_enough_chips
@@ -1782,7 +1782,7 @@ Script_CoinFlipGameAttendant:
 	script_jump .quit
 .declined
 	print_npc_text GameCenterCoinFlipAttendantComeAgainText
-	script_command_71
+	hide_chips_hud
 .quit
 	end_dialog
 	end_script
@@ -1987,7 +1987,7 @@ Script_CardDungeonAttendantEnter:
 	xor a
 	start_script
 	start_dialog
-	game_center
+	show_chips_hud
 	print_npc_text GameCenterCardDungeonAttendantWelcomeText
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
 	script_jump_if_b0z .declined
@@ -2010,7 +2010,7 @@ Script_CardDungeonAttendantEnter:
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantEnterText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 	ld a, MAP_CARD_DUNGEON_PAWN
@@ -2021,7 +2021,7 @@ Script_CardDungeonAttendantEnter:
 .declined
 	print_npc_text GameCenterCardDungeonAttendantComeAgainText
 .quit
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 	ret
@@ -2222,7 +2222,7 @@ Script_Bishop:
 	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var CARDDUNGEON_BEAT_KNIGHT
 	script_jump_if_b0z Script_CardDungeonBishopProceedRepeat
-	game_center
+	show_chips_hud
 	check_event EVENT_TALKED_TO_BISHOP
 	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_BISHOP
@@ -2273,7 +2273,7 @@ Script_Bishop:
 	ld a, $01
 	start_script
 	print_npc_text BishopDuelStartText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	start_duel TEXTURE_TUNER7_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
@@ -2287,7 +2287,7 @@ Script_Bishop:
 .quit
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text BishopPlayerQuitText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 
@@ -2307,7 +2307,7 @@ Script_BishopAfterDuel:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text BishopPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
 	ld a, [wTempCardDungeonBet]
 	sla a
@@ -2322,7 +2322,7 @@ Script_BishopAfterDuel:
 	ld a, $01
 	start_script
 	print_npc_text BishopPlayerWon2Text
-	script_command_71
+	hide_chips_hud
 	script_jump .proceed
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST

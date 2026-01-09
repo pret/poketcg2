@@ -5890,24 +5890,24 @@ Func_3edb7:
 	npc_ask_question GameCenterChipDeskDepositReturnPromptText, TRUE
 	script_jump_if_b0z .ows_3edf7
 	print_npc_text GameCenterChipDeskDepositReturnedText
-	game_center
+	show_chips_hud
 	withdraw_chips
 	print_npc_text GameCenterChipDeskDepositReminderText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee0e
 .ows_3edf7
 	print_npc_text GameCenterChipDeskComeAgainText
 	script_jump .ows_3ee0e
 .ows_3edfd
 	load_text_ram3
-	game_center
+	show_chips_hud
 	npc_ask_question GameCenterChipDeskDepositPromptText, TRUE
 	script_jump_if_b0z .ows_3ee0a
 	deposit_chips
 	print_npc_text GameCenterChipDeskDepositedText
 .ows_3ee0a
 	print_npc_text GameCenterChipDeskComeAgainText
-	script_command_71
+	hide_chips_hud
 .ows_3ee0e
 	end_dialog
 	end_script
@@ -5929,10 +5929,10 @@ Func_3ee11:
 	set_event EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
 	print_npc_text GameCenterChipGirlFirstServiceText
 	print_text Received10ChipsText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_npc_text GameCenterChipGirlNoticeText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee80
 .ows_3ee3e
 	get_game_center_chips
@@ -5948,19 +5948,19 @@ Func_3ee11:
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlRefillText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_text Received10ChipsText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee80
 .asm_3ee67
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlWelcomeRefillText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_text Received10ChipsText
-	script_command_71
+	hide_chips_hud
 	print_npc_text GameCenterChipGirlEnjoyText
 	script_jump .ows_3ee80
 .ows_3ee7d
@@ -6293,7 +6293,7 @@ Script_Pawn:
 	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var 0
 	script_jump_if_b0z .proceed
-	game_center
+	show_chips_hud
 	check_event EVENT_TALKED_TO_PAWN
 	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_PAWN
@@ -6323,7 +6323,7 @@ Script_Pawn:
 .bet_start
 	take_chips CHIPS_BET_DUNGEON_10
 	print_npc_text PawnDuelStartText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	start_duel TEST_YOUR_LUCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
@@ -6337,7 +6337,7 @@ Script_Pawn:
 .quit
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text PawnPlayerQuitText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 	jp CardDungeonPawn_SetWarp
@@ -6354,12 +6354,12 @@ Script_PawnAfterDuel:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text PawnPlayerWon1Text
-	game_center
+	show_chips_hud
 	set_text_ram3 CHIPS_BET_DUNGEON_10 * 2
 	print_text ReceivedXChipsText
 	give_chips CHIPS_BET_DUNGEON_10 * 2
 	print_npc_text PawnPlayerWon2Text
-	script_command_71
+	hide_chips_hud
 	script_jump .proceed
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
@@ -6512,7 +6512,7 @@ Script_Knight:
 	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var CARDDUNGEON_BEAT_PAWN
 	script_jump_if_b0z .proceed_repeat
-	game_center
+	show_chips_hud
 	check_event EVENT_TALKED_TO_KNIGHT
 	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_KNIGHT
@@ -6554,7 +6554,7 @@ Script_Knight:
 	ld a, $01
 	start_script
 	print_npc_text KnightDuelStartText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	start_duel PROTOHISTORIC_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
@@ -6568,7 +6568,7 @@ Script_Knight:
 .quit
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text KnightPlayerQuitText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 	jp CardDungeonKnight_SetWarp
@@ -6585,7 +6585,7 @@ Script_KnightAfterDuel:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text KnightPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
 	ld a, [wTempCardDungeonBet]
 	sla a
@@ -6600,7 +6600,7 @@ Script_KnightAfterDuel:
 	ld a, $01
 	start_script
 	print_npc_text KnightPlayerWon2Text
-	script_command_71
+	hide_chips_hud
 	script_jump .proceed
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
@@ -6753,7 +6753,7 @@ Script_Rook:
 	get_var VAR_CARD_DUNGEON_PROGRESS
 	compare_loaded_var CARDDUNGEON_BEAT_BISHOP
 	script_jump_if_b0z .proceed_repeat
-	game_center
+	show_chips_hud
 	check_event EVENT_TALKED_TO_ROOK
 	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_ROOK
@@ -6804,7 +6804,7 @@ Script_Rook:
 	ld a, $01
 	start_script
 	print_npc_text RookDuelStartText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	start_duel COLORLESS_ENERGY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
@@ -6818,7 +6818,7 @@ Script_Rook:
 .quit
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text RookPlayerQuitText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 	jp Func_3f572
@@ -6835,7 +6835,7 @@ Script_RookAfterDuel:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
 	print_npc_text RookPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
 	ld a, [wTempCardDungeonBet]
 	sla a
@@ -6850,7 +6850,7 @@ Script_RookAfterDuel:
 	ld a, $01
 	start_script
 	print_npc_text RookPlayerWon2Text
-	script_command_71
+	hide_chips_hud
 	script_jump .proceed
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST

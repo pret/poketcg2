@@ -119,8 +119,8 @@ ENDM
 	const ScriptCommand_GetGameCenterChips_index               ; $6d
 	const ScriptCommand_CompareLoadedVarWord_index             ; $6e
 	const ScriptCommand_GetGameCenterBankedChips_index         ; $6f
-	const ScriptCommand_GameCenter_index                       ; $70
-	const ScriptCommand_71_index                               ; $71
+	const ScriptCommand_ShowChipsHUD_index                     ; $70
+	const ScriptCommand_HideChipsHUD_index                     ; $71
 	const ScriptCommand_GiveChips_index                        ; $72
 	const ScriptCommand_TakeChips_index                        ; $73
 	const ScriptCommand_LoadTextRAM3_index                     ; $74
@@ -724,12 +724,12 @@ MACRO get_game_center_banked_chips
 	run_command ScriptCommand_GetGameCenterBankedChips
 ENDM
 
-MACRO game_center
-	run_command ScriptCommand_GameCenter
+MACRO show_chips_hud
+	run_command ScriptCommand_ShowChipsHUD
 ENDM
 
-MACRO script_command_71
-	run_command ScriptCommand_71
+MACRO hide_chips_hud
+	run_command ScriptCommand_HideChipsHUD
 ENDM
 
 MACRO give_chips

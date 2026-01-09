@@ -138,8 +138,8 @@ script_commands = {
 	0x6d: { "name": "get_game_center_chips",                  "params": [] },
 	0x6e: { "name": "compare_loaded_var_word",                "params": [ "word" ] },
 	0x6f: { "name": "get_game_center_banked_chips",           "params": [] },
-	0x70: { "name": "game_center",                            "params": [] },
-	0x71: { "name": "script_command_71",                      "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
+	0x70: { "name": "show_chips_hud",                         "params": [] }, # also hide npcs under hud
+	0x71: { "name": "hide_chips_hud",                         "params": [] }, # also restore npcs under hud
 	0x72: { "name": "give_chips",                             "params": [ "word_decimal" ] },
 	0x73: { "name": "take_chips",                             "params": [ "word_decimal" ] },
 	0x74: { "name": "load_text_ram3",                         "params": [] },

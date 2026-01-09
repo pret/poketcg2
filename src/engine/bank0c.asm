@@ -978,7 +978,7 @@ Script_Queen:
 	xor a
 	start_script
 	start_dialog
-	game_center
+	show_chips_hud
 	check_event EVENT_TALKED_TO_QUEEN
 	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_QUEEN
@@ -1029,7 +1029,7 @@ Script_Queen:
 	ld a, $01
 	start_script
 	print_npc_text QueenDuelStart1Text
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_312ea
@@ -1048,7 +1048,7 @@ Script_Queen:
 .quit
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text QueenPlayerQuitText
-	script_command_71
+	hide_chips_hud
 	end_dialog
 	end_script
 
@@ -1064,7 +1064,7 @@ Script_QueenAfterDuel:
 	script_jump_if_b0nz .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_QUEEN
 	print_npc_text QueenPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
 	ld a, [wTempCardDungeonBet]
 	sla a
@@ -1079,7 +1079,7 @@ Script_QueenAfterDuel:
 	ld a, $01
 	start_script
 	print_npc_text QueenPlayerWon2Text
-	script_command_71
+	hide_chips_hud
 	script_jump .done
 .player_lost
 	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
