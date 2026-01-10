@@ -4380,7 +4380,7 @@ PsychicStrongholdLobby_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3620e
 	dbw OWMODE_INTERACT, Func_3621e
 	dbw OWMODE_AFTER_DUEL, Func_3622e
-	dbw OWMODE_0B, Func_36234
+	dbw OWMODE_CONTINUE_OW, Func_36234
 	dbw OWMODE_NPC_POSITION, Func_36215
 	dbw OWMODE_MUSIC_POSTLOAD, Func_361f9
 	db $ff

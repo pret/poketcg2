@@ -38,9 +38,9 @@ IshiharasHouse_MapScripts:
 	dbw OWMODE_INTERACT, Func_2c0f1
 	dbw OWMODE_NPC_POSITION, Func_2c0c8
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2c0d1
-	dbw OWMODE_0C, Func_2c101
-	dbw OWMODE_0D, Func_2c12f
-	dbw OWMODE_0B, Func_2c13e
+	dbw OWMODE_SAVE_PRELOAD, Func_2c101
+	dbw OWMODE_SAVE_POSTLOAD, Func_2c12f
+	dbw OWMODE_CONTINUE_OW, Func_2c13e
 	dbw OWMODE_MUSIC_PRELOAD, Func_2c0b4
 	db $ff
 
@@ -1253,7 +1253,7 @@ PsychicClubEntrance_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2ca1c
 	dbw OWMODE_NPC_POSITION, Func_2c9df
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2c9e8
-	dbw OWMODE_0B, Func_2ca22
+	dbw OWMODE_CONTINUE_OW, Func_2ca22
 	dbw OWMODE_MUSIC_PRELOAD, Func_2c9b8
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2c9c8
 	db $ff
@@ -1511,7 +1511,7 @@ PsychicClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2cbdf
 	dbw OWMODE_NPC_POSITION, Func_2cbd6
 	dbw OWMODE_AFTER_DUEL, Func_2cbef
-	dbw OWMODE_0B, Func_2cbf5
+	dbw OWMODE_CONTINUE_OW, Func_2cbf5
 	dbw OWMODE_MUSIC_PRELOAD, Func_2cba8
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2cbba
 	db $ff
@@ -2544,7 +2544,7 @@ RockClubEntrance_StepEvents:
 RockClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_2d376
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d37d
-	dbw OWMODE_0B, Func_2d399
+	dbw OWMODE_CONTINUE_OW, Func_2d399
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d356
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2d366
 	db $ff
@@ -2665,7 +2665,7 @@ RockClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2d4ae
 	dbw OWMODE_NPC_POSITION, Func_2d4a5
 	dbw OWMODE_AFTER_DUEL, Func_2d4be
-	dbw OWMODE_0B, Func_2d4c4
+	dbw OWMODE_CONTINUE_OW, Func_2d4c4
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d472
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2d489
 	db $ff
@@ -3331,7 +3331,7 @@ FightingClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_2d99f
 	dbw OWMODE_AFTER_DUEL, Func_2d9d2
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2d9a6
-	dbw OWMODE_0B, Func_2d9d8
+	dbw OWMODE_CONTINUE_OW, Func_2d9d8
 	dbw OWMODE_MUSIC_PRELOAD, Func_2d97f
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2d98f
 	db $ff
@@ -4308,7 +4308,7 @@ GrassClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_2e0dc
 	dbw OWMODE_AFTER_DUEL, Func_2e10f
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e0e3
-	dbw OWMODE_0B, Func_2e115
+	dbw OWMODE_CONTINUE_OW, Func_2e115
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e0bc
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2e0cc
 	db $ff
@@ -4916,7 +4916,7 @@ ScienceClubEntrance_MapScripts:
 	dbw OWMODE_AFTER_DUEL, Func_2e57c
 	dbw OWMODE_NPC_POSITION, Func_2e53f
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2e548
-	dbw OWMODE_0B, Func_2e582
+	dbw OWMODE_CONTINUE_OW, Func_2e582
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e518
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2e528
 	db $ff
@@ -5150,7 +5150,7 @@ ScienceClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2e72e
 	dbw OWMODE_AFTER_DUEL, Func_2e73e
 	dbw OWMODE_NPC_POSITION, Func_2e725
-	dbw OWMODE_0B, Func_2e752
+	dbw OWMODE_CONTINUE_OW, Func_2e752
 	dbw OWMODE_MUSIC_PRELOAD, Func_2e6f7
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2e709
 	db $ff
@@ -5995,7 +5995,7 @@ WaterClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_2ed37
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2ed3e
 	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_2ed75
-	dbw OWMODE_0B, Func_2ed8c
+	dbw OWMODE_CONTINUE_OW, Func_2ed8c
 	dbw OWMODE_MUSIC_PRELOAD, Func_2ed17
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2ed27
 	db $ff
@@ -6152,7 +6152,7 @@ WaterClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2eeaa
 	dbw OWMODE_AFTER_DUEL, Func_2eeba
 	dbw OWMODE_NPC_POSITION, Func_2eea1
-	dbw OWMODE_0B, Func_2eece
+	dbw OWMODE_CONTINUE_OW, Func_2eece
 	dbw OWMODE_MUSIC_PRELOAD, Func_2ee73
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2ee85
 	db $ff
@@ -7092,7 +7092,7 @@ FireClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_2f56e
 	dbw OWMODE_AFTER_DUEL, Func_2f5a8
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_2f575
-	dbw OWMODE_0B, Func_2f5ae
+	dbw OWMODE_CONTINUE_OW, Func_2f5ae
 	dbw OWMODE_MUSIC_PRELOAD, Func_2f54e
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2f55e
 	db $ff
@@ -7254,7 +7254,7 @@ FireClubLobby_MapScripts:
 	dbw OWMODE_INTERACT, Func_2f6d7
 	dbw OWMODE_NPC_POSITION, Func_2f6ce
 	dbw OWMODE_AFTER_DUEL, Func_2f6e7
-	dbw OWMODE_0B, Func_2f6ed
+	dbw OWMODE_CONTINUE_OW, Func_2f6ed
 	dbw OWMODE_MUSIC_PRELOAD, Func_2f6a0
 	dbw OWMODE_MUSIC_POSTLOAD, Func_2f6b2
 	db $ff

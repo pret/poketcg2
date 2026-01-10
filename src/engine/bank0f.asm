@@ -1519,7 +1519,7 @@ LightningClubEntrance_StepEvents:
 LightningClubEntrance_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3cbf4
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3cbfb
-	dbw OWMODE_0B, Func_3cc37
+	dbw OWMODE_CONTINUE_OW, Func_3cc37
 	dbw OWMODE_MUSIC_PRELOAD, Func_3cbd4
 	dbw OWMODE_MUSIC_POSTLOAD, Func_3cbe4
 	db $ff
@@ -3815,8 +3815,8 @@ PokemonDomeBack_MapScripts:
 	dbw OWMODE_NPC_POSITION, Func_3ddaf
 	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3ddb8
 	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3de67
-	dbw OWMODE_0B, Func_3de91
-	dbw OWMODE_0E, Func_3deca
+	dbw OWMODE_CONTINUE_OW, Func_3de91
+	dbw OWMODE_CONTINUE_DUEL, Func_3deca
 	dbw OWMODE_WARP_END_SFX, Func_3de6f
 	db $ff
 
@@ -4982,9 +4982,9 @@ IshiharasVillaMain_MapScripts:
 	dbw OWMODE_INTERACT, Func_3e73a
 	dbw OWMODE_AFTER_DUEL, Func_3e7bb
 	dbw OWMODE_NPC_POSITION, Func_3e731
-	dbw OWMODE_0C, Func_3e74a
-	dbw OWMODE_0D, Func_3e778
-	dbw OWMODE_0B, Func_3e787
+	dbw OWMODE_SAVE_PRELOAD, Func_3e74a
+	dbw OWMODE_SAVE_POSTLOAD, Func_3e778
+	dbw OWMODE_CONTINUE_OW, Func_3e787
 	dbw OWMODE_MUSIC_PRELOAD, Func_3e704
 	db $ff
 
@@ -5307,9 +5307,9 @@ IshiharasVillaLibrary_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3e981
 	dbw OWMODE_INTERACT, Func_3e991
 	dbw OWMODE_NPC_POSITION, Func_3e988
-	dbw OWMODE_0C, Func_3e9a1
-	dbw OWMODE_0D, Func_3e9cf
-	dbw OWMODE_0B, Func_3e9de
+	dbw OWMODE_SAVE_PRELOAD, Func_3e9a1
+	dbw OWMODE_SAVE_POSTLOAD, Func_3e9cf
+	dbw OWMODE_CONTINUE_OW, Func_3e9de
 	dbw OWMODE_MUSIC_PRELOAD, Func_3e95b
 	db $ff
 
@@ -6073,7 +6073,7 @@ GameCenterLobby_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3ef95
 	dbw OWMODE_INTERACT, Func_3efa5
 	dbw OWMODE_AFTER_DUEL, Func_3efb5
-	dbw OWMODE_0B, Func_3efba
+	dbw OWMODE_CONTINUE_OW, Func_3efba
 	dbw OWMODE_NPC_POSITION, Func_3ef9c
 	dbw OWMODE_MUSIC_POSTLOAD, Func_3ef80
 	db $ff
@@ -6954,7 +6954,7 @@ WaterFortLobby_MapScripts:
 	dbw OWMODE_STEP_EVENT, Func_3f650
 	dbw OWMODE_INTERACT, Func_3f660
 	dbw OWMODE_AFTER_DUEL, Func_3f670
-	dbw OWMODE_0B, Func_3f675
+	dbw OWMODE_CONTINUE_OW, Func_3f675
 	dbw OWMODE_NPC_POSITION, Func_3f657
 	dbw OWMODE_MUSIC_POSTLOAD, Func_3f63b
 	db $ff

@@ -59,9 +59,9 @@ StartMenu_ContinueFromDiary:
 	call PlaySong
 	ld a, [wNextGameEvent]
 	cp GAME_EVENT_NEWGAME_PROLOGUE
-	jr z, .asm_c0a0
+	jr z, .prologue
 	cp GAME_EVENT_DUEL
-	jr z, .asm_c0ab
+	jr z, .duel
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
@@ -78,14 +78,14 @@ StartMenu_ContinueFromDiary:
 	scf
 	ret
 
-.asm_c0a0
+.prologue
 	ld a, TRUE
 	farcall ReadOrInitSaveData
 	call ExecuteGameEvent
 	scf
 	ret
 
-.asm_c0ab
+.duel
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
@@ -101,7 +101,7 @@ StartMenu_ContinueFromDiary:
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
-	ld a, OWMODE_0E
+	ld a, OWMODE_CONTINUE_DUEL
 	call ExecuteOWModeScript
 	ld a, VAR_NPC_DECK_ID
 	call GetVarValue
@@ -126,7 +126,7 @@ StartMenu_ContinueDuel:
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
 	call MaxOutEventValue
-	ld a, OWMODE_0E
+	ld a, OWMODE_CONTINUE_DUEL
 	call ExecuteOWModeScript
 	ld a, GAME_EVENT_DUEL
 	ld [wNextGameEvent], a
@@ -163,13 +163,13 @@ OWModePostprocess::
 	dw OverworldResumeFromInteract             ; OWMODE_INTERACT
 	dw OverworldResumeAfterDuel                ; OWMODE_AFTER_DUEL
 	dw ExecuteWRAMOverworldScript              ; OWMODE_SCRIPT
-	dw OverworldResumeWithCurSong              ; OWMODE_0B
-	dw .Exit                                   ; OWMODE_0C
-	dw .Exit                                   ; OWMODE_0D
-	dw .Exit                                   ; OWMODE_0E
+	dw OverworldResumeWithCurSong              ; OWMODE_CONTINUE_OW
+	dw .Exit                                   ; OWMODE_SAVE_PRELOAD
+	dw .Exit                                   ; OWMODE_SAVE_POSTLOAD
+	dw .Exit                                   ; OWMODE_CONTINUE_DUEL
 	dw PlaySFXWarp                             ; OWMODE_WARP_END_SFX
 	dw PlayNextMusic                           ; OWMODE_MUSIC_POSTLOAD
-	dw OverworldWaitPalFading                  ; OWMODE_11
+	dw OverworldWaitPalFading                  ; OWMODE_AFTER_DUEL_PRELOAD
 	dw PauseMenu                               ; OWMODE_PAUSE_MENU
 
 .Exit:
@@ -1217,7 +1217,7 @@ OverworldLoop::
 	ret
 
 .end_duel
-	ld a, OWMODE_11
+	ld a, OWMODE_AFTER_DUEL_PRELOAD
 	call ExecuteOWModeScript
 	ld a, EVENT_02
 	call ZeroOutEventValue
@@ -1241,7 +1241,7 @@ OverworldLoop::
 	ld a, FALSE
 	ld b, $00
 	farcall StartPalFadeFromBlackOrWhite
-	ld a, OWMODE_0B
+	ld a, OWMODE_CONTINUE_OW
 	ld [wOverworldMode], a
 	ld hl, wOverworldTransition
 	res 7, [hl]
@@ -4737,7 +4737,7 @@ Func_ea19:
 	ret
 
 Func_ea30::
-	ld a, OWMODE_0C
+	ld a, OWMODE_SAVE_PRELOAD
 	call ExecuteOWModeScript
 	farcall Func_10f32
 	xor a ; BANK("SRAM0")
@@ -4784,7 +4784,7 @@ Func_ea30::
 	jr nz, .error
 	ld a, 1
 	call BulkCopySRAM
-	ld a, OWMODE_0D
+	ld a, OWMODE_SAVE_POSTLOAD
 	call ExecuteOWModeScript
 	ret
 

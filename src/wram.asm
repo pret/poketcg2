@@ -2372,6 +2372,7 @@ wOverworldMode:: ; d582
 
 ; bit 0: set when player warps
 ; bit 1: set when NPC initiates duel
+; bit 7: set when game continues from diary
 wOverworldTransition:: ; d583
 	ds $1
 

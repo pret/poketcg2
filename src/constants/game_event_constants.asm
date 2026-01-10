@@ -22,13 +22,13 @@ DEF NUM_GAME_EVENTS EQU const_value ; 6
 	const OWMODE_INTERACT              ; $08
 	const OWMODE_AFTER_DUEL            ; $09
 	const OWMODE_SCRIPT                ; $0a
-	const OWMODE_0B                    ; $0b
-	const OWMODE_0C                    ; $0c
-	const OWMODE_0D                    ; $0d
-	const OWMODE_0E                    ; $0e
+	const OWMODE_CONTINUE_OW           ; $0b
+	const OWMODE_SAVE_PRELOAD          ; $0c
+	const OWMODE_SAVE_POSTLOAD         ; $0d
+	const OWMODE_CONTINUE_DUEL         ; $0e
 	const OWMODE_WARP_END_SFX          ; $0f
 	const OWMODE_MUSIC_POSTLOAD        ; $10
-	const OWMODE_11                    ; $11
+	const OWMODE_AFTER_DUEL_PRELOAD    ; $11
 	const OWMODE_PAUSE_MENU            ; $12
 
 ; DEF NUM_OWMODES EQU const_value ; $13
