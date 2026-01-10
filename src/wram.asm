@@ -2261,10 +2261,7 @@ wNextWarpMap:: ; d54d
 	ds $1
 
 wd54e:: ; d54e
-	ds $1
-
-wd54f:: ; d54f
-	ds $1
+	ds $2
 
 wPlayerOWObject:: ; d550
 	ds $1
@@ -2419,6 +2416,8 @@ wNextMusic:: ; d58e
 
 wNextMapHeaderDataEnd::
 
+wNextWarpPlayerData:: ; d58f
+
 wNextWarpPlayerXCoord:: ; d58f
 	ds $1
 
@@ -2427,6 +2426,8 @@ wNextWarpPlayerYCoord:: ; d590
 
 wNextWarpPlayerDirection:: ; d591
 	ds $1
+
+wNextWarpPlayerDataEnd::
 
 wOverworldScriptBank:: ; d592
 	ds $1
@@ -2542,33 +2543,31 @@ wBoosterPacksToGive:: ; d65f
 wNumBoosterPacksToGive:: ; d667
 	ds $1
 
-; sram bank
-wd668:: ; d668
+; SRAM0 or SRAM2
+wSaveDataSRAMBank:: ; d668
 	ds $1
 
 	ds $1
 
-wd66a:: ; d66a
+wSaveDataItemMinValidValue:: ; d66a
 	ds $1
 
-wd66b:: ; d66b
+wSaveDataItemMaxValidValue:: ; d66b
 	ds $1
 
-wd66c:: ; d66c
+wSaveDataChecksum0:: ; d66c
 	ds $1
 
-wd66d:: ; d66d
+wSaveDataChecksum1:: ; d66d
 	ds $1
 
-wd66e:: ; d66e
+wSaveDataChecksum2:: ; d66e
 	ds $1
 
-; data ptr
-wd66f:: ; d66f
+wWRAMToSRAMMapperPointer:: ; d66f
 	ds $2
 
-; sram ptr
-wd671:: ; d671
+wSaveDataSRAMOffset:: ; d671
 	ds $2
 
 wd673:: ; d673
@@ -2691,6 +2690,9 @@ wd7e9:: ; d7e9
 
 	ds $2
 
+; 177 bytes
+wOWData:: ; d7ec
+
 ; OW map constant
 wOWMap:: ; d7ec
 	ds $2
@@ -2727,6 +2729,8 @@ wOWScrollX:: ; d89b
 
 wOWScrollY:: ; d89c
 	ds $1
+
+wOWDataEnd::
 
 wd89d:: ; d89d
 	ds $1
@@ -3478,6 +3482,7 @@ wddf7:: ; ddf7
 wddf8:: ; ddf8
 	ds $1
 
+; challenge machine
 wddf9:: ; ddf9
 	ds $14
 
