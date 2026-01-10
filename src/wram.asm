@@ -2250,30 +2250,26 @@ wd54a:: ; d54a
 wd54b:: ; d54b
 	ds $1
 
-wd54c:: ; d54c
+wNextGameEvent:: ; d54c
 	ds $1
 
-; how far has the player progressed
-; $0: no save data
-; $1: entered player info
-; $2: watched prologue
-wd54d:: ; d54d
+; MAP_* constant
+; also used for new-game entry flag:
+;   FALSE: no save data
+;    TRUE: entered player info
+wNextWarpMap:: ; d54d
 	ds $1
 
 wd54e:: ; d54e
-	ds $1
-
-wd54f:: ; d54f
-	ds $1
+	ds $2
 
 wPlayerOWObject:: ; d550
 	ds $1
 
-; bank number of wd552
-wd551:: ; d551
+wCurMapScriptsBank:: ; d551
 	ds $1
 
-wd552:: ; d552
+wCurMapScriptsPointer:: ; d552
 	ds $2
 
 ; bit 0: has save data
@@ -2288,17 +2284,22 @@ wCurrentNPCDuelistData:: ; d555
 ; TODO: is this really union?
 UNION
 
-wd561:: ; d561
+; MAPHEADERSTRUCT_*
+wTempMapHeaderData:: ; d561
+
+wTempMapGfx:: ; d561
 	ds $1
 
-wd562:: ; d562
+wTempMapScriptsBank:: ; d562
 	ds $1
 
-wd563:: ; d563
+wTempMapScriptsPointer:: ; d563
 	ds $2
 
-wd565:: ; d565
+wTempMapMusic:: ; d565
 	ds $1
+
+wTempMapHeaderDataEnd::
 
 NEXTU
 
@@ -2315,10 +2316,18 @@ wFilteredListPtr:: ; d575
 ; TODO: is this really union?
 UNION
 
+; for challenge cups and challenge machines
+wNumRandomDuelists:: ; d577
+	ds $1
+
+wChallengeCupIndex:: ; d578
+	ds $1
+
+NEXTU
+
 wRemainingIntroCards:: ; d577
 	ds $1
 
-wd578:: ; d578
 	ds $1
 
 wd579:: ; d579
@@ -2355,21 +2364,23 @@ wTempBlackBoxInputEvoLineEnd:: ; d582
 
 ENDU
 
-wd582:: ; d582
+; OWMODE_* constant
+wOverworldMode:: ; d582
 	ds $1
 
+; bit 0: set when player warps
 ; bit 1: set when NPC initiates duel
-wd583:: ; d583
+; bit 7: set when game continues from diary
+wOverworldTransition:: ; d583
 	ds $1
 
-; MAP_* constant
-wd584:: ; d584
+wPrevMap:: ; d584
 	ds $1
 
-wd585:: ; d585
+wTempPrevMap:: ; d585
 	ds $1
 
-wd586:: ; d586
+wCurMap:: ; d586
 	ds $1
 
 ; OWMAP_* constant
@@ -2385,14 +2396,16 @@ wPlayerOWLocation:: ; d588
 wCurIsland:: ; d589
 	ds $1
 
+wNextMapHeaderData:: ; d58a
+
 ; MAP_GFX_* constant
-wCurMapGfx:: ; d58a
+wNextMapGfx:: ; d58a
 	ds $1
 
-wd58b:: ; d58b
+wNextMapScriptsBank:: ; d58b
 	ds $1
 
-wd58c:: ; d58c
+wNextMapScriptsPointer:: ; d58c
 	ds $2
 
 ; MUSIC_* constant
@@ -2401,19 +2414,25 @@ wd58c:: ; d58c
 wNextMusic:: ; d58e
 	ds $1
 
-wd58f:: ; d58f
+wNextMapHeaderDataEnd::
+
+wNextWarpPlayerData:: ; d58f
+
+wNextWarpPlayerXCoord:: ; d58f
 	ds $1
 
-wd590:: ; d590
+wNextWarpPlayerYCoord:: ; d590
 	ds $1
 
-wd591:: ; d591
+wNextWarpPlayerDirection:: ; d591
 	ds $1
 
-wd592:: ; d592
+wNextWarpPlayerDataEnd::
+
+wOverworldScriptBank:: ; d592
 	ds $1
 
-wd593:: ; d593
+wOverworldScriptPointer:: ; d593
 	ds $2
 
 ; NPC_* ID
@@ -2469,7 +2488,7 @@ wScriptNPCName:: ; d60f
 wSentMailBitfield:: ; d611
 	ds (NUM_UNIQUE_MAILS_IN_GAME + 7) / 8
 
-wd615:: ; d615
+wTempCardDungeonBet:: ; d615
 	ds $1
 
 ; sometimes treated as 8-bit, sometimes treated as 16-bit
@@ -2524,37 +2543,32 @@ wBoosterPacksToGive:: ; d65f
 wNumBoosterPacksToGive:: ; d667
 	ds $1
 
-wd668:: ; d668
+; SRAM0 or SRAM2
+wSaveDataSRAMBank:: ; d668
 	ds $1
 
 	ds $1
 
-wd66a:: ; d66a
+wSaveDataItemMinValidValue:: ; d66a
 	ds $1
 
-wd66b:: ; d66b
+wSaveDataItemMaxValidValue:: ; d66b
 	ds $1
 
-wd66c:: ; d66c
+wSaveDataChecksum0:: ; d66c
 	ds $1
 
-wd66d:: ; d66d
+wSaveDataChecksum1:: ; d66d
 	ds $1
 
-wd66e:: ; d66e
+wSaveDataChecksum2:: ; d66e
 	ds $1
 
-wd66f:: ; d66f
-	ds $1
+wWRAMToSRAMMapperPointer:: ; d66f
+	ds $2
 
-wd670:: ; d670
-	ds $1
-
-wd671:: ; d671
-	ds $1
-
-wd672:: ; d672
-	ds $1
+wSaveDataSRAMOffset:: ; d671
+	ds $2
 
 wd673:: ; d673
 	ds $1
@@ -2676,6 +2690,9 @@ wd7e9:: ; d7e9
 
 	ds $2
 
+; 177 bytes
+wOWData:: ; d7ec
+
 ; OW map constant
 wOWMap:: ; d7ec
 	ds $2
@@ -2713,16 +2730,19 @@ wOWScrollX:: ; d89b
 wOWScrollY:: ; d89c
 	ds $1
 
+wOWDataEnd::
+
 wd89d:: ; d89d
 	ds $1
 
 wd89e:: ; d89e
 	ds $1
 
-wd89f:: ; d89f
+wPauseMenuCursorPosition:: ; d89f
 	ds $1
 
-wd8a0:: ; d8a0
+; if TRUE, pause menu adds chips display
+wPauseMenuWithChips:: ; d8a0
 	ds $1
 
 wd8a1:: ; d8a1
@@ -2772,8 +2792,9 @@ wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
 wd986:: ; d986
 	ds $1
 
-; NPC_* ID or $ff
-wd987:: ; d987
+; NPC_* ID (or NPC_NONE)
+; See also; wScriptNPC
+wTempScriptNPC:: ; d987
 	ds $1
 
 	ds $1
@@ -3036,7 +3057,7 @@ wTotalNumCardsToCollect:: ; db13
 wTotalNumCardsCollected:: ; db15
 	ds $2
 
-wdb17:: ; db17
+wPopupMenuCursorPosition:: ; db17
 	ds $1
 
 wdb18:: ; db18
@@ -3289,13 +3310,13 @@ wDuelResult:: ; dd02
 wDuelStartTheme:: ; dd03
 	ds $1
 
-wdd04:: ; dd04
+wTempActiveMusic:: ; dd04
 	ds $1
 
-wdd05:: ; dd05
+wTempActiveMusicState:: ; dd05
 	ds $1
 
-wdd06:: ; dd06
+wActiveMusicState:: ; dd06
 	ds $1
 
 wMinicomMenuCursorPosition:: ; dd07
@@ -3461,6 +3482,7 @@ wddf7:: ; ddf7
 wddf8:: ; ddf8
 	ds $1
 
+; challenge machine
 wddf9:: ; ddf9
 	ds $14
 

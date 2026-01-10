@@ -3382,7 +3382,7 @@ LoadCardPopSceneAndHandleCommunications:
 	ld a, BANK("SRAM2")
 	call BankswitchSRAM
 	call AddCardToCollection
-	xor a
+	xor a ; BANK("SRAM0")
 	call BankswitchSRAM
 
 .add_sram0

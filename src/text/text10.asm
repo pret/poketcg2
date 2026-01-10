@@ -459,7 +459,7 @@ Text0f05:
 	linefw "対戦してみるんじゃよ"
 	done
 
-Text0f06:
+ChallengeMachineWinStreakRecordCorruptedAndResetText:
 	textfw "「れんしょう きろく」のデータが"
 	linefw "なんらかのげんいんで こわれました"
 	linefw "「れんしょう きろく」のデータを"
