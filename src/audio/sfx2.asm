@@ -447,21 +447,21 @@ SFX2_wave:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $0
+	ld a, AUD3ENA_OFF
 	ldh [rAUD3ENA], a
 	ld b, d
-	ld de, $ff30
+	ld de, _AUD3WAVERAM
 .asm_fc215
 	ld a, [hli]
 	ld [de], a
 	inc de
 	inc b
 	ld a, b
-	cp $10
+	cp AUD3WAVE_SIZE
 	jr nz, .asm_fc215
 	ld a, $1
 	ld [wMusicWaveChange], a
-	ld a, $80
+	ld a, AUD3ENA_ON
 	ldh [rAUD3ENA], a
 	ld b, $0
 	pop hl
