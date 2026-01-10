@@ -1,96 +1,96 @@
 Sfx_NineTails_Ch1:
-	sfx_8 17
-	sfx_1 0
-	sfx_6 35
-	sfx_2 4
-	sfx_1 75
-	sfx_0 5, 17
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 66
-	sfx_0 6, 158
-	sfx_0 6, 231
-	sfx_0 7, 57
-	sfx_0 7, 98
-	sfx_0 7, 131
+	sfx_pan TRUE, TRUE
+	sfx_env 0, 0
+	sfx_wait 35
+	sfx_duty 1
+	sfx_env 4, -3
+	sfx_freq $511
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $642
+	sfx_freq $69e
+	sfx_freq $6e7
+	sfx_freq $739
+	sfx_freq $762
+	sfx_freq $783
 	sfx_loop 8
-	sfx_1 32
-	sfx_2 0
-	sfx_0 7, 223
-	sfx_1 48
-	sfx_0 7, 209
-	sfx_1 80
-	sfx_0 7, 221
-	sfx_1 32
-	sfx_0 7, 209
-	sfx_1 48
-	sfx_0 7, 223
-	sfx_1 80
-	sfx_0 7, 214
+	sfx_env 2, 0
+	sfx_duty 0
+	sfx_freq $7df
+	sfx_env 3, 0
+	sfx_freq $7d1
+	sfx_env 5, 0
+	sfx_freq $7dd
+	sfx_env 2, 0
+	sfx_freq $7d1
+	sfx_env 3, 0
+	sfx_freq $7df
+	sfx_env 5, 0
+	sfx_freq $7d6
 	sfx_endloop
-	sfx_1 32
-	sfx_2 4
-	sfx_0 7, 223
-	sfx_1 48
-	sfx_0 7, 209
-	sfx_1 80
-	sfx_0 7, 221
+	sfx_env 2, 0
+	sfx_duty 1
+	sfx_freq $7df
+	sfx_env 3, 0
+	sfx_freq $7d1
+	sfx_env 5, 0
+	sfx_freq $7dd
 	sfx_end
 
 Sfx_NineTails_Ch2:
-	sfx_8 17
-	sfx_1 27
-	sfx_0 0, 54
-	sfx_0 0, 54
-	sfx_0 0, 54
-	sfx_0 0, 54
-	sfx_1 75
-	sfx_0 0, 54
-	sfx_0 0, 54
-	sfx_0 0, 54
-	sfx_0 0, 52
-	sfx_0 0, 52
-	sfx_1 123
-	sfx_0 0, 52
-	sfx_0 0, 52
-	sfx_0 0, 51
-	sfx_0 0, 51
-	sfx_0 0, 50
-	sfx_0 0, 49
-	sfx_1 155
-	sfx_0 0, 48
-	sfx_0 0, 48
-	sfx_0 0, 48
-	sfx_0 0, 32
-	sfx_0 0, 32
-	sfx_0 0, 32
-	sfx_0 0, 32
-	sfx_0 0, 32
-	sfx_0 0, 32
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 2
-	sfx_0 0, 3
+	sfx_pan TRUE, TRUE
+	sfx_env 1, -3
+	sfx_freq $36
+	sfx_freq $36
+	sfx_freq $36
+	sfx_freq $36
+	sfx_env 4, -3
+	sfx_freq $36
+	sfx_freq $36
+	sfx_freq $36
+	sfx_freq $34
+	sfx_freq $34
+	sfx_env 7, -3
+	sfx_freq $34
+	sfx_freq $34
+	sfx_freq $33
+	sfx_freq $33
+	sfx_freq $32
+	sfx_freq $31
+	sfx_env 9, -3
+	sfx_freq $30
+	sfx_freq $30
+	sfx_freq $30
+	sfx_freq $20
+	sfx_freq $20
+	sfx_freq $20
+	sfx_freq $20
+	sfx_freq $20
+	sfx_freq $20
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $0
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $2
+	sfx_freq $3
 	sfx_loop 9
-	sfx_1 240
-	sfx_0 0, 1
-	sfx_0 0, 1
-	sfx_0 0, 0
-	sfx_1 144
-	sfx_0 0, 0
-	sfx_0 0, 1
-	sfx_0 0, 0
+	sfx_env 15, 0
+	sfx_freq $1
+	sfx_freq $1
+	sfx_freq $0
+	sfx_env 9, 0
+	sfx_freq $0
+	sfx_freq $1
+	sfx_freq $0
 	sfx_endloop
 	sfx_end

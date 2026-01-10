@@ -1,28 +1,28 @@
 Sfx_ElectronicResponse_Ch1:
-	sfx_1 162
-	sfx_8 17
-	sfx_2 4
-	sfx_0 7, 131
-	sfx_5 0
-	sfx_6 1
-	sfx_0 7, 172
-	sfx_6 1
-	sfx_0 7, 157
-	sfx_6 1
-	sfx_1 247
-	sfx_2 8
-	sfx_0 7, 193
-	sfx_6 3
-	sfx_1 151
-	sfx_0 7, 193
-	sfx_6 3
-	sfx_1 103
-	sfx_0 7, 193
-	sfx_6 3
-	sfx_1 71
-	sfx_0 7, 193
-	sfx_6 3
-	sfx_1 39
-	sfx_0 7, 193
-	sfx_6 3
+	sfx_env 10, 2
+	sfx_pan TRUE, TRUE
+	sfx_duty 1
+	sfx_freq $783
+	sfx_pitch_offset 0
+	sfx_wait 1
+	sfx_freq $7ac
+	sfx_wait 1
+	sfx_freq $79d
+	sfx_wait 1
+	sfx_env 15, 7
+	sfx_duty 2
+	sfx_freq $7c1
+	sfx_wait 3
+	sfx_env 9, 7
+	sfx_freq $7c1
+	sfx_wait 3
+	sfx_env 6, 7
+	sfx_freq $7c1
+	sfx_wait 3
+	sfx_env 4, 7
+	sfx_freq $7c1
+	sfx_wait 3
+	sfx_env 2, 7
+	sfx_freq $7c1
+	sfx_wait 3
 	sfx_end

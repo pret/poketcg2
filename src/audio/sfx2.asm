@@ -168,16 +168,16 @@ Func_fc094_2:
 	jp hl
 
 SFX2_CommandTable:
-	dw SFX2_0
-	dw SFX2_1
-	dw SFX2_2
+	dw SFX2_frequency
+	dw SFX2_envelope
+	dw SFX2_duty
 	dw SFX2_loop
 	dw SFX2_endloop
-	dw SFX2_5
-	dw SFX2_6
-	dw SFX2_7
-	dw SFX2_8
-	dw SFX2_9
+	dw SFX2_pitch_offset
+	dw SFX2_wait
+	dw SFX2_wave
+	dw SFX2_pan
+	dw SFX2_sweep
 	dw SFX2_unused
 	dw SFX2_unused
 	dw SFX2_unused
@@ -188,7 +188,7 @@ SFX2_CommandTable:
 SFX2_unused:
 	jp Func_fc094_2
 
-SFX2_0:
+SFX2_frequency:
 	ld d, a
 	pop hl
 	ld a, [hli]
@@ -242,7 +242,7 @@ Func_fc105_2:
 	ld [hl], d
 	ret
 
-SFX2_1:
+SFX2_envelope:
 	ld hl, wde2b
 	add hl, bc
 	ld a, $80
@@ -262,7 +262,7 @@ SFX2_1:
 	pop hl
 	jp Func_fc094_2
 
-SFX2_2:
+SFX2_duty:
 	swap a
 	ld e, a
 	ld hl, rAUD1LEN
@@ -312,7 +312,7 @@ SFX2_endloop:
 	pop hl
 	jp Func_fc094_2
 
-SFX2_5:
+SFX2_pitch_offset:
 	ld hl, wde2f
 	add hl, bc
 	ld e, l
@@ -322,7 +322,7 @@ SFX2_5:
 	ld [de], a
 	jp Func_fc094_2
 
-SFX2_6:
+SFX2_wait:
 	ld a, c
 	cp $3
 	jr nz, .asm_fc17c
@@ -438,7 +438,7 @@ Func_fc1cd_2:
 .asm_fc201
 	ret
 
-SFX2_7:
+SFX2_wave:
 	add a
 	ld d, $0
 	ld e, a
@@ -447,27 +447,27 @@ SFX2_7:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $0
+	ld a, AUD3ENA_OFF
 	ldh [rAUD3ENA], a
 	ld b, d
-	ld de, $ff30
+	ld de, _AUD3WAVERAM
 .asm_fc215
 	ld a, [hli]
 	ld [de], a
 	inc de
 	inc b
 	ld a, b
-	cp $10
+	cp AUD3WAVE_SIZE
 	jr nz, .asm_fc215
 	ld a, $1
 	ld [wMusicWaveChange], a
-	ld a, $80
+	ld a, AUD3ENA_ON
 	ldh [rAUD3ENA], a
 	ld b, $0
 	pop hl
 	jp Func_fc094_2
 
-SFX2_8:
+SFX2_pan:
 	pop hl
 	ld a, [hli]
 	push hl
@@ -491,7 +491,7 @@ SFX2_8:
 	pop hl
 	jp Func_fc094_2
 
-SFX2_9:
+SFX2_sweep:
 	pop hl
 	ld a, [hli]
 	ldh [rAUD1SWEEP], a

@@ -1,61 +1,61 @@
 Sfx_Slap_Ch1:
-	sfx_1 44
-	sfx_8 17
-	sfx_2 8
-	sfx_0 4, 22
-	sfx_0 4, 78
-	sfx_0 4, 131
-	sfx_1 76
-	sfx_2 8
-	sfx_0 4, 181
-	sfx_0 4, 229
-	sfx_0 5, 17
-	sfx_1 108
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 5, 137
-	sfx_0 5, 172
-	sfx_1 140
-	sfx_2 8
-	sfx_0 5, 205
-	sfx_0 5, 237
-	sfx_0 6, 11
-	sfx_1 172
-	sfx_2 8
-	sfx_0 6, 66
-	sfx_0 6, 91
-	sfx_0 6, 114
-	sfx_1 204
-	sfx_2 8
-	sfx_0 6, 137
-	sfx_0 6, 158
-	sfx_0 6, 178
+	sfx_env 2, -4
+	sfx_pan TRUE, TRUE
+	sfx_duty 2
+	sfx_freq $416
+	sfx_freq $44e
+	sfx_freq $483
+	sfx_env 4, -4
+	sfx_duty 2
+	sfx_freq $4b5
+	sfx_freq $4e5
+	sfx_freq $511
+	sfx_env 6, -4
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $589
+	sfx_freq $5ac
+	sfx_env 8, -4
+	sfx_duty 2
+	sfx_freq $5cd
+	sfx_freq $5ed
+	sfx_freq $60b
+	sfx_env 10, -4
+	sfx_duty 2
+	sfx_freq $642
+	sfx_freq $65b
+	sfx_freq $672
+	sfx_env 12, -4
+	sfx_duty 2
+	sfx_freq $689
+	sfx_freq $69e
+	sfx_freq $6b2
 	sfx_end
 
 Sfx_Slap_Ch2:
-	sfx_8 17
-	sfx_1 0
-	sfx_6 18
+	sfx_pan TRUE, TRUE
+	sfx_env 0, 0
+	sfx_wait 18
 	sfx_loop 2
-	sfx_1 240
-	sfx_0 0, 53
-	sfx_0 0, 19
-	sfx_0 0, 17
-	sfx_1 245
-	sfx_0 0, 17
-	sfx_0 0, 1
-	sfx_1 183
-	sfx_0 0, 19
-	sfx_0 0, 1
-	sfx_0 0, 17
-	sfx_0 0, 1
-	sfx_1 103
-	sfx_0 0, 19
-	sfx_0 0, 1
-	sfx_0 0, 17
-	sfx_0 0, 1
-	sfx_1 71
-	sfx_0 0, 19
-	sfx_0 0, 1
+	sfx_env 15, 0
+	sfx_freq $35
+	sfx_freq $13
+	sfx_freq $11
+	sfx_env 15, 5
+	sfx_freq $11
+	sfx_freq $1
+	sfx_env 11, 7
+	sfx_freq $13
+	sfx_freq $1
+	sfx_freq $11
+	sfx_freq $1
+	sfx_env 6, 7
+	sfx_freq $13
+	sfx_freq $1
+	sfx_freq $11
+	sfx_freq $1
+	sfx_env 4, 7
+	sfx_freq $13
+	sfx_freq $1
 	sfx_endloop
 	sfx_end

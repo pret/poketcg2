@@ -1,148 +1,148 @@
 Sfx_BigSnore_Ch1:
-	sfx_8 17
-	sfx_1 45
-	sfx_2 8
-	sfx_0 7, 123
-	sfx_0 7, 107
-	sfx_0 7, 89
-	sfx_0 7, 107
-	sfx_0 7, 89
-	sfx_0 7, 68
-	sfx_1 92
-	sfx_2 8
-	sfx_0 7, 89
-	sfx_0 7, 68
-	sfx_0 7, 45
-	sfx_0 7, 68
-	sfx_0 7, 45
-	sfx_0 7, 20
-	sfx_1 140
-	sfx_2 8
-	sfx_0 7, 45
-	sfx_0 7, 20
-	sfx_0 6, 246
-	sfx_0 7, 20
-	sfx_0 6, 246
-	sfx_0 6, 214
-	sfx_1 240
-	sfx_2 8
-	sfx_0 6, 178
-	sfx_0 6, 11
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_1 240
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_1 144
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_1 112
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_1 80
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
-	sfx_1 48
-	sfx_2 8
-	sfx_0 5, 99
-	sfx_0 4, 22
-	sfx_0 2, 34
-	sfx_0 1, 201
-	sfx_0 1, 107
-	sfx_0 1, 6
+	sfx_pan TRUE, TRUE
+	sfx_env 2, -5
+	sfx_duty 2
+	sfx_freq $77b
+	sfx_freq $76b
+	sfx_freq $759
+	sfx_freq $76b
+	sfx_freq $759
+	sfx_freq $744
+	sfx_env 5, -4
+	sfx_duty 2
+	sfx_freq $759
+	sfx_freq $744
+	sfx_freq $72d
+	sfx_freq $744
+	sfx_freq $72d
+	sfx_freq $714
+	sfx_env 8, -4
+	sfx_duty 2
+	sfx_freq $72d
+	sfx_freq $714
+	sfx_freq $6f6
+	sfx_freq $714
+	sfx_freq $6f6
+	sfx_freq $6d6
+	sfx_env 15, 0
+	sfx_duty 2
+	sfx_freq $6b2
+	sfx_freq $60b
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_env 15, 0
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $416
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_env 9, 0
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $416
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_env 7, 0
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $416
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_env 5, 0
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $416
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
+	sfx_env 3, 0
+	sfx_duty 2
+	sfx_freq $563
+	sfx_freq $416
+	sfx_freq $222
+	sfx_freq $1c9
+	sfx_freq $16b
+	sfx_freq $106
 	sfx_end
 
 Sfx_BigSnore_Ch2:
-	sfx_8 17
-	sfx_1 16
-	sfx_0 0, 6
-	sfx_0 0, 6
-	sfx_0 0, 6
-	sfx_0 0, 5
-	sfx_0 0, 5
-	sfx_1 45
-	sfx_0 0, 5
-	sfx_0 0, 5
-	sfx_0 0, 5
-	sfx_0 0, 5
-	sfx_0 0, 4
-	sfx_1 76
-	sfx_0 0, 4
-	sfx_0 0, 4
-	sfx_0 0, 4
-	sfx_0 0, 3
-	sfx_1 111
-	sfx_0 0, 2
-	sfx_0 0, 1
-	sfx_1 159
-	sfx_0 0, 0
-	sfx_0 0, 0
-	sfx_1 240
-	sfx_0 0, 21
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_1 164
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_0 0, 97
-	sfx_1 240
-	sfx_0 0, 69
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_1 167
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 100
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 102
-	sfx_0 0, 102
-	sfx_0 0, 102
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_1 133
-	sfx_0 0, 69
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_1 87
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_0 0, 100
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 100
-	sfx_0 0, 101
-	sfx_0 0, 101
-	sfx_0 0, 102
-	sfx_0 0, 102
-	sfx_0 0, 102
-	sfx_0 0, 101
-	sfx_0 0, 101
+	sfx_pan TRUE, TRUE
+	sfx_env 1, 0
+	sfx_freq $6
+	sfx_freq $6
+	sfx_freq $6
+	sfx_freq $5
+	sfx_freq $5
+	sfx_env 2, -5
+	sfx_freq $5
+	sfx_freq $5
+	sfx_freq $5
+	sfx_freq $5
+	sfx_freq $4
+	sfx_env 4, -4
+	sfx_freq $4
+	sfx_freq $4
+	sfx_freq $4
+	sfx_freq $3
+	sfx_env 6, -7
+	sfx_freq $2
+	sfx_freq $1
+	sfx_env 9, -7
+	sfx_freq $0
+	sfx_freq $0
+	sfx_env 15, 0
+	sfx_freq $15
+	sfx_freq $64
+	sfx_freq $64
+	sfx_env 10, 4
+	sfx_freq $64
+	sfx_freq $64
+	sfx_freq $61
+	sfx_env 15, 0
+	sfx_freq $45
+	sfx_freq $64
+	sfx_freq $64
+	sfx_env 10, 7
+	sfx_freq $64
+	sfx_freq $64
+	sfx_freq $64
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $64
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $66
+	sfx_freq $66
+	sfx_freq $66
+	sfx_freq $65
+	sfx_freq $65
+	sfx_env 8, 5
+	sfx_freq $45
+	sfx_freq $64
+	sfx_freq $64
+	sfx_env 5, 7
+	sfx_freq $64
+	sfx_freq $64
+	sfx_freq $64
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $64
+	sfx_freq $65
+	sfx_freq $65
+	sfx_freq $66
+	sfx_freq $66
+	sfx_freq $66
+	sfx_freq $65
+	sfx_freq $65
 	sfx_end

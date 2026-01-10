@@ -1,77 +1,77 @@
 Sfx_RazorLeaf_Ch1:
-	sfx_8 17
+	sfx_pan TRUE, TRUE
 	sfx_loop 2
-	sfx_1 77
-	sfx_0 0, 22
-	sfx_0 0, 21
-	sfx_1 124
-	sfx_0 0, 21
-	sfx_0 0, 20
-	sfx_0 0, 19
-	sfx_0 0, 19
-	sfx_1 172
-	sfx_0 0, 18
-	sfx_0 0, 17
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_1 119
-	sfx_0 0, 16
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_1 71
-	sfx_0 0, 19
-	sfx_0 0, 20
-	sfx_0 0, 21
-	sfx_0 0, 22
+	sfx_env 4, -5
+	sfx_freq $16
+	sfx_freq $15
+	sfx_env 7, -4
+	sfx_freq $15
+	sfx_freq $14
+	sfx_freq $13
+	sfx_freq $13
+	sfx_env 10, -4
+	sfx_freq $12
+	sfx_freq $11
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_env 7, 7
+	sfx_freq $10
+	sfx_freq $11
+	sfx_freq $11
+	sfx_freq $11
+	sfx_env 4, 7
+	sfx_freq $13
+	sfx_freq $14
+	sfx_freq $15
+	sfx_freq $16
 	sfx_endloop
-	sfx_1 61
-	sfx_0 0, 22
-	sfx_0 0, 21
-	sfx_1 92
-	sfx_0 0, 21
-	sfx_0 0, 20
-	sfx_0 0, 19
-	sfx_0 0, 19
-	sfx_1 124
-	sfx_0 0, 18
-	sfx_0 0, 17
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_1 87
-	sfx_0 0, 16
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_1 71
-	sfx_0 0, 19
-	sfx_0 0, 20
-	sfx_0 0, 21
-	sfx_0 0, 22
-	sfx_1 45
-	sfx_0 0, 22
-	sfx_0 0, 21
-	sfx_1 60
-	sfx_0 0, 21
-	sfx_0 0, 20
-	sfx_0 0, 19
-	sfx_0 0, 19
-	sfx_1 92
-	sfx_0 0, 18
-	sfx_0 0, 17
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_0 0, 16
-	sfx_1 55
-	sfx_0 0, 16
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_0 0, 17
-	sfx_1 16
-	sfx_0 0, 19
-	sfx_0 0, 20
-	sfx_0 0, 21
-	sfx_0 0, 22
+	sfx_env 3, -5
+	sfx_freq $16
+	sfx_freq $15
+	sfx_env 5, -4
+	sfx_freq $15
+	sfx_freq $14
+	sfx_freq $13
+	sfx_freq $13
+	sfx_env 7, -4
+	sfx_freq $12
+	sfx_freq $11
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_env 5, 7
+	sfx_freq $10
+	sfx_freq $11
+	sfx_freq $11
+	sfx_freq $11
+	sfx_env 4, 7
+	sfx_freq $13
+	sfx_freq $14
+	sfx_freq $15
+	sfx_freq $16
+	sfx_env 2, -5
+	sfx_freq $16
+	sfx_freq $15
+	sfx_env 3, -4
+	sfx_freq $15
+	sfx_freq $14
+	sfx_freq $13
+	sfx_freq $13
+	sfx_env 5, -4
+	sfx_freq $12
+	sfx_freq $11
+	sfx_freq $10
+	sfx_freq $10
+	sfx_freq $10
+	sfx_env 3, 7
+	sfx_freq $10
+	sfx_freq $11
+	sfx_freq $11
+	sfx_freq $11
+	sfx_env 1, 0
+	sfx_freq $13
+	sfx_freq $14
+	sfx_freq $15
+	sfx_freq $16
 	sfx_end

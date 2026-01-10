@@ -1,48 +1,48 @@
 Sfx_SlotStart_Ch1:
-	sfx_8 17
-	sfx_1 244
-	sfx_2 8
-	sfx_0 7, 89
-	sfx_1 244
-	sfx_2 0
-	sfx_0 6, 178
-	sfx_1 244
-	sfx_2 0
-	sfx_0 7, 5
-	sfx_1 241
-	sfx_2 8
-	sfx_0 2, 198
-	sfx_1 241
-	sfx_2 4
-	sfx_0 0, 44
-	sfx_9 60
-	sfx_1 231
-	sfx_2 4
-	sfx_0 7, 57
-	sfx_5 0
-	sfx_6 2
-	sfx_1 135
-	sfx_2 8
-	sfx_0 7, 123
-	sfx_6 2
-	sfx_1 103
-	sfx_2 8
-	sfx_0 7, 157
-	sfx_6 2
-	sfx_1 71
-	sfx_2 8
-	sfx_0 7, 190
-	sfx_6 2
-	sfx_1 55
-	sfx_2 8
-	sfx_0 7, 206
-	sfx_6 2
-	sfx_1 39
-	sfx_2 8
-	sfx_0 7, 223
-	sfx_6 2
-	sfx_1 23
-	sfx_2 8
-	sfx_0 7, 223
-	sfx_6 2
+	sfx_pan TRUE, TRUE
+	sfx_env 15, 4
+	sfx_duty 2
+	sfx_freq $759
+	sfx_env 15, 4
+	sfx_duty 0
+	sfx_freq $6b2
+	sfx_env 15, 4
+	sfx_duty 0
+	sfx_freq $705
+	sfx_env 15, 1
+	sfx_duty 2
+	sfx_freq $2c6
+	sfx_env 15, 1
+	sfx_duty 1
+	sfx_freq $2c
+	sfx_sweep_down 3, 4
+	sfx_env 14, 7
+	sfx_duty 1
+	sfx_freq $739
+	sfx_pitch_offset 0
+	sfx_wait 2
+	sfx_env 8, 7
+	sfx_duty 2
+	sfx_freq $77b
+	sfx_wait 2
+	sfx_env 6, 7
+	sfx_duty 2
+	sfx_freq $79d
+	sfx_wait 2
+	sfx_env 4, 7
+	sfx_duty 2
+	sfx_freq $7be
+	sfx_wait 2
+	sfx_env 3, 7
+	sfx_duty 2
+	sfx_freq $7ce
+	sfx_wait 2
+	sfx_env 2, 7
+	sfx_duty 2
+	sfx_freq $7df
+	sfx_wait 2
+	sfx_env 1, 7
+	sfx_duty 2
+	sfx_freq $7df
+	sfx_wait 2
 	sfx_end

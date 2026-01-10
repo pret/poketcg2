@@ -1,16 +1,16 @@
 Sfx5f_Ch1:
-	sfx_8 17
-	sfx_1 247
-	sfx_0 0, 69
-	sfx_0 0, 69
-	sfx_0 0, 69
-	sfx_0 0, 68
-	sfx_0 0, 52
-	sfx_1 183
+	sfx_pan TRUE, TRUE
+	sfx_env 15, 7
+	sfx_freq $45
+	sfx_freq $45
+	sfx_freq $45
+	sfx_freq $44
+	sfx_freq $34
+	sfx_env 11, 7
 	sfx_loop 6
-	sfx_0 0, 17
-	sfx_0 0, 16
-	sfx_0 0, 17
-	sfx_0 0, 16
+	sfx_freq $11
+	sfx_freq $10
+	sfx_freq $11
+	sfx_freq $10
 	sfx_endloop
 	sfx_end
