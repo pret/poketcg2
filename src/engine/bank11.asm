@@ -307,7 +307,7 @@ SetChallengeCupOpponents:
 	jr nz, .gr_cup
 ; tcg cup
 	ld a, NUM_TCG_CHALLENGE_CUP_OPPONENT_POOL
-	ld [wNumChallengeCupOpponents], a
+	ld [wNumRandomDuelists], a
 	ld a, LOW(TCGChallengeCupOpponents)
 	ld [wFilteredListPtr], a
 	ld a, HIGH(TCGChallengeCupOpponents)
@@ -317,7 +317,7 @@ SetChallengeCupOpponents:
 	jr .get_cup_index
 .gr_cup
 	ld a, NUM_GR_CHALLENGE_CUP_OPPONENT_POOL
-	ld [wNumChallengeCupOpponents], a
+	ld [wNumRandomDuelists], a
 	ld a, LOW(GRChallengeCupOpponents)
 	ld [wFilteredListPtr], a
 	ld a, HIGH(GRChallengeCupOpponents)
@@ -387,7 +387,7 @@ SetChallengeCupOpponents:
 	ld l, a
 	ld a, [wFilteredListPtr + 1]
 	ld h, a
-	ld a, [wNumChallengeCupOpponents]
+	ld a, [wNumRandomDuelists]
 	call Random
 	sla a
 	sla a

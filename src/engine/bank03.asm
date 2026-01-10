@@ -5249,7 +5249,7 @@ Func_ef40:
 	or a
 	jr nz, .asm_ef54
 	ld a, $31
-	ld [wRemainingIntroCards], a
+	ld [wNumRandomDuelists], a
 	ld a, LOW($51ed)
 	ld [wFilteredListPtr], a
 	ld a, HIGH($51ed)
@@ -5257,7 +5257,7 @@ Func_ef40:
 	jr .asm_ef63
 .asm_ef54
 	ld a, $25
-	ld [wRemainingIntroCards], a
+	ld [wNumRandomDuelists], a
 	ld a, LOW($524f)
 	ld [wFilteredListPtr], a
 	ld a, HIGH($524f)
@@ -5305,7 +5305,7 @@ Func_ef97:
 	ld l, a
 	ld a, [wFilteredListPtr + 1]
 	ld h, a
-	ld a, [wRemainingIntroCards]
+	ld a, [wNumRandomDuelists]
 	call Random
 	sla a
 	add_hl_a

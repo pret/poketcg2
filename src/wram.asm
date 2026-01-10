@@ -2319,7 +2319,8 @@ wFilteredListPtr:: ; d575
 ; TODO: is this really union?
 UNION
 
-wNumChallengeCupOpponents:: ; d577
+; for challenge cups and challenge machines
+wNumRandomDuelists:: ; d577
 	ds $1
 
 wChallengeCupIndex:: ; d578
