@@ -132,9 +132,9 @@ Music7_Init:
 	ldh [rAUDVOL], a
 	ld a, AUDTERM_1_RIGHT | AUDTERM_2_RIGHT | AUDTERM_3_RIGHT | AUDTERM_4_RIGHT | AUDTERM_1_LEFT | AUDTERM_2_LEFT | AUDTERM_3_LEFT | AUDTERM_4_LEFT
 	ldh [rAUDTERM], a
-	ld a, $78
+	ld a, BANK("Audio 2")
 	ld [wCurSongBank], a
-	ld a, $7e
+	ld a, BANK("Audio 8")
 	ld [wCurSfxBank], a
 	ld a, $80
 	ld [wCurSongID], a

@@ -2777,7 +2777,7 @@ EnableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
 	set B_STAT_LYC, [hl]
-	xor a
+	xor a ; useless
 	ld hl, rIE
 	set B_IE_STAT, [hl]
 	pop hl
@@ -2788,7 +2788,7 @@ DisableInt_LYCoincidence::
 	push hl
 	ld hl, rSTAT
 	res B_STAT_LYC, [hl]
-	xor a
+	xor a ; useless
 	ld hl, rIE
 	res B_IE_STAT, [hl]
 	pop hl
