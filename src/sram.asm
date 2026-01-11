@@ -102,36 +102,37 @@ sGeneralSaveDataEnd::
 
 	ds $e6
 
-s0baa0:: ; baa0
+; checksum: swapped order
+sGeneralSaveDataChecksum1:: ; baa0
 	ds $1
 
-s0baa1:: ; baa1
+sGeneralSaveDataChecksum0:: ; baa1
 	ds $1
 
-s0baa2:: ; baa2
+sGeneralSaveDataChecksumSeed:: ; baa2
 	ds $1
 
-s0baa3:: ; baa3
+; 0: no save
+; 1: saved and backed up
+; 2: saved but not backed up
+sSaveDataState:: ; baa3
 	ds $1
-
-sChallengeMachineSaveData:: ; baa4
 
 ; see WRAMToSRAMMapper_ChallengeMachineSave
 ; TODO: break down into each segment (after fully labelling wram?)
-sChallengeMachineSaveDataMain:: ; baa4
+sChallengeMachineSaveData:: ; baa4
 	ds $40
-sChallengeMachineSaveDataMainEnd::
-
-s0bae4:: ; bae4
-	ds $1
-
-s0bae5:: ; bae5
-	ds $1
-
-s0bae6:: ; bae6
-	ds $1
-
 sChallengeMachineSaveDataEnd::
+
+; checksum: swapped order
+sChallengeMachineSaveDataChecksum1:: ; bae4
+	ds $1
+
+sChallengeMachineSaveDataChecksum0:: ; bae5
+	ds $1
+
+sChallengeMachineSaveDataChecksumSeed:: ; bae6
+	ds $1
 
 	ds $19
 
@@ -174,22 +175,31 @@ sBackupGeneralSaveDataEnd::
 
 	ds $e6
 
-sBackup_baa0:: ; baa0
+sBackupGeneralSaveDataChecksum1:: ; baa0
 	ds $1
 
-sBackup_baa1:: ; baa1
+sBackupGeneralSaveDataChecksum0:: ; baa1
 	ds $1
 
-sBackup_baa2:: ; baa2
+sBackupGeneralSaveDataChecksumSeed:: ; baa2
 	ds $1
 
-sBackup_baa3:: ; baa3
+; see sSaveDataState
+sBackupSaveDataState:: ; baa3
 	ds $1
 
 sBackupChallengeMachineSaveData:: ; baa4
-	ds $43
-
+	ds $40
 sBackupChallengeMachineSaveDataEnd::
+
+sBackupChallengeMachineSaveDataChecksum1:: ; bae4
+	ds $1
+
+sBackupChallengeMachineSaveDataChecksum0:: ; bae5
+	ds $1
+
+sBackupChallengeMachineSaveDataChecksumSeed:: ; bae6
+	ds $1
 
 SECTION "SRAM3", SRAM
 

@@ -1,47 +1,49 @@
-; returns carry if no save data
-Func_e883:
+; return carry if no save data in SRAM2 (sBackupSaveDataState bit 0 = z)
+CheckIfHasBackupSave:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupSaveDataState)
 	call BankswitchSRAM
 	call EnableSRAM
-	ld a, [sBackup_baa3]
+	ld a, [sBackupSaveDataState]
 	ld b, a
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ld a, b
 	bit 0, a
-	jr z, .set_carry
-; no carry
+	jr z, .no_save
 	scf
 	ccf
 	ret
-.set_carry
+.no_save
 	scf
 	ret
 
-Func_e8a3:
+; return carry if no save data in SRAM0 (sSaveDataState bit 1 = z)
+CheckIfHasMainSave:
 	call EnableSRAM
-	ld a, [s0baa3]
+	ld a, [sSaveDataState]
 	ld b, a
 	call DisableSRAM
 	ld a, b
 	bit 1, a
-	jr z, .asm_e8b5
+	jr z, .no_save
 	scf
 	ccf
 	ret
-.asm_e8b5
+.no_save
 	scf
 	ret
 
-Func_e8b7:
-	ld a, BANK("SRAM2")
-	ld [wSaveDataSRAMBank], a
+; return carry if invalid (SRAM2)
+; (reversing tcg1's logic)
+ValidateBackupGeneralSaveData:
+	ld a, BANK(sBackupGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ldh a, [hBankSRAM]
 	push af
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupGeneralSaveData)
 	call BankswitchSRAM
 	ld a, [sBackupGeneralSaveDataHeader]
 	ld b, a
@@ -50,7 +52,7 @@ Func_e8b7:
 	call DisableSRAM
 	ld a, b
 	cp $16
-	jr nz, .asm_e918
+	jr nz, .invalid
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -59,42 +61,44 @@ Func_e8b7:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sBackupGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ea19
-	call Func_ed7c
+	call LoadGeneralSaveDataChecksumSeed
+	call LoadSaveDataChecksumsFromSRAM
 	ld a, [wSaveDataChecksum1]
 	ld d, a
 	ld a, [wSaveDataChecksum0]
 	ld e, a
 	ldh a, [hBankSRAM]
 	push af
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupGeneralSaveData)
 	call BankswitchSRAM
-	ld a, [sBackup_baa0]
+	ld a, [sBackupGeneralSaveDataChecksum1]
 	ld b, a
-	ld a, [sBackup_baa1]
+	ld a, [sBackupGeneralSaveDataChecksum0]
 	ld c, a
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ld a, b
 	cp d
-	jr nz, .asm_e918
+	jr nz, .invalid
 	ld a, c
 	cp e
-	jr nz, .asm_e918
+	jr nz, .invalid
 	scf
 	ccf
 	ret
-.asm_e918
+.invalid
 	scf
 	ret
 
-Func_e91a:
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+; return carry if invalid (SRAM0)
+; (reversing tcg1's logic)
+ValidateGeneralSaveData:
+	xor a ; BANK(sGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ldh a, [hBankSRAM]
 	push af
-	xor a ; BANK("SRAM0")
+	xor a ; BANK(sGeneralSaveData)
 	call BankswitchSRAM
 	ld a, [sGeneralSaveDataHeader]
 	ld b, a
@@ -103,7 +107,7 @@ Func_e91a:
 	call DisableSRAM
 	ld a, b
 	cp $16
-	jr nz, .asm_e978
+	jr nz, .invalid
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -112,42 +116,42 @@ Func_e91a:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ea19
-	call Func_ed7c
+	call LoadGeneralSaveDataChecksumSeed
+	call LoadSaveDataChecksumsFromSRAM
 	ld a, [wSaveDataChecksum1]
 	ld d, a
 	ld a, [wSaveDataChecksum0]
 	ld e, a
 	ldh a, [hBankSRAM]
 	push af
-	xor a
+	xor a ; BANK(sGeneralSaveData)
 	call BankswitchSRAM
-	ld a, [s0baa0]
+	ld a, [sGeneralSaveDataChecksum1]
 	ld b, a
-	ld a, [s0baa1]
+	ld a, [sGeneralSaveDataChecksum0]
 	ld c, a
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ld a, b
 	cp d
-	jr nz, .asm_e978
+	jr nz, .invalid
 	ld a, c
 	cp e
-	jr nz, .asm_e978
+	jr nz, .invalid
 	scf
 	ccf
 	ret
-.asm_e978
+.invalid
 	scf
 	ret
 
-Func_e97a:
+ClearSaveData:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupGeneralSaveData)
 	call BankswitchSRAM
-	ld hl, sBackup_baa3
+	ld hl, sBackupSaveDataState
 	xor a
 	ld [hl], a
 	ld [sBackupGeneralSaveDataHeader], a
@@ -155,7 +159,7 @@ Func_e97a:
 	call BankswitchSRAM
 	call DisableSRAM
 	call EnableSRAM
-	ld hl, s0baa3
+	ld hl, sSaveDataState
 	xor a
 	ld [hl], a
 	ld [sGeneralSaveDataHeader], a
@@ -164,25 +168,27 @@ Func_e97a:
 	call DisableSRAM
 	ret
 
-Func_e9a7:
+InitSaveDataState:
 	call EnableSRAM
-	ld hl, s0baa3
+	ld hl, sSaveDataState
 	xor a
 	ld [hl], a
 	call DisableSRAM
 	farcall ClearSavedDuel
 	ret
 
-Func_e9b7:
+; copy all SRAM0 to SRAM2
+; and set sBackupGeneralSaveDataHeader and sBackupSaveDataState
+BackupMainSave:
 	ld a, 2
 	call BulkCopySRAM
 	ldh a, [hBankSRAM]
 	push af
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupGeneralSaveData)
 	call BankswitchSRAM
 	ld a, $16
 	ld [sBackupGeneralSaveDataHeader], a
-	ld hl, sBackup_baa3
+	ld hl, sBackupSaveDataState
 	set 0, [hl]
 	pop af
 	call BankswitchSRAM
@@ -236,25 +242,27 @@ BulkCopySRAM:
 	call DisableSRAM
 	ret
 
-Func_ea19:
+; from either SRAM0 or SRAM2 (wSaveDataCurBankSRAM)
+; to wSaveDataChecksumSeed
+LoadGeneralSaveDataChecksumSeed:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, [wSaveDataSRAMBank]
+	ld a, [wSaveDataCurBankSRAM]
 	call BankswitchSRAM
-	ld a, [s0baa2]
-	ld [wd673], a
+	ld a, [sGeneralSaveDataChecksumSeed]
+	ld [wSaveDataChecksumSeed], a
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ret
 
-Func_ea30::
+_SaveGame::
 	ld a, OWMODE_SAVE_PRELOAD
 	call ExecuteOWModeScript
 	farcall Func_10f32
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
-.asm_ea3d
+	xor a ; BANK(sGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
+.save
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -263,29 +271,29 @@ Func_ea30::
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ec94
+	call WriteSaveDataToSRAM
 	call EnableSRAM
 	ld a, $16
 	ld [sGeneralSaveDataHeader], a
 	ld a, [wSaveDataChecksum1]
-	ld [s0baa0], a
+	ld [sGeneralSaveDataChecksum1], a
 	ld a, [wSaveDataChecksum0]
-	ld [s0baa1], a
-	ld a, [wd673]
-	ld [s0baa2], a
-	ld hl, s0baa3
+	ld [sGeneralSaveDataChecksum0], a
+	ld a, [wSaveDataChecksumSeed]
+	ld [sGeneralSaveDataChecksumSeed], a
+	ld hl, sSaveDataState
 	set 0, [hl]
 	call DisableSRAM
-	call Func_ea19
-	call Func_ed7c
+	call LoadGeneralSaveDataChecksumSeed
+	call LoadSaveDataChecksumsFromSRAM
 	ld a, [wSaveDataChecksum1]
 	ld d, a
 	ld a, [wSaveDataChecksum0]
 	ld e, a
 	call EnableSRAM
-	ld a, [s0baa0]
+	ld a, [sGeneralSaveDataChecksum1]
 	ld b, a
-	ld a, [s0baa1]
+	ld a, [sGeneralSaveDataChecksum0]
 	ld c, a
 	call DisableSRAM
 	ld a, b
@@ -302,12 +310,12 @@ Func_ea30::
 
 .error
 	debug_nop
-	jr .asm_ea3d
+	jr .save
 
-Func_eaa8:
+SaveGame_NoBackup:
 	farcall Func_10f32
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+	xor a ; BANK(sGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -316,31 +324,31 @@ Func_eaa8:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ec94
+	call WriteSaveDataToSRAM
 	call EnableSRAM
 	ld a, $16
 	ld [sGeneralSaveDataHeader], a
 	ld a, [wSaveDataChecksum1]
-	ld [s0baa0], a
+	ld [sGeneralSaveDataChecksum1], a
 	ld a, [wSaveDataChecksum0]
-	ld [s0baa1], a
-	ld a, [wd673]
-	ld [s0baa2], a
-	ld hl, s0baa3
+	ld [sGeneralSaveDataChecksum0], a
+	ld a, [wSaveDataChecksumSeed]
+	ld [sGeneralSaveDataChecksumSeed], a
+	ld hl, sSaveDataState
 	set 1, [hl]
 	call DisableSRAM
 	ret
 
-Func_eaea:
-	call Func_eaf6
+RestoreBackupSave:
+	call LoadBackupSave
 	xor a
 	call BulkCopySRAM
 	farcall Func_10f78
 	ret
 
-Func_eaf6:
-	ld a, BANK("SRAM2")
-	ld [wSaveDataSRAMBank], a
+LoadBackupSave:
+	ld a, BANK(sBackupGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -349,13 +357,13 @@ Func_eaf6:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sBackupGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ea19
-	call Func_ed0b
+	call LoadGeneralSaveDataChecksumSeed
+	call LoadSaveDataFromSRAM
 	ret
 
-Func_eb16:
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+LoadMainSave:
+	xor a ; BANK(sGeneralSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_GeneralSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_GeneralSave)
@@ -364,8 +372,8 @@ Func_eb16:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sGeneralSaveDataMain)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ea19
-	call Func_ed0b
+	call LoadGeneralSaveDataChecksumSeed
+	call LoadSaveDataFromSRAM
 	farcall Func_10f78
 	ret
 
@@ -437,15 +445,15 @@ ENDR
 Func_ebb6:
 	call EnableSRAM
 	xor a
-	ld [s0bae5], a
+	ld [sChallengeMachineSaveDataChecksum0], a
 	ld a, $ff
-	ld [s0bae4], a
+	ld [sChallengeMachineSaveDataChecksum1], a
 	call DisableSRAM
 	ret
 
 Func_ebc6:
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+	xor a ; BANK(sChallengeMachineSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_ChallengeMachineSave)
@@ -455,48 +463,48 @@ Func_ebc6:
 	ld a, HIGH(sChallengeMachineSaveData)
 	ld [wSaveDataSRAMOffset + 1], a
 	call EnableSRAM
-	ld a, [s0bae6]
-	ld [wd673], a
+	ld a, [sChallengeMachineSaveDataChecksumSeed]
+	ld [wSaveDataChecksumSeed], a
 	call DisableSRAM
-	call Func_ed0b
+	call LoadSaveDataFromSRAM
 	ld a, [wSaveDataChecksum1]
 	ld d, a
 	ld a, [wSaveDataChecksum0]
 	ld e, a
 	call EnableSRAM
-	ld a, [s0bae4]
+	ld a, [sChallengeMachineSaveDataChecksum1]
 	ld b, a
-	ld a, [s0bae5]
+	ld a, [sChallengeMachineSaveDataChecksum0]
 	ld c, a
 	call DisableSRAM
 	ld a, b
 	cp d
-	jr nz, .asm_ec36
+	jr nz, .error
 	ld a, c
 	cp e
-	jr nz, .asm_ec36
+	jr nz, .error
 	ld a, [wde15 + 0]
 	ld e, a
 	ld a, [wde15 + 1]
 	ld d, a
 	cp16_long 0
-	jr z, .asm_ec36
+	jr z, .error
 	ld a, [wde17 + 0]
 	ld e, a
 	ld a, [wde17 + 1]
 	ld d, a
 	cp16_long 0
-	jr z, .asm_ec36
+	jr z, .error
 	scf
 	ccf
 	ret
-.asm_ec36
+.error
 	scf
 	ret
 
 Func_ec38:
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+	xor a ; BANK(sChallengeMachineSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_ChallengeMachineSave)
@@ -505,20 +513,20 @@ Func_ec38:
 	ld [wSaveDataSRAMOffset], a
 	ld a, HIGH(sChallengeMachineSaveData)
 	ld [wSaveDataSRAMOffset + 1], a
-	call Func_ec94
+	call WriteSaveDataToSRAM
 	call EnableSRAM
 	ld a, [wSaveDataChecksum1]
-	ld [s0bae4], a
+	ld [sChallengeMachineSaveDataChecksum1], a
 	ld a, [wSaveDataChecksum0]
-	ld [s0bae5], a
-	ld a, [wd673]
-	ld [s0bae6], a
+	ld [sChallengeMachineSaveDataChecksum0], a
+	ld a, [wSaveDataChecksumSeed]
+	ld [sChallengeMachineSaveDataChecksumSeed], a
 	call DisableSRAM
 	ret
 
 Func_ec6c:
-	xor a ; BANK("SRAM0")
-	ld [wSaveDataSRAMBank], a
+	xor a ; BANK(sChallengeMachineSaveData)
+	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)
 	ld [wWRAMToSRAMMapperPointer], a
 	ld a, HIGH(WRAMToSRAMMapper_ChallengeMachineSave)
@@ -528,23 +536,23 @@ Func_ec6c:
 	ld a, HIGH(sChallengeMachineSaveData)
 	ld [wSaveDataSRAMOffset + 1], a
 	call EnableSRAM
-	ld a, [s0bae6]
-	ld [wd673], a
+	ld a, [sChallengeMachineSaveDataChecksumSeed]
+	ld [wSaveDataChecksumSeed], a
 	call DisableSRAM
-	call Func_ed0b
+	call LoadSaveDataFromSRAM
 	ret
 
-Func_ec94:
+WriteSaveDataToSRAM:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, [wSaveDataSRAMBank]
+	ld a, [wSaveDataCurBankSRAM]
 	call BankswitchSRAM
 	xor a
 	ld [wSaveDataChecksum0], a
 	ld [wSaveDataChecksum1], a
 	call UpdateRNGSources
 	or $01
-	ld [wd673], a
+	ld [wSaveDataChecksumSeed], a
 	ld [wSaveDataChecksum2], a
 	ld a, [wWRAMToSRAMMapperPointer]
 	ld l, a
@@ -554,13 +562,13 @@ Func_ec94:
 	ld e, a
 	ld a, [wSaveDataSRAMOffset + 1]
 	ld d, a
-.asm_ecbf
+.loop_write
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_ed03
+	jr z, .done
 	push hl
 	push bc
 	ld a, [hli]
@@ -568,11 +576,11 @@ Func_ec94:
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
-	ld [wSaveDataItemMinValidValue], a
+	ld [wSaveDataCurItemMinValidValue], a
 	ld a, [hli]
-	ld [wSaveDataItemMaxValidValue], a
+	ld [wSaveDataCurItemMaxValidValue], a
 	pop hl
-.asm_ecd5
+.loop_checksum
 	push bc
 	ld a, [hli]
 	ld c, a
@@ -597,27 +605,27 @@ Func_ec94:
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_ecd5
+	jr nz, .loop_checksum
 	pop hl
 REPT 4
 	inc hl
 ENDR
-	jr .asm_ecbf
-.asm_ed03
+	jr .loop_write
+.done
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ret
 
-Func_ed0b:
+LoadSaveDataFromSRAM:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, [wSaveDataSRAMBank]
+	ld a, [wSaveDataCurBankSRAM]
 	call BankswitchSRAM
 	xor a
 	ld [wSaveDataChecksum0], a
 	ld [wSaveDataChecksum1], a
-	ld a, [wd673]
+	ld a, [wSaveDataChecksumSeed]
 	ld [wSaveDataChecksum2], a
 	ld a, [wWRAMToSRAMMapperPointer]
 	ld l, a
@@ -627,13 +635,13 @@ Func_ed0b:
 	ld e, a
 	ld a, [wSaveDataSRAMOffset + 1]
 	ld d, a
-.asm_ed31
+.loop_load
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_ed74
+	jr z, .done
 	push hl
 	push bc
 	ld a, [hli]
@@ -641,11 +649,11 @@ Func_ed0b:
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
-	ld [wSaveDataItemMinValidValue], a
+	ld [wSaveDataCurItemMinValidValue], a
 	ld a, [hli]
-	ld [wSaveDataItemMaxValidValue], a
+	ld [wSaveDataCurItemMaxValidValue], a
 	pop hl
-.asm_ed47
+.loop_checksum
 	push bc
 	ld a, [wSaveDataChecksum2]
 	ld b, a
@@ -669,27 +677,29 @@ Func_ed0b:
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_ed47
+	jr nz, .loop_checksum
 	pop hl
 REPT 4
 	inc hl
 ENDR
-	jr .asm_ed31
-.asm_ed74
+	jr .loop_load
+.done
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM
 	ret
 
-Func_ed7c:
+; dry-run version of LoadSaveDataFromSRAM
+; that only updates checksums (and wSaveDataCurItem_*)
+LoadSaveDataChecksumsFromSRAM:
 	ldh a, [hBankSRAM]
 	push af
-	ld a, [wSaveDataSRAMBank]
+	ld a, [wSaveDataCurBankSRAM]
 	call BankswitchSRAM
 	xor a
 	ld [wSaveDataChecksum0], a
 	ld [wSaveDataChecksum1], a
-	ld a, [wd673]
+	ld a, [wSaveDataChecksumSeed]
 	ld [wSaveDataChecksum2], a
 	ld a, [wWRAMToSRAMMapperPointer]
 	ld l, a
@@ -699,13 +709,13 @@ Func_ed7c:
 	ld e, a
 	ld a, [wSaveDataSRAMOffset + 1]
 	ld d, a
-.asm_eda2
+.loop_load
 	ld a, [hli]
 	ld c, a
 	ld a, [hli]
 	ld b, a
 	or c
-	jr z, .asm_ede4
+	jr z, .done
 	push hl
 	push bc
 	ld a, [hli]
@@ -713,11 +723,11 @@ Func_ed7c:
 	ld a, [hli]
 	ld b, a
 	ld a, [hli]
-	ld [wSaveDataItemMinValidValue], a
+	ld [wSaveDataCurItemMinValidValue], a
 	ld a, [hli]
-	ld [wSaveDataItemMaxValidValue], a
+	ld [wSaveDataCurItemMaxValidValue], a
 	pop hl
-.asm_edb8
+.loop_checksum
 	push bc
 	ld a, [wSaveDataChecksum2]
 	ld b, a
@@ -740,13 +750,13 @@ Func_ed7c:
 	dec bc
 	ld a, b
 	or c
-	jr nz, .asm_edb8
+	jr nz, .loop_checksum
 	pop hl
 REPT 4
 	inc hl
 ENDR
-	jr .asm_eda2
-.asm_ede4
+	jr .loop_load
+.done
 	pop af
 	call BankswitchSRAM
 	call DisableSRAM

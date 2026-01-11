@@ -391,7 +391,7 @@ Func_3c30c:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -583,7 +583,7 @@ Script_3c497:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01

@@ -339,10 +339,10 @@ def dump_mapscripts_table(address, map_name_camelcase):
 		raw_ptr = rom[address+1] + (rom[address+2])*0x100
 
 		if args.function_labels:
-			output += "\tdbw " + script_types[script_type] + ", Func_{:x}\n".format(function_ptr)
+			output += "\tdbw {}, Func_{:x}\n".format(script_types[script_type], function_ptr)
 			blobs += dump_function(function_ptr)
 		else:
-			output += "\tdbw " + script_types[script_type] + ", ${:04x}\n".format(raw_ptr)
+			output += "\tdbw {}, ${:04x}\n".format(script_types[script_type], raw_ptr)
 
 		if script_type == 6:
 			blobs += dump_stepevents(function_ptr, map_name_camelcase)

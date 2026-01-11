@@ -1487,7 +1487,7 @@ Func_40f46:
 	script_call .ows_40fac
 	script_call .ows_40f9b
 	quit_script
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME
@@ -6077,7 +6077,7 @@ Script_43333:
 	ld [wCurIsland], a
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME

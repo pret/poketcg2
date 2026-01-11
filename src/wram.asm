@@ -746,7 +746,7 @@ wSelectedAttack:: ; ccdb
 wNoDamageOrEffect:: ; ccdc
 	ds $1
 
-; used by CountKnockedOutPokemon and Func_5805 to store the amount
+; used by CountKnockedOutPokemon and TurnDuelistTakePrizes to store the amount
 ; of prizes to take (equal to the number of Pokemon knocked out)
 wNumberPrizeCardsToTake:: ; ccdd
 	ds $1
@@ -2170,7 +2170,7 @@ wNamingScreenNamePosition:: ; d3e9
 wNamingScreenMode:: ; d3eb
 	ds $1
 
-; see also sUnnamedDeckCounter
+; see also: sUnnamedDeckCounter
 wTempUnnamedDeckCounter:: ; d3ec
 	ds $3
 
@@ -2409,8 +2409,8 @@ wNextMapScriptsPointer:: ; d58c
 	ds $2
 
 ; MUSIC_* constant
-; See also: wCurMusic
-; notably passed to PlayAfterCurrentSong in bank03: Func_c175
+; see also: wCurMusic
+; notably passed to PlayAfterCurrentSong in PlayNextMusic
 wNextMusic:: ; d58e
 	ds $1
 
@@ -2544,15 +2544,15 @@ wNumBoosterPacksToGive:: ; d667
 	ds $1
 
 ; SRAM0 or SRAM2
-wSaveDataSRAMBank:: ; d668
+wSaveDataCurBankSRAM:: ; d668
 	ds $1
 
 	ds $1
 
-wSaveDataItemMinValidValue:: ; d66a
+wSaveDataCurItemMinValidValue:: ; d66a
 	ds $1
 
-wSaveDataItemMaxValidValue:: ; d66b
+wSaveDataCurItemMaxValidValue:: ; d66b
 	ds $1
 
 wSaveDataChecksum0:: ; d66c
@@ -2570,11 +2570,11 @@ wWRAMToSRAMMapperPointer:: ; d66f
 wSaveDataSRAMOffset:: ; d671
 	ds $2
 
-wd673:: ; d673
+wSaveDataChecksumSeed:: ; d673
 	ds $1
 
 ; MUSIC_* constant
-; See also: wNextMusic
+; see also: wNextMusic
 wCurMusic:: ; d674
 	ds $1
 
@@ -2793,7 +2793,7 @@ wd986:: ; d986
 	ds $1
 
 ; NPC_* ID (or NPC_NONE)
-; See also; wScriptNPC
+; see also: wScriptNPC
 wTempScriptNPC:: ; d987
 	ds $1
 

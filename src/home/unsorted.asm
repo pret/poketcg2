@@ -128,7 +128,7 @@ ExecuteGameEvent::
 	ld [wCurIsland], a
 	ld a, $0e
 	ld [wCurOWLocation], a
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, SFX_SAVE_GAME
 	call PlaySFX
 	farcall WaitForSFXToFinish
@@ -2066,12 +2066,12 @@ Func_3b19::
 	farcall $7, $445a
 	ret
 
-Func_3b1e::
+SaveGame::
 	push af
 	push bc
 	push de
 	push hl
-	farcall Func_ea30
+	farcall _SaveGame
 	pop hl
 	pop de
 	pop bc

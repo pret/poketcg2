@@ -792,7 +792,7 @@ DrawSavePromptAndWaitForInput:
 	call Func_1c5d6
 	jr .asm_1c5bc
 .asm_1c5b9
-	call Func_3b1e
+	call SaveGame
 .asm_1c5bc
 	push af
 	ld a, SFX_SAVE_GAME
@@ -819,7 +819,7 @@ Func_1c5d6:
 	push hl
 	farcall Func_10ed3
 	farcall Func_105de
-	call Func_3b1e
+	call SaveGame
 	farcall Func_10ea7
 	farcall Func_1059f
 	pop hl
@@ -2485,7 +2485,7 @@ AskToOverwriteSaveData:
 	ld a, $1 ; "no" selected by default
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .fade_out
-	farcall Func_e97a
+	farcall ClearSaveData
 	ldtx hl, MainMenuNewGameInsteadOfContinueDeletedText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 .fade_out

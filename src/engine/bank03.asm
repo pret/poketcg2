@@ -32,7 +32,7 @@ StartMenu_NewGame:
 	ret c
 .no_save_data
 	farcall InitSaveData
-	call Func_e97a
+	call ClearSaveData
 	call Func_c24d
 	call Func_eb97
 	xor a ; FALSE
@@ -54,7 +54,7 @@ StartMenu_ContinueFromDiary:
 	farcall AskToContinueFromDiaryInsteadOfDuel
 	ret c
 .no_saved_duel
-	call Func_eaea
+	call RestoreBackupSave
 	xor a
 	call PlaySong
 	ld a, [wNextGameEvent]
@@ -67,7 +67,7 @@ StartMenu_ContinueFromDiary:
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
-	call Func_e9a7
+	call InitSaveDataState
 	ld a, TRUE
 	farcall ReadOrInitSaveData
 	ld hl, wOverworldTransition
@@ -91,7 +91,7 @@ StartMenu_ContinueFromDiary:
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
-	call Func_e9a7
+	call InitSaveDataState
 	ld a, TRUE
 	farcall ReadOrInitSaveData
 	call DisableLCD
@@ -118,7 +118,7 @@ StartMenu_ContinueDuel:
 	farcall ReadOrInitSaveData
 	xor a
 	call PlaySong
-	call Func_eb16
+	call LoadMainSave
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
@@ -250,14 +250,14 @@ PauseMenu:
 HandleStartMenu:
 	xor a
 	ld [wd554], a
-	call Func_e883
+	call CheckIfHasBackupSave
 	jr c, .menu_config0
-	call Func_e8b7
+	call ValidateBackupGeneralSaveData
 	jr c, .asm_c20f
 .asm_c1d7
 	ld hl, wd554
 	set 0, [hl]
-	call Func_eaf6
+	call LoadBackupSave
 	farcall CheckSavedDuelChecksum
 	jr c, .no_saved_duel
 	ld hl, wd554
@@ -268,9 +268,9 @@ HandleStartMenu:
 	call GetVarValue
 	cp $02
 	jr c, .menu_config4
-	call Func_e8a3
+	call CheckIfHasMainSave
 	jr c, .menu_config2
-	call Func_e91a
+	call ValidateGeneralSaveData
 	jr c, .menu_config2
 	ld hl, wd554
 	set 1, [hl]
@@ -284,9 +284,9 @@ HandleStartMenu:
 
 .asm_c20f
 	debug_nop
-	call Func_e91a
+	call ValidateGeneralSaveData
 	jr c, .menu_config0
-	call Func_e9b7
+	call BackupMainSave
 	jr .asm_c1d7
 
 .menu_config0
@@ -1213,7 +1213,7 @@ OverworldLoop::
 	call MaxOutEventValue
 	ld a, GAME_EVENT_DUEL
 	ld [wNextGameEvent], a
-	call Func_eaa8
+	call SaveGame_NoBackup
 	ret
 
 .end_duel
@@ -1221,7 +1221,7 @@ OverworldLoop::
 	call ExecuteOWModeScript
 	ld a, EVENT_02
 	call ZeroOutEventValue
-	call Func_e9a7
+	call InitSaveDataState
 	ld a, EVENT_F0
 	call ZeroOutEventValue
 	farcall PlayCurrentSong
