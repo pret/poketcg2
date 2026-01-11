@@ -4314,7 +4314,7 @@ Script_3e158:
 	move_active_npc .NPCMovement_3e1ae
 	wait_for_player_animation
 	quit_script
-	farcall LoadGrandMasterCupOpponentTitleAndName
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
 	start_dialog
@@ -4379,7 +4379,7 @@ Script_3e1b8:
 	move_active_npc .NPCMovement_3e212
 	wait_for_player_animation
 	quit_script
-	farcall LoadGrandMasterCupOpponentTitleAndName
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
 	start_dialog
@@ -4437,7 +4437,7 @@ Script_3e21c:
 	farcall GetNPCByDeck
 	cp NPC_RONALD
 	jr z, .asm_3e272
-	farcall LoadGrandMasterCupOpponentTitleAndName
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc0

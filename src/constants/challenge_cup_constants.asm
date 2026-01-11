@@ -1,8 +1,3 @@
-; challenge cup constants
-	const_def
-	const TCG_CHALLENGE_CUP ; 0
-	const GR_CHALLENGE_CUP  ; 1
-
 ; wChallengeCupIndex constants
 ; actual titles:
 ;   TCG: "Challenge Cup" (1, 2, 3)

@@ -2394,7 +2394,7 @@ Func_415fa:
 Func_41603:
 	call CheckIfTCGCupIsActive
 	jr c, .inactive
-	xor a ; TCG_CHALLENGE_CUP
+	xor a ; TCG_ISLAND
 	farcall SetChallengeCupOpponents
 	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	farcall GetVarValue
@@ -4470,7 +4470,7 @@ Func_4266e:
 	lb de, 5, 0
 	farcall Func_12c0ce
 .set_opponents_draw_round1
-	ld a, GR_CHALLENGE_CUP
+	ld a, GR_ISLAND
 	farcall SetChallengeCupOpponents
 	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	farcall GetVarValue

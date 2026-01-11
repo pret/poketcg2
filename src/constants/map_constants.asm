@@ -1,4 +1,5 @@
-; constants for wCurIsland
+; island constants
+; for wCurIsland, challenge cups/machines, etc.
 DEF TCG_ISLAND EQU $0
 DEF GR_ISLAND  EQU $1
 

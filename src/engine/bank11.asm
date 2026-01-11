@@ -300,7 +300,7 @@ WaitForSFXToFinish::
 
 SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
 
-; for a = TCG_CHALLENGE_CUP or GR_CHALLENGE_CUP,
+; a = TCG_ISLAND or GR_ISLAND
 ; set three opponents for the cup
 SetChallengeCupOpponents:
 	or a
@@ -588,7 +588,7 @@ SetGrandMasterCupDuelParams:
 	set 1, [hl]
 	ret
 
-LoadGrandMasterCupOpponentTitleAndName:
+LoadGrandMasterCupOpponentLocationAndName:
 	call Func_45488
 	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
