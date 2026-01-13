@@ -34,7 +34,7 @@ StartMenu_NewGame:
 	farcall InitSaveData
 	call ClearSaveData
 	call Func_c24d
-	call Func_eb97
+	call ClearChallengeMachineRecords
 	xor a ; FALSE
 	farcall ReadOrInitSaveData
 	ld a, GAME_EVENT_NEWGAME_PROLOGUE
@@ -350,9 +350,9 @@ Func_c24d:
 	ld [wSentMailBitfield + 1], a
 	ld [wSentMailBitfield + 2], a
 	ld [wSentMailBitfield + 3], a
-	call Func_ebc6
+	call ValidateChallengeMachineSaveData
 	jr nc, .asm_c299
-	call Func_eb39
+	call InitChallengeMachine
 .asm_c299
 	call Func_c2a7
 	ret
@@ -1108,9 +1108,8 @@ GRIslandLocationNamePointers:
 	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
 INCLUDE "data/challenge_cup_prizes.asm"
-; 0xd1ed
 
-SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
+INCLUDE "data/challenge_machine_opponents.asm"
 
 ; main ow handler for GAME_EVENT_OVERWORLD_UPDATE
 ; e.g. map loading, player movement/interactions, game event transitions
@@ -2196,12 +2195,12 @@ GeneralVarMasks:
 	db $21, %11111000 ; VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	db $22, %00001111 ; VAR_TIMES_WON_GR_CHALLENGE_CUP
 	db $22, %00110000 ; VAR_GR_CHALLENGE_CUP_RESULT
-	db $23, %00000111 ; VAR_34
-	db $24, %11111111 ; VAR_35
-	db $25, %11111111 ; VAR_36
-	db $26, %11111111 ; VAR_37
-	db $27, %11111111 ; VAR_38
-	db $28, %11111111 ; VAR_39
+	db $23, %00000111 ; VAR_CHALLENGEMACHINE_CURRENT_ROUND
+	db $24, %11111111 ; VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+	db $25, %11111111 ; VAR_CHALLENGEMACHINE_ROUND2_OPPONENT_DECK_ID
+	db $26, %11111111 ; VAR_CHALLENGEMACHINE_ROUND3_OPPONENT_DECK_ID
+	db $27, %11111111 ; VAR_CHALLENGEMACHINE_ROUND4_OPPONENT_DECK_ID
+	db $28, %11111111 ; VAR_CHALLENGEMACHINE_ROUND5_OPPONENT_DECK_ID
 	db $29, %00000111 ; VAR_CARD_DUNGEON_PROGRESS
 	db $2a, %11111111 ; VAR_3B
 	db $2b, %11111111 ; VAR_NPC_DECK_ID
@@ -4489,62 +4488,67 @@ ScriptCommand_WaitInput:
 INCLUDE "engine/save.asm"
 INCLUDE "data/save.asm"
 
-Func_ef40:
+; a = TCG_ISLAND or GR_ISLAND
+; set five opponents for the set
+SetChallengeMachineOpponents:
 	or a
-	jr nz, .asm_ef54
-	ld a, $31
+	jr nz, .gr_machine
+	ld a, NUM_TCG_CHALLENGE_MACHINE_OPPONENT_POOL
 	ld [wNumRandomDuelists], a
-	ld a, LOW($51ed)
+	ld a, LOW(TCGChallengeMachineOpponents)
 	ld [wFilteredListPtr], a
-	ld a, HIGH($51ed)
+	ld a, HIGH(TCGChallengeMachineOpponents)
 	ld [wFilteredListPtr + 1], a
-	jr .asm_ef63
-.asm_ef54
-	ld a, $25
+	jr .init
+.gr_machine
+	ld a, NUM_GR_CHALLENGE_MACHINE_OPPONENT_POOL
 	ld [wNumRandomDuelists], a
-	ld a, LOW($524f)
+	ld a, LOW(GRChallengeMachineOpponents)
 	ld [wFilteredListPtr], a
-	ld a, HIGH($524f)
+	ld a, HIGH(GRChallengeMachineOpponents)
 	ld [wFilteredListPtr + 1], a
-.asm_ef63
-	ld e, $05
-	ld d, VAR_35
+.init
+	ld e, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	ld d, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	ld c, $ff
-.asm_ef69
+.loop_init
 	ld a, d
 	call SetVarValue
 	inc d
 	dec e
-	jr nz, .asm_ef69
-	ld c, $00
-.asm_ef73
-	ld b, $01
+	jr nz, .loop_init
+; set
+; b = 1 << c for c = round number [0, 4]
+; set opponents randomly with the bitmask b
+	ld c, 0
+.loop_set_opponents
+	ld b, 1
 	ld a, c
 	or a
-.asm_ef77
-	jr z, .asm_ef7e
+.loop_shift
+	jr z, .loop_pick
 	sla b
 	dec a
-	jr .asm_ef77
-.asm_ef7e
-	call Func_ef97
-	call Func_efb3
-	jr c, .asm_ef7e
+	jr .loop_shift
+.loop_pick
+	call .PickOpponent
+	call .CheckDupe
+	jr c, .loop_pick
 	push bc
 	ld d, a
-	ld a, VAR_35
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	add c
 	ld c, d
 	call SetVarValue
 	pop bc
 	inc c
-	ld a, $05
+	ld a, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 	cp c
-	jr nz, .asm_ef73
+	jr nz, .loop_set_opponents
 	ret
 
-Func_ef97:
-.loop
+; for b = bitmask, choose a random opponent and return their deck id in a
+.PickOpponent:
 	ld a, [wFilteredListPtr]
 	ld l, a
 	ld a, [wFilteredListPtr + 1]
@@ -4556,38 +4560,39 @@ Func_ef97:
 	inc hl
 	ld a, [hld]
 	and b
-	jr z, .loop
+	jr z, .PickOpponent
 	ld a, [hl]
 	ret
 
-Func_efb3:
+; set carry if the opponent is already picked
+.CheckDupe:
 	ld d, a
 	call GetNPCByDeck
 	ld l, a
-	ld e, VAR_35
-.asm_efba
+	ld e, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+.loop_check
 	ld a, e
 	call GetVarValue
 	cp $ff
-	jr z, .asm_efcc
+	jr z, .done
 	call GetNPCByDeck
 	inc e
 	cp l
-	jr nz, .asm_efba
+	jr nz, .loop_check
 	ld a, d
 	scf
 	ret
-.asm_efcc
+.done
 	ld a, d
 	scf
 	ccf
 	ret
 
-Func_efd0:
-	ld c, $05
-	ld a, VAR_35
-	ld hl, wddf9
-.asm_efd7
+LoadChallengeMachineOpponentTitlesAndNames:
+	ld c, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+	ld hl, wChallengeMachineOpponentTitlesAndNames
+.loop_load
 	push af
 	call GetVarValue
 	call GetNPCByDeck
@@ -4607,16 +4612,16 @@ Func_efd0:
 	pop af
 	inc a
 	dec c
-	jr nz, .asm_efd7
+	jr nz, .loop_load
 	ret
 
-Func_eff7:
-	call Func_ec38
-	ld a, VAR_34
+SetChallengeMachineDuelParams:
+	call SaveChallengeMachine
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	call GetVarValue
 	dec a
 	ld c, a
-	ld a, VAR_35
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	add c
 	call GetVarValue
 	ld [wNPCDuelDeckID], a

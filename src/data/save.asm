@@ -68,9 +68,9 @@ WRAMToSRAMMapper_GeneralSave::
 
 ; 64 bytes
 WRAMToSRAMMapper_ChallengeMachineSave::
-	wram_sram_map wddf9,                                     20, $00, $ff
-	wram_sram_map wde0d,                                      4, $00, $ff
-	wram_sram_map wde11,                                      4, $00, $ff
-	wram_sram_map wde15,                                      4, $00, $ff
-	wram_sram_map wde19,                                     32, $00, $ff
+	wram_sram_map wChallengeMachineOpponentTitlesAndNames, 4 * NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET, $00, $ff
+	wram_sram_map wChallengeMachineSetsWonRecords,                                            2 * 2, $00, $ff
+	wram_sram_map wChallengeMachineCurWinStreaks,                                             2 * 2, $00, $ff
+	wram_sram_map wChallengeMachineWinStreakRecords,                                          2 * 2, $00, $ff
+	wram_sram_map wChallengeMachinePlayerNames,                              NAME_BUFFER_LENGTH * 2, $00, $ff
 	dw NULL

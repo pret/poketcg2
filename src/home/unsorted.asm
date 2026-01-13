@@ -2421,7 +2421,8 @@ Func_3d02::
 	ret
 
 ; a = MUSIC_* constant
-Func_3d09::
+; intended for short songs?
+CallPlaySong::
 	call PlaySong
 	ret
 

@@ -3737,7 +3737,7 @@ Func_1db81:
 	call DoAFrames_WithPreCheck
 	push af
 	ld a, MUSIC_MEDAL
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	call WaitForSongToFinish
 	ld a, 60
@@ -5331,7 +5331,7 @@ Func_1e60c:
 	ld a, [wDuelStartTheme]
 	push af
 	ld a, a ; wow
-	call Func_3d09
+	call CallPlaySong
 	pop af
 
 	; print duelist intro text
@@ -5694,7 +5694,7 @@ _GiveBoosterPack:
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_BOOSTER_PACK
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	ld a, [wCurBoosterPack]
 	add a

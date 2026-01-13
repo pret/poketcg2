@@ -1939,7 +1939,7 @@ TextOffsets::
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning3Text    ; 0x078a
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning4Text    ; 0x078b
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelConfirmText     ; 0x078c
-	textpointer ChallengeMachineText                                  ; 0x078d
+	textpointer TCGChallengeMachineText                               ; 0x078d
 	textpointer GRChallengeMachineText                                ; 0x078e
 	textpointer ChallengeMachineScoreTitleText                        ; 0x078f
 	textpointer ChallengeMachineSetsWonRecordText                     ; 0x0790

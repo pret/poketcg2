@@ -1341,8 +1341,8 @@ MasonLaboratoryMain_NPCInteractions:
 MasonLaboratoryMain_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 6, 3, Func_4101d
-	ow_script 7, 3, Func_4101d
+	ow_script 6, 3, Script_TCGChallengeMachine
+	ow_script 7, 3, Script_TCGChallengeMachine
 	db $ff
 
 MasonLaboratoryMain_MapScripts:
@@ -1461,7 +1461,7 @@ Func_40f21:
 	scf
 	ret
 .asm_40f34
-	farcall Func_ec6c
+	farcall LoadChallengeMachineSave
 	call Func_41074
 	scf
 	ret
@@ -1586,45 +1586,45 @@ Func_40fff:
 	call Func_40fbc
 	ret
 
-Func_4101d:
+Script_TCGChallengeMachine:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
-	farcall Func_ebc6
-	jr nc, .asm_41038
-	farcall Func_eb39
+	farcall ValidateChallengeMachineSaveData
+	jr nc, .no_error
+	farcall InitChallengeMachine
 	xor a
 	start_script
 	start_dialog
 	print_text ChallengeMachineWinStreakRecordCorruptedAndResetText
 	end_dialog
 	end_script
-.asm_41038
-	farcall Func_ec6c
+.no_error
+	farcall LoadChallengeMachineSave
 	xor a
-	farcall Func_ef40
-	farcall Func_efd0
+	farcall SetChallengeMachineOpponents
+	farcall LoadChallengeMachineOpponentTitlesAndNames
 	xor a
 	ld bc, $0
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jr c, .asm_41061
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_34, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, $01
 	send_mail $0d
 	end_script
-	farcall Func_eff7
+	farcall SetChallengeMachineDuelParams
 	jr .asm_41073
 .asm_41061
 	or a
 	jr z, .asm_41073
 	ld bc, $0
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
-	farcall Func_ec38
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
+	farcall SaveChallengeMachine
 .asm_41073
 	ret
 
@@ -1632,78 +1632,78 @@ Func_41074:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .asm_410ee
-	ld a, [wde11]
+	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde11 + 1]
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
 	cp16bc_long 1000
 	jr nc, .asm_4109a
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
 .asm_4109a
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_410c4
 	ld b, a
 	xor a
 	ld c, $01
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jp c, .asm_410fc
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
 	inc a
 	ld c, a
 	ld a, d
 	farcall SetVarValue
-	farcall Func_eff7
+	farcall SetChallengeMachineDuelParams
 	jp .asm_41114
 .asm_410c4
-	ld a, [wde0d]
+	ld a, [wTCGChallengeMachineSetsWonRecord]
 	ld c, a
-	ld a, [wde0d + 1]
+	ld a, [wTCGChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
 	cp16bc_long 1000
 	jr nc, .asm_410e1
 	ld a, c
-	ld [wde0d], a
+	ld [wTCGChallengeMachineSetsWonRecord], a
 	ld a, b
-	ld [wde0d + 1], a
+	ld [wTCGChallengeMachineSetsWonRecord + 1], a
 .asm_410e1
 	call Func_4112e
 	xor a
 	ld bc, $501
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jr .asm_41115
 .asm_410ee
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
 	xor a
 	ld c, $02
-	farcall Func_135ec
+	farcall ChallengeMachine
 .asm_410fc
 	call Func_4112e
 	ld bc, $0
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
 .asm_4110a
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
-	farcall Func_ec38
+	farcall SaveChallengeMachine
 .asm_41114
 	ret
 .asm_41115
-	ld a, [wde11]
+	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld e, a
-	ld a, [wde11 + 1]
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld d, a
 	cp16_long 50
 	jr nz, .asm_4110a
@@ -1711,13 +1711,13 @@ Func_41074:
 	jr .asm_4110a
 
 Func_4112e:
-	ld a, [wde11]
+	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde11 + 1]
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld b, a
-	ld a, [wde15]
+	ld a, [wTCGChallengeMachineWinStreakRecord]
 	ld e, a
-	ld a, [wde15 + 1]
+	ld a, [wTCGChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
 	jr nc, .asm_4114a
@@ -1725,12 +1725,12 @@ Func_4112e:
 	ret
 .asm_4114a
 	ld a, c
-	ld [wde15], a
+	ld [wTCGChallengeMachineWinStreakRecord], a
 	ld a, b
-	ld [wde15 + 1], a
+	ld [wTCGChallengeMachineWinStreakRecord + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld de, wde19
+	ld de, wTCGChallengeMachinePlayerName
 	ld bc, $10
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM
@@ -4514,7 +4514,7 @@ Func_426d6:
 	jp z, Script_GRCupRound2AfterDuel
 	jp Script_GRCupRound3AfterDuel
 .asm_426ef
-	farcall Func_ec6c
+	farcall LoadChallengeMachineSave
 	call Func_42776
 	scf
 	ret
@@ -4546,9 +4546,9 @@ Script_GRChallengeMachine:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
-	farcall Func_ebc6
+	farcall ValidateChallengeMachineSaveData
 	jr nc, .asm_4273a
-	farcall Func_eb39
+	farcall InitChallengeMachine
 	xor a
 	start_script
 	start_dialog
@@ -4556,30 +4556,30 @@ Script_GRChallengeMachine:
 	end_dialog
 	end_script
 .asm_4273a
-	farcall Func_ec6c
+	farcall LoadChallengeMachineSave
 	ld a, $01
-	farcall Func_ef40
-	farcall Func_efd0
+	farcall SetChallengeMachineOpponents
+	farcall LoadChallengeMachineOpponentTitlesAndNames
 	ld a, $01
 	ld bc, $0
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jr c, .asm_42763
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_34, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, $01
 	end_script
-	farcall Func_eff7
+	farcall SetChallengeMachineDuelParams
 	jr .asm_42775
 .asm_42763
 	or a
 	jr z, .asm_42775
 	ld bc, $0
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
-	farcall Func_ec38
+	ld [wGRChallengeMachineCurWinStreak + 1], a
+	farcall SaveChallengeMachine
 .asm_42775
 	ret
 
@@ -4587,78 +4587,78 @@ Func_42776:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
 	jp z, .asm_427f2
-	ld a, [wde13]
+	ld a, [wGRChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde13 + 1]
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
 	cp16bc_long 1000
 	jr nc, .asm_4279c
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
+	ld [wGRChallengeMachineCurWinStreak + 1], a
 .asm_4279c
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	cp $05
 	jr z, .asm_427c7
 	ld b, a
 	ld a, $01
 	ld c, $01
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jp c, .asm_42801
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
 	inc a
 	ld c, a
 	ld a, d
 	farcall SetVarValue
-	farcall Func_eff7
+	farcall SetChallengeMachineDuelParams
 	jp .asm_42819
 .asm_427c7
-	ld a, [wde0f]
+	ld a, [wGRChallengeMachineSetsWonRecord]
 	ld c, a
-	ld a, [wde0f + 1]
+	ld a, [wGRChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
 	cp16bc_long 1000
 	jr nc, .asm_427e4
 	ld a, c
-	ld [wde0f], a
+	ld [wGRChallengeMachineSetsWonRecord], a
 	ld a, b
-	ld [wde0f + 1], a
+	ld [wGRChallengeMachineSetsWonRecord + 1], a
 .asm_427e4
 	call Func_42833
 	ld a, $01
 	ld bc, $501
-	farcall Func_135ec
+	farcall ChallengeMachine
 	jr .asm_4281a
 .asm_427f2
-	ld a, VAR_34
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
 	ld a, $01
 	ld c, $02
-	farcall Func_135ec
+	farcall ChallengeMachine
 .asm_42801
 	call Func_42833
 	ld bc, $0
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
+	ld [wGRChallengeMachineCurWinStreak + 1], a
 .asm_4280f
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
-	farcall Func_ec38
+	farcall SaveChallengeMachine
 .asm_42819
 	ret
 .asm_4281a
-	ld a, [wde13]
+	ld a, [wGRChallengeMachineCurWinStreak]
 	ld e, a
-	ld a, [wde13 + 1]
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld d, a
 	cp16_long 50
 	jr nz, .asm_4280f
@@ -4666,13 +4666,13 @@ Func_42776:
 	jr .asm_4280f
 
 Func_42833:
-	ld a, [wde13]
+	ld a, [wGRChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde13 + 1]
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld b, a
-	ld a, [wde17]
+	ld a, [wGRChallengeMachineWinStreakRecord]
 	ld e, a
-	ld a, [wde17 + 1]
+	ld a, [wGRChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
 	jr nc, .asm_4284f
@@ -4680,12 +4680,12 @@ Func_42833:
 	ret
 .asm_4284f
 	ld a, c
-	ld [wde17], a
+	ld [wGRChallengeMachineWinStreakRecord], a
 	ld a, b
-	ld [wde17 + 1], a
+	ld [wGRChallengeMachineWinStreakRecord + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld de, wde29
+	ld de, wGRChallengeMachinePlayerName
 	ld bc, NAME_BUFFER_LENGTH
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM

@@ -377,72 +377,76 @@ LoadMainSave:
 	farcall Func_10f78
 	ret
 
-Func_eb39:
-	ld hl, wddf9
+InitChallengeMachine:
+	ld hl, wChallengeMachineOpponentTitlesAndNames
 	xor a
-	ld c, $14
+	ld c, (2 + 2) * NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 .loop_init
 	ld [hli], a
 	dec c
 	jr nz, .loop_init
 
-; init verbosely from wde0d to wde17
-	ld hl, wde0d
+; init records verbosely
+	ld hl, wChallengeMachineSetsWonRecords
 	xor a
 REPT 4
 	ld [hli], a
 ENDR
-	ld hl, wde11
+	ld hl, wChallengeMachineCurWinStreaks
 	xor a
 REPT 4
 	ld [hli], a
 ENDR
-	ld hl, wde15
+	ld hl, wChallengeMachineWinStreakRecords
 	xor a
 REPT 4
 	ld [hli], a
 ENDR
 
-	ld a, $01
-	ld [wde15], a
-	ld a, $05
-	ld [wde17], a
-	ld hl, .data
-	ld de, wde19
-	ld c, $20
+; set default scorers
+	ld a, 1
+	ld [wTCGChallengeMachineWinStreakRecord], a
+	ld a, 5
+	ld [wGRChallengeMachineWinStreakRecord], a
+	ld hl, .default_scorers
+	ld de, wChallengeMachinePlayerNames
+	ld c, NAME_BUFFER_LENGTH * 2
 .loop_copy
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
 	jr nz, .loop_copy
-	call Func_ec38
+	call SaveChallengeMachine
 	ret
 
-.data
-	db $04, $13, $79, $15, $0f, $6b, $0f, $34, $0f, $2f, $0f, $00, $00, $00, $00, $00, $4e, $0f, $39, $0f, $38, $0f, $5f, $0f, $21, $0f, $00, $00, $00, $00, $00, $00
+.default_scorers
+	db $04, $13, $79, $15, $0f, $6b, $0f, $34, $0f, $2f, $0f, $00, $00, $00, $00, $00 ; "Dr.オーヤマ"
+	db $4e, $0f, $39, $0f, $38, $0f, $5f, $0f, $21, $0f, $00, $00, $00, $00, $00, $00 ; "ビルリッチ"
 
-Func_eb97:
-	call Func_ebc6
-	jr nc, .asm_eb9f
-	call Func_eb39
-.asm_eb9f
-	call Func_ec6c
-; init verbosely from wde0d to wde13
-	ld hl, wde0d
+; also init if has invalid save
+ClearChallengeMachineRecords:
+	call ValidateChallengeMachineSaveData
+	jr nc, .valid
+	call InitChallengeMachine
+.valid
+	call LoadChallengeMachineSave
+; init records verbosely
+	ld hl, wChallengeMachineSetsWonRecords
 	xor a
 REPT 4
 	ld [hli], a
 ENDR
-	ld hl, wde11
+	ld hl, wChallengeMachineCurWinStreaks
 	xor a
 REPT 4
 	ld [hli], a
 ENDR
-	call Func_ec38
+	call SaveChallengeMachine
 	ret
 
-Func_ebb6:
+; unused?
+InitChallengeMachineChecksums:
 	call EnableSRAM
 	xor a
 	ld [sChallengeMachineSaveDataChecksum0], a
@@ -451,7 +455,7 @@ Func_ebb6:
 	call DisableSRAM
 	ret
 
-Func_ebc6:
+ValidateChallengeMachineSaveData:
 	xor a ; BANK(sChallengeMachineSaveData)
 	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)
@@ -483,15 +487,15 @@ Func_ebc6:
 	ld a, c
 	cp e
 	jr nz, .error
-	ld a, [wde15 + 0]
+	ld a, [wTCGChallengeMachineWinStreakRecord + 0]
 	ld e, a
-	ld a, [wde15 + 1]
+	ld a, [wTCGChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16_long 0
 	jr z, .error
-	ld a, [wde17 + 0]
+	ld a, [wGRChallengeMachineWinStreakRecord + 0]
 	ld e, a
-	ld a, [wde17 + 1]
+	ld a, [wGRChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16_long 0
 	jr z, .error
@@ -502,7 +506,7 @@ Func_ebc6:
 	scf
 	ret
 
-Func_ec38:
+SaveChallengeMachine:
 	xor a ; BANK(sChallengeMachineSaveData)
 	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)
@@ -524,7 +528,7 @@ Func_ec38:
 	call DisableSRAM
 	ret
 
-Func_ec6c:
+LoadChallengeMachineSave:
 	xor a ; BANK(sChallengeMachineSaveData)
 	ld [wSaveDataCurBankSRAM], a
 	ld a, LOW(WRAMToSRAMMapper_ChallengeMachineSave)

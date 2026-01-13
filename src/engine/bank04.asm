@@ -5479,7 +5479,7 @@ PlaySlotsPrompt:
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	call WaitForSongToFinish
 	call ResumeSong_ClearTemp
@@ -6433,7 +6433,7 @@ Func_131bd:
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	call WaitForSongToFinish
 	call ResumeSong_ClearTemp
@@ -7053,365 +7053,7 @@ ENDR
 	pop de
 	ret
 
-Func_135ec:
-	call Func_102a4
-	call Func_135f6
-	call Func_102c4
-	ret
-
-Func_135f6:
-	push bc
-	push de
-	push hl
-	ld [wddf6], a
-	ld a, c
-	ld [wddf8], a
-	ld a, b
-	ld [wddf7], a
-	and a
-	jr nz, .asm_1360e
-	call Func_13617
-	ld a, $00
-	jr c, .asm_13613
-.asm_1360e
-	call Func_136e4
-	ld a, $01
-.asm_13613
-	pop hl
-	pop de
-	pop bc
-	ret
-
-Func_13617:
-	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	lb de, $40, $ff
-	call SetupText
-	call Func_1362d
-	call SetFrameFuncAndFadeFromWhite
-	call Func_136db
-	call FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1362d:
-	lb de, 0, 0
-	lb bc, 20, 13
-	call DrawRegularTextBoxVRAM0
-	lb de, 0, 12
-	lb bc, 20, 6
-	call DrawRegularTextBoxVRAM0
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $76b0
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb de, 1, 0
-	call Func_2c4b
-	ld hl, $7697
-	call PlaceTextItemsVRAM0
-	ldtx hl, ChallengeMachineScoreTitleText
-	lb de, 1, 2
-	call PrintTextNoDelay_InitVRAM0
-	ld hl, wde0d
-	lb de, 14, 4
-	call .PrintScore
-	ld hl, wde11
-	lb de, 14, 6
-	call .PrintScore
-	ld hl, wde15
-	lb de, 14, 10
-	call .PrintScore
-	call Func_136b4
-	ret
-
-.PrintScore:
-	push hl
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, 3
-	ld b, TRUE
-	farcall PrintNumber
-	pop hl
-	ret
-; 0x13697
-
-SECTION "Bank 4@76b4", ROMX[$76b4], BANK[$4]
-
-Func_136b4:
-	ld de, wde39
-	call Func_13d1f
-	ld a, [wddf6]
-	add a
-	add a
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde19
-	add hl, bc
-	call SavePlayerName
-	ldtx hl, TxRam1Text
-	lb de, 2, 10
-	call PrintTextNoDelay_InitVRAM0
-	ld hl, wde39
-	call SavePlayerName
-	ret
-
-Func_136db:
-	ldtx hl, ChallengeMachineStartPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	ret
-
-Func_136e4:
-	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	lb de, $40, $ff
-	call SetupText
-	call Func_1371f
-	call SetFrameFuncAndFadeFromWhite
-	ld a, [wddf8]
-	and a
-	jr z, .asm_1370b
-	call Func_137fa
-	ld a, [wddf8]
-	cp $02
-	jr z, .asm_13718
-	ld a, [wddf7]
-	cp $05
-	scf
-	jr z, .asm_13718
-.asm_1370b
-	call Func_13792
-	call Func_137df
-	jr nc, .asm_1371b
-	ld a, $02
-	ld [wddf8], a
-.asm_13718
-	call Func_1382e
-.asm_1371b
-	call FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1371f:
-	lb de, 0, 0
-	lb bc, 20, 13
-	call DrawRegularTextBoxVRAM0
-	lb de, 0, 12
-	lb bc, 20, 6
-	call DrawRegularTextBoxVRAM0
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $7749
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb de, 1, 0
-	call Func_2c4b
-	call Func_1374d
-	ret
-; 0x13749
-
-SECTION "Bank 4@774d", ROMX[$774d], BANK[$4]
-
-Func_1374d:
-	ld hl, wddf9
-	ld c, $05
-	ld e, $02
-.asm_13754
-	call Func_13763
-	call Func_13778
-	call Func_13785
-	inc e
-	inc e
-	dec c
-	jr nz, .asm_13754
-	ret
-
-Func_13763:
-	push hl
-	ld a, $06
-	sub c
-	ld [wTxRam3], a
-	xor a
-	ld [wTxRam3 + 1], a
-	ldtx hl, TxRam3Text
-	ld d, $02
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	ret
-
-Func_13778:
-	push hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, $04
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	inc hl
-	inc hl
-	ret
-
-Func_13785:
-	push hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, $0e
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	inc hl
-	inc hl
-	ret
-
-Func_13792:
-	ld a, [wddf7]
-	and a
-	jr nz, .asm_1379e
-	ldtx hl, ChallengeMachineOpponentListDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-.asm_1379e
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde11
-	add hl, bc
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	ld de, $1
-	call CompareBCAndDE
-	ret c
-	ret z
-	ld h, b
-	ld l, c
-	call LoadTxRam3
-	ld a, [wddf7]
-	inc a
-	ld [wTxRam3_b], a
-	xor a
-	ld [wTxRam3_b + 1], a
-	ld a, [wddf7]
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wddf9
-	add hl, bc
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam2
-	ldtx hl, ChallengeMachineOpponentXDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-
-Func_137df:
-.asm_137df
-	ldtx hl, ChallengeMachineDuelPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	ret nc
-	ldtx hl, ChallengeMachineQuitWinStreakWarningText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ldtx hl, ChallengeMachineQuitPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_137df
-	scf
-	ret
-
-Func_137fa:
-	ld a, [wddf7]
-	dec a
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wddf9
-	add hl, bc
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld [wTxRam2], a
-	ld a, [hl]
-	ld [wTxRam2 + 1], a
-	ld a, [wddf7]
-	ld l, a
-	ld h, $00
-	call LoadTxRam3
-	ld a, [wddf8]
-	dec a
-	jr z, .asm_13827
-	ldtx hl, ChallengeMachineLossDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-.asm_13827
-	ldtx hl, ChallengeMachineWinDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-
-Func_1382e:
-	push af
-	ld a, [wddf8]
-	dec a
-	jr z, .asm_1384e
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde11
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam3
-	ldtx hl, ChallengeMachineLossDialogWinStreakText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	jr .asm_1387e
-.asm_1384e
-	call PauseSong_SaveState
-	push af
-	ld a, MUSIC_MEDAL
-	call Func_3d09
-	pop af
-	ldtx hl, ChallengeMachineWonASetText
-	call PrintTextInWideTextBox
-	call WaitForSongToFinish
-	call ResumeSong_ClearTemp
-	call WaitForWideTextBoxInput
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde0d
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam3
-	ldtx hl, ChallengeMachineSetsWonText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-.asm_1387e
-	ldtx hl, ChallengeMachineComeAgainText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	pop af
-	ret
+INCLUDE "engine/challenge_machine.asm"
 
 INCLUDE "engine/credits_commands.asm"
 
@@ -7656,6 +7298,7 @@ LoadPlayerName:
 	pop bc
 	ret
 
+; from hl to sPlayerName
 SavePlayerName:
 	push af
 	push bc
@@ -7672,14 +7315,15 @@ SavePlayerName:
 	pop af
 	ret
 
-Func_13d1f:
+; from sPlayerName to de
+LoadPlayerNameToDE:
 	push af
 	push bc
 	push de
 	push hl
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld bc, $10
+	ld bc, NAME_BUFFER_LENGTH
 	call CopyBCBytesFromHLToDE
 	call DisableSRAM
 	pop hl

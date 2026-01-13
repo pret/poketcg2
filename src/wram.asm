@@ -3473,45 +3473,50 @@ wCardTilemapOffset:: ; ddf4
 wddf5:: ; ddf5
 	ds $1
 
-wddf6:: ; ddf6
+; TCG_ISLAND or GR_ISLAND
+wChallengeMachineIndex:: ; ddf6
 	ds $1
 
-wddf7:: ; ddf7
+wChallengeMachineCurRound:: ; ddf7
 	ds $1
 
-wddf8:: ; ddf8
+wChallengeMachineDuelResult:: ; ddf8
 	ds $1
 
-; challenge machine
-wddf9:: ; ddf9
-	ds $14
+; title name, dialog name for 5 rounds of the set
+wChallengeMachineOpponentTitlesAndNames:: ; ddf9
+	ds (2 + 2) * NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 
-wde0d:: ; de0d
+wChallengeMachineSetsWonRecords:: ; de0d
+wTCGChallengeMachineSetsWonRecord:: ; de0d
 	ds $2
 
-wde0f:: ; de0f
+wGRChallengeMachineSetsWonRecord:: ; de0f
 	ds $2
 
-wde11:: ; de11
+wChallengeMachineCurWinStreaks:: ; de11
+wTCGChallengeMachineCurWinStreak:: ; de11
 	ds $2
 
-wde13:: ; de13
+wGRChallengeMachineCurWinStreak:: ; de13
 	ds $2
 
-wde15:: ; de15
+wChallengeMachineWinStreakRecords:: ; de15
+wTCGChallengeMachineWinStreakRecord:: ; de15
 	ds $2
 
-wde17:: ; de17
+wGRChallengeMachineWinStreakRecord:: ; de17
 	ds $2
 
-wde19:: ; de19
-	ds $10
+wChallengeMachinePlayerNames:: ; de19
+wTCGChallengeMachinePlayerName:: ; de19
+	ds NAME_BUFFER_LENGTH
 
-wde29:: ; de29
-	ds $10
+wGRChallengeMachinePlayerName:: ; de29
+	ds NAME_BUFFER_LENGTH
 
-wde39:: ; de39
-	ds $10
+wChallengeMachineTempPlayerName:: ; de39
+	ds NAME_BUFFER_LENGTH
 
 wCreditsCmdArg1:: ; de49
 	ds $1

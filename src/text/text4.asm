@@ -2581,7 +2581,7 @@ MainMenuContinueFromDiaryInsteadOfDuelConfirmText:
 	textfw "「つづきを あそぶ」で はじめます?"
 	done
 
-ChallengeMachineText:
+TCGChallengeMachineText:
 	textfw "チャレンジマシン"
 	done
 
