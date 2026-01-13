@@ -7412,9 +7412,6 @@ Func_1382e:
 	call PrintScrollableText_NoTextBoxLabelVRAM0
 	pop af
 	ret
-; 0x13886
-
-SECTION "Bank 4@7890", ROMX[$7890], BANK[$4]
 
 INCLUDE "engine/credits_commands.asm"
 

@@ -4687,12 +4687,13 @@ GetGRChallengeCupPrizeCardName:
 	pop bc
 	pop af
 	ret
-; 0xf05c
 
-SECTION "Bank 3@7063", ROMX[$7063], BANK[$3]
-
-Func_f063:
-	ld b, d
+Func_f05c:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_1022a
 	farcall SetFrameFuncAndFadeFromWhite
 	call FlushAllPalettes
 	lb de, 2, 1
