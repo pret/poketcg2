@@ -649,7 +649,7 @@ CupHostGRCup3ChampionPrizeText:
 	linefw "「<RAMTEXT>」!!"
 	done
 
-CupHostGRCupPlayer10TimesChampionText:
+CupHostGRCup10TimesChampionRewards1Text:
 	textfw "<RAMNAME>さん"
 	linefw "きづいておりましたか?"
 	linefw "こんかいで"
@@ -658,7 +658,7 @@ CupHostGRCupPlayer10TimesChampionText:
 	linefw "きねんのコインを さしあげます!"
 	done
 
-CupHostGRCupPlayer10TimesChampionContinueText:
+CupHostGRCup10TimesChampionRewards2Text:
 	textfw "「タッツーコイン」!"
 	linefw "かわいがって あげてくださいね"
 	linefw "<RAMNAME>さん! ほんとうに!!"

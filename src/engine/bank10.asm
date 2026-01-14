@@ -1605,54 +1605,54 @@ Script_TCGChallengeMachine:
 	farcall SetChallengeMachineOpponents
 	farcall LoadChallengeMachineOpponentTitlesAndNames
 	xor a
-	ld bc, $0
+	lb bc, 0, 0
 	farcall ChallengeMachine
-	jr c, .asm_41061
+	jr c, .quit
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	send_mail $0d
 	end_script
 	farcall SetChallengeMachineDuelParams
-	jr .asm_41073
-.asm_41061
+	jr .done
+.quit
 	or a
-	jr z, .asm_41073
-	ld bc, $0
+	jr z, .done
+	ld bc, 0
 	ld a, c
 	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wTCGChallengeMachineCurWinStreak + 1], a
 	farcall SaveChallengeMachine
-.asm_41073
+.done
 	ret
 
 Func_41074:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
-	jp z, .asm_410ee
+	jp z, .quit
 	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld c, a
 	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_4109a
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_wins
 	ld a, c
 	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wTCGChallengeMachineCurWinStreak + 1], a
-.asm_4109a
+.skip_incr_wins
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
-	cp $05
-	jr z, .asm_410c4
+	cp NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	jr z, .finished_set
 	ld b, a
-	xor a
-	ld c, $01
+	xor a ; TCG_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_WIN
 	farcall ChallengeMachine
-	jp c, .asm_410fc
+	jp c, .withdrew
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
@@ -1661,56 +1661,59 @@ Func_41074:
 	ld a, d
 	farcall SetVarValue
 	farcall SetChallengeMachineDuelParams
-	jp .asm_41114
-.asm_410c4
+	jp .done
+
+.finished_set
 	ld a, [wTCGChallengeMachineSetsWonRecord]
 	ld c, a
 	ld a, [wTCGChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_410e1
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_record
 	ld a, c
 	ld [wTCGChallengeMachineSetsWonRecord], a
 	ld a, b
 	ld [wTCGChallengeMachineSetsWonRecord + 1], a
-.asm_410e1
-	call Func_4112e
-	xor a
-	ld bc, $501
+.skip_incr_record
+	call .CheckWinStreakRecord
+	xor a ; TCG_ISLAND
+	lb bc, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET, CHALLENGE_MACHINE_DUEL_WIN
 	farcall ChallengeMachine
-	jr .asm_41115
-.asm_410ee
+	jr .check_50winstreak_prize
+
+.quit
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
-	xor a
-	ld c, $02
+	xor a ; TCG_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_LOSS_OR_QUIT
 	farcall ChallengeMachine
-.asm_410fc
-	call Func_4112e
-	ld bc, $0
+.withdrew
+	call .CheckWinStreakRecord
+	ld bc, 0
 	ld a, c
 	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wTCGChallengeMachineCurWinStreak + 1], a
-.asm_4110a
+.exit
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
 	farcall SaveChallengeMachine
-.asm_41114
+.done
 	ret
-.asm_41115
+
+.check_50winstreak_prize
 	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld e, a
 	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld d, a
-	cp16_long 50
-	jr nz, .asm_4110a
-	call Func_41167
-	jr .asm_4110a
+	cp16_long NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE
+	jr nz, .exit
+	call Script_DrMason_50WinStreak
+	jr .exit
 
-Func_4112e:
+.CheckWinStreakRecord:
 	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld c, a
 	ld a, [wTCGChallengeMachineCurWinStreak + 1]
@@ -1720,10 +1723,10 @@ Func_4112e:
 	ld a, [wTCGChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
-	jr nc, .asm_4114a
+	jr nc, .new_record
 	scf
 	ret
-.asm_4114a
+.new_record
 	ld a, c
 	ld [wTCGChallengeMachineWinStreakRecord], a
 	ld a, b
@@ -1731,29 +1734,29 @@ Func_4112e:
 	call EnableSRAM
 	ld hl, sPlayerName
 	ld de, wTCGChallengeMachinePlayerName
-	ld bc, $10
+	ld bc, NAME_BUFFER_LENGTH
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM
 	scf
 	ccf
 	ret
 
-Func_41167:
+Script_DrMason_50WinStreak:
 	xor a
 	start_script
 	check_event EVENT_GOT_DUGTRIO_COIN
-	script_jump_if_b0z .ows_41186
+	script_jump_if_b0z .done
 	set_event EVENT_GOT_DUGTRIO_COIN
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	set_active_npc_direction NORTH
 	set_player_direction SOUTH
 	start_dialog
-	print_npc_text Text0f07
+	print_npc_text DrMasonTCGChallengeMachine50WinStreakRewards1Text
 	give_coin COIN_DUGTRIO
-	print_npc_text Text0f08
+	print_npc_text DrMasonTCGChallengeMachine50WinStreakRewards2Text
 	end_dialog
 	set_active_npc_direction SOUTH
-.ows_41186
+.done
 	end_script
 	ret
 
@@ -3034,10 +3037,10 @@ Script_TCGCupRound3AfterDuel:
 .proceed_prize
 	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_WON
 	get_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
-	compare_loaded_var NUM_CHALLENGE_CUP_WIN_THRESHOLD + 1
-	script_jump_if_b1z .handled_win_count
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE + 1
+	script_jump_if_b1z .skip_incr_win_count
 	inc_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
-.handled_win_count
+.skip_incr_win_count
 	end_dialog
 	move_active_npc .NPCMovement_41b86
 	wait_for_player_animation
@@ -3080,12 +3083,12 @@ Script_TCGCupRound3AfterDuel:
 	start_script
 .check_win_count
 	get_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
-	compare_loaded_var NUM_CHALLENGE_CUP_WIN_THRESHOLD
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE
 	script_jump_if_b0z .skip_10times_prize
-	print_npc_text CupHostTCGCupPlayer10TimesChampionText
+	print_npc_text CupHostTCGCup10TimesChampionRewards1Text
 	set_event EVENT_GOT_PONYTA_COIN
 	give_coin COIN_PONYTA
-	print_npc_text CupHostTCGCupPlayer10TimesChampionContinueText
+	print_npc_text CupHostTCGCup10TimesChampionRewards2Text
 	script_jump .exit
 .skip_10times_prize
 	print_npc_text CupHostTCGCupPlayerChampionCongratsText
@@ -4547,7 +4550,7 @@ Script_GRChallengeMachine:
 	farcall GetEventValue
 	ret z
 	farcall ValidateChallengeMachineSaveData
-	jr nc, .asm_4273a
+	jr nc, .no_error
 	farcall InitChallengeMachine
 	xor a
 	start_script
@@ -4555,59 +4558,59 @@ Script_GRChallengeMachine:
 	print_text ChallengeMachineWinStreakRecordCorruptedAndResetText
 	end_dialog
 	end_script
-.asm_4273a
+.no_error
 	farcall LoadChallengeMachineSave
-	ld a, $01
+	ld a, GR_ISLAND
 	farcall SetChallengeMachineOpponents
 	farcall LoadChallengeMachineOpponentTitlesAndNames
-	ld a, $01
-	ld bc, $0
+	ld a, GR_ISLAND
+	lb bc, 0, 0
 	farcall ChallengeMachine
-	jr c, .asm_42763
+	jr c, .quit
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	end_script
 	farcall SetChallengeMachineDuelParams
-	jr .asm_42775
-.asm_42763
+	jr .done
+.quit
 	or a
-	jr z, .asm_42775
-	ld bc, $0
+	jr z, .done
+	ld bc, 0
 	ld a, c
 	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wGRChallengeMachineCurWinStreak + 1], a
 	farcall SaveChallengeMachine
-.asm_42775
+.done
 	ret
 
 Func_42776:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
-	jp z, .asm_427f2
+	jp z, .quit
 	ld a, [wGRChallengeMachineCurWinStreak]
 	ld c, a
 	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_4279c
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_wins
 	ld a, c
 	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wGRChallengeMachineCurWinStreak + 1], a
-.asm_4279c
+.skip_incr_wins
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
-	cp $05
-	jr z, .asm_427c7
+	cp NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	jr z, .finished_set
 	ld b, a
-	ld a, $01
-	ld c, $01
+	ld a, GR_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_WIN
 	farcall ChallengeMachine
-	jp c, .asm_42801
+	jp c, .withdrew
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
@@ -4616,56 +4619,59 @@ Func_42776:
 	ld a, d
 	farcall SetVarValue
 	farcall SetChallengeMachineDuelParams
-	jp .asm_42819
-.asm_427c7
+	jp .done
+
+.finished_set
 	ld a, [wGRChallengeMachineSetsWonRecord]
 	ld c, a
 	ld a, [wGRChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_427e4
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_record
 	ld a, c
 	ld [wGRChallengeMachineSetsWonRecord], a
 	ld a, b
 	ld [wGRChallengeMachineSetsWonRecord + 1], a
-.asm_427e4
-	call Func_42833
-	ld a, $01
-	ld bc, $501
+.skip_incr_record
+	call .CheckWinStreakRecord
+	ld a, GR_ISLAND
+	lb bc, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET, CHALLENGE_MACHINE_DUEL_WIN
 	farcall ChallengeMachine
-	jr .asm_4281a
-.asm_427f2
+	jr .check_50winstreak_prize
+
+.quit
 	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
-	ld a, $01
-	ld c, $02
+	ld a, GR_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_LOSS_OR_QUIT
 	farcall ChallengeMachine
-.asm_42801
-	call Func_42833
-	ld bc, $0
+.withdrew
+	call .CheckWinStreakRecord
+	ld bc, 0
 	ld a, c
 	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
 	ld [wGRChallengeMachineCurWinStreak + 1], a
-.asm_4280f
+.exit
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
 	farcall SaveChallengeMachine
-.asm_42819
+.done
 	ret
-.asm_4281a
+
+.check_50winstreak_prize
 	ld a, [wGRChallengeMachineCurWinStreak]
 	ld e, a
 	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld d, a
-	cp16_long 50
-	jr nz, .asm_4280f
+	cp16_long NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE
+	jr nz, .exit
 	call Script_GRChallengeMachineStaff_50WinStreak
-	jr .asm_4280f
+	jr .exit
 
-Func_42833:
+.CheckWinStreakRecord:
 	ld a, [wGRChallengeMachineCurWinStreak]
 	ld c, a
 	ld a, [wGRChallengeMachineCurWinStreak + 1]
@@ -4675,10 +4681,10 @@ Func_42833:
 	ld a, [wGRChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
-	jr nc, .asm_4284f
+	jr nc, .new_record
 	scf
 	ret
-.asm_4284f
+.new_record
 	ld a, c
 	ld [wGRChallengeMachineWinStreakRecord], a
 	ld a, b
@@ -5178,10 +5184,10 @@ Script_GRCupRound3AfterDuel:
 	script_jump .check_win_count ; redundant, jumping to .skip_10times_prize should suffice
 .prize_cup3
 	get_var VAR_TIMES_WON_GR_CHALLENGE_CUP
-	compare_loaded_var NUM_CHALLENGE_CUP_WIN_THRESHOLD + 1
-	script_jump_if_b1z .handled_win_count
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE + 1
+	script_jump_if_b1z .skip_incr_win_count
 	inc_var VAR_TIMES_WON_GR_CHALLENGE_CUP
-.handled_win_count
+.skip_incr_win_count
 	quit_script
 	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
@@ -5204,12 +5210,12 @@ Script_GRCupRound3AfterDuel:
 	start_script
 .check_win_count
 	get_var VAR_TIMES_WON_GR_CHALLENGE_CUP
-	compare_loaded_var NUM_CHALLENGE_CUP_WIN_THRESHOLD
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE
 	script_jump_if_b0z .skip_10times_prize
-	print_npc_text CupHostGRCupPlayer10TimesChampionText
+	print_npc_text CupHostGRCup10TimesChampionRewards1Text
 	set_event EVENT_GOT_HORSEA_COIN
 	give_coin COIN_HORSEA
-	print_npc_text CupHostGRCupPlayer10TimesChampionContinueText
+	print_npc_text CupHostGRCup10TimesChampionRewards2Text
 	script_jump .exit
 .skip_10times_prize
 	print_npc_text CupHostGRCupPlayerChampionCongratsText

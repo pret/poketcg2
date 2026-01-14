@@ -38,6 +38,12 @@ DEF NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET    EQU 5
 DEF NUM_TCG_CHALLENGE_MACHINE_OPPONENT_POOL EQU 49
 DEF NUM_GR_CHALLENGE_MACHINE_OPPONENT_POOL  EQU 37
 
+DEF NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE EQU 50
+
+; caps for both duels won and sets won
+DEF MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD EQU 999
+
+
 ; wPlayerDuelVariables or wOpponentDuelVariables constants
 DEF DUELVARS_CARD_LOCATIONS                   EQUS "LOW(wPlayerCardLocations)"               ; 00
 DEF DUELVARS_PRIZE_CARDS                      EQUS "LOW(wPlayerPrizeCards)"                  ; 3c

@@ -2444,8 +2444,8 @@ TextOffsets::
 	textpointer CupHostTCGCup1ChampionPrizeText                       ; 0x0983
 	textpointer CupHostTCGCup2ChampionPrizeText                       ; 0x0984
 	textpointer CupHostTCGCup3ChampionPrizeText                       ; 0x0985
-	textpointer CupHostTCGCupPlayer10TimesChampionText                ; 0x0986
-	textpointer CupHostTCGCupPlayer10TimesChampionContinueText        ; 0x0987
+	textpointer CupHostTCGCup10TimesChampionRewards1Text              ; 0x0986
+	textpointer CupHostTCGCup10TimesChampionRewards2Text              ; 0x0987
 	textpointer CupHostTCGCupPlayerChampionCongratsText               ; 0x0988
 	textpointer CupHostTCGCupPlayerLostEliminatedText                 ; 0x0989
 	textpointer TCGChallengeHallEntranceClerkNoCardsText              ; 0x098a
@@ -3630,8 +3630,8 @@ TextOffsets::
 	textpointer CupHostGRCup1ChampionPrizeText                        ; 0x0e25
 	textpointer CupHostGRCup2ChampionPrizeText                        ; 0x0e26
 	textpointer CupHostGRCup3ChampionPrizeText                        ; 0x0e27
-	textpointer CupHostGRCupPlayer10TimesChampionText                 ; 0x0e28
-	textpointer CupHostGRCupPlayer10TimesChampionContinueText         ; 0x0e29
+	textpointer CupHostGRCup10TimesChampionRewards1Text               ; 0x0e28
+	textpointer CupHostGRCup10TimesChampionRewards2Text               ; 0x0e29
 	textpointer CupHostGRCupPlayerChampionCongratsText                ; 0x0e2a
 	textpointer GRChallengeHallEntranceClerkGRCup1InactiveText        ; 0x0e2b
 	textpointer GRChallengeHallEntranceClerkGRCup1ActiveText          ; 0x0e2c
@@ -3853,8 +3853,8 @@ TextOffsets::
 	textpointer Text0f04                                              ; 0x0f04
 	textpointer Text0f05                                              ; 0x0f05
 	textpointer ChallengeMachineWinStreakRecordCorruptedAndResetText  ; 0x0f06
-	textpointer Text0f07                                              ; 0x0f07
-	textpointer Text0f08                                              ; 0x0f08
+	textpointer DrMasonTCGChallengeMachine50WinStreakRewards1Text     ; 0x0f07
+	textpointer DrMasonTCGChallengeMachine50WinStreakRewards2Text     ; 0x0f08
 	textpointer Text0f09                                              ; 0x0f09
 	textpointer Text0f0a                                              ; 0x0f0a
 	textpointer Text0f0b                                              ; 0x0f0b

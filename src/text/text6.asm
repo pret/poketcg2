@@ -495,14 +495,14 @@ CupHostTCGCup3ChampionPrizeText:
 	linefw "「<RAMTEXT>」を どうぞ!"
 	done
 
-CupHostTCGCupPlayer10TimesChampionText:
+CupHostTCGCup10TimesChampionRewards1Text:
 	textfw "そして <RAMNAME>さん"
 	linefw "チャレンジカップ 10勝めです!"
 	linefw "10勝たっせいを きねんして"
 	linefw "こちらのコインを プレゼントします"
 	done
 
-CupHostTCGCupPlayer10TimesChampionContinueText:
+CupHostTCGCup10TimesChampionRewards2Text:
 	textfw "チャレンジカップ 10勝たっせい"
 	linefw "おめでとうございます!"
 	linefw "それでは <RAMNAME>さん"

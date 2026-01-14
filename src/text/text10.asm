@@ -466,12 +466,12 @@ ChallengeMachineWinStreakRecordCorruptedAndResetText:
 	linefw "しょきか しました"
 	done
 
-Text0f07:
+DrMasonTCGChallengeMachine50WinStreakRewards1Text:
 	textfw "50れんしょう たっせいじゃな"
 	linefw "きねんに コインを やろう"
 	done
 
-Text0f08:
+DrMasonTCGChallengeMachine50WinStreakRewards2Text:
 	textfw "どうじゃ? いいものじゃろう"
 	linefw "だいじに つかうんじゃぞ"
 	done
