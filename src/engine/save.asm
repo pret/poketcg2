@@ -420,9 +420,34 @@ ENDR
 	call SaveChallengeMachine
 	ret
 
+; too hacky and verbose
 .default_scorers
-	db $04, $13, $79, $15, $0f, $6b, $0f, $34, $0f, $2f, $0f, $00, $00, $00, $00, $00 ; "Dr.オーヤマ"
-	db $4e, $0f, $39, $0f, $38, $0f, $5f, $0f, $21, $0f, $00, $00, $00, $00, $00, $00 ; "ビルリッチ"
+; tcg
+; should just be textfw "Dr.オーヤマ" (+ padding)
+	textfw "Dr.オ"
+	katakana "-"
+	katakana "ヤ"
+	katakana "マ"
+	katakana ""
+	done
+	done
+	done
+	done
+	done
+; gr
+; should just be textfw "ビルリッチ" (+ padding)
+	textfw "ビ"
+	katakana "ル"
+	katakana "リ"
+	katakana "ッ"
+	katakana "チ"
+	katakana ""
+	done
+	done
+	done
+	done
+	done
+	done
 
 ; also init if has invalid save
 ClearChallengeMachineRecords:
