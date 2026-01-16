@@ -1643,9 +1643,9 @@ LightningClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40294
-	ow_script 13, 2, Func_402aa
-	ow_script 14, 2, Func_402c0
+	ow_script 12, 2, Script_LightningPokemonBook
+	ow_script 13, 2, Script_LightningPokemonDeckBuildingBook
+	ow_script 14, 2, Script_BirdPokemonBook
 	db $ff
 
 LightningClubLobby_MapScripts:
@@ -1950,9 +1950,9 @@ GrassClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_4018c
-	ow_script 13, 2, Func_401a2
-	ow_script 14, 2, Func_401b8
+	ow_script 12, 2, Script_PlantlikePokemonBook
+	ow_script 13, 2, Script_GrassPokemonBreederBook
+	ow_script 14, 2, Script_GrassPokemonDeckBuildingBook
 	db $ff
 
 GrassClubLobby_MapScripts:
@@ -2451,9 +2451,9 @@ TcgChallengeHallLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40318
-	ow_script 13, 2, Func_4032e
-	ow_script 14, 2, Func_40344
+	ow_script 12, 2, Script_ColorlessPokemonBook
+	ow_script 13, 2, Script_CardPopBook
+	ow_script 14, 2, Script_EnergyCardColorsBook
 	db $ff
 
 TcgChallengeHallLobby_MapScripts:
@@ -5297,12 +5297,12 @@ IshiharasVillaLibrary_NPCInteractions:
 	db $ff
 
 IshiharasVillaLibrary_OWInteractions:
-	ow_script 1, 2, Func_403de
-	ow_script 2, 2, Func_403f4
-	ow_script 3, 2, Func_4040a
-	ow_script 6, 2, Func_40420
-	ow_script 7, 2, Func_40436
-	ow_script 8, 2, Func_4044c
+	ow_script 1, 2, Script_PhantomCardsBook
+	ow_script 2, 2, Script_DarkPokemonBook
+	ow_script 3, 2, Script_AugmentBasicPokemonBook
+	ow_script 6, 2, Script_GRKingCardsBook
+	ow_script 7, 2, Script_SpecialEnergyBook
+	ow_script 8, 2, Script_GetCoinsBook
 	db $ff
 
 IshiharasVillaLibrary_MapScripts:

@@ -19,18 +19,18 @@ IshiharasHouse_NPCInteractions:
 	db $ff
 
 IshiharasHouse_OWInteractions:
-	ow_script 3, 2, Func_40000
-	ow_script 4, 2, Func_40016
-	ow_script 5, 2, Func_4002c
-	ow_script 6, 2, Func_40042
-	ow_script 7, 2, Func_40058
-	ow_script 8, 2, Func_4006e
-	ow_script 1, 9, Func_40084
-	ow_script 2, 9, Func_4009a
-	ow_script 3, 9, Func_400b0
-	ow_script 6, 9, Func_400c6
-	ow_script 7, 9, Func_400dc
-	ow_script 8, 9, Func_400f2
+	ow_script 3, 2, Script_CombosBook
+	ow_script 4, 2, Script_EnergyTransBook
+	ow_script 5, 2, Script_ToxicGasBook
+	ow_script 6, 2, Script_RainDanceBook
+	ow_script 7, 2, Script_SelfdestructBook
+	ow_script 8, 2, Script_DamageSwapBook
+	ow_script 1, 9, Script_RemoveEnergiesBook
+	ow_script 2, 9, Script_PrehistoricPowerBook
+	ow_script 3, 9, Script_WeaknessResistanceBook
+	ow_script 6, 9, Script_TeamGRBook
+	ow_script 7, 9, Script_GameCenterBook
+	ow_script 8, 9, Script_SamePokemonBook
 	db $ff
 
 IshiharasHouse_MapScripts:
@@ -1501,9 +1501,9 @@ PsychicClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_402d6
-	ow_script 13, 2, Func_402ec
-	ow_script 14, 2, Func_40302
+	ow_script 12, 2, Script_PsychicPokemonBook
+	ow_script 13, 2, Script_PsychicPokemonPokemonPowerBook
+	ow_script 14, 2, Script_UsefulButtonsBook
 	db $ff
 
 PsychicClubLobby_MapScripts:
@@ -2655,9 +2655,9 @@ RockClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40108
-	ow_script 13, 2, Func_4011e
-	ow_script 14, 2, Func_40134
+	ow_script 12, 2, Script_RockGroundPokemonBook
+	ow_script 13, 2, Script_FightingPokemonSurefireMethodBook
+	ow_script 14, 2, Script_FightingPokemonFormidableOpponentsBook
 	db $ff
 
 RockClubLobby_MapScripts:
@@ -3481,9 +3481,9 @@ FightingClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_4014a
-	ow_script 13, 2, Func_40160
-	ow_script 14, 2, Func_40176
+	ow_script 12, 2, Script_FightingPokemonBook
+	ow_script 13, 2, Script_FightingPokemonCombosBook
+	ow_script 14, 2, Script_FightingPokemonDeckBuildingBook
 	db $ff
 
 FightingClubLobby_MapScripts:
@@ -5140,9 +5140,9 @@ ScienceClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_401ce
-	ow_script 13, 2, Func_401e4
-	ow_script 14, 2, Func_401fa
+	ow_script 12, 2, Script_SciencePokemonBook
+	ow_script 13, 2, Script_SciencePokemonSurefireMethodBook
+	ow_script 14, 2, Script_SciencePokemonDeckBuildingBook
 	db $ff
 
 ScienceClubLobby_MapScripts:
@@ -6142,9 +6142,9 @@ WaterClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40210
-	ow_script 13, 2, Func_40226
-	ow_script 14, 2, Func_4023c
+	ow_script 12, 2, Script_WaterPokemonBook
+	ow_script 13, 2, Script_WaterPokemonAttacksBook
+	ow_script 14, 2, Script_PsyduckGolduckBook
 	db $ff
 
 WaterClubLobby_MapScripts:
@@ -7244,9 +7244,9 @@ FireClubLobby_OWInteractions:
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Func_3c1b9
 	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40252
-	ow_script 13, 2, Func_40268
-	ow_script 14, 2, Func_4027e
+	ow_script 12, 2, Script_FirePokemonBook
+	ow_script 13, 2, Script_FirePokemonAttacksBook
+	ow_script 14, 2, Script_FirePokemonDeckBuildingBook
 	db $ff
 
 FireClubLobby_MapScripts:
@@ -8128,12 +8128,12 @@ PokemonDomeEntrance_OWInteractions:
 	ow_script 5, 2, PCMenu
 	ow_script 9, 1, Func_2fe2a
 	ow_script 10, 1, Func_2fe2a
-	ow_script 1, 2, Func_4035a
-	ow_script 2, 2, Func_40370
-	ow_script 3, 2, Func_40386
-	ow_script 1, 5, Func_4039c
-	ow_script 2, 5, Func_403b2
-	ow_script 3, 5, Func_403c8
+	ow_script 1, 2, Script_LegendaryPokemonCardsVol1Book
+	ow_script 2, 2, Script_LegendaryPokemonCardsVol2Book
+	ow_script 3, 2, Script_LegendaryPokemonCardsVol3Book
+	ow_script 1, 5, Script_LegendaryPokemonCardsVol4Book
+	ow_script 2, 5, Script_GrandMastersBook
+	ow_script 3, 5, Script_CoinsBook
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
