@@ -2063,7 +2063,7 @@ Func_3d02b:
 	check_event EVENT_BEAT_BRITTANY
 	script_jump_if_b0z .ows_3d050
 	set_event EVENT_BEAT_BRITTANY
-	set_var VAR_02, $01
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_HELPING_NIKKI
 	print_npc_text Text0e81
 	script_jump .ows_3d05f
 .ows_3d050
@@ -4965,13 +4965,13 @@ IshiharasVillaMain_StepEvents:
 	db $ff
 
 IshiharasVillaMain_NPCs:
-	npc NPC_ISHIHARA, 6, 5, WEST, Func_3e7d6
-	npc NPC_ISHIHARAS_VILLA_GR_GAL, 2, 2, NORTH, Func_3e8d3
+	npc NPC_ISHIHARA, 6, 5, WEST, IshiharasVillaMain_IshiharaAppearanceCheck
+	npc NPC_ISHIHARAS_VILLA_GR_GAL, 2, 2, NORTH, IshiharasVillaMain_DisappearIfInGRCastle
 	db $ff
 
 IshiharasVillaMain_NPCInteractions:
-	npc_script NPC_ISHIHARA, Func_3e7c0
-	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, Func_3e8b1
+	npc_script NPC_ISHIHARA, Script_IshiharaAtVillaMain
+	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, Script_RuiAtVillaMain
 	db $ff
 
 IshiharasVillaMain_OWInteractions:
@@ -4991,12 +4991,12 @@ IshiharasVillaMain_MapScripts:
 	db $ff
 
 Func_3e704:
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $05
+	cp ISHIHARA_TRADE_3_DONE
 	jr c, .asm_3e722
 	jr z, .asm_3e71a
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
 	jr nz, .asm_3e722
 	jr .asm_3e727
@@ -5037,29 +5037,29 @@ Func_3e73a:
 Func_3e74a:
 	xor a
 	push af
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr z, .asm_3e758
+	jr z, .skip_bit0
 	pop af
 	or $01
 	push af
-.asm_3e758
+.skip_bit0
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr z, .asm_3e764
+	jr z, .skip_bit1
 	pop af
 	or $02
 	push af
-.asm_3e764
+.skip_bit1
 	pop af
 	or a
-	jr z, .asm_3e775
+	jr z, .done
 	ld c, a
-	ld a, $00
+	ld a, VAR_00
 	farcall SetVarValue
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-.asm_3e775
+.done
 	scf
 	ccf
 	ret
@@ -5074,16 +5074,16 @@ Func_3e778:
 	ret
 
 Func_3e787:
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
-	call nz, Func_3e7ad
+	call nz, .SetLocationFlag
 	pop af
 	bit 1, a
-	call nz, Func_3e7b4
+	call nz, .SetTradeFlag
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5091,51 +5091,51 @@ Func_3e787:
 	scf
 	ret
 
-Func_3e7ad:
-	ld a, EVENT_F5
+.SetLocationFlag:
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall MaxOutEventValue
 	ret
 
-Func_3e7b4:
+.SetTradeFlag:
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 
 Func_3e7bb:
-	call Func_3e836
+	call Script_IshiharaAfterDuel
 	scf
 	ret
 
-Func_3e7c0:
+Script_IshiharaAtVillaMain:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr z, .asm_3e7d3
+	jr z, .duel
 	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
-	jr nz, .asm_3e7d3
-	jp Func_3e854
-.asm_3e7d3
-	jp Func_3e7f5
+	jr nz, .duel
+	jp Script_IshiharaCongratsAtVillaMain
+.duel
+	jp Script_IshiharaDuel
 
-Func_3e7d6:
-	ld a, VAR_02
+IshiharasVillaMain_IshiharaAppearanceCheck:
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $0a
-	jr c, .asm_3e7f3
+	cp ISHIHARA_TRADE_7_DONE_COMPLETE
+	jr c, .disappear
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3e7f3
-	ld a, EVENT_F5
+	jr nz, .disappear
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr nz, .asm_3e7f3
+	jr nz, .disappear
 	scf
 	ccf
 	ret
-.asm_3e7f3
+.disappear
 	scf
 	ret
 
-Func_3e7f5:
+Script_IshiharaDuel:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5149,46 +5149,46 @@ Func_3e7f5:
 	get_player_opposite_direction
 	restore_active_npc_direction
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_3e819
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ee2
-	script_jump .ows_3e81c
-.ows_3e819
-	print_npc_text Text0ee3
-.ows_3e81c
-	ask_question Text0ee4, TRUE
-	script_jump_if_b0z .ows_3e830
-	script_call Script_3e873
-	print_npc_text Text0ee5
+	print_npc_text IshiharaWantsToDuelInitialText
+	script_jump .duel_prompt
+.repeat
+	print_npc_text IshiharaWantsToDuelRepeatText
+.duel_prompt
+	ask_question IshiharaDuelPromptText, TRUE
+	script_jump_if_b0z .declined
+	script_call Script_SeatPlayerAtIshiharaDuelTable
+	print_npc_text IshiharaDuelStartText
 	end_dialog
 	start_duel VERY_RARE_CARD_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_3e830
-	print_npc_text Text0ee6
+.declined
+	print_npc_text IshiharaDeclinedDuelText
 	end_dialog
 	end_script
 	ret
 
-Func_3e836:
+Script_IshiharaAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3e84e
+	script_jump_if_b0nz .player_lost
 	set_event EVENT_BATTLED_ISHIHARA
-	print_npc_text Text0ee7
-	give_booster_packs BoosterList_cdd3
-	print_npc_text Text0ee8
-	script_jump .ows_3e851
-.ows_3e84e
-	print_npc_text Text0ee9
-.ows_3e851
+	print_npc_text IshiharaPlayerWon1Text
+	give_booster_packs BoosterList_Ishihara
+	print_npc_text IshiharaPlayerWon2Text
+	script_jump .done
+.player_lost
+	print_npc_text IshiharaPlayerLostText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3e854:
+Script_IshiharaCongratsAtVillaMain:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5202,12 +5202,12 @@ Func_3e854:
 	get_player_opposite_direction
 	restore_active_npc_direction
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
-	print_npc_text Text0eb4
+	print_npc_text IshiharaDefeatedBiruritchiCongratsText
 	end_dialog
 	end_script
 	ret
 
-Script_3e873:
+Script_SeatPlayerAtIshiharaDuelTable:
 	end_dialog
 	set_active_npc_direction WEST
 	get_player_direction
@@ -5245,7 +5245,7 @@ Script_3e873:
 	db EAST, MOVE_0
 	db $ff
 
-Func_3e8b1:
+Script_RuiAtVillaMain:
 	ld a, NPC_ISHIHARAS_VILLA_GR_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogRuiText
@@ -5256,23 +5256,23 @@ Func_3e8b1:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0eea
+	print_npc_text RuiStudyingAtIshiharasVilla1Text
 	get_player_opposite_direction
 	restore_active_npc_direction
-	print_npc_text Text0eeb
+	print_npc_text RuiStudyingAtIshiharasVilla2Text
 	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
 
-Func_3e8d3:
+IshiharasVillaMain_DisappearIfInGRCastle:
 	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
 	farcall GetEventValue
-	jr nz, .asm_3e8de
+	jr nz, .disappear
 	scf
 	ccf
 	ret
-.asm_3e8de
+.disappear
 	scf
 	ret
 
@@ -5287,13 +5287,13 @@ IshiharasVillaLibrary_StepEvents:
 	db $ff
 
 IshiharasVillaLibrary_NPCs:
-	npc NPC_ISHIHARA, 5, 4, SOUTH, Func_3ea55
-	npc NPC_ISHIHARAS_VILLA_GR_GAL, 4, 2, NORTH, Func_3ecd5
+	npc NPC_ISHIHARA, 5, 4, SOUTH, IshiharasVillaLibrary_IshiharaAppearanceCheck
+	npc NPC_ISHIHARAS_VILLA_GR_GAL, 4, 2, NORTH, IshiharasVillaLibrary_RuiAppearanceCheck
 	db $ff
 
 IshiharasVillaLibrary_NPCInteractions:
-	npc_script NPC_ISHIHARA, Func_3ea12
-	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, Func_3ec75
+	npc_script NPC_ISHIHARA, Script_IshiharaAtVillaLibrary
+	npc_script NPC_ISHIHARAS_VILLA_GR_GAL, Script_RuiAtVillaLibrary
 	db $ff
 
 IshiharasVillaLibrary_OWInteractions:
@@ -5316,12 +5316,12 @@ IshiharasVillaLibrary_MapScripts:
 	db $ff
 
 Func_3e95b:
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $05
+	cp ISHIHARA_TRADE_3_DONE
 	jr c, .asm_3e979
 	jr z, .asm_3e971
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
 	jr nz, .asm_3e979
 	jr .asm_3e97e
@@ -5362,29 +5362,29 @@ Func_3e991:
 Func_3e9a1:
 	xor a
 	push af
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr z, .asm_3e9af
+	jr z, .skip_bit0
 	pop af
 	or $01
 	push af
-.asm_3e9af
+.skip_bit0
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr z, .asm_3e9bb
+	jr z, .skip_bit1
 	pop af
 	or $02
 	push af
-.asm_3e9bb
+.skip_bit1
 	pop af
 	or a
-	jr z, .asm_3e9cc
+	jr z, .done
 	ld c, a
-	ld a, $00
+	ld a, VAR_00
 	farcall SetVarValue
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-.asm_3e9cc
+.done
 	scf
 	ccf
 	ret
@@ -5399,16 +5399,16 @@ Func_3e9cf:
 	ret
 
 Func_3e9de:
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
-	call nz, Func_3ea04
+	call nz, .SetLocationFlag
 	pop af
 	bit 1, a
-	call nz, Func_3ea0b
+	call nz, .SetTradeFlag
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -5416,76 +5416,76 @@ Func_3e9de:
 	scf
 	ret
 
-Func_3ea04:
-	ld a, EVENT_F5
+.SetLocationFlag:
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall MaxOutEventValue
 	ret
 
-Func_3ea0b:
+.SetTradeFlag:
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 
-Func_3ea12:
+Script_IshiharaAtVillaLibrary:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ea25
 	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
 	jr nz, .asm_3ea25
-	jp Func_3ec58
+	jp Script_IshiharaCongratsAtVillaLibrary
 .asm_3ea25
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_3ea3b
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $06
-	jp z, Func_3ea86
-	jp Func_3ec3d
+	cp ISHIHARA_TALKED_AT_VILLA
+	jp z, Script_IshiharaVillaWelcome
+	jp Script_IshiharaTradeLaterAtVilla
 .asm_3ea3b
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	sub $05
-	jp z, Func_3ea86
+	sub ISHIHARA_TRADE_3_DONE
+	jp z, Script_IshiharaVillaWelcome ; ISHIHARA_TRADE_3_DONE
 	dec a
-	jp z, Func_3eab1
+	jp z, Script_IshiharaTrade4       ; ISHIHARA_TALKED_AT_VILLA
 	dec a
-	jp z, Func_3eb14
+	jp z, Script_IshiharaTrade5       ; ISHIHARA_TRADE_4_DONE
 	dec a
-	jp z, Func_3eb77
-	jp Func_3ebda
+	jp z, Script_IshiharaTrade6       ; ISHIHARA_TRADE_5_DONE
+	jp Script_IshiharaTrade7          ; ISHIHARA_TRADE_6_DONE
 
-Func_3ea55:
-	ld a, VAR_02
+IshiharasVillaLibrary_IshiharaAppearanceCheck:
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $05
-	jr c, .asm_3ea84
+	cp ISHIHARA_TRADE_3_DONE
+	jr c, .disappear
 	jr z, .asm_3ea6f
-	cp $0a
+	cp ISHIHARA_TRADE_7_DONE_COMPLETE
 	jr z, .asm_3ea79
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr nz, .asm_3ea84
-	jr .asm_3ea81
+	jr nz, .disappear
+	jr .appear
 .asm_3ea6f
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3ea84
-	jr .asm_3ea81
+	jr nz, .disappear
+	jr .appear
 .asm_3ea79
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr z, .asm_3ea84
-.asm_3ea81
+	jr z, .disappear
+.appear
 	scf
 	ccf
 	ret
-.asm_3ea84
+.disappear
 	scf
 	ret
 
-Func_3ea86:
+Script_IshiharaVillaWelcome:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5497,19 +5497,19 @@ Func_3ea86:
 	start_script
 	start_dialog
 	check_event EVENT_ISHIHARA_CARD_TRADE_STATE
-	script_jump_if_b0z .ows_3eaab
-	set_var VAR_02, $06
+	script_jump_if_b0z .repeat
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TALKED_AT_VILLA
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
-	print_npc_text Text0ebf
-	script_jump .ows_3eaae
-.ows_3eaab
-	print_npc_text Text0ec0
-.ows_3eaae
+	print_npc_text IshiharaMyVillaText
+	script_jump .done
+.repeat
+	print_npc_text IshiharaVillaSeeYouLaterText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3eab1:
+Script_IshiharaTrade4:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5521,42 +5521,42 @@ Func_3eab1:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_3ead3
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ec1
-	script_jump .ows_3ead6
-.ows_3ead3
-	print_npc_text Text0ec2
-.ows_3ead6
+	print_npc_text IshiharaWantsToTrade4InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade4RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_3eae3
-	print_npc_text Text0e9d
-	script_jump .ows_3eb11
-.ows_3eae3
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks MOLTRES_LV37
-	script_jump_if_b0z .ows_3eaef
-	print_npc_text Text0ec3
-	script_jump .ows_3eb11
-.ows_3eaef
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnMoltresLv37Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection MOLTRES_LV37
-	script_jump_if_b0z .ows_3eafb
-	print_npc_text Text0ec4
-	script_jump .ows_3eb11
-.ows_3eafb
-	print_npc_text Text0ec5
-	print_text Text0ec6
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllMoltresLv37InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade4Text
+	print_text TradedMoltresForSurfingPikachuText
 	receive_card SURFING_PIKACHU_ALT_LV13
 	take_card MOLTRES_LV37
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $07
-	print_npc_text Text0ec7
-.ows_3eb11
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_4_DONE
+	print_npc_text IshiharaThanksTradedMoltresLv37Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3eb14:
+Script_IshiharaTrade5:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5568,42 +5568,42 @@ Func_3eb14:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_3eb36
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ec8
-	script_jump .ows_3eb39
-.ows_3eb36
-	print_npc_text Text0ec9
-.ows_3eb39
+	print_npc_text IshiharaWantsToTrade5InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade5RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_3eb46
-	print_npc_text Text0e9d
-	script_jump .ows_3eb74
-.ows_3eb46
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks ARTICUNO_LV34
-	script_jump_if_b0z .ows_3eb52
-	print_npc_text Text0eca
-	script_jump .ows_3eb74
-.ows_3eb52
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnArticunoLv34Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection ARTICUNO_LV34
-	script_jump_if_b0z .ows_3eb5e
-	print_npc_text Text0ecb
-	script_jump .ows_3eb74
-.ows_3eb5e
-	print_npc_text Text0ecc
-	print_text Text0ecd
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllArticunoLv34InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade5Text
+	print_text TradedArticunoLv34ForSurfingPikachuText
 	receive_card SURFING_PIKACHU_LV13
 	take_card ARTICUNO_LV34
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $08
-	print_npc_text Text0ece
-.ows_3eb74
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_5_DONE
+	print_npc_text IshiharaThanksTradedArticunoLv34Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3eb77:
+Script_IshiharaTrade6:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5615,42 +5615,42 @@ Func_3eb77:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_3eb99
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ecf
-	script_jump .ows_3eb9c
-.ows_3eb99
-	print_npc_text Text0ed0
-.ows_3eb9c
+	print_npc_text IshiharaWantsToTrade6InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade6RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_3eba9
-	print_npc_text Text0e9d
-	script_jump .ows_3ebd7
-.ows_3eba9
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks ZAPDOS_LV40
-	script_jump_if_b0z .ows_3ebb5
-	print_npc_text Text0ed1
-	script_jump .ows_3ebd7
-.ows_3ebb5
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnZapdosLv40Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection ZAPDOS_LV40
-	script_jump_if_b0z .ows_3ebc1
-	print_npc_text Text0ed2
-	script_jump .ows_3ebd7
-.ows_3ebc1
-	print_npc_text Text0ed3
-	print_text Text0ed4
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllZapdosLv40InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade6Text
+	print_text TradedZapdosLv40ForFlyingPikachuText
 	receive_card FLYING_PIKACHU_LV12
 	take_card ZAPDOS_LV40
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $09
-	print_npc_text Text0ed5
-.ows_3ebd7
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_6_DONE
+	print_npc_text IshiharaThanksTradedZapdosLv40Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3ebda:
+Script_IshiharaTrade7:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5662,42 +5662,42 @@ Func_3ebda:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_3ebfc
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ed6
-	script_jump .ows_3ebff
-.ows_3ebfc
-	print_npc_text Text0ed7
-.ows_3ebff
+	print_npc_text IshiharaWantsToTrade7InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade7RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_3ec0c
-	print_npc_text Text0e9d
-	script_jump .ows_3ec3a
-.ows_3ec0c
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks DARK_DRAGONITE
-	script_jump_if_b0z .ows_3ec18
-	print_npc_text Text0ed8
-	script_jump .ows_3ec3a
-.ows_3ec18
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnDarkDragoniteText
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection DARK_DRAGONITE
-	script_jump_if_b0z .ows_3ec24
-	print_npc_text Text0ed9
-	script_jump .ows_3ec3a
-.ows_3ec24
-	print_npc_text Text0eda
-	print_text Text0edb
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllDarkDragoniteInDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade7Text
+	print_text TradedDarkDragoniteForBillsComputerText
 	receive_card BILLS_COMPUTER
 	take_card DARK_DRAGONITE
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $0a
-	print_npc_text Text0edc
-.ows_3ec3a
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_7_DONE_COMPLETE
+	print_npc_text IshiharaThanksTradedDarkDragoniteTradesCompleteText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3ec3d:
+Script_IshiharaTradeLaterAtVilla:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5708,12 +5708,12 @@ Func_3ec3d:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0edd
+	print_npc_text IshiharaAtVillaTradeLaterReadMyBooksText
 	end_dialog
 	end_script
 	ret
 
-Func_3ec58:
+Script_IshiharaCongratsAtVillaLibrary:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -5725,12 +5725,12 @@ Func_3ec58:
 	start_script
 	start_dialog
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
-	print_npc_text Text0eb4
+	print_npc_text IshiharaDefeatedBiruritchiCongratsText
 	end_dialog
 	end_script
 	ret
 
-Func_3ec75:
+Script_RuiAtVillaLibrary:
 	ld a, NPC_ISHIHARAS_VILLA_GR_GAL
 	ld [wScriptNPC], a
 	ldtx hl, DialogRuiText
@@ -5744,33 +5744,33 @@ Func_3ec75:
 	set_event EVENT_MET_GR_GAL_ISHIHARAS_VILLA
 	get_player_opposite_direction
 	restore_active_npc_direction
-	print_npc_text Text0ede
+	print_npc_text RuiStudyingAtIshiharasVillaPostgameText
 	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
-	script_jump_if_b0z .ows_3ec9d
+	script_jump_if_b0z .skip_player_reposition
 	set_player_direction EAST
 	animate_player_movement $83, $02
-.ows_3ec9d
+.skip_player_reposition
 	check_npc_loaded NPC_ISHIHARA
-	script_jump_if_b1nz .ows_3ecc2
+	script_jump_if_b1nz .no_ishihara
 	move_active_npc .NPCMovement_3ecca
 	wait_for_player_animation
 	start_dialog
-	print_npc_text Text0edf
+	print_npc_text RuiThanksIshiharaText
 	set_active_npc NPC_ISHIHARA, DialogMrIshiharaText
 	set_active_npc_direction WEST
-	print_npc_text Text0ee0
+	print_npc_text IshiharaGladToHelpRuiText
 	set_active_npc NPC_ISHIHARAS_VILLA_GR_GAL, DialogRuiText
-	print_npc_text Text0ee1
+	print_npc_text RuiGoodbyeIshiharaText
 	end_dialog
 	move_active_npc .NPCMovement_3eccf
 	wait_for_player_animation
-	script_jump .ows_3ecc6
-.ows_3ecc2
+	script_jump .done
+.no_ishihara
 	move_active_npc .NPCMovement_3ecd2
 	wait_for_player_animation
-.ows_3ecc6
+.done
 	unload_npc NPC_ISHIHARAS_VILLA_GR_GAL
 	end_script
 	ret
@@ -5785,17 +5785,17 @@ Func_3ec75:
 	db SOUTH, MOVE_7
 	db $ff
 
-Func_3ecd5:
+IshiharasVillaLibrary_RuiAppearanceCheck:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr z, .asm_3ece8
+	jr z, .disappear
 	ld a, EVENT_MET_GR_GAL_ISHIHARAS_VILLA
 	farcall GetEventValue
-	jr nz, .asm_3ece8
+	jr nz, .disappear
 	scf
 	ccf
 	ret
-.asm_3ece8
+.disappear
 	scf
 	ret
 

@@ -903,7 +903,7 @@ events = [
 	"EVENT_F2",
 	"EVENT_F3",
 	"EVENT_ISHIHARA_CARD_TRADE_STATE",
-	"EVENT_F5",
+	"EVENT_ISHIHARA_LOCATION_STATE",
 ]
 
 framesets = [
@@ -2958,7 +2958,7 @@ tilemaps = [
 vars = [
 	"VAR_00",
 	"VAR_01",
-	"VAR_02",
+	"VAR_ISHIHARA_STATE",
 	"VAR_03",
 	"VAR_TIMES_MET_RONALD",
 	"VAR_05",

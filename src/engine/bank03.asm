@@ -417,18 +417,18 @@ Func_c2d6:
 	ret
 
 Func_c2ff:
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	call GetVarValue
-	cp $06
-	jr c, .asm_c318
-	ld a, EVENT_F5
+	cp ISHIHARA_TALKED_AT_VILLA
+	jr c, .done
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	call ZeroOutEventValue
 	call UpdateRNGSources
 	rra
-	jr nc, .asm_c318
-	ld a, EVENT_F5
+	jr nc, .done
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	call MaxOutEventValue
-.asm_c318
+.done
 	ret
 
 Func_c319:
@@ -2139,13 +2139,13 @@ EventVarMasks:
 	db $33, %00000100 ; EVENT_F2
 	db $33, %00001000 ; EVENT_F3
 	db $33, %00010000 ; EVENT_ISHIHARA_CARD_TRADE_STATE
-	db $33, %00100000 ; EVENT_F5
+	db $33, %00100000 ; EVENT_ISHIHARA_LOCATION_STATE
 
 ; extra events?
 GeneralVarMasks:
 	db $00, %11111111 ; VAR_00
 	db $01, %00000011 ; VAR_01
-	db $01, %00111100 ; VAR_02
+	db $01, %00111100 ; VAR_ISHIHARA_STATE
 	db $01, %11000000 ; VAR_03
 	db $02, %00001111 ; VAR_TIMES_MET_RONALD
 	db $03, %00000011 ; VAR_05

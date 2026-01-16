@@ -275,7 +275,7 @@
 	const EVENT_F2                                        ; $f2
 	const EVENT_F3                                        ; $f3
 	const EVENT_ISHIHARA_CARD_TRADE_STATE                 ; $f4
-	const EVENT_F5                                        ; $f5
+	const EVENT_ISHIHARA_LOCATION_STATE                   ; $f5
 DEF NUM_EVENT_FLAGS EQU const_value
 
 	const_def 1

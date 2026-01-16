@@ -1,7 +1,7 @@
 	const_def
 	const VAR_00                                       ; $00
 	const VAR_01                                       ; $01
-	const VAR_02                                       ; $02
+	const VAR_ISHIHARA_STATE                           ; $02
 	const VAR_03                                       ; $03
 	const VAR_TIMES_MET_RONALD                         ; $04
 	const VAR_05                                       ; $05
@@ -62,3 +62,16 @@
 	const VAR_NPC_DECK_ID                              ; $3c
 	const VAR_DUEL_START_THEME                         ; $3d
 	const VAR_3E                                       ; $3e
+
+; VAR_ISHIHARA_STATE values
+	const_def 1
+	const ISHIHARA_HELPING_NIKKI         ; $1
+	const ISHIHARA_HELPED_NIKKI          ; $2
+	const ISHIHARA_TRADE_1_DONE          ; $3
+	const ISHIHARA_TRADE_2_DONE          ; $4
+	const ISHIHARA_TRADE_3_DONE          ; $5
+	const ISHIHARA_TALKED_AT_VILLA       ; $6
+	const ISHIHARA_TRADE_4_DONE          ; $7
+	const ISHIHARA_TRADE_5_DONE          ; $8
+	const ISHIHARA_TRADE_6_DONE          ; $9
+	const ISHIHARA_TRADE_7_DONE_COMPLETE ; $a
