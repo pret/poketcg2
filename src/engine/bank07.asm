@@ -3555,21 +3555,21 @@ _PlayLinkDuelAndGetResult:
 	pop bc
 	ret
 
-Func_1d9be:
+HandleGiftCenter:
 	push af
 	push bc
 	push de
 	push hl
 	farcall HideNPCAnimsUnderDialogBox
-	call Func_1d9ff
+	call GiftCenter_PrintWelcome
 	call Func_1da45
-	jr c, .asm_1d9ed
+	jr c, .exit
 	ld a, [wdc06]
 	cp $04
-	jr z, .asm_1d9ed
-	call Func_1da1f
-	call Func_1da2a
-	jr c, .asm_1d9ed
+	jr z, .exit
+	call GiftCenter_PrintSelectedService
+	call GiftCenter_SaveRequest
+	jr c, .exit
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_CARD_POP
@@ -3577,8 +3577,8 @@ Func_1d9be:
 	pop af
 	call Func_1dac1
 	call ResumeSong_ClearTemp
-.asm_1d9ed
-	call Func_1da14
+.exit
+	call GiftCenter_PrintComeAgain
 	farcall ShowNPCAnimsUnderDialogBox
 	pop hl
 	pop de
@@ -3591,7 +3591,7 @@ Func_1d9f9:
 	ld [wdc06], a
 	ret
 
-Func_1d9ff:
+GiftCenter_PrintWelcome:
 	ldtx hl, GiftCenterWelcomeText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
@@ -3600,19 +3600,19 @@ Func_1d9ff:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da14:
+GiftCenter_PrintComeAgain:
 	ldtx hl, GiftCenterComeAgainText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da1f:
+GiftCenter_PrintSelectedService:
 	ldtx hl, GiftCenterServiceAcknowledgementText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da2a:
+GiftCenter_SaveRequest:
 	ldtx hl, GiftCenterServiceSaveRequestText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0

@@ -1499,8 +1499,8 @@ PsychicClubLobby_NPCInteractions:
 PsychicClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_PsychicPokemonBook
 	ow_script 13, 2, Script_PsychicPokemonPokemonPowerBook
 	ow_script 14, 2, Script_UsefulButtonsBook
@@ -2653,8 +2653,8 @@ RockClubLobby_NPCInteractions:
 RockClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_RockGroundPokemonBook
 	ow_script 13, 2, Script_FightingPokemonSurefireMethodBook
 	ow_script 14, 2, Script_FightingPokemonFormidableOpponentsBook
@@ -3479,8 +3479,8 @@ FightingClubLobby_NPCInteractions:
 FightingClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_FightingPokemonBook
 	ow_script 13, 2, Script_FightingPokemonCombosBook
 	ow_script 14, 2, Script_FightingPokemonDeckBuildingBook
@@ -5138,8 +5138,8 @@ ScienceClubLobby_NPCInteractions:
 ScienceClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_SciencePokemonBook
 	ow_script 13, 2, Script_SciencePokemonSurefireMethodBook
 	ow_script 14, 2, Script_SciencePokemonDeckBuildingBook
@@ -6140,8 +6140,8 @@ WaterClubLobby_NPCInteractions:
 WaterClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_WaterPokemonBook
 	ow_script 13, 2, Script_WaterPokemonAttacksBook
 	ow_script 14, 2, Script_PsyduckGolduckBook
@@ -7242,8 +7242,8 @@ FireClubLobby_NPCInteractions:
 FireClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, GiftCenter
 	ow_script 12, 2, Script_FirePokemonBook
 	ow_script 13, 2, Script_FirePokemonAttacksBook
 	ow_script 14, 2, Script_FirePokemonDeckBuildingBook

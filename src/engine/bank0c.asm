@@ -1505,8 +1505,8 @@ GrassFortLobby_NPCInteractions:
 GrassFortLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 5, 4, Func_3c1d0
-	ow_script 8, 4, Func_3c2d9
+	ow_script 5, 4, Script_GRBattleCenterClerk
+	ow_script 8, 4, GiftCenter
 	db $ff
 
 GrassFortLobby_MapScripts:
@@ -2547,8 +2547,8 @@ LightningFortLobby_NPCInteractions:
 LightningFortLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 5, 4, Func_3c1d0
-	ow_script 8, 4, Func_3c2d9
+	ow_script 5, 4, Script_GRBattleCenterClerk
+	ow_script 8, 4, GiftCenter
 	db $ff
 
 LightningFortLobby_MapScripts:
@@ -3685,8 +3685,8 @@ FireFortLobby_NPCInteractions:
 FireFortLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 5, 4, Func_3c1d0
-	ow_script 8, 4, Func_3c2d9
+	ow_script 5, 4, Script_GRBattleCenterClerk
+	ow_script 8, 4, GiftCenter
 	db $ff
 
 FireFortLobby_MapScripts:
