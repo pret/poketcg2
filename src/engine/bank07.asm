@@ -2964,7 +2964,7 @@ ReadOrInitSaveData:
 	farcall ClearGameCenterChips
 	call InitializeMailboxWRAM
 	call Func_1d7a1
-	call Func_1d9f9
+	call SetGiftCenterMenuCursorToQuit
 	call Func_1dcb7
 
 	; this is unnecessary since Card Pop list
@@ -2973,7 +2973,7 @@ ReadOrInitSaveData:
 
 	call EnableAnimations
 	call ClearwMinicomMenuCursorPosition
-	farcall Func_111f0
+	farcall SetPCMenuCursorToShutdown
 	call InitDefaultConfigMenuSettings
 	call SaveConfigMenuChoicesToSRAM
 	call LoadSavedOptions
@@ -3555,17 +3555,17 @@ _PlayLinkDuelAndGetResult:
 	pop bc
 	ret
 
-HandleGiftCenter:
+GiftCenter:
 	push af
 	push bc
 	push de
 	push hl
 	farcall HideNPCAnimsUnderDialogBox
 	call GiftCenter_PrintWelcome
-	call Func_1da45
+	call GiftCenter_HandleMenu
 	jr c, .exit
-	ld a, [wdc06]
-	cp $04
+	ld a, [wGiftCenterMenuCursorPosition]
+	cp GIFTCENTERMENU_QUIT
 	jr z, .exit
 	call GiftCenter_PrintSelectedService
 	call GiftCenter_SaveRequest
@@ -3575,7 +3575,7 @@ HandleGiftCenter:
 	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
-	call Func_1dac1
+	call GiftCenter_ExecuteSelectedOption
 	call ResumeSong_ClearTemp
 .exit
 	call GiftCenter_PrintComeAgain
@@ -3586,9 +3586,9 @@ HandleGiftCenter:
 	pop af
 	ret
 
-Func_1d9f9:
-	ld a, $04
-	ld [wdc06], a
+SetGiftCenterMenuCursorToQuit:
+	ld a, GIFTCENTERMENU_QUIT
+	ld [wGiftCenterMenuCursorPosition], a
 	ret
 
 GiftCenter_PrintWelcome:
@@ -3624,68 +3624,131 @@ GiftCenter_SaveRequest:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da45:
-	call Func_1da4f
-	call Func_1da88
-	call Func_1dabd
+GiftCenter_HandleMenu:
+	call .ShowMenu
+	call .HandleInput
+	call .RestoreNPCs
 	ret
 
-Func_1da4f:
-	ld de, $400
-	ld b, $07
-	ld hl, $5a64
+.ShowMenu:
+	lb de, 4, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
-	ld a, [wdc06]
+	ld a, [wGiftCenterMenuCursorPosition]
 	call HideNPCAnimsUnderMenuBox
 	call DrawMenuBox
 	ret
-; 0x1da64
 
-SECTION "Bank 7@5a88", ROMX[$5a88], BANK[$7]
+.menu_params
+	menubox_params TRUE, 16, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, GiftCenterSendCardsText
+	textitem 2,  4, GiftCenterReceiveCardsText
+	textitem 2,  6, GiftCenterSendDeckConfigurationText
+	textitem 2,  8, GiftCenterReceiveDeckConfigurationText
+	textitem 2, 10, GiftCenterQuitText
+	textitems_end
 
-Func_1da88:
-	ld a, [wdc06]
+.HandleInput:
+	ld a, [wGiftCenterMenuCursorPosition]
 	call HandleMenuBox
-	ld [wdc06], a
+	ld [wGiftCenterMenuCursorPosition], a
 	push af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $5ab5
+	ld hl, .text_table
 	add hl, bc
 	ld a, [hli]
 	ld [wTxRam2], a
 	ld a, [hl]
 	ld [wTxRam2 + 1], a
 	pop af
-	jr c, .asm_1daad
+	jr c, .quit
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1daad
+.quit
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
-; 0x1dab5
 
-SECTION "Bank 7@5abd", ROMX[$5abd], BANK[$7]
+.text_table
+	tx GiftCenterSendCardsText
+	tx GiftCenterReceiveCardsText
+	tx GiftCenterSendDeckConfigurationText
+	tx GiftCenterReceiveDeckConfigurationText
 
-Func_1dabd:
+.RestoreNPCs:
 	call ShowNPCAnimsUnderMenuBox
 	ret
 
-Func_1dac1:
-	ld a, [wdc06]
-	ld hl, $5acb
+GiftCenter_ExecuteSelectedOption:
+	ld a, [wGiftCenterMenuCursorPosition]
+	ld hl, .function_map
 	call CallMappedFunction
 	ret
-; 0x1dacb
 
-SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
+.function_map
+	key_func GIFTCENTERMENU_SEND_CARDS,                 .SendCards
+	key_func GIFTCENTERMENU_RECEIVE_CARDS,              .ReceiveCards
+	key_func GIFTCENTERMENU_SEND_DECK_CONFIGURATION,    .SendDeckConfiguration
+	key_func GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION, .ReceiveDeckConfiguration
+	db $ff ; end
+
+.SendCards:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	xor a ; GIFTCENTERMENU_SEND_CARDS
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.ReceiveCards:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_RECEIVE_CARDS
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.SendDeckConfiguration:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_SEND_DECK_CONFIGURATION
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.ReceiveDeckConfiguration:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
 
 GiveCoin:
 	farcall Func_1022a
@@ -5617,7 +5680,7 @@ MinicomDeckSaveMachine:
 
 MinicomCardAlbum:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	farcall Func_a786
+	farcall HandlePlayersCardsScreen
 	ret
 
 Func_1e849:

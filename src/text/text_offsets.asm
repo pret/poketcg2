@@ -773,8 +773,8 @@ TextOffsets::
 	textpointer ProcedureForSendingCardsToPlayerText                  ; 0x02ff
 	textpointer ReadProcedureForSendingCardsToPlayerText              ; 0x0300
 	textpointer SendText                                              ; 0x0301
-	textpointer CardReceivedText                                      ; 0x0302
-	textpointer CardToSendToPlayerText                                ; 0x0303
+	textpointer CardsReceivedText                                     ; 0x0302
+	textpointer CardsToSendToPlayerText                               ; 0x0303
 	textpointer SendTheseCardsToPlayerPromptText                      ; 0x0304
 	textpointer ReceivedTheseCardsFromText                            ; 0x0305
 	textpointer ChooseDeckConfigurationToSendText                     ; 0x0306

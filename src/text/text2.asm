@@ -2191,16 +2191,16 @@ ReadProcedureForSendingCardsToPlayerText:
 	linefw "かくにんしてください"
 	done
 
+; used both for sending cards to another player and to in-game machines
 SendText:
-	; used both for sending cards to another player and to in-game machines
 	textfw "おくる"
 	done
 
-CardReceivedText:
+CardsReceivedText:
 	textfw "もらったカード"
 	done
 
-CardToSendToPlayerText:
+CardsToSendToPlayerText:
 	textfw "あげるカード"
 	done
 

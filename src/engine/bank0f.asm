@@ -340,10 +340,10 @@ Script_BattleCenter:
 .ows_3c2d8
 	script_ret
 
-GiftCenter:
+Script_GiftCenter:
 	ld a, EVENT_F2
 	farcall ZeroOutEventValue
-	farcall HandleGiftCenter
+	farcall GiftCenter
 	ld a, EVENT_F2
 	farcall GetEventValue
 	jr z, .done
@@ -1644,7 +1644,7 @@ LightningClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Script_TCGBattleCenterClerk
-	ow_script 4, 4, GiftCenter
+	ow_script 4, 4, Script_GiftCenter
 	ow_script 12, 2, Script_LightningPokemonBook
 	ow_script 13, 2, Script_LightningPokemonDeckBuildingBook
 	ow_script 14, 2, Script_BirdPokemonBook
@@ -1951,7 +1951,7 @@ GrassClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Script_TCGBattleCenterClerk
-	ow_script 4, 4, GiftCenter
+	ow_script 4, 4, Script_GiftCenter
 	ow_script 12, 2, Script_PlantlikePokemonBook
 	ow_script 13, 2, Script_GrassPokemonBreederBook
 	ow_script 14, 2, Script_GrassPokemonDeckBuildingBook
@@ -2452,7 +2452,7 @@ TcgChallengeHallLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
 	ow_script 2, 4, Script_TCGBattleCenterClerk
-	ow_script 4, 4, GiftCenter
+	ow_script 4, 4, Script_GiftCenter
 	ow_script 12, 2, Script_ColorlessPokemonBook
 	ow_script 13, 2, Script_CardPopBook
 	ow_script 14, 2, Script_EnergyCardColorsBook
@@ -6070,7 +6070,7 @@ GameCenterLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
 	ow_script 5, 4, Script_GRBattleCenterClerk
-	ow_script 8, 4, GiftCenter
+	ow_script 8, 4, Script_GiftCenter
 	db $ff
 
 GameCenterLobby_MapScripts:
@@ -6951,7 +6951,7 @@ WaterFortLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
 	ow_script 5, 4, Script_GRBattleCenterClerk
-	ow_script 8, 4, GiftCenter
+	ow_script 8, 4, Script_GiftCenter
 	db $ff
 
 WaterFortLobby_MapScripts:

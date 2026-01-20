@@ -2056,12 +2056,14 @@ wTempSavedDeckCards:: ; d2fe
 
 	ds $a
 
+wDeckBuildingParams:: ; d380
+
 ; max number of cards that are allowed
 ; to include when building a deck configuration
 wMaxNumCardsAllowed:: ; d380
 	ds $1
 
-wd381:: ; d381
+wNumValidDeckSize:: ; d381
 	ds $1
 
 ; max number of cards with same name that are allowed
@@ -2086,6 +2088,8 @@ wDeckConfigurationMenuHandlerFunction:: ; d384
 ; function in wDeckConfigurationMenuHandlerFunction
 wDeckConfigurationMenuTransitionTable:: ; d386
 	ds $2
+
+wDeckBuildingParamsEnd::
 
 wCurCardListPtr:: ; d388
 	ds $1
@@ -3131,9 +3135,10 @@ wdb86:: ; db86
 wdbc6:: ; dbc6
 	ds $40
 
-wdc06:: ; dc06
+wGiftCenterMenuCursorPosition:: ; dc06
 	ds $1
 
+wSelectedGiftCenterMenuItem:: ; dc07
 	ds $1
 
 wSelectedCoin:: ; dc08

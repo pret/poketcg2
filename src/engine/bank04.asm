@@ -3146,7 +3146,7 @@ _PCMenu:
 	call Func_10252
 	ret
 
-Func_111f0:
+SetPCMenuCursorToShutdown:
 	ld a, PCMENU_SHUTDOWN
 	ld [wPCMenuCursorPosition], a
 	ret
@@ -6666,7 +6666,7 @@ Func_13357:
 	call SetFrameFuncAndFadeFromWhite
 	call SetFadePalsFrameFunc
 .asm_13360
-	farcall Func_a705
+	farcall HandleBlackBoxSendCardsScreen
 	jr nc, .asm_13373
 	ldtx hl, GameCenterBlackBoxCancelPromptText
 	ld a, $01
