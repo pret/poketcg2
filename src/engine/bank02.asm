@@ -7298,18 +7298,18 @@ GiftCenter_SendCards:
 
 	call EnableLCD
 	call HandleGiftCenterSendCardsScreen
-	jr c, .asm_b6fb
+	jr c, .send
 	ld a, $01
 	or a
 	ret
 
-.asm_b6fb
+.send
 	ld de, wCurDeckCards
 	ld hl, wDuelTempList
 	bank1call SaveDeckCards
 	xor a
 	ld [wNameBuffer], a
-	farcall 6, $5b1c ; Func_19b1c, SendCards
+	farcall _SendCard
 	ret c
 
 	call EnableSRAM
@@ -7331,7 +7331,7 @@ GiftCenter_ReceiveCards:
 	xor a
 	ld [wDuelTempList], a
 	ld [wNameBuffer], a
-	farcall 6, $5b63 ; Func_19b63, ReceiveCards
+	farcall _ReceiveCard
 	ret c
 
 	ld de, wDuelTempList

@@ -2341,7 +2341,7 @@ TransmitByteThroughIR:
 	pop de
 	pop hl
 	ldh a, [rJOYP]
-	bit 1, a ; P11
+	bit B_JOYP_B, a
 	jr z, ReturnZFlagUnsetAndCarryFlagSet
 	xor a ; return z set
 	ret
@@ -2354,7 +2354,7 @@ ReceiveByteThroughIR_ZeroIfUnsuccessful:
 	xor a
 	ret
 
-	; returns carry if there's some time out
+; returns carry if there's some time out
 ; and output in register a of $ff
 ; otherwise returns in a some sequence of bits
 ; related to how rRP sets/unsets bit 1
@@ -2372,8 +2372,8 @@ ReceiveByteThroughIR:
 	jr z, .ok
 	dec b
 	jr nz, .wait_ir
-	; looped around $100 times
-	; return $ff and carry set
+; looped around $100 times
+; return $ff and carry set
 	pop hl
 	pop bc
 	pop de
@@ -2392,27 +2392,25 @@ ReceiveByteThroughIR:
 	ld e, 8
 .loop
 	ld a, $01
-	; possibly delay cycles?
+REPT 4 ; possibly delay cycles?
 	ld b, 9
-	ld b, 9
-	ld b, 9
-	ld b, 9
+ENDR
 
 ; checks for bit 1 in rRP
 ; if in any of the checks it is unset,
 ; then a is set to 0
 ; this is done a total of 9 times
 	bit B_RP_DATA_IN, [hl]
-	jr nz, .asm_196ec
+	jr nz, .loop_check
 	xor a
-.asm_196ec
+.loop_check
 	bit B_RP_DATA_IN, [hl]
-	jr nz, .asm_196f1
+	jr nz, .next
 	xor a
-.asm_196f1
+.next
 	dec b
-	jr nz, .asm_196ec
-	; one bit received
+	jr nz, .loop_check
+; one bit received
 	rrca
 	rr d
 	dec e
@@ -2431,33 +2429,33 @@ ReturnZFlagUnsetAndCarryFlagSet:
 	ret
 
 ; called when expecting to transmit data
-Func_196e8:
+IRHandshake_Initiate:
 	ld hl, rRP
 .loop
 	ldh a, [rJOYP]
-	bit 1, a
+	bit B_JOYP_B, a
 	jr z, ReturnZFlagUnsetAndCarryFlagSet
-	ld a, $a5 ; request
+	ld a, IR_HANDSHAKE_REQUEST_TCG2
 	call TransmitByteThroughIR
 	push hl
 	pop hl
 	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $35 ; acknowledge
+	cp IR_HANDSHAKE_ACKNOWLEDGE_TCG2
 	jr nz, .loop
 	xor a
 	ret
 
 ; called when expecting to receive data
-Func_1971e:
+IRHandshake_Listen:
 	ld hl, rRP
-.asm_19721
+.loop
 	ldh a, [rJOYP]
-	bit 1, a
+	bit B_JOYP_B, a
 	jr z, ReturnZFlagUnsetAndCarryFlagSet
 	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $a5 ; request
-	jr nz, .asm_19721
-	ld a, $35 ; acknowledge
+	cp IR_HANDSHAKE_REQUEST_TCG2
+	jr nz, .loop
+	ld a, IR_HANDSHAKE_ACKNOWLEDGE_TCG2
 	call TransmitByteThroughIR
 	xor a
 	ret
@@ -2466,7 +2464,7 @@ ReturnZFlagUnsetAndCarryFlagSet2:
 	jp ReturnZFlagUnsetAndCarryFlagSet
 
 TransmitIRDataBuffer:
-	call Func_196e8
+	call IRHandshake_Initiate
 	jr c, ReturnZFlagUnsetAndCarryFlagSet2
 	ld a, $49
 	call TransmitByteThroughIR
@@ -2477,7 +2475,7 @@ TransmitIRDataBuffer:
 	jr TransmitNBytesFromHLThroughIR
 
 ReceiveIRDataBuffer:
-	call Func_1971e
+	call IRHandshake_Listen
 	jr c, ReturnZFlagUnsetAndCarryFlagSet2
 	call ReceiveByteThroughIR
 	cp $49
@@ -2492,21 +2490,21 @@ ReceiveIRDataBuffer:
 ; hl = start of data to transmit
 ; c = number of bytes to transmit
 TransmitNBytesFromHLThroughIR:
-	ld b, $0
+	ld b, 0
 .loop_data_bytes
 	ld a, b
 	add [hl]
 	ld b, a
 	ld a, [hli]
 	call TransmitByteThroughIR
-	jr c, .asm_1977c
+	jr c, .done
 	dec c
 	jr nz, .loop_data_bytes
 	ld a, b
 	cpl
 	inc a
 	call TransmitByteThroughIR
-.asm_1977c
+.done
 	ret
 
 ; hl = address to write received data
@@ -2532,7 +2530,7 @@ ReceiveNBytesToHLThroughIR:
 StartIRCommunications:
 	di
 	call SwitchToCGBNormalSpeed
-	ld a, P14
+	ld a, JOYP_GET_BUTTONS
 	ldh [rJOYP], a
 	ld a, RP_ENABLE
 	ldh [rRP], a
@@ -2540,7 +2538,7 @@ StartIRCommunications:
 
 ; reenables interrupts, and switches CGB back to double speed
 CloseIRCommunications:
-	ld a, P14 | P15
+	ld a, JOYP_GET_NONE
 	ldh [rJOYP], a
 .wait_vblank_on
 	ldh a, [rSTAT]
@@ -2558,7 +2556,7 @@ CloseIRCommunications:
 
 ; set rRP to 0
 ClearRP:
-	ld a, $00
+	ld a, 0
 	ldh [rRP], a
 	ret
 
@@ -2622,7 +2620,7 @@ ExecuteReceivedIRCommands:
 ; receives an address and number of bytes
 ; and transmits starting at that address
 .TransmitData
-	call Func_196e8
+	call IRHandshake_Initiate
 	ret c
 	call LoadRegistersFromIRDataBuffer
 	jp TransmitNBytesFromHLThroughIR
@@ -2634,10 +2632,10 @@ ExecuteReceivedIRCommands:
 	ld l, e
 	ld h, d
 	call ReceiveNBytesToHLThroughIR
-	jr c, .asm_19812
+	jr c, .received
 	sub b
 	call TransmitByteThroughIR
-.asm_19812
+.received
 	ret
 
 ; receives an address to call, then stores
@@ -2654,14 +2652,14 @@ TrySendIRRequest:
 	ld hl, rRP
 	ld c, 4
 .send_request
-	ld a, $a5 ; request
+	ld a, IR_HANDSHAKE_REQUEST_TCG2
 	push bc
 	call TransmitByteThroughIR
 	push bc
 	pop bc
 	call ReceiveByteThroughIR_ZeroIfUnsuccessful
 	pop bc
-	cp $35 ; acknowledgement
+	cp IR_HANDSHAKE_ACKNOWLEDGE_TCG2
 	jr z, .received_ack
 	dec c
 	jr nz, .send_request
@@ -2682,17 +2680,17 @@ TryReceiveIRRequest:
 	ld hl, rRP
 .wait_request
 	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $a5 ; request
+	cp IR_HANDSHAKE_REQUEST_TCG2
 	jr z, .send_ack
 	ldh a, [rJOYP]
 	cpl
-	and P10 | P11
+	and JOYP_A | JOYP_B
 	jr z, .wait_request
 	scf
 	jr .close
 
 .send_ack
-	ld a, $35 ; acknowledgement
+	ld a, IR_HANDSHAKE_ACKNOWLEDGE_TCG2
 	call TransmitByteThroughIR
 	xor a
 .close
@@ -2726,7 +2724,7 @@ RequestDataTransmissionThroughIR:
 	call TransmitRegistersThroughIR
 	push de
 	push bc
-	call Func_1971e
+	call IRHandshake_Listen
 	pop bc
 	pop hl
 	jr c, SafelyCloseIRCommunications
@@ -2745,10 +2743,10 @@ RequestDataReceivalThroughIR:
 	call ReceiveByteThroughIR
 	jr c, SafelyCloseIRCommunications
 	add b
-	jr nz, .asm_1989e
+	jr nz, .set_carry
 	xor a
 	jr SafelyCloseIRCommunications
-.asm_1989e
+.set_carry
 	call ReturnZFlagUnsetAndCarryFlagSet
 	jr SafelyCloseIRCommunications
 
@@ -3032,21 +3030,52 @@ InitSaveData:
 .terminating_byte
 	ld [de], a
 	ret
-; 0x199fa
 
-SECTION "Bank 6@5a30", ROMX[$5a30], BANK[$6]
+; hl = text id
+LoadLinkConnectingScene:
+	push hl
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_LINK
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	pop hl
+	call DrawWideTextBox_PrintText
+	call EnableLCD
+	ret
+
+; hl = text id
+; shows Link Not Connected scene
+; then asks the player whether they want to try again
+; if the player selects "no", return carry
+LoadLinkNotConnectedSceneAndAskWhetherToTryAgain:
+	push hl
+	call RestoreVBlankFunction
+	call SetSpriteAnimationsAsVBlankFunction
+	ld a, SCENE_LINK_INTRO_NOT_CONNECTED
+	lb bc, 0, 0
+	call EmptyScreenAndLoadScene
+	pop hl
+	call DrawWideTextBox_WaitForInput
+	ldtx hl, TryAgainPromptText
+	call YesOrNoMenuWithText_SetCursorToYes
+; fallthrough
+
+ClearRPAndRestoreVBlankFunction:
+	push af
+	call ClearRP
+	call RestoreVBlankFunction
+	pop af
+	ret
 
 ; prepares IR communication parameter data
 ; a = a IRPARAM_* constant for the function of this connection
 InitIRCommunications:
 	ld hl, wOwnIRCommunicationParams
 	ld [hl], a
+FOR n, IR_MAGIC_STRING_SIZE
 	inc hl
-	ld [hl], $50
-	inc hl
-	ld [hl], $4b
-	inc hl
-	ld [hl], $32
+	ld [hl], STRBYTE("{IR_MAGIC_STRING_TCG2}", n)
+ENDR
 	ld a, $ff
 	ld [wIRCommunicationErrorCode], a
 	ld a, PLAYER_TURN
@@ -3071,9 +3100,45 @@ InitIRCommunications:
 	jr nz, .loop
 	call DisableSRAM
 	ret
-; 0x19a64
 
-SECTION "Bank 6@5a92", ROMX[$5a92], BANK[$6]
+; returns carry if communication was unsuccessful
+; if a = 0, then it was a communication error
+; if a = 1, then operation was cancelled by the player
+PrepareSendCardOrDeckConfigurationThroughIR:
+	call InitIRCommunications
+
+; pressing A button triggers request for IR communication
+.loop_frame
+	call DoFrame
+	ldh a, [hKeysPressed]
+	bit B_PAD_B, a
+	jr nz, .b_btn
+	ldh a, [hKeysHeld]
+	bit B_PAD_A, a
+	jr z, .loop_frame
+; a btn
+	call TrySendIRRequest
+	jr nc, .request_success
+	or a
+	jr z, .loop_frame
+	xor a
+	scf
+	ret
+
+; cancelled by the player
+.b_btn
+	ld a, $01
+	scf
+	ret
+
+.request_success
+	call ExchangeIRCommunicationParameters
+	ret c
+	ld a, [wOtherIRCommunicationParams + 3]
+	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
+	jr nz, SetIRCommunicationErrorCode_Error
+	or a
+	ret
 
 ; exchanges player names and IR communication parameters
 ; checks whether parameters for communication match
@@ -3081,15 +3146,15 @@ SECTION "Bank 6@5a92", ROMX[$5a92], BANK[$6]
 ExchangeIRCommunicationParameters:
 	ld hl, wOwnIRCommunicationParams
 	ld de, wOtherIRCommunicationParams
-	ld c, 4
+	ld c, IR_PARAMS_STRUCT_SIZE
 	call RequestDataTransmissionThroughIR
 	jr c, .error
 	ld hl, wOtherIRCommunicationParams + 1
 	ld a, [hli]
-	cp $50
+	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 0)
 	jr nz, .error
 	ld a, [hli]
-	cp $4b
+	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 1)
 	jr nz, .error
 	ld a, [wOwnIRCommunicationParams]
 	ld hl, wOtherIRCommunicationParams
@@ -3131,7 +3196,7 @@ SetIRCommunicationErrorCode_Error:
 
 SetIRCommunicationErrorCode_NoError:
 	ld hl, wOwnIRCommunicationParams
-	ld [hl], $00
+	ld [hl], NONE
 	ld de, wIRCommunicationErrorCode
 	ld c, 1
 	call RequestDataReceivalThroughIR
@@ -3139,9 +3204,151 @@ SetIRCommunicationErrorCode_NoError:
 	call RequestCloseIRCommunication
 	or a
 	ret
-; 0x19afb
 
-SECTION "Bank 6@5bf9", ROMX[$5bf9], BANK[$6]
+; makes device receptive to receive data from other device
+; to write in wDuelTempList (either list of cards or a deck configuration)
+; returns carry if some error occurred
+TryReceiveCardOrDeckConfigurationThroughIR:
+	call InitIRCommunications
+.loop_receive_request
+	xor a
+	ld [wDuelTempList], a
+	call TryReceiveIRRequest
+	jr nc, .receive_data
+	bit 1, a
+	jr nz, .cancelled
+	jr .loop_receive_request
+.receive_data
+	call ExecuteReceivedIRCommands
+	ld a, [wIRCommunicationErrorCode]
+	or a
+	ret z ; no error
+	xor a
+	scf
+	ret
+
+.cancelled
+	ld a, $01
+	scf
+	ret
+
+; returns carry if card(s) wasn't successfully sent
+_SendCard:
+	call StopMusic
+	ldtx hl, TransmittingCardSenderText
+	call LoadLinkConnectingScene
+	ld a, IRPARAM_SEND_CARDS
+	call PrepareSendCardOrDeckConfigurationThroughIR
+	jr c, .fail
+
+; send cards
+	ld hl, wDuelTempList
+	ld e, l
+	ld d, h
+	ld c, DECK_COMPRESSED_SIZE
+	call RequestDataReceivalThroughIR
+	jr c, .fail
+	call SetIRCommunicationErrorCode_NoError
+	jr c, .fail
+	call ExecuteReceivedIRCommands
+	jr c, .fail
+	ld a, [wOwnIRCommunicationParams + 1]
+	cp STRBYTE("{IR_ACK_MAGIC_STRING_TCG2}", 0)
+	jr nz, .fail
+	call PlayCardPopSong
+	xor a
+	call ClearRPAndRestoreVBlankFunction
+	ret
+
+.fail
+	call PlayCardPopSong
+	ldtx hl, TransmittingCardUnsuccessfulSenderText
+	call LoadLinkNotConnectedSceneAndAskWhetherToTryAgain
+	jr nc, _SendCard
+	scf
+	ret
+
+PlayCardPopSong:
+	ld a, MUSIC_CARD_POP
+	jp PlaySong
+
+_ReceiveCard:
+	call StopMusic
+	ldtx hl, TransmittingCardReceiverText
+	call LoadLinkConnectingScene
+	ld a, IRPARAM_SEND_CARDS
+	call TryReceiveCardOrDeckConfigurationThroughIR
+	jr c, .fail
+	ld a, STRBYTE("{IR_ACK_MAGIC_STRING_TCG2}", 0)
+	ld [wOwnIRCommunicationParams + 1], a
+	ld hl, wOwnIRCommunicationParams
+	ld e, l
+	ld d, h
+	ld c, IR_PARAMS_STRUCT_SIZE
+	call RequestDataReceivalThroughIR
+	jr c, .fail
+	call RequestCloseIRCommunication
+	jr c, .fail
+	call PlayCardPopSong
+	or a
+	call ClearRPAndRestoreVBlankFunction
+	ret
+
+.fail
+	call PlayCardPopSong
+	ldtx hl, TransmittingCardUnsuccessfulReceiverText
+	call LoadLinkNotConnectedSceneAndAskWhetherToTryAgain
+	jr nc, _ReceiveCard
+	scf
+	ret
+
+_SendDeckConfiguration:
+	call StopMusic
+	ldtx hl, TransmittingDeckConfigurationSenderText
+	call LoadLinkConnectingScene
+	ld a, IRPARAM_SEND_DECK
+	call PrepareSendCardOrDeckConfigurationThroughIR
+	jr c, .fail
+	ld hl, wDuelTempList
+	ld e, l
+	ld d, h
+	ld c, DECK_COMPRESSED_STRUCT_SIZE
+	call RequestDataReceivalThroughIR
+	jr c, .fail
+	call SetIRCommunicationErrorCode_NoError
+	jr c, .fail
+	call PlayCardPopSong
+	call ClearRPAndRestoreVBlankFunction
+	or a
+	ret
+
+.fail
+	call PlayCardPopSong
+	ldtx hl, TransmittingDeckConfigurationUnsuccessfulSenderText
+	call LoadLinkNotConnectedSceneAndAskWhetherToTryAgain
+	jr nc, _SendDeckConfiguration
+	scf
+	ret
+
+_ReceiveDeckConfiguration:
+	call StopMusic
+	ldtx hl, TransmittingDeckConfigurationReceiverText
+	call LoadLinkConnectingScene
+	ld a, IRPARAM_SEND_DECK
+	call TryReceiveCardOrDeckConfigurationThroughIR
+	jr c, .fail
+	call PlayCardPopSong
+	call ClearRPAndRestoreVBlankFunction
+	or a
+	ret
+
+.fail
+	call PlayCardPopSong
+	ldtx hl, TransmittingDeckConfigurationUnsuccessfulReceiverText
+	call LoadLinkNotConnectedSceneAndAskWhetherToTryAgain
+	jr nc, _ReceiveDeckConfiguration
+	scf
+	ret
 
 _CardPopMenu:
 	call EnableSRAM
@@ -3470,7 +3677,7 @@ HandleCardPopCommunications:
 	or a
 	jr nz, .fail
 
-	ld a, $32
+	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
 	ld [wOtherIRCommunicationParams + 3], a
 	call DecideCardToReceiveFromCardPop
 	call SetCardPopRecord
@@ -3537,7 +3744,7 @@ HandleCardPopCommunications:
 	call BankswitchSRAM
 	call CopyDataHLtoDE
 	ld a, [wOtherIRCommunicationParams + 3]
-	cp $32
+	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
 	jr nz, .asm_19ecb
 
 	; copy SRAM so that sCardPopRecords is moved $20 forward
@@ -4284,20 +4491,24 @@ IngameCardPop:
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_CARD_POP_IMAKUNI + 2
 	jr .got_partner
+
 .Imakuni_rare
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_RARE_CARD_POP_IMAKUNI + 2
 	push af
 	ld a, IRPARAM_RARE_CARD_POP
 	jr .got_partner_and_type
+
 .Ronald
 	ldtx hl, CardPopRonaldText
 	ld a, SCRIPTED_CARD_POP_RONALD + 2
 ; fallthrough
+
 .got_partner
 	push af
 	ld a, IRPARAM_CARD_POP
 ; fallthrough
+
 .got_partner_and_type
 	ld [wCardPopType], a
 	call InitSaveData.PrintName
@@ -4349,11 +4560,13 @@ IngameCardPop:
 	inc hl
 	ld [hl], d
 	call DecideCardToReceiveFromCardPop
-	ld bc, .data1
+; load Ronald's stats
+; for Imakuni_rare, these will be overwritten later
+	ld bc, .Ronald_stats
 	jr .got_data
 
 ; guaranteed to give IMAKUNI_CARD to player
-; and choose a random card for Imakuni? from the list
+; and choose a random card for Imakuni? from the 6-card list
 .with_Imakuni_first
 	ld a, 6
 	call Random
@@ -4373,8 +4586,9 @@ IngameCardPop:
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, MUSIC_MATCH_VICTORY
 	ld [wCardPopCardObtainSong], a
-	ld bc, .data2
+	ld bc, .Imakuni_stats
 ; fallthrough
+
 .got_data
 	push bc
 	ld hl, wCardPopRecordYourCardID
@@ -4382,18 +4596,19 @@ IngameCardPop:
 	inc hl
 	ld [hl], d
 	pop hl
-	ld de, wCardPopRecordNumBattles
+	ld de, wCardPopRecordStats
 	ld bc, CARDPOP_RECORD_STATS_SIZE
 	call CopyDataHLtoDE
-	ld a, 1
-	ld [de], a
+	ld a, IRPARAM_CARD_POP
+	ld [de], a ; wCardPopRecordType
 	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
 	cp SCRIPTED_RARE_CARD_POP_IMAKUNI + 2
 	jr nz, .display_ingame_pop
 
 ; Imakuni_rare
 ; set his stats: NumBattles = yours / 2, NumCards = yours / 4, NumCoins = 4
-	ld hl, wCardPopRecordNumBattles
+	ld hl, wCardPopRecordStats
+; wCardPopRecordNumBattles
 	call EnableSRAM
 	ld a, [sTotalDuelCounter]
 	srl a
@@ -4402,6 +4617,7 @@ IngameCardPop:
 	rr a
 	ld [hli], a
 	call DisableSRAM
+; wCardPopRecordNumCards
 	push hl
 	call GetAmountOfCardsOwned
 REPT 2
@@ -4411,7 +4627,6 @@ ENDR
 	ld e, l
 	ld d, h
 	pop hl
-; wCardPopRecordNumCards
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -4422,6 +4637,7 @@ ENDR
 ; wCardPopRecordType
 	ld [hl], IRPARAM_RARE_CARD_POP
 ; fallthrough
+
 .display_ingame_pop
 	call SetSpriteAnimationsAsVBlankFunction
 	ld a, SCENE_CARD_POP
@@ -4442,7 +4658,7 @@ ENDR
 	jr z, .loop_input
 ; pressed A
 	call RestoreVBlankFunction
-	ld a, $32
+	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
 	ld [wOtherIRCommunicationParams + 3], a
 	call HandleCardPopCommunications.success
 	call LoadCardPopSceneAndHandleCommunications.add_sram0
@@ -4466,12 +4682,15 @@ ENDR
 	dw MACHAMP_LV67   ; $4
 	dw CHANSEY_LV55   ; $5
 
-; data pointer will be pushed to bc
-; meant to be custom stats?
-.data1
-	db $00, $00, $39, $00, $01
-.data2
-	db $00, $00, $6c, $00, $01
+; custom stats
+.Ronald_stats
+	dw 0   ; battles
+	dw 57  ; cards
+	db 1   ; coins
+.Imakuni_stats
+	dw 0   ; battles
+	dw 108 ; cards
+	db 1   ; coins
 
 ; sends serial data to printer
 ; if there's an error in connection,

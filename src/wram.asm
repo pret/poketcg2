@@ -94,9 +94,9 @@ wIRCommunicationErrorCode:: ; c5ea
 ; and received from the other device respectively
 ; these must match for successful communication
 wOwnIRCommunicationParams:: ; c5eb
-	ds $4
+	ds IR_PARAMS_STRUCT_SIZE
 wOtherIRCommunicationParams:: ; c5ef
-	ds $4
+	ds IR_PARAMS_STRUCT_SIZE
 
 
 ; stores the result from LookUpNameInCardPopNameList
@@ -1312,6 +1312,7 @@ wCardPopRecordYourCardID:: ; ce3c
 wCardPopRecordTheirCardID:: ; ce3e
 	ds $2
 
+wCardPopRecordStats:: ; ce40
 wCardPopRecordNumBattles:: ; ce40
 	ds $2
 
