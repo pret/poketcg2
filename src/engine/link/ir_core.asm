@@ -384,7 +384,7 @@ TrySendIRRequest:
 	pop af
 	ret
 
-; returns carry set if request was not received
+; returns carry set and the pressed button (A or B) in a if request was not received
 TryReceiveIRRequest:
 	call StartIRCommunications
 	ld hl, rRP
@@ -394,8 +394,9 @@ TryReceiveIRRequest:
 	jr z, .send_ack
 	ldh a, [rJOYP]
 	cpl
-	and JOYP_A | JOYP_B
+	and PAD_A | PAD_B
 	jr z, .wait_request
+; not received
 	scf
 	jr .close
 

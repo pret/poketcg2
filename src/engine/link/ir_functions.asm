@@ -37,7 +37,7 @@ ClearRPAndRestoreVBlankFunction:
 ; prepares IR communication parameter data
 ; a = a IRPARAM_* constant for the function of this connection
 InitIRCommunications:
-	ld hl, wOwnIRCommunicationParams
+	ld hl, wOwnIRCommunicationMode
 	ld [hl], a
 FOR n, IR_MAGIC_STRING_SIZE
 	inc hl
@@ -101,7 +101,7 @@ PrepareSendCardOrDeckConfigurationThroughIR:
 .request_success
 	call ExchangeIRCommunicationParameters
 	ret c
-	ld a, [wOtherIRCommunicationParams + 3]
+	ld a, [wOtherIRCommunicationMagicString + 2]
 	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
 	jr nz, SetIRCommunicationErrorCode_Error
 	or a
@@ -116,16 +116,16 @@ ExchangeIRCommunicationParameters:
 	ld c, IR_PARAMS_STRUCT_SIZE
 	call RequestDataTransmissionThroughIR
 	jr c, .error
-	ld hl, wOtherIRCommunicationParams + 1
+	ld hl, wOtherIRCommunicationMagicString
 	ld a, [hli]
 	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 0)
 	jr nz, .error
 	ld a, [hli]
 	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 1)
 	jr nz, .error
-	ld a, [wOwnIRCommunicationParams]
-	ld hl, wOtherIRCommunicationParams
-	cp [hl] ; do parameters match?
+	ld a, [wOwnIRCommunicationMode]
+	ld hl, wOtherIRCommunicationMode
+	cp [hl] ; does the mode parameter match?
 	jr nz, SetIRCommunicationErrorCode_Error
 
 ; receives wDefaultText from other device
@@ -162,7 +162,7 @@ SetIRCommunicationErrorCode_Error:
 	ret
 
 SetIRCommunicationErrorCode_NoError:
-	ld hl, wOwnIRCommunicationParams
+	ld hl, wOwnIRCommunicationMode
 	ld [hl], NONE
 	ld de, wIRCommunicationErrorCode
 	ld c, 1
@@ -219,7 +219,7 @@ _SendCard:
 	jr c, .fail
 	call ExecuteReceivedIRCommands
 	jr c, .fail
-	ld a, [wOwnIRCommunicationParams + 1]
+	ld a, [wOwnIRCommunicationMagicString]
 	cp STRBYTE("{IR_ACK_MAGIC_STRING_TCG2}", 0)
 	jr nz, .fail
 	call PlayCardPopSong
@@ -247,7 +247,7 @@ _ReceiveCard:
 	call TryReceiveCardOrDeckConfigurationThroughIR
 	jr c, .fail
 	ld a, STRBYTE("{IR_ACK_MAGIC_STRING_TCG2}", 0)
-	ld [wOwnIRCommunicationParams + 1], a
+	ld [wOwnIRCommunicationMagicString], a
 	ld hl, wOwnIRCommunicationParams
 	ld e, l
 	ld d, h

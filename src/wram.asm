@@ -94,10 +94,16 @@ wIRCommunicationErrorCode:: ; c5ea
 ; and received from the other device respectively
 ; these must match for successful communication
 wOwnIRCommunicationParams:: ; c5eb
-	ds IR_PARAMS_STRUCT_SIZE
-wOtherIRCommunicationParams:: ; c5ef
-	ds IR_PARAMS_STRUCT_SIZE
+wOwnIRCommunicationMode:: ; c5eb
+	ds $1
+wOwnIRCommunicationMagicString:: ; c5ec
+	ds IR_MAGIC_STRING_SIZE
 
+wOtherIRCommunicationParams:: ; c5ef
+wOtherIRCommunicationMode:: ; c5ef
+	ds $1
+wOtherIRCommunicationMagicString:: ; c5f0
+	ds IR_MAGIC_STRING_SIZE
 
 ; stores the result from LookUpNameInCardPopNameList
 ; is $ff if name was found in the Card Pop! list

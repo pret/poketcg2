@@ -2793,8 +2793,8 @@ HandleCardPopCommunications:
 .loop_request
 	call TryReceiveIRRequest ; receive request
 	jr nc, .execute_commands
-	bit 1, a
-	jp nz, .asm_19e7f
+	bit B_PAD_B, a
+	jp nz, .cancelled
 	call TrySendIRRequest ; send request
 	jr c, .loop_request
 
@@ -2833,7 +2833,7 @@ HandleCardPopCommunications:
 	jr nz, .fail
 
 	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
-	ld [wOtherIRCommunicationParams + 3], a
+	ld [wOtherIRCommunicationMagicString + 2], a
 	call DecideCardToReceiveFromCardPop
 	call SetCardPopRecord
 	call FillCardPopSummary
@@ -2862,12 +2862,12 @@ HandleCardPopCommunications:
 .fail
 	ld a, [wIRCommunicationErrorCode]
 	cp $01
-	jr nz, .asm_19e7f
+	jr nz, .cancelled
 	ldtx hl, CardPopModeMismatchedText ; Card Pop from one side and Rare Card Pop from the other
 	scf
 	ret
 
-.asm_19e7f
+.cancelled
 	ldtx hl, CardPopUnsuccessfulTryAgainText
 .set_carry
 	scf
@@ -2898,9 +2898,9 @@ HandleCardPopCommunications:
 	ld a, BANK("SRAM1")
 	call BankswitchSRAM
 	call CopyDataHLtoDE
-	ld a, [wOtherIRCommunicationParams + 3]
+	ld a, [wOtherIRCommunicationMagicString + 2]
 	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
-	jr nz, .asm_19ecb
+	jr nz, .done
 
 	; copy SRAM so that sCardPopRecords is moved $20 forward
 	ld hl, sCardPopRecords + MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE - 1
@@ -2918,11 +2918,11 @@ HandleCardPopCommunications:
 	ld de, sCardPopRecords
 	ld bc, CARDPOP_RECORD_SIZE
 	call CopyDataHLtoDE
-.asm_19ecb
+.done
 	xor a
 	call BankswitchSRAM
 	call DisableSRAM
-	or a
+	or a ; redundant, leftover from tcg1
 	ret
 
 ; looks up the name in wNameBuffer in wCardPopNameList
@@ -3814,7 +3814,7 @@ ENDR
 ; pressed A
 	call RestoreVBlankFunction
 	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
-	ld [wOtherIRCommunicationParams + 3], a
+	ld [wOtherIRCommunicationMagicString + 2], a
 	call HandleCardPopCommunications.success
 	call LoadCardPopSceneAndHandleCommunications.add_sram0
 	ldtx hl, ReceivedThroughCardPopText
