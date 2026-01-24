@@ -1,3 +1,9 @@
+Func_13886:
+	call Func_1022a
+	call _PlayCredits
+	call Func_10252
+	ret
+
 _PlayCredits::
 	push af
 	push bc

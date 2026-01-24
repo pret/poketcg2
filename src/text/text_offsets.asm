@@ -1866,8 +1866,8 @@ TextOffsets::
 	textpointer SamRulesEndOfTurnText                                 ; 0x0741
 	textpointer SamRulesDecisionText                                  ; 0x0742
 	textpointer SamRulesQuitText                                      ; 0x0743
-	textpointer SamPracticeDuelText                                   ; 0x0744
-	textpointer SamRegularDuelText                                    ; 0x0745
+	textpointer MasonLabPracticeDuelText                              ; 0x0744
+	textpointer MasonLabRegularDuelText                               ; 0x0745
 	textpointer SamRulesText                                          ; 0x0746
 	textpointer SamQuitText                                           ; 0x0747
 	textpointer AaronStep1Text                                        ; 0x0748
@@ -1939,7 +1939,7 @@ TextOffsets::
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning3Text    ; 0x078a
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelWarning4Text    ; 0x078b
 	textpointer MainMenuContinueFromDiaryInsteadOfDuelConfirmText     ; 0x078c
-	textpointer ChallengeMachineText                                  ; 0x078d
+	textpointer TCGChallengeMachineText                               ; 0x078d
 	textpointer GRChallengeMachineText                                ; 0x078e
 	textpointer ChallengeMachineScoreTitleText                        ; 0x078f
 	textpointer ChallengeMachineSetsWonRecordText                     ; 0x0790
@@ -2080,31 +2080,31 @@ TextOffsets::
 	textpointer DebugHoldGrandMasterCupText                           ; 0x0817
 	textpointer DebugGet10CardsEachText                               ; 0x0818
 	textpointer DebugGet10EnergyCardsEachText                         ; 0x0819
-	textpointer Text081a                                              ; 0x081a
-	textpointer Text081b                                              ; 0x081b
-	textpointer Text081c                                              ; 0x081c
-	textpointer Text081d                                              ; 0x081d
-	textpointer Text081e                                              ; 0x081e
-	textpointer Text081f                                              ; 0x081f
-	textpointer Text0820                                              ; 0x0820
-	textpointer Text0821                                              ; 0x0821
-	textpointer Text0822                                              ; 0x0822
-	textpointer Text0823                                              ; 0x0823
-	textpointer Text0824                                              ; 0x0824
-	textpointer Text0825                                              ; 0x0825
-	textpointer Text0826                                              ; 0x0826
-	textpointer Text0827                                              ; 0x0827
-	textpointer Text0828                                              ; 0x0828
-	textpointer Text0829                                              ; 0x0829
-	textpointer Text082a                                              ; 0x082a
-	textpointer Text082b                                              ; 0x082b
-	textpointer Text082c                                              ; 0x082c
-	textpointer Text082d                                              ; 0x082d
-	textpointer Text082e                                              ; 0x082e
-	textpointer Text082f                                              ; 0x082f
-	textpointer Text0830                                              ; 0x0830
-	textpointer Text0831                                              ; 0x0831
-	textpointer Text0832                                              ; 0x0832
+	textpointer TCGAirportGR5FlightInitialText                        ; 0x081a
+	textpointer TCGAirportGR5FlightPromptText                         ; 0x081b
+	textpointer TCGAirportGR5DeclinedFlightText                       ; 0x081c
+	textpointer TCGAirportGR5StartFlightText                          ; 0x081d
+	textpointer TCGAirportGR5LandedText                               ; 0x081e
+	textpointer TCGAirportGR5FirstInteractionText                     ; 0x081f
+	textpointer TCGAirportGR5GRCoinIncompleteText                     ; 0x0820
+	textpointer TCGAirportGR5GRCoinCompleteText                       ; 0x0821
+	textpointer TCGAirportGRClerkGRCoinIncompleteText                 ; 0x0822
+	textpointer TCGAirportGRClerkGRCoinCompleteText                   ; 0x0823
+	textpointer TCGAirportGRSisNormalText                             ; 0x0824
+	textpointer TCGAirportGRSisPostgameText                           ; 0x0825
+	textpointer TCGAirportMartialArtistGRCoinIncompleteText           ; 0x0826
+	textpointer TCGAirportMartialArtistGRCoinCompleteText             ; 0x0827
+	textpointer TCGAirportMartialArtistPostgameText                   ; 0x0828
+	textpointer GRAirportGR5FlightPromptText                          ; 0x0829
+	textpointer GRAirportGR5DeclinedFlightText                        ; 0x082a
+	textpointer GRAirportGR5StartFlightText                           ; 0x082b
+	textpointer GRAirportGR5LandedInitialText                         ; 0x082c
+	textpointer GRAirportGR5LandedRepeatText                          ; 0x082d
+	textpointer GRAirportGRClerkText                                  ; 0x082e
+	textpointer GRAirportGRPappyNormalText                            ; 0x082f
+	textpointer GRAirportGRPappyPostgameText                          ; 0x0830
+	textpointer GRAirportGRLassNormalText                             ; 0x0831
+	textpointer GRAirportGRLassPostgameText                           ; 0x0832
 	textpointer Text0833                                              ; 0x0833
 	textpointer Text0834                                              ; 0x0834
 	textpointer Text0835                                              ; 0x0835
@@ -2388,74 +2388,74 @@ TextOffsets::
 	textpointer Text094b                                              ; 0x094b
 	textpointer Text094c                                              ; 0x094c
 	textpointer Text094d                                              ; 0x094d
-	textpointer Text094e                                              ; 0x094e
-	textpointer Text094f                                              ; 0x094f
-	textpointer Text0950                                              ; 0x0950
-	textpointer Text0951                                              ; 0x0951
-	textpointer Text0952                                              ; 0x0952
-	textpointer Text0953                                              ; 0x0953
-	textpointer Text0954                                              ; 0x0954
-	textpointer Text0955                                              ; 0x0955
-	textpointer Text0956                                              ; 0x0956
-	textpointer Text0957                                              ; 0x0957
-	textpointer Text0958                                              ; 0x0958
-	textpointer Text0959                                              ; 0x0959
-	textpointer Text095a                                              ; 0x095a
-	textpointer Text095b                                              ; 0x095b
-	textpointer Text095c                                              ; 0x095c
-	textpointer Text095d                                              ; 0x095d
-	textpointer Text095e                                              ; 0x095e
-	textpointer Text095f                                              ; 0x095f
-	textpointer Text0960                                              ; 0x0960
-	textpointer Text0961                                              ; 0x0961
-	textpointer Text0962                                              ; 0x0962
-	textpointer Text0963                                              ; 0x0963
-	textpointer Text0964                                              ; 0x0964
-	textpointer Text0965                                              ; 0x0965
-	textpointer Text0966                                              ; 0x0966
-	textpointer Text0967                                              ; 0x0967
-	textpointer Text0968                                              ; 0x0968
-	textpointer Text0969                                              ; 0x0969
-	textpointer Text096a                                              ; 0x096a
-	textpointer Text096b                                              ; 0x096b
-	textpointer Text096c                                              ; 0x096c
-	textpointer Text096d                                              ; 0x096d
-	textpointer Text096e                                              ; 0x096e
-	textpointer Text096f                                              ; 0x096f
-	textpointer Text0970                                              ; 0x0970
-	textpointer Text0971                                              ; 0x0971
-	textpointer Text0972                                              ; 0x0972
-	textpointer Text0973                                              ; 0x0973
-	textpointer Text0974                                              ; 0x0974
-	textpointer Text0975                                              ; 0x0975
-	textpointer Text0976                                              ; 0x0976
-	textpointer Text0977                                              ; 0x0977
-	textpointer Text0978                                              ; 0x0978
-	textpointer Text0979                                              ; 0x0979
-	textpointer Text097a                                              ; 0x097a
-	textpointer Text097b                                              ; 0x097b
-	textpointer Text097c                                              ; 0x097c
-	textpointer Text097d                                              ; 0x097d
-	textpointer Text097e                                              ; 0x097e
-	textpointer Text097f                                              ; 0x097f
-	textpointer Text0980                                              ; 0x0980
-	textpointer Text0981                                              ; 0x0981
-	textpointer Text0982                                              ; 0x0982
-	textpointer Text0983                                              ; 0x0983
-	textpointer Text0984                                              ; 0x0984
-	textpointer Text0985                                              ; 0x0985
-	textpointer Text0986                                              ; 0x0986
-	textpointer Text0987                                              ; 0x0987
-	textpointer Text0988                                              ; 0x0988
-	textpointer Text0989                                              ; 0x0989
-	textpointer Text098a                                              ; 0x098a
-	textpointer Text098b                                              ; 0x098b
-	textpointer Text098c                                              ; 0x098c
-	textpointer Text098d                                              ; 0x098d
-	textpointer Text098e                                              ; 0x098e
-	textpointer Text098f                                              ; 0x098f
-	textpointer Text0990                                              ; 0x0990
-	textpointer Text0991                                              ; 0x0991
+	textpointer TCGCupClerkCup1ActiveText                             ; 0x094e
+	textpointer TCGCupClerkCup2ActiveText                             ; 0x094f
+	textpointer TCGCupClerkCup3ActiveText                             ; 0x0950
+	textpointer TCGCupClerkPlayerWonText                              ; 0x0951
+	textpointer TCGCupClerkPlayerLostText                             ; 0x0952
+	textpointer TCGCupClerkEnterPromptText                            ; 0x0953
+	textpointer TCGCupClerkEnterAcceptedText                          ; 0x0954
+	textpointer TCGCupClerkEnterDeclinedText                          ; 0x0955
+	textpointer TCGCupClerkRightNoEntryText                           ; 0x0956
+	textpointer TCGChallengeHallManNoCardsText                        ; 0x0957
+	textpointer TCGChallengeHallManGoodLuckText                       ; 0x0958
+	textpointer TCGChallengeHallManTCGCup3Text                        ; 0x0959
+	textpointer CupHostTCGCup1IntroText                               ; 0x095a
+	textpointer CupHostTCGCup1Round1ChallengerText                    ; 0x095b
+	textpointer CupHostTCGCup2IntroText                               ; 0x095c
+	textpointer CupHostTCGCup2Round1ChallengerText                    ; 0x095d
+	textpointer CupHostTCGCup3IntroText                               ; 0x095e
+	textpointer CupHostTCGCup3Round1ChallengerText                    ; 0x095f
+	textpointer CupHostTCGCupRound1DuelStartText                      ; 0x0960
+	textpointer CupHostTCGCup1Or2Round1PlayerWonText                  ; 0x0961
+	textpointer CupHostTCGCup1Round1NextChallengerText                ; 0x0962
+	textpointer CupHostTCGCup2Round1NextChallengerText                ; 0x0963
+	textpointer CupHostTCGCup3Round1PlayerWonText                     ; 0x0964
+	textpointer CupHostTCGCup3Round1NextChallengerText                ; 0x0965
+	textpointer CupHostTCGCup1Round1PlayerLostText                    ; 0x0966
+	textpointer CupHostTCGCup2Round1PlayerLostText                    ; 0x0967
+	textpointer CupHostTCGCup3Round1PlayerLostText                    ; 0x0968
+	textpointer CupHostTCGCupPlayerWonOpponentEliminatedText          ; 0x0969
+	textpointer CupHostTCGCupRound2ChallengerText                     ; 0x096a
+	textpointer CupHostTCGCupRound2The4PrizesMatchText                ; 0x096b
+	textpointer CupHostTCGCupAreYourDecksReadyText                    ; 0x096c
+	textpointer CupHostTCGCupMakeYourPreparationsText                 ; 0x096d
+	textpointer CupHostTCGCupRound2DuelStartText                      ; 0x096e
+	textpointer CupHostTCGCupRound2PlayerWonText                      ; 0x096f
+	textpointer CupHostTCGCup1Round2NextChallengerText                ; 0x0970
+	textpointer CupHostTCGCup2Round2NextChallengerText                ; 0x0971
+	textpointer CupHostTCGCup3Round2NextChallengerText                ; 0x0972
+	textpointer CupHostTCGCup1Or2Round2PlayerLostText                 ; 0x0973
+	textpointer CupHostTCGCup3Round2PlayerLostText                    ; 0x0974
+	textpointer CupHostTCGCup1Round3ChallengerText                    ; 0x0975
+	textpointer CupHostTCGCup2Round3ChallengerText                    ; 0x0976
+	textpointer CupHostTCGCup3Round3ChallengerClubMasterText          ; 0x0977
+	textpointer CupHostTCGCup3Round3ChallengerGRText                  ; 0x0978
+	textpointer CupHostTCGCup3Round3ChallengerRonaldText              ; 0x0979
+	textpointer RonaldTCGCup3ChallengerText                           ; 0x097a
+	textpointer CupHostTCGCupRound3The6PrizesMatchText                ; 0x097b
+	textpointer CupHostTCGCupRound3DuelStartText                      ; 0x097c
+	textpointer CupHostTCGCupRound3PlayerWonText                      ; 0x097d
+	textpointer CupHostTCGCup1Or2PlayerChampionText                   ; 0x097e
+	textpointer CupHostTCGCup3PlayerChampionText                      ; 0x097f
+	textpointer CupHostTCGCup1Round3PlayerLostText                    ; 0x0980
+	textpointer CupHostTCGCup2Round3PlayerLostText                    ; 0x0981
+	textpointer CupHostTCGCup3Round3PlayerLostText                    ; 0x0982
+	textpointer CupHostTCGCup1ChampionPrizeText                       ; 0x0983
+	textpointer CupHostTCGCup2ChampionPrizeText                       ; 0x0984
+	textpointer CupHostTCGCup3ChampionPrizeText                       ; 0x0985
+	textpointer CupHostTCGCup10TimesChampionRewards1Text              ; 0x0986
+	textpointer CupHostTCGCup10TimesChampionRewards2Text              ; 0x0987
+	textpointer CupHostTCGCupPlayerChampionCongratsText               ; 0x0988
+	textpointer CupHostTCGCupPlayerLostEliminatedText                 ; 0x0989
+	textpointer TCGChallengeHallEntranceClerkNoCardsText              ; 0x098a
+	textpointer TCGChallengeHallEntranceClerkTCGCup1ActiveText        ; 0x098b
+	textpointer TCGChallengeHallEntranceClerkTCGCup1OverText          ; 0x098c
+	textpointer TCGChallengeHallEntranceClerkTCGCup2ActiveText        ; 0x098d
+	textpointer TCGChallengeHallEntranceClerkTCGCup2OverText          ; 0x098e
+	textpointer TCGChallengeHallEntranceClerkTCGCup3InactiveText      ; 0x098f
+	textpointer TCGChallengeHallEntranceClerkTCGCup3ActiveText        ; 0x0990
+	textpointer TCGChallengeHallEntranceClerkTCGCupPlayedText         ; 0x0991
 	textpointer Text0992                                              ; 0x0992
 	textpointer Text0993                                              ; 0x0993
 	textpointer Text0994                                              ; 0x0994
@@ -2481,8 +2481,8 @@ TextOffsets::
 	textpointer Text09a8                                              ; 0x09a8
 	textpointer Text09a9                                              ; 0x09a9
 	textpointer Text09aa                                              ; 0x09aa
-	textpointer Text09ab                                              ; 0x09ab
-	textpointer Text09ac                                              ; 0x09ac
+	textpointer TCGChallengeHallLobbyCupHostNoCardsText               ; 0x09ab
+	textpointer TCGChallengeHallLobbyCupHostStandbyText               ; 0x09ac
 	textpointer Text09ad                                              ; 0x09ad
 	textpointer Text09ae                                              ; 0x09ae
 	textpointer Text09af                                              ; 0x09af
@@ -3423,10 +3423,10 @@ TextOffsets::
 	textpointer GameCenterCoinFlipAttendantStartText                  ; 0x0d56
 	textpointer GameCenterCoinFlipAttendantNotEnoughChipsText         ; 0x0d57
 	textpointer GameCenterCoinFlipAttendantComeAgainText              ; 0x0d58
-	textpointer Text0d59                                              ; 0x0d59
-	textpointer Text0d5a                                              ; 0x0d5a
-	textpointer Text0d5b                                              ; 0x0d5b
-	textpointer Text0d5c                                              ; 0x0d5c
+	textpointer GameCenterGRGalText                                   ; 0x0d59
+	textpointer GameCenterCoinTossBoyInitialText                      ; 0x0d5a
+	textpointer GameCenterCoinTossBoyRepeatText                       ; 0x0d5b
+	textpointer GameCenterCoinTossBoyPostgameText                     ; 0x0d5c
 	textpointer GameCenterSlotMachine1AttendantWelcomeText            ; 0x0d5d
 	textpointer GameCenterSlotMachine1AttendantGuidePromptText        ; 0x0d5e
 	textpointer GameCenterSlotMachine1AttendantGuideText              ; 0x0d5f
@@ -3444,14 +3444,14 @@ TextOffsets::
 	textpointer GameCenterCardDungeonAttendantPlayerWonComeAgainText  ; 0x0d6b
 	textpointer GameCenterCardDungeonAttendantPlayerLostTryAgainText  ; 0x0d6c
 	textpointer GameCenterCardDungeonAttendantPlayerQuitTryAgainText  ; 0x0d6d
-	textpointer Text0d6e                                              ; 0x0d6e
-	textpointer Text0d6f                                              ; 0x0d6f
-	textpointer Text0d70                                              ; 0x0d70
-	textpointer Text0d71                                              ; 0x0d71
-	textpointer Text0d72                                              ; 0x0d72
-	textpointer Text0d73                                              ; 0x0d73
-	textpointer Text0d74                                              ; 0x0d74
-	textpointer Text0d75                                              ; 0x0d75
+	textpointer GameCenterCardDungeonBoy1Text                         ; 0x0d6e
+	textpointer GameCenterCardDungeonBoy2Text                         ; 0x0d6f
+	textpointer GameCenterCardDungeonBoy3Text                         ; 0x0d70
+	textpointer GameCenterFixerNormalText                             ; 0x0d71
+	textpointer GameCenterFixerPostgameText                           ; 0x0d72
+	textpointer GameCenterSlotMachineGRWomanInitialText               ; 0x0d73
+	textpointer GameCenterSlotMachineGRWomanWhiffText                 ; 0x0d74
+	textpointer GameCenterSlotMachineGRWomanHitText                   ; 0x0d75
 	textpointer GameCenterChipDeskWelcomeText                         ; 0x0d76
 	textpointer GameCenterChipDeskDepositInfoText                     ; 0x0d77
 	textpointer GameCenterChipDeskDepositReturnPromptText             ; 0x0d78
@@ -3567,79 +3567,79 @@ TextOffsets::
 	textpointer Text0de6                                              ; 0x0de6
 	textpointer Text0de7                                              ; 0x0de7
 	textpointer Text0de8                                              ; 0x0de8
-	textpointer Text0de9                                              ; 0x0de9
-	textpointer Text0dea                                              ; 0x0dea
-	textpointer Text0deb                                              ; 0x0deb
-	textpointer Text0dec                                              ; 0x0dec
-	textpointer Text0ded                                              ; 0x0ded
-	textpointer Text0dee                                              ; 0x0dee
-	textpointer Text0def                                              ; 0x0def
-	textpointer Text0df0                                              ; 0x0df0
-	textpointer Text0df1                                              ; 0x0df1
-	textpointer Text0df2                                              ; 0x0df2
-	textpointer Text0df3                                              ; 0x0df3
-	textpointer Text0df4                                              ; 0x0df4
-	textpointer Text0df5                                              ; 0x0df5
-	textpointer Text0df6                                              ; 0x0df6
-	textpointer Text0df7                                              ; 0x0df7
-	textpointer Text0df8                                              ; 0x0df8
-	textpointer Text0df9                                              ; 0x0df9
-	textpointer Text0dfa                                              ; 0x0dfa
-	textpointer Text0dfb                                              ; 0x0dfb
-	textpointer Text0dfc                                              ; 0x0dfc
-	textpointer Text0dfd                                              ; 0x0dfd
-	textpointer Text0dfe                                              ; 0x0dfe
-	textpointer Text0dff                                              ; 0x0dff
-	textpointer Text0e00                                              ; 0x0e00
-	textpointer Text0e01                                              ; 0x0e01
-	textpointer Text0e02                                              ; 0x0e02
-	textpointer Text0e03                                              ; 0x0e03
-	textpointer Text0e04                                              ; 0x0e04
-	textpointer Text0e05                                              ; 0x0e05
-	textpointer Text0e06                                              ; 0x0e06
-	textpointer Text0e07                                              ; 0x0e07
-	textpointer Text0e08                                              ; 0x0e08
-	textpointer Text0e09                                              ; 0x0e09
-	textpointer Text0e0a                                              ; 0x0e0a
-	textpointer Text0e0b                                              ; 0x0e0b
-	textpointer Text0e0c                                              ; 0x0e0c
-	textpointer Text0e0d                                              ; 0x0e0d
-	textpointer Text0e0e                                              ; 0x0e0e
-	textpointer Text0e0f                                              ; 0x0e0f
-	textpointer Text0e10                                              ; 0x0e10
-	textpointer Text0e11                                              ; 0x0e11
-	textpointer Text0e12                                              ; 0x0e12
-	textpointer Text0e13                                              ; 0x0e13
-	textpointer Text0e14                                              ; 0x0e14
-	textpointer Text0e15                                              ; 0x0e15
-	textpointer Text0e16                                              ; 0x0e16
-	textpointer Text0e17                                              ; 0x0e17
-	textpointer Text0e18                                              ; 0x0e18
-	textpointer Text0e19                                              ; 0x0e19
-	textpointer Text0e1a                                              ; 0x0e1a
-	textpointer Text0e1b                                              ; 0x0e1b
-	textpointer Text0e1c                                              ; 0x0e1c
-	textpointer Text0e1d                                              ; 0x0e1d
-	textpointer Text0e1e                                              ; 0x0e1e
-	textpointer Text0e1f                                              ; 0x0e1f
-	textpointer Text0e20                                              ; 0x0e20
-	textpointer Text0e21                                              ; 0x0e21
-	textpointer Text0e22                                              ; 0x0e22
-	textpointer Text0e23                                              ; 0x0e23
-	textpointer Text0e24                                              ; 0x0e24
-	textpointer Text0e25                                              ; 0x0e25
-	textpointer Text0e26                                              ; 0x0e26
-	textpointer Text0e27                                              ; 0x0e27
-	textpointer Text0e28                                              ; 0x0e28
-	textpointer Text0e29                                              ; 0x0e29
-	textpointer Text0e2a                                              ; 0x0e2a
-	textpointer Text0e2b                                              ; 0x0e2b
-	textpointer Text0e2c                                              ; 0x0e2c
-	textpointer Text0e2d                                              ; 0x0e2d
-	textpointer Text0e2e                                              ; 0x0e2e
-	textpointer Text0e2f                                              ; 0x0e2f
-	textpointer Text0e30                                              ; 0x0e30
-	textpointer Text0e31                                              ; 0x0e31
+	textpointer GRChallengeMachineStaff50WinStreakRewards1Text        ; 0x0de9
+	textpointer GRChallengeMachineStaff50WinStreakRewards2Text        ; 0x0dea
+	textpointer GRCupClerkCup1ActiveText                              ; 0x0deb
+	textpointer GRCupClerkCup2ActiveText                              ; 0x0dec
+	textpointer GRCupClerkCup3ActiveText                              ; 0x0ded
+	textpointer GRCupClerkCup1PlayerWonText                           ; 0x0dee
+	textpointer GRCupClerkCup2PlayerWonText                           ; 0x0def
+	textpointer GRCupClerkCup3PlayerWonText                           ; 0x0df0
+	textpointer GRCupClerkPlayerLostText                              ; 0x0df1
+	textpointer GRCupClerkEnterPromptText                             ; 0x0df2
+	textpointer GRCupClerkEnterAcceptedText                           ; 0x0df3
+	textpointer GRCupClerkEnterDeclinedText                           ; 0x0df4
+	textpointer GRCupClerkRightNoEntryText                            ; 0x0df5
+	textpointer GRChallengeMachineStaffUnderConstructionInitialText   ; 0x0df6
+	textpointer GRChallengeMachineStaffUnderConstructionRepeatText    ; 0x0df7
+	textpointer GRChallengeMachineStaffWelcomeText                    ; 0x0df8
+	textpointer GRChallengeMachineStaffWelcome50WinStreakDoneText     ; 0x0df9
+	textpointer CupHostGRCup1IntroText                                ; 0x0dfa
+	textpointer CupHostGRCup1Round1ChallengerText                     ; 0x0dfb
+	textpointer CupHostGRCup1Round1DuelStartText                      ; 0x0dfc
+	textpointer CupHostGRCup2IntroText                                ; 0x0dfd
+	textpointer CupHostGRCup2Round1ChallengerText                     ; 0x0dfe
+	textpointer CupHostGRCup3IntroText                                ; 0x0dff
+	textpointer CupHostGRCup3Round1ChallengerText                     ; 0x0e00
+	textpointer CupHostGRCup3Round1DuelStartText                      ; 0x0e01
+	textpointer CupHostGRCup1Or2Round1PlayerWonText                   ; 0x0e02
+	textpointer CupHostGRCup1Or2Round1PlayerWonOpponentEliminatedText ; 0x0e03
+	textpointer CupHostGRCup1Or2Round1NextChallengerText              ; 0x0e04
+	textpointer CupHostGRCup3Round1PlayerWonText                      ; 0x0e05
+	textpointer CupHostGRCup3Round1PlayerWonOpponentEliminatedText    ; 0x0e06
+	textpointer CupHostGRCup3Round1NextChallengerText                 ; 0x0e07
+	textpointer CupHostGRCup1Or2Round1PlayerLostText                  ; 0x0e08
+	textpointer CupHostGRCup1Or2Round1PlayerLostEliminatedText        ; 0x0e09
+	textpointer CupHostGRCup3Round1PlayerLostText                     ; 0x0e0a
+	textpointer CupHostGRCup3Round1PlayerLostEliminatedText           ; 0x0e0b
+	textpointer CupHostGRCupRound2ChallengerText                      ; 0x0e0c
+	textpointer CupHostGRCupRound2The4PrizesMatchText                 ; 0x0e0d
+	textpointer CupHostGRCupAreYourDecksReadyText                     ; 0x0e0e
+	textpointer CupHostGRCupMakeYourPreparationsText                  ; 0x0e0f
+	textpointer CupHostGRCupRound2DuelStartText                       ; 0x0e10
+	textpointer CupHostGRCup1Round2PlayerWonText                      ; 0x0e11
+	textpointer CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText  ; 0x0e12
+	textpointer CupHostGRCup1Or2Round2NextChallengerText              ; 0x0e13
+	textpointer CupHostGRCup2Round2PlayerWonText                      ; 0x0e14
+	textpointer CupHostGRCup3Round2PlayerWonText                      ; 0x0e15
+	textpointer CupHostGRCup3Round2NextChallengerText                 ; 0x0e16
+	textpointer CupHostGRCup1Or2Round2PlayerLostText                  ; 0x0e17
+	textpointer CupHostGRCup1Or2Round2PlayerLostEliminatedText        ; 0x0e18
+	textpointer CupHostGRCup3Round2PlayerLostText                     ; 0x0e19
+	textpointer CupHostGRCup3Round2PlayerLostEliminatedText           ; 0x0e1a
+	textpointer CupHostGRCupRound3ChallengerText                      ; 0x0e1b
+	textpointer CupHostGRCupRound3DuelStartText                       ; 0x0e1c
+	textpointer CupHostGRCup1Or2Round3PlayerWonText                   ; 0x0e1d
+	textpointer CupHostGRCup1Or2Round3PlayerChampionText              ; 0x0e1e
+	textpointer CupHostGRCup3Round3PlayerWonText                      ; 0x0e1f
+	textpointer CupHostGRCup3Round3PlayerChampionText                 ; 0x0e20
+	textpointer CupHostGRCup1Or2Round3PlayerLostText                  ; 0x0e21
+	textpointer CupHostGRCup1Or2Round3PlayerLostEliminatedText        ; 0x0e22
+	textpointer CupHostGRCup3Round3PlayerLostText                     ; 0x0e23
+	textpointer CupHostGRCup3Round3PlayerLostEliminatedText           ; 0x0e24
+	textpointer CupHostGRCup1ChampionPrizeText                        ; 0x0e25
+	textpointer CupHostGRCup2ChampionPrizeText                        ; 0x0e26
+	textpointer CupHostGRCup3ChampionPrizeText                        ; 0x0e27
+	textpointer CupHostGRCup10TimesChampionRewards1Text               ; 0x0e28
+	textpointer CupHostGRCup10TimesChampionRewards2Text               ; 0x0e29
+	textpointer CupHostGRCupPlayerChampionCongratsText                ; 0x0e2a
+	textpointer GRChallengeHallEntranceClerkGRCup1InactiveText        ; 0x0e2b
+	textpointer GRChallengeHallEntranceClerkGRCup1ActiveText          ; 0x0e2c
+	textpointer GRChallengeHallEntranceClerkGRCup2ActiveText          ; 0x0e2d
+	textpointer GRChallengeHallEntranceClerkGRCup2InactiveText        ; 0x0e2e
+	textpointer GRChallengeHallEntranceClerkGRCup3InactiveText        ; 0x0e2f
+	textpointer GRChallengeHallEntranceClerkGRCup3ActiveText          ; 0x0e30
+	textpointer GRChallengeHallEntranceClerkGRCupPlayedText           ; 0x0e31
 	textpointer Text0e32                                              ; 0x0e32
 	textpointer Text0e33                                              ; 0x0e33
 	textpointer Text0e34                                              ; 0x0e34
@@ -3648,8 +3648,8 @@ TextOffsets::
 	textpointer Text0e37                                              ; 0x0e37
 	textpointer Text0e38                                              ; 0x0e38
 	textpointer Text0e39                                              ; 0x0e39
-	textpointer Text0e3a                                              ; 0x0e3a
-	textpointer Text0e3b                                              ; 0x0e3b
+	textpointer GRChallengeHallLobbyCupHostStandbyText                ; 0x0e3a
+	textpointer GRChallengeHallLobbyCupHostStandbyGRCup3Text          ; 0x0e3b
 	textpointer Text0e3c                                              ; 0x0e3c
 	textpointer Text0e3d                                              ; 0x0e3d
 	textpointer Text0e3e                                              ; 0x0e3e
@@ -3852,9 +3852,9 @@ TextOffsets::
 	textpointer Text0f03                                              ; 0x0f03
 	textpointer Text0f04                                              ; 0x0f04
 	textpointer Text0f05                                              ; 0x0f05
-	textpointer Text0f06                                              ; 0x0f06
-	textpointer Text0f07                                              ; 0x0f07
-	textpointer Text0f08                                              ; 0x0f08
+	textpointer ChallengeMachineWinStreakRecordCorruptedAndResetText  ; 0x0f06
+	textpointer DrMasonTCGChallengeMachine50WinStreakRewards1Text     ; 0x0f07
+	textpointer DrMasonTCGChallengeMachine50WinStreakRewards2Text     ; 0x0f08
 	textpointer Text0f09                                              ; 0x0f09
 	textpointer Text0f0a                                              ; 0x0f0a
 	textpointer Text0f0b                                              ; 0x0f0b

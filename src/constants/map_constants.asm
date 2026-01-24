@@ -1,4 +1,5 @@
-; constants for wCurIsland
+; island constants
+; for wCurIsland, challenge cups/machines, etc.
 DEF TCG_ISLAND EQU $0
 DEF GR_ISLAND  EQU $1
 
@@ -122,6 +123,8 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GR_CASTLE_ENTRANCE             ; $71
 	const MAP_GR_CASTLE                      ; $72
 	const MAP_GR_CASTLE_BIRURITCHI           ; $73
+
+DEF MAP_NONE EQU -1
 
 	; MAP_GFX_*
 	; referenced in MapHeaders, and others. see also: data/map_gfx.asm
@@ -280,3 +283,26 @@ DEF NUM_OW_ANIMATED_TILES EQU 25
 	const OWMAP_GR_PSYCHIC_STRONGHOLD ; $a
 	const OWMAP_COLORLESS_ALTAR       ; $b
 	const OWMAP_GR_CASTLE             ; $c
+
+; *_MapHeader struct constants
+RSRESET
+DEF MAPHEADERSTRUCT_GFX          RB ; 0
+DEF MAPHEADERSTRUCT_SCRIPTS_BANK RB ; 1
+DEF MAPHEADERSTRUCT_SCRIPTS_PTR  RW ; 2
+DEF MAPHEADERSTRUCT_MUSIC        RB ; 4
+
+DEF MAPHEADERSTRUCT_LENGTH EQU _RS ; 5
+
+; _ow_coordinate_function struct constants
+RSRESET
+DEF OWCOORDFUNCSTRUCT_X0          RB ; 0
+DEF OWCOORDFUNCSTRUCT_Y0          RB ; 1
+DEF OWCOORDFUNCSTRUCT_ARGS        EQU _RS
+DEF OWCOORDFUNCSTRUCT_ARG_A       RB ; 2
+DEF OWCOORDFUNCSTRUCT_ARG_D       RB ; 3
+DEF OWCOORDFUNCSTRUCT_ARG_E       RB ; 4
+DEF OWCOORDFUNCSTRUCT_ARG_B       RB ; 5
+DEF OWCOORDFUNCSTRUCT_SCRIPT_BANK RB ; 6
+DEF OWCOORDFUNCSTRUCT_SCRIPT_PTR  RW ; 7
+
+DEF OWCOORDFUNCSTRUCT_LENGTH EQU _RS ; 9

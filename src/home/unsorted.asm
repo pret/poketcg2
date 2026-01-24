@@ -34,22 +34,25 @@ SetVolume::
 	farcall _SetVolume
 	ret
 
-Func_3087::
+; process wNextGameEvent
+; if GAME_EVENT_IDLE, loop indefinitely (idle loop)
+; default to GAME_EVENT_IDLE if wNextGameEvent is out of bounds
+ExecuteGameEvent::
 	ldh a, [hBankROM]
 	push af
 .loop
-	ld a, [wd54c]
+	ld a, [wNextGameEvent]
 	or a
 	jr z, .done
-	cp $06
+	cp NUM_GAME_EVENTS
 	jr c, .ok
-	ld a, $01
+	ld a, GAME_EVENT_IDLE
 .ok
 	ld l, a
-	ld a, $01
-	ld [wd54c], a
+	ld a, GAME_EVENT_IDLE
+	ld [wNextGameEvent], a
 	ld a, l
-	ld hl, PointerTable_30aa
+	ld hl, .PointerTable
 	call JumpToFunctionInTable
 	jr .loop
 .done
@@ -57,36 +60,36 @@ Func_3087::
 	call BankswitchROM
 	ret
 
-PointerTable_30aa::
-	dw Func_30b6 ; $0
-	dw Func_30b6 ; $1
-	dw Func_30b7 ; $2
-	dw Func_30d6 ; $3
-	dw NewGameAndPrologue ; $4
-	dw PlayCredits ; $5
+.PointerTable:
+	dw .Idle               ; GAME_EVENT_NONE
+	dw .Idle               ; GAME_EVENT_IDLE
+	dw .OverworldUpdate    ; GAME_EVENT_OVERWORLD_UPDATE
+	dw .Duel               ; GAME_EVENT_DUEL
+	dw .NewGameAndPrologue ; GAME_EVENT_NEWGAME_PROLOGUE
+	dw .PlayCredits        ; GAME_EVENT_CREDITS
 
-Func_30b6::
+.Idle:
 	ret
 
-Func_30b7::
-	ld hl, wd583
+.OverworldUpdate:
+	ld hl, wOverworldTransition
 	bit 6, [hl]
-	jr nz, .asm_30ca
+	jr nz, .load_warp
 	bit 7, [hl]
-	jr nz, .asm_30d1
+	jr nz, .no_warp
 	ld a, EVENT_02
 	farcall GetEventValue
-	jr nz, .asm_30d1
-.asm_30ca
-	ld a, [wd54d]
-	farcall Func_d421
-.asm_30d1
-	farcall Func_d299
+	jr nz, .no_warp
+.load_warp
+	ld a, [wNextWarpMap]
+	farcall LoadMapHeader
+.no_warp
+	farcall OverworldLoop
 	ret
 
-Func_30d6::
-	ld a, $02
-	ld [wd54c], a
+.Duel:
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
 	farcall Func_1e5a2
 	jr c, .lost
 ; won
@@ -98,8 +101,8 @@ Func_30d6::
 	farcall ZeroOutEventValue
 	ret
 
-NewGameAndPrologue::
-	ld a, [wd54d]
+.NewGameAndPrologue:
+	ld a, [wNextWarpMap]
 	or a
 	jr nz, .has_entered_info
 
@@ -117,15 +120,15 @@ NewGameAndPrologue::
 	ld [wPlayerOWObject], a
 
 .got_info
-	ld a, $04
-	ld [wd54c], a
-	ld a, $01
-	ld [wd54d], a
+	ld a, GAME_EVENT_NEWGAME_PROLOGUE
+	ld [wNextGameEvent], a
+	ld a, TRUE ; as a flag, rather than OVERWORLD_MAP_GR
+	ld [wNextWarpMap], a
 	ld a, TCG_ISLAND
 	ld [wCurIsland], a
 	ld a, $0e
 	ld [wCurOWLocation], a
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, SFX_SAVE_GAME
 	call PlaySFX
 	farcall WaitForSFXToFinish
@@ -136,32 +139,39 @@ NewGameAndPrologue::
 	ld [wCurIsland], a
 	ld a, OWMAP_MASON_LABORATORY
 	ld [wCurOWLocation], a
-	ld a, $02
-	ld [wd54c], a
-	ld a, $02
-	ld [wd54d], a
-	call Func_3087
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
+	ld a, MAP_MASON_LABORATORY_MAIN
+	ld [wNextWarpMap], a
+	call ExecuteGameEvent
 	ret
 
-PlayCredits::
+.PlayCredits:
 	farcall _PlayCredits
-	ld a, $00
-	ld [wd54c], a
+	ld a, GAME_EVENT_NONE
+	ld [wNextGameEvent], a
 	ret
 
-Func_3154::
+; a = OWMODE_* constant
+; if wCurMapScriptsPointer is null, set carry
+; if it exists but doesn't contain scripts whose mode matches a,
+; execute OWModePostprocess with a and set carry
+; if it contains one, execute it,
+; and if that sets carry (usually does),
+; also execute OWModePostprocess with a
+ExecuteOWModeScript::
 	ld c, a
 	ldh a, [hBankROM]
 	push af
-	ld a, [wd551]
+	ld a, [wCurMapScriptsBank]
 	call BankswitchROM
-	ld hl, wd552
+	ld hl, wCurMapScriptsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	or h
 	jr z, .null
-.loop
+.loop_lookup
 	ld a, [hli]
 	cp $ff
 	jr z, .not_found
@@ -169,16 +179,16 @@ Func_3154::
 	jr z, .found
 	inc hl
 	inc hl
-	jr .loop
+	jr .loop_lookup
 
 .found
 	push bc
 	call .JumpToHL
 	pop bc
-	jr nc, .asm_317f
+	jr nc, .done
 	ld a, c
-	farcall Func_c12e
-.asm_317f
+	farcall OWModePostprocess
+.done
 	pop af
 	call BankswitchROM
 	scf
@@ -187,7 +197,7 @@ Func_3154::
 
 .not_found
 	ld a, c
-	farcall Func_c12e
+	farcall OWModePostprocess
 .null
 	pop af
 	call BankswitchROM
@@ -210,7 +220,7 @@ Func_3195::
 
 Func_31a1::
 	call Func_3332
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	ret
 
 Func_31a8::
@@ -249,36 +259,37 @@ Func_31a8::
 	jr .done
 
 .not_moving
-	ld a, $06
-	ld [wd582], a
+	ld a, OWMODE_STEP_EVENT
+	ld [wOverworldMode], a
 	ld a, [wPlayerOWObject]
 	farcall StopOWObjectAnimation
 .done
 	ret
 
-Func_3205::
-.asm_3205
-	ld a, [hli]
+; hl = npc list (*_NPCs)
+LoadNPCs::
+.loop_lookup
+	ld a, [hli] ; OWNPCSTRUCT_NPC_ID
 	cp $ff
 	ret z
 	push af
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_X_COORD
 	ld d, a
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_Y_COORD
 	ld e, a
 	push de
-	ld a, [hli]
+	ld a, [hli] ; OWNPCSTRUCT_DIRECTION
 	ld b, a
 	push bc
 	push hl
-	ld a, [hli]
-	ld h, [hl]
+	ld a, [hli] ; OWNPCSTRUCT_PRELOAD_FUNC
+	ld h, [hl]  ;
 	ld l, a
 	or h
-	jr z, .asm_321e
-	call Func_3233
-	jr c, .asm_322c
-.asm_321e
+	jr z, .load
+	call .PreloadFunc
+	jr c, .next
+.load
 	pop hl
 	pop bc
 	pop de
@@ -288,151 +299,164 @@ Func_3205::
 	pop hl
 	inc hl
 	inc hl
-	jr .asm_3205
-.asm_322c
+	jr .loop_lookup
+.next
 	pop hl
-	add sp, $06
+	add sp, OWNPCSTRUCT_LENGTH
 	inc hl
 	inc hl
-	jr .asm_3205
+	jr .loop_lookup
 
-Func_3233::
+.PreloadFunc:
 	jp hl
 
-Func_3234::
+ExecuteWRAMOverworldScript::
 	ldh a, [hBankROM]
 	push af
-	call Func_323f
+	call .Script
 	pop af
 	call BankswitchROM
 	ret
 
-Func_323f::
-	ld hl, wd592
+.Script:
+	ld hl, wOverworldScriptBank
 	ld a, [hl]
 	call BankswitchROM
-	ld hl, wd593
+	ld hl, wOverworldScriptPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-Func_324d::
+; hl = script list (*_StepEvents, *_OWInteractions, etc.)
+ExecutePlayerCoordScript::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
 ;	fallthrough
-Func_3254::
-	ld a, [hli]
+
+; hl = script list (*_StepEvents, *_OWInteractions, etc.)
+; de = x, y
+; run a script whose x0, y0 keys match
+; if not found, set carry
+ExecuteCoordScript::
+.loop_lookup
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_X0
 	cp $ff
-	jr nz, .asm_325b
+	jr nz, .check_coord
 	scf
 	ret
-.asm_325b
+.check_coord
 	cp d
-	jr nz, .asm_3282
-	ld a, [hli]
+	jr nz, .next_skip_y
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_Y0
 	cp e
-	jr nz, .asm_3283
+	jr nz, .next
 	ldh a, [hBankROM]
 	push af
-	call .asm_326f
+	call .Script
 	pop af
 	call BankswitchROM
 	scf
 	ccf
 	ret
 
-.asm_326f
-	ld a, [hli]
+.Script
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_ARG_A
 	push af
-	ld d, [hl]
+	ld d, [hl]  ; OWCOORDFUNCSTRUCT_ARG_D
 	inc hl
-	ld e, [hl]
+	ld e, [hl]  ; OWCOORDFUNCSTRUCT_ARG_E
 	inc hl
-	ld b, [hl]
+	ld b, [hl]  ; OWCOORDFUNCSTRUCT_ARG_B
 	inc hl
-	ld c, [hl]
+	ld c, [hl]  ; OWCOORDFUNCSTRUCT_SCRIPT_BANK
 	inc hl
-	ld a, [hli]
-	ld h, [hl]
+	ld a, [hli] ; OWCOORDFUNCSTRUCT_SCRIPT_PTR
+	ld h, [hl]  ;
 	ld l, a
 	ld a, c
 	call BankswitchROM
 	pop af
 	jp hl
-.asm_3282
-	inc hl
-.asm_3283
-	ld a, $07
-	add_hl_a
-	jr Func_3254
 
+.next_skip_y
+	inc hl
+.next
+	ld a, OWCOORDFUNCSTRUCT_LENGTH - OWCOORDFUNCSTRUCT_ARGS
+	add_hl_a
+	jr .loop_lookup
+
+; hl = npc script list (*_NPCInteractions)
 Func_328c::
 	push hl
 	farcall Func_d3e9
-	farcall Func_10dfb
-	cp $ff
+	farcall FindNPCAtLocation
+	cp NPC_NONE
 	jr z, .set_carry
 	push af
 	call Func_3195
 	pop af
 	farcall SetOWObjectDirection
 	pop hl
-	call Func_344c
+	call ExecuteNPCScript
 	ret
 .set_carry
 	pop hl
 	scf
 	ret
 
+; hl = npc script list (*_NPCInteractions)
 Func_32aa::
 	push hl
 	farcall Func_d3e9
-	farcall Func_10dfb
-	cp $ff
+	farcall FindNPCAtLocation
+	cp NPC_NONE
 	jr z, .set_carry
 	pop hl
-	call Func_344c
+	call ExecuteNPCScript
 	ret
 .set_carry
 	pop hl
 	scf
 	ret
 
+; if player's anim struct flag 0 or 1 is set, set carry
+; else, execute player's coord script with the script list in hl
 Func_32bf::
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectAnimStruct1Flag0And1
-	ld a, $00
+	ld a, 0
 	cp b
-	jr nz, .asm_32d6
+	jr nz, .set_carry
+; this is just equivalent to ExecutePlayerCoordScript
 	ld a, [wPlayerOWObject]
 	farcall GetOWObjectTilePosition
-	call Func_3254
+	call ExecuteCoordScript
 	ret
-.asm_32d6
+.set_carry
 	scf
 	ret
 
-Func_32d8::
-	call Func_32f6
+HandleOverworldPlayerInput::
+	call HandleOverworldPlayerMoveInput
 	jr nc, .done
 	ldh a, [hKeysPressed]
 	bit B_PAD_A, a
-	jr nz, .asm_32e9
+	jr nz, .a_btn_pressed
 	bit B_PAD_START, a
-	jr nz, .asm_32f0
+	jr nz, .start_btn_pressed
 	jr .done
-.asm_32e9
-	ld a, $08
-	ld [wd582], a
+.a_btn_pressed
+	ld a, OWMODE_INTERACT
+	ld [wOverworldMode], a
 	jr .done
-.asm_32f0
-	ld a, $12
-	ld [wd582], a
+.start_btn_pressed
+	ld a, OWMODE_PAUSE_MENU
+	ld [wOverworldMode], a
 .done
 	ret
 
-Func_32f6::
+HandleOverworldPlayerMoveInput::
 	ldh a, [hKeysHeld]
 	and PAD_CTRL_PAD
 	jr z, .set_carry
@@ -448,18 +472,18 @@ Func_32f6::
 	; B_PAD_LEFT set
 	inc b ; WEST
 .got_direction
-	ld c, 1
+	ld c, MOVE_SPEED_WALK
 	ldh a, [hKeysHeld]
 	bit B_PAD_B, a
 	jr z, .got_speed
-	inc c
+	inc c ; MOVE_SPEED_RUN
 .got_speed
 	ld a, [wPlayerOWObject]
 	farcall Func_10e3c
 	or a
 	jr z, .set_carry
-	ld a, $05
-	ld [wd582], a
+	ld a, OWMODE_MOVE
+	ld [wOverworldMode], a
 	ld a, [wPlayerOWObject]
 	farcall StartOWObjectAnimation
 	scf
@@ -549,7 +573,7 @@ Func_33a3::
 	ret
 
 Func_33b7::
-	ld a, [wd586]
+	ld a, [wCurMap]
 	ld c, a
 	ld b, $00
 	sla c
@@ -564,18 +588,18 @@ Func_33b7::
 	ld h, [hl]
 	ld l, a
 	ld a, c
-	ld de, wd561
-	ld bc, $5
+	ld de, wTempMapHeaderData
+	ld bc, MAPHEADERSTRUCT_LENGTH
 	call CopyFarHLToDE
-	ld a, [wd562]
-	ld [wd551], a
-	ld [wd58b], a
-	ld a, [wd563 + 0]
-	ld [wd552 + 0], a
-	ld [wd58c + 0], a
-	ld a, [wd563 + 1]
-	ld [wd552 + 1], a
-	ld [wd58c + 1], a
+	ld a, [wTempMapScriptsBank]
+	ld [wCurMapScriptsBank], a
+	ld [wNextMapScriptsBank], a
+	ld a, [wTempMapScriptsPointer + 0]
+	ld [wCurMapScriptsPointer + 0], a
+	ld [wNextMapScriptsPointer + 0], a
+	ld a, [wTempMapScriptsPointer + 1]
+	ld [wCurMapScriptsPointer + 1], a
+	ld [wNextMapScriptsPointer + 1], a
 	ret
 
 StartScript::
@@ -630,39 +654,42 @@ CopyFarHLToDE::
 	call BankswitchROM
 	ret
 
-; a = NPC_* ID
-Func_344c::
+; a = key (usually NPC_* ID)
+; hl = script list (*_NPCInteractions, *_AfterDuelScripts, etc.)
+ExecuteNPCScript::
 	ld c, a
-.asm_344d
+.loop_lookup
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3471
+	jr z, .not_found
 	cp c
-	jr nz, .asm_346c
+	jr nz, .next
 	ldh a, [hBankROM]
 	push af
-	call .asm_3462
+	call .Execute
 	pop af
 	call BankswitchROM
 	scf
 	ccf
 	ret
 
-.asm_3462
-	ld a, [hli]
+.Execute
+	ld a, [hli] ; script bank
 	push af
-	ld a, [hli]
-	ld h, [hl]
+	ld a, [hli] ; script pointer
+	ld h, [hl]  ;
 	ld l, a
 	pop af
 	call BankswitchROM
 	jp hl
-.asm_346c
+
+.next
 	inc hl
 	inc hl
 	inc hl
-	jr .asm_344d
-.asm_3471
+	jr .loop_lookup
+
+.not_found
 	scf
 	ret
 
@@ -1465,9 +1492,9 @@ BankswitchVRAM::
 	call _BankswitchVRAM
 	ret
 
-; bc - coordinates
-; d - ?
-; e - ?
+; bc = coordinates
+; d = VRAM0 tile index
+; e = VRAM1 tile attributes
 Func_383b::
 	push af
 	push de
@@ -1483,7 +1510,7 @@ Func_383b::
 	push de
 	ld a, d
 	call WriteByteToBGMap0
-	ld a, $01
+	ld a, BANK("VRAM1")
 	call BankswitchVRAM
 	pop de
 	pop bc
@@ -2039,12 +2066,12 @@ Func_3b19::
 	farcall $7, $445a
 	ret
 
-Func_3b1e::
+SaveGame::
 	push af
 	push bc
 	push de
 	push hl
-	farcall Func_ea30
+	farcall _SaveGame
 	pop hl
 	pop de
 	pop bc
@@ -2356,19 +2383,19 @@ Func_3cc3::
 
 Func_3cdd::
 	xor a
-	ld [wdd04], a
-	ld [wdd05], a
+	ld [wTempActiveMusic], a
+	ld [wTempActiveMusicState], a
 	ret
 
 ; a = MUSIC_* constant
 SetMusic::
 	push bc
 	push hl
-	ld hl, wdd04
+	ld hl, wTempActiveMusic
 	ld b, [hl]
 	cp b
 	jr z, .skip
-	ld [wdd04], a
+	ld [wTempActiveMusic], a
 	call PlaySong
 .skip
 	pop hl
@@ -2394,40 +2421,41 @@ Func_3d02::
 	ret
 
 ; a = MUSIC_* constant
-Func_3d09::
+; intended for short songs?
+CallPlaySong::
 	call PlaySong
 	ret
 
-Func_3d0d::
+PauseSong_SaveState::
 	push af
-	call Func_3d1f
+	call SetActiveMusicState
 	call PauseSong
 	pop af
 	ret
 
-Func_3d16::
+ResumeSong_ClearTemp::
 	push af
-	call Func_3d32
+	call ClearTempActiveMusic
 	call ResumeSong
 	pop af
 	ret
 
-Func_3d1f::
+SetActiveMusicState::
 	push bc
-	ld a, [wdd05]
+	ld a, [wTempActiveMusicState]
 	ld b, a
-	ld a, [wdd06]
+	ld a, [wActiveMusicState]
 	or b
-	ld [wdd06], a
+	ld [wActiveMusicState], a
 	ld a, $ff
-	ld [wdd05], a
+	ld [wTempActiveMusicState], a
 	pop bc
 	ret
 
-Func_3d32::
+ClearTempActiveMusic::
 	xor a
-	ld [wdd05], a
-	ld [wdd04], a
+	ld [wTempActiveMusicState], a
+	ld [wTempActiveMusic], a
 	ret
 
 CallSetVolume::
@@ -2444,14 +2472,14 @@ WaitForSongToFinish::
 	pop af
 	ret
 
-Func_3d4a::
-	ld a, [wdd06]
+GetActiveMusicState::
+	ld a, [wActiveMusicState]
 	and a
 	ret
 
-Func_3d4f::
+ResetActiveMusicState::
 	xor a
-	ld [wdd06], a
+	ld [wActiveMusicState], a
 	ret
 
 Func_3d54::

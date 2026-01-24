@@ -163,14 +163,14 @@ DebugSlotMachine:
 	call ClearGameCenterChips
 	ld bc, 100
 	call AddChips
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_DUEL_THEME_GR_LEADER
 	call SetMusic
 	pop af
 	ld a, 5
 	farcall SlotMachine
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
 ; 0x10150
@@ -313,7 +313,7 @@ Func_102ef:
 	ld bc, $40
 	call WriteBCBytesToHL
 
-	call .Func_10327
+	call Func_10327
 
 	xor a
 	ld [wd896 + 0], a
@@ -324,7 +324,7 @@ Func_102ef:
 	pop af
 	ret
 
-.Func_10327:
+Func_10327:
 	ld a, [wWRAMBank]
 	push af
 	ld a, BANK("WRAM3")
@@ -1161,103 +1161,115 @@ Func_10742:
 	pop af
 	ret
 
-Func_10772:
+HandlePauseMenu:
 	push af
 	push bc
 	push de
 	push hl
-	ld b, $00
-	farcall Func_1c0b2
-	jr z, .asm_1077f
-	inc b
-.asm_1077f
+	ld b, FALSE
+	farcall CheckIfGameCenter
+	jr z, .checked_game_center
+	inc b ; TRUE
+.checked_game_center
 	ld a, b
-	ld [wd8a0], a
+	ld [wPauseMenuWithChips], a
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
-.asm_1078a
-	ld a, [wd8a0]
+.loop_menu
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_10793
-	call Func_114af
-.asm_10793
-	call Func_107bf
-	call Func_1081a
-	jr c, .asm_107ae
-	call Func_10836
-	jr c, .asm_107ae
-	call Func_10856
-	ld a, [wd8a0]
+	jr z, .display
+	call TurnOnCurChipsHUD
+.display
+	call .ShowMenu
+	call .HandleInput
+	jr c, .cancel
+	call .ExecuteSelectedOption
+	jr c, .cancel
+	call .RestoreNPCs
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_1078a
-	call Func_114f9
-	jr .asm_1078a
-.asm_107ae
-	call Func_10856
-	ld a, [wd8a0]
+	jr z, .loop_menu
+	call TurnOffCurChipsHUD
+	jr .loop_menu
+.cancel
+	call .RestoreNPCs
+	ld a, [wPauseMenuWithChips]
 	and a
-	jr z, .asm_107ba
-	call Func_114f9
-.asm_107ba
+	jr z, .quit
+	call TurnOffCurChipsHUD
+.quit
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_107bf:
+.ShowMenu:
 	push af
 	push bc
 	push de
 	push hl
-	ld de, $c00
-	ld b, $04
-	ld hl, $47ee
+	lb de, 12, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
-	farcall Func_1cacf
-	ld a, [wd89f]
+	farcall HideNPCAnimsUnderMenuBox
+	ld a, [wPauseMenuCursorPosition]
 	farcall DrawMenuBox
-	farcall Func_1f309
-	jr z, .asm_107e9
+	farcall GetNewMailFlag
+	jr z, .done_show_menu
+; has new mail(s), so add an asterisk
 	lb bc, 18, 8
-	ld d, $0e
-	ld e, $00
+	ld d, SYM_ATK_DESCR
+	ld e, $00 ; priority
 	call Func_383b
-.asm_107e9
+.done_show_menu
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x107ee
 
-SECTION "Bank 4@481a", ROMX[$481a], BANK[$4]
+.menu_params
+	menubox_params TRUE, 8, 16, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, PauseMenuStatusText
+	textitem 2,  4, PauseMenuDiaryText
+	textitem 2,  6, PauseMenuDeckText
+	textitem 2,  8, PauseMenuMinicomText
+	textitem 2, 10, PauseMenuCoinText
+	textitem 2, 12, PauseMenuConfigText
+	textitem 2, 14, PauseMenuExitText
+	textitems_end
 
-Func_1081a:
-	ld a, [wd89f]
+.HandleInput:
+	ld a, [wPauseMenuCursorPosition]
 	farcall HandleMenuBox
-	ld [wd89f], a
-	jr c, .asm_1082e
+	ld [wPauseMenuCursorPosition], a
+	jr c, .cancel_input
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1082e
+.cancel_input
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
 
-Func_10836:
+; a = option that was selected
+.ExecuteSelectedOption:
 	ld hl, .function_map
 	call CallMappedFunction
 	ret
 
-.function_map: ; pause menu
+.function_map
 	key_func PAUSEMENU_STATUS,  PauseMenuStatusScreen
 	key_func PAUSEMENU_DIARY,   PauseMenuDiaryScreen
 	key_func PAUSEMENU_DECK,    PauseMenuDeckScreen
@@ -1266,8 +1278,8 @@ Func_10836:
 	key_func PAUSEMENU_CONFIG,  PauseMenuConfigScreen
 	db $ff
 
-Func_10856:
-	farcall Func_1caf1
+.RestoreNPCs:
+	farcall ShowNPCAnimsUnderMenuBox
 	call LoadSymbolsFont
 	call Func_35a0
 	ret
@@ -2307,6 +2319,8 @@ ClearOWObject:
 	call _ClearOWObject
 	ret
 
+; input: a = NPC_* ID
+; output: de = tile coordinates
 GetOWObjectTilePosition::
 	push af
 	push hl
@@ -2387,13 +2401,13 @@ CheckOWObjectPointerWithID:
 
 ; outputs NPC ID of OW object that is
 ; in the grid position de
-; if no object, then output $ff
-Func_10dfb::
+; if no object, then output NPC_NONE (-1)
+FindNPCAtLocation::
 	push bc
 	push de
 	push hl
-	ld a, $ff
-	ld [wd987], a
+	ld a, NPC_NONE
+	ld [wTempScriptNPC], a
 
 	call GetOWObjectsPointer
 	ld c, MAX_NUM_OW_OBJECTS
@@ -2422,7 +2436,7 @@ Func_10dfb::
 	cp c
 	jr nz, .next
 	ld a, h
-	ld [wd987], a
+	ld [wTempScriptNPC], a
 .next
 	pop hl
 	pop de
@@ -2432,7 +2446,7 @@ Func_10dfb::
 	dec c
 	jr nz, .loop
 
-	ld a, [wd987]
+	ld a, [wTempScriptNPC]
 	pop hl
 	pop de
 	pop bc
@@ -2491,7 +2505,7 @@ Func_10e3c::
 	cp $10
 	jr nc, .blocked
 .asm_10e7f
-	call Func_10dfb
+	call FindNPCAtLocation
 	inc a
 	jr nz, .blocked
 	sla d
@@ -2775,7 +2789,7 @@ IsStillOWObject:
 	db NPC_GR_CLERK_GIFT_CENTER
 	db NPC_GR_CLERK_5
 	db NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE
-	db NPC_GR_CLERK_6
+	db NPC_GR_CLERK_GR_AIRPORT_2
 	db NPC_GR_CLERK_GRASS_FORT
 	db NPC_GR_CLERK_LIGHTNING_FORT
 	db NPC_GR_CLERK_FIRE_FORT
@@ -2812,7 +2826,7 @@ IsStillOWObject:
 	db NPC_STRONGHOLD_PLATFORM
 	db $ff ; end
 
-Func_11002:
+HideNPCAnimsUnderDialogBox:
 	push af
 	push bc
 	push de
@@ -2829,7 +2843,7 @@ Func_11002:
 	pop af
 	ret
 
-Func_1101d:
+ShowNPCAnimsUnderDialogBox:
 	push af
 	push bc
 	push de
@@ -2989,36 +3003,38 @@ _PCMenu:
 	push bc
 	push de
 	push hl
-	call Func_11002
+	call HideNPCAnimsUnderDialogBox
 	ldtx hl, TurnedOnPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld e, $01
-.asm_110d5
+	ld e, TRUE ; has dialog box
+.loop_menu
 	call .ShowMenu
 	call .HandleInput
-	jr c, .asm_110f2
+	jr c, .cancel
 	push de
 	call .ExecuteSelectedOption
 	pop de
-	jr c, .asm_110f2
-	call .Func_11181
+	jr c, .cancel
+	call .RestoreNPCs
 	ld a, e
 	and a
-	jr z, .asm_110f0
-	call Func_1101d
-	ld e, $00
-.asm_110f0
-	jr .asm_110d5
-.asm_110f2
-	call .Func_11181
+	jr z, .turned_off_dialog_box
+; the "turned on" dialog is no longer valid, so turn off dialog box
+	call ShowNPCAnimsUnderDialogBox
+	ld e, FALSE
+.turned_off_dialog_box
+	jr .loop_menu
+.cancel
+	call .RestoreNPCs
 	ld a, e
 	and a
-	jr nz, .asm_110fc
-	call Func_11002
-.asm_110fc
+	jr nz, .quit
+; no dialog box, so turn it on again
+	call HideNPCAnimsUnderDialogBox
+.quit
 	ldtx hl, TurnedOffPCText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	call Func_1101d
+	call ShowNPCAnimsUnderDialogBox
 	pop hl
 	pop de
 	pop bc
@@ -3034,7 +3050,7 @@ _PCMenu:
 	ld b, BANK(.menu_params)
 	ld hl, .menu_params
 	call LoadMenuBoxParams
-	farcall Func_1cacf
+	farcall HideNPCAnimsUnderMenuBox
 	ld a, [wPCMenuCursorPosition]
 	farcall DrawMenuBox
 	pop hl
@@ -3058,13 +3074,13 @@ _PCMenu:
 	ld a, [wPCMenuCursorPosition]
 	farcall HandleMenuBox
 	ld [wPCMenuCursorPosition], a
-	jr c, .asm_11161
+	jr c, .cancel_input
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_11161
+.cancel_input
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
@@ -3084,8 +3100,8 @@ _PCMenu:
 	key_func PCMENU_PRINTER,        .Printer
 	db $ff ; end
 
-.Func_11181:
-	farcall Func_1caf1
+.RestoreNPCs:
+	farcall ShowNPCAnimsUnderMenuBox
 	ret
 
 .CardAlbum:
@@ -3131,7 +3147,7 @@ _PCMenu:
 	ret
 
 Func_111f0:
-	ld a, $04
+	ld a, PCMENU_SHUTDOWN
 	ld [wPCMenuCursorPosition], a
 	ret
 
@@ -3677,7 +3693,7 @@ _SetOWObjectFrameIndex:
 	call SetSpriteAnimFrameIndex
 	ret
 
-Func_114af:
+TurnOnCurChipsHUD:
 	push af
 	push bc
 	push de
@@ -3714,7 +3730,7 @@ Func_114af:
 	pop af
 	ret
 
-Func_114f9:
+TurnOffCurChipsHUD:
 	push af
 	push bc
 	push de
@@ -5269,17 +5285,20 @@ PrintCardAlbumProgress:
 	pop af
 	ret
 
-Func_121e1:
+; a = POPUPMENU_* constant
+; b = cursor pos
+; return a = selected item's cursor pos, and set carry if cancelled
+HandlePopupMenu:
 	push bc
 	push de
 	push hl
-	ld hl, wdb17
+	ld hl, wPopupMenuCursorPosition
 	ld [hl], b
 	add a
-	add a
+	add a ; *4
 	ld c, a
-	ld b, $00
-	ld hl, $6214
+	ld b, 0
+	ld hl, .ParamItems
 	add hl, bc
 	ld e, [hl]
 	inc hl
@@ -5288,18 +5307,137 @@ Func_121e1:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld b, $04
+	ld b, BANK(.ParamItems)
 	call LoadMenuBoxParams
-	farcall Func_1cacf
-	ld a, [wdb17]
+	farcall HideNPCAnimsUnderMenuBox
+	ld a, [wPopupMenuCursorPosition]
 	farcall DrawMenuBox
 	farcall HandleMenuBox
-	farcall Func_1caf1
+	farcall ShowNPCAnimsUnderMenuBox
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x12214
+
+.ParamItems
+	paramitem  0,  6, .SamRules          ; POPUPMENU_SAM_RULES
+	paramitem  0, 10, .Sam               ; POPUPMENU_SAM
+	paramitem  0,  0, .Aaron1            ; POPUPMENU_AARON_1
+	paramitem  0,  0, .Aaron2            ; POPUPMENU_AARON_2
+	paramitem  0,  0, .Aaron3            ; POPUPMENU_AARON_3
+	paramitem  0,  0, .Aaron4            ; POPUPMENU_AARON_4
+	paramitem  0, 13, .CardDungeonKnight ; POPUPMENU_CARD_DUNGEON_KNIGHT
+	paramitem  0, 13, .CardDungeonBishop ; POPUPMENU_CARD_DUNGEON_BISHOP
+	paramitem  0, 13, .CardDungeonRook   ; POPUPMENU_CARD_DUNGEON_ROOK
+	paramitem  0, 13, .CardDungeonQueen  ; POPUPMENU_CARD_DUNGEON_QUEEN
+	paramitem  0, 13, .CardDungeonPawn   ; POPUPMENU_CARD_DUNGEON_PAWN
+
+.SamRules
+	menubox_params TRUE, 14, 18, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, SamRulesEnergyText
+	textitem 2,  4, SamRulesAttackText
+	textitem 2,  6, SamRulesSwitchText
+	textitem 2,  8, SamRulesEvolutionText
+	textitem 2, 10, SamRulesPokemonPowerText
+	textitem 2, 12, SamRulesEndOfTurnText
+	textitem 2, 14, SamRulesDecisionText
+	textitem 2, 16, SamRulesQuitText
+	textitems_end
+
+.Sam
+	menubox_params TRUE, 10, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, MasonLabPracticeDuelText
+	textitem 2, 4, MasonLabRegularDuelText
+	textitem 2, 6, SamRulesText
+	textitem 2, 8, SamQuitText
+	textitems_end
+
+.Aaron1
+	menubox_params TRUE, 10, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, GiftCenterQuitText
+	textitems_end
+
+.Aaron2
+	menubox_params TRUE, 10, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, AaronStep2Text
+	textitem 2, 6, GiftCenterQuitText
+	textitems_end
+
+.Aaron3
+	menubox_params TRUE, 10, 10, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, AaronStep1Text
+	textitem 2, 4, AaronStep2Text
+	textitem 2, 6, AaronStep3Text
+	textitem 2, 8, GiftCenterQuitText
+	textitems_end
+
+.Aaron4
+	menubox_params TRUE, 10, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, AaronStep1Text
+	textitem 2,  4, AaronStep2Text
+	textitem 2,  6, AaronStep3Text
+	textitem 2,  8, MasonLabRegularDuelText
+	textitem 2, 10, GiftCenterQuitText
+	textitems_end
+
+.CardDungeonKnight
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBet20Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonBishop
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBet30Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonRook
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet30Text
+	textitem 2, 4, GameCenterCardDungeonBet50Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonQueen
+	menubox_params TRUE, 7, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet50Text
+	textitem 2, 4, GameCenterCardDungeonBet100Text
+	textitem 2, 6, GameCenterCardDungeonBetCancelText
+	textitems_end
+
+.CardDungeonPawn
+	menubox_params TRUE, 7, 6, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 2, GameCenterCardDungeonBet10Text
+	textitem 2, 4, GameCenterCardDungeonBetCancelText
+	textitems_end
+; 0x12390
 
 SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
 
@@ -5338,13 +5476,13 @@ PlaySlotsPrompt:
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	call WaitForSongToFinish
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	ret
 
 StartSlotMachine:
@@ -5894,8 +6032,8 @@ Func_129b8:
 	ret
 
 Func_129ca:
-	call Func_114af
-	call Func_11002
+	call TurnOnCurChipsHUD
+	call HideNPCAnimsUnderDialogBox
 	call Func_12a02
 	ld a, $3c
 	ld [wdb3d], a
@@ -5919,8 +6057,8 @@ Func_129ca:
 .asm_129fa
 	scf
 .asm_129fb
-	call Func_1101d
-	call Func_114f9
+	call ShowNPCAnimsUnderDialogBox
+	call TurnOffCurChipsHUD
 	ret
 
 Func_12a02:
@@ -5943,7 +6081,7 @@ Func_12a15:
 	ld c, a
 	ld b, $00
 	call DecreaseChipsSmoothly
-	ld a, $04
+	ld a, 4
 	call DoAFrames_WithPreCheck
 	scf
 	ccf
@@ -6105,7 +6243,7 @@ Func_12cfc:
 	ld l, a
 	ld h, $00
 	lb de, 9, 15
-	ld a, $02
+	ld a, 2
 	ld b, FALSE
 	farcall PrintNumber
 	ret
@@ -6229,7 +6367,7 @@ Func_13138:
 	push hl
 	call Func_1315e
 	jr c, .asm_1315a
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_CARD_POP
 	call SetMusic
@@ -6241,7 +6379,7 @@ Func_13138:
 	scf
 	ccf
 .asm_13157
-	call Func_3d16
+	call ResumeSong_ClearTemp
 .asm_1315a
 	pop hl
 	pop de
@@ -6292,13 +6430,13 @@ Func_131bd:
 	ld a, $01
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret c
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_GAME_CENTER_POWER_ON
-	call Func_3d09
+	call CallPlaySong
 	pop af
 	call WaitForSongToFinish
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	ret
 
 Func_131d7:
@@ -6556,14 +6694,14 @@ Func_13357:
 	ret
 
 Func_13398:
-	call Func_114af
+	call TurnOnCurChipsHUD
 	ldtx hl, GameCenterBlackBoxChipsPaidText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld bc, $5
+	ld bc, CHIPS_BET_BLACK_BOX
 	call DecreaseChipsSmoothly
-	ld a, $1e
+	ld a, 30
 	call DoAFrames_WithPreCheck
-	call Func_114f9
+	call TurnOffCurChipsHUD
 	ret
 
 Func_133b0:
@@ -6575,7 +6713,7 @@ Func_133b0:
 	ld [wTxRam3], a
 	xor a
 	ld [wTxRam3 + 1], a
-	ld bc, $5
+	ld bc, MAX_NUM_BLACK_BOX_INPUT
 	ld a, c
 	ld [wTxRam3_b], a
 	ld a, b
@@ -6812,37 +6950,34 @@ Func_1352a:
 	push bc
 	push de
 	push hl
-	call Func_13561.asm_1358a
+	call .asm_1358a
 	ld hl, $0
-	ld a, $de
+REPT 2
+	ld a, (NUM_CARDS - 1) / 2
 	call Random
 	ld c, a
 	ld b, $00
 	add hl, bc
-	ld a, $de
-	call Random
-	ld c, a
-	ld b, $00
-	add hl, bc
+ENDR
 	ld d, h
 	ld e, l
-	call Func_135b3
+	call .Draw
 .asm_1354b
 	call DoFrame
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
 	jr nz, .asm_13559
-	call Func_13561
+	call .asm_13561
 	jr .asm_1354b
 .asm_13559
-	call Func_13561.asm_135ac
+	call .asm_135ac
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_13561:
+.asm_13561:
 	ldh a, [hDPadHeld]
 	and $10
 	jr nz, .asm_1357c
@@ -6851,21 +6986,22 @@ Func_13561:
 	jr nz, .asm_1356e
 	ret
 .asm_1356e
-	ld bc, $1
+	ld bc, GRASS_ENERGY
 	call CompareBCAndDE
 	jr c, .asm_13579
-	ld de, $1be
+	ld de, NUM_CARDS + 1
 .asm_13579
 	dec de
-	jr Func_135b3
+	jr .Draw
 .asm_1357c
-	ld bc, $1bc
+	ld bc, NUM_CARDS - 1
 	call CompareBCAndDE
 	jr nc, .asm_13587
-	ld de, $0
+	ld de, 0
 .asm_13587
 	inc de
-	jr Func_135b3
+	jr .Draw
+
 .asm_1358a:
 	lb de, 5, 4
 	lb bc, 10, 8
@@ -6875,16 +7011,17 @@ Func_13561:
 	call DrawRegularTextBoxVRAM0
 	lb de, 11, 11
 	lb bc, 3, 1
-	ld hl, $2000
+	lb hl, $20, $00
 	call AdjustDECoordByhSC
 	call FillBoxInBGMap
 	ret
+
 .asm_135ac:
 	call CopyBGMapFromWRAMToVRAM
 	call SetActiveSpriteAnimFlag6WithinArea
 	ret
 
-Func_135b3:
+.Draw:
 	push de
 	push de
 	lb de, 6, 5
@@ -6910,374 +7047,13 @@ Func_135b3:
 	ld l, e
 	lb de, 11, 11
 	call AdjustDECoordByhSC
-	ld a, $03
-	ld b, $00
+	ld a, 3
+	ld b, FALSE
 	farcall PrintNumber
 	pop de
 	ret
 
-Func_135ec:
-	call Func_102a4
-	call Func_135f6
-	call Func_102c4
-	ret
-
-Func_135f6:
-	push bc
-	push de
-	push hl
-	ld [wddf6], a
-	ld a, c
-	ld [wddf8], a
-	ld a, b
-	ld [wddf7], a
-	and a
-	jr nz, .asm_1360e
-	call Func_13617
-	ld a, $00
-	jr c, .asm_13613
-.asm_1360e
-	call Func_136e4
-	ld a, $01
-.asm_13613
-	pop hl
-	pop de
-	pop bc
-	ret
-
-Func_13617:
-	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	lb de, $40, $ff
-	call SetupText
-	call Func_1362d
-	call SetFrameFuncAndFadeFromWhite
-	call Func_136db
-	call FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1362d:
-	lb de, 0, 0
-	lb bc, 20, 13
-	call DrawRegularTextBoxVRAM0
-	lb de, 0, 12
-	lb bc, 20, 6
-	call DrawRegularTextBoxVRAM0
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $76b0
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb de, 1, 0
-	call Func_2c4b
-	ld hl, $7697
-	call PlaceTextItemsVRAM0
-	ldtx hl, ChallengeMachineScoreTitleText
-	lb de, 1, 2
-	call PrintTextNoDelay_InitVRAM0
-	ld hl, wde0d
-	ld de, $e04
-	call Func_13681
-	ld hl, wde11
-	ld de, $e06
-	call Func_13681
-	ld hl, wde15
-	ld de, $e0a
-	call Func_13681
-	call Func_136b4
-	ret
-
-Func_13681:
-	push hl
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, $03
-	ld b, $01
-	farcall PrintNumber
-	pop hl
-	ret
-; 0x13697
-
-SECTION "Bank 4@76b4", ROMX[$76b4], BANK[$4]
-
-Func_136b4:
-	ld de, wde39
-	call Func_13d1f
-	ld a, [wddf6]
-	add a
-	add a
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde19
-	add hl, bc
-	call SavePlayerName
-	ldtx hl, TxRam1Text
-	lb de, 2, 10
-	call PrintTextNoDelay_InitVRAM0
-	ld hl, wde39
-	call SavePlayerName
-	ret
-
-Func_136db:
-	ldtx hl, ChallengeMachineStartPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	ret
-
-Func_136e4:
-	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	lb de, $40, $ff
-	call SetupText
-	call Func_1371f
-	call SetFrameFuncAndFadeFromWhite
-	ld a, [wddf8]
-	and a
-	jr z, .asm_1370b
-	call Func_137fa
-	ld a, [wddf8]
-	cp $02
-	jr z, .asm_13718
-	ld a, [wddf7]
-	cp $05
-	scf
-	jr z, .asm_13718
-.asm_1370b
-	call Func_13792
-	call Func_137df
-	jr nc, .asm_1371b
-	ld a, $02
-	ld [wddf8], a
-.asm_13718
-	call Func_1382e
-.asm_1371b
-	call FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1371f:
-	lb de, 0, 0
-	lb bc, 20, 13
-	call DrawRegularTextBoxVRAM0
-	lb de, 0, 12
-	lb bc, 20, 6
-	call DrawRegularTextBoxVRAM0
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $7749
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb de, 1, 0
-	call Func_2c4b
-	call Func_1374d
-	ret
-; 0x13749
-
-SECTION "Bank 4@774d", ROMX[$774d], BANK[$4]
-
-Func_1374d:
-	ld hl, wddf9
-	ld c, $05
-	ld e, $02
-.asm_13754
-	call Func_13763
-	call Func_13778
-	call Func_13785
-	inc e
-	inc e
-	dec c
-	jr nz, .asm_13754
-	ret
-
-Func_13763:
-	push hl
-	ld a, $06
-	sub c
-	ld [wTxRam3], a
-	xor a
-	ld [wTxRam3 + 1], a
-	ldtx hl, TxRam3Text
-	ld d, $02
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	ret
-
-Func_13778:
-	push hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, $04
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	inc hl
-	inc hl
-	ret
-
-Func_13785:
-	push hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, $0e
-	call PrintTextNoDelay_InitVRAM0
-	pop hl
-	inc hl
-	inc hl
-	ret
-
-Func_13792:
-	ld a, [wddf7]
-	and a
-	jr nz, .asm_1379e
-	ldtx hl, ChallengeMachineOpponentListDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-.asm_1379e
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde11
-	add hl, bc
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	ld de, $1
-	call CompareBCAndDE
-	ret c
-	ret z
-	ld h, b
-	ld l, c
-	call LoadTxRam3
-	ld a, [wddf7]
-	inc a
-	ld [wTxRam3_b], a
-	xor a
-	ld [wTxRam3_b + 1], a
-	ld a, [wddf7]
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wddf9
-	add hl, bc
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam2
-	ldtx hl, ChallengeMachineOpponentXDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-
-Func_137df:
-.asm_137df
-	ldtx hl, ChallengeMachineDuelPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	ret nc
-	ldtx hl, ChallengeMachineQuitWinStreakWarningText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ldtx hl, ChallengeMachineQuitPromptText
-	ld a, $01
-	call DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_137df
-	scf
-	ret
-
-Func_137fa:
-	ld a, [wddf7]
-	dec a
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wddf9
-	add hl, bc
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld [wTxRam2], a
-	ld a, [hl]
-	ld [wTxRam2 + 1], a
-	ld a, [wddf7]
-	ld l, a
-	ld h, $00
-	call LoadTxRam3
-	ld a, [wddf8]
-	dec a
-	jr z, .asm_13827
-	ldtx hl, ChallengeMachineLossDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-.asm_13827
-	ldtx hl, ChallengeMachineWinDialogText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-
-Func_1382e:
-	push af
-	ld a, [wddf8]
-	dec a
-	jr z, .asm_1384e
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde11
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam3
-	ldtx hl, ChallengeMachineLossDialogWinStreakText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	jr .asm_1387e
-.asm_1384e
-	call Func_3d0d
-	push af
-	ld a, MUSIC_MEDAL
-	call Func_3d09
-	pop af
-	ldtx hl, ChallengeMachineWonASetText
-	call PrintTextInWideTextBox
-	call WaitForSongToFinish
-	call Func_3d16
-	call WaitForWideTextBoxInput
-	ld a, [wddf6]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, wde0d
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call LoadTxRam3
-	ldtx hl, ChallengeMachineSetsWonText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-.asm_1387e
-	ldtx hl, ChallengeMachineComeAgainText
-	call PrintScrollableText_NoTextBoxLabelVRAM0
-	pop af
-	ret
-; 0x13886
-
-SECTION "Bank 4@7890", ROMX[$7890], BANK[$4]
+INCLUDE "engine/challenge_machine.asm"
 
 INCLUDE "engine/credits_commands.asm"
 
@@ -7522,6 +7298,7 @@ LoadPlayerName:
 	pop bc
 	ret
 
+; from hl to sPlayerName
 SavePlayerName:
 	push af
 	push bc
@@ -7538,14 +7315,15 @@ SavePlayerName:
 	pop af
 	ret
 
-Func_13d1f:
+; from sPlayerName to de
+LoadPlayerNameToDE:
 	push af
 	push bc
 	push de
 	push hl
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld bc, $10
+	ld bc, NAME_BUFFER_LENGTH
 	call CopyBCBytesFromHLToDE
 	call DisableSRAM
 	pop hl

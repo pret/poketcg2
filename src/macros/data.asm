@@ -160,6 +160,14 @@ MACRO? textitems_end
 	db $ff
 ENDM
 
+; \1 = x
+; \2 = y
+; \3 = param addr
+MACRO? paramitem
+	db \1, \2
+	dw \3
+ENDM
+
 ; cursor x / cursor y / attribute / idx-up / idx-down / idx-right / idx-left
 ; idx-[direction] means the index to get when the input is in the direction.
 ; its attribute is used for drawing a flipped cursor.

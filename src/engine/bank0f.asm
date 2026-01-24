@@ -26,18 +26,18 @@ Prologue::
 
 	; do GR Blimp movement
 	ld a, NPC_GR_BLIMP
-	lb de, $a0, $30
+	lb de, 160, 48
 	ld b, WEST
 	farcall LoadOWObject
-	lb de, $78, $30
+	lb de, 120, 48
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $78, $10
+	lb de, 120, 16
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $58, $18
+	lb de, 88, 24
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
@@ -47,10 +47,10 @@ Prologue::
 
 	; load player object in map
 	ld a, [wPlayerOWObject]
-	lb de, $44, $44
+	lb de, 68, 68
 	ld b, SOUTH
 	farcall LoadOWObject
-	lb de, $40, $30
+	lb de, 64, 48
 	ld b, WEST
 	call .MoveGRBlimp
 
@@ -68,22 +68,22 @@ Prologue::
 	call .DoGRBlimpBeamAnimation
 
 	; more GR Blimp movement
-	lb de, $20, $40
+	lb de, 32, 64
 	ld b, WEST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $30, $58
+	lb de, 48, 88
 	ld b, EAST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $68, $50
+	lb de, 104, 80
 	ld b, EAST
 	call .MoveGRBlimp
 	call .DoGRBlimpBeamAnimation
-	lb de, $50, $5c
+	lb de, 80, 92
 	ld b, WEST
 	call .MoveGRBlimp
-	lb de, $50, $78
+	lb de, 80, 120
 	ld b, EAST
 	call .MoveGRBlimp
 
@@ -120,7 +120,7 @@ Prologue::
 	call WaitForOWObjectAnimation
 	ld a, [wPlayerOWObject]
 	farcall _ClearOWObject
-	lb de, $44, $44
+	lb de, 68, 68
 	ld b, SOUTH
 	farcall LoadOWObject
 	ld a, 30
@@ -183,16 +183,16 @@ Prologue::
 
 .MovePlayer:
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall _SetOWObjectAnimStruct1Flag2
-	lb de, $24, $68
+	lb de, 36, 104
 	farcall SetOWObjectTargetPosition
 .loop_wait_1
 	call DoFrame
 	farcall MoveOWObjectToTargetPosition
 	jr c, .loop_wait_1
 	ld a, [wPlayerOWObject]
-	lb de, $c, $68
+	lb de, 12, 104
 	farcall SetOWObjectTargetPosition
 .loop_wait_2
 	call DoFrame
@@ -225,29 +225,29 @@ Func_3c1d0:
 .asm_3c1e5
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text BattleCenterWelcomeText
 	ask_question BattleCenterBeginPromptText, TRUE
 	script_jump_if_b0z .ows_3c20b
 	play_song MUSIC_CARD_POP
 	send_mail $1c
-	script_command_02
+	end_dialog
 	link_duel
 	script_jump_if_b1nz .ows_3c204
 	script_call .ows_3c211
 	script_jump .ows_3c20b
 .ows_3c204
-	script_command_01
+	start_dialog
 	print_npc_text BattleCenterThankYouText
 	script_jump .ows_3c20e
 .ows_3c20b
 	print_npc_text BattleCenterComeAgainText
 .ows_3c20e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3c211
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c242
 	script_call .ows_3c2c1
@@ -374,7 +374,7 @@ Func_3c30c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_21
 	compare_loaded_var $02
 	script_jump_if_b1nz .ows_3c333
@@ -391,7 +391,7 @@ Func_3c30c:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -399,7 +399,7 @@ Func_3c30c:
 	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopResultText
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_3c36b
@@ -410,15 +410,15 @@ Func_3c30c:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
 .ows_3c37f
 	set_var VAR_25, $0f
 	print_npc_text ImakuniBlackCardlessAfterFirstCardPopRepeatText
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .ows_3c391
@@ -429,8 +429,8 @@ Func_3c30c:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -445,20 +445,20 @@ Func_3c30c:
 	ask_question ImakuniBlackDuelPromptText, TRUE
 	script_jump_if_b0z .ows_3c3c4
 	print_npc_text ImakuniBlackDuelStartText
-	script_command_02
+	end_dialog
 	start_duel WEIRD_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3c3c4
 	print_npc_text ImakuniBlackDeclinedDuelText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Script_FinishedImakuniBlackDuel:
+Script_ImakuniBlackAfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_var VAR_25, $0f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .player_lost
@@ -501,7 +501,7 @@ Script_FinishedImakuniBlackDuel:
 	print_npc_text ImakuniBlackPlayerLostText
 .bye
 	print_npc_text ImakuniBlackByeText
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
 	script_jump_if_b0z .exit
@@ -512,8 +512,8 @@ Script_FinishedImakuniBlackDuel:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_BLACK
 	end_script
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -583,7 +583,7 @@ Script_3c497:
 	quit_script
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, $01
@@ -591,7 +591,7 @@ Script_3c497:
 	play_sfx SFX_SAVE_GAME
 	print_text SavedDataText
 	print_npc_text Text12d5
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3c4cc
@@ -602,8 +602,8 @@ Script_3c497:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_RED
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -618,7 +618,7 @@ Func_3c4e0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_23
 	compare_loaded_var $00
 	script_jump_if_b0nz .ows_3c50b
@@ -638,20 +638,20 @@ Func_3c4e0:
 	ask_question Text12d8, TRUE
 	script_jump_if_b0z .ows_3c527
 	print_npc_text Text12d9
-	script_command_02
+	end_dialog
 	start_duel STRANGE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3c527
 	print_npc_text Text12da
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3c52d:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_var VAR_26, $0f
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c574
@@ -683,7 +683,7 @@ Func_3c52d:
 .ows_3c574
 	print_npc_text Text12db
 .ows_3c577
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3c583
@@ -694,8 +694,8 @@ Func_3c52d:
 	wait_for_player_animation
 	unload_npc NPC_IMAKUNI_RED
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
@@ -789,20 +789,20 @@ MasonLaboratoryComputerRoom_OWInteractions:
 	db $ff
 
 MasonLaboratoryComputerRoom_MapScripts:
-	dbw $06, Func_3c689
-	dbw $08, Func_3c6b3
-	dbw $07, Func_3c690
-	dbw $02, Func_3c697
+	dbw OWMODE_STEP_EVENT, Func_3c689
+	dbw OWMODE_INTERACT, Func_3c6b3
+	dbw OWMODE_NPC_POSITION, Func_3c690
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3c697
 	db $ff
 
 Func_3c689:
 	ld hl, MasonLaboratoryComputerRoom_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3c690:
 	ld hl, MasonLaboratoryComputerRoom_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_3c697:
@@ -832,11 +832,11 @@ Func_3c6b3:
 Script_AutoDeckMachine1:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text ItsAutoDeckMachine1Text
 	ask_question AutoDeckMachine1PromptText, TRUE
 	script_jump_if_b0z .cancel
-	script_command_02
+	end_dialog
 	end_script
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
@@ -846,7 +846,7 @@ Script_AutoDeckMachine1:
 	call ResumeSong
 	ret
 .cancel
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -856,11 +856,11 @@ Script_AutoDeckMachine2:
 	ret z
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text ItsAutoDeckMachine2Text
 	ask_question AutoDeckMachine1PromptText, TRUE
 	script_jump_if_b0z .cancel
-	script_command_02
+	end_dialog
 	end_script
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
@@ -870,18 +870,18 @@ Script_AutoDeckMachine2:
 	call ResumeSong
 	ret
 .cancel
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_DeckSaveMachine:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text ItsDeckSaveMachineText
 	ask_question DeckSaveMachinePromptText, TRUE
 	script_jump_if_b0z .cancel
-	script_command_02
+	end_dialog
 	end_script
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
@@ -890,7 +890,7 @@ Script_DeckSaveMachine:
 	call ResumeSong
 	ret
 .cancel
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -904,7 +904,7 @@ Func_3c739:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3c759
 	print_npc_text Text0ef2
@@ -912,7 +912,7 @@ Func_3c739:
 .ows_3c759
 	print_npc_text Text0ef3
 .ows_3c75c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -926,9 +926,9 @@ Func_3c75f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0ef4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -942,7 +942,7 @@ Func_3c77a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3c7a5
 	check_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
@@ -955,7 +955,7 @@ Func_3c77a:
 .ows_3c7a5
 	print_npc_text Text0ef7
 .ows_3c7a8
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -969,7 +969,7 @@ Func_3c7ab:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3c7d6
 	check_event EVENT_GOT_GOLBAT_COIN
@@ -982,7 +982,7 @@ Func_3c7ab:
 .ows_3c7d6
 	print_npc_text Text0efa
 .ows_3c7d9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1007,20 +1007,20 @@ MasonLaboratoryTrainingRoom_NPCInteractions:
 	db $ff
 
 MasonLaboratoryTrainingRoom_MapScripts:
-	dbw $06, Func_3c817
-	dbw $08, Func_3c825
-	dbw $09, Func_3c82d
-	dbw $07, Func_3c81e
+	dbw OWMODE_STEP_EVENT, Func_3c817
+	dbw OWMODE_INTERACT, Func_3c825
+	dbw OWMODE_AFTER_DUEL, Func_3c82d
+	dbw OWMODE_NPC_POSITION, Func_3c81e
 	db $ff
 
 Func_3c817:
 	ld hl, MasonLaboratoryTrainingRoom_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3c81e:
 	ld hl, MasonLaboratoryTrainingRoom_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_3c825:
@@ -1033,15 +1033,16 @@ Func_3c82d:
 	ld hl, MasonLaboratoryTrainingRoom_AfterDuelScripts
 	ld a, VAR_3B
 	farcall GetVarValue
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
+; use VAR_3B instead of npc id
 MasonLaboratoryTrainingRoom_AfterDuelScripts:
-	npc_script NPC_MINT, Func_3c931
-	npc_script NPC_DR_MASON, Func_3c97e
-	npc_script NPC_RONALD, Func_3c9cb
-	npc_script NPC_ISHIHARA, Func_3ca28
+	npc_script AARON_STEP_1, Func_3c931
+	npc_script AARON_STEP_2, Func_3c97e
+	npc_script AARON_STEP_3, Func_3c9cb
+	npc_script AARON_STEP_4, Func_3ca28
 	db $ff
 
 Func_3c84c:
@@ -1054,7 +1055,7 @@ Func_3c84c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_27
 	compare_loaded_var $04
 	script_jump_if_b0nz .ows_3c87f
@@ -1086,7 +1087,7 @@ Func_3c84c:
 	quit_script
 	ld a, $02
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1096,7 +1097,7 @@ Func_3c84c:
 	quit_script
 	ld a, $03
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1108,7 +1109,7 @@ Func_3c84c:
 	quit_script
 	ld a, $04
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	or a
 	jp z, Func_3c917
@@ -1124,7 +1125,7 @@ Func_3c84c:
 	quit_script
 	ld a, $05
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_3c90a
 	cp $01
 	jp c, Func_3c917
@@ -1137,7 +1138,7 @@ Func_3c84c:
 	start_script
 	print_npc_text Text0f41
 	set_active_npc_direction NORTH
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1145,12 +1146,12 @@ Func_3c917:
 	ld a, $01
 	start_script
 	print_npc_text Text0f42
-	script_command_02
+	end_dialog
 	script_call Script_3ca68
-	script_command_01
+	start_dialog
 	print_npc_text Text0f43
-	script_command_02
-	set_var VAR_3B, $01
+	end_dialog
+	set_var VAR_3B, AARON_STEP_1
 	start_duel AARONS_STEP1_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1158,7 +1159,7 @@ Func_3c917:
 Func_3c931:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c951
 	get_var VAR_27
@@ -1173,7 +1174,7 @@ Func_3c931:
 .ows_3c951
 	print_npc_text Text0f46
 .ows_3c954
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3c95f
 	wait_for_player_animation
 	set_active_npc_position_and_direction 11, 2, NORTH
@@ -1188,12 +1189,12 @@ Func_3c964:
 	ld a, $01
 	start_script
 	print_npc_text Text0f47
-	script_command_02
+	end_dialog
 	script_call Script_3cab1
-	script_command_01
+	start_dialog
 	print_npc_text Text0f48
-	script_command_02
-	set_var VAR_3B, $02
+	end_dialog
+	set_var VAR_3B, AARON_STEP_2
 	start_duel AARONS_STEP2_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1201,7 +1202,7 @@ Func_3c964:
 Func_3c97e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c99e
 	get_var VAR_27
@@ -1216,7 +1217,7 @@ Func_3c97e:
 .ows_3c99e
 	print_npc_text Text0f4a
 .ows_3c9a1
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3c9ac
 	wait_for_player_animation
 	set_active_npc_position_and_direction 11, 2, NORTH
@@ -1231,12 +1232,12 @@ Func_3c9b1:
 	ld a, $01
 	start_script
 	print_npc_text Text0f4b
-	script_command_02
+	end_dialog
 	script_call Script_3cb06
-	script_command_01
+	start_dialog
 	print_npc_text Text0f4c
-	script_command_02
-	set_var VAR_3B, $03
+	end_dialog
+	set_var VAR_3B, AARON_STEP_3
 	start_duel AARONS_STEP3_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1244,7 +1245,7 @@ Func_3c9b1:
 Func_3c9cb:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3c9ef
 	get_var VAR_27
@@ -1260,7 +1261,7 @@ Func_3c9cb:
 .ows_3c9ef
 	print_npc_text Text0f50
 .ows_3c9f2
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3c9fd
 	wait_for_player_animation
 	set_active_npc_position_and_direction 11, 2, NORTH
@@ -1275,12 +1276,12 @@ Func_3ca02:
 	ld a, $01
 	start_script
 	print_npc_text Text0f51
-	script_command_02
+	end_dialog
 	script_call Script_3cb4b
-	script_command_01
+	start_dialog
 	print_npc_text Text0f52
-	script_command_02
-	set_var VAR_3B, $04
+	end_dialog
+	set_var VAR_3B, AARON_STEP_4
 	get_random $02
 	compare_loaded_var $00
 	script_jump_if_b0z .ows_3ca23
@@ -1295,7 +1296,7 @@ Func_3ca02:
 Func_3ca28:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3ca3e
 	print_npc_text Text0f53
@@ -1305,7 +1306,7 @@ Func_3ca28:
 .ows_3ca3e
 	print_npc_text Text0f55
 .ows_3ca41
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3ca48
 	wait_for_player_animation
 	end_script
@@ -1325,9 +1326,9 @@ Func_3ca4d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f56
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1516,11 +1517,11 @@ LightningClubEntrance_StepEvents:
 	db $ff
 
 LightningClubEntrance_MapScripts:
-	dbw $06, Func_3cbf4
-	dbw $02, Func_3cbfb
-	dbw $0b, Func_3cc37
-	dbw $01, Func_3cbd4
-	dbw $10, Func_3cbe4
+	dbw OWMODE_STEP_EVENT, Func_3cbf4
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3cbfb
+	dbw OWMODE_CONTINUE_OW, Func_3cc37
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cbd4
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3cbe4
 	db $ff
 
 Func_3cbd4:
@@ -1548,7 +1549,7 @@ Func_3cbe4:
 
 Func_3cbf4:
 	ld hl, LightningClubEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cbfb:
@@ -1566,15 +1567,15 @@ Func_3cbfb:
 	jr c, .asm_3cc35
 	ldtx hl, DialogGR4Text
 	call LoadTxRam2
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_340a4)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_340a4
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3cc35
 	scf
 	ret
@@ -1648,10 +1649,10 @@ LightningClubLobby_OWInteractions:
 	db $ff
 
 LightningClubLobby_MapScripts:
-	dbw $06, Func_3cd2b
-	dbw $08, Func_3cd3b
-	dbw $07, Func_3cd32
-	dbw $01, Func_3cd1b
+	dbw OWMODE_STEP_EVENT, Func_3cd2b
+	dbw OWMODE_INTERACT, Func_3cd3b
+	dbw OWMODE_NPC_POSITION, Func_3cd32
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cd1b
 	db $ff
 
 Func_3cd1b:
@@ -1667,12 +1668,12 @@ Func_3cd1b:
 
 Func_3cd2b:
 	ld hl, LightningClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cd32:
 	ld hl, LightningClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1697,7 +1698,7 @@ Func_3cd4b:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_3cd78
 	check_event EVENT_TALKED_TO_JENNIFER
@@ -1711,7 +1712,7 @@ Func_3cd4b:
 .ows_3cd78
 	print_npc_text Text0b51
 .ows_3cd7b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1725,7 +1726,7 @@ Func_3cd7e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_3cdab
 	check_event EVENT_TALKED_TO_BRANDON
@@ -1739,7 +1740,7 @@ Func_3cd7e:
 .ows_3cdab
 	print_npc_text Text0b54
 .ows_3cdae
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1767,7 +1768,7 @@ Func_3cdc6:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_LIGHTNING_CLUB
 	script_jump_if_b0z .ows_3ce33
 	check_event EVENT_TALKED_TO_TRADE_NPC_LIGHTNING_CLUB
@@ -1807,7 +1808,7 @@ Func_3cdc6:
 .ows_3ce33
 	print_npc_text Text0b5c
 .ows_3ce36
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1821,7 +1822,7 @@ Func_3ce39:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3ce64
 	check_event EVENT_FREED_ROD
@@ -1834,7 +1835,7 @@ Func_3ce39:
 .ows_3ce64
 	print_npc_text Text0b5f
 .ows_3ce67
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1848,7 +1849,7 @@ Func_3ce6a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3ce95
 	check_event EVENT_GOT_GR_COIN
@@ -1861,7 +1862,7 @@ Func_3ce6a:
 .ows_3ce95
 	print_npc_text Text0b62
 .ows_3ce98
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1897,7 +1898,7 @@ Func_3ceb5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3cee0
 	check_event EVENT_GOT_GR_COIN
@@ -1910,7 +1911,7 @@ Func_3ceb5:
 .ows_3cee0
 	print_npc_text Text0b65
 .ows_3cee3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1955,11 +1956,11 @@ GrassClubLobby_OWInteractions:
 	db $ff
 
 GrassClubLobby_MapScripts:
-	dbw $06, Func_3cfa8
-	dbw $08, Func_3cfb8
-	dbw $07, Func_3cfaf
-	dbw $09, Func_3cfc8
-	dbw $01, Func_3cf98
+	dbw OWMODE_STEP_EVENT, Func_3cfa8
+	dbw OWMODE_INTERACT, Func_3cfb8
+	dbw OWMODE_NPC_POSITION, Func_3cfaf
+	dbw OWMODE_AFTER_DUEL, Func_3cfc8
+	dbw OWMODE_MUSIC_PRELOAD, Func_3cf98
 	db $ff
 
 Func_3cf98:
@@ -1975,12 +1976,12 @@ Func_3cf98:
 
 Func_3cfa8:
 	ld hl, GrassClubLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3cfaf:
 	ld hl, GrassClubLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -1998,7 +1999,7 @@ Func_3cfb8:
 Func_3cfc8:
 	ld hl, GrassClubLobby_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2016,7 +2017,7 @@ Func_3cfd8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_ODDISH_COIN
 	script_jump_if_b0z .ows_3d010
 	check_event EVENT_BEAT_BRITTANY
@@ -2038,21 +2039,21 @@ Func_3cfd8:
 	ask_question Text0e7d, TRUE
 	script_jump_if_b0z .ows_3d023
 	print_npc_text Text0e7e
-	script_command_02
+	end_dialog
 	start_duel REMAINING_GREEN_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3d023
 	print_npc_text Text0e7f
 	set_active_npc_direction WEST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3d02b:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3d05c
 	print_npc_text Text0e80
@@ -2075,7 +2076,7 @@ Func_3d02b:
 	print_npc_text Text0e84
 .ows_3d05f
 	set_active_npc_direction WEST
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2089,7 +2090,7 @@ Func_3d064:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_3d0a2
 	check_event EVENT_GOT_ODDISH_COIN
@@ -2107,12 +2108,12 @@ Func_3d064:
 .ows_3d09c
 	print_npc_text Text0e88
 .ows_3d09f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d0a2
 	print_npc_text Text0e89
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2126,7 +2127,7 @@ Func_3d0a8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .ows_3d0e6
 	check_event EVENT_GOT_ODDISH_COIN
@@ -2144,12 +2145,12 @@ Func_3d0a8:
 .ows_3d0e0
 	print_npc_text Text0e8d
 .ows_3d0e3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d0e6
 	print_npc_text Text0e8e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2177,7 +2178,7 @@ Func_3d101:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d121
 	print_npc_text Text0e8f
@@ -2185,7 +2186,7 @@ Func_3d101:
 .ows_3d121
 	print_npc_text Text0e90
 .ows_3d124
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2199,7 +2200,7 @@ Func_3d127:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d152
 	check_event EVENT_GOT_GR_COIN
@@ -2212,7 +2213,7 @@ Func_3d127:
 .ows_3d152
 	print_npc_text Text0e93
 .ows_3d155
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2226,7 +2227,7 @@ Func_3d158:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d183
 	check_event EVENT_GOT_GR_COIN
@@ -2239,7 +2240,7 @@ Func_3d158:
 .ows_3d183
 	print_npc_text Text0e96
 .ows_3d186
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2276,80 +2277,82 @@ TcgChallengeHallEntrance_NPCs:
 	db $ff
 
 TcgChallengeHallEntrance_NPCInteractions:
-	npc_script NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, Func_3d271
+	npc_script NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE, Script_TCGChallengeHallEntranceClerk
 	db $ff
 
 TcgChallengeHallEntrance_MapScripts:
-	dbw $06, Func_3d259
-	dbw $08, Func_3d269
-	dbw $07, Func_3d260
-	dbw $01, Func_3d1f6
-	dbw $04, Func_3d210
+	dbw OWMODE_STEP_EVENT, Func_3d259
+	dbw OWMODE_INTERACT, Func_3d269
+	dbw OWMODE_NPC_POSITION, Func_3d260
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d1f6
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d210
 	db $ff
 
 Func_3d1f6:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d208
-	cp $03
-	jr z, .asm_3d208
-	cp $06
-	jr nz, .asm_3d20d
-.asm_3d208
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
-.asm_3d20d
+.inactive
 	scf
 	ccf
 	ret
 
 Func_3d210:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_TCG
-	jr nz, .asm_3d257
-	ld a, VAR_28
+	jr nz, .done
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d229
-	cp $03
-	jr z, .asm_3d229
-	cp $06
-	jr nz, .asm_3d257
-.asm_3d229
-	ld a, VAR_2B
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .done
+.active
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	farcall GetVarValue
-	cp $01
+	cp CHALLENGE_CUP_RESULT_WON
 	push af
-	ld a, VAR_2B
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	farcall ZeroOutVarValue
 	pop af
-	jr nz, .asm_3d257
-	ld a, VAR_28
+	jr nz, .done
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $06
-	jr z, .asm_3d24f
+	cp CHALLENGE_CUP_3_START
+	jr z, .adjust
 	inc a
 	ld c, a
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall SetVarValue
-	jr .asm_3d257
-.asm_3d24f
-	ld a, VAR_28
-	ld c, $05
+	jr .done
+; keep the state var < 7
+; verbose: dec a between inc a :: ld c, a above should suffice
+.adjust
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	farcall SetVarValue
-.asm_3d257
+.done
 	scf
 	ret
 
 Func_3d259:
 	ld hl, TcgChallengeHallEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d260:
 	ld hl, TcgChallengeHallEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2360,7 +2363,7 @@ Func_3d269:
 	scf
 	ret
 
-Func_3d271:
+Script_TCGChallengeHallEntranceClerk:
 	ld a, NPC_CLERK_TCG_CHALLENGE_HALL_ENTRANCE
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -2370,44 +2373,44 @@ Func_3d271:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_2B
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3d2d1
-	get_var VAR_28
-	compare_loaded_var $05
-	script_jump_if_b0nz .ows_3d2c5
-	script_jump_if_b1z .ows_3d2cb
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_3d2b9
-	script_jump_if_b1z .ows_3d2bf
-	compare_loaded_var $01
-	script_jump_if_b0nz .ows_3d2ad
-	script_jump_if_b1z .ows_3d2b3
-	print_npc_text Text098a
-	script_jump .ows_3d2d4
-.ows_3d2ad
-	print_npc_text Text098b
-	script_jump .ows_3d2d4
-.ows_3d2b3
-	print_npc_text Text098c
-	script_jump .ows_3d2d4
-.ows_3d2b9
-	print_npc_text Text098d
-	script_jump .ows_3d2d4
-.ows_3d2bf
-	print_npc_text Text098e
-	script_jump .ows_3d2d4
-.ows_3d2c5
-	print_npc_text Text098f
-	script_jump .ows_3d2d4
-.ows_3d2cb
-	print_npc_text Text0990
-	script_jump .ows_3d2d4
-.ows_3d2d1
-	print_npc_text Text0991
-.ows_3d2d4
-	script_command_02
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_NONE
+	script_jump_if_b0z .tcg_cup_played
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_UNLOCKED
+	script_jump_if_b0nz .tcg_cup3_inactive
+	script_jump_if_b1z .tcg_cup3_active
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .tcg_cup2_active
+	script_jump_if_b1z .tcg_cup2_over
+	compare_loaded_var CHALLENGE_CUP_1_START
+	script_jump_if_b0nz .tcg_cup1_active
+	script_jump_if_b1z .tcg_cup1_over
+	print_npc_text TCGChallengeHallEntranceClerkNoCardsText
+	script_jump .done
+.tcg_cup1_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup1ActiveText
+	script_jump .done
+.tcg_cup1_over
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup1OverText
+	script_jump .done
+.tcg_cup2_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup2ActiveText
+	script_jump .done
+.tcg_cup2_over
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup2OverText
+	script_jump .done
+.tcg_cup3_inactive
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup3InactiveText
+	script_jump .done
+.tcg_cup3_active
+	print_npc_text TCGChallengeHallEntranceClerkTCGCup3ActiveText
+	script_jump .done
+.tcg_cup_played
+	print_npc_text TCGChallengeHallEntranceClerkTCGCupPlayedText
+.done
+	end_dialog
 	end_script
 	ret
 
@@ -2423,18 +2426,18 @@ TcgChallengeHallLobby_StepEvents:
 
 TcgChallengeHallLobby_NPCs:
 	npc NPC_TCG_CHALLENGE_HALL_CHAP, 10, 4, SOUTH, NULL
-	npc NPC_CUP_HOST, 7, 9, EAST, Func_3d5a3
-	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, Func_3d5a3
-	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, Func_3d5ba
-	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, Func_3d5ba
-	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, Func_3d5ba
+	npc NPC_CUP_HOST, 7, 9, EAST, TcgChallengeHallLobby_DisappearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_PUNK, 5, 6, EAST, TcgChallengeHallLobby_DisappearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_PAPPY, 4, 9, EAST, TcgChallengeHallLobby_AppearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_TECH, 9, 10, NORTH, TcgChallengeHallLobby_AppearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_GIRL, 13, 9, WEST, TcgChallengeHallLobby_AppearDuringTCGCups
 	npc NPC_CLERK_BATTLE_CENTER, 2, 2, SOUTH, NULL
 	npc NPC_CLERK_GIFT_CENTER, 4, 2, SOUTH, NULL
 	db $ff
 
 TcgChallengeHallLobby_NPCInteractions:
 	npc_script NPC_TCG_CHALLENGE_HALL_CHAP, Func_3d3c0
-	npc_script NPC_CUP_HOST, Func_3d4e9
+	npc_script NPC_CUP_HOST, Script_CupHostTCGLobby
 	npc_script NPC_TCG_CHALLENGE_HALL_PUNK, Func_3d511
 	npc_script NPC_TCG_CHALLENGE_HALL_PAPPY, Func_3d539
 	npc_script NPC_TCG_CHALLENGE_HALL_TECH, Func_3d56d
@@ -2452,37 +2455,37 @@ TcgChallengeHallLobby_OWInteractions:
 	db $ff
 
 TcgChallengeHallLobby_MapScripts:
-	dbw $06, Func_3d3a0
-	dbw $08, Func_3d3b0
-	dbw $07, Func_3d3a7
-	dbw $01, Func_3d386
+	dbw OWMODE_STEP_EVENT, Func_3d3a0
+	dbw OWMODE_INTERACT, Func_3d3b0
+	dbw OWMODE_NPC_POSITION, Func_3d3a7
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d386
 	db $ff
 
 Func_3d386:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d398
-	cp $03
-	jr z, .asm_3d398
-	cp $06
-	jr nz, .asm_3d39d
-.asm_3d398
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr nz, .inactive
+.active
 	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
-.asm_3d39d
+.inactive
 	scf
 	ccf
 	ret
 
 Func_3d3a0:
 	ld hl, TcgChallengeHallLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d3a7:
 	ld hl, TcgChallengeHallLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2507,7 +2510,7 @@ Func_3d3c0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_TCG_CHALLENGE_HALL
 	script_jump_if_b0nz .ows_3d3ee
 	check_event EVENT_B1
@@ -2516,7 +2519,7 @@ Func_3d3c0:
 	script_jump_if_b0nz .ows_3d493
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	print_variable_npc_text Text0992, Text0993
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d3ee
@@ -2552,7 +2555,7 @@ Func_3d3c0:
 	reset_event EVENT_TALKED_TO_TRADE_NPC_TCG_CHALLENGE_HALL
 	print_npc_text Text099a
 .ows_3d438
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d43b
@@ -2593,7 +2596,7 @@ Func_3d3c0:
 .ows_3d48d
 	print_npc_text Text09a2
 .ows_3d490
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d493
@@ -2633,11 +2636,11 @@ Func_3d3c0:
 .ows_3d4e3
 	print_npc_text Text09aa
 .ows_3d4e6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3d4e9:
+Script_CupHostTCGLobby:
 	ld a, NPC_CUP_HOST
 	ld [wScriptNPC], a
 	ldtx hl, DialogCupHostText
@@ -2647,16 +2650,16 @@ Func_3d4e9:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3d50b
-	print_npc_text Text09ab
-	script_jump .ows_3d50e
-.ows_3d50b
-	print_npc_text Text09ac
-.ows_3d50e
-	script_command_02
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_DEAD
+	script_jump_if_b0z .tcg_cup_unlocked
+	print_npc_text TCGChallengeHallLobbyCupHostNoCardsText
+	script_jump .done
+.tcg_cup_unlocked
+	print_npc_text TCGChallengeHallLobbyCupHostStandbyText
+.done
+	end_dialog
 	end_script
 	ret
 
@@ -2670,16 +2673,16 @@ Func_3d511:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $00
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_DEAD
 	script_jump_if_b0z .ows_3d533
 	print_npc_text Text09ad
 	script_jump .ows_3d536
 .ows_3d533
 	print_npc_text Text09ae
 .ows_3d536
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2693,20 +2696,20 @@ Func_3d539:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_2B
-	compare_loaded_var $02
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_LOST
 	script_jump_if_b0nz .ows_3d561
-	get_var VAR_28
-	compare_loaded_var $06
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
 	print_variable_npc_text Text09af, Text09b0
 	script_jump .ows_3d56a
 .ows_3d561
-	get_var VAR_28
-	compare_loaded_var $06
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
 	print_variable_npc_text Text09b1, Text09b2
 .ows_3d56a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2720,9 +2723,9 @@ Func_3d56d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text09b3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2736,40 +2739,40 @@ Func_3d588:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text09b4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3d5a3:
-	ld a, VAR_28
+TcgChallengeHallLobby_DisappearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d5b8
-	cp $03
-	jr z, .asm_3d5b8
-	cp $06
-	jr z, .asm_3d5b8
+	cp CHALLENGE_CUP_1_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_2_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_3_START
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d5b8
+.disappear
 	scf
 	ret
 
-Func_3d5ba:
-	ld a, VAR_28
+TcgChallengeHallLobby_AppearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_3d5ce
-	cp $03
-	jr z, .asm_3d5ce
-	cp $06
-	jr z, .asm_3d5ce
+	cp CHALLENGE_CUP_1_START
+	jr z, .appear
+	cp CHALLENGE_CUP_2_START
+	jr z, .appear
+	cp CHALLENGE_CUP_3_START
+	jr z, .appear
 	scf
 	ret
-.asm_3d5ce
+.appear
 	scf
 	ccf
 	ret
@@ -2816,14 +2819,14 @@ PokemonDome_OWInteractions:
 	db $ff
 
 PokemonDome_MapScripts:
-	dbw $06, Func_3d6ba
-	dbw $08, Func_3d740
-	dbw $09, Func_3d750
-	dbw $07, Func_3d6c1
-	dbw $02, Func_3d6ca
-	dbw $04, Func_3d719
-	dbw $0f, Func_3d734
-	dbw $01, Func_3d67b
+	dbw OWMODE_STEP_EVENT, Func_3d6ba
+	dbw OWMODE_INTERACT, Func_3d740
+	dbw OWMODE_AFTER_DUEL, Func_3d750
+	dbw OWMODE_NPC_POSITION, Func_3d6c1
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3d6ca
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3d719
+	dbw OWMODE_WARP_END_SFX, Func_3d734
+	dbw OWMODE_MUSIC_PRELOAD, Func_3d67b
 	db $ff
 
 Func_3d67b:
@@ -2860,12 +2863,12 @@ Func_3d67b:
 
 Func_3d6ba:
 	ld hl, PokemonDome_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3d6c1:
 	ld hl, PokemonDome_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -2874,7 +2877,7 @@ Func_3d6ca:
 	ld bc, TILEMAP_037
 	lb de, 7, 0
 	farcall Func_12c0ce
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d6dd
 	scf
@@ -2883,26 +2886,26 @@ Func_3d6ca:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3d6fc
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3dc4a)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3dc4a
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	jr .asm_3d711
 .asm_3d6fc
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3dc8e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3dc8e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 .asm_3d711
 	ld a, $00
 	call Func_338f
@@ -2911,7 +2914,7 @@ Func_3d6ca:
 	ret
 
 Func_3d719:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d722
 	scf
@@ -2930,7 +2933,7 @@ Func_3d719:
 	ret
 
 Func_3d734:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .asm_3d73d
 	scf
@@ -2953,7 +2956,7 @@ Func_3d740:
 Func_3d750:
 	ld hl, PokemonDome_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -2973,7 +2976,7 @@ Func_3d768:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d7b3
 	check_event EVENT_FREED_ROD
@@ -2989,18 +2992,18 @@ Func_3d768:
 	ask_question Text0fea, TRUE
 	script_jump_if_b0z .ows_3d7a7
 	print_npc_text Text0feb
-	script_command_02
+	end_dialog
 	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d7a7
 	print_npc_text Text0fec
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d7ad
 	print_npc_text Text0fed
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d7b3
@@ -3012,14 +3015,14 @@ Func_3d768:
 .ows_3d7c0
 	print_npc_text Text0fef
 .ows_3d7c3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3d7c6:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3d7dc
 	print_npc_text Text0ff0
@@ -3029,7 +3032,7 @@ Func_3d7c6:
 .ows_3d7dc
 	print_npc_text Text0ff2
 .ows_3d7df
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3063,7 +3066,7 @@ Func_3d805:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d854
 	check_event EVENT_FREED_ROD
@@ -3079,19 +3082,19 @@ Func_3d805:
 	ask_question Text0ff5, TRUE
 	script_jump_if_b0z .ows_3d844
 	print_npc_text Text0ff6
-	script_command_02
+	end_dialog
 	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d844
 	print_npc_text Text0ff7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d84a
 	check_event EVENT_BEAT_GRAND_MASTER_CUP
 	print_variable_npc_text Text0ff8, Text0ff9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d854
@@ -3105,14 +3108,14 @@ Func_3d805:
 	compare_loaded_var $00
 	print_variable_npc_text Text0ffb, Text0ffc
 .ows_3d86a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3d86d:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3d883
 	print_npc_text Text0ffd
@@ -3122,7 +3125,7 @@ Func_3d86d:
 .ows_3d883
 	print_npc_text Text0fff
 .ows_3d886
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3156,7 +3159,7 @@ Func_3d8ac:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d8f7
 	check_event EVENT_FREED_ROD
@@ -3172,18 +3175,18 @@ Func_3d8ac:
 	ask_question Text1002, TRUE
 	script_jump_if_b0z .ows_3d8eb
 	print_npc_text Text1003
-	script_command_02
+	end_dialog
 	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 .ows_3d8eb
 	print_npc_text Text1004
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d8f1
 	print_npc_text Text1005
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d8f7
@@ -3197,14 +3200,14 @@ Func_3d8ac:
 	compare_loaded_var $00
 	print_variable_npc_text Text1007, Text1008
 .ows_3d90d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3d910:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3d926
 	print_npc_text Text1009
@@ -3214,7 +3217,7 @@ Func_3d910:
 .ows_3d926
 	print_npc_text Text100b
 .ows_3d929
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3248,7 +3251,7 @@ Func_3d94f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3d998
 	check_event EVENT_BEAT_GRAND_MASTER_CUP
@@ -3267,11 +3270,11 @@ Func_3d94f:
 	ask_question Text100f, TRUE
 	script_jump_if_b0z .ows_3d992
 	print_npc_text Text1010
-	script_command_02
+	end_dialog
 	script_jump Script_3db41
 .ows_3d992
 	print_npc_text Text1011
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_3d998
@@ -3285,7 +3288,7 @@ Func_3d94f:
 	compare_loaded_var $00
 	print_variable_npc_text Text1013, Text1014
 .ows_3d9ae
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3319,7 +3322,7 @@ Func_3d9d4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_GR5_POKEMON_DOME
 	script_jump_if_b0z .ows_3d9f6
 	set_event EVENT_TALKED_TO_GR5_POKEMON_DOME
@@ -3328,7 +3331,7 @@ Func_3d9d4:
 .ows_3d9f6
 	print_npc_text Text1016
 .ows_3d9f9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3353,7 +3356,7 @@ Func_3da09:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_0D
 	compare_loaded_var $05
 	script_jump_if_b1z .ows_3da48
@@ -3379,12 +3382,12 @@ Func_3da09:
 	set_var VAR_0D, $04
 	set_var VAR_20, $00
 	print_npc_text GrandMasterCupClerkEnterAcceptedText
-	script_command_02
+	end_dialog
 	script_jump Script_3dbde
 .declined
 	print_npc_text GrandMasterCupClerkEnterDeclinedText
 .ows_3da69
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3398,7 +3401,7 @@ Func_3da6c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text101f
 	get_var VAR_0D
 	compare_loaded_var $05
@@ -3408,7 +3411,7 @@ Func_3da6c:
 .ows_3da91
 	print_npc_text Text1021
 .ows_3da94
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3422,7 +3425,7 @@ Func_3da97:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_0D
 	compare_loaded_var $05
 	script_jump_if_b1z .ows_3dab9
@@ -3431,7 +3434,7 @@ Func_3da97:
 .ows_3dab9
 	print_npc_text Text1023
 .ows_3dabc
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3445,7 +3448,7 @@ Func_3dabf:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_0D
 	compare_loaded_var $05
 	script_jump_if_b0nz .ows_3dae4
@@ -3458,7 +3461,7 @@ Func_3dabf:
 .ows_3daea
 	print_npc_text Text1026
 .ows_3daed
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -3491,20 +3494,20 @@ Func_3db13:
 	set_active_npc NPC_GR_5, DialogGR5Text
 	move_active_npc .NPCMovement_3db3b
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text1027
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3db3e
 	wait_for_player_animation
 	end_script
 	jr .asm_3db36
 .ows_3db30
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
 .asm_3db36
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_3db3b:
 	db NORTH, MOVE_4
@@ -3553,7 +3556,7 @@ Script_3db41:
 	ld a, MAP_POKEMON_DOME_BACK
 	lb de, 7, 14
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3dbac:
 	db EAST, MOVE_1
@@ -3633,7 +3636,7 @@ Script_3dbde:
 	ld a, MAP_POKEMON_DOME_BACK
 	lb de, 6, 4
 	ld b, EAST
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3dc38:
 	db SOUTH, MOVE_1
@@ -3667,9 +3670,9 @@ Func_3dc4a:
 	script_jump_if_b0z .ows_3dc82
 	set_event EVENT_EC
 	do_frames 30
-	script_command_01
+	start_dialog
 	print_npc_text Text1028
-	script_command_02
+	end_dialog
 	do_frames 15
 	set_player_direction EAST
 	do_frames 30
@@ -3678,13 +3681,13 @@ Func_3dc4a:
 	set_player_direction SOUTH
 	do_frames 30
 .ows_3dc82
-	script_command_01
+	start_dialog
 	print_npc_text Text1029
-	script_command_02
+	end_dialog
 	end_script
 .asm_3dc88
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
 Func_3dc8e:
@@ -3704,8 +3707,8 @@ Func_3dc8e:
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_3dcb8:
 	db SOUTH, MOVE_4
@@ -3807,24 +3810,24 @@ PokemonDomeBack_NPCs:
 	db $ff
 
 PokemonDomeBack_MapScripts:
-	dbw $06, Func_3dda8
-	dbw $09, PokemonDomeBack_AfterDuel
-	dbw $07, Func_3ddaf
-	dbw $02, Func_3ddb8
-	dbw $04, Func_3de67
-	dbw $0b, Func_3de91
-	dbw $0e, Func_3deca
-	dbw $0f, Func_3de6f
+	dbw OWMODE_STEP_EVENT, Func_3dda8
+	dbw OWMODE_AFTER_DUEL, PokemonDomeBack_AfterDuel
+	dbw OWMODE_NPC_POSITION, Func_3ddaf
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3ddb8
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_3de67
+	dbw OWMODE_CONTINUE_OW, Func_3de91
+	dbw OWMODE_CONTINUE_DUEL, Func_3deca
+	dbw OWMODE_WARP_END_SFX, Func_3de6f
 	db $ff
 
 Func_3dda8:
 	ld hl, PokemonDomeBack_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ddaf:
 	ld hl, PokemonDomeBack_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -3840,15 +3843,15 @@ Func_3ddb8:
 	farcall ResetOWObjectSpriteAnimFlag6
 	ld a, NPC_CUP_HOST
 	farcall SetOWObjectAsScrollTarget
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3ded6)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3ded6
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 .asm_3ddec
@@ -3875,23 +3878,23 @@ Func_3ddb8:
 	farcall Func_454fa
 	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
-	ld de, $600
+	lb de, 6, 0
 	farcall CalcOWScroll
 	ld a, $02
 	farcall SetOWScrollState
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3e12b)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3e12b
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, $00
 	call Func_338f
 	scf
@@ -3926,7 +3929,7 @@ PokemonDomeBack_AfterDuel:
 	jp Func_3e091
 
 Func_3de91:
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr nz, .asm_3deb5
@@ -3976,9 +3979,9 @@ Func_3ded6:
 	set_scroll_state $02
 	unload_npc NPC_CUP_HOST
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0f9a
-	script_command_02
+	end_dialog
 	move_npc NPC_COURTNEY, .NPCMovement_3df3f
 	wait_for_player_animation
 	script_jump .ows_3df46
@@ -4024,9 +4027,9 @@ Func_3ded6:
 .ows_3df46
 	set_var VAR_0C, $00
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
-	script_command_01
+	start_dialog
 	print_npc_text Text0f9b
-	script_command_02
+	end_dialog
 	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4034,23 +4037,23 @@ Func_3ded6:
 Func_3df57:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3df7a
 	print_npc_text Text0f9c
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3df81
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0f9d
-	script_command_02
+	end_dialog
 	move_npc NPC_STEVE, .NPCMovement_3df8a
 	wait_for_player_animation
 	script_jump Script_3df8d
 .ows_3df7a
 	print_npc_text Text0f9e
-	script_command_02
+	end_dialog
 	script_jump Script_3e105
 .NPCMovement_3df81:
 	db EAST, MOVE_1
@@ -4065,25 +4068,25 @@ Func_3df57:
 Script_3df8d:
 	set_var VAR_0C, $01
 	set_active_npc NPC_STEVE, DialogSteveText
-	script_command_01
+	start_dialog
 	print_npc_text Text0f9f
 	set_active_npc NPC_ROD, DialogRodText
 .ows_3df9c
 	print_npc_text Text0fa0
 	ask_question DuelPrepPromptText, FALSE
 	script_jump_if_b0z .ows_3dfb0
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	script_jump .ows_3df9c
 .ows_3dfb0
 	set_text_ram2 DialogSteveText
 	print_npc_text Text0fa1
 	set_active_npc NPC_STEVE, DialogSteveText
 	print_npc_text Text0fa2
-	script_command_02
+	end_dialog
 	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4091,23 +4094,23 @@ Script_3df8d:
 Func_3dfc3:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3dfe6
 	print_npc_text Text0fa3
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3dfed
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fa4
-	script_command_02
+	end_dialog
 	move_npc NPC_JACK, .NPCMovement_3dff2
 	wait_for_player_animation
 	script_jump Script_3dff9
 .ows_3dfe6
 	print_npc_text Text0fa5
-	script_command_02
+	end_dialog
 	script_jump Script_3e105
 .NPCMovement_3dfed:
 	db EAST, MOVE_2
@@ -4122,25 +4125,25 @@ Func_3dfc3:
 Script_3dff9:
 	set_var VAR_0C, $02
 	set_active_npc NPC_JACK, DialogJackText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fa6
 	set_active_npc NPC_ROD, DialogRodText
 .ows_3e008
 	print_npc_text Text0fa0
 	ask_question DuelPrepPromptText, FALSE
 	script_jump_if_b0z .ows_3e01c
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	script_jump .ows_3e008
 .ows_3e01c
 	set_text_ram2 DialogJackText
 	print_npc_text Text0fa1
 	set_active_npc NPC_JACK, DialogJackText
 	print_npc_text Text0fa7
-	script_command_02
+	end_dialog
 	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4148,23 +4151,23 @@ Script_3dff9:
 Func_3e02f:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e052
 	print_npc_text Text0fa8
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e059
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fa9
-	script_command_02
+	end_dialog
 	move_npc NPC_ROD, .NPCMovement_3e062
 	wait_for_player_animation
 	script_jump Script_3e069
 .ows_3e052
 	print_npc_text Text0faa
-	script_command_02
+	end_dialog
 	script_jump Script_3e105
 .NPCMovement_3e059:
 	db EAST, MOVE_1
@@ -4181,21 +4184,21 @@ Func_3e02f:
 Script_3e069:
 	set_var VAR_0C, $03
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fab
 .ows_3e074
 	print_npc_text Text0fa0
 	ask_question DuelPrepPromptText, FALSE
 	script_jump_if_b0z .ows_3e088
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	script_jump .ows_3e074
 .ows_3e088
 	print_npc_text Text0fac
-	script_command_02
+	end_dialog
 	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4203,15 +4206,15 @@ Script_3e069:
 Func_3e091:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e0a2
 	print_npc_text Text0fad
-	script_command_02
+	end_dialog
 	script_jump .ows_3e0b2
 .ows_3e0a2
 	print_npc_text Text0fae
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e0ad
 	wait_for_player_animation
 	script_jump Script_3e105
@@ -4225,7 +4228,7 @@ Func_3e091:
 	move_active_npc .NPCMovement_3e0fe
 	wait_for_player_animation
 	set_player_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0faf
 	quit_script
 	farcall Func_1022a
@@ -4242,12 +4245,12 @@ Func_3e091:
 	ld a, $01
 	start_script
 	print_npc_text Text0fb0
-	script_command_02
+	end_dialog
 	end_script
 	ld a, MAP_POKEMON_DOME
 	lb de, 7, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3e0fe:
 	db NORTH, MOVE_2
@@ -4262,14 +4265,14 @@ Script_3e105:
 	wait_for_player_animation
 	set_player_direction NORTH
 	set_active_npc NPC_ROD, DialogRodText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fb1
-	script_command_02
+	end_dialog
 	end_script
 	ld a, MAP_POKEMON_DOME
 	lb de, 7, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3e126:
 	db WEST, MOVE_1
@@ -4286,10 +4289,10 @@ Func_3e12b:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_var VAR_0E, $00
 	print_npc_text Text0fb2
-	script_command_02
+	end_dialog
 	quit_script
 	farcall Func_45573
 	farcall Func_455a3
@@ -4300,43 +4303,43 @@ Func_3e12b:
 Script_3e158:
 	set_var VAR_0E, $01
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
-	script_command_01
+	start_dialog
 	print_npc_text Text0fb3
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e1a9
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fb4
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e1ae
 	wait_for_player_animation
 	quit_script
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0fb5
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e1b3
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fb6
 .ows_3e188
 	print_npc_text Text0fb7
 	ask_question DuelPrepPromptText, FALSE
 	script_jump_if_b0z .ows_3e19f
 	print_npc_text Text0fb8
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	script_jump .ows_3e188
 .ows_3e19f
 	print_npc_text Text0fb9
-	script_command_02
+	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e1a9:
 	db WEST, MOVE_1
@@ -4359,36 +4362,36 @@ Script_3e1b8:
 	farcall SetVarValue
 	ld a, VAR_1B
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0fba
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e20d
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fbb
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e212
 	wait_for_player_animation
 	quit_script
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0fbc
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e217
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fbd
-	script_command_02
+	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e20d:
 	db WEST, MOVE_1
@@ -4411,30 +4414,30 @@ Script_3e21c:
 	farcall SetVarValue
 	ld a, VAR_1E
 	farcall GetVarValue
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0fbe
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e295
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fbf
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e29a
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	quit_script
 	ld a, VAR_1E
 	farcall GetVarValue
 	farcall GetNPCByDeck
 	cp NPC_RONALD
 	jr z, .asm_3e272
-	farcall Func_454bc
+	farcall LoadGrandMasterCupOpponentLocationAndName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc0
@@ -4447,14 +4450,14 @@ Script_3e21c:
 	print_npc_text Text0fc2
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 .ows_3e285
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e29f
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fc3
-	script_command_02
+	end_dialog
 	end_script
-	farcall Func_454ab
+	farcall SetGrandMasterCupDuelParams
 	ret
 .NPCMovement_3e295:
 	db WEST, MOVE_1
@@ -4473,7 +4476,7 @@ Script_3e21c:
 Func_3e2a4:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_0E
 	compare_loaded_var $03
 	script_jump_if_b0nz .ows_3e344
@@ -4486,19 +4489,19 @@ Func_3e2a4:
 	ld h, $00
 	ld l, a
 	call LoadTxRam3
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc4
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e333
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fc5
-	script_command_02
+	end_dialog
 	quit_script
 	farcall Func_45488
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e33f
@@ -4511,9 +4514,9 @@ Func_3e2a4:
 	farcall ClearOWObject
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0fc6
-	script_command_02
+	end_dialog
 	get_var VAR_0E
 	compare_loaded_var $01
 	script_jump_if_b0nz Script_3e1b8
@@ -4525,12 +4528,12 @@ Func_3e2a4:
 	ld h, $00
 	ld l, a
 	call LoadTxRam3
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fc7
 	print_npc_text Text0fc8
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .NPCMovement_3e333:
 	db EAST, MOVE_2
@@ -4554,12 +4557,12 @@ Func_3e2a4:
 	ld a, $01
 	start_script
 	print_npc_text Text0fca
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e405
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fcb
@@ -4579,10 +4582,10 @@ Func_3e2a4:
 	ld a, $01
 	start_script
 .ows_3e393
-	script_command_02
+	end_dialog
 	quit_script
 	farcall Func_45488
-	farcall Func_45484
+	farcall GetNPCByDeck_AdjustAmy_PokemonDome
 	push af
 	ld b, $0f
 	ld hl, .NPCMovement_3e411
@@ -4599,7 +4602,7 @@ Func_3e2a4:
 
 .ows_3e3c0:
 	quit_script
-	farcall Func_454e3
+	farcall LoadGrandMasterCupOpponentName
 	ld a, $01
 	start_script
 	print_npc_text Text0fcd
@@ -4624,7 +4627,7 @@ Func_3e2a4:
 	ld a, $01
 	start_script
 .ows_3e401
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .NPCMovement_3e405:
 	db EAST, MOVE_2
@@ -4650,13 +4653,13 @@ Func_3e2a4:
 	script_jump .ows_3e5a4
 .ows_3e428
 	set_var VAR_0E, $04
-	script_command_01
+	start_dialog
 	print_npc_text Text0fd0
-	script_command_02
+	end_dialog
 	set_active_npc NPC_ROD, DialogRodText
 	move_active_npc .NPCMovement_3e44e
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fd1
 	get_random $04
 	compare_loaded_var $00
@@ -4676,16 +4679,16 @@ Func_3e2a4:
 	print_npc_text Text0fd2
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd3
-	script_command_02
+	end_dialog
 	move_npc NPC_COURTNEY, .NPCMovement_3e484
 	move_npc NPC_ROD, .NPCMovement_3e48d
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
 	print_npc_text Text0fd4
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
-	script_command_02
+	end_dialog
 	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4711,7 +4714,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogCourtneyText
 	print_npc_text Text0fd7
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .ows_3e4b4
 	set_var VAR_1F, $01
@@ -4719,16 +4722,16 @@ Func_3e2a4:
 	print_npc_text Text0fd2
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd8
-	script_command_02
+	end_dialog
 	move_npc NPC_STEVE, .NPCMovement_3e4e3
 	move_npc NPC_ROD, .NPCMovement_3e4ee
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_STEVE, DialogSteveText
 	print_npc_text Text0fd9
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
-	script_command_02
+	end_dialog
 	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4755,7 +4758,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogSteveText
 	print_npc_text Text0fd7
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .ows_3e515
 	set_var VAR_1F, $02
@@ -4763,16 +4766,16 @@ Func_3e2a4:
 	print_npc_text Text0fd2
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fda
-	script_command_02
+	end_dialog
 	move_npc NPC_JACK, .NPCMovement_3e544
 	move_npc NPC_ROD, .NPCMovement_3e54b
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_JACK, DialogJackText
 	print_npc_text Text0fdb
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
-	script_command_02
+	end_dialog
 	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4797,7 +4800,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogJackText
 	print_npc_text Text0fd7
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .ows_3e572
 	set_var VAR_1F, $03
@@ -4805,15 +4808,15 @@ Func_3e2a4:
 	print_npc_text Text0fd2
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fdd
-	script_command_02
+	end_dialog
 	move_npc NPC_ROD, .NPCMovement_3e59d
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_ROD, DialogRodText
 	print_npc_text Text0fde
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fd5
-	script_command_02
+	end_dialog
 	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
@@ -4833,7 +4836,7 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogRodText
 	print_npc_text Text0fd7
-	script_command_02
+	end_dialog
 	script_jump .ows_3e65d
 .ows_3e5c4
 	set_event EVENT_DB
@@ -4845,11 +4848,11 @@ Func_3e2a4:
 	print_npc_text Text0fe0
 	wait_song
 	resume_song
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3e658
 	wait_for_player_animation
 	set_player_direction NORTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0fe1
 	quit_script
 	xor a
@@ -4897,12 +4900,12 @@ Func_3e2a4:
 	print_npc_text Text0fe5
 .ows_3e647
 	print_npc_text Text0fe6
-	script_command_02
+	end_dialog
 	end_script
 	ld a, MAP_POKEMON_DOME
 	lb de, 7, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3e658:
 	db WEST, MOVE_1
@@ -4915,16 +4918,16 @@ Func_3e2a4:
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	move_active_npc .NPCMovement_3e681
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0fe7
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_3e686, TRUE
 	wait_for_player_animation
 	end_script
 	ld a, MAP_POKEMON_DOME
 	lb de, 7, 1
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_3e681:
 	db WEST, MOVE_1
@@ -4975,14 +4978,14 @@ IshiharasVillaMain_OWInteractions:
 	db $ff
 
 IshiharasVillaMain_MapScripts:
-	dbw $06, Func_3e72a
-	dbw $08, Func_3e73a
-	dbw $09, Func_3e7bb
-	dbw $07, Func_3e731
-	dbw $0c, Func_3e74a
-	dbw $0d, Func_3e778
-	dbw $0b, Func_3e787
-	dbw $01, Func_3e704
+	dbw OWMODE_STEP_EVENT, Func_3e72a
+	dbw OWMODE_INTERACT, Func_3e73a
+	dbw OWMODE_AFTER_DUEL, Func_3e7bb
+	dbw OWMODE_NPC_POSITION, Func_3e731
+	dbw OWMODE_SAVE_PRELOAD, Func_3e74a
+	dbw OWMODE_SAVE_POSTLOAD, Func_3e778
+	dbw OWMODE_CONTINUE_OW, Func_3e787
+	dbw OWMODE_MUSIC_PRELOAD, Func_3e704
 	db $ff
 
 Func_3e704:
@@ -5009,12 +5012,12 @@ Func_3e704:
 
 Func_3e72a:
 	ld hl, IshiharasVillaMain_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3e731:
 	ld hl, IshiharasVillaMain_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5140,7 +5143,7 @@ Func_3e7f5:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	check_event EVENT_TALKED_TO_ISHIHARA
@@ -5155,20 +5158,20 @@ Func_3e7f5:
 	script_jump_if_b0z .ows_3e830
 	script_call Script_3e873
 	print_npc_text Text0ee5
-	script_command_02
+	end_dialog
 	start_duel VERY_RARE_CARD_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_3e830
 	print_npc_text Text0ee6
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_3e836:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e84e
 	set_event EVENT_BATTLED_ISHIHARA
@@ -5179,7 +5182,7 @@ Func_3e836:
 .ows_3e84e
 	print_npc_text Text0ee9
 .ows_3e851
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5193,17 +5196,17 @@ Func_3e854:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_player_opposite_direction
 	restore_active_npc_direction
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	print_npc_text Text0eb4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_3e873:
-	script_command_02
+	end_dialog
 	set_active_npc_direction WEST
 	get_player_direction
 	compare_loaded_var NORTH
@@ -5219,7 +5222,7 @@ Script_3e873:
 	move_player .NPCMovement_3e8a8, TRUE
 .ows_3e893
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_3e896:
 	db NORTH, MOVE_1
@@ -5250,12 +5253,12 @@ Func_3e8b1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0eea
 	get_player_opposite_direction
 	restore_active_npc_direction
 	print_npc_text Text0eeb
-	script_command_02
+	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
@@ -5301,13 +5304,13 @@ IshiharasVillaLibrary_OWInteractions:
 	db $ff
 
 IshiharasVillaLibrary_MapScripts:
-	dbw $06, Func_3e981
-	dbw $08, Func_3e991
-	dbw $07, Func_3e988
-	dbw $0c, Func_3e9a1
-	dbw $0d, Func_3e9cf
-	dbw $0b, Func_3e9de
-	dbw $01, Func_3e95b
+	dbw OWMODE_STEP_EVENT, Func_3e981
+	dbw OWMODE_INTERACT, Func_3e991
+	dbw OWMODE_NPC_POSITION, Func_3e988
+	dbw OWMODE_SAVE_PRELOAD, Func_3e9a1
+	dbw OWMODE_SAVE_POSTLOAD, Func_3e9cf
+	dbw OWMODE_CONTINUE_OW, Func_3e9de
+	dbw OWMODE_MUSIC_PRELOAD, Func_3e95b
 	db $ff
 
 Func_3e95b:
@@ -5334,12 +5337,12 @@ Func_3e95b:
 
 Func_3e981:
 	ld hl, IshiharasVillaLibrary_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3e988:
 	ld hl, IshiharasVillaLibrary_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5490,7 +5493,7 @@ Func_3ea86:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	script_jump_if_b0z .ows_3eaab
 	set_var VAR_02, $06
@@ -5500,7 +5503,7 @@ Func_3ea86:
 .ows_3eaab
 	print_npc_text Text0ec0
 .ows_3eaae
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5514,7 +5517,7 @@ Func_3eab1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_3ead3
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -5547,7 +5550,7 @@ Func_3eab1:
 	set_var VAR_02, $07
 	print_npc_text Text0ec7
 .ows_3eb11
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5561,7 +5564,7 @@ Func_3eb14:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_3eb36
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -5594,7 +5597,7 @@ Func_3eb14:
 	set_var VAR_02, $08
 	print_npc_text Text0ece
 .ows_3eb74
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5608,7 +5611,7 @@ Func_3eb77:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_3eb99
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -5641,7 +5644,7 @@ Func_3eb77:
 	set_var VAR_02, $09
 	print_npc_text Text0ed5
 .ows_3ebd7
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5655,7 +5658,7 @@ Func_3ebda:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
 	script_jump_if_b0z .ows_3ebfc
 	set_event EVENT_TALKED_TO_ISHIHARA
@@ -5688,7 +5691,7 @@ Func_3ebda:
 	set_var VAR_02, $0a
 	print_npc_text Text0edc
 .ows_3ec3a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5702,9 +5705,9 @@ Func_3ec3d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0edd
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5718,10 +5721,10 @@ Func_3ec58:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	print_npc_text Text0eb4
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5735,12 +5738,12 @@ Func_3ec75:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_MET_GR_GAL_ISHIHARAS_VILLA
 	get_player_opposite_direction
 	restore_active_npc_direction
 	print_npc_text Text0ede
-	script_command_02
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0z .ows_3ec9d
@@ -5751,14 +5754,14 @@ Func_3ec75:
 	script_jump_if_b1nz .ows_3ecc2
 	move_active_npc .NPCMovement_3ecca
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0edf
 	set_active_npc NPC_ISHIHARA, DialogMrIshiharaText
 	set_active_npc_direction WEST
 	print_npc_text Text0ee0
 	set_active_npc NPC_ISHIHARAS_VILLA_GR_GAL, DialogRuiText
 	print_npc_text Text0ee1
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_3eccf
 	wait_for_player_animation
 	script_jump .ows_3ecc6
@@ -5831,19 +5834,19 @@ GameCenterEntrance_OWInteractions:
 	db $ff
 
 GameCenterEntrance_MapScripts:
-	dbw $06, Func_3ed92
-	dbw $08, Func_3eda2
-	dbw $07, Func_3ed99
+	dbw OWMODE_STEP_EVENT, Func_3ed92
+	dbw OWMODE_INTERACT, Func_3eda2
+	dbw OWMODE_NPC_POSITION, Func_3ed99
 	db $ff
 
 Func_3ed92:
 	ld hl, GameCenterEntrance_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ed99:
 	ld hl, GameCenterEntrance_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5872,7 +5875,7 @@ Func_3edb7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterChipDeskWelcomeText
 	get_game_center_chips
 	compare_loaded_var_word 0
@@ -5887,26 +5890,26 @@ Func_3edb7:
 	npc_ask_question GameCenterChipDeskDepositReturnPromptText, TRUE
 	script_jump_if_b0z .ows_3edf7
 	print_npc_text GameCenterChipDeskDepositReturnedText
-	game_center
+	show_chips_hud
 	withdraw_chips
 	print_npc_text GameCenterChipDeskDepositReminderText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee0e
 .ows_3edf7
 	print_npc_text GameCenterChipDeskComeAgainText
 	script_jump .ows_3ee0e
 .ows_3edfd
 	load_text_ram3
-	game_center
+	show_chips_hud
 	npc_ask_question GameCenterChipDeskDepositPromptText, TRUE
 	script_jump_if_b0z .ows_3ee0a
 	deposit_chips
 	print_npc_text GameCenterChipDeskDepositedText
 .ows_3ee0a
 	print_npc_text GameCenterChipDeskComeAgainText
-	script_command_71
+	hide_chips_hud
 .ows_3ee0e
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5920,16 +5923,16 @@ Func_3ee11:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
 	script_jump_if_b0z .ows_3ee3e
 	set_event EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
 	print_npc_text GameCenterChipGirlFirstServiceText
 	print_text Received10ChipsText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_npc_text GameCenterChipGirlNoticeText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee80
 .ows_3ee3e
 	get_game_center_chips
@@ -5939,31 +5942,31 @@ Func_3ee11:
 	compare_loaded_var_word 0
 	script_jump_if_b0z .ows_3ee7d
 	quit_script
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
 	jr nz, .asm_3ee67
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlRefillText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_text Received10ChipsText
-	script_command_71
+	hide_chips_hud
 	script_jump .ows_3ee80
 .asm_3ee67
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlWelcomeRefillText
-	game_center
+	show_chips_hud
 	give_chips 10
 	print_text Received10ChipsText
-	script_command_71
+	hide_chips_hud
 	print_npc_text GameCenterChipGirlEnjoyText
 	script_jump .ows_3ee80
 .ows_3ee7d
 	print_npc_text GameCenterChipGirlRefillReminderText
 .ows_3ee80
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5977,9 +5980,9 @@ Func_3ee83:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterChipSecurityReminderText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6000,7 +6003,7 @@ Func_3ee9e:
 	farcall SetOWObjectDirection
 	call Func_3ee11
 .asm_3eec2
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_3eec7:
@@ -6008,7 +6011,7 @@ Func_3eec7:
 	ld a, b
 	or c
 	jr nz, .asm_3eed4
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .asm_3eed4
 	ld a, NPC_CHIP_SECURITY
@@ -6020,17 +6023,17 @@ Func_3eec7:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction EAST
 	print_npc_text GameCenterChipSecurityWarningText
-	script_command_02
+	end_dialog
 	animate_player_movement $00, $01
 	end_script
 	ret
 
 Func_3eef4:
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
 GameCenterLobby_MapHeader:
@@ -6067,12 +6070,12 @@ GameCenterLobby_OWInteractions:
 	db $ff
 
 GameCenterLobby_MapScripts:
-	dbw $06, Func_3ef95
-	dbw $08, Func_3efa5
-	dbw $09, Func_3efb5
-	dbw $0b, Func_3efba
-	dbw $07, Func_3ef9c
-	dbw $10, Func_3ef80
+	dbw OWMODE_STEP_EVENT, Func_3ef95
+	dbw OWMODE_INTERACT, Func_3efa5
+	dbw OWMODE_AFTER_DUEL, Func_3efb5
+	dbw OWMODE_CONTINUE_OW, Func_3efba
+	dbw OWMODE_NPC_POSITION, Func_3ef9c
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3ef80
 	db $ff
 
 Func_3ef80:
@@ -6091,12 +6094,12 @@ Func_3ef80:
 
 Func_3ef95:
 	ld hl, GameCenterLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3ef9c:
 	ld hl, GameCenterLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6140,9 +6143,9 @@ Func_3efd6:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0d87
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6156,7 +6159,7 @@ Func_3eff1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3f011
 	print_npc_text Text0d88
@@ -6164,7 +6167,7 @@ Func_3eff1:
 .ows_3f011
 	print_npc_text Text0d89
 .ows_3f014
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6178,7 +6181,7 @@ Func_3f017:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3f037
 	print_npc_text Text0d8a
@@ -6186,7 +6189,7 @@ Func_3f017:
 .ows_3f037
 	print_npc_text Text0d8b
 .ows_3f03a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6217,30 +6220,30 @@ CardDungeonPawn_NPCs:
 	db $ff
 
 CardDungeonPawn_NPCInteractions:
-	npc_script NPC_PAWN, Func_3f0d9
+	npc_script NPC_PAWN, Script_Pawn
 	db $ff
 
 CardDungeonPawn_OWInteractions:
-	ow_script 4, 1, Func_3f1de
-	ow_script 5, 1, Func_3f1de
+	ow_script 4, 1, Script_CardDungeonPawnDoors
+	ow_script 5, 1, Script_CardDungeonPawnDoors
 	db $ff
 
 CardDungeonPawn_MapScripts:
-	dbw $06, Func_3f093
-	dbw $08, Func_3f0a3
-	dbw $09, Func_3f0d4
-	dbw $07, Func_3f09a
-	dbw $02, Func_3f0b3
+	dbw OWMODE_STEP_EVENT, Func_3f093
+	dbw OWMODE_INTERACT, Func_3f0a3
+	dbw OWMODE_AFTER_DUEL, Func_3f0d4
+	dbw OWMODE_NPC_POSITION, Func_3f09a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f0b3
 	db $ff
 
 Func_3f093:
 	ld hl, CardDungeonPawn_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f09a:
 	ld hl, CardDungeonPawn_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6256,27 +6259,27 @@ Func_3f0a3:
 	ret
 
 Func_3f0b3:
-	ld bc, TILEMAP_043
+	ld bc, TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3f1c6)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f1c6
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
 Func_3f0d4:
-	call Func_3f15d
+	call Script_PawnAfterDuel
 	scf
 	ret
 
-Func_3f0d9:
+Script_Pawn:
 	ld a, NPC_PAWN
 	ld [wScriptNPC], a
 	ldtx hl, DialogPawnText
@@ -6286,112 +6289,113 @@ Func_3f0d9:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_3A
-	compare_loaded_var $00
-	script_jump_if_b0z .ows_3f157
-	game_center
+	start_dialog
+	get_var VAR_CARD_DUNGEON_PROGRESS
+	compare_loaded_var 0
+	script_jump_if_b0z .proceed
+	show_chips_hud
 	check_event EVENT_TALKED_TO_PAWN
-	script_jump_if_b0z .ows_3f103
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_PAWN
 	print_npc_text PawnWantsToDuelInitialText
-	script_jump .ows_3f106
-.ows_3f103
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text PawnWantsToDuelRepeatText
-.ows_3f106
+.duel_prompt
 	ask_question PawnDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f13b
+	script_jump_if_b0z .quit_prompt
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $0a
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f126
+	ld a, POPUPMENU_CARD_DUNGEON_PAWN
+	ld b, 0
+	farcall HandlePopupMenu
+; menu: bet 10, cancel
+	jr c, .cancel
 	or a
-	jr nz, .asm_3f126
+	jr nz, .cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f12e
-.asm_3f126
+	script_jump .bet_start
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f13b
-.ows_3f12e
-	take_chips 10
+	script_jump .quit_prompt
+.bet_start
+	take_chips CHIPS_BET_DUNGEON_10
 	print_npc_text PawnDuelStartText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	start_duel TEST_YOUR_LUCK_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_3f13b
+.quit_prompt
 	print_npc_text PawnDeclinedDuelText
 	ask_question PawnQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f14b
+	script_jump_if_b0nz .quit
 	print_npc_text PawnResumeDuelText
-	script_jump .ows_3f106
-.ows_3f14b
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text PawnPlayerQuitText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	end_script
-	jp Func_3f1ba
-.ows_3f157:
+	jp CardDungeonPawn_SetWarp
+.proceed
 	print_npc_text PawnProceedRepeatText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3f15d:
+Script_PawnAfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f17b
+	script_jump_if_b0nz .player_lost
 	print_npc_text PawnPlayerWon1Text
-	game_center
-	set_text_ram3 20
+	show_chips_hud
+	set_text_ram3 CHIPS_BET_DUNGEON_10 * 2
 	print_text ReceivedXChipsText
-	give_chips 20
+	give_chips CHIPS_BET_DUNGEON_10 * 2
 	print_npc_text PawnPlayerWon2Text
-	script_command_71
-	script_jump .ows_3f186
-.ows_3f17b
-	set_var VAR_3A, $06
+	hide_chips_hud
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text PawnPlayerLostText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3f1ba
-.ows_3f186
+	jp CardDungeonPawn_SetWarp
+.proceed
 	ask_question PawnProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f1a2
-	set_var VAR_3A, $01
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_PAWN
 	print_npc_text PawnProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_044, $04, $00
+	load_tilemap TILEMAP_CARD_DUNGEON_PAWN_BACK_DOORS_OPEN, 4, 0
 	print_npc_text PawnProceedInitial2Text
-	script_jump .ows_3f1b7
-.ows_3f1a2
+	script_jump .done
+.declined
 	print_npc_text PawnDeclinedProceedingText
 	ask_question PawnWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f186
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text PawnPlayerWithdrewText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3f1ba
-.ows_3f1b7
-	script_command_02
+	jp CardDungeonPawn_SetWarp
+.done
+	end_dialog
 	end_script
 	ret
 
-Func_3f1ba:
+CardDungeonPawn_SetWarp:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_3f1c6:
@@ -6400,24 +6404,24 @@ Func_3f1c6:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_043, $04, $07
+	load_tilemap TILEMAP_CARD_DUNGEON_PAWN_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-Func_3f1de:
-	ld a, VAR_3A
+Script_CardDungeonPawnDoors:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	or a
-	jr nz, .asm_3f1f1
+	jr nz, .done
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
-.asm_3f1f1
+.done
 	ret
 
 CardDungeonKnight_MapHeader:
@@ -6435,30 +6439,30 @@ CardDungeonKnight_NPCs:
 	db $ff
 
 CardDungeonKnight_NPCInteractions:
-	npc_script NPC_KNIGHT, Func_3f27f
+	npc_script NPC_KNIGHT, Script_Knight
 	db $ff
 
 CardDungeonKnight_OWInteractions:
-	ow_script 4, 1, Func_3f3ad
-	ow_script 5, 1, Func_3f3ad
+	ow_script 4, 1, Script_CardDungeonKnightDoors
+	ow_script 5, 1, Script_CardDungeonKnightDoors
 	db $ff
 
 CardDungeonKnight_MapScripts:
-	dbw $06, Func_3f239
-	dbw $08, Func_3f249
-	dbw $09, Func_3f27a
-	dbw $07, Func_3f240
-	dbw $02, Func_3f259
+	dbw OWMODE_STEP_EVENT, Func_3f239
+	dbw OWMODE_INTERACT, Func_3f249
+	dbw OWMODE_AFTER_DUEL, Func_3f27a
+	dbw OWMODE_NPC_POSITION, Func_3f240
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f259
 	db $ff
 
 Func_3f239:
 	ld hl, CardDungeonKnight_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f240:
 	ld hl, CardDungeonKnight_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6474,27 +6478,27 @@ Func_3f249:
 	ret
 
 Func_3f259:
-	ld bc, TILEMAP_046
+	ld bc, TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3f395)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f395
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
 Func_3f27a:
-	call Func_3f317
+	call Script_KnightAfterDuel
 	scf
 	ret
 
-Func_3f27f:
+Script_Knight:
 	ld a, NPC_KNIGHT
 	ld [wScriptNPC], a
 	ldtx hl, DialogKnightText
@@ -6504,43 +6508,45 @@ Func_3f27f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_3A
-	compare_loaded_var $01
-	script_jump_if_b0z .ows_3f311
-	game_center
+	start_dialog
+	get_var VAR_CARD_DUNGEON_PROGRESS
+	compare_loaded_var CARDDUNGEON_BEAT_PAWN
+	script_jump_if_b0z .proceed_repeat
+	show_chips_hud
 	check_event EVENT_TALKED_TO_KNIGHT
-	script_jump_if_b0z .ows_3f2a9
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_KNIGHT
 	print_npc_text KnightWantsToDuelInitialText
-	script_jump .ows_3f2ac
-.ows_3f2a9
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text KnightWantsToDuelRepeatText
-.ows_3f2ac
+.duel_prompt
 	ask_question KnightDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f2f5
+	script_jump_if_b0z .quit_prompt
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $06
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f2cf
-	cp $01
-	jr z, .asm_3f2cb
-	jr nc, .asm_3f2cf
-	ld a, $0a
-	jr .asm_3f2d7
-.asm_3f2cb
-	ld a, $14
-	jr .asm_3f2d7
-.asm_3f2cf
+	ld a, POPUPMENU_CARD_DUNGEON_KNIGHT
+	ld b, 0
+	farcall HandlePopupMenu
+; menu: bet 10, bet 20, cancel
+	jr c, .cancel
+	cp 1
+	jr z, .bet_20
+	jr nc, .cancel
+; bet 10
+	ld a, CHIPS_BET_DUNGEON_10
+	jr .bet
+.bet_20
+	ld a, CHIPS_BET_DUNGEON_20
+	jr .bet
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f2f5
-.asm_3f2d7
-	ld h, $00
+	script_jump .quit_prompt
+.bet
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	ld c, l
 	ld b, h
@@ -6548,42 +6554,42 @@ Func_3f27f:
 	ld a, $01
 	start_script
 	print_npc_text KnightDuelStartText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	start_duel PROTOHISTORIC_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
-.ows_3f2f5
+.quit_prompt
 	print_npc_text KnightDeclinedDuelText
 	ask_question KnightQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f305
+	script_jump_if_b0nz .quit
 	print_npc_text KnightResumeDuelText
-	script_jump .ows_3f2ac
-.ows_3f305
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text KnightPlayerQuitText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	end_script
-	jp Func_3f389
-.ows_3f311
+	jp CardDungeonKnight_SetWarp
+.proceed_repeat
 	print_npc_text KnightProceedRepeatText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3f317:
+Script_KnightAfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f34a
+	script_jump_if_b0nz .player_lost
 	print_npc_text KnightPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -6594,43 +6600,43 @@ Func_3f317:
 	ld a, $01
 	start_script
 	print_npc_text KnightPlayerWon2Text
-	script_command_71
-	script_jump .ows_3f355
-.ows_3f34a
-	set_var VAR_3A, $06
+	hide_chips_hud
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text KnightPlayerLostText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3f389
-.ows_3f355
+	jp CardDungeonKnight_SetWarp
+.proceed
 	ask_question KnightProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f371
-	set_var VAR_3A, $02
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_KNIGHT
 	print_npc_text KnightProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_047, $04, $00
+	load_tilemap TILEMAP_CARD_DUNGEON_KNIGHT_BACK_DOORS_OPEN, 4, 0
 	print_npc_text KnightProceedInitial2Text
-	script_jump .ows_3f386
-.ows_3f371
+	script_jump .done
+.declined
 	print_npc_text KnightDeclinedProceedingText
 	ask_question KnightWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f355
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text KnightPlayerWithdrewText
-	script_command_02
+	end_dialog
 	end_script
-	jp Func_3f389
-.ows_3f386
-	script_command_02
+	jp CardDungeonKnight_SetWarp
+.done
+	end_dialog
 	end_script
 	ret
 
-Func_3f389:
+CardDungeonKnight_SetWarp:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_3f395:
@@ -6639,24 +6645,24 @@ Func_3f395:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_046, $04, $07
+	load_tilemap TILEMAP_CARD_DUNGEON_KNIGHT_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-Func_3f3ad:
-	ld a, VAR_3A
+Script_CardDungeonKnightDoors:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $01
-	jr nz, .asm_3f3c1
+	jr nz, .done
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
-.asm_3f3c1
+.done
 	ret
 
 CardDungeonRook_MapHeader:
@@ -6674,30 +6680,30 @@ CardDungeonRook_NPCs:
 	db $ff
 
 CardDungeonRook_NPCInteractions:
-	npc_script NPC_ROOK, Func_3f44f
+	npc_script NPC_ROOK, Script_Rook
 	db $ff
 
 CardDungeonRook_OWInteractions:
-	ow_script 4, 1, Func_3f596
-	ow_script 5, 1, Func_3f596
+	ow_script 4, 1, Script_CardDungeonRookDoors
+	ow_script 5, 1, Script_CardDungeonRookDoors
 	db $ff
 
 CardDungeonRook_MapScripts:
-	dbw $06, Func_3f409
-	dbw $08, Func_3f419
-	dbw $09, Func_3f44a
-	dbw $07, Func_3f410
-	dbw $02, Func_3f429
+	dbw OWMODE_STEP_EVENT, Func_3f409
+	dbw OWMODE_INTERACT, Func_3f419
+	dbw OWMODE_AFTER_DUEL, Func_3f44a
+	dbw OWMODE_NPC_POSITION, Func_3f410
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f429
 	db $ff
 
 Func_3f409:
 	ld hl, CardDungeonRook_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f410:
 	ld hl, CardDungeonRook_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -6713,27 +6719,27 @@ Func_3f419:
 	ret
 
 Func_3f429:
-	ld bc, TILEMAP_04C
+	ld bc, TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT
 	lb de, 4, 0
 	farcall Func_12c0ce
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3f57e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f57e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
 Func_3f44a:
-	call Func_3f500
+	call Script_RookAfterDuel
 	scf
 	ret
 
-Func_3f44f:
+Script_Rook:
 	ld a, NPC_ROOK
 	ld [wScriptNPC], a
 	ldtx hl, DialogRookText
@@ -6743,95 +6749,97 @@ Func_3f44f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_3A
-	compare_loaded_var $03
-	script_jump_if_b0z .ows_3f4fa
-	game_center
+	start_dialog
+	get_var VAR_CARD_DUNGEON_PROGRESS
+	compare_loaded_var CARDDUNGEON_BEAT_BISHOP
+	script_jump_if_b0z .proceed_repeat
+	show_chips_hud
 	check_event EVENT_TALKED_TO_ROOK
-	script_jump_if_b0z .ows_3f479
+	script_jump_if_b0z .duel_repeat
 	set_event EVENT_TALKED_TO_ROOK
 	print_npc_text RookWantsToDuelInitialText
-	script_jump .ows_3f47c
-.ows_3f479
+	script_jump .duel_prompt
+.duel_repeat
 	print_npc_text RookWantsToDuelRepeatText
-.ows_3f47c
+.duel_prompt
 	ask_question RookDuelPromptText, TRUE
-	script_jump_if_b0z .ows_3f4de
-.ows_3f483
+	script_jump_if_b0z .quit_prompt
+.bet_start
 	print_text GameCenterCardDungeonBetPromptText
 	quit_script
-	ld a, $08
-	ld b, $00
-	farcall Func_121e1
-	jr c, .asm_3f49f
-	cp $01
-	jr z, .asm_3f49b
-	jr nc, .asm_3f49f
-	ld a, $1e
-	jr .asm_3f4a7
-.asm_3f49b
-	ld a, $32
-	jr .asm_3f4a7
-.asm_3f49f
+	ld a, POPUPMENU_CARD_DUNGEON_ROOK
+	ld b, 0
+	farcall HandlePopupMenu
+; menu: bet 30, bet 50, cancel
+	jr c, .cancel
+	cp 1
+	jr z, .bet_50
+	jr nc, .cancel
+; bet 30
+	ld a, CHIPS_BET_DUNGEON_30
+	jr .bet_check
+.bet_50
+	ld a, CHIPS_BET_DUNGEON_50
+	jr .bet_check
+.cancel
 	ld a, $01
 	start_script
-	script_jump .ows_3f4de
-.asm_3f4a7
-	ld h, $00
+	script_jump .quit_prompt
+.bet_check
+	ld h, 0
 	ld l, a
-	ld [wd615], a
+	ld [wTempCardDungeonBet], a
 	call LoadTxRam3
 	farcall GetGameCenterChips
 	cp16bc_long hl
-	jr nc, .asm_3f4c9
+	jr nc, .bet
 	ld a, $01
 	start_script
 	print_npc_text RookNotEnoughChipsText
-	script_jump .ows_3f483
-.asm_3f4c9
+	script_jump .bet_start
+.bet
 	ld c, l
 	ld b, h
 	farcall DecreaseChipsSmoothly
 	ld a, $01
 	start_script
 	print_npc_text RookDuelStartText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	start_duel COLORLESS_ENERGY_DECK_ID, MUSIC_MATCH_START_GR_LEADER
 	end_script
 	ret
-.ows_3f4de
+.quit_prompt
 	print_npc_text RookDeclinedDuelText
 	ask_question RookQuitDuelPromptText, TRUE
-	script_jump_if_b0nz .ows_3f4ee
+	script_jump_if_b0nz .quit
 	print_npc_text RookResumeDuelText
-	script_jump .ows_3f47c
-.ows_3f4ee
-	set_var VAR_3A, $07
+	script_jump .duel_prompt
+.quit
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text RookPlayerQuitText
-	script_command_71
-	script_command_02
+	hide_chips_hud
+	end_dialog
 	end_script
 	jp Func_3f572
-.ows_3f4fa
+.proceed_repeat
 	print_npc_text RookProceedRepeatText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
-Func_3f500:
+Script_RookAfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3f533
+	script_jump_if_b0nz .player_lost
 	print_npc_text RookPlayerWon1Text
-	game_center
+	show_chips_hud
 	quit_script
-	ld a, [wd615]
+	ld a, [wTempCardDungeonBet]
 	sla a
-	ld h, $00
+	ld h, 0
 	ld l, a
 	call LoadTxRam3
 	ld c, l
@@ -6842,35 +6850,35 @@ Func_3f500:
 	ld a, $01
 	start_script
 	print_npc_text RookPlayerWon2Text
-	script_command_71
-	script_jump .ows_3f53e
-.ows_3f533
-	set_var VAR_3A, $06
+	hide_chips_hud
+	script_jump .proceed
+.player_lost
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_LOST
 	print_npc_text RookPlayerLostText
-	script_command_02
+	end_dialog
 	end_script
 	jp Func_3f572
-.ows_3f53e
+.proceed
 	ask_question RookProceedWithCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f55a
-	set_var VAR_3A, $04
+	script_jump_if_b0z .declined
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_BEAT_ROOK
 	print_npc_text RookProceedInitial1Text
 	set_active_npc_direction NORTH
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_04D, $04, $00
+	load_tilemap TILEMAP_CARD_DUNGEON_ROOK_BACK_DOORS_OPEN, 4, 0
 	print_npc_text RookProceedInitial2Text
-	script_jump .ows_3f56f
-.ows_3f55a
+	script_jump .done
+.declined
 	print_npc_text RookDeclinedProceedingText
 	ask_question RookWithdrawFromCardDungeonPromptText, TRUE
-	script_jump_if_b0z .ows_3f53e
-	set_var VAR_3A, $07
+	script_jump_if_b0z .proceed
+	set_var VAR_CARD_DUNGEON_PROGRESS, CARDDUNGEON_QUIT_OR_WITHDREW
 	print_npc_text RookPlayerWithdrewText
-	script_command_02
+	end_dialog
 	end_script
 	jp Func_3f572
-.ows_3f56f
-	script_command_02
+.done
+	end_dialog
 	end_script
 	ret
 
@@ -6878,7 +6886,7 @@ Func_3f572:
 	ld a, MAP_GAME_CENTER_2
 	lb de, 6, 3
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 Func_3f57e:
@@ -6887,24 +6895,24 @@ Func_3f57e:
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_04C, $04, $07
+	load_tilemap TILEMAP_CARD_DUNGEON_ROOK_FRONT_DOORS_SHUT, 4, 7
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-Func_3f596:
-	ld a, VAR_3A
+Script_CardDungeonRookDoors:
+	ld a, VAR_CARD_DUNGEON_PROGRESS
 	farcall GetVarValue
 	cp $03
-	jr nz, .asm_3f5aa
+	jr nz, .done
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text DoorsAreShutText
-	script_command_02
+	end_dialog
 	end_script
-.asm_3f5aa
+.done
 	ret
 
 WaterFortLobby_MapHeader:
@@ -6943,12 +6951,12 @@ WaterFortLobby_OWInteractions:
 	db $ff
 
 WaterFortLobby_MapScripts:
-	dbw $06, Func_3f650
-	dbw $08, Func_3f660
-	dbw $09, Func_3f670
-	dbw $0b, Func_3f675
-	dbw $07, Func_3f657
-	dbw $10, Func_3f63b
+	dbw OWMODE_STEP_EVENT, Func_3f650
+	dbw OWMODE_INTERACT, Func_3f660
+	dbw OWMODE_AFTER_DUEL, Func_3f670
+	dbw OWMODE_CONTINUE_OW, Func_3f675
+	dbw OWMODE_NPC_POSITION, Func_3f657
+	dbw OWMODE_MUSIC_POSTLOAD, Func_3f63b
 	db $ff
 
 Func_3f63b:
@@ -6967,12 +6975,12 @@ Func_3f63b:
 
 Func_3f650:
 	ld hl, WaterFortLobby_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f657:
 	ld hl, WaterFortLobby_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7016,7 +7024,7 @@ Func_3f691:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TRADED_CARDS_WATER_FORT
 	script_jump_if_b0z .ows_3f6f5
 	check_event EVENT_TALKED_TO_TRADE_NPC_WATER_FORT
@@ -7067,7 +7075,7 @@ Func_3f691:
 .ows_3f712
 	print_npc_text Text125e
 .ows_3f715
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7116,7 +7124,7 @@ Func_3f752:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_PSYDUCK_COIN
 	script_jump_if_b0nz .ows_3f774
 	check_event EVENT_GOT_PSYDUCK_COIN
@@ -7128,7 +7136,7 @@ Func_3f752:
 .ows_3f77a
 	print_npc_text Text1260
 .ows_3f77d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7142,7 +7150,7 @@ Func_3f780:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_3f7a0
 	print_npc_text Text1261
@@ -7150,7 +7158,7 @@ Func_3f780:
 .ows_3f7a0
 	print_npc_text Text1262
 .ows_3f7a3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7189,19 +7197,19 @@ FightingFortMaze19_NPCInteractions:
 	db $ff
 
 FightingFortMaze19_MapScripts:
-	dbw $06, Func_3f7ff
-	dbw $08, Func_3f80f
-	dbw $07, Func_3f806
+	dbw OWMODE_STEP_EVENT, Func_3f7ff
+	dbw OWMODE_INTERACT, Func_3f80f
+	dbw OWMODE_NPC_POSITION, Func_3f806
 	db $ff
 
 Func_3f7ff:
 	ld hl, FightingFortMaze19_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f806:
 	ld hl, FightingFortMaze19_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7215,14 +7223,14 @@ Func_3f80f:
 Func_3f817:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 5, 3, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	give_booster_packs BoosterList_ce2f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7240,9 +7248,9 @@ Func_3f830:
 Func_3f83d:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	call Func_3f858
 	ret
@@ -7297,20 +7305,20 @@ FightingFortBasement_NPCInteractions:
 	db $ff
 
 FightingFortBasement_MapScripts:
-	dbw $06, Func_3f8b6
-	dbw $08, Func_3f904
-	dbw $07, Func_3f8bd
-	dbw $02, Func_3f8c6
+	dbw OWMODE_STEP_EVENT, Func_3f8b6
+	dbw OWMODE_INTERACT, Func_3f904
+	dbw OWMODE_NPC_POSITION, Func_3f8bd
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_3f8c6
 	db $ff
 
 Func_3f8b6:
 	ld hl, FightingFortBasement_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_3f8bd:
 	ld hl, FightingFortBasement_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -7319,21 +7327,21 @@ Func_3f8c6:
 	ld bc, $53
 	ld a, $05
 	farcall SetwD896
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	jr nz, .asm_3f8d8
 	scf
 	ret
 .asm_3f8d8
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_3f95e)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_3f95e
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, [wPlayerOWObject]
 	farcall ResetOWObjectFlag5_WithID
 	lb de, 10, 15
@@ -7352,14 +7360,14 @@ Func_3f904:
 Func_3f90c:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_event EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	play_sfx SFX_OPEN_CHEST
 	load_npc NPC_CHEST_OPENED, 1, 1, SOUTH
 	unload_npc NPC_CHEST_CLOSED
 	print_text OpenedTreasureBoxText
 	receive_card FIGHTING_ENERGY
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -7377,13 +7385,13 @@ Func_3f925:
 Func_3f932:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text TreasureBoxWasEmptyText
-	script_command_02
+	end_dialog
 	end_script
 	ld a, $02
 	farcall Func_30065
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_FIGHTING_FORT
 	ret z
 	ld a, VAR_3B
@@ -7412,8 +7420,8 @@ Func_3f95e:
 	farcall SetOWObjectFlag5_WithID
 	ld a, $01
 	farcall SetOWScrollState
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_3f980:
 	db SOUTH, RUN_2

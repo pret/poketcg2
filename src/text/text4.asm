@@ -2242,11 +2242,11 @@ SamRulesQuitText:
 	textfw "きくことは ない"
 	done
 
-SamPracticeDuelText:
+MasonLabPracticeDuelText:
 	textfw "れんしゅう対戦"
 	done
 
-SamRegularDuelText:
+MasonLabRegularDuelText:
 	textfw "ふつうに対戦"
 	done
 
@@ -2581,7 +2581,7 @@ MainMenuContinueFromDiaryInsteadOfDuelConfirmText:
 	textfw "「つづきを あそぶ」で はじめます?"
 	done
 
-ChallengeMachineText:
+TCGChallengeMachineText:
 	textfw "チャレンジマシン"
 	done
 

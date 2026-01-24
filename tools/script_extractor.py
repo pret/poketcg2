@@ -27,8 +27,8 @@ script_commands = {
 	0xcd: { "name": "start_script",                           "params": [ "skip_word" ] },
 
 	0x00: { "name": "end_script",                             "params": [] },
-	0x01: { "name": "script_command_01",                      "params": [] }, # reset npc's flag6 if in area (on screen?)
-	0x02: { "name": "script_command_02",                      "params": [] }, # set npc's flag6 if in area (on screen?)
+	0x01: { "name": "start_dialog",                           "params": [] }, # hide npcs under dialog box
+	0x02: { "name": "end_dialog",                             "params": [] }, # restore npcs under dialog box
 	0x03: { "name": "print_text",                             "params": [ "text" ] },
 	0x04: { "name": "print_variable_text",                    "params": [ "text", "text" ] },
 	0x05: { "name": "print_npc_text",                         "params": [ "text" ] },
@@ -114,7 +114,7 @@ script_commands = {
 	0x55: { "name": "unload_player",                          "params": [] },
 	0x56: { "name": "give_booster_packs",                     "params": [ "booster" ] },
 	0x57: { "name": "get_random",                             "params": [ "byte" ] },
-	0x58: { "name": "script_command_58",                      "params": [] }, # ?
+	0x58: { "name": "open_menu",                              "params": [] },
 	0x59: { "name": "set_text_ram3",                          "params": [ "word" ] },
 	0x5a: { "name": "quit_script",                            "params": [] },
 	0x5b: { "name": "play_song",                              "params": [ "song" ] },
@@ -138,8 +138,8 @@ script_commands = {
 	0x6d: { "name": "get_game_center_chips",                  "params": [] },
 	0x6e: { "name": "compare_loaded_var_word",                "params": [ "word" ] },
 	0x6f: { "name": "get_game_center_banked_chips",           "params": [] },
-	0x70: { "name": "game_center",                            "params": [] },
-	0x71: { "name": "script_command_71",                      "params": [] }, # conditionally set npc's flag6 if in area (on screen?)
+	0x70: { "name": "show_chips_hud",                         "params": [] }, # also hide npcs under hud
+	0x71: { "name": "hide_chips_hud",                         "params": [] }, # also restore npcs under hud
 	0x72: { "name": "give_chips",                             "params": [ "word_decimal" ] },
 	0x73: { "name": "take_chips",                             "params": [ "word_decimal" ] },
 	0x74: { "name": "load_text_ram3",                         "params": [] },

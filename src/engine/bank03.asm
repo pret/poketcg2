@@ -32,16 +32,16 @@ StartMenu_NewGame:
 	ret c
 .no_save_data
 	farcall InitSaveData
-	call Func_e97a
+	call ClearSaveData
 	call Func_c24d
-	call Func_eb97
+	call ClearChallengeMachineRecords
+	xor a ; FALSE
+	farcall ReadOrInitSaveData
+	ld a, GAME_EVENT_NEWGAME_PROLOGUE
+	ld [wNextGameEvent], a
 	xor a
-	farcall Func_1d475
-	ld a, $04
-	ld [wd54c], a
-	xor a
-	ld [wd54d], a
-	call Func_3087
+	ld [wNextWarpMap], a
+	call ExecuteGameEvent
 	scf
 	ret
 
@@ -54,46 +54,46 @@ StartMenu_ContinueFromDiary:
 	farcall AskToContinueFromDiaryInsteadOfDuel
 	ret c
 .no_saved_duel
-	call Func_eaea
+	call RestoreBackupSave
 	xor a
 	call PlaySong
-	ld a, [wd54c]
-	cp $04
-	jr z, .asm_c0a0
-	cp $03
-	jr z, .asm_c0ab
+	ld a, [wNextGameEvent]
+	cp GAME_EVENT_NEWGAME_PROLOGUE
+	jr z, .prologue
+	cp GAME_EVENT_DUEL
+	jr z, .duel
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
-	call Func_e9a7
-	ld a, $01
-	farcall Func_1d475
-	ld hl, wd583
+	call InitSaveDataState
+	ld a, TRUE
+	farcall ReadOrInitSaveData
+	ld hl, wOverworldTransition
 	set 7, [hl]
-	ld a, $02
-	ld [wd54c], a
-	call Func_3087
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
+	call ExecuteGameEvent
 	scf
 	ret
 
-.asm_c0a0
-	ld a, $01
-	farcall Func_1d475
-	call Func_3087
+.prologue
+	ld a, TRUE
+	farcall ReadOrInitSaveData
+	call ExecuteGameEvent
 	scf
 	ret
 
-.asm_c0ab
+.duel
 	ld a, [wPlayerOWObject]
 	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call Func_c29d
-	call Func_e9a7
-	ld a, $01
-	farcall Func_1d475
+	call InitSaveDataState
+	ld a, TRUE
+	farcall ReadOrInitSaveData
 	call DisableLCD
 	farcall Func_10b9c
 	farcall Func_1055e
@@ -101,36 +101,36 @@ StartMenu_ContinueFromDiary:
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
-	ld a, $0e
-	call Func_3154
+	ld a, OWMODE_CONTINUE_DUEL
+	call ExecuteOWModeScript
 	ld a, VAR_NPC_DECK_ID
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
 	ld a, VAR_DUEL_START_THEME
 	call GetVarValue
 	ld [wDuelStartTheme], a
-	call Func_3087
+	call ExecuteGameEvent
 	scf
 	ret
 
 StartMenu_ContinueDuel:
-	ld a, $01
-	farcall Func_1d475
+	ld a, TRUE
+	farcall ReadOrInitSaveData
 	xor a
 	call PlaySong
-	call Func_eb16
+	call LoadMainSave
 	ld a, [wPlayerOWObject]
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
 	call Func_33b7
 	call EnablePlayTimeCounter
 	ld a, EVENT_F0
 	call MaxOutEventValue
-	ld a, $0e
-	call Func_3154
-	ld a, $03
-	ld [wd54c], a
-	call Func_3087
+	ld a, OWMODE_CONTINUE_DUEL
+	call ExecuteOWModeScript
+	ld a, GAME_EVENT_DUEL
+	ld [wNextGameEvent], a
+	call ExecuteGameEvent
 	scf
 	ret
 
@@ -140,8 +140,9 @@ StartMenu_CardPop:
 	ccf
 	ret
 
+; a = OWMODE_* constant
 ; jump to .PointerTable[a]
-Func_c12e::
+OWModePostprocess::
 	sla a
 	ld hl, .PointerTable
 	add_hl_a
@@ -151,111 +152,112 @@ Func_c12e::
 	jp hl
 
 .PointerTable
-	dw Func_31a1 ; $00
-	dw Func_c162 ; $01
-	dw Func_c17d ; $02
-	dw Func_c169 ; $03
-	dw Func_c183 ; $04
-	dw Func_31a8 ; $05
-	dw Func_c199 ; $06
-	dw Func_c162 ; $07
-	dw Func_c163 ; $08
-	dw Func_c189 ; $09
-	dw Func_3234 ; $0a
-	dw Func_c18f ; $0b
-	dw Func_c162 ; $0c
-	dw Func_c162 ; $0d
-	dw Func_c162 ; $0e
-	dw Func_c16f ; $0f
-	dw Func_c175 ; $10
-	dw $41a2     ; $11
-	dw $41a6     ; $12
+	dw Func_31a1                               ; OWMODE_IDLE
+	dw .Exit                                   ; OWMODE_MUSIC_PRELOAD
+	dw OverworldFadeInToBlack                  ; OWMODE_WARP_FADE_IN_PRELOAD
+	dw Overworld10FramesWarpInterval           ; OWMODE_WARP_INTERVAL
+	dw OverworldFadeOutToBlack                 ; OWMODE_WARP_FADE_OUT_PRELOAD
+	dw Func_31a8                               ; OWMODE_MOVE
+	dw OverworldResumeAndHandlePlayerMoveInput ; OWMODE_STEP_EVENT
+	dw .Exit                                   ; OWMODE_NPC_POSITION
+	dw OverworldResumeFromInteract             ; OWMODE_INTERACT
+	dw OverworldResumeAfterDuel                ; OWMODE_AFTER_DUEL
+	dw ExecuteWRAMOverworldScript              ; OWMODE_SCRIPT
+	dw OverworldResumeWithCurSong              ; OWMODE_CONTINUE_OW
+	dw .Exit                                   ; OWMODE_SAVE_PRELOAD
+	dw .Exit                                   ; OWMODE_SAVE_POSTLOAD
+	dw .Exit                                   ; OWMODE_CONTINUE_DUEL
+	dw PlaySFXWarp                             ; OWMODE_WARP_END_SFX
+	dw PlayNextMusic                           ; OWMODE_MUSIC_POSTLOAD
+	dw OverworldWaitPalFading                  ; OWMODE_AFTER_DUEL_PRELOAD
+	dw PauseMenu                               ; OWMODE_PAUSE_MENU
 
-Func_c162:
+.Exit:
 	ret
 
-; clear wd582
-Func_c163:
-	ld a, 0
-	ld [wd582], a
+OverworldResumeFromInteract:
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-Func_c169:
+Overworld10FramesWarpInterval:
 	ld a, 10
 	call WaitAFrames
 	ret
 
-Func_c16f:
+PlaySFXWarp:
 	ld a, SFX_WARP
 	call PlaySFX
 	ret
 
-Func_c175:
+PlayNextMusic:
 	ld a, [wNextMusic]
 	farcall PlayAfterCurrentSong
 	ret
 
-Func_c17d:
+; fade in to black + some processing
+OverworldFadeInToBlack:
 	ld a, $01
 	call Func_338f
 	ret
 
-Func_c183:
+; fade out to black + some processing
+OverworldFadeOutToBlack:
 	ld a, $01
 	call Func_33a3
 	ret
 
-; clear wd582, dupe of Func_c163
-Func_c189:
-	ld a, 0
-	ld [wd582], a
+OverworldResumeAfterDuel:
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-Func_c18f:
+; may as well be called directly
+OverworldResumeWithCurSong:
 	farcall PlayCurrentSong
-	ld a, 0
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
-; clear wd582, then Func_32f6
-Func_c199:
-	ld a, 0
-	ld [wd582], a
-	call Func_32f6
+; may as well be called directly
+OverworldResumeAndHandlePlayerMoveInput:
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
+	call HandleOverworldPlayerMoveInput
 	ret
 
-Func_c1a2:
+OverworldWaitPalFading:
 	call WaitPalFading
 	ret
 
-Func_c1a6:
-	call Func_3d0d
+PauseMenu:
+	call PauseSong_SaveState
 	ld a, MUSIC_PAUSE_MENU
 	call PlaySong
-	farcall Func_10772
-	call Func_3d4a
-	jr nz, .asm_c1bc
-	call Func_3d16
-	jr .asm_c1c3
-.asm_c1bc
+	farcall HandlePauseMenu
+	call GetActiveMusicState
+	jr nz, .replay_current_song
+	call ResumeSong_ClearTemp
+	jr .done
+.replay_current_song
 	farcall PlayCurrentSong
-	call Func_3d4f
-.asm_c1c3
-	ld a, $00
-	ld [wd582], a
+	call ResetActiveMusicState
+.done
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 
 HandleStartMenu:
 	xor a
 	ld [wd554], a
-	call Func_e883
+	call CheckIfHasBackupSave
 	jr c, .menu_config0
-	call Func_e8b7
+	call ValidateBackupGeneralSaveData
 	jr c, .asm_c20f
 .asm_c1d7
 	ld hl, wd554
 	set 0, [hl]
-	call Func_eaf6
+	call LoadBackupSave
 	farcall CheckSavedDuelChecksum
 	jr c, .no_saved_duel
 	ld hl, wd554
@@ -266,9 +268,9 @@ HandleStartMenu:
 	call GetVarValue
 	cp $02
 	jr c, .menu_config4
-	call Func_e8a3
+	call CheckIfHasMainSave
 	jr c, .menu_config2
-	call Func_e91a
+	call ValidateGeneralSaveData
 	jr c, .menu_config2
 	ld hl, wd554
 	set 1, [hl]
@@ -282,9 +284,9 @@ HandleStartMenu:
 
 .asm_c20f
 	debug_nop
-	call Func_e91a
+	call ValidateGeneralSaveData
 	jr c, .menu_config0
-	call Func_e9b7
+	call BackupMainSave
 	jr .asm_c1d7
 
 .menu_config0
@@ -333,24 +335,24 @@ Func_c24d:
 	ld [wPlayTimeCounter + 4], a
 	call ClearSavedDecks
 	xor a
-	ld [wd54c], a
-	ld [wd54d], a
-	ld [wd54e], a
-	ld [wd54f], a
-	ld [wd551], a
-	ld [wd552 + 0], a
-	ld [wd552 + 1], a
+	ld [wNextGameEvent], a
+	ld [wNextWarpMap], a
+	ld [wd54e + 0], a
+	ld [wd54e + 1], a
+	ld [wCurMapScriptsBank], a
+	ld [wCurMapScriptsPointer + 0], a
+	ld [wCurMapScriptsPointer + 1], a
 	ld [wCurIsland], a
-	ld [wd586], a
+	ld [wCurMap], a
 	ld [wCurOWLocation], a
 	ld [wCurMusic], a
 	ld [wSentMailBitfield + 0], a
 	ld [wSentMailBitfield + 1], a
 	ld [wSentMailBitfield + 2], a
 	ld [wSentMailBitfield + 3], a
-	call Func_ebc6
+	call ValidateChallengeMachineSaveData
 	jr nc, .asm_c299
-	call Func_eb39
+	call InitChallengeMachine
 .asm_c299
 	call Func_c2a7
 	ret
@@ -434,32 +436,32 @@ Func_c319:
 	call GetVarValue
 	cp $04
 	jr c, .asm_c32d
-	jr z, .asm_c357
+	jr z, .done
 	ld a, VAR_0D
 	ld c, $01
 	call SetVarValue
-	jr .asm_c357
+	jr .done
 .asm_c32d
-	ld a, [wd586]
-	cp $23
-	jr z, .asm_c357
-	cp $24
-	jr z, .asm_c357
-	cp $25
-	jr z, .asm_c357
+	ld a, [wCurMap]
+	cp MAP_POKEMON_DOME_ENTRANCE
+	jr z, .done
+	cp MAP_POKEMON_DOME
+	jr z, .done
+	cp MAP_POKEMON_DOME_BACK
+	jr z, .done
 	ld a, VAR_0D
 	call GetVarValue
 	cp $02
-	jr z, .asm_c357
+	jr z, .done
 	jr nc, .asm_c358
 	ld a, VAR_20
 	call GetVarValue
 	cp $0a
-	jr c, .asm_c357
+	jr c, .done
 	ld a, VAR_0D
 	ld c, $02
 	call SetVarValue
-.asm_c357
+.done
 	ret
 .asm_c358
 	ld a, VAR_0D
@@ -467,7 +469,7 @@ Func_c319:
 	call SetVarValue
 	ld a, VAR_20
 	call ZeroOutVarValue
-	jr .asm_c357
+	jr .done
 
 Func_c366:
 	ld a, VAR_21
@@ -596,29 +598,29 @@ Func_c3d4:
 	ret
 
 Func_c439:
-	ld a, VAR_28
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	call GetVarValue
-	cp $05
+	cp CHALLENGE_CUP_3_UNLOCKED
 	jr c, .skip
 	ld a, [wCurIsland]
 	cp TCG_ISLAND
-	jr nz, .asm_c450
+	jr nz, .determine
 	ld a, [wCurOWLocation]
 	cp OWMAP_TCG_CHALLENGE_HALL
 	jr z, .skip
-.asm_c450
-	ld a, VAR_28
-	ld c, $05
+.determine
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	call SetVarValue
-	ld a, $04
+	ld a, 4
 	call Random
 	or a
 	jr nz, .skip
 	; 1/4 chance
-	ld a, VAR_28
-	ld c, $06
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue
-	ld a, VAR_2B
+	ld a, VAR_TCG_CHALLENGE_CUP_RESULT
 	call ZeroOutVarValue
 	ld a, NUM_TCG_CHALLENGE_CUP_PRIZE_POOL
 	call Random
@@ -629,36 +631,36 @@ Func_c439:
 	ret
 
 Func_c477:
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	call GetVarValue
-	cp $05
-	jr c, .asm_c4b4
+	cp CHALLENGE_CUP_3_UNLOCKED
+	jr c, .skip
 	ld a, [wCurIsland]
 	cp GR_ISLAND
-	jr nz, .asm_c48e
+	jr nz, .determine
 	ld a, [wCurOWLocation]
 	cp OWMAP_GR_CHALLENGE_HALL
-	jr z, .asm_c4b4
-.asm_c48e
-	ld a, VAR_30
-	ld c, $05
+	jr z, .skip
+.determine
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_UNLOCKED
 	call SetVarValue
-	ld a, $05
+	ld a, 5
 	call Random
 	or a
-	jr nz, .asm_c4b4
+	jr nz, .skip
 	; 1/5 chance
-	ld a, VAR_30
-	ld c, $06
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
+	ld c, CHALLENGE_CUP_3_START
 	call SetVarValue
-	ld a, VAR_33
+	ld a, VAR_GR_CHALLENGE_CUP_RESULT
 	call ZeroOutVarValue
 	ld a, NUM_GR_CHALLENGE_CUP_PRIZE_POOL
 	call Random
 	ld c, a
 	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	call SetVarValue
-.asm_c4b4
+.skip
 	ret
 
 ; load the NPC duelist header corresponding to register a into wCurrentNPCDuelistData
@@ -949,7 +951,7 @@ Func_c646:
 	farcall Func_1d53a
 	ret
 
-; bank and offset table of data for Func_d421 and Func_33b7
+; bank and offset table of data for LoadMapHeader and Func_33b7
 ; table corresponds to MAP_* IDs (do not confuse with MAP_GFX_*)
 MapHeaderPtrs::
 	dba OverworldTcg_MapHeader
@@ -1105,12 +1107,13 @@ GRIslandLocationNamePointers:
 	tx MapGRColorlessAltarText    ; OWMAP_COLORLESS_ALTAR
 	tx MapGRCastleText            ; OWMAP_GR_CASTLE
 
-INCLUDE "data/challenge_cup.asm"
-; 0xd1ed
+INCLUDE "data/challenge_cup_prizes.asm"
 
-SECTION "Bank 3@5299", ROMX[$5299], BANK[$3]
+INCLUDE "data/challenge_machine_opponents.asm"
 
-Func_d299::
+; main ow handler for GAME_EVENT_OVERWORLD_UPDATE
+; e.g. map loading, player movement/interactions, game event transitions
+OverworldLoop::
 	push af
 	ldh a, [hKeysHeld]
 	bit B_PAD_A, a
@@ -1123,78 +1126,79 @@ Func_d299::
 	nop
 .skip_nop
 	pop af
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 6, [hl]
-	jr nz, .asm_d2c1
+	jr nz, .warp
 	bit 7, [hl]
-	jp nz, .asm_d398
+	jp nz, .fade
 	ld a, EVENT_02
 	call GetEventValue
-	jp nz, .asm_d377
+	jp nz, .end_duel
 	ld a, PLAYER_TURN
 	ldh [hWhoseTurn], a
-.asm_d2c1
-	ld hl, wd58b
+.warp
+	ld hl, wNextMapScriptsBank
 	ld a, [hl]
-	ld [wd551], a
-	ld hl, wd58c
+	ld [wCurMapScriptsBank], a
+	ld hl, wNextMapScriptsPointer
 	ld a, [hli]
-	ld [wd552 + 0], a
+	ld [wCurMapScriptsPointer + 0], a
 	ld a, [hl]
-	ld [wd552 + 1], a
-	ld a, $01
-	call Func_3154
+	ld [wCurMapScriptsPointer + 1], a
+	ld a, OWMODE_MUSIC_PRELOAD
+	call ExecuteOWModeScript
 	farcall Func_102ef
 	xor a
 	farcall Func_10d40
 	ld a, $01
 	farcall SetOWScrollState
 	ld b, $00
-	ld a, [wCurMapGfx]
+	ld a, [wNextMapGfx]
 	ld c, a
 	farcall LoadOWMap
-	ld a, [wd58f]
+	ld a, [wNextWarpPlayerXCoord]
 	ld d, a
-	ld a, [wd590]
+	ld a, [wNextWarpPlayerYCoord]
 	ld e, a
-	ld a, [wd591]
+	ld a, [wNextWarpPlayerDirection]
 	ld b, a
 	ld a, [wPlayerOWObject]
 	farcall LoadOWObjectInMap
 	farcall StopOWObjectAnimation
 	farcall SetOWObjectAsScrollTarget
 	farcall SetOWObjectFlag5_WithID
-	ld b, $01
+	ld b, TRUE
 	farcall SetOWObjectAnimStruct1Flag2
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	xor a
-	ld [wd583], a
-	ld a, $07
-	call Func_3154
-	ld a, $10
-	call Func_3154
-	ld a, $02
-	call Func_3154
-	ld a, $03
-	call Func_3154
+	ld [wOverworldTransition], a
+	ld a, OWMODE_NPC_POSITION
+	call ExecuteOWModeScript
+	ld a, OWMODE_MUSIC_POSTLOAD
+	call ExecuteOWModeScript
+	ld a, OWMODE_WARP_FADE_IN_PRELOAD
+	call ExecuteOWModeScript
+	ld a, OWMODE_WARP_INTERVAL
+	call ExecuteOWModeScript
 
-.asm_d333
+.wait_input
 	ld a, [wVBlankCounter]
 	and $3f
 	call z, UpdateRNGSources
-	ld a, [wd582]
-	call Func_3154
-	ld a, [wd583]
+	ld a, [wOverworldMode]
+	call ExecuteOWModeScript
+	ld a, [wOverworldTransition]
 	bit 1, a
 	jr nz, .start_duel
 	bit 0, a
-	jr z, .asm_d333
-	ld a, $04
-	call Func_3154
-	ld a, $0f
-	call Func_3154
+	jr z, .wait_input
+	ld a, OWMODE_WARP_FADE_OUT_PRELOAD
+	call ExecuteOWModeScript
+	ld a, OWMODE_WARP_END_SFX
+	call ExecuteOWModeScript
 	ret
+
 .start_duel
 	ld a, [wNPCDuelDeckID]
 	ld c, a
@@ -1206,61 +1210,61 @@ Func_d299::
 	call SetVarValue
 	ld a, EVENT_02
 	call MaxOutEventValue
-	ld a, $03
-	ld [wd54c], a
-	call Func_eaa8
+	ld a, GAME_EVENT_DUEL
+	ld [wNextGameEvent], a
+	call SaveGame_NoBackup
 	ret
 
-.asm_d377
-	ld a, $11
-	call Func_3154
+.end_duel
+	ld a, OWMODE_AFTER_DUEL_PRELOAD
+	call ExecuteOWModeScript
 	ld a, EVENT_02
 	call ZeroOutEventValue
-	call Func_e9a7
+	call InitSaveDataState
 	ld a, EVENT_F0
 	call ZeroOutEventValue
 	farcall PlayCurrentSong
-	ld a, $09
-	ld [wd582], a
+	ld a, OWMODE_AFTER_DUEL
+	ld [wOverworldMode], a
 	xor a
-	ld [wd583], a
-	jr .asm_d333
+	ld [wOverworldTransition], a
+	jr .wait_input
 
-.asm_d398
+.fade
 	farcall Func_10b9c
 	farcall Func_1055e
 	farcall UpdateOWScroll
 	farcall SaveTargetFadePals
 	farcall Func_1109f
 	call DoFrame
-	ld a, $00
+	ld a, FALSE
 	ld b, $00
 	farcall StartPalFadeFromBlackOrWhite
-	ld a, $0b
-	ld [wd582], a
-	ld hl, wd583
+	ld a, OWMODE_CONTINUE_OW
+	ld [wOverworldMode], a
+	ld hl, wOverworldTransition
 	res 7, [hl]
-	jp .asm_d333
+	jp .wait_input
 
 ; a = map id
 ; b = direction
 ; de = coordinates
-Func_d3c4:
-	ld [wd54d], a
-	ld a, $02
-	ld [wd54c], a
+SetWarpData:
+	ld [wNextWarpMap], a
+	ld a, GAME_EVENT_OVERWORLD_UPDATE
+	ld [wNextGameEvent], a
 	ld a, d
-	ld [wd58f], a
+	ld [wNextWarpPlayerXCoord], a
 	ld a, e
-	ld [wd590], a
+	ld [wNextWarpPlayerYCoord], a
 	ld a, b
-	ld [wd591], a
-	ld a, $00
-	ld [wd582], a
-	ld hl, wd583
+	ld [wNextWarpPlayerDirection], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
+	ld hl, wOverworldTransition
 	set 0, [hl]
-	ld a, [wd54d]
-	ld [wd585], a
+	ld a, [wNextWarpMap]
+	ld [wTempPrevMap], a
 	ret
 
 Func_d3e9::
@@ -1273,7 +1277,7 @@ Func_d3e9::
 	pop de
 	ld a, b
 	rlca
-	ld hl, .data
+	ld hl, .offsets
 	add_hl_a
 	ld a, [hli]
 	add d
@@ -1283,11 +1287,11 @@ Func_d3e9::
 	ld e, a
 	ret
 
-.data
-	db  0, -1
-	db  1,  0
-	db  0,  1
-	db -1,  0
+.offsets
+	db  0, -1 ; NORTH
+	db  1,  0 ; EAST
+	db  0,  1 ; SOUTH
+	db -1,  0 ; WEST
 
 PCMenu:
 	call PauseSong
@@ -1297,10 +1301,12 @@ PCMenu:
 	call ResumeSong
 	ret
 
-Func_d421::
+; a = map id
+; load *_MapHeader at MapHeaderPtrs[a] into wNextMapHeaderData
+LoadMapHeader::
 	push af
 	ld c, a
-	ld b, $00
+	ld b, 0
 	sla c
 	add c ; *3
 	ld c, a
@@ -1308,20 +1314,20 @@ Func_d421::
 	ld hl, MapHeaderPtrs
 	add hl, bc
 	ld a, [hli]
-	ld c, a     ; bank
-	ld a, [hli] ; offset
+	ld c, a     ; *_MapHeader bank
+	ld a, [hli] ; *_MapHeader ptr
 	ld h, [hl]  ;
 	ld l, a
 	ld a, c
-	ld de, wCurMapGfx
-	ld bc, $5
+	ld de, wNextMapHeaderData
+	ld bc, MAPHEADERSTRUCT_LENGTH
 	call CopyFarHLToDE
-	ld a, [wd586]
-	ld [wd584], a
+	ld a, [wCurMap]
+	ld [wPrevMap], a
 	pop af
-	ld [wd586], a
-	ld a, $ff
-	ld [wd585], a
+	ld [wCurMap], a
+	ld a, MAP_NONE
+	ld [wTempPrevMap], a
 	ret
 
 ; a = NPC_* ID
@@ -2177,25 +2183,25 @@ GeneralVarMasks:
 	db $1a, %00001111 ; VAR_25
 	db $1a, %11110000 ; VAR_26
 	db $1b, %00001111 ; VAR_27
-	db $1b, %01110000 ; VAR_28
+	db $1b, %01110000 ; VAR_TCG_CHALLENGE_CUP_STATE
 	db $1c, %00011111 ; VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
-	db $1d, %00001111 ; VAR_2A
-	db $1d, %00110000 ; VAR_2B
-	db $1d, %11000000 ; VAR_2C
-	db $1e, %11111111 ; VAR_2D
-	db $1f, %11111111 ; VAR_2E
-	db $20, %11111111 ; VAR_2F
-	db $21, %00000111 ; VAR_30
+	db $1d, %00001111 ; VAR_TIMES_WON_TCG_CHALLENGE_CUP
+	db $1d, %00110000 ; VAR_TCG_CHALLENGE_CUP_RESULT
+	db $1d, %11000000 ; VAR_CHALLENGECUP_CURRENT_ROUND
+	db $1e, %11111111 ; VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
+	db $1f, %11111111 ; VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
+	db $20, %11111111 ; VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
+	db $21, %00000111 ; VAR_GR_CHALLENGE_CUP_STATE
 	db $21, %11111000 ; VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
-	db $22, %00001111 ; VAR_32
-	db $22, %00110000 ; VAR_33
-	db $23, %00000111 ; VAR_34
-	db $24, %11111111 ; VAR_35
-	db $25, %11111111 ; VAR_36
-	db $26, %11111111 ; VAR_37
-	db $27, %11111111 ; VAR_38
-	db $28, %11111111 ; VAR_39
-	db $29, %00000111 ; VAR_3A
+	db $22, %00001111 ; VAR_TIMES_WON_GR_CHALLENGE_CUP
+	db $22, %00110000 ; VAR_GR_CHALLENGE_CUP_RESULT
+	db $23, %00000111 ; VAR_CHALLENGEMACHINE_CURRENT_ROUND
+	db $24, %11111111 ; VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+	db $25, %11111111 ; VAR_CHALLENGEMACHINE_ROUND2_OPPONENT_DECK_ID
+	db $26, %11111111 ; VAR_CHALLENGEMACHINE_ROUND3_OPPONENT_DECK_ID
+	db $27, %11111111 ; VAR_CHALLENGEMACHINE_ROUND4_OPPONENT_DECK_ID
+	db $28, %11111111 ; VAR_CHALLENGEMACHINE_ROUND5_OPPONENT_DECK_ID
+	db $29, %00000111 ; VAR_CARD_DUNGEON_PROGRESS
 	db $2a, %11111111 ; VAR_3B
 	db $2b, %11111111 ; VAR_NPC_DECK_ID
 	db $2c, %11111111 ; VAR_DUEL_START_THEME
@@ -2607,8 +2613,8 @@ RunOverworldScript::
 
 OverworldScriptTable:
 	dw ScriptCommand_EndScript                        ; $00
-	dw ScriptCommand_01                               ; $01
-	dw ScriptCommand_02                               ; $02
+	dw ScriptCommand_StartDialog                      ; $01
+	dw ScriptCommand_EndDialog                        ; $02
 	dw ScriptCommand_PrintText                        ; $03
 	dw ScriptCommand_PrintVariableText                ; $04
 	dw ScriptCommand_PrintNPCText                     ; $05
@@ -2694,7 +2700,7 @@ OverworldScriptTable:
 	dw ScriptCommand_UnloadPlayer                     ; $55
 	dw ScriptCommand_GiveBoosterPacks                 ; $56
 	dw ScriptCommand_GetRandom                        ; $57
-	dw ScriptCommand_58                               ; $58
+	dw ScriptCommand_OpenMenu                         ; $58
 	dw ScriptCommand_SetTextRAM3                      ; $59
 	dw ScriptCommand_QuitScript                       ; $5a
 	dw ScriptCommand_PlaySong                         ; $5b
@@ -2718,8 +2724,8 @@ OverworldScriptTable:
 	dw ScriptCommand_GetGameCenterChips               ; $6d
 	dw ScriptCommand_CompareLoadedVarWord             ; $6e
 	dw ScriptCommand_GetGameCenterBankedChips         ; $6f
-	dw ScriptCommand_GameCenter                       ; $70
-	dw ScriptCommand_71                               ; $71
+	dw ScriptCommand_ShowChipsHUD                     ; $70
+	dw ScriptCommand_HideChipsHUD                     ; $71
 	dw ScriptCommand_GiveChips                        ; $72
 	dw ScriptCommand_TakeChips                        ; $73
 	dw ScriptCommand_LoadTextRAM3                     ; $74
@@ -2856,13 +2862,13 @@ ScriptCommand_EndScript:
 	ld [wScriptFlags], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_01:
+ScriptCommand_StartDialog:
 	call DoFrame
-	farcall Func_11002
+	farcall HideNPCAnimsUnderDialogBox
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_02:
-	farcall Func_1101d
+ScriptCommand_EndDialog:
+	farcall ShowNPCAnimsUnderDialogBox
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_PrintText:
@@ -3331,7 +3337,7 @@ ScriptCommand_StartDuel:
 	ld [wNPCDuelDeckID], a
 	ld a, b
 	ld [wDuelStartTheme], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	jp IncreaseScriptPointerBy3
 
@@ -3552,7 +3558,7 @@ ScriptCommand_DuelRequirementCheck:
 	call ResetDuelDeckRequirementStatus
 	call Get1ScriptArg_IncrIndexBy1
 	ld hl, DuelRequirementFunctionMap
-	call Func_344c
+	call ExecuteNPCScript
 	jp IncreaseScriptPointerBy2
 
 ResetDuelDeckRequirementStatus:
@@ -4094,9 +4100,9 @@ ScriptCommand_GetRandom:
 	ld [wScriptLoadedVar], a
 	jp IncreaseScriptPointerBy2
 
-ScriptCommand_58:
-	ld a, $12
-	call Func_3154
+ScriptCommand_OpenMenu:
+	ld a, OWMODE_PAUSE_MENU
+	call ExecuteOWModeScript
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_SetTextRAM3:
@@ -4390,12 +4396,12 @@ ScriptCommand_GetGameCenterBankedChips:
 	ld [wScriptLoadedVar + 1], a
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_GameCenter:
-	farcall Func_114af
+ScriptCommand_ShowChipsHUD:
+	farcall TurnOnCurChipsHUD
 	jp IncreaseScriptPointerBy1
 
-ScriptCommand_71:
-	farcall Func_114f9
+ScriptCommand_HideChipsHUD:
+	farcall TurnOffCurChipsHUD
 	jp IncreaseScriptPointerBy1
 
 ScriptCommand_GiveChips:
@@ -4479,857 +4485,114 @@ ScriptCommand_WaitInput:
 	call WaitForWideTextBoxInput
 	jp IncreaseScriptPointerBy1
 
-; returns carry if no save data
-Func_e883:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
-	call EnableSRAM
-	ld a, [$baa3]
-	ld b, a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ld a, b
-	bit 0, a
-	jr z, .set_carry
-; no carry
-	scf
-	ccf
-	ret
-.set_carry
-	scf
-	ret
+INCLUDE "engine/save.asm"
+INCLUDE "data/save.asm"
 
-Func_e8a3:
-	call EnableSRAM
-	ld a, [$baa3]
-	ld b, a
-	call DisableSRAM
-	ld a, b
-	bit 1, a
-	jr z, .asm_e8b5
-	scf
-	ccf
-	ret
-.asm_e8b5
-	scf
-	ret
-
-Func_e8b7:
-	ld a, $02
-	ld [wd668], a
-	ldh a, [hBankSRAM]
-	push af
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
-	ld a, [$b800]
-	ld b, a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ld a, b
-	cp $16
-	jr nz, .asm_e918
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ea19
-	call Func_ed7c
-	ld a, [wd66d]
-	ld d, a
-	ld a, [wd66c]
-	ld e, a
-	ldh a, [hBankSRAM]
-	push af
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
-	ld a, [$baa0]
-	ld b, a
-	ld a, [$baa1]
-	ld c, a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ld a, b
-	cp d
-	jr nz, .asm_e918
-	ld a, c
-	cp e
-	jr nz, .asm_e918
-	scf
-	ccf
-	ret
-.asm_e918
-	scf
-	ret
-
-Func_e91a:
-	xor a
-	ld [wd668], a
-	ldh a, [hBankSRAM]
-	push af
-	xor a
-	call BankswitchSRAM
-	ld a, [$b800]
-	ld b, a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ld a, b
-	cp $16
-	jr nz, .asm_e978
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ea19
-	call Func_ed7c
-	ld a, [wd66d]
-	ld d, a
-	ld a, [wd66c]
-	ld e, a
-	ldh a, [hBankSRAM]
-	push af
-	xor a
-	call BankswitchSRAM
-	ld a, [$baa0]
-	ld b, a
-	ld a, [$baa1]
-	ld c, a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ld a, b
-	cp d
-	jr nz, .asm_e978
-	ld a, c
-	cp e
-	jr nz, .asm_e978
-	scf
-	ccf
-	ret
-.asm_e978
-	scf
-	ret
-
-Func_e97a:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
-	ld hl, $baa3
-	xor a
-	ld [hl], a
-	ld [$b800], a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	call EnableSRAM
-	ld hl, $baa3
-	xor a
-	ld [hl], a
-	ld [$b800], a
-	call DisableSRAM
-	farcall ClearSavedDuel
-	call DisableSRAM
-	ret
-
-Func_e9a7:
-	call EnableSRAM
-	ld hl, $baa3
-	xor a
-	ld [hl], a
-	call DisableSRAM
-	farcall ClearSavedDuel
-	ret
-
-Func_e9b7:
-	ld a, $02
-	call Func_e9d6
-	ldh a, [hBankSRAM]
-	push af
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
-	ld a, $16
-	ld [$b800], a
-	ld hl, $baa3
-	set 0, [hl]
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-
-Func_e9d6:
-	cp $01
-	jr z, .asm_e9e2
-	jr nc, .asm_e9e8
-	ld e, $02
-	ld d, $00
-	jr .asm_e9f7
-.asm_e9e2
-	ld e, $00
-	ld d, $02
-	jr .asm_e9f7
-.asm_e9e8
-	ld e, $00
-	ld d, $02
-	ldh a, [hBankSRAM]
-	push af
-	ld bc, $2000
-	ld hl, s0a000
-	jr .asm_ea00
-.asm_e9f7
-	ldh a, [hBankSRAM]
-	push af
-	ld bc, $1f00
-	ld hl, sCardAndDeckSaveData
-.asm_ea00
-	ld a, e
-	call BankswitchSRAM
-	ld a, [hl]
-	push af
-	ld a, d
-	call BankswitchSRAM
-	pop af
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_ea00
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-
-Func_ea19:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, [wd668]
-	call BankswitchSRAM
-	ld a, [$baa2]
-	ld [wd673], a
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-
-Func_ea30::
-	ld a, $0c
-	call Func_3154
-	farcall Func_10f32
-	xor a
-	ld [wd668], a
-.asm_ea3d
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ec94
-	call EnableSRAM
-	ld a, $16
-	ld [$b800], a
-	ld a, [wd66d]
-	ld [$baa0], a
-	ld a, [wd66c]
-	ld [$baa1], a
-	ld a, [wd673]
-	ld [$baa2], a
-	ld hl, $baa3
-	set 0, [hl]
-	call DisableSRAM
-	call Func_ea19
-	call Func_ed7c
-	ld a, [wd66d]
-	ld d, a
-	ld a, [wd66c]
-	ld e, a
-	call EnableSRAM
-	ld a, [$baa0]
-	ld b, a
-	ld a, [$baa1]
-	ld c, a
-	call DisableSRAM
-	ld a, b
-	cp d
-	jr nz, .error
-	ld a, c
-	cp e
-	jr nz, .error
-	ld a, $01
-	call Func_e9d6
-	ld a, $0d
-	call Func_3154
-	ret
-
-.error
-	debug_nop
-	jr .asm_ea3d
-
-Func_eaa8:
-	farcall Func_10f32
-	xor a
-	ld [wd668], a
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ec94
-	call EnableSRAM
-	ld a, $16
-	ld [$b800], a
-	ld a, [wd66d]
-	ld [$baa0], a
-	ld a, [wd66c]
-	ld [$baa1], a
-	ld a, [wd673]
-	ld [$baa2], a
-	ld hl, $baa3
-	set 1, [hl]
-	call DisableSRAM
-	ret
-
-Func_eaea:
-	call Func_eaf6
-	xor a
-	call Func_e9d6
-	farcall Func_10f78
-	ret
-
-Func_eaf6:
-	ld a, $02
-	ld [wd668], a
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ea19
-	call Func_ed0b
-	ret
-
-Func_eb16:
-	xor a
-	ld [wd668], a
-	ld a, $ec
-	ld [wd66f], a
-	ld a, $6d
-	ld [wd670], a
-	ld a, $01
-	ld [wd671], a
-	ld a, $b8
-	ld [wd672], a
-	call Func_ea19
-	call Func_ed0b
-	farcall Func_10f78
-	ret
-
-Func_eb39:
-	ld hl, wddf9
-	xor a
-	ld c, $14
-.asm_eb3f
-	ld [hli], a
-	dec c
-	jr nz, .asm_eb3f
-
-	ld hl, wde0d
-	xor a
-REPT 4
-	ld [hli], a
-ENDR
-	ld hl, wde11
-	xor a
-REPT 4
-	ld [hli], a
-ENDR
-	ld hl, wde15
-	xor a
-REPT 4
-	ld [hli], a
-ENDR
-
-	ld a, $01
-	ld [wde15 + 0], a
-	ld a, $05
-	ld [wde15 + 2], a
-	ld hl, .data
-	ld de, wde19
-	ld c, $20
-.asm_eb6d
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .asm_eb6d
-	call Func_ec38
-	ret
-
-.data
-	db $04, $13, $79, $15, $0f, $6b, $0f, $34, $0f, $2f, $0f, $00, $00, $00, $00, $00, $4e, $0f, $39, $0f, $38, $0f, $5f, $0f, $21, $0f, $00, $00, $00, $00, $00, $00
-
-SECTION "Bank 3@6b97", ROMX[$6b97], BANK[$3]
-
-Func_eb97:
-	call Func_ebc6
-	jr nc, .asm_eb9f
-	call Func_eb39
-.asm_eb9f
-	call Func_ec6c
-	ld hl, wde0d
-	xor a
-REPT 4
-	ld [hli], a
-ENDR
-	ld hl, wde11
-	xor a
-REPT 4
-	ld [hli], a
-ENDR
-	call Func_ec38
-	ret
-
-Func_ebb6:
-	call EnableSRAM
-	xor a
-	ld [$bae5], a
-	ld a, $ff
-	ld [$bae4], a
-	call DisableSRAM
-	ret
-
-Func_ebc6:
-	xor a
-	ld [wd668], a
-	ld a, $20
-	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
-	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
-	call EnableSRAM
-	ld a, [$bae6]
-	ld [wd673], a
-	call DisableSRAM
-	call Func_ed0b
-	ld a, [wd66d]
-	ld d, a
-	ld a, [wd66c]
-	ld e, a
-	call EnableSRAM
-	ld a, [$bae4]
-	ld b, a
-	ld a, [$bae5]
-	ld c, a
-	call DisableSRAM
-	ld a, b
-	cp d
-	jr nz, .asm_ec36
-	ld a, c
-	cp e
-	jr nz, .asm_ec36
-	ld a, [wde15 + 0]
-	ld e, a
-	ld a, [wde15 + 1]
-	ld d, a
-	cp16_long 0
-	jr z, .asm_ec36
-	ld a, [wde15 + 2]
-	ld e, a
-	ld a, [wde15 + 3]
-	ld d, a
-	cp16_long 0
-	jr z, .asm_ec36
-	scf
-	ccf
-	ret
-.asm_ec36
-	scf
-	ret
-
-Func_ec38:
-	xor a
-	ld [wd668], a
-	ld a, $20
-	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
-	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
-	call Func_ec94
-	call EnableSRAM
-	ld a, [wd66d]
-	ld [$bae4], a
-	ld a, [wd66c]
-	ld [$bae5], a
-	ld a, [wd673]
-	ld [$bae6], a
-	call DisableSRAM
-	ret
-
-Func_ec6c:
-	xor a
-	ld [wd668], a
-	ld a, $20
-	ld [wd66f], a
-	ld a, $6f
-	ld [wd670], a
-	ld a, $a4
-	ld [wd671], a
-	ld a, $ba
-	ld [wd672], a
-	call EnableSRAM
-	ld a, [$bae6]
-	ld [wd673], a
-	call DisableSRAM
-	call Func_ed0b
-	ret
-
-Func_ec94:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, [wd668]
-	call BankswitchSRAM
-	xor a
-	ld [wd66c], a
-	ld [wd66d], a
-	call UpdateRNGSources
-	or $01
-	ld [wd673], a
-	ld [wd66e], a
-	ld a, [wd66f]
-	ld l, a
-	ld a, [wd670]
-	ld h, a
-	ld a, [wd671]
-	ld e, a
-	ld a, [wd672]
-	ld d, a
-.asm_ecbf
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	or c
-	jr z, .asm_ed03
-	push hl
-	push bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld [wd66a], a
-	ld a, [hli]
-	ld [wd66b], a
-	pop hl
-.asm_ecd5
-	push bc
-	ld a, [hli]
-	ld c, a
-	ld a, [wd66d]
-	xor c
-	ld [wd66d], a
-	ld a, [wd66c]
-	add c
-	ld [wd66c], a
-	ld a, [wd66e]
-	ld b, a
-	sla a
-	add b
-	ld b, a
-	ld a, c
-	add b
-	ld [de], a
-	inc de
-	ld a, b
-	ld [wd66e], a
-	pop bc
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_ecd5
-	pop hl
-REPT 4
-	inc hl
-ENDR
-	jr .asm_ecbf
-.asm_ed03
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-
-Func_ed0b:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, [wd668]
-	call BankswitchSRAM
-	xor a
-	ld [wd66c], a
-	ld [wd66d], a
-	ld a, [wd673]
-	ld [wd66e], a
-	ld a, [wd66f]
-	ld l, a
-	ld a, [wd670]
-	ld h, a
-	ld a, [wd671]
-	ld e, a
-	ld a, [wd672]
-	ld d, a
-.asm_ed31
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	or c
-	jr z, .asm_ed74
-	push hl
-	push bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld [wd66a], a
-	ld a, [hli]
-	ld [wd66b], a
-	pop hl
-.asm_ed47
-	push bc
-	ld a, [wd66e]
-	ld b, a
-	sla a
-	add b
-	ld b, a
-	ld a, [de]
-	sub b
-	ld [hli], a
-	inc de
-	ld c, a
-	ld a, b
-	ld [wd66e], a
-	ld a, [wd66d]
-	xor c
-	ld [wd66d], a
-	ld a, [wd66c]
-	add c
-	ld [wd66c], a
-	pop bc
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_ed47
-	pop hl
-REPT 4
-	inc hl
-ENDR
-	jr .asm_ed31
-.asm_ed74
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-
-Func_ed7c:
-	ldh a, [hBankSRAM]
-	push af
-	ld a, [wd668]
-	call BankswitchSRAM
-	xor a
-	ld [wd66c], a
-	ld [wd66d], a
-	ld a, [wd673]
-	ld [wd66e], a
-	ld a, [wd66f]
-	ld l, a
-	ld a, [wd670]
-	ld h, a
-	ld a, [wd671]
-	ld e, a
-	ld a, [wd672]
-	ld d, a
-.asm_eda2
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	or c
-	jr z, .asm_ede4
-	push hl
-	push bc
-	ld a, [hli]
-	ld c, a
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld [wd66a], a
-	ld a, [hli]
-	ld [wd66b], a
-	pop hl
-.asm_edb8
-	push bc
-	ld a, [wd66e]
-	ld b, a
-	sla a
-	add b
-	ld b, a
-	ld a, [de]
-	sub b
-	inc de
-	ld c, a
-	ld a, b
-	ld [wd66e], a
-	ld a, [wd66d]
-	xor c
-	ld [wd66d], a
-	ld a, [wd66c]
-	add c
-	ld [wd66c], a
-	pop bc
-	dec bc
-	ld a, b
-	or c
-	jr nz, .asm_edb8
-	pop hl
-REPT 4
-	inc hl
-ENDR
-	jr .asm_eda2
-.asm_ede4
-	pop af
-	call BankswitchSRAM
-	call DisableSRAM
-	ret
-; 0xedec
-
-SECTION "Bank 3@6f40", ROMX[$6f40], BANK[$3]
-
-Func_ef40:
+; a = TCG_ISLAND or GR_ISLAND
+; set five opponents for the set
+SetChallengeMachineOpponents:
 	or a
-	jr nz, .asm_ef54
-	ld a, $31
-	ld [wRemainingIntroCards], a
-	ld a, $ed
+	jr nz, .gr_machine
+	ld a, NUM_TCG_CHALLENGE_MACHINE_OPPONENT_POOL
+	ld [wNumRandomDuelists], a
+	ld a, LOW(TCGChallengeMachineOpponents)
 	ld [wFilteredListPtr], a
-	ld a, $51
-	ld [wFilteredListPtr+1], a
-	jr .asm_ef63
-.asm_ef54
-	ld a, $25
-	ld [wRemainingIntroCards], a
-	ld a, $4f
+	ld a, HIGH(TCGChallengeMachineOpponents)
+	ld [wFilteredListPtr + 1], a
+	jr .init
+.gr_machine
+	ld a, NUM_GR_CHALLENGE_MACHINE_OPPONENT_POOL
+	ld [wNumRandomDuelists], a
+	ld a, LOW(GRChallengeMachineOpponents)
 	ld [wFilteredListPtr], a
-	ld a, $52
-	ld [wFilteredListPtr+1], a
-.asm_ef63
-	ld e, $05
-	ld d, VAR_35
+	ld a, HIGH(GRChallengeMachineOpponents)
+	ld [wFilteredListPtr + 1], a
+.init
+	ld e, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	ld d, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	ld c, $ff
-.asm_ef69
+.loop_init
 	ld a, d
 	call SetVarValue
 	inc d
 	dec e
-	jr nz, .asm_ef69
-	ld c, $00
-.asm_ef73
-	ld b, $01
+	jr nz, .loop_init
+; set
+; b = 1 << c for c = round number [0, 4]
+; set opponents randomly with the bitmask b
+	ld c, 0
+.loop_set_opponents
+	ld b, 1
 	ld a, c
 	or a
-.asm_ef77
-	jr z, .asm_ef7e
+.loop_shift
+	jr z, .loop_pick
 	sla b
 	dec a
-	jr .asm_ef77
-.asm_ef7e
-	call Func_ef97
-	call Func_efb3
-	jr c, .asm_ef7e
+	jr .loop_shift
+.loop_pick
+	call .PickOpponent
+	call .CheckDupe
+	jr c, .loop_pick
 	push bc
 	ld d, a
-	ld a, VAR_35
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	add c
 	ld c, d
 	call SetVarValue
 	pop bc
 	inc c
-	ld a, $05
+	ld a, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 	cp c
-	jr nz, .asm_ef73
+	jr nz, .loop_set_opponents
 	ret
 
-Func_ef97:
-.loop
+; for b = bitmask, choose a random opponent and return their deck id in a
+.PickOpponent:
 	ld a, [wFilteredListPtr]
 	ld l, a
-	ld a, [wFilteredListPtr+1]
+	ld a, [wFilteredListPtr + 1]
 	ld h, a
-	ld a, [wRemainingIntroCards]
+	ld a, [wNumRandomDuelists]
 	call Random
 	sla a
 	add_hl_a
 	inc hl
 	ld a, [hld]
 	and b
-	jr z, .loop
+	jr z, .PickOpponent
 	ld a, [hl]
 	ret
 
-Func_efb3:
+; set carry if the opponent is already picked
+.CheckDupe:
 	ld d, a
 	call GetNPCByDeck
 	ld l, a
-	ld e, VAR_35
-.asm_efba
+	ld e, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+.loop_check
 	ld a, e
 	call GetVarValue
 	cp $ff
-	jr z, .asm_efcc
+	jr z, .done
 	call GetNPCByDeck
 	inc e
 	cp l
-	jr nz, .asm_efba
+	jr nz, .loop_check
 	ld a, d
 	scf
 	ret
-.asm_efcc
+.done
 	ld a, d
 	scf
 	ccf
 	ret
 
-Func_efd0:
-	ld c, $05
-	ld a, VAR_35
-	ld hl, wddf9
-.asm_efd7
+LoadChallengeMachineOpponentTitlesAndNames:
+	ld c, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
+	ld hl, wChallengeMachineOpponentTitlesAndNames
+.loop_load
 	push af
 	call GetVarValue
 	call GetNPCByDeck
@@ -5349,20 +4612,20 @@ Func_efd0:
 	pop af
 	inc a
 	dec c
-	jr nz, .asm_efd7
+	jr nz, .loop_load
 	ret
 
-Func_eff7:
-	call Func_ec38
-	ld a, VAR_34
+SetChallengeMachineDuelParams:
+	call SaveChallengeMachine
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	call GetVarValue
 	dec a
 	ld c, a
-	ld a, VAR_35
+	ld a, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
 	add c
 	call GetVarValue
 	ld [wNPCDuelDeckID], a
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 1, [hl]
 	ret
 
@@ -5429,12 +4692,13 @@ GetGRChallengeCupPrizeCardName:
 	pop bc
 	pop af
 	ret
-; 0xf05c
 
-SECTION "Bank 3@7063", ROMX[$7063], BANK[$3]
-
-Func_f063:
-	ld b, d
+Func_f05c:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_1022a
 	farcall SetFrameFuncAndFadeFromWhite
 	call FlushAllPalettes
 	lb de, 2, 1
@@ -5522,7 +4786,7 @@ DebugMenuEffectViewer:
 	call DebugEffectViewer_PlaceTextItems
 	call ChangeAnimationPlayerSideOnStartPress.initialize
 	call ChangeEffectNumberOnDpadPress.initialize
-	call Func_3d0d
+	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_DUEL_THEME_CLUB_MEMBER
 	call SetMusic
@@ -5546,7 +4810,7 @@ DebugMenuEffectViewer:
 	call FinishQueuedAnimations
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	call Func_3d16
+	call ResumeSong_ClearTemp
 	farcall UnsetFadePalsFrameFunc
 	pop hl
 	pop de

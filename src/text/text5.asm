@@ -38,32 +38,32 @@ DebugGet10EnergyCardsEachText:
 	textfw "エネルギーカードを10枚ふやす"
 	done
 
-Text081a:
+TCGAirportGR5FlightInitialText:
 	textfw "このひこう船に のれ"
 	linefw "GR団のしまに つれていってやる"
 	linefw "かくごは いいな"
 	linefw "さあ いくぞ!"
 	done
 
-Text081b:
+TCGAirportGR5FlightPromptText:
 	textfw "ひこう船に のりたいんだな?"
 	done
 
-Text081c:
+TCGAirportGR5DeclinedFlightText:
 	textfw "GR団のしまに いきたくなったら"
 	linefw "われに はなしかけるのだ"
 	done
 
-Text081d:
+TCGAirportGR5StartFlightText:
 	textfw "では ついてこい"
 	done
 
-Text081e:
+TCGAirportGR5LandedText:
 	textfw "さあ ついたぞ"
 	linefw "すきなところに いくがよい"
 	done
 
-Text081f:
+TCGAirportGR5FirstInteractionText:
 	textfw "ここを とおれるのは"
 	linefw "えらばれたものだけだ!"
 	linefw "そうだな 「GRコインのカケラ」を"
@@ -78,7 +78,7 @@ Text081f:
 	linefw "GR団のしまに いかせてやる!"
 	done
 
-Text0820:
+TCGAirportGR5GRCoinIncompleteText:
 	textfw "GR1号から GR4号と たたかい"
 	linefw "勝って くるんだな!"
 	linefw "勝てば 「GRコインのカケラ」が"
@@ -89,7 +89,7 @@ Text0820:
 	linefw "ここを とおしてやる"
 	done
 
-Text0821:
+TCGAirportGR5GRCoinCompleteText:
 	textfw "ほう 「GRコイン」を"
 	linefw "てに いれたのか!"
 	linefw "よかろう! おまえを みとめて"
@@ -97,7 +97,7 @@ Text0821:
 	linefw "ついてこい"
 	done
 
-Text0822:
+TCGAirportGRClerkGRCoinIncompleteText:
 	textfw "ひこう船に のれば GR団のしまに"
 	linefw "いくことが できます"
 	linefw "ひこう船に のるには"
@@ -105,14 +105,14 @@ Text0822:
 	linefw "「GRコイン」を おさがしください"
 	done
 
-Text0823:
+TCGAirportGRClerkGRCoinCompleteText:
 	textfw "「GRコイン」は おもちのようですね"
 	linefw " "
 	linefw "それでは GR5号さまと"
 	linefw "おはなしくださいませ"
 	done
 
-Text0824:
+TCGAirportGRSisNormalText:
 	textfw "みて! わたしたちのキング"
 	linefw "ビルリッチさまよ!"
 	linefw "つかわれないカードを すくうために"
@@ -121,14 +121,14 @@ Text0824:
 	linefw "あこがれちゃうわー!!"
 	done
 
-Text0825:
+TCGAirportGRSisPostgameText:
 	textfw "ビルリッチさまって"
 	linefw "やっぱり すてきだわー"
 	linefw "じぶんのまちがいを みとめるなんて"
 	linefw "かんたんに できないもの!"
 	done
 
-Text0826:
+TCGAirportMartialArtistGRCoinIncompleteText:
 	textfw "ここから ひこう船に のれるらしいよ"
 	linefw "でも ひつようなものが あるんだ"
 	linefw "「GRコイン」! それが あると"
@@ -137,67 +137,67 @@ Text0826:
 	linefw "ゲットするんだろう?"
 	done
 
-Text0827:
+TCGAirportMartialArtistGRCoinCompleteText:
 	textfw "<RAMNAME>くん!"
 	linefw "それが 「GRコイン」だね!"
 	linefw "よーし オレも がんばって"
 	linefw "「GRコイン」を ゲットするぞー!!"
 	done
 
-Text0828:
+TCGAirportMartialArtistPostgameText:
 	textfw "「GRコイン」を ゲットしなくても"
 	linefw "ひこう船に のれるようになった"
 	linefw "オレも GR団のしまに いって"
 	linefw "GR団員と 対戦だ!"
 	done
 
-Text0829:
+GRAirportGR5FlightPromptText:
 	textfw "ひこう船に のりたいんだな?"
 	done
 
-Text082a:
+GRAirportGR5DeclinedFlightText:
 	textfw "GR団のしまから にげたければ"
 	linefw "われに はなしかけろ"
 	done
 
-Text082b:
+GRAirportGR5StartFlightText:
 	textfw "では ついてこい"
 	done
 
-Text082c:
+GRAirportGR5LandedInitialText:
 	textfw "あとは おまえの かってにしろ"
 	linefw "さあ いけ"
 	linefw "むこうに もどりたくなったら"
 	linefw "われに はなしかけるがいい"
 	done
 
-Text082d:
+GRAirportGR5LandedRepeatText:
 	textfw "さあ ついたぞ"
 	linefw "すきなところに いくがよい"
 	done
 
-Text082e:
+GRAirportGRClerkText:
 	textfw "ひこう船に のれば むこうに"
 	linefw "かえることが できます"
 	linefw "おくに すすんで GR5号さまに"
 	linefw "はなしかけて くださいませ"
 	done
 
-Text082f:
+GRAirportGRPappyNormalText:
 	textfw "ワシが もっと わかければ"
 	linefw "わかいもんと いっしょに"
 	linefw "おまえさんのしまへ わたって"
 	linefw "たたかったんじゃが のう"
 	done
 
-Text0830:
+GRAirportGRPappyPostgameText:
 	textfw "なんでも おまえさんのしまの ひとと"
 	linefw "ともだちに なったそうじゃな"
 	linefw "それなら むこうに あそびに"
 	linefw "いってみたいもんじゃ"
 	done
 
-Text0831:
+GRAirportGRLassNormalText:
 	textfw "あっちから GR団のしまに"
 	linefw "くるひとが いるって きいたの"
 	linefw "ふーん あなたなんだぁ"
@@ -206,7 +206,7 @@ Text0831:
 	linefw "どこまで かてるのかなぁー"
 	done
 
-Text0832:
+GRAirportGRLassPostgameText:
 	textfw "ふーん あなたね"
 	linefw "<RAMNAME>って"
 	linefw "びっくり! ビルリッチさまに"

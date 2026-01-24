@@ -86,7 +86,55 @@ sBoosterPacksObtained:: ; b7a3
 
 sCardAndDeckSaveDataEnd::
 
-	ds $359
+	ds $59
+
+sGeneralSaveData:: ; b800
+
+sGeneralSaveDataHeader:: ; b800
+	ds $1
+
+; see WRAMToSRAMMapper_GeneralSave
+; TODO: break down into each segment (after fully labelling wram?)
+sGeneralSaveDataMain:: ; b801
+	ds $1b9
+
+sGeneralSaveDataEnd::
+
+	ds $e6
+
+; checksum: swapped order
+sGeneralSaveDataChecksum1:: ; baa0
+	ds $1
+
+sGeneralSaveDataChecksum0:: ; baa1
+	ds $1
+
+sGeneralSaveDataChecksumSeed:: ; baa2
+	ds $1
+
+; 0: no save
+; 1: saved and backed up
+; 2: saved but not backed up
+sSaveDataState:: ; baa3
+	ds $1
+
+; see WRAMToSRAMMapper_ChallengeMachineSave
+; TODO: break down into each segment (after fully labelling wram?)
+sChallengeMachineSaveData:: ; baa4
+	ds $40
+sChallengeMachineSaveDataEnd::
+
+; checksum: swapped order
+sChallengeMachineSaveDataChecksum1:: ; bae4
+	ds $1
+
+sChallengeMachineSaveDataChecksum0:: ; bae5
+	ds $1
+
+sChallengeMachineSaveDataChecksumSeed:: ; bae6
+	ds $1
+
+	ds $19
 
 ; saved data of the current duel, including a two-byte checksum
 ; see SaveDuelDataToDE
@@ -109,7 +157,49 @@ sCardPopRecords:: ; a100
 
 SECTION "SRAM2", SRAM
 
+; the same structure as SRAM0
+; mainly as a backup, much like tcg1
+; see BulkCopySRAM
 
+	ds $1800
+
+sBackupGeneralSaveData:: ; b800
+
+sBackupGeneralSaveDataHeader:: ; b800
+	ds $1
+
+sBackupGeneralSaveDataMain:: ; b801
+	ds $1b9
+
+sBackupGeneralSaveDataEnd::
+
+	ds $e6
+
+sBackupGeneralSaveDataChecksum1:: ; baa0
+	ds $1
+
+sBackupGeneralSaveDataChecksum0:: ; baa1
+	ds $1
+
+sBackupGeneralSaveDataChecksumSeed:: ; baa2
+	ds $1
+
+; see sSaveDataState
+sBackupSaveDataState:: ; baa3
+	ds $1
+
+sBackupChallengeMachineSaveData:: ; baa4
+	ds $40
+sBackupChallengeMachineSaveDataEnd::
+
+sBackupChallengeMachineSaveDataChecksum1:: ; bae4
+	ds $1
+
+sBackupChallengeMachineSaveDataChecksum0:: ; bae5
+	ds $1
+
+sBackupChallengeMachineSaveDataChecksumSeed:: ; bae6
+	ds $1
 
 SECTION "SRAM3", SRAM
 

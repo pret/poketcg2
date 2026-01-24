@@ -6,9 +6,9 @@ Func_40000:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text CombosBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -20,9 +20,9 @@ Func_40016:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text EnergyTransBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -34,9 +34,9 @@ Func_4002c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text ToxicGasBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -48,9 +48,9 @@ Func_40042:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text RainDanceBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -62,9 +62,9 @@ Func_40058:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SelfdestructBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -76,9 +76,9 @@ Func_4006e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text DamageSwapBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -90,9 +90,9 @@ Func_40084:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text RemoveEnergiesBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -104,9 +104,9 @@ Func_4009a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PrehistoricPowerBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -118,9 +118,9 @@ Func_400b0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text WeaknessResistanceBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -132,9 +132,9 @@ Func_400c6:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text TeamGRBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -146,9 +146,9 @@ Func_400dc:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GameCenterBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -160,9 +160,9 @@ Func_400f2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SamePokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -174,9 +174,9 @@ Func_40108:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text RockGroundPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -188,9 +188,9 @@ Func_4011e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FightingPokemonSurefireMethodBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -202,9 +202,9 @@ Func_40134:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FightingPokemonFormidableOpponentsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -216,9 +216,9 @@ Func_4014a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FightingPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -230,9 +230,9 @@ Func_40160:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FightingPokemonCombosBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -244,9 +244,9 @@ Func_40176:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FightingPokemonDeckBuildingBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -258,9 +258,9 @@ Func_4018c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PlantlikePokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -272,9 +272,9 @@ Func_401a2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GrassPokemonBreederBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -286,9 +286,9 @@ Func_401b8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GrassPokemonDeckBuildingBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -300,9 +300,9 @@ Func_401ce:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SciencePokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -314,9 +314,9 @@ Func_401e4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SciencePokemonSurefireMethodBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -328,9 +328,9 @@ Func_401fa:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SciencePokemonDeckBuildingBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -342,9 +342,9 @@ Func_40210:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text WaterPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -356,9 +356,9 @@ Func_40226:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text WaterPokemonAttacksBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -370,9 +370,9 @@ Func_4023c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PsyduckGolduckBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -384,9 +384,9 @@ Func_40252:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FirePokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -398,9 +398,9 @@ Func_40268:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FirePokemonAttacksBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -412,9 +412,9 @@ Func_4027e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text FirePokemonDeckBuildingBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -426,9 +426,9 @@ Func_40294:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LightningPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -440,9 +440,9 @@ Func_402aa:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LightningPokemonDeckBuildingBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -454,9 +454,9 @@ Func_402c0:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text BirdPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -468,9 +468,9 @@ Func_402d6:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PsychicPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -482,9 +482,9 @@ Func_402ec:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PsychicPokemonPokemonPowerBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -496,9 +496,9 @@ Func_40302:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text UsefulButtonsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -510,9 +510,9 @@ Func_40318:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text ColorlessPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -524,9 +524,9 @@ Func_4032e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text CardPopBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -538,9 +538,9 @@ Func_40344:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text EnergyCardColorsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -552,9 +552,9 @@ Func_4035a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LegendaryPokemonCardsVol1BookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -566,9 +566,9 @@ Func_40370:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LegendaryPokemonCardsVol2BookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -580,9 +580,9 @@ Func_40386:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LegendaryPokemonCardsVol3BookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -594,9 +594,9 @@ Func_4039c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text LegendaryPokemonCardsVol4BookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -608,9 +608,9 @@ Func_403b2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GrandMastersBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -622,9 +622,9 @@ Func_403c8:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text CoinsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -636,9 +636,9 @@ Func_403de:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text PhantomCardsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -650,9 +650,9 @@ Func_403f4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text DarkPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -664,9 +664,9 @@ Func_4040a:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text AugmentBasicPokemonBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -678,9 +678,9 @@ Func_40420:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GRKingCardsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -692,9 +692,9 @@ Func_40436:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text SpecialEnergyBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -706,9 +706,9 @@ Func_4044c:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text GetCoinsBookText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -718,14 +718,14 @@ OverworldTcg_MapHeader:
 	db MUSIC_OVERWORLD
 
 OverworldTcg_MapScripts:
-	dbw $01, Func_40474
-	dbw $02, Func_4048a
-	dbw $04, Func_4053b
-	dbw $0f, Func_4053e
+	dbw OWMODE_MUSIC_PRELOAD, Func_40474
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4048a
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_4053b
+	dbw OWMODE_WARP_END_SFX, Func_4053e
 	db $ff ; end
 
 Func_40474:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40482
 	cp MAP_TCG_AIRPORT
@@ -751,14 +751,14 @@ Func_4048a:
 	ld [wPlayerOWLocation], a
 
 	ld a, NPC_VOLCANO_SMOKE_TCG
-	lb de, $78, $00
+	lb de, 120, 0
 	ld b, NORTH
 	farcall LoadOWObject
 
 	ld a, [wCurOWLocation]
 	call PrintTCGIslandLocationName
 
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .gr_blimp_cutscene
 	cp MAP_OVERHEAD_ISLANDS
@@ -780,15 +780,15 @@ Func_4048a:
 	ld a, [wCurOWLocation]
 	call UpdateTCGIslandCursorPosition
 
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(HandleTCGIslandInput)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, HandleTCGIslandInput
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 
@@ -797,28 +797,28 @@ Func_4048a:
 	lb de, 0, 0
 	farcall Func_12c0ce
 
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(DoGRBlimpMovement_TCGIsland)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, DoGRBlimpMovement_TCGIsland
 	ld a, l
-	ld [wd593 + 0], a
+	ld [wOverworldScriptPointer + 0], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40528
 	ld a, NPC_GR_BLIMP
-	lb de, $50, $78
+	lb de, 80, 120
 	ld b, EAST
 	farcall LoadOWObject
 	scf
 	ret
 .asm_40528
 	ld a, NPC_GR_BLIMP
-	lb de, $90, $60
+	lb de, 144, 96
 	ld b, WEST
 	farcall LoadOWObject
 	ld a, $00
@@ -833,7 +833,7 @@ Func_4053b:
 	ret
 
 Func_4053e:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_4054b
 	cp MAP_OVERHEAD_ISLANDS
@@ -1059,7 +1059,7 @@ Func_40682:
 	ld e, [hl] ; y
 	inc hl
 	ld b, [hl] ; direction
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 
 .data
@@ -1130,7 +1130,7 @@ Func_406d1:
 
 .loop_wait_movement
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 2, [hl]
 	jr nz, .asm_40746
 	ldh a, [hKeysPressed]
@@ -1146,7 +1146,7 @@ Func_406d1:
 	pop hl
 	jr .loop_commands
 .asm_4074f
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .loop_wait_movement
 	farcall CheckPalFading
@@ -1182,26 +1182,26 @@ TCGIslandLocationPositions:
 INCLUDE "data/tcg_island_paths.asm"
 
 DoGRBlimpMovement_TCGIsland:
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp MAP_TCG_AIRPORT
 	jr z, .asm_40cfa
 
 	ld a, MAP_TCG_AIRPORT
 	lb de, 0, 0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, .movement_3
 	jr .start_movement
 .asm_40cfa
 	ld a, MAP_OVERHEAD_ISLANDS
 	lb de, 0, 0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ld hl, .movement_2
 	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
 	farcall GetEventValue
 	jr nz, .start_movement
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 3, [hl]
 	ld hl, .movement_1
 
@@ -1229,7 +1229,7 @@ DoGRBlimpMovement_TCGIsland:
 .loop_wait
 	push bc
 	call DoFrame
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	bit 3, [hl]
 	jr nz, .skip_fade_out
 	bit 2, [hl]
@@ -1248,7 +1248,7 @@ DoGRBlimpMovement_TCGIsland:
 	pop hl
 	jr .start_movement
 .still_moving
-	ld a, [wd583]
+	ld a, [wOverworldTransition]
 	bit 2, a
 	jr z, .loop_movement
 	farcall CheckPalFading
@@ -1257,7 +1257,7 @@ DoGRBlimpMovement_TCGIsland:
 	jr .finish
 
 .done_movement
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr z, .asm_40d71 ; unnecessary cp
 .asm_40d71
@@ -1268,9 +1268,9 @@ DoGRBlimpMovement_TCGIsland:
 	ret
 
 ; fades out to white or black
-; dependent on wd585
+; dependent on wTempPrevMap
 .FadeOut:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp MAP_OVERHEAD_ISLANDS
 	jr nz, .to_black
 ; to white
@@ -1341,18 +1341,18 @@ MasonLaboratoryMain_NPCInteractions:
 MasonLaboratoryMain_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 6, 3, Func_4101d
-	ow_script 7, 3, Func_4101d
+	ow_script 6, 3, Script_TCGChallengeMachine
+	ow_script 7, 3, Script_TCGChallengeMachine
 	db $ff
 
 MasonLaboratoryMain_MapScripts:
-	dbw $06, Func_40e83
-	dbw $08, Func_40f04
-	dbw $09, Func_40f21
-	dbw $11, Func_40f14
-	dbw $07, Func_40e8a
-	dbw $02, Func_40e91
-	dbw $01, Func_40e72
+	dbw OWMODE_STEP_EVENT, Func_40e83
+	dbw OWMODE_INTERACT, Func_40f04
+	dbw OWMODE_AFTER_DUEL, Func_40f21
+	dbw OWMODE_AFTER_DUEL_PRELOAD, Func_40f14
+	dbw OWMODE_NPC_POSITION, Func_40e8a
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_40e91
+	dbw OWMODE_MUSIC_PRELOAD, Func_40e72
 	db $ff
 
 Func_40e72:
@@ -1369,12 +1369,12 @@ Func_40e72:
 
 Func_40e83:
 	ld hl, MasonLaboratoryMain_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_40e8a:
 	ld hl, MasonLaboratoryMain_NPCs
-	call Func_3205
+	call LoadNPCs
 	ret
 
 Func_40e91:
@@ -1403,15 +1403,15 @@ Func_40e91:
 	farcall SetOWObjectDirection
 	ld de, $408
 	farcall CalcOWScroll
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_40f46)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_40f46
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
 .asm_40ee8
@@ -1457,11 +1457,11 @@ Func_40f21:
 	jr nz, .asm_40f34
 	ld hl, MasonLaboratoryMain_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 .asm_40f34
-	farcall Func_ec6c
+	farcall LoadChallengeMachineSave
 	call Func_41074
 	scf
 	ret
@@ -1478,7 +1478,7 @@ Func_40f46:
 	move_player .NPCMovement_40f80, TRUE
 	wait_for_player_animation
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
-	script_command_01
+	start_dialog
 	send_mail $03
 	send_mail $04
 	send_mail $08
@@ -1487,14 +1487,14 @@ Func_40f46:
 	script_call .ows_40fac
 	script_call .ows_40f9b
 	quit_script
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_40f80:
 	db NORTH, MOVE_2
@@ -1542,10 +1542,10 @@ Func_40fbc:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_active_npc_direction SOUTH
 	print_npc_text Text0f04
-	script_command_02
+	end_dialog
 	get_player_x_position
 	compare_loaded_var $07
 	script_jump_if_b0nz .ows_40fe4
@@ -1555,12 +1555,12 @@ Func_40fbc:
 	move_player .NPCMovement_40ffc, TRUE
 .ows_40fe8
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	print_npc_text Text0f05
-	script_command_02
+	end_dialog
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_40ff5:
 	db NORTH, MOVE_4
@@ -1578,7 +1578,7 @@ Func_40fff:
 	ld a, OVERWORLD_MAP_TCG
 	lb de, 1, 7
 	ld b, SOUTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .asm_41013
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
@@ -1586,174 +1586,177 @@ Func_40fff:
 	call Func_40fbc
 	ret
 
-Func_4101d:
+Script_TCGChallengeMachine:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
-	farcall Func_ebc6
-	jr nc, .asm_41038
-	farcall Func_eb39
+	farcall ValidateChallengeMachineSaveData
+	jr nc, .no_error
+	farcall InitChallengeMachine
 	xor a
 	start_script
-	script_command_01
-	print_text Text0f06
-	script_command_02
+	start_dialog
+	print_text ChallengeMachineWinStreakRecordCorruptedAndResetText
+	end_dialog
 	end_script
-.asm_41038
-	farcall Func_ec6c
+.no_error
+	farcall LoadChallengeMachineSave
 	xor a
-	farcall Func_ef40
-	farcall Func_efd0
+	farcall SetChallengeMachineOpponents
+	farcall LoadChallengeMachineOpponentTitlesAndNames
 	xor a
-	ld bc, $0
-	farcall Func_135ec
-	jr c, .asm_41061
+	lb bc, 0, 0
+	farcall ChallengeMachine
+	jr c, .quit
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_34, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	send_mail $0d
 	end_script
-	farcall Func_eff7
-	jr .asm_41073
-.asm_41061
+	farcall SetChallengeMachineDuelParams
+	jr .done
+.quit
 	or a
-	jr z, .asm_41073
-	ld bc, $0
+	jr z, .done
+	ld bc, 0
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
-	farcall Func_ec38
-.asm_41073
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
+	farcall SaveChallengeMachine
+.done
 	ret
 
 Func_41074:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
-	jp z, .asm_410ee
-	ld a, [wde11]
+	jp z, .quit
+	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde11 + 1]
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_4109a
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_wins
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
-.asm_4109a
-	ld a, VAR_34
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
+.skip_incr_wins
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
-	cp $05
-	jr z, .asm_410c4
+	cp NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	jr z, .finished_set
 	ld b, a
-	xor a
-	ld c, $01
-	farcall Func_135ec
-	jp c, .asm_410fc
-	ld a, VAR_34
+	xor a ; TCG_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_WIN
+	farcall ChallengeMachine
+	jp c, .withdrew
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
 	inc a
 	ld c, a
 	ld a, d
 	farcall SetVarValue
-	farcall Func_eff7
-	jp .asm_41114
-.asm_410c4
-	ld a, [wde0d]
+	farcall SetChallengeMachineDuelParams
+	jp .done
+
+.finished_set
+	ld a, [wTCGChallengeMachineSetsWonRecord]
 	ld c, a
-	ld a, [wde0d + 1]
+	ld a, [wTCGChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_410e1
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_record
 	ld a, c
-	ld [wde0d], a
+	ld [wTCGChallengeMachineSetsWonRecord], a
 	ld a, b
-	ld [wde0d + 1], a
-.asm_410e1
-	call Func_4112e
-	xor a
-	ld bc, $501
-	farcall Func_135ec
-	jr .asm_41115
-.asm_410ee
-	ld a, VAR_34
+	ld [wTCGChallengeMachineSetsWonRecord + 1], a
+.skip_incr_record
+	call .CheckWinStreakRecord
+	xor a ; TCG_ISLAND
+	lb bc, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET, CHALLENGE_MACHINE_DUEL_WIN
+	farcall ChallengeMachine
+	jr .check_50winstreak_prize
+
+.quit
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
-	xor a
-	ld c, $02
-	farcall Func_135ec
-.asm_410fc
-	call Func_4112e
-	ld bc, $0
+	xor a ; TCG_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_LOSS_OR_QUIT
+	farcall ChallengeMachine
+.withdrew
+	call .CheckWinStreakRecord
+	ld bc, 0
 	ld a, c
-	ld [wde11], a
+	ld [wTCGChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde11 + 1], a
-.asm_4110a
+	ld [wTCGChallengeMachineCurWinStreak + 1], a
+.exit
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
-	farcall Func_ec38
-.asm_41114
+	farcall SaveChallengeMachine
+.done
 	ret
-.asm_41115
-	ld a, [wde11]
-	ld e, a
-	ld a, [wde11 + 1]
-	ld d, a
-	cp16_long 50
-	jr nz, .asm_4110a
-	call Func_41167
-	jr .asm_4110a
 
-Func_4112e:
-	ld a, [wde11]
-	ld c, a
-	ld a, [wde11 + 1]
-	ld b, a
-	ld a, [wde15]
+.check_50winstreak_prize
+	ld a, [wTCGChallengeMachineCurWinStreak]
 	ld e, a
-	ld a, [wde15 + 1]
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
+	ld d, a
+	cp16_long NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE
+	jr nz, .exit
+	call Script_DrMason_50WinStreak
+	jr .exit
+
+.CheckWinStreakRecord:
+	ld a, [wTCGChallengeMachineCurWinStreak]
+	ld c, a
+	ld a, [wTCGChallengeMachineCurWinStreak + 1]
+	ld b, a
+	ld a, [wTCGChallengeMachineWinStreakRecord]
+	ld e, a
+	ld a, [wTCGChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
-	jr nc, .asm_4114a
+	jr nc, .new_record
 	scf
 	ret
-.asm_4114a
+.new_record
 	ld a, c
-	ld [wde15], a
+	ld [wTCGChallengeMachineWinStreakRecord], a
 	ld a, b
-	ld [wde15 + 1], a
+	ld [wTCGChallengeMachineWinStreakRecord + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld de, wde19
-	ld bc, $10
+	ld de, wTCGChallengeMachinePlayerName
+	ld bc, NAME_BUFFER_LENGTH
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM
 	scf
 	ccf
 	ret
 
-Func_41167:
+Script_DrMason_50WinStreak:
 	xor a
 	start_script
 	check_event EVENT_GOT_DUGTRIO_COIN
-	script_jump_if_b0z .ows_41186
+	script_jump_if_b0z .done
 	set_event EVENT_GOT_DUGTRIO_COIN
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	set_active_npc_direction NORTH
 	set_player_direction SOUTH
-	script_command_01
-	print_npc_text Text0f07
+	start_dialog
+	print_npc_text DrMasonTCGChallengeMachine50WinStreakRewards1Text
 	give_coin COIN_DUGTRIO
-	print_npc_text Text0f08
-	script_command_02
+	print_npc_text DrMasonTCGChallengeMachine50WinStreakRewards2Text
+	end_dialog
 	set_active_npc_direction SOUTH
-.ows_41186
+.done
 	end_script
 	ret
 
@@ -1767,7 +1770,7 @@ Func_41188:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_411df
 	check_event EVENT_GOT_MACHAMP_COIN
@@ -1806,7 +1809,7 @@ Func_41188:
 .ows_411ec
 	print_npc_text Text0f10
 .ows_411ef
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1820,7 +1823,7 @@ Func_411f2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	get_var VAR_TIMES_MET_RONALD
 	compare_loaded_var $09
 	script_jump_if_b1z .ows_41217
@@ -1830,7 +1833,7 @@ Func_411f2:
 .ows_41217
 	print_npc_text Text0f12
 .ows_4121a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -1859,14 +1862,14 @@ Func_41233:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_TALKED_TO_SAM
 	script_jump_if_b0nz Script_412f8
 	print_npc_text Text0f13
 	end_script
 	ld a, $01
 	ld b, $00
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_41264
 	or a
 	jr z, .asm_4126b
@@ -1884,7 +1887,7 @@ Func_41233:
 	print_npc_text Text0f14
 	ask_question Text0f15, TRUE
 	script_jump_if_b0z .ows_41287
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_41499
 	set_event EVENT_EF
@@ -1900,12 +1903,12 @@ Func_41233:
 	print_npc_text Text0f17
 	ask_question Text0f15, TRUE
 	script_jump_if_b0z .ows_412ac
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_4151b
-	script_command_01
+	start_dialog
 	print_npc_text Text0f18
-	script_command_02
+	end_dialog
 	start_duel UNUSED_SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
@@ -1918,14 +1921,14 @@ Func_41233:
 	script_call Script_41408
 	print_npc_text Text0f16
 .ows_412bd
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_412c0:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_EF
 	script_jump_if_b0z .ows_412e4
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
@@ -1938,13 +1941,13 @@ Func_412c0:
 	print_npc_text Text0f1c
 	script_jump .ows_412e1
 .ows_412e1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_412e4
 	reset_event EVENT_EF
 	print_npc_text Text0f1d
-	script_command_02
+	end_dialog
 	move_npc NPC_DR_MASON, .NPCMovement_412f1
 	wait_for_player_animation
 	end_script
@@ -1964,10 +1967,10 @@ Script_412f8:
 	script_jump .ows_4133b
 .ows_4130a
 	print_npc_text Text0f21
-	script_command_02
+	end_dialog
 	set_active_npc_direction EAST
 	script_call Script_41499
-	script_command_01
+	start_dialog
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	print_npc_text Text0f22
 	set_active_npc NPC_SAM, DialogSamText
@@ -1978,36 +1981,36 @@ Script_412f8:
 	script_jump_if_b0z .ows_41323
 	set_active_npc NPC_DR_MASON, DialogDrMasonText
 	print_npc_text Text0f25
-	script_command_02
+	end_dialog
 	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_4133b
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_4133e:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f26
 	ask_question Text0f27, TRUE
 	script_jump_if_b0z .ows_41356
 	print_npc_text Text0f28
-	script_command_02
+	end_dialog
 	start_duel SAMS_PRACTICE_DECK_ID, MUSIC_MATCH_START_MEMBER
 	end_script
 	ret
 .ows_41356
 	print_npc_text Text0f29
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_41369
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 	set_active_npc NPC_SAM, DialogSamText
 	print_npc_text Text0f2a
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_41369:
@@ -2026,7 +2029,7 @@ Func_41370:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_41390
 	print_npc_text Text0f2b
@@ -2034,7 +2037,7 @@ Func_41370:
 .ows_41390
 	print_npc_text Text0f2c
 .ows_41393
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2048,7 +2051,7 @@ Func_41396:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_413b6
 	print_npc_text Text0f2d
@@ -2056,7 +2059,7 @@ Func_41396:
 .ows_413b6
 	print_npc_text Text0f2e
 .ows_413b9
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2070,7 +2073,7 @@ Func_413bc:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_413dc
 	print_npc_text Text0f2f
@@ -2078,7 +2081,7 @@ Func_413bc:
 .ows_413dc
 	print_npc_text Text0f30
 .ows_413df
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -2092,7 +2095,7 @@ Func_413e2:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .ows_41402
 	print_npc_text Text0f31
@@ -2100,17 +2103,17 @@ Func_413e2:
 .ows_41402
 	print_npc_text Text0f32
 .ows_41405
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_41408:
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $00
 .asm_4140c
 	xor a
-	farcall Func_121e1
+	farcall HandlePopupMenu
 	jr c, .asm_41428
 	or a
 	jr z, .asm_4142f
@@ -2129,68 +2132,68 @@ Script_41408:
 .asm_41428
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
 .asm_4142f
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f33
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $00
 	jr .asm_4140c
 .asm_4143e
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f34
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $01
 	jr .asm_4140c
 .asm_4144d
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f35
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $02
 	jr .asm_4140c
 .asm_4145c
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f36
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $03
 	jr .asm_4140c
 .asm_4146b
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f37
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $04
 	jr .asm_4140c
 .asm_4147a
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f38
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $05
 	jr .asm_4140c
 .asm_41489
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	print_npc_text Text0f39
-	script_command_02
+	end_dialog
 	quit_script
 	ld b, $06
 	jp .asm_4140c
@@ -2347,62 +2350,62 @@ TcgChallengeHall_StepEvents:
 	db $ff
 
 TcgChallengeHall_NPCs:
-	npc NPC_CUP_HOST, 7, 2, SOUTH, Func_41768
-	npc NPC_TCG_CUP_CLERK_RIGHT, 10, 9, SOUTH, Func_41768
-	npc NPC_TCG_CUP_CLERK_LEFT, 5, 9, SOUTH, Func_41768
-	npc NPC_TCG_CHALLENGE_HALL_MAN, 7, 10, SOUTH, Func_41751
+	npc NPC_CUP_HOST, 7, 2, SOUTH, TcgChallengeHall_AppearDuringTCGCups
+	npc NPC_TCG_CUP_CLERK_RIGHT, 10, 9, SOUTH, TcgChallengeHall_AppearDuringTCGCups
+	npc NPC_TCG_CUP_CLERK_LEFT, 5, 9, SOUTH, TcgChallengeHall_AppearDuringTCGCups
+	npc NPC_TCG_CHALLENGE_HALL_MAN, 7, 10, SOUTH, TcgChallengeHall_DisappearDuringTCGCups
 	db $ff
 
 TcgChallengeHall_NPCInteractions:
-	npc_script NPC_TCG_CUP_CLERK_LEFT, Func_41662
-	npc_script NPC_TCG_CUP_CLERK_RIGHT, Func_41705
-	npc_script NPC_TCG_CHALLENGE_HALL_MAN, Func_41720
+	npc_script NPC_TCG_CUP_CLERK_LEFT, Script_TCGCupClerkLeft
+	npc_script NPC_TCG_CUP_CLERK_RIGHT, Script_TCGCupClerkRight
+	npc_script NPC_TCG_CHALLENGE_HALL_MAN, Script_TCGChallengeHallMan
 	db $ff
 
 TcgChallengeHall_MapScripts:
-	dbw $06, Func_415f3
-	dbw $08, Func_41622
-	dbw $09, Func_4162a
-	dbw $07, Func_415fa
-	dbw $01, Func_415e6
-	dbw $02, Func_41603
-	dbw $0b, Func_4163b
+	dbw OWMODE_STEP_EVENT, Func_415f3
+	dbw OWMODE_INTERACT, Func_41622
+	dbw OWMODE_AFTER_DUEL, Func_4162a
+	dbw OWMODE_NPC_POSITION, Func_415fa
+	dbw OWMODE_MUSIC_PRELOAD, Func_415e6
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41603
+	dbw OWMODE_CONTINUE_OW, Func_4163b
 	db $ff
 
 Func_415e6:
-	call Func_41bd2
-	jr c, .asm_415f0
+	call CheckIfTCGCupIsActive
+	jr c, .inactive
 	ld a, MUSIC_CHALLENGE_HALL
 	ld [wNextMusic], a
-.asm_415f0
+.inactive
 	scf
 	ccf
 	ret
 
 Func_415f3:
 	ld hl, TcgChallengeHall_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_415fa:
 	ld hl, TcgChallengeHall_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
 
 Func_41603:
-	call Func_41bd2
-	jr c, .asm_41620
-	xor a
-	farcall Func_45301
-	ld a, VAR_2D
+	call CheckIfTCGCupIsActive
+	jr c, .inactive
+	xor a ; TCG_ISLAND
+	farcall SetChallengeCupOpponents
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
-.asm_41620
+.inactive
 	scf
 	ret
 
@@ -2413,12 +2416,12 @@ Func_41622:
 	ret
 
 Func_4162a:
-	ld a, VAR_2C
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $02
-	jp c, Func_417df
-	jp z, Func_418ed
-	jp Func_41a4d
+	cp 2
+	jp c, Script_TCGCupRound1AfterDuel
+	jp z, Script_TCGCupRound2AfterDuel
+	jp Script_TCGCupRound3AfterDuel
 
 Func_4163b:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
@@ -2427,7 +2430,7 @@ Func_4163b:
 	scf
 	ret
 .asm_41645
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_4164f
 	scf
 	ccf
@@ -2438,12 +2441,12 @@ Func_4164f:
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	set_active_npc_position 9, 2
-	get_var VAR_2C
-	compare_loaded_var $02
-	script_jump_if_b0nz Script_418a6
-	script_jump Script_419ab
+	get_var VAR_CHALLENGECUP_CURRENT_ROUND
+	compare_loaded_var 2
+	script_jump_if_b0nz Script_TCGCupRound2Start
+	script_jump Script_TCGCupRound3Start
 
-Func_41662:
+Script_TCGCupClerkLeft:
 	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -2453,61 +2456,63 @@ Func_41662:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_2B
-	compare_loaded_var $01
-	script_jump_if_b0nz .ows_416ac
-	script_jump_if_b1z .ows_416b2
-	get_var VAR_28
-	compare_loaded_var $06
-	script_jump_if_b0nz .ows_41699
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41693
-	print_npc_text Text094e
-	script_jump .ows_416b8
-.ows_41693
-	print_npc_text Text094f
-	script_jump .ows_416b8
-.ows_41699
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_WON
+	script_jump_if_b0nz .won
+	script_jump_if_b1z .lost
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
+	script_jump_if_b0nz .cup3
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .cup2
+; cup1
+	print_npc_text TCGCupClerkCup1ActiveText
+	script_jump .enter_prompt
+.cup2
+	print_npc_text TCGCupClerkCup2ActiveText
+	script_jump .enter_prompt
+.cup3
 	quit_script
 	farcall GetTCGChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
-	print_npc_text Text0950
-	script_jump .ows_416b8
-.ows_416ac
-	print_npc_text Text0951
-	script_jump .ows_416da
-.ows_416b2
-	print_npc_text Text0952
-	script_jump .ows_416da
-.ows_416b8
-	ask_question Text0953, TRUE
-	script_jump_if_b0z .ows_416d7
-	print_npc_text Text0954
-	script_command_02
+	print_npc_text TCGCupClerkCup3ActiveText
+	script_jump .enter_prompt
+.won
+	print_npc_text TCGCupClerkPlayerWonText
+	script_jump .done
+.lost
+	print_npc_text TCGCupClerkPlayerLostText
+	script_jump .done
+.enter_prompt
+	ask_question TCGCupClerkEnterPromptText, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text TCGCupClerkEnterAcceptedText
+	end_dialog
 	get_player_direction
 	compare_loaded_var NORTH
-	script_jump_if_b0nz .ows_416d0
+	script_jump_if_b0nz .walk_straight
+; has to turn
 	move_player .NPCMovement_416f8, TRUE
-	script_jump .ows_416dd
-.ows_416d0
+	script_jump .enter_stage
+.walk_straight
 	move_player .NPCMovement_416fd, TRUE
-	script_jump .ows_416dd
-.ows_416d7
-	print_npc_text Text0955
-.ows_416da
-	script_command_02
+	script_jump .enter_stage
+.declined
+	print_npc_text TCGCupClerkEnterDeclinedText
+.done
+	end_dialog
 	end_script
 	ret
-.ows_416dd
+.enter_stage
 	move_active_npc .NPCMovement_416ec
 	wait_for_player_animation
 	move_player .NPCMovement_41700, TRUE
 	move_active_npc .NPCMovement_416f3
 	wait_for_player_animation
-	script_jump Script_4177f
+	script_jump Script_TCGCupRound1Start
 .NPCMovement_416ec:
 	db NORTH, MOVE_2
 	db EAST, MOVE_1
@@ -2529,7 +2534,7 @@ Func_41662:
 	db EAST, MOVE_1
 	db $ff
 
-Func_41705:
+Script_TCGCupClerkRight:
 	ld a, NPC_TCG_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -2539,13 +2544,13 @@ Func_41705:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	print_npc_text Text0956
-	script_command_02
+	start_dialog
+	print_npc_text TCGCupClerkRightNoEntryText
+	end_dialog
 	end_script
 	ret
 
-Func_41720:
+Script_TCGChallengeHallMan:
 	ld a, NPC_TCG_CHALLENGE_HALL_MAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogManText
@@ -2555,150 +2560,155 @@ Func_41720:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_4174b
+	script_jump_if_b0z .cup3_unlocked
 	check_event EVENT_GOT_GR_COIN
-	script_jump_if_b0z .ows_41745
-	print_npc_text Text0957
-	script_jump .ows_4174e
-.ows_41745
-	print_npc_text Text0958
-	script_jump .ows_4174e
-.ows_4174b
-	print_npc_text Text0959
-.ows_4174e
-	script_command_02
+	script_jump_if_b0z .cup1_unlocked
+; cups dead
+	print_npc_text TCGChallengeHallManNoCardsText
+	script_jump .done
+.cup1_unlocked
+	print_npc_text TCGChallengeHallManGoodLuckText
+	script_jump .done
+.cup3_unlocked
+	print_npc_text TCGChallengeHallManTCGCup3Text
+.done
+	end_dialog
 	end_script
 	ret
 
-Func_41751:
-	ld a, VAR_28
+TcgChallengeHall_DisappearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_41766
-	cp $03
-	jr z, .asm_41766
-	cp $06
-	jr z, .asm_41766
+	cp CHALLENGE_CUP_1_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_2_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_3_START
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_41766
+.disappear
 	scf
 	ret
 
-Func_41768:
-	ld a, VAR_28
+TcgChallengeHall_AppearDuringTCGCups:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_4177c
-	cp $03
-	jr z, .asm_4177c
-	cp $06
-	jr z, .asm_4177c
+	cp CHALLENGE_CUP_1_START
+	jr z, .appear
+	cp CHALLENGE_CUP_2_START
+	jr z, .appear
+	cp CHALLENGE_CUP_3_START
+	jr z, .appear
 	scf
 	ret
-.asm_4177c
+.appear
 	scf
 	ccf
 	ret
 
-Script_4177f:
-	set_var VAR_2C, $00
-	script_jump .ows_41785
-.ows_41785
-	set_var VAR_2C, $01
+Script_TCGCupRound1Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 0
+	script_jump .round1
+.round1
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 1
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_417b1
-	script_jump_if_b1z .ows_417c1
-	print_npc_text Text095a
-	script_command_02
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .cup2
+	script_jump_if_b1z .cup3
+; cup1
+	print_npc_text CupHostTCGCup1IntroText
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text095b
-	script_jump .ows_417ce
-.ows_417b1
-	print_npc_text Text095c
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCup1Round1ChallengerText
+	script_jump .start_duel
+.cup2
+	print_npc_text CupHostTCGCup2IntroText
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text095d
-	script_jump .ows_417ce
-.ows_417c1
-	print_npc_text Text095e
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCup2Round1ChallengerText
+	script_jump .start_duel
+.cup3
+	print_npc_text CupHostTCGCup3IntroText
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text095f
-.ows_417ce
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCup3Round1ChallengerText
+.start_duel
+	end_dialog
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text0960
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupRound1DuelStartText
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 
-Func_417df:
+Script_TCGCupRound1AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_41824
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_4180a
-	script_jump_if_b1z .ows_41817
-	print_npc_text Text0961
-	script_call .ows_4186a
-	print_npc_text Text0962
-	script_jump .ows_41840
-.ows_4180a
-	print_npc_text Text0961
-	script_call .ows_4186a
-	print_npc_text Text0963
-	script_jump .ows_41840
-.ows_41817
-	print_npc_text Text0964
-	script_call .ows_4186a
-	print_npc_text Text0965
-	script_jump .ows_41840
-.ows_41824
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41834
-	script_jump_if_b1z .ows_4183a
-	print_npc_text Text0966
-	script_jump Script_41b98
-.ows_41834
-	print_npc_text Text0967
-	script_jump Script_41b98
-.ows_4183a
-	print_npc_text Text0968
-	script_jump Script_41b98
-.ows_41840
-	script_command_02
+	script_jump_if_b0nz .lost_round1
+; won round1
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round1
+	script_jump_if_b1z .won_cup3_round1
+; won cup1 round1
+	print_npc_text CupHostTCGCup1Or2Round1PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup1Round1NextChallengerText
+	script_jump .proceed
+.won_cup2_round1
+	print_npc_text CupHostTCGCup1Or2Round1PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup2Round1NextChallengerText
+	script_jump .proceed
+.won_cup3_round1
+	print_npc_text CupHostTCGCup3Round1PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup3Round1NextChallengerText
+	script_jump .proceed
+.lost_round1
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .lost_cup2_round1
+	script_jump_if_b1z .lost_cup3_round1
+; lost cup1 round1
+	print_npc_text CupHostTCGCup1Round1PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.lost_cup2_round1
+	print_npc_text CupHostTCGCup2Round1PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.lost_cup3_round1
+	print_npc_text CupHostTCGCup3Round1PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.proceed
+	end_dialog
 	quit_script
-	ld a, VAR_2E
+	ld a, VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
@@ -2708,20 +2718,20 @@ Func_417df:
 	call Func_3340
 	ld a, $01
 	start_script
-	script_command_01
-	script_jump Script_418a6
-.ows_4186a
-	script_command_02
+	start_dialog
+	script_jump Script_TCGCupRound2Start
+.opponent_eliminated
+	end_dialog
 	animate_active_npc_movement $01, $01
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text0969
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupPlayerWonOpponentEliminatedText
+	end_dialog
 	quit_script
-	ld a, VAR_2D
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	push af
 	ld b, $10
 	ld hl, .NPCMovement_4189c
@@ -2731,7 +2741,7 @@ Func_417df:
 	farcall ClearOWObject
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_4189c:
 	db EAST, MOVE_1
@@ -2742,87 +2752,90 @@ Func_417df:
 	db WEST, MOVE_1
 	db $ff
 
-Script_418a6:
-	set_var VAR_2C, $02
+Script_TCGCupRound2Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 2
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
-	script_command_01
-	print_npc_text Text096a
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupRound2ChallengerText
+	end_dialog
 	move_active_npc .NPCMovement_418e8
 	wait_for_player_animation
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $06
-	script_jump_if_b0z .ows_418c7
-	print_npc_text Text096b
-.ows_418c7
-	print_npc_text Text096c
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
+	script_jump_if_b0z .loop_prep
+	print_npc_text CupHostTCGCupRound2The4PrizesMatchText
+.loop_prep
+	print_npc_text CupHostTCGCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_418de
-	print_npc_text Text096d
-	script_command_02
+	script_jump_if_b0z .start_duel
+	print_npc_text CupHostTCGCupMakeYourPreparationsText
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
-	script_jump .ows_418c7
-.ows_418de
-	print_npc_text Text096e
-	script_command_02
+	start_dialog
+	script_jump .loop_prep
+.start_duel
+	print_npc_text CupHostTCGCupRound2DuelStartText
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 .NPCMovement_418e8:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_418ed:
+Script_TCGCupRound2AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_41932
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41918
-	script_jump_if_b1z .ows_41925
-	print_npc_text Text096f
-	script_call .ows_4196f
-	print_npc_text Text0970
-	script_jump .ows_41945
-.ows_41918
-	print_npc_text Text096f
-	script_call .ows_4196f
-	print_npc_text Text0971
-	script_jump .ows_41945
-.ows_41925
-	print_npc_text Text096f
-	script_call .ows_4196f
-	print_npc_text Text0972
-	script_jump .ows_41945
-.ows_41932
-	get_var VAR_28
-	compare_loaded_var $06
-	script_jump_if_b0nz .ows_4193f
-	print_npc_text Text0973
-	script_jump Script_41b98
-.ows_4193f
-	print_npc_text Text0974
-	script_jump Script_41b98
-.ows_41945
-	script_command_02
+	script_jump_if_b0nz .lost_round2
+; won round2
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round2
+	script_jump_if_b1z .won_cup3_round2
+; won cup1 round2
+	print_npc_text CupHostTCGCupRound2PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup1Round2NextChallengerText
+	script_jump .proceed
+.won_cup2_round2
+	print_npc_text CupHostTCGCupRound2PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup2Round2NextChallengerText
+	script_jump .proceed
+.won_cup3_round2
+	print_npc_text CupHostTCGCupRound2PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup3Round2NextChallengerText
+	script_jump .proceed
+.lost_round2
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
+	script_jump_if_b0nz .lost_cup3_round2
+; lost cup1/2 round2
+	print_npc_text CupHostTCGCup1Or2Round2PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.lost_cup3_round2
+	print_npc_text CupHostTCGCup3Round2PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.proceed
+	end_dialog
 	quit_script
-	ld a, VAR_2F
+	ld a, VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
@@ -2832,20 +2845,20 @@ Func_418ed:
 	call Func_3340
 	ld a, $01
 	start_script
-	script_command_01
-	script_jump Script_419ab
-.ows_4196f
-	script_command_02
+	start_dialog
+	script_jump Script_TCGCupRound3Start
+.opponent_eliminated
+	end_dialog
 	animate_active_npc_movement $01, $01
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text0969
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupPlayerWonOpponentEliminatedText
+	end_dialog
 	quit_script
-	ld a, VAR_2E
+	ld a, VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	push af
 	ld b, $10
 	ld hl, .NPCMovement_419a1
@@ -2855,7 +2868,7 @@ Func_418ed:
 	farcall ClearOWObject
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_419a1:
 	db EAST, MOVE_1
@@ -2866,137 +2879,142 @@ Func_418ed:
 	db WEST, MOVE_1
 	db $ff
 
-Script_419ab:
-	set_var VAR_2C, $03
+Script_TCGCupRound3Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 3
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_419c9
-	script_jump_if_b1z .ows_419cf
-	print_npc_text Text0975
-	script_jump .ows_41a17
-.ows_419c9
-	print_npc_text Text0976
-	script_jump .ows_41a17
-.ows_419cf
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .cup2
+	script_jump_if_b1z .cup3
+; cup1
+	print_npc_text CupHostTCGCup1Round3ChallengerText
+	script_jump .prep
+.cup2
+	print_npc_text CupHostTCGCup2Round3ChallengerText
+	script_jump .prep
+.cup3
 	quit_script
-	ld a, VAR_2F
+	ld a, VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
-	cp $03
-	jr z, .asm_41a04
-	cp $2e
-	jr z, .asm_419f9
-	cp $2f
-	jr z, .asm_419f9
-	cp $30
-	jr z, .asm_419f9
-	cp $31
-	jr z, .asm_419f9
+	farcall GetNPCByDeck_AdjustAmy
+	cp NPC_RONALD
+	jr z, .ronald
+	cp NPC_GR_1
+	jr z, .gr
+	cp NPC_GR_2
+	jr z, .gr
+	cp NPC_GR_3
+	jr z, .gr
+	cp NPC_GR_4
+	jr z, .gr
+; other (club master)
 	ld a, $01
 	start_script
-	print_npc_text Text0977
-	script_jump .ows_41a17
-.asm_419f9
+	print_npc_text CupHostTCGCup3Round3ChallengerClubMasterText
+	script_jump .prep
+.gr
 	ld a, $01
 	start_script
-	print_npc_text Text0978
-	script_jump .ows_41a17
-.asm_41a04
+	print_npc_text CupHostTCGCup3Round3ChallengerGRText
+	script_jump .prep
+.ronald
 	ld a, $01
 	start_script
-	print_npc_text Text0979
+	print_npc_text CupHostTCGCup3Round3ChallengerRonaldText
 	set_active_npc NPC_RONALD, DialogRonaldText
-	print_npc_text Text097a
+	print_npc_text RonaldTCGCup3ChallengerText
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
-.ows_41a17
-	script_command_02
+.prep
+	end_dialog
 	move_active_npc .NPCMovement_41a48
 	wait_for_player_animation
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0z .ows_41a27
-	print_npc_text Text097b
-.ows_41a27
-	print_npc_text Text096c
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0z .loop_prep
+	print_npc_text CupHostTCGCupRound3The6PrizesMatchText
+.loop_prep
+	print_npc_text CupHostTCGCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_41a3e
-	print_npc_text Text096d
-	script_command_02
+	script_jump_if_b0z .start_duel
+	print_npc_text CupHostTCGCupMakeYourPreparationsText
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
-	script_jump .ows_41a27
-.ows_41a3e
-	print_npc_text Text097c
-	script_command_02
+	start_dialog
+	script_jump .loop_prep
+.start_duel
+	print_npc_text CupHostTCGCupRound3DuelStartText
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 .NPCMovement_41a48:
 	db WEST, MOVE_2
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_41a4d:
+Script_TCGCupRound3AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_41a92
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41a78
-	script_jump_if_b1z .ows_41a85
-	print_npc_text Text097d
-	script_call .ows_41aae
-	print_npc_text Text097e
-	script_jump .ows_41aea
-.ows_41a78
-	print_npc_text Text097d
-	script_call .ows_41aae
-	print_npc_text Text097e
-	script_jump .ows_41aea
-.ows_41a85
-	print_npc_text Text097d
-	script_call .ows_41aae
-	print_npc_text Text097f
-	script_jump .ows_41aea
-.ows_41a92
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41aa2
-	script_jump_if_b1z .ows_41aa8
-	print_npc_text Text0980
-	script_jump Script_41b98
-.ows_41aa2
-	print_npc_text Text0981
-	script_jump Script_41b98
-.ows_41aa8
-	print_npc_text Text0982
-	script_jump Script_41b98
-.ows_41aae
-	script_command_02
+	script_jump_if_b0nz .lost_round3
+; won round3
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round3
+	script_jump_if_b1z .won_cup3_round3
+; won cup1 round3, identical to cup2
+	print_npc_text CupHostTCGCupRound3PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup1Or2PlayerChampionText
+	script_jump .proceed_prize
+.won_cup2_round3
+	print_npc_text CupHostTCGCupRound3PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup1Or2PlayerChampionText
+	script_jump .proceed_prize
+.won_cup3_round3
+	print_npc_text CupHostTCGCupRound3PlayerWonText
+	script_call .opponent_eliminated
+	print_npc_text CupHostTCGCup3PlayerChampionText
+	script_jump .proceed_prize
+.lost_round3
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .lost_cup2_round3
+	script_jump_if_b1z .lost_cup3_round3
+; lost cup1 round3
+	print_npc_text CupHostTCGCup1Round3PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.lost_cup2_round3
+	print_npc_text CupHostTCGCup2Round3PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.lost_cup3_round3
+	print_npc_text CupHostTCGCup3Round3PlayerLostText
+	script_jump Script_TCGCupPlayerLost
+.opponent_eliminated
+	end_dialog
 	animate_active_npc_movement $01, $01
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text0969
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupPlayerWonOpponentEliminatedText
+	end_dialog
 	quit_script
-	ld a, VAR_2F
+	ld a, VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	push af
 	ld b, $10
 	ld hl, .NPCMovement_41ae0
@@ -3006,7 +3024,7 @@ Func_41a4d:
 	farcall ClearOWObject
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_41ae0:
 	db EAST, MOVE_1
@@ -3016,32 +3034,33 @@ Func_41a4d:
 	db NORTH, MOVE_5
 	db WEST, MOVE_1
 	db $ff
-.ows_41aea
-	set_var VAR_2B, $01
-	get_var VAR_2A
-	compare_loaded_var $0b
-	script_jump_if_b1z .ows_41af6
-	inc_var VAR_2A
-.ows_41af6
-	script_command_02
+.proceed_prize
+	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_WON
+	get_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE + 1
+	script_jump_if_b1z .skip_incr_win_count
+	inc_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
+.skip_incr_win_count
+	end_dialog
 	move_active_npc .NPCMovement_41b86
 	wait_for_player_animation
 	set_player_direction NORTH
-	script_command_01
-	get_var VAR_28
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_41b14
-	script_jump_if_b1z .ows_41b20
-	print_npc_text Text0983
+	start_dialog
+	get_var VAR_TCG_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .prize_cup2
+	script_jump_if_b1z .prize_cup3
+; prize cup1
+	print_npc_text CupHostTCGCup1ChampionPrizeText
 	give_card MEWTWO_LV30
 	show_card_received_screen MEWTWO_LV30
-	script_jump .ows_41b57
-.ows_41b14
-	print_npc_text Text0984
+	script_jump .check_win_count ; redundant, jumping to .skip_10times_prize should suffice
+.prize_cup2
+	print_npc_text CupHostTCGCup2ChampionPrizeText
 	give_card PIKACHU_LV13
 	show_card_received_screen PIKACHU_LV13
-	script_jump .ows_41b57
-.ows_41b20
+	script_jump .check_win_count ; redundant, jumping to .skip_10times_prize should suffice
+.prize_cup3
 	quit_script
 	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
@@ -3049,7 +3068,7 @@ Func_41a4d:
 	call LoadTxRam2
 	ld a, $01
 	start_script
-	print_npc_text Text0985
+	print_npc_text CupHostTCGCup3ChampionPrizeText
 	quit_script
 	ld a, VAR_TCG_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
@@ -3062,19 +3081,19 @@ Func_41a4d:
 	call WaitPalFading
 	ld a, $01
 	start_script
-.ows_41b57
-	get_var VAR_2A
-	compare_loaded_var $0a
-	script_jump_if_b0z .ows_41b6b
-	print_npc_text Text0986
+.check_win_count
+	get_var VAR_TIMES_WON_TCG_CHALLENGE_CUP
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE
+	script_jump_if_b0z .skip_10times_prize
+	print_npc_text CupHostTCGCup10TimesChampionRewards1Text
 	set_event EVENT_GOT_PONYTA_COIN
 	give_coin COIN_PONYTA
-	print_npc_text Text0987
-	script_jump .ows_41b6e
-.ows_41b6b
-	print_npc_text Text0988
-.ows_41b6e
-	script_command_02
+	print_npc_text CupHostTCGCup10TimesChampionRewards2Text
+	script_jump .exit
+.skip_10times_prize
+	print_npc_text CupHostTCGCupPlayerChampionCongratsText
+.exit
+	end_dialog
 	move_player .NPCMovement_41b8b, TRUE
 	wait_for_player_animation
 	move_player .NPCMovement_41b90, TRUE
@@ -3100,14 +3119,14 @@ Func_41a4d:
 	db EAST, MOVE_0
 	db $ff
 
-Script_41b98:
-	set_var VAR_2B, $02
-	script_command_02
+Script_TCGCupPlayerLost:
+	set_var VAR_TCG_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_LOST
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
-	print_npc_text Text0989
-	script_command_02
+	start_dialog
+	print_npc_text CupHostTCGCupPlayerLostEliminatedText
+	end_dialog
 	move_active_npc .NPCMovement_41bc0
 	move_player .NPCMovement_41bc5, TRUE
 	wait_for_player_animation
@@ -3134,18 +3153,20 @@ Script_41b98:
 	db EAST, MOVE_0
 	db $ff
 
-Func_41bd2:
-	ld a, VAR_28
+; clear carry if active
+; set carry if inactive
+CheckIfTCGCupIsActive:
+	ld a, VAR_TCG_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_41be6
-	cp $03
-	jr z, .asm_41be6
-	cp $06
-	jr z, .asm_41be6
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr z, .active
 	scf
 	ret
-.asm_41be6
+.active
 	scf
 	ccf
 	ret
@@ -3173,48 +3194,48 @@ GrAirport_NPCInteractions:
 	db $ff
 
 GrAirport_MapScripts:
-	dbw $00, Func_41c44
-	dbw $06, Func_41c50
-	dbw $08, Func_41ccb
-	dbw $07, Func_41c57
-	dbw $02, Func_41c60
-	dbw $0f, Func_41ca1
+	dbw OWMODE_IDLE, Func_41c44
+	dbw OWMODE_STEP_EVENT, Func_41c50
+	dbw OWMODE_INTERACT, Func_41ccb
+	dbw OWMODE_NPC_POSITION, Func_41c57
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_41c60
+	dbw OWMODE_WARP_END_SFX, Func_41ca1
 	db $ff
 
 Func_41c44:
 	call DoFrame
 	call Func_41db4
-	call Func_32d8
+	call HandleOverworldPlayerInput
 	scf
 	ccf
 	ret
 
 Func_41c50:
 	ld hl, GrAirport_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_41c57:
 	ld hl, GrAirport_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
 
 Func_41c60:
 	farcall ClearwD986
-	ld a, [wd584]
+	ld a, [wPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr nz, .asm_41c9f
-	ld a, $0a
-	ld [wd582], a
-	ld a, BANK(Func_41d64)
-	ld [wd592], a
-	ld hl, Func_41d64
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
+	ld a, BANK(Script_GR5_GRAirportLanded)
+	ld [wOverworldScriptBank], a
+	ld hl, Script_GR5_GRAirportLanded
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_GR_5
 	lb de, 5, 5
 	farcall SetOWObjectTilePosition
@@ -3230,7 +3251,7 @@ Func_41c60:
 	ret
 
 Func_41ca1:
-	ld a, [wd585]
+	ld a, [wTempPrevMap]
 	cp OVERWORLD_MAP_GR
 	jr z, .asm_41caa
 	scf
@@ -3267,16 +3288,16 @@ Func_41cd3:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	npc_ask_question Text0829, TRUE
-	script_jump_if_b0nz .ows_41cf5
-	print_npc_text Text082a
-	script_command_02
+	start_dialog
+	npc_ask_question GRAirportGR5FlightPromptText, TRUE
+	script_jump_if_b0nz .start_flight
+	print_npc_text GRAirportGR5DeclinedFlightText
+	end_dialog
 	end_script
 	ret
-.ows_41cf5
-	print_npc_text Text082b
-	script_command_02
+.start_flight
+	print_npc_text GRAirportGR5StartFlightText
+	end_dialog
 	get_player_direction
 	compare_loaded_var WEST
 	script_jump_if_b0nz .ows_41d0d
@@ -3308,7 +3329,7 @@ Func_41cd3:
 	ld a, OVERWORLD_MAP_GR
 	lb de, 0, 0
 	ld b, NORTH
-	farcall Func_d3c4
+	farcall SetWarpData
 	ret
 .NPCMovement_41d42:
 	db NORTH, MOVE_3
@@ -3337,7 +3358,7 @@ Func_41cd3:
 	db EAST, MOVE_2
 	db $ff
 
-Func_41d64:
+Script_GR5_GRAirportLanded:
 	xor a
 	start_script
 	do_frames 60
@@ -3346,27 +3367,27 @@ Func_41d64:
 	move_npc NPC_GR_5, .NPCMovement_41da0
 	wait_for_player_animation
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_41d94
+	script_jump_if_b0z .postgame
 	check_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-	script_jump_if_b0z .ows_41d88
+	script_jump_if_b0z .repeat
 	set_event EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-	script_command_01
-	print_npc_text Text082c
-	script_command_02
-	script_jump .ows_41d99
-.ows_41d88
+	start_dialog
+	print_npc_text GRAirportGR5LandedInitialText
+	end_dialog
+	script_jump .done
+.repeat
 	set_active_npc NPC_GR_5, DialogGR5Text
-	script_command_01
-	print_npc_text Text082d
-	script_command_02
-	script_jump .ows_41d99
-.ows_41d94
+	start_dialog
+	print_npc_text GRAirportGR5LandedRepeatText
+	end_dialog
+	script_jump .done
+.postgame
 	send_mail $0e
-	script_jump .ows_41d88
-.ows_41d99
+	script_jump .repeat
+.done
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	ret
 .NPCMovement_41da0:
 	db WEST, MOVE_1
@@ -3380,7 +3401,7 @@ Func_41d64:
 
 Func_41dac:
 	call Func_41db4
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
 Func_41db4:
@@ -3496,14 +3517,14 @@ SealedFort_OWInteractions:
 	db $ff
 
 SealedFort_MapScripts:
-	dbw $06, Func_41f14
-	dbw $08, Func_41f1b
-	dbw $09, Func_41f36
+	dbw OWMODE_STEP_EVENT, Func_41f14
+	dbw OWMODE_INTERACT, Func_41f1b
+	dbw OWMODE_AFTER_DUEL, Func_41f36
 	db $ff
 
 Func_41f14:
 	ld hl, SealedFort_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_41f1b:
@@ -3515,7 +3536,7 @@ Func_41f1b:
 	jr nz, .asm_41f34
 	farcall GetOWObjectTilePosition
 	ld hl, SealedFort_OWInteractions
-	call Func_3254
+	call ExecuteCoordScript
 .asm_41f34
 	scf
 	ret
@@ -3523,7 +3544,7 @@ Func_41f1b:
 Func_41f36:
 	ld hl, SealedFort_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -3555,9 +3576,9 @@ Func_41f66:
 	set_player_direction NORTH
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
 	script_jump_if_b0z .ows_41f8e
-	script_command_01
+	start_dialog
 	print_npc_text Text1088
-	script_command_02
+	end_dialog
 .ows_41f8e
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	scroll_to_position $02, $00
@@ -3574,7 +3595,7 @@ Func_41f66:
 	scroll_to_position $02, $02
 	wait_for_player_animation
 	scroll_to_player
-	script_command_01
+	start_dialog
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
 	script_jump_if_b0z .ows_41fc2
 	set_event EVENT_GHOST_MASTER_STATUES_STATE
@@ -3583,7 +3604,7 @@ Func_41f66:
 .ows_41fc2
 	print_npc_text Text108a
 .ows_41fc5
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
@@ -3594,7 +3615,7 @@ Func_41f66:
 	unload_npc NPC_TOBICHAN
 	end_script
 .asm_41fd9
-	farcall Func_c199
+	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_41fde:
 	db SOUTH, MOVE_1
@@ -3610,7 +3631,7 @@ Func_41fe1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogTobichanText
 	set_text_ram2b Text108b
 	print_text Text108c
@@ -3619,7 +3640,7 @@ Func_41fe1:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_42044
 	print_npc_text Text108e
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_42047, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOBICHAN, 6, 3, SOUTH
@@ -3631,7 +3652,7 @@ Func_41fe1:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_TOBICHAN
 	script_jump_if_b0z .ows_4203b
 	set_event EVENT_BATTLED_TOBICHAN
@@ -3640,12 +3661,12 @@ Func_41fe1:
 .ows_4203b
 	print_npc_text Text1090
 .ows_4203e
-	script_command_02
+	end_dialog
 	start_duel POISON_STORM_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42044
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_42047:
@@ -3658,7 +3679,7 @@ Func_41fe1:
 Func_42050:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_42066
 	print_npc_text Text1091
@@ -3668,7 +3689,7 @@ Func_42050:
 .ows_42066
 	print_npc_text Text1093
 .ows_42069
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $56
@@ -3690,7 +3711,7 @@ Func_4207e:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogEijiText
 	set_text_ram2b Text1094
 	print_text Text108c
@@ -3699,7 +3720,7 @@ Func_4207e:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_420e1
 	print_npc_text Text1095
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_420e4, TRUE
 	wait_for_player_animation
 	load_npc NPC_EIJI, 6, 3, SOUTH
@@ -3711,7 +3732,7 @@ Func_4207e:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_EIJI
 	script_jump_if_b0z .ows_420d8
 	set_event EVENT_BATTLED_EIJI
@@ -3720,12 +3741,12 @@ Func_4207e:
 .ows_420d8
 	print_npc_text Text1097
 .ows_420db
-	script_command_02
+	end_dialog
 	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_420e1
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_420e4:
@@ -3737,7 +3758,7 @@ Func_4207e:
 Func_420eb:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_42101
 	print_npc_text Text1098
@@ -3747,7 +3768,7 @@ Func_420eb:
 .ows_42101
 	print_npc_text Text109a
 .ows_42104
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $57
@@ -3769,7 +3790,7 @@ Func_42119:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogMagicianText
 	set_text_ram2b Text109b
 	print_text Text108c
@@ -3778,7 +3799,7 @@ Func_42119:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_4217c
 	print_npc_text Text109c
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_4217f, TRUE
 	wait_for_player_animation
 	load_npc NPC_MAGICIAN, 6, 3, SOUTH
@@ -3790,7 +3811,7 @@ Func_42119:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_MAGICIAN
 	script_jump_if_b0z .ows_42173
 	set_event EVENT_BATTLED_MAGICIAN
@@ -3799,12 +3820,12 @@ Func_42119:
 .ows_42173
 	print_npc_text Text109e
 .ows_42176
-	script_command_02
+	end_dialog
 	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4217c
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_4217f:
@@ -3816,7 +3837,7 @@ Func_42119:
 Func_42186:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_4219c
 	print_npc_text Text109f
@@ -3826,7 +3847,7 @@ Func_42186:
 .ows_4219c
 	print_npc_text Text10a1
 .ows_4219f
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $58
@@ -3848,7 +3869,7 @@ Func_421b4:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogToshironText
 	set_text_ram2b Text10a2
 	print_text Text108c
@@ -3857,7 +3878,7 @@ Func_421b4:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_42217
 	print_npc_text Text10a3
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_4221a, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOSHIRON, 6, 3, SOUTH
@@ -3869,7 +3890,7 @@ Func_421b4:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_TOSHIRON
 	script_jump_if_b0z .ows_4220e
 	set_event EVENT_BATTLED_TOSHIRON
@@ -3878,12 +3899,12 @@ Func_421b4:
 .ows_4220e
 	print_npc_text Text10a5
 .ows_42211
-	script_command_02
+	end_dialog
 	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42217
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_4221a:
@@ -3895,7 +3916,7 @@ Func_421b4:
 Func_42221:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_42237
 	print_npc_text Text10a6
@@ -3905,7 +3926,7 @@ Func_42221:
 .ows_42237
 	print_npc_text Text10a8
 .ows_4223a
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $59
@@ -3927,7 +3948,7 @@ Func_4224f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogPierrotText
 	set_text_ram2b Text10a9
 	print_text Text108c
@@ -3936,7 +3957,7 @@ Func_4224f:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_422b2
 	print_npc_text Text10aa
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_422b5, TRUE
 	wait_for_player_animation
 	load_npc NPC_PIERROT, 6, 3, SOUTH
@@ -3948,7 +3969,7 @@ Func_4224f:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_PIERROT
 	script_jump_if_b0z .ows_422a9
 	set_event EVENT_BATTLED_PIERROT
@@ -3957,12 +3978,12 @@ Func_4224f:
 .ows_422a9
 	print_npc_text Text10ac
 .ows_422ac
-	script_command_02
+	end_dialog
 	start_duel BLAZING_FLAME_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_422b2
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_422b5:
@@ -3975,7 +3996,7 @@ Func_4224f:
 Func_422be:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_422d4
 	print_npc_text Text10ad
@@ -3985,7 +4006,7 @@ Func_422be:
 .ows_422d4
 	print_npc_text Text10af
 .ows_422d7
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5a
@@ -4007,7 +4028,7 @@ Func_422ec:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogAnnaText
 	set_text_ram2b Text10b0
 	print_text Text108c
@@ -4016,7 +4037,7 @@ Func_422ec:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_4234f
 	print_npc_text Text10b1
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_42352, TRUE
 	wait_for_player_animation
 	load_npc NPC_ANNA, 6, 3, SOUTH
@@ -4028,7 +4049,7 @@ Func_422ec:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_ANNA
 	script_jump_if_b0z .ows_42346
 	set_event EVENT_BATTLED_ANNA
@@ -4037,12 +4058,12 @@ Func_422ec:
 .ows_42346
 	print_npc_text Text10b3
 .ows_42349
-	script_command_02
+	end_dialog
 	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_4234f
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_42352:
@@ -4054,7 +4075,7 @@ Func_422ec:
 Func_42359:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_4236f
 	print_npc_text Text10b4
@@ -4064,7 +4085,7 @@ Func_42359:
 .ows_4236f
 	print_npc_text Text10b6
 .ows_42372
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5b
@@ -4086,7 +4107,7 @@ Func_42387:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogDeeText
 	set_text_ram2b Text10b7
 	print_text Text108c
@@ -4095,7 +4116,7 @@ Func_42387:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_423ea
 	print_npc_text Text10b8
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_423ed, TRUE
 	wait_for_player_animation
 	load_npc NPC_DEE, 6, 3, SOUTH
@@ -4107,7 +4128,7 @@ Func_42387:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_DEE
 	script_jump_if_b0z .ows_423e1
 	set_event EVENT_BATTLED_DEE
@@ -4116,12 +4137,12 @@ Func_42387:
 .ows_423e1
 	print_npc_text Text10ba
 .ows_423e4
-	script_command_02
+	end_dialog
 	start_duel BIG_THUNDER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_423ea
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_423ed:
@@ -4134,7 +4155,7 @@ Func_42387:
 Func_423f6:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_4240c
 	print_npc_text Text10bb
@@ -4144,7 +4165,7 @@ Func_423f6:
 .ows_4240c
 	print_npc_text Text10bd
 .ows_4240f
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5c
@@ -4166,7 +4187,7 @@ Func_42424:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogMasqueradeText
 	set_text_ram2b Text10be
 	print_text Text108c
@@ -4175,7 +4196,7 @@ Func_42424:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_42487
 	print_npc_text Text10bf
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_4248a, TRUE
 	wait_for_player_animation
 	load_npc NPC_MASQUERADE, 6, 3, SOUTH
@@ -4187,7 +4208,7 @@ Func_42424:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_MASQUERADE
 	script_jump_if_b0z .ows_4247e
 	set_event EVENT_BATTLED_MASQUERADE
@@ -4196,12 +4217,12 @@ Func_42424:
 .ows_4247e
 	print_npc_text Text10c1
 .ows_42481
-	script_command_02
+	end_dialog
 	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42487
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_4248a:
@@ -4213,7 +4234,7 @@ Func_42424:
 Func_42491:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_424a7
 	print_npc_text Text10c2
@@ -4223,7 +4244,7 @@ Func_42491:
 .ows_424a7
 	print_npc_text Text10c4
 .ows_424aa
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $5d
@@ -4245,7 +4266,7 @@ Func_424bf:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_text_ram2 DialogYuiText
 	set_text_ram2b Text10c5
 	print_text Text108c
@@ -4254,7 +4275,7 @@ Func_424bf:
 	ask_question Text108d, TRUE
 	script_jump_if_b0z .ows_42522
 	print_npc_text Text10c6
-	script_command_02
+	end_dialog
 	move_player .NPCMovement_42525, TRUE
 	wait_for_player_animation
 	load_npc NPC_YUI, 6, 3, SOUTH
@@ -4266,7 +4287,7 @@ Func_424bf:
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_BATTLED_YUI
 	script_jump_if_b0z .ows_42519
 	set_event EVENT_BATTLED_YUI
@@ -4275,12 +4296,12 @@ Func_424bf:
 .ows_42519
 	print_npc_text Text10c8
 .ows_4251c
-	script_command_02
+	end_dialog
 	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
 .ows_42522
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .NPCMovement_42525:
@@ -4292,7 +4313,7 @@ Func_424bf:
 Func_4252c:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_42542
 	print_npc_text Text10c9
@@ -4302,7 +4323,7 @@ Func_4252c:
 .ows_42542
 	print_npc_text Text10cb
 .ows_42545
-	script_command_02
+	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
 	ld a, $b0
@@ -4366,100 +4387,101 @@ GrChallengeHall_StepEvents:
 	db $ff
 
 GrChallengeHall_NPCs:
-	npc NPC_CUP_HOST, 7, 2, SOUTH, Func_4294a
-	npc NPC_GR_CUP_CLERK_LEFT, 4, 8, SOUTH, Func_4294a
-	npc NPC_GR_CUP_CLERK_RIGHT, 11, 8, SOUTH, Func_4294a
-	npc NPC_GR_STAFF, 8, 6, NORTH, Func_4299f
+	npc NPC_CUP_HOST, 7, 2, SOUTH, GrChallengeHall_AppearDuringGRCups
+	npc NPC_GR_CUP_CLERK_LEFT, 4, 8, SOUTH, GrChallengeHall_AppearDuringGRCups
+	npc NPC_GR_CUP_CLERK_RIGHT, 11, 8, SOUTH, GrChallengeHall_AppearDuringGRCups
+	npc NPC_GR_STAFF, 8, 6, NORTH, GrChallengeHall_DisappearDuringGRCups
 	db $ff
 
 GrChallengeHall_NPCInteractions:
-	npc_script NPC_GR_CUP_CLERK_LEFT, Func_4288d
-	npc_script NPC_GR_CUP_CLERK_RIGHT, Func_4292f
-	npc_script NPC_GR_STAFF, Func_42961
+	npc_script NPC_GR_CUP_CLERK_LEFT, Script_GRCupClerkLeft
+	npc_script NPC_GR_CUP_CLERK_RIGHT, Script_GRCupClerkRight
+	npc_script NPC_GR_STAFF, Script_GRChallengeMachineStaff
 	db $ff
 
 GrChallengeHall_OWInteractions:
-	ow_script 7, 3, Func_4271f
-	ow_script 8, 3, Func_4271f
+	ow_script 7, 3, Script_GRChallengeMachine
+	ow_script 8, 3, Script_GRChallengeMachine
 	db $ff
 
 GrChallengeHall_MapScripts:
-	dbw $06, Func_42639
-	dbw $08, Func_426b9
-	dbw $09, Func_426d6
-	dbw $11, Func_426c9
-	dbw $07, Func_42640
-	dbw $02, Func_4266e
-	dbw $01, Func_42649
-	dbw $0b, Func_426f8
+	dbw OWMODE_STEP_EVENT, Func_42639
+	dbw OWMODE_INTERACT, Func_426b9
+	dbw OWMODE_AFTER_DUEL, Func_426d6
+	dbw OWMODE_AFTER_DUEL_PRELOAD, Func_426c9
+	dbw OWMODE_NPC_POSITION, Func_42640
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_4266e
+	dbw OWMODE_MUSIC_PRELOAD, Func_42649
+	dbw OWMODE_CONTINUE_OW, Func_426f8
 	db $ff
 
 Func_42639:
 	ld hl, GrChallengeHall_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42640:
 	ld hl, GrChallengeHall_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
 
 Func_42649:
-	ld a, VAR_30
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_4265f
-	cp $03
-	jr z, .asm_4265f
-	cp $05
-	jr z, .asm_42666
-	jr nc, .asm_4265f
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_UNLOCKED
+	jr z, .inactive_has_machine
+	jr nc, .active
 	scf
 	ret
-.asm_4265f
+.active
 	ld a, MUSIC_GR_CHALLENGE_CUP
 	ld [wNextMusic], a
-	jr .asm_4266b
-.asm_42666
-	ld a, $75
-	ld [wCurMapGfx], a
-.asm_4266b
+	jr .done
+.inactive_has_machine
+	ld a, MAP_GFX_GR_CHALLENGE_HALL_2
+	ld [wNextMapGfx], a
+.done
 	scf
 	ccf
 	ret
 
 Func_4266e:
-	call Func_42e14
-	jr nc, .asm_4268a
-	ld a, VAR_30
+	call CheckIfGRCupIsActive
+	jr nc, .active
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $05
-	jr nz, .asm_426b7
+	cp CHALLENGE_CUP_3_UNLOCKED
+	jr nz, .done
+; has machine and staff
 	ld a, NPC_GR_STAFF
 	lb de, 9, 3
 	ld b, SOUTH
 	farcall SetOWObjectTilePositionAndDirection
-	jr .asm_426b7
-.asm_4268a
-	ld a, VAR_30
+	jr .done
+.active
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $06
-	jr nz, .asm_4269e
+	cp CHALLENGE_CUP_3_START
+	jr nz, .set_opponents_draw_round1
 	ld bc, TILEMAP_057
 	lb de, 5, 0
 	farcall Func_12c0ce
-.asm_4269e
-	ld a, $01
-	farcall Func_45301
-	ld a, VAR_2D
+.set_opponents_draw_round1
+	ld a, GR_ISLAND
+	farcall SetChallengeCupOpponents
+	ld a, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	lb de, 9, 4
 	ld b, WEST
 	farcall LoadOWObjectInMap
-.asm_426b7
+.done
 	scf
 	ret
 
@@ -4488,14 +4510,14 @@ Func_426d6:
 	ld a, EVENT_EB
 	farcall GetEventValue
 	jr nz, .asm_426ef
-	ld a, VAR_2C
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $02
-	jp c, Func_42a1b
-	jp z, Func_42aee
-	jp Func_42bb7
+	cp 2
+	jp c, Script_GRCupRound1AfterDuel
+	jp z, Script_GRCupRound2AfterDuel
+	jp Script_GRCupRound3AfterDuel
 .asm_426ef
-	farcall Func_ec6c
+	farcall LoadChallengeMachineSave
 	call Func_42776
 	scf
 	ret
@@ -4507,7 +4529,7 @@ Func_426f8:
 	scf
 	ret
 .asm_42702
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_4270c
 	scf
 	ccf
@@ -4518,182 +4540,185 @@ Func_4270c:
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	set_active_npc_position 9, 2
-	get_var VAR_2C
-	compare_loaded_var $02
-	script_jump_if_b0nz Script_42aae
-	script_jump Script_42b81
+	get_var VAR_CHALLENGECUP_CURRENT_ROUND
+	compare_loaded_var 2
+	script_jump_if_b0nz Script_GRCupRound2Start
+	script_jump Script_GRCupRound3Start
 
-Func_4271f:
+Script_GRChallengeMachine:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	ret z
-	farcall Func_ebc6
-	jr nc, .asm_4273a
-	farcall Func_eb39
+	farcall ValidateChallengeMachineSaveData
+	jr nc, .no_error
+	farcall InitChallengeMachine
 	xor a
 	start_script
-	script_command_01
-	print_text Text0f06
-	script_command_02
+	start_dialog
+	print_text ChallengeMachineWinStreakRecordCorruptedAndResetText
+	end_dialog
 	end_script
-.asm_4273a
-	farcall Func_ec6c
-	ld a, $01
-	farcall Func_ef40
-	farcall Func_efd0
-	ld a, $01
-	ld bc, $0
-	farcall Func_135ec
-	jr c, .asm_42763
+.no_error
+	farcall LoadChallengeMachineSave
+	ld a, GR_ISLAND
+	farcall SetChallengeMachineOpponents
+	farcall LoadChallengeMachineOpponentTitlesAndNames
+	ld a, GR_ISLAND
+	lb bc, 0, 0
+	farcall ChallengeMachine
+	jr c, .quit
 	xor a
 	start_script
 	set_event EVENT_EB
-	set_var VAR_34, $01
+	set_var VAR_CHALLENGEMACHINE_CURRENT_ROUND, 1
 	end_script
-	farcall Func_eff7
-	jr .asm_42775
-.asm_42763
+	farcall SetChallengeMachineDuelParams
+	jr .done
+.quit
 	or a
-	jr z, .asm_42775
-	ld bc, $0
+	jr z, .done
+	ld bc, 0
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
-	farcall Func_ec38
-.asm_42775
+	ld [wGRChallengeMachineCurWinStreak + 1], a
+	farcall SaveChallengeMachine
+.done
 	ret
 
 Func_42776:
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
-	jp z, .asm_427f2
-	ld a, [wde13]
+	jp z, .quit
+	ld a, [wGRChallengeMachineCurWinStreak]
 	ld c, a
-	ld a, [wde13 + 1]
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_4279c
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_wins
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
-.asm_4279c
-	ld a, VAR_34
+	ld [wGRChallengeMachineCurWinStreak + 1], a
+.skip_incr_wins
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
-	cp $05
-	jr z, .asm_427c7
+	cp NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
+	jr z, .finished_set
 	ld b, a
-	ld a, $01
-	ld c, $01
-	farcall Func_135ec
-	jp c, .asm_42801
-	ld a, VAR_34
+	ld a, GR_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_WIN
+	farcall ChallengeMachine
+	jp c, .withdrew
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	ld d, a
 	farcall GetVarValue
 	inc a
 	ld c, a
 	ld a, d
 	farcall SetVarValue
-	farcall Func_eff7
-	jp .asm_42819
-.asm_427c7
-	ld a, [wde0f]
+	farcall SetChallengeMachineDuelParams
+	jp .done
+
+.finished_set
+	ld a, [wGRChallengeMachineSetsWonRecord]
 	ld c, a
-	ld a, [wde0f + 1]
+	ld a, [wGRChallengeMachineSetsWonRecord + 1]
 	ld b, a
 	inc bc
-	cp16bc_long 1000
-	jr nc, .asm_427e4
+	cp16bc_long MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD + 1
+	jr nc, .skip_incr_record
 	ld a, c
-	ld [wde0f], a
+	ld [wGRChallengeMachineSetsWonRecord], a
 	ld a, b
-	ld [wde0f + 1], a
-.asm_427e4
-	call Func_42833
-	ld a, $01
-	ld bc, $501
-	farcall Func_135ec
-	jr .asm_4281a
-.asm_427f2
-	ld a, VAR_34
+	ld [wGRChallengeMachineSetsWonRecord + 1], a
+.skip_incr_record
+	call .CheckWinStreakRecord
+	ld a, GR_ISLAND
+	lb bc, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET, CHALLENGE_MACHINE_DUEL_WIN
+	farcall ChallengeMachine
+	jr .check_50winstreak_prize
+
+.quit
+	ld a, VAR_CHALLENGEMACHINE_CURRENT_ROUND
 	farcall GetVarValue
 	ld b, a
-	ld a, $01
-	ld c, $02
-	farcall Func_135ec
-.asm_42801
-	call Func_42833
-	ld bc, $0
+	ld a, GR_ISLAND
+	ld c, CHALLENGE_MACHINE_DUEL_LOSS_OR_QUIT
+	farcall ChallengeMachine
+.withdrew
+	call .CheckWinStreakRecord
+	ld bc, 0
 	ld a, c
-	ld [wde13], a
+	ld [wGRChallengeMachineCurWinStreak], a
 	ld a, b
-	ld [wde13 + 1], a
-.asm_4280f
+	ld [wGRChallengeMachineCurWinStreak + 1], a
+.exit
 	ld a, EVENT_EB
 	farcall ZeroOutEventValue
-	farcall Func_ec38
-.asm_42819
+	farcall SaveChallengeMachine
+.done
 	ret
-.asm_4281a
-	ld a, [wde13]
-	ld e, a
-	ld a, [wde13 + 1]
-	ld d, a
-	cp16_long 50
-	jr nz, .asm_4280f
-	call Func_4286c
-	jr .asm_4280f
 
-Func_42833:
-	ld a, [wde13]
-	ld c, a
-	ld a, [wde13 + 1]
-	ld b, a
-	ld a, [wde17]
+.check_50winstreak_prize
+	ld a, [wGRChallengeMachineCurWinStreak]
 	ld e, a
-	ld a, [wde17 + 1]
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
+	ld d, a
+	cp16_long NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE
+	jr nz, .exit
+	call Script_GRChallengeMachineStaff_50WinStreak
+	jr .exit
+
+.CheckWinStreakRecord:
+	ld a, [wGRChallengeMachineCurWinStreak]
+	ld c, a
+	ld a, [wGRChallengeMachineCurWinStreak + 1]
+	ld b, a
+	ld a, [wGRChallengeMachineWinStreakRecord]
+	ld e, a
+	ld a, [wGRChallengeMachineWinStreakRecord + 1]
 	ld d, a
 	cp16bc_long de
-	jr nc, .asm_4284f
+	jr nc, .new_record
 	scf
 	ret
-.asm_4284f
+.new_record
 	ld a, c
-	ld [wde17], a
+	ld [wGRChallengeMachineWinStreakRecord], a
 	ld a, b
-	ld [wde17 + 1], a
+	ld [wGRChallengeMachineWinStreakRecord + 1], a
 	call EnableSRAM
 	ld hl, sPlayerName
-	ld de, wde29
-	ld bc, $10
+	ld de, wGRChallengeMachinePlayerName
+	ld bc, NAME_BUFFER_LENGTH
 	call CopyDataHLtoDE_SaveRegisters
 	call DisableSRAM
 	scf
 	ccf
 	ret
 
-Func_4286c:
+Script_GRChallengeMachineStaff_50WinStreak:
 	xor a
 	start_script
 	check_event EVENT_GOT_GENGAR_COIN
-	script_jump_if_b0z .ows_4288b
+	script_jump_if_b0z .done
 	set_event EVENT_GOT_GENGAR_COIN
 	set_active_npc NPC_GR_STAFF, DialogStaffText
 	set_active_npc_direction WEST
 	set_player_direction EAST
-	script_command_01
-	print_npc_text Text0de9
+	start_dialog
+	print_npc_text GRChallengeMachineStaff50WinStreakRewards1Text
 	give_coin COIN_GENGAR
-	print_npc_text Text0dea
-	script_command_02
+	print_npc_text GRChallengeMachineStaff50WinStreakRewards2Text
+	end_dialog
 	set_active_npc_direction SOUTH
-.ows_4288b
+.done
 	end_script
 	ret
 
-Func_4288d:
+Script_GRCupClerkLeft:
 	ld a, NPC_GR_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -4703,61 +4728,63 @@ Func_4288d:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	get_var VAR_33
-	compare_loaded_var $01
-	script_jump_if_b0nz .ows_428d7
-	script_jump_if_b1z .ows_428f3
-	get_var VAR_30
-	compare_loaded_var $06
-	script_jump_if_b0nz .ows_428c4
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_428be
-	print_npc_text Text0deb
-	script_jump .ows_428f9
-.ows_428be
-	print_npc_text Text0dec
-	script_jump .ows_428f9
-.ows_428c4
+	start_dialog
+	get_var VAR_GR_CHALLENGE_CUP_RESULT
+	compare_loaded_var CHALLENGE_CUP_RESULT_WON
+	script_jump_if_b0nz .won
+	script_jump_if_b1z .lost
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
+	script_jump_if_b0nz .cup3
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .cup2
+; cup1
+	print_npc_text GRCupClerkCup1ActiveText
+	script_jump .enter_prompt
+.cup2
+	print_npc_text GRCupClerkCup2ActiveText
+	script_jump .enter_prompt
+.cup3
 	quit_script
 	farcall GetGRChallengeCupPrizeCardName
 	call LoadTxRam2
 	ld a, $01
 	start_script
-	print_npc_text Text0ded
-	script_jump .ows_428f9
-.ows_428d7
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b1z .ows_428ed
-	script_jump_if_b0nz .ows_428e7
-	print_npc_text Text0dee
-	script_jump .ows_4291a
-.ows_428e7
-	print_npc_text Text0def
-	script_jump .ows_4291a
-.ows_428ed
-	print_npc_text Text0df0
-	script_jump .ows_4291a
-.ows_428f3
-	print_npc_text Text0df1
-	script_jump .ows_4291a
-.ows_428f9
-	ask_question Text0df2, TRUE
-	script_jump_if_b0z .ows_42917
-	print_npc_text Text0df3
-	script_command_02
+	print_npc_text GRCupClerkCup3ActiveText
+	script_jump .enter_prompt
+.won
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b1z .won_cup3
+	script_jump_if_b0nz .won_cup2
+; won cup1
+	print_npc_text GRCupClerkCup1PlayerWonText
+	script_jump .done
+.won_cup2
+	print_npc_text GRCupClerkCup2PlayerWonText
+	script_jump .done
+.won_cup3
+	print_npc_text GRCupClerkCup3PlayerWonText
+	script_jump .done
+.lost
+	print_npc_text GRCupClerkPlayerLostText
+	script_jump .done
+.enter_prompt
+	ask_question GRCupClerkEnterPromptText, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text GRCupClerkEnterAcceptedText
+	end_dialog
 	move_active_npc .NPCMovement_4291d
 	move_player .NPCMovement_42927, TRUE
 	wait_for_player_animation
 	move_active_npc .NPCMovement_42922
 	move_player .NPCMovement_4292a, TRUE
 	wait_for_player_animation
-	script_jump Script_429b6
-.ows_42917
-	print_npc_text Text0df4
-.ows_4291a
-	script_command_02
+	script_jump Script_GRCupRound1Start
+.declined
+	print_npc_text GRCupClerkEnterDeclinedText
+.done
+	end_dialog
 	end_script
 	ret
 .NPCMovement_4291d:
@@ -4776,7 +4803,7 @@ Func_4288d:
 	db EAST, MOVE_2
 	db $ff
 
-Func_4292f:
+Script_GRCupClerkRight:
 	ld a, NPC_GR_CUP_CLERK_RIGHT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -4786,29 +4813,29 @@ Func_4292f:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
-	print_npc_text Text0df5
-	script_command_02
+	start_dialog
+	print_npc_text GRCupClerkRightNoEntryText
+	end_dialog
 	end_script
 	ret
 
-Func_4294a:
-	ld a, VAR_30
+GrChallengeHall_AppearDuringGRCups:
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_4295e
-	cp $03
-	jr z, .asm_4295e
-	cp $06
-	jr z, .asm_4295e
+	cp CHALLENGE_CUP_1_START
+	jr z, .appear
+	cp CHALLENGE_CUP_2_START
+	jr z, .appear
+	cp CHALLENGE_CUP_3_START
+	jr z, .appear
 	scf
 	ret
-.asm_4295e
+.appear
 	scf
 	ccf
 	ret
 
-Func_42961:
+Script_GRChallengeMachineStaff:
 	ld a, NPC_GR_STAFF
 	ld [wScriptNPC], a
 	ldtx hl, DialogStaffText
@@ -4818,337 +4845,349 @@ Func_42961:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_GOT_GENGAR_COIN
-	script_jump_if_b0z .ows_42999
+	script_jump_if_b0z .has_gengar_coin
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_42993
+	script_jump_if_b0z .has_machine
 	check_event EVENT_C5
-	script_jump_if_b0z .ows_4298d
+	script_jump_if_b0z .no_machine_repeat
+; no machine initial
 	set_event EVENT_C5
-	print_npc_text Text0df6
-	script_jump .ows_4299c
-.ows_4298d
-	print_npc_text Text0df7
-	script_jump .ows_4299c
-.ows_42993
-	print_npc_text Text0df8
-	script_jump .ows_4299c
-.ows_42999
-	print_npc_text Text0df9
-.ows_4299c
-	script_command_02
+	print_npc_text GRChallengeMachineStaffUnderConstructionInitialText
+	script_jump .done
+.no_machine_repeat
+	print_npc_text GRChallengeMachineStaffUnderConstructionRepeatText
+	script_jump .done
+.has_machine
+	print_npc_text GRChallengeMachineStaffWelcomeText
+	script_jump .done
+.has_gengar_coin
+	print_npc_text GRChallengeMachineStaffWelcome50WinStreakDoneText
+.done
+	end_dialog
 	end_script
 	ret
 
-Func_4299f:
-	ld a, VAR_30
+GrChallengeHall_DisappearDuringGRCups:
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_429b4
-	cp $03
-	jr z, .asm_429b4
-	cp $06
-	jr z, .asm_429b4
+	cp CHALLENGE_CUP_1_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_2_START
+	jr z, .disappear
+	cp CHALLENGE_CUP_3_START
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_429b4
+.disappear
 	scf
 	ret
 
-Script_429b6:
-	set_var VAR_2C, $00
-	script_jump .ows_429bc
-.ows_429bc
-	set_var VAR_2C, $01
+Script_GRCupRound1Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 0
+	script_jump .round1
+.round1
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 1
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
-	script_command_01
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_429ec
-	script_jump_if_b1z .ows_42a00
-	print_npc_text Text0dfa
+	start_dialog
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .cup2
+	script_jump_if_b1z .cup3
+; cup1
+	print_npc_text CupHostGRCup1IntroText
 	script_call Script_42d1a
-	print_npc_text Text0dfb
+	print_npc_text CupHostGRCup1Round1ChallengerText
 	script_call Script_42d2d
-	print_npc_text Text0dfc
-	script_jump .ows_42a14
-.ows_429ec
-	print_npc_text Text0dfd
+	print_npc_text CupHostGRCup1Round1DuelStartText
+	script_jump .start_duel
+.cup2
+	print_npc_text CupHostGRCup2IntroText
 	script_call Script_42d1a
-	print_npc_text Text0dfe
+	print_npc_text CupHostGRCup2Round1ChallengerText
 	script_call Script_42d2d
-	print_npc_text Text0dfc
-	script_jump .ows_42a14
-.ows_42a00
-	print_npc_text Text0dff
+	print_npc_text CupHostGRCup1Round1DuelStartText
+	script_jump .start_duel
+.cup3
+	print_npc_text CupHostGRCup3IntroText
 	script_call Script_42d1a
-	print_npc_text Text0e00
+	print_npc_text CupHostGRCup3Round1ChallengerText
 	script_call Script_42d2d
-	print_npc_text Text0e01
-	script_jump .ows_42a14
-.ows_42a14
-	script_command_02
+	print_npc_text CupHostGRCup3Round1DuelStartText
+	script_jump .start_duel
+.start_duel
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 
-Func_42a1b:
+Script_GRCupRound1AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42a75
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42a4d
-	script_jump_if_b1z .ows_42a61
-	print_npc_text Text0e02
+	script_jump_if_b0nz .lost_round1
+; won round1
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round1
+	script_jump_if_b1z .won_cup3_round1
+; won cup1 round1, identical to cup2
+	print_npc_text CupHostGRCup1Or2Round1PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e03
-	script_call Script_42d40
-	print_npc_text Text0e04
-	script_jump .ows_42aa6
-.ows_42a4d
-	print_npc_text Text0e02
+	print_npc_text CupHostGRCup1Or2Round1PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round1NextChallengerText
+	script_jump .proceed
+.won_cup2_round1
+	print_npc_text CupHostGRCup1Or2Round1PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e03
-	script_call Script_42d40
-	print_npc_text Text0e04
-	script_jump .ows_42aa6
-.ows_42a61
-	print_npc_text Text0e05
+	print_npc_text CupHostGRCup1Or2Round1PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round1NextChallengerText
+	script_jump .proceed
+.won_cup3_round1
+	print_npc_text CupHostGRCup3Round1PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e06
-	script_call Script_42d40
-	print_npc_text Text0e07
-	script_jump .ows_42aa6
-.ows_42a75
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42a8c
-	script_jump_if_b1z .ows_42a99
-	print_npc_text Text0e08
+	print_npc_text CupHostGRCup3Round1PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup3Round1NextChallengerText
+	script_jump .proceed
+.lost_round1
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .lost_cup2_round1
+	script_jump_if_b1z .lost_cup3_round1
+; lost cup1 round1, identical to cup2
+	print_npc_text CupHostGRCup1Or2Round1PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e09
-	script_jump Script_42cea
-.ows_42a8c
-	print_npc_text Text0e08
+	print_npc_text CupHostGRCup1Or2Round1PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup2_round1
+	print_npc_text CupHostGRCup1Or2Round1PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e09
-	script_jump Script_42cea
-.ows_42a99
-	print_npc_text Text0e0a
+	print_npc_text CupHostGRCup1Or2Round1PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup3_round1
+	print_npc_text CupHostGRCup3Round1PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e0b
-	script_jump Script_42cea
-.ows_42aa6
-	script_call Script_42dad
-	script_command_02
-	script_jump Script_42aae
+	print_npc_text CupHostGRCup3Round1PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.proceed
+	script_call Script_GRCupNewChallenger
+	end_dialog
+	script_jump Script_GRCupRound2Start
 
-Script_42aae:
-	set_var VAR_2C, $02
+Script_GRCupRound2Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 2
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
-	script_command_01
-	print_npc_text Text0e0c
+	start_dialog
+	print_npc_text CupHostGRCupRound2ChallengerText
 	script_call Script_42d35
-	get_var VAR_30
-	compare_loaded_var $06
-	script_jump_if_b0z .ows_42acd
-	print_npc_text Text0e0d
-.ows_42acd
-	print_npc_text Text0e0e
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_3_START
+	script_jump_if_b0z .loop_prep
+	print_npc_text CupHostGRCupRound2The4PrizesMatchText
+.loop_prep
+	print_npc_text CupHostGRCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_42ae4
-	print_npc_text Text0e0f
-	script_command_02
+	script_jump_if_b0z .start_duel
+	print_npc_text CupHostGRCupMakeYourPreparationsText
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
-	script_jump .ows_42acd
-.ows_42ae4
-	print_npc_text Text0e10
-	script_command_02
+	start_dialog
+	script_jump .loop_prep
+.start_duel
+	print_npc_text CupHostGRCupRound2DuelStartText
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 
-Func_42aee:
+Script_GRCupRound2AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42b48
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42b20
-	script_jump_if_b1z .ows_42b34
-	print_npc_text Text0e11
+	script_jump_if_b0nz .lost_round2
+; won round2
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round2
+	script_jump_if_b1z .won_cup3_round2
+; won cup1 round2
+	print_npc_text CupHostGRCup1Round2PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e13
-	script_jump .ows_42b79
-.ows_42b20
-	print_npc_text Text0e14
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round2NextChallengerText
+	script_jump .proceed
+.won_cup2_round2
+	print_npc_text CupHostGRCup2Round2PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e13
-	script_jump .ows_42b79
-.ows_42b34
-	print_npc_text Text0e15
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round2NextChallengerText
+	script_jump .proceed
+.won_cup3_round2
+	print_npc_text CupHostGRCup3Round2PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e16
-	script_jump .ows_42b79
-.ows_42b48
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42b5f
-	script_jump_if_b1z .ows_42b6c
-	print_npc_text Text0e17
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup3Round2NextChallengerText
+	script_jump .proceed
+.lost_round2
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .lost_cup2_round2
+	script_jump_if_b1z .lost_cup3_round2
+; lost cup1 round2, identical to cup2
+	print_npc_text CupHostGRCup1Or2Round2PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e18
-	script_jump Script_42cea
-.ows_42b5f
-	print_npc_text Text0e17
+	print_npc_text CupHostGRCup1Or2Round2PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup2_round2
+	print_npc_text CupHostGRCup1Or2Round2PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e18
-	script_jump Script_42cea
-.ows_42b6c
-	print_npc_text Text0e19
+	print_npc_text CupHostGRCup1Or2Round2PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup3_round2
+	print_npc_text CupHostGRCup3Round2PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e1a
-	script_jump Script_42cea
-.ows_42b79
-	script_call Script_42dad
-	script_command_02
-	script_jump Script_42b81
+	print_npc_text CupHostGRCup3Round2PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.proceed
+	script_call Script_GRCupNewChallenger
+	end_dialog
+	script_jump Script_GRCupRound3Start
 
-Script_42b81:
-	set_var VAR_2C, $03
+Script_GRCupRound3Start:
+	set_var VAR_CHALLENGECUP_CURRENT_ROUND, 3
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
-	script_command_01
-	print_npc_text Text0e1b
+	start_dialog
+	print_npc_text CupHostGRCupRound3ChallengerText
 	script_call Script_42d35
-.ows_42b96
-	print_npc_text Text0e0e
+.loop_prep
+	print_npc_text CupHostGRCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_42bad
-	print_npc_text Text0e0f
-	script_command_02
+	script_jump_if_b0z .start_duel
+	print_npc_text CupHostGRCupMakeYourPreparationsText
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
-	script_jump .ows_42b96
-.ows_42bad
-	print_npc_text Text0e1c
-	script_command_02
+	start_dialog
+	script_jump .loop_prep
+.start_duel
+	print_npc_text CupHostGRCupRound3DuelStartText
+	end_dialog
 	end_script
-	farcall Func_453f9
+	farcall SetChallengeCupDuelParams
 	ret
 
-Func_42bb7:
+Script_GRCupRound3AfterDuel:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	quit_script
-	farcall Func_453ce
+	farcall LoadChallengeCupOpponentName
 	ld a, $01
 	start_script
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42c11
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42be9
-	script_jump_if_b1z .ows_42bfd
-	print_npc_text Text0e1d
+	script_jump_if_b0nz .lost_round3
+; won round3
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .won_cup2_round3
+	script_jump_if_b1z .won_cup3_round3
+; won cup1 round3, identical to cup2
+	print_npc_text CupHostGRCup1Or2Round3PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e1e
-	script_jump .ows_42c42
-.ows_42be9
-	print_npc_text Text0e1d
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round3PlayerChampionText
+	script_jump .proceed_prize
+.won_cup2_round3
+	print_npc_text CupHostGRCup1Or2Round3PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e1e
-	script_jump .ows_42c42
-.ows_42bfd
-	print_npc_text Text0e1f
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup1Or2Round3PlayerChampionText
+	script_jump .proceed_prize
+.won_cup3_round3
+	print_npc_text CupHostGRCup3Round3PlayerWonText
 	script_call Script_42d22
-	print_npc_text Text0e12
-	script_call Script_42d40
-	print_npc_text Text0e20
-	script_jump .ows_42c42
-.ows_42c11
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42c28
-	script_jump_if_b1z .ows_42c35
-	print_npc_text Text0e21
+	print_npc_text CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText
+	script_call Script_GRCupOpponentEliminated
+	print_npc_text CupHostGRCup3Round3PlayerChampionText
+	script_jump .proceed_prize
+.lost_round3
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .lost_cup2_round3
+	script_jump_if_b1z .lost_cup3_round3
+; lost cup1 round3, identical to cup2
+	print_npc_text CupHostGRCup1Or2Round3PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e22
-	script_jump Script_42cea
-.ows_42c28
-	print_npc_text Text0e21
+	print_npc_text CupHostGRCup1Or2Round3PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup2_round3
+	print_npc_text CupHostGRCup1Or2Round3PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e22
-	script_jump Script_42cea
-.ows_42c35
-	print_npc_text Text0e23
+	print_npc_text CupHostGRCup1Or2Round3PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.lost_cup3_round3
+	print_npc_text CupHostGRCup3Round3PlayerLostText
 	script_call Script_42d1a
-	print_npc_text Text0e24
-	script_jump Script_42cea
-.ows_42c42
-	set_var VAR_33, $01
-	script_command_02
+	print_npc_text CupHostGRCup3Round3PlayerLostEliminatedText
+	script_jump Script_GRCupPlayerLost
+.proceed_prize
+	set_var VAR_GR_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_WON
+	end_dialog
 	move_active_npc .NPCMovement_42cd8
 	wait_for_player_animation
 	set_player_direction NORTH
-	script_command_01
-	get_var VAR_30
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_42c60
-	script_jump_if_b1z .ows_42c69
-	print_npc_text Text0e25
+	start_dialog
+	get_var VAR_GR_CHALLENGE_CUP_STATE
+	compare_loaded_var CHALLENGE_CUP_2_START
+	script_jump_if_b0nz .prize_cup2
+	script_jump_if_b1z .prize_cup3
+; prize cup1
+	print_npc_text CupHostGRCup1ChampionPrizeText
 	receive_card DARK_PERSIAN_ALT_LV28
-	script_jump .ows_42cbd
-.ows_42c60
-	print_npc_text Text0e26
+	script_jump .skip_10times_prize
+.prize_cup2
+	print_npc_text CupHostGRCup2ChampionPrizeText
 	receive_card BILLS_COMPUTER
-	script_jump .ows_42ca9
-.ows_42c69
-	get_var VAR_32
-	compare_loaded_var $0b
-	script_jump_if_b1z .ows_42c72
-	inc_var VAR_32
-.ows_42c72
+	script_jump .check_win_count ; redundant, jumping to .skip_10times_prize should suffice
+.prize_cup3
+	get_var VAR_TIMES_WON_GR_CHALLENGE_CUP
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE + 1
+	script_jump_if_b1z .skip_incr_win_count
+	inc_var VAR_TIMES_WON_GR_CHALLENGE_CUP
+.skip_incr_win_count
 	quit_script
 	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
@@ -5156,7 +5195,7 @@ Func_42bb7:
 	call LoadTxRam2
 	ld a, $01
 	start_script
-	print_npc_text Text0e27
+	print_npc_text CupHostGRCup3ChampionPrizeText
 	quit_script
 	ld a, VAR_GR_CHALLENGE_CUP_PRIZE_INDEX
 	farcall GetVarValue
@@ -5169,19 +5208,19 @@ Func_42bb7:
 	call WaitPalFading
 	ld a, $01
 	start_script
-.ows_42ca9
-	get_var VAR_32
-	compare_loaded_var $0a
-	script_jump_if_b0z .ows_42cbd
-	print_npc_text Text0e28
+.check_win_count
+	get_var VAR_TIMES_WON_GR_CHALLENGE_CUP
+	compare_loaded_var NUM_CHALLENGE_CUP_WINS_FOR_COIN_PRIZE
+	script_jump_if_b0z .skip_10times_prize
+	print_npc_text CupHostGRCup10TimesChampionRewards1Text
 	set_event EVENT_GOT_HORSEA_COIN
 	give_coin COIN_HORSEA
-	print_npc_text Text0e29
-	script_jump .ows_42cc0
-.ows_42cbd
-	print_npc_text Text0e2a
-.ows_42cc0
-	script_command_02
+	print_npc_text CupHostGRCup10TimesChampionRewards2Text
+	script_jump .exit
+.skip_10times_prize
+	print_npc_text CupHostGRCupPlayerChampionCongratsText
+.exit
+	end_dialog
 	move_player .NPCMovement_42cdd, TRUE
 	wait_for_player_animation
 	move_player .NPCMovement_42ce2, TRUE
@@ -5207,9 +5246,9 @@ Func_42bb7:
 	db WEST, MOVE_0
 	db $ff
 
-Script_42cea:
-	set_var VAR_33, $02
-	script_command_02
+Script_GRCupPlayerLost:
+	set_var VAR_GR_CHALLENGE_CUP_RESULT, CHALLENGE_CUP_RESULT_LOST
+	end_dialog
 	move_active_npc .NPCMovement_42d08
 	move_player .NPCMovement_42d0d, TRUE
 	wait_for_player_animation
@@ -5237,50 +5276,50 @@ Script_42cea:
 	db $ff
 
 Script_42d1a:
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	script_ret
 
 Script_42d22:
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $01, $01
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	script_ret
 
 Script_42d2d:
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	script_ret
 
 Script_42d35:
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $03, $01
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	script_ret
 
-Script_42d40:
-	script_command_02
+Script_GRCupOpponentEliminated:
+	end_dialog
 	quit_script
-	ld a, VAR_2C
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
-	ld c, $2d
-	cp $02
-	jr c, .asm_42d54
-	ld c, $2e
-	jr z, .asm_42d54
-	ld c, $2f
-.asm_42d54
+	ld c, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
+	cp 2
+	jr c, .got_opponent
+	ld c, VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
+	jr z, .got_opponent
+	ld c, VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
+.got_opponent
 	ld a, c
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	push af
 	ld b, $10
 	ld hl, .NPCMovement_42d9b
@@ -5304,7 +5343,7 @@ Script_42d40:
 	call Func_3340
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
 .NPCMovement_42d9b:
 	db EAST, MOVE_2
@@ -5322,74 +5361,72 @@ Script_42d40:
 	db SOUTH, MOVE_0
 	db $ff
 
-Script_42dad:
-	script_command_02
+Script_GRCupNewChallenger:
+	end_dialog
 	quit_script
-	ld a, VAR_2C
+	ld a, VAR_CHALLENGECUP_CURRENT_ROUND
 	farcall GetVarValue
-	ld c, $2e
-	cp $02
-	jr c, .asm_42dbd
-	ld c, $2f
-.asm_42dbd
+	ld c, VAR_CHALLENGECUP_ROUND2_OPPONENT_DECK_ID
+	cp 2
+	jr c, .got_opponent
+	ld c, VAR_CHALLENGECUP_ROUND3_OPPONENT_DECK_ID
+.got_opponent
 	ld a, c
 	farcall GetVarValue
-	farcall Func_453c3
+	farcall GetNPCByDeck_AdjustAmy
 	push af
 	ld b, NORTH
 	lb de, 11, 10
 	farcall LoadOWObjectInMap
 	ld b, $10
-	ld hl, .Data_42e02
+	ld hl, .NPCMovement_42e02
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld hl, .Data_42e0a
+	ld hl, .NPCMovement_42e0a
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	ld b, $10
-	ld hl, .Data_42e05
+	ld hl, .NPCMovement_42e05
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld hl, .Data_42e0f
+	ld hl, .NPCMovement_42e0f
 	farcall MoveNPC
 	call Func_3340
 	ld a, $01
 	start_script
-	script_command_01
+	start_dialog
 	script_ret
-
-.Data_42e02:
+.NPCMovement_42e02:
 	db NORTH, MOVE_3
 	db $ff
-
-.Data_42e05:
+.NPCMovement_42e05:
 	db NORTH, MOVE_3
 	db WEST, MOVE_2
 	db $ff
-
-.Data_42e0a:
+.NPCMovement_42e0a:
 	db WEST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
-
-.Data_42e0f:
+.NPCMovement_42e0f:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_0
 	db $ff
 
-Func_42e14:
-	ld a, VAR_30
+; clear carry if active
+; set carry if inactive
+CheckIfGRCupIsActive:
+	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
-	cp $01
-	jr z, .asm_42e28
-	cp $03
-	jr z, .asm_42e28
-	cp $06
-	jr z, .asm_42e28
+	cp CHALLENGE_CUP_1_START
+	jr z, .active
+	cp CHALLENGE_CUP_2_START
+	jr z, .active
+	cp CHALLENGE_CUP_3_START
+	jr z, .active
 	scf
 	ret
-.asm_42e28
+.active
 	scf
 	ccf
 	ret
@@ -5409,13 +5446,13 @@ FightingFortMaze1_StepEvents:
 	db $ff
 
 FightingFortMaze1_MapScripts:
-	dbw $06, Func_42e6e
-	dbw $02, Func_42e75
+	dbw OWMODE_STEP_EVENT, Func_42e6e
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42e75
 	db $ff
 
 Func_42e6e:
 	ld hl, FightingFortMaze1_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42e75:
@@ -5440,13 +5477,13 @@ FightingFortMaze21_StepEvents:
 	db $ff
 
 FightingFortMaze21_MapScripts:
-	dbw $06, Func_42ec3
-	dbw $02, Func_42eca
+	dbw OWMODE_STEP_EVENT, Func_42ec3
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42eca
 	db $ff
 
 Func_42ec3:
 	ld hl, FightingFortMaze21_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42eca:
@@ -5481,24 +5518,24 @@ GrCastleBiruritchi_OWInteractions:
 	db $ff
 
 GrCastleBiruritchi_MapScripts:
-	dbw $06, Func_42f2e
-	dbw $08, Func_42fad
-	dbw $09, Func_42fbd
-	dbw $07, Func_42f35
-	dbw $02, Func_42f3e
-	dbw $0b, Func_42fcd
-	dbw $04, Func_42f86
-	dbw $0f, Func_42fa1
+	dbw OWMODE_STEP_EVENT, Func_42f2e
+	dbw OWMODE_INTERACT, Func_42fad
+	dbw OWMODE_AFTER_DUEL, Func_42fbd
+	dbw OWMODE_NPC_POSITION, Func_42f35
+	dbw OWMODE_WARP_FADE_IN_PRELOAD, Func_42f3e
+	dbw OWMODE_CONTINUE_OW, Func_42fcd
+	dbw OWMODE_WARP_FADE_OUT_PRELOAD, Func_42f86
+	dbw OWMODE_WARP_END_SFX, Func_42fa1
 	db $ff
 
 Func_42f2e:
 	ld hl, GrCastleBiruritchi_StepEvents
-	call Func_324d
+	call ExecutePlayerCoordScript
 	ret
 
 Func_42f35:
 	ld hl, GrCastleBiruritchi_NPCs
-	call Func_3205
+	call LoadNPCs
 	scf
 	ccf
 	ret
@@ -5507,15 +5544,15 @@ Func_42f3e:
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	farcall GetEventValue
 	jr nz, .asm_42f84
-	ld a, $0a
-	ld [wd582], a
+	ld a, OWMODE_SCRIPT
+	ld [wOverworldMode], a
 	ld a, BANK(Func_43050)
-	ld [wd592], a
+	ld [wOverworldScriptBank], a
 	ld hl, Func_43050
 	ld a, l
-	ld [wd593], a
+	ld [wOverworldScriptPointer], a
 	ld a, h
-	ld [wd593 + 1], a
+	ld [wOverworldScriptPointer + 1], a
 	ld a, NPC_BIRURITCHI
 	lb de, 7, 2
 	farcall SetOWObjectTilePosition
@@ -5535,8 +5572,8 @@ Func_42f3e:
 	ret
 
 Func_42f86:
-	ld a, [wd54c]
-	cp $05
+	ld a, [wNextGameEvent]
+	cp GAME_EVENT_CREDITS
 	jr z, .asm_42f8f
 	scf
 	ret
@@ -5551,8 +5588,8 @@ Func_42f86:
 	ret
 
 Func_42fa1:
-	ld a, [wd54c]
-	cp $05
+	ld a, [wNextGameEvent]
+	cp GAME_EVENT_CREDITS
 	jr z, .asm_42faa
 	scf
 	ret
@@ -5574,7 +5611,7 @@ Func_42fad:
 Func_42fbd:
 	ld hl, GrCastleBiruritchi_AfterDuelScripts
 	ld a, [wScriptNPC]
-	call Func_344c
+	call ExecuteNPCScript
 	scf
 	ret
 
@@ -5589,7 +5626,7 @@ Func_42fcd:
 	scf
 	ret
 .asm_42fd7
-	farcall Func_c18f
+	farcall OverworldResumeWithCurSong
 	call Func_42fe1
 	scf
 	ccf
@@ -5605,7 +5642,7 @@ Func_42fe1:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0nz Script_4324b
@@ -5614,7 +5651,7 @@ Func_42fe1:
 Script_43000:
 	send_mail $0c
 	play_song_next MUSIC_HALL_OF_HONOR
-	script_command_02
+	end_dialog
 	print_npc_text Text0927
 	set_event EVENT_GOT_TOGEPI_COIN
 	give_coin COIN_TOGEPI
@@ -5636,18 +5673,18 @@ Script_43000:
 	reset_event EVENT_ENTERED_GRAND_MASTER_CUP
 	set_var VAR_0B, $01
 	var_add VAR_27, $05
-	set_var VAR_28, $05
-	set_var VAR_30, $05
+	set_var VAR_TCG_CHALLENGE_CUP_STATE, CHALLENGE_CUP_3_UNLOCKED
+	set_var VAR_GR_CHALLENGE_CUP_STATE, CHALLENGE_CUP_3_UNLOCKED
 	script_call Script_43333
 	print_npc_text Text0929
 	script_jump Script_43044
 
 Script_43044:
 	end_script
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 0, [hl]
-	ld a, $05
-	ld [wd54c], a
+	ld a, GAME_EVENT_CREDITS
+	ld [wNextGameEvent], a
 	ret
 
 Func_43050:
@@ -5661,67 +5698,67 @@ Func_43050:
 	move_npc NPC_RUI, .NPCMovement_43113
 	wait_for_player_animation
 	do_frames 30
-	script_command_01
+	start_dialog
 	set_active_npc NPC_KANZAKI, DialogKanzakiText
 	print_npc_text Text092a
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $82, $01
-	script_command_01
+	start_dialog
 	set_active_npc NPC_RUI, DialogRuiText
 	print_npc_text Text092b
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $82, $01
-	script_command_01
+	start_dialog
 	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
 	print_npc_text Text092c
-	script_command_02
+	end_dialog
 	set_active_npc NPC_KANZAKI, DialogKanzakiText
 	animate_active_npc_movement $00, $01
 	set_active_npc_direction WEST
-	script_command_01
+	start_dialog
 	print_npc_text Text092d
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_4311a
 	wait_for_player_animation
 	set_active_npc NPC_RUI, DialogRuiText
 	animate_active_npc_movement $00, $01
 	set_active_npc_direction EAST
-	script_command_01
+	start_dialog
 	print_npc_text Text092e
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_4311f
 	wait_for_player_animation
 	unload_npc NPC_KANZAKI
 	unload_npc NPC_RUI
 	set_active_npc NPC_BIRURITCHI, DialogBiruritchiText
 	animate_active_npc_movement $02, $01
-	script_command_01
+	start_dialog
 	print_npc_text Text092f
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $01, $01
-	script_command_01
+	start_dialog
 	print_npc_text Text0930
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $03, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0931
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $03, $01
-	script_command_01
+	start_dialog
 	print_npc_text Text0932
-	script_command_02
+	end_dialog
 	animate_active_npc_movement $01, $01
 	set_active_npc_direction SOUTH
-	script_command_01
+	start_dialog
 	print_npc_text Text0933
-	script_command_02
+	end_dialog
 	move_active_npc .NPCMovement_4312d
 	move_player .NPCMovement_43124, TRUE
 	wait_for_player_animation
 	end_script
-	ld a, $00
-	ld [wd582], a
+	ld a, OWMODE_IDLE
+	ld [wOverworldMode], a
 	jp Func_43136
 .NPCMovement_430f4:
 	db NORTH, MOVE_6
@@ -5779,7 +5816,7 @@ Func_43136:
 	ld [wScriptNPCName + 1], a
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	set_var VAR_08, $00
 	set_var VAR_09, $00
 	set_var VAR_0A, $00
@@ -5797,11 +5834,11 @@ Func_43136:
 	script_jump_if_b0z .ows_4317b
 	script_call Script_4336b
 	print_npc_text Text0937
-	script_command_02
+	end_dialog
 	script_jump Script_431ca
 .ows_4317b
 	print_npc_text Text0938
-	script_command_02
+	end_dialog
 	end_script
 	ret
 .ows_43181
@@ -5810,7 +5847,7 @@ Func_43136:
 	script_jump_if_b0z .ows_43196
 	script_call Script_4336b
 	print_npc_text Text093a
-	script_command_02
+	end_dialog
 	script_jump Script_431ca
 .ows_43196
 	print_npc_text Text093b
@@ -5819,14 +5856,14 @@ Func_43136:
 	script_jump_if_b0z .ows_431a3
 	print_npc_text Text093c
 .ows_431a3
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Func_431a6:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_431b5
 	inc_var VAR_0A
@@ -5841,9 +5878,9 @@ Func_431a6:
 Func_431bf:
 	xor a
 	start_script
-	script_command_01
+	start_dialog
 	print_text BiruritchiStatueCaptionText
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -5943,16 +5980,16 @@ Script_4324b:
 .ows_43285
 	ask_question ChangeDeckPromptText, FALSE
 	script_jump_if_b0z .ows_43299
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	print_npc_text Text0941
 	script_jump .ows_43285
 .ows_43299
 	print_npc_text Text0942
-	script_command_02
+	end_dialog
 	script_jump Script_431ca
 
 Script_432a0:
@@ -5983,27 +6020,27 @@ Script_432a0:
 .ows_432da
 	ask_question ChangeDeckPromptText, FALSE
 	script_jump_if_b0z .ows_432ee
-	script_command_02
+	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_58
+	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	script_command_01
+	start_dialog
 	print_npc_text Text0946
 	script_jump .ows_432da
 .ows_432ee
 	print_npc_text Text0947
-	script_command_02
+	end_dialog
 	script_jump Script_431ca
 
 Script_432f5:
 	print_npc_text Text0948
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
 Script_432fb:
 	play_song_next MUSIC_HALL_OF_HONOR
-	script_command_02
+	end_dialog
 	get_var VAR_0B
 	compare_loaded_var $01
 	script_jump_if_b0z .ows_4331a
@@ -6024,7 +6061,7 @@ Script_432fb:
 
 Script_4332d:
 	print_npc_text Text094d
-	script_command_02
+	end_dialog
 	end_script
 	ret
 
@@ -6034,19 +6071,19 @@ Script_43333:
 	ld a, $01
 	ld [sClearedGame], a
 	call DisableSRAM
-	ld hl, wd583
+	ld hl, wOverworldTransition
 	set 6, [hl]
 	ld a, MAP_MASON_LABORATORY_MAIN
 	lb de, 1, 2
 	ld b, NORTH
-	farcall Func_d3c4
-	ld a, $00
+	farcall SetWarpData
+	ld a, OWMAP_MASON_LABORATORY
 	ld [wCurOWLocation], a
-	ld a, $00
+	ld a, TCG_ISLAND
 	ld [wCurIsland], a
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-	farcall Func_ea30
+	farcall _SaveGame
 	ld a, $01
 	start_script
 	play_sfx SFX_SAVE_GAME
@@ -6056,7 +6093,7 @@ Script_4336b:
 	get_player_y_position
 	compare_loaded_var $08
 	script_jump_if_b0nz .ows_43393
-	script_command_02
+	end_dialog
 	set_active_npc_direction SOUTH
 	get_player_direction
 	compare_loaded_var EAST
@@ -6072,7 +6109,7 @@ Script_4336b:
 	move_player .NPCMovement_433a6, TRUE
 .ows_43391
 	wait_for_player_animation
-	script_command_01
+	start_dialog
 .ows_43393
 	script_ret
 .NPCMovement_43394:

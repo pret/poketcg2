@@ -14,6 +14,28 @@ from constants import songs
 import configuration
 from tcg2disasm import Disassembler
 
+script_types = [
+	"OWMODE_IDLE",
+	"OWMODE_MUSIC_PRELOAD",
+	"OWMODE_WARP_FADE_IN_PRELOAD",
+	"OWMODE_WARP_INTERVAL",
+	"OWMODE_WARP_FADE_OUT_PRELOAD",
+	"OWMODE_MOVE",
+	"OWMODE_STEP_EVENT",
+	"OWMODE_NPC_POSITION",
+	"OWMODE_INTERACT",
+	"OWMODE_AFTER_DUEL",
+	"OWMODE_SCRIPT",
+	"OWMODE_CONTINUE_OW",
+	"OWMODE_SAVE_PRELOAD",
+	"OWMODE_SAVE_POSTLOAD",
+	"OWMODE_CONTINUE_DUEL",
+	"OWMODE_WARP_END_SFX",
+	"OWMODE_MUSIC_POSTLOAD",
+	"OWMODE_AFTER_DUEL_PRELOAD",
+	"OWMODE_PAUSE_MENU"
+]
+
 args = None
 rom = None
 
@@ -105,7 +127,7 @@ def dump_stepevents(function_address, map_name_camelcase):
 	blobs = []
 	# the functions should always have:
 	# <ld hl, xxx_StepEvents>
-	# <call Func_324d>
+	# <call ExecutePlayerCoordScript>
 	temp = function_address
 	while rom[temp] != 0xc9: # ret
 		if rom[temp] == 0x21 and rom[temp+3] == 0xcd and rom[temp+4] == 0x4d and rom[temp+5] == 0x32:
@@ -271,7 +293,7 @@ def dump_owinteractions(function_address, map_name_camelcase):
 	# the functions should always have:
 	# <ld hl, xxx_OWInteractions>
 	# <call Func_32bf>
-	# Only the two SealedFort maps instead have: <call Func_3254>
+	# Only the two SealedFort maps instead have: <call ExecuteCoordScript>
 	table_start_address = None
 	temp = function_address
 	while rom[temp] != 0xc9: # ret
@@ -317,10 +339,10 @@ def dump_mapscripts_table(address, map_name_camelcase):
 		raw_ptr = rom[address+1] + (rom[address+2])*0x100
 
 		if args.function_labels:
-			output += "\tdbw ${:02x}, Func_{:x}\n".format(script_type, function_ptr)
+			output += "\tdbw {}, Func_{:x}\n".format(script_types[script_type], function_ptr)
 			blobs += dump_function(function_ptr)
 		else:
-			output += "\tdbw ${:02x}, ${:04x}\n".format(script_type, raw_ptr)
+			output += "\tdbw {}, ${:04x}\n".format(script_types[script_type], raw_ptr)
 
 		if script_type == 6:
 			blobs += dump_stepevents(function_ptr, map_name_camelcase)

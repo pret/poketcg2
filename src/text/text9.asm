@@ -220,7 +220,7 @@ Text0de8:
 	linefw "いって やられてしまえ!"
 	done
 
-Text0de9:
+GRChallengeMachineStaff50WinStreakRewards1Text:
 	textfw "おめでとー!"
 	linefw "50れんしょう たっせいよ!!"
 	linefw "きねんのコインを あげるわ"
@@ -229,14 +229,14 @@ Text0de9:
 	linefw "たいせつにしてね"
 	done
 
-Text0dea:
+GRChallengeMachineStaff50WinStreakRewards2Text:
 	textfw "50れんしょう おめでとう!"
 	linefw " "
 	linefw "どんどん れんしょうきろくを"
 	linefw "のばしてね!!"
 	done
 
-Text0deb:
+GRCupClerkCup1ActiveText:
 	textfw "ただいま 「GR団杯」を"
 	linefw "かいさいしています"
 	linefw "さんにんに 勝つと"
@@ -249,7 +249,7 @@ Text0deb:
 	linefw "チャレンジしてみませんか?"
 	done
 
-Text0dec:
+GRCupClerkCup2ActiveText:
 	textfw "ただいま GR団杯を"
 	linefw "かいさい中です!"
 	linefw "GR団メンバー さんにんに 勝って"
@@ -262,7 +262,7 @@ Text0dec:
 	linefw "なりませんか?"
 	done
 
-Text0ded:
+GRCupClerkCup3ActiveText:
 	textfw "ただいま GR団のキング"
 	linefw "ビルリッチさまの こうにん大会"
 	linefw "GR団 「キング杯」が"
@@ -279,75 +279,75 @@ Text0ded:
 	linefw "なりませんか?"
 	done
 
-Text0dee:
+GRCupClerkCup1PlayerWonText:
 	textfw "チャレンジに せいこうしたかたは"
 	linefw "チャレンジできない きまりなんです"
 	linefw "つぎの 「GR団杯」まで"
 	linefw "チャレンジは まってくださいね"
 	done
 
-Text0def:
+GRCupClerkCup2PlayerWonText:
 	textfw "チャレンジに せいこうしたかたは"
 	linefw "チャレンジできない きまりなんです"
 	done
 
-Text0df0:
+GRCupClerkCup3PlayerWonText:
 	textfw "チャレンジに せいこうしたかたは"
 	linefw "チャレンジできない オキテなんです"
 	linefw "つぎの 「キング杯」まで"
 	linefw "チャレンジは まってくださいね"
 	done
 
-Text0df1:
+GRCupClerkPlayerLostText:
 	textfw "1かい チャレンジされた人は"
 	linefw "しばらく チャレンジできないんです"
 	linefw "しばらくしてから"
 	linefw "また きてくださいね"
 	done
 
-Text0df2:
+GRCupClerkEnterPromptText:
 	textfw "チャレンジャーに なりますか?"
 	done
 
-Text0df3:
+GRCupClerkEnterAcceptedText:
 	textfw "それでは"
 	linefw "ステージへ どうぞ!"
 	done
 
-Text0df4:
+GRCupClerkEnterDeclinedText:
 	textfw "そうですか ざんねんですね"
 	linefw "どうぞ また おこしください"
 	done
 
-Text0df5:
+GRCupClerkRightNoEntryText:
 	textfw "こちらでは チャレンジャーは"
 	linefw "うけつけて おりません"
 	linefw "むかって ひだりのひとに"
 	linefw "はなしかけて ください"
 	done
 
-Text0df6:
+GRChallengeMachineStaffUnderConstructionInitialText:
 	textfw "えっ? あたしが ここで"
 	linefw "なにを してるのかって?"
 	linefw "たのまれて しごとをしてるのよ"
 	linefw "だ・か・ら じゃましないでね"
 	done
 
-Text0df7:
+GRChallengeMachineStaffUnderConstructionRepeatText:
 	textfw "ここに ステキなマシンを"
 	linefw "セットするのよ"
 	linefw "いまは どこにセットするか"
 	linefw "かんがえている ところなのよ"
 	done
 
-Text0df8:
+GRChallengeMachineStaffWelcomeText:
 	textfw "GR団のチャレンジマシンよ"
 	linefw "むこうのと ちがうから あそんでみて"
 	linefw "50れんしょうしたら"
 	linefw "めずらしいコインを あげるわ"
 	done
 
-Text0df9:
+GRChallengeMachineStaffWelcome50WinStreakDoneText:
 	textfw "こんにちはー"
 	linefw "ちょうしは どう?"
 	linefw "あなたが れんしょうきろくを"
@@ -355,7 +355,7 @@ Text0df9:
 	linefw "チャレンジ がんばってね!"
 	done
 
-Text0dfa:
+CupHostGRCup1IntroText:
 	textfw "さあ ヒートアップしてきました"
 	linefw "スリルまんてんの GR団杯!"
 	linefw "げんざい 勝ちのこっているのは"
@@ -364,19 +364,19 @@ Text0dfa:
 	linefw "むかえます! そのあいては・・・"
 	done
 
-Text0dfb:
+CupHostGRCup1Round1ChallengerText:
 	textfw "GR団と たたかっている"
 	linefw "<RAMNAME>さんのとうじょうです!!"
 	done
 
-Text0dfc:
+CupHostGRCup1Round1DuelStartText:
 	textfw "よろしいですか?"
 	linefw "サイドカードは 4枚です!"
 	linefw "さあ!!"
 	linefw "対戦の スタートです!"
 	done
 
-Text0dfd:
+CupHostGRCup2IntroText:
 	textfw "しれつな 対戦が"
 	linefw "くりひろげられる GR団杯!"
 	linefw "げんざい 勝ちのこっているのは"
@@ -385,12 +385,12 @@ Text0dfd:
 	linefw "むかえます! そのあいては・・・"
 	done
 
-Text0dfe:
+CupHostGRCup2Round1ChallengerText:
 	textfw "GR団と たたかっている"
 	linefw "<RAMNAME>さんのとうじょうです!!"
 	done
 
-Text0dff:
+CupHostGRCup3IntroText:
 	textfw "GR団キング ビルリッチさまの"
 	linefw "カード大会 「キング杯」!"
 	linefw "いやがうえにも"
@@ -399,41 +399,41 @@ Text0dff:
 	linefw "<RAMTEXT>さん!"
 	done
 
-Text0e00:
+CupHostGRCup3Round1ChallengerText:
 	textfw "ここで むかえるチャレンジャーは"
 	linefw "とくべつ さんかのかたです!"
 	linefw "ポケモンカードマスター"
 	linefw "<RAMNAME>さんです!!"
 	done
 
-Text0e01:
+CupHostGRCup3Round1DuelStartText:
 	textfw "じゅんびは よろしいですか?"
 	linefw "まずは サイドカード4枚戦です!"
 	linefw "さあ!!"
 	linefw "対戦を はじめてください!"
 	done
 
-Text0e02:
+CupHostGRCup1Or2Round1PlayerWonText:
 	textfw "勝ったのは・・・"
 	linefw "<RAMNAME>さんです!"
 	linefw "<RAMNAME>さん!"
 	linefw "ひとり 勝ちぬきです!!"
 	done
 
-Text0e03:
+CupHostGRCup1Or2Round1PlayerWonOpponentEliminatedText:
 	textfw "まけた <RAMTEXT>さん"
 	linefw "ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0e04:
+CupHostGRCup1Or2Round1NextChallengerText:
 	textfw "さあ つぎの対戦を"
 	linefw "はじめたいと おもいます!!"
 	linefw "つぎの チャレンジャーさん"
 	linefw "ステージに あがってください!"
 	done
 
-Text0e05:
+CupHostGRCup3Round1PlayerWonText:
 	textfw "<RAMNAME>さん 勝ちました!"
 	linefw "さすが ポケモンカードマスター"
 	linefw "スゴイ!!"
@@ -442,31 +442,31 @@ Text0e05:
 	linefw "ひとり 勝ちぬきです!!"
 	done
 
-Text0e06:
+CupHostGRCup3Round1PlayerWonOpponentEliminatedText:
 	textfw "<RAMTEXT>さんは ざんねんでした"
 	linefw "どうぞ おかえりください"
 	done
 
-Text0e07:
+CupHostGRCup3Round1NextChallengerText:
 	textfw "つぎのGR団員さん!"
 	linefw "ステージに どうぞ!"
 	done
 
-Text0e08:
+CupHostGRCup1Or2Round1PlayerLostText:
 	textfw "勝ったのは・・・"
 	linefw "<RAMTEXT>さんでーす!!"
 	linefw "<RAMTEXT>さんは ふたり 勝ちぬき!"
 	linefw "あとひとりで カードかくとくです!"
 	done
 
-Text0e09:
+CupHostGRCup1Or2Round1PlayerLostEliminatedText:
 	textfw "まけた <RAMNAME>さん"
 	linefw "ざんねんでした!"
 	linefw "かいだんを おりて"
 	linefw "おかえりください"
 	done
 
-Text0e0a:
+CupHostGRCup3Round1PlayerLostText:
 	textfw "なんと! ポケモンカードマスター"
 	linefw "<RAMNAME>さん やぶれました!"
 	linefw "<RAMTEXT>さんが"
@@ -475,48 +475,48 @@ Text0e0a:
 	linefw "あと ひとりで カードゲット!"
 	done
 
-Text0e0b:
+CupHostGRCup3Round1PlayerLostEliminatedText:
 	textfw "まけた<RAMNAME>さんは"
 	linefw "おひきとりください"
 	done
 
-Text0e0c:
+CupHostGRCupRound2ChallengerText:
 	textfw "あらたな チャレンジャーは"
 	linefw "<RAMTEXT>さんです!"
 	done
 
-Text0e0d:
+CupHostGRCupRound2The4PrizesMatchText:
 	textfw "こんどの対戦も"
 	linefw "サイドカード 4枚です"
 	done
 
-Text0e0e:
+CupHostGRCupAreYourDecksReadyText:
 	textfw "ふたりとも"
 	linefw "デッキのじゅんびは いいですか?"
 	done
 
-Text0e0f:
+CupHostGRCupMakeYourPreparationsText:
 	textfw "それでは"
 	linefw "じゅんびを してください!"
 	done
 
-Text0e10:
+CupHostGRCupRound2DuelStartText:
 	textfw "それでは <RAMNAME>さん!"
 	linefw "ふたりめの対戦! スタート!"
 	done
 
-Text0e11:
+CupHostGRCup1Round2PlayerWonText:
 	textfw "やりました! <RAMNAME>さん!"
 	linefw "みごとに ふたり 勝ちぬき!!"
 	linefw "ゆうしょうまで あと ひとりです!"
 	done
 
-Text0e12:
+CupHostGRCupRound2Or3PlayerWonOpponentEliminatedText:
 	textfw "<RAMTEXT>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0e13:
+CupHostGRCup1Or2Round2NextChallengerText:
 	textfw "さあ <RAMNAME>さんの"
 	linefw "さいごの対戦になるのか・・それとも"
 	linefw "つぎのチャレンジャーさんが"
@@ -525,40 +525,41 @@ Text0e13:
 	linefw "あがってきて ください"
 	done
 
-Text0e14:
+; just a space in CupHostGRCup1Round2PlayerWonText replaced by a linebreak
+CupHostGRCup2Round2PlayerWonText:
 	textfw "やりました! <RAMNAME>さん"
 	linefw "みごとに ふたり 勝ちぬき!!"
 	linefw "ゆうしょうまで"
 	linefw "あと ひとりです!"
 	done
 
-Text0e15:
+CupHostGRCup3Round2PlayerWonText:
 	textfw "やりました <RAMNAME>さん!"
 	linefw "ふたり 勝ちぬきです!!"
 	linefw "つぎの対戦に 勝てば"
 	linefw "ゆうしょうです!"
 	done
 
-Text0e16:
+CupHostGRCup3Round2NextChallengerText:
 	textfw "これからの 対戦は"
 	linefw "サイドカード 6枚です!"
 	linefw "さあ GR団のどなたが"
 	linefw "対戦するのでしょうか?"
 	done
 
-Text0e17:
+CupHostGRCup1Or2Round2PlayerLostText:
 	textfw "<RAMTEXT>さんの勝ちです!"
 	linefw " "
 	linefw "<RAMTEXT>さん ひとり 勝ちぬき!"
 	linefw "あとふたりで ゆうしょうです!"
 	done
 
-Text0e18:
+CupHostGRCup1Or2Round2PlayerLostEliminatedText:
 	textfw "<RAMNAME>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0e19:
+CupHostGRCup3Round2PlayerLostText:
 	textfw "<RAMTEXT>さんが 勝ちました!"
 	linefw " "
 	linefw "ポケモンカードマスターを"
@@ -567,46 +568,46 @@ Text0e19:
 	linefw "あと ふたりで ゆうしょうです!"
 	done
 
-Text0e1a:
+CupHostGRCup3Round2PlayerLostEliminatedText:
 	textfw "やぶれた <RAMNAME>さんは"
 	linefw "ざんねんでした"
 	linefw "そちらの かいだんから"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0e1b:
+CupHostGRCupRound3ChallengerText:
 	textfw "あらたな チャレンジャーは"
 	linefw "<RAMTEXT>さんです!"
 	done
 
-Text0e1c:
+CupHostGRCupRound3DuelStartText:
 	textfw "それでは <RAMNAME>さん!"
 	linefw "さんにんめの対戦! スタート!"
 	done
 
-Text0e1d:
+CupHostGRCup1Or2Round3PlayerWonText:
 	textfw "おめでとうございます!"
 	linefw "ついに さんにん勝ちぬきです!"
 	done
 
-Text0e1e:
+CupHostGRCup1Or2Round3PlayerChampionText:
 	textfw "GR団杯の ゆうしょうしゃは"
 	linefw "<RAMNAME>さんです!"
 	done
 
-Text0e1f:
+CupHostGRCup3Round3PlayerWonText:
 	textfw "おめでとうございます!"
 	linefw "れんぞく さんにん勝ちぬきです!"
 	done
 
-Text0e20:
+CupHostGRCup3Round3PlayerChampionText:
 	textfw "さあ こんかいの「キング杯」の"
 	linefw "ゆうしょうは"
 	linefw "ポケモンカードマスター"
 	linefw "<RAMNAME>さんです!!"
 	done
 
-Text0e21:
+CupHostGRCup1Or2Round3PlayerLostText:
 	textfw "<RAMTEXT>さんの勝ちです!"
 	linefw " "
 	linefw "<RAMNAME>さんの ゆうしょうを"
@@ -615,12 +616,12 @@ Text0e21:
 	linefw "あとふたりで ゆうしょうです!"
 	done
 
-Text0e22:
+CupHostGRCup1Or2Round3PlayerLostEliminatedText:
 	textfw "<RAMNAME>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0e23:
+CupHostGRCup3Round3PlayerLostText:
 	textfw "あー ざんねん!"
 	linefw "<RAMNAME>さん はいぼくです!!"
 	linefw "<RAMTEXT>さんの勝ちです!"
@@ -628,27 +629,27 @@ Text0e23:
 	linefw "あとふたりで ゆうしょうです!"
 	done
 
-Text0e24:
+CupHostGRCup3Round3PlayerLostEliminatedText:
 	textfw "<RAMNAME>さん"
 	linefw "おかえりください"
 	done
 
-Text0e25:
+CupHostGRCup1ChampionPrizeText:
 	textfw "それでは <RAMNAME>さん!"
 	linefw "「わるいペルシアン」を どうぞ!"
 	done
 
-Text0e26:
+CupHostGRCup2ChampionPrizeText:
 	textfw "それでは <RAMNAME>さん!"
 	linefw "「マサキのパソコン」を どうぞ!"
 	done
 
-Text0e27:
+CupHostGRCup3ChampionPrizeText:
 	textfw "それでは 賞品です!"
 	linefw "「<RAMTEXT>」!!"
 	done
 
-Text0e28:
+CupHostGRCup10TimesChampionRewards1Text:
 	textfw "<RAMNAME>さん"
 	linefw "きづいておりましたか?"
 	linefw "こんかいで"
@@ -657,26 +658,26 @@ Text0e28:
 	linefw "きねんのコインを さしあげます!"
 	done
 
-Text0e29:
+CupHostGRCup10TimesChampionRewards2Text:
 	textfw "「タッツーコイン」!"
 	linefw "かわいがって あげてくださいね"
 	linefw "<RAMNAME>さん! ほんとうに!!"
 	linefw "おめでとう ございました!"
 	done
 
-Text0e2a:
+CupHostGRCupPlayerChampionCongratsText:
 	textfw "<RAMNAME>さん! ほんとうに"
 	linefw "おめでとう ございました!"
 	done
 
-Text0e2b:
+GRChallengeHallEntranceClerkGRCup1InactiveText:
 	textfw "ここでは GR団員による"
 	linefw "チャレンジカップが ひらかれます"
 	linefw "でも いまは じゅんび中です"
 	linefw "しばらく おまちください"
 	done
 
-Text0e2c:
+GRChallengeHallEntranceClerkGRCup1ActiveText:
 	textfw "ここは GR団の"
 	linefw "チャレンジホールです"
 	linefw "ここでは GR団員による"
@@ -687,7 +688,7 @@ Text0e2c:
 	linefw "おくに おすすみください"
 	done
 
-Text0e2d:
+GRChallengeHallEntranceClerkGRCup2ActiveText:
 	textfw "ここは GR団の"
 	linefw "チャレンジホールです"
 	linefw "ここでは GR団員による"
@@ -698,28 +699,28 @@ Text0e2d:
 	linefw "おくに おすすみください"
 	done
 
-Text0e2e:
+GRChallengeHallEntranceClerkGRCup2InactiveText:
 	textfw "ここでは GR団員による"
 	linefw "チャレンジカップが ひらかれます"
 	linefw "でも いまは じゅんび中です"
 	linefw "しばらく おまちください"
 	done
 
-Text0e2f:
+GRChallengeHallEntranceClerkGRCup3InactiveText:
 	textfw "ビルリッチさまが ひらく"
 	linefw "キング杯が かいさいされます"
 	linefw "いまは じゅんび中ですので"
 	linefw "しばらく おまちください"
 	done
 
-Text0e30:
+GRChallengeHallEntranceClerkGRCup3ActiveText:
 	textfw "ただいま ビルリッチさまの大会"
 	linefw "「キング杯」が おこなわれています"
 	linefw "しゅつじょうなさるのでしたら"
 	linefw "おくに おすすみください"
 	done
 
-Text0e31:
+GRChallengeHallEntranceClerkGRCupPlayedText:
 	textfw "大会は どうでしたか?"
 	linefw " "
 	linefw "いえ いえ けっかを"
@@ -788,7 +789,7 @@ Text0e39:
 	linefw "わたしは すっかり ラッキーよ!"
 	done
 
-Text0e3a:
+GRChallengeHallLobbyCupHostStandbyText:
 	textfw "あら <RAMNAME>くんも"
 	linefw "こっちに きたの?"
 	linefw "わたしよ わからない?"
@@ -799,7 +800,7 @@ Text0e3a:
 	linefw "しかいすると つかれるわー"
 	done
 
-Text0e3b:
+GRChallengeHallLobbyCupHostStandbyGRCup3Text:
 	textfw "こんど「キング杯」って いうのが"
 	linefw "おこなわれるんですって"
 	linefw "そのしかいも"
