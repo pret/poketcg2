@@ -4154,16 +4154,16 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text1027                                              ; 0x1027
 	textpointer Text1028                                              ; 0x1028
 	textpointer Text1029                                              ; 0x1029
-	textpointer Text102a                                              ; 0x102a
-	textpointer Text102b                                              ; 0x102b
-	textpointer Text102c                                              ; 0x102c
-	textpointer Text102d                                              ; 0x102d
-	textpointer Text102e                                              ; 0x102e
-	textpointer Text102f                                              ; 0x102f
-	textpointer Text1030                                              ; 0x1030
-	textpointer Text1031                                              ; 0x1031
-	textpointer Text1032                                              ; 0x1032
-	textpointer Text1033                                              ; 0x1033
+	textpointer PokemonDomeFatGuyAllGrandMastersGoneText              ; 0x102a
+	textpointer PokemonDomeFatGuySteveIsBackText                      ; 0x102b
+	textpointer PokemonDomeFatGuyCourtneyIsBackText                   ; 0x102c
+	textpointer PokemonDomeFatGuyJackIsBackText                       ; 0x102d
+	textpointer PokemonDomeFatGuyWeNeedRodText                        ; 0x102e
+	textpointer PokemonDomeFatGuyRodIsBackText                        ; 0x102f
+	textpointer PokemonDomeFatGuyGrandMasterCupInactiveText           ; 0x1030
+	textpointer PokemonDomeFatGuyGrandMasterCupActiveText             ; 0x1031
+	textpointer PokemonDomeFatGuyGrandMasterCupPlayedText             ; 0x1032
+	textpointer PlateOfLegendsText                                    ; 0x1033
 	textpointer Text1034                                              ; 0x1034
 	textpointer Text1035                                              ; 0x1035
 	textpointer Text1036                                              ; 0x1036

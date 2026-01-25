@@ -943,7 +943,7 @@ Text1029:
 	linefw "おとずれるが よい"
 	done
 
-Text102a:
+PokemonDomeFatGuyAllGrandMastersGoneText:
 	textfw "伝説のポケモンカードを まもっていた"
 	linefw "ポケモンドームの グランドマスターは"
 	linefw "4にんとも GR団によって"
@@ -952,7 +952,7 @@ Text102a:
 	linefw "いったい どうなってしまうのだろう"
 	done
 
-Text102b:
+PokemonDomeFatGuySteveIsBackText:
 	textfw "イナズマのグランドマスター"
 	linefw "スティーブさんが もどってきたんだ!"
 	linefw "まだ 3にんのグランドマスターが"
@@ -961,7 +961,7 @@ Text102b:
 	linefw "たすけだしてくれないかなぁ~"
 	done
 
-Text102c:
+PokemonDomeFatGuyCourtneyIsBackText:
 	textfw "やった~ 炎のクイーン!"
 	linefw "ヒロコさんが もどってきたよ!"
 	linefw "いったい だれが"
@@ -970,7 +970,7 @@ Text102c:
 	linefw "グランドマスターが あと ふたりだ"
 	done
 
-Text102d:
+PokemonDomeFatGuyJackIsBackText:
 	textfw "やあ こおりの グランドマスター"
 	linefw "カネコウジさんが もどってきたよ!"
 	linefw "いったい だれが"
@@ -979,7 +979,7 @@ Text102d:
 	linefw "リュウドーさんの ふたりだ"
 	done
 
-Text102e:
+PokemonDomeFatGuyWeNeedRodText:
 	textfw "きいたぜ <RAMNAME>! きみだって"
 	linefw "グランドマスターを たすけたのは!"
 	linefw "あとは グランドマスターのリーダー"
@@ -990,14 +990,14 @@ Text102e:
 	linefw "伝説のポケモンカードを ゲットだ!"
 	done
 
-Text102f:
+PokemonDomeFatGuyRodIsBackText:
 	textfw "リュウドーさんも もどってきたし"
 	linefw "ファイナルカップ ふっかつだ!"
 	linefw "4にんのグランドマスターに 勝って"
 	linefw "伝説のポケモンカードを ゲットだ!"
 	done
 
-Text1030:
+PokemonDomeFatGuyGrandMasterCupInactiveText:
 	textfw "グランドマスターたちが ひらく"
 	linefw "グランドマスター杯は スゴイ!"
 	linefw "ゆうしょう賞品は"
@@ -1008,7 +1008,7 @@ Text1030:
 	linefw "なぞに つつまれているんだ!!"
 	done
 
-Text1031:
+PokemonDomeFatGuyGrandMasterCupActiveText:
 	textfw "いま ポケモンドームでは"
 	linefw "グランドマスター杯が かいさい中だ!"
 	linefw "グランドマスター杯は"
@@ -1019,7 +1019,7 @@ Text1031:
 	linefw "すきなのを 2枚えらべるんだ!!"
 	done
 
-Text1032:
+PokemonDomeFatGuyGrandMasterCupPlayedText:
 	textfw "どうだった!"
 	linefw "ゆうしょう できたかい?"
 	linefw "グランドマスター杯は めったに"
@@ -1027,7 +1027,7 @@ Text1032:
 	linefw "つぎは いつになるのかなぁ~"
 	done
 
-Text1033:
+PlateOfLegendsText:
 	textfw "「伝説のポケモンカードを"
 	linefw " もとめる ものたちへ"
 	linefw " このポケモンドームに ありし"

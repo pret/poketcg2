@@ -8116,18 +8116,18 @@ PokemonDomeEntrance_StepEvents:
 	db $ff
 
 PokemonDomeEntrance_NPCs:
-	npc NPC_POKEMON_DOME_FAT_GUY, 8, 3, NORTH, Func_2fe1d
+	npc NPC_POKEMON_DOME_FAT_GUY, 8, 3, NORTH, PokemonDomeEntrance_AppearAfterGRCoin
 	db $ff
 
 PokemonDomeEntrance_NPCInteractions:
-	npc_script NPC_POKEMON_DOME_FAT_GUY, Func_2fda3
+	npc_script NPC_POKEMON_DOME_FAT_GUY, Script_PokemonDomeFatGuy
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:
 	ow_script 4, 2, PCMenu
 	ow_script 5, 2, PCMenu
-	ow_script 9, 1, Func_2fe2a
-	ow_script 10, 1, Func_2fe2a
+	ow_script 9, 1, Script_PlateOfLegends
+	ow_script 10, 1, Script_PlateOfLegends
 	ow_script 1, 2, Script_LegendaryPokemonCardsVol1Book
 	ow_script 2, 2, Script_LegendaryPokemonCardsVol2Book
 	ow_script 3, 2, Script_LegendaryPokemonCardsVol3Book
@@ -8146,10 +8146,10 @@ PokemonDomeEntrance_MapScripts:
 Func_2fd73:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr nz, .asm_2fd80
+	jr nz, .done
 	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
-.asm_2fd80
+.done
 	scf
 	ccf
 	ret
@@ -8169,14 +8169,14 @@ Func_2fd8a:
 Func_2fd93:
 	ld hl, PokemonDomeEntrance_NPCInteractions
 	call Func_328c
-	jr nc, .asm_2fda1
+	jr nc, .done
 	ld hl, PokemonDomeEntrance_OWInteractions
 	call Func_32bf
-.asm_2fda1
+.done
 	scf
 	ret
 
-Func_2fda3:
+Script_PokemonDomeFatGuy:
 	ld a, NPC_POKEMON_DOME_FAT_GUY
 	ld [wScriptNPC], a
 	ldtx hl, DialogFatGuyText
@@ -8188,81 +8188,82 @@ Func_2fda3:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_2fdfa
+	script_jump_if_b0z .postgame
 	check_event EVENT_FREED_ROD
-	script_jump_if_b0z .ows_2fdf4
+	script_jump_if_b0z .has_rod
 	check_event EVENT_FREED_JACK
-	script_jump_if_b0z .ows_2fde3
+	script_jump_if_b0z .has_jack
 	check_event EVENT_FREED_COURTNEY
-	script_jump_if_b0z .ows_2fddd
+	script_jump_if_b0z .has_courtney
 	check_event EVENT_FREED_STEVE
-	script_jump_if_b0z .ows_2fdd7
-	print_npc_text Text102a
+	script_jump_if_b0z .has_steve
+; no grand masters
+	print_npc_text PokemonDomeFatGuyAllGrandMastersGoneText
 	end_dialog
 	end_script
 	ret
-.ows_2fdd7
-	print_npc_text Text102b
+.has_steve
+	print_npc_text PokemonDomeFatGuySteveIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fddd
-	print_npc_text Text102c
+.has_courtney
+	print_npc_text PokemonDomeFatGuyCourtneyIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fde3
+.has_jack
 	check_event EVENT_FREED_COURTNEY
-	script_jump_if_b0z .ows_2fdee
-	print_npc_text Text102d
+	script_jump_if_b0z .rod_left
+	print_npc_text PokemonDomeFatGuyJackIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fdee
-	print_npc_text Text102e
+.rod_left
+	print_npc_text PokemonDomeFatGuyWeNeedRodText
 	end_dialog
 	end_script
 	ret
-.ows_2fdf4
-	print_npc_text Text102f
+.has_rod
+	print_npc_text PokemonDomeFatGuyRodIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fdfa
+.postgame
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	script_jump_if_b0z .ows_2fe17
+	script_jump_if_b0z .cup_played
 	get_var VAR_0D
 	compare_loaded_var $02
-	script_jump_if_b0nz .ows_2fe11
+	script_jump_if_b0nz .cup_active
 	compare_loaded_var $03
-	script_jump_if_b0nz .ows_2fe11
-	print_npc_text Text1030
+	script_jump_if_b0nz .cup_active
+	print_npc_text PokemonDomeFatGuyGrandMasterCupInactiveText
 	end_dialog
 	end_script
 	ret
-.ows_2fe11
-	print_npc_text Text1031
+.cup_active
+	print_npc_text PokemonDomeFatGuyGrandMasterCupActiveText
 	end_dialog
 	end_script
 	ret
-.ows_2fe17
-	print_npc_text Text1032
+.cup_played
+	print_npc_text PokemonDomeFatGuyGrandMasterCupPlayedText
 	end_dialog
 	end_script
 	ret
 
-Func_2fe1d:
+PokemonDomeEntrance_AppearAfterGRCoin:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr nz, .asm_2fe27
+	jr nz, .appear
 	scf
 	ret
-.asm_2fe27
+.appear
 	scf
 	ccf
 	ret
 
-Func_2fe2a:
+Script_PlateOfLegends:
 	ld a, NPC_MARK
 	ld [wScriptNPC], a
 	ldtx hl, DialogPlateOfLegendsText
@@ -8273,7 +8274,7 @@ Func_2fe2a:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text1033
+	print_npc_text PlateOfLegendsText
 	end_dialog
 	end_script
 	ret
