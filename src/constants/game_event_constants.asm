@@ -30,5 +30,3 @@ DEF NUM_GAME_EVENTS EQU const_value ; 6
 	const OWMODE_MUSIC_POSTLOAD        ; $10
 	const OWMODE_AFTER_DUEL_PRELOAD    ; $11
 	const OWMODE_PAUSE_MENU            ; $12
-
-; DEF NUM_OWMODES EQU const_value ; $13

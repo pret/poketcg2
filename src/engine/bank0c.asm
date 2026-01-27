@@ -1284,18 +1284,20 @@ Func_31447:
 	farcall ZeroOutVarValue
 	pop af
 	jr nz, .done
+; cup winner, so switch the cup state from start to end/inactive
+; by incrementing if cup 1, 2
+; or by (verbosely) decremmenting if cup 3
+; due to the constants' ordering
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall GetVarValue
 	cp CHALLENGE_CUP_3_START
-	jr z, .adjust
+	jr z, .won_cup3
 	inc a
 	ld c, a
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	farcall SetVarValue
 	jr .done
-; keep the state var < 7
-; verbose: dec a between inc a :: ld c, a above should suffice
-.adjust
+.won_cup3
 	ld a, VAR_GR_CHALLENGE_CUP_STATE
 	ld c, CHALLENGE_CUP_3_UNLOCKED
 	farcall SetVarValue
