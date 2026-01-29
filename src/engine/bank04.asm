@@ -1221,7 +1221,7 @@ HandlePauseMenu:
 	farcall DrawMenuBox
 	farcall GetNewMailFlag
 	jr z, .done_show_menu
-; has new mail(s), so add an asterisk
+; has new mail(s), so add a ref mark
 	lb bc, 18, 8
 	ld d, SYM_REF_MARK
 	ld e, $00 ; priority
