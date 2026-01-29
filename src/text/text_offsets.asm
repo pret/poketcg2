@@ -1065,9 +1065,11 @@ TextOffsets::
 	textpointer DebugTransmittingMenuText                             ; 0x0423
 	textpointer DebugLectureDuelText                                  ; 0x0424
 	textpointer FirstStrikeDeckText                                   ; 0x0425
-	; names of opponents and their decks, intermixed and sorted by character encoding
-	; cf. 0x09d0--: NPC names for the dialog box header
-	; causing variance, e.g. "トビちゃん" vs "とびちゃん" for Tobi-chan
+
+; names of opponents and their decks, intermixed and sorted by character encoding
+; unlike *NPCName in tcg1, npc names are split into
+; Duelist*Name (here) and Dialog*Text (0x09d0--),
+; which also causes variance, e.g. "トビちゃん" vs "とびちゃん" for Tobi-chan
 	textpointer ThunderboltDeckName                                   ; 0x0426
 	textpointer DuelistGR1Name                                        ; 0x0427
 	textpointer DuelistGR2Name                                        ; 0x0428
@@ -1277,6 +1279,7 @@ TextOffsets::
 	textpointer RockBlastDeckName                                     ; 0x04f4
 	textpointer DuelistAdamName                                       ; 0x04f5
 	textpointer DuelistMainCharacterName                              ; 0x04f6
+
 	textpointer DrMasonText                                           ; 0x04f7
 	textpointer PracticeDuelHeaderPlayersTurnNumberText               ; 0x04f8
 	textpointer PracticeDuelHeaderKnockedOutReplaceText               ; 0x04f9
@@ -2518,6 +2521,9 @@ TextOffsets::
 	textpointer MapGRPsychicStrongholdText                            ; 0x09cd
 	textpointer MapGRColorlessAltarText                               ; 0x09ce
 	textpointer MapGRCastleText                                       ; 0x09cf
+
+; npc names in the dialog box header
+; see also Duelist*Name (0x0426--)
 	textpointer DialogDrMasonText                                     ; 0x09d0
 	textpointer DialogSamText                                         ; 0x09d1
 	textpointer DialogAaronText                                       ; 0x09d2
@@ -2658,6 +2664,7 @@ TextOffsets::
 	textpointer DialogStaffText                                       ; 0x0a59
 	textpointer DialogReceptionistText                                ; 0x0a5a
 	textpointer DialogCupHostText                                     ; 0x0a5b
+
 	textpointer GRFireFortShortText                                   ; 0x0a5c
 	textpointer GRWaterFortShortText                                  ; 0x0a5d
 	textpointer GRLightningFortShortText                              ; 0x0a5e

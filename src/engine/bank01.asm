@@ -3607,7 +3607,7 @@ PrintAttackOrPkmnPowerInformation:
 	ld b, 7
 	ld c, e
 	inc c
-	ld a, SYM_ATK_DESCR
+	ld a, SYM_REF_MARK
 	call WriteByteToBGMap0
 .print_damage
 	inc hl

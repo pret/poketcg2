@@ -1217,7 +1217,7 @@ ENDM
 	txsymbol "CONFUSED"   ; $0b
 	txsymbol "PARALYZED"  ; $0c
 	txsymbol "CURSOR_U"   ; $0d
-	txsymbol "ATK_DESCR"  ; $0e
+	txsymbol "REF_MARK"   ; $0e
 	txsymbol "CURSOR_R"   ; $0f
 	txsymbol "HP"         ; $10
 	txsymbol "Lv"         ; $11
