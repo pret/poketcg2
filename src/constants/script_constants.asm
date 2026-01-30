@@ -209,10 +209,10 @@
 ; Cage flags
 	const EVENT_GODAS_ROOM_CAGE_STATE                     ; $b9
 	const EVENT_MIDORIS_ROOM_CAGE_STATE                   ; $ba
-	const EVENT_BB                                        ; $bb
-	const EVENT_BC                                        ; $bc
-	const EVENT_BD                                        ; $bd
 ; Grand Master flags
+	const EVENT_TALKED_TO_COURTNEY_POKEMON_DOME           ; $bb
+	const EVENT_TALKED_TO_STEVE_POKEMON_DOME              ; $bc
+	const EVENT_TALKED_TO_JACK_POKEMON_DOME               ; $bd
 	const EVENT_ENTERED_GRAND_MASTER_CUP                  ; $be
 	const EVENT_FREED_COURTNEY                            ; $bf
 	const EVENT_FREED_STEVE                               ; $c0
@@ -245,7 +245,7 @@
 	const EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT       ; $d8
 ; Misc flags 2
 	const EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE          ; $d9
-	const EVENT_BEAT_GRAND_MASTER_CUP                     ; $da
+	const EVENT_BEAT_FINAL_CUP                            ; $da
 	const EVENT_DB                                        ; $db
 ; Ghost Master flags
 	const EVENT_GHOST_MASTER_STATUES_STATE                ; $dc
@@ -266,7 +266,7 @@
 	const EVENT_TALKED_TO_QUEEN                           ; $ea
 ; Misc flags 3
 	const EVENT_EB                                        ; $eb
-	const EVENT_EC                                        ; $ec
+	const EVENT_TALKED_TO_ROD_POKEMON_DOME                ; $ec
 	const EVENT_SET_UNTIL_MAP_RELOAD_1                    ; $ed
 	const EVENT_EE                                        ; $ee
 	const EVENT_EF                                        ; $ef

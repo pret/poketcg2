@@ -2792,34 +2792,34 @@ PokemonDome_StepEvents:
 	db $ff
 
 PokemonDome_NPCs:
-	npc NPC_COURTNEY, 3, 6, EAST, Func_3d7e2
-	npc NPC_STEVE, 9, 6, EAST, Func_3d889
-	npc NPC_JACK, 12, 6, WEST, Func_3d92c
-	npc NPC_ROD, 6, 6, SOUTH, Func_3d9b1
-	npc NPC_GR_5, 7, 8, SOUTH, Func_3d9fc
-	npc NPC_TCG_CUP_CLERK_LEFT, 7, 4, SOUTH, Func_3daf0
-	npc NPC_TCG_CUP_CLERK_RIGHT, 8, 4, SOUTH, Func_3daf0
-	npc NPC_POKEMON_DOME_GR_LASS, 4, 12, EAST, Func_3daf0
-	npc NPC_POKEMON_DOME_YOUNGSTER, 9, 8, SOUTH, Func_3daf0
-	npc NPC_POKEMON_DOME_SWIMMER, 2, 5, EAST, Func_3daf0
+	npc NPC_COURTNEY, 3, 6, EAST, PokemonDome_CourtneyAppearanceCheck
+	npc NPC_STEVE, 9, 6, EAST, PokemonDome_SteveAppearanceCheck
+	npc NPC_JACK, 12, 6, WEST, PokemonDome_JackAppearanceCheck
+	npc NPC_ROD, 6, 6, SOUTH, PokemonDome_RodAppearanceCheck
+	npc NPC_GR_5, 7, 8, SOUTH, PokemonDome_DisappearAfterGRCoin
+	npc NPC_TCG_CUP_CLERK_LEFT, 7, 4, SOUTH, PokemonDome_AppearDuringGrandMasterCup
+	npc NPC_TCG_CUP_CLERK_RIGHT, 8, 4, SOUTH, PokemonDome_AppearDuringGrandMasterCup
+	npc NPC_POKEMON_DOME_GR_LASS, 4, 12, EAST, PokemonDome_AppearDuringGrandMasterCup
+	npc NPC_POKEMON_DOME_YOUNGSTER, 9, 8, SOUTH, PokemonDome_AppearDuringGrandMasterCup
+	npc NPC_POKEMON_DOME_SWIMMER, 2, 5, EAST, PokemonDome_AppearDuringGrandMasterCup
 	db $ff
 
 PokemonDome_NPCInteractions:
-	npc_script NPC_COURTNEY, Func_3d768
-	npc_script NPC_STEVE, Func_3d805
-	npc_script NPC_JACK, Func_3d8ac
-	npc_script NPC_ROD, Func_3d94f
-	npc_script NPC_GR_5, Func_3d9d4
-	npc_script NPC_TCG_CUP_CLERK_LEFT, Func_3da09
-	npc_script NPC_TCG_CUP_CLERK_RIGHT, Func_3da09
-	npc_script NPC_POKEMON_DOME_GR_LASS, Func_3da6c
-	npc_script NPC_POKEMON_DOME_YOUNGSTER, Func_3da97
-	npc_script NPC_POKEMON_DOME_SWIMMER, Func_3dabf
+	npc_script NPC_COURTNEY, Script_Courtney
+	npc_script NPC_STEVE, Script_Steve
+	npc_script NPC_JACK, Script_Jack
+	npc_script NPC_ROD, Script_Rod
+	npc_script NPC_GR_5, Script_GR5_PokemonDome
+	npc_script NPC_TCG_CUP_CLERK_LEFT, Script_GrandMasterCupClerk
+	npc_script NPC_TCG_CUP_CLERK_RIGHT, Script_GrandMasterCupClerk
+	npc_script NPC_POKEMON_DOME_GR_LASS, Script_PokemonDomeGRLass
+	npc_script NPC_POKEMON_DOME_YOUNGSTER, Script_PokemonDomeYoungster
+	npc_script NPC_POKEMON_DOME_SWIMMER, Script_PokemonDomeSwimmer
 	db $ff
 
 PokemonDome_OWInteractions:
-	ow_script 7, 1, Func_3db13
-	ow_script 8, 1, Func_3db13
+	ow_script 7, 1, Script_PokemonDomeArenaDoors
+	ow_script 8, 1, Script_PokemonDomeArenaDoors
 	db $ff
 
 PokemonDome_MapScripts:
@@ -2836,31 +2836,32 @@ PokemonDome_MapScripts:
 Func_3d67b:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3d6a1
+	jr nz, .check_grand_master_cup
 	ld a, EVENT_FREED_ROD
 	farcall GetEventValue
-	jr nz, .asm_3d69a
+	jr nz, .cup_active
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr nz, .asm_3d6b7
+	jr nz, .done
+; under gr control
 	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
-	jr .asm_3d6b7
-.asm_3d69a
+	jr .done
+.cup_active
 	ld a, MUSIC_POKEMON_DOME
 	ld [wNextMusic], a
-	jr .asm_3d6b7
-.asm_3d6a1
-	ld a, VAR_0D
+	jr .done
+.check_grand_master_cup
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr c, .asm_3d6b7
+	jr c, .done
 	cp $04
-	jr c, .asm_3d69a
+	jr c, .cup_active
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_3d69a
-.asm_3d6b7
+	jr nz, .cup_active
+.done
 	scf
 	ccf
 	ret
@@ -2883,29 +2884,30 @@ Func_3d6ca:
 	farcall Func_12c0ce
 	ld a, [wPrevMap]
 	cp MAP_POKEMON_DOME_BACK
-	jr z, .asm_3d6dd
+	jr z, .cup_played
 	scf
 	ret
-.asm_3d6dd
+.cup_played
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3d6fc
+	jr nz, .after_grand_master_cup
+; after final cup
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3dc4a)
+	ld a, BANK(Script_RodAfterFinalCup)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3dc4a
+	ld hl, Script_RodAfterFinalCup
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
 	jr .asm_3d711
-.asm_3d6fc
+.after_grand_master_cup
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3dc8e)
+	ld a, BANK(Script_GrandMasterCupClerkAfterTournament)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3dc8e
+	ld hl, Script_GrandMasterCupClerkAfterTournament
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
@@ -2920,16 +2922,16 @@ Func_3d6ca:
 Func_3d719:
 	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
-	jr z, .asm_3d722
+	jr z, .cup_played
 	scf
 	ret
-.asm_3d722
+.cup_played
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3d72c
+	jr nz, .after_grand_master_cup
 	scf
 	ret
-.asm_3d72c
+.after_grand_master_cup
 	ld a, $00
 	call Func_33a3
 	scf
@@ -2939,10 +2941,10 @@ Func_3d719:
 Func_3d734:
 	ld a, [wTempPrevMap]
 	cp MAP_POKEMON_DOME_BACK
-	jr z, .asm_3d73d
+	jr z, .silent
 	scf
 	ret
-.asm_3d73d
+.silent
 	scf
 	ccf
 	ret
@@ -2950,10 +2952,10 @@ Func_3d734:
 Func_3d740:
 	ld hl, PokemonDome_NPCInteractions
 	call Func_328c
-	jr nc, .asm_3d74e
+	jr nc, .done
 	ld hl, PokemonDome_OWInteractions
 	call Func_32bf
-.asm_3d74e
+.done
 	scf
 	ret
 
@@ -2965,12 +2967,12 @@ Func_3d750:
 	ret
 
 PokemonDome_AfterDuelScripts:
-	npc_script NPC_COURTNEY, Func_3d7c6
-	npc_script NPC_STEVE, Func_3d86d
-	npc_script NPC_JACK, Func_3d910
+	npc_script NPC_COURTNEY, Script_CourtneyAfterDuel
+	npc_script NPC_STEVE, Script_SteveAfterDuel
+	npc_script NPC_JACK, Script_JackAfterDuel
 	db $ff
 
-Func_3d768:
+Script_Courtney:
 	ld a, NPC_COURTNEY
 	ld [wScriptNPC], a
 	ldtx hl, DialogCourtneyText
@@ -2982,85 +2984,85 @@ Func_3d768:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3d7b3
+	script_jump_if_b0z .postgame
 	check_event EVENT_FREED_ROD
-	script_jump_if_b0z .ows_3d7ad
-	check_event EVENT_BB
-	script_jump_if_b0z .ows_3d794
-	set_event EVENT_BB
-	print_npc_text Text0fe8
-	script_jump .ows_3d797
-.ows_3d794
-	print_npc_text Text0fe9
-.ows_3d797
-	ask_question Text0fea, TRUE
-	script_jump_if_b0z .ows_3d7a7
-	print_npc_text Text0feb
+	script_jump_if_b0z .final_cup
+	check_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	script_jump_if_b0z .repeat
+	set_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	print_npc_text CourtneyWantsToDuelInitialText
+	script_jump .duel_prompt
+.repeat
+	print_npc_text CourtneyWantsToDuelRepeatText
+.duel_prompt
+	ask_question CourtneyDuelPromptText, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text CourtneyDuelStartText
 	end_dialog
 	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
-.ows_3d7a7
-	print_npc_text Text0fec
+.declined
+	print_npc_text CourtneyDeclinedDuelText
 	end_dialog
 	end_script
 	ret
-.ows_3d7ad
-	print_npc_text Text0fed
+.final_cup
+	print_npc_text CourtneyReadyForFinalCupText
 	end_dialog
 	end_script
 	ret
-.ows_3d7b3
-	check_event EVENT_BB
-	script_jump_if_b0z .ows_3d7c0
-	set_event EVENT_BB
-	print_npc_text Text0fee
-	script_jump .ows_3d7c3
-.ows_3d7c0
-	print_npc_text Text0fef
-.ows_3d7c3
+.postgame
+	check_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	script_jump_if_b0z .postgame_repeat
+	set_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	print_npc_text CourtneyPostgameInitialText
+	script_jump .postgame_done
+.postgame_repeat
+	print_npc_text CourtneyPostgameRepeatText
+.postgame_done
 	end_dialog
 	end_script
 	ret
 
-Func_3d7c6:
+Script_CourtneyAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3d7dc
-	print_npc_text Text0ff0
-	give_booster_packs BoosterList_cdc1
-	print_npc_text Text0ff1
-	script_jump .ows_3d7df
-.ows_3d7dc
-	print_npc_text Text0ff2
-.ows_3d7df
+	script_jump_if_b0nz .player_lost
+	print_npc_text CourtneyPlayerWon1Text
+	give_booster_packs BoosterList_Courtney
+	print_npc_text CourtneyPlayerWon2Text
+	script_jump .done
+.player_lost
+	print_npc_text CourtneyPlayerLostText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3d7e2:
+PokemonDome_CourtneyAppearanceCheck:
 	ld a, EVENT_FREED_COURTNEY
 	farcall GetEventValue
-	jr z, .asm_3d803
+	jr z, .disappear
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_3d803
-	ld a, VAR_0D
+	jr nz, .disappear
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr z, .asm_3d803
+	jr z, .disappear
 	cp $03
-	jr z, .asm_3d803
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d803
+.disappear
 	scf
 	ret
 
-Func_3d805:
+Script_Steve:
 	ld a, NPC_STEVE
 	ld [wScriptNPC], a
 	ldtx hl, DialogSteveText
@@ -3072,88 +3074,88 @@ Func_3d805:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3d854
+	script_jump_if_b0z .postgame
 	check_event EVENT_FREED_ROD
-	script_jump_if_b0z .ows_3d84a
-	check_event EVENT_BC
-	script_jump_if_b0z .ows_3d831
-	set_event EVENT_BC
-	print_npc_text Text0ff3
-	script_jump .ows_3d834
-.ows_3d831
-	print_npc_text Text0ff4
-.ows_3d834
-	ask_question Text0ff5, TRUE
-	script_jump_if_b0z .ows_3d844
-	print_npc_text Text0ff6
+	script_jump_if_b0z .final_cup
+	check_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	script_jump_if_b0z .repeat
+	set_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	print_npc_text SteveWantsToDuelInitialText
+	script_jump .duel_prompt
+.repeat
+	print_npc_text SteveWantsToDuelRepeatText
+.duel_prompt
+	ask_question SteveDuelPromptText, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text SteveDuelStartText
 	end_dialog
 	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
-.ows_3d844
-	print_npc_text Text0ff7
+.declined
+	print_npc_text SteveDeclinedDuelText
 	end_dialog
 	end_script
 	ret
-.ows_3d84a
-	check_event EVENT_BEAT_GRAND_MASTER_CUP
-	print_variable_npc_text Text0ff8, Text0ff9
+.final_cup
+	check_event EVENT_BEAT_FINAL_CUP
+	print_variable_npc_text SteveReadyForFinalCupText, SteveReadyForNextFinalCupText
 	end_dialog
 	end_script
 	ret
-.ows_3d854
-	check_event EVENT_BC
-	script_jump_if_b0z .ows_3d861
-	set_event EVENT_BC
-	print_npc_text Text0ffa
-	script_jump .ows_3d86a
-.ows_3d861
-	get_var VAR_0D
+.postgame
+	check_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	script_jump_if_b0z .postgame_repeat
+	set_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	print_npc_text StevePostgameInitialText
+	script_jump .postgame_done
+.postgame_repeat
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $00
-	print_variable_npc_text Text0ffb, Text0ffc
-.ows_3d86a
+	print_variable_npc_text StevePostgameRepeatText, SteveGrandMasterCupPlayedText
+.postgame_done
 	end_dialog
 	end_script
 	ret
 
-Func_3d86d:
+Script_SteveAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3d883
-	print_npc_text Text0ffd
-	give_booster_packs BoosterList_cdc6
-	print_npc_text Text0ffe
-	script_jump .ows_3d886
-.ows_3d883
-	print_npc_text Text0fff
-.ows_3d886
+	script_jump_if_b0nz .player_lost
+	print_npc_text StevePlayerWon1Text
+	give_booster_packs BoosterList_Steve
+	print_npc_text StevePlayerWon2Text
+	script_jump .done
+.player_lost
+	print_npc_text StevePlayerLostText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3d889:
+PokemonDome_SteveAppearanceCheck:
 	ld a, EVENT_FREED_STEVE
 	farcall GetEventValue
-	jr z, .asm_3d8aa
+	jr z, .disappear
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_3d8aa
-	ld a, VAR_0D
+	jr nz, .disappear
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr z, .asm_3d8aa
+	jr z, .disappear
 	cp $03
-	jr z, .asm_3d8aa
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d8aa
+.disappear
 	scf
 	ret
 
-Func_3d8ac:
+Script_Jack:
 	ld a, NPC_JACK
 	ld [wScriptNPC], a
 	ldtx hl, DialogJackText
@@ -3165,87 +3167,87 @@ Func_3d8ac:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3d8f7
+	script_jump_if_b0z .postgame
 	check_event EVENT_FREED_ROD
-	script_jump_if_b0z .ows_3d8f1
-	check_event EVENT_BD
-	script_jump_if_b0z .ows_3d8d8
-	set_event EVENT_BD
-	print_npc_text Text1000
-	script_jump .ows_3d8db
-.ows_3d8d8
-	print_npc_text Text1001
-.ows_3d8db
-	ask_question Text1002, TRUE
-	script_jump_if_b0z .ows_3d8eb
-	print_npc_text Text1003
+	script_jump_if_b0z .final_cup
+	check_event EVENT_TALKED_TO_JACK_POKEMON_DOME
+	script_jump_if_b0z .repeat
+	set_event EVENT_TALKED_TO_JACK_POKEMON_DOME
+	print_npc_text JackWantsToDuelInitialText
+	script_jump .duel_prompt
+.repeat
+	print_npc_text JackWantsToDuelRepeatText
+.duel_prompt
+	ask_question JackDuelPromptText, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text JackDuelStartText
 	end_dialog
 	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
-.ows_3d8eb
-	print_npc_text Text1004
+.declined
+	print_npc_text JackDeclinedDuelText
 	end_dialog
 	end_script
 	ret
-.ows_3d8f1
-	print_npc_text Text1005
+.final_cup
+	print_npc_text JackReadyForFinalCupText
 	end_dialog
 	end_script
 	ret
-.ows_3d8f7
-	check_event EVENT_BD
-	script_jump_if_b0z .ows_3d904
-	set_event EVENT_BD
-	print_npc_text Text1006
-	script_jump .ows_3d90d
-.ows_3d904
-	get_var VAR_0D
+.postgame
+	check_event EVENT_TALKED_TO_JACK_POKEMON_DOME
+	script_jump_if_b0z .postgame_repeat
+	set_event EVENT_TALKED_TO_JACK_POKEMON_DOME
+	print_npc_text JackPostgameInitialText
+	script_jump .postgame_done
+.postgame_repeat
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $00
-	print_variable_npc_text Text1007, Text1008
-.ows_3d90d
+	print_variable_npc_text JackPostgameRepeatText, JackGrandMasterCupPlayedText
+.postgame_done
 	end_dialog
 	end_script
 	ret
 
-Func_3d910:
+Script_JackAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3d926
-	print_npc_text Text1009
-	give_booster_packs BoosterList_cdca
-	print_npc_text Text100a
-	script_jump .ows_3d929
-.ows_3d926
-	print_npc_text Text100b
-.ows_3d929
+	script_jump_if_b0nz .player_lost
+	print_npc_text JackPlayerWon1Text
+	give_booster_packs BoosterList_Jack
+	print_npc_text JackPlayerWon2Text
+	script_jump .done
+.player_lost
+	print_npc_text JackPlayerLostText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3d92c:
+PokemonDome_JackAppearanceCheck:
 	ld a, EVENT_FREED_JACK
 	farcall GetEventValue
-	jr z, .asm_3d94d
+	jr z, .disappear
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_3d94d
-	ld a, VAR_0D
+	jr nz, .disappear
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr z, .asm_3d94d
+	jr z, .disappear
 	cp $03
-	jr z, .asm_3d94d
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d94d
+.disappear
 	scf
 	ret
 
-Func_3d94f:
+Script_Rod:
 	ld a, NPC_ROD
 	ld [wScriptNPC], a
 	ldtx hl, DialogRodText
@@ -3257,66 +3259,66 @@ Func_3d94f:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3d998
-	check_event EVENT_BEAT_GRAND_MASTER_CUP
-	script_jump_if_b0z .ows_3d981
+	script_jump_if_b0z .postgame
+	check_event EVENT_BEAT_FINAL_CUP
+	script_jump_if_b0z .final_cup_again
 	check_event EVENT_ENTERED_GRAND_MASTER_CUP
-	script_jump_if_b0z .ows_3d97b
+	script_jump_if_b0z .repeat
 	set_event EVENT_ENTERED_GRAND_MASTER_CUP
-	print_npc_text Text100c
-	script_jump .ows_3d984
-.ows_3d97b
-	print_npc_text Text100d
-	script_jump .ows_3d984
-.ows_3d981
-	print_npc_text Text100e
-.ows_3d984
-	ask_question Text100f, TRUE
-	script_jump_if_b0z .ows_3d992
-	print_npc_text Text1010
+	print_npc_text RodWantsToStartFinalCupInitialText
+	script_jump .enter_prompt
+.repeat
+	print_npc_text RodWantsToStartFinalCupRepeatText
+	script_jump .enter_prompt
+.final_cup_again
+	print_npc_text RodWantsToStartNextFinalCupText
+.enter_prompt
+	ask_question FinalCupEnterPrompt, TRUE
+	script_jump_if_b0z .declined
+	print_npc_text RodFinalCupEnterAcceptedPrompt
 	end_dialog
-	script_jump Script_3db41
-.ows_3d992
-	print_npc_text Text1011
+	script_jump Script_MoveGrandMastersAndPlayerIntoFinalCup
+.declined
+	print_npc_text RodFinalCupEnterDeclinedPrompt
 	end_dialog
 	end_script
 	ret
-.ows_3d998
+.postgame
 	check_event EVENT_ENTERED_GRAND_MASTER_CUP
-	script_jump_if_b0z .ows_3d9a5
+	script_jump_if_b0z .check_cup_state
 	set_event EVENT_ENTERED_GRAND_MASTER_CUP
-	print_npc_text Text1012
-	script_jump .ows_3d9ae
-.ows_3d9a5
-	get_var VAR_0D
+	print_npc_text RodPostgameInitialText
+	script_jump .done
+.check_cup_state
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $00
-	print_variable_npc_text Text1013, Text1014
-.ows_3d9ae
+	print_variable_npc_text RodPostgameRepeatText, RodGrandMasterCupPlayedText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3d9b1:
+PokemonDome_RodAppearanceCheck:
 	ld a, EVENT_FREED_ROD
 	farcall GetEventValue
-	jr z, .asm_3d9d2
+	jr z, .disappear
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_3d9d2
-	ld a, VAR_0D
+	jr nz, .disappear
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr z, .asm_3d9d2
+	jr z, .disappear
 	cp $03
-	jr z, .asm_3d9d2
+	jr z, .disappear
 	scf
 	ccf
 	ret
-.asm_3d9d2
+.disappear
 	scf
 	ret
 
-Func_3d9d4:
+Script_GR5_PokemonDome:
 	ld a, NPC_GR_5
 	ld [wScriptNPC], a
 	ldtx hl, DialogGR5Text
@@ -3328,29 +3330,29 @@ Func_3d9d4:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_GR5_POKEMON_DOME
-	script_jump_if_b0z .ows_3d9f6
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_GR5_POKEMON_DOME
-	print_npc_text Text1015
-	script_jump .ows_3d9f9
-.ows_3d9f6
-	print_npc_text Text1016
-.ows_3d9f9
+	print_npc_text PokemonDomeGR5PreachInitialText
+	script_jump .done
+.repeat
+	print_npc_text PokemonDomeGR5PreachRepeatText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3d9fc:
+PokemonDome_DisappearAfterGRCoin:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr z, .asm_3da06
+	jr z, .appear
 	scf
 	ret
-.asm_3da06
+.appear
 	scf
 	ccf
 	ret
 
-Func_3da09:
+Script_GrandMasterCupClerk:
 	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -3361,41 +3363,41 @@ Func_3da09:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_0D
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $05
-	script_jump_if_b1z .ows_3da48
+	script_jump_if_b1z .cup_played
 	compare_loaded_var $02
-	script_jump_if_b0z .ows_3da31
-	set_var VAR_0D, $03
+	script_jump_if_b0z .prizes_set
+	set_var VAR_GRAND_MASTER_CUP_STATE, $03
 	script_call Script_SetGrandMasterCupPrizes
-.ows_3da31
+.prizes_set
 	print_npc_text GrandMasterCupClerkWelcomeText
 	script_call Script_LoadFirstTwoGrandMasterCupPrizeCardNames
 	print_npc_text GrandMasterCupClerkPrizesText
 	script_call Script_LoadLastTwoGrandMasterCupPrizeCardNames
 	print_npc_text GrandMasterCupClerkPrizesText
 	print_npc_text GrandMasterCupClerkInviteText
-	script_jump .ows_3da52
-.ows_3da48
+	script_jump .enter_prompt
+.cup_played
 	compare_loaded_var $06
 	print_variable_npc_text GrandMasterCupClerkPlayerLostText, GrandMasterCupClerkPlayerWonGrandFinalText
-	script_jump .ows_3da69
-.ows_3da52
+	script_jump .done
+.enter_prompt
 	ask_question GrandMasterCupClerkEnterPromptText, TRUE
 	script_jump_if_b0z .declined
-	set_var VAR_0D, $04
+	set_var VAR_GRAND_MASTER_CUP_STATE, $04
 	set_var VAR_20, $00
 	print_npc_text GrandMasterCupClerkEnterAcceptedText
 	end_dialog
-	script_jump Script_3dbde
+	script_jump Script_MovePlayerIntoGrandMasterCup
 .declined
 	print_npc_text GrandMasterCupClerkEnterDeclinedText
-.ows_3da69
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3da6c:
+Script_PokemonDomeGRLass:
 	ld a, NPC_POKEMON_DOME_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRKidText
@@ -3406,20 +3408,20 @@ Func_3da6c:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text101f
-	get_var VAR_0D
+	print_npc_text PokemonDomeGRLassSpectatorText
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $05
-	script_jump_if_b1z .ows_3da91
-	print_npc_text Text1020
-	script_jump .ows_3da94
-.ows_3da91
-	print_npc_text Text1021
-.ows_3da94
+	script_jump_if_b1z .cup_played
+	print_npc_text PokemonDomeGRLassAnticipatingText
+	script_jump .done
+.cup_played
+	print_npc_text PokemonDomeGRLassSpectatedText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3da97:
+Script_PokemonDomeYoungster:
 	ld a, NPC_POKEMON_DOME_YOUNGSTER
 	ld [wScriptNPC], a
 	ldtx hl, DialogLadText
@@ -3430,19 +3432,19 @@ Func_3da97:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_0D
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $05
-	script_jump_if_b1z .ows_3dab9
-	print_npc_text Text1022
-	script_jump .ows_3dabc
-.ows_3dab9
-	print_npc_text Text1023
-.ows_3dabc
+	script_jump_if_b1z .cup_played
+	print_npc_text PokemonDomeYoungsterSpectatorText
+	script_jump .done
+.cup_played
+	print_npc_text PokemonDomeYoungsterSpectatedText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3dabf:
+Script_PokemonDomeSwimmer:
 	ld a, NPC_POKEMON_DOME_SWIMMER
 	ld [wScriptNPC], a
 	ldtx hl, DialogSwimmerKidText
@@ -3453,64 +3455,64 @@ Func_3dabf:
 	xor a
 	start_script
 	start_dialog
-	get_var VAR_0D
+	get_var VAR_GRAND_MASTER_CUP_STATE
 	compare_loaded_var $05
-	script_jump_if_b0nz .ows_3dae4
-	script_jump_if_b1z .ows_3daea
-	print_npc_text Text1024
-	script_jump .ows_3daed
-.ows_3dae4
-	print_npc_text Text1025
-	script_jump .ows_3daed
-.ows_3daea
-	print_npc_text Text1026
-.ows_3daed
+	script_jump_if_b0nz .player_won
+	script_jump_if_b1z .player_lost
+	print_npc_text PokemonDomeSwimmerSpectatorText
+	script_jump .done
+.player_won
+	print_npc_text PokemonDomeSwimmerPlayerWonCupText
+	script_jump .done
+.player_lost
+	print_npc_text PokemonDomeSwimmerPlayerLostCupText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3daf0:
+PokemonDome_AppearDuringGrandMasterCup:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr z, .asm_3db11
-	ld a, VAR_0D
+	jr z, .disappear
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	farcall GetVarValue
 	cp $02
-	jr c, .asm_3db11
+	jr c, .disappear
 	cp $04
-	jr c, .asm_3db0e
+	jr c, .appear
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr z, .asm_3db11
-.asm_3db0e
+	jr z, .disappear
+.appear
 	scf
 	ccf
 	ret
-.asm_3db11
+.disappear
 	scf
 	ret
 
-Func_3db13:
+Script_PokemonDomeArenaDoors:
 	xor a
 	start_script
 	check_event EVENT_GOT_GR_COIN
-	script_jump_if_b0z .ows_3db30
+	script_jump_if_b0z .no_gr5
 	set_active_npc NPC_GR_5, DialogGR5Text
 	move_active_npc .NPCMovement_3db3b
 	wait_for_player_animation
 	start_dialog
-	print_npc_text Text1027
+	print_npc_text PokemonDomeGR5SealedArenaDoorsText
 	end_dialog
 	move_active_npc .NPCMovement_3db3e
 	wait_for_player_animation
 	end_script
-	jr .asm_3db36
-.ows_3db30
+	jr .done
+.no_gr5
 	start_dialog
 	print_text DoorsAreShutText
 	end_dialog
 	end_script
-.asm_3db36
+.done
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_3db3b:
@@ -3520,7 +3522,7 @@ Func_3db13:
 	db SOUTH, MOVE_4
 	db $ff
 
-Script_3db41:
+Script_MoveGrandMastersAndPlayerIntoFinalCup:
 	get_player_direction
 	compare_loaded_var NORTH
 	script_jump_if_b0nz .ows_3db5a
@@ -3541,7 +3543,7 @@ Script_3db41:
 	wait_for_player_animation
 	do_frames 30
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_038, $07, $00
+	load_tilemap TILEMAP_038, 7, 0
 	do_frames 30
 	move_npc NPC_ROD, .NPCMovement_3dbca
 	move_npc NPC_STEVE, .NPCMovement_3dbca
@@ -3554,7 +3556,7 @@ Script_3db41:
 	wait_for_player_animation
 	do_frames 60
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_037, $07, $00
+	load_tilemap TILEMAP_037, 7, 0
 	do_frames 30
 	end_script
 	ld a, MAP_POKEMON_DOME_BACK
@@ -3603,7 +3605,7 @@ Script_3db41:
 	db NORTH, MOVE_4
 	db $ff
 
-Script_3dbde:
+Script_MovePlayerIntoGrandMasterCup:
 	get_player_x_position
 	compare_loaded_var $08
 	script_jump_if_b1z .ows_3dbff
@@ -3632,7 +3634,7 @@ Script_3dbde:
 	do_frames 30
 	set_scroll_state $02
 	play_sfx SFX_DOORS
-	load_tilemap TILEMAP_038, $07, $00
+	load_tilemap TILEMAP_038, 7, 0
 	do_frames 30
 	animate_player_movement $00, $01
 	animate_player_movement $00, $01
@@ -3657,7 +3659,7 @@ Script_3dbde:
 	db NORTH, MOVE_4
 	db $ff
 
-Func_3dc4a:
+Script_RodAfterFinalCup:
 	ld a, NPC_ROD
 	ld [wScriptNPC], a
 	ldtx hl, DialogRodText
@@ -3667,15 +3669,15 @@ Func_3dc4a:
 	ld [wScriptNPCName + 1], a
 	ld a, EVENT_EE
 	farcall GetEventValue
-	jr z, .asm_3dc88
+	jr z, .resume
 	xor a
 	start_script
-	check_event EVENT_EC
-	script_jump_if_b0z .ows_3dc82
-	set_event EVENT_EC
+	check_event EVENT_TALKED_TO_ROD_POKEMON_DOME
+	script_jump_if_b0z .repeat
+	set_event EVENT_TALKED_TO_ROD_POKEMON_DOME
 	do_frames 30
 	start_dialog
-	print_npc_text Text1028
+	print_npc_text RodIAmGrandMasterLeaderText
 	end_dialog
 	do_frames 15
 	set_player_direction EAST
@@ -3684,17 +3686,17 @@ Func_3dc4a:
 	do_frames 30
 	set_player_direction SOUTH
 	do_frames 30
-.ows_3dc82
+.repeat
 	start_dialog
-	print_npc_text Text1029
+	print_npc_text RodRevisitPokemonDomeForNextFinalCupText
 	end_dialog
 	end_script
-.asm_3dc88
+.resume
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
 
-Func_3dc8e:
+Script_GrandMasterCupClerkAfterTournament:
 	ld a, NPC_TCG_CUP_CLERK_LEFT
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -3810,7 +3812,7 @@ PokemonDomeBack_NPCs:
 	npc NPC_STEVE, 8, 12, SOUTH, NULL
 	npc NPC_JACK, 8, 13, SOUTH, NULL
 	npc NPC_ROD, 7, 12, SOUTH, NULL
-	npc NPC_CUP_HOST, 7, 2, SOUTH, Func_3e68b
+	npc NPC_CUP_HOST, 7, 2, SOUTH, PokemonDomeBack_AppearOnPostgame
 	db $ff
 
 PokemonDomeBack_MapScripts:
@@ -3839,7 +3841,8 @@ Func_3ddaf:
 Func_3ddb8:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3ddec
+	jr nz, .grand_master_cup
+; final cup
 	ld a, NPC_CUP_HOST
 	lb de, 8, 14
 	ld b, NORTH
@@ -3849,16 +3852,16 @@ Func_3ddb8:
 	farcall SetOWObjectAsScrollTarget
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
-	ld a, BANK(Func_3ded6)
+	ld a, BANK(Script_FinalCupIntroAndRound1Start)
 	ld [wOverworldScriptBank], a
-	ld hl, Func_3ded6
+	ld hl, Script_FinalCupIntroAndRound1Start
 	ld a, l
 	ld [wOverworldScriptPointer], a
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
 	scf
 	ret
-.asm_3ddec
+.grand_master_cup
 	ld bc, TILEMAP_0B9
 	lb de, 5, 0
 	farcall Func_12c0ce
@@ -3920,44 +3923,48 @@ Func_3de6f:
 PokemonDomeBack_AfterDuel:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr z, .asm_3de7d
+	jr z, .final_cup
+; grand master cup
 	jp Func_3e2a4
-.asm_3de7d
-	ld a, VAR_0C
+.final_cup
+	ld a, VAR_FINAL_CUP_PLAYED_ROUNDS
 	farcall GetVarValue
-	jp z, Func_3df57
+	jp z, Script_FinalCupRound1AfterDuel
 	dec a
-	jp z, Func_3dfc3
+	jp z, Script_FinalCupRound2AfterDuel
 	dec a
-	jp z, Func_3e02f
-	jp Func_3e091
+	jp z, Script_FinalCupRound3AfterDuel
+	jp Script_FinalCupRound4AfterDuel
 
 Func_3de91:
 	farcall OverworldResumeWithCurSong
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3deb5
-	call .asm_3dea2
-	jr .asm_3dec7
-.asm_3dea2:
+	jr nz, .postgame
+
+	call .FinalCup
+	jr .done
+.FinalCup:
 	xor a
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
-	get_var VAR_0C
-	compare_loaded_var $02
-	script_jump_if_b1nz Script_3df8d
-	script_jump_if_b0nz Script_3dff9
-	script_jump Script_3e069
-.asm_3deb5
-	call .asm_3deba
-	jr .asm_3dec7
-.asm_3deba
+	get_var VAR_FINAL_CUP_PLAYED_ROUNDS
+	compare_loaded_var 2
+	script_jump_if_b1nz Script_FinalCupRound2Start
+	script_jump_if_b0nz Script_FinalCupRound3Start
+	script_jump Script_FinalCupRound4Start
+
+.postgame
+	call .GrandMasterCup
+	jr .done
+.GrandMasterCup:
 	farcall Func_45573
 	xor a
 	start_script
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	script_jump Script_3e158
-.asm_3dec7
+
+.done
 	scf
 	ccf
 	ret
@@ -3969,7 +3976,7 @@ Func_3deca:
 	farcall Func_45573
 	ret
 
-Func_3ded6:
+Script_FinalCupIntroAndRound1Start:
 	xor a
 	start_script
 	move_npc NPC_ROD, .NPCMovement_3df13
@@ -3984,11 +3991,11 @@ Func_3ded6:
 	unload_npc NPC_CUP_HOST
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0f9a
+	print_npc_text RodFinalCupIntroAndRound1OpponentText
 	end_dialog
 	move_npc NPC_COURTNEY, .NPCMovement_3df3f
 	wait_for_player_animation
-	script_jump .ows_3df46
+	script_jump .round1
 .NPCMovement_3df0a:
 	db NORTH, MOVE_3
 	db WEST, MOVE_3
@@ -4028,37 +4035,37 @@ Func_3ded6:
 	db SOUTH, MOVE_2
 	db WEST, MOVE_1
 	db $ff
-.ows_3df46
-	set_var VAR_0C, $00
+.round1
+	set_var VAR_FINAL_CUP_PLAYED_ROUNDS, 0
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
 	start_dialog
-	print_npc_text Text0f9b
+	print_npc_text CourtneyFinalCupDuelStartText
 	end_dialog
 	start_duel GRAND_FIRE_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
-Func_3df57:
+Script_FinalCupRound1AfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3df7a
-	print_npc_text Text0f9c
+	script_jump_if_b0nz .lost_round1
+	print_npc_text CourtneyTournamentsPlayerWonText
 	end_dialog
 	move_active_npc .NPCMovement_3df81
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0f9d
+	print_npc_text RodFinalCupRound1NextOpponentText
 	end_dialog
 	move_npc NPC_STEVE, .NPCMovement_3df8a
 	wait_for_player_animation
-	script_jump Script_3df8d
-.ows_3df7a
-	print_npc_text Text0f9e
+	script_jump Script_FinalCupRound2Start
+.lost_round1
+	print_npc_text CourtneyFinalCupPlayerLostText
 	end_dialog
-	script_jump Script_3e105
+	script_jump Script_FinalCupPlayerLost
 .NPCMovement_3df81:
 	db EAST, MOVE_1
 	db NORTH, MOVE_2
@@ -4069,53 +4076,53 @@ Func_3df57:
 	db WEST, MOVE_2
 	db $ff
 
-Script_3df8d:
-	set_var VAR_0C, $01
+Script_FinalCupRound2Start:
+	set_var VAR_FINAL_CUP_PLAYED_ROUNDS, 1
 	set_active_npc NPC_STEVE, DialogSteveText
 	start_dialog
-	print_npc_text Text0f9f
+	print_npc_text SteveFinalCupReadyToDuelText
 	set_active_npc NPC_ROD, DialogRodText
-.ows_3df9c
-	print_npc_text Text0fa0
+.loop_prep
+	print_npc_text RodFinalCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_3dfb0
+	script_jump_if_b0z .start_duel
 	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	start_dialog
-	script_jump .ows_3df9c
-.ows_3dfb0
+	script_jump .loop_prep
+.start_duel
 	set_text_ram2 DialogSteveText
-	print_npc_text Text0fa1
+	print_npc_text RodFinalCupResumeRoundText
 	set_active_npc NPC_STEVE, DialogSteveText
-	print_npc_text Text0fa2
+	print_npc_text SteveFinalCupDuelStartText
 	end_dialog
 	start_duel LEGENDARY_FOSSIL_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
-Func_3dfc3:
+Script_FinalCupRound2AfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3dfe6
-	print_npc_text Text0fa3
+	script_jump_if_b0nz .lost_round2
+	print_npc_text SteveTournamentsPlayerWonText
 	end_dialog
 	move_active_npc .NPCMovement_3dfed
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0fa4
+	print_npc_text RodFinalCupRound2NextOpponentText
 	end_dialog
 	move_npc NPC_JACK, .NPCMovement_3dff2
 	wait_for_player_animation
-	script_jump Script_3dff9
-.ows_3dfe6
-	print_npc_text Text0fa5
+	script_jump Script_FinalCupRound3Start
+.lost_round2
+	print_npc_text SteveTournamentsPlayerLostText
 	end_dialog
-	script_jump Script_3e105
+	script_jump Script_FinalCupPlayerLost
 .NPCMovement_3dfed:
 	db EAST, MOVE_2
 	db WEST, MOVE_0
@@ -4126,53 +4133,53 @@ Func_3dfc3:
 	db WEST, MOVE_1
 	db $ff
 
-Script_3dff9:
-	set_var VAR_0C, $02
+Script_FinalCupRound3Start:
+	set_var VAR_FINAL_CUP_PLAYED_ROUNDS, 2
 	set_active_npc NPC_JACK, DialogJackText
 	start_dialog
-	print_npc_text Text0fa6
+	print_npc_text JackFinalCupReadyToDuelText
 	set_active_npc NPC_ROD, DialogRodText
-.ows_3e008
-	print_npc_text Text0fa0
+.loop_prep
+	print_npc_text RodFinalCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_3e01c
+	script_jump_if_b0z .start_duel
 	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	start_dialog
-	script_jump .ows_3e008
-.ows_3e01c
+	script_jump .loop_prep
+.start_duel
 	set_text_ram2 DialogJackText
-	print_npc_text Text0fa1
+	print_npc_text RodFinalCupResumeRoundText
 	set_active_npc NPC_JACK, DialogJackText
-	print_npc_text Text0fa7
+	print_npc_text JackFinalCupDuelStartText
 	end_dialog
 	start_duel WATER_LEGEND_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
-Func_3e02f:
+Script_FinalCupRound3AfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3e052
-	print_npc_text Text0fa8
+	script_jump_if_b0nz .lost_round3
+	print_npc_text JackFinalCupPlayerWonText
 	end_dialog
 	move_active_npc .NPCMovement_3e059
 	wait_for_player_animation
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0fa9
+	print_npc_text RodFinalCupRound3NextOpponentText
 	end_dialog
 	move_npc NPC_ROD, .NPCMovement_3e062
 	wait_for_player_animation
-	script_jump Script_3e069
-.ows_3e052
-	print_npc_text Text0faa
+	script_jump Script_FinalCupRound4Start
+.lost_round3
+	print_npc_text JackTournamentsPlayerLostText
 	end_dialog
-	script_jump Script_3e105
+	script_jump Script_FinalCupPlayerLost
 .NPCMovement_3e059:
 	db EAST, MOVE_1
 	db SOUTH, MOVE_2
@@ -4185,70 +4192,70 @@ Func_3e02f:
 	db WEST, MOVE_1
 	db $ff
 
-Script_3e069:
-	set_var VAR_0C, $03
+Script_FinalCupRound4Start:
+	set_var VAR_FINAL_CUP_PLAYED_ROUNDS, 3
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0fab
-.ows_3e074
-	print_npc_text Text0fa0
+	print_npc_text RodFinalCupReadyToDuelText
+.loop_prep
+	print_npc_text RodFinalCupAreYourDecksReadyText
 	ask_question DuelPrepPromptText, FALSE
-	script_jump_if_b0z .ows_3e088
+	script_jump_if_b0z .start_duel
 	end_dialog
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	open_menu
 	reset_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	start_dialog
-	script_jump .ows_3e074
-.ows_3e088
-	print_npc_text Text0fac
+	script_jump .loop_prep
+.start_duel
+	print_npc_text RodFinalCupDuelStartText
 	end_dialog
 	start_duel GREAT_DRAGON_DECK_ID, MUSIC_MATCH_START_GRAND_MASTER
 	end_script
 	ret
 
-Func_3e091:
+Script_FinalCupRound4AfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_3e0a2
-	print_npc_text Text0fad
+	script_jump_if_b0nz .lost_round4
+	print_npc_text RodTournamentsPlayerWonText
 	end_dialog
-	script_jump .ows_3e0b2
-.ows_3e0a2
-	print_npc_text Text0fae
+	script_jump .proceed_prizes
+.lost_round4
+	print_npc_text RodTournamentsPlayerLostText
 	end_dialog
 	move_active_npc .NPCMovement_3e0ad
 	wait_for_player_animation
-	script_jump Script_3e105
+	script_jump Script_FinalCupPlayerLost
 .NPCMovement_3e0ad:
 	db NORTH, MOVE_2
 	db WEST, MOVE_2
 	db $ff
-.ows_3e0b2
-	set_event EVENT_BEAT_GRAND_MASTER_CUP
+.proceed_prizes
+	set_event EVENT_BEAT_FINAL_CUP
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	move_active_npc .NPCMovement_3e0fe
 	wait_for_player_animation
 	set_player_direction NORTH
 	start_dialog
-	print_npc_text Text0faf
+	print_npc_text RodYouDeserveLegendaryCardsText
 	quit_script
 	farcall Func_1022a
-	ld de, $7b
+	ld de, MOLTRES_LV40
 	farcall Func_c646
-	ld de, $e1
+	ld de, ZAPDOS_LV68
 	farcall Func_c646
-	ld de, $b9
+	ld de, ARTICUNO_LV37
 	farcall Func_c646
-	ld de, $183
+	ld de, DRAGONITE_LV41
 	farcall Func_c646
 	farcall Func_10252
 	call WaitPalFading
 	ld a, $01
 	start_script
-	print_npc_text Text0fb0
+	print_npc_text RodChallengeBiruritchiText
 	end_dialog
 	end_script
 	ld a, MAP_POKEMON_DOME
@@ -4262,7 +4269,7 @@ Func_3e091:
 	db SOUTH, MOVE_1
 	db $ff
 
-Script_3e105:
+Script_FinalCupPlayerLost:
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	set_event EVENT_EE
 	move_npc NPC_ROD, .NPCMovement_3e126
@@ -4270,7 +4277,7 @@ Script_3e105:
 	set_player_direction NORTH
 	set_active_npc NPC_ROD, DialogRodText
 	start_dialog
-	print_npc_text Text0fb1
+	print_npc_text RodYouDoNotDeserveLegendaryCardsText
 	end_dialog
 	end_script
 	ld a, MAP_POKEMON_DOME
@@ -4711,7 +4718,7 @@ Func_3e2a4:
 	set_active_npc NPC_COURTNEY, DialogCourtneyText
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e4a3
-	print_npc_text Text0f9c
+	print_npc_text CourtneyTournamentsPlayerWonText
 	script_jump .ows_3e5c4
 .ows_3e4a3
 	print_npc_text Text0fd6
@@ -4755,10 +4762,10 @@ Func_3e2a4:
 	set_active_npc NPC_STEVE, DialogSteveText
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e504
-	print_npc_text Text0fa3
+	print_npc_text SteveTournamentsPlayerWonText
 	script_jump .ows_3e5c4
 .ows_3e504
-	print_npc_text Text0fa5
+	print_npc_text SteveTournamentsPlayerLostText
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogSteveText
 	print_npc_text Text0fd7
@@ -4800,7 +4807,7 @@ Func_3e2a4:
 	print_npc_text Text0fdc
 	script_jump .ows_3e5c4
 .ows_3e561
-	print_npc_text Text0faa
+	print_npc_text JackTournamentsPlayerLostText
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogJackText
 	print_npc_text Text0fd7
@@ -4833,10 +4840,10 @@ Func_3e2a4:
 	set_active_npc NPC_ROD, DialogRodText
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
 	script_jump_if_b0nz .ows_3e5b3
-	print_npc_text Text0fad
+	print_npc_text RodTournamentsPlayerWonText
 	script_jump .ows_3e5c4
 .ows_3e5b3
-	print_npc_text Text0fae
+	print_npc_text RodTournamentsPlayerLostText
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	set_text_ram2 DialogRodText
 	print_npc_text Text0fd7
@@ -4844,7 +4851,7 @@ Func_3e2a4:
 	script_jump .ows_3e65d
 .ows_3e5c4
 	set_event EVENT_DB
-	set_var VAR_0D, $05
+	set_var VAR_GRAND_MASTER_CUP_STATE, $05
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	print_npc_text Text0fdf
@@ -4917,7 +4924,7 @@ Func_3e2a4:
 	db $ff
 
 .ows_3e65d:
-	set_var VAR_0D, $06
+	set_var VAR_GRAND_MASTER_CUP_STATE, $06
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	set_active_npc NPC_CUP_HOST, DialogCupHostText
 	move_active_npc .NPCMovement_3e681
@@ -4943,13 +4950,13 @@ Func_3e2a4:
 	db $ff
 ; end mega function
 
-Func_3e68b:
+PokemonDomeBack_AppearOnPostgame:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
-	jr nz, .asm_3e695
+	jr nz, .appear
 	scf
 	ret
-.asm_3e695
+.appear
 	scf
 	ccf
 	ret

@@ -5658,7 +5658,7 @@ Script_43000:
 	print_npc_text Text0928
 	receive_card GRS_MEWTWO
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	set_event EVENT_BEAT_GRAND_MASTER_CUP
+	set_event EVENT_BEAT_FINAL_CUP
 	reset_event EVENT_TALKED_TO_MITCH
 	reset_event EVENT_TALKED_TO_AMY
 	reset_event EVENT_TALKED_TO_KEN
@@ -5667,9 +5667,9 @@ Script_43000:
 	reset_event EVENT_TALKED_TO_HIDERO
 	reset_event EVENT_TALKED_TO_KANZAKI
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	reset_event EVENT_BB
-	reset_event EVENT_BC
-	reset_event EVENT_BD
+	reset_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	reset_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	reset_event EVENT_TALKED_TO_JACK_POKEMON_DOME
 	reset_event EVENT_ENTERED_GRAND_MASTER_CUP
 	set_var VAR_0B, $01
 	var_add VAR_27, $05

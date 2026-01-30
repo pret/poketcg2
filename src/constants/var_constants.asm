@@ -11,8 +11,8 @@
 	const VAR_09                                       ; $09
 	const VAR_0A                                       ; $0a
 	const VAR_0B                                       ; $0b
-	const VAR_0C                                       ; $0c
-	const VAR_0D                                       ; $0d
+	const VAR_FINAL_CUP_PLAYED_ROUNDS                  ; $0c
+	const VAR_GRAND_MASTER_CUP_STATE                   ; $0d
 	const VAR_0E                                       ; $0e
 	const VAR_0F                                       ; $0f
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_0             ; $10

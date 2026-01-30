@@ -432,12 +432,12 @@ Func_c2ff:
 	ret
 
 Func_c319:
-	ld a, VAR_0D
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	call GetVarValue
 	cp $04
 	jr c, .asm_c32d
 	jr z, .done
-	ld a, VAR_0D
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	ld c, $01
 	call SetVarValue
 	jr .done
@@ -449,7 +449,7 @@ Func_c319:
 	jr z, .done
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .done
-	ld a, VAR_0D
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	call GetVarValue
 	cp $02
 	jr z, .done
@@ -458,13 +458,13 @@ Func_c319:
 	call GetVarValue
 	cp $0a
 	jr c, .done
-	ld a, VAR_0D
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	ld c, $02
 	call SetVarValue
 .done
 	ret
 .asm_c358
-	ld a, VAR_0D
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	ld c, $01
 	call SetVarValue
 	ld a, VAR_20
@@ -2081,9 +2081,9 @@ EventVarMasks:
 	db $1f, %00100000 ; EVENT_TRADED_CARDS_PSYCHIC_STRONGHOLD
 	db $20, %00000001 ; EVENT_GODAS_ROOM_CAGE_STATE
 	db $20, %00000010 ; EVENT_MIDORIS_ROOM_CAGE_STATE
-	db $21, %00000001 ; EVENT_BB
-	db $21, %00000010 ; EVENT_BC
-	db $21, %00000100 ; EVENT_BD
+	db $21, %00000001 ; EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	db $21, %00000010 ; EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	db $21, %00000100 ; EVENT_TALKED_TO_JACK_POKEMON_DOME
 	db $21, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUP
 	db $21, %00010000 ; EVENT_FREED_COURTNEY
 	db $21, %00100000 ; EVENT_FREED_STEVE
@@ -2112,7 +2112,7 @@ EventVarMasks:
 	db $25, %00100000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	db $25, %01000000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	db $26, %00000001 ; EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-	db $26, %00000010 ; EVENT_BEAT_GRAND_MASTER_CUP
+	db $26, %00000010 ; EVENT_BEAT_FINAL_CUP
 	db $26, %00000100 ; EVENT_DB
 	db $27, %00000001 ; EVENT_GHOST_MASTER_STATUES_STATE
 	db $27, %00000010 ; EVENT_BATTLED_TOBICHAN
@@ -2130,7 +2130,7 @@ EventVarMasks:
 	db $29, %00001000 ; EVENT_TALKED_TO_ROOK
 	db $29, %00010000 ; EVENT_TALKED_TO_QUEEN
 	db $2a, %00000001 ; EVENT_EB
-	db $2a, %00000010 ; EVENT_EC
+	db $2a, %00000010 ; EVENT_TALKED_TO_ROD_POKEMON_DOME
 	db $2b, %00000001 ; EVENT_SET_UNTIL_MAP_RELOAD_1
 	db $2b, %00000010 ; EVENT_EE
 	db $2b, %00000100 ; EVENT_EF
@@ -2155,8 +2155,8 @@ GeneralVarMasks:
 	db $04, %00110000 ; VAR_09
 	db $04, %11000000 ; VAR_0A
 	db $05, %00000011 ; VAR_0B
-	db $06, %00000011 ; VAR_0C
-	db $06, %00011100 ; VAR_0D
+	db $06, %00000011 ; VAR_FINAL_CUP_PLAYED_ROUNDS
+	db $06, %00011100 ; VAR_GRAND_MASTER_CUP_STATE
 	db $06, %11100000 ; VAR_0E
 	db $07, %00001111 ; VAR_0F
 	db $08, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_0
@@ -2395,8 +2395,8 @@ CheckTCGIslandMilestoneEvents:
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_grand_master_cup_or_challenge_machine:
-	ld a, EVENT_BEAT_GRAND_MASTER_CUP
+.check_final_cup_or_postgame:
+	ld a, EVENT_BEAT_FINAL_CUP
 	call GetEventValue
 	push af
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
@@ -2452,7 +2452,7 @@ CheckTCGIslandMilestoneEvents:
 	dw .check_gr_coin_bottom_left
 	dw .check_pikachu_coin
 	dw .check_gr_coin_bottom_right
-	dw .check_grand_master_cup_or_challenge_machine
+	dw .check_final_cup_or_postgame
 	dw .check_event_db
 
 ; jump to .check_pointers[a], set carry if the event is set, clear carry if not
@@ -2522,7 +2522,7 @@ CheckGRIslandMilestoneEvents:
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_challenge_machine:
+.check_postgame:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	call GetEventValue
 	jp nz, .set_carry
@@ -2553,7 +2553,7 @@ CheckGRIslandMilestoneEvents:
 	dw .check_snorlax_coin
 	dw .check_rui_roadblock
 	dw .check_battled_ishihara
-	dw .check_challenge_machine
+	dw .check_postgame
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc

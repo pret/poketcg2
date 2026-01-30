@@ -1,76 +1,76 @@
-Text0fa4:
+RodFinalCupRound2NextOpponentText:
 	textfw "さすがだな <RAMNAME>くん"
 	linefw "つぎは カネコウジと対戦だ!"
 	done
 
-Text0fa5:
+SteveTournamentsPlayerLostText:
 	textfw "ユー ルーズ!"
 	linefw "まだまだ あまいね!"
 	linefw "また チャレンジね!"
 	linefw "ネバー ギブアップ!!"
 	done
 
-Text0fa6:
+JackFinalCupReadyToDuelText:
 	textfw "わたしの ゴージャスなデッキと"
 	linefw "また 対戦ね こんどはまけない"
 	done
 
-Text0fa7:
+JackFinalCupDuelStartText:
 	textfw "よろしいか?"
 	linefw "サイドカードは 6枚だ"
 	done
 
-Text0fa8:
+JackFinalCupPlayerWonText:
 	textfw "わたしの ゴージャスなデッキが"
 	linefw "やぶれるとは・・・さすがだ"
 	linefw "きみのじつりょくは"
 	linefw "やはり ほんもののようだ・・・"
 	done
 
-Text0fa9:
+RodFinalCupRound3NextOpponentText:
 	textfw "<RAMNAME>くんは"
 	linefw "いつもながら すばらしい!"
 	linefw "では こんどは"
 	linefw "このリュウドーが あいてだ!"
 	done
 
-Text0faa:
+JackTournamentsPlayerLostText:
 	textfw "どうですか?"
 	linefw "まけなかったでしょう"
 	linefw "わたしの ゴージャスなデッキは"
 	linefw "すぐれて いるのだよ"
 	done
 
-Text0fab:
+RodFinalCupReadyToDuelText:
 	textfw "これが ファイナルカップ"
 	linefw "さいごの対戦だ!"
 	done
 
-Text0fac:
+RodFinalCupDuelStartText:
 	textfw "こんどの対戦も"
 	linefw "サイドカードは 6枚だ"
 	linefw "伝説のポケモンカードは"
 	linefw "かんたんには わたさない"
 	done
 
-Text0fad:
+RodTournamentsPlayerWonText:
 	textfw "さすがだな <RAMNAME>くん"
 	linefw "やはり キミは すばらしい!"
 	done
 
-Text0fae:
+RodTournamentsPlayerLostText:
 	textfw "ほんのすこし"
 	linefw "ちからが たりなかったようだな"
 	done
 
-Text0faf:
+RodYouDeserveLegendaryCardsText:
 	textfw "やはり 伝説のポケモンカードに"
 	linefw "きみは ふさわしい じんぶつだ"
 	linefw "伝説のポケモンカードを"
 	linefw "よろこんで ゆずりわたそう・・・"
 	done
 
-Text0fb0:
+RodChallengeBiruritchiText:
 	textfw "さあ <RAMNAME>くんよ"
 	linefw "GR団のキャッスルへ いくがいい"
 	linefw "そして なんとしても"
@@ -85,7 +85,7 @@ Text0fb0:
 	linefw "<RAMNAME>くん・・・"
 	done
 
-Text0fb1:
+RodYouDoNotDeserveLegendaryCardsText:
 	textfw "ざんねんだが"
 	linefw "伝説のポケモンカードは ゆずれん"
 	linefw "でなおして くるのだな"
@@ -402,7 +402,7 @@ Text0fe7:
 	linefw "きをつけて おかえりください"
 	done
 
-Text0fe8:
+CourtneyWantsToDuelInitialText:
 	textfw "アラ ウフフ・・"
 	linefw "<RAMNAME>くんじゃない"
 	linefw "GR団から たすけだしてくれて"
@@ -413,7 +413,7 @@ Text0fe8:
 	linefw "アタシと 対戦していかない?"
 	done
 
-Text0fe9:
+CourtneyWantsToDuelRepeatText:
 	textfw "ウフフ・・・"
 	linefw "<RAMNAME>くんじゃない"
 	linefw "えっ 伝説のポケモンカード?"
@@ -426,25 +426,25 @@ Text0fe9:
 	linefw "ウフフ・・・対戦してあげるわ"
 	done
 
-Text0fea:
+CourtneyDuelPromptText:
 	textfw "ヒロコと 対戦しますか?"
 	done
 
-Text0feb:
+CourtneyDuelStartText:
 	textfw "アタシの炎の ワザ"
 	linefw "たっぷりと うけてみるがいいわ"
 	linefw "サイドカードは 6枚"
 	linefw "ウフフ・・・さあ いくわよ!"
 	done
 
-Text0fec:
+CourtneyDeclinedDuelText:
 	textfw "ウフフ・・・"
 	linefw "そう ざんねんね"
 	linefw "そうね まずは"
 	linefw "GR団とのたたかいを がんばってね"
 	done
 
-Text0fed:
+CourtneyReadyForFinalCupText:
 	textfw "ウフフ・・・グランドマスターが"
 	linefw "みんな そろったわよ"
 	linefw "ファイナルカップよ!"
@@ -453,7 +453,7 @@ Text0fed:
 	linefw "てかげんしないわよ"
 	done
 
-Text0fee:
+CourtneyPostgameInitialText:
 	textfw "<RAMNAME>くんの おかげで"
 	linefw "GR団とも なかよくなって"
 	linefw "ポケモンカードの せかいが"
@@ -462,7 +462,7 @@ Text0fee:
 	linefw "ありがとう <RAMNAME>くん"
 	done
 
-Text0fef:
+CourtneyPostgameRepeatText:
 	textfw "アタシたち グランドマスターも"
 	linefw "GR団に まけないように"
 	linefw "もっと ポケモンカードを"
@@ -471,26 +471,26 @@ Text0fef:
 	linefw "みんなで たのしむことを ね!"
 	done
 
-Text0ff0:
+CourtneyPlayerWon1Text:
 	textfw "ウフフ・・・"
 	linefw "アタシの まけよ"
 	done
 
-Text0ff1:
+CourtneyPlayerWon2Text:
 	textfw "さすがね <RAMNAME>くん"
 	linefw " "
 	linefw "いちどは 伝説のポケモンカードを"
 	linefw "うけついだだけのことは あるわ"
 	done
 
-Text0ff2:
+CourtneyPlayerLostText:
 	textfw "ウフフ・・・"
 	linefw "アタシの か・ち・よ"
 	linefw "たまには"
 	linefw "対戦しに もどってきてね"
 	done
 
-Text0ff3:
+SteveWantsToDuelInitialText:
 	textfw "ヘイ <RAMNAME>!"
 	linefw "GR団のアイランドでは サンキューね"
 	linefw "ミーたち GR団にまけて"
@@ -503,7 +503,7 @@ Text0ff3:
 	linefw "スティーブと バトルね!"
 	done
 
-Text0ff4:
+SteveWantsToDuelRepeatText:
 	textfw "ヘイ <RAMNAME>!"
 	linefw "コンディション OK?"
 	linefw "グランドマスター オールそろわないと"
@@ -516,25 +516,25 @@ Text0ff4:
 	linefw "スティーブと バトルね!"
 	done
 
-Text0ff5:
+SteveDuelPromptText:
 	textfw "スティーブと 対戦しますか?"
 	done
 
-Text0ff6:
+SteveDuelStartText:
 	textfw "サイドカード シックス"
 	linefw "ジャパニーズで 「ろく」ね"
 	linefw "<RAMNAME>!"
 	linefw "レッツ バトル ゴーね!!"
 	done
 
-Text0ff7:
+SteveDeclinedDuelText:
 	textfw "オー ノー"
 	linefw "それは ないです <RAMNAME>"
 	linefw "ミーでは バトルのあいてとして"
 	linefw "パワーぶそく ですか?"
 	done
 
-Text0ff8:
+SteveReadyForFinalCupText:
 	textfw "ヘイ <RAMNAME>!"
 	linefw "リュウドー カムバックね!"
 	linefw "これで"
@@ -543,14 +543,14 @@ Text0ff8:
 	linefw "伝説のポケモンカード ゲットね"
 	done
 
-Text0ff9:
+SteveReadyForNextFinalCupText:
 	textfw "ミーたち グランドマスターは"
 	linefw "GR団を クラッシュするためなら"
 	linefw "ユーの チャレンジなら"
 	linefw "なんどでも OKね"
 	done
 
-Text0ffa:
+StevePostgameInitialText:
 	textfw "ヘイ! <RAMNAME>"
 	linefw "コングラチュレーションね"
 	linefw "ユーのおかげで GR団とも"
@@ -559,7 +559,7 @@ Text0ffa:
 	linefw "ポケモンカードね"
 	done
 
-Text0ffb:
+StevePostgameRepeatText:
 	textfw "ヘイ! <RAMNAME>"
 	linefw "ポケモンカード エンジョイ OK?"
 	linefw "ミーたち グランドマスターは"
@@ -568,7 +568,7 @@ Text0ffb:
 	linefw "ぜひ エントリーね!"
 	done
 
-Text0ffc:
+SteveGrandMasterCupPlayedText:
 	textfw "ヘイ! <RAMNAME>"
 	linefw "ポケモンカード エンジョイ OK?"
 	linefw "グランドマスター杯は"
@@ -577,12 +577,12 @@ Text0ffc:
 	linefw "だから たまに ここにくるとOK!"
 	done
 
-Text0ffd:
+StevePlayerWon1Text:
 	textfw "ユー アー ウィナー!"
 	linefw "オー グレートね!"
 	done
 
-Text0ffe:
+StevePlayerWon2Text:
 	textfw "ン~ アイ アム ルーズね"
 	linefw "また まけてしまいました"
 	linefw "<RAMNAME>"
@@ -591,14 +591,14 @@ Text0ffe:
 	linefw "ミーが ウィナーね!!"
 	done
 
-Text0fff:
+StevePlayerLostText:
 	textfw "ユー ルーズ!"
 	linefw "まだまだ あまいね!"
 	linefw "また チャレンジね!"
 	linefw "ギブアップ みっともないね!"
 	done
 
-Text1000:
+JackWantsToDuelInitialText:
 	textfw "おやおや"
 	linefw "<RAMNAME>くんでは ありませんか"
 	linefw "GR団から たすけだしていただき"
@@ -619,7 +619,7 @@ Text1000:
 	linefw "ゴージャスなデッキと 対戦しますか?"
 	done
 
-Text1001:
+JackWantsToDuelRepeatText:
 	textfw "おや"
 	linefw "<RAMNAME>くんでは ありませんか?"
 	linefw "わたしと 対戦をしに"
@@ -630,30 +630,30 @@ Text1001:
 	linefw "ゴージャスなデッキで 対戦しましょう"
 	done
 
-Text1002:
+JackDuelPromptText:
 	textfw "カネコウジと 対戦しますか?"
 	done
 
-Text1003:
+JackDuelStartText:
 	textfw "よろしいですかな"
 	linefw "サイドカードは 6枚ですよ"
 	done
 
-Text1004:
+JackDeclinedDuelText:
 	textfw "そうですか ざんねんですね"
 	linefw "わたしを たすけてくれた"
 	linefw "ゴージャスなデッキと"
 	linefw "対戦してみたかったのですが・・・"
 	done
 
-Text1005:
+JackReadyForFinalCupText:
 	textfw "伝説のポケモンカードが ひつようなら"
 	linefw "ファイナルカップで 勝つことだ"
 	linefw "さあ グランドマスターのリーダー"
 	linefw "リュウドーと はなすのだ"
 	done
 
-Text1006:
+JackPostgameInitialText:
 	textfw "おやおや"
 	linefw "<RAMNAME>くんでは ありませんか"
 	linefw "ついに GR団のキングを"
@@ -666,7 +666,7 @@ Text1006:
 	linefw "<RAMNAME>くんの おかげですね"
 	done
 
-Text1007:
+JackPostgameRepeatText:
 	textfw "われらのリーダー リュウドーが"
 	linefw "ゴージャスな対戦を かんがえています"
 	linefw "「グランドマスター杯」という"
@@ -675,7 +675,7 @@ Text1007:
 	linefw "たのしみに していてください"
 	done
 
-Text1008:
+JackGrandMasterCupPlayedText:
 	textfw "グランドマスター杯は"
 	linefw "ゴージャスな大会だったでしょう"
 	linefw "また いつか"
@@ -684,24 +684,24 @@ Text1008:
 	linefw "あしを おはこびください"
 	done
 
-Text1009:
+JackPlayerWon1Text:
 	textfw "わたしの ゴージャスなデッキが"
 	linefw "やぶれるとは・・・さすがですね"
 	done
 
-Text100a:
+JackPlayerWon2Text:
 	textfw "どうやら きみのじつりょくは"
 	linefw "ほんもののようだ・・・"
 	done
 
-Text100b:
+JackPlayerLostText:
 	textfw "きみの ゴージャスなデッキも"
 	linefw "なかなかだったが"
 	linefw "わたしの ゴージャスなデッキには"
 	linefw "きみは かてないのだよ"
 	done
 
-Text100c:
+RodWantsToStartFinalCupInitialText:
 	textfw "<RAMNAME>くん"
 	linefw "やはり やってきたか"
 	linefw "GR団のしまでも いったが"
@@ -714,7 +714,7 @@ Text100c:
 	linefw "じゅんびのほうは いいかね"
 	done
 
-Text100d:
+RodWantsToStartFinalCupRepeatText:
 	textfw "<RAMNAME>くん・・・"
 	linefw "われら 4にんに勝たなければ"
 	linefw "伝説のポケモンカードは"
@@ -725,7 +725,7 @@ Text100d:
 	linefw "じゅんびのほうは いいかね"
 	done
 
-Text100e:
+RodWantsToStartNextFinalCupText:
 	textfw "<RAMNAME>くん なんとしても"
 	linefw "GR団のキング ビルリッチにあえ"
 	linefw "そして GR団の まちがった"
@@ -740,23 +740,23 @@ Text100e:
 	linefw "じゅんびは いいかね?"
 	done
 
-Text100f:
+FinalCupEnterPrompt:
 	textfw "ファイナルカップを はじめますか?"
 	done
 
-Text1010:
+RodFinalCupEnterAcceptedPrompt:
 	textfw "いいだろう"
 	linefw "さあ ファイナルホールへ"
 	done
 
-Text1011:
+RodFinalCupEnterDeclinedPrompt:
 	textfw "では じゅんびを ととのえて"
 	linefw "あらためてくるが いい"
 	linefw "GR団を とめられるのは"
 	linefw "「きみだけ」なのを わすれるな"
 	done
 
-Text1012:
+RodPostgameInitialText:
 	textfw "ありがとう"
 	linefw "<RAMNAME>くん"
 	linefw "きみの ゆうきある対戦が"
@@ -769,7 +769,7 @@ Text1012:
 	linefw "より たのしむことなのだから・・・"
 	done
 
-Text1013:
+RodPostgameRepeatText:
 	textfw "このしまや GR団のひと だけでなく"
 	linefw "さまざまなひとと 対戦するのだ"
 	linefw "バトルセンターなどで"
@@ -778,7 +778,7 @@ Text1013:
 	linefw "せかいを ひろげる いっぽなんだ"
 	done
 
-Text1014:
+RodGrandMasterCupPlayedText:
 	textfw "グランドマスター杯は"
 	linefw "たのしんで もらえたかな"
 	linefw "また いつか ひらくから"
@@ -787,7 +787,7 @@ Text1014:
 	linefw "バトルセンターで 対戦していてくれ"
 	done
 
-Text1015:
+PokemonDomeGR5PreachInitialText:
 	textfw "われら グレートロケット団が"
 	linefw "ポケモンドームを しはいした!"
 	linefw "グランドマスターたちも"
@@ -804,7 +804,7 @@ Text1015:
 	linefw "ゲットするのだ!!!"
 	done
 
-Text1016:
+PokemonDomeGR5PreachRepeatText:
 	textfw "われらGR団の もくてきは"
 	linefw "ただ ひとつ!"
 	linefw "ただ あつめられるだけになった"
@@ -860,24 +860,24 @@ GrandMasterCupClerkEnterDeclinedText:
 	linefw "どうぞ また おこしください"
 	done
 
-Text101f:
+PokemonDomeGRLassSpectatorText:
 	textfw "グランドマスター杯を"
 	linefw "GR団のしまから みにきたのよ"
 	linefw "クラブマスターのトーナメント戦"
 	linefw "グランドマスターとの いっきうち!"
 	done
 
-Text1020:
+PokemonDomeGRLassAnticipatingText:
 	textfw "どうなるのか たのしみだわ!"
 	linefw "ワクワク・・・"
 	done
 
-Text1021:
+PokemonDomeGRLassSpectatedText:
 	textfw "すばらしい 対戦だったわ!!"
 	linefw "むねが ドキドキ・・・"
 	done
 
-Text1022:
+PokemonDomeYoungsterSpectatorText:
 	textfw "リュウドーさまが"
 	linefw "グランドマスター杯を ひらいたんだ"
 	linefw "でも グランドマスター杯には"
@@ -886,7 +886,7 @@ Text1022:
 	linefw "カードマスターに なりたいな"
 	done
 
-Text1023:
+PokemonDomeYoungsterSpectatedText:
 	textfw "ねぇ ねぇ"
 	linefw "グランドマスター杯に でたんだろ"
 	linefw "こんかいの ゆうしょうしゃは"
@@ -895,7 +895,7 @@ Text1023:
 	linefw "かったのかい?"
 	done
 
-Text1024:
+PokemonDomeSwimmerSpectatorText:
 	textfw "グランドマスター杯は ルールは"
 	linefw "8にんのトーナメント戦を おこなって"
 	linefw "そのトーナメントを かちぬいたものが"
@@ -908,33 +908,33 @@ Text1024:
 	linefw "ルールを つくったものね"
 	done
 
-Text1025:
+PokemonDomeSwimmerPlayerWonCupText:
 	textfw "きいたわよ グランドマスター杯に"
 	linefw "ゆうしょう したんですってね"
 	linefw "さすが <RAMNAME>"
 	linefw "あなたこそ グランドマスターよ"
 	done
 
-Text1026:
+PokemonDomeSwimmerPlayerLostCupText:
 	textfw "トーナメントに 勝ったひとが"
 	linefw "グランドマスターに まけたそうよ"
 	linefw "やっぱり グランドマスターは"
 	linefw "とてつもなく つよいのね!"
 	done
 
-Text1027:
+PokemonDomeGR5SealedArenaDoorsText:
 	textfw "そのトビラは ふういんした!"
 	linefw " "
 	linefw "4にんの グランドマスターが"
 	linefw "もどってくれば あけられるかもな"
 	done
 
-Text1028:
+RodIAmGrandMasterLeaderText:
 	textfw "<RAMNAME>くん グランドマスターの"
 	linefw "リーダー リュウドーだ!"
 	done
 
-Text1029:
+RodRevisitPokemonDomeForNextFinalCupText:
 	textfw "ファイナルカップは キミのために"
 	linefw "なんどでも ひらこう"
 	linefw "だが いまは まだ そのときではない"

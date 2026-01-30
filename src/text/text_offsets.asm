@@ -4007,30 +4007,30 @@ TextOffsets::
 	textpointer Text0f97                                              ; 0x0f97
 	textpointer Text0f98                                              ; 0x0f98
 	textpointer Text0f99                                              ; 0x0f99
-	textpointer Text0f9a                                              ; 0x0f9a
-	textpointer Text0f9b                                              ; 0x0f9b
-	textpointer Text0f9c                                              ; 0x0f9c
-	textpointer Text0f9d                                              ; 0x0f9d
-	textpointer Text0f9e                                              ; 0x0f9e
-	textpointer Text0f9f                                              ; 0x0f9f
-	textpointer Text0fa0                                              ; 0x0fa0
-	textpointer Text0fa1                                              ; 0x0fa1
-	textpointer Text0fa2                                              ; 0x0fa2
-	textpointer Text0fa3                                              ; 0x0fa3
-	textpointer Text0fa4                                              ; 0x0fa4
-	textpointer Text0fa5                                              ; 0x0fa5
-	textpointer Text0fa6                                              ; 0x0fa6
-	textpointer Text0fa7                                              ; 0x0fa7
-	textpointer Text0fa8                                              ; 0x0fa8
-	textpointer Text0fa9                                              ; 0x0fa9
-	textpointer Text0faa                                              ; 0x0faa
-	textpointer Text0fab                                              ; 0x0fab
-	textpointer Text0fac                                              ; 0x0fac
-	textpointer Text0fad                                              ; 0x0fad
-	textpointer Text0fae                                              ; 0x0fae
-	textpointer Text0faf                                              ; 0x0faf
-	textpointer Text0fb0                                              ; 0x0fb0
-	textpointer Text0fb1                                              ; 0x0fb1
+	textpointer RodFinalCupIntroAndRound1OpponentText                 ; 0x0f9a
+	textpointer CourtneyFinalCupDuelStartText                         ; 0x0f9b
+	textpointer CourtneyTournamentsPlayerWonText                      ; 0x0f9c
+	textpointer RodFinalCupRound1NextOpponentText                     ; 0x0f9d
+	textpointer CourtneyFinalCupPlayerLostText                        ; 0x0f9e
+	textpointer SteveFinalCupReadyToDuelText                          ; 0x0f9f
+	textpointer RodFinalCupAreYourDecksReadyText                      ; 0x0fa0
+	textpointer RodFinalCupResumeRoundText                            ; 0x0fa1
+	textpointer SteveFinalCupDuelStartText                            ; 0x0fa2
+	textpointer SteveTournamentsPlayerWonText                         ; 0x0fa3
+	textpointer RodFinalCupRound2NextOpponentText                     ; 0x0fa4
+	textpointer SteveTournamentsPlayerLostText                        ; 0x0fa5
+	textpointer JackFinalCupReadyToDuelText                           ; 0x0fa6
+	textpointer JackFinalCupDuelStartText                             ; 0x0fa7
+	textpointer JackFinalCupPlayerWonText                             ; 0x0fa8
+	textpointer RodFinalCupRound3NextOpponentText                     ; 0x0fa9
+	textpointer JackTournamentsPlayerLostText                         ; 0x0faa
+	textpointer RodFinalCupReadyToDuelText                            ; 0x0fab
+	textpointer RodFinalCupDuelStartText                              ; 0x0fac
+	textpointer RodTournamentsPlayerWonText                           ; 0x0fad
+	textpointer RodTournamentsPlayerLostText                          ; 0x0fae
+	textpointer RodYouDeserveLegendaryCardsText                       ; 0x0faf
+	textpointer RodChallengeBiruritchiText                            ; 0x0fb0
+	textpointer RodYouDoNotDeserveLegendaryCardsText                  ; 0x0fb1
 	textpointer Text0fb2                                              ; 0x0fb2
 	textpointer Text0fb3                                              ; 0x0fb3
 	textpointer Text0fb4                                              ; 0x0fb4
@@ -4085,56 +4085,56 @@ TextOffsets::
 	textpointer Text0fe5                                              ; 0x0fe5
 	textpointer Text0fe6                                              ; 0x0fe6
 	textpointer Text0fe7                                              ; 0x0fe7
-	textpointer Text0fe8                                              ; 0x0fe8
-	textpointer Text0fe9                                              ; 0x0fe9
-	textpointer Text0fea                                              ; 0x0fea
-	textpointer Text0feb                                              ; 0x0feb
-	textpointer Text0fec                                              ; 0x0fec
-	textpointer Text0fed                                              ; 0x0fed
-	textpointer Text0fee                                              ; 0x0fee
-	textpointer Text0fef                                              ; 0x0fef
-	textpointer Text0ff0                                              ; 0x0ff0
-	textpointer Text0ff1                                              ; 0x0ff1
-	textpointer Text0ff2                                              ; 0x0ff2
-	textpointer Text0ff3                                              ; 0x0ff3
-	textpointer Text0ff4                                              ; 0x0ff4
-	textpointer Text0ff5                                              ; 0x0ff5
-	textpointer Text0ff6                                              ; 0x0ff6
-	textpointer Text0ff7                                              ; 0x0ff7
-	textpointer Text0ff8                                              ; 0x0ff8
-	textpointer Text0ff9                                              ; 0x0ff9
-	textpointer Text0ffa                                              ; 0x0ffa
-	textpointer Text0ffb                                              ; 0x0ffb
-	textpointer Text0ffc                                              ; 0x0ffc
-	textpointer Text0ffd                                              ; 0x0ffd
-	textpointer Text0ffe                                              ; 0x0ffe
-	textpointer Text0fff                                              ; 0x0fff
+	textpointer CourtneyWantsToDuelInitialText                        ; 0x0fe8
+	textpointer CourtneyWantsToDuelRepeatText                         ; 0x0fe9
+	textpointer CourtneyDuelPromptText                                ; 0x0fea
+	textpointer CourtneyDuelStartText                                 ; 0x0feb
+	textpointer CourtneyDeclinedDuelText                              ; 0x0fec
+	textpointer CourtneyReadyForFinalCupText                          ; 0x0fed
+	textpointer CourtneyPostgameInitialText                           ; 0x0fee
+	textpointer CourtneyPostgameRepeatText                            ; 0x0fef
+	textpointer CourtneyPlayerWon1Text                                ; 0x0ff0
+	textpointer CourtneyPlayerWon2Text                                ; 0x0ff1
+	textpointer CourtneyPlayerLostText                                ; 0x0ff2
+	textpointer SteveWantsToDuelInitialText                           ; 0x0ff3
+	textpointer SteveWantsToDuelRepeatText                            ; 0x0ff4
+	textpointer SteveDuelPromptText                                   ; 0x0ff5
+	textpointer SteveDuelStartText                                    ; 0x0ff6
+	textpointer SteveDeclinedDuelText                                 ; 0x0ff7
+	textpointer SteveReadyForFinalCupText                             ; 0x0ff8
+	textpointer SteveReadyForNextFinalCupText                         ; 0x0ff9
+	textpointer StevePostgameInitialText                              ; 0x0ffa
+	textpointer StevePostgameRepeatText                               ; 0x0ffb
+	textpointer SteveGrandMasterCupPlayedText                         ; 0x0ffc
+	textpointer StevePlayerWon1Text                                   ; 0x0ffd
+	textpointer StevePlayerWon2Text                                   ; 0x0ffe
+	textpointer StevePlayerLostText                                   ; 0x0fff
 
 SECTION "Text Offsets 2", ROMX
 
-	textpointer Text1000                                              ; 0x1000
-	textpointer Text1001                                              ; 0x1001
-	textpointer Text1002                                              ; 0x1002
-	textpointer Text1003                                              ; 0x1003
-	textpointer Text1004                                              ; 0x1004
-	textpointer Text1005                                              ; 0x1005
-	textpointer Text1006                                              ; 0x1006
-	textpointer Text1007                                              ; 0x1007
-	textpointer Text1008                                              ; 0x1008
-	textpointer Text1009                                              ; 0x1009
-	textpointer Text100a                                              ; 0x100a
-	textpointer Text100b                                              ; 0x100b
-	textpointer Text100c                                              ; 0x100c
-	textpointer Text100d                                              ; 0x100d
-	textpointer Text100e                                              ; 0x100e
-	textpointer Text100f                                              ; 0x100f
-	textpointer Text1010                                              ; 0x1010
-	textpointer Text1011                                              ; 0x1011
-	textpointer Text1012                                              ; 0x1012
-	textpointer Text1013                                              ; 0x1013
-	textpointer Text1014                                              ; 0x1014
-	textpointer Text1015                                              ; 0x1015
-	textpointer Text1016                                              ; 0x1016
+	textpointer JackWantsToDuelInitialText                            ; 0x1000
+	textpointer JackWantsToDuelRepeatText                             ; 0x1001
+	textpointer JackDuelPromptText                                    ; 0x1002
+	textpointer JackDuelStartText                                     ; 0x1003
+	textpointer JackDeclinedDuelText                                  ; 0x1004
+	textpointer JackReadyForFinalCupText                              ; 0x1005
+	textpointer JackPostgameInitialText                               ; 0x1006
+	textpointer JackPostgameRepeatText                                ; 0x1007
+	textpointer JackGrandMasterCupPlayedText                          ; 0x1008
+	textpointer JackPlayerWon1Text                                    ; 0x1009
+	textpointer JackPlayerWon2Text                                    ; 0x100a
+	textpointer JackPlayerLostText                                    ; 0x100b
+	textpointer RodWantsToStartFinalCupInitialText                    ; 0x100c
+	textpointer RodWantsToStartFinalCupRepeatText                     ; 0x100d
+	textpointer RodWantsToStartNextFinalCupText                       ; 0x100e
+	textpointer FinalCupEnterPrompt                                   ; 0x100f
+	textpointer RodFinalCupEnterAcceptedPrompt                        ; 0x1010
+	textpointer RodFinalCupEnterDeclinedPrompt                        ; 0x1011
+	textpointer RodPostgameInitialText                                ; 0x1012
+	textpointer RodPostgameRepeatText                                 ; 0x1013
+	textpointer RodGrandMasterCupPlayedText                           ; 0x1014
+	textpointer PokemonDomeGR5PreachInitialText                       ; 0x1015
+	textpointer PokemonDomeGR5PreachRepeatText                        ; 0x1016
 	textpointer GrandMasterCupClerkWelcomeText                        ; 0x1017
 	textpointer GrandMasterCupClerkPrizesText                         ; 0x1018
 	textpointer GrandMasterCupClerkInviteText                         ; 0x1019
@@ -4143,17 +4143,17 @@ SECTION "Text Offsets 2", ROMX
 	textpointer GrandMasterCupClerkEnterPromptText                    ; 0x101c
 	textpointer GrandMasterCupClerkEnterAcceptedText                  ; 0x101d
 	textpointer GrandMasterCupClerkEnterDeclinedText                  ; 0x101e
-	textpointer Text101f                                              ; 0x101f
-	textpointer Text1020                                              ; 0x1020
-	textpointer Text1021                                              ; 0x1021
-	textpointer Text1022                                              ; 0x1022
-	textpointer Text1023                                              ; 0x1023
-	textpointer Text1024                                              ; 0x1024
-	textpointer Text1025                                              ; 0x1025
-	textpointer Text1026                                              ; 0x1026
-	textpointer Text1027                                              ; 0x1027
-	textpointer Text1028                                              ; 0x1028
-	textpointer Text1029                                              ; 0x1029
+	textpointer PokemonDomeGRLassSpectatorText                        ; 0x101f
+	textpointer PokemonDomeGRLassAnticipatingText                     ; 0x1020
+	textpointer PokemonDomeGRLassSpectatedText                        ; 0x1021
+	textpointer PokemonDomeYoungsterSpectatorText                     ; 0x1022
+	textpointer PokemonDomeYoungsterSpectatedText                     ; 0x1023
+	textpointer PokemonDomeSwimmerSpectatorText                       ; 0x1024
+	textpointer PokemonDomeSwimmerPlayerWonCupText                    ; 0x1025
+	textpointer PokemonDomeSwimmerPlayerLostCupText                   ; 0x1026
+	textpointer PokemonDomeGR5SealedArenaDoorsText                    ; 0x1027
+	textpointer RodIAmGrandMasterLeaderText                           ; 0x1028
+	textpointer RodRevisitPokemonDomeForNextFinalCupText              ; 0x1029
 	textpointer PokemonDomeFatGuyAllGrandMastersGoneText              ; 0x102a
 	textpointer PokemonDomeFatGuySteveIsBackText                      ; 0x102b
 	textpointer PokemonDomeFatGuyCourtneyIsBackText                   ; 0x102c

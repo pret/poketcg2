@@ -1681,7 +1681,7 @@ Text0f99:
 	linefw "メンツも たもてんからな"
 	done
 
-Text0f9a:
+RodFinalCupIntroAndRound1OpponentText:
 	textfw "さあ <RAMNAME>くん"
 	linefw "ファイナルカップを はじめよう"
 	linefw "われらが 伝説のポケモンカードを"
@@ -1692,7 +1692,7 @@ Text0f9a:
 	linefw "ヒロコと 対戦してもらおう!"
 	done
 
-Text0f9b:
+CourtneyFinalCupDuelStartText:
 	textfw "ウフフ・・・アタシが 1人目よ"
 	linefw "炎のクイーン・ヒ・ロ・コ!"
 	linefw "いくわよ <RAMNAME>くん"
@@ -1701,46 +1701,46 @@ Text0f9b:
 	linefw "ウフフ・・・ さあ いくわよ!"
 	done
 
-Text0f9c:
+CourtneyTournamentsPlayerWonText:
 	textfw "ウフフ・・・アタシの まけよ"
 	linefw "さすがね <RAMNAME>くん"
 	done
 
-Text0f9d:
+RodFinalCupRound1NextOpponentText:
 	textfw "つぎは スティーブと対戦だ!"
 	linefw "<RAMNAME>くん!"
 	done
 
-Text0f9e:
+CourtneyFinalCupPlayerLostText:
 	textfw "ウフフ・・・"
 	linefw "アタシの か・ち・よ"
 	linefw "そんなんじゃ"
 	linefw "GR団には 勝てないわよ"
 	done
 
-Text0f9f:
+SteveFinalCupReadyToDuelText:
 	textfw "ヘイ <RAMNAME>!"
 	linefw "ミーと ポケモンカードバトルね"
 	linefw "サンダー・スティーブとの対戦は"
 	linefw "ビッグ グレートね!"
 	done
 
-Text0fa0:
+RodFinalCupAreYourDecksReadyText:
 	textfw "<RAMNAME>くん"
 	linefw "デッキのじゅんびは いいかね?"
 	done
 
-Text0fa1:
+RodFinalCupResumeRoundText:
 	textfw "では"
 	linefw "<RAMTEXT>との対戦を はじめよう"
 	done
 
-Text0fa2:
+SteveFinalCupDuelStartText:
 	textfw "サイドは シックスカード!"
 	linefw "レディ? ゴーね!"
 	done
 
-Text0fa3:
+SteveTournamentsPlayerWonText:
 	textfw "ユー アー ウィナー!"
 	linefw "オー グレートね!"
 	done

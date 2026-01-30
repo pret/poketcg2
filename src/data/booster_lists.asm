@@ -252,13 +252,13 @@ BoosterList_cdba:
 BoosterList_cdbe:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_PRESENT_FROM_ALL_SETS
 
-BoosterList_cdc1:
+BoosterList_Courtney:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_PSYCHIC_BATTLE, BOOSTER_ISLAND_OF_FOSSIL, BOOSTER_BEGINNING_POKEMON
 
-BoosterList_cdc6:
+BoosterList_Steve:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_PSYCHIC_BATTLE, BOOSTER_ISLAND_OF_FOSSIL
 
-BoosterList_cdca:
+BoosterList_Jack:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_PSYCHIC_BATTLE, BOOSTER_ISLAND_OF_FOSSIL, BOOSTER_LEGENDARY_POWER
 
 BoosterList_cdcf:
