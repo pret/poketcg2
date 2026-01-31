@@ -2712,7 +2712,7 @@ Script_TCGCupRound1AfterDuel:
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_418a1)
 	ld hl, .NPCMovement_418a1
 	farcall MoveNPC
 	call Func_3340
@@ -2733,7 +2733,7 @@ Script_TCGCupRound1AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_4189c)
 	ld hl, .NPCMovement_4189c
 	farcall MoveNPC
 	call Func_3340
@@ -2839,7 +2839,7 @@ Script_TCGCupRound2AfterDuel:
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_419a6)
 	ld hl, .NPCMovement_419a6
 	farcall MoveNPC
 	call Func_3340
@@ -2860,7 +2860,7 @@ Script_TCGCupRound2AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_419a1)
 	ld hl, .NPCMovement_419a1
 	farcall MoveNPC
 	call Func_3340
@@ -3016,7 +3016,7 @@ Script_TCGCupRound3AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_41ae0)
 	ld hl, .NPCMovement_41ae0
 	farcall MoveNPC
 	call Func_3340
@@ -5321,13 +5321,14 @@ Script_GRCupOpponentEliminated:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42d9b)
 	ld hl, .NPCMovement_42d9b
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42da0)
+	ASSERT BANK(.NPCMovement_42da0) == BANK(.NPCMovement_42da3)
 	ld hl, .NPCMovement_42da0
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
@@ -5337,7 +5338,7 @@ Script_GRCupOpponentEliminated:
 	pop af
 	farcall ClearOWObject
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld b, $10
+	ld b, BANK(.NPCMovement_42da8)
 	ld hl, .NPCMovement_42da8
 	farcall MoveNPC
 	call Func_3340
@@ -5378,7 +5379,8 @@ Script_GRCupNewChallenger:
 	ld b, NORTH
 	lb de, 11, 10
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_42e02)
+	ASSERT BANK(.NPCMovement_42e02) == BANK(.NPCMovement_42e0a)
 	ld hl, .NPCMovement_42e02
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
@@ -5386,7 +5388,8 @@ Script_GRCupNewChallenger:
 	farcall MoveNPC
 	call Func_3340
 	pop af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42e05)
+	ASSERT BANK(.NPCMovement_42e05) == BANK(.NPCMovement_42e0f)
 	ld hl, .NPCMovement_42e05
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT

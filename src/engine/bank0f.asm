@@ -7441,7 +7441,7 @@ Func_3f951:
 
 Func_3f95e:
 	ld a, [wPlayerOWObject]
-	ld b, $0f
+	ld b, BANK(.NPCMovement_3f980)
 	ld hl, .NPCMovement_3f980
 	farcall MoveNPC
 	call Func_3340
