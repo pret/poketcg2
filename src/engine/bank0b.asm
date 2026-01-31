@@ -8233,9 +8233,9 @@ Script_PokemonDomeFatGuy:
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	script_jump_if_b0z .cup_played
 	get_var VAR_GRAND_MASTER_CUP_STATE
-	compare_loaded_var $02
+	compare_loaded_var GRAND_MASTER_CUP_ACTIVE
 	script_jump_if_b0nz .cup_active
-	compare_loaded_var $03
+	compare_loaded_var GRAND_MASTER_CUP_ACTIVE_PRIZES_SET
 	script_jump_if_b0nz .cup_active
 	print_npc_text PokemonDomeFatGuyGrandMasterCupInactiveText
 	end_dialog

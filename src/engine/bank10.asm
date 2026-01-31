@@ -5658,7 +5658,7 @@ Script_43000:
 	print_npc_text Text0928
 	receive_card GRS_MEWTWO
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	set_event EVENT_BEAT_FINAL_CUP
+	set_event EVENT_WON_FINAL_CUP
 	reset_event EVENT_TALKED_TO_MITCH
 	reset_event EVENT_TALKED_TO_AMY
 	reset_event EVENT_TALKED_TO_KEN

@@ -43,6 +43,8 @@ DEF NUM_CHALLENGE_MACHINE_WINS_FOR_COIN_PRIZE EQU 50
 ; caps for both duels won and sets won
 DEF MAX_NUM_CHALLENGE_MACHINE_WIN_RECORD EQU 999
 
+; caps for link duel wins to activate grand master cup
+DEF MAX_NUM_LINK_DUEL_WINS_FOR_GRAND_MASTER_CUP EQU 10
 
 ; wPlayerDuelVariables or wOpponentDuelVariables constants
 DEF DUELVARS_CARD_LOCATIONS                   EQUS "LOW(wPlayerCardLocations)"               ; 00

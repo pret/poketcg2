@@ -162,11 +162,12 @@
 	const EVENT_TALKED_TO_TRADE_NPC_FIRE_FORT             ; $8e
 	const EVENT_TALKED_TO_TRADE_NPC_WATER_FORT            ; $8f
 	const EVENT_TALKED_TO_TRADE_NPC_PSYCHIC_STRONGHOLD    ; $90
-; Misc flags 1
+; Misc NPC flags
 	const EVENT_91                                        ; $91
 	const EVENT_92                                        ; $92
 	const EVENT_TALKED_TO_SAM                             ; $93
 	const EVENT_94                                        ; $94
+; Ishihara flags
 	const EVENT_TALKED_TO_ISHIHARA                        ; $95
 	const EVENT_BATTLED_ISHIHARA                          ; $96
 	const EVENT_TALKED_TO_ISHIHARA_POST_GAME              ; $97
@@ -243,10 +244,11 @@
 	const EVENT_OPENED_CHEST_FIGHTING_FORT_4              ; $d6
 	const EVENT_OPENED_CHEST_FIGHTING_FORT_5              ; $d7
 	const EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT       ; $d8
-; Misc flags 2
+; Flyover flag
 	const EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE          ; $d9
-	const EVENT_BEAT_FINAL_CUP                            ; $da
-	const EVENT_DB                                        ; $db
+; Pokemon Dome Cups flags
+	const EVENT_WON_FINAL_CUP                             ; $da
+	const EVENT_WON_GRAND_MASTER_CUP                      ; $db
 ; Ghost Master flags
 	const EVENT_GHOST_MASTER_STATUES_STATE                ; $dc
 	const EVENT_BATTLED_TOBICHAN                          ; $dd
@@ -264,7 +266,7 @@
 	const EVENT_TALKED_TO_BISHOP                          ; $e8
 	const EVENT_TALKED_TO_ROOK                            ; $e9
 	const EVENT_TALKED_TO_QUEEN                           ; $ea
-; Misc flags 3
+; Misc flags
 	const EVENT_EB                                        ; $eb
 	const EVENT_TALKED_TO_ROD_POKEMON_DOME                ; $ec
 	const EVENT_SET_UNTIL_MAP_RELOAD_1                    ; $ed

@@ -3455,20 +3455,26 @@ wdd76:: ; dd76
 wdd77:: ; dd77
 	ds $1
 
-wdd78:: ; dd78
+wGrandMasterCupPrizeSelectionMenuCursorPosition:: ; dd78
 	ds $1
 
-wdd79:: ; dd79
+wNumGrandMasterCupPrizesSelected:: ; dd79
 	ds $1
 
-wdd7a:: ; dd7a
-	ds $10
+; card name, card id
+wGrandMasterCupPrizes:: ; dd7a
+	ds (2 + 2) * NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
 
-wdd8a:: ; dd8a
-	ds $4
+wGrandMasterCupPrizesSelectionState:: ; dd8a
+	ds NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
 
-wdd8e:: ; dd8e
-	ds $5
+wSelectedGrandMasterCupPrizeItems:: ; dd8e
+wSelectedGrandMasterCupPrizeItem1:: ; dd8e
+	ds $1
+wSelectedGrandMasterCupPrizeItem2:: ; dd8f
+	ds $1
+
+	ds $3
 
 wdd93:: ; dd93
 	ds $1

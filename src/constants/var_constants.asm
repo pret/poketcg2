@@ -13,7 +13,7 @@
 	const VAR_0B                                       ; $0b
 	const VAR_FINAL_CUP_PLAYED_ROUNDS                  ; $0c
 	const VAR_GRAND_MASTER_CUP_STATE                   ; $0d
-	const VAR_0E                                       ; $0e
+	const VAR_GRANDMASTERCUP_CURRENT_ROUND             ; $0e
 	const VAR_0F                                       ; $0f
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_0             ; $10
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_1             ; $11
@@ -30,8 +30,8 @@
 	const VAR_1C                                       ; $1c
 	const VAR_1D                                       ; $1d
 	const VAR_1E                                       ; $1e
-	const VAR_1F                                       ; $1f
-	const VAR_20                                       ; $20
+	const VAR_GRANDMASTERCUP_OPPONENT_GRAND_MASTER     ; $1f
+	const VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP ; $20
 	const VAR_21                                       ; $21
 	const VAR_IMAKUNI_BLACK_WIN_COUNT                  ; $22
 	const VAR_23                                       ; $23

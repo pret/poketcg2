@@ -334,6 +334,14 @@ DEF NUM_PICS EQU const_value
 
 DEF NPC_NONE EQU -1
 
+; grand masters
+	const_def
+	const GRAND_MASTER_COURTNEY ; 0
+	const GRAND_MASTER_STEVE    ; 1
+	const GRAND_MASTER_JACK     ; 2
+	const GRAND_MASTER_ROD      ; 3
+DEF NUM_GRAND_MASTERS EQU const_value
+
 ; NPCDuelistPointers use this ordering
 	const_def
 	const NPC_DUELIST_SAM           ; $00

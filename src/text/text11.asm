@@ -92,7 +92,7 @@ RodYouDoNotDeserveLegendaryCardsText:
 	linefw "では・・・"
 	done
 
-Text0fb2:
+CupHostGrandMasterCupIntroBracketRevealText:
 	textfw "さあ グランドマスター杯を"
 	linefw "かいさいします!!"
 	linefw "グランドマスターの みまもるなか!"
@@ -101,59 +101,59 @@ Text0fb2:
 	linefw "くみあわせの はっぴょうです"
 	done
 
-Text0fb3:
+CupHostGrandMasterCupRound1Text:
 	textfw "それでは トーナメント戦"
 	linefw "だい1回戦を はじめましょう!"
 	done
 
-Text0fb4:
+CupHostGrandMasterCupRound1CallPlayerText:
 	textfw "だい 1しあいは"
 	linefw "GR団をたおした <RAMNAME>さんと"
 	done
 
-Text0fb5:
+CupHostGrandMasterCupRound1CallOpponentText:
 	textfw "<RAMTEXT>クラブのマスター!!"
 	linefw "<RAMTEXT>さんです"
 	done
 
-Text0fb6:
+CupHostGrandMasterCupRound1StartingText:
 	textfw "さあ それでは"
 	linefw "対戦を はじめましょう"
 	done
 
-Text0fb7:
+CupHostGrandMasterCupAreYourDecksReadyText:
 	textfw "2人とも"
 	linefw "デッキのじゅんびは いいですか?"
 	done
 
-Text0fb8:
+CupHostGrandMasterCupMakeYourPreparationsText:
 	textfw "それでは"
 	linefw "じゅんびを してください!"
 	done
 
-Text0fb9:
+CupHostGrandMasterCupRound1DuelStartText:
 	textfw "よろしいですか"
 	linefw "サイドカードは 6枚です!"
 	linefw "それでは!!"
 	linefw "レディ ゴー!!"
 	done
 
-Text0fba:
+CupHostGrandMasterCupRound2Text:
 	textfw "それでは トーナメント戦"
 	linefw "だい2回戦を はじめましょう!"
 	done
 
-Text0fbb:
+CupHostGrandMasterCupRound2CallPlayerText:
 	textfw "だい 2しあいは"
 	linefw "GR団をたおした <RAMNAME>さんと"
 	done
 
-Text0fbc:
+CupHostGrandMasterCupRound2CallOpponentText:
 	textfw "<RAMTEXT>クラブのマスター!!"
 	linefw "<RAMTEXT>さんです"
 	done
 
-Text0fbd:
+CupHostGrandMasterCupRound2DuelStartText:
 	textfw "さあ それでは"
 	linefw "対戦を はじめましょう"
 	linefw "グランドマスター杯の ルールで"
@@ -164,29 +164,29 @@ Text0fbd:
 	linefw "レディ ゴー!!"
 	done
 
-Text0fbe:
+CupHostGrandMasterCupFinalsText:
 	textfw "さあ これで けっしょう戦"
 	linefw "しんしゅつしゃが けっていしました"
 	linefw "それでは トーナメント戦"
 	linefw "けっしょう戦を はじめます!"
 	done
 
-Text0fbf:
+CupHostGrandMasterCupFinalsCallPlayerText:
 	textfw "けっしょう戦 しんしゅつしゃ!"
 	linefw "ひとりめは <RAMNAME>さん!!"
 	done
 
-Text0fc0:
+CupHostGrandMasterCupFinalsCallOpponentClubMasterText:
 	textfw "そして もうひとり"
 	linefw "<RAMTEXT>クラブマスター <RAMTEXT>!"
 	done
 
-Text0fc1:
+CupHostGrandMasterCupFinalsCallOpponentRonaldText:
 	textfw "そして もうひとり"
 	linefw "ランド!"
 	done
 
-Text0fc2:
+RonaldGrandMasterCupFinalsText:
 	textfw "おい <RAMNAME>"
 	linefw "よくまけずに 勝ちのこったな"
 	linefw "だが"
@@ -195,7 +195,7 @@ Text0fc2:
 	linefw "このデッキの ちからを みせてやる!"
 	done
 
-Text0fc3:
+CupHostGrandMasterCupFinalsDuelStartText:
 	textfw "さあ それでは"
 	linefw "けっしょう戦を はじめましょう"
 	linefw "グランドマスター杯の ルールで"
@@ -206,47 +206,47 @@ Text0fc3:
 	linefw "レディ ゴー!!"
 	done
 
-Text0fc4:
+CupHostGrandMasterCupRoundsPlayerWonText:
 	textfw "<RAMNAME>さん"
 	linefw "だい<RAMNUM>回戦 とっぱです!!"
 	done
 
-Text0fc5:
+CupHostGrandMasterCupRoundsOpponentEliminatedText:
 	textfw "<RAMTEXT>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0fc6:
+CupHostGrandMasterCupSeeUpdatedBracketText:
 	textfw "さあ それでは"
 	linefw "ほかの対戦を みてみましょう!"
 	done
 
-Text0fc7:
+CupHostGrandMasterCupRoundsPlayerLost1Text:
 	textfw "勝者!!"
 	linefw "<RAMTEXT>さんです!"
 	done
 
-Text0fc8:
+CupHostGrandMasterCupRoundsPlayerLost2Text:
 	textfw "<RAMTEXT>さん"
 	linefw "だい<RAMNUM>回戦 とっぱです!!"
 	done
 
-Text0fc9:
+CupHostGrandMasterCupFinalsPlayerWon1Text:
 	textfw "勝者!!"
 	linefw "<RAMNAME>さんです!"
 	done
 
-Text0fca:
+CupHostGrandMasterCupFinalsPlayerWon2Text:
 	textfw "<RAMNAME>さん!!"
 	linefw "グランドマスターへ チャレンジです"
 	done
 
-Text0fcb:
+CupHostGrandMasterCupFinalsOpponentEliminatedText:
 	textfw "<RAMTEXT>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
 
-Text0fcc:
+RonaldGrandMasterCupFinalsPlayerWonText:
 	textfw "くそ~!"
 	linefw "また <RAMNAME>に 勝てないのか?"
 	linefw "いや"
@@ -255,24 +255,24 @@ Text0fcc:
 	linefw "おぼえてろ! <RAMNAME>!!"
 	done
 
-Text0fcd:
+CupHostGrandMasterCupFinalsPlayerLost1Text:
 	textfw "勝者!!"
 	linefw "<RAMTEXT>さんです!"
 	done
 
-Text0fce:
+CupHostGrandMasterCupFinalsPlayerLost2Text:
 	textfw "<RAMTEXT>さん"
 	linefw "グランドマスターへ チャレンジです"
 	done
 
-Text0fcf:
+RonaldGrandMasterCupFinalsPlayerLostText:
 	textfw "みたか <RAMNAME>!"
 	linefw "オレの じつりょくを!!"
 	linefw "やっぱり オレのほうが"
 	linefw "おまえ なんかより つよいのさ!"
 	done
 
-Text0fd0:
+CupHostGrandMasterCupGrandFinalsText:
 	textfw "さあ いよいよ"
 	linefw "グランドマスターとの対戦です!"
 	linefw "さあ こんかいの対戦する"
@@ -281,123 +281,123 @@ Text0fd0:
 	linefw "はっぴょうして いただきましょう"
 	done
 
-Text0fd1:
+RodGrandMasterCupGrandFinalsBracketReveal1Text:
 	textfw "こんかいの グランドマスター杯の"
 	linefw "対戦あいては・・・"
 	done
 
-Text0fd2:
+RodGrandMasterCupGrandFinalsBracketReveal2Text:
 	textfw "グランドマスター!"
 	linefw "<RAMTEXT>!"
 	done
 
-Text0fd3:
+CupHostGrandMasterCupGrandFinalsCallCourtneyText:
 	textfw "グランドマスター"
 	linefw "炎のクイーン ヒロコさんです!"
 	done
 
-Text0fd4:
+CourtneyGrandMasterCupGrandFinalsText:
 	textfw "いくわよ <RAMNAME>くん"
 	linefw "ウフフ・・・てかげんは しないわ"
 	done
 
-Text0fd5:
+CupHostGrandMasterCupGrandFinalsDuelStartText:
 	textfw "サイドカードは 6枚です"
 	linefw "さあ 対戦です!"
 	done
 
-Text0fd6:
+CourtneyGrandMasterCupGrandFinalsPlayerLostText:
 	textfw "ウフフ・・・"
 	linefw "アタシの かちよ ざんねんね"
 	done
 
-Text0fd7:
+CupHostGrandMasterCupGrandFinalsPlayerLostText:
 	textfw "勝者! グランドマスター!!"
 	linefw "<RAMTEXT>さんです!"
 	linefw "ああ なんと!!"
 	linefw "<RAMNAME>さん はいたいです!!"
 	done
 
-Text0fd8:
+CupHostGrandMasterCupGrandFinalsCallSteveText:
 	textfw "イナズマの グランドマスター"
 	linefw "サンダー・スティーブさんです!"
 	done
 
-Text0fd9:
+SteveGrandMasterCupGrandFinalsText:
 	textfw "サンダー・スティーブとの対戦は"
 	linefw "ビック グレートね!"
 	done
 
-Text0fda:
+CupHostGrandMasterCupGrandFinalsCallJackText:
 	textfw "こおりの グランドマスター"
 	linefw "ジェントルマン カネコウジさんです!"
 	done
 
-Text0fdb:
+JackGrandMasterCupGrandFinalsText:
 	textfw "わたしの ゴージャスなデッキと"
 	linefw "また 対戦ね こんどはまけない"
 	done
 
-Text0fdc:
+JackGrandMasterCupGrandFinalsPlayerWonText:
 	textfw "わたしの ゴージャスなデッキが"
 	linefw "やぶれるとは・・・さすがだ"
 	done
 
-Text0fdd:
+CupHostGrandMasterCupGrandFinalsCallRodText:
 	textfw "グランドマスターのリーダー"
 	linefw "リュウドーさんが あいてです!"
 	done
 
-Text0fde:
+RodGrandMasterCupGrandFinalsText:
 	textfw "さあ わたし このリュウドーが"
 	linefw "みずから あいてになろう!"
 	done
 
-Text0fdf:
+CupHostGrandMasterCupGrandFinalsPlayerWonText:
 	textfw "やりました <RAMNAME>さん"
 	linefw "おめでとうございます!!"
 	done
 
-Text0fe0:
+CupHostGrandMasterCupPlayerChampionText:
 	textfw "グランドマスター杯!"
 	linefw "ゆうしょうです!!"
 	done
 
-Text0fe1:
+CupHostGrandMasterCupChampionPrizeSelectionText:
 	textfw "さあ それでは 賞品を"
 	linefw "えらんで いただきましょう!"
 	done
 
-Text0fe2:
+CupHostGrandMasterCupChampionPrizesText:
 	textfw "では おうけとりください"
 	linefw "ゆうしょう賞品です!!"
 	done
 
-Text0fe3:
+CupHostGrandMasterCupFirstChampionRewardsText:
 	textfw "はじめてのゆうしょう"
 	linefw "おめでとうございます!"
 	linefw "<RAMNAME>さんには きねんとして"
 	linefw "こちらのコインを さしあげます"
 	done
 
-Text0fe4:
+CupHostGrandMasterCupPlayerFirstChampionCongratsText:
 	textfw "あらためて <RAMNAME>さん"
 	linefw "おめでとうございます"
 	done
 
-Text0fe5:
+CupHostGrandMasterCupPlayerChampionCongratsText:
 	textfw "<RAMNAME>さん"
 	linefw "おめでとうございます"
 	done
 
-Text0fe6:
+CupHostGrandMasterCupPlayerChampionClosingText:
 	textfw "こんかいの グランドマスター杯は"
 	linefw "<RAMNAME>さんの ゆうしょうでした"
 	linefw "では つぎのグランドマスター杯まで"
 	linefw "ごきげんよう さようなら!!"
 	done
 
-Text0fe7:
+CupHostGrandMasterCupPlayerLostEliminatedText:
 	textfw "<RAMNAME>さんは ざんねんでした"
 	linefw "きをつけて おかえりください"
 	done
