@@ -464,7 +464,8 @@ DebugBackgroundCoinDisplayText:
 	textfw "BGコインの表示"
 	done
 
-SingleSpaceText: ; Coin-related?
+; pseudo-empty
+SingleSpaceText:
 	textfw " "
 	done
 
@@ -2274,10 +2275,12 @@ AaronStep4Text:
 	textfw "ステップ4"
 	done
 
+; homonym bug, 商品 (merchandise) should be 賞品 (prize)
 GrandMasterCupPrizesTitleText:
 	textfw "グランドマスター杯 商品"
 	done
 
+; homonym bug, 商品 (merchandise) should be 賞品 (prize)
 GrandMasterCupPrizesDialogText:
 	textfw "グランドマスター杯の商品です"
 	linefw "すきなカードを 2枚えらんでください"

@@ -71,3 +71,16 @@ MACRO? cardlist_params
 	db \1, \2, \3, \4, \5, \6, \7
 	dw \8
 ENDM
+
+/*
+	\1 ; wMaxNumCardsAllowed
+	\2 ; wNumValidDeckSize
+	\3 ; wSameNameCardsLimit
+	\4 ; wIncludeCardsInDeck (boolean)
+	\5 ; wDeckConfigurationMenuHandlerFunction
+	\6 ; wDeckConfigurationMenuTransitionTable
+*/
+MACRO? deckbuilding_params
+	db \1, \2, \3, \4
+	dw \5, \6
+ENDM

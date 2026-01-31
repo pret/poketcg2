@@ -517,7 +517,7 @@ SetGrandMasterCupOpponents:
 ; for b = bitmask, choose a random opponent and return their deck id in a
 .PickOpponent:
 	ld hl, GrandMasterCupOpponents
-	ld a, NUM_GRANDMASTERCUP_OPPONENT_IDS
+	ld a, NUM_GRANDMASTERCUP_OPPONENT_POOL
 	call Random
 	sla a
 	add_hl_a
@@ -561,9 +561,9 @@ GetNPCByDeck_AdjustAmy_PokemonDome:
 	ret
 
 Func_45488:
-	ld a, VAR_0E
+	ld a, VAR_GRANDMASTERCUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $02
+	cp 2
 	jr z, .asm_4549c
 	jr nc, .asm_454a4
 	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
@@ -704,12 +704,12 @@ Func_45573:
 	ret
 
 Func_455a3:
-	ld a, VAR_0E
+	ld a, VAR_GRANDMASTERCUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $01
+	cp 1
 	jp c, .asm_45658
 	jr z, .asm_455f0
-	cp $02
+	cp 2
 	jr z, .asm_455c8
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue

@@ -946,7 +946,7 @@ SetFontAndTextBoxFrameColor_PreserveRegisters::
 	pop af
 	ret
 
-Func_10672:
+Stub_10672:
 	ret
 
 ; input: de = coord
@@ -3146,7 +3146,7 @@ _PCMenu:
 	call Func_10252
 	ret
 
-Func_111f0:
+SetPCMenuCursorToShutdown:
 	ld a, PCMENU_SHUTDOWN
 	ld [wPCMenuCursorPosition], a
 	ret
@@ -3440,6 +3440,7 @@ Func_1132e:
 	ret
 
 ; a = NPC_* ID
+; b = NPCMovement data bank
 ; hl = NPCMovement data pointer
 _MoveNPC:
 	push af
@@ -3456,11 +3457,11 @@ _MoveNPC:
 	pop bc
 	xor a
 	ld [hli], a ; OWOBJSTRUCT_4
-	ld [hl], b  ; OWOBJSTRUCT_5
+	ld [hl], b  ; OWOBJSTRUCT_MOVEMENT_BANK
 	inc hl
-	ld [hl], e  ;  LOW(OWOBJSTRUCT_6)
+	ld [hl], e  ;  LOW(OWOBJSTRUCT_MOVEMENT_PTR)
 	inc hl
-	ld [hl], d  ; HIGH(OWOBJSTRUCT_6)
+	ld [hl], d  ; HIGH(OWOBJSTRUCT_MOVEMENT_PTR)
 	pop hl
 	pop de
 	pop bc
@@ -3510,10 +3511,10 @@ ENDR
 	push hl
 	ld a, [hli] ; OWOBJSTRUCT_4
 	ld c, a
-	ld a, [hli] ; OWOBJSTRUCT_5
+	ld a, [hli] ; OWOBJSTRUCT_MOVEMENT_BANK
 	ld b, a
-	ld a, [hli] ;  LOW(OWOBJSTRUCT_6)
-	ld h, [hl]  ; HIGH(OWOBJSTRUCT_6)
+	ld a, [hli] ;  LOW(OWOBJSTRUCT_MOVEMENT_PTR)
+	ld h, [hl]  ; HIGH(OWOBJSTRUCT_MOVEMENT_PTR)
 	ld l, a
 	call Func_3be0
 	pop hl
@@ -6666,7 +6667,7 @@ Func_13357:
 	call SetFrameFuncAndFadeFromWhite
 	call SetFadePalsFrameFunc
 .asm_13360
-	farcall Func_a705
+	farcall HandleBlackBoxSendCardsScreen
 	jr nc, .asm_13373
 	ldtx hl, GameCenterBlackBoxCancelPromptText
 	ld a, $01

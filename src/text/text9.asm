@@ -1414,7 +1414,7 @@ Text0e96:
 	linefw "対戦も してみよーかなー"
 	done
 
-Text0e97:
+IshiharaUnderGRInvasionInitialText:
 	textfw "やあ こんにちは"
 	linefw "わたしが Mr.イシハラです"
 	linefw "わたしは ポケモンカードのコレクター"
@@ -1427,7 +1427,7 @@ Text0e97:
 	linefw "だいじょうぶなのでしょうか?"
 	done
 
-Text0e98:
+IshiharaUnderGRInvasionRepeatText:
 	textfw "やあ こんにちは"
 	linefw "わたしが Mr.イシハラです"
 	linefw "クラブやドームが GR団に"
@@ -1436,7 +1436,7 @@ Text0e98:
 	linefw "だいじょうぶなのでしょうか?"
 	done
 
-Text0e99:
+IshiharaListenToNikkiText:
 	textfw "やあ こんにちは"
 	linefw "わたしが Mr.イシハラです"
 	linefw "わたしは ポケモンカードのコレクター"
@@ -1447,7 +1447,7 @@ Text0e99:
 	linefw "ねがいを きいてあげてください"
 	done
 
-Text0e9a:
+IshiharaHelpNikkiText:
 	textfw "やあ こんにちは"
 	linefw "わたしが Mr.イシハラです"
 	linefw "わたしは ポケモンカードのコレクター"
@@ -1458,7 +1458,7 @@ Text0e9a:
 	linefw "わたしと トレードしましょう"
 	done
 
-Text0e9b:
+IshiharaWantsToTrade1InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "じゃあ カードをこうかんしましょう"
 	linefw "じつは いま 「ピッピ<Lv>15」を"
@@ -1471,7 +1471,7 @@ Text0e9b:
 	linefw "もっていませんか?"
 	done
 
-Text0e9c:
+IshiharaWantsToTrade1RepeatText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "じつは いま 「ピッピ<Lv>15」を"
@@ -1482,21 +1482,21 @@ Text0e9c:
 	linefw "もっていませんか?"
 	done
 
-Text0e9d:
+IshiharaDeclinedTradeText:
 	textfw "そうですか"
 	linefw "それは ざんねんです・・・"
 	linefw "それでは カードのこうかんは"
 	linefw "また こんどということで・・・"
 	done
 
-Text0e9e:
+IshiharaDoNotOwnClefairyLv15Text:
 	textfw "きもちは とても ありがたいのですが"
 	linefw "キミは カードをもっていませんね"
 	linefw "それでは カードのこうかんは"
 	linefw "また こんどということで・・・"
 	done
 
-Text0e9f:
+IshiharaUsingAllClefairyLv15InDecksText:
 	textfw "おやおや きみの「ピッピ<Lv>15」は"
 	linefw "ぜんぶデッキに はいっているのですね"
 	linefw "ゲームに つかっているカードを"
@@ -1505,24 +1505,24 @@ Text0e9f:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ea0:
+IshiharaAcceptedTrade1Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0ea1:
+TradedClefairyForFlyingPikachuText:
 	textfw "<RAMNAME>は 「ピッピ」と"
 	linefw "「そらをとぶピカチュウ」をこうかん!"
 	done
 
-Text0ea2:
+IshiharaThanksTradedClefairyLv15Text:
 	textfw "この「ピッピ<Lv>15」は"
 	linefw "ありがたく いただきますよ"
 	linefw "ほんとうに ありがとう"
 	linefw "たすかりましたよ"
 	done
 
-Text0ea3:
+IshiharaAtHomeTradeLaterReadMyBooksText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "いらっしゃい"
 	linefw "いまは とくに ほしいカードも"
@@ -1535,7 +1535,7 @@ Text0ea3:
 	linefw "対戦で やくにたちますよ"
 	done
 
-Text0ea4:
+IshiharaWantsToTrade2InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "じゃあ カードをこうかんしましょう"
 	linefw "こんどは 「ピクシー<Lv>34」を"
@@ -1546,7 +1546,7 @@ Text0ea4:
 	linefw "もっていませんか?"
 	done
 
-Text0ea5:
+IshiharaWantsToTrade2RepeatText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "こんどは 「ピクシー<Lv>34」を"
@@ -1557,7 +1557,7 @@ Text0ea5:
 	linefw "もっていませんか?"
 	done
 
-Text0ea6:
+IshiharaDoNotOwnClefableLv34Text:
 	textfw "きみは 「ピクシー<Lv>34」を"
 	linefw "もっていませんね"
 	linefw "「トゲピー<Lv>8」は"
@@ -1566,7 +1566,7 @@ Text0ea6:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ea7:
+IshiharaUsingAllClefableLv34InDecksText:
 	textfw "う~む 「ピクシー<Lv>34」は"
 	linefw "すべて デッキに いれているのですね"
 	linefw "ゲームに つかっているカードを"
@@ -1575,24 +1575,24 @@ Text0ea7:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ea8:
+IshiharaAcceptedTrade2Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0ea9:
+TradedClefableLv34ForTogepiLv8Text:
 	textfw "<RAMNAME>は 「ピクシー<Lv>34」と"
 	linefw "「トゲピー<Lv>8」を こうかん!"
 	done
 
-Text0eaa:
+IshiharaThanksTradedClefableLv34Text:
 	textfw "この「ピクシー<Lv>34」は"
 	linefw "ありがたく いただきますよ"
 	linefw "ほんとうに ありがとう"
 	linefw "たすかりましたよ"
 	done
 
-Text0eab:
+IshiharaWantsToTrade3InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "あいかわらず げんきそうですね"
 	linefw "こんどはね 「カイリュー<Lv>45」を"
@@ -1603,7 +1603,7 @@ Text0eab:
 	linefw "もっていませんか?"
 	done
 
-Text0eac:
+IshiharaWantsToTrade3RepeatText:
 	textfw "こんどはね 「カイリュー<Lv>45」を"
 	linefw "さがしているんですよ"
 	linefw "もっているなら「マリル<Lv>17」と"
@@ -1612,7 +1612,7 @@ Text0eac:
 	linefw "もっていませんか?"
 	done
 
-Text0ead:
+IshiharaDoNotOwnDragoniteLv45Text:
 	textfw "きみは 「カイリュー<Lv>45」を"
 	linefw "もっていませんね"
 	linefw "「マリル<Lv>17」は"
@@ -1621,7 +1621,7 @@ Text0ead:
 	linefw "また こんどということで・・・"
 	done
 
-Text0eae:
+IshiharaUsingAllDragoniteLv45InDecksText:
 	textfw "う~む 「カイリュー<Lv>45」は"
 	linefw "すべて デッキに いれているのですね"
 	linefw "ゲームに つかっているカードを"
@@ -1630,24 +1630,24 @@ Text0eae:
 	linefw "また こんどということで・・・"
 	done
 
-Text0eaf:
+IshiharaAcceptedTrade3Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0eb0:
+TradedhDragoniteLv45ForMarillLv17Text:
 	textfw "<RAMNAME>は「カイリュー<Lv>45」と"
 	linefw "「マリル<Lv>17」を こうかん!"
 	done
 
-Text0eb1:
+IshiharaThanksTradedDragoniteLv45Text:
 	textfw "この「カイリュー<Lv>45」は"
 	linefw "ありがたく いただきますよ"
 	linefw "ほんとうに ありがとう"
 	linefw "たすかりましたよ"
 	done
 
-Text0eb2:
+IshiharaHeadingForVillaText:
 	textfw "たくさん こうかんしてくれて"
 	linefw "ありがとう <RAMNAME>くん"
 	linefw "わたしは ちょっと ようじで"
@@ -1656,7 +1656,7 @@ Text0eb2:
 	linefw "あそびに きてください"
 	done
 
-Text0eb3:
+IshiharaBusyRevisitVillaText:
 	textfw "やあ <RAMNAME>くん"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "ちょっと しらべものがあって"
@@ -1665,7 +1665,7 @@ Text0eb3:
 	linefw "別莊のほうに きてください"
 	done
 
-Text0eb4:
+IshiharaDefeatedBiruritchiCongratsText:
 	textfw "おめでとう <RAMNAME>くん!"
 	linefw "きいたよ"
 	linefw "ついに GR団のキング!"
@@ -1676,7 +1676,7 @@ Text0eb4:
 	linefw "対戦して たのしんでくれたまえ"
 	done
 
-Text0eb5:
+NikkiWantsToGiveAwayGiveInAntiGR2Deck1Text:
 	textfw "ええ わたしが クニミ・・・"
 	linefw "グリーンクラブのマスターです"
 	linefw "アヤコさんから きいて"
@@ -1687,61 +1687,61 @@ Text0eb5:
 	linefw "きっと だいじょうぶですね"
 	done
 
-Text0eb6:
+NikkiWantsToGiveAwayGiveInAntiGR2Deck2Text:
 	textfw "これを うけとってください"
 	linefw " "
 	linefw "GR2号さんとの 対戦に"
 	linefw "やくにたつはずです"
 	done
 
-Text0eb7:
+ReceivedGiveInAntiGR2DeckText:
 	textfw "<RAMNAME>は デッキ"
 	linefw "「まけろ!GR2ごう」をゲット!"
 	done
 
-Text0eb8:
+NikkiDecksFullGivesCardsInsteadText:
 	textfw "・・・デッキは これいじょう"
 	linefw "おもちに なれないようですわね"
 	linefw "「まけろ!GR2ごうデッキ」の"
 	linefw "カードを 60枚 さしあげますわ"
 	done
 
-Text0eb9:
+ReceivedCardsForGiveInAntiGR2DeckText:
 	textfw "<RAMNAME>は デッキつくるための"
 	linefw "カード60枚を ゲット!"
 	done
 
-Text0eba:
+NikkiToSendDeckConfigurationToMachineText:
 	textfw "「デッキのつくりかた」は"
 	linefw "オーヤマ研究所に おくっておきますわ"
 	linefw "オートデッキマシンで"
 	linefw "つくってくださいね"
 	done
 
-Text0ebb:
+NikkiWantsToGiveOddishCoinText:
 	textfw "それと これも うけとってください"
 	done
 
-Text0ebc:
+NikkiGaveOddishCoinText:
 	textfw "よろしければ 対戦で"
 	linefw "おつかいください"
 	linefw "グリーンクラブの みんなのためにも"
 	linefw "がんばってください"
 	done
 
-Text0ebd:
+NikkiCountingOnYouInitialText:
 	textfw "GR2号さんには わたしのちからでは"
 	linefw "とうてい かないません"
 	linefw "<RAMNAME>さん"
 	linefw "どうか よろしくおねがいいたします"
 	done
 
-Text0ebe:
+NikkiCountingOnYouRepeatText:
 	textfw "グリーンクラブの みんなのためにも"
 	linefw "がんばってください"
 	done
 
-Text0ebf:
+IshiharaMyVillaText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "あちらのしまでは おせわになりました"
 	linefw "こちらのしまでの"
@@ -1754,7 +1754,7 @@ Text0ebf:
 	linefw "また カードの トレードをしましょう"
 	done
 
-Text0ec0:
+IshiharaVillaSeeYouLaterText:
 	textfw "やあ <RAMNAME>くん"
 	linefw "GR団との対戦 たのしんでいますか?"
 	linefw "ポケモンカードは どんなときでも"
@@ -1765,7 +1765,7 @@ Text0ec0:
 	linefw "また あそびに きてくださいね"
 	done
 
-Text0ec1:
+IshiharaWantsToTrade4InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "GR団との対戦 たのしんでますか?"
 	linefw "じつは でんせつのとりポケモンの"
@@ -1780,7 +1780,7 @@ Text0ec1:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ec2:
+IshiharaWantsToTrade4RepeatText:
 	textfw "ポケモンカード たのしんでますか?"
 	linefw "じつは でんせつのとりポケモンの"
 	linefw "カードを あつめているんですよ"
@@ -1792,7 +1792,7 @@ Text0ec2:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ec3:
+IshiharaDoNotOwnMoltresLv37Text:
 	textfw "きみの きもちは"
 	linefw "とても ありがたいのですが"
 	linefw "きみは 「ファイヤー<Lv>37」の"
@@ -1801,7 +1801,7 @@ Text0ec3:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ec4:
+IshiharaUsingAllMoltresLv37InDecksText:
 	textfw "おやおや 「ファイヤー<Lv>37」は"
 	linefw "ぜんぶデッキに はいっているんですね"
 	linefw "ゲームに つかっているカードを"
@@ -1810,17 +1810,17 @@ Text0ec4:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ec5:
+IshiharaAcceptedTrade4Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0ec6:
+TradedMoltresForSurfingPikachuText:
 	textfw "<RAMNAME>は 「ファイヤー」と"
 	linefw "「なみのりピカチュウ」をこうかん!"
 	done
 
-Text0ec7:
+IshiharaThanksTradedMoltresLv37Text:
 	textfw "この「ファイヤー<Lv>37」は"
 	linefw "ありがたく いただきますよ"
 	linefw "まずは でんせつのとりポケモン"
@@ -1829,7 +1829,7 @@ Text0ec7:
 	linefw "たすかりましたよ"
 	done
 
-Text0ec8:
+IshiharaWantsToTrade5InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "GR団との対戦 たのしんでますか?"
 	linefw "でんせつのとりポケモンの カードを"
@@ -1846,7 +1846,7 @@ Text0ec8:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ec9:
+IshiharaWantsToTrade5RepeatText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "でんせつのとりポケモンの カードを"
@@ -1861,7 +1861,7 @@ Text0ec9:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0eca:
+IshiharaDoNotOwnArticunoLv34Text:
 	textfw "きみの きもちは"
 	linefw "とても ありがたいのですが"
 	linefw "きみは 「フリーザー<Lv>34」の"
@@ -1870,7 +1870,7 @@ Text0eca:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ecb:
+IshiharaUsingAllArticunoLv34InDecksText:
 	textfw "おやおや 「フリーザー<Lv>34」は"
 	linefw "ぜんぶデッキに はいっているんですね"
 	linefw "ゲームに つかっているカードを"
@@ -1879,17 +1879,17 @@ Text0ecb:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ecc:
+IshiharaAcceptedTrade5Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0ecd:
+TradedArticunoLv34ForSurfingPikachuText:
 	textfw "<RAMNAME>は 「フリーザー」と"
 	linefw "「なみのりピカチュウ」をこうかん!"
 	done
 
-Text0ece:
+IshiharaThanksTradedArticunoLv34Text:
 	textfw "この「フリーザー<Lv>34」は"
 	linefw "ありがたく いただきますよ"
 	linefw "これで でんせつのとりポケモン"

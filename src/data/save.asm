@@ -47,7 +47,7 @@ WRAMToSRAMMapper_GeneralSave::
 	wram_sram_map wCoinPage,                                  1, $00, $ff
 	wram_sram_map wPauseMenuCursorPosition,                   1, $00, $ff
 	wram_sram_map wMinicomMenuCursorPosition,                 1, $00, $ff
-	wram_sram_map wdc06,                                      1, $00, $ff
+	wram_sram_map wGiftCenterMenuCursorPosition,              1, $00, $ff
 	wram_sram_map wNumMailInQueue,                            1, $00, $ff
 	wram_sram_map wMailQueue,            MAIL_QUEUE_BUFFER_SIZE, $00, $ff
 	wram_sram_map wMailCount,                                 1, $00, $ff
