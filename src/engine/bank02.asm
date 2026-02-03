@@ -7614,11 +7614,11 @@ HandleGiftCenter::
 	dw .ReceiveDeckConfiguration
 
 .SendDeckConfiguration:
-	farcall $e, $7d5c ; Func_3bd5c
+	farcall SendDeckConfigurationMenu
 	ret
 
 .ReceiveDeckConfiguration:
-	farcall $e, $7dd0 ; Func_3bdd0
+	farcall ReceiveDeckConfigurationMenu
 	ret
 
 ; hl = text ID for text box

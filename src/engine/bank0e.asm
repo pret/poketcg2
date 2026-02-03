@@ -4861,7 +4861,7 @@ Func_3ada1:
 	ld [wNumDeckMachineEntries], a
 	xor a
 .asm_3adb7
-	ld hl, $5eac
+	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
@@ -5134,13 +5134,13 @@ CopyBBytesFromHLToDE_Bank0e:
 	ret
 
 CopyListFromHLToDE_Bank0e:
-.asm_3afb1
+.loop
 	ld a, [hli]
 	ld [de], a
 	or a
 	ret z
 	inc de
-	jr .asm_3afb1
+	jr .loop
 
 ; a = deck index in wMachineDeckPtrs
 Func_3afb8:
@@ -5679,7 +5679,7 @@ Func_3b315:
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
 	ld a, [wTempScrollMenuItem]
-	ld hl, $5eac
+	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call HandleScrollMenu.draw_visible_cursor
 	farcall GetSRAMPointerToCurDeck
@@ -7105,9 +7105,151 @@ CreateAutoDeckPointerList:
 	dec a
 	jr nz, .loop
 	ret
-; 0x3bd5c
 
-SECTION "Bank e@7e8d", ROMX[$7e8d], BANK[$e]
+SendDeckConfigurationMenu:
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ldtx de, DeckSaveMachineText
+	ld hl, wDeckMachineTitleText
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
+	ld [wNumDeckMachineEntries], a
+
+	xor a
+.start_selection
+	ld hl, DeckMachineSelectionParams
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ldtx hl, ChooseDeckConfigurationToSendText
+	call DrawWideTextBox_PrintText
+	ldtx de, ChooseDeckConfigurationToSendText
+	call InitDeckMachineDrawingParams
+.loop_input
+	call HandleDeckMachineSelection
+	jr c, .start_selection
+	cp $ff
+	jr nz, .get_deck_machine_slot
+	ld a, 1
+	or a
+	ret
+
+.get_deck_machine_slot
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr c, .loop_input
+
+	call GetSelectedSavedDeckPtr
+	ld de, wDuelTempList
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
+	call EnableSRAM
+	call CopyBBytesFromHLToDE_Bank0e
+	call DisableSRAM
+	xor a
+	ld [wNameBuffer], a
+	farcall _SendDeckConfiguration
+	ret c
+
+	call GetSelectedSavedDeckPtr
+	ld de, wDefaultText
+	call EnableSRAM
+	call CopyListFromHLToDE_Bank0e
+	call DisableSRAM
+	or a
+	ret
+
+ReceiveDeckConfigurationMenu:
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ldtx de, DeckSaveMachineText
+	ld hl, wDeckMachineTitleText
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
+	ld [wNumDeckMachineEntries], a
+
+	xor a
+.start_selection
+	ld hl, DeckMachineSelectionParams
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	ldtx hl, ChooseWhereToSaveText
+	call DrawWideTextBox_PrintText
+	ldtx de, ChooseWhereToSaveText
+	call InitDeckMachineDrawingParams
+	call HandleDeckMachineSelection
+	jr c, .start_selection
+	cp $ff
+	jr nz, .get_deck_machine_slot
+	ld a, 1
+	or a
+	ret
+
+.get_deck_machine_slot
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	ld [wSelectedDeckMachineEntry], a
+	call CheckIfSelectedDeckMachineEntryIsEmpty
+	jr nc, .overwrite
+	jr .save
+
+.overwrite
+	ldtx hl, DeleteSavedDeckPromptText
+	call YesOrNoMenuWithText
+	jr nc, .save
+	ld a, [wTempCardTypeFilter]
+	jr .start_selection
+
+.save
+	xor a
+	ld [wDuelTempList], a
+	ld [wNameBuffer], a
+	farcall _ReceiveDeckConfiguration
+	ret c
+
+	call GetSelectedSavedDeckPtr
+	ld d, h
+	ld e, l
+	ld hl, wDuelTempList
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
+	call EnableSRAM
+	call CopyBBytesFromHLToDE_Bank0e
+	call DisableSRAM
+	call SaveGame
+	call ClearScreenAndDrawDeckMachineScreen
+	ld a, [wTempCardTypeFilter]
+	ld hl, DeckMachineSelectionParams
+	farcall InitializeScrollMenuParameters
+	call DrawListScrollArrows
+	call PrintNumSavedDecks
+	call HandleScrollMenu.draw_visible_cursor
+	ld hl, wNameBuffer
+	ld de, wDefaultText
+	call EnableSRAM
+	call CopyListFromHLToDE_Bank0e
+	call DisableSRAM
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, ReceivedDeckConfigurationFromText
+	call DrawWideTextBox_WaitForInput
+	call GetSelectedSavedDeckPtr
+	ld de, wDefaultText
+	call EnableSRAM
+	call CopyListFromHLToDE_Bank0e
+	call DisableSRAM
+	xor a
+	ret
 
 SaveDeckDataToWRAM2:
 	push de
