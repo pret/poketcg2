@@ -404,7 +404,7 @@ Script_IshiharaTrade3:
 	script_jump .done
 .start_trade
 	print_npc_text IshiharaAcceptedTrade3Text
-	print_text TradedhDragoniteLv45ForMarillLv17Text
+	print_text TradedDragoniteLv45ForMarillLv17Text
 	receive_card MARILL
 	take_card DRAGONITE_LV45
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE

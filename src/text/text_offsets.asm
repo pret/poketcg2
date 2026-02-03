@@ -3773,7 +3773,7 @@ TextOffsets::
 	textpointer IshiharaDoNotOwnDragoniteLv45Text                     ; 0x0ead
 	textpointer IshiharaUsingAllDragoniteLv45InDecksText              ; 0x0eae
 	textpointer IshiharaAcceptedTrade3Text                            ; 0x0eaf
-	textpointer TradedhDragoniteLv45ForMarillLv17Text                 ; 0x0eb0
+	textpointer TradedDragoniteLv45ForMarillLv17Text                  ; 0x0eb0
 	textpointer IshiharaThanksTradedDragoniteLv45Text                 ; 0x0eb1
 	textpointer IshiharaHeadingForVillaText                           ; 0x0eb2
 	textpointer IshiharaBusyRevisitVillaText                          ; 0x0eb3

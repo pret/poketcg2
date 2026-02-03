@@ -1635,7 +1635,7 @@ IshiharaAcceptedTrade3Text:
 	linefw "それでは さっそく・・・"
 	done
 
-TradedhDragoniteLv45ForMarillLv17Text:
+TradedDragoniteLv45ForMarillLv17Text:
 	textfw "<RAMNAME>は「カイリュー<Lv>45」と"
 	linefw "「マリル<Lv>17」を こうかん!"
 	done
