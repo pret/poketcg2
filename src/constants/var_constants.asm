@@ -19,18 +19,18 @@
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_1             ; $11
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_2             ; $12
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_3             ; $13
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_0           ; $14
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_1           ; $15
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_2           ; $16
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_3           ; $17
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_4           ; $18
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_5           ; $19
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_6           ; $1a
-	const VAR_1B                                       ; $1b
-	const VAR_1C                                       ; $1c
-	const VAR_1D                                       ; $1d
-	const VAR_1E                                       ; $1e
-	const VAR_GRANDMASTERCUP_OPPONENT_GRAND_MASTER     ; $1f
+	const VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID       ; $14, vs player
+	const VAR_GRANDMASTERCUP_ROUND1_NPC2_DECK_ID       ; $15
+	const VAR_GRANDMASTERCUP_ROUND1_NPC3_DECK_ID       ; $16
+	const VAR_GRANDMASTERCUP_ROUND1_NPC4_DECK_ID       ; $17
+	const VAR_GRANDMASTERCUP_ROUND1_NPC5_DECK_ID       ; $18
+	const VAR_GRANDMASTERCUP_ROUND1_NPC6_DECK_ID       ; $19
+	const VAR_GRANDMASTERCUP_ROUND1_NPC7_DECK_ID       ; $1a
+	const VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID       ; $1b, vs player
+	const VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID       ; $1c
+	const VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID       ; $1d
+	const VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID         ; $1e, vs player
+	const VAR_GRANDMASTERCUP_GF_GRAND_MASTER_INDEX     ; $1f, vs player
 	const VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP ; $20
 	const VAR_21                                       ; $21
 	const VAR_IMAKUNI_BLACK_WIN_COUNT                  ; $22

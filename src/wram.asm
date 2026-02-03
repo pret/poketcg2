@@ -3340,25 +3340,25 @@ wCurBoosterPack:: ; dd08
 wAnotherBoosterPack:: ; dd09
 	ds $1
 
-wdd0a:: ; dd0a
-	ds $10
+wGrandMasterCupCompetitorNames:: ; dd0a
+	ds 2 * NUM_GRANDMASTERCUP_COMPETITORS
 
-wdd1a:: ; dd1a
-	ds $6
+; store the winner side (GRANDMASTERCUP_BRACKET_*_WON) for each match
+wGrandMasterCupBracketWinnerSides:: ; dd1a
+	ds NUM_GRANDMASTERCUP_BRACKET_MATCHES
 
-wdd20:: ; dd20
+; GRANDMASTERCUP_BRACKET_*_WON_F bitfield
+wGrandMasterCupBracketWinnerSideBitfield:: ; dd21
 	ds $1
 
-wdd21:: ; dd21
+; NPC ID
+wGrandMasterCupBracketChampion:: ; dd22
 	ds $1
 
-wdd22:: ; dd22
+wGrandMasterCupBracketChampionSpriteAnimIndex:: ; dd23
 	ds $1
 
-wdd23:: ; dd23
-	ds $1
-
-wdd24:: ; dd24
+wGrandMasterCupBracketChampionSpriteAnimTick:: ; dd24
 	ds $1
 
 wdd25:: ; dd25

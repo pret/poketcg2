@@ -5851,31 +5851,31 @@ _GiveBoosterPack:
 	farcall GetBoosterPack
 	ret
 
-Func_1e984:
+GrandMasterCupBracketScreen:
 	farcall Func_1022a
-	call Func_1e990
+	call ShowGrandMasterCupBracket
 	farcall Func_10252
 	ret
 
-Func_1e990:
+ShowGrandMasterCupBracket:
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1e99c
+	call _ShowGrandMasterCupBracket
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1e99c:
+_ShowGrandMasterCupBracket:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall InitOWObjects
-	call Func_1e9ce
-	call Func_1ea1f
-	call Func_1ea6d
-	call Func_1eba4
+	call .LoadSceneAndPrintTitle
+	call PrintGrandMasterCupCompetitorNames
+	call DrawGrandMasterCupBracketAdvancementLines
+	call PrintGrandMasterCupBracketChampion
 	ld bc, PALETTE_161
 	farcall GetPaletteGfxPointer
 	ld c, $00
@@ -5887,7 +5887,7 @@ Func_1e99c:
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1e9ce:
+.LoadSceneAndPrintTitle:
 	ld a, SCENE_TOURNAMENT_TABLE
 	lb bc, 0, 0
 	call LoadScene
@@ -5899,7 +5899,9 @@ Func_1e9ce:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
-Func_1e9ea:
+; a = competitor slot [0, 7]
+; hl = text (name) to load
+LoadGrandMasterCupCompetitorNames:
 	push af
 	push bc
 	push de
@@ -5909,7 +5911,7 @@ Func_1e9ea:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	add hl, bc
 	ld [hl], e
 	inc hl
@@ -5920,30 +5922,32 @@ Func_1e9ea:
 	pop af
 	ret
 
-Func_1ea00:
+InitGrandMasterCupBracket:
 	push af
 	push hl
 	xor a
 	ldtx hl, TxRam1Text
-.asm_1ea06
-	call Func_1e9ea
+.loop_init_names
+	call LoadGrandMasterCupCompetitorNames
 	inc a
-	cp $08
-	jr nz, .asm_1ea06
-	ld hl, wdd1a
-	ld c, $07
+	cp NUM_GRANDMASTERCUP_COMPETITORS
+	jr nz, .loop_init_names
+
+	ld hl, wGrandMasterCupBracketWinnerSides
+	ld c, NUM_GRANDMASTERCUP_BRACKET_MATCHES
 	xor a
-.asm_1ea14
+.loop_init_results
 	ld [hli], a
 	dec c
-	jr nz, .asm_1ea14
+	jr nz, .loop_init_results
+
 	xor a
-	ld [wdd21], a
+	ld [wGrandMasterCupBracketWinnerSideBitfield], a
 	pop hl
 	pop af
 	ret
 
-Func_1ea1f:
+PrintGrandMasterCupCompetitorNames:
 	push af
 	push bc
 	push de
@@ -5952,9 +5956,9 @@ Func_1ea1f:
 	lb bc, 6, 15
 	farcall FillBoxInBGMapWithZero
 	lb de, 1, 2
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	xor a
-.asm_1ea34
+.loop_print
 	push hl
 	push af
 	ld a, [hli]
@@ -5968,73 +5972,78 @@ Func_1ea1f:
 	inc e
 	inc e
 	inc a
-	cp $08
-	jr nz, .asm_1ea34
+	cp NUM_GRANDMASTERCUP_COMPETITORS
+	jr nz, .loop_print
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1ea4c:
+; a = bracket match winner side GRANDMASTERCUP_BRACKET_*_WON)
+; c = bracket match index (GRANDMASTERCUP_BRACKET_*)
+; update wGrandMasterCupBracketWinnerSides and wGrandMasterCupBracketWinnerSideBitfield
+UpdateGrandMasterCupBracketResults:
 	push af
 	push bc
 	push hl
 	ld b, $00
-	ld hl, wdd1a
+	ld hl, wGrandMasterCupBracketWinnerSides
 	add hl, bc
 	ld [hl], a
+
 	dec a
-	and $01
+	and GRANDMASTERCUP_BRACKET_RIGHT_WON_F
 	inc c
-.asm_1ea5a
+.loop_shift
 	sla a
 	dec c
-	jr nz, .asm_1ea5a
+	jr nz, .loop_shift
 	ld b, a
 	srl b
-	ld a, [wdd21]
+	ld a, [wGrandMasterCupBracketWinnerSideBitfield]
 	or b
-	ld [wdd21], a
+	ld [wGrandMasterCupBracketWinnerSideBitfield], a
 	pop hl
 	pop bc
 	pop af
 	ret
 
-Func_1ea6d:
+DrawGrandMasterCupBracketAdvancementLines:
 	push af
 	push bc
 	push de
 	push hl
-	ld hl, wdd1a
-	ld bc, $0
-.asm_1ea77
+	ld hl, wGrandMasterCupBracketWinnerSides
+	ld bc, GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+.loop_matches
 	ld a, [hli]
 	and a
-	jr z, .asm_1ea89
+	jr z, .next_match
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1ea94
-	call Func_1eaa5
+	call .GetTileset
+	call .Draw
 	pop hl
 	pop de
 	pop bc
 	pop af
-.asm_1ea89
+.next_match
 	inc c
 	ld a, c
-	cp $07
-	jr nz, .asm_1ea77
+	cp NUM_GRANDMASTERCUP_BRACKET_MATCHES
+	jr nz, .loop_matches
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1ea94:
-	ld hl, $6aba
+; .tileset_table[c][a-1]
+.GetTileset:
+	ld hl, .tileset_table
 	sla c
 	sla c
 	add hl, bc
@@ -6047,8 +6056,7 @@ Func_1ea94:
 	ld l, a
 	ret
 
-Func_1eaa5:
-.asm_1eaa5
+.Draw:
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -6063,38 +6071,138 @@ Func_1eaa5:
 	ld e, [hl]
 	inc hl
 	call Func_383b
-	jr .asm_1eaa5
+	jr .Draw
 	ret
-; 0x1eaba
 
-SECTION "Bank 7@6ba4", ROMX[$6ba4], BANK[$7]
+.tileset_table
+	dw .round1_match1_left_won, .round1_match1_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+	dw .round1_match2_left_won, .round1_match2_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH2
+	dw .round1_match3_left_won, .round1_match3_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH3
+	dw .round1_match4_left_won, .round1_match4_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH4
+	dw .round2_match1_left_won, .round2_match1_right_won ; GRANDMASTERCUP_BRACKET_ROUND2_MATCH1
+	dw .round2_match2_left_won, .round2_match2_right_won ; GRANDMASTERCUP_BRACKET_ROUND2_MATCH2
+	dw .final_left_won,         .final_right_won         ; GRANDMASTERCUP_BRACKET_FINAL
 
-Func_1eba4:
+; tables
+; x, y, (VRAM0 tile index - $80), VRAM1 tile attributes
+
+.round1_match1_left_won
+	db 7, 2, $11, $0a
+	db 8, 2, $12, $0a
+	db 8, 3, $13, $0a
+	db $ff
+
+.round1_match1_right_won
+	db 7, 4, $11, $0a
+	db 8, 4, $14, $0a
+	db 8, 3, $17, $0a
+	db $ff
+
+.round1_match2_left_won
+	db 7, 6, $11, $0a
+	db 8, 6, $12, $0a
+	db 8, 7, $13, $0a
+	db $ff
+
+.round1_match2_right_won
+	db 7, 8, $11, $0a
+	db 8, 8, $14, $0a
+	db 8, 7, $17, $0a
+	db $ff
+
+.round1_match3_left_won
+	db 7, 10, $11, $0a
+	db 8, 10, $12, $0a
+	db 8, 11, $13, $0a
+	db $ff
+
+.round1_match3_right_won
+	db 7, 12, $11, $0a
+	db 8, 12, $14, $0a
+	db 8, 11, $17, $0a
+	db $ff
+
+.round1_match4_left_won
+	db 7, 14, $11, $0a
+	db 8, 14, $12, $0a
+	db 8, 15, $13, $0a
+	db $ff
+
+.round1_match4_right_won
+	db 7, 16, $11, $0a
+	db 8, 16, $14, $0a
+	db 8, 15, $17, $0a
+	db $ff
+
+.round2_match1_left_won
+	db 9, 3, $12, $0a
+	db 9, 4, $15, $0a
+	db 9, 5, $13, $0a
+	db $ff
+
+.round2_match1_right_won
+	db 9, 7, $14, $0a
+	db 9, 6, $15, $0a
+	db 9, 5, $17, $0a
+	db $ff
+
+.round2_match2_left_won
+	db 9, 11, $12, $0a
+	db 9, 12, $15, $0a
+	db 9, 13, $13, $0a
+	db $ff
+
+.round2_match2_right_won
+	db 9, 15, $14, $0a
+	db 9, 14, $15, $0a
+	db 9, 13, $17, $0a
+	db $ff
+
+.final_left_won
+	db 10, 5, $12, $0a
+	db 10, 6, $15, $0a
+	db 10, 7, $15, $0a
+	db 10, 8, $15, $0a
+	db 10, 9, $13, $0a
+	db 11, 9, $16, $0a
+	db $ff
+
+.final_right_won
+	db 10, 13, $14, $0a
+	db 10, 12, $15, $0a
+	db 10, 11, $15, $0a
+	db 10, 10, $15, $0a
+	db 10,  9, $17, $0a
+	db 11,  9, $16, $0a
+	db $ff
+
+PrintGrandMasterCupBracketChampion:
 	push af
 	push bc
 	push de
 	push hl
 	ldtx hl, GrandMasterCupBracketChampionshipText
-	ld a, [wdd20]
+	ld a, [wGrandMasterCupBracketWinnerSides + GRANDMASTERCUP_BRACKET_FINAL]
 	and a
-	jr z, .asm_1ebd1
-	call Func_1ebe3
+	jr z, .print
+; final played
+	call .GetBracketChampionCompetitorIndex
 	push af
-	farcall Func_4565d
-	ld [wdd22], a
-	call Func_1ec0f
-	ld hl, Func_3d54
+	farcall GetGrandMasterCupBracketChampionID
+	ld [wGrandMasterCupBracketChampion], a
+	call .DrawSprite
+	ld hl, SpinGrandMasterCupBracketChampionSprite
 	call Func_3f6b
 	pop af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_1ebd1
+.print
 	lb de, 13, 9
 	lb bc, 6, 1
 	farcall FillBoxInBGMapWithZero
@@ -6105,14 +6213,14 @@ Func_1eba4:
 	pop af
 	ret
 
-Func_1ebe3:
+.GetBracketChampionCompetitorIndex:
 	push bc
 	push de
 	push hl
-	ld hl, $6bff
-	ld d, $00
-.asm_1ebeb
-	ld a, [wdd21]
+	ld hl, .advancement_lines
+	ld d, 0
+.loop_check_champion
+	ld a, [wGrandMasterCupBracketWinnerSideBitfield]
 	ld b, [hl]
 	inc hl
 	and b
@@ -6120,41 +6228,134 @@ Func_1ebe3:
 	inc hl
 	inc d
 	cp c
-	jr nz, .asm_1ebeb
+	jr nz, .loop_check_champion
 	dec d
 	ld a, d
-	and $07
+	and NUM_GRANDMASTERCUP_COMPETITORS - 1
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x1ebff
 
-SECTION "Bank 7@6c0f", ROMX[$6c0f], BANK[$7]
+; matches (bitmask) and results
+.advancement_lines:
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
 
-Func_1ec0f:
+.DrawSprite:
 	push af
 	push bc
 	push de
 	push hl
-	ld a, [wdd22]
+	ld a, [wGrandMasterCupBracketChampion]
 	ld b, SOUTH
 	ld d, 112
 	ld e, 48
 	farcall LoadOWObject
 	farcall ResetOWObjectSpriteAnimating
-	ld b, $01
+	ld b, $01 ; SPRITEANIMSTRUCT_FRAME_INDEX
 	farcall _SetOWObjectFrameIndex
 	xor a
-	ld [wdd24], a
+	ld [wGrandMasterCupBracketChampionSpriteAnimTick], a
 	ld a, $02
-	ld [wdd23], a
+	ld [wGrandMasterCupBracketChampionSpriteAnimIndex], a
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x1ec38
+
+_SpinGrandMasterCupBracketChampionSprite::
+	ld a, [wGrandMasterCupBracketChampionSpriteAnimTick]
+	inc a
+	and $07
+	ld [wGrandMasterCupBracketChampionSpriteAnimTick], a
+	and a
+	ret nz
+
+	ld a, [wGrandMasterCupBracketChampionSpriteAnimIndex]
+	inc a
+	and $1f
+	ld [wGrandMasterCupBracketChampionSpriteAnimIndex], a
+	ld c, a
+	ld b, $00
+	ld hl, .direction
+	add hl, bc
+	ld a, [hl]
+	ld b, a
+	ld a, [wGrandMasterCupBracketChampion]
+	farcall _SetOWObjectDirection
+	ld a, b
+	and $01
+	xor $01
+	ld b, a
+	ld a, [wGrandMasterCupBracketChampion]
+	farcall _SetOWObjectFrameIndex
+	ret
+
+.direction:
+	db SOUTH, SOUTH, SOUTH, SOUTH
+REPT 4
+	db SOUTH, WEST, NORTH, EAST
+ENDR
+REPT 3
+	db SOUTH, SOUTH, SOUTH, SOUTH
+ENDR
+; 0x1ec8a
 
 SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
 
