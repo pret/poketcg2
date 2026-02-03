@@ -6355,9 +6355,12 @@ ENDR
 REPT 3
 	db SOUTH, SOUTH, SOUTH, SOUTH
 ENDR
-; 0x1ec8a
 
-SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
+MinicomMailboxScreen:
+	farcall Func_1022a
+	call MinicomMailbox
+	farcall Func_10252
+	ret
 
 MinicomMailbox:
 	push af
