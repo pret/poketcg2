@@ -1,4 +1,4 @@
-Text0ecf:
+IshiharaWantsToTrade6InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "GR団との対戦 たのしんでますか?"
 	linefw "でんせつのとりポケモンの カードも"
@@ -15,7 +15,7 @@ Text0ecf:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ed0:
+IshiharaWantsToTrade6RepeatText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "でんせつのとりポケモンの カードも"
@@ -30,7 +30,7 @@ Text0ed0:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ed1:
+IshiharaDoNotOwnZapdosLv40Text:
 	textfw "きみの きもちは"
 	linefw "とても ありがたいのですが"
 	linefw "きみは 「サンダー<Lv>40」の"
@@ -39,7 +39,7 @@ Text0ed1:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ed2:
+IshiharaUsingAllZapdosLv40InDecksText:
 	textfw "おやおや きみの「サンダー<Lv>40」は"
 	linefw "ぜんぶデッキに はいっているんですね"
 	linefw "ゲームに つかっているカードを"
@@ -48,17 +48,17 @@ Text0ed2:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ed3:
+IshiharaAcceptedTrade6Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0ed4:
+TradedZapdosLv40ForFlyingPikachuText:
 	textfw "<RAMNAME>は 「サンダー」と"
 	linefw "「そらをとぶピカチュウ」をこうかん!"
 	done
 
-Text0ed5:
+IshiharaThanksTradedZapdosLv40Text:
 	textfw "この「サンダー<Lv>40」は"
 	linefw "ありがたく いただきますよ"
 	linefw "これで でんせつのとりポケモンの"
@@ -67,7 +67,7 @@ Text0ed5:
 	linefw "ほんとうに ありがとう"
 	done
 
-Text0ed6:
+IshiharaWantsToTrade7InitialText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "GR団との対戦 たのしんでますか?"
 	linefw "ちょっと かわったカードを"
@@ -82,7 +82,7 @@ Text0ed6:
 	linefw "こうかん しませんか?"
 	done
 
-Text0ed7:
+IshiharaWantsToTrade7RepeatText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "ポケモンカード たのしんでますか?"
 	linefw "「マサキのパソコン」のカードを"
@@ -93,7 +93,7 @@ Text0ed7:
 	linefw "カードを もっていませんか?"
 	done
 
-Text0ed8:
+IshiharaDoNotOwnDarkDragoniteText:
 	textfw "きみの きもちは"
 	linefw "とても ありがたいのですが"
 	linefw "きみは 「わるいカイリュー<Lv>33」の"
@@ -102,7 +102,7 @@ Text0ed8:
 	linefw "また こんどということで・・・"
 	done
 
-Text0ed9:
+IshiharaUsingAllDarkDragoniteInDecksText:
 	textfw "きみの「わるいカイリュー<Lv>33」は"
 	linefw "ぜんぶデッキに はいっているんですね"
 	linefw "ゲームに つかっているカードを"
@@ -111,17 +111,17 @@ Text0ed9:
 	linefw "また こんどということで・・・"
 	done
 
-Text0eda:
+IshiharaAcceptedTrade7Text:
 	textfw "おお それは ありがたい!"
 	linefw "それでは さっそく・・・"
 	done
 
-Text0edb:
+TradedDarkDragoniteForBillsComputerText:
 	textfw "<RAMNAME>は「わるいカイリュー」と"
 	linefw "「マサキのパソコン」をこうかん!"
 	done
 
-Text0edc:
+IshiharaThanksTradedDarkDragoniteTradesCompleteText:
 	textfw "この「わるいカイリュー<Lv>33」は"
 	linefw "ありがたく いただきますよ"
 	linefw "これで わたしが ひつようとしている"
@@ -132,7 +132,7 @@ Text0edc:
 	linefw "ポケモンカードを たのしんでください"
 	done
 
-Text0edd:
+IshiharaAtVillaTradeLaterReadMyBooksText:
 	textfw "やあ <RAMNAME>くんですか"
 	linefw "いらっしゃい"
 	linefw "いまは とくに ほしいカードも"
@@ -147,7 +147,7 @@ Text0edd:
 	linefw "対戦で やくにたちますよ"
 	done
 
-Text0ede:
+RuiStudyingAtIshiharasVillaPostgameText:
 	textfw "あら <RAMNAME>くん?"
 	linefw "あなたも べんきょうにきたの?"
 	linefw "Mr.イシハラの本は 対戦のためになる"
@@ -163,22 +163,22 @@ Text0ede:
 	linefw "それじゃあね <RAMNAME>くん"
 	done
 
-Text0edf:
+RuiThanksIshiharaText:
 	textfw "いつも ありがとうございます"
 	linefw "Mr.イシハラ・・・"
 	done
 
-Text0ee0:
+IshiharaGladToHelpRuiText:
 	textfw "いえいえ わたしの本が"
 	linefw "おやくにたてば なによりです"
 	done
 
-Text0ee1:
+RuiGoodbyeIshiharaText:
 	textfw "では しつれいします"
 	linefw "Mr.イシハラ・・・"
 	done
 
-Text0ee2:
+IshiharaWantsToDuelInitialText:
 	textfw "やあ <RAMNAME>くん"
 	linefw "ポケモンカードを たのしんでますか?"
 	linefw "きみのおかげで ひつようなカードは"
@@ -191,7 +191,7 @@ Text0ee2:
 	linefw "わたしと 対戦してくれませんか?"
 	done
 
-Text0ee3:
+IshiharaWantsToDuelRepeatText:
 	textfw "やあ <RAMNAME>くん"
 	linefw "ポケモンカードを たのしんでますか?"
 	linefw "いろんなひとと 対戦してみると"
@@ -202,32 +202,32 @@ Text0ee3:
 	linefw "わたしと 対戦してくれませんか?"
 	done
 
-Text0ee4:
+IshiharaDuelPromptText:
 	textfw "Mr.イシハラと 対戦しますか?"
 	done
 
-Text0ee5:
+IshiharaDuelStartText:
 	textfw "ありがとう <RAMNAME>くん"
 	linefw "それでは 対戦をたのしみましょう"
 	linefw "サイドカードは"
 	linefw "6枚で おねがいいたします"
 	done
 
-Text0ee6:
+IshiharaDeclinedDuelText:
 	textfw "そうですか?"
 	linefw "それは ざんねんですね"
 	linefw "それでは カード対戦は"
 	linefw "また こんどということで・・・"
 	done
 
-Text0ee7:
+IshiharaPlayerWon1Text:
 	textfw "さすがは <RAMNAME>くん"
 	linefw "すっかり やられてしまいました"
 	linefw "でも たのしい対戦でしたよ"
 	linefw "これを あげましょう"
 	done
 
-Text0ee8:
+IshiharaPlayerWon2Text:
 	textfw "いま さしあげたカードで"
 	linefw "あたらしいデッキを つくってください"
 	linefw "そして もっと"
@@ -236,7 +236,7 @@ Text0ee8:
 	linefw "また ぜひ 対戦にきてくださいね"
 	done
 
-Text0ee9:
+IshiharaPlayerLostText:
 	textfw "やあ・・・"
 	linefw "わたしが 勝ってしまいましたね"
 	linefw "なかなか たのしい対戦でしたね"
@@ -245,12 +245,12 @@ Text0ee9:
 	linefw "また 対戦にきてくださいね"
 	done
 
-Text0eea:
+RuiStudyingAtIshiharasVilla1Text:
 	textfw "フン フン なるほどね・・・"
 	linefw "さすがね・・・・"
 	done
 
-Text0eeb:
+RuiStudyingAtIshiharasVilla2Text:
 	textfw "なに? いま ポケモンカードの"
 	linefw "べんきょうしているのよ"
 	linefw "Mr.イシハラの本は 対戦のためになる"
@@ -1681,7 +1681,7 @@ Text0f99:
 	linefw "メンツも たもてんからな"
 	done
 
-Text0f9a:
+RodFinalCupIntroAndRound1OpponentText:
 	textfw "さあ <RAMNAME>くん"
 	linefw "ファイナルカップを はじめよう"
 	linefw "われらが 伝説のポケモンカードを"
@@ -1692,7 +1692,7 @@ Text0f9a:
 	linefw "ヒロコと 対戦してもらおう!"
 	done
 
-Text0f9b:
+CourtneyFinalCupDuelStartText:
 	textfw "ウフフ・・・アタシが 1人目よ"
 	linefw "炎のクイーン・ヒ・ロ・コ!"
 	linefw "いくわよ <RAMNAME>くん"
@@ -1701,46 +1701,46 @@ Text0f9b:
 	linefw "ウフフ・・・ さあ いくわよ!"
 	done
 
-Text0f9c:
+CourtneyTournamentsPlayerWonText:
 	textfw "ウフフ・・・アタシの まけよ"
 	linefw "さすがね <RAMNAME>くん"
 	done
 
-Text0f9d:
+RodFinalCupRound1NextOpponentText:
 	textfw "つぎは スティーブと対戦だ!"
 	linefw "<RAMNAME>くん!"
 	done
 
-Text0f9e:
+CourtneyFinalCupPlayerLostText:
 	textfw "ウフフ・・・"
 	linefw "アタシの か・ち・よ"
 	linefw "そんなんじゃ"
 	linefw "GR団には 勝てないわよ"
 	done
 
-Text0f9f:
+SteveFinalCupReadyToDuelText:
 	textfw "ヘイ <RAMNAME>!"
 	linefw "ミーと ポケモンカードバトルね"
 	linefw "サンダー・スティーブとの対戦は"
 	linefw "ビッグ グレートね!"
 	done
 
-Text0fa0:
+RodFinalCupAreYourDecksReadyText:
 	textfw "<RAMNAME>くん"
 	linefw "デッキのじゅんびは いいかね?"
 	done
 
-Text0fa1:
+RodFinalCupResumeRoundText:
 	textfw "では"
 	linefw "<RAMTEXT>との対戦を はじめよう"
 	done
 
-Text0fa2:
+SteveFinalCupDuelStartText:
 	textfw "サイドは シックスカード!"
 	linefw "レディ? ゴーね!"
 	done
 
-Text0fa3:
+SteveTournamentsPlayerWonText:
 	textfw "ユー アー ウィナー!"
 	linefw "オー グレートね!"
 	done

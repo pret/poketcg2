@@ -828,8 +828,8 @@ _LoadOWObject::
 	inc hl
 	xor a
 	ld [hli], a ; OWOBJSTRUCT_4
-	ld [hli], a ; OWOBJSTRUCT_5
-	ld [hli], a ; OWOBJSTRUCT_6
+	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_BANK
+	ld [hli], a ; OWOBJSTRUCT_MOVEMENT_PTR
 	ld [hl], a  ;
 	pop hl
 	pop de

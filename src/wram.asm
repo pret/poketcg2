@@ -94,10 +94,16 @@ wIRCommunicationErrorCode:: ; c5ea
 ; and received from the other device respectively
 ; these must match for successful communication
 wOwnIRCommunicationParams:: ; c5eb
-	ds $4
-wOtherIRCommunicationParams:: ; c5ef
-	ds $4
+wOwnIRCommunicationMode:: ; c5eb
+	ds $1
+wOwnIRCommunicationMagicString:: ; c5ec
+	ds IR_MAGIC_STRING_SIZE
 
+wOtherIRCommunicationParams:: ; c5ef
+wOtherIRCommunicationMode:: ; c5ef
+	ds $1
+wOtherIRCommunicationMagicString:: ; c5f0
+	ds IR_MAGIC_STRING_SIZE
 
 ; stores the result from LookUpNameInCardPopNameList
 ; is $ff if name was found in the Card Pop! list
@@ -1312,6 +1318,7 @@ wCardPopRecordYourCardID:: ; ce3c
 wCardPopRecordTheirCardID:: ; ce3e
 	ds $2
 
+wCardPopRecordStats:: ; ce40
 wCardPopRecordNumBattles:: ; ce40
 	ds $2
 
@@ -2056,12 +2063,14 @@ wTempSavedDeckCards:: ; d2fe
 
 	ds $a
 
+wDeckBuildingParams:: ; d380
+
 ; max number of cards that are allowed
 ; to include when building a deck configuration
 wMaxNumCardsAllowed:: ; d380
 	ds $1
 
-wd381:: ; d381
+wNumValidDeckSize:: ; d381
 	ds $1
 
 ; max number of cards with same name that are allowed
@@ -2086,6 +2095,8 @@ wDeckConfigurationMenuHandlerFunction:: ; d384
 ; function in wDeckConfigurationMenuHandlerFunction
 wDeckConfigurationMenuTransitionTable:: ; d386
 	ds $2
+
+wDeckBuildingParamsEnd::
 
 wCurCardListPtr:: ; d388
 	ds $1
@@ -3131,9 +3142,10 @@ wdb86:: ; db86
 wdbc6:: ; dbc6
 	ds $40
 
-wdc06:: ; dc06
+wGiftCenterMenuCursorPosition:: ; dc06
 	ds $1
 
+wSelectedGiftCenterMenuItem:: ; dc07
 	ds $1
 
 wSelectedCoin:: ; dc08
@@ -3328,25 +3340,25 @@ wCurBoosterPack:: ; dd08
 wAnotherBoosterPack:: ; dd09
 	ds $1
 
-wdd0a:: ; dd0a
-	ds $10
+wGrandMasterCupCompetitorNames:: ; dd0a
+	ds 2 * NUM_GRANDMASTERCUP_COMPETITORS
 
-wdd1a:: ; dd1a
-	ds $6
+; store the winner side (GRANDMASTERCUP_BRACKET_*_WON) for each match
+wGrandMasterCupBracketWinnerSides:: ; dd1a
+	ds NUM_GRANDMASTERCUP_BRACKET_MATCHES
 
-wdd20:: ; dd20
+; GRANDMASTERCUP_BRACKET_*_WON_F bitfield
+wGrandMasterCupBracketWinnerSideBitfield:: ; dd21
 	ds $1
 
-wdd21:: ; dd21
+; NPC ID
+wGrandMasterCupBracketChampion:: ; dd22
 	ds $1
 
-wdd22:: ; dd22
+wGrandMasterCupBracketChampionSpriteAnimIndex:: ; dd23
 	ds $1
 
-wdd23:: ; dd23
-	ds $1
-
-wdd24:: ; dd24
+wGrandMasterCupBracketChampionSpriteAnimTick:: ; dd24
 	ds $1
 
 wdd25:: ; dd25
@@ -3443,20 +3455,26 @@ wdd76:: ; dd76
 wdd77:: ; dd77
 	ds $1
 
-wdd78:: ; dd78
+wGrandMasterCupPrizeSelectionMenuCursorPosition:: ; dd78
 	ds $1
 
-wdd79:: ; dd79
+wNumGrandMasterCupPrizesSelected:: ; dd79
 	ds $1
 
-wdd7a:: ; dd7a
-	ds $10
+; card name, card id
+wGrandMasterCupPrizes:: ; dd7a
+	ds (2 + 2) * NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
 
-wdd8a:: ; dd8a
-	ds $4
+wGrandMasterCupPrizesSelectionState:: ; dd8a
+	ds NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
 
-wdd8e:: ; dd8e
-	ds $5
+wSelectedGrandMasterCupPrizeItems:: ; dd8e
+wSelectedGrandMasterCupPrizeItem1:: ; dd8e
+	ds $1
+wSelectedGrandMasterCupPrizeItem2:: ; dd8f
+	ds $1
+
+	ds $3
 
 wdd93:: ; dd93
 	ds $1

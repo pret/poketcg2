@@ -474,8 +474,8 @@ SetChallengeCupDuelParams:
 
 SetGrandMasterCupOpponents:
 ; init
-	ld e, NUM_GRANDMASTERCUP_OPPONENTS
-	ld d, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	ld e, NUM_GRANDMASTERCUP_NPC_COMPETITORS
+	ld d, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
 	ld c, $ff
 .loop_init
 	ld a, d
@@ -503,13 +503,13 @@ SetGrandMasterCupOpponents:
 	jr c, .loop_pick
 	push bc
 	ld d, a
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
 	add c
 	ld c, d
 	farcall SetVarValue
 	pop bc
 	inc c
-	ld a, NUM_GRANDMASTERCUP_OPPONENTS
+	ld a, NUM_GRANDMASTERCUP_NPC_COMPETITORS
 	cp c
 	jr nz, .loop_set_opponents
 	ret
@@ -517,7 +517,7 @@ SetGrandMasterCupOpponents:
 ; for b = bitmask, choose a random opponent and return their deck id in a
 .PickOpponent:
 	ld hl, GrandMasterCupOpponents
-	ld a, NUM_GRANDMASTERCUP_OPPONENT_IDS
+	ld a, NUM_GRANDMASTERCUP_OPPONENT_POOL
 	call Random
 	sla a
 	add_hl_a
@@ -535,7 +535,7 @@ SetGrandMasterCupOpponents:
 	ld d, a
 	farcall GetNPCByDeck
 	ld l, a
-	ld e, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	ld e, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
 .loop_check
 	ld a, e
 	farcall GetVarValue
@@ -560,27 +560,29 @@ GetNPCByDeck_AdjustAmy_PokemonDome:
 	call GetNPCByDeck_AdjustAmy
 	ret
 
-Func_45488:
-	ld a, VAR_0E
+; return a = opponent deck id of the current round (1, 2, finals)
+GetGrandMasterCupCurOpponent:
+	ld a, VAR_GRANDMASTERCUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $02
-	jr z, .asm_4549c
-	jr nc, .asm_454a4
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	cp 2
+	jr z, .round2
+	jr nc, .finals
+; round 1
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
 	farcall GetVarValue
-	jr .asm_454aa
-.asm_4549c
-	ld a, VAR_1B
+	jr .done
+.round2
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID
 	farcall GetVarValue
-	jr .asm_454aa
-.asm_454a4
-	ld a, VAR_1E
+	jr .done
+.finals
+	ld a, VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID
 	farcall GetVarValue
-.asm_454aa
+.done
 	ret
 
 SetGrandMasterCupDuelParams:
-	call Func_45488
+	call GetGrandMasterCupCurOpponent
 	ld [wNPCDuelDeckID], a
 	ld a, MUSIC_MATCH_START_CLUB_MASTER
 	ld [wDuelStartTheme], a
@@ -588,8 +590,8 @@ SetGrandMasterCupDuelParams:
 	set 1, [hl]
 	ret
 
-LoadGrandMasterCupOpponentLocationAndName:
-	call Func_45488
+LoadGrandMasterCupCurOpponentLocationAndName:
+	call GetGrandMasterCupCurOpponent
 	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_LOCATION_NAME]
@@ -607,8 +609,8 @@ LoadGrandMasterCupOpponentLocationAndName:
 	ld [wTxRam2_b + 1], a
 	ret
 
-LoadGrandMasterCupOpponentName:
-	call Func_45488
+LoadGrandMasterCupCurOpponentName:
+	call GetGrandMasterCupCurOpponent
 	farcall GetNPCByDeck
 	farcall LoadNPCDuelist
 	ld a, [wCurrentNPCDuelistData + NPC_DUELIST_STRUCT_DIALOG_NAME]
@@ -618,68 +620,77 @@ LoadGrandMasterCupOpponentName:
 	call LoadTxRam2
 	ret
 
-Func_454fa:
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_1
+; determine all non-player match results up to finals
+; by UpdateRNGSources + rrca
+SetGrandMasterCupNPCMatchWinners:
+; round 1 match 2
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC2_DECK_ID
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
-	jr nc, .asm_4550e
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_2
+	jr nc, .got_winner_round1_match2
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC3_DECK_ID
 	farcall GetVarValue
 	ld c, a
-.asm_4550e
-	ld a, VAR_1B
+.got_winner_round1_match2
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID
 	farcall SetVarValue
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_3
+
+; round 1 match 3
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC4_DECK_ID
 	farcall GetVarValue
 	ld c, a
 	call UpdateRNGSources
 	rrca
-	jr nc, .asm_45528
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_4
+	jr nc, .got_winner_round1_match3
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC5_DECK_ID
 	farcall GetVarValue
 	ld c, a
-.asm_45528
-	ld a, VAR_1C
+.got_winner_round1_match3
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID
 	farcall SetVarValue
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_6
+
+; round 1 match 4 and round 2 match 2
+; Ronald is guaranteed to advance to finals
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC7_DECK_ID
 	farcall GetVarValue
 	ld c, a
 	farcall GetNPCByDeck
 	cp NPC_RONALD
-	jr z, .asm_4554a
+	jr z, .got_winner_round1_match4
 	call UpdateRNGSources
 	rrca
-	jr c, .asm_4554a
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_5
+	jr c, .got_winner_round1_match4
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC6_DECK_ID
 	farcall GetVarValue
 	ld c, a
-.asm_4554a
-	ld a, VAR_1D
+.got_winner_round1_match4
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID
 	farcall SetVarValue
-	ld a, VAR_1D
+
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID
 	farcall GetVarValue
 	ld c, a
 	farcall GetNPCByDeck
 	cp NPC_RONALD
-	jr z, .asm_4556c
+	jr z, .got_winner_round2_match2
 	call UpdateRNGSources
 	rrca
-	jr c, .asm_4556c
-	ld a, VAR_1C
+	jr c, .got_winner_round2_match2
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID
 	farcall GetVarValue
 	ld c, a
-.asm_4556c
-	ld a, VAR_1E
+.got_winner_round2_match2
+	ld a, VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID
 	farcall SetVarValue
 	ret
 
-Func_45573:
-	farcall Func_1ea00
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_0
-	ld c, $01
-.asm_4557b
+InitAndLoadGrandMasterCupOpponentNames:
+	farcall InitGrandMasterCupBracket
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
+	ld c, 1
+.loop_load
 	push af
 	push bc
 	farcall GetVarValue
@@ -691,116 +702,133 @@ Func_45573:
 	ld h, a
 	pop bc
 	ld a, c
-	farcall Func_1e9ea
+	farcall LoadGrandMasterCupCompetitorNames
 	inc c
-	ld a, $08
+	ld a, NUM_GRANDMASTERCUP_COMPETITORS
 	cp c
-	jr z, .asm_455a1
+	jr z, .done
 	pop af
 	inc a
-	jr .asm_4557b
-.asm_455a1
+	jr .loop_load
+.done
 	pop af
 	ret
 
-Func_455a3:
-	ld a, VAR_0E
+; defaults to the left (top) side being the match winner,
+; so adjust with *_RIGHT_WON otherwise
+SetupAndShowGrandMasterCupBracket:
+	ld a, VAR_GRANDMASTERCUP_CURRENT_ROUND
 	farcall GetVarValue
-	cp $01
-	jp c, .asm_45658
-	jr z, .asm_455f0
-	cp $02
-	jr z, .asm_455c8
+	cp 1
+	jp c, .draw_bracket
+	jr z, .draw_round1_results
+	cp 2
+	jr z, .draw_round2_results
+
+; draw final results
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_2
 	farcall GetEventValue
-	ld c, $06
-	jr z, .asm_455c2
-	ld a, $01
-	jr .asm_455c4
-.asm_455c2
-	ld a, $02
-.asm_455c4
-	farcall Func_1ea4c
-.asm_455c8
-	ld c, $04
-	ld a, $01
-	farcall Func_1ea4c
-	ld c, $05
-	ld a, $01
-	farcall Func_1ea4c
-	ld a, VAR_1C
+	ld c, GRANDMASTERCUP_BRACKET_FINAL
+	jr z, .player_lost_finals
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	jr .checked_final_result
+.player_lost_finals
+	ld a, GRANDMASTERCUP_BRACKET_RIGHT_WON
+.checked_final_result
+	farcall UpdateGrandMasterCupBracketResults
+
+.draw_round2_results
+	ld c, GRANDMASTERCUP_BRACKET_ROUND2_MATCH1
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+	ld c, GRANDMASTERCUP_BRACKET_ROUND2_MATCH2
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+; check round2-match2 result
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID
 	farcall GetVarValue
 	ld c, a
-	ld a, VAR_1E
+	ld a, VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID
 	farcall GetVarValue
 	cp c
-	jr z, .asm_455f0
-	ld c, $05
-	ld a, $02
-	farcall Func_1ea4c
-.asm_455f0
-	ld c, $00
-	ld a, $01
-	farcall Func_1ea4c
-	ld c, $01
-	ld a, $01
-	farcall Func_1ea4c
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_1
+	jr z, .draw_round1_results
+	ld c, GRANDMASTERCUP_BRACKET_ROUND2_MATCH2
+	ld a, GRANDMASTERCUP_BRACKET_RIGHT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+.draw_round1_results
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH2
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+; check round1-match2 result
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC2_DECK_ID
 	farcall GetVarValue
 	ld c, a
-	ld a, VAR_1B
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID
 	farcall GetVarValue
 	cp c
-	jr z, .asm_45618
-	ld c, $01
-	ld a, $02
-	farcall Func_1ea4c
-.asm_45618
-	ld c, $02
-	ld a, $01
-	farcall Func_1ea4c
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_3
+	jr z, .round1_match3
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH2
+	ld a, GRANDMASTERCUP_BRACKET_RIGHT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+.round1_match3
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH3
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+; check round1-match3 result
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC4_DECK_ID
 	farcall GetVarValue
 	ld c, a
-	ld a, VAR_1C
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID
 	farcall GetVarValue
 	cp c
-	jr z, .asm_45638
-	ld c, $02
-	ld a, $02
-	farcall Func_1ea4c
-.asm_45638
-	ld c, $03
-	ld a, $01
-	farcall Func_1ea4c
-	ld a, VAR_GRANDMASTERCUP_OPPONENT_DECK_5
+	jr z, .round1_match4
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH3
+	ld a, GRANDMASTERCUP_BRACKET_RIGHT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+.round1_match4
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH4
+	ld a, GRANDMASTERCUP_BRACKET_LEFT_WON
+	farcall UpdateGrandMasterCupBracketResults
+; check round1-match4 result
+	ld a, VAR_GRANDMASTERCUP_ROUND1_NPC6_DECK_ID
 	farcall GetVarValue
 	ld c, a
-	ld a, VAR_1D
+	ld a, VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID
 	farcall GetVarValue
 	cp c
-	jr z, .asm_45658
-	ld c, $03
-	ld a, $02
-	farcall Func_1ea4c
-.asm_45658
-	farcall Func_1e984
+	jr z, .draw_bracket
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH4
+	ld a, GRANDMASTERCUP_BRACKET_RIGHT_WON
+	farcall UpdateGrandMasterCupBracketResults
+
+.draw_bracket
+	farcall GrandMasterCupBracketScreen
 	ret
 
-Func_4565d:
+; a = bracket champion's competitor index, player (0) or npc 1--7
+; return a = NPC ID
+GetGrandMasterCupBracketChampionID:
 	push bc
 	push de
 	push hl
 	or a
-	jr nz, .asm_45668
+	jr nz, .npc
 	ld a, [wPlayerOWObject]
-	jr .asm_45672
-.asm_45668
+	jr .done
+.npc
 	dec a
-	add VAR_GRANDMASTERCUP_OPPONENT_DECK_0
+	add VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
 	farcall GetVarValue
 	call GetNPCByDeck_AdjustAmy_PokemonDome
-.asm_45672
+.done
 	pop hl
 	pop de
 	pop bc

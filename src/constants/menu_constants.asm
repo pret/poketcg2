@@ -69,6 +69,14 @@
 	const MAILBOXMENU_READ   ; 0
 	const MAILBOXMENU_DELETE ; 1
 
+; gift center menu options
+	const_def
+	const GIFTCENTERMENU_SEND_CARDS                 ; 0
+	const GIFTCENTERMENU_RECEIVE_CARDS              ; 1
+	const GIFTCENTERMENU_SEND_DECK_CONFIGURATION    ; 2
+	const GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION ; 3
+	const GIFTCENTERMENU_QUIT                       ; 4
+
 ; constants for wGlossaryMenu
 	const_def
 	const GLOSSARY_GAME_BASICS            ; 0

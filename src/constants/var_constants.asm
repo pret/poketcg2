@@ -1,7 +1,7 @@
 	const_def
 	const VAR_00                                       ; $00
 	const VAR_01                                       ; $01
-	const VAR_02                                       ; $02
+	const VAR_ISHIHARA_STATE                           ; $02
 	const VAR_03                                       ; $03
 	const VAR_TIMES_MET_RONALD                         ; $04
 	const VAR_05                                       ; $05
@@ -11,27 +11,27 @@
 	const VAR_09                                       ; $09
 	const VAR_0A                                       ; $0a
 	const VAR_0B                                       ; $0b
-	const VAR_0C                                       ; $0c
-	const VAR_0D                                       ; $0d
-	const VAR_0E                                       ; $0e
+	const VAR_FINAL_CUP_PLAYED_ROUNDS                  ; $0c
+	const VAR_GRAND_MASTER_CUP_STATE                   ; $0d
+	const VAR_GRANDMASTERCUP_CURRENT_ROUND             ; $0e
 	const VAR_0F                                       ; $0f
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_0             ; $10
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_1             ; $11
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_2             ; $12
 	const VAR_GRANDMASTERCUP_PRIZE_INDEX_3             ; $13
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_0           ; $14
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_1           ; $15
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_2           ; $16
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_3           ; $17
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_4           ; $18
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_5           ; $19
-	const VAR_GRANDMASTERCUP_OPPONENT_DECK_6           ; $1a
-	const VAR_1B                                       ; $1b
-	const VAR_1C                                       ; $1c
-	const VAR_1D                                       ; $1d
-	const VAR_1E                                       ; $1e
-	const VAR_1F                                       ; $1f
-	const VAR_20                                       ; $20
+	const VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID       ; $14, vs player
+	const VAR_GRANDMASTERCUP_ROUND1_NPC2_DECK_ID       ; $15
+	const VAR_GRANDMASTERCUP_ROUND1_NPC3_DECK_ID       ; $16
+	const VAR_GRANDMASTERCUP_ROUND1_NPC4_DECK_ID       ; $17
+	const VAR_GRANDMASTERCUP_ROUND1_NPC5_DECK_ID       ; $18
+	const VAR_GRANDMASTERCUP_ROUND1_NPC6_DECK_ID       ; $19
+	const VAR_GRANDMASTERCUP_ROUND1_NPC7_DECK_ID       ; $1a
+	const VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID       ; $1b, vs player
+	const VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID       ; $1c
+	const VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID       ; $1d
+	const VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID         ; $1e, vs player
+	const VAR_GRANDMASTERCUP_GF_GRAND_MASTER_INDEX     ; $1f, vs player
+	const VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP ; $20
 	const VAR_21                                       ; $21
 	const VAR_IMAKUNI_BLACK_WIN_COUNT                  ; $22
 	const VAR_23                                       ; $23
@@ -62,3 +62,16 @@
 	const VAR_NPC_DECK_ID                              ; $3c
 	const VAR_DUEL_START_THEME                         ; $3d
 	const VAR_3E                                       ; $3e
+
+; VAR_ISHIHARA_STATE values
+	const_def 1
+	const ISHIHARA_HELPING_NIKKI         ; $1
+	const ISHIHARA_HELPED_NIKKI          ; $2
+	const ISHIHARA_TRADE_1_DONE          ; $3
+	const ISHIHARA_TRADE_2_DONE          ; $4
+	const ISHIHARA_TRADE_3_DONE          ; $5
+	const ISHIHARA_TALKED_AT_VILLA       ; $6
+	const ISHIHARA_TRADE_4_DONE          ; $7
+	const ISHIHARA_TRADE_5_DONE          ; $8
+	const ISHIHARA_TRADE_6_DONE          ; $9
+	const ISHIHARA_TRADE_7_DONE_COMPLETE ; $a

@@ -2482,12 +2482,12 @@ ResetActiveMusicState::
 	ld [wActiveMusicState], a
 	ret
 
-Func_3d54::
+SpinGrandMasterCupBracketChampionSprite::
 	push af
 	push bc
 	push de
 	push hl
-	farcall $7, $6c38
+	farcall _SpinGrandMasterCupBracketChampionSprite
 	pop hl
 	pop de
 	pop bc

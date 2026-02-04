@@ -1,4 +1,4 @@
-Func_40000:
+Script_CombosBook:
 	ldtx hl, CombosBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -12,7 +12,7 @@ Func_40000:
 	end_script
 	ret
 
-Func_40016:
+Script_EnergyTransBook:
 	ldtx hl, EnergyTransBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -26,7 +26,7 @@ Func_40016:
 	end_script
 	ret
 
-Func_4002c:
+Script_ToxicGasBook:
 	ldtx hl, ToxicGasBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -40,7 +40,7 @@ Func_4002c:
 	end_script
 	ret
 
-Func_40042:
+Script_RainDanceBook:
 	ldtx hl, RainDanceBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -54,7 +54,7 @@ Func_40042:
 	end_script
 	ret
 
-Func_40058:
+Script_SelfdestructBook:
 	ldtx hl, SelfdestructBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -68,7 +68,7 @@ Func_40058:
 	end_script
 	ret
 
-Func_4006e:
+Script_DamageSwapBook:
 	ldtx hl, DamageSwapBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -82,7 +82,7 @@ Func_4006e:
 	end_script
 	ret
 
-Func_40084:
+Script_RemoveEnergiesBook:
 	ldtx hl, RemoveEnergiesBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -96,7 +96,7 @@ Func_40084:
 	end_script
 	ret
 
-Func_4009a:
+Script_PrehistoricPowerBook:
 	ldtx hl, PrehistoricPowerBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -110,7 +110,7 @@ Func_4009a:
 	end_script
 	ret
 
-Func_400b0:
+Script_WeaknessResistanceBook:
 	ldtx hl, WeaknessResistanceBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -124,7 +124,7 @@ Func_400b0:
 	end_script
 	ret
 
-Func_400c6:
+Script_TeamGRBook:
 	ldtx hl, TeamGRBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -138,7 +138,7 @@ Func_400c6:
 	end_script
 	ret
 
-Func_400dc:
+Script_GameCenterBook:
 	ldtx hl, GameCenterBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -152,7 +152,7 @@ Func_400dc:
 	end_script
 	ret
 
-Func_400f2:
+Script_SamePokemonBook:
 	ldtx hl, SamePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -166,7 +166,7 @@ Func_400f2:
 	end_script
 	ret
 
-Func_40108:
+Script_RockGroundPokemonBook:
 	ldtx hl, RockGroundPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -180,7 +180,7 @@ Func_40108:
 	end_script
 	ret
 
-Func_4011e:
+Script_FightingPokemonSurefireMethodBook:
 	ldtx hl, FightingPokemonSurefireMethodBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -194,7 +194,7 @@ Func_4011e:
 	end_script
 	ret
 
-Func_40134:
+Script_FightingPokemonFormidableOpponentsBook:
 	ldtx hl, FightingPokemonFormidableOpponentsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -208,7 +208,7 @@ Func_40134:
 	end_script
 	ret
 
-Func_4014a:
+Script_FightingPokemonBook:
 	ldtx hl, FightingPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -222,7 +222,7 @@ Func_4014a:
 	end_script
 	ret
 
-Func_40160:
+Script_FightingPokemonCombosBook:
 	ldtx hl, FightingPokemonCombosBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -236,7 +236,7 @@ Func_40160:
 	end_script
 	ret
 
-Func_40176:
+Script_FightingPokemonDeckBuildingBook:
 	ldtx hl, FightingPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -250,7 +250,7 @@ Func_40176:
 	end_script
 	ret
 
-Func_4018c:
+Script_PlantlikePokemonBook:
 	ldtx hl, PlantlikePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -264,7 +264,7 @@ Func_4018c:
 	end_script
 	ret
 
-Func_401a2:
+Script_GrassPokemonBreederBook:
 	ldtx hl, GrassPokemonBreederBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -278,7 +278,7 @@ Func_401a2:
 	end_script
 	ret
 
-Func_401b8:
+Script_GrassPokemonDeckBuildingBook:
 	ldtx hl, GrassPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -292,7 +292,7 @@ Func_401b8:
 	end_script
 	ret
 
-Func_401ce:
+Script_SciencePokemonBook:
 	ldtx hl, SciencePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -306,7 +306,7 @@ Func_401ce:
 	end_script
 	ret
 
-Func_401e4:
+Script_SciencePokemonSurefireMethodBook:
 	ldtx hl, SciencePokemonSurefireMethodBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -320,7 +320,7 @@ Func_401e4:
 	end_script
 	ret
 
-Func_401fa:
+Script_SciencePokemonDeckBuildingBook:
 	ldtx hl, SciencePokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -334,7 +334,7 @@ Func_401fa:
 	end_script
 	ret
 
-Func_40210:
+Script_WaterPokemonBook:
 	ldtx hl, WaterPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -348,7 +348,7 @@ Func_40210:
 	end_script
 	ret
 
-Func_40226:
+Script_WaterPokemonAttacksBook:
 	ldtx hl, WaterPokemonAttacksBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -362,7 +362,7 @@ Func_40226:
 	end_script
 	ret
 
-Func_4023c:
+Script_PsyduckGolduckBook:
 	ldtx hl, PsyduckGolduckBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -376,7 +376,7 @@ Func_4023c:
 	end_script
 	ret
 
-Func_40252:
+Script_FirePokemonBook:
 	ldtx hl, FirePokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -390,7 +390,7 @@ Func_40252:
 	end_script
 	ret
 
-Func_40268:
+Script_FirePokemonAttacksBook:
 	ldtx hl, FirePokemonAttacksBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -404,7 +404,7 @@ Func_40268:
 	end_script
 	ret
 
-Func_4027e:
+Script_FirePokemonDeckBuildingBook:
 	ldtx hl, FirePokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -418,7 +418,7 @@ Func_4027e:
 	end_script
 	ret
 
-Func_40294:
+Script_LightningPokemonBook:
 	ldtx hl, LightningPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -432,7 +432,7 @@ Func_40294:
 	end_script
 	ret
 
-Func_402aa:
+Script_LightningPokemonDeckBuildingBook:
 	ldtx hl, LightningPokemonDeckBuildingBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -446,7 +446,7 @@ Func_402aa:
 	end_script
 	ret
 
-Func_402c0:
+Script_BirdPokemonBook:
 	ldtx hl, BirdPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -460,7 +460,7 @@ Func_402c0:
 	end_script
 	ret
 
-Func_402d6:
+Script_PsychicPokemonBook:
 	ldtx hl, PsychicPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -474,7 +474,7 @@ Func_402d6:
 	end_script
 	ret
 
-Func_402ec:
+Script_PsychicPokemonPokemonPowerBook:
 	ldtx hl, PsychicPokemonPokemonPowerBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -488,7 +488,7 @@ Func_402ec:
 	end_script
 	ret
 
-Func_40302:
+Script_UsefulButtonsBook:
 	ldtx hl, UsefulButtonsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -502,7 +502,7 @@ Func_40302:
 	end_script
 	ret
 
-Func_40318:
+Script_ColorlessPokemonBook:
 	ldtx hl, ColorlessPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -516,7 +516,7 @@ Func_40318:
 	end_script
 	ret
 
-Func_4032e:
+Script_CardPopBook:
 	ldtx hl, CardPopBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -530,7 +530,7 @@ Func_4032e:
 	end_script
 	ret
 
-Func_40344:
+Script_EnergyCardColorsBook:
 	ldtx hl, EnergyCardColorsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -544,7 +544,7 @@ Func_40344:
 	end_script
 	ret
 
-Func_4035a:
+Script_LegendaryPokemonCardsVol1Book:
 	ldtx hl, LegendaryPokemonCardsVol1BookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -558,7 +558,7 @@ Func_4035a:
 	end_script
 	ret
 
-Func_40370:
+Script_LegendaryPokemonCardsVol2Book:
 	ldtx hl, LegendaryPokemonCardsVol2BookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -572,7 +572,7 @@ Func_40370:
 	end_script
 	ret
 
-Func_40386:
+Script_LegendaryPokemonCardsVol3Book:
 	ldtx hl, LegendaryPokemonCardsVol3BookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -586,7 +586,7 @@ Func_40386:
 	end_script
 	ret
 
-Func_4039c:
+Script_LegendaryPokemonCardsVol4Book:
 	ldtx hl, LegendaryPokemonCardsVol4BookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -600,7 +600,7 @@ Func_4039c:
 	end_script
 	ret
 
-Func_403b2:
+Script_GrandMastersBook:
 	ldtx hl, GrandMastersBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -614,7 +614,7 @@ Func_403b2:
 	end_script
 	ret
 
-Func_403c8:
+Script_CoinsBook:
 	ldtx hl, CoinsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -628,7 +628,7 @@ Func_403c8:
 	end_script
 	ret
 
-Func_403de:
+Script_PhantomCardsBook:
 	ldtx hl, PhantomCardsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -642,7 +642,7 @@ Func_403de:
 	end_script
 	ret
 
-Func_403f4:
+Script_DarkPokemonBook:
 	ldtx hl, DarkPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -656,7 +656,7 @@ Func_403f4:
 	end_script
 	ret
 
-Func_4040a:
+Script_AugmentBasicPokemonBook:
 	ldtx hl, AugmentBasicPokemonBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -670,7 +670,7 @@ Func_4040a:
 	end_script
 	ret
 
-Func_40420:
+Script_GRKingCardsBook:
 	ldtx hl, GRKingCardsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -684,7 +684,7 @@ Func_40420:
 	end_script
 	ret
 
-Func_40436:
+Script_SpecialEnergyBook:
 	ldtx hl, SpecialEnergyBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -698,7 +698,7 @@ Func_40436:
 	end_script
 	ret
 
-Func_4044c:
+Script_GetCoinsBook:
 	ldtx hl, GetCoinsBookName
 	ld a, l
 	ld [wScriptNPCName], a
@@ -2712,7 +2712,7 @@ Script_TCGCupRound1AfterDuel:
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_418a1)
 	ld hl, .NPCMovement_418a1
 	farcall MoveNPC
 	call Func_3340
@@ -2733,7 +2733,7 @@ Script_TCGCupRound1AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_4189c)
 	ld hl, .NPCMovement_4189c
 	farcall MoveNPC
 	call Func_3340
@@ -2839,7 +2839,7 @@ Script_TCGCupRound2AfterDuel:
 	ld b, NORTH
 	lb de, 10, 9
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_419a6)
 	ld hl, .NPCMovement_419a6
 	farcall MoveNPC
 	call Func_3340
@@ -2860,7 +2860,7 @@ Script_TCGCupRound2AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_419a1)
 	ld hl, .NPCMovement_419a1
 	farcall MoveNPC
 	call Func_3340
@@ -3016,7 +3016,7 @@ Script_TCGCupRound3AfterDuel:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_41ae0)
 	ld hl, .NPCMovement_41ae0
 	farcall MoveNPC
 	call Func_3340
@@ -5321,13 +5321,14 @@ Script_GRCupOpponentEliminated:
 	farcall GetVarValue
 	farcall GetNPCByDeck_AdjustAmy
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42d9b)
 	ld hl, .NPCMovement_42d9b
 	farcall MoveNPC
 	call Func_3340
 	pop af
 	push af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42da0)
+	ASSERT BANK(.NPCMovement_42da0) == BANK(.NPCMovement_42da3)
 	ld hl, .NPCMovement_42da0
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
@@ -5337,7 +5338,7 @@ Script_GRCupOpponentEliminated:
 	pop af
 	farcall ClearOWObject
 	ld a, NPC_GR_CUP_CLERK_RIGHT
-	ld b, $10
+	ld b, BANK(.NPCMovement_42da8)
 	ld hl, .NPCMovement_42da8
 	farcall MoveNPC
 	call Func_3340
@@ -5378,7 +5379,8 @@ Script_GRCupNewChallenger:
 	ld b, NORTH
 	lb de, 11, 10
 	farcall LoadOWObjectInMap
-	ld b, $10
+	ld b, BANK(.NPCMovement_42e02)
+	ASSERT BANK(.NPCMovement_42e02) == BANK(.NPCMovement_42e0a)
 	ld hl, .NPCMovement_42e02
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
@@ -5386,7 +5388,8 @@ Script_GRCupNewChallenger:
 	farcall MoveNPC
 	call Func_3340
 	pop af
-	ld b, $10
+	ld b, BANK(.NPCMovement_42e05)
+	ASSERT BANK(.NPCMovement_42e05) == BANK(.NPCMovement_42e0f)
 	ld hl, .NPCMovement_42e05
 	farcall MoveNPC
 	ld a, NPC_GR_CUP_CLERK_RIGHT
@@ -5658,7 +5661,7 @@ Script_43000:
 	print_npc_text Text0928
 	receive_card GRS_MEWTWO
 	set_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	set_event EVENT_BEAT_GRAND_MASTER_CUP
+	set_event EVENT_WON_FINAL_CUP
 	reset_event EVENT_TALKED_TO_MITCH
 	reset_event EVENT_TALKED_TO_AMY
 	reset_event EVENT_TALKED_TO_KEN
@@ -5667,9 +5670,9 @@ Script_43000:
 	reset_event EVENT_TALKED_TO_HIDERO
 	reset_event EVENT_TALKED_TO_KANZAKI
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	reset_event EVENT_BB
-	reset_event EVENT_BC
-	reset_event EVENT_BD
+	reset_event EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	reset_event EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	reset_event EVENT_TALKED_TO_JACK_POKEMON_DOME
 	reset_event EVENT_ENTERED_GRAND_MASTER_CUP
 	set_var VAR_0B, $01
 	var_add VAR_27, $05

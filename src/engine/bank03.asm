@@ -373,7 +373,7 @@ Func_c2a7:
 	call Func_c366
 	call Func_c3d4
 	call Func_c2ff
-	call Func_c319
+	call HandleGrandMasterCupState
 	call Func_c439
 	call Func_c477
 	ret
@@ -417,31 +417,33 @@ Func_c2d6:
 	ret
 
 Func_c2ff:
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	call GetVarValue
-	cp $06
-	jr c, .asm_c318
-	ld a, EVENT_F5
+	cp ISHIHARA_TALKED_AT_VILLA
+	jr c, .done
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	call ZeroOutEventValue
 	call UpdateRNGSources
 	rra
-	jr nc, .asm_c318
-	ld a, EVENT_F5
+	jr nc, .done
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	call MaxOutEventValue
-.asm_c318
+.done
 	ret
 
-Func_c319:
-	ld a, VAR_0D
+HandleGrandMasterCupState:
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	call GetVarValue
-	cp $04
-	jr c, .asm_c32d
+	cp GRAND_MASTER_CUP_PLAYING
+	jr c, .not_playing
 	jr z, .done
-	ld a, VAR_0D
-	ld c, $01
+; played, clear result
+	ld a, VAR_GRAND_MASTER_CUP_STATE
+	ld c, GRAND_MASTER_CUP_INACTIVE
 	call SetVarValue
 	jr .done
-.asm_c32d
+
+.not_playing
 	ld a, [wCurMap]
 	cp MAP_POKEMON_DOME_ENTRANCE
 	jr z, .done
@@ -449,25 +451,28 @@ Func_c319:
 	jr z, .done
 	cp MAP_POKEMON_DOME_BACK
 	jr z, .done
-	ld a, VAR_0D
+; outside pokemon dome
+	ld a, VAR_GRAND_MASTER_CUP_STATE
 	call GetVarValue
-	cp $02
+	cp GRAND_MASTER_CUP_ACTIVE
 	jr z, .done
-	jr nc, .asm_c358
-	ld a, VAR_20
+	jr nc, .reset
+; check cup activation condition
+	ld a, VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP
 	call GetVarValue
-	cp $0a
+	cp MAX_NUM_LINK_DUEL_WINS_FOR_GRAND_MASTER_CUP
 	jr c, .done
-	ld a, VAR_0D
-	ld c, $02
+	ld a, VAR_GRAND_MASTER_CUP_STATE
+	ld c, GRAND_MASTER_CUP_ACTIVE
 	call SetVarValue
 .done
 	ret
-.asm_c358
-	ld a, VAR_0D
-	ld c, $01
+
+.reset
+	ld a, VAR_GRAND_MASTER_CUP_STATE
+	ld c, GRAND_MASTER_CUP_INACTIVE
 	call SetVarValue
-	ld a, VAR_20
+	ld a, VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP
 	call ZeroOutVarValue
 	jr .done
 
@@ -940,11 +945,13 @@ ENDR
 	pop af
 	ret
 
+; de = card id
 Func_c63e:
 	call GetReceivedCardText
 	farcall Func_1d53a
 	ret
 
+; de = card id
 Func_c646:
 	call AddCardToCollection
 	call GetReceivedCardText
@@ -2081,9 +2088,9 @@ EventVarMasks:
 	db $1f, %00100000 ; EVENT_TRADED_CARDS_PSYCHIC_STRONGHOLD
 	db $20, %00000001 ; EVENT_GODAS_ROOM_CAGE_STATE
 	db $20, %00000010 ; EVENT_MIDORIS_ROOM_CAGE_STATE
-	db $21, %00000001 ; EVENT_BB
-	db $21, %00000010 ; EVENT_BC
-	db $21, %00000100 ; EVENT_BD
+	db $21, %00000001 ; EVENT_TALKED_TO_COURTNEY_POKEMON_DOME
+	db $21, %00000010 ; EVENT_TALKED_TO_STEVE_POKEMON_DOME
+	db $21, %00000100 ; EVENT_TALKED_TO_JACK_POKEMON_DOME
 	db $21, %00001000 ; EVENT_ENTERED_GRAND_MASTER_CUP
 	db $21, %00010000 ; EVENT_FREED_COURTNEY
 	db $21, %00100000 ; EVENT_FREED_STEVE
@@ -2112,8 +2119,8 @@ EventVarMasks:
 	db $25, %00100000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_5
 	db $25, %01000000 ; EVENT_OPENED_CHEST_FIGHTING_FORT_BASEMENT
 	db $26, %00000001 ; EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-	db $26, %00000010 ; EVENT_BEAT_GRAND_MASTER_CUP
-	db $26, %00000100 ; EVENT_DB
+	db $26, %00000010 ; EVENT_WON_FINAL_CUP
+	db $26, %00000100 ; EVENT_WON_GRAND_MASTER_CUP
 	db $27, %00000001 ; EVENT_GHOST_MASTER_STATUES_STATE
 	db $27, %00000010 ; EVENT_BATTLED_TOBICHAN
 	db $28, %00000001 ; EVENT_BATTLED_EIJI
@@ -2130,7 +2137,7 @@ EventVarMasks:
 	db $29, %00001000 ; EVENT_TALKED_TO_ROOK
 	db $29, %00010000 ; EVENT_TALKED_TO_QUEEN
 	db $2a, %00000001 ; EVENT_EB
-	db $2a, %00000010 ; EVENT_EC
+	db $2a, %00000010 ; EVENT_TALKED_TO_ROD_POKEMON_DOME
 	db $2b, %00000001 ; EVENT_SET_UNTIL_MAP_RELOAD_1
 	db $2b, %00000010 ; EVENT_EE
 	db $2b, %00000100 ; EVENT_EF
@@ -2139,13 +2146,13 @@ EventVarMasks:
 	db $33, %00000100 ; EVENT_F2
 	db $33, %00001000 ; EVENT_F3
 	db $33, %00010000 ; EVENT_ISHIHARA_CARD_TRADE_STATE
-	db $33, %00100000 ; EVENT_F5
+	db $33, %00100000 ; EVENT_ISHIHARA_LOCATION_STATE
 
 ; extra events?
 GeneralVarMasks:
 	db $00, %11111111 ; VAR_00
 	db $01, %00000011 ; VAR_01
-	db $01, %00111100 ; VAR_02
+	db $01, %00111100 ; VAR_ISHIHARA_STATE
 	db $01, %11000000 ; VAR_03
 	db $02, %00001111 ; VAR_TIMES_MET_RONALD
 	db $03, %00000011 ; VAR_05
@@ -2155,27 +2162,27 @@ GeneralVarMasks:
 	db $04, %00110000 ; VAR_09
 	db $04, %11000000 ; VAR_0A
 	db $05, %00000011 ; VAR_0B
-	db $06, %00000011 ; VAR_0C
-	db $06, %00011100 ; VAR_0D
-	db $06, %11100000 ; VAR_0E
+	db $06, %00000011 ; VAR_FINAL_CUP_PLAYED_ROUNDS
+	db $06, %00011100 ; VAR_GRAND_MASTER_CUP_STATE
+	db $06, %11100000 ; VAR_GRANDMASTERCUP_CURRENT_ROUND
 	db $07, %00001111 ; VAR_0F
 	db $08, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_0
 	db $09, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_1
 	db $0a, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_2
 	db $0b, %11111111 ; VAR_GRANDMASTERCUP_PRIZE_INDEX_3
-	db $0c, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_0
-	db $0d, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_1
-	db $0e, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_2
-	db $0f, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_3
-	db $10, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_4
-	db $11, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_5
-	db $12, %11111111 ; VAR_GRANDMASTERCUP_OPPONENT_DECK_6
-	db $13, %11111111 ; VAR_1B
-	db $14, %11111111 ; VAR_1C
-	db $15, %11111111 ; VAR_1D
-	db $16, %11111111 ; VAR_1E
-	db $17, %00000011 ; VAR_1F
-	db $17, %00111100 ; VAR_20
+	db $0c, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
+	db $0d, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC2_DECK_ID
+	db $0e, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC3_DECK_ID
+	db $0f, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC4_DECK_ID
+	db $10, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC5_DECK_ID
+	db $11, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC6_DECK_ID
+	db $12, %11111111 ; VAR_GRANDMASTERCUP_ROUND1_NPC7_DECK_ID
+	db $13, %11111111 ; VAR_GRANDMASTERCUP_ROUND2_NPC1_DECK_ID
+	db $14, %11111111 ; VAR_GRANDMASTERCUP_ROUND2_NPC2_DECK_ID
+	db $15, %11111111 ; VAR_GRANDMASTERCUP_ROUND2_NPC3_DECK_ID
+	db $16, %11111111 ; VAR_GRANDMASTERCUP_FINAL_NPC_DECK_ID
+	db $17, %00000011 ; VAR_GRANDMASTERCUP_GF_GRAND_MASTER_INDEX
+	db $17, %00111100 ; VAR_TIMES_WON_LINK_DUEL_FOR_GRAND_MASTER_CUP
 	db $18, %00000111 ; VAR_21
 	db $18, %11110000 ; VAR_IMAKUNI_BLACK_WIN_COUNT
 	db $19, %00000001 ; VAR_23
@@ -2395,8 +2402,8 @@ CheckTCGIslandMilestoneEvents:
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_grand_master_cup_or_challenge_machine:
-	ld a, EVENT_BEAT_GRAND_MASTER_CUP
+.check_final_cup_or_postgame:
+	ld a, EVENT_WON_FINAL_CUP
 	call GetEventValue
 	push af
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
@@ -2423,7 +2430,7 @@ CheckTCGIslandMilestoneEvents:
 	jp .clear_carry
 
 .check_event_db:
-	ld a, EVENT_DB
+	ld a, EVENT_WON_GRAND_MASTER_CUP
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
@@ -2452,7 +2459,7 @@ CheckTCGIslandMilestoneEvents:
 	dw .check_gr_coin_bottom_left
 	dw .check_pikachu_coin
 	dw .check_gr_coin_bottom_right
-	dw .check_grand_master_cup_or_challenge_machine
+	dw .check_final_cup_or_postgame
 	dw .check_event_db
 
 ; jump to .check_pointers[a], set carry if the event is set, clear carry if not
@@ -2522,7 +2529,7 @@ CheckGRIslandMilestoneEvents:
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_challenge_machine:
+.check_postgame:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	call GetEventValue
 	jp nz, .set_carry
@@ -2553,7 +2560,7 @@ CheckGRIslandMilestoneEvents:
 	dw .check_snorlax_coin
 	dw .check_rui_roadblock
 	dw .check_battled_ishihara
-	dw .check_challenge_machine
+	dw .check_postgame
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc

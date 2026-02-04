@@ -9,28 +9,28 @@ IshiharasHouse_StepEvents:
 	db $ff
 
 IshiharasHouse_NPCs:
-	npc NPC_ISHIHARA, 4, 4, SOUTH, Func_2c1b8
-	npc NPC_NIKKI, 5, 4, SOUTH, Func_2c46a
+	npc NPC_ISHIHARA, 4, 4, SOUTH, IshiharasHouse_IshiharaAppearanceCheck
+	npc NPC_NIKKI, 5, 4, SOUTH, IshiharasHouse_AppearDuringRetreat
 	db $ff
 
 IshiharasHouse_NPCInteractions:
-	npc_script NPC_ISHIHARA, Func_2c172
-	npc_script NPC_NIKKI, Func_2c3cb
+	npc_script NPC_ISHIHARA, Script_IshiharaAtHome
+	npc_script NPC_NIKKI, Script_NikkiRetreated
 	db $ff
 
 IshiharasHouse_OWInteractions:
-	ow_script 3, 2, Func_40000
-	ow_script 4, 2, Func_40016
-	ow_script 5, 2, Func_4002c
-	ow_script 6, 2, Func_40042
-	ow_script 7, 2, Func_40058
-	ow_script 8, 2, Func_4006e
-	ow_script 1, 9, Func_40084
-	ow_script 2, 9, Func_4009a
-	ow_script 3, 9, Func_400b0
-	ow_script 6, 9, Func_400c6
-	ow_script 7, 9, Func_400dc
-	ow_script 8, 9, Func_400f2
+	ow_script 3, 2, Script_CombosBook
+	ow_script 4, 2, Script_EnergyTransBook
+	ow_script 5, 2, Script_ToxicGasBook
+	ow_script 6, 2, Script_RainDanceBook
+	ow_script 7, 2, Script_SelfdestructBook
+	ow_script 8, 2, Script_DamageSwapBook
+	ow_script 1, 9, Script_RemoveEnergiesBook
+	ow_script 2, 9, Script_PrehistoricPowerBook
+	ow_script 3, 9, Script_WeaknessResistanceBook
+	ow_script 6, 9, Script_TeamGRBook
+	ow_script 7, 9, Script_GameCenterBook
+	ow_script 8, 9, Script_SamePokemonBook
 	db $ff
 
 IshiharasHouse_MapScripts:
@@ -45,7 +45,7 @@ IshiharasHouse_MapScripts:
 	db $ff
 
 Func_2c0b4:
-	call Func_2c1b8
+	call IshiharasHouse_IshiharaAppearanceCheck
 	jr nc, .asm_2c0be
 	ld a, MUSIC_OVERWORLD
 	ld [wNextMusic], a
@@ -71,15 +71,15 @@ Func_2c0d1:
 	start_script
 	send_mail $11
 	end_script
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr z, .asm_2c0ef
+	jr z, .done
 	ld a, NPC_ISHIHARA
 	lb de, 1, 2
 	farcall SetOWObjectTilePosition
 	ld b, NORTH
 	farcall SetOWObjectDirection
-.asm_2c0ef
+.done
 	scf
 	ret
 
@@ -96,29 +96,29 @@ Func_2c0f1:
 Func_2c101:
 	xor a
 	push af
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr z, .asm_2c10f
+	jr z, .skip_bit0
 	pop af
 	or $01
 	push af
-.asm_2c10f
+.skip_bit0
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr z, .asm_2c11b
+	jr z, .skip_bit1
 	pop af
 	or $02
 	push af
-.asm_2c11b
+.skip_bit1
 	pop af
 	or a
-	jr z, .asm_2c12c
+	jr z, .done
 	ld c, a
 	ld a, VAR_00
 	farcall SetVarValue
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall MaxOutEventValue
-.asm_2c12c
+.done
 	scf
 	ccf
 	ret
@@ -133,16 +133,16 @@ Func_2c12f:
 	ret
 
 Func_2c13e:
-	ld a, EVENT_F5
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall ZeroOutEventValue
 	ld a, VAR_00
 	farcall GetVarValue
 	bit 0, a
 	push af
-	call nz, Func_2c164
+	call nz, .SetLocationFlag
 	pop af
 	bit 1, a
-	call nz, Func_2c16b
+	call nz, .SetTradeFlag
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE_DUMMY
 	farcall ZeroOutEventValue
 	ld a, VAR_00
@@ -150,71 +150,71 @@ Func_2c13e:
 	scf
 	ret
 
-Func_2c164:
-	ld a, EVENT_F5
+.SetLocationFlag:
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall MaxOutEventValue
 	ret
 
-Func_2c16b:
+.SetTradeFlag:
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall MaxOutEventValue
 	ret
 
-Func_2c172:
+Script_IshiharaAtHome:
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	farcall GetEventValue
 	jr z, .asm_2c185
 	ld a, EVENT_TALKED_TO_ISHIHARA_POST_GAME
 	farcall GetEventValue
 	jr nz, .asm_2c185
-	jp Func_2c3a5
+	jp Script_IshiharaCongratsAtHome
 .asm_2c185
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
 	jr z, .asm_2c19b
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $05
-	jp c, Func_2c28c
-	jp Func_2c36d
+	cp ISHIHARA_TRADE_3_DONE
+	jp c, Script_IshiharaTradeLaterAtHome
+	jp Script_IshiharaHeadingForVilla
 .asm_2c19b
-	ld a, VAR_02
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
 	or a
-	jp z, Func_2c1db
+	jp z, Script_IshiharaSheltering ; NONE
 	dec a
-	jp z, Func_2c203
+	jp z, Script_IshiharaWithNikki  ; ISHIHARA_HELPING_NIKKI
 	dec a
-	jp z, Func_2c229
+	jp z, Script_IshiharaTrade1     ; ISHIHARA_HELPED_NIKKI
 	dec a
-	jp z, Func_2c2a7
+	jp z, Script_IshiharaTrade2     ; ISHIHARA_TRADE_1_DONE
 	dec a
-	jp z, Func_2c30a
-	jp Func_2c388
+	jp z, Script_IshiharaTrade3     ; ISHIHARA_TRADE_2_DONE
+	jp Script_IshiharaBusy          ; ISHIHARA_TRADE_3_DONE
 
-Func_2c1b8:
-	ld a, VAR_02
+IshiharasHouse_IshiharaAppearanceCheck:
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp 5
-	jr c, .asm_2c1d8
-	jr nz, .asm_2c1ce
+	cp ISHIHARA_TRADE_3_DONE
+	jr c, .appear
+	jr nz, .check_location_flag
 	ld a, EVENT_ISHIHARA_CARD_TRADE_STATE
 	farcall GetEventValue
-	jr nz, .asm_2c1d8
-	jr .asm_2c1d6
-.asm_2c1ce
-	ld a, EVENT_F5
+	jr nz, .appear
+	jr .disappear
+.check_location_flag
+	ld a, EVENT_ISHIHARA_LOCATION_STATE
 	farcall GetEventValue
-	jr nz, .asm_2c1d8
-.asm_2c1d6
+	jr nz, .appear
+.disappear
 	scf
 	ret
-.asm_2c1d8
+.appear
 	scf
 	ccf
 	ret
 
-Func_2c1db:
+Script_IshiharaSheltering:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -226,18 +226,18 @@ Func_2c1db:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_2c1fd
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0e97
-	script_jump .ows_2c200
-.ows_2c1fd
-	print_npc_text Text0e98
-.ows_2c200
+	print_npc_text IshiharaUnderGRInvasionInitialText
+	script_jump .done
+.repeat
+	print_npc_text IshiharaUnderGRInvasionRepeatText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_2c203:
+Script_IshiharaWithNikki:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -249,17 +249,17 @@ Func_2c203:
 	start_script
 	start_dialog
 	check_event EVENT_GOT_ODDISH_COIN
-	script_jump_if_b0z .ows_2c223
-	print_npc_text Text0e99
-	script_jump .ows_2c226
-.ows_2c223
-	print_npc_text Text0e9a
-.ows_2c226
+	script_jump_if_b0z .talked_to_nikki
+	print_npc_text IshiharaListenToNikkiText
+	script_jump .done
+.talked_to_nikki
+	print_npc_text IshiharaHelpNikkiText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_2c229:
+Script_IshiharaTrade1:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -271,42 +271,42 @@ Func_2c229:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_2c24b
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0e9b
-	script_jump .ows_2c24e
-.ows_2c24b
-	print_npc_text Text0e9c
-.ows_2c24e
+	print_npc_text IshiharaWantsToTrade1InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade1RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_2c25b
-	print_npc_text Text0e9d
-	script_jump .ows_2c289
-.ows_2c25b
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks CLEFAIRY_LV15
-	script_jump_if_b0z .ows_2c267
-	print_npc_text Text0e9e
-	script_jump .ows_2c289
-.ows_2c267
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnClefairyLv15Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection CLEFAIRY_LV15
-	script_jump_if_b0z .ows_2c273
-	print_npc_text Text0e9f
-	script_jump .ows_2c289
-.ows_2c273
-	print_npc_text Text0ea0
-	print_text Text0ea1
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllClefairyLv15InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade1Text
+	print_text TradedClefairyForFlyingPikachuText
 	receive_card FLYING_PIKACHU_ALT_LV12
 	take_card CLEFAIRY_LV15
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $03
-	print_npc_text Text0ea2
-.ows_2c289
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_1_DONE
+	print_npc_text IshiharaThanksTradedClefairyLv15Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_2c28c:
+Script_IshiharaTradeLaterAtHome:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -317,12 +317,12 @@ Func_2c28c:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0ea3
+	print_npc_text IshiharaAtHomeTradeLaterReadMyBooksText
 	end_dialog
 	end_script
 	ret
 
-Func_2c2a7:
+Script_IshiharaTrade2:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -334,42 +334,42 @@ Func_2c2a7:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_2c2c9
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0ea4
-	script_jump .ows_2c2cc
-.ows_2c2c9
-	print_npc_text Text0ea5
-.ows_2c2cc
+	print_npc_text IshiharaWantsToTrade2InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade2RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_2c2d9
-	print_npc_text Text0e9d
-	script_jump .ows_2c307
-.ows_2c2d9
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks CLEFABLE
-	script_jump_if_b0z .ows_2c2e5
-	print_npc_text Text0ea6
-	script_jump .ows_2c307
-.ows_2c2e5
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnClefableLv34Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection CLEFABLE
-	script_jump_if_b0z .ows_2c2f1
-	print_npc_text Text0ea7
-	script_jump .ows_2c307
-.ows_2c2f1
-	print_npc_text Text0ea8
-	print_text Text0ea9
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllClefableLv34InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade2Text
+	print_text TradedClefableLv34ForTogepiLv8Text
 	receive_card TOGEPI
 	take_card CLEFABLE
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $04
-	print_npc_text Text0eaa
-.ows_2c307
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_2_DONE
+	print_npc_text IshiharaThanksTradedClefableLv34Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_2c30a:
+Script_IshiharaTrade3:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -381,42 +381,42 @@ Func_2c30a:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_ISHIHARA
-	script_jump_if_b0z .ows_2c32c
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_ISHIHARA
-	print_npc_text Text0eab
-	script_jump .ows_2c32f
-.ows_2c32c
-	print_npc_text Text0eac
-.ows_2c32f
+	print_npc_text IshiharaWantsToTrade3InitialText
+	script_jump .trade_prompt
+.repeat
+	print_npc_text IshiharaWantsToTrade3RepeatText
+.trade_prompt
 	ask_question TradeCardsPromptText, TRUE
-	script_jump_if_b0nz .ows_2c33c
-	print_npc_text Text0e9d
-	script_jump .ows_2c36a
-.ows_2c33c
+	script_jump_if_b0nz .count_cards
+	print_npc_text IshiharaDeclinedTradeText
+	script_jump .done
+.count_cards
 	get_card_count_in_collection_and_decks DRAGONITE_LV45
-	script_jump_if_b0z .ows_2c348
-	print_npc_text Text0ead
-	script_jump .ows_2c36a
-.ows_2c348
+	script_jump_if_b0z .count_cards_outside_decks
+	print_npc_text IshiharaDoNotOwnDragoniteLv45Text
+	script_jump .done
+.count_cards_outside_decks
 	get_card_count_in_collection DRAGONITE_LV45
-	script_jump_if_b0z .ows_2c354
-	print_npc_text Text0eae
-	script_jump .ows_2c36a
-.ows_2c354
-	print_npc_text Text0eaf
-	print_text Text0eb0
+	script_jump_if_b0z .start_trade
+	print_npc_text IshiharaUsingAllDragoniteLv45InDecksText
+	script_jump .done
+.start_trade
+	print_npc_text IshiharaAcceptedTrade3Text
+	print_text TradedDragoniteLv45ForMarillLv17Text
 	receive_card MARILL
 	take_card DRAGONITE_LV45
 	set_event EVENT_ISHIHARA_CARD_TRADE_STATE
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $05
-	print_npc_text Text0eb1
-.ows_2c36a
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_TRADE_3_DONE
+	print_npc_text IshiharaThanksTradedDragoniteLv45Text
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_2c36d:
+Script_IshiharaHeadingForVilla:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -427,12 +427,12 @@ Func_2c36d:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0eb2
+	print_npc_text IshiharaHeadingForVillaText
 	end_dialog
 	end_script
 	ret
 
-Func_2c388:
+Script_IshiharaBusy:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -443,13 +443,13 @@ Func_2c388:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0eb3
+	print_npc_text IshiharaBusyRevisitVillaText
 	end_dialog
 	set_active_npc_direction NORTH
 	end_script
 	ret
 
-Func_2c3a5:
+Script_IshiharaCongratsAtHome:
 	ld a, NPC_ISHIHARA
 	ld [wScriptNPC], a
 	ldtx hl, DialogMrIshiharaText
@@ -461,17 +461,17 @@ Func_2c3a5:
 	start_script
 	start_dialog
 	set_event EVENT_TALKED_TO_ISHIHARA_POST_GAME
-	print_npc_text Text0eb4
+	print_npc_text IshiharaDefeatedBiruritchiCongratsText
 	end_dialog
-	get_var VAR_02
-	compare_loaded_var $06
-	script_jump_if_b1nz .ows_2c3c9
+	get_var VAR_ISHIHARA_STATE
+	compare_loaded_var ISHIHARA_TALKED_AT_VILLA
+	script_jump_if_b1nz .done
 	set_active_npc_direction NORTH
-.ows_2c3c9
+.done
 	end_script
 	ret
 
-Func_2c3cb:
+Script_NikkiRetreated:
 	ld a, NPC_NIKKI
 	ld [wScriptNPC], a
 	ldtx hl, DialogNikkiText
@@ -483,60 +483,60 @@ Func_2c3cb:
 	start_script
 	start_dialog
 	check_event EVENT_TALKED_TO_NIKKI
-	script_jump_if_b0z .ows_2c446
+	script_jump_if_b0z .repeat
 	set_event EVENT_TALKED_TO_NIKKI
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	print_npc_text Text0eb5
+	print_npc_text NikkiWantsToGiveAwayGiveInAntiGR2Deck1Text
 	end_dialog
 	get_player_direction
 	compare_loaded_var SOUTH
-	script_jump_if_b0z .ows_2c3f8
+	script_jump_if_b0z .skip_player_reposition
 	set_player_direction WEST
 	animate_player_movement $81, $02
-.ows_2c3f8
+.skip_player_reposition
 	move_active_npc .NPCMovement_2c450
 	wait_for_player_animation
 	do_frames 30
 	get_player_y_position
-	compare_loaded_var $04
-	script_jump_if_b0nz .ows_2c40d
-	script_jump_if_b1nz .ows_2c413
+	compare_loaded_var 4
+	script_jump_if_b0nz .player_same_row
+	script_jump_if_b1nz .player_above
 	move_active_npc .NPCMovement_2c457
-	script_jump .ows_2c416
-.ows_2c40d
+	script_jump .nikki_walked
+.player_same_row
 	move_active_npc .NPCMovement_2c45c
-	script_jump .ows_2c416
-.ows_2c413
+	script_jump .nikki_walked
+.player_above
 	move_active_npc .NPCMovement_2c463
-.ows_2c416
+.nikki_walked
 	wait_for_player_animation
 	do_frames 15
 	start_dialog
-	print_npc_text Text0eb6
+	print_npc_text NikkiWantsToGiveAwayGiveInAntiGR2Deck2Text
 	give_deck GIVE_IN_ANTI_GR2_DECK_ID
-	script_jump_if_b1nz .ows_2c42c
+	script_jump_if_b1nz .decks_full
 	play_song MUSIC_BOOSTER_PACK
-	print_text Text0eb7
+	print_text ReceivedGiveInAntiGR2DeckText
 	wait_song
 	resume_song
-	script_jump .ows_2c439
-.ows_2c42c
-	print_npc_text Text0eb8
+	script_jump .give_coin
+.decks_full
+	print_npc_text NikkiDecksFullGivesCardsInsteadText
 	play_song MUSIC_BOOSTER_PACK
-	print_text Text0eb9
+	print_text ReceivedCardsForGiveInAntiGR2DeckText
 	wait_song
 	resume_song
-	print_npc_text Text0eba
-.ows_2c439
+	print_npc_text NikkiToSendDeckConfigurationToMachineText
+.give_coin
 	set_event EVENT_GOT_ODDISH_COIN
-	print_npc_text Text0ebb
+	print_npc_text NikkiWantsToGiveOddishCoinText
 	give_coin COIN_ODDISH
-	print_npc_text Text0ebc
-	script_jump .ows_2c44d
-.ows_2c446
+	print_npc_text NikkiGaveOddishCoinText
+	script_jump .done
+.repeat
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	print_variable_npc_text Text0ebd, Text0ebe
-.ows_2c44d
+	print_variable_npc_text NikkiCountingOnYouInitialText, NikkiCountingOnYouRepeatText
+.done
 	end_dialog
 	end_script
 	ret
@@ -560,15 +560,15 @@ Func_2c3cb:
 	db EAST, MOVE_0
 	db $ff
 
-Func_2c46a:
-	ld a, VAR_02
+IshiharasHouse_AppearDuringRetreat:
+	ld a, VAR_ISHIHARA_STATE
 	farcall GetVarValue
-	cp $01
-	jr nz, .asm_2c477
+	cp ISHIHARA_HELPING_NIKKI
+	jr nz, .disappear
 	scf
 	ccf
 	ret
-.asm_2c477
+.disappear
 	scf
 	ret
 
@@ -1499,11 +1499,11 @@ PsychicClubLobby_NPCInteractions:
 PsychicClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_402d6
-	ow_script 13, 2, Func_402ec
-	ow_script 14, 2, Func_40302
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_PsychicPokemonBook
+	ow_script 13, 2, Script_PsychicPokemonPokemonPowerBook
+	ow_script 14, 2, Script_UsefulButtonsBook
 	db $ff
 
 PsychicClubLobby_MapScripts:
@@ -2653,11 +2653,11 @@ RockClubLobby_NPCInteractions:
 RockClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40108
-	ow_script 13, 2, Func_4011e
-	ow_script 14, 2, Func_40134
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_RockGroundPokemonBook
+	ow_script 13, 2, Script_FightingPokemonSurefireMethodBook
+	ow_script 14, 2, Script_FightingPokemonFormidableOpponentsBook
 	db $ff
 
 RockClubLobby_MapScripts:
@@ -3479,11 +3479,11 @@ FightingClubLobby_NPCInteractions:
 FightingClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_4014a
-	ow_script 13, 2, Func_40160
-	ow_script 14, 2, Func_40176
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_FightingPokemonBook
+	ow_script 13, 2, Script_FightingPokemonCombosBook
+	ow_script 14, 2, Script_FightingPokemonDeckBuildingBook
 	db $ff
 
 FightingClubLobby_MapScripts:
@@ -4838,7 +4838,7 @@ Func_2e449:
 	reset_event EVENT_TALKED_TO_DAVID
 	reset_event EVENT_TALKED_TO_JOSEPH
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $02
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_HELPED_NIKKI
 	print_npc_text Text0e74
 	give_booster_packs BoosterList_cd44
 	script_jump .ows_2e471
@@ -5138,11 +5138,11 @@ ScienceClubLobby_NPCInteractions:
 ScienceClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_401ce
-	ow_script 13, 2, Func_401e4
-	ow_script 14, 2, Func_401fa
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_SciencePokemonBook
+	ow_script 13, 2, Script_SciencePokemonSurefireMethodBook
+	ow_script 14, 2, Script_SciencePokemonDeckBuildingBook
 	db $ff
 
 ScienceClubLobby_MapScripts:
@@ -5927,7 +5927,7 @@ Func_2ec5a:
 	reset_event EVENT_TALKED_TO_DAVID
 	reset_event EVENT_TALKED_TO_JOSEPH
 	reset_event EVENT_TALKED_TO_ISHIHARA
-	set_var VAR_02, $02
+	set_var VAR_ISHIHARA_STATE, ISHIHARA_HELPED_NIKKI
 	print_npc_text Text1067
 	give_booster_packs BoosterList_cd44
 	script_jump .ows_2ec82
@@ -6140,11 +6140,11 @@ WaterClubLobby_NPCInteractions:
 WaterClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40210
-	ow_script 13, 2, Func_40226
-	ow_script 14, 2, Func_4023c
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_WaterPokemonBook
+	ow_script 13, 2, Script_WaterPokemonAttacksBook
+	ow_script 14, 2, Script_PsyduckGolduckBook
 	db $ff
 
 WaterClubLobby_MapScripts:
@@ -7242,11 +7242,11 @@ FireClubLobby_NPCInteractions:
 FireClubLobby_OWInteractions:
 	ow_script 8, 2, PCMenu
 	ow_script 9, 2, PCMenu
-	ow_script 2, 4, Func_3c1b9
-	ow_script 4, 4, Func_3c2d9
-	ow_script 12, 2, Func_40252
-	ow_script 13, 2, Func_40268
-	ow_script 14, 2, Func_4027e
+	ow_script 2, 4, Script_TCGBattleCenterClerk
+	ow_script 4, 4, Script_GiftCenter
+	ow_script 12, 2, Script_FirePokemonBook
+	ow_script 13, 2, Script_FirePokemonAttacksBook
+	ow_script 14, 2, Script_FirePokemonDeckBuildingBook
 	db $ff
 
 FireClubLobby_MapScripts:
@@ -8116,24 +8116,24 @@ PokemonDomeEntrance_StepEvents:
 	db $ff
 
 PokemonDomeEntrance_NPCs:
-	npc NPC_POKEMON_DOME_FAT_GUY, 8, 3, NORTH, Func_2fe1d
+	npc NPC_POKEMON_DOME_FAT_GUY, 8, 3, NORTH, PokemonDomeEntrance_AppearAfterGRCoin
 	db $ff
 
 PokemonDomeEntrance_NPCInteractions:
-	npc_script NPC_POKEMON_DOME_FAT_GUY, Func_2fda3
+	npc_script NPC_POKEMON_DOME_FAT_GUY, Script_PokemonDomeFatGuy
 	db $ff
 
 PokemonDomeEntrance_OWInteractions:
 	ow_script 4, 2, PCMenu
 	ow_script 5, 2, PCMenu
-	ow_script 9, 1, Func_2fe2a
-	ow_script 10, 1, Func_2fe2a
-	ow_script 1, 2, Func_4035a
-	ow_script 2, 2, Func_40370
-	ow_script 3, 2, Func_40386
-	ow_script 1, 5, Func_4039c
-	ow_script 2, 5, Func_403b2
-	ow_script 3, 5, Func_403c8
+	ow_script 9, 1, Script_PlateOfLegends
+	ow_script 10, 1, Script_PlateOfLegends
+	ow_script 1, 2, Script_LegendaryPokemonCardsVol1Book
+	ow_script 2, 2, Script_LegendaryPokemonCardsVol2Book
+	ow_script 3, 2, Script_LegendaryPokemonCardsVol3Book
+	ow_script 1, 5, Script_LegendaryPokemonCardsVol4Book
+	ow_script 2, 5, Script_GrandMastersBook
+	ow_script 3, 5, Script_CoinsBook
 	db $ff
 
 PokemonDomeEntrance_MapScripts:
@@ -8146,10 +8146,10 @@ PokemonDomeEntrance_MapScripts:
 Func_2fd73:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr nz, .asm_2fd80
+	jr nz, .done
 	ld a, MUSIC_HERE_COMES_GR
 	ld [wNextMusic], a
-.asm_2fd80
+.done
 	scf
 	ccf
 	ret
@@ -8169,14 +8169,14 @@ Func_2fd8a:
 Func_2fd93:
 	ld hl, PokemonDomeEntrance_NPCInteractions
 	call Func_328c
-	jr nc, .asm_2fda1
+	jr nc, .done
 	ld hl, PokemonDomeEntrance_OWInteractions
 	call Func_32bf
-.asm_2fda1
+.done
 	scf
 	ret
 
-Func_2fda3:
+Script_PokemonDomeFatGuy:
 	ld a, NPC_POKEMON_DOME_FAT_GUY
 	ld [wScriptNPC], a
 	ldtx hl, DialogFatGuyText
@@ -8188,81 +8188,82 @@ Func_2fda3:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_2fdfa
+	script_jump_if_b0z .postgame
 	check_event EVENT_FREED_ROD
-	script_jump_if_b0z .ows_2fdf4
+	script_jump_if_b0z .has_rod
 	check_event EVENT_FREED_JACK
-	script_jump_if_b0z .ows_2fde3
+	script_jump_if_b0z .has_jack
 	check_event EVENT_FREED_COURTNEY
-	script_jump_if_b0z .ows_2fddd
+	script_jump_if_b0z .has_courtney
 	check_event EVENT_FREED_STEVE
-	script_jump_if_b0z .ows_2fdd7
-	print_npc_text Text102a
+	script_jump_if_b0z .has_steve
+; no grand masters
+	print_npc_text PokemonDomeFatGuyAllGrandMastersGoneText
 	end_dialog
 	end_script
 	ret
-.ows_2fdd7
-	print_npc_text Text102b
+.has_steve
+	print_npc_text PokemonDomeFatGuySteveIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fddd
-	print_npc_text Text102c
+.has_courtney
+	print_npc_text PokemonDomeFatGuyCourtneyIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fde3
+.has_jack
 	check_event EVENT_FREED_COURTNEY
-	script_jump_if_b0z .ows_2fdee
-	print_npc_text Text102d
+	script_jump_if_b0z .rod_left
+	print_npc_text PokemonDomeFatGuyJackIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fdee
-	print_npc_text Text102e
+.rod_left
+	print_npc_text PokemonDomeFatGuyWeNeedRodText
 	end_dialog
 	end_script
 	ret
-.ows_2fdf4
-	print_npc_text Text102f
+.has_rod
+	print_npc_text PokemonDomeFatGuyRodIsBackText
 	end_dialog
 	end_script
 	ret
-.ows_2fdfa
+.postgame
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_1
-	script_jump_if_b0z .ows_2fe17
-	get_var VAR_0D
-	compare_loaded_var $02
-	script_jump_if_b0nz .ows_2fe11
-	compare_loaded_var $03
-	script_jump_if_b0nz .ows_2fe11
-	print_npc_text Text1030
+	script_jump_if_b0z .cup_played
+	get_var VAR_GRAND_MASTER_CUP_STATE
+	compare_loaded_var GRAND_MASTER_CUP_ACTIVE
+	script_jump_if_b0nz .cup_active
+	compare_loaded_var GRAND_MASTER_CUP_ACTIVE_PRIZES_SET
+	script_jump_if_b0nz .cup_active
+	print_npc_text PokemonDomeFatGuyGrandMasterCupInactiveText
 	end_dialog
 	end_script
 	ret
-.ows_2fe11
-	print_npc_text Text1031
+.cup_active
+	print_npc_text PokemonDomeFatGuyGrandMasterCupActiveText
 	end_dialog
 	end_script
 	ret
-.ows_2fe17
-	print_npc_text Text1032
+.cup_played
+	print_npc_text PokemonDomeFatGuyGrandMasterCupPlayedText
 	end_dialog
 	end_script
 	ret
 
-Func_2fe1d:
+PokemonDomeEntrance_AppearAfterGRCoin:
 	ld a, EVENT_GOT_GR_COIN
 	farcall GetEventValue
-	jr nz, .asm_2fe27
+	jr nz, .appear
 	scf
 	ret
-.asm_2fe27
+.appear
 	scf
 	ccf
 	ret
 
-Func_2fe2a:
+Script_PlateOfLegends:
 	ld a, NPC_MARK
 	ld [wScriptNPC], a
 	ldtx hl, DialogPlateOfLegendsText
@@ -8273,7 +8274,7 @@ Func_2fe2a:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text1033
+	print_npc_text PlateOfLegendsText
 	end_dialog
 	end_script
 	ret

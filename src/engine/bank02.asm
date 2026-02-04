@@ -1119,16 +1119,11 @@ PrepareMenuGraphics:
 	call SetupText
 	ret
 
-; inits the following deck building params from hl:
-; wMaxNumCardsAllowed
-; wd381
-; wSameNameCardsLimit
-; wIncludeCardsInDeck
-; wDeckConfigurationMenuHandlerFunction
-; wDeckConfigurationMenuTransitionTable
+; hl = deckbuilding_params source
+; inits the 6 params of wDeckBuildingParams from hl
 InitDeckBuildingParams:
-	ld de, wMaxNumCardsAllowed
-	ld b, 8
+	ld de, wDeckBuildingParams
+	ld b, wDeckBuildingParamsEnd - wDeckBuildingParams
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -1138,12 +1133,9 @@ InitDeckBuildingParams:
 	ret
 
 DeckBuildingParams:
-	db DECK_CONFIG_BUFFER_SIZE
-	db DECK_SIZE
-	db MAX_NUM_SAME_NAME_CARDS
-	db TRUE ; whether to include deck cards
-	dw HandleDeckConfigurationMenu
-	dw DeckConfigurationMenu_TransitionTable
+	deckbuilding_params DECK_CONFIG_BUFFER_SIZE, DECK_SIZE, \
+		MAX_NUM_SAME_NAME_CARDS, TRUE, \
+		HandleDeckConfigurationMenu, DeckConfigurationMenu_TransitionTable
 
 DeckSelectionMenu:
 	ld hl, DeckBuildingParams
@@ -1218,7 +1210,7 @@ OpenDeckConfirmationMenu:
 	call ClearNBytesFromHL
 	ld a, DECK_SIZE
 	ld [wTotalCardCount], a
-	ld [wd381], a
+	ld [wNumValidDeckSize], a
 	ld hl, wCardFilterCounts
 	ld [hl], a
 	call HandleDeckConfirmationMenu
@@ -1736,9 +1728,55 @@ _DecrementDeckCardsInCollection:
 DecrementDeckCardsInCollection:
 	push hl
 	jr _DecrementDeckCardsInCollection
-; 0x9360
 
-SECTION "Bank 2@5397", ROMX[$5397], BANK[$2]
+; like AddDeckToCollection, but takes care to
+; check if increasing the collection count would
+; go over MAX_AMOUNT_OF_CARD and caps it
+; this is because it's used within Gift Center,
+; so we cannot assume that the deck configuration
+; won't make it go over MAX_AMOUNT_OF_CARD
+; hl = deck configuration, with cards to add
+AddGiftCenterDeckCardsToCollection:
+	push hl
+	ld b, MAX_NUM_CARDS_TO_SEND
+.loop_receive
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call CheckIfCardIDIsZero
+	jr c, .done
+	inc hl
+	push hl
+	push de
+	push bc
+	ld a, ALL_DECKS
+	call CreateCardCollectionListWithDeckCards
+	pop bc
+	pop de
+	ld hl, wTempCardCollection
+	add hl, de
+	ld a, [hl]
+	cp MAX_AMOUNT_OF_CARD
+	jr z, .next_card ; capped
+	ld hl, sCardCollection
+	add hl, de
+	call EnableSRAM
+	ld a, [hl]
+	cp CARD_NOT_OWNED
+	jr nz, .incr
+; not owned yet
+	xor a
+	ld [hl], a
+.incr
+	inc [hl]
+	call DisableSRAM
+.next_card
+	pop hl
+	dec b
+	jr nz, .loop_receive
+.done
+	pop hl
+	ret
 
 ; adds all cards in deck in hl to player's collection
 ; Enables SRAM (contrary to this function in poketcg1)
@@ -2166,7 +2204,7 @@ HandleDeckBuildScreen:
 	jr z, .wait_input
 	xor a
 .wait_list_input
-	ld hl, $5a3a
+	ld hl, FilteredCardListSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wNumEntriesInCurFilter]
 	ld [wNumCardListEntries], a
@@ -2215,16 +2253,16 @@ HandleDeckBuildScreen:
 	ld [hCurMenuItem], a
 	ld a, MENU_CANCEL
 	call PlaySFXConfirmOrCancel
-	jr .asm_96f3
+	jr .selection_made
 
 .asm_96a0
 	call HandleSelectUpAndDownInList
 	jr c, .loop_input
 	call HandleScrollListInput
-	jr c, .asm_96f3
+	jr c, .selection_made
 	jr .loop_input
 
-.asm_96ac
+.open_card_page
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
@@ -2245,7 +2283,7 @@ HandleDeckBuildScreen:
 	ld [wTempCardTypeFilter], a
 	call DrawHorizontalListCursor_Visible
 	call PrintDeckBuildingCardList
-	ld hl, $5a3a
+	ld hl, FilteredCardListSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wTempScrollMenuNumVisibleItems]
 	ld [wNumMenuItems], a
@@ -2253,13 +2291,13 @@ HandleDeckBuildScreen:
 	ld [wTempCardTypeFilter], a
 	jp .loop_input
 
-.asm_96f3
+.selection_made
 	call DrawListCursor_Invisible
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
 	cp $ff
-	jr nz, .asm_96ac
+	jr nz, .open_card_page
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wCurCardTypeFilter]
@@ -2718,7 +2756,8 @@ CheckIfThereAreAnyBasicCardsInDeck:
 FiltersCardSelectionParams:
 	scrollmenu_params 1, 1, 0, 2, NUM_FILTERS, SYM_CURSOR_D, SYM_SPACE, NULL
 
-SECTION "Bank 2@5a43", ROMX[$5a43], BANK[$2]
+FilteredCardListSelectionParams:
+	scrollmenu_params 0, 7, 2, 0, NUM_FILTERED_LIST_VISIBLE_CARDS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 DeckConfigurationMenu_TransitionTable:
 	cursor_transition $10, $20, $00, $03, $03, $01, $02
@@ -2860,7 +2899,7 @@ PrintSlashSixty:
 	ld [hli], a
 	ld a, SYM_SLASH
 	ld [hli], a
-	ld a, [wd381]
+	ld a, [wNumValidDeckSize]
 	call ConvertToNumericalDigits
 	ld [hl], TX_END
 	call InitTextPrinting
@@ -4870,10 +4909,123 @@ GetCardTypeIconPalette:
 	db ICON_TILE_STAGE_2_POKEMON, 2
 	db ICON_TILE_TRAINER,         3
 	db $00, $ff
-; 0xa603
 
-SECTION "Bank 2@66ef", ROMX[$66ef], BANK[$2]
+; uses deck builder ui
+HandleGiftCenterSendCardsScreen:
+	ld hl, wCurDeckCards
+	ld a, $81
+	call ClearNBytesFromHL
+	ld a, $ff
+	ld [wCurDeck], a
+	ld hl, .title_text
+	ld de, wCurDeckName
+	call CopyListFromHLToDE
+	ld hl, .params
+	call InitDeckBuildingParams
+	ld a, $01
+	ld [wd121], a
+	call HandleDeckBuildScreen
+	ret
 
+; too verbose
+.title_text
+	hiragana "あ"
+	hiragana "げ"
+	hiragana "る"
+	katakana "カ"
+	katakana "ー"
+	katakana "ド"
+	hiragana "い"
+	hiragana "ち"
+	hiragana "ら"
+	hiragana "ん"
+	done
+
+.params
+	deckbuilding_params MAX_NUM_CARDS_TO_SEND, MAX_NUM_CARDS_TO_SEND, \
+		MAX_NUM_CARDS_TO_SEND, FALSE, \
+		HandleGiftCenterSendCardsMenu, SendCards_TransitionTable
+
+SendCards_TransitionTable:
+	cursor_transition $10, $20, $00, $00, $00, $01, $02
+	cursor_transition $48, $20, $00, $01, $01, $02, $00
+	cursor_transition $80, $20, $00, $02, $02, $00, $01
+
+SendCards_MenuData:
+	textitem  2, 2, DeckBuildingConfirmText
+	textitem  9, 2, SendText
+	textitem 16, 2, CancelDeckText
+	textitems_end
+
+HandleGiftCenterSendCardsMenu:
+	ld de, 0
+	lb bc, 20, 6
+	call DrawRegularTextBox
+	ld hl, SendCards_MenuData
+	call PlaceTextItems
+	ld a, $ff
+	ld [wd0c4], a
+.loop_input
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call HandleMultiDirectionalMenu
+	jr nc, .loop_input
+	ld [wd11d], a
+	cp $ff
+	jr nz, .confirm
+	call DrawCardTypeIconsAndPrintCardCounts
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	ld a, [wCurCardTypeFilter]
+	call PrintFilteredCardList
+	jp HandleDeckBuildScreen.skip_draw
+.confirm
+	ld hl, .function_table
+	call JumpToFunctionInTable
+	jp OpenDeckConfigurationMenu.skip_init
+
+.function_table
+	dw ConfirmDeckConfiguration
+	dw .Send
+	dw .Cancel
+
+.Send:
+	ld a, [wCurDeckCards]
+	or a
+	jr nz, .skip_high
+	ld a, [wCurDeckCards + 1]
+	or a
+	jr z, .Cancel
+.skip_high
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld hl, GiftCenter_CardSelectionParams
+	call InitializeScrollMenuParameters
+	ld hl, wCurDeckCards
+	ld de, wTempSavedDeckCards
+	ld b, $82
+	call CopyBBytesFromHLToDE_Bank02
+	call PrintCardsToSendToPlayerText
+	call Func_b81d
+	call EnableLCD
+	ldtx hl, SendTheseCardsToPlayerPromptText
+	call YesOrNoMenuWithText
+	jr nc, .done
+	add sp, $02
+	jp HandleDeckBuildScreen.skip_count
+
+.done
+	add sp, $02
+	scf
+	ret
+
+.Cancel:
+	add sp, $02
+	or a
+	ret
+
+; black box
 Func_a6ef:
 	xor a
 	ld [wScrollMenuScrollOffset], a
@@ -4881,11 +5033,11 @@ Func_a6ef:
 	ld de, wTempSavedDeckCards
 	ld b, $82
 	call CopyBBytesFromHLToDE_Bank02
-	call Func_b90c
+	call EmptyScreenAndDrawTextBox
 	call Func_b81d
 	ret
 
-Func_a705:
+HandleBlackBoxSendCardsScreen:
 	ld hl, wCurDeckCards
 	ld a, $81
 	call ClearNBytesFromHL
@@ -4893,15 +5045,60 @@ Func_a705:
 	ld [wCurDeck], a
 	ld hl, wCurDeckName
 	ld [hl], TX_END
-	ld hl, $6726
+	ld hl, .params
 	call InitDeckBuildingParams
 	ld a, $01
 	ld [wd121], a
 	call HandleDeckBuildScreen
 	ret
-; 0xa726
 
-SECTION "Bank 2@677f", ROMX[$677f], BANK[$2]
+.params
+	deckbuilding_params MAX_NUM_BLACK_BOX_INPUT, MAX_NUM_BLACK_BOX_INPUT, \
+		MAX_NUM_BLACK_BOX_INPUT, FALSE, \
+		HandleBlackBoxSendCardsMenu, SendCards_TransitionTable
+
+HandleBlackBoxSendCardsMenu:
+	ld de, 0
+	lb bc, 20, 6
+	call DrawRegularTextBox
+	ld hl, SendCards_MenuData
+	call PlaceTextItems
+	ld a, $ff
+	ld [wd0c4], a
+.loop_input
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call HandleMultiDirectionalMenu
+	jr nc, .loop_input
+	ld [wd11d], a
+	cp $ff
+	jr nz, .confirm
+	call DrawCardTypeIconsAndPrintCardCounts
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	ld a, [wCurCardTypeFilter]
+	call PrintFilteredCardList
+	jp HandleDeckBuildScreen.skip_draw
+.confirm
+	ld hl, .function_table
+	call JumpToFunctionInTable
+	jp OpenDeckConfigurationMenu.skip_init
+
+.function_table:
+	dw ConfirmDeckConfiguration
+	dw .Done
+	dw .Cancel
+
+.Done
+	add sp, $02
+	or a
+	ret
+
+.Cancel
+	add sp, $02
+	scf
+	ret
 
 CopyBBytesFromHLToDE_Bank02:
 .loop
@@ -4912,7 +5109,7 @@ CopyBBytesFromHLToDE_Bank02:
 	jr nz, .loop
 	ret
 
-Func_a786:
+HandlePlayersCardsScreen:
 	call WriteCardListsTerminatorBytes
 	call PrintPlayersCardsHeaderInfo
 	xor a
@@ -4923,41 +5120,46 @@ Func_a786:
 	xor a
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
-.asm_a7a0
+.wait_input
 	call DoFrame
 	ld a, [wCurCardTypeFilter]
 	ld b, a
 	ld a, [wTempCardTypeFilter]
 	cp b
-	jr z, .asm_a7ca
+	jr z, .check_d_down
 	ld [wCurCardTypeFilter], a
 	ld hl, wScrollMenuScrollOffset
 	ld [hl], $00
 	call PrintFilteredCardSelectionList
+
 	ld hl, hffbb
 	ld [hl], $01
 	call PrintPlayersCardsText
 	ld hl, hffbb
 	ld [hl], $00
-	ld a, $09
+
+	ld a, NUM_FILTERS
 	ld [wNumMenuItems], a
-.asm_a7ca
+.check_d_down
 	ldh a, [hDPadHeld]
 	and PAD_DOWN
-	jr z, .asm_a7d5
+	jr z, .no_d_down
 	call ConfirmSelectionAndReturnCarry
-	jr .asm_a7e2
-.asm_a7d5
+	jr .jump_to_list
+
+.no_d_down
 	call HandleCardSelectionInput
-	jr nc, .asm_a7a0
+	jr nc, .wait_input
 	ld a, [hCurMenuItem]
-	cp $ff
-	jr nz, .asm_a7e2
+	cp $ff ; cancelled
+	jr nz, .jump_to_list
 	ret
-.asm_a7e2
+
+.jump_to_list
 	ld a, [wNumEntriesInCurFilter]
 	or a
-	jr z, .asm_a7a0
+	jr z, .wait_input
+
 	xor a
 	ld hl, GeneralCardListMenuParams
 	call InitializeScrollMenuParameters
@@ -4965,9 +5167,9 @@ Func_a786:
 	ld [wNumCardListEntries], a
 	ld hl, wNumVisibleCardListEntries
 	cp [hl]
-	jr nc, .asm_a7fe
+	jr nc, .got_length
 	ld [wNumMenuItems], a
-.asm_a7fe
+.got_length
 	ld hl, GeneralCardListUpdateFunc
 	ld d, h
 	ld a, l
@@ -4976,7 +5178,8 @@ Func_a786:
 	ld [hl], d
 	xor a
 	ld [wd119], a
-.asm_a80c
+
+.loop_input
 	call DoFrame
 	ldh a, [hDPadHeld]
 	and PAD_UP
@@ -4987,22 +5190,27 @@ Func_a786:
 	jr nz, .asm_a825
 	ld a, $ff
 	ld [hCurMenuItem], a
-	jr .asm_a87e
+	jr .selection_made
+
 .asm_a825
 	call HandleSelectUpAndDownInList
-	jr c, .asm_a80c
+	jr c, .loop_input
 	call HandleScrollListInput
-	jr c, .asm_a87e
+	jr c, .selection_made
 	ldh a, [hDPadHeld]
 	and PAD_START
-	jr z, .asm_a80c
-.asm_a835
+	jr z, .loop_input
+
+; pressed start
+.open_card_page
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wNumMenuItems]
 	ld [wTempScrollMenuNumVisibleItems], a
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
+
+; show screen
 	ld de, wTempCardList
 	ld hl, wCurCardListPtr
 	ld [hl], e
@@ -5010,6 +5218,7 @@ Func_a786:
 	ld [hl], d
 	call OpenCardPageFromCardList
 	call PrintPlayersCardsHeaderInfo
+
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wCurCardTypeFilter]
@@ -5023,19 +5232,20 @@ Func_a786:
 	ld [wNumMenuItems], a
 	ld a, [wTempCurMenuItem]
 	ld [wTempCardTypeFilter], a
-	jr .asm_a80c
-.asm_a87e
+	jr .loop_input
+
+.selection_made
 	call DrawListCursor_Invisible
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
 	cp $ff
-	jr nz, .asm_a835
+	jr nz, .open_card_page
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
 	ld a, [wCurCardTypeFilter]
 	ld [wTempCardTypeFilter], a
-	jp .asm_a7a0
+	jp .wait_input
 
 GeneralCardListMenuParams:
 	scrollmenu_params 1, 5, 2, 0, 7, SYM_CURSOR_R, SYM_SPACE, NULL
@@ -7030,15 +7240,15 @@ Func_b663:
 	ld a, [wCurDeckName]
 	or a
 	ret z
-	ld de, $1
+	lb de, 0, 1
 	call InitTextPrinting
 	ld a, [wCurDeck]
 	inc a
 	ld hl, wDefaultText
 	call ConvertToNumericalDigits
-	ld [hl], $77
+	ldfw [hl], "・"
 	inc hl
-	ld [hl], $00
+	ld [hl], TX_END
 	ld hl, wDefaultText
 	call ProcessText
 	ld hl, wCurDeckName
@@ -7058,16 +7268,182 @@ Func_b663:
 	call InitTextPrinting
 	call ProcessText
 	ret
-; 0xb6ad
 
-SECTION "Bank 2@781d", ROMX[$781d], BANK[$2]
+GiftCenter_SendCards:
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	call EmptyScreen
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call LoadSymbolsFont
+	bank1call SetDefaultPalettes
+
+	lb de, $3c, $bf
+	call SetupText
+	lb de, 3, 1
+	call InitTextPrinting
+	ldtx hl, ProcedureForSendingCardsToPlayerTitleText
+	call ProcessTextFromID
+	lb de, 1, 3
+	call InitTextPrinting
+	ldtx hl, ProcedureForSendingCardsToPlayerText
+	ld a, SINGLE_SPACED
+	ld [wLineSeparation], a
+	call ProcessTextFromID
+	xor a ; DOUBLE_SPACED
+	ld [wLineSeparation], a
+	ldtx hl, ReadProcedureForSendingCardsToPlayerText
+	call DrawWideTextBox_WaitForInput
+
+	call EnableLCD
+	call HandleGiftCenterSendCardsScreen
+	jr c, .send
+	ld a, $01
+	or a
+	ret
+
+.send
+	ld de, wCurDeckCards
+	ld hl, wDuelTempList
+	bank1call SaveDeckCards
+	xor a
+	ld [wNameBuffer], a
+	farcall _SendCard
+	ret c
+
+	call EnableSRAM
+	ld hl, wCurDeckCards
+	call DecrementDeckCardsInCollection
+	call DisableSRAM
+	call SaveGame
+	ld hl, wNameBuffer
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	xor a
+	ret
+
+; never reached
+	scf
+	ret
+
+GiftCenter_ReceiveCards:
+	xor a
+	ld [wDuelTempList], a
+	ld [wNameBuffer], a
+	farcall _ReceiveCard
+	ret c
+
+	ld de, wDuelTempList
+	ld hl, wTempSavedDeckCards
+	call CopyDeckFromSRAM
+	ld hl, wTempSavedDeckCards
+	call AddGiftCenterDeckCardsToCollection
+	call SaveGame
+	xor a
+	ld [wScrollMenuScrollOffset], a
+	ld hl, GiftCenter_CardSelectionParams
+	call InitializeScrollMenuParameters
+	call PrintReceivedTheseCardsText
+	call Func_b81d
+	call EnableLCD
+	ld a, [wNumEntriesInCurFilter]
+	ld [wNumCardListEntries], a
+	ld hl, wNumVisibleCardListEntries
+	cp [hl]
+	jr nc, .got_length_1
+	ld [wNumMenuItems], a
+.got_length_1
+	ld hl, ShowReceivedCardsList
+	ld d, h
+	ld a, l
+	ld hl, wScrollMenuScrollFunc
+	ld [hli], a
+	ld [hl], d
+
+	xor a
+	ld [wd119], a
+.loop_input
+	call DoFrame
+	call HandleScrollListInput
+	jr c, .selection_made
+	call HandleJumpListInput
+	jr c, .loop_input
+	ldh a, [hDPadHeld]
+	and PAD_START
+	jr z, .loop_input
+
+.open_card_page
+	ld a, MENU_CONFIRM
+	call PlaySFXConfirmOrCancel
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+
+	ld de, wTempCardList
+	ld hl, wCurCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	call OpenCardPageFromCardList
+	call PrintReceivedTheseCardsText
+
+	call PrintCardSelectionList
+	call EnableLCD
+	ld hl, GiftCenter_CardSelectionParams
+	call InitializeScrollMenuParameters
+	ld a, [wNumEntriesInCurFilter]
+	ld hl, wNumVisibleCardListEntries
+	cp [hl]
+	jr nc, .got_length_2
+	ld [wNumMenuItems], a
+.got_length_2
+	ld a, [wTempCurMenuItem]
+	ld [wTempCardTypeFilter], a
+	jr .loop_input
+
+.selection_made
+	call DrawListCursor_Invisible
+	ld a, [wTempCardTypeFilter]
+	ld [wTempCurMenuItem], a
+	ld a, [hCurMenuItem]
+	cp $ff
+	jr nz, .open_card_page
+	ld hl, wNameBuffer
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	or a
+	ret
+
+GiftCenter_CardSelectionParams:
+	scrollmenu_params 1, 3, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
+
+ShowReceivedCardsList:
+	ld hl, hffbb
+	ld [hl], $01
+	lb de, 1, 1
+	call InitTextPrinting
+	ldtx hl, CardsReceivedText
+	call ProcessTextFromID
+	ld hl, wNameBuffer
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	lb de, 1, 14
+	call InitTextPrinting
+	ldtx hl, ReceivedTheseCardsFromText
+	call PrintTextNoDelay
+	ld hl, hffbb
+	ld [hl], $00
+	jp PrintCardSelectionList
 
 Func_b81d:
-	xor a
-	ld hl, wc000
+	xor a ; aka $100 bytes
+	ld hl, wTempCardCollection
 	call ClearNBytesFromHL
-	xor a
-	ld hl, $c100
+	xor a ; aka $100 bytes
+	ld hl, wTempCardCollection + $100
 	call ClearNBytesFromHL
 	ld hl, wTempSavedDeckCards
 	call Func_b84d
@@ -7183,19 +7559,67 @@ Func_b860:
 	pop bc
 	pop af
 	ret
-; 0xb8d6
 
-SECTION "Bank 2@790c", ROMX[$790c], BANK[$2]
+PrintCardsToSendToPlayerText:
+	call EmptyScreenAndDrawTextBox
+	lb de, 1, 1
+	call InitTextPrinting
+	ldtx hl, CardsToSendToPlayerText
+	call ProcessTextFromID
+	ret
 
-Func_b90c:
+PrintReceivedTheseCardsText:
+	call EmptyScreenAndDrawTextBox
+	lb de, 1, 1
+	call InitTextPrinting
+	ldtx hl, CardsReceivedText
+	call ProcessTextFromID
+	ld hl, wNameBuffer
+	ld de, wDefaultText
+	call CopyListFromHLToDE
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ldtx hl, ReceivedTheseCardsFromText
+	call DrawWideTextBox_PrintText
+	ret
+
+EmptyScreenAndDrawTextBox:
 	call PrepareMenuGraphics
 	lb de, 0, 0
 	lb bc, 20, 13
 	call DrawRegularTextBox
 	ret
-; 0xb919
 
-SECTION "Bank 2@7947", ROMX[$7947], BANK[$2]
+HandleGiftCenter::
+	ld a, [wSelectedGiftCenterMenuItem]
+	ld hl, .function_table
+	call JumpToFunctionInTable
+	jr c, .quit
+	or a
+	jr nz, .quit
+	xor a
+	ld [wTxRam2], a
+	ld [wTxRam2 + 1], a
+	ret
+.quit
+	ld a, $ff
+	ld [wSelectedGiftCenterMenuItem], a
+	ret
+
+.function_table
+	dw GiftCenter_SendCards
+	dw GiftCenter_ReceiveCards
+	dw .SendDeckConfiguration
+	dw .ReceiveDeckConfiguration
+
+.SendDeckConfiguration:
+	farcall SendDeckConfigurationMenu
+	ret
+
+.ReceiveDeckConfiguration:
+	farcall ReceiveDeckConfigurationMenu
+	ret
 
 ; hl = text ID for text box
 DeckDiagnosisResult:

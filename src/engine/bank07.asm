@@ -2964,7 +2964,7 @@ ReadOrInitSaveData:
 	farcall ClearGameCenterChips
 	call InitializeMailboxWRAM
 	call Func_1d7a1
-	call Func_1d9f9
+	call SetGiftCenterMenuCursorToQuit
 	call Func_1dcb7
 
 	; this is unnecessary since Card Pop list
@@ -2973,7 +2973,7 @@ ReadOrInitSaveData:
 
 	call EnableAnimations
 	call ClearwMinicomMenuCursorPosition
-	farcall Func_111f0
+	farcall SetPCMenuCursorToShutdown
 	call InitDefaultConfigMenuSettings
 	call SaveConfigMenuChoicesToSRAM
 	call LoadSavedOptions
@@ -3555,30 +3555,30 @@ _PlayLinkDuelAndGetResult:
 	pop bc
 	ret
 
-Func_1d9be:
+GiftCenter:
 	push af
 	push bc
 	push de
 	push hl
 	farcall HideNPCAnimsUnderDialogBox
-	call Func_1d9ff
-	call Func_1da45
-	jr c, .asm_1d9ed
-	ld a, [wdc06]
-	cp $04
-	jr z, .asm_1d9ed
-	call Func_1da1f
-	call Func_1da2a
-	jr c, .asm_1d9ed
+	call GiftCenter_PrintWelcome
+	call GiftCenter_HandleMenu
+	jr c, .exit
+	ld a, [wGiftCenterMenuCursorPosition]
+	cp GIFTCENTERMENU_QUIT
+	jr z, .exit
+	call GiftCenter_PrintSelectedService
+	call GiftCenter_SaveRequest
+	jr c, .exit
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_CARD_POP
 	call SetMusic
 	pop af
-	call Func_1dac1
+	call GiftCenter_ExecuteSelectedOption
 	call ResumeSong_ClearTemp
-.asm_1d9ed
-	call Func_1da14
+.exit
+	call GiftCenter_PrintComeAgain
 	farcall ShowNPCAnimsUnderDialogBox
 	pop hl
 	pop de
@@ -3586,12 +3586,12 @@ Func_1d9be:
 	pop af
 	ret
 
-Func_1d9f9:
-	ld a, $04
-	ld [wdc06], a
+SetGiftCenterMenuCursorToQuit:
+	ld a, GIFTCENTERMENU_QUIT
+	ld [wGiftCenterMenuCursorPosition], a
 	ret
 
-Func_1d9ff:
+GiftCenter_PrintWelcome:
 	ldtx hl, GiftCenterWelcomeText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
@@ -3600,19 +3600,19 @@ Func_1d9ff:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da14:
+GiftCenter_PrintComeAgain:
 	ldtx hl, GiftCenterComeAgainText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da1f:
+GiftCenter_PrintSelectedService:
 	ldtx hl, GiftCenterServiceAcknowledgementText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da2a:
+GiftCenter_SaveRequest:
 	ldtx hl, GiftCenterServiceSaveRequestText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
@@ -3624,68 +3624,131 @@ Func_1da2a:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1da45:
-	call Func_1da4f
-	call Func_1da88
-	call Func_1dabd
+GiftCenter_HandleMenu:
+	call .ShowMenu
+	call .HandleInput
+	call .RestoreNPCs
 	ret
 
-Func_1da4f:
-	ld de, $400
-	ld b, $07
-	ld hl, $5a64
+.ShowMenu:
+	lb de, 4, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
-	ld a, [wdc06]
+	ld a, [wGiftCenterMenuCursorPosition]
 	call HideNPCAnimsUnderMenuBox
 	call DrawMenuBox
 	ret
-; 0x1da64
 
-SECTION "Bank 7@5a88", ROMX[$5a88], BANK[$7]
+.menu_params
+	menubox_params TRUE, 16, 12, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2,  2, GiftCenterSendCardsText
+	textitem 2,  4, GiftCenterReceiveCardsText
+	textitem 2,  6, GiftCenterSendDeckConfigurationText
+	textitem 2,  8, GiftCenterReceiveDeckConfigurationText
+	textitem 2, 10, GiftCenterQuitText
+	textitems_end
 
-Func_1da88:
-	ld a, [wdc06]
+.HandleInput:
+	ld a, [wGiftCenterMenuCursorPosition]
 	call HandleMenuBox
-	ld [wdc06], a
+	ld [wGiftCenterMenuCursorPosition], a
 	push af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $5ab5
+	ld hl, .text_table
 	add hl, bc
 	ld a, [hli]
 	ld [wTxRam2], a
 	ld a, [hl]
 	ld [wTxRam2 + 1], a
 	pop af
-	jr c, .asm_1daad
+	jr c, .quit
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1daad
+.quit
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
-; 0x1dab5
 
-SECTION "Bank 7@5abd", ROMX[$5abd], BANK[$7]
+.text_table
+	tx GiftCenterSendCardsText
+	tx GiftCenterReceiveCardsText
+	tx GiftCenterSendDeckConfigurationText
+	tx GiftCenterReceiveDeckConfigurationText
 
-Func_1dabd:
+.RestoreNPCs:
 	call ShowNPCAnimsUnderMenuBox
 	ret
 
-Func_1dac1:
-	ld a, [wdc06]
-	ld hl, $5acb
+GiftCenter_ExecuteSelectedOption:
+	ld a, [wGiftCenterMenuCursorPosition]
+	ld hl, .function_map
 	call CallMappedFunction
 	ret
-; 0x1dacb
 
-SECTION "Bank 7@5b63", ROMX[$5b63], BANK[$7]
+.function_map
+	key_func GIFTCENTERMENU_SEND_CARDS,                 .SendCards
+	key_func GIFTCENTERMENU_RECEIVE_CARDS,              .ReceiveCards
+	key_func GIFTCENTERMENU_SEND_DECK_CONFIGURATION,    .SendDeckConfiguration
+	key_func GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION, .ReceiveDeckConfiguration
+	db $ff ; end
+
+.SendCards:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	xor a ; GIFTCENTERMENU_SEND_CARDS
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.ReceiveCards:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_RECEIVE_CARDS
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.SendDeckConfiguration:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_SEND_DECK_CONFIGURATION
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
+
+.ReceiveDeckConfiguration:
+	farcall Func_1022a
+	farcall SetFrameFuncAndFadeFromWhite
+	farcall UnsetSpriteAnimationAndFadePalsFrameFunc
+	ld a, GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION
+	ld [wSelectedGiftCenterMenuItem], a
+	farcall HandleGiftCenter
+	farcall SetSpriteAnimationAndFadePalsFrameFunc
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	ret
 
 GiveCoin:
 	farcall Func_1022a
@@ -5617,7 +5680,7 @@ MinicomDeckSaveMachine:
 
 MinicomCardAlbum:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	farcall Func_a786
+	farcall HandlePlayersCardsScreen
 	ret
 
 Func_1e849:
@@ -5788,31 +5851,31 @@ _GiveBoosterPack:
 	farcall GetBoosterPack
 	ret
 
-Func_1e984:
+GrandMasterCupBracketScreen:
 	farcall Func_1022a
-	call Func_1e990
+	call ShowGrandMasterCupBracket
 	farcall Func_10252
 	ret
 
-Func_1e990:
+ShowGrandMasterCupBracket:
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1e99c
+	call _ShowGrandMasterCupBracket
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1e99c:
+_ShowGrandMasterCupBracket:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall InitOWObjects
-	call Func_1e9ce
-	call Func_1ea1f
-	call Func_1ea6d
-	call Func_1eba4
+	call .LoadSceneAndPrintTitle
+	call PrintGrandMasterCupCompetitorNames
+	call DrawGrandMasterCupBracketAdvancementLines
+	call PrintGrandMasterCupBracketChampion
 	ld bc, PALETTE_161
 	farcall GetPaletteGfxPointer
 	ld c, $00
@@ -5824,7 +5887,7 @@ Func_1e99c:
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1e9ce:
+.LoadSceneAndPrintTitle:
 	ld a, SCENE_TOURNAMENT_TABLE
 	lb bc, 0, 0
 	call LoadScene
@@ -5836,7 +5899,9 @@ Func_1e9ce:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
-Func_1e9ea:
+; a = competitor slot [0, 7]
+; hl = text (name) to load
+LoadGrandMasterCupCompetitorNames:
 	push af
 	push bc
 	push de
@@ -5846,7 +5911,7 @@ Func_1e9ea:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	add hl, bc
 	ld [hl], e
 	inc hl
@@ -5857,30 +5922,32 @@ Func_1e9ea:
 	pop af
 	ret
 
-Func_1ea00:
+InitGrandMasterCupBracket:
 	push af
 	push hl
 	xor a
 	ldtx hl, TxRam1Text
-.asm_1ea06
-	call Func_1e9ea
+.loop_init_names
+	call LoadGrandMasterCupCompetitorNames
 	inc a
-	cp $08
-	jr nz, .asm_1ea06
-	ld hl, wdd1a
-	ld c, $07
+	cp NUM_GRANDMASTERCUP_COMPETITORS
+	jr nz, .loop_init_names
+
+	ld hl, wGrandMasterCupBracketWinnerSides
+	ld c, NUM_GRANDMASTERCUP_BRACKET_MATCHES
 	xor a
-.asm_1ea14
+.loop_init_results
 	ld [hli], a
 	dec c
-	jr nz, .asm_1ea14
+	jr nz, .loop_init_results
+
 	xor a
-	ld [wdd21], a
+	ld [wGrandMasterCupBracketWinnerSideBitfield], a
 	pop hl
 	pop af
 	ret
 
-Func_1ea1f:
+PrintGrandMasterCupCompetitorNames:
 	push af
 	push bc
 	push de
@@ -5889,9 +5956,9 @@ Func_1ea1f:
 	lb bc, 6, 15
 	farcall FillBoxInBGMapWithZero
 	lb de, 1, 2
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	xor a
-.asm_1ea34
+.loop_print
 	push hl
 	push af
 	ld a, [hli]
@@ -5905,73 +5972,78 @@ Func_1ea1f:
 	inc e
 	inc e
 	inc a
-	cp $08
-	jr nz, .asm_1ea34
+	cp NUM_GRANDMASTERCUP_COMPETITORS
+	jr nz, .loop_print
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1ea4c:
+; a = bracket match winner side GRANDMASTERCUP_BRACKET_*_WON)
+; c = bracket match index (GRANDMASTERCUP_BRACKET_*)
+; update wGrandMasterCupBracketWinnerSides and wGrandMasterCupBracketWinnerSideBitfield
+UpdateGrandMasterCupBracketResults:
 	push af
 	push bc
 	push hl
 	ld b, $00
-	ld hl, wdd1a
+	ld hl, wGrandMasterCupBracketWinnerSides
 	add hl, bc
 	ld [hl], a
+
 	dec a
-	and $01
+	and GRANDMASTERCUP_BRACKET_RIGHT_WON_F
 	inc c
-.asm_1ea5a
+.loop_shift
 	sla a
 	dec c
-	jr nz, .asm_1ea5a
+	jr nz, .loop_shift
 	ld b, a
 	srl b
-	ld a, [wdd21]
+	ld a, [wGrandMasterCupBracketWinnerSideBitfield]
 	or b
-	ld [wdd21], a
+	ld [wGrandMasterCupBracketWinnerSideBitfield], a
 	pop hl
 	pop bc
 	pop af
 	ret
 
-Func_1ea6d:
+DrawGrandMasterCupBracketAdvancementLines:
 	push af
 	push bc
 	push de
 	push hl
-	ld hl, wdd1a
-	ld bc, $0
-.asm_1ea77
+	ld hl, wGrandMasterCupBracketWinnerSides
+	ld bc, GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+.loop_matches
 	ld a, [hli]
 	and a
-	jr z, .asm_1ea89
+	jr z, .next_match
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1ea94
-	call Func_1eaa5
+	call .GetTileset
+	call .Draw
 	pop hl
 	pop de
 	pop bc
 	pop af
-.asm_1ea89
+.next_match
 	inc c
 	ld a, c
-	cp $07
-	jr nz, .asm_1ea77
+	cp NUM_GRANDMASTERCUP_BRACKET_MATCHES
+	jr nz, .loop_matches
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1ea94:
-	ld hl, $6aba
+; .tileset_table[c][a-1]
+.GetTileset:
+	ld hl, .tileset_table
 	sla c
 	sla c
 	add hl, bc
@@ -5984,8 +6056,7 @@ Func_1ea94:
 	ld l, a
 	ret
 
-Func_1eaa5:
-.asm_1eaa5
+.Draw:
 	ld a, [hl]
 	cp $ff
 	ret z
@@ -6000,38 +6071,138 @@ Func_1eaa5:
 	ld e, [hl]
 	inc hl
 	call Func_383b
-	jr .asm_1eaa5
+	jr .Draw
 	ret
-; 0x1eaba
 
-SECTION "Bank 7@6ba4", ROMX[$6ba4], BANK[$7]
+.tileset_table
+	dw .round1_match1_left_won, .round1_match1_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+	dw .round1_match2_left_won, .round1_match2_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH2
+	dw .round1_match3_left_won, .round1_match3_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH3
+	dw .round1_match4_left_won, .round1_match4_right_won ; GRANDMASTERCUP_BRACKET_ROUND1_MATCH4
+	dw .round2_match1_left_won, .round2_match1_right_won ; GRANDMASTERCUP_BRACKET_ROUND2_MATCH1
+	dw .round2_match2_left_won, .round2_match2_right_won ; GRANDMASTERCUP_BRACKET_ROUND2_MATCH2
+	dw .final_left_won,         .final_right_won         ; GRANDMASTERCUP_BRACKET_FINAL
 
-Func_1eba4:
+; tables
+; x, y, (VRAM0 tile index - $80), VRAM1 tile attributes
+
+.round1_match1_left_won
+	db 7, 2, $11, $0a
+	db 8, 2, $12, $0a
+	db 8, 3, $13, $0a
+	db $ff
+
+.round1_match1_right_won
+	db 7, 4, $11, $0a
+	db 8, 4, $14, $0a
+	db 8, 3, $17, $0a
+	db $ff
+
+.round1_match2_left_won
+	db 7, 6, $11, $0a
+	db 8, 6, $12, $0a
+	db 8, 7, $13, $0a
+	db $ff
+
+.round1_match2_right_won
+	db 7, 8, $11, $0a
+	db 8, 8, $14, $0a
+	db 8, 7, $17, $0a
+	db $ff
+
+.round1_match3_left_won
+	db 7, 10, $11, $0a
+	db 8, 10, $12, $0a
+	db 8, 11, $13, $0a
+	db $ff
+
+.round1_match3_right_won
+	db 7, 12, $11, $0a
+	db 8, 12, $14, $0a
+	db 8, 11, $17, $0a
+	db $ff
+
+.round1_match4_left_won
+	db 7, 14, $11, $0a
+	db 8, 14, $12, $0a
+	db 8, 15, $13, $0a
+	db $ff
+
+.round1_match4_right_won
+	db 7, 16, $11, $0a
+	db 8, 16, $14, $0a
+	db 8, 15, $17, $0a
+	db $ff
+
+.round2_match1_left_won
+	db 9, 3, $12, $0a
+	db 9, 4, $15, $0a
+	db 9, 5, $13, $0a
+	db $ff
+
+.round2_match1_right_won
+	db 9, 7, $14, $0a
+	db 9, 6, $15, $0a
+	db 9, 5, $17, $0a
+	db $ff
+
+.round2_match2_left_won
+	db 9, 11, $12, $0a
+	db 9, 12, $15, $0a
+	db 9, 13, $13, $0a
+	db $ff
+
+.round2_match2_right_won
+	db 9, 15, $14, $0a
+	db 9, 14, $15, $0a
+	db 9, 13, $17, $0a
+	db $ff
+
+.final_left_won
+	db 10, 5, $12, $0a
+	db 10, 6, $15, $0a
+	db 10, 7, $15, $0a
+	db 10, 8, $15, $0a
+	db 10, 9, $13, $0a
+	db 11, 9, $16, $0a
+	db $ff
+
+.final_right_won
+	db 10, 13, $14, $0a
+	db 10, 12, $15, $0a
+	db 10, 11, $15, $0a
+	db 10, 10, $15, $0a
+	db 10,  9, $17, $0a
+	db 11,  9, $16, $0a
+	db $ff
+
+PrintGrandMasterCupBracketChampion:
 	push af
 	push bc
 	push de
 	push hl
 	ldtx hl, GrandMasterCupBracketChampionshipText
-	ld a, [wdd20]
+	ld a, [wGrandMasterCupBracketWinnerSides + GRANDMASTERCUP_BRACKET_FINAL]
 	and a
-	jr z, .asm_1ebd1
-	call Func_1ebe3
+	jr z, .print
+; final played
+	call .GetBracketChampionCompetitorIndex
 	push af
-	farcall Func_4565d
-	ld [wdd22], a
-	call Func_1ec0f
-	ld hl, Func_3d54
+	farcall GetGrandMasterCupBracketChampionID
+	ld [wGrandMasterCupBracketChampion], a
+	call .DrawSprite
+	ld hl, SpinGrandMasterCupBracketChampionSprite
 	call Func_3f6b
 	pop af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd0a
+	ld hl, wGrandMasterCupCompetitorNames
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-.asm_1ebd1
+.print
 	lb de, 13, 9
 	lb bc, 6, 1
 	farcall FillBoxInBGMapWithZero
@@ -6042,14 +6213,14 @@ Func_1eba4:
 	pop af
 	ret
 
-Func_1ebe3:
+.GetBracketChampionCompetitorIndex:
 	push bc
 	push de
 	push hl
-	ld hl, $6bff
-	ld d, $00
-.asm_1ebeb
-	ld a, [wdd21]
+	ld hl, .advancement_lines
+	ld d, 0
+.loop_check_champion
+	ld a, [wGrandMasterCupBracketWinnerSideBitfield]
 	ld b, [hl]
 	inc hl
 	and b
@@ -6057,43 +6228,139 @@ Func_1ebe3:
 	inc hl
 	inc d
 	cp c
-	jr nz, .asm_1ebeb
+	jr nz, .loop_check_champion
 	dec d
 	ld a, d
-	and $07
+	and NUM_GRANDMASTERCUP_COMPETITORS - 1
 	pop hl
 	pop de
 	pop bc
 	ret
-; 0x1ebff
 
-SECTION "Bank 7@6c0f", ROMX[$6c0f], BANK[$7]
+; matches (bitmask) and results
+.advancement_lines:
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH1 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH3 | \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_LEFT_WON_F  << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
+	db \
+		1 << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		1 << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		1 << GRANDMASTERCUP_BRACKET_FINAL, \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND1_MATCH4 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_ROUND2_MATCH2 | \
+		GRANDMASTERCUP_BRACKET_RIGHT_WON_F << GRANDMASTERCUP_BRACKET_FINAL
 
-Func_1ec0f:
+.DrawSprite:
 	push af
 	push bc
 	push de
 	push hl
-	ld a, [wdd22]
+	ld a, [wGrandMasterCupBracketChampion]
 	ld b, SOUTH
 	ld d, 112
 	ld e, 48
 	farcall LoadOWObject
 	farcall ResetOWObjectSpriteAnimating
-	ld b, $01
+	ld b, $01 ; SPRITEANIMSTRUCT_FRAME_INDEX
 	farcall _SetOWObjectFrameIndex
 	xor a
-	ld [wdd24], a
+	ld [wGrandMasterCupBracketChampionSpriteAnimTick], a
 	ld a, $02
-	ld [wdd23], a
+	ld [wGrandMasterCupBracketChampionSpriteAnimIndex], a
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x1ec38
 
-SECTION "Bank 7@6c96", ROMX[$6c96], BANK[$7]
+_SpinGrandMasterCupBracketChampionSprite::
+	ld a, [wGrandMasterCupBracketChampionSpriteAnimTick]
+	inc a
+	and $07
+	ld [wGrandMasterCupBracketChampionSpriteAnimTick], a
+	and a
+	ret nz
+
+	ld a, [wGrandMasterCupBracketChampionSpriteAnimIndex]
+	inc a
+	and $1f
+	ld [wGrandMasterCupBracketChampionSpriteAnimIndex], a
+	ld c, a
+	ld b, $00
+	ld hl, .direction
+	add hl, bc
+	ld a, [hl]
+	ld b, a
+	ld a, [wGrandMasterCupBracketChampion]
+	farcall _SetOWObjectDirection
+	ld a, b
+	and $01
+	xor $01
+	ld b, a
+	ld a, [wGrandMasterCupBracketChampion]
+	farcall _SetOWObjectFrameIndex
+	ret
+
+.direction:
+	db SOUTH, SOUTH, SOUTH, SOUTH
+REPT 4
+	db SOUTH, WEST, NORTH, EAST
+ENDR
+REPT 3
+	db SOUTH, SOUTH, SOUTH, SOUTH
+ENDR
+
+MinicomMailboxScreen:
+	farcall Func_1022a
+	call MinicomMailbox
+	farcall Func_10252
+	ret
 
 MinicomMailbox:
 	push af
@@ -7323,39 +7590,41 @@ GetwDD75:
 	and a
 	ret
 
-Func_1f627:
+; return b = item1, c = item2
+SelectGrandMasterCupPrizes:
 	farcall Func_102a4
-	call Func_1f633
+	call _SelectGrandMasterCupPrizes
 	farcall Func_102c4
 	ret
 
-Func_1f633:
+; return b = item1, c = item2
+_SelectGrandMasterCupPrizes:
 	push af
 	push de
 	push hl
 	xor a
-	ld [wdd78], a
-	call Func_1f644
-	call Func_1f7ad
+	ld [wGrandMasterCupPrizeSelectionMenuCursorPosition], a
+	call .SelectionMenu
+	call .GetSelectedCardItems
 	pop hl
 	pop de
 	pop af
 	ret
 
-Func_1f644:
+.SelectionMenu:
 	farcall InitOWObjects
 	farcall SetInitialGraphicsConfiguration
-	farcall Func_10672
-	call Func_1f666
-	call Func_1f682
+	farcall Stub_10672
+	call .DrawSelectionMenuTitle
+	call .DrawSelectionMenu
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
-	call Func_1f6cd
+	call .HandleSelectionMenu
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ret
 
-Func_1f666:
+.DrawSelectionMenuTitle:
 	lb de, 0, 0
 	lb bc, 20, 3
 	call DrawRegularTextBoxVRAM0
@@ -7367,17 +7636,17 @@ Func_1f666:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
-Func_1f682:
-	ld b, $07
-	ld hl, $76ad
-	ld de, $3
+.DrawSelectionMenu:
+	ld b, BANK(.menu_box_params)
+	ld hl, .menu_box_params
+	lb de, 0, 3
 	call LoadMenuBoxParams
-	ld a, [wdd78]
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
 	call DrawMenuBox
-	ld de, $404
-	ld hl, wdd7a
-	ld c, $04
-.asm_1f69b
+	lb de, 4, 4
+	ld hl, wGrandMasterCupPrizes
+	ld c, NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
+.loop_print_card_names
 	push hl
 	ld a, [hli]
 	ld h, [hl]
@@ -7391,173 +7660,196 @@ Func_1f682:
 	inc e
 	inc e
 	dec c
-	jr nz, .asm_1f69b
+	jr nz, .loop_print_card_names
 	ret
-; 0x1f6ad
 
-SECTION "Bank 7@76cd", ROMX[$76cd], BANK[$7]
+.menu_box_params:
+	menubox_params FALSE, 20, 8, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A | PAD_START, PAD_B, FALSE, 1, NULL, NULL
+	textitem 2, 1, SingleSpaceText
+	textitem 2, 3, SingleSpaceText
+	textitem 2, 5, SingleSpaceText
+	textitem 2, 7, SingleSpaceText
+	textitems_end
 
-Func_1f6cd:
-.asm_1f6cd
-	call Func_1f748
+.HandleSelectionMenu:
+	call .InitSelection
 	xor a
-	ld [wdd79], a
-.asm_1f6d4
+	ld [wNumGrandMasterCupPrizesSelected], a
+.loop_dialog_box
 	ldtx hl, GrandMasterCupPrizesDialogText
 	lb de, 1, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-.asm_1f6dd
-	ld a, [wdd78]
+.wait_input
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
 	call HandleMenuBox
-	ld [wdd78], a
+	ld [wGrandMasterCupPrizeSelectionMenuCursorPosition], a
 	ldh a, [hKeysPressed]
 	and PAD_START
-	jr z, .asm_1f6f1
-	call Func_1f71c
-	jr .asm_1f6d4
-.asm_1f6f1
+	jr z, .no_start_btn
+	call .CardPreview
+	jr .loop_dialog_box
+.no_start_btn
 	ldh a, [hKeysPressed]
 	and PAD_A
-	jr z, .asm_1f6fd
-	ld a, [wdd78]
-	call Func_1f752
-.asm_1f6fd
+	jr z, .no_a_btn
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
+	call .SelectCurCardItem
+.no_a_btn
 	ldh a, [hKeysPressed]
 	and PAD_B
-	jr z, .asm_1f709
-	ld a, [wdd78]
-	call Func_1f762
-.asm_1f709
-	ld a, [wdd79]
-	cp $02
-	jr nz, .asm_1f6dd
+	jr z, .no_b_btn
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
+	call .DeselectCurCardItem
+.no_b_btn
+	ld a, [wNumGrandMasterCupPrizesSelected]
+	cp NUM_GRANDMASTERCUP_PRIZES_TO_RECEIVE
+	jr nz, .wait_input
+
 	ldtx hl, GrandMasterCupPrizesConfirmPromptText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1f6cd
+	jr c, .HandleSelectionMenu ; loop
 	ret
 
-Func_1f71c:
-	call Func_1f7b6
+.CardPreview:
+	call .OpenCardPage
+
+; back to menu
 	call EmptyScreen
 	farcall InitOWObjects
 	farcall SetInitialGraphicsConfiguration
-	farcall Func_10672
-	call Func_1f666
-	call Func_1f682
-	ld a, [wdd79]
+	farcall Stub_10672
+	call .DrawSelectionMenuTitle
+	call .DrawSelectionMenu
+; restore marks (HP_NOK)
+	ld a, [wNumGrandMasterCupPrizesSelected]
 	and a
-	jr z, .asm_1f744
-	ld a, [wdd8e]
-	ld d, $17
+	jr z, .handled_marks_after_preview
+	ld a, [wSelectedGrandMasterCupPrizeItems]
+	ld d, SYM_HP_NOK
 	ld e, $00
-	call Func_1f76f
-.asm_1f744
+	call .UpdateMarkOnCurCardItem
+.handled_marks_after_preview
 	call EnableLCD
 	ret
 
-Func_1f748:
+.InitSelection:
 	xor a
-.asm_1f749
-	call Func_1f762
+.loop_init
+	call .DeselectCurCardItem
 	inc a
-	cp $04
-	jr nz, .asm_1f749
+	cp NUM_GRANDMASTERCUP_PRIZE_CANDIDATES
+	jr nz, .loop_init
 	ret
 
-Func_1f752:
+; a = cursor pos
+; marks with HP_NOK
+.SelectCurCardItem:
 	push af
-	ld d, $17
+	ld d, SYM_HP_NOK
 	ld e, $00
-	call Func_1f76f
-	call Func_1f79e
-	call Func_1f77b
+	call .UpdateMarkOnCurCardItem
+	call .SetSelectedCardItems
+	call .SetCurCardItemFlagAndUpdateCount
 	pop af
 	ret
 
-Func_1f762:
+; a = cursor pos
+.DeselectCurCardItem:
 	push af
-	ld d, $00
+	ld d, SYM_SPACE
 	ld e, $00
-	call Func_1f76f
-	call Func_1f78d
+	call .UpdateMarkOnCurCardItem
+	call .UnsetCurCardItemFlagAndUpdateCount
 	pop af
 	ret
 
-Func_1f76f:
+; a = cursor pos (y coord = 2a + 4)
+; d = VRAM0 tile index (SYM_*)
+; e = VRAM1 tile attributes ($00)
+.UpdateMarkOnCurCardItem:
 	push af
 	add a
-	add $04
+	add 4
 	ld c, a
-	ld b, $03
+	ld b, 3 ; x coord
 	call Func_383b
 	pop af
 	ret
 
-Func_1f77b:
+; a = cursor pos
+.SetCurCardItemFlagAndUpdateCount:
 	ld c, a
 	ld b, $00
-	ld hl, wdd8a
+	ld hl, wGrandMasterCupPrizesSelectionState
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret nz
-	ld a, $ff
+	ld a, GRANDMASTERCUP_PRIZE_SELECTED
 	ld [hl], a
-	ld hl, wdd79
+	ld hl, wNumGrandMasterCupPrizesSelected
 	inc [hl]
 	ret
 
-Func_1f78d:
+.UnsetCurCardItemFlagAndUpdateCount:
 	ld c, a
 	ld b, $00
-	ld hl, wdd8a
+	ld hl, wGrandMasterCupPrizesSelectionState
 	add hl, bc
 	ld a, [hl]
 	and a
 	ret z
 	xor a
 	ld [hl], a
-	ld hl, wdd79
+	ld hl, wNumGrandMasterCupPrizesSelected
 	dec [hl]
 	ret
 
-Func_1f79e:
-	ld a, [wdd79]
+.SetSelectedCardItems:
+	ld a, [wNumGrandMasterCupPrizesSelected]
 	ld c, a
 	ld b, $00
-	ld hl, wdd8e
+	ld hl, wSelectedGrandMasterCupPrizeItems
 	add hl, bc
-	ld a, [wdd78]
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
 	ld [hl], a
 	ret
 
-Func_1f7ad:
-	ld a, [wdd8e]
+; return b = item1, c = item2
+.GetSelectedCardItems:
+	ld a, [wSelectedGrandMasterCupPrizeItem1]
 	ld b, a
-	ld a, [wdd8e + 1]
+	ld a, [wSelectedGrandMasterCupPrizeItem2]
 	ld c, a
 	ret
 
-Func_1f7b6:
-	ld a, [wdd78]
+.OpenCardPage:
+	ld a, [wGrandMasterCupPrizeSelectionMenuCursorPosition]
 	add a
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd7a
+	ld hl, wGrandMasterCupPrizes
 	add hl, bc
 	inc hl
 	inc hl
-	ld e, [hl]
+	ld e, [hl] ; low card id
 	inc hl
-	ld d, [hl]
-	farcall 1, LoadCardDataToBuffer1_FromCardID ; need to specify bank to match baserom
+	ld d, [hl] ; high card id
+; harmless bug, uses farcall bank1 for all these three funcs
+; but BANK(LoadCardDataToBuffer1_FromCardID) = 0
+	farcall 1, LoadCardDataToBuffer1_FromCardID
 	farcall SetupDuel
 	farcall OpenCardPage_FromHand
 	ret
 
-Func_1f7d4:
+; a = [0, 3]
+; bc = card id
+; hl = card name
+LoadGrandMasterCupPrizeCardData:
 	push af
 	push bc
 	push de
@@ -7569,7 +7861,7 @@ Func_1f7d4:
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wdd7a
+	ld hl, wGrandMasterCupPrizes
 	add hl, bc
 	pop bc
 	ld [hl], e

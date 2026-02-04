@@ -2416,8 +2416,8 @@ GrChallengeHallLobby_NPCInteractions:
 GrChallengeHallLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 5, 4, Func_3c1d0
-	ow_script 8, 4, Func_3c2d9
+	ow_script 5, 4, Script_GRBattleCenterClerk
+	ow_script 8, 4, Script_GiftCenter
 	db $ff
 
 GrChallengeHallLobby_MapScripts:
@@ -4372,8 +4372,8 @@ PsychicStrongholdLobby_NPCInteractions:
 PsychicStrongholdLobby_OWInteractions:
 	ow_script 1, 2, PCMenu
 	ow_script 2, 2, PCMenu
-	ow_script 5, 4, Func_3c1d0
-	ow_script 8, 4, Func_3c2d9
+	ow_script 5, 4, Script_GRBattleCenterClerk
+	ow_script 8, 4, Script_GiftCenter
 	db $ff
 
 PsychicStrongholdLobby_MapScripts:

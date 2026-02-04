@@ -2288,537 +2288,7 @@ AttackAnimation_BoneAttack:
 	anim_opponent  DUEL_ANIM_QUESTION_MARK
 	anim_end
 
-; if carry flag is set, only delays
-; if carry not set:
-; - set rRP edge up, wait;
-; - set rRP edge down, wait;
-; - return
-TransmitIRBit:
-	jr c, .delay_once
-	ld [hl], RP_WRITE_HIGH | RP_ENABLE
-	ld a, 5
-	jr .loop_delay_1 ; jump to possibly to add more cycles?
-.loop_delay_1
-	dec a
-	jr nz, .loop_delay_1
-	ld [hl], RP_WRITE_LOW | RP_ENABLE
-	ld a, 14
-	jr .loop_delay_2 ; jump to possibly to add more cycles?
-.loop_delay_2
-	dec a
-	jr nz, .loop_delay_2
-	ret
-
-.delay_once
-	ld a, 21
-	jr .loop_delay_3 ; jump to possibly to add more cycles?
-.loop_delay_3
-	dec a
-	jr nz, .loop_delay_3
-	nop
-	ret
-
-; input a = byte to transmit through IR
-TransmitByteThroughIR:
-	push hl
-	ld hl, rRP
-	push de
-	push bc
-	ld b, a
-	scf  ; carry set
-	call TransmitIRBit
-	or a ; carry not set
-	call TransmitIRBit
-	ld c, 8
-	ld c, 8 ; number of input bits
-.loop
-	ld a, $00
-	rr b
-	call TransmitIRBit
-	dec c
-	jr nz, .loop
-	pop bc
-	pop de
-	pop hl
-	ldh a, [rJOYP]
-	bit 1, a ; P11
-	jr z, ReturnZFlagUnsetAndCarryFlagSet
-	xor a ; return z set
-	ret
-
-; same as ReceiveByteThroughIR but
-; returns $0 in a if there's an error in IR
-ReceiveByteThroughIR_ZeroIfUnsuccessful:
-	call ReceiveByteThroughIR
-	ret nc
-	xor a
-	ret
-
-	; returns carry if there's some time out
-; and output in register a of $ff
-; otherwise returns in a some sequence of bits
-; related to how rRP sets/unsets bit 1
-ReceiveByteThroughIR:
-	push de
-	push bc
-	push hl
-
-; waits for bit 1 in rRP to be unset
-; up to $100 loops
-	ld b, 0
-	ld hl, rRP
-.wait_ir
-	bit B_RP_DATA_IN, [hl]
-	jr z, .ok
-	dec b
-	jr nz, .wait_ir
-	; looped around $100 times
-	; return $ff and carry set
-	pop hl
-	pop bc
-	pop de
-	scf
-	ld a, $ff
-	ret
-
-.ok
-; delay for some cycles
-	ld a, 15
-.loop_delay
-	dec a
-	jr nz, .loop_delay
-
-; loop for each bit
-	ld e, 8
-.loop
-	ld a, $01
-	; possibly delay cycles?
-	ld b, 9
-	ld b, 9
-	ld b, 9
-	ld b, 9
-
-; checks for bit 1 in rRP
-; if in any of the checks it is unset,
-; then a is set to 0
-; this is done a total of 9 times
-	bit B_RP_DATA_IN, [hl]
-	jr nz, .asm_196ec
-	xor a
-.asm_196ec
-	bit B_RP_DATA_IN, [hl]
-	jr nz, .asm_196f1
-	xor a
-.asm_196f1
-	dec b
-	jr nz, .asm_196ec
-	; one bit received
-	rrca
-	rr d
-	dec e
-	jr nz, .loop
-	ld a, d ; has bits set for each "cycle" that bit 1 was not unset
-	pop hl
-	pop bc
-	pop de
-	or a
-	ret
-
-ReturnZFlagUnsetAndCarryFlagSet:
-	ld a, $ff
-	or a ; z not set
-	scf  ; carry set
-	ret
-
-; called when expecting to transmit data
-Func_196e8:
-	ld hl, rRP
-.loop
-	ldh a, [rJOYP]
-	bit 1, a
-	jr z, ReturnZFlagUnsetAndCarryFlagSet
-	ld a, $a5 ; request
-	call TransmitByteThroughIR
-	push hl
-	pop hl
-	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $35 ; acknowledge
-	jr nz, .loop
-	xor a
-	ret
-
-; called when expecting to receive data
-Func_1971e:
-	ld hl, rRP
-.asm_19721
-	ldh a, [rJOYP]
-	bit 1, a
-	jr z, ReturnZFlagUnsetAndCarryFlagSet
-	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $a5 ; request
-	jr nz, .asm_19721
-	ld a, $35 ; acknowledge
-	call TransmitByteThroughIR
-	xor a
-	ret
-
-ReturnZFlagUnsetAndCarryFlagSet2:
-	jp ReturnZFlagUnsetAndCarryFlagSet
-
-TransmitIRDataBuffer:
-	call Func_196e8
-	jr c, ReturnZFlagUnsetAndCarryFlagSet2
-	ld a, $49
-	call TransmitByteThroughIR
-	ld a, $52
-	call TransmitByteThroughIR
-	ld hl, wIRDataBuffer
-	ld c, 8
-	jr TransmitNBytesFromHLThroughIR
-
-ReceiveIRDataBuffer:
-	call Func_1971e
-	jr c, ReturnZFlagUnsetAndCarryFlagSet2
-	call ReceiveByteThroughIR
-	cp $49
-	jr nz, ReceiveIRDataBuffer
-	call ReceiveByteThroughIR
-	cp $52
-	jr nz, ReceiveIRDataBuffer
-	ld hl, wIRDataBuffer
-	ld c, 8
-	jr ReceiveNBytesToHLThroughIR
-
-; hl = start of data to transmit
-; c = number of bytes to transmit
-TransmitNBytesFromHLThroughIR:
-	ld b, $0
-.loop_data_bytes
-	ld a, b
-	add [hl]
-	ld b, a
-	ld a, [hli]
-	call TransmitByteThroughIR
-	jr c, .asm_1977c
-	dec c
-	jr nz, .loop_data_bytes
-	ld a, b
-	cpl
-	inc a
-	call TransmitByteThroughIR
-.asm_1977c
-	ret
-
-; hl = address to write received data
-; c = number of bytes to be received
-ReceiveNBytesToHLThroughIR:
-	ld b, 0
-.loop_data_bytes
-	call ReceiveByteThroughIR
-	jr c, ReturnZFlagUnsetAndCarryFlagSet2
-	ld [hli], a
-	add b
-	ld b, a
-	dec c
-	jr nz, .loop_data_bytes
-	call ReceiveByteThroughIR
-	add b
-	or a
-	jr nz, ReturnZFlagUnsetAndCarryFlagSet2
-	ret
-
-; disables interrupts, and sets joypad and IR communication port
-; switches to CGB normal speed
-StartIRCommunications:
-	di
-	call SwitchToCGBNormalSpeed
-	ld a, P14
-	ldh [rJOYP], a
-	ld a, RP_ENABLE
-	ldh [rRP], a
-	ret
-
-; reenables interrupts, and switches CGB back to double speed
-CloseIRCommunications:
-	ld a, P14 | P15
-	ldh [rJOYP], a
-.wait_vblank_on
-	ldh a, [rSTAT]
-	and STAT_MODE
-	cp STAT_VBLANK
-	jr z, .wait_vblank_on
-.wait_vblank_off
-	ldh a, [rSTAT]
-	and STAT_MODE
-	cp STAT_VBLANK
-	jr nz, .wait_vblank_off
-	call SwitchToCGBDoubleSpeed
-	ei
-	ret
-
-; set rRP to 0
-ClearRP:
-	ld a, $00
-	ldh [rRP], a
-	ret
-
-; expects to receive a command (IRCMD_* constant)
-; in wIRDataBuffer + 1, then calls the subroutine
-; corresponding to that command
-ExecuteReceivedIRCommands:
-	call StartIRCommunications
-.loop_commands
-	call ReceiveIRDataBuffer
-	jr c, .error
-	jr nz, .loop_commands
-	ld hl, wIRDataBuffer + 1
-	ld a, [hl]
-	ld hl, .CmdPointerTable
-	cp NUM_IR_COMMANDS
-	jr nc, .loop_commands ; invalid command
-	call .JumpToCmdPointer ; execute command
-	jr .loop_commands
-.error
-	call CloseIRCommunications
-	xor a
-	scf
-	ret
-
-.JumpToCmdPointer
-	add a ; *2
-	add l
-	ld l, a
-	ld a, 0
-	adc h
-	ld h, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-.jp_hl
-	jp hl
-
-.CmdPointerTable
-	dw .Close                ; IRCMD_CLOSE
-	dw .ReturnWithoutClosing ; IRCMD_RETURN_WO_CLOSING
-	dw .TransmitData         ; IRCMD_TRANSMIT_DATA
-	dw .ReceiveData          ; IRCMD_RECEIVE_DATA
-	dw .CallFunction         ; IRCMD_CALL_FUNCTION
-
-; closes the IR communications
-; pops hl so that the sp points
-; to the return address of ExecuteReceivedIRCommands
-.Close
-	pop hl
-	call CloseIRCommunications
-	or a
-	ret
-
-; returns without closing the IR communications
-; will continue the command loop
-.ReturnWithoutClosing
-	or a
-	ret
-
-; receives an address and number of bytes
-; and transmits starting at that address
-.TransmitData
-	call Func_196e8
-	ret c
-	call LoadRegistersFromIRDataBuffer
-	jp TransmitNBytesFromHLThroughIR
-
-; receives an address and number of bytes
-; and writes the data received to that address
-.ReceiveData
-	call LoadRegistersFromIRDataBuffer
-	ld l, e
-	ld h, d
-	call ReceiveNBytesToHLThroughIR
-	jr c, .asm_19812
-	sub b
-	call TransmitByteThroughIR
-.asm_19812
-	ret
-
-; receives an address to call, then stores
-; the registers in the IR data buffer
-.CallFunction
-	call LoadRegistersFromIRDataBuffer
-	call .jp_hl
-	call StoreRegistersInIRDataBuffer
-	ret
-
-; returns carry set if request sent was not acknowledged
-TrySendIRRequest:
-	call StartIRCommunications
-	ld hl, rRP
-	ld c, 4
-.send_request
-	ld a, $a5 ; request
-	push bc
-	call TransmitByteThroughIR
-	push bc
-	pop bc
-	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	pop bc
-	cp $35 ; acknowledgement
-	jr z, .received_ack
-	dec c
-	jr nz, .send_request
-	scf
-	jr .close
-
-.received_ack
-	xor a
-.close
-	push af
-	call CloseIRCommunications
-	pop af
-	ret
-
-; returns carry set if request was not received
-TryReceiveIRRequest:
-	call StartIRCommunications
-	ld hl, rRP
-.wait_request
-	call ReceiveByteThroughIR_ZeroIfUnsuccessful
-	cp $a5 ; request
-	jr z, .send_ack
-	ldh a, [rJOYP]
-	cpl
-	and P10 | P11
-	jr z, .wait_request
-	scf
-	jr .close
-
-.send_ack
-	ld a, $35 ; acknowledgement
-	call TransmitByteThroughIR
-	xor a
-.close
-	push af
-	call CloseIRCommunications
-	pop af
-	ret
-
-; sends request for other device to close current communication
-RequestCloseIRCommunication:
-	call StartIRCommunications
-	ld a, IRCMD_CLOSE
-	ld [wIRDataBuffer + 1], a
-	call TransmitIRDataBuffer
-;	fallthrough
-
-; calls CloseIRCommunications while preserving af
-SafelyCloseIRCommunications:
-	push af
-	call CloseIRCommunications
-	pop af
-	ret
-
-; sends a request for data to be transmitted
-; from the other device
-; hl = start of data to request to transmit
-; de = address to write data received
-; c = length of data
-RequestDataTransmissionThroughIR:
-	ld a, IRCMD_TRANSMIT_DATA
-	call TransmitRegistersThroughIR
-	push de
-	push bc
-	call Func_1971e
-	pop bc
-	pop hl
-	jr c, SafelyCloseIRCommunications
-	call ReceiveNBytesToHLThroughIR
-	jr SafelyCloseIRCommunications
-
-; transmits data to be written in the other device
-; hl = start of data to transmit
-; de = address for other device to write data
-; c = length of data
-RequestDataReceivalThroughIR:
-	ld a, IRCMD_RECEIVE_DATA
-	call TransmitRegistersThroughIR
-	call TransmitNBytesFromHLThroughIR
-	jr c, SafelyCloseIRCommunications
-	call ReceiveByteThroughIR
-	jr c, SafelyCloseIRCommunications
-	add b
-	jr nz, .asm_1989e
-	xor a
-	jr SafelyCloseIRCommunications
-.asm_1989e
-	call ReturnZFlagUnsetAndCarryFlagSet
-	jr SafelyCloseIRCommunications
-
-; first stores all the current registers in wIRDataBuffer
-; then transmits it through IR
-TransmitRegistersThroughIR:
-	push hl
-	push de
-	push bc
-	call StoreRegistersInIRDataBuffer
-	call StartIRCommunications
-	call TransmitIRDataBuffer
-	pop bc
-	pop de
-	pop hl
-	ret nc
-	inc sp
-	inc sp
-	jr SafelyCloseIRCommunications
-
-; stores af, hl, de and bc in wIRDataBuffer
-StoreRegistersInIRDataBuffer:
-	push de
-	push hl
-	push af
-	ld hl, wIRDataBuffer
-	pop de
-	ld [hl], e ; <- f
-	inc hl
-	ld [hl], d ; <- a
-	inc hl
-	pop de
-	ld [hl], e ; <- l
-	inc hl
-	ld [hl], d ; <- h
-	inc hl
-	pop de
-	ld [hl], e ; <- e
-	inc hl
-	ld [hl], d ; <- d
-	inc hl
-	ld [hl], c ; <- c
-	inc hl
-	ld [hl], b ; <- b
-	ret
-
-; loads all the registers that were stored
-; from StoreRegistersInIRDataBuffer
-LoadRegistersFromIRDataBuffer:
-	ld hl, wIRDataBuffer
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-	push de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-	push de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	pop hl
-	pop af
-	ret
+INCLUDE "engine/link/ir_core.asm"
 
 ; empties screen and enables sprite animations
 SetSpriteAnimationsAsVBlankFunction:
@@ -3032,116 +2502,8 @@ InitSaveData:
 .terminating_byte
 	ld [de], a
 	ret
-; 0x199fa
 
-SECTION "Bank 6@5a30", ROMX[$5a30], BANK[$6]
-
-; prepares IR communication parameter data
-; a = a IRPARAM_* constant for the function of this connection
-InitIRCommunications:
-	ld hl, wOwnIRCommunicationParams
-	ld [hl], a
-	inc hl
-	ld [hl], $50
-	inc hl
-	ld [hl], $4b
-	inc hl
-	ld [hl], $32
-	ld a, $ff
-	ld [wIRCommunicationErrorCode], a
-	ld a, PLAYER_TURN
-	ldh [hWhoseTurn], a
-; clear wNameBuffer and wOpponentName
-	xor a
-	ld [wNameBuffer], a
-	ld hl, wOpponentName
-	ld [hli], a
-	ld [hl], a
-; loads player's name from SRAM
-; to wDefaultText
-	call EnableSRAM
-	ld hl, sPlayerName
-	ld de, wDefaultText
-	ld c, NAME_BUFFER_LENGTH
-.loop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .loop
-	call DisableSRAM
-	ret
-; 0x19a64
-
-SECTION "Bank 6@5a92", ROMX[$5a92], BANK[$6]
-
-; exchanges player names and IR communication parameters
-; checks whether parameters for communication match
-; and if they don't, an error is issued
-ExchangeIRCommunicationParameters:
-	ld hl, wOwnIRCommunicationParams
-	ld de, wOtherIRCommunicationParams
-	ld c, 4
-	call RequestDataTransmissionThroughIR
-	jr c, .error
-	ld hl, wOtherIRCommunicationParams + 1
-	ld a, [hli]
-	cp $50
-	jr nz, .error
-	ld a, [hli]
-	cp $4b
-	jr nz, .error
-	ld a, [wOwnIRCommunicationParams]
-	ld hl, wOtherIRCommunicationParams
-	cp [hl] ; do parameters match?
-	jr nz, SetIRCommunicationErrorCode_Error
-
-; receives wDefaultText from other device
-; and writes it to wNameBuffer
-	ld hl, wDefaultText
-	ld de, wNameBuffer
-	ld c, NAME_BUFFER_LENGTH
-	call RequestDataTransmissionThroughIR
-	jr c, .error
-; transmits wDefaultText to be
-; written in wNameBuffer in the other device
-	ld hl, wDefaultText
-	ld de, wNameBuffer
-	ld c, NAME_BUFFER_LENGTH
-	call RequestDataReceivalThroughIR
-	jr c, .error
-	or a
-	ret
-
-.error
-	xor a
-	scf
-	ret
-
-SetIRCommunicationErrorCode_Error:
-	ld hl, wIRCommunicationErrorCode
-	ld [hl], $01
-	ld de, wIRCommunicationErrorCode
-	ld c, 1
-	call RequestDataReceivalThroughIR
-	call RequestCloseIRCommunication
-	ld a, $01
-	scf
-	ret
-
-SetIRCommunicationErrorCode_NoError:
-	ld hl, wOwnIRCommunicationParams
-	ld [hl], $00
-	ld de, wIRCommunicationErrorCode
-	ld c, 1
-	call RequestDataReceivalThroughIR
-	ret c
-	call RequestCloseIRCommunication
-	or a
-	ret
-; 0x19afb
-
-SECTION "Bank 6@5bf9", ROMX[$5bf9], BANK[$6]
+INCLUDE "engine/link/ir_functions.asm"
 
 _CardPopMenu:
 	call EnableSRAM
@@ -3431,8 +2793,8 @@ HandleCardPopCommunications:
 .loop_request
 	call TryReceiveIRRequest ; receive request
 	jr nc, .execute_commands
-	bit 1, a
-	jp nz, .asm_19e7f
+	bit B_PAD_B, a
+	jp nz, .cancelled
 	call TrySendIRRequest ; send request
 	jr c, .loop_request
 
@@ -3470,8 +2832,8 @@ HandleCardPopCommunications:
 	or a
 	jr nz, .fail
 
-	ld a, $32
-	ld [wOtherIRCommunicationParams + 3], a
+	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
+	ld [wOtherIRCommunicationMagicString + 2], a
 	call DecideCardToReceiveFromCardPop
 	call SetCardPopRecord
 	call FillCardPopSummary
@@ -3500,12 +2862,12 @@ HandleCardPopCommunications:
 .fail
 	ld a, [wIRCommunicationErrorCode]
 	cp $01
-	jr nz, .asm_19e7f
+	jr nz, .cancelled
 	ldtx hl, CardPopModeMismatchedText ; Card Pop from one side and Rare Card Pop from the other
 	scf
 	ret
 
-.asm_19e7f
+.cancelled
 	ldtx hl, CardPopUnsuccessfulTryAgainText
 .set_carry
 	scf
@@ -3536,9 +2898,9 @@ HandleCardPopCommunications:
 	ld a, BANK("SRAM1")
 	call BankswitchSRAM
 	call CopyDataHLtoDE
-	ld a, [wOtherIRCommunicationParams + 3]
-	cp $32
-	jr nz, .asm_19ecb
+	ld a, [wOtherIRCommunicationMagicString + 2]
+	cp STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
+	jr nz, .done
 
 	; copy SRAM so that sCardPopRecords is moved $20 forward
 	ld hl, sCardPopRecords + MAX_NUM_CARDPOP_RECORDS * CARDPOP_RECORD_SIZE - 1
@@ -3556,11 +2918,11 @@ HandleCardPopCommunications:
 	ld de, sCardPopRecords
 	ld bc, CARDPOP_RECORD_SIZE
 	call CopyDataHLtoDE
-.asm_19ecb
+.done
 	xor a
 	call BankswitchSRAM
 	call DisableSRAM
-	or a
+	or a ; redundant, leftover from tcg1
 	ret
 
 ; looks up the name in wNameBuffer in wCardPopNameList
@@ -4284,20 +3646,24 @@ IngameCardPop:
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_CARD_POP_IMAKUNI + 2
 	jr .got_partner
+
 .Imakuni_rare
 	ldtx hl, CardPopImakuniText
 	ld a, SCRIPTED_RARE_CARD_POP_IMAKUNI + 2
 	push af
 	ld a, IRPARAM_RARE_CARD_POP
 	jr .got_partner_and_type
+
 .Ronald
 	ldtx hl, CardPopRonaldText
 	ld a, SCRIPTED_CARD_POP_RONALD + 2
 ; fallthrough
+
 .got_partner
 	push af
 	ld a, IRPARAM_CARD_POP
 ; fallthrough
+
 .got_partner_and_type
 	ld [wCardPopType], a
 	call InitSaveData.PrintName
@@ -4349,11 +3715,13 @@ IngameCardPop:
 	inc hl
 	ld [hl], d
 	call DecideCardToReceiveFromCardPop
-	ld bc, .data1
+; load Ronald's stats
+; for Imakuni_rare, these will be overwritten later
+	ld bc, .Ronald_stats
 	jr .got_data
 
 ; guaranteed to give IMAKUNI_CARD to player
-; and choose a random card for Imakuni? from the list
+; and choose a random card for Imakuni? from the 6-card list
 .with_Imakuni_first
 	ld a, 6
 	call Random
@@ -4373,8 +3741,9 @@ IngameCardPop:
 	call LoadCardDataToBuffer1_FromCardID
 	ld a, MUSIC_MATCH_VICTORY
 	ld [wCardPopCardObtainSong], a
-	ld bc, .data2
+	ld bc, .Imakuni_stats
 ; fallthrough
+
 .got_data
 	push bc
 	ld hl, wCardPopRecordYourCardID
@@ -4382,18 +3751,19 @@ IngameCardPop:
 	inc hl
 	ld [hl], d
 	pop hl
-	ld de, wCardPopRecordNumBattles
+	ld de, wCardPopRecordStats
 	ld bc, CARDPOP_RECORD_STATS_SIZE
 	call CopyDataHLtoDE
-	ld a, 1
-	ld [de], a
+	ld a, IRPARAM_CARD_POP
+	ld [de], a ; wCardPopRecordType
 	ld a, [wNameBuffer + MAX_PLAYER_NAME_LENGTH + 1]
 	cp SCRIPTED_RARE_CARD_POP_IMAKUNI + 2
 	jr nz, .display_ingame_pop
 
 ; Imakuni_rare
 ; set his stats: NumBattles = yours / 2, NumCards = yours / 4, NumCoins = 4
-	ld hl, wCardPopRecordNumBattles
+	ld hl, wCardPopRecordStats
+; wCardPopRecordNumBattles
 	call EnableSRAM
 	ld a, [sTotalDuelCounter]
 	srl a
@@ -4402,6 +3772,7 @@ IngameCardPop:
 	rr a
 	ld [hli], a
 	call DisableSRAM
+; wCardPopRecordNumCards
 	push hl
 	call GetAmountOfCardsOwned
 REPT 2
@@ -4411,7 +3782,6 @@ ENDR
 	ld e, l
 	ld d, h
 	pop hl
-; wCardPopRecordNumCards
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -4422,6 +3792,7 @@ ENDR
 ; wCardPopRecordType
 	ld [hl], IRPARAM_RARE_CARD_POP
 ; fallthrough
+
 .display_ingame_pop
 	call SetSpriteAnimationsAsVBlankFunction
 	ld a, SCENE_CARD_POP
@@ -4442,8 +3813,8 @@ ENDR
 	jr z, .loop_input
 ; pressed A
 	call RestoreVBlankFunction
-	ld a, $32
-	ld [wOtherIRCommunicationParams + 3], a
+	ld a, STRBYTE("{IR_MAGIC_STRING_TCG2}", 2)
+	ld [wOtherIRCommunicationMagicString + 2], a
 	call HandleCardPopCommunications.success
 	call LoadCardPopSceneAndHandleCommunications.add_sram0
 	ldtx hl, ReceivedThroughCardPopText
@@ -4466,12 +3837,15 @@ ENDR
 	dw MACHAMP_LV67   ; $4
 	dw CHANSEY_LV55   ; $5
 
-; data pointer will be pushed to bc
-; meant to be custom stats?
-.data1
-	db $00, $00, $39, $00, $01
-.data2
-	db $00, $00, $6c, $00, $01
+; custom stats
+.Ronald_stats
+	dw 0   ; battles
+	dw 57  ; cards
+	db 1   ; coins
+.Imakuni_stats
+	dw 0   ; battles
+	dw 108 ; cards
+	db 1   ; coins
 
 ; sends serial data to printer
 ; if there's an error in connection,

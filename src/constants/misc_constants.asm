@@ -26,14 +26,6 @@ DEF MAX_NUM_CARDPOP_RECORDS EQU 98
 DEF CARDPOP_RECORD_SIZE       EQU $20
 DEF CARDPOP_RECORD_STATS_SIZE EQU $05
 
-; rJOYP constants to read IR signals
-DEF P15              EQU %00100000
-DEF P14              EQU %00010000
-DEF P13              EQU %00001000
-DEF P12              EQU %00000100
-DEF P11              EQU %00000010
-DEF P10              EQU %00000001
-
 ; commands transmitted through IR to be
 ; executed by the other device
 ; (see ExecuteReceivedIRCommands)
@@ -52,6 +44,20 @@ DEF NUM_IR_COMMANDS EQU const_value
 	const IRPARAM_SEND_CARDS    ; $2
 	const IRPARAM_SEND_DECK     ; $3
 	const IRPARAM_RARE_CARD_POP ; $4
+
+; IR magic strings
+DEF IR_MAGIC_STRING_TCG2     EQUS "PK2"
+DEF IR_ACK_MAGIC_STRING_TCG2 EQUS "OK2"
+DEF IR_MAGIC_STRING_SIZE     EQU 3
+
+DEF IR_PARAMS_STRUCT_SIZE    EQU 4
+
+; IR handshake byte
+DEF IR_HANDSHAKE_REQUEST_TCG2     EQU $a5
+DEF IR_HANDSHAKE_ACKNOWLEDGE_TCG2 EQU $35
+; cf.)
+; DEF IR_HANDSHAKE_REQUEST_TCG1     EQU $aa
+; DEF IR_HANDSHAKE_ACKNOWLEDGE_TCG1 EQU $33
 
 ; serial transfer
 DEF SERIAL_OP_DATA_END      EQU $ac
