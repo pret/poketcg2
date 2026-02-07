@@ -331,8 +331,8 @@ DEF NUM_PICS EQU const_value
 	const NPC_WHITE_CASTLE_COIN                 ; $e6
 	const NPC_PURPLE_CASTLE_COIN                ; $e7
 	const NPC_STRONGHOLD_PLATFORM               ; $e8
-
-DEF NPC_NONE EQU -1
+	const_def -1
+	const NPC_NONE                              ; $ff
 
 ; grand masters
 	const_def
