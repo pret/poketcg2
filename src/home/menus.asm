@@ -138,14 +138,14 @@ HandleMenuInput::
 	; B button pressed
 	ld a, [wCurMenuItem]
 	ld e, a
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 	call PlayOpenOrExitScreenSFX
 	scf
 	ret
 
-; plays an "open screen" sound (SFX_CONFIRM) if [hCurScrollMenuItem] != 0xff
-; plays an "exit screen" sound (SFX_CANCEL) if [hCurScrollMenuItem] == 0xff
+; if [hCurScrollMenuItem] = MENU_CANCEL (exit), play SFX_CANCEL,
+; otherwise (open) SFX_CONFIRM
 PlayOpenOrExitScreenSFX::
 	push af
 	ldh a, [hCurScrollMenuItem]

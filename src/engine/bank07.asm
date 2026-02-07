@@ -5675,7 +5675,7 @@ CallMinicomMenuFunction:
 
 MinicomDeckSaveMachine:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	farcall Func_baec
+	farcall HandleDeckSaveMachineMenu
 	ret
 
 MinicomCardAlbum:

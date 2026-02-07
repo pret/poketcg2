@@ -64,6 +64,13 @@
 	const MINICOMMENU_MAILBOX           ; 1
 	const MINICOMMENU_CARD_ALBUM        ; 2
 
+; deck save machine options
+	const_def
+	const DECKSAVEMACHINEMENU_SAVE   ; 0
+	const DECKSAVEMACHINEMENU_DELETE ; 1
+	const DECKSAVEMACHINEMENU_BUILD  ; 2
+	const DECKSAVEMACHINEMENU_CANCEL ; 3
+
 ; mailbox options
 	const_def
 	const MAILBOXMENU_READ   ; 0
@@ -99,6 +106,10 @@
 	const POPUPMENU_CARD_DUNGEON_QUEEN  ; $9
 	const POPUPMENU_CARD_DUNGEON_PAWN   ; $a
 
+; for menu items, PlaySFXConfirmOrCancel, etc.
+DEF MENU_CANCEL  EQU -1
+DEF MENU_CONFIRM EQU  1 ; != -1, but uses 1 most of the time
+
 ; filter types for CardTypeFilters
 ; used to categorise the different cards
 ; i.e. in the deck building screen
@@ -121,6 +132,7 @@ DEF FILTER_ONLY_ENERGY  EQU FILTER_ENERGY  >> 4 ; 2, or any number > 1
 
 DEF NUM_DECK_CONFIRMATION_VISIBLE_CARDS EQU 7
 DEF NUM_FILTERED_LIST_VISIBLE_CARDS     EQU 6
+DEF NUM_DECK_STATUS_LIST_VISIBLE_CARDS  EQU 5
 
 DEF NUM_DECK_SAVE_MACHINE_SLOTS    EQU 50
 DEF NUM_DECK_MACHINE_VISIBLE_DECKS EQU 5

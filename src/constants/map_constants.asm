@@ -123,8 +123,8 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GR_CASTLE_ENTRANCE             ; $71
 	const MAP_GR_CASTLE                      ; $72
 	const MAP_GR_CASTLE_BIRURITCHI           ; $73
-
-DEF MAP_NONE EQU -1
+	const_def -1
+	const MAP_NONE                           ; $ff
 
 	; MAP_GFX_*
 	; referenced in MapHeaders, and others. see also: data/map_gfx.asm
