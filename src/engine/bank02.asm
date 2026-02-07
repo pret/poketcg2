@@ -1532,6 +1532,8 @@ DeckSelectScreenTextItems:
 	textitem 12, 16, CancelDeckText
 	textitems_end
 
+; for X = [wCurDeck] + 1,
+; return hl = sDeckX
 GetSRAMPointerToCurDeck:
 	ld a, [wCurDeck]
 	ld h, a
@@ -1543,6 +1545,8 @@ GetSRAMPointerToCurDeck:
 	pop de
 	ret
 
+; for X = [wCurDeck] + 1,
+; return hl = sDeckXCards
 GetSRAMPointerToCurDeckCards:
 	push af
 	ld a, [wCurDeck]
@@ -1689,7 +1693,7 @@ PlaySFXConfirmOrCancel:
 	pop af
 	ret
 
-Func_9337:
+DecrementDeckCardsInCollection_CopyDeckFromSRAM:
 	push hl
 	ld d, h
 	ld e, l
@@ -1749,7 +1753,7 @@ AddGiftCenterDeckCardsToCollection:
 	push hl
 	push de
 	push bc
-	ld a, ALL_DECKS
+	ld a, $ff ; all owned cards
 	call CreateCardCollectionListWithDeckCards
 	pop bc
 	pop de
@@ -3585,10 +3589,10 @@ InitializeScrollMenuParameters:
 	ret
 
 DeckMachineSelectionParams:
-	scrollmenu_params 1, 2, 2, 0, 5, SYM_CURSOR_R, SYM_SPACE, NULL
-; 0x9eb5
+	scrollmenu_params 1, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
-SECTION "Bank 2@5ebe", ROMX[$5ebe], BANK[$2]
+MenuParams_9eb5:
+	scrollmenu_params 1, 2, 2, 0, 4, SYM_CURSOR_R, SYM_SPACE, NULL
 
 HandleCardSelectionInput:
 	xor a ; FALSE
@@ -4336,7 +4340,7 @@ HandleDeckConfirmationMenu:
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
-	ld [wced7], a
+	ld [wd11e], a
 
 	; set wOwnedCardsCountList as current card list
 	; and show card page screen
@@ -4913,7 +4917,7 @@ GetCardTypeIconPalette:
 ; uses deck builder ui
 HandleGiftCenterSendCardsScreen:
 	ld hl, wCurDeckCards
-	ld a, $81
+	ld a, DECK_TEMP_BUFFER_SIZE + 1
 	call ClearNBytesFromHL
 	ld a, $ff
 	ld [wCurDeck], a
@@ -5004,7 +5008,7 @@ HandleGiftCenterSendCardsMenu:
 	call InitializeScrollMenuParameters
 	ld hl, wCurDeckCards
 	ld de, wTempSavedDeckCards
-	ld b, $82
+	ld b, DECK_TEMP_BUFFER_SIZE + 2
 	call CopyBBytesFromHLToDE_Bank02
 	call PrintCardsToSendToPlayerText
 	call Func_b81d
@@ -5031,7 +5035,7 @@ Func_a6ef:
 	ld [wScrollMenuScrollOffset], a
 	ld hl, wCurDeckCards
 	ld de, wTempSavedDeckCards
-	ld b, $82
+	ld b, DECK_TEMP_BUFFER_SIZE + 2
 	call CopyBBytesFromHLToDE_Bank02
 	call EmptyScreenAndDrawTextBox
 	call Func_b81d
@@ -5039,7 +5043,7 @@ Func_a6ef:
 
 HandleBlackBoxSendCardsScreen:
 	ld hl, wCurDeckCards
-	ld a, $81
+	ld a, DECK_TEMP_BUFFER_SIZE + 1
 	call ClearNBytesFromHL
 	ld a, $ff
 	ld [wCurDeck], a
@@ -5268,7 +5272,7 @@ PrintFilteredCardSelectionList:
 	add hl, bc
 	ld a, [hl]
 	push af
-	ld a, ALL_DECKS
+	ld a, $ff ; all owned cards
 	call CreateCardCollectionListWithDeckCards
 	ld a, TRUE
 	ld [wd121], a
@@ -5289,16 +5293,16 @@ PrintFilteredCardSelectionList:
 	ret
 
 ; creates a card collection list in wTempCardCollection
-; if a is $80, only include cards that are in the
-; built decks, otherwise include all owned cards
+; if a = CARD_COUNT_FROM_BUILT_DECKS, only include cards used in the built decks
+; otherwise include all owned cards
 CreateCardCollectionListWithDeckCards:
-	cp $80
+	cp CARD_COUNT_FROM_BUILT_DECKS
 	jr nz, .copy_card_collection
 	ld hl, wTempCardCollection
-	xor a
+	xor a ; aka $100 bytes
 	call ClearNBytesFromHL
 	ld hl, wTempCardCollection + $100
-	xor a
+	xor a ; aka $100 bytes
 	call ClearNBytesFromHL
 	ld a, ALL_DECKS
 	ld [hffbf], a
@@ -5311,11 +5315,11 @@ CreateCardCollectionListWithDeckCards:
 	call EnableSRAM
 	ld hl, sCardCollection
 	ld de, wTempCardCollection
-	ld b, $00 ; aka $100 bytes
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank02
 	ld hl, sCardCollection + $100
 	ld de, wTempCardCollection + $100
-	ld b, $00 ; aka $100 bytes
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank02
 	call DisableSRAM
 .deck_1
@@ -5546,7 +5550,7 @@ PrintPlayersCardsText:
 	ret
 
 PrintTotalNumberOfCardsInCollection:
-	ld a, ALL_DECKS
+	ld a, $ff ; all owned cards
 	call CreateCardCollectionListWithDeckCards
 
 ; count all the cards in collection
@@ -5556,7 +5560,7 @@ PrintTotalNumberOfCardsInCollection:
 .loop_all_cards
 	ld a, [bc]
 	inc bc
-	and $7f
+	and CARD_COUNT_MASK
 	push de
 	ld d, $00
 	ld e, a
@@ -7132,14 +7136,18 @@ PrinterMenu:
 .PrinterQualityMenuParams
 	scrollmenu_params 5, 16, 0, 2, 5, SYM_CURSOR_R, SYM_SPACE, NULL
 
-Func_b57c:
+; unlike tcg1's HandleDeckMissingCardsList,
+; it's now a multipurpose screen
+HandleDeckStatusCardList:
 	push de
 	ld de, wCurDeckName
 	call CopyListFromHLToDE
 	pop de
 	ld hl, wCurDeckCards
 	call CopyDeckFromSRAM
-.asm_b58a
+	; fallthrough
+
+HandleDeckStatusCardList_Execute:
 	ld a, NUM_FILTERS
 	ld hl, wCardFilterCounts
 	call ClearNBytesFromHL
@@ -7147,10 +7155,10 @@ Func_b57c:
 	ld [wTotalCardCount], a
 	ld hl, wCardFilterCounts
 	ld [hl], a
-	call Func_b5b1
+	call _HandleDeckStatusCardList
 	ret
 
-Func_b59f:
+HandleDeckStatusCardList_InSRAM:
 	push de
 	ld de, wCurDeckName
 	call CopyListFromHLToDEInSRAM
@@ -7158,30 +7166,32 @@ Func_b59f:
 	ld de, wCurDeckCards
 	ld b, $80
 	call CopyBBytesFromHLToDE_Bank02
-	jr Func_b57c.asm_b58a
+	jr HandleDeckStatusCardList_Execute
 
-Func_b5b1:
+_HandleDeckStatusCardList:
 	call SortCurDeckCardsByID
 	call CreateCurDeckUniqueCardList
 	xor a
 	ld [wScrollMenuScrollOffset], a
-.asm_b5bb
-	ld hl, $7621
+.init_params
+	ld hl, .menu_params
 	call InitializeScrollMenuParameters
 	ld a, [wNumUniqueCards]
 	ld [wNumCardListEntries], a
-	cp $05
-	jr c, .asm_b5cd
-	ld a, $05
-.asm_b5cd
+	cp NUM_DECK_STATUS_LIST_VISIBLE_CARDS
+	jr c, .no_cap
+	ld a, NUM_DECK_STATUS_LIST_VISIBLE_CARDS
+.no_cap
 	ld [wNumMenuItems], a
 	ld [wNumVisibleCardListEntries], a
-	call Func_b649
-	ld hl, wd38a
+	call .PrintTitleAndList
+	ld hl, wCardConfirmationText
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	call DrawWideTextBox_PrintText
+
+; set scroll func
 	ld hl, PrintConfirmationCardList
 	ld d, h
 	ld a, l
@@ -7190,38 +7200,57 @@ Func_b5b1:
 	ld [hl], d
 	xor a
 	ld [wd119], a
-.asm_b5ed
+
+.loop_input
 	call DoFrame
 	call HandleScrollListInput
-	jr c, .asm_b619
+	jr c, .selection_made
 	call HandleJumpListInput
-	jr c, .asm_b5ed
+	jr c, .loop_input
 	ldh a, [hDPadHeld]
 	and PAD_START
-	jr z, .asm_b5ed
-.asm_b600
+	jr z, .loop_input
+
+; using wUniqueDeckCardList
+.open_card_page
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wTempCardTypeFilter]
-	ld [wced7], a
+	ld [wd11e], a
 	ld de, wUniqueDeckCardList
 	ld hl, wCurCardListPtr
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	call OpenCardPageFromCardList
-	jr .asm_b5bb
-.asm_b619
+	jr .init_params
+
+.selection_made
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	ret z
-	jr .asm_b600
-; 0xb621
+	jr .open_card_page
 
-SECTION "Bank 2@7649", ROMX[$7649], BANK[$2]
+.menu_params
+	scrollmenu_params 0, 3, 2, 0, NUM_DECK_STATUS_LIST_VISIBLE_CARDS, SYM_CURSOR_R, SYM_SPACE, NULL
 
-Func_b649:
-	call Func_b659
+.ScrollFunc_TCG1:
+	ld hl, hffbb
+	ld [hl], $01
+	call .PrintDeckIndexAndName
+	lb de, 1, 14
+	call InitTextPrinting
+	ld hl, wCardConfirmationText
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call ProcessTextFromID
+	ld hl, hffbb
+	ld [hl], $00
+	jp PrintConfirmationCardList
+
+.PrintTitleAndList:
+	call .ClearScreenAndPrintDeckTitle
 	lb de, 3, 3
 	ld hl, wCardListCoords
 	ld [hl], e
@@ -7230,16 +7259,16 @@ Func_b649:
 	call PrintConfirmationCardList
 	ret
 
-Func_b659:
+.ClearScreenAndPrintDeckTitle:
 	call EmptyScreenAndLoadFontDuelAndHandCardsIcons
-	call Func_b663
+	call .PrintDeckIndexAndName
 	call EnableLCD
 	ret
 
-Func_b663:
+.PrintDeckIndexAndName:
 	ld a, [wCurDeckName]
 	or a
-	ret z
+	ret z ; not a valid deck
 	lb de, 0, 1
 	call InitTextPrinting
 	ld a, [wCurDeck]
@@ -7251,6 +7280,7 @@ Func_b663:
 	ld [hl], TX_END
 	ld hl, wDefaultText
 	call ProcessText
+
 	ld hl, wCurDeckName
 	ld de, wDefaultText
 	call CopyListFromHLToDE
@@ -7862,8 +7892,8 @@ DeckDiagnosisResult:
 	pop af
 	ret
 
-Func_baec:
-	farcall Func_3ada1
+HandleDeckSaveMachineMenu:
+	farcall _HandleDeckSaveMachineMenu
 	ret
 
 HandleAutoDeckMenu:

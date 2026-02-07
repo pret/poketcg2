@@ -3419,14 +3419,14 @@ Func_2bbbb:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wc000
+	ld hl, wDeckToBuild
 	xor a
-	ld b, $82
+	ld b, DECK_TEMP_BUFFER_SIZE + 2
 .asm_2bbc8
 	ld [hli], a
 	dec b
 	jr nz, .asm_2bbc8
-	ld hl, wc000
+	ld hl, wDeckToBuild
 .asm_2bbcf
 	ld a, [de]
 	inc de
@@ -3447,9 +3447,9 @@ Func_2bbbb:
 	jr .asm_2bbcf
 .asm_2bbe2
 	pop hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
-	ld de, wc000
+	ld de, wDeckToBuild
 	farcall SwitchToWRAM2
 	bank1call SaveDeckCards
 	farcall SwitchToWRAM1
@@ -3600,10 +3600,10 @@ _HandleAutoDeckMenu:
 	ld a, [wScrollMenuScrollOffset]
 	ld [wd54a], a
 	ld b, a
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	ld [wd54b], a
 	add b
-	ld hl, wd49f
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	ld c, a
 	ld b, $00
 	add hl, bc
@@ -3651,7 +3651,7 @@ _HandleAutoDeckMenu:
 
 Func_2bd48:
 	ld a, $08
-	ld hl, wd49f
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	farcall ClearNBytesFromHL
 	ld a, $08
 	ld hl, wd4b4
@@ -3696,7 +3696,7 @@ Func_2bd7f:
 	ret
 
 Func_2bd92:
-	ld hl, wd49f
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	push bc
 	ld a, b
 	inc a

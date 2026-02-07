@@ -44,6 +44,12 @@ NEXTU
 wCardPopCandidateList:: ; c000
 	ds CARD_COLLECTION_SIZE
 
+NEXTU
+
+; buffer to store a target deck
+wDeckToBuild:: ; c000
+	ds DECK_BIG_TEMP_BUFFER_SIZE
+
 ENDU
 
 SECTION "WRAM0 Duels 1", WRAM0
@@ -1334,7 +1340,7 @@ wCardPopRecordType:: ; ce45
 
 	ds $6 ; padding to align to $20
 
-wce4c:: ; ce4c
+wTempBankWRAM:: ; ce4c
 	ds $1
 
 wWRAMBank:: ; ce4d
@@ -2007,7 +2013,8 @@ wTempFilteredCardListNumCursorPositions:: ; d11c
 wd11d:: ; d11d
 	ds $1
 
-wced7:: ; d11e
+; tcg1: wced7
+wd11e:: ; d11e
 	ds $1
 
 wCardListVisibleOffsetBackup:: ; d11f
@@ -2032,7 +2039,7 @@ wTempCardList:: ; d122
 
 ; holds cards for the current deck
 wCurDeckCards:: ; d1c4
-	ds $a2
+	ds 2 * (DECK_CONFIG_BUFFER_SIZE + 1)
 
 ; list of all the different cards in a deck configuration
 wUniqueDeckCardList:: ; d266
@@ -2103,7 +2110,7 @@ wCurCardListPtr:: ; d388
 
 	ds $1
 
-wd38a:: ; d38a
+wCardConfirmationText:: ; d38a
 	ds $2
 
 	ds $2
@@ -2210,10 +2217,11 @@ wTempScrollMenuScrollOffset:: ; d47c
 wSelectedDeckMachineEntry:: ; d47d
 	ds $1
 
-wd47e:: ; d47e
-	ds $18
+wDismantledDeckName:: ; d47e
+	ds DECK_NAME_SIZE
 
-wd496:: ; d496
+; which deck slot to be used to build a new deck
+wDeckSlotForNewDeck:: ; d496
 	ds $1
 
 wDeckMachineTitleText:: ; d497
@@ -2222,10 +2230,10 @@ wDeckMachineTitleText:: ; d497
 wNumDeckMachineEntries:: ; d499
 	ds $1
 
-wd49a:: ; d49a
+wDecksToBeDismantled:: ; d49a
 	ds $1
 
-wd49b:: ; d49b
+wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks:: ; d49b
 	ds $1
 
 ; text ID to print in the text box when
@@ -2233,8 +2241,16 @@ wd49b:: ; d49b
 wDeckMachineText:: ; d49c
 	ds $2
 
-wd49e:: ; d49e
+wNumCardsNeededToBuildSelectedDeckMissingInCardCollection:: ; d49e
 	ds $1
+
+UNION
+
+; cards used in built decks, cards missing
+wNumCardsNeededToBuildDeckMachineDecks:: ; d49f
+	ds (1 + 1) * NUM_DECK_SAVE_MACHINE_SLOTS
+
+NEXTU
 
 wd49f:: ; d49f
 	ds $1
@@ -2249,8 +2265,10 @@ wd4b4:: ; d4b4
 
 	ds $c
 
-wd4c8:: ; d4c8
-	ds $80
+wSelectedMachineDeck:: ; d4c8
+	ds DECK_TEMP_BUFFER_SIZE
+
+ENDU
 
 wd548:: ; d548
 	ds $2
@@ -3597,32 +3615,32 @@ SECTION "WRAM2", WRAMX
 wScratchCardCollection:: ; d000
 	ds CARD_COLLECTION_SIZE
 
-w2d200:: ; d200
-	ds $80
+wBackup1DeckToBuild:: ; d200
+	ds DECK_TEMP_BUFFER_SIZE
 
-w2d280:: ; d280
-	ds $6
+; $ff-terminated array of basic energy amount available to sub in,
+; first in card constant order (not in type-flag order),
+; then sorted in descending order when processed
+; also a subbed deck flag after the sort
+wNumRemainingBasicEnergyCardsForSubbedDeck:: ; d280
+	ds NUM_COLORED_TYPES + 1
 
-w2d286:: ; d286
-	ds $1
+; $ff-terminated index array [0, 5]
+; mapped when wNumRemainingBasicEnergyCardsForSubbedDeck is sorted
+wIndicesRemainingBasicEnergyCardsForSubbedDeck:: ; d287
+	ds NUM_COLORED_TYPES + 1
 
-w2d287:: ; d287
-	ds $6
+wBigBackupDeckToBuild:: ; d28e
+	ds DECK_BIG_TEMP_BUFFER_SIZE
 
-w2d28d:: ; d28d
-	ds $1
-
-w2d28e:: ; d28e
-	ds $100
-
-w2d38e:: ; d38e
-	ds $80
+wBackup2DeckToBuild:: ; d38e
+	ds DECK_TEMP_BUFFER_SIZE
 
 wAutoDecks:: ; d40e
 	ds DECK_COMPRESSED_STRUCT_SIZE * NUM_AUTO_DECK_MACHINE_SLOTS
 
-w2d58e:: ; d58e
-	ds $80
+wBackup3DeckToBuild:: ; d58e
+	ds DECK_TEMP_BUFFER_SIZE
 
 SECTION "WRAM3", WRAMX
 

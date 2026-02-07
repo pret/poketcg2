@@ -162,7 +162,3 @@
 	const SFX_GHOST_MASTER_DISAPPEAR   ; $a0
 
 DEF NUM_SFX EQU const_value
-
-; PlaySFXConfirmOrCancel args
-DEF MENU_CANCEL  EQU -1
-DEF MENU_CONFIRM EQU  1 ; != -1, but uses 1 most of the time
