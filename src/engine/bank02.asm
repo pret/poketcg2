@@ -1063,11 +1063,11 @@ CopyDeckFromSRAM:
 WriteCardListsTerminatorBytes:
 	xor a
 	ld hl, wTempCardList
-	ld bc, $80
+	ld bc, DECK_TEMP_BUFFER_SIZE
 	add hl, bc
 	ld [hl], a ; terminating byte
 	ld hl, wCurDeckCards
-	ld bc, $80
+	ld bc, DECK_TEMP_BUFFER_SIZE
 	add hl, bc
 	ld [hl], a ; terminating byte
 	ret
@@ -3591,6 +3591,7 @@ InitializeScrollMenuParameters:
 DeckMachineSelectionParams:
 	scrollmenu_params 1, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
+; auto deck machines
 MenuParams_9eb5:
 	scrollmenu_params 1, 2, 2, 0, 4, SYM_CURSOR_R, SYM_SPACE, NULL
 
@@ -5554,7 +5555,7 @@ PrintTotalNumberOfCardsInCollection:
 	call CreateCardCollectionListWithDeckCards
 
 ; count all the cards in collection
-	ld bc, wTempCardCollection + 1
+	ld bc, wTempCardCollection + GRASS_ENERGY
 	ld de, 0
 	ld hl, 0
 .loop_all_cards
@@ -6800,7 +6801,7 @@ CardAlbum:
 ; b = set
 .CheckHasCardFromSet:
 	ld de, 0
-	ld hl, wTempCardCollection + $1
+	ld hl, wTempCardCollection + GRASS_ENERGY
 	ld b, a
 .loop_card_ids
 	inc de
@@ -7164,7 +7165,7 @@ HandleDeckStatusCardList_InSRAM:
 	call CopyListFromHLToDEInSRAM
 	pop hl
 	ld de, wCurDeckCards
-	ld b, $80
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank02
 	jr HandleDeckStatusCardList_Execute
 
