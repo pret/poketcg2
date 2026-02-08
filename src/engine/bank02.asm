@@ -525,143 +525,193 @@ PlayAreaIconCoordinates:
 	db  0,  2
 	db  0,  6
 	db  0,  4
+; 0x877a
 
 SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
 
-Func_87d3:
+; handle player input in check menu
+; works out which cursor coordinate to go to
+; and sets carry flag if A or B is pressed
+; returns a = MENU_CONFIRM if A pressed
+; returns a = MENU_CANCEL  if B pressed
+HandleCheckMenuInput_YourOrOppPlayArea:
 	xor a
 	ld [wMenuInputSFX], a
 	ld a, [wCheckMenuCursorXPosition]
 	ld d, a
 	ld a, [wCheckMenuCursorYPosition]
 	ld e, a
+
 	ldh a, [hDPadHeld]
 	or a
-	jr z, .asm_8852
+	jr z, .no_pad
 	ld a, [wd0cd]
-	and $80
+	and %10000000
 	ldh a, [hDPadHeld]
-	jr nz, .asm_881c
+	jr nz, .check_vertical
 	bit B_PAD_LEFT, a
-	jr nz, .asm_87f5
+	jr nz, .horizontal
 	bit B_PAD_RIGHT, a
-	jr z, .asm_881c
-.asm_87f5
+	jr z, .check_vertical
+
+; d = x, e = y
+
+.horizontal
 	ld a, [wd0cd]
-	and $7f
+	and %01111111
 	cp $01
-	jr z, .asm_8809
+	jr z, .incr_y_wrap
 	cp $02
-	jr z, .asm_8810
+	jr z, .toggle_x
+
+; if y != 0, y -= 1
 	ld a, e
 	or a
-	jr z, .asm_8816
+	jr z, .step_x_parity
 	dec e
-	jr .asm_8816
-.asm_8809
+	jr .step_x_parity
+
+; if y = 0, y += 1
+.incr_y_wrap
 	ld a, e
 	or a
-	jr nz, .asm_8816
+	jr nz, .step_x_parity
 	inc e
-	jr .asm_8816
-.asm_8810
-	ld a, $01
+	jr .step_x_parity
+
+; x = 1 - x
+.toggle_x
+	ld a, 1
 	sub d
 	ld d, a
-	jr .asm_883c
-.asm_8816
+	jr .erase
+
+; incr x if even, decr if odd
+.step_x_parity
 	ld a, d
-	xor $01
+	xor 1
 	ld d, a
-	jr .asm_883c
-.asm_881c
-	bit 6, a
-	jr nz, .asm_8824
-	bit 7, a
-	jr z, .asm_8852
-.asm_8824
+	jr .erase
+
+.check_vertical
+	bit B_PAD_UP, a
+	jr nz, .vertical
+	bit B_PAD_DOWN, a
+	jr z, .no_pad
+
+.vertical
 	ld a, [wd0cd]
-	and $7f
+	and %01111111
 	cp $02
-	jr z, .asm_8838
+	jr z, .toggle_y
+
+; if x != 0, x -= 1
 	ld a, d
 	or a
-	jr z, .asm_8832
+	jr z, .step_y_parity
 	dec d
-.asm_8832
+
+; incr y if even, decr if odd
+.step_y_parity
 	ld a, e
-	xor $01
+	xor 1
 	ld e, a
-	jr .asm_883c
-.asm_8838
-	ld a, $01
+	jr .erase
+
+; y = 1 - y
+.toggle_y
+	ld a, 1
 	sub e
 	ld e, a
-.asm_883c
+
+.erase
 	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	push de
-	call .asm_8884
+	call EraseCheckMenuCursor_YourOrOppPlayArea
 	pop de
+
+; update x, y
 	ld a, d
 	ld [wCheckMenuCursorXPosition], a
 	ld a, e
 	ld [wCheckMenuCursorYPosition], a
+
+; reset blink
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
-.asm_8852
+
+.no_pad
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
-	jr z, .asm_886d
+	jr z, .no_input
 	and PAD_A
-	jr nz, .asm_8863
+	jr nz, .a_btn_pressed
+
+; b btn pressed
 	ld a, MENU_CANCEL
 	call PlaySFXConfirmOrCancel
 	scf
 	ret
-.asm_8863
-	call .asm_88a3
+
+.a_btn_pressed
+	call DisplayCheckMenuCursor_YourOrOppPlayArea
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	scf
 	ret
-.asm_886d
+
+.no_input
 	ld a, [wMenuInputSFX]
 	or a
-	jr z, .asm_8876
+	jr z, .check_blink
 	call PlaySFX
-.asm_8876
+
+.check_blink
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $0f
-	ret nz
-	ld a, $0f
-	bit 4, [hl]
-	jr z, .asm_8886
-.asm_8884
-	ld a, $00
-.asm_8886
+	and %00001111
+	ret nz ; only update cursor if blink's lower nibble is 0
+
+; draw cursor
+	ld a, SYM_CURSOR_R
+	bit 4, [hl] ; only draw cursor if blink counter's fourth bit is not set
+	jr z, DrawCheckMenuCursor_YourOrOppPlayArea
+; fallthrough
+
+; draw a space in the cursor position
+EraseCheckMenuCursor_YourOrOppPlayArea:
+	ld a, SYM_SPACE
+; fallthrough
+
+; for a = tile byte,
+; draw it in the curosr position
+; by converting the position to coordinates
+DrawCheckMenuCursor_YourOrOppPlayArea:
 	ld e, a
-	ld a, $0a
+	ld a, 10
 	ld l, a
 	ld a, [wCheckMenuCursorXPosition]
 	ld h, a
 	call HtimesL
 	ld a, l
-	add $01
+	add 1
 	ld b, a
 	ld a, [wCheckMenuCursorYPosition]
 	sla a
-	add $0e
+	add 14
 	ld c, a
+
+; b = 10x + 1, c = 2y + 14
 	ld a, e
 	call WriteByteToBGMap0
 	or a
 	ret
-.asm_88a3:
-	ld a, $0f
-	jr .asm_8886
+
+DisplayCheckMenuCursor_YourOrOppPlayArea:
+	ld a, SYM_CURSOR_R
+	jr DrawCheckMenuCursor_YourOrOppPlayArea
 ; 0x88a7
 
 SECTION "Bank 2@4acb", ROMX[$4acb], BANK[$2]
@@ -1569,9 +1619,9 @@ ResetCheckMenuCursorPositionAndBlink:
 
 ; handle player input in check menu
 ; works out which cursor coordinate to go to
-; and sets carry flag if A or B are pressed
-; returns a =  $1 if A pressed
-; returns a = $ff if B pressed
+; and sets carry flag if A or B is pressed
+; returns a = MENU_CONFIRM if A pressed
+; returns a = MENU_CANCEL  if B pressed
 HandleCheckMenuInput:
 	xor a
 	ld [wMenuInputSFX], a
@@ -1579,6 +1629,7 @@ HandleCheckMenuInput:
 	ld d, a
 	ld a, [wCheckMenuCursorYPosition]
 	ld e, a
+
 	ldh a, [hDPadHeld]
 	or a
 	jr z, .no_pad
@@ -1586,49 +1637,67 @@ HandleCheckMenuInput:
 	jr nz, .horizontal
 	bit B_PAD_RIGHT, a
 	jr z, .check_vertical
+
+; d = x, e = y
+
+; x coordinate
+; incr if even, decr if odd
 .horizontal
 	ld a, d
-	xor $01 ; flips x coordinate
+	xor 1
 	ld d, a
-	jr .okay
+	jr .erase
+
 .check_vertical
 	bit B_PAD_UP, a
 	jr nz, .vertical
 	bit B_PAD_DOWN, a
 	jr z, .no_pad
+
+; y coordinate
+; incr if even, decr if odd
 .vertical
 	ld a, e
-	xor $01 ; flips y coordinate
+	xor 1
 	ld e, a
-.okay
+
+.erase
 	ld a, SFX_CURSOR
 	ld [wMenuInputSFX], a
 	push de
 	call EraseCheckMenuCursor
 	pop de
+
+; update x, y
 	ld a, d
 	ld [wCheckMenuCursorXPosition], a
 	ld a, e
 	ld [wCheckMenuCursorYPosition], a
+
+; reset blink
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
+
 .no_pad
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
 	jr z, .no_input
 	and PAD_A
-	jr nz, .a_press
+	jr nz, .a_btn_pressed
+
+; b btn pressed
 	ld a, MENU_CANCEL
 	call PlaySFXConfirmOrCancel
 	scf
 	ret
 
-.a_press
+.a_btn_pressed
 	call DisplayCheckMenuCursor
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	scf
 	ret
+
 .no_input
 	ld a, [wMenuInputSFX]
 	or a
@@ -1646,14 +1715,14 @@ HandleCheckMenuInput:
 	bit 4, [hl] ; only draw cursor if blink counter's fourth bit is not set
 	jr z, DrawCheckMenuCursor
 
-; draws in the cursor position
+; draw a space in the cursor position
 EraseCheckMenuCursor:
 	ld a, SYM_SPACE
 ; fallthrough
 
-; draws in the cursor position
-; input:
-; a = tile byte to draw
+; for a = tile byte,
+; draw it in the curosr position
+; by converting the position to coordinates
 DrawCheckMenuCursor:
 	ld e, a
 	ld a, 10
@@ -1668,6 +1737,8 @@ DrawCheckMenuCursor:
 	sla a
 	add 14
 	ld c, a
+
+; b = 10x + 1, c = 2y + 14
 	ld a, e
 	call WriteByteToBGMap0
 	or a
@@ -3589,11 +3660,10 @@ InitializeScrollMenuParameters:
 	ret
 
 DeckMachineSelectionParams:
-	scrollmenu_params 1, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 1, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_SLOTS, SYM_CURSOR_R, SYM_SPACE, NULL
 
-; auto deck machines
-MenuParams_9eb5:
-	scrollmenu_params 1, 2, 2, 0, 4, SYM_CURSOR_R, SYM_SPACE, NULL
+AutoDeckMachineDeckSelectionParams:
+	scrollmenu_params 1, 2, 2, 0, NUM_AUTO_DECK_MACHINE_SLOTS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 HandleCardSelectionInput:
 	xor a ; FALSE
@@ -7906,4 +7976,4 @@ PrinterMenu_DeckConfiguration:
 	ret
 
 AutoDeckMachineMenuParams:
-	scrollmenu_params 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
+	scrollmenu_params 4, 2, 2, 0, NUM_DECK_MACHINE_VISIBLE_SLOTS, SYM_CURSOR_R, SYM_SPACE, NULL

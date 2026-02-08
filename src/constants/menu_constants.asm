@@ -71,6 +71,12 @@
 	const DECKSAVEMACHINEMENU_BUILD  ; 2
 	const DECKSAVEMACHINEMENU_CANCEL ; 3
 
+; auto deck machine options
+	const_def
+	const AUTODECKMACHINEMENU_BUILD  ; 0
+	const AUTODECKMACHINEMENU_CANCEL ; 1
+	const AUTODECKMACHINEMENU_READ   ; 2
+
 ; mailbox options
 	const_def
 	const MAILBOXMENU_READ   ; 0
@@ -135,8 +141,26 @@ DEF NUM_FILTERED_LIST_VISIBLE_CARDS     EQU 6
 DEF NUM_DECK_STATUS_LIST_VISIBLE_CARDS  EQU 5
 
 DEF NUM_DECK_SAVE_MACHINE_SLOTS    EQU 50
-DEF NUM_DECK_MACHINE_VISIBLE_DECKS EQU 5
+DEF NUM_DECK_MACHINE_VISIBLE_SLOTS EQU 5  ; decks or categories
 DEF NUM_AUTO_DECK_MACHINE_SLOTS    EQU 4
+
+; auto deck machine 1
+	const_def
+	const AUTO_DECK_BASIC     ; 0
+	const AUTO_DECK_GIVEN     ; 1
+	const AUTO_DECK_FIGHTING  ; 2
+	const AUTO_DECK_GRASS     ; 3
+	const AUTO_DECK_WATER     ; 4
+	const AUTO_DECK_FIRE      ; 5
+	const AUTO_DECK_LIGHTNING ; 6
+	const AUTO_DECK_PSYCHIC   ; 7
+DEF NUM_AUTO_DECK_MACHINE_REGULAR_CATEGORIES EQU const_value ; shared with machine 2
+	const AUTO_DECK_SPECIAL   ; 8
+	const AUTO_DECK_LEGENDARY ; 9
+DEF NUM_AUTO_DECK_MACHINE_CATEGORIES EQU const_value ; shared with machine 2
+
+; auto_deck args
+DEF AUTO_DECK_ENTRY_SIZE EQU 6
 
 ; deck flags
 	const_def

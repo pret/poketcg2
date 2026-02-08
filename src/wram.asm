@@ -2252,31 +2252,42 @@ wNumCardsNeededToBuildDeckMachineDecks:: ; d49f
 
 NEXTU
 
-wd49f:: ; d49f
+; store (index + 1)
+wIndicesAutoDeckMachineUnlockedCategories:: ; d49f
+	ds NUM_AUTO_DECK_MACHINE_CATEGORIES
+
+	ds $a
+
+; selected category index of current auto deck machine
+wSelectedAutoDeckMachineCategory:: ; d4b3
 	ds $1
 
-	ds $13
-
-wd4b3:: ; d4b3
-	ds $1
-
-wd4b4:: ; d4b4
-	ds $8
-
-	ds $c
+; unlocked category names, description texts of current category, etc.
+wAutoDeckMachineTexts:: ; d4b4
+	ds 2 * NUM_AUTO_DECK_MACHINE_CATEGORIES
 
 wSelectedMachineDeck:: ; d4c8
 	ds DECK_TEMP_BUFFER_SIZE
 
 ENDU
 
+UNION
+
+; *_ISLAND flag to switch machine 1 and 2
+wAutoDeckMachineIndex:: ; d548
+	ds $1
+
+NEXTU
+
 wd548:: ; d548
 	ds $2
 
-wd54a:: ; d54a
+ENDU
+
+wAutoDeckMachineScrollOffset:: ; d54a
 	ds $1
 
-wd54b:: ; d54b
+wAutoDeckMachineScrollMenuItem:: ; d54b
 	ds $1
 
 wNextGameEvent:: ; d54c

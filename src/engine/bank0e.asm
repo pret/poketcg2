@@ -4973,7 +4973,7 @@ _HandleDeckSaveMachineMenu:
 ; and sets DrawDeckMachineScreen as the update function
 ; de = text ID
 InitDeckMachineDrawingParams:
-	ld a, NUM_DECK_MACHINE_VISIBLE_DECKS
+	ld a, NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld [wNumMenuItems], a
 	ld hl, wDeckMachineText
 	ld [hl], e
@@ -5072,20 +5072,20 @@ HandleDeckMachineSelection:
 
 .d_right
 	ld a, [wScrollMenuScrollOffset]
-	add NUM_DECK_MACHINE_VISIBLE_DECKS
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
-	add NUM_DECK_MACHINE_VISIBLE_DECKS
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld hl, wNumDeckMachineEntries
 	cp [hl]
 	jr c, .got_new_pos
 	ld a, [wNumDeckMachineEntries]
-	sub NUM_DECK_MACHINE_VISIBLE_DECKS
+	sub NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
 	jr .got_new_pos
 
 .d_left
 	ld a, [wScrollMenuScrollOffset]
-	sub NUM_DECK_MACHINE_VISIBLE_DECKS
+	sub NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
 	jr nc, .got_new_pos
 	ld b, 0 ; first entry
@@ -5239,7 +5239,7 @@ GetSavedDeckPointers:
 PrintVisibleDeckMachineEntries:
 	ld a, [wScrollMenuScrollOffset]
 	lb de, 2, 2
-	ld b, NUM_DECK_MACHINE_VISIBLE_DECKS
+	ld b, NUM_DECK_MACHINE_VISIBLE_SLOTS
 .loop
 	push af
 	push bc
@@ -5256,7 +5256,7 @@ PrintVisibleDeckMachineEntries:
 	inc e
 	jr .loop
 
-UpdateDeckMachineScrollArrowsAndEntries:
+UpdateDeckMachineScrollArrowsAndEntries_TCG1:
 	call DrawListScrollArrows
 	jr PrintVisibleDeckMachineEntries
 
@@ -5278,7 +5278,7 @@ DrawDeckMachineScreen:
 
 ; update wScrollMenuScrollFunc to PrintVisibleAutoDeckMachineEntries
 ; and init wd119
-Func_3b069:
+UpdateAutoDeckSelectionMenuScroll:
 	ld hl, PrintVisibleAutoDeckMachineEntries
 	ld d, h
 	ld a, l
@@ -5289,7 +5289,7 @@ Func_3b069:
 	ld [wd119], a
 	ret
 
-; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine sections
+; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine categories
 PrintVisibleAutoDeckMachineEntries:
 	lb de, 2, 2
 	ld b, NUM_AUTO_DECK_MACHINE_SLOTS
@@ -5919,7 +5919,7 @@ DrawListScrollArrows:
 	call WriteByteToBGMap0
 
 	ld a, [wScrollMenuScrollOffset]
-	add NUM_DECK_MACHINE_VISIBLE_DECKS + 1
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS + 1
 	ld b, a
 	ld a, [wNumDeckMachineEntries]
 	cp b
@@ -7029,17 +7029,17 @@ _PrinterMenu_DeckConfiguration:
 	ld [wCurScrollMenuItem], a
 	jp .start_selection
 
-; auto deck machines
-Func_3bb09:
-	ld a, [wd548]
+_HandleAutoDeckSelectionMenu:
+	ld a, [wAutoDeckMachineIndex]
 	or a
-	jr nz, .asm_3bb14
-	ld hl, $7c6d
-	jr .asm_3bb17
-.asm_3bb14
-	ld hl, $7c81
-.asm_3bb17
-	ld a, [wd4b3]
+	jr nz, .machine_2
+; machine 1
+	ld hl, .machine_1_category_titles
+	jr .launch
+.machine_2
+	ld hl, .machine_2_category_titles
+.launch
+	ld a, [wSelectedAutoDeckMachineCategory]
 	sla a
 	ld c, a
 	ld b, $00
@@ -7052,10 +7052,11 @@ Func_3bb09:
 	ld [de], a
 	xor a
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	xor a
-.asm_3bb30
-	ld hl, MenuParams_9eb5
+
+.please_select_deck
+	ld hl, AutoDeckMachineDeckSelectionParams
 	farcall InitializeScrollMenuParameters
 	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
@@ -7065,14 +7066,17 @@ Func_3bb09:
 	ld [wUnableToScrollDown], a
 	xor a
 	ld [wd119], a
-	call Func_3b069
-.asm_3bb4f
+	call UpdateAutoDeckSelectionMenuScroll
+
+.wait_input
 	call DoFrame
 	call HandleScrollMenu
-	jr c, .asm_3bba2
+	jr c, .selected_deck
+
+; start btn to show full deck list
 	ldh a, [hDPadHeld]
 	and PAD_START
-	jr z, .asm_3bb4f
+	jr z, .wait_input
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
 	ld b, a
@@ -7085,12 +7089,14 @@ Func_3bb09:
 	ld [wCurDeck], a
 	ld a, c
 	call GetAndLoadSelectedMachineDeckPtr
+; validity check just in case
 	push hl
 	farcall CheckIfDeckHasCards
 	pop hl
-	jr c, .asm_3bb4f
+	jr c, .wait_input
+; show full deck list
 	push hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -7100,19 +7106,21 @@ Func_3bb09:
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
 	ld [wCurScrollMenuItem], a
-	jp .asm_3bb30
-.asm_3bba2
+	jp .please_select_deck
+
+.selected_deck
 	call HandleScrollMenu.draw_visible_cursor
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
 	ld a, [wCurScrollMenuItem]
 	ld [wTempScrollMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
-	jp z, .asm_3bc0e
+	cp MENU_CANCEL
+	jp z, .exit
+
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
 	add b
@@ -7121,37 +7129,44 @@ Func_3bb09:
 	xor a
 	ld [wd0cd], a
 	call DrawWideTextBox
-	ld hl, $7c60
+	ld hl, .deck_options
 	call PlaceTextItems
-.asm_3bbd2
+.wait_submenu_input
 	call DoFrame
-	farcall Func_87d3
-	jp nc, .asm_3bbd2
-	cp $ff
-	jr nz, .asm_3bbe6
+	farcall HandleCheckMenuInput_YourOrOppPlayArea
+	jp nc, .wait_submenu_input
+	cp MENU_CANCEL
+	jr nz, .selected_submenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-.asm_3bbe6
+	jp .please_select_deck
+
+.selected_submenu
 	ld a, [wCheckMenuCursorYPosition]
 	sla a
 	ld hl, wCheckMenuCursorXPosition
 	add [hl]
 	or a
-	jr nz, .asm_3bc0a
+	jr nz, .next_submenu
+
+; AUTODECKMACHINEMENU_BUILD
 	call TryBuildDeckMachineDeck
 	ld a, [wTempScrollMenuItem]
-	jp nc, .asm_3bb30
+	jp nc, .please_select_deck
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-.asm_3bc0a
-	cp $01
-	jr nz, .asm_3bc0f
-.asm_3bc0e
+	jp .please_select_deck
+
+.next_submenu
+	cp AUTODECKMACHINEMENU_CANCEL
+	jr nz, .read_instructions
+
+.exit
 	ret
-.asm_3bc0f
+
+; AUTODECKMACHINEMENU_READ
+.read_instructions
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
 	ld b, a
@@ -7163,8 +7178,9 @@ Func_3bb09:
 	push af
 	sla c
 	ld b, $00
-	ld hl, wd4b4
+	ld hl, wAutoDeckMachineTexts
 	add hl, bc
+; set description text
 	ld bc, wCardConfirmationText
 	ld a, [hli]
 	ld [bc], a
@@ -7173,10 +7189,12 @@ Func_3bb09:
 	ld [bc], a
 	pop af
 	call GetAndLoadSelectedMachineDeckPtr
+; validity check just in case
 	push hl
 	farcall CheckIfDeckHasCards
 	pop hl
-	jp c, .asm_3bb4f
+	jp c, .wait_input
+; show instructions (card list + description)
 	ld a, MENU_CONFIRM
 	farcall PlaySFXConfirmOrCancel
 	push hl
@@ -7188,14 +7206,42 @@ Func_3bb09:
 	farcall HandleDeckStatusCardList
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-; 0x3bc60
+	jp .please_select_deck
 
-SECTION "Bank e@7c95", ROMX[$7c95], BANK[$e]
+.deck_options
+	textitem  2, 14, BuildDeckText
+	textitem 12, 14, CancelDeckText
+	textitem  2, 16, DeckMachineReadInstructionsText
+	textitems_end
 
-Func_3bc95:
+; category titles for header, so no padding
+.machine_1_category_titles
+	tx AutoDeckMachine1BasicDecksText
+	tx AutoDeckMachine1GivenDecksText
+	tx AutoDeckMachine1FightingDecksText
+	tx AutoDeckMachine1GrassDecksText
+	tx AutoDeckMachine1WaterDecksText
+	tx AutoDeckMachine1FireDecksText
+	tx AutoDeckMachine1LightningDecksText
+	tx AutoDeckMachine1PsychicDecksText
+	tx AutoDeckMachine1SpecialDecksText
+	tx AutoDeckMachine1LegendaryDecksText
+
+.machine_2_category_titles
+	tx AutoDeckMachine2DarkGrassDecksText
+	tx AutoDeckMachine2DarkLightningDecksText
+	tx AutoDeckMachine2DarkWaterDecksText
+	tx AutoDeckMachine2DarkFireDecksText
+	tx AutoDeckMachine2DarkFightingDecksText
+	tx AutoDeckMachine2DarkPsychicDecksText
+	tx AutoDeckMachine2ColorlessDecksText
+	tx AutoDeckMachine2DarkSpecialDecksText
+	tx AutoDeckMachine2RareCardDecksText
+	tx AutoDeckMachine2MysteriousCardDecksText
+
+.InitAutoDeckMenu:
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
@@ -7216,7 +7262,7 @@ Func_3bc95:
 	ld l, a
 	lb de, 1, 0
 	call Func_2c4b
-	farcall Func_2bb32
+	farcall ReadAutoDeckConfiguration
 	call CreateAutoDeckPointerList
 	call PrintVisibleAutoDeckMachineEntries
 	call EnableLCD
@@ -7546,25 +7592,27 @@ OpenDeckSaveMachineFromDeckBuilding:
 	pop af
 	ld [wCurDeck], a
 	ret
-; 0x3bf55
 
-SECTION "Bank e@7f5e", ROMX[$7f5e], BANK[$e]
+Menu_3bf55:
+	textitem  2, 14, SaveDeckToMachineText
+	textitem 12, 14, CancelDeckText
+	textitems_end
 
-Func_3bf5e:
-	call Func_3bf95
+UpdateDeckMachineScrollArrowsAndEntries:
+	call .DrawListScrollArrows
 	ld a, [wNumDeckMachineEntries]
-	cp $05
-	jr c, .asm_3bf6a
-	ld a, $05
-.asm_3bf6a
+	cp 5
+	jr c, .got_count
+	ld a, 5
+.got_count
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
-	ld de, $602
-.asm_3bf71
+	lb de, 6, 2
+.loop_print
 	push af
 	push bc
 	push de
-	call Func_3bf81
+	call .PrintDeckEntry
 	pop de
 	pop bc
 	pop af
@@ -7573,16 +7621,16 @@ Func_3bf5e:
 	inc a
 	inc e
 	inc e
-	jr .asm_3bf71
+	jr .loop_print
 
-Func_3bf81:
+.PrintDeckEntry:
 	push af
 	call InitTextPrinting
 	pop af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wd4b4
+	ld hl, wAutoDeckMachineTexts
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -7590,34 +7638,34 @@ Func_3bf81:
 	call ProcessTextFromID
 	ret
 
-Func_3bf95:
+.DrawListScrollArrows:
 	ld a, [wScrollMenuScrollOffset]
 	or a
-	jr z, .asm_3bf9f
-	ld a, $0d
-	jr .asm_3bfa1
-.asm_3bf9f
-	ld a, $1c
-.asm_3bfa1
-	ld bc, $1200
+	jr z, .no_up_cursor
+	ld a, SYM_CURSOR_U
+	jr .draw_top
+.no_up_cursor
+	ld a, SYM_BOX_TOP
+.draw_top
+	lb bc, 18, 0
 	call WriteByteToBGMap0
+
 	ld a, [wScrollMenuScrollOffset]
-	add $05
+	add 5
 	ld b, a
 	inc b
 	ld a, [wNumDeckMachineEntries]
 	cp b
-	jr c, .asm_3bfbc
-	xor a
+	jr c, .no_down_cursor
+	xor a ; FALSE
 	ld [wUnableToScrollDown], a
-	ld a, $2f
-	jr .asm_3bfc3
-.asm_3bfbc
-	ld a, $01
+	ld a, SYM_CURSOR_D
+	jr .draw_bottom
+.no_down_cursor
+	ld a, TRUE
 	ld [wUnableToScrollDown], a
-	ld a, $1c
-.asm_3bfc3
-	ld bc, $120c
+	ld a, SYM_BOX_TOP
+.draw_bottom
+	lb bc, 18, 12
 	call WriteByteToBGMap0
 	ret
-; 0x3bfca

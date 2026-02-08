@@ -2319,23 +2319,27 @@ ENDR
 	pop bc
 	ret
 
-; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckTCGIslandMilestoneEvents:
+; a = machine 1 category index
+; jump to .event_table[a]
+; return a = event flag(s), with carry if nz, with no carry otherwise
+; single event check: category unlock
+; multiple          : per-deck unlock
+CheckCurAutoDeckMachine1CategoryUnlockEvents:
 	push bc
 	push de
 	push hl
 	sla a
-	ld hl, .check_pointers
+	ld hl, .event_table
 	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-.jump_set_carry:
+.unlocked_from_start
 	jp .set_carry
 
-.check_four_tcgisland_coins:
+.get_four_tcgisland_coins
 	ld a, EVENT_GOT_KABUTO_COIN
 	call GetEventValue
 	push af
@@ -2351,58 +2355,56 @@ CheckTCGIslandMilestoneEvents:
 	ld c, 4
 	xor a
 	ld d, a
-	; fallthrough
-.loop_bitmask_1
+.loop_bitmask_four_coins
 	sla d
 	pop af
-	jr z, .next_1
+	jr z, .next_coin
 	set 0, d
-	; fallthrough
-.next_1
+.next_coin
 	dec c
-	jr nz, .loop_bitmask_1
+	jr nz, .loop_bitmask_four_coins
 	ld a, d
 	or a
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_top_left:
+.get_gr_coin_top_left
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_top_right:
+.get_gr_coin_top_right
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_starmie_coin:
+.get_starmie_coin
 	ld a, EVENT_GOT_STARMIE_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_bottom_left:
+.get_gr_coin_bottom_left
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_pikachu_coin:
+.get_pikachu_coin
 	ld a, EVENT_GOT_PIKACHU_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_bottom_right:
+.get_gr_coin_bottom_right
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_final_cup_or_postgame:
+.win_final_cup_or_postgame
 	ld a, EVENT_WON_FINAL_CUP
 	call GetEventValue
 	push af
@@ -2412,37 +2414,35 @@ CheckTCGIslandMilestoneEvents:
 	ld c, 2
 	xor a
 	ld d, a
-	; fallthrough
-.loop_bitmask_2
+.loop_bitmask_events
 	sla d
 	sla d
 	pop af
-	jr z, .next_2
+	jr z, .next_event
 	set 0, d
 	set 1, d
-	; fallthrough
-.next_2
+.next_event
 	dec c
-	jr nz, .loop_bitmask_2
+	jr nz, .loop_bitmask_events
 	ld a, d
 	or a
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_event_db:
+.win_grand_master_cup:
 	ld a, EVENT_WON_GRAND_MASTER_CUP
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.set_carry:
+.set_carry
 	pop hl
 	pop de
 	pop bc
 	scf
 	ret
 
-.clear_carry:
+.clear_carry
 	pop hl
 	pop de
 	pop bc
@@ -2450,99 +2450,101 @@ CheckTCGIslandMilestoneEvents:
 	ccf
 	ret
 
-.check_pointers:
-	dw .jump_set_carry
-	dw .check_four_tcgisland_coins
-	dw .check_gr_coin_top_left
-	dw .check_gr_coin_top_right
-	dw .check_starmie_coin
-	dw .check_gr_coin_bottom_left
-	dw .check_pikachu_coin
-	dw .check_gr_coin_bottom_right
-	dw .check_final_cup_or_postgame
-	dw .check_event_db
+.event_table
+	dw .unlocked_from_start
+	dw .get_four_tcgisland_coins
+	dw .get_gr_coin_top_left
+	dw .get_gr_coin_top_right
+	dw .get_starmie_coin
+	dw .get_gr_coin_bottom_left
+	dw .get_pikachu_coin
+	dw .get_gr_coin_bottom_right
+	dw .win_final_cup_or_postgame
+	dw .win_grand_master_cup
 
-; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckGRIslandMilestoneEvents:
+; a = machine 2 category index
+; jump to .event_table[a]
+; return a = event flag(s) with carry if nz, with no carry otherwise
+CheckCurAutoDeckMachine2CategoryUnlockEvents:
 	push bc
 	push de
 	push hl
 	sla a
-	ld hl, .check_pointers
+	ld hl, .event_table
 	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-.check_golbat_coin:
+.get_golbat_coin
 	ld a, EVENT_GOT_GOLBAT_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_magnemite_coin:
+.get_magnemite_coin
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_psyduck_coin:
+.get_psyduck_coin
 	ld a, EVENT_GOT_PSYDUCK_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_magmar_coin:
+.get_magmar_coin
 	ld a, EVENT_GOT_MAGMAR_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_machamp_coin:
+.get_machamp_coin
 	ld a, EVENT_GOT_MACHAMP_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_mew_coin:
+.get_mew_coin
 	ld a, EVENT_GOT_MEW_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_snorlax_coin:
+.get_snorlax_coin
 	ld a, EVENT_GOT_SNORLAX_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_rui_roadblock:
+.enter_biruritchi_room
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_battled_ishihara:
+.battle_ishihara
 	ld a, EVENT_BATTLED_ISHIHARA
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_postgame:
+.postgame
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.set_carry:
+.set_carry
 	pop hl
 	pop de
 	pop bc
 	scf
 	ret
 
-.clear_carry:
+.clear_carry
 	pop hl
 	pop de
 	pop bc
@@ -2550,17 +2552,17 @@ CheckGRIslandMilestoneEvents:
 	ccf
 	ret
 
-.check_pointers:
-	dw .check_golbat_coin
-	dw .check_magnemite_coin
-	dw .check_psyduck_coin
-	dw .check_magmar_coin
-	dw .check_machamp_coin
-	dw .check_mew_coin
-	dw .check_snorlax_coin
-	dw .check_rui_roadblock
-	dw .check_battled_ishihara
-	dw .check_postgame
+.event_table
+	dw .get_golbat_coin
+	dw .get_magnemite_coin
+	dw .get_psyduck_coin
+	dw .get_magmar_coin
+	dw .get_machamp_coin
+	dw .get_mew_coin
+	dw .get_snorlax_coin
+	dw .enter_biruritchi_room
+	dw .battle_ishihara
+	dw .postgame
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc

@@ -843,8 +843,8 @@ Script_AutoDeckMachine1:
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
-	xor a
-	farcall Func_1e855
+	xor a ; TCG_ISLAND
+	farcall AutoDeckMachine
 	call ResumeSong
 	ret
 .cancel
@@ -867,8 +867,8 @@ Script_AutoDeckMachine2:
 	call PauseSong
 	ld a, MUSIC_DECK_MACHINE
 	call PlaySong
-	ld a, $01
-	farcall Func_1e855
+	ld a, GR_ISLAND
+	farcall AutoDeckMachine
 	call ResumeSong
 	ret
 .cancel
