@@ -1306,8 +1306,8 @@ DeckSelectionSubMenu:
 	ld de, wCurDeckName
 	call GetSRAMPointerToCurDeck
 	call CopyListFromHLToDEInSRAM
-	xor a
-	ld [wd121], a
+	xor a ; FALSE
+	ld [wBillsComputerAllowedInCardList], a
 
 	call HandleDeckBuildScreen
 	jr nc, .asm_90cd
@@ -2982,31 +2982,31 @@ PrintSlashSixty:
 	call ProcessText
 	ret
 
-; creates two separate lists given the card type in register a
-; if a card matches the card type given, then it's added to wTempCardList
-; if a card has been owned by the player, and its card count is at least 1,
-; (or in case it's 0 if it's in any deck configurations saved)
-; then its collection count is also added to wTempCardList
-; if input a is $ff, then all card types are included
+; for a = card type (or NO_FILTERS),
+; add to wTempCardList all matching cards
+; (or all cards if NO_FILTERS; follow wBillsComputerAllowedInCardList);
+; for each of them that is either in collection or in saved decks,
+; write its collection count to wOwnedCardsCountList;
+; and store the entry count in wNumEntriesInCurFilter
 CreateFilteredCardList:
 	push af
 	push bc
 	push de
 	push hl
 
-; clear wOwnedCardsCountList and wTempCardList
+; init both lists
 	push af
-	ld a, $51
+	ld a, FILTERED_CARD_LIST_SIZE + 1
 	ld hl, wOwnedCardsCountList
 	call ClearNBytesFromHL
-	ld a, $a0
+	ld a, FILTERED_CARD_LIST_SIZE_BYTES
 	ld hl, wTempCardList
 	call ClearNBytesFromHL
 	pop af
 
-; loops all cards in collection
-	ld hl, $0
-	ld de, 0
+; loop all cards
+	ld hl, 0
+	ld de, GRASS_ENERGY - 1
 	ld b, a ; input card type
 .loop_card_ids
 	inc de
@@ -3014,7 +3014,7 @@ CreateFilteredCardList:
 	jr c, .store_count
 	ld c, a
 	ld a, b
-	cp $ff
+	cp NO_FILTERS
 	jr z, .add_card
 	and FILTER_ENERGY
 	cp FILTER_ENERGY
@@ -3043,21 +3043,21 @@ CreateFilteredCardList:
 	ld a, [hl]
 	pop hl
 	cp CARD_NOT_OWNED
-	jr z, .next_card ; jump if never seen card
+	jr z, .next_card ; never seen this card
 	or a
-	jr nz, .ok ; has at least 1
+	jr nz, .check_bills_computer ; has at least 1
 	call .IsCardInAnyDeck
-	jr c, .next_card ; jump if not in any deck
-.ok
+	jr c, .next_card ; not in any deck either
+.check_bills_computer
 	push af
 	cp16 BILLS_COMPUTER
-	jr nz, .asm_9bb8
-	ld a, [wd121]
+	jr nz, .set_count
+	ld a, [wBillsComputerAllowedInCardList]
 	or a
-	jr nz, .asm_9bb8
+	jr nz, .set_count
 	pop af
 	jr .next_card
-.asm_9bb8
+.set_count
 	pop af
 
 	push hl
@@ -3092,8 +3092,8 @@ CreateFilteredCardList:
 	pop af
 	ret
 
-; returns carry if card ID in register e is not
-; found in any of the decks saved in SRAM
+; returns carry if input card ID in de
+; is not found in any of the decks saved in SRAM
 .IsCardInAnyDeck:
 	push af
 	push hl
@@ -3413,11 +3413,11 @@ PrintFilteredCardList:
 	call EnableSRAM
 	ld hl, sCardCollection
 	ld de, wTempCardCollection
-	ld b, $00
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank02
-	ld hl, $a200
-	ld de, $c100
-	ld b, $00
+	ld hl, sCardCollection + $100
+	ld de, wTempCardCollection + $100
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank02
 	call DisableSRAM
 
@@ -4997,8 +4997,8 @@ HandleGiftCenterSendCardsScreen:
 	call CopyListFromHLToDE
 	ld hl, .params
 	call InitDeckBuildingParams
-	ld a, $01
-	ld [wd121], a
+	ld a, TRUE
+	ld [wBillsComputerAllowedInCardList], a
 	call HandleDeckBuildScreen
 	ret
 
@@ -5082,7 +5082,7 @@ HandleGiftCenterSendCardsMenu:
 	ld b, DECK_TEMP_BUFFER_SIZE + 2
 	call CopyBBytesFromHLToDE_Bank02
 	call PrintCardsToSendToPlayerText
-	call Func_b81d
+	call PrintCardSelectionList_TempSavedDeck
 	call EnableLCD
 	ldtx hl, SendTheseCardsToPlayerPromptText
 	call YesOrNoMenuWithText
@@ -5109,7 +5109,7 @@ Func_a6ef:
 	ld b, DECK_TEMP_BUFFER_SIZE + 2
 	call CopyBBytesFromHLToDE_Bank02
 	call EmptyScreenAndDrawTextBox
-	call Func_b81d
+	call PrintCardSelectionList_TempSavedDeck
 	ret
 
 HandleBlackBoxSendCardsScreen:
@@ -5122,8 +5122,8 @@ HandleBlackBoxSendCardsScreen:
 	ld [hl], TX_END
 	ld hl, .params
 	call InitDeckBuildingParams
-	ld a, $01
-	ld [wd121], a
+	ld a, TRUE
+	ld [wBillsComputerAllowedInCardList], a
 	call HandleDeckBuildScreen
 	ret
 
@@ -5346,7 +5346,7 @@ PrintFilteredCardSelectionList:
 	ld a, $ff ; all owned cards
 	call CreateCardCollectionListWithDeckCards
 	ld a, TRUE
-	ld [wd121], a
+	ld [wBillsComputerAllowedInCardList], a
 	pop af
 	call CreateFilteredCardList
 
@@ -7446,7 +7446,7 @@ GiftCenter_ReceiveCards:
 	ld hl, GiftCenter_CardSelectionParams
 	call InitializeScrollMenuParameters
 	call PrintReceivedTheseCardsText
-	call Func_b81d
+	call PrintCardSelectionList_TempSavedDeck
 	call EnableLCD
 	ld a, [wNumEntriesInCurFilter]
 	ld [wNumCardListEntries], a
@@ -7539,7 +7539,8 @@ ShowReceivedCardsList:
 	ld [hl], $00
 	jp PrintCardSelectionList
 
-Func_b81d:
+; for card lists using wTempSavedDeckCards
+PrintCardSelectionList_TempSavedDeck:
 	xor a ; aka $100 bytes
 	ld hl, wTempCardCollection
 	call ClearNBytesFromHL
@@ -7547,10 +7548,10 @@ Func_b81d:
 	ld hl, wTempCardCollection + $100
 	call ClearNBytesFromHL
 	ld hl, wTempSavedDeckCards
-	call Func_b84d
-	ld a, $ff
-	call Func_b860
-	ld a, $05
+	call .CountCards
+	ld a, NO_FILTERS
+	call .CreateFilteredList
+	ld a, 5
 	ld [wNumVisibleCardListEntries], a
 	lb de, 2, 3
 	ld hl, wCardListCoords
@@ -7562,9 +7563,10 @@ Func_b81d:
 	call PrintCardSelectionList
 	ret
 
-Func_b84d:
-	ld bc, wc000
-.asm_b850
+; set up wTempCardCollection from card list in hl (wTempSavedDeckCards)
+.CountCards:
+	ld bc, wTempCardCollection
+.loop_count
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -7577,45 +7579,52 @@ Func_b84d:
 	add hl, bc
 	inc [hl]
 	pop hl
-	jr .asm_b850
+	jr .loop_count
 
-Func_b860:
+; simplified version of CreateFilteredCardList
+; with wTempCardCollection prepared above
+.CreateFilteredList:
 	push af
 	push bc
 	push de
 	push hl
+
+; init both lists
 	push af
-	ld a, $51
-	ld hl, wUniqueDeckCardList
+	ld a, FILTERED_CARD_LIST_SIZE + 1
+	ld hl, wOwnedCardsCountList
 	call ClearNBytesFromHL
-	ld a, $a0
+	ld a, FILTERED_CARD_LIST_SIZE_BYTES
 	ld hl, wTempCardList
 	call ClearNBytesFromHL
 	pop af
-	ld hl, $0
-	ld de, $0
-	ld b, a
-.asm_b87d
+
+; loop all cards
+	ld hl, 0
+	ld de, GRASS_ENERGY - 1
+	ld b, a ; input card type
+.loop_card_ids
 	inc de
 	call GetCardType
-	jr c, .asm_b8bc
+	jr c, .store_count
 	ld c, a
 	ld a, b
-	cp $ff
-	jr z, .asm_b89c
-	and $20
-	cp $20
-	jr z, .asm_b895
+	cp NO_FILTERS
+	jr z, .add_card
+	and FILTER_ENERGY
+	cp FILTER_ENERGY
+	jr z, .check_energy
 	ld a, c
 	cp b
-	jr nz, .asm_b87d
-	jr .asm_b89c
-.asm_b895
+	jr nz, .loop_card_ids
+	jr .add_card
+.check_energy
 	ld a, c
-	and $08
-	cp $08
-	jr nz, .asm_b87d
-.asm_b89c
+	and TYPE_ENERGY
+	cp TYPE_ENERGY
+	jr nz, .loop_card_ids
+
+.add_card
 	push bc
 	push hl
 	add hl, hl
@@ -7624,29 +7633,32 @@ Func_b860:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wc000
+	ld hl, wTempCardCollection
 	add hl, de
 	ld a, [hl]
-	and $7f
+	and CARD_COUNT_MASK
 	pop hl
 	or a
-	jr z, .asm_b8b9
+	jr z, .next_card
+; set count
 	push hl
-	ld bc, wUniqueDeckCardList
+	ld bc, wOwnedCardsCountList
 	add hl, bc
 	ld [hl], a
 	pop hl
 	inc l
-.asm_b8b9
+.next_card
 	pop bc
-	jr .asm_b87d
-.asm_b8bc
+	jr .loop_card_ids
+
+.store_count
 	ld a, l
 	ld [wNumEntriesInCurFilter], a
+; add terminator bytes in both lists
 	ld c, l
 	ld b, h
 	ld a, $ff
-	ld hl, wUniqueDeckCardList
+	ld hl, wOwnedCardsCountList
 	add hl, bc
 	ld [hl], a
 	ld hl, wTempCardList

@@ -2024,7 +2024,8 @@ wCardListVisibleOffsetBackup:: ; d11f
 wNumUniqueCards:: ; d120
 	ds $1
 
-wd121:: ; d121
+; flag for Bill's Computer
+wBillsComputerAllowedInCardList:: ; d121
 	ds $1
 
 ; cards that belong to a Booster Pack
