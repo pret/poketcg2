@@ -2402,7 +2402,7 @@ OpenDeckConfigurationMenu:
 	jp hl
 
 HandleDeckConfigurationMenu:
-	call Func_98eb
+	call HandleDeckCardsBreakdown
 	lb de, 0, 0
 	lb bc, 20, 6
 	call DrawRegularTextBox
@@ -2410,7 +2410,7 @@ HandleDeckConfigurationMenu:
 	call PlaceTextItems
 
 .do_frame
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call HandleMultiDirectionalMenu
@@ -2429,7 +2429,7 @@ HandleDeckConfigurationMenu:
 .asm_9769
 	push af
 	call HandleMultiDirectionalMenu.DrawCursor
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	pop af
 	ld hl, .function_table
@@ -2558,38 +2558,38 @@ DismantleDeck:
 	call GetSRAMPointerToCurDeck
 	ld a, [hl]
 	or a
-	jr z, .asm_9871
+	jr z, .ask_to_save_to_machine
 	push hl
 	call GetSRAMPointerToCurDeckCards
 	call AddDeckToCollection
 	pop hl
-	ld a, $60
+	ld a, DECK_COMPRESSED_STRUCT_SIZE
 	call ClearNBytesFromHL
 
-.asm_9871
+.ask_to_save_to_machine
 	ldtx hl, DeckBuildingRevertAndSaveToMachinePromptText
 	call YesOrNoMenuWithText
-	jr c, .asm_989d
+	jr c, .done_dismantle
 	ld a, [wCurDeckName]
 	or a
-	jr z, .asm_98a0
+	jr z, .cannot_save
 	ld a, [wTotalCardCount]
 	cp DECK_SIZE
-	jp nz, .asm_98a0
+	jp nz, .cannot_save
 	call CheckIfThereAreAnyBasicCardsInDeck
-	jr nc, .asm_98a0
+	jr nc, .cannot_save
 	ld hl, wCurDeckName
 	ld de, wCurDeckCards
 	farcall SaveDeckDataToWRAM2
 	call DisableSRAM
 	farcall OpenDeckSaveMachineFromDeckBuilding
-.asm_989d
+.done_dismantle
 	add sp, $02
 	ret
-.asm_98a0
+.cannot_save
 	ldtx hl, DeckBuildingWarningIncompleteCannotSaveToMachineText
 	call DrawWideTextBox_WaitForInput
-	jr .asm_989d
+	jr .done_dismantle
 
 ChangeDeckName:
 	call InputCurDeckName
@@ -2597,10 +2597,10 @@ ChangeDeckName:
 	jp HandleDeckBuildScreen.skip_count
 
 ; de - coordinates
-Func_98b0:
+AppendDeckName_Breakdown:
 	push de
 	push hl
-	ld hl, .Data_98e8
+	ld hl, .space
 	ld de, wDefaultText
 	call CopyListFromHLToDE
 	pop hl
@@ -2628,27 +2628,27 @@ Func_98b0:
 	katakana " "
 	done
 
-.Data_98e8:
+.space
 	katakana " "
 	done
 
-Func_98eb:
+HandleDeckCardsBreakdown:
 	lb de, 0, 6
 	lb bc, 20, 12
 	call DrawRegularTextBox
 	ld hl, wCurDeckName
 	ld a, [hl]
 	or a
-	jr z, .asm_9910
+	jr z, .got_name
 	lb de, 1, 6
-	call Func_98b0
+	call AppendDeckName_Breakdown
 	ld hl, wCurDeckName
 	call GetTextLengthInTiles
 	ld a, 5
 	add b
 	lb de, 1, 6
 	call ZeroAttributesAtDE
-.asm_9910
+.got_name
 	ld hl, wCurDeckCards
 	farcall CheckDeck.asm_25461
 	lb de, 2, 8
@@ -2657,26 +2657,26 @@ Func_98eb:
 	call ProcessTextFromID
 	ld a, [wDeckCheckEnergyCount]
 	lb de, 15, 8
-	call Func_9951
+	call .PrintNumber
 	ld a, [wDeckCheckBasicCount]
 	lb de, 15, 10
-	call Func_9951
+	call .PrintNumber
 	ld a, [wDeckCheckStage1Count]
 	lb de, 15, 12
-	call Func_9951
+	call .PrintNumber
 	ld a, [wDeckCheckStage2Count]
 	lb de, 15, 14
-	call Func_9951
+	call .PrintNumber
 	ld a, [wDeckCheckTrainerCount]
 	lb de, 15, 16
-	call Func_9951
+	call .PrintNumber
 	ret
 
-Func_9951:
+.PrintNumber:
 	push de
 	ld hl, wDefaultText
 	call ConvertToNumericalDigits
-	ld [hl], $00
+	ld [hl], TX_END
 	pop de
 	call InitTextPrinting
 	ld hl, wDefaultText
@@ -2693,27 +2693,33 @@ CheckIfCurrentDeckWasChanged:
 	jr nz, .set_carry
 
 .skip_size_check
+; copy the selected deck to wDeckToBuild
 	call GetSRAMPointerToCurDeckCards
 	ld d, h
 	ld e, l
-	ld hl, wTempCardCollection
+	ld hl, wDeckToBuild
 	call EnableSRAM
 	bank1call DecompressSRAMDeck
 	call DisableSRAM
+
+; add terminating bytes
 	ld a, $ff
-	ld [wTempCardCollection + DECK_SIZE_BYTES], a
-	ld [wTempCardCollection + DECK_SIZE_BYTES + 1], a
+	ld [wDeckToBuild + DECK_SIZE_BYTES], a
+	ld [wDeckToBuild + DECK_SIZE_BYTES + 1], a
+
+; for each card in wCurDeckCards,
+; clear it if found in wDeckToBuild
 	ld hl, wCurDeckCards
-.asm_998b
+.loop_deck_cards
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
 	call CheckIfCardIDIsZero
-	jr c, .asm_99b7
+	jr c, .check_empty
 	push hl
-	ld hl, wTempCardCollection
-.asm_9998
+	ld hl, wDeckToBuild
+.loop_diffs
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
@@ -2721,38 +2727,41 @@ CheckIfCurrentDeckWasChanged:
 	ld a, b
 	cp $ff
 	ld a, c
-	jr nz, .asm_99a9
+	jr nz, .compare_card
 	cp $ff
-	jr nz, .asm_99a9
+	jr nz, .compare_card
 	pop hl
-	jr .asm_998b
-.asm_99a9
+	jr .loop_deck_cards
+.compare_card
 	cp e
-	jr nz, .asm_9998
+	jr nz, .loop_diffs
 	ld a, b
 	cp d
-	jr nz, .asm_9998
+	jr nz, .loop_diffs
+; found, clear it
 	dec hl
 	xor a
 	ld [hld], a
 	ld [hl], a
 	pop hl
-	jr .asm_998b
-.asm_99b7
-	ld hl, wTempCardCollection
-.asm_99ba
+	jr .loop_deck_cards
+
+.check_empty
+	ld hl, wDeckToBuild
+.loop_check_empty
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
 	cp16 $ffff
-	jr z, .asm_99d2
+	jr z, .check_name
 	call CheckIfCardIDIsZero
 	jr nc, .set_carry
 	or a
 	jr nz, .set_carry
-	jr .asm_99ba
-.asm_99d2
+	jr .loop_check_empty
+
+.check_name
 	call GetSRAMPointerToCurDeck
 	ld de, wCurDeckName
 	call EnableSRAM
@@ -2766,6 +2775,7 @@ CheckIfCurrentDeckWasChanged:
 	jr nz, .loop_name
 	call DisableSRAM
 	ret
+
 .set_carry
 	call DisableSRAM
 	scf
@@ -3073,7 +3083,7 @@ CreateFilteredCardList:
 .store_count
 	ld a, l
 	ld [wNumEntriesInCurFilter], a
-; add terminator bytes in both lists
+; add terminating bytes in both lists
 	ld c, l
 	ld b, h
 	ld a, $ff
@@ -3198,10 +3208,13 @@ GetCountOfCardInCurDeck:
 	pop hl
 	ret
 
-Func_9c55:
+; return total count of card ID in de
+; look it up in wTempCardList
+; then use the index to retrieve the count from wOwnedCardsCountList
+GetOwnedCardCount:
 	push hl
 	push bc
-	ld hl, wBoosterPackCardList
+	ld hl, wTempCardList
 	ld b, -1
 .loop
 	inc b
@@ -3215,14 +3228,14 @@ Func_9c55:
 	ld a, d
 	pop de
 	jr c, .zero ; not found
-	; is valid ID, compare card ID
+; is valid ID, compare card ID
 	cp d
 	jr nz, .loop
 	ld a, c
 	cp e
 	jr nz, .loop
-	; has same card ID, get its count
-	ld hl, wBoosterPackCardCounts
+; has same card ID, get its count
+	ld hl, wOwnedCardsCountList
 	ld c, b
 	ld b, $00
 	add hl, bc
@@ -3262,7 +3275,7 @@ AppendOwnedCardCountAndStorageCountNumbers:
 	ld [hl], SYM_SLASH
 	inc hl
 	pop de
-	call Func_9c55
+	call GetOwnedCardCount
 	call ConvertToNumericalDigits
 	ld [hl], TX_END
 	pop hl
@@ -3495,7 +3508,7 @@ PrintDeckBuildingCardList:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld b, $13
+	ld b, 19 ; x coord
 	ld c, e
 	dec c
 	ld a, [wScrollMenuScrollOffset]
@@ -5575,9 +5588,9 @@ AppendOwnedCardCountNumber:
 	inc hl
 	jr .loop
 .end
-	call Func_9c55
+	call GetOwnedCardCount
 	call ConvertToNumericalDigits
-	ld bc, $84
+	ldfw bc, "枚"
 	ld [hl], c
 	inc hl
 	ld [hl], b
@@ -7654,7 +7667,7 @@ PrintCardSelectionList_TempSavedDeck:
 .store_count
 	ld a, l
 	ld [wNumEntriesInCurFilter], a
-; add terminator bytes in both lists
+; add terminating bytes in both lists
 	ld c, l
 	ld b, h
 	ld a, $ff
