@@ -163,6 +163,19 @@ DEF NUM_AUTO_DECK_MACHINE_REGULAR_CATEGORIES EQU const_value ; shared with machi
 	const AUTO_DECK_LEGENDARY ; 9
 DEF NUM_AUTO_DECK_MACHINE_CATEGORIES EQU const_value ; shared with machine 2
 
+; auto deck machine 2
+	const_def
+	const AUTO_DECK_DARK_GRASS     ; 0
+	const AUTO_DECK_DARK_LIGHTNING ; 1
+	const AUTO_DECK_DARK_WATER     ; 2
+	const AUTO_DECK_DARK_FIRE      ; 3
+	const AUTO_DECK_DARK_FIGHTING  ; 4
+	const AUTO_DECK_DARK_PSYCHIC   ; 5
+	const AUTO_DECK_COLORLESS      ; 6
+	const AUTO_DECK_DARK_SPECIAL   ; 7
+	const AUTO_DECK_SUPER_RARE     ; 8
+	const AUTO_DECK_MYSTERIOUS     ; 9
+
 ; auto_deck args
 DEF AUTO_DECK_ENTRY_SIZE EQU 6
 
