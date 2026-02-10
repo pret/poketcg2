@@ -2125,7 +2125,7 @@ SubInEnergyCardsPromptText:
 	textfw "エネルギーカードをだいようしますか?"
 	done
 
-ChooseDeckTypeText:
+ChooseDeckCategoryText:
 	textfw "デッキの しゅるいを"
 	linefw "えらんでください"
 	done
@@ -2235,59 +2235,59 @@ AutoDeckMachine1Text:
 	textfw "オートデッキマシン1"
 	done
 
-BasicDeckMachineText:
+AutoDeckMachine1BasicDecksText:
 	textfw "きほんデッキ"
 	done
 
-GivenDeckMachineText:
+AutoDeckMachine1GivenDecksText:
 	textfw "もらったデッキ"
 	done
 
-FightingDeckMachineText:
+AutoDeckMachine1FightingDecksText:
 	textfw "闘ポケモンのデッキ"
 	done
 
-GrassDeckMachineText:
+AutoDeckMachine1GrassDecksText:
 	textfw "草ポケモンのデッキ"
 	done
 
-WaterDeckMachineText:
+AutoDeckMachine1WaterDecksText:
 	textfw "水ポケモンのデッキ"
 	done
 
-FireDeckMachineText:
+AutoDeckMachine1FireDecksText:
 	textfw "炎ポケモンのデッキ"
 	done
 
-LightningDeckMachineText:
+AutoDeckMachine1LightningDecksText:
 	textfw "雷ポケモンのデッキ"
 	done
 
-PsychicDeckMachineText:
+AutoDeckMachine1PsychicDecksText:
 	textfw "超ポケモンのデッキ"
 	done
 
-SpecialDeckMachineText:
+AutoDeckMachine1SpecialDecksText:
 	textfw "スペシャルデッキ"
 	done
 
-LegendaryDeckMachineText:
+AutoDeckMachine1LegendaryDecksText:
 	textfw "伝説のデッキ"
 	done
 
-BasicDeckMachineTextPadded:
+AutoDeckMachine1BasicDecksTextPadded:
 	textfw "きほんデッキ   "
 	done
 
-GivenDeckMachineTextPadded:
+AutoDeckMachine1GivenDecksTextPadded:
 	textfw "もらったデッキ  "
 	done
 
-SpecialDeckMachineTextPadded:
+AutoDeckMachine1SpecialDecksTextPadded:
 	textfw "スペシャルデッキ "
 	done
 
-LegendaryDeckMachineTextPadded:
+AutoDeckMachine1LegendaryDecksTextPadded:
 	textfw "伝説のデッキ   "
 	done
 
@@ -2295,211 +2295,211 @@ AutoDeckMachine2Text:
 	textfw "オートデッキマシン2"
 	done
 
-DarkGrassDeckMachineText:
+AutoDeckMachine2DarkGrassDecksText:
 	textfw "わるい草ポケモンデッキ"
 	done
 
-DarkLightningDeckMachineText:
+AutoDeckMachine2DarkLightningDecksText:
 	textfw "わるい雷ポケモンデッキ"
 	done
 
-DarkWaterDeckMachineText:
+AutoDeckMachine2DarkWaterDecksText:
 	textfw "わるい水ポケモンデッキ"
 	done
 
-DarkFireDeckMachineText:
+AutoDeckMachine2DarkFireDecksText:
 	textfw "わるい炎ポケモンデッキ"
 	done
 
-DarkFightingDeckMachineText:
+AutoDeckMachine2DarkFightingDecksText:
 	textfw "わるい闘ポケモンデッキ"
 	done
 
-DarkPsychicDeckMachineText:
+AutoDeckMachine2DarkPsychicDecksText:
 	textfw "わるい超ポケモンデッキ"
 	done
 
-ColorlessDeckMachineText:
+AutoDeckMachine2ColorlessDecksText:
 	textfw "無色ポケモンデッキ"
 	done
 
-DarkSpecialDeckMachineText:
+AutoDeckMachine2DarkSpecialDecksText:
 	textfw "わるいスペシャルデッキ"
 	done
 
-RareCardDeckMachineText:
+AutoDeckMachine2RareCardDecksText:
 	textfw "めずらしいカードデッキ"
 	done
 
-MysteriousCardDeckMachineText:
+AutoDeckMachine2MysteriousCardDecksText:
 	textfw "なぞのカードデッキ"
 	done
 
-ColorlessDeckMachineTextPadded:
+AutoDeckMachine2ColorlessDecksTextPadded:
 	textfw "無色ポケモンデッキ  "
 	done
 
-MysteriousCardDeckMachineTextPadded:
+AutoDeckMachine2MysteriousCardDecksTextPadded:
 	textfw "なぞのカードデッキ  "
 	done
 
-MachineStarterDeckText:
+MachineStarterDeckName:
 	textfw "さいしょの"
 	done
 
-MachineElectricFireDeckText:
+MachineElectricFireDeckName:
 	textfw "エレキファイヤー"
 	done
 
-MachineBattleWaterDeckText:
+MachineBattleWaterDeckName:
 	textfw "バトルウォーター"
 	done
 
-MachineEsperGreenDeckText:
+MachineEsperGreenDeckName:
 	textfw "エスパーグリーン"
 	done
 
-MachineSweatAntiGR1DeckText:
+MachineSweatAntiGR1DeckName:
 	textfw "たおせ!GR1ごう"
 	done
 
-MachineGiveInAntiGR2DeckText:
+MachineGiveInAntiGR2DeckName:
 	textfw "まけろ!GR2ごう"
 	done
 
-MachineVengefulAntiGR3DeckText:
+MachineVengefulAntiGR3DeckName:
 	textfw "しかえしGR3ごう"
 	done
 
-MachineUnforgivingAntiGR4DeckText:
+MachineUnforgivingAntiGR4DeckName:
 	textfw "ゆるさんGR4ごう"
 	done
 
-MachineAwesomeFossilsDeckText:
+MachineAwesomeFossilsDeckName:
 	textfw "シブイかせき"
 	done
 
-MachineNewMachokeDeckText:
+MachineNewMachokeDeckName:
 	textfw "ニューゴーリキー"
 	done
 
-MachineRockFestivalDeckText:
+MachineRockFestivalDeckName:
 	textfw "ロックフェスティバル"
 	done
 
-MachineJabHookDeckText:
+MachineJabHookDeckName:
 	textfw "ジャブだフックだ!"
 	done
 
-MachineSteadyIncreaseDeckText:
+MachineSteadyIncreaseDeckName:
 	textfw "ドンドンぞうしょく"
 	done
 
-MachineGatheringNidoranDeckText:
+MachineGatheringNidoranDeckName:
 	textfw "あつまれニドラン"
 	done
 
-MachineNationalParkDeckText:
+MachineNationalParkDeckName:
 	textfw "しんりんこうえん"
 	done
 
-MachineSelectiveBreedingDeckText:
+MachineSelectiveBreedingDeckName:
 	textfw "ひんしゅかいりょう"
 	done
 
-MachineSplashingAboutDeckText:
+MachineSplashingAboutDeckName:
 	textfw "みずあそび"
 	done
 
-MachineBeachDeckText:
+MachineBeachDeckName:
 	textfw "なみうちぎわ"
 	done
 
-MachineInsulationDeckText:
+MachineInsulationDeckName:
 	textfw "ぜつえんたい"
 	done
 
-MachineAntarcticDeckText:
+MachineAntarcticDeckName:
 	textfw "なんきょく"
 	done
 
-MachineFlameFestivalDeckText:
+MachineFlameFestivalDeckName:
 	textfw "ほのおのおまつり"
 	done
 
-MachineElectricCurrentShockDeckText:
+MachineElectricCurrentShockDeckName:
 	textfw "でんりゅうひばな"
 	done
 
-MachineRiskyBlazeDeckText:
+MachineRiskyBlazeDeckName:
 	textfw "すてみのほのお"
 	done
 
-MachineRagingCharizardDeckText:
+MachineRagingCharizardDeckName:
 	textfw "リザードンおおあばれ"
 	done
 
-MachineZapdosPowerPlantDeckText:
+MachineZapdosPowerPlantDeckName:
 	textfw "サンダーはつでんしょ"
 	done
 
-MachineElectricShockDeckText:
+MachineElectricShockDeckName:
 	textfw "でんきショック"
 	done
 
-MachineOverflowDeckText:
+MachineOverflowDeckName:
 	textfw "オーバーフロー"
 	done
 
-MachineTripleZapdosDeckText:
+MachineTripleZapdosDeckName:
 	textfw "トリプルサンダー"
 	done
 
-MachineSpecialBarrierDeckText:
+MachineSpecialBarrierDeckName:
 	textfw "とくしゅバリヤー"
 	done
 
-MachineEvolutionProhibitedDeckText:
+MachineEvolutionProhibitedDeckName:
 	textfw "しんかふのう"
 	done
 
-MachineGhostDeckText:
+MachineGhostDeckName:
 	textfw "ゆうれい"
 	done
 
-MachinePuppetMasterDeckText:
+MachinePuppetMasterDeckName:
 	textfw "にんぎょうつかい"
 	done
 
-MachineMewLv15DeckText:
+MachineMewLv15DeckName:
 	textfw "ミュウ<Lv>15"
 	done
 
-MachineVenusaurLv64DeckText:
+MachineVenusaurLv64DeckName:
 	textfw "フシギバナ<Lv>64"
 	done
 
-MachineMutualDestructionDeckText:
+MachineMutualDestructionDeckName:
 	textfw "ともだおれ"
 	done
 
-MachineEverybodySurfDeckText:
+MachineEverybodySurfDeckName:
 	textfw "みんなでなみのり"
 	done
 
-MachineGrandFireDeckText:
+MachineGrandFireDeckName:
 	textfw "グランドファイヤー"
 	done
 
-MachineLegendaryFossilDeckText:
+MachineLegendaryFossilDeckName:
 	textfw "でんせつのかせき"
 	done
 
-MachineWaterLegendDeckText:
+MachineWaterLegendDeckName:
 	textfw "ウォーターレジェンド"
 	done
 
-MachineGreatDragonDeckText:
+MachineGreatDragonDeckName:
 	textfw "レジェンドドラゴン"
 	done
 
@@ -2703,164 +2703,164 @@ MachineGreatDragonDeckDescriptionText:
 	linefw "きょうりょくポケモンで トドメだ!"
 	done
 
-MachineInsectCollectionDeckText:
+MachineInsectCollectionDeckName:
 	textfw "こんちゅうさいしゅう"
 	done
 
-MachineCaveExplorationDeckText:
+MachineCaveExplorationDeckName:
 	textfw "どうくつたんけん"
 	done
 
-MachineOminousMeadowDeckText:
+MachineOminousMeadowDeckName:
 	textfw "あやしいはなばたけ"
 	done
 
-MachineAtrociousWeezingDeckText:
+MachineAtrociousWeezingDeckName:
 	textfw "きょうあくマタドガス"
 	done
 
-MachineTheBenchIsAlsoASurpriseDeckText:
+MachineTheBenchIsAlsoASurpriseDeckName:
 	textfw "ベンチもビックリ"
 	done
 
-MachineEnergyConservationDeckText:
+MachineEnergyConservationDeckName:
 	textfw "しょうエネルギー"
 	done
 
-MachineSonicboomDeckText:
+MachineSonicboomDeckName:
 	textfw "ソニックブーム"
 	done
 
-MachineRageOfTheHeavensDeckText:
+MachineRageOfTheHeavensDeckName:
 	textfw "てんくうのいかり"
 	done
 
-MachineDarkWaterDeckText:
+MachineDarkWaterDeckName:
 	textfw "ダークウォーター"
 	done
 
-MachineQuickFreezeDeckText:
+MachineQuickFreezeDeckName:
 	textfw "きゅうそくれいとう"
 	done
 
-MachineWhirlpoolShowerDeckText:
+MachineWhirlpoolShowerDeckName:
 	textfw "うずしおのシャワー"
 	done
 
-MachineWaterGangDeckText:
+MachineWaterGangDeckName:
 	textfw "みずのギャングだん"
 	done
 
-MachineFireballDeckText:
+MachineFireballDeckName:
 	textfw "ファイヤーボール"
 	done
 
-MachineCompleteCombustionDeckText:
+MachineCompleteCombustionDeckName:
 	textfw "かんぜんねんしょう"
 	done
 
-MachineOminousSpiritFlamesDeckText:
+MachineOminousSpiritFlamesDeckName:
 	textfw "あやしいヒトダマ"
 	done
 
-MachineEternalFireDeckText:
+MachineEternalFireDeckName:
 	textfw "えいえんのファイヤー"
 	done
 
-MachineBewareTheTrapDeckText:
+MachineBewareTheTrapDeckName:
 	textfw "ワナにごちゅうい!"
 	done
 
-MachineOgresKickDeckText:
+MachineOgresKickDeckName:
 	textfw "キックのオニ"
 	done
 
-MachineRockBlastDeckText:
+MachineRockBlastDeckName:
 	textfw "ロックブラスト!"
 	done
 
-MachineHeavyWorkDeckText:
+MachineHeavyWorkDeckName:
 	; the same as Full Strength Deck but renamed for Machine
 	textfw "ちからわざ"
 	done
 
-MachineSlowbrosFishingDeckText:
+MachineSlowbrosFishingDeckName:
 	textfw "ヤドランともづり"
 	done
 
-MachineDirectHitDeckText:
+MachineDirectHitDeckName:
 	textfw "ちょくげき"
 	done
 
-MachineBadDreamDeckText:
+MachineBadDreamDeckName:
 	textfw "バッドドリーム"
 	done
 
-MachineBenchPanicDeckText:
+MachineBenchPanicDeckName:
 	textfw "ベンチはパニック!"
 	done
 
-MachineSnorlaxGuardDeckText:
+MachineSnorlaxGuardDeckName:
 	textfw "カビゴンとおせんぼ"
 	done
 
-MachineEyeOfTheStormDeckText:
+MachineEyeOfTheStormDeckName:
 	textfw "たいふうのめ"
 	done
 
-MachineSuddenGrowthDeckText:
+MachineSuddenGrowthDeckName:
 	textfw "きゅうせいちょう"
 	done
 
-MachineKingDragoniteDeckText:
+MachineKingDragoniteDeckName:
 	textfw "おうじゃカイリュー"
 	done
 
-MachineDarkCharizardDeckText:
+MachineDarkCharizardDeckName:
 	textfw "わるいリザードン!"
 	done
 
-MachineDarkBlastoiseDeckText:
+MachineDarkBlastoiseDeckName:
 	textfw "わるいカメックス!"
 	done
 
-MachineDarkVenusaurDeckText:
+MachineDarkVenusaurDeckName:
 	textfw "わるいフシギバナ!"
 	done
 
-MachineDarkDragoniteDeckText:
+MachineDarkDragoniteDeckName:
 	textfw "わるいカイリュー!"
 	done
 
-MachinePerfectHealthDeckText:
+MachinePerfectHealthDeckName:
 	textfw "けんこうゆうりょう"
 	done
 
-MachineSuperSoakerDeckText:
+MachineSuperSoakerDeckName:
 	textfw "スーパーみずでっぽう"
 	done
 
-MachineHellsDemonDeckText:
+MachineHellsDemonDeckName:
 	textfw "ちていのあくま"
 	done
 
-MachinePremiumThunderDeckText:
+MachinePremiumThunderDeckName:
 	textfw "プレミアムサンダー"
 	done
 
-MachineMysteriousMewtwoDeckText:
+MachineMysteriousMewtwoDeckName:
 	textfw "なぞのミュウツー"
 	done
 
-MachineHeavenlyLugiaDeckText:
+MachineHeavenlyLugiaDeckName:
 	textfw "てんくうのルギア"
 	done
 
-MachineBrutalTrainersDeckText:
+MachineBrutalTrainersDeckName:
 	textfw "きょうあくトレーナー"
 	done
 
-MachineDreadfulParalysisDeckText:
+MachineDreadfulParalysisDeckName:
 	textfw "きょうふのかなしばり"
 	done
 

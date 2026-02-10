@@ -4848,7 +4848,7 @@ UpdateBoosterPackMenuArrows:
 	call WriteByteToBGMap0
 	ret
 
-Func_3ada1:
+_HandleDeckSaveMachineMenu:
 	xor a
 	ld [wScrollMenuScrollOffset], a
 	ldtx de, DeckSaveMachineText
@@ -4859,8 +4859,9 @@ Func_3ada1:
 	call ClearScreenAndDrawDeckMachineScreen
 	ld a, NUM_DECK_SAVE_MACHINE_SLOTS
 	ld [wNumDeckMachineEntries], a
+
 	xor a
-.asm_3adb7
+.wait_input
 	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
@@ -4870,89 +4871,109 @@ Func_3ada1:
 	ldtx de, PleaseSelectDeckText
 	call InitDeckMachineDrawingParams
 	call HandleDeckMachineSelection
-	jr c, .asm_3adb7
-	cp $ff
+	jr c, .wait_input
+	cp MENU_CANCEL
 	ret z
+; get deck index
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
 	add b
 	ld [wSelectedDeckMachineEntry], a
+
 	farcall ResetCheckMenuCursorPositionAndBlink
 	call DrawWideTextBox
-	ld hl, $6e7b
+	ld hl, .text_items
 	call PlaceTextItems
-.asm_3aded:
+.wait_input_submenu
 	call DoFrame
 	farcall HandleCheckMenuInput
-	jp nc, .asm_3aded
-	cp $ff
-	jr nz, .asm_3ae01
+	jp nc, .wait_input_submenu
+	cp MENU_CANCEL
+	jr nz, .submenu_option_selected
+; return from submenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3adb7
-.asm_3ae01
+	jp .wait_input
+
+.submenu_option_selected
 	ld a, [wCheckMenuCursorYPosition]
 	sla a
 	ld hl, wCheckMenuCursorXPosition
 	add [hl]
 	or a
-	jr nz, .asm_3ae33
+	jr nz, .next_submenu_1
+
+; save
 	call CheckIfSelectedDeckMachineEntryIsEmpty
-	jr nc, .asm_3ae1d
-	call Func_3b2db
+	jr nc, .overwrite
+	call SaveDeckInDeckSaveMachine
 	ld a, [wTempScrollMenuItem]
-	jp c, .asm_3adb7
-	jr .asm_3ae65
-.asm_3ae1d
+	jp c, .wait_input
+	jr .return_to_list
+
+.overwrite
 	ldtx hl, DeleteSavedDeckPromptText
 	call YesOrNoMenuWithText
 	ld a, [wTempScrollMenuItem]
-	jr c, .asm_3adb7
-	call Func_3b2db
+	jr c, .wait_input
+	call SaveDeckInDeckSaveMachine
 	ld a, [wTempScrollMenuItem]
-	jp c, .asm_3adb7
-	jr .asm_3ae65
-.asm_3ae33
-	cp $01
-	jr nz, .asm_3ae53
+	jp c, .wait_input
+	jr .return_to_list
+
+.next_submenu_1
+	cp DECKSAVEMACHINEMENU_DELETE
+	jr nz, .next_submenu_2
+
+; delete
 	call CheckIfSelectedDeckMachineEntryIsEmpty
-	jr c, .asm_3ae47
-	call Func_3b3fa
+	jr c, .is_empty
+	call TryDeleteSavedDeck
 	ld a, [wTempScrollMenuItem]
-	jp c, .asm_3adb7
-	jr .asm_3ae65
-.asm_3ae47
+	jp c, .wait_input
+	jr .return_to_list
+
+.is_empty
 	ldtx hl, NoDecksSavedToMachineText
 	call DrawWideTextBox_WaitForInput
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3adb7
-.asm_3ae53
-	cp $02
-	jr nz, .asm_3ae7a
+	jp .wait_input
+
+.next_submenu_2
+	cp DECKSAVEMACHINEMENU_BUILD
+	jr nz, .cancel
+
+; build
 	call CheckIfSelectedDeckMachineEntryIsEmpty
-	jr c, .asm_3ae47
-	call Func_3b4eb
+	jr c, .is_empty
+	call TryBuildDeckMachineDeck
 	ld a, [wTempScrollMenuItem]
-	jp nc, .asm_3adb7
-.asm_3ae65
+	jp nc, .wait_input
+
+.return_to_list
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
 	call ClearScreenAndDrawDeckMachineScreen
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3adb7
-.asm_3ae7a
-	ret
-; 0x3ae7b
+	jp .wait_input
 
-SECTION "Bank e@6e8c", ROMX[$6e8c], BANK[$e]
+.cancel
+	ret
+
+.text_items
+	textitem  2, 14, SaveDeckToMachineText     ; DECKSAVEMACHINEMENU_SAVE
+	textitem 12, 14, DeleteDeckFromMachineText ; DECKSAVEMACHINEMENU_DELETE
+	textitem  2, 16, BuildDeckText             ; DECKSAVEMACHINEMENU_BUILD
+	textitem 12, 16, CancelDeckText            ; DECKSAVEMACHINEMENU_CANCEL
+	textitems_end
 
 ; sets the number of cursor positions for deck machine menu,
 ; sets the text ID to show given by de
 ; and sets DrawDeckMachineScreen as the update function
 ; de = text ID
 InitDeckMachineDrawingParams:
-	ld a, NUM_DECK_MACHINE_VISIBLE_DECKS
+	ld a, NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld [wNumMenuItems], a
 	ld hl, wDeckMachineText
 	ld [hl], e
@@ -4968,7 +4989,7 @@ InitDeckMachineDrawingParams:
 	ld [wd119], a
 	ret
 
-	; handles player input inside the Deck Machine screen
+; handles player input inside the Deck Machine screen
 ; the Start button opens up the deck confirmation menu
 ; and returns carry
 ; otherwise, returns no carry and selection made in a
@@ -4996,23 +5017,23 @@ HandleDeckMachineSelection:
 	or $80
 	ld [wCurDeck], a
 
-	; get pointer to selected deck cards
-	; and if it's an empty deck, jump to start
+; get pointer to selected deck cards
+; and if it's an empty deck, jump to start
 	ld a, c
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	push hl
 	farcall CheckIfDeckHasCards
 	pop hl
 	jr c, .start
-
-; show deck confirmation screen with deck cards
-; and return carry set
 	push hl
 	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	ld d, h
 	ld e, l
 	pop hl
+
+; show deck confirmation screen with deck cards
+; and return carry set
 	ld a, MENU_CONFIRM
 	farcall PlaySFXConfirmOrCancel
 	farcall OpenDeckConfirmationMenu
@@ -5051,20 +5072,20 @@ HandleDeckMachineSelection:
 
 .d_right
 	ld a, [wScrollMenuScrollOffset]
-	add NUM_DECK_MACHINE_VISIBLE_DECKS
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
-	add NUM_DECK_MACHINE_VISIBLE_DECKS
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld hl, wNumDeckMachineEntries
 	cp [hl]
 	jr c, .got_new_pos
 	ld a, [wNumDeckMachineEntries]
-	sub NUM_DECK_MACHINE_VISIBLE_DECKS
+	sub NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
 	jr .got_new_pos
 
 .d_left
 	ld a, [wScrollMenuScrollOffset]
-	sub NUM_DECK_MACHINE_VISIBLE_DECKS
+	sub NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld b, a
 	jr nc, .got_new_pos
 	ld b, 0 ; first entry
@@ -5074,8 +5095,8 @@ HandleDeckMachineSelection:
 	ld [wScrollMenuScrollOffset], a
 	cp c
 	jr z, .set_carry
-	; play SFX if jump was made
-	; and update UI
+
+; play SFX on jump and update UI
 	ld a, SFX_CURSOR
 	call PlaySFX
 	call DrawDeckMachineScreen
@@ -5088,7 +5109,7 @@ HandleDeckMachineSelection:
 ; entry selected in the Deck Machine menu is empty
 CheckIfSelectedDeckMachineEntryIsEmpty:
 	ld a, [wSelectedDeckMachineEntry]
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	farcall CheckIfDeckHasCards
 	ret
 
@@ -5097,7 +5118,7 @@ ClearScreenAndDrawDeckMachineScreen:
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
 	call EmptyScreen
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
@@ -5142,8 +5163,11 @@ CopyListFromHLToDE_Bank0e:
 	inc de
 	jr .loop
 
-; a = deck index in wMachineDeckPtrs
-Func_3afb8:
+; return hl = wMachineDeckPtrs[a]
+; if that points at wram (not at sram, etc.),
+; also load its data to wSelectedMachineDeck and wBackup3DeckToBuild,
+; and overwrite hl = wSelectedMachineDeck
+GetAndLoadSelectedMachineDeckPtr:
 	push bc
 	push de
 	add a ; *2
@@ -5160,27 +5184,27 @@ Func_3afb8:
 
 	call SwitchToWRAM2
 	push hl
-	ld hl, wc000
-	ld de, w2d58e
-	ld b, $80
+	ld hl, wDeckToBuild
+	ld de, wBackup3DeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	pop hl
-	ld de, wc000
-	ld b, $80
+	ld de, wDeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 
 	call SwitchToWRAM1
-	ld hl, wc000
-	ld de, wd4c8
-	ld b, $80
+	ld hl, wDeckToBuild
+	ld de, wSelectedMachineDeck
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM2
-	ld hl, w2d58e
-	ld de, wc000
-	ld b, $80
+	ld hl, wBackup3DeckToBuild
+	ld de, wDeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-	ld hl, wd4c8
+	ld hl, wSelectedMachineDeck
 .done
 	pop de
 	pop bc
@@ -5215,7 +5239,7 @@ GetSavedDeckPointers:
 PrintVisibleDeckMachineEntries:
 	ld a, [wScrollMenuScrollOffset]
 	lb de, 2, 2
-	ld b, NUM_DECK_MACHINE_VISIBLE_DECKS
+	ld b, NUM_DECK_MACHINE_VISIBLE_SLOTS
 .loop
 	push af
 	push bc
@@ -5231,9 +5255,10 @@ PrintVisibleDeckMachineEntries:
 	inc e
 	inc e
 	jr .loop
-; 0x3b043
 
-SECTION "Bank e@7048", ROMX[$7048], BANK[$e]
+UpdateDeckMachineScrollArrowsAndEntries_TCG1:
+	call DrawListScrollArrows
+	jr PrintVisibleDeckMachineEntries
 
 DrawDeckMachineScreen:
 	call DrawListScrollArrows
@@ -5253,7 +5278,7 @@ DrawDeckMachineScreen:
 
 ; update wScrollMenuScrollFunc to PrintVisibleAutoDeckMachineEntries
 ; and init wd119
-Func_3b069:
+UpdateAutoDeckSelectionMenuScroll:
 	ld hl, PrintVisibleAutoDeckMachineEntries
 	ld d, h
 	ld a, l
@@ -5264,7 +5289,7 @@ Func_3b069:
 	ld [wd119], a
 	ret
 
-; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine sections
+; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine categories
 PrintVisibleAutoDeckMachineEntries:
 	lb de, 2, 2
 	ld b, NUM_AUTO_DECK_MACHINE_SLOTS
@@ -5312,10 +5337,10 @@ PrintDeckMachineEntry:
 ; get the deck corresponding to input index
 ; and append its name to wDefaultText
 	push af
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
+REPT 3 ; indent x
 	inc d
-	inc d
-	inc d
+ENDR
 	push de
 	farcall AppendDeckName
 	pop de
@@ -5330,53 +5355,52 @@ PrintDeckMachineEntry:
 	ld d, 12
 	inc e
 	call InitTextPrinting
-	ld hl, .text
+	ld hl, .spaces
 	call ProcessText
 	scf
 	ret
 
+; b = deck index
 .valid_deck
 	push de
 	push bc
 
-	ld a, $0 ; no decks dismantled
+	ld a, 0 ; no decks dismantled
 	call CheckIfCanBuildSavedDeck
 	pop bc
 	ld hl, wDefaultText
 	jr c, .cannot_build
 
-	; deck can be built
+; can build
 	xor a
-	ld [wd49b], a
-	ld hl, wd49f
+	ld [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks], a
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	ld d, $00
 	ld e, b
 	sla e ; *2
 	add hl, de
 	ld [hl], a
-	ld [wd49e], a
-	ld hl, wd49f
+	ld [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection], a
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	ld d, $00
 	ld e, b
 	sla e
 	inc e ; *2 + 1
 	add hl, de
 	ld [hl], a
-	ldfw de, "○" ; can build
-	jp .asm_3b18e
+	ldfw de, "○" ; "can build" symbol
+	jp .padding
 
 .cannot_build
-	; deck cannot be built
 	ldfw de, " "
 	call Func_22ca
 
-	; figure out how many cards are being
-	; used on the other decks
+; figure out how many cards are being used on the other decks
 	push bc
-	call .CountCardsNeededToBuildInBuiltDecks
-	ld [wd49b], a
+	call CountCardsNeededToBuildInBuiltDecks
+	ld [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks], a
 	pop bc
-	ld hl, wd49f
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	ld d, $00
 	ld e, b
 	sla e ; *2
@@ -5384,11 +5408,11 @@ PrintDeckMachineEntry:
 	ld [hl], a
 
 	push bc
-	ld a, ALL_DECKS
-	call .CountCardsNeededToBuildInCardCollection
-	ld [wd49e], a
+	ld a, $ff ; all owned cards
+	call CountCardsNeededToBuildInCardCollection
+	ld [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection], a
 	pop bc
-	ld hl, wd49f
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
 	ld d, $00
 	ld e, b
 	sla e
@@ -5402,68 +5426,71 @@ PrintDeckMachineEntry:
 	ld d, 12
 	inc e
 	call InitTextPrinting
-	ld hl, .text
+	ld hl, .spaces
 	call ProcessText
 	pop de
 	pop af
 	push de
 	or a
-	jr z, .need_dismantle
+	jr z, .need_dismantle ; can build by dismantling
 
-	; players doesn't own all necessary cards
+; necessary cards missing in collection
 	pop de
 	push de
 	inc e
-	ld d, $10
+	ld d, 16
 	call InitTextPrinting
-	ldfw de, "×"
+	ldfw de, "×" ; "missing" symbol
 	call Func_22ca
-	ld a, [wd49e]
+	ld a, [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
 	ld [hl], TX_END
 	ld hl, wDefaultText
 	call ProcessText
 
+; necessary cards used in built decks
 .need_dismantle
 	pop de
-	ld a, [wd49b]
+	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	or a
-	jr z, .asm_3b18c
+	jr z, .printed_shortfall
 	inc e
 	ld d, 12
 	call InitTextPrinting
-	ldfw de, "※"
+	ldfw de, "※" ; REF_MARK, "used" symbol
 	call Func_22ca
-	ld a, [wd49b]
+	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	ld hl, wDefaultText
 	farcall ConvertToNumericalDigits
 	ld [hl], TX_END
 	ld hl, wDefaultText
 	call ProcessText
-.asm_3b18c
+
+.printed_shortfall
 	or a
 	ret
 
-.asm_3b18e
+; clear the card-shortfall text area
+.padding
 	call Func_22ca
 	pop de
 	ld d, 12
 	inc e
 	call InitTextPrinting
-	ld hl, .text
+	ld hl, .spaces
 	call ProcessText
 	or a
 	ret
 
-.text
+.spaces
 REPT 7
 	db "<SPACE>"
 ENDR
 	done
 
 ; de = card ID
-.GetCardCountInScratchCardCollection:
+GetCardCountInScratchCardCollection:
 	call SwitchToWRAM2
 	push hl
 	ld hl, wScratchCardCollection
@@ -5474,7 +5501,7 @@ ENDR
 	ret
 
 ; de = card ID
-.DecrementCardCountInScratchCardCollection:
+DecrementCardCountInScratchCardCollection:
 	call SwitchToWRAM2
 	push hl
 	ld hl, wScratchCardCollection
@@ -5485,34 +5512,31 @@ ENDR
 	ret
 
 ; b = saved deck index
-.CountCardsNeededToBuildInBuiltDecks:
+; return a = total number of cards required but already used in built decks
+CountCardsNeededToBuildInBuiltDecks:
 	push bc
-	ld a, $80 ; only cards that are in built decks
-	farcall CreateCardCollectionListWithDeckCards
 
-	; copy to wScratchCardCollection
+; set:
+;   wTempCardCollection    = all owned cards
+;   wScratchCardCollection = all cards used in built decks
+	ld a, CARD_COUNT_FROM_BUILT_DECKS
+	farcall CreateCardCollectionListWithDeckCards
 	call SwitchToWRAM2
 	ld hl, wTempCardCollection
 	ld de, wScratchCardCollection
-	ld b, 0 ; $100 bytes
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
 	ld hl, wTempCardCollection + $100
 	ld de, wScratchCardCollection + $100
-	ld b, 0 ; $100 bytes
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-
-	xor a ; all owned cards
+	xor a
 	farcall CreateCardCollectionListWithDeckCards
+
 	pop bc
-
-	; here, wTempCardCollection holds all cards that
-	; the player owns, including in and out of decks
-	; wScratchCardCollection holds all cards that
-	; are in built decks only
-
 	ld a, b
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	ld d, h
@@ -5524,7 +5548,7 @@ ENDR
 	lb bc, DECK_SIZE + 1, 0
 .loop_deck
 	dec b
-	jr z, .got_count_1
+	jr z, .got_count_already_in_use
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
@@ -5540,43 +5564,46 @@ ENDR
 	pop hl
 	jr .loop_deck
 .zero_count
-	call .GetCardCountInScratchCardCollection
+	call GetCardCountInScratchCardCollection
 	or a
 	jr z, .next_card
-	call .DecrementCardCountInScratchCardCollection
+	call DecrementCardCountInScratchCardCollection
 	inc c
 .next_card
 	pop hl
 	jr .loop_deck
-.got_count_1
-	ld a, c ; total number of cards found in built decks
+
+.got_count_already_in_use
+	ld a, c
 	ret
 
 ; b = saved deck index
-.CountCardsNeededToBuildInCardCollection:
+; return a = total number of cards required but missing
+CountCardsNeededToBuildInCardCollection:
 	push bc
 	farcall CreateCardCollectionListWithDeckCards
 	pop bc
 
 	ld a, b
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	ld d, h
 	ld e, l
 	ld hl, wTempSavedDeckCards
 	farcall CopyDeckFromSRAM
+
 	ld hl, wTempSavedDeckCards
 	lb bc, DECK_SIZE + 1, 0
 .loop_collection
 	dec b
-	jr z, .got_count_2
+	jr z, .got_count_missing
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
 	push hl
-	ld hl, wc000
+	ld hl, wTempCardCollection
 	add hl, de
 	ld a, [hl]
 	and CARD_COUNT_MASK
@@ -5590,7 +5617,8 @@ ENDR
 	inc c
 	pop hl
 	jr .loop_collection
-.got_count_2
+
+.got_count_missing
 	ld a, c
 	ret
 
@@ -5635,46 +5663,72 @@ PrintNumSavedDecks:
 	ld hl, wDefaultText
 	call ProcessText
 	ret
-; 0x3b2af
 
-SECTION "Bank e@72db", ROMX[$72db], BANK[$e]
+; unused in tcg1
+PrintDeckIndexPerNumSavedDecks:
+	ld a, [wCurScrollMenuItem]
+	ld b, a
+	ld a, [wScrollMenuScrollOffset]
+	add b
+	inc a
+	ld hl, wDefaultText
+	farcall ConvertToNumericalDigits
+	ld a, TX_SYMBOL
+	ld [hli], a
+	ld a, SYM_SLASH
+	ld [hli], a
+	ld a, [wNumSavedDecks]
+	farcall ConvertToNumericalDigits
+	ld [hl], TX_END
+	lb de, 14, 1
+	call InitTextPrinting
+	ld hl, wDefaultText
+	call ProcessText
+	ret
 
-Func_3b2db:
-	ld a, $ff
+; for the selected slot (wSelectedDeckMachineEntry),
+; handle decks screen menu to choose a deck to save there
+; set carry if successfully saved
+SaveDeckInDeckSaveMachine:
+	ld a, ALL_DECKS
 	farcall DrawDecksScreen
 	xor a
-.asm_3b2e2
-	ld hl, $735e
+.wait_input
+	ld hl, DecksScreenMenuParams
 	call InitializeMenuParameters
 	ldtx hl, ChooseDeckToSaveToMachineText
 	call DrawWideTextBox_PrintText
-.asm_3b2ee
+.wait_submenu_input
 	call DoFrame
 	farcall HandleStartButtonInDeckSelectionMenu
-	jr c, .asm_3b2e2
+	jr c, .wait_input
 	call HandleMenuInput
-	jp nc, .asm_3b2ee
+	jp nc, .wait_submenu_input
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	ret z
 	ld [wCurDeck], a
 	farcall CheckIfCurDeckIsEmpty
-	jp nc, Func_3b315
+	jp nc, .SaveDeckInSelectedEntry ; can be jr
 	farcall PrintThereIsNoDeckHereText
 	ld a, [wCurDeck]
-	jr .asm_3b2e2
+	jr .wait_input
 
-Func_3b315:
+; copy sDeckX (X = [wCurDeck]) data
+; to sSavedDeckY (Y = [wSelectedDeckMachineEntry]),
+; update screen ui, and set carry
+.SaveDeckInSelectedEntry:
 	farcall GetSRAMPointerToCurDeck
 	push hl
 	call GetSelectedSavedDeckPtr
 	ld d, h
 	ld e, l
 	pop hl
-	ld b, $60
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call EnableSRAM
 	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
+
 	call ClearScreenAndDrawDeckMachineScreen
 	call DrawListScrollArrows
 	call PrintNumSavedDecks
@@ -5693,15 +5747,15 @@ Func_3b315:
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
-; 0x3b35e
 
-SECTION "Bank e@7366", ROMX[$7366], BANK[$e]
+DecksScreenMenuParams:
+	menu_params 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 GetSelectedSavedDeckPtr:
 	push af
 	push de
 	ld a, [wSelectedDeckMachineEntry]
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	pop de
 	pop af
 	ret
@@ -5716,7 +5770,7 @@ CheckIfCanBuildSavedDeck:
 	farcall CreateCardCollectionListWithDeckCards
 	pop bc
 	ld a, b
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
 	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	call CheckIfHasEnoughCardsToBuildDeck
@@ -5724,11 +5778,11 @@ CheckIfCanBuildSavedDeck:
 
 SwitchToWRAM1:
 	push af
-	ld a, [wce4c]
-	cp $01
+	ld a, [wTempBankWRAM]
+	cp BANK("WRAM1")
 	jr z, .skip
-	ld a, $01
-	ld [wce4c], a
+	ld a, BANK("WRAM1")
+	ld [wTempBankWRAM], a
 	ldh [rWBK], a
 .skip
 	pop af
@@ -5736,11 +5790,11 @@ SwitchToWRAM1:
 
 SwitchToWRAM2:
 	push af
-	ld a, [wce4c]
-	cp $02
+	ld a, [wTempBankWRAM]
+	cp BANK("WRAM2")
 	jr z, .skip
-	ld a, $02
-	ld [wce4c], a
+	ld a, BANK("WRAM2")
+	ld [wTempBankWRAM], a
 	ldh [rWBK], a
 .skip
 	pop af
@@ -5785,48 +5839,58 @@ CheckIfHasEnoughCardsToBuildDeck:
 	or a
 	ret
 
-Func_3b3d1:
-	ld hl, sDeck1Name
+; return a = DECK_*_F of the first empty slot
+; set carry otherwise
+FindFirstEmptyDeckSlot:
+	ld hl, sDeck1
 	ld a, [hl]
 	or a
-	jr nz, .asm_3b3da
-	xor a
+	jr nz, .check_deck_2
+	xor a ; DECK_1_F
 	ret
-.asm_3b3da
-	ld hl, sDeck2Name
+
+.check_deck_2
+	ld hl, sDeck2
 	ld a, [hl]
 	or a
-	jr nz, .asm_3b3e4
-	ld a, $01
+	jr nz, .check_deck_3
+	ld a, DECK_2_F
 	ret
-.asm_3b3e4
-	ld hl, sDeck3Name
+
+.check_deck_3
+	ld hl, sDeck3
 	ld a, [hl]
 	or a
-	jr nz, .asm_3b3ee
-	ld a, $02
+	jr nz, .check_deck_4
+	ld a, DECK_3_F
 	ret
-.asm_3b3ee
-	ld hl, sDeck4Name
+
+.check_deck_4
+	ld hl, sDeck4
 	ld a, [hl]
 	or a
-	jr nz, .asm_3b3f8
-	ld a, $03
+	jr nz, .no_empty
+	ld a, DECK_4_F
 	ret
-.asm_3b3f8
+
+.no_empty
 	scf
 	ret
 
-Func_3b3fa:
+; for N = selected saved deck [wSelectedDeckMachineEntry],
+; provide delete prompt
+; if yes, clear sSavedDeckN
+; if no, return a = menu item pos with carry
+TryDeleteSavedDeck:
 	ldtx hl, ConfirmDeletePromptText
 	call YesOrNoMenuWithText
-	jr c, .asm_3b426
+	jr c, .no
 	call GetSelectedSavedDeckPtr
 	push hl
 	call EnableSRAM
 	farcall CopyDeckName
 	pop hl
-	ld a, $60
+	ld a, DECK_COMPRESSED_STRUCT_SIZE
 	farcall ClearNBytesFromHL
 	call DisableSRAM
 	xor a
@@ -5836,8 +5900,9 @@ Func_3b3fa:
 	call DrawWideTextBox_WaitForInput
 	or a
 	ret
-.asm_3b426
-	ld a, [wTempCardTypeFilter]
+
+.no
+	ld a, [wCurScrollMenuItem]
 	scf
 	ret
 
@@ -5854,7 +5919,7 @@ DrawListScrollArrows:
 	call WriteByteToBGMap0
 
 	ld a, [wScrollMenuScrollOffset]
-	add NUM_DECK_MACHINE_VISIBLE_DECKS + 1
+	add NUM_DECK_MACHINE_VISIBLE_SLOTS + 1
 	ld b, a
 	ld a, [wNumDeckMachineEntries]
 	cp b
@@ -5872,57 +5937,62 @@ DrawListScrollArrows:
 	call WriteByteToBGMap0
 	ret
 
-Func_3b45f:
+; decks screen menu to make space for new deck to build
+HandleDismantleDeckToMakeSpace:
 	ldtx hl, YouMayOnlyCarry4DecksText
 	call DrawWideTextBox_WaitForInput
-	ld a, $ff
+	ld a, ALL_DECKS
 	farcall DrawDecksScreen
 	xor a
-.asm_3b46c
-	ld hl, $735e
+.init_menu_params
+	ld hl, DecksScreenMenuParams
 	call InitializeMenuParameters
 	ldtx hl, ChooseDeckToDismantleText
 	call DrawWideTextBox_PrintText
-.asm_3b478
+.loop_input
 	call DoFrame
 	farcall HandleStartButtonInDeckSelectionMenu
-	jr c, .asm_3b46c
+	jr c, .init_menu_params
 	call HandleMenuInput
-	jp nc, .asm_3b478
+	jp nc, .loop_input ; can be jr
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
-	jr nz, .asm_3b48f
+	cp MENU_CANCEL
+	jr nz, .selected_deck
 	scf
 	ret
-.asm_3b48f
+
+.selected_deck
 	ld [wCurDeck], a
 	ldtx hl, DeckBuildingDismantlePromptText
 	call YesOrNoMenuWithText
-	jr nc, .asm_3b49f
+	jr nc, .dismantle
 	ld a, [wCurDeck]
-	jr .asm_3b46c
-.asm_3b49f
+	jr .init_menu_params
+
+.dismantle
 	farcall GetSRAMPointerToCurDeck
 	push hl
-	ld de, wd47e
+	ld de, wDismantledDeckName
 	call EnableSRAM
 	call CopyListFromHLToDE_Bank0e
 	pop hl
 	push hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	farcall AddDeckToCollection
 	pop hl
-	ld a, $60
+	ld a, DECK_COMPRESSED_STRUCT_SIZE
 	farcall ClearNBytesFromHL
 	call DisableSRAM
-	ld a, $ff
+
+; redraw decks screen
+	ld a, ALL_DECKS
 	farcall DrawDecksScreen
 	ld a, [wCurDeck]
-	ld hl, $735e
+	ld hl, DecksScreenMenuParams
 	call InitializeMenuParameters
 	call DrawCursor2
-	ld hl, wd47e
+	ld hl, wDismantledDeckName
 	farcall CopyDeckName
 	xor a
 	ld [wTxRam2], a
@@ -5932,84 +6002,99 @@ Func_3b45f:
 	ld a, [wCurDeck]
 	ret
 
-Func_3b4eb:
+TryBuildDeckMachineDeck:
 	call SwitchToWRAM2
 	xor a
-	ld [w2d280], a
+	ld [wNumRemainingBasicEnergyCardsForSubbedDeck], a
 	call SwitchToWRAM1
 	ld a, [wSelectedDeckMachineEntry]
-	ld hl, wd49f
-	sla a
+	ld hl, wNumCardsNeededToBuildDeckMachineDecks
+	sla a ; *2
 	ld b, $00
 	ld c, a
 	add hl, bc
 	ld a, [hli]
-	ld [wd49b], a
+	ld [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks], a
 	ld a, [hl]
-	ld [wd49e], a
+	ld [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection], a
 	or a
-	jr nz, .asm_3b526
-	ld a, [wd49b]
+	jr nz, .not_own_all_cards_needed
+	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	or a
-	jr z, .asm_3b53a
+	jr z, .build_deck
+
+; can build by dismantling deck(s)
 	ldtx hl, CannotBuildMustDismantleText
 	call DrawWideTextBox_WaitForInput
-	call Func_3b9d6
-	call Func_3b5f1
-	jr nc, .asm_3b53a
-	call Func_3b661
-	jr nc, .asm_3b53a
+	call ShowUsedCardListFromBuiltDecks
+	call .DismantleDecksNeededToBuild
+	jr nc, .build_deck
+	call .TryBuildSubbedDeck
+	jr nc, .build_deck
 	ret
-.asm_3b526
+
+.not_own_all_cards_needed
 	ldtx hl, YouDoNotOwnAllCardsNeededToBuildThisDeckText
 	call DrawWideTextBox_WaitForInput
-	call Func_3b92b
-	ld a, [wd49b]
+	call ShowMissingCardList
+	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
 	or a
-	call nz, Func_3b9d6
-	call Func_3b661
+	call nz, ShowUsedCardListFromBuiltDecks
+	call .TryBuildSubbedDeck
 	ret c
-.asm_3b53a
+; fallthrough
+
+.build_deck
 	call EnableSRAM
-	call Func_3b3d1
+	call FindFirstEmptyDeckSlot
 	call DisableSRAM
-	jr nc, .asm_3b54c
-	call Func_3b45f
-	jr nc, .asm_3b54c
+	jr nc, .got_deck_slot
+	call HandleDismantleDeckToMakeSpace
+	jr nc, .got_deck_slot
 	scf
 	ret
-.asm_3b54c
-	ld [wd496], a
+
+.got_deck_slot
+	ld [wDeckSlotForNewDeck], a
 	ld a, [wSelectedDeckMachineEntry]
-	call Func_3afb8
-	ld de, wc000
-	ld b, $60
+	call GetAndLoadSelectedMachineDeckPtr
+
+; copy deck to buffer
+	ld de, wDeckToBuild
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call EnableSRAM
 	call CopyBBytesFromHLToDE_Bank0e
+
 	call SwitchToWRAM2
-	ld a, [w2d280]
+	ld a, [wNumRemainingBasicEnergyCardsForSubbedDeck]
 	or a
-	call nz, Func_3b7fc
+	call nz, SubInBasicEnergyInCurDeck
+
+; remove needed cards from collection
 	call SwitchToWRAM1
-	ld hl, $c018
-	farcall Func_9337
-	ld a, [wd496]
+	ld hl, wDeckToBuild + DECK_NAME_SIZE
+	farcall DecrementDeckCardsInCollection_CopyDeckFromSRAM
+
+; copy deck cards from buffer to selected deck slot
+	ld a, [wDeckSlotForNewDeck]
 	ld l, a
-	ld h, $60
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
-	ld bc, sDeck1Name
+	ld bc, sBuiltDecks
 	add hl, bc
 	ld d, h
 	ld e, l
-	ld hl, wc000
-	ld b, $60
+	ld hl, wDeckToBuild
+	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call DisableSRAM
-	ld a, $ff
+
+; draw decks screen
+	ld a, ALL_DECKS
 	farcall DrawDecksScreen
-	ld a, [wd496]
+	ld a, [wDeckSlotForNewDeck]
 	ld [wCurDeck], a
-	ld hl, $735e
+	ld hl, DecksScreenMenuParams
 	call InitializeMenuParameters
 	call DrawCursor2
 	farcall GetSRAMPointerToCurDeck
@@ -6022,138 +6107,151 @@ Func_3b4eb:
 	ldtx hl, BuiltDeckText
 	call DrawWideTextBox_WaitForInput
 	call SwitchToWRAM2
-	ld a, [w2d280]
+	ld a, [wNumRemainingBasicEnergyCardsForSubbedDeck]
 	or a
 	call SwitchToWRAM1
-	jr z, .asm_3b5ef
+	jr z, .done
+
+; built subbed deck
 	call SwitchToWRAM2
-	ld hl, w2d38e
-	ld de, wc000
-	ld b, $80
+	ld hl, wBackup2DeckToBuild
+	ld de, wDeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ldtx bc, BuiltSubbedDeckWithTheseCardsText
-	ld hl, wd38a
+	ld hl, wCardConfirmationText
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hl], a
 	call GetSelectedSavedDeckPtr
-	ld de, wc000
-	farcall Func_b59f
-.asm_3b5ef
+	ld de, wDeckToBuild
+	farcall HandleDeckStatusCardList_InSRAM
+
+.done
 	scf
 	ret
 
-Func_3b5f1:
-	call Func_3bcd6
+.DismantleDecksNeededToBuild:
+	call CheckWhichDecksToDismantleToBuildSavedDeck
 	farcall DrawDecksScreen
 	ldtx hl, DismantleTheseDecksPromptText
 	call YesOrNoMenuWithText
-	jr nc, .asm_3b601
+	jr nc, .dismantle_yes
 	ret
-.asm_3b601
+.dismantle_yes
 	call EnableSRAM
-	ld a, [wd49a]
-	bit 0, a
-	jr z, .asm_3b610
-	ld a, $00
-	call Func_3b646
-.asm_3b610
-	ld a, [wd49a]
-	bit 1, a
-	jr z, .asm_3b61c
-	ld a, $01
-	call Func_3b646
-.asm_3b61c
-	ld a, [wd49a]
-	bit 2, a
-	jr z, .asm_3b628
-	ld a, $02
-	call Func_3b646
-.asm_3b628
-	ld a, [wd49a]
-	bit 3, a
-	jr z, .asm_3b634
-	ld a, $03
-	call Func_3b646
-.asm_3b634
+; dismantle deck 1
+	ld a, [wDecksToBeDismantled]
+	bit DECK_1_F, a
+	jr z, .dismantle_deck_2
+	ld a, DECK_1_F
+	call .DismantleDeck
+.dismantle_deck_2
+	ld a, [wDecksToBeDismantled]
+	bit DECK_2_F, a
+	jr z, .dismantle_deck_3
+	ld a, DECK_2_F
+	call .DismantleDeck
+.dismantle_deck_3
+	ld a, [wDecksToBeDismantled]
+	bit DECK_3_F, a
+	jr z, .dismantle_deck_4
+	ld a, DECK_3_F
+	call .DismantleDeck
+.dismantle_deck_4
+	ld a, [wDecksToBeDismantled]
+	bit DECK_4_F, a
+	jr z, .done_dismantling
+	ld a, DECK_4_F
+	call .DismantleDeck
+
+.done_dismantling
 	call DisableSRAM
-	ld a, [wd49a]
+	ld a, [wDecksToBeDismantled]
 	farcall DrawDecksScreen
 	ldtx hl, DismantledTheseDecksText
 	call DrawWideTextBox_WaitForInput
 	or a
 	ret
 
-Func_3b646:
+; a = DECK_*_F
+.DismantleDeck:
 	ld l, a
-	ld h, $60
+	ld h, DECK_COMPRESSED_STRUCT_SIZE
 	call HtimesL
-	ld bc, sDeck1Name
+	ld bc, sBuiltDecks
 	add hl, bc
 	push hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	farcall AddDeckToCollection
 	pop hl
-	ld a, $60
+	ld a, DECK_COMPRESSED_STRUCT_SIZE
 	farcall ClearNBytesFromHL
 	ret
 
-Func_3b661:
+.TryBuildSubbedDeck:
 	ldtx hl, MaySubInEnergyCardsToBuildThisDeckText
 	call DrawWideTextBox_WaitForInput
 	ldtx hl, BuildSubbedDeckPromptText
 	call YesOrNoMenuWithText
 	ret c
-	ld a, [wd49b]
-	ld hl, wd49e
+
+	ld a, [wNumCardsNeededToBuildSelectedDeckUsedInBuiltDecks]
+	ld hl, wNumCardsNeededToBuildSelectedDeckMissingInCardCollection
 	add [hl]
-	cp $0a
-	jr c, .asm_3b681
+	cp MAX_NUM_SUB_ENERGY_CARDS + 1
+	jr c, .check_basic_energy_to_sub_in
 	ldtx hl, CannotBuildLackingTooManyCardsText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
-.asm_3b681
+
+.check_basic_energy_to_sub_in
 	push af
-	call Func_3b6c4
-	call Func_3b75a
+	call OmitMissingCardsFromDeckAndBackup
+	call GetSumOfRemainingBasicEnergyCards
 	pop bc
-	jr c, .asm_3b696
-	cp b
-	jr nc, .asm_3b696
+	jr c, .check_basic_pkmn_before_sub ; has 256+ energy cards
+	cp b ; required sub count
+	jr nc, .check_basic_pkmn_before_sub
 	ldtx hl, CannotBuildLackingEnergyCardsText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
-.asm_3b696
+
+.check_basic_pkmn_before_sub
 	call SwitchToWRAM2
-	ld hl, w2d200
-	ld de, wc000
-	ld b, $80
+	ld hl, wBackup1DeckToBuild
+	ld de, wDeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-	ld hl, wc000
+	ld hl, wDeckToBuild
 	ld de, wCurDeckCards
-	ld b, $80
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	farcall CheckIfThereAreAnyBasicCardsInDeck
-	jr c, .asm_3b6c0
+	jr c, .prepare_sub
 	ldtx hl, CannotBuildLackingBasicPokemonText
 	call DrawWideTextBox_WaitForInput
 	scf
 	ret
-.asm_3b6c0
-	call Func_3b79b
+
+.prepare_sub
+	call SortRemainingBasicEnergyCardsDescending
 	ret
 
-Func_3b6c4:
+; list available cards for the target deck
+; and load them into wDeckToBuild and wBackup1DeckToBuild,
+; skipping all missing cards
+OmitMissingCardsFromDeckAndBackup:
 	ld a, [wSelectedDeckMachineEntry]
 	ld [wCurDeck], a
 	call GetSelectedSavedDeckPtr
-	ld de, $18
+	ld de, DECK_NAME_SIZE
 	add hl, de
 	ld d, h
 	ld e, l
@@ -6161,13 +6259,16 @@ Func_3b6c4:
 	farcall CopyDeckFromSRAM
 	farcall SortCurDeckCardsByID
 	farcall CreateCurDeckUniqueCardList
+
+; set wTempCardCollection = all owned cards
 	xor a
 	farcall CreateCardCollectionListWithDeckCards
-	ld hl, $0
-.asm_3b6ea
+
+	ld hl, 0
+.loop_deck_configuration
 	push hl
 	ld l, h
-	ld h, $00
+	ld h, 0
 	ld de, wUniqueDeckCardList
 	add hl, de
 	ld e, [hl]
@@ -6176,19 +6277,20 @@ Func_3b6c4:
 	pop hl
 	inc h
 	inc h
-	call Func_3b91d
-	jr c, .asm_3b720
+	call CheckIfCardIDIsZero_Bank0e
+	jr c, .got_list
 	push bc
 	push de
 	push hl
 	ld hl, wCurDeckCards
-	call Func_3b746
+	call .GetCardCountAvailable
 	pop hl
 	pop de
 	pop bc
-	jr nc, .asm_3b6ea
+	jr nc, .loop_deck_configuration
+
 	ld c, a
-.asm_3b70c
+.loop_append
 	push hl
 	push de
 	ld h, $00
@@ -6202,187 +6304,228 @@ Func_3b6c4:
 	inc l
 	inc l
 	dec c
-	jr nz, .asm_3b70c
-	jr .asm_3b6ea
-.asm_3b720
+	jr nz, .loop_append
+	jr .loop_deck_configuration
+
+.got_list
+; append null terminator
 	ld h, $00
 	ld de, wTempCardList
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
+; copy deck data
 	ld hl, wTempCardList
-	ld de, wc000
-	ld b, $80
+	ld de, wDeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM2
-	ld hl, wc000
-	ld de, w2d200
-	ld b, $80
+	ld hl, wDeckToBuild
+	ld de, wBackup1DeckToBuild
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
 	ret
 
-Func_3b746:
-	call Func_3b9ba
-	ld hl, wc000
+; hl = deck cards (wCurDeckCards)
+; de = card id
+; if owned count > 0, return a = min( (required count), (owned count) ) with carry
+; if owned count = 0, return a = 0 (nc)
+.GetCardCountAvailable:
+	call GetCardCountFromDeck
+	ld hl, wTempCardCollection ; all owned cards
 	add hl, de
 	ld a, [hl]
-	and $7f
+	and CARD_COUNT_MASK
 	or a
 	ret z
+
 	cp b
-	jr nc, .asm_3b757
+	jr nc, .enough
+; not enough but nonzero
 	scf
 	ret
-.asm_3b757
+.enough
 	ld a, b
 	scf
 	ret
 
-Func_3b75a:
+; for x[t] = {basic energy cards remaining after building wBackup1DeckToBuild},
+; calc sum(x) from grass to psychic with overflow check:
+; if sum(x[0..k]) > 255 at t = k, return
+;   a = sum(x[0..k]) % 256 (with carry),
+;   b = sum(x[0..k-1])
+; otherwise return a = b = sum(x)
+GetSumOfRemainingBasicEnergyCards:
+; set wTempCardCollection = all owned cards
 	xor a
 	farcall CreateCardCollectionListWithDeckCards
+
 	call SwitchToWRAM2
-	ld hl, w2d200
-.asm_3b765
+	ld hl, wBackup1DeckToBuild
+.loop_deck_cards
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-	call Func_3b91d
-	jr c, .asm_3b77c
+	call CheckIfCardIDIsZero_Bank0e
+	jr c, .load_count
 	push hl
-	ld hl, wc000
+	ld hl, wTempCardCollection
 	add hl, de
 	ld a, [hl]
-	and $7f
-	jr z, .asm_3b779
+	and CARD_COUNT_MASK
+	jr z, .next_card
 	dec [hl]
-.asm_3b779
+.next_card
 	pop hl
-	jr .asm_3b765
-.asm_3b77c
-	ld hl, wc000 + 1
-	ld de, w2d280
-	ld b, $06
+	jr .loop_deck_cards
+
+.load_count
+	ld hl, wTempCardCollection + GRASS_ENERGY
+	ld de, wNumRemainingBasicEnergyCardsForSubbedDeck
+	ld b, NUM_COLORED_TYPES
 	call CopyBBytesFromHLToDE_Bank0e
-	ld hl, w2d280
-	ld bc, $6
-.asm_3b78d
+
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
+	lb bc, 0, NUM_COLORED_TYPES
+.loop_sum
 	ld a, [hli]
 	add b
-	jr c, .asm_3b797
+	jr c, .done
 	ld b, a
 	dec c
-	jr nz, .asm_3b78d
+	jr nz, .loop_sum
 	ld b, a
 	or a
-.asm_3b797
+.done
 	call SwitchToWRAM1
 	ret
 
-Func_3b79b:
+; sort wNumRemainingBasicEnergyCardsForSubbedDeck in descending order
+; and map its index array to wIndicesRemainingBasicEnergyCardsForSubbedDeck
+SortRemainingBasicEnergyCardsDescending:
 	call SwitchToWRAM2
 	ld a, $ff
-	ld [w2d286], a
+	ld [wNumRemainingBasicEnergyCardsForSubbedDeck + NUM_COLORED_TYPES], a
 	xor a
-	ld hl, w2d287
-	ld [hli], a
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
+	ld [hli], a ; GRASS_ENERGY - GRASS_ENERGY
 	inc a
-	ld [hli], a
+	ld [hli], a ; FIRE_ENERGY - GRASS_ENERGY
 	inc a
-	ld [hli], a
+	ld [hli], a ; WATER_ENERGY - GRASS_ENERGY
 	inc a
-	ld [hli], a
+	ld [hli], a ; LIGHTNING_ENERGY - GRASS_ENERGY
 	inc a
-	ld [hli], a
+	ld [hli], a ; FIGHTING_ENERGY - GRASS_ENERGY
 	inc a
-	ld [hl], a
-	ld de, $0
-.asm_3b7b5
-	ld hl, w2d280
+	ld [hl], a  ; PSYCHIC_ENERGY - GRASS_ENERGY
+
+	ld de, 0
+.loop_swap
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
-	call Func_3b7e4
+	call .GetMaxNumAndIndex
 	ld a, e
 	add c
 	ld c, a
-	ld hl, w2d280
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld a, [hl]
 	ld [hl], b
-	ld b, $00
-	ld hl, w2d280
+	ld b, 0
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
 	add hl, bc
 	ld [hl], a
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld a, [hl]
 	push hl
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, bc
 	ld c, [hl]
 	ld [hl], a
 	pop hl
 	ld [hl], c
 	inc e
-	ld a, $06
+	ld a, NUM_COLORED_TYPES
 	cp e
-	jr nz, .asm_3b7b5
+	jr nz, .loop_swap
 	call SwitchToWRAM1
 	ret
 
-Func_3b7e4:
+; from the current index and onwards,
+; return b = max count, c = energy index of max count
+.GetMaxNumAndIndex:
 	push de
-	ld e, $00
-	ld bc, $0
-.asm_3b7ea
+	ld e, 0
+	lb bc, 0, 0
+.loop_energy
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_3b7f9
-	and $7f
+	jr z, .got_max
+	and CARD_COUNT_MASK
 	cp b
-	jr c, .asm_3b7f6
+	jr c, .next_energy
 	ld b, a
 	ld e, c
-.asm_3b7f6
+.next_energy
 	inc c
-	jr .asm_3b7ea
-.asm_3b7f9
+	jr .loop_energy
+.got_max
 	ld c, e
 	pop de
 	ret
 
-Func_3b7fc:
+; fill in missing card slots in the deck with remaining basic energy cards
+; (already guaranteed of enough amount of replacements at this point),
+; starting with the type of the most remaining
+; bug:
+; in the first iteration, skip type(s) of
+; ( (*_ENERGY used in the deck) + 1)
+; e.g.
+;  when the deck misses 9 cards
+;  and the remaining energy count is 50 fighting, 40 grass, 30 fire, …,
+;  if the deck has any lightning (LIGHTNING_ENERGY + 1 = FIGHTING_ENERGY),
+;  sub in 9 grass
+;  otherwise sub in 9 fighting
+SubInBasicEnergyInCurDeck:
 	call SwitchToWRAM2
-	ld hl, wc000
-	ld de, w2d28e
-	ld b, $00
+	ld hl, wDeckToBuild
+	ld de, wBigBackupDeckToBuild
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-	call Func_3b6c4
-	call Func_3b75a
-	call Func_3b79b
+	call OmitMissingCardsFromDeckAndBackup
+	call GetSumOfRemainingBasicEnergyCards
+	call SortRemainingBasicEnergyCardsDescending
 	call SwitchToWRAM2
-	ld hl, w2d28e
-	ld de, wc000
-	ld b, $00
+	ld hl, wBigBackupDeckToBuild
+	ld de, wDeckToBuild
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
+
+; decompress wDeckToBuild deck config
 	call SwitchToWRAM1
-	ld de, $c018
+	ld de, wDeckToBuild + DECK_NAME_SIZE
 	ld hl, wTempSavedDeckCards
 	farcall CopyDeckFromSRAM
 	ld hl, wTempSavedDeckCards
-	ld de, $c018
-	ld b, $80
+	ld de, wDeckToBuild + DECK_NAME_SIZE
+	ld b, DECK_TEMP_BUFFER_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
+
+; copy wBackup1DeckToBuild (missing cards omitted) to wScratchCardCollection
+; set b = card count
 	call SwitchToWRAM2
-	ld a, $80
+	ld a, DECK_TEMP_BUFFER_SIZE
 	ld hl, wScratchCardCollection
 	farcall ClearNBytesFromHL
-	ld b, $00
-	ld de, w2d200
-.asm_3b84d
+	ld b, 0
+	ld de, wBackup1DeckToBuild
+.loop_copy_and_count
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -6394,53 +6537,61 @@ Func_3b7fc:
 	inc b
 	ld e, c
 	ld d, a
-	call Func_3b91d
+	call CheckIfCardIDIsZero_Bank0e
 	pop de
-	jr nc, .asm_3b84d
+	jr nc, .loop_copy_and_count
 	dec b
 	dec hl
 	dec hl
+
 	push hl
 	ld a, $ff
-	ld [w2d28d], a
-	ld de, $0
-.asm_3b86a
+	ld [wIndicesRemainingBasicEnergyCardsForSubbedDeck + NUM_COLORED_TYPES], a
+
+; first iteration
+; bug: skip all *_ENERGY of ( (*_ENERGY used in the deck) + 1)
+	ld de, 0
+.loop_energy
 	push hl
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_3b882
-	call Func_3b8c0
+	jr z, .second_iteration
+	call .CheckEnergyInDeck
 	pop hl
-	jr c, .asm_3b87f
-	call Func_3b8da
-	jr c, .asm_3b899
-.asm_3b87f
+	jr c, .next_energy
+	call .SubInCurBasicEnergy
+	jr c, .list_energy
+.next_energy
 	inc e
-	jr .asm_3b86a
-.asm_3b882
+	jr .loop_energy
+
+; ensure completion, with no skip logic
+.second_iteration
 	pop hl
-	ld de, $0
-.asm_3b886
+	ld de, 0
+.loop_energy_2
 	push hl
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld a, [hl]
 	cp $ff
 	pop hl
-	jr z, .asm_3b899
-	call Func_3b8da
-	jr c, .asm_3b899
+	jr z, .list_energy
+	call .SubInCurBasicEnergy
+	jr c, .list_energy
 	inc e
-	jr .asm_3b886
-.asm_3b899
-	ld a, $80
-	ld hl, w2d38e
+	jr .loop_energy_2
+
+; list all energy subs at wBackup2DeckToBuild to display it later
+.list_energy
+	ld a, DECK_TEMP_BUFFER_SIZE
+	ld hl, wBackup2DeckToBuild
 	farcall ClearNBytesFromHL
 	pop hl
-	ld bc, w2d38e
-.asm_3b8a6
+	ld bc, wBackup2DeckToBuild
+.loop_list
 	ld a, [hli]
 	ld [bc], a
 	inc bc
@@ -6449,113 +6600,126 @@ Func_3b7fc:
 	ld [bc], a
 	inc bc
 	ld d, a
-	call Func_3b91d
-	jr nc, .asm_3b8a6
-	ld hl, $c018
+	call CheckIfCardIDIsZero_Bank0e
+	jr nc, .loop_list
+
+; save result
+	ld hl, wDeckToBuild + DECK_NAME_SIZE
 	ld de, wScratchCardCollection
 	bank1call SaveDeckCards
 	call SwitchToWRAM1
 	ret
 
-Func_3b8c0:
+; a = basic energy index [0, 5]
+; bug: set carry if wDeckToBuild contains a card of id = a
+; *_ENERGY card id is [1, 6], which is a mismatch
+.CheckEnergyInDeck:
 	push de
-	ld hl, $c018
-.asm_3b8c4
+	ld hl, wDeckToBuild + DECK_NAME_SIZE
+.loop_deck_cards
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-	call Func_3b91d
+	call CheckIfCardIDIsZero_Bank0e
 	ccf
-	jr nc, .asm_3b8d8
+	jr nc, .checked_deck_cards
 	cp e
-	jr nz, .asm_3b8c4
+	jr nz, .loop_deck_cards
 	ld e, a
 	ld a, d
 	or a
 	ld a, e
-	jr nz, .asm_3b8c4
+	jr nz, .loop_deck_cards
 	scf
-.asm_3b8d8
+.checked_deck_cards
 	pop de
 	ret
 
-Func_3b8da:
+; append current basic energy (e = offset)
+; to the end of card list (wScratchCardCollection)
+; if the deck is completed, set carry
+; and overwrite the index in wIndicesRemainingBasicEnergyCardsForSubbedDeck
+; with the final remaining count (!?)
+.SubInCurBasicEnergy:
 	push hl
-	ld hl, w2d280
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld a, [hl]
-	and $7f
-	jr z, .asm_3b90d
+	and CARD_COUNT_MASK
+	jr z, .exit_append
 	ld c, a
 	pop hl
 	push de
 	push hl
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld e, [hl]
-	inc e
+	inc e ; convert index to *_ENERGY card id
 	ld d, $00
 	pop hl
-.asm_3b8f1
+.loop_append
 	ld [hl], e
 	inc hl
 	ld [hl], d
 	inc hl
 	inc b
 	dec c
-	jr z, .asm_3b900
-	ld a, $3c
+	jr z, .depleted
+	ld a, DECK_SIZE
 	cp b
-	jr z, .asm_3b910
-	jr .asm_3b8f1
-.asm_3b900
-	ld a, $3c
+	jr z, .done_append
+	jr .loop_append
+
+.depleted
+	ld a, DECK_SIZE
 	cp b
-	jr z, .asm_3b910
+	jr z, .done_append
 	pop de
 	push hl
-	ld hl, w2d280
+	ld hl, wNumRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	xor a
 	ld [hl], a
-.asm_3b90d
+.exit_append
 	pop hl
 	or a
 	ret
-.asm_3b910
+
+.done_append
 	xor a
 	ld [hli], a
 	ld [hl], a
 	pop de
 	push hl
-	ld hl, w2d287
+	ld hl, wIndicesRemainingBasicEnergyCardsForSubbedDeck
 	add hl, de
 	ld [hl], c
 	pop hl
 	scf
 	ret
 
-Func_3b91d:
+; return carry if de (card id) = 0
+CheckIfCardIDIsZero_Bank0e:
 	push af
 	xor a
 	cp d
-	jr nz, .asm_3b928
+	jr nz, .false
 	cp e
-	jr nz, .asm_3b928
+	jr nz, .false
 	pop af
 	scf
 	ret
-.asm_3b928
+.false
 	pop af
 	or a
 	ret
 
-Func_3b92b:
+ShowMissingCardList:
 	ld a, [wSelectedDeckMachineEntry]
 	ld [wCurDeck], a
 	call GetSelectedSavedDeckPtr
-	ld de, $18
+	ld de, DECK_NAME_SIZE
 	add hl, de
 	ld d, h
 	ld e, l
@@ -6563,10 +6727,13 @@ Func_3b92b:
 	farcall CopyDeckFromSRAM
 	farcall SortCurDeckCardsByID
 	farcall CreateCurDeckUniqueCardList
+
+; set wTempCardCollection = all owned cards
 	ld a, $ff
 	farcall CreateCardCollectionListWithDeckCards
-	ld hl, $0
-.asm_3b952
+
+	ld hl, 0
+.loop_deck_configuration
 	push hl
 	ld l, h
 	ld h, $00
@@ -6578,19 +6745,21 @@ Func_3b92b:
 	pop hl
 	inc h
 	inc h
-	call Func_3b91d
-	jr c, .asm_3b988
+	call CheckIfCardIDIsZero_Bank0e
+	jr c, .got_list
 	push bc
 	push de
 	push hl
 	ld hl, wCurDeckCards
-	call Func_3b9a6
+	call .GetCardCountMissing
 	pop hl
 	pop de
 	pop bc
-	jr nc, .asm_3b952
+	jr nc, .loop_deck_configuration
+
+; list at wTempCardList cards missing
 	ld c, a
-.asm_3b974
+.loop_append
 	push hl
 	push de
 	ld h, $00
@@ -6604,73 +6773,84 @@ Func_3b92b:
 	inc l
 	inc l
 	dec c
-	jr nz, .asm_3b974
-	jr .asm_3b952
-.asm_3b988
+	jr nz, .loop_append
+	jr .loop_deck_configuration
+
+.got_list
+; append null terminator
 	ld h, $00
 	ld de, wTempCardList
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
+; display list
 	ldtx bc, LackTheseCardsToBuildThisDeckText
-	ld hl, wd38a
+	ld hl, wCardConfirmationText
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hl], a
 	call GetSelectedSavedDeckPtr
 	ld de, wTempCardList
-	farcall Func_b59f
+	farcall HandleDeckStatusCardList_InSRAM
 	ret
 
-Func_3b9a6:
-	call Func_3b9ba
-	ld hl, wc000
+; hl = deck cards (wCurDeckCards)
+; de = card id
+; if (required count) > (owned count), return a = (shortage count) with carry
+; otherwise clear carry
+.GetCardCountMissing:
+	call GetCardCountFromDeck
+	ld hl, wTempCardCollection ; all owned cards
 	add hl, de
 	ld a, [hl]
-	and $7f
+	and CARD_COUNT_MASK
 	cp b
-	jr c, .asm_3b9b5
+	jr c, .not_enough
+; enough
 	or a
 	ret
-.asm_3b9b5
+.not_enough
 	ld e, a
 	ld a, b
 	sub e
 	scf
 	ret
 
-Func_3b9ba:
+; hl = deck cards (wCurDeckCards)
+; de = card id
+; return b = count of the card in hl
+GetCardCountFromDeck:
 	push de
-	ld b, $00
-.asm_3b9bd
+	ld b, 0
+.loop_list
 	push de
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
 	inc hl
-	call Func_3b91d
+	call CheckIfCardIDIsZero_Bank0e
 	ld a, e
 	ld c, d
 	pop de
-	jr c, .asm_3b9d4
+	jr c, .done
 	cp e
-	jr nz, .asm_3b9bd
+	jr nz, .loop_list
 	ld a, c
 	cp d
-	jr nz, .asm_3b9bd
+	jr nz, .loop_list
 	inc b
-	jr .asm_3b9bd
-.asm_3b9d4
+	jr .loop_list
+.done
 	pop de
 	ret
 
-Func_3b9d6:
+ShowUsedCardListFromBuiltDecks:
 	ld a, [wSelectedDeckMachineEntry]
 	ld [wCurDeck], a
 	call GetSelectedSavedDeckPtr
-	ld de, $18
+	ld de, DECK_NAME_SIZE
 	add hl, de
 	ld d, h
 	ld e, l
@@ -6678,22 +6858,27 @@ Func_3b9d6:
 	farcall CopyDeckFromSRAM
 	farcall SortCurDeckCardsByID
 	farcall CreateCurDeckUniqueCardList
+
+; set:
+;   wTempCardCollection    = all cards used in built decks
+;   wScratchCardCollection = all owned cards
 	xor a
 	farcall CreateCardCollectionListWithDeckCards
 	call SwitchToWRAM2
-	ld hl, wc000
+	ld hl, wTempCardCollection
 	ld de, wScratchCardCollection
-	ld b, $00
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
-	ld hl, wc000 + $100
+	ld hl, wTempCardCollection + $100
 	ld de, wScratchCardCollection + $100
-	ld b, $00
+	ld b, 0 ; aka $100 bytes
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
-	ld a, $80
+	ld a, CARD_COUNT_FROM_BUILT_DECKS
 	farcall CreateCardCollectionListWithDeckCards
-	ld hl, $0
-.asm_3ba1e
+
+	ld hl, 0
+.loop_deck_configuration
 	push hl
 	ld l, h
 	ld h, $00
@@ -6705,19 +6890,21 @@ Func_3b9d6:
 	pop hl
 	inc h
 	inc h
-	call Func_3b91d
-	jr c, .asm_3ba54
+	call CheckIfCardIDIsZero_Bank0e
+	jr c, .got_list
 	push bc
 	push de
 	push hl
 	ld hl, wCurDeckCards
-	call Func_3ba7d
+	call .GetCardCountNeededToTakeFromBuiltDecks
 	pop hl
 	pop de
 	pop bc
-	jr nc, .asm_3ba1e
+	jr nc, .loop_deck_configuration
+
+; list at wTempCardList cards needed from built decks
 	ld c, a
-.asm_3ba40
+.loop_append
 	push hl
 	push de
 	ld h, $00
@@ -6731,55 +6918,65 @@ Func_3b9d6:
 	inc l
 	inc l
 	dec c
-	jr nz, .asm_3ba40
-	jr .asm_3ba1e
-.asm_3ba54
+	jr nz, .loop_append
+	jr .loop_deck_configuration
+
+.got_list
+; append null terminator
 	ld h, $00
 	ld de, wTempCardList
 	add hl, de
 	xor a
 	ld [hli], a
 	ld [hl], a
-	ld a, [wd49e]
+; set up text
+	ld a, [wNumCardsNeededToBuildSelectedDeckMissingInCardCollection]
 	or a
-	jr nz, .asm_3ba68
+	jr nz, .also_not_enough_in_card_collection
 	ldtx bc, UsingTheseCardsInOtherDecksText
-	jr .asm_3ba6b
-.asm_3ba68
+	jr .display_list
+.also_not_enough_in_card_collection
 	ldtx bc, UsingTheseCardsTooInOtherDecksText
-.asm_3ba6b
-	ld hl, wd38a
+.display_list
+	ld hl, wCardConfirmationText
 	ld a, c
 	ld [hli], a
 	ld a, b
 	ld [hl], a
 	call GetSelectedSavedDeckPtr
 	ld de, wTempCardList
-	farcall Func_b59f
+	farcall HandleDeckStatusCardList_InSRAM
 	ret
 
-Func_3ba7d:
-	call Func_3b9ba
-	call PrintDeckMachineEntry.GetCardCountInScratchCardCollection
+; hl = deck cards (wCurDeckCards)
+; de = card id
+; if that card isn't enough and is used in built decks,
+; return a = min( (card count used in built decks), (shortage count) ) with carry
+; otherwise clear carry
+.GetCardCountNeededToTakeFromBuiltDecks:
+	call GetCardCountFromDeck
+	call GetCardCountInScratchCardCollection
 	ld c, a
 	ld a, b
 	sub c
-	jr z, .asm_3ba9a
-	jr c, .asm_3ba9a
+; a = (shortage count) = (card count needed) - (owned count)
+	jr z, .no_cards_to_take
+	jr c, .no_cards_to_take
+; not enough, check built decks
 	ld b, a
-	ld hl, wc000
+	ld hl, wTempCardCollection ; all cards used in built decks
 	add hl, de
 	ld a, [hl]
-	and $7f
-	jr z, .asm_3ba9a
+	and CARD_COUNT_MASK
+	jr z, .no_cards_to_take
 	cp b
-	jr c, .asm_3ba98
+	jr c, .got_count_to_take
 	ld a, b
-.asm_3ba98
+.got_count_to_take
 	scf
 	ret
-.asm_3ba9a
-	or a
+.no_cards_to_take
+	or a ; clear carry
 	ret
 
 _PrinterMenu_DeckConfiguration:
@@ -6832,16 +7029,17 @@ _PrinterMenu_DeckConfiguration:
 	ld [wCurScrollMenuItem], a
 	jp .start_selection
 
-Func_3bb09:
-	ld a, [wd548]
+_HandleAutoDeckSelectionMenu:
+	ld a, [wAutoDeckMachineIndex]
 	or a
-	jr nz, .asm_3bb14
-	ld hl, $7c6d
-	jr .asm_3bb17
-.asm_3bb14
-	ld hl, $7c81
-.asm_3bb17
-	ld a, [wd4b3]
+	jr nz, .machine_2
+; machine 1
+	ld hl, .machine_1_category_titles
+	jr .launch
+.machine_2
+	ld hl, .machine_2_category_titles
+.launch
+	ld a, [wSelectedAutoDeckMachineCategory]
 	sla a
 	ld c, a
 	ld b, $00
@@ -6854,31 +7052,35 @@ Func_3bb09:
 	ld [de], a
 	xor a
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	xor a
-.asm_3bb30
-	ld hl, $5eb5
+
+.please_select_deck
+	ld hl, AutoDeckMachineDeckSelectionParams
 	farcall InitializeScrollMenuParameters
 	ldtx hl, PleaseSelectDeckText
 	call DrawWideTextBox_PrintText
 	ld a, [wNumDeckMachineEntries]
 	ld [wNumMenuItems], a
-	ld a, $01
+	ld a, TRUE
 	ld [wUnableToScrollDown], a
 	xor a
 	ld [wd119], a
-	call Func_3b069
-.asm_3bb4f
+	call UpdateAutoDeckSelectionMenuScroll
+
+.wait_input
 	call DoFrame
 	call HandleScrollMenu
-	jr c, .asm_3bba2
+	jr c, .selected_deck
+
+; start btn to show full deck list
 	ldh a, [hDPadHeld]
 	and PAD_START
-	jr z, .asm_3bb4f
+	jr z, .wait_input
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
 	ld b, a
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	ld [wTempScrollMenuItem], a
 	add b
 	ld c, a
@@ -6886,13 +7088,15 @@ Func_3bb09:
 	or $80
 	ld [wCurDeck], a
 	ld a, c
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
+; validity check just in case
 	push hl
 	farcall CheckIfDeckHasCards
 	pop hl
-	jr c, .asm_3bb4f
+	jr c, .wait_input
+; show full deck list
 	push hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
 	ld d, h
 	ld e, l
@@ -6902,19 +7106,21 @@ Func_3bb09:
 	farcall OpenDeckConfirmationMenu
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
-	ld [wTempCardTypeFilter], a
-	jp .asm_3bb30
-.asm_3bba2
+	ld [wCurScrollMenuItem], a
+	jp .please_select_deck
+
+.selected_deck
 	call HandleScrollMenu.draw_visible_cursor
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	ld [wTempScrollMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
-	jp z, .asm_3bc0e
+	cp MENU_CANCEL
+	jp z, .exit
+
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
 	add b
@@ -6923,41 +7129,48 @@ Func_3bb09:
 	xor a
 	ld [wd0cd], a
 	call DrawWideTextBox
-	ld hl, $7c60
+	ld hl, .deck_options
 	call PlaceTextItems
-.asm_3bbd2
+.wait_submenu_input
 	call DoFrame
-	farcall Func_87d3
-	jp nc, .asm_3bbd2
-	cp $ff
-	jr nz, .asm_3bbe6
+	farcall HandleCheckMenuInput_YourOrOppPlayArea
+	jp nc, .wait_submenu_input
+	cp MENU_CANCEL
+	jr nz, .selected_submenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-.asm_3bbe6
+	jp .please_select_deck
+
+.selected_submenu
 	ld a, [wCheckMenuCursorYPosition]
 	sla a
-	ld hl, wCurSongBankBackup
+	ld hl, wCheckMenuCursorXPosition
 	add [hl]
 	or a
-	jr nz, .asm_3bc0a
-	call Func_3b4eb
+	jr nz, .next_submenu
+
+; AUTODECKMACHINEMENU_BUILD
+	call TryBuildDeckMachineDeck
 	ld a, [wTempScrollMenuItem]
-	jp nc, .asm_3bb30
+	jp nc, .please_select_deck
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-.asm_3bc0a
-	cp $01
-	jr nz, .asm_3bc0f
-.asm_3bc0e
+	jp .please_select_deck
+
+.next_submenu
+	cp AUTODECKMACHINEMENU_CANCEL
+	jr nz, .read_instructions
+
+.exit
 	ret
-.asm_3bc0f
+
+; AUTODECKMACHINEMENU_READ
+.read_instructions
 	ld a, [wScrollMenuScrollOffset]
 	ld [wTempScrollMenuScrollOffset], a
 	ld b, a
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	ld [wTempScrollMenuItem], a
 	add b
 	ld c, a
@@ -6965,39 +7178,70 @@ Func_3bb09:
 	push af
 	sla c
 	ld b, $00
-	ld hl, wd4b4
+	ld hl, wAutoDeckMachineTexts
 	add hl, bc
-	ld bc, wd38a
+; set description text
+	ld bc, wCardConfirmationText
 	ld a, [hli]
 	ld [bc], a
 	inc bc
 	ld a, [hl]
 	ld [bc], a
 	pop af
-	call Func_3afb8
+	call GetAndLoadSelectedMachineDeckPtr
+; validity check just in case
 	push hl
 	farcall CheckIfDeckHasCards
 	pop hl
-	jp c, .asm_3bb4f
+	jp c, .wait_input
+; show instructions (card list + description)
 	ld a, MENU_CONFIRM
 	farcall PlaySFXConfirmOrCancel
 	push hl
-	ld de, $18
+	ld de, DECK_NAME_SIZE
 	add hl, de
 	ld d, h
 	ld e, l
 	pop hl
-	farcall Func_b57c
+	farcall HandleDeckStatusCardList
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	call Func_3bc95
+	call .InitAutoDeckMenu
 	ld a, [wTempScrollMenuItem]
-	jp .asm_3bb30
-; 0x3bc60
+	jp .please_select_deck
 
-SECTION "Bank e@7c95", ROMX[$7c95], BANK[$e]
+.deck_options
+	textitem  2, 14, BuildDeckText
+	textitem 12, 14, CancelDeckText
+	textitem  2, 16, DeckMachineReadInstructionsText
+	textitems_end
 
-Func_3bc95:
+; category titles for header, so no padding
+.machine_1_category_titles
+	tx AutoDeckMachine1BasicDecksText
+	tx AutoDeckMachine1GivenDecksText
+	tx AutoDeckMachine1FightingDecksText
+	tx AutoDeckMachine1GrassDecksText
+	tx AutoDeckMachine1WaterDecksText
+	tx AutoDeckMachine1FireDecksText
+	tx AutoDeckMachine1LightningDecksText
+	tx AutoDeckMachine1PsychicDecksText
+	tx AutoDeckMachine1SpecialDecksText
+	tx AutoDeckMachine1LegendaryDecksText
+
+.machine_2_category_titles
+	tx AutoDeckMachine2DarkGrassDecksText
+	tx AutoDeckMachine2DarkLightningDecksText
+	tx AutoDeckMachine2DarkWaterDecksText
+	tx AutoDeckMachine2DarkFireDecksText
+	tx AutoDeckMachine2DarkFightingDecksText
+	tx AutoDeckMachine2DarkPsychicDecksText
+	tx AutoDeckMachine2ColorlessDecksText
+	tx AutoDeckMachine2DarkSpecialDecksText
+	tx AutoDeckMachine2RareCardDecksText
+	tx AutoDeckMachine2MysteriousCardDecksText
+
+.InitAutoDeckMenu:
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
@@ -7018,67 +7262,78 @@ Func_3bc95:
 	ld l, a
 	lb de, 1, 0
 	call Func_2c4b
-	farcall Func_2bb32
+	farcall ReadAutoDeckConfiguration
 	call CreateAutoDeckPointerList
 	call PrintVisibleAutoDeckMachineEntries
 	call EnableLCD
 	ret
 
-Func_3bcd6:
+; to build wSelectedDeckMachineEntry,
+; try out all combinations of dismantling decks
+; if none of the combinations work, return carry set
+; otherwise, return a = DECK_* flags to be dismantled
+; and load it to wDecksToBeDismantled
+CheckWhichDecksToDismantleToBuildSavedDeck:
 	xor a
-	ld [wd49a], a
-	ld a, $01
-.asm_3bcdc
-	call Func_3bd28
+	ld [wDecksToBeDismantled], a
+
+; single deck
+	ld a, DECK_1
+.loop_single_built_decks
+	call .CheckIfCanBuild
 	ret nc
-	sla a
-	cp $10
-	jr nz, .asm_3bcdc
-	ld a, $03
-	call Func_3bd28
+	sla a ; next deck
+	cp 1 << NUM_DECKS
+	jr nz, .loop_single_built_decks
+
+; two-deck combinations
+	ld a, DECK_1 | DECK_2
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $05
-	call Func_3bd28
+	ld a, DECK_1 | DECK_3
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $09
-	call Func_3bd28
+	ld a, DECK_1 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $06
-	call Func_3bd28
+	ld a, DECK_2 | DECK_3
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $0a
-	call Func_3bd28
+	ld a, DECK_2 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $0c
-	call Func_3bd28
+	ld a, DECK_3 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $07
-	call Func_3bd28
+; three-deck combinations
+	ld a, DECK_1 | DECK_2 | DECK_3
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $0b
-	call Func_3bd28
+	ld a, DECK_1 | DECK_2 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $0d
-	call Func_3bd28
+	ld a, DECK_1 | DECK_3 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $0e
-	call Func_3bd28
+	ld a, DECK_2 | DECK_3 | DECK_4
+	call .CheckIfCanBuild
 	ret nc
-	ld a, $ff
-	call Func_3bd28
+; all
+	ld a, ALL_DECKS
+	call .CheckIfCanBuild
 	ret
 
-Func_3bd28:
+.CheckIfCanBuild:
 	push af
 	ld hl, wSelectedDeckMachineEntry
 	ld b, [hl]
 	call CheckIfCanBuildSavedDeck
-	jr c, .asm_3bd38
+	jr c, .cannot_build
 	pop af
-	ld [wd49a], a
+	ld [wDecksToBeDismantled], a
 	or a
 	ret
-.asm_3bd38
+.cannot_build
 	pop af
 	scf
 	ret
@@ -7207,7 +7462,7 @@ ReceiveDeckConfigurationMenu:
 	ldtx hl, DeleteSavedDeckPromptText
 	call YesOrNoMenuWithText
 	jr nc, .save
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	jr .start_selection
 
 .save
@@ -7227,7 +7482,7 @@ ReceiveDeckConfigurationMenu:
 	call DisableSRAM
 	call SaveGame
 	call ClearScreenAndDrawDeckMachineScreen
-	ld a, [wTempCardTypeFilter]
+	ld a, [wCurScrollMenuItem]
 	ld hl, DeckMachineSelectionParams
 	farcall InitializeScrollMenuParameters
 	call DrawListScrollArrows
@@ -7253,14 +7508,14 @@ ReceiveDeckConfigurationMenu:
 
 SaveDeckDataToWRAM2:
 	push de
-	ld de, wc000
+	ld de, wDeckToBuild
 	call CopyListFromHLToDE_Bank0e
 	pop de
-	ld hl, wc000 + DECK_NAME_SIZE
+	ld hl, wDeckToBuild + DECK_NAME_SIZE
 	bank1call SaveDeckCards
 	call SwitchToWRAM2
-	ld hl, wc000
-	ld de, w2d28e
+	ld hl, wDeckToBuild
+	ld de, wBigBackupDeckToBuild
 	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call CopyBBytesFromHLToDE_Bank0e
 	call SwitchToWRAM1
@@ -7307,7 +7562,7 @@ OpenDeckSaveMachineFromDeckBuilding:
 	call GetSelectedSavedDeckPtr
 	ld d, h
 	ld e, l
-	ld hl, w2d28e
+	ld hl, wBigBackupDeckToBuild
 	ld b, DECK_COMPRESSED_STRUCT_SIZE
 	call EnableSRAM
 	call SwitchToWRAM2
@@ -7337,25 +7592,27 @@ OpenDeckSaveMachineFromDeckBuilding:
 	pop af
 	ld [wCurDeck], a
 	ret
-; 0x3bf55
 
-SECTION "Bank e@7f5e", ROMX[$7f5e], BANK[$e]
+Menu_3bf55:
+	textitem  2, 14, SaveDeckToMachineText
+	textitem 12, 14, CancelDeckText
+	textitems_end
 
-Func_3bf5e:
-	call Func_3bf95
+UpdateDeckMachineScrollArrowsAndEntries:
+	call .DrawListScrollArrows
 	ld a, [wNumDeckMachineEntries]
-	cp $05
-	jr c, .asm_3bf6a
-	ld a, $05
-.asm_3bf6a
+	cp 5
+	jr c, .got_count
+	ld a, 5
+.got_count
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]
-	ld de, $602
-.asm_3bf71
+	lb de, 6, 2
+.loop_print
 	push af
 	push bc
 	push de
-	call Func_3bf81
+	call .PrintDeckEntry
 	pop de
 	pop bc
 	pop af
@@ -7364,16 +7621,16 @@ Func_3bf5e:
 	inc a
 	inc e
 	inc e
-	jr .asm_3bf71
+	jr .loop_print
 
-Func_3bf81:
+.PrintDeckEntry:
 	push af
 	call InitTextPrinting
 	pop af
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, wd4b4
+	ld hl, wAutoDeckMachineTexts
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -7381,34 +7638,34 @@ Func_3bf81:
 	call ProcessTextFromID
 	ret
 
-Func_3bf95:
+.DrawListScrollArrows:
 	ld a, [wScrollMenuScrollOffset]
 	or a
-	jr z, .asm_3bf9f
-	ld a, $0d
-	jr .asm_3bfa1
-.asm_3bf9f
-	ld a, $1c
-.asm_3bfa1
-	ld bc, $1200
+	jr z, .no_up_cursor
+	ld a, SYM_CURSOR_U
+	jr .draw_top
+.no_up_cursor
+	ld a, SYM_BOX_TOP
+.draw_top
+	lb bc, 18, 0
 	call WriteByteToBGMap0
+
 	ld a, [wScrollMenuScrollOffset]
-	add $05
+	add 5
 	ld b, a
 	inc b
 	ld a, [wNumDeckMachineEntries]
 	cp b
-	jr c, .asm_3bfbc
-	xor a
+	jr c, .no_down_cursor
+	xor a ; FALSE
 	ld [wUnableToScrollDown], a
-	ld a, $2f
-	jr .asm_3bfc3
-.asm_3bfbc
-	ld a, $01
+	ld a, SYM_CURSOR_D
+	jr .draw_bottom
+.no_down_cursor
+	ld a, TRUE
 	ld [wUnableToScrollDown], a
-	ld a, $1c
-.asm_3bfc3
-	ld bc, $120c
+	ld a, SYM_BOX_TOP
+.draw_bottom
+	lb bc, 18, 12
 	call WriteByteToBGMap0
 	ret
-; 0x3bfca

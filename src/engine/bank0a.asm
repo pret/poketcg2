@@ -3316,31 +3316,34 @@ AIDeckSpecificBenchScore:
 INCLUDE "src/data/auto_deck_list.asm"
 INCLUDE "src/data/auto_deck_machine.asm"
 
-Func_2bb32:
+ReadAutoDeckConfiguration:
 	call EnableSRAM
-	ld a, [wd4b3]
+	ld a, [wSelectedAutoDeckMachineCategory]
 	ld l, a
-	ld h, 24
+	ld h, AUTO_DECK_ENTRY_SIZE * NUM_AUTO_DECK_MACHINE_SLOTS
 	call HtimesL
-	ld a, [wd548]
+	ld a, [wAutoDeckMachineIndex]
 	or a
 	jr nz, .machine_2
 ; machine 1
 	ld bc, AutoDeckMachine1Entries
-	jr .got_addr
+	jr .set_entry_offset
 .machine_2
 	ld bc, AutoDeckMachine2Entries
-.got_addr
+.set_entry_offset
 	add hl, bc
-	ld bc, $0
-.loop
-	call Func_2bb7f
-	call Func_2bbbb
+
+; hl = ptr to entries under selected category
+	lb bc, 0, 0
+.loop_decks
+	call .GetPointerToWRAMAutoDeck
+	call ReadCurAutoDeckConfiguration
 	inc hl
 	inc hl
-	call Func_2bbf9
+	call ReadCurAutoDeckName
+; set de = wAutoDeckMachineTexts[c], but verbosely
 	push hl
-	ld de, wd4b4
+	ld de, wAutoDeckMachineTexts
 	ld h, c
 	ld l, 2
 	call HtimesL
@@ -3348,23 +3351,27 @@ Func_2bb32:
 	ld d, h
 	ld e, l
 	pop hl
+; load text
 	ld a, [hli]
 	ld [de], a
 	inc de
 	ld a, [hli]
 	ld [de], a
-	call Func_2bb8e
+; next deck
+	call .CheckPerDeckUnlockEvents
 	inc b
 	ld a, b
-	cp 4
-	jr nz, .loop
+	cp NUM_AUTO_DECK_MACHINE_SLOTS
+	jr nz, .loop_decks
 
 	ld a, c
 	ld [wNumDeckMachineEntries], a
 	call DisableSRAM
 	ret
 
-Func_2bb7f:
+; c = deck position
+; return de = deck
+.GetPointerToWRAMAutoDeck:
 	push hl
 	ld l, c
 	ld h, DECK_COMPRESSED_STRUCT_SIZE
@@ -3376,42 +3383,45 @@ Func_2bb7f:
 	pop hl
 	ret
 
-Func_2bb8e:
-	ld a, [wd4b3]
-	cp $01
-	jr z, .asm_2bb9b
-	cp $08
-	jr z, .asm_2bb9b
+; checks for machine 1
+; harmless bug:
+; machine 2 still checks them but doesn't get affected
+.CheckPerDeckUnlockEvents:
+	ld a, [wSelectedAutoDeckMachineCategory]
+	cp AUTO_DECK_GIVEN
+	jr z, .per_deck_check
+	cp AUTO_DECK_SPECIAL
+	jr z, .per_deck_check
 	inc c
 	ret
-.asm_2bb9b
+.per_deck_check
 	push de
 	push hl
 	push bc
-	ld a, [wd4b3]
-	farcall CheckTCGIslandMilestoneEvents
+	ld a, [wSelectedAutoDeckMachineCategory]
+	farcall CheckCurAutoDeckMachine1CategoryUnlockEvents
 	inc b
-	ld e, $01
-.asm_2bba8
+	ld e, 1
+.loop_bitmask
 	dec b
-	jr z, .asm_2bbaf
+	jr z, .got_bitmask
 	sla e
-	jr .asm_2bba8
-.asm_2bbaf
+	jr .loop_bitmask
+.got_bitmask
 	and e
 	or a
-	jr z, .asm_2bbb7
+	jr z, .skip_deck
 	pop bc
 	inc c
-	jr .asm_2bbb8
-.asm_2bbb7
+	jr .done_per_deck_check
+.skip_deck
 	pop bc
-.asm_2bbb8
+.done_per_deck_check
 	pop hl
 	pop de
 	ret
 
-Func_2bbbb:
+ReadCurAutoDeckConfiguration:
 	push hl
 	push bc
 	push de
@@ -3419,37 +3429,40 @@ Func_2bbbb:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld hl, wc000
+	ld hl, wDeckToBuild
 	xor a
-	ld b, $82
-.asm_2bbc8
+	ld b, AUTO_DECK_LIST_BUFFER_SIZE
+.loop_init
 	ld [hli], a
 	dec b
-	jr nz, .asm_2bbc8
-	ld hl, wc000
-.asm_2bbcf
-	ld a, [de]
+	jr nz, .loop_init
+
+; de = Machine*DeckList (card count, card id)
+	ld hl, wDeckToBuild
+.loop_create_deck
+	ld a, [de] ; card count
 	inc de
 	ld b, a
 	or a
-	jr z, .asm_2bbe2
-	ld a, [de]
+	jr z, .save_deck
+	ld a, [de] ; low(card id)
 	inc de
 	ld c, a
-	ld a, [de]
+	ld a, [de] ; high(card id)
 	inc de
-.asm_2bbda
+.loop_card_count
 	ld [hl], c
 	inc hl
 	ld [hli], a
 	dec b
-	jr nz, .asm_2bbda
-	jr .asm_2bbcf
-.asm_2bbe2
+	jr nz, .loop_card_count
+	jr .loop_create_deck
+
+.save_deck
 	pop hl
-	ld bc, $18
+	ld bc, DECK_NAME_SIZE
 	add hl, bc
-	ld de, wc000
+	ld de, wDeckToBuild
 	farcall SwitchToWRAM2
 	bank1call SaveDeckCards
 	farcall SwitchToWRAM1
@@ -3458,7 +3471,7 @@ Func_2bbbb:
 	pop hl
 	ret
 
-Func_2bbf9:
+ReadCurAutoDeckName:
 	push hl
 	push bc
 	push de
@@ -3468,26 +3481,29 @@ Func_2bbf9:
 	ld de, wDefaultText
 	call CopyText
 	pop hl
+
 	farcall SwitchToWRAM2
 	ld de, wDefaultText
-	ld b, $0f
-	ld c, $0e
-.asm_2bc11
+	ld b, TX_KATAKANA
+	ld c, TX_HIRAGANA
+.loop_copy_name
 	ld a, [de]
 	inc de
 	or a
-	jr z, .asm_2bc45
-	cp $05
-	jr z, .asm_2bc2f
-	cp $04
-	jr z, .asm_2bc3a
+	jr z, .done_copy_name ; TX_END
+; handle charmap, due to different TX_* usage
+	cp TX_SYMBOL
+	jr z, .symbol
+	cp TX_FULLWIDTH4
+	jr z, .fw4
 	cp c
-	jr z, .asm_2bc26
+	jr z, .kana_switch
+; kana, no switch
 	ld [hl], b
 	inc hl
 	ld [hli], a
-	jr .asm_2bc11
-.asm_2bc26
+	jr .loop_copy_name
+.kana_switch
 	ld [hli], a
 	ld a, [de]
 	inc de
@@ -3495,28 +3511,29 @@ Func_2bbf9:
 	ld a, b
 	ld b, c
 	ld c, a
-	jr .asm_2bc11
-.asm_2bc2f
+	jr .loop_copy_name
+.symbol
 	ld [hli], a
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, [de]
 	cp b
-	jr nz, .asm_2bc11
+	jr nz, .loop_copy_name
 	inc de
-	jr .asm_2bc11
-.asm_2bc3a
+	jr .loop_copy_name
+.fw4
 	ld [hli], a
 	ld a, [de]
 	inc de
 	ld [hli], a
 	ld a, [de]
 	cp b
-	jr nz, .asm_2bc11
+	jr nz, .loop_copy_name
 	inc de
-	jr .asm_2bc11
-.asm_2bc45
+	jr .loop_copy_name
+
+.done_copy_name
 	ld [hl], a
 	farcall SwitchToWRAM1
 	pop bc
@@ -3571,17 +3588,18 @@ Func_2bc4f:
 .MenuParameters:
 	menu_params 1, 2, 3, NUM_DECKS, SYM_CURSOR_R, SYM_SPACE, NULL
 
+; a = *_ISLAND
 _HandleAutoDeckMenu:
-	ld [wd548], a
+	ld [wAutoDeckMachineIndex], a
 	xor a
 	ld [wScrollMenuScrollOffset], a
-.asm_2bca6
+.start
 	ld hl, AutoDeckMachineMenuParams
 	farcall InitializeScrollMenuParameters
-	ld a, NUM_DECK_MACHINE_VISIBLE_DECKS
+	ld a, NUM_DECK_MACHINE_VISIBLE_SLOTS
 	ld [wNumMenuItems], a
 	call .InitMenu
-	ld hl, Func_3bf5e
+	ld hl, UpdateDeckMachineScrollArrowsAndEntries
 	ld d, h
 	ld a, l
 	ld hl, wScrollMenuScrollFunc
@@ -3594,27 +3612,27 @@ _HandleAutoDeckMenu:
 	farcall HandleScrollMenu
 	jr nc, .wait_input
 	ld a, [hCurMenuItem]
-	cp $ff
-	ret z ; cancel
+	cp MENU_CANCEL
+	ret z
 
 	ld a, [wScrollMenuScrollOffset]
-	ld [wd54a], a
+	ld [wAutoDeckMachineScrollOffset], a
 	ld b, a
-	ld a, [wTempCardTypeFilter]
-	ld [wd54b], a
+	ld a, [wCurScrollMenuItem]
+	ld [wAutoDeckMachineScrollMenuItem], a
 	add b
-	ld hl, wd49f
+	ld hl, wIndicesAutoDeckMachineUnlockedCategories
 	ld c, a
 	ld b, $00
 	add hl, bc
 	ld a, [hl]
 	dec a
-	ld [wd4b3], a
-	farcall Func_3bb09
-	ld a, [wd54a]
+	ld [wSelectedAutoDeckMachineCategory], a
+	farcall _HandleAutoDeckSelectionMenu
+	ld a, [wAutoDeckMachineScrollOffset]
 	ld [wScrollMenuScrollOffset], a
-	ld a, [wd54b]
-	jr .asm_2bca6
+	ld a, [wAutoDeckMachineScrollMenuItem]
+	jr .start
 
 .InitMenu:
 	xor a
@@ -3632,7 +3650,7 @@ _HandleAutoDeckMenu:
 	lb bc, 20, 13
 	call DrawRegularTextBox
 	lb de, 1, 0
-	ld a, [wd548]
+	ld a, [wAutoDeckMachineIndex]
 	or a
 	jr nz, .machine_2
 ; machine 1
@@ -3642,36 +3660,38 @@ _HandleAutoDeckMenu:
 	ldtx hl, AutoDeckMachine2Text
 .got_name
 	call Func_2c4b
-	ldtx hl, ChooseDeckTypeText
+	ldtx hl, ChooseDeckCategoryText
 	call DrawWideTextBox_PrintText
 	call Func_2bd48
-	farcall Func_3bf5e
+	farcall UpdateDeckMachineScrollArrowsAndEntries
 	call EnableLCD
 	ret
 
 Func_2bd48:
-	ld a, $08
-	ld hl, wd49f
+	ld a, NUM_AUTO_DECK_MACHINE_REGULAR_CATEGORIES
+	ld hl, wIndicesAutoDeckMachineUnlockedCategories
 	farcall ClearNBytesFromHL
-	ld a, $08
-	ld hl, wd4b4
+	ld a, 2 * 4
+	ld hl, wAutoDeckMachineTexts
 	farcall ClearNBytesFromHL
-	ld bc, $0
-.asm_2bd5d
+
+	lb bc, 0, 0
+.loop_categories
 	ld a, b
 	push bc
-	call Func_2bd7f
+	call .CheckUnlockEvents
 	pop bc
-	jr nc, .asm_2bd6b
+	jr nc, .next_category
 	push bc
-	call Func_2bd92
+	call .LoadIndexAndName
 	pop bc
 	inc c
-.asm_2bd6b
+.next_category
 	inc b
 	ld a, b
-	cp $0a
-	jr nz, .asm_2bd5d
+	cp NUM_AUTO_DECK_MACHINE_CATEGORIES
+	jr nz, .loop_categories
+
 	ld a, c
 	ld [wNumDeckMachineEntries], a
 	ld a, [wNumMenuItems]
@@ -3681,22 +3701,28 @@ Func_2bd48:
 	ld [wNumMenuItems], a
 	ret
 
-Func_2bd7f:
+.CheckUnlockEvents:
 	push af
-	ld a, [wd548]
+	ld a, [wAutoDeckMachineIndex]
 	or a
-	jr nz, .machine_2
+	jr nz, .is_unlocked_machine_2
 ; machine 1
 	pop af
-	farcall CheckTCGIslandMilestoneEvents
+	farcall CheckCurAutoDeckMachine1CategoryUnlockEvents
 	ret
-.machine_2
+.is_unlocked_machine_2
 	pop af
-	farcall CheckGRIslandMilestoneEvents
+	farcall CheckCurAutoDeckMachine2CategoryUnlockEvents
 	ret
 
-Func_2bd92:
-	ld hl, wd49f
+; b = category index
+; c = position offset
+; set:
+;   wIndicesAutoDeckMachineUnlockedCategories[c] = b + 1
+;   wAutoDeckMachineTexts[c] = text id
+.LoadIndexAndName:
+; set index
+	ld hl, wIndicesAutoDeckMachineUnlockedCategories
 	push bc
 	ld a, b
 	inc a
@@ -3704,15 +3730,16 @@ Func_2bd92:
 	add hl, bc
 	pop bc
 	ld [hl], a
-	ld a, [wd548]
+
+	ld a, [wAutoDeckMachineIndex]
 	or a
-	jr nz, .machine_2
+	jr nz, .load_from_machine_2
 ; machine 1
-	ld hl, .Machine1SectionTitles
-	jr .got_addr
-.machine_2
-	ld hl, .Machine2SectionTitles
-.got_addr
+	ld hl, .machine_1_category_titles
+	jr .set_name
+.load_from_machine_2
+	ld hl, .machine_2_category_titles
+.set_name
 	push bc
 	ld c, b
 	sla c
@@ -3721,7 +3748,7 @@ Func_2bd92:
 	pop bc
 	ld e, l
 	ld d, h
-	ld hl, wd4b4
+	ld hl, wAutoDeckMachineTexts
 	sla c
 	ld b, 0
 	add hl, bc
@@ -3732,26 +3759,27 @@ Func_2bd92:
 	ld [hl], a
 	ret
 
-.Machine1SectionTitles:
-	tx BasicDeckMachineTextPadded
-	tx GivenDeckMachineTextPadded
-	tx FightingDeckMachineText
-	tx GrassDeckMachineText
-	tx WaterDeckMachineText
-	tx FireDeckMachineText
-	tx LightningDeckMachineText
-	tx PsychicDeckMachineText
-	tx SpecialDeckMachineTextPadded
-	tx LegendaryDeckMachineTextPadded
+; category titles with padding
+.machine_1_category_titles
+	tx AutoDeckMachine1BasicDecksTextPadded
+	tx AutoDeckMachine1GivenDecksTextPadded
+	tx AutoDeckMachine1FightingDecksText
+	tx AutoDeckMachine1GrassDecksText
+	tx AutoDeckMachine1WaterDecksText
+	tx AutoDeckMachine1FireDecksText
+	tx AutoDeckMachine1LightningDecksText
+	tx AutoDeckMachine1PsychicDecksText
+	tx AutoDeckMachine1SpecialDecksTextPadded
+	tx AutoDeckMachine1LegendaryDecksTextPadded
 
-.Machine2SectionTitles:
-	tx DarkGrassDeckMachineText
-	tx DarkLightningDeckMachineText
-	tx DarkWaterDeckMachineText
-	tx DarkFireDeckMachineText
-	tx DarkFightingDeckMachineText
-	tx DarkPsychicDeckMachineText
-	tx ColorlessDeckMachineTextPadded
-	tx DarkSpecialDeckMachineText
-	tx RareCardDeckMachineText
-	tx MysteriousCardDeckMachineTextPadded
+.machine_2_category_titles
+	tx AutoDeckMachine2DarkGrassDecksText
+	tx AutoDeckMachine2DarkLightningDecksText
+	tx AutoDeckMachine2DarkWaterDecksText
+	tx AutoDeckMachine2DarkFireDecksText
+	tx AutoDeckMachine2DarkFightingDecksText
+	tx AutoDeckMachine2DarkPsychicDecksText
+	tx AutoDeckMachine2ColorlessDecksTextPadded
+	tx AutoDeckMachine2DarkSpecialDecksText
+	tx AutoDeckMachine2RareCardDecksText
+	tx AutoDeckMachine2MysteriousCardDecksTextPadded

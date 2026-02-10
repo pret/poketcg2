@@ -2319,23 +2319,29 @@ ENDR
 	pop bc
 	ret
 
-; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckTCGIslandMilestoneEvents:
+; a = machine 1 category index
+; jump to .category_table[a]
+; return a = event flag(s), with carry if nz, with no carry otherwise
+; single event check: category unlock
+; multiple          : per-deck unlock
+CheckCurAutoDeckMachine1CategoryUnlockEvents:
 	push bc
 	push de
 	push hl
 	sla a
-	ld hl, .check_pointers
+	ld hl, .category_table
 	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-.jump_set_carry:
+; unlocked from start
+.BasicDecks
 	jp .set_carry
 
-.check_four_tcgisland_coins:
+; received anti-GR decks, checked with coin flags
+.AntiGRDecks
 	ld a, EVENT_GOT_KABUTO_COIN
 	call GetEventValue
 	push af
@@ -2351,58 +2357,64 @@ CheckTCGIslandMilestoneEvents:
 	ld c, 4
 	xor a
 	ld d, a
-	; fallthrough
-.loop_bitmask_1
+.loop_bitmask_four_coins
 	sla d
 	pop af
-	jr z, .next_1
+	jr z, .next_coin
 	set 0, d
-	; fallthrough
-.next_1
+.next_coin
 	dec c
-	jr nz, .loop_bitmask_1
+	jr nz, .loop_bitmask_four_coins
 	ld a, d
 	or a
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_top_left:
+; beat GR1
+.FightingDecks
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_LEFT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_top_right:
+; beat GR2
+.GrassDecks
 	ld a, EVENT_GOT_GR_COIN_PIECE_TOP_RIGHT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_starmie_coin:
+; beat GR3 in Water Club
+.WaterDecks
 	ld a, EVENT_GOT_STARMIE_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_bottom_left:
+; beat GR3 in Fire Club
+.FireDecks
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_LEFT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_pikachu_coin:
+; beat controlled Isaac
+.LightningDecks
 	ld a, EVENT_GOT_PIKACHU_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_gr_coin_bottom_right:
+; beat GR4
+.PsychicDecks
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_final_cup_or_postgame:
+; won final cup / post-game
+; each unlocks two decks
+.SpecialDecks
 	ld a, EVENT_WON_FINAL_CUP
 	call GetEventValue
 	push af
@@ -2412,37 +2424,36 @@ CheckTCGIslandMilestoneEvents:
 	ld c, 2
 	xor a
 	ld d, a
-	; fallthrough
-.loop_bitmask_2
+.loop_bitmask_events
 	sla d
 	sla d
 	pop af
-	jr z, .next_2
+	jr z, .next_event
 	set 0, d
 	set 1, d
-	; fallthrough
-.next_2
+.next_event
 	dec c
-	jr nz, .loop_bitmask_2
+	jr nz, .loop_bitmask_events
 	ld a, d
 	or a
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_event_db:
+; won grand master cup
+.LegendaryDecks:
 	ld a, EVENT_WON_GRAND_MASTER_CUP
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.set_carry:
+.set_carry
 	pop hl
 	pop de
 	pop bc
 	scf
 	ret
 
-.clear_carry:
+.clear_carry
 	pop hl
 	pop de
 	pop bc
@@ -2450,99 +2461,111 @@ CheckTCGIslandMilestoneEvents:
 	ccf
 	ret
 
-.check_pointers:
-	dw .jump_set_carry
-	dw .check_four_tcgisland_coins
-	dw .check_gr_coin_top_left
-	dw .check_gr_coin_top_right
-	dw .check_starmie_coin
-	dw .check_gr_coin_bottom_left
-	dw .check_pikachu_coin
-	dw .check_gr_coin_bottom_right
-	dw .check_final_cup_or_postgame
-	dw .check_event_db
+.category_table
+	dw .BasicDecks     ; AUTO_DECK_BASIC
+	dw .AntiGRDecks    ; AUTO_DECK_GIVEN
+	dw .FightingDecks  ; AUTO_DECK_FIGHTING
+	dw .GrassDecks     ; AUTO_DECK_GRASS
+	dw .WaterDecks     ; AUTO_DECK_WATER
+	dw .FireDecks      ; AUTO_DECK_FIRE
+	dw .LightningDecks ; AUTO_DECK_LIGHTNING
+	dw .PsychicDecks   ; AUTO_DECK_PSYCHIC
+	dw .SpecialDecks   ; AUTO_DECK_SPECIAL
+	dw .LegendaryDecks ; AUTO_DECK_LEGENDARY
 
-; jump to .check_pointers[a], set carry if the event is set, clear carry if not
-CheckGRIslandMilestoneEvents:
+; a = machine 2 category index
+; jump to .category_table[a]
+; return a = event flag with carry if nz, with no carry otherwise
+CheckCurAutoDeckMachine2CategoryUnlockEvents:
 	push bc
 	push de
 	push hl
 	sla a
-	ld hl, .check_pointers
+	ld hl, .category_table
 	add_hl_a
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
 
-.check_golbat_coin:
+; beat Morino
+.DarkGrassDecks
 	ld a, EVENT_GOT_GOLBAT_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_magnemite_coin:
+; beat Catherine
+.DarkLightningDecks
 	ld a, EVENT_GOT_MAGNEMITE_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_psyduck_coin:
+; beat Kanoko
+.DarkWaterDecks
 	ld a, EVENT_GOT_PSYDUCK_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_magmar_coin:
+; beat Hidero
+.DarkFireDecks
 	ld a, EVENT_GOT_MAGMAR_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_machamp_coin:
+; beat Kamiya
+.DarkFightingDecks
 	ld a, EVENT_GOT_MACHAMP_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_mew_coin:
+; beat Mami
+.DarkPsychicDecks
 	ld a, EVENT_GOT_MEW_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_snorlax_coin:
+; beat all three Colorless Altar guardians
+.ColorlessDecks
 	ld a, EVENT_GOT_SNORLAX_COIN
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_rui_roadblock:
+; beat Rui
+.DarkSpecialDecks
 	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_battled_ishihara:
+; battled Ishihara
+.SuperRareDecks
 	ld a, EVENT_BATTLED_ISHIHARA
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.check_postgame:
+; post-game
+.MysteriousDecks
 	ld a, EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	call GetEventValue
 	jp nz, .set_carry
 	jp .clear_carry
 
-.set_carry:
+.set_carry
 	pop hl
 	pop de
 	pop bc
 	scf
 	ret
 
-.clear_carry:
+.clear_carry
 	pop hl
 	pop de
 	pop bc
@@ -2550,17 +2573,17 @@ CheckGRIslandMilestoneEvents:
 	ccf
 	ret
 
-.check_pointers:
-	dw .check_golbat_coin
-	dw .check_magnemite_coin
-	dw .check_psyduck_coin
-	dw .check_magmar_coin
-	dw .check_machamp_coin
-	dw .check_mew_coin
-	dw .check_snorlax_coin
-	dw .check_rui_roadblock
-	dw .check_battled_ishihara
-	dw .check_postgame
+.category_table
+	dw .DarkGrassDecks     ; AUTO_DECK_DARK_GRASS
+	dw .DarkLightningDecks ; AUTO_DECK_DARK_LIGHTNING
+	dw .DarkWaterDecks     ; AUTO_DECK_DARK_WATER
+	dw .DarkFireDecks      ; AUTO_DECK_DARK_FIRE
+	dw .DarkFightingDecks  ; AUTO_DECK_DARK_FIGHTING
+	dw .DarkPsychicDecks   ; AUTO_DECK_DARK_PSYCHIC
+	dw .ColorlessDecks     ; AUTO_DECK_COLORLESS
+	dw .DarkSpecialDecks   ; AUTO_DECK_DARK_SPECIAL
+	dw .SuperRareDecks     ; AUTO_DECK_SUPER_RARE
+	dw .MysteriousDecks    ; AUTO_DECK_MYSTERIOUS
 
 GetNumberOfDeckDiagnosisStepsUnlocked:
 	push bc

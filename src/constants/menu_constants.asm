@@ -64,6 +64,19 @@
 	const MINICOMMENU_MAILBOX           ; 1
 	const MINICOMMENU_CARD_ALBUM        ; 2
 
+; deck save machine options
+	const_def
+	const DECKSAVEMACHINEMENU_SAVE   ; 0
+	const DECKSAVEMACHINEMENU_DELETE ; 1
+	const DECKSAVEMACHINEMENU_BUILD  ; 2
+	const DECKSAVEMACHINEMENU_CANCEL ; 3
+
+; auto deck machine options
+	const_def
+	const AUTODECKMACHINEMENU_BUILD  ; 0
+	const AUTODECKMACHINEMENU_CANCEL ; 1
+	const AUTODECKMACHINEMENU_READ   ; 2
+
 ; mailbox options
 	const_def
 	const MAILBOXMENU_READ   ; 0
@@ -99,6 +112,10 @@
 	const POPUPMENU_CARD_DUNGEON_QUEEN  ; $9
 	const POPUPMENU_CARD_DUNGEON_PAWN   ; $a
 
+; for menu items, PlaySFXConfirmOrCancel, etc.
+DEF MENU_CANCEL  EQU -1
+DEF MENU_CONFIRM EQU  1 ; != -1, but uses 1 most of the time
+
 ; filter types for CardTypeFilters
 ; used to categorise the different cards
 ; i.e. in the deck building screen
@@ -113,6 +130,10 @@ DEF FILTER_TRAINER   EQUS "TYPE_TRAINER"
 DEF FILTER_ENERGY    EQU $20
 
 DEF NUM_FILTERS EQU 9
+DEF NO_FILTERS  EQU $ff
+
+DEF FILTERED_CARD_LIST_SIZE EQU 80
+DEF FILTERED_CARD_LIST_SIZE_BYTES EQU FILTERED_CARD_LIST_SIZE * 2
 
 ; for FilterCardListInHL
 DEF FILTER_ONLY_PKMN    EQU 0
@@ -121,10 +142,42 @@ DEF FILTER_ONLY_ENERGY  EQU FILTER_ENERGY  >> 4 ; 2, or any number > 1
 
 DEF NUM_DECK_CONFIRMATION_VISIBLE_CARDS EQU 7
 DEF NUM_FILTERED_LIST_VISIBLE_CARDS     EQU 6
+DEF NUM_DECK_STATUS_LIST_VISIBLE_CARDS  EQU 5
 
 DEF NUM_DECK_SAVE_MACHINE_SLOTS    EQU 50
-DEF NUM_DECK_MACHINE_VISIBLE_DECKS EQU 5
+DEF NUM_DECK_MACHINE_VISIBLE_SLOTS EQU 5  ; decks or categories
 DEF NUM_AUTO_DECK_MACHINE_SLOTS    EQU 4
+
+; auto deck machine 1
+	const_def
+	const AUTO_DECK_BASIC     ; 0
+	const AUTO_DECK_GIVEN     ; 1
+	const AUTO_DECK_FIGHTING  ; 2
+	const AUTO_DECK_GRASS     ; 3
+	const AUTO_DECK_WATER     ; 4
+	const AUTO_DECK_FIRE      ; 5
+	const AUTO_DECK_LIGHTNING ; 6
+	const AUTO_DECK_PSYCHIC   ; 7
+DEF NUM_AUTO_DECK_MACHINE_REGULAR_CATEGORIES EQU const_value ; shared with machine 2
+	const AUTO_DECK_SPECIAL   ; 8
+	const AUTO_DECK_LEGENDARY ; 9
+DEF NUM_AUTO_DECK_MACHINE_CATEGORIES EQU const_value ; shared with machine 2
+
+; auto deck machine 2
+	const_def
+	const AUTO_DECK_DARK_GRASS     ; 0
+	const AUTO_DECK_DARK_LIGHTNING ; 1
+	const AUTO_DECK_DARK_WATER     ; 2
+	const AUTO_DECK_DARK_FIRE      ; 3
+	const AUTO_DECK_DARK_FIGHTING  ; 4
+	const AUTO_DECK_DARK_PSYCHIC   ; 5
+	const AUTO_DECK_COLORLESS      ; 6
+	const AUTO_DECK_DARK_SPECIAL   ; 7
+	const AUTO_DECK_SUPER_RARE     ; 8
+	const AUTO_DECK_MYSTERIOUS     ; 9
+
+; auto_deck args
+DEF AUTO_DECK_ENTRY_SIZE EQU 6
 
 ; deck flags
 	const_def
