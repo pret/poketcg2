@@ -3718,7 +3718,7 @@ TurnOnCurChipsHUD:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	lb de, 6, 2
 	call AdjustDECoordByhSC
-	ldtx hl, PlayerDiaryCardsUnitText
+	ldtx hl, CardsAndChipsUnitText
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	call PrintNumberOfChips
 

@@ -3101,16 +3101,19 @@ wTotalNumCardsCollected:: ; db15
 wPopupMenuCursorPosition:: ; db17
 	ds $1
 
-wdb18:: ; db18
+wGameCenterPrizeExchangeMenuCursorPosition:: ; db18
 	ds $1
 
-wdb19:: ; db19
+wSelectedGameCenterPrizeExchangeItem:: ; db19
 	ds $1
 
-wdb1a:: ; db1a
-	ds $5
+; prize index array
+wIndicesGameCenterPrizeExchangeItems:: ; db1a
+	ds NUM_GAME_CENTER_PRIZE_LIST_ITEMS
 
-wdb1f:: ; db1f
+; Jigglypuff Coin is a one-off prize
+; TRUE if it's obtained and replaced by 3 Present Packs
+wGameCenterPrizeExchangeAltFlag:: ; db1f
 	ds $1
 
 wdb20:: ; db20
@@ -3367,6 +3370,9 @@ wMinicomMenuCursorPosition:: ; dd07
 wCurBoosterPack:: ; dd08
 	ds $1
 
+; if FALSE, first booster being given
+; if TRUE, additional booster being given
+; used to control the text that is displayed when booster is opened
 wAnotherBoosterPack:: ; dd09
 	ds $1
 

@@ -1491,7 +1491,7 @@ TextOffsets::
 	textpointer DebugCurrentObjectCharacterNumberLabelText            ; 0x05c7
 	textpointer DebugCurrentMapNumberLabelText                        ; 0x05c8
 	textpointer DebugCurrentMapChipsetCountLabelText                  ; 0x05c9
-	textpointer PlayerDiaryCardsUnitText                              ; 0x05ca
+	textpointer CardsAndChipsUnitText                                 ; 0x05ca
 	textpointer ChipsText                                             ; 0x05cb
 	textpointer PCMenuDeckDiagnosisText                               ; 0x05cc
 	textpointer TCG2TitleText                                         ; 0x05cd

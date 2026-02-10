@@ -948,14 +948,14 @@ ENDR
 ; de = card id
 Func_c63e:
 	call GetReceivedCardText
-	farcall Func_1d53a
+	farcall _ShowReceivedCard
 	ret
 
 ; de = card id
 Func_c646:
 	call AddCardToCollection
 	call GetReceivedCardText
-	farcall Func_1d53a
+	farcall _ShowReceivedCard
 	ret
 
 ; bank and offset table of data for LoadMapHeader and Func_33b7

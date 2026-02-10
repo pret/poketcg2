@@ -5891,7 +5891,7 @@ Func_3eda2:
 	ret
 
 Script_GameCenterPrizeDeckClerk:
-	farcall Func_1d55d
+	farcall GameCenterPrizeExchange
 	ret
 
 Script_GameCenterChipDeskClerk:

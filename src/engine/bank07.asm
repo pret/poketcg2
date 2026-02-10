@@ -772,7 +772,7 @@ DrawDiaryStatusBox:
 .TextItems:
 	textitem  7,  4, PlayerDiaryNameText
 	textitem  7,  6, PlayerDiaryEventCoinText
-	textitem 18,  6, PlayerDiaryCardsUnitText
+	textitem 18,  6, CardsAndChipsUnitText
 	textitem  7,  8, PlayerDiaryAlbumText
 	textitem  7, 10, PlayerDiaryPlayTimeText
 	textitems_end
@@ -2430,7 +2430,7 @@ _StartMenuBoxUpdate::
 
 .TextItems:
 	textitem  3, 12, PlayerDiaryEventCoinText
-	textitem 15, 12, PlayerDiaryCardsUnitText
+	textitem 15, 12, CardsAndChipsUnitText
 	textitem  3, 14, PlayerDiaryAlbumText
 	textitem  3, 16, PlayerDiaryPlayTimeText
 	textitems_end
@@ -2963,7 +2963,7 @@ ReadOrInitSaveData:
 
 	farcall ClearGameCenterChips
 	call InitializeMailboxWRAM
-	call Func_1d7a1
+	call InitGameCenterPrizeExchangeLineup
 	call SetGiftCenterMenuCursorToQuit
 	call Func_1dcb7
 
@@ -3045,13 +3045,13 @@ Func_1d51e:
 	pop af
 	ret
 
-Func_1d52e:
+ShowReceivedCard:
 	farcall Func_1022a
-	call Func_1d53a
+	call _ShowReceivedCard
 	farcall Func_10252
 	ret
 
-Func_1d53a:
+_ShowReceivedCard:
 	push af
 	push bc
 	push de
@@ -3069,76 +3069,77 @@ Func_1d53a:
 	pop af
 	ret
 
-Func_1d55d:
+GameCenterPrizeExchange:
 	farcall HideNPCAnimsUnderDialogBox
-	call Func_1d594
-	call Func_1d5aa
-	jr c, .asm_1d57c
+	call .PrintWelcome
+	call .PrintExchangePrompt
+	jr c, .exit
 	farcall ShowNPCAnimsUnderDialogBox
 	farcall Func_1022a
-	call Func_1d584
+	call .ShowMenu
 	farcall Func_10252
 	farcall HideNPCAnimsUnderDialogBox
-.asm_1d57c
-	call Func_1d59f
+.exit
+	call .PrintComeAgain
 	farcall ShowNPCAnimsUnderDialogBox
 	ret
 
-Func_1d584:
+.ShowMenu:
 	push af
 	push bc
 	push de
 	push hl
 	xor a
-	ld [wdb18], a
-	call Func_1d5b4
+	ld [wGameCenterPrizeExchangeMenuCursorPosition], a
+	call DrawAndHandleGameCenterPrizeExchangeMenu
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1d594:
+.PrintWelcome:
 	ldtx de, ReceptionistText
 	ldtx hl, GameCenterPrizeExchangeWelcomeText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1d59f:
+.PrintComeAgain:
 	ldtx de, ReceptionistText
 	ldtx hl, GameCenterPrizeExchangeComeAgainText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	ret
 
-Func_1d5aa:
+.PrintExchangePrompt:
 	ldtx hl, GameCenterPrizeExchangePromptText
 	ld a, $01
 	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
 	ret
 
-Func_1d5b4:
+DrawAndHandleGameCenterPrizeExchangeMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d5c7
+	call DrawGameCenterPrizeExchangeMenu
 	farcall SetFrameFuncAndFadeFromWhite
-	call Func_1d66e
+	call HandleGameCenterPrizeExchangeMenu
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1d5c7:
-	call Func_1d779
-	ld de, $0
-	ld b, $07
-	ld hl, $564a
+DrawGameCenterPrizeExchangeMenu:
+	call LoadGameCenterPrizeExchangeItems
+	lb de, 0, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
 	call LoadMenuBoxParams
-	ld a, [wdb18]
+	ld a, [wGameCenterPrizeExchangeMenuCursorPosition]
 	call DrawMenuBox
+; draw chip HUD
 	ldtx hl, PlayersChipsText
 	lb de, 1, 0
 	call Func_2c4b
 	lb de, 14, 0
 	lb bc, 5, 1
 	farcall FillBoxInBGMapWithZero
-	ldtx hl, PlayerDiaryCardsUnitText
+	ldtx hl, CardsAndChipsUnitText
 	lb de, 18, 0
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	farcall GetGameCenterChips
@@ -3148,36 +3149,40 @@ Func_1d5c7:
 	ld a, 4
 	ld b, TRUE
 	call PrintNumber
-	ld hl, wdb1a
-	ld e, $02
-	ld c, $05
-.asm_1d60e
+; print available prizes
+	ld hl, wIndicesGameCenterPrizeExchangeItems
+	ld e, 2 ; y
+	ld c, NUM_GAME_CENTER_PRIZE_LIST_ITEMS
+.loop_print_prizes
 	ld a, [hli]
-	call Func_1d618
+	call .PrintPrizeAndPrice
 	inc e
 	inc e
 	dec c
-	jr nz, .asm_1d60e
+	jr nz, .loop_print_prizes
 	ret
 
-Func_1d618:
+; print GameCenterPrizeExchangeItems[a]
+.PrintPrizeAndPrice:
 	push af
 	push bc
 	push de
 	push hl
-	ld hl, $57a6
+	ld hl, GameCenterPrizeExchangeItems
 	add a
-	add a
+	add a ; *4
 	ld c, a
 	ld b, $00
 	add hl, bc
+; prize name
 	push hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld d, 2
+	ld d, 2 ; x
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
+; prize price (+unit)
 	inc hl
 	inc hl
 	ld a, [hli]
@@ -3185,71 +3190,79 @@ Func_1d618:
 	ld l, a
 	ld a, 4
 	ld b, TRUE
-	ld d, 14
+	ld d, 14 ; x
 	call PrintNumber
-	ld d, 18
-	ldtx hl, PlayerDiaryCardsUnitText
+	ld d, 18 ; x
+	ldtx hl, CardsAndChipsUnitText
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
-; 0x1d64a
 
-SECTION "Bank 7@566e", ROMX[$566e], BANK[$7]
+.menu_params
+	menubox_params TRUE, 20, 18, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, NULL
+		textitem 2,  2, SingleSpaceText
+		textitem 2,  4, SingleSpaceText
+		textitem 2,  6, SingleSpaceText
+		textitem 2,  8, SingleSpaceText
+		textitem 2, 10, SingleSpaceText
+		textitems_end
 
-Func_1d66e:
-.asm_1d66e
+HandleGameCenterPrizeExchangeMenu:
 	lb de, 1, 14
 	ldtx hl, GameCenterPrizeExchangeChoosePrizeText
 	farcall PrintTextInWideTextBox
-	ld a, [wdb18]
+	ld a, [wGameCenterPrizeExchangeMenuCursorPosition]
 	call HandleMenuBox
-	ld [wdb18], a
-	jr c, .asm_1d68c
+	ld [wGameCenterPrizeExchangeMenuCursorPosition], a
+	jr c, .exit
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
-	jr .asm_1d695
-.asm_1d68c
+	jr .selected
+.exit
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
-	jr .asm_1d6b2
-.asm_1d695
+	jr .quit_prompt
+
+.selected
 	ldtx hl, GameCenterPrizeExchangeConfirmText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1d6b2
-	call Func_1d6be
-	jr c, .asm_1d6b2
+	jr c, .quit_prompt
+	call .Exchange
+	jr c, .quit_prompt
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d5c7
+	call DrawGameCenterPrizeExchangeMenu
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
-.asm_1d6b2
+.quit_prompt
 	ldtx hl, GameCenterPrizeExchangeQuitConfirmText
 	ld a, $01
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1d66e
+	jr c, HandleGameCenterPrizeExchangeMenu ; loop
 	ret
 
-Func_1d6be:
-	ld a, [wdb18]
+.Exchange:
+	ld a, [wGameCenterPrizeExchangeMenuCursorPosition]
 	ld c, a
 	ld b, $00
-	ld hl, wdb1a
+	ld hl, wIndicesGameCenterPrizeExchangeItems
 	add hl, bc
 	ld a, [hl]
-	ld [wdb19], a
+	ld [wSelectedGameCenterPrizeExchangeItem], a
 	add a
-	add a
+	add a ; *4
 	ld c, a
 	ld b, $00
-	ld hl, $57a6
+	ld hl, GameCenterPrizeExchangeItems
 	add hl, bc
 	inc hl
 	inc hl
@@ -3258,55 +3271,141 @@ Func_1d6be:
 	ld d, [hl]
 	farcall GetGameCenterChips
 	call CompareBCAndDE
-	jr c, .asm_1d6fc
+	jr c, .not_enough_chips
 	ld b, d
 	ld c, e
 	farcall SubtractChips
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
-	ld a, [wdb19]
-	ld hl, $5704
+	ld a, [wSelectedGameCenterPrizeExchangeItem]
+	ld hl, .function_map
 	call CallMappedFunction
 	call WaitPalFading_Bank07
 	ret
-.asm_1d6fc
+
+.not_enough_chips
 	ldtx hl, GameCenterNotEnoughChipsText
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	ret
-; 0x1d704
 
-SECTION "Bank 7@5779", ROMX[$5779], BANK[$7]
+.function_map
+	key_func GAMECENTERPRIZE_VENUSAUR,        .Venusaur
+	key_func GAMECENTERPRIZE_MEW,             .Mew
+	key_func GAMECENTERPRIZE_BILLS_COMPUTER,  .BillsComputer
+	key_func GAMECENTERPRIZE_JIGGLYPUFF_COIN, .JigglypuffCoin
+	key_func GAMECENTERPRIZE_1_PRESENT_PACK,  .PresntPack1
+	key_func GAMECENTERPRIZE_3_PRESENT_PACKS, .PresentPacks3
+	db $ff
 
-Func_1d779:
-	ld a, [wdb1f]
+.Venusaur:
+	ld de, VENUSAUR_LV64
+	farcall GetReceivedCardText
+	call _ShowReceivedCard
+	call AddCardToCollection
+	ret
+
+.Mew:
+	ld de, MEW_LV15
+	farcall GetReceivedCardText
+	call _ShowReceivedCard
+	call AddCardToCollection
+	ret
+
+.BillsComputer:
+	ld de, BILLS_COMPUTER
+	farcall GetReceivedCardText
+	call _ShowReceivedCard
+	call AddCardToCollection
+	ret
+
+.JigglypuffCoin:
+	ld a, EVENT_GOT_JIGGLYPUFF_COIN
+	farcall MaxOutEventValue
+	ld a, COIN_JIGGLYPUFF
+	call _GiveCoin
+	ld a, TRUE
+	ld [wGameCenterPrizeExchangeAltFlag], a
+	ret
+
+; BOOSTER_PRESENT_FROM_* at random
+.PresntPack1:
+	ld a, NUM_BOOSTERS_PRESENT_REGULAR
+	call Random
+	add BOOSTER_PRESENT_FROM_ALL_SETS
+	ld b, FALSE
+	call GiveBoosterPacks
+	ret
+
+; BOOSTER_PRESENT_FROM_* at random
+.PresentPacks3:
+	ld c, 3
+	ld b, FALSE
+.loop_present_packs
+	ld a, NUM_BOOSTERS_PRESENT_REGULAR
+	call Random
+	add BOOSTER_PRESENT_FROM_ALL_SETS
+	call GiveBoosterPacks
+	ld b, TRUE
+	dec c
+	jr nz, .loop_present_packs
+	ret
+
+; set up wIndicesGameCenterPrizeExchangeItems
+LoadGameCenterPrizeExchangeItems:
+	ld a, [wGameCenterPrizeExchangeAltFlag]
 	add a
 	ld c, a
 	ld b, $00
-	ld hl, $5793
+	ld hl, .lineup_table
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, wdb1a
-	ld c, $05
-.asm_1d78c
+	ld de, wIndicesGameCenterPrizeExchangeItems
+	ld c, NUM_GAME_CENTER_PRIZE_LIST_ITEMS
+.loop_index
 	ld a, [hli]
 	ld [de], a
 	inc de
 	dec c
-	jr nz, .asm_1d78c
+	jr nz, .loop_index
 	ret
-; 0x1d793
 
-SECTION "Bank 7@57a1", ROMX[$57a1], BANK[$7]
+.lineup_table
+	dw .HasJigglypuffCoin
+	dw .NoJigglypuffCoin
 
-Func_1d7a1:
+.HasJigglypuffCoin:
+	db GAMECENTERPRIZE_VENUSAUR
+	db GAMECENTERPRIZE_MEW
+	db GAMECENTERPRIZE_BILLS_COMPUTER
+	db GAMECENTERPRIZE_JIGGLYPUFF_COIN
+	db GAMECENTERPRIZE_1_PRESENT_PACK
+
+.NoJigglypuffCoin:
+	db GAMECENTERPRIZE_VENUSAUR
+	db GAMECENTERPRIZE_MEW
+	db GAMECENTERPRIZE_BILLS_COMPUTER
+	db GAMECENTERPRIZE_3_PRESENT_PACKS
+	db GAMECENTERPRIZE_1_PRESENT_PACK
+
+InitGameCenterPrizeExchangeLineup:
 	xor a
-	ld [wdb1f], a
+	ld [wGameCenterPrizeExchangeAltFlag], a
 	ret
-; 0x1d7a6
 
-SECTION "Bank 7@57be", ROMX[$57be], BANK[$7]
+MACRO? gamecenter_prize
+	tx \1 ; name
+	dw \2 ; price
+ENDM
+
+GameCenterPrizeExchangeItems:
+	gamecenter_prize GameCenterPrizeVenusaurText,       GAMECENTERPRIZE_VENUSAUR_CHIPS
+	gamecenter_prize GameCenterPrizeMewText,            GAMECENTERPRIZE_MEW_CHIPS
+	gamecenter_prize GameCenterPrizeBillsComputerText,  GAMECENTERPRIZE_BILLS_COMPUTER_CHIPS
+	gamecenter_prize GameCenterPrizeJigglypuffCoinText, GAMECENTERPRIZE_JIGGLYPUFF_COIN_CHIPS
+	gamecenter_prize GameCenterPrize1PresentPackText,   GAMECENTERPRIZE_1_PRESENT_PACK_CHIPS
+	gamecenter_prize GameCenterPrize3PresentPacksText,  GAMECENTERPRIZE_3_PRESENT_PACKS_CHIPS
 
 Func_1d7be:
 	farcall Func_1022a
@@ -3752,11 +3851,11 @@ GiftCenter_ExecuteSelectedOption:
 
 GiveCoin:
 	farcall Func_1022a
-	call Func_1db6f
+	call _GiveCoin
 	farcall Func_10252
 	ret
 
-Func_1db6f:
+_GiveCoin:
 	push af
 	push bc
 	push de
@@ -5734,7 +5833,7 @@ Func_1e889:
 	farcall Func_10252
 	ret
 
-; a = BOOSTER_* constant, b = has-another count?
+; a = BOOSTER_* constant, b = has-another flag
 GiveBoosterPacks:
 	push af
 	push bc
@@ -6995,7 +7094,7 @@ GiveCardsAttachedToMailPage:
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ld a, c
-	ld b, $00
+	ld b, FALSE
 	call GiveBoosterPacks
 	call .redraw_mail_screen
 	jr .done
@@ -7053,7 +7152,7 @@ GiveCardsAttachedToMailPage:
 	push hl
 	farcall GetReceivedCardText
 	call AddCardToCollection
-	call Func_1d53a
+	call _ShowReceivedCard
 	pop hl
 	ret
 
