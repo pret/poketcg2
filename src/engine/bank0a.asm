@@ -3497,12 +3497,13 @@ ReadCurAutoDeckName:
 	cp TX_FULLWIDTH4
 	jr z, .fw4
 	cp c
-	jr z, .kana
+	jr z, .kana_switch
+; kana, no switch
 	ld [hl], b
 	inc hl
 	ld [hli], a
 	jr .loop_copy_name
-.kana
+.kana_switch
 	ld [hli], a
 	ld a, [de]
 	inc de
