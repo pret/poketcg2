@@ -324,7 +324,7 @@ Func_341f7:
 	db SOUTH, MOVE_1
 	db $ff
 
-Func_3426f:
+Script_RonaldGameCenter:
 	ld a, EVENT_MET_RONALD_GAME_CENTER
 	farcall GetEventValue
 	jr nz, .asm_342d5

@@ -5838,11 +5838,11 @@ GameCenterEntrance_StepEvents:
 	map_exit 0, 7, MAP_GAME_CENTER_LOBBY, 12, 7, WEST
 	map_exit 5, 0, MAP_GAME_CENTER_1, 5, 13, NORTH
 	map_exit 6, 0, MAP_GAME_CENTER_1, 6, 13, NORTH
-	ow_script 5, 9, Func_3426f
-	ow_script 6, 9, Func_3426f
-	ow_script 6, 2, Func_3ee9e
-	ow_script 5, 10, Func_3eec7
-	ow_script 6, 10, Func_3eec7
+	ow_script 5, 9, Script_RonaldGameCenter
+	ow_script 6, 9, Script_RonaldGameCenter
+	ow_script 6, 2, Script_GameCenterChipGirl_HaltForRefill
+	ow_script 5, 10, Script_GameCenterChipSecurity_HaltForDeposit
+	ow_script 6, 10, Script_GameCenterChipSecurity_HaltForDeposit
 	db $ff
 
 GameCenterEntrance_NPCs:
@@ -5853,13 +5853,13 @@ GameCenterEntrance_NPCs:
 	db $ff
 
 GameCenterEntrance_NPCInteractions:
-	npc_script NPC_CHIP_GIRL, Func_3ee11
-	npc_script NPC_CHIP_SECURITY, Func_3ee83
+	npc_script NPC_CHIP_GIRL, Script_GameCenterChipGirl
+	npc_script NPC_CHIP_SECURITY, Script_GameCenterChipSecurity
 	db $ff
 
 GameCenterEntrance_OWInteractions:
-	ow_script 9, 4, Func_3edb2
-	ow_script 2, 4, Func_3edb7
+	ow_script 9, 4, Script_GameCenterPrizeDeckClerk
+	ow_script 2, 4, Script_GameCenterChipDeskClerk
 	db $ff
 
 GameCenterEntrance_MapScripts:
@@ -5883,18 +5883,18 @@ Func_3ed99:
 Func_3eda2:
 	ld hl, GameCenterEntrance_NPCInteractions
 	call Func_328c
-	jr nc, .asm_3edb0
+	jr nc, .done
 	ld hl, GameCenterEntrance_OWInteractions
 	call Func_32bf
-.asm_3edb0
+.done
 	scf
 	ret
 
-Func_3edb2:
+Script_GameCenterPrizeDeckClerk:
 	farcall Func_1d55d
 	ret
 
-Func_3edb7:
+Script_GameCenterChipDeskClerk:
 	ld a, NPC_GR_CLERK_GAME_CENTER_CHIP_DESK
 	ld [wScriptNPC], a
 	ldtx hl, DialogReceptionistText
@@ -5908,41 +5908,44 @@ Func_3edb7:
 	print_npc_text GameCenterChipDeskWelcomeText
 	get_game_center_chips
 	compare_loaded_var_word 0
-	script_jump_if_b0z .ows_3edfd
+	script_jump_if_b0z .deposit
 	get_game_center_banked_chips
 	compare_loaded_var_word 0
-	script_jump_if_b0z .ows_3ede0
-	script_jump .ows_3ee0e
-.ows_3ede0
+	script_jump_if_b0z .withdraw
+	script_jump .done ; totally chipless
+
+.withdraw
 	load_text_ram3
 	print_npc_text GameCenterChipDeskDepositInfoText
 	npc_ask_question GameCenterChipDeskDepositReturnPromptText, TRUE
-	script_jump_if_b0z .ows_3edf7
+	script_jump_if_b0z .exit
 	print_npc_text GameCenterChipDeskDepositReturnedText
 	show_chips_hud
 	withdraw_chips
 	print_npc_text GameCenterChipDeskDepositReminderText
 	hide_chips_hud
-	script_jump .ows_3ee0e
-.ows_3edf7
+	script_jump .done
+.exit
 	print_npc_text GameCenterChipDeskComeAgainText
-	script_jump .ows_3ee0e
-.ows_3edfd
+	script_jump .done
+
+.deposit
 	load_text_ram3
 	show_chips_hud
 	npc_ask_question GameCenterChipDeskDepositPromptText, TRUE
-	script_jump_if_b0z .ows_3ee0a
+	script_jump_if_b0z .exit_hide_hud
 	deposit_chips
 	print_npc_text GameCenterChipDeskDepositedText
-.ows_3ee0a
+.exit_hide_hud
 	print_npc_text GameCenterChipDeskComeAgainText
 	hide_chips_hud
-.ows_3ee0e
+
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3ee11:
+Script_GameCenterChipGirl:
 	ld a, NPC_CHIP_GIRL
 	ld [wScriptNPC], a
 	ldtx hl, DialogChipGirlText
@@ -5953,27 +5956,32 @@ Func_3ee11:
 	xor a
 	start_script
 	start_dialog
-	check_event EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
-	script_jump_if_b0z .ows_3ee3e
-	set_event EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
+	check_event EVENT_MET_GAME_CENTER_CHIP_GIRL
+	script_jump_if_b0z .check_refill
+
+; first service
+	set_event EVENT_MET_GAME_CENTER_CHIP_GIRL
 	print_npc_text GameCenterChipGirlFirstServiceText
 	print_text Received10ChipsText
 	show_chips_hud
 	give_chips 10
 	print_npc_text GameCenterChipGirlNoticeText
 	hide_chips_hud
-	script_jump .ows_3ee80
-.ows_3ee3e
+	script_jump .done
+
+.check_refill
 	get_game_center_chips
 	compare_loaded_var_word 0
-	script_jump_if_b0z .ows_3ee7d
+	script_jump_if_b0z .remind
 	get_game_center_banked_chips
 	compare_loaded_var_word 0
-	script_jump_if_b0z .ows_3ee7d
+	script_jump_if_b0z .remind
 	quit_script
+; handle context-based texts
 	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
-	jr nz, .asm_3ee67
+	jr nz, .refill_on_enter
+; refill after exiting main rooms (= broke)
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlRefillText
@@ -5981,8 +5989,8 @@ Func_3ee11:
 	give_chips 10
 	print_text Received10ChipsText
 	hide_chips_hud
-	script_jump .ows_3ee80
-.asm_3ee67
+	script_jump .done
+.refill_on_enter
 	ld a, $01
 	start_script
 	print_npc_text GameCenterChipGirlWelcomeRefillText
@@ -5991,15 +5999,17 @@ Func_3ee11:
 	print_text Received10ChipsText
 	hide_chips_hud
 	print_npc_text GameCenterChipGirlEnjoyText
-	script_jump .ows_3ee80
-.ows_3ee7d
+	script_jump .done
+
+.remind
 	print_npc_text GameCenterChipGirlRefillReminderText
-.ows_3ee80
+
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3ee83:
+Script_GameCenterChipSecurity:
 	ld a, NPC_CHIP_SECURITY
 	ld [wScriptNPC], a
 	ldtx hl, DialogChipSecurityText
@@ -6015,34 +6025,36 @@ Func_3ee83:
 	end_script
 	ret
 
-Func_3ee9e:
+; halt totally chipless player for refill
+Script_GameCenterChipGirl_HaltForRefill:
 	farcall GetGameCenterChips
 	ld a, b
 	or c
-	jr nz, .asm_3eec2
+	jr nz, .done
 	farcall GetGameCenterBankedChips
 	ld a, b
 	or c
-	jr nz, .asm_3eec2
+	jr nz, .done
 	ld a, NPC_CHIP_GIRL
 	ld b, EAST
 	farcall SetOWObjectDirection
 	ld a, [wPlayerOWObject]
 	ld b, WEST
 	farcall SetOWObjectDirection
-	call Func_3ee11
-.asm_3eec2
+	call Script_GameCenterChipGirl
+.done
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 
-Func_3eec7:
+; halt player carrying chips
+Script_GameCenterChipSecurity_HaltForDeposit:
 	farcall GetGameCenterChips
 	ld a, b
 	or c
-	jr nz, .asm_3eed4
+	jr nz, .halt
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
-.asm_3eed4
+.halt
 	ld a, NPC_CHIP_SECURITY
 	ld [wScriptNPC], a
 	ldtx hl, DialogChipSecurityText
@@ -6060,6 +6072,7 @@ Func_3eec7:
 	end_script
 	ret
 
+; unreferenced resumption
 Func_3eef4:
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
@@ -6085,9 +6098,9 @@ GameCenterLobby_NPCs:
 	db $ff
 
 GameCenterLobby_NPCInteractions:
-	npc_script NPC_GAME_CENTER_TECH, Func_3efd6
-	npc_script NPC_GAME_CENTER_GR_LASS, Func_3eff1
-	npc_script NPC_GAME_CENTER_GR_PAPPY, Func_3f017
+	npc_script NPC_GAME_CENTER_TECH, Script_GameCenterTech
+	npc_script NPC_GAME_CENTER_GR_LASS, Script_GameCenterGRLass
+	npc_script NPC_GAME_CENTER_GR_PAPPY, Script_GameCenterGRPappy
 	npc_script NPC_IMAKUNI_RED, Func_3c4e0
 	db $ff
 
@@ -6136,10 +6149,10 @@ Func_3ef9c:
 Func_3efa5:
 	ld hl, GameCenterLobby_NPCInteractions
 	call Func_328c
-	jr nc, .asm_3efb3
+	jr nc, .done
 	ld hl, GameCenterLobby_OWInteractions
 	call Func_32bf
-.asm_3efb3
+.done
 	scf
 	ret
 
@@ -6162,7 +6175,7 @@ Func_3efba:
 	scf
 	ret
 
-Func_3efd6:
+Script_GameCenterTech:
 	ld a, NPC_GAME_CENTER_TECH
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -6173,12 +6186,12 @@ Func_3efd6:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text Text0d87
+	print_npc_text GameCenterTech20YearLongPoorGamblerText
 	end_dialog
 	end_script
 	ret
 
-Func_3eff1:
+Script_GameCenterGRLass:
 	ld a, NPC_GAME_CENTER_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRKidText
@@ -6190,17 +6203,17 @@ Func_3eff1:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3f011
-	print_npc_text Text0d88
-	script_jump .ows_3f014
-.ows_3f011
-	print_npc_text Text0d89
-.ows_3f014
+	script_jump_if_b0z .postgame
+	print_npc_text GameCenterGRLassMockeryText
+	script_jump .done
+.postgame
+	print_npc_text GameCenterGRLassNoWordsToVictorOverBiruritchiText
+.done
 	end_dialog
 	end_script
 	ret
 
-Func_3f017:
+Script_GameCenterGRPappy:
 	ld a, NPC_GAME_CENTER_GR_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy1Text
@@ -6212,12 +6225,12 @@ Func_3f017:
 	start_script
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
-	script_jump_if_b0z .ows_3f037
-	print_npc_text Text0d8a
-	script_jump .ows_3f03a
-.ows_3f037
-	print_npc_text Text0d8b
-.ows_3f03a
+	script_jump_if_b0z .postgame
+	print_npc_text GameCenterGRPappyLectureText
+	script_jump .done
+.postgame
+	print_npc_text GameCenterGRPappyPlayFreelyText
+.done
 	end_dialog
 	end_script
 	ret

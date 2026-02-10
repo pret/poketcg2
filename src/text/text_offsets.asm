@@ -3476,11 +3476,11 @@ TextOffsets::
 	textpointer GameCenterChipGirlRefillReminderText                  ; 0x0d84
 	textpointer GameCenterChipSecurityReminderText                    ; 0x0d85
 	textpointer GameCenterChipSecurityWarningText                     ; 0x0d86
-	textpointer Text0d87                                              ; 0x0d87
-	textpointer Text0d88                                              ; 0x0d88
-	textpointer Text0d89                                              ; 0x0d89
-	textpointer Text0d8a                                              ; 0x0d8a
-	textpointer Text0d8b                                              ; 0x0d8b
+	textpointer GameCenterTech20YearLongPoorGamblerText               ; 0x0d87
+	textpointer GameCenterGRLassMockeryText                           ; 0x0d88
+	textpointer GameCenterGRLassNoWordsToVictorOverBiruritchiText     ; 0x0d89
+	textpointer GameCenterGRPappyLectureText                          ; 0x0d8a
+	textpointer GameCenterGRPappyPlayFreelyText                       ; 0x0d8b
 	textpointer Text0d8c                                              ; 0x0d8c
 	textpointer Text0d8d                                              ; 0x0d8d
 	textpointer Text0d8e                                              ; 0x0d8e

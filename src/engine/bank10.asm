@@ -4850,10 +4850,10 @@ Script_GRChallengeMachineStaff:
 	script_jump_if_b0z .has_gengar_coin
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .has_machine
-	check_event EVENT_C5
+	check_event EVENT_TALKED_TO_GR_CHALLENGE_MACHINE_STAFF
 	script_jump_if_b0z .no_machine_repeat
 ; no machine initial
-	set_event EVENT_C5
+	set_event EVENT_TALKED_TO_GR_CHALLENGE_MACHINE_STAFF
 	print_npc_text GRChallengeMachineStaffUnderConstructionInitialText
 	script_jump .done
 .no_machine_repeat
