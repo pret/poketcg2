@@ -1534,7 +1534,7 @@ GameCenterChipSecurityWarningText:
 	linefw "よろしくおねがい いたします"
 	done
 
-GameCenterTech20YearLongPoorGamblerText:
+GameCenterLobbyTechExcuseText:
 	textfw "ここの ゲームの研究をして"
 	linefw "くせつ20ねん・・・"
 	linefw "いまだに けっかを みちびきだせない"
@@ -1543,7 +1543,7 @@ GameCenterTech20YearLongPoorGamblerText:
 	linefw "あそんでるだけ なんですけどね"
 	done
 
-GameCenterGRLassMockeryText:
+GameCenterLobbyGRLassMockeryText:
 	textfw "あなた <RAMNAME>くんよね"
 	linefw "ここで なにしてるの"
 	linefw "ははぁ GR団に 勝てないから"
@@ -1551,12 +1551,12 @@ GameCenterGRLassMockeryText:
 	linefw "あー かっこうわるぅーい!"
 	done
 
-GameCenterGRLassNoWordsToVictorOverBiruritchiText:
+GameCenterLobbyGRLassPostgameNoWordsToVictorText:
 	textfw "ビルリッチさまが まけたんだから"
 	linefw "なにしてても モンクないわ"
 	done
 
-GameCenterGRPappyLectureText:
+GameCenterLobbyGRPappyLectureText:
 	textfw "ゲームに ムチュウになって"
 	linefw "じかんを わすれて あそんどった"
 	linefw "ほしたら こーんなに"
@@ -1567,7 +1567,7 @@ GameCenterGRPappyLectureText:
 	linefw "ほんとのもくてきを わすれんようにな"
 	done
 
-GameCenterGRPappyPlayFreelyText:
+GameCenterLobbyGRPappyPostgamePlayFreelyText:
 	textfw "もくてきを はたしたようじゃな"
 	linefw "あとは すきに あそぶが ええ"
 	done

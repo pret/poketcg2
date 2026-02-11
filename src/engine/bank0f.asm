@@ -6098,9 +6098,9 @@ GameCenterLobby_NPCs:
 	db $ff
 
 GameCenterLobby_NPCInteractions:
-	npc_script NPC_GAME_CENTER_TECH, Script_GameCenterTech
-	npc_script NPC_GAME_CENTER_GR_LASS, Script_GameCenterGRLass
-	npc_script NPC_GAME_CENTER_GR_PAPPY, Script_GameCenterGRPappy
+	npc_script NPC_GAME_CENTER_TECH, Script_GameCenterLobbyTech
+	npc_script NPC_GAME_CENTER_GR_LASS, Script_GameCenterLobbyGRLass
+	npc_script NPC_GAME_CENTER_GR_PAPPY, Script_GameCenterLobbyGRPappy
 	npc_script NPC_IMAKUNI_RED, Func_3c4e0
 	db $ff
 
@@ -6175,7 +6175,7 @@ Func_3efba:
 	scf
 	ret
 
-Script_GameCenterTech:
+Script_GameCenterLobbyTech:
 	ld a, NPC_GAME_CENTER_TECH
 	ld [wScriptNPC], a
 	ldtx hl, DialogTechText
@@ -6186,12 +6186,12 @@ Script_GameCenterTech:
 	xor a
 	start_script
 	start_dialog
-	print_npc_text GameCenterTech20YearLongPoorGamblerText
+	print_npc_text GameCenterLobbyTechExcuseText
 	end_dialog
 	end_script
 	ret
 
-Script_GameCenterGRLass:
+Script_GameCenterLobbyGRLass:
 	ld a, NPC_GAME_CENTER_GR_LASS
 	ld [wScriptNPC], a
 	ldtx hl, DialogGRKidText
@@ -6204,16 +6204,16 @@ Script_GameCenterGRLass:
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
-	print_npc_text GameCenterGRLassMockeryText
+	print_npc_text GameCenterLobbyGRLassMockeryText
 	script_jump .done
 .postgame
-	print_npc_text GameCenterGRLassNoWordsToVictorOverBiruritchiText
+	print_npc_text GameCenterLobbyGRLassPostgameNoWordsToVictorText
 .done
 	end_dialog
 	end_script
 	ret
 
-Script_GameCenterGRPappy:
+Script_GameCenterLobbyGRPappy:
 	ld a, NPC_GAME_CENTER_GR_PAPPY
 	ld [wScriptNPC], a
 	ldtx hl, DialogPappy1Text
@@ -6226,10 +6226,10 @@ Script_GameCenterGRPappy:
 	start_dialog
 	check_event EVENT_MASONS_LAB_CHALLENGE_MACHINE_STATE
 	script_jump_if_b0z .postgame
-	print_npc_text GameCenterGRPappyLectureText
+	print_npc_text GameCenterLobbyGRPappyLectureText
 	script_jump .done
 .postgame
-	print_npc_text GameCenterGRPappyPlayFreelyText
+	print_npc_text GameCenterLobbyGRPappyPostgamePlayFreelyText
 .done
 	end_dialog
 	end_script
