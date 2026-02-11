@@ -703,7 +703,7 @@ GameCenterCoinFlipDialogText:
 	linefw "ごうかしょうひんゲット!"
 	done
 
-GameCenterCoinFlipRetryPromptText:
+GameCenterCoinFlipPlayAgainPromptText:
 	textfw "もういちど あそびますか?"
 	done
 

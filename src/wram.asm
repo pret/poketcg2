@@ -3116,10 +3116,11 @@ wIndicesGameCenterPrizeExchangeItems:: ; db1a
 wGameCenterPrizeExchangeAltFlag:: ; db1f
 	ds $1
 
-wdb20:: ; db20
+wCoinFlipGameStreak:: ; db20
 	ds $1
 
-wdb21:: ; db21
+; harmless bug: stores garbage data but is unused
+wUnusedCoinFlipGamePayout:: ; db21
 	ds $2
 
 wdb23:: ; db23

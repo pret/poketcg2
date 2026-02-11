@@ -891,11 +891,11 @@ DrawStatusScreenBottomBox:
 	farcall FillBoxInBGMapWithZero
 	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
-	call Func_1dfb5
+	call GetSelectedCoin
 	call GetCoinName
 	lb de, 4, 12
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-	call Func_1dfb5
+	call GetSelectedCoin
 	add $28
 	lb de, 28, 108
 	call CreateCoinAnimation
@@ -2933,7 +2933,7 @@ SetAndInitCoinAnimation:
 	pop af
 	ret
 
-Func_1d46a:
+IsCoinAnimating:
 	push hl
 	farcall GetSpriteAnimBuffer
 	farcall CheckIsSpriteAnimAnimating
@@ -3407,124 +3407,142 @@ GameCenterPrizeExchangeItems:
 	gamecenter_prize GameCenterPrize1PresentPackText,   GAMECENTERPRIZE_1_PRESENT_PACK_CHIPS
 	gamecenter_prize GameCenterPrize3PresentPacksText,  GAMECENTERPRIZE_3_PRESENT_PACKS_CHIPS
 
-Func_1d7be:
+; return a = streak
+; harmless bug: also return bc = wUnusedCoinFlipGamePayout which is garbage but unused
+CoinFlipGameScreen:
 	farcall Func_1022a
-	call Func_1d7ca
+	call ShowCoinFlipGame
 	farcall Func_10252
 	ret
 
-Func_1d7ca:
+; return a = streak
+; harmless bug: also return bc = wUnusedCoinFlipGamePayout which is garbage but unused
+ShowCoinFlipGame:
 	push de
 	push hl
 	push af
-	ld a, $03
+	ld a, AUDVOL_HALF_VOLUME
 	call CallSetVolume
 	pop af
-	call Func_1d813
+	call PlayCoinFlipGame
 	push af
-	ld a, $07
+	ld a, AUDVOL_FULL_VOLUME
 	call CallSetVolume
 	pop af
-	call Func_1d7ec
-	ld hl, wdb21
+	call .LoadPayout
+	ld hl, wUnusedCoinFlipGamePayout
 	ld c, [hl]
 	inc hl
 	ld b, [hl]
-	ld a, [wdb20]
+	ld a, [wCoinFlipGameStreak]
 	pop hl
 	pop de
 	ret
 
-Func_1d7ec:
-	ld a, [wdb20]
+; bug: never points to .payout and loads garbage to the buffer
+.LoadPayout:
+	ld a, [wCoinFlipGameStreak]
 	add a
 	ld c, a
 	ld b, $00
+	; ld hl, .payout
 	add hl, bc
 	ld a, [hli]
-	ld [wdb21], a
+	ld [wUnusedCoinFlipGamePayout], a
 	ld a, [hl]
-	ld [wdb21 + 1], a
+	ld [wUnusedCoinFlipGamePayout + 1], a
 	ret
-; 0x1d7fd
 
-SECTION "Bank 7@5813", ROMX[$5813], BANK[$7]
+.payout
+	dw 0
+	dw 0
+	dw 0
+	dw CHIPS_COIN_FLIP_STREAK_3
+	dw CHIPS_COIN_FLIP_STREAK_4
+	dw CHIPS_COIN_FLIP_STREAK_5
+	dw CHIPS_COIN_FLIP_STREAK_6
+	dw CHIPS_COIN_FLIP_STREAK_7
+	dw CHIPS_COIN_FLIP_STREAK_8
+	dw CHIPS_COIN_FLIP_STREAK_9
+	dw 0
 
-Func_1d813:
+PlayCoinFlipGame:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d886
+	call .DrawScreen
 	farcall SetFrameFuncAndFadeFromWhite
-.asm_1d81e
-	ld c, $00
-.asm_1d820
-	ld a, $00
+
+.start
+	ld c, 0
+.loop_toss
+	ld a, FRAMESET_112 - FRAMESET_112
 	call SetAndInitCoinAnimation
-.asm_1d825
+.wait_input
 	call UpdateRNGSources
 	call DoFrame
 	ldh a, [hKeysPressed]
 	and PAD_A
-	jr z, .asm_1d825
+	jr z, .wait_input
 	call UpdateRNGSources
-	and $01
+	and HEADS
 	ld b, a
 	push af
 	ld a, SFX_COIN_TOSS
 	call CallPlaySFX
 	pop af
 	ld a, b
-	add $01
+	add 1
 	call SetAndInitCoinAnimation
-.asm_1d844
+.wait_anim
 	call DoFrame
-	call Func_1d46a
-	jr nz, .asm_1d844
+	call IsCoinAnimating
+	jr nz, .wait_anim
 	ld a, b
-	and $01
-	jr nz, .asm_1d85a
+	and HEADS
+	jr nz, .tails
 	push af
 	ld a, SFX_COIN_TOSS_POSITIVE
 	call CallPlaySFX
 	pop af
-	jr .asm_1d861
-.asm_1d85a
+	jr .toss_result
+.tails
 	push af
 	ld a, SFX_COIN_TOSS_NEGATIVE
 	call CallPlaySFX
 	pop af
-.asm_1d861
+.toss_result
 	ld a, b
-	call Func_1d8c6
-	ld a, $3c
+	call .UpdateResultOnScreen
+	ld a, 60
 	call DoAFrames_WithPreCheck
 	ld a, b
 	and a
-	jr nz, .asm_1d874
+	jr nz, .finish
 	inc c
 	ld a, c
-	cp $0a
-	jr nz, .asm_1d820
-.asm_1d874
+	cp MAX_NUM_GAMECENTER_COIN_FLIP_STREAK
+	jr nz, .loop_toss
+.finish
 	ld a, c
-	ld [wdb20], a
-	cp $03
-	jr nc, .asm_1d881
-	call Func_1d8df
-	jr nc, .asm_1d81e
-.asm_1d881
+	ld [wCoinFlipGameStreak], a
+	cp MIN_NUM_GAMECENTER_COIN_FLIP_STREAK
+	jr nc, .done
+	call .RestartPrompt
+	jr nc, .start
+
+.done
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1d886:
+.DrawScreen:
 	push af
 	push bc
 	push de
 	push hl
 	farcall ClearSpriteAnims
-	call Func_1dfb5
-	ld de, $5858
+	call GetSelectedCoin
+	lb de, 88, 88
 	call CreateCoinAnimation
-	ld a, $03
+	ld a, FRAMESET_115 - FRAMESET_112
 	call SetAndInitCoinAnimation
 	lb de, 0, 12
 	lb bc, 20, 6
@@ -3544,57 +3562,57 @@ Func_1d886:
 	pop af
 	ret
 
-Func_1d8c6:
+.UpdateResultOnScreen:
 	push af
 	push bc
 	and a
-	jr nz, .asm_1d8cf
+	jr nz, .heads
 	ld a, SCENE_COIN_TOSS_RESULT_1
-	jr .asm_1d8d1
-.asm_1d8cf
+	jr .draw_result
+.heads
 	ld a, SCENE_COIN_TOSS_RESULT_2
-.asm_1d8d1
+.draw_result
 	ld b, c
-	sla b
-	ld c, $00
+	sla b ; *2, x
+	ld c, $00 ; y
 	call LoadScene
 	call FlushAllPalettes
 	pop bc
 	pop af
 	ret
 
-Func_1d8df:
+.RestartPrompt:
 	lb de, 0, 0
 	lb bc, 8, 4
 	farcall FillBoxInBGMapWithZero
 	call DoFrame
 	farcall TurnOnCurChipsHUD
-	ldtx hl, GameCenterCoinFlipRetryPromptText
+	ldtx hl, GameCenterCoinFlipPlayAgainPromptText
 	ldtx de, AttendantText
 	ld a, $01
 	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
-	jr c, .asm_1d914
+	jr c, .got_decision
 	farcall GetGameCenterChips
 	ld a, b
 	or c
-	jr z, .asm_1d91d
+	jr z, .not_enough_chips
 	ld bc, CHIPS_BET_COIN_FLIP
 	farcall DecreaseChipsSmoothly
 	ld a, 60
 	call DoAFrames_WithPreCheck
 	scf
 	ccf
-.asm_1d914
+.got_decision
 	farcall TurnOffCurChipsHUD
 	ret c
-	call Func_1d886
+	call .DrawScreen
 	ret
-.asm_1d91d
+.not_enough_chips
 	ldtx hl, GameCenterCoinFlipAttendantNotEnoughChipsText
 	ldtx de, AttendantText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	scf
-	jr .asm_1d914
+	jr .got_decision
 ; 0x1d92a
 
 SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
@@ -3889,7 +3907,7 @@ Func_1db81:
 	ld a, SFX_COIN_TOSS
 	call CallPlaySFX
 	pop af
-	ld a, 1
+	ld a, FRAMESET_113 - FRAMESET_112
 	call SetAndInitCoinAnimation
 	ld a, 52
 
@@ -4465,7 +4483,7 @@ GetCoinType:
 	and 7
 	ret
 
-Func_1dfb5:
+GetSelectedCoin:
 	ld a, [wSelectedCoin]
 	ret
 

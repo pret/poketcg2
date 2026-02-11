@@ -1601,7 +1601,7 @@ TextOffsets::
 	textpointer GameCenterCoinFlipDescriptionText                     ; 0x0635
 	textpointer GameCenterCoinFlipCheersText                          ; 0x0636
 	textpointer GameCenterCoinFlipDialogText                          ; 0x0637
-	textpointer GameCenterCoinFlipRetryPromptText                     ; 0x0638
+	textpointer GameCenterCoinFlipPlayAgainPromptText                 ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer DebugDuelText                                         ; 0x063a
 	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b

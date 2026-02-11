@@ -1571,7 +1571,7 @@ Func_34c3c:
 
 Script_CoinFlipGame:
 	quit_script
-	farcall Func_1d7be
+	farcall CoinFlipGameScreen
 	cp 9
 	jp z, .streak_9
 	jp nc, .streak_10
