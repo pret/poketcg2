@@ -3513,7 +3513,7 @@ wSelectedGrandMasterCupPrizeItem2:: ; dd8f
 
 	ds $3
 
-wdd93:: ; dd93
+wCardDungeonPlayable:: ; dd93
 	ds $1
 
 wCardTilemap:: ; dd94

@@ -1916,7 +1916,8 @@ Func_34ef7:
 Func_34f07:
 	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
-	jr z, .asm_34f23
+	jr z, .done
+; exited card dungeon
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_CardDungeonAttendantExit)
@@ -1926,7 +1927,7 @@ Func_34f07:
 	ld [wOverworldScriptPointer], a
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
-.asm_34f23
+.done
 	scf
 	ret
 
@@ -1992,11 +1993,12 @@ Script_CardDungeonAttendantEnter:
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
 	script_jump_if_b0z .declined
 	get_game_center_chips
-	compare_loaded_var_word 10
+	compare_loaded_var_word CHIPS_BET_DUNGEON_10
 	script_jump_if_b1z .start
+; not enough
 	quit_script
-	xor a
-	farcall Func_1f84c
+	xor a ; FALSE
+	farcall CardDungeonDescriptionScreen
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantNotEnoughChipsText
@@ -2005,8 +2007,8 @@ Script_CardDungeonAttendantEnter:
 	set_var VAR_CARD_DUNGEON_PROGRESS, 0
 	print_npc_text GameCenterCardDungeonAttendantReadDescriptionText
 	quit_script
-	ld a, $01
-	farcall Func_1f84c
+	ld a, TRUE
+	farcall CardDungeonDescriptionScreen
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantEnterText

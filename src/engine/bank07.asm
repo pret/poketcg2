@@ -8046,43 +8046,45 @@ CardPopMenu:
 	pop af
 	ret
 
-Func_1f84c:
+; a = is-playable flag
+CardDungeonDescriptionScreen:
 	farcall Func_102a4
-	call Func_1f858
+	call ShowCardDungeonDescriptionScreen
 	farcall Func_102c4
 	ret
 
-Func_1f858:
+; a = is-playable flag
+ShowCardDungeonDescriptionScreen:
 	push af
 	push bc
 	push de
 	push hl
-	ld [wdd93], a
-	call Func_1f867
+	ld [wCardDungeonPlayable], a
+	call .DrawDescriptionScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1f867:
+.DrawDescriptionScreen:
 	farcall ZeroObjectPositionsAndEnableOBPFading
 	farcall SetInitialGraphicsConfiguration
-	call Func_1f88f
+	call .PrintDescription
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
 	ldtx hl, GameCenterCardDungeonUnableNotEnoughChipsText
-	ld a, [wdd93]
+	ld a, [wCardDungeonPlayable]
 	and a
-	jr z, .asm_1f884
+	jr z, .got_text
 	ldtx hl, GameCenterCardDungeonDialogText
-.asm_1f884
+.got_text
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ret
 
-Func_1f88f:
+.PrintDescription:
 	lb de, 0, 0
 	lb bc, 20, 19
 	call DrawRegularTextBoxVRAM0
