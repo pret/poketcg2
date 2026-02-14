@@ -3123,58 +3123,77 @@ wCoinFlipGameStreak:: ; db20
 wUnusedCoinFlipGamePayout:: ; db21
 	ds $2
 
-wdb23:: ; db23
-	ds $c
+; for each reel,
+; bit 0--5 : offset
+; bit 6    : landing flag
+; bit 7    : landed flag
+; bit 8--12: tease offset
+wSlotMachineReelStates:: ; db23
+	ds 2 * NUM_SLOT_MACHINE_REELS
 
-wdb2f:: ; db2f
+wBackupSlotMachineReelStates:: ; db29
+	ds 2 * NUM_SLOT_MACHINE_REELS
+
+wSlotMachineBets:: ; db2f
 	ds $1
 
-wdb30:: ; db30
+wSlotMachineSpinTimer:: ; db30
 	ds $1
 
-wdb31:: ; db31
+; can also mean the next reel index
+wNumSlotMachineLandedReels:: ; db31
 	ds $1
 
-wdb32:: ; db32
+wSlotMachineIsBonusPlay:: ; db32
 	ds $1
 
 	ds $1
 
-wdb34:: ; db34
+; counter below center reel
+wSlotMachineBonusPlaysRemaining:: ; db34
 	ds $1
 
-wdb35:: ; db35
+wSlotMachineHotModeRemaining:: ; db35
 	ds $1
 
-wdb36:: ; db36
+wSlotMachineBiasedSymbol:: ; db36
 	ds $1
 
 	ds $2
 
-wdb39:: ; db39
-	ds $3
+wSlotMachineLandedSymbols:: ; db39
+	ds NUM_SLOT_MACHINE_REELS
 
-wdb3c:: ; db3c
+wSlotMachineDebugFlag:: ; db3c
 	ds $1
 
-wdb3d:: ; db3d
+wSlotMachineDelayFrames:: ; db3d
 	ds $1
 
+wSlotMachineBonusBoosterOffset:: ; db3e
 	ds $1
 
-wdb3f:: ; db3f
+wSlotMachineVBlankCounter:: ; db3f
 	ds $1
 
 	ds $6
 
-wdb46:: ; db46
-	ds $40
+wIndicesSlotMachineReels:: ; db46
 
-wdb86:: ; db86
-	ds $40
+wIndicesSlotMachineLeftReel:: ; db46
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
 
-wdbc6:: ; dbc6
-	ds $40
+	ds $4 ; padding to align to $40
+
+wIndicesSlotMachineCenterReel:: ; db86
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
+
+	ds $4 ; padding to align to $40
+
+wIndicesSlotMachineRightReel:: ; dbc6
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
+
+	ds $4 ; padding to align to $40
 
 wGiftCenterMenuCursorPosition:: ; dc06
 	ds $1

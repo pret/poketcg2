@@ -764,14 +764,16 @@ WaitForLCDOff::
 	jr nz, .loop_wait
 	ret
 
-Func_34ca::
-	ld b, $00
-.asm_34cc
+; return b = a/c, a = a%c
+; but no ensuring of a being nc or c being nonzero
+DivideAByC::
+	ld b, 0
+.loop_subtract
 	sbc c
-	jr c, .asm_34d2
+	jr c, .add_back
 	inc b
-	jr .asm_34cc
-.asm_34d2
+	jr .loop_subtract
+.add_back
 	add c
 	ret
 

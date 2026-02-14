@@ -1146,12 +1146,13 @@ GameCenterSlotMachineBonusPlayText:
 	linefw "10かいまでチャレンジできます!"
 	done
 
-GameCenterSlotMachineBonusPlayHitMoneySacksText:
+GameCenterSlotMachineBonusPlayMoneybagHitText:
 	textfw "ボーナスチップマークが そろいました"
 	linefw "チップ<RAMNUM>枚を ゲット!"
 	done
 
-GameCenterSlotMachineHitEditionSymbolsText: ; unused
+; calls Articuno/Zapdos/Moltres/Dragonite symbols "edition mark"
+GameCenterSlotMachineBonusPlayLegendaryHitText:
 	textfw "エディションマークが そろいました"
 	done
 

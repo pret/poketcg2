@@ -3629,16 +3629,16 @@ SlotMachine:
 	push bc
 	push de
 	push hl
-	ld [wdb2f], a
+	ld [wSlotMachineBets], a
 	farcall AskToPlaySlots
-	jr c, .done ; jump if player chose not to play
+	jr c, .done ; cancelled
 	push af
-	ld a, $03
+	ld a, AUDVOL_HALF_VOLUME
 	call CallSetVolume
 	pop af
 	farcall StartSlotMachine
 	push af
-	ld a, $07
+	ld a, AUDVOL_FULL_VOLUME
 	call CallSetVolume
 	pop af
 .done

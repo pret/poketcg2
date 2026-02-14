@@ -1694,8 +1694,8 @@ TextOffsets::
 	textpointer GameCenter5ChipsPerPlayText                           ; 0x0692
 	textpointer GameCenterSlotMachineDialogText                       ; 0x0693
 	textpointer GameCenterSlotMachineBonusPlayText                    ; 0x0694
-	textpointer GameCenterSlotMachineBonusPlayHitMoneySacksText       ; 0x0695
-	textpointer GameCenterSlotMachineHitEditionSymbolsText            ; 0x0696
+	textpointer GameCenterSlotMachineBonusPlayMoneybagHitText         ; 0x0695
+	textpointer GameCenterSlotMachineBonusPlayLegendaryHitText        ; 0x0696
 	textpointer GameCenterSlotMachineMissedText                       ; 0x0697
 	textpointer DebugAdjustChipsText                                  ; 0x0698
 	textpointer DebugImageListText                                    ; 0x0699
