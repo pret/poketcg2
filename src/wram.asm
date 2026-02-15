@@ -913,6 +913,26 @@ wCardSearchFunc:: ; cd21
 wCardSearchFuncParam:: ; cd22
 	ds $2
 
+UNION
+
+wBillsPCMenuScrollOffset:: ; cd24
+	ds $1
+
+	ds $3
+
+wBillsPCCurMenuItem:: ; cd28
+	ds $1
+
+wNumBillsPCCompatibleCardItems:: ; cd29
+	ds $1
+
+	ds $25
+
+wBillsPCCurCompatibleCardOwnedCount:: ; cd4f
+	ds $1
+
+NEXTU
+
 wDeckDiagnosisTextIDsPtr:: ; cd24
 	ds $2
 
@@ -981,6 +1001,8 @@ wcd4e:: ; cd4e
 
 wDeckCheckTotalEnergySurplus:: ; cd4f
 	ds $1
+
+ENDU
 
 ; is equal to number of colorless cards in deck divided by
 ; the number of unique Pokémon types in deck (rounded up)

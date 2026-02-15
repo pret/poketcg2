@@ -8157,26 +8157,26 @@ PlayerGenderAndNameSelection::
 	pop af
 	ret
 
-Func_1f8eb:
+BillsPCScreen:
 	farcall Func_1022a
-	call Func_1f8f7
+	call BillsPC
 	farcall Func_10252
 	ret
 
-Func_1f8f7:
+BillsPC:
 	push af
 	push bc
 	push de
 	push hl
 	farcall SetFrameFuncAndFadeFromWhite
-	farcall Func_2612a
-	jr c, .asm_1f914
+	farcall _BillsPC
+	jr c, .done ; cancelled, error, etc.
 	ldtx hl, GameCenterToBeMailedText_2
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call SetBillsPCCard
 	ld a, $82 ; priority bill's PC mail
 	call AddMailToQueue
-.asm_1f914
+.done
 	farcall FadeToWhiteAndUnsetFrameFunc
 	pop hl
 	pop de

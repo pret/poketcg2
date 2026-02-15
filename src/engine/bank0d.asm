@@ -1695,7 +1695,7 @@ Script_BillsPC:
 	print_text TurnedOnBillsPCText
 	end_dialog
 	end_script
-	farcall Func_1f8eb
+	farcall BillsPCScreen
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
