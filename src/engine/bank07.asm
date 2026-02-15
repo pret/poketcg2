@@ -3613,9 +3613,39 @@ PlayCoinFlipGame:
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
 	scf
 	jr .got_decision
-; 0x1d92a
 
-SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
+; unused
+ShowCoinFlipGameDescription:
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	call .DrawTextBoxes
+	call .PrintDescription
+	farcall SetFrameFuncAndFadeFromWhite
+	call .PrintCheers
+	farcall FadeToWhiteAndUnsetFrameFunc
+	ret
+
+.DrawTextBoxes:
+	lb de, 0, 0
+	lb bc, 20, 12
+	call DrawRegularTextBoxVRAM0
+	lb de, 0, 12
+	lb bc, 20, 6
+	call DrawRegularTextBoxVRAM0
+	ret
+
+.PrintDescription:
+	ldtx hl, GameCenterCoinFlipTitleText
+	lb de, 1, 0
+	call Func_2c4b
+	ldtx hl, GameCenterCoinFlipDescriptionText
+	lb de, 1, 2
+	call InitTextPrinting_ProcessTextFromIDVRAM0
+	ret
+
+.PrintCheers:
+	ldtx hl, GameCenterCoinFlipCheersText
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	ret
 
 OWInteractionSlotMachine:
 	farcall Func_1022a

@@ -5438,10 +5438,13 @@ HandlePopupMenu:
 	textitem 2, 2, GameCenterCardDungeonBet10Text
 	textitem 2, 4, GameCenterCardDungeonBetCancelText
 	textitems_end
-; 0x12390
-; coin flip game
 
-SECTION "Bank 4@639b", ROMX[$639b], BANK[$4]
+; unused
+CoinFlipGameDescriptionScreen:
+	call Func_1022a
+	farcall ShowCoinFlipGameDescription
+	call Func_10252
+	ret
 
 INCLUDE "engine/slot_machine.asm"
 
