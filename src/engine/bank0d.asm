@@ -1678,12 +1678,12 @@ Script_BlackBox:
 	print_text TurnedOnBlackBoxText
 	end_dialog
 	end_script
-	farcall Func_1312e
-	jr c, .asm_34d2f
+	farcall BlackBoxScreen
+	jr c, .quit
 	farcall ProcessBlackBoxInputAndOutput
 	ld a, $81 ; priority black box mail
 	farcall AddMailToQueue
-.asm_34d2f
+.quit
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret

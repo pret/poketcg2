@@ -5113,8 +5113,7 @@ HandleGiftCenterSendCardsMenu:
 	or a
 	ret
 
-; black box
-Func_a6ef:
+PrintBlackBoxSendingCardList:
 	xor a
 	ld [wScrollMenuScrollOffset], a
 	ld hl, wCurDeckCards
