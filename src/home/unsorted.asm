@@ -765,8 +765,8 @@ WaitForLCDOff::
 	ret
 
 ; return b = a/c, a = a%c
-; but no ensuring of a being nc or c being nonzero
-DivideAByC::
+; assuming c != 0 and carry clear on entry (no checks)
+DivModC::
 	ld b, 0
 .loop_subtract
 	sbc c

@@ -62,7 +62,7 @@ WRAMToSRAMMapper_GeneralSave::
 	wram_sram_map wPCMenuCursorPosition,                      1, $00, $ff
 	wram_sram_map wGameCenterChips,                           2, $00, $ff
 	wram_sram_map wGameCenterBankedChips,                     2, $00, $ff
-	wram_sram_map wGameCenterPrizeExchangeAltFlag,            1, $00, $ff
+	wram_sram_map wClaimedJigglypuffCoin,                     1, $00, $ff
 	wram_sram_map wOWObj1Flags,                               1, $00, $ff
 	dw NULL
 

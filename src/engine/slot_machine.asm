@@ -433,7 +433,7 @@ LoadSlotMachineReels:
 	ret
 ; just 0 to 32
 .enumerate_table
-FOR n, NUM_SLOTMACHINESYMBOLS_TILES
+FOR n, NUM_SLOT_MACHINE_SYMBOLS_TILES
 	db {d:n}
 ENDR
 
@@ -810,7 +810,7 @@ SetSlotMachineTeaseOffset:
 	ld a, [wSlotMachineBiasedSymbol]
 	call .CalculateDistanceToBias
 	ld c, 5
-	call DivideAByC
+	call DivModC
 	ld [hl], a
 	ret
 
@@ -823,7 +823,7 @@ SetSlotMachineTeaseOffset:
 	call .CalculateDistanceToBias
 	inc a
 	ld c, 4
-	call DivideAByC
+	call DivModC
 	ld [hl], a
 	ret
 
@@ -834,7 +834,7 @@ SetSlotMachineTeaseOffset:
 	ld a, [wSlotMachineBiasedSymbol]
 	call .CalculateDistanceToBias
 	ld c, 5
-	call DivideAByC
+	call DivModC
 	add 20
 	ld [hl], a
 	ld a, 3
@@ -849,7 +849,7 @@ SetSlotMachineTeaseOffset:
 	call .CalculateDistanceToBias
 	inc a
 	ld c, 4
-	call DivideAByC
+	call DivModC
 	add 20
 	ld [hl], a
 	ld a, 3
@@ -1077,7 +1077,7 @@ ENDR
 	add hl, bc
 	ld a, [hl]
 	ld c, NUM_SLOT_MACHINE_SYMBOL_VERT_TILES
-	call DivideAByC
+	call DivModC
 	ld a, b ; SLOTMACHINESYMBOL_*
 	pop hl
 	pop de
@@ -1158,7 +1158,7 @@ HandleSlotMachinePayouts:
 ; bug: prize is always BOOSTER_PRESENT_10_ENERGY
 ;   base "payout" is [0, 4] (meant for index?),
 ;   but payout value in bc is (base) * (chips per play) anyway (< 256),
-;   and ld a, b (offset from BOOSTER_PRESENT_10_ENERGY) always becomes ld a, 0
+;   and ld a, b (offset from BOOSTERS_PRESENT_START) always becomes ld a, 0
 .LegendaryHit:
 	call CreateSlotMachineBoosterPrizeAnimation
 	push af
@@ -1248,7 +1248,7 @@ HandleSlotMachinePayouts:
 	db   3 ; SLOTMACHINESYMBOL_MOLTRES
 	db   4 ; SLOTMACHINESYMBOL_ZAPDOS
 
-; a = offset from BOOSTER_PRESENT_10_ENERGY
+; a = offset from BOOSTERS_PRESENT_START
 ; bug: input is always 0, giving BOOSTER_PRESENT_10_ENERGY
 .BoosterPrize:
 	farcall StartFadeToWhite
@@ -1263,7 +1263,7 @@ HandleSlotMachinePayouts:
 	ld b, 0
 .loop_give_booster
 	ld a, [wSlotMachineBonusBoosterOffset]
-	add BOOSTER_PRESENT_10_ENERGY
+	add BOOSTERS_PRESENT_START
 	farcall GiveBoosterPacks
 	inc b
 	dec c

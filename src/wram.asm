@@ -3133,9 +3133,8 @@ wSelectedGameCenterPrizeExchangeItem:: ; db19
 wIndicesGameCenterPrizeExchangeItems:: ; db1a
 	ds NUM_GAME_CENTER_PRIZE_LIST_ITEMS
 
-; Jigglypuff Coin is a one-off prize
-; TRUE if it's obtained and replaced by 3 Present Packs
-wGameCenterPrizeExchangeAltFlag:: ; db1f
+; if TRUE, replace the one-off prize with 3 Present Packs
+wClaimedJigglypuffCoin:: ; db1f
 	ds $1
 
 wCoinFlipGameStreak:: ; db20
@@ -3554,7 +3553,7 @@ wSelectedGrandMasterCupPrizeItem2:: ; dd8f
 
 	ds $3
 
-wCardDungeonPlayable:: ; dd93
+wCardDungeonIsPlayable:: ; dd93
 	ds $1
 
 wCardTilemap:: ; dd94
