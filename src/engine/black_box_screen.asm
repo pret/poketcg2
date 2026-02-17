@@ -85,8 +85,8 @@ BlackBox:
 .SaveRequest:
 	ldtx hl, GameCenterBlackBoxSaveRequestText
 	call PrintScrollableText_NoTextBoxLabelVRAM0
-	ld c, $00
-	farcall DrawSavePromptAndWaitForInput
+	ld c, FALSE
+	farcall SaveGamePrompt
 	ret nc
 	ldtx hl, GameCenterBlackBoxUnableSaveRequiredText
 	call PrintScrollableText_NoTextBoxLabelVRAM0

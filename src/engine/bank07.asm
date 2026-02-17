@@ -732,8 +732,8 @@ ShowDiaryScreen:
 	farcall SetFadePalsFrameFunc
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
-	ld c, $00
-	call DrawSavePromptAndWaitForInput
+	ld c, FALSE
+	call SaveGamePrompt
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
@@ -777,23 +777,23 @@ DrawDiaryStatusBox:
 	textitem  7, 10, PlayerDiaryPlayTimeText
 	textitems_end
 
-; c - ?
-DrawSavePromptAndWaitForInput:
+; if c is TRUE, call ow-map/obj push/pop wrapper on saving
+SaveGamePrompt:
 	push bc
 	push de
 	push hl
 	ldtx hl, PlayerDiaryPromptText
 	xor a
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1c5ca
+	jr c, .cancel
 	ld a, c
 	and a
-	jr nz, .asm_1c5b9
-	call Func_1c5d6
-	jr .asm_1c5bc
-.asm_1c5b9
+	jr nz, .save_simply
+	call .OverWorldPushPopWrapper
+	jr .sfx
+.save_simply
 	call SaveGame
-.asm_1c5bc
+.sfx
 	push af
 	ld a, SFX_SAVE_GAME
 	call CallPlaySFX
@@ -801,18 +801,18 @@ DrawSavePromptAndWaitForInput:
 	ldtx hl, PlayerDiarySavedText
 	scf
 	ccf
-	jr .asm_1c5ce
-.asm_1c5ca
+	jr .print_result_text
+.cancel
 	ldtx hl, PlayerDiaryCancelledText
 	scf
-.asm_1c5ce
+.print_result_text
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_1c5d6:
+.OverWorldPushPopWrapper:
 	push af
 	push bc
 	push de
@@ -3190,8 +3190,8 @@ GiftCenter_SaveRequest:
 	ldtx hl, GiftCenterServiceSaveRequestText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	ld c, $01
-	call DrawSavePromptAndWaitForInput
+	ld c, TRUE
+	call SaveGamePrompt
 	ret nc
 	ldtx hl, GiftCenterServiceUnavailableSaveRequiredText
 	ldtx de, ReceptionistText
