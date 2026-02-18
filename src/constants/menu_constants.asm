@@ -82,6 +82,18 @@
 	const MAILBOXMENU_READ   ; 0
 	const MAILBOXMENU_DELETE ; 1
 
+; coin menu
+DEF COINMENU_WIDTH  EQU 4
+DEF COINMENU_HEIGHT EQU 2
+DEF NUM_COINMENU_VISIBLE_COINS EQU COINMENU_WIDTH * COINMENU_HEIGHT ; 8
+
+; pagination by coin category
+	const_def
+	const COIN_PAGE_TCG_ISLAND ; $0
+	const COIN_PAGE_GR_ISLAND  ; $1
+	const COIN_PAGE_SPECIAL    ; $2
+DEF NUM_COIN_PAGES EQU const_value
+
 ; gift center menu options
 	const_def
 	const GIFTCENTERMENU_SEND_CARDS                 ; 0

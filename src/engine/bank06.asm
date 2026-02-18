@@ -3154,7 +3154,7 @@ FillCardPopSummary:
 	inc de
 	push de
 	xor a
-	farcall CountEventCoinsObtained
+	farcall CountCoinsObtained
 	pop de
 	ld [de], a
 	ret

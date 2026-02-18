@@ -3005,7 +3005,7 @@ wMenuBoxUpdateFunction:: ; da34
 wMenuBoxFocusedItem:: ; da36
 	ds $1
 
-wda37:: ; da37
+wMenuBoxIsBoundaryNoOp:: ; da37
 	ds $1
 
 wMenuBoxDelay:: ; da38
@@ -3225,23 +3225,22 @@ wSelectedGiftCenterMenuItem:: ; dc07
 wSelectedCoin:: ; dc08
 	ds $1
 
-; used when viewing your coins in Coin menu.
-; same values as COIN_TYPE_*
+; COIN_PAGE_* ID for Coin menu
 wCoinPage:: ; dc09
 	ds $1
 
-; COIN_* id being given to player during cutscene
+; COIN_* ID being given to player during cutscene
 wIncomingCoin:: ; dc0a
 	ds $1
 
-wdc0b:: ; dc0b
+wIncomingCoinBlinkFrames:: ; dc0b
 	ds $1
 
-; see: _CoinPageListTable for valid values
+; see: CoinMenuCoinLists for valid values
 wCoinPageXCoordinate:: ; dc0c
 	ds $1
 
-; see: _CoinPageListTable for valid values
+; see: CoinMenuCoinLists for valid values
 wCoinPageYCoordinate:: ; dc0d
 	ds $1
 
