@@ -1,4 +1,18 @@
-SECTION "Bank a@400e", ROMX[$400e], BANK[$a]
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank0a:
+	push af
+	xor a
+	cp d
+	jr nz, .false
+	cp e
+	jr nz, .false
+	pop af
+	scf
+	ret
+.false
+	pop af
+	or a
+	ret
 
 ; return carry if card ID loaded in de is found in hand
 ; and outputs in a the deck index of that card

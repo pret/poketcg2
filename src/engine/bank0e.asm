@@ -6277,7 +6277,7 @@ OmitMissingCardsFromDeckAndBackup:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de
@@ -6369,7 +6369,7 @@ GetSumOfRemainingBasicEnergyCards:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .load_count
 	push hl
 	ld hl, wTempCardCollection
@@ -6537,7 +6537,7 @@ SubInBasicEnergyInCurDeck:
 	inc b
 	ld e, c
 	ld d, a
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	pop de
 	jr nc, .loop_copy_and_count
 	dec b
@@ -6600,7 +6600,7 @@ SubInBasicEnergyInCurDeck:
 	ld [bc], a
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr nc, .loop_list
 
 ; save result
@@ -6621,7 +6621,7 @@ SubInBasicEnergyInCurDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	ccf
 	jr nc, .checked_deck_cards
 	cp e
@@ -6699,8 +6699,8 @@ SubInBasicEnergyInCurDeck:
 	scf
 	ret
 
-; return carry if de (card id) = 0
-CheckIfCardIDIsZero_Bank0e:
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank0e:
 	push af
 	xor a
 	cp d
@@ -6745,7 +6745,7 @@ ShowMissingCardList:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de
@@ -6830,7 +6830,7 @@ GetCardCountFromDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	ld a, e
 	ld c, d
 	pop de
@@ -6890,7 +6890,7 @@ ShowUsedCardListFromBuiltDecks:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de

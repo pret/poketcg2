@@ -5144,9 +5144,8 @@ AIActionTable_PoisonStormDeck:
 	dw .list_play_from_hand
 	dw .list_energy
 
-; returns carry if card ID in de is NULL ; end
-; de = card ID
-CheckIfCardIDIsZero_Bank5:
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank05:
 	push af
 	xor a
 	cp d
@@ -5747,7 +5746,7 @@ PlayPkmnCardWithHighestPreference:
 	ld a, [bc]
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .not_found
 	farcall RemoveCardIDInList
 	jr nc, .loop_id_list
@@ -5852,7 +5851,7 @@ TrySetUpStartingPlayArea_PowerfulPokemonDeck:
 	ld a, [bc]
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .none_found
 	call .CheckMatchingEnergyInHand
 	jr nc, .loop_list
@@ -6345,7 +6344,7 @@ AIDecideBenchPokemonToSwitchTo:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .store_score ; list is over
 	ld a, d
 	cp b
@@ -7160,7 +7159,7 @@ SortTempHandByIDList:
 	push de
 	ld e, b
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .done ; return when list is over
 	ld hl, wDuelTempList
 	ld b, 0
@@ -7480,7 +7479,7 @@ AIProcessEnergyCards:
 	ld a, [hli]
 	ld d, a
 	ld b, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	pop de
 	jp c, .check_boss_deck ; can be jr
 	ld a, b
@@ -9149,7 +9148,7 @@ CheckIfCardIDIsInList:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .false
 	ld a, e
 	cp c
