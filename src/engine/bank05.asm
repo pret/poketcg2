@@ -6755,7 +6755,7 @@ AIDecidePlayPokemonCard:
 ; for this card, raise AI score
 .check_evolution_deck
 	ld a, [wTempAIPokemonCard]
-	farcall $a, $5921 ; Func_29921 ; CheckForEvolutionInDeck
+	farcall CheckIfPokemonEvolutionIsFoundInDeck
 	jr nc, .check_score
 	ld a, 10
 	call AIEncourage

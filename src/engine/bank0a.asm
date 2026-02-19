@@ -2298,9 +2298,53 @@ CheckIfPokemonEvolutionIsFoundInHand:
 	ld [hl], a
 	or a
 	ret
-; 0x29921
 
-SECTION "Bank a@5951", ROMX[$5951], BANK[$a]
+; loops through w*CardLocations for a card that evolves from the target in a
+; input:
+; - a = Pokémon card deck index
+; output:
+; - a = deck index of compatible Evolution card found, with carry set
+CheckIfPokemonEvolutionIsFoundInDeck:
+	ld b, a
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	push af
+	ld [hl], b
+	ld e, 0
+.loop_deck_cards
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	cp CARD_LOCATION_DECK
+	jr nz, .next_card
+	push de
+	ld d, e
+	ld e, PLAY_AREA_ARENA
+	farcall CheckIfEvolvesInto
+	pop de
+	jr nc, .found
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_cards
+
+; not found
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	pop af
+	ld [hl], a
+	or a
+	ret
+
+.found
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	pop af
+	ld [hl], a
+	ld a, e
+	scf
+	ret
 
 ; returns carry if Pokémon in play area location in a
 ; has any attack that is usable and non-residual
