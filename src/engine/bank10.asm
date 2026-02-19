@@ -3501,19 +3501,19 @@ SealedFort_StepEvents:
 	map_exit 5, 12, MAP_SEALED_FORT_ENTRANCE, 4, 1, SOUTH
 	map_exit 6, 12, MAP_SEALED_FORT_ENTRANCE, 5, 1, SOUTH
 	map_exit 7, 12, MAP_SEALED_FORT_ENTRANCE, 6, 1, SOUTH
-	ow_script 6, 6, Func_41f66
+	ow_script 6, 6, Script_TobichanWelcome
 	db $ff
 
 SealedFort_OWInteractions:
-	ow_script 6, 2, Func_41fe1
-	ow_script 2, 2, Func_4207e
-	ow_script 3, 2, Func_42119
-	ow_script 4, 2, Func_421b4
-	ow_script 5, 2, Func_4224f
-	ow_script 9, 2, Func_422ec
-	ow_script 7, 2, Func_42387
-	ow_script 8, 2, Func_42424
-	ow_script 10, 2, Func_424bf
+	ow_script 6, 2, Script_StatueTobichan
+	ow_script 2, 2, Script_StatueEiji
+	ow_script 3, 2, Script_StatueMagician
+	ow_script 4, 2, Script_StatueToshiron
+	ow_script 5, 2, Script_StatuePierrot
+	ow_script 9, 2, Script_StatueAnna
+	ow_script 7, 2, Script_StatueDee
+	ow_script 8, 2, Script_StatueMasquerade
+	ow_script 10, 2, Script_StatueYui
 	db $ff
 
 SealedFort_MapScripts:
@@ -3549,18 +3549,18 @@ Func_41f36:
 	ret
 
 SealedFort_AfterDuelScripts:
-	npc_script NPC_TOBICHAN, Func_42050
-	npc_script NPC_EIJI, Func_420eb
-	npc_script NPC_MAGICIAN, Func_42186
-	npc_script NPC_TOSHIRON, Func_42221
-	npc_script NPC_PIERROT, Func_422be
-	npc_script NPC_ANNA, Func_42359
-	npc_script NPC_DEE, Func_423f6
-	npc_script NPC_MASQUERADE, Func_42491
-	npc_script NPC_YUI, Func_4252c
+	npc_script NPC_TOBICHAN, Script_TobichanAfterDuel
+	npc_script NPC_EIJI, Script_EijiAfterDuel
+	npc_script NPC_MAGICIAN, Script_MagicianAfterDuel
+	npc_script NPC_TOSHIRON, Script_ToshironAfterDuel
+	npc_script NPC_PIERROT, Script_PierrotAfterDuel
+	npc_script NPC_ANNA, Script_AnnaAfterDuel
+	npc_script NPC_DEE, Script_DeeAfterDuel
+	npc_script NPC_MASQUERADE, Script_MasqueradeAfterDuel
+	npc_script NPC_YUI, Script_YuiAfterDuel
 	db $ff
 
-Func_41f66:
+Script_TobichanWelcome:
 	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogTobichanText
@@ -3570,24 +3570,24 @@ Func_41f66:
 	ld [wScriptNPCName + 1], a
 	ld a, EVENT_SET_UNTIL_MAP_RELOAD_1
 	farcall GetEventValue
-	jr nz, .asm_41fd9
+	jr nz, .done
 	xor a
 	start_script
 	set_player_direction NORTH
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0z .ows_41f8e
+	script_jump_if_b0z .appear
 	start_dialog
-	print_npc_text Text1088
+	print_npc_text TobichanWelcomeText
 	end_dialog
-.ows_41f8e
+.appear
 	set_event EVENT_SET_UNTIL_MAP_RELOAD_1
 	scroll_to_position $02, $00
 	load_npc NPC_TOBICHAN, 6, 2, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $56
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_TOBICHAN
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
@@ -3597,31 +3597,31 @@ Func_41f66:
 	scroll_to_player
 	start_dialog
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0z .ows_41fc2
+	script_jump_if_b0z .repeat
 	set_event EVENT_GHOST_MASTER_STATUES_STATE
-	print_npc_text Text1089
-	script_jump .ows_41fc5
-.ows_41fc2
-	print_npc_text Text108a
-.ows_41fc5
+	print_npc_text TobichanGhostMasterIntroductionText
+	script_jump .disappear
+.repeat
+	print_npc_text TobichanWelcomeBackText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $56
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_TOBICHAN
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_TOBICHAN
 	end_script
-.asm_41fd9
+.done
 	farcall OverworldResumeAndHandlePlayerMoveInput
 	ret
 .NPCMovement_41fde:
 	db SOUTH, MOVE_1
 	db $ff
 
-Func_41fe1:
+Script_StatueTobichan:
 	ld a, NPC_TOBICHAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogTobichanText
@@ -3633,39 +3633,39 @@ Func_41fe1:
 	start_script
 	start_dialog
 	set_text_ram2 DialogTobichanText
-	set_text_ram2b Text108b
-	print_text Text108c
+	set_text_ram2b StatuePoisonStormDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_42044
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_42044
-	print_npc_text Text108e
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text TobichanWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_42047, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOBICHAN, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $56
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_TOBICHAN
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_TOBICHAN
-	script_jump_if_b0z .ows_4203b
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_TOBICHAN
-	print_npc_text Text108f
-	script_jump .ows_4203e
-.ows_4203b
-	print_npc_text Text1090
-.ows_4203e
+	print_npc_text TobichanDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text TobichanDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel POISON_STORM_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_42044
+.quit
 	end_dialog
 	end_script
 	ret
@@ -3676,32 +3676,32 @@ Func_41fe1:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_42050:
+Script_TobichanAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42066
-	print_npc_text Text1091
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text1092
-	script_jump .ows_42069
-.ows_42066
-	print_npc_text Text1093
-.ows_42069
+	script_jump_if_b0nz .player_lost
+	print_npc_text TobichanPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text TobichanPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text TobichanPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $56
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_TOBICHAN
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_TOBICHAN
 	end_script
 	ret
 
-Func_4207e:
+Script_StatueEiji:
 	ld a, NPC_EIJI
 	ld [wScriptNPC], a
 	ldtx hl, DialogEijiText
@@ -3713,39 +3713,39 @@ Func_4207e:
 	start_script
 	start_dialog
 	set_text_ram2 DialogEijiText
-	set_text_ram2b Text1094
-	print_text Text108c
+	set_text_ram2b StatueEverybodysFriendDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_420e1
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_420e1
-	print_npc_text Text1095
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text EijiWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_420e4, TRUE
 	wait_for_player_animation
 	load_npc NPC_EIJI, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $57
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_EIJI
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_EIJI
-	script_jump_if_b0z .ows_420d8
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_EIJI
-	print_npc_text Text1096
-	script_jump .ows_420db
-.ows_420d8
-	print_npc_text Text1097
-.ows_420db
+	print_npc_text EijiDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text EijiDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel EVERYBODYS_FRIEND_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_420e1
+.quit
 	end_dialog
 	end_script
 	ret
@@ -3755,32 +3755,32 @@ Func_4207e:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_420eb:
+Script_EijiAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42101
-	print_npc_text Text1098
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text1099
-	script_jump .ows_42104
-.ows_42101
-	print_npc_text Text109a
-.ows_42104
+	script_jump_if_b0nz .player_lost
+	print_npc_text EijiPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text EijiPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text EijiPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $57
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_EIJI
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_EIJI
 	end_script
 	ret
 
-Func_42119:
+Script_StatueMagician:
 	ld a, NPC_MAGICIAN
 	ld [wScriptNPC], a
 	ldtx hl, DialogMagicianText
@@ -3792,39 +3792,39 @@ Func_42119:
 	start_script
 	start_dialog
 	set_text_ram2 DialogMagicianText
-	set_text_ram2b Text109b
-	print_text Text108c
+	set_text_ram2b StatueImmortalPokemonDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_4217c
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_4217c
-	print_npc_text Text109c
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text MagicianWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_4217f, TRUE
 	wait_for_player_animation
 	load_npc NPC_MAGICIAN, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $58
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_MAGICIAN
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_MAGICIAN
-	script_jump_if_b0z .ows_42173
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_MAGICIAN
-	print_npc_text Text109d
-	script_jump .ows_42176
-.ows_42173
-	print_npc_text Text109e
-.ows_42176
+	print_npc_text MagicianDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text MagicianDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel IMMORTAL_POKEMON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_4217c
+.quit
 	end_dialog
 	end_script
 	ret
@@ -3834,32 +3834,32 @@ Func_42119:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_42186:
+Script_MagicianAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_4219c
-	print_npc_text Text109f
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10a0
-	script_jump .ows_4219f
-.ows_4219c
-	print_npc_text Text10a1
-.ows_4219f
+	script_jump_if_b0nz .player_lost
+	print_npc_text MagicianPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text MagicianPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text MagicianPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $58
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_MAGICIAN
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_MAGICIAN
 	end_script
 	ret
 
-Func_421b4:
+Script_StatueToshiron:
 	ld a, NPC_TOSHIRON
 	ld [wScriptNPC], a
 	ldtx hl, DialogToshironText
@@ -3871,39 +3871,39 @@ Func_421b4:
 	start_script
 	start_dialog
 	set_text_ram2 DialogToshironText
-	set_text_ram2b Text10a2
-	print_text Text108c
+	set_text_ram2b StatueTrainerImprisonDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_42217
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_42217
-	print_npc_text Text10a3
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text ToshironWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_4221a, TRUE
 	wait_for_player_animation
 	load_npc NPC_TOSHIRON, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $59
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_TOSHIRON
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_TOSHIRON
-	script_jump_if_b0z .ows_4220e
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_TOSHIRON
-	print_npc_text Text10a4
-	script_jump .ows_42211
-.ows_4220e
-	print_npc_text Text10a5
-.ows_42211
+	print_npc_text ToshironDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text ToshironDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel TRAINER_IMPRISON_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_42217
+.quit
 	end_dialog
 	end_script
 	ret
@@ -3913,32 +3913,32 @@ Func_421b4:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_42221:
+Script_ToshironAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42237
-	print_npc_text Text10a6
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10a7
-	script_jump .ows_4223a
-.ows_42237
-	print_npc_text Text10a8
-.ows_4223a
+	script_jump_if_b0nz .player_lost
+	print_npc_text ToshironPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text ToshironPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text ToshironPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $59
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_TOSHIRON
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_TOSHIRON
 	end_script
 	ret
 
-Func_4224f:
+Script_StatuePierrot:
 	ld a, NPC_PIERROT
 	ld [wScriptNPC], a
 	ldtx hl, DialogPierrotText
@@ -3950,39 +3950,39 @@ Func_4224f:
 	start_script
 	start_dialog
 	set_text_ram2 DialogPierrotText
-	set_text_ram2b Text10a9
-	print_text Text108c
+	set_text_ram2b StatueBlazingFlameDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_422b2
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_422b2
-	print_npc_text Text10aa
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text PierrotWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_422b5, TRUE
 	wait_for_player_animation
 	load_npc NPC_PIERROT, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $5a
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_PIERROT
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_PIERROT
-	script_jump_if_b0z .ows_422a9
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_PIERROT
-	print_npc_text Text10ab
-	script_jump .ows_422ac
-.ows_422a9
-	print_npc_text Text10ac
-.ows_422ac
+	print_npc_text PierrotDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text PierrotDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel BLAZING_FLAME_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_422b2
+.quit
 	end_dialog
 	end_script
 	ret
@@ -3993,32 +3993,32 @@ Func_4224f:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_422be:
+Script_PierrotAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_422d4
-	print_npc_text Text10ad
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10ae
-	script_jump .ows_422d7
-.ows_422d4
-	print_npc_text Text10af
-.ows_422d7
+	script_jump_if_b0nz .player_lost
+	print_npc_text PierrotPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text PierrotPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text PierrotPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $5a
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_PIERROT
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_PIERROT
 	end_script
 	ret
 
-Func_422ec:
+Script_StatueAnna:
 	ld a, NPC_ANNA
 	ld [wScriptNPC], a
 	ldtx hl, DialogAnnaText
@@ -4030,39 +4030,39 @@ Func_422ec:
 	start_script
 	start_dialog
 	set_text_ram2 DialogAnnaText
-	set_text_ram2b Text10b0
-	print_text Text108c
+	set_text_ram2b StatueDamageChaosDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_4234f
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_4234f
-	print_npc_text Text10b1
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text AnnaWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_42352, TRUE
 	wait_for_player_animation
 	load_npc NPC_ANNA, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $5b
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_ANNA
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_ANNA
-	script_jump_if_b0z .ows_42346
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_ANNA
-	print_npc_text Text10b2
-	script_jump .ows_42349
-.ows_42346
-	print_npc_text Text10b3
-.ows_42349
+	print_npc_text AnnaDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text AnnaDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel DAMAGE_CHAOS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_4234f
+.quit
 	end_dialog
 	end_script
 	ret
@@ -4072,32 +4072,32 @@ Func_422ec:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_42359:
+Script_AnnaAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_4236f
-	print_npc_text Text10b4
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10b5
-	script_jump .ows_42372
-.ows_4236f
-	print_npc_text Text10b6
-.ows_42372
+	script_jump_if_b0nz .player_lost
+	print_npc_text AnnaPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text AnnaPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text AnnaPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $5b
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_ANNA
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_ANNA
 	end_script
 	ret
 
-Func_42387:
+Script_StatueDee:
 	ld a, NPC_DEE
 	ld [wScriptNPC], a
 	ldtx hl, DialogDeeText
@@ -4109,39 +4109,39 @@ Func_42387:
 	start_script
 	start_dialog
 	set_text_ram2 DialogDeeText
-	set_text_ram2b Text10b7
-	print_text Text108c
+	set_text_ram2b StatueBigThunderDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_423ea
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_423ea
-	print_npc_text Text10b8
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text DeeWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_423ed, TRUE
 	wait_for_player_animation
 	load_npc NPC_DEE, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $5c
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_DEE
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_DEE
-	script_jump_if_b0z .ows_423e1
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_DEE
-	print_npc_text Text10b9
-	script_jump .ows_423e4
-.ows_423e1
-	print_npc_text Text10ba
-.ows_423e4
+	print_npc_text DeeDuelStartInitialText
+	script_jump .initial
+.repeat
+	print_npc_text DeeDuelStartRepeatText
+.initial
 	end_dialog
 	start_duel BIG_THUNDER_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_423ea
+.quit
 	end_dialog
 	end_script
 	ret
@@ -4152,32 +4152,32 @@ Func_42387:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_423f6:
+Script_DeeAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_4240c
-	print_npc_text Text10bb
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10bc
-	script_jump .ows_4240f
-.ows_4240c
-	print_npc_text Text10bd
-.ows_4240f
+	script_jump_if_b0nz .player_lost
+	print_npc_text DeePlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text DeePlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text DeePlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $5c
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_DEE
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_DEE
 	end_script
 	ret
 
-Func_42424:
+Script_StatueMasquerade:
 	ld a, NPC_MASQUERADE
 	ld [wScriptNPC], a
 	ldtx hl, DialogMasqueradeText
@@ -4189,39 +4189,39 @@ Func_42424:
 	start_script
 	start_dialog
 	set_text_ram2 DialogMasqueradeText
-	set_text_ram2b Text10be
-	print_text Text108c
+	set_text_ram2b StatuePowerOfDarknessDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_42487
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_42487
-	print_npc_text Text10bf
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text MasqueradeWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_4248a, TRUE
 	wait_for_player_animation
 	load_npc NPC_MASQUERADE, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $5d
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_MASQUERADE
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_MASQUERADE
-	script_jump_if_b0z .ows_4247e
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_MASQUERADE
-	print_npc_text Text10c0
-	script_jump .ows_42481
-.ows_4247e
-	print_npc_text Text10c1
-.ows_42481
+	print_npc_text MasqueradeDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text MasqueradeDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel POWER_OF_DARKNESS_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_42487
+.quit
 	end_dialog
 	end_script
 	ret
@@ -4231,32 +4231,32 @@ Func_42424:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_42491:
+Script_MasqueradeAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_424a7
-	print_npc_text Text10c2
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10c3
-	script_jump .ows_424aa
-.ows_424a7
-	print_npc_text Text10c4
-.ows_424aa
+	script_jump_if_b0nz .player_lost
+	print_npc_text MasqueradePlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text MasqueradePlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text MasqueradePlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $5d
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_MASQUERADE
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_MASQUERADE
 	end_script
 	ret
 
-Func_424bf:
+Script_StatueYui:
 	ld a, NPC_YUI
 	ld [wScriptNPC], a
 	ldtx hl, DialogYuiText
@@ -4268,39 +4268,39 @@ Func_424bf:
 	start_script
 	start_dialog
 	set_text_ram2 DialogYuiText
-	set_text_ram2b Text10c5
-	print_text Text108c
+	set_text_ram2b StatueTorrentialFloodDeckName
+	print_text GhostMasterStatueInscriptionText
 	check_event EVENT_GHOST_MASTER_STATUES_STATE
-	script_jump_if_b0nz .ows_42522
-	ask_question Text108d, TRUE
-	script_jump_if_b0z .ows_42522
-	print_npc_text Text10c6
+	script_jump_if_b0nz .quit
+	ask_question GhostMasterDuelPromptText, TRUE
+	script_jump_if_b0z .quit
+	print_npc_text YuiWantsToDuelText
 	end_dialog
 	move_player .NPCMovement_42525, TRUE
 	wait_for_player_animation
 	load_npc NPC_YUI, 6, 3, SOUTH
 	play_sfx SFX_GHOST_MASTER_APPEAR
 	quit_script
-	ld a, $b0
-	ld hl, Data_4257f
-	call Func_4255a
+	ld a, NPC_YUI
+	ld hl, GhostMasterBlink_Coming
+	call BlinkGhostMaster
 	farcall SetOWObjectSpriteAnimFlag6
 	ld a, $01
 	start_script
 	start_dialog
 	check_event EVENT_BATTLED_YUI
-	script_jump_if_b0z .ows_42519
+	script_jump_if_b0z .repeat
 	set_event EVENT_BATTLED_YUI
-	print_npc_text Text10c7
-	script_jump .ows_4251c
-.ows_42519
-	print_npc_text Text10c8
-.ows_4251c
+	print_npc_text YuiDuelStartInitialText
+	script_jump .start_duel
+.repeat
+	print_npc_text YuiDuelStartRepeatText
+.start_duel
 	end_dialog
 	start_duel TORRENTIAL_FLOOD_DECK_ID, MUSIC_MATCH_START_GR_EXECS
 	end_script
 	ret
-.ows_42522
+.quit
 	end_dialog
 	end_script
 	ret
@@ -4310,71 +4310,112 @@ Func_424bf:
 	db NORTH, MOVE_0
 	db $ff
 
-Func_4252c:
+Script_YuiAfterDuel:
 	xor a
 	start_script
 	start_dialog
 	check_event EVENT_SET_UNTIL_MAP_RELOAD_2
-	script_jump_if_b0nz .ows_42542
-	print_npc_text Text10c9
-	give_booster_packs BoosterList_cdbe
-	print_npc_text Text10ca
-	script_jump .ows_42545
-.ows_42542
-	print_npc_text Text10cb
-.ows_42545
+	script_jump_if_b0nz .player_lost
+	print_npc_text YuiPlayerWon1Text
+	give_booster_packs BoosterList_GhostMaster
+	print_npc_text YuiPlayerWon2Text
+	script_jump .disappear
+.player_lost
+	print_npc_text YuiPlayerLostText
+.disappear
 	end_dialog
 	play_sfx SFX_GHOST_MASTER_DISAPPEAR
 	quit_script
-	ld a, $b0
-	ld hl, Data_425ae
-	call Func_4255a
+	ld a, NPC_YUI
+	ld hl, GhostMasterBlink_Returning
+	call BlinkGhostMaster
 	ld a, $01
 	start_script
 	unload_npc NPC_YUI
 	end_script
 	ret
 
-Func_4255a:
+; a  = NPC_* ID
+; hl = GhostMasterBlink_* table
+BlinkGhostMaster:
 	push af
 	push bc
 	push hl
 	ld c, a
-.asm_4255e
+.loop_table
 	ld a, [hl]
 	cp $ff
-	jr z, .asm_4257b
-	bit 7, a
-	jr z, .asm_4256e
+	jr z, .done
+	bit GHOST_MASTER_BLINK_F, a
+	jr z, .off
 	ld a, c
 	farcall SetOWObjectSpriteAnimFlag6
-	jr .asm_42573
-.asm_4256e
+	jr .wait_frames
+.off
 	ld a, c
 	farcall ResetOWObjectSpriteAnimFlag6
-.asm_42573
+.wait_frames
 	ld a, [hli]
-	res 7, a
+	res GHOST_MASTER_BLINK_F, a
 	call WaitAFrames
-	jr .asm_4255e
-.asm_4257b
+	jr .loop_table
+
+.done
 	pop hl
 	pop bc
 	pop af
 	ret
 
-Data_4257f:
-	db $8a, $0a, $89, $09, $88, $08, $87, $07, $86, $06
-	db $85, $05, $84, $04, $83, $02, $82, $02, $82, $02
-	db $82, $02, $82, $02, $81, $01, $81, $01, $81, $01
-	db $81, $01, $81, $01, $81, $01, $81, $01, $81, $01
-	db $81, $01, $81, $01, $81, $01, $ff
+; frames
+GhostMasterBlink_Coming:
+	db 10 | GHOST_MASTER_BLINK
+	db 10
+	db 9 | GHOST_MASTER_BLINK
+	db 9
+	db 8 | GHOST_MASTER_BLINK
+	db 8
+	db 7 | GHOST_MASTER_BLINK
+	db 7
+	db 6 | GHOST_MASTER_BLINK
+	db 6
+	db 5 | GHOST_MASTER_BLINK
+	db 5
+	db 4 | GHOST_MASTER_BLINK
+	db 4
+	db 3 | GHOST_MASTER_BLINK
+	db 2
+REPT 4
+	db 2 | GHOST_MASTER_BLINK
+	db 2
+ENDR
+REPT 11
+	db 1 | GHOST_MASTER_BLINK
+	db 1
+ENDR
+	db $ff
 
-Data_425ae:
-	db $88, $08, $87, $07, $86, $06, $85, $05, $84, $04
-	db $83, $02, $82, $02, $82, $02, $81, $01, $81, $01
-	db $81, $01, $81, $01, $81, $01, $81, $01, $81, $01
-	db $81, $01, $ff
+GhostMasterBlink_Returning:
+	db 8 | GHOST_MASTER_BLINK
+	db 8
+	db 7 | GHOST_MASTER_BLINK
+	db 7
+	db 6 | GHOST_MASTER_BLINK
+	db 6
+	db 5 | GHOST_MASTER_BLINK
+	db 5
+	db 4 | GHOST_MASTER_BLINK
+	db 4
+	db 3 | GHOST_MASTER_BLINK
+	db 2
+REPT 2
+	db 2 | GHOST_MASTER_BLINK
+	db 2
+ENDR
+REPT 8
+	db 1 | GHOST_MASTER_BLINK
+	db 1
+ENDR
+	db $ff
 
 GrChallengeHall_MapHeader:
 	db MAP_GFX_GR_CHALLENGE_HALL
