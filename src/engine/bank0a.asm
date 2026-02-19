@@ -112,6 +112,8 @@ AIAttachEnergyInHandToCardInPlayArea:
 	ret nc ; not in hand
 	push af
 	ld b, PLAY_AREA_ARENA
+
+.attach
 	call FindCardIDInTurnDuelistsPlayArea
 	ldh [hTempPlayAreaLocation_ffa1], a
 	pop af
@@ -119,9 +121,19 @@ AIAttachEnergyInHandToCardInPlayArea:
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 	ret
-; 0x2807a
 
-SECTION "Bank a@4087", ROMX[$4087], BANK[$a]
+; same as AIAttachEnergyInHandToCardInPlayArea but
+; only look for card ID in the Bench
+AIAttachEnergyInHandToCardInBench:
+	push de
+	ld d, b
+	ld e, c
+	call LookForCardIDInHandList
+	pop de
+	ret nc
+	push af
+	ld b, PLAY_AREA_BENCH_1
+	jr AIAttachEnergyInHandToCardInPlayArea.attach
 
 ; finds a card ID in a given card location
 ; returns carry if found, and its deck index
@@ -166,9 +178,43 @@ FindCardIDInLocation:
 	ld a, l
 	scf
 	ret
-; 0x280b1
 
-SECTION "Bank a@40df", ROMX[$40df], BANK[$a]
+; counts total number of energy cards in opponent's hand
+; plus all the cards attached in Turn Duelist's Play Area
+; output:
+;	a and wTempAI = total number of energy cards
+CountOppEnergyCardsInHandAndAttached:
+	xor a
+	ld [wTempAI], a
+	bank1call CreateEnergyCardListFromHand
+	jr c, .attached
+	ld b, -1
+	ld hl, wDuelTempList
+.loop_hand
+	inc b
+	ld a, [hli]
+	cp $ff
+	jr nz, .loop_hand
+	ld a, b
+	ld [wTempAI], a
+
+.attached
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, PLAY_AREA_ARENA
+.loop_play_area
+	ld a, e
+	push de
+	call CreateArenaOrBenchEnergyCardList
+	pop de
+	ld hl, wTempAI
+	add [hl]
+	ld [hl], a
+	inc e
+	dec d
+	jr nz, .loop_play_area
+	ret
 
 ; returns carry if any card with ID in de is found
 ; in the list that is pointed by hl.
@@ -225,9 +271,79 @@ RemoveCardIDInList:
 	pop hl
 	or a
 	ret
-; 0x2810d
 
-SECTION "Bank a@416b", ROMX[$416b], BANK[$a]
+; checks if any bench Pokémon has same ID
+; as input, and sets carry if it has more than
+; half health and can use its second attack
+; input:
+;	de = card ID to check for
+; output:
+;	carry set if the above requirements are met
+CheckForBenchIDAtHalfHPAndCanUseSecondAttack:
+	ld hl, wSamePokemonCardID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld e, a
+	push de
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	lb bc, 0, PLAY_AREA_ARENA
+	push hl
+
+.loop
+	inc c
+	pop hl
+	ld a, [hli]
+	push hl
+	cp $ff
+	jr z, .done
+	ld d, a
+	push de
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, c
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	ld d, a
+	ld a, [wLoadedCard1HP]
+	rrca
+	cp d
+	pop de
+	jr nc, .loop
+; half max HP < current HP
+	ld a, [wLoadedCard1ID]
+	ld hl, wSamePokemonCardID
+	cp [hl]
+	jr nz, .loop
+	ld a, [wLoadedCard1ID + 1]
+	inc hl
+	cp [hl]
+	jr nz, .loop
+
+	ld a, c
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	push bc
+	farcall CheckIfSelectedAttackIsUnusable
+	pop bc
+	jr c, .loop
+	inc b
+.done
+	pop hl
+	pop de
+	ld a, e
+	ld [wSelectedAttack], a
+	ld a, d
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, b
+	or a
+	ret z
+	scf
+	ret
 
 ; in TCG1 this returned carry if deck AI was a boss deck
 StubbedCheckIfOpponentHasBossDeckID:
@@ -271,9 +387,43 @@ CheckIfNotABossDeckID:
 StubbedAIChooseRandomlyNotToDoAction:
 	or a
 	ret
-; 0x28196
 
-SECTION "Bank a@41cf", ROMX[$41cf], BANK[$a]
+; unreachable
+	push hl
+	push de
+	call CheckIfNotABossDeckID
+	jr c, .check_deck
+	pop de
+	pop hl
+	ret
+.check_deck
+	ld a, [wOpponentDeckID]
+	cp $1c ; MUSCLES_FOR_BRAINS_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $20 ; BLISTERING_POKEMON_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $22 ; WATERFRONT_POKEMON_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $26 ; BOOM_BOOM_SELFDESTRUCT_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $2a ; KALEIDOSCOPE_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $33 ; RESHUFFLE_DECK_ID in TCG1
+	jr z, .carry_50_percent
+; carry 25 percent
+	ld a, 4
+	call Random
+	cp 1
+	pop de
+	pop hl
+	ret
+.carry_50_percent
+	ld a, 4
+	call Random
+	cp 2
+	pop de
+	pop hl
+	ret
 
 ; a = number of copies
 ; de = card ID
@@ -2191,9 +2341,35 @@ CountNumberOfSetUpBenchPokemon:
 	ret z
 	scf
 	ret
-; 0x28d7e
 
-SECTION "Bank a@4da3", ROMX[$4da3], BANK[$a]
+; return carry if there are any basic Pokémon in deck
+CheckIfAnyBasicPokemonInDeck:
+	ld e, 0
+.loop_deck_cards
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	cp CARD_LOCATION_DECK
+	jr nz, .next_card
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .next_card
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr z, .found
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_cards
+; not found
+	or a
+	ret
+.found
+	scf
+	ret
 
 ; checks in other Play Area for non-basic cards.
 ; afterwards, that card is checked for damage,
@@ -2269,6 +2445,7 @@ LookForCardThatIsKnockedOutOnDevolution:
 	scf
 	ret
 ; 0x28dff
+; HandleSpecialAIAttacks
 
 SECTION "Bank a@58f9", ROMX[$58f9], BANK[$a]
 
