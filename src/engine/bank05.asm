@@ -8584,7 +8584,7 @@ GetAIScoreOfAttack:
 	jp .asm_17969
 .asm_17532
 	xor a
-	ld [wd05f], a
+	ld [wAICannotDamage], a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8604,7 +8604,7 @@ GetAIScoreOfAttack:
 	call SwapTurn
 	jr nc, .asm_17581
 	ld a, $01
-	ld [wd05f], a
+	ld [wAICannotDamage], a
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
 	ld a, $12

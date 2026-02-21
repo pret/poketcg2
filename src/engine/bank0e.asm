@@ -4337,7 +4337,55 @@ Func_3a887:
 	ret
 ; 0x3a8b5
 
-SECTION "Bank e@6994", ROMX[$6994], BANK[$e]
+SECTION "Bank e@6928", ROMX[$6928], BANK[$e]
+
+; return a = b = number of Weezing family in own play area,
+; set carry if KOing enough amount of Pokémon for player to win
+; (c = (number of prizes for player to take) + 1)
+AICountMassExplosion:
+	lb bc, 0, 1
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	push hl
+.loop_play_area
+	pop hl
+	ld a, [hli]
+	cp $ff
+	jr z, .check_prizes
+	push hl
+	ld [wTempAI], a
+	push bc
+	call GetCardIDFromDeckIndex
+	pop bc
+	cp16 KOFFING_LV12
+	jr z, .check_remaining_hp
+	cp16 KOFFING_LV13
+	jr z, .check_remaining_hp
+	cp16 KOFFING_LV14
+	jr z, .check_remaining_hp
+	cp16 WEEZING_LV26
+	jr z, .check_remaining_hp
+	cp16 WEEZING_LV27
+	jr z, .check_remaining_hp
+	cp16 DARK_WEEZING
+	jr nz, .loop_play_area
+.check_remaining_hp
+	inc b
+	ld a, [wTempAI]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 30
+	jr nc, .loop_play_area
+	inc c
+	jr .loop_play_area
+
+.check_prizes
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	cp c
+	ld a, b
+	ret
 
 AIChooseStareTarget:
 	bank1call CheckGoopGasAttackAndToxicGasActive

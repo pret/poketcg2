@@ -1,5 +1,5 @@
 FindBenchCardThatCanBeDamaged:
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr c, .find
 	xor a
 	farcall CheckIfCanDamageDefendingPokemon
@@ -67,12 +67,13 @@ FindBenchCardThatCanBeDamaged:
 
 SECTION "Bank 13@4237", ROMX[$4237], BANK[$13]
 
-Func_4c237:
+; return carry if thd defending (player's arena) card is immune, with no Benched Pokémon
+IsPlayerArenaCardImmuneAndNoBenchedPokemon:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	cp 1
 	jr nz, .no_carry
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	ret c
 .no_carry
 	or a
@@ -129,7 +130,7 @@ Func_4c25c:
 	ret
 
 .potion_energy
-	call .CountBasicEnergyCardsInHand
+	call CountBasicEnergyCardsInHand
 	jr nc, .skip_card
 	ld de, POTION_ENERGY
 	farcall CheckIfHandHasRepeatedCard
@@ -140,7 +141,7 @@ Func_4c25c:
 	ret
 
 .full_heal_energy
-	call .CountBasicEnergyCardsInHand
+	call CountBasicEnergyCardsInHand
 	jr nc, .skip_card
 	ld de, FULLHEAL_ENERGY
 	farcall CheckIfHandHasRepeatedCard
@@ -150,7 +151,7 @@ Func_4c25c:
 	ld a, 0
 	ret
 
-.CountBasicEnergyCardsInHand:
+CountBasicEnergyCardsInHand:
 	bank1call CreateEnergyCardListFromHand
 	ld a, 0
 	ret c ; no energy cards
@@ -332,9 +333,22 @@ CheckIfArenaCardIsWeakToDefendingCard:
 .set_carry
 	scf
 	ret
-; 0x4c3df
 
-SECTION "Bank 13@43f7", ROMX[$43f7], BANK[$13]
+CheckIfArenaCardIsResistantToDefendingCard:
+	call SwapTurn
+	bank1call GetArenaCardColor
+	call SwapTurn
+	call TranslateColorToWR
+	push af
+	bank1call GetArenaCardResistance
+	pop bc
+	cp b
+	jr z, .set_carry
+	or a
+	ret
+.set_carry
+	scf
+	ret
 
 CheckIfDefendingCardIsWeakToArenaCard:
 	bank1call GetArenaCardColor
@@ -440,7 +454,7 @@ Func_4c56b:
 	cp16 SANDSLASH_LV33
 	jr z, .hitmonchan_or_sandslash
 .asm_4c599
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	ret nc
 	ld a, $ff
 	scf

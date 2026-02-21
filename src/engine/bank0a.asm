@@ -1319,7 +1319,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	ld a, PLAY_AREA_BENCH_1
 	jr c, .asm_287e8
 	xor a ; PLAY_AREA_ARENA
@@ -1567,7 +1567,7 @@ AISelectSpecialAttackParameters:
 	ld a, $ff ; terminating byte
 	ld [hli], a
 	push hl
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	pop hl
 	jr c, .defending_is_invulnerable_to_rock_blast
 	; choose all of them on the Defending card
@@ -1805,7 +1805,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp z, .no_carry
-	farcall Func_4c237
+	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
 	jp c, .no_carry
 	farcall AILookForFocusBlastTargetToKO
 	jr c, .got_focus_blast_target
@@ -1871,7 +1871,7 @@ AIChooseRagingThunderTarget:
 	ret
 
 AILookForShortCircuitTargetToKO:
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .include_arena
 ; exclude Arena
 	call SwapTurn
@@ -1946,7 +1946,7 @@ AIChooseShortCircuitTarget:
 	xor a
 	ld [wd06a], a
 	ld [wd06b], a
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .include_arena
 ; exclude Arena
 	call SwapTurn
@@ -2380,12 +2380,12 @@ CheckIfAnyBasicPokemonInDeck:
 ;	a = card location of Pokémon card, if found;
 ;	carry set if such a card is found.
 LookForCardThatIsKnockedOutOnDevolution:
-	farcall Func_4c237
+	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
 	ccf
 	ret nc
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	push af
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .start_with_arena_card
 
 ; skip arena card
@@ -2444,10 +2444,8 @@ LookForCardThatIsKnockedOutOnDevolution:
 	ld a, c
 	scf
 	ret
-; 0x28dff
-; HandleSpecialAIAttacks
 
-SECTION "Bank a@58f9", ROMX[$58f9], BANK[$a]
+INCLUDE "engine/duel/special_attacks.asm"
 
 ; loops through wDuelTempList and
 ; returns carry if a card is found that evolves

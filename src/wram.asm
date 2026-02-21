@@ -1624,7 +1624,9 @@ wPlayAreaEnergyAIScore:: ; d053
 wSamePokemonEnergyScore:: ; d059
 	ds MAX_PLAY_AREA_POKEMON
 
-wd05f:: ; d05f
+; TRUE:  can't inflict damage on player's active Pokémon due to No Damage or Effect substatus
+; FALSE: can inflict damage
+wAICannotDamage:: ; d05f
 	ds $1
 
 ; used by AI to store variable information
