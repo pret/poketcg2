@@ -2759,6 +2759,110 @@ Func_49603:
 	ret
 ; 0x49687
 
+SECTION "Bank 12@56f1", ROMX[$56f1], BANK[$12]
+
+; 130 + 70 if
+;   the same card isn't in play yet but has positive type match-up, or
+;   can be ready with Energy in hand while active Pokémon isn't;
+; 130 if the same card isn't in play yet and has neutral type match-up;
+; 130 - 30 otherwise
+AIQueenHandleBasicPokemon:
+	ld a, [wLoadedCard1ID]
+	ld e, a
+	ld a, [wLoadedCard1ID + 1]
+	ld d, a
+	ld b, PLAY_AREA_ARENA
+	push de
+	farcall FindCardIDInTurnDuelistsPlayArea
+	pop de
+	jr nc, .not_found
+
+.check_arena
+	xor a ; PLAY_AREA_ARENA, FIRST_ATTACK_OR_PKMN_POWER
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr nc, .discourage
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr nc, .discourage
+	farcall AIProcessButDontPlayEnergy
+	jr c, .discourage
+
+	call CreateHandCardList
+	ld a, [wTempAIPokemonCard]
+	call .GetEnergyFlag
+	ld hl, wDuelTempList
+	farcall CheckEnergyFlagsNeededInList
+	jr c, .encourage
+
+.discourage
+	ld a, 100
+	ret
+
+.not_found
+	call SwapTurn
+	push de
+	bank1call GetArenaCardWeakness
+	pop de
+	call SwapTurn
+	cp WR_FIRE
+	jr z, .prefer_fire
+	cp WR_WATER
+	jr z, .prefer_water
+	cp WR_LIGHTNING
+	jr z, .prefer_lightning
+	cp WR_FIGHTING
+	jr z, .prefer_fighting
+	cp WR_PSYCHIC
+	jr nz, .neutral
+; prefer psychic
+	cp16 JYNX_LV27
+	jr nz, .check_arena
+	jr .encourage
+.prefer_fighting
+	cp16 HITMONCHAN_LV33
+	jr nz, .check_arena
+	jr .encourage
+.prefer_lightning
+	cp16 ELECTABUZZ_LV35
+	jr nz, .check_arena
+	jr .encourage
+.prefer_water
+	cp16 LAPRAS_LV31
+	jr nz, .check_arena
+	jr .encourage
+.prefer_fire
+	cp16 MAGMAR_LV31
+	jp nz, .check_arena
+
+.encourage
+	ld a, 200
+	ret
+
+.neutral
+	ld a, 130
+	ret
+
+.GetEnergyFlag:
+	call GetCardIDFromDeckIndex
+	cp16 MAGMAR_LV31
+	ld a, FIRE_F
+	ret z
+	cp16 LAPRAS_LV31
+	ld a, WATER_F
+	ret z
+	cp16 ELECTABUZZ_LV35
+	ld a, LIGHTNING_F
+	ret z
+	cp16 HITMONCHAN_LV33
+	ld a, FIGHTING_F
+	ret z
+	ld a, PSYCHIC_F
+	ret
+; 0x497c7
+
 SECTION "Bank 12@582a", ROMX[$582a], BANK[$12]
 
 ; returns carry if player's card is weak to Arena Card

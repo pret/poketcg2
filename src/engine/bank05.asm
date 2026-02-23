@@ -7211,9 +7211,24 @@ SortTempHandByIDList:
 .done
 	pop de
 	ret
-; 0x16d18
 
-SECTION "Bank 5@6d31", ROMX[$6d31], BANK[$5]
+AIProcessButDontPlayEnergy:
+	ld a, AI_ENERGY_FLAG_DONT_PLAY
+	ld [wAIEnergyAttachLogicFlags], a
+	ld de, wTempPlayAreaAIScore
+	ld hl, wPlayAreaAIScore
+	ld b, MAX_PLAY_AREA_POKEMON
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loop
+
+	ld a, [wAIScore]
+	ld [de], a
+
+	jr AIProcessAndTryToPlayEnergy_HasLogicFlags
 
 ; have AI choose an energy card to play, but do not play it.
 ; does not consider whether the cards have evolutions to be played.
@@ -7288,7 +7303,7 @@ AIProcessAndTryToPlayEnergy:
 	xor a
 	ld [wAIEnergyAttachLogicFlags], a
 
-.has_logic_flags
+AIProcessAndTryToPlayEnergy_HasLogicFlags:
 	bank1call CreateEnergyCardListFromHand
 	jr nc, AIProcessEnergyCards
 
