@@ -2564,9 +2564,8 @@ CheckIfPokemonCanUseNonResidualAttack:
 .set_carry
 	scf
 	ret
-; 0x2997a
 
-SECTION "Bank a@5e02", ROMX[$5e02], BANK[$a]
+INCLUDE "engine/duel/special_evolutions.asm"
 
 Func_29e02:
 	ld a, [wOpponentDeckID]
