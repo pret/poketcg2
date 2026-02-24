@@ -6691,7 +6691,7 @@ AIDecidePlayPokemonCard:
 	jp nz, .skip
 	; skip non-basic pokemon
 
-	farcall Func_29e02
+	farcall AIDecideSpecialBasicCards
 	ld [wAIScore], a
 
 	ld a, [wMaxNumPlayAreaPokemon]

@@ -1,4 +1,4 @@
-Func_29e02:
+AIDecideSpecialBasicCards:
 	ld a, [wOpponentDeckID]
 	cp BRICK_WALK_DECK_ID
 	jp z, .BrickWalkDeck
