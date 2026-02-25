@@ -55,7 +55,7 @@ AIDecideSpecialEvolutions:
 	cp TRAINER_IMPRISON_DECK_ID
 	jp z, .TrainerImprisonDeck
 
-.StandardScore:
+.standard_score:
 	ld a, 128
 	ret
 
@@ -63,12 +63,12 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl DRAGONAIR
 	jp z, .dragonair_rod
-	jr .StandardScore
+	jr .standard_score
 
-; Magnemite: 128 + 10;
-; Voltorb: dismiss if 5+ own Pokémon in play, 128 + 10 otherwise;
-; Doduo: dismiss if 30+ HP, 128 + 10 otherwise;
-; others (non-existent, fallback): 128
+; Magnemite: +10;
+; Voltorb: dismiss if 5+ own Pokémon in play, +10 otherwise;
+; Doduo: dismiss if 30+ HP, +10 otherwise;
+; others (non-existent): neutral
 .ElectricSelfdestructDeck:
 	ld hl, wLoadedCard2ID
 	cphl MAGNEMITE_LV13
@@ -78,7 +78,7 @@ AIDecideSpecialEvolutions:
 	cphl VOLTORB_LV8
 	jr z, .voltorb_isaac
 	cphl DODUO_LV10
-	jp nz, .StandardScore
+	jp nz, .standard_score
 ; Doduo
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_HP
@@ -98,46 +98,46 @@ AIDecideSpecialEvolutions:
 	ld a, 138
 	ret
 
-; Alakazam line: 128 + 10;
-; others: 128
+; Alakazam line: +10;
+; others: neutral
 .PsychicEliteDeck:
 	ld hl, wLoadedCard2ID
 	cphl ABRA_LV14
 	jr z, .encourage_murray
 	cphl KADABRA_LV39
-	jp nz, .StandardScore
+	jp nz, .standard_score
 .encourage_murray
 	ld a, 138
 	ret
 
-; Drowzee: 128
-; Slowpoke: 128 - 5 if any Clefairy Doll in discard pile, 128 otherwise;
+; Drowzee: neutral
+; Slowpoke: -5 if any Clefairy Doll in discard pile, neutral otherwise;
 .PuppetMasterDeck:
 	ld hl, wLoadedCard2ID
 	cphl SLOWPOKE_LV18
-	jp nz, .StandardScore ; Drowzee
+	jp nz, .standard_score ; Drowzee
 	ld de, CLEFAIRY_DOLL
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
-	jp nc, .StandardScore
+	jp nc, .standard_score
 	ld a, 123
 	ret
 
-; Exeggcute: 128 + 5;
-; others: 128
+; Exeggcute: +5;
+; others: neutral
 .MaxEnergyDeck:
 	ld hl, wLoadedCard2ID
 	cphl EXEGGCUTE
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld a, 133
 	ret
 
-; active: 128
-; benched: 128 + 10
+; active: neutral
+; benched: +10
 .GatheringNidoranDeck:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
-	jp z, .StandardScore
+	jp z, .standard_score
 	ld a, 138
 	ret
 
@@ -150,16 +150,16 @@ AIDecideSpecialEvolutions:
 	ld a, 138
 	ret
 
-; Growlithe: 128
+; Growlithe: neutral
 ; others:
-;   expectation: 128 - 28 if already evolved, 128 + 10 otherwise;
-;   reality: 128
+;   expectation: -28 if already evolved, +10 otherwise;
+;   reality: neutral
 .GoArcanineDeck:
 	ld hl, wLoadedCard2ID
 	cphl DEWGONG_LV42
 	jr z, .dewgong_dodrio_ken
 	cphl DODRIO_LV28
-	jp nz, .StandardScore
+	jp nz, .standard_score
 .dewgong_dodrio_ken
 	ld e, [hl]
 	inc hl
@@ -173,37 +173,37 @@ AIDecideSpecialEvolutions:
 	ld a, 138
 	ret
 
-; Drowzee: 128 if active, 118 if benched
-; others: 128
+; Drowzee: neutral if active, -10 if benched
+; others: neutral
 .GreatRocket4Deck:
 	ld hl, wLoadedCard2ID
 	cphl DROWZEE_LV10
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
-	jp z, .StandardScore
+	jp z, .standard_score
 	ld a, 118
 	ret
 
-; Fossil: 128 + 10
-; Voltorb: 128
+; Fossil: +10
+; Voltorb: neutral
 .LegendaryFossilDeck:
 	ld hl, wLoadedCard2ID
 	cphl MYSTERIOUS_FOSSIL
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld a, 138
 	ret
 
 ; Dark Dragonair:
-;   128 + 10 if
+;   +10 if
 ;     active with 4+ Energy attached to it, or
 ;     3- own Pokémon in play with no basic cards in hand;
-;   128 - 10 otherwise;
-; others: 128
+;   -10 otherwise;
+; others: neutral
 .DangerousBenchDeck:
 	ld hl, wLoadedCard2ID
 	cphl DARK_DRAGONAIR
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jr nz, .tally_tap
@@ -227,12 +227,12 @@ AIDecideSpecialEvolutions:
 	ld a, 118
 	ret
 
-; Gastly: 128 + 10;
-; Haunter Lv.17: 128;
-; Haunter Lv.22: 128 - 10;
+; Gastly: +10;
+; Haunter Lv.17: neutral;
+; Haunter Lv.22: -10;
 ; Drowzee:
-;   128 + 10 if any other Drowzee is in play, or Bench is full;
-;   128 - 10 otherwise
+;   +10 if any other Drowzee is in play, or Bench is full;
+;   -10 otherwise
 .BadDreamDeck:
 	ld hl, wLoadedCard2ID
 	cphl GASTLY_LV13
@@ -240,7 +240,7 @@ AIDecideSpecialEvolutions:
 	cphl HAUNTER_LV22
 	jr z, .discourage_yosuke
 	cphl DROWZEE_LV10
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DROWZEE_LV10
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
@@ -257,12 +257,12 @@ AIDecideSpecialEvolutions:
 	ld a, 118
 	ret
 
-; Meowth: 128 - 10 if 7+ cards in hand, 128 + 10 otherwise;
-; others: 128
+; Meowth: -10 if 7+ cards in hand, +10 otherwise;
+; others: neutral
 .PokemonPowerDeck:
 	ld hl, wLoadedCard2ID
 	cphl MEOWTH_LV14
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
@@ -273,9 +273,9 @@ AIDecideSpecialEvolutions:
 	ld a, 118
 	ret
 
-; Dratini: 128 + 2;
-; Clefairy: 128 + 10;
-; Dark Dragonair: 128 + 10 if 2+ Dark Clefable in play, 128 - 10 otherwise
+; Dratini: +2;
+; Clefairy: +10;
+; Dark Dragonair: +10 if 2+ Dark Clefable in play, -10 otherwise
 .SuddenGrowthDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRATINI_LV12
@@ -283,7 +283,7 @@ AIDecideSpecialEvolutions:
 	cphl CLEFAIRY_LV15
 	jr z, .higher_samejima_score
 	cphl DARK_DRAGONAIR
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	farcall CountCardIDInTurnDuelistPlayArea
@@ -299,27 +299,27 @@ AIDecideSpecialEvolutions:
 	ld a, 130
 	ret
 
-; Oddish: 128 - 28 if any Dark Gloom already, 128 otherwise;
+; Oddish: -28 if any Dark Gloom already, neutral otherwise;
 ; Slowpoke:
-;   128 + 12 if none other than Slowpoke is in play;
+;   +12 if none other than Slowpoke is in play;
 ;   else, for n = number of Dark Slowbro in play,
-;     n = 0: 128 + 12 if 2+ Psychic Energy attached to it;
-;     n = 1: 128 + 12 if towards using Reel In;
-;   128 - 28 otherwise
-; others: 128
+;     n = 0: +12 if 2+ Psychic Energy attached to it;
+;     n = 1: +12 if towards using Reel In;
+;   -28 otherwise
+; others: neutral
 .BadGuysDeck:
 	ld hl, wLoadedCard2ID
 	cphl ODDISH_LV21
 	jr z, .oddish_kanzaki
 	cphl SLOWPOKE_LV16
 	jr z, .slowpoke_kanzaki
-	jp .StandardScore
+	jp .standard_score
 
 .oddish_kanzaki
 	ld de, DARK_GLOOM
 	ld b, PLAY_AREA_BENCH_1
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .StandardScore
+	jp nc, .standard_score
 
 .discourage_kanzaki
 	ld a, 100
@@ -359,21 +359,21 @@ AIDecideSpecialEvolutions:
 	jr .discourage_kanzaki
 
 ; Dratini:
-;   128 - 28 if any Dark Dragonair in play;
-;   128 + 12 if benched and no Dark Dragonair yet;
-;   128 if active and no Dark Dragonair yet;
-; others: 128
+;   -28 if any Dark Dragonair in play;
+;   +12 if benched and no Dark Dragonair yet;
+;   neutral if active and no Dark Dragonair yet;
+; others: neutral
 .ChokeDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRATINI_LV10
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_DRAGONAIR
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_biruritchi_grass
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
-	jp z, .StandardScore
+	jp z, .standard_score
 	ld a, 140
 	ret
 .discourage_biruritchi_grass
@@ -381,68 +381,68 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Clefairy:
-;   128 - 28 if Dark Charizard isn't ready or any Dark Clefable is in play;
-;   128 otherwise
-; others: 128
+;   -28 if Dark Charizard isn't ready or any Dark Clefable is in play;
+;   neutral otherwise
+; others: neutral
 .IncinerateDeck:
 	ld hl, wLoadedCard2ID
 	cphl CLEFAIRY_LV15
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_CHARIZARD
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
 	jp nc, .discourage_biruritchi_fire
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .StandardScore
+	jp nc, .standard_score
 .discourage_biruritchi_fire
 	ld a, 100
 	ret
 
 ; Clefairy:
-;   128 - 28 if Dark Blastoise isn't ready or any Dark Clefable is in play;
-;   128 otherwise
-; others: 128
+;   -28 if Dark Blastoise isn't ready or any Dark Clefable is in play;
+;   neutral otherwise
+; others: neutral
 .SmashDeck:
 	ld hl, wLoadedCard2ID
 	cphl CLEFAIRY_LV15
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_BLASTOISE
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
 	jp nc, .discourage_biruritchi_water
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .StandardScore
+	jp nc, .standard_score
 .discourage_biruritchi_water
 	ld a, 100
 	ret
 
 ; Clefairy:
-;   128 - 28 if Dark Machamp isn't ready or any Dark Clefable is in play;
-;   128 otherwise
-; others: 128
+;   -28 if Dark Machamp isn't ready or any Dark Clefable is in play;
+;   neutral otherwise
+; others: neutral
 .ThrowOutDeck:
 	ld hl, wLoadedCard2ID
 	cphl CLEFAIRY_LV15
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_MACHAMP
 	farcall CheckCardIDInPlayAreaThatCanUseAttacks
 	jp nc, .discourage_biruritchi_fighting
 	ld de, DARK_CLEFABLE
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .StandardScore
+	jp nc, .standard_score
 .discourage_biruritchi_fighting
 	ld a, 100
 	ret
 
-; Gastly: 128
-; Haunter: 128 - 28 if any Gengar in play, 128 otherwise;
-; Dratini: 128 + 12;
+; Gastly: neutral
+; Haunter: -28 if any Gengar in play, neutral otherwise;
+; Dratini: +12;
 ; Dark Dragonair:
-;   128 - 28 if any Dark Dragonite or 5+ Pokémon in play,
-;   128 otherwise
+;   -28 if any Dark Dragonite or 5+ Pokémon in play,
+;   neutral otherwise
 .RonaldsPsychicDeck:
 	ld hl, wLoadedCard2ID
 	cphl HAUNTER_LV26
@@ -451,13 +451,13 @@ AIDecideSpecialEvolutions:
 	jr z, .dark_dragonair_ronald
 	cphl DRATINI_LV10
 	jr z, .encourage_ronald
-	jp .StandardScore
+	jp .standard_score
 
 .haunter_ronald
 	ld de, GENGAR_LV40
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .StandardScore
+	jp nc, .standard_score
 
 .discourage_ronald
 	ld a, 100
@@ -476,17 +476,17 @@ AIDecideSpecialEvolutions:
 	get_turn_duelist_var
 	cp 5
 	jr nc, .discourage_ronald
-	jp .StandardScore
+	jp .standard_score
 
-; Abra: 128 + 12;
-; Kadabra: 128 - 28 if any Alakazam in play, 128 + 12 otherwise;
-; others (non-existent): 128
+; Abra: +12;
+; Kadabra: -28 if any Alakazam in play, +12 otherwise;
+; others (non-existent): neutral
 .ImmortalPokemonDeck:
 	ld hl, wLoadedCard2ID
 	cphl ABRA_LV14
 	jr z, .encourage_magician
 	cphl KADABRA_LV39
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, ALAKAZAM_LV42
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
@@ -499,18 +499,18 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Squirtle:
-;   128 + 12 if no Pokémon Breeder or Blastoise in hand,
-;   128 - 28 otherwise
+;   +12 if no Pokémon Breeder or Blastoise in hand,
+;   -28 otherwise
 ; Wartortle:
-;   128 + 12 if no Pokémon Breeder in hand,
-;   128 - 28 if evolving Squirtle with Pokémon Breeder;
-; others (non-existent): 128
+;   +12 if no Pokémon Breeder in hand,
+;   -28 if evolving Squirtle with Pokémon Breeder;
+; others (non-existent): neutral
 .TorrentialFloodDeck:
 	ld hl, wLoadedCard2ID
 	cphl SQUIRTLE_LV14
 	jr z, .check_breeder_evo
 	cphl WARTORTLE_LV24
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, POKEMON_BREEDER
 	call LookForCardIDInHandList
 	jr nc, .encourage_yui
@@ -533,15 +533,15 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Oddish and Dark Gloom:
-;   128 - 28 if any other already evolved,
-;   128 + 12 otherwise;
-; others: 128
+;   -28 if any other already evolved,
+;   +12 otherwise;
+; others: neutral
 .TrainerImprisonDeck:
 	ld hl, wLoadedCard2ID
 	cphl ODDISH_LV21
 	jr z, .oddish_toshiron
 	cphl DARK_GLOOM
-	jp nz, .StandardScore
+	jp nz, .standard_score
 	ld de, DARK_VILEPLUME
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
@@ -559,12 +559,12 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; unchanged since TCG1
-; 128 + 10 if
+; +10 if
 ;   Muk isn't in play, and
 ;   Dragonair is
 ;     Active with 50+ damage taken and 3+ Energy attached to it, or
 ;     Benched, and total of 70+ damage on own Pokémon in play;
-; 128 - 10 otherwise
+; -10 otherwise
 .dragonair_rod:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a

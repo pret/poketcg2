@@ -2761,12 +2761,12 @@ Func_49603:
 
 SECTION "Bank 12@56f1", ROMX[$56f1], BANK[$12]
 
-; 130 + 70 if
+; +70 if
 ;   the same card isn't in play yet but has positive type match-up, or
 ;   can be ready with Energy in hand while active Pokémon isn't;
-; 130 if the same card isn't in play yet and has neutral type match-up;
-; 130 - 30 otherwise
-AIQueenHandleBasicPokemon:
+; neutral if the same card isn't in play yet and has neutral type match-up;
+; -30 otherwise
+QueenAIEvaluateBasicCards:
 	ld a, [wLoadedCard1ID]
 	ld e, a
 	ld a, [wLoadedCard1ID + 1]
@@ -3668,12 +3668,12 @@ CheckIfHasSpecificEnergyAttached:
 
 SECTION "Bank 12@625d", ROMX[$625d], BANK[$12]
 
-; 128 + 10 if
+; +10 if
 ;   not KOing with Psyshock,
 ;   Abra in KO range, and
 ;   2+ of Kadabra, Alakazam, Mr. Mime, or Scyther on his Bench;
-; 128 - 28 otherwise
-AIMagicianHandleVanish:
+; -28 otherwise
+MagicianAIEvaluateVanish:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr nc, .check_abra
 
