@@ -4117,7 +4117,7 @@ CountNonDrawEngineCardsInHand:
 
 SECTION "Bank 12@7029", ROMX[$7029], BANK[$12]
 
-AIDecideFirefoxTarget:
+AIDecideFoxfireTarget:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr nc, .cannot_ko
 .no_carry

@@ -1048,7 +1048,7 @@ AISelectSpecialAttackParameters:
 	ret
 
 .select_foxfire_based_on_energies
-	farcall AIDecideFirefoxTarget
+	farcall AIDecideFoxfireTarget
 	ldh [hTemp_ffa0], a
 	scf
 	ret

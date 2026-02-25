@@ -56,7 +56,7 @@ HandleSpecialAIAttacks:
 	cp16 MOLTRES_LV37
 	jp z, .DryUp
 	cp16 VULPIX_LV13
-	jp z, .FireFox
+	jp z, .Foxfire
 	cp16 DARK_ELECTRODE
 	jp z, .EnergyBomb
 	cp16 ZAPDOS_LV28
@@ -733,28 +733,28 @@ HandleSpecialAIAttacks:
 ;   +3 if in a gusting situation;
 ;   -50 if the defender is immune, without Benched Pokémon;
 ;   neutral otherwise
-.FireFox:
+.Foxfire:
 	ld a, [wOpponentDeckID]
 	cp FLAME_FESTIVAL_DECK_ID
-	jr z, .encourage_firefox
+	jr z, .encourage_foxfire
 	farcall Func_209fc
-	jr c, .encourage_firefox
+	jr c, .encourage_foxfire
 	farcall IsPlayerArenaCardImmune
-	jr nc, .firefox_neutral
+	jr nc, .foxfire_neutral
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	cp 1
-	jr z, .discourage_firefox
+	jr z, .discourage_foxfire
 
-.firefox_neutral
+.foxfire_neutral
 	ld a, 128
 	ret
 
-.encourage_firefox
+.encourage_foxfire
 	ld a, 131
 	ret
 
-.discourage_firefox
+.discourage_foxfire
 	ld a, 78
 	ret
 
