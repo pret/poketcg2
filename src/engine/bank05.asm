@@ -9203,9 +9203,29 @@ CheckIfAnyAttackKnocksOutDefendingCard:
 	ret nz
 	scf
 	ret
-; 0x179aa
 
-SECTION "Bank 5@79c2", ROMX[$79c2], BANK[$5]
+; returns carry if any of the defending Pokémon's attacks
+; brings card at hTempPlayAreaLocation_ff9d down
+; to exactly 0 HP.
+; outputs that attack index in wSelectedAttack.
+CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP:
+	xor a ; FIRST_ATTACK_OR_PKMN_POWER
+	call .CheckDamage
+	ret c
+	ld a, SECOND_ATTACK
+
+.CheckDamage:
+	call EstimateDamage_FromDefendingPokemon
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	ld hl, wDamage
+	sub [hl]
+	jr z, .true
+	ret
+.true
+	scf
+	ret
 
 ; checks AI scores for all benched Pokémon
 ; returns the location of the card with highest score
