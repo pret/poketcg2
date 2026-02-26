@@ -3440,10 +3440,11 @@ AICheckIfAttackIsHighRecoil:
 	call CheckLoadedAttackFlag
 	ret
 
-; input:
-; - a = ?
-Func_39c8d:
-	ld [wd082], a
+; for an HP-recovery effect (a = amount),
+; set carry if that puts the card out of KO range of the defending Pokémon,
+; no carry otherwise
+CheckIfRecoveryCanPreventKOByDefendingPokemon:
+	ld [wAITempHPRecoverAmount], a
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call CheckIfDefendingPokemonCanKnockOut
@@ -3455,16 +3456,16 @@ Func_39c8d:
 	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	push hl
-	ld hl, wd082
+	ld hl, wAITempHPRecoverAmount
 	cp [hl]
 	pop hl
-	jr c, .asm_39cad
-	ld a, [wd082]
-.asm_39cad
-	ld l, a
+	jr c, .got_actual_recovery_amount
+	ld a, [wAITempHPRecoverAmount]
+.got_actual_recovery_amount
+	ld l, a ; l = HP recovery (min(card damage, base recovery amount))
 	ld a, h ; a = remaining HP
-	add l   ; a += min(card damage, wd082)
-	sub d   ; a -= ?
+	add l   ; a += HP recovery
+	sub d   ; a -= damage done by the defender
 	jr c, .no_carry
 	jr z, .no_carry
 	scf

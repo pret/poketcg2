@@ -1721,6 +1721,7 @@ wd081:: ; d081
 ; number of Basic Pokemon cards when
 ; setting up AI Boss deck
 wAISetupBasicPokemonCount:: ; d082
+wAITempHPRecoverAmount:: ; d082
 wd082:: ; d082
 	ds $1
 
