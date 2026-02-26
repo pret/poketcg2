@@ -6515,4 +6515,3 @@ Func_1b8f1:
 	dec b
 	jr nz, .asm_1b8f4
 	ret
-; 0x1b8fb

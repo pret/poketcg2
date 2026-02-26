@@ -6227,4 +6227,3 @@ Func_13dfa:
 	farcall Func_1dfb9
 	farcall EnableAnimations
 	ret
-; 0x13e27

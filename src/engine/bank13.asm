@@ -1105,4 +1105,3 @@ CheckIfDefendingPkmnIsMrMimeLv28AndHasActivePkmnPower:
 	call SwapTurn
 	or a
 	ret
-; 0x4cd1f
