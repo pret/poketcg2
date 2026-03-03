@@ -535,11 +535,15 @@ HandleSpecialAIAttacks:
 	ld a, 128
 	ret
 
-; dismiss if KOing enough number of own Benched Pokémon for player to win
+; expectation: dismiss if KOing enough number of own Benched Pokémon for player to win
+; reality: TCG1 bugs remain, clobbering hl and checking own prizes remaining
 .Earthquake:
 	ld a, DUELVARS_BENCH
 	get_turn_duelist_var
 
+; bug: missing push/pop hl,
+; comparing DUELVARS_ARENA_CARD_HP with $ff instead of DUELVARS_BENCH
+; during the second and subsequent loops
 	lb de, 0, PLAY_AREA_BENCH_1 - 1
 .loop_earthquake
 	inc e
@@ -548,15 +552,21 @@ HandleSpecialAIAttacks:
 	jr z, .count_prizes
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
+; push hl
 	get_turn_duelist_var
+; pop hl
 	cp 20
 	jr nc, .loop_earthquake
 	inc d
 	jr .loop_earthquake
 
+; bug: missing SwapTurn calls,
+; counting AI's prizes remaining instead of player's
 .count_prizes
 	push de
+; call SwapTurn
 	call CountPrizes
+; call SwapTurn
 	pop de
 	cp d
 	jp c, .ZeroScore
