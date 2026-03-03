@@ -60,7 +60,7 @@ HandleSpecialAIAttacks:
 	cp16 DARK_ELECTRODE
 	jp z, .EnergyBomb
 	cp16 ZAPDOS_LV28
-	jp z, .ZapdosLv28
+	jp z, .RagingThunder
 	cp16 PIKACHU_LV13
 	jp z, .Recharge
 	cp16 RAICHU_LV32
@@ -130,11 +130,11 @@ HandleSpecialAIAttacks:
 	cp16 SLOWPOKE_LV16
 	jp z, .AfternoonNap
 	cp16 MANKEY_LV14
-	jp z, .MankeyLv14
+	jp z, .Mischief
 	cp16 PIDGEOTTO_LV38
 	jp z, .Twister
 	cp16 PORYGON_LV18
-	jp z, .PorygonLv18Confusion2
+	jp z, .PorygonLv18Conversion2
 	cp16 COOL_PORYGON
 	jp z, .TextureMagic
 	cp16 MEWTWO_LV67
@@ -778,7 +778,7 @@ HandleSpecialAIAttacks:
 
 ; dismiss if player has only 1 prize remaining;
 ; -2 otherwise
-.ZapdosLv28:
+.RagingThunder:
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
@@ -1400,7 +1400,7 @@ HandleSpecialAIAttacks:
 	ret
 
 .vanish_magician
-	farcall MagicianAIEvaluateVanish
+	farcall ImmortalPokemonDeckAIEvaluateVanish
 	ret
 
 ; Mami:
@@ -1461,7 +1461,7 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +1
-.MankeyLv14:
+.Mischief:
 	ld a, 129
 	ret
 
@@ -1480,7 +1480,7 @@ HandleSpecialAIAttacks:
 
 ; dismiss if confused or already resistant;
 ; +4 otherwise
-.PorygonLv18Confusion2:
+.PorygonLv18Conversion2:
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	and CNF_SLP_PRZ

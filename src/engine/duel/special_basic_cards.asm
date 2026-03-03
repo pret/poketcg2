@@ -549,7 +549,7 @@ AIDecideSpecialBasicCards:
 	ret
 
 .PowerfulPokemonDeck:
-	farcall QueenAIEvaluateBasicCards
+	farcall PowerfulPokemonDeckAIEvaluateBasicCards
 	ret
 
 .BrickWalkDeck:

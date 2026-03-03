@@ -1257,7 +1257,7 @@ HandleSlotMachinePayouts:
 	ld a, [wSlotMachineBets]
 	ld c, a
 	ld b, $00
-	ld hl, .boooster_amount_table
+	ld hl, .booster_amount_table
 	add hl, bc
 	ld c, [hl]
 	ld b, 0
@@ -1274,7 +1274,7 @@ HandleSlotMachinePayouts:
 	farcall WaitPalFading_Bank07
 	ret
 
-.boooster_amount_table
+.booster_amount_table
 	db 0 ; unused
 	db 1 ; bet 1
 	db 1 ; unused

@@ -5379,7 +5379,6 @@ _ListUniqueEvoCardsFromDE:
 
 INCLUDE "engine/bills_pc.asm"
 
-; SECTION "GBC Only Disclaimer", ROMX
 INCLUDE "engine/gbc_only_disclaimer.asm"
 
 _TossCoin::

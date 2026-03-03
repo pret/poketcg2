@@ -165,24 +165,29 @@ _BillsPC:
 	ret
 
 .tile_data
+; x, y, tiles[], 0
+
+; y = 0 (top)
 	db 0, 0
 REPT 2
 	db $30, $34, $34, $34, $34, $34, $34, $34, $34, $31
 ENDR
 	db 0
 
-FOR n, 1, 11
-	db  0, n, $36, 0
-	db  9, n, $37, $36, 0
-	db 19, n, $37, 0
+; y = [1, 10]
+FOR y, 1, 11
+	db  0, y, $36, 0
+	db  9, y, $37, $36, 0
+	db 19, y, $37, 0
 ENDR
 
+; y = 11 (bottom)
 	db 0, 11
 REPT 2
 	db $32, $35, $35, $35, $35, $35, $35, $35, $35, $33
 ENDR
 	db 0
-	db $ff
+	db $ff ; end
 
 HandleBillsPCMenu:
 	ld hl, BillsPCMenuParams

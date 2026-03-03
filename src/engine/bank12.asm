@@ -2766,7 +2766,7 @@ SECTION "Bank 12@56f1", ROMX[$56f1], BANK[$12]
 ;   can be ready with Energy in hand while active Pokémon isn't;
 ; neutral if the same card isn't in play yet and has neutral type match-up;
 ; -30 otherwise
-QueenAIEvaluateBasicCards:
+PowerfulPokemonDeckAIEvaluateBasicCards:
 	ld a, [wLoadedCard1ID]
 	ld e, a
 	ld a, [wLoadedCard1ID + 1]
@@ -3673,7 +3673,7 @@ SECTION "Bank 12@625d", ROMX[$625d], BANK[$12]
 ;   Abra in KO range, and
 ;   2+ of Kadabra, Alakazam, Mr. Mime, or Scyther on his Bench;
 ; -28 otherwise
-MagicianAIEvaluateVanish:
+ImmortalPokemonDeckAIEvaluateVanish:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr nc, .check_abra
 
