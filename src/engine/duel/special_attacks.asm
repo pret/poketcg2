@@ -552,9 +552,9 @@ HandleSpecialAIAttacks:
 	jr z, .count_prizes
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
-; push hl
+	; push hl
 	get_turn_duelist_var
-; pop hl
+	; pop hl
 	cp 20
 	jr nc, .loop_earthquake
 	inc d
@@ -564,9 +564,9 @@ HandleSpecialAIAttacks:
 ; counting AI's prizes remaining instead of player's
 .count_prizes
 	push de
-; call SwapTurn
+	; call SwapTurn
 	call CountPrizes
-; call SwapTurn
+	; call SwapTurn
 	pop de
 	cp d
 	jp c, .ZeroScore
