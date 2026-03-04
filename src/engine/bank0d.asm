@@ -324,7 +324,7 @@ Func_341f7:
 	db SOUTH, MOVE_1
 	db $ff
 
-Func_3426f:
+Script_RonaldGameCenter:
 	ld a, EVENT_MET_RONALD_GAME_CENTER
 	farcall GetEventValue
 	jr nz, .asm_342d5
@@ -1571,7 +1571,7 @@ Func_34c3c:
 
 Script_CoinFlipGame:
 	quit_script
-	farcall Func_1d7be
+	farcall CoinFlipGameScreen
 	cp 9
 	jp z, .streak_9
 	jp nc, .streak_10
@@ -1678,12 +1678,12 @@ Script_BlackBox:
 	print_text TurnedOnBlackBoxText
 	end_dialog
 	end_script
-	farcall Func_1312e
-	jr c, .asm_34d2f
+	farcall BlackBoxScreen
+	jr c, .quit
 	farcall ProcessBlackBoxInputAndOutput
 	ld a, $81 ; priority black box mail
 	farcall AddMailToQueue
-.asm_34d2f
+.quit
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
@@ -1695,7 +1695,7 @@ Script_BillsPC:
 	print_text TurnedOnBillsPCText
 	end_dialog
 	end_script
-	farcall Func_1f8eb
+	farcall BillsPCScreen
 	ld a, OWMODE_IDLE
 	ld [wOverworldMode], a
 	ret
@@ -1916,7 +1916,8 @@ Func_34ef7:
 Func_34f07:
 	ld a, [wPrevMap]
 	cp MAP_GAME_CENTER_1
-	jr z, .asm_34f23
+	jr z, .done
+; exited card dungeon
 	ld a, OWMODE_SCRIPT
 	ld [wOverworldMode], a
 	ld a, BANK(Script_CardDungeonAttendantExit)
@@ -1926,7 +1927,7 @@ Func_34f07:
 	ld [wOverworldScriptPointer], a
 	ld a, h
 	ld [wOverworldScriptPointer + 1], a
-.asm_34f23
+.done
 	scf
 	ret
 
@@ -1992,11 +1993,12 @@ Script_CardDungeonAttendantEnter:
 	ask_question GameCenterCardDungeonStartPromptText, TRUE
 	script_jump_if_b0z .declined
 	get_game_center_chips
-	compare_loaded_var_word 10
+	compare_loaded_var_word CHIPS_BET_DUNGEON_10
 	script_jump_if_b1z .start
+; not enough
 	quit_script
-	xor a
-	farcall Func_1f84c
+	xor a ; FALSE
+	farcall CardDungeonDescriptionScreen
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantNotEnoughChipsText
@@ -2005,8 +2007,8 @@ Script_CardDungeonAttendantEnter:
 	set_var VAR_CARD_DUNGEON_PROGRESS, 0
 	print_npc_text GameCenterCardDungeonAttendantReadDescriptionText
 	quit_script
-	ld a, $01
-	farcall Func_1f84c
+	ld a, TRUE
+	farcall CardDungeonDescriptionScreen
 	ld a, $01
 	start_script
 	print_npc_text GameCenterCardDungeonAttendantEnterText

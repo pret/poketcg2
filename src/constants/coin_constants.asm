@@ -25,7 +25,14 @@
 	const COIN_RAICHU     ; $16
 	const COIN_LUGIA      ; $17
 DEF NUM_COINS EQU const_value
-	const COIN_GR_START   ; $18
+; GR coin piece nybble (see below)
+DEF COIN_GR_START EQU const_value ; $18
+	const COIN_EMPTY      ; $18
+	const_skip $f
+; for TILESET_SMALL_COINS (COIN_SMALL_START + COIN_*)
+DEF COIN_SMALL_START EQU const_value
+	const_skip NUM_COINS
+DEF COIN_SMALL_GR_START EQU const_value
 
 ; handling GR Coin pieces uses COIN_GR_START + [0, 15]
 	const_def
@@ -38,13 +45,3 @@ DEF COIN_GR_PIECE1 EQU 1 << COIN_GR_PIECE1_F ; 1
 DEF COIN_GR_PIECE2 EQU 1 << COIN_GR_PIECE2_F ; 2
 DEF COIN_GR_PIECE3 EQU 1 << COIN_GR_PIECE3_F ; 4
 DEF COIN_GR_PIECE4 EQU 1 << COIN_GR_PIECE4_F ; 8
-
-DEF NUM_COIN_GFX EQU COIN_GR_START + (COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4) + 1 ; $28
-
-; coin types, also used for pagination
-	const_def
-	const COIN_TYPE_TCG_ISLAND ; $0
-	const COIN_TYPE_GR_ISLAND  ; $1
-	const COIN_TYPE_SPECIAL    ; $2
-
-DEF NUM_COIN_TYPES EQU const_value

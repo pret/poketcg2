@@ -9840,4 +9840,3 @@ DecideLinkDuelVariables:
 
 ; stray ret
 	ret
-; 0x7b8f

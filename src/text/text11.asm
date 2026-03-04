@@ -1604,12 +1604,12 @@ Text1087:
 	linefw "          ビルリッチ」"
 	done
 
-Text1088:
+TobichanWelcomeText:
 	textfw "ようこそ!!"
 	linefw "「ふういんのトリデ」へ"
 	done
 
-Text1089:
+TobichanGhostMasterIntroductionText:
 	textfw "わたしたちは おそれられし"
 	linefw "デッキの つかいてです"
 	linefw "それゆえに このばしょに"
@@ -1622,58 +1622,58 @@ Text1089:
 	linefw "おえらびください"
 	done
 
-Text108a:
+TobichanWelcomeBackText:
 	textfw "おや おや また きたのですか?"
 	linefw "おやめになれば よいのに・・・"
 	linefw "でもまあ いらしたのですから"
 	linefw "おあいては いたしますがね"
 	done
 
-Text108b:
+StatuePoisonStormDeckName:
 	textfw "ポイズンストームデッキ"
 	done
 
-Text108c:
+GhostMasterStatueInscriptionText:
 	textfw "せきぞうが ある"
 	linefw "だいざに もじが かいてある"
 	linefw "「ゴーストマスター <RAMTEXT>"
 	linefw " <RAMTEXT>」"
 	done
 
-Text108d:
+GhostMasterDuelPromptText:
 	textfw "<RAMTEXT>と 対戦しますか?"
 	done
 
-Text108e:
+TobichanWantsToDuelText:
 	textfw "よりによって わたしと"
 	linefw "対戦したいのですか?"
 	linefw "ほんとうに よろしいのですね?"
 	linefw "それでは 対戦テーブルに"
 	done
 
-Text108f:
+TobichanDuelStartInitialText:
 	textfw "それでは サイドカード6枚で"
 	linefw "対戦と いきましょうか"
 	done
 
-Text1090:
+TobichanDuelStartRepeatText:
 	textfw "「ポイズンストームデッキ」を"
 	linefw "ごらんに いれましょう"
 	done
 
-Text1091:
+TobichanPlayerWon1Text:
 	textfw "ふーむ わたしが まけてしまうとは"
 	linefw "さすがに おどろきました"
 	done
 
-Text1092:
+TobichanPlayerWon2Text:
 	textfw "ふふふふ・・・やるものですね"
 	linefw "つぎの対戦が たのしみになりました"
 	linefw "では また おあいしましょう"
 	linefw "<RAMNAME>くん"
 	done
 
-Text1093:
+TobichanPlayerLostText:
 	textfw "わたしたちのデッキは"
 	linefw "これだから おそれられるのです"
 	linefw "勝てないからといって きにしては"
@@ -1682,16 +1682,16 @@ Text1093:
 	linefw "よいと おもいます では"
 	done
 
-Text1094:
+StatueEverybodysFriendDeckName:
 	textfw "みんなともだちデッキ"
 	done
 
-Text1095:
+EijiWantsToDuelText:
 	textfw "ボクと 対戦するんだね"
 	linefw "じゃあ テーブルに ついて"
 	done
 
-Text1096:
+EijiDuelStartInitialText:
 	textfw "ボクは エイジって いうんだ"
 	linefw "よろしくー"
 	linefw "さっそく 対戦!"
@@ -1700,40 +1700,40 @@ Text1096:
 	linefw "いりょくを みてね!!"
 	done
 
-Text1097:
+EijiDuelStartRepeatText:
 	textfw "ボクと たいせんするの?"
 	linefw "べつに いいけどさー"
 	linefw "んじゃ さっそく 対戦!"
 	linefw "サイドカードは 6枚だよー"
 	done
 
-Text1098:
+EijiPlayerWon1Text:
 	textfw "あっれー まけちゃったの ボク?"
 	linefw "へへっ じゃあ 拡張パックを あげる"
 	done
 
-Text1099:
+EijiPlayerWon2Text:
 	textfw "デッキが うまくまわらないと"
 	linefw "こういうことも あるよね"
 	linefw "それじゃあね"
 	done
 
-Text109a:
+EijiPlayerLostText:
 	textfw "きにしちゃ ダメだよ"
 	linefw "まけるのが とーぜんなんだから"
 	linefw "それじゃあね"
 	done
 
-Text109b:
+StatueImmortalPokemonDeckName:
 	textfw "ふじみのポケモンデッキ"
 	done
 
-Text109c:
+MagicianWantsToDuelText:
 	textfw "ワタクシと 対戦なさるのですね"
 	linefw "よろしい おあいていたしましょう"
 	done
 
-Text109d:
+MagicianDuelStartInitialText:
 	textfw "ワタクシは マジシャン"
 	linefw "おみしりおきを"
 	linefw "それでは 対戦いたしましょう"
@@ -1742,25 +1742,25 @@ Text109d:
 	linefw "おみせいたしましょう"
 	done
 
-Text109e:
+MagicianDuelStartRepeatText:
 	textfw "「ふじみのポケモンデッキ」"
 	linefw "おみせいたしましょう"
 	done
 
-Text109f:
+MagicianPlayerWon1Text:
 	textfw "ほほぉう ワタクシに 勝つとは"
 	linefw "たいしたものですね"
 	linefw "それでは 勝った あなたに"
 	linefw "ステキな プレゼントを・・・"
 	done
 
-Text10a0:
+MagicianPlayerWon2Text:
 	textfw "対戦していただき"
 	linefw "まことに ありがとうございました"
 	linefw "それでは これで・・・"
 	done
 
-Text10a1:
+MagicianPlayerLostText:
 	textfw "まけたことは"
 	linefw "あまり おきになさらないように"
 	linefw "勝つのが むずかしいからこそ"
@@ -1768,16 +1768,16 @@ Text10a1:
 	linefw "それでは これで・・・"
 	done
 
-Text10a2:
+StatueTrainerImprisonDeckName:
 	textfw "トレーナーふういんデッキ"
 	done
 
-Text10a3:
+ToshironWantsToDuelText:
 	textfw "オレと 対戦したいんだ?"
 	linefw "ヘッ いいどきょうだぜ!"
 	done
 
-Text10a4:
+ToshironDuelStartInitialText:
 	textfw "オレは トシロン!"
 	linefw "かんたんには まけないぜ!"
 	linefw "おっしゃ! サイドカードは 6枚!"
@@ -1786,188 +1786,188 @@ Text10a4:
 	linefw "あいてにして こうかいするなよ!"
 	done
 
-Text10a5:
+ToshironDuelStartRepeatText:
 	textfw "「トレーナーふういんデッキ」"
 	linefw "あいてにして こうかいするなよ!"
 	done
 
-Text10a6:
+ToshironPlayerWon1Text:
 	textfw "うっそだろー!"
 	linefw "オレが まけたのかよ!"
 	linefw "チッ! しかたねぇな"
 	linefw "拡張パックを やるぜ"
 	done
 
-Text10a7:
+ToshironPlayerWon2Text:
 	textfw "こんど 対戦することがあったら"
 	linefw "まけねぇからな!"
 	linefw "あばよ!"
 	done
 
-Text10a8:
+ToshironPlayerLostText:
 	textfw "はっはぁ! いっただろう"
 	linefw "こうかいするなってよ!"
 	linefw "まっ もう 対戦は やめとけよな"
 	linefw "じゃっ あばよ!"
 	done
 
-Text10a9:
+StatueBlazingFlameDeckName:
 	textfw "もえさかるほのおデッキ"
 	done
 
-Text10aa:
+PierrotWantsToDuelText:
 	textfw "うひゃひゃひゃひゃひゃ!"
 	linefw "対戦したいんですかァ? ほんとにィ?"
 	done
 
-Text10ab:
+PierrotDuelStartInitialText:
 	textfw "あたァしィは ピエロでェーす"
 	linefw "よろしくねェー!"
 	linefw "サぁーイドカぁードはー"
 	linefw "6まァーいでェーす!!"
 	done
 
-Text10ac:
+PierrotDuelStartRepeatText:
 	textfw "「もえさかるほのおデッキ」"
 	linefw "対戦しィまァーしょォーー!"
 	done
 
-Text10ad:
+PierrotPlayerWon1Text:
 	textfw "うひゃひゃひゃひゃひゃ!"
 	linefw "あたしの まけまけまけまけまけェー!"
 	done
 
-Text10ae:
+PierrotPlayerWon2Text:
 	textfw "そォれではァー"
 	linefw "また おあいしィまーしょォお!!"
 	done
 
-Text10af:
+PierrotPlayerLostText:
 	textfw "うひゃひゃひゃひゃひゃ!"
 	linefw "あたしの 勝ち勝ち勝ち勝ちィーー!!"
 	linefw "そォれではァー"
 	linefw "また おあいしィまーしょォお!!"
 	done
 
-Text10b0:
+StatueDamageChaosDeckName:
 	textfw "ダメージだいこんらんデッキ"
 	done
 
-Text10b1:
+AnnaWantsToDuelText:
 	textfw "いらっしゃいませー!"
 	linefw "おきゃくさまは なんめいさまですか?"
 	linefw "おせきに ごあんないしまーす"
 	linefw "こちらに どうぞー"
 	done
 
-Text10b2:
+AnnaDuelStartInitialText:
 	textfw "ごしめい いただきました"
 	linefw "アンナでーす"
 	linefw "ごちゅうもんは 対戦ですね?"
 	linefw "サイドカードは6枚に なりまーす"
 	done
 
-Text10b3:
+AnnaDuelStartRepeatText:
 	textfw "ごちゅうもんの 対戦でーす"
 	linefw "サイドカード6枚に なりまーす"
 	done
 
-Text10b4:
+AnnaPlayerWon1Text:
 	textfw "おつりの 拡張パックでーす"
 	linefw "おうけとりくださーい"
 	done
 
-Text10b5:
+AnnaPlayerWon2Text:
 	textfw "対戦ありがとうございましたー"
 	linefw "またの ごらいてん おまちしてまーす"
 	done
 
-Text10b6:
+AnnaPlayerLostText:
 	textfw "対戦ありがとうございましたー"
 	done
 
-Text10b7:
+StatueBigThunderDeckName:
 	textfw "ビッグサンダーデッキ"
 	done
 
-Text10b8:
+DeeWantsToDuelText:
 	textfw "オレっちと 対戦するなら"
 	linefw "テーブルに ついちゃあくんねぇか"
 	done
 
-Text10b9:
+DeeDuelStartInitialText:
 	textfw "オレっちは ディーっつーんだ"
 	linefw "よろしく たのむぜぇ"
 	linefw "んじゃ 対戦だけどよ"
 	linefw "サイドカードは 6枚な"
 	done
 
-Text10ba:
+DeeDuelStartRepeatText:
 	textfw "「ビッグサンダーデッキ」!"
 	linefw "おみまいするぜぇ!"
 	done
 
-Text10bb:
+DeePlayerWon1Text:
 	textfw "やっべー オレっち まけちったよ"
 	linefw "しんじらんねぇー"
 	done
 
-Text10bc:
+DeePlayerWon2Text:
 	textfw "やるじゃん あんた!"
 	linefw "こんど また 対戦しようぜ!"
 	linefw "そんじゃあ あばよーん"
 	done
 
-Text10bd:
+DeePlayerLostText:
 	textfw "勝っちまったぜ! まあ そうでないと"
 	linefw "ゴーストマスターじゃ ないけどな"
 	linefw "つーことで オレっちは"
 	linefw "かえるからよ じゃあなっ!"
 	done
 
-Text10be:
+StatuePowerOfDarknessDeckName:
 	textfw "あんこくのパワーデッキ"
 	done
 
-Text10bf:
+MasqueradeWantsToDuelText:
 	textfw "対戦テーブルに つけ・・・"
 	done
 
-Text10c0:
+MasqueradeDuelStartInitialText:
 	textfw "わがなは マスカレード・・・"
 	linefw "・・・サイドカードは 6枚なり"
 	done
 
-Text10c1:
+MasqueradeDuelStartRepeatText:
 	textfw "「あんこくのパワーデッキ」"
 	done
 
-Text10c2:
+MasqueradePlayerWon1Text:
 	textfw "勝ったものには 拡張パックを・・・"
 	done
 
-Text10c3:
+MasqueradePlayerWon2Text:
 	textfw "では サラバだ・・・"
 	done
 
-Text10c4:
+MasqueradePlayerLostText:
 	textfw "われらは おそれられし デッキの"
 	linefw "つかいてなり"
 	linefw "しょうりは とうぜんのこと・・・"
 	linefw "では サラバだ・・・"
 	done
 
-Text10c5:
+StatueTorrentialFloodDeckName:
 	textfw "おおあめこうずいデッキ"
 	done
 
-Text10c6:
+YuiWantsToDuelText:
 	textfw "はぁーい! こんにちは!"
 	linefw "対戦よね!"
 	linefw "じゃあ 対戦テーブルに いこう!"
 	done
 
-Text10c7:
+YuiDuelStartInitialText:
 	textfw "わたし ユイ"
 	linefw "よろしくー"
 	linefw "対戦は ひさしぶりだから"
@@ -1976,25 +1976,25 @@ Text10c7:
 	linefw "サイドカードは 6枚ね!"
 	done
 
-Text10c8:
+YuiDuelStartRepeatText:
 	textfw "「おおあめこうずいデッキ」"
 	linefw "これが わたしの デッキのなまえ"
 	linefw "おぼえててね それじゃ"
 	linefw "サイドカード6枚で 対戦ね"
 	done
 
-Text10c9:
+YuiPlayerWon1Text:
 	textfw "ひさしぶりだから"
 	linefw "カンが にぶっちゃったのかなー?"
 	done
 
-Text10ca:
+YuiPlayerWon2Text:
 	textfw "対戦してくれて ありがと"
 	linefw "また あそぼうね"
 	linefw "じゃあ さよなら"
 	done
 
-Text10cb:
+YuiPlayerLostText:
 	textfw "ふういんされてても ウデは"
 	linefw "おちてなかったみたい"
 	linefw "でも わたしたちのは いやーんな"

@@ -913,6 +913,26 @@ wCardSearchFunc:: ; cd21
 wCardSearchFuncParam:: ; cd22
 	ds $2
 
+UNION
+
+wBillsPCMenuScrollOffset:: ; cd24
+	ds $1
+
+	ds $3
+
+wBillsPCCurMenuItem:: ; cd28
+	ds $1
+
+wNumBillsPCCompatibleCardItems:: ; cd29
+	ds $1
+
+	ds $25
+
+wBillsPCCurCompatibleCardOwnedCount:: ; cd4f
+	ds $1
+
+NEXTU
+
 wDeckDiagnosisTextIDsPtr:: ; cd24
 	ds $2
 
@@ -981,6 +1001,8 @@ wcd4e:: ; cd4e
 
 wDeckCheckTotalEnergySurplus:: ; cd4f
 	ds $1
+
+ENDU
 
 ; is equal to number of colorless cards in deck divided by
 ; the number of unique Pokémon types in deck (rounded up)
@@ -1602,7 +1624,9 @@ wPlayAreaEnergyAIScore:: ; d053
 wSamePokemonEnergyScore:: ; d059
 	ds MAX_PLAY_AREA_POKEMON
 
-wd05f:: ; d05f
+; TRUE:  can't inflict damage on player's active Pokémon due to No Damage or Effect substatus
+; FALSE: can inflict damage
+wAICannotDamage:: ; d05f
 	ds $1
 
 ; used by AI to store variable information
@@ -1697,6 +1721,7 @@ wd081:: ; d081
 ; number of Basic Pokemon cards when
 ; setting up AI Boss deck
 wAISetupBasicPokemonCount:: ; d082
+wAITempHPRecoverAmount:: ; d082
 wd082:: ; d082
 	ds $1
 
@@ -2983,7 +3008,7 @@ wMenuBoxUpdateFunction:: ; da34
 wMenuBoxFocusedItem:: ; da36
 	ds $1
 
-wda37:: ; da37
+wMenuBoxIsBoundaryNoOp:: ; da37
 	ds $1
 
 wMenuBoxDelay:: ; da38
@@ -3101,76 +3126,98 @@ wTotalNumCardsCollected:: ; db15
 wPopupMenuCursorPosition:: ; db17
 	ds $1
 
-wdb18:: ; db18
+wGameCenterPrizeExchangeMenuCursorPosition:: ; db18
 	ds $1
 
-wdb19:: ; db19
+wSelectedGameCenterPrizeExchangeItem:: ; db19
 	ds $1
 
-wdb1a:: ; db1a
-	ds $5
+; prize index array
+wIndicesGameCenterPrizeExchangeItems:: ; db1a
+	ds NUM_GAME_CENTER_PRIZE_LIST_ITEMS
 
-wdb1f:: ; db1f
+; if TRUE, replace the one-off prize with 3 Present Packs
+wClaimedJigglypuffCoin:: ; db1f
 	ds $1
 
-wdb20:: ; db20
+wCoinFlipGameStreak:: ; db20
 	ds $1
 
-wdb21:: ; db21
+; harmless bug: stores garbage data but is unused
+wUnusedCoinFlipGamePayout:: ; db21
 	ds $2
 
-wdb23:: ; db23
-	ds $c
+; for each reel,
+; bit 0--5 : offset
+; bit 6    : landing flag
+; bit 7    : landed flag
+; bit 8--12: tease offset
+wSlotMachineReelStates:: ; db23
+	ds 2 * NUM_SLOT_MACHINE_REELS
 
-wdb2f:: ; db2f
+wBackupSlotMachineReelStates:: ; db29
+	ds 2 * NUM_SLOT_MACHINE_REELS
+
+wSlotMachineBets:: ; db2f
 	ds $1
 
-wdb30:: ; db30
+wSlotMachineSpinTimer:: ; db30
 	ds $1
 
-wdb31:: ; db31
+; can also mean the next reel index
+wNumSlotMachineLandedReels:: ; db31
 	ds $1
 
-wdb32:: ; db32
+wSlotMachineIsBonusPlay:: ; db32
 	ds $1
 
 	ds $1
 
-wdb34:: ; db34
+; counter below center reel
+wSlotMachineBonusPlaysRemaining:: ; db34
 	ds $1
 
-wdb35:: ; db35
+wSlotMachineHotModeRemaining:: ; db35
 	ds $1
 
-wdb36:: ; db36
+wSlotMachineBiasedSymbol:: ; db36
 	ds $1
 
 	ds $2
 
-wdb39:: ; db39
-	ds $3
+wSlotMachineLandedSymbols:: ; db39
+	ds NUM_SLOT_MACHINE_REELS
 
-wdb3c:: ; db3c
+wSlotMachineDebugFlag:: ; db3c
 	ds $1
 
-wdb3d:: ; db3d
+wSlotMachineDelayFrames:: ; db3d
 	ds $1
 
+wSlotMachineBonusBoosterOffset:: ; db3e
 	ds $1
 
-wdb3f:: ; db3f
+wSlotMachineVBlankCounter:: ; db3f
 	ds $1
 
 	ds $6
 
-wdb46:: ; db46
-	ds $40
+wIndicesSlotMachineReels:: ; db46
 
-wdb86:: ; db86
-	ds $40
+wIndicesSlotMachineLeftReel:: ; db46
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
 
-wdbc6:: ; dbc6
-	ds $40
+	ds $4 ; padding to align to $40
+
+wIndicesSlotMachineCenterReel:: ; db86
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
+
+	ds $4 ; padding to align to $40
+
+wIndicesSlotMachineRightReel:: ; dbc6
+	ds SLOT_MACHINE_REEL_OFFSET_LENGTH
+
+	ds $4 ; padding to align to $40
 
 wGiftCenterMenuCursorPosition:: ; dc06
 	ds $1
@@ -3181,23 +3228,22 @@ wSelectedGiftCenterMenuItem:: ; dc07
 wSelectedCoin:: ; dc08
 	ds $1
 
-; used when viewing your coins in Coin menu.
-; same values as COIN_TYPE_*
+; COIN_PAGE_* ID for Coin menu
 wCoinPage:: ; dc09
 	ds $1
 
-; COIN_* id being given to player during cutscene
+; COIN_* ID being given to player during cutscene
 wIncomingCoin:: ; dc0a
 	ds $1
 
-wdc0b:: ; dc0b
+wIncomingCoinBlinkFrames:: ; dc0b
 	ds $1
 
-; see: _CoinPageListTable for valid values
+; see: CoinMenuCoinLists for valid values
 wCoinPageXCoordinate:: ; dc0c
 	ds $1
 
-; see: _CoinPageListTable for valid values
+; see: CoinMenuCoinLists for valid values
 wCoinPageYCoordinate:: ; dc0d
 	ds $1
 
@@ -3367,6 +3413,9 @@ wMinicomMenuCursorPosition:: ; dd07
 wCurBoosterPack:: ; dd08
 	ds $1
 
+; if FALSE, first booster being given
+; if TRUE, additional booster being given
+; used to control the text that is displayed when booster is opened
 wAnotherBoosterPack:: ; dd09
 	ds $1
 
@@ -3506,7 +3555,7 @@ wSelectedGrandMasterCupPrizeItem2:: ; dd8f
 
 	ds $3
 
-wdd93:: ; dd93
+wCardDungeonIsPlayable:: ; dd93
 	ds $1
 
 wCardTilemap:: ; dd94

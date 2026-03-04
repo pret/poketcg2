@@ -1783,7 +1783,7 @@ _DecrementDeckCardsInCollection:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .done
 	inc hl
 	push hl
@@ -1818,7 +1818,7 @@ AddGiftCenterDeckCardsToCollection:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .done
 	inc hl
 	push hl
@@ -1869,7 +1869,7 @@ AddDeckToCollection:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .done
 	inc hl
 	push hl
@@ -2189,7 +2189,7 @@ CheckIfDeckHasCards:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	pop de
 	ret c
 	or a
@@ -2715,7 +2715,7 @@ CheckIfCurrentDeckWasChanged:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .check_empty
 	push hl
 	ld hl, wDeckToBuild
@@ -2755,7 +2755,7 @@ CheckIfCurrentDeckWasChanged:
 	inc hl
 	cp16 $ffff
 	jr z, .check_name
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr nc, .set_carry
 	or a
 	jr nz, .set_carry
@@ -2822,7 +2822,7 @@ CheckIfThereAreAnyBasicCardsInDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .no_carry
 	call LoadCardDataToBuffer1_FromCardID
 	jr c, .no_carry
@@ -3188,7 +3188,7 @@ GetCountOfCardInCurDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	ld c, e
 	ld a, d
 	pop de
@@ -3223,7 +3223,7 @@ GetOwnedCardCount:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	ld c, e
 	ld a, d
 	pop de
@@ -3354,7 +3354,7 @@ CountNumberOfCardsOfType:
 	pop hl
 	inc hl
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .done
 	call GetCardType
 	jr c, .done
@@ -3539,7 +3539,7 @@ PrintDeckBuildingCardList:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .invalid_card
 	call AddCardIDToVisibleList
 	call LoadCardDataToBuffer1_FromCardID
@@ -3609,9 +3609,8 @@ REPT 20
 ENDR
 	done
 
-; returns carry if card ID in de is $0000
-; de = card ID
-CheckIfCardIDIsZero:
+; return carry if de (card ID) = 0
+IsCardIDZero:
 	push af
 	xor a
 	cp d
@@ -4061,7 +4060,7 @@ OpenCardPageFromCardList:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	pop de
 	jr c, .skip_change_card
 	ld a, [wScrollMenuScrollOffset]
@@ -4226,7 +4225,7 @@ AddCardToDeckAndUpdateCount:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .no_carry_pop_de
 	call GetCardName
 	ld a, e
@@ -4351,7 +4350,7 @@ RemoveCardFromDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .done
 	ld a, e
 	ld [bc], a
@@ -4809,7 +4808,7 @@ PrintConfirmationCardList:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .no_more_cards
 	call AddCardIDToVisibleList
 	call LoadCardDataToBuffer1_FromCardID
@@ -4842,7 +4841,7 @@ PrintConfirmationCardList:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .no_more_cards
 	pop de
 	xor a ; FALSE
@@ -5113,8 +5112,7 @@ HandleGiftCenterSendCardsMenu:
 	or a
 	ret
 
-; black box
-Func_a6ef:
+PrintBlackBoxSendingCardList:
 	xor a
 	ld [wScrollMenuScrollOffset], a
 	ld hl, wCurDeckCards
@@ -5506,7 +5504,7 @@ PrintCardSelectionList:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .invalid_card
 	call AddCardIDToVisibleList
 	call LoadCardDataToBuffer1_FromCardID
@@ -6172,7 +6170,7 @@ FillBoosterPackCardList:
 	ld d, [hl]
 	pop hl
 	inc l
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .at_the_bottom
 	call AddCardIDToVisibleList
 	call LoadCardDataToBuffer1_FromCardID
@@ -6224,7 +6222,7 @@ FillBoosterPackCardList:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .at_the_bottom
 	pop de
 	xor a ; FALSE
@@ -6444,7 +6442,7 @@ HandleCardAlbumCardPage:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .open_card_page_pop_af_1
 	ld a, [wScrollMenuScrollOffset]
 	inc a
@@ -6651,7 +6649,7 @@ CardAlbum:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .zero
 	inc b
 	jr .loop_count_card_ids
@@ -7583,7 +7581,7 @@ PrintCardSelectionList_TempSavedDeck:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	ret c
 	inc hl
 	push hl
@@ -7912,7 +7910,7 @@ DeckDiagnosisResult:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .at_last_entry
 	call AddCardIDToVisibleList
 	call LoadCardDataToBuffer1_FromCardID
@@ -7941,7 +7939,7 @@ DeckDiagnosisResult:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	call CheckIfCardIDIsZero
+	call IsCardIDZero
 	jr c, .at_last_entry
 	pop de
 	xor a

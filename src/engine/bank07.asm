@@ -732,8 +732,8 @@ ShowDiaryScreen:
 	farcall SetFadePalsFrameFunc
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
-	ld c, $00
-	call DrawSavePromptAndWaitForInput
+	ld c, FALSE
+	call SaveGamePrompt
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	farcall UnsetFadePalsFrameFunc
@@ -756,7 +756,7 @@ DrawDiaryStatusBox:
 	ldtx hl, TxRam1Text
 	lb de, 11, 4
 	call PrintTextNoDelay_InitVRAM0
-	call CountEventCoinsObtained
+	call CountCoinsObtained
 	ld l, a
 	ld h, $00
 	lb de, 16, 6
@@ -772,28 +772,28 @@ DrawDiaryStatusBox:
 .TextItems:
 	textitem  7,  4, PlayerDiaryNameText
 	textitem  7,  6, PlayerDiaryEventCoinText
-	textitem 18,  6, PlayerDiaryCardsUnitText
+	textitem 18,  6, CardsAndChipsUnitText
 	textitem  7,  8, PlayerDiaryAlbumText
 	textitem  7, 10, PlayerDiaryPlayTimeText
 	textitems_end
 
-; c - ?
-DrawSavePromptAndWaitForInput:
+; if c is TRUE, call ow-map/obj push/pop wrapper on saving
+SaveGamePrompt:
 	push bc
 	push de
 	push hl
 	ldtx hl, PlayerDiaryPromptText
 	xor a
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1c5ca
+	jr c, .cancel
 	ld a, c
 	and a
-	jr nz, .asm_1c5b9
-	call Func_1c5d6
-	jr .asm_1c5bc
-.asm_1c5b9
+	jr nz, .save_simply
+	call .OverWorldPushPopWrapper
+	jr .sfx
+.save_simply
 	call SaveGame
-.asm_1c5bc
+.sfx
 	push af
 	ld a, SFX_SAVE_GAME
 	call CallPlaySFX
@@ -801,18 +801,18 @@ DrawSavePromptAndWaitForInput:
 	ldtx hl, PlayerDiarySavedText
 	scf
 	ccf
-	jr .asm_1c5ce
-.asm_1c5ca
+	jr .print_result_text
+.cancel
 	ldtx hl, PlayerDiaryCancelledText
 	scf
-.asm_1c5ce
+.print_result_text
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	pop hl
 	pop de
 	pop bc
 	ret
 
-Func_1c5d6:
+.OverWorldPushPopWrapper:
 	push af
 	push bc
 	push de
@@ -891,25 +891,25 @@ DrawStatusScreenBottomBox:
 	farcall FillBoxInBGMapWithZero
 	ld hl, .TextItems
 	call PlaceTextItemsVRAM0
-	call Func_1dfb5
+	call GetSelectedCoin
 	call GetCoinName
 	lb de, 4, 12
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-	call Func_1dfb5
-	add $28
+	call GetSelectedCoin
+	add COIN_SMALL_START
 	lb de, 28, 108
 	call CreateCoinAnimation
 	call CheckObtainedGRCoinPieces
-	add $40
+	add COIN_SMALL_GR_START
 	lb de, 28, 140
 	call CreateCoinAnimation
 	call CheckObtainedGRCoinPieces
 	and a
-	jr z, .asm_1c6b1
+	jr z, .done
 	ldtx hl, PlayerStatusGRCoinText
 	lb de, 4, 14
 	call InitTextPrinting_ProcessTextFromIDVRAM0
-.asm_1c6b1
+.done
 	ret
 
 .TextItems:
@@ -1855,7 +1855,7 @@ HandleMenuBox:
 	ld a, [wMenuBoxFocusedItem]
 	ld c, a
 	call .CallUpdateFunction
-	ld a, [wda37]
+	ld a, [wMenuBoxIsBoundaryNoOp]
 	and a
 	jr nz, .asm_1cbc3
 	call .DownPress
@@ -1868,7 +1868,7 @@ HandleMenuBox:
 	ld a, [wMenuBoxFocusedItem]
 	ld c, a
 	xor a
-	ld [wda37], a
+	ld [wMenuBoxIsBoundaryNoOp], a
 	call .CheckKeysPressed
 	jr nz, .asm_1cbda
 	call .CheckKeysHeld
@@ -2126,10 +2126,10 @@ SetMenuBoxFocusedItem:
 	ld [wMenuBoxFocusedItem], a
 	ret
 
-SetwDA37:
+SetMenuBoxBoundaryNoOpFlag:
 	push af
-	ld a, 1
-	ld [wda37], a
+	ld a, TRUE
+	ld [wMenuBoxIsBoundaryNoOp], a
 	pop af
 	ret
 
@@ -2414,7 +2414,7 @@ _StartMenuBoxUpdate::
 
 	; print number of event coins
 	; obtained by the player
-	call CountEventCoinsObtained
+	call CountCoinsObtained
 	ld l, a
 	ld h, $00
 	lb de, 13, 12
@@ -2430,7 +2430,7 @@ _StartMenuBoxUpdate::
 
 .TextItems:
 	textitem  3, 12, PlayerDiaryEventCoinText
-	textitem 15, 12, PlayerDiaryCardsUnitText
+	textitem 15, 12, CardsAndChipsUnitText
 	textitem  3, 14, PlayerDiaryAlbumText
 	textitem  3, 16, PlayerDiaryPlayTimeText
 	textitems_end
@@ -2592,8 +2592,8 @@ ConfirmPlayerNameAndGender:
 	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
 	ret
 
-; a = COIN_* constant
-CheckIfCoinWasObtained:
+; a = COIN_* ID
+IsCoinObtained:
 	push bc
 	push hl
 	ld c, a
@@ -2632,24 +2632,23 @@ CheckIfCoinWasObtained:
 	db EVENT_GOT_RAICHU_COIN     ; COIN_RAICHU
 	db EVENT_GOT_LUGIA_COIN      ; COIN_LUGIA
 
-; outputs in a the number of event coins
-; that has been obtained by the player
-CountEventCoinsObtained:
+; return a = number of coins obtained
+CountCoinsObtained:
 	push bc
 	push hl
 	ld c, NUM_COINS
 	ld b, 0
 	xor a ; COIN_CHANSEY
-.loop
+.loop_count
 	push af
-	call CheckIfCoinWasObtained
-	jr z, .got_coin
+	call IsCoinObtained
+	jr z, .next_coin
 	inc b
-.got_coin
+.next_coin
 	pop af
 	inc a
 	dec c
-	jr nz, .loop
+	jr nz, .loop_count
 	ld a, b
 	and a
 	pop hl
@@ -2657,7 +2656,7 @@ CountEventCoinsObtained:
 	ret
 
 ; return in a the total number of pieces in possession
-CountGRCoinPiecesObtained_2:
+CountGRCoinPiecesObtained_Bank07:
 	push bc
 	ld c, 0
 	ld a, EVENT_GOT_GR_COIN_PIECE_BOTTOM_RIGHT
@@ -2743,7 +2742,7 @@ GetCoinName:
 	tx GRCoinText          ; COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 	; no COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 
-; set bit 0--3 of a for each piece obtained
+; return COIN_GR_PIECE* nybble
 CheckObtainedGRCoinPieces:
 	push bc
 	push de
@@ -2774,23 +2773,23 @@ CheckObtainedGRCoinPieces:
 	pop bc
 	ret
 
-; a = COIN_* constant
-; for a non-GR Coin, keep a if already obtained, return a = COIN_GR_START if not
-; for GR Coin, return a = (bit 0--3 for each piece) + COIN_GR_START
+; a = COIN_* ID
+; if it's in possession, keep the input (or adjust for GR Coin pieces)
+; otherwise return a = COIN_EMPTY
 GetCoinPossessionStatus:
 	push bc
 	ld b, a
 	cp COIN_GR
-	jr z, .check_gr_coin
-; another coin
-	call CheckIfCoinWasObtained
+	jr z, .convert_gr_coin_id
+; non-gr coin
+	call IsCoinObtained
 	jr nz, .got_value
 ; not yet obtained
-	ld b, COIN_GR_START
+	ld b, COIN_EMPTY
 .got_value
 	ld a, b
 	jr .done
-.check_gr_coin
+.convert_gr_coin_id
 	call CheckObtainedGRCoinPieces
 	add COIN_GR_START
 .done
@@ -2798,7 +2797,7 @@ GetCoinPossessionStatus:
 	ret
 
 ; input:
-; - a = COIN_* constant
+; - a  = COIN_* ID
 ; - de = coordinates
 CreateCoinAnimation:
 	push af
@@ -2814,7 +2813,7 @@ ENDR
 	ld hl, .SpriteAnimGfxParams
 	add hl, bc
 	ld c, 0
-	cp NUM_COIN_GFX
+	cp COIN_SMALL_START
 	jr c, .got_obj_slot
 	ld c, 2
 .got_obj_slot
@@ -2852,7 +2851,8 @@ ENDR
 	dw TILESET_GENGAR_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_151 ; COIN_GENGAR
 	dw TILESET_RAICHU_COIN,     SPRITE_ANIM_85, FRAMESET_112, PALETTE_152 ; COIN_RAICHU
 	dw TILESET_LUGIA_COIN,      SPRITE_ANIM_85, FRAMESET_112, PALETTE_153 ; COIN_LUGIA
-	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_START
+; COIN_GR_START
+	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; NONE
 	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_118, PALETTE_143 ; COIN_GR_PIECE1
 	dw TILESET_GR_PIECES,       SPRITE_ANIM_AC, FRAMESET_119, PALETTE_143 ; COIN_GR_PIECE2
 	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2
@@ -2868,46 +2868,48 @@ ENDR
 	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 	dw TILESET_GR_COIN,         SPRITE_ANIM_85, FRAMESET_112, PALETTE_13C ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_120, PALETTE_13B ; $28
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $29
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_121, PALETTE_13B ; $2a
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_122, PALETTE_13B ; $2b
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_123, PALETTE_13B ; $2c
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_124, PALETTE_13B ; $2d
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_125, PALETTE_13B ; $2e
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_126, PALETTE_13B ; $2f
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_127, PALETTE_13B ; $30
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_128, PALETTE_13B ; $31
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_129, PALETTE_13B ; $32
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12A, PALETTE_13B ; $33
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12B, PALETTE_13B ; $34
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12C, PALETTE_13B ; $35
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12D, PALETTE_13B ; $36
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12E, PALETTE_13B ; $37
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12F, PALETTE_13B ; $38
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_130, PALETTE_13B ; $39
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_131, PALETTE_13B ; $3a
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_132, PALETTE_13B ; $3b
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_133, PALETTE_13B ; $3c
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_134, PALETTE_13B ; $3d
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_135, PALETTE_13B ; $3e
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_136, PALETTE_13B ; $3f
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_137, PALETTE_13B ; $40
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_138, PALETTE_13B ; $41
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_139, PALETTE_13B ; $42
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13A, PALETTE_13B ; $43
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13B, PALETTE_13B ; $44
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13C, PALETTE_13B ; $45
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13D, PALETTE_13B ; $46
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13E, PALETTE_13B ; $47
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13F, PALETTE_13B ; $48
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_140, PALETTE_13B ; $49
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_141, PALETTE_13B ; $4a
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_142, PALETTE_13B ; $4b
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_143, PALETTE_13B ; $4c
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_144, PALETTE_13B ; $4d
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_145, PALETTE_13B ; $4e
-	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; $4f
+; COIN_SMALL_START
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_120, PALETTE_13B ; COIN_CHANSEY
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; COIN_GR
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_121, PALETTE_13B ; COIN_ODDISH
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_122, PALETTE_13B ; COIN_CHARMANDER
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_123, PALETTE_13B ; COIN_STARMIE
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_124, PALETTE_13B ; COIN_PIKACHU
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_125, PALETTE_13B ; COIN_ALAKAZAM
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_126, PALETTE_13B ; COIN_KABUTO
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_127, PALETTE_13B ; COIN_GOLBAT
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_128, PALETTE_13B ; COIN_MAGNEMITE
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_129, PALETTE_13B ; COIN_MAGMAR
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12A, PALETTE_13B ; COIN_PSYDUCK
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12B, PALETTE_13B ; COIN_MACHAMP
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12C, PALETTE_13B ; COIN_MEW
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12D, PALETTE_13B ; COIN_SNORLAX
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12E, PALETTE_13B ; COIN_TOGEPI
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_12F, PALETTE_13B ; COIN_PONYTA
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_130, PALETTE_13B ; COIN_HORSEA
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_131, PALETTE_13B ; COIN_ARBOK
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_132, PALETTE_13B ; COIN_JIGGLYPUFF
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_133, PALETTE_13B ; COIN_DUGTRIO
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_134, PALETTE_13B ; COIN_GENGAR
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_135, PALETTE_13B ; COIN_RAICHU
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_136, PALETTE_13B ; COIN_LUGIA
+; COIN_SMALL_GR_START
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_137, PALETTE_13B ; NONE
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_138, PALETTE_13B ; COIN_GR_PIECE1
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_139, PALETTE_13B ; COIN_GR_PIECE2
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13A, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE2
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13B, PALETTE_13B ; COIN_GR_PIECE3
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13C, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE3
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13D, PALETTE_13B ; COIN_GR_PIECE2 | COIN_GR_PIECE3
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13E, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_13F, PALETTE_13B ; COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_140, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_141, PALETTE_13B ; COIN_GR_PIECE2 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_142, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_143, PALETTE_13B ; COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_144, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_145, PALETTE_13B ; COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	dw TILESET_SMALL_COINS,     SPRITE_ANIM_AD, FRAMESET_146, PALETTE_13B ; COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
 
 ; use FRAMESET_($112 + a)
 SetAndInitCoinAnimation:
@@ -2933,7 +2935,7 @@ SetAndInitCoinAnimation:
 	pop af
 	ret
 
-Func_1d46a:
+IsCoinAnimating:
 	push hl
 	farcall GetSpriteAnimBuffer
 	farcall CheckIsSpriteAnimAnimating
@@ -2963,9 +2965,9 @@ ReadOrInitSaveData:
 
 	farcall ClearGameCenterChips
 	call InitializeMailboxWRAM
-	call Func_1d7a1
+	call InitGameCenterPrizeExchangeLineup
 	call SetGiftCenterMenuCursorToQuit
-	call Func_1dcb7
+	call InitCoinMenu
 
 	; this is unnecessary since Card Pop list
 	; was already cleared in InitSaveData
@@ -3045,13 +3047,13 @@ Func_1d51e:
 	pop af
 	ret
 
-Func_1d52e:
+ShowReceivedCard:
 	farcall Func_1022a
-	call Func_1d53a
+	call _ShowReceivedCard
 	farcall Func_10252
 	ret
 
-Func_1d53a:
+_ShowReceivedCard:
 	push af
 	push bc
 	push de
@@ -3069,436 +3071,10 @@ Func_1d53a:
 	pop af
 	ret
 
-Func_1d55d:
-	farcall HideNPCAnimsUnderDialogBox
-	call Func_1d594
-	call Func_1d5aa
-	jr c, .asm_1d57c
-	farcall ShowNPCAnimsUnderDialogBox
-	farcall Func_1022a
-	call Func_1d584
-	farcall Func_10252
-	farcall HideNPCAnimsUnderDialogBox
-.asm_1d57c
-	call Func_1d59f
-	farcall ShowNPCAnimsUnderDialogBox
-	ret
+INCLUDE "engine/game_center_prize_exchange.asm"
+INCLUDE "data/game_center_prizes.asm"
 
-Func_1d584:
-	push af
-	push bc
-	push de
-	push hl
-	xor a
-	ld [wdb18], a
-	call Func_1d5b4
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-
-Func_1d594:
-	ldtx de, ReceptionistText
-	ldtx hl, GameCenterPrizeExchangeWelcomeText
-	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	ret
-
-Func_1d59f:
-	ldtx de, ReceptionistText
-	ldtx hl, GameCenterPrizeExchangeComeAgainText
-	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	ret
-
-Func_1d5aa:
-	ldtx hl, GameCenterPrizeExchangePromptText
-	ld a, $01
-	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
-	ret
-
-Func_1d5b4:
-	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d5c7
-	farcall SetFrameFuncAndFadeFromWhite
-	call Func_1d66e
-	farcall FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1d5c7:
-	call Func_1d779
-	ld de, $0
-	ld b, $07
-	ld hl, $564a
-	call LoadMenuBoxParams
-	ld a, [wdb18]
-	call DrawMenuBox
-	ldtx hl, PlayersChipsText
-	lb de, 1, 0
-	call Func_2c4b
-	lb de, 14, 0
-	lb bc, 5, 1
-	farcall FillBoxInBGMapWithZero
-	ldtx hl, PlayerDiaryCardsUnitText
-	lb de, 18, 0
-	call InitTextPrinting_ProcessTextFromIDVRAM0
-	farcall GetGameCenterChips
-	lb de, 14, 0
-	ld h, b
-	ld l, c
-	ld a, 4
-	ld b, TRUE
-	call PrintNumber
-	ld hl, wdb1a
-	ld e, $02
-	ld c, $05
-.asm_1d60e
-	ld a, [hli]
-	call Func_1d618
-	inc e
-	inc e
-	dec c
-	jr nz, .asm_1d60e
-	ret
-
-Func_1d618:
-	push af
-	push bc
-	push de
-	push hl
-	ld hl, $57a6
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	add hl, bc
-	push hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, 2
-	call InitTextPrinting_ProcessTextFromIDVRAM0
-	pop hl
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld a, 4
-	ld b, TRUE
-	ld d, 14
-	call PrintNumber
-	ld d, 18
-	ldtx hl, PlayerDiaryCardsUnitText
-	call InitTextPrinting_ProcessTextFromIDVRAM0
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-; 0x1d64a
-
-SECTION "Bank 7@566e", ROMX[$566e], BANK[$7]
-
-Func_1d66e:
-.asm_1d66e
-	lb de, 1, 14
-	ldtx hl, GameCenterPrizeExchangeChoosePrizeText
-	farcall PrintTextInWideTextBox
-	ld a, [wdb18]
-	call HandleMenuBox
-	ld [wdb18], a
-	jr c, .asm_1d68c
-	push af
-	ld a, SFX_CONFIRM
-	call CallPlaySFX
-	pop af
-	jr .asm_1d695
-.asm_1d68c
-	push af
-	ld a, SFX_CANCEL
-	call CallPlaySFX
-	pop af
-	jr .asm_1d6b2
-.asm_1d695
-	ldtx hl, GameCenterPrizeExchangeConfirmText
-	ld a, $01
-	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1d6b2
-	call Func_1d6be
-	jr c, .asm_1d6b2
-	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d5c7
-	call StartFadeFromWhite
-	call WaitPalFading_Bank07
-.asm_1d6b2
-	ldtx hl, GameCenterPrizeExchangeQuitConfirmText
-	ld a, $01
-	farcall DrawWideTextBox_PrintTextWithYesOrNoMenu
-	jr c, .asm_1d66e
-	ret
-
-Func_1d6be:
-	ld a, [wdb18]
-	ld c, a
-	ld b, $00
-	ld hl, wdb1a
-	add hl, bc
-	ld a, [hl]
-	ld [wdb19], a
-	add a
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $57a6
-	add hl, bc
-	inc hl
-	inc hl
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	farcall GetGameCenterChips
-	call CompareBCAndDE
-	jr c, .asm_1d6fc
-	ld b, d
-	ld c, e
-	farcall SubtractChips
-	call StartFadeToWhite
-	call WaitPalFading_Bank07
-	ld a, [wdb19]
-	ld hl, $5704
-	call CallMappedFunction
-	call WaitPalFading_Bank07
-	ret
-.asm_1d6fc
-	ldtx hl, GameCenterNotEnoughChipsText
-	farcall PrintScrollableText_NoTextBoxLabelVRAM0
-	ret
-; 0x1d704
-
-SECTION "Bank 7@5779", ROMX[$5779], BANK[$7]
-
-Func_1d779:
-	ld a, [wdb1f]
-	add a
-	ld c, a
-	ld b, $00
-	ld hl, $5793
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, wdb1a
-	ld c, $05
-.asm_1d78c
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .asm_1d78c
-	ret
-; 0x1d793
-
-SECTION "Bank 7@57a1", ROMX[$57a1], BANK[$7]
-
-Func_1d7a1:
-	xor a
-	ld [wdb1f], a
-	ret
-; 0x1d7a6
-
-SECTION "Bank 7@57be", ROMX[$57be], BANK[$7]
-
-Func_1d7be:
-	farcall Func_1022a
-	call Func_1d7ca
-	farcall Func_10252
-	ret
-
-Func_1d7ca:
-	push de
-	push hl
-	push af
-	ld a, $03
-	call CallSetVolume
-	pop af
-	call Func_1d813
-	push af
-	ld a, $07
-	call CallSetVolume
-	pop af
-	call Func_1d7ec
-	ld hl, wdb21
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	ld a, [wdb20]
-	pop hl
-	pop de
-	ret
-
-Func_1d7ec:
-	ld a, [wdb20]
-	add a
-	ld c, a
-	ld b, $00
-	add hl, bc
-	ld a, [hli]
-	ld [wdb21], a
-	ld a, [hl]
-	ld [wdb21 + 1], a
-	ret
-; 0x1d7fd
-
-SECTION "Bank 7@5813", ROMX[$5813], BANK[$7]
-
-Func_1d813:
-	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1d886
-	farcall SetFrameFuncAndFadeFromWhite
-.asm_1d81e
-	ld c, $00
-.asm_1d820
-	ld a, $00
-	call SetAndInitCoinAnimation
-.asm_1d825
-	call UpdateRNGSources
-	call DoFrame
-	ldh a, [hKeysPressed]
-	and PAD_A
-	jr z, .asm_1d825
-	call UpdateRNGSources
-	and $01
-	ld b, a
-	push af
-	ld a, SFX_COIN_TOSS
-	call CallPlaySFX
-	pop af
-	ld a, b
-	add $01
-	call SetAndInitCoinAnimation
-.asm_1d844
-	call DoFrame
-	call Func_1d46a
-	jr nz, .asm_1d844
-	ld a, b
-	and $01
-	jr nz, .asm_1d85a
-	push af
-	ld a, SFX_COIN_TOSS_POSITIVE
-	call CallPlaySFX
-	pop af
-	jr .asm_1d861
-.asm_1d85a
-	push af
-	ld a, SFX_COIN_TOSS_NEGATIVE
-	call CallPlaySFX
-	pop af
-.asm_1d861
-	ld a, b
-	call Func_1d8c6
-	ld a, $3c
-	call DoAFrames_WithPreCheck
-	ld a, b
-	and a
-	jr nz, .asm_1d874
-	inc c
-	ld a, c
-	cp $0a
-	jr nz, .asm_1d820
-.asm_1d874
-	ld a, c
-	ld [wdb20], a
-	cp $03
-	jr nc, .asm_1d881
-	call Func_1d8df
-	jr nc, .asm_1d81e
-.asm_1d881
-	farcall FadeToWhiteAndUnsetFrameFunc
-	ret
-
-Func_1d886:
-	push af
-	push bc
-	push de
-	push hl
-	farcall ClearSpriteAnims
-	call Func_1dfb5
-	ld de, $5858
-	call CreateCoinAnimation
-	ld a, $03
-	call SetAndInitCoinAnimation
-	lb de, 0, 12
-	lb bc, 20, 6
-	call DrawRegularTextBoxVRAM0
-	ldtx hl, GameCenterCoinFlipTitleText
-	lb de, 1, 12
-	call Func_2c4b
-	ldtx hl, GameCenterCoinFlipDialogText
-	lb de, 1, 14
-	call InitTextPrinting_ProcessTextFromIDVRAM0
-	lb de, 0, 0
-	lb bc, 20, 4
-	farcall FillBoxInBGMapWithZero
-	pop hl
-	pop de
-	pop bc
-	pop af
-	ret
-
-Func_1d8c6:
-	push af
-	push bc
-	and a
-	jr nz, .asm_1d8cf
-	ld a, SCENE_COIN_TOSS_RESULT_1
-	jr .asm_1d8d1
-.asm_1d8cf
-	ld a, SCENE_COIN_TOSS_RESULT_2
-.asm_1d8d1
-	ld b, c
-	sla b
-	ld c, $00
-	call LoadScene
-	call FlushAllPalettes
-	pop bc
-	pop af
-	ret
-
-Func_1d8df:
-	lb de, 0, 0
-	lb bc, 8, 4
-	farcall FillBoxInBGMapWithZero
-	call DoFrame
-	farcall TurnOnCurChipsHUD
-	ldtx hl, GameCenterCoinFlipRetryPromptText
-	ldtx de, AttendantText
-	ld a, $01
-	farcall PrintScrollableText_WithTextBoxLabelWithYesOrNoMenu
-	jr c, .asm_1d914
-	farcall GetGameCenterChips
-	ld a, b
-	or c
-	jr z, .asm_1d91d
-	ld bc, CHIPS_BET_COIN_FLIP
-	farcall DecreaseChipsSmoothly
-	ld a, 60
-	call DoAFrames_WithPreCheck
-	scf
-	ccf
-.asm_1d914
-	farcall TurnOffCurChipsHUD
-	ret c
-	call Func_1d886
-	ret
-.asm_1d91d
-	ldtx hl, GameCenterCoinFlipAttendantNotEnoughChipsText
-	ldtx de, AttendantText
-	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	scf
-	jr .asm_1d914
-; 0x1d92a
-
-SECTION "Bank 7@596e", ROMX[$596e], BANK[$7]
+INCLUDE "engine/coin_flip_game.asm"
 
 OWInteractionSlotMachine:
 	farcall Func_1022a
@@ -3512,16 +3088,16 @@ SlotMachine:
 	push bc
 	push de
 	push hl
-	ld [wdb2f], a
+	ld [wSlotMachineBets], a
 	farcall AskToPlaySlots
-	jr c, .done ; jump if player chose not to play
+	jr c, .done ; cancelled
 	push af
-	ld a, $03
+	ld a, AUDVOL_HALF_VOLUME
 	call CallSetVolume
 	pop af
 	farcall StartSlotMachine
 	push af
-	ld a, $07
+	ld a, AUDVOL_FULL_VOLUME
 	call CallSetVolume
 	pop af
 .done
@@ -3616,8 +3192,8 @@ GiftCenter_SaveRequest:
 	ldtx hl, GiftCenterServiceSaveRequestText
 	ldtx de, ReceptionistText
 	farcall PrintScrollableText_WithTextBoxLabelVRAM0
-	ld c, $01
-	call DrawSavePromptAndWaitForInput
+	ld c, TRUE
+	call SaveGamePrompt
 	ret nc
 	ldtx hl, GiftCenterServiceUnavailableSaveRequiredText
 	ldtx de, ReceptionistText
@@ -3750,47 +3326,50 @@ GiftCenter_ExecuteSelectedOption:
 	farcall Func_10252
 	ret
 
+; a = incoming coin
 GiveCoin:
 	farcall Func_1022a
-	call Func_1db6f
+	call _GiveCoin
 	farcall Func_10252
 	ret
 
-Func_1db6f:
+; a = incoming coin
+_GiveCoin:
 	push af
 	push bc
 	push de
 	push hl
 	ld [wIncomingCoin], a
-	call Func_1db81
-	call Func_1dc0a
+	call ShowCoinReceivedScreen
+	call ShowReceivedCoinOnCoinMenu
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1db81:
+ShowCoinReceivedScreen:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call DisableLCD
-	call Func_1dbee
+	call .DrawScreen
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
 	call PauseSong_SaveState
+
 	ld a, [wIncomingCoin]
 	cp COIN_GR_START
-	jr c, .not_coin_gr
+	jr c, .toss_anim
 	ld a, COIN_GR
 	ld [wIncomingCoin], a
 	xor a
 	jr .got_frames
 
-.not_coin_gr
+.toss_anim
 	push af
 	ld a, SFX_COIN_TOSS
 	call CallPlaySFX
 	pop af
-	ld a, 1
+	ld a, FRAMESET_113 - FRAMESET_112
 	call SetAndInitCoinAnimation
 	ld a, 52
 
@@ -3819,7 +3398,7 @@ Func_1db81:
 	ld [wd693], a
 	ret
 
-Func_1dbee:
+.DrawScreen:
 	ld a, [wIncomingCoin]
 	lb de, 88, 88
 	call CreateCoinAnimation
@@ -3831,78 +3410,78 @@ Func_1dbee:
 	call LoadTxRam2
 	ret
 
-Func_1dc0a:
+ShowReceivedCoinOnCoinMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	call Func_1dc52
+	call .DrawCoinMenuPage
 	farcall SetFrameFuncAndFadeFromWhite
 	xor a
-	ld [wdc0b], a
-.delay_loop
+	ld [wIncomingCoinBlinkFrames], a
+.loop_blink
 	call DoFrame
-	call Func_1dc2a
+	call .BlinkCoin
 	ldh a, [hKeysPressed]
 	and PAD_A | PAD_B
-	jr z, .delay_loop
+	jr z, .loop_blink
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1dc2a:
-	ld a, [wdc0b]
+.BlinkCoin:
+	ld a, [wIncomingCoinBlinkFrames]
 	and $10
 	push af
-	call z, .asm_1dc3c
+	call z, .BlinkVisible
 	pop af
-	call nz, .asm_1dc47
-	ld hl, wdc0b
+	call nz, .BlinkInvisible
+	ld hl, wIncomingCoinBlinkFrames
 	inc [hl]
 	ret
 
-.asm_1dc3c:
+.BlinkVisible:
 	ld a, [wIncomingCoin]
 	call GetCoinPossessionStatus
-	farcall Func_12c49b
+	farcall LoadCurCoinTilemap
 	ret
 
-.asm_1dc47:
+.BlinkInvisible:
 	ld hl, 0
 	lb bc, 3, 3
 	farcall FillBoxInBGMapWithZero
 	ret
 
-Func_1dc52:
+.DrawCoinMenuPage:
 	lb de,  0, 0
 	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
-	call CountEventCoinsObtained
+	call CountCoinsObtained
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
 	ldtx hl, ObtainedCoinTotalNumberText
 	ld a, [wIncomingCoin]
 	cp COIN_GR
-	jr nz, .got_coin_and_text
+	jr nz, .print
 
 	call CheckObtainedGRCoinPieces
-	cp $f
-	jr z, .got_coin_and_text
+	cp COIN_GR_PIECE1 | COIN_GR_PIECE2 | COIN_GR_PIECE3 | COIN_GR_PIECE4
+	jr z, .print
 
-	call CountGRCoinPiecesObtained_2
+	call CountGRCoinPiecesObtained_Bank07
 	ld l, a
 	ld h, 0
 	call LoadTxRam3
 	ldtx hl, ObtainedGRCoinPieceTotalNumberText
 
-.got_coin_and_text
+.print
 	lb de, 1, 2
 	call PrintTextNoDelay_InitVRAM0
-	call Func_1dd08
+	call ShowSelectedCoinOnCoinMenu
 	ld a, [wIncomingCoin]
-	call GetCoinType
+	call CalculateCoinMenuPosition
 	push af
 	ld a, b
 	ld [wCoinPage], a
 	pop af
-	call Func_1dd89
+	call ShowCoinMenuPage
 	ret
 
 PauseMenuCoinScreen:
@@ -3925,7 +3504,7 @@ ShowCoinMenuWithoutIncomingCoin::
 	pop af
 	ret
 
-Func_1dcb7:
+InitCoinMenu:
 	xor a
 	ld [wSelectedCoin], a
 	ld [wCoinPage], a
@@ -3935,10 +3514,10 @@ CoinMenu:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	farcall ClearSpriteAnims
 	call DisableLCD
-	call Func_1dce3
+	call .ShowScreen
 	call EnableLCD
 	farcall SetFrameFuncAndFadeFromWhite
-	call Func_1deac
+	call HandleCoinMenu
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
@@ -3946,7 +3525,7 @@ CoinMenu:
 	farcall FadeToWhiteAndUnsetFrameFunc
 	ret
 
-Func_1dce3:
+.ShowScreen:
 	lb de,  0, 0
 	lb bc, 20, 8
 	call DrawRegularTextBoxVRAM0
@@ -3954,16 +3533,16 @@ Func_1dce3:
 	lb de,  1, 2
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
-	call GetCoinType
+	call CalculateCoinMenuPosition
 	push af
 	ld a, b
 	ld [wCoinPage], a
 	pop af
-	call Func_1dd89
-	call Func_1dd08
+	call ShowCoinMenuPage
+	call ShowSelectedCoinOnCoinMenu
 	ret
 
-Func_1dd08:
+ShowSelectedCoinOnCoinMenu:
 	push af
 	push bc
 	push de
@@ -3979,28 +3558,28 @@ Func_1dd08:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ld a, [wSelectedCoin]
 	lb de,  1, 4
-	farcall Func_12c49b
-	call Func_1dd3a
+	farcall LoadCurCoinTilemap
+	call HighlightSelectedCoinOnCoinPage
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-; each coin settings page
-Func_1dd3a:
+HighlightSelectedCoinOnCoinPage:
 	push af
 	push bc
 	push de
 	push hl
 	ld a, [wSelectedCoin]
-	call GetCoinType
+	call CalculateCoinMenuPosition
 	ld c, a
 	ld a, [wCoinPage]
 	cp b
-	jr z, .got_index
-	ld c, 8
-.got_index
+	jr z, .draw_highlight_box
+; different page, fallback to out of bounds position
+	ld c, NUM_COINMENU_VISIBLE_COINS
+.draw_highlight_box
 	ld a, c
 	add a
 	ld c, a
@@ -4030,7 +3609,7 @@ Func_1dd3a:
 	db  48, 120 ; $5
 	db  88, 120 ; $6
 	db 128, 120 ; $7
-	db 160, 160 ; $8
+	db 160, 160 ; $8, fallback
 
 .SpriteAnimGfxParams:
 	dw TILESET_WINDOW
@@ -4038,28 +3617,31 @@ Func_1dd3a:
 	dw FRAMESET_117
 	dw PALETTE_16B
 
-Func_1dd84:
+ClearCoinMenuAnims:
 	farcall ClearSpriteAnims
 	ret
 
-; coin settings pages
-Func_1dd89:
+; b = page index, a = cursor pos
+; return de = coordinates
+ShowCoinMenuPage:
 	push af
 	push bc
 	push hl
 	push af
 	push bc
 	lb de, 0, 10
-	ld b, BANK(_CoinPageMenuParams)
-	ld hl, _CoinPageMenuParams
+	ld b, BANK(CoinMenuPageMenuParams)
+	ld hl, CoinMenuPageMenuParams
 	call LoadMenuBoxParams
 	call DrawMenuBox
 	pop bc
+
+; print page title
 	push bc
 	ld c, b
 	ld b, 0
 	sla c
-	ld hl, _CoinPageTextTable
+	ld hl, CoinMenuPageTitles
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
@@ -4067,12 +3649,14 @@ Func_1dd89:
 	lb de, 6, 8
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop bc
+
+; draw page cursors
 	push bc
 	ld c, b
 	ld b, 0
 	sla c
-	sla c
-	ld hl, _CoinPageCoordTable
+	sla c ; *4
+	ld hl, CoinMenuPageCursorTable
 	add hl, bc
 	ld d, [hl]
 	inc hl
@@ -4086,22 +3670,26 @@ Func_1dd89:
 	lb bc, 19, 8
 	call Func_383b
 	pop bc
-	call Func_1dd3a
+
+; prepare highlight box
+	call HighlightSelectedCoinOnCoinPage
+
+; draw coins
 	ld c, b
 	ld b, 0
 	sla c
-	ld hl, _CoinPageListTable
+	ld hl, CoinMenuCoinLists
 	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	pop af
 	ld b, a
-	ld a, 8
+	ld a, NUM_COINMENU_VISIBLE_COINS
 	sub b
 	ld b, a
-	ld c, 8
-.loop_show_coin
+	ld c, NUM_COINMENU_VISIBLE_COINS
+.loop_draw_coins
 	push bc
 	push hl
 	ld a, [hli]
@@ -4109,7 +3697,7 @@ Func_1dd89:
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	farcall Func_12c49b
+	farcall LoadCurCoinTilemap
 	ld a, c
 	cp b
 	jr nz, .next_coin
@@ -4119,11 +3707,13 @@ Func_1dd89:
 	ld [wCoinPageYCoordinate], a
 .next_coin
 	pop hl
-	ld bc, 3
+	ld bc, 3 ; table width
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .loop_show_coin
+	jr nz, .loop_draw_coins
+
+; get coordinates
 	ld a, [wCoinPageXCoordinate]
 	ld d, a
 	ld a, [wCoinPageYCoordinate]
@@ -4133,15 +3723,16 @@ Func_1dd89:
 	pop af
 	ret
 
-Func_1de16:
+; unreferenced
+GetGRCoinGfxIndex:
 	call CheckObtainedGRCoinPieces
 	add COIN_GR_START
 	ret
 
-_CoinPageMenuParams:
+CoinMenuPageMenuParams:
 	menubox_params FALSE, 20, 7, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, TRUE, 4, Func_1def1, NULL
+		PAD_A, PAD_B, TRUE, 4, HandleCoinMenuPageInput, NULL
 	textitem  1,  1, SingleSpaceText
 	textitem  6,  1, SingleSpaceText
 	textitem 11,  1, SingleSpaceText
@@ -4152,18 +3743,18 @@ _CoinPageMenuParams:
 	textitem 16,  5, SingleSpaceText
 	textitems_end
 
-_CoinPageTextTable:
-	tx EventCoinPage1Text
-	tx EventCoinPage2Text
-	tx EventCoinPage3Text
+CoinMenuPageTitles:
+	tx EventCoinPage1Text ; COIN_PAGE_TCG_ISLAND
+	tx EventCoinPage2Text ; COIN_PAGE_GR_ISLAND
+	tx EventCoinPage3Text ; COIN_PAGE_SPECIAL
 
 ; see also: wCoinPageXCoordinate, wCoinPageYCoordinate
-_CoinPageListTable:
-	dw .page1
-	dw .page2
-	dw .page3
+CoinMenuCoinLists:
+	dw .Page1Coins ; COIN_PAGE_TCG_ISLAND
+	dw .Page2Coins ; COIN_PAGE_GR_ISLAND
+	dw .Page3Coins ; COIN_PAGE_SPECIAL
 ; coin, x, y
-.page1:
+.Page1Coins:
 	db COIN_CHANSEY,     1, 10
 	db COIN_GR,          6, 10
 	db COIN_ODDISH,     11, 10
@@ -4172,7 +3763,7 @@ _CoinPageListTable:
 	db COIN_PIKACHU,     6, 14
 	db COIN_ALAKAZAM,   11, 14
 	db COIN_KABUTO,     16, 14
-.page2:
+.Page2Coins:
 	db COIN_GOLBAT,      1, 10
 	db COIN_MAGNEMITE,   6, 10
 	db COIN_MAGMAR,     11, 10
@@ -4181,7 +3772,7 @@ _CoinPageListTable:
 	db COIN_MEW,         6, 14
 	db COIN_SNORLAX,    11, 14
 	db COIN_TOGEPI,     16, 14
-.page3:
+.Page3Coins:
 	db COIN_PONYTA,      1, 10
 	db COIN_HORSEA,      6, 10
 	db COIN_ARBOK,      11, 10
@@ -4191,51 +3782,57 @@ _CoinPageListTable:
 	db COIN_RAICHU,     11, 14
 	db COIN_LUGIA,      16, 14
 
-_CoinPageCoordTable:
-	db  0,  0, 15, 0
-	db 15, 32, 15, 0
-	db 15, 32,  0, 0
+; left cursor, right cursor
+CoinMenuPageCursorTable:
+	db SYM_SPACE,    0,        SYM_CURSOR_R, 0 ; COIN_PAGE_TCG_ISLAND
+	db SYM_CURSOR_R, BG_XFLIP, SYM_CURSOR_R, 0 ; COIN_PAGE_GR_ISLAND
+	db SYM_CURSOR_R, BG_XFLIP, SYM_SPACE,    0 ; COIN_PAGE_SPECIAL
 
-Func_1deac:
+; defaults to the selected coin
+HandleCoinMenu:
 	push af
 	push bc
 	push de
 	push hl
 	ld a, [wSelectedCoin]
-.asm_1deb3
-	call GetCoinType
+.wait_input
+	call CalculateCoinMenuPosition
 	push af
 	ld a, b
 	ld [wCoinPage], a
 	pop af
 	call HandleMenuBox
-	jr c, .asm_1dec6
-	call Func_1decb
-	jr .asm_1deb3
-.asm_1dec6
+	jr c, .quit ; B pressed
+	call .SelectedCoin ; A pressed
+	jr .wait_input
+
+.quit
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-; COIN_* constant at [wCoinPage] * 8 + a
-Func_1decb:
+; a = cursor pos within page
+.SelectedCoin:
 	ld b, a
 	ld a, [wCoinPage]
 REPT 3 ; *8
 	add a
 ENDR
 	add b
-	ld b, a
-	call CheckIfCoinWasObtained
+	ld b, a ; COIN_* ID
+	call IsCoinObtained
 	ld a, b
 	jr nz, .exists
+
+; missing
 	push af
 	ld a, SFX_DENIED
 	call CallPlaySFX
 	pop af
 	ret
+
 .exists
 	push af
 	ld a, SFX_COIN_TOSS
@@ -4243,30 +3840,32 @@ ENDR
 	pop af
 	ld a, b
 	ld [wSelectedCoin], a
-	call Func_1dd08
+	call ShowSelectedCoinOnCoinMenu
 	ret
 
-Func_1def1::
+HandleCoinMenuPageInput::
 	push af
 	push bc
 	push de
 	push hl
-	call Func_1df10
+	call .SelectBtnPageForward
 	call GetMenuBoxFocusedItem
-	and 3
+	and COINMENU_WIDTH - 1
 	and a
-	call z, Func_1df60
+	call z, .Leftmost
 	call GetMenuBoxFocusedItem
-	and 3
-	cp 3
-	call z, Func_1df36
+	and COINMENU_WIDTH - 1
+	cp COINMENU_WIDTH - 1
+	call z, .Rightmost
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1df10:
+; select btn: page-forward shortcut key
+; allows to wrap around
+.SelectBtnPageForward:
 	ldh a, [hKeysPressed]
 	and PAD_SELECT
 	ret z
@@ -4277,25 +3876,28 @@ Func_1df10:
 	pop af
 	ld a, [wCoinPage]
 	inc a
-	cp 3
-	jr c, .got_value
-	xor a
-.got_value
+	cp NUM_COIN_PAGES
+	jr c, .page_forward
+	xor a ; wrap
+.page_forward
 	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
-	call Func_1df89
+	call .RedrawPage
 	call SetMenuBoxFocusedItem
-	call SetwDA37
+	call SetMenuBoxBoundaryNoOpFlag
 	ret
 
-Func_1df36:
+; no wrap
+.Rightmost:
 	ldh a, [hDPadHeld]
 	and PAD_RIGHT
 	ret z
+
 	ld a, [wCoinPage]
-	cp 2
-	jr z, .done
+	cp COIN_PAGE_SPECIAL
+	jr z, .done_rightmost
+
 	push af
 	ld a, SFX_CURSOR
 	call CallPlaySFX
@@ -4305,21 +3907,24 @@ Func_1df36:
 	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
-	sub 3
-	call Func_1df89
+	sub COINMENU_WIDTH - 1
+	call .RedrawPage
 	call SetMenuBoxFocusedItem
-.done
-	call SetwDA37
+
+.done_rightmost
+	call SetMenuBoxBoundaryNoOpFlag
 	ret
 
-Func_1df60:
+; no wrap
+.Leftmost:
 	ldh a, [hDPadHeld]
 	and PAD_LEFT
 	ret z
 
 	ld a, [wCoinPage]
 	and a
-	jr z, .done
+	jr z, .done_leftmost
+
 	push af
 	ld a, SFX_CURSOR
 	call CallPlaySFX
@@ -4329,15 +3934,16 @@ Func_1df60:
 	ld [wCoinPage], a
 	ld b, a
 	call GetMenuBoxFocusedItem
-	add 3
-	call Func_1df89
+	add COINMENU_WIDTH - 1
+	call .RedrawPage
 	call SetMenuBoxFocusedItem
-.done
-	call SetwDA37
+
+.done_leftmost
+	call SetMenuBoxBoundaryNoOpFlag
 	ret
 
-Func_1df89:
-	call Func_1dd84
+.RedrawPage:
+	call ClearCoinMenuAnims
 	push af
 	ld a,  8
 	ldh [hWX], a
@@ -4346,27 +3952,28 @@ Func_1df89:
 	call SetWindowOn
 	pop af
 	call DoFrame
-	call Func_1dd89
+	call ShowCoinMenuPage
 	push af
 	call SetWindowOff
 	pop af
 	ret
 
-; a = COIN_* constant
-; return its COIN_TYPE_* in a and b
-GetCoinType:
+; for a = COIN_* ID,
+; return b = page index (COIN_PAGE_*), a = index within page
+; (b = a / 8, a = a % 8)
+CalculateCoinMenuPosition:
 	cp COIN_GR_START
 	jr c, .found_coin
 	ld a, COIN_GR
 .found_coin
 	ld b, a
+REPT 3 ; /8
 	srl b
-	srl b
-	srl b
-	and 7
+ENDR
+	and NUM_COINMENU_VISIBLE_COINS - 1
 	ret
 
-Func_1dfb5:
+GetSelectedCoin:
 	ld a, [wSelectedCoin]
 	ret
 
@@ -5734,7 +5341,7 @@ Func_1e889:
 	farcall Func_10252
 	ret
 
-; a = BOOSTER_* constant, b = has-another count?
+; a = BOOSTER_* constant, b = has-another flag
 GiveBoosterPacks:
 	push af
 	push bc
@@ -6763,7 +6370,7 @@ ScrollMailboxPageOnPadDown:
 	ld [wSelectedMailCursorPosition], a
 	call MailboxMainScreen
 	call SetMenuBoxFocusedItem
-	call SetwDA37
+	call SetMenuBoxBoundaryNoOpFlag
 	ret
 
 ScrollMailboxPageOnPadUp:
@@ -6786,7 +6393,7 @@ ScrollMailboxPageOnPadUp:
 	ld [wSelectedMailCursorPosition], a
 	call MailboxMainScreen
 	call SetMenuBoxFocusedItem
-	call SetwDA37
+	call SetMenuBoxBoundaryNoOpFlag
 	ret
 ; 0x1ef9a
 
@@ -6995,7 +6602,7 @@ GiveCardsAttachedToMailPage:
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ld a, c
-	ld b, $00
+	ld b, FALSE
 	call GiveBoosterPacks
 	call .redraw_mail_screen
 	jr .done
@@ -7053,7 +6660,7 @@ GiveCardsAttachedToMailPage:
 	push hl
 	farcall GetReceivedCardText
 	call AddCardToCollection
-	call Func_1d53a
+	call _ShowReceivedCard
 	pop hl
 	ret
 
@@ -7929,43 +7536,45 @@ CardPopMenu:
 	pop af
 	ret
 
-Func_1f84c:
+; a = is-playable flag
+CardDungeonDescriptionScreen:
 	farcall Func_102a4
-	call Func_1f858
+	call ShowCardDungeonDescriptionScreen
 	farcall Func_102c4
 	ret
 
-Func_1f858:
+; a = is-playable flag
+ShowCardDungeonDescriptionScreen:
 	push af
 	push bc
 	push de
 	push hl
-	ld [wdd93], a
-	call Func_1f867
+	ld [wCardDungeonIsPlayable], a
+	call .DrawDescriptionScreen
 	pop hl
 	pop de
 	pop bc
 	pop af
 	ret
 
-Func_1f867:
+.DrawDescriptionScreen:
 	farcall ZeroObjectPositionsAndEnableOBPFading
 	farcall SetInitialGraphicsConfiguration
-	call Func_1f88f
+	call .PrintDescription
 	call StartFadeFromWhite
 	call WaitPalFading_Bank07
 	ldtx hl, GameCenterCardDungeonUnableNotEnoughChipsText
-	ld a, [wdd93]
+	ld a, [wCardDungeonIsPlayable]
 	and a
-	jr z, .asm_1f884
+	jr z, .got_text
 	ldtx hl, GameCenterCardDungeonDialogText
-.asm_1f884
+.got_text
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call StartFadeToWhite
 	call WaitPalFading_Bank07
 	ret
 
-Func_1f88f:
+.PrintDescription:
 	lb de, 0, 0
 	lb bc, 20, 19
 	call DrawRegularTextBoxVRAM0
@@ -8008,26 +7617,26 @@ PlayerGenderAndNameSelection::
 	pop af
 	ret
 
-Func_1f8eb:
+BillsPCScreen:
 	farcall Func_1022a
-	call Func_1f8f7
+	call BillsPC
 	farcall Func_10252
 	ret
 
-Func_1f8f7:
+BillsPC:
 	push af
 	push bc
 	push de
 	push hl
 	farcall SetFrameFuncAndFadeFromWhite
-	farcall Func_2612a
-	jr c, .asm_1f914
+	farcall _BillsPC
+	jr c, .done ; cancelled, error, etc.
 	ldtx hl, GameCenterToBeMailedText_2
 	farcall PrintScrollableText_NoTextBoxLabelVRAM0
 	call SetBillsPCCard
 	ld a, $82 ; priority bill's PC mail
 	call AddMailToQueue
-.asm_1f914
+.done
 	farcall FadeToWhiteAndUnsetFrameFunc
 	pop hl
 	pop de

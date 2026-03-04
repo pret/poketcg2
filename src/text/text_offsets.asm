@@ -1491,7 +1491,7 @@ TextOffsets::
 	textpointer DebugCurrentObjectCharacterNumberLabelText            ; 0x05c7
 	textpointer DebugCurrentMapNumberLabelText                        ; 0x05c8
 	textpointer DebugCurrentMapChipsetCountLabelText                  ; 0x05c9
-	textpointer PlayerDiaryCardsUnitText                              ; 0x05ca
+	textpointer CardsAndChipsUnitText                                 ; 0x05ca
 	textpointer ChipsText                                             ; 0x05cb
 	textpointer PCMenuDeckDiagnosisText                               ; 0x05cc
 	textpointer TCG2TitleText                                         ; 0x05cd
@@ -1601,7 +1601,7 @@ TextOffsets::
 	textpointer GameCenterCoinFlipDescriptionText                     ; 0x0635
 	textpointer GameCenterCoinFlipCheersText                          ; 0x0636
 	textpointer GameCenterCoinFlipDialogText                          ; 0x0637
-	textpointer GameCenterCoinFlipRetryPromptText                     ; 0x0638
+	textpointer GameCenterCoinFlipPlayAgainPromptText                 ; 0x0638
 	textpointer GameCenterPrizeExchangeText                           ; 0x0639
 	textpointer DebugDuelText                                         ; 0x063a
 	textpointer SpecialRuleChlorophyllTitleText                       ; 0x063b
@@ -1694,8 +1694,8 @@ TextOffsets::
 	textpointer GameCenter5ChipsPerPlayText                           ; 0x0692
 	textpointer GameCenterSlotMachineDialogText                       ; 0x0693
 	textpointer GameCenterSlotMachineBonusPlayText                    ; 0x0694
-	textpointer GameCenterSlotMachineBonusPlayHitMoneySacksText       ; 0x0695
-	textpointer GameCenterSlotMachineHitEditionSymbolsText            ; 0x0696
+	textpointer GameCenterSlotMachineBonusPlayMoneybagHitText         ; 0x0695
+	textpointer GameCenterSlotMachineBonusPlayLegendaryHitText        ; 0x0696
 	textpointer GameCenterSlotMachineMissedText                       ; 0x0697
 	textpointer DebugAdjustChipsText                                  ; 0x0698
 	textpointer DebugImageListText                                    ; 0x0699
@@ -3476,11 +3476,11 @@ TextOffsets::
 	textpointer GameCenterChipGirlRefillReminderText                  ; 0x0d84
 	textpointer GameCenterChipSecurityReminderText                    ; 0x0d85
 	textpointer GameCenterChipSecurityWarningText                     ; 0x0d86
-	textpointer Text0d87                                              ; 0x0d87
-	textpointer Text0d88                                              ; 0x0d88
-	textpointer Text0d89                                              ; 0x0d89
-	textpointer Text0d8a                                              ; 0x0d8a
-	textpointer Text0d8b                                              ; 0x0d8b
+	textpointer GameCenterLobbyTechExcuseText                         ; 0x0d87
+	textpointer GameCenterLobbyGRLassMockeryText                      ; 0x0d88
+	textpointer GameCenterLobbyGRLassPostgameNoWordsToVictorText      ; 0x0d89
+	textpointer GameCenterLobbyGRPappyLectureText                     ; 0x0d8a
+	textpointer GameCenterLobbyGRPappyPostgamePlayFreelyText          ; 0x0d8b
 	textpointer Text0d8c                                              ; 0x0d8c
 	textpointer Text0d8d                                              ; 0x0d8d
 	textpointer Text0d8e                                              ; 0x0d8e
@@ -4248,74 +4248,74 @@ SECTION "Text Offsets 2", ROMX
 	textpointer Text1085                                              ; 0x1085
 	textpointer Text1086                                              ; 0x1086
 	textpointer Text1087                                              ; 0x1087
-	textpointer Text1088                                              ; 0x1088
-	textpointer Text1089                                              ; 0x1089
-	textpointer Text108a                                              ; 0x108a
-	textpointer Text108b                                              ; 0x108b
-	textpointer Text108c                                              ; 0x108c
-	textpointer Text108d                                              ; 0x108d
-	textpointer Text108e                                              ; 0x108e
-	textpointer Text108f                                              ; 0x108f
-	textpointer Text1090                                              ; 0x1090
-	textpointer Text1091                                              ; 0x1091
-	textpointer Text1092                                              ; 0x1092
-	textpointer Text1093                                              ; 0x1093
-	textpointer Text1094                                              ; 0x1094
-	textpointer Text1095                                              ; 0x1095
-	textpointer Text1096                                              ; 0x1096
-	textpointer Text1097                                              ; 0x1097
-	textpointer Text1098                                              ; 0x1098
-	textpointer Text1099                                              ; 0x1099
-	textpointer Text109a                                              ; 0x109a
-	textpointer Text109b                                              ; 0x109b
-	textpointer Text109c                                              ; 0x109c
-	textpointer Text109d                                              ; 0x109d
-	textpointer Text109e                                              ; 0x109e
-	textpointer Text109f                                              ; 0x109f
-	textpointer Text10a0                                              ; 0x10a0
-	textpointer Text10a1                                              ; 0x10a1
-	textpointer Text10a2                                              ; 0x10a2
-	textpointer Text10a3                                              ; 0x10a3
-	textpointer Text10a4                                              ; 0x10a4
-	textpointer Text10a5                                              ; 0x10a5
-	textpointer Text10a6                                              ; 0x10a6
-	textpointer Text10a7                                              ; 0x10a7
-	textpointer Text10a8                                              ; 0x10a8
-	textpointer Text10a9                                              ; 0x10a9
-	textpointer Text10aa                                              ; 0x10aa
-	textpointer Text10ab                                              ; 0x10ab
-	textpointer Text10ac                                              ; 0x10ac
-	textpointer Text10ad                                              ; 0x10ad
-	textpointer Text10ae                                              ; 0x10ae
-	textpointer Text10af                                              ; 0x10af
-	textpointer Text10b0                                              ; 0x10b0
-	textpointer Text10b1                                              ; 0x10b1
-	textpointer Text10b2                                              ; 0x10b2
-	textpointer Text10b3                                              ; 0x10b3
-	textpointer Text10b4                                              ; 0x10b4
-	textpointer Text10b5                                              ; 0x10b5
-	textpointer Text10b6                                              ; 0x10b6
-	textpointer Text10b7                                              ; 0x10b7
-	textpointer Text10b8                                              ; 0x10b8
-	textpointer Text10b9                                              ; 0x10b9
-	textpointer Text10ba                                              ; 0x10ba
-	textpointer Text10bb                                              ; 0x10bb
-	textpointer Text10bc                                              ; 0x10bc
-	textpointer Text10bd                                              ; 0x10bd
-	textpointer Text10be                                              ; 0x10be
-	textpointer Text10bf                                              ; 0x10bf
-	textpointer Text10c0                                              ; 0x10c0
-	textpointer Text10c1                                              ; 0x10c1
-	textpointer Text10c2                                              ; 0x10c2
-	textpointer Text10c3                                              ; 0x10c3
-	textpointer Text10c4                                              ; 0x10c4
-	textpointer Text10c5                                              ; 0x10c5
-	textpointer Text10c6                                              ; 0x10c6
-	textpointer Text10c7                                              ; 0x10c7
-	textpointer Text10c8                                              ; 0x10c8
-	textpointer Text10c9                                              ; 0x10c9
-	textpointer Text10ca                                              ; 0x10ca
-	textpointer Text10cb                                              ; 0x10cb
+	textpointer TobichanWelcomeText                                   ; 0x1088
+	textpointer TobichanGhostMasterIntroductionText                   ; 0x1089
+	textpointer TobichanWelcomeBackText                               ; 0x108a
+	textpointer StatuePoisonStormDeckName                             ; 0x108b
+	textpointer GhostMasterStatueInscriptionText                      ; 0x108c
+	textpointer GhostMasterDuelPromptText                             ; 0x108d
+	textpointer TobichanWantsToDuelText                               ; 0x108e
+	textpointer TobichanDuelStartInitialText                          ; 0x108f
+	textpointer TobichanDuelStartRepeatText                           ; 0x1090
+	textpointer TobichanPlayerWon1Text                                ; 0x1091
+	textpointer TobichanPlayerWon2Text                                ; 0x1092
+	textpointer TobichanPlayerLostText                                ; 0x1093
+	textpointer StatueEverybodysFriendDeckName                        ; 0x1094
+	textpointer EijiWantsToDuelText                                   ; 0x1095
+	textpointer EijiDuelStartInitialText                              ; 0x1096
+	textpointer EijiDuelStartRepeatText                               ; 0x1097
+	textpointer EijiPlayerWon1Text                                    ; 0x1098
+	textpointer EijiPlayerWon2Text                                    ; 0x1099
+	textpointer EijiPlayerLostText                                    ; 0x109a
+	textpointer StatueImmortalPokemonDeckName                         ; 0x109b
+	textpointer MagicianWantsToDuelText                               ; 0x109c
+	textpointer MagicianDuelStartInitialText                          ; 0x109d
+	textpointer MagicianDuelStartRepeatText                           ; 0x109e
+	textpointer MagicianPlayerWon1Text                                ; 0x109f
+	textpointer MagicianPlayerWon2Text                                ; 0x10a0
+	textpointer MagicianPlayerLostText                                ; 0x10a1
+	textpointer StatueTrainerImprisonDeckName                         ; 0x10a2
+	textpointer ToshironWantsToDuelText                               ; 0x10a3
+	textpointer ToshironDuelStartInitialText                          ; 0x10a4
+	textpointer ToshironDuelStartRepeatText                           ; 0x10a5
+	textpointer ToshironPlayerWon1Text                                ; 0x10a6
+	textpointer ToshironPlayerWon2Text                                ; 0x10a7
+	textpointer ToshironPlayerLostText                                ; 0x10a8
+	textpointer StatueBlazingFlameDeckName                            ; 0x10a9
+	textpointer PierrotWantsToDuelText                                ; 0x10aa
+	textpointer PierrotDuelStartInitialText                           ; 0x10ab
+	textpointer PierrotDuelStartRepeatText                            ; 0x10ac
+	textpointer PierrotPlayerWon1Text                                 ; 0x10ad
+	textpointer PierrotPlayerWon2Text                                 ; 0x10ae
+	textpointer PierrotPlayerLostText                                 ; 0x10af
+	textpointer StatueDamageChaosDeckName                             ; 0x10b0
+	textpointer AnnaWantsToDuelText                                   ; 0x10b1
+	textpointer AnnaDuelStartInitialText                              ; 0x10b2
+	textpointer AnnaDuelStartRepeatText                               ; 0x10b3
+	textpointer AnnaPlayerWon1Text                                    ; 0x10b4
+	textpointer AnnaPlayerWon2Text                                    ; 0x10b5
+	textpointer AnnaPlayerLostText                                    ; 0x10b6
+	textpointer StatueBigThunderDeckName                              ; 0x10b7
+	textpointer DeeWantsToDuelText                                    ; 0x10b8
+	textpointer DeeDuelStartInitialText                               ; 0x10b9
+	textpointer DeeDuelStartRepeatText                                ; 0x10ba
+	textpointer DeePlayerWon1Text                                     ; 0x10bb
+	textpointer DeePlayerWon2Text                                     ; 0x10bc
+	textpointer DeePlayerLostText                                     ; 0x10bd
+	textpointer StatuePowerOfDarknessDeckName                         ; 0x10be
+	textpointer MasqueradeWantsToDuelText                             ; 0x10bf
+	textpointer MasqueradeDuelStartInitialText                        ; 0x10c0
+	textpointer MasqueradeDuelStartRepeatText                         ; 0x10c1
+	textpointer MasqueradePlayerWon1Text                              ; 0x10c2
+	textpointer MasqueradePlayerWon2Text                              ; 0x10c3
+	textpointer MasqueradePlayerLostText                              ; 0x10c4
+	textpointer StatueTorrentialFloodDeckName                         ; 0x10c5
+	textpointer YuiWantsToDuelText                                    ; 0x10c6
+	textpointer YuiDuelStartInitialText                               ; 0x10c7
+	textpointer YuiDuelStartRepeatText                                ; 0x10c8
+	textpointer YuiPlayerWon1Text                                     ; 0x10c9
+	textpointer YuiPlayerWon2Text                                     ; 0x10ca
+	textpointer YuiPlayerLostText                                     ; 0x10cb
 	textpointer Text10cc                                              ; 0x10cc
 	textpointer Text10cd                                              ; 0x10cd
 	textpointer Text10ce                                              ; 0x10ce

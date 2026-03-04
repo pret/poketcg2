@@ -267,7 +267,7 @@ AIDecide_Potion_Phase07:
 	farcall AICheckIfAttackIsHighRecoil
 	jr c, .no_carry
 	ld a, 20
-	farcall Func_39c8d
+	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
 	ret nc
 
 ; return carry

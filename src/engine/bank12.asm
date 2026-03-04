@@ -2759,6 +2759,110 @@ Func_49603:
 	ret
 ; 0x49687
 
+SECTION "Bank 12@56f1", ROMX[$56f1], BANK[$12]
+
+; +70 if
+;   the same card isn't in play yet but has positive type match-up, or
+;   can be ready with Energy in hand while active Pokémon isn't;
+; neutral if the same card isn't in play yet and has neutral type match-up;
+; -30 otherwise
+PowerfulPokemonDeckAIEvaluateBasicCards:
+	ld a, [wLoadedCard1ID]
+	ld e, a
+	ld a, [wLoadedCard1ID + 1]
+	ld d, a
+	ld b, PLAY_AREA_ARENA
+	push de
+	farcall FindCardIDInTurnDuelistsPlayArea
+	pop de
+	jr nc, .not_found
+
+.check_arena
+	xor a ; PLAY_AREA_ARENA, FIRST_ATTACK_OR_PKMN_POWER
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr nc, .discourage
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	farcall CheckIfSelectedAttackIsUnusable
+	jr nc, .discourage
+	farcall AIProcessButDontPlayEnergy
+	jr c, .discourage
+
+	call CreateHandCardList
+	ld a, [wTempAIPokemonCard]
+	call .GetEnergyFlag
+	ld hl, wDuelTempList
+	farcall CheckEnergyFlagsNeededInList
+	jr c, .encourage
+
+.discourage
+	ld a, 100
+	ret
+
+.not_found
+	call SwapTurn
+	push de
+	bank1call GetArenaCardWeakness
+	pop de
+	call SwapTurn
+	cp WR_FIRE
+	jr z, .prefer_fire
+	cp WR_WATER
+	jr z, .prefer_water
+	cp WR_LIGHTNING
+	jr z, .prefer_lightning
+	cp WR_FIGHTING
+	jr z, .prefer_fighting
+	cp WR_PSYCHIC
+	jr nz, .neutral
+; prefer psychic
+	cp16 JYNX_LV27
+	jr nz, .check_arena
+	jr .encourage
+.prefer_fighting
+	cp16 HITMONCHAN_LV33
+	jr nz, .check_arena
+	jr .encourage
+.prefer_lightning
+	cp16 ELECTABUZZ_LV35
+	jr nz, .check_arena
+	jr .encourage
+.prefer_water
+	cp16 LAPRAS_LV31
+	jr nz, .check_arena
+	jr .encourage
+.prefer_fire
+	cp16 MAGMAR_LV31
+	jp nz, .check_arena
+
+.encourage
+	ld a, 200
+	ret
+
+.neutral
+	ld a, 130
+	ret
+
+.GetEnergyFlag:
+	call GetCardIDFromDeckIndex
+	cp16 MAGMAR_LV31
+	ld a, FIRE_F
+	ret z
+	cp16 LAPRAS_LV31
+	ld a, WATER_F
+	ret z
+	cp16 ELECTABUZZ_LV35
+	ld a, LIGHTNING_F
+	ret z
+	cp16 HITMONCHAN_LV33
+	ld a, FIGHTING_F
+	ret z
+	ld a, PSYCHIC_F
+	ret
+; 0x497c7
+
 SECTION "Bank 12@582a", ROMX[$582a], BANK[$12]
 
 ; returns carry if player's card is weak to Arena Card
@@ -3562,7 +3666,53 @@ CheckIfHasSpecificEnergyAttached:
 	ret
 ; 0x4a005
 
-SECTION "Bank 12@62a0", ROMX[$62a0], BANK[$12]
+SECTION "Bank 12@625d", ROMX[$625d], BANK[$12]
+
+; +10 if
+;   not KOing with Psyshock,
+;   Abra in KO range, and
+;   2+ of Kadabra, Alakazam, Mr. Mime, or Scyther on his Bench;
+; -28 otherwise
+ImmortalPokemonDeckAIEvaluateVanish:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard
+	jr nc, .check_abra
+
+.discourage
+	ld a, 100
+	ret
+
+.check_abra
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jr nc, .discourage
+
+; tally bench
+	ld de, KADABRA_LV39
+	ld b, PLAY_AREA_BENCH_1
+	farcall CountCardIDInTurnDuelistPlayArea
+	push af
+	ld de, ALAKAZAM_LV42
+	ld b, PLAY_AREA_BENCH_1
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	push af
+	ld de, MR_MIME_LV28
+	ld b, PLAY_AREA_BENCH_1
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	push af
+	ld de, SCYTHER_LV25
+	ld b, PLAY_AREA_ARENA
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	cp 2
+	jr c, .discourage
+
+; encourage
+	ld a, 138
+	ret
 
 ; returns carry if Alakazam lv42 is found in Play Area
 ; with Pkmn Power active and outputs its Play Area location
@@ -3833,7 +3983,48 @@ Func_4a3dc:
 	pop bc
 	ld a, d ; output chosen card location
 	ret
-; 0x4a441
+
+; de = card ID
+; return a = number of cards in hand with that card ID
+; set carry if not found
+CountCardIDInHand:
+	push de
+	call CreateHandCardList
+	pop de
+
+	ld b, 0
+	ld hl, wDuelTempList
+.loop_hand_cards
+	ld a, [hli]
+	cp $ff
+	jr z, .tally
+	push de
+	push bc
+	push hl
+	call GetCardIDFromDeckIndex
+	pop hl
+	pop bc
+	ld c, d
+	ld a, e
+	pop de
+	cp e
+	jr nz, .loop_hand_cards
+	ld a, c
+	cp d
+	jr nz, .loop_hand_cards
+	inc b
+	jr .loop_hand_cards
+
+.tally
+	ld a, b
+	or a
+	jr z, .not_found
+	ret
+
+.not_found
+	scf
+	ret
+; 0x4a46c
 
 SECTION "Bank 12@64ae", ROMX[$64ae], BANK[$12]
 
@@ -3867,7 +4058,9 @@ CountNumberOfBasicPokemonInHand:
 
 SECTION "Bank 12@6cba", ROMX[$6cba], BANK[$12]
 
-Func_4acba:
+; return carry if the defending (player's arena) card is under
+; no-damage-or-effect substatus
+IsPlayerArenaCardImmune:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3890,9 +4083,41 @@ Func_4acba:
 	ret
 ; 0x4ace4
 
+SECTION "Bank 12@6f01", ROMX[$6f01], BANK[$12]
+
+CountNonDrawEngineCardsInHand:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	push af
+	ld de, PROFESSOR_OAK
+	call CountCardIDInHand
+	ld b, a
+	pop af
+	sub b
+	push af
+	ld de, BILL
+	call CountCardIDInHand
+	ld b, a
+	pop af
+	sub b
+	push af
+	ld de, BILLS_TELEPORTER
+	call CountCardIDInHand
+	ld b, a
+	pop af
+	sub b
+	push af
+	ld de, POKEMON_TRADER
+	call CountCardIDInHand
+	ld b, a
+	pop af
+	sub b
+	ret
+; 0x4af2d
+
 SECTION "Bank 12@7029", ROMX[$7029], BANK[$12]
 
-AIDecideFirefoxTarget:
+AIDecideFoxfireTarget:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr nc, .cannot_ko
 .no_carry
@@ -4296,6 +4521,55 @@ CheckIfHasDittoWithLessThan3Energies:
 	scf
 	ret
 ; 0x4bae4
+
+SECTION "Bank 12@7cdf", ROMX[$7cdf], BANK[$12]
+
+; e = location (PLAY_AREA_*)
+; return a = number of energy cards attached, except for Recycle Energy
+CountNumberOfNonRecycleEnergyCardsAttached:
+	push hl
+	push de
+	push bc
+	ld a, CARD_LOCATION_ARENA
+	or e
+	ld e, a
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, 0
+	ld d, 0
+.loop_deck_cards
+	ld a, [hl]
+	cp e
+	jr nz, .next_card
+	push hl
+	push de
+	ld a, l
+	call GetCardIDFromDeckIndex
+	cp16 RECYCLE_ENERGY
+	jr z, .next_card_pop
+	call GetCardType
+	bit TYPE_ENERGY_F, a
+	jr z, .next_card_pop
+; found at the target area
+	pop de
+	inc d
+	pop hl
+	jr .next_card
+.next_card_pop
+	pop de
+	pop hl
+.next_card
+	inc l
+	ld a, l
+	cp DECK_SIZE
+	jr nz, .loop_deck_cards
+
+	ld a, d
+	pop bc
+	pop de
+	pop hl
+	ret
+; 0x4bd1a
 
 SECTION "Bank 12@7d72", ROMX[$7d72], BANK[$12]
 

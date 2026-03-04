@@ -220,10 +220,11 @@
 	const EVENT_FREED_JACK                                ; $c1
 	const EVENT_FREED_ROD                                 ; $c2
 ; Game Center flags
-	const EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT      ; $c3
+	const EVENT_MET_GAME_CENTER_CHIP_GIRL                 ; $c3
 	const EVENT_TALKED_TO_SLOT_MACHINE_WOMAN              ; $c4
 	const EVENT_TALKED_TO_COIN_TOSS_BOY                   ; $c5
-	const EVENT_C5                                        ; $c6
+; GR hall flag
+	const EVENT_TALKED_TO_GR_CHALLENGE_MACHINE_STAFF      ; $c6
 ; Door flags
 	const EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE        ; $c7
 	const EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE             ; $c8

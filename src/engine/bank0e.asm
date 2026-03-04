@@ -3440,10 +3440,11 @@ AICheckIfAttackIsHighRecoil:
 	call CheckLoadedAttackFlag
 	ret
 
-; input:
-; - a = ?
-Func_39c8d:
-	ld [wd082], a
+; for an HP-recovery effect (a = amount),
+; set carry if that puts the card out of KO range of the defending Pokémon,
+; no carry otherwise
+CheckIfRecoveryCanPreventKOByDefendingPokemon:
+	ld [wAITempHPRecoverAmount], a
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call CheckIfDefendingPokemonCanKnockOut
@@ -3455,16 +3456,16 @@ Func_39c8d:
 	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	push hl
-	ld hl, wd082
+	ld hl, wAITempHPRecoverAmount
 	cp [hl]
 	pop hl
-	jr c, .asm_39cad
-	ld a, [wd082]
-.asm_39cad
-	ld l, a
+	jr c, .got_actual_recovery_amount
+	ld a, [wAITempHPRecoverAmount]
+.got_actual_recovery_amount
+	ld l, a ; l = HP recovery (min(card damage, base recovery amount))
 	ld a, h ; a = remaining HP
-	add l   ; a += min(card damage, wd082)
-	sub d   ; a -= ?
+	add l   ; a += HP recovery
+	sub d   ; a -= damage done by the defender
 	jr c, .no_carry
 	jr z, .no_carry
 	scf
@@ -4337,7 +4338,55 @@ Func_3a887:
 	ret
 ; 0x3a8b5
 
-SECTION "Bank e@6994", ROMX[$6994], BANK[$e]
+SECTION "Bank e@6928", ROMX[$6928], BANK[$e]
+
+; return a = b = number of Weezing family in own play area,
+; set carry if KOing enough amount of Pokémon for player to win
+; (c = (number of prizes for player to take) + 1)
+AICountMassExplosion:
+	lb bc, 0, 1
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	push hl
+.loop_play_area
+	pop hl
+	ld a, [hli]
+	cp $ff
+	jr z, .check_prizes
+	push hl
+	ld [wTempAI], a
+	push bc
+	call GetCardIDFromDeckIndex
+	pop bc
+	cp16 KOFFING_LV12
+	jr z, .check_remaining_hp
+	cp16 KOFFING_LV13
+	jr z, .check_remaining_hp
+	cp16 KOFFING_LV14
+	jr z, .check_remaining_hp
+	cp16 WEEZING_LV26
+	jr z, .check_remaining_hp
+	cp16 WEEZING_LV27
+	jr z, .check_remaining_hp
+	cp16 DARK_WEEZING
+	jr nz, .loop_play_area
+.check_remaining_hp
+	inc b
+	ld a, [wTempAI]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 30
+	jr nc, .loop_play_area
+	inc c
+	jr .loop_play_area
+
+.check_prizes
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	cp c
+	ld a, b
+	ret
 
 AIChooseStareTarget:
 	bank1call CheckGoopGasAttackAndToxicGasActive
@@ -6277,7 +6326,7 @@ OmitMissingCardsFromDeckAndBackup:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de
@@ -6369,7 +6418,7 @@ GetSumOfRemainingBasicEnergyCards:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .load_count
 	push hl
 	ld hl, wTempCardCollection
@@ -6537,7 +6586,7 @@ SubInBasicEnergyInCurDeck:
 	inc b
 	ld e, c
 	ld d, a
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	pop de
 	jr nc, .loop_copy_and_count
 	dec b
@@ -6600,7 +6649,7 @@ SubInBasicEnergyInCurDeck:
 	ld [bc], a
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr nc, .loop_list
 
 ; save result
@@ -6621,7 +6670,7 @@ SubInBasicEnergyInCurDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	ccf
 	jr nc, .checked_deck_cards
 	cp e
@@ -6699,8 +6748,8 @@ SubInBasicEnergyInCurDeck:
 	scf
 	ret
 
-; return carry if de (card id) = 0
-CheckIfCardIDIsZero_Bank0e:
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank0e:
 	push af
 	xor a
 	cp d
@@ -6745,7 +6794,7 @@ ShowMissingCardList:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de
@@ -6830,7 +6879,7 @@ GetCardCountFromDeck:
 	inc hl
 	ld d, [hl]
 	inc hl
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	ld a, e
 	ld c, d
 	pop de
@@ -6890,7 +6939,7 @@ ShowUsedCardListFromBuiltDecks:
 	pop hl
 	inc h
 	inc h
-	call CheckIfCardIDIsZero_Bank0e
+	call IsCardIDZero_Bank0e
 	jr c, .got_list
 	push bc
 	push de

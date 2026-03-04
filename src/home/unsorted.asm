@@ -764,14 +764,16 @@ WaitForLCDOff::
 	jr nz, .loop_wait
 	ret
 
-Func_34ca::
-	ld b, $00
-.asm_34cc
+; return b = a/c, a = a%c
+; assuming c != 0 and carry clear on entry (no checks)
+DivModC::
+	ld b, 0
+.loop_subtract
 	sbc c
-	jr c, .asm_34d2
+	jr c, .add_back
 	inc b
-	jr .asm_34cc
-.asm_34d2
+	jr .loop_subtract
+.add_back
 	add c
 	ret
 
@@ -2238,7 +2240,8 @@ StartMenuBoxUpdate::
 	farcall _StartMenuBoxUpdate
 	ret
 
-Func_3c10::
+; b:hl = tileset gfx source
+CopyCurTilesetTov1Tiles1::
 	push af
 	push bc
 	push de
@@ -2247,9 +2250,9 @@ Func_3c10::
 	push af
 	ld a, b
 	call BankswitchROM
-	ld c, [hl]
+	ld c, [hl] ; gfx length
 	inc hl
-	inc hl
+	inc hl     ; gfx 2bpp ptr
 	ld a, BANK("VRAM1")
 	ld b, $00
 	call CopyTilesToTiles1
@@ -2261,7 +2264,8 @@ Func_3c10::
 	pop af
 	ret
 
-Func_3c2e::
+; b:hl = palette gfx source
+CopyCurPaletteToPal2::
 	push af
 	push bc
 	push de
@@ -2279,7 +2283,7 @@ StubbedPlayDefaultSong::
 	ret
 
 Func_3c3d::
-	farcall Func_1def1
+	farcall HandleCoinMenuPageInput
 	ret
 
 ResetAnimationQueue::

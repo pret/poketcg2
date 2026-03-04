@@ -5144,9 +5144,8 @@ AIActionTable_PoisonStormDeck:
 	dw .list_play_from_hand
 	dw .list_energy
 
-; returns carry if card ID in de is NULL ; end
-; de = card ID
-CheckIfCardIDIsZero_Bank5:
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank05:
 	push af
 	xor a
 	cp d
@@ -5747,7 +5746,7 @@ PlayPkmnCardWithHighestPreference:
 	ld a, [bc]
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .not_found
 	farcall RemoveCardIDInList
 	jr nc, .loop_id_list
@@ -5852,7 +5851,7 @@ TrySetUpStartingPlayArea_PowerfulPokemonDeck:
 	ld a, [bc]
 	inc bc
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .none_found
 	call .CheckMatchingEnergyInHand
 	jr nc, .loop_list
@@ -6345,7 +6344,7 @@ AIDecideBenchPokemonToSwitchTo:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .store_score ; list is over
 	ld a, d
 	cp b
@@ -6692,7 +6691,7 @@ AIDecidePlayPokemonCard:
 	jp nz, .skip
 	; skip non-basic pokemon
 
-	farcall Func_29e02
+	farcall AIDecideSpecialBasicCards
 	ld [wAIScore], a
 
 	ld a, [wMaxNumPlayAreaPokemon]
@@ -6755,7 +6754,7 @@ AIDecidePlayPokemonCard:
 ; for this card, raise AI score
 .check_evolution_deck
 	ld a, [wTempAIPokemonCard]
-	farcall $a, $5921 ; Func_29921 ; CheckForEvolutionInDeck
+	farcall CheckIfPokemonEvolutionIsFoundInDeck
 	jr nc, .check_score
 	ld a, 10
 	call AIEncourage
@@ -7160,7 +7159,7 @@ SortTempHandByIDList:
 	push de
 	ld e, b
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .done ; return when list is over
 	ld hl, wDuelTempList
 	ld b, 0
@@ -7212,9 +7211,24 @@ SortTempHandByIDList:
 .done
 	pop de
 	ret
-; 0x16d18
 
-SECTION "Bank 5@6d31", ROMX[$6d31], BANK[$5]
+AIProcessButDontPlayEnergy:
+	ld a, AI_ENERGY_FLAG_DONT_PLAY
+	ld [wAIEnergyAttachLogicFlags], a
+	ld de, wTempPlayAreaAIScore
+	ld hl, wPlayAreaAIScore
+	ld b, MAX_PLAY_AREA_POKEMON
+.loop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loop
+
+	ld a, [wAIScore]
+	ld [de], a
+
+	jr AIProcessAndTryToPlayEnergy_HasLogicFlags
 
 ; have AI choose an energy card to play, but do not play it.
 ; does not consider whether the cards have evolutions to be played.
@@ -7289,7 +7303,7 @@ AIProcessAndTryToPlayEnergy:
 	xor a
 	ld [wAIEnergyAttachLogicFlags], a
 
-.has_logic_flags
+AIProcessAndTryToPlayEnergy_HasLogicFlags:
 	bank1call CreateEnergyCardListFromHand
 	jr nc, AIProcessEnergyCards
 
@@ -7480,7 +7494,7 @@ AIProcessEnergyCards:
 	ld a, [hli]
 	ld d, a
 	ld b, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	pop de
 	jp c, .check_boss_deck ; can be jr
 	ld a, b
@@ -8139,7 +8153,7 @@ AICheckSpecialColorlessEnergyCards:
 	or a
 	ret nz
 	ld a, 10
-	farcall Func_39c8d
+	farcall CheckIfRecoveryCanPreventKOByDefendingPokemon
 	call c, .MaybePickPotionEnergy
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
@@ -8585,7 +8599,7 @@ GetAIScoreOfAttack:
 	jp .asm_17969
 .asm_17532
 	xor a
-	ld [wd05f], a
+	ld [wAICannotDamage], a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -8605,7 +8619,7 @@ GetAIScoreOfAttack:
 	call SwapTurn
 	jr nc, .asm_17581
 	ld a, $01
-	ld [wd05f], a
+	ld [wAICannotDamage], a
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
 	ld a, $12
@@ -9149,7 +9163,7 @@ CheckIfCardIDIsInList:
 	ld e, a
 	ld a, [hli]
 	ld d, a
-	call CheckIfCardIDIsZero_Bank5
+	call IsCardIDZero_Bank05
 	jr c, .false
 	ld a, e
 	cp c
@@ -9189,9 +9203,29 @@ CheckIfAnyAttackKnocksOutDefendingCard:
 	ret nz
 	scf
 	ret
-; 0x179aa
 
-SECTION "Bank 5@79c2", ROMX[$79c2], BANK[$5]
+; returns carry if any of the defending Pokémon's attacks
+; brings card at hTempPlayAreaLocation_ff9d down
+; to exactly 0 HP.
+; outputs that attack index in wSelectedAttack.
+CheckIfAnyDefendingPokemonAttackDealsSameDamageAsHP:
+	xor a ; FIRST_ATTACK_OR_PKMN_POWER
+	call .CheckDamage
+	ret c
+	ld a, SECOND_ATTACK
+
+.CheckDamage:
+	call EstimateDamage_FromDefendingPokemon
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	ld hl, wDamage
+	sub [hl]
+	jr z, .true
+	ret
+.true
+	scf
+	ret
 
 ; checks AI scores for all benched Pokémon
 ; returns the location of the card with highest score

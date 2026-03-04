@@ -249,7 +249,7 @@ BoosterList_cdb6:
 BoosterList_cdba:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_TEAM_ROCKETS_AMBITION, BOOSTER_TEAM_ROCKETS_AMBITION
 
-BoosterList_cdbe:
+BoosterList_GhostMaster:
 	booster_list BOOSTERS_GIVE_ALL, BOOSTER_PRESENT_FROM_ALL_SETS
 
 BoosterList_Courtney:

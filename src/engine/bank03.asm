@@ -948,14 +948,14 @@ ENDR
 ; de = card id
 Func_c63e:
 	call GetReceivedCardText
-	farcall Func_1d53a
+	farcall _ShowReceivedCard
 	ret
 
 ; de = card id
 Func_c646:
 	call AddCardToCollection
 	call GetReceivedCardText
-	farcall Func_1d53a
+	farcall _ShowReceivedCard
 	ret
 
 ; bank and offset table of data for LoadMapHeader and Func_33b7
@@ -2096,10 +2096,10 @@ EventVarMasks:
 	db $21, %00100000 ; EVENT_FREED_STEVE
 	db $21, %01000000 ; EVENT_FREED_JACK
 	db $21, %10000000 ; EVENT_FREED_ROD
-	db $22, %00000001 ; EVENT_GOT_CHIPS_FROM_GAME_CENTER_ATTENDANT
+	db $22, %00000001 ; EVENT_MET_GAME_CENTER_CHIP_GIRL
 	db $22, %00000010 ; EVENT_TALKED_TO_SLOT_MACHINE_WOMAN
 	db $22, %00000100 ; EVENT_TALKED_TO_COIN_TOSS_BOY
-	db $22, %00001000 ; EVENT_C5
+	db $22, %00001000 ; EVENT_TALKED_TO_GR_CHALLENGE_MACHINE_STAFF
 	db $23, %00000001 ; EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
 	db $23, %00000010 ; EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
 	db $23, %00000100 ; EVENT_WATER_FORT_ENTRANCE_DOOR_STATE

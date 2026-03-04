@@ -1,4 +1,18 @@
-SECTION "Bank a@400e", ROMX[$400e], BANK[$a]
+; return carry if de (card ID) = 0
+IsCardIDZero_Bank0a:
+	push af
+	xor a
+	cp d
+	jr nz, .false
+	cp e
+	jr nz, .false
+	pop af
+	scf
+	ret
+.false
+	pop af
+	or a
+	ret
 
 ; return carry if card ID loaded in de is found in hand
 ; and outputs in a the deck index of that card
@@ -98,6 +112,8 @@ AIAttachEnergyInHandToCardInPlayArea:
 	ret nc ; not in hand
 	push af
 	ld b, PLAY_AREA_ARENA
+
+.attach
 	call FindCardIDInTurnDuelistsPlayArea
 	ldh [hTempPlayAreaLocation_ffa1], a
 	pop af
@@ -105,9 +121,19 @@ AIAttachEnergyInHandToCardInPlayArea:
 	ld a, OPPACTION_PLAY_ENERGY
 	farcall AIMakeDecision
 	ret
-; 0x2807a
 
-SECTION "Bank a@4087", ROMX[$4087], BANK[$a]
+; same as AIAttachEnergyInHandToCardInPlayArea but
+; only look for card ID in the Bench
+AIAttachEnergyInHandToCardInBench:
+	push de
+	ld d, b
+	ld e, c
+	call LookForCardIDInHandList
+	pop de
+	ret nc
+	push af
+	ld b, PLAY_AREA_BENCH_1
+	jr AIAttachEnergyInHandToCardInPlayArea.attach
 
 ; finds a card ID in a given card location
 ; returns carry if found, and its deck index
@@ -152,9 +178,43 @@ FindCardIDInLocation:
 	ld a, l
 	scf
 	ret
-; 0x280b1
 
-SECTION "Bank a@40df", ROMX[$40df], BANK[$a]
+; counts total number of energy cards in opponent's hand
+; plus all the cards attached in Turn Duelist's Play Area
+; output:
+;	a and wTempAI = total number of energy cards
+CountOppEnergyCardsInHandAndAttached:
+	xor a
+	ld [wTempAI], a
+	bank1call CreateEnergyCardListFromHand
+	jr c, .attached
+	ld b, -1
+	ld hl, wDuelTempList
+.loop_hand
+	inc b
+	ld a, [hli]
+	cp $ff
+	jr nz, .loop_hand
+	ld a, b
+	ld [wTempAI], a
+
+.attached
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, PLAY_AREA_ARENA
+.loop_play_area
+	ld a, e
+	push de
+	call CreateArenaOrBenchEnergyCardList
+	pop de
+	ld hl, wTempAI
+	add [hl]
+	ld [hl], a
+	inc e
+	dec d
+	jr nz, .loop_play_area
+	ret
 
 ; returns carry if any card with ID in de is found
 ; in the list that is pointed by hl.
@@ -211,9 +271,79 @@ RemoveCardIDInList:
 	pop hl
 	or a
 	ret
-; 0x2810d
 
-SECTION "Bank a@416b", ROMX[$416b], BANK[$a]
+; checks if any bench Pokémon has same ID
+; as input, and sets carry if it has more than
+; half health and can use its second attack
+; input:
+;	de = card ID to check for
+; output:
+;	carry set if the above requirements are met
+CheckForBenchIDAtHalfHPAndCanUseSecondAttack:
+	ld hl, wSamePokemonCardID
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld e, a
+	push de
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	lb bc, 0, PLAY_AREA_ARENA
+	push hl
+
+.loop
+	inc c
+	pop hl
+	ld a, [hli]
+	push hl
+	cp $ff
+	jr z, .done
+	ld d, a
+	push de
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, c
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	ld d, a
+	ld a, [wLoadedCard1HP]
+	rrca
+	cp d
+	pop de
+	jr nc, .loop
+; half max HP < current HP
+	ld a, [wLoadedCard1ID]
+	ld hl, wSamePokemonCardID
+	cp [hl]
+	jr nz, .loop
+	ld a, [wLoadedCard1ID + 1]
+	inc hl
+	cp [hl]
+	jr nz, .loop
+
+	ld a, c
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	push bc
+	farcall CheckIfSelectedAttackIsUnusable
+	pop bc
+	jr c, .loop
+	inc b
+.done
+	pop hl
+	pop de
+	ld a, e
+	ld [wSelectedAttack], a
+	ld a, d
+	ldh [hTempPlayAreaLocation_ff9d], a
+	ld a, b
+	or a
+	ret z
+	scf
+	ret
 
 ; in TCG1 this returned carry if deck AI was a boss deck
 StubbedCheckIfOpponentHasBossDeckID:
@@ -257,9 +387,43 @@ CheckIfNotABossDeckID:
 StubbedAIChooseRandomlyNotToDoAction:
 	or a
 	ret
-; 0x28196
 
-SECTION "Bank a@41cf", ROMX[$41cf], BANK[$a]
+; unreachable
+	push hl
+	push de
+	call CheckIfNotABossDeckID
+	jr c, .check_deck
+	pop de
+	pop hl
+	ret
+.check_deck
+	ld a, [wOpponentDeckID]
+	cp $1c ; MUSCLES_FOR_BRAINS_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $20 ; BLISTERING_POKEMON_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $22 ; WATERFRONT_POKEMON_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $26 ; BOOM_BOOM_SELFDESTRUCT_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $2a ; KALEIDOSCOPE_DECK_ID in TCG1
+	jr z, .carry_50_percent
+	cp $33 ; RESHUFFLE_DECK_ID in TCG1
+	jr z, .carry_50_percent
+; carry 25 percent
+	ld a, 4
+	call Random
+	cp 1
+	pop de
+	pop hl
+	ret
+.carry_50_percent
+	ld a, 4
+	call Random
+	cp 2
+	pop de
+	pop hl
+	ret
 
 ; a = number of copies
 ; de = card ID
@@ -884,7 +1048,7 @@ AISelectSpecialAttackParameters:
 	ret
 
 .select_foxfire_based_on_energies
-	farcall AIDecideFirefoxTarget
+	farcall AIDecideFoxfireTarget
 	ldh [hTemp_ffa0], a
 	scf
 	ret
@@ -1155,7 +1319,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	ld a, PLAY_AREA_BENCH_1
 	jr c, .asm_287e8
 	xor a ; PLAY_AREA_ARENA
@@ -1403,7 +1567,7 @@ AISelectSpecialAttackParameters:
 	ld a, $ff ; terminating byte
 	ld [hli], a
 	push hl
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	pop hl
 	jr c, .defending_is_invulnerable_to_rock_blast
 	; choose all of them on the Defending card
@@ -1641,7 +1805,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp z, .no_carry
-	farcall Func_4c237
+	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
 	jp c, .no_carry
 	farcall AILookForFocusBlastTargetToKO
 	jr c, .got_focus_blast_target
@@ -1707,7 +1871,7 @@ AIChooseRagingThunderTarget:
 	ret
 
 AILookForShortCircuitTargetToKO:
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .include_arena
 ; exclude Arena
 	call SwapTurn
@@ -1782,7 +1946,7 @@ AIChooseShortCircuitTarget:
 	xor a
 	ld [wd06a], a
 	ld [wd06b], a
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .include_arena
 ; exclude Arena
 	call SwapTurn
@@ -2177,9 +2341,35 @@ CountNumberOfSetUpBenchPokemon:
 	ret z
 	scf
 	ret
-; 0x28d7e
 
-SECTION "Bank a@4da3", ROMX[$4da3], BANK[$a]
+; return carry if there are any basic Pokémon in deck
+CheckIfAnyBasicPokemonInDeck:
+	ld e, 0
+.loop_deck_cards
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	cp CARD_LOCATION_DECK
+	jr nz, .next_card
+	ld a, e
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .next_card
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr z, .found
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_cards
+; not found
+	or a
+	ret
+.found
+	scf
+	ret
 
 ; checks in other Play Area for non-basic cards.
 ; afterwards, that card is checked for damage,
@@ -2190,12 +2380,12 @@ SECTION "Bank a@4da3", ROMX[$4da3], BANK[$a]
 ;	a = card location of Pokémon card, if found;
 ;	carry set if such a card is found.
 LookForCardThatIsKnockedOutOnDevolution:
-	farcall Func_4c237
+	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
 	ccf
 	ret nc
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	push af
-	farcall Func_4acba
+	farcall IsPlayerArenaCardImmune
 	jr nc, .start_with_arena_card
 
 ; skip arena card
@@ -2254,9 +2444,8 @@ LookForCardThatIsKnockedOutOnDevolution:
 	ld a, c
 	scf
 	ret
-; 0x28dff
 
-SECTION "Bank a@58f9", ROMX[$58f9], BANK[$a]
+INCLUDE "engine/duel/special_attacks.asm"
 
 ; loops through wDuelTempList and
 ; returns carry if a card is found that evolves
@@ -2298,9 +2487,53 @@ CheckIfPokemonEvolutionIsFoundInHand:
 	ld [hl], a
 	or a
 	ret
-; 0x29921
 
-SECTION "Bank a@5951", ROMX[$5951], BANK[$a]
+; loops through w*CardLocations for a card that evolves from the target in a
+; input:
+; - a = Pokémon card deck index
+; output:
+; - a = deck index of compatible Evolution card found, with carry set
+CheckIfPokemonEvolutionIsFoundInDeck:
+	ld b, a
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	push af
+	ld [hl], b
+	ld e, 0
+.loop_deck_cards
+	ld a, DUELVARS_CARD_LOCATIONS
+	add e
+	get_turn_duelist_var
+	cp CARD_LOCATION_DECK
+	jr nz, .next_card
+	push de
+	ld d, e
+	ld e, PLAY_AREA_ARENA
+	farcall CheckIfEvolvesInto
+	pop de
+	jr nc, .found
+.next_card
+	inc e
+	ld a, DECK_SIZE
+	cp e
+	jr nz, .loop_deck_cards
+
+; not found
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	pop af
+	ld [hl], a
+	or a
+	ret
+
+.found
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	pop af
+	ld [hl], a
+	ld a, e
+	scf
+	ret
 
 ; returns carry if Pokémon in play area location in a
 ; has any attack that is usable and non-residual
@@ -2331,464 +2564,10 @@ CheckIfPokemonCanUseNonResidualAttack:
 .set_carry
 	scf
 	ret
-; 0x2997a
 
-SECTION "Bank a@5e02", ROMX[$5e02], BANK[$a]
+INCLUDE "engine/duel/special_evolutions.asm"
 
-Func_29e02:
-	ld a, [wOpponentDeckID]
-	cp BRICK_WALK_DECK_ID
-	jp z, $626c
-	cp ELECTRIC_SELFDESTRUCT_DECK_ID
-	jp z, $626c
-	cp PSYCHIC_ELITE_DECK_ID
-	jp z, .PsychicEliteDeck
-	cp RAGING_BILLOW_OF_FISTS_DECK_ID
-	jp z, .RagingBillowOfFistsDeck
-	cp GO_ARCANINE_DECK_ID
-	jp z, .GoArcanineDeck
-	cp GRAND_FIRE_DECK_ID
-	jr z, .GrandFireDeck
-	cp LEGENDARY_FOSSIL_DECK_ID
-	jr z, .LegendaryFossilDeck
-	cp WATER_LEGEND_DECK_ID
-	jr z, .WaterLegendDeck
-	cp SUDDEN_GROWTH_DECK_ID
-	jp z, .SuddenGrowthDeck
-	cp STOP_LIFE_DECK_ID
-	jp z, .StopLifeDeck
-	cp SCORCHER_DECK_ID
-	jp z, .ScorcherDeck
-	cp TSUNAMI_STARTER_DECK_ID
-	jp z, $618b
-	cp SMASH_TO_MINCEMEAT_DECK_ID
-	jp z, $61f5
-	cp POWERFUL_POKEMON_DECK_ID
-	jp z, $6267
-	cp EVERYBODYS_FRIEND_DECK_ID
-	jp z, $626c
-	cp IMMORTAL_POKEMON_DECK_ID
-	jp z, $627a
-	cp TORRENTIAL_FLOOD_DECK_ID
-	jp z, .TorrentialFloodDeck ; can be jr
-	cp TRAINER_IMPRISON_DECK_ID
-	jp z, $6297
-	cp BIG_THUNDER_DECK_ID
-	jp z, $62dd
-.standard_score
-	ld a, $82
-	ret
-
-.GrandFireDeck:
-.LegendaryFossilDeck:
-.WaterLegendDeck:
-.TorrentialFloodDeck:
-	ld hl, wLoadedCard1ID
-	cphl ARTICUNO_LV37
-	jr z, .articuno_lv37
-	cphl MOLTRES_LV40
-	jr z, .molters_lv40
-	cphl ZAPDOS_LV68
-	jr z, .zapdos_lv68
-	jr .standard_score
-
-.articuno_lv37
-	; if has low number of Play Area cards,
-	; just give Articuno lv37 a standard score
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 2
-	jr c, .standard_score ; < 2 Play Area Pokémon
-
-	; otherwise, discourage playing it if
-	; AI can KO arena card, or Defending cannot damage,
-	; or if it decides it will retreat this turn
-	farcall CheckIfArenaCardCanKnockOutDefendingCard
-	jr c, .asm_29ee7
-	call CheckIfPokemonCanUseNonResidualAttack
-	jr nc, .asm_29ee7
-	farcall AIDecideWhetherToRetreat_ConsiderStatus
-	jr c, .asm_29ee7
-
-	; discourage if Defending card is already statused
-	ld a, DUELVARS_ARENA_CARD_STATUS
-	call GetNonTurnDuelistVariable
-	or a
-	jr nz, .asm_29ee7
-
-	; give standard score if number of Play Area
-	; cards is 5, but skip this check if
-	; Defending card has a Pkmn Power
-	call SwapTurn
-	ld a, DUELVARS_ARENA_CARD
-	get_turn_duelist_var
-	ld d, a
-	ld e, PLAY_AREA_ARENA
-	call CopyAttackDataAndDamage_FromDeckIndex
-	call SwapTurn
-	ld a, [wLoadedAttackCategory]
-	cp POKEMON_POWER
-	jr z, .skip_play_area_check
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 5
-	jr nc, .standard_score ; >= 5 Play Area Pokémon
-.skip_play_area_check
-	; discourage if Pkmn Powers are disabled
-	bank1call CheckGoopGasAttackAndToxicGasActive
-	jr c, .asm_29ee7
-
-	; discourage if Defending card is Snorlax lv20
-	ld a, DUELVARS_ARENA_CARD
-	call GetNonTurnDuelistVariable
-	call SwapTurn
-	call GetCardIDFromDeckIndex
-	call SwapTurn
-	cp16 SNORLAX_LV20
-	jr z, .asm_29ee7
-
-	; encourage playing Articuno
-	ld a, $c8
-	ret
-
-.asm_29ee7
-	ld a, $28
-	ret
-
-.molters_lv40
-	; discourage if Pkmn Powers are disabled
-	bank1call CheckGoopGasAttackAndToxicGasActive
-	jr c, .asm_29ee7
-
-	; discourage if has low deck card count
-	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
-	get_turn_duelist_var
-	cp 56
-	jr nc, .asm_29ee7 ; cards in deck <= 4
-	jp .standard_score
-
-.zapdos_lv68
-	; discourage if Pkmn Powers are disabled
-	bank1call CheckGoopGasAttackAndToxicGasActive
-	jr c, .asm_29ee7
-
-	; discourage if AI has a number of Play Area cards
-	; greater than or equal to the player
-	; (that is, the odds of Zapdos lv68 hitting own
-	; Play Area is greater than or equal to 50%)
-	call SwapTurn
-	farcall CountPlayAreaPokemonExcludingTrainerPokemon
-	call SwapTurn
-	push af
-	farcall CountPlayAreaPokemonExcludingTrainerPokemon
-	pop bc
-	cp b
-	jr nc, .asm_29ee7
-	jp .standard_score
-
-; unreferenced
-	ld hl, wLoadedCard1ID
-	cphl ELECTABUZZ_LV35
-	jr z, .asm_29f3b
-	cphl DODUO_LV10
-	jr z, .asm_29f3b
-	cphl ZAPDOS_LV40
-	jr z, .asm_29f4c
-	jp nz, .standard_score
-.asm_29f3b
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	farcall CountCardIDInTurnDuelistPlayArea
-	cp 2
-	jp c, .standard_score
-	ld a, $28
-	ret
-.asm_29f4c
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .standard_score
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 1
-	jp z, .standard_score
-	ld a, $28
-	ret
-
-.PsychicEliteDeck:
-	ld hl, wLoadedCard1ID
-	cphl CHANSEY_LV55
-	jr z, .chansey_lv55
-	cphl MR_MIME_LV20
-	jp nz, .standard_score
-
-; mr. mime lv20
-	; discourage if Defending card is not resistant to Psychic
-	call SwapTurn
-	bank1call GetArenaCardResistance
-	call SwapTurn
-	and WR_PSYCHIC
-	jr z, .asm_29fa5 ; not resistant to Psychic
-
-	; Defending card is resistant to Psychic,
-	; give standard score if there's already
-	; a Mr. Mime in the Bench
-	ld de, MR_MIME_LV20
-	ld b, PLAY_AREA_BENCH_1
-	call FindCardIDInTurnDuelistsPlayArea
-	jp c, .standard_score
-	; otherwise discourage if Pkmn Powers are disabled
-	bank1call CheckGoopGasAttackAndToxicGasActive
-	jr c, .asm_29fa5
-
-.encourage_if_has_space_in_bench
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	ld hl, wMaxNumPlayAreaPokemon
-	cp [hl]
-	jr z, .asm_29fa5 ; has no space in Bench
-	ld a, $c8
-	ret
-.asm_29fa5
-	ld a, $64
-	ret
-
-.chansey_lv55
-	; if no Alakazam lv42 in Play Area, give standard score
-	farcall FindAlakazamLv42WithActivePkmnPowerInPlayArea
-	jp nc, .standard_score
-	; otherwise encourage if there are no targets
-	; for Alakazam's lv42 Damage Swap
-	farcall HandleAIDamageSwap.FindTargets
-	jr c, .encourage_if_has_space_in_bench
-	; if there are any targets, give standard score
-	jp .standard_score
-
-.RagingBillowOfFistsDeck:
-	ld hl, wLoadedCard1ID
-	cphl MR_MIME_LV20
-	jp nz, .standard_score
-
-; mr. mime lv20
-	; discourage if already has Mr. Mime in Bench
-	ld de, MR_MIME_LV20
-	ld b, PLAY_AREA_BENCH_1
-	call FindCardIDInTurnDuelistsPlayArea
-	jp c, .asm_29fee ; can be jr
-
-	; discourage if has no space in Play Area
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	ld hl, wMaxNumPlayAreaPokemon
-	cp [hl]
-	jp z, .asm_29fee ; can be jr
-
-	; discourage if Pkmn Powers are disabled
-	bank1call CheckGoopGasAttackAndToxicGasActive
-	jp c, .asm_29fee ; can be jr
-
-	; encourage if Defending Pokémon is resistant
-	; to the current Arena card
-	farcall CheckIfDefendingCardIsResistantToArenaCard
-	jr c, .asm_29ff1
-
-	; encourage if current Arena card is weak
-	; to the Defending Pokémon
-	farcall CheckIfArenaCardIsWeakToDefendingCard
-	jr c, .asm_29ff1
-	; otherwise discourage playing Mr. Mime
-.asm_29fee
-	ld a, $28
-	ret
-.asm_29ff1
-	ld a, $c8
-	ret
-
-.GoArcanineDeck:
-	ld hl, wLoadedCard1ID
-	cphl GROWLITHE_LV18
-	jr z, .discourage_if_has_more_than_1_in_play
-	cphl GROWLITHE_LV12
-	jr z, .discourage_if_has_more_than_1_in_play
-	cphl MAGMAR_LV31
-	jr z, .discourage_if_has_more_than_1_in_play
-	cphl SEEL_LV12
-	jr z, .discourage_if_has_more_than_1_in_play
-	cphl HITMONCHAN_LV33
-	jr z, .hitmonchan_lv33
-	cphl HITMONCHAN_LV23
-	jr z, .discourage_if_has_more_than_1_in_play
-	cphl DODUO_LV10
-	jp nz, .standard_score
-
-.discourage_if_has_more_than_1_in_play
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	farcall CountCardIDInTurnDuelistPlayArea
-	cp 2
-	jp c, .standard_score ; < 2 in Play Area
-	ld a, $28
-	ret
-
-.hitmonchan_lv33
-	; discourage if already has Hitmonchan lv33 in play
-	; and it is not the only Pokémon in Play Area
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .standard_score ; no Hitmonchan in play
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 1
-	jp z, .standard_score ; no other Pokémon in play
-	ld a, $28
-	ret
-
-.SuddenGrowthDeck:
-	ld hl, wLoadedCard1ID
-	cphl ONIX_LV25
-	jr z, .onix_lv25_or_hitmonchan_lv23
-	cphl HITMONCHAN_LV23
-	jp nz, .standard_score
-
-.onix_lv25_or_hitmonchan_lv23
-	; count number of Onix lv25 and Hitmonchan lv23
-	; in play, and if less than 3, give standard score
-	ld de, ONIX_LV25
-	ld b, PLAY_AREA_ARENA
-	farcall CountCardIDInTurnDuelistPlayArea
-	push af
-	ld de, HITMONCHAN_LV23
-	ld b, PLAY_AREA_ARENA
-	farcall CountCardIDInTurnDuelistPlayArea
-	ld b, a
-	pop af
-	add b
-	cp 3
-	jp c, .standard_score ; < 3
-	; if exactly 1 in play, give standard score
-	; this is impossible since at this stage
-	; at least 3 Onix and Hitmonchan are in play
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 1
-	jp z, .standard_score
-	; discourage playing it
-	ld a, $28
-	ret
-
-.StopLifeDeck:
-	ld hl, wLoadedCard1ID
-	cphl KANGASKHAN_LV40
-	jr z, .kangaskhan_lv40_or_dratini_lv10
-	cphl DRATINI_LV10
-	jr z, .kangaskhan_lv40_or_dratini_lv10
-	cphl BULBASAUR_LV12
-	jr z, .bulbasaur_lv12
-	cphl MR_MIME_LV20
-	jp nz, .standard_score
-
-; mr. mime
-	; encourage Mr. Mime lv20 if player
-	; has a Fire Pokémon in play
-	ld de, MR_MIME_LV20
-	ld b, PLAY_AREA_BENCH_1
-	call FindCardIDInTurnDuelistsPlayArea
-	jr c, .asm_2a0fc ; has Mr. Mime in Bench
-	ld a, TYPE_PKMN_FIRE
-	farcall CheckIfPlayerHasPokemonOfType
-	jr nc, .asm_2a0fc
-	ld a, $c8
-	ret
-
-.kangaskhan_lv40_or_dratini_lv10
-	; discourage Kangaskhan and Dratini
-	; if already has 1 in play and it's
-	; not the only Pokémon
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .standard_score
-.asm_2a0fc
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 1
-	jp z, .standard_score ; only 1 Pokémon in play
-	ld a, $28
-	ret
-
-.bulbasaur_lv12
-.charmander_lv9
-	; encourage this Pokémon if has no other in play
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	call FindCardIDInTurnDuelistsPlayArea
-	jr nc, .asm_2a114
-	jp .standard_score
-.asm_2a114
-	ld a, $c8
-	ret
-
-.ScorcherDeck:
-	ld hl, wLoadedCard1ID
-	cphl KANGASKHAN_LV40
-	jr z, .asm_2a175
-	cphl MAGMAR_LV31
-	jr z, .asm_2a175
-	cphl CLEFAIRY_LV15
-	jr z, .asm_2a168
-	cphl CHARMANDER_LV9
-	jr z, .charmander_lv9
-	cphl MR_MIME_LV20
-	jp nz, .standard_score
-
-; mr. mime
-	ld de, MR_MIME_LV20
-	ld b, PLAY_AREA_BENCH_1
-	call FindCardIDInTurnDuelistsPlayArea
-	jp c, .discourage_unless_only_1_pkmn_in_play
-	ld a, TYPE_PKMN_WATER
-	farcall CheckIfPlayerHasPokemonOfType
-	jr nc, .discourage_unless_only_1_pkmn_in_play
-	ld a, $c8
-	ret
-
-.asm_2a168
-	ld de, DARK_CHARIZARD
-	farcall CheckCardIDInPlayAreaThatCanUseAttacks
-	jp nc, .discourage_unless_only_1_pkmn_in_play
-	jp .standard_score
-
-.asm_2a175
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	ld b, PLAY_AREA_ARENA
-	call FindCardIDInTurnDuelistsPlayArea
-	jp nc, .standard_score
-
-.discourage_unless_only_1_pkmn_in_play
-	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
-	get_turn_duelist_var
-	cp 1
-	jp z, .standard_score
-	ld a, $28
-	ret
-; 0x2a18b
-
-SECTION "Bank a@6331", ROMX[$6331], BANK[$a]
+INCLUDE "engine/duel/special_basic_cards.asm"
 
 ; cf. LookForEnergyNeededForAttackInHand
 LookForEnergyNeededInHand::

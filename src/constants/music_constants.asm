@@ -59,3 +59,7 @@
 	const MUSIC_STING_39                  ; $39
 	const MUSIC_GRAND_MASTER_CUP_CHAMPION ; $3a
 	const MUSIC_STING_3B                  ; $3b
+
+; rAUDVOL
+DEF AUDVOL_FULL_VOLUME EQU 7
+DEF AUDVOL_HALF_VOLUME EQU 3
