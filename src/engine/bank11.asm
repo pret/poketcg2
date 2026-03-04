@@ -296,9 +296,8 @@ WaitForSFXToFinish::
 	or a
 	jr nz, .loop_wait
 	ret
-; 0x449a8
 
-SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
+INCLUDE "engine/debug_scenario.asm"
 
 ; a = TCG_ISLAND or GR_ISLAND
 ; set three opponents for the cup
