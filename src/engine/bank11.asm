@@ -285,9 +285,21 @@ MusicFadeOut:
 	or a
 	jr nz, .loop
 	ret
-; 0x4498c
 
-SECTION "Bank 11@499e", ROMX[$499e], BANK[$11]
+; a = frames for audio volume decrement
+SteppedMusicFadeOut:
+	ld c, a
+	ld b, a
+	ld a, AUDVOL_FULL_VOLUME
+.loop_wait
+	call DoFrame
+	dec c
+	jr nz, .loop_wait
+	call SetVolume
+	dec a
+	ret z
+	ld c, b
+	jr .loop_wait
 
 WaitForSFXToFinish::
 .loop_wait
