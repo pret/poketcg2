@@ -1,5 +1,3 @@
-SECTION "Bank 1@4074", ROMX[$4074], BANK[$1]
-
 StartDuelFromSRAM:
 	call SetupDuel
 	farcall Func_24048
