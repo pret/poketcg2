@@ -3142,7 +3142,7 @@ DebugModifyCountersNumberLabelText:
 	textfw "カウンタ Nоˍ"
 	done
 
-DebugModifyCountersValuesText:
+DebugBlankValueSelectorText:
 	textfw "                    "
 	done
 
@@ -3154,6 +3154,7 @@ DebugModifyCardCountCardNameText:
 	textfw "【<RAMTEXT>】"
 	done
 
+; file (collection), deck, total
 DebugModifyCardCountValuesText:
 	textfw "F    D    T"
 	done

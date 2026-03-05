@@ -62,6 +62,7 @@
 	const VAR_NPC_DECK_ID                              ; $3c
 	const VAR_DUEL_START_THEME                         ; $3d
 	const VAR_3E                                       ; $3e
+DEF NUM_EVENT_VARS EQU const_value
 
 ; VAR_ISHIHARA_STATE values
 	const_def 1

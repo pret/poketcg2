@@ -2656,7 +2656,23 @@ wMusicFadeOutVolume:: ; d677
 wd678:: ; d678
 	ds $1
 
-	ds $7
+wScenarioDebugMenuCursorPosition:: ; d679
+	ds $1
+
+wScenarioDebugMenu_d67a:: ; d67a
+	ds $1
+
+wScenarioDebugMenuCurEventFlagItem:: ; d67b
+	ds $1
+
+wScenarioDebugMenuCurEventVarItem:: ; d67c
+	ds $1
+
+wScenarioDebugMenuCurEventItem:: ; d67d
+	ds $1
+
+wScenarioDebugMenuCurCardItem:: ; d67e
+	ds $2
 
 wd680:: ; d680
 	ds $1

@@ -285,9 +285,21 @@ MusicFadeOut:
 	or a
 	jr nz, .loop
 	ret
-; 0x4498c
 
-SECTION "Bank 11@499e", ROMX[$499e], BANK[$11]
+; a = frames for audio volume decrement
+SteppedMusicFadeOut:
+	ld c, a
+	ld b, a
+	ld a, AUDVOL_FULL_VOLUME
+.loop_wait
+	call DoFrame
+	dec c
+	jr nz, .loop_wait
+	call SetVolume
+	dec a
+	ret z
+	ld c, b
+	jr .loop_wait
 
 WaitForSFXToFinish::
 .loop_wait
@@ -296,9 +308,8 @@ WaitForSFXToFinish::
 	or a
 	jr nz, .loop_wait
 	ret
-; 0x449a8
 
-SECTION "Bank 11@5301", ROMX[$5301], BANK[$11]
+INCLUDE "engine/debug_scenario.asm"
 
 ; a = TCG_ISLAND or GR_ISLAND
 ; set three opponents for the cup
