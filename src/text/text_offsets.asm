@@ -2068,7 +2068,7 @@ TextOffsets::
 	textpointer DebugModifyFlagsOnText                                ; 0x0808
 	textpointer DebugModifyFlagsOffText                               ; 0x0809
 	textpointer DebugModifyCountersNumberLabelText                    ; 0x080a
-	textpointer DebugModifyCountersValuesText                         ; 0x080b
+	textpointer DebugBlankValueSelectorText                           ; 0x080b
 	textpointer DebugModifyCardCountNumberLabelText                   ; 0x080c
 	textpointer DebugModifyCardCountCardNameText                      ; 0x080d
 	textpointer DebugModifyCardCountValuesText                        ; 0x080e
