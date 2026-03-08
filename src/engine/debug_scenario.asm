@@ -470,7 +470,7 @@ DebugModifyCardCount:
 	ld a, [wScenarioDebugMenuCurCardItem + 1]
 	ld b, a
 	inc bc
-	cp16bc_long THE_ROCKETS_TRAP + 1
+	cp16bc_long NUM_CARDS + 1
 	jr c, .scroll_forward
 	ld bc, GRASS_ENERGY
 .scroll_forward
@@ -490,7 +490,7 @@ DebugModifyCardCount:
 	ld a, c
 	or b
 	jr nz, .scroll_backward
-	ld bc, THE_ROCKETS_TRAP
+	ld bc, NUM_CARDS
 .scroll_backward
 	ld a, c
 	ld [wScenarioDebugMenuCurCardItem], a
@@ -830,89 +830,89 @@ DebugModifyEventsMenuItems:
 	farcall MaxOutEventValue
 	ld a, EVENT_BEAT_HIDERO
 	farcall MaxOutEventValue
-  ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_SENTAS_ROOM_BRIDGE_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_AIRAS_ROOM_BRIDGE_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_KANOKO
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_KAMIYA
-  farcall MaxOutEventValue
-  ld a, EVENT_FREED_MITCH
-  farcall MaxOutEventValue
-  ld a, EVENT_GRACES_ROOM_CHEST_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_MIWA
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_KEVIN
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_YOSUKE
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_RYOKO
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_MAMI
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_NISHIJIMA
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_ISHII
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_SAMEJIMA
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_KANZAKI
-  farcall MaxOutEventValue
-  ld a, EVENT_BEAT_RUI
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_GR1_ROCK_CLUB
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_GR4_LIGHTNING_CLUB
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_GR4_PSYCHIC_CLUB
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_YUKI_FIRE_FORT
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_MAMI_AND_ROD
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_COLORLESS_ALTAR_MEMBERS
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_BIRURITCHI_AND_ADMINS
-  farcall MaxOutEventValue
-  ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
-  farcall MaxOutEventValue
-  ld a, EVENT_MET_RONALD_GAME_CENTER
-  farcall MaxOutEventValue
-  ld a, EVENT_GODAS_ROOM_CAGE_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_FREED_STEVE
-  farcall MaxOutEventValue
-  ld a, EVENT_FREED_COURTNEY
-  farcall MaxOutEventValue
-  ld a, EVENT_FREED_JACK
-  farcall MaxOutEventValue
-  ld a, EVENT_FREED_ROD
-  farcall MaxOutEventValue
-  ld a, EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
-  farcall MaxOutEventValue
-  ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
-  farcall MaxOutEventValue
-  ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
-  farcall MaxOutEventValue
-  ret
+	ld a, EVENT_MIYAJIMAS_ROOM_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_SENTAS_ROOM_BRIDGE_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_AIRAS_ROOM_BRIDGE_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_KANOKO
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_KAMIYA
+	farcall MaxOutEventValue
+	ld a, EVENT_FREED_MITCH
+	farcall MaxOutEventValue
+	ld a, EVENT_GRACES_ROOM_CHEST_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_MIWA
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_KEVIN
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_YOSUKE
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_RYOKO
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_MAMI
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_NISHIJIMA
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_ISHII
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_SAMEJIMA
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_KANZAKI
+	farcall MaxOutEventValue
+	ld a, EVENT_BEAT_RUI
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_GR1_ROCK_CLUB
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_GR4_LIGHTNING_CLUB
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_GR4_PSYCHIC_CLUB
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_YUKI_FIRE_FORT
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_FIGHTING_FORT_MEMBERS
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_PSYCHIC_STRONGHOLD_MEMBERS
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_MAMI_AND_ROD
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_COLORLESS_ALTAR_MEMBERS
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_BIRURITCHI_AND_ADMINS
+	farcall MaxOutEventValue
+	ld a, EVENT_GR_CASTLE_STAIRS_RUI_ROADBLOCK
+	farcall MaxOutEventValue
+	ld a, EVENT_MET_RONALD_GAME_CENTER
+	farcall MaxOutEventValue
+	ld a, EVENT_GODAS_ROOM_CAGE_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_MIDORIS_ROOM_CAGE_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_FREED_STEVE
+	farcall MaxOutEventValue
+	ld a, EVENT_FREED_COURTNEY
+	farcall MaxOutEventValue
+	ld a, EVENT_FREED_JACK
+	farcall MaxOutEventValue
+	ld a, EVENT_FREED_ROD
+	farcall MaxOutEventValue
+	ld a, EVENT_LIGHTNING_FORT_ENTRANCE_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_FIRE_FORT_ENTRANCE_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_WATER_FORT_ENTRANCE_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_FIGHTING_FORT_ENTRANCE_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_CAN_TRAVEL_PAST_FIGHTING_FORT
+	farcall MaxOutEventValue
+	ld a, EVENT_GR_CASTLE_ENTRANCE_DOOR_STATE
+	farcall MaxOutEventValue
+	ld a, EVENT_SHORT_GR_ISLAND_FLYOVER_SEQUENCE
+	farcall MaxOutEventValue
+	ret
 
 .SwapPlayerGender:
 	ld a, EVENT_PLAYER_GENDER
