@@ -18,7 +18,7 @@ Glossary:
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call EmptyScreen
@@ -75,7 +75,7 @@ Glossary:
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
 .topic_menu
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	ld a, [wd0d2]

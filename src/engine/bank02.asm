@@ -524,7 +524,7 @@ DrawYourOrOppPlayAreaScreen:
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call EmptyScreen
@@ -535,7 +535,7 @@ _DrawYourOrOppPlayAreaScreen::
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call EmptyScreen
@@ -1714,12 +1714,12 @@ ZeroObjectPositionsAndToggleOAMCopy_Bank02:
 SECTION "Bank 2@4c98", ROMX[$4c98], BANK[$2]
 
 PickPrizeCardTransitionTable:
-	cursor_transition $08, $28, $00, $04, $02, $01, $01
-	cursor_transition $30, $28, $20, $05, $03, $00, $00
-	cursor_transition $08, $38, $00, $00, $04, $03, $03
-	cursor_transition $30, $38, $20, $01, $05, $02, $02
-	cursor_transition $08, $48, $00, $02, $00, $05, $05
-	cursor_transition $30, $48, $20, $03, $01, $04, $04
+	cursor_transition $08, $28, $00,       4, 2, 1, 1
+	cursor_transition $30, $28, OAM_XFLIP, 5, 3, 0, 0
+	cursor_transition $08, $38, $00,       0, 4, 3, 3
+	cursor_transition $30, $38, OAM_XFLIP, 1, 5, 2, 2
+	cursor_transition $08, $48, $00,       2, 0, 5, 5
+	cursor_transition $30, $48, OAM_XFLIP, 3, 1, 4, 4
 
 OpenPrizeCardPageIfFaceUp:
 	ld a, [wPrizeCardsFaceUp]
@@ -1775,7 +1775,7 @@ HandlePrizeCardPlayerSelection:
 	inc hl
 	ld [hl], d
 .loop
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	ldh a, [hDPadHeld]
@@ -1932,7 +1932,7 @@ EmptyScreenAndLoadFontDuelAndHandCardsIcons:
 	ld [wTileMapFill], a
 	call EmptyScreen
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
@@ -1950,7 +1950,7 @@ PrepareMenuGraphics:
 	ld [wTileMapFill], a
 	call EmptyScreen
 	call ZeroObjectPositions
-	ld a, $1
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadMenuCursorTile
 	call LoadSymbolsFont
@@ -3637,12 +3637,12 @@ FilteredCardListSelectionParams:
 	scrollmenu_params 0, 7, 2, 0, NUM_FILTERED_LIST_VISIBLE_CARDS, SYM_CURSOR_R, SYM_SPACE, NULL
 
 DeckConfigurationMenu_TransitionTable:
-	cursor_transition $10, $20, $00, $03, $03, $01, $02
-	cursor_transition $48, $20, $00, $04, $04, $02, $00
-	cursor_transition $80, $20, $00, $05, $05, $00, $01
-	cursor_transition $10, $30, $00, $00, $00, $04, $05
-	cursor_transition $48, $30, $00, $01, $01, $05, $03
-	cursor_transition $80, $30, $00, $02, $02, $03, $04
+	cursor_transition $10, $20, $00, 3, 3, 1, 2
+	cursor_transition $48, $20, $00, 4, 4, 2, 0
+	cursor_transition $80, $20, $00, 5, 5, 0, 1
+	cursor_transition $10, $30, $00, 0, 0, 4, 5
+	cursor_transition $48, $30, $00, 1, 1, 5, 3
+	cursor_transition $80, $30, $00, 2, 2, 3, 4
 
 ; draws each card type icon in a line
 ; the respective card counts underneath each icon
@@ -4878,7 +4878,7 @@ OpenCardPageFromCardList:
 	jp .handle_input
 
 .exit
-	ld a, $1
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ld a, [wCurScrollMenuItem]
 	ld [wTempCurMenuItem], a
@@ -5826,9 +5826,9 @@ HandleGiftCenterSendCardsScreen:
 		HandleGiftCenterSendCardsMenu, SendCards_TransitionTable
 
 SendCards_TransitionTable:
-	cursor_transition $10, $20, $00, $00, $00, $01, $02
-	cursor_transition $48, $20, $00, $01, $01, $02, $00
-	cursor_transition $80, $20, $00, $02, $02, $00, $01
+	cursor_transition $10, $20, $00, 0, 0, 1, 2
+	cursor_transition $48, $20, $00, 1, 1, 2, 0
+	cursor_transition $80, $20, $00, 2, 2, 0, 1
 
 SendCards_MenuData:
 	textitem  2, 2, DeckBuildingConfirmText
@@ -7261,7 +7261,7 @@ HandleCardAlbumCardPage:
 	jp .handle_input
 
 .exit
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ld a, [wCurScrollMenuItem]
 	ld [wTempCurMenuItem], a
@@ -7455,7 +7455,7 @@ CardAlbum:
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
 	call EmptyScreen
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadMenuCursorTile
 	call LoadSymbolsFont
@@ -7589,7 +7589,7 @@ CardAlbum:
 	jp nz, .draw_box
 	ld [hffbe], a
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 
 	call LoadMenuCursorTile

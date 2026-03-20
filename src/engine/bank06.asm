@@ -5495,7 +5495,7 @@ InputName:
 	ld [wTileMapFill], a
 	call EmptyScreen
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call LoadSymbolsFont
 	lb de, $38, $bf
@@ -5519,7 +5519,7 @@ InputName:
 	ld a, SYM_SPACE
 	ld [wMenuInvisibleCursorTile], a
 .loop
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 
