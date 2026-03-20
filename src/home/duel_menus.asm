@@ -1,9 +1,9 @@
 OpenDuelCheckMenu::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_OpenDuelCheckMenu)
+	ld a, BANK(_OpenDuelCheckMenu)
 	call BankswitchROM
-	call $4000 ; _OpenDuelCheckMenu
+	call _OpenDuelCheckMenu
 	pop af
 	call BankswitchROM
 	ret
@@ -11,11 +11,11 @@ OpenDuelCheckMenu::
 OpenInPlayAreaScreen_FromSelectButton::
 	ldh a, [hBankROM]
 	push af
-	ld a, $06 ; BANK(OpenInPlayAreaScreen)
+	ld a, BANK(OpenInPlayAreaScreen)
 	call BankswitchROM
-	ld a, $1
+	ld a, TRUE
 	ld [wInPlayAreaFromSelectButton], a
-	call $4000 ; OpenInPlayAreaScreen
+	call OpenInPlayAreaScreen
 	pop bc
 	ld a, b
 	call BankswitchROM
@@ -34,9 +34,9 @@ DrawYourOrOppPlayAreaScreen_Bank0::
 	ld [wCheckMenuPlayAreaWhichLayout], a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawYourOrOppPlayAreaScreen)
+	ld a, BANK(_DrawYourOrOppPlayAreaScreen)
 	call BankswitchROM
-	call $4321 ; _DrawYourOrOppPlayAreaScreen
+	call _DrawYourOrOppPlayAreaScreen
 	call DrawWideTextBox
 	pop af
 	call BankswitchROM
@@ -45,9 +45,9 @@ DrawYourOrOppPlayAreaScreen_Bank0::
 DrawPlayersPrizeAndBenchCards:
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawPlayersPrizeAndBenchCards)
+	ld a, BANK(_DrawPlayersPrizeAndBenchCards)
 	call BankswitchROM
-	call $4453 ; _DrawPlayersPrizeAndBenchCards
+	call _DrawPlayersPrizeAndBenchCards
 	pop af
 	call BankswitchROM
 	ret
@@ -55,9 +55,9 @@ DrawPlayersPrizeAndBenchCards:
 HandlePeekSelection::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_HandlePeekSelection)
+	ld a, BANK(_HandlePeekSelection)
 	call BankswitchROM
-	call $48a7 ; _HandlePeekSelection
+	call _HandlePeekSelection
 	ld b, a
 	pop af
 	call BankswitchROM
@@ -68,9 +68,9 @@ DrawAIPeekScreen::
 	ld b, a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawAIPeekScreen)
+	ld a, BANK(_DrawAIPeekScreen)
 	call BankswitchROM
-	call $4a6e ; _DrawAIPeekScreen
+	call _DrawAIPeekScreen
 	pop af
 	call BankswitchROM
 	ret
@@ -80,9 +80,9 @@ SelectPrizeCards::
 	ld [wNumberOfPrizeCardsToSelect], a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_SelectPrizeCards)
+	ld a, BANK(_SelectPrizeCards)
 	call BankswitchROM
-	call $4be6 ; _SelectPrizeCards
+	call _SelectPrizeCards
 	pop af
 	call BankswitchROM
 	ret
@@ -90,9 +90,9 @@ SelectPrizeCards::
 DrawPlayAreaToPlacePrizeCards::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawPlayAreaToPlacePrizeCards)
+	ld a, BANK(_DrawPlayAreaToPlacePrizeCards)
 	call BankswitchROM
-	call $4d4b ; _DrawPlayAreaToPlacePrizeCards
+	call _DrawPlayAreaToPlacePrizeCards
 	pop af
 	call BankswitchROM
 	ret

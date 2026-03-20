@@ -1316,7 +1316,7 @@ ZeroObjectPositionsAndEnableOBPFading:
 	push hl
 	call Set_OBJ_8x8
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	farcall EnableOBPFading
 	pop hl
@@ -1578,7 +1578,7 @@ UpdateSpriteAnims::
 	add hl, de
 	dec c
 	jr nz, .loop_objs
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	pop hl
 	pop de

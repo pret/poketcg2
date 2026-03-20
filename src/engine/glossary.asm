@@ -5,6 +5,8 @@ Glossary:
 	lb de, $38, $9f
 	call SetupText
 	jr .asm_186ba
+
+.OpenScreen
 	ld a, $01
 	ld [wd0d2], a
 
@@ -16,7 +18,7 @@ Glossary:
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call EmptyScreen
@@ -62,7 +64,7 @@ Glossary:
 	xor a
 	ld de, GlossaryTransitionTable_10Topics
 .got_transition_table
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 	ld hl, wTransitionTablePtr
 	ld [hl], e
 	inc hl
@@ -73,7 +75,7 @@ Glossary:
 	xor a
 	ld [wScrollMenuCursorBlinkCounter], a
 .topic_menu
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	ld a, [wd0d2]
@@ -83,13 +85,13 @@ Glossary:
 	jr nc, .topic_menu
 	cp $ff
 	jr nz, .selected_topic
-	farcall ZeroObjectPositionsWithCopyToggleOn
+	farcall ZeroObjectPositionsAndToggleOAMCopy_Bank02
 	ldh a, [hCurScrollMenuItem]
 	jp .main_menu
 
 .selected_topic
 	push af
-	farcall ZeroObjectPositionsWithCopyToggleOn
+	farcall ZeroObjectPositionsAndToggleOAMCopy_Bank02
 	pop af
 	call .ShowExplanation
 	call .ShowMenuContent

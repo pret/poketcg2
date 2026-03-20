@@ -451,9 +451,22 @@ DuelMenuShortcut_PlayerDiscardPile:
 	call OpenTurnHolderDiscardPileScreen
 	jp c, PrintDuelMenuAndHandleInput
 	jp DuelMainInterface
-; 0x439d
 
-SECTION "Bank 1@43be", ROMX[$43be], BANK[$1]
+OpenNonTurnHolderPrizeCardsScreen:
+	call SwapTurn
+	call OpenTurnHolderPrizeCardsScreen
+	call SwapTurn
+	ret
+
+OpenTurnHolderPrizeCardsScreen:
+	call CreatePrizeCardList
+	call InitAndDrawCardListScreenLayout
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistPrizeCardsText
+	call SetCardListHeaderAndInfoText
+	ld a, PAD_A | PAD_START
+	ld [wNoItemSelectionMenuKeys], a
+	jp DisplayCardList
 
 ; draw the non-turn holder's play area screen
 OpenNonTurnHolderPlayAreaScreen:
@@ -493,7 +506,7 @@ OpenTurnHolderHandScreen_Simple:
 	jp DrawWideTextBox_WaitForInput
 .got_cards_in_hand
 	call InitAndDrawCardListScreenLayout
-	ld a, PAD_START + PAD_A
+	ld a, PAD_A | PAD_START
 	ld [wNoItemSelectionMenuKeys], a
 	jp DisplayCardList
 
@@ -2563,7 +2576,7 @@ OpenDiscardPileScreen:
 	ldtx hl, ChooseCardToCheckText
 	ldtx de, DuelistDiscardPileText
 	call SetCardListHeaderAndInfoText
-	ld a, PAD_START + PAD_A
+	ld a, PAD_A | PAD_START
 	ld [wNoItemSelectionMenuKeys], a
 	call DisplayCardList
 	or a
@@ -3093,7 +3106,7 @@ TurnDuelistTakePrizes:
 	ld h, $00
 	call LoadTxRam3
 .asm_587e
-	farcall Func_82b6
+	farcall Func_83b3
 	ldtx hl, DrewXPrizesText
 	call DrawWideTextBox_WaitForInput
 	jr .return_has_prizes
@@ -3345,7 +3358,7 @@ CardPageSwitch_TrainerEnd:
 
 ZeroObjectPositionsAndToggleOAMCopy:
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ret
 ; 0x5647
@@ -4080,7 +4093,7 @@ _HasAlivePokemonInPlayArea:
 	ret
 
 OpenPlayAreaScreenForViewing:
-	ld a, PAD_START + PAD_A
+	ld a, PAD_A | PAD_START
 	jr DisplayPlayAreaScreen
 
 OpenPlayAreaScreenForSelection:
@@ -6831,9 +6844,28 @@ ShuffleDeck:
 	ld a, b ; a = number of cards in the deck
 	call ShuffleCards
 	ret
-; 0x6a7c
 
-SECTION "Bank 1@6a96", ROMX[$6a96], BANK[$1]
+CreatePrizeCardList:
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	ld c, a
+	ld l, DUELVARS_PRIZE_CARDS
+	ld de, wDuelTempList
+.loop_cards
+	ld b, [hl]
+	inc hl
+	rr c
+	jr nc, .next_card
+	ld a, b
+	ld [de], a
+	inc de
+.next_card
+	ld a, c
+	or a
+	jr nz, .loop_cards
+	ld a, $ff ; terminating byte
+	ld [de], a
+	ret
 
 SortCardsInDuelTempListByID:
 	ld hl, hTempListPtr_ff99
