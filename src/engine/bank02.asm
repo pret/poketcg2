@@ -1,6 +1,522 @@
-SECTION "Bank 2@4302", ROMX[$4302], BANK[$2]
+_OpenDuelCheckMenu::
+	call ResetCheckMenuCursorPositionAndBlink
+	xor a
+	ld [wd0cd], a
+	call DrawWideTextBox
+; reset cursor blink
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+	ld hl, CheckMenuData
+	call PlaceTextItems
+.wait_input
+	call DoFrame
+	call HandleCheckMenuInput
+	jr nc, .wait_input
+	cp MENU_CANCEL
+	ret z
+; selected, jump to the corresponding function
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	ld hl, .jump_table
+	call JumpToFunctionInTable
+	jr _OpenDuelCheckMenu
 
-Func_8302:
+.jump_table:
+	dw DuelCheckMenu_InPlayArea
+	dw DuelCheckMenu_Glossary
+	dw DuelCheckMenu_YourPlayArea
+	dw DuelCheckMenu_OppPlayArea
+
+; in play area submenu
+DuelCheckMenu_InPlayArea:
+	xor a
+	ld [wInPlayAreaFromSelectButton], a
+	farcall OpenInPlayAreaScreen
+	ret
+
+; glossary submenu
+DuelCheckMenu_Glossary:
+	farcall Glossary.OpenScreen
+	ret
+
+; your play area submenu
+; also handles here comes team rocket
+DuelCheckMenu_YourPlayArea:
+	call ResetCheckMenuCursorPositionAndBlink
+
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .no_here_comes_team_rocket
+	ld a, $02
+.no_here_comes_team_rocket
+	ld [wd0cd], a
+
+	ldh a, [hWhoseTurn]
+.draw
+	ld h, a
+	ld l, a
+	call DrawYourOrOppPlayAreaScreen
+
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	ld [wYourOrOppPlayAreaLastCursorPosition], a
+	ld b, $f8 ; black arrow tile
+	call DrawYourOrOppPlayArea_DrawArrows
+
+	call DrawWideTextBox
+; reset cursor blink
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+; set menu data
+	ld hl, YourPlayAreaMenuData
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .print
+	ld hl, YourPlayAreaMenuData_WithPrizes
+.print
+	call PlaceTextItems
+.wait_input
+	call DoFrame
+	xor a
+	call DrawYourOrOppPlayArea_RefreshArrows
+	call HandleCheckMenuInput_YourOrOppPlayArea
+	jr nc, .wait_input
+	call DrawYourOrOppPlayArea_EraseArrows
+	cp MENU_CANCEL
+	ret z
+; selected, jump to the corresponding function
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	ld hl, .jump_table
+	call JumpToFunctionInTable
+	jr .draw
+
+.jump_table
+	dw OpenYourOrOppPlayAreaScreen_TurnHolderPlayArea
+	dw OpenYourOrOppPlayAreaScreen_TurnHolderHand
+	dw OpenYourOrOppPlayAreaScreen_TurnHolderDiscardPile
+	dw OpenYourOrOppPlayAreaScreen_TurnHolderPrizeCards
+
+OpenYourOrOppPlayAreaScreen_TurnHolderPlayArea:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenTurnHolderPlayAreaScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_NonTurnHolderPlayArea:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenNonTurnHolderPlayAreaScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_TurnHolderHand:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenTurnHolderHandScreen_Simple
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_NonTurnHolderHand:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenNonTurnHolderHandScreen_Simple
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_TurnHolderDiscardPile:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenTurnHolderDiscardPileScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_NonTurnHolderDiscardPile:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenNonTurnHolderDiscardPileScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_TurnHolderPrizeCards:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenTurnHolderPrizeCardsScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+OpenYourOrOppPlayAreaScreen_NonTurnHolderPrizeCards:
+	ldh a, [hWhoseTurn]
+	push af
+	bank1call OpenNonTurnHolderPrizeCardsScreen
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
+; opp. play area submenu
+; also handles clairvoyance and here comes team rocket
+DuelCheckMenu_OppPlayArea:
+	call ResetCheckMenuCursorPositionAndBlink
+	bank1call IsClairvoyanceActive
+	jr c, .clairvoyance_on_1
+
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .default_1
+
+; here comes team rocket on
+	ld a, $01
+	ld [wd0cd], a
+	jr .begin
+
+.default_1
+	ld a, %10000000
+	ld [wd0cd], a
+	jr .begin
+
+.clairvoyance_on_1
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .clairvoyance_on_here_comes_team_rocket_off_1
+
+; both on
+	ld a, $02
+
+.clairvoyance_on_here_comes_team_rocket_off_1
+	ld [wd0cd], a
+
+.begin
+	ldh a, [hWhoseTurn]
+.turns
+	ld l, a
+	cp PLAYER_TURN
+	jr nz, .opponent
+	ld a, OPPONENT_TURN
+	ld h, a
+	jr .cursor
+.opponent
+	ld a, PLAYER_TURN
+	ld h, a
+.cursor
+	call DrawYourOrOppPlayAreaScreen
+; convert and store cursor position
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	add 4
+	ld [wYourOrOppPlayAreaLastCursorPosition], a
+; draw black arrows in the play area
+	ld b, $f8 ; black arrow tile
+	call DrawYourOrOppPlayArea_DrawArrows
+	call DrawWideTextBox
+; reset cursor blink
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+
+; place text items
+; depending on clairvoyance and here comes team rocket
+	bank1call IsClairvoyanceActive
+	jr c, .clairvoyance_on_2
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .default_2
+
+; here comes team rocket on
+	ld hl, OppPlayAreaMenuData_WithPrizes
+	call PlaceTextItems
+	jr .wait_input
+
+.default_2
+	ld hl, OppPlayAreaMenuData
+	call PlaceTextItems
+	jr .wait_input
+
+.clairvoyance_on_2
+	ld a, [wPrizeCardsFaceUp]
+	or a
+	jr z, .clairvoyance_on_here_comes_team_rocket_off_2
+
+; both on
+	ld hl, OppPlayAreaMenuData_WithHandAndPrizes
+	call PlaceTextItems
+	jr .wait_input
+
+.clairvoyance_on_here_comes_team_rocket_off_2
+	ld hl, OppPlayAreaMenuData_WithHand
+	call PlaceTextItems
+
+.wait_input
+	call DoFrame
+	ld a, 1
+	call DrawYourOrOppPlayArea_RefreshArrows
+	call HandleCheckMenuInput_YourOrOppPlayArea
+	jr nc, .wait_input
+	call DrawYourOrOppPlayArea_EraseArrows
+	cp MENU_CANCEL
+	ret z
+; selected, jump to the corresponding function
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	ld hl, .jump_table
+	call JumpToFunctionInTable
+	jr .turns
+
+.jump_table
+	dw OpenYourOrOppPlayAreaScreen_NonTurnHolderPlayArea
+	dw OpenYourOrOppPlayAreaScreen_NonTurnHolderHand
+	dw OpenYourOrOppPlayAreaScreen_NonTurnHolderDiscardPile
+	dw OpenYourOrOppPlayAreaScreen_NonTurnHolderPrizeCards
+
+CheckMenuData:
+	textitem  2, 14, EntirePlayAreaHiraganaText
+	textitem  2, 16, YourPlayAreaHiraganaText
+	textitem 12, 14, GlossaryText
+	textitem 12, 16, OpponentsPlayAreaHiraganaText
+	textitems_end
+
+YourPlayAreaMenuData:
+	textitem  2, 14, YourPokemonHiraganaText
+	textitem 12, 14, YourHandHiraganaText
+	textitem  2, 16, YourDiscardPileHiraganaText
+	textitems_end
+
+YourPlayAreaMenuData_WithPrizes:
+	textitem  2, 14, YourPokemonHiraganaText
+	textitem 12, 14, YourHandHiraganaText
+	textitem  2, 16, YourDiscardPileHiraganaText
+	textitem 12, 16, YourPrizesHiraganaText
+	textitems_end
+
+OppPlayAreaMenuData:
+	textitem  2, 14, OpponentsPokemonHiraganaText
+	textitem  2, 16, OpponentsDiscardPileHiraganaText
+	textitems_end
+
+OppPlayAreaMenuData_WithHand:
+	textitem  2, 14, OpponentsPokemonHiraganaText
+	textitem 12, 14, OpponentsHandHiraganaText
+	textitem  2, 16, OpponentsDiscardPileHiraganaText
+	textitems_end
+
+OppPlayAreaMenuData_WithPrizes:
+	textitem  2, 14, OpponentsPokemonHiraganaText
+	textitem  2, 16, OpponentsDiscardPileHiraganaText
+	textitem 12, 16, OpponentsPrizesHiraganaText
+	textitems_end
+
+OppPlayAreaMenuData_WithHandAndPrizes:
+	textitem  2, 14, OpponentsPokemonHiraganaText
+	textitem 12, 14, OpponentsHandHiraganaText
+	textitem  2, 16, OpponentsDiscardPileHiraganaText
+	textitem 12, 16, OpponentsPrizesHiraganaText
+	textitems_end
+
+; for a = initial offset to the cursor position in your/opp. play area screen
+; (due to different layouts),
+; update arrows upon cursor position change
+DrawYourOrOppPlayArea_RefreshArrows:
+	push af
+	ld b, a
+REPT 3
+	add b
+ENDR
+	ld c, a
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	ld b, a
+	ld a, [wCheckMenuCursorXPosition]
+	add b
+	add c
+; a = 2y + x + 4a
+; update arrows if changed
+	ld hl, wYourOrOppPlayAreaLastCursorPosition
+	cp [hl]
+	jr z, .done ; unchanged
+	call DrawYourOrOppPlayArea_EraseArrows
+	ld [wYourOrOppPlayAreaLastCursorPosition], a
+	ld b, $f8 ; black arrow tile
+	call DrawYourOrOppPlayArea_DrawArrows
+.done
+	pop af
+	ret
+
+; for n = [wYourOrOppPlayAreaLastCursorPosition] (2y + x),
+; draw SYM_SPACE at YourOrOppPlayAreaArrowPositions[n]
+DrawYourOrOppPlayArea_EraseArrows:
+	push af
+	ld a, [wYourOrOppPlayAreaLastCursorPosition]
+	ld b, SYM_SPACE
+	call DrawYourOrOppPlayArea_DrawArrows
+	pop af
+	ret
+
+; for a = table offset (cursor 2y + x) and b = tile to draw,
+; draw the tile at YourOrOppPlayAreaArrowPositions[a]
+DrawYourOrOppPlayArea_DrawArrows:
+	push af
+	push bc
+	ld hl, YourOrOppPlayAreaArrowPositions
+	sla a
+	ld c, a
+	ld b, $00
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	pop de
+	pop af
+
+	push af
+	or a
+	jr z, .player_pkmn
+	cp PLAYAREA_OPPONENT_POKEMON
+	jr z, .opponent_pkmn
+	cp PLAYAREA_PLAYER_PRIZES
+	jr z, .player_prize_cards
+	cp PLAYAREA_OPPONENT_PRIZES
+	jr nz, .loop_draw
+
+; opponent prize cards
+	push de
+	lb de, 19, 6
+	jr .prize_cards
+.player_prize_cards
+	push de
+	lb de, 5, 3
+.prize_cards
+	ld a, $20
+	lb bc, 1, 5
+	push hl
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+	pop hl
+	pop de
+	ld a, [wDuelInitialPrizes]
+	ld e, a
+	jr .loop_draw
+
+.player_pkmn
+	push de
+	lb de, 5, 5
+	xor a
+	lb bc, 1, 1
+	push hl
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+	pop hl
+	pop de
+.opponent_pkmn
+	ld a, [wMaxNumPlayAreaPokemon]
+	ld e, a
+
+.loop_draw
+	ld a, [hli]
+	cp $ff
+	jr z, .done
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, d
+	call WriteByteToBGMap0
+	dec e
+	jr nz, .loop_draw
+.done
+	pop af
+	ret
+
+; (x, y) to draw tile at
+YourOrOppPlayAreaArrowPositions:
+	dw .PlayerPokemon       ; PLAYAREA_PLAYER_POKEMON
+	dw .PlayerHand          ; PLAYAREA_PLAYER_HAND
+	dw .PlayerDiscardPile   ; PLAYAREA_PLAYER_DISCARD_PILE
+	dw .PlayerPrizeCards    ; PLAYAREA_PLAYER_PRIZES
+	dw .OpponentPokemon     ; PLAYAREA_OPPONENT_POKEMON
+	dw .OpponentHand        ; PLAYAREA_OPPONENT_HAND
+	dw .OpponentDiscardPile ; PLAYAREA_OPPONENT_DISCARD_PILE
+	dw .OpponentPrizeCards  ; PLAYAREA_OPPONENT_PRIZES
+
+.PlayerPokemon:
+	db  5,  5
+	db  0, 10
+	db  4, 10
+	db  8, 10
+	db 12, 10
+	db 16, 10
+	db $ff
+
+.PlayerHand:
+	db 14, 7
+	db $ff
+
+.PlayerDiscardPile:
+	db 14, 5
+	db $ff
+
+.PlayerPrizeCards:
+	db 0, 3
+	db 5, 3
+	db 0, 5
+	db 5, 5
+	db 0, 7
+	db 5, 7
+	db $ff
+
+.OpponentPokemon:
+	db  5, 7
+	db 16, 3
+	db 12, 3
+	db  8, 3
+	db  4, 3
+	db  0, 3
+	db $ff
+
+.OpponentHand:
+	db 0, 5
+	db $ff
+
+.OpponentDiscardPile:
+	db 0, 8
+	db $ff
+
+.OpponentPrizeCards:
+	db 19, 10
+	db 14, 10
+	db 19,  8
+	db 14,  8
+	db 19,  6
+	db 14,  6
+	db $ff
+
+; loads tiles and icons to display your/opp. play area screen,
+; and draws the screen according to the turn player
+; input: h -> [wCheckMenuPlayAreaWhichDuelist] and l -> [wCheckMenuPlayAreaWhichLayout]
+DrawYourOrOppPlayAreaScreen:
 	ld a, h
 	ld [wCheckMenuPlayAreaWhichDuelist], a
 	ld a, l
@@ -15,6 +531,7 @@ Func_8302:
 	call LoadMenuCursorTile
 	jr DrawYourOrOppPlayAreaScreen_EmptiedScreen
 
+_DrawYourOrOppPlayAreaScreen::
 	xor a
 	ld [wTileMapFill], a
 	call ZeroObjectPositions
@@ -22,7 +539,7 @@ Func_8302:
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
 	call EmptyScreen
-;	fallthrough
+; fallthrough
 
 DrawYourOrOppPlayAreaScreen_EmptiedScreen:
 	call LoadSymbolsFont
@@ -87,7 +604,8 @@ DrawYourOrOppPlayAreaScreen_EmptiedScreen:
 	call EnableLCD
 	ret
 
-Func_82b6:
+; Func_82b6 in tcg1
+Func_83b3:
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
 	ld b, a
 	ld a, [wCheckMenuPlayAreaWhichLayout]
@@ -102,9 +620,99 @@ Func_82b6:
 	ld hl, PrizeCardsCoordinateData_YourOrOppPlayArea.opponent
 	call DrawPlayArea_PrizeCards
 	ret
-; 0x83cb
 
-SECTION "Bank 2@4495", ROMX[$4495], BANK[$2]
+DrawInPlayAreaScreen::
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+	ld a, CHECK_PLAY_AREA
+	ld [wDuelDisplayedScreen], a
+	call LoadMenuCursorTile
+	call LoadSymbolsFont
+	ld a, [wConsole]
+	push af
+	ld a, CONSOLE_DMG
+	ld [wConsole], a
+	call Func_1dff
+	pop af
+	ld [wConsole], a
+	bank1call SetDefaultPalettes
+	lb de, $80, $9f
+	call SetupText
+; reset turn holders
+	ldh a, [hWhoseTurn]
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	ld [wCheckMenuPlayAreaWhichLayout], a
+
+	ld a, [wConsole]
+	push af
+	ld a, CONSOLE_DMG
+	ld [wConsole], a
+; player prize cards
+	ld hl, PrizeCardsCoordinateData_InPlayArea.player
+	call DrawPlayArea_PrizeCards
+; player bench cards
+	lb de, 3, 15
+	ld c, 3
+	call DrawPlayArea_BenchCards
+; player icons
+	ld hl, PlayAreaIconCoordinates.player2
+	call DrawInPlayArea_Icons
+
+	call SwapTurn
+	ldh a, [hWhoseTurn]
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	call SwapTurn
+
+; opponent prize cards
+	ld hl, PrizeCardsCoordinateData_InPlayArea.opponent
+	call DrawPlayArea_PrizeCards
+; opponent bench cards
+	lb de, 3, 0
+	ld c, 3
+	call DrawPlayArea_BenchCards
+; opponent icons
+	call SwapTurn
+	ld hl, PlayAreaIconCoordinates.opponent2
+	call DrawInPlayArea_Icons
+	call SwapTurn
+	pop af
+	ld [wConsole], a
+	call DrawInPlayArea_ActiveCardGfx
+	ret
+
+_DrawPlayersPrizeAndBenchCards::
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call EmptyScreen
+	call LoadSymbolsFont
+	call Func_1dff
+; player cards
+	ld a, PLAYER_TURN
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	ld [wCheckMenuPlayAreaWhichLayout], a
+	ld hl, PrizeCardsCoordinateData_2.player
+	call DrawPlayArea_PrizeCards
+	lb de, 5, 10
+	ld c, 3
+	call DrawPlayArea_BenchCards
+; opponent cards
+	ld a, OPPONENT_TURN
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	ld hl, PrizeCardsCoordinateData_2.opponent
+	call DrawPlayArea_PrizeCards
+	lb de, 1, 0
+	ld c, 3
+	call DrawPlayArea_BenchCards
+	ret
 
 ; draws the active card gfx at coordinates de
 ; of the player (or opponent) depending on wCheckMenuPlayAreaWhichDuelist
@@ -162,9 +770,92 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	bank1call Func_6c12
 	pop de
 	ret
-; 0x84eb
 
-SECTION "Bank 2@4587", ROMX[$4587], BANK[$2]
+; draws player and opponent arena card graphics
+; in the entire play area screen
+DrawInPlayArea_ActiveCardGfx:
+	xor a
+	ld [wArenaCardsInPlayArea], a
+
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	cp -1 ; no pkmn
+	jr z, .opponent1
+
+; set player arena pkmn bit
+	push af
+	ld a, [wArenaCardsInPlayArea]
+	or ARENA_CARD_PLAYER
+	ld [wArenaCardsInPlayArea], a
+	pop af
+; load card gfx
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld de, v0Tiles1 + $20 tiles
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb bc, $30, TILE_SIZE
+	call LoadCardGfx
+	lb de, 6, 9
+	bank1call DrawCardGfxToDE_BGPalIndex5
+
+.opponent1
+	ld a, DUELVARS_ARENA_CARD
+	call GetNonTurnDuelistVariable
+	cp -1 ; no pkmn
+	jr z, .draw
+; set opponent arena pkmn bit
+	push af
+	ld a, [wArenaCardsInPlayArea]
+	or ARENA_CARD_OPPONENT
+	ld [wArenaCardsInPlayArea], a
+	pop af
+; load card gfx
+	call SwapTurn
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld de, v0Tiles2 + $50 tiles
+	ld hl, wLoadedCard1Gfx
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	lb bc, $30, TILE_SIZE
+	call LoadCardGfx
+	lb de, 6, 2
+	bank1call DrawCardGfxToDE_BGPalIndex2
+	call SwapTurn
+
+.draw
+	ld a, [wArenaCardsInPlayArea]
+	or a
+	ret z ; no arena cards
+
+	bank1call FlushAllPalettesIfNotDMG
+	ld a, [wArenaCardsInPlayArea]
+	and ARENA_CARD_PLAYER
+	jr z, .opponent2
+; draw player arena card
+	ld a, $a0
+	lb de, 6, 9
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	bank1call StubbedApplyBGP6OrSGB3ToCardImage
+
+.opponent2
+	ld a, [wArenaCardsInPlayArea]
+	and ARENA_CARD_OPPONENT
+	ret z
+; draw opponent arena card
+	call SwapTurn
+	ld a, $50
+	lb de, 6, 2
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	bank1call StubbedApplyBGP6OrSGB3ToCardImage
+	call SwapTurn
+	ret
 
 ; draws prize cards depending on the turn
 ; loaded in wCheckMenuPlayAreaWhichDuelist
@@ -250,7 +941,41 @@ PrizeCardsCoordinateData_YourOrOppPlayArea:
 	db 5, 17
 	db 5, 15
 
-SECTION "Bank 2@4629", ROMX[$4629], BANK[$2]
+PrizeCardsCoordinateData_2:
+; x and y coordinates for player prize cards
+.player
+	db  6, 0
+	db  6, 2
+	db  8, 0
+	db  8, 2
+	db 10, 0
+	db 10, 2
+; x and y coordinates for opponent prize cards
+.opponent
+	db 4, 18
+	db 4, 16
+	db 2, 18
+	db 2, 16
+	db 0, 18
+	db 0, 16
+
+PrizeCardsCoordinateData_InPlayArea:
+; x and y coordinates for player prize cards
+.player
+	db  9, 1
+	db  9, 3
+	db 11, 1
+	db 11, 3
+	db 13, 1
+	db 13, 3
+; x and y coordinates for opponent prize cards
+.opponent
+	db 6, 17
+	db 6, 15
+	db 4, 17
+	db 4, 15
+	db 2, 17
+	db 2, 15
 
 ; calculates bits set up to the number of initial prizes, with upper 2 bits set, i.e:
 ; 6 prizes: a = %11111111
@@ -393,13 +1118,11 @@ DrawPlayArea_BenchCards:
 	ld d, a
 	jr .loop_2
 
-; draws Your/Opp Play Area icons depending on value in a
-; the icons correspond to Deck, Discard Pile, and Hand
-; the corresponding number of cards is printed alongside each icon
-; for "Hand", text is displayed rather than an icon
-; input:
-; a = $00: draws player icons
-; a = $01: draws opponent icons
+; for a = DUELIST_PLAYER/DUELIST_OPPONENT,
+; draw in Your/Opp Play Area screen:
+; - hand: text and value (rather than icon)
+; - deck: icon and value
+; - discard pile: icon and value
 DrawYourOrOppPlayArea_Icons:
 	or a
 	jr nz, .opponent
@@ -409,14 +1132,14 @@ DrawYourOrOppPlayArea_Icons:
 	ld hl, PlayAreaIconCoordinates.opponent1
 
 .draw
-; hand icon and value
+; hand text and value
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
 	ld d, a
 	ld e, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	ld a, [de]
 	ld b, a
-	ld a, $d0 ; hand icon, unused?
-	call $47a3
+	ld a, $d0 ; hand icon, unused
+	call DrawPlayArea_HandText
 
 ; deck icon and value
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
@@ -525,9 +1248,78 @@ PlayAreaIconCoordinates:
 	db  0,  2
 	db  0,  6
 	db  0,  4
-; 0x877a
 
-SECTION "Bank 2@47d3", ROMX[$47d3], BANK[$2]
+; for [hWhoseTurn], draw in In Play Area screen:
+; - hand: text and value (rather than icon)
+; - deck: icon and value
+; - discard pile: icon and value
+DrawInPlayArea_Icons:
+; hand text and value
+	ldh a, [hWhoseTurn]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	ld a, [de]
+	ld b, a
+	ld a, $d0 ; hand icon, unused
+	call DrawPlayArea_HandText
+
+; deck icon and value
+	ldh a, [hWhoseTurn]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	ld a, [de]
+	ld b, a
+	ld a, DECK_SIZE
+	sub b
+	ld b, a
+	ld a, $d4 ; deck tile
+	call DrawPlayArea_IconWithValue
+
+; discard pile icon and value
+	ldh a, [hWhoseTurn]
+	ld d, a
+	ld e, DUELVARS_NUMBER_OF_CARDS_IN_DISCARD_PILE
+	ld a, [de]
+	ld b, a
+	ld a, $d8 ; discard pile tile
+	call DrawPlayArea_IconWithValue
+	ret
+
+; print HandText_2 with decimal value of b = hand count
+; unlike in English, no SYM_CROSS in Japanese (lacking space)
+DrawPlayArea_HandText:
+	ld d, [hl]
+	inc hl
+	ld e, [hl]
+	inc hl
+; text
+	push hl
+	push bc
+	call InitTextPrinting
+	ldtx hl, HandText_2
+	call ProcessTextFromID
+	pop bc
+; decimal value
+	ld a, b
+	call CalculateOnesAndTensDigits
+	ld hl, wDecimalDigitsSymbols
+	ld a, [hli]
+	ld b, a
+	ld a, [hl]
+	ld hl, wDefaultText
+	ld [hl], TX_SYMBOL
+	inc hl
+	ld [hli], a
+	ld [hl], TX_SYMBOL
+	inc hl
+; draw to screen
+	ld a, b
+	ld [hli], a
+	ld [hl], TX_END
+	ld hl, wDefaultText
+	call ProcessText
+	pop hl
+	ret
 
 ; handle player input in check menu
 ; works out which cursor coordinate to go to
@@ -739,10 +1531,10 @@ HandleMultiDirectionalMenu:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld [wd0d0], a
 	ld l, a
-	ld h, 7 ; length of each transition table item
+	ld h, CURSOR_TRANSITION_STRUCT_LENGTH
 	call HtimesL
 	add hl, de
 
@@ -750,10 +1542,10 @@ HandleMultiDirectionalMenu:
 	ldh a, [hDPadHeld]
 	or a
 	jp z, .check_button
-	inc hl
-	inc hl
-	inc hl
 
+REPT CURSOR_TRANSITION_STRUCT_DIR_INDICES
+	inc hl
+ENDR
 	bit B_PAD_UP, a
 	jr z, .else_if_down
 	; up
@@ -784,13 +1576,12 @@ HandleMultiDirectionalMenu:
 	ld a, [hl]
 
 .process_dpad
-	ld [wd0c1], a
-	cp $8 ; if a >= 0x8
+	ld [wMultiDirectionalMenuCursorPosition], a
+	cp 8
 	jr nc, .sfx
-	ld b, $1
 
-; this loop equals to
-; b = (1 << a)
+; bitmask b = 1 << a
+	ld b, 1
 .make_bitmask_loop
 	or a
 	jr z, .make_bitmask_done
@@ -822,29 +1613,29 @@ HandleMultiDirectionalMenu:
 	cp PRIZES_5
 	jr nc, .sfx
 	; else if it's last card,
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	cp 5
 	jr nz, .not_last_card
 	; place it at pos 3
 	ld a, 3
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 	jr .ok
 .not_last_card
 	; otherwise place at pos 2
 	ld a, 2
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 
 .ok
 	ld a, [wDuelInitialPrizes]
 	cp PRIZES_3
 	jr nc, .handled_cursor_pos
 	; in this case can just sub 2 from pos
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	sub 2
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 
 .handled_cursor_pos
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld [wd0d0], a
 	ld b, $1
 	jr .make_bitmask_loop
@@ -871,7 +1662,7 @@ HandleMultiDirectionalMenu:
 	call .DrawCursor
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	scf
 	ret
 
@@ -887,7 +1678,7 @@ HandleMultiDirectionalMenu:
 	and $0f
 	ret nz
 	bit 4, [hl]
-	jr nz, ZeroObjectPositionsWithCopyToggleOn
+	jr nz, ZeroObjectPositionsAndToggleOAMCopy_Bank02
 
 .DrawCursor:
 	call ZeroObjectPositions
@@ -895,26 +1686,27 @@ HandleMultiDirectionalMenu:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld l, a
-	ld h, 7
+	ld h, CURSOR_TRANSITION_STRUCT_LENGTH
 	call HtimesL
 	add hl, de
-; hl = [wTransitionTablePtr] + 7 * wd0c1
+; for table = [wTransitionTablePtr] and i = wMultiDirectionalMenuCursorPosition,
+; hl = table[i]
 
-	ld d, [hl]
+	ld d, [hl] ; CURSOR_TRANSITION_STRUCT_X
 	inc hl
-	ld e, [hl]
+	ld e, [hl] ; CURSOR_TRANSITION_STRUCT_Y
 	inc hl
-	ld b, [hl]
+	ld b, [hl] ; CURSOR_TRANSITION_STRUCT_ATTR
 	ld c, $00 ; cursor tile
 	call SetOneObjectAttributes
 	or a
 	ret
 
-ZeroObjectPositionsWithCopyToggleOn:
+ZeroObjectPositionsAndToggleOAMCopy_Bank02:
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ret
 ; 0x8be6
@@ -937,7 +1729,7 @@ OpenPrizeCardPageIfFaceUp:
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 
-	ld a, [wd0c1]
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld c, a
 	ld b, $1
 .loop_bitmasks
@@ -965,13 +1757,13 @@ OpenPrizeCardPageIfFaceUp:
 HandlePrizeCardPlayerSelection:
 	xor a
 	call GetFirstSetPrizeCard
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 
 .draw_screen
 	ldh a, [hWhoseTurn]
 	ld h, a
 	ld l, a
-	call Func_8302
+	call DrawYourOrOppPlayAreaScreen
 	call DrawWideTextBox
 	lb de, 1, 14
 	call InitTextPrinting
@@ -997,8 +1789,8 @@ HandlePrizeCardPlayerSelection:
 	jr nc, .loop
 	cp $ff
 	jr z, .loop
-	call ZeroObjectPositionsWithCopyToggleOn
-	ld a, [wd0c1]
+	call ZeroObjectPositionsAndToggleOAMCopy_Bank02
+	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld c, a
 	ld b, $1
 .loop_bitmasks
@@ -2381,7 +3173,7 @@ HandleDeckBuildScreen:
 
 OpenDeckConfigurationMenu:
 	xor a
-	ld [wd0c1], a
+	ld [wMultiDirectionalMenuCursorPosition], a
 	ld de, wDeckConfigurationMenuTransitionTable
 	ld hl, wTransitionTablePtr
 	ld a, [de]

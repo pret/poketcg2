@@ -5,6 +5,7 @@ DEF MAX_HP                EQU 120
 DEF HP_BAR_LENGTH         EQU MAX_HP / 10
 
 DEF STARTING_HAND_SIZE EQU 7
+DEF MAX_PRIZE_CARDS    EQU 6
 
 ; coin result constants
 DEF TAILS EQU 0

@@ -4538,7 +4538,7 @@ Poltergeist_10DamagePerTrainerEffect:
 	ldtx hl, ChooseCardToCheckText
 	ldtx de, DuelistHandText
 	bank1call SetCardListHeaderAndInfoText
-	ld a, PAD_START + PAD_A
+	ld a, PAD_A | PAD_START
 	ld [wNoItemSelectionMenuKeys], a
 	bank1call DisplayCardList
 

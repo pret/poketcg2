@@ -1,4 +1,4 @@
-SECTION "Bank 6@46a6", ROMX[$46a6], BANK[$6]
+INCLUDE "engine/play_area_menu.asm"
 
 INCLUDE "engine/glossary.asm"
 ; 0x1897e
@@ -5347,7 +5347,7 @@ DisplayBoosterContent:
 	ldtx hl, ChooseCardToCheckText
 	ldtx de, BoosterPackCardsText
 	bank1call SetCardListHeaderAndInfoText
-	ld a, PAD_START + PAD_A
+	ld a, PAD_A | PAD_START
 	ld [wNoItemSelectionMenuKeys], a
 	bank1call DisplayCardList
 	ret

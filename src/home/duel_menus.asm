@@ -1,9 +1,9 @@
 OpenDuelCheckMenu::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_OpenDuelCheckMenu)
+	ld a, BANK(_OpenDuelCheckMenu)
 	call BankswitchROM
-	call $4000 ; _OpenDuelCheckMenu
+	call _OpenDuelCheckMenu
 	pop af
 	call BankswitchROM
 	ret
@@ -11,11 +11,11 @@ OpenDuelCheckMenu::
 OpenInPlayAreaScreen_FromSelectButton::
 	ldh a, [hBankROM]
 	push af
-	ld a, $06 ; BANK(OpenInPlayAreaScreen)
+	ld a, BANK(OpenInPlayAreaScreen)
 	call BankswitchROM
-	ld a, $1
+	ld a, TRUE
 	ld [wInPlayAreaFromSelectButton], a
-	call $4000 ; OpenInPlayAreaScreen
+	call OpenInPlayAreaScreen
 	pop bc
 	ld a, b
 	call BankswitchROM
@@ -34,9 +34,9 @@ DrawYourOrOppPlayAreaScreen_Bank0::
 	ld [wCheckMenuPlayAreaWhichLayout], a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawYourOrOppPlayAreaScreen)
+	ld a, BANK(_DrawYourOrOppPlayAreaScreen)
 	call BankswitchROM
-	call $4321 ; _DrawYourOrOppPlayAreaScreen
+	call _DrawYourOrOppPlayAreaScreen
 	call DrawWideTextBox
 	pop af
 	call BankswitchROM
@@ -45,9 +45,9 @@ DrawYourOrOppPlayAreaScreen_Bank0::
 DrawPlayersPrizeAndBenchCards:
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawPlayersPrizeAndBenchCards)
+	ld a, BANK(_DrawPlayersPrizeAndBenchCards)
 	call BankswitchROM
-	call $4453 ; _DrawPlayersPrizeAndBenchCards
+	call _DrawPlayersPrizeAndBenchCards
 	pop af
 	call BankswitchROM
 	ret

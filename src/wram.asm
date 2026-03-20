@@ -1834,7 +1834,7 @@ wCheckMenuPlayAreaWhichDuelist:: ; d0bf
 wCheckMenuPlayAreaWhichLayout:: ; d0c0
 	ds $1
 
-wd0c1:: ; d0c1
+wMultiDirectionalMenuCursorPosition:: ; d0c1
 	ds $1
 
 ; pointer to transition table data
@@ -1847,22 +1847,33 @@ wDuelInitialPrizesUpperBitsSet:: ; d0c4
 wd0c4:: ; d0c4
 	ds $1
 
-	ds $3
+	ds $1
+
+wPreservedInPlayAreaCursorPosition:: ; d0c6
+	ds $1
+
+wTempInPlayAreaCursorPosition:: ; d0c7
+	ds $1
 
 ; number of prize cards still to be
 ; picked by the player
 wNumberOfPrizeCardsToSelect:: ; d0c8
 	ds $1
 
-	ds $4
+	ds $3
+
+; stores ARENA_CARD_PLAYER/ARENA_CARD_OPPONENT flag
+wArenaCardsInPlayArea:: ; d0cc
+	ds $1
 
 wd0cd:: ; d0cd
 	ds $1
 
+wYourOrOppPlayAreaLastCursorPosition:: ; d0ce
 	ds $1
 
-; $00 when the "In Play Area" screen has been opened from the Check menu
-; $01 when the "In Play Area" screen has been opened by pressing the select button
+; FALSE when the "In Play Area" screen has been opened from the Check menu
+; TRUE when the "In Play Area" screen has been opened by pressing the select button
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
