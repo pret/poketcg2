@@ -1504,9 +1504,294 @@ DrawCheckMenuCursor_YourOrOppPlayArea:
 DisplayCheckMenuCursor_YourOrOppPlayArea:
 	ld a, SYM_CURSOR_R
 	jr DrawCheckMenuCursor_YourOrOppPlayArea
-; 0x88a7
 
-SECTION "Bank 2@4acb", ROMX[$4acb], BANK[$2]
+_HandlePeekSelection::
+	call LoadMenuCursorTile
+	xor a
+	ld [wd0cb], a
+	ld [wIsSwapTurnPending], a
+; draw turn holder play area screen
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, a
+	call DrawYourOrOppPlayAreaScreen
+
+.start
+; check swap
+	ld a, [wIsSwapTurnPending]
+	or a
+	jr z, .draw_area_menu
+	call SwapTurn
+	xor a
+	ld [wIsSwapTurnPending], a
+
+.draw_area_menu
+	xor a
+	ld hl, .PlayAreaMenuParameters
+	call InitializeMenuParameters
+	call DrawWideTextBox
+	ld hl, .YourOrOppPlayAreaData
+	call PlaceTextItems
+
+.area_menu_wait_input
+	call DoFrame
+	call HandleMenuInput
+	jr nc, .area_menu_wait_input
+	cp MENU_CANCEL
+	jr z, .area_menu_wait_input ; can't use b btn
+
+	call EraseCursor
+	ldh a, [hCurScrollMenuItem]
+	or a
+	jp nz, .PrepareYourPlayAreaSelection ; jump if not opp. play area
+
+; selected own play area
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ldh a, [hWhoseTurn]
+	cp b
+	jr z, .area_menu_prompt_text
+; switch play area to draw
+	ld h, a
+	ld l, a
+	call DrawYourOrOppPlayAreaScreen
+	xor a
+	ld [wIsSwapTurnPending], a
+
+.area_menu_prompt_text
+	call DrawWideTextBox
+	lb de, 1, 14
+	call InitTextPrinting
+	ldtx hl, WhichCardWouldYouLikeToSeeText
+	call ProcessTextFromID
+
+	xor a
+	ld [wMultiDirectionalMenuCursorPosition], a
+	ld de, PeekYourPlayAreaTransitionTable
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+.play_area_screen_wait_input
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	call HandleMultiDirectionalMenu
+	jr c, .action_btns
+	jr .play_area_screen_wait_input
+
+.action_btns
+	cp MENU_CANCEL
+	jr nz, .selection_made
+	call ZeroObjectPositionsAndToggleOAMCopy_Bank02
+	jr .start
+
+.selection_made
+	ld hl, .SelectionFunctionTable
+	call JumpToFunctionInTable
+	jr .play_area_screen_wait_input
+
+.SelectionFunctionTable:
+REPT MAX_PRIZE_CARDS
+	dw .SelectedPrize
+ENDR
+	dw .SelectedOppsHand
+	dw .SelectedDeck
+
+.YourOrOppPlayAreaData:
+	textitem 2, 14, YourPlayAreaHiraganaText
+	textitem 2, 16, OpponentsPlayAreaHiraganaText
+	textitems_end
+
+.PlayAreaMenuParameters:
+	menu_params 1, 14, 2, 2, SYM_CURSOR_R, SYM_SPACE, NULL
+
+.SelectedPrize:
+	ld a, [wMultiDirectionalMenuCursorPosition]
+	ld c, a
+	ld b, 1
+.loop_prize_bitmask
+	or a
+	jr z, .check_prize
+	sla b
+	dec a
+	jr .loop_prize_bitmask
+.check_prize
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	ret z
+
+	ld a, c
+	add $40
+	ld [wd0cb], a
+	ld a, c
+	add DUELVARS_PRIZE_CARDS
+	get_turn_duelist_var
+	jr .ShowSelectedCard
+
+.SelectedOppsHand:
+	call CreateHandCardList
+	ret c
+	ld hl, wDuelTempList
+	call ShuffleCards
+	ld a, [hl]
+	jr .ShowSelectedCard
+
+.SelectedDeck:
+	call CreateDeckCardList
+	ret c
+	ld a, $7f
+	ld [wd0cb], a
+	ld a, [wDuelTempList]
+
+.ShowSelectedCard:
+	ld b, a
+	ld a, [wd0cb]
+	or a
+	jr nz, .display
+; fallback to input deck index
+	ld a, b
+	ld [wd0cb], a
+.display
+	ld a, b
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call Set_OBJ_8x16
+	bank1call OpenCardPage_FromHand
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	pop af
+; check swap
+	ld a, [wIsSwapTurnPending]
+	or a
+	jr z, .no_swap
+	call SwapTurn
+	ld a, [wd0cb]
+	or $80
+	ret
+.no_swap
+	ld a, [wd0cb]
+	ret
+
+.PrepareYourPlayAreaSelection:
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld b, a
+	ldh a, [hWhoseTurn]
+	cp b
+	jr nz, .area_menu_prompt_text_2
+	ld l, a
+	cp PLAYER_TURN
+	jr nz, .opponent
+	ld a, OPPONENT_TURN
+	jr .draw_area_screen
+.opponent
+	ld a, PLAYER_TURN
+
+.draw_area_screen
+	ld h, a
+	call DrawYourOrOppPlayAreaScreen
+
+.area_menu_prompt_text_2
+	call DrawWideTextBox
+	lb de, 1, 14
+	call InitTextPrinting
+	ldtx hl, WhichCardWouldYouLikeToSeeText
+	call ProcessTextFromID
+
+	xor a
+	ld [wMultiDirectionalMenuCursorPosition], a
+	ld de, PeekOppPlayAreaTransitionTable
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+	call SwapTurn
+	ld a, TRUE
+	ld [wIsSwapTurnPending], a
+	jp .play_area_screen_wait_input
+
+PeekYourPlayAreaTransitionTable:
+	cursor_transition $08, $28, $00,       4, 2, 1, 7
+	cursor_transition $30, $28, OAM_XFLIP, 5, 3, 7, 0
+	cursor_transition $08, $38, $00,       0, 4, 3, 7
+	cursor_transition $30, $38, OAM_XFLIP, 1, 5, 7, 2
+	cursor_transition $08, $48, $00,       2, 0, 5, 7
+	cursor_transition $30, $48, OAM_XFLIP, 3, 1, 7, 4
+	cursor_transition $78, $50, $00,       7, 7, 0, 1
+	cursor_transition $78, $28, $00,       7, 7, 0, 1
+
+PeekOppPlayAreaTransitionTable:
+	cursor_transition $a0, $60, OAM_XFLIP, 2, 4, 7, 1
+	cursor_transition $78, $60, $00,       3, 5, 0, 7
+	cursor_transition $a0, $50, OAM_XFLIP, 4, 0, 6, 3
+	cursor_transition $78, $50, $00,       5, 1, 2, 6
+	cursor_transition $a0, $40, OAM_XFLIP, 0, 2, 6, 5
+	cursor_transition $78, $40, $00,       1, 3, 4, 6
+	cursor_transition $08, $38, $00,       7, 7, 5, 4
+	cursor_transition $08, $60, $00,       6, 6, 1, 0
+
+_DrawAIPeekScreen::
+	push bc
+	call LoadMenuCursorTile
+	xor a
+	ld [wIsSwapTurnPending], a
+	ldh a, [hWhoseTurn]
+	ld l, a
+	ld de, PeekYourPlayAreaTransitionTable
+	pop bc
+	bit AI_PEEK_TARGET_HAND_F, b
+	jr z, .draw_play_area
+; ai peeks hand
+	call SwapTurn
+	ld a, TRUE
+	ld [wIsSwapTurnPending], a
+	ldh a, [hWhoseTurn]
+	ld de, PeekOppPlayAreaTransitionTable
+
+.draw_play_area
+	ld h, a
+	push bc
+	push de
+	call DrawYourOrOppPlayAreaScreen
+	pop de
+	pop bc
+
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+	ld a, b
+	and $7f
+	cp $7f
+	jr nz, .prize_card
+
+; deck
+	ld a, 7
+	ld [wMultiDirectionalMenuCursorPosition], a
+	jr .draw_cursor
+
+.prize_card
+	bit AI_PEEK_TARGET_PRIZE_F, a
+	jr z, .hand
+	and $3f
+	ld [wMultiDirectionalMenuCursorPosition], a
+	jr .draw_cursor
+
+.hand
+	ld a, 6
+	ld [wMultiDirectionalMenuCursorPosition], a
+
+.draw_cursor
+	call HandleMultiDirectionalMenu.DrawCursor
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	ld a, [wIsSwapTurnPending]
+	or a
+	ret z
+	call SwapTurn
+	ret
 
 LoadMenuCursorTile:
 	call Set_OBJ_8x8
@@ -1709,9 +1994,114 @@ ZeroObjectPositionsAndToggleOAMCopy_Bank02:
 	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ret
-; 0x8be6
 
-SECTION "Bank 2@4c98", ROMX[$4c98], BANK[$2]
+_SelectPrizeCards::
+	xor a
+	call GetFirstSetPrizeCard
+	ld [wMultiDirectionalMenuCursorPosition], a
+	ld de, hTempPlayAreaLocation_ffa1
+	ld hl, wSelectedPrizeCardListPtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+.start
+	ld a, [wNumberOfPrizeCardsToSelect]
+	or a
+	jr z, .selection_made
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	or a
+	jr nz, .got_prizes
+
+.selection_made
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	ldh [hTemp_ffa0], a
+	ld a, [wSelectedPrizeCardListPtr]
+	ld l, a
+	ld a, [wSelectedPrizeCardListPtr + 1]
+	ld h, a
+	ld [hl], $ff
+	ret
+
+.got_prizes
+	ldh a, [hWhoseTurn]
+	ld h, a
+	ld l, a
+	call DrawYourOrOppPlayAreaScreen
+	call DrawWideTextBox
+	lb de, 1, 14
+	call InitTextPrinting
+	ldtx hl, PleaseChooseAPrizeText
+	call ProcessTextFromID
+	ld de, PickPrizeCardTransitionTable
+	ld hl, wTransitionTablePtr
+	ld [hl], e
+	inc hl
+	ld [hl], d
+
+.wait_input
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and PAD_START
+	jr z, .no_start_btn
+	call OpenPrizeCardPageIfFaceUp
+	jr c, .start
+.no_start_btn
+	call HandleMultiDirectionalMenu
+	jr nc, .wait_input
+	cp MENU_CANCEL
+	jr z, .wait_input
+
+	call ZeroObjectPositionsAndToggleOAMCopy_Bank02
+	ld a, [wMultiDirectionalMenuCursorPosition]
+	ld c, a
+	ld b, 1
+.loop_prize_bitmask
+	or a
+	jr z, .check_prize_bit
+	sla b
+	dec a
+	jr .loop_prize_bitmask
+
+.check_prize_bit
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	and b
+	jp z, .wait_input
+
+; remove prize
+	ld a, DUELVARS_PRIZES
+	get_turn_duelist_var
+	sub b
+	ld [hl], a
+; get its deck index
+	ld a, c
+	add DUELVARS_PRIZE_CARDS
+	get_turn_duelist_var
+	ld hl, wSelectedPrizeCardListPtr
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ld [de], a ; store deck index
+	inc de
+	ld [hl], d
+	dec hl
+	ld [hl], e
+	call AddCardToHand
+	call LoadCardDataToBuffer1_FromDeckIndex
+	call Set_OBJ_8x16
+	bank1call OpenCardPage_FromHand
+	ld a, [wNumberOfPrizeCardsToSelect]
+	dec a
+	ld [wNumberOfPrizeCardsToSelect], a
+	ld a, [wMultiDirectionalMenuCursorPosition]
+	call GetFirstSetPrizeCard
+	ld [wMultiDirectionalMenuCursorPosition], a
+	jp .start
 
 PickPrizeCardTransitionTable:
 	cursor_transition $08, $28, $00,       4, 2, 1, 1
@@ -1807,9 +2197,123 @@ HandlePrizeCardPlayerSelection:
 	ld a, c
 	or $40
 	ret
-; 0x8d4b
 
-SECTION "Bank 2@4e34", ROMX[$4e34], BANK[$2]
+_DrawPlayAreaToPlacePrizeCards::
+	xor a
+	ld [wTileMapFill], a
+	call ZeroObjectPositions
+	call EmptyScreen
+	call LoadSymbolsFont
+	call LoadDeckAndDiscardPileIcons
+	bank1call SetDefaultPalettes
+
+	ldh a, [hWhoseTurn]
+	ld [wCheckMenuPlayAreaWhichLayout], a
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+
+	lb de, 0, 10
+	ld c, 3
+	call DrawPlayArea_BenchCards
+	ld hl, .player_icon_coordinates
+	call DrawYourOrOppPlayArea_Icons.draw
+	lb de, 8, 6
+	ld a, $a0
+	lb hl, 1, 4
+	lb bc, 4, 3
+	call FillRectangle
+
+	call SwapTurn
+	ld a, TRUE
+	ld [wIsSwapTurnPending], a
+	ldh a, [hWhoseTurn]
+	ld [wCheckMenuPlayAreaWhichDuelist], a
+	lb de, 6, 0
+	ld c, 3
+	call DrawPlayArea_BenchCards
+	ld hl, .opp_icon_coordinates
+	call DrawYourOrOppPlayArea_Icons.draw
+	lb de, 8, 3
+	ld a, $a0
+	lb hl, 1, 4
+	lb bc, 4, 3
+	call FillRectangle
+	ld a, $05
+	lb bc, 4, 6
+	lb de, 8, 3
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+	call SwapTurn
+	ret
+
+.player_icon_coordinates
+	db 15, 11
+	db 15,  6
+	db 15,  8
+
+.opp_icon_coordinates
+	db  0,  0
+	db  0,  4
+	db  0,  2
+
+; leftover from tcg1, unreferenced
+Func_8dcf:
+	push hl
+	ld a, [wCheckMenuPlayAreaWhichDuelist]
+	ld h, a
+	ld l, DUELVARS_PRIZES
+	ld a, [hl]
+	pop hl
+
+	ld b, 0
+	push af
+.loop_prizes
+	inc b
+	ld a, [wDuelInitialPrizes]
+	inc a
+	cp b
+	jr z, .done
+	pop af
+	srl a
+	push af
+	jr c, .not_taken
+	ld a, $ac
+	jr .got_tile
+.not_taken
+	ld a, $ac ; same tile anyway
+.got_tile
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	inc hl
+	push hl
+	push bc
+	lb hl, 0, 0
+	lb bc, 1, 1
+	call FillRectangle
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jr nz, .skip_pal
+	ld a, $03 ; was $02 in tcg1
+	lb bc, 1, 1
+	lb hl, 0, 0
+	call BankswitchVRAM1
+	call FillRectangle
+	call BankswitchVRAM0
+.skip_pal
+	pop bc
+	pop hl
+	jr .loop_prizes
+.done
+	pop af
+	ret
+
+; leftover from tcg1, unreferenced
+Data_8e1c:
+	db $06, $05, $06, $06, $07, $05, $07, $06
+	db $08, $05, $08, $06, $05, $0e, $05, $0d
+	db $04, $0e, $04, $0d, $03, $0e, $03, $0d
 
 ; gets the first prize card index that is set
 ; beginning from index in register a

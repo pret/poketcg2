@@ -55,9 +55,9 @@ DrawPlayersPrizeAndBenchCards:
 HandlePeekSelection::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_HandlePeekSelection)
+	ld a, BANK(_HandlePeekSelection)
 	call BankswitchROM
-	call $48a7 ; _HandlePeekSelection
+	call _HandlePeekSelection
 	ld b, a
 	pop af
 	call BankswitchROM
@@ -68,9 +68,9 @@ DrawAIPeekScreen::
 	ld b, a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawAIPeekScreen)
+	ld a, BANK(_DrawAIPeekScreen)
 	call BankswitchROM
-	call $4a6e ; _DrawAIPeekScreen
+	call _DrawAIPeekScreen
 	pop af
 	call BankswitchROM
 	ret
@@ -80,9 +80,9 @@ SelectPrizeCards::
 	ld [wNumberOfPrizeCardsToSelect], a
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_SelectPrizeCards)
+	ld a, BANK(_SelectPrizeCards)
 	call BankswitchROM
-	call $4be6 ; _SelectPrizeCards
+	call _SelectPrizeCards
 	pop af
 	call BankswitchROM
 	ret
@@ -90,9 +90,9 @@ SelectPrizeCards::
 DrawPlayAreaToPlacePrizeCards::
 	ldh a, [hBankROM]
 	push af
-	ld a, $02 ; BANK(_DrawPlayAreaToPlacePrizeCards)
+	ld a, BANK(_DrawPlayAreaToPlacePrizeCards)
 	call BankswitchROM
-	call $4d4b ; _DrawPlayAreaToPlacePrizeCards
+	call _DrawPlayAreaToPlacePrizeCards
 	pop af
 	call BankswitchROM
 	ret

@@ -1847,6 +1847,8 @@ wDuelInitialPrizesUpperBitsSet:: ; d0c4
 wd0c4:: ; d0c4
 	ds $1
 
+; call SwapTurn post-processing flag
+wIsSwapTurnPending:: ; d0c5
 	ds $1
 
 wPreservedInPlayAreaCursorPosition:: ; d0c6
@@ -1860,7 +1862,13 @@ wTempInPlayAreaCursorPosition:: ; d0c7
 wNumberOfPrizeCardsToSelect:: ; d0c8
 	ds $1
 
-	ds $3
+; pointer to a $ff-terminated list
+; of the prize cards selected by the player
+wSelectedPrizeCardListPtr:: ; d0c9
+	ds $2
+
+wd0cb:: ; d0cb
+	ds $1
 
 ; stores ARENA_CARD_PLAYER/ARENA_CARD_OPPONENT flag
 wArenaCardsInPlayArea:: ; d0cc
