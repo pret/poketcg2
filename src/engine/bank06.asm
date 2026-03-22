@@ -1,9 +1,125 @@
 INCLUDE "engine/play_area_menu.asm"
 
 INCLUDE "engine/glossary.asm"
-; 0x1897e
 
-SECTION "Bank 6@4a14", ROMX[$4a14], BANK[$6]
+; leftover from tcg1, remaining bugged, unreferenced
+HandleCheckMenuInput_Bank06:
+	xor a
+	ld [wMenuInputSFX], a
+	ld a, [wCheckMenuCursorXPosition]
+	ld d, a
+	ld a, [wCheckMenuCursorYPosition]
+	ld e, a
+
+	ldh a, [hDPadHeld]
+	or a
+	jr z, .no_pad
+; check d-pad
+	bit B_PAD_LEFT, a
+	jr nz, .horizontal
+	bit B_PAD_RIGHT, a
+	jr z, .check_vertical
+; d = x, e = y
+
+; x
+; incr if even, decr if odd
+.horizontal
+	ld a, d
+	xor 1
+	ld d, a
+	jr .erase
+
+.check_vertical
+	bit B_PAD_UP, a
+	jr nz, .vertical
+	bit B_PAD_DOWN, a
+	jr z, .no_pad
+
+; y
+; incr if even, decr if odd
+.vertical
+	ld a, e
+	xor 1
+	ld e, a
+
+.erase
+	ld a, SFX_CURSOR
+	ld [wMenuInputSFX], a
+	push de
+	call .erase_tile
+	pop de
+; update x, y
+	ld a, d
+	ld [wCheckMenuCursorXPosition], a
+	ld a, e
+	ld [wCheckMenuCursorYPosition], a
+; reset blink
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+.no_pad
+	ldh a, [hKeysPressed]
+	and PAD_A | PAD_B
+	jr z, .no_input
+	and PAD_A
+	jr nz, .a_btn_pressed
+
+; b btn pressed
+	ld a, MENU_CANCEL
+; bug, should be PlaySFXConfirmOrCancel_Bank06
+; most likely because BANK(HandleCheckMenuInput) = BANK(PlaySFXConfirmOrCancel)
+	call PlaySFXConfirmOrCancel
+	scf
+	ret
+
+.a_btn_pressed
+	call .draw_cursor
+	ld a, MENU_CONFIRM
+; bug, should be PlaySFXConfirmOrCancel_Bank06
+; most likely because BANK(HandleCheckMenuInput) = BANK(PlaySFXConfirmOrCancel)
+	call PlaySFXConfirmOrCancel
+	scf
+	ret
+
+.no_input
+	ld a, [wMenuInputSFX]
+	or a
+	jr z, .check_blink
+	call PlaySFX
+
+.check_blink
+	ld hl, wScrollMenuCursorBlinkCounter
+	ld a, [hl]
+	inc [hl]
+	and %00001111
+	ret nz
+
+	ld a, SYM_CURSOR_R
+	bit 4, [hl]
+	jr z, .draw_tile
+.erase_tile
+	ld a, SYM_SPACE
+.draw_tile
+	ld e, a
+	ld a, 10
+	ld l, a
+	ld a, [wCheckMenuCursorXPosition]
+	ld h, a
+	call HtimesL
+	ld a, l
+	add 1
+	ld b, a
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	add 14
+	ld c, a
+	ld a, e
+; b = 10x + 1, c = 2y + 14
+	call WriteByteToBGMap0
+	or a
+	ret
+.draw_cursor
+	ld a, SYM_CURSOR_R
+	jr .draw_tile
 
 ResetAttackAnimationIsPlaying::
 	xor a ; FALSE
