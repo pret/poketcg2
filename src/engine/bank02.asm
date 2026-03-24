@@ -2561,9 +2561,28 @@ OpenDeckConfirmationMenu:
 	ld [hl], a
 	call HandleDeckConfirmationMenu
 	ret
-; 0x9014
 
-SECTION "Bank 2@503f", ROMX[$503f], BANK[$2]
+OpenDeckConfirmationMenu_All:
+	push de
+	ld de, wCurDeckName
+	call CopyListFromHLToDEInSRAM
+	pop hl
+
+	ld de, wCurDeckCards
+	ld b, DECK_TEMP_BUFFER_SIZE
+	call EnableSRAM
+	call CopyBBytesFromHLToDE_Bank02
+	call DisableSRAM
+
+	ld a, ALL_DECKS
+	ld [wCurDeck], a
+	ld a, DECK_SIZE
+	ld [wTotalCardCount], a
+	ld [wNumValidDeckSize], a
+	ld hl, wCardFilterCounts
+	ld [hl], a
+	call HandleDeckConfirmationMenu
+	ret
 
 ; a - selected deck
 ; handles the submenu when selecting a deck
@@ -5387,9 +5406,26 @@ OpenCardPageFromCardList:
 	ld a, [wCurScrollMenuItem]
 	ld [wTempCurMenuItem], a
 	ret
-; 0xa132
 
-SECTION "Bank 2@6152", ROMX[$6152], BANK[$2]
+; remnant from tcg1
+; GetSelectedVisibleCardID, then open card page
+OpenSelectedVisibleCardPage:
+	ld hl, wVisibleListCardIDs
+	ld a, [wCurScrollMenuItem]
+	add a ; *2
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	call LoadCardDataToBuffer1_FromCardID
+	lb de, $38, $9f
+	call SetupText
+	bank1call OpenCardPage_FromHand
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	ret
 
 ; adds card in register de to deck configuration
 ; and updates the values shown for its count
