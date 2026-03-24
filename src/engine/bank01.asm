@@ -2504,9 +2504,10 @@ DisplayDuelistTurnScreen:
 	call DrawWideTextBox_WaitForInput
 	call ExchangeRNG
 	ret
-; 0x5177
 
-SECTION "Bank 1@517e", ROMX[$517e], BANK[$1]
+; remnant from tcg1 (Unknown_54e2)
+Data_5177:
+	db $00, $0c, $06, $0f, $00, $00, $00
 
 DuelMenuData:
 	textitem  3, 14, HandText
@@ -2564,9 +2565,16 @@ DisplayPlaceInitialPokemonCardsScreen:
 .skip_sorting
 	pop af
 	ret
-; 0x51d9
 
-SECTION "Bank 1@51ed", ROMX[$51ed], BANK[$1]
+OpenDiscardPileScreen_Simple:
+	call CreateDiscardPileCardList
+	ret c
+	call InitAndDrawCardListScreenLayout
+	ldtx hl, ChooseCardToCheckText
+	ldtx de, DuelistDiscardPileText
+	call SetCardListHeaderAndInfoText
+	call DisplayCardList
+	ret
 
 ; draw the turn holder's discard pile screen
 OpenDiscardPileScreen:
@@ -3361,9 +3369,39 @@ ZeroObjectPositionsAndToggleOAMCopy:
 	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	ret
-; 0x5647
 
-SECTION "Bank 1@5670", ROMX[$5670], BANK[$1]
+; de = top-left corner coordinates
+; place 8x6 image OAM, using obj size 8x16 and obj palette 1
+; to draw card image in check card screens
+PlaceCardImageOAM:
+	call Set_OBJ_8x16
+	ld l, $a0 ; v0Tiles1 + $20 tiles
+	ld c, 8 ; rows
+.next_column
+	ld b, 3 ; columns
+	push de
+.next_row
+	push bc
+	ld c, l ; tile number
+	ld b, 1 ; attributes (palette)
+	call SetOneObjectAttributes
+	pop bc
+	inc l
+	inc l ; next 8x16 tile
+	ld a, 16
+	add e ; y += 16 (next 8x16 row)
+	ld e, a
+	dec b
+	jr nz, .next_row
+	pop de
+	ld a, 8
+	add d ; x += 8 (next 8x16 column)
+	ld d, a
+	dec c
+	jr nz, .next_column
+	ld a, TRUE
+	ld [wVBlankOAMCopyToggle], a
+	ret
 
 LoadCardGfxFromDeckIndex:
 	push de
@@ -3401,14 +3439,20 @@ DrawCardGfxToDE_BGPalIndex5:
 	ld a, $5
 	call LoadCardPalettesAndAttributes
 	ret
-; 0x5698
 
-SECTION "Bank 1@56a6", ROMX[$56a6], BANK[$1]
+SetOBPToCardPalette:
+	ldgbpal a, SHADE_WHITE, SHADE_LIGHT, SHADE_DARK, SHADE_BLACK
+	ld [wOBP0], a
+	ld a, [wConsole]
+	or a
+	ret z
+	ld a, $0d
+	jr CopyCGBCardPalette
 
 ; de = coordinates
 LoadCardPalettesAndAttributes:
 	push de
-	call .CopyCardPals
+	call CopyCGBCardPalette
 	pop bc
 
 	; copy attributes
@@ -3434,7 +3478,7 @@ LoadCardPalettesAndAttributes:
 	ret
 
 ; a = starting BG palette index to copy to
-.CopyCardPals:
+CopyCGBCardPalette:
 	ld c, a
 	add a
 	add a
@@ -4324,9 +4368,19 @@ SelectingBenchPokemonMenu:
 	ld e, 16
 	lb bc, SYM_CURSOR_R, SYM_SPACE
 	jp SetCursorParametersForTextBox
-; 0x5bfd
 
-SECTION "Bank 1@5c15", ROMX[$5c15], BANK[$1]
+; remnant from tcg1, unreferenced
+Func_5bfd:
+	ldh [hTempPlayAreaLocation_ff9d], a
+	call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call LoadDuelCardSymbolTiles
+	call LoadDuelCheckPokemonScreenTiles
+	xor a ; FALSE
+	ld [wExcludeArenaPokemon], a
+	call PrintPlayAreaCardList
+	call EnableLCD
+; fallthrough
 
 InitAndPrintPlayAreaCardInformationAndLocation:
 	ld hl, wCurPlayAreaSlot
@@ -4840,9 +4894,18 @@ PrintPlayAreaCardAttachedEnergies:
 	ld b, NUM_TYPES
 	call SafeCopyDataHLtoDE
 	ret
-; 0x5efe
 
-SECTION "Bank 1@5f0c", ROMX[$5f0c], BANK[$1]
+; remnant from tcg1, unreferenced
+Func_5efe:
+	ld hl, wDefaultText
+	ld e, 8
+.loop_write
+	ld a, [hli]
+	call JPWriteByteToBGMap0
+	inc b
+	dec e
+	jr nz, .loop_write
+	ret
 
 DisplayPlayAreaScreenToUsePkmnPower:
 	xor a
@@ -7095,7 +7158,7 @@ DamageCalculation_WeaknessAndResistance:
 
 SetDefaultPalettes:
 	call SetFontAndTextBoxFrameColor
-	ld a, %11100100
+	ldgbpal a, SHADE_WHITE, SHADE_LIGHT, SHADE_DARK, SHADE_BLACK
 	ld [wOBP0], a
 	ld [wBGP], a
 	ld a, $01 ; equivalent to FLUSH_ONE_PAL
@@ -7133,12 +7196,13 @@ SetFontAndTextBoxFrameColor:
 
 Func_6c12::
 	ld hl, Pals_6f0d8 - $4000
+Func_6c15:
 	ld de, wBackgroundPalettesCGB + 2 * PAL_SIZE
 	ld c, 3 palettes
 	jp CopyFontsOrDuelGraphicsBytes
-; 0x6c1d
-
-SECTION "Bank 1@6c22", ROMX[$6c22], BANK[$1]
+Func_6c1d:
+	ld hl, Pals_6f0f0 - $4000
+	jr Func_6c15
 
 HandleDamageModifiersEffects::
 	call HandlePrehistoricDreamDamageBoost

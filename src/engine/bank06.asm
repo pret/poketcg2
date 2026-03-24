@@ -2,7 +2,7 @@ INCLUDE "engine/play_area_menu.asm"
 
 INCLUDE "engine/glossary.asm"
 
-; leftover from tcg1, remaining bugged, unreferenced
+; remnant from tcg1, remaining bugged, unreferenced
 HandleCheckMenuInput_Bank06:
 	xor a
 	ld [wMenuInputSFX], a
@@ -3038,7 +3038,7 @@ HandleCardPopCommunications:
 	xor a
 	call BankswitchSRAM
 	call DisableSRAM
-	or a ; redundant, leftover from tcg1
+	or a ; redundant, remnant from tcg1
 	ret
 
 ; looks up the name in wNameBuffer in wCardPopNameList

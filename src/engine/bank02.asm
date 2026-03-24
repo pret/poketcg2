@@ -2257,7 +2257,7 @@ _DrawPlayAreaToPlacePrizeCards::
 	db  0,  4
 	db  0,  2
 
-; leftover from tcg1, unreferenced
+; remnant from tcg1, unreferenced
 Func_8dcf:
 	push hl
 	ld a, [wCheckMenuPlayAreaWhichDuelist]
@@ -2309,7 +2309,7 @@ Func_8dcf:
 	pop af
 	ret
 
-; leftover from tcg1, unreferenced
+; remnant from tcg1, unreferenced
 Data_8e1c:
 	db $06, $05, $06, $06, $07, $05, $07, $06
 	db $08, $05, $08, $06, $05, $0e, $05, $0d
