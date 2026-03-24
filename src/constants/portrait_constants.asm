@@ -101,6 +101,7 @@
 	const EMOTION_NORMAL ; $0
 	const EMOTION_HAPPY  ; $1
 	const EMOTION_SAD    ; $2
+DEF NUM_EMOTIONS EQU const_value
 
 ; each AI opponent has a personality
 ; that will decide which portrait to use

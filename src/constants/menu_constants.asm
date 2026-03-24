@@ -41,6 +41,19 @@
 	const DEBUGMENU_DUEL          ; 5
 	const DEBUGMENU_SLOT          ; 6
 
+; in-game debug menu options
+	const_def
+	const INGAMEDEBUGMENU_BG_FONT_VIEWER     ; $0
+	const INGAMEDEBUGMENU_BG_PORTRAIT_VIEWER ; $1
+	const INGAMEDEBUGMENU_EFFECT_VIEWER      ; $2
+	const INGAMEDEBUGMENU_OBJ_VIEWER         ; $3
+	const INGAMEDEBUGMENU_CLEAR_MAIL         ; $4
+	const INGAMEDEBUGMENU_CUP_BRACKET        ; $5
+	const INGAMEDEBUGMENU_SEND_MAIL          ; $6
+	const INGAMEDEBUGMENU_ADJUST_CHIPS       ; $7
+	const INGAMEDEBUGMENU_ENTER_NAME         ; $8
+	const INGAMEDEBUGMENU_CREDITS            ; $9
+
 ; scenario debug menu options
 	const_def
 	const SCENARIODEBUGMENU_MODIFY_EVENTS             ; 0

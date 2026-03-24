@@ -2702,7 +2702,10 @@ wOWScrollSpeed:: ; d681
 wDebugMenuCursorPosition:: ; d682
 	ds $1
 
-	ds $2
+wInGameDebugMenuCursorPosition:: ; d683
+	ds $1
+
+	ds $1
 
 wDebugAnimDuelistSide:: ; d685
 	ds $1
