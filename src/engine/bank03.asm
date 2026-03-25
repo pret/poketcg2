@@ -4811,7 +4811,7 @@ DebugBGPortraitViewerScreen:
 ; npc's
 	ld h, RONALD_PIC ; starting npc
 	ld l, EMOTION_NORMAL
-	ld b, $01
+	ld b, TRUE ; unused?
 	ld d, 10
 	ld e, 5
 	jr .draw
@@ -4943,7 +4943,7 @@ DebugObjViewerScreen:
 	push hl
 	farcall Func_1022a
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
-	ld a, 20
+	ld a, NUM_MAPS_GFX_DEBUG
 	call Random
 	ld c, a
 	ld b, 0
@@ -4972,7 +4972,7 @@ DebugObjViewerScreen:
 	ret
 
 .Viewer:
-	ld h, $00 ; mark
+	ld h, NPC_MARK
 	jr .draw
 
 .wait_input
@@ -4992,7 +4992,7 @@ DebugObjViewerScreen:
 	ld a, h
 	and a
 	jr nz, .backward
-	ld h, $de
+	ld h, NUM_NPCS_DEBUG
 .backward
 	dec h
 	jr .draw
@@ -5003,7 +5003,7 @@ DebugObjViewerScreen:
 	jr z, .wait_input
 ; up
 	ld a, h
-	cp $de - 1
+	cp NUM_NPCS_DEBUG - 1
 	jr nz, .forward
 	ld h, -1
 .forward
@@ -5317,10 +5317,11 @@ DebugSendMailScreen:
 	pop af
 	ret
 
+; probably typoed TRUE as TRUE << 4
 .menu_params:
 	menubox_params TRUE, 20, 18, \
 		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
-		PAD_A, PAD_B, $10, 1, NULL, DebugSendMailText
+		PAD_A, PAD_B, (TRUE << 4), 1, NULL, DebugSendMailText
 	textitem 2,  1, MailBlackBoxOutputSenderText
 	textitem 2,  2, MailBillsPCOutputSenderText
 	textitem 2,  3, MailMailboxIntroSenderText
