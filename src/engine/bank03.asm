@@ -4723,7 +4723,7 @@ GetGRChallengeCupPrizeCardName:
 	pop af
 	ret
 
-Func_f05c:
+DebugBackgroundFontViewerScreen:
 	push af
 	push bc
 	push de
@@ -4732,10 +4732,13 @@ Func_f05c:
 	farcall SetFrameFuncAndFadeFromWhite
 	call FlushAllPalettes
 	lb de, 2, 1
-	ld b, $00
-	call Func_f085
-	ld b, $08
-	call Func_f085
+; page 1
+	ld b, 0
+	call .Viewer
+; page 2
+	ld b, 8
+	call .Viewer
+; exit
 	farcall FadeToWhiteAndUnsetFrameFunc
 	farcall Func_10252
 	pop hl
@@ -4744,23 +4747,24 @@ Func_f05c:
 	pop af
 	ret
 
-; b - ?
+; b - byte to write to v1BGMap0 addr
 ; de - coordinates
-Func_f085:
+.Viewer:
 	push de
 	push bc
 	ld b, d
 	ld c, e
 	call BCCoordToBGMap0Address
 	pop bc
-	ld d, $00
-	ld c, $10
-.asm_f091
+
+	ld d, 0
+	ld c, 16
+.loop_rows
 	push bc
-	ld c, $10
+	ld c, 16
 	push hl
-.asm_f095
-	xor a
+.loop_columns
+	xor a ; BANK("VRAM0")
 	call BankswitchVRAM
 	ei
 	di
@@ -4778,20 +4782,279 @@ Func_f085:
 	ei
 	inc d
 	dec c
-	jr nz, .asm_f095
+	jr nz, .loop_columns
 	pop hl
+; next row
 	ld bc, $20
 	add hl, bc
 	pop bc
 	dec c
-	jr nz, .asm_f091
+	jr nz, .loop_rows
+; next page
 	ld c, PAD_A | PAD_B
 	farcall WaitForButtonPress
 	pop de
 	ret
-; 0xf0c3
 
-SECTION "Bank 3@725a", ROMX[$725a], BANK[$3]
+; display player's portrait to left, selected npc's to right
+DebugBGPortraitViewerScreen:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_102a4
+	farcall SetInitialGraphicsConfiguration
+	farcall ZeroObjectPositionsAndEnableOBPFading
+; player's
+	lb bc, 4, 5
+	call DrawPlayerPortrait
+; npc's
+	ld h, RONALD_PIC ; starting npc
+	ld l, EMOTION_NORMAL
+	ld b, TRUE ; unused?
+	ld d, 10
+	ld e, 5
+	jr .draw
+
+.wait_input
+	call DoFrame
+	ldh a, [hKeysHeld]
+	and $ff ; can be or a
+	jr z, .wait_input
+
+	ldh a, [hKeysPressed]
+	and PAD_A | PAD_B
+	jr nz, .exit
+	ldh a, [hDPadHeld]
+	and PAD_DOWN
+	jr z, .not_down
+; down
+	ld a, h
+	and a
+	jr nz, .pic_backward
+	ld h, NUM_PICS
+.pic_backward
+	dec h
+	jr .draw
+
+.not_down
+	ldh a, [hDPadHeld]
+	and PAD_UP
+	jr z, .not_up
+; up
+	ld a, h
+	cp NUM_PICS - 1
+	jr nz, .pic_forward
+	ld h, -1
+.pic_forward
+	inc h
+	jr .draw
+
+.not_up
+	ldh a, [hDPadHeld]
+	and PAD_LEFT
+	jr z, .not_left
+; left
+	ld a, l
+	and a
+	jr z, .wait_input
+; emotion backward
+	dec l
+	jr .draw
+
+.not_left
+	ldh a, [hDPadHeld]
+	and PAD_RIGHT
+	jr z, .wait_input
+	ld a, l
+	cp NUM_EMOTIONS - 1
+; emotion forward
+	jr z, .wait_input
+	inc l
+
+.draw
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	push af
+	push bc
+	push de
+	push hl
+	ld b, d
+	ld c, e
+	ld a, h
+	ld e, l
+	call DrawNPCPortrait
+	pop hl
+	pop de
+	pop bc
+	pop af
+
+	push af
+	push bc
+	push de
+	push hl
+; print (*_PIC + 1)
+	push bc
+	push hl
+	ld a, 3
+	ld b, FALSE
+	ld d, 10
+	ld e, 11
+	inc h
+	ld l, h
+	ld h, 0
+	farcall PrintNumber
+	pop hl
+	pop bc
+; print EMOTION_*
+	ld a, 1
+	ld b, FALSE
+	ld d, 15
+	ld e, 11
+	ld h, 0
+	farcall PrintNumber
+	call FlushAllPalettes
+	pop hl
+	pop de
+	pop bc
+	pop af
+	jp .wait_input
+
+.exit
+	push af
+	ld a, SFX_CANCEL
+	call CallPlaySFX
+	pop af
+	farcall StartFadeToWhite
+	farcall WaitPalFading_Bank07
+	farcall Func_102c4
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+DebugObjViewerScreen:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_1022a
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	ld a, NUM_MAPS_GFX_DEBUG
+	call Random
+	ld c, a
+	ld b, 0
+	farcall LoadOWMap
+	lb de, 1, 7
+	lb bc, 18, 6
+	farcall FillBoxInBGMapWithZero
+	call PauseSong_SaveState
+	push af
+	ld a, MUSIC_DECK_MACHINE
+	call SetMusic
+	pop af
+	farcall SetFrameFuncAndFadeFromWhite
+	call .Viewer
+	push af
+	ld a, SFX_CANCEL
+	call CallPlaySFX
+	pop af
+	call ResumeSong_ClearTemp
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.Viewer:
+	ld h, NPC_MARK
+	jr .draw
+
+.wait_input
+	call DoFrame
+	ldh a, [hKeysHeld]
+	and $ff ; can be or a
+	jr z, .wait_input
+
+	ldh a, [hKeysPressed]
+	and PAD_A | PAD_B
+	ret nz
+
+	ldh a, [hDPadHeld]
+	and PAD_DOWN
+	jr z, .not_down
+; down
+	ld a, h
+	and a
+	jr nz, .backward
+	ld h, NUM_NPCS_DEBUG
+.backward
+	dec h
+	jr .draw
+
+.not_down
+	ldh a, [hDPadHeld]
+	and PAD_UP
+	jr z, .wait_input
+; up
+	ld a, h
+	cp NUM_NPCS_DEBUG - 1
+	jr nz, .forward
+	ld h, -1
+.forward
+	inc h
+	jr .draw ; unnecessary jr
+
+.draw
+	farcall InitOWObjects
+	ld a, h
+	ld e, 64
+	push af
+	ld a, SFX_CURSOR
+	call CallPlaySFX
+	pop af
+	push hl
+	ld d, 24
+	ld b, NORTH
+	farcall LoadOWObject
+	ld d, 56
+	ld b, EAST
+	farcall LoadOWObject
+	ld d, 88
+	ld b, SOUTH
+	farcall LoadOWObject
+	ld d, 120
+	ld b, WEST
+	farcall LoadOWObject
+	pop hl
+; print id
+	push af
+	push bc
+	push de
+	push hl
+	ld a, 3
+	ld d, 9
+	ld e, 11
+	ld l, h
+	ld h, 0
+	ld b, FALSE
+	farcall PrintNumber
+	pop hl
+	pop de
+	pop bc
+	pop af
+	jr .wait_input
+
+DebugMenuEffectViewerScreen:
+	farcall Func_102a4
+	call DebugMenuEffectViewer
+	farcall Func_102c4
+	ret
 
 DebugMenuEffectViewer:
 	push af
@@ -5014,4 +5277,159 @@ ChangeDebugViewerStateText:
 	pop bc
 	pop af
 	ret
-; 0xf408
+
+DebugSendMailScreen:
+	push af
+	push bc
+	push de
+	push hl
+	farcall Func_1022a
+	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
+	lb de, 0, 0
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
+	call LoadMenuBoxParams
+	xor a
+	farcall DrawMenuBox
+	push af
+	ld de, ROCKETS_SNEAK_ATTACK
+	lb bc, 10, 2
+	farcall DrawIntroCardGfx
+	pop af
+	farcall SetFrameFuncAndFadeFromWhite
+.wait_input
+	farcall HandleMenuBox
+	jr c, .exit
+	push af
+	inc a
+	farcall AddMailToQueue
+	pop af
+	ldtx hl, DebugSendMailText
+	farcall PrintScrollableText_NoTextBoxLabelVRAM0
+	farcall DrawMenuBox
+	jr .wait_input
+.exit
+	farcall FadeToWhiteAndUnsetFrameFunc
+	farcall Func_10252
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+; probably typoed TRUE as TRUE << 4
+.menu_params:
+	menubox_params TRUE, 20, 18, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, (TRUE << 4), 1, NULL, DebugSendMailText
+	textitem 2,  1, MailBlackBoxOutputSenderText
+	textitem 2,  2, MailBillsPCOutputSenderText
+	textitem 2,  3, MailMailboxIntroSenderText
+	textitem 2,  4, MailDeckDiagnosis1SenderText
+	textitem 2,  5, MailDeckDiagnosis2SenderText
+	textitem 2,  6, MailDeckDiagnosis3SenderText
+	textitem 2,  7, MailDeckDiagnosis4SenderText
+	textitem 2,  8, MailAutoDeckMachine1SenderText
+	textitem 2,  9, MailAutoDeckMachine2SenderText
+	textitem 2, 10, MailAutoDeckMachine3SenderText
+	textitem 2, 11, MailAutoDeckMachine4SenderText
+	textitem 2, 12, MailAutoDeckMachine5SenderText
+	textitem 2, 13, MailChallengeMachineSenderText
+	textitem 2, 14, MailGRChallengeMachineSenderText
+	textitem 2, 15, MailGrandMasterCupSenderText
+	textitem 2, 16, MailRonaldsScoutGR1SenderText
+	textitems_end
+
+DebugAdjustChips:
+	farcall TurnOnCurChipsHUD
+.wait_input
+	call DoFrame
+	ldh a, [hDPadHeld]
+	and PAD_UP
+	call nz, .Incr100
+	ldh a, [hDPadHeld]
+	and PAD_DOWN
+	call nz, .Decr100
+	ldh a, [hDPadHeld]
+	and PAD_RIGHT
+	call nz, .Incr10
+	ldh a, [hDPadHeld]
+	and PAD_LEFT
+	call nz, .Decr10
+	ldh a, [hKeysPressed]
+	and PAD_B
+	jr z, .wait_input
+; b btn, exit
+	farcall TurnOffCurChipsHUD
+	ret
+
+.Incr100:
+	ld bc, 100
+	farcall AddChips
+	ret
+.Decr100:
+	ld bc, 100
+	farcall SubtractChips
+	ret
+.Incr10:
+	ld bc, 10
+	farcall AddChips
+	ret
+.Decr10:
+	ld bc, 10
+	farcall SubtractChips
+	ret
+
+DebugGrandMasterCupBracket:
+	farcall InitGrandMasterCupBracket
+	call .SetNames
+	ld c, GRANDMASTERCUP_BRACKET_ROUND1_MATCH1
+.loop_setup
+; set winner randomly
+	ld a, 2
+	call Random
+	inc a
+	farcall UpdateGrandMasterCupBracketResults
+	inc c
+	ld a, c
+	cp NUM_GRANDMASTERCUP_BRACKET_MATCHES
+	jr nz, .loop_setup
+	farcall GrandMasterCupBracketScreen
+	ret
+
+; arbitrary texts
+.SetNames:
+	xor a
+	ldtx hl, TxRam1Text
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, PauseMenuStatusText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, BoosterPackPsychicBattleText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, BoosterPackIslandOfFossilText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, GetPackText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, TechText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, MainCharacterText
+	farcall LoadGrandMasterCupCompetitorNames
+	inc a
+	ldtx hl, GiftCenterQuitText
+	farcall LoadGrandMasterCupCompetitorNames
+	ret
+
+DebugPlayCredits:
+	call PauseSong_SaveState
+	farcall CreditsScreen
+	call ResumeSong_ClearTemp
+	ret
+
+; stray 0
+	db 0

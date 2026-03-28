@@ -41,6 +41,19 @@
 	const DEBUGMENU_DUEL          ; 5
 	const DEBUGMENU_SLOT          ; 6
 
+; in-game debug menu options
+	const_def
+	const INGAMEDEBUGMENU_BG_FONT_VIEWER     ; $0
+	const INGAMEDEBUGMENU_BG_PORTRAIT_VIEWER ; $1
+	const INGAMEDEBUGMENU_EFFECT_VIEWER      ; $2
+	const INGAMEDEBUGMENU_OBJ_VIEWER         ; $3
+	const INGAMEDEBUGMENU_CLEAR_MAIL         ; $4
+	const INGAMEDEBUGMENU_CUP_BRACKET        ; $5
+	const INGAMEDEBUGMENU_SEND_MAIL          ; $6
+	const INGAMEDEBUGMENU_ADJUST_CHIPS       ; $7
+	const INGAMEDEBUGMENU_ENTER_NAME         ; $8
+	const INGAMEDEBUGMENU_CREDITS            ; $9
+
 ; scenario debug menu options
 	const_def
 	const SCENARIODEBUGMENU_MODIFY_EVENTS             ; 0
@@ -141,6 +154,20 @@ DEF NUM_COIN_PAGES EQU const_value
 ; for menu items, PlaySFXConfirmOrCancel, etc.
 DEF MENU_CANCEL  EQU -1
 DEF MENU_CONFIRM EQU  1 ; != -1, but uses 1 most of the time
+
+; cursor
+; cursor_transition macro args
+RSRESET
+DEF CURSOR_TRANSITION_STRUCT_X           RB ; 0
+DEF CURSOR_TRANSITION_STRUCT_Y           RB ; 1
+DEF CURSOR_TRANSITION_STRUCT_ATTR        RB ; 2
+DEF CURSOR_TRANSITION_STRUCT_DIR_INDICES EQU _RS
+DEF CURSOR_TRANSITION_STRUCT_INDEX_UP    RB ; 3
+DEF CURSOR_TRANSITION_STRUCT_INDEX_DOWN  RB ; 4
+DEF CURSOR_TRANSITION_STRUCT_INDEX_RIGHT RB ; 5
+DEF CURSOR_TRANSITION_STRUCT_INDEX_LEFT  RB ; 6
+
+DEF CURSOR_TRANSITION_STRUCT_LENGTH EQU _RS ; 7
 
 ; filter types for CardTypeFilters
 ; used to categorise the different cards

@@ -151,6 +151,7 @@ DEF GR_ISLAND  EQU $1
 	const MAP_GFX_FIGHTING_CLUB_LOBBY            ; $11
 	const MAP_GFX_FIGHTING_CLUB                  ; $12
 	const MAP_GFX_GRASS_CLUB_ENTRANCE            ; $13
+DEF NUM_MAPS_GFX_DEBUG EQU const_value
 	const MAP_GFX_GRASS_CLUB_LOBBY               ; $14
 	const MAP_GFX_GRASS_CLUB                     ; $15
 	const MAP_GFX_SCIENCE_CLUB_ENTRANCE          ; $16

@@ -320,6 +320,7 @@ DEF NUM_PICS EQU const_value
 	const NPC_GAME_CENTER_FIXER                 ; $db
 	const NPC_GAME_CENTER_GR_WOMAN              ; $dc
 	const NPC_ISHIHARAS_VILLA_GR_GAL            ; $dd
+DEF NUM_NPCS_DEBUG EQU const_value
 	const NPC_GR_CLERK_CHALLENGE_HALL_ENTRANCE  ; $de
 	const NPC_GR_CHALLENGE_HALL_GR_CHAP         ; $df
 	const NPC_GR_CHALLENGE_HALL_GR_WOMAN        ; $e0

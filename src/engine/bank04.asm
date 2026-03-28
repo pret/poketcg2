@@ -11,10 +11,10 @@ StartUpDebugMenu::
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call FlushAllPalettes
 	call EnableLCD
-	call InitStartupDebugMenuBox
-	call HandleStartupDebugMenuBox
+	call .InitMenuBox
+	call .HandleMenuBox
 	jr c, .done
-	call HandleStartupDebugMenuOption
+	call .HandleMenuOption
 	jr c, .done
 	jr .loop
 .done
@@ -25,7 +25,7 @@ StartUpDebugMenu::
 	pop af
 	ret
 
-InitStartupDebugMenuBox:
+.InitMenuBox:
 	push af
 	push bc
 	push de
@@ -56,24 +56,24 @@ InitStartupDebugMenuBox:
 	textitem 2, 9, PauseMenuExitText
 	textitems_end
 
-HandleStartupDebugMenuBox:
+.HandleMenuBox:
 	ld a, [wDebugMenuCursorPosition]
 	farcall HandleMenuBox
 	ld [wDebugMenuCursorPosition], a
-	jr c, .asm_1008a
+	jr c, .exit
 	push af
 	ld a, SFX_CONFIRM
 	call CallPlaySFX
 	pop af
 	ret
-.asm_1008a
+.exit
 	push af
 	ld a, SFX_CANCEL
 	call CallPlaySFX
 	pop af
 	ret
 
-HandleStartupDebugMenuOption:
+.HandleMenuOption:
 	ld hl, .FunctionMap
 	call CallMappedFunction
 	ret
@@ -173,9 +173,105 @@ DebugSlotMachine:
 	call ResumeSong_ClearTemp
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
 	ret
-; 0x10150
 
-SECTION "Bank 4@4221", ROMX[$4221], BANK[$4]
+InGameDebugMenu:
+	push af
+	push bc
+	push de
+	push hl
+	push af
+	ld a, SFX_CONFIRM
+	call CallPlaySFX
+	pop af
+.loop
+	call .InitMenuBox
+	call .HandleMenuBox
+	jr c, .done
+	call .HandleMenuOption
+	jr c, .done
+	call .ExitMenu
+	jr .loop
+.done
+	call .ExitMenu
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.InitMenuBox:
+	push af
+	push bc
+	push de
+	push hl
+	lb de, 0, 4
+	ld b, BANK(.menu_params)
+	ld hl, .menu_params
+	call LoadMenuBoxParams
+	farcall HideNPCAnimsUnderMenuBox
+	ld a, [wInGameDebugMenuCursorPosition]
+	farcall DrawMenuBox
+	pop hl
+	pop de
+	pop bc
+	pop af
+	ret
+
+.menu_params:
+	menubox_params TRUE, 14, 14, \
+		SYM_CURSOR_R, SYM_SPACE, SYM_CURSOR_R, SYM_CURSOR_R, \
+		PAD_A, PAD_B, FALSE, 1, NULL, DebugKondoDebugText
+	textitem 2,  2, DebugBackgroundFontStateText
+	textitem 2,  3, DebugBackgroundFaceDisplayText
+	textitem 2,  4, DebugEffectViewerText
+	textitem 2,  5, DebugObjectCharacterDisplayText
+	textitem 2,  6, DebugClearMailText
+	textitem 2,  7, DebugTournamentTableText
+	textitem 2,  8, DebugSendMailText
+	textitem 2,  9, DebugAdjustChipsText
+	textitem 2, 10, DebugNameEntryText
+	textitem 2, 11, DebugCreditsText
+	textitem 2, 12, PauseMenuExitText
+	textitems_end
+
+.HandleMenuBox:
+	ld a, [wInGameDebugMenuCursorPosition]
+	farcall HandleMenuBox
+	ld [wInGameDebugMenuCursorPosition], a
+	jr c, .exit_menu_box
+	push af
+	ld a, SFX_CONFIRM
+	call CallPlaySFX
+	pop af
+	ret
+.exit_menu_box
+	push af
+	ld a, SFX_CANCEL
+	call CallPlaySFX
+	pop af
+	ret
+
+.HandleMenuOption:
+	ld hl, .FunctionMap
+	call CallMappedFunction
+	ret
+
+.FunctionMap:
+	key_func INGAMEDEBUGMENU_BG_FONT_VIEWER,     DebugBackgroundFontViewerScreen
+	key_func INGAMEDEBUGMENU_BG_PORTRAIT_VIEWER, DebugBGPortraitViewerScreen
+	key_func INGAMEDEBUGMENU_EFFECT_VIEWER,      DebugMenuEffectViewerScreen
+	key_func INGAMEDEBUGMENU_OBJ_VIEWER,         DebugObjViewerScreen
+	key_func INGAMEDEBUGMENU_CLEAR_MAIL,         InitializeMailboxWRAM
+	key_func INGAMEDEBUGMENU_CUP_BRACKET,        DebugGrandMasterCupBracket
+	key_func INGAMEDEBUGMENU_SEND_MAIL,          DebugSendMailScreen
+	key_func INGAMEDEBUGMENU_ADJUST_CHIPS,       DebugAdjustChips
+	key_func INGAMEDEBUGMENU_ENTER_NAME,         PlayerNameSelectionScreen
+	key_func INGAMEDEBUGMENU_CREDITS,            DebugPlayCredits
+	db $ff
+
+.ExitMenu:
+	farcall ShowNPCAnimsUnderMenuBox
+	ret
 
 ; waits until any of the keys
 ; in register c are pressed
@@ -1316,7 +1412,7 @@ ZeroObjectPositionsAndEnableOBPFading:
 	push hl
 	call Set_OBJ_8x8
 	call ZeroObjectPositions
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	farcall EnableOBPFading
 	pop hl
@@ -1578,7 +1674,7 @@ UpdateSpriteAnims::
 	add hl, de
 	dec c
 	jr nz, .loop_objs
-	ld a, $01
+	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	pop hl
 	pop de
@@ -5920,9 +6016,12 @@ ShowProloguePortraitAndText:
 	tx ProloguePlayerToLabLine2Text
 	tx ProloguePlayerToLabLine3Text
 	dw $ffff
-; 0x13c22
 
-SECTION "Bank 4@7c2c", ROMX[$7c2c], BANK[$4]
+PlayerNameSelectionScreen:
+	call Func_1022a
+	call PlayerNameSelection
+	call Func_10252
+	ret
 
 PlayerNameSelection:
 	push af

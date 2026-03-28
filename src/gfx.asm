@@ -61,6 +61,23 @@ Pals_6f0d8::
 	rgb 27,  7,  3
 	rgb  0,  0,  0
 
+Pals_6f0f0::
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb  2, 13, 31
+	rgb  0,  0, 31
+
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb 31,  0,  0
+	rgb  9,  0,  0
+
+	rgb 31, 31, 31
+	rgb  0,  0,  0
+	rgb 28, 12,  0
+	rgb 13,  9,  0
+; 0x6f108
+
 SECTION "Gfx 1@7150", ROMX[$7150], BANK[$1b]
 
 SymbolsFont::

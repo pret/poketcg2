@@ -1,4 +1,4 @@
-Func_13886:
+CreditsScreen:
 	call Func_1022a
 	call _PlayCredits
 	call Func_10252
