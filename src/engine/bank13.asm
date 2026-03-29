@@ -569,40 +569,40 @@ Func_4c605:
 .asm_4c640
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld hl, wd036
+	ld hl, wAILastAttackArenaCard
 	cp [hl]
 	jr nz, .no_carry
-	ld a, [wd037]
+	ld a, [wAILastAttackIndex]
 	or a
 	jr nz, .no_carry
-	ld a, [wd038]
+	ld a, [wAIAttackRepeatCount]
 	cp b
 	jr c, .no_carry
 .set_carry
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 	scf
 	ret
 
 Func_4c65b:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld hl, wd036
+	ld hl, wAILastAttackArenaCard
 	cp [hl]
 	jr nz, .asm_4c66e
 	inc hl
 	ld a, [wSelectedAttack]
-	cp [hl] ; wd037
+	cp [hl] ; wAILastAttackIndex
 	jr nz, .asm_4c66f
 	inc hl
-	inc [hl] ; wd038
+	inc [hl] ; wAIAttackRepeatCount
 	ret
 .asm_4c66e
 	ld [hli], a
 .asm_4c66f
 	ld a, [wSelectedAttack]
-	ld [hli], a ; wd037
-	ld [hl], 1 ; wd038
+	ld [hli], a ; wAILastAttackIndex
+	ld [hl], 1 ; wAIAttackRepeatCount
 	ret
 ; 0x4c676
 
@@ -734,7 +734,7 @@ SECTION "Bank 13@4925", ROMX[$4925], BANK[$13]
 
 AIUpdatePortrait:
 	ld a, -1
-	ld [wd061], a
+	ld [wAIBenchCandidateCanAttack], a
 	ld a, [wDuelFinished]
 	or a
 	jr z, .duel_ongoing
@@ -867,8 +867,8 @@ AIUpdatePortrait:
 	; set sad portrait if no more deck cards
 	call DrawCardFromDeck
 	jp c, .set_sad_portrait
-	ld [wd061], a
-	ld a, [wd061] ; unnecessary
+	ld [wAIBenchCandidateCanAttack], a
+	ld a, [wAIBenchCandidateCanAttack] ; unnecessary
 	call GetCardIDFromDeckIndex
 	cp16 PROFESSOR_OAK
 	jp z, .set_happy_based_on_personality
@@ -917,7 +917,7 @@ AIUpdatePortrait:
 	ld a, [wLoadedCard1Type]
 	or TYPE_ENERGY
 	ld [wTempCardType], a
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	farcall CheckIfEnergyIsUseful
 	pop bc
 	jr c, .set_happy_based_on_personality
@@ -928,7 +928,7 @@ AIUpdatePortrait:
 	jr .loop_play_area_1
 
 .pkmn_card
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	call LoadCardDataToBuffer1_FromDeckIndex
 	ld a, [wLoadedCard1Stage]
 	or a
@@ -937,7 +937,7 @@ AIUpdatePortrait:
 	get_turn_duelist_var
 	dec a
 	ld e, a
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	ld d, a
 .loop_play_area_2
 	call CheckIfEvolvesInto
@@ -1029,7 +1029,7 @@ AIUpdatePortrait:
 .finished
 	; if drew a card to peek,
 	; then put it back in the deck
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	cp -1
 	ret z
 	call ReturnCardToDeck

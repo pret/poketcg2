@@ -1825,8 +1825,8 @@ AISelectSpecialAttackParameters:
 
 AIChooseRagingThunderTarget:
 	xor a
-	ld [wd06a], a
-	ld [wd06b], a
+	ld [wAIBestTargetLocation], a
+	ld [wAIBestTargetScore], a
 	ld e, a ; PLAY_AREA_ARENA
 	ld a, DUELVARS_BENCH
 	get_turn_duelist_var
@@ -1841,20 +1841,20 @@ AIChooseRagingThunderTarget:
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
-	ld hl, wd06b
+	ld hl, wAIBestTargetScore
 	cp [hl]
 	jr c, .loop_bench ; has less remaining HP
 	ld [hl], a
 	ld a, e
-	ld [wd06a], a
+	ld [wAIBestTargetLocation], a
 	jr .loop_bench
 .break
-	ld a, [wd06a]
+	ld a, [wAIBestTargetLocation]
 	or a
 	ret z ; has no choice other than Arena card
 
 	; picked a Bench card, will it KO?
-	ld a, [wd06b]
+	ld a, [wAIBestTargetScore]
 	cp 30
 	jr nc, .got_target ; it won't
 	; it will, check whether to pick Arena card instead
@@ -1867,7 +1867,7 @@ AIChooseRagingThunderTarget:
 	xor a ; PLAY_AREA_ARENA
 	ret
 .got_target
-	ld a, [wd06a]
+	ld a, [wAIBestTargetLocation]
 	ret
 
 AILookForShortCircuitTargetToKO:
@@ -1944,8 +1944,8 @@ CountNumberAttachedWaterEnergies:
 
 AIChooseShortCircuitTarget:
 	xor a
-	ld [wd06a], a
-	ld [wd06b], a
+	ld [wAIBestTargetLocation], a
+	ld [wAIBestTargetScore], a
 	farcall IsPlayerArenaCardImmune
 	jr nc, .include_arena
 ; exclude Arena
@@ -1973,22 +1973,22 @@ AIChooseShortCircuitTarget:
 	pop de
 	call CountNumberAttachedWaterEnergies
 	ld b, a
-	ld a, [wd06b]
+	ld a, [wAIBestTargetScore]
 	cp b
 	jr nc, .next_play_area
 	ld a, b
-	ld [wd06b], a
+	ld [wAIBestTargetScore], a
 	ld a, e
-	ld [wd06a], a
+	ld [wAIBestTargetLocation], a
 .next_play_area
 	inc e
 	ld a, e
 	cp d
 	jr nz, .loop_play_area
 	call SwapTurn
-	ld a, [wd06b]
+	ld a, [wAIBestTargetScore]
 	ld b, a
-	ld a, [wd06a]
+	ld a, [wAIBestTargetLocation]
 	ret
 
 ; used by AI to determine which Pokémon it should favor in the bench
@@ -3323,7 +3323,7 @@ ReadCurAutoDeckName:
 
 ; de = text ID
 Func_2bc4f:
-	ld hl, wd548
+	ld hl, wDeckScreenTextPtr
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -3334,7 +3334,7 @@ Func_2bc4f:
 .asm_2bc5c
 	ld hl, .MenuParameters
 	call InitializeMenuParameters
-	ld hl, wd548
+	ld hl, wDeckScreenTextPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -3385,7 +3385,7 @@ _HandleAutoDeckMenu:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .wait_input
 	call DoFrame
 	farcall HandleScrollMenu

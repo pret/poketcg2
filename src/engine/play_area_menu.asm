@@ -84,12 +84,12 @@ OpenInPlayAreaScreen::
 .selection
 	call ZeroObjectPositionsAndToggleOAMCopy_Bank06
 	xor a
-	ld [wd0d2], a
+	ld [wGlossaryReinit], a
 	ld a, [wMultiDirectionalMenuCursorPosition]
 	ld [wPreservedInPlayAreaCursorPosition], a
 	ld hl, .PositionsJumpTable
 	call JumpToFunctionInTable
-	ld a, [wd0d2]
+	ld a, [wGlossaryReinit]
 	or a
 	jr nz, .on_frame
 	ld a, [wPreservedInPlayAreaCursorPosition]
@@ -320,7 +320,7 @@ OpenInPlayAreaScreen_TurnHolderPrizeCards:
 	call IsCurPrizeCardRemaining
 	jr nz, .found
 	ld a, $01
-	ld [wd0d2], a
+	ld [wGlossaryReinit], a
 	ret
 
 .found
@@ -343,7 +343,7 @@ OpenInPlayAreaScreen_NonTurnHolderPrizeCards:
 	call SwapTurn
 	jr nz, .found
 	ld a, $01
-	ld [wd0d2], a
+	ld [wGlossaryReinit], a
 	ret
 
 .found

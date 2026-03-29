@@ -1111,7 +1111,7 @@ Func_1c799:
 .asm_1c7ad
 	call FlushAllPalettes
 	ld a, $02
-	ld [wd9de], a
+	ld [wPalFadeStepStatus], a
 	ret
 
 Func_1c7b6:
@@ -1127,7 +1127,7 @@ Func_1c7b6:
 .asm_1c7ca
 	call FlushAllPalettes
 	ld a, $01
-	ld [wd9de], a
+	ld [wPalFadeStepStatus], a
 	ret
 
 ; de = 15-bit palette colors
@@ -3387,15 +3387,15 @@ ShowCoinReceivedScreen:
 	call ResumeSong_ClearTemp
 	call WaitForWideTextBoxInput
 	farcall FadeToWhiteAndUnsetFrameFunc
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	set 0, a
-	ld [wd693], a
-	ld a, [wd693]
+	ld [wGfxCacheFlags], a
+	ld a, [wGfxCacheFlags]
 	res 2, a
-	ld [wd693], a
-	ld a, [wd693]
+	ld [wGfxCacheFlags], a
+	ld a, [wGfxCacheFlags]
 	res 1, a
-	ld [wd693], a
+	ld [wGfxCacheFlags], a
 	ret
 
 .DrawScreen:
@@ -3993,8 +3993,8 @@ Func_1dfb9::
 	ld [wNumActiveAnimations], a
 	ld [wDuelAnimSetScreen], a
 	ld [wDuelAnimLocationParam], a
-	ld [wdcf0], a
-	ld [wdc57], a
+	ld [wDuelAnimCallbackActive], a
+	ld [wDuelAnimFrameFuncActive], a
 	ld a, $ff
 	ld [wActiveScreenAnim], a
 
@@ -4180,7 +4180,7 @@ Func_1e088::
 	ld a, [wActiveScreenAnim]
 	cp $ff
 	ret nz
-	ld a, [wdcf0]
+	ld a, [wDuelAnimCallbackActive]
 	and a
 	ret nz
 	ld a, [wNumActiveAnimations]
@@ -4193,7 +4193,7 @@ Func_1e088::
 	farcall ClearSpriteAnims
 
 	ld a, [wCurAnimation]
-	ld [wdc5a], a
+	ld [wDuelAnimDispatchID], a
 	cp DUEL_SPECIAL_ANIMS
 	jr c, .not_special
 	call Func_3c8e
@@ -4424,7 +4424,7 @@ Func_1e279:
 	ld a, DUEL_ANIM_SHOW_DAMAGE
 	ld [wCurAnimation], a
 	xor a
-	ld [wdc58], a
+	ld [wDuelAnimSpriteStartDelay], a
 	call Func_1e2b1
 	ld a, [wDuelAnimEffectiveness]
 	bit 0, a
@@ -4432,7 +4432,7 @@ Func_1e279:
 	call Func_1e30d
 .asm_1e293
 	ld a, $12
-	ld [wdc58], a
+	ld [wDuelAnimSpriteStartDelay], a
 	ld a, [wDuelAnimEffectiveness]
 	bit 1, a
 	jr z, .asm_1e2a2
@@ -4530,10 +4530,10 @@ Func_1e324:
 	add -8
 	ld d, a
 	farcall SetSpriteAnimPosition
-	ld a, [wdc58]
+	ld a, [wDuelAnimSpriteStartDelay]
 	farcall SetSpriteAnimStartDelay
 	add $12
-	ld [wdc58], a
+	ld [wDuelAnimSpriteStartDelay], a
 	ret
 
 Func_1e347:
@@ -4545,7 +4545,7 @@ Func_1e347:
 	add -16
 	ld d, a
 	farcall SetSpriteAnimPosition
-	ld a, [wdc58]
+	ld a, [wDuelAnimSpriteStartDelay]
 	farcall SetSpriteAnimStartDelay
 	ret
 
@@ -4749,9 +4749,9 @@ ShakeScreenX_Big:
 	ld hl, BigShakeOffsets
 ShakeScreenX:
 	ld a, l
-	ld [wdcee + 0], a
+	ld [wShakeOffsetTablePtr + 0], a
 	ld a, h
-	ld [wdcee + 1], a
+	ld [wShakeOffsetTablePtr + 1], a
 	ld hl, wScreenAnimUpdatePtr
 	ld [hl], LOW(.UpdateFunc)
 	inc hl
@@ -4775,9 +4775,9 @@ ShakeScreenY_Big:
 	ld hl, BigShakeOffsets
 ShakeScreenY:
 	ld a, l
-	ld [wdcee + 0], a
+	ld [wShakeOffsetTablePtr + 0], a
 	ld a, h
-	ld [wdcee + 1], a
+	ld [wShakeOffsetTablePtr + 1], a
 	ld hl, wScreenAnimUpdatePtr
 	ld [hl], LOW(.UpdateFunc)
 	inc hl
@@ -4798,7 +4798,7 @@ ShakeScreenY:
 ; depending on the value of wScreenAnimDuration
 ; returns carry if displacement was updated
 UpdateShakeOffset:
-	ld hl, wdcee
+	ld hl, wShakeOffsetTablePtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -4809,9 +4809,9 @@ UpdateShakeOffset:
 	push hl
 	inc hl
 	ld a, l
-	ld [wdcee + 0], a
+	ld [wShakeOffsetTablePtr + 0], a
 	ld a, h
-	ld [wdcee + 1], a
+	ld [wShakeOffsetTablePtr + 1], a
 	pop hl
 	scf
 	ret
@@ -7067,7 +7067,7 @@ Func_1f57b::
 	push bc
 	push de
 	push hl
-	ld a, [wdd75]
+	ld a, [wScreenShakeType]
 	and a
 	jr z, .asm_1f588
 	call .Func_1f58d
@@ -7088,7 +7088,7 @@ Func_1f57b::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wdd76]
+	ld a, [wScreenShakeIndex]
 	add a ; *2
 	ld c, a
 	add hl, bc
@@ -7104,22 +7104,22 @@ Func_1f57b::
 	ldh a, [hSCY]
 	sub c
 	ldh [hSCY], a
-	ld hl, wdd76
+	ld hl, wScreenShakeIndex
 	inc [hl]
 	ret
 
 .asm_1f5b6
 	xor a
-	ld [wdd76], a
-	ld a, [wdd77]
+	ld [wScreenShakeIndex], a
+	ld a, [wScreenShakeRepeatCount]
 	and a
 	jr z, .asm_1f5c5
 	dec a
-	ld [wdd77], a
+	ld [wScreenShakeRepeatCount], a
 	ret nz
 .asm_1f5c5
 	xor a
-	ld [wdd75], a
+	ld [wScreenShakeType], a
 	ret
 
 .OffsetPointers:
@@ -7173,18 +7173,18 @@ Func_1f57b::
 	db $80 ; end
 
 ; input: a, c
-; set [wdd75] = a, [wdd76] = 0, [wdd77] = c
+; set [wScreenShakeType] = a, [wScreenShakeIndex] = 0, [wScreenShakeRepeatCount] = c
 Set3FromwDD75:
 	push af
-	ld [wdd75], a
+	ld [wScreenShakeType], a
 	ld a, c
-	ld [wdd77], a
+	ld [wScreenShakeRepeatCount], a
 	xor a
-	ld [wdd76], a
+	ld [wScreenShakeIndex], a
 	pop af
 	ret
 
-; set [wdd75] = [wdd76] = 0, [wdd77] = c
+; set [wScreenShakeType] = [wScreenShakeIndex] = 0, [wScreenShakeRepeatCount] = c
 Func_1f61a:
 	push af
 	ld a, 0
@@ -7193,7 +7193,7 @@ Func_1f61a:
 	ret
 
 GetwDD75:
-	ld a, [wdd75]
+	ld a, [wScreenShakeType]
 	and a
 	ret
 

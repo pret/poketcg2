@@ -25,7 +25,7 @@ _CoreGameLoop::
 	dw StartMenu_ContinueDuel      ; STARTMENU_CONTINUE_DUEL
 
 StartMenu_NewGame:
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	bit 0, [hl]
 	jr z, .no_save_data
 	farcall AskToOverwriteSaveData
@@ -46,7 +46,7 @@ StartMenu_NewGame:
 	ret
 
 StartMenu_ContinueFromDiary:
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	bit 2, [hl]
 	jr z, .no_saved_duel
 	bit 1, [hl]
@@ -249,18 +249,18 @@ PauseMenu:
 
 HandleStartMenu:
 	xor a
-	ld [wd554], a
+	ld [wSaveDataFlags], a
 	call CheckIfHasBackupSave
 	jr c, .menu_config0
 	call ValidateBackupGeneralSaveData
 	jr c, .asm_c20f
 .asm_c1d7
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	set 0, [hl]
 	call LoadBackupSave
 	farcall CheckSavedDuelChecksum
 	jr c, .no_saved_duel
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	set 2, [hl]
 	; on second meeting, Ronald card pops with you
 	; and unlocks it in the start menu
@@ -272,7 +272,7 @@ HandleStartMenu:
 	jr c, .menu_config2
 	call ValidateGeneralSaveData
 	jr c, .menu_config2
-	ld hl, wd554
+	ld hl, wSaveDataFlags
 	set 1, [hl]
 	jr .menu_config3
 .no_saved_duel
@@ -337,8 +337,8 @@ Func_c24d:
 	xor a
 	ld [wNextGameEvent], a
 	ld [wNextWarpMap], a
-	ld [wd54e + 0], a
-	ld [wd54e + 1], a
+	ld [wNextWarpPlayerCoords + 0], a
+	ld [wNextWarpPlayerCoords + 1], a
 	ld [wCurMapScriptsBank], a
 	ld [wCurMapScriptsPointer + 0], a
 	ld [wCurMapScriptsPointer + 1], a
@@ -1340,15 +1340,15 @@ LoadMapHeader::
 ; a = NPC_* ID
 ; de = target position
 SetOWObjectTargetPosition:
-	ld [wd595], a
+	ld [wOWObjNPCID], a
 	push af
 	ld a, d
 	ld [wOWObjTargetX], a
 	ld a, e
 	ld [wOWObjTargetY], a
 	xor a
-	ld [wd59c], a
-	ld [wd59d], a
+	ld [wOWObjXSubPixel], a
+	ld [wOWObjYSubPixel], a
 	pop af
 	push de
 	farcall GetOWObjectPosition
@@ -1376,7 +1376,7 @@ SetOWObjectTargetPosition:
 ; x distance >= y distance
 	push bc
 	xor a
-	ld [wd598], a
+	ld [wOWObjXVelocityFract], a
 	ld a, 1
 	ld [wOWObjXVelocity], a
 	ld b, EAST
@@ -1387,7 +1387,7 @@ SetOWObjectTargetPosition:
 	ld [wOWObjXVelocity], a
 	ld b, WEST
 .got_x_dir
-	ld a, [wd595]
+	ld a, [wOWObjNPCID]
 	farcall _SetOWObjectDirection
 	ld a, 1
 	ld [wOWObjYVelocity], a
@@ -1418,7 +1418,7 @@ SetOWObjectTargetPosition:
 	; de = -de
 .positive_y_vel
 	ld a, e
-	ld [wd59a], a
+	ld [wOWObjYVelocityFract], a
 	ld a, d
 	ld [wOWObjYVelocity], a
 	jr .done
@@ -1427,7 +1427,7 @@ SetOWObjectTargetPosition:
 ; x distance < y distance
 	push bc
 	xor a
-	ld [wd59a], a
+	ld [wOWObjYVelocityFract], a
 	ld a, 1
 	ld [wOWObjYVelocity], a
 	ld b, SOUTH
@@ -1438,7 +1438,7 @@ SetOWObjectTargetPosition:
 	ld [wOWObjYVelocity], a
 	ld b, NORTH
 .got_y_dir
-	ld a, [wd595]
+	ld a, [wOWObjNPCID]
 	farcall _SetOWObjectDirection
 	ld a, 1
 	ld [wOWObjXVelocity], a
@@ -1468,7 +1468,7 @@ SetOWObjectTargetPosition:
 	; de = -de
 .positive_x_vel
 	ld a, e
-	ld [wd598], a
+	ld [wOWObjXVelocityFract], a
 	ld a, d
 	ld [wOWObjXVelocity], a
 .done
@@ -1476,7 +1476,7 @@ SetOWObjectTargetPosition:
 
 ; returns carry if still moving
 MoveOWObjectToTargetPosition:
-	ld a, [wd595]
+	ld a, [wOWObjNPCID]
 	farcall GetOWObjectPosition
 	ld a, [wOWObjTargetX]
 	cp d
@@ -1489,11 +1489,11 @@ MoveOWObjectToTargetPosition:
 	ret
 
 .change_x
-	ld a, [wd59c]
+	ld a, [wOWObjXSubPixel]
 	ld b, a
-	ld a, [wd598]
+	ld a, [wOWObjXVelocityFract]
 	add b
-	ld [wd59c], a
+	ld [wOWObjXSubPixel], a
 	ld a, [wOWObjXVelocity]
 	adc d
 	ld d, a
@@ -1501,16 +1501,16 @@ MoveOWObjectToTargetPosition:
 	ld a, [wOWObjTargetY]
 	cp e
 	jr z, .asm_d562
-	ld a, [wd59d]
+	ld a, [wOWObjYSubPixel]
 	ld b, a
-	ld a, [wd59a]
+	ld a, [wOWObjYVelocityFract]
 	add b
-	ld [wd59d], a
+	ld [wOWObjYSubPixel], a
 	ld a, [wOWObjYVelocity]
 	adc e
 	ld e, a
 .asm_d562
-	ld a, [wd595]
+	ld a, [wOWObjNPCID]
 	farcall SetOWObjectPosition
 	scf
 	ret
@@ -1522,8 +1522,8 @@ Func_d56b:
 	ld a, e
 	ld [wOWObjTargetY], a
 	xor a
-	ld [wd59c], a
-	ld [wd59d], a
+	ld [wOWObjXSubPixel], a
+	ld [wOWObjYSubPixel], a
 	ld a, [wOWScrollX]
 	ld b, a
 	ld a, [wOWScrollY]
@@ -1550,7 +1550,7 @@ Func_d56b:
 
 	push bc
 	xor a
-	ld [wd598], a
+	ld [wOWObjXVelocityFract], a
 	ld a, 1
 	ld [wOWObjXVelocity], a
 	ld a, [wOWScrollX]
@@ -1586,7 +1586,7 @@ Func_d56b:
 	ld d, a
 .asm_d5d8
 	ld a, e
-	ld [wd59a], a
+	ld [wOWObjYVelocityFract], a
 	ld a, d
 	ld [wOWObjYVelocity], a
 	jr .done
@@ -1594,7 +1594,7 @@ Func_d56b:
 .asm_d5e2
 	push bc
 	xor a
-	ld [wd59a], a
+	ld [wOWObjYVelocityFract], a
 	ld a, 1
 	ld [wOWObjYVelocity], a
 	ld a, [wOWScrollY]
@@ -1629,7 +1629,7 @@ Func_d56b:
 	ld d, a
 .asm_d621
 	ld a, e
-	ld [wd598], a
+	ld [wOWObjXVelocityFract], a
 	ld a, d
 	ld [wOWObjXVelocity], a
 .done
@@ -1651,11 +1651,11 @@ Func_d62a:
 	ret
 
 .asm_d641
-	ld a, [wd59c]
+	ld a, [wOWObjXSubPixel]
 	ld b, a
-	ld a, [wd598]
+	ld a, [wOWObjXVelocityFract]
 	add b
-	ld [wd59c], a
+	ld [wOWObjXSubPixel], a
 	ld a, [wOWObjXVelocity]
 	adc d
 	ld d, a
@@ -1663,11 +1663,11 @@ Func_d62a:
 	ld a, [wOWObjTargetY]
 	cp e
 	jr z, .asm_d667
-	ld a, [wd59d]
+	ld a, [wOWObjYSubPixel]
 	ld b, a
-	ld a, [wd59a]
+	ld a, [wOWObjYVelocityFract]
 	add b
-	ld [wd59d], a
+	ld [wOWObjYSubPixel], a
 	ld a, [wOWObjYVelocity]
 	adc e
 	ld e, a
@@ -2214,12 +2214,12 @@ GeneralVarMasks:
 	db $2c, %11111111 ; VAR_DUEL_START_THEME
 	db $33, %11111111 ; VAR_3E
 
-; clear 8 bytes from wd606
+; clear 8 bytes from wPkmnTypeBitfield
 ZeroOutBytes_wd606:
 	push af
 	push hl
 	xor a
-	ld hl, wd606
+	ld hl, wPkmnTypeBitfield
 REPT wD606_STRUCT_SIZE - 1
 	ld [hli], a
 ENDR
@@ -2228,13 +2228,13 @@ ENDR
 	pop af
 	ret
 
-; set n, [wd606 + m], where a = 8m + n
+; set n, [wPkmnTypeBitfield + m], where a = 8m + n
 SetBit_wd606:
 	push af
 	push bc
 	push hl
 	push af
-	ld hl, wd606
+	ld hl, wPkmnTypeBitfield
 REPT 3
 	srl a
 ENDR
@@ -2258,13 +2258,13 @@ ENDR
 	pop af
 	ret
 
-; res n, [wd606 + m], where a = 8m + n
+; res n, [wPkmnTypeBitfield + m], where a = 8m + n
 ClearBit_wd606:
 	push af
 	push bc
 	push hl
 	push af
-	ld hl, wd606
+	ld hl, wPkmnTypeBitfield
 REPT 3
 	srl a
 ENDR
@@ -2289,13 +2289,13 @@ ENDR
 	pop af
 	ret
 
-; bit n, [wd606 + m], where a = 8m + n
+; bit n, [wPkmnTypeBitfield + m], where a = 8m + n
 CheckBit_wd606:
 	push bc
 	push hl
 	push af
 	push af
-	ld hl, wd606
+	ld hl, wPkmnTypeBitfield
 REPT 3
 	srl a
 ENDR

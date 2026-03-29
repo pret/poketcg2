@@ -371,7 +371,7 @@ Func_209fc:
 	ret
 .asm_20aa0
 	ld a, $ff
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	xor a
 	ld [wd084], a
 	ld e, a
@@ -386,7 +386,7 @@ Func_209fc:
 	add DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
 	ld b, a
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	inc b
 	cp b
 	jr c, .asm_20ab0
@@ -394,7 +394,7 @@ Func_209fc:
 	jr nc, .asm_20ab0
 	dec b
 	ld a, b
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	ld a, e
 	ld [wd084], a
 	jr .asm_20ab0

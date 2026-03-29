@@ -739,7 +739,7 @@ AIMainTurnLogic:
 
 	ld a, AI_TRAINER_CARD_PHASE_17
 	farcall AIProcessHandTrainerCards
-	ld a, [wd033]
+	ld a, [wAISkipAttackCounter]
 	cp $02
 	jr z, .finish_wo_attack
 ; attack if possible, if not,
@@ -936,7 +936,7 @@ AIDoTurn_GeneralNoRetreat:
 
 	ld a, AI_TRAINER_CARD_PHASE_17
 	farcall AIProcessHandTrainerCards
-	ld a, [wd033]
+	ld a, [wAISkipAttackCounter]
 	cp $02
 	jr z, .finish_wo_attack
 ; attack if possible, if not,
@@ -1069,7 +1069,7 @@ AIDeckSpecificEnergyLogic:
 	jp c, .asm_4895d ; can be jr
 	; at least 2 set up bench Pokémon
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48958
 	ld b, $85
 	jp .got_score
@@ -1150,7 +1150,7 @@ AIDeckSpecificEnergyLogic:
 	jr c, .asm_489c1
 	; at least 2 set up bench Pokémon
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 	jr .asm_489bc
 
 .DarkScienceDeck:
@@ -1197,7 +1197,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .asm_48a5b ; Arcanine still needs energy
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48a56
 	ld b, $8d
 	jp .got_score
@@ -1234,7 +1234,7 @@ AIDeckSpecificEnergyLogic:
 	jp nc, .default_score
 	; Charizard can already use all attacks
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48a9d
 	ld b, $8d
 	jp .got_score
@@ -1266,7 +1266,7 @@ AIDeckSpecificEnergyLogic:
 	jp c, .default_score
 	; Vileplume can already use all attacks
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48adf
 	ld b, $8d
 	jp .got_score
@@ -1297,7 +1297,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48b1d
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48b18
 	ld b, $8d
 	jp .got_score
@@ -1328,7 +1328,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48b57
 	ld b, $8d
 	jp .got_score
@@ -1358,7 +1358,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48b9f
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48b9a
 	ld b, $8d
 	jp .got_score
@@ -1392,7 +1392,7 @@ AIDeckSpecificEnergyLogic:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr nc, .asm_48be5
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48be0
 	ld b, $8d
 	jp .got_score
@@ -1420,7 +1420,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48c1f
 	ld b, $8d
 	jp .got_score
@@ -1460,7 +1460,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48c75
 	ld b, $8d
 	jp .got_score
@@ -1495,7 +1495,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48cc1
 	ld b, $8d
 	jp .got_score
@@ -1551,7 +1551,7 @@ AIDeckSpecificEnergyLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default_score
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48d3e
 	ld b, $8d
 	jp .got_score
@@ -1745,7 +1745,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jr c, .asm_48eec
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 .asm_48ee7
 	ld b, $8d
 	jp .got_score
@@ -3031,7 +3031,7 @@ Func_49a73:
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
-	ld [wd076], a
+	ld [wAIArenaCardEnergyCount], a
 	ld a, DUELVARS_BENCH
 	call GetNonTurnDuelistVariable
 	ld e, PLAY_AREA_BENCH_1
@@ -3094,7 +3094,7 @@ Func_49a73:
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
-	ld hl, wd076
+	ld hl, wAIArenaCardEnergyCount
 	cp [hl]
 	jr z, .next_bench ; same number of attached energies
 	jr c, .next_bench ; has less attached energies
@@ -3349,23 +3349,23 @@ InitAITurnVars:
 	ld [wAIBarrierFlagCounter], a
 
 .asm_49daf
-	ld a, [wd033]
+	ld a, [wAISkipAttackCounter]
 	or a
 	jr z, .asm_49db9
 	dec a
-	ld [wd033], a
+	ld [wAISkipAttackCounter], a
 .asm_49db9
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld hl, wd034
+	ld hl, wAIPrevArenaCard
 	cp [hl]
 	jr z, .asm_49dc9
 	ld [hl], a
 	xor a
-	ld [wd035], a
+	ld [wAIArenaCardStreakCount], a
 	jr .done
 .asm_49dc9
-	ld hl, wd035
+	ld hl, wAIArenaCardStreakCount
 	inc [hl]
 .done
 	ret
@@ -4209,7 +4209,7 @@ SECTION "Bank 12@73f3", ROMX[$73f3], BANK[$12]
 ; - a = PLAY_AREA_* constant of target
 ; - carry set if found a target
 AIChooseFollowMeTarget:
-	ld [wd079], a
+	ld [wAIFollowMeExcludeColor], a
 
 	; save value of hTempPlayAreaLocation_ff9d in the stack
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -4224,7 +4224,7 @@ AIChooseFollowMeTarget:
 	push bc
 	ld a, e
 	bank1call GetPlayAreaCardColor
-	ld hl, wd079
+	ld hl, wAIFollowMeExcludeColor
 	cp [hl]
 	jr z, .skip_pkmn
 	call GetPlayAreaCardAttachedEnergies

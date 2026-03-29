@@ -15,12 +15,12 @@ SFX_Play:
 	add hl, bc
 	ld c, l
 	ld b, h
-	ld a, [wde53]
+	ld a, [wSFXIsPlaying]
 	or a
 	jr z, .asm_1f805a
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	rrca
-	ld [wdd8c], a
+	ld [wSFXChannelMask], a
 	jr nc, .asm_1f802e
 	ld a, AUD1SWEEP_DOWN
 	ldh [rAUD1SWEEP], a
@@ -28,23 +28,23 @@ SFX_Play:
 	swap a ; AUD1HIGH_RESTART
 	ldh [rAUD1HIGH], a
 .asm_1f802e
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	rrca
-	ld [wdd8c], a
+	ld [wSFXChannelMask], a
 	jr nc, .asm_1f803f
 	ld a, AUD2ENV_UP
 	ldh [rAUD2ENV], a
 	swap a ; AUD2HIGH_RESTART
 	ldh [rAUD2HIGH], a
 .asm_1f803f
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	rrca
-	ld [wdd8c], a
+	ld [wSFXChannelMask], a
 	jr nc, .asm_1f804c
 	ld a, $0
 	ldh [rAUD3LEVEL], a
 .asm_1f804c
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	rrca
 	jr nc, .asm_1f805a
 	ld a, AUD4ENV_UP
@@ -53,7 +53,7 @@ SFX_Play:
 	ldh [rAUD4GO], a
 .asm_1f805a
 	ld a, $1
-	ld [wde53], a
+	ld [wSFXIsPlaying], a
 	ld hl, SFXHeaderPointers1
 	add hl, bc
 	ld a, [hli]
@@ -62,15 +62,15 @@ SFX_Play:
 	ld a, [hli]
 	ld [wCurSfxBank], a
 	ld a, [hli]
-	ld [wdd8c], a
-	ld [wde54], a
-	ld de, wd0e3
+	ld [wSFXChannelMask], a
+	ld [wSFXChannelLoadMask], a
+	ld de, wSFXChannelPointers
 	ld c, $0
 	ld b, $0
 .asm_fc031
-	ld a, [wde54]
+	ld a, [wSFXChannelLoadMask]
 	rrca
-	ld [wde54], a
+	ld [wSFXChannelLoadMask], a
 	jr nc, .asm_fc050
 	ld a, [hli]
 	ld [de], a
@@ -85,10 +85,10 @@ SFX_Play:
 	ld a, AUD1SWEEP_DOWN
 	ldh [rAUD1SWEEP], a
 .asm_1f8091
-	ld hl, wde2f
+	ld hl, wSFXChannelPitchOffset
 	add hl, bc
 	ld [hl], $0
-	ld hl, wde33
+	ld hl, wSFXChannelFrameDelay
 	add hl, bc
 	ld [hl], $1
 	pop hl
@@ -108,7 +108,7 @@ SFX_Update:
 	ld a, [wCurSfxBank]
 	ldh [hBankROM], a
 	ld [rROMB], a
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	or a
 	jr nz, .asm_fc063
 	call Func_fc26c
@@ -117,7 +117,7 @@ SFX_Update:
 	xor a
 	ld b, a
 	ld c, a
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	ld [wAudio_d0ed], a
 .asm_fc06c
 	ld hl, wAudio_d0ed
@@ -125,7 +125,7 @@ SFX_Update:
 	rrca
 	ld [hl], a
 	jr nc, .asm_fc08d
-	ld hl, wde33
+	ld hl, wSFXChannelFrameDelay
 	add hl, bc
 	ld a, [hl]
 	dec a
@@ -134,7 +134,7 @@ SFX_Update:
 	call Func_fc18d
 	jr .asm_fc08d
 .asm_fc082
-	ld hl, wd0e3
+	ld hl, wSFXChannelPointers
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -194,7 +194,7 @@ SFX_frequency:
 	ld a, [hli]
 	ld e, a
 	push hl
-	ld hl, wde37
+	ld hl, wSFXChannelFrequency
 	add hl, bc
 	add hl, bc
 	push bc
@@ -212,7 +212,7 @@ SFX_frequency:
 	ld d, a
 .asm_fc0e9
 	pop bc
-	ld hl, wde2b
+	ld hl, wSFXChannelRestartPending
 	add hl, bc
 	ld a, [hl]
 	ld [hl], $0
@@ -234,7 +234,7 @@ SFX_frequency:
 	ld [hl], d
 	pop de
 Func_fc105:
-	ld hl, wd0e3
+	ld hl, wSFXChannelPointers
 	add hl, bc
 	add hl, bc
 	ld [hl], e
@@ -243,7 +243,7 @@ Func_fc105:
 	ret
 
 SFX_envelope:
-	ld hl, wde2b
+	ld hl, wSFXChannelRestartPending
 	add hl, bc
 	ld a, $80
 	ld [hl], a
@@ -277,7 +277,7 @@ SFX_duty:
 	jp Func_fc094
 
 SFX_loop:
-	ld hl, wde43
+	ld hl, wSFXChannelLoopPtr
 	add hl, bc
 	add hl, bc
 	pop de
@@ -286,7 +286,7 @@ SFX_loop:
 	ld [hl], e
 	inc hl
 	ld [hl], d
-	ld hl, wde3f
+	ld hl, wSFXChannelLoopCount
 	add hl, bc
 	ld [hl], a
 	ld l, e
@@ -294,13 +294,13 @@ SFX_loop:
 	jp Func_fc094
 
 SFX_endloop:
-	ld hl, wde3f
+	ld hl, wSFXChannelLoopCount
 	add hl, bc
 	ld a, [hl]
 	dec a
 	jr z, .asm_fc162
 	ld [hl], a
-	ld hl, wde43
+	ld hl, wSFXChannelLoopPtr
 	add hl, bc
 	add hl, bc
 	ld a, [hli]
@@ -313,7 +313,7 @@ SFX_endloop:
 	jp Func_fc094
 
 SFX_pitch_offset:
-	ld hl, wde2f
+	ld hl, wSFXChannelPitchOffset
 	add hl, bc
 	ld e, l
 	ld d, h
@@ -331,7 +331,7 @@ SFX_wait:
 .asm_fc17c
 	call Func_fc18d
 .asm_fc17f
-	ld hl, wde33
+	ld hl, wSFXChannelFrameDelay
 	add hl, bc
 	ld e, l
 	ld d, h
@@ -343,12 +343,12 @@ SFX_wait:
 	jp Func_fc105
 
 Func_fc18d:
-	ld hl, wde2f
+	ld hl, wSFXChannelPitchOffset
 	add hl, bc
 	ld a, [hl]
 	or a
 	jr z, .asm_fc1cc
-	ld hl, wde37
+	ld hl, wSFXChannelFrequency
 	add hl, bc
 	add hl, bc
 	bit 7, a
@@ -373,7 +373,7 @@ Func_fc18d:
 	adc b
 .asm_fc1b1
 	ld [hl], a
-	ld hl, wde2b
+	ld hl, wSFXChannelRestartPending
 	add hl, bc
 	ld d, [hl]
 	ld [hl], $0
@@ -397,11 +397,11 @@ Func_fc18d:
 	ret
 
 Func_fc1cd:
-	ld hl, wde32
+	ld hl, wSFXNoisePitchOffset
 	ld a, [hl]
 	or a
 	jr z, .asm_fc201
-	ld hl, wde3d
+	ld hl, wSFXNoiseFrequency
 	bit 7, a
 	jr z, .asm_fc1e5
 	xor $ff
@@ -423,7 +423,7 @@ Func_fc1cd:
 	xor e
 	and $8
 	swap a
-	ld hl, wde2e
+	ld hl, wSFXNoiseRestartPending
 	ld e, [hl]
 	ld [hl], $0
 	or e
@@ -482,7 +482,7 @@ SFX_pan:
 	jr .asm_fc234
 .asm_fc23c
 	ld d, a
-	ld hl, wdd85
+	ld hl, wSFXStereoPanning
 	ld a, [hl]
 	and e
 	or d
@@ -506,9 +506,9 @@ SFX_end:
 	dec e
 	jr nz, .asm_fc24d
 	ld e, a
-	ld a, [wdd8c]
+	ld a, [wSFXChannelMask]
 	and e
-	ld [wdd8c], a
+	ld [wSFXChannelMask], a
 	ld a, c
 	rlca
 	rlca
@@ -527,7 +527,7 @@ SFX_end:
 
 Func_fc26c:
 	xor a
-	ld [wde53], a
+	ld [wSFXIsPlaying], a
 	ld [wSfxPriority], a
 	ld [wAudio_d005], a
 	ret

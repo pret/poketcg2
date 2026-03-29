@@ -20,7 +20,7 @@ WRAMToSRAMMapper_GeneralSave::
 	wram_sram_map wCurMusic,                                  1, $00, $ff
 	wram_sram_map wNextGameEvent,                             1, $00, $ff
 	wram_sram_map wNextWarpMap,                               1, $00, $ff
-	wram_sram_map wd54e,                                      2, $00, $ff
+	wram_sram_map wNextWarpPlayerCoords,                                      2, $00, $ff
 	wram_sram_map wPlayerOWObject,                            1, $00, $ff
 	wram_sram_map wCurMapScriptsBank,                         1, $00, $ff
 	wram_sram_map wCurMapScriptsPointer,                      2, $00, $ff
@@ -41,7 +41,7 @@ WRAMToSRAMMapper_GeneralSave::
 	wram_sram_map wEventVars,               EVENT_VAR_BYTES - 2, $00, $ff
 	wram_sram_map wGeneralVars,           GENERAL_VAR_BYTES - 2, $00, $ff
 	wram_sram_map wOWData,                                  177, $00, $ff
-	wram_sram_map wd98b,                 5 * MAX_NUM_OW_OBJECTS, $00, $ff
+	wram_sram_map wNPCStateBuffer,                 5 * MAX_NUM_OW_OBJECTS, $00, $ff
 	wram_sram_map wScrollTargetObject,                        1, $00, $ff
 	wram_sram_map wSelectedCoin,                              1, $00, $ff
 	wram_sram_map wCoinPage,                                  1, $00, $ff

@@ -246,7 +246,7 @@ StoreAICardListPointers:
 
 Func_14178:
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 	call AIDecideBenchPokemonToSwitchTo
 	ret
 
@@ -5235,10 +5235,10 @@ AIDecideWhetherToRetreat:
 
 	farcall AIDeckSpecificRetreatLogic
 	ld [wAIScore], a
-	ld a, [wd032]
+	ld a, [wAIAttackNonDamageCount]
 	or a
 	jr z, .check_status
-	; add wd032 * 8 to score
+	; add wAIAttackNonDamageCount * 8 to score
 	srl a
 	srl a
 	sla a ; *8
@@ -6617,7 +6617,7 @@ Func_167e5:
 	ld a, OPPACTION_ATTEMPT_RETREAT
 	farcall AIMakeDecision
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 	ret
 .set_carry
 	scf
@@ -6892,7 +6892,7 @@ Func_16af1:
 ; check if the card can use any attacks
 ; and if any of those attacks can KO
 	xor a
-	ld [wd07b], a
+	ld [wAIDefenderCanKOCandidate], a
 	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
 	call CheckIfSelectedAttackIsUnusable
 	jr nc, .can_attack
@@ -6902,18 +6902,18 @@ Func_16af1:
 	jr c, .cant_attack_or_ko
 .can_attack
 	ld a, $01
-	ld [wd061], a
+	ld [wAIBenchCandidateCanAttack], a
 	call CheckIfAnyAttackKnocksOutDefendingCard
 	jr nc, .check_evolution_attacks
 	call CheckIfSelectedAttackIsUnusable
 	jr c, .check_evolution_attacks
 	ld a, $01
-	ld [wd063], a
+	ld [wAIBenchCandidateCanKO], a
 	jr .check_evolution_attacks
 .cant_attack_or_ko
 	xor a
-	ld [wd061], a
-	ld [wd063], a
+	ld [wAIBenchCandidateCanAttack], a
+	ld [wAIBenchCandidateCanKO], a
 
 ; check evolution to see if it can use any of its attacks:
 ; if it can, raise AI score;
@@ -6955,7 +6955,7 @@ Func_16af1:
 	call AIEncourage
 	jr .check_evolution_ko
 .evolution_cant_attack
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	or a
 	jr z, .check_evolution_ko
 	ld a, 2
@@ -6972,7 +6972,7 @@ Func_16af1:
 ; if evolution can't KO but the current card can, lower AI score;
 ; if evolution can KO as well, raise AI score.
 .check_evolution_ko
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	or a
 	jr z, .check_defending_can_ko_evolution
 	ld a, [wTempAI]
@@ -6989,7 +6989,7 @@ Func_16af1:
 	call AIEncourage
 	jr .check_defending_can_ko_evolution
 .evolution_cant_ko
-	ld a, [wd063]
+	ld a, [wAIBenchCandidateCanKO]
 	or a
 	jr z, .check_defending_can_ko_evolution
 	ld a, 20
@@ -7007,7 +7007,7 @@ Func_16af1:
 	ld a, 10
 	call AIDiscourage
 	ld a, $01
-	ld [wd07b], a
+	ld [wAIDefenderCanKOCandidate], a
 
 ; if evolution can't damage player's Mr Mime, lower AI score
 .check_mr_mime
@@ -7041,7 +7041,7 @@ Func_16af1:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .check_status
 	; encourage unless it can KO the evolution as well
-	ld a, [wd07b]
+	ld a, [wAIDefenderCanKOCandidate]
 	or a
 	jr nz, .check_status
 	ld a, 5
@@ -7355,12 +7355,12 @@ AIProcessEnergyCards:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	ld [wd061], a
+	ld [wAIBenchCandidateCanAttack], a
 	farcall GetAttacksEnergyCostBits
 	ld hl, wDuelTempList
 	farcall CheckEnergyFlagsNeededInList
 	jp nc, .store_score
-	ld a, [wd061]
+	ld a, [wAIBenchCandidateCanAttack]
 	farcall CheckIfPokemonEvolutionIsFoundInHand
 	jr nc, .check_venusaur
 	ld [wTempAI], a ; store evolution card found
@@ -7565,7 +7565,7 @@ AIProcessEnergyCards:
 
 .skip_boss_deck
 	ld a, 1
-	ld [wd07c], a
+	ld [wAIBenchEnergyScoreBonus], a
 
 ; add AI score for both attacks,
 ; according to their energy requirements.
@@ -7715,7 +7715,7 @@ DetermineAIScoreOfAttackEnergyRequirement:
 
 .check_color_needed
 	push bc
-	ld hl, wd07c
+	ld hl, wAIBenchEnergyScoreBonus
 	ld a, [hl]
 	call AIEncourage
 	dec [hl]
@@ -8547,7 +8547,7 @@ AIProcessAttacks:
 
 .can_damage
 	xor a
-	ld [wd032], a
+	ld [wAIAttackNonDamageCount], a
 	jr .use_attack
 
 .check_damage_bench
@@ -8557,7 +8557,7 @@ AIProcessAttacks:
 	jr c, .can_damage
 
 ; cannot damage either Defending Pokemon or Bench
-	ld hl, wd032
+	ld hl, wAIAttackNonDamageCount
 	inc [hl]
 
 ; return carry if attack is chosen
@@ -8580,7 +8580,7 @@ AIProcessAttacks:
 
 ; return no carry if no viable attack.
 .failed_to_use
-	ld hl, wd032
+	ld hl, wAIAttackNonDamageCount
 	inc [hl]
 	or a
 	ret

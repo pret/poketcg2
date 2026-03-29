@@ -7,7 +7,7 @@
 ;	- AI_ENERGY_TRANS_TO_BENCH: transfers all Grass Energy cards from
 ;	Arena Pokemon to Bench in case Arena card will be KO'd.
 HandleAIEnergyTrans:
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 
 	farcall StubbedAIChooseRandomlyNotToDoAction
 	ret c
@@ -25,7 +25,7 @@ HandleAIEnergyTrans:
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	ret c ; return if cannot use Energy Trans
 
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	cp AI_ENERGY_TRANS_RETREAT
 	jr z, .check_retreat
 
@@ -44,7 +44,7 @@ HandleAIEnergyTrans:
 ; use Energy Trans to transfer number of Grass energy cards
 ; equal to input a from the Bench to the Arena card.
 .TransferEnergyToArena
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 
 ; look for VenusaurLv67 in Play Area
 ; so that its PKMN Power can be used.
@@ -78,7 +78,7 @@ HandleAIEnergyTrans:
 
 	xor a
 	ldh [hAIEnergyTransPlayAreaLocation], a
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	ld d, a
 
 	ld e, 0
@@ -309,7 +309,7 @@ AIEnergyTransTransferEnergyToBench:
 .use_pkmn_power
 	ld a, b
 	ldh [hTemp_ffa0], a
-	ld [wd07f], a
+	ld [wAIEnergyTransVenusaurLocation], a
 	ld a, OPPACTION_USE_PKMN_POWER
 	farcall AIMakeDecision
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
@@ -319,7 +319,7 @@ AIEnergyTransTransferEnergyToBench:
 .loop_energy
 	xor a
 	ldh [hAIPkmnPowerEffectParam], a
-	ld a, [wd07f]
+	ld a, [wAIEnergyTransVenusaurLocation]
 	ldh [hTemp_ffa0], a
 
 	; returns when Arena card has no Grass energy cards attached.
@@ -685,7 +685,7 @@ HandleAIShift:
 	ld b, a
 	call SwapTurn
 	bank1call GetArenaCardWeakness
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	call SwapTurn
 	or a
 	ret z ; return if Defending Pokemon has no weakness
@@ -708,7 +708,7 @@ HandleAIShift:
 	farcall AIMakeDecision
 
 ; converts WR_* to appropriate color
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	ld b, 0
 .loop_color
 	bit 7, a
@@ -758,13 +758,13 @@ HandleAIShift:
 	ld a, [hli]
 	jr nc, .loop_random_color
 	call TranslateColorToWR
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	jr .found
 
 ; returns carry if turn Duelist has a Pokemon
-; with same color as wd082.
+; with same color as wAIEnergyTransMode.
 .CheckWhetherTurnDuelistHasWRColor
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	ld b, a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -929,7 +929,7 @@ HandleAIStrangeBehavior:
 	or a
 	ret z ; return if Arena card has no damage counters
 
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	ldh a, [hTemp_ffa0]
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -938,7 +938,7 @@ HandleAIStrangeBehavior:
 
 ; if Slowbro can't receive all damage counters,
 ; only transfer remaining HP - 10 damage
-	ld hl, wd082
+	ld hl, wAIEnergyTransMode
 	cp [hl]
 	jr c, .use_strange_behavior
 	ld a, [hl] ; can receive all damage counters
@@ -2286,7 +2286,7 @@ HandleAIDamageSwap:
 	ret z ; return if Arena Card has no damage
 
 	farcall ConvertHPToCounters
-	ld [wd082], a
+	ld [wAIEnergyTransMode], a
 	farcall FindAlakazamLv42WithActivePkmnPowerInPlayArea
 	ld [wd084], a
 
@@ -2305,7 +2305,7 @@ HandleAIDamageSwap:
 	ld a, OPPACTION_EXECUTE_PKMN_POWER_EFFECT
 	farcall AIMakeDecision
 
-	ld a, [wd082]
+	ld a, [wAIEnergyTransMode]
 	ld e, a
 .loop_damage
 	ld d, 30
@@ -2974,7 +2974,7 @@ Func_3926a:
 
 ; a = number of energy cards attached
 Func_392db:
-	ld [wd074], a
+	ld [wAITempCardCount], a
 	ld a, [wOpponentDeckID]
 	cp ROCK_BLAST_DECK_ID
 	jr z, .rock_blast_deck
@@ -2987,9 +2987,9 @@ Func_392db:
 
 .compare
 	ld b, a ; max number of energy cards
-	ld a, [wd074]
+	ld a, [wAITempCardCount]
 	cp b
-	; carry if wd074 < b
+	; carry if wAITempCardCount < b
 	ret
 
 .rock_blast_deck
@@ -3065,10 +3065,10 @@ Func_3934d:
 ; - de = card ID
 ; - b = starting Play Area location
 ; outputs:
-; - a and [wd074] = card count
+; - a and [wAITempCardCount] = card count
 CountCardIDInTurnDuelistPlayArea:
 	xor a
-	ld [wd074], a
+	ld [wAITempCardCount], a
 .loop_play_area
 	ld a, DUELVARS_ARENA_CARD
 	add b
@@ -3085,9 +3085,9 @@ CountCardIDInTurnDuelistPlayArea:
 	ld a, e
 	cp c
 	jr nz, .not_equal
-	ld a, [wd074]
+	ld a, [wAITempCardCount]
 	inc a
-	ld [wd074], a
+	ld [wAITempCardCount], a
 .not_equal
 	ld d, b
 	ld e, c
@@ -3097,7 +3097,7 @@ CountCardIDInTurnDuelistPlayArea:
 	cp b
 	jr nz, .loop_play_area
 .done
-	ld a, [wd074]
+	ld a, [wAITempCardCount]
 	ret
 ; 0x393b4
 
@@ -3283,7 +3283,7 @@ CheckEvolutionaryLightTarget:
 	pop de
 	pop bc
 	ret nc ; not found in deck
-	ld [wd073], a ; deck index
+	ld [wAITempFoundDeckIndex], a ; deck index
 	push bc
 	push de
 	ld d, b
@@ -3296,7 +3296,7 @@ CheckEvolutionaryLightTarget:
 	call CheckIfCardIDIsInHandOrPlayArea
 	pop de
 	jr c, .no_carry
-	ld a, [wd073]
+	ld a, [wAITempFoundDeckIndex]
 	scf
 	ret
 .no_carry
@@ -3316,7 +3316,7 @@ FindUsableEvolutionInDeck:
 	pop de
 	pop bc
 	ret nc ; card ID 1 not found in deck
-	ld [wd073], a
+	ld [wAITempFoundDeckIndex], a
 	push de
 	ld d, b
 	ld e, c
@@ -3327,7 +3327,7 @@ FindUsableEvolutionInDeck:
 	farcall LookForCardIDInHandList
 	pop bc
 	jr c, .no_carry  ; card ID 1 found in Hand
-	ld a, [wd073]
+	ld a, [wAITempFoundDeckIndex]
 	scf
 	ret
 .no_carry
@@ -3342,14 +3342,14 @@ Func_39a6a:
 	pop de
 	pop bc
 	ret nc
-	ld [wd073], a
+	ld [wAITempFoundDeckIndex], a
 	push bc
 	call CheckIfCardIDIsInHandOrPlayArea
 	pop de
 	jr c, .asm_39a89
 	farcall LookForCardIDInHandList
 	ret nc
-	ld a, [wd073]
+	ld a, [wAITempFoundDeckIndex]
 	scf
 	ret
 .asm_39a89
@@ -4309,7 +4309,7 @@ SECTION "Bank e@6887", ROMX[$6887], BANK[$e]
 Func_3a887:
 	bank1call GetArenaCardColor
 	call TranslateColorToWR
-	ld [wd075], a
+	ld [wAIArenaCardColor], a
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -4323,7 +4323,7 @@ Func_3a887:
 	push bc
 	bank1call GetPlayAreaCardWeakness
 	pop bc
-	ld hl, wd075
+	ld hl, wAIArenaCardColor
 	cp [hl]
 	jr nz, .loop_bench
 	; is weak to Arena card
@@ -5035,7 +5035,7 @@ InitDeckMachineDrawingParams:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 	ret
 
 ; handles player input inside the Deck Machine screen
@@ -5326,7 +5326,7 @@ DrawDeckMachineScreen:
 	jr PrintVisibleDeckMachineEntries
 
 ; update wScrollMenuScrollFunc to PrintVisibleAutoDeckMachineEntries
-; and init wd119
+; and init wCardListAllowLeftRight
 UpdateAutoDeckSelectionMenuScroll:
 	ld hl, PrintVisibleAutoDeckMachineEntries
 	ld d, h
@@ -5335,7 +5335,7 @@ UpdateAutoDeckSelectionMenuScroll:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 	ret
 
 ; variant of PrintVisibleDeckMachineEntries for Auto Deck Machine categories
@@ -7114,7 +7114,7 @@ _HandleAutoDeckSelectionMenu:
 	ld a, TRUE
 	ld [wUnableToScrollDown], a
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 	call UpdateAutoDeckSelectionMenuScroll
 
 .wait_input
@@ -7176,7 +7176,7 @@ _HandleAutoDeckSelectionMenu:
 	ld [wSelectedDeckMachineEntry], a
 	farcall ResetCheckMenuCursorPositionAndBlink
 	xor a
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 	call DrawWideTextBox
 	ld hl, .deck_options
 	call PlaceTextItems

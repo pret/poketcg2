@@ -1,6 +1,6 @@
 Glossary:
 	xor a
-	ld [wd0d2], a
+	ld [wGlossaryReinit], a
 	bank1call SetDefaultPalettes
 	lb de, $38, $9f
 	call SetupText
@@ -8,7 +8,7 @@ Glossary:
 
 .OpenScreen
 	ld a, $01
-	ld [wd0d2], a
+	ld [wGlossaryReinit], a
 
 .asm_186ba
 	xor a
@@ -78,7 +78,7 @@ Glossary:
 	ld a, TRUE
 	ld [wVBlankOAMCopyToggle], a
 	call DoFrame
-	ld a, [wd0d2]
+	ld a, [wGlossaryReinit]
 	or a
 	call nz, .Func_18763
 	farcall HandleMultiDirectionalMenu

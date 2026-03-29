@@ -92,9 +92,9 @@ SetAllCoinsObtainedAndShowCoinMenu:
 	call SetSpriteAnimationAndFadePalsFrameFunc
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	res 2, a
-	ld [wd693], a
+	ld [wGfxCacheFlags], a
 	call SetAllCoinEvents
 	farcall ShowCoinMenuWithoutIncomingCoin ; same menu that you see from the in-game coin menu
 	call UnsetSpriteAnimationAndFadePalsFrameFunc
@@ -399,21 +399,21 @@ Func_102ef:
 	call WriteBCBytesToHL
 
 	ld a, $80
-	ld hl, wd6d4
+	ld hl, wDecompressedTilemapPermissions
 	ld bc, $101
 	call WriteBCBytesToHL
 
 	xor a
-	ld [wd852], a
-	ld hl, wd853
+	ld [wOWTilemapOverlayCount], a
+	ld hl, wOWTilemapOverlayBuffer
 	ld bc, $40
 	call WriteBCBytesToHL
 
 	call Func_10327
 
 	xor a
-	ld [wd896 + 0], a
-	ld [wd896 + 1], a
+	ld [wPalAnimTarget + 0], a
+	ld [wPalAnimTarget + 1], a
 	pop hl
 	pop de
 	pop bc
@@ -603,7 +603,7 @@ SetOWScrollState:
 
 ; updates scrolling, depending on wOWScrollState:
 ; - if $0 then move to target position
-;   with wd7e8 = x and wd7e9 = y
+;   with wOWScrollTargetX = x and wOWScrollTargetY = y
 ; - if $1 then move scroll so that
 ;   wScrollTargetObject is at the center
 UpdateOWScroll::
@@ -649,7 +649,7 @@ UpdateOWScroll::
 	cp $40
 	ld a, 0
 	jr c, .got_x_scroll
-	ld a, [wd7dc]
+	ld a, [wLoadedBGMapWidth]
 REPT 3
 	sla a
 ENDR
@@ -667,7 +667,7 @@ ENDR
 	cp $40
 	ld a, 0
 	jr c, .got_y_scroll
-	ld a, [wd7dd]
+	ld a, [wLoadedBGMapHeight]
 REPT 3
 	sla a
 ENDR
@@ -683,7 +683,7 @@ ENDR
 	ret
 
 .MoveToTargetPosition:
-	ld a, [wd7e8]
+	ld a, [wOWScrollTargetX]
 	ld b, a
 	ld hl, wOWScrollX
 	ld a, [hl]
@@ -696,7 +696,7 @@ ENDR
 .incr_x_scroll
 	inc [hl]
 .no_x_scroll
-	ld a, [wd7e9]
+	ld a, [wOWScrollTargetY]
 	ld b, a
 	ld hl, wOWScrollY
 	ld a, [hl]
@@ -714,10 +714,10 @@ ENDR
 ; input: d = x_1, e = y_1
 ; x_2 = [wOWScrollX] * 8 if x_1 bit 7 is set, x_1 otherwise
 ; y_2 = [wOWScrollY] * 8 if x_1 bit 7 is set, y_1 otherwise
-; x_n = [wd7dc] * 8 - $a0, y_n = [wd7dd] * 8 - $90
+; x_n = [wLoadedBGMapWidth] * 8 - $a0, y_n = [wLoadedBGMapHeight] * 8 - $90
 ; output:
-; [wd7e8] = min(x_2 * 8, x_n),
-; [wd7e9] = min(y_2 * 8, y_n),
+; [wOWScrollTargetX] = min(x_2 * 8, x_n),
+; [wOWScrollTargetY] = min(y_2 * 8, y_n),
 ; [wOWScrollState] = 0
 Func_104ad:
 	push af
@@ -736,7 +736,7 @@ REPT 3
 	add a
 ENDR
 	ld c, a
-	ld a, [wd7dc]
+	ld a, [wLoadedBGMapWidth]
 REPT 3
 	add a
 ENDR
@@ -748,7 +748,7 @@ ENDR
 	ld a, b
 ; fallthrough
 .got_x
-	ld [wd7e8], a
+	ld [wOWScrollTargetX], a
 
 	ld a, e
 	bit 7, a
@@ -763,7 +763,7 @@ REPT 3
 	add a
 ENDR
 	ld c, a
-	ld a, [wd7dd]
+	ld a, [wLoadedBGMapHeight]
 REPT 3
 	add a
 ENDR
@@ -775,7 +775,7 @@ ENDR
 	ld a, b
 ; fallthrough
 .got_y
-	ld [wd7e9], a
+	ld [wOWScrollTargetY], a
 	xor a
 	call SetOWScrollState
 	pop de
@@ -814,7 +814,7 @@ ENDR
 	ret
 
 ; output:
-; a = 0 if [wOWScrollState] = 0 AND [wOWScrollX] = [wd7e8] AND [wOWScrollY] = [wd7e9]
+; a = 0 if [wOWScrollState] = 0 AND [wOWScrollX] = [wOWScrollTargetX] AND [wOWScrollY] = [wOWScrollTargetY]
 ; a = 1 otherwise
 CheckOWScroll:
 	push bc
@@ -824,12 +824,12 @@ CheckOWScroll:
 	jr nz, .got_result
 	ld a, [wOWScrollX]
 	ld b, a
-	ld a, [wd7e8]
+	ld a, [wOWScrollTargetX]
 	cp b
 	jr nz, .got_result
 	ld a, [wOWScrollY]
 	ld b, a
-	ld a, [wd7e9]
+	ld a, [wOWScrollTargetY]
 	cp b
 	jr nz, .got_result
 	ld c, 0
@@ -840,7 +840,7 @@ CheckOWScroll:
 	ret
 
 ; output:
-; a = [wd6d4 + (e/2)*16 + d/2]
+; a = [wDecompressedTilemapPermissions + (e/2)*16 + d/2]
 Func_10541:
 	push bc
 	push de
@@ -848,7 +848,7 @@ Func_10541:
 	srl d
 	srl e
 	ld b, 0
-	ld hl, wd6d4
+	ld hl, wDecompressedTilemapPermissions
 REPT 4
 	sla e
 ENDR
@@ -877,14 +877,14 @@ Func_1055e:
 	ld bc, $64
 	call WriteBCBytesToHL
 	call LoadOWAnimatedTiles
-	ld hl, wd852
+	ld hl, wOWTilemapOverlayCount
 	ld a, [hl]
 	and a
 	jr z, .asm_1059a
 	ld c, a
 	xor a
 	ld [hl], a
-	ld hl, wd853
+	ld hl, wOWTilemapOverlayBuffer
 .asm_10589
 	push bc
 	ld a, [hli]
@@ -984,19 +984,19 @@ Func_105de:
 
 ; input: a, b, c
 ; output:
-; [wd896] = c
-; [wd896 + 1] = b
-; [wd896 + 2] = [wd896 + 3] = a
-; [wd896 + 4] = 0
+; [wPalAnimTarget] = c
+; [wPalAnimTarget + 1] = b
+; [wPalAnimTarget + 2] = [wPalAnimTarget + 3] = a
+; [wPalAnimTarget + 4] = 0
 SetwD896:
-	ld [wd896 + 2], a
-	ld [wd896 + 3], a
+	ld [wPalAnimTarget + 2], a
+	ld [wPalAnimTarget + 3], a
 	ld a, c
-	ld [wd896], a
+	ld [wPalAnimTarget], a
 	ld a, b
-	ld [wd896 + 1], a
+	ld [wPalAnimTarget + 1], a
 	xor a
-	ld [wd896 + 4], a
+	ld [wPalAnimTarget + 4], a
 	ret
 
 CopyCGBBGPalsWithID_BeginWithPal2:
@@ -1160,9 +1160,9 @@ FillBoxInBGMap:
 	push de
 	push hl
 	ld a, h
-	ld [wd89d], a
+	ld [wBGBoxFillTile], a
 	ld a, l
-	ld [wd89e], a
+	ld [wBGBoxFillAttr], a
 	push bc
 	ld b, d
 	ld c, e
@@ -1176,14 +1176,14 @@ FillBoxInBGMap:
 	call BankswitchVRAM
 	di
 	call WaitForLCDOff
-	ld a, [wd89d]
+	ld a, [wBGBoxFillTile]
 	ld [hl], a
 	ei
 	ld a, BANK("VRAM1")
 	call BankswitchVRAM
 	di
 	call WaitForLCDOff
-	ld a, [wd89e]
+	ld a, [wBGBoxFillAttr]
 	ld [hli], a
 	ei
 	dec b
@@ -1452,11 +1452,11 @@ RestoreObjectPalsToDE:
 	ret
 
 SetwD8A1:
-	ld [wd8a1], a
+	ld [wOWNPCMovementMode], a
 	ret
 
 GetwD8A1::
-	ld a, [wd8a1]
+	ld a, [wOWNPCMovementMode]
 	ret
 
 ; flush c non-CGB object pals and a single CGB pal
@@ -1489,8 +1489,8 @@ ClearSpriteAnims:
 	xor a
 	ld [wCurVRAMTile], a
 	ld [wNumSpriteTilesets], a
-	ld [wd96f], a
-	ld [wd970], a
+	ld [wSpriteAnimRenderFlags], a
+	ld [wSpriteAnimCoordFlags], a
 	ld bc, NUM_SPRITE_ANIM_STRUCTS * SPRITEANIMSTRUCT_LENGTH
 	ld hl, wSpriteAnimationStructs
 	call WriteBCBytesToHL
@@ -1588,11 +1588,11 @@ SetNewSpriteAnimValues::
 	ret
 
 Func_10989:
-	ld [wd96f], a
+	ld [wSpriteAnimRenderFlags], a
 	ret
 
 Func_1098d:
-	ld [wd970], a
+	ld [wSpriteAnimCoordFlags], a
 	ret
 
 MoveSpriteAnim:
@@ -2714,10 +2714,10 @@ Func_10e3c::
 	push de
 	push hl
 	push bc
-	ld [wd989], a
+	ld [wNPCStepNPCID], a
 	xor a
-	ld [wd98a], a
-	ld a, [wd989]
+	ld [wNPCStepResult], a
+	ld a, [wNPCStepNPCID]
 	call GetOWObjectWithID
 	bit 5, [hl] ; OWOBJSTRUCT_FLAGS
 	jr z, .asm_10e8f
@@ -2749,7 +2749,7 @@ Func_10e3c::
 	dec d
 
 .got_direction
-	ld a, [wd986]
+	ld a, [wNPCBoundaryOverride]
 	cp $ff
 	jr z, .asm_10e7f
 	ld a, d
@@ -2769,12 +2769,12 @@ Func_10e3c::
 	jr nz, .blocked
 .asm_10e8f
 	ld a, $10
-	ld [wd98a], a
+	ld [wNPCStepResult], a
 .blocked
 	pop bc
-	ld a, [wd98a]
+	ld a, [wNPCStepResult]
 	ld e, a
-	ld a, [wd989]
+	ld a, [wNPCStepNPCID]
 	call Func_1132e
 	pop hl
 	pop de
@@ -2889,12 +2889,12 @@ SetOWObjectFrameset:
 
 FillwD986:
 	ld a, $ff
-	ld [wd986], a
+	ld [wNPCBoundaryOverride], a
 	ret
 
 ClearwD986:
 	ld a, 0
-	ld [wd986], a
+	ld [wNPCBoundaryOverride], a
 	ret
 
 Func_10f32:
@@ -2902,7 +2902,7 @@ Func_10f32:
 	push bc
 	push de
 	push hl
-	ld de, wd98b
+	ld de, wNPCStateBuffer
 	ld hl, wOWObjects
 	ld c, MAX_NUM_OW_OBJECTS
 .loop
@@ -2960,7 +2960,7 @@ Func_10f78:
 	push de
 	push hl
 	call Func_10d40
-	ld hl, wd98b
+	ld hl, wNPCStateBuffer
 	ld c, MAX_NUM_OW_OBJECTS
 .loop
 	ld a, [hl]
@@ -3671,7 +3671,7 @@ Func_1132e:
 	and $07
 	ld b, a
 	xor a
-	ld [wda8b], a
+	ld [wNPCStepAmount], a
 	ld a, c
 	and a
 	jr z, .done
@@ -3683,14 +3683,14 @@ Func_1132e:
 	ld a, e
 	and a
 	jr z, .done
-	ld [wda8b], a
+	ld [wNPCStepAmount], a
 	inc c
 	call SetSpriteAnimMotion
 .done
 	pop hl
 	pop de
 	pop bc
-	ld a, [wda8b]
+	ld a, [wNPCStepAmount]
 	ret
 
 ; a = NPC_* ID
@@ -3953,7 +3953,7 @@ TurnOnCurChipsHUD:
 	push bc
 	push de
 	push hl
-	ld a, [wda98]
+	ld a, [wChipCountWindowVisible]
 	and a
 	jr nz, .fill
 
@@ -3978,7 +3978,7 @@ TurnOnCurChipsHUD:
 
 .fill
 	ld a, $ff
-	ld [wda98], a
+	ld [wChipCountWindowVisible], a
 	pop hl
 	pop de
 	pop bc
@@ -3990,7 +3990,7 @@ TurnOffCurChipsHUD:
 	push bc
 	push de
 	push hl
-	ld a, [wda98]
+	ld a, [wChipCountWindowVisible]
 	and a
 	jr z, .clear
 
@@ -3999,7 +3999,7 @@ TurnOffCurChipsHUD:
 
 .clear
 	xor a
-	ld [wda98], a
+	ld [wChipCountWindowVisible], a
 	pop hl
 	pop de
 	pop bc
@@ -4028,7 +4028,7 @@ AddChips:
 	ld [wGameCenterChips], a
 	ld a, h
 	ld [wGameCenterChips + 1], a
-	ld a, [wda98]
+	ld a, [wChipCountWindowVisible]
 	and a
 	jr z, .done
 	call PrintNumberOfChips
@@ -4070,7 +4070,7 @@ SubtractChips:
 	ld [wGameCenterChips], a
 	ld a, h
 	ld [wGameCenterChips + 1], a
-	ld a, [wda98]
+	ld a, [wChipCountWindowVisible]
 	and a
 	jr z, .done
 	call PrintNumberOfChips
@@ -4080,7 +4080,7 @@ SubtractChips:
 	pop af
 	ret
 
-; clear wda98 to wda9c
+; clear wChipCountWindowVisible to wda9c
 ClearGameCenterChips:
 	push af
 	xor a
@@ -4088,7 +4088,7 @@ ClearGameCenterChips:
 	ld [wGameCenterChips + 1], a
 	ld [wGameCenterBankedChips], a
 	ld [wGameCenterBankedChips + 1], a
-	ld [wda98], a
+	ld [wChipCountWindowVisible], a
 	pop af
 	ret
 
@@ -4394,9 +4394,9 @@ LoadTitleScreenGraphics:
 	ld b, $04
 	ld c, $00
 	call LoadBGGraphics
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	set 3, a
-	ld [wd693], a
+	ld [wGfxCacheFlags], a
 	ret
 
 .data
@@ -4840,7 +4840,7 @@ AnimateSubtitleEnter:
 
 .Distort:
 	ld a, $0f
-	ld [wdafd], a
+	ld [wIntroDistortionCounter], a
 	xor a
 	ld [wIntroStateCounter], a
 	call .Func_11a98
@@ -4880,7 +4880,7 @@ AnimateSubtitleEnter:
 	; a = (rLY - $30 + wIntroStateCounter) ^ ((rLY & %1) << 4) & %11111
 	ld b, $00
 	ld c, a
-	ld hl, wdac1
+	ld hl, wIntroLineSCXBuffer
 	add hl, bc
 	call WaitForLCDOff
 	ld a, [hl]
@@ -4895,7 +4895,7 @@ AnimateSubtitleEnter:
 	inc a
 	ld [wIntroStateCounter], a
 	call .Func_11a98
-	ld a, [wdafd]
+	ld a, [wIntroDistortionCounter]
 	and a
 	jr nz, .asm_11a3c
 	scf
@@ -4905,7 +4905,7 @@ AnimateSubtitleEnter:
 .Func_11a98:
 	push de
 	ld hl, Data_11dd2
-	ld de, wdac1
+	ld de, wIntroLineSCXBuffer
 	ld a, [wIntroStateCounter]
 	ld c, a ; unused
 	ld a, $20
@@ -4927,12 +4927,12 @@ AnimateSubtitleEnter:
 	rr c ; /32
 
 	ld hl, $0
-	ld a, [wdafd]
+	ld a, [wIntroDistortionCounter]
 .loop_multiply
 	add hl, bc
 	dec a
 	jr nz, .loop_multiply
-	; hl = bc * wdafd
+	; hl = bc * wIntroDistortionCounter
 
 	ld a, h
 	ld [de], a
@@ -4947,7 +4947,7 @@ AnimateSubtitleEnter:
 	ld a, [wIntroStateCounter]
 	and $03
 	ret nz
-	ld hl, wdafd
+	ld hl, wIntroDistortionCounter
 	dec [hl]
 	ret
 
@@ -5013,8 +5013,8 @@ AnimateSubtitleExit:
 
 .Animate:
 	xor a
-	ld [wdabd], a
-	ld [wdabf], a
+	ld [wTitleAnimSCXUpper], a
+	ld [wTitleAnimSCXMiddle], a
 	call .ApplyEffect
 	ret c
 	ld hl, .ClearBoxParams
@@ -5132,7 +5132,7 @@ AnimateSubtitleExit:
 	cp $2f
 	jr c, .asm_11be8
 	call WaitForLCDOff
-	ld a, [wdabd]
+	ld a, [wTitleAnimSCXUpper]
 	ldh [rSCX], a
 	ei
 .asm_11bf7
@@ -5145,7 +5145,7 @@ AnimateSubtitleExit:
 	cp $48
 	jr c, .asm_11bfe
 	call WaitForLCDOff
-	ld a, [wdabf]
+	ld a, [wTitleAnimSCXMiddle]
 	ldh [rSCX], a
 	ei
 .asm_11c0d
@@ -5161,12 +5161,12 @@ AnimateSubtitleExit:
 	xor a
 	ldh [rSCX], a
 	ei
-	ld a, [wdabd]
+	ld a, [wTitleAnimSCXUpper]
 	add 3
-	ld [wdabd], a
-	ld a, [wdabf]
+	ld [wTitleAnimSCXUpper], a
+	ld a, [wTitleAnimSCXMiddle]
 	add -3
-	ld [wdabf], a
+	ld [wTitleAnimSCXMiddle], a
 	dec c
 	jr nz, .asm_11bd2
 	scf
@@ -5245,7 +5245,7 @@ ChooseTitleScreenCards:
 
 ScrollIntroCard:
 	ldh a, [rSCX]
-	ld [wdabd], a
+	ld [wTitleAnimSCXUpper], a
 	ld c, 28
 .asm_11cbc
 	call DoFrame
@@ -5268,7 +5268,7 @@ ScrollIntroCard:
 	cp $36
 	jr c, .asm_11cd3
 	call WaitForLCDOff
-	ld a, [wdabd]
+	ld a, [wTitleAnimSCXUpper]
 	ldh [rSCX], a
 	ei
 .asm_11ce2
@@ -5284,9 +5284,9 @@ ScrollIntroCard:
 	xor a
 	ldh [rSCX], a
 	ei
-	ld a, [wdabd]
+	ld a, [wTitleAnimSCXUpper]
 	add 4
-	ld [wdabd], a
+	ld [wTitleAnimSCXUpper], a
 	dec c
 	jr nz, .asm_11cbc
 	scf
@@ -5908,7 +5908,7 @@ DrawLoadedCard:
 	ld a, b
 	ld [wCardTilemapOffset], a
 	ld a, c
-	ld [wddf5], a
+	ld [wCardAttrMapOffset], a
 	ld b, d
 	ld c, e
 	call BCCoordToBGMap0Address
@@ -5951,8 +5951,8 @@ DrawLoadedCard:
 .ApplyAttrmap:
 	push de
 	ld hl, wCardAttrMap
-	ld de, wddc4
-	ld a, [wddf5]
+	ld de, wCardAttrMapBuffer
+	ld a, [wCardAttrMapOffset]
 	ld c, a
 	ld b, $30 ; card size in tiles
 .asm_134f8
@@ -5966,7 +5966,7 @@ DrawLoadedCard:
 	dec b
 	jr nz, .asm_134f8
 	pop de
-	ld hl, wddc4
+	ld hl, wCardAttrMapBuffer
 	call .CopyCardDataToBGMap
 	ret
 
@@ -6398,7 +6398,7 @@ PlayerGenderSelection:
 	push de
 	push hl
 	xor a
-	ld [wde64], a
+	ld [wPlayerGenderMenuCursor], a
 	call .Show
 	pop hl
 	pop de
@@ -6433,7 +6433,7 @@ PlayerGenderSelection:
 	ld hl, .MenuParams
 	lb de, 2, 2
 	call LoadMenuBoxParams
-	ld a, [wde64]
+	ld a, [wPlayerGenderMenuCursor]
 	farcall DrawMenuBox
 	lb de, 0, 12
 	lb bc, 20, 6
@@ -6451,9 +6451,9 @@ PlayerGenderSelection:
 .HandleSelection:
 	ldtx hl, ChoosePlayerGenderText
 	call PrintTextInWideTextBox
-	ld a, [wde64]
+	ld a, [wPlayerGenderMenuCursor]
 	farcall HandleMenuBox
-	ld [wde64], a
+	ld [wPlayerGenderMenuCursor], a
 	inc a
 	ldtx hl, ConfirmPlayerGenderMaleText
 	dec a
@@ -6463,7 +6463,7 @@ PlayerGenderSelection:
 	ld a, $1
 	call DrawWideTextBox_PrintTextWithYesOrNoMenu
 	jr c, .HandleSelection
-	ld a, [wde64]
+	ld a, [wPlayerGenderMenuCursor]
 	call SetPlayerGender
 	ret
 

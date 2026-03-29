@@ -163,9 +163,9 @@ Func_12c0b7:
 	ld c, $00 ; Tiles0
 	call LoadTilemap
 	ld a, b
-	ld [wd7dc], a ; width
+	ld [wLoadedBGMapWidth], a ; width
 	ld a, c
-	ld [wd7dd], a ; height
+	ld [wLoadedBGMapHeight], a ; height
 	pop hl
 	pop de
 	pop bc
@@ -185,14 +185,14 @@ Func_12c0ce::
 	sla d ; *2
 	sla e ; *2
 	call Func_12c0fc
-	ld hl, wd852
+	ld hl, wOWTilemapOverlayCount
 	ld a, [hl]
 	inc [hl]
 	ld c, a
 	sla c
 	sla c ; *4
 	ld b, $00
-	ld hl, wd853
+	ld hl, wOWTilemapOverlayBuffer
 	add hl, bc
 	pop de
 	pop bc
@@ -249,7 +249,7 @@ LoadTilemap::
 	ld a, c
 	ld [wBGMapHeight], a
 	ld a, l
-	ld [wd7d8], a
+	ld [wOWPermissionsPtr], a
 	ld a, h
 	ld [wd7d9], a
 	pop hl
@@ -337,7 +337,7 @@ LoadTilemap::
 	jr nz, .loop_rows
 	pop de
 
-	ld a, [wd7d8]
+	ld a, [wOWPermissionsPtr]
 	ld l, a
 	ld a, [wd7d9]
 	ld h, a
@@ -369,7 +369,7 @@ Func_12c1c1:
 	; e *= 8
 	ld a, d
 	ld d, $00
-	ld hl, wd6d4
+	ld hl, wDecompressedTilemapPermissions
 	add hl, de
 	ld e, a
 	add hl, de
@@ -439,11 +439,11 @@ LoadOWMap::
 	push hl
 	call GetTilesetGfxPointer
 	ld a, b
-	ld [wd7de], a
+	ld [wLoadedTilesetBank], a
 	ld a, l
-	ld [wd7df + 0], a
+	ld [wLoadedTilesetPtr + 0], a
 	ld a, h
-	ld [wd7df + 1], a
+	ld [wLoadedTilesetPtr + 1], a
 	call Func_3792
 	pop hl
 
@@ -489,15 +489,15 @@ LoadOWMap::
 	farcall SetFontAndTextBoxFrameColor_PreserveRegisters
 
 	; very inefficient...
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	set 0, a
-	ld [wd693], a
-	ld a, [wd693]
+	ld [wGfxCacheFlags], a
+	ld a, [wGfxCacheFlags]
 	res 2, a
-	ld [wd693], a
-	ld a, [wd693]
+	ld [wGfxCacheFlags], a
+	ld a, [wGfxCacheFlags]
 	res 1, a
-	ld [wd693], a
+	ld [wGfxCacheFlags], a
 	ret
 
 ; bc = TILESET_* constant
@@ -579,7 +579,7 @@ UpdateSpriteAnim::
 	ld c, a
 	call GetFramesetData
 	ld a, c
-	ld [wd975], a
+	ld [wSpriteAnimFrameTileOffset], a
 	ld hl, wCurSpriteAnim
 	bit SPRITEANIMSTRUCT_FLAG6_F, [hl] ; SPRITEANIMSTRUCT_FLAGS
 	jr z, .apply_changes
@@ -588,7 +588,7 @@ UpdateSpriteAnim::
 	ld a, [wCurSpriteAnimAnimID + 1]
 	ld b, a
 	call GetSpriteAnimationGfxPointer
-	ld a, [wd975]
+	ld a, [wSpriteAnimFrameTileOffset]
 	ld c, a
 	cp $ff
 	jr z, .apply_changes
@@ -667,18 +667,18 @@ Func_12c36a:
 	ld a, b
 	ld [wCurSpriteAnimFrameDuration], a
 	ld a, c
-	ld [wd975], a
+	ld [wSpriteAnimFrameTileOffset], a
 	ld a, d
-	ld [wd971], a
+	ld [wSpriteAnimFrameXOffset], a
 	ld a, e
-	ld [wd972], a
+	ld [wSpriteAnimFrameYOffset], a
 
-	ld a, [wd971]
+	ld a, [wSpriteAnimFrameXOffset]
 	ld b, a
 	ld a, [wCurSpriteAnimXPos]
 	add b
 	ld [wCurSpriteAnimXPos], a
-	ld a, [wd972]
+	ld a, [wSpriteAnimFrameYOffset]
 	ld b, a
 	ld a, [wCurSpriteAnimYPos]
 	add b
@@ -748,30 +748,30 @@ _LoadOWObject::
 	push bc
 	push de
 	push hl
-	ld [wda8c], a
+	ld [wLoadOWObjectNPCID], a
 	ld a, b
-	ld [wda8d], a
+	ld [wLoadOWObjectDirection], a
 	ld a, d
-	ld [wda94 + 0], a
+	ld [wLoadOWObjectTilePos + 0], a
 	ld a, e
-	ld [wda94 + 1], a
+	ld [wLoadOWObjectTilePos + 1], a
 	farcall _GetNextInactiveOWObject
 	ld a, ACTIVE_OBJ
 	ld [hli], a ; OWOBJSTRUCT_FLAGS
-	ld a, [wda8c]
+	ld a, [wLoadOWObjectNPCID]
 	ld [hli], a ; OWOBJSTRUCT_ID
 	push hl
 	farcall GetNextInactiveSpriteAnim
 	farcall SetNewSpriteAnimValues
-	ld a, [wda94 + 0]
+	ld a, [wLoadOWObjectTilePos + 0]
 	ld d, a
-	ld a, [wda94 + 1]
+	ld a, [wLoadOWObjectTilePos + 1]
 	ld e, a
 	farcall ConvertToSpriteAnimPosition
 	farcall SetSpriteAnimPosition
-	ld a, [wda8d]
+	ld a, [wLoadOWObjectDirection]
 	farcall SetSpriteAnimDirection
-	ld a, [wda8c]
+	ld a, [wLoadOWObjectNPCID]
 	call Func_3bc1
 	push hl
 	ld h, b
@@ -815,7 +815,7 @@ _LoadOWObject::
 	ld b, a
 	farcall SetSpriteAnimOWFrameGroup
 
-	ld a, [wda8d]
+	ld a, [wLoadOWObjectDirection]
 	ld b, a
 	farcall SetSpriteAnimDirection
 
@@ -846,7 +846,7 @@ LoadCurCoinTilemap::
 	push hl
 	push af
 	push de
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	bit 2, a
 	jr nz, .checked_flag
 
@@ -856,12 +856,12 @@ LoadCurCoinTilemap::
 	ld bc, PALETTE_13B
 	call GetPaletteGfxPointer
 	call CopyCurPaletteToPal2
-	ld a, [wd693]
+	ld a, [wGfxCacheFlags]
 	set 2, a
-	ld [wd693], a
-	ld a, [wd693]
+	ld [wGfxCacheFlags], a
+	ld a, [wGfxCacheFlags]
 	res 0, a
-	ld [wd693], a
+	ld [wGfxCacheFlags], a
 
 .checked_flag
 	pop de

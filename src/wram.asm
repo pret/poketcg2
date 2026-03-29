@@ -1539,25 +1539,25 @@ wAICardListRetreatBonus:: ; d02e
 wAICardListEnergyBonus:: ; d030
 	ds $2
 
-wd032:: ; d032
+wAIAttackNonDamageCount:: ; d032
 	ds $1
 
-wd033:: ; d033
+wAISkipAttackCounter:: ; d033
 	ds $1
 
-wd034:: ; d034
+wAIPrevArenaCard:: ; d034
 	ds $1
 
-wd035:: ; d035
+wAIArenaCardStreakCount:: ; d035
 	ds $1
 
-wd036:: ; d036
+wAILastAttackArenaCard:: ; d036
 	ds $1
 
-wd037:: ; d037
+wAILastAttackIndex:: ; d037
 	ds $1
 
-wd038:: ; d038
+wAIAttackRepeatCount:: ; d038
 	ds $1
 
 	ds $a
@@ -1633,7 +1633,7 @@ wAICannotDamage:: ; d05f
 wTempAI:: ; d060
 	ds $1
 
-wd061:: ; d061
+wAIBenchCandidateCanAttack:: ; d061
 	ds $1
 
 ; used to temporarily store the card deck index
@@ -1642,7 +1642,7 @@ wd061:: ; d061
 wTempAIPokemonCard:: ; d062
 	ds $1
 
-wd063:: ; d063
+wAIBenchCandidateCanKO:: ; d063
 	ds $1
 
 	ds $4
@@ -1657,10 +1657,10 @@ wSamePokemonEnergyScoreHandled:: ; d06a
 
 NEXTU
 
-wd06a:: ; d06a
+wAIBestTargetLocation:: ; d06a
 	ds $1
 
-wd06b:: ; d06b
+wAIBestTargetScore:: ; d06b
 	ds $1
 
 ENDU
@@ -1673,29 +1673,29 @@ wAISecondAttackDamage:: ; d071
 wd072:: ; d072
 	ds $1
 
-wd073:: ; d073
+wAITempFoundDeckIndex:: ; d073
 	ds $1
 
-wd074:: ; d074
+wAITempCardCount:: ; d074
 	ds $1
 
-wd075:: ; d075
+wAIArenaCardColor:: ; d075
 	ds $1
 
-wd076:: ; d076
+wAIArenaCardEnergyCount:: ; d076
 	ds $1
 
 	ds $2
 
-wd079:: ; d079
+wAIFollowMeExcludeColor:: ; d079
 	ds $1
 
 	ds $1
 
-wd07b:: ; d07b
+wAIDefenderCanKOCandidate:: ; d07b
 	ds $1
 
-wd07c:: ; d07c
+wAIBenchEnergyScoreBonus:: ; d07c
 	ds $1
 
 ; whether AI already retreated this turn or not.
@@ -1709,7 +1709,7 @@ wAIRetreatedThisTurn::  ; d07d
 wAIVenusaurLv67DeckIndex::  ; d07e
 	ds $1
 
-wd07f:: ; d07f
+wAIEnergyTransVenusaurLocation:: ; d07f
 	ds $1
 
 wAIRetreatConsiderStatus:: ; d080
@@ -1722,7 +1722,7 @@ wd081:: ; d081
 ; setting up AI Boss deck
 wAISetupBasicPokemonCount:: ; d082
 wAITempHPRecoverAmount:: ; d082
-wd082:: ; d082
+wAIEnergyTransMode:: ; d082
 	ds $1
 
 	ds $1
@@ -1874,7 +1874,7 @@ wd0cb:: ; d0cb
 wArenaCardsInPlayArea:: ; d0cc
 	ds $1
 
-wd0cd:: ; d0cd
+wCheckMenuCursorNavFlags:: ; d0cd
 	ds $1
 
 wYourOrOppPlayAreaLastCursorPosition:: ; d0ce
@@ -1885,14 +1885,14 @@ wYourOrOppPlayAreaLastCursorPosition:: ; d0ce
 wInPlayAreaFromSelectButton:: ; d0cf
 	ds $1
 
-wd0d0:: ; d0d0
+wPrevTransitionIndex:: ; d0d0
 	ds $1
 
 ; GLOSSARY_* constant
 wGlossaryMenu:: ; d0d1
 	ds $1
 
-wd0d2:: ; d0d2
+wGlossaryReinit:: ; d0d2
 	ds $1
 
 wAttackAnimationIsPlaying:: ; d0d3
@@ -2039,7 +2039,7 @@ wScrollMenuScrollFunc:: ; d115
 wCardListCoords:: ; d117
 	ds $2
 
-wd119:: ; d119
+wCardListAllowLeftRight:: ; d119
 	ds $1
 
 ; the current filter being used
@@ -2054,11 +2054,11 @@ wTempCurMenuItem:: ; d11b
 wTempFilteredCardListNumCursorPositions:: ; d11c
 	ds $1
 
-wd11d:: ; d11d
+wDeckConfigMenuSelection:: ; d11d
 	ds $1
 
 ; tcg1: wced7
-wd11e:: ; d11e
+wCardListScrollEntryBackup:: ; d11e
 	ds $1
 
 wCardListVisibleOffsetBackup:: ; d11f
@@ -2195,7 +2195,7 @@ wFirstOwnedCardIndex:: ; d395
 
 NEXTU
 
-wd394:: ; d394
+wDeckDiagnosisTextPtr:: ; d394
 	ds $2
 
 ENDU
@@ -2237,7 +2237,7 @@ wNamingScreenMode:: ; d3eb
 wTempUnnamedDeckCounter:: ; d3ec
 	ds $3
 
-wd3ef:: ; d3ef
+wNamingScreenCursorRow:: ; d3ef
 	ds $1
 
 	ds $1e
@@ -2324,7 +2324,7 @@ wAutoDeckMachineIndex:: ; d548
 
 NEXTU
 
-wd548:: ; d548
+wDeckScreenTextPtr:: ; d548
 	ds $2
 
 ENDU
@@ -2345,7 +2345,7 @@ wNextGameEvent:: ; d54c
 wNextWarpMap:: ; d54d
 	ds $1
 
-wd54e:: ; d54e
+wNextWarpPlayerCoords:: ; d54e
 	ds $2
 
 wPlayerOWObject:: ; d550
@@ -2360,7 +2360,7 @@ wCurMapScriptsPointer:: ; d552
 ; bit 0: has save data
 ; bit 1: has saved duel + ?
 ; bit 2: has saved duel
-wd554:: ; d554
+wSaveDataFlags:: ; d554
 	ds $1
 
 wCurrentNPCDuelistData:: ; d555
@@ -2521,7 +2521,7 @@ wOverworldScriptPointer:: ; d593
 	ds $2
 
 ; NPC_* ID
-wd595:: ; d595
+wOWObjNPCID:: ; d595
 	ds $1
 
 wOWObjTargetX:: ; d596
@@ -2530,22 +2530,22 @@ wOWObjTargetX:: ; d596
 wOWObjTargetY:: ; d597
 	ds $1
 
-wd598:: ; d598
+wOWObjXVelocityFract:: ; d598
 	ds $1
 
 wOWObjXVelocity:: ; d599
 	ds $1
 
-wd59a:: ; d59a
+wOWObjYVelocityFract:: ; d59a
 	ds $1
 
 wOWObjYVelocity:: ; d59b
 	ds $1
 
-wd59c:: ; d59c
+wOWObjXSubPixel:: ; d59c
 	ds $1
 
-wd59d:: ; d59d
+wOWObjYSubPixel:: ; d59d
 	ds $1
 
 wEventVars:: ; d59e
@@ -2556,7 +2556,7 @@ wGeneralVars:: ; d5d2
 
 ; various temp flags
 ; e.g. blackbox input type flags, evo stage flags, etc.
-wd606:: ; d606
+wPkmnTypeBitfield:: ; d606
 	ds wD606_STRUCT_SIZE
 
 ; NPC_* ID of the active speaker / OW Object
@@ -2693,7 +2693,7 @@ wScenarioDebugMenuCurEventItem:: ; d67d
 wScenarioDebugMenuCurCardItem:: ; d67e
 	ds $2
 
-wd680:: ; d680
+wGRIslandScrollConfig:: ; d680
 	ds $1
 
 wOWScrollSpeed:: ; d681
@@ -2721,7 +2721,7 @@ wDebugDuelAnimLocationParam:: ; d688
 
 	ds $3
 
-wd68c:: ; d68c
+wSpriteAnimTemp:: ; d68c
 	ds $1
 
 ; represents a 16-bit value
@@ -2731,13 +2731,13 @@ wDecimalRepresentation:: ; d68d
 
 	ds $1
 
-wd693:: ; d693
+wGfxCacheFlags:: ; d693
 	ds $1
 
 wDecompressedBGMap:: ; d694
 	ds 2 * TILEMAP_WIDTH
 
-wd6d4:: ; d6d4
+wDecompressedTilemapPermissions:: ; d6d4
 	ds $100
 
 wBGMapAttribute:: ; d7d4
@@ -2752,7 +2752,7 @@ wBGMapWidth:: ; d7d6
 wBGMapHeight:: ; d7d7
 	ds $1
 
-wd7d8:: ; d7d8
+wOWPermissionsPtr:: ; d7d8
 	ds $1
 
 wd7d9:: ; d7d9
@@ -2760,16 +2760,16 @@ wd7d9:: ; d7d9
 
 	ds $2
 
-wd7dc:: ; d7dc
+wLoadedBGMapWidth:: ; d7dc
 	ds $1
 
-wd7dd:: ; d7dd
+wLoadedBGMapHeight:: ; d7dd
 	ds $1
 
-wd7de:: ; d7de
+wLoadedTilesetBank:: ; d7de
 	ds $1
 
-wd7df:: ; d7df
+wLoadedTilesetPtr:: ; d7df
 	ds $2
 
 wOWAnimBank:: ; d7e1
@@ -2780,16 +2780,16 @@ wOWAnimPtr:: ; d7e2
 
 	ds $1
 
-wd7e5:: ; d7e5
+wOWTileFrameGfxPtr:: ; d7e5
 	ds $2
 
-wd7e7:: ; d7e7
+wOWTileFrameGfxBank:: ; d7e7
 	ds $1
 
-wd7e8:: ; d7e8
+wOWScrollTargetX:: ; d7e8
 	ds $1
 
-wd7e9:: ; d7e9
+wOWScrollTargetY:: ; d7e9
 	ds $1
 
 	ds $2
@@ -2804,10 +2804,10 @@ wOWMap:: ; d7ec
 wOWAnimatedTiles:: ; d7ee
 	ds NUM_OW_ANIMATED_TILES * $4
 
-wd852:: ; d852
+wOWTilemapOverlayCount:: ; d852
 	ds $1
 
-wd853:: ; d853
+wOWTilemapOverlayBuffer:: ; d853
 	ds $40
 
 wScrollTargetSpritePtr:: ; d893
@@ -2816,16 +2816,16 @@ wScrollTargetSpritePtr:: ; d893
 wOWScrollState:: ; d895
 	ds $1
 
-wd896:: ; d896
+wPalAnimTarget:: ; d896
 	ds $2
 
-wd898:: ; d898
+wPalAnimFrameDelay:: ; d898
 	ds $1
 
-wd899:: ; d899
+wPalAnimFrameCounter:: ; d899
 	ds $1
 
-wd89a:: ; d89a
+wPalAnimFrameIndex:: ; d89a
 	ds $1
 
 wOWScrollX:: ; d89b
@@ -2836,10 +2836,10 @@ wOWScrollY:: ; d89c
 
 wOWDataEnd::
 
-wd89d:: ; d89d
+wBGBoxFillTile:: ; d89d
 	ds $1
 
-wd89e:: ; d89e
+wBGBoxFillAttr:: ; d89e
 	ds $1
 
 wPauseMenuCursorPosition:: ; d89f
@@ -2849,7 +2849,7 @@ wPauseMenuCursorPosition:: ; d89f
 wPauseMenuWithChips:: ; d8a0
 	ds $1
 
-wd8a1:: ; d8a1
+wOWNPCMovementMode:: ; d8a1
 	ds $1
 
 wSpriteAnimationStructs:: ; d8a2
@@ -2878,26 +2878,26 @@ wd96c:: ; d96c
 wd96d:: ; d96d
 	ds $2
 
-wd96f:: ; d96f
+wSpriteAnimRenderFlags:: ; d96f
 	ds $1
 
-wd970:: ; d970
+wSpriteAnimCoordFlags:: ; d970
 	ds $1
 
-wd971:: ; d971
+wSpriteAnimFrameXOffset:: ; d971
 	ds $1
 
-wd972:: ; d972
+wSpriteAnimFrameYOffset:: ; d972
 	ds $1
 
 	ds $2
 
-wd975:: ; d975
+wSpriteAnimFrameTileOffset:: ; d975
 	ds $1
 
 wCurSpriteAnim:: sprite_anim_struct wCurSpriteAnim ; d976
 
-wd986:: ; d986
+wNPCBoundaryOverride:: ; d986
 	ds $1
 
 ; NPC_* ID (or NPC_NONE)
@@ -2908,13 +2908,13 @@ wTempScriptNPC:: ; d987
 	ds $1
 
 ; NPC_* ID
-wd989:: ; d989
+wNPCStepNPCID:: ; d989
 	ds $1
 
-wd98a:: ; d98a
+wNPCStepResult:: ; d98a
 	ds $1
 
-wd98b:: ; d98b
+wNPCStateBuffer:: ; d98b
 	ds 5 * MAX_NUM_OW_OBJECTS
 
 wFrameFunctionStackSize:: ; d9bd
@@ -2960,7 +2960,7 @@ wPCMenuCursorPosition:: ; d9dc
 wPaletteFadeMode:: ; d9dd
 	ds $1
 
-wd9de:: ; d9de
+wPalFadeStepStatus:: ; d9de
 	ds $1
 
 ; whether pal fading happens
@@ -3064,18 +3064,18 @@ ENDR
 
 	ds $2
 
-wda8b:: ; da8b
+wNPCStepAmount:: ; da8b
 	ds $1
 
-wda8c:: ; da8c
+wLoadOWObjectNPCID:: ; da8c
 	ds $1
 
-wda8d:: ; da8d
+wLoadOWObjectDirection:: ; da8d
 	ds $1
 
 	ds $6
 
-wda94:: ; da94
+wLoadOWObjectTilePos:: ; da94
 	ds $2
 
 	ds $1
@@ -3084,7 +3084,7 @@ wScrollTargetObject:: ; da97
 	ds $1
 
 ; set to FF while chip count window is on screen (top-left corner)
-wda98:: ; da98
+wChipCountWindowVisible:: ; da98
 	ds $1
 
 ; capped at MAX_CHIPS
@@ -3115,22 +3115,22 @@ wTitleScreenCards:: ; daa9
 
 	ds $4
 
-wdabd:: ; dabd
+wTitleAnimSCXUpper:: ; dabd
 	ds $1
 
 	ds $1
 
-wdabf:: ; dabf
+wTitleAnimSCXMiddle:: ; dabf
 	ds $1
 
 	ds $1
 
-wdac1:: ; dac1
+wIntroLineSCXBuffer:: ; dac1
 	ds $20
 
 	ds $1c
 
-wdafd:: ; dafd
+wIntroDistortionCounter:: ; dafd
 	ds $1
 
 	ds $1
@@ -3303,16 +3303,16 @@ wTempBackgroundPalettesCGB:: ; dc10
 
 	ds $7
 
-wdc57:: ; dc57
+wDuelAnimFrameFuncActive:: ; dc57
 	ds $1
 
-wdc58:: ; dc58
+wDuelAnimSpriteStartDelay:: ; dc58
 	ds $1
 
 wNumActiveAnimations:: ; dc59
 	ds $1
 
-wdc5a:: ; dc5a
+wDuelAnimDispatchID:: ; dc5a
 	ds $1
 
 	ds $1
@@ -3348,10 +3348,10 @@ wDuelAnimBuffer:: ; dc60
 	duel_anim_struct wDuelAnim16
 wDuelAnimBufferEnd::
 
-wdce0:: ; dce0
+wAnimPlayerCoin:: ; dce0
 	ds $1
 
-wdce1:: ; dce1
+wAnimOppCoin:: ; dce1
 	ds $1
 
 ; holds an animation to play
@@ -3402,10 +3402,10 @@ wScreenAnimUpdatePtr:: ; dceb
 wScreenAnimDuration:: ; dced
 	ds $1
 
-wdcee:: ; dcee
+wShakeOffsetTablePtr:: ; dcee
 	ds $2
 
-wdcf0:: ; dcf0
+wDuelAnimCallbackActive:: ; dcf0
 	ds $1
 
 wAnimationTileset:: ; dcf1
@@ -3482,25 +3482,25 @@ wGrandMasterCupBracketChampionSpriteAnimIndex:: ; dd23
 wGrandMasterCupBracketChampionSpriteAnimTick:: ; dd24
 	ds $1
 
-wdd25:: ; dd25
+wCreateSpriteAnimGfxPtr:: ; dd25
 	ds $2
 
-wdd27:: ; dd27
+wCreateSpriteAnimAnimID:: ; dd27
 	ds $2
 
-wdd29:: ; dd29
+wCreateSpriteAnimFramesetID:: ; dd29
 	ds $2
 
-wdd2b:: ; dd2b
+wCreateSpriteAnimPalPtr:: ; dd2b
 	ds $2
 
-wdd2d:: ; dd2d
+wCreateSpriteAnimIndex:: ; dd2d
 	ds $1
 
-wdd2e:: ; dd2e
+wCreateSpriteAnimPalIndex:: ; dd2e
 	ds $1
 
-wdd2f:: ; dd2f
+wLoadBGGraphicsStartPal:: ; dd2f
 	ds $1
 
 ; id of the mail item being read
@@ -3567,13 +3567,13 @@ wBlackBoxCardReceived:: ; dd5f
 wBillsPCCardReceived:: ; dd73
 	ds $2
 
-wdd75:: ; dd75
+wScreenShakeType:: ; dd75
 	ds $1
 
-wdd76:: ; dd76
+wScreenShakeIndex:: ; dd76
 	ds $1
 
-wdd77:: ; dd77
+wScreenShakeRepeatCount:: ; dd77
 	ds $1
 
 wGrandMasterCupPrizeSelectionMenuCursorPosition:: ; dd78
@@ -3603,13 +3603,13 @@ wCardDungeonIsPlayable:: ; dd93
 wCardTilemap:: ; dd94
 	ds $30
 
-wddc4:: ; ddc4
+wCardAttrMapBuffer:: ; ddc4
 	ds $30
 
 wCardTilemapOffset:: ; ddf4
 	ds $1
 
-wddf5:: ; ddf5
+wCardAttrMapOffset:: ; ddf5
 	ds $1
 
 ; TCG_ISLAND or GR_ISLAND
@@ -3672,19 +3672,19 @@ wCreditsCmdArg4:: ; de4c
 wCreditsCmdArg5:: ; de4d
 	ds $1
 
-wde4e:: ; de4e
+wCreditsScrollXPos:: ; de4e
 	ds $1
 
-wde4f:: ; de4f
+wCreditsScrollYPos:: ; de4f
 	ds $1
 
-wde50:: ; de50
+wCreditsScrollXTarget:: ; de50
 	ds $1
 
-wde51:: ; de51
+wCreditsScrollYTarget:: ; de51
 	ds $1
 
-wde52:: ; de52
+wCreditsScrollSpeed:: ; de52
 	ds $1
 
 wProloguePortraitScene:: ; de53
@@ -3693,7 +3693,7 @@ wProloguePortraitScene:: ; de53
 wPlayerName:: ; de54
 	ds NAME_BUFFER_LENGTH
 
-wde64:: ; de64
+wPlayerGenderMenuCursor:: ; de64
 	ds $1
 
 ; used by GetNextBackgroundScroll
@@ -3710,7 +3710,7 @@ wNextScrollLY:: ; de67
 
 	ds $1
 
-wde69:: ; de69
+wCallbackPointer:: ; de69
 	ds $2
 
 SECTION "WRAM2", WRAMX
@@ -3806,7 +3806,7 @@ wCurSfxBank:: ; d007
 wMusicStereoPanning:: ; d008
 	ds $1
 
-wdd85:: ; d009
+wSFXStereoPanning:: ; d009
 	ds $1
 
 wMusicDuty1:: ; d00a
@@ -3823,7 +3823,7 @@ wMusicWave:: ; d00e
 wMusicWaveChange:: ; d00f
 	ds $1
 
-wdd8c:: ; d010
+wSFXChannelMask:: ; d010
 	ds $1
 
 wAudio_d011:: ; d011
@@ -3861,10 +3861,10 @@ wMusicCh3CurPitch:: ; d02e
 wMusicCh3CurOctave:: ; d02f
 	ds $1
 
-wddab:: ; d030
+wMusicNoiseLenBuffer:: ; d030
 	ds $1
 
-wddac:: ; d031
+wMusicNoiseEnvBuffer:: ; d031
 	ds $1
 
 	ds $2
@@ -3872,29 +3872,29 @@ wddac:: ; d031
 wMusicOctave:: ; d034
 	ds $4
 
-wddb3:: ; d038
+wMusicChannelRestartFlag:: ; d038
 	ds $4
 
-wddb7:: ; d03c
+wMusicCh1CutoffEnable:: ; d03c
 	ds $1
 
-wddb8:: ; d03d
+wMusicCh2CutoffEnable:: ; d03d
 	ds $1
 
-wddb9:: ; d03e
+wMusicCh3CutoffEnable:: ; d03e
 	ds $1
 
-wddba:: ; d03f
+wMusicCh4CutoffEnable:: ; d03f
 	ds $1
 
-wddbb:: ; d040
+wMusicNoteDuration:: ; d040
 	ds $4
 
 ; the delay (1-8) before a note is cut off early (0 is disabled)
 wMusicCutoff:: ; d044
 	ds $4
 
-wddc3:: ; d048
+wMusicCutoffCountdown:: ; d048
 	ds $4
 
 ; the volume to apply after a cutoff
@@ -3914,13 +3914,13 @@ wMusicVibratoType:: ; d058
 wMusicVibratoType2:: ; d05c
 	ds $4
 
-wdddb:: ; d060
+wMusicVibratoPhase:: ; d060
 	ds $4
 
 wMusicVibratoDelay:: ; d064
 	ds $4
 
-wdde3:: ; d068
+wMusicVibratoCounter:: ; d068
 	ds $4
 
 wAudio_d06c:: ; d06c
@@ -3948,22 +3948,22 @@ wAudio_d080:: ; d080
 wAudio_d083:: ; d083
 	ds $1
 
-wdded:: ; d084
+wMusicNoiseCurDataPtr:: ; d084
 	ds $2
 
-wddef:: ; d086
+wMusicNoiseActive:: ; d086
 	ds $1
 
 wAudio_d087:: ; d087
 	ds $1
 
-wddf0:: ; d088
+wMusicChannelMuteMask:: ; d088
 	ds $1
 
 wMusicPanning:: ; d089
 	ds $1
 
-wddf2:: ; d08a
+wMusicForceResetFlag:: ; d08a
 	ds $1
 
 ; 4 pointers to the positions on the stack for each channel
@@ -3982,40 +3982,40 @@ wMusicCh3Stack:: ; d0ab
 wMusicCh4Stack:: ; d0b7
 	ds $c
 
-wde2b:: ; d0c3
+wSFXChannelRestartPending:: ; d0c3
 	ds $3
 
-wde2e:: ; d0c6
+wSFXNoiseRestartPending:: ; d0c6
 	ds $1
 
-wde2f:: ; d0c7
+wSFXChannelPitchOffset:: ; d0c7
 	ds $3
 
-wde32:: ; d0ca
+wSFXNoisePitchOffset:: ; d0ca
 	ds $1
 
-wde33:: ; d0cb
+wSFXChannelFrameDelay:: ; d0cb
 	ds $4
 
-wde37:: ; d0cf
+wSFXChannelFrequency:: ; d0cf
 	ds $6
 
-wde3d:: ; d0d5
+wSFXNoiseFrequency:: ; d0d5
 	ds $2
 
-wde3f:: ; d0d7
+wSFXChannelLoopCount:: ; d0d7
 	ds $4
 
-wde43:: ; d0db
+wSFXChannelLoopPtr:: ; d0db
 	ds $8
 
-wd0e3:: ; d0e3
+wSFXChannelPointers:: ; d0e3
 	ds $8
 
-wde53:: ; d0eb
+wSFXIsPlaying:: ; d0eb
 	ds $1
 
-wde54:: ; d0ec
+wSFXChannelLoadMask:: ; d0ec
 	ds $1
 
 wAudio_d0ed:: ; d0ed
@@ -4051,28 +4051,28 @@ wMusicChannelPointersBackup:: ; d0ff
 wMusicMainLoopStartBackup:: ; d107
 	ds $8
 
-wde76:: ; d10f
+wMusicNoiseLenBufferBackup:: ; d10f
 	ds $1
 
-wde77:: ; d110
+wMusicNoiseEnvBufferBackup:: ; d110
 	ds $1
 
 wMusicOctaveBackup:: ; d111
 	ds $4
 
-wde7c:: ; d115
+wMusicChannelRestartFlagBackup:: ; d115
 	ds $4
 
-wde80:: ; d119
+wMusicCutoffEnableBackup:: ; d119
 	ds $4
 
-wde84:: ; d11d
+wMusicNoteDurationBackup:: ; d11d
 	ds $4
 
 wMusicCutoffBackup:: ; d121
 	ds $4
 
-wde8c:: ; d125
+wMusicCutoffCountdownBackup:: ; d125
 	ds $4
 
 wMusicEchoBackup:: ; d129
@@ -4096,10 +4096,10 @@ wMusicVolumeBackup:: ; d13d
 wMusicFrequencyOffsetBackup:: ; d140
 	ds $3
 
-wdeaa:: ; d143
+wMusicNoiseCurDataPtrBackup:: ; d143
 	ds $2
 
-wdeac:: ; d145
+wMusicNoiseActiveBackup:: ; d145
 	ds $1
 
 wAudio_d146:: ; d146

@@ -5607,7 +5607,7 @@ InputName:
 	call Set_OBJ_8x8
 
 	xor a
-	ld [wd3ef], a
+	ld [wNamingScreenCursorRow], a
 	ld [wTileMapFill], a
 	call EmptyScreen
 	call ZeroObjectPositions
@@ -6093,7 +6093,7 @@ DrawSymbolAtCharPosition:
 	call GetCharInfoFromPos
 	ld a, [hli] ; y
 	ld c, a
-	ld a, [wd3ef]
+	ld a, [wNamingScreenCursorRow]
 	or a
 	jr z, .asm_1b1ae
 	inc c
@@ -6123,7 +6123,7 @@ UpdateNameTextCursor:
 	ld a, [wMenuInvisibleCursorTile]
 	cp b
 	jr z, .done ; cursor is invisible, done
-	ld a, [wd3ef]
+	ld a, [wNamingScreenCursorRow]
 	or a
 	jr nz, .asm_1b201
 

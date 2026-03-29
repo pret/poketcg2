@@ -491,7 +491,7 @@ Func_30343:
 	ld hl, Data_3056a
 	add_hl_a
 	ld a, [hli]
-	ld [wd680], a
+	ld [wGRIslandScrollConfig], a
 	ld a, [hli]
 	ld [wOWScrollX], a
 	ld a, [hl]
@@ -506,7 +506,7 @@ Func_3035f:
 	ld a, c
 	ld [wOWScrollSpeed], a
 	ld a, [hli]
-	ld [wd680], a
+	ld [wGRIslandScrollConfig], a
 	ld a, [hli]
 	ld d, a
 	ld a, [hl]
@@ -530,7 +530,7 @@ Func_3035f:
 	ret
 
 Func_30398:
-	ld a, [wd680]
+	ld a, [wGRIslandScrollConfig]
 	cp 2
 	jr z, .scroll_if_challenge_hall
 	or a

@@ -1,7 +1,7 @@
 _OpenDuelCheckMenu::
 	call ResetCheckMenuCursorPositionAndBlink
 	xor a
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 	call DrawWideTextBox
 ; reset cursor blink
 	xor a
@@ -52,7 +52,7 @@ DuelCheckMenu_YourPlayArea:
 	jr z, .no_here_comes_team_rocket
 	ld a, $02
 .no_here_comes_team_rocket
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 
 	ldh a, [hWhoseTurn]
 .draw
@@ -183,12 +183,12 @@ DuelCheckMenu_OppPlayArea:
 
 ; here comes team rocket on
 	ld a, $01
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 	jr .begin
 
 .default_1
 	ld a, %10000000
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 	jr .begin
 
 .clairvoyance_on_1
@@ -200,7 +200,7 @@ DuelCheckMenu_OppPlayArea:
 	ld a, $02
 
 .clairvoyance_on_here_comes_team_rocket_off_1
-	ld [wd0cd], a
+	ld [wCheckMenuCursorNavFlags], a
 
 .begin
 	ldh a, [hWhoseTurn]
@@ -1337,7 +1337,7 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 	ldh a, [hDPadHeld]
 	or a
 	jr z, .no_pad
-	ld a, [wd0cd]
+	ld a, [wCheckMenuCursorNavFlags]
 	and %10000000
 	ldh a, [hDPadHeld]
 	jr nz, .check_vertical
@@ -1349,7 +1349,7 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 ; d = x, e = y
 
 .horizontal
-	ld a, [wd0cd]
+	ld a, [wCheckMenuCursorNavFlags]
 	and %01111111
 	cp $01
 	jr z, .incr_y_wrap
@@ -1392,7 +1392,7 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 	jr z, .no_pad
 
 .vertical
-	ld a, [wd0cd]
+	ld a, [wCheckMenuCursorNavFlags]
 	and %01111111
 	cp $02
 	jr z, .toggle_y
@@ -1817,7 +1817,7 @@ HandleMultiDirectionalMenu:
 	inc hl
 	ld d, [hl]
 	ld a, [wMultiDirectionalMenuCursorPosition]
-	ld [wd0d0], a
+	ld [wPrevTransitionIndex], a
 	ld l, a
 	ld h, CURSOR_TRANSITION_STRUCT_LENGTH
 	call HtimesL
@@ -1879,7 +1879,7 @@ ENDR
 	ld a, [wDuelInitialPrizesUpperBitsSet]
 	and b
 	jr nz, .sfx
-	ld a, [wd0d0]
+	ld a, [wPrevTransitionIndex]
 	cp $06
 	jr nz, HandleMultiDirectionalMenu
 
@@ -1921,7 +1921,7 @@ ENDR
 
 .handled_cursor_pos
 	ld a, [wMultiDirectionalMenuCursorPosition]
-	ld [wd0d0], a
+	ld [wPrevTransitionIndex], a
 	ld b, $1
 	jr .make_bitmask_loop
 
@@ -3614,7 +3614,7 @@ HandleDeckBuildScreen:
 	ld [hl], d
 
 	ld a, $01
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .loop_input
 	call DoFrame
 	ldh a, [hDPadHeld]
@@ -3730,7 +3730,7 @@ HandleDeckConfigurationMenu:
 	call DoFrame
 	call HandleMultiDirectionalMenu
 	jr nc, .do_frame
-	ld [wd11d], a
+	ld [wDeckConfigMenuSelection], a
 	cp $ff
 	jr nz, .asm_9769
 .draw_icons
@@ -3777,7 +3777,7 @@ ConfirmDeckConfiguration:
 	call DrawHorizontalListCursor_Visible
 	ld a, [wCurCardTypeFilter]
 	call PrintFilteredCardList
-	ld a, [wd11d]
+	ld a, [wDeckConfigMenuSelection]
 	ld [wTempCardTypeFilter], a
 	ret
 
@@ -3832,7 +3832,7 @@ SaveDeckConfiguration:
 .go_back
 	call DrawCardTypeIconsAndPrintCardCounts
 	call PrintDeckBuildingCardList
-	ld a, [wd11d]
+	ld a, [wDeckConfigMenuSelection]
 	ld [wCurScrollMenuItem], a
 	ret
 
@@ -3864,7 +3864,7 @@ DismantleDeck:
 	call DrawHorizontalListCursor_Visible
 	call PrintDeckBuildingCardList
 	call EnableLCD
-	ld a, [wd11d]
+	ld a, [wDeckConfigMenuSelection]
 	ld [wCurScrollMenuItem], a
 	ret
 
@@ -5184,7 +5184,7 @@ HandleScrollListInput:
 	jr .asm_9ff4
 
 .asm_9fd8
-	ld a, [wd119]
+	ld a, [wCardListAllowLeftRight]
 	or a
 	jr z, .asm_9ff4
 	bit B_PAD_LEFT, b
@@ -5740,7 +5740,7 @@ HandleDeckConfirmationMenu:
 	ld [hl], d
 
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .loop_input
 	call DoFrame
 	call HandleScrollListInput
@@ -5755,7 +5755,7 @@ HandleDeckConfirmationMenu:
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wCurScrollMenuItem]
-	ld [wd11e], a
+	ld [wCardListScrollEntryBackup], a
 
 	; set wOwnedCardsCountList as current card list
 	; and show card page screen
@@ -6390,7 +6390,7 @@ HandleGiftCenterSendCardsMenu:
 	call DoFrame
 	call HandleMultiDirectionalMenu
 	jr nc, .loop_input
-	ld [wd11d], a
+	ld [wDeckConfigMenuSelection], a
 	cp $ff
 	jr nz, .confirm
 	call DrawCardTypeIconsAndPrintCardCounts
@@ -6489,7 +6489,7 @@ HandleBlackBoxSendCardsMenu:
 	call DoFrame
 	call HandleMultiDirectionalMenu
 	jr nc, .loop_input
-	ld [wd11d], a
+	ld [wDeckConfigMenuSelection], a
 	cp $ff
 	jr nz, .confirm
 	call DrawCardTypeIconsAndPrintCardCounts
@@ -6595,7 +6595,7 @@ HandlePlayersCardsScreen:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 
 .loop_input
 	call DoFrame
@@ -7840,7 +7840,7 @@ CardAlbum:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .loop_input
 	call DoFrame
 	farcall HandleScrollMenu
@@ -7907,7 +7907,7 @@ CardAlbum:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .loop
 	call DoFrame
 	call HandleScrollListInput
@@ -8310,7 +8310,7 @@ PrinterMenu_PokemonCards:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 
 .loop_frame_2
 	call DoFrame
@@ -8613,7 +8613,7 @@ _HandleDeckStatusCardList:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 
 .loop_input
 	call DoFrame
@@ -8630,7 +8630,7 @@ _HandleDeckStatusCardList:
 	ld a, MENU_CONFIRM
 	call PlaySFXConfirmOrCancel
 	ld a, [wTempCardTypeFilter]
-	ld [wd11e], a
+	ld [wCardListScrollEntryBackup], a
 	ld de, wUniqueDeckCardList
 	ld hl, wCurCardListPtr
 	ld [hl], e
@@ -8806,7 +8806,7 @@ GiftCenter_ReceiveCards:
 	ld [hl], d
 
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 .loop_input
 	call DoFrame
 	call HandleScrollListInput
@@ -9080,9 +9080,9 @@ HandleGiftCenter::
 ; hl = text ID for text box
 DeckDiagnosisResult:
 	ld a, l
-	ld [wd394 + 0], a
+	ld [wDeckDiagnosisTextPtr + 0], a
 	ld a, h
-	ld [wd394 + 1], a
+	ld [wDeckDiagnosisTextPtr + 1], a
 
 	call GetSRAMPointerToCurDeck
 	call EnableSRAM
@@ -9115,7 +9115,7 @@ DeckDiagnosisResult:
 	ld [hli], a
 	ld [hl], d
 	xor a
-	ld [wd119], a
+	ld [wCardListAllowLeftRight], a
 
 .loop_input
 	call DoFrame
@@ -9184,9 +9184,9 @@ DeckDiagnosisResult:
 	xor a
 	ld [wTxRam2 + 0], a
 	ld [wTxRam2 + 1], a
-	ld a, [wd394 + 0]
+	ld a, [wDeckDiagnosisTextPtr + 0]
 	ld l, a
-	ld a, [wd394 + 1]
+	ld a, [wDeckDiagnosisTextPtr + 1]
 	ld h, a
 	lb de, 1, 1
 	call PrintTextNoDelay_Init

@@ -1236,16 +1236,16 @@ Func_3698::
 	ld b, [hl]
 	farcall Func_12c06e
 	ld a, b
-	ld [wd7e7], a
+	ld [wOWTileFrameGfxBank], a
 	pop bc
 	ld a, l
-	ld [wd7e5 + 0], a
+	ld [wOWTileFrameGfxPtr + 0], a
 	ld a, h
-	ld [wd7e5 + 1], a
+	ld [wOWTileFrameGfxPtr + 1], a
 
 	ldh a, [hBankROM]
 	push af
-	ld a, [wd7e7]
+	ld a, [wOWTileFrameGfxBank]
 	call BankswitchROM
 	push bc
 	inc de
@@ -1262,9 +1262,9 @@ Func_3698::
 	ld a, [hld]
 	bit 7, a
 	jr z, .asm_36fe
-	ld a, [wd7e5 + 0]
+	ld a, [wOWTileFrameGfxPtr + 0]
 	ld l, a
-	ld a, [wd7e5 + 1]
+	ld a, [wOWTileFrameGfxPtr + 1]
 	ld h, a
 	ld a, $00
 	ld [de], a
@@ -1317,11 +1317,11 @@ Func_3698::
 Func_372d::
 	ldh a, [hBankROM]
 	push af
-	ld a, [wd7de]
+	ld a, [wLoadedTilesetBank]
 	call BankswitchROM
-	ld a, [wd7df + 0]
+	ld a, [wLoadedTilesetPtr + 0]
 	ld l, a
-	ld a, [wd7df + 1]
+	ld a, [wLoadedTilesetPtr + 1]
 	ld h, a
 	inc hl ; skip length
 	inc hl ;
@@ -1430,9 +1430,9 @@ Func_37ce::
 	push bc
 	push de
 	push hl
-	ld a, [wd896]
+	ld a, [wPalAnimTarget]
 	ld c, a
-	ld a, [wd896 + 1]
+	ld a, [wPalAnimTarget + 1]
 	ld b, a
 	or c
 	jr z, .asm_3823
@@ -1441,12 +1441,12 @@ Func_37ce::
 	farcall $7, $4941
 	cp $02
 	jr z, .asm_3823
-	ld a, [wd899]
+	ld a, [wPalAnimFrameCounter]
 	dec a
-	ld [wd899], a
+	ld [wPalAnimFrameCounter], a
 	jr nz, .asm_3823
-	ld a, [wd898]
-	ld [wd899], a
+	ld a, [wPalAnimFrameDelay]
+	ld [wPalAnimFrameCounter], a
 	farcall GetPaletteGfxPointer
 	ldh a, [hBankROM]
 	push af
@@ -1454,14 +1454,14 @@ Func_37ce::
 	call BankswitchROM
 	ld a, [hli]
 	ld b, a
-	ld a, [wd89a]
+	ld a, [wPalAnimFrameIndex]
 	ld c, a
 	inc a
 	cp b
 	jr nz, .asm_3810
 	xor a
 .asm_3810
-	ld [wd89a], a
+	ld [wPalAnimFrameIndex], a
 	sla c
 	sla c
 	sla c
@@ -1687,7 +1687,7 @@ Func_3924::
 	push bc
 	push de
 	push hl
-	ld [wd68c], a
+	ld [wSpriteAnimTemp], a
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -1699,7 +1699,7 @@ Func_3924::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, [wd68c]
+	ld a, [wSpriteAnimTemp]
 	ld b, a
 	ld a, [hli]
 	ld c, a
@@ -1709,7 +1709,7 @@ Func_3924::
 	ld a, [hli] ; y
 	add e
 	ld e, a
-	ld a, [wd96f]
+	ld a, [wSpriteAnimRenderFlags]
 	bit SPRITE_ANIM_FLAG_Y_FLIP_F, a
 	jr z, .got_y
 	ld a, e
@@ -1726,7 +1726,7 @@ Func_3924::
 	ld a, [hli] ; x
 	add d
 	ld d, a
-	ld a, [wd96f]
+	ld a, [wSpriteAnimRenderFlags]
 	bit SPRITE_ANIM_FLAG_X_FLIP_F, a
 	jr z, .got_x
 	ld a, d
@@ -1744,7 +1744,7 @@ Func_3924::
 	add b
 	ld c, a
 
-	ld a, [wd96f]
+	ld a, [wSpriteAnimRenderFlags]
 	ld b, a
 	ld a, [hli] ; attributes
 	xor b
@@ -1789,7 +1789,7 @@ GetFramesetData::
 	ld d, [hl]
 	inc hl
 	ld e, [hl]
-	ld a, [wd970]
+	ld a, [wSpriteAnimCoordFlags]
 	bit 5, a
 	jr z, .asm_39ba
 	ld a, d
@@ -1797,7 +1797,7 @@ GetFramesetData::
 	inc a
 	ld d, a ; d = -d
 .asm_39ba
-	ld a, [wd970]
+	ld a, [wSpriteAnimCoordFlags]
 	bit 6, a
 	jr z, .asm_39c6
 	ld a, e
@@ -2292,19 +2292,19 @@ ResetAnimationQueue::
 	farcall Func_1dfb9
 	farcall Func_110b9
 	ld a, $01
-	ld [wdc57], a
+	ld [wDuelAnimFrameFuncActive], a
 	pop af
 	ret
 
 FinishQueuedAnimations::
 	push af
-	ld a, [wdc57]
+	ld a, [wDuelAnimFrameFuncActive]
 	and a
 	jr z, .asm_3c60
 	farcall Func_110c2
 .asm_3c60
 	xor a
-	ld [wdc57], a
+	ld [wDuelAnimFrameFuncActive], a
 	ld [wDuelAnimBufferSize], a
 	ld [wDuelAnimBufferCurPos], a
 	farcall Func_1dfb9
@@ -2373,7 +2373,7 @@ Func_3c8e::
 
 Func_3cc3::
 	ld a, $ff
-	ld [wdcf0], a
+	ld [wDuelAnimCallbackActive], a
 	ldh a, [hBankROM]
 	push af
 	ld a, [wDuelAnimReturnBank]
@@ -2382,7 +2382,7 @@ Func_3cc3::
 	pop af
 	call BankswitchROM
 	xor a
-	ld [wdcf0], a
+	ld [wDuelAnimCallbackActive], a
 	ret
 
 Func_3cdd::
@@ -2504,7 +2504,7 @@ LoadBGGraphics::
 	push bc
 	push de
 	ld a, c
-	ld [wdd2f], a
+	ld [wLoadBGGraphicsStartPal], a
 	ldh a, [hBankROM]
 	push af
 	ld a, b
@@ -2522,7 +2522,7 @@ LoadBGGraphics::
 	ld c, a
 	ld a, [hli]
 	ld b, a
-	ld a, [wdd2f]
+	ld a, [wLoadBGGraphicsStartPal]
 	call LoadBGPalette
 
 	; tilemap
@@ -2598,21 +2598,21 @@ CreateSpriteAnim::
 	push bc
 	push de
 	push hl
-	ld [wdd2d], a
+	ld [wCreateSpriteAnimIndex], a
 	ld a, c
-	ld [wdd2e], a
+	ld [wCreateSpriteAnimPalIndex], a
 	ldh a, [hBankROM]
 	push af
 	ld a, b
 	call BankswitchROM
 	push bc
 	push de
-	ld de, wdd25
+	ld de, wCreateSpriteAnimGfxPtr
 	ld bc, $8
 	call CopyDataHLtoDE_SaveRegisters
 	pop de
 	pop bc
-	ld a, [wdd2d]
+	ld a, [wCreateSpriteAnimIndex]
 	cp $ff
 	jr z, .get_inactive
 	farcall GetCthSpriteAnim
@@ -2623,31 +2623,31 @@ CreateSpriteAnim::
 	farcall SetNewSpriteAnimValues
 	farcall SetSpriteAnimPosition
 
-	ld a, [wdd25 + 0]
+	ld a, [wCreateSpriteAnimGfxPtr + 0]
 	ld c, a
-	ld a, [wdd25 + 1]
+	ld a, [wCreateSpriteAnimGfxPtr + 1]
 	ld b, a
 	farcall LoadSpriteAnimGfx
 	farcall SetSpriteAnimTileOffset
 
-	ld a, [wdd27 + 0]
+	ld a, [wCreateSpriteAnimAnimID + 0]
 	ld c, a
-	ld a, [wdd27 + 1]
+	ld a, [wCreateSpriteAnimAnimID + 1]
 	ld b, a
 	farcall SetSpriteAnimAnimation
 
-	ld a, [wdd29 + 0]
+	ld a, [wCreateSpriteAnimFramesetID + 0]
 	ld c, a
-	ld a, [wdd29 + 1]
+	ld a, [wCreateSpriteAnimFramesetID + 1]
 	ld b, a
 	farcall SetAndInitSpriteAnimFrameset
 
-	ld a, [wdd2b + 0]
+	ld a, [wCreateSpriteAnimPalPtr + 0]
 	ld c, a
-	ld a, [wdd2b + 1]
+	ld a, [wCreateSpriteAnimPalPtr + 1]
 	ld b, a
 	farcall GetPaletteGfxPointer
-	ld a, [wdd2e]
+	ld a, [wCreateSpriteAnimPalIndex]
 	ld c, a
 	call LoadGfxPalettes
 
@@ -2826,31 +2826,31 @@ DisableInt_LYCoincidence::
 	pop hl
 	ret
 
-; clears wde69
+; clears wCallbackPointer
 Func_3f61::
 	di
 	xor a
-	ld [wde69 + 0], a
-	ld [wde69 + 1], a
+	ld [wCallbackPointer + 0], a
+	ld [wCallbackPointer + 1], a
 	ei
 	ret
 
-; sets wde69 to function in hl
+; sets wCallbackPointer to function in hl
 Func_3f6b::
 	di
 	push af
 	ld a, l
-	ld [wde69 + 0], a
+	ld [wCallbackPointer + 0], a
 	ld a, h
-	ld [wde69 + 1], a
+	ld [wCallbackPointer + 1], a
 	pop af
 	ei
 	ret
 
-; jumps to wde69 if not null
+; jumps to wCallbackPointer if not null
 Func_3f78::
 	push af
-	ld hl, wde69
+	ld hl, wCallbackPointer
 	ld a, [hli]
 	or [hl]
 	jr nz, .not_null

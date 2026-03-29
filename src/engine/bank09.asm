@@ -5640,9 +5640,9 @@ _TossCoin::
 	ldh a, [hWhoseTurn]
 	ld [wDuelAnimDuelistSide], a
 	ld a, [wOppCoin]
-	ld [wdce1], a
+	ld [wAnimOppCoin], a
 	ld a, [wPlayerCoin]
-	ld [wdce0], a
+	ld [wAnimPlayerCoin], a
 	call LoadDuelAnimationToBuffer
 	ret
 

@@ -23,11 +23,11 @@ _PlayCredits::
 	call ClearSpriteAnimsAndSetInitialGraphicsConfiguration
 	call EnableLCD
 	xor a
-	ld [wde4e], a
-	ld [wde4f], a
-	ld [wde50], a
-	ld [wde51], a
-	ld [wde52], a
+	ld [wCreditsScrollXPos], a
+	ld [wCreditsScrollYPos], a
+	ld [wCreditsScrollXTarget], a
+	ld [wCreditsScrollYTarget], a
+	ld [wCreditsScrollSpeed], a
 	farcall RunCreditsCommands
 	call Func_3f61
 	call Func_3f61 ; repeated
@@ -291,50 +291,50 @@ CreditsCmd_PrintBlack:
 
 CreditsCmd_Scroll:
 	ld a, [wCreditsCmdArg1]
-	ld [wde52], a
+	ld [wCreditsScrollSpeed], a
 	ld a, [wCreditsCmdArg2]
-	ld [wde4f], a
+	ld [wCreditsScrollYPos], a
 	ld a, [wCreditsCmdArg3]
-	ld [wde4e], a
+	ld [wCreditsScrollXPos], a
 	ld a, [wCreditsCmdArg4]
-	ld [wde51], a
+	ld [wCreditsScrollYTarget], a
 	ld a, [wCreditsCmdArg5]
-	ld [wde50], a
+	ld [wCreditsScrollXTarget], a
 	; this won't work since the frame function
-	; doesn't actually call wde69
+	; doesn't actually call wCallbackPointer
 	ld hl, Func_3e7a
 	call Func_3f6b
 	ret
 
 Func_13ac1::
 	; current scroll position
-	ld a, [wde4f]
+	ld a, [wCreditsScrollYPos]
 	ld b, a
-	ld a, [wde51]
+	ld a, [wCreditsScrollYTarget]
 	ld c, a
 	or b
 	ret z
 
 	; scrolling speed
-	ld a, [wde52]
+	ld a, [wCreditsScrollSpeed]
 	ld e, a
 
 	; x scrolling
-	ld a, [wde4e]
+	ld a, [wCreditsScrollXPos]
 	ld d, a
 	ld a, b
 	and a
 	call nz, .ApplyScrollingOffset
-	ld [wde4f], a
+	ld [wCreditsScrollYPos], a
 	ldh [hSCX], a
 
 	; y scrolling
-	ld a, [wde50]
+	ld a, [wCreditsScrollXTarget]
 	ld d, a
 	ld a, c
 	and a
 	call nz, .ApplyScrollingOffset
-	ld [wde51], a
+	ld [wCreditsScrollYTarget], a
 	ldh [hSCY], a
 	ret
 
