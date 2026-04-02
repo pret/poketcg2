@@ -230,9 +230,39 @@ AIProcessHandTrainerCards:
 	ret z
 	inc de
 	jr .loop_copy
-; 0x20270
 
-SECTION "Bank 8@4290", ROMX[$4290], BANK[$8]
+; returns hl = floor(hl / 10)
+CalculateWordTensDigit:
+	push bc
+	push de
+	lb bc, $ff, -10
+	lb de, $ff, -1
+.loop
+	inc de
+	add hl, bc
+	jr c, .loop
+	ld h, d
+	ld l, e
+	pop de
+	pop bc
+	ret
+
+; returns a = floor(b / a)
+CalculateBDividedByA_Bank08:
+	push bc
+	ld c, a
+	ld a, b
+	ld b, c
+	ld c, 0
+.loop
+	sub b
+	jr c, .done
+	inc c
+	jr .loop
+.done
+	ld a, c
+	pop bc
+	ret
 
 ; makes AI use Potion card.
 AIPlay_Potion:
