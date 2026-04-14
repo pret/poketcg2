@@ -223,20 +223,19 @@ AIProcessHandTrainerCards:
 
 ; copies $ff-terminated list from hl to de
 .CopyList:
-.loop_copy
 	ld a, [hli]
 	ld [de], a
 	cp $ff
 	ret z
 	inc de
-	jr .loop_copy
+	jr .CopyList
 
 ; returns hl = floor(hl / 10)
 CalculateWordTensDigit:
 	push bc
 	push de
-	lb bc, $ff, -10
-	lb de, $ff, -1
+	ld bc, -10
+	ld de, -1
 .loop
 	inc de
 	add hl, bc

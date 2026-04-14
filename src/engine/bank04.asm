@@ -82,7 +82,7 @@ StartUpDebugMenu::
 	key_func DEBUGMENU_POWER_ON,      _CoreGameLoop
 	key_func DEBUGMENU_COIN,          SetAllCoinsObtainedAndShowCoinMenu
 	key_func DEBUGMENU_CONFIG,        DebugShowConfigMenu
-	key_func DEBUGMENU_EFFECT_VIEWER, DebugMenuEffectViewer
+	key_func DEBUGMENU_EFFECT_VIEWER, DebugEffectViewer
 	key_func DEBUGMENU_CREDITS,       _PlayCredits
 	key_func DEBUGMENU_DUEL,          StartDebugDuelVsRandomOpponent
 	key_func DEBUGMENU_SLOT,          DebugSlotMachine
@@ -258,9 +258,9 @@ InGameDebugMenu:
 
 .FunctionMap:
 	key_func INGAMEDEBUGMENU_BG_FONT_VIEWER,     DebugBackgroundFontViewerScreen
-	key_func INGAMEDEBUGMENU_BG_PORTRAIT_VIEWER, DebugBGPortraitViewerScreen
-	key_func INGAMEDEBUGMENU_EFFECT_VIEWER,      DebugMenuEffectViewerScreen
-	key_func INGAMEDEBUGMENU_OBJ_VIEWER,         DebugObjViewerScreen
+	key_func INGAMEDEBUGMENU_BG_PORTRAIT_VIEWER, DebugBackgroundPortraitViewerScreen
+	key_func INGAMEDEBUGMENU_EFFECT_VIEWER,      DebugEffectViewerScreen
+	key_func INGAMEDEBUGMENU_OBJ_VIEWER,         DebugNPCObjectViewerScreen
 	key_func INGAMEDEBUGMENU_CLEAR_MAIL,         InitializeMailboxWRAM
 	key_func INGAMEDEBUGMENU_CUP_BRACKET,        DebugGrandMasterCupBracket
 	key_func INGAMEDEBUGMENU_SEND_MAIL,          DebugSendMailScreen

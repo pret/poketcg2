@@ -3441,7 +3441,7 @@ AICheckIfAttackIsHighRecoil:
 	ret
 
 ; for an HP-recovery effect (a = amount),
-; set carry if that puts the card out of KO range of the defending Pokémon,
+; set carry if that puts the active pkmn out of KO range of the defending pkmn,
 ; no carry otherwise
 CheckIfRecoveryCanPreventKOByDefendingPokemon:
 	ld [wAITempHPRecoverAmount], a
