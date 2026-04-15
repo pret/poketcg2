@@ -22,8 +22,8 @@ _AssertSFXFinished_5::
 Music5_f4015_5::
 	jp Music5_f4066
 
-Music5_f4018_5::
-	jp Music5_f406f
+_SetVolume_5::
+	jp Music5_SetVolume
 
 _PauseSong_5::
 	jp Music5_PauseSong
@@ -108,11 +108,11 @@ Music5_f4066:
 	call Music5_UnloadAudioWRAMBank
 	ret
 
-Music5_f406f:
+Music5_SetVolume:
 	call Music5_LoadAudioWRAMBank
 	push bc
 	push af
-	and $7
+	and AUDVOL_MASK
 	ld b, a
 	swap b
 	or b
@@ -128,7 +128,7 @@ Music5_Init:
 	ldh [rAUDENA], a
 	ld a, AUDENA_ON
 	ldh [rAUDENA], a
-	ld a, $77
+	ld a, AUDVOL_RIGHT | AUDVOL_LEFT
 	ldh [rAUDVOL], a
 	ld a, AUDTERM_1_RIGHT | AUDTERM_2_RIGHT | AUDTERM_3_RIGHT | AUDTERM_4_RIGHT | AUDTERM_1_LEFT | AUDTERM_2_LEFT | AUDTERM_3_LEFT | AUDTERM_4_LEFT
 	ldh [rAUDTERM], a
@@ -140,7 +140,7 @@ Music5_Init:
 	ld [wCurSongID], a
 	swap a
 	ld [wAudio_d083], a
-	ld a, $77 ; set both speakers to max volume
+	ld a, AUDVOL_FULL_VOLUME_BOTH
 	ld [wMusicPanning], a
 	xor a
 	ld [wdd8c], a

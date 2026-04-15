@@ -344,7 +344,7 @@ wcb80:: ; cb7a
 wSerialSendBuf:: ; cb7b
 	ds $20
 
-wSerialLastReadCA:: ; cb9b
+wSerialLastReadEscapeByte:: ; cb9b
 	ds $1
 
 wSerialRecvCounter:: ; cb9c
@@ -905,6 +905,8 @@ wOpponentTurnEnded:: ; cd1e
 wNumberOfCardsToOrder:: ; cd1f
 	ds $1
 
+; 0 if found, -1 if not found
+wCardSearchResult:: ; cd20
 	ds $1
 
 wCardSearchFunc:: ; cd21

@@ -3346,7 +3346,7 @@ Func_2bc4f:
 	call HandleMenuInput
 	jp nc, .loop_input ; can be jr
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .selected_deck
 	; player canceled selection
 	scf

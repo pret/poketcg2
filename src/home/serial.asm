@@ -83,7 +83,7 @@ Serial_Func_0be6::
 	ld [wcba3], a
 	ld [wSerialRecvIndex], a
 	ld [wSerialRecvCounter], a
-	ld [wSerialLastReadCA], a
+	ld [wSerialLastReadEscapeByte], a
 	ld a, e
 	cp SERIAL_OP_MASTER_TCG2
 	jr nz, .got_mode
@@ -134,7 +134,7 @@ SerialHandler:
 	ld [wSerialRecvCounter], a
 	ldh a, [rSB]
 	ld [wSerialRecvBuf], a
-	ld a, $ac
+	ld a, SERIAL_OP_DATA_END
 	ldh [rSB], a
 	ld a, [wSerialRecvBuf]
 	cp SERIAL_PEER_MASTER_TCG2 ; if [wSerialRecvBuf] != $21, use external clock
@@ -154,14 +154,14 @@ SerialHandler:
 ; handles a byte read from serial transfer by decoding it and storing it into
 ; the receive buffer
 SerialHandleRecv:
-	ld hl, wSerialLastReadCA
+	ld hl, wSerialLastReadEscapeByte
 	ld e, [hl]
 	dec e
-	jr z, .last_was_ca
-	cp $ac
-	ret z ; return if read_data == $ac
-	cp $ca
-	jr z, .read_ca
+	jr z, .last_was_escape ; wSerialLastReadEscapeByte was TRUE
+	cp SERIAL_OP_DATA_END
+	ret z ; read end byte
+	cp SERIAL_OP_DATA_ESCAPE
+	jr z, .read_escape
 	or a
 	jr z, .read_00_or_ff
 	cp $ff
@@ -170,12 +170,12 @@ SerialHandleRecv:
 	ld hl, wSerialFlags
 	set 6, [hl]
 	ret
-.read_ca
-	inc [hl] ; inc [wSerialLastReadCA]
+.read_escape
+	inc [hl] ; inc [wSerialLastReadEscapeByte]
 	ret
-.last_was_ca
-	; if last byte read was $ca, flip all bits of data received
-	ld [hl], $0
+.last_was_escape
+	; if last byte read was escape, flip all bits of data received
+	ld [hl], FALSE ; reset wSerialLastReadEscapeByte
 	cpl
 	jr .handle_byte
 .read_data
@@ -224,8 +224,8 @@ SerialHandleSend:
 	ld a, [hl]
 	or a
 	jr nz, .send_buf
-	; no more data--send $ac to indicate this
-	ld a, $ac
+	; no more data, send end byte
+	ld a, SERIAL_OP_DATA_END
 	ret
 .send_saved
 	ld a, [hl]
@@ -246,9 +246,9 @@ SerialHandleSend:
 	ld a, [hl]
 	; flip top2 bits of sent data
 	xor $c0
-	cp $ac
+	cp SERIAL_OP_DATA_END
 	jr z, .send_escaped
-	cp $ca
+	cp SERIAL_OP_DATA_ESCAPE
 	jr z, .send_escaped
 	cp $ff
 	jr z, .send_escaped
@@ -256,12 +256,12 @@ SerialHandleSend:
 	jr z, .send_escaped
 	ret
 .send_escaped
-	; escape tricky data by prefixing it with $ca and flipping all bits
+	; escape tricky data by prefixing it with escape byte and flipping all bits
 	; instead of just top2
 	xor $c0
 	cpl
 	ld [wSerialSendSave], a
-	ld a, $ca
+	ld a, SERIAL_OP_DATA_ESCAPE
 	ret
 
 ; store byte at a in wSerialSendBuf for sending

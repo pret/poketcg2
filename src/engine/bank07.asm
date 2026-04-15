@@ -6636,11 +6636,11 @@ _ReadMail:
 .read_mail_loop
 	; mail is terminated with MAIL_TERMINATOR ($ffff)
 	ld a, [hl]
-	cp $ff
+	cp LOW(MAIL_TERMINATOR)
 	jr nz, .print_body
 	inc hl
 	ld a, [hld]
-	cp $ff
+	cp HIGH(MAIL_TERMINATOR)
 	jr z, .done
 .print_body
 	call PrintMailBodyPage

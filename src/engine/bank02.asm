@@ -2177,7 +2177,7 @@ HandlePrizeCardPlayerSelection:
 .read_input
 	call HandleMultiDirectionalMenu
 	jr nc, .loop
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .loop
 	call ZeroObjectPositionsAndToggleOAMCopy_Bank02
 	ld a, [wMultiDirectionalMenuCursorPosition]
@@ -2503,7 +2503,7 @@ DeckSelectionMenu:
 	call HandleMenuInput
 	jr nc, .loop_input
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	ret z ; B btn returns
 ; A btn pressed on a deck
 	ld [wCurDeck], a
@@ -2596,7 +2596,7 @@ DeckSelectionSubMenu:
 	call DoFrame
 	call HandleCheckMenuInput
 	jp nc, .loop_input
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .option_selected
 ; B btn pressed
 ; erase cursor and go back
@@ -3585,7 +3585,7 @@ HandleDeckBuildScreen:
 	call HandleCardSelectionInput
 	jr nc, .wait_input
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jp z, OpenDeckConfigurationMenu
 
 .jump_to_list
@@ -3639,7 +3639,7 @@ HandleDeckBuildScreen:
 	ld hl, wScrollMenuScrollOffset
 	add [hl]
 	jr nz, .asm_96a0
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
 	ld a, MENU_CANCEL
 	call PlaySFXConfirmOrCancel
@@ -3686,7 +3686,7 @@ HandleDeckBuildScreen:
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .open_card_page
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
@@ -3731,7 +3731,7 @@ HandleDeckConfigurationMenu:
 	call HandleMultiDirectionalMenu
 	jr nc, .do_frame
 	ld [wd11d], a
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .asm_9769
 .draw_icons
 	call DrawCardTypeIconsAndPrintCardCounts
@@ -5040,9 +5040,9 @@ HandleCardSelectionInput:
 	and PAD_A
 	jr nz, ConfirmSelectionAndReturnCarry
 	; b button
-	ld a, -1
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
-	call PlaySFXConfirmOrCancel ; MENU_CANCEL
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 
@@ -5108,7 +5108,7 @@ DrawHorizontalListCursor_Visible:
 ; returns carry if a selection was made
 ; (either selected card or cancelled)
 ; outputs in a the list index if selection was made
-; or $ff if operation was cancelled
+; or MENU_CANCEL if operation was cancelled
 HandleScrollListInput:
 	xor a ; FALSE
 	ld [wMenuInputSFX], a
@@ -5227,9 +5227,9 @@ HandleScrollListInput:
 	jr z, .check_sfx
 	and PAD_A
 	jr nz, .selected
-	ld a, -1
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
-	call PlaySFXConfirmOrCancel ; MENU_CANCEL
+	call PlaySFXConfirmOrCancel
 	scf
 	ret
 
@@ -5769,7 +5769,7 @@ HandleDeckConfirmationMenu:
 
 .selection_made
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	ret z ; operation cancelled
 	jr .selected_card
 
@@ -6391,7 +6391,7 @@ HandleGiftCenterSendCardsMenu:
 	call HandleMultiDirectionalMenu
 	jr nc, .loop_input
 	ld [wd11d], a
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .confirm
 	call DrawCardTypeIconsAndPrintCardCounts
 	ld a, [wTempCurMenuItem]
@@ -6490,7 +6490,7 @@ HandleBlackBoxSendCardsMenu:
 	call HandleMultiDirectionalMenu
 	jr nc, .loop_input
 	ld [wd11d], a
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .confirm
 	call DrawCardTypeIconsAndPrintCardCounts
 	ld a, [wTempCurMenuItem]
@@ -6547,7 +6547,7 @@ HandlePlayersCardsScreen:
 	jr z, .check_d_down
 	ld [wCurCardTypeFilter], a
 	ld hl, wScrollMenuScrollOffset
-	ld [hl], $00
+	ld [hl], 0
 	call PrintFilteredCardSelectionList
 
 	ld hl, hffbb
@@ -6569,7 +6569,7 @@ HandlePlayersCardsScreen:
 	call HandleCardSelectionInput
 	jr nc, .wait_input
 	ld a, [hCurMenuItem]
-	cp $ff ; cancelled
+	cp MENU_CANCEL
 	jr nz, .jump_to_list
 	ret
 
@@ -6606,7 +6606,7 @@ HandlePlayersCardsScreen:
 	ld hl, wScrollMenuScrollOffset
 	add [hl]
 	jr nz, .asm_a825
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
 	jr .selection_made
 
@@ -6657,7 +6657,7 @@ HandlePlayersCardsScreen:
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .open_card_page
 	ld hl, FiltersCardSelectionParams
 	call InitializeScrollMenuParameters
@@ -7846,7 +7846,7 @@ CardAlbum:
 	farcall HandleScrollMenu
 	jp nc, .loop_input ; can be jr
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	ret z ; exit
 
 	; selected a Booster Pack
@@ -7959,7 +7959,7 @@ CardAlbum:
 	ld a, [wCurScrollMenuItem]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .open_card_page
 	ld a, [wTempScrollMenuScrollOffset]
 	ld [wScrollMenuScrollOffset], a
@@ -8263,7 +8263,7 @@ PrinterMenu_PokemonCards:
 	jr z, .handle_input
 	ld [wCurCardTypeFilter], a
 	ld hl, wScrollMenuScrollOffset
-	ld [hl], $00
+	ld [hl], 0
 	call PrintFilteredCardSelectionList
 	ld hl, hffbb
 	ld [hl], $01
@@ -8283,7 +8283,7 @@ PrinterMenu_PokemonCards:
 	call HandleCardSelectionInput
 	jr nc, .loop_frame_1
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .asm_b348
 	ret
 
@@ -8321,7 +8321,7 @@ PrinterMenu_PokemonCards:
 	ld hl, wScrollMenuScrollOffset
 	add [hl]
 	jr nz, .asm_b38e
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
 	jr .asm_b3e7
 .asm_b38e
@@ -8373,7 +8373,7 @@ PrinterMenu_PokemonCards:
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .asm_b40c
 
 	ld hl, FiltersCardSelectionParams
@@ -8496,7 +8496,7 @@ PrinterMenu:
 	call HandleMenuInput
 	jr nc, .loop_input
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	call z, .QuitPrint
 	ld [wSelectedPrinterMenuItem], a
 	ld hl, .MenuFunctionTable
@@ -8533,7 +8533,7 @@ PrinterMenu:
 	call HandleCardSelectionInput
 	jr nc, .loop_input_quality
 	ld a, [hCurMenuItem]
-	cp $ff ; cancel
+	cp MENU_CANCEL
 	jr z, .re_draw_menu
 	call EnableSRAM
 	ld [sPrinterContrastLevel], a
@@ -8850,7 +8850,7 @@ GiftCenter_ReceiveCards:
 	ld a, [wTempCardTypeFilter]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .open_card_page
 	ld hl, wNameBuffer
 	ld de, wDefaultText
@@ -9059,7 +9059,7 @@ HandleGiftCenter::
 	ld [wTxRam2 + 1], a
 	ret
 .quit
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ld [wSelectedGiftCenterMenuItem], a
 	ret
 
@@ -9155,7 +9155,7 @@ DeckDiagnosisResult:
 	ld a, [wCurScrollMenuItem]
 	ld [wTempCurMenuItem], a
 	ld a, [hCurMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .open_card_page
 	ret ; exit menu
 

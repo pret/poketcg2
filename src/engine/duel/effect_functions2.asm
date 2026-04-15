@@ -3997,7 +3997,7 @@ BenchMultiSelectMenuPlayerSelection:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	jr nz, .selected_pkmn
 	; B was pressed
 	call .UndoLastSelection
@@ -4261,7 +4261,7 @@ RockBlast_PlayerSelectEffect:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	jr nz, .selected_pkmn
 	; B was pressed
 	call UndoLastRockBlastSelection
@@ -5082,7 +5082,7 @@ BurningFire_PlayerSelectEffect:
 	bank1call HasAlivePokemonInPlayArea
 .play_area_selection
 	bank1call OpenPlayAreaScreenForSelection
-	cp -1 ; B pressed?
+	cp MENU_CANCEL ; B pressed?
 	jr z, .done_selecting_energies
 	; selected a pkmn, does it have Fire energies?
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -5937,7 +5937,7 @@ EarthWave_PlayerSelectEffect:
 	ld [wCurGigashockItem], a
 	jr nc, .loop_input
 	ldh a, [hCurScrollMenuItem]
-	cp -1
+	cp MENU_CANCEL
 	jr z, .try_cancel
 
 	call .CheckIfChosenAlready

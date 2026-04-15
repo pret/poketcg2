@@ -1293,7 +1293,7 @@ HandleComputerErrorPlayerSelection:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .loop_input ; mandatory
 	ldh a, [hCurScrollMenuItem]
 	ret
@@ -1347,7 +1347,7 @@ HandleChallengeCardPlayerSelection:
 .loop_selection
 	bank1call DisplayCardList
 	ldh [hTempCardIndex_ff98], a
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .try_cancel ; player cancelled operation
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Type]
@@ -1431,7 +1431,7 @@ LookForCardsInDeck:
 	pop hl
 	call DrawWideTextBox_WaitForInput
 	xor a
-	ld [$cd20], a
+	ld [wCardSearchResult], a
 	ret
 
 .none_in_deck
@@ -1443,7 +1443,7 @@ LookForCardsInDeck:
 	ldtx hl, NoTargetsButCheckDeckPromptText
 	call YesOrNoMenuWithText_SetCursorToYes
 	ld a, $ff
-	ld [$cd20], a
+	ld [wCardSearchResult], a
 	ret
 
 ; saves a to wCardSearchFunc and de to wCardSearchFuncParam
@@ -1668,7 +1668,7 @@ ExecuteCardSearchFunc:
 ; displays the deck card selection screen for a specific target
 ; the target is set by a previous call to SetCardSearchFuncParams
 ; expected to be called after LookForCardsInDeck, since
-; we need to know whether there is a valid target or not in $cd20
+; we need to know whether there is a valid target or not in wCardSearchResult
 ; input:
 ; - hl = info text ID
 ; - de = header text ID
@@ -1687,7 +1687,7 @@ SelectCardSearchTarget:
 	; is selected card valid selection?
 	call ExecuteCardSearchFunc
 	jr nc, .invalid_selection
-	ld a, [$cd20]
+	ld a, [wCardSearchResult]
 	or a
 	jr nz, .loop
 	; valid selection
@@ -1696,8 +1696,7 @@ SelectCardSearchTarget:
 	ret
 
 .check_can_exit
-	; only allowed to exit if $cd20 is 0
-	ld a, [$cd20]
+	ld a, [wCardSearchResult]
 	or a
 	jr nz, .exit_without_selecting
 .invalid_selection
@@ -1830,7 +1829,7 @@ HandleColorChangeScreen:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1 ; b pressed?
+	cp MENU_CANCEL ; b pressed?
 	jr z, .loop_input
 	ld e, a
 	ld d, $00
@@ -2004,7 +2003,7 @@ DeckDiagnosis:
 	ld [wDeckDiagnosisMenuStepSelected], a
 	call HandleDeckDiagnosisMenu
 	ld [wDeckDiagnosisStep], a
-	cp $ff
+	cp MENU_CANCEL
 	ret z ; exit Deck Diagnosis screen
 	inc a
 	ld [wDeckDiagnosisMenuStepSelected], a
@@ -2015,7 +2014,7 @@ DeckDiagnosis:
 	ldh [hCurScrollMenuItem], a
 	ld a, [wDeckDiagnosisMenuStepSelected]
 	call HandleDeckDiagnosisMenu
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .loop_menu
 	ld [wcd29], a
 	call Func_2517f
@@ -2091,7 +2090,7 @@ DeckDiagnosisTextTables:
 ; - 4 = Step 4 menu
 ; returns item that player selected in a
 ; if player selected cancel (last item),
-; returns $ff instead
+; returns MENU_CANCEL instead
 HandleDeckDiagnosisMenu:
 	add a ; *2
 	ld e, a
@@ -2143,7 +2142,7 @@ HandleDeckDiagnosisMenu:
 	dec c
 	cp c
 	ret c
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ret
 
 .MenuParameters:
@@ -2161,7 +2160,7 @@ HandleDeckDiagnosisMenu:
 	and PAD_B
 	ret z
 	; b btn pressed
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 .a_btn_pressed
 	scf
