@@ -86,7 +86,7 @@ StartUpDebugMenu::
 	key_func DEBUGMENU_CREDITS,       _PlayCredits
 	key_func DEBUGMENU_DUEL,          StartDebugDuelVsRandomOpponent
 	key_func DEBUGMENU_SLOT,          DebugSlotMachine
-	db $ff
+	key_funcs_end
 
 SetAllCoinsObtainedAndShowCoinMenu:
 	call SetSpriteAnimationAndFadePalsFrameFunc
@@ -267,7 +267,7 @@ InGameDebugMenu:
 	key_func INGAMEDEBUGMENU_ADJUST_CHIPS,       DebugAdjustChips
 	key_func INGAMEDEBUGMENU_ENTER_NAME,         PlayerNameSelectionScreen
 	key_func INGAMEDEBUGMENU_CREDITS,            DebugPlayCredits
-	db $ff
+	key_funcs_end
 
 .ExitMenu:
 	farcall ShowNPCAnimsUnderMenuBox
@@ -1372,7 +1372,7 @@ HandlePauseMenu:
 	key_func PAUSEMENU_MINICOM, PauseMenuMinicomScreen
 	key_func PAUSEMENU_COIN,    PauseMenuCoinScreen
 	key_func PAUSEMENU_CONFIG,  PauseMenuConfigScreen
-	db $ff
+	key_funcs_end
 
 .RestoreNPCs:
 	farcall ShowNPCAnimsUnderMenuBox
@@ -3352,7 +3352,7 @@ _PCMenu:
 	key_func PCMENU_DECK_DIAGNOSIS, .DeckDiagnosis
 	key_func PCMENU_GLOSSARY,       .Glossary
 	key_func PCMENU_PRINTER,        .Printer
-	db $ff ; end
+	key_funcs_end
 
 .RestoreNPCs:
 	farcall ShowNPCAnimsUnderMenuBox
@@ -6149,7 +6149,7 @@ ShowProloguePortraitAndText:
 	key_func PROLOGUE_PLAYER_RECAP,  .Player
 	key_func PROLOGUE_GR_INVASION,   .GR
 	key_func PROLOGUE_PLAYER_TO_LAB, .Player
-	db $ff ; end
+	key_funcs_end
 
 .Player:
 	lb bc, 7, 3

@@ -3055,7 +3055,7 @@ ReadOrInitSaveData:
 .FunctionMap
 	key_func FALSE, .Initialize
 	key_func TRUE,  .Read
-	db $ff ; end
+	key_funcs_end
 
 .Initialize:
 	ld a, PLAYER_MALE
@@ -3378,7 +3378,7 @@ GiftCenter_ExecuteSelectedOption:
 	key_func GIFTCENTERMENU_RECEIVE_CARDS,              .ReceiveCards
 	key_func GIFTCENTERMENU_SEND_DECK_CONFIGURATION,    .SendDeckConfiguration
 	key_func GIFTCENTERMENU_RECEIVE_DECK_CONFIGURATION, .ReceiveDeckConfiguration
-	db $ff ; end
+	key_funcs_end
 
 .SendCards:
 	farcall Func_1022a
@@ -5392,7 +5392,7 @@ CallMinicomMenuFunction:
 	key_func MINICOMMENU_DECK_SAVE_MACHINE, MinicomDeckSaveMachine
 	key_func MINICOMMENU_MAILBOX,           MinicomMailbox
 	key_func MINICOMMENU_CARD_ALBUM,        MinicomCardAlbum
-	db $ff
+	key_funcs_end
 
 MinicomDeckSaveMachine:
 	farcall ClearSpriteAnimsAndSetInitialGraphicsConfiguration
@@ -6574,7 +6574,7 @@ MailboxSelectedMail_CallMappedFunction:
 .function_map:
 	key_func MAILBOXMENU_READ,   ReadMail
 	key_func MAILBOXMENU_DELETE, DeleteMail
-	db $ff
+	key_funcs_end
 
 ReadMail:
 	call DrawReadMailScreenHeader
@@ -7648,7 +7648,7 @@ HandleIngameCardPop:
 	key_func SCRIPTED_CARD_POP_RONALD,       IngameCardPop.Ronald
 	key_func SCRIPTED_CARD_POP_IMAKUNI,      IngameCardPop.Imakuni_first
 	key_func SCRIPTED_RARE_CARD_POP_IMAKUNI, IngameCardPop.Imakuni_rare
-	db $ff
+	key_funcs_end
 
 ; dupe of Func_1f7f1
 Func_1f81f:

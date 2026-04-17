@@ -224,7 +224,7 @@ HandleGameCenterPrizeExchangeMenu:
 	key_func GAMECENTERPRIZE_JIGGLYPUFF_COIN, .JigglypuffCoin
 	key_func GAMECENTERPRIZE_1_PRESENT_PACK,  .PresentPack1
 	key_func GAMECENTERPRIZE_3_PRESENT_PACKS, .PresentPacks3
-	db $ff
+	key_funcs_end
 
 .Venusaur:
 	ld de, VENUSAUR_LV64

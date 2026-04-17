@@ -3736,26 +3736,26 @@ CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
 	ret
 
 DuelRequirementFunctionMap:
-	key_func DUEL_REQUIREMENT_MIYUKI, DuelMiyukiRequirement
-	key_func DUEL_REQUIREMENT_RENNA, DuelRennaRequirement
-	key_func DUEL_REQUIREMENT_ICHIKAWA, DuelIchikawaRequirement
-	key_func DUEL_REQUIREMENT_YUKI, DuelYukiRequirement
-	key_func DUEL_REQUIREMENT_SHOKO, DuelShokoRequirement
-	key_func DUEL_REQUIREMENT_MIYAJIMA, DuelMiyajimaRequirement
-	key_func DUEL_REQUIREMENT_SENTA, DuelSentaRequirement
-	key_func DUEL_REQUIREMENT_GODA, DuelGodaRequirement
-	key_func DUEL_REQUIREMENT_GRACE, DuelGraceRequirement
-	key_func DUEL_REQUIREMENT_MIWA, DuelMiwaRequirement
-	key_func DUEL_REQUIREMENT_YOSUKE, DuelYosukeRequirement
-	key_func DUEL_REQUIREMENT_RYOKO, DuelRyokoRequirement
+	key_func DUEL_REQUIREMENT_MIYUKI,           DuelMiyukiRequirement
+	key_func DUEL_REQUIREMENT_RENNA,            DuelRennaRequirement
+	key_func DUEL_REQUIREMENT_ICHIKAWA,         DuelIchikawaRequirement
+	key_func DUEL_REQUIREMENT_YUKI,             DuelYukiRequirement
+	key_func DUEL_REQUIREMENT_SHOKO,            DuelShokoRequirement
+	key_func DUEL_REQUIREMENT_MIYAJIMA,         DuelMiyajimaRequirement
+	key_func DUEL_REQUIREMENT_SENTA,            DuelSentaRequirement
+	key_func DUEL_REQUIREMENT_GODA,             DuelGodaRequirement
+	key_func DUEL_REQUIREMENT_GRACE,            DuelGraceRequirement
+	key_func DUEL_REQUIREMENT_MIWA,             DuelMiwaRequirement
+	key_func DUEL_REQUIREMENT_YOSUKE,           DuelYosukeRequirement
+	key_func DUEL_REQUIREMENT_RYOKO,            DuelRyokoRequirement
 	key_func DUEL_REQUIREMENT_NISHIJIMA_REROLL, DuelNishijimaRequirement_Reroll
-	key_func DUEL_REQUIREMENT_NISHIJIMA_USE, DuelNishijimaRequirement_Use
-	key_func DUEL_REQUIREMENT_ISHII_REROLL, DuelIshiiRequirement_Reroll
-	key_func DUEL_REQUIREMENT_ISHII_USE, DuelIshiiRequirement_Use
-	key_func DUEL_REQUIREMENT_SAMEJIMA_REROLL, DuelSamejimaRequirement_Reroll
-	key_func DUEL_REQUIREMENT_SAMEJIMA_USE, DuelSamejimaRequirement_Use
-	key_func DUEL_REQUIREMENT_KANZAKI, DuelKanzakiRequirement
-	db $ff
+	key_func DUEL_REQUIREMENT_NISHIJIMA_USE,    DuelNishijimaRequirement_Use
+	key_func DUEL_REQUIREMENT_ISHII_REROLL,     DuelIshiiRequirement_Reroll
+	key_func DUEL_REQUIREMENT_ISHII_USE,        DuelIshiiRequirement_Use
+	key_func DUEL_REQUIREMENT_SAMEJIMA_REROLL,  DuelSamejimaRequirement_Reroll
+	key_func DUEL_REQUIREMENT_SAMEJIMA_USE,     DuelSamejimaRequirement_Use
+	key_func DUEL_REQUIREMENT_KANZAKI,          DuelKanzakiRequirement
+	key_funcs_end
 
 ScriptCommand_GetActiveNPCOppositeDirection:
 	ld a, [wScriptNPC]

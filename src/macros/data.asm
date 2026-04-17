@@ -185,3 +185,7 @@ MACRO? key_func
 	db \1  ; key
 	dba \2 ; func
 ENDM
+
+MACRO? key_funcs_end
+	db $ff
+ENDM
