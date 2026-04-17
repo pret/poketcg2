@@ -4540,7 +4540,7 @@ SetChallengeMachineOpponents:
 .init
 	ld e, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 	ld d, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
-	ld c, $ff
+	ld c, DECK_NONE
 .loop_init
 	ld a, d
 	call SetVarValue
@@ -4603,7 +4603,7 @@ SetChallengeMachineOpponents:
 .loop_check
 	ld a, e
 	call GetVarValue
-	cp $ff
+	cp DECK_NONE
 	jr z, .done
 	call GetNPCByDeck
 	inc e
