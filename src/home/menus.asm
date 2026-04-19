@@ -588,7 +588,7 @@ CardListMenuFunction::
 	scf
 	ret
 .pressed_b
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 	scf
 	ret

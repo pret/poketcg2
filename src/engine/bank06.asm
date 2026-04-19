@@ -2764,7 +2764,7 @@ HandleCardPopMenuInput:
 	jr nz, .set_carry
 	and PAD_B
 	ret z
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 .set_carry
 	scf
@@ -3351,7 +3351,7 @@ ViewCardPopRecords:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp $ff
+	cp MENU_CANCEL
 	ret z
 	; selected a record entry
 	call .LoadRecord
@@ -3658,7 +3658,7 @@ ViewCardPopRecords:
 	and PAD_B
 	ret z
 ; cancel
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 .a_btn_or_start
 	scf
@@ -5676,7 +5676,7 @@ InputName:
 .asm_1af3b
 	call HandleNamingScreenInput
 	jr nc, .loop
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .remove_last_char
 	call SelectKeyboardItem
 	jr nc, .loop
@@ -5882,7 +5882,9 @@ ProcessTextWithUnderbar:
 	ret
 
 .underbar_chars
-	db $57 ; "_"
+PUSHC fullwidth
+	db CHARVAL("_", 1)
+POPC
 	textfw "__________"
 	done
 
@@ -6713,7 +6715,7 @@ InputMultilineText:
 .handle_input
 	call HandleNamingScreenInput
 	jr nc, .loop
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .remove_last_char
 	call SelectKeyboardItem_Multiline
 	jr nc, .loop
@@ -7081,7 +7083,9 @@ ProcessMultilineInputWithUnderbar:
 .loop_fill
 	ld [hl], TX_FULLWIDTH4
 	inc hl
-	ld [hl], $57 ; "_"
+PUSHC fullwidth
+	ld [hl], CHARVAL("_", 1)
+POPC
 	inc hl
 	dec c
 	dec c

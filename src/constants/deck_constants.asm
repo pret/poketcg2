@@ -134,3 +134,5 @@ ENDM
 	deck_const POISON_STORM_DECK                     ; $78
 	deck_const DECK_7269                             ; $79
 DEF NUM_DECK_IDS EQU const_value - 2
+
+DEF DECK_NONE EQU $ff

@@ -125,2808 +125,2929 @@ DeckPointers::
 	dw $0000
 
 UnknownPoisonStormDeck:
-	dbw 11, GRASS_ENERGY
-	dbw 10, FIRE_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, WEEDLE_LV15
-	dbw  4, SCYTHER_LV25
-	dbw  4, CHARMANDER_LV10
-	dbw  2, CHARMELEON
-	dbw  4, MAGMAR_LV31
-	dbw  2, KANGASKHAN_LV40
-	dbw  3, POTION
-	dbw  4, GUST_OF_WIND
-	dbw  2, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  2, BILL
-	dbw  2, FULL_HEAL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            11
+	card_item FIRE_ENERGY,             10
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item WEEDLE_LV15,              4
+	card_item SCYTHER_LV25,             4
+	card_item CHARMANDER_LV10,          4
+	card_item CHARMELEON,               2
+	card_item MAGMAR_LV31,              4
+	card_item KANGASKHAN_LV40,          2
+	card_item POTION,                   3
+	card_item GUST_OF_WIND,             4
+	card_item PLUSPOWER,                2
+	card_item SWITCH,                   2
+	card_item BILL,                     2
+	card_item FULL_HEAL,                2
+	deck_list_end
 
 GB1StrangePsyshockDeck:
-	dbw 22, PSYCHIC_ENERGY
-	dbw  4, ABRA_LV10
-	dbw  3, KADABRA_LV38
-	dbw  2, ALAKAZAM_LV42
-	dbw  2, MR_MIME_LV28
-	dbw  3, CHANSEY_LV55
-	dbw  3, KANGASKHAN_LV40
-	dbw  2, SNORLAX_LV20
-	dbw  2, PROFESSOR_OAK
-	dbw  2, POKEMON_CENTER
-	dbw  3, ENERGY_REMOVAL
-	dbw  3, GUST_OF_WIND
-	dbw  4, SCOOP_UP
-	dbw  4, SWITCH
-	dbw  1, GAMBLER
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,  22
+	card_item ABRA_LV10,        4
+	card_item KADABRA_LV38,     3
+	card_item ALAKAZAM_LV42,    2
+	card_item MR_MIME_LV28,     2
+	card_item CHANSEY_LV55,     3
+	card_item KANGASKHAN_LV40,  3
+	card_item SNORLAX_LV20,     2
+	card_item PROFESSOR_OAK,    2
+	card_item POKEMON_CENTER,   2
+	card_item ENERGY_REMOVAL,   3
+	card_item GUST_OF_WIND,     3
+	card_item SCOOP_UP,         4
+	card_item SWITCH,           4
+	card_item GAMBLER,          1
+	deck_list_end
 
 StarterDeck:
-	dbw 14, FIRE_ENERGY
-	dbw 12, FIGHTING_ENERGY
-	dbw  4, CHARMANDER_LV10
-	dbw  3, CHARMELEON
-	dbw  2, GROWLITHE_LV12
-	dbw  3, PONYTA_LV10
-	dbw  2, DIGLETT_LV8
-	dbw  4, MACHOP_LV20
-	dbw  3, MACHOKE_LV40
-	dbw  2, RATTATA_LV9
-	dbw  1, RATICATE
-	dbw  2, SPEAROW_LV9
-	dbw  1, MEOWTH_LV17
-	dbw  1, ENERGY_RETRIEVAL
-	dbw  2, POTION
-	dbw  1, GUST_OF_WIND
-	dbw  2, SWITCH
-	dbw  1, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      14
+	card_item FIGHTING_ENERGY,  12
+	card_item CHARMANDER_LV10,   4
+	card_item CHARMELEON,        3
+	card_item GROWLITHE_LV12,    2
+	card_item PONYTA_LV10,       3
+	card_item DIGLETT_LV8,       2
+	card_item MACHOP_LV20,       4
+	card_item MACHOKE_LV40,      3
+	card_item RATTATA_LV9,       2
+	card_item RATICATE,          1
+	card_item SPEAROW_LV9,       2
+	card_item MEOWTH_LV17,       1
+	card_item ENERGY_RETRIEVAL,  1
+	card_item POTION,            2
+	card_item GUST_OF_WIND,      1
+	card_item SWITCH,            2
+	card_item BILL,              1
+	deck_list_end
 
 SweatAntiGR1Deck:
-	dbw 12, GRASS_ENERGY
-	dbw 15, FIGHTING_ENERGY
-	dbw  4, CATERPIE
-	dbw  2, METAPOD_LV21
-	dbw  3, NIDORANM_LV20
-	dbw  1, NIDORINO_LV25
-	dbw  2, TANGELA_LV8
-	dbw  3, DIGLETT_LV8
-	dbw  4, GEODUDE_LV15
-	dbw  2, GRAVELER_LV29
-	dbw  2, ONIX_LV12
-	dbw  3, RHYHORN
-	dbw  1, PROFESSOR_OAK
-	dbw  2, ENERGY_SEARCH
-	dbw  2, SWITCH
-	dbw  1, POKEDEX
-	dbw  1, GUST_OF_WIND
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,    12
+	card_item FIGHTING_ENERGY, 15
+	card_item CATERPIE,         4
+	card_item METAPOD_LV21,     2
+	card_item NIDORANM_LV20,    3
+	card_item NIDORINO_LV25,    1
+	card_item TANGELA_LV8,      2
+	card_item DIGLETT_LV8,      3
+	card_item GEODUDE_LV15,     4
+	card_item GRAVELER_LV29,    2
+	card_item ONIX_LV12,        2
+	card_item RHYHORN,          3
+	card_item PROFESSOR_OAK,    1
+	card_item ENERGY_SEARCH,    2
+	card_item SWITCH,           2
+	card_item POKEDEX,          1
+	card_item GUST_OF_WIND,     1
+	deck_list_end
 
 GiveInAntiGR2Deck:
-	dbw 15, GRASS_ENERGY
-	dbw 11, WATER_ENERGY
-	dbw  4, BULBASAUR_LV12
-	dbw  2, IVYSAUR_LV26
-	dbw  2, WEEDLE_LV12
-	dbw  1, KAKUNA_LV23
-	dbw  3, PARAS_LV8
-	dbw  2, PARASECT_LV28
-	dbw  2, SEEL_LV12
-	dbw  3, GOLDEEN
-	dbw  2, SEAKING
-	dbw  2, MAGIKARP_LV8
-	dbw  3, DODUO_LV10
-	dbw  1, ENERGY_REMOVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  1, DEFENDER
-	dbw  2, PLUSPOWER
-	dbw  1, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,   15
+	card_item WATER_ENERGY,   11
+	card_item BULBASAUR_LV12,  4
+	card_item IVYSAUR_LV26,    2
+	card_item WEEDLE_LV12,     2
+	card_item KAKUNA_LV23,     1
+	card_item PARAS_LV8,       3
+	card_item PARASECT_LV28,   2
+	card_item SEEL_LV12,       2
+	card_item GOLDEEN,         3
+	card_item SEAKING,         2
+	card_item MAGIKARP_LV8,    2
+	card_item DODUO_LV10,      3
+	card_item ENERGY_REMOVAL,  1
+	card_item ENERGY_SEARCH,   2
+	card_item PROFESSOR_OAK,   1
+	card_item DEFENDER,        1
+	card_item PLUSPOWER,       2
+	card_item BILL,            1
+	deck_list_end
 
 VengefulAntiGR3Deck:
-	dbw 12, FIRE_ENERGY
-	dbw 15, WATER_ENERGY
-	dbw  3, VULPIX_LV11
-	dbw  1, NINETALES_LV32
-	dbw  3, GROWLITHE_LV12
-	dbw  1, ARCANINE_LV45
-	dbw  2, PONYTA_LV10
-	dbw  1, RAPIDASH_LV33
-	dbw  4, SQUIRTLE_LV14
-	dbw  2, WARTORTLE_LV24
-	dbw  4, STARYU_LV15
-	dbw  2, STARMIE
-	dbw  2, MAGIKARP_LV8
-	dbw  1, GYARADOS
-	dbw  1, FARFETCHD_LV20
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  1, FULL_HEAL
-	dbw  1, POKEMON_TRADER
-	dbw  1, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,    12
+	card_item WATER_ENERGY,   15
+	card_item VULPIX_LV11,     3
+	card_item NINETALES_LV32,  1
+	card_item GROWLITHE_LV12,  3
+	card_item ARCANINE_LV45,   1
+	card_item PONYTA_LV10,     2
+	card_item RAPIDASH_LV33,   1
+	card_item SQUIRTLE_LV14,   4
+	card_item WARTORTLE_LV24,  2
+	card_item STARYU_LV15,     4
+	card_item STARMIE,         2
+	card_item MAGIKARP_LV8,    2
+	card_item GYARADOS,        1
+	card_item FARFETCHD_LV20,  1
+	card_item ENERGY_SEARCH,   2
+	card_item PROFESSOR_OAK,   1
+	card_item FULL_HEAL,       1
+	card_item POKEMON_TRADER,  1
+	card_item BILL,            1
+	deck_list_end
 
 UnforgivingAntiGR4Deck:
-	dbw 13, LIGHTNING_ENERGY
-	dbw 13, PSYCHIC_ENERGY
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  3, PIKACHU_LV12
-	dbw  2, RAICHU_LV33
-	dbw  2, MAGNEMITE_LV14
-	dbw  1, ELECTABUZZ_LV30
-	dbw  2, JOLTEON_LV29
-	dbw  4, ABRA_LV10
-	dbw  2, KADABRA_LV38
-	dbw  3, GASTLY_LV8
-	dbw  2, HAUNTER_LV22
-	dbw  2, JYNX_LV27
-	dbw  3, EEVEE_LV12
-	dbw  1, SUPER_POTION
-	dbw  1, ENERGY_RETRIEVAL
-	dbw  2, POTION
-	dbw  1, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        13
+	card_item PSYCHIC_ENERGY,          13
+	card_item DOUBLE_COLORLESS_ENERGY,  1
+	card_item PIKACHU_LV12,             3
+	card_item RAICHU_LV33,              2
+	card_item MAGNEMITE_LV14,           2
+	card_item ELECTABUZZ_LV30,          1
+	card_item JOLTEON_LV29,             2
+	card_item ABRA_LV10,                4
+	card_item KADABRA_LV38,             2
+	card_item GASTLY_LV8,               3
+	card_item HAUNTER_LV22,             2
+	card_item JYNX_LV27,                2
+	card_item EEVEE_LV12,               3
+	card_item SUPER_POTION,             1
+	card_item ENERGY_RETRIEVAL,         1
+	card_item POTION,                   2
+	card_item FULL_HEAL,                1
+	card_item BILL,                     2
+	deck_list_end
 
 PlayerPracticeDeck:
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, PIDGEY_LV8
-	dbw  1, DUGTRIO_LV36
-	dbw  1, DIGLETT_LV8
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, NIDORINO_LV25
-	dbw  1, GRASS_ENERGY
-	dbw  1, NIDORANM_LV20
-	dbw  1, MACHOP_LV20
-	dbw  1, GRASS_ENERGY
-	dbw  1, BILL
-	dbw  1, BULBASAUR_LV13
-	dbw  1, GRASS_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, MACHOP_LV20
-	dbw  1, DUGTRIO_LV36
-	dbw  1, ONIX_LV12
-	dbw  1, BILL
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, MACHOKE_LV40
-	dbw  1, PIDGEY_LV8
-	dbw  1, PIDGEOTTO_LV36
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, POTION
-	dbw  1, DIGLETT_LV8
-	dbw  1, BULBASAUR_LV13
-	dbw  1, MACHOP_LV20
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, PIDGEY_LV8
-	dbw  1, MEOWTH_LV13
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, POTION
-	dbw  1, GRASS_ENERGY
-	dbw  1, NIDORANM_LV20
-	dbw  1, NIDORINO_LV25
-	dbw  1, DIGLETT_LV8
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, ONIX_LV12
-	dbw  1, NIDORANM_LV20
-	dbw  1, BULBASAUR_LV13
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, SWITCH
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, MACHOKE_LV40
-	dbw  1, PIDGEOTTO_LV36
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, DIGLETT_LV8
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, NIDORANM_LV20
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,    1
+	card_item GRASS_ENERGY,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item PIDGEY_LV8,      1
+	card_item DUGTRIO_LV36,    1
+	card_item DIGLETT_LV8,     1
+	card_item GRASS_ENERGY,    1
+	card_item GRASS_ENERGY,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item NIDORINO_LV25,   1
+	card_item GRASS_ENERGY,    1
+	card_item NIDORANM_LV20,   1
+	card_item MACHOP_LV20,     1
+	card_item GRASS_ENERGY,    1
+	card_item BILL,            1
+	card_item BULBASAUR_LV13,  1
+	card_item GRASS_ENERGY,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item GRASS_ENERGY,    1
+	card_item MACHOP_LV20,     1
+	card_item DUGTRIO_LV36,    1
+	card_item ONIX_LV12,       1
+	card_item BILL,            1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item MACHOKE_LV40,    1
+	card_item PIDGEY_LV8,      1
+	card_item PIDGEOTTO_LV36,  1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item POTION,          1
+	card_item DIGLETT_LV8,     1
+	card_item BULBASAUR_LV13,  1
+	card_item MACHOP_LV20,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item GRASS_ENERGY,    1
+	card_item PIDGEY_LV8,      1
+	card_item MEOWTH_LV13,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item POTION,          1
+	card_item GRASS_ENERGY,    1
+	card_item NIDORANM_LV20,   1
+	card_item NIDORINO_LV25,   1
+	card_item DIGLETT_LV8,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item ONIX_LV12,       1
+	card_item NIDORANM_LV20,   1
+	card_item BULBASAUR_LV13,  1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item SWITCH,          1
+	card_item FIGHTING_ENERGY, 1
+	card_item MACHOKE_LV40,    1
+	card_item PIDGEOTTO_LV36,  1
+	card_item FIGHTING_ENERGY, 1
+	card_item DIGLETT_LV8,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item NIDORANM_LV20,   1
+	deck_list_end
 
 SamsPracticeDeck:
-	dbw  1, GOLDEEN
-	dbw  1, SEEL_LV12
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, POTION
-	dbw  1, SEAKING
-	dbw  1, POTION
-	dbw  1, STARYU_LV15
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, VOLTORB_LV10
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, PROFESSOR_OAK
-	dbw  1, EEVEE_LV12
-	dbw  1, VOLTORB_LV10
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, SEEL_LV12
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, VOLTORB_LV10
-	dbw  1, PIKACHU_LV12
-	dbw  1, STARMIE
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, PIKACHU_LV12
-	dbw  1, DODUO_LV10
-	dbw  1, GOLDEEN
-	dbw  1, WATER_ENERGY
-	dbw  1, EEVEE_LV12
-	dbw  1, STARMIE
-	dbw  1, WATER_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, FULL_HEAL
-	dbw  1, PIKACHU_LV12
-	dbw  1, POTION
-	dbw  1, PROFESSOR_OAK
-	dbw  1, WATER_ENERGY
-	dbw  1, DODUO_LV10
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, GOLDEEN
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, SEAKING
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, FULL_HEAL
-	dbw  1, SEEL_LV12
-	dbw  1, GOLDEEN
-	dbw  1, WATER_ENERGY
-	dbw  1, PIKACHU_LV12
-	dbw  1, VOLTORB_LV10
-	dbw  1, WATER_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, WATER_ENERGY
-	db 0
+	deck_list_start
+	card_item GOLDEEN,          1
+	card_item SEEL_LV12,        1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item POTION,           1
+	card_item SEAKING,          1
+	card_item POTION,           1
+	card_item STARYU_LV15,      1
+	card_item LIGHTNING_ENERGY, 1
+	card_item VOLTORB_LV10,     1
+	card_item LIGHTNING_ENERGY, 1
+	card_item PROFESSOR_OAK,    1
+	card_item EEVEE_LV12,       1
+	card_item VOLTORB_LV10,     1
+	card_item LIGHTNING_ENERGY, 1
+	card_item LIGHTNING_ENERGY, 1
+	card_item SEEL_LV12,        1
+	card_item WATER_ENERGY,     1
+	card_item WATER_ENERGY,     1
+	card_item VOLTORB_LV10,     1
+	card_item PIKACHU_LV12,     1
+	card_item STARMIE,          1
+	card_item LIGHTNING_ENERGY, 1
+	card_item PIKACHU_LV12,     1
+	card_item DODUO_LV10,       1
+	card_item GOLDEEN,          1
+	card_item WATER_ENERGY,     1
+	card_item EEVEE_LV12,       1
+	card_item STARMIE,          1
+	card_item WATER_ENERGY,     1
+	card_item STARYU_LV15,      1
+	card_item LIGHTNING_ENERGY, 1
+	card_item FULL_HEAL,        1
+	card_item PIKACHU_LV12,     1
+	card_item POTION,           1
+	card_item PROFESSOR_OAK,    1
+	card_item WATER_ENERGY,     1
+	card_item DODUO_LV10,       1
+	card_item LIGHTNING_ENERGY, 1
+	card_item GOLDEEN,          1
+	card_item LIGHTNING_ENERGY, 1
+	card_item SEAKING,          1
+	card_item LIGHTNING_ENERGY, 1
+	card_item FULL_HEAL,        1
+	card_item SEEL_LV12,        1
+	card_item GOLDEEN,          1
+	card_item WATER_ENERGY,     1
+	card_item PIKACHU_LV12,     1
+	card_item VOLTORB_LV10,     1
+	card_item WATER_ENERGY,     1
+	card_item STARYU_LV15,      1
+	card_item LIGHTNING_ENERGY, 1
+	card_item STARYU_LV15,      1
+	card_item WATER_ENERGY,     1
+	deck_list_end
 
 AaronPracticeDeck1:
-	dbw  1, GOLDEEN
-	dbw  1, SEAKING
-	dbw  1, DRATINI_LV10
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, CHARMELEON
-	dbw  1, RATICATE
-	dbw  1, FIRE_ENERGY
-	dbw  1, CHARMANDER_LV10
-	dbw  1, BILL
-	dbw  1, RATTATA_LV9
-	dbw  1, WATER_ENERGY
-	dbw  1, BILL
-	dbw  1, STARYU_LV15
-	dbw  1, PROFESSOR_OAK
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, PONYTA_LV10
-	dbw  1, FIRE_ENERGY
-	dbw  1, RAPIDASH_LV33
-	dbw  1, GOLDEEN
-	dbw  1, WATER_ENERGY
-	dbw  1, SEAKING
-	dbw  1, WATER_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, ENERGY_SEARCH
-	dbw  1, GUST_OF_WIND
-	dbw  1, WATER_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, RATTATA_LV9
-	dbw  1, FIRE_ENERGY
-	dbw  1, PONYTA_LV10
-	dbw  1, FIRE_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, WATER_ENERGY
-	dbw  1, POTION
-	dbw  1, ENERGY_SEARCH
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, MEOWTH_LV17
-	dbw  1, WATER_ENERGY
-	dbw  1, CHARMANDER_LV10
-	dbw  1, CHARMANDER_LV10
-	dbw  1, CHARMELEON
-	dbw  1, PONYTA_LV10
-	dbw  1, RAPIDASH_LV33
-	dbw  1, WATER_ENERGY
-	dbw  1, GOLDEEN
-	dbw  1, STARYU_LV15
-	dbw  1, RATTATA_LV9
-	dbw  1, RATICATE
-	dbw  1, DRATINI_LV10
-	dbw  1, POTION
-	db 0
+	deck_list_start
+	card_item GOLDEEN,         1
+	card_item SEAKING,         1
+	card_item DRATINI_LV10,    1
+	card_item FIRE_ENERGY,     1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item CHARMELEON,      1
+	card_item RATICATE,        1
+	card_item FIRE_ENERGY,     1
+	card_item CHARMANDER_LV10, 1
+	card_item BILL,            1
+	card_item RATTATA_LV9,     1
+	card_item WATER_ENERGY,    1
+	card_item BILL,            1
+	card_item STARYU_LV15,     1
+	card_item PROFESSOR_OAK,   1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item PONYTA_LV10,     1
+	card_item FIRE_ENERGY,     1
+	card_item RAPIDASH_LV33,   1
+	card_item GOLDEEN,         1
+	card_item WATER_ENERGY,    1
+	card_item SEAKING,         1
+	card_item WATER_ENERGY,    1
+	card_item FIRE_ENERGY,     1
+	card_item ENERGY_SEARCH,   1
+	card_item GUST_OF_WIND,    1
+	card_item WATER_ENERGY,    1
+	card_item FIRE_ENERGY,     1
+	card_item RATTATA_LV9,     1
+	card_item FIRE_ENERGY,     1
+	card_item PONYTA_LV10,     1
+	card_item FIRE_ENERGY,     1
+	card_item STARYU_LV15,     1
+	card_item WATER_ENERGY,    1
+	card_item POTION,          1
+	card_item ENERGY_SEARCH,   1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item MEOWTH_LV17,     1
+	card_item WATER_ENERGY,    1
+	card_item CHARMANDER_LV10, 1
+	card_item CHARMANDER_LV10, 1
+	card_item CHARMELEON,      1
+	card_item PONYTA_LV10,     1
+	card_item RAPIDASH_LV33,   1
+	card_item WATER_ENERGY,    1
+	card_item GOLDEEN,         1
+	card_item STARYU_LV15,     1
+	card_item RATTATA_LV9,     1
+	card_item RATICATE,        1
+	card_item DRATINI_LV10,    1
+	card_item POTION,          1
+	deck_list_end
 
 AaronsStep1Deck:
-	dbw  1, HITMONCHAN_LV33
-	dbw  1, BULBASAUR_LV12
-	dbw  1, POTION
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, SPEAROW_LV9
-	dbw  1, SWITCH
-	dbw  1, IVYSAUR_LV26
-	dbw  1, BILL
-	dbw  1, MACHOP_LV20
-	dbw  1, MACHOKE_LV40
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, DIGLETT_LV8
-	dbw  1, BULBASAUR_LV12
-	dbw  1, GRASS_ENERGY
-	dbw  1, DUGTRIO_LV36
-	dbw  1, SPEAROW_LV9
-	dbw  1, IVYSAUR_LV26
-	dbw  1, GRASS_ENERGY
-	dbw  1, BULBASAUR_LV12
-	dbw  1, ENERGY_SEARCH
-	dbw  1, GRASS_ENERGY
-	dbw  1, DIGLETT_LV8
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, SWITCH
-	dbw  1, BILL
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, MACHOP_LV20
-	dbw  1, DUGTRIO_LV36
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, MACHOP_LV20
-	dbw  1, POTION
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, DIGLETT_LV8
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, MEOWTH_LV17
-	dbw  1, ENERGY_SEARCH
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, IVYSAUR_LV26
-	dbw  1, GRASS_ENERGY
-	dbw  1, MACHOKE_LV40
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, PROFESSOR_OAK
-	dbw  1, MEOWTH_LV17
-	dbw  1, HITMONCHAN_LV33
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, BULBASAUR_LV12
-	dbw  1, MACHOP_LV20
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, MEOWTH_LV17
-	db  0
+	deck_list_start
+	card_item HITMONCHAN_LV33, 1
+	card_item BULBASAUR_LV12,  1
+	card_item POTION,          1
+	card_item GRASS_ENERGY,    1
+	card_item GRASS_ENERGY,    1
+	card_item GRASS_ENERGY,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item GRASS_ENERGY,    1
+	card_item SPEAROW_LV9,     1
+	card_item SWITCH,          1
+	card_item IVYSAUR_LV26,    1
+	card_item BILL,            1
+	card_item MACHOP_LV20,     1
+	card_item MACHOKE_LV40,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item GRASS_ENERGY,    1
+	card_item DIGLETT_LV8,     1
+	card_item BULBASAUR_LV12,  1
+	card_item GRASS_ENERGY,    1
+	card_item DUGTRIO_LV36,    1
+	card_item SPEAROW_LV9,     1
+	card_item IVYSAUR_LV26,    1
+	card_item GRASS_ENERGY,    1
+	card_item BULBASAUR_LV12,  1
+	card_item ENERGY_SEARCH,   1
+	card_item GRASS_ENERGY,    1
+	card_item DIGLETT_LV8,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item SWITCH,          1
+	card_item BILL,            1
+	card_item FIGHTING_ENERGY, 1
+	card_item MACHOP_LV20,     1
+	card_item DUGTRIO_LV36,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item GRASS_ENERGY,    1
+	card_item MACHOP_LV20,     1
+	card_item POTION,          1
+	card_item FIGHTING_ENERGY, 1
+	card_item DIGLETT_LV8,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item MEOWTH_LV17,     1
+	card_item ENERGY_SEARCH,   1
+	card_item FIGHTING_ENERGY, 1
+	card_item IVYSAUR_LV26,    1
+	card_item GRASS_ENERGY,    1
+	card_item MACHOKE_LV40,    1
+	card_item FIGHTING_ENERGY, 1
+	card_item PROFESSOR_OAK,   1
+	card_item MEOWTH_LV17,     1
+	card_item HITMONCHAN_LV33, 1
+	card_item FIGHTING_ENERGY, 1
+	card_item BULBASAUR_LV12,  1
+	card_item MACHOP_LV20,     1
+	card_item FIGHTING_ENERGY, 1
+	card_item MEOWTH_LV17,     1
+	deck_list_end
 
 AaronPracticeDeck2:
-	dbw  1, GOLDEEN
-	dbw  1, MAGIKARP_LV8
-	dbw  1, FIRE_ENERGY
-	dbw  1, SWITCH
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WARTORTLE_LV24
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, FULL_HEAL
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, FIRE_ENERGY
-	dbw  1, CHARMANDER_LV10
-	dbw  1, FULL_HEAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, CHARMELEON
-	dbw  1, STARYU_LV15
-	dbw  1, FIRE_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, MAGMAR_LV18
-	dbw  1, STARMIE
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, MAGMAR_LV18
-	dbw  1, ENERGY_SEARCH
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, BILL
-	dbw  1, CHARMELEON
-	dbw  1, ENERGY_SEARCH
-	dbw  1, FULL_HEAL
-	dbw  1, FIRE_ENERGY
-	dbw  1, WARTORTLE_LV24
-	dbw  1, STARYU_LV15
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, CHARMANDER_LV10
-	dbw  1, STARMIE
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, FIRE_ENERGY
-	dbw  1, STARYU_LV15
-	dbw  1, WATER_ENERGY
-	dbw  1, STARMIE
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, BILL
-	dbw  1, FIRE_ENERGY
-	dbw  1, GOLDEEN
-	dbw  1, WATER_ENERGY
-	dbw  1, CHARMANDER_LV10
-	dbw  1, WATER_ENERGY
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, WATER_ENERGY
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, MAGIKARP_LV8
-	db 0
+	deck_list_start
+	card_item GOLDEEN,         1
+	card_item MAGIKARP_LV8,    1
+	card_item FIRE_ENERGY,     1
+	card_item SWITCH,          1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item WARTORTLE_LV24,  1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item FULL_HEAL,       1
+	card_item SQUIRTLE_LV14,   1
+	card_item FIRE_ENERGY,     1
+	card_item CHARMANDER_LV10, 1
+	card_item FULL_HEAL,       1
+	card_item PROFESSOR_OAK,   1
+	card_item CHARMELEON,      1
+	card_item STARYU_LV15,     1
+	card_item FIRE_ENERGY,     1
+	card_item FIRE_ENERGY,     1
+	card_item MAGMAR_LV18,     1
+	card_item STARMIE,         1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item MAGMAR_LV18,     1
+	card_item ENERGY_SEARCH,   1
+	card_item FIRE_ENERGY,     1
+	card_item WATER_ENERGY,    1
+	card_item BILL,            1
+	card_item CHARMELEON,      1
+	card_item ENERGY_SEARCH,   1
+	card_item FULL_HEAL,       1
+	card_item FIRE_ENERGY,     1
+	card_item WARTORTLE_LV24,  1
+	card_item STARYU_LV15,     1
+	card_item WATER_ENERGY,    1
+	card_item WATER_ENERGY,    1
+	card_item CHARMANDER_LV10, 1
+	card_item STARMIE,         1
+	card_item FIRE_ENERGY,     1
+	card_item WATER_ENERGY,    1
+	card_item STARYU_LV15,     1
+	card_item FIRE_ENERGY,     1
+	card_item STARYU_LV15,     1
+	card_item WATER_ENERGY,    1
+	card_item STARMIE,         1
+	card_item FIRE_ENERGY,     1
+	card_item WATER_ENERGY,    1
+	card_item BILL,            1
+	card_item FIRE_ENERGY,     1
+	card_item GOLDEEN,         1
+	card_item WATER_ENERGY,    1
+	card_item CHARMANDER_LV10, 1
+	card_item WATER_ENERGY,    1
+	card_item SQUIRTLE_LV14,   1
+	card_item WATER_ENERGY,    1
+	card_item SQUIRTLE_LV14,   1
+	card_item MAGIKARP_LV8,    1
+	deck_list_end
 
 AaronsStep2Deck:
-	dbw  1, GRIMER_LV10
-	dbw  1, RATTATA_LV9
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, SWITCH
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRASS_ENERGY
-	dbw  1, POTION
-	dbw  1, ODDISH_LV8
-	dbw  1, GRASS_ENERGY
-	dbw  1, GLOOM
-	dbw  1, GRASS_ENERGY
-	dbw  1, HAUNTER_LV22
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, GASTLY_LV8
-	dbw  1, BILL
-	dbw  1, PARAS_LV8
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, JYNX_LV27
-	dbw  1, PARASECT_LV28
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, ENERGY_SEARCH
-	dbw  1, GRASS_ENERGY
-	dbw  1, GASTLY_LV8
-	dbw  1, POTION
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, FULL_HEAL
-	dbw  1, RATICATE
-	dbw  1, GRASS_ENERGY
-	dbw  1, ODDISH_LV8
-	dbw  1, HAUNTER_LV22
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, GRIMER_LV10
-	dbw  1, PARAS_LV8
-	dbw  1, GRASS_ENERGY
-	dbw  1, JYNX_LV27
-	dbw  1, KANGASKHAN_LV40
-	dbw  1, BILL
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, GLOOM
-	dbw  1, GRASS_ENERGY
-	dbw  1, PARASECT_LV28
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, RATTATA_LV9
-	dbw  1, SWITCH
-	dbw  1, GRASS_ENERGY
-	dbw  1, GRIMER_LV10
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, FULL_HEAL
-	dbw  1, GRASS_ENERGY
-	dbw  1, ODDISH_LV8
-	dbw  1, GRASS_ENERGY
-	dbw  1, PARAS_LV8
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, GASTLY_LV8
-	dbw  1, PSYCHIC_ENERGY
-	db 0
+	deck_list_start
+	card_item GRIMER_LV10,             1
+	card_item RATTATA_LV9,             1
+	card_item GRASS_ENERGY,            1
+	card_item GRASS_ENERGY,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item SWITCH,                  1
+	card_item GRASS_ENERGY,            1
+	card_item GRASS_ENERGY,            1
+	card_item GRASS_ENERGY,            1
+	card_item GRASS_ENERGY,            1
+	card_item GRASS_ENERGY,            1
+	card_item POTION,                  1
+	card_item ODDISH_LV8,              1
+	card_item GRASS_ENERGY,            1
+	card_item GLOOM,                   1
+	card_item GRASS_ENERGY,            1
+	card_item HAUNTER_LV22,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item GASTLY_LV8,              1
+	card_item BILL,                    1
+	card_item PARAS_LV8,               1
+	card_item PSYCHIC_ENERGY,          1
+	card_item JYNX_LV27,               1
+	card_item PARASECT_LV28,           1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item ENERGY_SEARCH,           1
+	card_item GRASS_ENERGY,            1
+	card_item GASTLY_LV8,              1
+	card_item POTION,                  1
+	card_item PSYCHIC_ENERGY,          1
+	card_item FULL_HEAL,               1
+	card_item RATICATE,                1
+	card_item GRASS_ENERGY,            1
+	card_item ODDISH_LV8,              1
+	card_item HAUNTER_LV22,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item GRIMER_LV10,             1
+	card_item PARAS_LV8,               1
+	card_item GRASS_ENERGY,            1
+	card_item JYNX_LV27,               1
+	card_item KANGASKHAN_LV40,         1
+	card_item BILL,                    1
+	card_item PSYCHIC_ENERGY,          1
+	card_item GLOOM,                   1
+	card_item GRASS_ENERGY,            1
+	card_item PARASECT_LV28,           1
+	card_item PSYCHIC_ENERGY,          1
+	card_item RATTATA_LV9,             1
+	card_item SWITCH,                  1
+	card_item GRASS_ENERGY,            1
+	card_item GRIMER_LV10,             1
+	card_item PSYCHIC_ENERGY,          1
+	card_item FULL_HEAL,               1
+	card_item GRASS_ENERGY,            1
+	card_item ODDISH_LV8,              1
+	card_item GRASS_ENERGY,            1
+	card_item PARAS_LV8,               1
+	card_item PSYCHIC_ENERGY,          1
+	card_item GASTLY_LV8,              1
+	card_item PSYCHIC_ENERGY,          1
+	deck_list_end
 
 AaronPracticeDeck3:
-	dbw  1, KANGASKHAN_LV40
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, BLASTOISE_LV52
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, MAGIKARP_LV8
-	dbw  1, POTION
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, WARTORTLE_LV22
-	dbw  1, HITMONCHAN_LV33
-	dbw  1, PROFESSOR_OAK
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, GYARADOS
-	dbw  1, PROFESSOR_OAK
-	dbw  1, LAPRAS_LV31
-	dbw  1, WATER_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, POKEMON_BREEDER
-	dbw  1, BLASTOISE_LV52
-	dbw  1, HITMONCHAN_LV33
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, DRATINI_LV10
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, DRAGONAIR
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, ENERGY_SEARCH
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, POKEMON_BREEDER
-	dbw  1, WATER_ENERGY
-	dbw  1, LAPRAS_LV31
-	dbw  1, WARTORTLE_LV22
-	dbw  1, WATER_ENERGY
-	dbw  1, HITMONCHAN_LV33
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, PROFESSOR_OAK
-	dbw  1, WATER_ENERGY
-	dbw  1, POTION
-	dbw  1, MAGIKARP_LV8
-	dbw  1, WARTORTLE_LV22
-	dbw  1, DRATINI_LV10
-	dbw  1, WATER_ENERGY
-	dbw  1, KANGASKHAN_LV40
-	dbw  1, DRAGONAIR
-	dbw  1, ENERGY_SEARCH
-	dbw  1, WATER_ENERGY
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, DRATINI_LV10
-	dbw  1, SQUIRTLE_LV14
-	dbw  1, WATER_ENERGY
-	db 0
+	deck_list_start
+	card_item KANGASKHAN_LV40,         1
+	card_item SQUIRTLE_LV14,           1
+	card_item BLASTOISE_LV52,          1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item MAGIKARP_LV8,            1
+	card_item POTION,                  1
+	card_item FIGHTING_ENERGY,         1
+	card_item FIGHTING_ENERGY,         1
+	card_item FIGHTING_ENERGY,         1
+	card_item FIGHTING_ENERGY,         1
+	card_item WARTORTLE_LV22,          1
+	card_item HITMONCHAN_LV33,         1
+	card_item PROFESSOR_OAK,           1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item GYARADOS,                1
+	card_item PROFESSOR_OAK,           1
+	card_item LAPRAS_LV31,             1
+	card_item WATER_ENERGY,            1
+	card_item WATER_ENERGY,            1
+	card_item FIGHTING_ENERGY,         1
+	card_item SQUIRTLE_LV14,           1
+	card_item POKEMON_BREEDER,         1
+	card_item BLASTOISE_LV52,          1
+	card_item HITMONCHAN_LV33,         1
+	card_item FIGHTING_ENERGY,         1
+	card_item FIGHTING_ENERGY,         1
+	card_item DRATINI_LV10,            1
+	card_item FIGHTING_ENERGY,         1
+	card_item DRAGONAIR,               1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item ENERGY_SEARCH,           1
+	card_item FIGHTING_ENERGY,         1
+	card_item POKEMON_BREEDER,         1
+	card_item WATER_ENERGY,            1
+	card_item LAPRAS_LV31,             1
+	card_item WARTORTLE_LV22,          1
+	card_item WATER_ENERGY,            1
+	card_item HITMONCHAN_LV33,         1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item PROFESSOR_OAK,           1
+	card_item WATER_ENERGY,            1
+	card_item POTION,                  1
+	card_item MAGIKARP_LV8,            1
+	card_item WARTORTLE_LV22,          1
+	card_item DRATINI_LV10,            1
+	card_item WATER_ENERGY,            1
+	card_item KANGASKHAN_LV40,         1
+	card_item DRAGONAIR,               1
+	card_item ENERGY_SEARCH,           1
+	card_item WATER_ENERGY,            1
+	card_item SQUIRTLE_LV14,           1
+	card_item DRATINI_LV10,            1
+	card_item SQUIRTLE_LV14,           1
+	card_item WATER_ENERGY,            1
+	deck_list_end
 
 AaronsStep3Deck:
-	dbw  1, CHANSEY_LV55
-	dbw  1, ABRA_LV10
-	dbw  1, ALAKAZAM_LV42
-	dbw  1, POKEMON_BREEDER
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, POKEMON_CENTER
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, CHANSEY_LV55
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, SCOOP_UP
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, JYNX_LV27
-	dbw  1, GASTLY_LV17
-	dbw  1, HAUNTER_LV17
-	dbw  1, BILL
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, GENGAR_LV38
-	dbw  1, ABRA_LV10
-	dbw  1, POKEMON_BREEDER
-	dbw  1, KADABRA_LV38
-	dbw  1, PIKACHU_LV14
-	dbw  1, ENERGY_SEARCH
-	dbw  1, RAICHU_LV45
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, GASTLY_LV17
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, KADABRA_LV38
-	dbw  1, ALAKAZAM_LV42
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, SCOOP_UP
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, ABRA_LV10
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, ABRA_LV10
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, KADABRA_LV38
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  1, PIKACHU_LV14
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, CHANSEY_LV55
-	dbw  1, ENERGY_SEARCH
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, GASTLY_LV17
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, HAUNTER_LV17
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, JYNX_LV27
-	dbw  1, PSYCHIC_ENERGY
-	dbw  1, CHANSEY_LV55
-	dbw  1, SCOOP_UP
-	db 0
+	deck_list_start
+	card_item CHANSEY_LV55,            1
+	card_item ABRA_LV10,               1
+	card_item ALAKAZAM_LV42,           1
+	card_item POKEMON_BREEDER,         1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item POKEMON_CENTER,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item CHANSEY_LV55,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item SCOOP_UP,                1
+	card_item PSYCHIC_ENERGY,          1
+	card_item JYNX_LV27,               1
+	card_item GASTLY_LV17,             1
+	card_item HAUNTER_LV17,            1
+	card_item BILL,                    1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item PSYCHIC_ENERGY,          1
+	card_item GENGAR_LV38,             1
+	card_item ABRA_LV10,               1
+	card_item POKEMON_BREEDER,         1
+	card_item KADABRA_LV38,            1
+	card_item PIKACHU_LV14,            1
+	card_item ENERGY_SEARCH,           1
+	card_item RAICHU_LV45,             1
+	card_item LIGHTNING_ENERGY,        1
+	card_item GASTLY_LV17,             1
+	card_item LIGHTNING_ENERGY,        1
+	card_item KADABRA_LV38,            1
+	card_item ALAKAZAM_LV42,           1
+	card_item LIGHTNING_ENERGY,        1
+	card_item PSYCHIC_ENERGY,          1
+	card_item SCOOP_UP,                1
+	card_item PSYCHIC_ENERGY,          1
+	card_item ABRA_LV10,               1
+	card_item PSYCHIC_ENERGY,          1
+	card_item LIGHTNING_ENERGY,        1
+	card_item ABRA_LV10,               1
+	card_item PSYCHIC_ENERGY,          1
+	card_item KADABRA_LV38,            1
+	card_item DOUBLE_COLORLESS_ENERGY, 1
+	card_item PIKACHU_LV14,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item CHANSEY_LV55,            1
+	card_item ENERGY_SEARCH,           1
+	card_item PSYCHIC_ENERGY,          1
+	card_item LIGHTNING_ENERGY,        1
+	card_item GASTLY_LV17,             1
+	card_item LIGHTNING_ENERGY,        1
+	card_item HAUNTER_LV17,            1
+	card_item PSYCHIC_ENERGY,          1
+	card_item JYNX_LV27,               1
+	card_item PSYCHIC_ENERGY,          1
+	card_item CHANSEY_LV55,            1
+	card_item SCOOP_UP,                1
+	deck_list_end
 
 BrickWalkDeck:
-	dbw 16, GRASS_ENERGY
-	dbw 10, WATER_ENERGY
-	dbw  2, BELLSPROUT_LV10
-	dbw  2, BELLSPROUT_LV11
-	dbw  2, WEEPINBELL_LV23
-	dbw  1, WEEPINBELL_LV28
-	dbw  2, VICTREEBEL
-	dbw  4, PINSIR_LV15
-	dbw  2, POLIWAG_LV13
-	dbw  1, POLIWAG_LV15
-	dbw  2, POLIWHIRL_LV28
-	dbw  1, POLIWRATH_LV40
-	dbw  3, JIGGLYPUFF_LV13
-	dbw  2, WIGGLYTUFF_LV36
-	dbw  1, SUPER_POTION
-	dbw  1, PROFESSOR_OAK
-	dbw  4, POTION
-	dbw  1, FULL_HEAL
-	dbw  2, BILL
-	dbw  1, BILLS_TELEPORTER
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     16
+	card_item WATER_ENERGY,     10
+	card_item BELLSPROUT_LV10,   2
+	card_item BELLSPROUT_LV11,   2
+	card_item WEEPINBELL_LV23,   2
+	card_item WEEPINBELL_LV28,   1
+	card_item VICTREEBEL,        2
+	card_item PINSIR_LV15,       4
+	card_item POLIWAG_LV13,      2
+	card_item POLIWAG_LV15,      1
+	card_item POLIWHIRL_LV28,    2
+	card_item POLIWRATH_LV40,    1
+	card_item JIGGLYPUFF_LV13,   3
+	card_item WIGGLYTUFF_LV36,   2
+	card_item SUPER_POTION,      1
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            4
+	card_item FULL_HEAL,         1
+	card_item BILL,              2
+	card_item BILLS_TELEPORTER,  1
+	deck_list_end
 
 BenchTrapDeck:
-	dbw 12, LIGHTNING_ENERGY
-	dbw 12, FIGHTING_ENERGY
-	dbw  2, RAINBOW_ENERGY
-	dbw  4, PIKACHU_LV14
-	dbw  2, RAICHU_LV45
-	dbw  3, VOLTORB_LV8
-	dbw  2, ELECTRODE_LV42
-	dbw  1, ZAPDOS_LV40
-	dbw  4, HITMONLEE_LV30
-	dbw  4, HITMONCHAN_LV23
-	dbw  4, ENERGY_REMOVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  2, POTION
-	dbw  2, DEFENDER
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY, 12
+	card_item FIGHTING_ENERGY,  12
+	card_item RAINBOW_ENERGY,    2
+	card_item PIKACHU_LV14,      4
+	card_item RAICHU_LV45,       2
+	card_item VOLTORB_LV8,       3
+	card_item ELECTRODE_LV42,    2
+	card_item ZAPDOS_LV40,       1
+	card_item HITMONLEE_LV30,    4
+	card_item HITMONCHAN_LV23,   4
+	card_item ENERGY_REMOVAL,    4
+	card_item ENERGY_SEARCH,     2
+	card_item POTION,            2
+	card_item DEFENDER,          2
+	card_item FULL_HEAL,         2
+	card_item BILL,              2
+	deck_list_end
 
 SkySparkDeck:
-	dbw 23, LIGHTNING_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  4, PIKACHU_LV14
-	dbw  2, RAICHU_LV45
-	dbw  1, DARK_RAICHU
-	dbw  3, VOLTORB_LV13
-	dbw  2, DARK_ELECTRODE
-	dbw  2, ZAPDOS_LV40
-	dbw  3, PIDGEY_LV10
-	dbw  2, PIDGEOTTO_LV36
-	dbw  3, SPEAROW_LV9
-	dbw  2, FEAROW_LV24
-	dbw  1, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  2, GUST_OF_WIND
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        23
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item PIKACHU_LV14,             4
+	card_item RAICHU_LV45,              2
+	card_item DARK_RAICHU,              1
+	card_item VOLTORB_LV13,             3
+	card_item DARK_ELECTRODE,           2
+	card_item ZAPDOS_LV40,              2
+	card_item PIDGEY_LV10,              3
+	card_item PIDGEOTTO_LV36,           2
+	card_item SPEAROW_LV9,              3
+	card_item FEAROW_LV24,              2
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   3
+	card_item GUST_OF_WIND,             2
+	card_item FULL_HEAL,                2
+	card_item BILL,                     2
+	deck_list_end
 
 ElectricSelfdestructDeck:
-	dbw 16, LIGHTNING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  2, POTION_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  2, MAGNEMITE_LV13
-	dbw  2, MAGNEMITE_LV15
-	dbw  2, MAGNETON_LV28
-	dbw  4, VOLTORB_LV8
-	dbw  2, ELECTRODE_LV35
-	dbw  3, ELECTABUZZ_LV35
-	dbw  2, ZAPDOS_LV40
-	dbw  3, DODUO_LV10
-	dbw  2, DODRIO_LV25
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  4, DEFENDER
-	dbw  2, SWITCH
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        16
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item POTION_ENERGY,            2
+	card_item FULLHEAL_ENERGY,          2
+	card_item MAGNEMITE_LV13,           2
+	card_item MAGNEMITE_LV15,           2
+	card_item MAGNETON_LV28,            2
+	card_item VOLTORB_LV8,              4
+	card_item ELECTRODE_LV35,           2
+	card_item ELECTABUZZ_LV35,          3
+	card_item ZAPDOS_LV40,              2
+	card_item DODUO_LV10,               3
+	card_item DODRIO_LV25,              2
+	card_item ENERGY_REMOVAL,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item DEFENDER,                 4
+	card_item SWITCH,                   2
+	card_item BILL,                     3
+	deck_list_end
 
 OverflowDeck:
-	dbw 23, LIGHTNING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, MAGNEMITE_LV12
-	dbw  3, MAGNETON_LV35
-	dbw  4, VOLTORB_LV8
-	dbw  3, ELECTRODE_LV35
-	dbw  3, SPEAROW_LV13
-	dbw  2, FEAROW_LV27
-	dbw  2, FARFETCHD_LV20
-	dbw  2, DODUO_LV10
-	dbw  1, DODRIO_LV25
-	dbw  1, PROFESSOR_OAK
-	dbw  2, FULL_HEAL
-	dbw  2, SLEEP
-	dbw  2, PLUSPOWER
-	dbw  2, POKEMON_RECALL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        23
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item MAGNEMITE_LV12,           4
+	card_item MAGNETON_LV35,            3
+	card_item VOLTORB_LV8,              4
+	card_item ELECTRODE_LV35,           3
+	card_item SPEAROW_LV13,             3
+	card_item FEAROW_LV27,              2
+	card_item FARFETCHD_LV20,           2
+	card_item DODUO_LV10,               2
+	card_item DODRIO_LV25,              1
+	card_item PROFESSOR_OAK,            1
+	card_item FULL_HEAL,                2
+	card_item SLEEP,                    2
+	card_item PLUSPOWER,                2
+	card_item POKEMON_RECALL,           2
+	card_item BILL,                     2
+	deck_list_end
 
 TripleZapdosDeck:
-	dbw 25, LIGHTNING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, POTION_ENERGY
-	dbw  4, VOLTORB_LV8
-	dbw  3, DARK_ELECTRODE
-	dbw  2, ELECTABUZZ_LV35
-	dbw  1, ZAPDOS_LV28
-	dbw  1, ZAPDOS_LV40
-	dbw  1, ZAPDOS_LV64
-	dbw  1, FARFETCHD_LV20
-	dbw  3, DODUO_LV8
-	dbw  2, DODRIO_LV25
-	dbw  1, KANGASKHAN_LV36
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, POTION
-	dbw  1, MAX_REVIVE
-	dbw  2, DEFENDER
-	dbw  2, MASTER_BALL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        25
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item POTION_ENERGY,            2
+	card_item VOLTORB_LV8,              4
+	card_item DARK_ELECTRODE,           3
+	card_item ELECTABUZZ_LV35,          2
+	card_item ZAPDOS_LV28,              1
+	card_item ZAPDOS_LV40,              1
+	card_item ZAPDOS_LV64,              1
+	card_item FARFETCHD_LV20,           1
+	card_item DODUO_LV8,                3
+	card_item DODRIO_LV25,              2
+	card_item KANGASKHAN_LV36,          1
+	card_item ENERGY_RETRIEVAL,         2
+	card_item ENERGY_SEARCH,            2
+	card_item POTION,                   1
+	card_item MAX_REVIVE,               1
+	card_item DEFENDER,                 2
+	card_item MASTER_BALL,              2
+	card_item POKEBALL,                 2
+	deck_list_end
 
 ILovePikachuDeck:
-	dbw  9, WATER_ENERGY
-	dbw 20, LIGHTNING_ENERGY
-	dbw  3, SQUIRTLE_LV8
-	dbw  2, WARTORTLE_LV22
-	dbw  1, PIKACHU_LV5
-	dbw  1, PIKACHU_LV13
-	dbw  1, PIKACHU_LV16
-	dbw  1, PIKACHU_ALT_LV16
-	dbw  2, FLYING_PIKACHU_LV12
-	dbw  2, FLYING_PIKACHU_ALT_LV12
-	dbw  2, SURFING_PIKACHU_LV13
-	dbw  2, SURFING_PIKACHU_ALT_LV13
-	dbw  1, RAICHU_LV32
-	dbw  1, RAICHU_LV40
-	dbw  1, RAICHU_LV45
-	dbw  2, ENERGY_SEARCH
-	dbw  2, POTION
-	dbw  1, REVIVE
-	dbw  2, DEFENDER
-	dbw  2, MASTER_BALL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,              9
+	card_item LIGHTNING_ENERGY,         20
+	card_item SQUIRTLE_LV8,              3
+	card_item WARTORTLE_LV22,            2
+	card_item PIKACHU_LV5,               1
+	card_item PIKACHU_LV13,              1
+	card_item PIKACHU_LV16,              1
+	card_item PIKACHU_ALT_LV16,          1
+	card_item FLYING_PIKACHU_LV12,       2
+	card_item FLYING_PIKACHU_ALT_LV12,   2
+	card_item SURFING_PIKACHU_LV13,      2
+	card_item SURFING_PIKACHU_ALT_LV13,  2
+	card_item RAICHU_LV32,               1
+	card_item RAICHU_LV40,               1
+	card_item RAICHU_LV45,               1
+	card_item ENERGY_SEARCH,             2
+	card_item POTION,                    2
+	card_item REVIVE,                    1
+	card_item DEFENDER,                  2
+	card_item MASTER_BALL,               2
+	card_item POKEBALL,                  2
+	deck_list_end
 
 TenThousandVoltsDeck:
-	dbw 26, LIGHTNING_ENERGY
-	dbw  2, PIKACHU_LV12
-	dbw  2, PIKACHU_LV14
-	dbw  3, RAICHU_LV33
-	dbw  2, ELECTABUZZ_LV30
-	dbw  1, ELECTABUZZ_LV35
-	dbw  3, JOLTEON_LV29
-	dbw  2, ZAPDOS_LV64
-	dbw  4, EEVEE_LV12
-	dbw  4, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, SCOOP_UP
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY, 26
+	card_item PIKACHU_LV12,      2
+	card_item PIKACHU_LV14,      2
+	card_item RAICHU_LV33,       3
+	card_item ELECTABUZZ_LV30,   2
+	card_item ELECTABUZZ_LV35,   1
+	card_item JOLTEON_LV29,      3
+	card_item ZAPDOS_LV64,       2
+	card_item EEVEE_LV12,        4
+	card_item ENERGY_RETRIEVAL,  4
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item FULL_HEAL,         2
+	card_item SCOOP_UP,          2
+	card_item BILL,              4
+	deck_list_end
 
 HandOverGRDeck:
-	dbw 24, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  3, ABRA_LV8
-	dbw  2, KADABRA_LV39
-	dbw  3, SLOWPOKE_LV9
-	dbw  2, SLOWBRO_LV35
-	dbw  2, MR_MIME_LV20
-	dbw  2, JYNX_LV27
-	dbw  2, MEW_LV23
-	dbw  2, CLEFAIRY_LV15
-	dbw  3, JIGGLYPUFF_LV13
-	dbw  2, WIGGLYTUFF_LV36
-	dbw  2, LICKITUNG_LV26
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, MOON_STONE
-	dbw  2, FULL_HEAL
-	dbw  2, BILLS_TELEPORTER
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          24
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item ABRA_LV8,                 3
+	card_item KADABRA_LV39,             2
+	card_item SLOWPOKE_LV9,             3
+	card_item SLOWBRO_LV35,             2
+	card_item MR_MIME_LV20,             2
+	card_item JYNX_LV27,                2
+	card_item MEW_LV23,                 2
+	card_item CLEFAIRY_LV15,            2
+	card_item JIGGLYPUFF_LV13,          3
+	card_item WIGGLYTUFF_LV36,          2
+	card_item LICKITUNG_LV26,           2
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   2
+	card_item MOON_STONE,               2
+	card_item FULL_HEAL,                2
+	card_item BILLS_TELEPORTER,         2
+	deck_list_end
 
 PsychicEliteDeck:
-	dbw 14, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, ABRA_LV14
-	dbw  2, KADABRA_LV39
-	dbw  2, ALAKAZAM_LV42
-	dbw  4, GASTLY_LV13
-	dbw  3, HAUNTER_LV26
-	dbw  2, MR_MIME_LV20
-	dbw  1, MR_MIME_LV28
-	dbw  2, MEWTWO_LV60
-	dbw  3, CHANSEY_LV55
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  3, SCOOP_UP
-	dbw  2, POKEMON_TRADER
-	dbw  4, BILL
-	dbw  2, BILLS_TELEPORTER
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          14
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item ABRA_LV14,                4
+	card_item KADABRA_LV39,             2
+	card_item ALAKAZAM_LV42,            2
+	card_item GASTLY_LV13,              4
+	card_item HAUNTER_LV26,             3
+	card_item MR_MIME_LV20,             2
+	card_item MR_MIME_LV28,             1
+	card_item MEWTWO_LV60,              2
+	card_item CHANSEY_LV55,             3
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            2
+	card_item SWITCH,                   2
+	card_item SCOOP_UP,                 3
+	card_item POKEMON_TRADER,           2
+	card_item BILL,                     4
+	card_item BILLS_TELEPORTER,         2
+	card_item NIGHTLY_GARBAGE_RUN,      2
+	deck_list_end
 
 PsychokinesisDeck:
-	dbw 26, PSYCHIC_ENERGY
-	dbw  4, ABRA_LV8
-	dbw  3, KADABRA_LV39
-	dbw  2, ALAKAZAM_LV45
-	dbw  3, GASTLY_LV13
-	dbw  2, HAUNTER_LV26
-	dbw  1, GENGAR_LV40
-	dbw  2, JYNX_LV27
-	dbw  2, MEWTWO_LV54
-	dbw  1, MEW_LV23
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  1, POKEMON_RECALL
-	dbw  1, POKEMON_BREEDER
-	dbw  2, BILL
-	dbw  1, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,   26
+	card_item ABRA_LV8,          4
+	card_item KADABRA_LV39,      3
+	card_item ALAKAZAM_LV45,     2
+	card_item GASTLY_LV13,       3
+	card_item HAUNTER_LV26,      2
+	card_item GENGAR_LV40,       1
+	card_item JYNX_LV27,         2
+	card_item MEWTWO_LV54,       2
+	card_item MEW_LV23,          1
+	card_item ENERGY_RETRIEVAL,  2
+	card_item ENERGY_SEARCH,     2
+	card_item PROFESSOR_OAK,     1
+	card_item SWITCH,            2
+	card_item POKEMON_TRADER,    2
+	card_item POKEMON_RECALL,    1
+	card_item POKEMON_BREEDER,   1
+	card_item BILL,              2
+	card_item MASTER_BALL,       1
+	deck_list_end
 
 PhantomDeck:
-	dbw 24, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, GASTLY_LV8
-	dbw  1, HAUNTER_LV17
-	dbw  1, HAUNTER_LV22
-	dbw  1, HAUNTER_LV26
-	dbw  2, GENGAR_LV38
-	dbw  3, DROWZEE_LV12
-	dbw  2, HYPNO_LV36
-	dbw  1, JYNX_LV23
-	dbw  1, JYNX_LV27
-	dbw  3, JIGGLYPUFF_LV14
-	dbw  2, WIGGLYTUFF_LV36
-	dbw  1, ENERGY_REMOVAL
-	dbw  1, ENERGY_RETRIEVAL
-	dbw  1, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  1, FULL_HEAL
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          24
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item GASTLY_LV8,               4
+	card_item HAUNTER_LV17,             1
+	card_item HAUNTER_LV22,             1
+	card_item HAUNTER_LV26,             1
+	card_item GENGAR_LV38,              2
+	card_item DROWZEE_LV12,             3
+	card_item HYPNO_LV36,               2
+	card_item JYNX_LV23,                1
+	card_item JYNX_LV27,                1
+	card_item JIGGLYPUFF_LV14,          3
+	card_item WIGGLYTUFF_LV36,          2
+	card_item ENERGY_REMOVAL,           1
+	card_item ENERGY_RETRIEVAL,         1
+	card_item ENERGY_SEARCH,            1
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   2
+	card_item FULL_HEAL,                1
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item BILL,                     2
+	deck_list_end
 
 PuppetMasterDeck:
-	dbw 24, PSYCHIC_ENERGY
-	dbw  4, SLOWPOKE_LV18
-	dbw  3, SLOWBRO_LV26
-	dbw  4, DROWZEE_LV12
-	dbw  3, HYPNO_LV30
-	dbw  2, MR_MIME_LV28
-	dbw  1, PROFESSOR_OAK
-	dbw  2, ITEMFINDER
-	dbw  4, DEFENDER
-	dbw  1, GUST_OF_WIND
-	dbw  4, CLEFAIRY_DOLL
-	dbw  2, PLUSPOWER
-	dbw  2, SCOOP_UP
-	dbw  2, BILL
-	dbw  2, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY, 24
+	card_item SLOWPOKE_LV18,   4
+	card_item SLOWBRO_LV26,    3
+	card_item DROWZEE_LV12,    4
+	card_item HYPNO_LV30,      3
+	card_item MR_MIME_LV28,    2
+	card_item PROFESSOR_OAK,   1
+	card_item ITEMFINDER,      2
+	card_item DEFENDER,        4
+	card_item GUST_OF_WIND,    1
+	card_item CLEFAIRY_DOLL,   4
+	card_item PLUSPOWER,       2
+	card_item SCOOP_UP,        2
+	card_item BILL,            2
+	card_item MASTER_BALL,     2
+	deck_list_end
 
 Even3YearsOnARockDeck:
-	dbw 26, FIGHTING_ENERGY
-	dbw  4, GEODUDE_LV16
-	dbw  3, GRAVELER_LV28
-	dbw  4, ONIX_LV25
-	dbw  4, CUBONE_LV13
-	dbw  3, MAROWAK_LV32
-	dbw  4, RHYHORN
-	dbw  3, RHYDON_LV48
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, GAMBLER
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,  26
+	card_item GEODUDE_LV16,      4
+	card_item GRAVELER_LV28,     3
+	card_item ONIX_LV25,         4
+	card_item CUBONE_LV13,       4
+	card_item MAROWAK_LV32,      3
+	card_item RHYHORN,           4
+	card_item RHYDON_LV48,       3
+	card_item ENERGY_RETRIEVAL,  3
+	card_item PROFESSOR_OAK,     1
+	card_item GAMBLER,           1
+	card_item SWITCH,            2
+	card_item BILL,              2
+	deck_list_end
 
 RollingStoneDeck:
-	dbw  8, FIRE_ENERGY
-	dbw 16, FIGHTING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, CHARMANDER_LV10
-	dbw  1, CHARMELEON
-	dbw  3, PONYTA_LV10
-	dbw  2, RAPIDASH_LV33
-	dbw  3, DIGLETT_LV8
-	dbw  2, DUGTRIO_LV36
-	dbw  3, GEODUDE_LV15
-	dbw  1, GEODUDE_LV16
-	dbw  1, GRAVELER_LV27
-	dbw  2, GRAVELER_LV28
-	dbw  2, GOLEM_LV36
-	dbw  2, RHYHORN
-	dbw  2, POTION
-	dbw  2, DEFENDER
-	dbw  2, GUST_OF_WIND
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,              8
+	card_item FIGHTING_ENERGY,         16
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item CHARMANDER_LV10,          2
+	card_item CHARMELEON,               1
+	card_item PONYTA_LV10,              3
+	card_item RAPIDASH_LV33,            2
+	card_item DIGLETT_LV8,              3
+	card_item DUGTRIO_LV36,             2
+	card_item GEODUDE_LV15,             3
+	card_item GEODUDE_LV16,             1
+	card_item GRAVELER_LV27,            1
+	card_item GRAVELER_LV28,            2
+	card_item GOLEM_LV36,               2
+	card_item RHYHORN,                  2
+	card_item POTION,                   2
+	card_item DEFENDER,                 2
+	card_item GUST_OF_WIND,             2
+	card_item SWITCH,                   2
+	card_item BILL,                     2
+	deck_list_end
 
 GreatEarthquakeDeck:
-	dbw 26, FIGHTING_ENERGY
-	dbw  3, SANDSHREW_LV12
-	dbw  1, SANDSLASH_LV33
-	dbw  3, DIGLETT_LV8
-	dbw  1, DIGLETT_LV16
-	dbw  2, DUGTRIO_LV36
-	dbw  1, DUGTRIO_LV40
-	dbw  4, GEODUDE_LV16
-	dbw  3, GRAVELER_LV28
-	dbw  3, CUBONE_LV13
-	dbw  1, MAROWAK_LV26
-	dbw  1, MAROWAK_LV32
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, FULL_HEAL
-	dbw  2, PLUSPOWER
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,  26
+	card_item SANDSHREW_LV12,    3
+	card_item SANDSLASH_LV33,    1
+	card_item DIGLETT_LV8,       3
+	card_item DIGLETT_LV16,      1
+	card_item DUGTRIO_LV36,      2
+	card_item DUGTRIO_LV40,      1
+	card_item GEODUDE_LV16,      4
+	card_item GRAVELER_LV28,     3
+	card_item CUBONE_LV13,       3
+	card_item MAROWAK_LV26,      1
+	card_item MAROWAK_LV32,      1
+	card_item ENERGY_REMOVAL,    2
+	card_item ENERGY_RETRIEVAL,  2
+	card_item PROFESSOR_OAK,     1
+	card_item FULL_HEAL,         2
+	card_item PLUSPOWER,         2
+	card_item BILL,              2
+	deck_list_end
 
 AwesomeFossilDeck:
-	dbw 27, FIGHTING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  2, OMANYTE_LV20
-	dbw  2, ONIX_LV12
-	dbw  4, RHYHORN
-	dbw  1, RHYDON_LV37
-	dbw  1, RHYDON_LV48
-	dbw  1, KABUTO_LV9
-	dbw  1, KABUTO_LV22
-	dbw  1, KABUTOPS
-	dbw  1, AERODACTYL_LV30
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, SNORLAX_LV20
-	dbw  2, ITEMFINDER
-	dbw  4, MYSTERIOUS_FOSSIL
-	dbw  3, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         27
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item OMANYTE_LV20,             2
+	card_item ONIX_LV12,                2
+	card_item RHYHORN,                  4
+	card_item RHYDON_LV37,              1
+	card_item RHYDON_LV48,              1
+	card_item KABUTO_LV9,               1
+	card_item KABUTO_LV22,              1
+	card_item KABUTOPS,                 1
+	card_item AERODACTYL_LV30,          1
+	card_item KANGASKHAN_LV40,          2
+	card_item SNORLAX_LV20,             2
+	card_item ITEMFINDER,               2
+	card_item MYSTERIOUS_FOSSIL,        4
+	card_item SWITCH,                   3
+	card_item BILL,                     2
+	deck_list_end
 
 RagingBillowOfFistsDeck:
-	dbw 19, FIGHTING_ENERGY
-	dbw  4, PSYCHIC_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  2, RAINBOW_ENERGY
-	dbw  2, MACHOP_LV18
-	dbw  2, MACHOP_LV24
-	dbw  2, MACHOKE_LV24
-	dbw  1, MACHOKE_LV40
-	dbw  2, MACHAMP_LV54
-	dbw  2, HITMONLEE_LV23
-	dbw  2, HITMONCHAN_LV33
-	dbw  3, MR_MIME_LV20
-	dbw  2, LICKITUNG_LV20
-	dbw  2, KANGASKHAN_LV38
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, GUST_OF_WIND
-	dbw  1, FULL_HEAL
-	dbw  2, PLUSPOWER
-	dbw  2, SCOOP_UP
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         19
+	card_item PSYCHIC_ENERGY,           4
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item RAINBOW_ENERGY,           2
+	card_item MACHOP_LV18,              2
+	card_item MACHOP_LV24,              2
+	card_item MACHOKE_LV24,             2
+	card_item MACHOKE_LV40,             1
+	card_item MACHAMP_LV54,             2
+	card_item HITMONLEE_LV23,           2
+	card_item HITMONCHAN_LV33,          2
+	card_item MR_MIME_LV20,             3
+	card_item LICKITUNG_LV20,           2
+	card_item KANGASKHAN_LV38,          2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item GUST_OF_WIND,             2
+	card_item FULL_HEAL,                1
+	card_item PLUSPOWER,                2
+	card_item SCOOP_UP,                 2
+	card_item BILL,                     2
+	deck_list_end
 
 YouCanDoItMachopDeck:
-	dbw  5, LIGHTNING_ENERGY
-	dbw 22, FIGHTING_ENERGY
-	dbw  2, PIKACHU_LV12
-	dbw  4, MACHOP_LV20
-	dbw  3, MACHOKE_LV40
-	dbw  1, MACHAMP_LV67
-	dbw  2, RATTATA_LV9
-	dbw  1, RATICATE
-	dbw  2, MEOWTH_LV17
-	dbw  4, EEVEE_LV12
-	dbw  2, PORYGON_LV12
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,  5
+	card_item FIGHTING_ENERGY,  22
+	card_item PIKACHU_LV12,      2
+	card_item MACHOP_LV20,       4
+	card_item MACHOKE_LV40,      3
+	card_item MACHAMP_LV67,      1
+	card_item RATTATA_LV9,       2
+	card_item RATICATE,          1
+	card_item MEOWTH_LV17,       2
+	card_item EEVEE_LV12,        4
+	card_item PORYGON_LV12,      2
+	card_item ENERGY_SEARCH,     2
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            3
+	card_item FULL_HEAL,         2
+	card_item SWITCH,            2
+	card_item BILL,              2
+	deck_list_end
 
 NewMachokeDeck:
-	dbw 21, FIGHTING_ENERGY
-	dbw  6, PSYCHIC_ENERGY
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  3, MANKEY_LV7
-	dbw  2, PRIMEAPE
-	dbw  4, MACHOP_LV20
-	dbw  2, MACHOKE_LV24
-	dbw  1, MACHOKE_LV40
-	dbw  2, MACHAMP_LV67
-	dbw  1, HITMONLEE_LV23
-	dbw  1, HITMONCHAN_LV33
-	dbw  3, GASTLY_LV13
-	dbw  2, MEOWTH_LV15
-	dbw  1, TAUROS_LV35
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         21
+	card_item PSYCHIC_ENERGY,           6
+	card_item DOUBLE_COLORLESS_ENERGY,  1
+	card_item MANKEY_LV7,               3
+	card_item PRIMEAPE,                 2
+	card_item MACHOP_LV20,              4
+	card_item MACHOKE_LV24,             2
+	card_item MACHOKE_LV40,             1
+	card_item MACHAMP_LV67,             2
+	card_item HITMONLEE_LV23,           1
+	card_item HITMONCHAN_LV33,          1
+	card_item GASTLY_LV13,              3
+	card_item MEOWTH_LV15,              2
+	card_item TAUROS_LV35,              1
+	card_item ENERGY_RETRIEVAL,         3
+	card_item ENERGY_SEARCH,            2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   2
+	card_item BILL,                     2
+	deck_list_end
 
 SkilledWarriorDeck:
-	dbw 25, FIGHTING_ENERGY
-	dbw  4, SANDSHREW_LV12
-	dbw  3, SANDSLASH_LV33
-	dbw  4, MACHOP_LV20
-	dbw  3, MACHOKE_LV40
-	dbw  2, HITMONLEE_LV23
-	dbw  1, HITMONCHAN_LV33
-	dbw  2, RHYHORN
-	dbw  1, KANGASKHAN_LV40
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, GUST_OF_WIND
-	dbw  2, SWITCH
-	dbw  1, SCOOP_UP
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,  25
+	card_item SANDSHREW_LV12,    4
+	card_item SANDSLASH_LV33,    3
+	card_item MACHOP_LV20,       4
+	card_item MACHOKE_LV40,      3
+	card_item HITMONLEE_LV23,    2
+	card_item HITMONCHAN_LV33,   1
+	card_item RHYHORN,           2
+	card_item KANGASKHAN_LV40,   1
+	card_item ENERGY_REMOVAL,    2
+	card_item ENERGY_RETRIEVAL,  2
+	card_item ENERGY_SEARCH,     1
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item GUST_OF_WIND,      2
+	card_item SWITCH,            2
+	card_item SCOOP_UP,          1
+	card_item BILL,              2
+	deck_list_end
 
 ILoveToFightDeck:
-	dbw 25, FIGHTING_ENERGY
-	dbw  3, MANKEY_LV7
-	dbw  2, PRIMEAPE
-	dbw  4, MACHOP_LV18
-	dbw  3, MACHOKE_LV24
-	dbw  2, MACHAMP_LV67
-	dbw  2, HITMONLEE_LV30
-	dbw  2, HITMONCHAN_LV23
-	dbw  3, DODUO_LV10
-	dbw  1, DODRIO_LV28
-	dbw  2, LICKITUNG_LV20
-	dbw  4, POTION
-	dbw  1, MOON_STONE
-	dbw  2, DEFENDER
-	dbw  2, FULL_HEAL
-	dbw  2, PLUSPOWER
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY, 25
+	card_item MANKEY_LV7,       3
+	card_item PRIMEAPE,         2
+	card_item MACHOP_LV18,      4
+	card_item MACHOKE_LV24,     3
+	card_item MACHAMP_LV67,     2
+	card_item HITMONLEE_LV30,   2
+	card_item HITMONCHAN_LV23,  2
+	card_item DODUO_LV10,       3
+	card_item DODRIO_LV28,      1
+	card_item LICKITUNG_LV20,   2
+	card_item POTION,           4
+	card_item MOON_STONE,       1
+	card_item DEFENDER,         2
+	card_item FULL_HEAL,        2
+	card_item PLUSPOWER,        2
+	deck_list_end
 
 MaxEnergyDeck:
-	dbw 20, GRASS_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, BULBASAUR_LV12
-	dbw  3, IVYSAUR_LV26
-	dbw  2, VENUSAUR_LV67
-	dbw  4, CATERPIE
-	dbw  3, METAPOD_LV20
-	dbw  1, BUTTERFREE
-	dbw  4, EXEGGCUTE
-	dbw  3, EXEGGUTOR
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POKEMON_CENTER
-	dbw  2, POKEMON_BREEDER
-	dbw  4, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            20
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item BULBASAUR_LV12,           4
+	card_item IVYSAUR_LV26,             3
+	card_item VENUSAUR_LV67,            2
+	card_item CATERPIE,                 4
+	card_item METAPOD_LV20,             3
+	card_item BUTTERFREE,               1
+	card_item EXEGGCUTE,                4
+	card_item EXEGGUTOR,                3
+	card_item ENERGY_RETRIEVAL,         3
+	card_item PROFESSOR_OAK,            1
+	card_item POKEMON_CENTER,           2
+	card_item POKEMON_BREEDER,          2
+	card_item BILL,                     4
+	card_item POKEBALL,                 2
+	deck_list_end
 
 RemainingGreenDeck:
-	dbw 27, GRASS_ENERGY
-	dbw  3, BULBASAUR_LV12
-	dbw  1, IVYSAUR_LV26
-	dbw  4, WEEDLE_LV12
-	dbw  2, KAKUNA_LV23
-	dbw  1, BEEDRILL
-	dbw  3, NIDORANM_LV20
-	dbw  1, NIDORINO_LV25
-	dbw  3, VENONAT_LV15
-	dbw  3, TANGELA_LV8
-	dbw  2, ENERGY_SEARCH
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	dbw  4, POKEBALL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,   27
+	card_item BULBASAUR_LV12,  3
+	card_item IVYSAUR_LV26,    1
+	card_item WEEDLE_LV12,     4
+	card_item KAKUNA_LV23,     2
+	card_item BEEDRILL,        1
+	card_item NIDORANM_LV20,   3
+	card_item NIDORINO_LV25,   1
+	card_item VENONAT_LV15,    3
+	card_item TANGELA_LV8,     3
+	card_item ENERGY_SEARCH,   2
+	card_item POTION,          2
+	card_item FULL_HEAL,       2
+	card_item BILL,            2
+	card_item POKEBALL,        4
+	deck_list_end
 
 PoisonCurseDeck:
-	dbw 25, GRASS_ENERGY
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  4, WEEDLE_LV15
-	dbw  3, KAKUNA_LV20
-	dbw  2, BEEDRILL
-	dbw  3, BELLSPROUT_LV11
-	dbw  2, WEEPINBELL_LV28
-	dbw  1, VICTREEBEL
-	dbw  2, TANGELA_LV8
-	dbw  1, TANGELA_LV12
-	dbw  2, SCYTHER_LV23
-	dbw  2, PINSIR_LV24
-	dbw  2, ENERGY_REMOVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, SUPER_ENERGY_REMOVAL
-	dbw  2, DEFENDER
-	dbw  2, SWITCH
-	dbw  1, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            25
+	card_item DOUBLE_COLORLESS_ENERGY,  1
+	card_item WEEDLE_LV15,              4
+	card_item KAKUNA_LV20,              3
+	card_item BEEDRILL,                 2
+	card_item BELLSPROUT_LV11,          3
+	card_item WEEPINBELL_LV28,          2
+	card_item VICTREEBEL,               1
+	card_item TANGELA_LV8,              2
+	card_item TANGELA_LV12,             1
+	card_item SCYTHER_LV23,             2
+	card_item PINSIR_LV24,              2
+	card_item ENERGY_REMOVAL,           2
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   2
+	card_item SUPER_ENERGY_REMOVAL,     2
+	card_item DEFENDER,                 2
+	card_item SWITCH,                   2
+	card_item BILL,                     1
+	deck_list_end
 
 GlitteringScalesDeck:
-	dbw 24, GRASS_ENERGY
-	dbw  3, BULBASAUR_LV12
-	dbw  2, IVYSAUR_LV26
-	dbw  4, VENONAT_LV15
-	dbw  3, VENOMOTH_LV28
-	dbw  3, TANGELA_LV8
-	dbw  2, SCYTHER_LV23
-	dbw  2, JIGGLYPUFF_LV14
-	dbw  1, WIGGLYTUFF_LV36
-	dbw  1, CHANSEY_LV55
-	dbw  1, KANGASKHAN_LV40
-	dbw  2, PORYGON_LV12
-	dbw  2, ENERGY_REMOVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  2, GUST_OF_WIND
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,    24
+	card_item BULBASAUR_LV12,   3
+	card_item IVYSAUR_LV26,     2
+	card_item VENONAT_LV15,     4
+	card_item VENOMOTH_LV28,    3
+	card_item TANGELA_LV8,      3
+	card_item SCYTHER_LV23,     2
+	card_item JIGGLYPUFF_LV14,  2
+	card_item WIGGLYTUFF_LV36,  1
+	card_item CHANSEY_LV55,     1
+	card_item KANGASKHAN_LV40,  1
+	card_item PORYGON_LV12,     2
+	card_item ENERGY_REMOVAL,   2
+	card_item PROFESSOR_OAK,    1
+	card_item POTION,           3
+	card_item GUST_OF_WIND,     2
+	card_item FULL_HEAL,        2
+	card_item BILL,             2
+	deck_list_end
 
 SteadyIncreaseDeck:
-	dbw 23, GRASS_ENERGY
-	dbw  4, ODDISH_LV8
-	dbw  3, GLOOM
-	dbw  2, VILEPLUME
-	dbw  4, PARAS_LV15
-	dbw  3, PARASECT_LV29
-	dbw  4, BELLSPROUT_LV11
-	dbw  3, WEEPINBELL_LV28
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, DEFENDER
-	dbw  2, FULL_HEAL
-	dbw  4, MR_FUJI
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     23
+	card_item ODDISH_LV8,        4
+	card_item GLOOM,             3
+	card_item VILEPLUME,         2
+	card_item PARAS_LV15,        4
+	card_item PARASECT_LV29,     3
+	card_item BELLSPROUT_LV11,   4
+	card_item WEEPINBELL_LV28,   3
+	card_item ENERGY_RETRIEVAL,  3
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item DEFENDER,          2
+	card_item FULL_HEAL,         2
+	card_item MR_FUJI,           4
+	deck_list_end
 
 DarkScienceDeck:
-	dbw 25, GRASS_ENERGY
-	dbw  3, EKANS_LV15
-	dbw  2, ARBOK_LV30
-	dbw  3, ZUBAT_LV12
-	dbw  4, GRIMER_LV10
-	dbw  4, KOFFING_LV13
-	dbw  3, WEEZING_LV26
-	dbw  2, CHANSEY_LV55
-	dbw  1, SUPER_POTION
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, GAMBLER
-	dbw  2, DEFENDER
-	dbw  2, BILL
-	dbw  1, BILLS_TELEPORTER
-	dbw  2, MASTER_BALL
-	dbw  1, LASS
-	dbw  1, THE_ROCKETS_TRAP
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     25
+	card_item EKANS_LV15,        3
+	card_item ARBOK_LV30,        2
+	card_item ZUBAT_LV12,        3
+	card_item GRIMER_LV10,       4
+	card_item KOFFING_LV13,      4
+	card_item WEEZING_LV26,      3
+	card_item CHANSEY_LV55,      2
+	card_item SUPER_POTION,      1
+	card_item ENERGY_RETRIEVAL,  2
+	card_item PROFESSOR_OAK,     1
+	card_item GAMBLER,           1
+	card_item DEFENDER,          2
+	card_item BILL,              2
+	card_item BILLS_TELEPORTER,  1
+	card_item MASTER_BALL,       2
+	card_item LASS,              1
+	card_item THE_ROCKETS_TRAP,  1
+	deck_list_end
 
 NaturalScienceDeck:
-	dbw 24, GRASS_ENERGY
-	dbw  1, DOUBLE_COLORLESS_ENERGY
-	dbw  3, BULBASAUR_LV12
-	dbw  3, NIDORANF_LV13
-	dbw  4, NIDORANM_LV20
-	dbw  3, NIDORINO_LV25
-	dbw  3, ZUBAT_LV10
-	dbw  2, GOLBAT_LV25
-	dbw  3, VENONAT_LV15
-	dbw  2, PORYGON_LV12
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            24
+	card_item DOUBLE_COLORLESS_ENERGY,  1
+	card_item BULBASAUR_LV12,           3
+	card_item NIDORANF_LV13,            3
+	card_item NIDORANM_LV20,            4
+	card_item NIDORINO_LV25,            3
+	card_item ZUBAT_LV10,               3
+	card_item GOLBAT_LV25,              2
+	card_item VENONAT_LV15,             3
+	card_item PORYGON_LV12,             2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item ENERGY_SEARCH,            2
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   3
+	card_item FULL_HEAL,                2
+	card_item BILL,                     2
+	deck_list_end
 
 PoisonousSwampDeck:
-	dbw 25, GRASS_ENERGY
-	dbw  4, EKANS_LV10
-	dbw  2, ARBOK_LV30
-	dbw  2, NIDORANM_LV20
-	dbw  2, NIDORANM_LV22
-	dbw  3, NIDORINO_LV25
-	dbw  2, NIDOKING
-	dbw  2, ZUBAT_LV10
-	dbw  4, KOFFING_LV14
-	dbw  3, WEEZING_LV27
-	dbw  1, PROFESSOR_OAK
-	dbw  4, POTION
-	dbw  4, DEFENDER
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,  25
+	card_item EKANS_LV10,     4
+	card_item ARBOK_LV30,     2
+	card_item NIDORANM_LV20,  2
+	card_item NIDORANM_LV22,  2
+	card_item NIDORINO_LV25,  3
+	card_item NIDOKING,       2
+	card_item ZUBAT_LV10,     2
+	card_item KOFFING_LV14,   4
+	card_item WEEZING_LV27,   3
+	card_item PROFESSOR_OAK,  1
+	card_item POTION,         4
+	card_item DEFENDER,       4
+	card_item BILL,           2
+	deck_list_end
 
 GatheringNidoranDeck:
-	dbw 23, GRASS_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, NIDORANF_LV12
-	dbw  2, NIDORANF_LV13
-	dbw  3, NIDORINA_LV22
-	dbw  2, NIDOQUEEN
-	dbw  4, NIDORANM_LV22
-	dbw  2, NIDORINO_LV23
-	dbw  1, NIDORINO_LV25
-	dbw  2, NIDOKING
-	dbw  2, CLEFAIRY_LV15
-	dbw  2, LICKITUNG_LV20
-	dbw  2, TAUROS_LV35
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POKEMON_TRADER
-	dbw  2, POKEMON_BREEDER
-	dbw  2, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            23
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item NIDORANF_LV12,            2
+	card_item NIDORANF_LV13,            2
+	card_item NIDORINA_LV22,            3
+	card_item NIDOQUEEN,                2
+	card_item NIDORANM_LV22,            4
+	card_item NIDORINO_LV23,            2
+	card_item NIDORINO_LV25,            1
+	card_item NIDOKING,                 2
+	card_item CLEFAIRY_LV15,            2
+	card_item LICKITUNG_LV20,           2
+	card_item TAUROS_LV35,              2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item POKEMON_TRADER,           2
+	card_item POKEMON_BREEDER,          2
+	card_item BILL,                     2
+	card_item POKEBALL,                 2
+	deck_list_end
 
 RainDanceConfusionDeck:
-	dbw 25, WATER_ENERGY
-	dbw  2, SQUIRTLE_LV15
-	dbw  2, SQUIRTLE_LV16
-	dbw  3, WARTORTLE_LV22
-	dbw  2, BLASTOISE_LV52
-	dbw  4, SEEL_LV10
-	dbw  3, DEWGONG_LV24
-	dbw  2, LAPRAS_LV31
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  1, POKEMON_BREEDER
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     25
+	card_item SQUIRTLE_LV15,     2
+	card_item SQUIRTLE_LV16,     2
+	card_item WARTORTLE_LV22,    3
+	card_item BLASTOISE_LV52,    2
+	card_item SEEL_LV10,         4
+	card_item DEWGONG_LV24,      3
+	card_item LAPRAS_LV31,       2
+	card_item ENERGY_RETRIEVAL,  2
+	card_item PROFESSOR_OAK,     2
+	card_item POTION,            2
+	card_item COMPUTER_SEARCH,   2
+	card_item SWITCH,            2
+	card_item POKEMON_TRADER,    2
+	card_item POKEMON_BREEDER,   1
+	card_item BILL,              4
+	deck_list_end
 
 ConservingWaterDeck:
-	dbw 25, WATER_ENERGY
-	dbw  4, SEEL_LV12
-	dbw  2, DEWGONG_LV42
-	dbw  4, KRABBY_LV20
-	dbw  2, KINGLER_LV27
-	dbw  4, STARYU_LV15
-	dbw  2, STARMIE
-	dbw  4, MAGIKARP_LV8
-	dbw  2, GYARADOS
-	dbw  1, ENERGY_RETRIEVAL
-	dbw  1, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     25
+	card_item SEEL_LV12,         4
+	card_item DEWGONG_LV42,      2
+	card_item KRABBY_LV20,       4
+	card_item KINGLER_LV27,      2
+	card_item STARYU_LV15,       4
+	card_item STARMIE,           2
+	card_item MAGIKARP_LV8,      4
+	card_item GYARADOS,          2
+	card_item ENERGY_RETRIEVAL,  1
+	card_item ENERGY_SEARCH,     1
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item FULL_HEAL,         2
+	card_item SWITCH,            2
+	card_item BILL,              2
+	deck_list_end
 
 EnergyRemovalDeck:
-	dbw 18, WATER_ENERGY
-	dbw  6, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, PSYDUCK_LV16
-	dbw  3, GOLDUCK_LV27
-	dbw  4, POLIWAG_LV15
-	dbw  3, POLIWHIRL_LV30
-	dbw  2, POLIWRATH_LV48
-	dbw  2, MEWTWO_LV67
-	dbw  3, DRATINI_LV12
-	dbw  2, DRAGONAIR
-	dbw  3, ENERGY_REMOVAL
-	dbw  1, ENERGY_RETRIEVAL
-	dbw  1, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  1, SUPER_ENERGY_REMOVAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            18
+	card_item PSYCHIC_ENERGY,           6
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item PSYDUCK_LV16,             4
+	card_item GOLDUCK_LV27,             3
+	card_item POLIWAG_LV15,             4
+	card_item POLIWHIRL_LV30,           3
+	card_item POLIWRATH_LV48,           2
+	card_item MEWTWO_LV67,              2
+	card_item DRATINI_LV12,             3
+	card_item DRAGONAIR,                2
+	card_item ENERGY_REMOVAL,           3
+	card_item ENERGY_RETRIEVAL,         1
+	card_item ENERGY_SEARCH,            1
+	card_item PROFESSOR_OAK,            1
+	card_item SUPER_ENERGY_REMOVAL,     1
+	card_item BILL,                     2
+	deck_list_end
 
 SplashingAboutDeck:
-	dbw 26, WATER_ENERGY
-	dbw  4, SQUIRTLE_LV14
-	dbw  3, WARTORTLE_LV24
-	dbw  3, POLIWAG_LV13
-	dbw  4, HORSEA_LV20
-	dbw  2, SEADRA_LV23
-	dbw  1, SEADRA_LV26
-	dbw  2, LAPRAS_LV24
-	dbw  2, VAPOREON_LV42
-	dbw  3, EEVEE_LV12
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, SCOOP_UP
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     26
+	card_item SQUIRTLE_LV14,     4
+	card_item WARTORTLE_LV24,    3
+	card_item POLIWAG_LV13,      3
+	card_item HORSEA_LV20,       4
+	card_item SEADRA_LV23,       2
+	card_item SEADRA_LV26,       1
+	card_item LAPRAS_LV24,       2
+	card_item VAPOREON_LV42,     2
+	card_item EEVEE_LV12,        3
+	card_item ENERGY_RETRIEVAL,  2
+	card_item PROFESSOR_OAK,     1
+	card_item SWITCH,            2
+	card_item SCOOP_UP,          2
+	card_item BILL,              3
+	deck_list_end
 
 BeachDeck:
-	dbw 24, WATER_ENERGY
-	dbw  3, TENTACOOL
-	dbw  2, TENTACRUEL
-	dbw  3, SHELLDER_LV16
-	dbw  2, CLOYSTER
-	dbw  4, KRABBY_LV17
-	dbw  3, KINGLER_LV33
-	dbw  3, STARYU_LV17
-	dbw  2, STARMIE
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  2, POTION
-	dbw  1, REVIVE
-	dbw  2, GUST_OF_WIND
-	dbw  1, FULL_HEAL
-	dbw  1, IMPOSTER_PROFESSOR_OAK
-	dbw  1, LASS
-	dbw  2, POKEBALL
-	dbw  1, RECYCLE
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,           24
+	card_item TENTACOOL,               3
+	card_item TENTACRUEL,              2
+	card_item SHELLDER_LV16,           3
+	card_item CLOYSTER,                2
+	card_item KRABBY_LV17,             4
+	card_item KINGLER_LV33,            3
+	card_item STARYU_LV17,             3
+	card_item STARMIE,                 2
+	card_item ENERGY_RETRIEVAL,        3
+	card_item POTION,                  2
+	card_item REVIVE,                  1
+	card_item GUST_OF_WIND,            2
+	card_item FULL_HEAL,               1
+	card_item IMPOSTER_PROFESSOR_OAK,  1
+	card_item LASS,                    1
+	card_item POKEBALL,                2
+	card_item RECYCLE,                 1
+	deck_list_end
 
 GoArcanineDeck:
-	dbw 12, FIRE_ENERGY
-	dbw  6, WATER_ENERGY
-	dbw  5, FIGHTING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, GROWLITHE_LV18
-	dbw  2, GROWLITHE_LV12
-	dbw  3, ARCANINE_LV45
-	dbw  3, MAGMAR_LV31
-	dbw  2, SEEL_LV12
-	dbw  1, DEWGONG_LV42
-	dbw  1, HITMONCHAN_LV33
-	dbw  2, HITMONCHAN_LV23
-	dbw  3, DODUO_LV10
-	dbw  2, DODRIO_LV28
-	dbw  2, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  2, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, ENERGY_RETRIEVAL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             12
+	card_item WATER_ENERGY,             6
+	card_item FIGHTING_ENERGY,          5
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item GROWLITHE_LV18,           2
+	card_item GROWLITHE_LV12,           2
+	card_item ARCANINE_LV45,            3
+	card_item MAGMAR_LV31,              3
+	card_item SEEL_LV12,                2
+	card_item DEWGONG_LV42,             1
+	card_item HITMONCHAN_LV33,          1
+	card_item HITMONCHAN_LV23,          2
+	card_item DODUO_LV10,               3
+	card_item DODRIO_LV28,              2
+	card_item PROFESSOR_OAK,            2
+	card_item BILL,                     4
+	card_item PLUSPOWER,                2
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item ENERGY_RETRIEVAL,         2
+	deck_list_end
 
 FlameFestivalDeck:
-	dbw 26, FIRE_ENERGY
-	dbw  4, VULPIX_LV13
-	dbw  3, NINETALES_LV35
-	dbw  2, GROWLITHE_LV16
-	dbw  1, ARCANINE_LV34
-	dbw  4, PONYTA_LV8
-	dbw  3, RAPIDASH_LV30
-	dbw  2, MAGMAR_LV27
-	dbw  2, MAGMAR_LV31
-	dbw  2, MEOWTH_LV14
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  2, POTION
-	dbw  1, SUPER_ENERGY_RETRIEVAL
-	dbw  2, IMPOSTER_PROFESSOR_OAK
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,            26
+	card_item VULPIX_LV13,             4
+	card_item NINETALES_LV35,          3
+	card_item GROWLITHE_LV16,          2
+	card_item ARCANINE_LV34,           1
+	card_item PONYTA_LV8,              4
+	card_item RAPIDASH_LV30,           3
+	card_item MAGMAR_LV27,             2
+	card_item MAGMAR_LV31,             2
+	card_item MEOWTH_LV14,             2
+	card_item ENERGY_RETRIEVAL,        3
+	card_item POTION,                  2
+	card_item SUPER_ENERGY_RETRIEVAL,  1
+	card_item IMPOSTER_PROFESSOR_OAK,  2
+	card_item BILL,                    3
+	deck_list_end
 
 ImmortalFlameDeck:
-	dbw 25, FIRE_ENERGY
-	dbw  4, CHARMANDER_LV10
-	dbw  3, CHARMELEON
-	dbw  4, GROWLITHE_LV12
-	dbw  3, ARCANINE_LV35
-	dbw  3, MAGMAR_LV24
-	dbw  2, FLAREON_LV28
-	dbw  2, KANGASKHAN_LV40
-	dbw  3, EEVEE_LV12
-	dbw  4, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      25
+	card_item CHARMANDER_LV10,   4
+	card_item CHARMELEON,        3
+	card_item GROWLITHE_LV12,    4
+	card_item ARCANINE_LV35,     3
+	card_item MAGMAR_LV24,       3
+	card_item FLAREON_LV28,      2
+	card_item KANGASKHAN_LV40,   2
+	card_item EEVEE_LV12,        3
+	card_item ENERGY_RETRIEVAL,  4
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item FULL_HEAL,         2
+	card_item BILL,              2
+	deck_list_end
 
 ElectricCurrentShockDeck:
-	dbw 16, FIRE_ENERGY
-	dbw 12, LIGHTNING_ENERGY
-	dbw  4, VULPIX_LV11
-	dbw  2, NINETALES_LV32
-	dbw  4, PONYTA_LV10
-	dbw  3, RAPIDASH_LV33
-	dbw  1, MOLTRES_LV35
-	dbw  2, PIKACHU_LV14
-	dbw  1, RAICHU_LV45
-	dbw  3, MAGNEMITE_LV13
-	dbw  2, MAGNETON_LV30
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  2, GUST_OF_WIND
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      16
+	card_item LIGHTNING_ENERGY, 12
+	card_item VULPIX_LV11,       4
+	card_item NINETALES_LV32,    2
+	card_item PONYTA_LV10,       4
+	card_item RAPIDASH_LV33,     3
+	card_item MOLTRES_LV35,      1
+	card_item PIKACHU_LV14,      2
+	card_item RAICHU_LV45,       1
+	card_item MAGNEMITE_LV13,    3
+	card_item MAGNETON_LV30,     2
+	card_item ENERGY_RETRIEVAL,  2
+	card_item ENERGY_SEARCH,     2
+	card_item GUST_OF_WIND,      2
+	card_item SWITCH,            2
+	card_item BILL,              2
+	deck_list_end
 
 GreatRocket4Deck:
-	dbw 15, WATER_ENERGY
-	dbw 12, PSYCHIC_ENERGY
-	dbw  3, PSYDUCK_LV16
-	dbw  2, DARK_GOLDUCK
-	dbw  3, KRABBY_LV17
-	dbw  2, KINGLER_LV33
-	dbw  2, HORSEA_LV20
-	dbw  1, SEADRA_LV26
-	dbw  1, DROWZEE_LV10
-	dbw  2, DROWZEE_LV12
-	dbw  2, DARK_HYPNO
-	dbw  1, JYNX_LV18
-	dbw  2, JYNX_LV27
-	dbw  2, MEW_LV23
-	dbw  2, ENERGY_REMOVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, GUST_OF_WIND
-	dbw  2, FULL_HEAL
-	dbw  1, IMPOSTER_PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  1, LASS
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,           15
+	card_item PSYCHIC_ENERGY,         12
+	card_item PSYDUCK_LV16,            3
+	card_item DARK_GOLDUCK,            2
+	card_item KRABBY_LV17,             3
+	card_item KINGLER_LV33,            2
+	card_item HORSEA_LV20,             2
+	card_item SEADRA_LV26,             1
+	card_item DROWZEE_LV10,            1
+	card_item DROWZEE_LV12,            2
+	card_item DARK_HYPNO,              2
+	card_item JYNX_LV18,               1
+	card_item JYNX_LV27,               2
+	card_item MEW_LV23,                2
+	card_item ENERGY_REMOVAL,          2
+	card_item PROFESSOR_OAK,           1
+	card_item GUST_OF_WIND,            1
+	card_item FULL_HEAL,               2
+	card_item IMPOSTER_PROFESSOR_OAK,  1
+	card_item BILL,                    2
+	card_item LASS,                    1
+	deck_list_end
 
 GreatRocket1Deck:
-	dbw 13, WATER_ENERGY
-	dbw 13, LIGHTNING_ENERGY
-	dbw  4, VOLTORB_LV13
-	dbw  2, ELECTRODE_LV42
-	dbw  2, MAGNEMITE_LV12
-	dbw  2, MAGNEMITE_LV15
-	dbw  2, PIKACHU_LV5
-	dbw  4, POLIWAG_LV15
-	dbw  2, POLIWHIRL_LV30
-	dbw  1, POLIWRATH_LV40
-	dbw  2, SEEL_LV10
-	dbw  1, DEWGONG_LV24
-	dbw  2, LAPRAS_LV24
-	dbw  2, KANGASKHAN_LV36
-	dbw  1, PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  2, SWITCH
-	dbw  2, POTION
-	dbw  1, SUPER_POTION
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     13
+	card_item LIGHTNING_ENERGY, 13
+	card_item VOLTORB_LV13,      4
+	card_item ELECTRODE_LV42,    2
+	card_item MAGNEMITE_LV12,    2
+	card_item MAGNEMITE_LV15,    2
+	card_item PIKACHU_LV5,       2
+	card_item POLIWAG_LV15,      4
+	card_item POLIWHIRL_LV30,    2
+	card_item POLIWRATH_LV40,    1
+	card_item SEEL_LV10,         2
+	card_item DEWGONG_LV24,      1
+	card_item LAPRAS_LV24,       2
+	card_item KANGASKHAN_LV36,   2
+	card_item PROFESSOR_OAK,     1
+	card_item BILL,              2
+	card_item SWITCH,            2
+	card_item POTION,            2
+	card_item SUPER_POTION,      1
+	deck_list_end
 
 GreatRocket2Deck:
-	dbw 12, GRASS_ENERGY
-	dbw 15, FIGHTING_ENERGY
-	dbw  1, FULLHEAL_ENERGY
-	dbw  2, EKANS_LV10
-	dbw  2, EKANS_LV15
-	dbw  2, DARK_ARBOK
-	dbw  2, PARAS_LV8
-	dbw  1, PARASECT_LV29
-	dbw  1, PINSIR_LV15
-	dbw  3, SANDSHREW_LV12
-	dbw  1, SANDSLASH_LV33
-	dbw  1, SANDSLASH_LV35
-	dbw  2, DIGLETT_LV8
-	dbw  2, DIGLETT_LV15
-	dbw  2, DARK_DUGTRIO
-	dbw  2, GEODUDE_LV15
-	dbw  2, ONIX_LV25
-	dbw  1, PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, FULL_HEAL
-	dbw  1, THE_BOSSS_WAY
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,    12
+	card_item FIGHTING_ENERGY, 15
+	card_item FULLHEAL_ENERGY,  1
+	card_item EKANS_LV10,       2
+	card_item EKANS_LV15,       2
+	card_item DARK_ARBOK,       2
+	card_item PARAS_LV8,        2
+	card_item PARASECT_LV29,    1
+	card_item PINSIR_LV15,      1
+	card_item SANDSHREW_LV12,   3
+	card_item SANDSLASH_LV33,   1
+	card_item SANDSLASH_LV35,   1
+	card_item DIGLETT_LV8,      2
+	card_item DIGLETT_LV15,     2
+	card_item DARK_DUGTRIO,     2
+	card_item GEODUDE_LV15,     2
+	card_item ONIX_LV25,        2
+	card_item PROFESSOR_OAK,    1
+	card_item BILL,             2
+	card_item ENERGY_SEARCH,    2
+	card_item FULL_HEAL,        1
+	card_item THE_BOSSS_WAY,    1
+	deck_list_end
 
 GreatRocket3Deck:
-	dbw 16, GRASS_ENERGY
-	dbw 10, FIRE_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  3, ODDISH_LV8
-	dbw  2, DARK_GLOOM
-	dbw  1, DARK_VILEPLUME
-	dbw  3, EXEGGCUTE
-	dbw  2, EXEGGUTOR
-	dbw  2, TANGELA_LV12
-	dbw  1, PINSIR_LV24
-	dbw  4, CHARMANDER_LV12
-	dbw  1, CHARMELEON
-	dbw  2, DARK_CHARMELEON
-	dbw  2, MAGMAR_LV18
-	dbw  1, MOLTRES_LV37
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, GUST_OF_WIND
-	dbw  1, THE_BOSSS_WAY
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            16
+	card_item FIRE_ENERGY,             10
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item ODDISH_LV8,               3
+	card_item DARK_GLOOM,               2
+	card_item DARK_VILEPLUME,           1
+	card_item EXEGGCUTE,                3
+	card_item EXEGGUTOR,                2
+	card_item TANGELA_LV12,             2
+	card_item PINSIR_LV24,              1
+	card_item CHARMANDER_LV12,          4
+	card_item CHARMELEON,               1
+	card_item DARK_CHARMELEON,          2
+	card_item MAGMAR_LV18,              2
+	card_item MOLTRES_LV37,             1
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item GUST_OF_WIND,             2
+	card_item THE_BOSSS_WAY,            1
+	card_item BILL,                     2
+	deck_list_end
 
 GrandFireDeck:
-	dbw 22, FIRE_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  2, MOLTRES_LV40
-	dbw  2, MOLTRES_LV37
-	dbw  4, PONYTA_LV8
-	dbw  3, RAPIDASH_LV33
-	dbw  2, VULPIX_LV11
-	dbw  1, VULPIX_LV13
-	dbw  2, NINETALES_LV35
-	dbw  4, MAGMAR_LV31
-	dbw  2, PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  2, LASS
-	dbw  3, SCOOP_UP
-	dbw  3, NIGHTLY_GARBAGE_RUN
-	dbw  2, SWITCH
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,         22
+	card_item FULLHEAL_ENERGY,      2
+	card_item MOLTRES_LV40,         2
+	card_item MOLTRES_LV37,         2
+	card_item PONYTA_LV8,           4
+	card_item RAPIDASH_LV33,        3
+	card_item VULPIX_LV11,          2
+	card_item VULPIX_LV13,          1
+	card_item NINETALES_LV35,       2
+	card_item MAGMAR_LV31,          4
+	card_item PROFESSOR_OAK,        2
+	card_item BILL,                 2
+	card_item LASS,                 2
+	card_item SCOOP_UP,             3
+	card_item NIGHTLY_GARBAGE_RUN,  3
+	card_item SWITCH,               2
+	card_item POKEBALL,             2
+	deck_list_end
 
 LegendaryFossilDeck:
-	dbw 21, LIGHTNING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  3, VOLTORB_LV13
-	dbw  2, ELECTRODE_LV35
-	dbw  4, ELECTABUZZ_LV35
-	dbw  2, ZAPDOS_LV28
-	dbw  2, ZAPDOS_LV68
-	dbw  2, AERODACTYL_LV28
-	dbw  1, SUPER_POTION
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  2, FOSSIL_EXCAVATION
-	dbw  2, POTION
-	dbw  1, GAMBLER
-	dbw  4, MYSTERIOUS_FOSSIL
-	dbw  1, COMPUTER_SEARCH
-	dbw  2, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  2, BILL
-	dbw  1, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        21
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item VOLTORB_LV13,             3
+	card_item ELECTRODE_LV35,           2
+	card_item ELECTABUZZ_LV35,          4
+	card_item ZAPDOS_LV28,              2
+	card_item ZAPDOS_LV68,              2
+	card_item AERODACTYL_LV28,          2
+	card_item SUPER_POTION,             1
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            2
+	card_item FOSSIL_EXCAVATION,        2
+	card_item POTION,                   2
+	card_item GAMBLER,                  1
+	card_item MYSTERIOUS_FOSSIL,        4
+	card_item COMPUTER_SEARCH,          1
+	card_item PLUSPOWER,                2
+	card_item SWITCH,                   2
+	card_item BILL,                     2
+	card_item NIGHTLY_GARBAGE_RUN,      1
+	deck_list_end
 
 WaterLegendDeck:
-	dbw 20, WATER_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  3, KRABBY_LV17
-	dbw  2, KINGLER_LV33
-	dbw  3, MAGIKARP_LV6
-	dbw  2, DARK_GYARADOS
-	dbw  2, LAPRAS_LV31
-	dbw  2, ARTICUNO_LV34
-	dbw  2, ARTICUNO_LV37
-	dbw  2, JYNX_LV18
-	dbw  2, CHANSEY_LV40
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  1, SUPER_ENERGY_REMOVAL
-	dbw  3, SWITCH
-	dbw  2, SCOOP_UP
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            20
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item FULLHEAL_ENERGY,          2
+	card_item KRABBY_LV17,              3
+	card_item KINGLER_LV33,             2
+	card_item MAGIKARP_LV6,             3
+	card_item DARK_GYARADOS,            2
+	card_item LAPRAS_LV31,              2
+	card_item ARTICUNO_LV34,            2
+	card_item ARTICUNO_LV37,            2
+	card_item JYNX_LV18,                2
+	card_item CHANSEY_LV40,             2
+	card_item ENERGY_REMOVAL,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            2
+	card_item SUPER_ENERGY_REMOVAL,     1
+	card_item SWITCH,                   3
+	card_item SCOOP_UP,                 2
+	card_item BILL,                     3
+	deck_list_end
 
 GreatDragonDeck:
-	dbw 18, FIRE_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  2, CHARMANDER_LV9
-	dbw  2, CHARMANDER_LV10
-	dbw  3, CHARMELEON
-	dbw  1, CHARIZARD_LV76
-	dbw  1, CHARIZARD_ALT_LV76
-	dbw  2, DRATINI_LV10
-	dbw  2, DRATINI_LV12
-	dbw  2, DRAGONAIR
-	dbw  2, DARK_DRAGONAIR
-	dbw  2, DRAGONITE_LV41
-	dbw  3, KANGASKHAN_LV40
-	dbw  2, SCYTHER_LV25
-	dbw  4, BILL
-	dbw  2, POKEMON_BREEDER
-	dbw  2, SWITCH
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	dbw  2, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             18
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item FULLHEAL_ENERGY,          2
+	card_item CHARMANDER_LV9,           2
+	card_item CHARMANDER_LV10,          2
+	card_item CHARMELEON,               3
+	card_item CHARIZARD_LV76,           1
+	card_item CHARIZARD_ALT_LV76,       1
+	card_item DRATINI_LV10,             2
+	card_item DRATINI_LV12,             2
+	card_item DRAGONAIR,                2
+	card_item DARK_DRAGONAIR,           2
+	card_item DRAGONITE_LV41,           2
+	card_item KANGASKHAN_LV40,          3
+	card_item SCYTHER_LV25,             2
+	card_item BILL,                     4
+	card_item POKEMON_BREEDER,          2
+	card_item SWITCH,                   2
+	card_item NIGHTLY_GARBAGE_RUN,      2
+	card_item MASTER_BALL,              2
+	deck_list_end
 
 BugCollectingDeck:
-	dbw 24, GRASS_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  3, CATERPIE
-	dbw  2, METAPOD_LV20
-	dbw  1, BUTTERFREE
-	dbw  3, WEEDLE_LV12
-	dbw  2, KAKUNA_LV20
-	dbw  1, BEEDRILL
-	dbw  3, VENONAT_LV12
-	dbw  2, VENOMOTH_LV22
-	dbw  1, SCYTHER_LV25
-	dbw  2, RATTATA_LV12
-	dbw  1, DARK_RATICATE
-	dbw  3, MEOWTH_LV10
-	dbw  2, DARK_PERSIAN_LV28
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	dbw  2, BILL
-	dbw  2, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            24
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item CATERPIE,                 3
+	card_item METAPOD_LV20,             2
+	card_item BUTTERFREE,               1
+	card_item WEEDLE_LV12,              3
+	card_item KAKUNA_LV20,              2
+	card_item BEEDRILL,                 1
+	card_item VENONAT_LV12,             3
+	card_item VENOMOTH_LV22,            2
+	card_item SCYTHER_LV25,             1
+	card_item RATTATA_LV12,             2
+	card_item DARK_RATICATE,            1
+	card_item MEOWTH_LV10,              3
+	card_item DARK_PERSIAN_LV28,        2
+	card_item POTION,                   2
+	card_item FULL_HEAL,                2
+	card_item BILL,                     2
+	card_item MASTER_BALL,              2
+	deck_list_end
 
 DemonicForestDeck:
-	dbw 15, GRASS_ENERGY
-	dbw 10, PSYCHIC_ENERGY
-	dbw  4, BULBASAUR_LV15
-	dbw  3, DARK_IVYSAUR
-	dbw  2, DARK_VENUSAUR
-	dbw  4, ZUBAT_LV9
-	dbw  3, DARK_GOLBAT
-	dbw  4, GASTLY_LV13
-	dbw  3, HAUNTER_LV25
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  3, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  1, SWITCH
-	dbw  2, THE_BOSSS_WAY
-	dbw  1, BILL
-	dbw  1, MASTER_BALL
-	dbw  1, POKEBALL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     15
+	card_item PSYCHIC_ENERGY,   10
+	card_item BULBASAUR_LV15,    4
+	card_item DARK_IVYSAUR,      3
+	card_item DARK_VENUSAUR,     2
+	card_item ZUBAT_LV9,         4
+	card_item DARK_GOLBAT,       3
+	card_item GASTLY_LV13,       4
+	card_item HAUNTER_LV25,      3
+	card_item ENERGY_RETRIEVAL,  2
+	card_item ENERGY_SEARCH,     3
+	card_item PROFESSOR_OAK,     1
+	card_item SWITCH,            1
+	card_item THE_BOSSS_WAY,     2
+	card_item BILL,              1
+	card_item MASTER_BALL,       1
+	card_item POKEBALL,          1
+	deck_list_end
 
 StickyPoisonGasDeck:
-	dbw 24, GRASS_ENERGY
-	dbw  4, EKANS_LV15
-	dbw  3, DARK_ARBOK
-	dbw  4, GRIMER_LV10
-	dbw  3, MUK
-	dbw  3, KOFFING_LV12
-	dbw  2, DARK_WEEZING
-	dbw  3, CHARMANDER_LV10
-	dbw  2, CHARMELEON
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, REVIVE
-	dbw  2, GOOP_GAS_ATTACK
-	dbw  1, BILL
-	dbw  2, MASTER_BALL
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,        24
+	card_item EKANS_LV15,           4
+	card_item DARK_ARBOK,           3
+	card_item GRIMER_LV10,          4
+	card_item MUK,                  3
+	card_item KOFFING_LV12,         3
+	card_item DARK_WEEZING,         2
+	card_item CHARMANDER_LV10,      3
+	card_item CHARMELEON,           2
+	card_item ENERGY_RETRIEVAL,     2
+	card_item PROFESSOR_OAK,        1
+	card_item REVIVE,               2
+	card_item GOOP_GAS_ATTACK,      2
+	card_item BILL,                 1
+	card_item MASTER_BALL,          2
+	card_item NIGHTLY_GARBAGE_RUN,  2
+	deck_list_end
 
 MadPetalsDeck:
-	dbw 17, GRASS_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  3, RAINBOW_ENERGY
-	dbw  4, ODDISH_LV21
-	dbw  2, GLOOM
-	dbw  2, DARK_GLOOM
-	dbw  2, VILEPLUME
-	dbw  2, DARK_VILEPLUME
-	dbw  2, SCYTHER_LV25
-	dbw  3, SQUIRTLE_LV16
-	dbw  2, WARTORTLE_LV22
-	dbw  3, KANGASKHAN_LV40
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, SWITCH
-	dbw  3, POKEMON_TRADER
-	dbw  2, POKEMON_BREEDER
-	dbw  4, BILL
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            17
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item RAINBOW_ENERGY,           3
+	card_item ODDISH_LV21,              4
+	card_item GLOOM,                    2
+	card_item DARK_GLOOM,               2
+	card_item VILEPLUME,                2
+	card_item DARK_VILEPLUME,           2
+	card_item SCYTHER_LV25,             2
+	card_item SQUIRTLE_LV16,            3
+	card_item WARTORTLE_LV22,           2
+	card_item KANGASKHAN_LV40,          3
+	card_item COMPUTER_SEARCH,          2
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           3
+	card_item POKEMON_BREEDER,          2
+	card_item BILL,                     4
+	card_item NIGHTLY_GARBAGE_RUN,      2
+	deck_list_end
 
 DangerousBenchDeck:
-	dbw 18, LIGHTNING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  2, RECYCLE_ENERGY
-	dbw  4, PIKACHU_LV14
-	dbw  3, DARK_RAICHU
-	dbw  2, ZAPDOS_LV40
-	dbw  1, SNORLAX_LV20
-	dbw  1, SNORLAX_LV35
-	dbw  1, HUNGRY_SNORLAX
-	dbw  4, DRATINI_LV12
-	dbw  3, DARK_DRAGONAIR
-	dbw  2, DARK_DRAGONITE
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, THE_BOSSS_WAY
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        18
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item RECYCLE_ENERGY,           2
+	card_item PIKACHU_LV14,             4
+	card_item DARK_RAICHU,              3
+	card_item ZAPDOS_LV40,              2
+	card_item SNORLAX_LV20,             1
+	card_item SNORLAX_LV35,             1
+	card_item HUNGRY_SNORLAX,           1
+	card_item DRATINI_LV12,             4
+	card_item DARK_DRAGONAIR,           3
+	card_item DARK_DRAGONITE,           2
+	card_item ENERGY_REMOVAL,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item ENERGY_SEARCH,            2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item THE_BOSSS_WAY,            2
+	card_item BILL,                     2
+	deck_list_end
 
 ChainLightningByPikachuDeck:
-	dbw 15, LIGHTNING_ENERGY
-	dbw  8, FIGHTING_ENERGY
-	dbw  2, RAINBOW_ENERGY
-	dbw  2, PIKACHU_LV5
-	dbw  2, PIKACHU_LV13
-	dbw  3, RAICHU_LV32
-	dbw  4, ELECTABUZZ_LV35
-	dbw  2, DARK_JOLTEON
-	dbw  3, SANDSHREW_LV12
-	dbw  2, SANDSLASH_LV35
-	dbw  2, CUBONE_LV14
-	dbw  1, MAROWAK_LV26
-	dbw  3, EEVEE_LV9
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POTION
-	dbw  2, DEFENDER
-	dbw  2, GUST_OF_WIND
-	dbw  2, BILL
-	dbw  2, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY, 15
+	card_item FIGHTING_ENERGY,   8
+	card_item RAINBOW_ENERGY,    2
+	card_item PIKACHU_LV5,       2
+	card_item PIKACHU_LV13,      2
+	card_item RAICHU_LV32,       3
+	card_item ELECTABUZZ_LV35,   4
+	card_item DARK_JOLTEON,      2
+	card_item SANDSHREW_LV12,    3
+	card_item SANDSLASH_LV35,    2
+	card_item CUBONE_LV14,       2
+	card_item MAROWAK_LV26,      1
+	card_item EEVEE_LV9,         3
+	card_item PROFESSOR_OAK,     1
+	card_item POTION,            2
+	card_item DEFENDER,          2
+	card_item GUST_OF_WIND,      2
+	card_item BILL,              2
+	card_item MASTER_BALL,       2
+	deck_list_end
 
 ThisIsThePowerOfElectricityDeck:
-	dbw 26, LIGHTNING_ENERGY
-	dbw  2, PIKACHU_LV13
-	dbw  1, FLYING_PIKACHU_LV12
-	dbw  1, FLYING_PIKACHU_ALT_LV12
-	dbw  4, MAGNEMITE_LV13
-	dbw  1, MAGNETON_LV30
-	dbw  2, DARK_MAGNETON
-	dbw  2, VOLTORB_LV8
-	dbw  2, VOLTORB_LV13
-	dbw  1, ELECTRODE_LV42
-	dbw  2, DARK_ELECTRODE
-	dbw  2, ELECTABUZZ_LV35
-	dbw  2, ZAPDOS_LV64
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  4, POTION
-	dbw  1, IMPOSTER_PROFESSOR_OAK
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,        26
+	card_item PIKACHU_LV13,             2
+	card_item FLYING_PIKACHU_LV12,      1
+	card_item FLYING_PIKACHU_ALT_LV12,  1
+	card_item MAGNEMITE_LV13,           4
+	card_item MAGNETON_LV30,            1
+	card_item DARK_MAGNETON,            2
+	card_item VOLTORB_LV8,              2
+	card_item VOLTORB_LV13,             2
+	card_item ELECTRODE_LV42,           1
+	card_item DARK_ELECTRODE,           2
+	card_item ELECTABUZZ_LV35,          2
+	card_item ZAPDOS_LV64,              2
+	card_item ENERGY_REMOVAL,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item POTION,                   4
+	card_item IMPOSTER_PROFESSOR_OAK,   1
+	card_item BILL,                     2
+	deck_list_end
 
 QuickAttackDeck:
-	dbw 20, LIGHTNING_ENERGY
-	dbw  2, PIKACHU_LV5
-	dbw  2, PIKACHU_LV14
-	dbw  3, DARK_RAICHU
-	dbw  3, VOLTORB_LV13
-	dbw  3, DARK_JOLTEON
-	dbw  3, DODUO_LV10
-	dbw  4, EEVEE_LV9
-	dbw  3, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  4, DEFENDER
-	dbw  2, PLUSPOWER
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY, 20
+	card_item PIKACHU_LV5,       2
+	card_item PIKACHU_LV14,      2
+	card_item DARK_RAICHU,       3
+	card_item VOLTORB_LV13,      3
+	card_item DARK_JOLTEON,      3
+	card_item DODUO_LV10,        3
+	card_item EEVEE_LV9,         4
+	card_item ENERGY_REMOVAL,    3
+	card_item ENERGY_RETRIEVAL,  2
+	card_item PROFESSOR_OAK,     2
+	card_item POTION,            3
+	card_item DEFENDER,          4
+	card_item PLUSPOWER,         2
+	card_item BILL,              4
+	deck_list_end
 
 CompleteCombustionDeck:
-	dbw 28, FIRE_ENERGY
-	dbw  3, GROWLITHE_LV12
-	dbw  2, ARCANINE_LV45
-	dbw  4, PONYTA_LV15
-	dbw  3, DARK_RAPIDASH
-	dbw  4, MAGMAR_LV27
-	dbw  2, MEOWTH_LV14
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  2, MASTER_BALL
-	dbw  2, POKEBALL
-	dbw  1, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,         28
+	card_item GROWLITHE_LV12,       3
+	card_item ARCANINE_LV45,        2
+	card_item PONYTA_LV15,          4
+	card_item DARK_RAPIDASH,        3
+	card_item MAGMAR_LV27,          4
+	card_item MEOWTH_LV14,          2
+	card_item KANGASKHAN_LV40,      2
+	card_item ENERGY_RETRIEVAL,     2
+	card_item ENERGY_SEARCH,        2
+	card_item PROFESSOR_OAK,        1
+	card_item BILL,                 2
+	card_item MASTER_BALL,          2
+	card_item POKEBALL,             2
+	card_item NIGHTLY_GARBAGE_RUN,  1
+	deck_list_end
 
 FireballDeck:
-	dbw 22, FIRE_ENERGY
-	dbw  4, CHARMANDER_LV9
-	dbw  3, DARK_CHARMELEON
-	dbw  2, DARK_CHARIZARD
-	dbw  3, SQUIRTLE_LV16
-	dbw  3, MACHOP_LV24
-	dbw  3, DODUO_LV10
-	dbw  2, DODRIO_LV28
-	dbw  3, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, SUPER_ENERGY_REMOVAL
-	dbw  2, DEFENDER
-	dbw  3, SCOOP_UP
-	dbw  4, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,          22
+	card_item CHARMANDER_LV9,        4
+	card_item DARK_CHARMELEON,       3
+	card_item DARK_CHARIZARD,        2
+	card_item SQUIRTLE_LV16,         3
+	card_item MACHOP_LV24,           3
+	card_item DODUO_LV10,            3
+	card_item DODRIO_LV28,           2
+	card_item ENERGY_REMOVAL,        3
+	card_item ENERGY_RETRIEVAL,      2
+	card_item PROFESSOR_OAK,         1
+	card_item SUPER_ENERGY_REMOVAL,  1
+	card_item DEFENDER,              2
+	card_item SCOOP_UP,              3
+	card_item BILL,                  4
+	card_item POKEBALL,              2
+	deck_list_end
 
 EeveeShowdownDeck:
-	dbw 13, FIRE_ENERGY
-	dbw  9, LIGHTNING_ENERGY
-	dbw  4, CHARMANDER_LV12
-	dbw  3, CHARMELEON
-	dbw  3, MAGMAR_LV31
-	dbw  2, DARK_FLAREON
-	dbw  3, ELECTABUZZ_LV35
-	dbw  2, DARK_JOLTEON
-	dbw  4, EEVEE_LV9
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, IMPOSTER_OAKS_REVENGE
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,           13
+	card_item LIGHTNING_ENERGY,       9
+	card_item CHARMANDER_LV12,        4
+	card_item CHARMELEON,             3
+	card_item MAGMAR_LV31,            3
+	card_item DARK_FLAREON,           2
+	card_item ELECTABUZZ_LV35,        3
+	card_item DARK_JOLTEON,           2
+	card_item EEVEE_LV9,              4
+	card_item ENERGY_REMOVAL,         2
+	card_item ENERGY_RETRIEVAL,       2
+	card_item ENERGY_SEARCH,          2
+	card_item PROFESSOR_OAK,          1
+	card_item IMPOSTER_OAKS_REVENGE,  2
+	card_item SWITCH,                 2
+	card_item POKEMON_TRADER,         2
+	card_item BILL,                   4
+	deck_list_end
 
 GazeUponThePowerOfFireDeck:
-	dbw 22, FIRE_ENERGY
-	dbw  4, CHARMANDER_LV9
-	dbw  2, DARK_CHARMELEON
-	dbw  4, VULPIX_LV11
-	dbw  3, DARK_NINETALES
-	dbw  4, PONYTA_LV8
-	dbw  2, RAPIDASH_LV33
-	dbw  3, MAGMAR_LV31
-	dbw  2, PROFESSOR_OAK
-	dbw  3, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  3, POKEMON_TRADER
-	dbw  4, BILL
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,         22
+	card_item CHARMANDER_LV9,       4
+	card_item DARK_CHARMELEON,      2
+	card_item VULPIX_LV11,          4
+	card_item DARK_NINETALES,       3
+	card_item PONYTA_LV8,           4
+	card_item RAPIDASH_LV33,        2
+	card_item MAGMAR_LV31,          3
+	card_item PROFESSOR_OAK,        2
+	card_item PLUSPOWER,            3
+	card_item SWITCH,               2
+	card_item POKEMON_TRADER,       3
+	card_item BILL,                 4
+	card_item NIGHTLY_GARBAGE_RUN,  2
+	deck_list_end
 
 WhirlpoolShowerDeck:
-	dbw 23, WATER_ENERGY
-	dbw  4, STARYU_LV15
-	dbw  3, DARK_STARMIE
-	dbw  3, DARK_VAPOREON
-	dbw  4, VOLTORB_LV10
-	dbw  3, ELECTRODE_LV42
-	dbw  4, EEVEE_LV9
-	dbw  4, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, SUPER_ENERGY_REMOVAL
-	dbw  2, SWITCH
-	dbw  4, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,         23
+	card_item STARYU_LV15,           4
+	card_item DARK_STARMIE,          3
+	card_item DARK_VAPOREON,         3
+	card_item VOLTORB_LV10,          4
+	card_item ELECTRODE_LV42,        3
+	card_item EEVEE_LV9,             4
+	card_item ENERGY_REMOVAL,        4
+	card_item ENERGY_RETRIEVAL,      2
+	card_item SUPER_ENERGY_REMOVAL,  2
+	card_item SWITCH,                2
+	card_item BILL,                  4
+	card_item POKEBALL,              2
+	deck_list_end
 
 ParalyzedParalyzedDeck:
-	dbw 20, WATER_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, SQUIRTLE_LV8
-	dbw  3, WARTORTLE_LV24
-	dbw  4, POLIWAG_LV15
-	dbw  3, POLIWHIRL_LV30
-	dbw  4, MAGIKARP_LV6
-	dbw  3, DARK_GYARADOS
-	dbw  3, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  3, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  4, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            20
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item SQUIRTLE_LV8,             4
+	card_item WARTORTLE_LV24,           3
+	card_item POLIWAG_LV15,             4
+	card_item POLIWHIRL_LV30,           3
+	card_item MAGIKARP_LV6,             4
+	card_item DARK_GYARADOS,            3
+	card_item ENERGY_REMOVAL,           3
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item PLUSPOWER,                3
+	card_item SWITCH,                   2
+	card_item BILL,                     4
+	card_item POKEBALL,                 2
+	deck_list_end
 
 BenchCallDeck:
-	dbw 23, WATER_ENERGY
-	dbw  4, SEEL_LV10
-	dbw  3, DEWGONG_LV24
-	dbw  4, MAGIKARP_LV6
-	dbw  3, DARK_GYARADOS
-	dbw  1, SURFING_PIKACHU_LV13
-	dbw  1, SURFING_PIKACHU_ALT_LV13
-	dbw  2, JYNX_LV18
-	dbw  2, TAUROS_LV35
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  4, GUST_OF_WIND
-	dbw  2, POKEMON_TRADER
-	dbw  4, POKEMON_FLUTE
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,             23
+	card_item SEEL_LV10,                 4
+	card_item DEWGONG_LV24,              3
+	card_item MAGIKARP_LV6,              4
+	card_item DARK_GYARADOS,             3
+	card_item SURFING_PIKACHU_LV13,      1
+	card_item SURFING_PIKACHU_ALT_LV13,  1
+	card_item JYNX_LV18,                 2
+	card_item TAUROS_LV35,               2
+	card_item ENERGY_RETRIEVAL,          2
+	card_item ENERGY_SEARCH,             2
+	card_item PROFESSOR_OAK,             1
+	card_item GUST_OF_WIND,              4
+	card_item POKEMON_TRADER,            2
+	card_item POKEMON_FLUTE,             4
+	card_item BILL,                      2
+	deck_list_end
 
 WaterStreamDeck:
-	dbw 19, WATER_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  4, GOLDEEN
-	dbw  3, SEAKING
-	dbw  4, STARYU_LV15
-	dbw  3, DARK_STARMIE
-	dbw  3, LAPRAS_LV31
-	dbw  3, ARTICUNO_LV34
-	dbw  2, PROFESSOR_OAK
-	dbw  2, GUST_OF_WIND
-	dbw  4, MR_FUJI
-	dbw  3, PLUSPOWER
-	dbw  3, POKEMON_TRADER
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            19
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item GOLDEEN,                  4
+	card_item SEAKING,                  3
+	card_item STARYU_LV15,              4
+	card_item DARK_STARMIE,             3
+	card_item LAPRAS_LV31,              3
+	card_item ARTICUNO_LV34,            3
+	card_item PROFESSOR_OAK,            2
+	card_item GUST_OF_WIND,             2
+	card_item MR_FUJI,                  4
+	card_item PLUSPOWER,                3
+	card_item POKEMON_TRADER,           3
+	card_item BILL,                     4
+	deck_list_end
 
 RockBlastDeck:
-	dbw 22, FIGHTING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, DIGLETT_LV15
-	dbw  3, DARK_DUGTRIO
-	dbw  4, GEODUDE_LV16
-	dbw  3, GRAVELER_LV28
-	dbw  3, GOLEM_LV37
-	dbw  4, LICKITUNG_LV26
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  2, DEFENDER
-	dbw  2, DIGGER
-	dbw  2, POKEMON_BREEDER
-	dbw  4, BILL
-	dbw  2, POKEBALL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         22
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item DIGLETT_LV15,             4
+	card_item DARK_DUGTRIO,             3
+	card_item GEODUDE_LV16,             4
+	card_item GRAVELER_LV28,            3
+	card_item GOLEM_LV37,               3
+	card_item LICKITUNG_LV26,           4
+	card_item ENERGY_RETRIEVAL,         3
+	card_item DEFENDER,                 2
+	card_item DIGGER,                   2
+	card_item POKEMON_BREEDER,          2
+	card_item BILL,                     4
+	card_item POKEBALL,                 2
+	deck_list_end
 
 FullStrengthDeck:
-	dbw 20, FIGHTING_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  2, SCYTHER_LV25
-	dbw  4, MACHOP_LV24
-	dbw  4, DARK_MACHOKE
-	dbw  3, DARK_MACHAMP
-	dbw  3, ONIX_LV25
-	dbw  4, SPEAROW_LV9
-	dbw  3, DARK_FEAROW
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  3, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  3, THE_BOSSS_WAY
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         20
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item SCYTHER_LV25,             2
+	card_item MACHOP_LV24,              4
+	card_item DARK_MACHOKE,             4
+	card_item DARK_MACHAMP,             3
+	card_item ONIX_LV25,                3
+	card_item SPEAROW_LV9,              4
+	card_item DARK_FEAROW,              3
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   3
+	card_item POKEMON_TRADER,           2
+	card_item THE_BOSSS_WAY,            3
+	card_item BILL,                     3
+	deck_list_end
 
 RunningWildDeck:
-	dbw 18, FIGHTING_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  3, SCYTHER_LV25
-	dbw  4, MANKEY_LV14
-	dbw  3, DARK_PRIMEAPE
-	dbw  4, CUBONE_LV14
-	dbw  3, DARK_MAROWAK
-	dbw  3, KANGASKHAN_LV40
-	dbw  4, IMAKUNI_CARD
-	dbw  3, ENERGY_REMOVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  2, ITEMFINDER
-	dbw  4, DEFENDER
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         18
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item SCYTHER_LV25,             3
+	card_item MANKEY_LV14,              4
+	card_item DARK_PRIMEAPE,            3
+	card_item CUBONE_LV14,              4
+	card_item DARK_MAROWAK,             3
+	card_item KANGASKHAN_LV40,          3
+	card_item IMAKUNI_CARD,             4
+	card_item ENERGY_REMOVAL,           3
+	card_item PROFESSOR_OAK,            2
+	card_item ITEMFINDER,               2
+	card_item DEFENDER,                 4
+	card_item BILL,                     4
+	deck_list_end
 
 DirectHitDeck:
-	dbw 23, PSYCHIC_ENERGY
-	dbw  4, PSYDUCK_LV16
-	dbw  3, DARK_GOLDUCK
-	dbw  4, ABRA_LV8
-	dbw  3, DARK_KADABRA
-	dbw  2, DARK_ALAKAZAM
-	dbw  2, MEWTWO_LV30
-	dbw  2, RATTATA_LV15
-	dbw  1, DARK_RATICATE
-	dbw  2, KANGASKHAN_LV40
-	dbw  3, ENERGY_REMOVAL
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, POKEMON_TRADER
-	dbw  3, THE_BOSSS_WAY
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,   23
+	card_item PSYDUCK_LV16,      4
+	card_item DARK_GOLDUCK,      3
+	card_item ABRA_LV8,          4
+	card_item DARK_KADABRA,      3
+	card_item DARK_ALAKAZAM,     2
+	card_item MEWTWO_LV30,       2
+	card_item RATTATA_LV15,      2
+	card_item DARK_RATICATE,     1
+	card_item KANGASKHAN_LV40,   2
+	card_item ENERGY_REMOVAL,    3
+	card_item ENERGY_RETRIEVAL,  3
+	card_item PROFESSOR_OAK,     1
+	card_item POKEMON_TRADER,    2
+	card_item THE_BOSSS_WAY,     3
+	card_item BILL,              2
+	deck_list_end
 
 SuperdestructivePowerDeck:
-	dbw 10, FIGHTING_ENERGY
-	dbw 15, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, MACHOP_LV24
-	dbw  2, HITMONCHAN_LV33
-	dbw  4, ABRA_LV14
-	dbw  3, KADABRA_LV38
-	dbw  4, DROWZEE_LV12
-	dbw  3, DARK_HYPNO
-	dbw  2, MEWTWO_LV54
-	dbw  2, KANGASKHAN_LV36
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  4, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         10
+	card_item PSYCHIC_ENERGY,          15
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item MACHOP_LV24,              2
+	card_item HITMONCHAN_LV33,          2
+	card_item ABRA_LV14,                4
+	card_item KADABRA_LV38,             3
+	card_item DROWZEE_LV12,             4
+	card_item DARK_HYPNO,               3
+	card_item MEWTWO_LV54,              2
+	card_item KANGASKHAN_LV36,          2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item ENERGY_SEARCH,            4
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   2
+	card_item BILL,                     2
+	deck_list_end
 
 BadDreamDeck:
-	dbw 18, PSYCHIC_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, GASTLY_LV13
-	dbw  2, HAUNTER_LV17
-	dbw  2, HAUNTER_LV22
-	dbw  3, GENGAR_LV40
-	dbw  4, DROWZEE_LV10
-	dbw  3, DARK_HYPNO
-	dbw  4, KANGASKHAN_LV40
-	dbw  1, PROFESSOR_OAK
-	dbw  2, FULL_HEAL
-	dbw  4, SLEEP
-	dbw  2, POKEMON_BREEDER
-	dbw  4, BILL
-	dbw  3, POKEBALL
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,  18
+	card_item FULLHEAL_ENERGY,  4
+	card_item GASTLY_LV13,      4
+	card_item HAUNTER_LV17,     2
+	card_item HAUNTER_LV22,     2
+	card_item GENGAR_LV40,      3
+	card_item DROWZEE_LV10,     4
+	card_item DARK_HYPNO,       3
+	card_item KANGASKHAN_LV40,  4
+	card_item PROFESSOR_OAK,    1
+	card_item FULL_HEAL,        2
+	card_item SLEEP,            4
+	card_item POKEMON_BREEDER,  2
+	card_item BILL,             4
+	card_item POKEBALL,         3
+	deck_list_end
 
 PokemonPowerDeck:
-	dbw 20, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, POTION_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, ABRA_LV14
-	dbw  3, KADABRA_LV38
-	dbw  2, ALAKAZAM_LV42
-	dbw  4, SLOWPOKE_LV16
-	dbw  3, SLOWBRO_LV26
-	dbw  3, MEOWTH_LV14
-	dbw  2, DARK_PERSIAN_LV28
-	dbw  4, DRATINI_LV12
-	dbw  3, DARK_DRAGONAIR
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          20
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item POTION_ENERGY,            4
+	card_item FULLHEAL_ENERGY,          4
+	card_item ABRA_LV14,                4
+	card_item KADABRA_LV38,             3
+	card_item ALAKAZAM_LV42,            2
+	card_item SLOWPOKE_LV16,            4
+	card_item SLOWBRO_LV26,             3
+	card_item MEOWTH_LV14,              3
+	card_item DARK_PERSIAN_LV28,        2
+	card_item DRATINI_LV12,             4
+	card_item DARK_DRAGONAIR,           3
+	deck_list_end
 
 SpiritedAwayDeck:
-	dbw 18, PSYCHIC_ENERGY
-	dbw  4, GASTLY_LV17
-	dbw  4, DARK_HAUNTER
-	dbw  3, DARK_GENGAR
-	dbw  4, SLOWPOKE_LV16
-	dbw  3, MR_MIME_LV28
-	dbw  4, KANGASKHAN_LV40
-	dbw  2, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, ITEMFINDER
-	dbw  2, POKEMON_BREEDER
-	dbw  4, ENERGY_REMOVAL
-	dbw  2, SUPER_ENERGY_REMOVAL
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,       18
+	card_item GASTLY_LV17,           4
+	card_item DARK_HAUNTER,          4
+	card_item DARK_GENGAR,           3
+	card_item SLOWPOKE_LV16,         4
+	card_item MR_MIME_LV28,          3
+	card_item KANGASKHAN_LV40,       4
+	card_item PROFESSOR_OAK,         2
+	card_item BILL,                  4
+	card_item COMPUTER_SEARCH,       2
+	card_item ITEMFINDER,            2
+	card_item POKEMON_BREEDER,       2
+	card_item ENERGY_REMOVAL,        4
+	card_item SUPER_ENERGY_REMOVAL,  2
+	card_item NIGHTLY_GARBAGE_RUN,   2
+	deck_list_end
 
 SnorlaxGuardDeck:
-	dbw  1, GRASS_ENERGY
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  1, LIGHTNING_ENERGY
-	dbw  1, FIGHTING_ENERGY
-	dbw  1, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, POTION_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  4, LICKITUNG_LV26
-	dbw  2, CHANSEY_LV55
-	dbw  4, KANGASKHAN_LV40
-	dbw  4, SNORLAX_LV35
-	dbw  4, ENERGY_REMOVAL
-	dbw  2, ITEMFINDER
-	dbw  3, SUPER_ENERGY_REMOVAL
-	dbw  2, PLUSPOWER
-	dbw  4, SWITCH
-	dbw  2, SCOOP_UP
-	dbw  4, BILL
-	dbw  3, BILLS_TELEPORTER
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            1
+	card_item FIRE_ENERGY,             1
+	card_item WATER_ENERGY,            1
+	card_item LIGHTNING_ENERGY,        1
+	card_item FIGHTING_ENERGY,         1
+	card_item PSYCHIC_ENERGY,          1
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item POTION_ENERGY,           4
+	card_item FULLHEAL_ENERGY,         4
+	card_item RECYCLE_ENERGY,          4
+	card_item LICKITUNG_LV26,          4
+	card_item CHANSEY_LV55,            2
+	card_item KANGASKHAN_LV40,         4
+	card_item SNORLAX_LV35,            4
+	card_item ENERGY_REMOVAL,          4
+	card_item ITEMFINDER,              2
+	card_item SUPER_ENERGY_REMOVAL,    3
+	card_item PLUSPOWER,               2
+	card_item SWITCH,                  4
+	card_item SCOOP_UP,                2
+	card_item BILL,                    4
+	card_item BILLS_TELEPORTER,        3
+	deck_list_end
 
 EyeOfTheStormDeck:
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  8, LIGHTNING_ENERGY
-	dbw  4, PIDGEY_LV10
-	dbw  3, PIDGEOTTO_LV38
-	dbw  2, PIDGEOT_LV40
-	dbw  4, SPEAROW_LV13
-	dbw  3, FEAROW_LV27
-	dbw  2, TAUROS_LV35
-	dbw  1, FLYING_PIKACHU_LV12
-	dbw  1, FLYING_PIKACHU_ALT_LV12
-	dbw  2, BILL
-	dbw  2, PROFESSOR_OAK
-	dbw  2, DEFENDER
-	dbw  3, POTION
-	dbw  3, GUST_OF_WIND
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, SWITCH
-	dbw  2, MOON_STONE
-	dbw  2, COMPUTER_SEARCH
-	db 0
+	deck_list_start
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item FULLHEAL_ENERGY,         4
+	card_item RECYCLE_ENERGY,          4
+	card_item LIGHTNING_ENERGY,        8
+	card_item PIDGEY_LV10,             4
+	card_item PIDGEOTTO_LV38,          3
+	card_item PIDGEOT_LV40,            2
+	card_item SPEAROW_LV13,            4
+	card_item FEAROW_LV27,             3
+	card_item TAUROS_LV35,             2
+	card_item FLYING_PIKACHU_LV12,     1
+	card_item FLYING_PIKACHU_ALT_LV12, 1
+	card_item BILL,                    2
+	card_item PROFESSOR_OAK,           2
+	card_item DEFENDER,                2
+	card_item POTION,                  3
+	card_item GUST_OF_WIND,            3
+	card_item ENERGY_RETRIEVAL,        2
+	card_item SWITCH,                  2
+	card_item MOON_STONE,              2
+	card_item COMPUTER_SEARCH,         2
+	deck_list_end
 
 SuddenGrowthDeck:
-	dbw  5, FIGHTING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, POTION_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  2, ONIX_LV25
-	dbw  2, HITMONCHAN_LV23
-	dbw  4, CLEFAIRY_LV15
-	dbw  3, DARK_CLEFABLE
-	dbw  3, JIGGLYPUFF_LV13
-	dbw  4, DRATINI_LV12
-	dbw  3, DARK_DRAGONAIR
-	dbw  2, DARK_DRAGONITE
-	dbw  3, SUPER_POTION
-	dbw  2, PROFESSOR_OAK
-	dbw  1, ITEMFINDER
-	dbw  2, MOON_STONE
-	dbw  1, COMPUTER_SEARCH
-	dbw  2, THE_BOSSS_WAY
-	dbw  2, BILL
-	dbw  3, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         5
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item POTION_ENERGY,           4
+	card_item FULLHEAL_ENERGY,         4
+	card_item RECYCLE_ENERGY,          4
+	card_item ONIX_LV25,               2
+	card_item HITMONCHAN_LV23,         2
+	card_item CLEFAIRY_LV15,           4
+	card_item DARK_CLEFABLE,           3
+	card_item JIGGLYPUFF_LV13,         3
+	card_item DRATINI_LV12,            4
+	card_item DARK_DRAGONAIR,          3
+	card_item DARK_DRAGONITE,          2
+	card_item SUPER_POTION,            3
+	card_item PROFESSOR_OAK,           2
+	card_item ITEMFINDER,              1
+	card_item MOON_STONE,              2
+	card_item COMPUTER_SEARCH,         1
+	card_item THE_BOSSS_WAY,           2
+	card_item BILL,                    2
+	card_item NIGHTLY_GARBAGE_RUN,     3
+	deck_list_end
 
 VeryRareCardDeck:
-	dbw 22, WATER_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, POTION_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  3, MAGIKARP_LV10
-	dbw  1, GYARADOS
-	dbw  2, MARILL
-	dbw  1, SURFING_PIKACHU_LV13
-	dbw  1, SURFING_PIKACHU_ALT_LV13
-	dbw  2, ELECTABUZZ_LV20
-	dbw  2, JIGGLYPUFF_LV12
-	dbw  2, MEOWTH_LV14
-	dbw  1, DARK_PERSIAN_ALT_LV28
-	dbw  2, FARFETCHD_ALT_LV20
-	dbw  2, KANGASKHAN_LV38
-	dbw  2, COOL_PORYGON
-	dbw  2, SUPER_ENERGY_RETRIEVAL
-	dbw  1, SUPER_ENERGY_REMOVAL
-	dbw  1, IMPOSTER_PROFESSOR_OAK
-	dbw  2, COMPUTER_ERROR
-	dbw  1, SCOOP_UP
-	dbw  2, BILL
-	dbw  1, MASTER_BALL
-	dbw  1, LASS
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,             22
+	card_item DOUBLE_COLORLESS_ENERGY,   2
+	card_item POTION_ENERGY,             2
+	card_item FULLHEAL_ENERGY,           2
+	card_item MAGIKARP_LV10,             3
+	card_item GYARADOS,                  1
+	card_item MARILL,                    2
+	card_item SURFING_PIKACHU_LV13,      1
+	card_item SURFING_PIKACHU_ALT_LV13,  1
+	card_item ELECTABUZZ_LV20,           2
+	card_item JIGGLYPUFF_LV12,           2
+	card_item MEOWTH_LV14,               2
+	card_item DARK_PERSIAN_ALT_LV28,     1
+	card_item FARFETCHD_ALT_LV20,        2
+	card_item KANGASKHAN_LV38,           2
+	card_item COOL_PORYGON,              2
+	card_item SUPER_ENERGY_RETRIEVAL,    2
+	card_item SUPER_ENERGY_REMOVAL,      1
+	card_item IMPOSTER_PROFESSOR_OAK,    1
+	card_item COMPUTER_ERROR,            2
+	card_item SCOOP_UP,                  1
+	card_item BILL,                      2
+	card_item MASTER_BALL,               1
+	card_item LASS,                      1
+	deck_list_end
 
 BadGuysDeck:
-	dbw  6, GRASS_ENERGY
-	dbw  8, FIRE_ENERGY
-	dbw  8, PSYCHIC_ENERGY
-	dbw  3, ODDISH_LV21
-	dbw  2, DARK_GLOOM
-	dbw  3, CHARMANDER_LV9
-	dbw  2, DARK_CHARMELEON
-	dbw  3, PSYDUCK_LV16
-	dbw  2, DARK_GOLDUCK
-	dbw  3, SLOWPOKE_LV16
-	dbw  2, DARK_SLOWBRO
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  3, PROFESSOR_OAK
-	dbw  2, POKEMON_TRADER
-	dbw  2, THE_BOSSS_WAY
-	dbw  4, BILL
-	dbw  2, NIGHTLY_GARBAGE_RUN
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,        6
+	card_item FIRE_ENERGY,         8
+	card_item PSYCHIC_ENERGY,      8
+	card_item ODDISH_LV21,         3
+	card_item DARK_GLOOM,          2
+	card_item CHARMANDER_LV9,      3
+	card_item DARK_CHARMELEON,     2
+	card_item PSYDUCK_LV16,        3
+	card_item DARK_GOLDUCK,        2
+	card_item SLOWPOKE_LV16,       3
+	card_item DARK_SLOWBRO,        2
+	card_item ENERGY_RETRIEVAL,    3
+	card_item ENERGY_SEARCH,       2
+	card_item PROFESSOR_OAK,       3
+	card_item POKEMON_TRADER,      2
+	card_item THE_BOSSS_WAY,       2
+	card_item BILL,                4
+	card_item NIGHTLY_GARBAGE_RUN, 2
+	deck_list_end
 
 PoisonMistDeck:
-	dbw 20, GRASS_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  3, SCYTHER_LV25
-	dbw  4, GRIMER_LV10
-	dbw  4, DARK_MUK
-	dbw  4, KOFFING_LV14
-	dbw  3, WEEZING_LV26
-	dbw  1, MR_MIME_LV20
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  2, POKEMON_TRADER
-	dbw  3, ENERGY_REMOVAL
-	dbw  2, DEFENDER
-	dbw  2, GUST_OF_WIND
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     20
+	card_item FULLHEAL_ENERGY,   2
+	card_item SCYTHER_LV25,      3
+	card_item GRIMER_LV10,       4
+	card_item DARK_MUK,          4
+	card_item KOFFING_LV14,      4
+	card_item WEEZING_LV26,      3
+	card_item MR_MIME_LV20,      1
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  4
+	card_item POKEMON_TRADER,    2
+	card_item ENERGY_REMOVAL,    3
+	card_item DEFENDER,          2
+	card_item GUST_OF_WIND,      2
+	card_item SWITCH,            2
+	deck_list_end
 
 UltraRemovalDeck:
-	dbw 18, WATER_ENERGY
-	dbw  4, SQUIRTLE_LV8
-	dbw  3, WARTORTLE_LV22
-	dbw  3, BLASTOISE_LV52
-	dbw  4, PSYDUCK_LV15
-	dbw  3, GOLDUCK_LV27
-	dbw  4, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  2, POKEMON_TRADER
-	dbw  4, ENERGY_REMOVAL
-	dbw  3, SUPER_ENERGY_REMOVAL
-	dbw  2, SWITCH
-	dbw  2, GUST_OF_WIND
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,         18
+	card_item SQUIRTLE_LV8,          4
+	card_item WARTORTLE_LV22,        3
+	card_item BLASTOISE_LV52,        3
+	card_item PSYDUCK_LV15,          4
+	card_item GOLDUCK_LV27,          3
+	card_item PROFESSOR_OAK,         4
+	card_item BILL,                  4
+	card_item BILLS_TELEPORTER,      4
+	card_item POKEMON_TRADER,        2
+	card_item ENERGY_REMOVAL,        4
+	card_item SUPER_ENERGY_REMOVAL,  3
+	card_item SWITCH,                2
+	card_item GUST_OF_WIND,          2
+	deck_list_end
 
 PsychicBattleDeck:
-	dbw 10, PSYCHIC_ENERGY
-	dbw 12, FIGHTING_ENERGY
-	dbw  3, MR_MIME_LV28
-	dbw  3, MEWTWO_LV53
-	dbw  4, SANDSHREW_LV12
-	dbw  3, SANDSLASH_LV33
-	dbw  4, HITMONCHAN_LV33
-	dbw  2, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  2, ENERGY_SEARCH
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  3, POTION
-	dbw  4, GUST_OF_WIND
-	dbw  2, PLUSPOWER
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,   10
+	card_item FIGHTING_ENERGY,  12
+	card_item MR_MIME_LV28,      3
+	card_item MEWTWO_LV53,       3
+	card_item SANDSHREW_LV12,    4
+	card_item SANDSLASH_LV33,    3
+	card_item HITMONCHAN_LV33,   4
+	card_item PROFESSOR_OAK,     2
+	card_item BILL,              4
+	card_item ENERGY_SEARCH,     2
+	card_item ENERGY_RETRIEVAL,  2
+	card_item POTION,            3
+	card_item GUST_OF_WIND,      4
+	card_item PLUSPOWER,         2
+	card_item SWITCH,            2
+	deck_list_end
 
 StopLifeDeck:
-	dbw 18, GRASS_ENERGY
-	dbw  4, BULBASAUR_LV12
-	dbw  3, DARK_IVYSAUR
-	dbw  3, DARK_VENUSAUR
-	dbw  3, DRATINI_LV10
-	dbw  2, DARK_DRAGONAIR
-	dbw  2, SCYTHER_LV25
-	dbw  2, KANGASKHAN_LV40
-	dbw  1, MR_MIME_LV20
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  3, THE_BOSSS_WAY
-	dbw  3, POKEMON_TRADER
-	dbw  3, PLUSPOWER
-	dbw  3, GUST_OF_WIND
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,     18
+	card_item BULBASAUR_LV12,    4
+	card_item DARK_IVYSAUR,      3
+	card_item DARK_VENUSAUR,     3
+	card_item DRATINI_LV10,      3
+	card_item DARK_DRAGONAIR,    2
+	card_item SCYTHER_LV25,      2
+	card_item KANGASKHAN_LV40,   2
+	card_item MR_MIME_LV20,      1
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  4
+	card_item THE_BOSSS_WAY,     3
+	card_item POKEMON_TRADER,    3
+	card_item PLUSPOWER,         3
+	card_item GUST_OF_WIND,      3
+	card_item SWITCH,            2
+	deck_list_end
 
 ScorcherDeck:
-	dbw 18, FIRE_ENERGY
-	dbw  4, CHARMANDER_LV9
-	dbw  3, DARK_CHARMELEON
-	dbw  3, DARK_CHARIZARD
-	dbw  2, CLEFAIRY_LV15
-	dbw  2, DARK_CLEFABLE
-	dbw  3, MAGMAR_LV31
-	dbw  2, KANGASKHAN_LV40
-	dbw  1, MR_MIME_LV20
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  3, THE_BOSSS_WAY
-	dbw  3, POKEMON_TRADER
-	dbw  3, DEFENDER
-	dbw  3, SWITCH
-	dbw  2, ENERGY_RETRIEVAL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      18
+	card_item CHARMANDER_LV9,    4
+	card_item DARK_CHARMELEON,   3
+	card_item DARK_CHARIZARD,    3
+	card_item CLEFAIRY_LV15,     2
+	card_item DARK_CLEFABLE,     2
+	card_item MAGMAR_LV31,       3
+	card_item KANGASKHAN_LV40,   2
+	card_item MR_MIME_LV20,      1
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  4
+	card_item THE_BOSSS_WAY,     3
+	card_item POKEMON_TRADER,    3
+	card_item DEFENDER,          3
+	card_item SWITCH,            3
+	card_item ENERGY_RETRIEVAL,  2
+	deck_list_end
 
 TsunamiStarterDeck:
-	dbw 18, WATER_ENERGY
-	dbw  4, SQUIRTLE_LV8
-	dbw  1, DARK_WARTORTLE
-	dbw  3, DARK_BLASTOISE
-	dbw  2, CLEFAIRY_LV15
-	dbw  2, DARK_CLEFABLE
-	dbw  3, LAPRAS_LV31
-	dbw  2, SCYTHER_LV25
-	dbw  1, MR_MIME_LV20
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  2, THE_BOSSS_WAY
-	dbw  2, POKEMON_TRADER
-	dbw  3, POKEMON_BREEDER
-	dbw  2, PLUSPOWER
-	dbw  2, GUST_OF_WIND
-	dbw  2, SWITCH
-	dbw  3, SUPER_POTION
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     18
+	card_item SQUIRTLE_LV8,      4
+	card_item DARK_WARTORTLE,    1
+	card_item DARK_BLASTOISE,    3
+	card_item CLEFAIRY_LV15,     2
+	card_item DARK_CLEFABLE,     2
+	card_item LAPRAS_LV31,       3
+	card_item SCYTHER_LV25,      2
+	card_item MR_MIME_LV20,      1
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  4
+	card_item THE_BOSSS_WAY,     2
+	card_item POKEMON_TRADER,    2
+	card_item POKEMON_BREEDER,   3
+	card_item PLUSPOWER,         2
+	card_item GUST_OF_WIND,      2
+	card_item SWITCH,            2
+	card_item SUPER_POTION,      3
+	deck_list_end
 
 SmashToMincemeatDeck:
-	dbw 18, FIGHTING_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, MACHOP_LV20
-	dbw  3, DARK_MACHOKE
-	dbw  3, DARK_MACHAMP
-	dbw  2, CLEFAIRY_LV15
-	dbw  2, DARK_CLEFABLE
-	dbw  3, KANGASKHAN_LV40
-	dbw  2, CHANSEY_LV55
-	dbw  1, MR_MIME_LV20
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  2, THE_BOSSS_WAY
-	dbw  2, POKEMON_TRADER
-	dbw  3, DEFENDER
-	dbw  3, GUST_OF_WIND
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         18
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item MACHOP_LV20,              4
+	card_item DARK_MACHOKE,             3
+	card_item DARK_MACHAMP,             3
+	card_item CLEFAIRY_LV15,            2
+	card_item DARK_CLEFABLE,            2
+	card_item KANGASKHAN_LV40,          3
+	card_item CHANSEY_LV55,             2
+	card_item MR_MIME_LV20,             1
+	card_item BILL,                     4
+	card_item BILLS_TELEPORTER,         4
+	card_item THE_BOSSS_WAY,            2
+	card_item POKEMON_TRADER,           2
+	card_item DEFENDER,                 3
+	card_item GUST_OF_WIND,             3
+	card_item SWITCH,                   2
+	deck_list_end
 
 TestYourLuckDeck:
-	dbw 21, FIRE_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, MAGMAR_LV27
-	dbw  4, MOLTRES_LV35
-	dbw  4, LICKITUNG_LV20
-	dbw  4, CHANSEY_LV40
-	dbw  4, KANGASKHAN_LV36
-	dbw  4, ENERGY_REMOVAL
-	dbw  4, ENERGY_RETRIEVAL
-	dbw  4, POTION
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             21
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item MAGMAR_LV27,              4
+	card_item MOLTRES_LV35,             4
+	card_item LICKITUNG_LV20,           4
+	card_item CHANSEY_LV40,             4
+	card_item KANGASKHAN_LV36,          4
+	card_item ENERGY_REMOVAL,           4
+	card_item ENERGY_RETRIEVAL,         4
+	card_item POTION,                   4
+	card_item BILL,                     3
+	deck_list_end
 
 ProtohistoricDeck:
-	dbw 18, FIGHTING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, CHARMANDER_LV10
-	dbw  3, CHARMELEON
-	dbw  1, CHARIZARD_LV76
-	dbw  2, OMANYTE_LV20
-	dbw  1, KABUTO_LV9
-	dbw  1, KABUTO_LV22
-	dbw  1, KABUTOPS
-	dbw  1, AERODACTYL_LV30
-	dbw  2, KANGASKHAN_LV36
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, PROFESSOR_OAK
-	dbw  4, FOSSIL_EXCAVATION
-	dbw  4, DEFENDER
-	dbw  4, MYSTERIOUS_FOSSIL
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         18
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item CHARMANDER_LV10,          4
+	card_item CHARMELEON,               3
+	card_item CHARIZARD_LV76,           1
+	card_item OMANYTE_LV20,             2
+	card_item KABUTO_LV9,               1
+	card_item KABUTO_LV22,              1
+	card_item KABUTOPS,                 1
+	card_item AERODACTYL_LV30,          1
+	card_item KANGASKHAN_LV36,          2
+	card_item KANGASKHAN_LV40,          2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            2
+	card_item FOSSIL_EXCAVATION,        4
+	card_item DEFENDER,                 4
+	card_item MYSTERIOUS_FOSSIL,        4
+	card_item BILL,                     4
+	deck_list_end
 
 TextureTuner7Deck:
-	dbw 21, GRASS_ENERGY
-	dbw  3, DOUBLE_COLORLESS_ENERGY
-	dbw  4, ZUBAT_LV12
-	dbw  3, GOLBAT_LV29
-	dbw  3, VENONAT_LV12
-	dbw  2, VENOMOTH_LV22
-	dbw  2, SCYTHER_LV25
-	dbw  2, PORYGON_LV12
-	dbw  2, PORYGON_LV18
-	dbw  3, COOL_PORYGON
-	dbw  2, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  4, SWITCH
-	dbw  2, SCOOP_UP
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            21
+	card_item DOUBLE_COLORLESS_ENERGY,  3
+	card_item ZUBAT_LV12,               4
+	card_item GOLBAT_LV29,              3
+	card_item VENONAT_LV12,             3
+	card_item VENOMOTH_LV22,            2
+	card_item SCYTHER_LV25,             2
+	card_item PORYGON_LV12,             2
+	card_item PORYGON_LV18,             2
+	card_item COOL_PORYGON,             3
+	card_item ENERGY_REMOVAL,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   4
+	card_item SCOOP_UP,                 2
+	card_item BILL,                     4
+	deck_list_end
 
 ColorlessEnergyDeck:
-	dbw  8, WATER_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, POTION_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  1, FLAREON_LV22
-	dbw  1, DARK_VAPOREON
-	dbw  1, JOLTEON_LV24
-	dbw  1, SPEAROW_LV9
-	dbw  1, SPEAROW_LV12
-	dbw  1, SPEAROW_LV13
-	dbw  1, FEAROW_LV24
-	dbw  1, FEAROW_LV27
-	dbw  4, EEVEE_LV12
-	dbw  4, DRATINI_LV10
-	dbw  3, DRAGONAIR
-	dbw  1, DRAGONITE_LV43
-	dbw  1, DRAGONITE_LV45
-	dbw  4, ENERGY_REMOVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  1, GAMBLER
-	dbw  4, MOON_STONE
-	dbw  2, POKEMON_TRADER
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            8
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item POTION_ENERGY,           4
+	card_item FULLHEAL_ENERGY,         4
+	card_item RECYCLE_ENERGY,          4
+	card_item FLAREON_LV22,            1
+	card_item DARK_VAPOREON,           1
+	card_item JOLTEON_LV24,            1
+	card_item SPEAROW_LV9,             1
+	card_item SPEAROW_LV12,            1
+	card_item SPEAROW_LV13,            1
+	card_item FEAROW_LV24,             1
+	card_item FEAROW_LV27,             1
+	card_item EEVEE_LV12,              4
+	card_item DRATINI_LV10,            4
+	card_item DRAGONAIR,               3
+	card_item DRAGONITE_LV43,          1
+	card_item DRAGONITE_LV45,          1
+	card_item ENERGY_REMOVAL,          4
+	card_item PROFESSOR_OAK,           1
+	card_item GAMBLER,                 1
+	card_item MOON_STONE,              4
+	card_item POKEMON_TRADER,          2
+	card_item BILL,                    3
+	deck_list_end
 
 PowerfulPokemonDeck:
-	dbw  7, FIRE_ENERGY
-	dbw  5, WATER_ENERGY
-	dbw  3, LIGHTNING_ENERGY
-	dbw  6, FIGHTING_ENERGY
-	dbw  2, PSYCHIC_ENERGY
-	dbw  4, RAINBOW_ENERGY
-	dbw  4, MAGMAR_LV31
-	dbw  4, LAPRAS_LV31
-	dbw  4, ELECTABUZZ_LV35
-	dbw  4, HITMONCHAN_LV33
-	dbw  4, JYNX_LV27
-	dbw  4, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  4, SWITCH
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      7
+	card_item WATER_ENERGY,     5
+	card_item LIGHTNING_ENERGY, 3
+	card_item FIGHTING_ENERGY,  6
+	card_item PSYCHIC_ENERGY,   2
+	card_item RAINBOW_ENERGY,   4
+	card_item MAGMAR_LV31,      4
+	card_item LAPRAS_LV31,      4
+	card_item ELECTABUZZ_LV35,  4
+	card_item HITMONCHAN_LV33,  4
+	card_item JYNX_LV27,        4
+	card_item ENERGY_SEARCH,    4
+	card_item PROFESSOR_OAK,    1
+	card_item SWITCH,           4
+	card_item BILL,             4
+	deck_list_end
 
 WeirdDeck:
-	dbw 10, WATER_ENERGY
-	dbw 16, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, PSYDUCK_LV15
-	dbw  3, GOLDUCK_LV27
-	dbw  3, SLOWPOKE_LV9
-	dbw  1, SLOWBRO_LV26
-	dbw  1, SLOWBRO_LV35
-	dbw  3, DROWZEE_LV12
-	dbw  1, HYPNO_LV36
-	dbw  2, JYNX_LV27
-	dbw  3, FARFETCHD_LV20
-	dbw  2, HUNGRY_SNORLAX
-	dbw  2, IMAKUNI_CARD
-	dbw  1, GAMBLER
-	dbw  2, IMPOSTER_PROFESSOR_OAK
-	dbw  2, POKEMON_FLUTE
-	dbw  2, GOOP_GAS_ATTACK
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,            10
+	card_item PSYCHIC_ENERGY,          16
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item PSYDUCK_LV15,             4
+	card_item GOLDUCK_LV27,             3
+	card_item SLOWPOKE_LV9,             3
+	card_item SLOWBRO_LV26,             1
+	card_item SLOWBRO_LV35,             1
+	card_item DROWZEE_LV12,             3
+	card_item HYPNO_LV36,               1
+	card_item JYNX_LV27,                2
+	card_item FARFETCHD_LV20,           3
+	card_item HUNGRY_SNORLAX,           2
+	card_item IMAKUNI_CARD,             2
+	card_item GAMBLER,                  1
+	card_item IMPOSTER_PROFESSOR_OAK,   2
+	card_item POKEMON_FLUTE,            2
+	card_item GOOP_GAS_ATTACK,          2
+	deck_list_end
 
 StrangeDeck:
-	dbw 25, PSYCHIC_ENERGY
-	dbw  3, PSYDUCK_LV16
-	dbw  2, DARK_GOLDUCK
-	dbw  3, SLOWPOKE_LV16
-	dbw  2, DARK_SLOWBRO
-	dbw  4, DROWZEE_LV10
-	dbw  3, DARK_HYPNO
-	dbw  2, MR_MIME_LV20
-	dbw  2, MR_MIME_LV28
-	dbw  2, MEOWTH_LV13
-	dbw  2, MEOWTH_LV14
-	dbw  2, IMAKUNI_CARD
-	dbw  2, IMPOSTER_PROFESSOR_OAK
-	dbw  2, COMPUTER_ERROR
-	dbw  2, DIGGER
-	dbw  2, POKEMON_FLUTE
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,         25
+	card_item PSYDUCK_LV16,            3
+	card_item DARK_GOLDUCK,            2
+	card_item SLOWPOKE_LV16,           3
+	card_item DARK_SLOWBRO,            2
+	card_item DROWZEE_LV10,            4
+	card_item DARK_HYPNO,              3
+	card_item MR_MIME_LV20,            2
+	card_item MR_MIME_LV28,            2
+	card_item MEOWTH_LV13,             2
+	card_item MEOWTH_LV14,             2
+	card_item IMAKUNI_CARD,            2
+	card_item IMPOSTER_PROFESSOR_OAK,  2
+	card_item COMPUTER_ERROR,          2
+	card_item DIGGER,                  2
+	card_item POKEMON_FLUTE,           2
+	deck_list_end
 
 RonaldsUncoolDeck:
-	dbw 15, WATER_ENERGY
-	dbw 13, FIGHTING_ENERGY
-	dbw  3, TENTACOOL
-	dbw  2, TENTACRUEL
-	dbw  3, SHELLDER_LV8
-	dbw  2, CLOYSTER
-	dbw  2, LAPRAS_LV24
-	dbw  3, MACHOP_LV20
-	dbw  2, MACHOKE_LV40
-	dbw  1, MACHAMP_LV67
-	dbw  1, HITMONLEE_LV23
-	dbw  2, HITMONCHAN_LV33
-	dbw  2, CHANSEY_LV55
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SUPER_ENERGY_RETRIEVAL
-	dbw  2, GUST_OF_WIND
-	dbw  2, BILL
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,           15
+	card_item FIGHTING_ENERGY,        13
+	card_item TENTACOOL,               3
+	card_item TENTACRUEL,              2
+	card_item SHELLDER_LV8,            3
+	card_item CLOYSTER,                2
+	card_item LAPRAS_LV24,             2
+	card_item MACHOP_LV20,             3
+	card_item MACHOKE_LV40,            2
+	card_item MACHAMP_LV67,            1
+	card_item HITMONLEE_LV23,          1
+	card_item HITMONCHAN_LV33,         2
+	card_item CHANSEY_LV55,            2
+	card_item ENERGY_SEARCH,           2
+	card_item PROFESSOR_OAK,           1
+	card_item SUPER_ENERGY_RETRIEVAL,  2
+	card_item GUST_OF_WIND,            2
+	card_item BILL,                    2
+	deck_list_end
 
 RonaldsGRXDeck:
-	dbw 24, GRASS_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, RECYCLE_ENERGY
-	dbw  4, ZUBAT_LV9
-	dbw  3, DARK_GOLBAT
-	dbw  3, GRIMER_LV10
-	dbw  2, DARK_MUK
-	dbw  3, RATTATA_LV12
-	dbw  2, DARK_RATICATE
-	dbw  3, MEOWTH_LV10
-	dbw  2, DARK_PERSIAN_LV28
-	dbw  1, PROFESSOR_OAK
-	dbw  2, GUST_OF_WIND
-	dbw  2, FULL_HEAL
-	dbw  2, THE_BOSSS_WAY
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            24
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item RECYCLE_ENERGY,           2
+	card_item ZUBAT_LV9,                4
+	card_item DARK_GOLBAT,              3
+	card_item GRIMER_LV10,              3
+	card_item DARK_MUK,                 2
+	card_item RATTATA_LV12,             3
+	card_item DARK_RATICATE,            2
+	card_item MEOWTH_LV10,              3
+	card_item DARK_PERSIAN_LV28,        2
+	card_item PROFESSOR_OAK,            1
+	card_item GUST_OF_WIND,             2
+	card_item FULL_HEAL,                2
+	card_item THE_BOSSS_WAY,            2
+	card_item BILL,                     3
+	deck_list_end
 
 RonaldsPowerDeck:
-	dbw 16, FIGHTING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  2, POTION_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  2, RECYCLE_ENERGY
-	dbw  2, FLAREON_LV22
-	dbw  2, VAPOREON_LV29
-	dbw  2, JOLTEON_LV24
-	dbw  2, HITMONLEE_LV23
-	dbw  2, HITMONCHAN_LV33
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, TAUROS_LV32
-	dbw  2, DITTO
-	dbw  4, EEVEE_LV9
-	dbw  2, SUPER_SCOOP_UP
-	dbw  2, IMPOSTER_OAKS_REVENGE
-	dbw  1, COMPUTER_ERROR
-	dbw  3, PLUSPOWER
-	dbw  2, SWITCH
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item FIGHTING_ENERGY,         16
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item POTION_ENERGY,            2
+	card_item FULLHEAL_ENERGY,          2
+	card_item RECYCLE_ENERGY,           2
+	card_item FLAREON_LV22,             2
+	card_item VAPOREON_LV29,            2
+	card_item JOLTEON_LV24,             2
+	card_item HITMONLEE_LV23,           2
+	card_item HITMONCHAN_LV33,          2
+	card_item KANGASKHAN_LV40,          2
+	card_item TAUROS_LV32,              2
+	card_item DITTO,                    2
+	card_item EEVEE_LV9,                4
+	card_item SUPER_SCOOP_UP,           2
+	card_item IMPOSTER_OAKS_REVENGE,    2
+	card_item COMPUTER_ERROR,           1
+	card_item PLUSPOWER,                3
+	card_item SWITCH,                   2
+	card_item BILL,                     4
+	deck_list_end
 
 RonaldsPsychicDeck:
-	dbw 23, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  4, GASTLY_LV13
-	dbw  3, HAUNTER_LV26
-	dbw  2, GENGAR_LV40
-	dbw  2, MEWTWO_LV67
-	dbw  2, MEW_LV23
-	dbw  2, KANGASKHAN_LV40
-	dbw  4, DRATINI_LV10
-	dbw  3, DARK_DRAGONAIR
-	dbw  2, DARK_DRAGONITE
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, GUST_OF_WIND
-	dbw  2, POKEMON_TRADER
-	dbw  2, BILL
-	dbw  1, BILLS_TELEPORTER
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          23
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item FULLHEAL_ENERGY,          2
+	card_item GASTLY_LV13,              4
+	card_item HAUNTER_LV26,             3
+	card_item GENGAR_LV40,              2
+	card_item MEWTWO_LV67,              2
+	card_item MEW_LV23,                 2
+	card_item KANGASKHAN_LV40,          2
+	card_item DRATINI_LV10,             4
+	card_item DARK_DRAGONAIR,           3
+	card_item DARK_DRAGONITE,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item GUST_OF_WIND,             2
+	card_item POKEMON_TRADER,           2
+	card_item BILL,                     2
+	card_item BILLS_TELEPORTER,         1
+	deck_list_end
 
 RonaldsUltraDeck:
-	dbw  1, FIRE_ENERGY
-	dbw  1, WATER_ENERGY
-	dbw  2, LIGHTNING_ENERGY
-	dbw  2, FIGHTING_ENERGY
-	dbw  2, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, POTION_ENERGY
-	dbw  4, FULLHEAL_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  4, PIDGEY_LV10
-	dbw  3, PIDGEOTTO_LV38
-	dbw  2, PIDGEOT_LV40
-	dbw  4, SPEAROW_LV13
-	dbw  3, FEAROW_LV27
-	dbw  2, FARFETCHD_LV20
-	dbw  2, MOON_STONE
-	dbw  4, GUST_OF_WIND
-	dbw  2, IMPOSTER_PROFESSOR_OAK
-	dbw  2, MR_FUJI
-	dbw  2, POKEMON_TRADER
-	dbw  4, BILL
-	dbw  2, THE_ROCKETS_TRAP
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             1
+	card_item WATER_ENERGY,            1
+	card_item LIGHTNING_ENERGY,        2
+	card_item FIGHTING_ENERGY,         2
+	card_item PSYCHIC_ENERGY,          2
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item POTION_ENERGY,           4
+	card_item FULLHEAL_ENERGY,         4
+	card_item RECYCLE_ENERGY,          4
+	card_item PIDGEY_LV10,             4
+	card_item PIDGEOTTO_LV38,          3
+	card_item PIDGEOT_LV40,            2
+	card_item SPEAROW_LV13,            4
+	card_item FEAROW_LV27,             3
+	card_item FARFETCHD_LV20,          2
+	card_item MOON_STONE,              2
+	card_item GUST_OF_WIND,            4
+	card_item IMPOSTER_PROFESSOR_OAK,  2
+	card_item MR_FUJI,                 2
+	card_item POKEMON_TRADER,          2
+	card_item BILL,                    4
+	card_item THE_ROCKETS_TRAP,        2
+	deck_list_end
 
 EverybodysFriendDeck:
-	dbw  5, FIRE_ENERGY
-	dbw  7, FIGHTING_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, JIGGLYPUFF_LV14
-	dbw  4, WIGGLYTUFF_LV36
-	dbw  3, SCYTHER_LV25
-	dbw  3, MAGMAR_LV31
-	dbw  3, HITMONCHAN_LV33
-	dbw  3, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  3, COMPUTER_SEARCH
-	dbw  3, SCOOP_UP
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, SWITCH
-	dbw  4, GUST_OF_WIND
-	dbw  4, PLUSPOWER
-	dbw  2, ITEMFINDER
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             5
+	card_item FIGHTING_ENERGY,         7
+	card_item DOUBLE_COLORLESS_ENERGY, 4
+	card_item JIGGLYPUFF_LV14,         4
+	card_item WIGGLYTUFF_LV36,         4
+	card_item SCYTHER_LV25,            3
+	card_item MAGMAR_LV31,             3
+	card_item HITMONCHAN_LV33,         3
+	card_item PROFESSOR_OAK,           3
+	card_item BILL,                    4
+	card_item COMPUTER_SEARCH,         3
+	card_item SCOOP_UP,                3
+	card_item ENERGY_RETRIEVAL,        2
+	card_item SWITCH,                  2
+	card_item GUST_OF_WIND,            4
+	card_item PLUSPOWER,               4
+	card_item ITEMFINDER,              2
+	deck_list_end
 
 ImmortalPokemonDeck:
-	dbw 16, PSYCHIC_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, ABRA_LV14
-	dbw  3, KADABRA_LV39
-	dbw  3, ALAKAZAM_LV42
-	dbw  3, MR_MIME_LV28
-	dbw  1, MR_MIME_LV20
-	dbw  2, TENTACOOL
-	dbw  2, SCYTHER_LV25
-	dbw  2, CHANSEY_LV55
-	dbw  2, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  2, BILLS_TELEPORTER
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, POKEMON_BREEDER
-	dbw  2, POKEMON_CENTER
-	dbw  4, NIGHTLY_GARBAGE_RUN
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,          16
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item ABRA_LV14,                4
+	card_item KADABRA_LV39,             3
+	card_item ALAKAZAM_LV42,            3
+	card_item MR_MIME_LV28,             3
+	card_item MR_MIME_LV20,             1
+	card_item TENTACOOL,                2
+	card_item SCYTHER_LV25,             2
+	card_item CHANSEY_LV55,             2
+	card_item PROFESSOR_OAK,            2
+	card_item BILL,                     4
+	card_item BILLS_TELEPORTER,         2
+	card_item COMPUTER_SEARCH,          2
+	card_item POKEMON_TRADER,           2
+	card_item POKEMON_BREEDER,          2
+	card_item POKEMON_CENTER,           2
+	card_item NIGHTLY_GARBAGE_RUN,      4
+	card_item SWITCH,                   2
+	deck_list_end
 
 TorrentialFloodDeck:
-	dbw 22, WATER_ENERGY
-	dbw  4, SQUIRTLE_LV14
-	dbw  3, WARTORTLE_LV24
-	dbw  3, BLASTOISE_LV52
-	dbw  2, ARTICUNO_LV35
-	dbw  2, ARTICUNO_LV37
-	dbw  2, LAPRAS_LV31
-	dbw  2, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  2, BILLS_TELEPORTER
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  3, POKEMON_TRADER
-	dbw  2, POKEMON_BREEDER
-	dbw  2, POTION
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, SWITCH
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,     22
+	card_item SQUIRTLE_LV14,     4
+	card_item WARTORTLE_LV24,    3
+	card_item BLASTOISE_LV52,    3
+	card_item ARTICUNO_LV35,     2
+	card_item ARTICUNO_LV37,     2
+	card_item LAPRAS_LV31,       2
+	card_item PROFESSOR_OAK,     2
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  2
+	card_item ENERGY_RETRIEVAL,  3
+	card_item POKEMON_TRADER,    3
+	card_item POKEMON_BREEDER,   2
+	card_item POTION,            2
+	card_item COMPUTER_SEARCH,   2
+	card_item SWITCH,            2
+	deck_list_end
 
 TrainerImprisonDeck:
-	dbw 18, PSYCHIC_ENERGY
-	dbw  2, FULLHEAL_ENERGY
-	dbw  4, GASTLY_LV13
-	dbw  3, HAUNTER_LV26
-	dbw  1, HAUNTER_LV25
-	dbw  1, MR_MIME_LV20
-	dbw  3, ODDISH_LV21
-	dbw  3, DARK_GLOOM
-	dbw  3, DARK_VILEPLUME
-	dbw  4, PSYDUCK_LV15
-	dbw  3, DARK_GOLDUCK
-	dbw  3, PROFESSOR_OAK
-	dbw  4, BILL
-	dbw  4, BILLS_TELEPORTER
-	dbw  4, POKEMON_TRADER
-	db 0
+	deck_list_start
+	card_item PSYCHIC_ENERGY,   18
+	card_item FULLHEAL_ENERGY,   2
+	card_item GASTLY_LV13,       4
+	card_item HAUNTER_LV26,      3
+	card_item HAUNTER_LV25,      1
+	card_item MR_MIME_LV20,      1
+	card_item ODDISH_LV21,       3
+	card_item DARK_GLOOM,        3
+	card_item DARK_VILEPLUME,    3
+	card_item PSYDUCK_LV15,      4
+	card_item DARK_GOLDUCK,      3
+	card_item PROFESSOR_OAK,     3
+	card_item BILL,              4
+	card_item BILLS_TELEPORTER,  4
+	card_item POKEMON_TRADER,    4
+	deck_list_end
 
 BlazingFlameDeck:
-	dbw 20, FIRE_ENERGY
-	dbw  2, DOUBLE_COLORLESS_ENERGY
-	dbw  4, VULPIX_LV13
-	dbw  3, NINETALES_LV32
-	dbw  4, GROWLITHE_LV18
-	dbw  2, ARCANINE_LV34
-	dbw  2, ARCANINE_LV45
-	dbw  3, MAGMAR_LV31
-	dbw  2, PROFESSOR_OAK
-	dbw  3, POTION
-	dbw  2, COMPUTER_SEARCH
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  3, DEFENDER
-	dbw  3, ENERGY_RETRIEVAL
-	dbw  3, BILL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,             20
+	card_item DOUBLE_COLORLESS_ENERGY,  2
+	card_item VULPIX_LV13,              4
+	card_item NINETALES_LV32,           3
+	card_item GROWLITHE_LV18,           4
+	card_item ARCANINE_LV34,            2
+	card_item ARCANINE_LV45,            2
+	card_item MAGMAR_LV31,              3
+	card_item PROFESSOR_OAK,            2
+	card_item POTION,                   3
+	card_item COMPUTER_SEARCH,          2
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item DEFENDER,                 3
+	card_item ENERGY_RETRIEVAL,         3
+	card_item BILL,                     3
+	deck_list_end
 
 DamageChaosDeck:
-	dbw  2, GRASS_ENERGY
-	dbw 16, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  2, EXEGGCUTE
-	dbw  2, EXEGGUTOR
-	dbw  2, GASTLY_LV13
-	dbw  2, GASTLY_LV17
-	dbw  3, DARK_HAUNTER
-	dbw  2, DARK_GENGAR
-	dbw  3, JYNX_LV27
-	dbw  3, CLEFAIRY_LV15
-	dbw  2, DARK_CLEFABLE
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, THE_BOSSS_WAY
-	dbw  4, BILL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,             2
+	card_item PSYCHIC_ENERGY,          16
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item RECYCLE_ENERGY,           4
+	card_item EXEGGCUTE,                2
+	card_item EXEGGUTOR,                2
+	card_item GASTLY_LV13,              2
+	card_item GASTLY_LV17,              2
+	card_item DARK_HAUNTER,             3
+	card_item DARK_GENGAR,              2
+	card_item JYNX_LV27,                3
+	card_item CLEFAIRY_LV15,            3
+	card_item DARK_CLEFABLE,            2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item THE_BOSSS_WAY,            2
+	card_item BILL,                     4
+	deck_list_end
 
 BigThunderDeck:
-	dbw 22, LIGHTNING_ENERGY
-	dbw  4, ZAPDOS_LV68
-	dbw  4, DITTO
-	dbw  4, CHANSEY_LV55
-	dbw  2, SUPER_POTION
-	dbw  4, ENERGY_REMOVAL
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  3, POTION
-	dbw  1, SUPER_ENERGY_REMOVAL
-	dbw  4, DEFENDER
-	dbw  2, SCOOP_UP
-	dbw  2, POKEMON_TRADER
-	dbw  4, BILL
-	dbw  2, MASTER_BALL
-	db 0
+	deck_list_start
+	card_item LIGHTNING_ENERGY,     22
+	card_item ZAPDOS_LV68,           4
+	card_item DITTO,                 4
+	card_item CHANSEY_LV55,          4
+	card_item SUPER_POTION,          2
+	card_item ENERGY_REMOVAL,        4
+	card_item ENERGY_RETRIEVAL,      2
+	card_item POTION,                3
+	card_item SUPER_ENERGY_REMOVAL,  1
+	card_item DEFENDER,              4
+	card_item SCOOP_UP,              2
+	card_item POKEMON_TRADER,        2
+	card_item BILL,                  4
+	card_item MASTER_BALL,           2
+	deck_list_end
 
 PowerOfDarknessDeck:
-	dbw  3, WATER_ENERGY
-	dbw 14, PSYCHIC_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, RECYCLE_ENERGY
-	dbw  3, PSYDUCK_LV16
-	dbw  3, DARK_GOLDUCK
-	dbw  2, GRS_MEWTWO
-	dbw  2, CLEFAIRY_LV15
-	dbw  2, DARK_CLEFABLE
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, DRATINI_LV12
-	dbw  2, DARK_DRAGONAIR
-	dbw  2, ENERGY_RETRIEVAL
-	dbw  2, ENERGY_SEARCH
-	dbw  1, PROFESSOR_OAK
-	dbw  2, SWITCH
-	dbw  2, POKEMON_TRADER
-	dbw  2, THE_BOSSS_WAY
-	dbw  4, BILL
-	dbw  2, BILLS_TELEPORTER
-	db 0
+	deck_list_start
+	card_item WATER_ENERGY,             3
+	card_item PSYCHIC_ENERGY,          14
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item RECYCLE_ENERGY,           4
+	card_item PSYDUCK_LV16,             3
+	card_item DARK_GOLDUCK,             3
+	card_item GRS_MEWTWO,               2
+	card_item CLEFAIRY_LV15,            2
+	card_item DARK_CLEFABLE,            2
+	card_item KANGASKHAN_LV40,          2
+	card_item DRATINI_LV12,             2
+	card_item DARK_DRAGONAIR,           2
+	card_item ENERGY_RETRIEVAL,         2
+	card_item ENERGY_SEARCH,            2
+	card_item PROFESSOR_OAK,            1
+	card_item SWITCH,                   2
+	card_item POKEMON_TRADER,           2
+	card_item THE_BOSSS_WAY,            2
+	card_item BILL,                     4
+	card_item BILLS_TELEPORTER,         2
+	deck_list_end
 
 PoisonStormDeck:
-	dbw 11, GRASS_ENERGY
-	dbw 10, FIRE_ENERGY
-	dbw  4, DOUBLE_COLORLESS_ENERGY
-	dbw  4, WEEDLE_LV15
-	dbw  4, SCYTHER_LV25
-	dbw  4, CHARMANDER_LV10
-	dbw  2, CHARMELEON
-	dbw  4, MAGMAR_LV31
-	dbw  2, KANGASKHAN_LV40
-	dbw  2, POTION
-	dbw  3, GUST_OF_WIND
-	dbw  2, FULL_HEAL
-	dbw  3, PLUSPOWER
-	dbw  1, SWITCH
-	dbw  2, BILL
-	dbw  2, ENERGY_REMOVAL
-	db 0
+	deck_list_start
+	card_item GRASS_ENERGY,            11
+	card_item FIRE_ENERGY,             10
+	card_item DOUBLE_COLORLESS_ENERGY,  4
+	card_item WEEDLE_LV15,              4
+	card_item SCYTHER_LV25,             4
+	card_item CHARMANDER_LV10,          4
+	card_item CHARMELEON,               2
+	card_item MAGMAR_LV31,              4
+	card_item KANGASKHAN_LV40,          2
+	card_item POTION,                   2
+	card_item GUST_OF_WIND,             3
+	card_item FULL_HEAL,                2
+	card_item PLUSPOWER,                3
+	card_item SWITCH,                   1
+	card_item BILL,                     2
+	card_item ENERGY_REMOVAL,           2
+	deck_list_end
 
 Deck_7269:
-	dbw 10, FIRE_ENERGY
-	dbw  8, LIGHTNING_ENERGY
-	dbw  6, FIGHTING_ENERGY
-	dbw  2, CHARMANDER_LV10
-	dbw  1, CHARMELEON
-	dbw  1, CHARIZARD_LV76
-	dbw  2, GROWLITHE_LV18
-	dbw  1, ARCANINE_LV45
-	dbw  2, PONYTA_LV10
-	dbw  1, MAGMAR_LV24
-	dbw  2, PIKACHU_LV12
-	dbw  1, RAICHU_LV40
-	dbw  2, MAGNEMITE_LV13
-	dbw  1, MAGNETON_LV28
-	dbw  1, ZAPDOS_LV64
-	dbw  2, DIGLETT_LV8
-	dbw  1, DUGTRIO_LV36
-	dbw  1, MACHOP_LV20
-	dbw  1, MACHOKE_LV40
-	dbw  2, RATTATA_LV9
-	dbw  1, RATICATE
-	dbw  1, MEOWTH_LV14
-	dbw  1, PROFESSOR_OAK
-	dbw  2, BILL
-	dbw  1, SWITCH
-	dbw  1, COMPUTER_SEARCH
-	dbw  1, PLUSPOWER
-	dbw  2, POTION
-	dbw  2, FULL_HEAL
-	db 0
+	deck_list_start
+	card_item FIRE_ENERGY,      10
+	card_item LIGHTNING_ENERGY,  8
+	card_item FIGHTING_ENERGY,   6
+	card_item CHARMANDER_LV10,   2
+	card_item CHARMELEON,        1
+	card_item CHARIZARD_LV76,    1
+	card_item GROWLITHE_LV18,    2
+	card_item ARCANINE_LV45,     1
+	card_item PONYTA_LV10,       2
+	card_item MAGMAR_LV24,       1
+	card_item PIKACHU_LV12,      2
+	card_item RAICHU_LV40,       1
+	card_item MAGNEMITE_LV13,    2
+	card_item MAGNETON_LV28,     1
+	card_item ZAPDOS_LV64,       1
+	card_item DIGLETT_LV8,       2
+	card_item DUGTRIO_LV36,      1
+	card_item MACHOP_LV20,       1
+	card_item MACHOKE_LV40,      1
+	card_item RATTATA_LV9,       2
+	card_item RATICATE,          1
+	card_item MEOWTH_LV14,       1
+	card_item PROFESSOR_OAK,     1
+	card_item BILL,              2
+	card_item SWITCH,            1
+	card_item COMPUTER_SEARCH,   1
+	card_item PLUSPOWER,         1
+	card_item POTION,            2
+	card_item FULL_HEAL,         2
+	deck_list_end

@@ -22,8 +22,8 @@ _AssertSFXFinished_7::
 Music7_f4015_7::
 	jp Music7_f4066
 
-Music7_f4018_7::
-	jp Music7_f406f
+_SetVolume_7::
+	jp Music7_SetVolume
 
 _PauseSong_7::
 	jp Music7_PauseSong
@@ -108,11 +108,11 @@ Music7_f4066:
 	call Music7_UnloadAudioWRAMBank
 	ret
 
-Music7_f406f:
+Music7_SetVolume:
 	call Music7_LoadAudioWRAMBank
 	push bc
 	push af
-	and $7
+	and AUDVOL_MASK
 	ld b, a
 	swap b
 	or b
@@ -128,7 +128,7 @@ Music7_Init:
 	ldh [rAUDENA], a
 	ld a, AUDENA_ON
 	ldh [rAUDENA], a
-	ld a, $77
+	ld a, AUDVOL_RIGHT | AUDVOL_LEFT
 	ldh [rAUDVOL], a
 	ld a, AUDTERM_1_RIGHT | AUDTERM_2_RIGHT | AUDTERM_3_RIGHT | AUDTERM_4_RIGHT | AUDTERM_1_LEFT | AUDTERM_2_LEFT | AUDTERM_3_LEFT | AUDTERM_4_LEFT
 	ldh [rAUDTERM], a
@@ -140,7 +140,7 @@ Music7_Init:
 	ld [wCurSongID], a
 	swap a
 	ld [wAudio_d083], a
-	ld a, $77 ; set both speakers to max volume
+	ld a, AUDVOL_FULL_VOLUME_BOTH
 	ld [wMusicPanning], a
 	xor a
 	ld [wdd8c], a

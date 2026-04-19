@@ -31,7 +31,7 @@ Glossary:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	ret z ; return
 
 	; selection was made
@@ -83,7 +83,7 @@ Glossary:
 	call nz, .Func_18763
 	farcall HandleMultiDirectionalMenu
 	jr nc, .topic_menu
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .selected_topic
 	farcall ZeroObjectPositionsAndToggleOAMCopy_Bank02
 	ldh a, [hCurScrollMenuItem]

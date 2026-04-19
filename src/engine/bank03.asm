@@ -3736,26 +3736,26 @@ CheckDuelDeckRequirementWithNPCDeckID_TxRam2:
 	ret
 
 DuelRequirementFunctionMap:
-	key_func DUEL_REQUIREMENT_MIYUKI, DuelMiyukiRequirement
-	key_func DUEL_REQUIREMENT_RENNA, DuelRennaRequirement
-	key_func DUEL_REQUIREMENT_ICHIKAWA, DuelIchikawaRequirement
-	key_func DUEL_REQUIREMENT_YUKI, DuelYukiRequirement
-	key_func DUEL_REQUIREMENT_SHOKO, DuelShokoRequirement
-	key_func DUEL_REQUIREMENT_MIYAJIMA, DuelMiyajimaRequirement
-	key_func DUEL_REQUIREMENT_SENTA, DuelSentaRequirement
-	key_func DUEL_REQUIREMENT_GODA, DuelGodaRequirement
-	key_func DUEL_REQUIREMENT_GRACE, DuelGraceRequirement
-	key_func DUEL_REQUIREMENT_MIWA, DuelMiwaRequirement
-	key_func DUEL_REQUIREMENT_YOSUKE, DuelYosukeRequirement
-	key_func DUEL_REQUIREMENT_RYOKO, DuelRyokoRequirement
+	key_func DUEL_REQUIREMENT_MIYUKI,           DuelMiyukiRequirement
+	key_func DUEL_REQUIREMENT_RENNA,            DuelRennaRequirement
+	key_func DUEL_REQUIREMENT_ICHIKAWA,         DuelIchikawaRequirement
+	key_func DUEL_REQUIREMENT_YUKI,             DuelYukiRequirement
+	key_func DUEL_REQUIREMENT_SHOKO,            DuelShokoRequirement
+	key_func DUEL_REQUIREMENT_MIYAJIMA,         DuelMiyajimaRequirement
+	key_func DUEL_REQUIREMENT_SENTA,            DuelSentaRequirement
+	key_func DUEL_REQUIREMENT_GODA,             DuelGodaRequirement
+	key_func DUEL_REQUIREMENT_GRACE,            DuelGraceRequirement
+	key_func DUEL_REQUIREMENT_MIWA,             DuelMiwaRequirement
+	key_func DUEL_REQUIREMENT_YOSUKE,           DuelYosukeRequirement
+	key_func DUEL_REQUIREMENT_RYOKO,            DuelRyokoRequirement
 	key_func DUEL_REQUIREMENT_NISHIJIMA_REROLL, DuelNishijimaRequirement_Reroll
-	key_func DUEL_REQUIREMENT_NISHIJIMA_USE, DuelNishijimaRequirement_Use
-	key_func DUEL_REQUIREMENT_ISHII_REROLL, DuelIshiiRequirement_Reroll
-	key_func DUEL_REQUIREMENT_ISHII_USE, DuelIshiiRequirement_Use
-	key_func DUEL_REQUIREMENT_SAMEJIMA_REROLL, DuelSamejimaRequirement_Reroll
-	key_func DUEL_REQUIREMENT_SAMEJIMA_USE, DuelSamejimaRequirement_Use
-	key_func DUEL_REQUIREMENT_KANZAKI, DuelKanzakiRequirement
-	db $ff
+	key_func DUEL_REQUIREMENT_NISHIJIMA_USE,    DuelNishijimaRequirement_Use
+	key_func DUEL_REQUIREMENT_ISHII_REROLL,     DuelIshiiRequirement_Reroll
+	key_func DUEL_REQUIREMENT_ISHII_USE,        DuelIshiiRequirement_Use
+	key_func DUEL_REQUIREMENT_SAMEJIMA_REROLL,  DuelSamejimaRequirement_Reroll
+	key_func DUEL_REQUIREMENT_SAMEJIMA_USE,     DuelSamejimaRequirement_Use
+	key_func DUEL_REQUIREMENT_KANZAKI,          DuelKanzakiRequirement
+	key_funcs_end
 
 ScriptCommand_GetActiveNPCOppositeDirection:
 	ld a, [wScriptNPC]
@@ -4540,7 +4540,7 @@ SetChallengeMachineOpponents:
 .init
 	ld e, NUM_CHALLENGE_MACHINE_ROUNDS_PER_SET
 	ld d, VAR_CHALLENGEMACHINE_ROUND1_OPPONENT_DECK_ID
-	ld c, $ff
+	ld c, DECK_NONE
 .loop_init
 	ld a, d
 	call SetVarValue
@@ -4603,7 +4603,7 @@ SetChallengeMachineOpponents:
 .loop_check
 	ld a, e
 	call GetVarValue
-	cp $ff
+	cp DECK_NONE
 	jr z, .done
 	call GetNPCByDeck
 	inc e
@@ -4797,7 +4797,7 @@ DebugBackgroundFontViewerScreen:
 	ret
 
 ; display player's portrait to left, selected npc's to right
-DebugBGPortraitViewerScreen:
+DebugBackgroundPortraitViewerScreen:
 	push af
 	push bc
 	push de
@@ -4808,8 +4808,8 @@ DebugBGPortraitViewerScreen:
 ; player's
 	lb bc, 4, 5
 	call DrawPlayerPortrait
-; npc's
-	ld h, RONALD_PIC ; starting npc
+; npc's, starting with Ronald's
+	ld h, RONALD_PIC
 	ld l, EMOTION_NORMAL
 	ld b, TRUE ; unused?
 	ld d, 10
@@ -4936,7 +4936,9 @@ DebugBGPortraitViewerScreen:
 	pop af
 	ret
 
-DebugObjViewerScreen:
+; browse from NPC_MARK to NPC_ISHIHARAS_VILLA_GR_GAL (missing the last few objects)
+; on a random background from OVERWORLD_MAP_GFX_TCG to MAP_GFX_GRASS_CLUB_ENTRANCE
+DebugNPCObjectViewerScreen:
 	push af
 	push bc
 	push de
@@ -4971,6 +4973,7 @@ DebugObjViewerScreen:
 	pop af
 	ret
 
+; starting with Mark's
 .Viewer:
 	ld h, NPC_MARK
 	jr .draw
@@ -5010,25 +5013,26 @@ DebugObjViewerScreen:
 	inc h
 	jr .draw ; unnecessary jr
 
+; 4-way sprite turnaround with NPC_* ID
 .draw
 	farcall InitOWObjects
 	ld a, h
-	ld e, 64
+	ld e, 64 ; y
 	push af
 	ld a, SFX_CURSOR
 	call CallPlaySFX
 	pop af
 	push hl
-	ld d, 24
+	ld d, 24        ; x
 	ld b, NORTH
 	farcall LoadOWObject
-	ld d, 56
+	ld d, 24 + 32   ; x
 	ld b, EAST
 	farcall LoadOWObject
-	ld d, 88
+	ld d, 24 + 32*2 ; x
 	ld b, SOUTH
 	farcall LoadOWObject
-	ld d, 120
+	ld d, 24 + 32*3 ; x
 	ld b, WEST
 	farcall LoadOWObject
 	pop hl
@@ -5050,13 +5054,13 @@ DebugObjViewerScreen:
 	pop af
 	jr .wait_input
 
-DebugMenuEffectViewerScreen:
+DebugEffectViewerScreen:
 	farcall Func_102a4
-	call DebugMenuEffectViewer
+	call DebugEffectViewer
 	farcall Func_102c4
 	ret
 
-DebugMenuEffectViewer:
+DebugEffectViewer:
 	push af
 	push bc
 	push de
@@ -5076,9 +5080,9 @@ DebugMenuEffectViewer:
 	lb de, 0, 12
 	lb bc, 20, 6
 	call DrawRegularTextBoxVRAM0
-	call DebugEffectViewer_PlaceTextItems
-	call ChangeAnimationPlayerSideOnStartPress.initialize
-	call ChangeEffectNumberOnDpadPress.initialize
+	call .PrintMenu
+	call .InitSides
+	call .InitScroll
 	call PauseSong_SaveState
 	push af
 	ld a, MUSIC_DUEL_THEME_CLUB_MEMBER
@@ -5089,17 +5093,18 @@ DebugMenuEffectViewer:
 	ld a, NUM_COINS
 	call Random
 	ld [wOppCoin], a
-.button_handling_loop
+.wait_input
 	call DoFrame
-	call CancelAnimationOnBPress
-	call ChangeAnimationPlayerSideOnStartPress
-	call ChangeEffectNumberOnDpadPress
-	call PlayAnimationOnAPress
-	call DebugPrintAnimBufferCurPosAndSize
-	call ChangeDebugViewerStateText
+	call .StopAnimationOnBPress
+	call .SwapSidesOnStartPress
+	call .ScrollOnDpadPress
+	call .PlayAnimationOnAPress
+	call .PrintAnimBufferCurPosAndSize
+	call .PrintViewerState
 	ldh a, [hKeysPressed]
 	and PAD_SELECT
-	jr z, .button_handling_loop
+	jr z, .wait_input
+; exit on select press
 	call FinishQueuedAnimations
 	farcall StartFadeToWhite
 	farcall WaitPalFading_Bank07
@@ -5111,7 +5116,7 @@ DebugMenuEffectViewer:
 	pop af
 	ret
 
-PlayAnimationOnAPress:
+.PlayAnimationOnAPress:
 	ldh a, [hKeysPressed]
 	and PAD_A
 	ret z
@@ -5146,7 +5151,7 @@ PlayAnimationOnAPress:
 	call LoadDuelAnimationToBuffer
 	ret
 
-DebugEffectViewer_PlaceTextItems:
+.PrintMenu:
 	ld hl, .text_items
 	call PlaceTextItemsVRAM0
 	ret
@@ -5158,7 +5163,7 @@ DebugEffectViewer_PlaceTextItems:
 	textitem  2, 13, DebugEffectViewerAnimationNumberText
 	textitems_end
 
-ChangeAnimationPlayerSideOnStartPress:
+.SwapSidesOnStartPress:
 	ldh a, [hKeysPressed]
 	and PAD_START
 	ret z
@@ -5171,12 +5176,14 @@ ChangeAnimationPlayerSideOnStartPress:
 	ldtx hl, DebugEffectViewerRightToLeftText
 	ld a, [wDebugAnimDuelistSide]
 	cp PLAYER_TURN
-	jr z, .asm_f361
-.initialize
+	jr z, .apply_sides
+
+.InitSides
 	ld b, PLAYER_TURN
 	ld c, DUEL_ANIM_SCREEN_MAIN_SCENE
 	ldtx hl, DebugEffectViewerLeftToRightText
-.asm_f361
+
+.apply_sides
 	ld a, b
 	ld [wDebugAnimDuelistSide], a
 	ld a, c
@@ -5185,36 +5192,39 @@ ChangeAnimationPlayerSideOnStartPress:
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	ret
 
-ChangeEffectNumberOnDpadPress:
+; scroll through DUEL_ANIM_* IDs
+.ScrollOnDpadPress:
 	ldh a, [hDPadHeld]
 	and PAD_UP
 	jr z, .check_down
 	ld b, 10
-	jr .update_anim
+	jr .apply_scroll
 .check_down
 	ldh a, [hDPadHeld]
 	and PAD_DOWN
 	jr z, .check_left
 	ld b, -10
-	jr .update_anim
+	jr .apply_scroll
 .check_left
 	ldh a, [hDPadHeld]
 	and PAD_LEFT
 	jr z, .check_right
 	ld b, -1
-	jr .update_anim
+	jr .apply_scroll
 .check_right
 	ldh a, [hDPadHeld]
 	and PAD_RIGHT
 	ret z
 	ld b, 1
-	jr .update_anim
-.initialize
+	jr .apply_scroll
+
+.InitScroll
 	ld b, 0
-.update_anim
+
+.apply_scroll
 	ld a, [wDebugSelectedAnimNumber]
 	add b
-	and $ff
+	and $ff ; can be or a
 	ld [wDebugSelectedAnimNumber], a
 	ld l, a
 	ld h, 0
@@ -5224,7 +5234,7 @@ ChangeEffectNumberOnDpadPress:
 	farcall PrintNumber
 	ret
 
-CancelAnimationOnBPress:
+.StopAnimationOnBPress:
 	ldh a, [hKeysPressed]
 	and PAD_B
 	ret z
@@ -5235,7 +5245,7 @@ CancelAnimationOnBPress:
 	call FinishQueuedAnimations
 	ret
 
-DebugPrintAnimBufferCurPosAndSize:
+.PrintAnimBufferCurPosAndSize:
 	push af
 	push bc
 	push de
@@ -5260,16 +5270,16 @@ DebugPrintAnimBufferCurPosAndSize:
 	pop af
 	ret
 
-ChangeDebugViewerStateText:
+.PrintViewerState:
 	push af
 	push bc
 	push de
 	push hl
 	call CheckAnyAnimationPlaying
 	ldtx hl, DebugEffectViewerPlayingStateText
-	jr c, .asm_f3fd
+	jr c, .print_state
 	ldtx hl, DebugEffectViewerStopStateText
-.asm_f3fd
+.print_state
 	lb de, 13, 13
 	call InitTextPrinting_ProcessTextFromIDVRAM0
 	pop hl

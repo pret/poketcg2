@@ -1034,7 +1034,7 @@ HandleDefendingPokemonAttackSelection:
 	jr nz, .open_atk_page
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	jr z, .loop_input
 
 	ldh a, [hCurScrollMenuItem]
@@ -2306,7 +2306,7 @@ EnergyTransEffect:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input_take
-	cp -1 ; b press?
+	cp MENU_CANCEL ; b press?
 	ret z
 
 ; a press
@@ -2342,7 +2342,7 @@ EnergyTransEffect:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input_put
-	cp -1 ; b press?
+	cp MENU_CANCEL ; b press?
 	jr z, .remove_symbol
 
 ; a press
@@ -5516,7 +5516,7 @@ StrangeBehavior_SelectAndSwapEffect:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	ret z ; return when B button is pressed
 
 	ldh [hCurSelectionItem], a
@@ -6688,7 +6688,7 @@ Gigashock_PlayerSelectEffect:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .loop_input
-	cp -1
+	cp MENU_CANCEL
 	jr z, .try_cancel
 
 	ld [wCurGigashockItem], a
@@ -10495,7 +10495,7 @@ SummonMinions_PlayerSelectEffect:
 	call YesOrNoMenuWithText_SetCursorToYes
 	ret c ; "no" selected
 	ld a, $ff
-	ld [$cd20], a
+	ld [wCardSearchResult], a
 	ldtx hl, ChooseBasicPokemonText
 	ldtx de, DuelistDeckText
 	farcall SelectCardSearchTarget
@@ -10533,7 +10533,7 @@ SummonMinions_PlayerSelectEffect:
 .loop_input
 	bank1call DisplayCardList
 	jr nc, .check_is_basic
-	ld a, [$cd20]
+	ld a, [wCardSearchResult]
 	or a
 	jr nz, .finish
 

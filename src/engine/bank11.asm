@@ -352,7 +352,7 @@ SetChallengeCupOpponents:
 ; init
 	ld e, NUM_CHALLENGE_CUP_ROUNDS
 	ld d, VAR_CHALLENGECUP_ROUND1_OPPONENT_DECK_ID
-	ld c, $ff
+	ld c, DECK_NONE
 .loop_init
 	ld a, d
 	farcall SetVarValue
@@ -423,7 +423,7 @@ SetChallengeCupOpponents:
 .loop_check
 	ld a, e
 	farcall GetVarValue
-	cp $ff
+	cp DECK_NONE
 	jr z, .done
 	farcall GetNPCByDeck
 	inc e
@@ -487,7 +487,7 @@ SetGrandMasterCupOpponents:
 ; init
 	ld e, NUM_GRANDMASTERCUP_NPC_COMPETITORS
 	ld d, VAR_GRANDMASTERCUP_ROUND1_NPC1_DECK_ID
-	ld c, $ff
+	ld c, DECK_NONE
 .loop_init
 	ld a, d
 	farcall SetVarValue
@@ -550,7 +550,7 @@ SetGrandMasterCupOpponents:
 .loop_check
 	ld a, e
 	farcall GetVarValue
-	cp $ff
+	cp DECK_NONE
 	jr z, .done
 	farcall GetNPCByDeck
 	inc e

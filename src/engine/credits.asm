@@ -50,6 +50,6 @@ RunCreditsCommands:
 	key_func CREDITSCMD_LOAD_OW_OBJ,         CreditsCmd_LoadOWObject
 	key_func CREDITSCMD_LOAD_OW_OBJ_IN_MAP,  CreditsCmd_LoadOWObjectInMap
 	key_func CREDITSCMD_SHOW_TILE,           CreditsCmd_ShowTile
-	db $ff ; end
+	key_funcs_end
 
 INCLUDE "data/credits.asm"

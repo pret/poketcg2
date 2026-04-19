@@ -5178,12 +5178,8 @@ ConvertHPToCounters:
 	pop bc
 	ret
 
-; returns in a the result of
-; dividing b by a, rounded down
-; input:
-;	a = divisor
-;	b = dividend
-CalculateBDividedByA_Bank5:
+; returns a = floor(b / a)
+CalculateBDividedByA_Bank05:
 	push bc
 	ld c, a
 	ld a, b
@@ -6236,7 +6232,7 @@ AIDecideBenchPokemonToSwitchTo:
 .add_hp_score
 	ld b, a
 	ld a, 4
-	call CalculateBDividedByA_Bank5
+	call CalculateBDividedByA_Bank05
 	call ConvertHPToCounters
 	call AIEncourage
 

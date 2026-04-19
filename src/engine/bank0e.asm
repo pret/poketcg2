@@ -3441,7 +3441,7 @@ AICheckIfAttackIsHighRecoil:
 	ret
 
 ; for an HP-recovery effect (a = amount),
-; set carry if that puts the card out of KO range of the defending Pokémon,
+; set carry if that puts the active pkmn out of KO range of the defending pkmn,
 ; no carry otherwise
 CheckIfRecoveryCanPreventKOByDefendingPokemon:
 	ld [wAITempHPRecoverAmount], a
@@ -4740,9 +4740,9 @@ HandleScrollMenu:
 	and PAD_A
 	jr nz, .asm_3ac12
 ; b button
-	ld a, -1
+	ld a, MENU_CANCEL
 	ld [hCurMenuItem], a
-	farcall PlaySFXConfirmOrCancel ; MENU_CANCEL
+	farcall PlaySFXConfirmOrCancel
 	scf
 	ret
 
@@ -7048,7 +7048,7 @@ _PrinterMenu_DeckConfiguration:
 .loop_input
 	call HandleDeckMachineSelection
 	jr c, .start_selection
-	cp $ff
+	cp MENU_CANCEL
 	ret z
 
 	ld b, a
@@ -7435,7 +7435,7 @@ SendDeckConfigurationMenu:
 .loop_input
 	call HandleDeckMachineSelection
 	jr c, .start_selection
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .get_deck_machine_slot
 	ld a, 1
 	or a
@@ -7492,7 +7492,7 @@ ReceiveDeckConfigurationMenu:
 	call InitDeckMachineDrawingParams
 	call HandleDeckMachineSelection
 	jr c, .start_selection
-	cp $ff
+	cp MENU_CANCEL
 	jr nz, .get_deck_machine_slot
 	ld a, 1
 	or a
@@ -7595,7 +7595,7 @@ OpenDeckSaveMachineFromDeckBuilding:
 	call InitDeckMachineDrawingParams
 	call HandleDeckMachineSelection
 	jr c, .wait_input
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .cancel
 	ld b, a
 	ld a, [wScrollMenuScrollOffset]

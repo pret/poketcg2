@@ -1060,7 +1060,7 @@ HandleAttachedEnergyMenuInput:
 	call DoFrame
 	call HandleCardListInput
 	jr nc, .wait_input
-	cp $ff ; B pressed?
+	cp MENU_CANCEL ; B pressed?
 	jr z, .return_carry
 	ld a, [wcbeb]
 	or a
@@ -1116,7 +1116,7 @@ DuelMenu_Attack:
 	jr nz, .display_selected_attack_info
 	call HandleMenuInput
 	jr nc, .wait_for_input
-	cp -1 ; was B pressed?
+	cp MENU_CANCEL ; was B pressed?
 	jp z, PrintDuelMenuAndHandleInput
 	ld [wSelectedDuelSubMenuItem], a
 	call CheckIfEnoughEnergiesToAttack
@@ -2844,7 +2844,7 @@ CardListItemSelectionMenu:
 	call DoFrame
 	call HandleMenuInput
 	jr nc, .wait_a_or_b
-	cp -1
+	cp MENU_CANCEL
 	jr z, .b_pressed
 	; A pressed
 	or a
@@ -2866,7 +2866,7 @@ CardListParameters:
 
 ; return carry if any of the buttons is pressed, and load the graphics
 ; of the card pointed to by the cursor whenever a d-pad key is released.
-; also return $ff unto hCurScrollMenuItem if B is pressed.
+; also return MENU_CANCEL unto hCurScrollMenuItem if B is pressed.
 CardListFunction:
 	ldh a, [hKeysPressed]
 	bit B_PAD_B, a
@@ -2878,7 +2878,7 @@ CardListFunction:
 	jr nz, .reload_card_image ; jump if the PAD_CTRL_PAD key was released this frame
 	ret
 .exit
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 .action_button
 	scf
@@ -4215,7 +4215,7 @@ DisplayPlayAreaScreen:
 	add c
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ldh a, [hCurScrollMenuItem]
-	cp $ff
+	cp MENU_CANCEL
 	jr z, .asm_60b5
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_HP
@@ -4250,7 +4250,7 @@ PlayAreaScreenMenuFunction:
 	ret z
 	bit B_PAD_B, a
 	jr z, .start_or_a
-	ld a, $ff
+	ld a, MENU_CANCEL
 	ldh [hCurScrollMenuItem], a
 .start_or_a
 	scf
@@ -4911,25 +4911,25 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	xor a
 	ld [wSelectedDuelSubMenuItem], a
 
-.asm_6435
+.start
 	call .DrawScreen
 	ld hl, PlayAreaScreenMenuParameters_ActivePokemonIncluded
 	ld a, [wSelectedDuelSubMenuItem]
 	call InitializeMenuParameters
 	ld a, [wNumPlayAreaItems]
 	ld [wNumScrollMenuItems], a
-.asm_6447
+.wait_input
 	call DoFrame
 	call HandleMenuInput
 	ldh [hTempPlayAreaLocation_ff9d], a
-	ld [wHUDEnergyAndHPBarsX], a
-	jr nc, .asm_6447
-	cp $ff
-	jr z, .asm_649b
+	ld [wCurPlayAreaSlot], a
+	jr nc, .wait_input
+	cp MENU_CANCEL
+	jr z, .cancel
 	ld [wSelectedDuelSubMenuItem], a
 	ldh a, [hKeysPressed]
 	and PAD_START
-	jr nz, .asm_649d
+	jr nz, .open_card_page
 	ldh a, [hCurScrollMenuItem]
 	add a
 	ld e, a
@@ -4938,7 +4938,7 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	add hl, de
 	ld a, [hld]
 	cp $04
-	jr nz, .asm_6447
+	jr nz, .wait_input
 	ld a, [hl]
 	ldh [hTempCardIndex_ff98], a
 	ld d, a
@@ -4946,31 +4946,31 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	call CopyAttackDataAndDamage_FromDeckIndex
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
-	jr nc, .asm_648c
+	jr nc, .use_prompt
 	ldtx hl, PokemonPowerSelectNotRequiredText
 	farcall DisplayUsePokemonPowerScreen
 	call WaitForWideTextBoxInput
-	jp .asm_6435
-.asm_648c
+	jp .start
+.use_prompt
 	ldtx hl, UseThisPokemonPowerPromptText
 	farcall DisplayUsePokemonPowerScreen
 	call YesOrNoMenu
-	jp c, .asm_6435
+	jp c, .start
 	ldh a, [hTempCardIndex_ff98]
 	ldh [hTemp_ffa0], a
 	or a
 	ret
-.asm_649b
+.cancel
 	scf
 	ret
-.asm_649d
+.open_card_page
 	ldh a, [hCurScrollMenuItem]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	call LoadCardDataToBuffer1_FromCardID
 	call OpenCardPage_FromCheckPlayArea
-	jp .asm_6435
+	jp .start
 
 .DrawScreen:
 	call ZeroObjectPositionsAndToggleOAMCopy
@@ -4983,11 +4983,11 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	get_turn_duelist_var
 	ld c, a
 	ld b, $00
-.asm_64ca
+.loop_play_area
 	push hl
 	push bc
 	ld a, b
-	ld [wHUDEnergyAndHPBarsX], a
+	ld [wCurPlayAreaSlot], a
 	ld a, b
 	add a
 	add b
@@ -5005,7 +5005,7 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	pop hl
 	inc b
 	dec c
-	jr nz, .asm_64ca
+	jr nz, .loop_play_area
 	ld a, b
 	ld [wNumPlayAreaItems], a
 	call EnableLCD
