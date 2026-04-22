@@ -1,6 +1,6 @@
 StartDuelFromSRAM:
 	call SetupDuel
-	farcall Func_24048
+	farcall LoadAndValidateDuelSaveData
 	ldtx hl, BackUpIsBrokenText
 	jr c, .corrupted
 .ok::
@@ -2278,10 +2278,10 @@ PracticeDuel_RepeatInstructions:
 	ldtx hl, PracticeDuelMasonIncorrectRetryText
 	call PrintPracticeDuelDrMasonInstructions
 	; restart the turn from the saved data of the previous turn
-	ld a, $02
+	ld a, BANK("SRAM2")
 	call BankswitchSRAM
-	ld de, sCurrentDuel
-	farcall LoadSavedDuelData
+	ld de, sBackupCurrentDuel
+	farcall LoadSavedDuelDataFromDE
 	xor a
 	call BankswitchSRAM
 	call DisableSRAM
@@ -6351,7 +6351,7 @@ InitVariablesToBeginDuel:
 
 	ld a, [wSelectedCoin]
 	ld [wPlayerCoin], a
-	call Func_6838
+	call LoadSkipAllowed
 
 	ld b, MAX_PLAY_AREA_POKEMON
 	ld a, [wSpecialRule]
@@ -6465,12 +6465,12 @@ InitializeDuelVariables:
 	jr nz, .init_play_area
 	ret
 
-Func_6838:
+LoadSkipAllowed:
 	call EnableSRAM
 	ld a, [sSkipDelayAllowed]
 	ld [wSkipDelayAllowed], a
 	ld a, [sCoinTossAnimationSetting]
-	ld [wcd14], a
+	ld [wSkipCoinTossAnimationAllowed], a
 	call DisableSRAM
 	ret
 

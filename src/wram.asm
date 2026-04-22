@@ -227,6 +227,7 @@ wPlayTimeCounterEnable:: ; cac2
 wPlayTimeCounter:: ; cac3
 	ds $5
 
+wRNGVars::
 wRNG1:: ; cac8
 	ds $1
 
@@ -484,10 +485,15 @@ wAttachedEnergyMenuPlayAreaLocation:: ; cbd9
 
 SECTION "WRAM0 Duels 2", WRAM0
 
+wOppRNGVars::
 wOppRNG1:: ; cbda
 	ds $1
 
-	ds $2
+wOppRNG2:: ; cbdb
+	ds $1
+
+wOppRNGCounter:: ; ccdc
+	ds $1
 
 ; sp is saved here when starting a duel, in order to save the return address
 ; however, it only seems to be read after a transmission error in a link duel
@@ -553,6 +559,8 @@ wcbf5:: ; cbf5
 ; see ATTACKPAGE_* constants
 wAttackPageNumber:: ; cbfc
 	ds $1
+
+wDuelStates:: ; cbfd
 
 ; the value of hWhoseTurn gets loaded here at the beginning of each duelist's turn.
 ; more reliable than hWhoseTurn, as hWhoseTurn may change temporarily in order to handle status
@@ -679,6 +687,7 @@ wMiniMetronomeCoinTossResult:: ; cc1b
 	ds $1
 
 	ds $5
+wDuelStatesEnd::
 
 wAttackEnergyCost:: ; cc21
 	ds NUM_TYPES
@@ -864,7 +873,9 @@ wDarkWaveDamageModifier:: ; cd10
 wDarknessVeilDamageModifier:: ; cd12
 	ds $2
 
-wcd14:: ; cd14
+; value read from sCoinTossAnimationSetting
+; (mirror of wCoinTossAnimationSetting)
+wSkipCoinTossAnimationAllowed:: ; cd14
 	ds $1
 
 wcd15:: ; cd15
