@@ -1323,6 +1323,7 @@ wce9f:: ; ce21
 wCardPopCardObtainSong:: ; ce22
 	ds $1
 
+wPrinterStartCardID:: ; ce23
 	ds $2
 
 ; either IRPARAM_CARD_POP or IRPARAM_RARE_CARD_POP

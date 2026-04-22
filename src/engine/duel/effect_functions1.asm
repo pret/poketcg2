@@ -4189,14 +4189,14 @@ Firegiver_AddToHandEffect:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	inc a
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 ; update and print number of cards in deck
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	ld a, DECK_SIZE - 1
 	sub [hl]
 	ld c, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop bc
 	pop hl
 

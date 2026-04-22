@@ -167,7 +167,7 @@ DebugModifyFlags:
 	lb bc, 11, 15
 	ld a, [wScenarioDebugMenuCurEventFlagItem]
 	push af
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop af
 	farcall GetEventValue
 	ldtx hl, DebugModifyFlagsOnText
@@ -248,11 +248,11 @@ DebugModifyCounters:
 	lb bc, 12, 15
 	ld a, [wScenarioDebugMenuCurEventVarItem]
 	push af
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop af
 	farcall GetVarValue
 	lb bc, 17, 15
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	ret
 
 DebugModifyCounterValue:
@@ -311,7 +311,7 @@ DebugModifyCounterValue:
 	ld a, [wScenarioDebugMenuCurEventVarItem]
 	farcall GetVarValue
 	lb bc, 17, 15
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	ret
 
 PrintScenarioDebugMenu:
@@ -530,17 +530,17 @@ DebugModifyCardCount:
 	push bc
 	ld a, b
 	lb bc, 6, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop bc
 	push bc
 	ld a, c
 	lb bc, 16, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop bc
 	ld a, c
 	sub b
 	lb bc, 11, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	ret
 
 .PreviewReceivedCardScreen:
@@ -614,17 +614,17 @@ DebugModifyCardCountValue:
 	push bc
 	ld a, b
 	lb bc, 6, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop bc
 	push bc
 	ld a, c
 	lb bc, 16, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop bc
 	ld a, c
 	sub b
 	lb bc, 11, 17
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	ret
 
 ; unreferenced

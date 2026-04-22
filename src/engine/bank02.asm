@@ -2748,7 +2748,7 @@ InputCurDeckName:
 	push hl
 	ld h, d
 	ld l, e
-	call UnnamedDeckCounterToText
+	call UnnamedDeckCounterToTxSymbol
 	call DisableSRAM
 	pop hl
 
@@ -2860,8 +2860,8 @@ CheckIfCurDeckIsEmpty:
 	scf
 	ret
 
-; convert the number at hl to text (ascii) format and write it to wTempUnnamedDeckCounter
-UnnamedDeckCounterToText:
+; convert number in hl to TX_SYMBOL format and write it to wTempUnnamedDeckCounter
+UnnamedDeckCounterToTxSymbol:
 	ld de, wTempUnnamedDeckCounter
 	ld bc, -100
 	call .get_digit

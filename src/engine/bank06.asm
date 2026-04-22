@@ -3396,7 +3396,7 @@ ViewCardPopRecords:
 .rare_card_pop_1
 	ld a, [wCardPopRecordNumCoins]
 	lb bc, 13, 4
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld hl, wCardPopRecordNumCards
 	ld c, 6
 	call .PrintNumberAtYCoord
@@ -3482,7 +3482,7 @@ ViewCardPopRecords:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	bank1call Func_6079
+	bank1call WriteTwoByteNumberInTxSymbol_PadSpace
 	ret
 
 .text_items
@@ -3505,7 +3505,7 @@ ViewCardPopRecords:
 .DrawSlashAndTopLineSeparator:
 	lb bc, 17, 1
 	ld a, [wNumCardPopRecords]
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld hl, .SlashAndLineSeparatorTileData
 	call WriteDataBlocksToBGMap0
 	call BankswitchVRAM1
@@ -3670,7 +3670,7 @@ ViewCardPopRecords:
 	add [hl]
 	inc a
 	lb bc, 14, 1
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ret
 
 .PrintRecordEntries:
@@ -4138,13 +4138,13 @@ RequestToPrintCard:
 	call WriteByteToBGMap0
 	ld a, [wLoadedCard1Level]
 	lb bc, 12, 66
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld a, SYM_HP
 	lb bc, 15, 66
 	call WriteByteToBGMap0
 	ld a, [wLoadedCard1HP]
 	inc b
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 .skip_pokemon_data
 	ret
 
@@ -4206,7 +4206,7 @@ DrawBottomCardInfoInSRAMGfxBuffer0:
 	call WriteByteToBGMap0
 	inc b
 	ld a, [wLoadedCard1PokedexNumber]
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	ret
 
 .not_pkmn_card
@@ -4637,7 +4637,7 @@ LoadCardInfoForPrinter:
 	call WriteByteToBGMap0
 	inc b
 	ld a, [wPrinterCardCount]
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop hl
 	ret
 
@@ -4829,7 +4829,7 @@ PrintCardList:
 	ld d, 14
 	call InitTextPrinting
 	pop hl
-	call TwoByteNumberToTxSymbol_TrimLeadingZeros
+	call TwoByteNumberToTxSymbol_PadSpace
 	ld hl, wStringBuffer
 	call ProcessText
 	call AddToPrinterGfxBuffer

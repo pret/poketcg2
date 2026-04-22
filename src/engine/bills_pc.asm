@@ -382,7 +382,7 @@ DrawBillsPCMenu:
 	push bc
 	ld b, 16
 	ld a, [wBillsPCCurCompatibleCardOwnedCount]
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop de
 	ld d, 18
 	call InitTextPrinting

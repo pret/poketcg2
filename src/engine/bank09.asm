@@ -245,11 +245,56 @@ PrintAttackDeclarationText::
 	ldtx hl, PokemonsAttackText
 	call DrawWideTextBox_PrintText
 	ret
-; 0x2439a
 
-SECTION "Bank 9@43ee", ROMX[$43ee], BANK[$9]
+DisplayUsedAttackScreen:
+	bank1call ZeroObjectPositionsAndToggleOAMCopy
+	call EmptyScreen
+	call LoadDuelCardSymbolTiles
+	call LoadDuelFaceDownCardTiles
+	ldh a, [hTempCardIndex_ff9f]
+	call LoadCardDataToBuffer1_FromDeckIndex
+	ld a, CARDPAGE_POKEMON_OVERVIEW
+	ld [wCardPageNumber], a
+	ld hl, wLoadedCard1Atk1Name
+	ld de, wLoadedCard1Atk1Description
+	ld a, [wSelectedAttack]
+	or a ; cp FIRST_ATTACK_OR_PKMN_POWER
+	jr z, .got_atk
+	ld hl, wLoadedCard1Atk2Name
+	ld de, wLoadedCard1Atk2Description
+.got_atk
+	push hl
+	push de
+	ld e, 1
+	bank1call PrintAttackOrPkmnPowerInformation
+	lb de, 1, 4
+	pop hl
+	push hl
+	bank1call PrintAttackOrCardDescription
+	pop de
+	pop hl
+	inc de
+	inc de
+	ld a, [de]
+	ld c, a
+	inc de
+	ld a, [de]
+	dec de
+	or c
+	ret z ; no second page
+; print second page info
+	push de
+	push hl
+	call DrawWideTextBox
+	call WaitForWideTextBoxInput
+	pop hl
+	ld e, 1
+	bank1call PrintAttackOrPkmnPowerInformation
+	lb de, 1, 4
+	pop hl
+; fallthrough
 
-Func_243ee:
+PrintDescriptionFromHL:
 	push de
 	push hl
 	dec e
@@ -291,7 +336,7 @@ DisplayUsePokemonPowerScreen:
 	ld a, [hli]
 	or [hl]
 	ret z ; no second page
-	; print second page info
+; print second page info
 	call WaitForWideTextBoxInput
 	bank1call PrintPlayAreaCardInformationAndLocation
 	lb de, 1, 4
@@ -300,12 +345,35 @@ DisplayUsePokemonPowerScreen:
 	call InitTextPrinting_ProcessTextFromPointerToID
 	ld hl, wLoadedCard1Atk1Description + $2
 	lb de, 1, 6
-	call Func_243ee
+	call PrintDescriptionFromHL
 	ret
-; 0x24459
 
-SECTION "Bank 9@4494", ROMX[$4494], BANK[$9]
+Func_24459:
+	call EmptyScreen
+	lb de, 1, 1
+	ld hl, wLoadedCard1Name
+	call InitTextPrinting_ProcessTextFromPointerToID
+	ldtx hl, UsedText
+	call Func_24494
+	lb de, 1, 4
+	ld hl, wLoadedCard1PreEvoName
+	bank1call PrintAttackOrCardDescription
+	ld hl, wLoadedCard1Atk1EnergyCost
+	ld a, [hli]
+	or [hl]
+	jr z, .done
+	call WaitForWideTextBoxInput
+	lb de, 1, 1
+	ld hl, wLoadedCard1Name
+	call InitTextPrinting_ProcessTextFromPointerToID
+	ld hl, wLoadedCard1Atk1EnergyCost
+	lb de, 1, 4
+	call PrintDescriptionFromHL
+.done
+	call WaitForWideTextBoxInput
+	ret
 
+; hl = text ID
 Func_24494:
 	push hl
 	call DrawWideTextBox
@@ -760,10 +828,10 @@ PlacePrizes:
 	; print new deck card number
 	lb bc, 3, 5
 	ld a, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	lb bc, 18, 7
 	ld a, e
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	pop hl
 	pop de
 	dec e ; decrease number of cards in deck
@@ -787,8 +855,6 @@ PlacePrizes:
 	db 6, 7, 13, 4 ; Prize 4
 	db 5, 8, 14, 3 ; Prize 5
 	db 6, 8, 13, 3 ; Prize 6
-
-SECTION "Bank 9@4a1f", ROMX[$4a1f], BANK[$9]
 
 ; display the animation of the turn duelist drawing one card at the beginning of the turn
 ; if there isn't any card left in the deck, let the player know with a text message
@@ -931,10 +997,10 @@ PrintPlayerNumberOfHandAndDeckCards:
 	ld e, a
 	ld a, d
 	lb bc, 16, 10
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld a, e
 	lb bc, 10, 10
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ret
 
 PrintOpponentNumberOfHandAndDeckCards:
@@ -950,10 +1016,10 @@ PrintOpponentNumberOfHandAndDeckCards:
 	ld e, a
 	ld a, d
 	lb bc, 5, 3
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld a, e
 	lb bc, 11, 3
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ret
 
 DeckAndHandIconsTileData:
@@ -2449,7 +2515,7 @@ CheckDeck:
 .loop_counts
 	ld a, [hli]
 	push hl
-	bank1call WriteTwoByteNumberInTxSymbolFormat
+	bank1call WriteOneByteNumberInTxSymbol_PadSpace
 	pop hl
 	inc c
 	inc c ; two tiles spacing
@@ -3874,13 +3940,13 @@ _TossCoin::
 	lb bc, 15, 11
 	ld a, [wCoinTossNumTossed]
 	inc a ; current coin number is wCoinTossNumTossed + 1
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 	ld b, 17
 	ld a, SYM_SLASH
 	call WriteByteToBGMap0
 	inc b
 	ld a, [wCoinTossTotalNum]
-	bank1call WriteTwoDigitNumberInTxSymbolFormat
+	bank1call WriteTwoDigitNumberInTxSymbol_PadSpace
 
 .skip_print_coin_tally
 	call ResetAnimationQueue
@@ -4150,4 +4216,63 @@ _TossCoin::
 	call FinishQueuedAnimations
 	call DuelTransmissionError
 	ret
-; 0x26709
+
+; debug? unreferenced
+RequestToPrintCards_SelectStartCard:
+	call EmptyScreen
+	call EnableLCD
+	ld hl, wPrinterStartCardID
+	ld [hl], LOW(GRASS_ENERGY)
+	inc hl
+	ld [hl], HIGH(GRASS_ENERGY)
+.wait_input
+	call DoFrame
+	ld hl, wPrinterStartCardID
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ldh a, [hDPadHeld]
+	ld b, a
+; left
+	bit B_PAD_LEFT, b
+	jr z, .right
+	dec hl ; previous card
+.right
+	bit B_PAD_RIGHT, b
+	jr z, .up
+	inc hl ; next card
+.up
+	bit B_PAD_UP, b
+	jr z, .down
+	ld de, 10
+	add hl, de
+.down
+	bit B_PAD_DOWN, b
+	jr z, .got_card_id
+	ld de, -10
+	add hl, de
+
+.got_card_id
+	ld a, l
+	ld [wPrinterStartCardID], a
+	ld a, h
+	ld [wPrinterStartCardID + 1], a
+	lb bc, 5, 5
+	bank1call WriteTwoByteNumberInTxSymbol_PadSpace
+	ldh a, [hKeysPressed]
+	and PAD_START
+	jr z, .wait_input
+
+; request to print until end of card index
+	ld hl, wPrinterStartCardID
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+.loop_cards
+	call LoadCardDataToBuffer1_FromCardID
+	ret c ; reached out of bounds
+	push de
+	farcall RequestToPrintCard
+	pop de
+	inc de
+	jr .loop_cards
