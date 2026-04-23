@@ -1352,7 +1352,7 @@ UseAttackOrPokemonPower::
 	ld a, EFFECTCMDTYPE_INITIAL_EFFECT_1
 	call TryExecuteEffectCommandFunction
 	jp c, DrawWideTextBox_WaitForInput_ReturnCarry
-	farcall PrintAttackDeclarationText
+	farcall DrawDuelMainScene_PrintPokemonsAttackText
 	call WaitForWideTextBoxInput
 	call SendAttackDataToLinkOpponent
 	bank1call HandleSandAttackSmokescreenOrLightningFlashSubstatus
@@ -1387,7 +1387,7 @@ UseAttackOrPokemonPower::
 	call SetOppAction_SerialSendDuelData
 ;	fallthrough
 
-PlayAttackAnimation_DealAttackDamage:
+PlayAttackAnimation_DealAttackDamage::
 	call UpdateTempDuelistCardIDs
 	bank1call SetDarkWaveAndDarknessVeilDamageModifiers
 	farcall ResetAttackAnimationIsPlaying
@@ -1480,7 +1480,7 @@ ClearNonTurnTemporaryDuelvars_ResetCarry:
 
 ; called when attacker deals damage to itself due to confusion
 ; display the corresponding animation and deal 20 damage to self
-HandleConfusionDamageToSelf:
+HandleConfusionDamageToSelf::
 	bank1call CheckIfArenaCardIsDarkPrimeapeAndHasPkmnPowerActive
 	jr c, .got_damage
 	ld de, 20 ; damage
@@ -1513,7 +1513,7 @@ UsePokemonPower:
 	ld a, [wcd0d]
 	or a
 	jr z, .asm_1687
-	ld a, OPPACTION_UNK_0C
+	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	call SetOppAction_SerialSendDuelData
 .asm_1687
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
@@ -1609,7 +1609,7 @@ Func_189d:
 	ret
 
 ; return carry and 1 into wGotHeadsFromConfusionCheck if damage will be dealt to oneself due to confusion
-CheckSelfConfusionDamage:
+CheckSelfConfusionDamage::
 	xor a
 	ld [wGotHeadsFromConfusionCheck], a
 	ld a, DUELVARS_ARENA_CARD_STATUS
@@ -2112,7 +2112,7 @@ Func_19fd:
 	ld [de], a
 	ret
 
-ShowMetronomeUnsuccessfulText:
+ShowMetronomeUnsuccessfulText::
 	bank1call ClearNonTurnTemporaryDuelvars
 	call Func_19fd
 	ldtx hl, MetronomeWasUnsuccessfulText

@@ -1795,7 +1795,7 @@ HandleAIFossilize:
 .use_fossilize
 	ld a, [wd084]
 	ldh [hTempCardIndex_ff9f], a
-	ld a, OPPACTION_UNK_0C
+	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	farcall AIMakeDecision
 	ld a, -1
 	ldh [hTempPlayAreaLocation_ffa1], a
@@ -1945,7 +1945,7 @@ HandleAIMagnet:
 	; a Magnemite is found in the Deck
 	ld a, [wAIPkmnPowerUserCardIndex]
 	ldh [hTempCardIndex_ff9f], a
-	ld a, OPPACTION_UNK_0C
+	ld a, OPPACTION_USE_PKMN_POWER_NO_EFF2
 	farcall AIMakeDecision
 	ldtx de, MagnetCheckText
 	farcall Serial_TossCoin

@@ -477,7 +477,7 @@ Challenge_PlayerAndOpponentSelectEffect:
 	ret
 
 .link_opp
-	ld a, OPPACTION_UNK_1B
+	ld a, OPPACTION_REACT_TO_CHALLENGE
 	call SetOppAction_SerialSendDuelData
 .loop_wait_response
 	call SerialRecvByte
@@ -493,7 +493,7 @@ Challenge_PlayerAndOpponentSelectEffect:
 	farcall HandleChallengeCardPlayerSelection
 
 	; send selection to link opponent
-	ld a, OPPACTION_UNK_1C
+	ld a, OPPACTION_ACCEPT_CHALLENGE_PUT_BASIC_PKMN
 	call SetOppAction_SerialSendDuelData
 
 	; await other player's selection
@@ -1774,7 +1774,7 @@ ComputerError_PlayerAndOppSelection:
 	ret
 
 .link_opp
-	ld a, OPPACTION_UNK_1A
+	ld a, OPPACTION_REACT_TO_COMPUTER_ERROR
 	call SetOppAction_SerialSendDuelData
 .loop_wait
 	call SerialRecvByte

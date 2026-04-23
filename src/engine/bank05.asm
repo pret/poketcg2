@@ -6770,13 +6770,13 @@ AIDecidePlayPokemonCard:
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
 	or a
 	jr z, .skip
 	farcall AIHandlePkmnPowersWhenPlayingPkmnFromHand
-	ld a, OPPACTION_UNK_19
+	ld a, OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
 	farcall AIMakeDecision
 	jr c, .done
 .skip
@@ -6847,13 +6847,13 @@ AIDecideEvolution:
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld a, [wcd18]
 	or a
 	jr z, .asm_16adf
 	farcall AIHandlePkmnPowersWhenPlayingPkmnFromHand
-	ld a, OPPACTION_UNK_19
+	ld a, OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
 	farcall AIMakeDecision
 	jr c, .asm_16aee
 

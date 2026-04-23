@@ -152,7 +152,7 @@ AISamPerformScriptedTurn:
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, SEAKING
 	ld bc, WATER_ENERGY
@@ -184,7 +184,7 @@ AISamPerformScriptedTurn:
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, STARYU_LV15
 	ld bc, WATER_ENERGY
@@ -286,7 +286,7 @@ AIAaronStep2PerformScriptedTurn:
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, GRIMER_LV10
 	ld bc, GRASS_ENERGY
@@ -357,7 +357,7 @@ AIAaronStep3PerformScriptedTurn:
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
@@ -379,10 +379,10 @@ AIAaronStep3PerformScriptedTurn:
 	pop af
 	ldh [hTemp_ffa0], a
 	ld [wTempAIPokemonCard], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	call AIHandlePkmnPowersWhenPlayingPkmnFromHand
-	ld a, OPPACTION_UNK_19
+	ld a, OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
 	farcall AIMakeDecision
 	farcall HandleAIDamageSwap
 	ld de, CHANSEY_LV55
@@ -457,7 +457,7 @@ AIAaronStep3PerformScriptedTurn:
 	farcall AIMakeDecision
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	farcall AIMakeDecision
 	farcall HandleAIDamageSwap
 .asm_4839b

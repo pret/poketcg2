@@ -291,35 +291,35 @@ DEF NO_DAMAGE_OR_EFFECT_AURORA_VEIL  EQU $07
 
 ; OppAction_* constants (OppActionTable)
 	const_def
-	const OPPACTION_ERROR                     ; $00
-	const OPPACTION_PLAY_BASIC_PKMN           ; $01
-	const OPPACTION_EVOLVE_PKMN               ; $02
-	const OPPACTION_PLAY_ENERGY               ; $03
-	const OPPACTION_ATTEMPT_RETREAT           ; $04
-	const OPPACTION_FINISH_NO_ATTACK          ; $05
-	const OPPACTION_PLAY_TRAINER              ; $06
-	const OPPACTION_EXECUTE_TRAINER_EFFECTS   ; $07
-	const OPPACTION_BEGIN_ATTACK              ; $08
-	const OPPACTION_USE_ATTACK                ; $09
-	const OPPACTION_ATTACK_ANIM_AND_DAMAGE    ; $0a
-	const OPPACTION_DRAW_CARD                 ; $0b
-	const OPPACTION_UNK_0C                    ; $0c
-	const OPPACTION_USE_PKMN_POWER            ; $0d
-	const OPPACTION_EXECUTE_PKMN_POWER_EFFECT ; $0e
-	const OPPACTION_FORCE_SWITCH_ACTIVE       ; $0f
-	const OPPACTION_NO_ACTION_0F              ; $10
-	const OPPACTION_NO_ACTION_10              ; $11
-	const OPPACTION_TOSS_COIN_A_TIMES         ; $12
-	const OPPACTION_6B30                      ; $13
-	const OPPACTION_NO_ACTION_13              ; $14
-	const OPPACTION_USE_METRONOME_ATTACK      ; $15
-	const OPPACTION_6B15                      ; $16
-	const OPPACTION_DUEL_MAIN_SCENE           ; $17
-	const OPPACTION_UNK_18                    ; $18
-	const OPPACTION_UNK_19                    ; $19
-	const OPPACTION_UNK_1A                    ; $1a
-	const OPPACTION_UNK_1B                    ; $1b
-	const OPPACTION_UNK_1C                    ; $1c
+	const OPPACTION_ERROR                           ; $00
+	const OPPACTION_PLAY_BASIC_PKMN                 ; $01
+	const OPPACTION_EVOLVE_PKMN                     ; $02
+	const OPPACTION_PLAY_ENERGY                     ; $03
+	const OPPACTION_ATTEMPT_RETREAT                 ; $04
+	const OPPACTION_FINISH_NO_ATTACK                ; $05
+	const OPPACTION_PLAY_TRAINER                    ; $06
+	const OPPACTION_EXECUTE_TRAINER_EFFECTS         ; $07
+	const OPPACTION_BEGIN_ATTACK                    ; $08
+	const OPPACTION_USE_ATTACK                      ; $09
+	const OPPACTION_ATTACK_ANIM_AND_DAMAGE          ; $0a
+	const OPPACTION_DRAW_CARD                       ; $0b
+	const OPPACTION_USE_PKMN_POWER_NO_EFF2          ; $0c
+	const OPPACTION_USE_PKMN_POWER                  ; $0d
+	const OPPACTION_EXECUTE_PKMN_POWER_EFFECT       ; $0e
+	const OPPACTION_FORCE_SWITCH_ACTIVE             ; $0f
+	const OPPACTION_NO_ACTION_0F                    ; $10
+	const OPPACTION_NO_ACTION_10                    ; $11
+	const OPPACTION_TOSS_COIN_A_TIMES               ; $12
+	const OPPACTION_6B30                            ; $13
+	const OPPACTION_NO_ACTION_13                    ; $14
+	const OPPACTION_USE_METRONOME_ATTACK            ; $15
+	const OPPACTION_6B15                            ; $16
+	const OPPACTION_DUEL_MAIN_SCENE                 ; $17
+	const OPPACTION_PROCESS_PLAYED_PKMN             ; $18
+	const OPPACTION_PROCESS_TRIGGERED_PKMN_POWER    ; $19
+	const OPPACTION_REACT_TO_COMPUTER_ERROR         ; $1a
+	const OPPACTION_REACT_TO_CHALLENGE              ; $1b
+	const OPPACTION_ACCEPT_CHALLENGE_PUT_BASIC_PKMN ; $1c
 DEF NUM_OPP_ACTIONS EQU const_value
 
 ; constants for PracticeDuelActionTable entries

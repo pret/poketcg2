@@ -5371,13 +5371,13 @@ ProcessPlayedPokemonCard:
 	ldh [hTempCardIndex_ff9f], a
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	ldh [hTemp_ffa0], a
-	ld a, OPPACTION_UNK_18
+	ld a, OPPACTION_PROCESS_PLAYED_PKMN
 	call SetOppAction_SerialSendDuelData
 	call .Process
 	ret c
 	ld a, EFFECTCMDTYPE_REQUIRE_SELECTION
 	call TryExecuteEffectCommandFunction
-	ld a, OPPACTION_UNK_19
+	ld a, OPPACTION_PROCESS_TRIGGERED_PKMN_POWER
 	call SetOppAction_SerialSendDuelData
 	call .TriggerPkmnPower
 	ret
