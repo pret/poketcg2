@@ -2278,11 +2278,11 @@ PracticeDuel_RepeatInstructions:
 	ldtx hl, PracticeDuelMasonIncorrectRetryText
 	call PrintPracticeDuelDrMasonInstructions
 	; restart the turn from the saved data of the previous turn
-	ld a, BANK("SRAM2")
+	ld a, BANK(sBackupCurrentDuel)
 	call BankswitchSRAM
 	ld de, sBackupCurrentDuel
 	farcall LoadSavedDuelDataFromDE
-	xor a
+	xor a ; BANK("SRAM0")
 	call BankswitchSRAM
 	call DisableSRAM
 	; return carry in order to repeat instructions

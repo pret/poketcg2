@@ -199,9 +199,9 @@ ClearSavedDuel:
 ; called between each two-player turn, just after player draws card (ROM bank 1 loaded)
 ; uses SRAM2 and SRAM3 as with tcg1
 SaveDuelStateToSRAM:
-	ld a, BANK("SRAM2")
-	call BankswitchSRAM
 ; save duel data to sBackupCurrentDuel
+	ld a, BANK(sBackupCurrentDuel)
+	call BankswitchSRAM
 	call SaveDuelData
 	xor a ; BANK("SRAM0")
 	call BankswitchSRAM
@@ -217,7 +217,7 @@ SaveDuelStateToSRAM:
 	ld h, a
 	add hl, hl
 	add hl, hl
-	ld a, BANK("SRAM3")
+	ld a, BANK(sGfxBuffer0)
 	call BankswitchSRAM
 ; save wDuelTurns, non-turn holder's arena card ID, turn holder's arena card ID
 	push hl
