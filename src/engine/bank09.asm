@@ -225,12 +225,14 @@ CheckIfHasSpaceInBench:
 	ccf
 	ret
 
-; draw duel main scene, then print "<Arena Pokémon>'s <attack>"
+; draw duel main scene, then print "<Pokemon Lv.XX>の\n<attack>!" text
+; ("<arena pokemon>'s <attack>!")
 DrawDuelMainScene_PrintPokemonsAttackText::
 	bank1call DrawDuelMainScene
 ; fallthrough
 
-; print "<Arena Pokémon>'s <attack>"
+; print "<Pokemon Lv.XX>の\n<attack>!" text
+; ("<arena pokemon>'s <attack>!")
 PrintPokemonsAttackText:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -250,7 +252,8 @@ PrintPokemonsAttackText:
 	call DrawWideTextBox_PrintText
 	ret
 
-DisplayUsedAttackScreen:
+; display attack detail when the opponent's Pokemon uses an attack
+DisplayOpponentUsedAttackScreen:
 	bank1call ZeroObjectPositionsAndToggleOAMCopy
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
@@ -298,6 +301,8 @@ DisplayUsedAttackScreen:
 	pop hl
 ; fallthrough
 
+; hl = description ptr (WRAM)
+; de = coordinates
 PrintDescriptionFromHL:
 	push de
 	push hl
@@ -327,7 +332,7 @@ DisplayUsePokemonPowerScreen:
 	call LoadDuelCheckPokemonScreenTiles
 	bank1call Func_6c12
 	pop hl
-	call Func_24494
+	call PrintTextToDescriptionScreenTextBox
 	bank1call PrintPlayAreaCardInformationAndLocation
 	lb de, 1, 4
 	call InitTextPrinting
@@ -336,7 +341,7 @@ DisplayUsePokemonPowerScreen:
 	lb de, 1, 6
 	ld hl, wLoadedCard1Atk1Description
 	bank1call PrintAttackOrCardDescription
-	ld hl, wLoadedCard1Atk1Description + $2
+	ld hl, wLoadedCard1Atk1Description + 2
 	ld a, [hli]
 	or [hl]
 	ret z ; no second page
@@ -347,30 +352,31 @@ DisplayUsePokemonPowerScreen:
 	call InitTextPrinting
 	ld hl, wLoadedCard1Atk1Name
 	call InitTextPrinting_ProcessTextFromPointerToID
-	ld hl, wLoadedCard1Atk1Description + $2
+	ld hl, wLoadedCard1Atk1Description + 2
 	lb de, 1, 6
 	call PrintDescriptionFromHL
 	ret
 
-Func_24459:
+PrintUsedTrainerCardDescription:
 	call EmptyScreen
 	lb de, 1, 1
 	ld hl, wLoadedCard1Name
 	call InitTextPrinting_ProcessTextFromPointerToID
 	ldtx hl, UsedText
-	call Func_24494
+	call PrintTextToDescriptionScreenTextBox
 	lb de, 1, 4
-	ld hl, wLoadedCard1PreEvoName
+	ld hl, wLoadedCard1NonPokemonDescription
 	bank1call PrintAttackOrCardDescription
-	ld hl, wLoadedCard1Atk1EnergyCost
+	ld hl, wLoadedCard1NonPokemonDescription + 2
 	ld a, [hli]
 	or [hl]
-	jr z, .done
+	jr z, .done ; no second page
+; print second page info
 	call WaitForWideTextBoxInput
 	lb de, 1, 1
 	ld hl, wLoadedCard1Name
 	call InitTextPrinting_ProcessTextFromPointerToID
-	ld hl, wLoadedCard1Atk1EnergyCost
+	ld hl, wLoadedCard1NonPokemonDescription + 2
 	lb de, 1, 4
 	call PrintDescriptionFromHL
 .done
@@ -378,7 +384,7 @@ Func_24459:
 	ret
 
 ; hl = text ID
-Func_24494:
+PrintTextToDescriptionScreenTextBox:
 	push hl
 	call DrawWideTextBox
 	ld a, 19
@@ -639,7 +645,7 @@ OppAction_AttemptRetreat:
 OppAction_PlayTrainerCard:
 	bank1call LoadNonPokemonCardEffectCommands
 	call DisplayUsedTrainerCardDetailScreen
-	call Func_24459
+	call PrintUsedTrainerCardDescription
 	call ExchangeRNG
 	ld a, TRUE
 	ld [wSkipDuelistIsThinkingDelay], a
@@ -664,7 +670,7 @@ OppAction_BeginUseAttack:
 	ld e, a
 	call CopyAttackDataAndDamage_FromDeckIndex
 	call UpdateTempDuelistCardIDsAndClearTwoTurnDuelVars
-	call DisplayUsedAttackScreen
+	call DisplayOpponentUsedAttackScreen
 	call PrintPokemonsAttackText
 	call WaitForWideTextBoxInput
 	call ExchangeRNG
