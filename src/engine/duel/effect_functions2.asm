@@ -4693,7 +4693,7 @@ HypnoMindShockEffect:
 	set UNAFFECTED_BY_WEAKNESS_RESISTANCE_F, [hl]
 	ret
 
-Func_65cf9:
+ClefairyDollMindShockEffect:
 	ld a, ATK_ANIM_PSYCHIC_HIT
 	ld [wLoadedAttackAnimation], a
 	ld hl, wDamage + 1

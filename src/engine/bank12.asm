@@ -3899,13 +3899,13 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 ; and, in case of tie, outputs the card with highest
 ; remaining HP
 ; input:
-; - e = PLAY_AREA_* constant to start looking from
+; - e = PLAY_AREA_* constant to start looking from (PLAY_AREA_ARENA or PLAY_AREA_BENCH_1)
 ; output:
 ; - a = PLAY_AREA_* constant chosen
 Func_4a3dc:
 	xor a
 	ld d, MAX_PLAY_AREA_POKEMON * 2
-	ld hl, wCurDeckCards
+	ld hl, wTempPlayAreaList
 .loop_clear
 	ld [hli], a
 	dec d
@@ -3914,10 +3914,13 @@ Func_4a3dc:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp e
-	jr nz, .asm_4a3ee
+	jr nz, .tally
+; a = e = 1: starting with PLAY_AREA_BENCH_1 but no benched pkmn
+; so return PLAY_AREA_ARENA
 	xor a
 	ret
-.asm_4a3ee
+
+.tally
 	ld d, a ; number of Pokémon in Play Area
 	ld b, 0
 .loop_play_area
@@ -3930,14 +3933,14 @@ Func_4a3dc:
 	push bc
 	ld c, e
 	ld b, $00
-	ld hl, wCurDeckCards
+	ld hl, wTempPlayAreaEnergyList
 	add hl, bc
 	ld [hli], a ; num attached energies
 	ld [hl], $ff ; terminating byte
 	ld a, e
 	add DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
-	ld hl, $d1ca
+	ld hl, wTempPlayAreaHPList
 	add hl, bc
 	pop bc
 	ld [hl], a ; num remaining HP
@@ -3954,7 +3957,7 @@ Func_4a3dc:
 	push bc
 	ld c, e
 	ld b, $00
-	ld hl, wCurDeckCards
+	ld hl, wTempPlayAreaEnergyList
 	add hl, bc
 	ld a, [hl]
 	cp $ff
@@ -3966,7 +3969,7 @@ Func_4a3dc:
 	push bc
 	ld c, e
 	ld b, $00
-	ld hl, $d1ca
+	ld hl, wTempPlayAreaHPList
 	add hl, bc
 	ld a, [hl]
 	pop bc

@@ -6882,7 +6882,7 @@ Func_16af1:
 ; and initialize the AI score
 	ld [wTempAI], a
 	ldh [hTempPlayAreaLocation_ff9d], a
-	farcall $a, $597a
+	farcall AIDecideSpecialEvolutions
 	ld [wAIScore], a
 
 ; check if the card can use any attacks
@@ -7064,7 +7064,7 @@ Func_16af1:
 ; if deck has 2nd stage card to evolve evolution card, raise AI score
 .check_2nd_stage_deck
 	ld a, [wTempAIPokemonCard]
-	farcall $a, $5921
+	farcall CheckIfPokemonEvolutionIsFoundInDeck
 	jr nc, .check_damage
 	ld a, 1
 	call AIEncourage
@@ -9093,7 +9093,7 @@ GetAIScoreOfAttack:
 	ld a, $11
 	call CheckLoadedAttackFlag
 	jr nc, .asm_17935
-	farcall $a, $4dff
+	farcall HandleSpecialAIAttacks
 	cp $80
 	jr c, .asm_1792c
 	sub $80

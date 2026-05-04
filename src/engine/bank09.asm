@@ -1937,19 +1937,19 @@ ConvertSpecialTrainerCardToPokemon::
 	tx DiscardActionDescription ; CARD_DATA_ATTACK1_DESCRIPTION
 	ds CARD_DATA_ATTACK1_CATEGORY - (CARD_DATA_ATTACK1_DESCRIPTION + 2)
 	db POKEMON_POWER      ; CARD_DATA_ATTACK1_CATEGORY
-	dw $4896 ; TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
+	dw TrainerCardAsPokemonEffectCommands ; CARD_DATA_ATTACK1_EFFECT_COMMANDS
 	ds CARD_DATA_RETREAT_COST - (CARD_DATA_ATTACK1_EFFECT_COMMANDS + 2)
 	db UNABLE_RETREAT     ; CARD_DATA_RETREAT_COST
 	ds PKMN_CARD_DATA_LENGTH - (CARD_DATA_RETREAT_COST + 1)
 
 .mind_shock_attack_data
 	energy 0 ; energies
-	tx ClefairyDollsMindShockName ; name
-	tx ClefairyDollsMindShockDescription ; description
+	tx ClefairyDollMindShockName ; name
+	tx ClefairyDollMindShockDescription ; description
 	dw NONE ; description (cont)
 	db 30 ; damage
 	db DAMAGE_NORMAL ; category
-	dw $50ab ; effect commands
+	dw ClefairyDollMindShockEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3

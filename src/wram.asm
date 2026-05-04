@@ -2096,9 +2096,22 @@ wTempCardList:: ; d122
 
 	ds $2
 
+UNION
+
+; holds attached energies and remaining HP
+wTempPlayAreaList:: ; d1c4
+
+wTempPlayAreaEnergyList:: ; d1c4
+	ds MAX_PLAY_AREA_POKEMON
+wTempPlayAreaHPList:: ; d1ca
+	ds MAX_PLAY_AREA_POKEMON
+
+NEXTU
 ; holds cards for the current deck
 wCurDeckCards:: ; d1c4
 	ds 2 * (DECK_CONFIG_BUFFER_SIZE + 1)
+
+ENDU
 
 ; list of all the different cards in a deck configuration
 wUniqueDeckCardList:: ; d266

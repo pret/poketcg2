@@ -465,8 +465,8 @@ TextOffsets::
 	textpointer EffectTargetCardsUnitText                             ; 0x01cb
 	textpointer EffectTargetGeneralUnitText                           ; 0x01cc
 	textpointer DuelistDrawCardsText                                  ; 0x01cd
-	textpointer ClefairyDollsMindShockName                            ; 0x01ce
-	textpointer ClefairyDollsMindShockDescription                     ; 0x01cf
+	textpointer ClefairyDollMindShockName                             ; 0x01ce
+	textpointer ClefairyDollMindShockDescription                      ; 0x01cf
 	textpointer DiscardingXCardsPromptText                            ; 0x01d0
 	textpointer ProcedureForBurningFireText                           ; 0x01d1
 	textpointer ChooseHowManyFoodCountersToRemoveText                 ; 0x01d2
