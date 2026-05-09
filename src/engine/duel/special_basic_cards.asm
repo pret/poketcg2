@@ -70,7 +70,7 @@ AIDecideSpecialBasicCards:
 	; or if it decides it will retreat this turn
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jr c, .discourage_legendary_birds
-	call CheckIfPokemonCanUseNonResidualAttack
+	call CanArenaCardUseNonResidualAttack
 	jr nc, .discourage_legendary_birds
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	jr c, .discourage_legendary_birds

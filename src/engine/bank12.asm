@@ -1828,7 +1828,7 @@ AIDeckSpecificRetreatLogic:
 	xor a ; PLAY_AREA_ARENA
 	farcall CheckIfCanDamageDefendingPokemon
 	jr nc, .asm_48f7b ; can't damage Mr. Mime
-	farcall CheckIfPokemonCanUseNonResidualAttack
+	farcall CanArenaCardUseNonResidualAttack
 	jr c, .asm_48f81 ; can use non-Residual
 .asm_48f7b
 	call SwapTurn
@@ -2063,15 +2063,15 @@ HandleAIDarkPokemonSearchStrategies:
 	jr nc, .use_pokemon_trader_instead_1
 	ld bc, DARK_IVYSAUR
 	ld de, DARK_VENUSAUR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, BULBASAUR_LV12
 	ld de, DARK_IVYSAUR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, DRATINI_LV10
 	ld de, DARK_DRAGONAIR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ret
 
@@ -2079,17 +2079,17 @@ HandleAIDarkPokemonSearchStrategies:
 	; otherwise try using Pokémon Trader instead
 	ld bc, DARK_IVYSAUR
 	ld de, DARK_VENUSAUR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_VENUSAUR
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, BULBASAUR_LV12
 	ld de, DARK_IVYSAUR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_IVYSAUR
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, DRATINI_LV10
 	ld de, DARK_DRAGONAIR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_DRAGONAIR
 	jp c, AITryUsePokemonTraderToSearchCard
 	ret
@@ -2195,15 +2195,15 @@ HandleAIDarkPokemonSearchStrategies:
 	jr nc, .use_pokemon_trader_instead_2
 	ld bc, DARK_CHARMELEON
 	ld de, DARK_CHARIZARD
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, CHARMANDER_LV9
 	ld de, DARK_CHARMELEON
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ret
 
@@ -2211,17 +2211,17 @@ HandleAIDarkPokemonSearchStrategies:
 	; otherwise try using Pokémon Trader instead
 	ld bc, DARK_CHARMELEON
 	ld de, DARK_CHARIZARD
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CHARIZARD
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, CHARMANDER_LV9
 	ld de, DARK_CHARMELEON
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CHARMELEON
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CLEFABLE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ret
@@ -2327,15 +2327,15 @@ HandleAIDarkPokemonSearchStrategies:
 	jr nc, .use_pokemon_trader_instead_3
 	ld bc, DARK_WARTORTLE
 	ld de, DARK_BLASTOISE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, SQUIRTLE_LV8
 	ld de, DARK_WARTORTLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ret
 
@@ -2343,17 +2343,17 @@ HandleAIDarkPokemonSearchStrategies:
 	; otherwise try using Pokémon Trader instead
 	ld bc, DARK_WARTORTLE
 	ld de, DARK_BLASTOISE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_BLASTOISE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, SQUIRTLE_LV8
 	ld de, DARK_WARTORTLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_WARTORTLE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CLEFABLE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ret
@@ -2459,15 +2459,15 @@ HandleAIDarkPokemonSearchStrategies:
 	jr nc, .use_pokemon_trader_instead_4
 	ld bc, DARK_MACHOKE
 	ld de, DARK_MACHAMP
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, MACHOP_LV20
 	ld de, DARK_MACHOKE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ret
 
@@ -2475,17 +2475,17 @@ HandleAIDarkPokemonSearchStrategies:
 	; otherwise try using Pokémon Trader instead
 	ld bc, DARK_MACHOKE
 	ld de, DARK_MACHAMP
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_MACHAMP
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, MACHOP_LV20
 	ld de, DARK_MACHOKE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_MACHOKE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CLEFABLE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ret
@@ -2570,15 +2570,15 @@ HandleAIDarkPokemonSearchStrategies:
 	jr nc, .use_pokemon_trader_instead_5
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, PSYDUCK_LV16
 	ld de, DARK_GOLDUCK
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ld bc, DRATINI_LV12
 	ld de, DARK_DRAGONAIR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	jp c, AITryUseTheBossWayToSearchCard
 	ret
 
@@ -2586,17 +2586,17 @@ HandleAIDarkPokemonSearchStrategies:
 	; otherwise try using Pokémon Trader instead
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_CLEFABLE
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, PSYDUCK_LV16
 	ld de, DARK_GOLDUCK
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_GOLDUCK
 	jp c, AITryUsePokemonTraderToSearchCard
 	ld bc, DRATINI_LV12
 	ld de, DARK_DRAGONAIR
-	farcall FindUsableEvolutionInDeck
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, DARK_DRAGONAIR
 	jp c, AITryUsePokemonTraderToSearchCard
 	ret
@@ -3624,7 +3624,7 @@ FindDifferentPokemonCardInHand:
 	or a
 	ret
 
-; return carry if Pokémon in Play Area
+; return carry with a = deck index if Pokémon in Play Area
 ; has a specific energy card attached
 ; input:
 ; - a = PLAY_AREA_* constant
@@ -3833,15 +3833,15 @@ AIHandlePkmnPowersWhenPlayingPkmnFromHand:
 .StrangeDeck
 	ld bc, PSYDUCK_LV16
 	ld de, DARK_GOLDUCK
-	farcall Func_39a8b
+	farcall CheckReelInEvoLineTarget
 	call c, .TryAddCardToList
 	ld bc, SLOWPOKE_LV16
 	ld de, DARK_SLOWBRO
-	farcall Func_39a8b
+	farcall CheckReelInEvoLineTarget
 	call c, .TryAddCardToList
 	ld bc, DROWZEE_LV10
 	ld de, DARK_HYPNO
-	farcall Func_39a8b
+	farcall CheckReelInEvoLineTarget
 	call c, .TryAddCardToList
 	ret c
 	ld de, MR_MIME_LV20
@@ -4024,7 +4024,47 @@ CountCardIDInHand:
 .not_found
 	scf
 	ret
-; 0x4a46c
+
+; de = card ID
+; return a = number of cards in discard pile with that card ID
+; set carry if not found
+CountCardIDInDiscardPile:
+	push de
+	bank1call CreateDiscardPileCardList
+	pop de
+	ld b, 0
+	ld hl, wDuelTempList
+.loop_discard_pile_cards
+	ld a, [hli]
+	cp $ff
+	jr z, .tally
+	push de
+	push bc
+	push hl
+	call GetCardIDFromDeckIndex
+	pop hl
+	pop bc
+	ld c, d
+	ld a, e
+	pop de
+	cp e
+	jr nz, .loop_discard_pile_cards
+	ld a, c
+	cp d
+	jr nz, .loop_discard_pile_cards
+	inc b
+	jr .loop_discard_pile_cards
+
+.tally
+	ld a, b
+	or a
+	jr z, .not_found
+	ret
+
+.not_found
+	scf
+	ret
+; 0x4a497
 
 SECTION "Bank 12@64ae", ROMX[$64ae], BANK[$12]
 

@@ -1566,6 +1566,7 @@ wd038:: ; d038
 
 wAIDuelVarsEnd::
 
+wTempAIHandDuplicatePokemonCardDeckIndex:: ; d043
 	ds $1
 
 ; when AI decides which Bench Pokemon to switch to
@@ -1635,6 +1636,7 @@ wAICannotDamage:: ; d05f
 wTempAI:: ; d060
 	ds $1
 
+wTempAI2:: ; d061
 wd061:: ; d061
 	ds $1
 
@@ -1675,13 +1677,15 @@ wAISecondAttackDamage:: ; d071
 wd072:: ; d072
 	ds $1
 
-wd073:: ; d073
+wTempAISingleTargetCardDeckIndex:: ; d073
 	ds $1
 
-wd074:: ; d074
+; card count, energy count, etc.
+wTempAICount1:: ; d074
 	ds $1
 
-wd075:: ; d075
+; energy count, WR_* constant, etc.
+wTempAICount2:: ; d075
 	ds $1
 
 wd076:: ; d076
@@ -1736,7 +1740,14 @@ wAIPkmnPowerUserCardIndex:: ; d084
 wd084:: ; d084
 	ds $1
 
-	ds $d
+	ds $6
+
+wTempAITargetPokemonCardDeckIndex:: ; d08b
+	ds $1
+wTempAITargetNonPokemonCardDeckIndex:: ; d08c
+	ds $1
+
+	ds $5
 
 ; stores the deck index (0-59) of the Trainer card
 ; the AI intends to play from hand.
@@ -1756,7 +1767,14 @@ wAITrainerCardPhase:: ; d095
 wAITrainerCardParameter:: ; d096
 	ds $1
 
-	ds $6
+wTempAIMultiTargetCardDeckIndex1:: ; d097
+	ds $1
+wTempAIMultiTargetCardDeckIndex2:: ; d098
+	ds $1
+wTempAIMultiTargetCardDeckIndex3:: ; d099
+	ds $1
+
+	ds $3
 
 ; used to store previous/current flags of AI actions
 ; see AI_FLAG_* constants

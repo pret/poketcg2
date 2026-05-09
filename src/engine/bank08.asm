@@ -321,7 +321,7 @@ Func_209fc:
 	ret nz ; used Gust of Wind
 
 	; a = PLAY_AREA_ARENA
-	farcall CheckIfPokemonCanUseNonResidualAttack
+	farcall CanArenaCardUseNonResidualAttack
 	ret nc ; cannot use non-residual attack
 
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
@@ -464,11 +464,11 @@ Func_209fc:
 	jr .loop_bench
 
 .PoisonMistDeck:
-	farcall Func_3a441
+	farcall PoisonMistDeckAIDecideGustOfWind
 	ret
 
 .UltraRemovalDeck:
-	farcall Func_3a803
+	farcall UltraRemovalDeckAIDecideGustOfWind
 	ret
 
 .PsychicBattleDeck:
