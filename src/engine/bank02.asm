@@ -1463,12 +1463,11 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and %00001111
-	ret nz ; only update cursor if blink's lower nibble is 0
+	and CURSOR_BLINK_PERIOD_MASK
+	ret nz
 
-; draw cursor
 	ld a, SYM_CURSOR_R
-	bit 4, [hl] ; only draw cursor if blink counter's fourth bit is not set
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, DrawCheckMenuCursor_YourOrOppPlayArea
 ; fallthrough
 
@@ -1960,9 +1959,10 @@ ENDR
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $0f
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
-	bit 4, [hl]
+
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr nz, ZeroObjectPositionsAndToggleOAMCopy_Bank02
 
 .DrawCursor:
@@ -3023,11 +3023,11 @@ HandleCheckMenuInput:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and %00001111
-	ret nz  ; only update cursor if blink's lower nibble is 0
+	and CURSOR_BLINK_PERIOD_MASK
+	ret nz
 
 	ld a, SYM_CURSOR_R
-	bit 4, [hl] ; only draw cursor if blink counter's fourth bit is not set
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, DrawCheckMenuCursor
 
 ; draw a space in the cursor position
@@ -5066,10 +5066,11 @@ HandleCardSelectionCursorBlink:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $0f
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
+
 	ld a, [wMenuVisibleCursorTile]
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, DrawHorizontalListCursor
 
 DrawHorizontalListCursor_Invisible:
@@ -5243,10 +5244,11 @@ HandleScrollListInput:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and %1111
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
+
 	ld a, [wMenuVisibleCursorTile]
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, DrawListCursor
 
 DrawListCursor_Invisible:

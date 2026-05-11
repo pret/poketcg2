@@ -6931,10 +6931,11 @@ HandleScrollMenu:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and %1111
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
+
 	ld a, [wMenuVisibleCursorTile]
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, .draw_cursor
 .draw_invisible_cursor
 	ld a, [wMenuInvisibleCursorTile]
@@ -6966,9 +6967,113 @@ HandleScrollMenu:
 .draw_visible_cursor:
 	ld a, [wMenuVisibleCursorTile]
 	jr .draw_cursor
-; 0x3ac82
 
-SECTION "Bank e@6d06", ROMX[$6d06], BANK[$e]
+; HandleCheckMenuInput variant
+Func_3ac82:
+	xor a
+	ld [wMenuInputSFX], a
+	ld a, [wCheckMenuCursorXPosition]
+	ld d, a
+
+	ldh a, [hDPadHeld]
+	or a
+	jr z, .no_pad
+	bit B_PAD_LEFT, a
+	jr nz, .horizontal
+	bit B_PAD_RIGHT, a
+	jr z, .no_pad
+
+; x coordinate
+; incr if even, decr if odd
+.horizontal
+	ld a, d
+	xor 1
+	ld d, a
+	jr .erase ; unnecessary jump
+.erase
+	ld a, SFX_CURSOR
+	ld [wMenuInputSFX], a
+	push de
+	call .erase_cursor
+	pop de
+
+; update x
+	ld a, d
+	ld [wCheckMenuCursorXPosition], a
+
+; reset blink
+	xor a
+	ld [wScrollMenuCursorBlinkCounter], a
+
+.no_pad
+	ldh a, [hKeysPressed]
+	and PAD_A | PAD_B
+	jr z, .no_input
+	and PAD_A
+	jr nz, .a_btn_pressed
+
+; b btn pressed
+	ld a, MENU_CANCEL
+	farcall PlaySFXConfirmOrCancel
+	scf
+	ret
+
+.a_btn_pressed
+	call .display_cursor
+	ld a, MENU_CONFIRM
+	farcall PlaySFXConfirmOrCancel
+	scf
+	ret
+
+.no_input
+	ld a, [wMenuInputSFX]
+	or a
+	jr z, .check_blink
+	call PlaySFX
+
+.check_blink
+	ld hl, wScrollMenuCursorBlinkCounter
+	ld a, [hl]
+	inc [hl]
+	and CURSOR_BLINK_PERIOD_MASK
+	ret nz
+
+	ld a, SYM_CURSOR_R
+	bit B_CURSOR_BLINK_PERIOD, [hl]
+	jr z, .draw_cursor
+
+; draw a space in the cursor position
+.erase_cursor
+	ld a, SYM_SPACE
+; fallthrough
+
+; for a = tile byte,
+; draw it in the cursor position
+; by converting the position to coordinates
+.draw_cursor
+	ld e, a
+	ld a, 10
+	ld l, a
+	ld a, [wCheckMenuCursorXPosition]
+	ld h, a
+	call HtimesL
+	ld a, l
+	add 1
+	ld b, a
+	ld a, [wCheckMenuCursorYPosition]
+	sla a
+	add 14
+	ld c, a
+
+; b = 10x + 1, c = 2y + 14
+	ld a, e
+	call WriteByteToBGMap0
+	or a
+	ret
+
+.display_cursor
+	ld a, SYM_CURSOR_R
+	jr .draw_cursor
 
 FillBoosterPackMenuItems:
 	call UpdateBoosterPackMenuArrows
@@ -7059,12 +7164,12 @@ UpdateBoosterPackMenuArrows:
 	ld a, [wScrollMenuScrollOffset]
 	cp $03
 	jr nc, .no_down_arrow
-	xor a
+	xor a ; FALSE
 	ld [wUnableToScrollDown], a
 	ld a, SYM_CURSOR_D
 	jr .draw_down_arrow
 .no_down_arrow
-	ld a, $01
+	ld a, TRUE
 	ld [wUnableToScrollDown], a
 	ld a, SYM_BOX_TOP
 .draw_down_arrow

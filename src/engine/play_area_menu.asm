@@ -703,9 +703,10 @@ ENDR
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $0f
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
-	bit 4, [hl]
+
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr nz, ZeroObjectPositionsAndToggleOAMCopy_Bank06
 
 .DrawCursor:
