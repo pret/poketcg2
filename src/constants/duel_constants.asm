@@ -449,3 +449,10 @@ DEF PRIZES_6    EQU $06
 	const CARDSEARCH_LIGHTNING_ENERGY            ; $c
 	const CARDSEARCH_UNK_D                       ; $d
 	const CARDSEARCH_BASIC_POKEMON               ; $e
+
+; search filter by AI
+; different from FILTER_ONLY_*
+	const_def
+	const SEARCH_ONLY_TRAINER ; $0
+	const SEARCH_ONLY_PKMN    ; $1
+	const SEARCH_ONLY_ENERGY  ; $2

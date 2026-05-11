@@ -2535,11 +2535,9 @@ CheckIfPokemonEvolutionIsFoundInDeck:
 	scf
 	ret
 
-; returns carry if Pokémon in play area location in a
-; has any attack that is usable and non-residual
-; input:
-; - a = PLAY_AREA_* constant
-CheckIfPokemonCanUseNonResidualAttack:
+; return carry if the Arena Pokémon has any attack that is
+; usable and non-residual
+CanArenaCardUseNonResidualAttack:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER

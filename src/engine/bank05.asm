@@ -9357,7 +9357,7 @@ AITryUseAttack:
 ; input:
 ;	a = energy card attached to Pokémon to check
 ;	[wTempCardType] = TYPE_ENERGY_* of given Pokémon
-;	wTempCardID_d0a3 = card index of Pokémon card to check
+;	wTempCardID_d0a3 = card ID of Pokémon card to check
 CheckIfEnergyIsUseful:
 	push hl
 	push de

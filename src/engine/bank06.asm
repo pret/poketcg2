@@ -90,11 +90,11 @@ HandleCheckMenuInput_Bank06:
 	ld hl, wScrollMenuCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and %00001111
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
 
 	ld a, SYM_CURSOR_R
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, .draw_tile
 .erase_tile
 	ld a, SYM_SPACE

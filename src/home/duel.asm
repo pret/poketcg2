@@ -364,15 +364,14 @@ CreateDeckCardList::
 	scf
 	ret
 
-; fill wDuelTempList with the turn holder's energy cards
-; in the arena or in a bench slot (their 0-59 deck indexes).
-; if a == 0: search in CARD_LOCATION_ARENA
-; if a != 0: search in CARD_LOCATION_BENCH_[A]
+; fill wDuelTempList with the turn holder's energy cards (their 0-59 deck indexes)
+; at PLAY_AREA_* location in a (then converted to CARD_LOCATION_*)
+; and return count in a and b
 ; return carry if no energy cards were found
 CreateArenaOrBenchEnergyCardList::
 	or CARD_LOCATION_PLAY_AREA
 	ld c, a
-	ld b, $00
+	ld b, 0
 	ld de, wDuelTempList
 	ld a, DUELVARS_CARD_LOCATIONS
 	get_turn_duelist_var
@@ -383,7 +382,7 @@ CreateArenaOrBenchEnergyCardList::
 	ld a, l
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Type]
-	and 1 << TYPE_ENERGY_F
+	and TYPE_ENERGY
 	jr z, .skip_card ; jump if Pokemon or trainer card
 	ld a, l
 	ld [de], a ; add to wDuelTempList

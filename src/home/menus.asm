@@ -272,14 +272,13 @@ HandleDuelMenuInput::
 	and PAD_A
 	jp nz, HandleMenuInput.A_pressed
 .blink_cursor
-	; blink cursor every 16 frames
 	ld hl, wCursorBlinkCounter
 	ld a, [hl]
 	inc [hl]
-	and $f
+	and CURSOR_BLINK_PERIOD_MASK
 	ret nz
 	ld a, SYM_CURSOR_R
-	bit 4, [hl]
+	bit B_CURSOR_BLINK_PERIOD, [hl]
 	jr z, .draw_cursor
 .erase_cursor
 	ld a, SYM_SPACE
