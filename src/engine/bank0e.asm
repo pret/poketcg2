@@ -3585,7 +3585,13 @@ MadPetalsDeckAI_39753:
 	call CheckIfCardIDIsInDeckAndNotInHand
 	ret
 
-Func_397c7:
+; return carry if DCE is attached to player's pkmn in play
+; input:
+; b = starting PLAY_AREA_* location
+; output:
+; a = deck index of found DCE
+; b = found PLAY_AREA_* location
+FindDoubleColorlessAttachedToPlayerPokemonInPlayArea:
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -4317,7 +4323,7 @@ CheckIfCardIDIsInHandOrPlayArea:
 	ret
 
 ; get a random card from list in hl (wDuelTempList)
-; that is different from deck index in e and matches SEARCH_ONLY_* in d,
+; that is different from deck index in e and matches AI_SEARCH_ONLY_* in d,
 ; return carry and a = deck index, and drop that card from the list
 ; no carry and a = $ff if not found
 TakeOutDifferentCardOfSpecificTypeFromListInHL:
@@ -4343,17 +4349,17 @@ TakeOutDifferentCardOfSpecificTypeFromListInHL:
 	jr nz, .energy_card
 ; trainer
 	ld a, d
-	or a ; SEARCH_ONLY_TRAINER
+	or a ; AI_SEARCH_ONLY_TRAINER
 	jr nz, .loop_cards
 	jr .found
 .energy_card
 	ld a, d
-	cp SEARCH_ONLY_ENERGY
+	cp AI_SEARCH_ONLY_ENERGY
 	jr nz, .loop_cards
 	jr .found
 .pkmn_card
 	ld a, d
-	cp SEARCH_ONLY_PKMN
+	cp AI_SEARCH_ONLY_PKMN
 	jr nz, .loop_cards
 
 .found
@@ -4609,7 +4615,7 @@ CheckIfArenaCardCanKnockOutDefendingCard_CheckHand:
 ; if a pkmn duplicate is found, return a = deck index of the second one;
 ; elif a non-pkmn duplicate that is not wAITrainerCardToPlay is found, return a = deck index of the second one;
 ; otherwise return carry (with a = $ff)
-FindDuplicateCards_NonPlayingTrainerCard:
+FindDuplicateCards_IgnoreTrainerCardToPlay:
 	ld a, $ff
 	ld [wTempAITargetPokemonCardDeckIndex], a
 	ld [wTempAITargetNonPokemonCardDeckIndex], a
@@ -4764,7 +4770,7 @@ AITryMasterBall:
 ColorlessAltarAIHandCheck:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 43
+	cp DECK_SIZE - 17
 	ret nc
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
@@ -4860,7 +4866,7 @@ EyeOfTheStormDeckAIHandCheck:
 	jr nc, .check_moon_stone
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 41
+	cp DECK_SIZE - 19
 	jr nc, .check_moon_stone
 	call ColorlessAltarAIHandCheck
 	jr nc, .check_moon_stone
@@ -5092,7 +5098,7 @@ SuddenGrowthDeckAIDecideNightlyGarbageRun:
 .count_deck_pile
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 36
+	cp DECK_SIZE - 24
 	jr c, .check_pkmn_2
 
 ; check pkmn 1
@@ -5201,7 +5207,7 @@ SuddenGrowthDeckAIHandCheck:
 	ld [wd082], a
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld d, SEARCH_ONLY_PKMN
+	ld d, AI_SEARCH_ONLY_PKMN
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .check_hand_energy_1
@@ -5214,14 +5220,14 @@ SuddenGrowthDeckAIHandCheck:
 	ret
 
 .check_hand_energy_1
-	ld d, SEARCH_ONLY_ENERGY
+	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 
 .check_hand_energy_2
-	ld d, SEARCH_ONLY_ENERGY
+	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
@@ -5249,7 +5255,7 @@ SuddenGrowthDeckAIDecideProfessorOak:
 .count_deck_pile
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 46
+	cp DECK_SIZE - 14
 	ret nc
 
 	ld de, NIGHTLY_GARBAGE_RUN
@@ -5261,7 +5267,7 @@ SuddenGrowthDeckAIDecideProfessorOak:
 	ld [wd082], a
 	call CreateHandCardList
 	ld hl, wDuelTempList
-	ld d, SEARCH_ONLY_PKMN
+	ld d, AI_SEARCH_ONLY_PKMN
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
@@ -5544,7 +5550,7 @@ BadGuysDeckAIHandCheck:
 .skip_oak
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp 49
+	cp DECK_SIZE - 11
 	jr c, .skip_bill
 	ld de, BILL
 	farcall LookForCardIDInHandList
@@ -6357,7 +6363,7 @@ UltraRemovalDeckAIDecideGustOfWind:
 	farcall CheckIfSelectedAttackIsUnusable
 	jr c, .no_carry ; Hyper Beam not ready
 	ld b, PLAY_AREA_BENCH_1
-	call Func_397c7
+	call FindDoubleColorlessAttachedToPlayerPokemonInPlayArea
 	ld a, b
 	ret c ; found Double Colorless energy
 	call SwapTurn

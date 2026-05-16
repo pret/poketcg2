@@ -1172,12 +1172,12 @@ ResetDevolvedCardStatus:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	get_turn_duelist_var
-	ld [hl], $00
+	ld [hl], 0
 ; reset flags
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD_FLAGS
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ret
 
 ; prompts the Player with a Yes/No question
@@ -9168,7 +9168,7 @@ DealStareDamage:
 	ldh a, [hTemp_ffa0]
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 
 .done
 	call SwapTurn

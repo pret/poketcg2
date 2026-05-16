@@ -56,7 +56,7 @@ AIDecideSpecialEvolutions:
 	jp z, .TrainerImprisonDeck
 
 .standard_score:
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .GreatDragonDeck:
@@ -95,7 +95,7 @@ AIDecideSpecialEvolutions:
 	xor a
 	ret
 .encourage_isaac
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Alakazam line: +10;
@@ -107,7 +107,7 @@ AIDecideSpecialEvolutions:
 	cphl KADABRA_LV39
 	jp nz, .standard_score
 .encourage_murray
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Drowzee: neutral
@@ -120,7 +120,7 @@ AIDecideSpecialEvolutions:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
 	jp nc, .standard_score
-	ld a, 123
+	ld a, AI_SCORE_NEUTRAL - 5
 	ret
 
 ; Exeggcute: +5;
@@ -129,7 +129,7 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl EXEGGCUTE
 	jp nz, .standard_score
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; active: neutral
@@ -138,16 +138,16 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
-; 138
+; +10
 .RainDanceConfusionDeck:
 .QuickAttackDeck:
 .RockBlastDeck:
 .RunningWildDeck:
 .EverybodysFriendDeck:
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Growlithe: neutral
@@ -167,10 +167,10 @@ AIDecideSpecialEvolutions:
 	ld b, PLAY_AREA_ARENA
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .encourage_ken
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 .encourage_ken
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Drowzee: neutral if active, -10 if benched
@@ -182,7 +182,7 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Fossil: +10
@@ -191,7 +191,7 @@ AIDecideSpecialEvolutions:
 	ld hl, wLoadedCard2ID
 	cphl MYSTERIOUS_FOSSIL
 	jp nz, .standard_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; Dark Dragonair:
@@ -221,10 +221,10 @@ AIDecideSpecialEvolutions:
 	or a
 	jr nz, .discourage_tap
 .encourage_tap
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_tap
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Gastly: +10;
@@ -251,10 +251,10 @@ AIDecideSpecialEvolutions:
 	cp 6
 	jr nz, .discourage_yosuke
 .encourage_yosuke
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_yosuke
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Meowth: -10 if 7+ cards in hand, +10 otherwise;
@@ -267,10 +267,10 @@ AIDecideSpecialEvolutions:
 	get_turn_duelist_var
 	cp 7
 	jr c, .discourage_ryoko
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .discourage_ryoko
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; Dratini: +2;
@@ -290,13 +290,13 @@ AIDecideSpecialEvolutions:
 	cp 2
 	jr c, .lower_samejima_score
 .higher_samejima_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .lower_samejima_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 .mid_samejima_score
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; Oddish: -28 if any Dark Gloom already, neutral otherwise;
@@ -322,11 +322,11 @@ AIDecideSpecialEvolutions:
 	jp nc, .standard_score
 
 .discourage_kanzaki
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 .encourage_kanzaki
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
 .slowpoke_kanzaki
@@ -374,10 +374,10 @@ AIDecideSpecialEvolutions:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	or a
 	jp z, .standard_score
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .discourage_biruritchi_grass
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
@@ -396,7 +396,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_fire
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
@@ -415,7 +415,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_water
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Clefairy:
@@ -434,7 +434,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jp nc, .standard_score
 .discourage_biruritchi_fighting
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Gastly: neutral
@@ -460,11 +460,11 @@ AIDecideSpecialEvolutions:
 	jp nc, .standard_score
 
 .discourage_ronald
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 .encourage_ronald
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 
 .dark_dragonair_ronald
@@ -492,10 +492,10 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_magician
 .encourage_magician
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .discourage_magician
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Squirtle:
@@ -519,7 +519,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_yui
 .encourage_yui
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .check_breeder_evo
 	ld de, POKEMON_BREEDER
@@ -529,7 +529,7 @@ AIDecideSpecialEvolutions:
 	call LookForCardIDInHandList
 	jr nc, .encourage_yui
 .discourage_yui
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; Oddish and Dark Gloom:
@@ -547,7 +547,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr c, .discourage_toshiron
 .encourage_toshiron
-	ld a, 140
+	ld a, AI_SCORE_NEUTRAL + 12
 	ret
 .oddish_toshiron
 	ld de, DARK_GLOOM
@@ -555,7 +555,7 @@ AIDecideSpecialEvolutions:
 	call FindCardIDInTurnDuelistsPlayArea
 	jr nc, .encourage_toshiron
 .discourage_toshiron
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; unchanged since TCG1
@@ -591,7 +591,7 @@ AIDecideSpecialEvolutions:
 	jr c, .dragonair_rod_check_muk
 
 .lower_dragonair_score
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
 ; should now use the lock-check function instead of this TCG1 code
@@ -599,7 +599,7 @@ AIDecideSpecialEvolutions:
 	ld de, MUK
 	bank1call CountPokemonWithActivePkmnPowerInBothPlayAreas
 	jr c, .lower_dragonair_score
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .dragonair_rod_active

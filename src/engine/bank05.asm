@@ -5,7 +5,7 @@
 ; positive (negative) means more (less) likely to switch to this card.
 MACRO ai_retreat
 	dw \1       ; card ID
-	db $80 + \2 ; retreat score (ranges between -128 and 127)
+	db AI_SCORE_NEUTRAL + \2 ; retreat score (ranges between -128 and 127)
 ENDM
 
 ; AI card energy attach score bonus
@@ -17,7 +17,7 @@ ENDM
 MACRO ai_energy
 	dw \1       ; card ID
 	db \2       ; maximum number of attached cards
-	db $80 + \3 ; energy score (ranges between -128 and 127)
+	db AI_SCORE_NEUTRAL + \3 ; energy score (ranges between -128 and 127)
 ENDM
 
 DeckAIPointerTable::
@@ -5679,9 +5679,9 @@ AIDecideWhetherToRetreat:
 	cp16 CLEFAIRY_DOLL
 	jr z, .clefairy_doll
 
-; if wAIScore is at least 131, set carry
+; if wAIScore is at least +3, set carry
 	ld a, [wAIScore]
-	cp 131
+	cp AI_SCORE_NEUTRAL + 3
 	jr nc, .set_carry
 .no_carry
 	or a
@@ -6350,15 +6350,15 @@ AIDecideBenchPokemonToSwitchTo:
 	cp c
 	jr nz, .next_id
 	ld a, [hl]
-	cp $80
+	cp AI_SCORE_NEUTRAL
 	jr c, .subtract_score
-	sub $80
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
 	jr .next_id
 .subtract_score
 	push bc
 	ld c, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub c
 	pop bc
 	call AIDiscourage
@@ -7012,7 +7012,7 @@ Func_16af1:
 	cp16 MUK
 	jr z, .check_defending_can_ko
 	ld a, [wTempAI]
-	farcall $13, $4437
+	farcall CanDamageDefendingPokemonUnderInvisibleWallOrNShield
 	jr c, .check_defending_can_ko
 	ld a, 30
 	call AIDiscourage
@@ -7126,7 +7126,7 @@ Func_16af1:
 ; if AI score >= 133, return carry
 .check_score
 	ld a, [wAIScore]
-	cp 133
+	cp AI_SCORE_NEUTRAL + 5
 	ccf
 	ret
 
@@ -7316,7 +7316,7 @@ AIProcessAndTryToPlayEnergy_HasLogicFlags:
 ; and determine which card is best to attach it.
 AIProcessEnergyCards:
 ; initialize Play Area AI score
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	ld b, MAX_PLAY_AREA_POKEMON
 	ld hl, wPlayAreaEnergyAIScore
 .loop
@@ -7446,7 +7446,7 @@ AIProcessEnergyCards:
 .bench
 ; add score if the score calculated for Arena card is less than $85
 	ld a, [wPlayAreaAIScore + PLAY_AREA_ARENA]
-	cp $85
+	cp AI_SCORE_NEUTRAL + 5
 	jr nc, .check_bench_hp
 	ld a, 4
 	call AIEncourage
@@ -7518,15 +7518,15 @@ AIProcessEnergyCards:
 
 .check_id_score
 	ld a, [hli]
-	cp $80
+	cp AI_SCORE_NEUTRAL
 	jr c, .decrease_score_1
-	sub $80
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
 	jr .check_boss_deck
 
 .decrease_score_1
 	ld b, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub b
 	call AIDiscourage
 	jr .check_boss_deck
@@ -7547,15 +7547,15 @@ AIProcessEnergyCards:
 	ld hl, wPlayAreaEnergyAIScore
 	add hl, bc
 	ld a, [hl]
-	cp $80
+	cp AI_SCORE_NEUTRAL
 	jr c, .decrease_score_2
-	sub $80
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
 	jr .skip_boss_deck
 
 .decrease_score_2
 	ld b, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub b
 	call AIDiscourage
 
@@ -8297,114 +8297,136 @@ AICheckSpecialColorlessEnergyCards:
 	call GetCardIDFromDeckIndex
 	ret
 
-Func_17356:
+; adjust damage estimate in a
+DiscountInapplicablePoisonFromDamage:
 	push af
 	ld a, [wSpecialRule]
-	cp $01
-	jr nz, .asm_173b4
+	cp CHLOROPHYLL
+	jr nz, .check_thick_skinned
 	call SwapTurn
 	bank1call GetArenaCardColor
 	call SwapTurn
-	cp $01
-	jr nz, .asm_173b4
+	cp GRASS
+	jr nz, .check_thick_skinned
+
+; Chlorophyll applies
+; check only MadPetalsDeck pkmn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 ODDISH_LV21
-	jr z, .asm_173a0
+	jr z, .second_attack_poison_1
 	cp16 GLOOM
-	jr z, .asm_17398
+	jr z, .first_attack_poison_1
 	cp16 DARK_GLOOM
-	jr z, .asm_173a0
-	ld a, $00
+	jr z, .second_attack_poison_1
+; fallback
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
 	call CheckLoadedAttackFlag
-	jr c, .asm_173ad
+	jr c, .discount_half_psn
 	pop af
 	ret
-.asm_17398
+
+.first_attack_poison_1
 	ld a, [wSelectedAttack]
 	or a
-	jr nz, .asm_173b4
-	jr .asm_173a6
-.asm_173a0
+	jr nz, .check_thick_skinned
+	jr .discount_psn
+
+.second_attack_poison_1
 	ld a, [wSelectedAttack]
 	or a
-	jr z, .asm_173b4
-.asm_173a6
+	jr z, .check_thick_skinned
+
+.discount_psn
 	pop af
-	sub $0a
-	jp c, .asm_17451
+	sub PSN_DAMAGE
+	jp c, .cap_at_zero
 	ret
-.asm_173ad
+
+.discount_half_psn
 	pop af
-	sub $05
-	jp c, .asm_17451
+	sub PSN_DAMAGE / 2
+	jp c, .cap_at_zero
 	ret
-.asm_173b4
+
+.check_thick_skinned
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	call SwapTurn
 	cp16 SNORLAX_LV20
-	jr nz, .asm_17431
-	xor a
+	jr nz, .check_status
+	xor a ; PLAY_AREA_ARENA
 	call SwapTurn
 	bank1call CheckIsIncapableOfUsingPkmnPower
 	call SwapTurn
-	jr c, .asm_17431
+	jr c, .check_status
+
+; Thick Skinned is active
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 BULBASAUR_LV15
-	jr z, .asm_1742a
+	jr z, .second_attack_poison_2
 	cp16 WEEDLE_LV15
-	jr z, .asm_1742a
+	jr z, .second_attack_poison_2
 	cp16 EKANS_LV10
-	jr z, .asm_17421
+	jr z, .first_attack_poison_2
 	cp16 ODDISH_LV21
-	jr z, .asm_1742a
+	jr z, .second_attack_poison_2
 	cp16 GLOOM
-	jr z, .asm_17421
+	jr z, .first_attack_poison_2
 	cp16 DARK_GLOOM
-	jr z, .asm_1742a
-	ld a, $00
+	jr z, .second_attack_poison_2
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
 	call CheckLoadedAttackFlag
-	jr c, .asm_173ad
-	jr .asm_17431
-.asm_17421
+	jr c, .discount_half_psn
+	jr .check_status
+
+.first_attack_poison_2
 	ld a, [wSelectedAttack]
 	or a
-	jr nz, .asm_17431
-	jp .asm_173a6
-.asm_1742a
+	jr nz, .check_status
+	jp .discount_psn
+
+.second_attack_poison_2
 	ld a, [wSelectedAttack]
 	or a
-	jp nz, .asm_173a6
-.asm_17431
-	ld a, $ec
+	jp nz, .discount_psn
+
+; already poisoned?
+.check_status
+	ld a, DUELVARS_ARENA_CARD_STATUS
 	call GetNonTurnDuelistVariable
-	and $f0
-	cp $c0
-	jr nz, .asm_17442
-.asm_1743c
+	and PSN_DBLPSN
+	cp DOUBLE_POISONED
+	jr nz, .check_poison_mist
+
+.discount_dbl_psn
 	pop af
-	sub $14
-	jr c, .asm_17451
+	sub DBLPSN_DAMAGE
+	jr c, .cap_at_zero
 	ret
-.asm_17442
-	cp $80
-	jr nz, .asm_17453
-	bank1call Func_796b
-	jr c, .asm_1743c
+
+.check_poison_mist
+	cp POISONED
+	jr nz, .no_discount
+	bank1call IsPoisonMistActive
+	jr c, .discount_dbl_psn
+
+; discount psn 2
 	pop af
-	sub $0a
-	jr c, .asm_17451
+	sub PSN_DAMAGE
+	jr c, .cap_at_zero
 	ret
-.asm_17451
+
+.cap_at_zero
 	xor a
 	ret
-.asm_17453
+
+.no_discount
 	pop af
 	ret
 
@@ -8504,7 +8526,7 @@ AIProcessAttacks:
 ; then check if first attack is better than second attack
 ; in case the second one was chosen.
 .check_score
-	cp $50 ; minimum score to use attack
+	cp MIN_AI_SCORE_ATTACK
 	jr c, .dont_attack
 	; enough score, proceed
 
@@ -8582,18 +8604,23 @@ AIProcessAttacks:
 	ret
 
 GetAIScoreOfAttack:
+; init
 	ld [wSelectedAttack], a
-	ld a, $50
+	ld a, MIN_AI_SCORE_ATTACK
 	ld [wAIScore], a
+
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	call CheckIfSelectedAttackIsUnusable
-	jr nc, .asm_17532
-.asm_1752b
+	jr nc, .usable
+
+.ZeroScore
 	xor a
 	ld [wAIScore], a
-	jp .asm_17969
-.asm_17532
+	jp .done
+
+.usable
+; load arena card IDs
 	xor a
 	ld [wAICannotDamage], a
 	ld a, DUELVARS_ARENA_CARD
@@ -8611,529 +8638,647 @@ GetAIScoreOfAttack:
 	ld [wTempNonTurnDuelistCardID], a
 	ld a, d
 	ld [wTempNonTurnDuelistCardID + 1], a
+
+; is defending pkmn immune?
 	bank1call HandleNoDamageOrEffectSubstatus
 	call SwapTurn
-	jr nc, .asm_17581
-	ld a, $01
+	jr nc, .check_if_can_ko
+
+; immune, so check FLAG_3_BIT_2_F, residual effect, or bench damage
+; dismiss if not, or using pkmn power
+	ld a, TRUE
 	ld [wAICannotDamage], a
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
-	ld a, $12
+	ld a, ATTACK_FLAG3_ADDRESS | FLAG_3_BIT_2_F
 	call CheckLoadedAttackFlag
-	jr c, .asm_17581
+	jr c, .check_if_can_ko
 	ld a, [wLoadedAttackCategory]
-	cp $04
-	jr z, .asm_1752b
-	and $80
-	jr nz, .asm_17581
-	ld a, $05
+	cp POKEMON_POWER
+	jr z, .ZeroScore
+	and RESIDUAL
+	jr nz, .check_if_can_ko
+	ld a, ATTACK_FLAG1_ADDRESS | DAMAGE_TO_OPPONENT_BENCH_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_1752b
-.asm_17581
+	jr nc, .ZeroScore
+
+; calculate damage to defending pkmn
+; +20 if can KO
+.check_if_can_ko
 	ld a, [wSelectedAttack]
 	call EstimateDamage_VersusDefendingCard
-	ld a, $c8
+	ld a, DUELVARS_ARENA_CARD_HP
 	call GetNonTurnDuelistVariable
 	push af
 	ld a, [wDamage]
-	call Func_17356
+	call DiscountInapplicablePoisonFromDamage
 	ld b, a
 	pop af
 	sub b
-	jr c, .asm_1759c
-	jr z, .asm_1759c
-	jr .asm_175f6
-.asm_1759c
-	ld a, $14
+	jr c, .can_ko
+	jr z, .can_ko
+	jr .check_damage
+
+.can_ko
+	ld a, 20
 	call AIEncourage
-	ld a, $ed
+
+; check destiny bond
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS1
 	call GetNonTurnDuelistVariable
-	cp $1b
-	jr nz, .asm_175f6
+	cp SUBSTATUS1_DESTINY_BOND
+	jr nz, .check_damage
+
+; destiny bond is active
+; -50 if causes player to win;
+; +10 if causes AI to win;
+; -30 if 30+ HP remaining
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
-	cp $01
-	jr nz, .asm_175be
-	ld a, $32
+	cp 1
+	jr nz, .destiny_bond_check_own_bench
+	ld a, 50
 	call AIDiscourage
-	jr .asm_175f6
-.asm_175be
+	jr .check_damage
+.destiny_bond_check_own_bench
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $01
-	jr nz, .asm_175cc
-	ld a, $32
+	cp 1
+	jr nz, .destiny_bond_check_own_prize
+	ld a, 50
 	call AIDiscourage
-	jr .asm_175f6
-.asm_175cc
+	jr .check_damage
+.destiny_bond_check_own_prize
 	call CountPrizes
-	cp $01
-	jr nz, .asm_175da
-	ld a, $0a
+	cp 1
+	jr nz, .destiny_bond_check_player_bench
+	ld a, 10
 	call AIEncourage
-	jr .asm_175f6
-.asm_175da
-	ld a, $f5
+	jr .check_damage
+.destiny_bond_check_player_bench
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
-	cp $01
-	jr nz, .asm_175ea
-	ld a, $0a
+	cp 1
+	jr nz, .destiny_bond_check_own_hp
+	ld a, 10
 	call AIEncourage
-	jr .asm_175f6
-.asm_175ea
+	jr .check_damage
+.destiny_bond_check_own_hp
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
-	cp $1e
-	jr c, .asm_175f6
-	ld a, $1e
+	cp 30
+	jr c, .check_damage
+	ld a, 30
 	call AIDiscourage
-.asm_175f6
-	xor a
-	ld [wd072], a
+
+; for n = wDamage adjusted for poison and m = wMaxDamage adjusted for poison,
+; + n/10 (the number of damage counters the attack deals) if n > 0;
+; -1 if n = 0;
+; +2 if n = 0 and m > 0 (+1 total);
+; +2 if n = m = 0 but does damage to bench (+1 total)
+.check_damage
+	xor a ; FALSE
+	ld [wAIAttackIsNonDamaging], a
+
 	ld a, [wDamage]
 	ld [wTempAI], a
-	call Func_17356
+	call DiscountInapplicablePoisonFromDamage
 	or a
-	jr z, .asm_1760e
+	jr z, .no_damage
 	call ConvertHPToCounters
 	call AIEncourage
-	jr .asm_17643
-.asm_1760e
-	ld a, $01
-	ld [wd072], a
+	jr .check_recoil
+
+.no_damage
+	ld a, 1
+	ld [wAIAttackIsNonDamaging], a ; TRUE
 	call AIDiscourage
 	ld a, [wAIMaxDamage]
-	farcall $13, $4b6e
+	farcall DiscountInapplicablePoisonFromMaxDamage
 	or a
-	jr z, .asm_17629
-	ld a, $02
+	jr z, .no_max_damage
+	ld a, 2
 	call AIEncourage
-	xor a
-	ld [wd072], a
-.asm_17629
-	ld a, $05
+	xor a ; FALSE
+	ld [wAIAttackIsNonDamaging], a
+
+; check bench damage
+.no_max_damage
+	ld a, ATTACK_FLAG1_ADDRESS | DAMAGE_TO_OPPONENT_BENCH_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_17643
-	ld a, $f5
+	jr nc, .check_recoil
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	or a
-	jr z, .asm_17643
+	jr z, .check_recoil
 	farcall CheckIfPlayerHasAuroraVeilActive
-	jr c, .asm_17643
-	ld a, $02
+	jr c, .check_recoil
+	ld a, 2
 	call AIEncourage
-.asm_17643
-	ld a, $04
+
+; check low/high recoil
+.check_recoil
+	ld a, ATTACK_FLAG1_ADDRESS | LOW_RECOIL_F
 	call CheckLoadedAttackFlag
-	jr c, .asm_17652
-	ld a, $06
+	jr c, .is_recoil
+	ld a, ATTACK_FLAG1_ADDRESS | HIGH_RECOIL_F
 	call CheckLoadedAttackFlag
-	jp nc, .asm_17799
-.asm_17652
+	jp nc, .check_defending_can_ko
+
+; -(self damage)/10 for fixed self damage
+.is_recoil
 	ld a, [wLoadedAttackEffectParam]
 	or a
-	jp z, .asm_17799
+	jp z, .check_defending_can_ko ; recoil but not guaranteed to happen, skip here
+
 	ld [wDamage], a
 	call ApplyDamageModifiers_DamageToSelf
 	ld a, e
 	call ConvertHPToCounters
 	call AIDiscourage
+
 	push de
-	ld a, $06
+	ld a, ATTACK_FLAG1_ADDRESS | HIGH_RECOIL_F
 	call CheckLoadedAttackFlag
 	pop de
-	jr c, .asm_1769d
+	jr c, .high_recoil
+
+; low recoil
+; -10 if KOs self;
+; -30 if causes player to win (-40 total)
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	cp e
-	jr c, .asm_17678
-	jp nz, .asm_17799
-.asm_17678
-	ld a, $0a
+	jr c, .kos_self
+	jp nz, .check_defending_can_ko
+.kos_self
+	ld a, 10
 	call AIDiscourage
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
-	cp $01
-	jr nz, .asm_17691
-	ld a, $1e
+	cp 1
+	jr nz, .low_recoil_check_own_bench
+	ld a, 30
 	call AIDiscourage
-	jr .asm_1769d
-.asm_17691
+	jr .high_recoil
+.low_recoil_check_own_bench
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $01
-	jr nz, .asm_1769d
-	ld a, $1e
+	cp 1
+	jr nz, .high_recoil
+	ld a, 30
 	call AIDiscourage
-.asm_1769d
+
+; dismiss if no bench, or causes player to win
+; Overflow Deck and Rolling Stone Deck: always dismiss
+.high_recoil
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
-	cp $02
-	jr c, .asm_176af
+	cp 2
+	jr c, .dismiss_high_recoil_atk ; no bench
+
+; has bench
 	ld a, [wOpponentDeckID]
-	cp $12
-	jr z, .asm_176af
-	cp $1c
-	jr nz, .asm_17705
-.asm_176af
+	cp OVERFLOW_DECK_ID
+	jr z, .dismiss_high_recoil_atk
+	cp ROLLING_STONE_DECK_ID
+	jr nz, .high_recoil_generic_checks
+
+.dismiss_high_recoil_atk
 	xor a
 	ld [wAIScore], a
-	jp .asm_17969
-.asm_176b6
-	ld a, $14
+	jp .done
+
+; unreachable, remnant from tcg1
+.encourage_high_recoil_atk
+	ld a, 20
 	call AIEncourage
-	jp .asm_17969
+	jp .done
+
+; unreachable, remnant from tcg1
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
-	cp $1f
-	jr nc, .asm_17705
-	ld e, $00
+	cp DECK_SIZE - 29
+	jr nc, .high_recoil_generic_checks
+	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	sla a
 	cp c
-	jr c, .asm_17705
-	ld b, $00
+	jr c, .high_recoil_generic_checks
+	ld b, 0
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 MAGNEMITE_LV13
-	jr z, .asm_176e3
-	ld b, $0a
-.asm_176e3
-	ld a, $0a
+	jr z, .magnemite_lv13
+	ld b, 10
+.magnemite_lv13
+	ld a, 10
 	add b
 	ld b, a
-	ld a, $01
-	call .Func_17769
-	jr c, .asm_176af
-	jr .asm_176b6
+	ld a, 1
+	call .AddTurnDuelistBenchKOs
+	jr c, .dismiss_high_recoil_atk
+	jr .encourage_high_recoil_atk
+
+; unreachable, remnant from tcg1
 	call CountPrizes
-	cp $04
-	jr nc, .asm_176af
-	ld b, $14
+	cp 4
+	jr nc, .dismiss_high_recoil_atk
+	ld b, 20
 	call SwapTurn
 	xor a
-	call .Func_17769
+	call .AddTurnDuelistBenchKOs
 	call SwapTurn
-	jr c, .asm_176b6
-.asm_17705
+	jr c, .encourage_high_recoil_atk
+
+; assuming
+;   no boosts to bench damage, and
+;   getting KO'd before next turn (self KO now, or player KOs it right after),
+; +20 if causes AI to win;
+; dismiss if causes player to win;
+; + (KOs in player's bench) - (KOs in AI's bench) otherwise
+.high_recoil_generic_checks
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 CHANSEY_LV55
-	jr z, .asm_17731
+	jr z, .chansey
 	cp16 MAGNEMITE_LV13
-	jr z, .asm_1772d
+	jr z, .magnemite_lv13_or_weezing_lv27
 	cp16 WEEZING_LV27
-	jr z, .asm_1772d
-	ld b, $14
-	jr .asm_17733
-.asm_1772d
-	ld b, $0a
-	jr .asm_17733
-.asm_17731
-	ld b, $00
-.asm_17733
+	jr z, .magnemite_lv13_or_weezing_lv27
+	ld b, 20 ; bench damage
+	jr .check_bench_kos
+
+.magnemite_lv13_or_weezing_lv27
+	ld b, 10 ; bench damage
+	jr .check_bench_kos
+
+.chansey
+	ld b, 0 ; bench damage
+
+.check_bench_kos
 	push bc
 	call SwapTurn
-	xor a
-	call .Func_17769
+	xor a ; assume not KO'ing defending pkmn
+	call .AddTurnDuelistBenchKOs
 	call SwapTurn
 	pop bc
-	jr c, .asm_17751
+	jr c, .wins_the_duel
 	push de
-	ld a, $01
-	call .Func_17769
+	ld a, 1 ; assume getting KO'd before next turn
+	call .AddTurnDuelistBenchKOs
 	pop bc
-	jr nc, .asm_17759
+	jr nc, .count_own_ko_bench
+
+; causes player to take all prize cards
 	xor a
 	ld [wAIScore], a
-	jp .asm_17969
-.asm_17751
-	ld a, $14
-	call AIEncourage
-	jp .asm_17969
-.asm_17759
-	push bc
-	ld a, d
-	or a
-	jr z, .asm_17762
-	dec a
-	call AIDiscourage
-.asm_17762
-	pop bc
-	ld a, b
-	call AIEncourage
-	jr .asm_17799
+	jp .done
 
-.Func_17769:
+; causes AI to take all prize cards
+.wins_the_duel
+	ld a, 20
+	call AIEncourage
+	jp .done
+
+.count_own_ko_bench
+	push bc
+	ld a, d ; expected number of prizes taken by player
+	or a
+	jr z, .count_player_ko_bench
+	dec a ; expected number of bench KOs
+	call AIDiscourage
+
+.count_player_ko_bench
+	pop bc
+	ld a, b ; expected number of prizes taken by AI
+	call AIEncourage
+	jr .check_defending_can_ko
+
+; input:
+; a = 1 if turn duelist's arena card is expected to be KO'd before next turn, 0 otherwise;
+; b = damage to bench
+; output:
+; d = a + (number of KOs in turn duelist's bench);
+; also set carry if d >= (non-turn duelist's remaining prize cards)
+.AddTurnDuelistBenchKOs:
 	ld d, a
 	ld a, DUELVARS_BENCH
 	get_turn_duelist_var
-	ld e, $00
-.asm_1776f
+	ld e, PLAY_AREA_ARENA
+.loop_bench
 	inc e
 	ld a, [hli]
 	cp $ff
-	jr z, .asm_17783
+	jr z, .check_duel_win
 	ld a, e
-	add $c8
+	add DUELVARS_ARENA_CARD_HP
 	push hl
 	get_turn_duelist_var
 	pop hl
 	cp b
-	jr z, .asm_17780
-	jr nc, .asm_1776f
-.asm_17780
+	jr z, .incr_ko_count
+	jr nc, .loop_bench
+.incr_ko_count
 	inc d
-	jr .asm_1776f
-.asm_17783
+	jr .loop_bench
+.check_duel_win
 	push de
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn
 	pop de
 	cp d
-	jp c, .asm_17797 ; can be jr
-	jp z, .asm_17797 ; can be jr
+	jp c, .set_carry ; can be jr
+	jp z, .set_carry ; can be jr
+; no carry
 	or a
 	ret
-.asm_17797
+.set_carry
 	scf
 	ret
 
-.asm_17799
+; +5 if in KO range of defending pkmn;
+; -5 if non-damaging attack (+-0 total)
+.check_defending_can_ko
 	ld a, [wSelectedAttack]
 	push af
 	farcall CheckIfDefendingPokemonCanKnockOut
 	pop bc
 	ld a, b
 	ld [wSelectedAttack], a
-	jr nc, .asm_177c5
-	ld a, $05
+	jr nc, .check_discard
+	ld a, 5
 	call AIEncourage
-	ld a, [wd072]
+
+	ld a, [wAIAttackIsNonDamaging]
 	or a
-	jr nz, .asm_177c0
+	jr nz, .discourage_non_damaging_atk
+
+; in KO range of defending pkmn, and using damaging atk
+; skip discard check
 	ld a, [wSelectedAttack]
 	ld e, a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
 	call CopyAttackDataAndDamage_FromDeckIndex
-	jr .asm_177e9
-.asm_177c0
-	ld a, $05
+	jr .check_flag2_bit6
+
+.discourage_non_damaging_atk
+	ld a, 5
 	call AIDiscourage
-.asm_177c5
+
+; - 1 - (effect param) if requires discarding any energy cards
+; Immortal Flame Deck: skip this check
+.check_discard
 	ld a, [wSelectedAttack]
 	ld e, a
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	ld d, a
 	call CopyAttackDataAndDamage_FromDeckIndex
-	ld a, $0b
+	ld a, ATTACK_FLAG2_ADDRESS | DISCARD_ENERGY_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_177e9
+	jr nc, .check_flag2_bit6
 	ld a, [wOpponentDeckID]
-	cp $34
-	jr z, .asm_177e9
-	ld a, $01
+	cp IMMORTAL_FLAME_DECK_ID
+	jr z, .check_flag2_bit6
+	ld a, 1
 	call AIDiscourage
 	ld a, [wLoadedAttackEffectParam]
 	call AIDiscourage
-.asm_177e9
-	ld a, $0e
+
+; +(effect param) if FLAG_2_BIT_6
+.check_flag2_bit6
+	ld a, ATTACK_FLAG2_ADDRESS | FLAG_2_BIT_6_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_177f6
+	jr nc, .check_flag2_bit7
 	ld a, [wLoadedAttackEffectParam]
 	call AIEncourage
-.asm_177f6
-	ld a, $0f
+
+; -(effect param) if FLAG_2_BIT_7
+.check_flag2_bit7
+	ld a, ATTACK_FLAG2_ADDRESS | FLAG_2_BIT_7_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_17803
+	jr nc, .check_nullify_flag
 	ld a, [wLoadedAttackEffectParam]
 	call AIDiscourage
-.asm_17803
-	ld a, $0a
+
+; +1 if nullify/weaken effect
+.check_nullify_flag
+	ld a, ATTACK_FLAG2_ADDRESS | NULLIFY_OR_WEAKEN_ATTACK_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_1780f
-	ld a, $01
+	jr nc, .check_draw_flag
+	ld a, 1
 	call AIEncourage
-.asm_1780f
-	ld a, $07
+
+; +1 if draw-card effect
+.check_draw_flag
+	ld a, ATTACK_FLAG1_ADDRESS | DRAW_CARD_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_1781b
-	ld a, $01
+	jr nc, .check_heal_flag
+	ld a, 1
 	call AIEncourage
-.asm_1781b
-	ld a, $09
+
+; +min(remaining HP, taken damage, heal amount)/10 (in counters) if heal effect
+.check_heal_flag
+	ld a, ATTACK_FLAG2_ADDRESS | HEAL_USER_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_17857
+	jr nc, .check_status_effect
 	ld a, [wLoadedAttackEffectParam]
-	cp $01
-	jr z, .asm_17846
+	cp HEALING_EQUALS_10_HP
+	jr z, .cap_at_max_heal
 	ld a, [wTempAI]
 	call ConvertHPToCounters
 	ld b, a
 	ld a, [wLoadedAttackEffectParam]
-	cp $03
-	jr z, .asm_1783c
+	cp HEALING_EQUALS_DAMAGE_DEALT
+	jr z, .cap_at_remaining_hp
+; HEALING_EQUALS_HALF_DAMAGE_DEALT
 	srl b
-	jr nc, .asm_1783c
-	inc b
-.asm_1783c
+	jr nc, .cap_at_remaining_hp
+	inc b ; round half up
+
+; score = min(remaining HP, heal amount)/10 (in counters)
+; possibly to avoid overestimating small heals at low HP?
+; (massive heals derive from massive damage, which should be encouraged on its own)
+; or intended to call GetNonTurnDuelistVariable
+; to erroneously cap it at defending pkmn's remaining HP?
+; (capped as such in main series games, but not in tcg)
+.cap_at_remaining_hp
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
 	call ConvertHPToCounters
 	cp b
-	jr c, .asm_17846
+	jr c, .cap_at_max_heal
 	ld a, b
-.asm_17846
+
+; score = min(remaining HP, taken damage, heal amount)/10 (in counters)
+.cap_at_max_heal
 	push af
-	ld e, $00
+	ld e, PLAY_AREA_ARENA
 	call GetCardDamageAndMaxHP
 	call ConvertHPToCounters
 	pop bc
 	cp b
-	jr c, .asm_17854
+	jr c, .add_heal_score
 	ld a, b
-.asm_17854
+
+.add_heal_score
 	call AIEncourage
-.asm_17857
-	ld a, $bb
+
+.check_status_effect
+	ld a, DUELVARS_ARENA_CARD
 	call GetNonTurnDuelistVariable
 	call SwapTurn
 	call GetCardIDFromDeckIndex
 	call SwapTurn
 	cp16 SNORLAX_LV20
-	jp z, .asm_17916
+	jp z, .handle_special_atks ; assume Thick Skinned is active
 	ld a, [wSpecialRule]
-	cp $01
-	jr nz, .asm_17885
+	cp CHLOROPHYLL
+	jr nz, .check_poison
 	call SwapTurn
 	bank1call GetArenaCardColor
 	call SwapTurn
-	cp $01
-	jp z, .asm_17916
-.asm_17885
-	ld a, $ec
+	cp GRASS
+	jp z, .handle_special_atks ; Chlorophyll applies
+
+.check_poison
+	ld a, DUELVARS_ARENA_CARD_STATUS
 	call GetNonTurnDuelistVariable
 	ld [wTempAI], a
-	ld a, $00
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_178b2
+	jr nc, .check_sleep
 	ld a, [wTempAI]
-	and $c0
-	jr z, .asm_178ad
-	and $40
-	jr z, .asm_178b2
-	ld a, $0e
+	and DOUBLE_POISONED
+	jr z, .add_poison_score
+	and DOUBLE_POISONED & (~POISONED)
+	jr z, .check_sleep
+	ld a, ATTACK_FLAG2_ADDRESS | FLAG_2_BIT_6_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_178b2
-	ld a, $02
+	jr nc, .check_sleep
+	ld a, 2
 	call AIDiscourage
-	jr .asm_178b2
-.asm_178ad
-	ld a, $02
+	jr .check_sleep
+.add_poison_score
+	ld a, 2
 	call AIEncourage
-.asm_178b2
-	ld a, $01
+
+; +1 if newly inflicts sleep
+.check_sleep
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_SLEEP_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_178c7
+	jr nc, .check_paralysis
 	ld a, [wTempAI]
-	and $0f
-	cp $02
-	jr z, .asm_178c7
-	ld a, $01
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jr z, .check_paralysis
+	ld a, 1
 	call AIEncourage
-.asm_178c7
-	ld a, $02
+
+; -1 if target is already asleep;
+; +1 if inflicts paralysis to non-asleep target
+.check_paralysis
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_PARALYSIS_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_178e3
+	jr nc, .check_confusion
 	ld a, [wTempAI]
-	and $0f
-	cp $02
-	jr z, .asm_178de
-	ld a, $01
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jr z, .sub_prz_score
+	ld a, 1
 	call AIEncourage
-	jr .asm_178e3
-.asm_178de
-	ld a, $01
+	jr .check_confusion
+.sub_prz_score
+	ld a, 1
 	call AIDiscourage
-.asm_178e3
-	ld a, $03
+
+; -1 if target is already asleep;
+; +1 if newly inflicts confusion to non-asleep target
+.check_confusion
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_CONFUSION_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_17908
+	jr nc, .check_if_confused
 	ld a, [wTempAI]
-	and $0f
-	cp $02
-	jr z, .asm_17903
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jr z, .sub_cnf_score
 	ld a, [wTempAI]
-	and $0f
-	cp $01
-	jr z, .asm_17908
-	ld a, $01
+	and CNF_SLP_PRZ
+	cp CONFUSED
+	jr z, .check_if_confused
+	ld a, 1
 	call AIEncourage
-	jr .asm_17908
-.asm_17903
-	ld a, $01
+	jr .check_if_confused
+.sub_cnf_score
+	ld a, 1
 	call AIDiscourage
-.asm_17908
+
+; -1 if attacking pkmn is confused
+.check_if_confused
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
-	and $0f
-	cp $01
-	jr nz, .asm_17916
-	ld a, $01
+	and CNF_SLP_PRZ
+	cp CONFUSED
+	jr nz, .handle_special_atks
+	ld a, 1
 	call AIDiscourage
-.asm_17916
-	ld a, $11
+
+.handle_special_atks
+	ld a, ATTACK_FLAG3_ADDRESS | SPECIAL_AI_HANDLING_F
 	call CheckLoadedAttackFlag
-	jr nc, .asm_17935
+	jr nc, .handle_additional_logic
 	farcall HandleSpecialAIAttacks
-	cp $80
-	jr c, .asm_1792c
-	sub $80
+	cp AI_SCORE_NEUTRAL
+	jr c, .special_atk_negative_score
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
-	jr .asm_17969
-.asm_1792c
+	jr .done
+.special_atk_negative_score
 	ld b, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub b
 	call AIDiscourage
-	jr .asm_17969
-.asm_17935
+	jr .done
+
+.handle_additional_logic
 	ld a, [wSelectedAttack]
 	push af
-	farcall $12, $74e4
-	cp $80
-	jr c, .asm_17948
-	sub $80
+	farcall AIDeckSpecificAttackLogic
+	cp AI_SCORE_NEUTRAL
+	jr c, .additional_logic_negative_score
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
-	jr .asm_1794f
-.asm_17948
+	jr .handle_spread_atks
+.additional_logic_negative_score
 	ld b, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub b
 	call AIDiscourage
-.asm_1794f
+
+.handle_spread_atks
 	pop af
 	ld [wSelectedAttack], a
-	farcall $13, $4063
-	cp $80
-	jr c, .asm_17962
-	sub $80
+	farcall HandleSpreadAIAttacks
+	cp AI_SCORE_NEUTRAL
+	jr c, .spread_atk_negative_score
+	sub AI_SCORE_NEUTRAL
 	call AIEncourage
-	jr .asm_17969
-.asm_17962
+	jr .done
+.spread_atk_negative_score
 	ld b, a
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	sub b
 	call AIDiscourage
-.asm_17969
+
+.done
 	ret
 
 ; return carry if card ID corresponding

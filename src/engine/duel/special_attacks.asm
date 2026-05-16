@@ -178,7 +178,7 @@ HandleSpecialAIAttacks:
 	ld b, a
 	ld a, MAX_BENCH_POKEMON
 	sub b
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 
 ; +(slots available in bench) if any Nidoran M/F cards in deck pile
@@ -209,7 +209,7 @@ HandleSpecialAIAttacks:
 	ld b, a
 	ld a, MAX_PLAY_AREA_POKEMON
 	sub b
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 
 ; +(slots available in bench) if any of the 4 Fighting basic Pokémon in deck pile
@@ -244,7 +244,7 @@ HandleSpecialAIAttacks:
 	ld b, a
 	ld a, MAX_BENCH_POKEMON
 	sub b
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 
 ; +(slots available in bench) if any basic Pokémon in deck pile
@@ -260,7 +260,7 @@ HandleSpecialAIAttacks:
 	ld b, a
 	ld a, MAX_PLAY_AREA_POKEMON
 	sub b
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 
 ; +10 if in a retreating situation
@@ -268,7 +268,7 @@ HandleSpecialAIAttacks:
 .Teleport:
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
 	jp nc, .ZeroScore
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; dismiss if the other attack is ready for damage output,
@@ -287,13 +287,13 @@ HandleSpecialAIAttacks:
 	or a
 	jp nz, .ZeroScore
 .swords_dance_focus_energy_success
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; dismiss if Invisible Wall is active or the other attack is ready for damage output,
 ; +5 otherwise
 .WaterPower:
-	farcall CheckIfDefendingPkmnIsMrMimeLv28AndHasActivePkmnPower
+	farcall IsInvisibleWallActiveInPlayerArena
 	jp c, .ZeroScore
 	ld a, [wAICannotDamage]
 	or a
@@ -308,7 +308,7 @@ HandleSpecialAIAttacks:
 	or a
 	jp nz, .ZeroScore
 .water_power_success
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; dismiss if own Benched Pokémon would take damage,
@@ -332,7 +332,7 @@ HandleSpecialAIAttacks:
 	jr nz, .loop_chain_lightning_bench
 	jp .ZeroScore
 .chain_lightning_success
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; +5 if KOing any in player's area,
@@ -349,7 +349,7 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 
 .devolution_beam_success
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 .devolution_beam_ronald
@@ -393,18 +393,18 @@ HandleSpecialAIAttacks:
 	jr z, .porygon_lv12_no_set_up_bench
 	cp 2
 	jr c, .porygon_lv12_lower_score
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 .porygon_lv12_conversion2:
 	call CountNumberOfSetUpBenchPokemon
 	cp 2
 	jr nc, .porygon_lv12_lower_score
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 .porygon_lv12_lower_score
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 .porygon_lv12_no_set_up_bench
@@ -412,7 +412,7 @@ HandleSpecialAIAttacks:
 	cp YOU_CAN_DO_IT_MACHOP_DECK_ID
 	jr nz, .porygon_lv12_lower_score
 ; Michael
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 ; +2 if any Psychic Energy in own discard pile
@@ -422,7 +422,7 @@ HandleSpecialAIAttacks:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	call FindCardIDInLocation
 	jp nc, .ZeroScore
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; dismiss if player has no cards in hand;
@@ -502,7 +502,7 @@ HandleSpecialAIAttacks:
 	jr nc, .loop_mix_up_play_area
 
 .encourage_mix_up
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .mix_up_john
@@ -514,16 +514,16 @@ HandleSpecialAIAttacks:
 	call Random
 	or a
 	jr nz, .low_mix_up_score_john
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 .low_mix_up_score_john
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 ; +3
 .BigThunder:
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; dismiss if 9- cards remaining in deck pile
@@ -532,7 +532,7 @@ HandleSpecialAIAttacks:
 	get_turn_duelist_var
 	cp DECK_SIZE - 9
 	jp nc, .ZeroScore
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; expectation: dismiss if KOing enough number of own Benched Pokémon for player to win
@@ -571,7 +571,7 @@ HandleSpecialAIAttacks:
 	cp d
 	jp c, .ZeroScore
 	jp z, .ZeroScore
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; +3 if any Lightning Energy in deck pile, and in an Energy-attachment situation;
@@ -583,7 +583,7 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 	farcall AIProcessButDontPlayEnergy_SkipEvolution
 	jp nc, .ZeroScore
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; +3 if any removable Energy attached to the defender;
@@ -596,10 +596,10 @@ HandleSpecialAIAttacks:
 	call SwapTurn
 	or a
 	jr z, .hyper_beam_neutral
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 .hyper_beam_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; Amy:
@@ -625,11 +625,11 @@ HandleSpecialAIAttacks:
 	jr nc, .rest_neutral
 	cp 60
 	jr nc, .rest_neutral
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 .rest_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .rest_amy
@@ -637,7 +637,7 @@ HandleSpecialAIAttacks:
 	get_turn_duelist_var
 	cp 30
 	jp nc, .ZeroScore
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; Toshiron:
@@ -657,7 +657,7 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
-	ld a, 134
+	ld a, AI_SCORE_NEUTRAL + 6
 	ret
 
 .third_eye_toshiron
@@ -668,7 +668,7 @@ HandleSpecialAIAttacks:
 	farcall CountNonDrawEngineCardsInHand
 	cp 4
 	jp nc, .ZeroScore
-	ld a, 134
+	ld a, AI_SCORE_NEUTRAL + 6
 	ret
 
 ; +1 if
@@ -691,7 +691,7 @@ HandleSpecialAIAttacks:
 	ld de, WATER_ENERGY
 	call FindCardIDInLocation
 	jp nc, .ZeroScore
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 ; +1 if any viable targets,
@@ -735,7 +735,7 @@ HandleSpecialAIAttacks:
 
 .dry_up_success
 	call SwapTurn
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 ; John: +3;
@@ -757,15 +757,15 @@ HandleSpecialAIAttacks:
 	jr z, .discourage_foxfire
 
 .foxfire_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .encourage_foxfire
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .discourage_foxfire
-	ld a, 78
+	ld a, AI_SCORE_NEUTRAL - 50
 	ret
 
 ; +4 if Dark Electrode is in KO range;
@@ -773,7 +773,7 @@ HandleSpecialAIAttacks:
 .EnergyBomb:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
-	ld a, 134
+	ld a, AI_SCORE_NEUTRAL + 6
 	ret
 
 ; dismiss if player has only 1 prize remaining;
@@ -784,7 +784,7 @@ HandleSpecialAIAttacks:
 	call SwapTurn
 	cp 2
 	jp c, .ZeroScore
-	ld a, 126
+	ld a, AI_SCORE_NEUTRAL - 2
 	ret
 
 ; +2 if
@@ -800,7 +800,7 @@ HandleSpecialAIAttacks:
 	ld a, CARD_LOCATION_DECK
 	call FindCardIDInLocation
 	jp nc, .ZeroScore
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; dismiss if no viable targets;
@@ -813,10 +813,10 @@ HandleSpecialAIAttacks:
 	ld a, b
 	or a
 	jp z, .ZeroScore
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 .short_circuit_to_ko
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; dismiss if KOing with Psycho Panic;
@@ -849,7 +849,7 @@ HandleSpecialAIAttacks:
 	ld a, 90
 	sub b
 	farcall ConvertHPToCounters
-	add 128
+	add AI_SCORE_NEUTRAL
 	ret
 
 .trans_damage_count_player_pokemon_and_prizes
@@ -874,7 +874,7 @@ HandleSpecialAIAttacks:
 	pop af
 	cp b
 	jp c, .ZeroScore
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; dismiss if player has no cards in hand;
@@ -887,10 +887,10 @@ HandleSpecialAIAttacks:
 	ret z
 	cp 6
 	jr nc, .higher_poltergeist_score
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 .higher_poltergeist_score
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; +5 if Gastly is in KO range;
@@ -900,7 +900,7 @@ HandleSpecialAIAttacks:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; +5 if
@@ -917,7 +917,7 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jp c, .ZeroScore
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; +5 if
@@ -943,7 +943,7 @@ HandleSpecialAIAttacks:
 	call GetNonTurnDuelistVariable
 	cp 70
 	jp c, .ZeroScore
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; dismiss if 9- cards remaining in deck pile;
@@ -960,13 +960,13 @@ HandleSpecialAIAttacks:
 	jr c, .mountain_breaker_neutral
 	farcall CountBasicEnergyCardsInHand
 	jr nc, .discourage_mountain_breaker
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 .mountain_breaker_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 .discourage_mountain_breaker
-	ld a, 127
+	ld a, AI_SCORE_NEUTRAL - 1
 	ret
 
 ; +3 if the defender is a Lightning Pokémon,
@@ -980,10 +980,10 @@ HandleSpecialAIAttacks:
 	ld a, [wLoadedCard2Type]
 	cp LIGHTNING
 	jr z, .encourage_strange_beam
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 .encourage_strange_beam
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; +3 if any Bill or Imposter Prof Oak in deck pile,
@@ -997,10 +997,10 @@ HandleSpecialAIAttacks:
 	ld a, CARD_LOCATION_DECK
 	call FindCardIDInLocation
 	jr c, .encourage_errand_running
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 .encourage_errand_running
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; 1/2 chance each of +{0 or 3}
@@ -1009,10 +1009,10 @@ HandleSpecialAIAttacks:
 	call Random
 	or a
 	jr z, .kick_away_neutral
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 .kick_away_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; Jes:
@@ -1034,22 +1034,22 @@ HandleSpecialAIAttacks:
 	get_turn_duelist_var
 	cp 8
 	jr c, .higher_clear_profit_score
-	ld a, 125
+	ld a, AI_SCORE_NEUTRAL - 3
 	ret
 
 .clear_profit_jes
 	call CountNumberOfSetUpBenchPokemon
 	cp 2
 	jr c, .higher_clear_profit_score
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 .higher_clear_profit_score
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .mid_clear_profit_score
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; dismiss if no viable targets,
@@ -1057,7 +1057,7 @@ HandleSpecialAIAttacks:
 .Microwave:
 	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
 	jp c, .ZeroScore
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; +3 if any Dark Gyarados in deck pile,
@@ -1068,7 +1068,7 @@ HandleSpecialAIAttacks:
 	ld a, CARD_LOCATION_DECK
 	call FindCardIDInLocation
 	jp nc, .ZeroScore
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; +10 if player has 2+ prizes remaining, and Venomoth is out of KO range;
@@ -1094,11 +1094,11 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 
 .stir_up_twister_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .encourage_stir_up_twister
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; +3 if
@@ -1110,7 +1110,7 @@ HandleSpecialAIAttacks:
 	jp c, .ZeroScore
 	cp 2
 	jp c, .ZeroScore
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; +10 if
@@ -1148,11 +1148,11 @@ HandleSpecialAIAttacks:
 	jr c, .encourage_stare
 
 .stare_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .encourage_stare
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; dismiss if not Imakuni? or Tap
@@ -1177,7 +1177,7 @@ HandleSpecialAIAttacks:
 	get_turn_duelist_var
 	cp 2
 	jp nc, .ZeroScore
-	ld a, 141
+	ld a, AI_SCORE_NEUTRAL + 13
 	ret
 
 .hungry_snorlax_tap
@@ -1188,7 +1188,7 @@ HandleSpecialAIAttacks:
 	xor a ; PLAY_AREA_ARENA
 	farcall CheckIfCanDamageDefendingPokemon
 	jp c, .ZeroScore
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .Rollout:
@@ -1199,12 +1199,12 @@ HandleSpecialAIAttacks:
 	or a
 	jp z, .ZeroScore
 .rollout_success
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 ; neutral
 .MagneticLines:
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; dismiss if no Bench targets, and the defender is immune;
@@ -1225,10 +1225,10 @@ HandleSpecialAIAttacks:
 	cp d
 	jr z, .encourage_flame_pillar
 .flame_pillar_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 .encourage_flame_pillar
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; +4 if
@@ -1251,15 +1251,15 @@ HandleSpecialAIAttacks:
 	pop af
 	cp b
 	jr c, .burning_fire_neutral
-	ld a, 132
+	ld a, AI_SCORE_NEUTRAL + 4
 	ret
 .burning_fire_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; neutral
 .ContinuousFireball:
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; +5 if
@@ -1284,10 +1284,10 @@ HandleSpecialAIAttacks:
 	cp 5
 	jr nc, .encourage_rock_blast
 .discourage_rock_blast
-	ld a, 118
+	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 .encourage_rock_blast
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; dismiss if KOing with Knock Back
@@ -1316,7 +1316,7 @@ HandleSpecialAIAttacks:
 	farcall CheckIfDefendingCardIsResistantToArenaCard
 	jp nc, .ZeroScore
 .drag_off_success
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; +8 if the defender is resistant/weak (?) to Dark Machamp's type or has 70+ HP remaining;
@@ -1340,12 +1340,12 @@ HandleSpecialAIAttacks:
 	cp b
 	jp c, .ZeroScore
 .fling_success
-	ld a, 136
+	ld a, AI_SCORE_NEUTRAL + 8
 	ret
 
 ; neutral
 .TeleportBlast:
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; +2 if
@@ -1362,7 +1362,7 @@ HandleSpecialAIAttacks:
 	farcall GetFirstBasicEnergyAttachedToPlayAreaCard
 	call SwapTurn
 	jp c, .ZeroScore
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; Magician:
@@ -1396,7 +1396,7 @@ HandleSpecialAIAttacks:
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .ZeroScore
-	ld a, 135
+	ld a, AI_SCORE_NEUTRAL + 7
 	ret
 
 .vanish_magician
@@ -1428,7 +1428,7 @@ HandleSpecialAIAttacks:
 	jp nz, .ZeroScore
 
 .encourage_afternoon_nap
-	ld a, 131
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .afternoon_nap_mami
@@ -1457,12 +1457,12 @@ HandleSpecialAIAttacks:
 	jp .ZeroScore
 
 .afternoon_nap_neutral
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 ; +1
 .Mischief:
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret
 
 ; Ronald: +2;
@@ -1471,11 +1471,11 @@ HandleSpecialAIAttacks:
 	ld a, [wOpponentDeckID]
 	cp RONALDS_ULTRA_DECK_ID
 	jr z, .twister_ronald
-	ld a, 128
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .twister_ronald
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; dismiss if confused or already resistant;
@@ -1489,7 +1489,7 @@ HandleSpecialAIAttacks:
 
 	farcall CheckIfArenaCardIsResistantToDefendingCard
 	jp c, .ZeroScore
-	ld a, 132
+	ld a, AI_SCORE_NEUTRAL + 4
 	ret
 
 ; dismiss if confused; else,
@@ -1545,7 +1545,7 @@ HandleSpecialAIAttacks:
 	jp c, .ZeroScore
 
 .texture_magic_success
-	ld a, 135
+	ld a, AI_SCORE_NEUTRAL + 7
 	ret
 
 ; dismiss if Mewtwo is out of KO range or KOing with Psycho Blast;
@@ -1557,12 +1557,12 @@ HandleSpecialAIAttacks:
 	jp nc, .ZeroScore
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
 	jp c, .ZeroScore
-	ld a, 133
+	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
 ; +2
 .Perplex:
-	ld a, 130
+	ld a, AI_SCORE_NEUTRAL + 2
 	ret
 
 ; dismiss if Big Snore is available;
@@ -1573,5 +1573,5 @@ HandleSpecialAIAttacks:
 	and CNF_SLP_PRZ
 	cp ASLEEP
 	jp z, .ZeroScore
-	ld a, 129
+	ld a, AI_SCORE_NEUTRAL + 1
 	ret

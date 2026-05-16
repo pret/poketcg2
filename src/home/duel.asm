@@ -656,11 +656,11 @@ EvolvePokemonCard::
 	ld a, e
 	add DUELVARS_ARENA_CARD_FLAGS
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ld a, e
 	add DUELVARS_ARENA_CARD_CHANGED_TYPE
 	ld l, a
-	ld [hl], $00
+	ld [hl], 0
 	ld a, e
 	or a
 	call z, ClearAllStatusConditions
@@ -742,11 +742,11 @@ CheckIfCanEvolveInto_BasicToStage2::
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, d
 	call LoadCardDataToBuffer1_FromDeckIndex
-	ld a, [wLoadedCard1]
-	cp $08
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
 	jr nc, .cant_evolve
 	ld a, [wLoadedCard1Stage]
-	cp $02
+	cp STAGE2
 	jr nz, .cant_evolve
 	ld hl, wLoadedCard1PreEvoName
 	ld e, [hl]
@@ -836,23 +836,23 @@ PutHandPokemonCardInPlayArea::
 	ld a, DUELVARS_ARENA_CARD_FLAGS
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_CHANGED_TYPE
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_PLUSPOWER
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_ATTACHED_DEFENDER
 	add e
 	ld l, a
-	ld [hl], $0
-	ld a, $e6
+	ld [hl], 0
+	ld a, DUELVARS_ARENA_CARD_FOOD_COUNTERS
 	add e
 	ld l, a
-	ld [hl], $0
+	ld [hl], 0
 	ld a, DUELVARS_ARENA_CARD_STAGE
 	add e
 	ld l, a

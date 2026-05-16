@@ -63,9 +63,8 @@ FindBenchCardThatCanBeDamaged:
 .not_found
 	ld a, PLAY_AREA_BENCH_1
 	ret
-; 0x4c063
 
-SECTION "Bank 13@4237", ROMX[$4237], BANK[$13]
+INCLUDE "engine/duel/spread_attacks.asm"
 
 ; return carry if thd defending (player's arena) card is immune, with no Benched Pokémon
 IsPlayerArenaCardImmuneAndNoBenchedPokemon:
@@ -385,9 +384,52 @@ CountPlayAreaPokemonExcludingTrainerPokemon:
 .got_count
 	ld a, c
 	ret
-; 0x4c437
 
-SECTION "Bank 13@4475", ROMX[$4475], BANK[$13]
+; no carry if
+;   defending Pokémon has Invisible Wall or NShield in effect, and
+;   attacking Pokémon at PLAY_AREA_* location in a cannot damage it
+; return carry otherwise
+CanDamageDefendingPokemonUnderInvisibleWallOrNShield:
+	push af
+	call SwapTurn
+	xor a ; PLAY_AREA_ARENA
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	jr c, .set_carry_pop_af ; skip if already disabled
+
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	pop bc
+	cp16 MR_MIME_LV28
+	jr z, .check_damage_output
+	cp16 MEW_LV8
+	jr nz, .set_carry
+
+; Invisible Wall or NShield is active, can damage it?
+.check_damage_output
+	ld a, b
+	farcall CheckIfCanDamageDefendingPokemon
+	jr c, .set_carry
+
+; no carry
+	or a
+	ret
+
+.set_carry_pop_af
+	call SwapTurn
+	pop af
+.set_carry
+	scf
+	ret
+
+; no carry if zero, return carry otherwise
+IswD035Zero:
+	ld a, [wd035]
+	or a
+	ret z
+	scf
+	ret
 
 ; if Pokémon in non-turn duelist Play Area location in a
 ; is Mr. Mime, then find other Pokémon in Play Area
@@ -437,11 +479,118 @@ FindReplacementPkmnIfMrMime:
 	ld a, PLAY_AREA_ARENA
 	call SwapTurn
 	ret
-; 0x4c4ba
 
-SECTION "Bank 13@456b", ROMX[$456b], BANK[$13]
+; PsychicBattleDeckAI?
+Func_4c4ba:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 16
+	ret nc
 
-Func_4c56b:
+	ld a, [wDuelTurns]
+	srl a
+	cp 3
+	jr c, .check_hand ; AI hasn't taken 3 turns
+
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp 5
+	ret nc
+
+.check_hand
+	farcall CountEnergyCardsInHand
+	cp 3
+	ret nc
+
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wTempCardCollection
+.loop_copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $ff
+	jr nz, .loop_copy
+
+	ld hl, wTempCardCollection
+.loop_hand_cards
+	ld a, [hli]
+	cp $ff
+	jp z, .set_carry
+	push hl
+	call GetCardIDFromDeckIndex
+	cp16 PROFESSOR_OAK
+	jr z, .next_card
+	push de
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	pop de
+	jr c, .next_card
+	cp16 SWITCH
+	jr z, .next_card
+	cp16 ENERGY_RETRIEVAL
+	jr z, .next_card
+; no carry
+	pop hl
+	or a
+	ret
+.next_card
+	pop hl
+	jp .loop_hand_cards
+
+.set_carry
+	scf
+	ret
+
+; PsychicBattleDeckAI?
+Func_4c524:
+	call CountBasicEnergyCardsInHand
+	ret nc
+
+	ld de, PROFESSOR_OAK
+	farcall CheckIfHandHasRepeatedCard
+	ret c
+
+	ld de, PROFESSOR_OAK
+	farcall LookForCardIDInHandList
+	jr nc, .check_bill
+
+	push af
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 16
+	pop bc
+	ld a, b
+	ccf
+	ret c
+
+.check_bill
+	ld de, BILL
+	farcall LookForCardIDInHandList
+	jr nc, .check_hand_and_play_area
+
+	push af
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 11
+	pop bc
+	ld a, b
+	ccf
+	ret c
+
+.check_hand_and_play_area
+	farcall FindSameCardsInHandAndPlayArea
+	ret c
+
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	ret c
+
+	ld de, PLUSPOWER
+	farcall LookForCardIDInHandList
+	ret
+
+PsychicBattleDeckAIDecideGustOfWind:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -453,26 +602,30 @@ Func_4c56b:
 	jr z, .hitmonchan_or_sandslash
 	cp16 SANDSLASH_LV33
 	jr z, .hitmonchan_or_sandslash
-.asm_4c599
+
+.check_immunity_arena
 	farcall IsPlayerArenaCardImmune
 	ret nc
 	ld a, $ff
 	scf
 	ret
+
 .mr_mime
-	call .FindBenchCardWithAtLeastHalfHP
+	call FindBenchCardWithAtLeastHalfHP
 	ret c
-	jr .asm_4c599
+	jr .check_immunity_arena
+
 .mewtwo
-	call .FindBenchCardWithAtLeast3AttachedEnergies
+	call FindBenchCardWithAtLeast3AttachedEnergies
 	ret c
-	jr .asm_4c599
+	jr .check_immunity_arena
+
 .hitmonchan_or_sandslash
 	farcall Func_3a887
 	ret c
-	jr .asm_4c599
+	jr .check_immunity_arena
 
-.FindBenchCardWithAtLeastHalfHP:
+FindBenchCardWithAtLeastHalfHP:
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -482,7 +635,7 @@ Func_4c56b:
 	inc c
 	ld a, c
 	cp b
-	jr z, .not_found_1
+	jr z, .not_found
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	push bc
@@ -501,12 +654,12 @@ Func_4c56b:
 	ld a, c
 	scf
 	ret
-.not_found_1
+.not_found
 	call SwapTurn
 	or a
 	ret
 
-.FindBenchCardWithAtLeast3AttachedEnergies:
+FindBenchCardWithAtLeast3AttachedEnergies:
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -516,7 +669,7 @@ Func_4c56b:
 	inc c
 	ld a, c
 	cp b
-	jr z, .not_found_2
+	jr z, .not_found
 	push bc
 	call CreateArenaOrBenchEnergyCardList
 	pop bc
@@ -527,7 +680,7 @@ Func_4c56b:
 	ld a, c
 	scf
 	ret
-.not_found_2
+.not_found
 	call SwapTurn
 	or a
 	ret
@@ -604,9 +757,326 @@ Func_4c65b:
 	ld [hli], a ; wd037
 	ld [hl], 1 ; wd038
 	ret
-; 0x4c676
 
-SECTION "Bank 13@48ad", ROMX[$48ad], BANK[$13]
+Func_4c676:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ld b, PLAY_AREA_BENCH_1
+	jr c, .check_hp_and_energy
+	ld b, PLAY_AREA_ARENA
+.check_hp_and_energy
+	ld a, 40
+	call FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy
+	jr c, .pick_energy_to_remove
+
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ld b, PLAY_AREA_BENCH_1
+	jr c, .check_dce
+	ld b, PLAY_AREA_ARENA
+.check_dce
+	farcall FindDoubleColorlessAttachedToPlayerPokemonInPlayArea
+	jr nc, .check_can_ko
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, b
+	scf
+	ret
+
+.check_can_ko
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ccf
+	ret nc
+
+	ld e, PLAY_AREA_ARENA
+	call SwapTurn
+	farcall CountNumberOfNonRecycleEnergyCardsAttached
+	call SwapTurn
+	or a
+	ret z
+
+	xor a
+	ldh [hTempPlayAreaLocation_ff9d], a ; PLAY_AREA_ARENA
+	ld [wSelectedAttack], a ; FIRST_ATTACK_OR_PKMN_POWER
+	call SwapTurn
+	farcall CanRemovingEnergyReduceDamage
+	call SwapTurn
+	ret nc
+
+	ld a, SECOND_ATTACK
+	ld [wSelectedAttack], a
+	call SwapTurn
+	farcall CanRemovingEnergyReduceDamage
+	call SwapTurn
+	ret nc
+
+	xor a ; PLAY_AREA_ARENA
+.pick_energy_to_remove
+	push af
+	call SwapTurn
+	farcall PickAttachedEnergyCardToRemove
+	call SwapTurn
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	pop af
+	scf
+	ret
+
+; search player's play area for pkmn with >= a HP remaining and any non-recycle energy attached
+; return carry and its location if found
+; input:
+; a = HP threshold
+; b = starting PLAY_AREA_* location
+; output:
+; a = found location
+FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy:
+	ld c, a
+	call SwapTurn
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, b
+.loop_play_area
+	ld a, e
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp c
+	jr c, .next
+	farcall CountNumberOfNonRecycleEnergyCardsAttached
+	or a
+	jr z, .next
+
+; found
+	call SwapTurn
+	ld a, e
+	scf
+	ret
+
+.next
+	inc e
+	ld a, e
+	cp d
+	jr nz, .loop_play_area
+
+; not found
+	call SwapTurn
+	or a
+	ret
+
+BigThunderDeckAI_4c70b:
+	farcall CountEnergyCardsInHand
+	ret nc
+
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall CreateBasicEnergyCardListInLocation
+	ccf
+	ret nc
+
+	ld a, [wDuelTempList]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, [wDuelTempList + 1]
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wTempCardCollection
+.loop_copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $ff
+	jr nz, .loop_copy
+
+	ld hl, wTempCardCollection
+.loop_hand_cards
+	ld a, [hl]
+	cp $ff
+	jp z, .not_found
+	push hl
+	call GetCardIDFromDeckIndex
+	cp16 ENERGY_REMOVAL
+	jr nz, .check_energy_retrieval
+	ld a, 10
+	ld b, PLAY_AREA_ARENA
+	call FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy
+	jr nc, .found
+	jr .next_card
+
+.check_energy_retrieval
+	cp16 ENERGY_RETRIEVAL
+	jr nz, .check_other_trainers
+	ld de, ENERGY_RETRIEVAL
+	farcall LookForCardIDInHandList_IgnoreTrainerCardToPlay
+	jr c, .found
+	jr .next_card
+
+.check_other_trainers
+	cp16 SUPER_ENERGY_REMOVAL
+	jr z, .found
+	cp16 SCOOP_UP
+	jr z, .found
+	cp16 POKEMON_TRADER
+	jr z, .pokemon_trader
+	cp16 MASTER_BALL
+	jr nz, .next_card
+
+.pokemon_trader
+	ld de, ZAPDOS_LV68
+	farcall CountCardIDInHand
+	push af
+	ld de, ZAPDOS_LV68
+	ld b, PLAY_AREA_ARENA
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	cp 2
+	jr nc, .found
+
+.next_card
+	pop hl
+	inc hl
+	jp .loop_hand_cards
+
+.found
+	pop hl
+	ld a, [hl]
+	scf
+	ret
+
+.not_found
+	or a
+	ret
+
+; Scoop Up?
+BigThunderDeckAI_4c7b5:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ccf
+	ret nc
+
+	ld de, ZAPDOS_LV68
+	ld b, PLAY_AREA_BENCH_1
+	farcall CountCardIDInTurnDuelistPlayArea
+	or a
+	ret z
+
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DITTO
+	ld a, 20
+	jr z, .check_hp
+; zapdos or chansey
+	ld a, 50
+.check_hp
+	push af
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	pop bc
+	cp b
+	jr z, .check_switch
+	ret nc
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	jr nc, .can_switch
+	or a
+	ret
+
+.can_switch
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+
+BigThunderDeckAI_4c7f1:
+	ld de, ZAPDOS_LV68
+	farcall CountCardIDInHand
+	push af
+	ld de, ZAPDOS_LV68
+	ld b, PLAY_AREA_ARENA
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	cp 2
+	ret nc
+
+	ld de, ZAPDOS_LV68
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret nc
+
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld de, DITTO
+	farcall LookForCardIDInHandList
+	ret c
+
+	ld de, CHANSEY_LV55
+	farcall LookForCardIDInHandList
+	ret
+
+BigThunderDeckAIDecideMasterBall:
+	ld de, ZAPDOS_LV68
+	farcall CountCardIDInHand
+	push af
+	ld de, ZAPDOS_LV68
+	ld b, PLAY_AREA_ARENA
+	farcall CountCardIDInTurnDuelistPlayArea
+	pop bc
+	add b
+	cp 2
+	ret nc
+
+	ld de, ZAPDOS_LV68
+	farcall AITryMasterBall_GivenTarget
+	ret c
+
+	ld de, DITTO
+	farcall AITryMasterBall_GivenTarget
+	ret c
+
+	ld de, CHANSEY_LV55
+	farcall AITryMasterBall_GivenTarget
+	ret
+
+; simplified version of DiscountInapplicablePoisonFromDamage
+; always discount single psn damage from a
+DiscountPoisonFromDamage:
+	push af
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 BULBASAUR_LV15
+	jr z, .second_attack_poison
+	cp16 WEEDLE_LV15
+	jr z, .second_attack_poison
+	cp16 EKANS_LV10
+	jr z, .first_attack_poison
+	cp16 ODDISH_LV21
+	jr z, .second_attack_poison
+	cp16 GLOOM
+	jr z, .first_attack_poison
+	cp16 DARK_GLOOM
+	jr z, .second_attack_poison
+	jr .no_discount
+
+.first_attack_poison
+	ld a, [wSelectedAttack]
+	or a
+	jr nz, .no_discount
+	jr .discount_psn
+
+.second_attack_poison
+	ld a, [wSelectedAttack]
+	or a
+	jr nz, .discount_psn
+
+.no_discount
+	pop af
+	ret
+
+.discount_psn
+	pop af
+	sub PSN_DAMAGE
+	ret nc
+; cap at 0
+	xor a
+	ret
 
 AIOpponentPersonalities:
 	db PERSONALITY_EMOTIONLESS ; SAMS_PRACTICE_DECK_ID
@@ -729,8 +1199,6 @@ AIOpponentPersonalities:
 	db PERSONALITY_EMOTIONAL   ; POWER_OF_DARKNESS_DECK_ID
 	db PERSONALITY_STANDARD    ; POISON_STORM_DECK_ID
 	db PERSONALITY_STANDARD    ; DECK_7269_ID
-
-SECTION "Bank 13@4925", ROMX[$4925], BANK[$13]
 
 AIUpdatePortrait:
 	ld a, -1
@@ -1048,9 +1516,85 @@ PrizeCountPersonalityEmotionMatrix:
 	db EMOTION_HAPPY,          EMOTION_HAPPY,          EMOTION_HAPPY  ;  2
 	db EMOTION_HAPPY,          EMOTION_HAPPY,          EMOTION_HAPPY  ;  3
 	db EMOTION_HAPPY,          EMOTION_HAPPY,          EMOTION_HAPPY  ;  4 ; opp lead
-; 0x4cb6e
 
-SECTION "Bank 13@4be0", ROMX[$4be0], BANK[$13]
+; adjust max damage estimate in a
+; see also DiscountInapplicablePoisonFromDamage
+DiscountInapplicablePoisonFromMaxDamage:
+	push af
+	ld a, [wSpecialRule]
+	cp CHLOROPHYLL
+	jr nz, .check_thick_skinned
+	call SwapTurn
+	bank1call GetArenaCardColor
+	call SwapTurn
+	cp GRASS
+	jr nz, .check_thick_skinned
+
+; Chlorophyll applies
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
+	call CheckLoadedAttackFlag
+	jr c, .discount_psn
+	pop af
+	ret
+
+.discount_psn
+	pop af
+	sub PSN_DAMAGE
+	jp c, .cap_at_zero
+	ret
+
+.check_thick_skinned
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 SNORLAX_LV20
+	jr nz, .check_status
+	xor a ; PLAY_AREA_ARENA
+	call SwapTurn
+	bank1call CheckIsIncapableOfUsingPkmnPower
+	call SwapTurn
+	jr c, .check_status
+
+; Thick Skinned is active
+	ld a, ATTACK_FLAG1_ADDRESS | INFLICT_POISON_F
+	call CheckLoadedAttackFlag
+	jr c, .discount_psn
+
+; already poisoned?
+.check_status
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and PSN_DBLPSN
+	cp DOUBLE_POISONED
+	jr nz, .check_poison_mist
+
+.discount_dbl_psn
+	pop af
+	sub DBLPSN_DAMAGE
+	jr c, .cap_at_zero
+	ret
+
+.check_poison_mist
+	cp POISONED
+	jr nz, .no_discount
+	bank1call IsPoisonMistActive
+	jr c, .discount_dbl_psn
+
+; discount psn 2
+	pop af
+	sub PSN_DAMAGE
+	jr c, .cap_at_zero
+	ret
+
+.cap_at_zero
+	xor a
+	ret
+
+.no_discount
+	pop af
+	ret
 
 ; same as CheckIfCanEvolveInto but doesn't consider
 ; the CAN_EVOLVE_THIS_TURN flag
@@ -1083,11 +1627,142 @@ CheckIfEvolvesInto:
 	xor a
 	scf
 	ret
-; 0x4cc0a
 
-SECTION "Bank 13@4cfc", ROMX[$4cfc], BANK[$13]
+ChainLightningByPikachuDeckAIDecideMasterBall:
+	ld de, RAICHU_LV32
+	farcall LookForCardIDInHandList
+	jr nc, .try_evo_cards
+	ld de, DARK_JOLTEON
+	farcall LookForCardIDInHandList
+	jr nc, .try_evo_cards
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 2
+	jr c, .try_basic_pkmn
+	farcall CountNumberOfBasicPokemonInHand
+	or a
+	ret nz
 
-CheckIfDefendingPkmnIsMrMimeLv28AndHasActivePkmnPower:
+.try_evo_cards
+	ld de, RAICHU_LV32
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, DARK_JOLTEON
+	farcall AITryMasterBall_GivenTarget
+	ret c
+; check fighting-type evo lines
+	ld bc, SANDSHREW_LV12
+	ld de, SANDSLASH_LV35
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .check_marowak
+	ld de, SANDSLASH_LV35
+	farcall AITryMasterBall_GivenTarget
+	ret c
+.check_marowak
+	ld bc, CUBONE_LV14
+	ld de, MAROWAK_LV26
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr nc, .try_basic_pkmn
+	ld de, MAROWAK_LV26
+	farcall AITryMasterBall_GivenTarget
+	ret c
+
+.try_basic_pkmn
+	ld de, ELECTABUZZ_LV35
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, PIKACHU_LV13
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, PIKACHU_LV5
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, SANDSHREW_LV12
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	ld de, CUBONE_LV14
+	farcall AITryMasterBall_GivenTarget
+	ret c
+	farcall AITryMasterBall
+	ret
+
+; return carry if in KO range of poison damage within the next two between-turn steps
+CanBeKnockedOutByTwicePoisonDamage:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	and PSN_DBLPSN
+	cp DOUBLE_POISONED
+	jr nz, .check_single
+
+.double
+	ld a, DBLPSN_DAMAGE * 2
+	jr .check_remaining_hp
+
+.check_single
+	cp POISONED
+	jr nz, .not_psn
+; check Poison Mist
+	bank1call IsPoisonMistActive
+	jr c, .double
+
+; single
+	ld a, PSN_DAMAGE * 2
+
+.check_remaining_hp
+	push af
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	ld b, a
+	pop af
+	cp b
+	ccf
+	ret
+
+.not_psn
+	or a
+	ret
+
+PoisonMistDeckAIDecideSwitch:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_MUK
+	jr z, .dark_muk
+	cp16 WEEZING_LV26
+	jr z, .weezing
+	cp16 MR_MIME_LV20
+	jr z, .check_switch
+
+.no_carry
+	or a
+	ret
+
+.dark_muk
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	ret z
+	jr .check_switch
+
+.weezing
+	farcall CanArenaCardUseNonResidualAttack
+	jr c, .no_carry
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 60 ; default max HP of Weezing Lv.26
+	jr nc, .no_carry
+	ld de, WEEZING_LV26
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr c, .no_carry
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+; return carry if player's active pkmn is Mr. Mime Lv.28 with active Invisible Wall
+IsInvisibleWallActiveInPlayerArena:
 	xor a ; PLAY_AREA_ARENA
 	call SwapTurn
 	bank1call CheckIsIncapableOfUsingPkmnPower

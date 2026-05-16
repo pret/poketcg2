@@ -1686,7 +1686,11 @@ wAIFirstAttackDamage:: ; d070
 wAISecondAttackDamage:: ; d071
 	ds $1
 
-wd072:: ; d072
+; TRUE when AI's attack does not do damage to defending Pokémon
+; (also apply to attacks that only do damage to Benched Pokémon)
+wAIAttackIsNonDamaging:: ; d072
+
+wTempAIEnergyCard:: ; d072
 	ds $1
 
 wTempAISingleTargetCardDeckIndex:: ; d073

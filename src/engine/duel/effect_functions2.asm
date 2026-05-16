@@ -82,8 +82,8 @@ SleepCardEffect:
 	ld [hl], a
 	; reset changed type
 	ld l, DUELVARS_ARENA_CARD_CHANGED_TYPE
-	ld [hl], $00
-	; reset PLAY_AREA_FLAG_UNK_3 flag
+	ld [hl], 0
+	; reset Poison Mist flag
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 	res AFFECTED_BY_POISON_MIST_F, [hl]
 	bank1call DrawDuelHUDs

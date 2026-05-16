@@ -121,8 +121,11 @@ MACRO duel_vars
 \1Bench::                        ds MAX_BENCH_POKEMON + 1
 
 \1ArenaCardFlags::               ds $1
-
-	ds $5
+\1Bench1CardFlags::              ds $1
+\1Bench2CardFlags::              ds $1
+\1Bench3CardFlags::              ds $1
+\1Bench4CardFlags::              ds $1
+\1Bench5CardFlags::              ds $1
 
 \1ArenaCardHP::                  ds $1
 \1Bench1CardHP::                 ds $1

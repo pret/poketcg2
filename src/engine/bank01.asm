@@ -4788,7 +4788,7 @@ CheckPrintPoisoned:
 
 CheckPrintDoublePoisoned:
 	push af
-	and DOUBLE_POISONED & (POISONED ^ $ff)
+	and DOUBLE_POISONED & (~POISONED)
 	jr nz, CheckPrintPoisoned.poison ; double poisoned (print SYM_POISONED)
 	jr CheckPrintPoisoned.print ; not double poisoned (print SYM_SPACE)
 
@@ -5930,7 +5930,7 @@ ApplyStatusConditionToArenaPokemon:
 	ld l, DUELVARS_ARENA_CARD_FLAGS
 	res AFFECTED_BY_POISON_MIST_F, [hl]
 	ld l, DUELVARS_ARENA_CARD_CHANGED_TYPE
-	ld [hl], $00 ; reset changed type
+	ld [hl], 0 ; reset changed type
 	pop hl
 	ret
 
@@ -9549,19 +9549,20 @@ HandleGasExplosionKnockOut:
 	call SwapTurn
 	ret
 
-Func_796b:
+; return carry if Poison Mist is active
+IsPoisonMistActive:
 	call CheckGoopGasAttackAndToxicGasActive
 	ccf
 	ret nc
-	call .Func_797f
+	call .LookForActivePoisonMist
 	jr c, .done
 	call SwapTurn
-	call .Func_797f
+	call .LookForActivePoisonMist
 	call SwapTurn
 .done
 	ret
 
-.Func_797f:
+.LookForActivePoisonMist:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
@@ -9900,7 +9901,7 @@ GetPoisonDamage:
 	ld a, DBLPSN_DAMAGE
 	ret z
 	push de
-	call Func_796b
+	call IsPoisonMistActive
 	pop de
 	ld a, PSN_DAMAGE
 	ret nc

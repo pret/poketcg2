@@ -1347,7 +1347,7 @@ AISelectSpecialAttackParameters:
 	jp z, .no_carry
 	; don't remove any Food Counters in order to
 	; damage through Mr. Mime's Invisible Wall
-	farcall CheckIfDefendingPkmnIsMrMimeLv28AndHasActivePkmnPower
+	farcall IsInvisibleWallActiveInPlayerArena
 	jr c, .remove_0_food_counters
 
 	; if has no Food counters, output 0
@@ -2132,10 +2132,10 @@ HandleAIEnergyScoringForRepeatedBenchPokemon:
 	call CreateArenaOrBenchEnergyCardList
 	pop bc
 	sla a ; number of energy cards * 2
-	add $80
+	add AI_SCORE_NEUTRAL
 	sub b
 	pop de
-	; score = $80 + (num energy cards) * 2 - (num damage counters)
+	; score = AI_SCORE_NEUTRAL + (num energy cards) * 2 - (num damage counters)
 	push de
 	ld d, $00
 	ld hl, wSamePokemonEnergyScore

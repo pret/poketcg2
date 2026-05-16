@@ -1017,7 +1017,7 @@ AIDeckSpecificEnergyLogic:
 	jp z, .PoisonStormDeck
 
 .default_score
-	ld b, $80
+	ld b, AI_SCORE_NEUTRAL
 .got_score
 	pop af
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -1039,7 +1039,7 @@ AIDeckSpecificEnergyLogic:
 	or a
 	jr z, .default_score
 	; has energy cards
-	ld b, $7b
+	ld b, AI_SCORE_NEUTRAL - 5
 	jr .got_score
 
 .AwesomeFossilDeck:
@@ -1053,7 +1053,7 @@ AIDeckSpecificEnergyLogic:
 	jr nz, .default_score
 
 ; snorlax lv20
-	ld b, $82
+	ld b, AI_SCORE_NEUTRAL + 2
 	jr .got_score
 
 .kangaskhan_lv40_awesome_fossil
@@ -1071,11 +1071,11 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48958
-	ld b, $85
+	ld b, AI_SCORE_NEUTRAL + 5
 	jp .got_score
 
 .asm_4895d
-	ld b, $6c
+	ld b, AI_SCORE_NEUTRAL - 20
 	jp .got_score
 
 .MaxEnergyDeck:
@@ -1088,7 +1088,7 @@ AIDeckSpecificEnergyLogic:
 	call GetCardIDFromDeckIndex
 	cp16 EXEGGUTOR
 	jp nz, .default_score
-	ld b, $8a
+	ld b, AI_SCORE_NEUTRAL + 10
 	jp .got_score
 
 .GlitteringScalesDeck:
@@ -1121,11 +1121,11 @@ AIDeckSpecificEnergyLogic:
 	; Venomoth and Ivysaur can already use
 	; all their attacks
 .asm_489bc
-	ld b, $85
+	ld b, AI_SCORE_NEUTRAL + 5
 	jp .got_score
 
 .asm_489c1
-	ld b, $64
+	ld b, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 
 .kangaskhan_lv40_glittering_scales
@@ -1171,7 +1171,7 @@ AIDeckSpecificEnergyLogic:
 	cp 2
 	jp c, .default_score
 	; at least 2 set up bench Pokémon
-	ld b, $99
+	ld b, AI_SCORE_NEUTRAL + 25
 	jp .got_score
 
 .ImmortalFlameDeck:
@@ -1199,11 +1199,11 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48a56
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .asm_48a5b
-	ld b, $64
+	ld b, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 
 .GreatDragonDeck:
@@ -1236,7 +1236,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48a9d
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .MadPetalsDeck:
@@ -1268,7 +1268,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48adf
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .CompleteCombustionDeck:
@@ -1299,10 +1299,10 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48b18
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 .asm_48b1d
-	ld b, $78
+	ld b, AI_SCORE_NEUTRAL - 8
 	jp .got_score
 
 .RunningWildDeck:
@@ -1330,7 +1330,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48b57
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .DirectHitDeck:
@@ -1360,10 +1360,10 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48b9a
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 .asm_48b9f
-	ld b, $78
+	ld b, AI_SCORE_NEUTRAL - 8
 	jp .got_score
 
 .BadDreamDeck:
@@ -1394,10 +1394,10 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48be0
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 .asm_48be5
-	ld b, $78
+	ld b, AI_SCORE_NEUTRAL - 8
 	jp .got_score
 
 .SpiritedAwayDeck:
@@ -1422,7 +1422,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48c1f
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .UltraRemovalDeck:
@@ -1433,7 +1433,7 @@ AIDeckSpecificEnergyLogic:
 	jp z, .default_score
 	; Rain Dance is active and this
 	; card is not Arena card
-	ld b, $4e
+	ld b, AI_SCORE_NEUTRAL - 50
 	jp .got_score
 
 .StopLifeDeck:
@@ -1462,11 +1462,11 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48c75
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .dark_dragonair
-	ld b, $83
+	ld b, AI_SCORE_NEUTRAL + 3
 	jp .got_score
 
 .ScorcherDeck:
@@ -1497,7 +1497,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48cc1
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .dark_charizard
@@ -1507,10 +1507,10 @@ AIDeckSpecificEnergyLogic:
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	cp b
 	jr z, .asm_48cd7
-	ld b, $64
+	ld b, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 .asm_48cd7
-	ld b, $83
+	ld b, AI_SCORE_NEUTRAL + 3
 	jp .got_score
 
 .TsunamiStarterDeck:
@@ -1523,7 +1523,7 @@ AIDeckSpecificEnergyLogic:
 	ld a, TYPE_PKMN_LIGHTNING
 	farcall CheckIfPlayerHasPokemonOfType
 	jp nc, .default_score
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .SmashToMincemeatDeck:
@@ -1553,7 +1553,7 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48d3e
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .chansey_lv55
@@ -1565,7 +1565,7 @@ AIDeckSpecificEnergyLogic:
 	farcall CountNumberOfSetUpBenchPokemon
 	cp 2
 	jp c, .default_score
-	ld b, $84
+	ld b, AI_SCORE_NEUTRAL + 4
 	jp .got_score
 
 .TestYourLuckDeck:
@@ -1575,7 +1575,7 @@ AIDeckSpecificEnergyLogic:
 	call GetCardIDFromDeckIndex
 	cp16 MOLTRES_LV35
 	jp nz, .default_score
-	ld b, $85
+	ld b, AI_SCORE_NEUTRAL + 5
 	jp .got_score
 
 .PowerfulPokemonDeck:
@@ -1616,7 +1616,7 @@ AIDeckSpecificEnergyLogic:
 	farcall LookForCardIDInHandList
 	jp c, .default_score
 .asm_48dcb
-	ld a, $64
+	ld a, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 
 .RonaldsUncoolDeck:
@@ -1639,10 +1639,10 @@ AIDeckSpecificEnergyLogic:
 	farcall CountNumberOfSetUpBenchPokemon
 	cp 2
 	jr nc, .asm_48e00
-	ld b, $64
+	ld b, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 .asm_48e00
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .EverybodysFriendDeck:
@@ -1660,7 +1660,7 @@ AIDeckSpecificEnergyLogic:
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
 	jp nc, .default_score
-	ld b, $83
+	ld b, AI_SCORE_NEUTRAL + 3
 	jp .got_score
 
 .ImmortalPokemonDeck:
@@ -1675,7 +1675,7 @@ AIDeckSpecificEnergyLogic:
 	farcall CountEnergyCardsInHand
 	cp 3
 	jp c, .default_score
-	ld b, $85
+	ld b, AI_SCORE_NEUTRAL + 5
 	jp .got_score
 
 .BlazingFlameDeck:
@@ -1695,7 +1695,7 @@ AIDeckSpecificEnergyLogic:
 	ld a, [wTotalAttachedEnergies]
 	or a
 	jp nz, .default_score
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 
 .BigThunderDeck:
@@ -1714,10 +1714,10 @@ AIDeckSpecificEnergyLogic:
 .ditto
 	call CheckIfHasZapdosLv68WithLessThan3Energies
 	jr c, .asm_48ea2
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 .asm_48ea2
-	ld b, $64
+	ld b, AI_SCORE_NEUTRAL - 28
 	jp .got_score
 
 .PowerOfDarknessDeck:
@@ -1747,10 +1747,10 @@ AIDeckSpecificEnergyLogic:
 	xor a
 	ld [wd032], a
 .asm_48ee7
-	ld b, $8d
+	ld b, AI_SCORE_NEUTRAL + 13
 	jp .got_score
 .asm_48eec
-	ld b, $78
+	ld b, AI_SCORE_NEUTRAL - 8
 	jp .got_score
 
 AIDeckSpecificRetreatLogic:
@@ -1775,7 +1775,7 @@ AIDeckSpecificRetreatLogic:
 	jp z, .BigThunderDeck
 
 .default
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	ret
 
 .SteadyIncreaseDeck:
@@ -1784,14 +1784,14 @@ AIDeckSpecificRetreatLogic:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jr nc, .default
 	; can KO defending card
-	ld a, $83
+	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
 .GreatDragonDeck
 	ld a, [wPreviousAIFlags]
 	and AI_FLAG_UNK_5
 	jr z, .default
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .SpiritedAwayDeck:
@@ -1807,10 +1807,10 @@ AIDeckSpecificRetreatLogic:
 	ld a, [wAttachedEnergies + PSYCHIC]
 	cp 8
 	jr nc, .at_least_8_psychic_energy_cards
-	ld a, $46
+	ld a, AI_SCORE_NEUTRAL - 58
 	ret
 .at_least_8_psychic_energy_cards
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .PsychicBattleDeck:
@@ -1832,11 +1832,11 @@ AIDeckSpecificRetreatLogic:
 	jr c, .asm_48f81 ; can use non-Residual
 .asm_48f7b
 	call SwapTurn
-	ld a, $80
+	ld a, AI_SCORE_NEUTRAL
 	ret
 .asm_48f81
 	call SwapTurn
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .StopLifeDeck:
@@ -1848,7 +1848,7 @@ AIDeckSpecificRetreatLogic:
 	cp16 KANGASKHAN_LV40
 	jr nz, .default
 ; Arena card is Kangaskhan
-	ld a, $46
+	ld a, AI_SCORE_NEUTRAL - 58
 	ret
 
 .ImmortalPokemonDeck:
@@ -1868,7 +1868,7 @@ AIDeckSpecificRetreatLogic:
 	farcall CheckIfDefendingPokemonCanKnockOut
 	jp nc, .default
 	; Abra can be KO'ed
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .kadabra_lv39
@@ -1877,7 +1877,7 @@ AIDeckSpecificRetreatLogic:
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jp c, .default
 	; Alakazam is not in Bench
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .mr_mime_lv28
@@ -1886,7 +1886,7 @@ AIDeckSpecificRetreatLogic:
 	cp 20 + 1
 	jp nc, .default
 	; Mr. Mime has <= 20 HP remaining
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 .BigThunderDeck:
@@ -1899,7 +1899,7 @@ AIDeckSpecificRetreatLogic:
 	call CheckIfPokemonInBenchHasEnoughEnergy
 	jp nc, .default
 	; another Zapdos in Bench has enough energy cards
-	ld a, $8a
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; some Decks rely on using The Boss' Way and
@@ -3226,7 +3226,7 @@ Func_49c04:
 	ld a, [wTotalAttachedEnergies]
 	cp 3
 	jr nc, .asm_49c3a
-	farcall Func_4c56b.FindBenchCardWithAtLeast3AttachedEnergies
+	farcall FindBenchCardWithAtLeast3AttachedEnergies
 	ret c
 .asm_49c3a
 	xor a
@@ -3666,7 +3666,40 @@ CheckIfHasSpecificEnergyAttached:
 	ret
 ; 0x4a005
 
-SECTION "Bank 12@625d", ROMX[$625d], BANK[$12]
+SECTION "Bank 12@6236", ROMX[$6236], BANK[$12]
+
+; input:
+; de = card ID
+; output:
+; a = deck index and carry if found
+LookForCardIDInHandList_IgnoreTrainerCardToPlay:
+	push de
+	call CreateHandCardList
+	pop bc
+	ld hl, wDuelTempList
+.loop_hand_cards
+	ld a, [hli]
+	cp $ff
+	ret z
+	push hl
+	ld hl, wAITrainerCardToPlay
+	cp [hl]
+	pop hl
+	jr z, .loop_hand_cards
+	ldh [hTempCardIndex_ff98], a
+	push bc
+	call GetCardIDFromDeckIndex
+	pop bc
+	ld a, d
+	cp b
+	jr nz, .loop_hand_cards
+	ld a, e
+	cp c
+	jr nz, .loop_hand_cards
+; found
+	ldh a, [hTempCardIndex_ff98]
+	scf
+	ret
 
 ; +10 if
 ;   not KOing with Psyshock,
@@ -4119,7 +4152,7 @@ IsPlayerArenaCardImmune:
 	ld [wTempNonTurnDuelistCardID + 0], a
 	ld a, d
 	ld [wTempNonTurnDuelistCardID + 1], a
-	xor a
+	xor a ; DAMAGE_NORMAL
 	ld [wLoadedAttackCategory], a
 	bank1call HandleNoDamageOrEffectSubstatus
 	call SwapTurn
@@ -4344,13 +4377,13 @@ FindDoubleColorlessAttachedToCard:
 	ld a, [hli]
 	cp $ff
 	ret z ; no double colorless
-	ld [wd072], a
+	ld [wTempAIEnergyCard], a
 	push hl
 	call GetCardIDFromDeckIndex
 	cp16 DOUBLE_COLORLESS_ENERGY
 	pop hl
 	jr nz, .loop_energy_cards
-	ld a, [wd072]
+	ld a, [wTempAIEnergyCard]
 	scf
 	ret
 
@@ -4423,7 +4456,522 @@ AddDefenderDamageReductionOfPlayAreaPokemon:
 	pop af
 	add l
 	ret
-; 0x4b4e4
+
+AIDeckSpecificAttackLogic:
+	ld a, [wOpponentDeckID]
+	cp TEN_THOUSAND_VOLTS_DECK_ID
+	jr z, .TenThousandVoltsDeck
+	cp PUPPET_MASTER_DECK_ID
+	jp z, .PuppetMasterDeck
+	cp STEADY_INCREASE_DECK_ID
+	jp z, .SteadyIncreaseDeck
+	cp DARK_SCIENCE_DECK_ID
+	jp z, .DarkScienceDeck
+	cp GREAT_DRAGON_DECK_ID
+	jp z, .GreatDragonDeck
+	cp BUG_COLLECTING_DECK_ID
+	jp z, .BugCollectingDeck
+	cp COMPLETE_COMBUSTION_DECK_ID
+	jp z, .CompleteCombustionDeck
+	cp WHIRLPOOL_SHOWER_DECK_ID
+	jp z, .WhirlpoolShowerDeck
+	cp SUPERDESTRUCTIVE_POWER_DECK_ID
+	jp z, .SuperdestructivePowerDeck
+	cp POKEMON_POWER_DECK_ID
+	jp z, .PokemonPowerDeck
+	cp SPIRITED_AWAY_DECK_ID
+	jp z, .SpiritedAwayDeck
+	cp EYE_OF_THE_STORM_DECK_ID
+	jp z, .EyeOfTheStormDeck
+	cp VERY_RARE_CARD_DECK_ID
+	jp z, .VeryRareCardDeck
+	cp BAD_GUYS_DECK_ID
+	jp z, .BadGuysDeck
+	cp POISON_MIST_DECK_ID
+	jp z, .PoisonMistDeck
+	cp PSYCHIC_BATTLE_DECK_ID
+	jp z, .PsychicBattleDeck
+	cp TSUNAMI_STARTER_DECK_ID
+	jp z, .TsunamiStarterDeck
+	cp PROTOHISTORIC_DECK_ID
+	jp z, .ProtohistoricDeck
+	cp COLORLESS_ENERGY_DECK_ID
+	jp z, .ColorlessEnergyDeck
+	cp IMMORTAL_POKEMON_DECK_ID
+	jp z, .ImmortalPokemonDeck
+	cp BLAZING_FLAME_DECK_ID
+	jp z, .BlazingFlameDeck
+	cp DAMAGE_CHAOS_DECK_ID
+	jp z, .DamageChaosDeck
+	cp BIG_THUNDER_DECK_ID
+	jp z, .BigThunderDeck
+
+.standard_score
+	ld a, AI_SCORE_NEUTRAL
+	ret
+
+; Zapdos's Thunderbolt: +10 if in KO range of defending pkmn
+.TenThousandVoltsDeck
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ZAPDOS_LV64
+	jr nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jr z, .standard_score
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jr nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 10
+	ret
+
+; Slowpoke's Scavenge:
+; +10 if can retrieve Clefairy Doll;
+; -10 otherwise
+.PuppetMasterDeck
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 SLOWPOKE_LV18
+	jr nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jr z, .standard_score
+	ld de, CLEFAIRY_DOLL
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr c, .encourage_scavenge
+; discourage
+	ld a, AI_SCORE_NEUTRAL - 10
+	ret
+.encourage_scavenge
+	ld a, AI_SCORE_NEUTRAL + 10
+	ret
+
+; Call for Family variants:
+; +5 if has <= 2 benched pkmn
+.SteadyIncreaseDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ODDISH_LV8
+	jr z, .check_call_for_family
+	cp16 PARAS_LV15
+	jr z, .check_call_for_family
+	cp16 BELLSPROUT_LV11
+	jr nz, .standard_score
+.check_call_for_family
+	ld a, [wSelectedAttack]
+	or a
+	jr z, .standard_score
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 4
+	jr nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+
+; Grimer's Poison Gas:
+; +5 if Poison Mist is active
+.DarkScienceDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 GRIMER_LV10
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	bank1call IsPoisonMistActive
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+
+; Charmeleon's Flamethrower: -5
+.GreatDragonDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 CHARMELEON
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL - 5
+	ret
+
+; Dark Persian's Fascinate
+; expectation: encourage if has good gusting target
+; reality: neutral anyway
+.BugCollectingDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_PERSIAN_LV28
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	farcall Func_209fc
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL
+	ret
+
+; Arcanine's Take Down: -4
+.CompleteCombustionDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ARCANINE_LV45
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL - 4
+	ret
+
+; Dark Starmie's Spinning Shower: +12
+.WhirlpoolShowerDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_STARMIE
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 12
+	ret
+
+; Kadabra's Recover:
+; +12 if no benched pkmn and in KO range of defending pkmn;
+; Dark Hypno's Bench Manipulation:
+; +12 if player has 2+ benched pkmn
+.SuperdestructivePowerDeck:
+.PokemonPowerDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 KADABRA_LV38
+	jr z, .kadabra
+	cp16 DARK_HYPNO
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	call GetNonTurnDuelistVariable
+	cp 3
+	jp c, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 12
+	ret
+.kadabra
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 1
+	jp nz, .standard_score
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 12
+	ret
+
+; Dark Gengar: +5
+.SpiritedAwayDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_GENGAR
+	jp nz, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+
+; Pidgeot's Hurricane:
+; +12 if against evolved pkmn, or against basic pkmn with 3+ energies attached;
+; -2 otherwise
+.EyeOfTheStormDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 PIDGEOT_LV40
+	jr z, .pidgeot
+	jp .standard_score
+.pidgeot
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Stage]
+	or a
+	jr nz, .encourage_hurricane
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 3
+	jr nc, .encourage_hurricane
+	call SwapTurn
+	ld a, AI_SCORE_NEUTRAL - 2
+	ret
+.encourage_hurricane
+	call SwapTurn
+	ld a, AI_SCORE_NEUTRAL + 12
+	ret
+
+; Magikarp's Dragon Rage: +2
+.VeryRareCardDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 MAGIKARP_LV10
+	jr z, .magikarp
+	jp .standard_score
+.magikarp
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 2
+	ret
+
+; Oddish's Sleep Powder:
+; +2 if newly inflicts sleep
+.BadGuysDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 ODDISH_LV21
+	jr z, .oddish
+	jp .standard_score
+.oddish
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	call GetNonTurnDuelistVariable
+	and CNF_SLP_PRZ
+	cp ASLEEP
+	jp nz, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 2
+	ret
+
+; Grimer's Poison Gas:
+; expectation: +5 if Poison Mist is active
+; reality: +5 if against Poison Mist user
+.PoisonMistDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 GRIMER_LV10
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld a, DUELVARS_ARENA_CARD_FLAGS
+	call GetNonTurnDuelistVariable
+	and AFFECTED_BY_POISON_MIST
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+
+; Mewtwo's Barrier: -10
+.PsychicBattleDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 MEWTWO_LV53
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL - 10
+	ret
+
+; Squirtle's Withdraw, Dark Blastoise's Rocket Tackle: -10
+.TsunamiStarterDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 SQUIRTLE_LV8
+	jr z, .squirtle_or_dark_blastoise
+	cp16 DARK_BLASTOISE
+	jp nz, .standard_score
+.squirtle_or_dark_blastoise
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL - 10
+	ret
+
+; Kangaskhan's Comet Punch:
+; -10 if has <= 2 cards in hand or has no benched pkmn
+.ProtohistoricDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 KANGASKHAN_LV40
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp 3
+	jr c, .discourage_comet_punch
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 1
+	jp nz, .standard_score
+.discourage_comet_punch
+	ld a, AI_SCORE_NEUTRAL - 10
+	ret
+
+; Fearow's Agility: +3
+.ColorlessEnergyDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 FEAROW_LV27
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 3
+	ret
+
+; Chansey's Double-Edge:
+; -20 if no Alakazam, or no Mr. Mime or Chansey on bench
+.ImmortalPokemonDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 CHANSEY_LV55
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld de, ALAKAZAM_LV42
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr nc, .discourage_double_edge
+	ld de, MR_MIME_LV28
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr c, .neutral_double_edge
+	ld de, CHANSEY_LV55
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr nc, .discourage_double_edge
+.neutral_double_edge
+	ld a, AI_SCORE_NEUTRAL
+	ret
+.discourage_double_edge
+	ld a, AI_SCORE_NEUTRAL - 20
+	ret
+
+; Ninetales' Lure: +3 if has good target;
+; Base Set Arcanine's Flamethrower:
+;   +3 if defeinding pkmn has <= 50 HP remaining
+;   (not considering damage changes);
+; Promo Arcanine: for (Quick Attack, Flames of Rage),
+;   (-5, +5) if has 2+ damage counters on it;
+;   (+5, -5) otherwise
+.BlazingFlameDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 NINETALES_LV32
+	jr z, .ninetailes
+	cp16 ARCANINE_LV45
+	jr z, .BlazingFlameDeck_arcanine_lv45
+	cp16 ARCANINE_LV34
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .check_damage_counters
+	ld e, PLAY_AREA_ARENA
+	call GetCardDamageAndMaxHP
+	cp 2
+	jr c, .BlazingFlameDeck_encourage
+.BlazingFlameDeck_discourage
+	ld a, AI_SCORE_NEUTRAL - 5
+	ret
+.check_damage_counters
+	ld e, PLAY_AREA_ARENA
+	call GetCardDamageAndMaxHP
+	cp 2
+	jr c, .BlazingFlameDeck_discourage
+.BlazingFlameDeck_encourage
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+.BlazingFlameDeck_arcanine_lv45
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld a, DUELVARS_ARENA_CARD_HP
+	call GetNonTurnDuelistVariable
+	cp 50
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 3
+	ret
+.ninetailes
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	call AIChoosePlayerBenchPkmnWithNotEnoughEnergiesOrHighRetreatCost
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 3
+	ret
+
+; Dark Gengar: +5;
+; Clefairy's Follow Me: +1 if has good target, and defending pkmn has any energy attached
+.DamageChaosDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_GENGAR
+	jr z, .encourage_dark_gengar
+	cp16 CLEFAIRY_LV15
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp nz, .standard_score
+	ld e, PLAY_AREA_ARENA
+	call SwapTurn
+	call GetPlayAreaCardAttachedEnergies
+	call SwapTurn
+	ld a, [wTotalAttachedEnergies]
+	or a
+	jp z, .standard_score
+	ld a, FIGHTING
+	call AIChooseFollowMeTarget
+	jp nc, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 1
+	ret
+.encourage_dark_gengar
+	ld a, AI_SCORE_NEUTRAL + 5
+	ret
+
+; Chansey's Double-Edge: +12
+.BigThunderDeck:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 CHANSEY_LV55
+	jp nz, .standard_score
+	ld a, [wSelectedAttack]
+	or a
+	jp z, .standard_score
+	ld a, AI_SCORE_NEUTRAL + 12
+	ret
+; 0x4b901
 
 SECTION "Bank 12@79f4", ROMX[$79f4], BANK[$12]
 
@@ -4799,4 +5347,24 @@ GetHighestAttackIndex:
 	pop hl
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	ret
-; 0x4bfc6
+
+; for Pokémon at [hTempPlayAreaLocation_ff9d] and its [wSelectedAttack],
+; return carry if
+;   no surplus energy, or
+;   energy boost attack but only 1 or 2 extra energy attached
+; no carry otherwise
+CanRemovingEnergyReduceDamage:
+	call CheckIfNoSurplusEnergyForAttack
+	ret c
+
+	push af
+	ld a, ATTACK_FLAG2_ADDRESS | ATTACHED_ENERGY_BOOST_F
+	call CheckLoadedAttackFlag
+	jr c, .attached_energy_boost
+	pop af
+	ret
+
+.attached_energy_boost
+	pop af
+	cp MAX_ENERGY_BOOST_IS_NOT_LIMITED
+	ret

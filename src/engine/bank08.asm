@@ -472,7 +472,7 @@ Func_209fc:
 	ret
 
 .PsychicBattleDeck:
-	farcall Func_4c56b
+	farcall PsychicBattleDeckAIDecideGustOfWind
 	ret nc
 	cp $ff
 	jp z, .asm_20a79

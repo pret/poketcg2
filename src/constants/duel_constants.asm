@@ -68,6 +68,11 @@ DEF DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK      EQUS "LOW(wPlayerNumberOfCardsNotI
 DEF DUELVARS_ARENA_CARD                       EQUS "LOW(wPlayerArenaCard)"                   ; bb
 DEF DUELVARS_BENCH                            EQUS "LOW(wPlayerBench)"                       ; bc
 DEF DUELVARS_ARENA_CARD_FLAGS                 EQUS "LOW(wPlayerArenaCardFlags)"              ; c2
+DEF DUELVARS_BENCH1_CARD_FLAGS                EQUS "LOW(wPlayerBench1CardFlags)"             ; c3
+DEF DUELVARS_BENCH2_CARD_FLAGS                EQUS "LOW(wPlayerBench2CardFlags)"             ; c4
+DEF DUELVARS_BENCH3_CARD_FLAGS                EQUS "LOW(wPlayerBench3CardFlags)"             ; c5
+DEF DUELVARS_BENCH4_CARD_FLAGS                EQUS "LOW(wPlayerBench4CardFlags)"             ; c6
+DEF DUELVARS_BENCH5_CARD_FLAGS                EQUS "LOW(wPlayerBench5CardFlags)"             ; c7
 DEF DUELVARS_ARENA_CARD_HP                    EQUS "LOW(wPlayerArenaCardHP)"                 ; c8
 DEF DUELVARS_BENCH1_CARD_HP                   EQUS "LOW(wPlayerBench1CardHP)"                ; c9
 DEF DUELVARS_BENCH2_CARD_HP                   EQUS "LOW(wPlayerBench2CardHP)"                ; ca
@@ -227,7 +232,7 @@ DEF SUBSTATUS3_TURN_COUNTDOWN_HI_F       EQU 5
 DEF SUBSTATUS3_STRANGE_BEAM_F            EQU 6
 DEF SUBSTATUS3_PERPLEX_F                 EQU 7
 
-; DUELVARS_ARENA_CARD_FLAGS constants
+; DUELVARS_*_CARD_FLAGS constants
 DEF PLAY_AREA_FLAG_UNK_1_F       EQU 1
 DEF PLAY_AREA_FLAG_UNK_2_F       EQU 2
 DEF AFFECTED_BY_POISON_MIST_F    EQU 3
@@ -236,6 +241,7 @@ DEF USED_PKMN_POWER_THIS_TURN_F  EQU 5
 DEF USED_LEEK_SLAP_THIS_DUEL_F   EQU 6
 DEF CAN_EVOLVE_THIS_TURN_F       EQU 7
 
+DEF AFFECTED_BY_POISON_MIST     EQU 1 << AFFECTED_BY_POISON_MIST_F
 DEF AFFECTED_BY_STARE           EQU 1 << AFFECTED_BY_STARE_F
 DEF USED_PKMN_POWER_THIS_TURN   EQU 1 << USED_PKMN_POWER_THIS_TURN_F
 DEF USED_LEEK_SLAP_THIS_DUEL    EQU 1 << USED_LEEK_SLAP_THIS_DUEL_F
@@ -449,10 +455,3 @@ DEF PRIZES_6    EQU $06
 	const CARDSEARCH_LIGHTNING_ENERGY            ; $c
 	const CARDSEARCH_UNK_D                       ; $d
 	const CARDSEARCH_BASIC_POKEMON               ; $e
-
-; search filter by AI
-; different from FILTER_ONLY_*
-	const_def
-	const SEARCH_ONLY_TRAINER ; $0
-	const SEARCH_ONLY_PKMN    ; $1
-	const SEARCH_ONLY_ENERGY  ; $2
