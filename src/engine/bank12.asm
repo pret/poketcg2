@@ -947,9 +947,70 @@ AIDoTurn_GeneralNoRetreat:
 	ld a, OPPACTION_FINISH_NO_ATTACK
 	farcall AIMakeDecision
 	ret
-; 0x487c7
 
-SECTION "Bank 12@4856", ROMX[$4856], BANK[$12]
+Func_487c7:
+	call CountPrizes
+	cp 4
+	jr c, .prefer_pidgeot_line
+	call .CheckFearowLine
+	ret c
+	call .CheckPidgeotLine
+	ret
+.prefer_pidgeot_line
+	call .CheckPidgeotLine
+	ret c
+	call .CheckFearowLine
+	ret
+
+.CheckFearowLine:
+	ld bc, SPEAROW_LV13
+	ld de, FEAROW_LV27
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+
+.CheckPidgeotLine:
+	ld bc, PIDGEY_LV10
+	ld de, PIDGEOTTO_LV38
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret c
+	ld bc, PIDGEOTTO_LV38
+	ld de, PIDGEOT_LV40
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	ret
+
+Func_487ff:
+	ld bc, PIDGEY_LV10
+	ld de, PIDGEOTTO_LV38
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .found
+	ld bc, PIDGEOTTO_LV38
+	ld de, PIDGEOT_LV40
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .found
+	ld de, PIDGEY_LV10
+	ld bc, PIDGEOTTO_LV38
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, PIDGEOTTO_LV38
+	jr c, .found
+	ld de, PIDGEOTTO_LV38
+	ld bc, PIDGEOT_LV40
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, PIDGEOT_LV40
+	jr c, .found
+	ld bc, SPEAROW_LV13
+	ld de, FEAROW_LV27
+	farcall LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
+	jr c, .found
+	ld de, SPEAROW_LV13
+	ld bc, FEAROW_LV27
+	farcall LookForCardIDInDeck_GivenCardIDInHand
+	ld de, FEAROW_LV27
+	ret nc
+
+.found
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	call FindDifferentPokemonCardInHand
+	ret
 
 AIDeckSpecificEnergyLogic:
 	ldh a, [hTempPlayAreaLocation_ff9d]
@@ -2670,7 +2731,7 @@ Func_495dd:
 	ldh a, [hTempPlayAreaLocation_ffa1]
 	ret
 
-Func_49603:
+StopLifeDeckAIDecideGustOfWind:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -2721,7 +2782,7 @@ Func_49603:
 .check_stage2
 	call SwapTurn
 	xor a ; PLAY_AREA_ARENA
-	call .CheckIfItsStage2
+	call IsArenaOrBenchPokemonStage2
 	jr c, .asm_49672
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
@@ -2730,7 +2791,7 @@ Func_49603:
 .loop_bench_2
 	ld a, e
 	push de
-	call .CheckIfItsStage2
+	call IsArenaOrBenchPokemonStage2
 	pop de
 	jr nc, .next_bench_2
 	call SwapTurn
@@ -2748,18 +2809,78 @@ Func_49603:
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret
 
-.CheckIfItsStage2:
+; Biruritchi AI
+; return carry if turn holder's pkmn at location in a is stage 2 evolution
+IsArenaOrBenchPokemonStage2:
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Stage]
 	cp STAGE2
 	ccf
-	; carry set if is Stage 2
 	ret
-; 0x49687
 
-SECTION "Bank 12@56f1", ROMX[$56f1], BANK[$12]
+StopLifeDeckAIDecideSwitch:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_VENUSAUR
+	jr z, .dark_venusaur_arena
+	cp16 KANGASKHAN_LV40
+	jr z, .kangaskhan_arena
+	or a
+	ret
+
+.dark_venusaur_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 3
+	jr c, .check_bench_and_switch
+; check status
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .check_switch
+	jr .dark_venusaur_not_statused
+
+.kangaskhan_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 3
+	ret nc
+	ld de, DARK_VENUSAUR
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.dark_venusaur_not_statused
+	farcall CanArenaCardUseNonResidualAttack
+	ccf
+	ret nc
+	ld de, SCYTHER_LV25
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+.check_bench_and_switch
+	farcall CountNumberOfSetUpBenchPokemon
+	ret nc
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret nc
+
+	push af
+	ld a, 50
+	cp e
+	pop bc
+	ld a, b
+	ret
 
 ; +70 if
 ;   the same card isn't in play yet but has positive type match-up, or
@@ -2798,7 +2919,7 @@ PowerfulPokemonDeckAIEvaluateBasicCards:
 	jr c, .encourage
 
 .discourage
-	ld a, 100
+	ld a, AI_SCORE_BASIC_POKEMON - 30
 	ret
 
 .not_found
@@ -2838,11 +2959,11 @@ PowerfulPokemonDeckAIEvaluateBasicCards:
 	jp nz, .check_arena
 
 .encourage
-	ld a, 200
+	ld a, AI_SCORE_BASIC_POKEMON + 70
 	ret
 
 .neutral
-	ld a, 130
+	ld a, AI_SCORE_BASIC_POKEMON
 	ret
 
 .GetEnergyFlag:
@@ -2861,12 +2982,55 @@ PowerfulPokemonDeckAIEvaluateBasicCards:
 	ret z
 	ld a, PSYCHIC_F
 	ret
-; 0x497c7
 
-SECTION "Bank 12@582a", ROMX[$582a], BANK[$12]
+PowerfulPokemonDeckAIDecideEnergySearch:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 MAGMAR_LV31
+	ld a, 2
+	ld bc, FIRE_ENERGY
+	jr z, .check_energy_attached
+	cp16 LAPRAS_LV31
+	ld a, 2
+	ld bc, WATER_ENERGY
+	jr z, .check_energy_attached
+	cp16 ELECTABUZZ_LV35
+	ld a, 2
+	ld bc, LIGHTNING_ENERGY
+	jr z, .check_energy_attached
+	cp16 HITMONCHAN_LV33
+	ld a, 1
+	ld bc, FIGHTING_ENERGY
+	jr z, .check_energy_attached
+; Jynx
+	ld a, 1
+	ld bc, PSYCHIC_ENERGY
 
-; returns carry if player's card is weak to Arena Card
-CheckIfDefendingPokemonIsWeakToArenaCard:
+.check_energy_attached
+	ld d, a
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp d
+	ret nc
+	ld d, b
+	ld e, c
+	push de
+	farcall LookForCardIDInHandList
+	pop de
+	ccf
+	ret nc
+	ld a, CARD_LOCATION_DECK
+	farcall FindCardIDInLocation
+	ret
+
+; return carry if player's card is weak to pkmn at location in a
+; input:
+; a = PLAY_AREA_* constant
+; output:
+; a = WR_* constant of player's card's weakness
+IsDefendingPokemonWeakToArenaOrBenchPokemon:
 	bank1call GetPlayAreaCardColor
 	call TranslateColorToWR
 	push af
@@ -2881,9 +3045,57 @@ CheckIfDefendingPokemonIsWeakToArenaCard:
 .set_carry
 	scf
 	ret
-; 0x49842
 
-SECTION "Bank 12@5887", ROMX[$5887], BANK[$12]
+PowerfulPokemonDeckAIDecideSwitch:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	ccf
+	ret nc
+
+	xor a ; PLAY_AREA_ARENA
+	call IsDefendingPokemonWeakToArenaOrBenchPokemon
+	jr c, .check_ko
+
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, PLAY_AREA_BENCH_1
+.loop_bench
+	ld a, e
+	push de
+	call IsDefendingPokemonWeakToArenaOrBenchPokemon
+	pop de
+	jr nc, .next
+	ld a, e
+	ldh [hTempPlayAreaLocation_ff9d], a
+	xor a ; FIRST_ATTACK_OR_PKMN_POWER
+	ld [wSelectedAttack], a
+	push de
+	farcall CheckIfSelectedAttackIsUnusable
+	pop de
+	jr c, .next
+; found
+	ld a, e
+	scf
+	ret
+.next
+	inc e
+	ld a, e
+	cp d
+	jr nz, .loop_bench
+; not found
+	farcall CheckIfArenaCardIsWeakToDefendingCard
+	jr c, .check_switch
+
+.check_ko
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	ret nc
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
 
 ; searches the Deck for any card that is an Evolution
 ; output:
@@ -3021,9 +3233,168 @@ FindDarkCharizardToAttachEnergy:
 	pop hl
 	scf
 	ret
-; 0x49925
 
-SECTION "Bank 12@5a73", ROMX[$5a73], BANK[$12]
+ScorcherDeckAIDecideSwitch:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_CHARIZARD
+	jr z, .dark_charizard_arena
+	cp16 KANGASKHAN_LV40
+	jr z, .kangaskhan_arena
+	cp16 DARK_CLEFABLE
+	jr z, .dark_clefable_arena
+	or a
+	ret
+
+.dark_charizard_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 2
+	jr c, .check_bench_and_switch
+	ld de, MAGMAR_LV31
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr nc, .check_status
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfAnyAttackKnocksOutDefendingCard
+	jr nc, .check_status
+	farcall CheckIfSelectedAttackIsUnusable
+	jr c, .check_status
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	scf
+	ret
+
+.check_status
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .check_switch
+	jr .dark_charizard_not_statused
+
+.kangaskhan_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 3
+	ret nc
+	ld de, DARK_CHARIZARD
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.dark_charizard_not_statused
+	farcall CanArenaCardUseNonResidualAttack
+	ccf
+	ret nc
+	ld de, MAGMAR_LV31
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret
+
+.dark_clefable_arena
+	ld de, DARK_CHARIZARD
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+.check_bench_and_switch
+	farcall CountNumberOfSetUpBenchPokemon
+	ret nc
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret nc
+	push af
+
+	ld a, 50
+	cp e
+	pop bc
+	ld a, b
+	ret
+
+ScorcherDeckAIDecideEnergyRetrieval:
+	farcall CountBasicEnergyCardsInHand
+	ret nc
+
+; find discard card
+	call CreateHandCardList
+	ld hl, wDuelTempList
+	ld de, wTempCardCollection
+.loop_copy
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp $ff
+	jr nz, .loop_copy
+
+	ld hl, wTempCardCollection
+.loop_hand_cards
+	ld a, [hl]
+	cp $ff
+	jp z, .no_carry
+	push hl
+	call GetCardIDFromDeckIndex
+; try some pkmn
+	cp16 KANGASKHAN_LV40
+	jr nz, .try_bill
+	ld de, KANGASKHAN_LV40
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr c, .found_discard_card
+	ld de, DARK_CHARIZARD
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr c, .found_discard_card
+.try_bill
+	cp16 BILL
+	jr nz, .try_bills_teleporter
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 11
+	jr nc, .found_discard_card
+.try_bills_teleporter
+	cp16 BILLS_TELEPORTER
+	jr nz, .try_magmar
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 13
+	jr nc, .found_discard_card
+.try_magmar
+	cp16 MAGMAR_LV31
+	jr nz, .try_other_trainers
+	ld de, MAGMAR_LV31
+	ld b, PLAY_AREA_ARENA
+	farcall FindCardIDInTurnDuelistsPlayArea
+	jr c, .found_discard_card
+.try_other_trainers
+	cp16 SWITCH
+	jr z, .found_discard_card
+	cp16 DEFENDER
+	jr z, .found_discard_card
+	cp16 ENERGY_RETRIEVAL
+	jr z, .found_discard_card
+	cp16 POKEMON_TRADER
+	jr z, .found_discard_card
+	cp16 THE_BOSSS_WAY
+	jr z, .found_discard_card
+; next card
+	pop hl
+	inc hl
+	jp .loop_hand_cards
+
+.found_discard_card
+	pop hl
+	ld a, [hl]
+	scf
+	ret
+
+.no_carry
+	or a
+	ret
 
 Func_49a73:
 	ld e, PLAY_AREA_ARENA
@@ -3031,7 +3402,7 @@ Func_49a73:
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
-	ld [wd076], a
+	ld [wTempAICount3], a
 	ld a, DUELVARS_BENCH
 	call GetNonTurnDuelistVariable
 	ld e, PLAY_AREA_BENCH_1
@@ -3094,7 +3465,7 @@ Func_49a73:
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
-	ld hl, wd076
+	ld hl, wTempAICount3
 	cp [hl]
 	jr z, .next_bench ; same number of attached energies
 	jr c, .next_bench ; has less attached energies
@@ -3178,7 +3549,7 @@ Func_49af6:
 	scf
 	ret
 
-Func_49b69:
+TsunamiStarterDeckAIDecideGustOfWind:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3199,11 +3570,73 @@ Func_49b69:
 	ret c
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret
-; 0x49b94
 
-SECTION "Bank 12@5c04", ROMX[$5c04], BANK[$12]
+TsunamiStarterDeckAIDecideSwitch:
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_BLASTOISE
+	jr z, .dark_blastoise_arena
+	cp16 LAPRAS_LV31
+	jr z, .lapras_arena
+	cp16 DARK_CLEFABLE
+	jr z, .dark_clefable_arena
+	or a
+	ret
 
-Func_49c04:
+.dark_blastoise_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 2
+	jr c, .check_bench_and_switch
+
+; check status
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .check_switch
+	jr .dark_blastoise_not_statused
+
+.lapras_arena
+	ld de, DARK_BLASTOISE
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.dark_blastoise_not_statused
+	farcall CanArenaCardUseNonResidualAttack
+	ccf
+	ret nc
+	ld de, SCYTHER_LV25
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret
+
+.dark_clefable_arena
+	ld de, DARK_BLASTOISE
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+.check_bench_and_switch
+	farcall CountNumberOfSetUpBenchPokemon
+	ret nc
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret nc
+
+	push af
+	ld a, 50
+	cp e
+	pop bc
+	ld a, b
+	ret
+
+SmashToMincemeatDeckAIDecideGustOfWind:
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
@@ -3211,56 +3644,168 @@ Func_49c04:
 	jr z, .dark_machamp_arena
 	or a
 	ret
+
 .dark_machamp_arena
-	xor a ; FIRST_ATTACK_OR_PKMN_POWER
+	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
-	inc a
+	inc a ; SECOND_ATTACK
 	ld [wSelectedAttack], a
 	farcall CheckIfSelectedAttackIsUnusable
 	ccf
-	ret nc ; Mega Punch is unusable
+	ret nc
+
+; ready for Fling
 	ld e, PLAY_AREA_ARENA
 	call SwapTurn
 	call GetPlayAreaCardAttachedEnergies
 	call SwapTurn
 	ld a, [wTotalAttachedEnergies]
 	cp 3
-	jr nc, .asm_49c3a
+	jr nc, .check_defending_pkmn_evo_stage
+; find Gust+Fling target (>= 3 energy) from bench
 	farcall FindBenchCardWithAtLeast3AttachedEnergies
 	ret c
-.asm_49c3a
-	xor a
+
+.check_defending_pkmn_evo_stage
+	xor a ; PLAY_AREA_ARENA
 	call SwapTurn
-	call Func_49603.CheckIfItsStage2
+	call IsArenaOrBenchPokemonStage2
 	call SwapTurn
 	ccf
-	ret nc
+	ret nc ; stage 2 evo with >= 3 energy, so just Fling
+
+; find Gust+Fling target (stage 2 evo) from bench
 	call SwapTurn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld d, a
 	ld e, PLAY_AREA_BENCH_1
-.asm_49c4f
+.loop_player_bench
 	ld a, e
 	push de
-	call Func_49603.CheckIfItsStage2
+	call IsArenaOrBenchPokemonStage2
 	pop de
-	jr c, .asm_49c61
+	jr c, .found_bench_stage2_target
 	inc e
 	ld a, e
 	cp d
-	jr nz, .asm_49c4f
+	jr nz, .loop_player_bench
+
+; target not found
 	call SwapTurn
 	or a
 	ret
-.asm_49c61
+
+.found_bench_stage2_target
 	call SwapTurn
 	ld a, e
 	scf
 	ret
-; 0x49c67
 
-SECTION "Bank 12@5d29", ROMX[$5d29], BANK[$12]
+SmashToMincemeatDeckAIDecideSwitch:
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	call GetNonTurnDuelistVariable
+	cp 1
+	jr z, .check_mr_mime_lv28
+
+	call SwapTurn
+	call CountPrizes
+	call SwapTurn
+	cp 1
+	jr nz, .check_arena
+
+.check_mr_mime_lv28
+	call SwapTurn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	call SwapTurn
+	cp16 MR_MIME_LV28
+	jr z, .found_mr_mime_lv_28
+
+	ld de, CHANSEY_LV55
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.found_mr_mime_lv_28
+	ld de, MACHOP_LV20
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret c
+	ld de, CLEFAIRY_LV15
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret
+
+.check_arena
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 DARK_MACHAMP
+	jr z, .dark_machamp_arena
+	cp16 KANGASKHAN_LV40
+	jr z, .kangaskhan_arena
+	cp16 DARK_CLEFABLE
+	jr z, .dark_clefable_arena
+	or a
+	ret
+
+.dark_machamp_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 4
+	jr c, .check_bench_and_switch
+
+; check status
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .check_switch
+	jr .dark_machamp_not_statused
+
+.kangaskhan_arena
+	ld e, PLAY_AREA_ARENA
+	call GetPlayAreaCardAttachedEnergies
+	ld a, [wTotalAttachedEnergies]
+	cp 3
+	ret nc
+	ld de, DARK_MACHAMP
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.dark_machamp_not_statused
+	farcall CanArenaCardUseNonResidualAttack
+	ccf
+	ret nc
+	ld de, CHANSEY_LV55
+	ld b, PLAY_AREA_BENCH_1
+	farcall FindCardIDInTurnDuelistsPlayArea
+	ret
+
+.dark_clefable_arena
+	ld de, DARK_MACHAMP
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+.check_bench_and_switch
+	farcall CountNumberOfSetUpBenchPokemon
+	ret nc
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret nc
+
+	push af
+	ld a, 50
+	cp e
+	pop bc
+	ld a, b
+	ret
 
 ; initializes some variables and sets value of wAIBarrierFlagCounter.
 ; if Player uses Barrier 3 times in a row, AI checks if Player's deck
@@ -3369,9 +3914,139 @@ InitAITurnVars:
 	inc [hl]
 .done
 	ret
-; 0x49dce
 
-SECTION "Bank 12@5eb3", ROMX[$5eb3], BANK[$12]
+; input:
+; [hTempPlayAreaLocation_ff9d] = location of pkmn
+; [wSelectedAttack] = attack to examine
+; output:
+; b = basic energy still needed
+; c = colorless energy still needed
+; de = energy card ID still needed
+; carry set if no attack
+;        OR if it's a pkmn power
+;        OR if not enough energy for attack
+CheckEnergyNeededForAttackAfterDiscard:
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	add DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	ld d, a
+	ld a, [wSelectedAttack]
+	ld e, a
+	call CopyAttackDataAndDamage_FromDeckIndex
+	ld hl, wLoadedAttackName
+	ld a, [hli]
+	or [hl]
+	jr z, .no_attack
+	ld a, [wLoadedAttackCategory]
+	cp POKEMON_POWER
+	jr nz, .is_attack
+.no_attack
+	lb bc, 0, 0
+	ld e, c
+	scf
+	ret
+
+.is_attack
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	farcall AIPickEnergyCardToDiscard
+	call GetCardIDFromDeckIndex
+	cp16 DOUBLE_COLORLESS_ENERGY
+	jr z, .double_colorless
+	cp16 POTION_ENERGY
+	jr z, .single_colorless
+	cp16 FULLHEAL_ENERGY
+	jr z, .single_colorless
+	cp16 RECYCLE_ENERGY
+	jr z, .single_colorless
+	cp16 RAINBOW_ENERGY
+	jr nz, .color_energy
+	ld de, RAINBOW
+
+.color_energy
+	ld hl, wAttachedEnergies
+	dec de
+	add hl, de
+	dec [hl]
+	ld hl, wTotalAttachedEnergies
+	dec [hl]
+	jr .asm_49e4d
+
+.double_colorless
+	ld hl, wAttachedEnergies + COLORLESS
+	dec [hl]
+	dec [hl]
+	ld hl, wTotalAttachedEnergies
+	dec [hl]
+	dec [hl]
+	jr .asm_49e4d
+
+.single_colorless
+	ld hl, wAttachedEnergies + COLORLESS
+	dec [hl]
+	ld hl, wTotalAttachedEnergies
+	dec [hl]
+
+.asm_49e4d
+	ldh a, [hTempPlayAreaLocation_ff9d]
+	ld e, a
+	bank1call HandleEnergyBurn
+	xor a
+	ld [wTempLoadedAttackEnergyCost], a
+	ld [wTempLoadedAttackEnergyNeededAmount], a
+	ld [wTempLoadedAttackEnergyNeededType], a
+	ld hl, wAttachedEnergies
+	ld de, wLoadedAttackEnergyCost
+	ld b, 0
+	ld c, (NUM_TYPES / 2) - 1
+.loop_basic_energy
+	ld a, [de]
+	swap a
+	farcall CheckIfEnoughParticularAttachedEnergy
+	ld a, [de]
+	farcall CheckIfEnoughParticularAttachedEnergy
+	inc de
+	dec c
+	jr nz, .loop_basic_energy
+
+	ld a, [de]
+	swap a
+	and $0f
+	ld b, a
+	ld hl, wAttachedEnergies + RAINBOW
+	ld a, [hl]
+	or a
+	jr z, .asm_49e8e
+	ld a, [wTempLoadedAttackEnergyNeededAmount]
+	sub [hl]
+	jr nc, .asm_49e8b
+	xor a
+.asm_49e8b
+	ld [wTempLoadedAttackEnergyNeededAmount], a
+.asm_49e8e
+	ld a, [wTempLoadedAttackEnergyCost]
+	ld hl, wTempLoadedAttackEnergyNeededAmount
+	sub [hl]
+	ld c, a
+	ld a, [wTotalAttachedEnergies]
+	sub c
+	sub b
+	jr c, .not_enough_energy
+	ld a, [wTempLoadedAttackEnergyNeededAmount]
+	or a
+	ret z
+
+; energy cost isn't satisfied, including with colorless
+	xor a
+.not_enough_energy
+	cpl
+	inc a
+	ld c, a
+	ld a, [wTempLoadedAttackEnergyNeededAmount]
+	ld b, a
+	ld a, [wTempLoadedAttackEnergyNeededType]
+	farcall ConvertColorToEnergyCardID
+	scf
+	ret
 
 ; return carry if Pokémon at play area location
 ; in hTempPlayAreaLocation_ff9d does not have
@@ -3664,9 +4339,333 @@ CheckIfHasSpecificEnergyAttached:
 .no_carry
 	or a
 	ret
-; 0x4a005
 
-SECTION "Bank 12@6236", ROMX[$6236], BANK[$12]
+; return carry if
+; >= 17 cards remaining in deck pile
+; AND (
+;      <= 5 cards in hand
+;   OR ready for Do the Wave but <= 4 pkmn in play
+; )
+EverybodysFriendDeckAI_ShouldPlayProfessorOak:
+	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
+	get_turn_duelist_var
+	cp DECK_SIZE - 16
+	ret nc
+
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp 6
+	ret c
+
+	ld de, WIGGLYTUFF_LV36
+	call CheckCardIDInPlayAreaThatCanUseAttacks
+	ret nc
+
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	cp 5
+	ret
+
+EverybodysFriendDeckAIDecideComputerSearch:
+	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
+	get_turn_duelist_var
+	cp 6
+	jr nc, .target_wigglytuff
+
+	ld de, PROFESSOR_OAK
+	farcall IsCardIDInDeckAndNotInHand
+	jr c, .find_discard_cards
+
+.target_wigglytuff
+	ld bc, JIGGLYPUFF_LV14
+	ld de, WIGGLYTUFF_LV36
+	farcall LookForEvoCardInDeck_GivenPreevoInPlayArea
+	jr c, .find_discard_cards
+
+	ld de, PLUSPOWER
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr nc, .check_scoop_up_in_discard_pile
+	push af
+	farcall $8, $4692 ; AIDecide_PlusPower1
+	pop bc
+	ld a, b
+	jr c, .find_discard_cards
+
+.check_scoop_up_in_discard_pile
+	ld de, SCOOP_UP
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	ret nc
+
+	push af
+	xor a ; PLAY_AREA_ARENA
+	ldh [hTempPlayAreaLocation_ff9d], a
+	farcall CheckIfDefendingPokemonCanKnockOut
+	pop bc
+	ld a, b
+	jr c, .find_discard_cards ; unnecessary jump
+
+.find_discard_cards
+	ld [wTempAISingleTargetCardDeckIndex_2], a
+	ld a, $ff
+	ld [wTempAIComputerSearchFirstDiscardDeckIndex], a
+
+	ld de, COMPUTER_SEARCH
+	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
+	call c, .store_discard_cards
+
+	call EverybodysFriendDeckAI_ShouldPlayProfessorOak
+	jr c, .try_scoop_up
+	ld de, PROFESSOR_OAK
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_scoop_up
+	call EverybodysFriendDeckAIDecideScoopUp
+	jr c, .try_item_finder
+	ld de, SCOOP_UP
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_item_finder
+	call EverybodysFriendDeckAIDecideItemFinder
+	jr c, .try_switch
+	ld de, ITEMFINDER
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_switch
+	call EverybodysFriendDeckAIDecideSwitch
+	jr c, .try_gust_of_wind
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_gust_of_wind
+	farcall AIDecide_GustOfWind
+	jr c, .try_energy_retrieval
+	ld de, GUST_OF_WIND
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_energy_retrieval
+	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	jr c, .try_pluspower
+	ld de, ENERGY_RETRIEVAL
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.try_pluspower
+	farcall $8, $4692 ; AIDecide_PlusPower1
+	jr c, .no_carry
+	ld de, PLUSPOWER
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.no_carry
+	or a
+	ret
+
+.store_discard_cards
+	push af
+	ld a, [wTempAIComputerSearchFirstDiscardDeckIndex]
+	cp $ff
+	jr nz, .latter_discard_card
+	pop af
+	ld [wTempAIComputerSearchFirstDiscardDeckIndex], a
+	ret
+
+.latter_discard_card
+	pop af
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wTempAIComputerSearchFirstDiscardDeckIndex]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+; success
+	add sp, $2 ; exit
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
+	scf
+	ret
+
+EverybodysFriendDeckAIDecideSwitch:
+	ld a, DUELVARS_ARENA_CARD_STATUS
+	get_turn_duelist_var
+	or a
+	jr nz, .check_switch
+
+; not statused
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 WIGGLYTUFF_LV36
+	ret z
+
+	ld de, WIGGLYTUFF_LV36
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret
+
+.check_switch
+	farcall AIDecideBenchPokemonToSwitchTo
+	ccf
+	ret
+
+EverybodysFriendDeckAIDecideScoopUp:
+	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
+	jr c, .check_bench
+
+	ld e, PLAY_AREA_ARENA
+	ld a, DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 30 + 1
+	jr c, .found_low_hp
+
+.check_bench
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	get_turn_duelist_var
+	ld d, a
+	ld e, PLAY_AREA_BENCH_1
+.loop_bench
+	ld a, e
+	add DUELVARS_ARENA_CARD_HP
+	get_turn_duelist_var
+	cp 30 + 1
+	jr c, .found_low_hp
+	inc e
+	ld a, e
+	cp d
+	jr nz, .loop_bench
+
+; no low HP pkmn
+	ld a, DUELVARS_ARENA_CARD
+	get_turn_duelist_var
+	call GetCardIDFromDeckIndex
+	cp16 WIGGLYTUFF_LV36
+	ret z
+	ld de, WIGGLYTUFF_LV36
+	call CheckIfPokemonInBenchHasEnoughEnergy
+	ret nc
+; ready for Do the Wave
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	xor a
+	scf
+	ret
+
+.found_low_hp
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, e ; PLAY_AREA_*
+	or a
+	jr nz, .set_carry
+; scoop up arena card
+	push de
+	farcall AIDecideBenchPokemonToSwitchTo
+	pop de
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, e
+	jr nc, .set_carry
+
+; no carry
+	or a
+	ret
+
+.set_carry
+	scf
+	ret
+
+EverybodysFriendDeckAIDecideItemFinder:
+; target pluspower
+	ld de, PLUSPOWER
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	jr nc, .target_scoop_up
+	push af
+	farcall $8, $4692 ; AIDecide_PlusPower1
+	pop bc
+	jr c, .find_discard_cards
+
+.target_scoop_up
+	ld de, SCOOP_UP
+	ld a, CARD_LOCATION_DISCARD_PILE
+	farcall FindCardIDInLocation
+	ret nc
+	push af
+	call EverybodysFriendDeckAIDecideScoopUp
+	pop bc
+	ret nc
+
+.find_discard_cards
+	ld a, b
+	ld [wTempAISingleTargetCardDeckIndex_2], a
+	ld a, $ff
+	ld [wTempAIItemFinderFirstDiscardDeckIndex], a
+; try dupe itemfinder
+	ld de, ITEMFINDER
+	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
+	call c, .store_discard_cards
+; try professor oak
+	call EverybodysFriendDeckAI_ShouldPlayProfessorOak
+	jr c, .try_scoop_up
+	ld de, PROFESSOR_OAK
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+.try_scoop_up
+	call EverybodysFriendDeckAIDecideScoopUp
+	jr c, .try_switch
+	ld de, SCOOP_UP
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+.try_switch
+	call EverybodysFriendDeckAIDecideSwitch
+	jr c, .try_gust_of_wind
+	ld de, SWITCH
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+.try_gust_of_wind
+	farcall AIDecide_GustOfWind
+	jr c, .try_energy_retrieval
+	ld de, GUST_OF_WIND
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+.try_energy_retrieval
+	farcall $8, $566e ; AIDecide_EnergyRetrieval
+	jr c, .try_pluspower
+	ld de, ENERGY_RETRIEVAL
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+.try_pluspower
+	farcall $8, $4692 ; AIDecide_PlusPower1
+	jr c, .no_carry
+	ld de, PLUSPOWER
+	farcall LookForCardIDInHandList
+	call c, .store_discard_cards
+
+.no_carry
+	or a
+	ret
+
+.store_discard_cards
+	push af
+	ld a, [wTempAIItemFinderFirstDiscardDeckIndex]
+	cp $ff
+	jr nz, .latter_discard_card
+	pop af
+	ld [wTempAIItemFinderFirstDiscardDeckIndex], a
+	ret
+
+.latter_discard_card
+	pop af
+	ld [wTempAIMultiTargetCardDeckIndex2], a
+	ld a, [wTempAIItemFinderFirstDiscardDeckIndex]
+	ld [wTempAIMultiTargetCardDeckIndex1], a
+	ld a, $ff
+	ld [wTempAIMultiTargetCardDeckIndex3], a
+; success
+	add sp, $2 ; exit
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
+	scf
+	ret
 
 ; input:
 ; de = card ID
@@ -3711,7 +4710,7 @@ ImmortalPokemonDeckAIEvaluateVanish:
 	jr nc, .check_abra
 
 .discourage
-	ld a, 100
+	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
 .check_abra
@@ -3744,7 +4743,7 @@ ImmortalPokemonDeckAIEvaluateVanish:
 	jr c, .discourage
 
 ; encourage
-	ld a, 138
+	ld a, AI_SCORE_NEUTRAL + 10
 	ret
 
 ; returns carry if Alakazam lv42 is found in Play Area
@@ -4614,7 +5613,7 @@ AIDeckSpecificAttackLogic:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .standard_score
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jp nc, .standard_score
 	ld a, AI_SCORE_NEUTRAL
 	ret

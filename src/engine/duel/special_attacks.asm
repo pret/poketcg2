@@ -747,7 +747,7 @@ HandleSpecialAIAttacks:
 	ld a, [wOpponentDeckID]
 	cp FLAME_FESTIVAL_DECK_ID
 	jr z, .encourage_foxfire
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jr c, .encourage_foxfire
 	farcall IsPlayerArenaCardImmune
 	jr nc, .foxfire_neutral

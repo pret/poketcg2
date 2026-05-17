@@ -1704,10 +1704,17 @@ wTempAICount1:: ; d074
 wTempAICount2:: ; d075
 	ds $1
 
-wd076:: ; d076
+; energy count, etc.
+wTempAICount3:: ; d076
 	ds $1
 
-	ds $2
+; deck index of the first of the two cards to discard to use Computer Search
+wTempAIComputerSearchFirstDiscardDeckIndex:: ; d077
+	ds $1
+
+; deck index of the first of the two cards to discard to use Item Finder
+wTempAIItemFinderFirstDiscardDeckIndex:: ; d078
+	ds $1
 
 wd079:: ; d079
 	ds $1
@@ -1744,6 +1751,7 @@ wd081:: ; d081
 ; setting up AI Boss deck
 wAISetupBasicPokemonCount:: ; d082
 wAITempHPRecoverAmount:: ; d082
+wTempAISingleTargetCardDeckIndex_2:: ; d082
 wd082:: ; d082
 	ds $1
 

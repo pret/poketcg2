@@ -9882,7 +9882,7 @@ CheckIfEnoughParticularAttachedEnergy:
 ; input:
 ;	a = energy type
 ; output:
-;	a = energy card ID
+;	de = energy card ID
 ConvertColorToEnergyCardID:
 	push hl
 	add a

@@ -1031,7 +1031,7 @@ AISelectSpecialAttackParameters:
 	jr z, .select_foxfire_target_randomly
 	cp BLAZING_FLAME_DECK_ID
 	jr z, .select_foxfire_based_on_energies
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jr c, .asm_285ff
 	farcall FindBenchCardThatCanBeDamaged
 .asm_285ff
@@ -1277,7 +1277,7 @@ AISelectSpecialAttackParameters:
 	ld a, [wSelectedAttack]
 	or a
 	jp nz, .no_carry
-	farcall Func_209fc
+	farcall AIDecide_GustOfWind
 	jp nc, .no_carry
 	ldh [hTempPlayAreaLocation_ffa1], a
 	ldtx de, AttackSuccessCheckText
@@ -3033,7 +3033,7 @@ AIDeckSpecificBenchScore:
 
 .PowerfulPokemonDeck:
 	ldh a, [hTempPlayAreaLocation_ff9d]
-	farcall CheckIfDefendingPokemonIsWeakToArenaCard
+	farcall IsDefendingPokemonWeakToArenaOrBenchPokemon
 	jp nc, .zero
 	ld a, 5
 	or a

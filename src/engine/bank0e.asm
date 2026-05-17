@@ -1532,7 +1532,7 @@ HandleAIEvolutionaryLight:
 	jr c, .not_enough_dark_clefable
 	; has at least 2 Dark Clefable
 	ld de, DARK_DRAGONITE
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	; bug, the result is discarded,
 	; missing jump to use Pkmn Power
 	; jp c, .use_evolutionary_light
@@ -1559,13 +1559,13 @@ HandleAIEvolutionaryLight:
 
 	; next search for targets that are not in Hand
 	ld de, DARK_VENUSAUR
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	jp c, .use_evolutionary_light
 	ld de, DARK_IVYSAUR
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	jp c, .use_evolutionary_light
 	ld de, DARK_DRAGONAIR
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	jp c, .use_evolutionary_light
 
 	; finally search for targets that are in the Deck
@@ -2805,40 +2805,40 @@ AIChooseSummonMinionsCards:
 
 .DangerousBenchDeck
 	ld de, PIKACHU_LV14
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, ZAPDOS_LV40
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, SNORLAX_LV20
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, SNORLAX_LV35
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, HUNGRY_SNORLAX
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, DRATINI_LV12
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	jr .asm_391e1
 
 .RonaldsPsychicDeck
 	ld de, GASTLY_LV13
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, DRATINI_LV10
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, MEW_LV23
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, MEWTWO_LV67
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	ld de, KANGASKHAN_LV40
-	call CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck
+	call IsCardIDInDeckAndNotInHandOrPlayArea
 	call c, .AddCardToList
 	jr .asm_391e1
 
@@ -3106,7 +3106,7 @@ CountCardIDInTurnDuelistPlayArea:
 	ld a, [wTempAICount1]
 	ret
 
-RainDanceConfusionDeckAIHandCheck:
+RainDanceConfusionDeckAI_ShouldPlayProfessorOak:
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -3230,7 +3230,7 @@ RainDanceConfusionDeckAIHandCheck:
 	or a
 	ret
 
-RainDanceConfusionDeckAIDecideComputerSearch:
+RainDanceConfusionDeckAIDecideComputerSearch_FindDiscardCards:
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -3254,89 +3254,90 @@ RainDanceConfusionDeckAIDecideComputerSearch:
 	push hl
 	call GetCardIDFromDeckIndex
 
-; check non-switch trainer
+; try some trainers
 	cp16 ENERGY_RETRIEVAL
-	jp z, .TryAddToBuffer
+	jp z, .store_discard_cards
+
 	cp16 POTION
-	jr nz, .check_water_energy
+	jr nz, .try_water_energy
 	push bc
 	farcall CheckIfAnyPlayAreaPokemonHasDamage
 	pop bc
-	jp nc, .TryAddToBuffer
+	jp nc, .store_discard_cards
 	jp .next_card
 
-.check_water_energy
+.try_water_energy
 	cp16 WATER_ENERGY
-	jr nz, .check_switch
+	jr nz, .try_switch
 	push bc
 	farcall CountCardIDInHand
 	pop bc
 	cp 3
-	jp nc, .TryAddToBuffer
+	jp nc, .store_discard_cards
 	jp .next_card
 
-.check_switch
+.try_switch
 	cp16 SWITCH
-	jp z, .TryAddToBuffer
+	jp z, .store_discard_cards
 
-; check squirtle lv15
+; try squirtle lv15
 	cp16 SQUIRTLE_LV15
-	jr nz, .check_squirtle_lv16
+	jr nz, .try_squirtle_lv16
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 	jr .next_card
 
-.check_squirtle_lv16
+.try_squirtle_lv16
 	cp16 SQUIRTLE_LV16
-	jr nz, .check_wartortle
+	jr nz, .try_wartortle
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 	jr .next_card
 
-.check_wartortle
+.try_wartortle
 	cp16 WARTORTLE_LV22
-	jr nz, .check_seel
+	jr nz, .try_seel
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 	jr .next_card
 
-.check_seel
+.try_seel
 	cp16 SEEL_LV10
-	jr nz, .check_dewgong
+	jr nz, .try_dewgong
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 	jr .next_card
 
-.check_dewgong
+.try_dewgong
 	cp16 DEWGONG_LV24
-	jr nz, .check_lapras
+	jr nz, .try_lapras
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 	jr .next_card
 
-.check_lapras
+.try_lapras
 	cp16 LAPRAS_LV31
 	jr nz, .next_card
 	push bc
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop bc
-	jr c, .TryAddToBuffer
+	jr c, .store_discard_cards
 
 .next_card
 	pop hl
@@ -3346,18 +3347,18 @@ RainDanceConfusionDeckAIDecideComputerSearch:
 	or a
 	ret
 
-.TryAddToBuffer
+.store_discard_cards
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
 	cp $ff
-	jr nz, .second
+	jr nz, .latter_discard_card
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	jr .next_card
-.second
+
+.latter_discard_card
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-
-; set carry
+; success
 	pop hl
 	scf
 	ret
@@ -3527,8 +3528,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 	jp c, .success
 	ret
 
-; Computer Search targets?
-MadPetalsDeckAI_39753:
+MadPetalsDeckAIDecideComputerSearch_FindTarget:
 	ld a, TYPE_PKMN_FIRE
 	call CheckIfPlayerHasPokemonOfType
 	jp c, .check_wartortle
@@ -3542,47 +3542,49 @@ MadPetalsDeckAI_39753:
 	jr c, .check_gloom
 	ld de, DARK_VILEPLUME
 	farcall LookForCardIDInHandList
-	jr c, .check_breeder
+	jr c, .target_breeder
 
 .check_gloom
 	ld de, GLOOM
 	farcall LookForCardIDInHandList
-	jr c, .check_basic_pkmn
+	jr c, .target_basic_pkmn
 	ld de, VILEPLUME
 	farcall LookForCardIDInHandList
-	jr nc, .check_basic_pkmn
+	jr nc, .target_basic_pkmn
 
-.check_breeder
+.target_breeder
 	ld de, POKEMON_BREEDER
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret c
-	jr .check_basic_pkmn
+	jr .target_basic_pkmn
 
 .check_wartortle
 	ld de, WARTORTLE_LV22
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr nc, .check_basic_pkmn
+	jr nc, .target_basic_pkmn
+
+; target rainbow energy
 	ld de, RAINBOW_ENERGY
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret c
 
-.check_basic_pkmn
+.target_basic_pkmn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 2
 	ret nc
 	ld de, KANGASKHAN_LV40
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret c
 	ld de, ODDISH_LV21
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret c
 	ld de, SQUIRTLE_LV16
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret c
 	ld de, SCYTHER_LV25
-	call CheckIfCardIDIsInDeckAndNotInHand
+	call IsCardIDInDeckAndNotInHand
 	ret
 
 ; return carry if DCE is attached to player's pkmn in play
@@ -4680,7 +4682,9 @@ FindDuplicateCards_IgnoreTrainerCardToPlay:
 	or a
 	ret
 
-CheckIfCardIDIsInDeckAndNotInHand:
+; return carry and its deck index if
+; card ID in de is in deck and not in hand
+IsCardIDInDeckAndNotInHand:
 	push de
 	farcall LookForCardIDInHandList
 	pop de
@@ -4692,16 +4696,16 @@ CheckIfCardIDIsInDeckAndNotInHand:
 	or a
 	ret
 
-; input:
-; - de = card ID
-CheckIfCardIDIsNotInHandOrPlayAreaAndIsInDeck:
+; return carry and its deck index if
+; card ID in de is in deck and not in hand or play area
+IsCardIDInDeckAndNotInHandOrPlayArea:
 	push de
 	call CheckIfCardIDIsInHandOrPlayArea
 	pop de
-	jr c, .no_carry
+	jr c, .no_carry ; is in hand or play area
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
-	ret c
+	ret c ; is in deck
 .no_carry
 	or a
 	ret
@@ -4767,21 +4771,39 @@ AITryMasterBall:
 	scf
 	ret
 
-ColorlessAltarAIHandCheck:
+; return carry if
+; >= 18 cards remaining in deck pile
+; AND (
+;      <= 4 cards in hand
+;   OR no energy cards in hand
+;   OR no bench pkmn
+; )
+; AND no non-whitelist cards in hand;
+; whitelist:
+;   Professor Oak, Energy Retrieval, Switch, Lightning/Full Heal Energy;
+;   exactly 1 Computer Search;
+;   Potion if no heal targets;
+;   cards already in own play area
+ColorlessAltarAI_ShouldPlayProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 17
 	ret nc
+
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
 	jr c, .check_hand
+
 	call CountEnergyCardsInHand
 	jr c, .check_hand
+
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp 1
 	jr z, .check_hand
+
+; shouldn't play, no carry
 	or a
 	ret
 
@@ -4838,6 +4860,7 @@ ColorlessAltarAIHandCheck:
 .next_card
 	pop hl
 	jp .loop_hand_cards
+
 .set_carry
 	scf
 	ret
@@ -4859,7 +4882,7 @@ EyeOfTheStormDeckAIDecideMoonStone:
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
 	ret
 
-EyeOfTheStormDeckAIHandCheck:
+EyeOfTheStormDeckAIDecideComputerSearch:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 5
@@ -4868,58 +4891,59 @@ EyeOfTheStormDeckAIHandCheck:
 	get_turn_duelist_var
 	cp DECK_SIZE - 19
 	jr nc, .check_moon_stone
-	call ColorlessAltarAIHandCheck
+	call ColorlessAltarAI_ShouldPlayProfessorOak
 	jr nc, .check_moon_stone
+
+; target professor oak
 	ld de, PROFESSOR_OAK
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
-	jr c, .check_hand
+	jr c, .find_discard_cards
 
 .check_moon_stone
 	ld de, MOON_STONE
 	farcall LookForCardIDInHandList
-	jr c, .check_ko_target
+	jr c, .target_gust_of_wind
 
-; check deck
+; target pkmn
 	ld a, 3
 	ld bc, PIDGEOTTO_LV38
 	ld de, PIDGEOT_LV40
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
-	jr c, .check_hand
+	jr c, .find_discard_cards
 	ld a, 2
 	ld bc, PIDGEY_LV10
 	ld de, PIDGEOTTO_LV38
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
-	jr c, .check_hand
+	jr c, .find_discard_cards
 	ld a, 3
 	ld bc, SPEAROW_LV13
 	ld de, FEAROW_LV27
 	call LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy
-	jr c, .check_hand
+	jr c, .find_discard_cards
 	ld bc, PIDGEOTTO_LV38
 	ld de, PIDGEOT_LV40
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_hand
+	jr c, .find_discard_cards
 	ld bc, PIDGEY_LV10
 	ld de, PIDGEOTTO_LV38
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_hand
+	jr c, .find_discard_cards
 	ld bc, SPEAROW_LV13
 	ld de, FEAROW_LV27
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_hand
+	jr c, .find_discard_cards
 
-.check_ko_target
+.target_gust_of_wind
 	farcall FindBenchCardThatCanBeKnockedOut
 	ret nc
-
 	ld de, GUST_OF_WIND
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret nc
 
-.check_hand
-	ld [wd082], a
+.find_discard_cards
+	ld [wTempAISingleTargetCardDeckIndex_2], a
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -4941,21 +4965,22 @@ EyeOfTheStormDeckAIHandCheck:
 	jp z, .no_carry
 	push hl
 	call GetCardIDFromDeckIndex
+; try some trainers
 	cp16 PROFESSOR_OAK
-	jr z, .AddToBuffer
+	jr z, .store_discard_cards
 	cp16 ENERGY_RETRIEVAL
-	jr z, .AddToBuffer
+	jr z, .store_discard_cards
 	cp16 SWITCH
-	jr z, .AddToBuffer
+	jr z, .store_discard_cards
 	cp16 POTION
-	jr nz, .check_lightning_energy
+	jr nz, .try_lightning_energy
 	farcall CheckIfAnyPlayAreaPokemonHasDamage
 	jr c, .next_card
-	jr .AddToBuffer
-.check_lightning_energy
+	jr .store_discard_cards
+.try_lightning_energy
 	cp16 LIGHTNING_ENERGY
-	jr z, .AddToBuffer
-; check pkmn
+	jr z, .store_discard_cards
+; try pkmn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp MAX_PLAY_AREA_POKEMON
@@ -4964,29 +4989,29 @@ EyeOfTheStormDeckAIHandCheck:
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop de
-	jr c, .AddToBuffer
+	jr c, .store_discard_cards
 .next_card
 	pop hl
 	inc hl
 	jp .loop_hand_cards
 
-.AddToBuffer:
+.store_discard_cards
 	pop hl
 	ld b, [hl]
 	push hl
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
 	cp $ff
-	jr nz, .second
+	jr nz, .latter_discard_card
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	jr .next_card
-.second
+
+.latter_discard_card
 	ld a, b
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-
 ; success
 	pop hl
-	ld a, [wd082]
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
 
@@ -5006,6 +5031,7 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	ld a, [wDuelTempList + 1]
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 
+; find discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -5024,24 +5050,24 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	push hl
 	call GetCardIDFromDeckIndex
 	cp16 SWITCH
-	jr z, .found
+	jr z, .found_discard_card
 	cp16 COMPUTER_SEARCH
-	jr nz, .check_moon_stone
+	jr nz, .try_moon_stone
 	ld de, COMPUTER_SEARCH
 	call CheckIfHandHasRepeatedCard
-	jr c, .found
+	jr c, .found_discard_card
 	jr .next_card
-.check_moon_stone
+.try_moon_stone
 	cp16 MOON_STONE
-	jr nz, .check_potion
+	jr nz, .try_potion
 	ld de, PIDGEOT_LV40
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr c, .found
+	jr c, .found_discard_card
 	ld de, FEAROW_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
-	jr c, .found
+	jr c, .found_discard_card
 	ld de, PIDGEY_LV10
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
@@ -5054,14 +5080,14 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	jr c, .next_card
-	jr .found
-.check_potion
+	jr .found_discard_card
+.try_potion
 	cp16 POTION
-	jr nz, .check_pkmn
+	jr nz, .try_pkmn
 	farcall CheckIfAnyPlayAreaPokemonHasDamage
 	jr c, .next_card
-	jr .found
-.check_pkmn
+	jr .found_discard_card
+.try_pkmn
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	cp MAX_PLAY_AREA_POKEMON
@@ -5070,13 +5096,13 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
 	pop de
-	jr c, .found
+	jr c, .found_discard_card
 .next_card
 	pop hl
 	inc hl
 	jp .loop_hand_cards
 
-.found
+.found_discard_card
 	pop hl
 	ld a, [hl]
 	scf
@@ -5086,10 +5112,11 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideNightlyGarbageRun:
+SuddenGrowthDeckAI_ShouldRetrieveProfessorOak:
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall LookForCardIDInHandList
 	jr c, .count_deck_pile
+
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall CountCardIDInDiscardPile
 	cp 2
@@ -5137,7 +5164,7 @@ SuddenGrowthDeckAIDecideNightlyGarbageRun:
 	farcall LookForCardIDInHandList
 	jr c, .no_carry
 
-; carry
+; success
 	scf
 	ret
 
@@ -5145,12 +5172,12 @@ SuddenGrowthDeckAIDecideNightlyGarbageRun:
 	or a
 	ret
 
-SuddenGrowthDeckAIHandCheck:
+SuddenGrowthDeckAIDecideComputerSearch:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
-	jr c, .found_oak_in_hand
+	jr c, .check_bosss_way_in_hand
 
-	call ColorlessAltarAIHandCheck
+	call ColorlessAltarAI_ShouldPlayProfessorOak
 	ret nc
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -5159,17 +5186,18 @@ SuddenGrowthDeckAIHandCheck:
 	ccf
 	ret nc
 
+; target professor oak, bill
 	ld de, PROFESSOR_OAK
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
-	jr c, .check_hand_trainer
+	jr c, .find_discard_cards_any
 	ld de, BILL
 	ld a, CARD_LOCATION_DECK
 	farcall FindCardIDInLocation
 	ret nc
 
-.check_hand_trainer
-	ld [wd082], a
+.find_discard_cards_any
+	ld [wTempAISingleTargetCardDeckIndex_2], a
 	call CreateHandCardList
 	ld a, [wAITrainerCardToPlay]
 	ld b, a
@@ -5184,55 +5212,59 @@ SuddenGrowthDeckAIHandCheck:
 	inc de
 	dec c
 	jr nz, .loop_hand_cards
-	ld a, [wd082]
+; success
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
 
-.found_oak_in_hand
+.check_bosss_way_in_hand
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
 	ccf
 	ret nc
 
+; target pkmn
 	ld bc, DRATINI_LV12
 	ld de, DARK_DRAGONAIR
 	call LookForEvoCardInDeck_GivenPreevoInPlayArea
-	jr c, .check_hand_pkmn
+	jr c, .find_discard_cards_pkmn
 	ld bc, CLEFAIRY_LV15
 	ld de, DARK_CLEFABLE
 	call LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ret nc
 
-.check_hand_pkmn
-	ld [wd082], a
+.find_discard_cards_pkmn
+	ld [wTempAISingleTargetCardDeckIndex_2], a
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld d, AI_SEARCH_ONLY_PKMN
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
-	jr nc, .check_hand_energy_1
+	jr nc, .find_discard_cards_energy_1
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
-	jr nc, .check_hand_energy_2
+	jr nc, .find_discard_cards_energy_2
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld a, [wd082]
+; success
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
 
-.check_hand_energy_1
+.find_discard_cards_energy_1
 	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 
-.check_hand_energy_2
+.find_discard_cards_energy_2
 	ld d, AI_SEARCH_ONLY_ENERGY
 	ld e, 0
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld a, [wd082]
+; success
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
 
@@ -5240,17 +5272,18 @@ SuddenGrowthDeckAIHandCheck:
 	or a
 	ret
 
-SuddenGrowthDeckAIDecideProfessorOak:
+SuddenGrowthDeckAIDecideItemFinder:
+; target professor oak
 	ld de, PROFESSOR_OAK
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	jr nc, .count_deck_pile
 
 	push af
-	call SuddenGrowthDeckAIDecideNightlyGarbageRun
+	call SuddenGrowthDeckAI_ShouldRetrieveProfessorOak
 	pop bc
 	ld a, b
-	jr c, .check_hand
+	jr c, .find_discard_cards
 
 .count_deck_pile
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -5258,13 +5291,14 @@ SuddenGrowthDeckAIDecideProfessorOak:
 	cp DECK_SIZE - 14
 	ret nc
 
+; target nightly garbage run
 	ld de, NIGHTLY_GARBAGE_RUN
 	ld a, CARD_LOCATION_DISCARD_PILE
 	farcall FindCardIDInLocation
 	ret nc
 
-.check_hand
-	ld [wd082], a
+.find_discard_cards
+	ld [wTempAISingleTargetCardDeckIndex_2], a
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld d, AI_SEARCH_ONLY_PKMN
@@ -5275,7 +5309,8 @@ SuddenGrowthDeckAIDecideProfessorOak:
 	call TakeOutDifferentCardOfSpecificTypeFromListInHL
 	jr nc, .no_carry
 	ld [wTempAIMultiTargetCardDeckIndex2], a
-	ld a, [wd082]
+; success
+	ld a, [wTempAISingleTargetCardDeckIndex_2]
 	scf
 	ret
 
@@ -5614,19 +5649,19 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	ld bc, DARK_CHARMELEON
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_CHARMELEON
-	jr c, .check_trade
+	jr c, .try_trade
 
 	ld de, PSYDUCK_LV16
 	ld bc, DARK_GOLDUCK
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_GOLDUCK
-	jr c, .check_trade
+	jr c, .try_trade
 
 	ld de, SLOWPOKE_LV16
 	ld bc, DARK_SLOWBRO
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_SLOWBRO
-	jr c, .check_trade
+	jr c, .try_trade
 
 	ld de, ODDISH_LV21
 	ld bc, DARK_GLOOM
@@ -5634,7 +5669,7 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	ld de, DARK_GLOOM
 	ret nc
 
-.check_trade
+.try_trade
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
@@ -5654,29 +5689,29 @@ PoisonMistDeckAIDecidePokemonTrader:
 	ld bc, GRIMER_LV10
 	ld de, DARK_MUK
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_trade
+	jr c, .try_trade
 
 	ld de, GRIMER_LV10
 	ld bc, DARK_MUK
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_MUK
-	jr c, .check_trade
+	jr c, .try_trade
 	ret
 
 .weezing_line
 	ld bc, KOFFING_LV14
 	ld de, WEEZING_LV26
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_trade
+	jr c, .try_trade
 
 	ld de, KOFFING_LV14
 	ld bc, WEEZING_LV26
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, WEEZING_LV26
-	jr c, .check_trade
+	jr c, .try_trade
 	ret
 
-.check_trade
+.try_trade
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
@@ -6311,12 +6346,12 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	ld bc, PSYDUCK_LV15
 	ld de, GOLDUCK_LV27
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_hand
+	jr c, .try_trade
 	ld de, PSYDUCK_LV15
 	ld bc, GOLDUCK_LV27
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, GOLDUCK_LV27
-	jr c, .check_hand
+	jr c, .try_trade
 	ret
 
 .blastoise_line
@@ -6324,24 +6359,24 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	ld de, BLASTOISE_LV52
 	call LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, WARTORTLE_LV22
-	jr c, .check_hand
+	jr c, .try_trade
 	ld bc, SQUIRTLE_LV8
 	ld de, WARTORTLE_LV22
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .check_hand
+	jr c, .try_trade
 	ld de, SQUIRTLE_LV8
 	ld bc, WARTORTLE_LV22
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, WARTORTLE_LV22
-	jr c, .check_hand
+	jr c, .try_trade
 	ld de, WARTORTLE_LV22
 	ld bc, BLASTOISE_LV52
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, BLASTOISE_LV52
-	jr c, .check_hand
+	jr c, .try_trade
 	ret
 
-.check_hand
+.try_trade
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
@@ -6380,6 +6415,7 @@ UltraRemovalDeckAIDecideSwitch:
 	jr z, .blastoise_or_golduck_in_arena
 	cp16 GOLDUCK_LV27
 	jr z, .blastoise_or_golduck_in_arena
+
 	ld a, 3
 	ld b, PLAY_AREA_BENCH_1
 	ld de, GOLDUCK_LV27
@@ -6392,21 +6428,26 @@ UltraRemovalDeckAIDecideSwitch:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
 	farcall CheckIfSelectedAttackIsUnusable
-	jr c, .check_bench ; Hydro Pump / Hyper Beam not ready
+	jr c, .check_bench_and_switch
+
+; ready for Hydro Pump / Hyper Beam
+; check status
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
 	ret z
+; statused
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret
 
-.check_bench
+.check_bench_and_switch
 	farcall CountNumberOfSetUpBenchPokemon
 	ret nc
 	farcall AIDecideBenchPokemonToSwitchTo
 	ccf
 	ret nc
+
 	push af
 	ld a, 50
 	cp e
@@ -6452,7 +6493,8 @@ PsychicBattleDeckAIDecideSwitch:
 	cp16 MEWTWO_LV53
 	jr nz, .check_ready_to_attack
 
-; mewtwo lv53, count defender's energy
+; mewtwo lv53
+; count energy attached to defending pkmn
 	call SwapTurn
 	xor a ; PLAY_AREA_ARENA
 	call CreateArenaOrBenchEnergyCardList

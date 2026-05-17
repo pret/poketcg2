@@ -859,7 +859,7 @@ FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy:
 	or a
 	ret
 
-BigThunderDeckAI_4c70b:
+BigThunderDeckAIDecideEnergyRetrieval:
 	farcall CountEnergyCardsInHand
 	ret nc
 
@@ -873,6 +873,7 @@ BigThunderDeckAI_4c70b:
 	ld a, [wDuelTempList + 1]
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 
+; find discard card
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -887,36 +888,34 @@ BigThunderDeckAI_4c70b:
 .loop_hand_cards
 	ld a, [hl]
 	cp $ff
-	jp z, .not_found
+	jp z, .no_carry
 	push hl
 	call GetCardIDFromDeckIndex
+; try energy removal
 	cp16 ENERGY_REMOVAL
-	jr nz, .check_energy_retrieval
+	jr nz, .try_dupe_energy_retrieval
 	ld a, 10
 	ld b, PLAY_AREA_ARENA
 	call FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy
-	jr nc, .found
+	jr nc, .found_discard_card
 	jr .next_card
-
-.check_energy_retrieval
+.try_dupe_energy_retrieval
 	cp16 ENERGY_RETRIEVAL
-	jr nz, .check_other_trainers
+	jr nz, .try_other_trainers
 	ld de, ENERGY_RETRIEVAL
 	farcall LookForCardIDInHandList_IgnoreTrainerCardToPlay
-	jr c, .found
+	jr c, .found_discard_card
 	jr .next_card
-
-.check_other_trainers
+.try_other_trainers
 	cp16 SUPER_ENERGY_REMOVAL
-	jr z, .found
+	jr z, .found_discard_card
 	cp16 SCOOP_UP
-	jr z, .found
+	jr z, .found_discard_card
 	cp16 POKEMON_TRADER
-	jr z, .pokemon_trader
+	jr z, .try_pkmn_trader_or_master_ball
 	cp16 MASTER_BALL
 	jr nz, .next_card
-
-.pokemon_trader
+.try_pkmn_trader_or_master_ball
 	ld de, ZAPDOS_LV68
 	farcall CountCardIDInHand
 	push af
@@ -926,24 +925,23 @@ BigThunderDeckAI_4c70b:
 	pop bc
 	add b
 	cp 2
-	jr nc, .found
-
+	jr nc, .found_discard_card
 .next_card
 	pop hl
 	inc hl
 	jp .loop_hand_cards
 
-.found
+.found_discard_card
 	pop hl
 	ld a, [hl]
 	scf
 	ret
 
-.not_found
+.no_carry
 	or a
 	ret
 
-; Scoop Up?
+; Switch or Scoop Up?
 BigThunderDeckAI_4c7b5:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard_CheckHand
 	ccf
@@ -984,7 +982,7 @@ BigThunderDeckAI_4c7b5:
 	scf
 	ret
 
-BigThunderDeckAI_4c7f1:
+BigThunderDeckAIDecidePokemonTrader:
 	ld de, ZAPDOS_LV68
 	farcall CountCardIDInHand
 	push af
@@ -1002,6 +1000,7 @@ BigThunderDeckAI_4c7f1:
 	ret nc
 
 	ld [wTempAIMultiTargetCardDeckIndex1], a
+
 	ld de, DITTO
 	farcall LookForCardIDInHandList
 	ret c
@@ -1727,9 +1726,9 @@ PoisonMistDeckAIDecideSwitch:
 	get_turn_duelist_var
 	call GetCardIDFromDeckIndex
 	cp16 DARK_MUK
-	jr z, .dark_muk
+	jr z, .dark_muk_arena
 	cp16 WEEZING_LV26
-	jr z, .weezing
+	jr z, .weezing_arena
 	cp16 MR_MIME_LV20
 	jr z, .check_switch
 
@@ -1737,14 +1736,15 @@ PoisonMistDeckAIDecideSwitch:
 	or a
 	ret
 
-.dark_muk
+.dark_muk_arena
 	ld a, DUELVARS_ARENA_CARD_STATUS
 	get_turn_duelist_var
 	or a
 	ret z
+; statused
 	jr .check_switch
 
-.weezing
+.weezing_arena
 	farcall CanArenaCardUseNonResidualAttack
 	jr c, .no_carry
 	ld a, DUELVARS_ARENA_CARD_HP
