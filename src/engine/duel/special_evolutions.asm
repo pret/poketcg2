@@ -66,8 +66,8 @@ AIDecideSpecialEvolutions:
 	jr .standard_score
 
 ; Magnemite: +10;
-; Voltorb: dismiss if 5+ own Pokémon in play, +10 otherwise;
-; Doduo: dismiss if 30+ HP, +10 otherwise;
+; Voltorb: dismiss if >= 5 own Pokémon in play, +10 otherwise;
+; Doduo: dismiss if >= 30 HP, +10 otherwise;
 ; others (non-existent): neutral
 .ElectricSelfdestructDeck:
 	ld hl, wLoadedCard2ID
@@ -196,8 +196,8 @@ AIDecideSpecialEvolutions:
 
 ; Dark Dragonair:
 ;   +10 if
-;     active with 4+ Energy attached to it, or
-;     3- own Pokémon in play with no basic cards in hand;
+;        active with >= 4 Energy attached to it
+;     OR (<= 3 own Pokémon in play AND no basic cards in hand);
 ;   -10 otherwise;
 ; others: neutral
 .DangerousBenchDeck:
@@ -231,7 +231,7 @@ AIDecideSpecialEvolutions:
 ; Haunter Lv.17: neutral;
 ; Haunter Lv.22: -10;
 ; Drowzee:
-;   +10 if any other Drowzee is in play, or Bench is full;
+;   +10 if any other Drowzee is in play OR Bench is full;
 ;   -10 otherwise
 .BadDreamDeck:
 	ld hl, wLoadedCard2ID
@@ -257,7 +257,7 @@ AIDecideSpecialEvolutions:
 	ld a, AI_SCORE_NEUTRAL - 10
 	ret
 
-; Meowth: -10 if 7+ cards in hand, +10 otherwise;
+; Meowth: -10 if >= 7 cards in hand, +10 otherwise;
 ; others: neutral
 .PokemonPowerDeck:
 	ld hl, wLoadedCard2ID
@@ -275,7 +275,7 @@ AIDecideSpecialEvolutions:
 
 ; Dratini: +2;
 ; Clefairy: +10;
-; Dark Dragonair: +10 if 2+ Dark Clefable in play, -10 otherwise
+; Dark Dragonair: +10 if >= 2 Dark Clefable in play, -10 otherwise
 .SuddenGrowthDeck:
 	ld hl, wLoadedCard2ID
 	cphl DRATINI_LV12
@@ -303,7 +303,7 @@ AIDecideSpecialEvolutions:
 ; Slowpoke:
 ;   +12 if none other than Slowpoke is in play;
 ;   else, for n = number of Dark Slowbro in play,
-;     n = 0: +12 if 2+ Psychic Energy attached to it;
+;     n = 0: +12 if >= 2 Psychic Energy attached to Slowpoke;
 ;     n = 1: +12 if towards using Reel In;
 ;   -28 otherwise
 ; others: neutral
@@ -360,8 +360,8 @@ AIDecideSpecialEvolutions:
 
 ; Dratini:
 ;   -28 if any Dark Dragonair in play;
-;   +12 if benched and no Dark Dragonair yet;
-;   neutral if active and no Dark Dragonair yet;
+;   +12 if benched AND no Dark Dragonair yet;
+;   neutral if active AND no Dark Dragonair yet;
 ; others: neutral
 .ChokeDeck:
 	ld hl, wLoadedCard2ID
@@ -381,7 +381,7 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Clefairy:
-;   -28 if Dark Charizard isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Charizard isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .IncinerateDeck:
@@ -400,7 +400,7 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Clefairy:
-;   -28 if Dark Blastoise isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Blastoise isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .SmashDeck:
@@ -419,7 +419,7 @@ AIDecideSpecialEvolutions:
 	ret
 
 ; Clefairy:
-;   -28 if Dark Machamp isn't ready or any Dark Clefable is in play;
+;   -28 if Dark Machamp isn't ready OR any Dark Clefable is in play;
 ;   neutral otherwise
 ; others: neutral
 .ThrowOutDeck:
@@ -441,7 +441,7 @@ AIDecideSpecialEvolutions:
 ; Haunter: -28 if any Gengar in play, neutral otherwise;
 ; Dratini: +12;
 ; Dark Dragonair:
-;   -28 if any Dark Dragonite or 5+ Pokémon in play,
+;   -28 if any Dark Dragonite OR >= 5 Pokémon in play,
 ;   neutral otherwise
 .RonaldsPsychicDeck:
 	ld hl, wLoadedCard2ID
@@ -560,10 +560,11 @@ AIDecideSpecialEvolutions:
 
 ; unchanged since TCG1
 ; +10 if
-;   Muk isn't in play, and
-;   Dragonair is
-;     Active with 50+ damage taken and 3+ Energy attached to it, or
-;     Benched, and total of 70+ damage on own Pokémon in play;
+;       Muk isn't in play
+;   AND (
+;         Dragonair is Active with >= 50 damage and >= 3 Energy attached to it
+;     OR (Dragonair is Benched AND >= 70 damage in total on own Pokémon in play)
+;   );
 ; -10 otherwise
 .dragonair_rod:
 	ldh a, [hTempPlayAreaLocation_ff9d]

@@ -8692,7 +8692,7 @@ GetAIScoreOfAttack:
 ; destiny bond is active
 ; -50 if causes player to win;
 ; +10 if causes AI to win;
-; -30 if 30+ HP remaining
+; -30 if >= 30 HP remaining
 	call SwapTurn
 	call CountPrizes
 	call SwapTurn

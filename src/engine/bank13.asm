@@ -386,8 +386,8 @@ CountPlayAreaPokemonExcludingTrainerPokemon:
 	ret
 
 ; no carry if
-;   defending Pokémon has Invisible Wall or NShield in effect, and
-;   attacking Pokémon at PLAY_AREA_* location in a cannot damage it
+;       defending Pokémon has Invisible Wall or NShield in effect
+;   AND attacking Pokémon at PLAY_AREA_* location in a cannot damage it
 ; return carry otherwise
 CanDamageDefendingPokemonUnderInvisibleWallOrNShield:
 	push af

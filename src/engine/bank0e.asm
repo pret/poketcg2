@@ -3872,7 +3872,7 @@ PickAttachedEnergyCardToRemove:
 
 ; return in a and [wTempAI], and b and [wTempAI2], the deck indices
 ; of energy cards attached to pkmn at PLAY_AREA_* location in a
-; (or just $ff in a if less than 2 energy)
+; (or just $ff in a if < 2 energy)
 ;   order: DCE -> useful energy -> not useful energy -> Recycle Energy
 PickTwoAttachedEnergyCards:
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -4023,8 +4023,8 @@ CountEnergyCardsInHand:
 
 ; Evolutionary Light, The Boss's Way, etc.
 ; return carry if
-;   card ID in de is found in deck but not in hand or play area, and
-;   card ID in bc is found in hand or play area
+;     card ID in de is found in deck but not in hand or play area
+; AND card ID in bc is found in hand or play area
 ; input:
 ; - de = card ID 1 (evo card)
 ; - bc = card ID 2 (card to evolve to card ID 1)
@@ -4063,8 +4063,8 @@ LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea:
 
 ; Evolutionary Light, The Boss's Way, etc.
 ; return carry if
-;   card ID in de is found in deck but not in hand, and
-;   card ID in bc is found in play area
+;     card ID in de is found in deck but not in hand
+; AND card ID in bc is found in play area
 ; input:
 ; - de = card ID 1 (evo card)
 ; - bc = card ID 2 (card to evolve to card ID 1)
@@ -4100,8 +4100,8 @@ LookForEvoCardInDeck_GivenPreevoInPlayArea:
 	ret
 
 ; return carry if
-;   card ID in de is found in deck but not in hand or play area, and
-;   card ID in bc is found in hand
+;     card ID in de is found in deck but not in hand or play area
+; AND card ID in bc is found in hand
 ; input:
 ; - de = card ID 1
 ; - bc = card ID 2
@@ -4133,11 +4133,14 @@ LookForCardIDInDeck_GivenCardIDInHand:
 	ret
 
 ; return carry if
-;   card ID in de is found in deck but not in hand or play area, and
-;   card ID in bc is found in hand or play area,
-; or if
-;   card ID in de is found in hand, and
-;   card ID in bc is found in deck but not in hand or play area
+;    (
+;       card ID in de is found in deck but not in hand or play area
+;   AND card ID in bc is found in hand or play area
+; )
+; OR (
+;       card ID in de is found in hand
+;   AND card ID in bc is found in deck but not in hand or play area
+; )
 ; inputs:
 ; - de = card ID 1 (evo card)
 ; - bc = card ID 2 (card to evolve to card ID 1)
@@ -4152,8 +4155,8 @@ CheckReelInEvoLineTarget:
 	ret
 
 ; return carry if
-;   card ID in de is found in discard pile but not in hand or play area, and
-;   card ID in bc is found in hand or play area
+;     card ID in de is found in discard pile but not in hand or play area
+; AND card ID in bc is found in hand or play area
 ; input:
 ; - de = card ID 1
 ; - bc = card ID 2
@@ -4187,8 +4190,8 @@ LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea:
 	ret
 
 ; return carry if
-;   card ID in de is found in discard pile but not in hand or play area, and
-;   card ID in bc is found in hand
+;     card ID in de is found in discard pile but not in hand or play area
+; AND card ID in bc is found in hand
 ; input:
 ; - de = card ID 1
 ; - bc = card ID 2
@@ -4220,8 +4223,8 @@ LookForCardIDInDiscardPile_GivenCardIDInHand:
 	ret
 
 ; return carry if
-;   card ID in de is found in deck but not in hand, and
-;   card ID in bc is found in play area with number in a+ energy attached
+;     card ID in de is found in deck but not in hand
+; AND card ID in bc is found in play area with >= (number in a) energy attached
 ; input:
 ; - a = number of energies
 ; - de = card ID 1
@@ -4260,7 +4263,8 @@ LookForCardIDInDeck_GivenCardIDInPlayAreaWithEnoughEnergy:
 	or a
 	ret
 
-; return carry if card ID in de is found in play area with a+ energy attached
+; return carry if
+; card ID in de is found in play area with >= (number in a) energy attached
 ; input:
 ; - a = number of energies
 ; - b = starting PLAY_AREA_* location
@@ -4326,7 +4330,7 @@ CheckIfCardIDIsInHandOrPlayArea:
 
 ; get a random card from list in hl (wDuelTempList)
 ; that is different from deck index in e and matches AI_SEARCH_ONLY_* in d,
-; return carry and a = deck index, and drop that card from the list
+; return carry and the deck index, and drop that card from the list
 ; no carry and a = $ff if not found
 TakeOutDifferentCardOfSpecificTypeFromListInHL:
 	push hl
@@ -4391,8 +4395,8 @@ TakeOutDifferentCardOfSpecificTypeFromListInHL:
 	ret
 
 ; return carry if
-;   card ID in de is found in deck but not in hand, and
-;   any pkmn card that is not card ID in bc is found in hand
+;     card ID in de is found in deck but not in hand
+; AND any pkmn card that is not card ID in bc is found in hand
 ; input:
 ; - de = card ID 1
 ; - bc = card ID 2
@@ -4502,7 +4506,7 @@ CountTurnDuelistPokemonInHandOrPlayArea:
 	ld a, [wTempAI]
 	ret
 
-; return carry and a = deck index of dupe pkmn cards in hand
+; return carry and the deck index of dupe pkmn cards in hand
 ; no carry and a = $ff if not found
 FindDuplicatePokemonCardsInHand:
 	ld a, $ff
@@ -4613,10 +4617,9 @@ CheckIfArenaCardCanKnockOutDefendingCard_CheckHand:
 	farcall LookForEnergyNeededForAttackInHand
 	ret
 
-; find duplicates in card list in hl
-; if a pkmn duplicate is found, return a = deck index of the second one;
-; elif a non-pkmn duplicate that is not wAITrainerCardToPlay is found, return a = deck index of the second one;
-; otherwise return carry (with a = $ff)
+; find duplicates in card list in hl, excluding card in wAITrainerCardToPlay,
+; return deck index of the second one in a if found;
+; return carry and a = $ff otherwise
 FindDuplicateCards_IgnoreTrainerCardToPlay:
 	ld a, $ff
 	ld [wTempAITargetPokemonCardDeckIndex], a
@@ -4682,7 +4685,7 @@ FindDuplicateCards_IgnoreTrainerCardToPlay:
 	or a
 	ret
 
-; return carry and its deck index if
+; return carry and the deck index if
 ; card ID in de is in deck and not in hand
 IsCardIDInDeckAndNotInHand:
 	push de
@@ -4696,7 +4699,7 @@ IsCardIDInDeckAndNotInHand:
 	or a
 	ret
 
-; return carry and its deck index if
+; return carry and the deck index if
 ; card ID in de is in deck and not in hand or play area
 IsCardIDInDeckAndNotInHandOrPlayArea:
 	push de
@@ -4710,8 +4713,8 @@ IsCardIDInDeckAndNotInHandOrPlayArea:
 	or a
 	ret
 
-; if Master Ball hits target pkmn card in de,
-; return carry and a = deck index
+; return carry and the deck index if
+; Master Ball hits target pkmn card in de
 AITryMasterBall_GivenTarget:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -4744,8 +4747,8 @@ AITryMasterBall_GivenTarget:
 	scf
 	ret
 
-; if Master Ball hits any pkmn card,
-; return carry and a = deck index
+; return carry and the deck index if
+; Master Ball hits any pkmn card
 AITryMasterBall:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -5479,10 +5482,10 @@ Func_3a28d:
 	ret
 
 ; if discard pile contains dark golduck, dark charmeleon, dark slowbro, and dark gloom,
-;   return carry and a = deck index of dark golduck, and
+;   return carry and the deck index of dark golduck, and
 ;   store dark charmeleon's and dark slowbro's to buffer
-; elif discard pile contains 7+ basic energy cards,
-;   return carry and a = deck index of first basic energy card, and
+; elif discard pile contains >= 7 basic energy cards,
+;   return carry and the deck index of first basic energy card, and
 ;   store second and third ones to buffer
 ; otherwise no carry
 BadGuysDeckAIDecideNightlyGarbageRun:
@@ -5524,7 +5527,7 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	ccf
 	ret nc
 
-; 7+ basic energy cards in discard pile
+; >= 7 basic energy cards in discard pile
 	ld hl, wDuelTempList
 .loop_basic_energy
 	ld a, [hli]
@@ -6530,7 +6533,7 @@ PsychicBattleDeckAIDecideSwitch:
 	ccf
 	ret
 
-; return carry and a = deck index if found
+; return carry and the deck index if found
 SearchHandForEvoCardAlreadyInTurnDuelistPlayArea:
 	call CreateHandCardList
 	ld hl, wDuelTempList
@@ -8591,7 +8594,7 @@ TryBuildDeckMachineDeck:
 	call OmitMissingCardsFromDeckAndBackup
 	call GetSumOfRemainingBasicEnergyCards
 	pop bc
-	jr c, .check_basic_pkmn_before_sub ; has 256+ energy cards
+	jr c, .check_basic_pkmn_before_sub ; has >= 256 energy cards
 	cp b ; required sub count
 	jr nc, .check_basic_pkmn_before_sub
 	ldtx hl, CannotBuildLackingEnergyCardsText

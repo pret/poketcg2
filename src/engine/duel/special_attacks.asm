@@ -150,7 +150,7 @@ HandleSpecialAIAttacks:
 	xor a
 	ret
 
-; +(slots available in bench) if any cards of the same Pokémon in deck pile
+; +(slots available in bench) if any cards of the same Pokémon in deck pile,
 ; dismiss otherwise
 .CallForFamily:
 	call LoadCardDataToBuffer1_FromCardID
@@ -181,7 +181,7 @@ HandleSpecialAIAttacks:
 	add AI_SCORE_NEUTRAL
 	ret
 
-; +(slots available in bench) if any Nidoran M/F cards in deck pile
+; +(slots available in bench) if any Nidoran M/F cards in deck pile,
 ; dismiss otherwise
 .NidoranFCallForFamily:
 	ld de, NIDORANM_LV20
@@ -213,7 +213,7 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +(slots available in bench) if any of the 4 Fighting basic Pokémon in deck pile
-; (not updated since TCG1; not accounting for TCG2 deck configurations)
+;   (not updated since TCG1; not accounting for TCG2 deck configurations),
 ; dismiss otherwise
 .CallForFriend:
 	ld de, GEODUDE_LV16
@@ -247,7 +247,7 @@ HandleSpecialAIAttacks:
 	add AI_SCORE_NEUTRAL
 	ret
 
-; +(slots available in bench) if any basic Pokémon in deck pile
+; +(slots available in bench) if any basic Pokémon in deck pile,
 ; dismiss otherwise
 .FriendshipSong:
 	call CheckIfAnyBasicPokemonInDeck
@@ -263,7 +263,7 @@ HandleSpecialAIAttacks:
 	add AI_SCORE_NEUTRAL
 	ret
 
-; +10 if in a retreating situation
+; +10 if in a retreating situation,
 ; dismiss otherwise
 .Teleport:
 	farcall AIDecideWhetherToRetreat_ConsiderStatus
@@ -338,9 +338,9 @@ HandleSpecialAIAttacks:
 ; +5 if KOing any in player's area,
 ; dismiss otherwise;
 ; Ronald: also +5 if
-;   Mew has 20+ HP remaining,
-;   Gengar Lv.40 is on his Bench, and
-;   no Pokémon Power locks
+;       Mew has >= 20 HP remaining
+;   AND Gengar Lv.40 is on his Bench
+;   AND no Pokémon Power locks
 .DevolutionBeam:
 	ld a, [wOpponentDeckID]
 	cp RONALDS_PSYCHIC_DECK_ID
@@ -415,7 +415,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL - 28
 	ret
 
-; +2 if any Psychic Energy in own discard pile
+; +2 if any Psychic Energy in own discard pile,
 ; dismiss otherwise
 .EnergyAbsorption:
 	ld de, PSYCHIC_ENERGY
@@ -427,15 +427,15 @@ HandleSpecialAIAttacks:
 
 ; dismiss if player has no cards in hand;
 ; John:
-;   +5 with 1/4 chance when player has 4+ cards in hand,
+;   +5 with 1/4 chance when player has >= 4 cards in hand,
 ;   +1 otherwise;
 ; other AIs:
 ;   +3 with 1/3 chance,
 ;   dismiss with 1/3 chance, and
 ;   scan player's hand with 1/3 chance, where
 ;     +3 if
-;       player has 2- Pokémon in play and 2+ basic Pokémon in hand, or
-;       player has any Evolution cards in hand compatible with their Pokémon in play,
+;          player has <= 2 Pokémon in play and >= 2 basic Pokémon in hand
+;       OR player has any Evolution cards in hand compatible with their Pokémon in play,
 ;     dismiss otherwise
 .MixUp:
 	ld a, [wOpponentDeckID]
@@ -526,7 +526,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
-; dismiss if 9- cards remaining in deck pile
+; dismiss if <= 9 cards remaining in deck pile
 .FetchAndDizziness:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
@@ -574,7 +574,9 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-; +3 if any Lightning Energy in deck pile, and in an Energy-attachment situation;
+; +3 if
+;       any Lightning Energy in deck pile
+;   AND in an Energy-attachment situation;
 ; dismiss otherwise
 .EnergySpike:
 	ld a, CARD_LOCATION_DECK
@@ -603,7 +605,7 @@ HandleSpecialAIAttacks:
 	ret
 
 ; Amy:
-;   +5 if Dewgong has 20- HP remaining,
+;   +5 if Dewgong has <= 20 HP remaining,
 ;   dismiss otherwise;
 ; other AIs:
 ;   dismiss if the defender has has Dream Eater,
@@ -641,10 +643,10 @@ HandleSpecialAIAttacks:
 	ret
 
 ; Toshiron:
-;   +6 if 12+ cards remaining in deck pile and 3- non-draw cards in hand,
+;   +6 if >= 12 cards remaining in deck pile AND <= 3 non-draw cards in hand,
 ;   dismiss otherwise;
 ; other AIs:
-;   +6 if 15+ cards remaining in deck pile and Dark Golduck in KO range,
+;   +6 if >= 15 cards remaining in deck pile AND Dark Golduck in KO range,
 ;   dismiss otherwise
 .ThirdEye:
 	ld a, [wOpponentDeckID]
@@ -672,8 +674,9 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +1 if
-;   5+ cards including any Water Energy remaining in deck pile, and
-;   Kingler needs more Water Energy and is out of KO range;
+;       >= 5 cards including any Water Energy remaining in deck pile
+;   AND Kingler needs more Water Energy
+;   AND Kingler is out of KO range;
 ; dismiss otherwise
 .SaltWater:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
@@ -741,7 +744,7 @@ HandleSpecialAIAttacks:
 ; John: +3;
 ; other AIs:
 ;   +3 if in a gusting situation;
-;   -50 if the defender is immune, without Benched Pokémon;
+;   -50 if the defender is immune AND no Benched Pokémon;
 ;   neutral otherwise
 .Foxfire:
 	ld a, [wOpponentDeckID]
@@ -788,8 +791,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +2 if
-;   Pikachu is out of KO range, and
-;   there's any Lightning Energy in deck pile;
+;       Pikachu is out of KO range
+;   AND any Lightning Energy in deck pile;
 ; dismiss otherwise
 .Recharge:
 	xor a
@@ -824,8 +827,8 @@ HandleSpecialAIAttacks:
 ;   +(damage counters on Alakazam) if Alakazam is in KO range;
 ;   else,
 ;     +10 if
-;       player has no Benched Pokémon or 2+ prizes remaining, and
-;       KOing with Trans Damage;
+;           (player has no Benched Pokémon OR >= 2 prizes remaining)
+;       AND KOing with Trans Damage;
 ;     dismiss otherwise
 .TransDamage:
 ; check Psycho Panic
@@ -878,7 +881,7 @@ HandleSpecialAIAttacks:
 	ret
 
 ; dismiss if player has no cards in hand;
-; +5 if player has 6+ cards in hand;
+; +5 if player has >= 6 cards in hand;
 ; +1 otherwise
 .Poltergeist:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -904,9 +907,9 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +5 if
-;   Weepinbell is in KO range,
-;   Bellsprout goes out of KO range after that, and
-;   not KOing with Dissolve;
+;       Weepinbell is in KO range,
+;   AND Bellsprout goes out of KO range after that
+;   AND not KOing with Dissolve;
 ; dismiss otherwise
 .Regeneration:
 	xor a ; PLAY_AREA_ARENA
@@ -921,8 +924,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +5 if
-;   not ready for damage output, or
-;   the defender has 70+ HP remaining;
+;      not ready for damage output
+;   OR the defender has >= 70 HP remaining;
 ; dismiss otherwise
 .FocusedOneShot:
 	ld a, [wAICannotDamage]
@@ -946,8 +949,8 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-; dismiss if 9- cards remaining in deck pile;
-; neutral if 40+ cards remaining in deck pile;
+; dismiss if <=  9 cards remaining in deck pile;
+; neutral if >= 40 cards remaining in deck pile;
 ; else
 ;   +10 if no basic Energy in hand;
 ;   -1 if any basic Energy in hand
@@ -1003,7 +1006,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
-; 1/2 chance each of +{0 or 3}
+; equal chance of +0 or +3
 .KickAway:
 	ld a, 2
 	call Random
@@ -1016,10 +1019,10 @@ HandleSpecialAIAttacks:
 	ret
 
 ; Jes:
-;   +1 if 2+ own viable Benched Pokémon,
+;   +1 if >= 2 own viable Benched Pokémon,
 ;   +3 otherwise;
 ; Biruritchi (unused):
-;   -3 if 8+ cards in hand,
+;   -3 if >= 8 cards in hand,
 ;   +3 otherwise;
 ; for other AIs: +2
 .ClearProfit:
@@ -1071,9 +1074,9 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 3
 	ret
 
-; +10 if player has 2+ prizes remaining, and Venomoth is out of KO range;
+; +10 if player has >= 2 prizes remaining AND Venomoth is out of KO range;
 ; else,
-;   dismiss if 1+ Benched Pokémon, and none of them is viable;
+;   dismiss if >= 1 Benched Pokémon AND none of them is viable;
 ;   neutral otherwise
 .StirUpTwister:
 	xor a ; PLAY_AREA_ARENA
@@ -1102,8 +1105,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +3 if
-;   2+ Weezing family in play, and
-;   not KOing enough number of own Pokémon for player to win;
+;       >= 2 Weezing family in play
+;   AND not KOing enough number of own Pokémon for player to win;
 ; dismiss otherwise
 .MassExplosion:
 	farcall AICountMassExplosion
@@ -1114,8 +1117,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +10 if
-;   no Pokémon Power locks yet, and
-;   has any Pokémon in KO range or any special targets in play;
+;       no Pokémon Power locks yet
+;   AND (KOing with Stare OR special target);
 ; neutral otherwise
 ; Miyuki: also consider any Goop Gas Attack in hand
 ; (AIChooseStareTarget already covers Muk)
@@ -1157,10 +1160,15 @@ HandleSpecialAIAttacks:
 
 ; dismiss if not Imakuni? or Tap
 ; Eat:
-;   Imakuni?: dismiss if already 2 food counters, +13 otherwise
-;   Tap: dismiss if Rollout is ready for damage output, +3 otherwise
+;   Imakuni?:
+;     dismiss if already 2 food counters,
+;     +13 otherwise
+;   Tap:
+;     dismiss if Rollout is doing damage,
+;     +3 otherwise
 ; Rollout:
-;   +3 if doing damage, dismiss otherwise
+;   +3 if doing damage,
+;   dismiss otherwise
 .HungrySnorlax:
 	ld a, [wOpponentDeckID]
 	cp DANGEROUS_BENCH_DECK_ID
@@ -1207,10 +1215,10 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL
 	ret
 
-; dismiss if no Bench targets, and the defender is immune;
+; dismiss if the defender is immune AND no Bench targets;
 ; +2 if
-;   Dark Rapidash is in KO range, or
-;   any Benched targets is in KO range of Flame Pillar;
+;      Dark Rapidash is in KO range
+;   OR any Benched targets is in KO range of Flame Pillar;
 ; neutral otherwise
 .FlamePillar:
 	farcall IsPlayerArenaCardImmuneAndNoBenchedPokemon
@@ -1232,8 +1240,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +4 if
-;   Magmar is in KO range, and
-;   Burning Fire does more damage (at max) than Magma Punch;
+;       Magmar is in KO range
+;   AND Burning Fire does more damage (at max) than Magma Punch;
 ; neutral otherwise
 .BurningFire:
 	farcall CheckIfDefendingPokemonCanKnockOut
@@ -1263,8 +1271,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +5 if
-;   any viable targets, and
-;   Golem is in KO range or has 5+ Energy attached;
+;       any viable targets
+;   AND (Golem is in KO range OR has >= 5 Energy attached);
 ; -10 otherwise
 .RockBlast:
 	farcall IsPlayerArenaCardImmune
@@ -1290,12 +1298,11 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-; dismiss if KOing with Knock Back
-; else,
-;   +5 if
-;     KOing any with Drag Off, or
-;     the defender is resistant to Dark Machoke's type;
-;   dismiss otherwise
+; dismiss if KOing with Knock Back; else,
+; +5 if
+;      KOing any with Drag Off
+;   OR the defender is resistant to Dark Machoke's type;
+; dismiss otherwise
 .DragOff:
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a
@@ -1319,7 +1326,9 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 5
 	ret
 
-; +8 if the defender is resistant/weak (?) to Dark Machamp's type or has 70+ HP remaining;
+; +8 if
+;      the defender is resistant/weak (?) to Dark Machamp's type
+;   OR has >= 70 HP remaining;
 ; dismiss otherwise
 .Fling:
 	farcall CheckIfDefendingCardIsResistantToArenaCard
@@ -1349,8 +1358,8 @@ HandleSpecialAIAttacks:
 	ret
 
 ; +2 if
-;   player has any Benched Pokémon, and
-;   their active Pokémon has any Energy attached to it;
+;       player has any Benched Pokémon
+;   AND their active Pokémon has any Energy attached to it;
 ; dismiss otherwise
 .EnergyControl:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -1367,15 +1376,15 @@ HandleSpecialAIAttacks:
 
 ; Magician:
 ;   +10 if
-;     not KOing with Psyshock,
-;     Abra is in KO range, and
-;     2+ of Kadabra, Alakazam, Mr. Mime, or Scyther on his Bench;
+;         not KOing with Psyshock
+;     AND Abra is in KO range
+;     AND >= 2 of {Kadabra, Alakazam, Mr. Mime, Scyther} on his Bench;
 ;   -28 otherwise;
 ; other AIs:
 ;   +7 if
-;     3+ Benched Pokémon,
-;     no non-Dark Kadabra cards in hand, and
-;     Abra is in KO range;
+;         >= 3 Benched Pokémon
+;     AND no non-Dark Kadabra cards in hand
+;     AND Abra is in KO range;
 ;   dismiss otherwise
 .Vanish:
 	ld a, [wOpponentDeckID]
@@ -1404,12 +1413,12 @@ HandleSpecialAIAttacks:
 	ret
 
 ; Mami:
-;   neutral if no Benched Pokémon, or player has only 1 prizes remaining;
+;   neutral if no Benched Pokémon OR player has only 1 prizes remaining;
 ;   else,
-;     dismiss if Slowpoke has 8+ Psychic Energy attached to it;
+;     dismiss if Slowpoke has >= 8 Psychic Energy attached to it;
 ;     +3 otherwise;
 ; Kanzaki:
-;   dismiss if Slowpoke has 2+ Psychic Energy attached to it;
+;   dismiss if Slowpoke has >= 2 Psychic Energy attached to it;
 ;   +3 otherwise;
 ; other AIs:
 ;   dismiss if Slowpoke has any Psychic Energy attached to it;
@@ -1494,8 +1503,8 @@ HandleSpecialAIAttacks:
 
 ; dismiss if confused; else,
 ; +7 if
-;   it's worth changing Resistance, or
-;   with any own viable Benched Pokémon, it's worth changing Weakness;
+;      worth changing Resistance
+;   OR (has any own viable Benched Pokémon AND worth changing Weakness);
 ; dismiss otherwise;
 ; non-Ishihara AIs also checks Colorless weakness (non-existent at that time)
 .TextureMagic:
@@ -1548,7 +1557,7 @@ HandleSpecialAIAttacks:
 	ld a, AI_SCORE_NEUTRAL + 7
 	ret
 
-; dismiss if Mewtwo is out of KO range or KOing with Psycho Blast;
+; dismiss if Mewtwo is out of KO range OR KOing with Psycho Blast;
 ; +5 otherwise
 .CompleteRecovery:
 	xor a ; PLAY_AREA_ARENA

@@ -2883,8 +2883,8 @@ StopLifeDeckAIDecideSwitch:
 	ret
 
 ; +70 if
-;   the same card isn't in play yet but has positive type match-up, or
-;   can be ready with Energy in hand while active Pokémon isn't;
+;      the same card isn't in play yet but has positive type match-up
+;   OR can be ready with Energy in hand while active Pokémon isn't;
 ; neutral if the same card isn't in play yet and has neutral type match-up;
 ; -30 otherwise
 PowerfulPokemonDeckAIEvaluateBasicCards:
@@ -4299,8 +4299,8 @@ FindDifferentPokemonCardInHand:
 	or a
 	ret
 
-; return carry with a = deck index if Pokémon in Play Area
-; has a specific energy card attached
+; return carry and the deck index if
+; Pokémon in Play Area has a specific energy card attached
 ; input:
 ; - a = PLAY_AREA_* constant
 ; - de = energy card ID
@@ -4701,9 +4701,9 @@ LookForCardIDInHandList_IgnoreTrainerCardToPlay:
 	ret
 
 ; +10 if
-;   not KOing with Psyshock,
-;   Abra in KO range, and
-;   2+ of Kadabra, Alakazam, Mr. Mime, or Scyther on his Bench;
+;       not KOing with Psyshock
+;   AND Abra in KO range
+;   AND >= 2 of {Kadabra, Alakazam, Mr. Mime, Scyther} on his Bench;
 ; -28 otherwise
 ImmortalPokemonDeckAIEvaluateVanish:
 	farcall CheckIfArenaCardCanKnockOutDefendingCard
@@ -5645,9 +5645,9 @@ AIDeckSpecificAttackLogic:
 	ret
 
 ; Kadabra's Recover:
-; +12 if no benched pkmn and in KO range of defending pkmn;
+; +12 if no benched pkmn AND in KO range of defending pkmn;
 ; Dark Hypno's Bench Manipulation:
-; +12 if player has 2+ benched pkmn
+; +12 if player has >= 2 benched pkmn
 .SuperdestructivePowerDeck:
 .PokemonPowerDeck:
 	ld a, DUELVARS_ARENA_CARD
@@ -5692,7 +5692,7 @@ AIDeckSpecificAttackLogic:
 	ret
 
 ; Pidgeot's Hurricane:
-; +12 if against evolved pkmn, or against basic pkmn with 3+ energies attached;
+; +12 if against evolved pkmn OR against basic pkmn with >= 3 energy attached;
 ; -2 otherwise
 .EyeOfTheStormDeck:
 	ld a, DUELVARS_ARENA_CARD
@@ -5880,7 +5880,7 @@ AIDeckSpecificAttackLogic:
 ;   +3 if defeinding pkmn has <= 50 HP remaining
 ;   (not considering damage changes);
 ; Promo Arcanine: for (Quick Attack, Flames of Rage),
-;   (-5, +5) if has 2+ damage counters on it;
+;   (-5, +5) if has >= 2 damage counters on it;
 ;   (+5, -5) otherwise
 .BlazingFlameDeck:
 	ld a, DUELVARS_ARENA_CARD
@@ -6349,8 +6349,8 @@ GetHighestAttackIndex:
 
 ; for Pokémon at [hTempPlayAreaLocation_ff9d] and its [wSelectedAttack],
 ; return carry if
-;   no surplus energy, or
-;   energy boost attack but only 1 or 2 extra energy attached
+;      no surplus energy
+;   OR energy boost attack but only 1 or 2 extra energy attached
 ; no carry otherwise
 CanRemovingEnergyReduceDamage:
 	call CheckIfNoSurplusEnergyForAttack
