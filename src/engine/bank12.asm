@@ -4346,7 +4346,7 @@ CheckIfHasSpecificEnergyAttached:
 ;      <= 5 cards in hand
 ;   OR ready for Do the Wave but <= 4 pkmn in play
 ; )
-EverybodysFriendDeckAI_ShouldPlayProfessorOak:
+EverybodysFriendDeckAIDecideProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 16
@@ -4415,7 +4415,7 @@ EverybodysFriendDeckAIDecideComputerSearch:
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
 
-	call EverybodysFriendDeckAI_ShouldPlayProfessorOak
+	call EverybodysFriendDeckAIDecideProfessorOak
 	jr c, .try_scoop_up
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
@@ -4605,7 +4605,7 @@ EverybodysFriendDeckAIDecideItemFinder:
 	call LookForCardIDInHandList_IgnoreTrainerCardToPlay
 	call c, .store_discard_cards
 ; try professor oak
-	call EverybodysFriendDeckAI_ShouldPlayProfessorOak
+	call EverybodysFriendDeckAIDecideProfessorOak
 	jr c, .try_scoop_up
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList

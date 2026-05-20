@@ -2541,10 +2541,10 @@ HandleAIRainDanceEnergy:
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	jr nc, .loop_play_energy_cards ; no Professor Oak
-	call UltraRemovalDeckHandCheck
-	jr nc, .loop_play_energy_cards ; has useful cards
+	call UltraRemovalDeckAIDecideProfessorOak
+	jr nc, .loop_play_energy_cards ; disinclined
 
-	; has Professor Oak and no useful cards in hand
+	; has Professor Oak and inclined to play it
 	; so call try attaching any energy cards that are left
 	farcall AIProcessAndTryToPlayEnergy
 	jr c, .loop_play_energy_cards
@@ -3106,7 +3106,7 @@ CountCardIDInTurnDuelistPlayArea:
 	ld a, [wTempAICount1]
 	ret
 
-RainDanceConfusionDeckAI_ShouldPlayProfessorOak:
+RainDanceConfusionDeckAIDecideProfessorOak:
 	call CreateHandCardList
 	ld hl, wDuelTempList
 	ld de, wTempCardCollection
@@ -4787,7 +4787,7 @@ AITryMasterBall:
 ;   exactly 1 Computer Search;
 ;   Potion if no heal targets;
 ;   cards already in own play area
-ColorlessAltarAI_ShouldPlayProfessorOak:
+ColorlessAltarAIDecideProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 17
@@ -4806,7 +4806,7 @@ ColorlessAltarAI_ShouldPlayProfessorOak:
 	cp 1
 	jr z, .check_hand
 
-; shouldn't play, no carry
+; disinclined, no carry
 	or a
 	ret
 
@@ -4894,7 +4894,7 @@ EyeOfTheStormDeckAIDecideComputerSearch:
 	get_turn_duelist_var
 	cp DECK_SIZE - 19
 	jr nc, .check_moon_stone
-	call ColorlessAltarAI_ShouldPlayProfessorOak
+	call ColorlessAltarAIDecideProfessorOak
 	jr nc, .check_moon_stone
 
 ; target professor oak
@@ -5115,7 +5115,7 @@ EyeOfTheStormDeckAIDecideEnergyRetrieval:
 	or a
 	ret
 
-SuddenGrowthDeckAI_ShouldRetrieveProfessorOak:
+SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
 	ld de, NIGHTLY_GARBAGE_RUN
 	farcall LookForCardIDInHandList
 	jr c, .count_deck_pile
@@ -5180,7 +5180,7 @@ SuddenGrowthDeckAIDecideComputerSearch:
 	farcall LookForCardIDInHandList
 	jr c, .check_bosss_way_in_hand
 
-	call ColorlessAltarAI_ShouldPlayProfessorOak
+	call ColorlessAltarAIDecideProfessorOak
 	ret nc
 
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
@@ -5283,7 +5283,7 @@ SuddenGrowthDeckAIDecideItemFinder:
 	jr nc, .count_deck_pile
 
 	push af
-	call SuddenGrowthDeckAI_ShouldRetrieveProfessorOak
+	call SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak
 	pop bc
 	ld a, b
 	jr c, .find_discard_cards
@@ -5456,13 +5456,11 @@ BadGuysDeckAIDecideReelIn:
 	scf
 	ret
 
-; for (energy cards in hand, hand size),
-; (x, 7+): no carry, a = hand size
-; (0, 6-): carry, a = hand size
-; (1+, 5 or 6): no carry, a = hand size, b = energy cards
-; (3+, 4-): no carry, a = b = energy cards
-; (2-, 4-): carry, a = b = energy cards
-Func_3a28d:
+; return carry if
+;    (<= 6 cards in hand AND no energy there)
+; OR (<= 4 cards in hand AND <= 2 energy there)
+; a and b get clobbered
+BadGuysDeckAIDecideProfessorOak:
 	ld a, DUELVARS_NUMBER_OF_CARDS_IN_HAND
 	get_turn_duelist_var
 	cp 7
@@ -5579,29 +5577,31 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	or a
 	ret
 
-BadGuysDeckAIHandCheck:
-	call Func_3a28d
-	jr c, .skip_oak
+BadGuysDeckAIDecideEnergyRetriever_FindDiscardCard:
+; try oak
+	call BadGuysDeckAIDecideProfessorOak
+	jr c, .try_bill
 	ld de, PROFESSOR_OAK
 	farcall LookForCardIDInHandList
 	ret c
-.skip_oak
+.try_bill
 	ld a, DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK
 	get_turn_duelist_var
 	cp DECK_SIZE - 11
-	jr c, .skip_bill
+	jr c, .try_pkmn
 	ld de, BILL
 	farcall LookForCardIDInHandList
 	ret c
-.skip_bill
+.try_pkmn
 	call FindSameCardsInHandAndPlayArea
 	ret c
+; try boss's way
 	call BadGuysDeckAIDecideTheBosssWay
-	jr nc, .skip_bosss_way
+	jr nc, .try_energy_search
 	ld de, THE_BOSSS_WAY
 	farcall LookForCardIDInHandList
 	ret c
-.skip_bosss_way
+.try_energy_search
 	ld de, ENERGY_SEARCH
 	farcall LookForCardIDInHandList
 	ret
@@ -6299,12 +6299,10 @@ CheckIfHasRainDanceActive:
 	scf
 	ret
 
-; used by Ultra Removal Deck AI to check
-; whether to use Professor Oak
-; returns carry if:
-; - has Golduck or Blastoise in Arena and has no energy cards in hand
-; - has no evolutions in hand that can be used for a Pokémon in Play Area
-UltraRemovalDeckHandCheck:
+; return carry if
+;    (golduck or blastoise in arena AND no energy in hand)
+; OR no evolution cards in hand for her pkmn in play
+UltraRemovalDeckAIDecideProfessorOak:
 	ld de, GOLDUCK_LV27
 	ld b, PLAY_AREA_ARENA
 	farcall FindCardIDInTurnDuelistsPlayArea
