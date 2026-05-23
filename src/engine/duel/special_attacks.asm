@@ -593,7 +593,7 @@ HandleSpecialAIAttacks:
 .HyperBeam:
 	call SwapTurn
 	ld e, PLAY_AREA_ARENA
-	farcall CountNumberOfNonRecycleEnergyCardsAttached
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
 	call CreateArenaOrBenchEnergyCardList
 	call SwapTurn
 	or a

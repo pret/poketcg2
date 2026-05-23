@@ -1624,13 +1624,13 @@ HandleAIEvolutionaryLight:
 
 .power_of_darkness
 	ld de, DARK_CLEFABLE
-	farcall Func_4b9f4
+	farcall IsEvoCardIDInDeckAndNotInHand_AIDecideEvolution
 	jp c, .use_evolutionary_light
 	ld de, DARK_GOLDUCK
-	farcall Func_4b9f4
+	farcall IsEvoCardIDInDeckAndNotInHand_AIDecideEvolution
 	jp c, .use_evolutionary_light
 	ld de, DARK_DRAGONAIR
-	farcall Func_4b9f4
+	farcall IsEvoCardIDInDeckAndNotInHand_AIDecideEvolution
 	jp c, .use_evolutionary_light
 	ret
 
@@ -3398,7 +3398,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 
 .check_oddish_dark_vileplume
 	ld de, ODDISH_LV21
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr nc, .check_oddish_breeder_dark
 	ld de, DARK_VILEPLUME
 	farcall LookForCardIDInHandList
@@ -3410,7 +3410,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 
 .check_oddish_breeder_dark
 	ld de, ODDISH_LV21
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr nc, .check_dark_gloom_in_hand
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
@@ -3456,7 +3456,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 
 .check_oddish_vileplume
 	ld de, ODDISH_LV21
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr nc, .check_oddish_breeder_nondark
 	ld de, VILEPLUME
 	farcall LookForCardIDInHandList
@@ -3468,7 +3468,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 
 .check_oddish_breeder_nondark
 	ld de, ODDISH_LV21
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr nc, .check_gloom_vileplume
 	ld de, POKEMON_BREEDER
 	farcall LookForCardIDInHandList
@@ -3505,7 +3505,7 @@ MadPetalsDeckAIDecidePokemonTrader:
 
 .check_squirtle
 	ld de, SQUIRTLE_LV16
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr nc, .check_wartortle
 	ld de, WARTORTLE_LV22
 	ld bc, SQUIRTLE_LV16
@@ -4043,12 +4043,12 @@ LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea:
 	push de
 	ld d, b
 	ld e, c
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	pop bc
 	ret nc ; card ID 2 not found in hand or play area
 	push bc
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	jr c, .no_carry ; card ID 1 found in hand or play area
 
@@ -4117,7 +4117,7 @@ LookForCardIDInDeck_GivenCardIDInHand:
 	ret nc ; card ID 1 not found in deck
 	ld [wTempAISingleTargetCardDeckIndex], a
 	push bc
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	jr c, .no_carry ; card ID 1 found in hand or play area
 	farcall LookForCardIDInHandList
@@ -4174,10 +4174,10 @@ LookForCardIDInDiscardPile_GivenCardIDInHandOrPlayArea:
 	push de
 	ld d, b
 	ld e, c
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	ret nc ; card ID 2 not found in hand or play area
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr c, .no_carry ; card ID 1 found in hand or play area
 
 ; success
@@ -4207,7 +4207,7 @@ LookForCardIDInDiscardPile_GivenCardIDInHand:
 	ret nc ; card ID 1 not found in discard pile
 	ld [wTempAISingleTargetCardDeckIndex], a
 	push bc
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	jr c, .no_carry ; card ID 1 found in hand or play area
 	farcall LookForCardIDInHandList
@@ -4315,9 +4315,10 @@ FindTurnDuelistPokemonInPlayAreaWithEnoughEnergy:
 	scf
 	ret
 
+; return carry if card id in de is found in hand or play area
 ; input:
 ; - de = card ID
-CheckIfCardIDIsInHandOrPlayArea:
+IsCardIDInHandOrPlayArea:
 	push de
 	farcall LookForCardIDInHandList
 	pop de
@@ -4703,7 +4704,7 @@ IsCardIDInDeckAndNotInHand:
 ; card ID in de is in deck and not in hand or play area
 IsCardIDInDeckAndNotInHandOrPlayArea:
 	push de
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	pop de
 	jr c, .no_carry ; is in hand or play area
 	ld a, CARD_LOCATION_DECK
@@ -5152,10 +5153,10 @@ SuddenGrowthDeckAIDecideItemFinder_TargetProfessorOak:
 
 .check_pkmn_2
 	ld de, DRATINI_LV12
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr c, .no_carry
 	ld de, CLEFAIRY_LV15
-	call CheckIfCardIDIsInHandOrPlayArea
+	call IsCardIDInHandOrPlayArea
 	jr c, .no_carry
 	ld de, DARK_DRAGONAIR
 	farcall LookForCardIDInHandList
@@ -5479,14 +5480,15 @@ BadGuysDeckAIDecideProfessorOak:
 	cp 3
 	ret
 
+; return carry and output three selected cards to
+; {a, wTempAIMultiTargetCardDeckIndex1, wTempAIMultiTargetCardDeckIndex2}
 ; if discard pile contains dark golduck, dark charmeleon, dark slowbro, and dark gloom,
-;   return carry and the deck index of dark golduck, and
-;   store dark charmeleon's and dark slowbro's to buffer
+; select {dark golduck, dark charmeleon, dark slowbro};
 ; elif discard pile contains >= 7 basic energy cards,
-;   return carry and the deck index of first basic energy card, and
-;   store second and third ones to buffer
+; select 3 of them;
 ; otherwise no carry
 BadGuysDeckAIDecideNightlyGarbageRun:
+; init
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -5495,25 +5497,26 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GOLDUCK
 	farcall FindCardIDInLocation
-	call c, .TryAddToBuffer
+	call c, .store_cards
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_CHARMELEON
 	farcall FindCardIDInLocation
-	call c, .TryAddToBuffer
+	call c, .store_cards
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_SLOWBRO
 	farcall FindCardIDInLocation
-	call c, .TryAddToBuffer
-	jr c, .shift_and_check
+	call c, .store_cards
+	jr c, .shift
 
 	ld a, CARD_LOCATION_DISCARD_PILE
 	ld de, DARK_GLOOM
 	farcall FindCardIDInLocation
-	call c, .TryAddToBuffer
-	jr c, .shift_and_check
+	call c, .store_cards
+	jr c, .shift
 
+; re-init
 	ld a, $ff
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	ld [wTempAIMultiTargetCardDeckIndex2], a
@@ -5530,15 +5533,15 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 .loop_basic_energy
 	ld a, [hli]
 	cp $ff
-	jr z, .shift_and_check
+	jr z, .shift
 	push hl
-	call .TryAddToBuffer
+	call .store_cards
 	pop hl
 	jr nc, .loop_basic_energy
 
-; get the first slot and shift the rest
-; set carry if the third slot is empty ($ff)
-.shift_and_check
+; shift {#1, #2, #3} to {a, #1, #2}
+; no carry if selected <= 2 cards
+.shift
 	ld a, [wTempAIMultiTargetCardDeckIndex1]
 	push af
 	ld a, [wTempAIMultiTargetCardDeckIndex2]
@@ -5547,37 +5550,40 @@ BadGuysDeckAIDecideNightlyGarbageRun:
 	ld [wTempAIMultiTargetCardDeckIndex2], a
 	cp $ff
 	jr z, .no_carry
+; success
 	pop af
 	scf
 	ret
+
 .no_carry
 	pop af
 	or a
 	ret
 
 ; a = deck index
-; put it to the first empty ($ff) slot of the three
-; set carry if already full
-.TryAddToBuffer:
+; expectation: set carry when storing the third card
+; reality: set carry when trying the fourth card
+.store_cards
 	ld b, a
 	ld hl, wTempAIMultiTargetCardDeckIndex1
 	ld a, $ff
 	cp [hl]
-	jr z, .add
+	jr z, .store
 	inc hl
 	cp [hl]
-	jr z, .add
+	jr z, .store
 	inc hl
 	cp [hl]
-	jr z, .add
+	jr z, .store
 	scf
 	ret
-.add
+
+.store
 	ld [hl], b
 	or a
 	ret
 
-BadGuysDeckAIDecideEnergyRetriever_FindDiscardCard:
+BadGuysDeckAIDecideEnergyRetrieval_FindDiscardCard:
 ; try oak
 	call BadGuysDeckAIDecideProfessorOak
 	jr c, .try_bill
@@ -5593,7 +5599,7 @@ BadGuysDeckAIDecideEnergyRetriever_FindDiscardCard:
 	farcall LookForCardIDInHandList
 	ret c
 .try_pkmn
-	call FindSameCardsInHandAndPlayArea
+	call IsSameCardInHandAndPlayArea
 	ret c
 ; try boss's way
 	call BadGuysDeckAIDecideTheBosssWay
@@ -5606,8 +5612,9 @@ BadGuysDeckAIDecideEnergyRetriever_FindDiscardCard:
 	farcall LookForCardIDInHandList
 	ret
 
-; return carry if the same card is found in both hand and own play area
-FindSameCardsInHandAndPlayArea:
+; return carry and deck index of hand card if
+; the same card is found in both hand and own play area
+IsSameCardInHandAndPlayArea:
 	call CreateHandCardList
 	ld hl, wDuelTempList
 .loop_hand_cards
@@ -5652,19 +5659,19 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	ld bc, DARK_CHARMELEON
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_CHARMELEON
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 
 	ld de, PSYDUCK_LV16
 	ld bc, DARK_GOLDUCK
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_GOLDUCK
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 
 	ld de, SLOWPOKE_LV16
 	ld bc, DARK_SLOWBRO
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_SLOWBRO
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 
 	ld de, ODDISH_LV21
 	ld bc, DARK_GLOOM
@@ -5672,7 +5679,7 @@ BadGuysDeckAIDecidePokemonTraderForEvo:
 	ld de, DARK_GLOOM
 	ret nc
 
-.try_trade
+.find_trade_pkmn
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
@@ -5692,29 +5699,29 @@ PoisonMistDeckAIDecidePokemonTrader:
 	ld bc, GRIMER_LV10
 	ld de, DARK_MUK
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 
 	ld de, GRIMER_LV10
 	ld bc, DARK_MUK
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, DARK_MUK
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ret
 
 .weezing_line
 	ld bc, KOFFING_LV14
 	ld de, WEEZING_LV26
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 
 	ld de, KOFFING_LV14
 	ld bc, WEEZING_LV26
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, WEEZING_LV26
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ret
 
-.try_trade
+.find_trade_pkmn
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret
@@ -6347,12 +6354,12 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	ld bc, PSYDUCK_LV15
 	ld de, GOLDUCK_LV27
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ld de, PSYDUCK_LV15
 	ld bc, GOLDUCK_LV27
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, GOLDUCK_LV27
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ret
 
 .blastoise_line
@@ -6360,24 +6367,24 @@ UltraRemovalDeckAIDecidePokemonTrader:
 	ld de, BLASTOISE_LV52
 	call LookForEvoCardInDeck_GivenPreevoInPlayArea
 	ld de, WARTORTLE_LV22
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ld bc, SQUIRTLE_LV8
 	ld de, WARTORTLE_LV22
 	call LookForEvoCardInDeck_GivenPreevoInHandOrPlayArea
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ld de, SQUIRTLE_LV8
 	ld bc, WARTORTLE_LV22
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, WARTORTLE_LV22
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ld de, WARTORTLE_LV22
 	ld bc, BLASTOISE_LV52
 	call LookForCardIDInDeck_GivenCardIDInHand
 	ld de, BLASTOISE_LV52
-	jr c, .try_trade
+	jr c, .find_trade_pkmn
 	ret
 
-.try_trade
+.find_trade_pkmn
 	ld [wTempAIMultiTargetCardDeckIndex1], a
 	farcall FindDifferentPokemonCardInHand
 	ret

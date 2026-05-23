@@ -1719,6 +1719,8 @@ wTempAIItemFinderFirstDiscardDeckIndex:: ; d078
 wd079:: ; d079
 	ds $1
 
+; AI_SEARCH_2_ONLY_* constant, energy count, etc.
+wTempAISearchCriteria:: ; d07a
 	ds $1
 
 wd07b:: ; d07b

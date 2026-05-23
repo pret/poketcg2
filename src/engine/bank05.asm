@@ -6425,9 +6425,9 @@ Func_167e5:
 	sub b
 	cp 1
 	jr nz, .dont_play_energy_card
-	farcall CreateEnergyCardListFromHand_OnlyBasic
+	farcall CreateEnergyCardListFromHand_OnlyBasicOrRecycleEnergy
 	jr nc, .asm_1682a
-	farcall $12, $7f6d
+	farcall CreateEnergyCardListFromHand_IgnoreRainbowEnergy
 	jr c, .dont_play_energy_card
 .asm_1682a
 	ld a, [wDuelTempList]
@@ -6822,7 +6822,7 @@ AIDecideEvolution:
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	get_turn_duelist_var
 	ld c, a
-	ld b, 0
+	ld b, PLAY_AREA_ARENA
 .next_bench_pokemon
 	push bc
 	ld e, b
@@ -6834,7 +6834,7 @@ AIDecideEvolution:
 	jp c, .done_bench_pokemon
 
 	ld a, b
-	call Func_16af1
+	call AIDecideEvolution_GivenLocation
 	jr nc, .done_bench_pokemon
 
 	ld a, [wTempAI]
@@ -6877,7 +6877,7 @@ AIDecideEvolution:
 	pop hl
 	ret
 
-Func_16af1:
+AIDecideEvolution_GivenLocation:
 ; store this Play Area location in wTempAI
 ; and initialize the AI score
 	ld [wTempAI], a
@@ -8054,7 +8054,7 @@ AITryToPlayEnergyCard:
 	jr nc, .play_energy_card
 
 ; otherwise, try to play any Basic Energy card
-	farcall CreateEnergyCardListFromHand_OnlyBasic
+	farcall CreateEnergyCardListFromHand_OnlyBasicOrRecycleEnergy
 	ld a, [wDuelTempList]
 	cp $ff
 	jr z, .no_basic_energy

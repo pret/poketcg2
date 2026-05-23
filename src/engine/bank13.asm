@@ -579,7 +579,7 @@ Func_4c524:
 	ret c
 
 .check_hand_and_play_area
-	farcall FindSameCardsInHandAndPlayArea
+	farcall IsSameCardInHandAndPlayArea
 	ret c
 
 	ld de, SWITCH
@@ -787,7 +787,7 @@ Func_4c676:
 
 	ld e, PLAY_AREA_ARENA
 	call SwapTurn
-	farcall CountNumberOfNonRecycleEnergyCardsAttached
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
 	call SwapTurn
 	or a
 	ret z
@@ -838,7 +838,7 @@ FindPlayerPokemonInPlayAreaWithEnoughHPAndNonRecycleEnergy:
 	get_turn_duelist_var
 	cp c
 	jr c, .next
-	farcall CountNumberOfNonRecycleEnergyCardsAttached
+	farcall CountNumberOfEnergyCardsAttached_IgnoreRecycleEnergy
 	or a
 	jr z, .next
 
